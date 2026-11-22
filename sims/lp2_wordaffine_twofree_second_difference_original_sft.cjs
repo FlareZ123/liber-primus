@@ -159,6 +159,103 @@ function plantNative(nativeWords, rng) {
     invariantExactBothPlants: true};
 }
 
+
+/**
+ * Any polynomial key of degree <= d cancels from the (d+1)st difference.
+ * This tests the original p7 five-point/quartic-family word-local rival
+ * with entirely secret coefficients, preserving every authentic word.
+ * @param {number[][]} words
+ * @param {number} order
+ */
+function finiteDifferenceHistogram(words, order) {
+  const hist = Array(29).fill(0);
+  for (const word of words) {
+    let differences = word.slice();
+    for (let d = 0; d < order; d++) {
+      differences = differences.slice(1)
+        .map((v, j) => mod(v - differences[j]));
+    }
+    for (const value of differences) hist[value]++;
+  }
+  return hist;
+}
+
+/** Exact, positive 12,956-rune quartic pad using arbitrary secret coefficients. */
+function plantQuartic(nativeWords, random) {
+  const choose = (j, d) => {
+    let value = 1;
+    for (let z = 1; z <= d; z++) value = value * (j - z + 1) / z;
+    return value;
+  };
+  const keys = nativeWords.map(() =>
+    Array.from({length: 5}, () => random() % 29));
+  const ciphertext = nativeWords.map((word, w) =>
+    word.map((p, j) => mod(p + keys[w].reduce(
+      (sum, coefficient, d) => sum + coefficient * choose(j, d), 0))));
+  const decoded = ciphertext.map((word, w) =>
+    word.map((c, j) => mod(c - keys[w].reduce(
+      (sum, coefficient, d) => sum + coefficient * choose(j, d), 0))));
+  assert.deepEqual(decoded, nativeWords);
+  assert.deepEqual(finiteDifferenceHistogram(ciphertext, 5),
+    finiteDifferenceHistogram(nativeWords, 5));
+  assert.equal(size(decoded), 12956);
+  return {ciphertextRunes: size(ciphertext), correctlyRecovered: size(decoded),
+    fifthDifferencesIdentical: true, separateSecretCoefficients: 5*nativeWords.length};
+}
+
+/** Exact source-GP word-matched finite-difference null for degrees 2, 3, 4. */
+function higherPolynomialGate(nativeWords, pools) {
+  const orders = [3, 4, 5];
+  const reference = orders.map(order => finiteDifferenceHistogram(known, order));
+  const original = orders.map(order => finiteDifferenceHistogram(unsolved, order));
+  const nativeMatched = orders.map(order =>
+    finiteDifferenceHistogram(nativeWords, order));
+  const actual = original.map((hist, j) =>
+    chiSquareHomogeneity(hist, reference[j]));
+  const matched = original.map((hist, j) =>
+    chiSquareHomogeneity(hist, nativeMatched[j]));
+  assert.deepEqual(original.map(h => h.reduce((s, v) => s + v, 0)),
+    [4882, 3237, 2105]);
+  const checks = [95.8821430142865, 44.66697320209907, 46.07642788475357];
+  for (let j = 0; j < 3; j++) assert.ok(Math.abs(actual[j]-checks[j]) < 1e-9);
+  const control = plantQuartic(nativeWords, makeRandom());
+  const frozen = pools.map(pool => pool.map(word =>
+    orders.map(order => finiteDifferenceHistogram([word], order))));
+  const random = makeRandom(), repetitions = 500;
+  const maxima = Array(3).fill(0), exceed = Array(3).fill(0), sums=Array(3).fill(0);
+  for (let n = 0; n < repetitions; n++) {
+    const histogram = orders.map(() => Array(29).fill(0));
+    for (const word of unsolved) {
+      const choices = frozen[word.length];
+      const drawn = choices[random() % choices.length];
+      for (let k = 0; k < 3; k++) {
+        for (let i = 0; i < 29; i++) histogram[k][i] += drawn[k][i];
+      }
+    }
+    for (let k = 0; k < 3; k++) {
+      const value = chiSquareHomogeneity(histogram[k], reference[k]);
+      maxima[k] = Math.max(maxima[k], value);
+      exceed[k] += Number(value >= actual[k]);
+      sums[k] += value;
+    }
+  }
+  const expected = [12.249488444204946, 14.608030875967286, 18.649863711483906];
+  for (let k = 0; k < 3; k++) {
+    assert.ok(Math.abs(maxima[k] - expected[k]) < 1e-9);
+    assert.equal(exceed[k], 0);
+  }
+  return {models: orders.map((order,k) => ({
+    secretWordPolynomialDegree: order - 1,
+    invariantDerivativeOrder: order,
+    originalDerivativePositions: original[k].reduce((a,b)=>a+b,0),
+    originalVsSourceNativeChi: actual[k],
+    originalVsLengthMatchedNativeChi: matched[k],
+    matchedNativeSimulation500Max: maxima[k],
+    matchedNativeSimulation500Mean: sums[k] / repetitions,
+    matchedNativeSimulation500Exceed: exceed[k]
+  })), nativeQuarticPositive: control};
+}
+
 function run() {
   const original = secondDifferenceHistogram(unsolved);
   const source = secondDifferenceHistogram(known);
@@ -202,6 +299,8 @@ function run() {
   assert.ok(simMax < 16.5); // benchmark expected max about 15.9
   assert.ok(Math.abs(simMax - 15.932849586541241) < 1e-9);
 
+  const polynomial = higherPolynomialGate(nativeMatched, nativePools);
+
   const independent = [
     ["Gibran", "resources/control/gibran_prophet_58585.txt", 269.0301910135937],
     ["Emerson", "resources/control/emerson_essays_2944.txt", 192.15928068059597],
@@ -227,6 +326,7 @@ function run() {
       atLeastActual: 0},
     literarySourceHoldouts: independent,
     plantedCipher: positive,
+    fullySecretQuadraticCubicQuarticWordPads: polynomial,
     exactP57PlaintextTokenizer: "95/95 GP runes",
     decision: "No ordinary length-preserving GP29 English/Latin-author register under any per-word affine offset plus slope. Other evolving/nonlinear alphabets, languages or segmentation remain unresolved. No unknown plaintext recovered."
   };
@@ -234,4 +334,4 @@ function run() {
   return result;
 }
 if (require.main === module) run();
-module.exports = {secondDifferenceHistogram, chiSquareHomogeneity, plantNative, run};
+module.exports = {secondDifferenceHistogram, finiteDifferenceHistogram, chiSquareHomogeneity, plantNative, plantQuartic, higherPolynomialGate, run};
