@@ -34,6 +34,17 @@ The omitted-`f` observation has a useful in-artifact control. Under a fixed-seed
 
 **Reproduce the entire missing-digit-to-DIRECTION route, source-pinned page length and fixed 1-million-shuffle control** with [`sims/lp2_p50_missingf_prime41_selector_sft.cjs`](../sims/lp2_p50_missingf_prime41_selector_sft.cjs). The independent prior numeric route is [documented here](lp2-p15-p53-dh23-179-adic-read-fingerprint.md).
 
+
+## Full untouched p53 decipherment using the selected table window
+
+The source chain fixes a literal, inexpensive full-page test without fitted key phase: omitted `f` selects **179-rune original p53**, and the signed `DIRECTION` readout gives `GP0(DIRECTION)=98`, whose original p50 token is `1C` (base60 byte **72**). The **179** consecutive table bytes `b[72..250]` fit the whole p53 ciphertext exactly and leave five table bytes unused. For the historically established Cicada 2014 GP29 additive inverse, test
+
+`P[i] = (C_p53[i] - b[72+i]) mod29`, for every `i=0..178`.
+
+The complete original output has **IoC 0.0353399033331241** and no coherent GP-native prose. The opposite-sign control `C+b` has **IoC 0.031636432113489425** and no coherent prose. Both re-encode the original **179/179** rune ciphertext exactly, and an independent solved-p57 native-plaintext plant round-trips **179/179**. These controls establish a functioning cipher implementation; they cannot certify the underlying historical rule. The choice to use consecutive p50 bytes modulo29 as a Vigenère pad is a **hypothesis**, albeit one with source-fixed length, phase and receiver. This negative result closes only that exact cheap consumer, with no phase searches or extra layers.
+
+The full input, output statistics and positive plant are reproducible in [the single-file original-cipher test](../sims/lp2_p50_missingf_prime41_selector_sft.cjs). The five unused bytes are a bookkeeping fact, **not** a new source-proven key or length5 decoding instruction.
+
 ## Exact alternative-readout gate
 
 Twelve finite byte interpretations were compared: the literal base60 reading and a base59 reading omitting `f` from the digit alphabet, each in six fixed physical orders: row-major, complete reversal, column-major, complete reversal of that, reversal inside each eight-byte printed row, and reversal of the 32 printed rows. Only **base60 row-major** is divisible by the **full** factor product 36,528,277,968. Since the factor product was selected by factoring that very reading, this uniqueness **does not independently establish that the authors selected the reading**.
