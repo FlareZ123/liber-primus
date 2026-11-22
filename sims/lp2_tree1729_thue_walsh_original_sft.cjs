@@ -159,7 +159,14 @@ console.log("Adjacent-equal contingency [different,equal]:", repeat);
 console.log("Unadjusted Thue same-bit enrichment hypergeometric p:", diagnosticP);
 console.log("NOTE: 9 repeats and post-discovery tests cannot validate a historical Thue clock.");
 
-assert.equal(grid.shape[0] * grid.shape[1], 256);
+assert.equal(grid.shape, "32 rows by 8 columns across LP2 pages 49, 50, 51");
+assert.equal(grid.bytes.length, 256);
+let native256Minimum = Infinity;
+for (let first = 0; first + 256 <= native.length; first++) {
+  native256Minimum = Math.min(native256Minimum,
+    ioc(native.slice(first, first + 256)));
+}
+console.log("Solved-native 256-window minimum IoC:", native256Minimum);
 for (const radix of [59, 60]) {
   const original = grid.bytes.map(v =>
     radix === 60 ? v : v - Math.floor(v / 60));
@@ -168,7 +175,7 @@ for (const radix of [59, 60]) {
   assert.deepEqual(replay, original.map(v => v * 256));
   const residues = transformed.map(mod29);
   const spectrumIoc = ioc(residues);
-  const upperNative = Math.min(...minima);
+  const upperNative = native256Minimum;
   assert(spectrumIoc < upperNative);
   console.log("p50 row-major 32x8 radix", radix,
     "FWHT->GP29 IoC", spectrumIoc, "Thue endpoint", transformed[255],
