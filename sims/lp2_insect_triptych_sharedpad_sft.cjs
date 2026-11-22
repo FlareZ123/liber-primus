@@ -124,12 +124,53 @@ function seeded(initial) {
   };
 }
 
+/**
+ * Diagnostic extension: also fit ANY two constant page-to-page GP29 shifts,
+ * using exactly 29^2 settings. This is an unconstrained rival and therefore
+ * cannot authenticate a key, but it tests if a page-level Caesar bias can
+ * rescue the shared stream assumption without per-rune fitting.
+ * @param {number[][]} data
+ * @returns {{llr:number,offsets:number[]}}
+ */
+function bestPageOffsets(data) {
+  const matrices = [];
+  for (let a = 0; a < 3; a++) {
+    for (let b = a + 1; b < 3; b++) {
+      const hist = Array(29).fill(0);
+      const scores = Array(29).fill(0);
+      for (let i = 0; i < n; i++) hist[(data[a][i] - data[b][i] + 29) % 29]++;
+      for (let shift = 0; shift < 29; shift++) {
+        for (let d = 0; d < 29; d++)
+          scores[shift] += hist[d] * logOdds[(d + shift) % 29];
+      }
+      matrices.push(scores);
+    }
+  }
+  let best = { llr: -Infinity, offsets: [0, 0, 0] };
+  for (let u = 0; u < 29; u++) {
+    for (let w = 0; w < 29; w++) {
+      const llr = matrices[0][u] + matrices[1][w] +
+        matrices[2][(w - u + 29) % 29];
+      if (llr > best.llr) best = { llr, offsets: [0, u, w] };
+    }
+  }
+  return best;
+}
+
 const disjoint = [];
+const disjointWithFittedOffsets = [];
 for (let i = 0; i < 200; i++) {
   const source = donors.map(v => v.data.slice(i * 300, i * 300 + n));
   disjoint.push(evaluate(source).llr);
+  disjointWithFittedOffsets.push(bestPageOffsets(source).llr);
 }
 disjoint.sort((a, b) => a - b);
+disjointWithFittedOffsets.sort((a, b) => a - b);
+const fittedOriginal = bestPageOffsets(aligned);
+const sourceCarryOffset = evaluate(aligned.map((a, j) =>
+  a.map(v => (v - carries[j] + 29) % 29)));
+assert(Math.abs(fittedOriginal.llr - 0.27333772351017127) < 1e-8);
+assert(Math.abs(sourceCarryOffset.llr + 10.594101176960956) < 1e-8);
 assert(disjoint[0] > pageStartResult.llr);
 
 // These 6,000 donor-window placements are not independent trials because
@@ -180,6 +221,11 @@ console.log(JSON.stringify({
   comparisonRunesPerPage: n,
   originalAligned: result,
   originalRawPageStarts: pageStartResult,
+  originalWithLiteralCarryAsAdditiveOffsets: sourceCarryOffset,
+  originalWithFittedUnknownPageCaesarOffsets: fittedOriginal,
+  fittedOffsetControlMinimum: disjointWithFittedOffsets[0],
+  fittedOffsetControlsAtOrBelowOriginal: disjointWithFittedOffsets.filter(x =>
+    x <= fittedOriginal.llr).length,
   genuineNativeGPControlRuneLengths: donors.map(x => x.data.length),
   disjointControlCount: disjoint.length,
   disjointControlMinimum: disjoint[0],
