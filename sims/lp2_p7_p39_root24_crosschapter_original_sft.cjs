@@ -83,6 +83,19 @@ const predictedRed3 = [
 ];
 assert.deepEqual(predictedRed3, [13,23,2]);
 assert.deepEqual(sourceP3, predictedRed3);
+// A simpler exact full-function relation drops the assumed page clock:
+// Q39(x) = (p7[3]/p7[4]) * (Q3(x-p7[2]) - z^2) mod29.
+// The scale, horizontal shift, and vertical shift all use earlier
+// physically printed p7/p8 operands. Still retrospective operator choice.
+const gp3 = x => mod(sourceP3[0] + sourceP3[1]*x + sourceP3[2]*x*x);
+const gp39 = x => mod(q[0] + q[1]*x + q[2]*x*x);
+const xShift = product(p7[2]); // 8
+const yShift = pow(z,2); // 23
+const yScale = mod(product(p7[3]) * 15); // 15 / 2, since inverse(2)=15
+assert.deepEqual([xShift,yShift,yScale],[8,23,22]);
+for (let x=0;x<29;x++) {
+  assert.equal(mod(yScale * (gp3(mod(x-xShift)) - yShift)), gp39(x));
+}
 // Discriminant is invariant under affine x -> a*x+b up to a^2.
 // It is also invariant as a zero/nonzero square class under fractional
 // linear coordinate substitutions with nonzero determinant.
@@ -174,6 +187,7 @@ console.log(JSON.stringify({
   pagePhases:[pagePhase(3),pagePhase(39)],
   predictedP3RedTriad:predictedRed3, originalP3RedTriad:sourceP3,
   originalP39RedRuneCoefficients:q, uniqueDoubleRoot:roots,
+  sourceFixedAffineGraphTransform:{xShift,yShift,yScale},
   quadraticDiscriminants:[disc3,disc39],
   p3HasNoGF29ZeroRoots:true,
   nonsingularLinearPageclockConjugacyImpossible:true,
