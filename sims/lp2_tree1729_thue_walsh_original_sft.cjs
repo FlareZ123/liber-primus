@@ -370,6 +370,33 @@ console.log("Thue squarefree ciphertext-feedback all 24,389 secret coefficient t
   "best",feedbackBest,"native benchmark",nativeWholeMin,
   "authentic native plant replay PASS");
 
+// Cross-image recipient: LP2 p55 contains a central ghost tree and 76 runes.
+// The fixed THUE digit/prime trio is a source-derived proposed key and
+// Thue's ternary word gives an independently specified ordering.
+const p55 = corpus.pages.find(p => p.page === 55).indices;
+assert.equal(p55.length, 76);
+const p55Thue = ternaryThue(p55.length);
+const p55NativeMin=Math.min(...Array.from(
+  {length:native.length-p55.length+1},
+  (_,start)=>ioc(native.slice(start,start+p55.length))));
+const candidateKeys = [
+  {id:"repeated-GP29-THUE",key:p55.map((_,i)=>[2,1,18][i%3])},
+  {id:"ternary-word-GP29-THUE",key:p55Thue.map(s=>[2,1,18][s])},
+  {id:"ternary-word-GP-primes-THUE",key:p55Thue.map(s=>[5,3,67%29][s])}
+];
+let p55Best={id:"",sign:0,ioc:-1,firstRune:-1};
+for(const candidate of candidateKeys) for(const sign of [-1,1]){
+  const decoded=p55.map((v,i)=>mod29(v+sign*candidate.key[i]));
+  const score=ioc(decoded);
+  if(score>p55Best.ioc)
+    p55Best={id:candidate.id,sign,ioc:score,firstRune:decoded[0]};
+  assert(score<p55NativeMin);
+}
+console.log("Ghost-tree p55 76-rune THUE-coded 3 receivers × 2 signs:",
+  "best",p55Best,"2904 solved-native 76-rune-window IoC floor",
+  p55NativeMin,"original unmodified p55 IoC",ioc(p55));
+console.log("All six simple source-derived p55 key consumers are non-native.");
+
 assert.equal(grid.shape, "32 rows by 8 columns across LP2 pages 49, 50, 51");
 assert.equal(grid.bytes.length, 256);
 let native256Minimum = Infinity;
