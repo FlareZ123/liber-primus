@@ -153,7 +153,8 @@ const redWords = [redP7.slice(0,2),redP7.slice(2,6),redP7.slice(6,9),redP7.slice
 const redProducts = redWords.map((w) => mod(w.reduce((x, y) => x * y, 1)));
 assert.deepEqual(redProducts, [11,26,8,15,2]);
 const inverseProducts = [23,2,5,2,19];
-const convolution = (a, b, i) => mod(Array.from({length:5}, (_, j) => a[j] * b[mod(i-j) % 5]).reduce((x,y)=>x+y,0));
+const idx5 = (x) => ((x % 5) + 5) % 5;
+const convolution = (a, b, i) => mod(Array.from({length:5}, (_, j) => a[j] * b[idx5(i-j)]).reduce((x,y)=>x+y,0));
 for (let i=0;i<5;i++) assert.equal(convolution(redProducts,inverseProducts,i),i===0?1:0);
 /** @param {number[]} source @param {number[]} row @param {boolean} transposed @returns {number[]} */
 function blockMix(source, row, transposed) {
@@ -161,20 +162,20 @@ function blockMix(source, row, transposed) {
   const out = [];
   for(let n=0;n<255;n+=5) for(let i=0;i<5;i++) {
     let result=0;
-    for(let j=0;j<5;j++) result+=row[mod(transposed?i-j:j-i)%5]*source[n+j];
+    for(let j=0;j<5;j++) result+=row[idx5(transposed?i-j:j-i)]*source[n+j];
     out.push(mod(result));
   }
   return out;
 }
 const mixExpectation=[
-  ['indexSum',false,false,6,0.03603520148216767],
-  ['indexSum',false,true,9,0.03486181874324533],
-  ['indexSum',true,false,9,0.03341052956615717],
-  ['indexSum',true,true,8,0.03405897792187741],
-  ['indexProduct',false,false,12,0.03297823066234368],
-  ['indexProduct',false,true,9,0.03375019299058206],
-  ['indexProduct',true,false,5,0.03418249189439555],
-  ['indexProduct',true,true,6,0.03427512737378416],
+  ['indexSum',false,false,7,0.03578817353713139],
+  ['indexSum',false,true,8,0.03408985641500695],
+  ['indexSum',true,false,8,0.03421337038752509],
+  ['indexSum',true,true,10,0.03297823066234368],
+  ['indexProduct',false,false,6,0.03408985641500695],
+  ['indexProduct',false,true,15,0.03458391230507951],
+  ['indexProduct',true,false,8,0.03588080901651999],
+  ['indexProduct',true,true,6,0.03538675312644743],
 ];
 for(const [sourceName, inverse, transpose, hits, expectedDifferenceIoc] of mixExpectation) {
   const source=sourceName==='indexSum'?wordSums:wordProducts;
