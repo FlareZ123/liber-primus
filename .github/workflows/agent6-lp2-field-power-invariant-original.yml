@@ -1,0 +1,20 @@
+name: Agent6 LP2 Prime-Power Class-Invariant Original Gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify GF29 field-order invariant on all original runes
+        shell: pwsh
+        run: node sims/lp2_prime_field_power_order_invariant_original_sft.cjs
