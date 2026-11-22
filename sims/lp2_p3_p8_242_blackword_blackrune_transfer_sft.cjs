@@ -208,6 +208,66 @@ assert(Math.abs(outputs[0].originalP9Ioc - 0.034024526198439244) < 1e-14);
 assert(Math.abs(outputs[0].untouchedP13Ioc - 0.034522613065326634) < 1e-14);
 assert(Math.abs(outputs[1].originalP9Ioc - 0.03422519509476031) < 1e-14);
 assert(Math.abs(outputs[1].untouchedP13Ioc - 0.03492462311557789) < 1e-14);
+/**
+ * A 13-to-12 red-word transition would naturally use twelve adjacent finite
+ * differences or ratios. The source's repeated p8-red letters give a strict
+ * key-independent necessary test for every fixed secret GP29 alphabet, not
+ * merely for additive/affine keys. This is a narrow exclusion.
+ *
+ * @param {number[]} sourceValues
+ * @param {number[]} targetValues
+ * @returns {boolean}
+ */
+function admitsFixedSecretAlphabet(sourceValues, targetValues) {
+  assert.equal(sourceValues.length, targetValues.length);
+  for (let i = 0; i < sourceValues.length; i++) {
+    for (let j = 0; j < i; j++) {
+      if ((sourceValues[i] === sourceValues[j]) !==
+          (targetValues[i] === targetValues[j])) return false;
+    }
+  }
+  return true;
+}
+
+/** @param {number} x @returns {number} */
+function inverse29(x) {
+  assert.notEqual(x, 0);
+  for (let y = 1; y < 29; y++) if (mod(x * y) === 1) return y;
+  throw new Error('GF29 inverse unavailable for nonzero symbol');
+}
+const red13 = redWords.map(({w}) => w);
+const red12 = p8.slice(0, 12);
+assert.equal(red13.length, 13);
+assert.deepEqual(red12, [14,10,14,19,1,14,19,5,2,13,3,17]);
+const redProducts = red13.map(w => w.reduce((v, x) => mod(v * x), 1));
+assert.deepEqual(redProducts, [17,8,4,18,13,19,14,23,11,26,8,15,2]);
+const redFeatures = {
+  length: red13.map(w => w.length),
+  first: red13.map(w => w[0]),
+  last: red13.map(w => w.at(-1)),
+  indexSum: red13.map(w => mod(w.reduce((v, x) => v + x, 0))),
+  primeSum: red13.map(w => mod(w.reduce((v, x) => v + gp.prime[x], 0))),
+  ordinalSum: red13.map(w => mod(w.reduce((v, x) => v + x + 1, 0))),
+  indexProduct: redProducts,
+  ordinalProduct: red13.map(w => w.reduce((v, x) => mod(v * (x + 1)), 1)),
+};
+for (const [featureName, values] of Object.entries(redFeatures)) {
+  const difference = values.slice(1).map((v, i) => mod(v - values[i]));
+  assert(!admitsFixedSecretAlphabet(difference, red12),
+    'unexpected fixed-alphabet red13->red12 difference: ' + featureName);
+  assert(!admitsFixedSecretAlphabet([...difference].reverse(), red12),
+    'unexpected reversed fixed-alphabet difference: ' + featureName);
+}
+const ratios = redProducts.slice(1).map((v, i) =>
+  mod(v * inverse29(redProducts[i])));
+const invertedRatios = ratios.map(inverse29);
+assert.deepEqual(ratios, [9,15,19,12,26,16,12,3,5,7,20,4]);
+for (const ratio of [ratios, invertedRatios]) {
+  assert(!admitsFixedSecretAlphabet(ratio, red12));
+  assert(!admitsFixedSecretAlphabet([...ratio].reverse(), red12));
+}
+console.log('PASS: 13 red words -> 12 red runes cannot be any fixed secret alphabet of eight source-native first differences or product ratios, even reversed');
+
 console.log('PASS: 13 red/242 black scroll words, 12 red/242 intra-page black p8 runes, p8 carried rune preserved');
 console.log('PASS: direct extraction 36/242, arbitrary global map 29/29 impossible, page-private map 52/121 impossible');
 console.log('PASS: 3 repeated whole-word pairs each contradict fixed word-code, including one adjacent pair on p7');
