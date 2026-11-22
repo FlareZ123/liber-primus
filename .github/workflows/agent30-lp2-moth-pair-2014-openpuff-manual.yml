@@ -1,0 +1,87 @@
+name: Agent30 LP2 duplicated moth pair authentic 2014 OpenPuff
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  two-moths:
+    runs-on: windows-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          architecture: x86
+      - name: Install native GUI prereqs
+        shell: pwsh
+        run: |
+          python -c "import struct; assert struct.calcsize('P') == 4"
+          python -m pip install --disable-pip-version-check filelock pywinauto Pillow
+          python sims/openpuff_output_capture_sft.py
+      - name: Pinned OpenPuff v4.00
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $root = Join-Path $env:RUNNER_TEMP 'OpenPuff-v400-moths'
+          New-Item -ItemType Directory -Force -Path $root | Out-Null
+          $base = 'https://raw.githubusercontent.com/codejanus/ToolSuite/1eaf6d006d31ba842f6cc6b16e9d82dbf904aaf5/OpenPuff'
+          $expected = @{
+            'OpenPuff.exe' = '466e03c792075313ce533a5dc7a789e8a41209f9'
+            'libObfuscate.dll' = 'f3b1c3315f8286346416fefd6141410f422f2454'
+          }
+          foreach ($name in $expected.Keys) {
+            $file = Join-Path $root $name
+            Invoke-WebRequest -Uri "$base/$name" -OutFile $file
+            $blob = (& git hash-object -- $file).Trim().ToLowerInvariant()
+            if ($LASTEXITCODE -ne 0 -or $blob -ne $expected[$name]) {
+              throw "Pinned OpenPuff executable mismatch: $name"
+            }
+          }
+          "OPENPUFF_EXE=$(Join-Path $root 'OpenPuff.exe')" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+      - name: Same-run original software JPEG positive
+        shell: pwsh
+        run: |
+          python sims/openpuff_public_jpeg_positive_source.py --out probe-output/public-source
+          if ($LASTEXITCODE -ne 0) { throw 'Source JPEG positive preparation failed' }
+          python sims/openpuff_v400_extract.py --exe "$env:OPENPUFF_EXE" --carrier probe-output/public-source/openpuff.jpg --password 12345678 --bit-format "Jpeg (Image)" --bit-level "1/2 (50%) - Maximum" --out probe-output/public-recovery --wait-seconds 45
+          if ($LASTEXITCODE -ne 0) { throw 'Native JPEG positive extraction failed' }
+          python -c "from pathlib import Path; p=Path('probe-output/public-recovery/extracted/hidden.txt'); assert p.is_file() and p.read_bytes()==b'Dies ist eine versteckte Nachricht!'; print('JPEG_POSITIVE_PASS')"
+          if ($LASTEXITCODE -ne 0) { throw 'Native JPEG positive bytes mismatch' }
+      - name: Original duplicated LP2 moth images with original 2014 key
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $indices = @(70, 72)
+          $expectedSha256 = @(
+            '4ec7293ba72bd52384787646d204c8a68fefaf2d22673c40d27f23812d424548',
+            'a80191592add93a86ed3868f9e4e6ba3944ec20c9ffccc7d3e221b461344beba'
+          )
+          $out = 'probe-output/original-two-moths'
+          $arguments = @('--exe', "$env:OPENPUFF_EXE", '--password', '33011033',
+            '--bit-format', 'Jpeg (Image)', '--bit-level', '1/5 (20%) - Medium',
+            '--out', "$out", '--wait-seconds', '180')
+          for ($i=0; $i -lt 2; $i++) {
+            $idx = $indices[$i]
+            $carrier = Join-Path $env:GITHUB_WORKSPACE ('resources/liber-primus/{0:D2}.jpg' -f $idx)
+            if (-not (Test-Path -LiteralPath $carrier)) { throw "Original carrier missing: $idx" }
+            $sha = (Get-FileHash -LiteralPath $carrier -Algorithm SHA256).Hash.ToLowerInvariant()
+            if ($sha -ne $expectedSha256[$i]) { throw "Original JPEG mismatch: $idx" }
+            $arguments += @('--carrier', "$carrier")
+          }
+          python sims/openpuff_v400_extract.py @arguments
+          if ($LASTEXITCODE -ne 0) { throw 'Original two-carrier native extraction failed' }
+          $r = Get-Content -LiteralPath "$out/result.json" -Raw | ConvertFrom-Json
+          if ($r.carrier_count -ne 2 -or -not $r.carrier_chain_verified -or -not $r.bit_selection_verified -or -not $r.attempted) {
+            throw 'Original two-moth native settings failed verification'
+          }
+          if ($r.native_probe_outcome -eq 'inconclusive-timeout') { throw 'Original two-moth outcome inconclusive' }
+          Write-Host "ORIGINAL_MOTH_SOURCE_RESULT $($r | Select-Object carrier_count, native_probe_outcome, output_present, outputs, selected_capacity_bytes_after_level, completion_dialogs, error_dialogs | ConvertTo-Json -Depth 12 -Compress)"
+          if ($r.output_present) { Write-Host 'POTENTIAL_ORIGINAL_LP2_PAYLOAD' }
+      - name: Save original-tool GUI evidence and any hidden files
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent30-openpuff-v400-moths-original-evidence
+          path: probe-output/
+          if-no-files-found: warn
