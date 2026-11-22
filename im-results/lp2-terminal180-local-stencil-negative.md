@@ -1,10 +1,10 @@
-# Terminal p50 circumference-to-known-plaintext local-inverse gate
+# LP2 pp49–51 circumference-to-known-plaintext local-inverse gate
 
 **Agent2, 22 November 2026. Classification: bounded negative test of a concrete reversible LP2 cipher consumer.** No unknown plaintext, key or authored stencil is recovered.
 
 ## Source-motivated conjecture
 
-Original p50 is a 32×8 table of 256 two-character tokens. Its one-cell outer ring has 76 cells, exactly the rune count of unresolved p55. Removing that ring leaves a 30×6 interior of 180 cells, exactly the combined published solved p56 and p57 source-text rune counts (85+95). The solved p57 instruction says to shed our circumferences.
+The original 32×8 numerical table spans physical LP2 pages p49, p50 and p51 (scans 66–68.jpg), containing 256 two-character tokens. Physical p50 is the central numeral-only page, while the outer tables extend into its neighbours. Its one-cell outer ring has 76 cells, exactly the rune count of unresolved p55. Removing that ring leaves a 30×6 interior of 180 cells, exactly the combined published solved p56 and p57 source-text rune counts (85+95). The solved p57 instruction says to shed our circumferences.
 
 This suggests a **testable, falsifiable local decoder**: the original table might encode an affine finite-field stencil whose 180 interior outputs are the known p56→p57 runes, allowing recovery of the same map and application to the 76 unknown p55 perimeter positions. The count equality motivates trying the operation but does not itself choose a stencil, direction, byte radix or plaintext-to-cell alignment.
 
