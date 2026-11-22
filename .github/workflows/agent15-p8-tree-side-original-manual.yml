@@ -1,4 +1,4 @@
-name: Agent 15 p8 tree-side original-source test
+name: Agent 15 p8 original-source spatial and cubic gates
 
 on:
   workflow_dispatch:
@@ -7,9 +7,9 @@ permissions:
   contents: read
 
 jobs:
-  p8-tree-side:
+  p8-source-tests:
     runs-on: windows-latest
-    timeout-minutes: 5
+    timeout-minutes: 6
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -17,3 +17,5 @@ jobs:
           node-version: '22'
       - name: Verify source page seam, line geometry and original GP controls
         run: node sims/lp2_p8_tree_side_line_reversal_original_sft.cjs
+      - name: Test six source-cubic seeds against intact p8 and untouched p9
+        run: node sims/lp2_p8_source_cubic_orbit_feedback_sft.cjs
