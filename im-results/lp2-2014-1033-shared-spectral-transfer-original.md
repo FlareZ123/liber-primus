@@ -81,6 +81,40 @@ TR_7to5(c) = [
 ] mod 29
 ```
 
+### Exact reversal duality of the entire 7→5 CHANGE factor-trace map
+
+The original 2014 **five-square and seven-square are both centrosymmetric**: each commutes with its own rune-position reversal matrix. The shared-eigenroot finding and factor traces reveal a more selective correspondence. **All four nonconstant CHANGE letter modes reverse their reflection parity**, while the uniform E mode stays even:
+
+| Rune letter, native GP value | Seven-square irreducible factor | Seven-square reversal parity | Five-square eigenvalue parity |
+| --- | --- | --- | --- |
+| C, 5 | quadratic x²−5x−13, trace5 | **even** | **odd** |
+| H, 8 | linear x−8 | **odd** | **even** |
+| A, 24 | linear x−24 | **even** | **odd** |
+| NG, 21 | quadratic x²+8x+8, trace21 | **odd** | **even** |
+| E, 18 | linear x−18 (forced 1033 sum) | even | even |
+
+Here *even* means a source eigenvector is unchanged by reversing its actual **printed rows**, and *odd* means its reversed vector is its additive inverse mod29. Each irreducible quadratic eigenspace is entirely of the stated parity, so this applies to every vector in that subspace, with no chosen ciphertext. This is an exact property of all 74 original **2014** sum-1033 matrix entries, not a recovered LP2 plaintext word.
+
+Let **F** be the complete source-derived rank-five physical trace map from seven genuine GP29 source runes to five physical GP29 symbols: **F = V · TR · S^-1** with the 5×5 genuine five-square eigenvector basis V and the seven-square basis S defined above. In the actual printed five-row/seven-column coordinate order, its full matrix is
+
+```text
+F = [22 18 28 21 20 18 19]
+    [10  7  1  2 23  9  7]
+    [19 27 10 25 11 23  2]
+    [14 12 27 19 20 14 11]
+    [ 2  3  1  0 22  3 28]  mod 29.
+```
+
+Write J5 and J7 for actual coordinate-reversal matrices, and U5×7 for the all-ones matrix. The full **35-entry exact identity** is
+
+```text
+J5 · F + F · J7 = 21 · U5×7     (mod 29)
+F · ones7 = ones5
+ones5ᵀ · F = 9 · ones7ᵀ
+```
+
+Since **21 = 2×7^-1 mod29**, the identity describes **reversal parity exchange after subtracting the original input's mean**: when a source seven-rune vector sums to zero, `F(reverse7(c)) = −reverse5(F(c))`. For arbitrary c, the sole additive correction is `21×sum(c)` at every output position. This establishes a compact complete-source mathematical operation consistent with the historical palindrome/reversal motif, without selecting a ciphertext decoding clock or asserting creator intent. **The natural original p8–p14 and p33–p39 receivers of F have already failed to produce readable native GP29 text** in the full-cipher tests below. The exact parity duality therefore remains an intermediate source clue, not an authenticated decoding.
+
 This is a **rank-five noninvertible projection**, which could be a real human-designed 7-symbol ciphertext to 5-symbol plaintext code if the artifact specified it. It discards exactly two extension-mode degrees of freedom per packet. Test both intact original 7-rune-compatible chapters with no chosen ciphertext shift. Their native-GP frequency results are:
 
 | Unchanged 7-rune ciphertext receiver | Trace-only 5-rune output | After genuine 5-square physical basis `V` | After inverse `V^-1` |
