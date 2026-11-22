@@ -415,7 +415,7 @@ const redDrivers=[
     redSeed[4*sourceTernary[Math.floor(j/4)]+j%4]},
   {id:"state-column-rune",key:(j)=>redSeed[3*(j%4)+sourceTernary[j]]},
   {id:"state-column-token",key:(j)=>
-    redSeed[3*(j%4)+sourceTernary[Math.floor(j/4)]}
+    redSeed[3*(j%4)+sourceTernary[Math.floor(j/4)]]}
 ];
 let redBest={id:"",sign:0,ioc:-1};
 for(const driver of redDrivers)for(const sign of [-1,1]){
