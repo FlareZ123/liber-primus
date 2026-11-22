@@ -9,6 +9,12 @@
  * ('-' or '.') as ciphertext SPACE=29; run DIVINITY Vigenere modulo 30,
  * beginning with the first LP2 token and advancing on every token.
  *
+ * Exactly six standalone ASCII list-number dashes (7-, 1-..5-) have no
+ * GP word before them. They remain source typography, never a coded SPACE.
+ * This follows the first-party distinction between printed GP word marks
+ * and Arabic list-heading punctuation. A legacy all-mark interpretation
+ * was also measured separately; both yield the same negative decision.
+ *
  * This test never tunes a key, phase, reset, space placement, or ciphertext
  * word dictionary. It is a conditional test, not a recovered LP2 cipher.
  *
@@ -55,6 +61,7 @@ function tokenize(source, physicalPageOwners) {
       runes.push(n);
       tokens.push({digit:n, offset, page:currentPage, kind:'rune'});
     } else if (char === '-' || char === '.') {
+      if (char === '-' && offset > 0 && /[0-9]/.test(source[offset - 1])) continue;
       tokens.push({digit:29, offset, page:currentPage, kind:char});
     }
   }
@@ -105,8 +112,8 @@ const reciphered = encipher(plain);
 
 assert.equal(source.runes.length, 12956);
 assert.deepEqual(source.runes, originalRunes);
-assert.equal(source.tokens.length, 15858);
-assert.equal(digits.filter((n) => n === 29).length, 2902);
+assert.equal(source.tokens.length, 15852);
+assert.equal(digits.filter((n) => n === 29).length, 2896);
 assert.deepEqual(reciphered, digits);
 
 // Exact byte-for-byte source replay, with the original period-versus-gap
@@ -147,9 +154,9 @@ assert.equal(hold.sourceRuneCount, 3008);
 const allStats = stats(plain);
 const devStats = stats(dev.sampled);
 const holdStats = stats(hold.sampled);
-assert.equal(allStats.spaces, 444);
-assert.equal(devStats.spaces, 59);
-assert.equal(holdStats.spaces, 106);
+assert.equal(allStats.spaces, 475);
+assert.equal(devStats.spaces, 61);
+assert.equal(holdStats.spaces, 116);
 
 // Independent native-GP positive control: p57 is actually printed in clear
 // GP with authentic word marks, and the same full GP30 bijection must
@@ -165,7 +172,7 @@ assert.ok(plantedCipher.some((d) => d === 29));
 assert.ok(nativeDigits.some((d) => d === 29));
 
 console.log('DIVINITY GP30 source-fixed original SFT: PASS');
-console.log('Source: 12956 runes, 2902 literal separator tokens; 15858 total');
+console.log('Source: 12956 runes, 2896 original GP word/period marks; 15852 tokens');
 console.log('Model: source key DIVINITY, GP30 SPACE29, continuous zero phase, no F-skips');
 console.log('Full original:', JSON.stringify(allStats));
 console.log('p16–21 original:', JSON.stringify(devStats), 'cipher runes', dev.sourceRuneCount);
@@ -173,5 +180,5 @@ console.log('p40–53 holdout:', JSON.stringify(holdStats), 'cipher runes', hold
 console.log('Authentic native p57:', JSON.stringify(stats(nativeDigits)));
 console.log('Original development preview:', romanize(dev.sampled, 160));
 console.log('Original holdout preview:', romanize(hold.sampled, 160));
-console.log('Roundtrip: full 15858 symbols, source typography, native GP p57 plant exact');
+console.log('Roundtrip: full 15852 symbols, six non-GP list dashes, original typography, native GP p57 plant exact');
 console.log('Decision: no native GP plaintext; low-space GP30 model rejected for ordinary prose.');
