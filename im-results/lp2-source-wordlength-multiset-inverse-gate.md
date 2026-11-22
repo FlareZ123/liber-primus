@@ -1,6 +1,6 @@
 # Whole-word source inverse: exact word-length multisets
 
-**22 November 2026, Agent32.** Classification: bounded original-cipher plaintext-source attack. **No authenticated LP2 plaintext or key recovered.** The completed [Node22 CommonJS SFT](../sims/lp2_source_wordlength_multiset_scan_sft.cjs) passed on Windows ([initial CI run 44991558291](https://github.com/FlareZ123/liber-primus/actions/runs/44991558291); [extended CI run 44993123729](https://github.com/FlareZ123/liber-primus/actions/runs/44993123729)). The extended test includes the genuinely solved Liber Primus corpus and the nine source-illustrated chapters, guarding against a word permutation that crosses printed page boundaries.
+**22 November 2026, Agent32.** Classification: bounded original-cipher plaintext-source attack. **No authenticated LP2 plaintext or key recovered.** The completed [Node22 CommonJS SFT](../sims/lp2_source_wordlength_multiset_scan_sft.cjs) passed on Windows ([initial CI run 44991558291](https://github.com/FlareZ123/liber-primus/actions/runs/44991558291); [extended CI run 44993123729](https://github.com/FlareZ123/liber-primus/actions/runs/44993123729); [Old English extended run 44993423135](https://github.com/FlareZ123/liber-primus/actions/runs/44993423135)). The extended test includes the genuinely solved Liber Primus corpus and the nine source-illustrated chapters, guarding against a word permutation that crosses printed page boundaries.
 
 ## How this would recover actual plaintext
 
@@ -14,11 +14,11 @@ The predeclared 55-published-page windows are **55 single, 54 adjacent pairs, 53
 
 ## Fixed inputs and real original results
 
-The included public source texts are Gibran's *The Prophet*, Emerson's essays, Shakespeare, the Latin Vulgate, Crowley's *Liber AL* I–III, Blake's *Marriage of Heaven and Hell*, Caesar's *De Bello Civili*, *The Kybalion*, the King James Passion Gospels and Tennyson's *Lady of Shalott*. In addition the extended run directly tests the repository's editor-normalized solved LP1 English text under both length conventions and the source-native solved LP2 rune words. These comprise **12 literary files, 24 converted literary inputs, three authentic-solved inputs and 27 total candidate source sequences**. In all, the SFT evaluates **4,374 page-range queries plus 243 chapter-range queries**, with every source-contiguous placement examined by the sliding scanner.
+The included public source texts are Gibran's *The Prophet*, Emerson's essays, Shakespeare, the Latin Vulgate, Crowley's *Liber AL* I–III, Blake's *Marriage of Heaven and Hell*, Caesar's *De Bello Civili*, *The Kybalion*, the King James Passion Gospels and Tennyson's *Lady of Shalott*. In addition the extended run directly tests the repository's editor-normalized solved LP1 English text under both length conventions, the source-native solved LP2 rune words, and source-native Old English GP29 word lengths from the corrected Gutenberg *Beowulf* control. These comprise **12 modern/literary files, 24 converted literary inputs, three authentic-solved inputs, one native Old English *Beowulf* input and 28 total candidate source sequences**. In all, the SFT evaluates **4,536 page-range queries plus 252 chapter-range queries**, with every source-contiguous placement examined by the sliding scanner.
 
 | Gate | Observed on original LP2 |
 | --- | --- |
-| Source inputs, original page-range windows, chapter windows | 27, 162, 9 |
+| Source inputs, original page-range windows, chapter windows | 28, 162, 9 |
 | Exact source passage matching **two adjacent original pages** | **0** |
 | Exact source passage matching **three adjacent original pages** | **0** |
 | Exact source passage matching a **whole illustrated chapter** | **0** |
@@ -27,7 +27,7 @@ The included public source texts are Gibran's *The Prophet*, Emerson's essays, S
 | Genuine solved-LP1/LP2 control as possible source | **0** exact two/three-page or chapter matches |
 | Synthetic source-known positive | **Exact** passage recovered after deterministic shuffling of three consecutive 40-word blocks under both fixed GP and Latin conventions |
 
-The original short physical p49 (17 words) produces exact one-page collisions in multiple unrelated historical sources. The extended run obtains a literal-Latin one-page match in the **known solved LP1 translation** as well, reinforcing that short pages do not identify a shared plaintext phrase. A three-word-length or seven-word-length *near*-match is likewise no discovery when the procedure screens millions of source-passage offsets. No unknown rune is decoded.
+The corrected native Old English *Beowulf* source produces no exact multi-page or whole-chapter passage (nearest original two-page pair requires two word-length replacements; nearest chapter requires 25). The original short physical p49 (17 words) produces exact one-page collisions in multiple unrelated historical sources. The extended run obtains a literal-Latin one-page match in the **known solved LP1 translation** as well, reinforcing that short pages do not identify a shared plaintext phrase. A three-word-length or seven-word-length *near*-match is likewise no discovery when the procedure screens millions of source-passage offsets. No unknown rune is decoded.
 
 ## Scope and next causal decision
 
