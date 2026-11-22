@@ -2,14 +2,16 @@
 /**
  * Key-independent word-internal equality-multiplicity gate for LP2.
  *
- * Every operation consisting of a bijective symbol relabelling and an
- * arbitrary symbol-position permutation WITHIN EACH printed word preserves
- * the number of equal unordered symbol pairs in that word. This remains
+ * Every operation consisting of a single-valued deterministic symbol map
+ * and an arbitrary position permutation WITHIN EACH printed word cannot
+ * DECREASE the number of equal unordered symbol pairs in that word.
+ * Bijections preserve the statistic exactly; many-to-one maps increase it. This remains
  * true with independently secret maps/permutations for all 2,896 words.
  *
  * Compare the original invariant with native GP-length-matched controls.
  * This rules out ordinary English/Latin/Old English word-preserving
- * bijection+anagram architectures under the exact corpus/null stated.
+ * arbitrary deterministic per-word substitution+anagram architectures
+ * under the exact corpus/null stated.
  * It does not recover unknown LP2 plaintext or constrain changing word
  * boundaries, many-to-one alphabets, per-position keys or other languages.
  *
@@ -95,6 +97,20 @@ for (const word of original) {
   const transformed = [...word].map(c => mapped[alphabet.indexOf(c)]).reverse();
   assert.deepEqual(signature(transformed), signature(word));
 }
+
+// Stronger all-secret monotonicity: even a lossy, non-injective, secret
+// function f: GP29->GP29 cannot split an equal plaintext pair. Different
+// input glyphs may merge, only increasing equality multiplicity.
+// The concrete test merges the last output symbol into the first.
+const collapsed = alphabet.map((_, i) => mapped[i === 28 ? 0 : i]);
+assert.equal(new Set(collapsed).size, 28);
+let strictIncreases = 0;
+for (const word of original) {
+  const transformed = [...word].map(c => collapsed[alphabet.indexOf(c)]).reverse();
+  assert.ok(signature(transformed)[0] >= signature(word)[0]);
+  strictIncreases += Number(signature(transformed)[0] > signature(word)[0]);
+}
+assert.ok(strictIncreases > 0);
 
 /** @type {{name:string,words:string[][]}[]} */
 const controls = [
@@ -197,5 +213,7 @@ console.log(JSON.stringify({
   originalWordsWithTriple:29,
   verifiedSolvedP57WordProfiles:20,
   independentlyBijectionAndTranspositionInvariantWords:original.length,
+  deterministicManyToOneMonotonicityWords:original.length,
+  strictManyToOneIncreaseExampleWords:strictIncreases,
   outcomes
 }, null, 2));
