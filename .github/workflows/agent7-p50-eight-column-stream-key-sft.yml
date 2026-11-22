@@ -1,0 +1,14 @@
+name: Agent7 p50 eight 256bit column stream keys SFT
+on:
+  workflow_dispatch:
+jobs:
+  gp29-source-key-test:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original p50 AES256 and ChaCha20 column-key decryptions
+        run: node sims/lp2_p50_8x32_native_stream_keys_sft.cjs
