@@ -313,6 +313,54 @@ for(const [label,cipher] of sourceReceivers){
     });
   }
 }
+// Independent same-year source rival: evaluate the exact original red-word
+// polynomial on the OTHER historical 5x5 square (1033-sum, CHANGE spectrum).
+// This avoids the first-square A/2 scaling premise entirely.
+const historicB=matrices[2].map((row)=>row.map(mod));
+let Bpower=I5,originalBpolynomial=zero(5);
+for(const sourceCoefficient of coeff){
+  originalBpolynomial=add(originalBpolynomial,scale(Bpower,sourceCoefficient));
+  Bpower=mul(Bpower,historicB);
+}
+assert.deepEqual(originalBpolynomial,[
+  [13,24,27,1,27],
+  [27,9,27,2,27],
+  [27,27,13,27,27],
+  [27,2,27,9,27],
+  [27,1,27,24,13]
+]);
+const originalBpolynomialInverse=matrixInverse(originalBpolynomial);
+assert.deepEqual(originalBpolynomialInverse,[
+  [26,0,24,19,24],
+  [24,23,24,27,24],
+  [24,24,26,24,24],
+  [24,27,24,23,24],
+  [24,19,24,0,26]
+]);
+eq(mul(originalBpolynomial,originalBpolynomialInverse),I5);
+const otherSquareResults=[];
+for(const [label,cipher] of sourceReceivers){
+  const native=Array.from({length:cipher.length},(_,i)=>
+    corpus.pages.find((p)=>p.page===57).indices[i%95]
+  );
+  for(const [direction,operator,opposite] of [
+    ['source-B-F',originalBpolynomial,originalBpolynomialInverse],
+    ['source-B-F-inverse',originalBpolynomialInverse,originalBpolynomial]
+  ]){
+    const decoded=applyBlocks(cipher,operator);
+    assert.deepEqual(applyBlocks(decoded,opposite),cipher);
+    assert.deepEqual(applyBlocks(applyBlocks(native,opposite),operator),native);
+    otherSquareResults.push({
+      label,direction,ioc:ioc(decoded),
+      opening:decoded.slice(0,75).map((rune)=>corpus.translit[rune]).join('')
+    });
+  }
+}
+assert.deepEqual(otherSquareResults.map((item)=>Number(item.ioc.toFixed(12))),[
+  0.035386753126,0.035386753126,0.034532934315,
+  0.034474913733,0.034454323719,0.034352222128
+]);
+
 assert.deepEqual(sourcePolynomialOrbit.map((v)=>Number(v.ioc.toFixed(12))),[
   0.032638567238,0.034614790798,
   0.034595535469,0.034374141143,
@@ -395,6 +443,8 @@ console.log('PASS first_2014_A_square_order56 historical_5seed_orbit eight_origi
 for(const r of orbitResults)console.log('source-A-orbit seed='+r.seedName+' direction='+r.direction+' sign='+r.sign+' IoC='+r.ioc.toFixed(12)+' original-opening='+r.opening);
 console.log('PASS source_composed_full_polynomial_F(A_over_2) SL5_GF29 six_exact_original_roundtrips six_native_positive_plants');
 for(const r of sourcePolynomialOrbit)console.log('full-source-polynomial receiver='+r.label+' direction='+r.direction+' GP29_IoC='+r.ioc.toFixed(12)+' opening='+r.opening);
+console.log('PASS alternate_2014_1033_square_F(B) six_exact_original_roundtrips six_native_positive_plants');
+for(const item of otherSquareResults)console.log('alternate-source-square receiver='+item.label+' direction='+item.direction+' GP29_IoC='+item.ioc.toFixed(12)+' opening='+item.opening);
 console.log('SOURCE: GP29 original p8 IoC='+ioc(p8).toFixed(12));
 console.log('EXTRACTED: GP29 rank2 image IoC='+ioc(output).toFixed(12));
 console.log('EXTRACTED full GP spelling='+output.map((rune)=>corpus.translit[rune]).join(''));
