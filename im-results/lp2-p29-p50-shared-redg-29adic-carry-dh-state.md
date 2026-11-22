@@ -1,6 +1,6 @@
-# Shared p29/p50 red-G 29-adic carry reveals a second DH-shaped packet
+# Original p29/p50 29-adic carry network: p29 selects p23, whose red factor supplies p28 READ OUT exponents
 
-**Agent27, 22 November 2026. Status: exact original-source arithmetic, retrospectively noticed state correlation; no recovered original plaintext, authenticated encryption key, key schedule, or destination.**
+**Agent27, 22 November 2026. Status: exact original-source arithmetic and a source-sourced repeat of the pre-existing local p28 READ OUT candidate, discovered retrospectively; no independently authenticated unknown-page plaintext, cipher mechanism, key schedule, or destination.**
 
 ## Source-driven candidate
 
@@ -32,7 +32,36 @@ This matches the independently reconstructed toy Diffie-Hellman tuple `p=23,g=5,
 
 `p29/G => H2([13,19])=[p,e]; p50/G => [b,K]; p50/H => [A,g]`.
 
-This explicitly reproduces the known DH operands. It yields no *new* source-secret value: those numbers and p28's H operator were already known, and the rule of lifting integer coefficients to base29² was recognized after inspecting original numerical material. The convenient arithmetic expression `[13,19]=[A+g,B]` should be counted as an equivalent identity of the same observation, not as an independent confirmation.
+The original p23 R lift adds the ordered [3,27] pair, which also reproduces the earlier p28 READ OUT decoder. This explicitly reproduces known DH and local decoder operands. It yields no *new* source-secret value: those numbers and p28's H operator were already known, and the rule of lifting integer coefficients to base29² was recognized after inspecting original numerical material. The convenient arithmetic expression `[13,19]=[A+g,B]` should be counted as an equivalent identity of the same observation, not as an independent confirmation.
+
+## Distinct p23 red-factor continuation and the exact p28 six-rune readout
+
+The p29 carry's ordered raw pair `[13,19]` is source-fixed. Applying the already defined p28 H map gives `[23,3]`. One **post-observation** interpretation takes the first result `23` as a physical page number, and the second `3` as exponent `e`.
+
+Original **physical p23** contains a separately identified **centered red three-rune group `[23,6,10]`** in low-first order, hence its own quadratic `R(X)=10X²+6X+23`. The original p50 byte polynomial also divides exactly by R over GF29, a published result independent of this p29 carry.
+
+With the **same 29² integer-coefficient lift** used for p29 and p50 G/H, unchanged p50 divided by high-first `R=[10,6,23]` has:
+
+- remainder mod29 `[0,0]`;
+- remainder mod841 **`[87,783]`**;
+- normalized carry **`[3,27]`**.
+
+This pair is precisely the pre-existing p28 value-changing decoder exponents, fixed by separate earlier p28 DH/cube work: cube on the exact center and reciprocal (power27) on the five-rune page-numbered word. Opening only the already frozen original p28 contiguous offset134..139 object:
+
+```text
+original page28 center + word28: [9,28,24,10,1,20]
+p23 source factor / p50 carry: [3,27]
+mod29 exponents [3,27,27,27,27,27]
+output: [4,28,23,3,1,16] = READ OUT
+```
+
+This is an **exact reversible reuse of a source-visible six-rune packet** under independently readable number material. It selects the same ordered `(3,27)` parameter pair without the contested p28 shell-depth story, but the assignment of first exponent to the center and second to the whole five-rune word was already known from the earlier READ OUT discovery. It is **retrospective corroboration, not a newly held-out plaintext recovery**.
+
+The complete conditional source graph can now be expressed:
+
+`p28 THE -> signed DIRECTION29 -> original p29 -> p39/G lift -> H([13,19])=[23,3] -> original p23 red R -> p50/R lift=[3,27] -> p28 center/word28 -> READ OUT`.
+
+The strong rival is that the `23` page number and p23 factor were recognized post hoc, while multiple source triads and source-valued operands were available. Source p3's original red quadratic `[2,23,13]` does **not** divide p50 modulo29; p23 R and p39 G do. This is a **narrow finite source relationship**, still without an original instruction selecting the 29²-lift opcode and no demonstrated 150-rune original-body decoder.
 
 ## Conditioned source-cipher null
 
@@ -48,7 +77,7 @@ Results: **11/8,000** null registers reproduce exactly `[13,19]`; plus-one empir
 
 ## Causal plaintext decision
 
-The new carry is **an exact, key-like short numeric packet** aligned with the same p39 factor linking p29 and p50, but it does not identify a complete key stream, reversible original-rune transform, clock/reset, or plaintext receiver. The p29 quotient itself has near-ciphertext GP29 IoC **0.03405441**. Any single fixed GP29 permutation applied uniformly to this quotient preserves that IoC, so the revealed `e=3` GP29 cube operation alone cannot turn the full quotient into native-GP English prose. The separately frozen full 275-rune quotient→outer-H shell inverse also failed native-GP language [under its exact source rule](lp2-p28-p29-gquotient-outerh-prospective-inverse-decision.md).
+The new carries are **exact, key-like short numeric packets** aligned with the p39/p23 factors linking p29, p50 and p28, but it does not identify a complete key stream, reversible original-rune transform, clock/reset, or plaintext receiver. The p29 quotient itself has near-ciphertext GP29 IoC **0.03405441**. Any single fixed GP29 permutation applied uniformly to this quotient preserves that IoC, so the revealed `e=3` GP29 cube operation alone cannot turn the full quotient into native-GP English prose. The separately frozen full 275-rune quotient→outer-H shell inverse also failed native-GP language [under its exact source rule](lp2-p28-p29-gquotient-outerh-prospective-inverse-decision.md).
 
 **Next discriminating requirement:** find an independently legible original instruction specifying what the two red-factor carries actually key and how its state advances through >=150 original encrypted runes. Until then this is intermediate arithmetic evidence, useful for interpreting the table's unusual algebraic structure but insufficient to promote the p28/p29/p50 network to an authenticated decipherment.
 

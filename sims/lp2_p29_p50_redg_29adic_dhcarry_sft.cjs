@@ -45,6 +45,25 @@ assert.deepEqual([x,y],[13,19]);
 assert.deepEqual([mod(x-y,29),mod(x+y,29)],[p,e]);
 assert.deepEqual(lift(bGR),[15,2]);
 assert.deepEqual(lift(bHR),[8,5]);
+
+// The original p23 centered red triad R=[23,6,10] (low first)
+// supplies the third independent source factor of p50.
+const R=[10,6,23];
+assert.deepEqual(divide(B,R,29).rem,[0,0]);
+const bRR=divide(B,R,841).rem;
+assert.deepEqual(bRR,[87,783]);
+assert.deepEqual(lift(bRR),[3,27]);
+// Frozen p28 source target: central rune plus complete page-numbered word.
+// The factor-carry pair supplies both reversible GP29 exponents exactly.
+const originalP28=corpus.pages.find(page=>page.page===28).indices;
+assert.equal(originalP28.length,269);
+const span=originalP28.slice(134,140);
+assert.deepEqual(span,[9,28,24,10,1,20]);
+const power29=(value,exponent)=>{let out=1;for(let k=0;k<exponent;k++)out=mod(out*value,29);return out;};
+const decodedP28=[power29(span[0],3),...span.slice(1).map(value=>power29(value,27))];
+assert.deepEqual(decodedP28,[4,28,23,3,1,16]);
+assert.equal(decodedP28.map(value=>corpus.translit[value]).join(""),"READOUT");
+
 let seed=0x3301f29;
 function rand32(){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return seed>>>0;}
 let matching=0;const distinct=new Set();const M=8000;
@@ -59,6 +78,7 @@ assert.equal(matching,11);
 assert.equal(distinct.size,841);
 console.log(JSON.stringify({status:"PASS",classification:"Postselected key-like arithmetic only; no original plaintext.",
 p29G:{rem841:cR,carry:[x,y],H:[p,e]},
-p50:{Gcarry:lift(bGR),Hcarry:lift(bHR)},
+p50:{Gcarry:lift(bGR),Hcarry:lift(bHR),Rcarry:lift(bRR)},
+p23RtoP28:{factor:R,mod841:bRR,exponents:lift(bRR),source:span,decoded:decodedP28,translit:"READOUT"},
 conditionalNull:{seed:"0x3301f29",M,matching,distinctPairs:distinct.size,plusOne:(matching+1)/(M+1)},
 caution:"The exact p29 DH pair was seen before the target was nominated, so the null's 0.0015 is descriptive and not an independent authorship p-value."},null,2));
