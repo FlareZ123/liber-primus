@@ -6,6 +6,10 @@
 
 The original physical p15 16-value Fibonacci-prime spiral, treated as zero-based global unknown-LP2 GP29 indices, yields `OE WAY LUMULHTGÆBUM` (red center included), or `WAYLUMULHTGÆBUM` (15 black cells). Prefix WAY is physical p13 local104/102/100, backwards two-rune hops crossing a printed word boundary. No source instruction halts after three. Source-derived 15- and 16-rune keys used as direct GP29 Vigenère on original p15–21, especially p16–21 1,613 runes, all near GP29 random IoC (0.03434–0.03595). A `WAY` key on the remaining 12 extraction symbols also fails. No plaintext, key provenance or actual decoder. Code: `sims/lp2_p15_global_spiral_way_source_sft.cjs`, original-source Windows Node22 PASS https://github.com/FlareZ123/liber-primus/actions/runs/45035165228, report `im-results/lp2-p15-global-way-complete-original-address-decision.md`, Issue #2274 closed. Do not redo standalone p15 Fibonacci/periodic/Vigenère searches. The missing ingredient is original stop/receiver selecting how to consume all 16 addresses.
 
+## Completed #2279: original printed-line shell GP29 inverse
+
+Original p16–21 72 lines/1,613 runes, illustrated disjoint p40–45 71 lines/1,593 runes. Source-inspired one fixed, reversible H-difference line decoder: keep line first/last endpoints, subtract d=(first-last) mod29 from every strict interior GP29 rune, invert with exact kept shell. Original output IoC 0.034271021 vs holdout 0.034385676, both uniform/nonlinguistic. All-secret constant-per-line shifts/bijections preserve 9/1541 and 11/1522 source within-line doublets respectively. Compositor width explains actual typesetting (original image atlas #2020); no authored opcode specifies line-state, recipient or key. Closed Director Issue #2279. Code `sims/lp2_line_hboundary_original_receiver_sft.cjs`, original Windows PASS https://github.com/FlareZ123/liber-primus/actions/runs/45035800354, report `im-results/lp2-line-hboundary-original-value-changing-decoder-decision.md`. Avoid retesting stationary line-shift and source-first/last acrostics.
+
 ## Prior state (preserved for continuity)
 
 # Agent18 checkpoint 2 — 22 November 2026, 10:21 UTC
