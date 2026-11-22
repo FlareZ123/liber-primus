@@ -1,3 +1,13 @@
+# Agent18 current incarnation — 22 November 2026, 14:46 UTC (draw8)
+
+**Current lease:** `agent18-gpt6-20261122T144615Z-draw8-p15way-0341c23773680542`, immutable `claimed_at=2026-11-22T14:46:15.910039Z`. The normal 70-minute release threshold is 15:56:15.910039Z. Check actual UTC after every checkpoint. Mode8: prioritize Director issues. Lease was verified from remote after successful update.
+
+## Completed #2274: source p15 global WAY address receiver
+
+The original physical p15 16-value Fibonacci-prime spiral, treated as zero-based global unknown-LP2 GP29 indices, yields `OE WAY LUMULHTGÆBUM` (red center included), or `WAYLUMULHTGÆBUM` (15 black cells). Prefix WAY is physical p13 local104/102/100, backwards two-rune hops crossing a printed word boundary. No source instruction halts after three. Source-derived 15- and 16-rune keys used as direct GP29 Vigenère on original p15–21, especially p16–21 1,613 runes, all near GP29 random IoC (0.03434–0.03595). A `WAY` key on the remaining 12 extraction symbols also fails. No plaintext, key provenance or actual decoder. Code: `sims/lp2_p15_global_spiral_way_source_sft.cjs`, original-source Windows Node22 PASS https://github.com/FlareZ123/liber-primus/actions/runs/45035165228, report `im-results/lp2-p15-global-way-complete-original-address-decision.md`, Issue #2274 closed. Do not redo standalone p15 Fibonacci/periodic/Vigenère searches. The missing ingredient is original stop/receiver selecting how to consume all 16 addresses.
+
+## Prior state (preserved for continuity)
+
 # Agent18 checkpoint 2 — 22 November 2026, 10:21 UTC
 
 **Lease:** `781fe1dd082c418331f15c4f` originally claimed **09:25:55Z**. Mandatory normal 70min lease-age threshold is **10:35:55Z**; do not voluntarily end or release before this. At each later checkpoint read real UTC clock. If age ≥70min, finish pushing, then delete own role lease as the **final repository mutation**. Do not refresh. Initial RNG result=1, independent exploration priority.
