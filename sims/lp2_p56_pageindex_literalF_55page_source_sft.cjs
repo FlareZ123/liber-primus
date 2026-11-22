@@ -105,6 +105,28 @@ const hits = all.filter((p) => p.indices[p.page] === 0)
   .map((p) => p.page);
 assert.deepEqual(hits, [27,48,56]);
 
+// Exact within-each-page-original-rune-multiset permutation null for the
+// diagonal F coincidence, conditioned on selecting p56's known solved skip.
+// Each unknown original page contributes a Bernoulli success probability
+// F_count / page_rune_count. The 55 page draws are independent under this
+// stated permutation null. This is descriptive, never a deciphering key.
+const unknown = all.filter((p)=>p.page<=55);
+const probs = unknown.map((p) =>
+  p.indices.filter((v)=>v===0).length/p.indices.length);
+const diagCount = unknown.filter((p)=>p.indices[p.page]===0).length;
+let dist = Array(unknown.length+1).fill(0);
+dist[0] = 1;
+for (const prob of probs) {
+  for (let i = dist.length-1; i >= 0; i--) {
+    dist[i] = dist[i]*(1-prob)+(i?dist[i-1]*prob:0);
+  }
+}
+const expectedDiagonalCount = probs.reduce((s,x)=>s+x,0);
+const diagonalUpperTail = dist.slice(diagCount).reduce((s,x)=>s+x,0);
+assert.equal(diagCount,2);
+assert(Math.abs(expectedDiagonalCount-1.922950027288523)<1e-12);
+assert(Math.abs(diagonalUpperTail-0.5778776501174421)<1e-12);
+
 const decoded = all.map((page) => {
   const result = decode(page.page, page.indices);
   if (result.invalid.length === 0) {
@@ -147,6 +169,10 @@ console.log(JSON.stringify({
   source:"Original LP2 physical pages p0..p56 (p50 rune-free)",
   hypothesis:"literal F at local rune index equal to physical LP2 page index",
   originalFOnDiagonal:hits,
+  independentUnknownDiagonalCount:diagCount,
+  fixedPageRuneMultisetPermutationNull: {
+    expected:expectedDiagonalCount, pAtLeastObserved:diagonalUpperTail,
+  },
   solvedPageExactKnown:85,
   originalUnknownPagesContradicted:55,
   originalUnknownPages:decoded.length-1,
