@@ -174,6 +174,9 @@ const chapterWindows = bounds.map(([first,last],i) => ({
 assert.deepEqual(chapterWindows.map(w=>w.words.length),
   [158,255,383,437,224,326,378,669,66]);
 assert.equal(chapterWindows.flatMap(x=>x.words).length,2896);
+const allBookWords=originalWords.map(w=>w.length);
+assert.equal(allBookWords.length,2896);
+
 
 /** @type {Array<{source:string,scheme:string,encoded:number[]}>} */
 const sourceInputs = [];
@@ -220,6 +223,7 @@ sourceInputs.push({
 
 let totalExactMultisource = 0;
 let totalExactChapter = 0;
+let totalExactWholeBook = 0;
 for (const {source,scheme,encoded} of sourceInputs) {
   const findings = windows.map(w => ({
     ...scan(encoded,w.words),physical:w.physical,span:w.span,begin:w.begin
@@ -228,6 +232,8 @@ for (const {source,scheme,encoded} of sourceInputs) {
   const exactLong = exact.filter(x=>x.span>=2);
   totalExactMultisource += exactLong.reduce((s,x)=>s+x.exactWindows,0);
 
+  const wholeBook=scan(encoded,allBookWords);
+  totalExactWholeBook+=wholeBook.exactWindows;
   const chapterFindings = chapterWindows.map(w => ({
     ...scan(encoded,w.words),chapter:w.chapter,physical:w.physical
   }));
@@ -249,12 +255,14 @@ for (const {source,scheme,encoded} of sourceInputs) {
       .reduce((s,x)=>s+x.exactWindows,0),
     threePageExact:exact.filter(x=>x.span===3)
       .reduce((s,x)=>s+x.exactWindows,0),
-    chapterExact:totalExactChapter,
+    chapterExact:exactChapter.reduce((s,x)=>s+x.exactWindows,0),
+    wholeBookExact:wholeBook.exactWindows,
+    bestWholeBook:wholeBook,
     best1,best2,best3,bestChapter
   }));
-  if (exactLong.length || exactChapter.length) {
+  if (exactLong.length || exactChapter.length || wholeBook.exactWindows) {
     console.log('PLAINTEXT_CANDIDATE ' + JSON.stringify({
-      source,scheme,exactLong,exactChapter
+      source,scheme,exactLong,exactChapter,wholeBook
     }));
   }
 }
@@ -265,9 +273,11 @@ console.log('SUMMARY ' + JSON.stringify({
   sourceEncodingConventions:2,
   noMultiPageExact:totalExactMultisource===0,
   noChapterExact:totalExactChapter===0,
+  noWholeBookExact:totalExactWholeBook===0,
   totalMultiPageExact:totalExactMultisource,
-  totalChapterExact:totalExactChapter
+  totalChapterExact:totalExactChapter,
+  totalWholeBookExact:totalExactWholeBook
 }));
-if (totalExactMultisource > 0 || totalExactChapter > 0) {
+if (totalExactMultisource > 0 || totalExactChapter > 0 || totalExactWholeBook > 0) {
   console.log('ACTION: authenticate original source passage before claiming plaintext');
 }
