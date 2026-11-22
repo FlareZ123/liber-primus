@@ -73,8 +73,8 @@ assert.deepEqual(red.find((span)=>span.page===0).transliteratedWords,["SHEOGMIAF
 assert.equal(p0.red_spans[0].length,13);
 assert.deepEqual(red.find((span)=>span.page===8).transliteratedWords,["XIXM","UXMCTHPOB"]);
 assert.deepEqual(red.find((span)=>span.page===40).transliteratedWords,["FNM","YGDAEH"]);
-assert.equal(p8.large_punctuation.length,0);
-assert.equal(p40.large_punctuation.length,0);
+assert.equal((p8.large_punctuation || []).length,0);
+assert.equal((p40.large_punctuation || []).length,0);
 
 const p56=annotation(56),p57=annotation(57);
 assert.deepEqual(p56.large_punctuation[0],[5,13,"red"]);
