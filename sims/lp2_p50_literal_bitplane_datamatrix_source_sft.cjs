@@ -173,7 +173,7 @@ console.log(JSON.stringify({
  barcode:'Data Matrix ECC200 8x32 rectangular or 16x16 square',
  validation:'official fixed L/alternating-edge finder, exact perimeter',
  sourceReadingVariants:Object.keys(readingAlphabets),
- familywiseCandidateCount:1024,
+ familywiseCandidateCount:512,
  independentSyntheticPlants:{originalSize:256,rectangularFinderRecovered:true,
    squareFinderRecovered:true},
  reports,
