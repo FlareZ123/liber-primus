@@ -42,7 +42,7 @@ const secret = decodeShares(opening);
 const knownSimilarity = secret.filter((v, i) => v === key[i]).length;
 
 // Authentic directly printed known-LP1 GP29 plaintext, positive source plant.
-const lp1 = read('resources/transcriptions/lp1_wulfic_canonical.txt');
+const lp1 = read('resources/transcriptions/lp1_wulfic_canonical.txt').replace(/\r\n/g, '\n');
 const begin = lp1.indexOf('ᚦᛖ-ᛚᚩᛋᛋ');
 const end = lp1.indexOf('\n$\n%\n', begin);
 assert(begin >= 0 && end > begin);
