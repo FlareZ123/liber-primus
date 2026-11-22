@@ -102,7 +102,7 @@ The previously solved 2014 Cicada image-stage actually used **GP29 Vigenère sub
 
 All eight GP29 outputs stay near uniform and contain no sustained readable text. Each exact source ciphertext reencrypts 255/255 or 243/243 respectively; eight authentic solved-p57 GP-native plants of the corresponding register size also recover exactly after source-key encryption. The direct period-two and period-five Vigenère uses of these **two fully source-derived numeric keys fail** on their adjacent original page. Any pure rune transposition on the same original page also preserves its near-uniform IoC 0.034275127374 exactly, so transposition alone cannot recover ordinary native GP prose; a source-chosen *value-changing* operation would be necessary. Other keys or intermediate operations are outside this exact gate.
 
-The [read-only Windows Node.js22 CommonJS original-input test](../sims/lp2_p7_2014_a_square_gf29_scaled_eigenspace_p8_original_sft.cjs) reads the actual 2014 matrix, original GP corpus, original red-ink annotations and line-preserving transcription. It independently reconstructs the five p7 source word products, two p8 title products, the complete historical characteristic polynomial, both polynomial factorizations, the scaled-matrix fixed-point rank and the canonical projector. It checks all255 original receiver symbols and prints the **full 102-symbol original output**. The same test enumerates all 2,892 original five-word windows, eight original-p8 two-rune/five-rune Vigenère inverse candidates, the full 5×5 source-selected T with three complete original cipher receivers, and eight newly source-seeded period-56 historical-matrix stream decodings of complete p8. A fixed right inverse independently embeds 102 known GP29 runes drawn from the authentic solved p57 into 51 five-rune source-shaped words and recovers **102/102 exactly**. The plant demonstrates the transport can express plaintext, without authenticating this original decoding idea.
+The [read-only Windows Node.js22 CommonJS original-input test](../sims/lp2_p7_2014_a_square_gf29_scaled_eigenspace_p8_original_sft.cjs) reads the actual 2014 matrix, original GP corpus, original red-ink annotations and line-preserving transcription. It independently reconstructs the five p7 source word products, two p8 title products, the complete historical characteristic polynomial, both polynomial factorizations, the scaled-matrix fixed-point rank and the canonical projector. It checks all255 original receiver symbols and prints the **full 102-symbol original output**. The same test enumerates all 2,892 original five-word windows, eight original-p8 two-rune/five-rune Vigenère inverse candidates, the full 5×5 source-selected T with three complete original cipher receivers, eight newly source-seeded period-56 historical-matrix stream decodings of complete p8, and direct native-GP D=F(A/2) reversible decodings of three full original source sections. A fixed right inverse independently embeds 102 known GP29 runes drawn from the authentic solved p57 into 51 five-rune source-shaped words and recovers **102/102 exactly**. The plant demonstrates the transport can express plaintext, without authenticating this original decoding idea.
 
 ## A full reversible 2+3 source-derived matrix, tested on three original receivers
 
@@ -143,6 +143,42 @@ Test it independently on the three original text registers with a five-rune grou
 
 All **3,080 original GP29 runes reencipher exactly** with T⁻¹. Three genuine solved-p57 GP29 positive plants of each entire original receiver length recover exactly after native GP encipherment. On adjacent p8, the two selected projector outputs have IoC **0.036497767424**, the remaining three complementary outputs IoC **0.032593739250**, and neither carries a readable instruction. All three full T outputs remain ciphertext-like. The source-derived complete reversible operation is therefore *actually tested and negative* for direct native GP prose, with no new ciphertext plaintext.
 
+## Direct source polynomial evaluated on the historical square
+
+A distinct, even simpler complete 5×5 GP29 operator is the literal **matrix polynomial** defined by the five original p7 word products, evaluated at the 2014 square scaled by the p7 title root's square root two:
+
+\[
+D=F(A/2)=\begin{pmatrix}
+15&6&7&12&10\\
+17&12&28&4&18\\
+19&16&9&16&19\\
+18&4&28&12&17\\
+10&12&7&6&15
+\end{pmatrix}\pmod{29}.
+\]
+
+This evaluates the actual source polynomial on an entire independent actual historical matrix; unlike Q=F(A/2)−A/2, **D is invertible, with exact determinant 1 in GF29**. Its exact inverse is
+
+\[
+D^{-1}=\begin{pmatrix}
+0&28&17&21&10\\
+5&14&16&13&28\\
+4&0&10&0&4\\
+28&13&16&14&5\\
+10&21&17&28&0
+\end{pmatrix}\pmod{29}.
+\]
+
+This is a fully source-specified **SL₅(29)** cipher operation, with no fitted key or phase. Both D and D⁻¹ were applied to **all three** five-rune-aligned original full receivers, keeping every printed rune and actual original page/section order unchanged:
+
+| Source-complete original register | D forward GP29 IoC | D inverse GP29 IoC |
+| --- | ---: | ---: |
+| Physical p8, 255 | 0.032638567238 | 0.034614790798 |
+| P3–p7 five-scroll, 1,145 | 0.034595535469 | 0.034374141143 |
+| P33–p39 numeric / numbered, 1,680 | 0.034458577952 | 0.034287699594 |
+
+Six exact complete-source forward/reverse ciphers reconstruct **all 3,080 original runes per direction choice** and six matched solved-p57 GP-native positive plants. Every original output remains near uniform, with no native-language message or key. The surprising determinant1 is a true source-derived GF29 identity, yet 1/28 is an ordinary determinant value among random nonsingular GF29 matrices; it is not independent authorial instruction. This natural complete matrix-polynomial inverse is another **bounded negative**. Do not infer that a guessed transpose, arbitrary determinant normalization or additional secret linear stage would rescue it.
+
 ## Original source-selected period-56 evolving-state cipher
 
 A genuine *changing-state* operation independent of guessing the secret word key follows from the printed original 2014 matrix **A**, whose verified exact order is **56** over GF29, matching the 56 unresolved LP2 physical pages. The original p7 terminal red quintet is already a **5-rune initial state** v=[11,26,8,15,2], and the exact historical projector yields another completely specified input Πv=[26,11,13,11,26], including its physical 13-dot marker. These are two actual original-source seed choices. The adjacent p8 page contains exactly **51 consecutive five-rune blocks**.
@@ -158,7 +194,7 @@ Values are actual original-decoder GP29 IoCs. The strongest 0.0355411 is still n
 
 ## Decision
 
-The **historical 3301-square quadratic x²−3 and p7 quartic residual x²−8** exhibit a genuine, formerly unrecorded *scaling relationship that exactly involves the adjacent two p8 heading products3 and4*. The canonical two-dimensional common fixed subspace is a mathematically legitimate original-input **candidate key location**. The *fully source-frozen, 255→102 p8 receiver*, all eight original-p8 direct source-key Vigenère uses, the complete source-derived invertible T on three entire original registers, and all eight source-seeded **period-56** historical A orbit candidates on p8 remain ciphertext-like. This rejects that immediate extraction as direct native GP prose and leaves the key/destination problem unresolved.
+The **historical 3301-square quadratic x²−3 and p7 quartic residual x²−8** exhibit a genuine, formerly unrecorded *scaling relationship that exactly involves the adjacent two p8 heading products3 and4*. The canonical two-dimensional common fixed subspace is a mathematically legitimate original-input **candidate key location**. The *fully source-frozen, 255→102 p8 receiver*, all eight original-p8 direct source-key Vigenère uses, the complete source-derived invertible T on three entire original registers, all eight source-seeded **period-56** historical A orbit candidates on p8, and literal **F(A/2)** / inverse decoders on three complete original receivers remain ciphertext-like. This rejects that immediate extraction as direct native GP prose and leaves the key/destination problem unresolved.
 
 Promote the source connection to a cipher hypothesis only with an independently selected original recipient and typed output predicate. Changing coordinates, phases, word segmentation, square variants or output alphabet to fit favorable short English would reintroduce an unrestricted search. No additional unverified ciphertext key is claimed.
 
