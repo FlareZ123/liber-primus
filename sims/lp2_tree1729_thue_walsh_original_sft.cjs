@@ -428,6 +428,55 @@ console.log("Original red12 title as Thue squarefree 3×4 key, 5 receivers × 2 
   "best",redBest,"authentic native chapter minimum",bodyNativeMin);
 console.log("No red-title-derived plaintext on original tree-chapter body.");
 
+/**
+ * Stronger adjacent-source rival: Fibonacci word, fixed 0 -> 01, 1 -> 0.
+ * Independent p15 Fibonacci-prime graphic follows this tree chapter.
+ * @param {number} n @returns {number[]}
+ */
+function fibonacciWord(n) {
+  let word = [0];
+  while (word.length < n) {
+    word = word.flatMap(bit => bit === 0 ? [0, 1] : [0]);
+  }
+  return word.slice(0, n);
+}
+
+const fibonacci = fibonacciWord(cipher.length);
+assert.equal(fibonacci.slice(0, 24).join(""), "010010100100101001010010");
+const fibClasses=[[],[]];
+for (let i=0;i<cipher.length;i++)fibClasses[fibonacci[i]].push(i);
+assert.deepEqual(fibClasses.map(a=>a.length),[1069,660]);
+const fibOriginal=fibClasses.map(indexes =>
+  ioc(indexes.map(i=>cipher[i])));
+const fibNativeMin=[Infinity,Infinity];
+for(let first=0;first+cipher.length<=native.length;first++) {
+  for(let group=0;group<2;group++) {
+    const hist=Array(29).fill(0);
+    for(const idx of fibClasses[group])hist[native[first+idx]]++;
+    const score=hist.reduce((total,n)=>total+n*(n-1),0) /
+      (fibClasses[group].length*(fibClasses[group].length-1));
+    fibNativeMin[group]=Math.min(fibNativeMin[group],score);
+  }
+}
+assert(fibOriginal.every((x,i)=>x<fibNativeMin[i]));
+console.log("Fibonacci word source-rival state IoCs:",fibOriginal,
+  "native state minima:",fibNativeMin,"any fixed GP29 state-substitution excluded");
+
+const fibCounters=prefixStateCounts(fibonacci,2);
+let fibBest={a:0,b:0,ioc:-1},fibNativeHits=0;
+for(let a=0;a<29;a++)for(let b=0;b<29;b++){
+  const hist=Array(29).fill(0);
+  for(let i=0;i<cipher.length;i++) {
+    hist[mod29(cipher[i]-a*fibCounters[0][i]-b*fibCounters[1][i])]++;
+  }
+  const score=hist.reduce((s,n)=>s+n*(n-1),0)/
+    (cipher.length*(cipher.length-1));
+  if(score>fibBest.ioc)fibBest={a,b,ioc:score};
+  if(score>=nativeWholeMin)fibNativeHits++;
+}
+assert.equal(fibNativeHits,0);
+console.log("Fibonacci 841 cumulative-key automata:",fibBest,
+  "native source threshold:",nativeWholeMin,"hits:",fibNativeHits);
 assert.equal(grid.shape, "32 rows by 8 columns across LP2 pages 49, 50, 51");
 assert.equal(grid.bytes.length, 256);
 let native256Minimum = Infinity;
