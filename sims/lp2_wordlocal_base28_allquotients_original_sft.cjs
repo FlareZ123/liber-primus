@@ -185,7 +185,9 @@ function newState() {
 const stateGroups = {
   global: new Map(),
   section: new Map(),
-  page: new Map()
+  page: new Map(),
+  pageCircumference: new Map(),
+  pageOrdinalRole: new Map()
 };
 let q1Available = 0;
 for (const word of unknown) {
@@ -198,9 +200,15 @@ for (const word of unknown) {
     const second = histogram(candidates[1]);
     diff = second.map((x, i) => x - first[i]);
   }
-  for (const type of ['global', 'section', 'page']) {
-    const keys = type === 'global' ? [0] :
-      type === 'section' ? [word.section] : [...new Set(word.runePages)];
+  for (const type of Object.keys(stateGroups)) {
+    const pageShell = (i) => `${word.runePages[i]}:${
+      i === 0 || i === word.runes.length - 1 ? 'circumference' : 'inside'}`;
+    const pagePosition = (i) => `${word.runePages[i]}:${
+      i === 0 ? 'first' : i === word.runes.length - 1 ? 'last' : 'inside'}`;
+    const keys = type === 'global' ? [0] : type === 'section' ? [word.section] :
+      type === 'page' ? [...new Set(word.runePages)] :
+      type === 'pageCircumference' ? [...new Set(word.runes.map((_, i) => pageShell(i)))] :
+      [...new Set(word.runes.map((_, i) => pagePosition(i)))];
     for (const key of keys) {
       let state = stateGroups[type].get(key);
       if (!state) {
@@ -213,9 +221,13 @@ for (const word of unknown) {
       let firstPart = first;
       let diffPart = diff;
       let partSize = word.runes.length;
-      if (type === 'page') {
-        const indices = word.runePages.map((p, i) => p === key ? i : -1)
-          .filter(i => i >= 0);
+      if (type === 'page' || type === 'pageCircumference' ||
+          type === 'pageOrdinalRole') {
+        const indices = word.runePages.map((p, i) => {
+          const candidateKey = type === 'page' ? p :
+            type === 'pageCircumference' ? pageShell(i) : pagePosition(i);
+          return candidateKey === key ? i : -1;
+        }).filter(i => i >= 0);
         partSize = indices.length;
         firstPart = histogram(indices.map(i => candidates[0][i]));
         if (diff) {
@@ -230,8 +242,12 @@ for (const word of unknown) {
   }
 }
 assert.equal(q1Available, 388);
-assert.equal([...stateGroups.page.values()].reduce((n, s) =>
-  n + s.nonrepeatRunes, 0), sourceR - exceptionRunes);
+for (const [type, groups] of Object.entries(stateGroups)) {
+  assert.equal([...groups.values()].reduce((n, s) =>
+    n + s.nonrepeatRunes, 0), sourceR - exceptionRunes, type);
+}
+assert.equal(stateGroups.pageCircumference.size, 110);
+assert.equal(stateGroups.pageOrdinalRole.size, 165);
 /**
  * For a selected set of k plaintext rune values, a secret GP29 bijection
  * may map ANY k decoded labels to these k values, independently by state.
@@ -283,7 +299,8 @@ function maximumTopK(states, k) {
 const allSecret = {};
 for (const [type, states] of Object.entries(stateGroups)) {
   allSecret[type] = {};
-  for (const k of [1, 2, 3, 5]) {
+  for (const k of type === 'pageCircumference' || type === 'pageOrdinalRole' ?
+    [5] : [1, 2, 3, 5]) {
     const maxNonrepeat = maximumTopK(states, k);
     allSecret[type][k] = {
       upperNonrepeat: maxNonrepeat,
@@ -294,9 +311,15 @@ for (const [type, states] of Object.entries(stateGroups)) {
 assert.equal(allSecret.global[5].upperNonrepeat, 2489);
 assert.equal(allSecret.section[5].upperNonrepeat, 2759);
 assert.equal(allSecret.page[5].upperNonrepeat, 3462);
+assert.equal(allSecret.pageCircumference[5].upperNonrepeat, 4057);
+assert.equal(allSecret.pageOrdinalRole[5].upperNonrepeat, 4379);
 assert.equal(allSecret.global[5].upperWithEntireRepeatedWordsGrantedFree, 2860);
 assert.equal(allSecret.section[5].upperWithEntireRepeatedWordsGrantedFree, 3130);
 assert.equal(allSecret.page[5].upperWithEntireRepeatedWordsGrantedFree, 3833);
+assert.equal(allSecret.pageCircumference[5]
+  .upperWithEntireRepeatedWordsGrantedFree, 4428);
+assert.equal(allSecret.pageOrdinalRole[5]
+  .upperWithEntireRepeatedWordsGrantedFree, 4750);
 
 /**
  * A very generous period-native GP spell normalizer for control prose;
@@ -363,7 +386,8 @@ const controlResults = [
 assert.deepEqual(controlResults.map(x => x.minimumTopFive),
   [5227, 5131, 5336]);
 assert(controlResults.every(x =>
-  x.minimumTopFive > allSecret.page[5].upperWithEntireRepeatedWordsGrantedFree));
+  x.minimumTopFive > allSecret.pageOrdinalRole[5]
+    .upperWithEntireRepeatedWordsGrantedFree));
 assert.equal(top5(histogram(p57Source)), 46);
 
 console.log('SOURCE_AND_POSITIVE', JSON.stringify({
@@ -375,4 +399,4 @@ console.log('SOURCE_AND_POSITIVE', JSON.stringify({
 }));
 console.log('ALL_SECRET_EXACT_SOURCE_BOUNDS', JSON.stringify(allSecret));
 console.log('SOURCE_NATIVE_CONTROL_MINIMA', JSON.stringify(controlResults));
-console.log('CONCLUSION: hypothesis rejected only for word-local, fixed source-boundary BASE29/BASE28 conversion with any independent per-word quotient and arbitrary secret output GP29 permutation per physical page or coarser state; all 371 real repeated-word runes were granted arbitrary plaintext. No source instruction selects this codec and no authentic unknown plaintext was recovered.');
+console.log('CONCLUSION: no direct native-English-GP29 inversion of this exact fixed-word BASE29/28 lift under any independent word quotient, arbitrary page-private alphabet, or independently keyed source word circumference/inside or first/interior/last page-role alphabets. All 371 real repeated-word runes were given arbitrary plaintext and Q may vary across crossed page and shell state. No first-party source selects the lift; no authentic unknown plaintext was recovered.');
