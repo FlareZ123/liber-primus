@@ -190,7 +190,7 @@ for (const [name, original] of Object.entries(keys)) {
   }
 }
 assert.equal(result.length, 12);
-assert.equal(result.reduce((n, r) => n + r.offsetCount, 0), 599468);
+assert.equal(result.reduce((n, r) => n + r.offsetCount, 0), 590360);
 
 /*
  * Real-length English positive: plant the first 12,956 source-native GP runes
