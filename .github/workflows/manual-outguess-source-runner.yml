@@ -1,0 +1,54 @@
+name: Manual reusable pinned OutGuess original-source SFT
+
+on:
+  workflow_dispatch:
+    inputs:
+      sft:
+        description: 'Repository CommonJS test path within sims/, ending in .cjs'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  original-outguess:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Check out original repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check out pinned OutGuess 0.4 source
+        uses: actions/checkout@v4
+        with:
+          repository: resurrecting-open-source-projects/outguess
+          ref: 24810e14327c2bbeedeaadd3e24491f2a4425c02
+          path: outguess-src
+          persist-credentials: false
+      - name: Build historically compatible extractor
+        shell: bash
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq autoconf automake libtool gnupg
+          cd outguess-src
+          ./autogen.sh
+          ./configure --with-generic-jconfig
+          sed -i 's/^#undef HAVE_PROTOTYPES/#define HAVE_PROTOTYPES/' src/jpeg-6b-steg/jconfig.h
+          make -j2
+          echo "$GITHUB_WORKSPACE/outguess-src/src" >> "$GITHUB_PATH"
+      - name: Execute one path-locked source test
+        shell: bash
+        env:
+          SFT: ${{ inputs.sft }}
+        run: |
+          if [[ ! "$SFT" =~ ^sims/[A-Za-z0-9_/-]+\.cjs$ ]]; then
+            echo "SFT must be an existing sims/*.cjs relative path" >&2
+            exit 1
+          fi
+          test -f "$SFT"
+          node --check "$SFT"
+          node "$SFT"
