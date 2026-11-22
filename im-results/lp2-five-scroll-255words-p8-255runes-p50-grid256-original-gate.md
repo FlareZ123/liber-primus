@@ -71,6 +71,27 @@ The nine sum-zero positions are `[18,50,82,132,148,196,224,230,245]`; the seven 
 
 The same SFT plants an independently keyed 255-position message using arbitrary nonzero field multipliers, verifies source-zero invariance and correctly recovers every planted unknown multiplier on source-nonzero positions. This is a complete model-negative with a positive control, and it does not reject a full affine map with additive intercept, keyed state, nonlinear per-word update, or a different source-selected order. The zero-product sites are exactly those original scroll words containing a literal zero-index GP rune, so the result is grounded in unchanged ciphertext and printed word boundaries, without an external language assumption.
 
+## Original p7 five-red-product matrix on the 255-word checksum register
+
+There is one more source-specific, inexpensive five-unit operator worth applying **to this new word-level correspondence**. The **original** five red words printed at the close of p7 have exact GP29-index products **[11,26,8,15,2]**, and the five black dots visibly identify a fivefold unit. Previous work reconstructed their ordinary right-rotating 5×5 circulant matrix and exact inverse first row **[23,2,5,2,19]**. That matrix was previously applied to the **1,145 ciphertext runes** and to the original following **255-rune p8 itself**. Those were different recipients. Here, the newly identified **255 printed scroll words** permit exactly **51 complete five-word groups** of checksum symbols that could be compared directly with the next 255 original p8 symbols.
+
+Freeze two source-attested whole-word summaries, **sum modulo29** and **product modulo29** of each printed word's literal GP29 indices, then apply the exact p7 right-circulant or its inverse to all 51 consecutive 5-symbol blocks. Treat the ordinary right-rotating matrix and its transpose as the complete two orientation rivals. No fitted phase, changed grouping, missing word, secret coefficient or p8 offset is admitted: **2 summaries × 2 invertible matrices × 2 row orientations = 8 models**.
+
+| Source word summary | Fixed 5×5 operator | Whole-original exact p8 matches / 255 | GP29 IoC of p8 minus source operator output |
+| --- | --- | ---: | ---: |
+| Index sum | M | **7** | 0.035788174 |
+| Index sum | M transpose | **8** | 0.034089856 |
+| Index sum | M inverse | **8** | 0.034213370 |
+| Index sum | M inverse transpose | **10** | 0.032978231 |
+| Index product | M | **6** | 0.034089856 |
+| Index product | M transpose | **15** | 0.034583912 |
+| Index product | M inverse | **8** | 0.035880809 |
+| Index product | M inverse transpose | **6** | 0.035386753 |
+
+The strict complete p8 checksum equality fails by at least **240/255** original positions in every case, and **all eight residual outputs** remain frequency-flat and without readable GP29 prose. The exact original p7 five-word indices and all five products are asserted by the source SFT, which checks the entire 5×5 inverse identity, **255/255 forward-inverse reproduction** of each native checksum register, unchanged printed word boundaries and the eight frozen p8 comparison outputs.
+
+The five-dot geometry and physical correspondence justify testing this operator, but **neither text nor image says the red word products encode checksum mixing**. The result rules out precisely the eight direct five-word checksum transfer models; other forms or an intended cipher still need a source-authored selector before being tested. There is no decrypted page.
+
 ## Reproduction and integration
 
 - [Windows Node.js 22 CommonJS self-contained SFT](../sims/lp2_p3_p7_scroll255_p50_grid256_wordkey_sft.cjs): asserts full p3–p7 word/rune identity, exact next-page p8 255-rune length, 256 complete numeric cells, all **12 fixed original full-length IoC outputs** and the source-zero obstruction for every secret multiplicative word key, all original forward inversions and all twelve source-native 1,145/1,145 planted recoveries.
