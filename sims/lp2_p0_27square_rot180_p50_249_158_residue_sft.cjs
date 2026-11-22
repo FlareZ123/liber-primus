@@ -87,6 +87,28 @@ assert.deepEqual(d4.map(x => x.matchesAll256), [4,8,11,7,6,13,9,7]);
 assert.deepEqual(d4.filter(x => x.twoCycleMatched.length === 2).map(x => x.name), ['rot180']);
 assert.equal(d4.find(x => x.name === 'rot180').elevenCycleMatched.length, 0);
 
+// The first original chapter has exactly 158 complete words. One-based
+// word158 is its final nine-rune word and has GP0 sum104. The two original
+// half-turn-selected table-cycle runes are P=13 and B=17; their independently
+// defined GP-prime weights 43 and 61 sum to the SAME number104. No cipher
+// output operation is implied by this cross-register equality.
+const terminal = words[157];
+const terminalGP0 = [...terminal.runes].reduce((sum,rune) =>
+  sum+corpus.runes.indexOf(rune), 0);
+const terminalPrime = [...terminal.runes].reduce((sum,rune) =>
+  sum+corpus.prime[corpus.runes.indexOf(rune)], 0);
+const otherWordsWithTerminalGP0 = words
+  .map((word,i)=>({word:i+1, gp0:[...word.runes]
+    .reduce((sum,rune)=>sum+corpus.runes.indexOf(rune),0)}))
+  .filter(record=>record.gp0===terminalGP0);
+assert.equal(terminal.length,9);
+assert.equal(terminalGP0,104);
+assert.equal(terminalPrime,369);
+assert.equal(corpus.prime[13],43);
+assert.equal(corpus.prime[17],61);
+assert.equal(corpus.prime[13]+corpus.prime[17],terminalGP0);
+assert.deepEqual(otherWordsWithTerminalGP0,[{word:158,gp0:104}]);
+
 const rot = transforms.rot180;
 assert.equal(position(rot, 158), 570);
 assert.equal(position(rot, 249), 479);
@@ -170,6 +192,7 @@ function permutationNull(withinPages, attempts) {
   const a=c.slice();
   const bounds=[0,262,528,729];
   let hits=0;
+  let jointTerminalGP0Hits=0;
   const positions=Object.values(transforms).map(transform=>
     [position(transform,cycle2[0]),position(transform,cycle2[1])]);
   for(let n=0;n<attempts;n++) {
@@ -177,9 +200,16 @@ function permutationNull(withinPages, attempts) {
       for(let k=0;k<3;k++)shuffleInterval(a,bounds[k],bounds[k+1]);
     } else shuffleInterval(a,0,a.length);
     if(positions.some(([i,j])=> a[i]===t[cycle2[0]]%29 &&
-      a[j]===t[cycle2[1]]%29))hits++;
+      a[j]===t[cycle2[1]]%29)) {
+      hits++;
+      if(a.slice(-9).reduce((sum,x)=>sum+x,0)===terminalGP0) {
+        jointTerminalGP0Hits++;
+      }
+    }
   }
-  return {attempts,hits,addOneTail:(hits+1)/(attempts+1)};
+  return {attempts,hits,addOneTail:(hits+1)/(attempts+1),
+    jointTerminalGP0Hits,
+    jointAddOneTail:(jointTerminalGP0Hits+1)/(attempts+1)};
 }
 
 const allSourceNull=permutationNull(false,25000);
@@ -201,9 +231,10 @@ console.log(JSON.stringify({
     originalRune:c[position(rot,i)], originalGP:corpus.translit[c[position(rot,i)]]
   })),
   d4,all256Rot180Hits:match(c,rot),directModulo29AdditiveConsumers:outputs,
+  sourceTerminalWord:{oneBasedWordNumber:158,gp0:terminalGP0,primeSum:terminalPrime,runicLength:terminal.length,uniqueWordNumbersSharingGP0:otherWordsWithTerminalGP0.map(x=>x.word),rotatedCycleRunePrimeSum:corpus.prime[13]+corpus.prime[17]},
   clearP57Trigram:model.p57Score,
   exactSingleLookupObstruction:{sourceInputResiduesWithConflictingRuneOutputs:polyOutputs,bestPossibleMatchesWithArbitrary29To29Lookup:lookupBestTotal,forcedMismatches:256-lookupBestTotal},
   authenticFTransparencyObstruction:'the two matched GP29 zeros have original rotated ciphertext P=13 and B=17 (both non-F), so cannot be plaintext F skips in the proven p56 mechanism',
   nullTests:{fullChapterShuffle:allSourceNull,eachPageShuffle:pageCountPreservedNull},
-  limitations:'180-degree half-turn is visually motivated but typed count-to-cell/residue lookup was recognized after original ciphertext inspection; conditional shuffle rates are NOT discovery-adjusted and no plaintext/key/cipher is authenticated'
+  limitations:'180-degree half-turn is visually motivated but typed count-to-cell/residue lookup was recognized after original ciphertext inspection; cross-register word and symbol arithmetic was explored retrospectively; conditional shuffle rates are NOT discovery-adjusted and no plaintext/key/cipher is authenticated'
 },null,2));
