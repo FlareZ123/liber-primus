@@ -4,8 +4,8 @@
  * Exact GP30 all-secret period-vs-language-capacity certificate.
  *
  * Each original LP2 punctuation gap/period is a 30th ciphertext symbol.
- * Any unknown period-m Vigenere key may rotate the full 30-symbol alphabet.
- * Each key symbol is chosen adversarially in every allowed phase. We even
+ * Each period-m state may use ANY one of 30! secret bijective GP30 alphabets.
+ * This includes all full-30-symbol cyclic Vigenere shifts as a special case. We even
  * allow the five frequent plaintext runes to vary independently by state,
  * making the resulting upper bound more generous than the real cipher.
  *
@@ -73,8 +73,8 @@ assert.equal(new Set(original.tokens.map((x) => x.section)).size, 8);
 assert.equal(new Set(original.tokens.map((x) => x.page)).size, 55);
 
 /**
- * For each state, a GP30 cyclic key maps exactly one ciphertext digit s to
- * plaintext SPACE. The other 29 digits map to plaintext runes. For any fixed
+ * For each state, any bijective GP30 alphabet maps exactly one input digit s to
+ * plaintext SPACE. The other 29 digits bijectively map to plaintext runes. For any fixed
  * global five-plain-rune set, its state count cannot exceed the five largest
  * input counts after excluding s. Permitting the target five-rune set to
  * differ in *every* state only enlarges this bound.
@@ -165,7 +165,7 @@ const counts = Array(29).fill(0);
 for (const n of solved.runes) counts[n]++;
 assert.equal(counts.sort((a, b) => b - a).slice(0, 5).reduce((a, b) => a + b, 0), 46);
 
-// Source-native positive: any key-based reversible 30-symbol Vigenere
+// Source-native positive: any reversible 30-symbol Vigenere
 // encryption of p57 must *survive* the necessary upper bound when tested at
 // its true key period. This plant includes source-native printed SPACEs.
 const divinity = [23, 10, 1, 10, 9, 10, 16, 26];
@@ -211,6 +211,6 @@ for (const period of [1, 8, 29, 97, 98, 314, 315, 316, 333]) {
   console.log('Global native-q all-secret period ' + period + ': ' +
     JSON.stringify(record));
 }
-console.log('Decision: all continuous GP30 Vigenere periods 1..314 are source-excluded');
+console.log('Decision: all continuous GP30 bijective-substitution periods 1..314 are source-excluded');
 console.log('at native p57 top-five concentration, including arbitrary hidden phase keys.');
 console.log('This is a necessary class gate only; it does not recover LP2 plaintext.');
