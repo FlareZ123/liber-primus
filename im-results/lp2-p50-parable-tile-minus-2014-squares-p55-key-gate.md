@@ -45,8 +45,29 @@ For comparison: original p55 core IoC **0.038559**, authentic clear p57 first75 
 
 **Exact reproducer:** [`sims/lp2_p50_tile_minus_historical_square_p55_sft.cjs`](../sims/lp2_p50_tile_minus_historical_square_p55_sft.cjs), direct original-source Node22/CommonJS, **Windows GitHub Actions PASS** [44994279963](https://github.com/FlareZ123/liber-primus/actions/runs/44994279963). The test pulls the actual preserved original source bytes, rather than embedding a second hand-transcription.
 
+## Complete authentic plaintext-F transparency gate
+
+The directly repeated key above held its 25-position clock fixed through every ciphertext rune. The solved p56 and two solved LP1 Vigenère passages require a second **authentic-source** behavior: a plaintext F (rune index0) is printed as literal ciphertext F and does not consume a key position. An observed ciphertext F may alternatively be ordinary encryption of a non-F letter, so each such position must be branched. An ordinary non-F ciphertext symbol decoding to F is impossible under this documented rule. The actual original p55 75-rune body has **three ciphertext Fs at body offsets14,24,40**.
+
+We enumerated all such reachable branches for each of the same eight source-frozen direct keys without word or phase tuning. A real p57 first75-rune plant was **encrypted under the complete F-bypass convention**, including its three actual plaintext Fs, and then recovered exactly by the branch solver under **each** key. The printed 16 complete p55 words are preserved for every survivor.
+
+| P50 reading / historical square / sign | Authentic F-bypass full75 paths | First impossible original offset | Surviving F skips / GP29 IoC |
+| --- | ---: | ---: | --- |
+| 59 / 3301 / − | **1** | none | body24,40; **0.033153** |
+| 59 / 3301 / + | 0 | 5 | none |
+| 59 / 1033 / − | 0 | 13 | none |
+| 59 / 1033 / + | 0 | 11 | none |
+| 60 / 3301 / − | 0 | 32 | none |
+| 60 / 3301 / + | 0 | 10 | none |
+| 60 / 1033 / − | 0 | 13 | none |
+| 60 / 1033 / + | 0 | 11 | none |
+
+**Seven of eight** direct historical-square differences are now rejected by an *algebraic impossibility* under the actual F-transparent scheme. Their early failures cannot be rescued by choosing a different later skip mask. The sole complete branch uses base59/square3301/subtraction with two literal F skips, and its 75-rune result begins **OWHD AEC AEIA HEAXSGIA THBTHOEGC** and remains entirely nonprose (IoC0.033153). This is stronger than the simple direct-clock language negative, though it does not exclude unconventional non-F handling or a different key-generation operation. The original does not tell the solver to subtract the squares in the first place.
+
+The [same original-source SFT](../sims/lp2_p50_tile_minus_historical_square_p55_sft.cjs) includes both tests, the exact native plants, every original branch, original forward checks, and the one-survivor assertion. This strengthened test resolves the only historically grounded omitted exception, avoiding an unjustified follow-on F-mask sweep.
+
 ## Decision and unresolved dependency
 
-The natural printed cellwise difference between the p50 PARABLE-selected tile and either authentic 2014 five-square **fails as a direct repeating GP29 p55 additive key** under both debated digit alphabets and both signs. Nothing in the original signed Cicada instructions tells the solver to subtract the two squares or repeat the resulting key. The original key source and opcode remain unselected, so the unpromising output should end this specific branch. **Do not** rescue it with phases, transpositions, unrelated plaintext cribs, or per-word edits; require a distinct first-party instruction or an independently fixed plaintext holdout before commissioning a new square operation.
+Retire the **direct repeated GP29 difference key** between the PARABLE-selected p50 5×5 table tile and either authentic 2014 5×5 square: the eight ordinary-clock inverses are nonprose; when the historically mandatory transparent-F semantics are added, seven families become algebraically impossible and the sole surviving branch is nonprose. Source constraints select neither cellwise subtraction nor key repetition. This does **not** exclude a differently authored square operation, genuinely external key, or dynamic cipher state. No further arbitrary start, phase, transposition or wordwise rescue is warranted.
 
-No unknown LP2 plaintext, key, or full p55 decoder has been recovered. The waiting independent verification task #41 does not yet receive a qualifying decoder.
+No unknown LP2 plaintext, key or full p55 decoder was recovered. Waiting independent original-p55 verifier #41 does not receive a qualifying candidate.

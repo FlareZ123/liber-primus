@@ -125,3 +125,65 @@ assert.equal(best.sign,1);
 assert(Math.abs(best.ioc-0.04252252252252252)<1e-12);
 console.log("p57 clear 75 IoC",ioc(p57Clear),"p57 whole95 IoC",ioc(gp.pages[57].indices));
 console.log("PASS: eight source-frozen direct-additive original gates and eight source-native plants.");
+/**
+ * Historic plaintext F transparency: plaintext F (rune index0) prints literally
+ * as ciphertext F and consumes no key. Ciphertext F can also be an enciphered
+ * non-F. Every branch is enumerated without tuning or vocabulary decisions.
+ * An ordinary path that produces plaintext F is invalid under this convention.
+ * @param {number[]} ciphertext @param {number[]} key @param {number} sign
+ */
+function authenticFPaths(ciphertext,key,sign) {
+  let states=[{text:[],clock:0,skips:[]}];
+  for(let i=0;i<ciphertext.length;i++) {
+    const next=[];
+    for(const state of states) {
+      const decoded=mod(ciphertext[i]+sign*key[state.clock%25]);
+      if(decoded!==0) next.push({text:[...state.text,decoded],
+        clock:state.clock+1,skips:state.skips});
+      if(ciphertext[i]===0) next.push({text:[...state.text,0],
+        clock:state.clock,skips:[...state.skips,i]});
+    }
+    states=next;
+    if(states.length===0) return {states,firstFail:i};
+  }
+  return {states,firstFail:null};
+}
+/** @param {number[]} plaintext @param {number[]} key @param {number} sign */
+function authenticEncrypt(plaintext,key,sign) {
+  let clock=0;
+  return plaintext.map(p=>{
+    if(p===0) return 0;
+    const cipher=mod(p-sign*key[clock%25]);
+    clock++;
+    return cipher;
+  });
+}
+const authentic=[];
+for(const base of [59,60]) {
+  const alphabet=base===59?alphabet59:grid.alphabet;
+  const numbers=tile.map(v=>numeral(v,base));
+  for(const [name,square] of [["3301",historical[0]],["1033",historical[2]]]) {
+    const key=numbers.map((n,i)=>mod(n-square.flat()[i]));
+    for(const sign of [-1,1]) {
+      const plantCipher=authenticEncrypt(p57Clear,key,sign);
+      const plantResult=authenticFPaths(plantCipher,key,sign);
+      assert(plantResult.states.some(p=>p.text.every((v,i)=>v===p57Clear[i])),
+        "true p57 plant with every genuine F transparency must be recovered");
+      const actual=authenticFPaths(c,key,sign);
+      const item={base,square:name,sign,paths:actual.states.length,
+        firstFail:actual.firstFail,
+        survivors:actual.states.map(p=>({
+          skips:p.skips,IoC:ioc(p.text),words:printed(p.text),
+        }))};
+      authentic.push(item);
+      console.log("AUTHENTIC_F",JSON.stringify(item));
+    }
+  }
+}
+assert.equal(authentic.length,8);
+assert.equal(authentic.reduce((sum,item)=>sum+item.paths,0),1);
+const only=authentic.find(x=>x.paths);
+assert.deepEqual([only.base,only.square,only.sign],[59,"3301",-1]);
+assert.deepEqual(only.survivors[0].skips,[24,40]);
+assert(Math.abs(only.survivors[0].IoC-0.03315315315315315)<1e-12);
+console.log("PASS: 7/8 exact F-transparent key families impossible, one valid and nonprose.");
