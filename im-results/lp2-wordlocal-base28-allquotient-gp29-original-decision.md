@@ -1,6 +1,6 @@
 # Word-local BASE29/28 predecessor-exclusion decoder: all-quotient GP29 capacity gate
 
-**Status (22 November 2026): decisively negative for this specific direct native-GP29 decoder, including first/inner/last per-page secret alphabets; no unknown plaintext or authentic key recovered.** The exact original-source calculation and a source-native positive replay passed on Windows Node 22 in [GitHub Actions run 45060338981](https://github.com/FlareZ123/liber-primus/actions/runs/45060338981), extending the earlier [page-secret PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45059424692). Complete [read-only CommonJS reproducer](../sims/lp2_wordlocal_base28_allquotients_original_sft.cjs).
+**Status (22 November 2026): decisively negative for this specific direct native-GP29 decoder, including first/inner/last per-page secret alphabets and the known solved-page F-interrupter convention; no unknown plaintext or authentic key recovered.** The exact original-source calculations, genuine p57 forward/inverse and independent controls pass on Windows Node 22 [CI run 45060865935](https://github.com/FlareZ123/liber-primus/actions/runs/45060865935), following the [prior 165-state PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45060338981). Complete [read-only CommonJS reproducer](../sims/lp2_wordlocal_base28_allquotients_original_sft.cjs).
 
 ## Why this mechanism was worth one bounded test
 
@@ -43,6 +43,24 @@ The strongest source-typed original-position case grants **165 separate page-pri
 
 This is a distributional exclusion for a **specified output register**. It does *not* prove that no ciphertext encoder or nonnative plaintext could have generated the original LP2 text.
 
+## Historically evidenced alternate: F as a transparent interrupter
+
+The solved LP1 and LP2 p56 Vigenère/totient ciphers **really do pass an F rune through unchanged**, so an honest word-transport exclusion must also contemplate a second natural architecture: **remove the 458 original F runes (GP index 0) from each original complete printed word before computing its rank28 transport; independently recover the non-F word; put each F back in precisely its original source position**. The scheme preserves actual page-carry order, actual punctuation and word lengths, and first/inner/last roles are defined on the *F-filtered* rank28 word. An originally all-F word remains literal F. This is a frozen first-party-compatible alternative, although its application to unknown LP2 is unproved.
+
+Of 12,956 original runes, exactly **458 are F**. After removing F within each complete printed word, **67 words have new non-F repeated adjacencies**, accounting for **380 non-F exception runes**, and exactly **12,118 remaining non-F runes** have an invertible predecessor-exclusion transport. Only **273** surviving words possess a legal second whole-word quotient. Grant these missing Q values independently in every state, as before; then credit **all 458 literal F runes toward the five most common plaintext characters** whether or not authentic English would include F among its five most frequent runes. Grant all 380 exceptional non-F runes arbitrary plaintext on top. This is an *upper bound* on the true fixed-F decoder, and is extremely generous to it. Authentic p57 plaintext is independently transported with literal F retained and exactly recovered.
+
+| Arbitrary independent final secret GP29 alphabet grouping | Highest five-symbol count among 12,118 eligible non-F runes | Plus 458 literal F and 380 free non-F exceptions | Fraction over entire 12,956-rune source |
+| --- | ---: | ---: | ---: |
+| One global alphabet | 2,398 | **3,236** | **24.977%** |
+| Eight actual section alphabets | 2,662 | **3,500** | **27.015%** |
+| 55 physical-page alphabets | 3,344 | **4,182** | **32.278%** |
+| 110 page × circumference/inside alphabets | 3,911 | **4,749** | **36.655%** |
+| 165 page × first/interior/last alphabets | 4,240 | **5,078** | **39.194%** |
+
+The **most permissive** F-transparent 165-alphabet upper still falls **53 GP symbols** below the *least-concentrated* 12,956-rune Shakespeare native-GP source window (**5,131**), and the Gibran/Emerson gaps are larger. This tightest external comparison is smaller than the original no-interrupter gap, so it is properly **a conditional benchmark exclusion against these three English registers**, rather than an absolute impossibility for unfamiliar language or genre. By contrast, the genuine solved p57 control remains substantially higher at 46/95. No source supplies the rank28 quotient rule, missing Q, page×position secret alphabets or actual unknown-page plaintext; the historical F pass alone does not authenticate the whole proposed cipher.
+
+Both alternatives have direct exact source-word/replay SFT checks, all complete candidate Q choices, all five-state-family C(29,5) secret-key enumerations, all original rune positions (including 32 physical-page carries) and native-GP literary controls.
+
 ## Independent source-native controls
 
 The short, actual solved p57 printed-clear text contains **46/95 = 48.421%** in its top five native GP symbols. To control for the small sample, the SFT also converts three pinned public-domain English source texts to GP29 under a fully specified conventional spelling normalization: QU→CW, Q/K→C, V→U, Z→S, ING→NG, IO→IA, followed by longest-match GP digraph tokenization. Every contiguous **12,956-rune** window of each independent source stream is examined, and **the least concentrated** window is chosen as the control. No distribution is trained or fitted on the original ciphertext.
@@ -59,8 +77,8 @@ The all-secret theorem requires only the source length and actual first-party ci
 
 ## Research decision and limits
 
-**Retire this entire frozen word-local rank28→BASE29 family as a direct ordinary-English GP29 solution**, including every missing per-word quotient and any arbitrary page-specific or page×first/inner/last secret monoalphabetic postmap. Recovering a p50-derived quotient list or searching harder for a page Caesar key cannot rescue this exact operator. The earlier continuous code's full-quotient failure is separate, not the source of this conclusion.
+**Retire this entire frozen word-local rank28→BASE29 family as a direct ordinary-English GP29 solution**, including every missing per-word quotient, even a source-native transparent F interrupter, and arbitrary page-specific or page×first/inner/last secret monoalphabetic postmaps. The F-transparent 165-map bound is comparatively narrow, and does not exclude atypical low-unigram-concentration languages or non-GP plaintext. Recovering a p50-derived quotient list or searching harder for a page Caesar key cannot rescue this exact operator. The earlier continuous code's full-quotient failure is separate, not the source of this conclusion.
 
 The result leaves open genuinely **changing alphabets inside words**, **plaintext resegmentation**, independently selected **non-GP byte/binary registers**, **multi-rune source operations**, and an externally recoverable key not representable as the tested Q and page-private monoalphabetic maps. None has been authenticated here. The next valuable decision is whether original imagery or signed historical instructions actually specifies one such distinct mechanism, preferably with a complete untouched-interval inverse. Avoid further key brute-force inside the excluded word-local family.
 
-**Reproduction:** Run the linked read-only SFT in the repository on Node22/Windows 11. It asserts all source geometry, 388 exact quotient freedoms, 95/95 genuine p57 positive recovery, complete combinatorial maxima for **global, section, physical page, page×circumference/inside, and page×first/inside/last secret maps**, independent benchmark minima, and source-exact carried-word page/state splits; it exits nonzero if any test disagrees.
+**Reproduction:** Run the linked read-only SFT in the repository on Node22/Windows 11. It asserts all source geometry, ordinary wordwise 388 quotient freedoms, all 458 original literal F positions, 273 F-filtered quotient freedoms, 95/95 genuine p57 positive recovery including F-passthrough, complete combinatorial maxima for **global, section, physical page, page×circumference/inside, and page×first/inside/last secret maps** in both F-transparent and full-29-rune variants, independent benchmark minima, and source-exact carried-word page/state splits. It exits nonzero if any test disagrees.
