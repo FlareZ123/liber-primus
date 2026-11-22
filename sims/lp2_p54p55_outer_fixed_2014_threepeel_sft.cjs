@@ -78,6 +78,50 @@ for (const [wi, length] of lengths.entries()) {
 }
 assert.equal(unchangedTwoRuneWords.length, 5);
 assert.equal(p57.length, 95);
+
+// One frozen complete 86-rune original-cipher test. The words THREE (4 GP),
+// CONSUMPTION (10 GP), PRESERVATION (11 GP), ADHERENCE (9 GP) are authentic
+// LP1 terminology. Their 34-rune concatenation is a candidate shell key.
+// The named DIVINITY (8 GP) is an existing solved LP1 Vigenere keyword;
+// this provisional *direct additive* GP29 reading does not implement its
+// separate plaintext-F-bypass convention.
+const keyNames = [
+  ['TH', 'R', 'E', 'E'],
+  ['C', 'O', 'N', 'S', 'U', 'M', 'P', 'T', 'IA', 'N'],
+  ['P', 'R', 'E', 'S', 'E', 'R', 'U', 'A', 'T', 'IA', 'N'],
+  ['A', 'D', 'H', 'E', 'R', 'E', 'N', 'C', 'E']
+];
+const shellKey = keyNames.flat().map((x) => corpus.translit.indexOf(x));
+const coreKey = ['D', 'I', 'U', 'I', 'N', 'I', 'T', 'Y']
+  .map((x) => corpus.translit.indexOf(x));
+assert.equal(shellKey.length, 34);
+assert.equal(coreKey.length, 8);
+assert.ok(shellKey.every((n) => n >= 0) && coreKey.every((n) => n >= 0));
+const shifts = Array(86).fill(null);
+shells.forEach((position, i) => { shifts[position] = shellKey[i]; });
+cores.forEach((position, i) => { shifts[position] = coreKey[i % 8]; });
+assert.equal(shifts.filter((value) => value === null).length, 0);
+const decode = (values) => values.map((value, i) => (value + 29 - shifts[i]) % 29);
+const encode = (values) => values.map((value, i) => (value + shifts[i]) % 29);
+const fullCandidate = decode(cipher);
+assert.deepEqual(encode(fullCandidate), cipher);
+assert.deepEqual(decode(encode(p57.slice(0, 86))), p57.slice(0, 86));
+let current = 0;
+const fullCandidateWords = lengths.map((length) => {
+  const word = gp(fullCandidate.slice(current, current + length));
+  current += length;
+  return word;
+});
+assert.deepEqual(
+  [2, 3, 6, 10, 13].map((index) => fullCandidateWords[index]),
+  ['IX', 'CR', 'NA', 'JD', 'HX']
+);
+const candidateIoC = (() => {
+  const counts = Array(29).fill(0);
+  fullCandidate.forEach((value) => { counts[value]++; });
+  return counts.reduce((sum, n) => sum + n * (n - 1), 0) / (86 * 85);
+})();
+
 console.log(JSON.stringify({
   source: 'LP1 p10 THREE BEHAVIORS; LP2 p57 SHED; original p49-p51 32x8 table; p54-last10+p55',
   originalRunes: cipher.length,
@@ -93,5 +137,9 @@ console.log(JSON.stringify({
   boundaryMismatch: 'p55 76-page tape is not the cross-page 86-complete-word tape',
   coreOnlyImmutableWords: unchangedTwoRuneWords.length,
   originalForwardReplay: '86/86',
+  threeBehaviorsCandidate: {shellKeyRunes: shellKey.length, coreKeyPeriod: coreKey.length,
+    provisionalDirectAdditive: true, plainWords: fullCandidateWords,
+    decodedIoC: candidateIoC, originalForwardReplay: '86/86',
+    nativeP57DonorRoundTrip: '86/86', status: 'nonlinguistic, rejected'},
   result: 'Any strict core-only value transform leaves five entire ciphertext words fixed. Full native-GP decoding requires changing their endpoints, a separate exterior decoder, or independently justified non-prose shell semantics.'
 }, null, 2));
