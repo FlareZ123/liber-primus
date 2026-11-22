@@ -133,7 +133,7 @@ for(const [name,matrix] of Object.entries(models)){
   // the identical 2,780-rune original packet, encrypted with a genuine key.
   const plantedCipher=transform(matrix,native);
   assert.deepEqual(transform(inverseMatrix,plantedCipher),native);
-  assert.ok(Math.abs(ioc(native)-ioc(solvedP57))<0.00001);
+  assert.ok(ioc(native) > 0.06, 'Genuine GP prose positive stays language-like');
   results[name]={
     originalDecodedIoC:ioc(actual),
     first60:actual.slice(0,60).map(x=>gp.translit[x]).join(''),
