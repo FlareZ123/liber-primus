@@ -366,10 +366,11 @@ for (const [sourceIndex, sourcePath] of corpusPaths.entries()) {
   if (sourceIndex !== 1)
     assert(minForcedVariantPairs > 230,
       "Gibran and Latin cannot fit original 230 source word collisions even with free first C");
-  // English controls fail even with separate even/odd tables per section.
-  // Latin is addressed by the tighter per-word-position and section gates.
-  if (sourceIndex < 2)
-    assert(minTop1 > originalCaps.sectionParity.capacities[1]);
+  // The genuine eight-section x alternating-position clock is excluded
+  // by top1 for English and by top5 for Latin; charge both rank tests.
+  assert(minTop1 > originalCaps.sectionParity.capacities[1] ||
+    minTop5 > originalCaps.sectionParity.capacities[5],
+    "all 60 source-native placements violate section x parity secret Q capacity");
   assert(minTop5 > originalCaps.position.capacities[5]);
   controls.push({sourcePath, trials:60,
     top1Range:[minTop1, maxTop1], top5Range:[minTop5, maxTop5],
@@ -442,6 +443,8 @@ function oldEnglishSourceControl() {
   }
   assert(minTop1 > originalCaps.global.capacities[2],
     "Old English also violates arbitrary hidden two-mode state capacity");
+  assert(minTop1 > originalCaps.sectionParity.capacities[1],
+    "Old English exceeds even eight-section x parity GP29 fixed-secret row capacity");
   // Page-secret Q with a deterministic word initializer induces an injective
   // word substitution whenever a complete word stays inside one page.
   // This independently tests the per-page reset exception left open by the
