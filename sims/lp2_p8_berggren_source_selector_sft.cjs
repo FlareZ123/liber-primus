@@ -103,6 +103,36 @@ for (const order of orders) {
 assert.equal(residueSignatures.size, 6,
   'Six unfixed branch conventions give six distinct 243-symbol values');
 
+// Stronger than the six-fold branch ambiguity: exact all-secret fixed
+// monoalphabetic GP29 obstruction to any direct tree-leaf symbol readout.
+// An arbitrary 29! bijection permutes symbol labels but cannot change the
+// sorted 29-bin histogram. Branch-order permutations cannot change it either.
+const originalBlack = page8.indices.slice(12);
+/** @param {number[]} symbols @returns {number[]} */
+function sortedFrequencySignature(symbols) {
+  return Array.from({ length: 29 }, (_, value) =>
+    symbols.filter((symbol) => symbol === value).length).sort((a, b) => b - a);
+}
+const originalSignature = sortedFrequencySignature(originalBlack);
+const coordinateOutputs = [
+  { label: 'first-leg', f: (triple) => triple[0] % 29 },
+  { label: 'second-leg', f: (triple) => triple[1] % 29 },
+  { label: 'hypotenuse', f: (triple) => triple[2] % 29 },
+  { label: 'perimeter', f: (triple) =>
+    (triple[0] + triple[1] + triple[2]) % 29 }
+];
+const baseLeaves = descendantsAtDepth5(orders[0]);
+for (const coordinate of coordinateOutputs) {
+  const signature = sortedFrequencySignature(baseLeaves.map(coordinate.f));
+  assert.notDeepEqual(signature, originalSignature,
+    coordinate.label + ' cannot be direct p8 GP29 under ANY secret bijection');
+  console.log('NO_FIXED_ALPHABET_DIRECT_LEAF_READOUT',
+    coordinate.label,
+    'ORIGINAL_SORTED29', originalSignature.join(','),
+    'LEAF_SORTED29', signature.join(','));
+}
+
+
 console.log('ORIGINAL_P8_RED_GP_PRODUCTS', 4, 3);
 console.log('ORIGINAL_P8_BLACK_RUNES', 243, 'LAST_RUNIC_CARRY_GP', carry);
 console.log('P9_FIVE_RUNE_FRAGMENT_GP_PRODUCT', gpProduct(p9PageFragment));
