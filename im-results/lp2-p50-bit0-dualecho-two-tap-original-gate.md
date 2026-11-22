@@ -10,7 +10,7 @@ The **new cheap decision** is whether the **same original printed second-digit p
 
 Freeze these choices before original-key search: original 12,956 rune indices / 2,896 whole printed words, 55 rune-bearing pages, nine source-visible illustrated chapters, zero-based physical global clock, one printed p50 byte per cell row-major in 32×8 order, **cell under the immediate predecessor of each tested successor**. At a same-page pair (g,g+1), read cell g mod256. At a genuine same-word five-back pair (g−5,g), read cell (g−1) mod256. Phase0 and exactly 256 integer cyclic clock phases are tested with no ciphertext key, new print segmentation, neighboring copy convention, rune substitution or fitted bit.
 
-The conventional participant base60 alphabet is \`0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx\`. The documented alternative is the same alphabet with unused lower-case \`f\` deleted, yielding radix59. Test the visible second-character bit0 in both **fixed** historical interpretations.
+The conventional participant base60 alphabet is `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx`. The documented alternative is the same alphabet with unused lower-case `f` deleted, yielding radix59. **The measured bit in both codecs is the parity of the complete numeric cell value.** In radix60 (even) that matches the second printed character's parity; in radix59 (odd) the high digit can also flip the bit. These are two fixed numeric interpretations, rather than a claim that the same printed-character partition was tested twice.
 
 ## Previously unmeasured second signal
 
@@ -39,7 +39,7 @@ t_i=\begin{cases}1,&B_{(i-1)\bmod256}\text{ even}\\5,&B_{(i-1)\bmod256}\text{ od
 P_i=(C_i-C_{i-t_i}-B_{(i-1)\bmod256})\bmod29.
 \]
 
-At each i below its tap length, use history0. The fixed p50 table \`B\` is the entire mask source; there is no free key, fitted offset or corpus-trained parameter. The inverse for the other direction uses the corresponding additive forward feedback, so every source rune is exactly recoverable from a candidate P. A planted full **12,956-rune GP-native p57** stream encrypted and decrypted by this same source-defined machine recovers **12,956/12,956** positions, and the recovered original re-enciphers exactly to the published source. These check reversibility without asserting that the machine is historically correct.
+At each i below its tap length, use history0. The fixed p50 table `B` is the entire mask source; there is no free key, fitted offset or corpus-trained parameter. The inverse for the other direction uses the corresponding additive forward feedback, so every source rune is exactly recoverable from a candidate P. A planted full **12,956-rune GP-native p57** stream encrypted and decrypted by this same source-defined machine recovers **12,956/12,956** positions, and the recovered original re-enciphers exactly to the published source. These check reversibility without asserting that the machine is historically correct.
 
 **The original output immediately fails its language gate** under both radix conventions. Whole-book GP29 index of coincidence:
 
