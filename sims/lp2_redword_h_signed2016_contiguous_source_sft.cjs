@@ -309,4 +309,93 @@ console.log(JSON.stringify({
     result,
   },
 }));
-console.log("PASS: source exact, 100000 conditional source-permutations, full red-pair scan, no unknown plaintext inferred.");
+
+
+
+// The red-only original data select signed positions 17..22, so the signed
+// continuation fixes position23 = ROAD independently of the first black word.
+// Source p56 red/black boundary is determined by the existing ink annotation.
+const p56All = words.filter((word) => word.first.physicalPage === 56);
+assert.equal(p56All[2].first.offset, 5);
+assert.equal(p56All[2].last.offset, 9);
+assert.deepEqual(p56All[2].values, [19, 26, 20, 3, 8]);
+assert.equal(signedWords[23], "ROAD");
+const blackFirst = hSum(p56All[2].values);
+assert.equal(blackFirst, 23);
+assert.deepEqual([...vector(p56), blackFirst].map((i) => signedWords[i]), ["IS", "THE", "ROAD"]);
+
+// Independently note, without using it as a selector, the original unknown
+// p55's final complete ciphertext word (at page-local offsets73..75).
+const p55Final = words.filter((word) => word.last.physicalPage === 55).at(-1);
+assert.equal(p55Final.first.offset, 73);
+assert.equal(p55Final.last.offset, 75);
+assert.deepEqual(p55Final.values, [17, 18, 10]);
+assert.equal(hSum(p55Final.values), 23);
+
+/**
+ * Uniform-shuffle checksum histogram for one odd-length original word.
+ * Choose the left half by rune positions, then the untouched center.
+ * @param {number[]} values Exact original rune multiset.
+ */
+function exactOddHistogram(values) {
+  assert.equal(values.length % 2, 1);
+  const n = values.length, m = (n - 1) / 2;
+  const counts = Array(29).fill(0);
+  let total = 0;
+  function choose(from, selected, sum, used) {
+    if (selected === m) {
+      for (let center = 0; center < n; center += 1) {
+        if (!used.includes(center)) {
+          counts[(2 * sum + values[center]) % 29] += 1;
+          total += 1;
+        }
+      }
+      return;
+    }
+    for (let i = from; i <= n - (m - selected); i += 1) {
+      choose(i + 1, selected + 1, sum + values[i], [...used, i]);
+    }
+  }
+  choose(0, 0, 0, []);
+  return { counts, total };
+}
+const titleHead = exactEvenHistogram(p56.words[0].values);
+const titleEnd = exactOddHistogram(p56.words[1].values);
+const blackWord = exactOddHistogram(p56All[2].values);
+const p55Last = exactOddHistogram(p55Final.values);
+assert.deepEqual(
+  [titleHead.total, titleEnd.total, blackWord.total, p55Last.total],
+  [2, 6, 30, 6]
+);
+assert.deepEqual(
+  [titleHead.counts[21], titleEnd.counts[1], blackWord.counts[23], p55Last.counts[23]],
+  [1, 2, 3, 1]
+);
+const sevenTargetCount = particular * titleHead.counts[21] * titleEnd.counts[1] * blackWord.counts[23];
+const sevenTotal = denominator * titleHead.total * titleEnd.total * blackWord.total;
+assert.equal(sevenTargetCount, 48);
+assert.equal(sevenTotal, 907200);
+assert.equal(sevenTargetCount / sevenTotal, 2.6455026455026453e-5);
+console.log(JSON.stringify({
+  sourceSelectedContinuation: {
+    signedWords17To23: signedWords.slice(17, 24),
+    p7FirstClause: vector(p7).slice(0, 2),
+    p8OriginalRed: vector(p8),
+    p56OriginalRedThenBlack: [...vector(p56), blackFirst],
+    p56BlackWordLocation: "physical p56 rune offsets5..9, first black word AFTER the red AN END heading",
+    p56DecodedPlaintextControl: "The authenticated different p56 totient cipher decrypts this black word as WITHIN",
+    extraSourceLocation: "original p55 final ciphertext word offsets73..75",
+    p55LastWordHChecksum: hSum(p55Final.values),
+    sixRedChecksumPlusBlackWordIndices: [17, 18, 19, 20, 21, 1, 23],
+    signedIndices: [17, 18, 19, 20, 21, 22, 23],
+    lexicalMatch: signedWords.slice(17, 24).join(" "),
+    numericIndexAliasCaveat: "GP field residue1 maps THE, signed position22 is the same word",
+  },
+  exactFixedSevenOriginalWordMultisetShuffle: {
+    favorableSubsetCenterSelections: sevenTargetCount,
+    totalEquallyWeightedSelections: sevenTotal,
+    probability: sevenTargetCount / sevenTotal,
+    selectionCaveat: "Fixed-seven-location count is exploratory, uncorrected for selection of source words and the earlier model search",
+  },
+}));
+console.log("PASS: exact signed seven-word source readout at original red/black locations, p55 terminal echo, 100000 full-red conditional nulls, no unknown LP2 plaintext claimed.");
