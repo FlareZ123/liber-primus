@@ -261,6 +261,30 @@ for (const [a, b] of [[3, 4], [4, 3]]) {
 assert.equal(pairRotations.length, 8);
 assert(pairRotations.every(x => x.fullIoC < 0.036));
 
+const sourcePackets = [
+  { scope: "after-first-red4-to-complete-crossword", values: p8.slice(4).concat(corpus.pages[9].indices.slice(0, 5)) },
+  { scope: "after-full-red12-to-complete-crossword", values: p8.slice(12).concat(corpus.pages[9].indices.slice(0, 5)) },
+];
+assert.deepEqual(sourcePackets.map(x => x.values.length), [256, 248]);
+const sourcePacketRotations = [];
+for (const packet of sourcePackets) {
+  for (const [a, b] of [[3, 4], [4, 3]]) {
+    for (const dir of [-1, 1]) {
+      const decoded = rotateGP29(packet.values, a, b, dir);
+      assert.deepEqual(rotateGP29(decoded, a, b, -dir), packet.values);
+      sourcePacketRotations.push({
+        scope: packet.scope, a, b, direction: dir,
+        rawIoC: indexOfCoincidence(packet.values),
+        outputIoC: indexOfCoincidence(decoded),
+        firstFortyGP: decoded.slice(0, 40).map(v => corpus.translit[v]).join(" "),
+        originalReplayedRunes: decoded.length,
+      });
+    }
+  }
+}
+assert.equal(sourcePacketRotations.length, 8);
+assert(sourcePacketRotations.every(x => x.outputIoC < 0.036));
+
 const ringReceivers = [];
 for (const sign of [-1, 1]) {
   const candidate = ringTranslate(originalCiphertext, sign);
@@ -307,5 +331,6 @@ console.log(JSON.stringify({
   wordBoundary87: punctuation.wordBoundaryOffsets.includes(87),
   candidateRadix60Perimeter: { length: inner60.length, phase, rawIoC: indexOfCoincidence(originalCiphertext), receiverTests: ringReceivers },
   pythagoreanOriginalGP29PairRotations: pairRotations,
+  pythagoreanOriginalP8SourcePacketRotations: sourcePacketRotations,
   interpretation: "The carry-word GP0 sum selects splice87, whereas the earlier sentence-offset criterion selects208. The physical carried rune cannot itself be the all-zero five-trit state in either valid de Bruijn register. No first-party cipher output law is specified.",
 }, null, 2));
