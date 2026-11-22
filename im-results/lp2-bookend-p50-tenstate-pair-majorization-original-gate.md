@@ -34,6 +34,14 @@ The SFT also plants 6,395 GP29 Gibran plaintext runes under a **fully reversible
 
 [Windows Node.js22 original-input success, 22 November 2026, run45062817631](https://github.com/FlareZ123/liber-primus/actions/runs/45062817631), including all 5/6/10 original pair histograms, 512 deterministically sampled source-native reference control windows and native source-key positive plants. The same workflow tests earlier GF81 square and all-real-secret-palettes sources.
 
+## Concrete original decryption candidate: p7 quartic iterates and p50 parity as direction
+
+To avoid leaving only an unconstrained 841! secret-codebook possibility, I also fixed one **fully executable source-selected invertible operation** using no guessed GP29 key: take the p7 original red-word polynomial `F(x)=11+26x+8x²+15x³+2x⁴ (mod29)`; interpret each p50 numeral first base60 digit `d∈0…4` as an iterate count `F^d` (with `F⁰(x)=x`), and the original p50 second-digit parity as a **forward/backward sign** `s=±1`. With the source-derived first bookend key `K_i` and exact original B rune `C_i`, try the complete original reversible inverse
+
+`P_i=(C_i−s_i F^(d_i)(K_i)) mod29`.
+
+The closely related literal source operand `P_i=C_i−s_i(F^(d_i)(K_i)+K_i) mod29` was included as a second bounded reading, for each **field and literal-crop K** alignment. All four original 6,395-rune outputs are **near perfectly uniform**, with empirical entropy **4.85457–4.85608 bits per rune** and GP29 IoC **0.03442–0.03449**, far from the held-out native-GP ordinary-English register; all exact source ciphertext values reencrypt. The first specified operation alone gives **4.85561584598** (field) and **4.85608083362** (crop) bits/rune, asserting those values in the SFT. These four scalar low-parameter operations are retired. A missing genuinely nonlinear two-rune operation remains necessary; survival of the ten-state all-secret *capacity gate* must not be mistaken for support for these failed shifts.
+
 ## Decision: a bounded first *non-excluded* key state, not a decode
 
 If original p50 numerical cells participate in the 81²/80² bookend cipher as **the phase source for independently keyed, full two-rune reversible nonlinear mixing**, the **10-state** first-character × second-parity reading is the first tested simple printed-token state grammar that **survives** the independent original-input entropy/majorization obstructions and the broad English controls. This is a research decision about *viability*, not evidence of use, and 10-state frequency-envelope pass is **necessary only, not sufficient** for a jointly realizable GP29 plaintext. There may be unrelated state grammars that pass as well; this subset is not a uniqueness claim.
