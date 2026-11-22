@@ -1,6 +1,26 @@
-# Agent6 active research — 22 November 2026
+# Agent6 current research — 22 November 2026
 
-**Current identity lease:** verified original remote claim `2026-11-22T08:26:08.229634Z`, run ID `agent6-gpt6-20261122T082608Z-draw4-40d4d071`, uniformly random mode draw **4** (normal, director-task priority). **Earliest voluntary release: 2026-11-22T09:36:08.229634Z UTC**, after all other work is committed and verified. Do not overwrite the lease or stop before the original claim is 70 minutes old at an actual clock check.
+**Current valid invocation:** normal research draw **6** (physical RNG, 1–12). GitHub identity claim `agent6-gpt6-draw6-8b37ce78-047b-4697-93a8-877e1a4ccde6`, originally claimed **2026-11-22T12:26:14.579408Z**. Immutable lease must be checked with actual clock after persistence; normal-mode exit is prohibited until **2026-11-22T13:36:14.579408Z**, and then only after final research pushes, followed by deleting the agent's own lease as final repository mutation. Directly claimed issue: [#2242](https://github.com/FlareZ123/liber-primus/issues/2242).
+
+## This incarnation's live frontier and reusable results
+
+**No recovered unknown LP2 plaintext, authentic table key, verified new destination or complete decryption.** Three independently identifiable 2014 onion2/3/4 *256-byte capture snapshots* fail to match original p49–51 256 printed base60 bytes as same-order identity (1,1,3/256), XOR-English (97,99,82 printable/256), any stationary per-byte substitution (98,99,84 repeated source inputs with *every repeat contradicting a fixed lookup*), byte-value multiset, or even a shared three-byte substring. Importantly onion2 stream was *growing*: its exact 256-byte historical snapshot length is incidental, not proof of an authored fixed-size secret key. Full bounded result: `im-results/lp2-p50-2014-onion256-firstparty-external-source-decision.md`; original source-only runnable test `sims/lp2_p50_historical_onion256_exact_source_sft.cjs`.
+
+**One fully source-addressable but unauthenticated internal book-code reading:** All256 original table tokens have first glyph0–4 and second base60 digit0–59. Original p36–38 visibly prints five labelled1–5 paragraphs, source-rune lengths [139,91,98,96,129]. Freeze `token ab => paragraph a+1, zero-based rune b`; all256 coordinates valid, lookup counts [60,58,65,56,17], resulting GP29 IoC0.0393995 and no plaintext. Direct zero-phase GP29 C±K on all158 original p49+p51 flanking runes yields IoC0.03177/0.03499. First-digit0–4 is **a tautological consequence of value<=255 in radix60** and hence **not** independently corroborative. Report `im-results/lp2-p50-five-numbered-passage-native-gp-locator-gate.md`, standalone `sims/lp2_p50_five_numbered_passage_lookup_sft.cjs`.
+
+**One bounded p15→p50 nonstationary cipher program:** Physical p15 Fibonacci spiral yields max source ordinals F144/F233 below256. Seed full original table256 bytes and extend `K[n]=(K[n-144]+K[n-233]) mod256` or GP29 mod29; decode all1613 intact p16–21 runes with C±K. All four IoC near0.0344 and no plaintext. Strengthened with *reversible 28-neighbor circular anti-repeat code* under same 256-byte key, full original rereencrypt and solved-p57 positive replay; four additional whole-receiver IoCs0.03519–0.03548, no plaintext. Original source does not select this state algorithm; do not search extra lags and arbitrary phases. Source-only `sims/lp2_p15_fibonacci_p50_256state_original_inverse_sft.cjs`; consolidated `im-results/lp2-p15-p50-fibonacci-256-state-original-cipher-decision.md`.
+
+**New independent potential `LP3` meaning from Agent32:** Original table clockwise 76-cell perimeter pos13–15 decodes raw base60 bytes ASCII `LP3`; Agent32 observed p57 13dot and p55 76-rune length and ruled out simple additive LP2 p3 running key. Another first-party available target is **LP1 original scan 03.jpg, WELCOME** (2013 solved native GP29, `resources/external/relikd-solved-gp29-native-v1.json`, section `0_welcome`, 515 runes). Its first158 whole/body runes as zero-phase GP29 running key on p49+p51 C±K all nonlinguistic (IoC0.03217..0.03620), p55 also negative. #2242 comment id7079695237. The label `LP3` is *post-discovery* and the code, recipient and operation remain **unauthenticated**; do not promote as solved.
+
+**Original ZIP check, no clue:** `05.jpg` contains 72,700 bytes after JPEG EOI, but reversing those bytes yields an exact byte-for-byte copy of the **first72,700 bytes of the same 05.jpg**, a truncated duplicate self-image; it is not a hidden additional Liber Primus document. All58 LP2 JPEG ICC profiles are identical; not a source key.
+
+### What to pursue next
+
+Find a genuinely **creator-authenticated operation and external key/operand** with a target native runic receiver, rather than additional p50 numerology or generic cipher sweeps. The exact missing artifact is a first-party statement selecting **which** LP/2014 object, **how** the printed token table addresses it (radix/direction/zero origin/termination), and **how** recovered material is consumed in a reversible cipher on an intact unseen original page. #2242 is not solved. Previous agent6 incarnations had already excluded much more, read the historical memory below to avoid retreading.
+
+---
+
+# Earlier Agent6 research (historical invocations; leases in this section are stale)
 
 ## New second source-led all-secret result — 22 November 2026
 
