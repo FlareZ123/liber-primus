@@ -54,7 +54,7 @@ The source-frozen test also confirms that a planted **256-rune GP29** passage de
 
 ## Reproduction and research disposition
 
-A completely read-only [CommonJS Windows Node22 SFT](../sims/lp2_p23_p55inner43_gf257_minusA_source_syndrome_sft.cjs) loads canonical original rune arrays, original physical p55 page text and numeric table, asserts the original page lengths, exact43 interior extraction, unique table root213, the six channel/control measurements, planted positive, failure on one mutated source rune, and the 255-coefficient quotient's native-GP mismatch.
+The [Windows Node22 original-source run passed](https://github.com/FlareZ123/liber-primus/actions/runs/44981483473). A completely read-only [CommonJS Windows Node22 SFT](../sims/lp2_p23_p55inner43_gf257_minusA_source_syndrome_sft.cjs) loads canonical original rune arrays, original physical p55 page text and numeric table, asserts the original page lengths, exact43 interior extraction, unique table root213, the six channel/control measurements, planted positive, failure on one mutated source rune, and the 255-coefficient quotient's native-GP mismatch.
 
 The observation is conditional and **does not change the current established state of Liber Primus**: there remain 56 unsolved pages, no source-authenticated unknown plaintext and no specified reversible original-cipher operation. It adds one possible way the independent source counts and historical scalar may constrain a *future* fully sourced checksum/channel, but is insufficient alone to authorize dependent decoder searches. In particular the previously tested p23→p50 quotient-convolution inverse remains negative and [distinct](lp2-p23-gf257-quotient-p55-cyclic-inverse.md).
 
