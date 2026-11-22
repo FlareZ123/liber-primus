@@ -18,7 +18,7 @@ const bigCapSources = [
   "33:0","33:91","39:119","40:0","54:0","56:0","57:0"
 ];
 const reds = ink.pages.flatMap(({page, red_spans}) =>
-  red_spans.map(({start, length, runes}) => {
+  (red_spans || []).map(({start, length, runes}) => {
     const glyphs = [...runes].map(c => ord.get(c));
     assert.equal(glyphs.length, length);
     assert.ok(glyphs.every(Number.isInteger));
