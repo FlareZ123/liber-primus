@@ -109,6 +109,37 @@ const source49Addresses=[
  trace[signedNumbersLength].address
 ].sort((a,b)=>a-b);
 assert.deepEqual(source49Addresses,positions("49"));
+
+// Orthography-sensitive, independent published table lookup for the same
+// signed DIRECTION word. The source-native IO ligature gives eight
+// runes with GP index sum112, table token1D = physical scan73 (p56).
+// A literal separate-I/O spelling gives nine runes, GP index sum98,
+// table token1C = physical scan72 (p55). The signed Latin source does
+// not itself specify which runic orthography to use.
+const directionNative=encodeSourceNativeGP("DIRECTION");
+const directionSplit=[
+ ...encodeSourceNativeGP("DIRECTI"),...encodeSourceNativeGP("ON")
+];
+assert.equal(directionNative.length,8);
+assert.equal(directionSplit.length,9);
+const sum=xs=>xs.reduce((a,b)=>a+b,0);
+assert.deepEqual([sum(directionNative),sum(directionSplit)],[112,98]);
+assert.deepEqual([cells[112],cells[98]],["1D","1C"]);
+assert.deepEqual([numeral(cells[112],grid.alphabet),
+ numeral(cells[98],grid.alphabet)],[73,72]);
+assert.deepEqual([p56.page+17,p55.page+17],[73,72]);
+const nextHop=pointer(trace[8].address);
+assert.equal(nextHop,55);
+const orthographyDualReceiver={
+ sourceWord:"DIRECTION",
+ nativeLigature:{runeLength:8,gpIndexSum:112,
+  p50Value:73,physicalImageScan:73,page:56},
+ literalSplitIO:{runeLength:9,gpIndexSum:98,
+  p50Value:72,physicalImageScan:72,page:55},
+ ninthBase59PointerFrom3301:nextHop,
+ authorSelectedOrthographyOrOpcode:false
+};
+
 const signedWordHopSelector={
  signedLiteral:"their numbers are the direction",
  nativeWordLengths:{NUMBERS:signedNumbersLength,
@@ -195,7 +226,7 @@ console.log(JSON.stringify({
   originalTokenMultiplicity:{
     "49":positions("49"),"00":positions("00"),"0u":positions("0u")
   },
-  terminal,firstShed,secondRingTests,signedWordHopSelector,
+  terminal,firstShed,secondRingTests,signedWordHopSelector,orthographyDualReceiver,
   independentlyEquivalentOriginal3301Base59:"55×59+56",
   receiverPages:{p55RuneCount:p55.indices.length,
     p56RuneCount:p56.indices.length},
