@@ -83,6 +83,23 @@ assert.deepEqual(source, {transitions:12901,zeros:86,nonzero:12815});
 function maxOneSymbol(rows) {
   return rows.reduce((n, row) => n + Math.max(...row), 0);
 }
+/** Count all 29 differences, including zero. The generalized rank
+ * architecture can assign a *phase-varying* plaintext symbol to zero;
+ * the separate 841-anchor theorem does not apply to these keys.
+ * @param {number[][]} pieces @param {number} length
+ * @param {"global"|"page"} reset */
+function fullDifferenceRows(pieces,length,reset){
+  const rows=Array.from({length},()=>Array(29).fill(0));
+  let global=0;
+  for(const p of pieces){
+    for(let i=0;i<p.length;i++,global++){
+      if(i===0)continue;
+      const delta=mod(p[i]-p[i-1]);
+      rows[(reset==="global"?global:i)%length][delta]++;
+    }
+  }
+  return rows;
+}
 const expected = {
   8:{global:579,page:584},
   32:{global:720,page:730},
@@ -99,7 +116,13 @@ for (const phases of [8,32,64,128,256,512]) {
     assert.equal(nonzero, 12815);
     const maximum = maxOneSymbol(rows);
     assert.equal(maximum, expected[phases][reset]);
-    bounds.push({phases,reset,allSecretMaximum:maximum});
+    const full=fullDifferenceRows(origPieces,phases,reset);
+    assert.equal(full.flat().reduce((a,b)=>a+b,0),12901);
+    const all29=maxOneSymbol(full);
+    assert.equal(all29,maximum,
+      "allowing a different plaintext zero rune per phase cannot rescue this E capacity");
+    bounds.push({phases,reset,allSecretMaximum:all29,
+      fixedZeroSpecialCaseMaximum:maximum});
   }
 }
 // The independently solved-Cicada original-word-length-matched source
@@ -207,6 +230,68 @@ for (const reset of ["global","page"]) {
 }
 assert.ok(expected[256].global < 1468 && expected[256].page < 1468);
 assert.ok(expected[512].global > 1591 && expected[512].page < 1468);
+
+/** Whole GP29 additive-difference cipher: zero can be any plaintext
+ * letter, determined by the phase key (no source-wide fixed anchor).
+ * These controls specifically evade the prior fixed-b/r position test.
+ * @param {number[][]} plain @param {"global"|"page"} clock
+ * @param {number[]} mask */
+function encryptChangingZero(plain,clock,mask){
+  let abs=0;
+  const out=[];
+  for(const p of plain){
+    const c=[p[0]];
+    abs++;
+    for(let i=1;i<p.length;i++,abs++){
+      const phase=(clock==="global"?abs:i)%mask.length;
+      c.push(mod(c[i-1]+p[i]+mask[phase]));
+    }
+    out.push(c);
+  }
+  return out;
+}
+/** @param {number[][]} cipher @param {"global"|"page"} clock
+ * @param {number[]} mask */
+function decryptChangingZero(cipher,clock,mask){
+  let abs=0;
+  const out=[];
+  for(const c of cipher){
+    const p=[c[0]];
+    abs++;
+    for(let i=1;i<c.length;i++,abs++){
+      const phase=(clock==="global"?abs:i)%mask.length;
+      p.push(mod(c[i]-c[i-1]-mask[phase]));
+    }
+    out.push(p);
+  }
+  return out;
+}
+const changingZero=[
+  {name:"256 source-cell additive mask",mask:bytes.map(b=>b%29)},
+  {name:"512 source-digit additive mask",mask:printedDigits.map(d=>d%29)}
+];
+const changingZeroResults=[];
+for(const {name,mask} of changingZero){
+  for(const reset of ["global","page"]){
+    const decoded=decryptChangingZero(origPieces,reset,mask);
+    assert.deepEqual(encryptChangingZero(decoded,reset,mask),origPieces);
+    const synthetic=encryptChangingZero(plantPages,reset,mask);
+    assert.deepEqual(decryptChangingZero(synthetic,reset,mask),plantPages);
+    const originalE=countPageNoninitialE(decoded);
+    const all=decoded.flat(),f=Array(29).fill(0);
+    for(const v of all)f[v]++;
+    const ioc=f.reduce((n,k)=>n+k*(k-1),0)/(all.length*(all.length-1));
+    const bound=maxOneSymbol(fullDifferenceRows(origPieces,mask.length,reset));
+    assert.ok(originalE<=bound);
+    assert.ok(originalE<700 && ioc<0.04);
+    const nativeCap=maxOneSymbol(fullDifferenceRows(synthetic,mask.length,reset));
+    assert.ok(nativeCap>=nativeE);
+    changingZeroResults.push({name,reset,originalE,ioc,
+      nativeE,originalAllKeyMaximum:bound,nativePlantAllKeyMaximum:nativeCap,
+      exactOriginalReencryption:true,exactNativeRecovery:true});
+  }
+}
+
 const printedDigits = grid.pages.flatMap(p => p.tokens)
   .flatMap(t => [alphabet.indexOf(t[0]), alphabet.indexOf(t[1])]);
 assert.equal(printedDigits.length,512);
@@ -241,6 +326,7 @@ console.log(JSON.stringify({
   independentlyPublishedNativeGPMinimumE:1468,
   nativeLengthMatchedPositive:positives,
   direct512DigitSourceKeys:digitResults,
-  decision:"Reject <=256-phase single-layer GP29 difference decoder with fixed zero and 28 bijective nonzero outputs; also reject page-reset 512-phase under native GP English. Global 512-phase capacity remains possible, though two literal printed-digit keys fail. No authentic unknown plaintext.",
+  changingZeroAdditiveSourceKeys:changingZeroResults,
+  decision:"The all-29-output, phase-variable-zero GP29 difference/rank model has all-key E capacity <=1279 for periods <=256 and <=1310 for page-reset512, excluding ordinary native-GP-English controls regardless of every secret phase permutation. Global512 capacity survives this marginal test, and direct source-digit 29-ary additive and fixed-zero dlog key readings fail. Fixed-zero 512 was already independently excluded by the word-ordinal 841-anchor theorem. No authentic unknown plaintext.",
 },null,2));
 console.log("PASS: original all-secret 256-phase finite-field difference bound and native-GP positive inverses");
