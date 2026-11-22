@@ -87,6 +87,44 @@ const cover = minimumCover(edges);
 assert.equal(cover.length, 7);
 assert.ok(edges.every(([u, v]) => cover.includes(u) || cover.includes(v)));
 
+/*
+ * Exact enumeration of every optimum 25-input alphabet (i.e., every
+ * minimum seven-row vertex cover), rather than giving only one witness.
+ * The 12-edge branch tree has at most 4096 leaf paths; identical row sets
+ * are deduplicated, and arbitrary secret GP labels are NOT assigned.
+ */
+const minimumCoverSets = new Map();
+/** @param {Array<[number,number,number,string]>} pending @param {Set<number>} chosen */
+function visitCovers(pending, chosen) {
+  if (chosen.size > 7) return;
+  if (!pending.length) {
+    if (chosen.size === 7) {
+      const rows = [...chosen].sort((a, b) => a - b);
+      minimumCoverSets.set(rows.join(','), rows);
+    }
+    return;
+  }
+  const [u, v] = pending[0];
+  for (const row of [u, v]) {
+    const expanded = new Set(chosen);
+    expanded.add(row);
+    visitCovers(pending.filter((edge) => edge[0] !== row && edge[1] !== row), expanded);
+  }
+}
+visitCovers(edges, new Set());
+assert.equal(minimumCoverSets.size, 20);
+const optimumCovers = [...minimumCoverSets.values()];
+const necessarilyRemoved = optimumCovers[0].filter(row =>
+  optimumCovers.every(coverSet => coverSet.includes(row)));
+assert.deepEqual(necessarilyRemoved, [13, 15]);
+console.log(JSON.stringify({
+  exactMaximumInjectiveInputAlphabet: 25,
+  exactMinimumExclusionSets: minimumCoverSets.size,
+  compulsoryRemovedPhysicalRows: necessarilyRemoved,
+  compulsoryRemovedNaturalGPIndices: necessarilyRemoved.map(i => corpus.translit[i]),
+  optimalSevenRowExclusionSets: optimumCovers
+}));
+
 let minRemaining = Infinity;
 let minAffectedColumns = 8;
 let testedRowSubsets = 0;
