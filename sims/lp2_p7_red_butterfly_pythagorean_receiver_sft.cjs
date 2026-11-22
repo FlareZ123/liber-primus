@@ -195,6 +195,50 @@ assert.equal(native.length,95);
 for(const mode of ['forward','inverse'])
   assert.deepEqual(transform(transform(native,mode),
     mode==='forward'?'inverse':'forward'),native);
+
+// Distinct original-source control: p53 has twelve wholly red words.
+// None of its eight five-word sliding windows is this worked butterfly.
+const p53 = redWords(53);
+assert.deepEqual(p53.map(product),
+  [7,14,25,16,17,23,3,4,0,22,4,1]);
+const p53Windows = Array.from({ length: 8 }, (_, i) =>
+  p53.slice(i, i + 5).map(product));
+assert(p53Windows.every(cs => !(
+  cs[4] === 2 && mod(cs[0] + cs[1]) === cs[2] &&
+  mod(cs[1] - cs[0]) === cs[3])));
+
+// Because the source coefficients are printed *whole-word products*,
+// test a genuinely different direct whole-word receiver, retaining
+// original p8/p9 word carry and the black/red title boundaries.
+const chapterWords = [];
+let pendingChapter = [];
+for (let p = 8; p <= 14; p++) {
+  for (const ch of sections[p]) {
+    if (index.has(ch)) pendingChapter.push(index.get(ch));
+    else if ((ch === '-' || ch === '.') && pendingChapter.length) {
+      chapterWords.push(pendingChapter);
+      pendingChapter = [];
+    }
+  }
+}
+if (pendingChapter.length) chapterWords.push(pendingChapter);
+assert.equal(chapterWords.length, 383);
+assert.deepEqual(chapterWords.flat(),
+  gp.pages.slice(8,15).flatMap(p => p.indices));
+const sourceWordProducts = chapterWords.map(w =>
+  w.reduce((v,x) => mod(v*x), 1));
+const wordReceivers = [];
+for (const mode of ['forward', 'inverse']) {
+  const decoded = transform(sourceWordProducts, mode);
+  assert.deepEqual(transform(decoded,
+    mode === 'forward' ? 'inverse' : 'forward'), sourceWordProducts);
+  assert(ioc(decoded) < 0.037);
+  wordReceivers.push({ mode, sourceWords: decoded.length,
+    sourceWordProductIoC: ioc(sourceWordProducts),
+    recoveredRuneIoC: ioc(decoded),
+    first24: decoded.slice(0,24).map(x => gp.translit[x]).join('.') });
+}
+
 console.log(JSON.stringify({
   exactSourceFiveWords: coeff,p8RedWords: heading,
   butterfly: {matrix:[[1,1],[-1,1]],determinant2:true,
@@ -210,7 +254,8 @@ console.log(JSON.stringify({
     matchesMiddleEightFifteen: triangleCount,
     middleEightFifteenAndOnlyRootsThreeFour: triangleRootCount
   },
-  originalReadouts,positiveP57RuneCount: native.length,
+  originalReadouts,wordReceivers,negativeP53FiveWordWindows: p53Windows.length,
+  positiveP57RuneCount: native.length,
   plaintextRecovered: false
 },null,2));
 console.log('PASS: original red butterfly, Pythagorean bridge, numeral7 phase and complete negative decoder');
