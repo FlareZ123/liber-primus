@@ -30,6 +30,16 @@ Multiplying by **any** nonzero private `a[i]` permutes residues, retaining all f
 
 A decoder would require **separately source-recoverable disambiguation information**, a different bijective prime operator, or a preprocessing layer changing the alphabet. None is supplied by this finite model.
 
+### What a lossless sidecar would have to contain
+
+This is a statement about any **full-alphabet, universally reversible** code using the exact prime-residue map, independent of claims about actual literary plaintext.
+
+With the entire multiplier sequence already supplied, a given 29-residue output at any position can still represent **three** distinct GP29 runes (F/I/D). Over an n-rune string, choose the output whose residue falls in that three-way bucket at **every** position. It has **3^n distinct source GP29 plaintext preimages under the same known coefficients**. Hence a separate sidecar must uniquely specify at least `ceil(n·log2(3))` bits **in the worst case**, regardless of how side information is serialized or compressed. For the original n=12,956-rune unknown corpus, the worst-case required capacity is **20,535 bits**.
+
+An alphabet-cardinality bound gives the weaker global-encoding constraint `n·log2(29/24)=3,537.23 bits`. Under a separate equiprobable 29-rune input model, the average ambiguity is `n·(3·log2(3)+6·log2(2))/29 = 4,804.84 bits`. The average assumes uniform plaintext, which is implausible for actual English, and the worst-case is for arbitrary full-alphabet GP29 strings, not a language-restricted manuscript.
+
+If the 256 original p50 numerical cells are treated as **one byte each**, they carry no more than **2,048 bits**, insufficient as the **sole universal full-book** disambiguation sidecar for this exact nonbijective prime-residue cipher. This does not exclude source-defined alphabet restrictions, a different noncollapsing code, shorter separate section ciphers, or an external sidecar with greater independent information. A [nonclaiming Director #2273 note](https://github.com/FlareZ123/liber-primus/issues/2273#issuecomment-7081750019) records the precise distinction from its assigned constrained-coding hypothesis.
+
 ### Original-language necessary condition, secondary to noninjectivity
 
 Because prime29 for N alone has zero residue, in this model `C[i]=C[i-1]` if and only if `P[i]=N`, regardless of private nonzero coefficients. The untouched original p0–55 manuscript has exactly **86 adjacent equal ciphertext pairs among 12,955 edges**. A corresponding direct plaintext would have exactly86 native N runes after the first position. The genuinely printed-clear original LP1 material p3, p8–p11 and p14 contains **64 N in 1,001 GP runes**, or ~6.39%; on a 12,956-rune comparably written native GP text that rate would give ~829 N. This large discrepancy is descriptive, not a universal impossibility for atypical prose; the complete noninjectivity proof already excludes standalone reversible source-GP29 coding.
