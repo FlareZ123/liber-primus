@@ -49,6 +49,26 @@ const headings=pages.map(page=>{
 assert.deepEqual(headings.map(x=>x.len),[13,16,12,20,16,19,10,8,9]);
 assert.deepEqual(headings.map(x=>x.ordinal),
   [181,208,131,284,220,305,109,116,159]);
+
+// The complete source-red census is a fixed, stronger recipient check:
+// no other physical red span, including both terminal pages, points to
+// either solved p56 or p57 under the same zero-based radix59 reading.
+const sourceReds=ink.pages.flatMap(mark=>(mark.red_spans||[]).map(span=>{
+  const glyphs=gp.pages[mark.page].indices.slice(span.start,span.start+span.length);
+  return {page:mark.page,start:span.start,length:span.length,
+    address:glyphs.reduce((sum,value)=>sum+value,0)%256};
+}));
+assert.equal(sourceReds.length,18);
+const redSolved59=sourceReds.filter(x=>T59[x.address]===56||T59[x.address]===57)
+  .map(x=>({page:x.page,start:x.start,length:x.length,target:T59[x.address]}));
+assert.deepEqual(redSolved59,[
+  {page:3,start:0,length:16,target:56},
+  {page:23,start:0,length:16,target:57}
+]);
+const redSolved60=sourceReds.filter(x=>T60[x.address]===56||T60[x.address]===57)
+  .map(x=>({page:x.page,start:x.start,length:x.length,target:T60[x.address]}));
+assert.deepEqual(redSolved60,[{page:3,start:0,length:16,target:57}]);
+
 const addresses=headings.map(x=>x.ordinal%256);
 assert.deepEqual(addresses,[181,208,131,28,220,49,109,116,159]);
 assert.deepEqual(addresses.map(i=>T59[i]),
@@ -249,7 +269,8 @@ assert(p3Clock56.every(x=>x.decodedIoC<0.042));
 
 console.log(JSON.stringify({
   status:'Candidate numeric navigation and global base59 root; NO unknown plaintext',
-  headings,sourceTable:{tokenCount:256,noLowercaseF:true},
+  headings,redSpanSolvedPointers:{sourceSpans:sourceReds.length,base59:redSolved59,base60:redSolved60},
+  sourceTable:{tokenCount:256,noLowercaseF:true},
   base59:{headingOutputs:addresses.map(i=>T59[i]),root:189,
     all256TerminateAtRoot:true,maxDistinctWalk:39,cycles:cycles(T59)},
   base60:{headingOutputs:addresses.map(i=>T60[i]),
