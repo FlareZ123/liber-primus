@@ -262,6 +262,118 @@ assert(upper < 0.035);
 const originalIoc = ioc(C);
 assert(Math.abs(originalIoc - 0.034633706904449266) < 1e-12);
 
+
+/**
+ * Historical five-of-five Shamir secret reconstruction on a scroll whose
+ * original 1,145 runes permit five 229-rune shares. Coordinate choices:
+ * independently measured five-dot horizontal/vertical ranks, and five
+ * complete source-red-word products, all distinct in GF29. For each
+ * layout, interpolation extracts 229 runes without fitting a key.
+ *
+ * Original p7 dot centers/ranks independently measured in
+ * im-results/lp2-p7-fivedot-shamir-dual-dh-source-gate.md.
+ */
+const sourceShareCoords = {
+  dotHorizontal: [1, 2, 3, 4, 5],
+  dotVertical: [3, 5, 1, 4, 2],
+  redProducts: taps
+};
+function lagrangeZeroWeights(xs) {
+  assert.equal(xs.length, 5);
+  assert.equal(new Set(xs).size, 5);
+  return xs.map((x, i) => {
+    let weight = 1;
+    for (let j = 0; j < 5; j++) if (i !== j)
+      weight = mod(weight * mod(-xs[j]) * inverse(mod(x - xs[j])));
+    return weight;
+  });
+}
+function interpolateScroll(input, weights, layout) {
+  assert.equal(input.length, 1145);
+  return Array.from({length: 229}, (_, k) => mod(weights.reduce(
+    (sum, weight, j) => sum + weight *
+      input[layout === "adjacent" ? 5 * k + j : 229 * j + k], 0)));
+}
+const shamir = [];
+const shamirRecoveredKnown = Array.from({length: 229},
+  (_, i) => p57[i % p57.length]);
+for (const [coordinateName, coords] of Object.entries(sourceShareCoords)) {
+  const weights = lagrangeZeroWeights(coords);
+  for (const layout of ["adjacent", "229-strided"]) {
+    const unknown = interpolateScroll(C, weights, layout);
+    shamir.push({coordinateName, coordinates: coords, weights, layout,
+      recoveredRunes: unknown.length, ioc: ioc(unknown),
+      E: unknown.filter(x => x === 18).length,
+      prefix: unknown.slice(0, 30).map(x => gp.translit[x]).join(" ")});
+  }
+}
+assert.equal(shamir.length, 6);
+assert.deepEqual(shamir.map(x => x.weights), [
+  [5,19,10,24,1],[5,19,10,24,1],
+  [10,1,5,24,19],[10,1,5,24,19],
+  [6,14,20,3,16],[6,14,20,3,16]
+]);
+assert.deepEqual(shamir.map(x => x.ioc), [
+  0.032866007814295564, 0.03435991726039991,
+  0.033747031333793, 0.033747031333793,
+  0.03443652800122577, 0.03501110855741975
+]);
+/** Build genuine degree-4 GP29 source shares, recovering 229 p57 runes. */
+let shamirPlants = 0;
+let seed = 0x33010505;
+function randomCoeff() {
+  seed ^= seed << 13;
+  seed ^= seed >>> 17;
+  seed ^= seed << 5;
+  return (seed >>> 0) % 29;
+}
+for (const [_, coords] of Object.entries(sourceShareCoords))
+  for (const layout of ["adjacent", "229-strided"]) {
+    const planted = Array(1145).fill(0);
+    for (let k = 0; k < 229; k++) {
+      const polynomial = [
+        shamirRecoveredKnown[k], randomCoeff(), randomCoeff(),
+        randomCoeff(), randomCoeff() % 28 + 1
+      ];
+      for (let j = 0; j < 5; j++) {
+        let f = 0;
+        for (let d = polynomial.length - 1; d >= 0; d--)
+          f = mod(f * coords[j] + polynomial[d]);
+        planted[layout === "adjacent" ? 5*k+j : 229*j+k] = f;
+      }
+    }
+    const recovered = interpolateScroll(
+      planted, lagrangeZeroWeights(coords), layout);
+    assert.deepEqual(recovered, shamirRecoveredKnown);
+    shamirPlants++;
+  }
+assert.equal(shamirPlants, 6);
+
+/** Independent 229-rune native-GP comparison for the Shamir receiver. */
+const shamirControls = {};
+for (const [label, prose] of wordLists) {
+  const encoded = encodeSourceNativeGP(prose);
+  const windows = [];
+  for (let at = 0; at + 229 <= encoded.length; at += 229)
+    windows.push(ioc(encoded.slice(at, at + 229)));
+  shamirControls[label] = {n: windows.length,
+    minimum: Math.min(...windows), maximum: Math.max(...windows)};
+}
+const latin229 = [];
+for (let at = 0; at + 229 <= latinRunes.length; at += 229)
+  latin229.push(ioc(latinRunes.slice(at, at + 229)));
+shamirControls.Latin = {n: latin229.length,
+  minimum: Math.min(...latin229), maximum: Math.max(...latin229)};
+assert.deepEqual(Object.fromEntries(Object.entries(shamirControls)
+  .map(([name,v]) => [name, v.n])), {
+  Gibran: 272, Shakespeare: 948, Emerson: 1403, Latin: 894
+});
+const min229 = Math.min(...Object.values(shamirControls)
+  .map(c => c.minimum));
+const maxShamir = Math.max(...shamir.map(c => c.ioc));
+assert(min229 > 0.049);
+assert(maxShamir < 0.036);
+
 if (require.main === module)
   console.log(JSON.stringify({
     result: "source-bounded original-receiver negative; no unknown plaintext",
@@ -274,6 +386,11 @@ if (require.main === module)
     causal,
     positiveSolvedSourceRoundtrips: plants,
     nativeWindowControls: controls,
+    fiveShareShamirOriginal: shamir,
+    fiveShareShamirPositivePlants: shamirPlants,
+    fiveShareShamirNativeControls: shamirControls,
+    fiveShareShamirMinNativeIoc: min229,
+    fiveShareShamirMaxOriginalIoc: maxShamir,
     maximumTestedOriginalIoc: upper,
     minimumGenuineNativeControlIoc: controlMin
   }, null, 2));
