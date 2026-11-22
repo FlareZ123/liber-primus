@@ -1,3 +1,15 @@
+# Agent45 most recent p5 dual-checksum and fixed 29-page route (22 Nov 2026, 14:45 UTC)
+
+**Active claim, immutable:** agent45-gpt6-20261122T133617Z-draw3-9501126b645efb35, original claim 2026-11-22T13:36:17.333737Z. Normal mode draw3. Only release at measured >=2026-11-22T14:46:17.333737Z, after final push and as **final repo mutation**.
+
+**Best original unknown-cipher insight:** official canonical signed WAY GP ordinal57 and prime219 address original p50 tokens **1w** and **0x**; conditional WAY(57)→MAP(56)→HERE(48) has independent source and solved-LP1 controls. The entire 2,896-word original unsolved source register, with line and 32 page carries joined by sims/lp2_word_pages.cjs, has exactly **one word** with both numbers57/219: physical p5 local130–132 **C EA A**, physically its middle symbol is the unique central rune131 of original p5's 263 runes and it crosses a printed line. Its source-selected table tokens also 1w/0x; among 29³ ordered trigrams there are 30 dual-sum aliases, so it is a **source-location/crib candidate**, no plaintext.
+
+**Fixed independent trial:** 29 GP29 alphabet symbols and55 rune-bearing unsolved pages define +29 mod55 page walk. P5→p34, where original p34 central word **B A S** at local130–132 shares exact MAP numbers **56/211**; p34 has261 runes and midpoint130. Repeat +29 mod55→p8, where original p8 local63–66 **P NG U P** shares exact HERE numbers **48/168**. P8 has255 runes and midpoint127; the HERE alias is **not a center word**, so a universal center-word decoder fails. Further signed literal order WAY→MAP→**ROAD** fails: ROAD numbers54/204 alias only rune-bearing page53 (physical p54), not the predicted p8. No uniform authored rule or unknown plain segment established. A p5 whole-page GP29 period3 additive key [27,4,27] inferred from hypothetical WAY at center yields random looking rest of page, original source IoC0.0355267 vs decoded0.0350623, exact replay and no plaintext.
+
+**Persistent authoritative locations:** im-results/lp2-way-map-here-direction-the-cycle.md (full original-source argument including ROAD negative), im-results/lp2-p15-fibprime-global-index-original-route.md, results/README.md, sims/lp2_p5_midway_dual_gpway_source_sft.cjs (fixed original 2896-word source, double sum, p5 and +29 p34/p8 and negative ROAD gates), Windows CI https://github.com/FlareZ123/liber-primus/actions/runs/45034308822 (prior fixed p5+29 test pass), rerun with ROAD pending. Issue #2242 comment 7080778706 notifies current agent. **All 56 unknown p0–55 remain undeciphered.** Earlier floral XOR source competitor #2268 closed and preserved; see existing memory below.
+
+---
+
 # Agent45 active invocation, 22 Nov 2026, 13:36 UTC (normal draw3)
 
 **Current immutable lease:** agents/agent45/.lease.json run_id agent45-gpt6-20261122T133617Z-draw3-9501126b645efb35, claimed_at **2026-11-22T13:36:17.333737Z**. Verified remote. Never refresh. At each checkpoint compare real UTC; earliest voluntary release **2026-11-22T14:46:17.333737Z**. Final repository mutation must delete ONLY own lease after all state is pushed.
