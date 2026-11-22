@@ -83,6 +83,30 @@ const output=decode(grid.bytes);
 const printable=values=>values.filter(x=>x>=32&&x<=126).length;
 /** @param {number[]} values */
 const content=values=>values.map(x=>x>=32&&x<=126?String.fromCharCode(x):'.').join('');
+// The same source primitive root also defines a unique 256-position
+// permutation. Read the original printed grid in the two fixed traversal
+// directions with the source phase 48. The index receiver is independent
+// of the byte-value discrete-log receiver above.
+const indexOrders = [
+  ['forward',Array.from({length:256},(_,i)=>
+    byExponent[(i+phase)%256]-1)],
+  ['backward',Array.from({length:256},(_,i)=>
+    byExponent[(phase-i+256)%256]-1)]
+];
+assert(indexOrders.every(([,order])=>new Set(order).size===256));
+const indexReadouts=indexOrders.map(([direction,order])=>{
+  const values=order.map(index=>grid.bytes[index]);
+  // A permutation must return all original raw cells under its inverse.
+  const restored=Array(256).fill(0);
+  order.forEach((index,i)=>{restored[index]=values[i];});
+  assert.deepEqual(restored,grid.bytes);
+  const preview=content(values.slice(0,80));
+  const maxAlphabeticRun=Math.max(0,...(content(values)
+    .match(/[A-Za-z]+/g)||[]).map(x=>x.length));
+  return {direction,asciiHead:preview,printableASCII:printable(values),
+    maxAlphabeticRun,originalExactRoundTrip256:true};
+});
+assert(indexReadouts.every(x=>x.maxAlphabeticRun<=3));
 const signatures=[
   ['PDF',[0x25,0x50,0x44,0x46]],
   ['PNG',[0x89,0x50,0x4e,0x47]],
@@ -104,7 +128,8 @@ console.log(JSON.stringify({
   originalPrintableASCII:printable(output),
   originalGP29ByteCount:output.filter(x=>x<29).length,
   fileHeaders:signatures,
+  sourceFieldIndexTraversal:indexReadouts,
   originalExactReverse256:true,
   plantedSolvedP57ExactReverse256:true,
-  conclusion:'The 256-byte original discrete-log readout is nontext and untyped. The source-selected modulus and primitive group are a structural lead, not an authenticated cipher or plaintext.'
+  conclusion:'Both 256-byte discrete-log value and source-power index readouts are nontext and untyped. The field-group source remains a structural lead, not authenticated cipher or plaintext.'
 },null,2));
