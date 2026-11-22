@@ -4,7 +4,7 @@
 
 ## Concrete puzzle-maker hypothesis
 
-The **source-authenticated p15 4×4 spiral** indexes Fibonacci ordinals `1,2,3,5,8,13,21,34,55,89,144,233,377,610,987` (the first marked index0 is represented in the printed opening). Later original physical p49–51 contains exactly **256** base60-byte-valued cells in a **32×8** panel. A period-available **lagged Fibonacci** generator is a natural, low-description-length operation that could link these two numerical sources and feed an evolving ciphertext key.
+The original p15 image literally prints a **4×4 numeric spiral**, with red center **3299**; it does **not** print Fibonacci indices as Arabic numerals. Its independently established exact mathematical construction is **`abs(3301 − prime(F_n+1))`**, read in the source spiral order, where `F_n` follows Fibonacci indices `0,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987`. See [the existing full original-image derivation](../results/lp2-p15-fibonacci-prime-spiral.md). Thus the indices used here are **derived from the original numeric artifact** rather than visibly listed. Later original physical p49–51 contains exactly **256** base60-byte-valued cells in a **32×8** panel. A period-available **lagged Fibonacci** generator is a natural, low-description-length operation that could link these two numerical sources and feed an evolving ciphertext key, but the manuscript does not instruct this particular generator.
 
 **Freeze an actual derivation rather than hunt lag pairs:** the *largest two Fibonacci ordinals that both fit within a 256-position circular state* are **144 and 233**. Initialize the state from all 256 original table bytes, untouched, in row-major order. Starting at index256, use
 
