@@ -27,7 +27,7 @@ assert.equal(WIDTHS.length, 29);
 /**
  * @typedef {{ page:number, line:number, inside:boolean, base:number,
  *            dashes:number, stops:number, firstWidth:number,
- *            ending:string, nextWidth:number }} Break
+ *            ending:string, nextWidth:number,numericPrefix:boolean }} Break
  */
 
 /** @returns {{breaks:Break[],pageCount:number,runeCount:number,lineCount:number}} */
@@ -61,6 +61,7 @@ function parseOriginal() {
         stops: printed.filter(c => c === '.').length,
         firstWidth: WIDTHS[IDS.get(printed.find(c => IDS.has(c)))],
         ending: printed.at(-1),
+        numericPrefix: /^\s*[1-5]-/.test(lines[line]),
         nextWidth: WIDTHS[IDS.get(next)]
       });
     }
