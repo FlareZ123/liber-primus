@@ -193,12 +193,42 @@ assert.ok(canMatchWord('CRITTER', critterPattern, false));
 // CRITTER is a source-independent positive for the matcher; it need not
 // appear in the narrower Gutenberg-derived TextBlob training lexicon.
 
+
+// All 17-word / 86-rune windows automatically have 34 endpoints and 52 cores.
+// Original page/line wrapping does not terminate original printed words.
+const source = fs.readFileSync(
+  path.join(__dirname, '../resources/liber-primus/lp2-transcription.txt'), 'utf8');
+const runeValue = new Map(corpus.runes.map((symbol, index) => [symbol, index]));
+const originalWords = [];
+let runningWord = [];
+for (const ch of source.split('%').slice(0, 55).join('%')) {
+  const value = runeValue.get(ch);
+  if (value !== undefined) runningWord.push(value);
+  else if (ch === '%' || ch === '/' || /\s/u.test(ch)) {}
+  else if (runningWord.length) { originalWords.push(runningWord); runningWord = []; }
+}
+if (runningWord.length) originalWords.push(runningWord);
+assert.equal(originalWords.length, 2896);
+assert.equal(originalWords.reduce((sum, word) => sum + word.length, 0), 12956);
+assert.deepEqual(originalWords.slice(-17).flat(), cipher);
+const matchedWindows = [];
+let offsetRunes = 0;
+for (let start = 0; start + 17 <= originalWords.length; start++) {
+  const length = originalWords.slice(start, start + 17)
+    .reduce((sum, word) => sum + word.length, 0);
+  if (length === 86) matchedWindows.push({wordOffset:start, runeOffset:offsetRunes});
+  offsetRunes += originalWords[start].length;
+}
+assert.equal(originalWords.length - 16, 2880);
+assert.equal(matchedWindows.length, 49);
+assert.deepEqual(matchedWindows.at(-1), {wordOffset:2879, runeOffset:12870});
 console.log(JSON.stringify({
   source: 'LP1 p10 THREE BEHAVIORS; LP2 p57 SHED; original p49-p51 32x8 table; p54-last10+p55',
   originalRunes: cipher.length,
   fullWordLengths: lengths,
   fullWords: wholeWords,
   wordInteriors: cores.length,
+  originalCorpus17WordWindows: {total:2880, matching86Runes:matchedWindows.length},
   wordExteriors: shells.length,
   twoRuneWords,
   nestedRingPerimeters: ringLengths,
