@@ -158,40 +158,108 @@ for (let begin = 0; begin < pageWords.length; begin++) {
   }
 }
 assert.equal(windows.length, 162);
-let totalExactMultisource = 0;
-const summaries = [];
+
+// A chapter boundary is source-visible independently of the source candidates.
+// Chapter-local permutation allows movement between original physical pages,
+// so it must be tested separately from page-local permutation.
+/** @type {Array<[number, number]>} */
+const bounds = [[0,2],[3,7],[8,14],[15,22],[23,26],
+  [27,32],[33,39],[40,53],[54,55]];
+const chapterWindows = bounds.map(([first,last],i) => ({
+  chapter:i, physical:[first,last], words:originalWords.filter(w => {
+    const physical = w.page < 50 ? w.page : w.page + 1;
+    return physical >= first && physical <= last;
+  }).map(w=>w.length)
+}));
+assert.deepEqual(chapterWindows.map(w=>w.words.length),
+  [158,255,383,437,224,326,378,669,66]);
+assert.equal(chapterWindows.flatMap(x=>x.words).length,2896);
+
+/** @type {Array<{source:string,scheme:string,encoded:number[]}>} */
+const sourceInputs = [];
 for (const file of sources) {
   const latin = read(file).toUpperCase().match(/[A-Z]+/g) || [];
   assert.ok(latin.length >= 100);
-  for (const [scheme, map] of [['GP', gpLength],['LATIN', w=>Math.min(w.length,17)]]) {
-    const encoded = latin.map(map);
-    const findings = windows.map(w => ({...scan(encoded,w.words),physical:w.physical,span:w.span,begin:w.begin}));
-    const exact = findings.filter(x=>x.exactWindows>0);
-    const exactLong = exact.filter(x=>x.span>=2);
-    totalExactMultisource += exactLong.reduce((s,x)=>s+x.exactWindows,0);
-    const best1 = findings.filter(x=>x.span===1).sort((a,b)=>a.minimum-b.minimum)[0];
-    const best2 = findings.filter(x=>x.span===2).sort((a,b)=>a.minimum-b.minimum)[0];
-    const best3 = findings.filter(x=>x.span===3).sort((a,b)=>a.minimum-b.minimum)[0];
-    const summary = {
-      file, scheme, sourceWords:encoded.length,
-      onePageExact:exact.filter(x=>x.span===1).reduce((s,x)=>s+x.exactWindows,0),
-      twoPageExact:exact.filter(x=>x.span===2).reduce((s,x)=>s+x.exactWindows,0),
-      threePageExact:exact.filter(x=>x.span===3).reduce((s,x)=>s+x.exactWindows,0),
-      best1, best2, best3
-    };
-    summaries.push(summary);
-    console.log('SOURCE ' + JSON.stringify(summary));
-    if (exactLong.length) {
-      console.log('PLAINTEXT_CANDIDATE ' + JSON.stringify({file,scheme,exactLong}));
-    }
+  sourceInputs.push({source:file,scheme:'GP',encoded:latin.map(gpLength)});
+  sourceInputs.push({
+    source:file,scheme:'LATIN',
+    encoded:latin.map(word=>Math.min(word.length,17))
+  });
+}
+const lp1 = read('resources/liber-primus/lp1-plaintext-reference.txt')
+  .replace(/^#.*$/gm, '').toUpperCase().match(/[A-Z]+/g) || [];
+assert.ok(lp1.length > 700);
+sourceInputs.push({
+  source:'resources/liber-primus/lp1-plaintext-reference.txt',
+  scheme:'GP-editor-normalized',
+  encoded:lp1.map(gpLength)
+});
+sourceInputs.push({
+  source:'resources/liber-primus/lp1-plaintext-reference.txt',
+  scheme:'LATIN-editor-normalized',
+  encoded:lp1.map(word=>Math.min(word.length,17))
+});
+const solvedSections = JSON.parse(
+  read('resources/external/relikd-solved-gp29-native-v1.json')).sections;
+const solvedWords = solvedSections.flatMap(section =>
+  section.source_text.match(/[\u16A0-\u16FF]+/gu) || []);
+assert.ok(solvedWords.length >= 700);
+sourceInputs.push({
+  source:'resources/external/relikd-solved-gp29-native-v1.json',
+  scheme:'native-GP-rune-count',
+  encoded:solvedWords.map(word=>[...word].length)
+});
+
+let totalExactMultisource = 0;
+let totalExactChapter = 0;
+for (const {source,scheme,encoded} of sourceInputs) {
+  const findings = windows.map(w => ({
+    ...scan(encoded,w.words),physical:w.physical,span:w.span,begin:w.begin
+  }));
+  const exact = findings.filter(x=>x.exactWindows>0);
+  const exactLong = exact.filter(x=>x.span>=2);
+  totalExactMultisource += exactLong.reduce((s,x)=>s+x.exactWindows,0);
+
+  const chapterFindings = chapterWindows.map(w => ({
+    ...scan(encoded,w.words),chapter:w.chapter,physical:w.physical
+  }));
+  const exactChapter = chapterFindings.filter(x=>x.exactWindows>0);
+  totalExactChapter += exactChapter.reduce((s,x)=>s+x.exactWindows,0);
+  const bestChapter = chapterFindings.filter(x=>x.minimum!==null)
+    .sort((a,b)=>a.minimum/a.wordCount-b.minimum/b.wordCount)[0];
+  const best1 = findings.filter(x=>x.span===1)
+    .sort((a,b)=>a.minimum-b.minimum)[0];
+  const best2 = findings.filter(x=>x.span===2)
+    .sort((a,b)=>a.minimum-b.minimum)[0];
+  const best3 = findings.filter(x=>x.span===3)
+    .sort((a,b)=>a.minimum-b.minimum)[0];
+  console.log('SOURCE ' + JSON.stringify({
+    source,scheme,sourceWords:encoded.length,
+    onePageExact:exact.filter(x=>x.span===1)
+      .reduce((s,x)=>s+x.exactWindows,0),
+    twoPageExact:exact.filter(x=>x.span===2)
+      .reduce((s,x)=>s+x.exactWindows,0),
+    threePageExact:exact.filter(x=>x.span===3)
+      .reduce((s,x)=>s+x.exactWindows,0),
+    chapterExact:totalExactChapter,
+    best1,best2,best3,bestChapter
+  }));
+  if (exactLong.length || exactChapter.length) {
+    console.log('PLAINTEXT_CANDIDATE ' + JSON.stringify({
+      source,scheme,exactLong,exactChapter
+    }));
   }
 }
 console.log('SUMMARY ' + JSON.stringify({
   originalRunes:runes, originalWords:originalWords.length, physicalPages:55,
-  printedPageWindows:windows.length, sourceFiles:sources.length,
-  sourceEncodingConventions:2, noMultiPageExact:totalExactMultisource===0,
-  totalMultiPageExact:totalExactMultisource
+  printedPageWindows:windows.length, printedChapterWindows:chapterWindows.length,
+  sourceFiles:sources.length, solvedSourceInputs:3,
+  sourceEncodingConventions:2,
+  noMultiPageExact:totalExactMultisource===0,
+  noChapterExact:totalExactChapter===0,
+  totalMultiPageExact:totalExactMultisource,
+  totalChapterExact:totalExactChapter
 }));
-if (totalExactMultisource > 0) {
-  console.log('ACTION: independently authenticate matching passage and exact plaintext offsets; no cipher claim from histogram alone');
+if (totalExactMultisource > 0 || totalExactChapter > 0) {
+  console.log('ACTION: authenticate original source passage before claiming plaintext');
 }
