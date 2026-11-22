@@ -16,7 +16,7 @@ Taking each word's product modulo 29 gives the five-value vector:
 [11,26,8,15,2]
 ~~~
 
-The next original page, p8, begins with a 12-rune red heading followed by a **243-rune black body**. The p7 packet therefore supplies a source-visible five-symbol key candidate for an adjacent receiver. A repeating GP29 additive/Vigenère stream is a recognizable, low-complexity operation, and Vigenère has a genuine earlier Cicada solve-path precedent. This does not establish that the p7 values are intended as a Vigenère key; it makes one bounded human-solver test.
+The next original page, p8, begins with a 12-rune red heading followed by a **243-rune black body**. The p7 packet therefore supplies a source-visible five-symbol key candidate for an adjacent receiver. A repeating GP29 additive/Vigenère stream is a recognizable, low-complexity operation, and Vigenère has a genuine earlier Cicada solve-path precedent. This does not establish that the p7 values are intended as a Vigenère key.
 
 ## Frozen receiver
 
@@ -27,10 +27,10 @@ P[i] = C[i] - K[i mod 5] (mod 29)
 P[i] = C[i] + K[i mod 5] (mod 29)
 ~~~
 
-Test both signs under two clock policies:
+Test both signs under:
 
 1. **Ordinary clock:** every p8 body rune consumes a key symbol.
-2. **F-transparent clock:** GP29 F (index 0) passes through unchanged and does not consume a key symbol, following the independently solved p56 convention. This is a source-motivated alternative, not an assumption that every page shares p56's rule.
+2. **Exact p56 plaintext-F-transparent rule:** plaintext F (GP29 index 0) passes through unchanged and does not consume a key symbol. A ciphertext F is ambiguous between transparent plaintext F and a non-F plaintext shifted to F; the reproducer exhaustively branches both explanations with dynamic programming. Non-F ciphertext positions that would decrypt to plaintext F are invalid. This is not the shortcut of skipping every ciphertext F.
 
 No key phase, rotation, word/line reset, key reordering, second layer, or fitted parameter is used. The p8 red heading is not part of the target body and is not used as key material.
 
@@ -38,7 +38,7 @@ This is distinct from the existing p7→p8 red-product key-clock report, which t
 
 ## Results
 
-The standalone Node 22 SFT is **sims/lp2_p7_red_product_repeating_vigenere_p8_gate.cjs**. It derives the five red words from the canonical transcription and ink annotations, asserts the original p7/p8 source spans, computes the products, verifies all 243 target runes, and checks exact forward re-encryption plus planted clear-p57 round trips under all four receiver variants.
+The standalone Node 22 SFT is **sims/lp2_p7_red_product_repeating_vigenere_p8_gate.cjs**. It derives the five red words from the canonical transcription and ink annotations, asserts the original p7/p8 source spans, computes the products, verifies all 243 target runes, checks exact ordinary re-encryption, and tests planted clear-p57 positive controls under the exact transparent-F rule.
 
 Scoring uses the repository's source-calibrated GP29 orthography encoder and the solved LP1 plaintext reference. A native-GP trigram model is trained on the reference; **710** original native-GP windows of exactly 243 runes provide the comparison distribution.
 
@@ -47,18 +47,16 @@ Scoring uses the repository's source-calibrated GP29 orthography encoder and the
 | Unchanged p8 body | — | 0.0340441452 | −10.7778556810 |
 | Ordinary clock, subtraction | 243 | 0.0342822161 | −10.8409312532 |
 | Ordinary clock, addition | 243 | 0.0334319627 | −10.8682793047 |
-| F-transparent clock, subtraction | 235 | 0.0373431283 | −10.7417616149 |
-| F-transparent clock, addition | 235 | 0.0358466823 | −10.8061820027 |
 
-The 710 native-GP 243-rune windows have score range **−7.5814652309 to −6.8264385611**, with median **−7.1864324868**. The best candidate, F-transparent subtraction, remains more than **3.16** score units below even the weakest native window. Neither clock policy yields native-GP English; the unchanged body is also far outside the native reference range.
+The 710 native-GP 243-rune windows have score range **−7.5814652309 to −6.8264385611**, with median **−7.1864324868**. The best ordinary-clock candidate remains more than **3.09** score units below even the weakest native window.
 
-The p8 body contains **8** F runes, so the F-transparent variants consume 235 of the repeating key symbols. All four decoders exactly re-encrypt the original body, and all four planted p57 controls round-trip exactly. These are implementation controls, not evidence for the cipher.
+Under the exact p56 plaintext-F-transparent rule, **both signs have zero valid plaintext paths** for the original p8 ciphertext. This is stronger than a low language score: no plaintext sequence satisfies that exact key-clock rule. The same DP recovers planted p57 plaintext under both signs (1,656 and 1 candidate paths respectively), confirming that the ambiguity handling can recover valid transparent-F ciphertexts.
 
-**Scoring limitation:** the model is calibrated on solved LP1 native-GP English. This rejects the four exact receivers as native-GP English candidates; it is not a universal multilingual plaintext exclusion.
+**Scoring limitation:** the model is calibrated on solved LP1 native-GP English. The ordinary-clock scores reject these exact receivers as native-GP English candidates; the exact transparent-clock result is an algebraic impossibility for this receiver regardless of language.
 
 ## Decision
 
-Retire the exact direct receiver **p7 red-word products [11,26,8,15,2] → period-5 GP29 additive/Vigenère key → p8 243-rune black body**, under both ordinary and p56-derived F-transparent clocks and both signs. Do not expand into arbitrary key phases, rotations, permutations, or state updates without a new first-party selector.
+Retire the exact direct receiver **p7 red-word products [11,26,8,15,2] → period-5 GP29 additive/Vigenère key → p8 243-rune black body**, under the ordinary clock and exact p56 plaintext-F-transparent clock. Do not expand into arbitrary key phases, rotations, permutations, or state updates without a new first-party selector.
 
 This does not refute other uses of the p7 five-point packet, its quartic structure, a nonperiodic key clock, or a different cipher on p8.
 
