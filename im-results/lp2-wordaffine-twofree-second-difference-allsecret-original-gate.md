@@ -2,7 +2,7 @@
 
 **Agent8 · 22 November 2026 · Original 12,956-rune architecture-level necessary-condition result. No unknown plaintext.**
 
-**Independent Windows Node.js 22 exact original-source and native-plant checks PASS: [GitHub Actions run 45027966476](https://github.com/FlareZ123/liber-primus/actions/runs/45027966476).**
+**Independent Windows Node.js 22 exact original-source, native inverse, and quartic positive controls PASS: [GitHub Actions run 45028325407](https://github.com/FlareZ123/liber-primus/actions/runs/45028325407).**
 
 ## New decision and source motivation
 
@@ -52,6 +52,26 @@ A 2,000-trial prospective null samples actual native GP29 source words into **ev
 ## Positive cipher reconstruction and why adjacent repeats do not rescue it
 
 The [read-only CommonJS original-source reproducer](../sims/lp2_wordaffine_twofree_second_difference_original_sft.cjs) encrypts genuine native GP29 words in all 2,896 actual word-length positions with random *independent* secret A_w and B_w, then recovers all **12,956/12,956 original-shaped planted plaintext glyphs** and the identical 29-bin second-difference histogram. A separate source-native plant chooses a legal slope per actual native word that eliminates every within-word adjacent ciphertext equality, yielding **0/10,060 adjacent doubles** while preserving all **7,247** second differences. Thus this architecture can explain the rare-doublet phenomenon, but it cannot explain the observed second-difference signature if unknown text is ordinary GP29 plaintext. That signature is independent of all free word keys.
+
+## Extended all-secret quadratic, cubic and quartic word-pad exclusions
+
+The p7 five-dot cluster and p15 four-by-four number table make a compact higher-degree word-position polynomial pad a historically conceivable rival, though no authentic clue prescribes using either as polynomial coefficients. Permit a **different arbitrary secret coefficient for every polynomial term in every one of the 2,896 original words**, independent of source numbers and other words:
+
+\[
+C_{w,j}=P_{w,j}+\sum_{r=0}^{d}A_{w,r}\binom{j}{r}\pmod{29},\qquad d=2,3,4.
+\]
+
+For a word-local pad of degree d, its entire (d+1)st finite difference is zero over GF29. Therefore original ciphertext and native plaintext would have to share the corresponding (d+1)st derivative, no matter which three, four, or five unrestricted secret coefficients each word uses. For the actual original glyphs, finite differences and genuine native GP29 controls yield:
+
+| Secret polynomial degree per printed word | Invariant derivative | Original unchanged derivative positions | χ² against genuine solved native GP source | χ² against exactly word-length-matched solved native GP | Maximum χ² over 500 matched native controls |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Quadratic (three arbitrary coefficients) | 3 | **4,882** | **95.882143** | **268.455609** | **12.249488** |
+| Cubic (four arbitrary coefficients) | 4 | **3,237** | **44.666973** | **121.229326** | **14.608031** |
+| Quartic (five arbitrary coefficients) | 5 | **2,105** | **46.076428** | **134.546036** | **18.649864** |
+
+For each row, **zero of 500** original-word-length-matched native GP control books reach the original discrepancy. Every sampled word is drawn from the author's genuinely solved text, preserving its native symbol order and length. The fixed null seed is xorshift32 0x3301fa31. The [reproducer](../sims/lp2_wordaffine_twofree_second_difference_original_sft.cjs) also constructs an **entire 12,956-rune original-shaped genuine native-GP quartic ciphertext** with five independently random secret coefficients in every word, then exactly recovers **12,956/12,956 true runes** and the untouched source-native fifth-difference histogram. [Windows Node22 full source and quartic positive PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45028325407).
+
+The degree-at-most-four rejection is conditional on preserving all original printed word boundaries and unknown plaintext being ordinary source-native GP29 English. At higher degrees, fewer complete original words contribute full higher-order differences; alternative source-selected encryption operations remain open. This does not make the original p7 dots an authenticated instruction for polynomial algebra or identify a key.
 
 ## Cryptanalytic decision
 
