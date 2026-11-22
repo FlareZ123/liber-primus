@@ -20,6 +20,7 @@ const squares = fs.readFileSync(path.join(
   .map(block => block.trim().split(/\r?\n/)
     .map(row => row.trim().split(/\s+/).map(Number)));
 const sq = squares[2];
+const {parseSharedCorpus}=require('./lp2_word_pages.cjs');
 const pages = gp.pages.filter(p => p.page <= 55);
 const tape = pages.flatMap(p => p.indices || []);
 assert.equal(tape.length, 12956);
@@ -141,6 +142,39 @@ for(const [name,matrix] of Object.entries(models)){
     verifiedAuthenticSourcePlant:native.length
   };
 }
+// The author-demonstrated 2014 LP1 Some Wisdom operation is WHOLE-WORD
+// GP prime-sum -> 5x5 historical magic-square cell. An exact 25-word
+// original window, centered on PNW and in unchanged printed order, is an
+// independently testable, more historically grounded alternative to Hill.
+const parsed=parseSharedCorpus();
+assert.deepEqual([parsed.words.length,parsed.runeCount],[2896,12956]);
+const runeIndex=new Map(gp.runes.map((r,i)=>[r,i]));
+let cursor=0;
+const originalWords=parsed.words.map(word=>{
+  const seq=[...word.runes].map(ch=>runeIndex.get(ch));
+  const start=cursor;
+  cursor+=seq.length;
+  return {start,seq,primeSum:seq.reduce((sum,v)=>sum+gp.prime[v],0)};
+});
+assert.equal(cursor,12956);
+const anchor=originalWords.findIndex(w=>w.start===firstUnprintedValue-1);
+assert.equal(anchor,2284);
+assert.deepEqual(originalWords[anchor].seq,[13,9,7]);
+const wordWindow=originalWords.slice(anchor-12,anchor+13);
+assert.equal(wordWindow.length,25);
+const historicalWordSquareOriginal=wordWindow.map((word,i)=>word.primeSum===sq.flat()[i]);
+assert.deepEqual(historicalWordSquareOriginal.map((value,i)=>value?i:null).filter(x=>x!==null),[12]);
+const squareOrientations=[];
+for(let flip=0;flip<2;flip++){
+  let board=flip?sq.map(row=>row.slice().reverse()):sq.map(row=>row.slice());
+  for(let rot=0;rot<4;rot++){
+    const flat=board.flat();
+    const hits=wordWindow.flatMap((word,i)=>word.primeSum===flat[i]?[i]:[]);
+    squareOrientations.push({flip,rotation90:rot,matchCount:hits.length,positions:hits});
+    board=board[0].map((_,i)=>board.map(row=>row[i]).reverse());
+  }
+}
+assert.deepEqual(squareOrientations.map(row=>row.matchCount),[1,2,1,2,1,2,1,2]);
 console.log(JSON.stringify({
   test:'LP2 p15 next-Fibonacci pointer / p42 91-center authentic Stage10 Hill',
   originalGpTapeSha256:createHash('sha256').update(Buffer.from(tape)).digest('hex'),
@@ -150,5 +184,5 @@ console.log(JSON.stringify({
   blockSize:5, completeOriginalRunes:complete.length,
   unchangedTrailingOriginalRune:residual,
   originalCipherIoC:ioc(complete), solvedP57IoC:ioc(solvedP57),
-  results, recoveredUnknownPlaintext:false
+  historicalPrimeWordSquare:{anchorWordIndex:anchor, originalWordWindow:25,\n    exactRowMajorMatches:[12], allEightOriginalRotations:squareOrientations},\n  results, recoveredUnknownPlaintext:false
 },null,2));
