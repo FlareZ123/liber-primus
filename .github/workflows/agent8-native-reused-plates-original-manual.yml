@@ -1,0 +1,36 @@
+name: Agent8 all native original reused JPEG plates
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: agent8-original-native-reused-jpeg-plates
+  cancel-in-progress: false
+
+jobs:
+  native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile with system native libjpeg
+        run: |
+          cc -std=c99 -O2 -Wall -Wextra -Werror sims/lp2_all_original_reused_plate_native_dct_payload_sft.c -ljpeg -o "$RUNNER_TEMP/native_y"
+          cc -std=c99 -O2 -Wall -Wextra -Werror sims/lp2_all_original_reused_plate_native_chroma_sft.c -ljpeg -o "$RUNNER_TEMP/native_cbcr"
+      - name: Original plates and known 40-bit synthetic positive
+        run: |
+          "$RUNNER_TEMP/native_y" resources/liber-primus "$RUNNER_TEMP/planted_3301.jpg" | tee "$RUNNER_TEMP/native_y.csv"
+          "$RUNNER_TEMP/native_cbcr" resources/liber-primus | tee "$RUNNER_TEMP/native_cbcr.csv"
+          python3 -c "from pathlib import Path; import os; r=Path(os.environ['RUNNER_TEMP']); a=(r/'native_y.csv').read_text(); b=(r/'native_cbcr.csv').read_text(); assert a.count('ORIGINAL,') == 29 and a.count('PLANTED_POSITIVE,40,5,3301_newline,PASS') == 1 and b.count('ORIGINAL,') == 34 and b.count('SKIP_NONRGB,') == 12; print('PASS_ORIGINAL_63457536_EQUAL_COEFFICIENT_COMPARISONS')"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lp2-original-seven-native-plates
+          path: |
+            ${{ runner.temp }}/native_y.csv
+            ${{ runner.temp }}/native_cbcr.csv
+          retention-days: 30
+          if-no-files-found: warn
