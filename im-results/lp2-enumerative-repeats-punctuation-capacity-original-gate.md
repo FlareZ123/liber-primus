@@ -46,6 +46,14 @@ A stricter independently reset *page-local* punctuation-position encoder lacks n
 
 Original ink patterns, illustrations, the p49–p51 numeral table, and the freely variable placement of printed word breaks are *not* bounded by this punctuation-identity theorem. No conclusion is drawn about their possible capacity or cipher role.
 
+## Sidecar-independent obstruction to canonical word enumeration
+
+There is a stronger exact consequence for the most straightforward **whole-book mixed-radix enumerative receiver**. Give every complete original word the rank \(r_w\) among its source-length, source-repeat-count admissible strings, with conventional lexical ordering of first rune, repeat mask, and allowed successor ranks. Concatenate the 2,896 word ranks by their natural mixed radices to obtain \(R\). Its complete ciphertext codebook size \(M=\prod_w M(n_w,e_w)\) is divisible by **\(29^{2896}\)**, because every word's free initial rune contributes one factor 29.
+
+A canonical quotient sidecar would decode the complete original plaintext integer as \(V=S\cdot M+R\), where \(S\) could be an *arbitrary* externally recovered integer from ink, punctuation, an external source, or the p49–p51 table. Regardless of the entire value of \(S\), **the last 2,896 base29 plaintext digits are exactly \(R\bmod29^{2896}\)**. The sidecar cannot affect even one of them. This is an exact all-sidecar invariant of the stated word-ranked architecture, independent of cipher key search.
+
+On actual intact source words, the forced 2,896-rune suffix has IoC **0.034590** when successor ranks skip the previous rune in GP ordinal order, and **0.034519** when using cyclic forward-successor ranks. The independent genuinely solved GP source's final 2,896-rune control has IoC **0.061474**. Both all-sidecar-fixed original suffixes look incompatible with ordinary native-GP prose. Consequently a proposed p50 or punctuation key **cannot rescue this particular canonical full-book enumerative arithmetic receiver**, even if its side channel has unlimited capacity. A different ordering of the rank fields or other nonlinear, interleaved state architecture is outside this exact obstruction.
+
 ## Direct original-input arithmetic inversion
 
 The cheapest source-legible inverse removes each literal repeated-cipher event and labels each remaining next-cipher choice by its order among the 28 allowed symbols. Two independently simple orders were tried: alphabetically skipping the previous symbol, and cyclic forward step \((C_i-C_{i-1}-1)\bmod29\). Each was evaluated in normal and reversed order, with forward or backward digit significance, producing eight fully specified no-key base28-to-base29 integer conversions. Each physical page supplies an explicit first-symbol anchor; observed repeats are preserved as visible event masks. This is a direct arithmetic-rank diagnostic, **not** a demonstrated length-preserving original cipher.
