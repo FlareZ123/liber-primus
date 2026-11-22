@@ -1,0 +1,297 @@
+"use strict";
+
+/**
+ * Exact all-secret test for the original p7 GF(3) five-red-word register
+ * as a three-mode GP29 ciphertext-predecessor quasigroup clock.
+ *
+ * For each previous ciphertext glyph s and register trit m:
+ *    C_j = Q[m][s][P_j]
+ * Q is any secret permutation of all 29 glyphs. First runes of printed
+ * words are completely unconstrained. Mode m is a fixed affine-linear
+ * readout of the p7 source GF(3) state, with arbitrary global phase.
+ *
+ * The tested 242-state orbit excludes the extra zero splice used by
+ * some 243-state p8 de Bruijn hypotheses. No unknown LP2 plaintext
+ * or author-specified cipher operation is inferred.
+ *
+ * SFT: node sims/lp2_p7_gf3_affine_three_mode_allsecret_sft.cjs
+ * Windows 11 / Node.js 22 / CommonJS / read-only / no dependencies.
+ */
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
+const root = path.resolve(__dirname, "..");
+const read = file => fs.readFileSync(path.join(root, file), "utf8")
+  .replace(/\r\n/g, "\n");
+const gp = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
+const ink = JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"));
+const source = read("resources/lp2-transcription.txt");
+const pages = gp.pages.filter(p => p.page <= 55 && p.indices.length);
+const original = pages.flatMap(p => p.indices);
+assert.equal(original.length, 12956);
+assert.equal(pages.length, 55);
+
+/** Derive all five taps from the original p7 red 2|4|3|2|3 words. */
+const p7 = gp.pages.find(p => p.page === 7);
+const redSpan = ink.pages.find(p => p.page === 7).red_spans[0];
+assert.deepEqual([redSpan.start, redSpan.length], [194, 14]);
+const red = p7.indices.slice(redSpan.start, redSpan.start + redSpan.length);
+assert.equal(red.map(x => gp.runes[x]).join(""), redSpan.runes);
+const redWordLengths = [2, 4, 3, 2, 3];
+let redPosition = 0;
+const products = redWordLengths.map(n => {
+  const word = red.slice(redPosition, redPosition + n);
+  redPosition += n;
+  return word.reduce((a, b) => a * b % 29, 1);
+});
+assert.equal(redPosition, 14);
+assert.deepEqual(products, [11, 26, 8, 15, 2]);
+const taps = products.map(x => x % 3);
+assert.deepEqual(taps, [2, 2, 2, 0, 2]);
+
+/** Full primitive 242-cycle, with exactly one source-selected initial state. */
+const states = [];
+let state = taps.slice();
+const visited = new Set();
+for (let i = 0; i < 242; i++) {
+  const signature = state.join(",");
+  assert(!visited.has(signature), "GF3 orbit repeated early");
+  visited.add(signature);
+  states.push(state.slice());
+  const feedback = state.reduce((sum, x, j) => sum + taps[j] * x, 0) % 3;
+  state = [...state.slice(1), feedback];
+}
+assert.deepEqual(state, taps, "primitive 242-state orbit");
+assert.equal(visited.size, 242);
+assert(!visited.has("0,0,0,0,0"));
+const trits = states.map(s => s[0]);
+
+/**
+ * All 242 nonzero GF3-linear state-output functionals give the
+ * 242 rotations of this same m-sequence. Affine constants 0,1,2
+ * merely relabel the three arbitrary secret permutation tables.
+ */
+const signatureToPhase = new Map();
+for (let phase = 0; phase < 242; phase++) {
+  const signature = trits.map((_, i) => trits[(i + phase) % 242]).join("");
+  assert(!signatureToPhase.has(signature));
+  signatureToPhase.set(signature, phase);
+}
+const observedPhases = new Set();
+for (let coefficientNumber = 1; coefficientNumber < 243; coefficientNumber++) {
+  let n = coefficientNumber;
+  const coefficients = Array.from({length: 5}, () => {
+    const digit = n % 3;
+    n = Math.floor(n / 3);
+    return digit;
+  });
+  const signature = states.map(s =>
+    s.reduce((sum, x, j) => sum + x * coefficients[j], 0) % 3).join("");
+  const phase = signatureToPhase.get(signature);
+  assert.notEqual(phase, undefined, "linear form outside phase family");
+  observedPhases.add(phase);
+}
+assert.equal(observedPhases.size, 242, "all affine GP3 outputs covered");
+
+const glyphToIndex = new Map(gp.runes.map((r, i) => [r, i]));
+const runePattern = new RegExp("[" + gp.runes.join("") + "]+", "gu");
+const joined = source.split("%").slice(0, 55).join("")
+  .replace(/\/\n/g, "").replace(/[\n\r%]/g, "");
+const words = (joined.match(runePattern) || [])
+  .map(w => Array.from(w, r => glyphToIndex.get(r)));
+assert.equal(words.length, 2896);
+assert.deepEqual(words.flat(), original, "canonical printed-word identity");
+
+/** Map each unchanged source rune to its printed page and section clocks. */
+const pageOffset = [];
+const sectionOffset = [];
+for (const p of pages)
+  for (let i = 0; i < p.indices.length; i++) pageOffset.push(i);
+const sectionLengths = source.split("%").slice(0, 55).join("%")
+  .split("$").map(s => (s.match(
+    new RegExp("[" + gp.runes.join("") + "]", "gu")) || []).length)
+  .filter(Boolean);
+assert.deepEqual(sectionLengths, [729, 1145, 1738, 1894,
+  1021, 1433, 1680, 3316]);
+for (const length of sectionLengths)
+  for (let i = 0; i < length; i++) sectionOffset.push(i);
+assert.equal(pageOffset.length, original.length);
+assert.equal(sectionOffset.length, original.length);
+const pageAt = [];
+for (const p of pages)
+  for (let i = 0; i < p.indices.length; i++) pageAt.push(p.page);
+
+/** Original words span physical page boundaries without adding symbols. */
+const sites = [];
+let offset = 0;
+for (const w of words) {
+  for (let j = 1; j < w.length; j++)
+    sites.push({
+      book: offset + j,
+      page: pageOffset[offset + j],
+      section: sectionOffset[offset + j],
+      word: j,
+      physicalPage: pageAt[offset + j],
+      predecessor: w[j - 1],
+      observed: w[j]
+    });
+  offset += w.length;
+}
+assert.equal(offset, 12956);
+assert.equal(sites.length, 10060);
+
+/** Exact maximum recovered one-rune occupancy over ALL secret row bijections. */
+function bound(sitesToCount, clock, phase) {
+  const rows = new Uint16Array(3 * 29 * 29);
+  for (const site of sitesToCount) {
+    const mode = trits[(site[clock] + phase) % 242];
+    rows[(mode * 29 + site.predecessor) * 29 + site.observed]++;
+  }
+  let topOne = 0;
+  for (let row = 0; row < 3 * 29; row++) {
+    let largest = 0;
+    for (let output = 0; output < 29; output++)
+      largest = Math.max(largest, rows[row * 29 + output]);
+    topOne += largest;
+  }
+  return topOne;
+}
+function phaseEnvelope(sitesToCount, clock) {
+  let minimum = Infinity;
+  let maximum = -Infinity;
+  let maximizingPhase = -1;
+  for (let phase = 0; phase < 242; phase++) {
+    const n = bound(sitesToCount, clock, phase);
+    minimum = Math.min(minimum, n);
+    if (n > maximum) {
+      maximum = n;
+      maximizingPhase = phase;
+    }
+  }
+  return {sites: sitesToCount.length, minimum, maximum,
+    maximizingPhase, maximumProportion: maximum / sitesToCount.length};
+}
+const whole = {};
+for (const clock of ["book", "page", "section", "word"])
+  whole[clock] = phaseEnvelope(sites, clock);
+const afterP7 = sites.filter(site => site.physicalPage >= 8);
+const afterP8 = sites.filter(site => site.physicalPage >= 9);
+const receiver = {};
+for (const clock of ["book", "page", "word"])
+  receiver[clock] = phaseEnvelope(afterP8, clock);
+assert.deepEqual(Object.fromEntries(Object.entries(whole)
+  .map(([k, v]) => [k, [v.minimum, v.maximum]])), {
+  book: [724, 775],
+  page: [729, 784],
+  section: [722, 775],
+  word: [660, 756]
+});
+assert.deepEqual(Object.fromEntries(Object.entries(receiver)
+  .map(([k, v]) => [k, [v.minimum, v.maximum]])), {
+  book: [642, 688],
+  page: [641, 686],
+  word: [577, 676]
+});
+assert.equal(afterP7.length, 8599);
+assert.equal(afterP8.length, 8395);
+assert(whole.page.maximum < 1135,
+  "all full-book source-native GP29 Latin/English controls exceed this");
+assert(receiver.book.maximum / receiver.book.sites < 0.083);
+
+/** Positive: encrypt, invert, and reencrypt real solved p57 GP runes. */
+let seed = 0x33012307;
+const random = () => {
+  seed ^= seed << 13;
+  seed ^= seed >>> 17;
+  seed ^= seed << 5;
+  return seed >>> 0;
+};
+const secret = Array.from({length: 3}, () =>
+  Array.from({length: 29}, () => {
+    const row = Array.from({length: 29}, (_, i) => i);
+    for (let i = 28; i > 0; i--) {
+      const j = random() % (i + 1);
+      [row[i], row[j]] = [row[j], row[i]];
+    }
+    return row;
+  }));
+const inverse = secret.map(mode => mode.map(row => {
+  const result = new Array(29);
+  for (let i = 0; i < 29; i++) result[row[i]] = i;
+  assert.deepEqual(result.slice().sort((a, b) => a - b),
+    Array.from({length: 29}, (_, i) => i));
+  return result;
+}));
+const known = gp.pages.find(p => p.page === 57).indices;
+assert.equal(known.length, 95);
+let pointer = 0;
+const synthetic = words.map(w => w.map(() => known[pointer++ % 95]));
+assert.equal(pointer, 12956);
+const fixedPhase = 137;
+function cryptWord(w, offset, decoding) {
+  const result = [w[0]];
+  for (let j = 1; j < w.length; j++) {
+    const mode = trits[(offset + j + fixedPhase) % 242];
+    const predecessorCipher = decoding ? w[j - 1] : result[j - 1];
+    const value = decoding ? inverse[mode][predecessorCipher][w[j]]
+      : secret[mode][predecessorCipher][w[j]];
+    result.push(value);
+  }
+  return result;
+}
+let globalOffset = 0;
+const encrypted = synthetic.map(w => {
+  const result = cryptWord(w, globalOffset, false);
+  globalOffset += w.length;
+  return result;
+});
+globalOffset = 0;
+const recovered = encrypted.map(w => {
+  const result = cryptWord(w, globalOffset, true);
+  globalOffset += w.length;
+  return result;
+});
+assert.deepEqual(recovered, synthetic);
+globalOffset = 0;
+assert.deepEqual(recovered.map(w => {
+  const result = cryptWord(w, globalOffset, false);
+  globalOffset += w.length;
+  return result;
+}), encrypted);
+const syntheticTop1 = Math.max(...Array.from({length: 29}, (_, rune) =>
+  synthetic.reduce((sum, w) =>
+    sum + w.slice(1).filter(v => v === rune).length, 0)));
+const plantedSites = [];
+globalOffset = 0;
+for (const w of encrypted) {
+  for (let j = 1; j < w.length; j++)
+    plantedSites.push({book: globalOffset + j,
+      predecessor: w[j - 1], observed: w[j]});
+  globalOffset += w.length;
+}
+const plantedBound = bound(plantedSites, "book", fixedPhase);
+assert(plantedBound >= syntheticTop1, "positive plaintext fits all-secret bound");
+
+if (require.main === module)
+  console.log(JSON.stringify({
+    classification: "exact source-conditional exclusion; no recovered LP2 plaintext",
+    originalRuneCount: original.length,
+    originalCompleteWords: words.length,
+    interiorSites: sites.length,
+    sourceRedProducts: products,
+    primitivePeriod: states.length,
+    nonzeroAffineReadoutsCovered: observedPhases.size * 3,
+    sourceRegisterModes: 3,
+    originalBookAllSecret: whole,
+    originalP9To55AllSecret: receiver,
+    syntheticSolvedP57GP: {
+      sourceRunesReused: known.length,
+      exactlyRecovered: pointer,
+      plantedTopRuneFrequency: syntheticTop1,
+      plantedAllSecretEnvelope: plantedBound
+    },
+    unexcluded: ["unknown source plaintext register",
+      "243-state nonlinear zero-splice clocks",
+      "state-derived ciphers with dynamic key material",
+      "additional position/word/page-dependent secret row tables"]
+  }, null, 2));
