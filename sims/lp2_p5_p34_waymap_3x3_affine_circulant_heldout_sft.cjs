@@ -85,6 +85,21 @@ assert.deepEqual(encode(p5P),p5C);
 assert.deepEqual(encode(p34P),p34C);
 assert.deepEqual(decode(p5C),p5P);
 assert.deepEqual(decode(p34C),p34P);
+const p3C=gp.pages.find(p=>p.page===3).indices.slice(105,109);
+const p3ProposedROAD=[4,3,24,23];
+assert.deepEqual(p3C,[17,23,5,12]);
+assert.deepEqual([p3C.reduce((s,v)=>s+v,0),
+ p3C.reduce((s,v)=>s+gp.prime[v],0)],[57,204]);
+assert.deepEqual([p3ProposedROAD.reduce((s,v)=>s+v,0),
+ p3ProposedROAD.reduce((s,v)=>s+gp.prime[v],0)],[54,204]);
+// The third independently placed page-center word has ROAD's prime sum,
+// and a WAY ordinal sum. It is NOT a known ROAD crib. If it WERE ROAD,
+// a word-reset 3-rune consumer starting at the same visible word boundary
+// would require the first three ciphertext values below, immediately failing.
+const predictedP3ForROAD=encode(p3ProposedROAD.slice(0,3));
+assert.deepEqual(predictedP3ForROAD,[21,17,22]);
+assert.notDeepEqual(predictedP3ForROAD,p3C.slice(0,3));
+
 const original3=words.filter(w=>w.length===3);
 assert.equal(original3.length,720);
 const decoded=original3.map(decode);
@@ -135,6 +150,11 @@ console.log(JSON.stringify({
   index:x.i,text:x.word.map(v=>gp.translit[v]).join("")})),
  originalIoC,decodedIoC:outputIoC,nativePlantIoC:ioc(planted.flat()),
  originalExactRoundTrip:2160,solvedNativePlantRoundTrip:2160,
+ separateP3ROADConditional:{
+  authenticOriginalCipher:p3C,
+  hypotheticalROADFirstThreeEncoded:predictedP3ForROAD,
+  expectedOriginalFirstThree:p3C.slice(0,3),
+  consistentWithSameWordResetKey:false},
  verdict:"Neither GP29 language frequencies nor word dictionary transfer; fitted cribs do not generalize.",
  unknownPlaintextRecovered:false
 },null,2));
