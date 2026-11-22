@@ -23,7 +23,7 @@ const digest = (bytes, algorithm) => crypto.createHash(algorithm).update(bytes).
 const sha256 = bytes => digest(bytes, "sha256").toString("hex");
 assert.equal(sha256(onion), "05acf0d8e2ba7d851e2b4bbc32b85e461a1bd41576a50504487f33d4c1522c56");
 assert.equal(onion.length, 256);
-assert.deepEqual(grid.shape, [32, 8]);
+assert.equal(grid.shape, "32 rows by 8 columns across LP2 pages 49, 50, 51");
 const tokens = grid.pages.flatMap(p => p.tokens);
 assert.equal(tokens.length, 256);
 const alphabet60 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx";
