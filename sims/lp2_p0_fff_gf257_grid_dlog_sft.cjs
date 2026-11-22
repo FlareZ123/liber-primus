@@ -162,7 +162,6 @@ assert(finiteFourierReadouts.every(x=>x.maxAlphabeticRun<=3));
 // 8 cells. GF257's 256th root 38 supplies primitive 32nd and 8th roots,
 // so test all four fixed direct/inverse axis orientations of the natural
 // 32x8 tensor-product Fermat transform.
-const mod257=x=>((x%P)+P)%P;
 /** @param {number[]} data @param {number} length
  * @param {number} exponentStep @param {boolean} inverse */
 function axisTransform(data,length,exponentStep,inverse){
@@ -170,7 +169,7 @@ function axisTransform(data,length,exponentStep,inverse){
   return Array.from({length},(_,k)=>{
     let acc=0;
     for(let j=0;j<length;j++){
-      const power=mod257((inverse?-1:1)*k*j*exponentStep)%256;
+      const power=((inverse?-1:1)*k*j*exponentStep%256+256)%256;
       acc=(acc+data[j]*byExponent[power])%P;
     }
     return inverse?acc*inverseFactor%P:acc;
