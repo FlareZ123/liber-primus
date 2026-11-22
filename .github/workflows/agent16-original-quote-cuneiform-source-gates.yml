@@ -28,3 +28,7 @@ jobs:
         run: node --check sims/lp2_2014_onion2_grid256_historical_key_sft.cjs
       - name: Run authentic 2014 onion-2 256-byte key consumer SFT
         run: node sims/lp2_2014_onion2_grid256_historical_key_sft.cjs
+      - name: Verify original p36–38 MEANING autokey continuation SFT
+        run: node --check sims/lp2_p36_38_numbered_source_autokey_continuation_sft.cjs
+      - name: Run original p36–38 MEANING autokey continuation SFT
+        run: node sims/lp2_p36_38_numbered_source_autokey_continuation_sft.cjs
