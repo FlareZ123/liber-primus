@@ -324,6 +324,78 @@ for (const packet of sourcePackets) {
 assert.equal(sourcePacketRotations.length, 8);
 assert(sourcePacketRotations.every(x => x.outputIoC < 0.036));
 
+
+// A non-linear, explicitly source-keyed GF(3^5) DH action. The p7 primitive
+// recurrence fixes a monic degree-five irreducible polynomial over F3 and
+// the fourth red word supplies b=15. Since gcd(15,242)=1, s -> s^15 is a
+// bijection of all 243 field elements (0 maps to 0). This is a genuine
+// state-ADDRESS permutation, unlike the earlier GP29 scalar exponent masks.
+// The GP29 output equation remains a candidate, not an author instruction.
+/** @param {number} x @param {number} y @returns {number} */
+function mulGF243(x, y) {
+  const aa = [], bb = [], coeff = Array(9).fill(0);
+  for (let j = 0; j < 5; j++) {
+    aa.push(x % 3); bb.push(y % 3);
+    x = Math.floor(x / 3); y = Math.floor(y / 3);
+  }
+  for (let i = 0; i < 5; i++) for (let j = 0; j < 5; j++) {
+    coeff[i + j] += aa[i] * bb[j];
+  }
+  for (let k = 8; k >= 5; k--) {
+    const x = coeff[k] % 3;
+    for (let j = 0; j < 5; j++) coeff[k - 5 + j] += x * taps[j];
+  }
+  return coeff.slice(0, 5).reduceRight((v, digit) => v * 3 + digit % 3, 0);
+}
+/** @param {number} x @param {number} power @returns {number} */
+function powGF243(x, power) {
+  let out = 1;
+  while (power) {
+    if (power % 2) out = mulGF243(out, x);
+    x = mulGF243(x, x);
+    power = Math.floor(power / 2);
+  }
+  return out;
+}
+const states87 = [...sequence.slice(0, 87), 0, ...sequence.slice(87)]
+  .map((_, i, a) => Array.from({ length: 5 }, (_, j) => a[(i + j) % 243])
+    .reduce((v, t) => 3 * v + t, 0));
+assert.equal(new Set(states87).size, 243);
+const blackOriginal = p8.slice(12);
+assert.equal(blackOriginal.length, 243);
+const tableGF3 = Array(243);
+for (let i = 0; i < 243; i++) tableGF3[states87[i]] = blackOriginal[i];
+assert(tableGF3.every(v => Number.isInteger(v)));
+const sourceExponent = originalDHWithoutInterpolation.b;
+assert.equal(sourceExponent, 15);
+const exponent15GF3Table = Array.from({ length: 243 }, (_, v) => powGF243(v, sourceExponent));
+assert.equal(new Set(exponent15GF3Table).size, 243);
+assert(exponent15GF3Table.every((v, i) => powGF243(v, 113) === i));
+assert.equal(powGF243(3, 242), 1); // x (polynomial basis) is primitive
+const nonlinearGF3KeyCycle = states87.map(st => tableGF3[exponent15GF3Table[st]]);
+assert.equal(nonlinearGF3KeyCycle.length, 243);
+assert.deepEqual([...nonlinearGF3KeyCycle].sort((a, b) => a - b),
+  [...blackOriginal].sort((a, b) => a - b));
+/** @param {number[]} values @param {number} sign @returns {number[]} */
+function applyGF3Table(values, sign) {
+  return values.map((v, i) => ((v + sign * nonlinearGF3KeyCycle[i % 243]) % 29 + 29) % 29);
+}
+const nonlinearGF3TableResults = [];
+for (const sign of [-1, 1]) {
+  const decrypted = applyGF3Table(originalCiphertext, sign);
+  assert.deepEqual(applyGF3Table(decrypted, -sign), originalCiphertext);
+  assert.deepEqual(applyGF3Table(applyGF3Table(terminalKnown, -sign), sign), terminalKnown);
+  nonlinearGF3TableResults.push({
+    sign, sourceGF3Exponent: sourceExponent,
+    fullIoC: indexOfCoincidence(decrypted),
+    untouchedP13IoC: indexOfCoincidence(decrypted.slice(p13Start, p13Start + 200)),
+    firstFortyGP: decrypted.slice(0, 40).map(v => corpus.translit[v]).join(" "),
+    reencryptionRunes: decrypted.length,
+    plantedSolvedRunes: terminalKnown.length,
+  });
+}
+assert(nonlinearGF3TableResults.every(x => x.fullIoC < 0.036));
+
 const ringReceivers = [];
 for (const sign of [-1, 1]) {
   const candidate = ringTranslate(originalCiphertext, sign);
@@ -372,5 +444,6 @@ console.log(JSON.stringify({
   candidateRadix60Perimeter: { length: inner60.length, phase, rawIoC: indexOfCoincidence(originalCiphertext), receiverTests: ringReceivers },
   pythagoreanOriginalGP29PairRotations: pairRotations,
   pythagoreanOriginalP8SourcePacketRotations: sourcePacketRotations,
+  sourceSelectedGF243DHExponent15Table: nonlinearGF3TableResults,
   interpretation: "The carry-word GP0 sum selects splice87, whereas the earlier sentence-offset criterion selects208. The physical carried rune cannot itself be the all-zero five-trit state in either valid de Bruijn register. No first-party cipher output law is specified.",
 }, null, 2));
