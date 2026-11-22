@@ -116,8 +116,13 @@ const printed = raw.map(v => v >= 32 && v <= 126 ? String.fromCharCode(v) : '.')
 const asciiPrintable = raw.filter(v => v >= 32 && v <= 126).length;
 const asciiLetters = raw.filter(v => (v >= 65 && v <= 90) || (v >= 97 && v <= 122)).length;
 const nativeGp29 = raw.filter(v => v < 29).length;
+// A second standard *lossless* GP29 embedding is m=g^index in GF257*.
+// This fixes the exact group-log representation before any original readout.
+const groupLogs = new Map(Array.from({length: order}, (_, j) => [power(generator, j), j]));
+assert.equal(groupLogs.size, order);
+const exponentGp29 = raw.filter(v => groupLogs.get(v + 1) < 29).length;
 assert.deepEqual(raw.slice(0, 16), [140,22,68,91,223,120,193,66,141,33,187,168,199,51,94,80]);
-assert.deepEqual([asciiPrintable, asciiLetters, nativeGp29], [50, 29, 13]);
+assert.deepEqual([asciiPrintable, asciiLetters, nativeGp29, exponentGp29], [50, 29, 13, 14]);
 // The supplied inverse re-encrypts any source pair under this hypothesized
 // private exponent; this is a correctness invariant, not key authentication.
 for (let i = 0; i < raw.length; i++) {
@@ -134,8 +139,9 @@ console.log(JSON.stringify({
   originalP50Sha256: crypto.createHash('sha256').update(Buffer.from(original)).digest('hex'),
   plaintextSha256: crypto.createHash('sha256').update(Buffer.from(raw)).digest('hex'),
   first32: raw.slice(0, 32),
-  asciiPrintable, asciiLetters, nativeGp29,
+  asciiPrintable, asciiLetters, nativeGp29, exponentGp29,
   nativeGp29Violations: raw.length - nativeGp29,
+  exponentGp29Violations: raw.length - exponentGp29,
   escapedAscii: printed,
   solvedP57PlantedSymbols: planted.length,
   solvedP57PlantedRecovered: decrypt(encryptedPlant).length,
