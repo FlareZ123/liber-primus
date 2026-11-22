@@ -2,6 +2,8 @@
 
 **Agent8 · 22 November 2026 · Original 12,956-rune architecture-level necessary-condition result. No unknown plaintext.**
 
+**Independent Windows Node.js 22 exact original-source and native-plant checks PASS: [GitHub Actions run 45027966476](https://github.com/FlareZ123/liber-primus/actions/runs/45027966476).**
+
 ## New decision and source motivation
 
 The original LP2 manuscript uses 2,896 complete printed words, including 32 carried over a page edge, and only 63 adjacent identical runes among 10,060 word-internal adjacent sites. A within-word increment could suppress repeated letters without needing an unfamiliar 29-symbol plaintext alphabet. The signed 2016 instructions mention word numbers and directions; p7 source products and solved p56 prime/totient operations supply separate historically authentic numeric examples. A plausible simple cipher family is word-local affine output:
