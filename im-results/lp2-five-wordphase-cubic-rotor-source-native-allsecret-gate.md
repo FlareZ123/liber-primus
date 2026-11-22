@@ -1,6 +1,6 @@
-# A five-state cubic word-phase rotor recovers a hidden English key, but cannot decrypt the original floral chapter
+# Five-state cubic word-phase rotor: blind English key recovery and all-nine-chapter original exclusion
 
-**Agent27 · 22 November 2026 · Director [#2231](https://github.com/FlareZ123/liber-primus/issues/2231).** Classification: original-input cryptanalytic exclusion plus **genuine blind key recovery on disjoint independently authored English plants**. No unknown LP2 plaintext, authenticated historic key, or final destination is recovered.
+**Agent27 · 22 November 2026 · Director [#2231](https://github.com/FlareZ123/liber-primus/issues/2231).** Classification: all-nine-chapter original-input cryptanalytic exclusion plus **genuine blind key recovery on disjoint independently authored English plants**. No unknown LP2 plaintext, authenticated historic key, or final destination is recovered.
 
 ## Source-to-cipher path and its indispensable missing instruction
 
@@ -74,9 +74,31 @@ A second control addresses the source's **18 strikingly suppressed adjacent repe
 
 The null explicitly preserves repeat locations and ciphertext length; it does **not** reproduce all source GP glyph frequency or five-back correlations. Its purpose is calibration of the optimizer, rather than a complete generative model of Cicada's text.
 
+## Full-book transfer: nine independent chapters cannot rescue the same five-rotor law
+
+The local floral result is robust to the substantially stronger rival that **every red-heading-delimited chapter begins with its own completely independent five-state key**. Reconstruct the **2,896 authentic complete words and all 12,956 original rune positions** across physical p0–55, including all 32 genuine physical-page-carried words and the rune-free p50. Preserve each rune's original word-local j mod5. Treat the nine previously established visual chapter intervals as independent possible key resets: pp0–2,3–7,8–14,15–22,23–26,27–32,33–39,40–53,54–55.
+
+There is a particularly cheap **secret-independent necessary gate**: each chapter's phase0 uses just one of its five key states, and it sees only actual ciphertext symbols at the same source word position. Exhaust **all 29 possible phase0 starting secrets** separately for each of the nine chapters. A secret static output alphabet bijection cannot change the resulting collision counts. Accordingly the following source-original maxima cover *all* 29^(5×9) independently chapter-rekeyed seed assignments without guessing any key. Their absence of source-native GP29 concentration in **phase0 alone** precludes the proposed whole-chapter language decoder.
+
+| Original visual chapter | Phase0 runes | Original maximum phase0 IoC across all29 secrets | Minimum real-GP phase0 IoC in 240 controls |
+|---|---:|---:|---:|
+| pp0–2 | 216 | **0.03854436** | 0.04737295 |
+| pp3–7 | 337 | **0.03569662** | 0.04784866 |
+| pp8–14 | 502 | **0.03607128** | 0.04905726 |
+| pp15–22 | 563 | **0.03522689** | 0.04883599 |
+| pp23–26 | 293 | **0.03592968** | 0.04782832 |
+| pp27–32 | 417 | **0.03518723** | 0.04859574 |
+| pp33–39 | 485 | **0.03540939** | 0.04773792 |
+| pp40–53 | 866 | **0.03533354** | 0.04950540 |
+| pp54–55 | 89 | **0.04034729** | 0.04136874 |
+
+Each native reference again samples **80 complete matched-word-length source books from each of Gibran, Shakespeare and Emerson**, mapping every one of the 2,896 original print-word lengths onto native GP spellings and respecting the same nine chapter regions. The control column reports the smallest phase0 IoC from any of the resulting **240 source-native corpus samples**, not a fitted cipher candidate. The final 89-rune terminal phase is a small sample with a narrow empirical margin, and no cross-chapter p-value should be inferred from these reused controls. Nevertheless all **nine** independently isolated original source chapters fail even this favorable all-secret bound; the more populated eight have broad separation.
+
+A new full-book positive encrypts **12,956 GP-native Shakespeare symbols with all original word lengths** under distinct five-state seed vectors at every one of the nine chapter boundaries, then decrypts **12,956/12,956** with the same source rule. The [read-only full-book CJS SFT](../sims/lp2_nine_chapter_cubic_fiverotor_phase0_allsecret_sft.cjs) asserts every original rune/page/word transition, all nine finite phase0 maxima, the 240 source-native controls, and the complete constructive inverse. This is a genuine original-input cross-chapter transfer test, distinct from restarting an unsuccessful search with postselected new ciphertext weights.
+
 ## Decision and useful next constraint
 
-**Retire this precise five-word-phase ciphertext-forced cubic rotor for source-native GP29 English.** It is source-motivated, reversible and easily capable of recovering and projecting unknown keys on authentic English, but **every starting secret is excluded by the exact original-cipher symbol spectra**. Retaining its arithmetic while adding per-page arbitrary salts, multiple dynamic readout alphabets, or word-private key material would remove the low-description route and create an effectively unconstrained pad.
+**Retire this precise five-word-phase ciphertext-forced cubic rotor as a source-native GP29 English encoder for every original visual chapter, including freely independent chapter starting keys.** It is source-motivated, reversible and easily capable of recovering and projecting unknown keys on authentic English, but **every starting secret is excluded by the exact original-cipher symbol spectra**. Retaining its arithmetic while adding per-page arbitrary salts, multiple dynamic readout alphabets, or word-private key material would remove the low-description route and create an effectively unconstrained pad.
 
 A successful distinct successor to #2231 would require a **creator-selected state transition or typed external input** that predicts genuine cross-page GP prose without per-word key fitting. The exact contrast between perfect unknown-key recovery on blind source-native controls and no original key signal is a useful decision: something fundamental in the state architecture or the transmitted message's native alphabet remains different.
 
