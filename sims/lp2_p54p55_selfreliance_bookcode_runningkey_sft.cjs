@@ -88,7 +88,9 @@ assert.deepEqual(coreDirect.map((p, i) => mod(p + endpointKey[i])), core);
 const reconstruct = [...original];
 coreIndices.forEach((position, i) => {reconstruct[position] = mod(coreDirect[i] + endpointKey[i]);});
 assert.deepEqual(reconstruct, original);
-// Transparent plaintext-F requires branching when ciphertext is F.
+// Transparent plaintext-F requires branching only at ciphertext F.
+// Any candidate decoded F at a non-F ciphertext position is impossible:
+// the historical encoder passed plaintext F literally and consumed no key.
 const coreZeros = core.map((x, i) => x === 0 ? i : -1).filter((x) => x >= 0);
 assert.deepEqual(coreZeros, [20]);
 const transparent = [];
@@ -98,7 +100,7 @@ for (let mask = 0; mask < 2; mask++) {
   for (let i = 0; i < core.length; i++) {
     const passF = i === coreZeros[0] && mask === 1;
     const p = passF ? 0 : mod(core[i] - endpointKey[clock]);
-    if (core[i] === 0 && !passF && p === 0) {legal = false; break;}
+    if (!passF && p === 0) {legal = false; break;}
     plain.push(p);
     if (!passF) clock++;
   }
@@ -108,8 +110,7 @@ for (let mask = 0; mask < 2; mask++) {
     transparent.push({mask, readout: roman(plain)});
   }
 }
-assert.equal(transparent.length, 2);
-assert.equal(transparent[0].readout, roman(coreDirect));
+assert.equal(transparent.length, 0, 'strict plaintext-F grammar rejects both endpoint-key masks');
 
 // One whole-book source-key family: two fixed additive directions,
 // *every* contiguous source origin, no key/phrase fitting.
@@ -171,7 +172,8 @@ const chapter = toGP(essays.slice(essayFrom, essayTo));
 assert.equal(chapter.length, 41538);
 /** Every legal F-branch, origin and additive direction; no vocabulary
  * optimizations. Ciphertext F may represent literal plaintext F or
- * an encrypted non-F. A non-F ciphertext cannot mean transparent F.
+ * an encrypted non-F. A non-F ciphertext cannot mean transparent F;
+ * if any encrypted branch yields plaintext F, reject that branch.
  * @param {number[]} cipher
  * @param {number[]} key
  */
@@ -197,7 +199,7 @@ function transparentRunningKey(cipher, key) {
         for (let i = 0; i < L; i++) {
           const value = isF[i] ? 0 :
             mod(cipher[i] + (sign ? key[begin+phase[i]] : -key[begin+phase[i]]));
-          if (cipher[i] === 0 && !isF[i] && value === 0) {
+          if (!isF[i] && value === 0) {
             legal = false; break;
           }
           output[i] = value;
@@ -217,9 +219,9 @@ function transparentRunningKey(cipher, key) {
 }
 const historical = transparentRunningKey(original, chapter);
 assert.deepEqual(historical.zeros, [25, 35, 51]);
-assert.equal(historical.valid, 637978);
+assert.equal(historical.valid, 38901);
 assert.deepEqual(historical.best.map((v) => [v.begin,v.mask]),
-  [[26112,2],[37577,6]]);
+  [[21456,3],[16957,1]]);
 // Positive control with real, solved native GP text and plaintext-F skip.
 let keyPos = 500;
 const plantedF = solved.map((p) => p === 0 ? 0 : mod(p + chapter[keyPos++]));
