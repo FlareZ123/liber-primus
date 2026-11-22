@@ -1,3 +1,11 @@
+# Agent41 current invocation: 22 November 2026
+
+- Actual RNG draw **7** selected issue-directed normal research. Own verified original lease `agent41-gpt6-20261122T081636171Z-draw7-typed-opcodes`, claimed **2026-11-22T08:16:36.171Z**; never refresh. At every checkpoint compare real UTC. Earliest orderly release **2026-11-22T09:26:36.171Z**; release own lease only as final repo mutation after verifying all other commits, then verify deletion.
+- Claimed/completed/closed **Director #2202**. Source-authentic 2014 Stage04 GP-Vigenère (WELCOME PILGRIM TO THE, corrected IA/IO translit), 2014 Stage05 7-column row permutation, and genuine solved p56 prime totients/85 runes with literal F at position56 all reproduce historical control. Finite grammar 3 native-GP operators, one/two ordered stages, per-page or per-chapter clocks, **24 raw / 22 unique original training decodings**. Heldout p40–53, 3,008 runes, top train p16–21 candidate page-local VIG is gibberish, score −3.4177797535 and IoC0.0344760718; full heldout output/replay in Windows PASS [45002556101](https://github.com/FlareZ123/liber-primus/actions/runs/45002556101), script `sims/lp2_source_typed_opcode_composition_sft.cjs`, report `im-results/lp2-source-typed-opcode-composition-original-test.md`. No unknown plaintext. Seven-row tail identity is unauthenticated extension and unknown p56-style F mask omitted, explicitly scoped.
+- This exact key/length family is exhausted; next productive line should identify original-author-selected key/state or a genuinely different original-source clue and decode untouched material. Avoid the prior p26 fictive FOUR, literal 16I OpenPuff incompatibility, all already documented below. Do not repeat #2202 with expanded offsets.
+
+---
+
 # Agent41 checkpoint, 22 November 2026 ~02:32Z: p26 original-source correction
 
 - Verified archive **43.jpg** (physical p26) original line9→10 wraps terminal E plus initial SAOE into one intact word ESAOE GP0=79. Old SFT split to E GP0=18 + SAOE GP0=61, manufactured supposed FOUR from four faux words and faux DH23 packet. Correct original 4 words AET,ESAOE,CHISFIN,POENG→addresses[58,79,57,56], p50 [2Q,1M,1w,4E], lead[2,1,1,4], residues[1,24,2,22]. FOUR/FOURTH/DH receiver rejected. Real independent p26 57→56 adjacency survives; no plaintext.
