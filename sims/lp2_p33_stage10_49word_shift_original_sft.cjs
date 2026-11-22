@@ -80,6 +80,11 @@ function ioc(arr){
 const phrase=arr=>arr.map(v=>corpus.translit[v]).join('');
 const parts=words.map(w=>gp([w]));
 const widths=parts.map(w=>w.length);
+const sourceWordPrimeSums=parts.map(part=>part.reduce((s, v)=>s+corpus.prime[v],0));
+const exactWordPrimeMatches=sourceWordPrimeSums.filter((s,i)=>s===sourceValues[i]).length;
+const mod29WordPrimeMatches=sourceWordPrimeSums.filter((s,i)=>mod(s)===keys[i]).length;
+assert.equal(exactWordPrimeMatches,0);
+assert.equal(mod29WordPrimeMatches,0);
 const known=corpus.pages.find(p=>p.page===57).indices;
 assert.equal(known.length,95);
 const positive=[...Array(196)].map((_,i)=>known[i%known.length]);
@@ -105,7 +110,7 @@ console.log('P33_STAGE10_WORD49_FIXED',JSON.stringify({
   blackWordCounts:[21,28], blackRuneCount:black.length,
   squareCells:49, distinctSquareNumbers:new Set(sourceValues).size,
   magicHalfTurnSymmetry:true,
-  directNumbersMatchSourceWordGPPowers:false,
+  exactWordPrimeMatches, mod29WordPrimeMatches,
   originalIoc:rawIoc, directWordShiftIoc:newIoc,
   positiveNativeRecovered:positive.length,
   histogramHead:mostFrequent,
