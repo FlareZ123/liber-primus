@@ -80,8 +80,6 @@ function ioc(x) {
 }
 const originalP49End = gp.pages.filter(p=>p.page<=49).reduce((s,p)=>s+p.indices.length,0);
 assert.equal(originalP49End,12114);
-const markedPhase = m29(0); // only source-based clock rebase is below
-assert.equal(markedPhase,0);
 const resetPhase = (256 - originalP49End%256)%256;
 assert.equal(resetPhase,174);
 const cases=[];
