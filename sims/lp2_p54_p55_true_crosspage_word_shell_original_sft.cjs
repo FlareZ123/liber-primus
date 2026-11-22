@@ -20,7 +20,7 @@ const corpus = JSON.parse(fs.readFileSync(
 const transcription = fs.readFileSync(
   path.join(__dirname, '..', 'resources', 'liber-primus', 'lp2-transcription.txt'),
   'utf8'
-);
+).replace(/\r\n/g, '\n');
 const page = n => corpus.pages.find(x => x.page === n).indices;
 const last10 = page(54).slice(-10);
 const on55 = page(55);
