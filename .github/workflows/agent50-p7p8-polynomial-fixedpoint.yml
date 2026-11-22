@@ -1,0 +1,22 @@
+name: Agent50 P7 P8 original polynomial fixed point
+on:
+  push:
+    paths:
+      - 'sims/lp2_p7_p8_original_red_polynomial_fixedpoint_sft.cjs'
+      - 'im-results/lp2-p7-p8-original-red-polynomial-fixedpoint.md'
+      - '.github/workflows/agent50-p7p8-polynomial-fixedpoint.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-red-polynomial:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run p7 red polynomial and p8 fixed-root exact source gate
+        shell: pwsh
+        run: node sims/lp2_p7_p8_original_red_polynomial_fixedpoint_sft.cjs
