@@ -1,0 +1,16 @@
+name: Agent5 original strict doublet-block coprime gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-witness:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check sims/lp2_strict_repeat_block_clock_coprime_sft.cjs
+      - run: node sims/lp2_strict_repeat_block_clock_coprime_sft.cjs
