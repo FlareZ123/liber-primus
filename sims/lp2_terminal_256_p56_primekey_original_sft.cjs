@@ -169,6 +169,68 @@ assert.deepEqual(allAlignments[0],
 assert.equal(allAlignments[1].hits, 10);
 assert.equal(allAlignments.filter((a) => a.hits === 11).length, 1);
 
+/*
+ * Stronger text-derived rival: original p57 explicitly instructs solvers to
+ * shed circumferences. The 32x8 table has an outer 76-cell ring, matching
+ * p55, while its inner 30x6 rectangle contains 180=85+95 cells. Preserve
+ * original row-major order inside that rectangle and test p56 then p57.
+ * This differs from a simple contiguous source tape at offsets 76..255.
+ */
+const ring = [];
+const interior = [];
+for (let row = 0; row < 32; row++) {
+  for (let column = 0; column < 8; column++) {
+    const address = row * 8 + column;
+    if (row === 0 || row === 31 || column === 0 || column === 7) {
+      ring.push(address);
+    } else {
+      interior.push(address);
+    }
+  }
+}
+assert.equal(ring.length, 76);
+assert.equal(interior.length, 180);
+assert.deepEqual([...ring, ...interior].sort((a, b) => a - b),
+  Array.from({ length: 256 }, (_, i) => i));
+const interiorScores = values.map((v) =>
+  [0, 1].map((sign) =>
+    used.reduce((n, i) =>
+      n + (v[interior[i]] === target[sign][i]), 0)));
+assert.deepEqual(interiorScores, [[3, 1], [3, 3]]);
+const interiorP57Matches = values.map((v) =>
+  p57.filter((plainRune, i) => v[interior[85 + i]] === plainRune).length);
+assert.deepEqual(interiorP57Matches, [2, 6]);
+
+/**
+ * A whole-table stationary lookup token -> native plaintext GP rune would
+ * require identical printed tokens to always mean identical runes. An exact
+ * necessary condition can be rejected on independently solved terminal text.
+ * @param {number[]} addresses
+ * @returns {{duplicate: number, contradiction: number}}
+ */
+function fixedTokenContradictions(addresses) {
+  const seen = new Map();
+  const plain = plain56.concat(p57);
+  let duplicate = 0;
+  let contradiction = 0;
+  addresses.forEach((address, i) => {
+    const token = tokens[address];
+    const previous = seen.get(token);
+    if (previous !== undefined) {
+      duplicate++;
+      if (previous !== plain[i]) contradiction++;
+    } else {
+      seen.set(token, plain[i]);
+    }
+  });
+  return { duplicate, contradiction };
+}
+const ringLookupGate = fixedTokenContradictions(interior);
+const linearLookupGate = fixedTokenContradictions(
+  Array.from({ length: 180 }, (_, i) => 76 + i));
+assert.deepEqual(ringLookupGate, { duplicate: 53, contradiction: 47 });
+assert.deepEqual(linearLookupGate, { duplicate: 51, contradiction: 48 });
+
 // A direct same-table additive-pad decoder on untouched p55 is not language.
 const p55Direct = [];
 for (let z = 0; z < 2; z++) {
@@ -275,6 +337,9 @@ const result = {
     base59Plus: observed[2], base59Minus: observed[3]
   }, fixedOriginalOffset: 76, exactPositions, matches,
     allOffsetTop: allAlignments.slice(0, 4), p55Direct,
+    circumferenceRival: { ringCells: ring.length, innerCells: interior.length,
+      innerPrimeKeyMatchesPlusMinus: interiorScores,
+      interiorP57Matches, ringLookupGate, linearLookupGate },
     p57NativeNormalizedIoc: normalizedIoc(p57) },
   nulls: {
     fixedOffset: { trials: fixedTrials, fixedTail,
