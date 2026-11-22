@@ -110,6 +110,49 @@ assert.equal(name, "THUE");
 console.log("SOURCE p8..p14 lengths:", pageLengths.join(","));
 console.log("SOURCE rune total:", cipher.length, "GP29:", digits.join(","), name);
 
+// New source multiplicative closure, deliberately not treated as author intent:
+// first physical p8 red title spells XIX M, Roman XIX=19, M is GP-index19;
+// last p14 punctuation is a physical 13-dot red chapter terminator;
+// the already image-delimited chapter has exactly seven physical pages.
+const art = read("resources/liber-primus/lp2-ink-annotations.json");
+assert.deepEqual(treePages[0].indices.slice(0,4),[14,10,14,19]);
+assert.equal(treePages[0].indices.slice(0,3)
+  .map(v=>trans[v]).join(""),"XIX");
+const romanXIX=19;
+const selfIndexM=treePages[0].indices[3];
+assert.equal(selfIndexM,romanXIX);
+const endPage=treePages[treePages.length-1];
+const endArt=art.pages.find(p=>p.page===14);
+const endMarks=endArt.large_punctuation.filter(row=>
+  row[0]===endPage.indices.length && row[2]==="red");
+assert.deepEqual(endMarks,[[137,13,"red"]]);
+const chapterDotCount=endMarks[0][1];
+assert.equal(treePages.length,7);
+assert.equal(treePages.length*chapterDotCount*romanXIX,cipher.length);
+console.log("Original visual-to-numeric closure: seven tree pages ×",
+  "p14 terminal red",chapterDotCount,"dots ×",
+  "p8 title Roman XIX/index-M",romanXIX,"=",
+  cipher.length,"=","THUE in radix29");
+const chapterRanges=[[0,2],[3,7],[8,14],[15,22],[23,26],
+  [27,32],[33,39],[40,53],[54,55]];
+const chapterDotGate=chapterRanges.map(([first,last])=>{
+  const pages=corpus.pages.filter(p=>p.page>=first&&p.page<=last);
+  const sum=pages.reduce((s,p)=>s+p.indices.length,0);
+  const final=pages[pages.length-1];
+  const artFinal=art.pages.find(p=>p.page===last);
+  const term=artFinal.large_punctuation.filter(row=>
+    row[0]===final.indices.length && row[2]==="red");
+  assert.equal(term.length,1);
+  assert.equal(term[0][1],13);
+  return {first,last,pages:pages.length,sum,
+    differenceFrom13x19xPages:sum-13*19*pages.length};
+});
+console.log("ALL nine original chapter ends use red13, so p14 dots",
+  "are generic and do not independently prove a numeric encoding.",
+  chapterDotGate);
+assert.equal(chapterDotGate.filter(x=>x.differenceFrom13x19xPages===0).length,1);
+
+
 const native = solved.sections.flatMap(s => Array.from(s.source_text)
   .filter(g => gp.includes(g)).map(g => gp.indexOf(g)));
 assert.equal(native.length, 2979);
