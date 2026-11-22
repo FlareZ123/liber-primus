@@ -43,18 +43,19 @@ const MULTI = ['ING', 'TH', 'NG', 'EO', 'OE', 'AE', 'EA', 'IA'];
  * allowed, and a conservative set of authentic GP ligatures can replace
  * their roman substrings. Legacy K->C and V->U convention also included.
  * @param {string} input A plain English lexicon word.
- * @returns {number[][]} Distinct GP runic candidates of length six or eleven.
+ * @param {number[]} acceptedLengths GP rune lengths to preserve.
+ * @returns {number[][]} Distinct GP runic candidate sequences.
  */
-function gpForms(input) {
+function gpForms(input, acceptedLengths = [6, 11]) {
   const word = input.toUpperCase().replaceAll('K', 'C')
     .replaceAll('V', 'U').replaceAll('Q', 'C').replaceAll('Z', 'S');
   const stack = [[0, []]];
   const unique = new Map();
   while (stack.length) {
     const [i, sequence] = stack.pop();
-    if (sequence.length > 11) continue;
+    if (sequence.length > Math.max(...acceptedLengths)) continue;
     if (i === word.length) {
-      if (sequence.length === 6 || sequence.length === 11) {
+      if (acceptedLengths.includes(sequence.length)) {
         unique.set(sequence.join(','), sequence);
       }
       continue;
@@ -75,12 +76,12 @@ function gpForms(input) {
 }
 
 const runeLabels = (a) => a.map((x) => corpus.translit[x]).join('');
-assert.ok(gpForms('DIVINITY').some((form) => runeLabels(form) === 'DIUINITY'));
+assert.ok(gpForms('DIVINITY', [8]).some((form) => runeLabels(form) === 'DIUINITY'));
 // Independent known clear LP2 p57 positive for the orthographic rules.
 const p57Plain = runeLabels(corpus.pages[57].indices);
 assert.ok(p57Plain.includes('DIUINITY'));
 assert.ok(p57Plain.includes('TUNNELNG'));
-assert.ok(gpForms('TUNNELING').some((f) => runeLabels(f) === 'TUNNELNG'));
+assert.ok(gpForms('TUNNELING', [7]).some((f) => runeLabels(f) === 'TUNNELNG'));
 // GP6 word "WITHIN" from the actual p57 phrase is included by the encoder.
 assert.ok(gpForms('WITHIN').some((f) => runeLabels(f) === 'WITHIN'));
 
