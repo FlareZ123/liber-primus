@@ -3,10 +3,13 @@
 /**
  * A finite, clue-constrained historical lagged-Fibonacci receiver gate.
  *
- * P15's 16-cell source spiral visibly gives Fibonacci indices
- * 1,2,3,5,8,13,21,34,55,89,144,233,377,610,987.
- * The largest two Fibonacci indices fitting in the original p50 256-byte
- * table are 144 and 233. Freeze them as additive-lag state taps.
+ * P15 visibly prints a 4x4 NUMERICAL spiral with red center 3299,
+ * not literal Fibonacci numbers. The independently solved construction
+ * is abs(3301 - prime(F_n + 1)), with Fibonacci indices
+ * 0,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987.
+ * See results/lp2-p15-fibonacci-prime-spiral.md for the original proof.
+ * The largest two inferred indices <256 are 144 and 233; freeze
+ * those source-derived indices as additive-lag state taps.
  *
  * Seed 256 bytes in exact row-major source order. For n>=256, compute
  * state[n] = (state[n-144] + state[n-233]) mod m,
