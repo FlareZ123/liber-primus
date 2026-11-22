@@ -1,0 +1,15 @@
+name: Agent45 p5 midpoint dual WAY source gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  exact-unknown-word:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-true p5 midpoint and 2896 complete word census
+        run: node sims/lp2_p5_midway_dual_gpway_source_sft.cjs
