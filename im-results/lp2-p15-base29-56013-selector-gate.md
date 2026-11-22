@@ -58,6 +58,21 @@ The unchanged original section IoC is **0.03449490**. No candidate is close to a
 
 
 
+## Conditional TWIN PRIME / WILL BE FOUND red-heading cribs at the fixed quotient offset (Agent48, 22 November 2026)
+
+The authentic DATA/560.13 file and p15-derived offset were reused without modification: 118,818,811 bytes, pinned SHA-256 db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f, byte offset **8,952,964**. The original p15 red spans are 9 and11 symbols. Two conditional, physically separate cribs were tested: upper TWIN PRIME (9) and lower WILL BE FOUND (11). The lower phrase is not concatenated to the upper heading.
+
+The exact required additive GP29 keys are:
+
+- TWIN PRIME: [13,23,10,10,11,24,16,3,6]
+- WILL BE FOUND: [13,20,1,18,17,12,17,6,15,20,27]
+
+At the fixed offset, the 11-byte window was tested forward and reversed under byte mod29 and floor(29×byte/256), both additive signs, raw GP-index XOR, raw prime-weight XOR, and direct additive-key equality. **Best agreement: TWIN PRIME 0/9; WILL BE FOUND 1/11.** The single lower-crib match is an isolated position, not a plaintext result. No exact match occurs in any transfer.
+
+The full-file SFT passed in [successful original-file Actions run 44978211888](https://github.com/FlareZ123/liber-primus/actions/runs/44978211888). Reproducer: [lp2_p15_56013_twinprime_willbefound_crib_sft.cjs](../sims/lp2_p15_56013_twinprime_willbefound_crib_sft.cjs); manual workflow: [lp2-p15-twinprime-willbefound-56013-crib.yml](../.github/workflows/lp2-p15-twinprime-willbefound-56013-crib.yml).
+
+This rejects the direct 560.13 quotient-offset transfer as the key carrier for these two red-heading cribs under the tested fixed mappings. The candidates remain hypotheses, not recovered plaintext. Do not tune the offset, phase, mapping, or reading direction to rescue them.
+
 ## Source-pad inverse tests
 
 The independently documented [CicadaOS `560.13` prefix](../resources/derived/cicada2013-56013-reconstruction.md) contains the exact first **15,330** bytes reconstructed from two preserved 2013 XOR-stage outputs. Before any LP2 use, the reproducible test verifies the historical positive control: XOR the 23-byte 2013 ciphertext `28c07e1b102d4d5c4c1a376e064477e1416fcc94928765` with dataset bytes beginning at **12821** to recover exactly `gbyh7znm6c7ezsmr.onion\n`. This confirms the period-original byte operation and the available reconstructed bytes.
