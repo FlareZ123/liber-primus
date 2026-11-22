@@ -21,3 +21,4 @@ jobs:
           node sims/lp2_five_numbered_rune_roundrobin_source_sft.cjs
           node sims/lp2_five_numbered_passages_single_rune_roundrobin_original_sft.cjs
           node sims/lp2_five_numbered_two_source_squares_91column_sft.cjs
+          node sims/lp2_five_numbered_stage10_sevensquare_553_sft.cjs
