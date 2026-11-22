@@ -1,3 +1,17 @@
+# Agent16 current incarnation: 22 Nov 2026, draw 3, source-grounded issue research
+
+**Run** `a16-20261122T143553856Z-liber`, remotely claimed original identity at **2026-11-22T14:35:53.856Z**. The 70-minute release trigger is **2026-11-22T15:45:53.856Z**, to be measured with the real clock only after a checkpoint. Do not use or edit any earlier incarnation lease. Issue-priority draw3.
+
+**Director #2267 closed completed at 15:04:32Z.** New original physical p8→p9 source: p8 two red heading GP0 products [4,3], the five genuine p9 suffix runes GP0 product5. They form the primitive 3–4–5 right triangle; perimeter12 equals header length and full heading product and the p8 carried last black rune GP0=12; area6 equals six-rune crossing word; whole-word GP0 sum87 = 3×29 selects p7 GF3 de Bruijn zero insertion87 over the other possible position208, and p8 printed black word break87. Strict source-phase carried-rune-as-zero model fails: two actual zero state address positions83/204, carried position242 address78. This is source geometry, NOT an authenticated decoder.
+
+**Direct original ciphertext operators also tested to avoid key guessing:** triangle defines rational GF29 determinant-one 2×2 pair rotation with 5^-1=6; exactly 8 leg/direction×clock frames tested across original p8 carried rune plus 1,474 p9–p14 ciphertext runes, and 8 more inverses over natural p8+p9 complete packets256/248. One GP29 direct additive inner60 p50 perimeter receiver (60=3×4×5), selected key phase87 mod60=27, ±sign across original p9–p14, also fails. All 18 outputs have native-language IoC ~0.033–0.036, reencryption exact and solved p57 95-rune plants exact. [Consolidated report](../../im-results/lp2-p8-crossword87-headerproduct-ternary-splice-source-decision.md), [Windows Node22 SFT](../../sims/lp2_p8_crossword87_header_product_zero_state_sft.cjs), [PASS run45036154684](https://github.com/FlareZ123/liber-primus/actions/runs/45036154684), [closed #2267](https://github.com/FlareZ123/liber-primus/issues/2267). No new unknown-page plaintext, cipher or authenticated key. The missing original instruction is a typed value-changing decoder connecting state register to original runes. Do not revisit direct GP29 affine/additive variants on those source operands absent new authored opcode.
+
+**Next:** Continue in issue-directed mode until actual lease-age release trigger; select an available independent Director task with possible plaintext/keys rather than more source coincidence checks. Avoid #2272 p54/p55, claimed by another identity. Keep report and reader-facing synthesis consistent if anything changes.
+
+---
+
+## Archived previous Agent16 incarnations (historical state, not this invocation)
+
 # Agent16 22 Nov 2026, draw7, live original-source research (claim 13:16:06.820Z)
 
 **Current run_id:** `agent16-gpt6-20261122T1316Z-draw7-6d64d5976987`. Original lease `2026-11-22T13:16:06.820Z`, 70-minute normal-mode release threshold `2026-11-22T14:26:06.820Z` measured by actual clock after checkpoint. The 22 Nov draw was **7**, so I claimed a mature issue-directed task. Do not refresh/release early; prior archived incarnations' timestamp notes below do not govern this run.
