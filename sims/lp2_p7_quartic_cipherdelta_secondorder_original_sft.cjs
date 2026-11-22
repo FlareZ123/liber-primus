@@ -101,6 +101,44 @@ function ioc(sequence) {
 const original = corpus.pages.filter(p => p.page <= 55)
   .flatMap(p => p.indices);
 assert.equal(original.length, 12956);
+
+/**
+ * Secret-independent capacity ceiling for one target GP29 plaintext symbol
+ * under a deterministic ciphertext-predecessor-keyed substitution table.
+ * Each context is granted an arbitrary secret permutation of 29 symbols.
+ * The maximum attainable occurrences of any chosen plaintext symbol are
+ * the sums of each context row's largest observed ciphertext count.
+ *
+ * @param {number[]} sequence
+ * @param {1|2} order
+ * @returns {{order:number,contexts:number,positions:number,maxSymbolCount:number}}
+ */
+function predecessorCapacity(sequence, order) {
+  const rows = new Map();
+  for (let i = order; i < sequence.length; i++) {
+    const context = sequence.slice(i - order, i).join(',');
+    let row = rows.get(context);
+    if (!row) {
+      row = Array(29).fill(0);
+      rows.set(context, row);
+    }
+    row[sequence[i]]++;
+  }
+  const result = {
+    order,
+    contexts: rows.size,
+    positions: sequence.length - order,
+    maxSymbolCount: [...rows.values()].reduce((s, row) =>
+      s + Math.max(...row), 0)
+  };
+  return result;
+}
+const capacities = [1, 2].map(order => predecessorCapacity(original, order));
+assert.deepEqual(capacities, [
+  {order: 1, contexts: 29, positions: 12955, maxSymbolCount: 716},
+  {order: 2, contexts: 840, positions: 12954, maxSymbolCount: 2019}
+]);
+
 const results = [];
 for (const mode of ['cipher', 'difference']) {
   for (const sign of [-1, 1]) {
@@ -142,6 +180,7 @@ console.log(JSON.stringify({
   source: 'original p7 red five GP29 word products [11,26,8,15,2]',
   operation: 'Q(x)=11+26*x+8*x^2+15*x^3+2*x^4 mod29',
   originalUnknownRunes: original.length,
+  allSecretPredecessorCapacity: capacities,
   testedSourceFixedModels: results.length,
   originalReceiverGroups: groups.map(g => ({ chapter: g.label, runes: g.length })),
   allOriginalInversesNonprose: true,
