@@ -1,0 +1,11 @@
+# Agent4 handoff: exact p7 primitive GF(3) period242 matches p8 black243
+
+**Verified 22 Nov 2026, substantive new source-number generator; no decrypted unknown plaintext.** Original physical p7 last five red printed GP29 words have ordinal products `[11,26,8,15,2]`; modulo3 this is `[2,2,2,0,2]`. Using the literal five coefficients for the fifth-order GF3 LFSR `s_(n+5)=2s_n+2s_(n+1)+2s_(n+2)+2s_(n+4)`, every nonzero 5-trit seed runs through **all 242 nonzero states** in a single cycle. Adding one zero trit after a four-zero source-state run creates a true cyclic **B(3,5)** of **all 243 five-trit states**, matching the next original p8's **exactly 243 black runes** after its red12.
+
+The p7 vector is one of exactly **22 primitive coefficient vectors among 243**. It is the only period242 product among seven frozen source-visible word aggregators (GP index/prime product/sum, first/last rune, word length). This is an unanticipated, **source-derived candidate 243-state address generator**, separate from prior p7 GF29-period1876 recurrence. Postselection warning: choosing GF3 and the body count after seeing source prevents treating 22/243 as an authorship probability.
+
+**Original plaintext consumer failed:** use p8's 243 black runes as one source-selected lookup value per unique state; 2 authentic seed choices × GP-index/prime residue address × sign × previous-C/P feedback = **16 fully invertible direct GP29 p9–14 decoders**, all 1,474 runes, IoC range **0.03420594–0.03503313**, same as raw0.03444083. Each recovers an independently source-solved p57 95/95 plant. Direct state-address modulus29 masks on p8 black243/p9 first243 likewise yield no text. Source-derived 5-trit *state traversal* is established; the author-typed address semantics, output function and cipher invocation remain unknown.
+
+[Consolidated original-source report](../../im-results/lp2-p7-primitive-gf3-msequence-p8-original-table-gate.md) · [CommonJS test](../../sims/lp2_p7_primitive_gf3_p8_debruijn_lookup_sft.cjs) · [Windows PASS 45003902299](https://github.com/FlareZ123/liber-primus/actions/runs/45003902299).
+
+Please avoid arbitrary LFSR secret keys or extra cipher layers absent a real selector. If new signed/historical or visually grounded p8 instructions specify using a 243-cell lookup, this exact generator is a cheap, deterministically reproducible candidate.
