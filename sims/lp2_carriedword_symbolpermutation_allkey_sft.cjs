@@ -194,8 +194,9 @@ for (const donor of controls) {
  * The same evolving key is shared across true physical page boundaries.
  * @param {number[][]} input
  * @param {boolean} decrypt
+ * @param {boolean} [reorder=false] Allow an arbitrary within-word positional shuffle.
  */
-function carriedAffine(input, decrypt) {
+function carriedAffine(input, decrypt, reorder = false) {
   let seed = 761 % 29;
   let previousCipherEnd = 0;
   let previousWordLength = 0;
@@ -207,9 +208,24 @@ function carriedAffine(input, decrypt) {
   for (const word of input) {
     const mul = 1 + (seed + previousCipherEnd + previousWordLength) % 28;
     const add = (17 * seed + previousCipherEnd + 7 * previousWordLength) % 29;
-    const emitted = word.map(x => decrypt
+    // Every word may additionally reverse and rotate its rune positions.
+    // This changes adjacent equalities but preserves its equality multiset.
+    const rotate = (seed + 2 * previousCipherEnd + previousWordLength) % word.length;
+    const reverse = (seed + previousCipherEnd) % 2 === 1;
+    const reorderForward = w => {
+      const t = reverse ? w.slice().reverse() : w.slice();
+      return t.slice(rotate).concat(t.slice(0, rotate));
+    };
+    const reorderBackward = w => {
+      const t = rotate === 0 ? w.slice()
+        : w.slice(-rotate).concat(w.slice(0, -rotate));
+      return reverse ? t.reverse() : t;
+    };
+    const ordered = reorder && !decrypt ? reorderForward(word) : word;
+    const affine = ordered.map(x => decrypt
       ? (inv[mul] * ((x - add + 29) % 29)) % 29
       : (mul * x + add) % 29);
+    const emitted = reorder && decrypt ? reorderBackward(affine) : affine;
     output.push(emitted);
     const ciphertext = decrypt ? word : emitted;
     previousCipherEnd = ciphertext.at(-1);
@@ -219,27 +235,37 @@ function carriedAffine(input, decrypt) {
   return output;
 }
 for (const plant of plants) {
-  const encrypted = carriedAffine(plant, false);
-  assert.equal(encrypted.length, plant.length);
-  assert.deepEqual(carriedAffine(encrypted, true), plant);
-  assert.deepEqual(carriedAffine(carriedAffine(encrypted, true), false), encrypted);
-  const before = patternCounts(plant);
-  const after = patternCounts(encrypted);
-  for (const key of sourceMetrics) assert.equal(after[key], before[key]);
+  for (const reorder of [false, true]) {
+    const encrypted = carriedAffine(plant, false, reorder);
+    assert.equal(encrypted.length, plant.length);
+    assert.deepEqual(carriedAffine(encrypted, true, reorder), plant);
+    assert.deepEqual(carriedAffine(carriedAffine(encrypted, true, reorder), false, reorder), encrypted);
+    const before = patternCounts(plant);
+    const after = patternCounts(encrypted);
+    for (const key of sourceMetrics) {
+      if (!reorder || ["equalPairs", "longEqualPairs", "repeatedWords"].includes(key)) {
+        assert.equal(after[key], before[key]);
+      }
+    }
+  }
 }
 // Additional first-party solved LP2 p57: true 95-rune native Cicada parable,
 // including its source-runic words, not an English text re-encoder.
-const solved = readCompleteWords(physicalText[56]);
+const solved = readCompleteWords(physicalText[56].replace(/\/\r?\n/g, "").replace(/[\r\n%]/g, ""));
 assert.equal(solved.length, 20);
 assert.deepEqual(solved.flat(), corpus.pages[57].indices);
 assert.equal(solved.flat().length, 95);
-const solvedCipher = carriedAffine(solved, false);
-assert.deepEqual(carriedAffine(solvedCipher, true), solved);
-for (const key of sourceMetrics) {
-  assert.equal(patternCounts(solvedCipher)[key], patternCounts(solved)[key]);
+for (const reorder of [false, true]) {
+  const solvedCipher = carriedAffine(solved, false, reorder);
+  assert.deepEqual(carriedAffine(solvedCipher, true, reorder), solved);
+  const keys = reorder
+    ? ["equalPairs", "longEqualPairs", "repeatedWords"] : sourceMetrics;
+  for (const key of keys) {
+    assert.equal(patternCounts(solvedCipher)[key], patternCounts(solved)[key]);
+  }
 }
 console.log(JSON.stringify({
-  model: "Any single secret bijective GP29 alphabet held fixed WITHIN each original complete printed word; alphabet may depend arbitrarily on all previous words",
+  model: "Any single secret bijective GP29 alphabet, optionally with any within-word position permutation, chosen per printed word from arbitrarily carried prior state",
   original,
   nativeMatchedReferences: stats,
   positive: {
@@ -247,7 +273,8 @@ console.log(JSON.stringify({
     originalSourceWordCounts: words.length,
     shapeMatchedGPPlantRecovered: plants.map(x => x.flat().length),
     nativeSolvedP57Recovered: solved.flat().length,
-    exactWithinWordEqualityPatternsInvariant: true
+    exactWithinWordEqualityPatternsInvariant: true,
+    sourcePairedShuffledWordPositive: true
   },
   decision: "All changing-between-word, fixed-within-word alphabet substitution ciphers preserve 811 original internal equal-rune pairs regardless of carried key; none of 1500 matched native English samples is compatible. More complex per-rune state and changed word boundaries escape."
 }, null, 2));
