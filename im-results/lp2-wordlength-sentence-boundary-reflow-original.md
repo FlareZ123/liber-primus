@@ -24,8 +24,9 @@ A secondary, deliberately overlapping 2,896-word window diagnostic (stride 97) a
 | Gibran, *The Prophet* | 133 | 0.6396 | 0.8204 | 0.9236 | 0 |
 | Shakespeare | 542 | 0.5673 | 0.7545 | 0.9025 | 0 |
 | Emerson, *Essays* | 774 | 0.5741 | 0.6805 | 0.8291 | 0 |
+| Source-native Old English, *Beowulf* (poetry) | 83 | 1.0203 | 1.3294 | 1.4835 | 83 |
 
-These **overlapping windows are descriptive comparators, not 1,830 independent significance trials**. All comparisons depend on the specified phonemic GP digraph encoding and texts. The absence of a matching donor does not exclude all real languages, and it does not distinguish an extra ciphertext-space operation from a high-entropy mechanism whose word lengths were independently assigned.
+These **overlapping windows are descriptive comparators, not independent significance trials**. All comparisons depend on the specified phonemic GP digraph encoding and texts. The Old English corrected source control contains 10,885 genuine words (13.4038% short words; 245 adjacent short pairs versus 195.4269 under its own shuffled-length expectation, ratio 1.2537). **Every one of its 83 matched-length windows exceeds LP2's ratio**, whereas every sampled modern English/Latin window falls below it. This is an important authentic-natural-language *counterexample* to any claim that real prose must suppress consecutive short words. Beowulf is also poetry and its source-short fraction is lower than LP2's, so its comparison does not establish the target register. The absence of a comparator close to LP2 does not prove false printed spaces: other languages, rhetoric, and text mixtures are possible, as is a high-entropy mechanism whose word lengths were independently assigned.
 
 ## Original punctuation-scope grammar and native solved control
 
