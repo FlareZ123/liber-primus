@@ -42,9 +42,9 @@ This is a real, source-authenticated visual property. It is not yet a reusable L
 
 ### Direct RSA reuse
 
-The P.S. integer is a 432-bit RSA modulus in the reconstructed 2012 key material. Existing original-input tests are documented in [the RSA direct-reuse gate](2012-ps-rsa-original-lp2-direct-reuse-gate.md): 377 valid original p49–51 54-byte table-block representatives and eight p55 rune-integer interpretations produced no valid PKCS#1 v1.5 plaintext packet.
+The P.S. integer is a 432-bit RSA modulus in the reconstructed 2012 key material. Existing original-input tests are documented in [the RSA direct-reuse gate](2012-ps-rsa-original-lp2-direct-reuse-gate.md): 377 valid original p49–51 54-byte table-block representatives and eight p55 rune-integer interpretations produced no valid PKCS#1 v1.5 plaintext packet. The source-default PSS signature scheme was also tested: zero of the 377 table representatives and zero of the four p55 public-exponent outputs passed the necessary PSS structure; the implementation passed a synthetic signature positive control.
 
-The [2012 integer screen](2012-ps-number-integer-screen.md) additionally checks the reconstructed factors, direct GP29 conversions, 2013 material, and the 2014 Stage11 default-key OutGuess artifacts. The source-default Crypt::RSA OAEP-SHA1 path produced no valid blocks in the 2013 wisdom/folly blob or the tested 2014 p17/p21/p43 OutGuess outputs. Those negative results apply only to the named artifacts and encodings.
+The [2012 integer screen](2012-ps-number-integer-screen.md) additionally checks the reconstructed factors, direct GP29 conversions, 2013 material, and the 2014 Stage11 default-key OutGuess artifacts. The source-default Crypt::RSA OAEP-SHA1 path produced no valid blocks in the 2013 wisdom/folly blob or the tested 2014 p17/p21/p43 OutGuess outputs. The same files produced no default PSS signature structures. Those negative results apply only to the named artifacts and encodings.
 
 ### BASE29 reuse
 
