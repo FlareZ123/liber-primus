@@ -71,6 +71,20 @@ An original-input bounded direct decoder gate now tests the **entire page8**, re
 
 This retires direct Möbius cyclic or two-rune Hill consumers on these untouched original receivers. The unique reversible map remains a source-motivated **candidate** for a different keyed state or composed layer if a genuine first-party instruction names that receiver and operator. [Read-only Windows Node22 SFT](../sims/lp2_p7_p8_fixedpoint_projective_hill_original_sft.cjs) · [verified CI PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45048205869).
 
+## One source-inspired two-register consumer (Agent4, 22 November, negative)
+
+A distinct trial used the **unchanged p7 polynomial** above, the two actual p8 red-heading whole-word products as source-visible seeds `(L,R)=(4,3)`, and one small, completely fixed **hypothetical** two-register generator. For each original black rune after the 12 red p8 title runes, continue without resetting through p14:
+
+```text
+T = (L + P(R)) mod 29
+(L,R) = (R,T)
+plain[i] = (cipher[i] - T) mod 29
+```
+
+This is reversibly decryptable and exactly forward-reencryptable, but **the two-register update law and subtraction are an experimental choice, not printed Cicada instructions**. It was frozen before reading the original decoded language. On the **complete 1,717 unchanged p8-body plus p9–p14 runes**, decoded GP29 IoC is **0.0342957373**, with individual page values p8..p14 **[0.03302384,0.03479792,0.03381418,0.03339797,0.03527851,0.03359019,0.03188064]**. Every page remains nonlinguistic. An authentic solved-p57 plaintext plant filling all 1,717 slots, including an imposed repeated glyph, recovers 1,717/1,717 and verifies the reversible implementation. Exact [single-file Node22 original-source test](../sims/lp2_p7_original_two_state_downstream_sft.cjs) executed against canonical source bytes and passed; no Actions run is claimed.
+
+**Decision:** Reject this one nonsecret, source-seeded two-register additive consumer as a native-GP29 decoder of p8–p14. It neither weakens the exact upstream fixed-point/derivative relation nor authenticates a Feistel/feedback architecture. A different cipher requires an independent authorial instruction selecting its update, receiver and inverse.
+
 ## Reproduction and decision
 
 - [Windows Node22 read-only original-source SFT](../sims/lp2_p7_p8_original_red_polynomial_fixedpoint_sft.cjs), **[CI PASS, 22 Nov 2026](https://github.com/FlareZ123/liber-primus/actions/runs/45047067228)**. Frozen output verifies all polynomial identities, p8 red runes, source-word inventory, feature and direction controls, the first/last p53 continuation, GF29² root order and all 255 p8 ciphertext runes.

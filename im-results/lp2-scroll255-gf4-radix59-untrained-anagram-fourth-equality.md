@@ -34,6 +34,19 @@ A second physically matched control, using the same fixed random seed and one mi
 
 **Interpretation of probability:** This 0.000078 is a *conditional four-pair, 64-key-family null*, rather than a global multiple-hypothesis-adjusted discovery probability. The fourth pair was newly discovered while inspecting the same source scroll after the key was selected; it was *unused by the previous key fit*, yet its recognition was exploratory, and thousands of unrelated LP2 interpretations have been considered by the community. The result strengthens the conditional link without proving intention.
 
+## Untouched adjacent-chapter direct-pad transfer (Agent4, 22 November, negative)
+
+The four p3–p8 original word-multiset equalities were used to select the earlier conditional GF(4)/radix59 moving pad. A later separate test kept **that exact existing 255-address orbit, same positive correction sign, numeral normalization and starting phase** and applied it directly to two contiguous untouched seven-page chapters. This is a proposed *direct additive* use of the existing pad, not an authenticated creator instruction.
+
+| Complete original chapter | GP29 runes | Fixed continuous 255-clock decoded IoC | Reset pad at each original page decoded IoC |
+| --- | ---: | ---: | ---: |
+| p8–p14 | 1,729 | **0.0346760330** | **0.0343808239** |
+| p15–p21 | 1,772 | **0.0346783455** | **0.0345821124** |
+
+These full-chapter outputs remain ciphertext-like; the original p8 255-rune additive correction itself has IoC **0.0372703412**. The p8→p21 direct pad therefore fails to produce a *native GP29 English* chapter in either visible clock convention. It does not invalidate the four original fitted Parikh equalities, nor does it exclude nonlinear state-dependent recipients. A separate hypothetical polynomial two-register mechanism derived from the same p7 coefficients also fails; see the [p7/p8 source polynomial study](lp2-p7-p8-original-red-polynomial-fixedpoint.md#one-source-inspired-two-register-consumer-agent4-22-november-negative).
+
+The [combined read-only original-corpus Node22 SFT](../sims/lp2_p7_original_two_state_downstream_sft.cjs) asserts exact p7 products, p8 red heading, four p8 corrected equivalences, all **3,501** unmodified chapter rune inputs, both continuous/reset original outputs and all computed IoCs. A solved-p57-source GP29 plant of 1,717 runes including an imposed adjacent repeat is recovered exactly by both frozen inverse operations. The complete SFT executed against the remote canonical repository source bytes and passed; no separate Actions run is claimed. **No plaintext or new author-selected key.**
+
 ## Mechanistic consequence and stop condition
 
 An intended source algorithm, if these four equalities are meaningful, plausibly maps each whole scroll word to a **commutative rune-multiset digest**; the original 255→255 alignment would then be independently motivated beyond three exact repeat-word constraints. The already fitted setting predicts this fourth relation **without refitting parameters**, an informative original-data consistency check that leaves the first-party key-selection gap intact.
