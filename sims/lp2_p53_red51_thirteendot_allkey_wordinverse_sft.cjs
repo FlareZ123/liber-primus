@@ -450,9 +450,9 @@ console.log("summary",JSON.stringify({
     scalarControl},
   fieldMultiplicative:{planted:multiplicativePositive.stats,
     original:multiplicativeReal.stats},
-  decision:"The original p53 red 13-dot local program fails exact native-word " +
-    "inversions for: 13-position repeated additive key; 13-lag plaintext " +
-    "autokey (both signs); and 13-lag ciphertext autokey (both signs). " +
-    "All independently sourced GP positive plants are recovered. " +
-    "Exclusions are finite-dictionary-conditional and not claims of a true cipher."
+  decision:"No native-word inverse for p53 red51 under the source-selected " +
+    "13-rune repeated additive, 13-lag plaintext autokey (+/-), " +
+    "13-lag ciphertext autokey (+/-), 28-scalar affine/additive " +
+    "or multiplicative unit-pad models. All original-native GP controls pass. " +
+    "Finite-dictionary-conditional; no genuine red plaintext or key recovered."
 }));
