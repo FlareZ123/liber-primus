@@ -1,6 +1,19 @@
-name: Agent 5 original p33 2014 OpenPuff single JPEG Maximum
+name: Agent 5 p33 historically typed or printed numeric OpenPuff Maximum
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/agent5-p33-single-2014-openpuff.yml'
   workflow_dispatch:
+    inputs:
+      password_source:
+        description: Exact p33 glyphs in physical top-to-bottom order, or authentic 2014 A
+        required: true
+        type: choice
+        default: image-10333301
+        options:
+          - image-10333301
+          - 2014-33011033
 permissions:
   contents: read
 jobs:
@@ -45,7 +58,7 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'Native positive failed to execute' }
           python -c "from pathlib import Path; p=Path('probe-output/public-positive/extracted/hidden.txt'); assert p.read_bytes()==b'Dies ist eine versteckte Nachricht!'; print('ORIGINAL_NATIVE_JPEG_POSITIVE_PASS')"
           if ($LASTEXITCODE -ne 0) { throw 'Original public JPEG positive bytes not recovered' }
-      - name: Probe original p33 scan50 single with 2014 exact 33011033 and Maximum
+      - name: Probe original p33 scan50 single with pre-registered source-order A at Maximum
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
@@ -53,7 +66,9 @@ jobs:
           if (-not (Test-Path -LiteralPath $carrier)) { throw 'Missing the single first-party p33 original JPEG' }
           $digest = (Get-FileHash -LiteralPath $carrier -Algorithm SHA256).Hash.ToLowerInvariant()
           Write-Host "SOURCE_SELECTED_P33_ORIGINAL_50_JPEG_SHA256=$digest"
-          python sims/openpuff_v400_extract.py --exe "$env:OPENPUFF_EXE" --carrier "$carrier" --password '33011033' --bit-format 'Jpeg (Image)' --bit-level '1/2 (50%) - Maximum' --out probe-output/original-p33 --wait-seconds 600
+          $password = if ('${{ inputs.password_source }}' -eq '2014-33011033') { '33011033' } else { '10333301' }
+          Write-Host "SOURCE_P33_PRINTED_TOP_BOTTOM_KEY_A=$password"
+          python sims/openpuff_v400_extract.py --exe "$env:OPENPUFF_EXE" --carrier "$carrier" --password "$password" --bit-format 'Jpeg (Image)' --bit-level '1/2 (50%) - Maximum' --out probe-output/original-p33 --wait-seconds 600
           if ($LASTEXITCODE -ne 0) { throw 'Native original p33 extraction did not execute' }
           $result = Get-Content -LiteralPath 'probe-output/original-p33/result.json' -Raw | ConvertFrom-Json
           if ($result.carrier_count -ne 1 -or -not $result.bit_selection_verified -or -not $result.attempted) { throw 'Original source, native JPEG depth or Unhide not verified' }
