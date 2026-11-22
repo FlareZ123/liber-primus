@@ -124,6 +124,19 @@ The gcd has **degree2** after 248 Euclidean remainder steps. Division of both or
 
 The synthetic positive appends one independent shared linear factor `X+1` to both original polynomials and recovers the correct resulting degree3 gcd, demonstrating that the algorithm detects higher shared factors. [Frozen precommit](../workplace/agent27-p29-p50-entire-common-gf29-factor-precommit.md) · [read-only SFT](../sims/lp2_p29_p50_full_gf29_gcd_source_sft.cjs). This is a bounded code-architecture exclusion; the original p29/p50 quotient arrays can still be encrypted by different external keys or represent checksums rather than native-GP plaintext.
 
+## Surplus23 after the two genuinely independent source factors: original plaintext receiver fails
+
+The known p29/G source quotient has **275** GP29 symbols. The p50 printed 256-byte polynomial divides exactly over GF29 by the two independent source factors **H·G=[12,17,11,21,23]** high-first, leaving the printed 252-symbol quotient. Hence **275−252=23**, matching the independently reconstructed signed DH prime23 but also trivially following from the source lengths and factor degrees. It does not select which end is excess or whether the two outputs share an additive pad.
+
+A [prospectively frozen 4-way original receiver](../workplace/agent27-p29-q275-p50-q252-surplus23-source-comparison-precommit.md) removes exactly the first23 or last23 GP runes of original QP275; subtracts or reverse-subtracts the unmodified entire QT252 symbol by symbol modulo29; and demands coherent ≥150-rune native GP text. All four **252-rune exact inverses fail**:
+
+| Source p29 edge discarded | Full decrypted native GP score for QP−QT | Full decrypted score for QT−QP | Both exact outputs' GP IoC |
+| --- | ---: | ---: | ---: |
+| First23 | −3.42220 | −3.44728 | 0.03440207 |
+| Last23 | −3.41838 | −3.43062 | 0.03629925 |
+
+Both source quotients score near −3.408, and solved p57 is −2.46814. All four source inputs replay exactly; four source-native GP-positive 252-rune control plants likewise recover fully. The reported scores and keys were fixed before original plaintext inspection. Thus the **full original p29/G versus p50/(H·G) 23-surplus shared-additive-pad interpretation** yields no unknown native-GP plaintext under its source boundary choices. Retire it pending a new first-party operation selector. [Read-only original-input SFT](../sims/lp2_p29_g275_p50_hg252_surplus23_source_sft.cjs). 
+
 ## Causal plaintext decision
 
 The new carries are **exact, key-like short numeric packets** aligned with the p39 G factor and the distinct p23 *integer representative* of signed H linking p29, p50 and p28, but it does not identify a complete key stream, reversible original-rune transform, clock/reset, or plaintext receiver. The p29 quotient itself has near-ciphertext GP29 IoC **0.03405441**. Any single fixed GP29 permutation applied uniformly to this quotient preserves that IoC, so the revealed `e=3` GP29 cube operation alone cannot turn the full quotient into native-GP English prose. The separately frozen full 275-rune quotient→outer-H shell inverse and the above p50 factor-carry Hill2 inverse both failed native-GP language [under its exact source rule](lp2-p28-p29-gquotient-outerh-prospective-inverse-decision.md).
