@@ -198,6 +198,20 @@ console.log(JSON.stringify({
     leftBranchBeforeMeeting:leftEntry,rightBranchBeforeMeeting:rightEntry,
     commonTailDepth:sharedTail,alphabetSize:GP,
     leftNodes:left.nodes.slice(0,left.depth),rightNodes:right.nodes.slice(0,right.depth),
+    sourceTreeReceivers:{
+      firstHopPhysicalP32:left.nodes[1],
+      p32SourceRunes:corpus.pages[32].indices.length,
+      p55SourceRunes:corpus.pages[55].indices.length,
+      uniqueP55SubtreeNode:244,
+      uniqueP55SubtreeSize:subtreeSizes[244],
+      uniqueP32SubtreeNode:58,
+      uniqueP32SubtreeSize:subtreeSizes[58],
+      uniqueExterior33SubtreeNode:146,
+      uniqueExterior33SubtreeSize:subtreeSizes[146],
+      originalP55CompleteWords:sourceWordLengths.length-1,
+      p32ToP55Edges:left.nodes.indexOf(244)-left.nodes.indexOf(32)
+    },
+
     base60CycleLengths:[base60L.cycleLength,base60R.cycleLength],
     totalOrderedPairMatches:allPairs,allOrderedPairs:256**2,
     markedOrnamentRowPairs:8*8,markedRowMatches:restricted},
