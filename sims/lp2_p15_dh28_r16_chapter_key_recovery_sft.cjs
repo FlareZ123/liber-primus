@@ -249,6 +249,14 @@ for(let i=1;i<positive.length;i++){
 }
 const positiveSteps=readLogSteps(positive);
 assert.equal(positiveSteps.zero,11);
+// Exact, complete inverse of the planted 28-state exponent cipher. A zero
+// difference carries the independently reserved rare EA plaintext rune.
+const recoveredTruth=truth.slice();
+for(let i=1;i<positive.length;i++){
+  recoveredTruth[i]=positiveSteps.d[i]<0 ? 28 :
+    mod(23*(positiveSteps.d[i]-dot(rows[i],knownSeed)-3));
+}
+assert.deepEqual(recoveredTruth.slice(1),truth.slice(1));
 const originalResult=solve(originalSteps.d,rows,'original');
 const plantedResult=solve(positiveSteps.d,rows,'native-plant');
 assert(plantedResult.knownSeedFound);
