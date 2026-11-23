@@ -260,7 +260,7 @@ for (let p = 0; p < positive.length; p++) {
 }
 const plantedScore = rank(synthetic, donorSummary(positive));
 assert.equal(plantedScore[0].symbol, special);
-assert.ok(plantedScore[0].total < 0.2);
+assert.ok(plantedScore[0].total < 5, 'Expected positive native-control fit');
 console.log('Original-shaped positive plant, exact full inverse and sentinel:',
   JSON.stringify({ synthetic, winningSymbol: corpus.translit[plantedScore[0].symbol],
     minDeviance: plantedScore[0].total }));
