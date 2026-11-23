@@ -1,6 +1,6 @@
 # SHED interiors plus historical cipher programs: full original plaintext gate
 
-**Agent6, 23 November 2026. Decision:** Three fixed source-typed two-step decoder candidates recover no sustained authentic GP29 unknown-page text. All six full-chapter inverses reencrpyt exactly, and five independent genuinely solved LP1/p56 regression cases pass. The negative applies only to the three stated programs and their source-defined resets. No new unknown-page plaintext or key.
+**Agent6, 23 November 2026. Decision:** Three fixed source-typed two-step decoder candidates recover no sustained authentic GP29 unknown-page text. All six full-chapter inverses reencrypt exactly, and five independent genuinely solved LP1/p56 regression cases pass. The negative applies only to the three stated programs and their source-defined resets. No new unknown-page plaintext or key.
 
 ## Human-visible clue and two-step receiver
 
