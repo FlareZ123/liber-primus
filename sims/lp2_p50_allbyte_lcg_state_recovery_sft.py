@@ -129,3 +129,38 @@ for name,(a,c,width) in FAMILIES.items():
                 full_hits += len(complete)
                 for seed in complete: sample.append((s,radix,order,seed))
     print(f'{name}: {width-7} byte slices x 4 source readings = {4*(width-7)} all-secret exact gates; first8 states={initial_hits}; full256 states={full_hits}; survivors={sample}')
+
+# Eight distinct 32-byte printed columns also align in count and width with
+# eight authentic $-terminated LP2 sections. Grant an entirely independent
+# unknown seed/state to each column: every first-eight-byte test is all-key.
+# This is strictly more flexible than the continuous 256-byte model above.
+for name, (a, c, width) in FAMILIES.items():
+    first8_states = 0
+    complete32_states = 0
+    cases = 0
+    for shift in range(width - 7):
+        for radix in (59, 60):
+            flat = decode(radix, 'row')
+            for col in range(8):
+                column = flat[col::8]
+                assert len(column) == 32
+                candidates, _ = solve8(column, a, c, shift)
+                cases += 1
+                first8_states += len(candidates)
+                complete32_states += sum(1 for seed in candidates if
+                                         sequence(seed, a, c, shift, 32) == column)
+    assert first8_states == complete32_states == 0
+    print(f'{name}: {cases} independent-column / state / byte-slice original cases; '
+          f'first8 states={first8_states}, full32 states={complete32_states}')
+
+# Exact eight-independent-seed positive: 32 bytes of each constructed
+# generator, eight different starts, one source-facing printed column each.
+for name, (a, c, width) in FAMILIES.items():
+    shift = width - 8
+    for col in range(8):
+        seed = (0x123456789ABC + 3301 * col) & ((1 << (shift + 8)) - 1)
+        plant = sequence(seed, a, c, shift, 32)
+        candidates, _ = solve8(plant, a, c, shift)
+        assert seed in candidates and any(
+            sequence(candidate, a, c, shift, 32) == plant for candidate in candidates)
+    print(f'{name}: eight independently seeded 32-byte planted column streams PASS')
