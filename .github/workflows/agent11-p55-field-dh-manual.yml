@@ -1,0 +1,23 @@
+name: Agent11 P55 field primitive-root source gates
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  p55-field-original:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Prove original P55 prime and partial discrete log
+        shell: pwsh
+        run: node sims/lp2_p55_primitive_root_partial_dh_sft.cjs
+      - name: Check all signed-2016 43-word exponent readings
+        shell: pwsh
+        run: node sims/lp2_p55_signed2016_43word_dh_exponent_sft.cjs
