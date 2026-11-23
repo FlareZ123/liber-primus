@@ -270,6 +270,18 @@ assert.deepEqual(decode28Step(encode28Step(native139, red3[0]), red3[0]),
   native139);
 assert(Math.abs(ioc(decoded28Step) - 0.03326034824314462) < 1e-12);
 
+// Applying the *same* historically documented NUMBER step to each complete
+// original numbered unit gives no common five-instruction operand type.
+// These sums are frozen on the original source; no target-English selection.
+const unitPrimeSums = units.map(unit => unit.reduce((sum, i) =>
+  sum + corpus.prime[i], 0));
+assert.deepEqual(unitPrimeSums, [7111, 4411, 5270, 5023, 6966]);
+const numberedReversals = unitPrimeSums.map(n =>
+  Number(String(n).split('').reverse().join('')));
+assert.deepEqual(numberedReversals, [1117, 1144, 725, 3205, 6696]);
+assert.deepEqual(numberedReversals.map(n => n % 7),
+  [4, 3, 4, 6, 4]);
+
 console.log(JSON.stringify({
   chapter: {pageRange: '33-39',startP33:91,length:chapter.length},
   originalSegments: {
@@ -290,6 +302,7 @@ console.log(JSON.stringify({
   },
   firstOpcode379: {headPrimeSum: 379, reverse: 973, pageCount: 7, firstUnitLen: 139, orbitLengths: cycles139.map(c => c.length), red3AsIV: red3, firstUnitRawIoC: ioc(firstNumbered), inverseIoC: ioc(predecessorDifference), forwardReconstruction: firstNumbered.length},
   firstOpcode28Step: {keyFrom379:[7,139],redInitial: red3[0],decodedIoC: ioc(decoded28Step),forcedFCount: decoded28Step.filter(i => i === 0).length, originalForwardRoundtrip: firstNumbered.length, nativeP57PlantedRecovered: native139.length},
+  numberedNUMBER: {originalPrimeSums: unitPrimeSums, reversed: numberedReversals, commonPageFactor7: false},
   plantedNativeRunnersRecovered: nativePlant.length,
   unknownPlaintextRecovered: false
 }, null, 2));
