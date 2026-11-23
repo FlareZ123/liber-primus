@@ -76,3 +76,6 @@ The nonstandard forms reflect the table's graph/alias conventions; the English r
 
 
 A further bounded test treated the two 5×5 matrices' numeric entries themselves as a repeating GP29 shift stream (reduce each entry modulo29), in page order A||B. Row-major, column-major, reversed matrix order, and the two outer-perimeter readings were tested with both signs on LP2 p0–p56. All outputs remained random-like (IoC 0.034460–0.034516), with no plaintext. This rejects these direct numeric-stream serializations; it does not reject the complete first17-page basic-gematria stream.
+
+
+A second, broader but still approximate key serialization prepended the recovered LP1 opening warning, retained numeric tokens in pages1 and3–16 as one-symbol values modulo29, and used the same basic-gematria graph tokenizer for the English text. This produced a 3,608-symbol repeating key. Both Vigenère signs over LP2 p0–p56 remained random-like (IoC 0.034475 and0.034479), with no readable output. Page2 and the exact original shifted source representation are still absent, so this rejects only the explicit “normalized English plus decimal-number mod29” construction.
