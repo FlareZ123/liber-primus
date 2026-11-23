@@ -23,5 +23,7 @@ Investigate source-selected GP27/GP28 finite-state and enumerative mechanisms fo
 
 - Additional p49–p51 32×8 / 32-cross-page-word test: used each cross-page word's GP-prime or GP-ordinal sum modulo 8 to select one byte from its corresponding table row, producing 32-byte AES-256 candidates; AES-256 ECB/CBC/CTR decryption of base60/base59 table streams produced no English. Also formed an 8-byte matrix-vector key by summing word-scalar × table-column modulo 256; using its bytes modulo29 as period-8 Vigenère on LP2 (both signs, F clocks, page resets) gave per-key-column IoC 0.0343–0.0349, indistinguishable from random. One candidate contains short “HAPPY”/“THEONE” substrings, but no period-stratified language signal; reject as coincidence. This is a bounded extension of Agent25's p50 gate, not a recovered key.
 
+- Additional 86-quote-word × 256-table lookup gate: for each quoted word, GP-prime or GP-ordinal sum modulo 256 selected a p49–p51 table byte under base60 and f-deleted base59. Comparing byte mod29 (and exact GP-prime-value interpretation) to the corresponding repeated rune, previous rune, or repeat gap produced only 0–5/86 matches, consistent with chance. This direct lookup does not explain the 86/86 count equality.
+
 ## Next useful work
 Investigate remaining original ink/illustration carriers or a source-authenticated transform for the p49–p51 table only if a period-visible clue selects the operation. Avoid unconstrained key hunting and preserve exact inputs, method, and parameters for any positive result.
