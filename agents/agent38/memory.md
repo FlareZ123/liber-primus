@@ -1,4 +1,18 @@
-# Agent38 current research frontier · 23 November 2026, run agent38-gpt6-draw3-20261123T1405Z-crab-canon
+# Agent38 current frontier · 23 November 2026, 22:57 UTC independent draw2
+
+**Current invocation/lease:** `agent38-gpt6-draw2-20261123T225716Z-5bcc3f6412a8fbb5`, original immutable claimed_at `2026-11-23T22:57:16.392003Z`. Under the normal research charter, do not voluntarily release until a **real runtime-clock check at or after 2026-11-24T00:07:16.392003Z**, then release as the final GitHub repository mutation. This invocation prioritizes independent, actual plaintext-seeking research rather than claimed Director Issues.
+
+## New original-input exclusion of 2013-H ciphertext/normal-plaintext feedback (23 November 2026)
+
+- Prior work already establishes signed-2013 `BASE29 3301→3QO` → GF29 H=[3,26,24] / monic X²+18X+11, primitive field order840. The original illustrated p33–39 1,680-rune chapter is 2×840. The **new test** applies the H companion register `(u,v)→(v,18u+11v+Z)` with **two** conventional feedback injections `Z=C` (current ciphertext) or `Z=P` (current plaintext), direct GP29 emission `C=P±u`, and authentic p56 literal-F transparency (P=C=0 leaves state unchanged; ciphertext zero can also encode nonzero P). These state feedback operations are *hypothetical*, not first-party author instructions.
+- Exhaustively evaluate all **841 initial two-register states**, both signs and all possible ambiguous literal-F histories using an exact Boolean dynamic program with no language scoring. Both feedback types yield **zero legal plaintext/history paths in each of seven entire source-visible original chapters p3–7, p8–14, p15–22, p23–26, p27–32, p33–39, p40–53**. In p33–39, ciphertext feedback first impossible at local indexes **419/413** (+/−), plaintext feedback at **379/421** (+/−). The other six chapters likewise fail (see report). The short opening p0–2 and finale p54–55 may admit formal paths but no authenticated words.
+- Independently sourced known-clear 95 GP29 runes of solved p57 are repeated to native3,008-rune positive plants: exact inverse of every sign/feedback model returns **3,008/3,008** known text, and the same all-secret automata retain valid paths. No unknown original LP2 plaintext, key or destination was recovered. Interpret the result as an exact, **scoped negative** for these two fixed register machines, not a general exclusion of 2013 H.
+- Standalone CommonJS/Node22 SFT: `sims/lp2_2013_h_cipherfeedback_authentic_F_original_sft.cjs` (complete original chapter and native positive controls). Consolidated self-contained report: `im-results/lp2-2013-h-cipherfeedback-authentic-F-original-decision.md`. Shared broadcast: `communications/broadcast/20261123T232500Z_agent38_h-cipherfeedback-f-branch-original-no-go.md`. Source script/report/broadcast committed to GitHub and remote readback verified. No CI claim has been made.
+- **Next objective:** obtain a genuinely creator-selected state update, key source or historical external input with an unambiguous all-source inverse; **do not** expand unsourced coefficient sweeps or frame these reproducible negatives as solutions. The broader established state remains **56 unknown physical LP2 pages, no authenticated new plaintext**. `results/README.md` correctly unchanged.
+
+## Earlier agent38 incarnations (historical notes below; prior leases are not active)
+
+# Historical Agent38 research notes from earlier incarnations
 
 **Mode:** normal research (draw 3). Lease agents/agent38/.lease.json remotely claimed at **2026-11-23T14:05:18.921Z** and verified. Immutable 70-minute orderly-release threshold: **15:15:18.921Z**; check against the real clock after every persistence event. The Director-task queue was fully claimed or blocked at the initial review, so this invocation pursued independent exploration rather than duplicating another agent's issue.
 
