@@ -209,4 +209,120 @@ for (const w of [
     maxIoC: observed.score / (LENGTH * 255)
   }));
 }
-console.log('PASS: finite HG24360 all-IV original-source exclusion; zero unknown plaintext');
+
+/** @param {number[]} v @returns {number[]} Multiplication by x mod HG. */
+function companionPlus(v) {
+  return [mod(-391 * v[3]), mod(v[0] - 357 * v[3]),
+    mod(v[1] - 187 * v[3]), mod(v[2] - 289 * v[3])];
+}
+/** @param {number[]} v @returns {number[]} Inverse multiplication by x mod HG. */
+function companionMinus(v) {
+  const last = mod(2 * v[0]);
+  return [mod(v[1] + 9 * last), mod(v[2] + 13 * last),
+    mod(v[3] + 28 * last), last];
+}
+for (let j = 0; j < 4; j++) {
+  const unit = Array.from({length: 4}, (_, i) => i === j ? 1 : 0);
+  assert.deepEqual(companionMinus(companionPlus(unit)), unit);
+  let v = unit.slice();
+  for (let t = 0; t < period; t++) v = companionPlus(v);
+  assert.deepEqual(v, unit);
+}
+
+/**
+ * Original 4-rune block matrix clock, a distinct reversible hypothetical
+ * receiver induced by the same source HG. The phase scans exhaust its full
+ * 24,360 rotations in both x^block and x^-block orientations.
+ * @param {number[]} cipher Contiguous original GP29 ciphertext; length multiple of 4.
+ * @param {1|-1} sign
+ * @returns {{score:number,phase:number,above42:number}}
+ */
+function companionPhaseScan(cipher, sign) {
+  assert.equal(cipher.length % 4, 0);
+  const op = sign === 1 ? companionPlus : companionMinus;
+  const regs = [];
+  for (let j = 0; j < cipher.length / 4; j++) {
+    let v = cipher.slice(4 * j, 4 * j + 4);
+    for (let k = 0; k < j; k++) v = op(v);
+    regs.push(v);
+  }
+  const freq = new Uint16Array(29);
+  const denom = cipher.length * (cipher.length - 1);
+  let scoreMax = -1;
+  let phase = -1;
+  let above42 = 0;
+  for (let t = 0; t < period; t++) {
+    freq.fill(0);
+    for (let i = 0; i < regs.length; i++) {
+      const v = regs[i];
+      freq[v[0]]++;
+      freq[v[1]]++;
+      freq[v[2]]++;
+      freq[v[3]]++;
+      regs[i] = op(v);
+    }
+    let score = 0;
+    for (const n of freq) score += n * (n - 1);
+    if (score > scoreMax) {
+      scoreMax = score;
+      phase = t;
+    }
+    if (score / denom >= 0.042) above42++;
+  }
+  return {score: scoreMax, phase, above42};
+}
+
+/**
+ * @param {number[]} tape Four-rune aligned GP29 tape.
+ * @param {(v:number[])=>number[]} op Per-block source-matrix operator.
+ * @returns {number[]}
+ */
+function companionClock(tape, op) {
+  assert.equal(tape.length % 4, 0);
+  const out = [];
+  for (let j = 0; j < tape.length / 4; j++) {
+    let v = tape.slice(4 * j, 4 * j + 4);
+    for (let k = 0; k < j; k++) v = op(v);
+    out.push(...v);
+  }
+  return out;
+}
+
+// Same genuine solved LP1 koan extended to 512 consecutive GP runes.
+const native512 = native.slice();
+while (native512.length < 512) {
+  const token = tokens.find(t => canonical.startsWith(t, pos));
+  assert.ok(token);
+  native512.push(ranking.get(token));
+  pos += token.length;
+}
+const nativeCipher512 = companionClock(native512, companionMinus);
+assert.deepEqual(companionClock(nativeCipher512, companionPlus), native512);
+assert.ok(collisionScore(native512) / (512 * 511) > 0.060);
+console.log('COMPANION_NATIVE_POSITIVE', JSON.stringify({
+  source: 'genuine solved LP1 KOAN',
+  length: 512, nativeIoC: collisionScore(native512) / (512 * 511),
+  ciphertextIoC: collisionScore(nativeCipher512) / (512 * 511),
+  recovered: 512
+}));
+
+for (const check of [
+  {span:'p16-21:first1024',a:16,b:21,sign:1,score:37894,phase:11},
+  {span:'p16-21:first1024',a:16,b:21,sign:-1,score:37610,phase:1774},
+  {span:'p40-53:first1024',a:40,b:53,sign:1,score:37624,phase:1674},
+  {span:'p40-53:first1024',a:40,b:53,sign:-1,score:37594,phase:16294}
+]) {
+  const input = span(check.a,check.b).slice(0, 1024);
+  assert.equal(input.length, 1024);
+  const result = companionPhaseScan(input, check.sign);
+  assert.equal(result.score, check.score, check.span);
+  assert.equal(result.phase, check.phase, check.span);
+  assert.equal(result.above42, 0, check.span);
+  console.log('COMPANION_ALL_PHASE', JSON.stringify({
+    span: check.span, orientation: check.sign, originalRunes: 1024,
+    testedPhases: period, maxIoC: result.score / (1024 * 1023), ...result
+  }));
+}
+
+console.log('PASS: finite HG24360 all-IV additive plus all-phase companion original-source gates; no unknown plaintext');
+
