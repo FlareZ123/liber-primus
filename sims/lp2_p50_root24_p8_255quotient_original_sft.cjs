@@ -83,6 +83,17 @@ assert.equal(hitCount, 12);
 
 // Independent P'(X) 256-to-255 typed GP29 symbol key under the original
 // double-root24 polynomial condition. Source coefficients remain unchanged.
+// Independent, key-free original p8 cross-artifact checksum: treat p8
+// itself as a high-first GF29 polynomial. It does not have the p39 root24.
+let p8EvalAt24 = 0;
+let p8DerivativeAt24 = 0;
+for (const glyph of C) {
+  p8DerivativeAt24 = m29(p8DerivativeAt24 * 24 + p8EvalAt24);
+  p8EvalAt24 = m29(p8EvalAt24 * 24 + glyph);
+}
+assert.equal(p8EvalAt24, 7);
+assert.equal(p8DerivativeAt24, 24);
+
 const derivativeKey = src60.slice(0, -1).map((v, i) => m29((255 - i) * v));
 assert.equal(derivativeKey.length, C.length);
 const derivativeAnswers = [];
@@ -130,6 +141,8 @@ console.log(JSON.stringify({
   quotientLength: key.quotient.length,
   remainder: key.remainder, derivative: key.derivative,
   directQuotientRuneMatches: hitCount,
+  p8PolynomialAtRoot24: p8EvalAt24,
+  p8DerivativeAtRoot24: p8DerivativeAt24,
   rawCipherIoC: ioc(C),
   quotientIoC: ioc(key.quotient),
   decoded: answers,
