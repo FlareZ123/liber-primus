@@ -1,6 +1,6 @@
 # A source-selected terminal-page address candidate from the signed 2016 THE followers
 
-**Status (23 November 2026, Agent45): source-exact five-step PATH-SW and WAY-MAP crossing to the 205th prime, aligned with solved p57's first sentence. Intended cross-source grammar remains a hypothesis; no unknown plaintext, key, or p54 decipherment recovered.**
+**Status (23 November 2026, Agent45): source-exact signed PATH→five-SW→p57 first clause, then possible straight-up SURFACE return to PATH through original p50[2]=2l=167 (39th prime); independent signed WAY/MAP crosses the path at cell60. Decoding grammar remains provisional, with no unknown plaintext or p54 key.**
 
 ## Observable clue and source constraints
 
@@ -44,6 +44,24 @@ The 205th ordinary prime = 1259
 
 **Independent authentic source recipient:** the *first complete sentence* on genuine solved clear **p57 PARABLE** contains exactly **30 GP runes with total official GP-prime value 1259**. The other two p57 sentence sums are **1031** and **1229**, with respective one-based prime ranks **173** and **201**. Their exact product is **1,595,277,641**, the already independently authenticated **2013 Cicada PARABLE ID3 integer**. That 2013→p57 product was documented in the existing research before the 2016 PATH→SW route was considered. The **new direct alignment is p50 cell74 value205 naming p57's *first* clause by prime rank**, supplying a compact bridge from signed 2016 source, the original p39 cuneiform footer, the authentic 256-cell sexagesimal object, and the clear terminal message. It establishes a **plausible small author-readable operation**, with no p54/plaintext recovery yet.
 
+### Literal first-clause "SURFACE" may complete the path back to PATH
+
+The selected first authentic p57 sentence is **“LIKE THE INSTAR TUNNELING TO THE SURFACE.”** The shortest table-geometry interpretation of its final word **SURFACE** is **rise straight to the top row of the same physical 32×8 numeral field**, keeping the terminal cell's original column. From the five-SW end cell **74=(row9,col2)**, moving **nine rows vertically to the surface** selects **cell2=(row0,col2)** without a new secret or symbol readout. The *original p50 cell2 prints* **`2l` = 167 in base60**. **167 is the 39th ordinary prime**, giving back the exact signed `GP0(PATH)=39` opening state. This creates a finite potential authored **closed loop**:
+
+```text
+PATH → GP0 39 → physical p39 first complete printed word SW
+p50[39] 05 → 5 southwest steps → cell74
+p50[74] 3P → base60 205 → 205th prime1259
+known p57 first complete sentence has GP-prime sum1259
+"LIKE THE INSTAR TUNNELING TO THE SURFACE"
+surface of p50 grid = row0, same column2 → cell2
+p50[2] 2l → base60 167 → 39th prime → PATH 39
+```
+
+This is an exact original-source **numeric and geometric cycle** with one prose word functioning as a possible movement instruction. The source table contains original byte167 in two cells **2 and182**; the row0/col2 surface projection supplies a *geometrically selected* one, rather than picking a byte167 wherever it appears. The second signed WAY→MAP route intersects the five-step diagonal at cell60 as described next. All symbols, table geometry, genuine source wording and prime ordinals are parsed and asserted in the [passing original-source Node22 SFT](../sims/lp2_signed2016_terminal_page_addresses_original_sft.cjs), [CI run45096721475](https://github.com/FlareZ123/liber-primus/actions/runs/45096721475).
+
+**Critical unresolved ambiguity:** p57's `SURFACE` metaphor does **not** explicitly name the p50 grid's first row or prohibit movement to the book's uppermost page/paragraph/border. Original signed2016 `numbers` does not explicitly choose ordinary GP0 indexes over canonical prime values. A **closed cycle might be a recognition/check mechanism** rather than a cipher decoder. The loop recovers known source-selected text and the initial PATH state, and **does not recover unknown p54/p55 plaintext**. Avoid claiming the conditional coincidence as proof of its complete semantic grammar, and do not treat its successful closure as license for arbitrary extra laps or tuned keys.
+
 ### Independent signed WAY→MAP route crosses the PATH trajectory
 
 Two *other* consecutive signed THE-followers provide a separate literal **same-type** grid motion, using source values already fixed before this five-SW path was inspected: `GP0(WAY)=57`, `p50[57]=1w` = **one west** from57→56; `GP0(MAP)=56`, and `p50[56]=4E` = **four east** from56→60. **Cell60 is exactly the third of PATH's five southwest intermediate cells** (`39→46→53→60→67→74`). Thus the printed 2016 source-selected `PATH` and `WAY→MAP` address families converge at the same cell without tuning a starting phase or decrypting a rune. Original cell60 reads `1k`; there is **no authenticated next compass instruction** for its lowercase k. The direct `4E = 4 East` interpretation is simpler than the earlier optional `4E = hex ASCII N` mode switch in [the predecessor report](../im-results/lp2-way-map-here-direction-the-cycle.md) and does not need that unsourced ASCII conversion.
@@ -71,7 +89,7 @@ The original five consecutive p50 cells traversed by the literal `05 SW` instruc
 | A single continuous five-key Vigenère on all five source passages | − | **0.034672537** |
 | Same continuous five-key Vigenère | + | **0.034259769** |
 
-The original joined source has IoC **0.034233561**. All four complete 553-rune outputs are nonprose and **exactly reencrypt** all original source runes, with the observed 122 printed words/word boundaries retained as evidence. This **excludes only two direct GP29 shift uses** of the authentic five-number path as a numbered-unit decryption key; it does not exclude a source-authored different consumer, word resegmentation or a typed object. It does directly answer the temptation to treat the five intermediate numeral values as the five missing cuneiform section keys, and supplies an original-cipher negative rather than another key coincidence. [Full original rune SFT and source-key replay](../sims/lp2_signed2016_terminal_page_addresses_original_sft.cjs), [Windows Node22 PASS 45096454020](https://github.com/FlareZ123/liber-primus/actions/runs/45096454020).
+The original joined source has IoC **0.034233561**. All four complete 553-rune outputs are nonprose and **exactly reencrypt** all original source runes, with the observed 122 printed words/word boundaries retained as evidence. This **excludes only two direct GP29 shift uses** of the authentic five-number path as a numbered-unit decryption key; it does not exclude a source-authored different consumer, word resegmentation or a typed object. It does directly answer the temptation to treat the five intermediate numeral values as the five missing cuneiform section keys, and supplies an original-cipher negative rather than another key coincidence. [Full original rune SFT and source-key replay](../sims/lp2_signed2016_terminal_page_addresses_original_sft.cjs), [Windows Node22 PASS 45096454020](https://github.com/FlareZ123/liber-primus/actions/runs/45096721475).
 
 A separate direct transfer used the **exact 30 authentic plaintext runes** selected at p57 as a repeated GP29 Vigenère key on the *complete original terminal chapter* p54 (232 runes) + p55 (76 runes), both signs, once continuous and once reset at the page boundary. The four 308-rune output IoCs were **0.034392318/0.034794196/0.035259529/0.035196074**, none coherent. This small source-frozen test further limits simple interpretations of the genuine p57 clause, while leaving any genuinely specified complex operation open. The detailed numeric witness is in Agent45's current research memory; an independent original-byte SFT would be needed before treating it as a formal complete exclusion.
 
@@ -98,4 +116,4 @@ The new source-complete word-address screen also **rejects a literal use-every-w
 
 **Next causal decision**: a first-party independent operation or key handoff from the clear p57 / prime-totient p56 or from the signed message must specify a complete invertible transform of p54≥150 unknown runes and successfully predict an untrained p55 original passage. Merely adding more meaningful labels to the page sequence will not decipher them. Retain this page-routing candidate provisionally as a possible hint for that historically plausible terminal solve path, avoiding promotion to a recovered key or plaintext.
 
-**Inputs and full original-data reproducer:** [original signed 2016 message](../resources/historical/cicada2016-4gq25-outguess.asc), [official corpus](../resources/liber-primus/lp2-corpus.json), [original 256-cell table](../resources/liber-primus/lp2-grid-256.json), [single-file Windows CJS SFT](../sims/lp2_signed2016_terminal_page_addresses_original_sft.cjs), [Windows Node22 PASS, source-typed five-SW, WAY-MAP and 553-rune heldout-shift run 45096454020](https://github.com/FlareZ123/liber-primus/actions/runs/45096454020).
+**Inputs and full original-data reproducer:** [original signed 2016 message](../resources/historical/cicada2016-4gq25-outguess.asc), [official corpus](../resources/liber-primus/lp2-corpus.json), [original 256-cell table](../resources/liber-primus/lp2-grid-256.json), [single-file Windows CJS SFT](../sims/lp2_signed2016_terminal_page_addresses_original_sft.cjs), [Windows Node22 PASS, source-typed five-SW, WAY-MAP, SURFACE closed loop and 553-rune shift run 45096721475](https://github.com/FlareZ123/liber-primus/actions/runs/45096454020).
