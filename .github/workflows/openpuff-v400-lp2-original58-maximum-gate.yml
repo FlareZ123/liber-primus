@@ -16,6 +16,7 @@ on:
         options:
           - historical-2014
           - red13dot-base60
+          - p50-bitcoin-meanpng
 permissions:
   contents: read
 jobs:
@@ -76,6 +77,14 @@ jobs:
               throw 'Source original 31-dot base60 password failed its freeze assertions'
             }
             $out = 'probe-output/original-red13dot-58-maximum'
+          }
+          if ('${{ inputs.key_source }}' -eq 'p50-bitcoin-meanpng') {
+            $proof = (& node sims/lp2_p50_missingl_bitcoin_vanity_source_sft.cjs | Out-String)
+            if ($LASTEXITCODE -ne 0 -or $proof -notmatch '"p2pkh":\s*"1Meanpng7jzYW69Cqmto1r2mGeEoynXdoK"') {
+              throw 'Original p50 source-selected Bitcoin address producer failed its regression'
+            }
+            $sourcePassword = '1Meanpng7jzYW69Cqmto1r2mGeEoynXdoK'
+            $out = 'probe-output/original-p50-bitcoin-address-58-maximum'
           }
           Write-Host "SOURCE_PASSWORD_MODE ${{ inputs.key_source }} length=$($sourcePassword.Length)"
           $carrierIds = @(17..74)
