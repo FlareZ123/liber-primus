@@ -104,8 +104,8 @@ for(let i=0;i<7;i++) {
 // Therefore none of these exact matrices or powers of them is an order-28
 // or order-29 rotor over the conditional source-derived field.
 const historicalSquares=fs.readFileSync(path.join(__dirname,'..','resources','cicada2014-openpuff-magic-squares.txt'),'utf8')
-  .trim().split(/\\r?\\n\\s*\\r?\\n/g)
-  .map(block=>block.trim().split(/\\r?\\n/g).map(line=>line.trim().split(/\\s+/).map(Number)));
+  .trim().split(/\r?\n\s*\r?\n/g)
+  .map(block=>block.trim().split(/\r?\n/g).map(line=>line.trim().split(/\s+/).map(Number)));
 assert.deepEqual(historicalSquares.map(a=>a.length),[5,7,5]);
 assert.deepEqual(historicalSquares[1],magic7);
 function mulPoly(a,b) {
