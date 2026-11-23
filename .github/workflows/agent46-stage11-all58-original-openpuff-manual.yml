@@ -1,0 +1,93 @@
+name: Agent46 Stage11 58-JPEG source-order native OpenPuff 2014 known-password probe
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-stage11-58chain:
+    runs-on: windows-latest
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          architecture: x86
+      - name: Prepare original native OpenPuff v4 and positive-control dependencies
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python -c "import struct; assert struct.calcsize('P') == 4"
+          python -m pip install --disable-pip-version-check pywinauto Pillow filelock
+          python sims/openpuff_output_capture_sft.py
+          $root = Join-Path $env:RUNNER_TEMP 'OpenPuff-v400-original-stage11-58chain'
+          New-Item -ItemType Directory -Force -Path $root | Out-Null
+          $base = 'https://raw.githubusercontent.com/codejanus/ToolSuite/1eaf6d006d31ba842f6cc6b16e9d82dbf904aaf5/OpenPuff'
+          $expected = @{
+            'OpenPuff.exe' = '466e03c792075313ce533a5dc7a789e8a41209f9'
+            'libObfuscate.dll' = 'f3b1c3315f8286346416fefd6141410f422f2454'
+          }
+          foreach ($name in $expected.Keys) {
+            $file = Join-Path $root $name
+            Invoke-WebRequest -Uri "$base/$name" -OutFile $file
+            $actual = (& git hash-object -- $file).Trim().ToLowerInvariant()
+            if ($LASTEXITCODE -ne 0 -or $actual -ne $expected[$name]) {
+              throw "Original program blob mismatch: $name"
+            }
+          }
+          "OPENPUFF_EXE=$(Join-Path $root 'OpenPuff.exe')" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+      - name: Verify native public JPEG positive on the same runner
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python sims/openpuff_public_jpeg_positive_source.py --out probe-output/public-source
+          if ($LASTEXITCODE -ne 0) { throw 'Unable to obtain independently known public JPEG carrier' }
+          python sims/openpuff_v400_extract.py --exe "$env:OPENPUFF_EXE" --carrier probe-output/public-source/openpuff.jpg --password 12345678 --bit-format 'Jpeg (Image)' --bit-level '1/2 (50%) - Maximum' --out probe-output/public-positive --wait-seconds 45
+          if ($LASTEXITCODE -ne 0) { throw 'OpenPuff public JPEG positive did not execute' }
+          python -c "from pathlib import Path; from hashlib import sha256; p=Path('probe-output/public-positive/extracted/hidden.txt'); b=p.read_bytes(); assert b==b'Dies ist eine versteckte Nachricht!'; print('ORIGINAL_NATIVE_JPEG_POSITIVE_PASS',len(b),sha256(b).hexdigest())"
+          if ($LASTEXITCODE -ne 0) { throw 'OpenPuff native positive did not recover exact original message' }
+      - name: Probe all 58 authentic Stage11 JPEGs in the exact source HTML order as one OpenPuff v4 carrier chain
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $staged = Join-Path $env:RUNNER_TEMP 'agent46-stage11-58-HTML-ordered'
+          New-Item -ItemType Directory -Force -Path $staged | Out-Null
+          $checks = @{}
+          Get-Content -LiteralPath 'resources/liber-primus/SHA256SUMS.txt' | ForEach-Object {
+            if ($_ -match '^([0-9a-f]{64})\s+([0-9]{2}[.]jpg)$') {
+              $checks[$Matches[2]] = $Matches[1]
+            }
+          }
+          if ($checks.Count -ne 75) { throw "Expected exactly 75 original SHA256 reference images, found $($checks.Count)" }
+          $params = @('--exe', "$env:OPENPUFF_EXE", '--password', '33011033',
+            '--bit-format', 'Jpeg (Image)', '--bit-level', '1/2 (50%) - Maximum',
+            '--out', 'probe-output/stage11-58-chain', '--wait-seconds', '1200')
+          foreach ($stageIndex in (0..57)) {
+            $archive = '{0:D2}.jpg' -f ($stageIndex + 17)
+            $historicalName = '{0}.jpg' -f $stageIndex
+            $source = Join-Path $env:GITHUB_WORKSPACE "resources/liber-primus/$archive"
+            if (-not (Test-Path -LiteralPath $source)) { throw "Original Stage11 scan missing: $archive" }
+            $sha = (Get-FileHash -LiteralPath $source -Algorithm SHA256).Hash.ToLowerInvariant()
+            if ($sha -ne $checks[$archive]) { throw "Original Stage11 JPEG SHA256 mismatch at $archive" }
+            $target = Join-Path $staged $historicalName
+            Copy-Item -LiteralPath $source -Destination $target
+            Write-Host "STAGE11_AUTHENTIC_CARRIER $historicalName original=$archive sha256=$sha"
+            $params += @('--carrier', "$target")
+          }
+          if ($params.Count -ne 124) { throw "Parameter grammar mismatch for 58 carriers" }
+          python sims/openpuff_v400_extract.py @params
+          if ($LASTEXITCODE -ne 0) { throw 'Native 58-image Unhide automation failed; classify as inconclusive' }
+          $result = Get-Content 'probe-output/stage11-58-chain/result.json' -Raw | ConvertFrom-Json
+          if ($result.carrier_count -ne 58 -or -not $result.carrier_chain_verified -or -not $result.bit_selection_verified -or -not $result.attempted) {
+            throw 'All 58 historical original carriers must verify in exact stage11 order'
+          }
+          if ($result.native_probe_outcome -eq 'inconclusive-timeout') { throw 'OpenPuff 58-carrier outcome timed out: inconclusive' }
+          Write-Host "STAGE11_ALL58_NATIVE_OUTCOME $($result | Select-Object carrier_count, native_probe_outcome, output_present, outputs, completion_dialogs, error_dialogs | ConvertTo-Json -Depth 12 -Compress)"
+          if ($result.output_present) { Write-Host 'CANDIDATE_STAGE11_58CHAIN_HIDDEN_FILE_REQUIRES_SOURCE_AUTHENTICATION' }
+      - name: Retain native GUI records and any original extracted bytes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent46-stage11-all58-original-2014-password
+          path: probe-output/
+          if-no-files-found: warn
