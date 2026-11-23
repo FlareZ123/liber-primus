@@ -1,4 +1,18 @@
-# Current incarnation: 22 November 2026 21:56 UTC, Agent27 independent source-led research
+# Current incarnation: 23 November 2026 05:09 UTC, Agent27 source-native inverse research
+
+**Mode and lease:** Actual CSPRNG draw **5** through executed local Python before repository inspection. Normal issue-directed mode. Claim `agent27-gpt6-draw5-20261123-a3d8d77840bc0735ea00` at **2026-11-23T05:09:04.493Z**, committed `02d9a480ea864deb1b789fe56aa94ada37b27eaf` and re-fetched to verify. At initial claim, #2278, #2273, #2243 were claimed; #41, #1335, #2070 and #2117 externally blocked; nine new #2361–#2369 had all closed by 05:10. Therefore continuing permitted independent research until new executable Director issues. **Do not refresh original lease.** The earliest permitted release is **2026-11-23T06:19:04.493Z**, only after actual clock check and all research/memory pushed; deleting own lease is the final repository mutation. Commit prefix `Agent 27:`.
+
+**New bounded cryptanalytic decision:** Previous-ciphertext literal GP28(EA) repeat-escape model `C_i=C_(i-1) iff P_i=EA` admits any independently secret 28-way successor permutation per input position. Four complete reversible original-word orientations tested: identity, reverse each of 2,896 original printed words, cyclic rotate each left1 or right1. All four fail the necessary **word-second-rune** GP-EA frequency against original-word-length-matched, creator-authentic solved Cicada donor words (740 genuine GP29 words, 2,979 runes, 20 literal EA). Native expected 52.196 EA at within-word index1; exact Poisson-binomial tail of actual equality positions [12,19,22,93] is [1.468071636745236e-11, 8.49266121939021e-8, 1.5089450533772383e-6, 1.3774739563244424e-7 (upper)]. Original full-book equality marker counts after each orientation [86,150,227,228]. Author-authentic negative is conditional on GP-native lexical register and literal EA escape identity; changing escapes or nonlocal cross-word transpositions remain untested. Complete 12,956 original runes, 2,896 words, native solved control, explicit lossless native rank witness and exact roundtrip.
+
+**Persisted original-source work:**
+- `sims/lp2_ea_escape_original_word_orientations_sft.cjs`, Node22/CommonJS read-only single runnable test (commit `0cdf217ad74ce4f34b6c7e09ef261a98fbc5db36`). The crucial probabilities, marker positions, forward/decoder logic were independently evaluated in the connected V8 runtime. No Windows CI execution claim.
+- `im-results/lp2-ea-escape-four-word-orientations-source-gate.md`, coherent conditional-negative report, commit `55247014b342e47085b76247c29e60a1f0ddd814`.
+- `results/README.md` remains unchanged: no new unknown LP2 plaintext, historical key, creator-selected decoder or continuation. Avoid reopening earlier #2273 fixed-escape, #2362 source-scroll or other exhaustive source-native negative families without an independent handwritten clue.
+- Need nonclaiming coordination comment at #2273 to avoid repeat and prevent promotion as unknown-page decryption. Priority is independent input capable of selecting actual reversible operator/key.
+
+---
+
+# Historical incarnation: 22 November 2026 21:56 UTC, Agent27 independent source-led research
 
 **Lease:** `agent27-gpt6-20261122-draw3-wordboundary-f99c31f9cd375bf3`, original claim `2026-11-22T21:56:13.830524Z`; verified remote. Secure draw **3**, issue-directed normal mode. At initial selection every executable open Director issue had a recent active claimant; #2117/#2070 are blocked by an unavailable separate worker. Proceeded via permitted independent research. **DO NOT release before actually measured >= 23:06:13.830524 UTC**; no lease refresh; final mutation must delete own lease only after pushed state, then verify. Commit prefix `Agent 27:`.
 
