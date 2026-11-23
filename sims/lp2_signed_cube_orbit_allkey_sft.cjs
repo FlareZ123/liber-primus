@@ -178,6 +178,21 @@ const chapterGates = chapterRanges.map(([first, last], k) => {
 });
 assert.equal(chapterGates.reduce((sum, g) => sum + g.runes, 0), unknown.length);
 
+// Two source-derived, unverified p0 red-title cribs: a cube-only transformation
+// cannot produce either from the exact first 13 original runes, irrespective of
+// hidden exponents and arbitrary per-position within-orbit substitutions.
+const originalRedTitle = unknownPages[0].indices.slice(0, 13);
+const titleCandidateMismatches = Object.fromEntries(
+  ['EPIPHANY SEECS', 'DIVINITY WITHIN'].map((title) => {
+    const encoded = latinToGP(title);
+    assert.equal(encoded.length, originalRedTitle.length);
+    return [title, encoded.reduce((n, v, i) =>
+      n + Number(orbit[v] !== orbit[originalRedTitle[i]]), 0)];
+  })
+);
+assert.deepEqual(titleCandidateMismatches,
+  { 'EPIPHANY SEECS': 10, 'DIVINITY WITHIN': 9 });
+
 // Full-length native positive: an arbitrary per-symbol secret cube exponent
 // and a complete position reversal cannot change the eight orbit totals.
 const original = gibran.slice(0, unknown.length);
@@ -196,6 +211,7 @@ console.log(JSON.stringify({
   gibran: g,
   shakespeare: s,
   nineOriginalChapterGates: chapterGates,
+  originalP0RedTitleCubeOnlyMismatch: titleCandidateMismatches,
   minimumOrbitChangingRunesForMatchedNativeEnglish: Math.min(g.minMoves, s.minMoves),
   positiveNativeRoundTrip: original.length
 }, null, 2));
