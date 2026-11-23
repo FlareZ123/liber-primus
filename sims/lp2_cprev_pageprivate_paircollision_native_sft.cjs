@@ -145,19 +145,38 @@ function plantBook() {
   const qp = qStatistic(cipher, plaintext);
   assert.equal(qc.agree, qp.agree, 'Private substitution must preserve predecessor-row collisions');
   assert.equal(qc.pairs, qp.pairs);
-  return qc.q;
+  return { wholeQ: qc.q, perPageQ: cipher.map((page) => qStatistic([page]).q) };
 }
 
 const N = 500;
 const qValues = [];
-for (let trial = 0; trial < N; trial++) qValues.push(plantBook());
+const byPage = original.map(() => []);
+for (let trial = 0; trial < N; trial++) {
+  const result = plantBook();
+  qValues.push(result.wholeQ);
+  result.perPageQ.forEach((q, pageIndex) => byPage[pageIndex].push(q));
+}
 qValues.sort((a, b) => a - b);
+const pagewise = original.map((sourcePage, pageIndex) => {
+  const originalPageQ = qStatistic([sourcePage.indices]);
+  const controls = byPage[pageIndex].sort((a, b) => a - b);
+  return {
+    physicalPage: sourcePage.page,
+    runes: sourcePage.indices.length,
+    original: originalPageQ,
+    nativeControlsAtOrBelow: controls.filter((q) => q <= originalPageQ.q).length,
+    minControl: controls[0],
+    medianControl: controls[Math.floor(N / 2)],
+    maxControl: controls[N - 1]
+  };
+});
 const below = qValues.filter((q) => q <= originalQ.q).length;
 assert.equal(below, 0, 'The original must be below all authentic native random-key plants');
 const report = {
   original: originalQ, randomKeyPlants: N, belowOriginal: below,
   plantMin: qValues[0], plantMedian: qValues[Math.floor(N / 2)],
   plantMax: qValues[N - 1],
+  pagewise: pagewise.filter((entry) => [0, 7, 27, 49, 51, 55].includes(entry.physicalPage)),
   sourcePages: original.length, sourceRunes: 12956,
   printedPageFragments: 2928, donorWords: native.sections.reduce(
     (sum, sec) => sum + (sec.source_text.match(/[\u16a0-\u16ff]+/gu) || []).length, 0),
