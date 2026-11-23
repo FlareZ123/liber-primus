@@ -80,7 +80,10 @@ for (const {target, key,sourceName,indexing} of [
   {target:27,key:key14,sourceName:"2014 107.jpg",indexing:"zero"},
   {target:38,key:key15,sourceName:"2014 167.jpg",indexing:"zero"},
   {target:28,key:key14,sourceName:"2014 107.jpg",indexing:"one"},
-  {target:39,key:key15,sourceName:"2014 167.jpg",indexing:"one"}
+  {target:39,key:key15,sourceName:"2014 167.jpg",indexing:"one"},
+  // Independently original p55 final 6 runes point 28 pages back to p27.
+  // The same historical 28th-prime image supplies a possible direct p55 key.
+  {target:55,key:key14,sourceName:"2014 107.jpg",indexing:"source-bookend-target"}
 ]) {
   const page=book.pages.find(p=>p.page===target);
   const c=page.indices;
@@ -91,7 +94,7 @@ for (const {target, key,sourceName,indexing} of [
   const realMinus=inv(c,key,-1),realPlus=inv(c,key,1);
   assert.deepEqual(realMinus.map((x,i)=>(x+key[i%key.length])%29),c);
   assert.deepEqual(realPlus.map((x,i)=>(x-key[i%key.length]+29)%29),c);
-  const hold=c.length>260?200:160;
+  const hold=c.length>260?200:c.length>160?160:Math.floor(c.length*0.7);
   for (const [label,start,end] of [["training",0,hold],["holdout",hold,c.length]]) {
     const minus=realMinus.slice(start,end),plus=realPlus.slice(start,end);
     const control=positive.slice(start,end);
