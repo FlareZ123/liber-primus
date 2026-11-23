@@ -58,12 +58,14 @@ The characteristic polynomial is irreducible over GF(29), but not primitive: dir
 
 ## Original-cipher tests
 
-The reproducible implementation is [lp2_p7p8_fourstate_companion_original_sft.cjs](../sims/lp2_p7p8_fourstate_companion_original_sft.cjs). It reads the repository's canonical LP2 corpus, asserts the original page counts, checks the 248-rune alignment, verifies an exact planted round trip, and reports the following frozen tests.
+The block-stream tests are reproduced by [lp2_p7p8_fourstate_companion_original_sft.cjs](../sims/lp2_p7p8_fourstate_companion_original_sft.cjs); the word-reset extension is reproduced by [lp2_p8_xixm_wordlocal_reset_original_sft.py](../sims/lp2_p8_xixm_wordlocal_reset_original_sft.py). Both read the repository's canonical sources, assert the source counts, and include planted round-trip controls.
 
 1. **Four-rune companion-register keystream.** The 248-rune p8-black-plus-p9-carry span is exactly 62 blocks. The first 300 continuous black runes are 75 blocks (243 p8 runes plus 57 p9 runes). Forward, inverse, and transposed companion orientations, each with both additive signs, give IoC **0.03245–0.03523** on the aligned 248 and **0.03371–0.03527** on the 300-rune continuation. Raw IoC is 0.03376 and 0.03396 respectively. No coherent plaintext appears.
 2. **Scalar fourth-order LFSR.** The same characteristic polynomial gives k[n+4] = 9k[n] + 16k[n+1] + 25k[n+2] + 7k[n+3] (mod 29), seeded by XIXM. Both additive signs on the 300-rune original stream give IoC **0.03501–0.03527**, with no readable output.
 3. **Fixed period-four Vigenère.** Repeating the literal GP29 key XIXM, in both directions, gives IoC **0.03429–0.03438** on the same 300 original runes. This is not a plaintext recovery.
 4. **Direct companion affine maps.** The companion matrix and the same four-rune offset were also used as a fixed four-block affine map, with forward/inverse/transpose orientations and both signs. The outputs remain near-random (IoC **0.03344–0.03556**).
+
+5. **Word-boundary reset.** The p8–p14 black text reconstructs as 381 words / 1,717 runes when page breaks are joined to preserve the p8/p9 carry. Resetting the literal XIXM period-four key at each word gives IoC 0.03431–0.03439; resetting the quartic scalar LFSR to the same four-rune seed at each word gives 0.03434–0.03439; resetting the four-rune companion state at each word gives 0.03427–0.03430. None produces readable words. This tests the obvious word-reset interpretation of the 2016 “words are the map” hint without searching arbitrary word-specific keys.
 
 The known clear p57 control has IoC 0.06271. The original p8/p9 stream is near-uniform, and none of these source-motivated inverses moves it toward ordinary GP29 prose. Since the first 300-rune test fails, no larger dependent key/phase sweep or 150-rune holdout is justified. The report does not exclude every possible four-block cipher; it rejects only the stated low-description-length equations.
 
