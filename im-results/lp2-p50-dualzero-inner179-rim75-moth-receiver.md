@@ -1,0 +1,39 @@
+# P50's two literal zero tokens split into 179 interior and 75 rim values: moth-page receiver test
+
+**Agent49, 23 November 2026. Intermediate source-shaped alignment and completed original-input key/transport negative. No recovered unknown Liber Primus plaintext, creator-supplied decryption key or historical instruction.** [Read-only original-source CommonJS SFT](../sims/lp2_p50_dualzero_moth_source_sft.cjs) · [successful Node22 original-input CI 45108106311](https://github.com/FlareZ123/liber-primus/actions/runs/45108106311).
+
+## One source-readable operand proposal
+
+The source's actual **32×8** panel across physical pp49–51 has **256** printed two-character numerals (all 256 glyph pairs verified against the 2014 JPEGs in the existing table audit). There are **exactly two** literal `00` tokens:
+
+| Printed row-major index | Zero-based (row, column) | Geometry |
+| ---: | --- | --- |
+| **192** | (24,0) | One-cell outer perimeter |
+| **229** | (28,5) | Interior |
+
+Peeling precisely one full outer ring leaves **180** interior cells and **76** perimeter cells, independently the geometry already linked to solved p57's phrase **“SHED OUR OWN CIRCUMFERENCES”** and the established terminal p55–p57 76+85+95=256 reading. If `00` means *skip one null cell*, the independent source-ordered streams have **179 inner** and **75 outer** nonzero entries. The table provides no printed command to skip those particular entries or which numeral radix to use, so this is a hypothesis.
+
+These two capacities coincide with otherwise independently source-visible adjacent receiver geometry:
+
+- **Original physical p53 has exactly 179 GP29 ciphertext runes**. Its illustrated moth is copied from the earlier LP1 physical p05, whose actual original `05.jpg` has a 179-byte embedded mirrored middle block. That 179-byte source, its structural decoding, and ordinary direct-pad failures have already been investigated; only the new *table-interior* receiver is at issue here.
+- **Original physical p55 has 76 ciphertext runes**. Its **first NG rune** is the final glyph of an 11-rune word carried from the previous p54 page. The **75 subsequent runes** are complete p55 page-local material; the incoming glyph could, conditionally, act as a transmitted previous-rune state. This cross-page boundary was established by earlier p54/p55 source work.
+
+This interpretation is **competing with** the previously proposed full 76-rim→p55 and 180-interior→solved-p56+p57 table assignment. The two `00` positions and physical capacities are exact, but choosing the 179/75 receivers retrospectively is not a cipher discovery. Conditional on exactly two exchangeable zero locations among the 256 table cells, the chance that precisely one is in the 76-cell rim is **57/136 ≈ 0.4191**. The split by itself has weak evidential force; there is no standalone significance claim.
+
+## Frozen reversible original ciphertext receivers
+
+Set `I` to the 179 interior numeral values after omitting their `00`, in original row-major order, and `R` to the 75 perimeter values after omitting its `00`, also row-major order. The literal perimeter order is distinct from a clockwise circuit. Run both documented conditional numeric readings **radix60** and the **radix59-without-lowercase-f** rival, preserving every original two-character token.
+
+For each, test source-order and reversal, two byte reductions `byte mod29` and `floor(byte×29/256)`, and both GP29 additive signs. The 16 resulting one-to-one full-length decoders apply `I` to **all p53 179 symbols** and `R` to **p55[1:76]** with no optimized key offsets. All 16 original p53 IoCs are **0.032452–0.036658**; all 16 original 75-rune p55 IoCs are **0.027748–0.044324**. Every full transliteration remains nonlinguistic. The native independently clear p57 original has IoC **0.062710**, and its held 75-rune windows are distinctly more concentrated. Every additive decoder exactly re-encrypts all its original ciphertext, and a separate native-p57 plant is recovered exactly under every mapping.
+
+Because these unknown pages anomalously suppress adjacent ciphertext repeats, a second receiver is the fully reversible **29-output previous-ciphertext exclusion** transducer. The initial p53 rune is a 29-choice transmitted state; subsequent symbols are encoded through 28 ordinary successor ranks plus literal adjacent-equal escape, using the two usual cyclic and sorted rank maps. For p55, use the actual incoming `NG` as its previous-ciphertext IV, then consume exactly the 75 perimeter values reduced to the corresponding 28-choice key space. Both radices, orientations, key projections and signs give **32 complete original-source variants**. Their original p53 IoCs are **0.033143–0.038855** and p55 IoCs **0.028108–0.042523**; no sustained GP-native plaintext is produced. The true original one repeated p55 post-carry rune becomes a legal GP28 escape, and the original p53 has no repeated adjacent rune. All original outputs are exactly replayed by the respective encoders, and every same-length solved-p57 GP-native plant recovers exactly.
+
+The independently historical **bytewise XOR** interpretation fares no better: for each source byte, XOR the aligned original GP rune's literal ordinal or its authentic prime value. Across the eight original source/seralization/orientation checks, literal ASCII-printable bytes number only **65–75/179** for p53 and **29–34/75** for p55. Their output lacks an identifiable text or binary-format envelope.
+
+A third historically typed key mixer combines the independently recoverable LP1 p05 original **179-byte middle payload** (SHA256 `82c135148b6cf85e9b550afdbc6204be075ff67717356a8ae18b76f9cc3af5fa`) with the new 179 table-interior values by aligned bytewise XOR, then projects that exact 179-byte stream into GP29. Both radices, four pinned source/reversal combinations, two projections, and two signs give **32 p53 receivers**. The complete original-p53 IoC range is **0.032013–0.036533**, with no coherent GP text. This tests the most natural triple-source operation using the already-established LP1 moth/179 visual selector; arbitrary additional hashing or phase tuning is unsupported.
+
+## Original-input reproducibility and next decision
+
+The [single-file SFT](../sims/lp2_p50_dualzero_moth_source_sft.cjs) reads the actual `lp2-grid-256.json`, `lp2-corpus.json`, and the original `resources/liber-primus/05.jpg`; asserts both exact `00` positions, all 179/75 physical lengths and p05 mirrored-middle source bytes; executes **16 + 32 + 8 + 32** distinct frozen model configurations; and validates full inverse/forward replay plus planted actual solved-p57 GP streams. **All checks passed** on checked-out original repository files in [GitHub Actions run 45108106311](https://github.com/FlareZ123/liber-primus/actions/runs/45108106311).
+
+The source geometry supplies a specific possible *receiver assignment*, but **no operand-transformation instruction** and **no authentic unknown-page plaintext**. The straightforward source-key and typed XOR implementations are disfavored by this original test. Do not expand this branch by optimizing phases, secret digit maps or invented cipher steps. Revisit only if an independent original clue fixes a reversible operation joining the table and the moth pages, or an authentic p53/p55 plaintext segment provides a new holdout test. The older 76-rim and 180-interior terminal reading remains a serious alternative.
