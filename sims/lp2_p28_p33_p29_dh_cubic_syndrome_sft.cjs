@@ -10,6 +10,13 @@ const fs = require('node:fs');
 const path = require('node:path');
 const corpus = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'resources', 'liber-primus', 'lp2-corpus.json'), 'utf8'));
 const pages = corpus.pages;
+const signedText = fs.readFileSync(path.resolve(__dirname, '..', 'resources', 'historical', 'cicada2016-4gq25-outguess.asc'), 'utf8');
+const sourceWords = signedText.slice(signedText.indexOf('Hello.'), signedText.indexOf('Good luck.'))
+  .match(/[A-Za-z]+/g).map(word => word.toUpperCase());
+assert.deepEqual(sourceWords.slice(0, 4), ['HELLO', 'THE', 'PATH', 'LIES']);
+assert.equal(sourceWords[14], 'ITS');
+assert.equal(sourceWords[12], 'THE');
+assert.equal(sourceWords[2], 'PATH');
 const M = x => ((x % 29) + 29) % 29;
 
 /** @param {number} v @param {number} mod @returns {number} */
@@ -104,6 +111,17 @@ assert.deepEqual(r29.remainder, [0, 0, 0]);
 assert.deepEqual(jet(pages[28].indices, root), [12, 2]);
 assert.deepEqual(jet(pages[33].indices, root), [12, 2]);
 assert.deepEqual(jet(pages[29].indices, root), [0, 0]);
+// Canonical Hermite/CRT jet order for ascending GF29 roots: X=3 value,
+// then X=24 value and first derivative (because 24 is a double root).
+// The signed-2016 alphabetic word-number reading is already a prior source
+// hypothesis; the three-word English phrase is a post-discovered candidate.
+const canonicalCRT = indices => [jet(indices, 3)[0], ...jet(indices, 24)];
+const phraseCodes = canonicalCRT(pages[28].indices);
+assert.deepEqual(phraseCodes, [14, 12, 2]);
+assert.deepEqual(canonicalCRT(pages[33].indices), phraseCodes);
+assert.deepEqual(canonicalCRT(pages[29].indices), [0, 0, 0]);
+const phrase = phraseCodes.map(index => sourceWords[index]).join(' ');
+assert.equal(phrase, 'ITS THE PATH');
 for (const [pnum, r] of [[28, r28], [33, r33], [29, r29]]) {
   assert.deepEqual(restore(r.quotient, r.remainder, Q), pages[pnum].indices);
 }
@@ -159,4 +177,6 @@ console.log('p29 original terminal middle3 independently selects unique X-3 fact
 console.log('p29 only GF29 linear roots [3,24] (24 double), no others');
 console.log('recovered historical DH:', JSON.stringify({p, g, a: recoveredA, b: bDH, A, B, K, ka}));
 console.log('p29 original prefix predicts terminal A,B:', JSON.stringify(last));
+console.log('two original page CRT signatures [P(3),P(24),P\'(24)]:', JSON.stringify(phraseCodes),
+  'signed-2016 word-number candidate:', phrase);
 console.log('PASS: 55-page syndrome census, original replay, three native plants');
