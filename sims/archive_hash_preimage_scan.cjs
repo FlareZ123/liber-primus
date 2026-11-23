@@ -60,8 +60,8 @@ async function main(){
   const periodPath='resources/external/2014-09-stage11-period-onion-hosts.txt';
   const periodText=fs.readFileSync(periodPath,'utf8');
   const periodBytes=Buffer.from(periodText,'utf8');
-  const periodLines=periodText.split(/\\r?\\n/).map(x=>x.trim().toLowerCase()).filter(Boolean);
-  const validPeriodLines=periodLines.filter(x=>/^[a-z2-7]{16}\\.onion$/.test(x));
+  const periodLines=periodText.split(/\r?\n/).map(x=>x.trim().toLowerCase()).filter(Boolean);
+  const validPeriodLines=periodLines.filter(x=>/^[a-z2-7]{16}\.onion$/.test(x));
   const periodHosts=[...new Set(validPeriodLines)];
   if(periodHosts.length!==3173)throw Error('Period host-list drift: expected 3173 unique v2 hosts, got '+periodHosts.length);
   inspect({path:periodPath,size:periodBytes.length},periodBytes);
