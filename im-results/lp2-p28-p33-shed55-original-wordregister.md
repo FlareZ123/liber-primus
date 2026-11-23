@@ -38,10 +38,18 @@ Consider the smallest complete reading: use the **214 p28 retained original rune
 
 All eight source outputs remain near the random GP29 baseline **1/29 ≈ 0.03448276**. None gives sustained coherent native plaintext; isolated short words in rendered transliteration are chance. The exact first 65 outputs of all eight are preserved in the test's deterministic output.
 
+## All-secret stationary mapping is now eliminated for the exact four register alignments
+
+The direct eight Vigenère gates leave the possibility of a stationary but completely secret nonlinear mapping from the p28 retained rune to its aligned p33 rune. That hypothesis has an **exact, key-independent contradiction**: a deterministic 29-symbol lookup cannot assign two different outputs to the same input.
+
+Both raw edge choices use **all 29** possible input GP29 glyphs. For raw first edge, 198 *distinct input/output rune pairs* occur among 214 aligned positions, with **29/29 input symbols taking multiple incompatible output values**. Raw last edge has 195 distinct pairs, also **29/29 conflicting inputs**. The exact-Q quotient first and last gates have **183 and 186** distinct pairs among 211 positions; **28/29 and 29/29** source symbols have conflicting outputs. All four orientations also have 29/29 conflicting output symbols in the reverse direction.
+
+This excludes *any one deterministic global substitution* between the two whole aligned streams, including arbitrary secret permutations and noninvertible lookup tables, without guessing the key. It **does not** exclude changing per-word/per-position keys, multiple cipher rounds, altered alignment or an authored side-information channel. Those would require independent source instructions.
+
 ## Judgment and next causal fork
 
 The manuscript's solved p57 "shed circumferences" might motivate retaining word interiors, but supplies **no first/last choice**, no p28→p33 target pointer, and no instruction to combine shucked p28 with p33 before or after cubic long division. The red p39 factor and signed-DH candidate do not specify that missing operation. Recasting the eight failed direct options as an arbitrary 214-symbol keystream would be overfitting.
 
 **Disposition:** close #2400's bounded typed-cipher inquiry under its stated missing-operation criterion. Preserve the exact 55-edge length match as a provisional visual register fact. Resume only when an independent first-party original source explicitly selects the edge convention, a cipher op and the p33/p28 transfer, or when a candidate correctly predicts a full untouched original paragraph and held-out region. No original unknown plaintext/key/destination recovered.
 
-**Reproduction:** [standalone read-only CJS source test](../sims/lp2_p28_p33_shed55_source_receiver_sft.cjs) consumes the unchanged original LP2 transcription, normalized rune corpus and the source-defined Q. The test asserts the complete 55-page word matches, **eight** length-equality pairs, 269→214 and 266→211, common exact Q remainder, both full Q reconstructions, all eight direct decrypt/re-encrypt cases and solved-native positive. **Windows Node22 PASS [run 45190278933](https://github.com/FlareZ123/liber-primus/actions/runs/45190278933)**.
+**Reproduction:** [standalone read-only CJS source test](../sims/lp2_p28_p33_shed55_source_receiver_sft.cjs) consumes the unchanged original LP2 transcription, normalized rune corpus and the source-defined Q. The test asserts the complete 55-page word matches, **eight** length-equality pairs, 269→214 and 266→211, common exact Q remainder, both full Q reconstructions, all eight direct decrypt/re-encrypt cases, four exact all-secret lookup conflicts and solved-native positive. **Windows Node22 PASS [run 45190278933](https://github.com/FlareZ123/liber-primus/actions/runs/45190278933)**.
