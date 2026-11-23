@@ -44,7 +44,7 @@ Q^x=E     => x == 483581994079670 mod M
 
 This extends the earlier 32-bit lower bound for the public8 candidate and identifies a new lower bound for shellE. A planted `T=Q^(x0+12000M) modP` is recovered at exactly `x0+12000M` by the *same* search for both residue classes. For each public value the original actual equality is evaluated over the entire 64-bit range without probabilistic sampling.
 
-The fully original-source read-only Node22 CommonJS [single-file test](../sims/lp2_p55_shed_public_values_full64_dlog_sft.cjs) regenerates P,Q from the **unchanged original 76 p55 runes**, checks shell/interior sizes and factors, executes the two complete searches, checks both planted positives, and prints PASS. It also optionally accepts three CADO virtual logs and performs complete CRT plus direct original-field exponentiation and a fixed 43-symbol GP0 readout.
+The fully original-source read-only Node22 CommonJS [single-file test](../sims/lp2_p55_shed_public_values_full64_dlog_sft.cjs) regenerates P,Q from the **unchanged original 76 p55 runes**, checks shell/interior sizes and factors, executes the two complete searches, checks both planted positives, and prints PASS. It also optionally accepts three CADO virtual logs and performs complete CRT plus direct original-field exponentiation and a fixed 43-symbol GP0 readout. **The exact original-input SFT passed cleanly on Windows Node22, [Actions run 45125095557](https://github.com/FlareZ123/liber-primus/actions/runs/45125095557): both 29,266-position exhaustions, both planted exponents and all original p55 input assertions succeeded.**
 
 ## Full logarithm attempt, conditional status
 
