@@ -65,6 +65,36 @@ const highPairs = highEdges.map(([i,j]) => ({
 const highTokens = cells.filter(x => x.value >= 240);
 assert.equal(highTokens.length, 17);
 assert.equal(original.filter(x => x === 252).length, 0);
+// Independently enumerate every length>=3 increasing directed path; all
+// prefixes and suffixes are included, without choosing the high-value band.
+/** @param {number[]} path @param {number[][]} out */
+function extendSuccessors(path, out) {
+  if (path.length >= 3) out.push(path);
+  const last = path[path.length - 1], r = Math.floor(last / 8), c = last % 8;
+  for (const dr of [-1, 0, 1]) {
+    for (const dc of [-1, 0, 1]) {
+      if (dr === 0 && dc === 0) continue;
+      const nr = r + dr, nc = c + dc;
+      if (nr < 0 || nr >= 32 || nc < 0 || nc >= 8) continue;
+      const next = nr * 8 + nc;
+      if (original[next] === original[last] + 1) {
+        extendSuccessors([...path, next], out);
+      }
+    }
+  }
+}
+const allSuccessorPaths = [];
+for (let i = 0; i < original.length; i++) {
+  extendSuccessors([i], allSuccessorPaths);
+}
+assert.equal(allSuccessorPaths.length, 6);
+assert.equal(allSuccessorPaths.filter(p => p.length === 3).length, 4);
+assert.equal(allSuccessorPaths.filter(p => p.length === 4).length, 2);
+assert.deepEqual(
+  [...new Set(allSuccessorPaths.map(p => p.map(i => cells[i].token).join('→')))].sort(),
+  ['48→49→4A', '48→49→4A→4B', '49→4A→4B', '4D→4E→4F'].sort()
+);
+
 
 // Source-derived check in the historically debated 59-digit alphabet:
 // 4H/4I/.../4O are numerically 4 less, but the exact seven
@@ -139,6 +169,10 @@ const output = {
     row: x.row, col: x.col, value: x.value, token: x.token,
   })),
   highConsecutiveEdges: highPairs,
+  allIncreasingNeighborPathsAtLeastThree: allSuccessorPaths.map(p => p.map(i => ({
+    row: cells[i].row, col: cells[i].col, token: cells[i].token,
+  }))),
+
   comparison: 'fixed original cell inventory; shuffle within physical JPEG page only',
   runs: simulations,
   seed: '0x33013301',
