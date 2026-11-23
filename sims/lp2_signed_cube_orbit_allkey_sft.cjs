@@ -131,7 +131,7 @@ assert.deepEqual(orbitCounts(solved57), [3, 6, 14, 28, 23, 20, 1, 0]);
 
 // Independent authentically solved LP1 prose excerpts, each section included once.
 const lp1 = readText('resources/liber-primus/lp1-plaintext-reference.txt');
-const marks = [...lp1.matchAll(/^### (\d+)\n/gm)];
+const marks = [...lp1.matchAll(/^### (\d+)\r?\n/gm)];
 const sections = Object.fromEntries(marks.map((m, i) => [
   +m[1], lp1.slice(m.index + m[0].length, marks[i + 1]?.index ?? lp1.length)
 ]));
@@ -139,10 +139,8 @@ const selectedLP1 = [1, 3, 6, 10, 12, 14, 15]
   .map((n) => sections[n].replace(/\(.*?\)/gs, '').replace(/\d+/g, '')).join(' ');
 const nativeLP1 = latinToGP(selectedLP1);
 assert.equal(nativeLP1.length, 2357);
-assert.deepEqual(orbitCounts(nativeLP1), [39, 123, 0, 0, 0, 0, 31, 23].map((v, i) => {
-  // Only compare the invariant fixed and two-cycle bins; other bins are computed below.
-  return i === 0 || i === 1 || i === 6 || i === 7 ? v : orbitCounts(nativeLP1)[i];
-}));
+const lp1OrbitCounts = orbitCounts(nativeLP1);
+assert.deepEqual([0, 1, 6, 7].map((i) => lp1OrbitCounts[i]), [39, 123, 31, 23]);
 
 const gibran = latinToGP(readText('resources/control/gibran_prophet_58585.txt'));
 const shakespeare = latinToGP(readText('resources/control/shakespeare_first300k.txt'));
