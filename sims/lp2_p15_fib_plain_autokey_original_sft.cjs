@@ -27,7 +27,7 @@ const spiralCoords=[[1,1],[1,2],[2,2],[2,1],[2,0],[1,0],[0,0],
 const spiral=spiralCoords.map(([y,x])=>printed[y][x]);
 assert.deepEqual(spiral,[3299,3298,3296,3294,3288,3278,3258,3222,
 3152,3038,2838,2472,1820,708,1206,4516]);
-const fib=[0,1];
+const fib=[0,1,2];
 while(fib.length<16)fib.push(fib.at(-1)+fib.at(-2));
 const primes=[];for(let i=2;primes.length<988;i++){
  let ok=true;for(let j=2;j*j<=i;j++)if(i%j===0){ok=false;break;}
