@@ -239,6 +239,39 @@ assert.equal(totientScores.length,8);
 assert(totientScores.every(v=>!v.p53_F_transparent.complete));
 assert.equal(totientScores.filter(v=>v.p55_F_transparent.complete).length,1);
 
+
+const primes=[];
+for(let n=2;primes.length<255;n++) if(primes.every(p=>n%p!==0||p*p>n)) primes.push(n);
+assert.equal(primes.length,255);
+assert.equal(primes[0],2);
+assert.equal(primes[49],229);
+const primeIndexedScores=[];
+for(const radix of [59,60]) {
+  // Two 00 entries are undefined as one-based prime ordinals, so skip them.
+  const indexed = (positions) => sourceBytes(positions,radix).map(v=>{
+    assert(v>0 && v<=255);
+    return (primes[v-1]-1)%29;
+  });
+  const normalInside=indexed(keyInner), normalRim=indexed(keyRim);
+  for(const reverse of [false,true]) {
+    const a=reverse?normalInside.slice().reverse():normalInside;
+    const b=reverse?normalRim.slice().reverse():normalRim;
+    for(const sign of [-1,1]) {
+      const d53=direct(p53,a,sign),d55=direct(p55.slice(1),b,sign);
+      const legal53=transparentPaths(p53,a,sign),legal55=transparentPaths(p55.slice(1),b,sign);
+      assert.deepEqual(direct(d53,a,-sign),p53);
+      assert.deepEqual(direct(d55,b,-sign),p55.slice(1));
+      assert(transparentPaths(encryptTransparent(native179,a,sign),a,sign).complete);
+      assert(transparentPaths(encryptTransparent(native75,b,sign),b,sign).complete);
+      primeIndexedScores.push({radix,reverse,sign,p53_ioc:ioc(d53),p55_ioc:ioc(d55),
+        p53_F_transparent:legal53,p55_F_transparent:legal55});
+    }
+  }
+}
+assert.equal(primeIndexedScores.length,8);
+assert(primeIndexedScores.every(v=>!v.p53_F_transparent.complete));
+assert.equal(primeIndexedScores.filter(v=>v.p55_F_transparent.complete).length,3);
+
 /** @param {{p53_ioc:number,p55_ioc:number}[]} result */
 function extrema(result) {
   return {
@@ -252,6 +285,7 @@ assert.equal(ascii.length,8);
 assert.equal(combined.length,32);
 const summary = {
   totient_direct_range:extrema(totientScores), totient_Ftransparent:totientScores,
+  prime_indexed_totient_range:extrema(primeIndexedScores), prime_indexed_Ftransparent:primeIndexedScores,
   source: {runes_p53:179,runes_p55:76,table:{rim:76,interior:180,zero_rim:192,zero_interior:229,
     rim_after_null:75,interior_after_null:179},old_hidden179_sha256:"82c135148b6cf85e9b550afdbc6204be075ff67717356a8ae18b76f9cc3af5fa"},
   native_p57_ioc:ioc(solved),
@@ -259,7 +293,7 @@ const summary = {
   p05_mix_ioc_range:[Math.min(...combined.map(v=>v.ioc)),Math.max(...combined.map(v=>v.ioc))],
   best_direct:directScores.sort((a,b)=>b.p53_ioc+b.p55_ioc-a.p53_ioc-a.p55_ioc).slice(0,3),
   best_rank28:rankScores.sort((a,b)=>b.p53_ioc+b.p55_ioc-a.p53_ioc-a.p55_ioc).slice(0,3),
-  ascii_xor:ascii,model_counts:{direct:16,rank28:32,p05_xor:32,ascii_xor:8,totient:8}
+  ascii_xor:ascii,model_counts:{direct:16,rank28:32,p05_xor:32,ascii_xor:8,totient:8,prime_indexed_totient:8}
 };
 assert(summary.native_p57_ioc>0.05);
 assert(summary.direct_range.p53[1]<0.04);
