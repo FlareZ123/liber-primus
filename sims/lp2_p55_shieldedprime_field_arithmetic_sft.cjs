@@ -71,6 +71,35 @@ assert.equal(P%29n,24n);
 assert.equal(P%28n,9n);
 assert.equal(P%43n,7n);
 
+// Constructive field-escape requirement: the smallest cyclic fields that
+// could encode the 28 nonzero GP29 deltas and all 29 GP29 symbols have
+// extension degrees 3 and 7 respectively. No such extension is specified.
+assert.equal(powMod(P,3n,28n),1n);
+for(let d=1n;d<3n;d++) assert.notEqual(powMod(P,d,28n),1n);
+assert.equal(powMod(P,7n,29n),1n);
+for(let d=1n;d<7n;d++) assert.notEqual(powMod(P,d,29n),1n);
+// The source p50 GF29 degree-3 factor does NOT directly define GF(P^3):
+// it has this exact linear root modulo the independently sourced P.
+const root3=12866999782905305182799752564858643072087387321289651048179594n;
+assert.equal((root3*root3*root3+14n*root3*root3+16n*root3+24n)%P,0n);
+// The historically signed 2014 7x7 magic square has constant row sum 1033.
+// Therefore its normalized linear action has a proper invariant 1D line;
+// it cannot serve as an irreducible 7D order-29 matrix over GF(P).
+const magic7=[
+ [7,375,236,190,27,17,181],
+ [351,223,14,47,293,98,7],
+ [456,232,121,114,72,23,15],
+ [16,65,270,331,270,65,16],
+ [15,23,72,114,121,232,456],
+ [7,98,293,47,14,223,351],
+ [181,17,27,190,236,375,7],
+];
+for(let i=0;i<7;i++) {
+  assert.equal(magic7[i].reduce((a,b)=>a+b,0),1033);
+  for(let j=0;j<7;j++) assert.equal(magic7[i][j],magic7[6-i][6-j]);
+}
+console.log('minimal_extension_degree_28=3; minimal_extension_degree_29=7');
+
 // When gcd(29,P-1)=1, taking 29th powers permutes EVERY nonzero
 // residue. Thus no nontrivial 29th-residue class or order-29 subgroup.
 const d29=((euclid(29n,P-1n).x%(P-1n))+(P-1n))%(P-1n);
