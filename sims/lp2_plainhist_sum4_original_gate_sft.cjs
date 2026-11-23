@@ -210,6 +210,46 @@ for(const L of longLs)for(const scope of scopes){
  assert(p<=c,"positive long-suffix theorem failed L="+L+" scope="+scope);
 }
 
+
+/* Book-global stationary plaintext-history m, predicted terminal cipher
+ * output n=3: identical last m+3 plain symbols force identical last 3 C.
+ * This generalizes the m4 issue and sharply marks the m7/m8 frontier. */
+function genericMemoryPairs(words,m,n,kind){
+ const hist=new Map();
+ for(const w of words){
+  if(w.seq.length<m+n)continue;
+  const key=w.seq.slice(-(kind==="plain"?m+n:n)).join(",");
+  hist.set(key,(hist.get(key)||0)+1);
+ }
+ return [...hist.values()].reduce((a,v)=>a+v*(v-1)/2,0);
+}
+const historyMs=[4,5,6,7,8],historyN=3;
+const originalHistoryCapacity=Object.fromEntries(historyMs.map(m=>[
+ m,genericMemoryPairs(original,m,historyN,"cipher")
+]));
+assert.deepEqual(historyMs.map(m=>originalHistoryCapacity[m]),[4,0,0,0,0]);
+const memoryFrontier=[];
+for(let si=0;si<sources.length;si++){
+ const rng=rand(0x3301+333+si),trials=[];
+ for(let j=0;j<128;j++){
+  const sampled=sampleNative(original,sources[si],rng);
+  trials.push(historyMs.map(m=>genericMemoryPairs(sampled,m,historyN,"plain")));
+ }
+ const result=Object.fromEntries(historyMs.map((m,j)=>{
+  const vals=trials.map(a=>a[j]);
+  return [m,{cipherCapacity:originalHistoryCapacity[m],
+    minimum:Math.min(...vals),maximum:Math.max(...vals),
+    exceeding:vals.filter(x=>x>originalHistoryCapacity[m]).length}];
+ }));
+ for(const m of [4,5,6,7])assert.equal(result[m].exceeding,128);
+ memoryFrontier.push({source:sources[si].name,trials:128,results:result});
+ for(const m of historyMs){
+  assert(genericMemoryPairs(positiveNative,m,historyN,"plain")<=
+    genericMemoryPairs(positivePerm,m,historyN,"cipher"),
+    "positive m-history invariant");
+ }
+}
+
 // Exact alphabet-affine gauge equivalence for an arbitrary 29-row table:
 // P' = u*P+v, s' = u*s+4v, and A'_{s'}(P') = A_s(P).
 // For v != 0 this also changes the unobserved initial four P values to v.
@@ -294,7 +334,7 @@ for(const [a,b,mode] of [[3,19,"book"],[17,4,"page"],[26,23,"book"]]){
 console.log(JSON.stringify({
  source:{runes:12956,words:2896,crossPageWords:32},
  theorem:"same (a,(b+c+d)%29,e,f) in any six-plaintext-window forces identical final ciphertext pair under all 29!^29 secret row tables",
- originalBounds,nativeStats,originalLongBounds,longTailNativeStats,positivePermutation:"PASS",
+ originalBounds,nativeStats,originalLongBounds,longTailNativeStats,originalHistoryCapacity,memoryFrontier,positivePermutation:"PASS",
  affine:{originalAffine,positiveAffine},
  conclusion:"No plaintext/key found. Sum4 generic unknown. Only full 841-key affine subfamily rejected under these source-native controls."
 },null,2));
