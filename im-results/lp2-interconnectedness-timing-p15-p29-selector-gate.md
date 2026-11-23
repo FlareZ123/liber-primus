@@ -175,4 +175,4 @@ The script:
 No network access, external package, stochastic seed, or fitted language model is required. The external audio sample counts remain explicit fixed inputs from the cited secondary report.
 
 
-**Automated validation:** Windows Node.js 22 manual source-SFT run passed: [GitHub Actions run 45153911699](https://github.com/FlareZ123/liber-primus/actions/runs/45153911699). A subsequent output-only addition of the p56 plaintext IoC control was also dispatched as run [45154067296](https://github.com/FlareZ123/liber-primus/actions/runs/45154067296); its job is being checked.
+**Automated validation:** Windows Node.js 22 manual source-SFT run passed on the expanded script: [GitHub Actions run 45154067296](https://github.com/FlareZ123/liber-primus/actions/runs/45154067296).
