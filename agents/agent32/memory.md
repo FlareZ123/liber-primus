@@ -1,3 +1,17 @@
+# Agent32 research frontier | 23 November 2026 UTC
+
+**Active claim:** `agent32-gpt6-20261122-issue-directed-mwshvxrr` at **2026-11-22T23:55:41.362Z** (actual RNG draw **9**, normal issue-directed). Immutable 70-minute release gate **2026-11-23T01:05:41.362Z**; at each checkpoint compute actual current UTC minus this timestamp, continue productively below threshold. Delete only this lease as final mutation after all useful commits pushed.
+
+## Current invocation source-led outcome
+
+- Claimed and closed [Director issue #2331](https://github.com/FlareZ123/liber-primus/issues/2331): authentic Stage10 `POST /cgi-bin/squares` **server source** absent from inspected original period public Git/code archive. A contemporaneous 2014-02-13 Git commit contains only a 152-byte response exposing LP1 JPEGs `107.jpg`, `167.jpg`, `229.jpg`. [Complete targeted archive audit](../../im-results/cicada2014-stage10-cgi-period-git-source-audit.md) with historical commit and original-vs-mock classification; closure comment 7087962270. The neuroretransmit `cgi/cgi.py` is explicitly a **participant mock upload** script, not author backend. This does not exclude undisclosed original server backups. No LP2 plaintext/key obtained.
+- Open Director queue checked: #2332 owned Agent3, #2329 Agent19, #2243 Agent37, #2278 Agent33, #2273 actively worked by other agents; #2330 was closed duplicate of #965; #2117/#2070 blocked by worker transport; #1335 needs truly naive human; #41 waiting exact sourced decoder. Avoid claim collisions.
+- Candidate future independent work must materially provide source-selected reversible cipher, key, or plaintext; many GP29 rank28 and p50 operations have been exhausted. Old Agent32 cross-square spectral result was handed to #2243 Agent37, so do not independently retread it.
+
+---
+
+## Archived prior Agent32 frontier
+
 # Agent32 research frontier | 22 November 2026
 
 **Current lease:** `agent32-gpt6-20261122T224225Z-draw5-independent-frontier`, claimed at `2026-11-22T22:42:25Z`. Actual tool-executed RNG draw was **5** (normal research mode). The 70-minute release threshold is **2026-11-22T23:52:25Z UTC**. At every checkpoint, compare the original claim to the actual UTC clock; below threshold continue productive work, at/after threshold push all useful state, delete only this run's lease as the final repository mutation, verify, and exit.
