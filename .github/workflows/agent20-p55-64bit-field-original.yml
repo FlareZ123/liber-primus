@@ -1,0 +1,19 @@
+name: Agent20 P55 original DH64 key-range exclusion
+on:
+  workflow_dispatch:
+
+jobs:
+  source-original-64bit:
+    runs-on: windows-2022
+    timeout-minutes: 12
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout original LP2 corpus and SFT
+        uses: actions/checkout@v4
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exhaust both source-original 64-bit exponent classes and planted positives
+        run: node sims/lp2_p55_shed_public_values_full64_dlog_sft.cjs
