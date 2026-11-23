@@ -66,6 +66,12 @@ A simpler independent necessary-condition check reaches the same direction: acro
 
 As manuscript-native reference, genuinely clear physical p57 has 95 source runes with orbit counts **[3,6,14,28,23,20,1,0]**. Seven separately selected solved LP1 prose sections, encoded into native GP with the same documented spelling rules, provide 2,357 runes; their cycle 0/1/6/7 counts are **39/123/31/23**. These controls are comparatively short; neither is the statistical reference for the full 12,956-rune exclusion.
 
+### Exact first 13 red runes: two provisional source cribs cannot be cube-only
+
+The original p0 first red two words are source-order `S H E O G M IA F | S Y E NG C` (8|5 GP runes). The previously proposed, **unverified** signed-2016 8|5 quotation `EPIPHANY SEECS` disagrees with its fixed Q-orbit identities at **10 of 13 rune positions**; the independent same-manuscript p57 quotation-shaped alternative `DIVINITY WITHIN` disagrees at **nine of 13**. No choice of arbitrary secret per-position cube exponent or arbitrary within-cycle bijection can repair even one of these mismatched source/title positions in an intact-order direct Q-only decoding.
+
+This **does not reject either conjectural crib** under a different operator that crosses Q-orbits; neither title has been established as authentic plaintext. The SFT machine-asserts both mismatch counts on the untouched first13 source indices. The test provides a local clue receiver gate, not another retrospective short-phrase match.
+
 ### Visual-exception sparsity cannot rescue the cube by local corrections alone
 
 The separate [image-verified physical feature inventory](lp2-redrun-wordmark-antirepeat-capacity.md) reports **213 source-red runes in 16 runs**, **31 large printed marks**, and **four raised apostrophes** across the unknown original register. Even if every one were granted **an entirely free extra cross-orbit correction at one GP rune position** (overgenerously treating all 248 as disjoint editable slots), the model would still fall **965 rune changes short** of the most permissive full-book native-English transport minimum 1,213. Therefore adding isolated red/mark exception edits to otherwise unbounded cube-only rounds cannot solve ordinary GP English across the entire book.
