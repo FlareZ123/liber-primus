@@ -30,12 +30,12 @@ jobs:
         run: node sims/lp2_2014_unruneit_input_contract_sft.cjs > unrune-2014-static-input-contract.json
       - name: Show original immutable user prompts and key handling bytecode
         run: |
-          node -e 'const j=require("./unrune-2014-static-input-contract.json"); console.log("PROMPTS "+JSON.stringify(j.userFacingMessages)); for(const x of j.relevantMethodBytecode){if(/choiceManager|decipher|unShift|getRunePrime|run\(|main\(/.test(x.signature)){console.log("\nMETHOD "+x.signature);console.log(x.lines.join("\n"));}}'
+          node -e 'const j=require("./unrune-2014-static-input-contract.json"); console.log("PROMPTS "+JSON.stringify(j.userFacingMessages)); for(const x of j.relevantMethodBytecode){if(/choiceManager|decipher|unShift|decompRunes|getRuneFrom|guessPhrases|patternSearch|checkForPattern|getWordsOfTheLength|checkWord|loadPhraseListFromFile|loadWordlistFromFile|patternParser|lengthByRunes|fileContents|generateWordlist|categorizeByLength|run\(|main\(/.test(x.signature)){console.log("\nMETHOD "+x.signature);console.log(x.lines.join("\n"));}}'
       - name: Preserve source and static interface evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: agent20-unruneit-original-static-audit
+          name: agent15-unruneit-full-parser-audit
           path: |
             unrune-2014-source-acquisition.jsonl
             unrune-2014-static-input-contract.json
