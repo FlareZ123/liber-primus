@@ -89,6 +89,35 @@ function ioc(stream) {
   for (const v of stream) counts[v]++;
   return counts.reduce((s, n) => s + n * (n - 1), 0) / (stream.length * (stream.length - 1));
 }
+// Actual source-authenticated p56 Fehu rule is stricter than arbitrary
+// arithmetic substitution: original plaintext F MUST be transmitted as
+// unchanged ciphertext F, consuming no prime. Therefore a non-F ciphertext
+// rune can NEVER decode to plaintext F. Before the FIRST ciphertext F, the
+// key clock and this contradiction are forced with no secret F mask.
+for (const [label, observed, forcedIndex] of [
+  ['p0-physical', page(0), 3],
+  ['p55-physical', page(55), 6],
+  ['p55-complete-word-body', page(55).slice(1), 2],
+]) {
+  assert(observed.slice(0, forcedIndex + 1).every((v) => v !== 0));
+  assert.equal(observed[forcedIndex], key[forcedIndex]);
+  assert.notEqual(observed[forcedIndex], 0);
+  console.log('FORCED-F-CONTRADICTION', { label, zeroBasedCipherOffset: forcedIndex,
+    observedCipherRune: observed[forcedIndex],
+    primeTotientKeyRune: key[forcedIndex],
+    forcedPlainRune: 0 });
+}
+// The literal SHED interior stream is a separate, physically selected register.
+// This particular 43-rune register has one legal F-transparent history;
+// its completely determined output nonetheless fails to reveal native prose.
+const interiorPlain = inner.map((c, i) => (c - key[i] + 29) % 29);
+assert.equal(inner.length, 43);
+assert.equal(inner[11], 0);
+assert(interiorPlain.every((v) => v !== 0));
+assert(Math.abs(ioc(interiorPlain) - 0.03986710963455149) < 1e-12);
+console.log('p55-43-interiors-legal-nonprose', { runes: inner.length,
+  indexOfCoincidence: ioc(interiorPlain),
+  completePlaintext: interiorPlain.map((v) => corpus.translit[v]).join(' ') });
 const expected = {
   0: { true: 0.03916235266590623, false: 0.03574039952034161 },
   55: { true: 0.037192982456140354, false: 0.035789473684210524 },
