@@ -1,10 +1,5 @@
 name: Agent50 P7 P8 dual field source selector
 on:
-  push:
-    paths:
-      - 'sims/lp2_p7_p8_dual_field_source_selector_sft.cjs'
-      - '.github/workflows/agent50-p7p8-dual-field-selector.yml'
-      - 'im-results/lp2-p7-p8-dual-field-original-source-selector.md'
   workflow_dispatch:
 permissions:
   contents: read
