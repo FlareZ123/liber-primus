@@ -159,6 +159,39 @@ for (const [name, rule] of Object.entries(functions)) {
 candidates.sort((a, b) => b.nativeTrigramNats - a.nativeTrigramNats);
 assert.equal(candidates.length, 40);
 assert.ok(candidates[0].nativeTrigramNats < -3.7);
+// The authentic p56 decoder consumes phi(consecutive primes), skipping a
+// literal F. As a distinct original-source trial, use the p14 F and test
+// this historical mechanism at its original prime-2 start or at prime137,
+// the uniquely count-selected prime from this page's 137-rune register.
+/** @param {number} number */
+function isPrime(number) {
+  if (number < 2) return false;
+  for (let d = 2; d * d <= number; d++)
+    if (number % d === 0) return false;
+  return true;
+}
+/** @param {number} start */
+function phiTape(start) {
+  const tape = [];
+  for (let candidate = start; tape.length < N; candidate++)
+    if (isPrime(candidate)) tape.push((candidate - 1) % 29);
+  return tape;
+}
+const phiTrials = [];
+for (const firstPrime of [2, 137]) {
+  const key = phiTape(firstPrime);
+  for (const direction of ["printed", "reversed"]) {
+    const packet = direction === "printed" ? sourcePacket :
+      sourcePacket.slice().reverse();
+    const plaintext = packet.map((value, i) => (value - key[i] + 29) % 29);
+    phiTrials.push({firstPrime, direction,
+      nativeTrigramNats: score(plaintext),
+      prefixGP: plaintext.slice(0, 25).map((i) => corpus.translit[i]).join(" ")});
+  }
+}
+phiTrials.sort((a, b) => b.nativeTrigramNats - a.nativeTrigramNats);
+assert.equal(phiTrials.length, 4);
+assert.ok(phiTrials[0].nativeTrigramNats < -3.7);
 const nativeP57 = score(corpus.pages[57].indices);
 assert.ok(nativeP57 > -2.6);
 
@@ -223,6 +256,7 @@ console.log(JSON.stringify({
   realTrialCount: candidates.length,
   strongestOriginalInverse: candidates[0],
   topFive: candidates.slice(0, 5),
+  authenticP56PrimeTotientP14FSkipTrials: phiTrials,
   directPairTransferAllSecretBounds: direct,
   syntheticFull137CipherRoundTrip: true,
   decision: "No authentic plaintext from the literal F-fold key family; direct static folded-pair encoding of p14 is impossible under the exact source orientation.",
