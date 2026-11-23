@@ -35,7 +35,7 @@ const sha256 = data => crypto.createHash('sha256').update(data).digest('hex');
 function execute(args) {
   const cp = spawnSync(outguess, args, { encoding: 'utf8', timeout: 120000 });
   if (cp.error) throw cp.error;
-  return { status: cp.status, output: (cp.stdout || '') + '\n' + (cp.stderr || '') };
+  return { status: cp.status, signal: cp.signal, output: (cp.stdout || '') + '\n' + (cp.stderr || '') };
 }
 
 function entropy(buffer) {
@@ -86,6 +86,7 @@ function main() {
       key,
       historicalOutGuessPositiveRecovered: true,
       originalOutGuessExit: result.status,
+      originalOutGuessSignal: result.signal,
       extractedBytes: data.length,
       extractedSha256: sha256(data),
       extractedFirst32Hex: preview.toString('hex'),
