@@ -1,13 +1,13 @@
 'use strict';
 /**
- * Original-source, five-numbered-passage Hill-5 cross-stream mixer.
+ * Original-source, five-numbered-passage Hill-5 cross-stream mixer: both authentic 2014 order-five squares.
  *
  * Original LP2 p36-p38 displays numbered 1..5 passages of 139/91/98/96/129
  * runes; the original LP1 p05 Wisdom page supplies a 5x5 source magic square
  * and explicitly mentions prime weights and Euler's totient. Each original
  * 5-rune column of the 91-position shared core is mixed by one fixed source
- * 5x5 matrix over GF29. Four predeclared models: raw vs totient cell weights,
- * square in printed/transpose orientation. No unknown secret key or clocks.
+ * 5x5 matrix over GF29. Eight predeclared models: two documented 2014
+ * order-five squares x raw/totient weights x printed/transposed orientation. No unknown secret key or clocks.
  *
  * Does not claim Cicada selected the mixer; source gives no 'apply Hill5'
  * instruction and the remaining 98 runes are deliberately outside scope.
@@ -48,6 +48,15 @@ const sourceSquare=[
 ];
 for(const row of sourceSquare)assert.equal(row.reduce((s,v)=>s+v,0),1033);
 for(let j=0;j<5;j++)assert.equal(sourceSquare.reduce((s,r)=>s+r[j],0),1033);
+const sourceSquare3301=[
+  [434,1311,312,278,966],
+  [204,812,934,280,1071],
+  [626,620,809,620,626],
+  [1071,280,934,812,204],
+  [966,278,312,1311,434]
+];
+for(const row of sourceSquare3301)assert.equal(row.reduce((s,v)=>s+v,0),3301);
+for(let j=0;j<5;j++)assert.equal(sourceSquare3301.reduce((s,r)=>s+r[j],0),3301);
 const mod=x=>((x%29)+29)%29;
 /** @param {number} n */
 function phi(n){
@@ -106,13 +115,21 @@ const cases=[
   ['raw','column',sourceSquare],
   ['raw','row',transpose(sourceSquare)],
   ['totient','column',sourceSquare.map(r=>r.map(phi))],
-  ['totient','row',transpose(sourceSquare.map(r=>r.map(phi)))]
+  ['totient','row',transpose(sourceSquare.map(r=>r.map(phi)))],
+  ['3301-raw','column',sourceSquare3301],
+  ['3301-raw','row',transpose(sourceSquare3301)],
+  ['3301-totient','column',sourceSquare3301.map(r=>r.map(phi))],
+  ['3301-totient','row',transpose(sourceSquare3301.map(r=>r.map(phi)))]
 ];
 const expected=[
   ['raw','column',3,0.033586677639541075],
   ['raw','row',3,0.03494215036065256],
   ['totient','column',28,0.03408045698794598],
-  ['totient','row',28,0.03471946555646996]
+  ['totient','row',28,0.03471946555646996],
+  ['3301-raw','column',10,0.034322505688144454],
+  ['3301-raw','row',10,0.03419664036404124],
+  ['3301-totient','column',23,0.033209081667231445],
+  ['3301-totient','row',23,0.03416759452001743]
 ];
 assert.equal(ioc(flatten(original)),0.03448709880427942);
 const results=[];
@@ -154,7 +171,7 @@ for(const [index,[model,orientation,matrix]] of cases.entries()){
   });
 }
 console.log(JSON.stringify({
-  interpretation:'four source-anchored but not historically instructed Hill5 paragraph mixers',
+  interpretation:'eight source-anchored but not historically instructed Hill5 paragraph mixers',
   result:'No recovered unknown original LP2 plaintext or independently sourced key',
   passageLengths:counts,
   commonCoreSymbols:455,
