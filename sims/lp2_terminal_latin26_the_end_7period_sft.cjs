@@ -146,6 +146,72 @@ for (const sign of [1, -1]) {
   });
 }
 
+
+// Global printed-word clock, a separate independent bookend register:
+// exactly 2,896 original words; the repeated ordered 3+3 word bigram
+// begins at global word indices 1,462 and 2,894, both even. This
+// naturally permits two alternated word keys of THREE positions each,
+// resetting within every printed word. It respects all printed spaces,
+// unlike the continuous seven-phase or 14-phase candidates above.
+const fs = require('node:fs');
+const path = require('node:path');
+const runicSource = fs.readFileSync(
+  path.join(__dirname, '../resources/liber-primus/lp2-transcription.txt'),
+  'utf8'
+);
+// Source / line and % physical-page wraps are explicitly *not*
+// lexical dividers. Original punctuation, hyphens and section symbols
+// remain dividers. Include the first 2,896 complete unknown-page words.
+const originalWords = (runicSource.replace(/[\\/\n%]/g, '').match(/[\u16a0-\u16ff]+/gu) || [])
+  .slice(0, 2896)
+  .map((word) => [...word].map((rune) => source.runes.indexOf(rune)));
+assert.equal(originalWords.length, 2896);
+const bookCipher = source.pages.filter((entry) => entry.page < 56).flatMap((entry) => entry.indices);
+assert.deepEqual(originalWords.flat(), bookCipher);
+assert.deepEqual(originalWords[1462], [23, 11, 1]);
+assert.deepEqual(originalWords[1463], [17, 18, 10]);
+assert.deepEqual(originalWords[2894], [23, 11, 1]);
+assert.deepEqual(originalWords[2895], [17, 18, 10]);
+assert.equal((2894 - 1462) % 2, 0);
+
+const twoWordReset = [];
+for (const sign of [1, -1]) {
+  const firstTwoWordCrib = [[16, 8, 18], [18, 9, 23]];
+  const firstTwoWordCipher = [[23, 11, 1], [17, 18, 10]];
+  const keys = firstTwoWordCipher.map((w, i) =>
+    w.map((c, j) => mod29(c - sign * firstTwoWordCrib[i][j]))
+  );
+  const plainWords = originalWords.map((word, i) =>
+    word.map((c, j) => {
+      const k = keys[i % 2][j % 3];
+      const plain = mod29(sign === 1 ? c - k : k - c);
+      assert.equal(mod29(sign === 1 ? plain + k : k - plain), c);
+      return plain;
+    })
+  );
+  assert.deepEqual(plainWords[1462], firstTwoWordCrib[0]);
+  assert.deepEqual(plainWords[1463], firstTwoWordCrib[1]);
+  assert.deepEqual(plainWords[2894], firstTwoWordCrib[0]);
+  assert.deepEqual(plainWords[2895], firstTwoWordCrib[1]);
+  const plainBook = plainWords.flat();
+  assert.equal(plainBook.length, 12956);
+  const splitPages = [];
+  let offset = 0;
+  for (const physical of source.pages.filter((entry) => entry.page < 56 && entry.indices.length)) {
+    const a = plainBook.slice(offset, offset + physical.indices.length);
+    offset += physical.indices.length;
+    splitPages.push({ page: physical.page, ioc: ioc(a), prefix: translated(a.slice(0, 15)) });
+  }
+  const p27Record = splitPages.find((p) => p.page === 27);
+  const p55Record = splitPages.find((p) => p.page === 55);
+  twoWordReset.push({
+    sign, keys, fullIoC: ioc(plainBook), p27: p27Record, p55: p55Record,
+    start: plainWords.slice(0, 13).map((w) => translated(w)).join(' / '),
+  });
+}
+assert.ok(Math.abs(twoWordReset[0].fullIoC - 0.034490623431216116) < 1e-12);
+assert.ok(Math.abs(twoWordReset[1].fullIoC - 0.0344612868374139) < 1e-12);
+
 console.log(JSON.stringify({
   kind: 'original LP2 terminal seven-period fixed-crib trial',
   sevenRuneSource: cEnd,
@@ -155,5 +221,6 @@ console.log(JSON.stringify({
   p57KnownNativeControlIoC: ioc(p57),
   records,
   p27FourteenPhase,
+  twoWordReset,
   conclusion: 'Both frozen seven-period alternatives decode p27 and p55 to nonlinguistic GP29 streams. No original unknown plaintext is authenticated.',
 }, null, 2));
