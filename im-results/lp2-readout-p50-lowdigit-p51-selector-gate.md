@@ -36,7 +36,7 @@ The p28 report selects \(x\mapsto x^3\bmod29\), with inverse exponent 19. The p5
 3. Test both printed and reversed panel order and both additive signs.
 4. As a composition check, test cube/inverse-cube after adding the raw panel key, and cube/inverse-cube after cubing the ciphertext rune before adding the key.
 
-This produces 16 transformed-key additive candidates and 32 composition candidates. The cube/inverse-cube map passes the exact 29-symbol positive control; every additive candidate also round-trips a planted GP29 plaintext. **No candidate is readable plaintext.** Across the 48 outputs, the maximum IoC is 0.04108, below the minimum 0.04577 among the 3,036 contiguous 72-rune windows of the normalized solved LP1 reference. The existing p51 SFT separately rejects raw table-byte substitutions, raw additive keys, simple 9×8 transpositions and two word-edge feedback choices.
+This produces 16 transformed-key additive candidates and 32 cube/additive composition candidates. The cube/inverse-cube map passes the exact 29-symbol positive control; every additive candidate also round-trips a planted GP29 plaintext. A further **24 mixed-edge candidates** use each p51 word's GP29 index sum as an address into the p50 low-digit map; the parity of that low digit chooses whether to shed the first or last rune of that word, with both global parity conventions tested against raw/cube/inverse-cube panel keys, both panel directions and both signs. This is a source-motivated reading of the 2016 “numbers are direction” instruction, not a fitted mask. **No candidate is readable plaintext.** Across all 72 outputs, the maximum IoC is 0.04186, below the minimum 0.04577 among the 3,036 contiguous 72-rune windows of the normalized solved LP1 reference. The existing p51 SFT separately rejects raw table-byte substitutions, raw additive keys, simple 9×8 transpositions and two word-edge feedback choices.
 
 Reproduce the new finite test from the repository root:
 
@@ -44,6 +44,6 @@ Reproduce the new finite test from the repository root:
 
 ## Decision
 
-The p28 → p50 → p51 chain is a **worthwhile intended-navigation hypothesis**: it gives a concrete reason to prioritize the unique p51 72/72 receiver and independently points to the p27 instar-like illustration. It does not yet specify the p51 cipher's changing state or how to choose one edge per word. The tested simple cube-transformed numeric key and cube/additive compositions fail.
+The p28 → p50 → p51 chain is a **worthwhile intended-navigation hypothesis**: it gives a concrete reason to prioritize the unique p51 72/72 receiver and independently points to the p27 instar-like illustration. It does not yet specify the p51 cipher's changing state or how to choose one edge per word. The tested simple cube-transformed numeric key, cube/additive compositions, and word-sum/parity mixed-edge rule fail.
 
-Do not expand the same direct additive family with arbitrary offsets or permutations. The next useful input must specify a source-authored state transition, edge-selection rule, or external key that predicts readable p51 plaintext and then an untouched neighboring word. No unknown LP2 plaintext or authentic key has been recovered.
+Do not expand the same direct additive family with arbitrary offsets or permutations. The next useful input must specify a different source-authored state transition or external key that predicts readable p51 plaintext and then an untouched neighboring word. No unknown LP2 plaintext or authentic key has been recovered.

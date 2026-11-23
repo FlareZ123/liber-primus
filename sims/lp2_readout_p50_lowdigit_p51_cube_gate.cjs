@@ -97,6 +97,36 @@ for (const cut of ['first', 'last']) {
 }
 assert.equal(results.filter(x => x.family === 'cube-transformed-key').length, 16);
 assert.equal(results.filter(x => x.family === 'cube-additive-composition').length, 32);
+
+// A source-directed mixed-edge rule: sum each word's GP29 indices, use that
+// sum as an address into the p50 low-digit map, and let parity choose the edge.
+const wordSums = words.map(word => mod(word.reduce((sum, rune) => sum + rune, 0)));
+const directionDigits = wordSums.map(sum => lowDigits[sum] % 2);
+for (const evenDrops of ['first', 'last']) {
+  const retained = words.flatMap((word, i) => {
+    const dropFirst = directionDigits[i] === 0
+      ? evenDrops === 'first'
+      : evenDrops === 'last';
+    return dropFirst ? word.slice(1) : word.slice(0, -1);
+  });
+  assert.equal(retained.length, 72);
+  for (const orientation of ['printed', 'reverse']) {
+    const bytes = orientation === 'printed' ? panel : panel.slice().reverse();
+    for (const exponent of [1, 3, 19]) {
+      const key = bytes.map(value => pow(value % 29, exponent));
+      for (const sign of [-1, 1]) {
+        const plain = retained.map((cipher, i) => mod(cipher + sign * key[i]));
+        results.push({
+          family: 'word-sum-directed-edge',
+          evenDrops, orientation, exponent, sign,
+          ioc: ioc(plain), text: translit(plain)
+        });
+      }
+    }
+  }
+}
+assert.equal(results.filter(x => x.family === 'word-sum-directed-edge').length, 24);
+assert.equal(results.length, 72);
 const maxIoC = Math.max(...results.map(x => x.ioc));
 assert(maxIoC < 0.045774647887323945);
 
@@ -109,7 +139,9 @@ console.log(JSON.stringify({
     originalRunes: original.length,
     panelCells: panel.length,
     retainedFirstEdgeDropped: firstEdgeDropped.length,
-    retainedLastEdgeDropped: lastEdgeDropped.length
+    retainedLastEdgeDropped: lastEdgeDropped.length,
+    wordSums,
+    directionDigits
   },
   sourceCube: 'x^3 mod 29',
   inverseCube: 'x^19 mod 29',
