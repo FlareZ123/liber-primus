@@ -107,6 +107,41 @@ assert.deepEqual(inconsistent[0], {
   secondGP: 6
 });
 
+// Second, physically motivated alternative: the printed EIGHT columns
+// select eight independent, arbitrary byte-to-GP29 output tables.
+// Even with this very broad secret 8x256 mapping, the six interior
+// printed columns cannot predict a single outside-ring observation.
+const columnObserved = new Map();
+const columnDisagreements = [];
+for (let i = 0; i < 180; i++) {
+  const byte = interior[i];
+  const originalColumn = (i % 6) + 1;
+  const key = originalColumn * 256 + byte;
+  const symbol = known[i];
+  const previous = columnObserved.get(key);
+  if (previous !== undefined && previous.symbol !== symbol) {
+    columnDisagreements.push({
+      originalColumn, byte,
+      priorPosition: previous.position, priorGP: previous.symbol,
+      newPosition: i, newGP: symbol
+    });
+  } else if (previous === undefined) {
+    columnObserved.set(key, { symbol, position: i });
+  }
+}
+const outerWithColumnCalibrated = exterior.filter((byte, index) => {
+  const row = index < 8 ? 0 : index >= 68 ? 31
+    : Math.floor((index - 8) / 2) + 1;
+  const column = index < 8 ? index : index >= 68 ? index - 68
+    : (index - 8) % 2 === 0 ? 0 : 7;
+  assert.ok(row >= 0 && row < 32);
+  assert.ok(column >= 0 && column < 8);
+  return columnObserved.has(column * 256 + byte);
+}).length;
+assert.equal(columnObserved.size, 172);
+assert.equal(columnDisagreements.length, 8);
+assert.equal(outerWithColumnCalibrated, 0);
+
 // Planted source-native positive: every source byte emits byte%29.
 // All repeated token values are consistent and exactly predicted.
 const plant = interior.map(byte => byte % 29);
@@ -136,7 +171,13 @@ console.log(JSON.stringify({
     inconsistentRepeatedByteObservations: inconsistent.length,
     minimumNecessaryKnownOutputMismatches: unavoidableMismatches,
     firstContradiction: inconsistent[0],
-    outerRingPositionsWithoutAnyCalibratingKnownByte: perimeterUnlearned
+    outerRingPositionsWithoutAnyCalibratingKnownByte: perimeterUnlearned,
+    printedEightColumnLookup: {
+      distinctInteriorByteColumnPairs: columnObserved.size,
+      repeatedPairConflicts: columnDisagreements.length,
+      firstContradiction: columnDisagreements[0],
+      calibratableExteriorPositions: outerWithColumnCalibrated
+    }
   },
   controls: {
     sourceNativeDeterministicLookupPlant: "180/180 exact",
