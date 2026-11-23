@@ -105,14 +105,16 @@ function main(){
   // and no source-large mark or red span to carry per-page exception metadata.
   const annotationByPage=new Map(ink.pages.map(p=>[p.page,p]));
   const zeroRepeatUnmarked=[];
-  for(const p of ink.pages){
-    if(p.page>55||p.rune_count===0)continue;
-    const a=annotationByPage.get(p.page);
-    const runeList=pages[p.page<50?p.page:p.page-1];
+  // The ink annotation pages list is sparse: fully unmarked pages are absent.
+  for(let page=0;page<=55;page++){
+    if(page===50)continue;
+    const a=annotationByPage.get(page);
+    const runeList=pages[page<50?page:page-1];
+    if(a)assert.equal(a.rune_count,runeList.length);
     const r=runeList.slice(1).reduce((q,c,i)=>q+Number(c===runeList[i]),0);
-    if(r===0&&(a.large_punctuation||[]).length===0&&(a.red_spans||[]).length===0){
+    if(r===0&&(a?.large_punctuation||[]).length===0&&(a?.red_spans||[]).length===0){
       zeroRepeatUnmarked.push({
-        page:p.page,runes:runeList.length,
+        page,runes:runeList.length,
         universalGP29DeficitBits:-(runeList.length-1)*Math.log2(28/29)
       });
     }
