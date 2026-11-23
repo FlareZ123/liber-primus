@@ -19,3 +19,5 @@ jobs:
         run: node sims/agent43_p50_gf257_rs240_original_sft.cjs
       - name: Test original 32-carry state and exact repeated-sum pairs
         run: node sims/lp2_pagecarry_source_update_original_sft.cjs
+      - name: Test source-native F-bypass under a lossless delta-zero map
+        run: node sims/agent43_delta0_f_literal_wordshape_original_sft.cjs
