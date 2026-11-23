@@ -1,6 +1,6 @@
-# Cuneiform 1033-bank to numbered 553: complete modular-step original-cipher gate
+# Cuneiform 1033-bank to numbered 553: ordinary and F-transparent additive receivers
 
-**Agent25, 23 November 2026. Original-input, full-key-phase negative decision for Director #2243.** The new experiment tests a source-motivated key receiver, not a recovered first opcode. All 56 unknown LP2 pages remain undeciphered; no plaintext, key, cryptographic method or Cicada destination is recovered.
+**Agents25 and1, 23 November 2026. Original-input, full-key-phase negative decision for Director #2243.** The new experiment tests a source-motivated key receiver, not a recovered first opcode. All 56 unknown LP2 pages remain undeciphered; no plaintext, key, cryptographic method or Cicada destination is recovered.
 
 ## Independent physical premise
 
@@ -29,9 +29,28 @@ The **primary** source-directed step is `3301 mod1033 = 202`. Steps `1` (plain c
 
 A separately encoded positive plant repeats the **actual 95 GP29 runes of solved LP2 p57** to a fixed length 553, yielding 0.070701312996 IoC. The source U bank encrypts that positive under each of the six exact models; the decoder recovers **553/553**, correct phase zero is selected as the unique highest-IoC phase in each family, and a wrong phase1 remains at 0.0339–0.0347. This validates recoverability under the model and is deliberately distinguished from authentic unknown-page evidence.
 
+## Historical plaintext-F bypass: exact legality gate on the same bank
+
+The original solved p56 cipher uses an additional **literal plaintext-F=GP0** rule: transmit F as ciphertext F and **do not advance the key**, while an ordinarily encrypted non-F may also produce ciphertext F. That condition is stronger than ordinary modulus-29 subtraction and must be checked before judging plaintext frequency. The present extension uses precisely the same 1,033-rune mixed-section bank, unchanged five numbered source fragments, three strides and both additive signs. It **does not** authorize crossing the original p39 section break or select a cipher phase.
+
+For each of **all 1,033 phases in each of the six fixed original key families**, a dynamic program maintains the set of possible counts of literal-F bypasses. At ciphertext F it explores both the literal/nonadvancing and ordinarily encrypted/advancing branches. On ordinary ciphertext, a proposed plaintext F is forbidden. This explores every legal F-clock history, without selecting the most English-looking branch.
+
+| Bank stride | Cipher addition sign | Legal complete 553-rune phases / 1,033 | Longest legal original prefix | Phases surviving both item1 and item2 with same phase but separate clocks |
+| ---: | ---: | ---: | ---: | ---: |
+| 1 | − | **0** | 376/553 | 5 |
+| 1 | + | **0** | 294/553 | 3 |
+| 202 | − | **0** | 360/553 | 2 |
+| 202 | + | **0** | 421/553 | 1 |
+| 1032 | − | **0** | 354/553 | 5 |
+| 1032 | + | **0** | 365/553 | 4 |
+
+There are **12** original ciphertext-F positions in the 553-rune numbered tape. Under a book-continuous key clock **0/6,198** phases support any complete legal plaintext-F assignment, regardless of linguistic score. Even if the key clock is reset separately at all five numbered items with the *same phase*, **0/6,198** variants legally decode all five independently. Independent, freely fitted phases for each numbered item do have legal paths and are **not excluded** by this check. This matters: the result rules out two natural shared-key clocks, not every possible source-key combination.
+
+A 553-rune synthetic GP29 plaintext built from the **actual clear solved p57's 95-rune sequence**, encrypted using this key bank and its exact literal-F hold for all six source-step/sign models, is accepted in full by the same decoder. Source boundaries, the p39 excluded red triad, six original maxima and the positive controls are asserted by the [Windows Node22 passing SFT](../sims/lp2_cuneiform_1033bank_ftransparent_original_sft.cjs) ([run 45279909259](https://github.com/FlareZ123/liber-primus/actions/runs/45279909259)). This upgrades the direct additive-bank exclusion from a failed native-frequency threshold to a **key-clock algebraic impossibility** on the unchanged source under the stated shared-phase policies.
+
 ## Decision and next fork
 
-The retrospectively constructed **1033** cross-section register, **3301→202** modular stride and historical GP29 addition together do **not** specify a successful inverse for any numbered passage, even when every unknown bank start is allowed. This is a bounded, complete negative for **one register-to-register additive architecture**, not a proof against cuneiform key material, other changing-state ciphers, variable-length coding, non-native plaintext or missing historical assets. Its boundary-crossing key selection further weakens the conjecture that Cicada meant the numeric coincidence as an author instruction.
+The retrospectively constructed **1033** cross-section register, **3301→202** modular stride and historical GP29 addition together do **not** specify a successful inverse for any numbered passage, even when every unknown bank start is allowed. Both ordinary modulus-29 addition and its historically genuine **plaintext-F-transparent, key-nonadvancing** extension are rejected under the tested shared-phase clocks. This is a bounded, complete negative for **one register-to-register additive architecture**, not a proof against cuneiform key material, other changing-state ciphers, variable-length coding, non-native plaintext or missing historical assets. Its boundary-crossing key selection further weakens the conjecture that Cicada meant the numeric coincidence as an author instruction.
 
 The next worthwhile first-opcode decision needs an **independent typed action**, such as a source instruction naming an operation, an authorized source span, or how the 1033 runes become usable key state, before introducing another bank traversal. Repetitions of arbitrary starts, reversed bank orientation, and additive sign are now exhausted.
 
