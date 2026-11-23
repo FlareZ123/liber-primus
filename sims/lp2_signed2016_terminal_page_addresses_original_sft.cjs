@@ -98,6 +98,44 @@ for(let sample=0;sample<runs;sample++){
 assert.deepEqual([selectedExact,allTriplesExact,allTriplesDescendingTerminal,allTriplesTerminal],
  [8,17,67,915]);
 
+// A distinct, broader discriminator: apply precisely the same GP0→physical
+// page proposal to ALL 43 signed words, counting invalid addresses and the
+// clustered terminal addresses. This avoids hiding the other source words.
+const wholeWordIndices = words.map(gp);
+const wholeSums = wholeWordIndices.map((item) => item.reduce((a,b) => a+b,0));
+const wholeInBook = wholeSums.filter((v) => v>=0&&v<58).length;
+const sourceTerminal = wholeSums.map((v,i) => ({word:words[i].toUpperCase(),page:v}))
+ .filter(({page}) => page===54||page===56||page===57);
+assert.equal(wholeInBook,28);
+assert.deepEqual(sourceTerminal.map((v)=>v.page),[57,56,54,56,56,56,57,54]);
+assert.equal(wholeSums.filter((v)=>v===55).length,0);
+
+const broadSeed=0x37f90bca, broadRandom=randomFactory(broadSeed), broadRuns=250000;
+let terminalAtLeast8=0, terminalAtLeast8AndNo55=0, anyValidTotal=0;
+for(let sample=0; sample<broadRuns; sample++){
+  const pi=Array.from({length:29},(_,i)=>i);
+  for(let j=28;j>0;j--){
+    const k=Math.floor(broadRandom()*(j+1));
+    [pi[j],pi[k]]=[pi[k],pi[j]];
+  }
+  let terminal=0, at55=0;
+  for(const word of wholeWordIndices){
+    let sum=0;
+    for(const index of word)sum+=pi[index];
+    if(sum===54||sum===56||sum===57)terminal++;
+    if(sum===55)at55++;
+    if(sum>=0&&sum<58)anyValidTotal++;
+  }
+  if(terminal>=8){
+    terminalAtLeast8++;
+    if(at55===0)terminalAtLeast8AndNo55++;
+  }
+}
+assert.equal(terminalAtLeast8,372);
+assert.equal(terminalAtLeast8AndNo55,260);
+assert.equal(anyValidTotal/broadRuns,24.032748);
+
+
 console.log(JSON.stringify({
  source:"Cicada 2016 original clearsigned LP2 words/numbers instruction",
  observedFollowers:addressed,
@@ -110,5 +148,14 @@ console.log(JSON.stringify({
  empiricalSelectedExact:selectedExact/runs,
  empiricalFourTriplesExact:allTriplesExact/runs,
  empiricalFourTriplesDescendingTerminal:allTriplesDescendingTerminal/runs,
+ fullMessage: {
+  validPageAddresses:wholeInBook, invalidPageAddresses:words.length-wholeInBook,
+  sourceTerminal, sourcePage55WordCount:0,
+  broadNullSeed:broadSeed, broadNullRuns:broadRuns,
+  broadNullExpectedValid: anyValidTotal/broadRuns,
+  terminalAtLeast8, terminalAtLeast8AndNo55,
+  pTerminalAtLeast8:terminalAtLeast8/broadRuns,
+  pTerminalAtLeast8AndNo55:terminalAtLeast8AndNo55/broadRuns
+ },
  verdict:"Candidate signed-source navigation across known and unsolved terminal pages; no source-selected decryption opcode and no unknown plaintext."
 },null,2));
