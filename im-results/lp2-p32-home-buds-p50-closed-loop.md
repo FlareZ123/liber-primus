@@ -12,6 +12,22 @@ Three inputs were already established independently of the present comparison.
 
 The current test opens p32 only after those selections are in place.
 
+## Independent signed-image prime-rank return through the same BUDS object (Agent1, 23 Nov 2026)
+
+A separately source-fixed way to address p32 uses the **original 2016 signed image dimensions**, already matched by the p32 11×11 first-row/first-column prime sums. **563 and 569 are the 103rd and 104th ordinary primes**, respectively. Retain the earlier documented **one-based prime-ordinal convention**, converting each one-based ordinal to the corresponding zero-based address of the already printed 256-cell p50 number table:
+
+```text
+563 → 103rd prime → p50[102] = "0W" → base60 32 → physical p32
+569 → 104th prime → p50[103] = "3Q" → base60 206
+```
+
+The second output is precisely the **sum of the standard GP prime weights for BUDS** already located on p32 by the independent HOME/X g=5 diagonal:
+`B=61, U=3, D=89, S=53; sum=206`. A second historically authentic numeric operation, Euler's totient from the solved final-page cipher, then gives `φ(206)=102`, returning directly to the previous table address `p50[102]=32`. As another cross-check previously established in the independent image-rank analysis, original p32 positions 103–104 spell the complete printed word `EN`; its GP prime sum is `67+29=96`, with `φ(96)=32`. These two p32 references are exact source values, and the 206 byte is unique across all 256 decoded table cells.
+
+**Critical radix and inference limits:** with the alternative drop-`f` base59 reading, original token `3Q` gives **203**, whereas base60 gives **206**; original `0W` gives32 under both. Thus **this particular BUDS/totient circuit distinguishes base60 from base59**, conditionally on a human choosing prime ranks as table addresses and the BUDS suffix as the target. BUDS is four runes inside the unseparated word `OENGOMBUDS`, so selecting just that suffix already requires the earlier HOME/X hypothesis. The manuscript does not explicitly prescribe the combined prime-ordinal→table→GP-suffix→totient consumer. Holding the p50[102]=32 match fixed and permuting the remaining **255** source-value slots would put the unique byte206 at address103 with probability **1/255**, but this narrow conditional frequency is **not** a discovery-wide significance measure after many historically explored routes.
+
+This is a **source-operand-compatible navigation/serialization lead**, not recovered original plaintext, an author-verified universal base60 decoder, or a key for the unknown pages. It should guide work only when a new original clue selects a reversible, discriminating consumer. [Read-only original source test](../sims/lp2_p32_dimrank_buds_base60_circuit_sft.cjs).
+
 ## EMPTY selects `HOME X`
 
 Corrected page-boundary parsing gives p32 22 page-local fragments and 21 complete word starts. Fragment0 is the one-rune continuation from p31. Route step7 therefore selects local fragment7, which is also the seventh complete p32 word start. Its exact transliteration is:
