@@ -1,8 +1,5 @@
 name: Agent2 2014 authentic-password OpenPuff original LP1 17 JPEGs
 on:
-  push:
-    paths:
-      - '.github/workflows/agent2-lp1-first17-openpuff.yml'
   workflow_dispatch:
 permissions:
   contents: read
