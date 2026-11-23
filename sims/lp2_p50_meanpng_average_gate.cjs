@@ -94,6 +94,17 @@ for(let r=0;r<32;r++){
   if(hit)anyRowMeanAtAnyCase++;
 }
 assert.equal(anyRowMeanAtAnyCase,0);
+// Five standard PNG scanline filters (None, Sub, Up, Average, Paeth)
+// make a frozen exact prediction about output byte 1: no top neighbor,
+// first reconstructed source byte 0xcb, second printed byte 0xe7.
+const standardPngSecondByte={
+  none:source[1],
+  sub:(source[1]+source[0])&255,
+  up:source[1],
+  average:(source[1]+Math.floor(source[0]/2))&255,
+  paeth:(source[1]+source[0])&255
+};
+assert.deepEqual(standardPngSecondByte,{none:0xe7,sub:0xb2,up:0xe7,average:0x4c,paeth:0xb2});
 const avg=reconstruct(source);
 assert.deepEqual(filter(avg),source);
 // Literal PNG scanlines cannot be read directly from the 32x8 printed grid:
@@ -165,6 +176,7 @@ const output={
   shape:[32,8],bpp:1,
   literalPNGFilterHeadersValid:validLiteralHeaders,literalPNGFilterHeadersTotal:32,
   avg_filter_exact_replay:true,
+  standardPngSecondByte,
   missingLColumnAsMeanOfOther7RowBytes:rowMeanMatches,
   rowMeanHitsUnderAnyPhysicalI_lCase:anyRowMeanAtAnyCase,
   reconstructionI_lCases:1024,invariantReconstructedByteCount,variantsWithEarlyL,
