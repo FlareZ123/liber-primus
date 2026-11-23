@@ -28,6 +28,8 @@ P−1 = 2² × 5 × 41 × 49477 × 15535963
       × 101149063843788281988908603592862658065019147521
 ~~~
 
+The extraction is also **exactly reversible as a numeric-payload codec under the declared word layout**. Starting from P and Q, compute the original source integers N=8P and E=43Q; expand to 43 and 32 zero-padded GP0 base29 digits, respectively; then, for each of the 16 printed word lengths, weave one E digit, the next length−2 N digits and the next E digit. This reconstructs **all 75 original complete-word runes and every original p55 word boundary exactly**, leaving the known one-rune p54 carry untouched. The Windows SFT asserts this literal full-packet forward replay. Reversibility establishes a valid serialization of these *numbers*; it cannot identify the integers as author-intended plaintext because arbitrary divisible N/E have the same property.
+
 The 32 boundary runes, taken as first, last for each original complete word in printed order, form a second base29 integer:
 
 ~~~
