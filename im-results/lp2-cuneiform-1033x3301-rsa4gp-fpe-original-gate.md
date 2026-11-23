@@ -36,6 +36,12 @@ Portable Windows-compatible standalone CommonJS Node22 program, with exact sourc
 
 - [Exhaustive original-source test](../sims/lp2_cuneiform_1033x3301_rsa4_fpe_all_exponents_sft.cjs)
 
+## Standard raw RSA serialization is separately excluded without a key search
+
+A conventional RSA sender would encode each four-GP-rune plaintext packet as a residue below n=3,409,933, printed in **five base29 ciphertext digits** (29⁴ < n < 29⁵). With original fixed-width source clocks, the first untouched five-rune ciphertext packet has GP indices [20,2,12,22,24], which already exceeds n under **both** big- and little-endian readings. In the 553-rune original five-numbered recipient, the full counts of invalid raw RSA residues are **95/110** (continuous), **92/109** (red379/F reset) and **91/108** (five numbered resets), with corresponding little-endian invalidities **95/110**, **97/109** and **91/108**. Any one violation rules out the complete unmodified fixed-width RSA serialization for every secret exponent and plaintext language. This more conventional RSA output case is therefore independently impossible; the cycle-walk model tested above would have been required to maintain original rune count.
+
+The separate [red379×173 RSA3 source gate](lp2-cuneiform-red379-F173-prime174-sourcegate.md#more-conventional-rsa-output-is-key-independently-impossible-in-the-original-gp29-framing) reproduces both modulus width obstructions from untouched original ciphertext under exact clocks, with Windows CI [45126670027](https://github.com/FlareZ123/liber-primus/actions/runs/45126670027). Variable-length packets and other encodings remain outside this bound.
+
 ## Decision and what remains open
 
 This eliminates **ordinary-concentration, native-GP29 plaintext under this one intact four-rune RSA/cycle-walk architecture**, regardless of the secret exponent and regardless of whether block boundaries restart at the five printed red numbers. It says nothing about a six-bit byte stream, different radix/width, nonlinear sender, external secret key, moving word boundaries, or atypical plaintext. Those alternatives require their own source evidence and should **not** be generated as successive rescue parameters.
