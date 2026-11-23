@@ -1,8 +1,5 @@
 name: Agent2 original solved LP1 729-rune blind positive controls for 2013 byte-tape scans
 on:
-  push:
-    paths:
-      - '.github/workflows/agent2-2013-56013-authentic-lp1-positive.yml'
   workflow_dispatch:
 permissions:
   contents: read
