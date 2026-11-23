@@ -86,7 +86,7 @@ function key(orbitElement, map) {
  * Invert one entire page-IV feedback register.
  * @param {'raw'|'phi'} map Shift map
  * @param {-1|1} sign Decrypt P=(C-Cprev)+sign*key
- * @param {0|1|'iv'} phase Exponent-zero, exponent-one, or per-page IV-index start
+ * @param {number|'iv'} phase Exponent phase (0..549) or per-page IV-index start
  * @param {number[][]} input Exact source fragments
  * @returns {number[]}
  */
@@ -151,6 +151,35 @@ assert.equal(bestPageSeeded.map, 'raw');
 assert.equal(bestPageSeeded.sign, 1);
 assert.ok(Math.abs(bestPageSeeded.ioc - 0.035032290114257326) < 1e-12);
 
+
+// The 2013 DH protocol uses a participant-secret exponent. Exhaust all
+// 550 possible initial phases without fitting any plaintext or word model.
+// The cipher equation and the original three page IV locations remain fixed.
+const allPhaseBest = [];
+for (const map of ['raw', 'phi']) {
+  for (const sign of [-1, 1]) {
+    let best = { phase: -1, ioc: -1 };
+    for (let phase = 0; phase < 550; phase++) {
+      const score = ioc(decode(map, sign, phase, fragments));
+      if (score > best.ioc) best = { phase, ioc: score };
+    }
+    allPhaseBest.push({ map, sign, ...best });
+  }
+}
+const expected = [
+  { map: 'raw', sign: -1, phase: 108, ioc: 0.03656896837224706 },
+  { map: 'raw', sign: 1, phase: 383, ioc: 0.03656896837224706 },
+  { map: 'phi', sign: -1, phase: 468, ioc: 0.03671468786222885 },
+  { map: 'phi', sign: 1, phase: 430, ioc: 0.03709223381354529 }
+];
+for (let i = 0; i < expected.length; i++) {
+  assert.equal(allPhaseBest[i].map, expected[i].map);
+  assert.equal(allPhaseBest[i].sign, expected[i].sign);
+  assert.equal(allPhaseBest[i].phase, expected[i].phase);
+  assert.ok(Math.abs(allPhaseBest[i].ioc - expected[i].ioc) < 1e-12);
+  assert.ok(allPhaseBest[i].ioc < 0.042);
+}
+
 console.log(JSON.stringify({
   status: 'PASS: authentic source 553 = 3 page IVs + full DH orbit of 550',
   source: 'LP2 p36[99..238), p37[0..228), p38[0..186)',
@@ -163,5 +192,7 @@ console.log(JSON.stringify({
   directDifferenceIoC: ioc(delta),
   positivePlant: '12/12 configurations recover all 550 solved-p57-based GP29 runes exactly',
   configurations: records,
+  allSecretPhaseTests: 2200,
+  allSecretPhaseBest: allPhaseBest,
   decision: 'All outputs remain nonprose; source does not authenticate DH feedback or three IV skips'
 }, null, 2));

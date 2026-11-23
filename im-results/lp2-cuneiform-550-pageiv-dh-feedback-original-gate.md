@@ -24,10 +24,21 @@ The original ciphertext-difference IoC is **0.03586024176188111**. Among all eig
 
 All other continuous-clock candidates have IoC in **[0.03421096207981454, 0.03495943036926644]**. Of the four physical-IV-seeded versions, the maximum is **0.035032290114257326** (raw orbit, plus inverse). They are all nonprose, with near-uniform GP29 marginals, versus **0.0705745984434509** for a native GP benchmark formed by repeating the **actual 95-rune solved p57** to exactly 550 runes.
 
+**Complete secret-exponent challenge:** The actual signed 2013 DH protocol used unknown participant exponents. To rule out a special hidden **initial exponent**, hold this single feedback equation, original three page IVs, GP29 maps and signs fixed, and exhaust **all 550 orbit phases** for each map and sign. The resulting **2,200** original-input ciphertext-feedback inverses have the following best, maximum GP29 index of coincidence:
+
+| Orbit map | GP inverse sign | Best initial exponent phase | Best IoC |
+| --- | ---: | ---: | ---: |
+| Raw residue | − | 108 | **0.03656896837224706** |
+| Raw residue | + | 383 | **0.03656896837224706** |
+| Totient residue | − | 468 | **0.03671468786222885** |
+| Totient residue | + | 430 | **0.03709223381354529** |
+
+**No phase reaches IoC 0.042**, much less the 0.07057 solved-source comparison. Every direct original result remains nonprose. This is a complete **finite family of direct GP29 plaintext inversions** under the frozen mapping. It is a diagnostic language failure, not an algebraic impossibility or a proof against an unknown binary intermediary or later cipher.
+
 **Positive control:** For each of all **twelve** frozen inverse definitions, encrypt the full 550-symbol solved-p57 GP benchmark under the exact ciphertext-feedback operation, using the original physical page seeds and fragment lengths, then invert it. All **12/12** synthetic plants recover **550/550** authentic native-GP symbols exactly. The plants are entirely separate from the original unknown ciphertext; they authenticate the implementation, never the historical cipher choice.
 
 ## Decision and next gate
 
-The exact `553=3 page IVs + ord_3301(1033)` relation is a reproducible, source-motivated *candidate frame*, and demonstrates why the earlier three-F skip suggestion was not the only possible explanation. **Neither tested DH feedback operation decrypts any of the five numbered originals.** Retire these twelve first-order additive feedback realizations. A fresh decipherment route needs a first-party **operation/recipient selector**, ideally from a decrypted preceding chapter or original historical instruction. Additional DH exponent phases, arbitrary skips, modulus variants, and evolved layer stacks are unsupported.
+The exact `553=3 page IVs + ord_3301(1033)` relation is a reproducible, source-motivated *candidate frame*, and demonstrates why the earlier three-F skip suggestion was not the only possible explanation. **Neither tested DH feedback operation decrypts any of the five numbered originals.** Retire this entire 2,200-case one-orbit additive-feedback family and the four independently page-seeded variants. A fresh decipherment route needs a first-party **operation/recipient selector**, ideally from a decrypted preceding chapter or original historical instruction. Additional DH exponent phases, arbitrary skips, modulus variants, and evolved layer stacks are unsupported.
 
 **Reproduction:** [Windows-compatible Node.js 22 CommonJS SFT](../sims/lp2_cuneiform_dh550_pageiv_feedback_sft.cjs), reading the pinned original [GP29 corpus](../resources/liber-primus/lp2-corpus.json), validates the exact source coordinates and orbit, prints all twelve original-input outputs and controls, and asserts the two best IoCs. Previous work on direct 553-symbol DH orbit appears in [the bounded predecessor result](lp2-cuneiform-dh550-numbered-passages-original.md).
