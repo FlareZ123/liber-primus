@@ -81,4 +81,32 @@ for (const [label, key] of Object.entries(keys)) {
     );
   }
 }
-process.stdout.write('PASS: original signed ordinals, 256 source cells, ten AES-192 inverses, positive controls\n');
+// Source literal AES-256 + 128-bit IV layout: rows16,19,21,24 as key,
+// rows27,30 as IV. This is a separate unfitted six-row interpretation.
+const orderedWordPositions = positions.flat();
+const key256 = Buffer.concat(orderedWordPositions.slice(0, 4).map(ordinal => row(ordinal)));
+const iv128 = Buffer.concat(orderedWordPositions.slice(4).map(ordinal => row(ordinal)));
+assert.equal(key256.length, 32);
+assert.equal(iv128.length, 16);
+for (const mode of ['cbc', 'ctr', 'cfb']) {
+  const name = 'aes-256-' + mode;
+  const encryptor = createCipheriv(name, key256, iv128);
+  if (mode === 'cbc') encryptor.setAutoPadding(false);
+  const plantedPlain = Buffer.alloc(256, 0x41);
+  const plantedCipher = Buffer.concat([encryptor.update(plantedPlain), encryptor.final()]);
+  const positive = createDecipheriv(name, key256, iv128);
+  if (mode === 'cbc') positive.setAutoPadding(false);
+  assert.deepEqual(Buffer.concat([positive.update(plantedCipher), positive.final()]), plantedPlain);
+  const decipher = createDecipheriv(name, key256, iv128);
+  if (mode === 'cbc') decipher.setAutoPadding(false);
+  const candidate = Buffer.concat([decipher.update(values), decipher.final()]);
+  assert.equal(candidate.length, 256);
+  const printable = [...candidate].filter(v => v >= 32 && v <= 126 || v === 9 || v === 10 || v === 13).length;
+  const magic = signatures.some(sig => candidate.subarray(0, sig.length).equals(sig));
+  process.stdout.write(
+    'six-literal-rows ' + name + ' printable=' + printable + '/256' +
+    ' first16=' + candidate.subarray(0, 16).toString('hex') +
+    ' known_magic=' + magic + '\n'
+  );
+}
+process.stdout.write('PASS: original signed ordinals, ten AES-192 and three AES-256 direct inverses, all positives\n');
