@@ -1,8 +1,5 @@
 name: Agent2 2013 original ISO full 560.13 direct LP2 key offset scan
 on:
-  push:
-    paths:
-      - '.github/workflows/agent2-2013-56013-full-direct-key.yml'
   workflow_dispatch:
 permissions:
   contents: read
