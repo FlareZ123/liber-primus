@@ -1,0 +1,27 @@
+name: Agent2 2013 560.13 complete 28-successor-rank source-key scan
+on:
+  push:
+    paths:
+      - '.github/workflows/agent2-2013-56013-full-rank28.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  whole-original-cicadaos-tape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install source-pinned ISO parser and numpy engine
+        run: python -m pip install --disable-pip-version-check pycdlib==1.22.0 requests==2.32.5 numpy==1.26.4 filelock==3.20.0
+      - name: Run full 118MB both native 28-successor rank source scans with 729-rune positives
+        run: python sims/cicada2013_56013_full_rank28_sft.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agent2-2013-full-118m-gp28-original-scan
+          path: im-results/cicada2013_56013_full_rank28_original.json
+          if-no-files-found: warn
