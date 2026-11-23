@@ -299,6 +299,76 @@ for (const mode of ["GP", "LATIN"]) {
   };
 }
 
+
+// Robustness to worst original word-pattern outliers. Train on two authors,
+// hold out Gibran, and remove the 100 lowest individual log-ratios from EACH
+// book before comparing source with length-matched donor controls.
+const robust = {};
+for (const mode of ["GP", "LATIN"]) {
+  const donors = donorTexts.map(t => donorPools(t, mode));
+  const m = 4;
+  const admissible = new Set(original.map(w => w.length)
+    .filter(n => donors.every(p => p.has(n))));
+  const chosen = original.filter(w => admissible.has(w.length));
+  assert.equal(chosen.length, 2893);
+  const models = [0, 1].map(i => {
+    const bins = new Map();
+    for (const [length, words] of donors[i]) {
+      const hist = new Map();
+      for (const word of words) {
+        const key = signature(word, m);
+        hist.set(key, (hist.get(key) || 0) + 1);
+      }
+      bins.set(length, {hist, n: words.length});
+    }
+    return bins;
+  });
+  const score = word => {
+    const key = signature(word, m);
+    const baseline = uniformSignatureProbability(word, m);
+    let value = 0;
+    for (const model of models) {
+      const {hist, n} = model.get(word.length);
+      value += (hist.get(key) || 0) / n / 2;
+    }
+    return Math.log((0.8 * value + 0.2 * baseline) / baseline);
+  };
+  const originalScores = chosen.map(score).sort((a, b) => a - b);
+  const candidatesByLength = new Map();
+  for (const [length, words] of donors[2]) {
+    candidatesByLength.set(length, words.map(score));
+  }
+  robust[mode] = [];
+  for (const trim of [0, 5, 10, 20, 32, 64, 100]) {
+    const sourceScore = originalScores.slice(trim)
+      .reduce((sum, value) => sum + value, 0);
+    const random = rng(0x191caca + trim * 17 +
+      (mode === "GP" ? 0 : 1001));
+    let count = 0;
+    let mean = 0;
+    let min = Infinity;
+    const samples = 400;
+    for (let sample = 0; sample < samples; sample++) {
+      const donorScores = chosen.map(w => {
+        const scores = candidatesByLength.get(w.length);
+        return scores[Math.floor(random() * scores.length)];
+      });
+      donorScores.sort((a, b) => a - b);
+      const statistic = donorScores.slice(trim)
+        .reduce((sum, value) => sum + value, 0);
+      count += Number(statistic <= sourceScore);
+      mean += statistic / samples;
+      min = Math.min(min, statistic);
+    }
+    robust[mode].push({trim, sourceScore, donorMean: mean,
+      donorMinimum: min, atOrBelow: count, samples});
+  }
+  assert.deepEqual(robust[mode].map(x => x.atOrBelow),
+    [0, 0, 0, 0, 0, 0, 0]);
+}
+assert(Math.abs(robust.GP[6].sourceScore - (-3.0676)) < 0.0002);
+assert(Math.abs(robust.LATIN[6].sourceScore - (-4.7203)) < 0.0002);
+
 console.log(JSON.stringify({
   originalWords: original.length,
   originalRunes: 12956,
@@ -308,5 +378,6 @@ console.log(JSON.stringify({
   results,
   positiveRecoveredRunes: recovered,
   lexicalWitnesses,
+  robust,
   status: "PASS"
 }, null, 2));
