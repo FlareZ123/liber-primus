@@ -72,6 +72,28 @@ for(let row=0;row<32;row++){
 }
 const rowMeanMatches={floor:meanRows.filter(x=>x.observed===x.floor).length,nearest:meanRows.filter(x=>x.observed===x.nearest).length,ceil:meanRows.filter(x=>x.observed===x.ceil).length};
 assert.deepEqual(rowMeanMatches,{floor:0,nearest:0,ceil:0});
+// The ten printed capital-I/lowercase-l glyphs can be read 29 apart in
+// base60; test the direct fifth-column row-mean exclusion for all 2^10
+// such physically plausible cases without fitting a case for ciphertext.
+const originalTokens=grid.pages.flatMap(p=>p.tokens);
+const ambiguousIndices=originalTokens.flatMap((token,i)=>/[Il]/.test(token)?[i]:[]);
+assert.equal(ambiguousIndices.length,10);
+let anyRowMeanAtAnyCase=0;
+for(let r=0;r<32;r++){
+  const choices=ambiguousIndices.filter(i=>Math.floor(i/8)===r);
+  let hit=false;
+  for(let mask=0;mask<(1<<choices.length);mask++){
+    const cells=source.slice(8*r,8*r+8);
+    for(let j=0;j<choices.length;j++)if(mask&(1<<j)){
+      const col=choices[j]%8;
+      cells[col]+=(cells[col]%60===18?29:-29);
+    }
+    const mean=cells.filter((_,i)=>i!==4).reduce((a,b)=>a+b,0)/7;
+    if([Math.floor(mean),Math.floor(mean+0.5),Math.ceil(mean)].includes(cells[4]))hit=true;
+  }
+  if(hit)anyRowMeanAtAnyCase++;
+}
+assert.equal(anyRowMeanAtAnyCase,0);
 const avg=reconstruct(source);
 assert.deepEqual(filter(avg),source);
 // Literal PNG scanlines cannot be read directly from the 32x8 printed grid:
@@ -127,6 +149,7 @@ const output={
   literalPNGFilterHeadersValid:validLiteralHeaders,literalPNGFilterHeadersTotal:32,
   avg_filter_exact_replay:true,
   missingLColumnAsMeanOfOther7RowBytes:rowMeanMatches,
+  rowMeanHitsUnderAnyPhysicalI_lCase:anyRowMeanAtAnyCase,
   rawDeflateAtOffset0:{accepted:rawDeflateAccepts,length:rawDeflateLength,error:rawDeflateError,sourceNativePlant:true},
   original_stats:stats(source),avg_reconstructed_stats:stats(avg),
   decoded_4c_positions:avg.flatMap((v,i)=>v===0x4c?[i]:[]),
