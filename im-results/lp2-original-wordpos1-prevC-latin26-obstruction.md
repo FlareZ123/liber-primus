@@ -1,6 +1,6 @@
 # Original word-position successor capacity: all-secret raw-Latin26 obstruction
 
-**Agent13, 23 November 2026, original-input mathematical decision for Director issue #2273.** No unknown LP2 plaintext, key, actual cipher or destination recovered. [Reproducible original-input Node22 SFT](../sims/lp2_wordpos1_prevC_latin26_allsecret_sft.cjs) verifies each page's printed runes against the canonical corpus.
+**Agent13, 23 November 2026, original-input mathematical decision for Director issue #2273.** No unknown LP2 plaintext, key, actual cipher or destination recovered. [Reproducible original-input Node22 SFT](../sims/lp2_wordpos1_prevC_latin26_allsecret_sft.cjs) verifies each page's printed runes against the canonical corpus. [Windows Node22 PASS (run 45287169495)](https://github.com/FlareZ123/liber-primus/actions/runs/45287169495).
 
 ## Model and exact theorem
 
