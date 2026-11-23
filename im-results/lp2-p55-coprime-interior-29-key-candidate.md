@@ -1,6 +1,6 @@
 # p55 coprime-interior selector: a 29-rune key candidate
 
-**Status: intermediate source-paired hypothesis. This is not recovered plaintext, a complete p55 decoder, or an authenticated cipher key.**
+**Status: the source-derived selector remains provisional; its one frozen, native OpenPuff v4.00 seven-JPEG receiver is experimentally rejected (23 November 2026). No p55 plaintext or authentic key was recovered.**
 
 ## Human solve-path hypothesis
 
@@ -57,13 +57,13 @@ The page does not independently specify the hash algorithm; SHA-512 is only the 
 
 This rejects only the idea that one of those exact strings is itself the p56 SHA-512 preimage. It says nothing about the candidate as a password for another receiver, and it does not establish that SHA-512 is the specified algorithm.
 
-## Candidate receiver and decisive test
+## Frozen native OpenPuff seven-JPEG experiment, completed 23 November 2026
 
-The most concrete historically grounded receiver worth considering is OpenPuff v4.00, because OpenPuff was used in the earlier Cicada round and the original LP2 p33–p39 pages form a contiguous seven-page cuneiform section (50.jpg–56.jpg). The proposed test is one A-only password attempt using the base29 string above, B/C disabled, on those seven original JPEGs in their original order, with the single JPEG depth frozen by the successful native calibration in [Issue #1049](https://github.com/FlareZ123/liber-primus/issues/1049).
+The previously proposed distinct p55-derived password **`A25S0EAJ15D8LKDCIA6E6FC22I5BI`** was tested exactly once with original OpenPuff v4.00 on the original **seven** contiguous cuneiform JPEGs `resources/liber-primus/50.jpg` through `56.jpg`, in published order; A-only, B/C disabled, JPEG Medium `1/5 (20%)`. The original executable and DLL were pinned to Git blob hashes, and the workflow verified all seven carrier entries and selected bit setting. The same Windows run recovered the exact **35-byte** independently published JPEG OpenPuff positive before testing the LP2 originals.
 
-The carrier/receiver link remains conjectural. The manuscript does not explicitly say to use OpenPuff on these JPEGs, and no authenticated source says that this p55-derived string is an OpenPuff password. Earlier original-chain tests with A=33011033 and A=10333301 were bounded negatives; they must not be repeated. The 29-rune selector is a genuinely different source-derived password candidate, not permission for a password, carrier-order, or depth sweep.
+**Observed native result:** `native-corrupted-stream`, original GUI `Task interrupted - Error: Task stopped: corrupted stream`; `carrier_count=7`, `output_present=false`, `outputs=[]`. The workflow succeeded *as a completed test*, while this frozen candidate yielded **zero recovered files**. [Run 45127092305](https://github.com/FlareZ123/liber-primus/actions/runs/45127092305) · [source-original GUI evidence artifact 14796043501](https://github.com/FlareZ123/liber-primus/actions/runs/45127092305/artifacts/14796043501) · [manual-only workflow](../.github/workflows/openpuff-v400-lp2-cuneiform-topdown-source-probe.yml), mode `seven-chain-p55-coprime`.
 
-**Execution status:** no native OpenPuff run has been performed. Further original LP2 password variants require Director coordination under [Issue #39](https://github.com/FlareZ123/liber-primus/issues/39) and the calibration/decision record in [Issue #1049](https://github.com/FlareZ123/liber-primus/issues/1049). A successful test must extract a real file whose bytes and type can be inspected; no output or a corrupted stream rejects only this frozen key/receiver/depth combination.
+**Decision:** reject this exact p55 password → OpenPuff seven-JPEG Medium receiver. The coprime-interior extraction remains a mathematically reproducible candidate rule, but its independently necessary historical password, source-p55-to-carrier handoff, and explanation of the other 47 source runes are missing. Do not vary carrier order, subset, depth, key, or selector to rescue this negative without a new independent source instruction. Earlier 2014-derived passwords remain distinct already-closed contracts.
 
 ## What this does not establish
 
