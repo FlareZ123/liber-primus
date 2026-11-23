@@ -1,6 +1,6 @@
 # 2014 triple-square word order and complete GP28 word-key inverses across LP2
 
-**Agent 8, 23 November 2026. Classification: two source-led original-cipher finite negatives.** No previously unknown plaintext, authenticated word permutation, cipher key, or destination was recovered. The [read-only reproducible CJS test](../sims/lp2_2014_threesquare_2896_words_source_sft.cjs) was executed against the exact seven GitHub source files in an in-memory Node-compatible runtime with all assertions passing. The result is limited to the stable numeric-rank permutations defined below.
+**Agent 8, 23 November 2026. Classification: three source-led original-cipher finite negatives.** No previously unknown plaintext, authenticated word permutation, cipher key, or destination was recovered. The [read-only reproducible CJS test](../sims/lp2_2014_threesquare_2896_words_source_sft.cjs) was executed against the exact seven GitHub source files in an in-memory Node-compatible runtime with all assertions passing. The result is limited to the stable numeric-rank permutations defined below.
 
 ## Source-led, falsifiable route
 
@@ -43,6 +43,17 @@ A source-calibrated native Gematria Primus encoder, using the established ING/IO
 
 All **eight original LP2 reconstructions** invert exactly to all 2,896 original whole rune words when their complementary direction masks are applied. Independently, for each direction the genuine source-native Gibran control of 2,896 whole GP-coded words is encoded into the exact printed square schedule and recovered **word-for-word**. This is **8/8** full-original inverse replays and **24/24** full native-plant recoveries (three independent literary sources × eight square direction masks), each at the complete 2,896-word length. Native output-recovery establishes that an actual 2014-square word transposition would be detectable if this fixed rule produced it.
 
+## Direct 99-number GP29 per-word additive inverse
+
+A more economical receiver uses the same **99 authentic printed historical square values** directly as the modulo29 additive shift of each **complete printed ciphertext word**: for GP29 rune \(C_i\) in zero-based word \(w\), take \(K_w=S[w\bmod99]\bmod29\), then \(P_i=(C_i\pm K_w)\bmod29\). Both signs were tested over **all 2,896 words** using the exact source series, with no fitted offset, word reordering, or secret key. The 29 full cycles and remaining 25 cells consume the source matrix capacity exactly. The signs are distinct bijective inverses.
+
+| Source-square word key | Original complete-book GP29 IoC |
+| --- | ---: |
+| Source value subtraction | **0.034500787572** |
+| Source value addition | **0.034496831541** |
+
+Both resemble the unmodified source IoC **0.034478397865** and are far below every independent native-GP control. Both exact decoder/encoders recover **all 12,956 source ciphertext runes**, and both independently encrypted **2,896-word** Gibran genuine-language plants recover completely. Neither yields sustained prose or a candidate key. This retires the **simplest** use of the 99 source values as wordwise Caesar shifts before considering the more elaborate stateful escape model below. The historical matrices do not actually instruct the player to apply wordwise additive encipherment.
+
 ## Full 12,956-rune changing-state inverse using the same source numbers
 
 The previous test only rearranges whole words. A separate *plaintext-producing* receiver uses the **actual 99 original square numbers**, in printed order, as a changing word key. This tests whether the exact 29×99+25 capacity match supplies an anti-repeat cipher clock. It is a stronger and different claim than word transposition.
@@ -71,6 +82,6 @@ This full-rune result also addresses a crucial limitation of the word-order bran
 
 ## Decision
 
-The source-anchored **29 cycles of 99 words plus 25** is numerically exact, and unlike prior 49-fragment tests on p8/p33 it has a true book-wide 2,896-complete-word input. Nevertheless **none of the eight historical-square stable-rank inverse permutations reveals an ordered native-prose word-length signal**. Retire both the direct 5/7/5 ascending-value-sort word-transposition candidate and the exact source-square-word-key GP28 escape decoder, without optimizing alignment, introducing secret cell ranks, or hunting for better phase/square order. Different source-licensed transpositions, a changing-state word permutation, external keys, non-prose contents, and deliberate alteration of printed word boundaries remain untested. Since any word permutation preserves the original near-uniform GP29 letter histogram, it cannot by itself turn this ciphertext into ordinary GP-native text; this test addresses only the possibility of an *additional* word-order layer.
+The source-anchored **29 cycles of 99 words plus 25** is numerically exact, and unlike prior 49-fragment tests on p8/p33 it has a true book-wide 2,896-complete-word input. Nevertheless **none of the eight historical-square stable-rank inverse permutations reveals an ordered native-prose word-length signal**. Retire the direct 5/7/5 ascending-value-sort whole-word transposition, the direct 99-value GP29 per-word additive decoder and the exact source-square-word-key GP28 escape decoder, without optimizing alignment, introducing secret cell ranks, or hunting for better phase/square order. Different source-licensed transpositions, a changing-state word permutation, external keys, non-prose contents, and deliberate alteration of printed word boundaries remain untested. Since any word permutation preserves the original near-uniform GP29 letter histogram, it cannot by itself turn this ciphertext into ordinary GP-native text; this test addresses only the possibility of an *additional* word-order layer.
 
 The relation 2,896=29·99+25 was noticed after the original corpus counts were known, and several other source numbers divide or nearly divide this same count. It must not be treated as independent evidence of intentional design. No authoritative solved-pages status is changed.
