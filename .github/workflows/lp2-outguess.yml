@@ -140,6 +140,21 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Reconstruct and authenticate the 2014 three-image XOR handoff
+        if: ${{ inputs.lp1_history }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python sims/cicada2014_stage03_xor.py --input-dir outguess-results --output-dir outguess-results
+          export GNUPGHOME="${RUNNER_TEMP}/cicada-gnupg"
+          report="outguess-results/stage03-three-image-xor.verify.txt"
+          if gpg --batch --homedir "$GNUPGHOME" --verify outguess-results/stage03-three-image-xor.asc >"$report" 2>&1; then
+            echo "PGP_VERIFY stage03-xor result=GOOD"
+          else
+            echo "PGP_VERIFY stage03-xor result=BAD"
+          fi
+          cat "$report"
+
       - name: Install numeric dependencies
         if: ${{ github.event_name == 'workflow_dispatch' && !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares && !inputs.cicada2016 && !inputs.shed43 && !inputs.instar && !inputs.fragment7 && !inputs.historical2014_password && inputs.custom_password == '' }}
         run: python -m pip install --disable-pip-version-check numpy numba
