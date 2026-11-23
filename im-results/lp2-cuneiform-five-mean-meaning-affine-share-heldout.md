@@ -53,8 +53,26 @@ The best jointly balanced of all 841 original candidates by `min(trainIoC, heldo
 
 A source-native **91-rune reversible plant** uses four crib runes followed by the original solved p57 runes `[4:91]`, an independently chosen secret affine vector `[5,7,13,17,23]`, constant 11, four deterministic Vandermonde-coded shares and an exactly computed fifth. The unchanged 841-candidate enumerator contains that hidden key and recovers the exact **91/91 original known-control symbols**, including the full 44-rune withheld portion. Both the original and positive calculations are implemented in [one read-only, original-input Node22 reproducer](../sims/lp2_five_numbered_meaning_linear_share_crib_sft.cjs); the exact operations were separately evaluated on the connected canonical source in the JavaScript runtime. No CI execution or GitHub Actions success is claimed.
 
+
+## Eight-rune printed-word lexical necessity: a stronger unfit original gate
+
+Under this specific five-share **single reconstructed original-English message** hypothesis, one minimally falsifiable serialization choice is to preserve the actual word breaks of the *first original numbered unit*. Its first six printed-word GP29 lengths are **4 / 3 / 8 / 2 / 5 / 3**. Because all 841 candidates decode the initial four-rune \`MEANING\` **by construction**, the second three-rune word at output positions4–6 and third **eight-rune** word at positions7–14 are independent first-line predictions. Apply the already-existing (not newly selected) project's \`resources/control/english_wordfreq_textblob.txt\` **29,088-word GP29-normalized English reference** with exactly the historical \`ING\`, \`NG\`, \`IO\`, \`V→U\`, \`QU→CW\` spelling rules from the earlier full-word exhaustive gate. The vocabulary has **4,318 different eight-rune GP29 words** under this encoding, including \`DIRECTION\`.
+
+| First-unit authentic word slot | Printed rune length | Of **841** fixed affine mixtures matching \`MEANING\`, dictionary-matching complete words |
+| --- | ---: | ---: |
+| 1 | 4 | 841 (forced \`MEANING\`) |
+| 2 | 3 | **30** |
+| 3 | 8 | **0** |
+| 4 | 2 | **188** |
+| 5 | 5 | **0** |
+| 6 | 3 | **26** |
+
+**No candidate even matches the third complete eight-rune native-English dictionary word**, much less both the second and third or an intact 91-rune utterance. All 841 vector+constant solutions were exhausted, with no phase or language ranking in this lexical test. The independent reference could miss an invented/archaic eight-rune word, and the first section's ciphertext hyphens might not be plaintext word breaks; thus this is **conditional** on those two visible-output conventions, not a mathematical exclusion of all intermediate streams.
+
+To test power, a distinct planted original-sized **91-rune** target begins with GP-native dictionary words \`MEANING AND DIRECTION\` (physical lengths exactly **4, 3, 8**) and continues with solved p57 GP runes. Encode it into **five synthetic 91-symbol GF29 shares** using the same secret nonzero five-coefficient vector \`[5,7,13,17,23]\`, b11, and unaltered four-rune crib. The exact same 841-candidate decoder recovers the *entire 91/91* known text and all three complete planted words. This does not depend on any purported unknown-original plaintext. The linked single-file SFT asserts both original all-key lexical zero and the independent complete positive.
+
 ## Decision
 
-This is a **conditional all-coefficients exclusion**: no position-aligned, single-clock, *fixed affine GP29 mixing of five complete numbered passages* that **starts with the independent four-rune `MEANING` candidate** produces a sustained originally readable GP-native continuation. It strictly extends the existing **fixed-x Shamir** original decision by granting all 29 homogeneous and all 841 affine candidate weights permitted by the four-rune crib; it does not retest its Lagrange coefficients. The ordinary arithmetic mean is independently rejected as a direct GP29 plaintext reader.
+This is a **conditional all-coefficients exclusion**: no position-aligned, single-clock, *fixed affine GP29 mixing of five complete numbered passages* that **starts with the independent four-rune `MEANING` candidate** produces a sustained originally readable GP-native continuation. It strictly extends the existing **fixed-x Shamir** original decision by granting all 29 homogeneous and all 841 affine candidate weights permitted by the four-rune crib; it does not retest its Lagrange coefficients. Under the additional explicit assumption that the first unit's original printed word breaks survive as output word breaks, the **841** affine possibilities also have **zero** complete recognized eight-rune third words in the fixed 4,318-form English register. The ordinary arithmetic mean is independently rejected as a direct GP29 plaintext reader.
 
 It does not rule out five distinct plaintexts; different share alignments or word boundaries; nonlinear field operations; a concealed non-English/binary intermediate; or a local `MEANING` marker followed by a *different author-specified instruction*. Do **not** turn this negative into a licence for another factor/phase search. The missing genuine first opcode still requires an original image instruction, historical key selector, or a complete withheld plaintext prediction on a genuinely different route.

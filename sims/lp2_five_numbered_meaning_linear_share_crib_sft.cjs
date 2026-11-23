@@ -119,6 +119,75 @@ const recovered = planted.find(x => x.fifth === hiddenCoef[4] && x.b === hiddenB
 assert(recovered);
 assert.deepEqual(recovered.coef, hiddenCoef);
 assert.deepEqual(recovered.out, plain);
+
+// Extra untouched original word-shape necessity gate. This conditional
+// historical GP-native English register is the *existing repository* 29,088
+// word vocabulary and orthography, not a ciphertext-fitted lexicon.
+const fs = require('node:fs');
+const dictionary = fs.readFileSync(path.join(__dirname,'..','resources','control','english_wordfreq_textblob.txt'),'utf8');
+const gpTokens = [
+  ['ING',21],['NG',21],['IO',27],
+  ...corpus.translit.map((name,index)=>[name,index]).filter(([name])=>name!=='IA')
+].sort((a,b)=>b[0].length-a[0].length);
+function encodeEnglish(raw) {
+  const text = raw.toUpperCase().replace(/QU/g,'CW').replace(/V/g,'U')
+    .replace(/[KQ]/g,'C').replace(/Z/g,'S');
+  const result = [];
+  for (let i=0;i<text.length;) {
+    const token = gpTokens.find(([k])=>text.startsWith(k,i));
+    if(!token) return null;
+    result.push(token[1]);
+    i += token[0].length;
+  }
+  return result;
+}
+const lexByLength = new Map();
+let validLex = 0;
+for (const line of dictionary.split(/\r?\n/)) {
+  const match = /^([a-z]+)\s+(\d+)$/.exec(line);
+  if (!match) continue;
+  const encoded = encodeEnglish(match[1]);
+  if (!encoded || encoded.length>14) continue;
+  validLex++;
+  if(!lexByLength.has(encoded.length)) lexByLength.set(encoded.length,new Set());
+  lexByLength.get(encoded.length).add(encoded.join(','));
+}
+assert.equal(validLex,29088);
+assert.equal(lexByLength.get(8).size,4318);
+const first6WordLengths=[4,3,8,2,5,3]; // physically first six item1 words
+const lexicalWordMatches=first6WordLengths.map(()=>0);
+for (const candidate of candidates) {
+  let off=0;
+  for(let w=0;w<first6WordLengths.length;w++){
+    const len=first6WordLengths[w];
+    if(lexByLength.get(len).has(candidate.out.slice(off,off+len).join(',')))
+      lexicalWordMatches[w]++;
+    off += len;
+  }
+}
+assert.deepEqual(lexicalWordMatches,[841,30,0,188,0,26]);
+// Independent planted lexical positive. "MEANING AND DIRECTION" has original
+// GP rune lengths 4+3+8 and is within the fixed dictionary. Encode it before
+// making the shares, then construct one secret invertible affine share model.
+const positiveFirst15=[...encodeEnglish('meaning'),...encodeEnglish('and'),...encodeEnglish('direction')];
+assert.equal(positiveFirst15.length,15);
+for(const [word,len] of [['meaning',4],['and',3],['direction',8]])
+  assert(lexByLength.get(len).has(encodeEnglish(word).join(',')));
+const lexicalTarget=positiveFirst15.concat(p[57].indices.slice(15,91));
+assert.equal(lexicalTarget.length,N);
+const lexShares=Array.from({length:5},()=>[]);
+for(let i=0;i<N;i++){
+  const x=i+1;
+  for(let k=0;k<4;k++) lexShares[k].push(mod(x**k));
+  const residue=mod(lexicalTarget[i]-hiddenB-
+    lexShares.slice(0,4).reduce((sum,row,k)=>sum+hiddenCoef[k]*row[i],0));
+  lexShares[4].push(mod(residue*inv(hiddenCoef[4])));
+}
+const lexicalPlant=solveAll(lexShares).find(x=>x.fifth===hiddenCoef[4]&&x.b===hiddenB);
+assert(lexicalPlant);
+assert.deepEqual(lexicalPlant.coef,hiddenCoef);
+assert.deepEqual(lexicalPlant.out,lexicalTarget);
+
 const fmt = c => ({
   fifth: c.fifth, constant: c.b, coeff: c.coef,
   fit43: Number(c.train.toFixed(9)),
@@ -134,5 +203,9 @@ console.log(JSON.stringify({
   affine_n: candidates.length, affine_best: fmt(best),
   native_GP_reference_heldout44_IoC: ioc(p[57].indices.slice(47,91)),
   independent_native_GP_plant: '91/91 exact recovered at secret vector',
+  native_GP_vocabulary_forms: validLex,
+  exact_third_word_length8_vocabulary_forms: lexByLength.get(8).size,
+  crib_constrained_word_matches_first6: lexicalWordMatches,
+  independent_threeword_lexical_plant: 'MEANING AND DIRECTION, 15/15 exact then 76/76 known-source continuation',
   conclusion: 'No coherent 87-rune continuation; best train fit collapses on 44-runic holdout.'
 }, null, 2));
