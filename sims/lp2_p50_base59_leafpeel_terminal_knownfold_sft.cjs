@@ -76,13 +76,42 @@ function testKnown(layersByOrder, suppliedLeafText, suppliedMiddleText, convert)
 }
 
 const physical = (p) => corpus.pages[p].indices;
+
+// The canonical p56 page stores ciphertext. Recover the independently solved
+// 85 GP29 plaintext runes before treating them as a plaintext constraint.
+// The original native GP spelling is EUERY / SEEC (V and K fold into U and C).
+const known56Words = 'AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO IT IS THE DUTY OF EUERY PILGRIM TO SEEC OUT THIS PAGE';
+const gpTokens = corpus.translit.map((name, index) => ({ name, index }))
+  .sort((a, b) => b.name.length - a.name.length);
+const known56 = [];
+for (const word of known56Words.split(' ')) {
+  for (let i = 0; i < word.length;) {
+    const token = gpTokens.find((t) => word.startsWith(t.name, i));
+    assert(token, 'Unknown solved GP29 spelling');
+    known56.push(token.index);
+    i += token.name.length;
+  }
+}
+assert.equal(known56.length, 85);
+assert.equal(known56.findIndex((x) => x === 0), 56);
+const primeClock = [];
+for (let p = 2; primeClock.length < 84; p++) {
+  let isPrime = true;
+  for (let k = 2; k * k <= p; k++) if (p % k === 0) { isPrime = false; break; }
+  if (isPrime) primeClock.push(p - 1);
+}
+let primeIndex = 0;
+const p56Reencrypted = known56.map((p) => p === 0 ? 0 : (p + primeClock[primeIndex++]) % 29);
+assert.equal(primeIndex, 84);
+assert.deepEqual(p56Reencrypted, physical(56));
+
 const orientations = [];
 for (const reverseLayer of [false, true]) {
   const oriented = layers.map((layer) => reverseLayer ? [...layer].reverse() : [...layer]);
   for (const reverseLeafText of [false, true]) {
     const leaf = reverseLeafText ? [...physical(57)].reverse() : physical(57);
     for (const reverseMiddleText of [false, true]) {
-      const middle = reverseMiddleText ? [...physical(56)].reverse() : physical(56);
+      const middle = reverseMiddleText ? [...known56].reverse() : known56;
       for (const asPrime of [false, true]) {
         const result = testKnown(oriented, leaf, middle, (x) => asPrime ? prime[x] % 29 : x);
         orientations.push({ reverseLayer, reverseLeafText, reverseMiddleText, asPrime, ...result });
@@ -93,8 +122,8 @@ for (const reverseLayer of [false, true]) {
 assert.equal(orientations.length, 16);
 assert(orientations.every((x) => x.pairs === 85));
 const counts = orientations.map((x) => x.conflicts).sort((a, b) => a - b);
-assert.equal(counts[0], 23);
-assert.equal(counts.at(-1), 37);
+assert.equal(counts[0], 24);
+assert.equal(counts.at(-1), 38);
 console.log('Original table: 256 cells; base59 unique rooted tree; 39 leaf-removal layers.');
 console.log('Leaf-peel layers:', layers.map((x) => x.length).join(','));
 console.log('HTML-title-sized first two layers:', layers[0].length, '+', layers[1].length, '= 133');
