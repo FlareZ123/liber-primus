@@ -289,6 +289,97 @@ for (const target of targets) {
   }
 }
 
+// The p0 physical-ink adjudication fixes a thirteen-rune red heading,
+// followed by a thirteen-dot mark and black body beginning at offset 13.
+// Test the visible red header as a repeating additive key on its own body,
+// and on the audio-selected p29/p55 targets.
+const p0HeaderKey = page(0).indices.slice(0, 13);
+assert.equal(p0HeaderKey.length, 13);
+const headerTargets = [
+  {
+    label: 'p0-black-body',
+    page: 0,
+    ciphertext: page(0).indices.slice(13),
+    wordLengths: [page(0).indices.length - 13]
+  },
+  {
+    label: 'p29',
+    page: 29,
+    ciphertext: page(29).indices,
+    wordLengths: targets.find(x => x.pageNumber === 29).wordLengths
+  },
+  {
+    label: 'p55',
+    page: 55,
+    ciphertext: page(55).indices,
+    wordLengths: targets.find(x => x.pageNumber === 55).wordLengths
+  }
+];
+const p0HeaderKeyReports = [];
+for (const target of headerTargets) {
+  let viableConfigurations = 0;
+  let viableMasks = 0;
+  let bestIoC = null;
+  let bestDictionary = null;
+  const configurations = [];
+  for (let phase = 0; phase < 13; phase++) {
+    for (const sign of [-1, +1]) {
+      const keyAt = used => p0HeaderKey[(used + phase) % 13];
+      assert.ok(positivePlant(target.ciphertext.length, keyAt, sign));
+      positivePlants++;
+      if (!hasLegalPath(target.ciphertext, keyAt, sign)) continue;
+      viableConfigurations++;
+      const result = enumerateMasks(
+        target.ciphertext, keyAt, sign, target.wordLengths, dictionary
+      );
+      viableMasks += result.viable;
+      if (result.bestIoC && (!bestIoC || result.bestIoC.ioc > bestIoC.ioc))
+        bestIoC = { ...result.bestIoC, phase, sign };
+      if (result.bestDictionary &&
+          (!bestDictionary ||
+           result.bestDictionary.dictionaryMatches > bestDictionary.dictionaryMatches ||
+           (result.bestDictionary.dictionaryMatches === bestDictionary.dictionaryMatches &&
+            result.bestDictionary.ioc > bestDictionary.ioc)))
+        bestDictionary = { ...result.bestDictionary, phase, sign };
+      configurations.push({
+        phase, sign, viableMasks: result.viable,
+        bestIoC: result.bestIoC?.ioc ?? null,
+        bestDictionaryMatches: result.bestDictionary?.dictionaryMatches ?? 0
+      });
+    }
+  }
+  p0HeaderKeyReports.push({
+    target: target.label,
+    page: target.page,
+    runes: target.ciphertext.length,
+    Fcount: target.ciphertext.filter(value => value === 0).length,
+    configurations: 26,
+    viableConfigurations,
+    viableMasks,
+    bestIoC: bestIoC ? {
+      phase: bestIoC.phase, sign: bestIoC.sign, mask: bestIoC.mask,
+      ioc: bestIoC.ioc, gp: bestIoC.gp, words: bestIoC.words
+    } : null,
+    bestDictionary: bestDictionary ? {
+      phase: bestDictionary.phase, sign: bestDictionary.sign,
+      mask: bestDictionary.mask, ioc: bestDictionary.ioc,
+      dictionaryMatches: bestDictionary.dictionaryMatches,
+      matchedWords: bestDictionary.matchedWords,
+      words: bestDictionary.words
+    } : null,
+    viableConfigurationsDetail: configurations
+  });
+}
+assert.deepEqual(p0HeaderKeyReports.map(x => ({
+  target: x.target,
+  viableConfigurations: x.viableConfigurations,
+  viableMasks: x.viableMasks
+})), [
+  { target: 'p0-black-body', viableConfigurations: 1, viableMasks: 30 },
+  { target: 'p29', viableConfigurations: 0, viableMasks: 0 },
+  { target: 'p55', viableConfigurations: 9, viableMasks: 35 }
+]);
+
 // Exact expected totals freeze the current result and guard against accidental
 // changes to source arrays, word segmentation, F semantics, or sign convention.
 const totals = Object.fromEntries([0,29,55].map(n => {
@@ -309,7 +400,7 @@ assert.deepEqual(totals, {
   29: { configurations: 320, viableConfigurations: 0, viableMasks: 0 },
   55: { configurations: 320, viableConfigurations: 108, viableMasks: 247 }
 });
-assert.equal(positivePlants, 320 * 3 + 4 * 2 * 3);
+assert.equal(positivePlants, 320 * 3 + 4 * 2 * 3 + 13 * 2 * 3);
 
 // Authentic solved p56 positive control.
 const expectedP56Words =
@@ -366,10 +457,11 @@ console.log(JSON.stringify({
   sourceKeys:sourceKeys.map(x=>({name:x.name,period:x.key.length,key:x.key})),
   audioPrimeSeeds,
   targetSummaries:summaries,
+  p0RedHeaderKeyTests:p0HeaderKeyReports,
   exactTotals:totals,
   audioPrimeTotalViableMasks:audioPrimeReports.reduce((s,x)=>s+x.viable,0),
   p56PositiveControl:{runes:p56.length,ioc:p56IoC,exactPlaintext:true},
   syntheticPositivePlants:positivePlants,
   conclusion:
-    'All eight p15 source-key families have zero legal inverse on p29. p0 and p55 have some F-transparent paths but no coherent word-level plaintext. The four audio-derived prime starts are tested separately. The audio/page selector remains a hypothesis, not a decryption.'
+    'All eight p15 source-key families have zero legal inverse on p29. p0 and p55 have some F-transparent paths but no coherent word-level plaintext. The p0 red13 header as a repeating key likewise yields no coherent plaintext on its black body, p29, or p55. The four audio-derived prime starts are tested separately. The audio/page selector remains a hypothesis, not a decryption.'
 }, null, 2));
