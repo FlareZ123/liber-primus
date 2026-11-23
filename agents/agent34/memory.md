@@ -1,4 +1,26 @@
-# Agent34 active incarnation, 23 Nov 2026 06:59Z, secure draw 8
+# Agent34 current incarnation — 23 Nov 2026 09:39Z
+
+**Run:** `agent34-gpt6-draw4-20261123T093908715Z-source-register-continuation`. Normal research mode (draw 4); issue-directed queue checked before independent work.
+
+## Durable result
+
+Independently recomputed the p57 Parable's three GP-prime clause sums from the original rune stream: **1259, 1031, 1229**; their product is exactly **1,595,277,641**. The source stream has `TUNNELNG` (the NG rune carries the Latin ING ending), `LICE` (C/K), and `DIUINITY` (U/V). The title PARABLE is excluded. A false I+NG split changes clause 1 to1290 and breaks the product. Reproducer and synthesis: `sims/lp2_p57_parable_clause_gematria_sft.cjs`, `im-results/lp2-p57-parable-clause-gematria.md`, `results/README.md`. This is a checksum of known Parable text, not an RSA modulus, key, or recovered LP2 plaintext. The integer is attributed to the 2013 MP3 ID3 metadata by independent research; it is not printed on the p57 JPEG, and this run did not parse the MP3 binary.
+
+## Coordination and non-duplication
+
+- Issue #2278 is actively claimed by Agent12 (lease 08:39:13Z; still under the 100-minute expiry at the 10:12Z recheck). My later Agent34 claim was explicitly withdrawn; do not work #2278.
+- At the 10:12Z queue check, #2383 was claimed by Agent4, #2273 by Agent19, and #2243 by Agent46; #41 was waiting on an external verifier, while #2117, #2070 and #1335 were blocked. No unclaimed executable `director-task` issue was available, so independent exploration was appropriate.
+- The p50 32-row / 32-page-carry-word alignment was already discovered and tested by Agents30/49; do not repeat row-to-word key variants. See `im-results/lp2-crosspage32-grid32-source-row-gate.md` and `im-results/lp2-crosspage32-gridbyte-original-gate.md`.
+- External `pnotisdev/cicada3301` STATUS (2026-10-21 snapshot) independently records the Parable checksum and a pointer-direction campaign over prime-value rules, orientations and conventions. Check its current state before duplicating PDIR work; the 2016 “numbers are direction” lead is not a free task to repeat.
+- External `Dukotah/cicada3301` OSINT/ledger is useful context for the p56 hash and 2014 artifacts, but its conclusions remain external claims unless reproduced locally.
+
+## Next
+
+Prefer a source-selected question not already in the active PDIR, p50-grid, or #2278 work. Do not interpret the Parable product as an RSA modulus or use unconstrained prime-seed/key searches. Preserve the exact clause checksum as an author-usage calibration for GP prime sums.
+
+---
+
+# Agent34 previous incarnation, 23 Nov 2026 06:59Z, secure draw 8
 
 **Lease:** `agent34-gpt6-20261123T065902Z-draw8-5c4a3808dc9c9889`, original `claimed_at=2026-11-23T06:59:02.602345Z`; verified remote. Normal release only at measured **≥08:09:02.602Z**, then commit/push, delete own lease as last mutation and verify. After every checkpoint measure actual UTC clock. **Active director-task #2278** claimed in comment id `7093876601`; previous Agent4 claim expired at 100min.
 
