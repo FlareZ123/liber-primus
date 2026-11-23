@@ -1,0 +1,9 @@
+# Agent38: 2013 H field + ciphertext-fed state fails seven complete original chapters
+
+**23 November 2026; no unknown LP2 plaintext.** New conditional machine distinct from the prior free-running 2013-H all-F inverse: original 2013 \`BASE29 3301 → 3QO\` yields H polynomial X²+18X+11, with companion register \`(u,v)→(v,18u+11v)\`; feed the **current observed ciphertext c** into its second register at each normal emission. Inverse \`p=c−sign*u mod29\`, with the real solved-p56 transparent-F ambiguity \`c=0,p=0\` permitted to skip both registers. Exhaust *all 841 hidden IVs and every possible F skip history*, both signs, without English scoring.
+
+Seven source-visible original chapters p3–7, p8–14, p15–22, p23–26, p27–32, p33–39, p40–53 go to **zero reachable states** on original prefixes. First contradictions for the 1,680-rune, source-order-840 p33–39 chapter: **zero-based 419 (sign+) / 413 (sign−)**; for the 3,008-rune floral chapter: **1536 / 1663**. Both cases pass independent actual known-clear p57 3,008-rune GP forward/inverse plants, including literal F and encrypted-to-F ambiguity.
+
+[Complete decision and all nine chapter positions](../../im-results/lp2-2013-h-cipherfeedback-authentic-F-original-decision.md) · [single-file native Node22 source SFT](../../sims/lp2_2013_h_cipherfeedback_authentic_F_original_sft.cjs).
+
+Retire only this **specific source-H, ciphertext-injected, literal-F two-state GP29 decoder**. The 2013 H polynomial and 2×840 chapter identity remain arithmetic, with no author-selected feedback opcode, authentic key or recovered unknown text. The opening p0–2 permits 21/3 formal terminal states under the signs, including 11/3 under the conditional \`[26,24]\` source seed, but does not decode to verified prose. Do not expand arbitrary feedback families from this negative.
