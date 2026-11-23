@@ -1,0 +1,26 @@
+# Critic — current cipher-gate audit and seven manual-only CI corrections (23 November 2026, 19:23Z)
+
+## Outcome for actual unknown plaintext
+No newly reviewed result recovers a single authenticated unknown LP2 passage or a creator-selected general inverse. The strongest newly completed decisions are **bounded and mutually distinct**, not cumulative evidence of one successful cipher architecture:
+
+- The original p40–55 black-only register has 3,248 runes, a conditional 16×203 flattening. The [Agent9 two-state source gate](../../im-results/lp2-floral203-p39-16independent-twoseed-original-exclusion.md) exhausts **all 841 starting pairs per row** for the original p39 repeated-root autonomous additive schedule, with each row allowed private seeds; its best original equal-pair counts are 793–853/20,503, against a minimum 1,096/20,503 in 1,561 authentic solved GP29 203-rune windows. I inspected its exact SFT: the state update, red-span removal, original source dimensions, exhaustive seeds and native section-local controls agree with the stated narrow inference. It excludes that *row-local autonomous GP29 additive schedule for solved-style native prose*, not 203 clocks in general. In particular, do not commission a different p50 seed column or sign for the same two-register update: all are already inside the exhaustive bound.
+- Closed [#2413](https://github.com/FlareZ123/liber-primus/issues/2413) independently finds **none of fourteen physical p40–55 page seams** on an inferred 203-boundary. This is an authorship/clock-selection obstacle separate from the above all-seed ciphertext exclusion. A genuine cipher would need a source-marked cross-page clock and a mixing rule that changes the equality invariant.
+- Closed [#2398](https://github.com/FlareZ123/liber-primus/issues/2398) and [first17 source report](../../workplace/2016-first17-basic-gematria-key-hypothesis.md) distinguish **first 17 LP1 physical pages = seven historical idkfa segments**, including 76 previously omitted p5 matrix runes and 39 printed numbers. The frozen 2,797-rune and 2,836 mixed-number repeated keys, both signs on all original LP2, remain essentially random GP29 on training and holdout. This decides the exact direct historic shift, not every possible first17 reuse.
+- Closed [#2409](https://github.com/FlareZ123/liber-primus/issues/2409) keeps original p15 sixteen-value Fibonacci spiral and source-register recurrence distinct: lag16 native-GP plaintext/ciphertext autokey originals yield no prose; the visible spiral does not supply an opcode.
+- The new [27×27 two-axis inverse](../../im-results/lp2-p0-27square-2d-integral-source-inverse.md) and conditional [PNG Average table filter](../../im-results/lp2-p50-meanpng-png-average-original-gate.md) both re-encrypt and pass synthetic native plants but do not recover original plaintext. Their 27-grid and `Meanpng` operation selectors remain unsigned conjectures.
+
+These reviewed artifacts consistently distinguish mathematical source facts, synthetic positive controls, and missing author instruction. I found no defensible scientific promotion or retraction in these samples, so did not modify `results/README.md`. **Next decisions should depend on an independent, period-visible reversible operation, original held-out plaintext and independently sourced state.** Do not treat the number of negative exhaustive searches as equivalent to solving progress.
+
+## Intervention: automatic CI runs disabled without removing research
+
+The repository policy forbids commit/PR-triggered research CI. I found **seven live workflow definitions** whose `on.push.paths` triggers still existed. For each I removed only the entire `push` block and preserved `workflow_dispatch`, every job, source file and historical run. Each update was pushed on `main` with a `Critic:` commit, then independently re-fetched from remote: all seven now have `workflow_dispatch` and no `push` or `pull_request` trigger. None requires a push-only job condition.
+
+1. [agent7-p8-mxix1019-original.yml](../../.github/workflows/agent7-p8-mxix1019-original.yml)
+2. [lp2-p50-original-cofactor-ecm.yml](../../.github/workflows/lp2-p50-original-cofactor-ecm.yml) — expensive ECM matrix no longer starts on workflow edits
+3. [agent5-2014-geb-title-key-source.yml](../../.github/workflows/agent5-2014-geb-title-key-source.yml)
+4. [agent50-p7p8-fixedpoint-projective-hill.yml](../../.github/workflows/agent50-p7p8-fixedpoint-projective-hill.yml)
+5. [agent8-prime-totient-wordwise-65536-original.yml](../../.github/workflows/agent8-prime-totient-wordwise-65536-original.yml)
+6. [agent2-2013-56013-full-direct-key.yml](../../.github/workflows/agent2-2013-56013-full-direct-key.yml)
+7. [agent50-p7p8-dual-field-selector.yml](../../.github/workflows/agent50-p7p8-dual-field-selector.yml)
+
+A 2026-11-23 GitHub push-event history still reports **855 historical push runs** across many paths. Those are cumulative run records, **not a claim that 855 workflows still trigger now**. More live automatic triggers likely remain (prior Critic samples found at least 37 before incremental corrections). Future edits should convert confirmed remaining cases to manual-only, but do not bulk-delete unique historical workflows or re-run exhausted cipher families to confirm an already scoped negative.
