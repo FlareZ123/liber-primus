@@ -18,6 +18,67 @@ The first is precisely the *actual source's first eight printed signs*; the seco
 
 There are **100 original within-word adjacent literal two-sign pairs** whose Latin expansions equal one compound rune's spelling (e.g. original T,H versus TH). They lie in **92 source words**, with a disjoint packing of **95** positions; 52 of the 92 words also contain an alternate compound sign to split, preserving exact source-word length. The 100/95/52 values and witness strings are computed exhaustively without language-corpus fitting. The **52-bit ambiguity is conditional on retaining only expanded Latin and printed rune-word lengths**. It is not a measure of the original's encrypted entropy, and a pre-authorized canonical encoding policy could remove ambiguity by excluding some source sequences from its image. Crucially, no such author-selected policy has been identified; applying generic greedy digraph rules to the original would erase genuine two-sign positions.
 
+### Complete list of the 52 same-length ambiguity witnesses
+
+Indices are zero-based in the canonical sequence of 2,896 original printed words. Each row gives the original GP signs, one different GP-sign sequence of the **same rune length**, and their identical flat Latin expansion. The 52 choices can be made independently while preserving every printed word boundary and length.
+
+| Word index | Original GP signs | Alternative GP signs | Identical Latin |
+|---:|---|---|---|
+| 0 | `S H E O G M IA F` | `S H EO G M I A F` | `SHEOGMIAF` |
+| 22 | `T H AE IA` | `TH A E IA` | `THAEIA` |
+| 55 | `F O E W EA OE L F AE` | `F OE W E A OE L F AE` | `FOEWEAOELFAE` |
+| 84 | `NG P EO O E A` | `N G P EO OE A` | `NGPEOOEA` |
+| 319 | `T X C T H D EO` | `T X C TH D E O` | `TXCTHDEO` |
+| 514 | `OE N EO A E` | `O E N EO AE` | `OENEOAE` |
+| 557 | `OE EA U I A` | `O E EA U IA` | `OEEAUIA` |
+| 570 | `E O H M O OE B TH` | `EO H M O O E B TH` | `EOHMOOEBTH` |
+| 637 | `I TH T G U W C H E O A E` | `I T H T G U W C H EO A E` | `ITHTGUWCHEOAE` |
+| 647 | `W C E NG R EA D T H` | `W C E N G R EA D TH` | `WCENGREADTH` |
+| 717 | `E O AE G Y L` | `EO A E G Y L` | `EOAEGYL` |
+| 746 | `E A TH M L` | `EA T H M L` | `EATHML` |
+| 749 | `A E EA F J U` | `AE E A F J U` | `AEEAFJU` |
+| 764 | `A E I EO B OE` | `AE I E O B OE` | `AEIEOBOE` |
+| 789 | `X A E H R Y EA EO` | `X AE H R Y E A EO` | `XAEHRYEAEO` |
+| 842 | `B I A AE L` | `B IA A E L` | `BIAAEL` |
+| 885 | `E O I Y J T IA` | `EO I Y J T I A` | `EOIYJTIA` |
+| 994 | `Y AE G E O OE U R W U` | `Y A E G EO OE U R W U` | `YAEGEOOEURWU` |
+| 1051 | `N G IA` | `NG I A` | `NGIA` |
+| 1081 | `A E M NG` | `AE M N G` | `AEMNG` |
+| 1166 | `TH E O J G S NG Y M OE H` | `T H EO J G S NG Y M OE H` | `THEOJGSNGYMOEH` |
+| 1177 | `U P E A AE X AE` | `U P EA A E X AE` | `UPEAAEXAE` |
+| 1215 | `B A O E U IA J W T R W OE` | `B A OE U I A J W T R W OE` | `BAOEUIAJWTRWOE` |
+| 1221 | `IA E O` | `I A EO` | `IAEO` |
+| 1252 | `AE E O C TH W M` | `A E EO C TH W M` | `AEEOCTHWM` |
+| 1263 | `IA E O` | `I A EO` | `IAEO` |
+| 1350 | `NG X X A E` | `N G X X AE` | `NGXXAE` |
+| 1418 | `OE G Y G N G` | `O E G Y G NG` | `OEGYGNG` |
+| 1476 | `EO R N S O O C A E Y E E` | `E O R N S O O C AE Y E E` | `EORNSOOCAEYEE` |
+| 1488 | `Y M F I AE I A` | `Y M F I A E IA` | `YMFIAEIA` |
+| 1496 | `W EA O R O E` | `W E A O R OE` | `WEAOROE` |
+| 1697 | `U TH OE G E A OE EO EO` | `U T H OE G EA OE EO EO` | `UTHOEGEAOEEOEO` |
+| 1857 | `H B N G EO U OE` | `H B NG E O U OE` | `HBNGEOUOE` |
+| 1879 | `G N P D NG T E A` | `G N P D N G T EA` | `GNPDNGTEA` |
+| 1910 | `EA A E TH L AE` | `E A AE TH L AE` | `EAAETHLAE` |
+| 1934 | `IA EO I EO OE X C W A E` | `I A EO I EO OE X C W AE` | `IAEOIEOOEXCWAE` |
+| 2023 | `N O TH C TH N M O E` | `N O T H C TH N M OE` | `NOTHCTHNMOE` |
+| 2150 | `B I A EA` | `B IA E A` | `BIAEA` |
+| 2164 | `EO EA O E` | `E O EA OE` | `EOEAOE` |
+| 2215 | `P IA EA I A` | `P I A EA IA` | `PIAEAIA` |
+| 2304 | `T H W AE` | `TH W A E` | `THWAE` |
+| 2352 | `A N IA A E AE` | `A N I A AE AE` | `ANIAAEAE` |
+| 2393 | `TH N OE Y O E H` | `T H N OE Y OE H` | `THNOEYOEH` |
+| 2421 | `P C I A B G B P OE` | `P C IA B G B P O E` | `PCIABGBPOE` |
+| 2422 | `OE J F A E` | `O E J F AE` | `OEJFAE` |
+| 2440 | `Y E A S OE EO U A IA` | `Y EA S O E EO U A IA` | `YEASOEEOUAIA` |
+| 2475 | `M L I TH T EA S N G L` | `M L I T H T EA S NG L` | `MLITHTEASNGL` |
+| 2534 | `L M E I TH AE A IA J I A R` | `L M E I T H AE A IA J IA R` | `LMEITHAEAIAJIAR` |
+| 2563 | `TH J I A` | `T H J IA` | `THJIA` |
+| 2580 | `IA Y E O E IA G AE F N W` | `I A Y EO E IA G AE F N W` | `IAYEOEIAGAEFNW` |
+| 2708 | `E A P W EA L` | `EA P W E A L` | `EAPWEAL` |
+| 2866 | `N G O E L M B TH` | `NG O E L M B T H` | `NGOELMBTH` |
+
+These are concrete pairs of distinct GP tapes, not plaintext candidates. The chart and intact word lengths alone cannot distinguish either member of any pair.
+
 ## A source-authentic serializer comparison narrows the cipher register
 
 The normal, leftmost-longest native-GP chart encoder is not a speculative “decoder”; it is a simple 2014-executable way to spell visible Latin words with the published 29 signs. Its only relevant convention here is to consume a chart two-letter token whenever it begins at the current Latin letter. It has **20/20 exact original printed-word matches** on the separately solved and clear **p57 PARABLE**, using the same literal chart spellings and no encryption. The independently established full LP1 181-word source-calibrated positive additionally supplies the ING and IO pronunciation aliases needed to normalize true English, but these are not invoked on the literal glyph chart expansions in this test.

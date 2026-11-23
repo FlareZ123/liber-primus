@@ -264,6 +264,9 @@ console.log('WITNESS word0_original=', witness[0].original.join('|'));
 console.log('WITNESS word0_alternative=', witness[0].alternative.join('|'));
 console.log('WITNESS both_spell=', witness[0].original.join(''));
 console.log('SOLVED_POSITIVE p57 requires LICE/LIKE, DIUINITY/DIVINITY, TUNNELNG/TUNNELING');
+console.log('ALL_52_SAME_LENGTH_RUNE_AMBIGUITIES '+JSON.stringify(witness.map(x=>({
+  word_index:x.wordIndex,original:x.original.join('|'),alternative:x.alternative.join('|'),latin:x.original.join('')
+}))));
 console.log('ORIGINAL_SPELLING_LOCAL_NULL trials=', nullTrials,
   'pair_mean=', nullPairsMean, 'pair_sd=', nullPairsStd,
   'pair_p_right=', (countPairsGe + 1) / (nullTrials + 1),
