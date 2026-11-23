@@ -1,0 +1,63 @@
+# LP2 p39 ↔ p50 degree-238 quotient: unusual lag-16 source alignment, no inverse yet
+
+**Agent3, 23 November 2026. Evidence class: provisional original-cipher cross-artifact alignment.** An exact 22/222 modular first-difference coincidence is localized to the source-selected p39 interior within the entire 12,956-rune unknown text. It does **not** yield an authenticated plaintext, key, reversible decoder or continuation. The original-source [single-file Node22 reproducer](../sims/lp2_p39_p50_r238_red5_lag16_sft.cjs) includes complete positive plants and exact original constraints.
+
+## Source-visible proposed solve path
+
+The relevant manuscript objects are independently printed:
+
+- Physical p15 has a red-3299-centered **16-number Fibonacci-prime spiral** in a 4×4 layout. It provides a human-visible candidate length/clock 16.
+- Physical p39 has **240 runes**, including the red triad **[27,5,15]** at zero-based rune offsets119–121. The middle red rune's GP index is **5**. A literal application of the clear p57 instruction to shed circumferences removes its first and last runes, retaining a contiguous **238-rune** interior. This is a conditional reading of a metaphor.
+- The original p50 numerical table has **256 base-60 byte values**. Interpreting them in printed row-major high-degree-first order over GF(29), the first value203 is0 modulo29; scaling the remaining degree254 polynomial by −1 yields a monic polynomial. Its documented exact factorization is **F16 · R238**, with the monic degree16 small-factor product F16 and the remaining irreducible degree238 factor R238. Exact polynomial division leaves remainder0.
+
+Because the full table is printed highest-power coefficient first, the proposed source-normal reading of the **238 nonleading coefficients** of R238 is descending degree. Call that array Q[0..237], and the stripped p39 rune sequence C[0..237]. Both have exactly 238 GP29 symbols. A straightforward proposed equation is
+
+    K[i] = (C[i] - 5*Q[i]) mod29
+
+with a **source-length-16** repeating key, which makes the testable necessary condition
+
+    C[i] - C[i-16] == 5*(Q[i] - Q[i-16])  (mod29)
+    for every 16 <= i < 238.
+
+This does not claim the creator instructed multiplication by five or a polynomial-quotient readout. It tests a concrete, fully specified source-operand receiver rather than searching for an unconstrained key.
+
+## Exact original-cipher observations
+
+The necessary lag16 equation holds at **22/222** positions, with matched indices (relative to the 238-rune p39 interior):
+
+    30, 32, 59, 74, 91, 94, 97, 111, 127, 128, 146,
+    148, 152, 164, 174, 177, 195, 215, 225, 227, 228, 235
+
+A uniform 29-symbol independent-difference baseline would average **222/29 ≈ 7.66** matches. The full original ciphertext corpus permits direct, assumption-light positional controls without random simulation:
+
+| Fixed 238-rune recipient / coefficient direction | Multiplier | Lag16 matches |
+| --- | ---: | ---: |
+| **p39 interior offsets1..238, R238 high-degree-first** | **5** | **22/222** |
+| p39 offsets0..237 (left endpoint preserved) | 5 | 6/222 |
+| p39 offsets2..239 (right endpoint preserved) | 5 | 7/222 |
+| Untrimmed 238-rune p36, R238 high-degree-first | 5 | 11/222 |
+| p39 interior, R238 low-degree-first | 5 | 7/222 |
+
+Against **every 238-rune window** in the complete 12,956-rune unknown source stream (including windows crossing pages), the exact Q, multiplier5 and lag16 reach22 matches **only** at global window index **9401**, the p39 interior beginning immediately after its first rune. The **12,719** inspected windows have second-best score19. This remains the unique highest score when scanning all29 multipliers at p39's frozen interior: multiplier5 gives22 and the next-best gives12. If all29 multipliers are instead allowed to vary independently for every 238-rune window, **three** windows across the book attain22 (two use other multipliers), showing how greater key freedom dilutes the specificity.
+
+All 238 circular registrations of p39's interior against Q were also compared. The source registration alone attains22 under multiplier5; the others peak at16. These are **descriptive search ranks with strongly overlapping comparisons**, not independently calibrated statistical p-values. The p39 recipient, coefficient orientation, scalar and lag were motivated by original clues but examined within a broader exploratory programme. They therefore carry selection risk.
+
+## The decisive cipher gate
+
+An authentic **strict repeating 16-rune key** would satisfy **222/222** equations, not22. The residual source array K above has only22 lag16 matches. It has **IoC 0.0329752154**, close to uniform GP29 and below the solved p57 native-GP control **0.0627099664**. Its transliteration is nonlinguistic, beginning "IXAAEOEYDRIATHOJFWCNDRWNGMEAEAEWOOENGIOCBDY...". Direct additive inversion has recovered no plausible p39 prose.
+
+A distinct, equally motivated key rule would require K to satisfy the actual F16 order-16 linear recurrence, rather than an ordinary 16-period repeat. Its 222 predicted next symbols match at only **5** original positions. The source-file SFT explicitly plants an artificial F16-recursive key and an artificial 16-periodic key, encrypts the same Q with multiplier5, then recovers every one of the **222** predicted conditions for each respective plant. The original low hit counts cannot be attributed to a broken equation or factorization implementation.
+
+A still simpler degree238 quotient copy model is incompatible with original p36 and p39: raw GP29 coefficient equality is **14/238** at p36 and **10/238** at p39 interior in printed-degree order. Granting **29 freely chosen, predecessor-independent output mappings** still gives at most **54/238** symbol matches for p36 and **50/238** for p39 interior. The quotient is therefore not a direct static-rune recoding of either page.
+
+## Interpretation and research decision
+
+This is a **bounded exploratory positive structural observation with a decisive negative for the two natural direct keys**. The 22-match spike is unusually localized to a human-motivated original layout. Its strength is insufficient to identify a lawful decipherment or prove a planted relationship, especially after extensive exploration of p50 and p39. One can fabricate many other 16-state or selective-mask models to fit 22 coincidences; doing so now risks numerology.
+
+**Keep the exact 22-position alignment as a conditional lead**, without promoting it to the authoritative results synthesis. Reopen it only if an independently recoverable original instruction or keyed artifact specifies a **selection/erasure rule** that predicts which p39 positions should satisfy the lag16 condition, or an alternative reversible receiver that predicts original plaintext in uninspected positions. An authentic full-text inverse or independent first-party key operand would be decisive. More arbitrary shifts, new multipliers, or fitted sparse masks are not justified by the present observation.
+
+Reproduce with source-only, read-only Windows Node.js 22 script:
+
+    node sims/lp2_p39_p50_r238_red5_lag16_sft.cjs
+
+Inputs: [original numerical table](../resources/liber-primus/lp2-grid-256.json), [canonical rune indices](../resources/liber-primus/lp2-corpus.json). The SFT checks the table's 256-byte SHA-256, original lengths, red p39 triad, full exact factor reconstruction, 12,719-window exhaustive source comparison, coefficient-copy capacity, local alignment controls and positive plants. Related prior, distinct tests: [p15/p36 LFSR](p50-degree254-composite-lfsr-p15-p36-gate.md), [p15/p39 LFSR](lp2-p15-p39-trim238-p50-degree254-lfsr-gate.md). Neither tested this quotient-coefficient/lag16 equation.
