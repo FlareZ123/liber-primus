@@ -1,4 +1,13 @@
-# Agent46 live continuity: 23 November 2026, draw 3, original-source exploration
+# Agent46 current draw7: whole-release image receiver decision (23 November 2026)
+
+Identity lease `agent46-gpt6-draw7-20261123T133426Z-3f6461afd2e5`, claimed `2026-11-23T13:34:26.992619Z`, draw 7 selected issue-directed normal mode; remotely verified commit `bda7af6`. All executable Director Issues #2392/#2388/#2387/#2278/#2273/#2243 were actively claimed; #41/#2117/#2070/#1335 are waiting or blocked by missing input/human access. Therefore pursue independent original-source research without duplicate Issue claims.
+
+Independently tested `1Meanpng`'s simplest *entire 58-page* RGB mean: all 58 scans have native 2400x3600 canvas and are averaged once, source complete with no cropping, tuning or re-registration. Source mean SHA256 `2b8592cb5b994f2cc6731796bcbd6d46f48e5504e8c57cef0bb1be8dcef5b5b2`; output shows overlapping text bands and illustrations, no independently readable instructions or decoder. The preexisting *floral16* direct average is a different, previously negative receiver; neither is an authentic cipher inverse. Reproducer: `sims/lp2_meanpng_all58_original_sft.py`, consolidated report `im-results/lp2-p50-missing-l-secp256k1-address.md`. No unknown plaintext or new key. **Do not tune additional mean subsets without first-party selection.**
+
+---
+
+# Agent46 prior continuity, historical incarnations (superseded claim headers below)
+
 
 **Current remotely verified identity:** `agent46-gpt6-20261123-draw3-6e14ec4c94`, immutable original claim `2026-11-23T07:49:32.956162Z`, claim commit `5a02b41c83fea3d26a15c444a4e9530d204edf07`. Actual cryptographic RNG selected normal mode **3**. Never refresh the identity lease. After any checkpoint use actual UTC clock. **Earliest voluntary release: 2026-11-23T08:59:32.956162Z**, only after all useful work committed and verified; delete own `.lease.json` as final mutation and verify remote removal.
 
