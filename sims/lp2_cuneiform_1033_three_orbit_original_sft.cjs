@@ -221,6 +221,55 @@ for (let k = 0; k < cycles139.length; k++) {
 assert.deepEqual(reconstructed, firstNumbered);
 assert(Math.abs(ioc(predecessorDifference) - 0.03273902617036805) < 1e-12);
 
+// Independent value-changing source interpretation: LP2 has nearly no
+// adjacent-equal GP runes, so use a fully reversible 28-nonzero-step transport.
+// The only key is the NUMBER-derived p=139,g=7; p39's first red rune starts
+// the predecessor. Literal step zero represents the native transparent F.
+// All others are GP29 indices 1..28, keyed by 7^(i+1) mod139 mod28.
+// This structural transport is source-hypothesized rather than first-party
+// authenticated; no parameter is tuned to the original plaintext.
+/**
+ * @param {number[]} input
+ * @param {number} previous
+ * @returns {number[]}
+ */
+function decode28Step(input, previous) {
+  let state = 1;
+  const decoded = [];
+  for (const value of input) {
+    state = state * 7 % 139;
+    const difference = (value - previous + 29) % 29;
+    decoded.push(difference === 0
+      ? 0
+      : 1 + ((difference - 1 - state % 28 + 28) % 28));
+    previous = value;
+  }
+  return decoded;
+}
+/**
+ * @param {number[]} input
+ * @param {number} previous
+ * @returns {number[]}
+ */
+function encode28Step(input, previous) {
+  let state = 1;
+  const encoded = [];
+  for (const value of input) {
+    state = state * 7 % 139;
+    const difference = value === 0 ? 0 : 1 + ((value - 1 + state % 28) % 28);
+    previous = (previous + difference) % 29;
+    encoded.push(previous);
+  }
+  return encoded;
+}
+const decoded28Step = decode28Step(firstNumbered, red3[0]);
+assert.equal(decoded28Step.filter(i => i === 0).length, 1);
+assert.deepEqual(encode28Step(decoded28Step, red3[0]), firstNumbered);
+const native139 = Array.from({length:139}, (_, i) => solved[i % solved.length]);
+assert.deepEqual(decode28Step(encode28Step(native139, red3[0]), red3[0]),
+  native139);
+assert(Math.abs(ioc(decoded28Step) - 0.03326034824314462) < 1e-12);
+
 console.log(JSON.stringify({
   chapter: {pageRange: '33-39',startP33:91,length:chapter.length},
   originalSegments: {
@@ -240,6 +289,7 @@ console.log(JSON.stringify({
     orbitDifferenceIoC: ioc(differences), reverseOrder550IoC: ioc(reverseDecryption)
   },
   firstOpcode379: {headPrimeSum: 379, reverse: 973, pageCount: 7, firstUnitLen: 139, orbitLengths: cycles139.map(c => c.length), red3AsIV: red3, firstUnitRawIoC: ioc(firstNumbered), inverseIoC: ioc(predecessorDifference), forwardReconstruction: firstNumbered.length},
+  firstOpcode28Step: {keyFrom379:[7,139],redInitial: red3[0],decodedIoC: ioc(decoded28Step),forcedFCount: decoded28Step.filter(i => i === 0).length, originalForwardRoundtrip: firstNumbered.length, nativeP57PlantedRecovered: native139.length},
   plantedNativeRunnersRecovered: nativePlant.length,
   unknownPlaintextRecovered: false
 }, null, 2));
