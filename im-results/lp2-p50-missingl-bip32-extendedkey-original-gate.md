@@ -53,6 +53,16 @@ Freeze L at original column4 as the private parent and M at column5 as the 32-by
 
 The unchanged source-derived outputs remain binary-looking, with **no conventional plaintext ASCII file header**. Both exactly replay all192 original bytes by forward XOR. An independent original 192-byte genuine readable-ASCII plant XOR-encrypts and then recovers all192 bytes under each identical pad; these are implementation controls. This finite interpretation does not produce a hidden message, file signature, LP2 key or location. It cannot rule out a different author-selected BIP32 receiver or compressed/encrypted payload, since there is **no original BIP32 or XOR opcode** selecting this operation. The added complete test passed in [Windows Node22 run 45237440098](https://github.com/FlareZ123/liber-primus/actions/runs/45237440098).
 
+## Complete original I/l printed-case robustness, 23 November
+
+The source's fifth (missing-L) scalar column4 is *unambiguous*, and so is left-adjacent K column3. **Right-adjacent M column5 contains two genuine source-case-sensitive cells**: printed grid row5 `1l` (canonical byte107, uppercase alternative78) and row20 `0I` (canonical byte18, lowercase alternative47). These two byte changes are exactly ±29, so they are invisible to the published GP29 residue stream but radically change BIP32 HMAC.
+
+The later SFT explicitly exhausts all four original I/l source-case assignments in M, keeping the sole K chain case. It runs **5 chain variants × 2 hardening modes × 2 original rune receivers × 2 signs = 40 complete original 12,956-rune decodes**. All40 exactly reencrypt and pass native solved-p57 plants and the official BIP32 vectors. Their *whole-book* IoC spans **0.0344444737–0.0345585671**, original pp0–2 IoC **0.0338413301–0.0352997483**, original pp54–55 **0.0329540167–0.0359998308**. None reveals sustained authentic native GP text. This strengthens the bounded negative without inventing visual certainty about upper/lower glyphs.
+
+The source's **other six payload columns** in the proposed binary-file consumer contain eight additional I/l-sensitive bytes, so the canonical 192-byte ASCII count is not a full case-invariant file proof. Instead the four exhaustive *chain-code* masks give bytewise XOR ASCII printable counts, before changing those eight payload positions, of **62–80 out of192** across all eight child classes. At most eight source-byte alterations can change ASCII printability, so under **every one of all 4×2^8 input-case assignments, at most88/192 bytes** can be printable. Thus the entire authentic source-glyph case universe is excluded as **ordinary uncompressed printable-ASCII plaintext under this specific BIP32 direct-byte XOR receiver**, without enumerating the payload case bits. This is not an exclusion of encrypted, compressed or non-ASCII binary payloads.
+
+[Complete source-case exhaustive Windows Node22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45239974733) · [same updated original-source SFT](../sims/lp2_p50_missingl_bip32_child_scalar_original_sft.cjs).
+
 ## Reproduction, decision and next meaningful input
 
 - [Complete read-only CommonJS/Node22 SFT](../sims/lp2_p50_missingl_bip32_child_scalar_original_sft.cjs), consuming the current canonical numerical table and all 58 LP2 page records.
