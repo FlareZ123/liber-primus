@@ -126,11 +126,87 @@ assert.deepEqual(outcomes.map(row => row[1].firstImpossible), [20,2,null,2,60]);
 assert.equal(outcomes[2][1].endClockCount, 3);
 assert.equal(outcomes.flat().filter(x => x.firstImpossible === null).length, 1);
 
+/**
+ * Independently historical alternative: the 2013 five-of-ten Shamir operator,
+ * with the five 2013-gap / p15 intersection primes as GF(29) x coordinates.
+ * The original five numbered source passages are the unmodified y registers.
+ * Degree 2/3 consistency is key-independent; degree 4 always interpolates.
+ * @param {number} n
+ * @returns {number}
+ */
+function mod29(n) { return ((n % 29) + 29) % 29; }
+
+/** @param {number} x @returns {number} */
+function inverse29(x) {
+  for (let i = 1; i < 29; i++) if (mod29(x * i) === 1) return i;
+  throw new RangeError('Non-invertible GF29 x difference');
+}
+
+/** @param {number[]} x @param {number[]} y @param {number} at @returns {number} */
+function lagrange(x, y, at) {
+  assert.equal(x.length, y.length);
+  return mod29(x.reduce((sum, xi, i) => {
+    let factor = 1;
+    for (let j = 0; j < x.length; j++) {
+      if (j !== i) factor = mod29(factor * mod29(at - x[j]) * inverse29(xi - x[j]));
+    }
+    return sum + y[i] * factor;
+  }, 0));
+}
+const xValues = selected.map(s => s.prime % 29);
+assert.deepEqual(xValues, [21, 4, 2, 28, 17]);
+assert.equal(new Set(xValues).size, 5);
+const lagrangeWeights = xValues.map((_, i) => lagrange(xValues,
+  xValues.map((__, j) => j === i ? 1 : 0), 0));
+assert.deepEqual(lagrangeWeights, [24, 26, 22, 3, 13]);
+const shamirPlain = [];
+let degree2Consistent = 0;
+let degree3Consistent = 0;
+for (let j = 0; j < 91; j++) {
+  const ys = fragments.map(unit => unit[j]);
+  const p = lagrange(xValues, ys, 0);
+  shamirPlain.push(p);
+  if (lagrange(xValues.slice(0, 3), ys.slice(0, 3), xValues[3]) === ys[3] &&
+      lagrange(xValues.slice(0, 3), ys.slice(0, 3), xValues[4]) === ys[4]) degree2Consistent++;
+  if (lagrange(xValues.slice(0, 4), ys.slice(0, 4), xValues[4]) === ys[4]) degree3Consistent++;
+}
+assert.equal(degree2Consistent, 0);
+assert.equal(degree3Consistent, 4);
+const hist = Array(29).fill(0);
+for (const rune of shamirPlain) hist[rune]++;
+const shamirIoc = hist.reduce((sum, n) => sum + n * (n - 1), 0) /
+  (shamirPlain.length * (shamirPlain.length - 1));
+assert.ok(Math.abs(shamirIoc - 0.035164835164835165) < 1e-12);
+assert.deepEqual(shamirPlain.slice(0, 10), [24, 1, 11, 3, 10, 15, 1, 15, 14, 1]);
+
+// Authentic p57-native positive plants at each allowed source-selected degree.
+for (let degree = 2; degree <= 4; degree++) {
+  for (let j = 0; j < 91; j++) {
+    const secret = corpus.pages[57].indices[j];
+    const ys = xValues.map(x => {
+      let value = secret;
+      for (let exponent = 1; exponent <= degree; exponent++) {
+        const coefficient = 2 + exponent + j % 7;
+        value += coefficient * Math.pow(x, exponent);
+      }
+      return mod29(value);
+    });
+    assert.equal(lagrange(xValues.slice(0, degree + 1), ys.slice(0, degree + 1), 0), secret);
+    if (degree <= 3) {
+      for (let k = degree + 1; k < xValues.length; k++) {
+        assert.equal(lagrange(xValues.slice(0, degree + 1), ys.slice(0, degree + 1), xValues[k]), ys[k]);
+      }
+    }
+  }
+}
+
 console.log(JSON.stringify({
   status: 'PASS — 9/10 exact original passages impossible, one nonlinguistic partial exception',
   selected,
   fragmentLengths: fragments.map(a => a.length),
   outcomes,
   p56AuthenticPositive: true,
-  tenPlantedNativePositives: true
+  tenPlantedNativePositives: true,
+  shamirFivePrimes: { xValues, lagrangeWeights, degree2Consistent, degree3Consistent, shamirIoc, secretPrefix: shamirPlain.slice(0, 15) },
+  shamirAuthenticNativePlants: true
 }, null, 2));
