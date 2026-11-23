@@ -103,9 +103,35 @@ None begins with a coherent ASCII command or the standard PDF, ZIP, GZIP, PNG or
 
 **Alternative author-native number typing, same frozen body parser:** the original Gematria Primus chart prints prime numbers for each of the 29 runes, so we also tried **one** direct binary read of two neighboring complete **word GP-prime sums** (larger first=1, smaller first=0, equal omitted), with identical frame starts and fixed MSB-first 5-bit GP29 or 8-bit ASCII packing. This has **1,444 comparison bits and 283 complete five-bit values; 25 are forbidden GP29 digits 29–31**. The first body begins hex **CD 7C 13 02 AF 3E 47 E9** and its first GP29 string begins **AE-NG-[30]-U-G-F**, with an illegal 30 already at the third digit. None of the 15 original body heads yields a clear ASCII command or full valid GP29 instruction. This simple prime-sum interpretation is also a bounded **direct plaintext negative**, not a claim that numbers must mean lengths. It is distinct from the previously rejected prime-sum *key-pointer* movement (#1193/#1329). No key, phase or symbol-order tuning was attempted.
 
+## Stronger main route: one uninterrupted, exact-repeat-site whole-book codeword
+
+The author-authentic p56 clock continues across **both** the heading red13 and internal red10 marks. This authentic counterexample weakens the 15-body source parser's *cipher-reset* premise. The cleaner, more restricted original-source coding question is now: can the **entire unknown manuscript be one continuous GP29 message**, with **every exact observed adjacent repeated-rune *position* fixed**, preserving the **two printed word lengths of every consecutive word pair**, while the *orientation* of unequal-length pairs alone supplies a printable 1-bit channel?
+
+This test removes all hypothetical independent stops at pages, giant red punctuation and colored headings. The codebook fixes a binary runic equality-transition mask of length **12,955** with exactly **86 observed equal-neighbor sites**; a codeword starts with any GP29 glyph and chooses one of **28 nonmatching successors** at each of the other 12,869 steps. Independently, the **2,896 authentic complete printed words form exactly 1,448 neighboring two-word pairs**, with **1,242 unequal-length pairs**. Each unequal pair has exactly two possible orientations and each equal-length pair only one, preserving every paired length multiset. The entire printed/enciphered source packet count is therefore **exactly**
+
+\[
+M_{\text{fixed-sites}}=
+29\cdot28^{12,869}\cdot2^{1,242}
+\quad\text{versus}\quad
+Q=29^{12,956}.
+\]
+
+The independently source-fixed total missing alphabet capacity from holding the **86 repeated-rune sites in exactly their actual places** is
+
+\[
+(12,955)\log_2(29/28)+86\log_2(28)
+=1069.2932999184\text{ bits}.
+\]
+
+Thus **1,070** pair-direction bits suffice for injection, and the untouched original supplies **1,242**, leaving an exact positive coding surplus **172.7067000816 bits**. These are mathematical cardinalities, not recovered cipher key bits. Without resetting at any mark, the source-prescribed 86 locations remain fixed, so the new model is strictly more faithful to physical ciphertext repeat geometry than the earlier per-rubric exact-E-count models, while requiring no speculative red-title/reset opcode.
+
+The separate [complete fixed-repeat-mask, one-codeword GP29 source SFT](../sims/lp2_gp29_fullbook_fixedrepeat_wordpair_source_sft.cjs) uses the untouched canonical 12,956-rune ciphertext and all 2,896 printed words, ranks its *nonrepeating* successor runes in authentic order and its visible neighboring unequal-length-pair orientations in one binary integer, and combines the two ranks. It proves \(M\ge Q\) with BigInt, ranks every original packet into \([0,M)\), performs exact inverse, and plants a genuine independently solved p57 plaintext repeated to 12,956 runes through the same codebook. The source program **passed every assertion in an isolated JavaScript execution bound to the exact current GitHub original corpus and transcription** in under 0.5 seconds: **all 12,956 original GP29 runes and all 2,896 original printed gaps restored; 12,956/12,956 solved-native plant recovered**. The unkeyed original candidate first300-runic IoC is **0.034180602**, with independent original p16 first200 IoC **0.035025126**, and the planted solved-native source IoC **0.072481608**. The original full-book canonical-sender residual is **nonzero**.
+
+**This is the most economical mathematical carrier among the present tests.** It neither supposes a numerical key from red title positions nor requires a guessed cipher-state reset. **The original direct output remains nonsensical**, and the freely available many-to-one residual means that source/plant roundtrip alone does not identify the author's GP29 rank, word-pair orientation rule or a keystream. To turn this into an authentic decryption one needs a printed instruction selecting a specific rank/carry/seed, or an independently authenticated key plus coherent original plaintext predicted on a withheld page. Other, entirely unrelated cipher mechanisms remain possible.
+
 ## Research decision and closest plaintext route
 
-The original physical clues make the 15-block reset family a clearer human solve-path hypothesis than the earlier purely capacity-derived omission of two marks. Likewise a single binary comparison of adjacent printed word lengths is a more plausible human-readable side channel than a multi-thousand-position arbitrary permutation. The first-party 2016 line “their numbers are the direction” is compatible with the concept of binary word-number direction, although it does not define *length* or *pair*. Both are hypotheses, not signed commands.
+The original physical clues make red headings a plausible *typographic* parse, but the **single continuous fixed-repeat-site word-pair model above avoids cipher resets at any mark**, agreeing more closely with the solved p56 clock-continuity precedent. The 15-body capacity result is still valid as a narrower conditional variant. Likewise a single binary comparison of adjacent printed word lengths is a more plausible human-readable side channel than a multi-thousand-position arbitrary permutation. The first-party 2016 line “their numbers are the direction” is compatible with the concept of binary word-number direction, although it does not define *length* or *pair*. Both are hypotheses, not signed commands.
 
 The missing action is exact and falsifiable: authenticate a source operation that selects these word pairs, determines a GP29 sender ranking, and specifies its arithmetic carry/seed/reset. Freeze that operation on an original unsolved section and demand coherent unknown plaintext with a held-out independent chapter and full unchanged forward replay. Without it, changing rank conventions or word-pair bit polarity to fit language is pure postselection. In particular, the **random-looking original candidate outputs are a negative result for the unkeyed canonical rank**, regardless of complete original replay.
 
