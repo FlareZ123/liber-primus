@@ -108,7 +108,7 @@ function parseWords(pageIndex){
     if(map.has(ch)){
       if(!current.length)start=offset;
       current.push(map.get(ch));offset++;
-    }else if(ch==='/'||/\\s/u.test(ch)){}else flush();
+    }else if(ch==='/'||/\s/u.test(ch)){}else flush();
   }
   flush();
   return words;
