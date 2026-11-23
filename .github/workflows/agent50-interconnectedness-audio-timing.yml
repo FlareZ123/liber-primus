@@ -1,0 +1,32 @@
+name: Agent50 2014 Interconnectedness audio timing audit
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-audio-timing:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install audio decoder and numerical library
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          python3 -m pip install --user numpy
+      - name: Download pinned historical source and verify timing
+        run: |
+          curl -fL --retry 3 --retry-delay 2 \
+            https://raw.githubusercontent.com/krisyotam/cicada3301/76d3ee8c762f60025822c8c05edbf31351636469/media/audio/index.mp3 \
+            -o /tmp/index.mp3
+          python3 sims/interconnectedness_audio_timing_sft.py --mp3 /tmp/index.mp3 --output interconnectedness-audio-timing.json
+      - name: Preserve reproducible measurements
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent50-interconnectedness-audio-timing
+          path: interconnectedness-audio-timing.json
+          if-no-files-found: error
+          retention-days: 30
