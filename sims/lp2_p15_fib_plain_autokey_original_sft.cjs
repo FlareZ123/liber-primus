@@ -139,6 +139,8 @@ function ioc(seq){
 function fixedWindowAnalysis(cipher,k0,k1){
  const p=decrypt(cipher,k0,k1);
  return {first100:p.slice(0,100).map(x=>gp.translit[x]).join(" "),
+  hold40to53First80:p.slice(pages40,pages40+80).map(x=>gp.translit[x]).join(" "),
+  hold54to55First80:p.slice(pages54,pages54+80).map(x=>gp.translit[x]).join(" "),
   trainIoC:ioc(p.slice(0,p16End)),hold40to53IoC:ioc(p.slice(pages40,pagesAfter53)),
   hold54to55IoC:ioc(p.slice(pages54)),
   fullIoC:ioc(p),
@@ -251,8 +253,10 @@ for(const [name,filename,seed,k0,k1] of donors){
  });
  assert(positives.at(-1).reencryptionFull);
  assert(positives.at(-1).exactK1,"native unigram wrong k1 for "+name);
- // Exact k0 may remain intrinsically unidentifiable if the first donor word
- // is absent from / ambiguous within the independently frozen lexicon.
+ assert(positives.at(-1).exactK0,"native dictionary failed first IV for "+name);
+ assert(positives.at(-1).recoveredFirst500&&positives.at(-1).recoveredTotal===9194,
+   "blinded native first-500/full-book recovery failed: "+name);
+ assert(positives.at(-1).trainLogGap>100,"wrong-IV native control not separable");
 }
 console.log(JSON.stringify({
  source:{physicalStart:16,physicalEnd:55,runes:original.length,
