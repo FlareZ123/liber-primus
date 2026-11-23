@@ -157,6 +157,14 @@ function equalPairs(a) {
     if(a[i]===a[j]) out.add(i+':'+j);
   return out;
 }
+/* At step19, both previous ciphertext symbols are F=0, while both
+ * putative plaintext symbols are equal. Any common deterministic first-order
+ * feedback C[i]=G(P[i],C[i-1]) would output the same next rune, contrary to
+ * the authentic p40/p53 ciphertext. Other hidden state remains possible.
+ */
+assert.equal(A[18],0);
+assert.equal(B[18],0);
+assert.notEqual(A[19],B[19]);
 const ea=equalPairs(A), eb=equalPairs(B);
 assert.deepEqual([ea.size,eb.size,[...ea].filter(x=>eb.has(x)).length],[8,4,0]);
 
