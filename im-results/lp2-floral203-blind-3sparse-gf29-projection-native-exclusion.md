@@ -22,8 +22,8 @@ Take the exact black source in original reading order, grouped into sequential 2
 | --- | ---: | ---: | ---: |
 | 1 | 16 | **758** | **0.0369702** |
 | 2 | 3,360 | **836** | **0.0407745** |
-| 3 | 439,040 | **896** | **0.0437019** |
-| **Total** | **442,416** | **896** | **0.0437019** |
+| 3 | 439,040 | **896** | **0.04370092** |
+| **Total** | **442,416** | **896** | **0.04370092** |
 
 The best three-row original projection uses logical source rows **3,7,14**, coefficients **[1,20,6]**. Even this optimized maximum remains far below the weakest authentic solved-native sample. The table is an **exact whole-search maximum** and therefore does not require a multiple-testing-adjusted significance assertion for the claimed family ceiling.
 
