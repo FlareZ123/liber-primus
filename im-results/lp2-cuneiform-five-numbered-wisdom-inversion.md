@@ -271,7 +271,22 @@ The literal *unknown-language* objection can be bounded without pretending that 
 
 [Original-source SHED + historical DIVINITY opcode + five-unit holdouts + native-wordshape SFT](../sims/lp2_cuneiform_item3_shed_divinity_original_sft.cjs) · [Windows Node22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45166346344).
 
-**Research decision:** The 25-word third passage (also a 5×5 word-count footprint), its balanced 49/49 interior/exterior pair and a directly named historical key are reproducible human-visible test inputs. The full original item1 and item2 are not decrypted by the unmodified operation. The six square/word-mask consumers and authentic keyed interior consumer produce no independently readable unknown plaintext. Preserve the exact source-word role split as an exploratory clue and require **an author-selected second opcode** or a substantial untouched positive plaintext before adding another layer; the source does not supply one.
+### Source-key without imported square cells: four exact 7×7 two-tile matrix quotients
+
+The same original 49 exterior + 49 interior GP29 runes can themselves form two complete **invertible GF29 7×7 matrices** `O` and `I` (determinants **15** and **21** respectively). The source supplies the two tiles physically and shows an authentic 7×7 magic square. A finite alternative to *applying its particular cell values as an encryption key* is that the exterior itself is the transmitted **left or right matrix factor** in `I = O·P` or `I = P·O`. Test precisely the two left/right quotient inverses and the two corresponding inside/outside role swaps, with row-major fill and no fitted permutations or keys. Each original 49/49 matrix equation and an independently solved p57 49-rune plaintext plant reencrypts exactly.
+
+| Original typed 7×7 equation | Recovered GP29 matrix P, flattened IoC | Six-rune `APPEND` code-point run? |
+| --- | ---: | --- |
+| `I = O × P` => `P = O⁻¹ × I` | **0.04336735** | **Yes**, starts at recovered zero-based rune **5** |
+| `I = P × O` => `P = I × O⁻¹` | **0.03911565** | No |
+| `O = I × P` => `P = I⁻¹ × O` | **0.04336735** | No |
+| `O = P × I` => `P = O × I⁻¹` | **0.02551020** | No |
+
+The first quotient's exact 49-rune GP transliteration is `GOEORJAPPENDIAEOGIAAHMEMEEOWDPAEWTAEDMCIEOSMOCHOEOIAMOYGWM`. The fragment **APPEND** is a genuine six-*rune* GP token sequence `[24,13,13,18,9,23]`; it is not an artifact of the multi-letter transliteration of AE/EO/IA/NG/TH. This short imperative is an interesting **post-observed plaintext-island candidate**. Crucially, its preceding and following text is disconnected, the other three quotient receivers do not reproduce it, no independent original numbered unit has the same equal 49/49 shape, and the first-party cuneiform/2014 square instructions do **not** specify matrix division or the left-factor order. A single English word discovered after exploring many models is **insufficient to authenticate unknown-page plaintext**. Preserve it as a locked potential discriminator, not as a deciphered instruction; demand independent adjacent prose, a creator-directed equation/ordering or a 91+ rune withheld receiver that works *without* retuning.
+
+[Original-source quotient and native positive SFT](../sims/lp2_cuneiform_item3_two_tile_matrix_quotient_original_sft.cjs) · [Windows Node22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45167490260).
+
+**Research decision:** The 25-word third passage (also a 5×5 word-count footprint), its balanced 49/49 interior/exterior pair and the named historical DIVINITY key are reproducible human-visible inputs. No intact original item1 or item2 is decrypted by the source-authentic opcode, and no complete item3 plaintext is recovered by the exploratory matrix quotients. The isolated six-rune APPEND does not overcome the missing author-selected **second opcode** and independent original holdout. Preserve the role split and exact candidate operation as exploratory work without promoting a fragment to the authoritative solved record.
 
 ## Native JPEG glyph readback (Agent 27, 11 November 2026)
 
