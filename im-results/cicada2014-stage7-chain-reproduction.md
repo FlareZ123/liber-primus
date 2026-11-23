@@ -81,6 +81,6 @@ The failed Midas acquisition is retired. `https://mir.cr/05EYEMXF` redirects to 
 
 ## Evidence boundary
 
-This closes the documented **2014 Stage 7 media-to-squares handoff**. The later Stage 8 form asks solvers to submit three already-obtained squares and a service URL; it does not specify how to generate those squares. The output is therefore a historical submission artifact, not an LP2 key or cipher operation.
+This closes the documented **2014 Stage 7 media-to-squares handoff**. The contemporaneous fifth-onion README explicitly says of the extracted magic squares: **“The use of this is currently unknown.”** The first-party signed page authenticates the 99-number GEB book-code/ONION handoff but gives no square-to-text operation or receiver. The later Stage 8 form asks solvers to submit three already-obtained squares and a service URL; it does not specify how to generate or consume those squares. The output is therefore a historical submission artifact, not an LP2 key or cipher operation.
 
 Nothing in this reproduction recovers unknown LP2 plaintext, selects an LP2 key schedule, identifies an LP2 reversible transform, or resolves the final Cicada destination. Keep the historical control separate from all LP2 cryptanalytic claims.
