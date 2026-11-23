@@ -35,10 +35,10 @@ jobs:
         run: |
           mkdir -p "$RUNNER_TEMP/p55-dlp"
           cd cado-nfs-upstream
-          ../cado-venv/bin/python3 ./cado-nfs.py -dlp -ell "$P55_ORDER" target="$P55_GENERATOR" "$P55_MODULUS" -t 4 tasks.workdir="$RUNNER_TEMP/p55-dlp" 2>&1 | tee "$RUNNER_TEMP/p55-dlp-Q.log"
+          ../cado-venv/bin/python3 ./cado-nfs.py -dlp -ell "$P55_ORDER" target="$P55_GENERATOR" "$P55_MODULUS" -t 4 --workdir "$RUNNER_TEMP/p55-dlp" 2>&1 | tee "$RUNNER_TEMP/p55-dlp-Q.log"
           snapshot=$(find "$RUNNER_TEMP/p55-dlp" -type f -name '*.parameters_snapshot.*' | sort -V | tail -n 1)
           test -n "$snapshot"
-          ../cado-venv/bin/python3 ./cado-nfs.py "$snapshot" target="$P55_PUBLIC_E" 2>&1 | tee "$RUNNER_TEMP/p55-dlp-E.log"
+          ../cado-venv/bin/python3 ./cado-nfs.py --parameters "$snapshot" target="$P55_PUBLIC_E" 2>&1 | tee "$RUNNER_TEMP/p55-dlp-E.log"
           echo "CADO-NFS modulo-157-bit-subgroup computations completed."
 
       - name: Preserve computation output whether completed or interrupted
