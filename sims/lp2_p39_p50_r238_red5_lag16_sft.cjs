@@ -340,8 +340,9 @@ for (const [p39Order, p39Polynomial] of [
   const quotientResult = divMonic(p39Polynomial, p39RedMonic);
   const quotient = quotientResult.quotient.map(x => mod(2 * x));
   assert.equal(quotient.length, 238);
-  assert.deepEqual(quotientResult.remainder,
+  assert.deepEqual(quotientResult.remainder.slice(0, 2),
     p39Order === 'printed-high-first' ? [26, 27] : [21, 26]);
+  assert.ok(quotientResult.remainder.slice(2).every(x => x === 0));
   const recomposed = mul(p39RedQuadratic, quotient);
   recomposed[0] = mod(recomposed[0] + quotientResult.remainder[0]);
   recomposed[1] = mod(recomposed[1] + quotientResult.remainder[1]);
@@ -377,7 +378,8 @@ redEncodedPlant[1] = mod(redEncodedPlant[1] + 27);
 const redPlantInverse = divMonic(redEncodedPlant, p39RedMonic);
 assert.deepEqual(redPlantInverse.quotient.map(x => mod(2 * x)),
   redDividedNativePlant);
-assert.deepEqual(redPlantInverse.remainder, [26, 27]);
+assert.deepEqual(redPlantInverse.remainder.slice(0, 2), [26, 27]);
+assert.ok(redPlantInverse.remainder.slice(2).every(x => x === 0));
 
 // The cubic extraction has 236 coefficients. A second literal
 // circumference-shedding on full p39 also has 236 runes, which gives a
