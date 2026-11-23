@@ -1,0 +1,20 @@
+name: Agent49 original dual-zero moth source SFT
+on:
+  push:
+    paths:
+      - '.github/workflows/agent49-dualzero-moth-source.yml'
+      - 'sims/lp2_p50_dualzero_moth_source_sft.cjs'
+      - 'resources/liber-primus/lp2-corpus.json'
+      - 'resources/liber-primus/lp2-grid-256.json'
+  workflow_dispatch:
+jobs:
+  source-locked:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check source-locked inverses and controls
+        run: node sims/lp2_p50_dualzero_moth_source_sft.cjs
