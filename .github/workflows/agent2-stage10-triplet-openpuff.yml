@@ -1,0 +1,91 @@
+name: Agent2 original Stage10 three-JPEG native OpenPuff 2014 key handoff
+on:
+  push:
+    paths:
+      - '.github/workflows/agent2-stage10-triplet-openpuff.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-stage10-triplet:
+    runs-on: windows-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          architecture: x86
+      - name: Prepare original native OpenPuff v4 and positive-control dependencies
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python -c "import struct; assert struct.calcsize('P') == 4"
+          python -m pip install --disable-pip-version-check pywinauto Pillow filelock
+          python sims/openpuff_output_capture_sft.py
+          $root = Join-Path $env:RUNNER_TEMP 'OpenPuff-v400-original-stage10-triplet'
+          New-Item -ItemType Directory -Force -Path $root | Out-Null
+          $base = 'https://raw.githubusercontent.com/codejanus/ToolSuite/1eaf6d006d31ba842f6cc6b16e9d82dbf904aaf5/OpenPuff'
+          $expected = @{
+            'OpenPuff.exe' = '466e03c792075313ce533a5dc7a789e8a41209f9'
+            'libObfuscate.dll' = 'f3b1c3315f8286346416fefd6141410f422f2454'
+          }
+          foreach ($name in $expected.Keys) {
+            $file = Join-Path $root $name
+            Invoke-WebRequest -Uri "$base/$name" -OutFile $file
+            $actual = (& git hash-object -- $file).Trim().ToLowerInvariant()
+            if ($LASTEXITCODE -ne 0 -or $actual -ne $expected[$name]) {
+              throw "Original program blob mismatch: $name"
+            }
+          }
+          "OPENPUFF_EXE=$(Join-Path $root 'OpenPuff.exe')" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+      - name: Verify native public JPEG positive on the same runner
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python sims/openpuff_public_jpeg_positive_source.py --out probe-output/public-source
+          if ($LASTEXITCODE -ne 0) { throw 'Unable to obtain independently known public JPEG carrier' }
+          python sims/openpuff_v400_extract.py --exe "$env:OPENPUFF_EXE" --carrier probe-output/public-source/openpuff.jpg --password 12345678 --bit-format 'Jpeg (Image)' --bit-level '1/2 (50%) - Maximum' --out probe-output/public-positive --wait-seconds 45
+          if ($LASTEXITCODE -ne 0) { throw 'OpenPuff public JPEG positive did not execute' }
+          python -c "from pathlib import Path; from hashlib import sha256; p=Path('probe-output/public-positive/extracted/hidden.txt'); b=p.read_bytes(); assert b==b'Dies ist eine versteckte Nachricht!'; print('ORIGINAL_NATIVE_JPEG_POSITIVE_PASS',len(b),sha256(b).hexdigest())"
+          if ($LASTEXITCODE -ne 0) { throw 'OpenPuff native positive did not recover exact original message' }
+      - name: Probe the original ordered 107 167 229 Stage10 delivery as a native three-carrier secret
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $staged = Join-Path $env:RUNNER_TEMP 'agent2-stage10-original-names'
+          New-Item -ItemType Directory -Force -Path $staged | Out-Null
+          $records = @(
+            @{ scan=14; stage='107.jpg'; sha='de2bebe1d06421d94f3dd2b2b5f838ee4cdb5f51b07b14e880e0108f7b79c14e' },
+            @{ scan=15; stage='167.jpg'; sha='f163903bec1236f1c89c96343d0bd1dee610b697c3ba82514651f04c5fbee4b9' },
+            @{ scan=16; stage='229.jpg'; sha='984668c680c6089b91587ef6d9eb2a1df1d2b7ee8ab3837655d3933f2adcbfbe' }
+          )
+          $params = @('--exe', "$env:OPENPUFF_EXE", '--password', '33011033',
+            '--bit-format', 'Jpeg (Image)', '--bit-level', '1/2 (50%) - Maximum',
+            '--out', 'probe-output/stage10-triple', '--wait-seconds', '600')
+          foreach ($rec in $records) {
+            $source = Join-Path $env:GITHUB_WORKSPACE ('resources/liber-primus/{0:D2}.jpg' -f $rec.scan)
+            if (-not (Test-Path -LiteralPath $source)) { throw "Source scan missing: $($rec.scan)" }
+            $sha = (Get-FileHash -LiteralPath $source -Algorithm SHA256).Hash.ToLowerInvariant()
+            if ($sha -ne $rec.sha) { throw "Original Stage10 byte identity mismatch at $($rec.scan)" }
+            $target = Join-Path $staged $rec.stage
+            Copy-Item -LiteralPath $source -Destination $target
+            Write-Host "STAGE10_AUTHENTIC_IMAGE $($rec.stage) original_scan=$($rec.scan) sha256=$sha"
+            $params += @('--carrier', "$target")
+          }
+          python sims/openpuff_v400_extract.py @params
+          if ($LASTEXITCODE -ne 0) { throw 'Stage10 native Unhide did not execute' }
+          $result = Get-Content 'probe-output/stage10-triple/result.json' -Raw | ConvertFrom-Json
+          if ($result.carrier_count -ne 3 -or -not $result.carrier_chain_verified -or -not $result.bit_selection_verified -or -not $result.attempted) {
+            throw 'Native original Stage10 carrier chain not verified'
+          }
+          if ($result.native_probe_outcome -eq 'inconclusive-timeout') { throw 'Native outcome inconclusive' }
+          Write-Host "STAGE10_THREE_ORIGINAL_RESULT $($result | Select-Object carrier_count, native_probe_outcome, output_present, outputs, completion_dialogs, error_dialogs | ConvertTo-Json -Depth 12 -Compress)"
+          if ($result.output_present) { Write-Host 'CANDIDATE_STAGE10_HIDDEN_FILE_RECOVERED_REQUIRES_AUTHENTICATION' }
+      - name: Retain native GUI records and any original extracted bytes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent2-stage10-three-authentic-original
+          path: probe-output/
+          if-no-files-found: warn
