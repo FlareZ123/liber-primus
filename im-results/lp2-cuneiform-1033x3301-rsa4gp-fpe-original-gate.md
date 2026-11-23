@@ -32,7 +32,7 @@ The 0.048 acceptance screen is a **declared source-native-English concentration 
 
 An independent GP29 sample was derived from the published solved LP1 p6 koan: exactly 553 consecutive GP29 runes after historically calibrated transliteration. Its true plaintext IoC is **0.06628534738055927**. Encrypt with the exact candidate four-rune RSA cycle-walker at public exponent **65,537** and continuous packet boundaries. The resulting 553-rune encrypted sample has IoC **0.034869093482192**. Its inverse exponent is **276,473** modulo 283,800. Exhausting all 67,200 exponent candidates on the encrypted plant ranks **276,473** highest at the exact original native IoC, recovers **553/553** correct plaintext runes, and forward re-encrypts every rune exactly. This confirms that the selected RSA operation and exhaustive source input are capable of recovering an authentic natural sample when the model is true.
 
-Portable Windows-compatible standalone CommonJS Node22 program, with exact source hash, direct modular-power versus CRT independent equality tests, all-key scan and planted-native forward/inverse:
+Portable Windows-compatible standalone CommonJS Node22 program, with exact source hash, direct modular-power versus CRT equality checks, all-key scan and planted-native forward/inverse. **Actual source checkout verified on Windows Node22: [GitHub Actions PASS run 45121978940](https://github.com/FlareZ123/liber-primus/actions/runs/45121978940).** The first run exposed a Windows CRLF fixture delimiter mismatch; the code now normalizes line endings and reruns successfully:
 
 - [Exhaustive original-source test](../sims/lp2_cuneiform_1033x3301_rsa4_fpe_all_exponents_sft.cjs)
 
