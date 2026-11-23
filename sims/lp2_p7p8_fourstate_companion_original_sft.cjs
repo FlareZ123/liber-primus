@@ -23,12 +23,15 @@ const carry = p9.slice(0, 5);
 const aligned248 = p8Black.concat(carry);
 const stream300 = p8Black.concat(p9.slice(0, 57));
 
+assert.deepEqual(p8.slice(0, 12), [14, 10, 14, 19, 1, 14, 19, 5, 2, 13, 3, 17]);
 assert.deepEqual(seed, [14, 10, 14, 19]);
 assert.equal(p8.length, 255);
 assert.equal(p8Black.length, 243);
 assert.deepEqual(carry, [26, 7, 25, 6, 11]);
 assert.equal(aligned248.length, 248);
 assert.equal(aligned248.length % 4, 0);
+assert.equal(p8.length + carry.length, 260);
+assert.equal((p8.length + carry.length) % 4, 0);
 assert.equal(stream300.length, 300);
 assert.equal(stream300.length % 4, 0);
 
@@ -94,12 +97,28 @@ function scalarLfsr(cipher, initial, sign) {
 function vigenere4(cipher, initial, sign) {
   return cipher.map((x, i) => mod(x + sign * initial[i % 4]));
 }
+function affineBlocks(cipher, M, offset, sign) {
+  const out = [];
+  for (let off = 0; off + 4 <= cipher.length; off += 4) {
+    const transformed = matVec(M, cipher.slice(off, off + 4));
+    for (let j = 0; j < 4; j += 1) out.push(mod(transformed[j] + sign * offset[j]));
+  }
+  return out;
+}
 function encryptBlocks(plain, initial, M) {
   const out = [];
   let state = initial.slice();
   for (let off = 0; off + 4 <= plain.length; off += 4) {
     for (let j = 0; j < 4; j += 1) out.push(mod(plain[off + j] + state[j]));
     state = matVec(M, state);
+  }
+  return out;
+}
+function encryptAffine(plain, M, offset) {
+  const out = [];
+  for (let off = 0; off + 4 <= plain.length; off += 4) {
+    const transformed = matVec(M, plain.slice(off, off + 4));
+    for (let j = 0; j < 4; j += 1) out.push(mod(transformed[j] + offset[j]));
   }
   return out;
 }
@@ -122,6 +141,23 @@ for (const [name, M] of Object.entries(matrices)) {
     }
   }
 }
+const affineMatrices = {
+  forward: A,
+  inverse: inverse(A),
+  transpose: transpose(A),
+  transposeInverse: inverse(transpose(A)),
+};
+const affineResults = {};
+for (const [name, M] of Object.entries(affineMatrices)) {
+  for (const sign of [-1, 1]) {
+    const out = affineBlocks(stream300, M, seed, sign);
+    affineResults[name + '_sign' + sign] = {
+      length: out.length,
+      ioc: ioc(out),
+      preview: preview(out),
+    };
+  }
+}
 const scalar = {};
 const vig4 = {};
 for (const sign of [-1, 1]) {
@@ -131,10 +167,13 @@ for (const sign of [-1, 1]) {
   vig4['sign' + sign] = { length: b.length, ioc: ioc(b), preview: preview(b) };
 }
 
-// Positive round-trip control: the implementation must invert its own exact rule.
+// Positive round-trip controls: the implementation must invert its exact rules.
 const plantedPlain = Array.from({ length: 300 }, (_, i) => mod(7 * i + 3));
 const plantedCipher = encryptBlocks(plantedPlain, seed, A);
 assert.deepEqual(blockTransform(plantedCipher, seed, A, -1), plantedPlain);
+const plantedAffineCipher = encryptAffine(plantedPlain, A, seed);
+const plantedAffinePlain = affineBlocks(plantedAffineCipher, inverse(A), seed, -1);
+assert.deepEqual(plantedAffinePlain, plantedPlain);
 
 // Measure the exact state period for this nonzero seed.
 let state = seed.slice();
@@ -154,6 +193,7 @@ const output = {
     p8BlackRunes: p8Black.length,
     p9Carry: carry,
     alignedLength: aligned248.length,
+    pagePlusCarryLength: p8.length + carry.length,
     first300Length: stream300.length,
   },
   p7PolynomialLowFirst: [11, 26, 8, 15, 2],
@@ -165,6 +205,7 @@ const output = {
   blockResults: results,
   scalarLfsr: scalar,
   fixedVigenere4: vig4,
-  plantedRoundTrip: 'PASS',
+  directAffineMaps: affineResults,
+  plantedRoundTrips: 'PASS',
 };
 process.stdout.write(JSON.stringify(output, null, 2) + '\n');
