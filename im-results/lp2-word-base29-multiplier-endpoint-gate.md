@@ -57,6 +57,26 @@ The exact original **length-two cohort alone** contains 448 words with first and
 
 **Consequence:** expanding the direct 3301 multiplier to a search over private global scalar/offset values would change nothing. Any surviving word-number mechanism requires state varying **between words or within positions**, nonlocal mixing of the least-significant rune, altered source segmentation, or a genuinely different plaintext register. Base29 multiplication alone also cannot repair the independently abnormal adjacent word-length grammar, because it preserves every printed length. No author-selected opcode, key or unknown ciphertext plaintext was obtained.
 
+## Independent source-p7 circular polynomial consumer
+
+The original p7 five red complete words have verified GP29 products **[11,26,8,15,2]**, so the source polynomial is
+
+\[
+P(X)=11+26X+8X^2+15X^3+2X^4
+\quad(\bmod29).
+\]
+
+A conditional within-word positional consumer inspired by p57's “circumferences” is circular convolution \(C_w=P(X)P_w(X)\bmod(X^{n_w}-1,29)\). The manuscript does not authenticate this proposed instruction. For every original printed word length **1–14**, \(P(X)\) is coprime to \(X^{n_w}-1\), so the operation has an exact inverse without moving the original separators. Both rune-to-polynomial directions and both forward/inverse interpretations were tested with exact replay for all **12,956** original runes. It differs from previously retired quartic LFSR and fixed four-symbol Feistel families.
+
+| Original p7 circular word consumer | Original p16–21 IoC | Untouched p40–53 IoC | Within-word equal-rune pairs |
+| --- | ---: | ---: | ---: |
+| First rune \(X^0\), inverse | 0.03456312 | 0.03450062 | 1,084 |
+| First rune \(X^0\), forward | 0.03453982 | 0.03483295 | 1,034 |
+| Last rune \(X^0\), inverse | 0.03444349 | 0.03446767 | 1,037 |
+| Last rune \(X^0\), forward | 0.03431686 | 0.03448005 | 1,058 |
+
+None reveals sustained original plaintext. A positive plant recovers the exact already-solved native LP1 word tape using the same matrices. Forward replay confirms implementation, not historical authorship. Retire this single specific circular polynomial operation and preserve all source-selected changing-state or separator alternatives. The quartic's **source arithmetic is authentic**; the word-ring operation remains a research hypothesis.
+
 ## Scope and follow-up
 
 The exact source input, native control encoder, original-word parser, full forward replay and independent p16–21/p40–53 gates are in the single-file SFT. The historical 3301 number is a valid prior operand, while the *decision to multiply each word* remains a research hypothesis. A focused next branch would require a first-party rule for **carrying high-information state across complete words**, and an independently specified word-order/space mechanism if ordinary contiguous prose is the target. Do not rescue this candidate by fitting arbitrary length-specific keys or invented word-specific lookup tables.
