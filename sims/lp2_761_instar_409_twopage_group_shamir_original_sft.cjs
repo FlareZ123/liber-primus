@@ -227,5 +227,23 @@ for(const [j,stream] of byteStreams.entries()){
 }
 
 
+
+/* Distinct *single* source-complete 409-state rival with no F marker skip:
+ * additive orbit s[i]=(72+280*i) mod409 covers all409 original GP glyphs.
+ * Tests the missing one-of-14 F selection, not a new key family search.
+ */
+const fullAddOrbit=original.map((v,i)=>(72+280*i)%409);
+assert.equal(new Set(fullAddOrbit).size,409);
+const fullAddKey=fullAddOrbit.map(v=>v%29);
+const fullAddMinus=original.map((v,i)=>mod(v-fullAddKey[i]));
+const fullAddPlus=original.map((v,i)=>mod(v+fullAddKey[i]));
+assert.deepEqual(fullAddMinus.map((v,i)=>mod(v+fullAddKey[i])),original);
+assert.deepEqual(fullAddPlus.map((v,i)=>mod(v-fullAddKey[i])),original);
+assert.ok(ioc(fullAddMinus)<floor408&&ioc(fullAddPlus)<floor408);
+console.log('409 glyph F-inclusive additive group clock original GP29 IoCs',
+ JSON.stringify({raw:ioc(original),minus:ioc(fullAddMinus),plus:ioc(fullAddPlus),
+  allF:original.filter(v=>v===0).length,
+  full409States:new Set(fullAddOrbit).size}));
+
 console.log('PASS: original 409/409 replay, 408-orbit, 136-slot retained-share Shamir inverse, authentic p57 plant');
 console.log('DECISION: no original unknown plaintext or creator-selected decoder');
