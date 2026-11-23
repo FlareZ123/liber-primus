@@ -215,6 +215,43 @@ const spiralPositions = [5, 6, 10, 9, 8, 4, 0, 1, 2, 3, 7, 11, 15, 14, 13, 12];
 const spiralSigned = fibIndices.map(i => 3301 - nthPrime(i + 1));
 assert.deepEqual(spiralSigned.map(Math.abs),
   spiralPositions.map(i => p15Rows[i]));
+
+// A separate exact source-to-source factor test: the unsigned, physically
+// printed p15 clockwise spiral has sole GF29 root 3301 mod29 = -5,
+// shared with the p39 red quadratic and the doubled p50 polynomial root.
+// This root equality is weaker evidence than a plaintext inverse.
+/** @param {number[]} coefficients @param {number} x @returns {number} */
+const evalPoly = (coefficients, x) =>
+  coefficients.slice().reverse().reduce((acc, coefficient) =>
+    mod(acc * x + coefficient), 0);
+const cicadaRoot = mod(3301);
+assert.equal(cicadaRoot, 24);
+const redPolynomial = [27, 5, 15];
+assert.equal(evalPoly(redPolynomial, cicadaRoot), 0);
+assert.equal(evalPoly([5, 30], cicadaRoot), 0);
+const unsignedSpiral = spiralPositions.map(i => mod(p15Rows[i]));
+assert.equal(evalPoly(unsignedSpiral, cicadaRoot), 0);
+assert.equal(evalPoly(unsignedSpiral.slice(1).map((v, i) =>
+  mod((i + 1) * v)), cicadaRoot), 9);
+assert.deepEqual(Array.from({ length: 29 }, (_, x) => x)
+  .filter(x => evalPoly(unsignedSpiral, x) === 0), [24]);
+assert.equal(evalPoly(spiralSigned.map(mod), cicadaRoot), 2);
+assert.equal(evalPoly(p15Rows.map(mod), cicadaRoot), 15);
+
+// This root condition also occurs for two other residue classes among
+// nearby hypothetical prime-spiral centers; the match is not exclusive.
+const originalPrimes = spiralSigned.map(v => 3301 - v);
+const nearbyRootResidues = new Set();
+for (let center = 3200; center <= 3400; center++) {
+  const hypotheticalSpiral = originalPrimes.map(p =>
+    mod(Math.abs(center - p)));
+  if (evalPoly(hypotheticalSpiral, mod(center)) === 0) {
+    nearbyRootResidues.add(mod(center));
+  }
+}
+assert.deepEqual([...nearbyRootResidues].sort((a, b) => a - b),
+  [9, 24, 25]);
+
 const sourceKeyLists = [
   ['p15-row', p15Rows.map(mod)],
   ['p15-spiral-absolute', spiralPositions.map(i => mod(p15Rows[i]))],
@@ -279,6 +316,9 @@ const report = {
   candidateDecode: { p39InverseIoC: ioc(residual), solvedP57IoC: ioc(solved57),
     p39InverseTransliterationPrefix: residual.slice(0, 80).map(i => corpus.translit[i]).join(''),
     p39F16RecurrencePredictionsCorrect: f16RecurrenceHits.length, recurrenceTrials: 222 },
+  commonSourceRoot: { gpResidue3301: cicadaRoot, p15UnsignedRoots: [24],
+    p39RedQuadraticDoubleRoot: cicadaRoot, p15SignedValueAt3301: 2,
+    nearbyCenterRootResidueClasses: [9, 24, 25] },
   sourceSelectedSecondLayer: { candidates: sourceTwoLayer.length, best: sourceTwoLayer[0],
     allHaveIoCLessThanFourPercent: true, signedP15PositiveRoundtrip: true },
   positivePlants: { periodicMatches: 222, F16RecurrenceMatches: 222 },
