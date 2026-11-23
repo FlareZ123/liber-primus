@@ -57,6 +57,12 @@ function stats(bytes){
 }
 const avg=reconstruct(source);
 assert.deepEqual(filter(avg),source);
+// Literal PNG scanlines cannot be read directly from the 32x8 printed grid:
+// each row would need a leading filter opcode in [0,4], plus seven pixels.
+// In the original first column, only row24 is in that mandatory range.
+const literalFilterHeaders=Array.from({length:32},(_,r)=>source[r*8]);
+const validLiteralHeaders=literalFilterHeaders.filter(x=>x<=4).length;
+assert.equal(validLiteralHeaders,1);
 assert.equal(avg.slice(0,8).map(x=>x.toString(16).padStart(2,"0")).join(""),"cb4ccd20712590ff");
 const allPages=corpus.pages.filter(p=>p.page<=55);
 const C=allPages.flatMap(p=>p.indices);
@@ -91,6 +97,7 @@ const output={
   sources:["resources/liber-primus/lp2-grid-256.json","resources/liber-primus/lp2-corpus.json"],
   formula:"Recon(x)=[Filt(x)+floor((Recon(left)+Recon(above))/2)] mod 256",
   shape:[32,8],bpp:1,
+  literalPNGFilterHeadersValid:validLiteralHeaders,literalPNGFilterHeadersTotal:32,
   avg_filter_exact_replay:true,
   original_stats:stats(source),avg_reconstructed_stats:stats(avg),
   decoded_4c_positions:avg.flatMap((v,i)=>v===0x4c?[i]:[]),
