@@ -169,7 +169,8 @@ const v59 = radix(indexed, base59);
 const f59 = radix(first, base59);
 assert.deepEqual({v59, f59}, {v59: 115, f59: 200});
 assert.notEqual((v59 + row) % (col + 1), 0);
-assert.notEqual(Math.floor(f59 / p), A + (B !== f59 % p ? 1 : 0)); // A still 8; remainder differs
+assert.equal(Math.floor(f59 / p), A);
+assert.notEqual(f59 % p, B);
 assert.notEqual(f59 % p, B);
 
 // Expose the original input multiplicities to avoid claiming exclusivity.
