@@ -221,6 +221,84 @@ for (const sourceWord of plantWords) {
   recovered += decoded.length;
 }
 assert(recovered > 12000);
+
+// Constructive original-cipher ambiguity, using an independent finite lexicon.
+// For each printed source word, choose one same-signature native-English word.
+// Every phase map is then constructed as a 29-way bijection and extended over
+// unused symbols. This demonstrates real original-cipher reencryption and a
+// large finite lexical preimage set, not a claim of recovered true plaintext.
+const lexicon = read("resources/control/english_wordfreq_textblob.txt")
+  .split(/\r?\n/).map(line => /^([a-z]+)\s+\d+/.exec(line))
+  .filter(Boolean).map(match => match[1]);
+assert.equal(lexicon.length, 29157);
+const lexicalWitnesses = {};
+for (const mode of ["GP", "LATIN"]) {
+  const bySignature = new Map();
+  for (const entry of lexicon) {
+    const candidate = mode === "GP" ? gpNative(entry) :
+      Array.from(entry, c => c.charCodeAt(0) - 97);
+    const key = candidate.length + ":" + signature(candidate, 5);
+    if (!bySignature.has(key)) {
+      bySignature.set(key, {text: entry, plaintext: candidate, count: 0});
+    }
+    bySignature.get(key).count++;
+  }
+  let witnessRuneCount = 0;
+  let witnessLog2Count = 0;
+  let smallestDomain = Infinity;
+  for (const originalWord of original) {
+    const key = originalWord.length + ":" + signature(originalWord, 5);
+    const witness = bySignature.get(key);
+    assert(witness, "missing 5-phase native dictionary witness: " + key);
+    const plainWord = witness.plaintext;
+    witnessLog2Count += Math.log2(witness.count);
+    smallestDomain = Math.min(smallestDomain, witness.count);
+    const perm = [];
+    const inverses = [];
+    for (let phase = 0; phase < 5; phase++) {
+      const a = Array(29).fill(-1);
+      const used = new Set();
+      for (let i = phase; i < plainWord.length; i += 5) {
+        const p = plainWord[i];
+        const c = originalWord[i];
+        if (a[p] !== -1) assert.equal(a[p], c);
+        else {
+          assert(!used.has(c), "non-injective phase mapping");
+          a[p] = c;
+          used.add(c);
+        }
+      }
+      const remaining = Array.from({length: 29}, (_, i) => i)
+        .filter(i => !used.has(i));
+      let k = 0;
+      for (let i = 0; i < 29; i++) {
+        if (a[i] === -1) a[i] = remaining[k++];
+      }
+      assert.equal(k, remaining.length);
+      const inverse = Array(29);
+      for (let i = 0; i < 29; i++) inverse[a[i]] = i;
+      perm.push(a);
+      inverses.push(inverse);
+    }
+    const enciphered = plainWord.map((x, i) => perm[i % 5][x]);
+    assert.deepEqual(enciphered, originalWord);
+    const deciphered = originalWord.map((x, i) => inverses[i % 5][x]);
+    assert.deepEqual(deciphered, plainWord);
+    witnessRuneCount += enciphered.length;
+  }
+  assert.equal(witnessRuneCount, 12956);
+  assert.equal(smallestDomain, 1);
+  const expectedLog = mode === "GP" ?
+    29219.84150033074 : 28653.042772024448;
+  assert(Math.abs(witnessLog2Count - expectedLog) < 1e-6);
+  lexicalWitnesses[mode] = {
+    originalRuneReplays: witnessRuneCount,
+    originalPrintedWords: original.length,
+    independentTextBlobWitnessesLog2: witnessLog2Count,
+    minimumWordDomain: smallestDomain
+  };
+}
+
 console.log(JSON.stringify({
   originalWords: original.length,
   originalRunes: 12956,
@@ -229,5 +307,6 @@ console.log(JSON.stringify({
   trialCountPerHoldout: 1500,
   results,
   positiveRecoveredRunes: recovered,
+  lexicalWitnesses,
   status: "PASS"
 }, null, 2));
