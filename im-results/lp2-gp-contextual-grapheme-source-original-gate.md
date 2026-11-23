@@ -1,0 +1,42 @@
+# The original GP29 grapheme chart is not a lossless plaintext decoder
+
+**Research decision, 23 November 2026 (Agent48; Director #2380).** The original 2013-era Gematria Primus rune spelling chart provides a deterministic literal rune-to-Latin expansion, with seven two-letter sign labels. It supplies neither a lossless inverse Latin-to-original-rune serializer nor a context-sensitive English plaintext cipher. On authentic original LP2 p0–55 the direct expansion is not coherent English; **at least 52 distinct printed source words admit a different, equally long GP29 rune segmentation with exactly the same literal Latin spelling**, yielding at least **2^52 = 4,503,599,627,370,496** different full-length, same-printed-word-length GP tapes sharing the same chart-expanded Latin text. This is a mathematical *identifiability obstruction for the chart alone*, not evidence that the author used any of those alternatives, and not a recovered unknown plaintext or key.
+
+This source-native orthography question is distinct from the old GP-versus-one-Latin-letter [word-length study](lp2-uncontracted-latin-wordlength-adjacency-original-gate.md), the phoneme-class register in [#2253/#2257](lp2-phonemic-register-capacity-source-gate.md), and an arbitrary private within-word substitution. Its concrete original input is the source chart itself and *both* authentic cleared p57 prose and original unsolved cipher. An absent additional encoding instruction is a real prerequisite for this proposed route.
+
+## The chart and its actual information loss
+
+The official 29-rune ordering and derived display spellings are pinned as `runes` and `translit` in [lp2-corpus.json](../resources/liber-primus/lp2-corpus.json), and the exact original physical breaks and rune sequence in [lp2-transcription.txt](../resources/liber-primus/lp2-transcription.txt). The full 2014 LP2 image inventory is mapped in [the original archive README](../resources/liber-primus/README.md). Its seven *literal two-letter* chart signs are **TH, EO, NG, OE, AE, IA and EA**; each of their two Latin letters also exists as separate GP signs. Therefore the encoding is not uniquely decipherable from plain unseparated Latin letters. For example:
+
+```text
+S | H | E | O | G | M | IA | F    (eight original p0 runes)
+S | H | EO    | G | M | I | A | F (eight different legal GP runes)
+                   both give SHEOGMIAF
+```
+
+The first is precisely the *actual source's first eight printed signs*; the second merges original E,O into the existing EO rune and splits original IA into its separate I,A signs. It preserves that word's **original eight rune slots**, literal expanded Latin text and every printed word boundary. The manuscript cannot distinguish the two by reading that text and the printed word length alone. The other source words furnish **51 additional independent same-word, same-length swaps**. Choose whether to replace each complete word independently. This constructs exactly `2^52` distinct rune tapes, each of the manuscript's **2,896 printed complete words with all individual lengths unchanged**, rendering the **same** literal Latin text. Rune-symbol identities, and thus the GP-index cipher operand, are different. An inverse needs an extra canonical segmentation law, an explicit sign delimiter, external decoding state or other information.
+
+There are **100 original within-word adjacent literal two-sign pairs** whose Latin expansions equal one compound rune's spelling (e.g. original T,H versus TH). They lie in **92 source words**, with a disjoint packing of **95** positions; 52 of the 92 words also contain an alternate compound sign to split, preserving exact source-word length. The 100/95/52 values and witness strings are computed exhaustively without language-corpus fitting. The **52-bit ambiguity is conditional on retaining only expanded Latin and printed rune-word lengths**. It is not a measure of the original's encrypted entropy, and a pre-authorized canonical encoding policy could remove ambiguity by excluding some source sequences from its image. Crucially, no such author-selected policy has been identified; applying generic greedy digraph rules to the original would erase genuine two-sign positions.
+
+## Original native-script and solved controls
+
+The source has **12,956 original GP29 unknown runes**, **2,896 printed complete words**, **83 one-rune words** and **448 two-rune words**. **28 distinct original rune signs** occur as one-rune words; C is the only unused singleton glyph. Under the chart's *literal spelling alone*, only **10/83** singleton positions produce A, I or O (including poetic “O” generously). The other **73** have raw spellings such as P, NG, EA or W and cannot serve as ordinary stand-alone English words without a further context/code transformation. This rejects a mere chart-expansion reading under intact source words; it does **not** rule out an independent cryptographic cipher that changes values inside those words, a true word-token code, or resegmented boundaries.
+
+The independently known **clear p57 PARABLE** provides a valuable *actual creator-authentic positive* for spellings. Its original rune sequence expanded strictly using the same chart produces **LICE**, **TUNNELNG** and **DIUINITY** at locations known from the [solved LP2 text](../resources/liber-primus/lp1-plaintext-reference.txt) to mean LIKE, TUNNELING and DIVINITY. Thus the source really uses contextual spelling equivalences **C/K**, **NG/ING** and **U/V**. These repairs are usually recoverable by a human reader who already recognizes meaningful language. They are not a published finite cipher opcode that, given arbitrary unknown LP2 rune ciphertext, selects unique Latin plaintext words with an invertible state. Even the bare `LICE` spelling is an English word in a different context.
+
+Literal chart expansion was applied to **all 729 original opening p0–p2 runes** and **3,008 independent original p40–p53 runes**, preserving the source's rune/word slots. Their initial full words are, respectively:
+
+```text
+p0–p2:   SHEOGMIAF SYENGC THJGAE FJOE ONTH NEWBASOEEOINGU NAEGITH HBNIA
+p40–53:  FNM YGDAEH APXYH EOEAOE TNGEA LITTHF MACE DC
+```
+
+They do not reveal intact coherent English words/sentences, and the same chart expansion is incapable of reconstructing its original rune identities without segmentation information. This is an original-input negative for this single literal operation. It does not exclude a separately keyed contextual variable-length *cipher* or a genuinely source-chosen lexical transducer.
+
+## Executable reproduction and decision
+
+The [read-only Node 22/CommonJS source SFT](../sims/lp2_gp_contextual_grapheme_source_sft.cjs) reads both actual committed source artifacts, asserts **13,136/13,136** original+solved signs against canonical page index sequences, correctly joins all printed line/page wraps (including 32 carried words), verifies all complete-word and singleton counts, enumerates 100 ambiguous adjacent-pair events, 95 disjoint pairs and 52 length-preserving lexical/GP-rune witnesses, and independently checks solved p57's three orthographic repairs. It also reproduces intact original p0–p2 and p40–53 chart outputs.
+
+**Independent Windows Node22 PASS:** [GitHub Actions 45146714813](https://github.com/FlareZ123/liber-primus/actions/runs/45146714813), checked-out source commit `0efba66551008de873c174f35a41e1d761e7ab6d`, exit status 0, exact witness `S|H|E|O|G|M|IA|F` ↔ `S|H|EO|G|M|I|A|F`. There are no external dictionary dependencies or generative plaintext guesses.
+
+**Fork:** The rune chart is a display alphabet and phonemic spelling guide. To unlock unknown LP2 pages via a changing grapheme grammar, an independently authenticated first-party source must still choose a *context-sensitive, recoverable* internal rule, state/exception serialization, and forward operation. Neither the 2013 chart, the genuinely solved p57 spellings, nor the tested source layout specifies one. Retire chart-only variable-length transcription as a plaintext solution, preserve the 52-word obstruction for future grammar designs, and keep actual changing-state or changing-space cryptanalysis open. **No unknown LP2 plaintext, key, complete decoder or final destination is claimed.**
