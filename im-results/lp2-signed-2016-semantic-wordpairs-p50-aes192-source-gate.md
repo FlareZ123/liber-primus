@@ -42,8 +42,22 @@ None begins with PNG, PDF, ZIP, gzip, bzip2, JPEG or ASCII OpenPGP-armored heade
 
 The source row30 byte values **[106,234,196,121,238,32,129,173]** and sum1229 are independently locked in the original [DIRECTION-row30 source note](../workplace/signed-direction30-p50-parable1229-checksum.md). We did not use the 1229 solved-clause equality to select or tune this three-pair inverse.
 
+## Literal six-row AES-256 key and IV, independent direct consumer
+
+Without subtracting or XORing any table values, the six signed-message ordinals select **48 original bytes** in the exact signed word order `16, 19, 21, 24, 27, 30`. This has an equally natural source-byte interpretation: first four eight-byte table rows make a **32-byte AES-256 key**; the final two eight-byte rows make an **authentic source-derived 16-byte IV**. Unlike the tentative 192-bit construction above, this uses the historical AES-256 key size and no arbitrary zero-IV guess. It is still a **hypothesis**: no author instruction labels any of these six rows as key/IV, and no direct witness establishes AES as the table cipher.
+
+One fixed, ordinary-source-order inverse each was executed on all **256 printed table bytes**, with AES-256-CBC (no padding), AES-256-CTR, and AES-256-CFB. The three original results, independently checked against a Python cryptography implementation, are:
+
+| Source-exact key/IV mode | Printable text bytes of 256 | First 16 decoded bytes, hex |
+| --- | ---: | --- |
+| AES-256-CBC | **99** | `5ce2dc2331395de56738a1030c75b7ac` |
+| AES-256-CTR | **106** | `30958f1108e24ed6bc38bc9b907d0c89` |
+| AES-256-CFB | **89** | `30958f1108e24ed6bc38bc9b907d0c89` |
+
+No output starts with a recognizable PGP, PNG, PDF, gzip, ZIP or JPEG header, and no candidate contains a readable opening instruction. Each mode also round-trips an independent 256-byte plaintext plant exactly with the same six original table rows. This closes this **one literal 32+16 six-row inverse** on the p50 table; an unknown binary payload without a known signature cannot be ruled out by byte-printability alone.
+
 ## Decision
 
 The signed text gives an independently reproducible **ordered six-row address set** with a natural 24-byte register. Its three direct GP29 difference words and direct AES-192 byte decryption provide no solution. Retain the address observation as one provisional, narrowly described human route. Without a source-selected AES use, IV, byte operation, or actual unknown-page plaintext, no longer key/hash/phase searches follow. The next real advance would be a first-party operation that gives the 24 bytes a unique role and recovers at least one whole original ciphertext sentence with a fixed forward reencryption.
 
-**Reproducer:** [single-file Node22/CommonJS read-only test](../sims/lp2_signed_2016_semantic_pairs_p50_aes192_sft.cjs). Inputs are the original signed ASCII armor, the image-adjudicated 256-cell LP2 table, and the existing original-GP alphabet. The script asserts all six historical word positions, 256 table bytes, row30 sum1229, full AES inverse lengths, and five 256-byte known-plaintext positive round trips per mode.
+**Reproducer:** [single-file Node22/CommonJS read-only test](../sims/lp2_signed_2016_semantic_pairs_p50_aes192_sft.cjs). Inputs are the original signed ASCII armor, the image-adjudicated 256-cell LP2 table, and the existing original-GP alphabet. The script asserts all six historical word positions, 256 table bytes, row30 sum1229, full AES inverse lengths, and five 256-byte known-plaintext positive round trips per mode, plus three further original-source AES-256 key/IV consumers and positives.
