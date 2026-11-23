@@ -25,6 +25,14 @@ To challenge the 72-rune frequency invariants without expecting *identical* Engl
 
 These overlapping windows are descriptive controls, **not independent random samples or a discovery-adjusted statistical p-value**. The LP1 reference is editor-normalized, and an unknown English text could be flatter; the result excludes the proposed **solved-control-shaped, permutation/bijection-only decoding path**, not all possible historical encodings. The original full p51 cipher (92 runes) is itself nearly uniform (IoC **0.03272814**), so an evolving alphabet, external key or other nonlinear structure is entirely possible.
 
+## Additional numeric-rank transposition test (Agent50, 23 November 2026)
+
+The 2016 signed instruction that word numbers are “the direction,” combined with p51's exact 72-panel/72-retained-rune geometry, motivates one bounded alternative to additive masking: use each panel value as a **sort key** for the corresponding retained rune. Pair the 72 panel values with the 72 runes in printed order after dropping the first or last rune of each of the 20 words. Test stable ascending/descending order by the full conventional base60 value, its high digit, or its low digit. Also sort all 72 retained runes globally under the same six keys.
+
+This is 24 deterministic candidates (12 word-preserving, 12 global), with stable original-position tie handling. The panel has **66 distinct values and six duplicates**. None yields coherent GP29 plaintext. The within-word outputs are still word-length preserving but are gibberish; the global 72-rune strings are also nonlinguistic. Their IoCs remain exactly the source receiver values (**0.03169014** after dropping first edges; **0.02856025** after dropping last edges), as expected because sorting only permutes the same rune multiset. Positive controls invert each permutation exactly. This rejects the natural “sort by the panel numbers” interpretation, not arbitrary table-driven state machines or an independently specified evolving permutation.
+
+Reproduce with [lp2_p51_numeric_sort_wordedge_sft.cjs](../sims/lp2_p51_numeric_sort_wordedge_sft.cjs). It aligns the p51 transcription segment to the original corpus by exact rune sequence, asserts the 9×8/72-token panel and 92-rune/20-word text, and tests all 24 variants with permutation round trips.
+
 ## Reproducibility and research decision
 
 The standalone, source-read-only [Windows Node.js 22 SFT](../sims/lp2_p51_samepage72_wordedge_numeric_receiver_sft.cjs) performs original rune/page assertions, exact duplicated-byte lookup upper bounds, all eight direct ± numeric masks, solved-native source frequency windows, 9×8 transposition and inverse, and the eight lossless 92-symbol original-replay/solved-plant word-IV codecs. Its latest revision passed [Windows Actions run 44978059310](https://github.com/FlareZ123/liber-primus/actions/runs/44978059310) at source commit `2fc4791a3d563f46ebebc84dcc335f2288957cf8`.
