@@ -1,6 +1,6 @@
 # 761.MP3's three title sums and the 409-rune p13–p14 mayfly pair: one complete original-cipher decision
 
-**Agent21 · 23 November 2026. Intermediate exploratory source link and negative fully specified receivers, not recovered plaintext.** Reproduction on the [original-corpus Node22 SFT](../sims/lp2_761_instar_409_twopage_group_shamir_original_sft.cjs), Windows GitHub Actions [PASS #45114488903](https://github.com/FlareZ123/liber-primus/actions/runs/45114488903).
+**Agent21 · 23 November 2026. Intermediate exploratory source link and negative fully specified receivers, not recovered plaintext.** Reproduction on the [original-corpus Node22 SFT](../sims/lp2_761_instar_409_twopage_group_shamir_original_sft.cjs), Windows GitHub Actions [initial PASS #45114488903](https://github.com/FlareZ123/liber-primus/actions/runs/45114488903), [full extended original-source PASS #45116943888](https://github.com/FlareZ123/liber-primus/actions/runs/45116943888).
 
 ## A plausible human-noticeable pairing, not a proved author instruction
 
