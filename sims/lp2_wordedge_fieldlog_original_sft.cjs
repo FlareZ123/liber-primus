@@ -138,7 +138,16 @@ function encodeWord(shell, plain, g, law) {
 const rows = [];
 for (const {g, log} of roots) {
   for (const [name, law] of Object.entries(laws)) {
-    const result = words.flatMap((w) => decodeWord(w, log, law));
+    const result = words.flatMap((w) => {
+      const decoded = decodeWord(w, log, law);
+      if (decoded.length) {
+        const reencoded = encodeWord([w.values[0], w.values.at(-1)],
+          decoded.map((e) => e.value), g, law);
+        assert.deepEqual(reencoded.values, w.values,
+          'original full-word re-encryption must recover every rune');
+      }
+      return decoded;
+    });
     const all = result.map((e) => e.value);
     assert.equal(result.length, 7247);
     // Native original p57 is the only non-gibberish plant.
