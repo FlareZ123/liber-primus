@@ -494,6 +494,93 @@ const plantedRec = originalOrder.map((x, i) => mod(alpha * x + plantedRecKey[i])
 assert.equal(recurrenceMatches(plantedRec.map((x, i) =>
   mod(x - alpha * originalOrder[i])), F16).length, 222);
 
+
+// Original p39's red13-dot glyphs divide it into 119 black + 3 red +118 black.
+const physicalRedSelectorHits = {};
+for (const [name, removed] of [
+  ['redOuter', [119, 121]], ['redLeft', [119, 120]],
+  ['redRight', [120, 121]], ['first13Outer', [118, 122]],
+  ['after13Marks', [119, 122]], ['before13Marks', [118, 121]]
+]) {
+  const c = page39.filter((_, i) => !removed.includes(i));
+  assert.equal(c.length, 238);
+  physicalRedSelectorHits[name] = matchingIndices(
+    c, originalOrder, lag, alpha).length;
+  assert.equal(physicalRedSelectorHits[name], 7);
+}
+const black237 = page39.filter((_, i) => i < 119 || i > 121);
+assert.equal(black237.length, 237);
+const black237Counts = [R238.slice(1, -1).reverse(),
+  R238.slice(0, -2).reverse(), R238.slice(1, -1), R238.slice(0, -2)]
+  .map(q => matchingIndices(black237, q, lag, alpha).length);
+assert.deepEqual(black237Counts, [6, 6, 6, 8]);
+
+// Retain intact word segments and all original runes within each physical page.
+// Test the same 12,719-window maximum over 240 seeded page-local word shuffles.
+const masterParts = fs.readFileSync(path.join(root,
+  'resources/transcriptions/liber_primus_master.txt'), 'utf8').split('%');
+const pages0to55 = allPages.filter(p => p.page <= 55);
+const nativeWords = pages0to55.map((page, pi) => {
+  const words = [];
+  let word = [];
+  for (const ch of Array.from(masterParts[pi + 16])) {
+    const v = corpus.runes.indexOf(ch);
+    if (v >= 0) word.push(v);
+    else if ((ch === '-' || ch === '.') && word.length) {
+      words.push(word); word = [];
+    }
+  }
+  if (word.length) words.push(word);
+  assert.deepEqual(words.flat(), page.indices);
+  return words;
+});
+assert.equal(nativeWords.reduce((n, words) => n + words.length, 0), 2928);
+let shuffleState = 0x3301abcd;
+/** @returns {number} */
+function shuffleRandom() {
+  shuffleState ^= shuffleState << 13;
+  shuffleState ^= shuffleState >>> 17;
+  shuffleState ^= shuffleState << 5;
+  return (shuffleState >>> 0) / 4294967296;
+}
+/** @param {number[]} tape @returns {{ best:number, p39:number }} */
+function compareLagMax(tape) {
+  const d = new Uint8Array(tape.length - 16);
+  for (let i = 16; i < tape.length; i++) d[i - 16] =
+    mod(tape[i] - tape[i - 16]);
+  let best = 0;
+  let p39 = 0;
+  for (let start = 0; start <= tape.length - 238; start++) {
+    let score = 0;
+    for (let i = 0; i < delta.length; i++) if (d[start + i] === delta[i]) score++;
+    if (score > best) best = score;
+    if (start === 9401) p39 = score;
+  }
+  return { best, p39 };
+}
+assert.deepEqual(compareLagMax(book), { best: 22, p39: 22 });
+const shuffledMaxHistogram = {};
+const shuffledP39Histogram = {};
+for (let trial = 0; trial < 240; trial++) {
+  const tape = [];
+  for (const wordList of nativeWords) {
+    const words = wordList.slice();
+    for (let i = words.length - 1; i > 0; i--) {
+      const j = Math.floor(shuffleRandom() * (i + 1));
+      [words[i], words[j]] = [words[j], words[i]];
+    }
+    for (const word of words) tape.push(...word);
+  }
+  const { best, p39 } = compareLagMax(tape);
+  shuffledMaxHistogram[best] = (shuffledMaxHistogram[best] || 0) + 1;
+  shuffledP39Histogram[p39] = (shuffledP39Histogram[p39] || 0) + 1;
+}
+assert.deepEqual(shuffledMaxHistogram,
+  { 18: 4, 19: 55, 20: 96, 21: 57, 22: 16, 23: 8, 24: 3, 25: 1 });
+assert.deepEqual(shuffledP39Histogram,
+  { 1: 4, 2: 1, 3: 7, 4: 12, 5: 24, 6: 33, 7: 29, 8: 34,
+    9: 41, 10: 22, 11: 12, 12: 11, 13: 5, 15: 4, 16: 1 });
+
 const report = {
   sources: { p50Bytes: grid.bytes.length, p50MonicDegree: originalMonic.length - 1,
     factorDegrees: [F16.length - 1, R238.length - 1],
@@ -523,6 +610,9 @@ const report = {
     directRedQuadraticNativePlant: true },
   sourceSelectedSecondLayer: { candidates: sourceTwoLayer.length, best: sourceTwoLayer[0],
     allHaveIoCLessThanFourPercent: true, signedP15PositiveRoundtrip: true },
+  physicalSelectorCalibration: { red13Markers: [119, 122, 240],
+    physicalRedSelectorHits, black237Counts, wordShuffleSeed: '0x3301abcd',
+    wordShuffleTrials: 240, shuffledMaxHistogram, shuffledP39Histogram },
   positivePlants: { periodicMatches: 222, F16RecurrenceMatches: 222 },
   status: 'Intermediate alignment only; no direct decipherment, authentic key, or plaintext recovered.'
 };
