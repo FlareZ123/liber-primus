@@ -91,7 +91,7 @@ const trainHalf=p=>p.page<=27;
 function pairSets(p){return [counts(p.filter(trainHalf)),counts(p.filter(x=>!trainHalf(x)))];}
 const original=Uint8Array.from(pages.flatMap(p=>p.indices));
 const key=Uint8Array.from(Array.from({length:29},(_,x)=>
- mod(gp.primes[x]+x*x+11*x+4)));
+ mod(gp.prime[x]+x*x+11*x+4)));
 /** @param {Uint8Array} plain @param {Uint8Array} f */
 function encipher(plain,f) {
   const out=new Uint8Array(plain.length);let pos=0;
