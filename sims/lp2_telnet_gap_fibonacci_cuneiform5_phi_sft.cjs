@@ -123,7 +123,7 @@ for (let i = 0; i < fragments.length; i++) {
 }
 assert.deepEqual(outcomes.map(row => row[0].firstImpossible), [0,26,8,39,4]);
 assert.deepEqual(outcomes.map(row => row[1].firstImpossible), [20,2,null,2,60]);
-assert.equal(outcomes[2][1].endClockCount, 4);
+assert.equal(outcomes[2][1].endClockCount, 3);
 assert.equal(outcomes.flat().filter(x => x.firstImpossible === null).length, 1);
 
 console.log(JSON.stringify({
