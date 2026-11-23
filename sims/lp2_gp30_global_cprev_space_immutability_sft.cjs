@@ -101,6 +101,30 @@ assert.equal(nonempty,1);
 // Upper capacity even if output word count is allowed to change.
 const U=N.reduce((a,row)=>a+Math.max(...row),0);
 assert.equal(U,3013);
+// In the REAL output-grammar case, adjacent plaintext spaces are forbidden.
+// If the previous-SPACE row creates a gap from rune s, every distinct
+// predecessor r in (r,SPACE,s) MUST suppress original SPACE. All those
+// changed rune rows lose at least their row-specific minimum deficit.
+const nonemptyWithNewAfterSpace=Array.from({length:29},(_,s)=>{
+  const required=Array.from({length:29},(_,r)=>r)
+    .filter(r=>triples[r][s]>0);
+  const minLoss=required.reduce((n,r)=>n+
+    (N[r][29]-Math.max(...N[r].slice(0,29))),0);
+  return {s,requiredRows:required.length,
+    optimisticMaxSpaces:2896+N[29][s]-minLoss};
+});
+const maxIfNewAfterSpace=Math.max(
+  ...nonemptyWithNewAfterSpace.map(x=>x.optimisticMaxSpaces));
+assert.equal(maxIfNewAfterSpace,991);
+assert(nonemptyWithNewAfterSpace.every(x=>x.requiredRows>=25));
+/*
+ * Therefore every VALID nonempty-word decoded stream falls into two:
+ *  (a) previous-SPACE row keeps SPACE: W<=2896, or
+ *  (b) previous-SPACE row creates new gaps: W<=991.
+ * Global all-key maximum for valid word outputs is 2896 (identity attains).
+ * This no-additional-words theorem does NOT assume equal word count.
+ */
+const legalNonemptyUpperBound=2896;
 const sMax=Array(30).fill(29);
 sMax[29]=N[29].indexOf(G);
 assert.equal(C.slice(1).filter((x,i)=>x===sMax[C[i]]).length,U);
@@ -174,9 +198,11 @@ for(const [name,file] of sources){
   controls.push({name,donorTokens:donor.length,
     min:values[0],median:values[64],max:values.at(-1),
     beyondGlobal:values.filter(x=>x>U).length,
+    beyondAnyNonemptyGlobal:values.filter(x=>x>legalNonemptyUpperBound).length,
     beyondChapter:values.filter(x=>x>privateByChapter).length});
 }
 assert.deepEqual(controls.map(x=>x.beyondGlobal),[114,128,125]);
+assert.deepEqual(controls.map(x=>x.beyondAnyNonemptyGlobal),[121,128,127]);
 assert.deepEqual(controls.map(x=>x.beyondChapter),[109,128,93]);
 console.log(JSON.stringify({
   source:{runes:12956,words,gp30:C.length,pages:pages.length},
@@ -186,7 +212,9 @@ console.log(JSON.stringify({
     illegalEmptyWords:emptyWord,legalSelectors:nonempty,
     legalSelectorsMovingAnyWordBoundary:0,
     maxMovedSourceSpacesIfAllowEmptyWords:158,
-    maximumPlaintextSpaces:U},
+    maximumPlaintextSpacesAllowingEmptyWords:U,
+    maximumPlaintextSpacesIfAllWordsNonempty:legalNonemptyUpperBound,
+    maximumSpacesIfChangingAfterOriginalSpace:maxIfNewAfterSpace},
   relaxations:{chapterPrivateMax:privateByChapter,pagePrivateMax:privateByPage},
   positive:{fullOriginalTokensReencrypt:true,
     changedRunePositions:P.filter((x,i)=>x!==C[i]).length,
