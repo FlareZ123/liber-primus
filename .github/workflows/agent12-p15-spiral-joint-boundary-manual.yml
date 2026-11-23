@@ -1,0 +1,16 @@
+name: Agent12 p15 spiral joint rune and separator inverse SFT
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-spiral-boundary:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact original GP29 tape and independent native-positive SFT
+        run: node sims/lp2_p15_spiral_joint_rune_gap_original_sft.cjs
