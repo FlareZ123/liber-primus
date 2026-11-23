@@ -65,6 +65,21 @@ Let \(H_A\) and \(H_B\) be the 29-bin source and target rune frequencies. With G
 
 These are **exact mathematical lower bounds** on original-value changes after allowing unrestricted position/word-break rearrangement; none is zero. A separate solved-p57 95-rune positive, passed through an arbitrary secret invertible alphabet substitution and a nontrivial global position permutation, has bound **zero**, as required. The original source's known p28/p33 Q remainders **[17,27,12]** and exact rune lengths are asserted in the same script, so this is an original-data test rather than a synthetic thought experiment. Full source-readable [SFT](../sims/lp2_p28_p33_shed55_permutation_no_go_sft.cjs), [Windows Node22 PASS 45197165593](https://github.com/FlareZ123/liber-primus/actions/runs/45197165593).
 
+The exact same invariant was also applied **once to every original-source one-edge-shedding length-compatible pair**, rather than elevating p28→p33 merely because it had been studied most. The previously established full 55-page physical-word census fixes **exactly eight ordered pairs** before any histogram test. On all **16** original first/last-edge registers, the minimum original rune changes after granting any stationary global 29-way alphabet permutation is strictly positive:
+
+| Printed source → original target | Shed first, min changes | Shed last, min changes |
+| --- | ---: | ---: |
+| p7→p15 | 10 | 8 |
+| p9→p23 | 14 | 7 |
+| p13→p33 | 9 | 8 |
+| p25→p3 | 4 | 6 |
+| p28→p33 | 7 | 17 |
+| p29→p7 | 9 | 8 |
+| p44→p3 | 6 | 7 |
+| p47→p3 | 7 | 8 |
+
+**None** of the eight original source-complete page pairs can be exactly obtained from its one-rune-shucked source solely by arbitrary rearrangement, rewritten punctuation and a globally fixed unknown alphabet. This 16-case exhaustive original-source extension is separately [Windows Node22 PASS 45197831742](https://github.com/FlareZ123/liber-primus/actions/runs/45197831742), using the same SFT and genuine solved-p57 synthetic positive. The smallest lower bound **4** at p25→p3 is *not* an authentic link: it is one of sixteen post-selection measurements, not a surviving zero-change inverse or a source-authored key. This exhausts the literal shed-and-reflow family without tuning cipher keys or words.
+
 **Decision for issue #2278:** the hypothesized direct shedding→p33 *pure transposition + arbitrarily rewritten spaces*, with or without a secret stationary global alphabet permutation, is impossible on original ciphertext. Even the most favorable arrangement requires independently changed rune values at **at least 7 locations**; an author-selected changing-state cipher, homophonic mapping, another source, or a keyed receiver could overcome that bound, but the physical source gives no such instruction. This exact global-permutation family is retired, without suggesting arbitrary exceptions for those seven symbols or promoting the numerical coincidence to a decipherment.
 
 ## Judgment and next causal fork
