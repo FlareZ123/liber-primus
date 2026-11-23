@@ -15,6 +15,10 @@ Therefore define the exact source-labeled, high-coefficient-first cubic
 
 The **weakest assumption** is that a scalar exponent from a prospective GP29 cube transform should also designate the added zero at X=3 for polynomial division. No recovered Cicada instruction explicitly selects this cross-register multiplication.
 
+**New independent printed operand that selects the factor.** The untouched original p29 terminal six-rune sequence is [5,18,12,6,8,19]. Its **middle three consecutive rune values [18,12,6]** match the three trailing coefficients of G(X)(X−3) **exactly**. Exhaustive inversion over all **29 possible** linear-root choices X−e shows that **only e=3** produces all three matching printed coefficients. In particular, G(X)(X−3)=[15,18,12,6], so the page's six-terminal packet can also be read as [g,Q-coefficients-1-through-3,A,B], where the leading coefficient **15** equals the historical client exponent b. The complete original p29 polynomial has exactly two distinct field roots **3 and 24**, with 24 at least double; G supplies (X−24)², and the p29 tail selects the remaining simple factor X−3. This is a materially stronger source-contained explanation for trying this specific cubic than the prior external cube-exponent argument alone.
+
+The *middle-three slice* was itself noticed after examining p29 and its DH-like packet, however. It is **not** an author-published extraction rule; the 29-way uniqueness is conditional on this chosen polynomial/slice and the historical prior. Do not treat these same-page coefficient matches as independent statistical evidence of the p28/p33 syndrome or DH interpretation.
+
 ## Original untouched-page result and a complete source census
 
 Treat every rune-bearing unknown physical page p0–55 as one GF29 polynomial, its first original GP29 rune the highest-degree coefficient. Long-division by the unchanged Q gives exact three-rune remainders:
