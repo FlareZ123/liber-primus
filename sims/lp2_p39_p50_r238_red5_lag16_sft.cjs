@@ -668,6 +668,54 @@ const fieldRecovered = fieldMultiply238(fieldEncrypted, redFieldInverse);
 assert.deepEqual(fieldRecovered, fieldPlant);
 assert.ok(ioc(fieldRecovered) > 0.06);
 
+
+// All-secret 16-position alphabet gate: for ANY bijection applied separately
+// at each of the sixteen phases, equalities within a phase cannot change.
+/** @param {number[]} v @returns {{samePhasePairs:number,adjacentLag16:number}} */
+function fixed16Equalities(v) {
+  assert.equal(v.length, 238);
+  let samePhasePairs = 0;
+  let adjacentLag16 = 0;
+  for (let phase = 0; phase < 16; phase++) {
+    const counts = Array(29).fill(0);
+    for (let i = phase; i < 238; i += 16) {
+      counts[v[i]]++;
+      if (i >= 16 && v[i] === v[i - 16]) adjacentLag16++;
+    }
+    samePhasePairs += counts.reduce((sum, n) => sum + (n * (n - 1)) / 2, 0);
+  }
+  return { samePhasePairs, adjacentLag16 };
+}
+const fixed16Original = fixed16Equalities(residual);
+assert.deepEqual(fixed16Original, { samePhasePairs: 75, adjacentLag16: 22 });
+const solvedNativeSections = load('resources/external/relikd-solved-gp29-native-v1.json');
+const solvedRuneSet = solvedNativeSections.runes;
+assert.deepEqual(solvedRuneSet, corpus.runes);
+const fixed16DonorWindows = [];
+for (const section of solvedNativeSections.sections) {
+  const gp = Array.from(section.source_text)
+    .filter(ch => solvedRuneSet.includes(ch))
+    .map(ch => solvedRuneSet.indexOf(ch));
+  for (let start = 0; start + 238 <= gp.length; start++) {
+    fixed16DonorWindows.push(fixed16Equalities(gp.slice(start, start + 238)));
+  }
+}
+assert.equal(fixed16DonorWindows.length, 1421);
+assert.equal(Math.min(...fixed16DonorWindows.map(x => x.samePhasePairs)), 73);
+assert.equal(Math.max(...fixed16DonorWindows.map(x => x.adjacentLag16)), 20);
+assert.equal(fixed16DonorWindows.filter(x =>
+  x.samePhasePairs <= 75).length, 15);
+assert.equal(fixed16DonorWindows.filter(x =>
+  x.samePhasePairs <= 75 && x.adjacentLag16 >= 22).length, 0);
+const solvedNativeFirst = Array.from(solvedNativeSections.sections[3].source_text)
+  .filter(ch => solvedRuneSet.includes(ch)).map(ch => solvedRuneSet.indexOf(ch))
+  .slice(0, 238);
+assert.equal(solvedNativeFirst.length, 238);
+const bijectivePhase16Plant = solvedNativeFirst.map((x, i) =>
+  mod(x + 7 * (i % 16) + 3));
+assert.deepEqual(fixed16Equalities(bijectivePhase16Plant),
+  fixed16Equalities(solvedNativeFirst));
+
 const report = {
   sources: { p50Bytes: grid.bytes.length, p50MonicDegree: originalMonic.length - 1,
     factorDegrees: [F16.length - 1, R238.length - 1],
@@ -697,6 +745,9 @@ const report = {
     directRedQuadraticNativePlant: true },
   sourceSelectedSecondLayer: { candidates: sourceTwoLayer.length, best: sourceTwoLayer[0],
     allHaveIoCLessThanFourPercent: true, signedP15PositiveRoundtrip: true },
+  keylessPhase16: { original: fixed16Original, donorWindows: fixed16DonorWindows.length,
+    donorsAtMost75: 15, donorMaxLag16: 20, donorsMatchingBoth: 0,
+    solvedNativePhasePermutationPlant: true },
   sourceFiniteField: { originalCases: fieldOriginalResults, nativePlantExactlyRecovered: true },
   physicalSelectorCalibration: { red13Markers: [119, 122, 240],
     physicalRedSelectorHits, black237Counts, wordShuffleSeed: '0x3301abcd',
