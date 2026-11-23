@@ -39,7 +39,7 @@ assert.equal(pages.flatMap(x=>x.indices).length,12956);
 function originalSegments(channel) {
   const out=[];
   for(const page of pages) {
-    const cuts=[0,...cutsByPage.get(page.page),page.indices.length];
+    const cuts=[0,...(cutsByPage.get(page.page) || []),page.indices.length];
     for(let k=0;k<cuts.length-1;k++) {
       const tuples=[];
       for(let j=Math.max(cuts[k],channel==="D"?1:0);j<cuts[k+1];j++) {
