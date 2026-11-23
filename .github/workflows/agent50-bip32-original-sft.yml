@@ -1,0 +1,14 @@
+name: Agent50 BIP32 original-source key derivation
+on:
+  workflow_dispatch:
+jobs:
+  run-original:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify BIP32 source-derived inversion
+        run: node sims/lp2_p50_missingl_bip32_child_scalar_original_sft.cjs
