@@ -246,8 +246,8 @@ function squareCaesar(words,sign){
   const keys=squares.flat(),out=[];
   for(let w=0;w<words.length;w++){
     const key=keys[w%99]%29;
-    out.push({punct:words[w].punct,
-      runes:words[w].runes.map(v=>(v+sign*key+29)%29)});
+    out.push({runes:words[w].runes.map(v=>(v+sign*key+29)%29),
+      punct:words[w].punct});
   }
   return out;
 }
