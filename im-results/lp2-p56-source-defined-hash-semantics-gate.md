@@ -69,7 +69,20 @@ The preserved Stage03 and Stage04 index objects are natural earlier-chain candid
 | Stage04 ASCII hex body | 512 | 524ef99542ccf8ee7232e37082e0232699ffe306438e8b223afbdd4fad906754fb52eb1c2a38635d860f0504636c68c5b3c86c6f3bb9e23d50a8da4b3c1cd681 | b33edcb42ca46d9c2a9c1c377155947721c25bfb87d9ede787e22a042413daf1a5b50f4a563f6074f837b4273c3e53b25c5156543109e47bbfb15516fc9356e6 |
 | Stage04 decoded payload | 256 | 678fe2ae157719f5cc2b02d01c6646b92288e37f1e8e5a156db44282c660d25aefe9d17d365d2fb2a3ca796e2c0f3e192739d06638b86be9deaf3d8541e17dac | c4193d23c63d160596420536e4fd124c83c39eed2d25da1b7ca575a8e918e380e74a51f0f7f520a19fa7b73f5f5259499eafe0409c3ce37c5383716f6d5d4678 |
 
-The Stage03 512-character hex body is byte-for-byte identical to the 512-character value in resources/2014-onion2-final-256byte-hex.txt (the authentic January 2014 Onion2 stream; the two repository blob IDs are c979fa7e23de1b04b502467da75ff5b506b97ff8 and cc631b0836032827021d20f3d2c805401c9ee439). Therefore the decoded Stage03 payload row also tests the Onion2 256-byte stream itself; it is not a separate untested candidate.\n\nReproduction: run sha512sum FILE and openssl dgst -provider legacy -whirlpool FILE. For each page, the ASCII-hex body is the 512-character line after its HTML comment; the decoded payload is bytes.fromhex(body). This rejects only these preserved page/payload byte boundaries. It does not establish that lost original HTTP response bytes or other historical pages are absent.
+The Stage03 512-character hex body is byte-for-byte identical to the 512-character value in resources/2014-onion2-final-256byte-hex.txt (the authentic January 2014 Onion2 stream; the two repository blob IDs are c979fa7e23de1b04b502467da75ff5b506b97ff8 and cc631b0836032827021d20f3d2c805401c9ee439). Therefore the decoded Stage03 payload row also tests the Onion2 256-byte stream itself; it is not a separate untested candidate.\n\n
+### Third 2014 onion and participant XOR output (Agent24, 23 November 2026)
+
+The remaining original 3301-labelled preliminary 256-byte page is also a natural earlier-chain candidate. Its exact 512-character hex object is preserved at the external archive path neuroretransmit/cicada/2014/006-fourth-onion/avowyfg151kzfj3n_256.hex (Git blob 5fd99c0f6c0fe9f86c013f19880ba8179ccf9f0c). I tested both its ASCII-hex bytes and decoded 256-byte payload, plus the 256-byte result of the contemporary participant-authored three-way XOR (1033 ⊕ 761 ⊕ 3301). None matches the p56 target under SHA-512 or Whirlpool.
+
+| Candidate bytes | Length | SHA-512 | Whirlpool |
+|---|---:|---|---|
+| 3301 ASCII hex | 512 | f9ade05de913286358bc4bcbeb600413c4a10afdc24f088f2d113f9bcf6f411f73b1fd453487b9111e49fcea90b3b988801151b1fe206a5cb251335cef7466b3 | e3c81918dbf7c9e4bd05dd8f048a42a27e80dded6dbdb351c82996466b38473101db45a74ce80359357b7dcc7c4e96d7f100a2eab027af416f256a938fb39f88 |
+| 3301 decoded payload | 256 | ba7474bde659c5fa6008eae27f8ac9b0d5537eac6237771e3f5c9b6e2a1555f51ada4985ee6e1d15266be58e9e536f6d2b7b47732a4492c863f0ee21eba5b4b8 | 847aba84f8b9410d42d56a95b76362180842e317bf68921dff10e51a6cb0dfe9da7e364954ec0646deac8f5078fead5719e2f9e699c3257f5c9e9e1d66f59343 |
+| Participant three-way XOR output (1033 ⊕ 761 ⊕ 3301) | 256 | 0949487eb2bac6110964abdcfd2283369ea832e829decad577cd17d936e07629508163c76139f1eb96596c12e104cca8441cc26c29204d19029b35c802a3c84e | c2335b424f90881e8dc45d2ceb78bb24dc6db8967e3384ac6a0a8abdfac469dc351b98af776eebdff9b6dce8e5151546fb034070eccffe3995c163e53210dfcd |
+
+The XOR output is not an author-authenticated page or a Cicada-specified p56 preimage; it is included as a plausible derived-file candidate because the operation exists in the contemporary participant script. The 3301 candidate is an archived preliminary page, not the later gzip carrier. These tests reject only the stated exact byte objects and boundaries, not lost HTTP wrappers or other historical page versions.
+
+Reproduction: run sha512sum FILE and openssl dgst -provider legacy -whirlpool FILE. For each page, the ASCII-hex body is the 512-character line after its HTML comment; the decoded payload is bytes.fromhex(body). This rejects only these preserved page/payload byte boundaries. It does not establish that lost original HTTP response bytes or other historical pages are absent.
 
 ## The misleading “liber-primus-hash-block” archive label
 
