@@ -302,7 +302,7 @@ const nativeSources = [
 ];
 
 function main() {
-  const originalReference = encodeEnglish(read(donors[4][1]));
+  const originalReference = encodeEnglish(read(donors.find(([name]) => name === "Gibran The Prophet")[1]));
   assert.equal(originalReference.length, 62492);
   const plantOffset = 11111;
   const plantPlain = originalReference.subarray(
