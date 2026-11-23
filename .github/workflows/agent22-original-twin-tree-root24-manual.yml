@@ -14,3 +14,6 @@ jobs:
       - name: Test original GP29 tree pages and source-native control
         shell: cmd
         run: node sims\lp2_twin_tree_root24_source_sft.cjs
+      - name: Test original p10 169-rune Hill13 key and seven13-rune receivers
+        shell: cmd
+        run: node sims\lp2_p10_7g_prefix169_hill13_original_sft.cjs
