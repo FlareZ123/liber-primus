@@ -32,6 +32,42 @@ assert.equal(info.fullModularExponentiationPASS, true);
 assert.equal(info.smoothSubgroupResidue, '483581994079670');
 assert.equal(info.largeSubgroupResidue, '3514059847361986014044855366874037440049858274');
 assert.equal(info.plaintextRecovered, false);
+// The same CADO precomputation independently printed the virtual log of 2.
+// The *other* source public value A=8 is 2^3 in the original field.
+// Combine CADO log8/logQ mod R with Agent11's independent 50-bit BSGS
+// residue a mod M. Both original DH directions must give the same S.
+const P = 63755441409934721069036418908763882578170591536653256311514221n;
+const Q = 1268532719737981052966698570711268391040527137n;
+const E = 54546906948733185277568038540584540814742666891n;
+const M = 630311729907820n;
+const R = 101149063843788281988908603592862658065019147521n;
+const log2 = 34462444473864939291612620886429653284547880364n;
+const aSmall = 97883509924151n;
+const mod=(v,n)=>(v%n+n)%n;
+/** @param {bigint} value @param {bigint} n */
+function inv(value,n) {
+  let [r, nr, t, nt] = [n,mod(value,n),0n,1n];
+  while(nr){const q=r/nr;[r,nr]=[nr,r-q*nr];[t,nt]=[nt,t-q*nt];}
+  assert.equal(r,1n);return mod(t,n);
+}
+/** @param {bigint} base @param {bigint} e @param {bigint} n */
+function powMod(base,e,n){
+  let value=1n;
+  while(e){if(e&1n)value=value*base%n;base=base*base%n;e>>=1n;}
+  return value;
+}
+const aLarge=mod(3n*log2*inv(BigInt(logQ),R),R);
+const a=aSmall+M*mod((aLarge-aSmall)*inv(M,R),R);
+assert.equal(aLarge,43870182398455967548054954653128522859138643088n);
+assert.equal(a,14347449201966638813083683299370469317053765371148427588804751n);
+assert.equal(powMod(Q,a,P),8n);
+assert.equal(powMod(Q,BigInt(exactB),P),E);
+const originalShared=18534943457637434371337714419521892971722473566563310008765178n;
+assert.equal(powMod(E,a,P),originalShared);
+assert.equal(powMod(8n,BigInt(exactB),P),originalShared);
+console.log('Independent full original public8 log a:',a.toString());
+console.log('Independent both-sided DH agreement E^a=8^b:',originalShared.toString());
+
 console.log('FULL ORIGINAL P55 DLP EXACT SOURCE EXPONENT:', exactB);
 console.log('Source original p55 complete field equation Q^b = E mod P: PASS');
 console.log('GP29 digit count: '+info.gp29DigitCount);
