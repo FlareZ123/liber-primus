@@ -41,3 +41,5 @@ The positive examples were measured after **actual forward plaintext-autokey enc
 The next high-value task is to find an **original source-authored evolving-state update or actual key-bearing instruction** that can expose at least one complete unknown plaintext passage. Further arbitrary starting-key guessing for the fixed thirteen-lag plaintext-autokey family is mathematically redundant.
 
 **Exact original-input reproducer:** sims/lp2_plaintext_autokey_k13_allsecret_sft.cjs. It reads the canonical source corpus, checks the published original counts, tests 30 alternate hidden seeds per region, and verifies native-GP plant decryption and forward reencryption. There are no derived plaintext claims to authenticate.
+
+**Independent executable environment:** The combined original-source tests completed successfully under **Windows GitHub Actions, Node 22** in [run #45097459572](https://github.com/FlareZ123/liber-primus/actions/runs/45097459572). The workflow runs each complete CommonJS original-source SFT without language-model fitting.
