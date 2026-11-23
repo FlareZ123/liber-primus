@@ -40,8 +40,7 @@ assert.deepEqual(indices(transcript[14]), lower);
 assert.equal(upper.length, 272);
 assert.equal(lower.length, 137);
 assert.deepEqual(upper.length / 2, 136);
-assert.equal(primes.indexOf(137), -1); // phi(137), not a GP alphabet prime
-assert.equal(137, 33 + 104); // 137 is independent of the 29-rune alphabet
+assert.ok(primes.every((p) => 137 % p !== 0)); // 137 is prime
 const lineLengths = transcript[13].split("/").map((s) => indices(s).length).filter(Boolean);
 assert.deepEqual(lineLengths, [24,21,23,23,22,23,22,25,21,22,22,24]);
 assert.equal(lineLengths.slice(0, 6).reduce((a, b) => a + b), 136);
