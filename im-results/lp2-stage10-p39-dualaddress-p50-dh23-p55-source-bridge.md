@@ -50,6 +50,8 @@ Take the physically identified opening **p33 red8** GP0=84, read each subsequent
 115 → 247 → 192 → 0 → 203 → 68 → 199 → 47
 \`\`\`
 
+**Critical source-family control:** The global base60 pointer graph's major 11-cycle has a **252-of-256-cell basin**, and the p39 stop-node47 is itself in that cycle. Therefore **all 18** original source red-span GP0 starting addresses reach47 eventually (after different transient durations). Moreover **three of the 18**, p8 opening red12 GP0=131, p33 opening red10 GP0=109, and p33 second red8 GP0=84, reach47 in exactly **17 visited cells**. Thus the 17-node/17-fragment equality is **not unique to the p33 red8 start**, and is weak when selected after noticing p55's printed word count. Its stronger discriminant remains the first hop `p50[84]=173` equal to the p39 red triplet's GP-*prime* sum; across the same frozen 18 spans, that particular typed red→red edge is unique. These additional source controls downgrade the apparent evidence of the 17-step word-register match without removing the tested, reproducible route.
+
 The **printed base60 values on those 17 cells** are
 
 \`\`\`text
