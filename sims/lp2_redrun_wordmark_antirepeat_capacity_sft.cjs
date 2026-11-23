@@ -44,6 +44,18 @@ function lostBits(transitions, maxRepeats) {
     - Math.log2(reverseTail);
 }
 
+/** Exact GP29 random-source bit loss for each original page's repeat budget. */
+function perPageRepeatLoss(transitions, repeats, atMost) {
+  const terms = [];
+  for (let j = atMost ? 0 : repeats; j <= repeats; j += 1) {
+    terms.push(logChoose(transitions, j)
+      + j * Math.log2(1 / 29)
+      + (transitions - j) * Math.log2(28 / 29));
+  }
+  const peak = Math.max(...terms);
+  return -peak - Math.log2(terms.reduce((sum, value) => sum + 2 ** (value - peak), 0));
+}
+
 function checkSmallPositiveControls() {
   let valid = 0;
   for (let a = 0; a < 3; a += 1)
@@ -76,6 +88,9 @@ let pageCount = 0;
 let redTotal = 0;
 let redRunCount = 0;
 let markCount = 0;
+let pageSeamTotal = 0;
+let pagewiseAtMostRepeatLoss = 0;
+let pagewiseExactRepeatLoss = 0;
 let redPositionBits = 0;
 let markWordBoundaryBits = 0;
 let redWordBoundaryBits = 0;
@@ -125,9 +140,16 @@ for (let segment = 0; segment < printed.length; segment += 1) {
   redTotal += lengthRed;
   redRunCount += r;
   markCount += m;
+  pageSeamTotal += slots;
+  let pageRepeats = 0;
   for (let i = 1; i < n; i += 1) {
-    if (source.indices[i] === source.indices[i - 1]) repetitions += 1;
+    if (source.indices[i] === source.indices[i - 1]) {
+      repetitions += 1;
+      pageRepeats += 1;
+    }
   }
+  pagewiseAtMostRepeatLoss += perPageRepeatLoss(n - 1, pageRepeats, true);
+  pagewiseExactRepeatLoss += perPageRepeatLoss(n - 1, pageRepeats, false);
   if (r || m) console.log('p' + page + ' runes=' + n +
     ' word-gaps=' + slots + ' red-runs=' + r +
     ' red-runes=' + lengthRed + ' large-marks=' + m);
@@ -140,12 +162,24 @@ assert.equal(repetitions, 86);
 assert.equal(redTotal, 213);
 assert.equal(redRunCount, 16);
 assert.equal(markCount, 31);
+assert.equal(pageSeamTotal, 2983);
 
 const markerLabels = logChoose(31, 3) + Math.log2(31);
 const lost = lostBits(transitions, repetitions);
 const combined = redPositionBits + markWordBoundaryBits + markerLabels;
 const strictCombined = redWordBoundaryBits + markWordBoundaryBits + markerLabels;
 const oneExtraBitPerRedRun = combined + redRunCount;
+// Global mark movement is more permissive than the observed per-page
+// totals: allow 31 marks to occupy ANY 3,008 candidate printed word gaps.
+// This grants 25 nonexistent gaps beyond the original 2,983.
+const globalMarkSlots = 3008;
+const globallyMovableMarksBits = logChoose(globalMarkSlots + markCount - 1, markCount)
+  + markerLabels;
+const redFixedPagesMarksGlobalBits = redPositionBits + globallyMovableMarksBits;
+// Even more generous: preserve the historical 16 red-run lengths and their
+// original relative order, but allow the entire set to roam across pages.
+const globallyMovableOrderedRedBits = logChoose(runeTotal - redTotal + redRunCount, redRunCount);
+const allSidecarsGlobalBits = globallyMovableOrderedRedBits + globallyMovableMarksBits;
 
 const near = (actual, target) => assert(Math.abs(actual - target) < 1e-8,
   'Expected ' + target + ', obtained ' + actual);
@@ -156,6 +190,12 @@ near(redWordBoundaryBits, 86.62198765948989);
 near(markerLabels, 17.088301710788684);
 near(combined, 290.82670205298956);
 near(strictCombined, 258.69995636110923);
+near(pagewiseAtMostRepeatLoss, 430.5612013481064);
+near(pagewiseExactRepeatLoss, 445.73155790087196);
+near(globallyMovableMarksBits, 262.8395654711621);
+near(globallyMovableOrderedRedBits, 173.96392754942994);
+assert(pagewiseAtMostRepeatLoss > redFixedPagesMarksGlobalBits);
+assert(pagewiseExactRepeatLoss > allSidecarsGlobalBits);
 assert(lost > combined);
 assert(lost > oneExtraBitPerRedRun);
 
@@ -171,6 +211,16 @@ console.log(JSON.stringify({
   deficitBits: lost - combined,
   strictWordAnchoredRedUpperBits: strictCombined,
   withExtraBinaryPerRedRunBits: oneExtraBitPerRedRun,
-  withExtraBinaryPerRedRunDeficit: lost - oneExtraBitPerRedRun
+  withExtraBinaryPerRedRunDeficit: lost - oneExtraBitPerRedRun,
+  printedWordSeamsOriginal: pageSeamTotal,
+  globalWordSeamsGenerouslyGranted: globalMarkSlots,
+  pagewiseAtMostRepeatLossBits: pagewiseAtMostRepeatLoss,
+  pagewiseExactRepeatLossBits: pagewiseExactRepeatLoss,
+  globallyMovableLargeMarksBits: globallyMovableMarksBits,
+  globalMarksLocalRedCapacityBits: redFixedPagesMarksGlobalBits,
+  globalMarksLocalRedDeficitBits: pagewiseAtMostRepeatLoss - redFixedPagesMarksGlobalBits,
+  globallyMovableOrderedRedBits: globallyMovableOrderedRedBits,
+  allSidecarsGlobalCapacityBits: allSidecarsGlobalBits,
+  globallyMovableExactRepeatDeficitBits: pagewiseExactRepeatLoss - allSidecarsGlobalBits
 }, null, 2));
-console.log('PASS: original-source all-key cardinality exclusion for the stated source-shaped channel');
+console.log('PASS: original-source all-key cardinality exclusion for three explicit channel contracts');
