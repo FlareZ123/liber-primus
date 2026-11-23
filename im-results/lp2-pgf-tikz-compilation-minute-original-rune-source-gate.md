@@ -18,7 +18,7 @@ Use every authentic unknown physical LP2 p0–55 rune in its published reading o
 There are **three clock hypotheses**: one PGF state continuing through all pages, restart at the nine original visual chapter boundaries, or restart at every physical rune-bearing page. A single compilation-time seed is fixed across the entire book within each choice. Two source-related stream-to-GP29 methods are tried, with both additive signs:
 
 1. Integer PGF \pgfmathrandominteger(0,28): take state mod 29, then invert either C=P+K or C=P−K (mod29).
-2. Decimal PGF \pgfmathrnd: the historical implementation presents state mod 100001 as six decimal digits; multiply that fractional value by 29 and take the floor, then invert either sign.
+2. Decimal PGF \pgfmathrnd: the historical implementation returns (state mod 100001)/100000, including a rare endpoint exactly1; multiply by29, take the floor and reduce modulo29 before inverting either sign.
 
 The second choice is a **proposed rune quantization**, not a TeX primitive that directly returns GP29 digits. Each candidate is fully reversible on all 29 GP indices. The 2012, 2013 and 2014 year choices and every minute 0–1439 are exhaustively covered: **3 years × 1,440 minutes × 3 clocks × 2 output reductions × 2 signs = 51,840 full-original decryptions**, plus the same set's p0–2 729-rune prefix diagnostics. No stage-specific language decoder, chosen seed offset, hidden page-specific year, plaintext-F pause or threshold-fitted rune exception is introduced.
 
@@ -28,8 +28,8 @@ The unmodified source has GP29 **IoC 0.03447839786450569** (uniform 29-ary basel
 
 | PGF key clock | Highest whole-book IoC across all 17,280 candidates | Highest 729-rune first-chapter IoC | Count with whole-book IoC ≥0.045 |
 | --- | ---: | ---: | ---: |
-| Continuous book | **0.034593146605** | 0.036362471548 | 0 |
-| Nine printed sections | **0.034582613075** | 0.036362471548 | 0 |
+| Continuous book | **0.034593801971** | 0.036362471548 | 0 |
+| Nine printed sections | **0.034582636907** | 0.036362471548 | 0 |
 | Independent physical-page reset | **0.034597781834** | 0.036253184401 | 0 |
 
 The winning full-book source key was the page-reset, scaled-decimal, **subtraction** variant, with year 2012 and minute 297. Its whole-book IoC **0.034597781834** remains indistinguishable in practical native-English recovery from the original uniform ciphertext. The strongest p0–2 prefix value **0.036362471548** was the book/chapter uninterrupted integer-mod29 subtraction, year 2013, minute394; it also remains far from ordinary native-English prose. The independently solved p57 95-rune clear text has IoC approximately0.06271; this is a short reference, not a universal decision threshold.
