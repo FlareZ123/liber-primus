@@ -103,8 +103,15 @@ assert.ok(floralResult.decodedIoC < 0.04);
 const byteOut = unfilter(panelBytes, 8, 256);
 assert.deepEqual(filter(byteOut, 8, 256), panelBytes);
 const printable = v => v >= 32 && v <= 126;
+// An actual PNG scanline starts with a filter-type byte 0..4.
+// The 32 printed 8-byte rows cannot be 32 ordinary PNG-filtered scanlines.
+const rowHeads = panelBytes.filter((_, i) => i % 8 === 0);
+const validNativeScanlineFilterRows =
+  rowHeads.flatMap((byte, row) => byte <= 4 ? [{row, byte}] : []);
+assert.deepEqual(validNativeScanlineFilterRows, [{row: 24, byte: 0}]);
 const byteResult = {
   label: 'p49-p51 byte panel 32x8', bytes: 256,
+  nativePngFilterRows: validNativeScanlineFilterRows,
   sourcePrintable: panelBytes.filter(printable).length,
   averageUnfilteredPrintable: byteOut.filter(printable).length,
   first16Hex: byteOut.slice(0, 16).map(x => x.toString(16).padStart(2, '0')).join(''),
