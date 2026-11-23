@@ -144,6 +144,23 @@ assert.equal(evaluate(a.quotient, r), gpG);
 const q7 = divideLinear(p10, numericSeven);
 assert.equal(q7.remainder, 0);
 assert.equal(evaluate(q7.quotient, numericSeven), 5);
+// The derivative at the *printed* digit is GP C (index5), prime13.
+// The unique numeral occurs exactly after 13^2 source runes. The source's
+// row7/column7 of that unmodified 13x13 prefix is GP Y index26.
+const derivative7 = evaluate(q7.quotient, numericSeven);
+assert.equal(corpus.translit[derivative7], 'C');
+assert.equal(corpus.prime[derivative7], 13);
+const digitIndex = transcription[10].indexOf('-7-ᚷ-');
+assert.ok(digitIndex >= 0);
+const runeInventory = new Set(corpus.runes);
+const beforeSeven = Array.from(transcription[10].slice(0,digitIndex))
+  .filter(ch => runeInventory.has(ch)).length;
+assert.equal(beforeSeven, 169);
+assert.equal(beforeSeven, corpus.prime[derivative7] ** 2);
+const prefixGrid13 = p10.slice(0,beforeSeven);
+assert.equal(prefixGrid13.length, 13 * 13);
+const originalRow7ColumnG = prefixGrid13[6*13+gpG];
+assert.equal(originalRow7ColumnG, 26);
 
 assert.equal(evaluate(p10, numericSeven), 0);
 const p10Twice = divideLinear(a.quotient, numericSeven);
@@ -274,6 +291,9 @@ console.log(JSON.stringify({
       sumMod29:numericSeven+corpus.prime[gpG], sevenPowers,
       product:numericSeven*corpus.prime[gpG]},
     p10DerivativeAt24:evaluate(a.quotient,r),
+    p10DerivativeAtLiteral7:derivative7,
+    originalRunesBeforeLiteral7:beforeSeven,
+    original13x13GridRow7ColumnG:originalRow7ColumnG,
     originalSameTreeReceiverLengths:[p12.length,p13.length],
     neighborResidues:{p9:evaluate(p9,r),p12:evaluate(p12,r)},
     rootMultiplicities:{
