@@ -30,6 +30,53 @@ assert.deepEqual(hits,[0,12]);
 assert.deepEqual(pages[0].indices.slice(0,4),[15,8,18,3]);
 assert.deepEqual(pages[12].indices.slice(0,5),[5,10,4,5,7]);
 assert(transcription[12].trimStart().startsWith("ᚳᛁ-ᚱᚳᚹ"));
+
+// Cross-round source gate: the independently archived 2014 Stage10 response
+// names 107.jpg/167.jpg/229.jpg before the 58-page manuscript release.
+// The p50 numerical register and its f-shed alphabet are *proposed* receivers.
+const grid=JSON.parse(fs.readFileSync(path.join(root,"resources","liber-primus","base60-grid.json"),"utf8"));
+const letters=[...grid.alphabet];
+const shedLetters=letters.filter(ch=>ch!=="f");
+const cells=grid.rows.flat();
+assert.equal(letters.length,60);
+assert.equal(shedLetters.length,59);
+assert.equal(letters.indexOf("f"),41);
+assert.equal(cells.length,256);
+/** @param {string} token @param {string[]} radixLetters @returns {number} */
+function readCell(token,radixLetters){
+  return radixLetters.indexOf(token[0])*radixLetters.length+radixLetters.indexOf(token[1]);
+}
+assert.equal(pages[0].indices.slice(0,3).reduce((s,n)=>s+n,0),41);
+assert.equal(pages[12].indices.slice(0,4).reduce((s,n)=>s+n,0),24);
+assert.equal(cells[41],"1O");
+assert.equal(readCell(cells[41],shedLetters),83);
+assert.equal(words[19].reduce((s,n)=>s+n,0),83); // clear p57 EMERGE
+assert.equal(cells[24],"1n");
+assert.equal(readCell(cells[24],shedLetters),107);
+assert.equal(cells.filter(cell=>readCell(cell,shedLetters)===107).length,1);
+
+const stage10=fs.readFileSync(
+  path.join(root,"resources","external","2014-stage10-post-square-response.html"),"utf8"
+);
+const knownJpgs=Array.from(stage10.matchAll(/<img src="\/(\d+)\.jpg"/g),match=>Number(match[1]));
+assert.deepEqual(knownJpgs,[107,167,229]);
+const crossRound=[];
+for(let index=0;index<words.length;index++){
+  for(const prefixLength of [3,4,words[index].length]){
+    if(prefixLength>words[index].length)continue;
+    const address=words[index].slice(0,prefixLength).reduce((s,n)=>s+n,0);
+    if(address>=256)continue;
+    const token=cells[address];
+    for(const radixLetters of [letters,shedLetters]){
+      const target=readCell(token,radixLetters);
+      if(knownJpgs.includes(target)){
+        crossRound.push({word:index,prefixLength,address,radix:radixLetters.length,target});
+      }
+    }
+  }
+}
+assert.deepEqual(crossRound,[{word:13,prefixLength:4,address:24,radix:59,target:107}]);
+
 let seed=0x3301a157;
 function rnd(){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return seed>>>0;}
 let two=0,one4=0,both=0,dist=[0,0,0,0];
