@@ -16,7 +16,7 @@ An **all-key invariant** follows, unaffected by arbitrary secret permutations of
 \boxed{C_i=C_{i-1}\ \Longleftrightarrow\ P_i=e.}
 \]
 
-If original printed LP2 word boundaries preserve plaintext words, no substitution key, carry or running-key schedule can hide where e occurs. Every identical adjacent ciphertext pair forces that same plaintext rune, including at actual word beginnings.
+If the original printed LP2 word boundaries **and within-word rune positions** preserve their plaintext counterparts, no substitution key, carry or running-key schedule can hide where e occurs. Every identical adjacent ciphertext pair forces that same plaintext rune, including at actual word beginnings.
 
 ## Original source: an unusual fixed-rune demand
 
@@ -48,10 +48,10 @@ EA is the most compatible candidate under the pair of original counts in all thr
 
 ## Cryptanalytic decision and limits
 
-**An all-key, fixed-plaintext-rune escape, otherwise arbitrarily evolving 28-way successor machine is strongly disfavored as a direct ordinary GP29-English cipher preserving the printed word boundaries.** This applies to more secret key freedom than a fixed rank28 rotation or a word-private substitution because the remaining 28 mappings can vary at every symbol while the escape invariant persists.
+**An all-key, fixed-plaintext-rune escape, otherwise arbitrarily evolving 28-way successor machine is strongly disfavored as a direct ordinary GP29-English cipher preserving both printed word boundaries and their position order.** This applies to more secret key freedom than a fixed rank28 rotation or a word-private substitution because the remaining 28 mappings can vary at every symbol while the escape invariant persists.
 
 A related viable architecture now requires **an independent original clue** to select a changing escape symbol, external exception data, altered word segmentation, or different plaintext register. Neither source-red markers nor the 32×8 p50 table currently supplies such an instruction.
 
-**Scope.** Exact tails assume independent length-matched word draws, ignoring sentence context, spelling style and thematic vocabulary. The author could deliberately use an unusually word-initial-EA-heavy register. This does not rule out all no-repeat coders, nonliteral control escapes, space-changing mechanisms or high-entropy keys with a separate side channel. Planted-cipher forward replay validates only implementation. No genuine unknown-page plaintext, key or final destination is claimed.
+**Scope.** Exact tails assume independent length-matched word draws, ignoring sentence context, spelling style and thematic vocabulary. The author could deliberately use an unusually word-initial-EA-heavy register. This does not rule out all no-repeat coders, nonliteral control escapes, within-word transpositions, space-changing mechanisms or high-entropy keys with a separate side channel. Planted-cipher forward replay validates only implementation. No genuine unknown-page plaintext, key or final destination is claimed.
 
 **Inputs:** original image-corrected LP2 transcription, canonical GP29 page corpus, and three named existing control texts. The read-only SFT asserts original source counts and evaluates all 29 possible escape runes.
