@@ -165,6 +165,50 @@ const originalWordBreaks=wordEnds.filter(x=>x<=N);
 assert.equal(originalWordBreaks.length,2896);
 assert.equal(originalWordBreaks.at(-1),N);
 
+// Most generous fully ink/layout/word anchored source segmentation:
+// every original whole word, printed line, page seam, period, rubric,
+// quote boundary and four genuine internal apostrophe strokes may introduce
+// its own arbitrarily secret 29! alphabet and arbitrary intra-scope
+// rune transposition, while any internal word boundaries may be reflowed.
+const withAllVisible=uniqueCuts([...withLines,...originalWordBreaks]);
+assert.equal(withAllVisible.length-1,3320);
+assert.deepEqual([withLines.length-1,withAllVisible.length-1],
+  [738,3320]);
+/** Exact within-scope same-symbol pair count. Independent secret symbol
+ * permutations and unrestricted intra-scope rune order preserve the count.
+ * @param {number[]} values @param {number[]} cuts @returns {number} */
+function equalPairs(values,cuts){
+  const counts=Array(29).fill(0);
+  let equal=0;
+  for(let j=1;j<cuts.length;j++){
+    counts.fill(0);
+    for(let k=cuts[j-1];k<cuts[j];k++)counts[values[k]]++;
+    for(const n of counts)equal+=n*(n-1)/2;
+  }
+  return equal;
+}
+const exactOriginalEquality={
+  lineAndAllInk:equalPairs(original,withLines),
+  everyPrintedTokenAndInk:equalPairs(original,withAllVisible)
+};
+assert.deepEqual(exactOriginalEquality,
+  {lineAndAllInk:3956,everyPrintedTokenAndInk:683});
+
+/** Native contiguous original-length windows at fixed half-book steps, to
+ * match the long-standing exact-original layout control convention.
+ * @param {number[]} native @returns {{samples:number,min738:number,min3320:number,atOrBelowOriginal738:number,atOrBelowOriginal3320:number}} */
+function fixedLayoutNativeCollisionControls(native){
+  const x=[],y=[];
+  for(let begin=0;begin+N<=native.length;begin+=6478){
+    const window=native.slice(begin,begin+N);
+    x.push(equalPairs(window,withLines));
+    y.push(equalPairs(window,withAllVisible));
+  }
+  return {samples:x.length,min738:Math.min(...x),min3320:Math.min(...y),
+    atOrBelowOriginal738:x.filter(n=>n<=3956).length,
+    atOrBelowOriginal3320:y.filter(n=>n<=683).length};
+}
+
 // Exact simplest independent-substitution-reset null: random independent
 // cyclic translations of each printed segment. All intra-segment source
 // doublet decisions remain unchanged, and each seam matches with p=1/29.
@@ -268,10 +312,11 @@ function rng(){let state=0x33012026;return ()=>{
 };}
 /** Exact secret bijection plus arbitrary intra-scope reversal and its inverse.
  * @param {number[]} plain @returns {{cipher:number[],recovered:number[]}} */
-function plant(plain){
+function plant(plain,cuts=all){
   const random=rng(),cipher=new Array(N),recovered=new Array(N);
-  for(let s=0;s<all.length-1;s++){
-    const left=all[s],right=all[s+1],perm=Array.from({length:29},(_,i)=>i);
+  for(let s=0;s<cuts.length-1;s++){
+    const left=cuts[s],right=cuts[s+1],
+      perm=Array.from({length:29},(_,i)=>i);
     for(let i=28;i>0;i--){const j=random()%(i+1);
       [perm[i],perm[j]]=[perm[j],perm[i]];}
     const inv=Array(29);
@@ -297,14 +342,28 @@ const controls=sources.map(([name,file,expectE,expectEO])=>{
   assert.deepEqual([minE,minEO],[expectE,expectEO]);
   assert(1029<minE&&1897<minEO);
   const rank=rankCounter(native);
-  return {name,minE,minEO,sourceLineFullRankCapacity:rank};
+  const matching= fixedLayoutNativeCollisionControls(native);
+  return {name,minE,minEO,sourceLineFullRankCapacity:rank,
+    fullVisibleInkAndWordCollision:matching};
 });
 assert.deepEqual(controls.map(x=>[
   x.sourceLineFullRankCapacity.windows,
   x.sourceLineFullRankCapacity.failures]),
   [[50159,0],[311675,5649],[205845,0]]);
+assert.deepEqual(controls.map(x=>[
+  x.fullVisibleInkAndWordCollision.samples,
+  x.fullVisibleInkAndWordCollision.min738,
+  x.fullVisibleInkAndWordCollision.min3320,
+  x.fullVisibleInkAndWordCollision.atOrBelowOriginal738,
+  x.fullVisibleInkAndWordCollision.atOrBelowOriginal3320]),
+  [[8,6658,1101,0,0],[49,6958,1137,0,0],
+    [32,6599,1133,0,0]]);
 const native=encodeWords(read(sources[0][1])).flat().slice(0,N);
 const positive=plant(native),positiveCap=bins(positive.cipher,all);
+const allVisiblePositive=plant(native,withAllVisible);
+assert.equal(allVisiblePositive.recovered.length,12956);
+assert.equal(equalPairs(native,withAllVisible),
+  equalPairs(allVisiblePositive.cipher,withAllVisible));
 const nativeE=native.filter(x=>x===E).length,
   nativeEO=native.filter(x=>x===E||x===O).length;
 assert(capacity(positiveCap,1)>=nativeE);
@@ -324,8 +383,10 @@ console.log(JSON.stringify({
     physicalPrintedLines:{scopes:onlyLines.length-1,...lineEcho},
     allInkAndLineScopes:withLines.length-1,
     physicalLineAll29RankUpperMass:lineRankCaps,
+    originalSameSymbolPairInvariants:exactOriginalEquality,
+    allPrintedWordLineInkScopes:withAllVisible.length-1,
     continuousLowRepeatPageConditionedLineNull:pageConditionedLineEdges,
-    decision:'Punctuation/page-level independently secret 29! alphabets lack enough English top-letter mass even with arbitrary internal resegmentation/reordering. A private alphabet on every single source line has sufficient top-letter *capacity*, but resets independently drawn at the line breaks predict far more crossing doublets than observed.'},
+    decision:'The global top-letter capacity gate fails to exclude line-based private alphabets, but within-layout exact same-symbol pairs exclude even 3,320 independent private alphabets in every complete original ink/word/line scope, with any intra-scope rune order and internal spaces. Evolving values within scopes or transposition across marked scopes remain unselected.'},
   sourceInkCrossingEcho:{tested:inkCrossings.length,
     equal:equalCrossings.length,
     exactRandomIndependentScopeCyclicShiftP_le1:independentResetLowerTail,
@@ -338,6 +399,7 @@ console.log(JSON.stringify({
     ciphertextMaxEO:capacity(positiveCap,2),
     sourceNativeE:nativeE,sourceNativeEO:nativeEO,
     alternativeWordBreaks:moved.length,
-    exactInverseOfWordBreakReflow:true},
+    exactInverseOfWordBreakReflow:true,
+    allVisibleScopePrivateAlphabetAndRereadRestoresAllNativeGP:true},
   decision:'All original source-anchored scope-static GP29 substitutions combined with arbitrary internal transposition and word resegmentation fail native-GP prose ceilings. A viable space-changing solver must move rune mass across anchor cuts or change rune identities through evolving/polygraphic states (or use another plaintext register).'
 },null,2));
