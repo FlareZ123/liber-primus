@@ -51,19 +51,30 @@ function encrypt(mode, key, input) {
 function metrics(bytes) {
   const printable = bytes.filter(b => b === 9 || b === 10 || b === 13 || (b >= 32 && b <= 126)).length;
   const gp29 = bytes.filter(b => b < 29).length;
-  const ascii = bytes.toString("latin1");
-  const signatures = ["ID3", "PK\\x03\\x04", "%PDF", "\\x89PNG", "GIF8", "RIFF", "OggS", "fLaC", "BZh", "\\x1f\\x8b", "7z\\xbc\\xaf\\x27\\x1c"];
-  const found = signatures.filter(sig => {
-    const raw = sig.replace(/\\\\x([0-9a-fA-F]{2})/g, (_,h) => String.fromCharCode(parseInt(h,16)));
-    return ascii.startsWith(raw);
-  });
+  const signatures = [
+    Buffer.from([0x49,0x44,0x33]),
+    Buffer.from([0x50,0x4b,0x03,0x04]),
+    Buffer.from("%PDF", "ascii"),
+    Buffer.from([0x89,0x50,0x4e,0x47]),
+    Buffer.from("GIF8", "ascii"),
+    Buffer.from("RIFF", "ascii"),
+    Buffer.from("OggS", "ascii"),
+    Buffer.from("fLaC", "ascii"),
+    Buffer.from("BZh", "ascii"),
+    Buffer.from([0x1f,0x8b]),
+    Buffer.from([0x37,0x7a,0xbc,0xaf,0x27,0x1c])
+  ];
+  const found = signatures.filter(sig => bytes.subarray(0, sig.length).equals(sig))
+    .map(sig => sig.toString("latin1"));
+  const first32 = bytes.subarray(0,32);
+  const first32Text = Array.from(first32, b => b >= 32 && b <= 126 ? String.fromCharCode(b) : ".").join("");
   return {
     printable,
     printableShare: +(printable / bytes.length).toFixed(5),
     gp29,
     gp29Share: +(gp29 / bytes.length).toFixed(5),
-    first32Hex: bytes.subarray(0,32).toString("hex"),
-    first32Latin1: bytes.subarray(0,32).toString("latin1").replace(/[^\\x20-\\x7e]/g, "."),
+    first32Hex: first32.toString("hex"),
+    first32Latin1: first32Text,
     signaturesAtStart: found
   };
 }
@@ -91,7 +102,7 @@ for (const [variant, positions] of variants) {
       offsetConvention: variant,
       mode,
       keyHex: key.toString("hex"),
-      keyLatin1: key.toString("latin1").replace(/[^\\x20-\\x7e]/g, "."),
+      keyLatin1: Array.from(key, b => b >= 32 && b <= 126 ? String.fromCharCode(b) : ".").join(""),
       ...metrics(recovered)
     });
   }
