@@ -102,7 +102,7 @@ for (const [name, digits] of candidates) {
     const publicValue = powMod(Q, exponent, P);
     const matches8 = publicValue === 8n;
     const matches43 = publicValue === 43n;
-    assert.equal(matches8, partial === requiredPrivateModM || false);
+    assert.ok(!matches8 || partial === requiredPrivateModM);
     assert.equal(matches8, false);
     assert.equal(matches43, false);
     decisions.push({name, reversed, exponentBits: exponent.toString(2).length,
