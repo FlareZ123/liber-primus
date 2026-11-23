@@ -38,6 +38,23 @@ Direct raw two-letter tokenizations of three checked-in source-language controls
 
 The actual physical p50 number-only page is excluded, and 32 page carries remain joined. Each row excludes that particular chapter-private stationary whole-word model **under the attested 63-type vocabulary**. Neither row independently excludes a broader 168-word lexicon; the **full-book** 168-type argument excludes a **single shared** stationary map, not chapter-rekeyed variants.
 
+## Page-private key sensitivity: authentic 2-word repeats remain almost absent within pages
+
+An independent stronger *source-language* prediction tests the natural fallback of **one arbitrary secret whole-word cipher per physical page**, with the same page key for every two-letter plaintext word on that page. The full-book 168-type pigeonhole obstruction does not apply to 55 independently keyed pages, where each page has 0–15 two-rune words. Nevertheless identical two-letter words printed *on the same page* must still receive identical ciphertext words.
+
+Counting unordered equal-word token pairs **within each of the 55 rune-bearing original physical pages** yields only **two** among all **448** source two-rune word occurrences. The test preserves the exact per-page two-word token counts (p50's number-only page contributes none, 32 across-page joined words belong to their start pages). We then take **303 deterministic contiguous 448-two-letter-word windows** from three pinned, independently authored ordinary-English texts, repartition each window into *exactly those 55 authentic original page groups*, and count repeated whole two-letter words within each page.
+
+| Native raw-English donor | Fixed 448-word windows | Minimum within-page equal-token pairs | Median | Maximum |
+| --- | ---: | ---: | ---: | ---: |
+| Actual original LP2 two-rune ciphertext | 1 | **2** | 2 | 2 |
+| Gibran, *The Prophet* | 103 | 165 | 270 | 383 |
+| Shakespeare, first 300k characters | 100 | 123 | 161 | 225 |
+| Emerson, *Essays* | 100 | 165 | 230 | 415 |
+
+Under an **independent arbitrary secret whole-word map per page**, a source-native page-key cipher would preserve at least its plaintext's within-page identical-word pairs; all 303 sampled native donor windows have **≥123**, compared with the original **2**. This is a substantial finite-language contradiction for those donor passages and exact page partitions. The windows overlap, so do not interpret 0/303 as an iid confidence level or infer a formal universal-English p-value. Alternative plaintext vocabulary, dissimilar discourse, altered spaces or a genuinely **within-page word-varying key/IV** survive.
+
+This moves the main conditional architecture choice past **page-local stationary secrets** as well as globally stationary secrets: a native-English intact-word decoder would need changing encryption state *inside original pages*, unless it relied on a very unusual two-letter word distribution. The script checks the original two within-page collisions and the exact three donor min/median/max ranges in addition to the global theorems and positive plants. It makes no claim that the author actually used English or a particular IV.
+
 ## Minimal changing-state consequence
 
 A decoder that assigns one of `s` fixed deterministic maps to each printed two-letter word, with no other input distinguishing repeated plaintext types, can produce **at most `168 × s` distinct ciphertext two-letter types** from the permissive 168-type raw-English lexicon. Since the unmodified original contains **354 distinct two-rune ciphertext words**, any surviving model in that register must have at least **`ceil(354/168) = 3` different effective word-encryption maps** across the full manuscript. Under the narrower **63-type observed donor union**, the corresponding lower bound is **six maps** globally. This is only a necessary state-support bound; it does not identify IV values, establish where state transitions occur, or exclude independent page keys. Under the 63-type control, the actual p15–22 and p40–53 sections each require **at least two effective maps within that chapter**. A source-selected clock with more than these counts remains entirely possible.
