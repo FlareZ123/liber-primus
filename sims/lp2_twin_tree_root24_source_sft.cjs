@@ -80,6 +80,19 @@ const lowZeros = pages.filter(page =>
   .map(page => page.page);
 assert.deepEqual(highZeros, [10, 11, 29, 36]);
 assert.deepEqual(lowZeros, [19, 27, 48]);
+// A red squared root on p39 is not a globally planted page-section factor.
+const sourceChapterBounds = [
+  [0,2],[3,7],[8,14],[15,22],[23,26],
+  [27,32],[33,39],[40,53],[54,55]
+];
+const sectionResidues24 = sourceChapterBounds.map(([lo,hi]) =>
+  evaluate(corpus.pages.slice(lo,hi + 1)
+    .flatMap(page => page.indices), r));
+assert.deepEqual(sectionResidues24, [22,22,6,17,8,18,14,13,7]);
+const originalWhole = corpus.pages.slice(0,56).flatMap(x => x.indices);
+assert.equal(originalWhole.length, 12956);
+assert.equal(evaluate(originalWhole,r), 2);
+
 const p9 = corpus.pages[9].indices;
 const p10 = corpus.pages[10].indices;
 const p11 = corpus.pages[11].indices;
@@ -252,6 +265,8 @@ assert.ok(results.every(result => result.ioc < 0.04));
 console.log(JSON.stringify({
   source: {r, originalUnknownPages:pages.length, originalRunes:12956,
     highDegreeFirstRoots:highZeros, lowDegreeFirstRoots:lowZeros,
+    sourceChapterResiduesAt24:sectionResidues24,
+    fullBookResidueAt24:evaluate(originalWhole,r),
     distinctiveOriginalPages:[10,11], treeChapterPageResidues:treeResidues,
     p10AndP11Lengths:[p10.length,p11.length],
     p10Literal7IsRoot:evaluate(p10,numericSeven) === 0,
