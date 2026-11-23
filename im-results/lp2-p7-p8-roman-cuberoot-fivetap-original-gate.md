@@ -1,6 +1,6 @@
 # P7 five-product / p8 Roman cube: an original-cipher nonlinear five-tap receiver
 
-**Agent 3, 21 November 2026. Evidence classification:** bounded, source-derived cryptanalytic model with exact reversible original-cipher and native-GP positive tests. No unknown LP2 plaintext, authentic keystream, creator-selected update rule, or endpoint is recovered.
+**Agent 3, 21 November 2026; Agent 30 independent prime1019 digraph test, 23 November. Evidence classification:** bounded source-motivated reversible models with exact original-cipher and native-GP positive tests. The new p8 prime1019 248-rune block inverse, like the earlier GP29 cube feedback and five-product LFSR families, yields no continuous unknown plaintext or creator-selected key. A full original source-chosen cipher operation and endpoint remain unknown.
 
 ## The human-visible candidate route
 
@@ -19,6 +19,23 @@ Thus the frozen five-tap weights are **[11,26,8,15,2]**. The immediately next ph
 In GF29, cubing has inverse exponent **19** since `3 × 19 ≡ 1 mod 28`. Repeated cubing of p7's final product 2 gives the complete six-element orbit **2 → 8 → 19 → 15 → 11 → 26 → 2**, with all five original p7 products present and **19** supplied by the next red heading. This supplies a concrete original-image clue to a possible five-tap, cubed-or-cube-rooted feedback cipher. It is substantially more constrained than blindly searching numerical keys: the coefficient values and powers are entirely fixed before ciphertext inversion.
 
 **Decisive uncertainty:** the original image provides neither a written command to use a *five-lag ciphertext-feedback cipher* nor a unique order for applying cube/root and feedback. The cube relation selects mathematical operands but is insufficient to authenticate an algorithm.
+
+## Independent p8 red-prime 1019 cubic-digraph inverse (Agent 30, 23 November 2026)
+
+The **first original red p8 complete word** is `XIXM`; reversing precisely that word gives canonical Roman **MXIX = 1019**, which is prime. The **second complete red word** is eight runes whose exact GP29 ordinal product is **3**. These facts were already documented in the separate original-red prime1019 and p7/p8 source studies. A new **fully typed and reversible candidate recipient** is suggested by the GP29 numeric alphabet: every adjacent two-rune GP29 block represents one ordinary base29 number in **0..840**, and **1019 exceeds 841**. A modular cube is a permutation on residues modulo1019 because `gcd(3,1018)=1`; its inverse exponent is exactly **679**. This offers a fixed-source mathematical operation without a lost external secret.
+
+The untouched original p8 black body has **243 runes** and its carried printed word completes in p9's first **five** runes, yielding **248 = 124 complete two-rune blocks**. The 12 red runes stay out of the body as source metadata. The frozen conditional encoder packs each original rune pair as `29a+b`, applies `x→x³ mod1019` repeatedly until it returns to `0..840`, and unpacks as a GP29 pair; the inverse applies `x→x⁶⁷⁹ mod1019` with the same cycle-walk rule. Standard high-first and low-first base29 readings, and either cube or cube-inverse role for the original ciphertext, are the four natural fixed choices. The first red word chooses modulus, the second chooses exponent, and the physically preserved word carry makes the body pairable.
+
+| Frozen source digraph reading | 248 GP29 IoC | Original result |
+| --- | ---: | --- |
+| High-first, cube | 0.03477210396 | No sustained native plaintext |
+| High-first, inverse cube | 0.03464150451 | No sustained native plaintext |
+| Low-first, cube | 0.03506595272 | No sustained native plaintext |
+| Low-first, inverse cube | 0.03310696095 | No sustained native plaintext |
+
+Original 248-body IoC is **0.03375995821**, and authentic solved p57 clear-source IoC is **0.06270996641**. All four original results reproduce each original rune under the exact inverse. Independent 248-rune source-native plants built only from genuine solved p57 runes re-decrypt **248/248** exactly for all four formats; a deliberately wrong endianness changes **239/248** original-geometry planted symbols. Full original transliteration previews, strict data checks and source/positive assertions are in the [single-file Windows Node22 CommonJS SFT](../sims/lp2_p8_roman1019_cubepair_original_sft.cjs), [CI PASS 45124668332](https://github.com/FlareZ123/liber-primus/actions/runs/45124668332).
+
+**Decision:** These particular fixed source-operand cubic digraph operations fail on the original p8/p9 248-rune receiver. The creator did **not** leave an authenticated instruction choosing modular cycle-walking, base29 digraph packing or p8 as the ciphertext receiver; the prime1019 and cubic operands alone cannot elevate this to a historical decoder. No expansion to arbitrary exponents, skips, byte encodings or 1019-driven ciphers is warranted on this clue alone. Other mechanisms would require a separately visible source opcode selecting an authentic receiver or independently held-out plaintext. This result is distinct from the earlier *single-rune GF29* cube-orbit tests and p56 prime-cursor checks, and does not alter their exact scopes.
 
 ## Frozen reversible update families
 
