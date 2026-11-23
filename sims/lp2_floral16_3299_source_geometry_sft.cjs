@@ -187,6 +187,72 @@ const plantedShuffled = Array(modulus);
 for (let i = 0; i < modulus; i++) plantedShuffled[order[i]] = planted[i];
 assert.deepEqual(order.map((i) => plantedShuffled[i]), planted);
 
+
+// Key-independent gate for independently secret 29-rune alphabets on each
+// of the sixteen 203-symbol black rows. Any bijection preserves within-row
+// equality counts regardless of the actual unknown alphabet, key or phase.
+/** @param {number[]} sequence @returns {number} */
+function rowPrivateIoc(sequence) {
+  let matches = 0;
+  for (let row = 0; row < 16; row++) {
+    const f = Array(29).fill(0);
+    for (let j = 0; j < 203; j++) f[sequence[row * 203 + j]]++;
+    for (const n of f) matches += n * (n - 1) / 2;
+  }
+  return matches / (16 * 203 * 202 / 2);
+}
+const observedPrivateIoc = rowPrivateIoc(black);
+assert.equal(observedPrivateIoc, 11303 / 328048);
+const corpusRoot = path.resolve(__dirname, '..');
+const textToGp = (text) => {
+  const terms = corpus.translit.map((s, i) => ({ s, i }))
+    .sort((a, b) => b.s.length - a.s.length);
+  const output = [];
+  for (const raw of text.toUpperCase().match(/[A-Z]+/g) || []) {
+    const word = raw.replace(/QU/g, 'CW').replace(/V/g, 'U')
+      .replace(/[KQ]/g, 'C').replace(/Z/g, 'S');
+    for (let i = 0; i < word.length;) {
+      if (word.startsWith('ING', i)) { output.push(21); i += 3; continue; }
+      if (word.startsWith('IO', i)) { output.push(27); i += 2; continue; }
+      const match = terms.find((entry) => word.startsWith(entry.s, i));
+      assert.ok(match, 'GP29 conversion failed on ' + word.slice(i));
+      output.push(match.i);
+      i += match.s.length;
+    }
+  }
+  return output;
+};
+const beowulf = JSON.parse(fs.readFileSync(path.join(corpusRoot,
+  'resources/control/beowulf_oe_gp_profile_corrected.json'), 'utf8'));
+const native = [
+  ['Beowulf OE', [...beowulf.positiveControlGpBase29]
+    .map((ch) => beowulf.positiveControlAlphabet.indexOf(ch))],
+  ['Shakespeare', textToGp(fs.readFileSync(path.join(corpusRoot,
+    'resources/control/shakespeare_first300k.txt'), 'utf8'))],
+  ['Gibran', textToGp(fs.readFileSync(path.join(corpusRoot,
+    'resources/control/gibran_prophet_58585.txt'), 'utf8'))],
+  ['Emerson', textToGp(fs.readFileSync(path.join(corpusRoot,
+    'resources/control/emerson_essays_2944.txt'), 'utf8'))]
+];
+const rowPrivateControls = native.map(([name, seq]) => {
+  assert.ok(seq.length >= 3248);
+  let min = Infinity, max = 0, tested = 0, le = 0;
+  for (let start = 0; start + 3248 <= seq.length; start += 203) {
+    const result = rowPrivateIoc(seq.slice(start, start + 3248));
+    min = Math.min(min, result);
+    max = Math.max(max, result);
+    if (result <= observedPrivateIoc) le++;
+    tested++;
+  }
+  return { name, runes: seq.length, windows: tested, min, max, le };
+});
+assert.deepEqual(rowPrivateControls.map((c) => c.windows), [48, 1054, 292, 1567]);
+assert.deepEqual(rowPrivateControls.map((c) => c.le), [0, 0, 0, 0]);
+// Arbitrary independent rowwise 29-permutations cannot affect the statistic.
+const modernPlant = native[1][1].slice(0, 3248);
+const rotatedSymbols = modernPlant.map((v, i) => (v + (Math.floor(i / 203) * 7)) % 29);
+assert.equal(rowPrivateIoc(rotatedSymbols), rowPrivateIoc(modernPlant));
+
 console.log('SOURCE     pages=40..55 count=16, printed runes=' + full.length);
 console.log('SOURCE     red spans=' + JSON.stringify(redCounts) + ', black=' + black.length);
 console.log('SOURCE     3248=16*7*29=16*203; exclude only p40/p54 headers =>3299');
@@ -196,6 +262,8 @@ console.log('DIAGNOSTIC period203 equality=' + observedCollisions + '/' + compar
   + ', IoC=' + (observedCollisions / comparisonPairs).toFixed(9));
 console.log('NULL       2048 row-rotation controls, mean=' + (sum / 2048).toFixed(4)
   + ', range=[' + min + ',' + max + '], one-sided p>=' + ((ge + 1) / 2049).toFixed(6));
+console.log('SECRET ROW observed private-alphabet collision IoC=' + observedPrivateIoc.toFixed(9));
+console.log('SECRET ROW native GP 203-block controls=' + JSON.stringify(rowPrivateControls));
 console.log('SHEAR      literal p15 spiral page-order: preserves ' + joinedSpiral.length + '/' + carriedEdges.length + ' printed runic carries (not a prose-order solution)');
 console.log('CONTROL    native solved p57 IoC=' + ioc(known).toFixed(9));
 console.log('INVERSE    original 3299-runic IoC=' + ioc(withoutIntroRubrics).toFixed(9)
