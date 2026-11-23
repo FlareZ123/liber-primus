@@ -1,6 +1,6 @@
 # 2012 opening-image payload: byte-exact extraction and LP2 transfer decision
 
-**Current status (23 November 2026):** the 2012 opening image and both payload channels have been recovered from two pinned community mirrors, and the historical OutGuess extraction has been independently reproduced with pinned OutGuess 0.4. Its downstream book-code phrase yields a 75-symbol GP29 candidate that matches the 75 non-carry runes on LP2 p55. Direct substitution and constant-Caesar tests fail; a boundary-changing or polyalphabetic relation remains unproven. **Reopen the 2012→LP2 question for one bounded p55 crib test; no LP2 plaintext or key is yet recovered.**
+**Current status (23 November 2026):** the 2012 opening image and both payload channels have been recovered from two pinned community mirrors, and the historical OutGuess extraction has been independently reproduced with pinned OutGuess 0.4. The exact historical OutGuess read operation on source-selected LP2 p55 was also tested: it reports a false-looking header and terminates with SIGFPE before writing any payload bytes. Separately, the downstream book-code phrase yields a 75-symbol GP29 candidate matching the 75 non-carry runes on p55; direct substitution/Caesar tests fail, so a boundary-changing relation remains unproven. **The OutGuess transfer is rejected; the separate p55 crib candidate is handed to the existing boundary-reader investigation.**
 
 ## Original image and source limits
 
@@ -71,6 +71,20 @@ The exact source selector is therefore **p55's 75-rune body length after its doc
 
 This candidate should not be promoted to \`results/\` or described as plaintext unless a fixed, reversible mechanism decrypts the original p55 ciphertext and independently validates beyond this one phrase. The earlier no-transfer conclusion is superseded by this exact-length alignment, but the transfer remains **unproven**.
 
-**Decision:** keep the p55 crib test open and bounded. Do not run generic Caesar, OutGuess, book-cipher, Vigenère, or OTP sweeps. No unknown LP2 plaintext, authentic LP2 key, complete inverse, or final Cicada destination has yet been recovered.
+## Exact OutGuess transfer test on original p55
 
-**Research result class:** exact historical payload recovery; source-derived 75-token p55 crib candidate; direct substitution/Caesar exclusions; unresolved cipher mechanism.
+The source-selected receiver is the original May 2014 Stage11 file `55.jpg`, pinned to commit `6c3421a4d245596e403c88e037509d162a2afd17`. Its identity was verified in the reproduction run: **614,928 bytes**, Git blob SHA-1 `ee00cd34013fe3a5c6808650abb6d3206b6f1b13`, SHA-256 `a80191592add93a86ed3868f9e4e6ba3944ec20c9ffccc7d3e221b461344beba`.
+
+Using the same pinned OutGuess 0.4 source and exact historical read command, with no password or extra flags:
+
+```sh
+outguess -r 55.jpg 55.jpg.out
+```
+
+The 2012 positive control again succeeds (29,049 usable bits, seed 228, length 535; exact 535-byte payload hash matches). On p55, OutGuess reports **629,181 usable bits**, **seed 41,408**, **length 58,152**, then terminates with **SIGFPE**. The output file is created but contains **0 bytes** (empty-file SHA-256 `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`). It contains neither the 2012 payload nor the book-code phrase.
+
+Reproduction: [workflow run 45292635452](https://github.com/FlareZ123/liber-primus/actions/runs/45292635452); [exact SFT](../sims/2012_outguess_transfer_lp2_p55_sft.cjs). This is a negative result for this exact OutGuess 0.4 extraction on original p55, not proof that every possible image-steganography method is absent. It is consistent with the existing LP2 writer-fingerprint analysis.
+
+**Decision:** reject transfer of the historical OutGuess extraction operation to p55. Preserve the separate 75-token book-code phrase as an unresolved, source-derived crib candidate and hand it to the existing #2278 boundary-changing-reader investigation; it is not established plaintext. No generic OutGuess page sweep, password search, arbitrary coordinate-to-rune mapping, or Vigenère/OTP key sweep is justified. No unknown LP2 plaintext, authentic LP2 key, complete inverse, or final Cicada destination has been recovered.
+
+**Research result class:** exact historical payload recovery; negative original-p55 OutGuess transfer; unresolved 75-token p55 crib candidate with direct substitution/Caesar/transposition exclusions.
