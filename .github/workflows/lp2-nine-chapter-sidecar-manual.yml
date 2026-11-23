@@ -1,0 +1,14 @@
+name: LP2 nine-chapter BASE29 Latin26 sidecar gate
+on:
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test complete original source with positive replay
+        run: node sims/lp2_nine_chapter_gp29_latin26_sidecar_original_sft.cjs
