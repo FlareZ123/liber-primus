@@ -154,6 +154,62 @@ for(const scheme of ["suffix","windows"])for(const scope of scopes){
  assert(forced.pairs<=available.pairs);
 }
 
+
+/* Crucial generic memory-4 long-tail theorem (strictly stronger on this
+ * original than checking only two output runes):
+ * identical final L>=6 plaintext runes force identical final L-4
+ * ciphertext runes. Each of these L-4 outputs has all 4 plain predecessors
+ * inside the common suffix. Holds for ANY stationary memory-4 table, even
+ * nonlinear noninjective lookups, and any IV/cipher preceding the word. */
+function longTailPairs(words,L,kind,scope){
+ const hist=new Map();
+ for(const w of words){
+  if(w.seq.length<L)continue;
+  if(scope!=="global"&&w.start!==w.end)continue;
+  const suff=w.seq.slice(-(kind==="plain"?L:L-4));
+  const key=group(w,scope)+":"+suff.join(",");
+  hist.set(key,(hist.get(key)||0)+1);
+ }
+ return [...hist.values()].reduce((s,v)=>s+v*(v-1)/2,0);
+}
+const longLs=[6,7,8,9,10,11,12];
+const originalLongBounds=Object.fromEntries(scopes.map(scope=>[
+ scope,Object.fromEntries(longLs.map(L=>[L,longTailPairs(original,L,"cipher",scope)]))
+]));
+assert.deepEqual(scopes.map(scope=>originalLongBounds[scope][7]),[4,0,0]);
+assert.deepEqual(scopes.map(scope=>originalLongBounds[scope][8]),[0,0,0]);
+const longTailNativeStats=[];
+for(let si=0;si<sources.length;si++){
+ const rng=rand(0x3301+987+si),trialRows=[];
+ for(let trial=0;trial<128;trial++){
+  const plant=sampleNative(original,sources[si],rng);
+  trialRows.push(Object.fromEntries(scopes.map(scope=>[
+   scope,longLs.map(L=>longTailPairs(plant,L,"plain",scope))
+  ])));
+ }
+ longTailNativeStats.push({
+  name:sources[si].name,
+  trials:128,
+  byScope:Object.fromEntries(scopes.map(scope=>[
+   scope,Object.fromEntries(longLs.map((L,k)=>{
+    const vals=trialRows.map(x=>x[scope][k]);
+    return [L,{cipherCapacity:originalLongBounds[scope][L],
+     min:Math.min(...vals),max:Math.max(...vals),
+     exceeding:vals.filter(v=>v>originalLongBounds[scope][L]).length}];
+   }))
+  ]))
+ });
+}
+// All 384 source-native strict original-length English controls exceed the
+// original global four-rune ending capacity ZERO at plain suffix L=8.
+for(const source of longTailNativeStats)
+ assert.equal(source.byScope.global[8].exceeding,128);
+for(const L of longLs)for(const scope of scopes){
+ const p=longTailPairs(positiveNative,L,"plain",scope);
+ const c=longTailPairs(positivePerm,L,"cipher",scope);
+ assert(p<=c,"positive long-suffix theorem failed L="+L+" scope="+scope);
+}
+
 // Exact alphabet-affine gauge equivalence for an arbitrary 29-row table:
 // P' = u*P+v, s' = u*s+4v, and A'_{s'}(P') = A_s(P).
 // For v != 0 this also changes the unobserved initial four P values to v.
@@ -238,7 +294,7 @@ for(const [a,b,mode] of [[3,19,"book"],[17,4,"page"],[26,23,"book"]]){
 console.log(JSON.stringify({
  source:{runes:12956,words:2896,crossPageWords:32},
  theorem:"same (a,(b+c+d)%29,e,f) in any six-plaintext-window forces identical final ciphertext pair under all 29!^29 secret row tables",
- originalBounds,nativeStats,positivePermutation:"PASS",
+ originalBounds,nativeStats,originalLongBounds,longTailNativeStats,positivePermutation:"PASS",
  affine:{originalAffine,positiveAffine},
  conclusion:"No plaintext/key found. Sum4 generic unknown. Only full 841-key affine subfamily rejected under these source-native controls."
 },null,2));
