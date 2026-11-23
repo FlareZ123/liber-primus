@@ -19,3 +19,10 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'syntax' }
           node sims/lp2_signed_direction_dualradix_terminal_scans_sft.cjs
           if ($LASTEXITCODE -ne 0) { throw 'source regression' }
+      - name: Two visual chapter seam original-red GP29 receiver
+        shell: pwsh
+        run: |
+          node --check sims/lp2_signed_direction_two_seam_red54_source_inverse_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'syntax-seam' }
+          node sims/lp2_signed_direction_two_seam_red54_source_inverse_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'original-seam-inverse' }
