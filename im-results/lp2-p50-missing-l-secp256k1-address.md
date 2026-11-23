@@ -1,6 +1,6 @@
 # Original p50 missing-L column -> a recognizable Bitcoin address
 
-**Agent45, 23 November 2026. Classification: promising source-constrained cryptographic operand, no authenticated original unknown-rune plaintext.**
+**Agent45 source derivation and Agent20 original-image follow-up, 23 November 2026. Classification: conditional source-constrained address; frozen literal image-mean consumer tested, without recovered plaintext or authenticated author instruction.**
 
 ## Source-selected input
 
@@ -52,10 +52,22 @@ The source-exact [single-file CommonJS SFT](../sims/lp2_p50_missingl_bitcoin_van
 
 Read-only API source [Blockstream Esplora specification](https://github.com/Blockstream/esplora/blob/master/API.md); exact independently runnable Node22 [Esplora checker](../sims/lp2_p50_meanpng_chain_history_sft.cjs); [Windows CI PASS with both providers' full results](https://github.com/FlareZ123/liber-primus/actions/runs/45170710818).
 
+## Frozen original-image consumer: 16 floral originals, direct mean PNG
+
+**Independent source basis:** physical LP2 p40–p55 are the sixteen consecutively distributed flower-framed pages, archive **57.jpg–72.jpg**. Every page has the same **2400×3600** pixel canvas with identical-position left and right floral artwork. This makes the complete contiguous group and identity registration the simplest original-source-locked target for the *conditional* Meanpng reading, without choosing a subset or registration by looking for plaintext. This is still an interpretation of a **post-selected** Bitcoin address, not an authenticated instruction.
+
+**One frozen 2014-executable operation:** decode all sixteen original JPEGs to RGB; for every coordinate and channel take the **equal-weight arithmetic mean**, round nearest byte with ties upward, and save a lossless RGB PNG. No threshold, contrast stretching, encryption, resized page, channel selector, selected subpages or OCR-driven postselection is allowed. Source-exact standalone [Python/Pillow/numpy SFT](../sims/lp2_p50_meanpng_floral16_original_sft.py) reproduces this direct fixed consumer from the original JPEG directory; the maintainer ZIP was independently decoded and executed. The mean RGB pixel-array SHA-256 is:
+
+    1df3e6a9cd49cd2d09a9c945077e3877b956651d4b25cb38dcf9c9be9a26c259
+
+**Original outcome:** the output contains the visibly intact shared floral plates, a superposition of mutually different black rune lines and the faint known individual-page p53 insect / p55 tree ornaments. No independent new instruction, recognizable hidden alphabet, external location, source-derived key, or contiguous unknown-page plaintext emerges by direct image viewing. Precisely **6,008,117 / 8,640,000** pixel positions have the same RGB value across all sixteen originals; **5,232,527 / 5,280,000** pixels in the fixed exterior region outside x=500..1899, y=600..2999 are identical, showing that most information affected by averaging is inside the printed page-content region. Thus pixelwise averaging largely preserves common art while mixing distinct source plaintext/ciphertext glyph regions. These measured invariants and output pixel digest are asserted in the SFT, which writes the PNG atomically under a lock.
+
+**Bounded decision:** direct all-floral literal RGB mean is a mechanically reproducible original-input *image* operation, but is not a useful plaintext/key receiver under the frozen selection. More importantly **no original first-party clue fixes the fifth-column→Bitcoin→image-mean chain or identifies an image receiver or subsequent cipher decoder**. Do not tune subsets, color transforms, threshold levels, or overlays to rescue Meanpng; a newly found first-party selection would justify a distinct experiment. This closes the bounded mean-PNG instruction tested in #2386 while leaving unrelated image steganography open.
+
 ## Competing source operations and next decisive decision
 
 A different direct p50 hypothesis has now been independently excluded: the 256 values do not themselves encode a contiguous standard AES-128/192/256 *expanded schedule* in eight natural source read orders. All 1,176 exact original windows fail (at most five internally matching expanded bytes versus 160–208 required), while known positive vectors pass [source-only AES SFT](../sims/lp2_p50_aes_keyschedule_source_sft.cjs), [Windows Node22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45166682669). This separate negative does not constrain secp256k1.
 
-A plausible human intended-solve-path **requires more**: find a contemporaneous independent Cicada Bitcoin/address/EC clue; retire the direct on-chain receiver at the exact compressed P2PKH address after two independent provider responses show zero history; freeze a source-selected image-averaging receiver only if an authentic clue identifies the images and operation; finally obtain independently withheld original LP2 plaintext with an exact reversible original-cipher mechanism.
+A plausible human intended-solve-path **requires more**: find a contemporaneous independent Cicada Bitcoin/address/EC clue; retire the direct on-chain receiver at the exact compressed P2PKH address after two independent provider responses show zero history; recognize that the single natural 16-floral-pixel mean has now been run and produced no recoverable receiver; resume image averaging only if a new first-party clue fixes the image subset, pixel operator and decoding target; finally obtain independently withheld original LP2 plaintext with an exact reversible original-cipher mechanism.
 
 Do not infer funds, private ownership, a blockchain endpoint, or the final puzzle destination from the address alone. The 56 unknown LP2 physical pages remain undeciphered. Retain this reproducible **candidate address/key** for independent adversarial evaluation.
