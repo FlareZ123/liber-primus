@@ -71,6 +71,31 @@ assert.equal(bytes[stopGP0], 76);
 assert.equal(pathIndices.length, 17);
 assert.equal(sourceValues.length, 17);
 
+// Familywise controls: the original p50 byte-pointer graph has a 252-cell
+// basin. Reaching the red3's GP0=47 and visiting 17 nodes are not unique.
+const marks = ink.pages.flatMap((page) => (page.red_spans || []).map((span) => {
+  const index = runicValues(span.runes).reduce((a, b) => a + b, 0) % 256;
+  const sequence = [index];
+  const visited = new Set(sequence);
+  while (sequence.at(-1) !== stopGP0) {
+    const next = bytes[sequence.at(-1)];
+    if (visited.has(next)) break;
+    visited.add(next);
+    sequence.push(next);
+  }
+  return {
+    page: page.page, local: span.start, index,
+    reached: sequence.at(-1) === stopGP0,
+    visited: sequence.length
+  };
+}));
+assert.equal(marks.length, 18);
+assert.equal(marks.filter((row) => row.reached).length, 18);
+assert.deepEqual(marks.filter((row) => row.visited === 17).map((row) =>
+  [row.page, row.local, row.index]), [
+  [8,0,131], [33,0,109], [33,91,84]
+]);
+
 const originalPage55 = text.split(/^\s*%\s*$/m)[54];
 assert.ok(originalPage55);
 const printed55 = originalPage55.replace(/\/\s*/g, "");
@@ -129,6 +154,11 @@ console.log(JSON.stringify({
   redStart: {page: 33, offset: 91, GP0: startGP0},
   redStop: {page: 39, offset: 119, GP0: stopGP0},
   indexRoute: pathIndices,
+  redFamilyControl: {
+    sourceSpans: marks.length,
+    reachedTarget: marks.filter((r) => r.reached).length,
+    equal17Visited: marks.filter((r) => r.visited === 17),
+  },
   printedBytes: sourceValues,
   endCellOutput: bytes[stopGP0],
   p55Lengths: fragments.map((w) => w.length),
