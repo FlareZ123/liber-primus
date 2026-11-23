@@ -184,6 +184,15 @@ assert.equal(gp0("EPIPHANY", false), 121);
 
 console.log(JSON.stringify({
   status: "PASS",
+  tokenOrderNullCensus: {
+    orderedDistinctCellPairs: 65280,
+    base60LiteralEqualsBase59Ligated: allOrderedCrossRadixMatches,
+    landingInOriginalScans17To74: imageRangeCrossRadixMatches,
+    landingOnOriginalScan72: exact72CrossRadixMatches,
+    offset14Matches,
+    conditionalScanRangeRate: imageRangeCrossRadixMatches / 65280,
+    conditionalExact72Rate: exact72CrossRadixMatches / 65280,
+  },
   originalSignedWords: register.length,
   distinctWords: new Set(words).size,
   wordsAffectedByHistoricalLigature: changed,
