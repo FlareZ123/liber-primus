@@ -33,7 +33,7 @@ The historical walkthrough [scream314/cicada3301/2012.md](https://github.com/scr
 outguess -r 1CcV1.jpg 1CcV1.jpg.out
 ```
 
-No password or additional flags are supplied. The extraction was reproduced in [workflow run 45287777862](https://github.com/FlareZ123/liber-primus/actions/runs/45288446664) using the repository's existing manual runner and OutGuess 0.4 source commit `24810e14327c2bbeedeaadd3e24491f2a4425c02`.
+No password or additional flags are supplied. The extraction was reproduced in [workflow run 45288446664](https://github.com/FlareZ123/liber-primus/actions/runs/45288446664) using the repository's existing manual runner and OutGuess 0.4 source commit `24810e14327c2bbeedeaadd3e24491f2a4425c02`.
 
 The run independently downloaded both pinned mirrors and verified that:
 
