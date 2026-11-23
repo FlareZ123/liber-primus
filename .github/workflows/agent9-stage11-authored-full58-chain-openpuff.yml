@@ -1,0 +1,81 @@
+name: Agent9 complete authentic 2014 Stage11 58-JPEG carrier chain
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  stage11-all58-ordered-chain:
+    runs-on: windows-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          architecture: x86
+      - name: Prepare pinned historical OpenPuff v4 and native public JPEG control
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python -c "import struct; assert struct.calcsize('P') == 4"
+          python -m pip install --disable-pip-version-check pywinauto Pillow filelock
+          python sims/openpuff_output_capture_sft.py
+          if ($LASTEXITCODE -ne 0) { throw 'Original GUI regression failed' }
+          $directory = Join-Path $env:RUNNER_TEMP 'OpenPuff-v400-original-p33-single'
+          New-Item -ItemType Directory -Force -Path $directory | Out-Null
+          $base = 'https://raw.githubusercontent.com/codejanus/ToolSuite/1eaf6d006d31ba842f6cc6b16e9d82dbf904aaf5/OpenPuff'
+          $expected = @{
+            'OpenPuff.exe' = '466e03c792075313ce533a5dc7a789e8a41209f9'
+            'libObfuscate.dll' = 'f3b1c3315f8286346416fefd6141410f422f2454'
+          }
+          foreach ($name in $expected.Keys) {
+            $file = Join-Path $directory $name
+            Invoke-WebRequest -Uri "$base/$name" -OutFile $file
+            $actual = (& git hash-object -- $file).Trim().ToLowerInvariant()
+            if ($LASTEXITCODE -ne 0 -or $actual -ne $expected[$name]) { throw "Historical binary mismatch: $name" }
+          }
+          "OPENPUFF_EXE=$(Join-Path $directory 'OpenPuff.exe')" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+      - name: Confirm original native JPEG extractor recovers publisher's exact 35 bytes
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python sims/openpuff_public_jpeg_positive_source.py --out probe-output/public-source
+          if ($LASTEXITCODE -ne 0) { throw 'Original public carrier unavailable' }
+          python sims/openpuff_v400_extract.py --exe "$env:OPENPUFF_EXE" --carrier probe-output/public-source/openpuff.jpg --password 12345678 --bit-format 'Jpeg (Image)' --bit-level '1/2 (50%) - Maximum' --out probe-output/public-positive --wait-seconds 65
+          if ($LASTEXITCODE -ne 0) { throw 'Native positive failed to execute' }
+          python -c "from pathlib import Path; p=Path('probe-output/public-positive/extracted/hidden.txt'); assert p.read_bytes()==b'Dies ist eine versteckte Nachricht!'; print('ORIGINAL_NATIVE_JPEG_POSITIVE_PASS')"
+          if ($LASTEXITCODE -ne 0) { throw 'Original public JPEG positive bytes not recovered' }
+      - name: Native unhide of the complete authored 58-image Stage11 chain with exact 2014 password
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $index = Get-Content -LiteralPath resources/historical/stage11-2014-index.html -Raw
+          $re = [regex]'<img\s+src="(\d+)\.jpg"'
+          $matches = @($re.Matches($index))
+          if ($matches.Count -ne 58) { throw "Original 2014 first-party index does not contain 58 ordered images" }
+          $arguments = @('--exe', $env:OPENPUFF_EXE)
+          $ordered = @()
+          foreach ($match in $matches) {
+            $number = [int]$match.Groups[1].Value
+            $archive = '{0:d2}' -f ($number + 17)
+            $carrier = Join-Path $env:GITHUB_WORKSPACE "resources/liber-primus/$archive.jpg"
+            if (-not (Test-Path -LiteralPath $carrier)) { throw "Missing original Stage11 $number / archive $archive" }
+            $ordered += "$archive.jpg"
+            $arguments += @('--carrier', $carrier)
+          }
+          if ($ordered[0] -ne '17.jpg' -or $ordered[-1] -ne '74.jpg' -or (@($ordered | Select-Object -Unique)).Count -ne 58) { throw 'Historical authored 58-image native order is not complete' }
+          $arguments += @('--password', '33011033', '--bit-format', 'Jpeg (Image)', '--bit-level', '1/2 (50%) - Maximum', '--out', 'probe-output/stage11-58-ordered', '--wait-seconds', '220')
+          python sims/openpuff_v400_extract.py @arguments
+          if ($LASTEXITCODE -ne 0) { throw 'Historical 58-carrier native chain could not be executed' }
+          $result = Get-Content -LiteralPath probe-output/stage11-58-ordered/result.json -Raw | ConvertFrom-Json
+          if ($result.carrier_count -ne 58 -or -not $result.carrier_chain_verified -or -not $result.bit_selection_verified -or -not $result.attempted) { throw 'Native authored chain carrier/bit-selection invariant failed' }
+          Write-Host "HISTORICAL_58_CHAIN_RESULT $($result | Select-Object carrier_count, native_probe_outcome, output_present, outputs, completion_dialogs, error_dialogs | ConvertTo-Json -Compress -Depth 10)"
+          if ($result.native_probe_outcome -eq 'inconclusive-timeout') { throw 'Authentic complete-index chain timed out' }
+          if ($result.output_present) { Write-Host 'AUTHENTIC_2014_COMPLETE_STAGE11_CHAIN_PAYLOAD_FOUND' }
+      - name: Preserve original native GUI chain and possible payload
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent9-authored-stage11-58-original-native-chain
+          path: probe-output/
+          if-no-files-found: warn
