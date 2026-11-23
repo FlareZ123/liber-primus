@@ -21,7 +21,7 @@ For every two positions \\(i<j\\) in the **same physical page** with \\(C_{i-1}=
 
 Consequently the total equal-follower pair count **within each observable (page, previous ciphertext) row** is invariant under **every** secret choice of that row's permutation. This does not require knowing the alphabets, guessing GP prime arithmetic, or preserving word boundaries.
 
-Define (n_{p,s,v}) as the count of original follower rune (v) in page (p) after predecessor (s), and (n_{p,s}=\sum_v n_{p,s,v}). The original key-independent conditional collision rate is
+Define \\(n_{p,s,v}\\) as the count of original follower rune \\(v\\) in page \\(p\\) after predecessor \\(s\\), and \\(n_{p,s}=\\sum_v n_{p,s,v}\\). The original key-independent conditional collision rate is
 
 \\[
 Q=\frac{\sum_{p,s,v}\binom{n_{p,s,v}}2}
