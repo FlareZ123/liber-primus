@@ -36,9 +36,17 @@ There is a mathematically precise *escape* from the direct-subgroup obstruction,
 Those dimensions are reminiscent of the original three-square 2014 stage and its 7×7 magic square. But a field extension requires an **irreducible polynomial of the correct degree**, with a source instruction choosing its operands. Two tempting direct source transfers fail algebraically:
 
 - The original p50 byte table, viewed over GF29, has the independently established factor `f(X)=X³+14X²+16X+24`. As an integer-coefficient polynomial reduced modulo the proposed p55 prime `P`, this **is reducible**: `f(12866999782905305182799752564858643072087387321289651048179594)=0 (mod P)`. Thus this same printed source factor does not define `GF(P³)`.
-- The [historical 2014 7×7 printed magic square](../resources/cicada2014-openpuff-magic-squares.txt) has every row summing to **1033** and is centrosymmetric. Any normalization by `1033^{-1} mod P` therefore retains the all-ones vector as a fixed eigenline. A faithful order-29 action over GF(P) must contain a degree-7 irreducible constituent, since `ord_29(P)=7`. Such a constituent consumes all seven dimensions and leaves **no proper fixed eigenline**. Therefore the unmodified or row-sum-normalized printed 7×7 square cannot itself implement an order-29 alphabet rotor. A separately sourced, symmetry-breaking 7D construction remains mathematically possible.
+- **All three actual historical 2014 Stage10 magic squares**, in signed 5×7×5 sizes, lack the required irreducible eigenchannel over this source-derived P. Their **exact integer characteristic polynomials** are
 
-These checks identify the **additional missing source instruction** rather than legitimizing an extension-field decoding: the manuscript would have to specify a suitable irreducible polynomial and a nonarbitrary readout into runes, plus explain how its 2014 square or p50 factor selects that construction. The accompanying SFT checks the extension orders, the exact cubic root and the original 7×7 source matrix row sums and centrosymmetry; no plaintext was postselected.
+  ```text
+  M5(3301): (X−3301)(X²−29931)(X²+612587)
+  M7(1033): (X−1033)(X³−181161X+57789135)(X³−25297X−8981481)
+  M5(1033): (X−1033)(X²−17077)(X²−15869)
+  ```
+
+  The first cubic of the 7-square has three roots modulo P; the second has one root and an irreducible quadratic remaining. Hence **every irreducible eigenfactor of every original 2014 square has degree at most two over GF(P)**. An order-28 rotor over GF(P) must have a degree-three eigenvalue; an order-29 rotor requires degree seven. So **no unmodified 5×5, 7×7, 5×5 historical square, nor any direct power or polynomial in one of those matrices, implements either rotor**. This strengthens the simpler row-sum argument: the 7-square's invariant all-ones vector has eigenvalue 1033 and would already prevent an irreducible seven-dimensional order-29 action. Matrices combined by a new noncommutative rule or separately specified extensions are outside this exact original-source gate.
+
+These checks identify the **additional missing source instruction** rather than legitimizing an extension-field decoding: the manuscript would have to specify a suitable irreducible polynomial and a nonarbitrary readout into runes, plus explain how its 2014 squares or p50 factor select that construction. The accompanying SFT reads the three exact historical matrices, checks their characteristic annihilating polynomials and explicit modular cubic roots, and verifies the extension orders. No plaintext was postselected.
 
 ## Conditional historical DH public values force large private exponents
 
