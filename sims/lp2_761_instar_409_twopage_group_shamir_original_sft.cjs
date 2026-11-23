@@ -115,5 +115,35 @@ console.log('GP29 IoC',JSON.stringify({original:ioc(body),
 console.log('minus prefix60',gp(subtract.slice(0,60)));
 console.log('Shamir prefix60',gp(secret.slice(0,60)));
 assert.ok(ioc(subtract)<floor408&&ioc(add)<floor408&&ioc(secret)<floor136);
+
+// A further *source-contingent* lossless packing test, not a fitted cipher:
+// concatenate the three original same-column GP29 digits into radix 29^3,
+// then divide by the titled modulus 409. Quotient fits radix60 (0..59),
+// the otherwise unselected numeric alphabet used by p50 table proposals.
+const grid=JSON.parse(read('resources/liber-primus/lp2-grid-256.json'));
+assert.equal(grid.alphabet.length,60);
+const digits=top.map((v,i)=>v*29*29+bottom[i]*29+third[i]);
+const quotient=digits.map(v=>Math.floor(v/409));
+const residue=digits.map(v=>v%409);
+assert.ok(quotient.every(v=>v>=0&&v<60));
+const qText=quotient.map(v=>grid.alphabet[v]).join('');
+assert.equal(qText.length,136);
+const exactResidue=orbit.slice(0,136).filter((v,i)=>v===residue[i]).length;
+assert.equal(exactResidue,0);
+assert.equal(quotient.filter(v=>v===59).length,1);
+// Full dual-radix reconstruction; no information discarded.
+assert.deepEqual(quotient.map((q,i)=>409*q+residue[i]),digits);
+// A natural order-three Fourier mode over GF409 is not a direct GP word.
+const omega=53;
+assert.equal((1+omega+omega*omega)%409,0);
+assert.equal(280**1%409,280);
+const omega2=omega*omega%409;
+const mode=top.map((v,i)=>(v+omega*bottom[i]+omega2*third[i])%409);
+assert.equal(mode.filter(v=>v<29).length,14);
+console.log('RADIX409 original 136 triples quotient ASCII-base60 prefix40',
+  qText.slice(0,40),'states exactly matched',exactResidue,'of 136');
+console.log('GF409 order-three Fourier mode: only',
+  mode.filter(v=>v<29).length,'of 136 elements are GP29 rune indices');
+
 console.log('PASS: original 409/409 replay, 408-orbit, 136-slot retained-share Shamir inverse, authentic p57 plant');
 console.log('DECISION: no original unknown plaintext or creator-selected decoder');
