@@ -69,3 +69,12 @@ The direct six-original-LP2-page gate above used the 2016 signed wording as a pr
 
 The original 2016 JPEG extraction under that literal password **returned exit status 1, zero header-consistent raw candidates and no recognized payload**. The same run again recovered its historical, authentic positive controls and exact 47-byte keyed plant; the purpose-built no-payload JPEG nevertheless yielded an apparently consistent but opaque 9,800-byte false-header extraction using this key. Thus this precise nested-key interpretation also supplies **no typed second source message**. This is a separate 2016-self-carrier key test, not an inference that there is no other encrypted information in the image.
 
+
+## One independent original-page-to-2016-image key test
+
+The signed 2016 image and original physical p32 have an unusual, previously established cross-source relation: the 121 original p32 runes can be placed in an 11×11 square, whose GP prime-weight first-row and first-column sums reproduce that image's **563×569** pixel dimensions. See [the established tree image-size route](lp2-tree121-signed2016-source-gate.md); the photographs themselves belong to different stock-art lineages. An additional, finite password hypothesis is therefore to take the **entire authentic p32 121-rune ciphertext** in printed order and use its uppercase canonical GP romanization (without spaces, punctuation, or fitted edits) as an OutGuess `-k` key on the **2016 signed tree JPEG** itself, seeking a second, typed stage message. The exact 153-character key is:
+
+`LTHAEWAEUPIACWNGHWBMSOEEIIAOEWTHHBIARTTHFFOTHHOMEXWDSLFDNGBEOIALAWDNAEXTYMGTHWXIATHWBSRXIAXAUBHEAWNGUHEONGIAEAJSPTHTOENGOMBUDSBJEAROEENNWGULAOYUTFJTAGBEO`
+
+[Executed original 2016-image Actions run45166585682](https://github.com/FlareZ123/liber-primus/actions/runs/45166585682) extracted **zero bytes, zero header-consistent candidates, status 1**, with no recognisable second payload. Its 47-byte known-key planted control and both authentic historically embedded positive JPEGs succeeded. The no-payload JPEG also generated a spurious header-consistent 3,555-byte binary extract under this long key, so such headers are not reliable stego evidence. This is a **single additional original-source passphrase** and a bounded negative: neither the 2016 signed message nor p32 itself instructs using the 121-rune romanization as an OutGuess key; other page transforms, keys or a truly encrypted payload are not excluded. It supplies no original unknown-page plaintext or source-authenticated key.
+
