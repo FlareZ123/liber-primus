@@ -27,6 +27,17 @@ The red13 crib yields **only** its stipulated 13 letters. The genuinely untouche
 
 For contrast, the physically clear original solved p57 page has GP29 IoC **0.062709966405**. A predeclared **planted** 95-rune p57 control encoded with the recovered BM6 source stream recovers **95/95** native runes and reencodes exactly; the 729-rune original inverse also reencodes **729/729** exactly. These controls show the code implements the proposed inverse correctly; they do not prove Cicada selected an LFSR.
 
+## Independent first-party rival: solved p57 says DIVINITY WITHIN
+
+The **original 2014 solved p57** contains the exact consecutive words **DIVINITY WITHIN**, which also occupy **8|5** GP runes: `DIUINITY WITHIN` (Latin V→U, TH is one GP rune). This was already a recognized independent rival in Director Issue #2363. Unlike the later 2016 quotation, it was printed in the same LP2 manuscript. To avoid privileging the 2016 hypothesis, grant this rival the **identical frozen Berlekamp–Massey inference procedure** from the same original 13 red rune source, with its own required known-plaintext key `[21,27,17,22,26,9,11,3,8,16,16,11,25]`. Its exact minimal GF29 connection is **degree7** with coefficients `[1,9,7,26,7,22,16,4]`; no key or polynomial is fitted to body readability.
+
+| Independently printed candidate p0 8|5 title | Shortest GF29 LFSR degree | Original untouched p0 body249 IoC | Original p1 266 IoC | Original p2 201 IoC |
+| --- | ---: | ---: | ---: | ---: |
+| Later signed 2016 `EPIPHANY SEECS` | 6 | 0.035270112709 | 0.034331110796 | 0.035024875622 |
+| Same-manuscript solved p57 `DIUINITY WITHIN` | 7 | **0.034363259490** | **0.034302737977** | **0.038507462687** |
+
+The rival's original p0 body starts `IAIEJTEDROERGIWCEBDNGCYAWFNEOOEASSM`. It is also nonlinguistic, and the *entire 729-rune original ciphertext* reencrypts exactly under its independently inferred degree7 key. The source-native positive plant verifies the common GF29 decoder; no title candidate gains independent validation. The degree6-versus7 complexity difference on only 13 supplied digits is insufficient to declare the retrospective EPIPHANY phrase authentic, especially because neither full-body decoder works.
+
 ## A stronger falsifiable same-phrase holdout, with a title/body reset
 
 A 2014 solver might instead reset at the original red-heading terminal dot. If the 2016 quote literally continued into the black text, its next runic plaintext would begin **THE DEVOTED** = `TH,E,D,E,U,O,T,E,D` (9 GP runes, Latin V→U). Hold out the last **three** symbols `T,E,D`. Using the **same, already frozen title-derived BM6 connection**, derive a **fresh six-symbol state** only from the **first six** presumed body symbols and the original ciphertext rune offsets13–18. This fresh state is `[0,22,12,7,28,8]`.
@@ -40,7 +51,7 @@ This is a stronger rejection than the initial body IoC test for the *one exact* 
 **Retire direct continuous BM6 and single-dot-reset BM6 as interpretations of this specific conditional heading crib.** The p0 title remains unverified: a length-matched historical phrase and perfect replay of an imposed 13-symbol crib do not constitute an unknown-page solution. The source does **not** independently tell a human to use Berlekamp–Massey, does not select a six-state register, and does not declare that the full 2016 sentence appears in p0. Only an original clue that fixes the *actual* word/body receiver and its state transition would justify another dependent cipher run.
 
 - **Runnable standalone Windows Node.js 22 SFT:** [`sims/lp2_p0_epiphany_signed2016_bm6_sft.cjs`](../sims/lp2_p0_epiphany_signed2016_bm6_sft.cjs). Read-only canonical corpus; explicit known-crib, recurrence, reencryption, native positive, and literal-quotation three-rune holdout assertions.
-- **Actual source/positive Windows GitHub Actions run:** https://github.com/FlareZ123/liber-primus/actions/runs/45129088640
+- **Actual source/positive Windows GitHub Actions run:** https://github.com/FlareZ123/liber-primus/actions/runs/45129956796
 - **Authenticated phrase:** `resources/historical/cicada2016-4gq25-outguess.asc` and signed historical 2016 Cicada 3301 public records. The key transfer through p7 is classified separately at Issue #2066 and its linked reports.
 
 No originally unknown LP2 plaintext, destination or complete cipher has been recovered here.
