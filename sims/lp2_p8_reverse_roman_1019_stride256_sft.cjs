@@ -104,8 +104,77 @@ for (const [stride, sign, expected] of exact) {
     body_first64_gp: plaintext.slice(8, 72).map((x) => corpus.translit[x]).join(" ")
   });
 }
+
+// A second, independently source-typed receiver: authentic solved-p56
+// prime-totient/F-transparent cipher, with literal Roman value 1019 used
+// either as a prime VALUE (zero-based cursor 170) or as a prime INDEX 1019.
+// No hidden skip mask is selected: reach() retains all valid choices.
+const primes = [];
+for (let candidate = 2; primes.length < 1400; candidate += 1) {
+  let isPrime = true;
+  for (let d = 2; d * d <= candidate; d += 1) {
+    if (candidate % d === 0) { isPrime = false; break; }
+  }
+  if (isPrime) primes.push(candidate);
+}
+const firstRedProduct = firstWord.reduce((a, b) => mod(a * b, 29), 1);
+const secondRedProduct = frame.slice(0, 8).reduce((a, b) => mod(a * b, 29), 1);
+assert.equal(primes.indexOf(1019), 170);
+assert.equal(primes[1019], 8111);
+assert.equal(firstRedProduct, 1019 % 29);
+assert.equal(secondRedProduct, (1019 - 1) % 29);
+assert.equal((primes[1019] - 1) % 29, 19);
+
+/**
+ * Exact p56 native-F inverse feasibility under every allowed F skip.
+ * @param {number[]} tape Original ciphertext runes.
+ * @param {number} start Zero-based prime cursor.
+ * @param {-1|1} sign Decryption key sign.
+ * @returns {{matched:number,terminal:number[]}}
+ */
+function p56Reach(tape, start, sign) {
+  let states = new Set([0]);
+  for (let i = 0; i < tape.length; i += 1) {
+    const next = new Set();
+    for (const consumed of states) {
+      const decoded = mod(tape[i] + sign * (primes[start + consumed] - 1), 29);
+      if (decoded !== 0) next.add(consumed + 1);
+      if (tape[i] === 0) next.add(consumed);
+    }
+    if (next.size === 0) return { matched: i, terminal: [] };
+    states = next;
+  }
+  return { matched: tape.length, terminal: Array.from(states).sort((a,b) => a-b) };
+}
+const solvedP56 = p56Reach(corpus.pages[56].indices, 0, -1);
+assert.equal(solvedP56.matched, 85);
+assert(solvedP56.terminal.includes(84));
+const sourceP56ClockResults = [];
+for (const source of [
+  { scope: "original-framed-256", tape: frame },
+  { scope: "original-black-243", tape: corpus.pages[8].indices.slice(12) }
+]) {
+  for (const start of [170, 1019]) {
+    for (const sign of /** @type {const} */ ([-1, 1])) {
+      const verdict = p56Reach(source.tape, start, sign);
+      sourceP56ClockResults.push({
+        scope: source.scope, start, sign, matched: verdict.matched,
+        total: source.tape.length, terminal: verdict.terminal
+      });
+    }
+  }
+}
+const full = sourceP56ClockResults.filter(x => x.scope === "original-framed-256");
+assert.deepEqual(full.map(x => x.matched), [19, 10, 75, 16]);
+const black = sourceP56ClockResults.filter(x => x.scope === "original-black-243");
+assert.deepEqual(black.map(x => x.matched), [37, 9, 243, 153]);
+assert.deepEqual(black[2].terminal, [235,239,240]);
+
 console.log(JSON.stringify({
-  claim: "Conditional reversed-Roman-word table stride; no LP2 unknown plaintext recovered",
+  claim: "Conditional reversed-Roman-word table stride and authentic p56 clock; no LP2 unknown plaintext recovered",
+  primeArithmetic: { decodedRoman: 1019, primeValueIndex: 170, primeAtCursor1019: 8111, firstRedProduct, secondRedProduct, firstKeyResidue: (primes[1019]-1)%29 },
+  authenticP56Regression: solvedP56,
+  sourceP56ClockResults,
   unique_reversed_roman_word_len_at_least4: reverseRomanWords,
   original_printed_words: printedWords.length,
   original_p8_p9_frame: frame.length,

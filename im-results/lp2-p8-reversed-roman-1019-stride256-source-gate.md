@@ -37,6 +37,25 @@ with only the two inherent table directions stride **5** or **251** (the latter 
 
 An independently clear GP29 control, solved p57, has IoC about **0.062710**. The source-candidate outputs remain close to the uniform alphabet baseline 1/29 and offer no sustained intelligible phrase. This excludes the literal **unkeyed 1019-strided numeric additive pad** for this framed p8/p9 receiver. Exact forward replay under a wrong key cannot authenticate a decipherment.
 
+## Original prime and totient receiver: a stronger two-level self-check
+
+The literal reversed whole-word number **1019 is prime** (zero-based prime ordinal **170**, or **171st prime**). The original first red word's GP0 index-product is **4**, exactly 1019 mod29. The complete second red word's GP0 product is **3**, exactly **φ(1019)=1018 mod29**. These already-known original source products had earlier been recognized as 4/3 without using the whole reversed Roman number. Their new arithmetic relationship is exact, yet partly dependent: for any prime, φ(p)=p−1, so the second residue follows immediately from the first. The reversal/prime choice was recognized retrospectively, and no probability or creator-intent claim follows.
+
+There is a separate, executable **source-selected candidate starting key**. Treat **1019 as a zero-based index into successive primes**, as the genuine solved physical p56 decoder does. The 1019th zero-based prime is **8111**; **φ(8111) mod29 = 19**, equal to the printed prefix **XIX** in ordinary Roman notation. This supplies a source-internal arithmetic return from the complete reversed red word to its literal prefix, without fitting a shift to the p8 ciphertext. It is conditional on interpreting 1019 as an *ordinal*, and many other ordinals also have totient residue19.
+
+Apply the **real solved p56** prime-totient rule to the original GP29 p8 ciphertext, retaining *all* legal literal-F transparent bypass states instead of choosing skips for English. The genuine source p56 85-rune ciphertext passes the exact same receiver with 84 consumed prime keys. At the p8 opening, there are two natural source readings: a prime whose **value** is 1019, giving zero-based key cursor170, or a prime **cursor** of 1019. Test both signs without a hidden seed, on the physically word-complete 256 frame already selected above and independently on the original **243 black runes** after the full 12-rune red heading.
+
+| Original recipient and key cursor | Subtract φ(prime): legal prefix | Add φ(prime): legal prefix |
+| --- | ---: | ---: |
+| Entire p8/p9 256-rune frame, cursor170 | 19/256 | 10/256 |
+| Entire p8/p9 256-rune frame, cursor1019 | **75/256** | 16/256 |
+| P8 black243 only, cursor170 | 37/243 | 9/243 |
+| P8 black243 only, cursor1019 | **243/243**, exactly three legal F masks | 153/243 |
+
+An illegal prefix is an **exact original-input impossibility** for that fixed source cipher, regardless of prospective English. The sole 243/243 arithmetic survivor is substantially weaker: it depends on rejecting the remaining eight red heading runes, and all its resulting whole-body native-GP symbol distributions remain near uniform, with no connected plaintext. An independently archived [complete solved-source and original-black full-mask test](../sims/lp2_p8_mxix1019_p56_phi_literal_receiver_sft.cjs) checks the three candidate masks and also tests the earlier p8 red 3×3 Hill key as a follow-on layer; none produces prose. The [companion original 256-frame reproducer](../sims/lp2_p8_reverse_roman_1019_stride256_sft.cjs) now asserts the exact 8 original-prefix feasibility verdicts and the established genuine p56 regression.
+
+**Decision:** the whole-word reversal has two interesting first-party arithmetic echoes, including one via the already-authentic p56 cipher law. It still has **no validated path to plaintext**. Neither the source's preferred recipient (complete 256-rune frame versus isolated 243 black runes) nor a second decipherment operation is specified by the creator. The literal 256-frame native prime-totient receiver is excluded. The isolated black-body prime-cursor1019 candidate survives an algebraic validity gate but fails the plain-language gate, so it must not be promoted to solved key material.
+
 ## Cryptanalytic decision
 
 Retain **XIXM reversed to MXIX** as a narrowly specified, concrete human-observable lead, especially its exact **−5 modulo256** relation to the separately observed p9 carry. Do not reopen the failed direct additive model with fitted phase shifts or arbitrary table orderings. A future claim that the same source cues specify a changing-state operation must independently define the state update, output alphabet and start state before scoring the source ciphertext. The 256 register alignment is provisional, and there is no authenticated p8 decoder or source key.
