@@ -45,7 +45,7 @@ The original LP1 p13 transcription reads:
 > PROGRAM YOUR MIND  
 > PROGRAM REALITY
 
-The final imperative contains exactly **29 alphabetic characters** after spaces are removed: PROGRAMYOURMINDPROGRAMREALITY. This is a reasonable reason for a human solver to notice the 29-symbol Gematria Primus alphabet. The same page's “SOME WISDOM” also makes the original CicadaOS files named tmp/wisdom and tmp/folly worth checking. Neither lexical/numerical match, by itself, names an executable, argument, input file, key schedule or LP2 receiver.
+The final imperative contains exactly **29 Latin alphabetic characters** after spaces are removed: PROGRAMYOURMINDPROGRAMREALITY. In the original GP29 transcription it is **28 rune symbols**, because EA is represented by one rune. The Latin-letter count is therefore not a 29-rune key. This is still a reasonable reason for a human solver to notice GP29, but it does not name an operation. The same page's “SOME WISDOM” also makes the original CicadaOS files named tmp/wisdom and tmp/folly worth checking. Neither lexical/numerical match, by itself, names an executable, argument, input file, key schedule or LP2 receiver.
 
 ### Original OS program and execution trace
 
@@ -53,7 +53,7 @@ The complete embedded initramfs inventory is preserved in [the original-source i
 
 The invoked usr/local/bin/prime_echo is a fixed 12,248-byte list of 464 literal echo/sleep pairs. It prints every prime from 2 through 3301; 462 delays are 50 ms and two are 2 seconds, after 1033 and 3301. It does not read a file, accept a user input, call a cipher, or implement a reversible transform. The signed message companion says “The key is all around you”; it does not tell the player how to combine the prime output with LP2 ciphertext. The wrapper does not invoke 761.MP3.
 
-The apparent “wisdom” match also fails as a program handoff: tmp/wisdom and tmp/folly are identical 3,368-byte opaque files, and the rootfs call graph finds no consumer. The apparent cicada.ko.gz program is the conventional Linux Ethernet PHY driver. The complete embedded rootfs inventory finds no mind/reality executable or additional named puzzle decoder. This finding is scoped to the embedded initramfs; it is not a claim that every other ISO member or lost historical service has been recovered.
+The separate bounded p2 test uses this exact 28-rune phrase as a repeating key under the solved p56 additive/F-transparent operation and fails with 11 extra plaintext Fs and 175/201 forward-replay mismatches; see the [p2→p13 illustration-transfer report](lp1-lp2-illustration-reuse-and-cipher-transfer-gate.md). This does not create an OS program link. The apparent “wisdom” match also fails as a program handoff: tmp/wisdom and tmp/folly are identical 3,368-byte opaque files, and the rootfs call graph finds no consumer. The apparent cicada.ko.gz program is the conventional Linux Ethernet PHY driver. The complete embedded rootfs inventory finds no mind/reality executable or additional named puzzle decoder. This finding is scoped to the embedded initramfs; it is not a claim that every other ISO member or lost historical service has been recovered.
 
 ### The 29 × 16 prime-table hypothesis and protocol rival
 
