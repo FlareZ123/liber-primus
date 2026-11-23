@@ -83,6 +83,11 @@ function decode(alphabet) {
 
 const original = decode(source.alphabet);
 assert.deepEqual(original, source.byte_rows);
+assert.equal(source.rows.flat().filter(token => token === '4C').length, 0);
+assert.equal(original.flat().filter(byte => byte === 252).length, 0); // '4C' as base60
+assert.equal(original.flat().filter(byte => byte === 76).length, 2); // '1G' as base60
+assert.deepEqual(source.rows.flat().filter(token => token === '1G'), ['1G','1G']);
+
 const alternative = decode(source.alphabet.replace('f', ''));
 
 // Independent standard positive: secp256k1 scalar 1 -> first standard
