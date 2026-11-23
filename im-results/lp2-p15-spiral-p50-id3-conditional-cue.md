@@ -41,6 +41,20 @@ The extracted spiral emits **exactly 16 bytes** and the p50 panel is **exactly 2
 
 The ECB plaintext starts `1e9ffcd0d82340f29c980d9e7500432f`; CBC with zero IV shares that first block. Both continue as random-like bytes and yield no coherent English or recognizable complete file envelope. The same original-source SFT carries these exact tests. An independently executed AES implementation (`cryptography` Python) yielded these numbers before the Node implementation was committed. This **retires these two direct original-table AES-128 consumers only**, including the obvious 16-byte key hypothesis; it does not reject other modes/recipients whose selection would require a first-party instruction.
 
+## Entire unknown LP2 as one authenticated AES-GCM message: direct original test rejects
+
+The same **single 16-byte source-derived key** also admits a much stronger all-or-nothing receiver. Independent earlier work established that **all 12,956 unaltered unknown-page runes**, interpreted as one positional big-endian base29 number, occupy **7,868 bytes**, SHA-256 `c6eae1335b7809becbdb6a2bc9895a1efbfe705adf75d6990bc4aaf37b41ad62`. Its exact length can accommodate the conventional conjectured `nonce12 | ciphertext7840 | tag16` AES-128-GCM envelope, without any padding or omitted runes. Earlier p15 AES work has already rejected forty *different* keys under this specific format. The panel-lookup key `f94944338e7f13998e333bf096b0a769` is a new finite candidate, conditional on the missing modulo256 source instruction.
+
+In a direct authenticated tag computation on the **complete original binary**, a scratch AES-128/GHASH implementation passed both the standard AES-128 block test `69c4e0d86a7b0430d8cdb78070b4c55a` and both NIST zero-key GCM tags (empty-body `58e2fccefa7e3061367f1d57a4e7455a`; one-block `ab6e47d42cec13bdf53a67b21257bddf`). Under the source-derived key the exact original data give:
+
+```text
+nonce12        08734843a55193dcbb7231b5
+actual tag     2303cce245abaae21697704a791e02ea
+computed tag   d1b2e74fb814f6d2db4db5b3c3886e92
+```
+
+The tag **fails**, so **no plaintext from the proposed whole-book AES-128-GCM envelope is authenticated**. This is a decisive exclusion of this exact key, serialized receiver and standard 12/16 framing, rather than a statistical non-English diagnostic. The [Node22 native-crypto source-original SFT](../sims/lp2_p15_p50_id3_wholelp2_gcm_sft.cjs) reuses the established canonical serialization and positive LP1 plant, performs a normal tag-verified decrypt and expects this rejection. The direct result was executed independently in the agent's tool runtime; the new Node SFT has not been CI-dispatched, so this report makes no Node CI PASS claim.
+
 ## Collision calibration and uncharged choices
 
 In the actual base60 panel, byte `I` (=73) occurs4 times, `D` (=68) twice, and `3` (=51) twice. Conditional on three **fixed distinct** panel addresses and an exchangeable 256-cell byte multiset, the exact chance of ordered `ID3` is
