@@ -1,0 +1,16 @@
+name: LP2 p50 original high16 spatial successor null
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-high16:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fixed-inventory page-preserving 16-band original assay
+        run: node sims/lp2_p50_high16_spatial_successor_sft.cjs
