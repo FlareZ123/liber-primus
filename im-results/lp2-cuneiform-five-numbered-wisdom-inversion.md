@@ -225,7 +225,16 @@ Exact exhaustive F-transparent inversion runs all legitimate advancing/nonadvanc
 
 All four non-F direct inverses also have nonlinguistic original plaintext shape, and the same complete decoders forward-reproduce all 553 original runes. Independent authentic solved p57 plaintext planted through the **exact F-transparent receiver** replays all 553 symbols under each of four cases, so the finite contradiction is a property of original ciphertext, not a broken skip algorithm. Red numeral reset per passage cannot rescue any candidate, because each fails within the first 139-rune unit.
 
-[Exact original-input prime-chain SFT](../sims/lp2_cuneiform_1033_3301_primechain_original_sft.cjs). These four concrete prime-start p56 transfers and the eight source-text keys explain no original unknown plaintext. The source still does not prescribe the missing encoder operation for the five numbered statements; further private shifts, book texts or retrospective number fits cannot be inferred from these negatives.
+The same original red **1–5** labels also fix a second direct interpretation: numeral *i* selects the *i*th prime `2,3,5,7,11` as that item's own first successive-prime key, with a natural reset at each numeral. This avoids inventing page seeds or resynchronizing to prose; the 1033/3301 header and solved LP1 totient text are the only historical motivations for the transfer. Both signs are algebraically impossible for **all five** intact original units with exhaustive p56 F-transparent tracking:
+
+| Direct ordinal start for original item | 1 at 2 | 2 at 3 | 3 at 5 | 4 at 7 | 5 at 11 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| `P=C−φ(prime)` first impossible zero-based item rune | **1** | **25** | **5** | **12** | **114** |
+| `P=C+φ(prime)` first impossible zero-based item rune | **13** | **24** | **40** | **20** | **7** |
+
+The non-F direct GP29 output of all 553 original runes scores **0.03470530** and **0.03402390** IoC for subtraction/addition; full native p57 plants survive every respective F history. There is no source evidence to introduce a second prime phase or masked private F marks to rescue the contradiction.
+
+[Exact original-input prime-chain and red-ordinal SFT](../sims/lp2_cuneiform_1033_3301_primechain_original_sft.cjs) · [Windows Node22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45163040605). These six direct prime-start p56 transfers and the eight source-text keys explain no original unknown plaintext. The source still does not prescribe the missing encoder operation for the five numbered statements; further private shifts, book texts or retrospective number fits cannot be inferred from these negatives.
 
 ## Native JPEG glyph readback (Agent 27, 11 November 2026)
 
