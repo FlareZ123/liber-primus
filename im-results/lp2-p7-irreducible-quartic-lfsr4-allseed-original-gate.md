@@ -83,6 +83,14 @@ All six exact original outputs remain close to uniform ciphertext with no contin
 
 [Read-only Windows/CommonJS original-and-positive SFT](../sims/lp2_p7_gf29quartic_p8_red4_blockmul_original_sft.cjs) · [original-input GitHub Actions CI](https://github.com/FlareZ123/liber-primus/actions/runs/45119364598).
 
+### The p8 Roman XIX as an actual nonlinear field exponent
+
+The four-rune source word `XIXM` also visibly contains **Roman XIX=19**. That yields a further, independently fixed operation on the exact same four-rune GF(29⁴) blocks: `P=C^19` within the field defined by p7's printed quartic. Since `gcd(19,29⁴−1)=1`, powering by19 permutes the entire field, including zero, and its exact inverse exponent is **558,379**, because `19×558379≡1 (mod707280)`. Unlike the fixed field multiplier, the 19th-power map is nonlinear in the four printed GP29 rune values.
+
+The only tested ambiguities are the natural p8 recipient starts 0/4/12 and encode/decode direction. Six unaltered p8–p14 original-source inverses preserve **1,729/1,729** runes; a genuinely solved p57 native GP29 positive is also recovered for every direction. The original decoded GP29 coincidence values for exponent19 at starts0/4/12 are **0.03453144 / 0.03453647 / 0.03454757**; the exact inverse exponent558379 gives **0.03457094 / 0.03455126 / 0.03452110**. All six outputs remain nonlinguistic. The source's combination of an adjacent quartic and Roman XIX provides a compact conditional original clue, but no first-party statement chooses field powering, four-rune block boundaries or output orientation. This complete nonlinear source-key model **fails as a stand-alone GP29 plaintext receiver**. Further layers would need their own independent evidence.
+
+[Same exact original-input field SFT](../sims/lp2_p7_gf29quartic_p8_red4_blockmul_original_sft.cjs) · [CI including XIX-power tests](https://github.com/FlareZ123/liber-primus/actions/runs/45119703376).
+
 ## Authentic Cicada p56 literal-F clock transfer (separate, stronger failure)
 
 Because the solved original p56 has an authentic **literal-F transparent key clock**, a direct fourth-order key test alone is insufficient: a 2014 solver might apply exactly that already demonstrated author operation to the independently printed p7 field polynomial. Here the rule is precise: original ciphertext `F=0` may represent literal plaintext `F=0` with **no** key advance, or an encrypted **non-F** rune consuming one key; any other ciphertext rune must be encrypted **non-F**, consuming one key. This strictly preserves the existing source's F behavior. No extra escape codes, secret skip flags or fitted key schedule are allowed.
