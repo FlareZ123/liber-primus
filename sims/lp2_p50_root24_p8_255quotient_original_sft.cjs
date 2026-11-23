@@ -100,6 +100,29 @@ assert.ok(Math.abs(derivativeAnswers[1].ioc - 0.032823838196696) < 1e-14);
 const derivativeMatches = derivativeKey.filter((v, i) => v === C[i]).length;
 assert.equal(derivativeMatches, 10);
 
+// Prospective untouched chapter extension: same 255-key cycle, starting at
+// physical p8's first rune, without choosing any extra key phase or reset.
+// The original p9–p14 ciphertext is independent of the p8 length match.
+const chapterOriginal = book.pages.filter((page) => page.page >= 8 && page.page <= 14)
+  .flatMap((page) => page.indices);
+assert.equal(chapterOriginal.length, 1729);
+const chapterDecodes = [];
+for (const [operation, K] of [['quotient', key.quotient], ['derivative', derivativeKey]]) {
+  for (const sign of [-1, 1]) {
+    const decoded = chapterOriginal.map((v, i) => m29(v + sign * K[i % K.length]));
+    assert.deepEqual(decoded.map((v, i) => m29(v - sign * K[i % K.length])), chapterOriginal);
+    chapterDecodes.push({ operation, sign, totalIoC: ioc(decoded),
+      holdoutP9to14IoC: ioc(decoded.slice(255)),
+      firstHoldout75: decoded.slice(255, 330).map((v) => book.translit[v]).join(' ') });
+  }
+}
+assert.ok(Math.abs(chapterDecodes[0].totalIoC - 0.034727577490735385) < 1e-14);
+assert.ok(Math.abs(chapterDecodes[1].totalIoC - 0.03449797035323351) < 1e-14);
+assert.ok(Math.abs(chapterDecodes[2].totalIoC - 0.03471820577083735) < 1e-14);
+assert.ok(Math.abs(chapterDecodes[3].totalIoC - 0.0344417400338453) < 1e-14);
+console.log(JSON.stringify({ chapterOriginalRunes: chapterOriginal.length,
+  untouchedP9to14AfterP8: chapterOriginal.length - 255, chapterDecodes }));
+
 console.log(JSON.stringify({
   originalSource: 'p50 canonical base60 coefficients + p39 GP29 double root24',
   p8CipherLength: C.length,
