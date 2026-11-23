@@ -314,6 +314,8 @@ for (const oppositeSign of [false, true]) {
 }
 // The original-source outcome is reported directly, without target tuning.
 
+assert.deepEqual(modes.map(m => m.originalMinimumOOV), [4, 4]);
+
 const nulls = [];
 for (let sample = 0; sample < 24; sample++) {
   const shuffled = shuffle(original);
