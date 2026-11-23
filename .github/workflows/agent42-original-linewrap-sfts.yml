@@ -1,14 +1,6 @@
 name: LP2 Original Linewrap and Dropcap Geometry
 
 on:
-  push:
-    paths:
-      - .github/workflows/agent42-original-linewrap-sfts.yml
-      - sims/lp2_original_linewrap_greedy_geometry_sft.cjs
-      - sims/lp2_original_linewrap_dropcap_geometry_sft.cjs
-      - sims/line_start_raster_width_control.cjs
-      - resources/liber-primus/lp2-corpus.json
-      - resources/liber-primus/lp2-transcription.txt
   workflow_dispatch:
 
 permissions:
