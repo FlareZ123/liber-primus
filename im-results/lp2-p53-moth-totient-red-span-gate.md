@@ -1,6 +1,6 @@
-# LP1 p5 moth / 5×5 totient key on LP2 p53 red span
+# LP1 p5 moth / 5×5 totient and Möbius key gates on LP2 p53 red span
 
-**Decision:** bounded negative. The source-selected LP1 p5 25-element totient key does not produce readable plaintext from LP2 p53's 51-rune red tail under the fixed page clock and one-F non-consuming interpretation.
+**Decision:** bounded negative for both fixed 25-cell arithmetic key readings. The source-selected LP1 p5 totient key and the separately source-named Möbius-function key do not decipher LP2 p53's red tail.
 
 ## Human-visible route
 
@@ -49,14 +49,41 @@ A known solved-p57 plaintext plant with the same 51-rune length and fixed F posi
 
 For context, the p55 sibling test is documented in im-results/lp1-lp2-illustration-reuse-and-cipher-transfer-gate.md: its fixed p5 totient key and special F at local25 leave 75 steps, but the original p55 output is nonlinguistic. The p53 result does not rescue that transfer.
 
+## Additional source-named Möbius key gate (Agent9, 23 November 2026)
+
+### Human-visible route and frozen operation
+
+The p53 moth reuses solved LP1 p05, whose original 5×5 square contains the literal word **MOBIUS** at row 3, column 5 (expanded prime-sum value 226), beside the prose about primes and the totient function. A human solver could reasonably try the arithmetic Möbius function μ(n) on the 25 square values as a GP29 key. This is a **hypothesis**, not an authenticated instruction: the word may be thematic or geometric, and the page does not explicitly say to apply μ to each cell.
+
+The receiver was fixed to p53's original red tail, offsets 128–178: **51 runes**, with exactly one ciphertext F at local offset 38. The 25-cell row-major key is μ(square[i]) mod 29; the page-start clock fixes phase 128 mod 25 = 3. The solved p56 cipher fixes subtractive decryption and the literal-plaintext-F non-consuming rule. There is no phase, order, sign, or key fitting. Because the only ciphertext F at local38 may or may not itself be the transparent plaintext F, both possible masks (skip none; skip local38) were tested—these exhaust all F-mask assignments for this 51-rune span.
+
+The source-derived key is:
+**[0,28,1,28,28,28,28,28,0,0,1,0,1,0,1,0,0,28,28,28,28,28,1,28,0]**
+(8 zero, 5 one, 12 minus-one residues).
+
+### Original-cipher result
+
+| Assumed transparent ciphertext-F positions | Decoded plaintext-F positions | Mismatches under the authentic p56 forward rule |
+| --- | --- | ---: |
+| none | **[25, 38]** | **15 / 51** |
+| [38] | **[25, 38]** | **14 / 51** |
+
+Both possible masks force a plaintext F at local25, where the original ciphertext is **not** F. Under the authentic p56 encoder every plaintext F must pass through literally and consume no key symbol. Forward re-encoding therefore disagrees with the original in 15 or 14 positions. This is an exact structural contradiction, independent of language scoring; the one-F skip interpretation is not a valid p56-style inverse.
+
+The preferred (skip-38) output begins:
+**BXHPTWBJTHHHCJREAAEAOAENPAEXNGJFEAAEEONRTHEODINGTHGFEOLGNARSGURXH**
+It is nonlinguistic and has no exact original-cipher inverse under the p56 F rule. A solved-p57 51-rune positive plant, with its original F plus the inserted F both bypassed, round-trips exactly 51/51.
+
+This is a bounded negative for the **direct row-major μ(square) mod29 additive key on p53's red tail**, not a rejection of every geometric or number-theoretic use of the word MOBIUS. The previous [direct p55 μ-key gate](../sims/lp1_wisdom_mobius_p55_gate.cjs) is a separate receiver test. Do not add phases, square traversals or alternate arithmetic functions without a new source selector.
+
 ## Decision and scope
 
-Reject the direct periodic additive/subtractive 25-step totient-square transfer to p53's red 51-rune span under the page-start clock and its only-F non-consuming interpretation. The modest best score is ordinary under the 5,000 shuffled-key null. This does not invalidate the LP1 p5 moth selector, the 5×5 square, or other uses of the p53 red passage; it only closes this fixed direct Vigenère-style route.
+Reject the direct periodic additive/subtractive 25-step totient-square transfer to p53's red 51-rune span under the fixed page-start clock and one-F non-consuming interpretation. Also reject the separate direct row-major μ(square) mod29 key: both possible transparent-F masks force a plaintext F at local25 absent from the ciphertext, and authentic p56 forward replay fails 14/15 positions. These tests close the two direct arithmetic key readings on this p53 receiver; they do not invalidate the moth selector, the LP1 p5 square, or other independently specified uses of p53's red passage.
 
-Do not tune phases, square orientations, F positions, or key permutations to rescue it. A successor requires a new independent source instruction selecting a different operation or register.
+Do not tune phases, square orientations, F positions, key permutations or alternate functions to rescue either direct transfer. A successor requires a new independent source instruction selecting a different operation or register.
 
 ## Reproduction
 
-Run with Node 22: node sims/lp2_p53_moth_totient_red_span_gate.cjs
+Run with Node 22: node sims/lp2_p53_moth_totient_red_span_gate.cjs\n\nThe additional Möbius-key gate is reproduced by: node sims/lp2_p53_moth_mobius25_red_tail_gate.cjs.
 
 The script reads the original LP1 square data, canonical GP29 corpus, p53 ink annotations, and Duko quadgram counts; asserts the 51-rune red span and its unique F at local38; executes 5,000 multiset-preserving key permutations at phases zero and three; and verifies an exact solved-p57 positive plant.
