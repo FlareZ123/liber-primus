@@ -1,0 +1,32 @@
+name: Agent11 original LP2 opening 729 ternary-six exact SAT
+
+on:
+  push:
+    paths:
+      - 'sims/lp2_p0p2_ternary6_allclass_source_sft.py'
+      - '.github/workflows/agent11-p0p2-ternary6-original.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source-exact-sat:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout original GP29 ciphertext and experiment
+        uses: actions/checkout@v6
+
+      - name: Install Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install Z3Py
+        shell: pwsh
+        run: python -m pip install z3-solver==4.13.0.0
+
+      - name: Run all-mapping original-source exact test
+        shell: pwsh
+        run: python -u sims/lp2_p0p2_ternary6_allclass_source_sft.py
