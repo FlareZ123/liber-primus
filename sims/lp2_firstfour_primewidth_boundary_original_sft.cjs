@@ -97,6 +97,11 @@ function columnToRow(array, width) {
   return out;
 }
 
+/** @template T @param {T[]} marks @returns {T[]} */
+const attachBefore = marks => [marks[marks.length - 1], ...marks.slice(0, -1)];
+/** @template T @param {T[]} marks @returns {T[]} */
+const attachAfter = marks => [...marks.slice(1), marks[0]];
+
 /** @param {number[]} marks @returns {number[]} */
 function wordLengths(marks) {
   const out = [];
@@ -166,7 +171,11 @@ function evidence(flags) {
 const permutations = {
   printed: sections.flat(),
   rowToColumn: sections.flatMap((part, i) => rowToColumn(part, primes[i])),
-  columnToRow: sections.flatMap((part, i) => columnToRow(part, primes[i]))
+  columnToRow: sections.flatMap((part, i) => columnToRow(part, primes[i])),
+  beforeRowToColumn: sections.flatMap((part, i) =>
+    attachAfter(rowToColumn(attachBefore(part), primes[i]))),
+  beforeColumnToRow: sections.flatMap((part, i) =>
+    attachAfter(columnToRow(attachBefore(part), primes[i])))
 };
 const results = Object.fromEntries(Object.entries(permutations)
   .map(([key, flags]) => [key, evidence(flags)]));
@@ -181,6 +190,12 @@ assert.equal(results.columnToRow.singletons, 286);
 assert.ok(results.rowToColumn.englishAdjacentLengthGain
   < results.printed.englishAdjacentLengthGain);
 assert.ok(results.columnToRow.englishAdjacentLengthGain
+  < results.printed.englishAdjacentLengthGain);
+assert.equal(results.beforeRowToColumn.singletons, 267);
+assert.equal(results.beforeColumnToRow.singletons, 285);
+assert.ok(results.beforeRowToColumn.englishAdjacentLengthGain
+  < results.printed.englishAdjacentLengthGain);
+assert.ok(results.beforeColumnToRow.englishAdjacentLengthGain
   < results.printed.englishAdjacentLengthGain);
 
 /* True native-word-boundary plants at source-exact rune lengths, encrypted
@@ -201,6 +216,9 @@ for (let chapter = 0; chapter < sections.length; chapter++) {
   const scrambled = columnToRow(plain, width);
   const restored = rowToColumn(scrambled, width);
   assert.deepEqual(restored, plain);
+  const beforeScrambled = columnToRow(attachBefore(plain), width);
+  const beforeRestored = attachAfter(rowToColumn(beforeScrambled, width));
+  assert.deepEqual(beforeRestored, plain);
   const plainScore = evidence(plain).englishAdjacentLengthGain;
   const scrambledScore = evidence(scrambled).englishAdjacentLengthGain;
   assert.ok(plainScore > scrambledScore);
