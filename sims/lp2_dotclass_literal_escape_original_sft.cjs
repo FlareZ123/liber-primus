@@ -48,7 +48,7 @@ let offset = 0;
 for (const page of pages) {
   pageStarts.add(offset);
   const source = ink.pages.find(p => p.page === page.page);
-  for (const [local, dots, color] of source.large_punctuation || []) {
+  for (const [local, dots, color] of source?.large_punctuation || []) {
     marks.push({offset: offset + local, dots, color, page: page.page});
   }
   offset += page.indices.length;
