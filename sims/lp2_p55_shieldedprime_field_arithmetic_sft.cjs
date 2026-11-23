@@ -98,6 +98,56 @@ for(let i=0;i<7;i++) {
   assert.equal(magic7[i].reduce((a,b)=>a+b,0),1033);
   for(let j=0;j<7;j++) assert.equal(magic7[i][j],magic7[6-i][6-j]);
 }
+
+// The actual first-party 2014 magic squares have dimensions 5/7/5.
+// Their character polynomials factor into degree <=2 pieces over GF(P).
+// Therefore none of these exact matrices or powers of them is an order-28
+// or order-29 rotor over the conditional source-derived field.
+const historicalSquares=fs.readFileSync(path.join(__dirname,'..','resources','cicada2014-openpuff-magic-squares.txt'),'utf8')
+  .trim().split(/\\r?\\n\\s*\\r?\\n/g)
+  .map(block=>block.trim().split(/\\r?\\n/g).map(line=>line.trim().split(/\\s+/).map(Number)));
+assert.deepEqual(historicalSquares.map(a=>a.length),[5,7,5]);
+assert.deepEqual(historicalSquares[1],magic7);
+function mulPoly(a,b) {
+  const output=Array(a.length+b.length-1).fill(0n);
+  for(let i=0;i<a.length;i++) for(let j=0;j<b.length;j++) output[i+j]+=a[i]*b[j];
+  return output;
+}
+/** @param {bigint[][]} a @param {bigint[][]} b */
+function matrixMul(a,b) {
+  const n=a.length,output=Array.from({length:n},()=>Array(n).fill(0n));
+  for(let i=0;i<n;i++) for(let j=0;j<n;j++)
+    for(let k=0;k<n;k++) output[i][j]=(output[i][j]+a[i][k]*b[k][j])%P;
+  return output;
+}
+/** @param {number[][]} m @param {bigint[]} coefficients ascending */
+function assertMatrixAnnihilates(m,coefficients) {
+  const n=m.length,A=m.map(row=>row.map(BigInt));
+  let output=Array.from({length:n},()=>Array(n).fill(0n));
+  for(let h=coefficients.length-1;h>=0;h--){
+    output=matrixMul(output,A);
+    for(let i=0;i<n;i++) output[i][i]=(output[i][i]+coefficients[h]+P*100n)%P;
+  }
+  for(const row of output) for(const value of row) assert.equal(value,0n);
+}
+const stage10Chars=[
+  mulPoly([-3301n,1n],mulPoly([-29931n,0n,1n],[612587n,0n,1n])),
+  mulPoly([-1033n,1n],mulPoly([57789135n,-181161n,0n,1n],[-8981481n,-25297n,0n,1n])),
+  mulPoly([-1033n,1n],mulPoly([-17077n,0n,1n],[-15869n,0n,1n])),
+];
+for(let s=0;s<3;s++){
+  assert.equal(stage10Chars[s].length,historicalSquares[s].length+1);
+  assertMatrixAnnihilates(historicalSquares[s],stage10Chars[s]);
+}
+for(const r of [
+  48575563544336672505274233073932790525795744865281127600395257n,
+  14127890157939521956245895759597288211929692938387933737884767n,
+  1051987707658526607516290075233803840445153732984194973234197n
+]) assert.equal((r*r*r-181161n*r+57789135n)%P,0n);
+const rootSeven=31233005931984830741250346942844667303731418730284577043610409n;
+assert.equal((rootSeven*rootSeven*rootSeven-25297n*rootSeven-8981481n)%P,0n);
+console.log('2014 stage10 5/7/5 squares: all matrix eigenvalue factors degree <=2 over source P');
+
 console.log('minimal_extension_degree_28=3; minimal_extension_degree_29=7');
 
 // When gcd(29,P-1)=1, taking 29th powers permutes EVERY nonzero
