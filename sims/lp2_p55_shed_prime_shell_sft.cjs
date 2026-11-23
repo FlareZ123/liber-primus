@@ -122,6 +122,11 @@ const prime = coreInteger / 8n;
 assert.equal(prime, targetPrime);
 verifyPrimalityCertificate(prime);
 assert.ok(crypto.checkPrimeSync(prime, { checks: 24 }));
+// Exact quadratic-character obstruction to transplanting old DH g=5, A=8.
+assert.equal(prime % 8n, 5n);
+assert.equal(powMod(5n, (prime - 1n) / 2n, prime), 1n);
+assert.equal(powMod(8n, (prime - 1n) / 2n, prime), prime - 1n);
+console.log('Direct historical DH g5/A8 transplant impossible by quadratic characters');
 console.log('p55 76 original runes; 16 complete words; core43 shell32');
 console.log('core N = ' + coreInteger);
 console.log('outer E = ' + shellInteger);
