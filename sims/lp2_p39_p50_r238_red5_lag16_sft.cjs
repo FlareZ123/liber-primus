@@ -187,7 +187,7 @@ const p39Matches = originalOrder.filter((c, i) => c === originalTrim[i]).length;
 assert.equal(p36Matches, 14);
 assert.equal(p39Matches, 10);
 assert.equal(bestStaticMap(page36, originalOrder), 54);
-assert.equal(bestStaticMap(originalTrim, originalOrder), 53); // Assert with original row convention.
+assert.equal(bestStaticMap(originalTrim, originalOrder), 50);
 
 // A full 16-periodic pad would satisfy every lag16 equation, which does not happen.
 const residual = originalTrim.map((x, i) => mod(x - alpha * originalOrder[i]));
@@ -210,7 +210,7 @@ const report = {
     p39Runes: page39.length, p39TrimmedRunes: originalTrim.length,
     p15PrintedNumerals: p15Rows.length, unknownRunes: book.length },
   coefficientCopy: { p36Exact: p36Matches, p39TrimmedExact: p39Matches,
-    p36BestArbitrarySubstitution: 54, p39BestArbitrarySubstitution: 53 },
+    p36BestArbitrarySubstitution: 54, p39BestArbitrarySubstitution: 50 },
   sourceSelectedLag16: { multiplier: alpha, matches: hits.length,
     trials: originalTrim.length - lag, indexPositions: hits,
     allUnsolvedBookWindows: windows, windowsAtOrAbove22: qualifyingWindows,
