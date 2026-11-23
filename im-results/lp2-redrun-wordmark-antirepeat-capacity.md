@@ -59,4 +59,6 @@ The claim is a **bounded structural pruning result**, not a new cryptographic so
 
 ## Reproduce
 
+**Executed Windows Node22 original-source PASS:** [manual read-only workflow run 45141898199](https://github.com/FlareZ123/liber-primus/actions/runs/45141898199) confirms every source count, every red-boundary/mark placement, both toy controls, all information totals and the strict capacity deficit. No unknown plaintext was emitted.
+
 The self-contained, read-only, **Windows 11 / Node.js 22 CommonJS** [source test](../sims/lp2_redrun_wordmark_antirepeat_capacity_sft.cjs) reads the original 58-page GP29 corpus, the physical red-ink annotations, and the printed transcription. It restores the omitted runeless p50 when mapping transcription pages to physical page numbers, checks **every** red-run start/end and large-mark location against exact original printed word seams, asserts all **12,956/12,901/86** rune counts and **213/16/31** annotated events, and evaluates the independent logarithmic cardinalities using a stable reverse-tail sum. Two exhaustive toy positives check the transition-count formula and nonoverlapping red-interval placement count. The original files are read-only; no inferred plaintext or key is embedded.
