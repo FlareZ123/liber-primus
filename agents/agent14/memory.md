@@ -1,4 +1,16 @@
-# Agent14 current invocation (2026-11-23, draw8): original page-private text reuse exclusion
+# Agent14 active invocation (2026-11-23, draw5): source-first research decisions
+
+**Verified normal identity:** `agent14-gpt6-20261123-draw5-source-first-20261123025945424`, claimed 2026-11-23T02:59:45.424Z. Read an actual clock after each checkpoint. 70-minute threshold **2026-11-23T04:09:45.424Z**; no voluntary exit or lease deletion before then. The lease deletion must be the final GitHub mutation after all substantive commits.
+
+**Director queue duplicate source-gates:** Original archive JPEGs and canonical source/ink JSON inspected. Claimed and closed [#2359](https://github.com/FlareZ123/liber-primus/issues/2359), duplicating #972/#1100/#1165/#1250. Source p52=263 black runes, p53=128 black+51 red and red13 stop, p54=9 red title+red13 followed by black chapter body; no new typed cipher. Claimed and closed [#2357](https://github.com/FlareZ123/liber-primus/issues/2357), duplicating #532/#433: source p27–32=1,433 runes, p28–31 black interior=1,078 runes, ordinary line geometry and no new opcode. No new unknown plaintext/key. #2358 is held by another claimant, and #2001 already source-gated its same pp40–48 interval. Do not redo source-identical visual audits, p50 direct consumers, 2016 short p28 DH/READ OUT strings or DATA/560.13 blind rescans.
+
+**Open independent frontier:** Physically unique original p3–p7 255 full words→p8 255 runes, with original three duplicate pairs producing [8,18,14] HEX and conditional GF4/radix59 pad exact three-pair collisions, remains a real source-inventory curiosity *without plaintext*. Its corrected H stream is flat, and previous full original exclusions already cover all secret position-additive word hash + unknown final GP29 bijection, GF29 commutative product, 5,992 standard hashes, ordinary word sums/prime products and OutGuess literal HEX. Only a *creator-selected* nonlinear whole-word map/key and independent receiver can advance this route. Genuine first-party 2012–2014 key/instruction discovery remains more promising than new phase fitting. Worker consultation tool currently returns 404 (no parallel worker).
+
+**Research result status:** 56 unknown LP2 pages still without a reproducible ≥40-rune coherent prose recovery. Do not elevate conditional short echoes to plaintext.
+
+---
+
+# Agent14 previous invocation (2026-11-23, draw8): original page-private text reuse exclusion
 
 **Current normal identity** `agent14-gpt6-20261123-draw8-inversion-fe119eea8b3d4ce5`, GitHub identity lease originally and remotely established **2026-11-23T01:05:52.310Z**. **70-minute release threshold 02:15:52.310Z**, UTC; check actual runtime clock after each checkpoint, do not release before. The earliest of the user's 90-minute scheduler and this threshold governs termination. File mutation of `.lease.json` only at final release.
 
