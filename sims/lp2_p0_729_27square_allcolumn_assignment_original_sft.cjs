@@ -162,6 +162,22 @@ function stripCollisionSum(source) {
   }
   return total;
 }
+/**
+ * Any global cyclic origin in the 729-cell square produces one of only 27
+ * distinct partitions into 27 unordered strips. Unknown strip key tables,
+ * any 27! order and all within-strip row permutations preserve this count.
+ */
+function cyclicStripCollisionSum(source,origin) {
+  assert.equal(source.length,729);
+  const shifted=Array.from({length:729},(_,i)=>source[(i+origin)%729]);
+  return stripCollisionSum(shifted);
+}
+const originalSquareSeams=Array.from({length:27},(_,origin)=>
+  cyclicStripCollisionSum(original,origin));
+assert.equal(originalSquareSeams[0],337);
+assert.equal(originalSquareSeams[13],327);
+assert.equal(Math.min(...originalSquareSeams),309);
+assert.equal(Math.max(...originalSquareSeams),337);
 const originalStripCollisions=stripCollisionSum(original);
 assert.equal(originalStripCollisions,337);
 
@@ -185,6 +201,20 @@ assert.equal(rowBlakeCollisions.length,25);
 assert.equal(rowBookCollisions.length,29);
 assert.ok(originalStripCollisions<Math.min(...rowBlakeCollisions));
 assert.ok(originalStripCollisions<Math.min(...rowBookCollisions));
+const allDonorSquareSeams=[];
+for (const donor of [training,blake])
+  for (let start=0;start+729<=donor.length;start+=729) {
+    const window=donor.slice(start,start+729);
+    const transposed=columnarEncode(window);
+    allDonorSquareSeams.push(...Array.from({length:27},(_,offset)=>
+      cyclicStripCollisionSum(window,offset)));
+    allDonorSquareSeams.push(...Array.from({length:27},(_,offset)=>
+      cyclicStripCollisionSum(transposed,offset)));
+  }
+const minNativeSquareSeam=Math.min(...allDonorSquareSeams);
+assert.equal(allDonorSquareSeams.length,54*27*2);
+assert.equal(minNativeSquareSeam,453);
+assert.ok(Math.max(...originalSquareSeams)<minNativeSquareSeam);
 const blakeCollisionMin=Math.min(...heldoutBlakeCollisions);
 const bookCollisionMin=Math.min(...bookCollisions);
 assert.ok(originalStripCollisions<blakeCollisionMin);
@@ -230,6 +260,9 @@ console.log(JSON.stringify({
   disjointBlakeControls:{count:donorScores.length,min:low,max:high,
     median:[...donorScores].sort((a,b)=>a-b)[12]},
   stripCollisionAllSecret:{original:originalStripCollisions,
+    anySquareSeam:{candidateOrigins:27,originalMin:Math.min(...originalSquareSeams),
+      originalMax:Math.max(...originalSquareSeams),afterRed13:originalSquareSeams[13],
+      nativeRowOrColumnMinimum:minNativeSquareSeam,donorSamples:allDonorSquareSeams.length},
     disjointBlakeControl:{count:heldoutBlakeCollisions.length,min:blakeCollisionMin,
       max:Math.max(...heldoutBlakeCollisions)},
     disjointBookControl:{count:bookCollisions.length,min:bookCollisionMin,
