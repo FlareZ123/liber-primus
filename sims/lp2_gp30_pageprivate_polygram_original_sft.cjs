@@ -14,7 +14,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const crypto = require("node:crypto");
 const ROOT = path.resolve(__dirname, "..");
-const read = file => fs.readFileSync(path.join(ROOT, file), "utf8");
+const read = file => fs.readFileSync(path.join(ROOT, file), "utf8").replace(/\r\n/g, "\n");
 const transcription = read("resources/liber-primus/lp2-transcription.txt");
 const gp = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const runes = new Map(gp.runes.map((ch, i) => [ch, i]));
