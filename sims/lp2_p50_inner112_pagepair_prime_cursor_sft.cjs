@@ -71,6 +71,69 @@ function ioc(data) {
   return counts.reduce((s, n) => s + n * (n - 1), 0) / (data.length * (data.length - 1));
 }
 
+/**
+ * Stronger, explicitly separate ciphertext-feedback countermodel. The
+ * uncommon repeated ciphertext rune encodes a reserved plaintext EA.
+ * All nonzero GP29 successor differences enumerate 28 other symbols.
+ * It is a candidate codec, not an authenticated Cicada mechanic.
+ * @param {number[]} data GP29 input tape, physical-page local.
+ * @param {number} page Original page slot, including p50.
+ * @param {'sorted'|'cyclic'} order Codebook enumeration.
+ * @param {-1|1} direction -1 decrypt / +1 encrypt.
+ * @returns {number[]}
+ */
+function rankTransform(data, page, order, direction) {
+  if (!data.length) return [];
+  const out = [data[0]];
+  const start = core[2 * page];
+  const stride = core[2 * page + 1] + 1;
+  for (let j = 1; j < data.length; j++) {
+    const k = (primes[start + stride * j] - 1) % 28;
+    const lastCipher = direction === -1 ? data[j - 1] : out[j - 1];
+    if (direction === -1) {
+      const current = data[j];
+      if (current === lastCipher) {
+        out.push(28);
+      } else {
+        const rank = order === 'sorted'
+          ? current - Number(current > lastCipher)
+          : (current - lastCipher + 28) % 29;
+        out.push(((rank - k) % 28 + 28) % 28);
+      }
+    } else if (data[j] === 28) {
+      out.push(lastCipher);
+    } else {
+      const rank = (data[j] + k) % 28;
+      out.push(order === 'sorted'
+        ? rank + Number(rank >= lastCipher)
+        : (lastCipher + rank + 1) % 29);
+    }
+  }
+  return out;
+}
+const rankVariants = ['sorted', 'cyclic'].map((order) => {
+  const candidate = [];
+  for (const p of pages) {
+    const decodedPage = rankTransform(p.ciphertext, p.page, order, -1);
+    assert.deepEqual(rankTransform(decodedPage, p.page, order, +1), p.ciphertext);
+    candidate.push(...decodedPage);
+  }
+  // Use actual solved p57 GP29 as a native-language, 95-rune positive
+  // under the frozen p55 source-key pair (never fitting a p57 key).
+  const planted = rankTransform(original.get(57), 55, order, +1);
+  assert.deepEqual(rankTransform(planted, 55, order, -1), original.get(57));
+  return {
+    order,
+    recoveredRunes: candidate.length,
+    reservedEACount: candidate.filter((x) => x === 28).length,
+    ioc: ioc(candidate),
+    first40GpTokens: candidate.slice(0, 40).map((i) => corpus.translit[i])
+  };
+});
+assert.deepEqual(rankVariants.map((r) => r.reservedEACount), [86, 86]);
+assert.ok(Math.abs(rankVariants[0].ioc - 0.03525637764084454) < 1e-12);
+assert.ok(Math.abs(rankVariants[1].ioc - 0.03527852903315905) < 1e-12);
+
 const ciphertext = pages.flatMap((p) => p.ciphertext);
 const decoded = pages.flatMap((p) => transform(p.ciphertext, p.page, -1));
 assert.equal(decoded.length, 12956);
@@ -93,6 +156,7 @@ const result = {
   first20GpIndices: decoded.slice(0, 20),
   first20GpTokens: decoded.slice(0, 20).map((i) => corpus.translit[i]),
   solvedP57PositivePlant: plainPlant.length,
+  rank28CiphertextFeedbackVariants: rankVariants,
   pageIocs: pages.filter((p) => p.ciphertext.length).map(
     (p) => ({ page: p.page, ioc: ioc(transform(p.ciphertext, p.page, -1)) })
   )
