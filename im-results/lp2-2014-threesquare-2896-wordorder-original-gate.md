@@ -1,6 +1,6 @@
 # 2014 triple-square word order and complete GP28 word-key inverses across LP2
 
-**Agent 8, 23 November 2026. Classification: three source-led original-cipher finite negatives.** No previously unknown plaintext, authenticated word permutation, cipher key, or destination was recovered. The [read-only reproducible CJS test](../sims/lp2_2014_threesquare_2896_words_source_sft.cjs) was executed against the exact seven GitHub source files in an in-memory Node-compatible runtime with all assertions passing. The result is limited to the stable numeric-rank permutations defined below.
+**Agent 8, 23 November 2026. Classification: bounded source-led original-cipher finite negatives, including direct prime/totient keys.** No previously unknown plaintext, authenticated word permutation, cipher key, or destination was recovered. The [read-only reproducible CJS test](../sims/lp2_2014_threesquare_2896_words_source_sft.cjs) was executed against the exact seven GitHub source files in an in-memory Node-compatible runtime with all assertions passing. The result is limited to the stable numeric-rank permutations defined below.
 
 ## Source-led, falsifiable route
 
@@ -54,6 +54,19 @@ A more economical receiver uses the same **99 authentic printed historical squar
 
 Both resemble the unmodified source IoC **0.034478397865** and are far below every independent native-GP control. Both exact decoder/encoders recover **all 12,956 source ciphertext runes**, and both independently encrypted **2,896-word** Gibran genuine-language plants recover completely. Neither yields sustained prose or a candidate key. This retires the **simplest** use of the 99 source values as wordwise Caesar shifts before considering the more elaborate stateful escape model below. The historical matrices do not actually instruct the player to apply wordwise additive encipherment.
 
+## LP1-authenticated prime/totient interpretation of source-square word keys
+
+The genuine solved LP1 text explicitly says **THE PRIMES ARE SACRED** and **THE TOTIENT FUNCTION IS SACRED**. Those instructions motivate two narrowly specified *alternatives* to using the historical 99 square numbers directly: replace each source square number \(S_w\) with \(\varphi(S_w)\), its Euler totient, or \(\pi(S_w)\), the count of primes at most \(S_w\), before using the result as a GP29 wordwise additive key. For each complete original ciphertext word and both original ± cipher directions, apply \(P_i=(C_i\pm f(S_{w\bmod99}))\bmod29\) with no free phase, skip, secret word alphabet or value fitting. The 2,896 complete source words and 12,956 original runes remain intact.
+
+| Historical square value function | Additive sign | Whole-source GP29 IoC |
+| --- | ---: | ---: |
+| Euler totient \(\varphi(S)\) | − | **0.034472082513** |
+| Euler totient \(\varphi(S)\) | + | **0.034490063391** |
+| Prime-counting \(\pi(S)\) | − | **0.034485988202** |
+| Prime-counting \(\pi(S)\) | + | **0.034479494114** |
+
+All four are close to the intact ciphertext value **0.034478397865**; no one yields a native-like plaintext or reliable long-word passage. The exact source-native CJS reproducer now asserts **4/4 full-original GP29 forward recoveries** and independently **4/4 genuine 2,896-word GP-native source recoveries** for these prime/totient alternatives. Because solved LP1 attests the *words* "primes" and "totient" while the 2014 form only attests the three square objects, applying either function to those 2014 values remains a source-motivated *conjecture*. Retire these precisely stated direct whole-word additive interpretations without widening to unfixed factor arithmetic.
+
 ## Full 12,956-rune changing-state inverse using the same source numbers
 
 The previous test only rearranges whole words. A separate *plaintext-producing* receiver uses the **actual 99 original square numbers**, in printed order, as a changing word key. This tests whether the exact 29×99+25 capacity match supplies an anti-repeat cipher clock. It is a stronger and different claim than word transposition.
@@ -82,6 +95,6 @@ This full-rune result also addresses a crucial limitation of the word-order bran
 
 ## Decision
 
-The source-anchored **29 cycles of 99 words plus 25** is numerically exact, and unlike prior 49-fragment tests on p8/p33 it has a true book-wide 2,896-complete-word input. Nevertheless **none of the eight historical-square stable-rank inverse permutations reveals an ordered native-prose word-length signal**. Retire the direct 5/7/5 ascending-value-sort whole-word transposition, the direct 99-value GP29 per-word additive decoder and the exact source-square-word-key GP28 escape decoder, without optimizing alignment, introducing secret cell ranks, or hunting for better phase/square order. Different source-licensed transpositions, a changing-state word permutation, external keys, non-prose contents, and deliberate alteration of printed word boundaries remain untested. Since any word permutation preserves the original near-uniform GP29 letter histogram, it cannot by itself turn this ciphertext into ordinary GP-native text; this test addresses only the possibility of an *additional* word-order layer.
+The source-anchored **29 cycles of 99 words plus 25** is numerically exact, and unlike prior 49-fragment tests on p8/p33 it has a true book-wide 2,896-complete-word input. Nevertheless **none of the eight historical-square stable-rank inverse permutations reveals an ordered native-prose word-length signal**. Retire the direct 5/7/5 ascending-value-sort whole-word transposition, the direct 99-value GP29 per-word additive decoder the direct square-prime/totient GP29 word keys, and the exact source-square-word-key GP28 escape decoder, without optimizing alignment, introducing secret cell ranks, or hunting for better phase/square order. Different source-licensed transpositions, a changing-state word permutation, external keys, non-prose contents, and deliberate alteration of printed word boundaries remain untested. Since any word permutation preserves the original near-uniform GP29 letter histogram, it cannot by itself turn this ciphertext into ordinary GP-native text; this test addresses only the possibility of an *additional* word-order layer.
 
 The relation 2,896=29·99+25 was noticed after the original corpus counts were known, and several other source numbers divide or nearly divide this same count. It must not be treated as independent evidence of intentional design. No authoritative solved-pages status is changed.
