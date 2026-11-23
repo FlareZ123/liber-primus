@@ -185,6 +185,74 @@ function sourceRunicFirstParty() {
     allKeyFourierIncompatibilities: excludedFourierModes(spectrum(counts)), deltaCounts: counts};
 }
 
+/**
+ * Stronger source-visible case: allow unrelated stationary additive increment
+ * laws in EACH of the nine physically printed visual chapters, rather than
+ * one shared unknown distribution for the whole book. The key's best zero-
+ * difference probability in a chapter is its rarest plaintext difference.
+ *
+ * Also calculate the mathematically OPTIMISTIC floor for all 55 independent
+ * rune-bearing page keys and how many arbitrary contiguous page-zone resets
+ * would be needed to make the expected doublet count <= 86. This is an
+ * expectation bound, not a deterministic impossibility for any chosen pad.
+ * @param {number[]} data
+ */
+function chapterAndPageKeyFloors(data) {
+  const zones = [[0,2],[3,7],[8,14],[15,22],[23,26],
+    [27,32],[33,39],[40,53],[54,55]];
+  const pageRows = [];
+  const chapterRows = zones.map(()=>Array(29).fill(0));
+  let pos=0;
+  for (const page of originalPages) {
+    if (!page.indices.length) continue;
+    const row=Array(29).fill(0);
+    for(let i=1;i<page.indices.length;i++)
+      row[(data[pos+i]-data[pos+i-1]+29)%29]++;
+    const chapter=zones.findIndex(([a,b])=>page.page>=a && page.page<=b);
+    assert.ok(chapter>=0);
+    row.forEach((v,r)=>chapterRows[chapter][r]+=v);
+    pageRows.push(row);
+    pos+=page.indices.length;
+  }
+  assert.equal(pos,12956);
+  assert.equal(pageRows.length,55);
+  assert.equal(chapterRows.reduce((n,c)=>n+c.reduce((a,b)=>a+b,0),0),12901);
+  const minSum=rows=>rows.reduce((n,c)=>n+Math.min(...c),0);
+  const fixedChapterFloor=minSum(chapterRows);
+  const fullyVariablePageFloor=minSum(pageRows);
+
+  // Exact partition DP: each zone contains >=1 whole original page; an
+  // unconstrained stationary key-increment distribution per zone; minimize
+  // expected zero-deltas over ALL possible cuts at original physical seams.
+  const size=pageRows.length;
+  const intervalCosts=Array.from({length:size},()=>new Float64Array(size+1));
+  for(let i=0;i<size;i++){
+    const counts=new Int32Array(29);
+    for(let j=i+1;j<=size;j++){
+      pageRows[j-1].forEach((x,r)=>counts[r]+=x);
+      intervalCosts[i][j]=Math.min(...counts);
+    }
+  }
+  let prior=Array(size+1).fill(Infinity);
+  prior[0]=0;
+  let firstAchievableZones=null;
+  const fixedZoneFloor={};
+  for(let z=1;z<=size;z++){
+    const next=Array(size+1).fill(Infinity);
+    for(let j=z;j<=size;j++)
+      for(let i=z-1;i<j;i++)
+        next[j]=Math.min(next[j],prior[i]+intervalCosts[i][j]);
+    prior=next;
+    if(z===10 || z===20)fixedZoneFloor[z]=next[size];
+    if(firstAchievableZones===null && next[size]<=86)
+      firstAchievableZones=z;
+  }
+  assert.equal(prior[size],fullyVariablePageFloor);
+  return {nineVisibleChapterFloor:fixedChapterFloor,
+    fiftyFiveIndependentPageFloor:fullyVariablePageFloor,
+    minimumArbitraryPageZonesForAtMost86ExpectedDoublets:
+      firstAchievableZones, fixedZoneFloor};
+}
 const counts = [];
 const donors = [
   ['Gibran', donor(read('resources/control/gibran_prophet_58585.txt'))],
@@ -197,6 +265,8 @@ for (const [name, source] of donors) {
   const minima = [];
   const originalShapedRepeats = [];
   const rarestResidues = [];
+  const chapterFloors=[], pageFloors=[], zone10Floors=[], zone20Floors=[];
+  const requiredZoneCounts=[];
   let sourceShapeFourierFailures = 0;
   // This is exactly the source-shaped 128-plant experiment, seeded once
   // per donor and advanced continuously through all 2,896 word slots.
@@ -212,6 +282,13 @@ for (const [name, source] of donors) {
     }
     assert.equal(plant.length, original.length);
     const histogram = differences(plant);
+    const stateful=chapterAndPageKeyFloors(plant);
+    chapterFloors.push(stateful.nineVisibleChapterFloor);
+    pageFloors.push(stateful.fiftyFiveIndependentPageFloor);
+    zone10Floors.push(stateful.fixedZoneFloor[10]);
+    zone20Floors.push(stateful.fixedZoneFloor[20]);
+    requiredZoneCounts.push(
+      stateful.minimumArbitraryPageZonesForAtMost86ExpectedDoublets);
     const min = Math.min(...histogram);
     minima.push(min);
     originalShapedRepeats.push(histogram[0]);
@@ -233,6 +310,11 @@ for (const [name, source] of donors) {
   }
   minima.sort((a, b) => a - b);
   originalShapedRepeats.sort((a, b) => a - b);
+  const range = seq=>{
+    const copy=[...seq].sort((a,b)=>a-b);
+    return {min:copy[0],median:copy[64],max:copy[127],
+      samplesAtOrBelow86:copy.filter(x=>x<=86).length};
+  };
   counts.push({donor: name, controls: 128, sourceWords: source.nWords,
     sourceRunes: source.nRunes, minimumNativeDifferenceCount: {
       min: minima[0], median: minima[64], max: minima[127]},
@@ -241,6 +323,17 @@ for (const [name, source] of donors) {
     dominantRarestDelta: rarestResidues.reduce((acc, x) =>
       (acc[x] = (acc[x] || 0) + 1, acc), {}),
     sourceShapeFourierFailures,
+    sourceResetKeyFloors: {
+      nineVisibleChapters:range(chapterFloors),
+      tenFreelyPlacedPageZones:range(zone10Floors),
+      twentyFreelyPlacedPageZones:range(zone20Floors),
+      fiftyFiveIndependentPages:range(pageFloors),
+      plantsWithAnyPageSeamPartitionMatching86:
+        requiredZoneCounts.filter(x=>x!==null).length,
+      minimumRequiredPageZonesAmongThosePlants:
+        requiredZoneCounts.filter(x=>x!==null).length ?
+        Math.min(...requiredZoneCounts.filter(x=>x!==null)) : null
+    },
     allKeyFourierIncompatibilitiesFullDonor: excludedFourierModes(
       spectrum(source.fullSourceDeltas))});
 }
@@ -250,6 +343,18 @@ assert.deepEqual(counts.map(x => x.nativeActualRepeatCount),
   [{min:381,max:486},{min:400,max:492}]);
 assert.ok(counts.every(x=>x.minimumNativeDifferenceCount.min > 86));
 assert.deepEqual(counts.map(x => x.sourceShapeFourierFailures),[50,128]);
+assert.deepEqual(counts.map(x => x.sourceResetKeyFloors.nineVisibleChapters),
+  [{min:149,median:174,max:193,samplesAtOrBelow86:0},
+   {min:161,median:192,max:221,samplesAtOrBelow86:0}]);
+assert.deepEqual(counts.map(x => x.sourceResetKeyFloors.fiftyFiveIndependentPages),
+  [{min:81,median:96,max:110,samplesAtOrBelow86:10},
+   {min:88,median:106,max:124,samplesAtOrBelow86:0}]);
+assert.deepEqual(counts.map(x => x.sourceResetKeyFloors.tenFreelyPlacedPageZones),
+  [{min:126,median:146,max:166,samplesAtOrBelow86:0},
+   {min:136,median:162,max:187,samplesAtOrBelow86:0}]);
+assert.deepEqual(counts.map(x => x.sourceResetKeyFloors.twentyFreelyPlacedPageZones),
+  [{min:107,median:122,max:141,samplesAtOrBelow86:0},
+   {min:118,median:136,max:160,samplesAtOrBelow86:0}]);
 assert.equal(counts[0].allKeyFourierIncompatibilitiesFullDonor[0].harmonic,1);
 assert.equal(counts[1].allKeyFourierIncompatibilitiesFullDonor[0].harmonic,1);
 
