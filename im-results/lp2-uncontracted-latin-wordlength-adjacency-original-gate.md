@@ -41,6 +41,27 @@ The manuscript also scores approximately like **256 fixed-seed within-book permu
 
 **Eight deliberately small manuscript-layout operations** were also tested on the original printed line groups: as printed, reverse each line, reverse odd/even lines, reverse the order of lines, read vertical columns top/bottom, or alternate column direction. None restored source-typical adjacent-length grammar across both independent original page scopes **p16–21** and **p40–53**; the vertical-column family makes the held-out score worse (≈−0.041 vs ≈−0.030 as printed). A mild increase for reversed line order remains far below native controls. This excludes only these exact orderings as a useful self-evident solution step, not every imaginable transposition.
 
+## Raw-Latin whole-word cipher gate: a second invariant changes the decision
+
+The original source contains **30,281 possible unordered within-word position pairs**, with **811 actual same-symbol pairs** across its exact 2,896 printed complete words. This is lower even than the **1,044.17** expected from independent uniform GP29 symbols conditioned on the *same original lengths*. Existing native-GP evidence already identified this unusually low word-internal collision count; the present new test explicitly removes the **solved-GP ligature assumption** and uses ordinary uncompressed Latin words, which are the strongest alternative to moving printed spaces.
+
+For a source word `w`, define `E(w) = Σ_g count_w(g)(count_w(g)−1)/2`. Any deterministic single-valued letter substitution inside that word preserves or increases `E(w)`; even a many-to-one alphabet cannot split identical plaintext letters. Any permutation of its letter positions preserves `E(w)` exactly. Reordering entire words also preserves `Σ E(w)`. These are **all-secret**, algebraic invariants with no key fit, and the SFT tests a distinct private Caesar map for each word as a positive.
+
+The following are **independent original-length-conditioned source-language controls**: for each of the 14 observed original word lengths, calculate the actual uncompressed Latin donor's mean and variance of `E(w)`, multiply by the original number of length slots, then sum. All source word lengths 1–14 have donor witnesses.
+
+| Uncompressed source | Original ciphertext E | Expected source E | Conditional SD | Standardized gap |
+|---|---:|---:|---:|---:|
+| Shakespeare | **811** | 1,297.679 | 33.834 | −14.384 |
+| Gibran | **811** | 1,296.524 | 33.878 | −14.332 |
+| Emerson | **811** | 1,315.300 | 33.681 | −14.973 |
+| Editor-normalized genuinely solved LP1 | **811** | 1,377.925 | 34.544 | −16.412 |
+
+The standardized gaps reflect the **specified conditional independent-word resampling model**, with source-word repetitions and short solved-LP1 length-14 samples; they are descriptive, not proof of a universal impossibility for specially constructed language. The original author-authentic solved sample supports the gap with independent 761-word vocabulary; the earlier [GP-ligature-native all-secret invariants](lp2-wordinner-equality-multiplicity-allsecret-gate.md) give a separate register.
+
+**Causal conclusion:** The earlier uncompressed-Latin two-letter marginal match is real, yet **uncompressed orthography alone, arbitrary whole-word reordering and any fixed word-local substitution cannot account for the printed ciphertext's word-internal equality deficit** on these source-language controls. A viable intact-boundary Latin decoder must use a changing position/state-sensitive letter encoder, a one-to-many mapping, or other explicit operation altering within-word equality. A segmentation-changing decoder could also escape. This narrows the alternative *without* inventing an unconstrained codebook or asserting that literal spaces are false.
+
+[Updated Windows Node22 PASS, including exact 811/2,896-rune-word original invariant and four raw-Latin controls](https://github.com/FlareZ123/liber-primus/actions/runs/45133126986).
+
 ## Causal research decision
 
 1. **Keep two rivals alive:** (a) ciphertext spaces have been deliberately moved/encoded, and (b) printed whole-word lengths reflect uncompressed source text whose words were reordered or otherwise deliberately padded/modified. A fixed raw-Latin orthography explains the former word-count exclusion but by itself **does not explain absent adjacent-word grammar**.
