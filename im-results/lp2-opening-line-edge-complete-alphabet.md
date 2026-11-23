@@ -1,4 +1,4 @@
-# Opening 33-line perimeter: a complete GP29 first-occurrence alphabet, and a failed direct 2014 Vigenère receiver
+# Opening 33-line perimeter: the GP29 first-occurrence alphabet and two failed historical Vigenère receivers
 
 **Agent37, 23 November 2026. Classification: an exact previously unreported original-source observation and a reproducible exploratory calibration; no new plaintext, authenticated edge-reading instruction, final Cicada key, or author's operation.** Related Director [#2394](https://github.com/FlareZ123/liber-primus/issues/2394), prior [33-line geometric baseline](lp2-p0-p2-33line-13column-keyless-original-gate.md), [Windows Node22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45186896564), [single-file original SFT](../sims/lp2_opening_33line_edge_alphabet_2014_original_sft.cjs).
 
@@ -39,8 +39,32 @@ P_i=C_i-K_{i\bmod29}\pmod{29}.
 - Exact original replay: **650/650** from the derived inverse.
 - Actual solved p57-native rune text encoded with this same cipher plant recovers **650/650** (periodically repeated known native control).
 
-Two natural static alphabet applications to the **independent 13-red-rune p0 title**, mapping original runes to first-occurrence ranks and the reverse keyed permutation, also yield no identifiable source-native instruction. The entire original opening is therefore unsolved; the direct historical Vigenère reader is retired. The result does **not** exclude using the 29-permutation as an IV or alphabet key for an explicitly **changing-state** codec, nor a different, authored treatment of line shells. Such a use first requires a printed or first-party instruction selecting its clock and consumption law; the pair counts, source geometry, and 23-line coverage do not supply that rule.
+Two natural static alphabet applications to the **independent 13-red-rune p0 title**, mapping original runes to first-occurrence ranks and the reverse keyed permutation, also yield no identifiable source-native instruction. The entire original opening remains unsolved; this plain-key-periodic receiver fails, and the separate custom-tabula-recta construction below also fails. The result does **not** exclude using the 29-permutation as an IV or alphabet key for an explicitly **changing-state** codec, nor a different, authored treatment of line shells. Such a use first requires a printed or first-party instruction selecting its clock and consumption law; the pair counts, source geometry, and 23-line coverage do not supply that rule.
+
+## Director #2401: the same alphabet as a custom Vigenère tabula recta
+
+The first consumer used the **29 exterior-first-occurrence glyphs as an ordinary numeric repeating key**. A materially different, already historical primitive is a **Vigenère tabula recta under a source-chosen alphabet order**. The actual 2014 post-square source demonstrates subtractive GP Vigenère and uses a fixed reversed rune alphabet. For this bounded experiment, conditionally **replace** the canonical GP ordering with the first-occurrence exterior ordering, and use the physically disjoint first **13 red original p0 heading runes** as a periodic key. The source places both operands before the opening body; it does **not** tell the player to replace the published alphabet, so this is an explicitly conditional original-cipher test.
+
+Let \`A=[2,22,3,27,13,0,15,10,25,9,18,6,17,11,21,28,12,16,7,24,8,19,20,1,4,23,5,26,14]\` be the actual 29-glyph permutation in canonical GP indices, \`rank_A\` its inverse, and \`K=[15,8,18,3,6,19,27,0,15,26,18,21,5]\` the independent printed red13 heading. The complete frozen inverse is
+
+\[
+P_i=A\left[(\operatorname{rank}_A(C_i)-\operatorname{rank}_A(K_{i\bmod13}))\bmod29\right].
+\]
+
+The opposite global sign is one predeclared orientation control. The original 33 physical black lines stay in place: exactly **66** line exteriors supply the alphabet and **650** untouched interiors are the target, split into **225** original p0 and a disjoint **425** p1–p2 runes. Every original target rune consumes exactly one of the 13 key positions; no F exception, language-ranked phase, word reset, secret alphabet trial, or edited source byte is admitted.
+
+| Fixed source-first-occurrence tabula recta | All 650 IoC | p0 (225) IoC | p1–2 untouched (425) IoC |
+| --- | ---: | ---: | ---: |
+| Original untouched printed core | 0.034149579234 | — | — |
+| Historical subtractive direction | **0.034505155861** | **0.034761904762** | **0.034972253052** |
+| Opposite direction control | **0.034604717317** | **0.034920634921** | **0.034317425083** |
+
+The subtractive output opens \`I H Y IA O T C P P H O F N R D C B B T F S OE...\`, and the opposite opens \`A O W I R OE IA NG EO EO L P IA I I T EO F OE...\`. All fixed source outputs remain close to uniform 1/29 and produce neither 150 original prose runes nor a disjoint p1–2 plaintext continuation. Both exact original complete 650-rune replays succeed; two forward-encrypted **650/650 authentic solved-p57 GP29 plaintext plants** decode exactly under their respective fixed directions. This demonstrates executable inversion, not original-key authentication.
+
+The [complete Windows Node22 original-source SFT](../sims/lp2_p0_edge29_red13_customvigenere_original_sft.cjs) reconstructs all 33 line breaks and 729 original input runes, asserts the 46-edge alphabet cover, keeps red13 and the 650 target runes disjoint, and prints **both entire 650-rune output streams** for independent scrutiny.
+
+**Decision:** the source-conditional **custom tabula recta + authentic red13 periodic key** fails to recover the p0 body or its p1–2 heldout passage under either historically defensible direction. This closes the exact two-operand stationary Vigenère transfer in Director #2401. The unusual 46-edge alphabet coverage remains an exploratory source observation without a printed instruction that it should replace the standardized Gematria Primus order. A changing-state use would require a separately sourced clock or receiver before further trial.
 
 ## What changes the next research choice
 
-A plausible investigator may now keep the exact source-derived **29-symbol full alphabet** as an *exploratory source sidecar*, rather than hand-guess 29 alphabet symbols. However, the original 650-core has nearly uniform GP29 frequencies and previously failed key-independent stationary-period13/50 substitution gates. A **stationary substitution table** cannot turn that original core into native GP prose under the documented controls; a new proposal must explicitly alter the observed rune values with per-position state, change the interpretation register, or alter the segmentation. Requiring a genuine source-selected operation before testing on original ciphertext prevents another arbitrarily keyed permutation from producing misleading fragmentary phrases.
+A plausible investigator may now keep the exact source-derived **29-symbol full alphabet** as an *exploratory source sidecar*, rather than hand-guess 29 alphabet symbols. However, the original 650-core has nearly uniform GP29 frequencies and previously failed key-independent stationary-period13/50 substitution gates. Neither tested historical Vigenère receiver recovers native GP prose; stationary substitution tables also cannot turn the source core into native-GP prose under the documented key-independent controls; a new proposal must explicitly alter the observed rune values with per-position state, change the interpretation register, or alter the segmentation. Requiring a genuine source-selected operation before testing on original ciphertext prevents another arbitrarily keyed permutation from producing misleading fragmentary phrases.
