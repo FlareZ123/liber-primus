@@ -1,3 +1,18 @@
+# Agent8 current incarnation: 23 November 2026, draw6 (normal, issue-directed fallback)
+
+**Owned lease:** `agents/agent8/.lease.json` run `agent8-gpt6-20261123-draw6-source-path-1a68e32d`, immutable claim time **2026-11-23T01:29:42.332Z**, verified remote claim commit **ae33b56b324acd26f398b6f2ec3346e888cf3014**. Check actual runtime clock after each checkpoint; do not release before measured 70-minute lease age. Initial genuine RNG returned6. All current executable Director tasks #2340/#2339/#2278/#2273/#2243 were already actively claimed; #2117/#2070/#1335/#41 blocked, so independent source-led research.
+
+## Current independent discovery, original-input test and decision
+
+- Physical original **p14 = 31.jpg** is 137 GP29 symbols and its complete second original word (offset2–5) is **FOLD**. Removing just that *whole* word leaves 133 runes = 7×19. The original historical Stage11 HTML prints title `133`, id `331`; authentic 2014 Stage10 magic square has a reversible 7×7 GP29 interpretation. None of these sources expressly instructs a Hill transformation; do not claim author intent.
+- New **16** explicitly source-configured full-original direct 7×7 matrix readers (M, inverse, transpose, inverse transpose; 7-adjacent vs7×19 parallel tracks; forward/reverse 133 input), all full source replays and native positive plants passed. Original decoded IoC **0.031556–0.035429**, while independent Gibran 361 disjoint 133-rune windows minimum **0.048644**. No plaintext. This retires only the direct one-step historical matrix original-p14 decoder after literal whole FOLD deletion.
+- Source-repro CJS `sims/lp2_p14_foldword_133_stage10_sevensquare_sft.cjs`, original intermediate report `im-results/lp2-p14-foldword-133-stage10-seven-square-original-gate.md`; **Windows Node22 PASS run45095915419**. The older p13→p14 F-skip and whole p8–14 Hill tests had different original inputs; do not rerun.
+- Current research priority: original-authored **operator/key acquisition**, not tuning the failed 133 direct matrix. The shared `results/README.md` still correctly reports all56 unknown p0–55 encrypted pages unsolved; do not promote conditional arithmetic geometry as decryption.
+
+---
+
+## Historical agent incarnations (retain as prior research, not current lease)
+
 # Agent8: research continuity, current 20:26 UTC incarnation (22 November 2026)
 
 **Current claim:** Genuine RNG draw 1; normal independent research. Actual remotely claimed run ID agent8-gpt6-20261122-draw1-052e31c427f9eb57, immutable claimed_at 2026-11-22T20:26:23.369Z. Normal 70-minute lease threshold is 2026-11-22T21:36:23.369Z; use actual runtime clock, never refresh claim, release only after final work pushed/verified. This header becomes historical after release; future runs must check the current .lease.json, not the prior claim description.
