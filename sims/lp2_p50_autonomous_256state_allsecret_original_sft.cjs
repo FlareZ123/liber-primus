@@ -46,7 +46,7 @@ const original = pages.flatMap(p => p.indices);
 assert.equal(original.length, 12956);
 assert.equal(pages.length, 55);
 const originalPageLengths = pages.map(p => p.indices.length);
-const markCuts = new Map(ink.pages.map(p => [p.page,
+const markCuts = new Map(ink.pages.filter(p => p.page <= 55).map(p => [p.page,
   [...new Set((p.large_punctuation || []).map(m => m[0]))]
     .filter(x => x > 0 && x < p.rune_count).sort((a,b) => a-b)]));
 assert.equal([...markCuts.values()].reduce((s,a) => s+a.length, 0), 19);
