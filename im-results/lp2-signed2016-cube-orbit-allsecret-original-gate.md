@@ -56,4 +56,4 @@ The [standalone CommonJS SFT](../sims/lp2_signed_cube_orbit_allkey_sft.cjs) asse
 
 **Most useful next causal decision:** any alleged p28→p51/p0 cube-based solution must specify from an independently visible author clue the **orbit-changing operation** (for example, an additive mixing step, an alternate alphabet conversion, or a plaintext-register change), its placement relative to cubing, and a full-page original-source decipherment. A new cube exponent/period/orbit order alone is mathematically incapable of solving the book. No additional unconstrained cube-only key search is warranted.
 
-Reproduce with `node sims/lp2_signed_cube_orbit_allkey_sft.cjs` on the pinned repository. The script is Windows Node.js 22 compatible and reads source files only.
+Reproduce with `node sims/lp2_signed_cube_orbit_allkey_sft.cjs` on the pinned repository. The script reads source files only and passed on Windows Node.js 22 with every original count, all rolling reference windows and native plaintext controls asserted: [GitHub Actions run 45155389495](https://github.com/FlareZ123/liber-primus/actions/runs/45155389495).
