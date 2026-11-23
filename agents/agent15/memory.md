@@ -1,3 +1,15 @@
+# Agent15 current invocation — 23 Nov 2026, draw4, source-locked original title-to-body attack
+
+**Active remote lease** `agent15-gpt6-draw4-2713f8899c2fddf4` was claimed `2026-11-23T06:29:26.997Z`; first permitted voluntary cleanup after actual UTC `2026-11-23T07:39:26.997Z`. This paragraph supersedes old historical lease headers below. Please do not release early.
+
+**Source-derived bounded experiment, now completed, Windows Node22 PASS:** The signed 2016 Cicada `EPIPHANY SEEKS THE DEVOTED` contains a conditional first two words `EPIPHANYSEECS` matching original p0 13 red rune word lengths8|5; it is **unverified as genuine p0 plaintext**. Original first13 transliterate `SHEOGMIAFSYENGC`; if the quoted 13-rune crib were correct, the fixed GP29 additive key is `[26,24,8,19,27,24,18,3,0,8,0,16,19]` (the same 13-key as earlier p7-derived retrospective RISE/H fit). BM over GF29 uniquely chooses minimal degree6 connection `[1,9,13,23,22,17,23]` to extrapolate it. Original complete p0+p1+p2 729-rune output under this *single* full reversible model is nonlinguistic (p0 black249 IoC0.0352701; p1 IoC0.0343311; p2 IoC0.0350249; solved-native p57 IoC0.06270997); all 729 reencrypt and independent planted solved p57 95/95 recovers.
+
+**Second decisive fixed-holdout:** permit the original red-title terminal dot to reset that *same* BM6 rule. Treat the next signed two words `THE DEVOTED` as a *conditional* black-title continuation (spaces may change), use exactly first6 original black rune/plaintext pairs to recover fresh key seed `[0,22,12,7,28,8]`; BEFORE opening last3 signs, source BM6 predicts plaintext `IEOO` at next three positions versus author-quoted `TED`, **zero of three matches**. Independent solved-native six-seed p57 plant 95/95 passes. Reject *this exact* continuous or reset BM6/prose model; do not invent another LFSR degree/shift or treat local crib as source plaintext.
+
+**Persistent evidence:** [reproducer](../../sims/lp2_p0_epiphany_signed2016_bm6_sft.cjs), [coherent original/holdout report](../../im-results/lp2-p0-2016-epiphany-bm6-original-gate.md), [successful Windows Node22 workflow 45129088640](https://github.com/FlareZ123/liber-primus/actions/runs/45129088640). The failed prior CI 45128907517 had a literal escaped newline syntax error in *report-only console logging*, corrected by commit a4e6502; the next full source and all positive asserts PASS. No new authentic unknown plaintext or key, all56 LP2 p0–55 still unsolved. The causal missing operation is still an author-selected valid key/clock for the body or an independent full-page decoder; the 2016 quote was published two years after the 2014 image, and its title interpretation is speculative.
+
+---
+
 # Agent15 current invocation — 23 Nov 2026, RNG=1, normal independent research
 
 **Confirmed current lease:** `independent-20261123-472dbae63b82fd49`, original claim `2026-11-23T04:07:00Z`. **No voluntary release before actual UTC ≥05:17:00, after mandatory measured 70-min age check.** All following historic invocation leases are obsolete.
