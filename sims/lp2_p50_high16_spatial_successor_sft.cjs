@@ -110,6 +110,23 @@ for (let t = 0; t < simulations; t++) {
 }
 assert.equal(atLeastOriginalMaximum, 2);
 assert.equal(atLeastOriginalHighBand, 1);
+state = 0x4a4b4d4f;
+let withinRowAtLeastObserved = 0;
+for (let t = 0; t < simulations; t++) {
+  const tape = original.slice();
+  for (let row = 0; row < 32; row++) {
+    for (let col = 7; col > 0; col--) {
+      const other = randomNumber() % (col + 1);
+      const i = row * 8 + col, j = row * 8 + other;
+      [tape[i], tape[j]] = [tape[j], tape[i]];
+    }
+  }
+  if (edges.filter(([i,j]) => tape[i] >= 240 && tape[j] >= 240 &&
+    Math.abs(tape[i]-tape[j]) === 1).length >= 7) {
+    withinRowAtLeastObserved++;
+  }
+}
+assert.equal(withinRowAtLeastObserved, 43);
 const output = {
   status: 'PASS',
   source: 'original 32x8 LP2 printed numeric panel',
@@ -130,6 +147,9 @@ const output = {
   tailPlusOneMaximum: (atLeastOriginalMaximum + 1) / (simulations + 1),
   tailPlusOneHigh: (atLeastOriginalHighBand + 1) / (simulations + 1),
   nullBandMeans: means.map(v => v / simulations),
+  withinRowShuffleSeed: '0x4a4b4d4f',
+  withinRowMatchedOrExceeded: withinRowAtLeastObserved,
+  withinRowPlusOne: (withinRowAtLeastObserved+1)/(simulations+1),
   nullMaxHistogram: maxima,
   caution: 'Postselected spatial hypothesis; finite permutation tail is not global cryptanalytic discovery probability; no plaintext/opcode.'
 };
