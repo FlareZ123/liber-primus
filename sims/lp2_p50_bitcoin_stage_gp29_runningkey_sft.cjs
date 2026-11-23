@@ -117,4 +117,36 @@ assert.equal(output.length, 10);
 const raw57IoC = ioc(solved57);
 assert.ok(raw57IoC > 0.06);
 assert.ok(output.every(x => x.allIoC < 0.036 && x.holdoutIoC < 0.036));
-console.log('PASS: ten exact source Bitcoin-stage GP29 inverses; none recovers native prose; raw p57 IOC='+raw57IoC);
+// The signed 2013 Cicada BASE29 source gives one distinct, literal integer
+// serialization of the same source-selected Bitcoin private scalar.
+// Convert the *whole* 256-bit big-endian scalar to its minimal base29 digits,
+// and consume the digits as a page-continuous, phase-zero GP29 key.
+let integer = BigInt('0x' + bytes.toString('hex'));
+const base29 = [];
+while (integer > 0n) {
+  base29.unshift(Number(integer % 29n));
+  integer /= 29n;
+}
+assert.equal(base29.length, 53);
+assert.deepEqual(base29.slice(0, 8), [3, 28, 27, 4, 4, 14, 24, 6]);
+for (const sign of [-1, +1]) {
+  const decoded = ciphertext.map((c, i) => mod(c + sign * base29[i % base29.length]));
+  assert.deepEqual(decoded.map((p, i) =>
+    mod(p - sign * base29[i % base29.length])), ciphertext);
+  const planted = solved57.map((p, i) =>
+    mod(p - sign * base29[i % base29.length]));
+  assert.deepEqual(planted.map((c, i) => mod(c + sign * base29[i % base29.length])),
+    solved57);
+  const train = ioc(decoded.slice(starts.get(16), starts.get(22)));
+  const holdout = ioc(decoded.slice(starts.get(40), starts.get(54)));
+  const whole = ioc(decoded);
+  assert.ok(whole < .036 && train < .036 && holdout < .036);
+  console.log('P50_SOURCE_SIGNED_BASE29_SCALAR', JSON.stringify({
+    sign, keyLength:base29.length, wholeIoC:whole, trainIoC:train,
+    holdoutIoC:holdout, p55IoC:ioc(decoded.slice(starts.get(55))),
+    first38:decoded.slice(0, 38).map(v => lp2.translit[v]).join(' '),
+    solved57PlantRecovered:solved57.length
+  }));
+}
+
+console.log('PASS: twelve exact source Bitcoin-stage GP29 inverses; none recovers native prose; raw p57 IOC='+raw57IoC);
