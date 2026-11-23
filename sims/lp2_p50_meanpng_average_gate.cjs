@@ -60,6 +60,18 @@ function stats(bytes){
 // [10,20] filters [10,15]; row 1 [30,40] filters [25,15].
 assert.deepEqual(filter([10,20,30,40],2),[10,15,25,15]);
 assert.deepEqual(reconstruct([10,15,25,15],2),[10,20,30,40]);
+// A separate direct 'Mean' predicate requires no PNG unpacking: does the
+// independently selected missing-L fifth column literally contain the
+// seven-other-bytes arithmetic mean of each originally printed row?
+const meanRows=[];
+for(let row=0;row<32;row++){
+  const cells=source.slice(row*8,row*8+8);
+  const other=cells.filter((_,col)=>col!==4);
+  const mean=other.reduce((a,b)=>a+b,0)/7;
+  meanRows.push({observed:cells[4],floor:Math.floor(mean),nearest:Math.floor(mean+0.5),ceil:Math.ceil(mean)});
+}
+const rowMeanMatches={floor:meanRows.filter(x=>x.observed===x.floor).length,nearest:meanRows.filter(x=>x.observed===x.nearest).length,ceil:meanRows.filter(x=>x.observed===x.ceil).length};
+assert.deepEqual(rowMeanMatches,{floor:0,nearest:0,ceil:0});
 const avg=reconstruct(source);
 assert.deepEqual(filter(avg),source);
 // Literal PNG scanlines cannot be read directly from the 32x8 printed grid:
@@ -114,6 +126,7 @@ const output={
   shape:[32,8],bpp:1,
   literalPNGFilterHeadersValid:validLiteralHeaders,literalPNGFilterHeadersTotal:32,
   avg_filter_exact_replay:true,
+  missingLColumnAsMeanOfOther7RowBytes:rowMeanMatches,
   rawDeflateAtOffset0:{accepted:rawDeflateAccepts,length:rawDeflateLength,error:rawDeflateError,sourceNativePlant:true},
   original_stats:stats(source),avg_reconstructed_stats:stats(avg),
   decoded_4c_positions:avg.flatMap((v,i)=>v===0x4c?[i]:[]),
