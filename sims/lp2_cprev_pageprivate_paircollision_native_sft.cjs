@@ -7,8 +7,8 @@
  * Within one visible predecessor row, the pair-collision numerator is
  * exactly preserved under any bijection (regardless of the secret table).
  *
- * Donor plants sample exact GP29 source words matching every original
- * printed word length, then apply fresh page-private 29! permutations.
+ * Donor plants sample exact GP29 source words matching every page-local
+ * printed word-fragment length, then apply fresh page-private 29! permutations.
  * A negative finding is conditional on this authentic native prose model.
  */
 'use strict';
@@ -39,7 +39,7 @@ for (let i = 0; i < original.length; i++) {
     'Physical page and print-word layout must agree at position ' + i);
 }
 assert.equal(original.reduce((n, p) => n + p.indices.length, 0), 12956);
-assert.equal(layouts.flat().length, 2896);
+assert.equal(layouts.flat().length, 2928);
 
 const donors = Array.from({length: 30}, () => []);
 for (const section of native.sections) {
@@ -159,7 +159,7 @@ const report = {
   plantMin: qValues[0], plantMedian: qValues[Math.floor(N / 2)],
   plantMax: qValues[N - 1],
   sourcePages: original.length, sourceRunes: 12956,
-  printedWords: 2896, donorWords: native.sections.reduce(
+  printedPageFragments: 2928, donorWords: native.sections.reduce(
     (sum, sec) => sum + (sec.source_text.match(/[\u16a0-\u16ff]+/gu) || []).length, 0),
   initialSeed: '0xc4a5be33'
 };
