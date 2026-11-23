@@ -33,6 +33,20 @@ All four frozen operations **degrade** the original adjacent-length structure, s
 
 **Real-text planted positives:** four disjoint consecutive Gibran raw-Latin word-break samples were laid into the exact original chapter rune lengths; their boundary flags were permuted by the exact inverse and restored **bit-for-bit** on each chapter, under both attach-before and attach-after conventions. Each native donor window's English length gain exceeds its correctly encoded counterpart: original [0.02778, 0.06045, 0.00987, 0.01162] against encoded [−0.04228, −0.14153, −0.10704, −0.12365]. This validates the test's direction and sensitivity to a genuine source-shaped word-break permutation. It says nothing about any GP29 cipher attached to the letter values.
 
+## Independent full-rune anti-repeat constraint
+
+The same two frozen prime-width mappings can be applied to the **untouched 5,506 ciphertext rune indices**, instead of just the printed word-break flags. This tests whether a candidate inverse reading retains the ciphertext's highly exceptional near-forbidden identical-neighbor property. Equality counts are computed strictly within each of the four original chapters; the combined denominator is **5,502** neighboring rune pairs:
+
+| Chapter | As printed | Width-row→column | Width-column→row |
+| --- | ---: | ---: | ---: |
+| p0–2 (3 columns) | 4 | 26 | 26 |
+| p3–7 (5 columns) | 6 | 31 | 46 |
+| p8–14 (7 columns) | 9 | 55 | 68 |
+| p15–22 (11 columns) | 10 | 58 | 60 |
+| **Total** | **29** | **170** | **200** |
+
+For reference, the null uniform-GP29 expectation for 5,502 independent rune adjacencies is approximately **189.7 equal pairs**. The original source has only 29, while both canonical nonlocal reorderings return a near-random count (170 or 200). This is independent of the word-length model and requires no language or invented key. It means any hypothetical prime-width permutation that acted as the **last encryption layer on an already anti-repeat ciphertext** is mechanistically implausible: it would normally erase the anti-repeat signature before publication. A transposition *before* a later anti-repeat encoder is not excluded, but would require a new source-specified cipher layer, key, and clock. The test independently argues against promoting this visually appealing prime series into a standalone final transposition.
+
 ## Decision and missing plaintext bridge
 
 **Retire only the canonical, single-layer 3/5/7/11 transposition of printed word-boundary flags as a route back to original English prose.** Original source widths alone supply no key, 29→28 exception transport, alternative plaintext register or reversible full-cipher model. A completely separate unannounced value-changing cipher before or after a putative prime-width permutation could in theory hide plaintext, but adding one without an original instruction would not be an advancement.
