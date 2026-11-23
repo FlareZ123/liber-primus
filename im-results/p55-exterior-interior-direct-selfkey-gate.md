@@ -1,6 +1,6 @@
 # p55 circumference exterior → interior direct-key gate
 
-**Evidence classification (11 November 2026): bounded original-cipher negative, with exact reversible positive controls.** No unknown LP2 plaintext, authenticated key or decipherment method was recovered. This experiment tests a specific human-visible sequel to solved p57 and does not supersede the broader p55/43-unit research.
+**Evidence classification (11 November 2026): bounded original-cipher negative, with exact reversible positive controls.** No unknown LP2 plaintext, authenticated key or decipherment method was recovered. A complementary source-selected receiver test also tried the 33-rune p55 exterior as a repeated key for the full 256-byte p50 table via the 2013 base29 byte transport and p56 C−K/F-bypass rule; no valid byte-stream path exists for any of 66 sign/phase combinations. This experiment tests a specific human-visible sequel to solved p57 and does not supersede the broader p55/43-unit research.
 
 ## Source premise and frozen input
 
@@ -33,8 +33,18 @@ For comparison, the raw 43-rune interior score is **−11.2602620**, and the fir
 
 The nearest endpoint-mask alternative `a=b=+1` scores **−11.0211738** and also lacks coherent language. All exact candidates, native-control distributions, forward reconstructions and planted passage assertions are emitted by the reproducible SFT. The original unrecognized output of a bijective cipher is compatible with a wrong key; these round-trip checks demonstrate implementation correctness only.
 
+## Complementary receiver: p55 exterior33 as key for the p50 256-byte table
+
+The 2013 CicadaOS statement that “the key is all around you,” together with p57's circumference instruction, makes the exact 33-rune p55 exterior a plausible key candidate. This is distinct from the 14 already-tested exterior→interior self-key inverses above. The receiver was frozen as the full 256-byte p50 table from resources/liber-primus/lp2-grid-256.json.
+
+Use the published two-GP29-symbol byte transport for each p50 byte B: high=floor(B/29), low=B mod29. Repeat the source-ordered 33-rune exterior key across the resulting 512-symbol stream. The p56 solved-page operation supplies the candidate GP29 additive inverse C−K; the literal-F exception is tested permissively, allowing each ciphertext F either to bypass without consuming key or to be shifted to a non-F, while any non-F ciphertext that decodes to F is rejected. Each pair must reassemble to a valid byte in [0,255].
+
+**Result:** no complete byte-valid stream exists for **any of 66** combinations (both signs × all 33 initial phases), even with the permissive F-bypass branch. Failures occur within the first seven GP29 digits. Without F bypass, the source-fixed phase-zero C−K direction yields only **71/256** valid byte pairs; the opposite sign yields 61/256, and the best of all 66 no-skip phase/sign combinations reaches only **78/256**. Thus the 33-rune exterior does not decode the p50 table under this specific base29/repeating-key receiver.
+
+This is a bounded negative. It does not exclude a different original instruction, receiver, or non-Vigenere use of the exterior; it does not supply the missing full p55 decoder. The standalone original-input test is [sims/lp2_p55_outer33_p50_base29_key_gate.cjs](../sims/lp2_p55_outer33_p50_base29_key_gate.cjs).
+
 ## Decision
 
-Retire **the 14 explicit direct GP29 endpoint/exterior self-key readings of p55's 43 strict interiors** under the original page-local segmentation and clocks. Retain the original 33/43 geometry and the solved p57 instruction as independent evidence for a potential more elaborate operation. These failures do not exclude a source-fixed fold, non-GP register, an external key, or a new lossless stateful mechanism. A subsequent experiment should first find an independently recognizable readout or historical instruction that chooses its operation, rather than search further arbitrary endpoint coefficients.
+Retire **the 14 explicit direct GP29 endpoint/exterior self-key readings of p55's 43 strict interiors** under the original page-local segmentation and clocks, and the complementary p55-exterior33 → p50-256-byte base29 repeating-key receiver tested above. Retain the original 33/43 geometry and the solved p57 instruction as independent evidence for a potential more elaborate operation. These failures do not exclude a source-fixed fold, non-GP register, an external key, or a new lossless stateful mechanism. A subsequent experiment should first find an independently recognizable readout or historical instruction that chooses its operation, rather than search further arbitrary endpoint coefficients.
 
-**Reproduction:** [standalone CJS SFT](../sims/p55_exterior_interior_direct_key_sft.cjs), called by the existing [manual p57-word-circumference workflow](../.github/workflows/lp2-p57-word-circumference-manual.yml). [Successful original-source and planted-control CI run 43107344241](https://github.com/FlareZ123/liber-primus/actions/runs/43107344241), job `130814010198`.
+**Reproduction:** [14-mode p55 self-key CJS SFT](../sims/p55_exterior_interior_direct_key_sft.cjs), called by the existing [manual p57-word-circumference workflow](../.github/workflows/lp2-p57-word-circumference-manual.yml); complementary [outer33-to-p50 base29 receiver SFT](../sims/lp2_p55_outer33_p50_base29_key_gate.cjs). [Successful original-source and planted-control CI run 43107344241](https://github.com/FlareZ123/liber-primus/actions/runs/43107344241), job `130814010198`.
