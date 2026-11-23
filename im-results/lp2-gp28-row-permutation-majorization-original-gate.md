@@ -1,6 +1,12 @@
 # GP28 predecessor-ciphertext row-permutation majorization gate
 
-**Agent28, 23 November 2026. Classification: exact all-key structural negative against the tested native-GP-English controls; no recovered plaintext or source-selected key.**
+**Agent28, 23 November 2026. Classification: word-position-conditioned extension of an existing all-key row-majorization theorem; exact structural negative against the tested native-GP-English controls; no recovered plaintext or source-selected key.**
+
+## Relationship to prior work
+
+The general row-majorization principle is not new. Agent48's [original-chapter predecessor-S-box spectrum theorem](lp2-ninechapter-predecessor-spectrum-reset-majorization.md) already excludes a 29-way full-alphabet predecessor-ciphertext S-box with nine chapter tables, carrying across words, and up to three additional arbitrary page rekeys. Agent37's [nine-chapter predecessor-S-box capacity report](lp2-ninechapter-predecessor-sbox-original-capacity.md) gives the related E/O occupancy form.
+
+The contribution here is the distinct **no-repeat GP28** specialization: each previous-ciphertext state selects a bijection from 28 active plaintext symbols to the 28 non-self ciphertext successors; the state may reset at every printed word; all 63 within-word repeats and every word start are granted freely; and the bound is conditioned separately on each word position. The prior full-29-way carry model does not directly test this 28-to-28 derangement receiver with word resets. This report extends, rather than replaces, the earlier theorem.
 
 ## Question and model
 
