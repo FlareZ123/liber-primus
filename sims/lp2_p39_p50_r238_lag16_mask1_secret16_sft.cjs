@@ -184,7 +184,7 @@ assert.ok(restored.score>-600);
 assert.ok(real.score<-600);
 assert.ok(Math.min(...donorScores)>-600);
 const report={
-  case:'original p39 R238 red5 16 unknown key, p56 authentic 29-valued selective literal-F first-position mask'
+  case:'original p39 R238 red5 16 unknown key, p56 authentic 29-valued selective literal-F first-position mask',
   originalReceiverRuneCount:238,
   originalResidualScore:totalScore(observedInput),
   originalLiteralFPosition:literalFPosition,
