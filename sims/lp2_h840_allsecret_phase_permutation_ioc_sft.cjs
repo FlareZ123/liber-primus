@@ -110,3 +110,68 @@ console.log(JSON.stringify({
   originalGlobalIoc:originalIoc,
   consequence:'all-secret PERIOD840 bijective per-phase GP29 mono-rune output is incompatible with standard GP-native English'
 },null,2));
+
+
+// Source-visible nine physical LP2 chapter boundaries permit independent
+// secret 840-phase alphabets and a full clock reset at each chapter.
+// The invariant still holds *within* each source chapter: this generalizes
+// the global no-go to nine independently secret key schedules.
+const chapterPageStarts=[0,3,8,15,23,28,33,40,54,56];
+const firstByPage={};
+let cursor=0;
+for(const page of corpus.pages) {
+  firstByPage[page.page]=cursor;
+  cursor+=page.runic_count;
+}
+assert.equal(firstByPage[56],12956);
+const chapterStarts=chapterPageStarts.map(page=>firstByPage[page]);
+assert.deepEqual(chapterStarts,
+  [0,729,1874,3603,5506,6761,7960,9640,12648,12956]);
+/** Count all within-same-chapter, within-same-840-phase equal pairs.
+ * Every chapter may have a different arbitrary private 840×29 alphabet map.
+ * @param {number[]} values
+ */
+function chapterResetPhaseEquality(values) {
+  let matches=0,pairs=0;
+  const chapterMatches=[];
+  for(let c=0;c<chapterStarts.length-1;c++) {
+    const window=values.slice(chapterStarts[c],chapterStarts[c+1]);
+    const result=samePhaseEquality(window,period);
+    matches+=result.matches;
+    pairs+=result.pairs;
+    chapterMatches.push(result.matches);
+  }
+  return {matches,pairs,rate:matches/pairs,chapterMatches};
+}
+const originalNine=chapterResetPhaseEquality(original);
+assert.equal(originalNine.matches,267);
+assert.equal(originalNine.pairs,8127);
+assert.deepEqual(originalNine.chapterMatches,[0,4,31,48,12,12,28,132,0]);
+const expectedNine=[478,520,466,506,492,474,484,498,483,494];
+const nativeNine=offsets.map((offset,i)=>{
+  const span=native.slice(offset,offset+12956);
+  const result=chapterResetPhaseEquality(span);
+  assert.equal(result.matches,expectedNine[i]);
+  assert.equal(result.pairs,8127);
+  assert.ok(result.rate>0.057);
+  return {sourceOffset:offset,matches:result.matches,rate:result.rate};
+});
+const nativeNinePlant=native.slice(0,12956);
+const chapterCipher=[];
+for(let chapter=0;chapter<chapterStarts.length-1;chapter++) {
+  for(let i=chapterStarts[chapter];i<chapterStarts[chapter+1];i++) {
+    const phase=i-chapterStarts[chapter];
+    const secretShift=(17*phase*phase+13*chapter+11*phase+5)%29;
+    chapterCipher.push((nativeNinePlant[i]+secretShift)%29);
+  }
+}
+assert.deepEqual(chapterResetPhaseEquality(chapterCipher),
+  chapterResetPhaseEquality(nativeNinePlant));
+console.log(JSON.stringify({
+  hypothesis:'nine completely independent chapter-private 840-phase GP29 rune bijections',
+  sourceChapterStarts:chapterStarts,
+  sourceUnknownNine:originalNine,
+  sourceNativeNine:nativeNine,
+  fullLengthNineZoneNativePositive:chapterResetPhaseEquality(chapterCipher),
+  decision:'no native GP29 Book-of-Law whole-book reading under any nine-zone 840-phase private-rune cipher'
+},null,2));
