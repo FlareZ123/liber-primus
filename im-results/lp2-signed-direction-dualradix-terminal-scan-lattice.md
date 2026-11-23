@@ -48,6 +48,17 @@ Thus **DIRECTION is the sole nontrivial cross-radix/cross-spelling convergence**
 
 The earlier source-established `EPIPHANY / DEVOTED` route remains a distinct compatible anchor: `GP0(DEVOTED)=102`, `p50[102]=0W=32` under both radices, and physical p32 contains `GP0(EPIPHANY)=121` runes. The signed THE-follower words `PATH, WAY, MAP, ROAD` have plain literal GP0 sums `39,57,56,54`, selecting original recognizable physical page indices without this extra table indirection. The new DIRECTION result fills the **p55** receiver next to ROAD p54 and solved MAP p56/WAY p57, conditional on interpreting original JPEG basenames as page addresses.
 
+## Exhaustive original-token null census: why the selected word matters
+
+The two table addresses are **fixed by the actual signed word** through the 29-position chart. To distinguish a conspicuous observation from an arbitrary lookup, hold **all 256 original printed table tokens** fixed and enumerate every **65,280 ordered pair of distinct cell addresses** as an exact without-replacement token-order null. A cross-spelling/cross-radix equality is defined in advance as `base60(token[first]) = base59(token[second])`, with both selected output values identical. This is a *conditional source-token permutation benchmark*, not a global discovery-adjusted probability of Cicada authorship.
+
+- Exactly **249/65,280** arbitrary ordered token pairs satisfy the numerical equality, regardless of target type.
+- Exactly **56/65,280 = 0.000857843** land on any genuine 2014 original scan filename `17..74`.
+- Exactly **8/65,280 = 0.000122549** land on the **already independently studied original p55 scan `72.jpg`**.
+- Holding the literal/ligated **address difference14** fixed and checking all **242** possible in-range source-address pairs gives exactly two equality matches: original **98→112**, `1C→1D→72.jpg`, and unrelated **135→149**, `2p→2s→171` (outside the actual image inventory). The *original-scan-range* restriction leaves only the DIRECTION pair.
+
+This census shows the signed DIRECTION address pair is unusual under one narrowly specified source-token permutation benchmark, while **an offset-14 match somewhere in 242 possibilities is not surprising by itself**. The authentic 2016 signed text contains two words altered by the historical ligature convention, and this is the only one with a valid-scan diagonal. The model conditions on several researcher-selected choices, most importantly treating decoded table numbers as **JPEG basenames**, adopting the dual radix, and searching puzzle word routes in the first place. These conditions bar presenting the 0.000122549 figure as a discovery-level p-value or as proof that the creator meant the resulting route.
+
 ## Caveats and next decision
 
 The source exposes both the IA/IO rune spelling and the two-digit table, while the author did **not** explicitly license swapping numeral radices or choosing a one-step page-navigation interpretation. The joint 2×2 lattice is a **reproducible observation** whose formation could still reflect postselection among many puzzle relations. Both original cells `1C`/`1D` are transcription-unambiguous, and the target scans/rune counts are genuine.
