@@ -41,7 +41,7 @@ for(const sign of [+1,-1]){
  assert.notDeepEqual(encrypted,control);
 }
 console.log('AUTHENTIC native solved-p57 GP29 plant 95/95 exact AES-256-CTR forward and inverse PASS; true plaintext IOC='+ioc(control).toFixed(6));
-const aggregate={'+1':[],'-1':[]};
+const aggregate={'1':[],'-1':[]};
 for(let j=0;j<8;j++){
  const c=sections[j];
  for(const s of [+1,-1]){
@@ -59,4 +59,42 @@ for(const s of [+1,-1]){
  console.log('TOTAL cipherSign='+s+' n='+p.length+' plaintextIOC='+ioc(p).toFixed(6)+
  ' E='+hist(p)[18]+'/'+p.length+' prefixGP='+out(p,75));
 }
+
+/* An independent, exact 8-column SHA-256 checksum candidate:
+ * use only ciphertext source bytes and four independently specified
+ * serializations; no image-stage stego or English crib is involved.
+ * Column/rowchunk and I-vs-l ambiguous printed cells are accounted for.
+ */
+assert.equal(crypto.createHash('sha256').update('abc').digest('hex'),
+ 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad');
+const marks=grid.pages.flatMap(p=>p.tokens).map(t=>/[Il]$/.test(t));
+assert.equal(marks.length,256);
+const shaStats=[];
+for(let z=0;z<8;z++){
+ const runes=sections[z];
+ const inputs=[
+  ['gp29indices',Buffer.from(runes)],
+  ['utf8runes',Buffer.from(runes.map(x=>corpus.runes[x]).join(''),'utf8')],
+  ['romanized',Buffer.from(runes.map(x=>corpus.translit[x]).join(''),'utf8')],
+  ['indicesCSV',Buffer.from(runes.join(','),'utf8')]
+ ];
+ for(const [name,src] of inputs){
+  const digest=crypto.createHash('sha256').update(src).digest();
+  assert.equal(digest.length,32);
+  for(const layout of ['column','rowchunk']){
+   const cellIds=Array.from({length:32},(_,j)=>layout==='column'?8*j+z:32*z+j);
+   const possible=cellIds.map((k,j)=>{
+    const x=bytes[k];
+    return digest[j]===x || (marks[k] && (digest[j]===x+29||digest[j]===x-29));
+   });
+   shaStats.push({section:z,form:name,layout,hits:possible.filter(Boolean).length});
+  }
+ }
+}
+assert.equal(shaStats.length,64);
+const best=Math.max(...shaStats.map(x=>x.hits));
+assert(best<32,'Original digest unexpectedly exactly matched a full printed table column/chunk');
+console.log('P50_SHA256_CHECKSUM 8 source sections x 4 fixed encodings x 2 table layouts =64 source-original tests; max canonical+I/l-ambiguous byte matches out of32 = '+best);
+console.log('P50_SHA256_CHECKSUM top='+JSON.stringify(shaStats.filter(x=>x.hits===best).slice(0,8)));
+
 console.log('DONE. AES-CTR and key/IV mapping are an unauthenticated candidate; roundtrip is an implementation invariant, not plaintext evidence.');
