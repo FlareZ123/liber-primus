@@ -1,0 +1,39 @@
+name: Agent7 p56 exact SHA512 all original archived 2014 page bodies
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: agent7-p56-2014-archive-direct-sha512
+  cancel-in-progress: false
+
+jobs:
+  original-historical-files:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout original Liber Primus archive and pinned SHA512 target
+        uses: actions/checkout@v4
+      - name: Checkout May 2014 original Cicada reconstruction archive
+        uses: actions/checkout@v4
+        with:
+          repository: micheloosterhof/cicada-2014
+          ref: 6c3421a4d245596e403c88e037509d162a2afd17
+          path: upstream_micheloosterhof
+          persist-credentials: false
+      - name: Checkout independent original-page repository
+        uses: actions/checkout@v4
+        with:
+          repository: neuroretransmit/cicada
+          ref: ade9a02889ef8acbc8cde8edbfd0a785c369f4c3
+          path: upstream_neuroretransmit
+          persist-credentials: false
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Scan all original 2014 staged files with exact SHA512
+        run: node sims/lp2_p56_archived_2014_page_preimage_sft.cjs upstream_micheloosterhof upstream_neuroretransmit
