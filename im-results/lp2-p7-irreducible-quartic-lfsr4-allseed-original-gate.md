@@ -65,6 +65,34 @@ Every native-source dictionary word of these lengths fails at least one exact **
 
 This result excludes the broad class of original p8 **fixed-clock additive fourth-order p7-quartic LFSRs with any hidden seed**, for English/Latin words represented in these source lexica and genuine printed word boundaries. It does not cover plaintext-dependent key clocks, nonlinear alphabets, non-GP output, transparent interrupters, altered word segmentation, or a different source-selected cipher.
 
+## Authentic Cicada p56 literal-F clock transfer (separate, stronger failure)
+
+Because the solved original p56 has an authentic **literal-F transparent key clock**, a direct fourth-order key test alone is insufficient: a 2014 solver might apply exactly that already demonstrated author operation to the independently printed p7 field polynomial. Here the rule is precise: original ciphertext `F=0` may represent literal plaintext `F=0` with **no** key advance, or an encrypted **non-F** rune consuming one key; any other ciphertext rune must be encrypted **non-F**, consuming one key. This strictly preserves the existing source's F behavior. No extra escape codes, secret skip flags or fitted key schedule are allowed.
+
+Preserve the exact fourth-order recurrence `K_i=7K_(i−1)+25K_(i−2)+16K_(i−3)+9K_(i−4) mod29`, and derive each of four physically contiguous source-visible four-rune IVs before reading the next unknown body:
+
+- first p8 red word **XIXM**: `[14,10,14,19]`, with body starting after either this word (original p8 offset4) or its complete two-word red title (offset12);
+- first four runes of the p8 second red word: `[1,14,19,5]`, body offset12;
+- last four runes of that second red word: `[2,13,3,17]`, body offset12;
+- last four original p7 red runes: `[28,6,28,19]`, body starting at p8 offset0 or offset12.
+
+For each of these six original recipient/seed placements and both additive signs, exhaust **every permitted literal-F skip branch**, recomputing all four key-state registers exactly; a branch is discarded only when an encrypted rune would illegally decode to plaintext F. A source-normalized symbol index at which **zero** legal histories remain is an exact contradiction even without natural-language tests.
+
+| Source four-rune IV | First impossible original p8 rune offset, subtract / add key |
+| --- | --- |
+| p8 XIXM, decrypt after its four runes | **18 / 87** |
+| p8 XIXM, decrypt black body after red12 | **14 / 55** |
+| p8 second-red first4, decrypt after red12 | **14 / 19** |
+| p8 second-red last4, decrypt after red12 | **55 / 14** |
+| p7 last red4, decode all p8 | **9 / 8** |
+| p7 last red4, decrypt after p8 red12 | **79 / 18** |
+
+**All twelve original-input branches become algebraically impossible within p8's first 88 runes.** The most any state frontier contains is **two** legal states, so there is no beam/heuristic pruning. Every test includes actual original letters at every step and never scores English. For a positive, the same original p57 plaintext repeated to255 GP29 runes is **actually encrypted** under each of eight source-visible IV/sign combinations with literal-F bypass. The exhaustive inverse preserves the true key state through all255 ciphertext runes in each positive (8/8), demonstrating that the algebraic impossibility on original p8 is a real discrimination.
+
+**Decision:** fixed source-word quartic LFSR plus the *authentically solved* p56 F-transparent skip cannot decode any of the six natural adjacent p8 title/body placements even with exhaustive branching. This strengthens the earlier random-looking direct output: these twelve exact historical-operation transfers do not exist as legal original inverses, whatever the plaintext language. The source leaves no reason to add further arbitrary skip classes or tuned initiation.
+
+[Read-only CommonJS exact F-branch SFT](../sims/lp2_p7_quartic_lfsr4_Ftransparent_original_sft.cjs) · [successfully executed CI with both original tests](https://github.com/FlareZ123/liber-primus/actions/runs/45117543172).
+
 ## Next decision
 
-The degree-four construction is a plausible new mathematical reading of five red words and the four-rune adjacent opening, but its simplest complete consumers fail an untouched native-GP original. **Retire fixed-clock degree-four additive p7 generators without a new physical state-update or output selector.** The irreducibility and period are reproducible mathematical facts, not an authenticated encrypted message or recovered key. No new source-independent parameter search is recommended. The next useful result needs a first-party instruction selecting a genuinely evolving original-cipher inverse, or authentic key material, sufficient to predict contiguous plaintext without fitting it.
+The degree-four construction is a plausible new mathematical reading of five red words and the four-rune adjacent opening, but its simplest complete consumers fail an untouched native-GP original. **Retire degree-four additive p7 generators with both fixed clocks and the authentically observed p56 literal-F skip, absent a genuinely new first-party state-update or output selector.** The irreducibility and period are reproducible mathematical facts, not an authenticated encrypted message or recovered key. No new source-independent parameter search is recommended. The next useful result needs a first-party instruction selecting a genuinely evolving original-cipher inverse, or authentic key material, sufficient to predict contiguous plaintext without fitting it.
