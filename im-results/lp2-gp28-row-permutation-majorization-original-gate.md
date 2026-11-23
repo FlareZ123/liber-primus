@@ -88,7 +88,7 @@ The model grants every printed word start, every reset at a visual chapter bound
 | F holds state, carry across pages | 9,875 | 2,896 | 117 | 68 | 0 | 3,081 |
 | F holds state, reset at page seams | 9,844 | 2,896 | 117 | 67 | 32 | 3,112 |
 
-The 117 state-start positions comprise 116 first non-F runes after an F-leading run and one additional leading-F position; word starts and page cuts are counted separately. The same word-position-conditioned row-majorization inequality applies, now over the 28 non-F predecessor states and their 28 allowed outputs.
+The 117 additional state-initialization positions comprise 116 first non-F runes encountered while the state is unset and one further leading-F position; word starts and page cuts are counted separately. The same word-position-conditioned row-majorization inequality applies, now over the 28 non-F predecessor states and their 28 allowed outputs.
 
 | Excluded GP symbol | Control | Plants violating / 256 | Minimum maximum violation | Weakest witness at p40–53, word position 1 |
 |---|---|---:|---:|---|
