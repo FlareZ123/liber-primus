@@ -180,9 +180,50 @@ assert.deepEqual(nativePageWindows.map(x=>x.median),[270,161,230]);
 assert.deepEqual(nativePageWindows.map(x=>x.max),[383,225,415]);
 assert.ok(nativePageWindows.every(x=>x.min>originalPageLocal));
 
+
+// A word-key that depends only on the *immediately preceding source-visible
+// delimiter* offers distinct states for '-', '.', '$', '&'. Test the huge
+// dominant '-' class without guessing a key for any punctuation mark.
+const wordWithDelimiter=[];
+let pending='<start>',current=[];
+const delimitersRead=read('resources/lp2-transcription.txt')
+  .split('%').slice(0,55).join('%');
+const finish=()=>{
+  if(current.length) {
+    wordWithDelimiter.push({before:pending,word:current.join(',')});
+    current=[];
+  }
+};
+for(const glyph of delimitersRead) {
+  if(idx.has(glyph)) current.push(idx.get(glyph));
+  else if(glyph==='%'||glyph==='/'||/\s/u.test(glyph)) {}
+  else {finish();pending=glyph;}
+}
+finish();
+assert.equal(wordWithDelimiter.length,2896);
+assert.deepEqual(wordWithDelimiter.map(w=>w.word),
+  words.map(w=>w.letters.join(',')));
+const delimiterRows=['-','.','$','&'].map(delimiter=>{
+  const tokens=wordWithDelimiter.filter(x=>
+    x.before===delimiter&&x.word.split(',').length===2)
+    .map(x=>x.word);
+  return {delimiter,...census(tokens)};
+});
+assert.deepEqual(delimiterRows.map(r=>[r.tokens,r.types,r.collisions]),[
+  [416,334,92],[28,25,3],[3,3,0],[1,1,0]
+]);
+const hyphenMinimum=minCollisions(delimiterRows[0].tokens,lexicon.length);
+assert.equal(hyphenMinimum,328);
+assert.ok(delimiterRows[0].types>lexicon.length);
+assert.ok(delimiterRows[0].collisions<hyphenMinimum);
+
 console.log(JSON.stringify({
   original:{runes:source.length,completeWords:words.length,crossPageWords:32,
     twoRune:actual},
+  precedingPrintedDelimiterOnlyKey:{source:delimiterRows,
+    dominantHyphenLexiconTypeCapacity:lexicon.length,
+    dominantHyphenMinimumPairs:hyphenMinimum,
+    cannotExplainFixedHyphenState:true},
   pagePrivateFixedCipherLanguageControl:{originalWithinPagePairCollisions:originalPageLocal,
     sourcePageTwoWordCounts:pageTwoCounts,
     contiguousDonorWordWindows:nativePageWindows},
