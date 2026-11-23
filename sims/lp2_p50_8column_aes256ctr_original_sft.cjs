@@ -97,4 +97,56 @@ assert(best<32,'Original digest unexpectedly exactly matched a full printed tabl
 console.log('P50_SHA256_CHECKSUM 8 source sections x 4 fixed encodings x 2 table layouts =64 source-original tests; max canonical+I/l-ambiguous byte matches out of32 = '+best);
 console.log('P50_SHA256_CHECKSUM top='+JSON.stringify(shaStats.filter(x=>x.hits===best).slice(0,8)));
 
+
+/* Exhaust every *actual* original table I/l glyph alternative for both
+ * historical plausible radix choices; 2^10 global byte readings, factored
+ * by independent source columns. No fitted IV/clock/nonce/key permutation.
+ */
+const printed=grid.pages.flatMap(p=>p.tokens);
+assert.equal(printed.length,256);
+const symbols60=grid.alphabet;
+const symbols59=symbols60.replace('f','');
+assert.equal(symbols60.length,60);
+assert.equal(symbols59.length,59);
+const variants=[];
+for(const [radix,alphabet] of [[60,symbols60],[59,symbols59]]){
+ let product=1, evaluated=0, results=[];
+ for(let col=0;col<8;col++){
+  const tokens=Array.from({length:32},(_,row)=>printed[row*8+col]);
+  const ambiguities=tokens.flatMap((v,i)=>/[Il]$/.test(v)?[i]:[]);
+  product*=2**ambiguities.length;
+  let best={'1':{ioc:-1},'-1':{ioc:-1}};
+  const masks=2**ambiguities.length;
+  for(let mask=0;mask<masks;mask++){
+   const actual=tokens.slice();
+   for(let j=0;j<ambiguities.length;j++){
+    if(mask&(1<<j)){
+      const i=ambiguities[j];
+      const t=actual[i];
+      actual[i]=t.slice(0,-1)+(t.endsWith('I')?'l':'I');
+    }
+   }
+   const k=Buffer.from(actual.map(t=>{
+      const hi=alphabet.indexOf(t[0]),lo=alphabet.indexOf(t[1]);
+      assert(hi>=0&&lo>=0);
+      const v=hi*radix+lo;
+      assert(v>=0&&v<=255);
+      return v;
+   }));
+   for(const sign of [-1,1]){
+    const p=transform(sections[col],k,-sign);
+    assert.deepEqual(transform(p,k,sign),sections[col]);
+    const score=ioc(p);
+    if(score>best[String(sign)].ioc)best[String(sign)]={ioc:score,mask,E:hist(p)[18],first30:out(p,30)};
+   }
+  }
+  evaluated+=masks;
+  results.push({col,alternativeGlyphs:ambiguities.length,keyVariants:masks,best});
+ }
+ assert.equal(product,2**marks.filter(Boolean).length);
+ variants.push({radix,product,evaluated,results});
+ console.log('P50_AES_ALL_GLYPHS radix='+radix+' global I/l readings='+product+' independent column AES keys evaluated='+evaluated);
+ for(const row of results) console.log('P50_AES_ALL_GLYPHS col='+row.col+' m='+row.alternativeGlyphs+' keys='+row.keyVariants+' maxIOC_signPlus='+row.best['1'].ioc.toFixed(6)+' maxIOC_signMinus='+row.best['-1'].ioc.toFixed(6));
+}
+
 console.log('DONE. AES-CTR and key/IV mapping are an unauthenticated candidate; roundtrip is an implementation invariant, not plaintext evidence.');
