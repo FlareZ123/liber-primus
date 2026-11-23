@@ -203,9 +203,9 @@ The useful next question is whether the original 2014 signed carrier or its meta
 Run from repository root with Node.js 20+:
 
     node sims/lp2_interconnectedness_timing_p15_p29_selector_gate.cjs
-node sims/lp2_interconnectedness_p15_eightkey_audio_targets_sft.cjs
+    node sims/lp2_interconnectedness_p15_eightkey_audio_targets_sft.cjs
 
-The script:
+The scripts:
 - reads the canonical GP29 corpus and original word transcription;
 - recomputes the title sum, sample-time arithmetic, prime counts, and unique page-length matches;
 - exhausts the p0/p29/p55 F-bypass paths for all eight p15 source-key families, all four audio-derived prime starts, and the p0 red13 header key;
