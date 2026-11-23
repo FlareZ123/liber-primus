@@ -1,11 +1,5 @@
 name: Agent49 original dual-zero moth source SFT
 on:
-  push:
-    paths:
-      - '.github/workflows/agent49-dualzero-moth-source.yml'
-      - 'sims/lp2_p50_dualzero_moth_source_sft.cjs'
-      - 'resources/liber-primus/lp2-corpus.json'
-      - 'resources/liber-primus/lp2-grid-256.json'
   workflow_dispatch:
 jobs:
   source-locked:
