@@ -252,6 +252,36 @@ for (let center = 3200; center <= 3400; center++) {
 assert.deepEqual([...nearbyRootResidues].sort((a, b) => a - b),
   [9, 24, 25]);
 
+
+// A higher-order common-root test with NO fitted key.
+// Since p39's red polynomial selects r=3301 mod29, compare the first
+// three Taylor coefficients of the printed p15 unsigned polynomial
+// against p50's irreducible R238 factor at exactly that source root.
+// Synthetic division by (X-r) avoids factorial inverses.
+/** @param {number[]} coefficients @param {number} r @param {number} count @returns {number[]} */
+function taylorAt(coefficients, r, count) {
+  const out = [];
+  let current = coefficients.slice();
+  for (let k = 0; k < count; k++) {
+    out.push(evalPoly(current, r));
+    const next = Array(current.length - 1).fill(0);
+    for (let i = next.length - 1; i >= 0; i--) {
+      next[i] = mod(current[i + 1] + r * (next[i + 1] || 0));
+    }
+    current = next;
+  }
+  return out;
+}
+const p15Jet = taylorAt(unsignedSpiral, cicadaRoot, 4);
+const quotientJet = taylorAt(R238, cicadaRoot, 4);
+assert.deepEqual(p15Jet, [0, 9, 0, 16]);
+assert.deepEqual(quotientJet, [2, 0, 19, 15]);
+const sourceJetPrediction = [2, 0, mod(15 * p15Jet[1]), mod(15 * p15Jet[2])];
+assert.deepEqual(quotientJet.slice(0, 3), sourceJetPrediction.slice(0, 3));
+assert.notEqual(quotientJet[3], sourceJetPrediction[3]);
+// Exact interpretation: R238(X) == 2 + inv(2)*(X-3301)*A15(X)
+// modulo (X-3301)^3. At degree3 the equality fails.
+
 const sourceKeyLists = [
   ['p15-row', p15Rows.map(mod)],
   ['p15-spiral-absolute', spiralPositions.map(i => mod(p15Rows[i]))],
@@ -318,7 +348,9 @@ const report = {
     p39F16RecurrencePredictionsCorrect: f16RecurrenceHits.length, recurrenceTrials: 222 },
   commonSourceRoot: { gpResidue3301: cicadaRoot, p15UnsignedRoots: [24],
     p39RedQuadraticDoubleRoot: cicadaRoot, p15SignedValueAt3301: 2,
-    nearbyCenterRootResidueClasses: [9, 24, 25] },
+    nearbyCenterRootResidueClasses: [9, 24, 25],
+    p15TaylorAt3301: p15Jet, r238TaylorAt3301: quotientJet,
+    cubicCongruence: true, quarticCongruence: false },
   sourceSelectedSecondLayer: { candidates: sourceTwoLayer.length, best: sourceTwoLayer[0],
     allHaveIoCLessThanFourPercent: true, signedP15PositiveRoundtrip: true },
   positivePlants: { periodicMatches: 222, F16RecurrenceMatches: 222 },
