@@ -83,6 +83,36 @@ assert.equal(shorter, 97);
 assert.equal(sameLengthDifferent, 78);
 assert.equal(extraCipherGlyphs, 100);
 
+const pageAt = [];
+for (const p of original.pages.filter((p) => p.page <= 55)) {
+  for (const r of p.indices) pageAt.push(p.page);
+}
+assert.equal(pageAt.length, tape.length);
+
+/** Word ownership follows the first source rune, retaining actual cross-page printed words. */
+function scope(lo, hi) {
+  let pos = 0;
+  const totals = { words: 0, bad: 0, shorter: 0, sameLengthDifferent: 0, glyphSurplus: 0 };
+  for (const w of originalWords) {
+    const p = pageAt[pos];
+    pos += w.length;
+    if (p < lo || p > hi) continue;
+    totals.words++;
+    const r = encode(decode(w));
+    if (w.join(',') === r.join(',')) continue;
+    totals.bad++;
+    if (r.length < w.length) totals.shorter++;
+    else totals.sameLengthDifferent++;
+    totals.glyphSurplus += w.length - r.length;
+  }
+  assert.equal(pos, 12956);
+  return totals;
+}
+const originalTarget = scope(16, 21), untouchedHoldout = scope(40, 53);
+assert.deepEqual(originalTarget, { words: 373, bad: 25, shorter: 13, sameLengthDifferent: 12, glyphSurplus: 13 });
+assert.deepEqual(untouchedHoldout, { words: 669, bad: 46, shorter: 23, sameLengthDifferent: 23, glyphSurplus: 23 });
+
+
 let sourceNativeWords = 0;
 const controls = [];
 for (const section of solved.sections) {
@@ -114,6 +144,8 @@ console.log(JSON.stringify({
   totalRuneLengthLossUnderGreedy: extraCipherGlyphs,
   independentSolvedSource: { totalWords: sourceNativeWords, controls },
   examples,
+  originalTargetP16To21: originalTarget,
+  untouchedHoldoutP40To53: untouchedHoldout,
   decision: 'Original sender must specify an additional escape/segmentation rule and state/recipient; no authentic unknown plaintext'
 }, null, 2));
 console.log('PASS exact chart, 2,896 original source words, 740 solved-native positive controls');
