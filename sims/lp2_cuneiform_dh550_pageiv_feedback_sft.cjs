@@ -121,6 +121,33 @@ function plant(native, map, sign, phase) {
   });
 }
 
+/**
+ * Compare each proposed plaintext page against every contiguous window of
+ * equal length within independently transcribed, actually solved Cicada GP29
+ * sections. This is a finite source-native control, not an all-English bound.
+ * @param {number} length Required original decoded page-symbol count
+ * @returns {{windows:number,min:number}}
+ */
+function solvedWindowIoC(length) {
+  const controls = JSON.parse(fs.readFileSync(
+    path.join(__dirname, '..', 'resources', 'external',
+      'relikd-solved-gp29-native-v1.json'), 'utf8'
+  ));
+  assert.deepEqual(controls.runes, corpus.runes);
+  const index = new Map(controls.runes.map((glyph, i) => [glyph, i]));
+  let windows = 0;
+  let minimum = Infinity;
+  for (const section of controls.sections) {
+    const runes = Array.from(section.source_text).filter((g) => index.has(g))
+      .map((g) => index.get(g));
+    for (let i = 0; i + length <= runes.length; i++) {
+      minimum = Math.min(minimum, ioc(runes.slice(i, i + length)));
+      windows++;
+    }
+  }
+  return { windows, min: minimum };
+}
+
 const solved = corpus.pages[57].indices;
 assert.equal(solved.length, 95);
 const native = Array.from({ length: 550 }, (_, i) => solved[i % solved.length]);
@@ -207,6 +234,17 @@ for (let i = 0; i < 3; i++) {
   assert.ok(allPageMax[i] < 0.05);
 }
 assert.ok(Math.abs(maximumPagewiseMinimum - 0.03742544150325523) < 1e-12);
+const solvedControls = [138, 227, 185].map(solvedWindowIoC);
+const expectedControls = [
+  { windows: 1888, min: 0.0513064635565429 },
+  { windows: 1465, min: 0.05387704183072785 },
+  { windows: 1633, min: 0.052937720329024676 }
+];
+for (let i = 0; i < 3; i++) {
+  assert.equal(solvedControls[i].windows, expectedControls[i].windows);
+  assert.ok(Math.abs(solvedControls[i].min - expectedControls[i].min) < 1e-12);
+  assert.ok(allPageMax[i] < solvedControls[i].min);
+}
 
 console.log(JSON.stringify({
   status: 'PASS: authentic source 553 = 3 page IVs + full DH orbit of 550',
@@ -224,6 +262,7 @@ console.log(JSON.stringify({
   allSecretPhaseBest: allPhaseBest,
   independentSourcePageIoCMaxima: allPageMax,
   maximumMinimumAcrossThreePageIoCs: maximumPagewiseMinimum,
+  independentlySolvedCicadaGPWindowIoCs: solvedControls,
   arbitraryPagewiseFixedAlphabet: 'invariant: every page IoC is unchanged by any bijective GP29 relabeling',
   decision: 'All outputs remain nonprose; source does not authenticate DH feedback or three IV skips'
 }, null, 2));
