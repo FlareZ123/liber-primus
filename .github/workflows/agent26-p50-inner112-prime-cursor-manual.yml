@@ -1,0 +1,13 @@
+name: Agent26 p50 inner112 prime cursor original source
+on:
+  workflow_dispatch:
+jobs:
+  original-source:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test original LP2 and solved p57 plant
+        run: node sims/lp2_p50_inner112_pagepair_prime_cursor_sft.cjs
