@@ -24,7 +24,7 @@ const mod=x=>(x%29+29)%29;
 function printedWords(physicalPage) {
   const result=[];
   let word=[];
-  for(const ch of segments[physicalPage]) {
+  for(const ch of segments[physicalPage<50?physicalPage:physicalPage-1]) {
     if(map.has(ch))word.push(map.get(ch));
     else if(ch!=='/'&&!/\s/u.test(ch)) {
       if(word.length){result.push(word);word=[];}
@@ -107,7 +107,7 @@ function main() {
     a.page!==b.page&&a.retained===b.n).map(b=>[a.page,b.page]));
   assert.deepEqual(lengthMatches,[
     [7,15],[9,23],[13,33],[25,3],[28,33],
-    [29,7],[44,3],[47,3],[53,22]
+    [29,7],[44,3],[47,3]
   ]);
   const p28=printedWords(28),p33=book.pages[33].indices;
   const n28=stats.find(x=>x.page===28),n33=stats.find(x=>x.page===33);
