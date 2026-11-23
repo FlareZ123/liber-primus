@@ -30,6 +30,8 @@ P=27^{12956},\qquad \log_2(M/P)=269.119803.
 
 The source-printed 256-bit key K therefore fits inside the output capacity **with 13.119803 bits of remaining slack**. That numerical closeness does **not** establish an intentional thirteen-dot instruction.
 
+**Fixed-mask qualification (Critic audit, 23 November).** This capacity is for a codebook whose **entire 86-position equality mask was taken from the original ciphertext under test**. A decoder can recover that mask by examining a supplied ciphertext, so a separate mask file is unnecessary for decoding *that ciphertext*. An encoder must nevertheless choose or know those exact repeat positions before producing its output. No authenticated source supplies this fixed pattern or a general rule to derive the positions from plaintext and key. Consequently the 269-bit surplus is a conditional packing-existence result, not evidence for a self-selected, author-plausible GP27 cipher or for the fifth-column operand's intended role.
+
 Test two exact ciphertext encoders and their whole-book inverses:
 
 1. **Message first:** R = X × 2^256 + K, with the printed 256-bit K.
@@ -60,4 +62,4 @@ The automatic side-first plaintext residue X = R mod P is nonlinguistic. Its ori
 
 ## Decision
 
-A complete GP27 plaintext and a physical 256-bit operand **can be losslessly carried through the original book's constrained 29-symbol shape without any additional sidecar**. The specific, fully reversible fifth-column key packings above **do not generate the actual ciphertext**. They recover no unknown plaintext, intended cryptographic key usage, or destination. This is a finite result that prevents treating the 256+13-bit numerical fit as a decryption. A different source-selected opcode or independent original-text prediction would be required to pursue another packing. Further arbitrary source key alignment and rank-order fitting would not be justified by this evidence.
+Conditioned on the **ciphertext-derived, fixed 86-site repeat mask and a declared successor ordering**, a complete GP27 plaintext and a physical 256-bit operand fit into the original book's constrained 29-symbol output space. This is an exact capacity statement for that prescribed codebook; an intended encoder still needs an independently selected rule fixing the repeat sites. The specific, fully reversible fifth-column key packings above **do not generate the actual ciphertext**. They recover no unknown plaintext, intended cryptographic key usage, or destination. This is a finite result that prevents treating the 256+13-bit numerical fit as a decryption. A different source-selected opcode or independent original-text prediction would be required to pursue another packing. Further arbitrary source key alignment and rank-order fitting would not be justified by this evidence.
