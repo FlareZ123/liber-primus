@@ -28,7 +28,7 @@ assert.equal(all.length, 13136);
 const marks = [];
 let pageStart = 0;
 for (const page of corpus.pages) {
-  const punctuation = ink.pages.find(p => p.page === page.page).large_punctuation;
+  const punctuation = ink.pages.find(p => p.page === page.page)?.large_punctuation ?? [];
   for (const [localOffset, size] of punctuation) {
     if (size === 13) marks.push(pageStart + localOffset);
   }
