@@ -31,7 +31,7 @@ for (let page = 40; page <= 55; page++) {
   assert.ok(original);
   assert.equal(original.indices.length, pageLengths[page - 40]);
   const annotation = ink.pages.find(p => p.page === page);
-  const spans = annotation ? annotation.red_spans : [];
+  const spans = annotation?.red_spans || [];
   const red = new Set(spans.flatMap(s =>
     Array.from({length: s.length}, (_, i) => s.start + i)));
   for (let i = 0; i < original.indices.length; i++) {
