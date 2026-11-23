@@ -194,8 +194,21 @@ for (const [name, filename, parse] of sources) {
   const corpusWords = parse(text);
   const pool = byLength(corpusWords);
   const samples = [];
+  const originalWordPairs = original.map(equalPairs);
   for (let trial = 0; trial < 256; trial++) {
-    samples.push(count(plant(pool)));
+    const sourceWords = plant(pool);
+    const stats = count(sourceWords);
+    let wordsNeedingDynamicMapping = 0;
+    let minimumSuppressedEqualPairs = 0;
+    for (let i = 0; i < sourceWords.length; i++) {
+      const gap = equalPairs(sourceWords[i]) - originalWordPairs[i];
+      if (gap > 0) {
+        wordsNeedingDynamicMapping++;
+        minimumSuppressedEqualPairs += gap;
+      }
+    }
+    samples.push({...stats, wordsNeedingDynamicMapping,
+      minimumSuppressedEqualPairs});
   }
   const totals = samples.map(row => row.pairs);
   const repeated = samples.map(row => row.wordsWithRepeat);
@@ -205,6 +218,10 @@ for (const [name, filename, parse] of sources) {
     lengthMatchedSamples: 256,
     equalPairs: describe(totals),
     wordsWithRepeat: describe(repeated),
+    minimumWholeWordsRequiringWithinWordStateChange:
+      describe(samples.map(row => row.wordsNeedingDynamicMapping)),
+    minimumMatchingPairsThatCannotSurviveStaticWordMap:
+      describe(samples.map(row => row.minimumSuppressedEqualPairs)),
     observedPairs: observed.pairs,
     addOneEmpiricalLowerTail: 1 / (totals.length + 1)};
   results.push(row);
