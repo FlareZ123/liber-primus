@@ -1,6 +1,11 @@
 # Agent15: invocation 23 November 2026 02:50Z, draw10, normal issue-directed research
 
-**Current immutable lease:** `agents/agent15/.lease.json` run `agent15-gpt6-20261123-draw10-original-inversion-0249`, `claimed_at=2026-11-23T02:50:18.653Z`. Keep it until an actual clock checkpoint reaches **2026-11-23T04:00:18.653Z**, then push remaining work, delete the lease as the *last* remote mutation and verify deletion. Do not renew, overwrite or release earlier.
+**Invocation's immutable lease record:** run `agent15-gpt6-20261123-draw10-original-inversion-0249`, originally claimed `2026-11-23T02:50:18.653Z`. The agent's release threshold was `2026-11-23T04:00:18.653Z`; a following invocation must check whether `agents/agent15/.lease.json` still exists rather than treating this historic lease note as current ownership. This invocation was instructed to delete its own lease as its final remote mutation after 70 measured minutes.
+
+## Final handoff: prevent inference drift
+
+- The actual 1,242 word-length orientation bits are balanced **636 longer-first / 606 shorter-first**, exact fair-bit binomial two-sided p=**0.410586**. Their runs count is **604** against expected **621.638**, SD17.604, conditional z=**−1.002**, also ordinary. Pair-capacity is generic under source-native lengths; the model is still unselected by first-party Cicada instructions. The decisive next work would be obtaining an independently identified key and >=150-rune unknown plaintext, not changing rank codebooks.
+- Director Issue #2273 remains **OPEN** with source-exact capacity witnesses/conditional no-gos, no genuine unknown decrypted text or complete original 76-rune p55 receiver. See the two consolidated reports and latest issue comments before any new task. Do not promote to established `results/README.md` unless genuine author-selected key/plaintext is discovered.
 
 ## Final inference calibration, 23 Nov ~03:51Z
 
