@@ -174,6 +174,9 @@ for (const part of cuts) {
     "first120", render(decoded.slice(0, 120)));
 }
 console.log("native p57 control original IoC", ioc(native).toFixed(12));
-console.log("native p57 full planted inverse", "95/95", "PASS");\nconsole.log("dot-reset body first6 crib", render(expectedBody9.slice(0,6)), "seed", bodySeed6.join(","));\nconsole.log("dot-reset withheld3 expected", render(expectedBody9.slice(6)), "actual", render(bodyPredicted9.slice(6)), "0/3");\nconsole.log("native p57 planted six-seed dot-reset", "95/95", "PASS");
+console.log("native p57 full planted inverse", "95/95", "PASS");
+console.log("dot-reset body first6 crib", render(expectedBody9.slice(0,6)), "seed", bodySeed6.join(","));
+console.log("dot-reset withheld3 expected", render(expectedBody9.slice(6)), "actual", render(bodyPredicted9.slice(6)), "0/3");
+console.log("native p57 planted six-seed dot-reset", "95/95", "PASS");
 console.log("original full original-input reencryption", "729/729", "PASS");
 console.log("CONCLUSION: no original body plaintext under this fixed BM6 candidate.");
