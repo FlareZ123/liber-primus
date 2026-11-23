@@ -223,6 +223,25 @@ assert.deepEqual(routeFive.map(x=>x.cell),[46,53,60,67,74]);
 const endpoint=routeFive[routeFive.length-1].cell;
 assert.equal(endpoint,74);
 assert.equal(tokens[74],"3P");
+// Independent second 2016-signed source route. Both successive grid
+// commands are literal printed magnitude + compass; no ASCII/hex mode switch.
+assert.equal(tokens[57],"1w");
+assert.equal(tokens[56],"4E");
+const wayCell=57,wayToMap=57-1,mapToCrossing=56+4;
+assert.equal(wayToMap,56);
+assert.equal(mapToCrossing,60);
+assert.deepEqual(routeFive[2],{step:3,row:7,col:4,cell:60});
+assert.equal(tableValues[60],106);
+assert.equal(tokens[60],"1k");
+// This exact intersection is observed source geometry, not unknown plaintext.
+const wayMapIntersection={
+  start:"GP0(WAY)=57",
+  first: {from:57,command:tokens[57],to:56},
+  second:{from:56,command:tokens[56],to:60},
+  crossing:{cell:60,path39SouthwestStep:3},
+  nextOriginalToken:tokens[60]
+};
+
 assert.equal(tableValues[74],205);
 assert.equal(primeNumbers[204],1259);
 const p57Source=JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json"))
@@ -284,6 +303,7 @@ console.log(JSON.stringify({
   p57PrimeClauseSums:p57PrimeSums,p57PrimeClauseOneBasedRanks:p57PrimeRanks,
   exact2013ParableID3Product:p57PrimeSums.reduce((a,b)=>a*b,1),
   p50Byte205Address:74,
+  signedWayMapLiteralIntersection:wayMapIntersection,
   conditionalMultisetNullTwoTokenProbability:conditionalTwoTokenProbability,
   caveat:"Observation after wider search; no original-source instruction formally selects cross-page GP0→page-first-word→p50 compass and prime-ranking."
  },
