@@ -18,6 +18,24 @@ function check(source,variant,bytes,kind){
     }
   }
 }
+function decodeV2OnionId(host){
+  const label=host.toLowerCase().replace(/\\.onion$/,'');
+  if(!/^[a-z2-7]{16}$/.test(label))throw Error('Not a v2 onion host: '+host);
+  const alphabet='abcdefghijklmnopqrstuvwxyz234567';
+  let acc=0,bits=0;
+  const out=[];
+  for(const ch of label){
+    acc=(acc<<5)|alphabet.indexOf(ch);
+    bits+=5;
+    while(bits>=8){
+      bits-=8;
+      out.push((acc>>bits)&255);
+      acc&=(1<<bits)-1;
+    }
+  }
+  if(out.length!==10||bits!==0)throw Error('Bad decoded v2 onion identifier: '+host);
+  return Buffer.from(out);
+}
 async function getFile(filename){
   const u='https://raw.githubusercontent.com/'+m.sourceRepo+'/'+m.sourceCommit+'/'+filename.split('/').map(encodeURIComponent).join('/');
   for(let k=0;k<4;k++){
@@ -50,9 +68,19 @@ async function main(){
     h=>h,h=>'http://'+h,h=>'http://'+h+'/',h=>'http://'+h+'/index.html',
     h=>'https://'+h+'/',h=>'https://'+h+'/index.html'
   ];
+  const manifestBinaryStart=report.hashEvaluations;
+  const manifestBinaryHitsStart=report.hits.length;
   for(const host of m.onionHosts){
     for(const fn of forms){const u=fn(host);check(host,u,u,'url');report.urlStrings.push(u);}
+    check(host,'base32-decoded-10-byte-onion-id',decodeV2OnionId(host),'blob');
   }
+  report.manifestOnionBinary={
+    hosts:m.onionHosts.length,
+    representation:'base32-decoded-10-byte-onion-id',
+    digestAlgorithms:algorithms,
+    hashEvaluations:report.hashEvaluations-manifestBinaryStart,
+    hits:report.hits.length-manifestBinaryHitsStart
+  };
 
   // A bounded, contemporaneous candidate set not included in the original seven-host
   // manifest: the preserved 2014-09 stage11 period onion-host corpus.  It is an
@@ -84,6 +112,12 @@ async function main(){
       report.urlStrings.push(u);
     }
   }
+  const periodBinaryStart=report.hashEvaluations, periodBinaryHitsStart=report.hits.length;
+  for(const host of periodHosts){
+    check(periodPath+':'+host,'period-hostlist:base32-decoded-10-byte-onion-id',decodeV2OnionId(host),'blob');
+  }
+  const periodBinaryEvaluations=report.hashEvaluations-periodBinaryStart;
+  const periodBinaryHits=report.hits.length-periodBinaryHitsStart;
   const periodSummary={
     path:periodPath,
     bytes:periodBytes.length,
@@ -95,12 +129,15 @@ async function main(){
     invalidNonemptyLines:periodLines.length-validPeriodLines.length,
     manifestOverlap,
     forms:periodForms.map(x=>x[0]),
+    binaryRepresentations:['base32-decoded-10-byte-onion-id'],
+    binaryHashEvaluations:periodBinaryEvaluations,
+    binaryHits:periodBinaryHits,
     digestAlgorithms:algorithms,
     hashEvaluations:report.hashEvaluations-periodStart,
     hits:report.hits.length-periodHitsStart
   };
   report.periodHostList=periodSummary;
-  report.candidates.push({source:periodPath,uniqueV2Hosts:periodHosts.length,representations:periodForms.map(x=>x[0]),algorithms,matchCount:periodSummary.hits});
+  report.candidates.push({source:periodPath,uniqueV2Hosts:periodHosts.length,representations:[...periodForms.map(x=>x[0]),'base32-decoded-10-byte-onion-id'],algorithms,matchCount:periodSummary.hits+periodSummary.binaryHits});
   console.log('PERIOD-HOSTLIST',JSON.stringify(periodSummary));
 
   // A source-native p56 preimage candidate: the complete January 2014 onion-2 stream.
