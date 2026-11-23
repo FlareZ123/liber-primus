@@ -182,10 +182,10 @@ assert.ok(originalStripCollisions<bookCollisionMin);
 // and a secret strip order without changing within-strip equality.
 const scrambled=[];
 for (let j=26;j>=0;j--) {
-  const strip=planted.slice(j*27,j*27+27);
+  const strip=columnarEncode(training.slice(0,729)).slice(j*27,j*27+27);
   scrambled.push(...(j%2?strip.reverse():strip).map(k=>(k+7*j+3)%29));
 }
-assert.equal(stripCollisionSum(scrambled),stripCollisionSum(planted));
+assert.equal(stripCollisionSum(scrambled),stripCollisionSum(columnarEncode(training.slice(0,729))));
 
 const originalBounds = {
   fixed:assignmentUpperBound(edgeWeights(original,false,false)),
