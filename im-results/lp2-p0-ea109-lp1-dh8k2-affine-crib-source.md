@@ -19,7 +19,7 @@ The fixed affine inverse applied to the *entire unchanged p0* has GP29 IoC **0.0
 
 ## Full cross-release match-family control
 
-To avoid elevating a short search hit to proof, use **all seven genuinely clear LP1 GP29 first-release source records** (2,799 known runes) against **all 55 rune-bearing original unsolved LP2 pages** (12,956 runes). Preserve **page and known LP1 section boundaries**; never concatenate them to fabricate longer matches. For all nonzero affine slopes `a in 1..28`, all shifts `b in 0..28`, and complete contiguous windows:
+To avoid elevating a short search hit to proof, use **all seven externally pinned clear LP1 GP29 source records in the relikd file** (2,799 reference runes) against **all 55 rune-bearing original unsolved LP2 pages** (12,956 runes). Preserve **page and known LP1 section boundaries**; never concatenate them to fabricate longer matches. For all nonzero affine slopes `a in 1..28`, all shifts `b in 0..28`, and complete contiguous windows:
 
 | Match family on unchanged sources | Exact pairs |
 | --- | ---: |
@@ -29,6 +29,8 @@ To avoid elevating a short search hit to proof, use **all seven genuinely clear 
 | Seven-rune windows under that fixed DH state | **0** |
 
 The `a=8,b=2` match occurs at a previously interesting coordinate, but the LP1 six-rune source window and affine interpretation were selected while looking across the *entire* first-release source. The 57-member full affine search family, several separately investigated source selectors and the exact seventh-rune failure preclude interpreting the short alignment as proof that an original runic phrase was recovered. The exact values `A,K` give a plausible hypothesis to test only if a *different first-party source* prescribes the cipher law **and changing state**, or provides a genuinely withheld decoder receiver.
+
+The pinned external relikd GP-native solved source is **not byte-identical to the later corrected 2,797-rune physical LP1 p0–16 reconstruction**: a two-rune discrepancy lies in the KOAN section, not in the WELCOME six-rune contact. Accordingly, the 57/0 whole-book match counts are exact for this frozen **2,799-rune relikd comparator**, not a claim about every possible historically corrected LP1 transcript. The candidate contact itself is unchanged.
 
 A 95-rune planted independent **solved p57 native-GP plaintext** control passes `P → 8P+2 → 11(C−2)` with **95/95** reconstruction; this validates the arithmetic, not the original hypothesis.
 
