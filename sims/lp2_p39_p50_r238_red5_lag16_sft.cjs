@@ -321,6 +321,37 @@ assert.ok(extractedPlant.remainder.every(value => value === 0));
 assert.deepEqual(extractedPlant.quotient, genuinePlant);
 assert.ok(ioc(genuinePlant) > 0.06);
 
+
+// The cubic extraction has 236 coefficients. A second literal
+// circumference-shedding on full p39 also has 236 runes, which gives a
+// fixed original-cipher additive receiver with no fitted phases.
+const p39ShedTwice = page39.slice(2, -2);
+assert.equal(p39ShedTwice.length, cubicExtraction.quotient.length);
+const peeledSourceCases = [];
+for (const [direction, key] of [
+  ['high-degree-first', cubicExtraction.quotient.slice().reverse()],
+  ['low-degree-first', cubicExtraction.quotient]
+]) {
+  for (const scalar of [1, 5]) {
+    for (const sign of [-1, 1]) {
+      const candidate = p39ShedTwice.map((c, i) =>
+        mod(c + sign * scalar * key[i]));
+      peeledSourceCases.push({ direction, scalar, sign, ioc: ioc(candidate) });
+    }
+  }
+}
+peeledSourceCases.sort((a, b) => b.ioc - a.ioc);
+assert.equal(peeledSourceCases.length, 8);
+assert.deepEqual(peeledSourceCases[0], {
+  direction: 'high-degree-first', scalar: 5, sign: -1,
+  ioc: 0.03786512802019473
+});
+assert.ok(peeledSourceCases.every(x => x.ioc < 0.04));
+const exactPeelPlant = cubicExtraction.quotient.map((x, i) =>
+  mod(5 * x + genuinePlant[i]));
+assert.deepEqual(exactPeelPlant.map((x, i) =>
+  mod(x - 5 * cubicExtraction.quotient[i])), genuinePlant);
+
 const sourceKeyLists = [
   ['p15-row', p15Rows.map(mod)],
   ['p15-spiral-absolute', spiralPositions.map(i => mod(p15Rows[i]))],
@@ -390,7 +421,9 @@ const report = {
     nearbyCenterRootResidueClasses: [9, 24, 25],
     p15TaylorAt3301: p15Jet, r238TaylorAt3301: quotientJet,
     cubicCongruence: true, quarticCongruence: false,
-    extracted236IoC: extractedIoC, extractedNativePlant: true },
+    extracted236IoC: extractedIoC, extractedNativePlant: true,
+    p39ShedTwiceOriginalReceiverCases: peeledSourceCases,
+    p39PeelNativePlant: true },
   sourceSelectedSecondLayer: { candidates: sourceTwoLayer.length, best: sourceTwoLayer[0],
     allHaveIoCLessThanFourPercent: true, signedP15PositiveRoundtrip: true },
   positivePlants: { periodicMatches: 222, F16RecurrenceMatches: 222 },
