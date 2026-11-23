@@ -103,6 +103,42 @@ for (const pg of [0, 55]) {
     console.log({ page: pg, transparentF: skip, consumedPrimes: decoded.clock, IoC: Number(measured.toFixed(8)), preview: decoded.plain.slice(0, 40).map((v) => corpus.translit[v]).join('') });
   }
 }
+// Complete finite original p56-literal-F ambiguity: every unchanged ciphertext
+// F may be an unencrypted/nonconsuming exception or a normally keyed symbol.
+// Original p0 has 14 Fs (2^14 histories), p55 has 3 Fs (2^3 histories).
+function scanAllLiteralFHistories(pg) {
+  const original = page(pg);
+  const fPositions = original.map((c, i) => c === 0 ? i : -1).filter((i) => i >= 0);
+  let maximum = -1, minimum = 1, bestMask = -1, atLeast045 = 0;
+  for (let maskBits = 0; maskBits < 2 ** fPositions.length; maskBits++) {
+    let prime = 0, fOrdinal = 0;
+    const decoded = [];
+    for (const c of original) {
+      if (c === 0) {
+        const literal = (maskBits & (1 << fOrdinal)) !== 0;
+        fOrdinal++;
+        if (literal) { decoded.push(0); continue; }
+      }
+      decoded.push((c - key[prime++] + 29) % 29);
+    }
+    const value = ioc(decoded);
+    if (value > maximum) { maximum = value; bestMask = maskBits; }
+    if (value < minimum) minimum = value;
+    if (value >= 0.045) atLeast045++;
+  }
+  console.log('complete-LITERAL-F-search', {page: pg, Fs: fPositions.length, cases: 2 ** fPositions.length, bestMask, maximum, minimum, atLeast045});
+  return { cases: 2 ** fPositions.length, bestMask, maximum, atLeast045 };
+}
+const allP0 = scanAllLiteralFHistories(0);
+const allP55 = scanAllLiteralFHistories(55);
+assert.equal(allP0.cases, 16384);
+assert.equal(allP0.bestMask, 12263);
+assert(Math.abs(allP0.maximum - 0.04357871954607938) < 1e-12);
+assert.equal(allP0.atLeast045, 0);
+assert.equal(allP55.cases, 8);
+assert.equal(allP55.bestMask, 5);
+assert(Math.abs(allP55.maximum - 0.04105263157894737) < 1e-12);
+assert.equal(allP55.atLeast045, 0);
 const knownNative = Array.from({ length: 262 }, (_, i) => page(57)[i % page(57).length]);
 const noLiteral = Array(knownNative.length).fill(false);
 assert.deepEqual(inverse(forward(knownNative, noLiteral), false).plain, knownNative);
