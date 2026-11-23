@@ -172,11 +172,15 @@ This rejects the simple repeating-key interpretation, not every possible use of 
 
 ### p15 16-cell grid and p55 16-word structure
 
-The original p55 transcription has 17 word fragments: the first is a one-rune continuation from p54, leaving **16 page-local words**, exactly matching the **16 cells** in p15's 4×4 grid. This is a source-visible structural alignment, not proof that the words are a key or should be permuted.
+The original p55 transcription has 17 word fragments: the first is a one-rune continuation from p54, leaving 16 page-local words, the same count as the p15 4×4 grid. This is a source-visible cardinality alignment, not evidence that the words should be permuted or keyed cell-by-cell. No plaintext operation follows from the count alone.
 
-A frozen exploratory test kept the continuation fragment first, then applied the p15 spiral order or its inverse to the 16 local words. The two most direct p15 consumers of the solved p56 rule (Fibonacci-prime ordinal starts and the period-16 prime-totient key) were then tested with both signs and all F masks. The spiral ordering yielded 37 legal candidates and the inverse ordering 38; the best IoC in either direction was only 0.04105, and word-boundary outputs were not coherent. A simpler per-word Caesar interpretation—one p15 grid value modulo 29 per local word in spiral order—also failed: the raw printed-value key had 8 legal masks with best IoC 0.03123, while prime and totient per-word keys had no legal paths.
+The p15 grid has already received a much broader independent external attack: Dukotah's Round 44 P2 reports 670,000 decodes over the grid as keystream seed, offset table, page-index map, and totient-generator parameters, with a negative verdict. See the [Round 44 synthesis](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round44/SYNTHESIS.md) and [campaign plan](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round44/CAMPAIGN-PLAN.md). Our local 320-configuration screen is only an independent subset, not a new opening. Do not spend further compute repeating p15 grid key families without a genuinely new source clue.
 
-These results preserve the 16↔16 correspondence as a possible routing clue, while rejecting the tested direct word transposition and per-word Caesar consumers. The 13-dot and 16-word structures may still specify a different operation on p55's tree/butterfly illustration; no such operation has yet been identified.
+### External historical cross-check
+
+The page-selector interpretation has a plausible historical prior, but it remains a hypothesis. The pnotisdev research repository reports that the 2013 Cicada audio's ID3 tags carried the Parable text and a product of clause sums, demonstrating a prior use of audio metadata as a number-bearing clue. The same repository reports hundreds of millions of additive frame-payload decodes across 2013/2014 audio without a hidden-message hit. These are external research claims, not independently reproduced here; see [pnotisdev STATUS.md](https://github.com/pnotisdev/cicada3301/blob/main/STATUS.md).
+
+The 2014 audio analysis in [SECRA's report](https://secra.tech/research/liber-primus-strongest-findings/) supports treating the repeated waveform as a structural/timing feature rather than an audible plaintext carrier. Together, these sources make metadata-driven page selection more plausible than another generic audio-key sweep, but they do not prove that the timing arithmetic was intended.
 
 ### Positive controls
 
@@ -188,9 +192,9 @@ The negative result is therefore not caused by a reversed sign, wrong prime inde
 
 ## Decision and next work
 
-**Retain the audio timing as a low-to-medium-confidence page-selector hypothesis, strengthened by the p0↔p55 repeated 13-dot glyph and p15↔p55 16-cell/16-word alignment. Reject the tested direct p15 key families on p29 and the low-IoC candidates on p0/p55; reject the simple p0-red13 repeating-key consumer as well.** Do not repeat these key families, audio-prime starts, or direct word-shift tests.
+**Retain the audio timing as a low-to-medium-confidence page-selector hypothesis, with the p0/p55 13-dot frame and p15/p55 16↔16 cardinality as contextual correspondences rather than proven instructions. The local p15 and p0-header consumers produce no coherent plaintext, and the broader external Round44 P2 independently reports the p15 grid negative.** Do not repeat p15 grid families or generic audio-key sweeps.
 
-The useful next question is whether the 13-dot and 16-word structures prescribe a specific route through the p55 tree/butterfly illustration or a reversible operation at the p55–p56 seam. Do not invent further key families or phase sweeps without an independent source clue. The audio binary and signed carrier should be added to resources only if a reproducible acquisition route is found; the current report does not claim their independent verification.
+The useful next question is whether the original 2014 signed carrier or its metadata contains an explicit instruction that selects these page-level measurements. Without such an instruction, stop expanding the arithmetic chain. The audio binary and signed carrier should be added to resources only if a reproducible acquisition route is found; the current report does not claim their independent verification.
 
 ## Reproduction
 
