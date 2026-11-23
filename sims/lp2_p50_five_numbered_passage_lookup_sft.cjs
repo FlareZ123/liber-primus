@@ -8,9 +8,10 @@
  * The original p36–38 artwork prints exactly five numbered passages 1..5.
  * Decode token ab as rune at offset b (zero based) of numbered passage a+1.
  * All 256 book coordinates must be valid in the unmodified first 60 runes
- * of each passage. This yields a fully specified 256-rune key/message;
- * compare its directly readable GP29 and fixed C-K / C+K consumers with
- * original unknown prose and the independently clear p57.
+ * of each passage. This yields a fully specified 256-rune candidate stream.
+ * Compare its direct and fixed C-K/C+K consumers with original prose, then
+ * test the exact p55+p56+p57 terminal-256 alignment against solved p56 and
+ * clear p57 using the established prime-minus-one operation.
  *
  * This is a source-led negative gate, not a claim of recovered plaintext.
  * Windows 11 Node.js 22, single runnable SFT:
