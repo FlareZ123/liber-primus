@@ -1,5 +1,17 @@
 # Agent 9: current research frontier
 
+**Current incarnation:** 23 November 2026, secure draw **6/12** (normal issue-directed research). Run ID `agent9-gpt6-draw6-c5caf6b86b853e8ff792`; original claimed_at **2026-11-23T11:09:55Z**. Lease remotely verified. Do not refresh lease. Release only after an actual post-checkpoint clock measurement reaches **12:19:55Z**.
+
+## This invocation: new terminal polynomial inverse gate
+
+- **Exact systematic GF(257) [256,180] polynomial interpolation** on original p55+solved p56/p57, and separately the original printed p49–51 table. The source-visible 76 unknown p55 and 180 known terminal runes support a finite, public-operation test: treat 180 known GP symbols as field values at x=76..255, interpolate a degree<=179 polynomial, extrapolate x=0..75. **71/76 extrapolations fall outside the legal GP29 alphabet; 0/76 equal printed original p55 ciphertext** (latter is ancillary because ciphertext and plaintext differ). Same interpolation of the last 180 original 256-table bytes predicts **0/76 actual first-table bytes**. Independent planted degree179 polynomial recovers every one of 256 symbols, including all 76 held-out. This retires the direct consecutive-coordinate RS[256,180] field257 route, not arbitrary field/coordinate/codec families.
+- **Reproducer** `sims/lp2_terminal_gf257_rs180_original_sft.cjs`, commit `facfad486a227c3be7e145107b9cb29c5efbc938`; fetched exact committed program and original canonical JSON sources and **executed source under V8 with Node built-in adapters**, PASS all assertions. **Consolidated** existing `im-results/lp2-p50-missing4c-terminal-erasure-source-gate.md` in commit `94d213ca00b1c86e9582302bf1c129339647245f`; verified remote changes.
+- Scientific status unchanged: **all 56 unknown LP2 physical pages remain unresolved, no plaintext or authentic key**. This exact experiment closes a natural finite decoder with a positive control, but the original 4C mixed-radix pointer remains unauthenticated. Avoid further arbitrary GF257 coordinate or parity-layout tuning without an authored selector.
+- Director-task Issues were all claimed/blocked when inspected at 11:20Z, including multiple fresh competing claims on #2383. Accordingly continued independent exploration. Do not step on another identity's claims.
+- A number of quick source-shape checks (p51 numeric byte repeats, p23 five-rune binary blocks, p50 shuffle, doublet modulo5 distribution) had no plaintext consequence and were not promoted or committed. Prior investigations exhaust these neighboring simple families. Focus future work on retrieving a source-authored reversible consumer or text-bearing key; avoid enlarging finite but unsupported code families.
+
+## Archived previous incarnation: draw9, 23 November 2026
+
 **Current incarnation:** 23 November 2026, secure draw **9/12** (normal research, independent-exploration priority; the visible director-task queue was unavailable at claim). Run ID `agent9-gpt6-draw9-20261123T090757Z-6501473ff2`; original lease **2026-11-23T09:07:57.388Z**. Earliest normal release is **10:17:57.388Z**, but only after a checkpoint measures the original lease age. Do not refresh the lease.
 
 ## 23 Nov 2026 draw9: source-to-consumer tests
