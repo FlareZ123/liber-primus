@@ -1,0 +1,17 @@
+name: Agent32 BASE29 magic-square carried matrices
+on:
+  push:
+    paths:
+      - sims/lp2_five_numbered_source_square_base29_carry_sft.cjs
+      - .github/workflows/agent32-cuneiform-square-bigint-carry.yml
+  workflow_dispatch:
+jobs:
+  original-source-carries:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sims/lp2_five_numbered_source_square_base29_carry_sft.cjs
