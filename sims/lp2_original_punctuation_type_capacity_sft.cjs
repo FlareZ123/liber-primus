@@ -42,7 +42,7 @@ assert.deepEqual(punct.image_audit.editorial_event_indices, [57, 58, 59, 60]);
 assert.equal(punct.counts["⁘"], 145);
 assert.equal(punct.counts["⁚"], 4);
 assert.equal(punct.counts["⁜"], 31);
-assert.equal(morphological.stop_absent.count, 1);
+assert.equal(morphological.stop_absent, 1);
 assert.equal(morphological.stop_four_dot_diamonds.count, 138);
 assert.equal(morphological.stop_four_dot_diamonds.black, 137);
 assert.equal(morphological.stop_four_dot_diamonds.red, 1);
@@ -65,7 +65,7 @@ assert.equal(largeHist.get("10-dot:red"), 3);
 
 const physicalStops = punct.counts["⁘"]
   - punct.image_audit.editorial_event_indices.length
-  - morphological.stop_absent.count;
+  - morphological.stop_absent;
 assert.equal(physicalStops, 140);
 const physicalMarkCount = physicalStops + punct.counts["⁚"] + originalLarge.length;
 assert.equal(physicalMarkCount, 175);
