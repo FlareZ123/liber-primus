@@ -143,5 +143,48 @@ result.tableHeader255ToP8={sourceHeaderByte:203,
   totalZeroResidueTableCells:grid.bytes.filter(x=>x%29===0).length,
   bestIoC:p50Max,tests:p50Tests};
 
+
+/* The five original red-numbered p36..38 units are an especially natural
+ * five-channel recipient, distinct from the five-page single-stream layout.
+ * The first 91 GP glyphs of each unit are unambiguously present; no padding
+ * or fitted word/letter was used. Decode at each shared source offset.
+ */
+const numbered=[
+  pg(36).slice(99,238),
+  pg(37).slice(0,91),
+  pg(37).slice(91,189),
+  [...pg(37).slice(189,228),...pg(38).slice(0,57)],
+  pg(38).slice(57,186)
+];
+assert.deepEqual(numbered.map(x=>x.length),[139,91,98,96,129]);
+const common=91;
+const fiveShare=[];
+for(const [operator,M,Minv]of modes){
+  const out=Array.from({length:5},()=>[]);
+  for(let i=0;i<common;i++){
+    const input=numbered.map(v=>v[i]);
+    for(let j=0;j<5;j++)out[j].push(mod(M[j].reduce((s,x,k)=>s+x*input[k],0)));
+  }
+  // Source-native 91-rune positive: force one actual known p57 prose channel,
+  // synthesize five coded lanes with no preselected key or fitting.
+  const sourceText=controls.slice(0,common);
+  const known=Array.from({length:5},(_,j)=>j===0?sourceText:
+    Array.from({length:common},(_,i)=>controls[(i+7*j)%controls.length]));
+  for(let i=0;i<common;i++){
+    const v=known.map(row=>row[i]);
+    const enc=Minv.map(row=>mod(row.reduce((s,x,k)=>s+x*v[k],0)));
+    const rec=M.map(row=>mod(row.reduce((s,x,k)=>s+x*enc[k],0)));
+    for(let k=0;k<5;k++)assert.equal(rec[k],v[k]);
+  }
+  const channelScores=out.map((row,i)=>({channel:i,ioc:ioc(row),head:row.slice(0,24).map(x=>original.translit[x]).join('')}));
+  assert.ok(channelScores.every(c=>c.ioc<0.045));
+  fiveShare.push({operator,channels:channelScores});
+}
+const maxFiveIoC=Math.max(...fiveShare.flatMap(x=>x.channels.map(c=>c.ioc)));
+assert.ok(Math.abs(maxFiveIoC-0.03882783882783883)<1e-10);
+result.fiveNumbered91CommonPrefix={originalUnitLengths:numbered.map(x=>x.length),
+  commonRuneOffsets:common,maxIoC:maxFiveIoC,sourceNativePlantsRecovered:4*5*91,
+  tests:fiveShare};
+
 console.log(JSON.stringify(result,null,2));
 console.log('PASS: 2014 CHANGE eigenbasis and two-square cross-basis, all 16 original inverses, native plants and 16 source-header p50/p8 key negatives');
