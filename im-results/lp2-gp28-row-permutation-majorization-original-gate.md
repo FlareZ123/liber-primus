@@ -41,7 +41,7 @@ where T with subscript (r) is the r-th largest non-self successor count in row s
 
 Because each row's unknown inverse is a bijection, any fixed set of k plaintext symbols can occupy at most the k most frequent successor slots in that row. Therefore, at each chapter/word-position cell, the number of occurrences of the k most frequent plaintext symbols cannot exceed U.
 
-The test is intentionally over-relaxed: it lets the best k-symbol set and the row assignments vary independently at every (g,j), although the proposed cipher has one fixed row permutation per (g,s) across all positions. A violation therefore excludes every key in the stated family, not just a searched sample.
+The test is intentionally over-relaxed: it lets the best k-symbol set and the row assignments vary independently at every (g,j), although the proposed cipher has one fixed row permutation per (g,s) across all positions. A violation therefore excludes every key in the stated family, not just a searched sample. This is **not a sidecar-capacity objection**: all 63 within-word repeat plaintext symbols are supplied without cost, so even an unlimited perfect exception oracle cannot rescue the fixed row table.
 
 ## Original source register
 
@@ -122,4 +122,4 @@ No original unknown-page plaintext, key, intended cipher operation, or final Cic
 node sims/lp2_gp28_row_permutation_majorization_sft.cjs
 ~~~
 
-The read-only Node 22 SFT uses only the committed original LP2 transcription/corpus and the repository's Gibran, Emerson, and Shakespeare control texts. It passed the existing Windows manual runner: [workflow run 45179083239](https://github.com/FlareZ123/liber-primus/actions/runs/45179083239). No new workflow was added.
+The read-only Node 22 SFT uses only the committed original LP2 transcription/corpus and the repository's Gibran, Emerson, and Shakespeare control texts. The expanded ordinary-state plus F-hold test passed the existing Windows manual runner: [workflow run 45182061014](https://github.com/FlareZ123/liber-primus/actions/runs/45182061014). No new workflow was added.
