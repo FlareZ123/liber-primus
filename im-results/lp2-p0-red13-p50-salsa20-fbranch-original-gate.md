@@ -1,0 +1,28 @@
+# Source-paired p0 nonce/p50 key as 2014-era Salsa20/20: exact original F-branch contradiction
+
+**Agent27, 23 November 2026. Bounded source-frozen negative, not an authenticated Cicada operation; no recovered unknown LP2 plaintext or destination.** The original p0 13-red-rune BASE29 numeral occupies **eight bytes**, and the fifth 32-byte p50 column is independently nominated by original visible p0-red 331/32 and missing-L arithmetic. An original 2005-era Salsa20/20 stream uses exactly those **32-byte key + 8-byte nonce** sizes and was 2014-available; no first-party source specifies Salsa20, so testing it is conditional, not a discovered creator instruction.
+
+## Frozen source and single decoder
+
+The executable [original-source CommonJS SFT](../sims/lp2_p0_red13_p50_fifth_salsa20_original_sft.cjs) reads the original untouched `resources/liber-primus/lp2-corpus.json`, `lp2-ink-annotations.json`, `base60-grid.json`; it does not consume a derived plaintext, choose a phrase from output, or fit key offsets. The original red GP13 numeral, read most-significant-rune first, is `0x4b1cde6f9c9af1e1`, and the fifth original printed base60 column is the 32-byte fixed key `61f7669636e6566ac772adec530e360da9f5f63469949026b0c2463a90ee16b4`. Prior independent selection evidence and the already-tested ChaCha20 alternative appear in [the p0-red331 table-column source route](lp2-p0-red331-crosspage-fifth-p50-source-route.md); **we did not retest ChaCha20**.
+
+Salsa20/20 uses original 64-bit nonce, 64-bit counter initialized to zero, the standard `expand 32-byte k` constants and 20 quarter-rounds. An independently published 256-bit-key/zero-nonce stream vector beginning `e3be8fdd8beca2e3ea8ef9475b29a6e...` is asserted in code. Original p0's **13 red rune header** is treated solely as nonce and is **not decrypted**. The uninterrupted source ciphertext begins with its 249 black runes and continues over the remaining physical LP2 unknown pages, exactly **12,943 GP29 symbols**.
+
+The two **nonfitted** reductions from standard byte keystream to GP29 are `streamByte mod29` and exact rejection of raw bytes≥232 followed by `mod29`, in both cases GP29 historically demonstrated `P_i=C_i-K_j mod29`. A third distinct receiver serializes the entire unaltered 12,943-rune unknown body as one big-endian base29 integer (7,860 bytes) and applies bytewise Salsa20 XOR.
+
+## Original outcomes
+
+| Source-fixed original decoder | p0 black IoC | Independent p1–p2 IoC | Full 12,943-rune IoC | Hard authenticated-F contradiction |
+| --- | ---: | ---: | ---: | --- |
+| Salsa20 keystream byte mod29, direct subtract | **0.03552921** | **0.03378335** | **0.03452564** | **Body symbol 156 (zero-based 155), original p0 rune168**, no legal F branches remain |
+| Salsa20 keystream rejection byte≥232 then mod29 | **0.03420132** | **0.03395796** | **0.03451413** | **Body symbol 32 (zero-based31), original p0 rune44**, no legal F branches remain |
+
+The stronger test carries **all possible key-consumption states**, not just the literal no-skip version. Under the authentically established LP1/p56 *plaintext F is literal ciphertext F and never advances the keystream* rule, when `C_i=F` either (a) literal plaintext F emits F and does not consume a key symbol, or (b) encryption consumes one key symbol but plaintext must be **non-F**. For any original ciphertext `C_i != F`, decrypting the next key symbol to plaintext F is **impossible**. The source-exact Boolean dynamic-programming inverse allows both lawful branches wherever available and rejects only when its set of possible positions becomes empty. For raw-byte mapping the largest reachable state set before contradiction had **5** key positions; under rejection mapping **2**. A separately **planted actual original p57 95-rune plaintext** forward-encrypted with the exact F-bypass convention is recovered with the true path reachable under both mappings. This rejects these two **complete GP29 original Salsa20/20 hypotheses without any language model, subjective IoC cutoff, or guessed word**.
+
+The third binary receiver produces **7,860 bytes**, of which **3,017** are ASCII printable or whitespace, longest printable run **8**, initial hex `9033847f9af7d5e056ce6cbf939c9e4121d8b7a20f11060c452522d22e249d8a`. It has no readable ASCII prose or standard unambiguous compressed-file header. The native XOR roundtrip is asserted. The direct GP29 output includes occasional accidental English fragments, but neither complete native passage nor actual key schedule is recovered.
+
+## Outcome and next decision
+
+[Successful Windows Node22 read-only full CI](https://github.com/FlareZ123/liber-primus/actions/runs/45258556026) tests source pinning, independent Salsa20 standard-vector correctness, original untouched complete-body inverses, genuine plaintext-F state search, known solved-p57 planted source control, and whole-base29 byte self-inversion. The preceding [baseline direct run](https://github.com/FlareZ123/liber-primus/actions/runs/45258211682) passed before the strict-F dynamic check was added.
+
+**Retire this original 32+8 source-paired Salsa20 stream hypothesis.** Its *key, nonce, counter, mapping and initial position are all frozen before output*; both native-rune mappings become logically impossible almost immediately. Do not continue with Salsa reduced rounds, salted keys, rotating nonce, unused counter values, shuffled chapters, invented F bypasses or postselected English cribs absent an additional first-party source. The still-provisional original fifth-column/Meanpng arithmetic remains an independent artifact observation, not a new unknown-page plaintext or an authenticated cipher.
