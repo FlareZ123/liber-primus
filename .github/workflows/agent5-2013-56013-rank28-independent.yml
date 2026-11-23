@@ -43,7 +43,7 @@ jobs:
             /tmp/rank28-inputs/weights.bin \
             /tmp/rank28-inputs/lp1.bin \
             /tmp/rank28-scan.json \
-            "\${{ inputs.null_replicates }}"
+            "${{ inputs.null_replicates }}"
       - name: Verify independent result against source and declared reference values
         run: python sims/cicada2013_56013_rank28_independent_verify.py /tmp/rank28-inputs/metadata.json /tmp/rank28-scan.json im-results/agent5-cicada2013-56013-rank28-independent.json
       - uses: actions/upload-artifact@v4
