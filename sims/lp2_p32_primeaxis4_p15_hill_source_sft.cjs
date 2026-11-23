@@ -159,7 +159,7 @@ for(const [label,K] of Object.entries({
   const {inverse,determinant}=inverseAndDet(K);
   chapterOutputs[label]={determinant};
   // Actual, previously solved plaintext control under both matrix orientations.
-  assert.deepEqual(hillDecode([multiply(K,plant).flat()],inverse,'left'),plant.flat());
+  const encryptedRows = plant.map(row => K.map(keyrow => m(\n    keyrow.reduce((sum,x,j) => sum+x*row[j],0))));\n  assert.deepEqual(hillDecode([encryptedRows.flat()],inverse,'left'),plant.flat());
   assert.deepEqual(hillDecode([multiply(plant,K).flat()],inverse,'right'),plant.flat());
   for(const [scope,pages] of Object.entries(originalScopes)) {
     const blocks={
