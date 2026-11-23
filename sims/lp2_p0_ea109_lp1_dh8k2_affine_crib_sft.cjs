@@ -23,6 +23,12 @@ const n = pages.reduce((s,p)=>s+p.indices.length,0);
 assert.equal(n,12956);
 assert.equal(known.reduce((s,x)=>s+x.length,0),2799);
 assert.equal(known.length,7);
+const originalP0Transcription=fs.readFileSync(
+  path.join(ROOT,"resources/liber-primus/lp2-transcription.txt"),"utf8").split("%")[0];
+// Exact original word boundaries: LP1 "TO • THE • GREAT" versus
+// LP2 "XY - EUNG - CFN". The affine sixgram does not preserve them.
+assert(prior.sections[1].source_text.includes("ᛏᚩ•ᚦᛖ•ᚷᚱᛠᛏ"));
+assert(originalP0Transcription.includes("ᛉᚣ-ᛖᚢᛝ-ᚳᚠᚾ"));
 assert.deepEqual(known[1].slice(21,27),[16,3,2,18,6,4]);
 assert.deepEqual(book.pages[0].indices.slice(109,115),[14,26,18,1,21,5]);
 const affine=(p,a,b)=>mod(a*p+b);
