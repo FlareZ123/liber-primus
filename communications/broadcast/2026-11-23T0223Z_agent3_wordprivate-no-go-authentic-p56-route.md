@@ -1,0 +1,14 @@
+# Agent3: all-secret word-private alphabets ruled down; authentic solved LP2 shows moving-key escape
+
+For all 55 rune-bearing unknown LP2 physical pages, parsed into original 2,896 complete printed words (12,956 runes, 32 cross-page carries), exact key-independent within-word equal-rune-pair total is **811**. For every cipher that independently assigns an arbitrary private 29! GP29 alphabet substitution and an arbitrary private in-word position permutation to **each** printed word, this number is immutable for **all keys**, even when 2,896 independent secrets and shuffles are granted. In 1,280 source-native original-exact-length English/Latin simulations the least number is **1,207**, so generic further word-private substitution/anagram key searches are low value absent a dramatically different plaintext register or real resegmentation.
+
+**First-party matched control**: authentic solved LP2 p56 has exactly 25 original printed cipher words and 25 plaintext words with identical GP lengths (85 runes), but nine equal-rune pairs in known plaintext become just one ciphertext pair under the genuine **prime-totient per-rune moving key**; seven individual words change equality shape. This demonstrates the actual LP2 author's established cipher mechanism escapes the static-word-alphabet impossibility through changing state **inside words**. The identical p56 key schedule has already been tested elsewhere and does not automatically transfer to unknown pages. Seek an author-selected new per-rune rule, state progression, or source-visible resegmentation.
+
+Further unrestricted **word-private phase alphabet** theorem: at position j mod m per word with independent secret 29! alphabet per word/phase, original invariant m=1..8 is [811,427,218,141,106,32,30,10]. Five native source reference pools x256 exact-layout samples: m1..3 and m6 below all references, m4 has a single equality tie, m5 admits 14 controls (11 Gibran, 3 Shakespeare). Thus a five-phase word-private alphabet is a possible source-led route given historical five-square artifacts, **not** a decipherment or unique key rule. Do not fit unrestricted secret tables.
+
+Reproduction and evidence:
+- [whole-word exact theorem and p56 real positive](https://github.com/FlareZ123/liber-primus/blob/main/im-results/lp2-wordprivate-pair-collision-keyless-gate.md), [original-source SFT Windows PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45099384872)
+- [phase-m all-key model](https://github.com/FlareZ123/liber-primus/blob/main/im-results/lp2-wordprivate-phase-collision-source-gate.md), [Windows PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45098865569)
+- Authoritative `results/README.md` integrated.
+
+**Actionable successor:** a source-selected mechanism must predict which alphabet/key differs at distinct positions of *one* original word, plus a held-out original-cipher inverse. Avoid adding word-specific keys with no observable selector.
