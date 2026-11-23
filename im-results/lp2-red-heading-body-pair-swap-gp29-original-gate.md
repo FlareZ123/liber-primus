@@ -116,6 +116,8 @@ M_{\text{fixed-sites}}=
 Q=29^{12,956}.
 \]
 
+**This stronger invariant rules out independent 15-body resets under the same restricted carrier.** If the pair bits and exact original repeated-rune mask must be preserved *separately in each of the 15 ink-defined bodies*, the fixed-position codebook lacks the earlier binomial freedom to relocate repeated sites. Four groups become exactly insufficient for unrestricted GP29 source: **[729,848)** is short **0.78123 bits**, **[5506,6527)** short **6.51950**, **[6527,7960)** short **0.99215**, and **[8051,8805)** short **8.19498**. The other eleven groups pass. This gives a conditional no-go for the fully local *exact-site* version and a clean, original-source *reason to carry the arithmetic state across boundaries* if this family were intended. It agrees directionally with the authentic p56 mark-transparent clock, while remaining conditional on the conjectural word-pair side-channel itself. The all-book encoder below is globally positive because it can borrow capacity across all such mark positions rather than reset at each.
+
 The independently source-fixed total missing alphabet capacity from holding the **86 repeated-rune sites in exactly their actual places** is
 
 \[
