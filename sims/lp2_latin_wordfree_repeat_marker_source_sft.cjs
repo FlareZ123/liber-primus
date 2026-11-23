@@ -187,11 +187,53 @@ assert.ok(plantedHit.count>=1);
 assert.ok(plantedHit.first.some(x=>x.offset===startIndex && x.reserved===0),
   "recover authentic exact Latin source offset");
 
+/**
+ * Stronger necessary equality test for the single p9 Vulgate passage
+ * surviving the weak marker mask. For every possible secret bijection
+ * from plaintext symbols to ciphertext first differences, a stationary
+ * alphabet within a fixed position phase must map repeated plaintext
+ * values to repeated deltas and different plaintext values to different
+ * deltas. A single contradiction excludes that phase-period family.
+ * @param {number[]} cipher
+ * @param {number[]} plain
+ * @param {number} period
+ */
+function mappingContradictions(cipher,plain,period){
+  const forward=Array.from({length:period},()=>Array(29).fill(-1));
+  const inverse=Array.from({length:period},()=>Array(29).fill(-1));
+  let forwardErrors=0,inverseErrors=0;
+  for(let i=1;i<cipher.length;i++){
+    const delta=(cipher[i]-cipher[i-1]+29)%29;
+    const phase=i%period,source=plain[i];
+    if(forward[phase][source]===-1)forward[phase][source]=delta;
+    else if(forward[phase][source]!==delta)forwardErrors++;
+    if(inverse[phase][delta]===-1)inverse[phase][delta]=source;
+    else if(inverse[phase][delta]!==source)inverseErrors++;
+  }
+  return {forwardErrors,inverseErrors};
+}
+const p9Candidate=latin.slice(147972,147972+p9.cipher.length);
+const p9Tests=Array.from({length:60},(_,i)=>{
+  const period=i+1, errors=mappingContradictions(p9.cipher,p9Candidate,period);
+  return {period,...errors};
+});
+assert.ok(p9Tests.every(x=>x.forwardErrors+x.inverseErrors>0));
+const actualNativePlant=latin.slice(startIndex,startIndex+262);
+const actualCipherPlant=plantCipher.slice(0,262);
+assert.deepEqual(mappingContradictions(actualCipherPlant,actualNativePlant,1),
+  {forwardErrors:0,inverseErrors:0});
+
 console.log(JSON.stringify({
   classification:"conditional Latin-language clue; literal Vulgate paragraph gate negative",
   originalRunes:original.length,originalEqualEvents:86,
   sourceReadout:language,latinWholePassageTests:sourceTests,
   p9RandomPositionsExpectedHits:expectedP9RandomMaskHits,
+  p9SourceNativePeriodGate:{periods:60,
+    firstPeriod:p9Tests[0],
+    fewestContradictions:p9Tests.reduce((best,x)=>
+      x.forwardErrors+x.inverseErrors<best.forwardErrors+best.inverseErrors?x:best),
+    zeroContradictionPeriods:p9Tests.filter(x=>!x.forwardErrors&&!x.inverseErrors).length,
+    independentLatinNativePositive:true},
   genuineLatin729RunePositive:{offset:startIndex,hits:plantedHit.count,
     correctSourceFound:true}
 },null,2));
