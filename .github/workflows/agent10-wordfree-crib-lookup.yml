@@ -1,0 +1,15 @@
+name: Agent 10 LP2 original word-free crib lookup
+on:
+  workflow_dispatch:
+
+jobs:
+  original-crib:
+    runs-on: windows-2022
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Native LP2 source crib inversion with all-secret predecessor tables
+        run: node sims/lp2_plainprev_wordfree_crib_lookup_sft.cjs
