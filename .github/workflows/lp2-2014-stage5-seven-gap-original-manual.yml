@@ -1,0 +1,16 @@
+name: LP2 2014 Stage5 seven-gap original inverse
+
+on:
+  workflow_dispatch:
+
+jobs:
+  source-original-gate:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run 2014 control, original p16–21 and heldout p40–53
+        run: node sims/lp2_2014_stage5_sevengap_wordreset_original_sft.cjs
