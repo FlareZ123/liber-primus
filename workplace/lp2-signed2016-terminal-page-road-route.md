@@ -1,6 +1,6 @@
 # A source-selected terminal-page address candidate from the signed 2016 THE followers
 
-**Status (23 November 2026, Agent45): original-source exact; conditional address hypothesis only. No unknown rune plaintext or cipher/key recovered.**
+**Status (23 November 2026, Agent45): source-exact five-step PATH-SW and WAY-MAP crossing to the 205th prime, aligned with solved p57's first sentence. Intended cross-source grammar remains a hypothesis; no unknown plaintext, key, or p54 decipherment recovered.**
 
 ## Observable clue and source constraints
 
@@ -43,6 +43,12 @@ The 205th ordinary prime = 1259
 ```
 
 **Independent authentic source recipient:** the *first complete sentence* on genuine solved clear **p57 PARABLE** contains exactly **30 GP runes with total official GP-prime value 1259**. The other two p57 sentence sums are **1031** and **1229**, with respective one-based prime ranks **173** and **201**. Their exact product is **1,595,277,641**, the already independently authenticated **2013 Cicada PARABLE ID3 integer**. That 2013→p57 product was documented in the existing research before the 2016 PATH→SW route was considered. The **new direct alignment is p50 cell74 value205 naming p57's *first* clause by prime rank**, supplying a compact bridge from signed 2016 source, the original p39 cuneiform footer, the authentic 256-cell sexagesimal object, and the clear terminal message. It establishes a **plausible small author-readable operation**, with no p54/plaintext recovery yet.
+
+### Independent signed WAY→MAP route crosses the PATH trajectory
+
+Two *other* consecutive signed THE-followers provide a separate literal **same-type** grid motion, using source values already fixed before this five-SW path was inspected: `GP0(WAY)=57`, `p50[57]=1w` = **one west** from57→56; `GP0(MAP)=56`, and `p50[56]=4E` = **four east** from56→60. **Cell60 is exactly the third of PATH's five southwest intermediate cells** (`39→46→53→60→67→74`). Thus the printed 2016 source-selected `PATH` and `WAY→MAP` address families converge at the same cell without tuning a starting phase or decrypting a rune. Original cell60 reads `1k`; there is **no authenticated next compass instruction** for its lowercase k. The direct `4E = 4 East` interpretation is simpler than the earlier optional `4E = hex ASCII N` mode switch in [the predecessor report](../im-results/lp2-way-map-here-direction-the-cycle.md) and does not need that unsourced ASCII conversion.
+
+This additional crossing strengthens the source-design hypothesis, while sharing the same unproved top-level ordinal→physical-page and p50 compass-grammar assumptions. Token `4E` appears twice in the 256-cell source, so treat the literal intersection as a **specific observed exact route**, not a unique-token marker.
 
 The original table tokens `05` and `3P` each occur **exactly once** among its 256 cells; byte205 is present **only at cell74**. If the two cell positions and their exact expected tokens were independently fixed in advance, shuffling the 256 exact source token instances would match both with probability **1/(256×255) = 1.531862745×10⁻⁵**. In this project those tokens and recipient were recognized through a much larger exploratory process, so the number is a **strict conditional calibration, not a discovery-adjusted proof of author intent**. The source-related (SW,05) combination was not supplied as an explicit syntax in a signed message.
 
