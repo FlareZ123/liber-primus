@@ -43,3 +43,14 @@ If the direct basic-gematria stream fails, investigate whether the two LP1 5×5 
 A quick exploratory check used only the LP1 plaintext-reference sections available for pages1 and3–16 (14 sections; page0 and page2 were absent). It removed digits/punctuation, greedily tokenized the remaining English with the GP29 graph list and obvious aliases, and obtained a 3,313-symbol key. Repeating that key over LP2 p0–p56 under GP29 additive shifts, both signs and all29 global Caesar offsets, produced a best symbol IoC of 0.034508 and no readable output.
 
 This rejects only the incomplete plaintext-only serialization tested. It is not a valid rejection of the historical hypothesis: the first17-page source is incomplete here, numeric matrix entries were omitted, and the exact idkfa page-specific shifted/basic-gematria transformation was not reconstructed. Do not tune this approximate key; build the complete source-derived stream first.
+
+
+## The April warning sequence is the LP1 opening
+
+The April 2016 “warning” runes are the opening of the idkfa transcription's LP1 segment0, not a separate LP2 ciphertext. Applying the idkfa README's documented segment0 operation (basic gematria with the Latin column inverted, option -i l) to the first source section yields the recognizable warning:
+
+> A warning. Believe nothing from this book except what you know to be true. Test the knowledge. Find your truth. Experience your death. Do not edit or change this book or the message contained within, either the words or their numbers. For all is sacred.
+
+The exact graph transliteration is nonstandard (for example, K/C and V/U aliases and the NG graph), but the warning's meaning is clear. This makes the 2016 discussion internally coherent: the first17-page material includes a warning about preserving both words and numbers, and the participants explicitly considered those pages as a key for the last57. Treat the warning as a source-derived LP1 plaintext recovered by the documented community translator, not as proof that the proposed LP1→LP2 key mechanism is correct.
+
+The quick plaintext-only key experiment noted above used only 14 available reference sections, omitted p0/p2 and all numeric matrix material, and is therefore only an exclusion of that incomplete serialization (not the historical proposal).
