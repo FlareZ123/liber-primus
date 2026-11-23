@@ -4,13 +4,21 @@
 
 ## Independent human-visible starting clue
 
-An archived Cicada invitation from the original onion distribution is headed `Hello. Your enlightenment awaits you.` and includes the 2014 LP2 distribution onion. The *preserved trailing/blank-line space counts* in that invitation read
+An archived Cicada invitation from the original onion distribution is headed `Hello. Your enlightenment awaits you.` and gives the 2014 LP2 distribution onion. One commonly circulated byte rendering preserves blank/trailing space lengths
 
-`[2,3,5,7,11,13,17,23,29,31,37]`.
+`[2,3,5,7,11,13,17,23,29,31,37]`,
 
-This is the increasing sequence of the **first twelve primes, with exactly 19 missing**. The historical gap was already documented by the earlier [2014 whitespace note](https://github.com/scream314/cicada3301/blob/master/hints_never_used.md); the missing prime as such is *not* newly discovered. Source text: [archived invitation](https://github.com/krisyotam/cicada3301/blob/main/liber-primus/original-onion7/message.txt.asc).
+the first twelve prime numbers except 19. The missing-prime observation was already circulated in the [historical whitespace note](https://github.com/scream314/cicada3301/blob/master/hints_never_used.md), so it is not a newly found source message. **A direct three-witness byte comparison now materially limits that premise:**
 
-**Authentication caveat:** Trailing spaces and all-whitespace lines are not robustly protected by the canonical cleartext PGP signature. A separate [invitation mirror](https://github.com/iBotPeaches/cicada_3301/blob/master/messages/2014/hello-your-enlightenment.asc) retains the words and signature but strips the whitespace counts. Therefore treating the omission as a deliberate creator instruction is conditional on the archival byte rendering. No use of the original message as a PGP-authenticated *whitespace* key is justified.
+| Independent public archive path (same 2014 OpenPGP signature) | Spacing after onion URL | Spacing after `Good luck.` | Other changes to whitespace |
+| --- | ---: | ---: | --- |
+| [krisyotam onion7 file](https://github.com/krisyotam/cicada3301/blob/main/liber-primus/original-onion7/message.txt.asc), identical to [scream314 stage11 file](https://github.com/scream314/cicada3301/blob/master/assets/2014/stage11/message.txt.asc) in the relevant spacing | 7 | 23 | 3, 5, 11, 13, 17, 29, 31, 37 survive |
+| [neuroretransmit 2014 reply](https://github.com/neuroretransmit/cicada/blob/master/2014/010-hidden-service-reply/message.txt.asc) | **6** | **22** | One extra space on the otherwise blank line immediately after `Hash: SHA1`; other source runs are unchanged |
+| [iBotPeaches clean copy](https://github.com/iBotPeaches/cicada_3301/blob/master/messages/2014/hello-your-enlightenment.asc) | 0 | 0 | Removes all blank-line and line-trailing spaces, retaining the same words and one URL indentation |
+
+These actual UTF-8 text files were read directly via GitHub's repository file API; the signature blocks are **byte-identical across all three witnesses** after disregarding only terminal newlines. Stripping line-trailing spaces in the signed-body text makes the three pre-signature bodies identical, also line-for-line. In the neuroretransmit copy the intended prime pattern is **broken at both 7 and 23** (the apparent surviving counts become 2,3,5,6,11,13,17,22,29,31,37); the clean copy cannot support a spacing-derived numerical series at all.
+
+**Stronger authentication decision, 23 November 2026:** OpenPGP cleartext-signature canonicalization discards trailing spaces and tabs, so matching authentic signatures cannot authenticate these particular trailing-space counts. The exact omission of **only 19** is therefore a *copy-specific, unsigned* feature of some surviving archived byte renderings, not an invariant of the authenticated message. It may reflect the original author's typography, archival normalization, or reconstruction. A verified raw May 2014 recipient file with secure independent custody could strengthen historical attribution, but is currently absent from this comparison. Any causal path `omitted 19 → GP W / p8 XIX` must remain explicitly contingent on the seven/23-space witness; it cannot be treated as a first-party signed instruction. The original p8 red `XIX` and other physical manuscript facts below are unaffected.
 
 In the original Gematria Primus alphabet, the first twelve symbol-prime pairs are exactly primes2 through37. The missing value19 is symbol index7, **W**. Restoring that one missing prime creates twelve source-ordered GP alphabet elements. This might point from the invitation toward the book's runic alphabet. The ordinary first-twelve-runic-alphabet explanation is an independent rival to a p8-specific clue.
 
