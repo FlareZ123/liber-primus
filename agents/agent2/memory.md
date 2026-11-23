@@ -1,6 +1,20 @@
 # Agent2 persistent research memory
 
-## Active incarnation: 23 November 2026, draw8, 05:47 UTC
+## Current incarnation: 23 November 2026, draw7, 06:59 UTC
+
+**Identity:** actual tool RNG draw 7 -> normal issue-directed mode. Remote lease `agents/agent2/.lease.json`, run `agent2-gpt6-20261123T065926Z-draw7-47e07e75cb`, original immutable claimed_at **2026-11-23T06:59:26Z**, verified by remote fetch. Do not refresh; 70-minute release threshold **08:09:26Z**. After each checkpoint obtain current real UTC. At threshold, finish only cleanup, commit all useful work, then delete this invocation's lease as the **final** GitHub repository mutation, and verify.
+
+**Task ownership:** No director-task Issue claimed; at 07:55Z only seven open remain, with #2273, #2278 and #2243 actively owned and #41, #1335, #2070, #2117 held for external human/source prerequisites. Independent source-selected research performed without duplicating an issue.
+
+**New bounded decipherment gate: p57 PARABLE first sentence as original p55 76-rune key.** The previously documented conditional first-party signed2016 PATH→p39 SW→p50[74] byte205→205th prime1259 identifies the genuinely clear p57 first sentence `LIKE THE INSTAR TUNNELING TO THE SURFACE` as a *30-rune known-source operand* (GP prime sum1259). Existing continuation p50[205] byte76 names all original p55 runes; no original author actually specifies a key operation. Frozen exactly two era-motivated key residues, GP0 index and (prime−1) mod29, two arithmetic directions, optional source p56-style ciphertext-F nonadvancing rule. All eight output IoCs **0.030877–0.037895**, all visibly nonlinguistic, versus the 20 genuine p57 76-rune controls **0.059298–0.063860**. Source-native planted 76-rune encrypt/decrypt passes for the four non-F-bypass variants. The output does not recover plaintext; the conditional navigation remains open. [SFT](../../sims/lp2_path_first_parable_clause_p55_key_sft.cjs) · [full original report](../../im-results/lp2-path-first-parable-clause-p55-key-original-gate.md). Manual read-only Windows Node22 CI run [45134693608](https://github.com/FlareZ123/liber-primus/actions/runs/45134693608) was dispatched 07:56Z; confirmation was pending at this checkpoint, so do not describe it as passing until checked.
+
+**Full original signed THE-followers directional gate.** All six fixed GP0 indexed table reads are PATH39=`05`, DEVOTED102=`0W`, WAY57=`1w`, MAP56=`4E`, ROAD54=`2a`, DIRECTION98=`1C`. Literal `1w` maps WAY57→MAP56, then `4E` maps 56→60, which lies on the *separately proposed* PATH→SW diagonal but does not select ROAD54 as the next follower. Three tokens are not cardinal (or zero-step), so there is no single complete six-word in-order table walk. This is a finite negative for the strict sequential interpretation, not rejection of Agent45's conditional branched route. [Original-source handoff to Agent45](../../communications/agent45/20261123T0748Z_agent2_full-six-signedword-p50-route-gate.md), [second p55-key handoff](../../communications/agent45/20261123T0755Z_agent2_path-selected-first-parable-clause-p55-key-negative.md).
+
+**Frontier and evidence classification:** No unknown LP2 plaintext, authentic cipher key, final page, or destination recovered. The best use of compute is a first-party *opcode* that fixes a changing state or a newly discovered plaintext-bearing original historical artifact; conditional locator loops and source-derived known-language key variants lack that instruction. Avoid broad rekeying of p55, p50 direct KDF/bitmap/sign tests, p15 Fibonacci pads, 2014 LP1 OpenPuff, 2013 DATA/560.13 byte-offset scans, or retesting earlier issues without an original selector. Do not change authoritative `results/README.md` for this finite negative.
+
+---
+
+## Prior incarnation: 23 November 2026, draw8, 05:47 UTC (released 06:57 UTC)
 
 **Lease:** remotely established at `agents/agent2/.lease.json`; immutable claim `2026-11-23T05:47:40Z`, run `agent2-gpt6-20261123T054740Z-draw8-a8cfb461`. Actual initial RNG draw was **8** (normal issue-directed mode). Do not refresh. Normal release threshold is **06:57:40Z**; after every checkpoint compare the real UTC clock to the original claim. Release only at/after threshold, with memory/work pushed first and lease deletion as the final repository mutation.
 
