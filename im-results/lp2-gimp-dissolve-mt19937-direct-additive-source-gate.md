@@ -25,9 +25,24 @@ The `resources/liber-primus/lp2-corpus.json` source contains the **12,956 unmodi
 
 All four original candidate decodings remain indistinguishable from 1/29 (**0.03448276**) on this first-order language control; their full p0 beginnings are nonprose. Every full original candidate was re-encrypted with the inverse sign and reproduced the **same 12,956 original rune values** exactly. A planted original-solved 95-rune p57 GP29 native positive recovered every rune correctly with this same implementation and both key-start conventions. These controls test decoder correctness; they do not authenticate the proposed cipher.
 
+## One separately source-motivated differential receiver
+
+The independent September 2026 ciphertext analysis and exact original corpus document only **86 adjacent equal rune events** in 12,901 within-page steps. This makes a one-step ciphertext **difference** a motivated way to turn the original anti-repeat tape into an input register; the original manuscript still gives no explicit command to combine it with GIMP. Freeze the same historical default MT stream, zero external predecessor on p0, continuous cross-page previous-ciphertext state or a page-local predecessor reset to zero, and the same ± GP29 additive mask. The proposed inverse is `P_i=(C_i−C_(i−1)±(MT_i mod29)) mod29`; the forward recurrence is exact and reversible. No seed, key phase, decimal-digit selection or output-tuned reset is searched.
+
+The test scores **all 12,901 original intra-page destination plaintext runes** after omitting the 55 unconstrained physical-page first symbols, but retains every original rune in full reversible reencryption.
+
+| Fixed GIMP-MT ciphertext difference receiver | Original within-page GP29 IoC |
+| --- | ---: |
+| Continuous stream, minus | **0.034483715882850256** |
+| Continuous stream, plus | **0.03449473600087488** |
+| Page-seeded stream, minus | **0.03446573758779591** |
+| Page-seeded stream, plus | **0.03451331517477463** |
+
+The source p0 opening is nonprose under all choices, beginning `BAOEXFUATUGNGPOOTIUTHOUOEISTHCCAEAHEOJSEYNGMAXOEAGTDWANGAXEO...` in the fixed minus case. The same test confirms complete forward reencryption on **all original 12,956 runes** and exact recovery of a planted **95-rune solved p57 native GP29** stream. This materially distinct source-selected *differential* family fails to reveal GP-native unknown plaintext, even though it allows a running ciphertext state. It does not rule out a different key source, nonlinear state, non-GP register, or genuine separate anti-repeat side information.
+
 ## Decision
 
-Reject only **the first-raw-GIMP-output `mod29` fixed additive stream** with book-continuous or page-reset starts and either sign. The historically recognizable software **art-production fingerprint is distinct from an authored instruction to encrypt 2014 runes**; its default seed carries no independent cryptographic significance. This bounded attempt produced no coherent original unknown LP2 native prose, key, source-heldout message or final link.
+Reject the **first-raw-GIMP-output `mod29` fixed additive and ciphertext-differential streams** with book-continuous or page-reset starts and either sign. The historically recognizable software **art-production fingerprint is distinct from an authored instruction to encrypt 2014 runes**; its default seed carries no independent cryptographic significance. This bounded attempt produced no coherent original unknown LP2 native prose, key, source-heldout message or final link.
 
 If an independently recovered period XCF project shows **a native-layer selection and byte field that directly serves as text key**, that specific new artifact could justify a different source-typed test. In its absence, do not launch raster-offset, pixel-channel, PRNG seed, cipher-phase or alternate modulus sweeps merely because GIMP Dissolve matches page57's artwork.
 
