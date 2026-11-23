@@ -347,6 +347,40 @@ assert.deepEqual(peeledSourceCases[0], {
   ioc: 0.03786512802019473
 });
 assert.ok(peeledSourceCases.every(x => x.ioc < 0.04));
+
+// The actual printed p39 source has two separated paragraphs, 119/121 runes.
+// Shed one boundary rune on each side of EACH paragraph, yielding 117+119
+// source rune symbols. This is a distinct, visible 236-rune recipient, not
+// a fitted or shifted version of the single contiguous 236-rune sequence.
+const sourceTranscript = fs.readFileSync(
+  path.join(root, 'resources/liber-primus/lp2-transcription.txt'), 'utf8');
+const p39PrintedBlocks = sourceTranscript.split('%')[39].split('&')
+  .map(text => (text.match(/[\u16a0-\u16ff]/g) || []).length);
+assert.deepEqual(p39PrintedBlocks, [119, 121, 0]);
+const p39BlockwiseShed = page39.slice(1, 118).concat(page39.slice(120, 239));
+assert.equal(p39BlockwiseShed.length, 236);
+const blockwiseSourceCases = [];
+for (const [direction, key] of [
+  ['high-degree-first', cubicExtraction.quotient.slice().reverse()],
+  ['low-degree-first', cubicExtraction.quotient]
+]) {
+  for (const scalar of [1, 5]) {
+    for (const sign of [-1, 1]) {
+      const candidate = p39BlockwiseShed.map((c, i) =>
+        mod(c + sign * scalar * key[i]));
+      blockwiseSourceCases.push({
+        direction, scalar, sign, ioc: ioc(candidate)
+      });
+    }
+  }
+}
+blockwiseSourceCases.sort((a, b) => b.ioc - a.ioc);
+assert.deepEqual(blockwiseSourceCases[0], {
+  direction: 'low-degree-first', scalar: 5, sign: 1,
+  ioc: 0.03609808871258565
+});
+assert.ok(blockwiseSourceCases.every(x => x.ioc < 0.04));
+
 const exactPeelPlant = cubicExtraction.quotient.map((x, i) =>
   mod(5 * x + genuinePlant[i]));
 assert.deepEqual(exactPeelPlant.map((x, i) =>
@@ -423,6 +457,8 @@ const report = {
     cubicCongruence: true, quarticCongruence: false,
     extracted236IoC: extractedIoC, extractedNativePlant: true,
     p39ShedTwiceOriginalReceiverCases: peeledSourceCases,
+    p39PrintedBlockLengths: p39PrintedBlocks,
+    blockwiseShedOriginalReceiverCases: blockwiseSourceCases,
     p39PeelNativePlant: true },
   sourceSelectedSecondLayer: { candidates: sourceTwoLayer.length, best: sourceTwoLayer[0],
     allHaveIoCLessThanFourPercent: true, signedP15PositiveRoundtrip: true },
