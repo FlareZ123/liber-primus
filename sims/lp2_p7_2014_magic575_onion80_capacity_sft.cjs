@@ -112,7 +112,11 @@ assert.equal(high, 'hwl54nxitxdm6zvg');
 assert(low.startsWith('hwl5') && high.startsWith('hwl5'));
 assert.equal(decodeOnionV2(low), backwardMinimum);
 assert.equal(decodeOnionV2(high), backwardMaximum);
-const actual = 'ky2khlqdf7qdznac';
+const originalSignedStage11 = source('resources/historical/cicada2014-stage11-message.asc');
+const stage11Address = /\b([a-z2-7]{16})\.onion\b/u.exec(originalSignedStage11);
+assert(stage11Address, 'Authentic signed Stage11 onion host is absent');
+const actual = stage11Address[1];
+assert.equal(actual, 'ky2khlqdf7qdznac');
 assert.equal(onionV2(decodeOnionV2(actual)), actual);
 assert(!actual.startsWith('hwl5'));
 console.log(JSON.stringify({
