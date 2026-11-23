@@ -130,17 +130,32 @@ Test every cyclic phase and both signs, again allowing all 256 original cipherte
 
 Together, the two exact gates test **16,384** original-cipher masks and recover no p29 plaintext. This extends the existing p15-to-p56-key work specifically to p29, the page singled out by the audio-duration relation.
 
+### Same p15 consumers on the other audio-selected pages
+
+The same two p15 key families were also tested on p0 (selected by the repeated-noise lag) and p55 (selected by π(262)). All ciphertext-F masks were enumerated, with both signs and all sixteen p15 starts or phases.
+
+| Target | Rune count / ciphertext Fs | p15 ordinal-start family | p15 period-16 family | Highest candidate IoC |
+|---|---:|---:|---:|---:|
+| p0 | 262 / 14 Fs | 32 legal masks across 32 configurations | 540 legal masks across 32 configurations | 0.03922 |
+| p55 | 76 / 3 Fs | 12 legal masks across 32 configurations | 17 legal masks across 32 configurations | 0.04316 |
+
+For p0, the only viable ordinal-start/sign configuration is start ordinal 611 (first prime 4507), sign −1; its best candidate IoC is 0.03779. For p55, the best ordinal-start candidate is start ordinal 90 (first prime 463), sign −1, IoC 0.04316. The best period-16 candidates are phase 14/sign −1 for p0 (IoC 0.03922) and phase 13/sign −1 for p55 (IoC 0.04246).
+
+The solved p56 plaintext's IoC is **0.070028**. None of the p0/p55 candidates approaches that control or yields convincing GP-English text. These are not universal exclusions of other languages or other mechanisms; they reject only the tested p15 consumers of the p56 prime-totient/F-bypass rule.
+
+Across all three audio-selected targets, the two key families test **1,065,472** original-cipher F masks: 16,384 on p29, 1,048,576 on p0, and 512 on p55. p29 has no legal inverse at all; p0 and p55 have some legal algebraic branches, but no plausible plaintext emerged.
+
 ### Positive controls
 
 - The original solved p56 ciphertext decodes exactly to its established 85-rune plaintext under the authentic prime-totient stream and its known literal-F mask, then re-encrypts byte-for-byte at the GP29 index level.
-- All 32 p15-ordinal/sign combinations correctly invert synthetic 277-rune F-transparent positive plants.
-- All 32 period-16 phase/sign combinations correctly invert synthetic 277-rune F-transparent positive plants.
+- All 96 p15-ordinal/sign combinations correctly invert synthetic F-transparent positive plants at the p0, p29, and p55 target lengths.
+- All 96 period-16 phase/sign combinations correctly invert synthetic F-transparent positive plants at the p0, p29, and p55 target lengths.
 
 The negative result is therefore not caused by a reversed sign, wrong prime indexing, broken F-bypass handling, or a decoder that cannot recover its own generated ciphertext.
 
 ## Decision and next work
 
-**Retain the audio timing as a low-to-medium-confidence page-selector hypothesis; reject these two direct p15→p29 uses of the solved p56 cipher.** Do not continue re-scoring the same outputs or launching generic audio key sweeps.
+**Retain the audio timing as a low-to-medium-confidence page-selector hypothesis; reject both direct p15→p29 uses and the low-IoC p15→p0/p55 candidates under the solved p56 cipher.** Do not continue re-scoring the same outputs or launching generic audio key sweeps.
 
 The useful next question is whether the selector pattern predicts a different source-authored operation on p29 or on the p55–p56 seam. That requires a concrete clue beyond the fact that the timing values match page counts. The audio binary and signed carrier should be added to resources only if a reproducible acquisition route is found; the current report does not claim their independent verification.
 
@@ -153,11 +168,11 @@ Run from repository root with Node.js 20+:
 The script:
 - reads the canonical GP29 corpus;
 - recomputes the title sum, sample-time arithmetic, prime counts, and unique page-length matches;
-- exhausts every p29 F mask for all 32 p15 ordinal-start/sign choices and all 32 period-16 phase/sign choices;
+- exhausts every original F mask for p0, p29, and p55 under all 32 p15 ordinal-start/sign choices and all 32 period-16 phase/sign choices per page;
 - verifies forward re-encryption for every surviving path;
 - checks the authentic p56 positive and synthetic F-transparent positive controls.
 
 No network access, external package, stochastic seed, or fitted language model is required. The external audio sample counts remain explicit fixed inputs from the cited secondary report.
 
 
-**Automated validation:** Windows Node.js 22 manual source-SFT run passed: [GitHub Actions run 45153202848](https://github.com/FlareZ123/liber-primus/actions/runs/45153202848). The run executed the exact script above against the checked-out canonical corpus.
+**Automated validation:** Windows Node.js 22 manual source-SFT run passed: [GitHub Actions run 45153911699](https://github.com/FlareZ123/liber-primus/actions/runs/45153911699). A subsequent output-only addition of the p56 plaintext IoC control was also dispatched as run [45154067296](https://github.com/FlareZ123/liber-primus/actions/runs/45154067296); its job is being checked.
