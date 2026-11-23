@@ -14,6 +14,7 @@ on:
           - seven-chain-historical-medium
           - seven-chain-base29
           - seven-chain-p55-coprime
+          - seven-chain-dh23
 permissions:
   contents: read
 jobs:
@@ -94,13 +95,13 @@ jobs:
           $nonEmpty = @($cases | Where-Object { $_.extracted_count -gt 0 })
           if ($nonEmpty.Count -gt 0) { Write-Host "EXTRACTION_CANDIDATE_FOUND $($nonEmpty.Count)"; }
       - name: Test seven original cuneiform JPEGs with the mode-selected password and depth
-        if: ${{ inputs.mode == 'seven-chain' || inputs.mode == 'seven-chain-medium' || inputs.mode == 'seven-chain-historical-maximum' || inputs.mode == 'seven-chain-historical-medium' || inputs.mode == 'seven-chain-base29' || inputs.mode == 'seven-chain-p55-coprime' }}
+        if: ${{ inputs.mode == 'seven-chain' || inputs.mode == 'seven-chain-medium' || inputs.mode == 'seven-chain-historical-maximum' || inputs.mode == 'seven-chain-historical-medium' || inputs.mode == 'seven-chain-base29' || inputs.mode == 'seven-chain-p55-coprime' || inputs.mode == 'seven-chain-dh23' }}
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
-          $level = if ('${{ inputs.mode }}' -eq 'seven-chain-medium' -or '${{ inputs.mode }}' -eq 'seven-chain-historical-medium' -or '${{ inputs.mode }}' -eq 'seven-chain-base29' -or '${{ inputs.mode }}' -eq 'seven-chain-p55-coprime') { '1/5 (20%) - Medium' } else { '1/2 (50%) - Maximum' }
-          $out = if ('${{ inputs.mode }}' -eq 'seven-chain-p55-coprime') { 'probe-output/original-cuneiform-seven-p55-coprime' } elseif ('${{ inputs.mode }}' -eq 'seven-chain-base29') { 'probe-output/original-cuneiform-seven-base29' } elseif ('${{ inputs.mode }}' -eq 'seven-chain-medium') { 'probe-output/original-cuneiform-seven-medium' } elseif ('${{ inputs.mode }}' -eq 'seven-chain-historical-medium') { 'probe-output/original-cuneiform-seven-historical-medium' } elseif ('${{ inputs.mode }}' -eq 'seven-chain-historical-maximum') { 'probe-output/original-cuneiform-seven-historical-maximum' } else { 'probe-output/original-cuneiform-seven-maximum' }
-          $password = if ('${{ inputs.mode }}' -eq 'seven-chain-p55-coprime') { 'A25S0EAJ15D8LKDCIA6E6FC22I5BI' } elseif ('${{ inputs.mode }}' -eq 'seven-chain-base29') { '16I' } elseif ('${{ inputs.mode }}' -eq 'seven-chain-historical-maximum' -or '${{ inputs.mode }}' -eq 'seven-chain-historical-medium') { '33011033' } else { '10333301' }
+          $level = if ('${{ inputs.mode }}' -eq 'seven-chain-medium' -or '${{ inputs.mode }}' -eq 'seven-chain-historical-medium' -or '${{ inputs.mode }}' -eq 'seven-chain-base29' -or '${{ inputs.mode }}' -eq 'seven-chain-p55-coprime' -or '${{ inputs.mode }}' -eq 'seven-chain-dh23') { '1/5 (20%) - Medium' } else { '1/2 (50%) - Maximum' }
+          $out = if ('${{ inputs.mode }}' -eq 'seven-chain-dh23') { 'probe-output/original-cuneiform-seven-dh23' } elseif ('${{ inputs.mode }}' -eq 'seven-chain-p55-coprime') { 'probe-output/original-cuneiform-seven-p55-coprime' } elseif ('${{ inputs.mode }}' -eq 'seven-chain-base29') { 'probe-output/original-cuneiform-seven-base29' } elseif ('${{ inputs.mode }}' -eq 'seven-chain-medium') { 'probe-output/original-cuneiform-seven-medium' } elseif ('${{ inputs.mode }}' -eq 'seven-chain-historical-medium') { 'probe-output/original-cuneiform-seven-historical-medium' } elseif ('${{ inputs.mode }}' -eq 'seven-chain-historical-maximum') { 'probe-output/original-cuneiform-seven-historical-maximum' } else { 'probe-output/original-cuneiform-seven-maximum' }
+          $password = if ('${{ inputs.mode }}' -eq 'seven-chain-dh23') { '2' } elseif ('${{ inputs.mode }}' -eq 'seven-chain-p55-coprime') { 'A25S0EAJ15D8LKDCIA6E6FC22I5BI' } elseif ('${{ inputs.mode }}' -eq 'seven-chain-base29') { '16I' } elseif ('${{ inputs.mode }}' -eq 'seven-chain-historical-maximum' -or '${{ inputs.mode }}' -eq 'seven-chain-historical-medium') { '33011033' } else { '10333301' }
           $arguments = @(
             '--exe', "$env:OPENPUFF_EXE",
             '--password', "$password",
