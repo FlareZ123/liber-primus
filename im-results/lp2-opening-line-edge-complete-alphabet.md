@@ -1,4 +1,4 @@
-# Opening 33-line perimeter: the GP29 first-occurrence alphabet and two failed historical Vigenère receivers
+# Opening 33-line edge alphabet: reader ambiguity and bounded original decoding
 
 **Agent37, 23 November 2026. Classification: an exact previously unreported original-source observation and a reproducible exploratory calibration; no new plaintext, authenticated edge-reading instruction, final Cicada key, or author's operation.** Related Director [#2394](https://github.com/FlareZ123/liber-primus/issues/2394), prior [33-line geometric baseline](lp2-p0-p2-33line-13column-keyless-original-gate.md), [Windows Node22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45186896564), [single-file original SFT](../sims/lp2_opening_33line_edge_alphabet_2014_original_sft.cjs).
 
@@ -81,6 +81,25 @@ Both original outputs have near-binary-random readability, lack known file magic
 A second frozen **historically standard 7-bit ASCII serialization** was then applied to those *same* whole-integer values, zero-padding at the left to complete exactly seven-bit groups without testing bit phases or cutting selected words. Each emits **451 7-bit symbols**. Under canonical GP29, 78.492239% fall in printable ASCII plus whitespace and 42.793792% are letters/spaces; under the source-derived edge alphabet, the corresponding fractions are **76.496674%** and **38.359202%**. These proportions are consistent with arbitrary seven-bit values and contain no English instruction. Complete 7-bit byte-array digests: canonical `7791d4546d164fa456ef3d8f88152358a8374a36bb1bfd873486a7ada0dc5c86`, edge-derived `d393149803d464f0655b83d82336f8825696513af11155881871224798d4b5fb`. A separately planted genuine-format PGP header, encoded in exactly seven-bit groups, round-trips to its original bytes. [Windows PASS 45196339511](https://github.com/FlareZ123/liber-primus/actions/runs/45196339511); this is the same complete SFT, with no fitted offset or altered original input. Neither is a recognizable 2014 payload. Full output SHA-256: canonical `d678ae241892d216cd5dda90ceda3aef88ca6b43a22924c93f1472487e0aa7b1`, edge-derived `25506ac5526a4496cea6be4d0106f569ab22d7b66d098fcedfc3140b47603888`. [Complete original-source Windows PASS 45194997778](https://github.com/FlareZ123/liber-primus/actions/runs/45194997778).
 
 **Decision:** the direct whole-core source-selected BASE29→8-bit bytes and BASE29→7-bit ASCII interpretations are closed for both unmodified alphabets. Variable per-word packets, different byte grammar or compression layers are distinct hypotheses and need their own **source-selected** evidence; do not tune arbitrary byte grouping or offset to rescue an unrecognizable readout. This provides no LP2 plaintext or decipherment key.
+
+## Original line-wrap and circumference reading-order gate (Agent4, 23 November)
+
+The physical scans show **12 black lines on p0, 12 on p1, and 9 on p2**. The first line of p0 starts after the corrected 13-red-rune title; all 33 black lines contain 716 runes. All original 66 exterior runes and 650 inner runes are preserved. The complete 29-symbol first-occurrence alphabet emerges at **edge46 = the second glyph of printed line23**, which is **p1 line11**, one line *before* the p1/p2 page break. There is no printed stop marker on line23. The first two complete pages still cover all29 by edge48.
+
+The physically visible exteriors permit several natural, source-unaltered readers. Their **first GP29 full-alphabet completion** on the same 66 original rune positions differs:
+
+| Fixed reader | Earliest complete 29-glyph alphabet |
+| --- | ---: |
+| Each line, first then last, top to bottom | **46** |
+| Each line, last then first, top to bottom | **46** |
+| All first glyphs top-down, then all last top-down | **56** |
+| All first glyphs top-down, then all last bottom-up (perimeter) | **58** |
+| All last glyphs top-down, then all first bottom-up (reverse perimeter) | **55** |
+| All last glyphs top-down, then all first top-down | **56** |
+
+The two *line-by-line* directions even yield **different complete 29-rune permutation orders** at the same edge46. This is a useful missing-instruction discriminator: the earlier phrase “shed our own circumferences” does not uniquely nominate line-pair interleaving over a literal clockwise perimeter traversal. Solved p57 does contain a large 23-dot terminal marker, but no authenticated instruction connects that mark to the **penultimate line of p1** or orders the edges. It is a possible cross-reference, not an established stop rule.
+
+There is also no first-party rule choosing first-occurrence *rank* as a cipher alphabet, assigning the 20 later exterior glyphs a restoration/key role, or expanding this 29-position sidecar into a nonperiodic, reversible decoder for 650 untouched body runes. The specific Vigenère/tabula/BASE29 receivers above already fail. Under these constraints, **the edge29 practical decipherment hypothesis is blocked by a missing source-typed reader and state/clock**, rather than disproved for all conceivable changing-state ciphers. This is not plaintext recovery. [Complete original-transcription, nonfitted six-reader test](../sims/lp2_p0_edge29_reading_order_source_sft.cjs).
 
 ## What changes the next research choice
 
