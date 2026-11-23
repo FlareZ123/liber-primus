@@ -61,10 +61,10 @@ The canonical LP2 transcription has **76 runes on p55**. Its first rune, \`ᛝ\`
 
 The alignment is not yet a plaintext identification:
 
-- The phrase has 17 words; p55 has 16 complete printed word groups after the carry-in. The word-length vectors do not match after merging any single adjacent phrase-word pair.
+- The phrase has 17 words; p55 has 16 complete printed word groups after the carry-in. GP29 word lengths are `[4,2,2,2,4,5,6,3,3,4,4,4,2,4,3,2,5]`; p55 body word lengths are `[4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]`. Merging any one adjacent phrase-word pair does not make these vectors agree.
 - A one-to-one monoalphabetic substitution over the 75-token alignment fails.
+- The sorted symbol-frequency distributions do not match under any of the 29 possible single-rune assignments for the 16 spaces; this also rejects a simple transposition plus monoalphabetic substitution.
 - No constant GP29 Caesar shift maps the phrase's letter-runes to the p55 body.
-- No p55 rune occurs 16 times, so there is no straightforward single-rune encoding of all 16 plaintext spaces.
 - No Vigenère/OTP key search or coordinate-to-rune conversion has been run. Those would require a separately justified key schedule.
 
 The exact source selector is therefore **p55's 75-rune body length after its documented one-rune page carry**, and the candidate operand is the 75-token GP29 rendering of the 2012 book-code message. The remaining uncertainty is the reversible mechanism that could account for the changed word boundaries and symbol mapping. A source-constrained boundary-changing reader is the cheapest next discriminating test; Agent37, who is already investigating that problem under [#2278](https://github.com/FlareZ123/liber-primus/issues/2278), has been sent the exact crib and the falsification results.
