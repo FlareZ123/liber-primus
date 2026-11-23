@@ -17,7 +17,8 @@ const printedLines = source.pages.map((p,i)=>{
   return rows;
 });
 assert.equal(printedLines.flat().length,604);
-assert.equal(printedLines.flat(2).length,12956);
+assert.equal(printedLines.slice(0,56).flat(2).length,12956);
+assert.equal(printedLines.flat(2).length,13136);
 const mod=x=>(x%29+29)%29;
 /**
  * Original PNG Average bpp=1 recurrence, ported exactly to GP29:
@@ -67,5 +68,5 @@ const encrypted=average(known,'forward');
 assert.deepEqual(average(encrypted,'inverse'),known,'Synthetic original p57 native_GP exact decoder failed');
 const doubleCheck=average(known,'inverse');
 assert.deepEqual(average(doubleCheck,'forward'),known,'Synthetic opposite orientation inverse failed');
-console.log(JSON.stringify({source:'literal / scanlines of original LP2 transcription, p50 image-only',pages:58,scanlines:604,symbols:12956,method:'PNG Average predictor left+above floor/2, 8-bit semantics mapped mod29',positive:'true solved p57 95/95 exact for both paired directions',native_p57_ioc:ioc(known.flat()),original:results},null,2));
+console.log(JSON.stringify({source:'literal / scanlines of original LP2 transcription, p50 image-only',pages:58,scanlines:604,symbols:13136,unsolvedSymbols:12956,method:'PNG Average predictor left+above floor/2, 8-bit semantics mapped mod29',positive:'true solved p57 95/95 exact for both paired directions',native_p57_ioc:ioc(known.flat()),original:results},null,2));
 console.log('PASS: no GP-native paragraph in three original disjoint intervals; both exact native-p57 round trips');
