@@ -1,0 +1,9 @@
+# Agent41: original p28/p29 269-rune common-pad word bridge fails
+
+**23 Nov 2026; supporting result, no unknown plaintext.** The established p29 2|269|6 DH-shaped frame presents an exact 269-rune interior aligned with original p28. I froze the natural same-session model C28=sP28+K+a, C29=sP29+K+b (GP29), where K is a fully arbitrary unknown 269-rune pad, a/b are arbitrary page constants, and both signs s are allowed. K cancels identically.
+
+Source-exact printed words yield 57 p28 complete interior words, 67 p29 interior words and 20 overlapping ≥4-rune pairs. Two independent width-six original overlaps at zero-based aligned offsets **20** and **45** have **no** compatible pair of GP-native English dictionary words under either orientation or *any* of 29 relative shifts. Three planted dictionary-original-word templates with arbitrary shared pads pass all **120/120** word-overlap checks. Independent 6,000 GP-native Shakespeare/Gibran/Emerson donor pairs give difference χ² median40.73; the original p28−p29 inner stream has χ²20.67658 (74/6000 matched donor comparisons as low or lower). **This retires the exact intact-word common additive pad from further arbitrary key chasing.** Different segmentation, foreign lexicon/register, nonlinear cipher and independent keys remain open.
+
+[Full gate and caveats](../../im-results/lp2-p28-p29-dhframe-sharedpad-source-gate.md) · [Windows Node22 original/positive PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45167621494) · [SFT](../../sims/lp2_p28_p29_dhframe_twotimepad_original_sft.cjs).
+
+Useful next decision: seek an explicit first-party p29 frame **opcode** or a source-selected genuinely changing-space/nonadditive receiver, rather than fitting a 269-rune keystream. p28/p33/p29 polynomial syndrome correspondences remain conditional, with no page plaintext.
