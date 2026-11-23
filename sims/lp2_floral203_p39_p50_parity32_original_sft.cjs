@@ -141,6 +141,24 @@ const maxSecretMap = Math.max(...variants.map((v) => v.upperBoundWithUnknownSymb
 assert.equal(maxExact, 4);
 assert.equal(maxSecretMap, 23);
 
+// Even a secret independent choice among all eight original printed cells in
+// each of the 32 physical table rows cannot provide all required checks.
+const rowChoices = [];
+for (const alphabet of [abc60, abc59]) {
+  const printedRows = Array.from({length: 32}, (_, r) =>
+    srcTokens.slice(r*8, r*8+8).map((t) => decode(t, alphabet) % 29));
+  for (const side of ['app','pre']) for (const layout of ['inter','blocked']) {
+    for (const reverse of [false, true]) {
+      let need = expected(side, layout);
+      if (reverse) need = need.slice().reverse();
+      const matched = need.filter((v,j) => printedRows[j].includes(v)).length;
+      rowChoices.push({radix: alphabet.length, side, layout, reverse, matched});
+    }
+  }
+}
+assert.equal(rowChoices.length, 16);
+assert.equal(Math.max(...rowChoices.map((r) => r.matched)), 13);
+
 // An actual solved-native GP29 word stream is completed with exactly computed
 // parity, and both possible original word carry / end conventions reconstruct it.
 const runeMap = new Map(solved.runes.map((r, i) => [r, i]));
@@ -159,6 +177,8 @@ console.log(JSON.stringify({
   exploratoryNaturalTableSerializations: {variants: 128, highestExactMatches: maxExact,
     highestUnderArbitraryFixedSymbolLookup: maxSecretMap,
     bestVariants: variants.filter((v) => v.matches === maxExact)},
+  eightCandidatesPerPrintedRow: {variants: 16,
+    maximumRecoverableParitySymbols: Math.max(...rowChoices.map((r) => r.matched))},
   nativePositive: '203/203 GP runes parity exact, both append and prepend',
   scope: 'No direct 32-parity field through one printed column or row mean, no original authenticated code'
 }, null, 2));
