@@ -36,3 +36,10 @@ Reconstruct a deterministic **basic-gematria Futhark stream** for LP1 pages0–1
 Run only the source-selected variants: default subtraction and reverse-shift addition, with a single global alignment and no page-specific tuning. Use the known solved LP2 p56 page as a holdout/control where applicable; compare IoC and language scores against the unmodified ciphertext. A failure rejects this exact key construction, not every possible first17-page mechanism.
 
 If the direct basic-gematria stream fails, investigate whether the two LP1 5×5 matrices supply the shift/seed or a paired transform. Do not re-run their already-tested individual Hill or page-power attacks.
+
+
+## Preliminary plaintext-only key check (not decisive)
+
+A quick exploratory check used only the LP1 plaintext-reference sections available for pages1 and3–16 (14 sections; page0 and page2 were absent). It removed digits/punctuation, greedily tokenized the remaining English with the GP29 graph list and obvious aliases, and obtained a 3,313-symbol key. Repeating that key over LP2 p0–p56 under GP29 additive shifts, both signs and all29 global Caesar offsets, produced a best symbol IoC of 0.034508 and no readable output.
+
+This rejects only the incomplete plaintext-only serialization tested. It is not a valid rejection of the historical hypothesis: the first17-page source is incomplete here, numeric matrix entries were omitted, and the exact idkfa page-specific shifted/basic-gematria transformation was not reconstructed. Do not tune this approximate key; build the complete source-derived stream first.
