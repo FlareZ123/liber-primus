@@ -26,6 +26,28 @@ Before comparison, the three source groups and every quote interval are fixed. A
 
 The corrected GP29 length control yields the same 6-word/22-rune maximum as the native runes; its full result matrix is printed by the SFT. **No full-span match exists for any quote with ≥4 words under any convention.** Two source-native (five raw Latin) matches of the original p40 **two-word** `3,9` pattern exist inside the 181-word manifesto; these are nonunique word-length coincidences and convey no specific plaintext letters. There is no independently selected consuming cipher/key, so constructing one to force a match would be postselection. The longest partial match, p42–43 six words, is just 22 runes and does not meet the predeclared gate.
 
+
+## Actual 2014 13-rune cipher-clock source-plaintext transfer
+
+**New independent exact plaintext decision, 23 November 2026.** The same historical Onion6 source documents the real **13-rune FIRFUMFERENFE Vigenère clock** with **two explicit colon-before-F skips** on the 2014 KOAN pages 107 and 167. Unlike the literal quotation test above, this experiment asks whether any of the seven historical *plaintext* pages was encrypted into **any of the 12,956 original unknown LP2 runes under a secret 13-rune Vigenère key**, even if all quotation positions and printed word breaks changed. Both signs are tested; all 13 secret key symbols, source placements and LP2 placements are unrestricted. The 13-rune key period is fixed by the original prior-stage cipher and is the sole tested period.
+
+The appended read-only SFT reconstructs the **actual 319 source KOAN plaintext runes from the archived 107+167 ciphertext** in its original GP29 spelling using the archived 29-symbol historical index, source-documented shift vector [29,19,25,29,28,10,29,11,25,11,20,29,11], two colon-marked skips, and 317 other key advances continuing across both pages. It asserts the first five recovered GP runes spell A-KOAN in the historical alphabet. Together with four original plaintext manifesto pages and the final clear post-square page, this gives **1,163 source plaintext runes** (187/207/192/169/226/93/89), all pinned to original archive rune text. Editorial corrected Roman spelling is not used for the cipher test.
+
+For any true 13-periodic GP29 additive or subtractive cipher relation between a plaintext source interval P and original LP2 interval C, the *necessary and sufficient* lag-13 equality is:
+
+\[
+C_{t+i+13}-C_{t+i} \equiv \sigma(P_{s+i+13}-P_{s+i}) \pmod{29},\qquad \sigma\in\{+1,-1\}.
+\]
+
+Thus, under **any possible secret 13-symbol key** and any alignment, an interval of L matching consecutive lag differences corresponds to precisely L+13 original runes. The exhaustive two-row longest-common-substring computation screens the actual 12,943 LP2 lag-13 values against all 1,150 historical source lag-13 values for both orientations, without key guessing, word alignment or substring scoring.
+
+| Source-author 13-periodic GP29 family | Longest actual original-LP2 matching plaintext interval | LP2 unknown rune start | Historical plaintext rune start |
+|---|---:|---:|---:|
+| Additive (equal lag changes) | **18 runes** | 873 | 713 |
+| Subtractive (opposite lag changes) | **17 runes** | 4,354 | 6 |
+
+A 200-rune native historic-source segment encrypted with an arbitrary fixed 13-key passes the independently planted exact detection, and the existing seven-quote source positives remain intact. The two actual maxima are too short for an authentic key/crib. **This exhausts the full historical seven-source / any-location / all-secret fixed-period-13 Vigenère plaintext-reuse family** under the unchanged original glyph spelling, including changed word boundaries. It does not rule out authentic 2014-style selectively marked F-skips in LP2 if someone first discovers a genuine LP2 ink marker-to-clock selector, or any key period other than13. It recovers no unknown plaintext or cipher key.
+
 ## Research consequence
 
-This source-specific original-input decision closes the literal quotation-reuse fork for all **seven physically quoted** LP2 spans and the seven archived Onion6/2014 post-square pages. It does **not** undermine the 2014 stage-specific `FIRFUMFERENFE` decryptions or exclude the historical Onion6 prose as a possible **running key**, paragraph-level paraphrase, hidden-state donor, or a source with altered punctuation; those mechanisms still need an author-visible independent selector and exact original-cipher inverse. Do not run new arbitrary source-quote rotations or approximate substring alignments on this same corpus. The existing 53,000-book Gutenberg source-negative has a distinct scope and was not rerun.
+This source-specific original-input decision closes the literal quotation-reuse fork and the unchanged-period13 secret-Vigenere historical-plaintext fork for all **seven physically quoted** LP2 spans and the seven archived Onion6/2014 post-square pages. It does **not** undermine the 2014 stage-specific `FIRFUMFERENFE` decryptions or exclude the historical Onion6 prose as a possible **running key**, paragraph-level paraphrase, hidden-state donor, or a source with altered punctuation; those mechanisms still need an author-visible independent selector and exact original-cipher inverse. Do not run new arbitrary source-quote rotations or approximate substring alignments on this same corpus. The existing 53,000-book Gutenberg source-negative has a distinct scope and was not rerun.
