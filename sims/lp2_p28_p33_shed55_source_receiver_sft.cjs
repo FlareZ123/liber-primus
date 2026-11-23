@@ -128,6 +128,24 @@ function main() {
   assert.equal(shed(q28Words,'last').length,211);
   const solved=book.pages[57].indices;
   assert.equal(solved.length,95);
+  /** @param {number[]} left @param {number[]} right
+   * @returns {{pairs:number,conflictingInputs:number,conflictingOutputs:number}}
+   */
+  function stationarySboxGate(left,right) {
+    assert.equal(left.length,right.length);
+    const outbound=Array.from({length:29},()=>new Set());
+    const inbound=Array.from({length:29},()=>new Set());
+    for(let i=0;i<left.length;i++) {
+      outbound[left[i]].add(right[i]);
+      inbound[right[i]].add(left[i]);
+    }
+    return {
+      pairs:outbound.reduce((s,v)=>s+v.size,0),
+      conflictingInputs:outbound.filter(v=>v.size>1).length,
+      conflictingOutputs:inbound.filter(v=>v.size>1).length
+    };
+  }
+  const mappingGates=[];
   const cases=[];
   for(const [register,source,cipher] of [
     ['original',p28,p33],['GF29-Q-quotient',q28Words,Q33.q]
@@ -136,6 +154,7 @@ function main() {
       const key=shed(source,edge);
       assert.equal(key.length,cipher.length);
       const match=key.filter((x,i)=>x===cipher[i]).length;
+      mappingGates.push({register,edge,...stationarySboxGate(key,cipher)});
       for(const sign of [-1,1]) {
         const plain=cipher.map((x,i)=>mod(x+sign*key[i]));
         const round=plain.map((x,i)=>mod(x-sign*key[i]));
@@ -153,6 +172,8 @@ function main() {
     }
   }
   assert.equal(cases.length,8);
+  assert.deepEqual(mappingGates.map(v=>[v.pairs,v.conflictingInputs,v.conflictingOutputs]),
+    [[198,29,29],[195,29,29],[183,28,29],[186,29,29]]);
   assert(cases.every(x=>x.originalPlainIoC<0.04));
   console.log(JSON.stringify({
     originalBookRunePages:55,
@@ -162,6 +183,7 @@ function main() {
     exactOriginalQReplays:true,
     originalAndQSourceLengths:[[269,214],[266,211]],
     originalP57NativePlant:95,
+    arbitrarySecretStationarySboxImpossibility:mappingGates,
     vigenereConsumers:cases,
     verdict:'Exact 55-edge original word geometry is new provisional source alignment; no real p33 plaintext under these eight fixed classic direct inverse choices, and no original clue names edge side/operation.'
   },null,2));
