@@ -173,3 +173,50 @@ console.log(JSON.stringify({ candidates: output.length,
 assert(output.every(x => x.fullIoC < 0.05));
 assert(output.every(x => x.firstThreeIoC < 0.05));
 console.log('PASS: 16 source-fixed complete original decodes, exact inversions, two published BIP32 vectors, solved-native controls.');
+
+/*
+ * The printed column4/column5 64-byte pair may be a BIP32 extended private
+ * key rather than a pad for separate rune pages. Freeze them as unencrypted
+ * header bytes, leaving exactly six other original 32-byte columns (192 bytes).
+ * Historic 2013/2014 Cicada supplied XOR of binary operands in other stages.
+ * The direct receiver below uses unmodified child private scalars m/i or m/iH
+ * for indices i=0..5, bytewise XOR, preserving all source column ordering.
+ */
+const payloadCols = [0, 1, 2, 3, 6, 7];
+const lockedPayload = Buffer.concat(payloadCols.map((n) => col(n)));
+assert.equal(lockedPayload.length, 192);
+const binaryReadouts = [];
+for (const hardened of [false, true]) {
+  const pad = Buffer.concat(payloadCols.map((_, i) => {
+    const index = hardened ? 0x80000000 + i : i;
+    return ser(ckd(parentKey, col(5), index).key, 32);
+  }));
+  assert.equal(pad.length, lockedPayload.length);
+  const recovered = Buffer.from(lockedPayload.map((value, i) => value ^ pad[i]));
+  const replay = Buffer.from(recovered.map((value, i) => value ^ pad[i]));
+  assert.deepEqual(replay, lockedPayload);
+  const native = Buffer.from(
+    ('WORDS OR THEIR NUMBERS ARE THE DIRECTION. ').repeat(6).slice(0, 192),
+    'ascii'
+  );
+  assert.equal(native.length, 192);
+  const encryptedNative = Buffer.from(native.map((value, i) => value ^ pad[i]));
+  assert.deepEqual(
+    Buffer.from(encryptedNative.map((value, i) => value ^ pad[i])),
+    native
+  );
+  const printable = [...recovered].filter((b) => b >= 32 && b <= 126).length;
+  const lettersSpaces = [...recovered].filter(
+    (b) => b === 32 || (b >= 65 && b <= 90) || (b >= 97 && b <= 122)
+  ).length;
+  const result = {
+    hardened, bytes: recovered.length, printable, lettersSpaces,
+    printableFraction: printable / recovered.length,
+    lettersSpacesFraction: lettersSpaces / recovered.length,
+    first32Hex: recovered.subarray(0, 32).toString('hex')
+  };
+  assert(printable < recovered.length * 0.6);
+  binaryReadouts.push(result);
+}
+console.log(JSON.stringify({ sourceFixedBip32WholeTableByteXor: binaryReadouts }, null, 2));
+console.log('PASS: extended-key 64-byte metadata and 192-byte source-only XOR binary receiver, exact authentic replay and complete independent ASCII plant.');
