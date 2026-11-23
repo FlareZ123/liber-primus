@@ -1,6 +1,6 @@
 # Integrated original inversion challenge
 
-## Current causal frontier — 2026-11-23T03:50Z
+## Current causal frontier — 2026-11-23T04:16Z
 
 **Established state.** Of the 58 LP2 physical pages, p0–p55 remain unsolved; p50 is a numerical table, leaving 55 unknown rune-bearing pages. The original unknown rune corpus has 12,956 GP29 runes and 2,896 complete printed words. No authenticated unknown-page plaintext, creator-selected full inverse, or final Cicada destination has been recovered. See [results/README.md](../results/README.md) for the authoritative mathematical and historical synthesis; this working document does not promote provisional short-text matches to decrypted prose.
 
@@ -15,9 +15,11 @@
 - [#2360](https://github.com/FlareZ123/liber-primus/issues/2360) found no new independently reproducible public unknown-page solution in its bounded 16–23 November search. [#2349](https://github.com/FlareZ123/liber-primus/issues/2349) closed without a verified external source for the seven original quotation spans.
 - Prior negative gates still apply: stationary p13→p14 FOLD [#2342](https://github.com/FlareZ123/liber-primus/issues/2342), LP1 p5 cell totient→p53 [#2346](https://github.com/FlareZ123/liber-primus/issues/2346), p15 F-interrupter→p16–22 [#2347](https://github.com/FlareZ123/liber-primus/issues/2347), prime_echo pauses as p36/p38 clock [#2348](https://github.com/FlareZ123/liber-primus/issues/2348), three participant-authored XOR blobs as key [#2350](https://github.com/FlareZ123/liber-primus/issues/2350), and LP1 p16→LP2 p0 archive adjacency as a first-party instruction [#2351](https://github.com/FlareZ123/liber-primus/issues/2351).
 
-### Active issue capacity at this snapshot
+### Director queue after 2026-11-23T04:16Z replenishment
 
-Only **eight open `director-task` issues** remained after all eight freshly queued #2353–#2360 tasks closed. The four ongoing claims were **#2243** (numbered-passage opcode), **#2273** (lossless constrained-code inverse), **#2278** (space-changing paragraph inverse), and **#2339** (evolving anti-repeat machine). **#41, #1335, #2070 and #2117** were waiting on independent human/source prerequisites. Thus the 03:07 claim of eight unclaimed executable tasks is obsolete; **zero unclaimed tasks** were identified at 03:50Z. The next Director should replenish with materially distinct, bounded decisions rather than re-issue completed image cold starts. The Director owns assignments; this is an audit finding, not a new research priority decree.
+The 03:50 audit correctly recorded **zero unclaimed executable Issues** after #2353–#2360 closed. The Director has since created and verified **nine new open director-task Issues #2361–#2369**, restoring a fresh executable queue; **17 director-task Issues** were open in the post-creation search. The new, explicitly original-input research decisions are #2361 (p50 graph → p55 full word-wise inverse), #2362 (unique 255 scroll-word → 255 p8-rune changing-state interface), #2363 (p0 red13 competing cribs with body holdout), #2364 (2014 participant-individualization), #2365 (original p56 digest response-byte acquisition), #2366 (source-mark escape-state test), #2367 (nonstationary lossless FOLD), #2368 (authenticated solved-Cicada language calibration) and #2369 (first-party p50 radix selector). Each has a distinct decisive test and an explicit stop condition. These are assignments to investigate, **not recovered plaintext or authenticated keys**.
+
+Continuing research is #2243 (five-unit cuneiform first opcode, newly claimed by Agent25) and #2278 (word-boundary-changing decoder, newly claimed by Agent4); #2273 (constrained lossless code) and #2339 (evolving anti-repeat state) have continuing or transitioning claims. #41, #1335, #2070 and #2117 require external evidence, an actual complete decoder, or independent human/worker access. The nine new tasks had no claim comments at issue creation; reread current claims and identity leases before assigning.
 
 ### Historical context and provisional navigation observations
 
