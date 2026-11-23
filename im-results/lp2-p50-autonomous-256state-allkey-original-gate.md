@@ -65,6 +65,33 @@ The same single file performs exact forward encryption and full inverse recovery
 
 It creates three independently sourced **12,956-rune** native-GP29 prose controls from Gibran's *The Prophet*, Emerson's essays and Shakespeare (all GP-normalized with fixed rune offset1000), and an additional **1,001-rune authentically solved LP1** control from six established clear sections. All eight exact forward-encrypt/decrypt positives recover every planted original symbol; the full-length six donor plants have native within-state equality rates asserted at least **0.012 higher than the source's optimal all-key upper bound** in their respective C/D variants. The original source impossible inequality is exact; donor-language contrast is empirical.
 
+## Distinct ciphertext-feedback fork: exact underidentification, not a decryption
+
+A useful further decision distinguishes this **autonomous** graph-state exclusion from a state that **consumes original ciphertext**. Retain all 256 original table bytes and the same 74 real page/mark segments, but explicitly test two conventional binary state combiners with the original GP rune C or same-page delta D:
+
+\[
+s_{i+1}=B[s_i]\ \mathrm{XOR}\ X_i
+\quad\text{or}\quad
+s_{i+1}=(B[s_i]+X_i)\bmod256,\quad X_i\in\{C_i,D_i\}.
+\]
+
+Both direct current-rune output and original GP29-difference output are eligible, giving eight strictly fixed observable-input models. **This binary-combiner choice is analyst-selected, not an authenticated Cicada instruction.** For a page-first C-output symbol with D-driven state, use the explicit GP0 predecessor0; for a D-output channel the first page rune is a literal known IV and excluded. Internal genuine marks keep the same-page ciphertext predecessor.
+
+Apply **the identical mathematically exact 256-way independent-per-segment seed optimization** to each of these eight originals. The resulting exact all-secret upper equality fractions are:
+
+| Private output input | State feedback | XOR maximum | ADD modulo256 maximum |
+|---|---|---:|---:|
+| Current C | Current C | 440 / 6,032 = **0.0729443** | 444 / 6,307 = **0.0703980** |
+| Current C | Same-page D | 453 / 5,980 = **0.0757525** | 444 / 5,944 = **0.0746972** |
+| Same-page D | Current C | 440 / 5,821 = **0.0755884** | 476 / 5,885 = **0.0808836** |
+| Same-page D | Same-page D | 439 / 5,971 = **0.0735220** | 449 / 6,076 = **0.0738973** |
+
+Every feedback graph-state ceiling now exceeds **7%**, above ordinary native GP within-state equality. This one invariant **cannot exclude** these keyed-feedback architectures. A high upper bound is only a lack of contradiction, not evidence that any original plaintext, key, cipher or author operation has been recovered.
+
+The independent source-red84 seed makes the **identifiability weakness concrete**. Under original 74 segment cuts, eight feedback models expose only **183–221 repeated (segment,state,input) triples** among 12,901–12,956 glyph positions. Equivalently **98.3–98.6%** of positions have a unique input triple with an individually unconstrained secret output label. This shows why feedback with private output alphabets rapidly becomes too flexible for an original-language collision test alone, even though the autonomous graph remained sharply testable.
+
+[Reproducible feedback SFT](../sims/lp2_p50_bytefeedback_256state_identifiability_sft.cjs) calculates every 256-seed optimum, verifies complete original glyph/mark counts, asserts all eight exact rational numerators/denominators, and separately reports the original red84-bin reuse. It supplies a **bounded causal fork**: an authored ciphertext-feedback opcode and an independently recovered secret-alphabet/key schedule are required before any further decoding effort. Algebraic source compatibility by itself is not a breakthrough.
+
 ## Cryptanalytic decision
 
 **The literal p50 256-byte autonomous byte-pointer state machine with direct ciphertext or current difference input and any private GP29 bijection in every state/segment cannot yield ordinary GP29-English source-style plaintext on the unchanged LP2 p0–55 pages.** Its source ceiling is 3.56–3.77%, whereas properly forward-encrypted real native GP controls exceed that bound. It is mathematically pointless to hunt private alphabet substitutions, magic 256-byte initial seeds or page/private mark reset phases within this specific architecture.
