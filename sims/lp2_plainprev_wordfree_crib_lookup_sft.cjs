@@ -251,7 +251,40 @@ const donors = [
   ["Emerson Essays", "resources/control/emerson_essays_2944.txt",
     text => text],
   ["Shakespeare", "resources/control/shakespeare_first300k.txt",
-    text => text]
+    text => text],
+  ["Solved Cicada pages, editorial", "resources/liber-primus/lp1-plaintext-reference.txt",
+    text => text.split(/\\n### \\d+\\n/).slice(1).join("\\n")
+      .split("\\n").filter(line => !line.startsWith("[")
+        && !/^\\s*[\\d\\s]+$/.test(line)
+        && !/^\\s*CONTINUED/i.test(line)).join(" ")]
+];
+
+/** Exact original-GP reference registers avoiding invented Latin spelling. */
+const nativeSources = [
+  ["Old English Beowulf, original GP", () => {
+    const source = JSON.parse(read("resources/control/beowulf_oe_gp_profile_corrected.json"));
+    const alphabet = new Map([...source.positiveControlAlphabet]
+      .map((ch, i) => [ch, i]));
+    const sequence = Uint8Array.from([...source.sourceGpBase29],
+      ch => alphabet.get(ch));
+    assert.equal(sequence.length, source.allSourceGpRunes);
+    return sequence;
+  }],
+  ["Latin Vulgate, original wordwise GP", () => {
+    const alphabet = new Map([..."0123456789ABCDEFGHIJKLMNOPQRS"]
+      .map((ch, i) => [ch, i]));
+    const words = read("resources/control/latin-vulgate-gp-wholewords.txt")
+      .split(/\\r?\\n/).map(line => line.trim())
+      .filter(line => /^[0-9A-S]+$/.test(line));
+    assert.equal(words.length, 39835);
+    return Uint8Array.from([...words.join("")], ch => alphabet.get(ch));
+  }],
+  ["Solved LP1 authentic runes", () => {
+    const alphabet = new Map(gp.runes.map((ch, i) => [ch, i]));
+    return Uint8Array.from(read("resources/transcriptions/lp1_wulfic_canonical.txt")
+      .match(/[\\u16A0-\\u16FF]/gu) || [], ch => alphabet.get(ch));
+  }],
+  ["Solved LP2 p57 authentic runes", () => Uint8Array.from(gp.pages[57].indices)]
 ];
 
 function main() {
@@ -286,11 +319,21 @@ function main() {
       console.log("ORIGINAL " + JSON.stringify(output[output.length - 1]));
     }
   }
+  for (const [name, obtain] of nativeSources) {
+    const reference = obtain();
+    assert(reference.length > LOOKAHEAD, name);
+    assert(Array.from(reference).every(x => x >= 0 && x < 29), name);
+    for (let mode = 0; mode < 2; mode++) {
+      const result = scan(original, reference, mode);
+      output.push({source: name, ...result});
+      console.log("ORIGINAL " + JSON.stringify(output[output.length - 1]));
+    }
+  }
   const total = output.reduce((n, v) => n + v.exactConsistent40Plus, 0);
   console.log("SUMMARY " + JSON.stringify({
     source: "unaltered 55 source pages, 12956 GP29 runes",
     hypothesis: "two 29^29 plaintext-predecessor tables, original print spaces ignored",
-    attemptedSources: donors.map(x => x[0]),
+    attemptedSources: output.filter(x => x.models === "direct").map(x => x.source),
     nativePositive: positive,
     strong40Plus: total,
     status: total ? "candidate requiring independent original validation"
