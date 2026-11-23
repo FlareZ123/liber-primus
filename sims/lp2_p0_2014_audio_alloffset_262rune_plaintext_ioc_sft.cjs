@@ -102,18 +102,6 @@ function allOffsets(audio,table) {
       if(pp>=bands[i]) histogramPlus[i]+=1;
     }
   }
-  function summarize(top,histogram) {
-    return {
-      aboveIoCBands:Object.fromEntries(bands.map((n,i)=>[(n/denominator).toFixed(5),histogram[i]])),
-      best:top.map(({offset,pairs})=>({offset,pairs,ioc:pairs/denominator,
-        first25GP: Array.from({length:25},(_,i)=>{
-          const k=table[audio[offset+i]];
-          let p=offset===undefined?0:0;
-          // Sign is filled by caller's text-only readout, not a classifier.
-          return k;
-        }).join(',')}))
-    };
-  }
   return {testedOffsets:limit,topMinus,topPlus,bands,bandCountsMinus:histogramMinus,bandCountsPlus:histogramPlus};
 }
 
