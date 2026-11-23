@@ -216,3 +216,35 @@ for (const clock of /** @type {const} */ (['continuous', 'page-reset'])) {
 }
 console.log('PASS fixed GIMP-source MT19937 ciphertext differential plus ' +
   'native-rune plants, all four original full-source cases.');
+
+
+// Independently printed p49–51 radix60 32×8 table is the only complete
+// 256-byte numeric image-like register. Check the first, strictly default
+// GIMP 32×8 field against all 256 cells. No fitting of coordinate offsets.
+const p50Table = JSON.parse(fs.readFileSync(path.join(
+  __dirname, '..', 'resources', 'liber-primus', 'base60-grid.json'), 'utf8'));
+const originalBytes = p50Table.byte_rows.flat();
+assert.equal(originalBytes.length, 256);
+assert.deepEqual(originalBytes.slice(0, 8),
+  [203, 231, 167, 186, 97, 237, 126, 183]);
+const mtBytes = new MT19937(seed);
+const raw = Array.from({ length: 256 }, () => mtBytes.next());
+const low8 = raw.map((n) => n & 255);
+const high8 = raw.map((n) => n >>> 24);
+const rowTableMT = new MT19937(seed);
+const first32RowSeeds = Array.from({ length: 32 }, () => rowTableMT.next());
+const gimpPixelField = first32RowSeeds.flatMap((rowSeed) => {
+  const rowMT = new MT19937(rowSeed);
+  return Array.from({ length: 8 }, () => rowMT.next() % 255);
+});
+// 2013 GLib g_rand_int_range(0,255) positive-vector check, row0:
+assert.deepEqual(gimpPixelField.slice(0, 8),
+  [87, 10, 191, 6, 133, 152, 5, 71]);
+const countEquals = (a) =>
+  originalBytes.reduce((n, b, i) => n + (b === a[i] ? 1 : 0), 0);
+assert.deepEqual([
+  countEquals(low8), countEquals(high8), countEquals(gimpPixelField),
+], [1, 2, 2]);
+console.log('PASS independent p50 radix60 printed 32x8 source has only' +
+  ' 1 / 2 / 2 identical same-position bytes versus first GIMP-MT low8/' +
+  'high8/native row-seeded Dissolve pixels; no shared literal 256-byte tape.');
