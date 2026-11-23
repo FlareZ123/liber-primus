@@ -68,6 +68,31 @@ for (let i = 0; i < 85; i++) {
 }
 assert.equal(cursor, 84);
 
+const transcription = fs.readFileSync(
+  path.join(__dirname, '..', 'resources', 'liber-primus', 'lp2-transcription.txt'),
+  'utf8'
+);
+const runeIndex = new Map(corpus.runes.map((glyph, i) => [glyph, i]));
+/** @param {string} s @returns {number[]} */
+function glyphIndices(s) {
+  return Array.from(s).filter((glyph) => runeIndex.has(glyph))
+    .map((glyph) => runeIndex.get(glyph));
+}
+const p55Block = transcription.split('%').find((s) => glyphIndices(s).length === 76);
+assert.ok(p55Block, 'Original p55 source page missing');
+assert.deepEqual(glyphIndices(p55Block), p55);
+const p55Words = p55Block.replace(/[\n/]/g, '').split(/[-.&$§]+/)
+  .map(glyphIndices).filter((word) => word.length);
+assert.equal(p55Words.length, 17);
+assert.deepEqual(p55Words[0], [p55[0]]); // One page-54 carry rune.
+const completeWords = p55Words.slice(1);
+assert.equal(completeWords.length, 16);
+assert.deepEqual(completeWords.flat(), p55.slice(1));
+const shell = completeWords.flatMap((word) => [word[0], word[word.length - 1]]);
+const interior = completeWords.flatMap((word) => word.slice(1, -1));
+assert.deepEqual([shell.length, interior.length], [32, 43]);
+
+
 /**
  * GF(2^8) with a declared irreducible polynomial and primitive generator.
  * @param {number} polynomial
@@ -232,12 +257,70 @@ for (const spec of [
     }
   }
 }
+
+/*
+ * Stronger direct PARABLE grammar: literally SHED first/last rune of
+ * each of the 16 page-local p55 complete words. The 32 removed shell
+ * runes and 43 retained interiors combine with p56+p57's known 180:
+ * RS(255,223) would have exactly 32 parity and 223 data positions.
+ *
+ * Test the four original-order block layouts and both directions.
+ * A non-secret label choice is NOT assumed: all 29 GP identities
+ * are unknown injective GF256 byte values as in the first gate.
+ */
+const shellSummary = [];
+for (const spec of [
+  { polynomial: 0x11d, generator: 2, name: 'QR-field' },
+  { polynomial: 0x11b, generator: 3, name: 'AES-field' },
+]) {
+  const gf = field(spec.polynomial, spec.generator);
+  for (const version of [
+    { name: 'original-p56-cipher', p56: p56Cipher },
+    { name: 'authenticated-p56-plaintext', p56: p56Plain },
+  ]) {
+    const known = [...version.p56, ...p57Clear];
+    assert.equal(known.length, 180);
+    for (const sequence of [
+      ['interior', 'known', 'shell'],
+      ['shell', 'interior', 'known'],
+      ['known', 'interior', 'shell'],
+      ['shell', 'known', 'interior'],
+    ]) {
+      const blocks = { interior, known, shell };
+      for (const reversed of [false, true]) {
+        const tape = sequence.flatMap((name) => blocks[name]);
+        if (reversed) tape.reverse();
+        assert.equal(tape.length, 255);
+        assert.equal(new Set(tape).size, 29);
+        for (const start of [0, 1]) {
+          // RS(255,223) requires 32 zero syndromes. First 30/29
+          // already reach ranks 29/28, so all 32 cannot permit a
+          // nonconstant or injective GP29 byte labeling.
+          const rank = matrixRank(
+            constraintMatrix(tape, gf, start, start === 0 ? 30 : 29), gf
+          );
+          assert.equal(rank, start === 0 ? 29 : 28,
+            JSON.stringify({ field: spec.name, version: version.name,
+              sequence, reversed, rootStart: start }));
+          shellSummary.push({
+            field: spec.name, p56: version.name,
+            sequence: sequence.join('-'), reversed, rootStart: start,
+            rank, injectiveStationaryLabelingPossible: false,
+          });
+        }
+      }
+    }
+  }
+}
+assert.equal(shellSummary.length, 64);
+
 assert.equal(summary.length, 16);
 assert.equal(summary.reduce((n, item) => n + item.omissionsChecked, 0), 1216);
 console.log(JSON.stringify({
-  case: 'Original LP2 75 (one removed p55 rune) + 85 + 95 = 255',
+  case: 'Terminal 255: page-local p55 shell32 plus interior43 and solved180; also 75+180 seam',
   note: 'Source geometry motivates the test but supplies no RS opcode.',
   status: 'PASS; zero injective stationary 29-rune to GF256 labelings',
   positive: 'Nonconstant 255-position 3-symbol RS plants pass 75/75 checks in both fields and root conventions',
-  cases: summary,
+  terminal75Plus180Cases: summary,
+  p55Shed32Plus223Cases: shellSummary,
 }, null, 2));
