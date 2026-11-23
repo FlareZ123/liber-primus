@@ -93,10 +93,29 @@ The entire computation, from untouched p55 corpus to both exact original modular
 
 The source packet itself is not fully authenticated: including the p54→p55 crossing word erases N=8P. Thus even mathematically unique logarithms cannot establish a creator-selected key, and the 43-rune direct-read failure is conditional on this exact receiver.
 
+## Complete historical DH shared-secret follow-through (new, exact original test)
+
+The original field packet conditionally proposes two DH public values `8` and `E=43Q`. A further historically defined receiver, separate from the direct full-private-exponent pads above, is the **actual Diffie–Hellman common secret**:
+
+```text
+S = (Q^x8)^xE mod P = (Q^xE)^x8 mod P = Q^(x8*xE) mod P
+  = 18534943457637434371337714419521892971722473566563310008765178
+```
+
+All **three** original 206-bit modular exponentiations are exactly equal using the already recovered *complete* `x8,xE`; this computes one uniquely determined field element, with no guess of a password, KDF or phase. Since the original proposed p55 shell has precisely 43 interior runes, the direct frozen low-complexity recipient writes `S` as exactly 43 big-endian base29 symbols, subtracts them at the unchanged 43 rune positions and preserves the 16 original word-interior slots. This concrete original source readout is:
+
+```text
+MM | | | UTLF | OELUR | | BXPEOBGDSXOEI | MBWR | IAJ | | NXSME | YYIATR | | NDNGX | M | S
+```
+
+Its rune IoC is **0.03654485050**, again below the entire independent authentic-p57 43-rune control range **0.04983389–0.07751938**, with no sustained readable text. The same 43-digit DH key exactly reencrypts all 43 real source runes, and a complete 43-rune authentic solved-p57 English positive successfully encrypts and decrypts. This is a direct, historically recognizable *DH shared-secret* operation, stronger and more specifically typed than arbitrary additive pads on the recovered exponents. It still depends on the **unselected conditional p55 field shell** and the two earlier candidate DH public equations. A generic DH shared secret also does not instruct GP29 digit serialization or rune subtraction.
+
+[Original-source read-only shared-secret repro](../sims/lp2_p55_dh_shared_secret_original_sft.cjs) · [separate Windows Node22 run 45175271885](https://github.com/FlareZ123/liber-primus/actions/runs/45175271885). Retire this one complete direct receiver unless a new source-selected encoding/KDF or participant-secret interpretation is found; its field arithmetic remains reusable.
+
 ## Decision
 
 **Established mathematics under the disclosed source parse:** both full 206-bit prime-field logarithms are now recovered, exactly verified by modular exponentiation, and the earlier 64-bit private-exponent search is a strict subset of this complete recovery.
 
-**Decipherment result:** the only pre-registered direct original 43-rune GP29 inverse fails to produce unknown manuscript plaintext under *both* complete logarithms. P/Q as a manuscript key remains unauthenticated because of the genuine p54/p55 carried-word competitor and absent explicit cipher-opcode instruction. Do not re-run arbitrary variations of this branch; require an independent first-party selector for a new ciphertext consumer. This calculation may supply test data if such an instruction is independently discovered.
+**Decipherment result:** both pre-registered direct original 43-rune GP29 exponent inverses fail; an additional independent historically typed DH common-secret 43-rune receiver also fails to produce unknown manuscript plaintext. P/Q as a manuscript key remains unauthenticated because of the genuine p54/p55 carried-word competitor and absent explicit cipher-opcode instruction. Do not re-run arbitrary variations of this branch; require an independent first-party selector for a new ciphertext consumer. This calculation may supply test data if such an instruction is independently discovered.
 
 **Unknown LP2 plaintext recovered:** none.
