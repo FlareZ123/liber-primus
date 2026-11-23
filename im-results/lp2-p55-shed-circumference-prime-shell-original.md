@@ -177,6 +177,18 @@ Q^x mod P = E                             [EXACT PASS]
 
 The Chinese remainder theorem gives the **unique x modulo P−1**. This is an authentic complete *mathematical logarithm of the original page-derived candidate integers*, not authenticated Cicada plaintext. The 43-digit GP0 rendering `THCAEHDNLNEEAOPXTHDAPTNTALIAEOAOSTHEJLSSNGIDONGDMYSW` is not recognizable independent text. Full field validation is implemented in [the CRT finalizer](../sims/lp2_p55_shed_cado_full_log_finalize_sft.cjs), which refuses a mismatched source modular-exponentiation identity; its planted arithmetic control also passed [Windows 45120724942](https://github.com/FlareZ123/liber-primus/actions/runs/45120724942). An optimized [CADO workflow](../.github/workflows/p55-conditional-dlp.yml) supports evaluating `log(43)` instead of unnecessarily repeating the E target descent on future runs.
 
+**Second independent full-field public-value logarithm.** The same original CADO run also computed virtual `log(2)=34462444473864939291612620886429653284547880364` modulo `R`. Since the source public `8=2³`, one obtains `a modR=3 log(2)/log(Q)=43870182398455967548054954653128522859138643088`. Combine this with Agent11's independently established public8 small-subgroup residue `a modM=97883509924151` to recover the **complete** logarithm
+
+```text
+a = 14347449201966638813083683299370469317053765371148427588804751
+Q^a mod P = 8                          [EXACT]
+Q^b mod P = E                          [EXACT]
+E^a mod P = 8^b mod P
+            = 18534943457637434371337714419521892971722473566563310008765178 [EXACT]
+```
+
+These two independently reconstructed full exponents complete an exact *conditional* two-public-value Diffie–Hellman group calculation, including its symmetric shared-secret consistency. [Updated combined Windows Node22 PASS 45124071585](https://github.com/FlareZ123/liber-primus/actions/runs/45124071585). This strengthens numerical reproducibility, while the unchosen author operation and failed original ciphertext consumer remain the decisive limitations.
+
 **Pre-registered original ciphertext DH receiver: directly rejected by the completed experiment.** Before the full logarithm had been recovered, [the frozen original-input SFT](../sims/lp2_p55_p50_dh_full_public_receiver_sft.cjs) had specified `b=x=log_Q(E)`, public `A=8`, shared `S=8^b mod P`, 26-byte big-endian `S`, SHA256(S) AES256 key, AES-CTR/CBC/ECB with zero IV/counter, and the complete original p50 256-byte table under its printed radix60 and f-omitted radix59 readings. The original complete DH shared value and fixed cipher key are now:
 
 ```text
