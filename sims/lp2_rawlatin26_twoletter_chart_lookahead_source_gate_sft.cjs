@@ -15,13 +15,13 @@ const glyph = original.translit;
 const greedy = glyph.map((value, i) => ({ value, i })).sort((a, b) => b.value.length - a.value.length || a.i - b.i);
 
 /** Segmentation is original source punctuation; physical page and line turns are non-word breaks. */
-function words(src) {
+function words(src, splitEveryNonRune = false) {
   const result = [];
   let word = [];
   for (const ch of src) {
     if (index.has(ch)) {
       word.push(index.get(ch));
-    } else if (ch === '-' || ch === '.' || ch === '•' || ch === '⁘' || ch === '⁜' || ch === '⁚') {
+    } else if (splitEveryNonRune || ch === '-' || ch === '.' || ch === '•' || ch === '⁘' || ch === '⁜' || ch === '⁚') {
       if (word.length) result.push(word);
       word = [];
     }
@@ -86,7 +86,7 @@ assert.equal(extraCipherGlyphs, 100);
 let sourceNativeWords = 0;
 const controls = [];
 for (const section of solved.sections) {
-  const ws = words(section.source_text);
+  const ws = words(section.source_text, true);
   const failures = ws.filter((w) => encode(decode(w)).join(',') !== w.join(','));
   sourceNativeWords += ws.length;
   assert.equal(failures.length, 0);
