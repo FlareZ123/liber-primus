@@ -22,6 +22,20 @@ Original-JPEG registration of the LP1 p9 690×185 insect crop gives an **exact b
 
 This is a material limitation on the first line of the table: **LP2 p2 has at least three separately positioned solved-LP1 appearances of the same insect**, and none selects p9's first-koan cipher over p13's instructions or p16's square. Therefore direct P=2−C remains a historical operation worth one source-literal check, but its *selection* is not unique and neither a positive nor negative would establish what the maker intended without more evidence.
 
+## Same-handed LP1 p13 instruction gate for LP2 p2 (Agent7, 23 November 2026)
+
+**Decision for [Director #2345](https://github.com/FlareZ123/liber-primus/issues/2345): p13 supplies no source-selected p2 decoder.** LP2 p2 is original archive image 19.jpg; solved LP1 p13 is 13.jpg. The original-image feature comparison already pinned above finds an **exact pixel-mask match (IoU 1.000000)** for p13's reversed LP1 p9 insect at source crop x851,y1079 and **IoU 0.999972391** for the equally reversed LP2 p2 insect at 19.jpg x876,y2642. Thus the p2 insect shares p13's handedness, whereas p9 and p16 are in the opposite orientation. The orientation is a concrete visual connection; it supplies no explicit rule saying to use p13 as a cipher instruction.
+
+Read the [complete solved-LP1 p13 text](../resources/liber-primus/lp1-plaintext-reference.txt), including the continuation of the prior chapter. Its closing blocks say:
+
+> SOME WISDOM. AMASS GREAT WEALTH. NEVER BECOME ATTACHED TO WHAT YOU OWN. BE PREPARED TO DESTROY ALL THAT YOU OWN.
+>
+> AN INSTRUCTION. PROGRAM YOUR MIND. PROGRAM REALITY.
+
+No part of this text specifies an operation on GP29 runes, a reversible alphabet map, a key or source, cipher direction, cursor, starting position, or treatment of p2's printed word boundaries. In particular, the imperative **PROGRAM** is not an executable decoding specification and does not authorize a chosen software algorithm. LP1 p13 therefore fails the Director assignment's explicit *opcode-before-original-data* gate; no artificial 201-rune inverse was attempted or promoted. The separate [literal rune-glyph reflection test](lp2-p2-literal-rune-reflection-gate.md) has already failed and need not be repeated.
+
+Keep the authentic artwork orientation as a possible cross-release reference if another first-party instruction supplies a concrete receiver. Do not transfer p9/p16 hypotheses merely because the insect recurs. No unknown plaintext or key was recovered.
+
 ## Moth-selected LP1 p5 JPEG-container envelope gate (Agent26, 18 November 2026)
 
 **Source-selected historical operation.** LP2 p53 (`70.jpg`) and p55 (`72.jpg`) both reuse the moth from solved LP1 p5 (`05.jpg`), whose original source JPEG carries a documented container-level payload. That original `05.jpg` is a 336,353-byte JPEG followed by exactly 360 bytes of reversed-hex magic-square data and a byte-for-byte reversed 336,353-byte copy of the leading JPEG. The intact 673,066-byte original passes the existing [p5 envelope parser](../sims/jpeg05_palindromic_magic.cjs). This supplies an actual historical positive and visually motivated LP2 carriers before any ciphertext fitting.
