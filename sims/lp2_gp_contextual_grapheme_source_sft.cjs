@@ -84,6 +84,33 @@ assert.equal(original.length, 2896);
 assert.equal(original.filter(w => w.length === 1).length, 83);
 assert.equal(original.filter(w => w.length === 2).length, 448);
 
+/**
+ * Fixed word-only serializers cannot reproduce the conflicting original EOE
+ * tapes even when they know the exact original rune count.
+ */
+const flatWordTape = new Map();
+const wordLocalConflicts = [];
+for (let wi = 0; wi < original.length; wi++) {
+  const tokens = original[wi];
+  const flat = tokens.join('');
+  const tape = tokens.join('|');
+  const key = flat + ':' + tokens.length;
+  const previous = flatWordTape.get(key);
+  if (previous && previous.tape !== tape) {
+    wordLocalConflicts.push({
+      latin: flat, runeLength: tokens.length, firstIndex: previous.wi,
+      secondIndex: wi, first: previous.tape, second: tape
+    });
+  } else if (!previous) {
+    flatWordTape.set(key, {wi, tape});
+  }
+}
+assert.deepEqual(wordLocalConflicts, [{
+  latin: 'EOE', runeLength: 2, firstIndex: 1381,
+  secondIndex: 2889, first: 'E|OE', second: 'EO|E'
+}]);
+
+
 const singletons = original.filter(w => w.length === 1).map(w => w[0]);
 const singletonSigns = new Set(singletons);
 assert.equal(singletonSigns.size, 28);
