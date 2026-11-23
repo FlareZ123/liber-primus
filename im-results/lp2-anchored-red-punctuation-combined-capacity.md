@@ -39,6 +39,20 @@ D=-\log_2\Pr\{\mathrm{Binomial}(12901,1/29)\le86\}
 
 The combined source-anchored channels therefore lack at least **\(\lceil325.450254-291.13345135772\rceil=35\)** independently recoverable bits. If the observed total of 213 red runes is also preserved, the choices of 16 positive lengths are at most \(\binom{212}{15}\), or **74.93725298895 bits**, so the combined channel lacks at least **74** further bits. Neither version assumes plaintext probabilities or tries encryption keys.
 
+## Additional source-visible escape test: all four commas can move
+
+The original punctuation inventory contains exactly four three-dot comma-form marks, on physical pages **5, 11, 20 and 46**. Their page rune lengths are **263, 273, 269 and 270**. A stronger source-physical model lets **each of these four particular punctuation marks move to any of the rune-gap positions on its existing page**, including collisions, while also granting the complete earlier 175-type permutation capacity and all 16 movable red endpoints. This overcounts any coherent physically printable arrangement and deliberately charges no loss of mark-type permutation freedom.
+
+\[
+\log_2 B_{\mathrm{four\ mobile\ commas}}
+\leq\log_2(264\times274\times270\times271)
+=\mathbf{32.30139084072\ bits}.
+\]
+
+The total becomes at most **323.43484219844 bits**, still **2.0154118 bits below** the 325.450254-bit universal deficit: at least **three additional information bits** are required beyond all these combined sources. If the observed 213 red-rune total is conserved, at least **42 more bits** are needed.
+
+This rules out the especially natural combined source channel of anchored red lengths, visible punctuation morphology, **and solely the four small comma locations allowed to vary within their original pages**. It does not exclude shifting another mark, moving a red start, allowing a comma to migrate between pages, or encoding only source-restricted human text. The four commas have no first-party decoder opcode; the capacity match is not evidence that they constitute an intended payload.
+
 ## Decision
 
 This excludes a **universal, same-rune-count GP29 anti-repeat encoder whose *only* exception sidecar is anchored red-run length changes together with permutations of the existing punctuation marks at fixed sites**. Either physically source-consistent channel by itself was previously insufficient; critically, **their combined maximum is also insufficient**, even with freely varying red count and impossible run overlaps.
