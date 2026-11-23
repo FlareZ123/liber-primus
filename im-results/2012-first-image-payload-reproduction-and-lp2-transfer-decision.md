@@ -47,6 +47,8 @@ The extracted payload SHA-256 is `7dbf268b1b356527cf4a2dc105c0dd1f6d2d703291dda2
 
 The output is a **book-code instruction**, a Reddit destination (`r/a2e7j6ic78h0j`), and 76 line:character pairs. The Reddit/book identification and subsequent phone-number extraction are downstream stages of the 2012 chain; they are not extra bytes hidden in the JPEG trailer and should not be conflated with the OutGuess output.
 
+A tempting LP2 overlap is that this payload has 76 coordinate entries while unknown p55 has 76 runes. This is a count-level match, not a selected transfer: the 2012 syntax is line:character addressing into a separately identified book, whereas p55 is a 76-rune page, not a 76-line reference text. Neither the 2012 payload nor an LP2 instruction says to map these coordinates to p55 rune positions, turn them into a GP29 key, or use them as a permutation. No source-defined operation connects the two 76-element objects.
+
 ## LP2 transfer test: no source-selected receiver
 
 The recovered 2012 material demonstrates three historically real operations or grammars:
