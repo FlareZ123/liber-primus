@@ -41,6 +41,25 @@ A cheaper source203 **previous-row difference** model, `P[i]=C[i]−C[i−203] m
 
 The same first-cell clue suggests one literal **header/payload/trailer/footer** parse of all 256 original numeral cells: **cell0=203**, cells **1–203** form203 bytes, cells **204–254** form **51 bytes**, cell255 is one final byte (**80**). These dimensions satisfy the separately highlighted p53 red-coda length51 without looking at rune values. The 51 candidate trailer bytes modulo29 match **0/51** source-red p53 rune values at corresponding offsets. More decisively, **15** distinct table-residue classes demand conflicting red symbols, forcing at least **25/51 mismatches even if an arbitrary secret deterministic GP29 substitution** maps byte residue to red-rune output. The original source thus rejects the direct idea that the literal51-byte trailer directly encodes the red51 with any fixed per-symbol codebook. This does not exclude nonlinear multi-byte keyed transforms or a symbolic interpretation of those51 bytes; no first-party note labels a trailer, so those would require new source evidence. The read-only SFT above includes this exact bounded check with a planted zero-conflict positive control. The updated source-original program passed [Windows Node22 run 45191135721](https://github.com/FlareZ123/liber-primus/actions/runs/45191135721): directMatches=0, irreducibleMismatches=25, declaredHeader=203, footer=80, with full matrix and planted-native assertions passing in the same execution.
 
+### Two printed headers and a shortened RS(254,203) interpretation
+
+A more economical **2+203+51** partition uses both leading source tokens as framing: `3N=203` and `3p=231` are two header fields, then **254** genuine original table bytes remain. Their first203 are candidate data, their last51 candidate parity. Thus the 256-cell original panel can physically hold a single systematic **shortened Reed–Solomon RS(254,203)** block without padding or skipping any source byte. This makes one conventional, historically available reversible payload method worth testing, despite the lack of a first-party RS opcode. The 51-check-byte count is independently the p53 red-rune stanza length.
+
+The source-byte test uses **GF(256), primitive polynomial 0x11d, primitive element2**, both normal zero/one initial roots, original row-major or reverse reading of the254-byte field, and the two complete **base60** versus **drop-f base59** source numeric alphabets. Every one of **eight** source-shaped models violates even its *first mandatory syndrome*, independently of what the203 unknown message bytes might be. The first syndromes, in respective root0/root1 order, are:
+
+| Frame numeral codec | Data/parity order | First two syndromes |
+| --- | --- | --- |
+| conventional base60 | original | **184, 90** |
+| conventional base60 | reverse | **184, 112** |
+| drop-f base59 | original | **10, 101** |
+| drop-f base59 | reverse | **10, 159** |
+
+Over all 51 candidate parity roots, the standard base60 forward read has **50/51** nonzero, and every other orientation has at least50 nonzero. For every single original-layout test, an independently constructed genuine **RS(254,203)** systematic codeword with203 source-shaped data bytes passes all51 syndromes, and a one-byte parity mutation fails the first root. Therefore **the complete actual 254-byte field is not an unmodified standard shortened RS(254,203) codeword** under the two historically natural root conventions and fixed byte readings. This does not rule out encryption before the code, a different field/coordinate order, or an undisclosed outside key; no original instruction selects those additions.
+
+The stronger **2+203+51 direct-red** parse was checked separately: the last51 actual source bytes at indices205–255 match only **2/51** original p53 red runes modulo29. Even allowing an arbitrary secret deterministic byte-residue→GP29 map, observed conflicting input/output classes force **26/51** mismatches. This is a separate exact negative for a direct static codebook on that natural second partition.
+
+[Original-byte single-file RS254 source and planted tests](../sims/lp2_p50_first3n_203_rs254_203_source_gate_sft.cjs) passed on [Windows Node22 CI run 45192668555](https://github.com/FlareZ123/liber-primus/actions/runs/45192668555), covering every syndrome and all eight positive plants. The byte field and its possible split are source observations; **no historical RS operation or unknown plaintext follows**.
+
 ## Decision for the human source path
 
 The **printed first 3N** deserves to be retained as a provisional original-artifact row-width clue. It strengthens the causal case for investigating the 16×203 shape, with the base60-vs-base59 objection explicit. A full, source-built 16×16 matrix mixing **all rows** cannot decrypt that register directly into ordinary GP prose. This class differs from the independent [all-secret stationary column-function exclusion](lp2-floral16-203-allsecret-column-capacity-gate.md), which allows 203 arbitrary independent column secret functions but disallows across-row mixing.
