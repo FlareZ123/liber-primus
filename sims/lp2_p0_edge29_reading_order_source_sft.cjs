@@ -92,5 +92,34 @@ assert.notEqual(
   outputs.lineRightThenLeft.firstAppearance,
   'opposite two-edge traversal does not determine the same keyed order',
 );
-console.log(JSON.stringify({sourcePath, pageLineCounts, blackRunes:716, edges:66, core:650, outputs}, null, 2));
+// A natural follow-up is the permutation that converts the 29-symbol
+// first-appearance order of each paired-edge orientation into the other.
+// It is an *involution*: every two newly discovered glyphs in a physical
+// line are exchanged, and all single discoveries remain fixed. Therefore
+// its repeated application has order two and cannot generate a 29-clock.
+/**
+ * @param {string} original First-occurrence GP29 alphabet, 29 glyphs.
+ * @param {string} opposite Oppositely read first-occurrence GP29 alphabet.
+ * @returns {{fixedPoints:number,transpositions:number,period:number}}
+ */
+function oppositeOrderInvolution(original, opposite) {
+  const a = [...original];
+  const b = [...opposite];
+  assert.equal(a.length, 29);
+  assert.equal(b.length, 29);
+  const placement = new Map(b.map((glyph, index) => [glyph, a[index]]));
+  const twice = a.map((glyph) => placement.get(placement.get(glyph)));
+  assert.deepEqual(twice, a);
+  const fixedPoints = a.filter((glyph) => placement.get(glyph) === glyph).length;
+  const transpositions = (a.length - fixedPoints) / 2;
+  assert.equal(fixedPoints, 11);
+  assert.equal(transpositions, 9);
+  return {fixedPoints, transpositions, period:2};
+}
+const orientationBridge = oppositeOrderInvolution(
+  outputs.lineLeftThenRight.firstAppearance,
+  outputs.lineRightThenLeft.firstAppearance,
+);
+
+console.log(JSON.stringify({sourcePath, pageLineCounts, blackRunes:716, edges:66, core:650, outputs, orientationBridge}, null, 2));
 console.log('PASS original opening edge-reader selector gate; no cipher or plaintext inferred.');
