@@ -1,0 +1,33 @@
+name: Run one source-fixed CJS SFT on Windows
+on:
+  workflow_dispatch:
+    inputs:
+      script:
+        description: Single repository sims/*.cjs file to check and execute
+        type: string
+        required: true
+        default: sims/lp2_onion6_quoted_crib_original_sft.cjs
+permissions:
+  contents: read
+jobs:
+  sft:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax-check and execute selected CommonJS SFT
+        shell: pwsh
+        env:
+          SFT_SCRIPT: ${{ inputs.script }}
+        run: |
+          $script = $env:SFT_SCRIPT
+          if ($script -notmatch '\Asims/[A-Za-z0-9_.\/-]+\.cjs\z' -or $script -match '\.\.') {
+            throw 'Script must be a normalized sims/*.cjs relative path.'
+          }
+          node --check $script
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          node $script
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
