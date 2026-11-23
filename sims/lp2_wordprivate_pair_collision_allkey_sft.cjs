@@ -222,6 +222,33 @@ assert.equal(before.wordsWithRepeat, after.wordsWithRepeat);
 console.log("POSITIVE", JSON.stringify({ words: planted.length,
   runes: planted.flat().length, before, after,
   recoveredRunes: planted.flat().length }));
+// Author-authentic control from already-solved LP2 physical page 56.
+// Its actual prime-totient moving-key cipher does NOT conserve the
+// word-private monoalphabetic pair count, despite exact word lengths.
+const p56Full = read("resources/liber-primus/lp1-plaintext-reference.txt");
+const p56PlainLines = p56Full.split("### 56")[1].split("### 57")[0]
+  .split(/\r?\n/g)
+  .filter(line => !/[a-f0-9]{32,}/i.test(line)).join(" ");
+const p56Plain = englishWords(p56PlainLines);
+const p56Cipher = cipherWords(source.split("%")[55]);
+assert.equal(p56Plain.length, 25);
+assert.equal(p56Cipher.length, 25);
+assert.equal(p56Plain.flat().length, 85);
+assert.equal(p56Cipher.flat().length, 85);
+assert.deepEqual(p56Cipher.flat(), corpus.pages[56].indices);
+assert.deepEqual(p56Cipher.map(w => w.length), p56Plain.map(w => w.length));
+const p56KnownPlain = count(p56Plain);
+const p56KnownCipher = count(p56Cipher);
+assert.equal(p56KnownPlain.pairs, 9);
+assert.equal(p56KnownCipher.pairs, 1);
+console.log("SOLVED_LP2_DYNAMIC_CONTROL", JSON.stringify({
+  page: 56, words: 25, runes: 85,
+  printedWordLengthsExactlyPreserved: true,
+  knownMechanism: "published prime-totient per-rune moving key",
+  plaintext: p56KnownPlain, ciphertext: p56KnownCipher,
+  wordsWithDifferentPairCount: p56Plain.filter((w,i) =>
+    equalPairs(w) !== equalPairs(p56Cipher[i])).length
+}));
 console.log("DECISION", JSON.stringify({
   originalWords: original.length, originalRunes: 12956,
   original: observed, samplesPerSource: 256,
