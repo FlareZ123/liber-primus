@@ -246,5 +246,38 @@ console.log('409 glyph F-inclusive additive group clock original GP29 IoCs',
   allF:original.filter(v=>v===0).length,
   full409States:new Set(fullAddOrbit).size}));
 
+
+/**
+ * Full original 256-byte p50 stream as one base-29 integer. Historical
+ * 2013 BASE29 was explicitly specified, but neither an actual p50
+ * two-character byte radix nor a p13/p14 concatenation opcode was.
+ * Compare original409 runes to the high409 and low409 out of the minimum
+ * 422 base29 digits needed for arbitrary256-byte payloads. This includes
+ * an exact original 13-rune side-information capacity boundary.
+ */
+const capacity=256n**256n;
+let power=1n,minGp=0;
+while(power<capacity){power*=29n;minGp++;}
+assert.equal(minGp,422);
+assert.equal(minGp-original.length,13);
+function gp422(N){
+ const out=Array(422).fill(0);
+ for(let i=421;i>=0;i--){out[i]=Number(N%29n);N/=29n;}
+ assert.equal(N,0n);
+ return out;
+}
+const knownByteNumbers=byteStreams.map(v=>v.reduce(
+ (N,x)=>N*256n+BigInt(x),0n));
+const gp422Streams=knownByteNumbers.map(gp422);
+const matches=gp422Streams.map(v=>[
+ v.slice(0,409).filter((x,i)=>x===original[i]).length,
+ v.slice(13).filter((x,i)=>x===original[i]).length]);
+assert.deepEqual(matches,[[18,19],[15,14]]);
+for(let i=0;i<2;i++)assert.equal(gp422Streams[i].reduce(
+ (N,x)=>N*29n+BigInt(x),0n),knownByteNumbers[i]);
+console.log('Whole256 bytes require 422 GP29 digits; physical p13+p14 have 409 (13 short).',
+ 'p50 two radices original exact first/last409 GP matches:',JSON.stringify(matches),
+ 'all first glyphs already disagree; red p14 glyph marker has13 squares but provides NO base29 digits');
+
 console.log('PASS: original 409/409 replay, 408-orbit, 136-slot retained-share Shamir inverse, authentic p57 plant');
 console.log('DECISION: no original unknown plaintext or creator-selected decoder');
