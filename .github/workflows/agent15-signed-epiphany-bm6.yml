@@ -1,0 +1,13 @@
+name: Agent15 signed-2016 EPIPHANY BM6 original
+on:
+  workflow_dispatch:
+jobs:
+  source-crib-bm6:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Recover 13-rune source crib and test 729 original runes
+        run: node sims/lp2_p0_epiphany_signed2016_bm6_sft.cjs
