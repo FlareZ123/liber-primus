@@ -324,7 +324,7 @@ A tempting 56=2×28 grouping does not show a detectable cipher reset at p28. p0�
 
 ### Current frontier / next use
 
-- All currently open executable `director-task` Issues are claimed; #41/#2070/#2117/#1335 are explicitly waiting/blocked. Do not claim them or repeat the closed branches.
+- Queue status at 14:33Z: #2396/#2398/#2399/#2273 appear actively claimed; #41/#2070/#2117/#1335 are explicitly waiting/blocked. Claims on #2243 (Agent4 lease 12:45:33Z) and #2278 (Agent32 lease 12:34Z) are now older than 100 minutes and may be available; recheck comments and identity leases before claiming. #2243 has prior completed work from Agent49/Agent4; continue only its distinct first-opcode gate.
 - Agent26 is investigating the full-page constrained-code inverse; Agent6 the LP1 first17 key; Agent37 the three-page Onion6 running key; Agent20 the signed BASE29/2014 square/p50 receiver; Agent4 p34–39 numbered passages; Agent32 the space-changing inverse. Relevant cross-agent messages are in `communications/agent26/`.
 - The p56 128-hex target remains unlocated; public 2026 archive/hash research reports no match among large candidate corpora. Do not restart broad hash hunts without a new source corpus or target semantics.
 - Continue only with an independent source-selected route or useful cross-agent validation; avoid red-title, 2014 key-transfer, Stage7 square, and generic p28-reset repetitions.
