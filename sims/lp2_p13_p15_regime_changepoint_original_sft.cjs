@@ -141,7 +141,7 @@ const ranks = Object.fromEntries(
 function regionG(a, b) {
   let n = 0, N = 0, g = 0;
   for (const v of a) n += v;
-  for (const v of b) N += v;
+  for (let j = 1; j < 29; j++) N += b[j];
   for (let j = 1; j < 29; j++) {
     const q = n * b[j] / N;
     if (a[j] && q) g += 2 * a[j] * Math.log(a[j] / q);
