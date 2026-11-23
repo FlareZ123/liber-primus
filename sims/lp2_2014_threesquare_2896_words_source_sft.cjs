@@ -264,6 +264,61 @@ for(const sign of [-1,1]){
   });
 }
 
+/**
+ * The solved LP1 source explicitly names PRIMES and THE TOTIENT FUNCTION.
+ * Apply the two historically named functions to each historical square
+ * integer before reducing to GP29 as a complete-word additive pad.
+ * These are narrow source-motivated competing transformations, not
+ * author-certified LP2 cipher operations.
+ * @param {number} n @returns {number}
+ */
+function phi(n){
+  let value=n,rest=n;
+  for(let p=2;p*p<=rest;p++)if(rest%p===0){
+    while(rest%p===0)rest/=p;
+    value-=value/p;
+  }
+  if(rest>1)value-=value/rest;
+  return value;
+}
+/** @param {number} n @returns {number} */
+function primeCount(n){
+  let count=0;
+  for(let a=2;a<=n;a++){
+    let prime=true;
+    for(let d=2;d*d<=a;d++)if(a%d===0){prime=false;break;}
+    if(prime)count++;
+  }
+  return count;
+}
+const authoredTransforms=[["phi",phi],["prime-count",primeCount]];
+const arithmeticSquareResults=[];
+for(const [name,fn] of authoredTransforms){
+  const key=squares.flat().map(n=>fn(n)%29);
+  /**
+   * @param {{runes:number[],punct:boolean}[]} words
+   * @param {number} sign
+   * @returns {{runes:number[],punct:boolean}[]}
+   */
+  function translate(words,sign){
+    return words.map((w,i)=>({
+      runes:w.runes.map(x=>(x+sign*key[i%99]+29)%29),
+      punct:w.punct
+    }));
+  }
+  for(const sign of [-1,1]){
+    const plain=translate(original,sign);
+    assert.deepEqual(translate(plain,-sign),original);
+    const controlCipher=translate(firstNative,-sign);
+    assert.deepEqual(translate(controlCipher,sign),firstNative);
+    arithmeticSquareResults.push({
+      function:name,sign,wholeBookGpIoC:gpIoC(plain),
+      originalFirst120:plain.flatMap(x=>x.runes).slice(0,120)
+        .map(i=>gp.translit[i]).join("")
+    });
+  }
+}
+
 console.log(JSON.stringify({
   result:"finite original word-order inversion negative; no unknown plaintext",
   originalWords:original.length,originalRunes:total,
@@ -274,6 +329,7 @@ console.log(JSON.stringify({
   genuineNativeWordRecovery:"24/24 2896-word plants",
   squareWordKeyRank28Results:rank28Results,
   squareWordKeyCaesarResults:caesarResults,
+  squareWordKeyPrimeTotientResults:arithmeticSquareResults,
   squareWordKeyNativeControls:"4/4 2896-word real-GP recoveries",
   squareWordKeyOriginalReplay:"4/4 12956-rune original inverses"
 },null,2));
