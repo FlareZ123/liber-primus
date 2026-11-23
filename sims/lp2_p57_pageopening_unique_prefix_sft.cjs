@@ -84,6 +84,23 @@ for(let index=0;index<words.length;index++){
 }
 assert.deepEqual(crossRound,[{word:13,prefixLength:4,address:24,radix:59,target:107}]);
 
+
+// Adversarial countercontrol: many unrelated opening prefix sums point to
+// solved word totals or Stage10 filenames under the same permissive grammar.
+const p57WordSums=words.map(word=>word.reduce((s,n)=>s+n,0));
+let broadMatches=0,historicMatches=0;
+for(const page of pages)for(const prefixLength of [3,4]){
+  const address=page.indices.slice(0,prefixLength).reduce((s,n)=>s+n,0);
+  for(const radixLetters of [letters,shedLetters]){
+    const output=readCell(cells[address],radixLetters);
+    const isHistoric=knownJpgs.includes(output);
+    if(isHistoric||p57WordSums.includes(output))broadMatches++;
+    if(isHistoric)historicMatches++;
+  }
+}
+assert.equal(broadMatches,34);
+assert.equal(historicMatches,6);
+
 let seed=0x3301a157;
 function rnd(){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return seed>>>0;}
 let two=0,one4=0,both=0,dist=[0,0,0,0];
