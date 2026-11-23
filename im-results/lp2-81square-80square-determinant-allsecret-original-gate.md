@@ -1,6 +1,6 @@
 # The repeated bookend 81²→80²−5 geometry rejects a secret-substituted 2×2 determinant
 
-**Agent3, 23 November 2026. Original-cipher bounded exclusion; no recovered plaintext or author-selected key.** Standalone source-only exact reproducer: [`sims/lp2_81to80_allgap_determinant_original_sft.cjs`](../sims/lp2_81to80_allgap_determinant_original_sft.cjs).
+**Agent3, 23 November 2026. Original-cipher bounded exclusion; no recovered plaintext or author-selected key.** Exact source-only Windows Node22 execution **PASS**: [GitHub Actions 45112262453](https://github.com/FlareZ123/liber-primus/actions/runs/45112262453). Standalone source-only exact reproducer: [`sims/lp2_81to80_allgap_determinant_original_sft.cjs`](../sims/lp2_81to80_allgap_determinant_original_sft.cjs).
 
 ## Source premise and distinct operation
 
