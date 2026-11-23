@@ -46,6 +46,24 @@ Exactly **7,541,879 / 8,640,000** pixel coordinates are identical across the thr
 
 Reproducer: [original-triplet Python/Pillow/numpy SFT](../sims/lp2_p50_meanpng_stage10_three_original_sft.py), with pinned original image hashes and atomic locked PNG output. The image was independently computed and visually inspected against the original 75-image ZIP.
 
+## Literal `Meanpng` → PNG Average-filter receiver (Agent29, 23 November 2026)
+
+A different possible, but **not Cicada-authenticated**, reading of the existing derived `1Meanpng…` fifth-column Bitcoin address is PNG's **named Average filter** (filter method0/type3), rather than averaging independently chosen pictures. PNG specifies each output byte by subtracting the integer floor of the mean of the reconstructed byte immediately to its left and above (modulo256), with absent top/left neighbors zero; the inverse adds that prediction back. This gives a bounded, well-defined reversible operation on the original p49–51 **32×8** printed byte register without selecting pictures, keys, offsets, word breaks, or output-dependent parameters.
+
+A particularly useful independent positive receiver is the manuscript's literal terminal alignment: p55 has 76 unsolved GP29 runes, and the **next 180 GP29 runes are fully known** from solved p56 (85) and solved p57 (95). Thus p55+p56+p57 occupies exactly256 positions, one for each original numeric-table cell, and any proposed unkeyed one-to-one byte-to-GP29 lookup can be checked against 180 complete original solved positions without attempting or fitting p55 ciphertext.
+
+The original p50 byte grid is interpreted as either unfiltered raw grayscale raster, bytes after PNG Average forward filtering, or bytes after Average inverse reconstruction, row-major with byte-per-pixel1; each uses only two obvious fixed GP29 byte readings: `byte mod29` and `floor(byte*29/256)`. On source indices76..255, the exact-match counts against the **180 actual solved runes** are:
+
+| Original p50 row-major bytes | Byte mod29 | Byte scaled to GP29 |
+|---|---:|---:|
+| Unfiltered | 9 / 180 | 10 / 180 |
+| PNG Average forward | **2 / 180** | 5 / 180 |
+| PNG Average inverse | 10 / 180 | 5 / 180 |
+
+All six frozen receivers therefore contradict the original independently known plaintext, by at least **170 rune mismatches**. Their output bytes remain nonprintable/random-looking; there is no matching 180-rune suffix or selected p55 key. The separately constructed 256-rune native-GP terminal plant passes both exact PNG filter→unfilter and reverse 256/256 round trips. This is an exclusion only of the literal PNG Average byte transformation and those two fixed GP29 encodings—not of all methods for producing or interpreting a PNG, other mappings, image groups, or steganographic hidden streams.
+
+**Reproduction:** [single-file original-source Node22 SFT](../sims/lp2_p50_png_average_terminal256_original_sft.cjs) and [successful Windows original checkout](https://github.com/FlareZ123/liber-primus/actions/runs/45247622327). No unknown LP2 plaintext or authenticated next operation was recovered. The `1Meanpng` address remains a conditional clue; its interpretation as an instruction is not proven.
+
 ## Decision
 
-The **raw secp256k1 ECDH byte-mask on p55** and **literal source-complete Stage10 triplet RGB mean** are retired as direct solutions. The 1Meanpng address remains a distinctive conditional possible instruction, while the first row-block 1DH is a weak secondary observation subject to post-selection. Recovering genuine plaintext requires an original source instruction choosing Bitcoin/ECDH, the image or ciphertext receiver, and a reversible operation. Further arbitrarily tuned keys or image groups would add degrees of freedom without resolving this prerequisite. All 56 unsolved LP2 physical pages remain unrecovered.
+The **raw secp256k1 ECDH byte-mask on p55**, **literal source-complete Stage10 triplet RGB mean**, and **PNG Average scanline-filter-to-terminal256 direct receiver** are retired as direct solutions. The 1Meanpng address remains a distinctive conditional possible instruction, while the first row-block 1DH is a weak secondary observation subject to post-selection. Recovering genuine plaintext requires an original source instruction choosing Bitcoin/ECDH, the image or ciphertext receiver, and a reversible operation. Further arbitrarily tuned keys or image groups would add degrees of freedom without resolving this prerequisite. All 56 unsolved LP2 physical pages remain unrecovered.
