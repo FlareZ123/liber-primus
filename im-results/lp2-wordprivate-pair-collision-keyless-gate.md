@@ -45,11 +45,11 @@ For each independent control corpus, draw 256 seeded mock manuscripts of **2,896
 | Shakespeare, pinned first 300k text | source corpus | **1,254 / 1,332 / 1,439** |
 | Gibran, *The Prophet* | source corpus | **1,207 / 1,285 / 1,372** |
 | Emerson, *Essays* | source corpus | **1,234 / 1,320 / 1,391** |
-| Latin Vulgate New Testament, pre-encoded GP29 | 39,835 | **1,400 / 1,496 / 1,590** |
-| Already-solved LP1 English excerpts, original-reference normalized | 761 | **1,238 / 1,366 / 1,475** |
+| Latin Vulgate New Testament, pre-encoded GP29 | 39,835 | **1,379 / 1,490 / 1,610** |
+| Already-solved LP1 English excerpts, original-reference normalized | 761 | **1,246 / 1,361 / 1,466** |
 | **Original unknown LP2** | **2,896** | **811 (fixed)** |
 
-All **1,280** native controls exceed the original count, with the closest at **1,207**, a gap of **396** equal-rune pairs. The unpooled empirical low-tail bound is at most \(1/257\) for each control source; these are finite sampled native-language comparisons, **not** a universal theorem that no English wording could have such low recurrence. Solved LP1 excerpts are editorially normalized rather than independently author-verified continuous LP2 prose, so they remain a separate witness, not a cryptanalytic key.
+All **1,280** native controls exceed the original count, with the closest at **1,207**, a gap of **396** equal-rune pairs. The unpooled add-one low-tail estimate is \(1/257\) for each control source, not a confidence bound; these are finite sampled native-language comparisons, **not** a universal theorem that no English wording could have such low recurrence. Solved LP1 excerpts are editorially normalized rather than independently author-verified continuous LP2 prose, so they remain a separate witness, not a cryptanalytic key.
 
 The SFT includes a full-length, exact native-language encryption/decryption positive control: encrypt **every independently sampled native word** under a freshly shuffled 29-rune alphabet and independently shuffled rune positions, then invert every one of the 12,956 encoded runes. It also checks the 2,896 individual equality-pair invariants and the aggregate repeated-word count. All original-input assertions and native controls pass on Windows Node 22. Source-file digests, seed, source lengths, exact original count, all control ranges and plant checks are printed by the test.
 

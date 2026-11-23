@@ -206,7 +206,7 @@ for (const [name, filename, parse] of sources) {
     equalPairs: describe(totals),
     wordsWithRepeat: describe(repeated),
     observedPairs: observed.pairs,
-    empiricalLowerTailUpperBound: 1 / (totals.length + 1)};
+    addOneEmpiricalLowerTail: 1 / (totals.length + 1)};
   results.push(row);
   console.log("CONTROL", JSON.stringify(row));
 }
