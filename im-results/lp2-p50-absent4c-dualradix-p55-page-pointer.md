@@ -34,9 +34,29 @@ The last row is an important **radix sensitivity**. The ASCII reading of `4C` is
 
 This full finite comparison sharpens the newly observed missing-L pattern and connects it conditionally to the **pre-existing** exact outer-ring76 / inner180 receiver. The outer-ring arithmetic is visible in original physical geometry, but the eight prior natural stationary lookup decoders fail independent p56 plaintext. It does not independently establish a key, source instruction, sequential traversal, or a decoded rune. The other absent letters and B→p49 count are explicit rivals to selecting p55 from absence alone.
 
+## Existing source-motivated table-pointer operation: new missing-value start
+
+The 2016 signed sentence **“their numbers are the direction”** already motivates, and prior [full table-graph research](lp2-p50-functional-graph-2016-wordmap.md) independently specifies, the simplest source reading: from zero-based address `i`, follow the actual base60 byte `T[i]` as the next address. That report identified the authentic signed `DEVOTED` GP0 value **102** navigating to **p32** because `T[102]=32`, as well as the exact 11- and 2-cycles. None of the *operation*, its full graph, or the signed-word→p32 endpoint is new here.
+
+**New fixed candidate start:** the literal absent token `4C` itself gives canonical base60 integer **252**. Starting the *already established* pointer procedure at this one address, without fitting an offset, direction, or receiver, yields this complete authentic-source trajectory:
+
+```text
+252 → 180 → 144 → 125 → 20 → 102 → 32
+                                  → 115 → 247 → 192 → 0 → 203 → 68
+                                  → 199 → 47 → 76 → 114 → 197 → 115 ...
+```
+
+- `T[252]=180`, exactly the number of **inner** cells in the printed 32×8 rectangle after shedding its 76-cell circumference. **Cell 252 is the only one of all 256 source addresses with printed-byte output 180.** This is an exact cross-geometry identity, while the choice to equate the byte with the inner-cell count remains post hoc.
+- The path later visits `102→32`, which is the **previously independently identified 2016 signed DEVOTED→p32 endpoint**, at exactly six steps from the newly chosen start. Physical p32 begins with GP rune L and carries the blurred tree associated with p55.
+- The path joins the existing eleven-cycle and includes address **76**, equal to original p55 length. **This particular end-of-cycle match is weak**, since **252/256** starting addresses enter that same 11-cycle; it must not be counted as independent confirmation of the new start.
+
+An exact all-starts source control qualifies the convergence claim: **93/256** table starts, and **29/95** byte values *absent from the 256 printed outputs*, eventually pass through address32. Thus *reaching32* by itself is common. The distinct testable novelty is the **source absence choosing start252 together with its unique immediate 180-byte output**, and the coincidence with the already independently mapped 102→32 step, not discovery of a new 11-cycle or solved plaintext.
+
+**Causal limitation:** no Cicada message instructs a player to treat a missing hexadecimal ASCII letter as a base60 *address*, nor to interpret `T[252]=180` as a key, delete it, or choose which 76 p55 runes to decrypt with it. The signed 2016 hint comes after the original 2014 delivery. Every pointer-step identity here is completely reproducible, but no reversibly decoded unknown rune is established. The proposed single-start path is substantially more constrained than a fitted cipher search, yet remains a **conditional navigation hypothesis**. A stronger next step would require a first-party consumer or a complete fixed original-rune prediction rather than another post-selected numerical bridge.
+
 ## Reproducible original-input test
 
-[Single-file read-only Node.js CommonJS original-data SFT](../sims/lp2_p50_missing4c_dualradix_page55_sft.cjs) reads `resources/liber-primus/base60-grid.json` and `resources/liber-primus/lp2-corpus.json`, asserts all **256** token-to-byte source conversions, enumerates all **15** qualifying ASCII letters, validates the exact self-index/absence/page-length conjunction and the base59 counterexample. The complete source-positive claim is arithmetic and census only: no reversible decoder is proposed or plant falsely called a plaintext verification. The original source-data calculation was independently executed directly on GitHub-fetched JSON.
+[Single-file read-only Node.js CommonJS original-data SFT](../sims/lp2_p50_missing4c_dualradix_page55_sft.cjs) reads `resources/liber-primus/base60-grid.json` and `resources/liber-primus/lp2-corpus.json`, asserts all **256** token-to-byte source conversions, enumerates all **15** qualifying ASCII letters, validates the exact self-index/absence/page-length conjunction and the base59 counterexample. Its revised graph section asserts the entire source-exact **252→180→102→32→76** trajectory, unique direct180 predecessor, and the 93/256 and29/95 independent-start baselines. The complete source-positive claim is arithmetic and census only: no reversible decoder is proposed or plant falsely called a plaintext verification. The original source-data calculation was independently executed directly on GitHub-fetched JSON.
 
 ## Decision and prospective requirement
 
