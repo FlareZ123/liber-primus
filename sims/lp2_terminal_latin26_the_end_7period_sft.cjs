@@ -162,7 +162,7 @@ const runicSource = fs.readFileSync(
 // Source / line and % physical-page wraps are explicitly *not*
 // lexical dividers. Original punctuation, hyphens and section symbols
 // remain dividers. Include the first 2,896 complete unknown-page words.
-const originalWords = (runicSource.replace(/[\\/\n%]/g, '').match(/[\u16a0-\u16ff]+/gu) || [])
+const originalWords = (runicSource.replaceAll('/', '').replaceAll('\\n', '').replaceAll('%', '').match(/[\u16a0-\u16ff]+/gu) || [])
   .slice(0, 2896)
   .map((word) => [...word].map((rune) => source.runes.indexOf(rune)));
 assert.equal(originalWords.length, 2896);
