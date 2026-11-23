@@ -17,3 +17,5 @@ jobs:
           node-version: '22'
       - name: Exhaust both source-original 64-bit exponent classes and planted positives
         run: node sims/lp2_p55_shed_public_values_full64_dlog_sft.cjs
+      - name: Reconstruct CADO prime-field logs and apply frozen 43-rune ciphertext inverse
+        run: node sims/lp2_p55_shed_public_values_full64_dlog_sft.cjs 97177182119505488787450641888952849267188113103 58078282667687694670884451880964459541759378088 2238269577806535885929259066426301788624493571
