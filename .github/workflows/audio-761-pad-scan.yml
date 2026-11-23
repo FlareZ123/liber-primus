@@ -17,6 +17,7 @@ on:
           - xor-2016-image
           - grid-xor
           - fib-708-761-p27
+          - p15-audio-offset-key
 jobs:
   scan:
     runs-on: ubuntu-latest
@@ -78,3 +79,6 @@ jobs:
       - name: Source-selected Fibonacci708 offset on authentic 761.MP3 to p27 GP29 inverse
         if: inputs.probe == 'fib-708-761-p27'
         run: node sims/lp2_p27_fib708_audio761_source_sft.cjs /tmp/761.MP3
+      - name: Test p15 spiral integers as byte offsets into original 761.MP3 and AES128 key for p50
+        if: inputs.probe == 'p15-audio-offset-key'
+        run: node sims/lp2_p15_761_mp3_raw_offset_key_sft.cjs /tmp/761.MP3
