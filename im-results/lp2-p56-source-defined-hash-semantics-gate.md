@@ -56,6 +56,21 @@ Across those six unique byte objects there are zero occurrences of the bounded h
 
 The copies are not independent witnesses and are not claimed to exhaust lost historical HTTP responses.
 
+### Exact 2014 Stage03/Stage04 page candidates (Agent24, 23 November 2026)
+
+The preserved Stage03 and Stage04 index objects are natural earlier-chain candidates for the p56 “deep web page” target. I tested the exact repository blobs and the two unambiguous payload boundaries (ASCII hex and decoded 256-byte payload) under the two 512-bit functions already motivated by the historical discussion: SHA-512 and Whirlpool. None equals the target.
+
+| Candidate bytes | Length | SHA-512 | Whirlpool |
+|---|---:|---|---|
+| Stage03 exact page blob (resources/external/2014-stage03-index.html; Git blob c979fa7e23de1b04b502467da75ff5b506b97ff8) | 541 | be9ee498562df5a81c7a0db7dba23bb20a3e230dba1ab51ec5882275c3559352eaf37330437a260dc2d0f2139027f596e0872238d1d57b56b7c1eff699a7373e | 160ea5bc1dbb02376667f4e5b873c44660abe666cb33405d2a73b7147047f96e2fbe1b8754af9481ab3a1124f2ac601392b4aa05d60cdff70828d7e008e117a3 |
+| Stage03 ASCII hex body | 512 | cc30bb42838d78c7be803673de8af61b537191dcc2d31bcc37b10f0d023c5771b383458e41d9db510ba201d86e05175551249cd838ca7cebc640c7d38a3ed211 | 8c154fc0637644b59c0a0241079a4e70d6206e52157512deee12897965ad1c228243f224813b47df73f4cd0c4c1e3701acb49c058f5e3243a47cdf330ec34fce |
+| Stage03 decoded payload | 256 | 881fc9e850842a8765c86e020e854b5c49680e5027625ca45a7a2fca6b2093d57b35aecf1b3b40b0604e26f2421fd6b0884203cc68e9674fa4abfad4f904f5a2 | 97d39186b7c5e45f6915e3907dd8049d04f39f386375551f53b1e861f0c8b6f1452fe61e7976cbc2abdeaffde8e6067daf3c4597b2d16c5a5b68e282e146cdac |
+| Stage04 exact page blob (resources/external/2014-stage04-index.html; Git blob 81837b8d5e89f6a31731b84a217a6fdeaa62aff8) | 524 | 8b88426ab9884bf7c23e07fa5f5e2c0a2092f79c0496fbf4dd3e1d149e8c4a91f312127f945846be071d5f6bc84e4853d7a426f8de00b6b464fedfc0af59ecfe | fe81c7ea2846612812042ce6522569f0fd9304a1002b35b2ffcfae038153ae6ebb2925bb5bd87dd82dbcea26ff534785226e0370280b1f1663f450b796929538 |
+| Stage04 ASCII hex body | 512 | 524ef99542ccf8ee7232e37082e0232699ffe306438e8b223afbdd4fad906754fb52eb1c2a38635d860f0504636c68c5b3c86c6f3bb9e23d50a8da4b3c1cd681 | b33edcb42ca46d9c2a9c1c377155947721c25bfb87d9ede787e22a042413daf1a5b50f4a563f6074f837b4273c3e53b25c5156543109e47bbfb15516fc9356e6 |
+| Stage04 decoded payload | 256 | 678fe2ae157719f5cc2b02d01c6646b92288e37f1e8e5a156db44282c660d25aefe9d17d365d2fb2a3ca796e2c0f3e192739d06638b86be9deaf3d8541e17dac | c4193d23c63d160596420536e4fd124c83c39eed2d25da1b7ca575a8e918e380e74a51f0f7f520a19fa7b73f5f5259499eafe0409c3ce37c5383716f6d5d4678 |
+
+Reproduction: run sha512sum FILE and openssl dgst -provider legacy -whirlpool FILE. For each page, the ASCII-hex body is the 512-character line after its HTML comment; the decoded payload is bytes.fromhex(body). This rejects only these preserved page/payload byte boundaries. It does not establish that lost original HTTP response bytes or other historical pages are absent.
+
 ## The misleading “liber-primus-hash-block” archive label
 
 The archived signed object named `2014-01-liber-primus-hash-block.asc` does not supply a webpage-hash positive control. Direct inspection of the signed cleartext at krisyotam/cicada3301 commit `76d3ee8c762f60025822c8c05edbf31351636469` gives:
