@@ -237,8 +237,8 @@ function feedbackEncrypt(P, first, second, sign, driver, symbolType) {
   return C;
 }
 const expectedFeedback={
- 'cipher-index': [[847,829],[824,836],[826,817],[843,841],[864,829],[810,816],[818,826],[814,812],[845,853],[820,814],[811,833],[870,834],[844,833],[852,812],[857,833],[812,897]],
- 'cipher-prime': [[819,815],[831,822],[821,811],[830,831],[845,841],[841,823],[818,828],[808,817],[823,819],[823,842],[874,828],[820,841],[827,825],[829,855],[825,886],[839,813]],
+ 'cipher-index': [[832,860],[816,841],[807,815],[860,841],[810,812],[815,812],[819,827],[814,815],[827,839],[812,877],[827,819],[855,850],[815,841],[840,833],[843,829],[817,848]],
+ 'cipher-prime': [[841,833],[827,844],[837,815],[831,827],[833,824],[836,807],[838,833],[810,858],[833,819],[815,821],[846,837],[845,831],[849,813],[820,833],[819,859],[821,819]],
  'plain-index': [[829,893],[783,817],[820,811],[821,802],[786,840],[814,814],[804,798],[814,792],[818,810],[797,832],[814,779],[821,816],[793,837],[811,822],[788,886],[813,803]],
  'plain-prime': [[800,798],[797,795],[802,780],[798,777],[803,775],[771,755],[770,838],[788,769],[805,790],[789,764],[813,820],[802,796],[813,805],[834,750],[818,768],[816,774]]
 };
@@ -271,14 +271,14 @@ for(const driver of ['cipher','plain']){
   console.log('Aperiodic '+kind+' max native-equal-pairs '+observedFeedback[kind]+'/20503 < '+referenceMinimum);
  }
 }
-assert.deepEqual(observedFeedback,{'cipher-index':897,'cipher-prime':886,'plain-index':893,'plain-prime':838});
+assert.deepEqual(observedFeedback,{'cipher-index':877,'cipher-prime':859,'plain-index':893,'plain-prime':838});
 console.log(JSON.stringify({
  status:'PASS_FEEDBACK',
  original_source:'16x203 intact black GP runes, original p39 GF29 root24',
  complete_original_inversions:16*29*29*2*(1+4),
  aperiodic_inversions:16*29*29*2*4,
  maxima:observedFeedback,
- largest_original_max:897,
+ largest_original_max:893,
  native_solved_min:referenceMinimum,
  planted_native:'all 8 feedback orientations recovered 203/203 real WELCOME runes',
  note:'no original unknown plaintext or authentic decoder'

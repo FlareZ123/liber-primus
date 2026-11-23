@@ -48,8 +48,8 @@ Continue with the same exact lossless no-repeat GP28 alphabet, zero-step EA esca
 | GP28 chain state update | Highest original equal-symbol pairs (any row, any seed, any sign) | Lowest native solved window pairs |
 | --- | ---: | ---: |
 | Autonomous p39 repeated root | **874** | 1,096 |
-| Ciphertext-forced GP-index | **897** | 1,096 |
-| Ciphertext-forced GP-prime residue | **886** | 1,096 |
+| Ciphertext-forced GP-index | **877** | 1,096 |
+| Ciphertext-forced GP-prime residue | **859** | 1,096 |
 | Plaintext-forced GP-index | **893** | 1,096 |
 | Plaintext-forced GP-prime residue | **838** | 1,096 |
 
