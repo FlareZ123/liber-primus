@@ -51,7 +51,8 @@ const nextWordGpPrimeSum = source.prime[25] + source.prime[0];
 assert.equal(nextWordGpPrimeSum, 103);
 const tokens = table.pages.flatMap(p => p.tokens);
 assert.equal(tokens.length, 256);
-assert.deepEqual(tokens.slice(103,105), ["0W","3Q"]);
+assert.deepEqual(tokens.slice(102,104), ["0W","3Q"]); // printed ordinal103 is zero-based 102
+assert.equal(tokens[103], "3Q"); // the direct zero-based index chosen by next-word sum103
 const signed2013 = load("resources/external/2013-tcp-server-signed-source.md");
 assert.ok(signed2013.includes("BASE29 3301 → 3QO"));
 const counterTargets = ordinal.slice(1).map(n => 55 - n);
@@ -80,7 +81,8 @@ console.log(JSON.stringify({
   p27UnbrokenCipherSubstring:spell(p27.slice(28,35)),
   firstAfterEchoCompleteWord:spell(p27.slice(34,36)),
   firstAfterEchoWholeWordPrimeSum:nextWordGpPrimeSum,
-  tableOriginalTokens103and104:tokens.slice(103,105),
+  tableOriginalOneBasedTokens103and104:tokens.slice(102,104),
+  zeroBasedCell103Direct:tokens[103],
   historic2013SignedBase29:"3301=3QO",
   allPhysicalOriginalCipherSixRuneHits:hits,
   otherHistoricalFilenameBackwardTargetHits:nullHits,
