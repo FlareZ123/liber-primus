@@ -81,6 +81,25 @@ assert.equal(synthetic(src60, 23).remainder, 24);
 const hitCount = key.quotient.filter((v, i) => v === C[i]).length;
 assert.equal(hitCount, 12);
 
+// Independent P'(X) 256-to-255 typed GP29 symbol key under the original
+// double-root24 polynomial condition. Source coefficients remain unchanged.
+const derivativeKey = src60.slice(0, -1).map((v, i) => m29((255 - i) * v));
+assert.equal(derivativeKey.length, C.length);
+const derivativeAnswers = [];
+for (const sign of [-1, 1]) {
+  const decoded = C.map((v, i) => m29(v + sign * derivativeKey[i]));
+  const reencryption = decoded.map((v, i) => m29(v - sign * derivativeKey[i]));
+  assert.deepEqual(reencryption, C);
+  const planted = clear.map((v, i) => m29(v - sign * derivativeKey[i]));
+  assert.deepEqual(planted.map((v, i) => m29(v + sign * derivativeKey[i])), clear);
+  derivativeAnswers.push({ sign, ioc: ioc(decoded),
+    first75Transliteration: decoded.slice(0, 75).map((v) => book.translit[v]).join(' ') });
+}
+assert.ok(Math.abs(derivativeAnswers[0].ioc - 0.03365755751119345) < 1e-14);
+assert.ok(Math.abs(derivativeAnswers[1].ioc - 0.032823838196696) < 1e-14);
+const derivativeMatches = derivativeKey.filter((v, i) => v === C[i]).length;
+assert.equal(derivativeMatches, 10);
+
 console.log(JSON.stringify({
   originalSource: 'p50 canonical base60 coefficients + p39 GP29 double root24',
   p8CipherLength: C.length,
@@ -91,7 +110,9 @@ console.log(JSON.stringify({
   rawCipherIoC: ioc(C),
   quotientIoC: ioc(key.quotient),
   decoded: answers,
+  derivativeKey: { length: derivativeKey.length, ioc: ioc(derivativeKey),
+    literalMatches: derivativeMatches, decoded: derivativeAnswers },
   solvedP57PositiveRecovered: '255/255 in both signs',
   competingRadix59Remainder: wrong59.remainder,
 }));
-console.log('PASS: exact original quotient, both original inverses and solved source positive');
+console.log('PASS: exact original quotient and derivative, both original inverses and solved source positives');
