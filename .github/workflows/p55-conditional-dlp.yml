@@ -26,20 +26,21 @@ jobs:
           python3 -m venv cado-venv --system-site-packages
           cado-venv/bin/python3 -c "import flask, requests; print('Flask and requests ready')"
 
-      - name: Compute exact large-order logarithms of source Q and E
+      - name: Compute large-order logs of Q and source-visible multiplier 43
         env:
           P55_MODULUS: '63755441409934721069036418908763882578170591536653256311514221'
           P55_ORDER: '101149063843788281988908603592862658065019147521'
           P55_GENERATOR: '1268532719737981052966698570711268391040527137'
-          P55_PUBLIC_E: '54546906948733185277568038540584540814742666891'
+          P55_SMALL_FACTOR: '43'
         run: |
           mkdir -p "$RUNNER_TEMP/p55-dlp"
           cd cado-nfs-upstream
           ../cado-venv/bin/python3 ./cado-nfs.py -dlp -ell "$P55_ORDER" target="$P55_GENERATOR" "$P55_MODULUS" -t 4 --workdir "$RUNNER_TEMP/p55-dlp" 2>&1 | tee "$RUNNER_TEMP/p55-dlp-Q.log"
           snapshot=$(find "$RUNNER_TEMP/p55-dlp" -type f -name '*.parameters_snapshot.*' | sort -V | tail -n 1)
           test -n "$snapshot"
-          ../cado-venv/bin/python3 ./cado-nfs.py --parameters "$snapshot" target="$P55_PUBLIC_E" 2>&1 | tee "$RUNNER_TEMP/p55-dlp-E.log"
-          echo "CADO-NFS modulo-157-bit-subgroup computations completed."
+          ../cado-venv/bin/python3 ./cado-nfs.py --parameters "$snapshot" target="$P55_SMALL_FACTOR" 2>&1 | tee "$RUNNER_TEMP/p55-dlp-43.log"
+          echo "CADO virtual logs of Q and 43 complete; E=43Q gives log(E)=log(Q)+log(43)."
+          echo "Use: node sims/lp2_p55_shed_cado_full_log_finalize_sft.cjs --log43 <logQ> <log43>"
 
       - name: Preserve computation output whether completed or interrupted
         if: always()
@@ -48,6 +49,6 @@ jobs:
           name: p55-original-conditional-dlp-logs
           path: |
             ${{ runner.temp }}/p55-dlp-Q.log
-            ${{ runner.temp }}/p55-dlp-E.log
+            ${{ runner.temp }}/p55-dlp-43.log
           if-no-files-found: ignore
           retention-days: 14
