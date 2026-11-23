@@ -18,6 +18,7 @@ const root = path.resolve(__dirname, "..");
 const audioPath = process.argv[2] || "/tmp/761.MP3";
 const audio = fs.readFileSync(audioPath);
 const audioSha = crypto.createHash("sha256").update(audio).digest("hex");
+const md5 = bytes => crypto.createHash("md5").update(bytes).digest("hex");
 assert.equal(audio.length, 4010732, "unexpected 761.MP3 byte length");
 assert.equal(
   audioSha,
@@ -34,6 +35,12 @@ const grid = JSON.parse(fs.readFileSync(
 ));
 const ciphertext = Buffer.from(grid.bytes);
 assert.equal(ciphertext.length, 256);
+const p50Stream = Buffer.from("f94944338e7f13998e333bf096b0a769", "hex");
+const id3Size = ((audio[6] & 0x7f) << 21) | ((audio[7] & 0x7f) << 14) |
+  ((audio[8] & 0x7f) << 7) | (audio[9] & 0x7f);
+const id3End = 10 + id3Size + ((audio[5] & 0x10) ? 10 : 0);
+assert(audio.subarray(0,3).equals(Buffer.from("ID3")));
+assert(id3End > 10 && id3End < audio.length);
 assert.deepEqual(ciphertext.subarray(0, 8), Buffer.from([203,231,167,186,97,237,126,183]));
 
 function decrypt(mode, key, input) {
@@ -85,12 +92,14 @@ const variants = [
 ];
 const modes = ["ecb", "cbc", "ctr"];
 const results = [];
+const derivedKeys = {};
 for (const [variant, positions] of variants) {
   const key = Buffer.from(positions.map(p => {
     assert(p >= 0 && p < audio.length);
     return audio[p];
   }));
   assert.equal(key.length, 16);
+  derivedKeys[variant] = key;
   const plant = Buffer.from(("LIBER PRIMUS THE WORDS ARE THE MAP THEIR MEANING IS THE ROAD " +
     "AND THEIR NUMBERS THE DIRECTION 3301 ").repeat(4).slice(0,256), "ascii");
   assert.equal(plant.length, 256);
@@ -112,6 +121,17 @@ console.log(JSON.stringify({
   hypothesis: "p15 Fibonacci-prime spiral values are byte offsets into the ID3-selected 2013 761.MP3; sampled 16 bytes form AES128 key for original 256-byte p49-51 grid",
   audioBytes: audio.length,
   audioSha256: audioSha,
+  audioMd5: md5(audio),
+  id3TagEndOffset: id3End,
+  p50Id3StreamHex: p50Stream.toString("hex"),
+  md5Comparisons: [
+    {object: "whole 761.MP3", md5: md5(audio), matchesP50Stream: md5(audio) === p50Stream.toString("hex")},
+    {object: "ID3v2 tag", md5: md5(audio.subarray(0,id3End)), matchesP50Stream: md5(audio.subarray(0,id3End)) === p50Stream.toString("hex")},
+    {object: "MPEG audio payload", md5: md5(audio.subarray(id3End)), matchesP50Stream: md5(audio.subarray(id3End)) === p50Stream.toString("hex")},
+    {object: "first 4517 audio bytes", md5: md5(audio.subarray(0,4517)), matchesP50Stream: md5(audio.subarray(0,4517)) === p50Stream.toString("hex")},
+    {object: "zero-based p15-offset sample", md5: md5(derivedKeys["zero-based-offsets"]), matchesP50Stream: md5(derivedKeys["zero-based-offsets"]) === p50Stream.toString("hex")},
+    {object: "one-based p15-offset sample", md5: md5(derivedKeys["one-based-offsets"]), matchesP50Stream: md5(derivedKeys["one-based-offsets"]) === p50Stream.toString("hex")}
+  ],
   spiralOffsets: offsets,
   p50GridBytes: ciphertext.length,
   offsetConventions: variants.length,
