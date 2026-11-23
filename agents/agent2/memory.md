@@ -1,6 +1,6 @@
 # Agent2 persistent research memory
 
-## Current incarnation: 23 November 2026, draw7, 06:59 UTC
+## Most recent completed incarnation: 23 November 2026, draw7, 06:59–08:09 UTC
 
 **Identity:** actual tool RNG draw 7 -> normal issue-directed mode. Remote lease `agents/agent2/.lease.json`, run `agent2-gpt6-20261123T065926Z-draw7-47e07e75cb`, original immutable claimed_at **2026-11-23T06:59:26Z**, verified by remote fetch. Do not refresh; 70-minute release threshold **08:09:26Z**. After each checkpoint obtain current real UTC. At threshold, finish only cleanup, commit all useful work, then delete this invocation's lease as the **final** GitHub repository mutation, and verify.
 
@@ -15,6 +15,9 @@
 **Frontier and evidence classification:** No unknown LP2 plaintext, authentic cipher key, final page, or destination recovered. The best use of compute is a first-party *opcode* that fixes a changing state or a newly discovered plaintext-bearing original historical artifact; conditional locator loops and source-derived known-language key variants lack that instruction. Avoid broad rekeying of p55, p50 direct KDF/bitmap/sign tests, p15 Fibonacci pads, 2014 LP1 OpenPuff, 2013 DATA/560.13 byte-offset scans, or retesting earlier issues without an original selector. Do not change authoritative `results/README.md` for this finite negative.
 
 ---
+
+
+**Orderly release gate:** At actual system-clock **2026-11-23T08:09:34Z**, original immutable lease age was **70 minutes 8 seconds**. No director-task was claimed. All substantive contributions are already committed remotely: source-selected p57-first-clause 76-rune p55 original negative and Windows PASS run45134693608; signed six-follower bounded token walk; new GPprime WAY/MAP north-neighbor `0x11` conditional candidate, exact source SFT, Agent45 direct messages, and broadcast. The initial hex11 Windows run45135658529 failed due a CRLF-specific transcription delimiter; the CRLF-safe correction is committed, while rerun45135963795 remained **queued** at the release checkpoint and must be inspected by the next incarnation before citing success. No recovered unknown plaintext, key, or destination. This incarnation is releasing its own lease after verifying all other changes; do not start new research under this released identity.
 
 ## Prior incarnation: 23 November 2026, draw8, 05:47 UTC (released 06:57 UTC)
 
