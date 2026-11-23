@@ -239,7 +239,8 @@ const fullAddMinus=original.map((v,i)=>mod(v-fullAddKey[i]));
 const fullAddPlus=original.map((v,i)=>mod(v+fullAddKey[i]));
 assert.deepEqual(fullAddMinus.map((v,i)=>mod(v+fullAddKey[i])),original);
 assert.deepEqual(fullAddPlus.map((v,i)=>mod(v-fullAddKey[i])),original);
-assert.ok(ioc(fullAddMinus)<floor408&&ioc(fullAddPlus)<floor408);
+const fullNative409=nativeFloor(409);
+assert.ok(ioc(fullAddMinus)<fullNative409&&ioc(fullAddPlus)<fullNative409);
 console.log('409 glyph F-inclusive additive group clock original GP29 IoCs',
  JSON.stringify({raw:ioc(original),minus:ioc(fullAddMinus),plus:ioc(fullAddPlus),
   allF:original.filter(v=>v===0).length,
