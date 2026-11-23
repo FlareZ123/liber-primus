@@ -25,5 +25,7 @@ Investigate source-selected GP27/GP28 finite-state and enumerative mechanisms fo
 
 - Additional 86-quote-word × 256-table lookup gate: for each quoted word, GP-prime or GP-ordinal sum modulo 256 selected a p49–p51 table byte under base60 and f-deleted base59. Comparing byte mod29 (and exact GP-prime-value interpretation) to the corresponding repeated rune, previous rune, or repeat gap produced only 0–5/86 matches, consistent with chance. This direct lookup does not explain the 86/86 count equality.
 
+- Additional 2014-hint × p49–p51 table lookup: for every LP2 word, used GP-prime or GP-ordinal sum modulo 32 as table row and rune position modulo 8 as column; table cell modulo 29 supplied the shift. Both base60/f-deleted base59 tables, both signs, and F-transparent/nontransparent clocks gave IoC 0.03449–0.03451, with no language signal. Treat the “word GP + rune position” hint as tested against this natural 32×8 receiver; do not repeat it without a new selector.
+
 ## Next useful work
 Investigate remaining original ink/illustration carriers or a source-authenticated transform for the p49–p51 table only if a period-visible clue selects the operation. Avoid unconstrained key hunting and preserve exact inputs, method, and parameters for any positive result.
