@@ -50,6 +50,20 @@ Freeze the following three packet boundaries before scoring original rune values
 
 An independent **553-rune solved LP1 p6 native-GP control** was modified at exactly original F offset378, encrypted under this same RSA packet clock at public exponent65,537, and then blindly searched over all9,072 possible exponents. The encrypted plant IoC is **0.03456115522708808**, even lower than most of the original outputs. The search recovers inverse exponent **29,825** uniquely above0.048, retrieves all **553/553** authentic native-GP plaintext symbols (plaintext IoC **0.065885682836701**), leaves the designated F transparent, and forward re-encrypts the recovered text exactly. This confirms the precise cipher candidate would have revealed normal GP-English ciphertext if that mechanism actually produced the original.
 
+### More conventional RSA output is key-independently impossible in the original GP29 framing
+
+Unlike the cycle-walk format-preserving hypothesis, ordinary RSA produces an integer residue in [0,n) that must be printed in a **larger fixed-width base29 ciphertext block**. With n=65,567, a three-rune plaintext packet needs **four runes** to print its RSA residue; each original four-rune ciphertext integer must be less than65,567. The first packet in all three fixed input clocks begins with GP index20 and ends with index22. Its big-endian four-digit value exceeds n immediately; so does its reversed-endian value. Across the actual original 553 runes, the complete test finds:
+
+| Original clock | Four-rune blocks | Big-endian residues ≥65,567 | Little-endian residues ≥65,567 |
+| --- | ---: | ---: | ---: |
+| Continuous | 138 | **124** | **126** |
+| Red379/F +174 reset | 137 | **122** | **128** |
+| Five numbered resets | 136 | **126** | **124** |
+
+The independently printed cuneiform primes p=1033 and q=3301 yield modulus3,409,933 and require **five GP29 digits** per ordinary four-rune plaintext packet. The same original three clock policies give big-endian illegal residues **95/110**, **92/109**, **91/108** and little-endian illegals **95/110**, **97/109**, **91/108**. All six clocks fail already in their very first literal source packet, independent of any hidden exponent or unknown plaintext language. Thus **ordinary fixed-width GP29 RSA output using either prime pair is impossible on these untouched source inputs**. Variable-length encoding, a reordering instruction, other alphabets or hidden metadata are outside this test. They need their own authored selector.
+
+Both necessary range gates are asserted in the same passing original-source [RSA3 SFT](../sims/lp2_red379x173_RSA3_fpe_source_selected_original_sft.cjs), actual [Windows Node22 run 45126670027](https://github.com/FlareZ123/liber-primus/actions/runs/45126670027).
+
 **Decision:** no authentic LP2 plaintext, key, or first-party instruction arose from this exhaustive red-prime RSA3 family. Neither higher exponent search nor phase optimization within these three source clocks is warranted. RSA-encoded non-English byte data, different source-specified bit packing, and other operations remain separate possibilities requiring evidence of an authored next step. The red379 F boundary remains a plausible *source arithmetic* cue, not a validated decryption.
 
 - [Exact original-input, all-exponent RSA379×173 GP29 three-rune SFT](../sims/lp2_red379x173_RSA3_fpe_source_selected_original_sft.cjs)
