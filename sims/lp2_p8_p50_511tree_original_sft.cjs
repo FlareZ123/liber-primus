@@ -232,5 +232,5 @@ for (const x of observations) console.log(JSON.stringify(x));
 console.log(JSON.stringify({ originalMax, searchSpace: 2 * 2 * laws.length,
   null: { seed: '0x33012372', trials, atLeast, proportion: atLeast / trials,
     meanBest: totalMax / trials, minBest: leastMax, maxBest: largestMax } }));
-console.log('AMBIGUITY BOUND: even 10 arbitrarily corrected leaf tokens alter at most 10/128 first-level comparisons; unchanged internal-level contradictions remain');
+console.log('AMBIGUITY BOUND: even 11 independently disputed historical leaf tokens alter at most 11/128 first-level comparisons; unchanged internal-level contradictions remain');
 console.log('PASS: every source-input, planted tree, all-secret contradiction, and fixed-null assertion');
