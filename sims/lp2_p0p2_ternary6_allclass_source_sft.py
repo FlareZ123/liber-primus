@@ -24,7 +24,7 @@ import json
 from pathlib import Path
 from time import monotonic
 
-from z3 import And, Distinct, If, Int, Solver, Sum, sat, unsat
+from z3 import And, Bool, Distinct, If, PbEq, Solver, Sum, is_true, sat, unsat
 
 ROOT = Path(__file__).resolve().parents[1]
 GP = json.loads((ROOT / "resources/liber-primus/lp2-corpus.json").read_text(encoding="utf-8"))
@@ -81,32 +81,39 @@ assert set(PLANTED) == set(range(29))
 assert [r % 3 for r in PLANTED] == TRITS
 
 
-def add_gram_constraints(solver: Solver, letters: list, tape: list[int], depth: int) -> int:
-    """Necessary exact d-gram occupancies, no hidden alphabet fitted."""
+def add_gram_constraints(solver: Solver, colours: list[list], tape: list[int], depth: int) -> int:
+    """Necessary exact d-gram occupancies, encoded as SAT pseudo-Boolean equations."""
     source_counts = ngrams(tape, depth)
     per_pattern = 3 ** (6 - depth)
     for target in product(range(3), repeat=depth):
-        terms = [
-            count * If(And(*(letters[r] == v for r, v in zip(gram, target))), 1, 0)
-            for gram, count in source_counts.items()
-        ]
-        solver.add(Sum(terms) == per_pattern)
+        weighted_atoms = []
+        for gram, count in source_counts.items():
+            conditions = {}
+            compatible = True
+            for rune, value in zip(gram, target):
+                if rune in conditions and conditions[rune] != value:
+                    compatible = False
+                    break
+                conditions[rune] = value
+            if compatible:
+                weighted_atoms.append((And(*(colours[r][v] for r, v in conditions.items())), count))
+        solver.add(PbEq(weighted_atoms, per_pattern))
     return len(source_counts)
 
 
 def check(name: str, tape: list[int], fixed: bool) -> dict:
-    letters = [Int(f"{name}_r{i}") for i in range(29)]
+    colours = [[Bool(f"{name}_r{r}_t{trit}") for trit in range(3)] for r in range(29)]
     solver = Solver()
-    solver.set(timeout=120_000)
-    for letter in letters:
-        solver.add(letter >= 0, letter <= 2)
-    solver.add(letters[0] == 0)  # Trit-label symmetry is exact.
+    solver.set(timeout=180_000)
+    for row in colours:
+        solver.add(PbEq([(v, 1) for v in row], 1))
+    solver.add(colours[0][0])  # Trit-label symmetry is exact.
     if fixed:
-        for r in range(29):
-            solver.add(letters[r] == r % 3)
+        for rune in range(29):
+            solver.add(colours[rune][rune % 3])
     steps = []
     for d in (1, 2, 3, 4):
-        size = add_gram_constraints(solver, letters, tape, d)
+        size = add_gram_constraints(solver, colours, tape, d)
         start = monotonic()
         verdict = solver.check()
         seconds = round(monotonic() - start, 3)
@@ -118,14 +125,16 @@ def check(name: str, tape: list[int], fixed: bool) -> dict:
         if verdict != sat:
             return {"name": name, "status": "INCONCLUSIVE", "first_unknown_depth": d, "stages": steps}
 
-    # Every 6-trit word is a base-3 integer from 0 to 728. Since there
-    # are exactly 729 cyclic positions, these must all be distinct.
+    # Every 6-trit word is a base-3 integer from 0 to 728.
+    # A cyclic B(3,6) has 729 mutually different six-trit windows.
     weights = [3 ** (5 - j) for j in range(6)]
-    window_ids = [
-        Sum([weights[j] * letters[tape[(i + j) % N]] for j in range(6)])
+    values = [Sum([trit * If(colours[r][trit], 1, 0) for trit in range(3)])
+              for r in range(29)]
+    windows = [
+        Sum([weights[j] * values[tape[(i + j) % N]] for j in range(6)])
         for i in range(N)
     ]
-    solver.add(Distinct(*window_ids))
+    solver.add(Distinct(*windows))
     start = monotonic()
     verdict = solver.check()
     seconds = round(monotonic() - start, 3)
@@ -135,7 +144,7 @@ def check(name: str, tape: list[int], fixed: bool) -> dict:
         assert verdict == sat, "Known planted ternary de Bruijn word must be SAT."
     if verdict == sat:
         model = solver.model()
-        classes = [model.eval(letters[r]).as_long() for r in range(29)]
+        classes = [next(c for c in range(3) if is_true(model.eval(colours[r][c]))) for r in range(29)]
         mapped = [classes[r] for r in tape]
         assert len(ngrams(mapped, 6)) == N
         status = "SAT"
