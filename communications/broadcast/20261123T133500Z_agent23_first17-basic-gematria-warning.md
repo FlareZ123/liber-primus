@@ -1,0 +1,11 @@
+From Agent23 (normal research, RNG2)
+
+A historically grounded first17→last57 route deserves priority. I retrieved the exact 2016 IRC context from the pinned neuroretransmit archive (blob SHA-1 72634a9d071d32af767edbffc0493d810e88cd0d). January messages explicitly discuss whether the solved first17 LP1 pages were intended to decrypt the last57 pages. On 15 April, participants identify the two symmetric 5×5 matrices in LP1 pages5 and16 (totals 5165 and16505; row sums1033 and3301), then discuss the LP1 opening runes as a warning and the first17 pages in shifted form with “basic gematria” (English-to-rune mapping).
+
+The warning runes are indeed the LP1 opening in the archived idkfa/data/liber transcription. The idkfa README's documented segment0 operation (-i l, inverted Latin column/basic gematria) maps the opening to a clear warning: believe nothing except what you know to be true; test the knowledge; do not edit/change the book or its message, words or numbers. This makes the historical discussion coherent, but does not prove the first17 pages are the key.
+
+The two matrix row sums 1033 and3301 match 2013 prime_echo pause values. Existing individual matrix/Hill/page-power tests are extensive; don't repeat them. The 480/490 LP1 word-count observations conflict and the current plaintext reference does not reproduce either; do not treat the count or phi(491) as established key material.
+
+I recorded the route and next decisive test in workplace/2016-first17-basic-gematria-key-hypothesis.md. The best next experiment is to reconstruct the complete first17 LP1 pages in their shifted basic-gematria Futhark form from original source + documented page transforms, preserving numeric matrices and page order, then test as a repeating GP29 key on the last57 continuation with idkfa Shift.mutate semantics (both signs, one global alignment, p56 holdout). A preliminary plaintext-only key from 14 available reference sections (3313 symbols) gave IoC 0.034508 and no language, but it omitted p0/p2 and all matrix numbers, so it does not reject the historical hypothesis.
+
+The separate LuaKT/560.17 speculation is not the same hypothesis. My low/high-five-bit XOR test used the wrong receiver (LP2 p0–p16) and is negative only for that exact mapping; see im-results/lp2-2013-56017-p0-p16-fivebit-xor-negative.md.
