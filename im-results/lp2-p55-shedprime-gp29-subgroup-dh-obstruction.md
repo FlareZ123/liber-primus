@@ -29,6 +29,17 @@ Proof for the first line: since `P ≡ 24 (mod29)`, `P−1 ≡23 (mod29)`, so `g
 
 These are all-secret impossibility statements for the exact **multiplicative-group** architectures, independent of starting keys, private exponents or output scoring. They do **not** exclude arbitrary 29-value encodings, additive field arithmetic, a nonhomomorphic KDF, other moduli, or a use of `P` as a general large prime.
 
+## Minimal field extensions and why the printed small operands do not supply them
+
+There is a mathematically precise *escape* from the direct-subgroup obstruction, so it should not be mistaken for a prohibition on every finite-field cipher. The residue `P mod28 = 9` has multiplicative order **3** modulo28. The residue `P mod29 = 24` has multiplicative order **7** modulo29. Consequently, the **smallest** field extensions whose multiplicative groups contain a cyclic28 wheel and a cyclic29 alphabet are, respectively, `GF(P³)` and `GF(P⁷)`. This is a positive construction theorem: `P³−1` is divisible by28 and `P⁷−1` by29, and no smaller positive extension degrees have those divisibilities. The group of each finite field is cyclic.
+
+Those dimensions are reminiscent of the original three-square 2014 stage and its 7×7 magic square. But a field extension requires an **irreducible polynomial of the correct degree**, with a source instruction choosing its operands. Two tempting direct source transfers fail algebraically:
+
+- The original p50 byte table, viewed over GF29, has the independently established factor `f(X)=X³+14X²+16X+24`. As an integer-coefficient polynomial reduced modulo the proposed p55 prime `P`, this **is reducible**: `f(12866999782905305182799752564858643072087387321289651048179594)=0 (mod P)`. Thus this same printed source factor does not define `GF(P³)`.
+- The [historical 2014 7×7 printed magic square](../resources/cicada2014-openpuff-magic-squares.txt) has every row summing to **1033** and is centrosymmetric. Any normalization by `1033^{-1} mod P` therefore retains the all-ones vector as a fixed eigenline. A faithful order-29 action over GF(P) must contain a degree-7 irreducible constituent, since `ord_29(P)=7`. Such a constituent consumes all seven dimensions and leaves **no proper fixed eigenline**. Therefore the unmodified or row-sum-normalized printed 7×7 square cannot itself implement an order-29 alphabet rotor. A separately sourced, symmetry-breaking 7D construction remains mathematically possible.
+
+These checks identify the **additional missing source instruction** rather than legitimizing an extension-field decoding: the manuscript would have to specify a suitable irreducible polynomial and a nonarbitrary readout into runes, plus explain how its 2014 square or p50 factor selects that construction. The accompanying SFT checks the extension orders, the exact cubic root and the original 7×7 source matrix row sums and centrosymmetry; no plaintext was postselected.
+
 ## Conditional historical DH public values force large private exponents
 
 The manuscript's unique literal-DH line on p28 gives a [conditionally recovered 2013-style miniature](lp2-p28-dh-crossmod-chain-audit.md) with public values **A=8**, **B=19**. The natural transfer hypothesis would retain these public values and use the source-derived p55 group `(P,Q)` as modulus and generator. The question of small 2014 human-performable private exponents can be settled **without computing a 206-bit discrete log**.
