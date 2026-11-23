@@ -49,6 +49,24 @@ The output space is short by a factor of **more than \(2^{34.62}\)**, irrespecti
 
 The actual source is stricter still: page starts, red intervals and punctuation placements visually form chapter headings rather than a free sidecar. The purpose of the generous bound is to exclude *all possible* universal decoders of the stated output format, not to infer the author's design.
 
+## Stronger global-channel variants using each page's genuine repeat profile
+
+The above theorem preserves only the **total** maximum of 86 repeats, an especially generous output constraint. The original additionally exposes the *location* of those repeats: the 55 rune-bearing pages each have their own actual within-page count `k_p`, with **13 pages having zero** and **no page exceeding five**. This permits a second exact cardinality argument that drops the previous restriction on where the **large marks** may move.
+
+Under an arbitrary uniform GP29 input tape, one page with `t_p=n_p−1` transitions has independent probability `1/29` per repeated-neighbor transition. If every output page is required to have **at most its original observed** `k_p` repeats, the universal rune-capacity loss is
+
+\[
+L_{\rm local,\le}=\sum_p -\log_2\left[\sum_{j=0}^{k_p}\binom{t_p}{j}
+(1/29)^j(28/29)^{t_p-j}\right]
+=\mathbf{430.5612013481\ bits}.
+\]
+
+Now allow **all 31 marks to roam across all book pages**, among **3,008 possible printed word-boundary slots** (including 25 extra fictitious slots beyond the actual **2,983** per-page source inventory), with unrestricted duplicate positions. Grant the same freely assigned 10-dot and black mark identities. Their entire global sidecar capacity is **262.8395654712 bits**. Keep the original 16 ordered red runs, original per-page membership and fixed individual lengths, but allow their arbitrary rune-seam positions as above (**118.7487333514 bits**). The combined globally movable mark channel plus page-local red channel is at most **381.5882988225 bits**, still **48.9729025256 bits too small** for a universal all-GP29 same-length encoder that meets every original page's repeat budget.
+
+A more restrictive, original-exact repetition-profile contract gives **445.7315579009 bits** of rune-capacity loss. Under this exact-output condition, even grant **both channels global movement across all pages**: order-preserving nonoverlapping placement of all 16 individually fixed-length red runs anywhere in the 12,956-rune tape contributes **173.9639275494 bits**; all 31 marks among the generously overcounted 3,008 word seams contribute **262.8395654712 bits**, total **436.8034930206 bits**. This remains **8.9280648803 bits short**. The original ordering and lengths of the red runs remain fixed, but their page memberships and all mark per-page counts may vary in this extreme variant. It is a separate theorem about exactly fixed local repeat counts, which is a stronger assumption than allowing each page up to its source count.
+
+These two global-channel variants sharpen the family of excluded **universal** no-repeat architectures. They do **not** suggest that the author programmed the precise observed pagewise repeat counts as targets, nor can they exclude a text-source-restricted compressor, arbitrary redistribution of individual red-run lengths/order, punctuation outside the 31 large marks, or additional concealed image/number payload.
+
 ## What this does and does not decide
 
 **Decision:** Merely promoting the **16 original movable contiguous red-run positions** to an additional exception channel **cannot** rescue a universal, rune-length-preserving, all-GP29 anti-repeat encoder whose large marks stay at existing printed word breaks with their original per-page multiplicities. There is not enough combined output capacity even under arbitrary unknown keys. That conclusion is independent of language scoring or finding the cipher.
@@ -61,4 +79,4 @@ The claim is a **bounded structural pruning result**, not a new cryptographic so
 
 **Executed Windows Node22 original-source PASS:** [manual read-only workflow run 45141898199](https://github.com/FlareZ123/liber-primus/actions/runs/45141898199) confirms every source count, every red-boundary/mark placement, both toy controls, all information totals and the strict capacity deficit. No unknown plaintext was emitted.
 
-The self-contained, read-only, **Windows 11 / Node.js 22 CommonJS** [source test](../sims/lp2_redrun_wordmark_antirepeat_capacity_sft.cjs) reads the original 58-page GP29 corpus, the physical red-ink annotations, and the printed transcription. It restores the omitted runeless p50 when mapping transcription pages to physical page numbers, checks **every** red-run start/end and large-mark location against exact original printed word seams, asserts all **12,956/12,901/86** rune counts and **213/16/31** annotated events, and evaluates the independent logarithmic cardinalities using a stable reverse-tail sum. Two exhaustive toy positives check the transition-count formula and nonoverlapping red-interval placement count. The original files are read-only; no inferred plaintext or key is embedded.
+The self-contained, read-only, **Windows 11 / Node.js 22 CommonJS** [source test](../sims/lp2_redrun_wordmark_antirepeat_capacity_sft.cjs) reads the original 58-page GP29 corpus, the physical red-ink annotations, and the printed transcription. It restores the omitted runeless p50 when mapping transcription pages to physical page numbers, checks **every** red-run start/end and large-mark location against exact original printed word seams, asserts all **12,956/12,901/86** rune counts and **213/16/31** annotated events, and evaluates the independent logarithmic cardinalities using a stable reverse-tail sum. Two exhaustive toy positives check the transition-count formula and nonoverlapping red-interval placement count. The original files are read-only; no inferred plaintext or key is embedded. The same code independently computes the two pagewise-repeat theorems and confirms every source position.
