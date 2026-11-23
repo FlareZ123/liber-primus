@@ -74,6 +74,33 @@ function main(){
   assert.deepEqual(types,{"13_red":27,"13_black":1,"10_red":3});
   const physicalSites=new Set(marks.map(x=>String(x.page)+":"+x.offset));
   assert.equal(physicalSites.size,30); // Two marks flank a single p7 source-rune seam.
+  // Under the source-visible red-span grammar, all red/black boundaries
+  // except three attach to a page edge or one of the counted large marks.
+  // Generously grant each unanchored endpoint any page-local glyph seam.
+  let redRuneCount=0,redSpanCount=0;
+  /** @type {{page:number,offset:number,kind:string,slots:number}[]} */
+  const extraRedEndpoints=[];
+  for(const p of ink.pages){
+    if(p.page>55)continue;
+    const markOffsets=new Set((p.large_punctuation||[]).map(m=>m[0]));
+    for(const span of p.red_spans||[]){
+      redSpanCount++;redRuneCount+=span.length;
+      const end=span.start+span.length;
+      assert(span.length>0&&span.start>=0&&end<=p.rune_count);
+      if(span.start!==0&&!markOffsets.has(span.start)){
+        extraRedEndpoints.push({page:p.page,offset:span.start,kind:"start",slots:p.rune_count+1});
+      }
+      if(end!==p.rune_count&&!markOffsets.has(end)){
+        extraRedEndpoints.push({page:p.page,offset:end,kind:"end",slots:p.rune_count+1});
+      }
+    }
+  }
+  assert.equal(redSpanCount,16);assert.equal(redRuneCount,213);
+  assert.deepEqual(extraRedEndpoints.map(x=>[x.page,x.kind,x.offset]),[
+    [8,"end",12],[40,"end",8],[53,"start",128]
+  ]);
+  const extraRedBits=extraRedEndpoints.reduce((s,x)=>s+Math.log2(x.slots),0);
+  assert(Math.abs(extraRedBits-23.3498340915)<0.000001);
   const f=logFact(n+nPages+2);
   const logP=(m,r)=>chooseLog(f,m,r)+r*Math.log2(1/29)+(m-r)*Math.log2(28/29);
   const exact=logP(transitions,repeats);
@@ -94,12 +121,17 @@ function main(){
   assert(Math.abs(pageFixed+445.73156)<0.0001);
   assert(Math.abs(local-234.502803174)<0.00001);
   assert(localFourSides < -capped - 28);
+  assert(localFourSides+extraRedBits < -capped);
+  assert(localEightSides+extraRedBits > -capped);
   assert(localEightSides > -capped);
   assert(globalTyped31 > -capped);
   console.log(JSON.stringify({
     source:{runes:n,pages:nPages,words,transitions,repeats,largeMarks:marks.length,markTypes:types,uniquePageRuneSites:physicalSites.size},
     repeatCapDeficitBits:{exact86:-exact,atMost86:-capped,perPageObservedCounts:-pageFixed},
     pageLocalMarkUpperBoundBits:{oneSitePerSeam:local,twoSitesPerSeam:localTwoSides,fourSitesPerSeam:localFourSides,eightSitesPerSeam:localEightSides},
+    redInk:{runeCount:redRuneCount,spanCount:redSpanCount,freeEndpoints:extraRedEndpoints,additionalEndpointCapacityBits:extraRedBits},
+    pageLocalMarkPlusRedUpperBoundBits:{oneSitePerSeam:local+extraRedBits,fourSitesPerSeam:localFourSides+extraRedBits},
+    deficitWithFourSlotMarksAndAllFreeRedEndpoints:-capped-localFourSides-extraRedBits,
     globallyMovable31TypedMarksBits:globalTyped31,
     originalWordGapArrangementBits:gapBits,
     extraBitsNeededWithFourPageLocalSlots:-capped-localFourSides,
