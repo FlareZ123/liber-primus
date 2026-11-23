@@ -90,7 +90,7 @@ assert.equal(3 * 29 * 29 + 26 * 29 + 24, 3301);
 /* English/PGP-format plant through both source alphabets, with no tuning. */
 const plant = Buffer.from('-----BEGIN PGP SIGNED MESSAGE-----\n', 'utf8');
 const positiveValue = integer(plant);
-const plantedDigits = toBase29(positiveValue, 55);
+const plantedDigits = toBase29(positiveValue, 60);
 for (const alphabet of [Array.from({ length: 29 }, (_, i) => i), order]) {
   const encoded = plantedDigits.map(digit => alphabet[digit]);
   const rank = new Map(alphabet.map((symbol, index) => [symbol, index]));
