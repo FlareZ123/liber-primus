@@ -43,9 +43,37 @@ The unpermuted direction is also measured; use only the two literal index origin
 
 The unmodified original source IOC is **0.03446048**. All eight fixed decoders still produce nonlinguistic GP29 ciphertext-like text and values close to uniform `1/29≈0.03448276`. Each exact inverse reproduces all **1,729/1,729** printed runes. Each of the eight source-native positive controls constructs a fresh ciphertext from **1,729 repeated genuine solved p57 rune symbols**, then recovers exactly all 1,729 symbols, confirming the maps and arithmetic operate correctly when they are the actual cipher.
 
+## A second, historically motivated RSA digraph rather than a bare position shuffle
+
+Cicada used RSA in previous rounds, and original LP2 p33–p39 repeats the Babylonian-style cuneiform numerals **1033 and3301**. A separate authentic 13-dot manuscript mark offers a potential exponent 13. The Carmichael modulus gives a particularly sharp pre-cipher identity:
+
+`3301 ≡ 1033 ≡ 25 (mod λ(1729)=36)`, and `25 × 13 ≡1 (mod36)`.
+
+Thus both historically printed numerals select **the same** exponentiation permutation `x→x^3301=x^1033 mod1729`, and `x→x^13 mod1729` exactly reverses it for **every** residue 0..1728, including zero divisors. The exponent-13 map even has order three because `13³≡1 (mod36)`. These equalities were computed from two independently printed manuscript operands; they do not prove the creators intended RSA.
+
+A genuine reversible GP29 receiver needs to retain all original rune values. A raw exponentiation followed by reduction modulo29 would destroy information. Instead, make **one source-typed format-preserving digraph decoder**:
+
+- Read two adjacent original GP29 runes as a base29 integer `x=29C_even + C_odd`, so `0≤x<29²=841`. Preserve a final singleton when present.
+- Compute `x←x^13 mod1729`. If `x≥841`, repeat the same exponentiation until the value lies in the original 841-integer domain. Re-expand as two original canonical GP29 runes. Because the underlying exponent permutation has order3, this format-preserving cycle-walk takes **at most three steps**.
+- The forward encoder uses `x←x^3301 mod1729` with the same exact cycle-walk. Among all **841** digraph values, the reverse walk terminates after one, two, or three iterations respectively **563, 130, 148** times. Every one of 841 inputs has a unique inverse, with no fitted alphabet substitution or key.
+- Apply the same exact pair receiver to intact physical manuscript section rune streams, carrying the pair clock across the printed word separators. Such pair framing itself is **not supplied by a first-party instruction**.
+
+| Original untouched section | Runes | Original IOC | RSA13 digraph-inverted IOC |
+| --- | ---: | ---: | ---: |
+| Opening p0–p2 | 729 | 0.03408252 | **0.03454604** |
+| Botanical p8–p14 | 1,729 | 0.03446048 | **0.03442434** |
+| Cuneiform p33–p39 | 1,680 | 0.03436002 | **0.03447772** |
+| Floral p40–p53 | 3,008 | 0.03454263 | **0.03441173** |
+
+All eight source chapter receiver tests remain essentially random-like and produce **no authentic continuous GP29 prose**. The complete exact original source ciphertext reencrypts perfectly in every scope; each scope also passes a separately encrypted solved-p57 native GP29 plant with **100%** of its symbols recovered. For the 1,729-rune botanical register, the solved-p57 native plant's IOC **0.07200694** is reduced to **0.04944653** by the actual forward digraph permutation, then fully restored by its proper inverse. The untouched original botanical register stays near0.0344 under the same inverse, a substantive negative.
+
+The two source cuneiform exponents and modular RSA inverse13 are an **exact, independently reproducible arithmetic relationship**. Their use as a cipher is unselected. Without a first-party instruction assigning 1,729 as a modulus to two-rune chunks, this remains a finite exploratory no-key inverse, **not a discovered GP29 key**.
+
+[Native original RSA13 cycle-walk SFT](../sims/lp2_1729_carmichael_3301_1033_rsa13_digraph_fpe_sft.cjs) · [successful original-source GitHub Actions run 45118980761](https://github.com/FlareZ123/liber-primus/actions/runs/45118980761).
+
 ## Research decision
 
-**Reject exponent-19 index permutation plus direct modular-exponent GP29 keystream as a stand-alone decipherment of the botanical chapter.** No original unknown plaintext appears. The pure involution cannot produce native rune-frequency restoration; its optional source-derived additive clock fails on exact original input.
+**Reject both exponent-19 position permutation plus direct modular-exponent GP29 keystream, and the source-numbered RSA13/3301 pair format-preserving receiver, as stand-alone decipherments of the original manuscript.** No original unknown plaintext appears. The pure involution cannot produce native rune-frequency restoration; its optional source-derived additive clock fails on exact original input. The separate cuneiform/RSA13 digraph decoder is exactly reversible and historically motivated, yet also preserves the original near-uniform rune distribution.
 
 The new mathematical observation worth retaining is the exact **Carmichael involution `i↦i^19 mod1729`** whose exponent and modulus are independently observable from plausible source geometry. Whether the author intended it remains unknown. Additional arbitrary source-shuffle combinations, changing key phases or fitted second ciphers have no support and should not be launched solely because the permutation is reversible.
 
