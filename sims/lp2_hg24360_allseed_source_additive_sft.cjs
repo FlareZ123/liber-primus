@@ -466,6 +466,75 @@ for (const check of [
     ...result
   }));
 }
-console.log('PASS: source HG all-IV scalar, all-phase companion, and terminal p57 known-plaintext receiver fail to decrypt unknown LP2');
+
+/**
+ * Every affine four-rune secret key (U,V), with either clock orientation,
+ * is determined by two authentic p57 four-rune known-plaintext blocks,
+ * provided their source input difference is invertible (true here).
+ * @param {number[]} tape 256 source table GF29 residues.
+ * @param {1|-1} direction
+ * @returns {{u:number[],v:number[],runes:number,wholeBlocks:number}}
+ */
+function terminalAffineReceiver(tape, direction) {
+  const op = direction === 1 ? companionPlus : companionMinus;
+  const x41 = applyPower(tape.slice(164, 168), op, 41);
+  const x42 = applyPower(tape.slice(168, 172), op, 42);
+  const y41 = terminalKnown.slice(3, 7);
+  const y42 = terminalKnown.slice(7, 11);
+  const subtract = (a, b) => a.map((x, i) => mod(x - b[i]));
+  const diffInv = ringInverse(subtract(x42, x41));
+  assert.ok(diffInv, 'original first-known adjacent x-block difference is unit');
+  const u = ringMultiply(subtract(y42, y41), diffInv);
+  const v = subtract(y41, ringMultiply(u, x41));
+  let runes = 0;
+  let wholeBlocks = 0;
+  for (let j = firstKnownBlock; j < 64; j++) {
+    const transformed = applyPower(tape.slice(4 * j, 4 * j + 4), op, j);
+    const predicted = ringMultiply(u, transformed).map((x, i) => mod(x + v[i]));
+    const gold = terminalKnown.slice(4 * j - 161, 4 * j + 4 - 161);
+    if (predicted.every((x, i) => x === gold[i])) wholeBlocks++;
+    for (let k = 0; k < 4; k++) if (predicted[k] === gold[k]) runes++;
+  }
+  return {u, v, runes, wholeBlocks};
+}
+const plantedAffineV = [27, 5, 15, 0]; // original p39 red G, zero-padded
+const syntheticAffineTerminal = Array(256).fill(0);
+for (let j = firstKnownBlock; j < 64; j++) {
+  const plain = terminalKnown.slice(4 * j - 161, 4 * j + 4 - 161);
+  const shifted = plain.map((x, i) => mod(x - plantedAffineV[i]));
+  const cipher = applyPower(ringMultiply(knownUnitInverse, shifted),
+    companionMinus, j);
+  syntheticAffineTerminal.splice(4 * j, 4, ...cipher);
+}
+const affinePositive = terminalAffineReceiver(syntheticAffineTerminal, 1);
+assert.deepEqual(affinePositive, {
+  u: knownUnit, v: plantedAffineV, runes: 92, wholeBlocks: 23
+});
+console.log('TERMINAL_AFFINE_NATIVE_POSITIVE', JSON.stringify(affinePositive));
+for (const check of [
+  {order:'printed',direction:1, u:[17,25,17,17],
+    v:[6,23,26,4],runes:10},
+  {order:'printed',direction:-1,u:[10,4,24,26],
+    v:[5,6,3,11],runes:11},
+  {order:'reverse',direction:1,u:[3,16,6,19],
+    v:[12,17,4,7],runes:10},
+  {order:'reverse',direction:-1,u:[0,21,3,23],
+    v:[18,12,13,1],runes:15}
+]) {
+  const originalTape = (check.order === 'printed'
+    ? grid.bytes : grid.bytes.slice().reverse()).map(mod);
+  const found = terminalAffineReceiver(originalTape, check.direction);
+  assert.deepEqual(found.u, check.u);
+  assert.deepEqual(found.v, check.v);
+  assert.equal(found.runes, check.runes);
+  assert.equal(found.wholeBlocks, 2);
+  console.log('TERMINAL_AFFINE_ORIGINAL', JSON.stringify({
+    order:check.order, direction:check.direction,
+    fittedRunes:8, heldOutRunes:84, heldOutRecovered:found.runes-8,
+    ...found
+  }));
+}
+console.log('PASS: source HG all-IV scalar, all-phase companion, and both full-key and affine terminal p57 known-plaintext receiver gates; zero unknown plaintext');
+
 
 
