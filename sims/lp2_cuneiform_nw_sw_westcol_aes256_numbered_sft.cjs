@@ -156,6 +156,30 @@ assert(Math.abs(ioc(joined) - 0.03423356133867966) < 1e-12);
 const best = results.reduce((x, y) => y.ioc > x.ioc ? y : x);
 assert(Math.abs(best.ioc - 0.03541945121471814) < 1e-12);
 assert(best.ioc < 0.04);
+
+// A simpler Cicada-era alternative is repeated GP29 Vigenere using the same
+// source-selected west-column bytes, with a five-item reset or single clock.
+const repeatedPad = Array.from(key, byte => byte % 29);
+const directPad = [];
+for (const resetEachItem of [true, false]) {
+  for (const sign of [-1, 1]) {
+    let position = 0;
+    const decoded = [];
+    for (const sourceItem of numbered) {
+      if (resetEachItem) position = 0;
+      const pad = sourceItem.map((_, i) => repeatedPad[(position + i) % repeatedPad.length]);
+      decoded.push(...transform(sourceItem, pad, sign));
+      const known = sourceItem.map((_, i) => native[i % native.length]);
+      assert.deepEqual(transform(transform(known, pad, -sign), pad, sign), known);
+      position += sourceItem.length;
+    }
+    directPad.push({resetEachItem, sign, ioc: ioc(decoded)});
+  }
+}
+assert.equal(directPad.length, 4);
+const highestDirectPadIoC = Math.max(...directPad.map(item => item.ioc));
+assert(Math.abs(highestDirectPadIoC - 0.034521843960479075) < 1e-12);
+
 console.log(JSON.stringify({
   sourceCompassWords: compassWords,
   westernColumnKeyHex: key.toString('hex'),
@@ -164,6 +188,8 @@ console.log(JSON.stringify({
   rawIoC: ioc(joined),
   sourceNativeP57IoC: ioc(native),
   variants: results.length,
+  directRepeatedPadVariants: directPad,
+  maxDirectRepeatedPadIoC: highestDirectPadIoC,
   bestMode: {
     endian: best.endian,
     nonceSource: best.nonceSource,
