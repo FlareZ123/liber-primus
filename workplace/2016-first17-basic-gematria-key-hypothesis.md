@@ -54,3 +54,13 @@ The April 2016 “warning” runes are the opening of the idkfa transcription's 
 The exact graph transliteration is nonstandard (for example, K/C and V/U aliases and the NG graph), but the warning's meaning is clear. This makes the 2016 discussion internally coherent: the first17-page material includes a warning about preserving both words and numbers, and the participants explicitly considered those pages as a key for the last57. Treat the warning as a source-derived LP1 plaintext recovered by the documented community translator, not as proof that the proposed LP1→LP2 key mechanism is correct.
 
 The quick plaintext-only key experiment noted above used only 14 available reference sections, omitted p0/p2 and all numeric matrix material, and is therefore only an exclusion of that incomplete serialization (not the historical proposal).
+
+
+## Paired-matrix consumer checks
+
+Because the April discussion explicitly names both 5×5 matrices, I tested two fixed paired uses over GP29:
+
+- Form a single Hill-5 key by multiplying the page5 and page16 matrices in page order (A·B), or reverse order (B·A), reduce modulo29, invert, and apply to LP2 p0–p56 in five-symbol blocks.
+- Apply the two-sided block transform to each 5×5 ciphertext block, decrypting as A⁻¹·C·B⁻¹ or B⁻¹·C·A⁻¹.
+
+All matrices were invertible modulo29. The four outputs remained random-like (symbol IoC 0.034446–0.034502) and unreadable. This rejects these straightforward paired Hill consumers; it does not test the historical complete-first17 basic-gematria stream or an authored operation not yet identified.
