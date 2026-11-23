@@ -19,6 +19,8 @@ The first eight printed source bytes are `cb e7 a7 ba 61 ed 7e b7`. Their PNG-Av
 | Original printed bytes | 161 | 7.16965 | 103 |
 | PNG Average reconstructed | 159 | 7.13659 | 87 |
 
+**Literal PNG syntax check (necessary, source-exact):** A native PNG uncompressed scanline always begins with a filter-type byte in `0..4`, followed by the scanline's pixel bytes. Interpreting each of the **32 original printed eight-byte rows** as one complete PNG scanline with seven payload bytes fails immediately: only **1/32** row heads is a legal filter byte (original row24 is `00`; the other 31 are outside `0..4`). This is a hard source-level exclusion of the direct full-scanline-byte interpretation, irrespective of image recognizability. The tested filter3 decoder is an **operator hypothesis with 32 implicit filter3 selectors**, not an observed valid PNG data stream.
+
 A single natural GP29 consumer was predeclared for direct ciphertext testing: reduce the byte stream modulo29 and repeat it as one **continuous 256-rune Vigenère key**, across the unchanged p0–55 **12,956-rune** corpus (including the original zero-rune p50), without resetting at page, word, or F. Test both `P=C-K` and `P=C+K`. The printed stream is the exact comparison control; the reconstructed stream is the proposed operator output. Both signs reconstruct ciphertext perfectly when inverted, and a 95-rune genuine solved p57 native plaintext plant recovers all 95 symbols under the same operation. These are correctness checks, not evidence the historical cipher used the operation.
 
 | Source bytes, GP29 sign | p16–21 training IoC (1,613) | p40–53 sealed holdout IoC (3,008) |
