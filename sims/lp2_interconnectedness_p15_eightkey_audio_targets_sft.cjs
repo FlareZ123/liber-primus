@@ -32,6 +32,18 @@ function base29(n) {
   do { digits.unshift(n % 29); n = Math.floor(n / 29); } while (n > 0);
   return digits;
 }
+function eulerPhi(n) {
+  let remainder = n;
+  let result = n;
+  for (let p = 2; p * p <= remainder; p++) {
+    if (remainder % p === 0) {
+      while (remainder % p === 0) remainder /= p;
+      result -= result / p;
+    }
+  }
+  if (remainder > 1) result -= result / remainder;
+  return result;
+}
 function ioc(values) {
   const counts = Array(29).fill(0);
   for (const value of values) counts[value]++;
@@ -188,9 +200,12 @@ const sourceKeys = [
   ['ordinal16', fibonacci.map(n => n + 1)],
   ['printedBase29', printed.flatMap(base29)],
   ['primeBase29', p15Primes.flatMap(base29)],
-  ['seedBase29', base29(3301)]
+  ['seedBase29', base29(3301)],
+  ['phiN16', printed.map(eulerPhi)],
+  ['phiNminus1_16', printed.map(n => eulerPhi(n) - 1)],
+  ['phiNplus1_16', printed.map(n => eulerPhi(n) + 1)]
 ].map(([name, values]) => ({ name, key: values.map(mod29) }));
-assert.deepEqual(sourceKeys.map(x => x.key.length), [16,16,16,16,16,47,30,3]);
+assert.deepEqual(sourceKeys.map(x => x.key.length), [16,16,16,16,16,47,30,3,16,16,16]);
 
 const audioPrimeSeeds = [
   { prime: 173, ordinal: 40, source: 'repeat-lag MP3-frame quotient 10034 = 29×2×173' },
@@ -528,7 +543,8 @@ const p55WordShiftReports = [];
 const wordShiftFamilies = [
   { name: 'printed16', values: printed },
   { name: 'prime16', values: p15Primes },
-  { name: 'totient16', values: p15Primes.map(p => p - 1) }
+  { name: 'totient16', values: p15Primes.map(p => p - 1) },
+  { name: 'phiN16', values: printed.map(eulerPhi) }
 ];
 for (const family of wordShiftFamilies) {
   const key = p15SpiralOrder.map(i => mod29(family.values[i]));
@@ -567,7 +583,8 @@ assert.deepEqual(p55WordShiftReports.map(x => ({
 })), [
   { family: 'printed16', viableMasks: 8 },
   { family: 'prime16', viableMasks: 0 },
-  { family: 'totient16', viableMasks: 0 }
+  { family: 'totient16', viableMasks: 0 },
+  { family: 'phiN16', viableMasks: 0 }
 ]);
 
 // Exact expected totals freeze the current result and guard against accidental
@@ -581,16 +598,16 @@ const totals = Object.fromEntries([0,29,55].map(n => {
   }];
 }));
 assert.deepEqual(totals, {
-  0: { configurations: 320, viableConfigurations: 17, viableMasks: 752 },
-  29: { configurations: 320, viableConfigurations: 0, viableMasks: 0 },
-  55: { configurations: 320, viableConfigurations: 108, viableMasks: 247 }
+  0: { configurations: 416, viableConfigurations: 27, viableMasks: 954 },
+  29: { configurations: 416, viableConfigurations: 1, viableMasks: 4 },
+  55: { configurations: 416, viableConfigurations: 143, viableMasks: 332 }
 });
 assert.deepEqual(totals, {
   0: { configurations: 320, viableConfigurations: 17, viableMasks: 752 },
   29: { configurations: 320, viableConfigurations: 0, viableMasks: 0 },
   55: { configurations: 320, viableConfigurations: 108, viableMasks: 247 }
 });
-assert.equal(positivePlants, 320 * 3 + 4 * 2 * 3 + 13 * 2 * 3 + 2 * (16 * 2 + 16 * 2) + 3 * 2);
+assert.equal(positivePlants, 416 * 3 + 4 * 2 * 3 + 13 * 2 * 3 + 2 * (16 * 2 + 16 * 2) + 4 * 2);
 
 // Authentic solved p56 positive control.
 const expectedP56Words =
@@ -655,5 +672,5 @@ console.log(JSON.stringify({
   p56PositiveControl:{runes:p56.length,ioc:p56IoC,exactPlaintext:true},
   syntheticPositivePlants:positivePlants,
   conclusion:
-    'All eight p15 source-key families have zero legal inverse on p29. p0 and p55 have some F-transparent paths but no coherent word-level plaintext. The p0 red13 header as a repeating key likewise yields no coherent plaintext on its black body, p29, or p55. The p55 16-word/p15 16-cell mapping and word-wise Caesar consumers also fail. The four audio-derived prime starts are tested separately. The audio/page selector remains a hypothesis, not a decryption.'
+    'All eleven p15 source-key families (including Euler-totient transforms of the printed grid values) have only four legal masks on p29. p0 and p55 have some F-transparent paths but no coherent word-level plaintext. The p0 red13 header as a repeating key likewise yields no coherent plaintext on its black body, p29, or p55. The p55 16-word/p15 16-cell mapping and word-wise Caesar consumers also fail. The four audio-derived prime starts are tested separately. The audio/page selector remains a hypothesis, not a decryption.'
 }, null, 2));
