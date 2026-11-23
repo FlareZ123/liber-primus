@@ -73,6 +73,17 @@ In the actual base60 panel, byte `I` (=73) occurs4 times, `D` (=68) twice, and `
 
 At 14 possible ordered triple starts along this 16-cell source spiral, the corresponding union bound is `14 / 1,036,320 ≈ 1.35×10⁻⁵`. **These are conditional arithmetic baselines, not discovery-adjusted p-values:** the modulo operation, source pairing, byte interpretation, and recognition of a particular three-character file label emerged while exploring this corpus. The alternatives one could have tried are not limited to those 14 starts. This may be a selected clue, or a low-frequency coincidence among many unconstrained recipes. The **base59 `HC2`** alternative is also a real second reading; the string `ID3` cannot itself authenticate base60 when its route was postselected.
 
+## Agent5 follow-up: raw p15 spiral values as 761.MP3 byte offsets (bounded negative)
+
+The ID3 output suggests the historical 761.MP3 as a receiver, so I tested a distinct, fixed operation not covered by the modulo256 stream: use the exact 16 p15 spiral values in spiral order as byte offsets into the pinned original 761.MP3, sample one byte at each offset to form an AES-128 key, and decrypt the original 256-byte p49–51 grid. The pinned audio is 4,010,732 bytes, SHA256 `83008217439110c3b824898af73b99cb2cf0657dda88cb363c3aa34a4ec0a460`.
+
+- Zero-based offsets produce key `dcb150b90ddcd7e994f8521e8000413b`.
+- One-based offsets produce key `b17909abae19845860c0212c4300b4a9`.
+- AES-128 ECB, CBC with zero IV, and CTR with zero counter were tested for each key: **0/6** outputs is a readable plaintext or recognized file header. Best printable share is 45.3% (one-based CTR); GP29-range share is 13.7%. The script includes a planted-plaintext round-trip control.
+- The p50 16-byte stream `f94944338e7f13998e333bf096b0a769` is not the MD5 of the whole MP3 (`946a3ba94aac53ef30415eaa489bcecb`), ID3v2 tag (`0ece1b17f790ac0a7fd22b7516758281`), MPEG payload (`fac692e2d2efaf4c216768728e794d36`), first 4517 bytes (`892685e8d3d71f9c9fd282fce6740cb1`), or either sampled key.
+
+Reproducer: [raw-offset/AES probe](../sims/lp2_p15_761_mp3_raw_offset_key_sft.cjs); workflow runs [45109000473](https://github.com/FlareZ123/liber-primus/actions/runs/45109000473) and [45109181399](https://github.com/FlareZ123/liber-primus/actions/runs/45109181399). This rejects the exact raw-byte-offset/AES128 route; it does not establish that the p15→p50 ID3 coincidence is meaningless, but there is no source-selected offset convention, mode, or resulting plaintext. Do not extend this into modulo/tag-length/key-family sweeps without a new source instruction.
+
 ## Solve-path decision
 
 A plausible *historical* route is p15 numerical procedure → p50 panel → `ID3` → previously existing 2013 Cicada 761.MP3 metadata → independently known p57 PARABLE. Its strongest objection is the **missing author-specified N mod 256 address/recipient rule**. More importantly, the historical ID3 contents and the p57 text are already known, and this route as it stands **does not specify a reversible operator on any unsolved ciphertext page**.
