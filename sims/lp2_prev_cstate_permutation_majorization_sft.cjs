@@ -92,6 +92,29 @@ assert.deepEqual(caps.slice(1, 11), [
 assert.equal(caps[29], n);
 assert.equal(Math.max(...bins), 714);
 
+// Holdout *capacity only*, not a second cipher key search: permit the
+// substitution alphabet to depend on two preceding original ciphertext runes.
+// Every possible 29^2-row secret permutation is included in the count bound.
+// The first TWO glyphs of each page are independently free to decode.
+const pairRows = new Map();
+for (const page of original) {
+  for (let i = 2; i < page.length; i++) {
+    const key = page[i - 2] * MOD + page[i - 1];
+    const row = pairRows.get(key) || Array(MOD).fill(0);
+    row[page[i]]++;
+    pairRows.set(key, row);
+  }
+}
+assert.equal(pairRows.size, 840);
+assert.equal(Array.from(pairRows.values()).flat().reduce((a, b) => a + b, 0), 12846);
+const pairBins = envelopeBins([...pairRows.values()]);
+const pairCaps = [0];
+for (const b of pairBins) pairCaps.push(pairCaps[pairCaps.length - 1] + b);
+for (let k = 1; k <= MOD; k++) pairCaps[k] += 2 * starts;
+assert.equal(pairCaps[MOD], n);
+assert.deepEqual(pairCaps.slice(1, 6), [2120, 3708, 5016, 6134, 7098]);
+
+
 // Construct a concrete row-permutation decoder that *achieves* the
 // predecessor-edge upper bound for every top-k simultaneously.
 // A separately free page-start output is granted in the upper bound.
@@ -118,6 +141,17 @@ const clearFrequencies = Array.from({length: MOD},
 assert.equal(clearFrequencies[CORPUS.translit.indexOf('E')], 15);
 const clearTop = [...clearFrequencies].sort((a, b) => b - a);
 assert.deepEqual(clearTop.slice(0, 3), [15, 9, 9]);
+
+// The two-step state is the first such model whose *necessary* sorted-bin
+// capacity is not contradicted by the p57 empirical GP symbol distribution.
+// Passing a necessary bound does NOT prove that a correct decoder exists.
+let knownTopMass = 0;
+for (let k = 1; k <= MOD; k++) {
+  knownTopMass += clearTop[k - 1];
+  assert.ok(pairCaps[k] * knownPlain.length >= knownTopMass * n);
+}
+assert.ok(caps[1] * knownPlain.length < clearTop[0] * n);
+
 
 // Full-length authentic-native-plaintext positive plant. Encrypt the
 // historical clear p57 rune sequence through a legal reversible row-permutation
@@ -161,6 +195,13 @@ const output = {
   secret_permutations_allowed: MOD,
   symbols_per_permutation: MOD,
   majorization_sorted_bin_counts: bins,
+  two_predecessor_state: {
+    observed_contexts: pairRows.size,
+    max_one_symbol_count: pairCaps[1],
+    max_two_symbol_count: pairCaps[2],
+    first_five_caps: pairCaps.slice(1, 6),
+    p57_histogram_excluded_by_capacity_only: false,
+  },
   upper_counts_including_freely_chosen_page_starts: caps.slice(1),
   max_one_symbol_percentage: Number((100 * caps[1] / n).toFixed(6)),
   max_two_symbol_percentage: Number((100 * caps[2] / n).toFixed(6)),
