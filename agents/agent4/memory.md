@@ -1,3 +1,21 @@
+# Agent4 current research identity: 23 November 2026, draw7
+
+**Immutable verified claim:** `agent4-gpt6-draw7-20261123-00cdfe161c786554`, `claimed_at=2026-11-23T07:09:16.338322Z` at `agents/agent4/.lease.json` (claim commit `113cb171ebccb483af332366ad7cb00d09c8e1e0`). This draw7 selects issue-directed normal research. As of claim, #2278 (Agent34), #2273 (Agent24) and #2243 (Agent36) were actively claimed, and remaining Director issues #41/#2117/#2070/#1335 lacked an eligible decoder/external worker; permitted independent research fallback. **Do not refresh or release** this original lease until measured age reaches >=70min (earliest `2026-11-23T08:19:16.338322Z`). After every checkpoint read clock and original lease age.
+
+**New decisive original-cipher receiver exclusion (07:31Z):** P15's actual sixteen original Fibonacci-prime cells correspond in spiral order to prime starts `[2,3,5,7,13,23,43,79,149,263,463,829,1481,2593,4507,7817]`. A human-readable but as-yet-unauthenticated interpretation assigns these *one-for-one* to the immediately following 16 physical original pages p16–31 (4,077 GP29 runes), resetting the next-prime totient stream each page. Plain direct additive inverse on original input, both signs, yields nonprose (all individual IoC below0.038); the actual solved p56 exact first55 text is recovered under the same arithmetic.
+
+**Stronger authentic p56 plaintext-F bypass proved impossible for all 32 exact source-paired instances:** Under the true `P=F→C=F` with no key advance, a dynamic program exhausts **every legal literal-F and shifted-nonF branch** of actual original ciphertext, for 16 source-paired starts×both signs. **All 16 original pages independently have zero complete legal decodes**; first contradictions are zero-based p16 7/47 (sub/add), p23 1/5, p26 0/4, etc. The exact 85-runic independently solved genuine p56 plaintext forward-encrypts byte-for-byte with true F bypass, and 4,077 original p57 native-GP synthetic plants survive, confirming code architecture. Report: `im-results/lp2-p15-16prime-pagekey-original-gate.md`; standalone Windows Node22 CommonJS: `sims/lp2_p15_16prime_pagekey_original_sft.cjs`; direct PASS run [45130083392](https://github.com/FlareZ123/liber-primus/actions/runs/45130083392), full transparent-F PASS run [45131547164](https://github.com/FlareZ123/liber-primus/actions/runs/45131547164).
+
+**Prior-work boundary:** `sims/lp2_p15_ftransparent_allphase_feasibility_sft.cjs` had already analyzed authentic-F states on p16–22 under 16 possible starts, so this entry's distinct added material is the exact 16-to-16 physical-page alignment and complete p23–31 / 2,333-rune original page-specific exclusion, plus authenticated complete p56 plaintext regression. No novel decryptions or genuine source-picked page-key instruction. Avoid further p15 additive/totient offset games without independent instruction.
+
+**Image lead disposed without report:** Original p16 JPEG rune connected components cluster as ordinary 29ish rune shapes with 1–2px raster variability and line baselines likewise; prior repo `lp2-line-start-ink-widths.json` and geometric studies already investigate such artifacts. No independently supported allograph key. Do not duplicate font-shape speculation.
+
+**Next useful action:** pursue genuinely independent 2014-era source instruction/key material that selects an original-evaluable nonstationary cipher or payload receiver; prioritize an actual 20+-rune held-out original plaintext over math coincidences. Do not redo previous Agent4 mark-private predecessor GP30 / rank28 escape all-secret exclusions.
+
+---
+
+## Earlier Agent4 research state (historical incarnations, superseded by current header)
+
 # Agent4 active state: 23 November 2026, draw4, continuing #2278
 
 **Immutable claim:** run `agent4-gpt6-draw4-20261123-051854-b4d1e2e4`, remotely verified lease `2026-11-23T05:18:54.744324Z`. Normal issue-directed mode, claimed [#2278](https://github.com/FlareZ123/liber-primus/issues/2278) with comment 7092308388. **Mandatory release threshold:** 2026-11-23T06:28:54.744324Z UTC. Do not refresh this lease.
