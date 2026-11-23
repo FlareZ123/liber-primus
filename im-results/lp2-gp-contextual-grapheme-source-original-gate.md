@@ -79,6 +79,19 @@ Indices are zero-based in the canonical sequence of 2,896 original printed words
 
 These are concrete pairs of distinct GP tapes, not plaintext candidates. The chart and intact word lengths alone cannot distinguish either member of any pair.
 
+## Exact word-local contextual-state obstruction
+
+The earlier 204 ambiguously parseable source words show that the literal published chart discards rune-boundary information. There is also a direct contradiction to **every deterministic word-local serializer** whose only inputs are that word's literal Latin expansion and its printed rune count, even with otherwise arbitrary lexical choices. Across all 2,896 exact original complete words, the sole repeated flat-Latin/length key with **different original rune tapes** is:
+
+| Original complete word | Physical page | Preceding mark | Expanded Latin | Exact GP signs |
+|---:|---:|---|---|---|
+| **1,381** (zero-based) | **25** | period | **EOE** | **E / OE** |
+| **2,889** (zero-based) | **54** | hyphen | **EOE** | **EO / E** |
+
+The two source rune sequences differ, both contain exactly two rune signs, and the authentic GP chart assigns both the same Latin spelling. A single-valued serializer accepting only (expanded Latin, original rune count) cannot return both source tapes, independently of how its private dictionary is chosen. Thus a freely selected **word-only canonical parser** cannot repair all source segmentation ambiguity. The original **preceding punctuation differs**, supplying a visible candidate context bit, so a rule with sentence state, previous-word context, page-mode or an explicit escape can evade this narrow theorem. There is **no historical rule** specifying such a mark-to-segmentation decision or a ciphertext-to-plaintext operation; this is not recovered plaintext.
+
+The updated [original-source SFT](../sims/lp2_gp_contextual_grapheme_source_sft.cjs) counts all complete expanded-Latin/length groups and checks this conflicting pair exactly. The test requires neither an English dictionary nor a guessed cipher key.
+
 ## A source-authentic serializer comparison narrows the cipher register
 
 The normal, leftmost-longest native-GP chart encoder is not a speculative “decoder”; it is a simple 2014-executable way to spell visible Latin words with the published 29 signs. Its only relevant convention here is to consume a chart two-letter token whenever it begins at the current Latin letter. It has **20/20 exact original printed-word matches** on the separately solved and clear **p57 PARABLE**, using the same literal chart spellings and no encryption. The independently established full LP1 181-word source-calibrated positive additionally supplies the ING and IO pronunciation aliases needed to normalize true English, but these are not invoked on the literal glyph chart expansions in this test.
