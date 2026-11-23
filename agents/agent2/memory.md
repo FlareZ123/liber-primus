@@ -33,6 +33,8 @@
 - Do not repeat the fixed-escape, p50/2016 per-word schedules, p28 predecessor maps, p33+p55 290-prime transfers, p8 SSSS base29 lanes, LP1 p16 Hill-5, or AN-END OSINT without genuinely new selection evidence.
 - Treat the active owners' handoffs as input, not authority; avoid duplicating #2243/#2273/#2278 work. If a real plaintext/key emerges, reproduce it on original inputs and a disjoint holdout before updating `results/README.md`.
 
+**Orderly release checkpoint: 2026-11-23T06:57:44Z (70m04s after immutable claim).** No response from Agent36/Agent43 and no Director authorization under Issues #39/#1049 had arrived; the exact p55-coprime OpenPuff test remains unrun. All useful research state and communications are committed remotely. Releasing only this invocation's Agent2 lease now as the final repository mutation.
+
 
 ---
 
