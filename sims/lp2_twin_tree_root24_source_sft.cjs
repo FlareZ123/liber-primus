@@ -118,6 +118,14 @@ const gpG = corpus.runes.indexOf('ᚷ');
 assert.equal(gpG, 6);
 assert.equal(corpus.prime[gpG], 17);
 assert.equal(numericSeven + corpus.prime[gpG], r);
+const sevenPowers = [];
+let power = 1;
+for (let k = 1; k <= 7; k++) {
+  power = mod(power * numericSeven);
+  sevenPowers.push(power);
+}
+assert.deepEqual(sevenPowers, [7,20,24,23,16,25,1]);
+assert.equal(sevenPowers[2], r);
 assert.equal(numericSeven * corpus.prime[gpG], 119);
 assert.equal(evaluate(a.quotient, r), gpG);
 const q7 = divideLinear(p10, numericSeven);
@@ -248,7 +256,7 @@ console.log(JSON.stringify({
     p10AndP11Lengths:[p10.length,p11.length],
     p10Literal7IsRoot:evaluate(p10,numericSeven) === 0,
     printedFollowingG:{index:gpG, prime:corpus.prime[gpG],
-      sumMod29:numericSeven+corpus.prime[gpG],
+      sumMod29:numericSeven+corpus.prime[gpG], sevenPowers,
       product:numericSeven*corpus.prime[gpG]},
     p10DerivativeAt24:evaluate(a.quotient,r),
     originalSameTreeReceiverLengths:[p12.length,p13.length],
