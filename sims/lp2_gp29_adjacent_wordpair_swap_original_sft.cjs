@@ -6,8 +6,8 @@
  * Original-input hypothesis: every large source-visible rubric ends a
  * independently framed codeword, with precisely the original N runes,
  * W printed words and E adjacent-equal rune transitions per frame. Allow
- * only adjacent two-word length swaps within each major-rubric frame to carry information. The two genuinely
- * deficient one-word / three-rune frames must join their following frames.
+ * only adjacent two-word length swaps within each major-rubric frame to carry information. A source-visual rule treats red-only heading closers as titles,
+ * so 15 non-red-terminating sections reset without post hoc capacity cuts.
  * This script proves original-cipher and independent native-source invertibility.
  * A codebook positive is not evidence that Cicada used this encoding.
  */
@@ -264,9 +264,42 @@ console.log("29 SOURCE MAJOR-RUBRIC FRAMES deficient", fail);
 const skip = new Set(fail.map(i => rubricEnds[i]));
 const combinedEnds = rubricEnds.filter(end => !skip.has(end));
 assert.equal(combinedEnds.length, 26);
-const frames = combinedEnds.map((end, i) => frame(i ? combinedEnds[i - 1] : 0, end));
+const capacityFrames = combinedEnds.map((end, i) =>
+  frame(i ? combinedEnds[i - 1] : 0, end));
+assert.ok(capacityFrames.every(f => f.M >= f.Q));
+assert.equal(capacityFrames.reduce((sum, f) => sum + f.n, 0), 12956);
+const sourceInk = JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"));
+let currentOffset = 0;
+const pageStart = new Map();
+for (const page of corpus.pages.filter(p => p.page <= 55)) {
+  pageStart.set(page.page, currentOffset);
+  currentOffset += page.indices.length;
+}
+assert.equal(currentOffset, 12956);
+/**
+ * Source-visible typographic rule: the 13-dot immediately following a
+ * red-only title belongs to that title; only the other 13-dot marks
+ * close cipher body packets. This rule uses ink only, before scoring.
+ */
+const redTitleEnd = new Set(sourceInk.pages.flatMap(p =>
+  (p.red_spans || []).filter(() => p.page <= 55)
+    .map(s => pageStart.get(p.page) + s.start + s.length)));
+const visualSkip = new Set(rubricEnds.filter(x =>
+  x !== original.length && redTitleEnd.has(x)));
+assert.deepEqual([...visualSkip], [
+  13, 745, 851, 1552, 1874, 3612, 3623, 5522,
+  6546, 7970, 8059, 9522, 12648, 12657
+]);
+const sourceVisualEnds = rubricEnds.filter(x => !visualSkip.has(x));
+assert.equal(sourceVisualEnds.length, 15);
+const frames = sourceVisualEnds.map((end, i) =>
+  frame(i ? sourceVisualEnds[i - 1] : 0, end));
 assert.ok(frames.every(f => f.M >= f.Q));
 assert.equal(frames.reduce((sum, f) => sum + f.n, 0), 12956);
+console.log("SOURCE-SELECTED RED-HEADING BODY FRAMES", frames.length,
+  "suppressed red-title closers", [...visualSkip],
+  "frozen 26-group lower-bound side bits",
+  capacityFrames.reduce((sum, f) => sum + Number(f.G.toString(2).length - 1), 0));
 let observedSingletons = 0;
 let expectedSingletons = 0;
 let varianceSingletons = 0;
