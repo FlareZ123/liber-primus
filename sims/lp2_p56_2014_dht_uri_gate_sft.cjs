@@ -108,6 +108,7 @@ function main() {
   assert.equal(historical.length, 103);
   assert.notEqual(historical, modern, 'Modern GNUnet must not silently replace the 2014 format');
   assert.equal(decodeBase32Hex(historical, 64).toString('hex'), HEX);
+  assert.throws(() => decodeBase32Hex(historical.slice(0, -1) + '1', 64), /Nonzero pad bits/);
 
   // The 2014 GNUnet source fixture has two separately encoded 512-bit values and an explicit size.
   assert(isComplete2014GnunetChk(GNUNET_CHK_FIXTURE));
