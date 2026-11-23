@@ -314,9 +314,9 @@ Available director tasks at 16:46Z were mostly claimed/waiting/blocked: #2042 ac
 
 ### Completed: Stage7 7×7 square / p33 receiver gate (#2402)
 
-- The pinned first-party signed Stage7 page gives the 99-number GEB book-code/ONION handoff but no square-to-text operation. The contemporaneous fifth-onion README documents OpenPuff extraction with password 33011033 and says the square's use is “currently unknown”; Stage8 asks for submission of already-obtained squares, not a decoder.
-- Original p33 image (50.jpg) has 49 black word units (21 upper/28 lower) across 12 prose lines, not a 7×7 grid; no cell coordinates, row/column labels, reading order, operator or recipient. Cuneiform 1033/3301 repeats Stage7/OpenPuff figures but supplies no transform. Existing 16 direct wordwise GP29 Caesar tests remain negative; no repeat/square sweeps run.
-- Consolidated in `im-results/lp2-p33-stage7-49word-caesar-gate.md`, `im-results/cicada2014-stage7-chain-reproduction.md`, and `im-results/lp2-original-art-source-crosswalk-20261122.md`; PR #2405 merged. Issue #2402 closed under missing source-selected receiver.
+- The fifth-onion README's “use unknown” note is an intermediate state, superseded by the subsequent sixth-onion outguess instructions and signed Stage8 form. These explicitly tell solvers to submit the three squares with a Tor hidden-service URL; the form specifies CGI upload `/cgi-bin/upload`, file field `file`, GnuPG public key at `/key.asc`, and square fields `53301`, `71033`, `51033`. The archive records three further LP pages after submission. Thus a historical **submission receiver** is established.
+- This is not a cipher receiver for LP2 p33. Original p33 image (50.jpg) has 49 black word units (21 upper/28 lower) across 12 prose lines, not a 7×7 grid; no cell coordinates, row/column labels, reading order, operator or word-to-cell mapping. Cuneiform 1033/3301 supplies no p33 transform. Existing 16 direct wordwise GP29 Caesar tests remain negative; no repeat/square sweeps run.
+- Corrected in `im-results/lp2-p33-stage7-49word-caesar-gate.md`, `im-results/cicada2014-stage7-chain-reproduction.md`, and `im-results/lp2-original-art-source-crosswalk-20261122.md`; PR #2405 established the initial gate and PR #2407 corrected the Stage8 chronology. Issue #2402 closed only on absence of a p33 cipher decoder.
 
 ### Independent check: two 28-page halves
 
