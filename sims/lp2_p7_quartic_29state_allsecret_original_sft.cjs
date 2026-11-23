@@ -320,7 +320,7 @@ function privateSegmentPlant(plaintext, driver, resetAtLargeMarks, initialRandom
     }
     return a;
   }
-  let sameStateEquals = 0, sameStatePairs = 0, recovered = 0, reencrypted = 0;
+  let sameStateEquals = 0, sameStateEligiblePairs = 0, recovered = 0, reencrypted = 0;
   for (const p of pages) {
     const desired = plaintext.slice(cursor, cursor + p.indices.length);
     assert.equal(desired.length, p.indices.length);
@@ -357,14 +357,14 @@ function privateSegmentPlant(plaintext, driver, resetAtLargeMarks, initialRandom
       }
       const pairs = sameStatePairs(h);
       sameStateEquals += pairs.equals;
-      sameStatePairs += pairs.pairs;
+      sameStateEligiblePairs += pairs.pairs;
     }
     assert.equal(encrypted.length, p.indices.length);
   }
   assert.equal(cursor, total);
   assert.equal(recovered, total);
   assert.equal(reencrypted, interiors);
-  return {sameStateEquals, sameStatePairs, recovered, reencrypted};
+  return {sameStateEquals, sameStatePairs:sameStateEligiblePairs, recovered, reencrypted};
 }
 const privateCollisionGate = [];
 for (const driver of ['cipher', 'difference']) {
