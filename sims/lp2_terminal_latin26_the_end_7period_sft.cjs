@@ -88,6 +88,64 @@ for (let i = 0; i < records.length; i += 1) {
   assert.equal(records[i].page, expected[i][1]);
   assert.ok(Math.abs(records[i].ioc - expected[i][2]) < 1e-12);
 }
+
+/**
+ * A stronger complete printed-context alternative on p27 is:
+ *   "AT THE END OF A" (2/3/3/2/1 source token lengths).
+ * It predicts O, not A, at p27:34. Thus it cannot share a
+ * ciphertext-history-only state with the solved p56 first A.
+ *
+ * The p27 wing has fourteen visible membrane faces in the source art.
+ * Under a conjectured page-local period14 additive key the eleven
+ * anchored raw-Latin crib letters fix eleven key phases without guesses.
+ * The other three phases are deliberately left unconstrained. The
+ * 185 p27 rune positions already fixed by the crib fail an English-like
+ * frequency profile independently of all 29^3 unchosen key triples.
+ */
+const rawP27Phrase = [24, 16, 16, 8, 18, 18, 9, 23, 3, 0, 24];
+const originalP27Phrase = [17, 0, 23, 11, 1, 17, 18, 10, 25, 0, 13];
+assert.deepEqual(p27.slice(26, 37), originalP27Phrase);
+assert.equal(translated(rawP27Phrase), 'A T T H E E N D O F A');
+assert.equal(rawP27Phrase[8], 3);
+assert.equal(crib[6], 24); // identical AE ciphertext, incompatible guessed plain.
+const p27FourteenPhase = [];
+for (const sign of [1, -1]) {
+  const key = Array(14).fill(null);
+  for (let i = 0; i < rawP27Phrase.length; i += 1) {
+    const phase = (26 + i) % 14;
+    key[phase] = mod29(originalP27Phrase[i] - sign * rawP27Phrase[i]);
+  }
+  assert.deepEqual(
+    key,
+    sign === 1
+      ? [7, 3, 12, 28, 9, 16, 22, 0, 18, null, null, null, 22, 13]
+      : [10, 19, 19, 6, 27, 4, 28, 0, 8, null, null, null, 12, 16]
+  );
+  const available = (array) => array.map((c, i) => {
+    const k = key[i % 14];
+    if (k === null) return null;
+    const decoded = mod29(sign === 1 ? c - k : k - c);
+    assert.equal(mod29(sign === 1 ? decoded + k : k - decoded), c);
+    return decoded;
+  }).filter((x) => x !== null);
+  const plain27 = available(p27);
+  const plain55 = available(p55);
+  assert.equal(plain27.length, 185);
+  assert.equal(plain55.length, 61);
+  const expected27 = sign === 1 ? 0.03513513513513514 : 0.03372502937720329;
+  const expected55 = sign === 1 ? 0.03442622950819672 : 0.040437158469945354;
+  assert.ok(Math.abs(ioc(plain27) - expected27) < 1e-12);
+  assert.ok(Math.abs(ioc(plain55) - expected55) < 1e-12);
+  p27FourteenPhase.push({
+    sign,
+    key,
+    fixedP27: plain27.length,
+    fixedP27IoC: ioc(plain27),
+    fixedP55: plain55.length,
+    fixedP55IoC: ioc(plain55),
+  });
+}
+
 console.log(JSON.stringify({
   kind: 'original LP2 terminal seven-period fixed-crib trial',
   sevenRuneSource: cEnd,
@@ -96,5 +154,6 @@ console.log(JSON.stringify({
   candidatePlaintext: translated(crib),
   p57KnownNativeControlIoC: ioc(p57),
   records,
+  p27FourteenPhase,
   conclusion: 'Both frozen seven-period alternatives decode p27 and p55 to nonlinguistic GP29 streams. No original unknown plaintext is authenticated.',
 }, null, 2));
