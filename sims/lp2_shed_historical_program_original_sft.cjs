@@ -40,7 +40,7 @@ const re = new RegExp("[" + corpus.runes.join("") + "]+", "gu");
 // runeless p50. The original '%' markers preserve page-carry words.
 // Only slash/newline typography is removed, never a printed word break.
 const joined = originalText.split("%").slice(0, 55).join("")
-  .replace(/\//g, "").replace(/\n/g, "");
+  .replace(/\//g, "").replace(/[\r\n]/g, "");
 const words = [...joined.matchAll(re)]
   .map(match => [...match[0]].map(ch => RUNE.get(ch)));
 const reconstructed = words.flat();
