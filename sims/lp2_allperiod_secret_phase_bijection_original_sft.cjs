@@ -6,6 +6,7 @@
  * Test scopes: one continuous 12,956-rune clock at all q=1..3301;
  * nine genuine illustration-chapter restarts at q=1..1033;
  * 28 physical thirteen-dot mark restarts at q=1..1033;
+ * 594 exact original printed-line restarts at q=1..22 (q>=23 fails).
  * 56 physical-page restarts at q=1..130 (including empty p50).
  * Each clock phase, and each segment if restarted, may have a private
  * arbitrary GP29 permutation. Same-(segment,phase) equality is invariant.
@@ -78,6 +79,37 @@ const ends = [0];
 for (const page of pages) ends.push(ends.at(-1) + page.indices.length);
 assert.equal(ends.at(-1), N);
 const pageSpans = pages.map((_, i) => [ends[i], ends[i + 1]]);
+// Source-original 594 printed lines in the canonical master transcription.
+// Preserve source-image page boundaries; assert *all 58 pages* reproduce the
+// original corpus rune-by-rune before using line breaks as source positions.
+const master = read('resources/transcriptions/liber_primus_master.txt');
+const firstRunes = pages[0].indices.slice(0, 8).map(i => corpus.runes[i]).join('');
+const startOfRunes = master.indexOf(firstRunes);
+assert.ok(startOfRunes >= 0);
+const anchorPage = master.lastIndexOf('%', startOfRunes);
+assert.ok(anchorPage >= 0);
+const originalPages = master.slice(anchorPage + 1).split('%').slice(0, 58);
+assert.equal(originalPages.length, 58);
+const runeLookup = new Map(corpus.runes.map((rune, i) => [rune, i]));
+for (let pg = 0; pg < 58; pg++) {
+  const found = Array.from(originalPages[pg]).flatMap(symbol =>
+    runeLookup.has(symbol) ? [runeLookup.get(symbol)] : []);
+  assert.deepEqual(found, corpus.pages[pg].indices,
+    'source-printed page glyphs differ from canonical p' + pg);
+}
+const lineSpans = [];
+let linePointer = 0;
+for (const page of originalPages.slice(0, 56)) {
+  for (const line of page.split('/')) {
+    const width = Array.from(line).filter(rune => runeLookup.has(rune)).length;
+    if (!width) continue;
+    lineSpans.push([linePointer, linePointer + width]);
+    linePointer += width;
+  }
+}
+assert.equal(linePointer, N);
+assert.equal(lineSpans.length, 594);
+assert.equal(Math.max(...lineSpans.map(([a,b]) => b-a)), 26);
 const ink = JSON.parse(read('resources/liber-primus/lp2-ink-annotations.json'));
 assert.equal(ink.counts.red13 + ink.counts.black13, 31);
 const markCuts = [0];
@@ -170,6 +202,12 @@ function transform(values, q, spans, inverse) {
 }
 
 const regimes = [
+  { label: '594-authentic-printed-line-restarts', maximum: 22,
+    spans: lineSpans,
+    checks: [{ q: 13, original: 180,
+      donors: [354, 340, 336, 355, 329] },
+      { q: 22, original: 16,
+        donors: [26, 24, 24, 35, 21] }] },
   { label: 'book-global', maximum: 3301, spans: [[0, N]],
     checks: [{ q: 840, original: 3277,
       donors: [5781, 5802, 5799, 5835, 5680] },
