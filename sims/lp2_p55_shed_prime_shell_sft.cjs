@@ -127,6 +127,38 @@ verifyPrimalityCertificate(prime);
 // The signed Cicada 2013 DH source motivates only the DH grammar; no ciphertext
 // consumer or authentic plaintext has been selected.
 const sourceGenerator = shellInteger / 43n;
+
+/** @param {bigint} number @param {number} width */
+function fixedBase29(number, width) {
+  const digits = Array(width).fill(0);
+  for (let i = width - 1; i >= 0; i--) {
+    digits[i] = Number(number % 29n);
+    number /= 29n;
+  }
+  assert.equal(number, 0n, 'Encoded number exceeds its source width');
+  return digits;
+}
+// Complete conditional *numeric payload* forward reconstruction. Start with
+// candidate p and g, the two exact factor tags, and the source printed word
+// lengths. Reassemble original ciphertext without changing rune positions.
+const reconstructedInterior = fixedBase29(prime * 8n, 43);
+const reconstructedExterior = fixedBase29(sourceGenerator * 43n, 32);
+let interiorPosition = 0;
+let exteriorPosition = 0;
+const reconstructed = complete.map(word => {
+  const width = [...word].length;
+  const first = gp[reconstructedExterior[exteriorPosition++]];
+  const core = reconstructedInterior.slice(interiorPosition, interiorPosition + width - 2)
+    .map(n => gp[n]).join('');
+  interiorPosition += width - 2;
+  const last = gp[reconstructedExterior[exteriorPosition++]];
+  return first + core + last;
+});
+assert.deepEqual(reconstructed, complete);
+assert.equal(interiorPosition, 43);
+assert.equal(exteriorPosition, 32);
+console.log('Exact full p55 75-rune conditional numeric encode/decode replay PASS');
+
 const sourceShared = powMod(sourceGenerator, 8n * 43n, prime);
 assert.equal(sourceShared,
   40058585108914257367732574161222353642573409865793191134873737n);
