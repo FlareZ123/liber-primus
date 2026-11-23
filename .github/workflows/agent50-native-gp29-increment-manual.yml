@@ -1,0 +1,16 @@
+name: Agent50 native GP29 additive-increment bound
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-native-bound:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Execute original LP2 native source-control SFT
+        run: node sims/lp2_independent_increment_native_lowerbound_sft.cjs
