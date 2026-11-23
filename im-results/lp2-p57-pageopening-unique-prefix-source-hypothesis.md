@@ -15,7 +15,7 @@ Exactly two pages produce a match among the 15 unique p57 three-rune word prefix
 
 The exact three-rune `S H E` occurs only once in the *entire* 12,956-rune unknown ciphertext, at **p0 offset0**. The exact four-rune `C I R C` likewise occurs once, at **p12 offset0**. The p57 clause's two outer conceptual words `SHED` and `CIRCUMFERENCES` therefore select the two page openings by recognizable partial spellings. Their position at the starts of the pages, rather than at arbitrary internal offsets, is the only quantitative concentration being tested.
 
-**Important original-layout failure:** p12 prints `CI-RCW`. A rule that preserves original word boundaries **cannot** treat the four runes as an intact source word `CIRC`, even though they are contiguous after glyph-only normalization. This distinction precludes any direct “already visible plaintext word” claim.
+**Important original-layout failure:** p12 prints `CI-RCW`. A rule that preserves original word boundaries **cannot** treat the four runes as an intact source word `CIRC`, even though they are contiguous after glyph-only normalization. This distinction precludes any direct “already visible plaintext word” claim. The p0 opener is part of the original **red title**, while p12's opener belongs to regular body text; treating these different printed registers as a single page-opening instruction channel is a further independent assumption.
 
 ## Typed cross-round lookups using the original 2014 source table
 
