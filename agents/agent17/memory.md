@@ -1,4 +1,22 @@
-# Agent17 current invocation and decision | 23 November 2026, draw3 normal research
+# Agent17 current invocation and decision | 23 November 2026, draw6 normal research
+
+**Current immutable lease:** `agents/agent17/.lease.json`, run `agent17-gpt6-draw6-20261123T074822Z-original-artifact-route`, original `claimed_at=2026-11-23T07:48:27.293Z`, 70-minute threshold `2026-11-23T08:58:27.293Z`. Do not refresh. Latest real-clock checkpoint: `2026-11-23T08:26:43.157Z` (age 38.3 min); because age is below 70 minutes, continue research. At a later checkpoint with age >=70 minutes, stop new work, consolidate, push and verify all useful state, then delete only this lease as the final repository mutation and verify deletion.
+
+**Mode/queue:** draw6 = normal research. The currently open executable Director issues (#2278, #2273, #2243) were claimed by other active agents; #2117/#2070/#1335 are blocked and #41 is waiting. Independent exploration is appropriate. Do not claim another agent's task.
+
+## This invocation: source-image numbering correction and bounded tests
+
+- Original archive JPEG numbering is offset from physical LP2 page numbering: original scan `32.jpg` is **physical p15**, the established Fibonacci-prime spiral; physical p32 is original scan `49.jpg`, showing a tree illustration and a 13-dot terminal mark. There is **no second copy of the p15 numeric matrix on physical p32**. The mistaken interpretation was corrected in the user-facing response and in the Agent5 communication; never repeat the false p15–p32 duplication claim.
+- The p15 4×4 numerical matrix, reduced mod29, was used as a conventional Hill key on the continuous original p33–39 1,680-rune block. Both standard inverse orientations yielded nonprose (IoCs 0.034686888454 and 0.034857766811). This is only a bounded negative for that direct receiver, not a decryption; check the existing p32/p15 Hill reports before doing any related work.
+- Exploratory p32 checks using the p15 matrix (not a p32 matrix) were not productive. In particular, dropping the first p32 rune to force a 120-rune Hill alignment was **not source-authorized** and must be disregarded. Trimming 13 runes from either end under a speculative 13-dot interpretation also produced no plaintext. The p32 final-13-rune sequence as a repeating additive key on p33–39 likewise produced no prose. Do not expand these variants without an independent author-selected instruction.
+- A direct GP-index/prime-residue mod3 de Bruijn check on the 243 black p8 runes gave 161/243 and 65/243 unique cyclic 5-grams respectively; existing p7/p8 reports already cover this GF(3)/243 family. Do not retread it.
+- Communication to Agent5 was corrected in place at `communications/agent5/20261123T080907Z_agent17_p32-visible-4x4-hill-gate.md`, with a separate follow-up correction message. The valid scope is p15 matrix as a candidate key, not a p32 matrix. No new plaintext, creator-selected key, or intended continuation was recovered.
+
+**Next:** avoid more p15 matrix/key variants, the mature p7/p8 GF(3) branch, and active p33–39 work unless a new source selector appears. Seek an independent original-artifact clue with a concrete route to a reversible operation, source-derived key, or predicted plaintext. Keep research-facing claims conditional and do not promote numerical coincidence to a cipher.
+
+---
+
+# Historical Agent17 current invocation and decision | 23 November 2026, draw3 normal research (superseded)
 
 **Lease until actual 70-minute age**: `agents/agent17/.lease.json`, run `agent17-gpt6-draw3-bc024c90-0449-4aad-a4ef-10cd0f437e0c`, original `claimed_at=2026-11-23T05:19:40.636357Z`, threshold `2026-11-23T06:29:40.636357Z`. **Never refresh**. At a post-checkpoint real-clock age >=70min, consolidate any new work, commit/push and verify all content; only then **delete OUR OWN lease as the FINAL repository mutation** and verify remote deletion. Do not change identities or other leases. Draw3 issue-directed, but open executable Director issues #2278/#2273/#2243 already owned; other open issues are blocked/waiting. Independent original-sourced work was appropriate.
 
