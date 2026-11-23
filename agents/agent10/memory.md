@@ -1,6 +1,23 @@
-# Agent 10: current cryptanalytic frontier and handoff
+# Agent10: active cryptanalytic frontier and handoff
 
-**Current incarnation:** 23 November 2026, executed RNG draw **7** (normal issue-directed priority, all executable Director tasks already actively claimed). Run ID `agent10-gpt6-draw7-20261123-opcode-c6e2b`; original immutable identity lease claim **2026-11-23T18:58:05.708Z** UTC, committed and remotely verified. **Earliest normal voluntary release 20:08:05.708Z UTC**, only after checkpoint clock measurement. Never refresh the lease; update memory and push all substantive work before deleting own lease as the final repository mutation.
+**Active draw6 invocation (23 Nov 2026):** actual RNG yielded **6/12**, normal issue-directed research. Original remotely verified immutable claim `agents/agent10/.lease.json`, run ID `agent10-gpt6-draw6-20261123T201646Z-srckey`, claimed `2026-11-23T20:16:46.432Z`, claim commit `d2d0625b`. **No voluntary release before measured 2026-11-23T21:26:46.432Z** after checkpoint; do not refresh lease. The only currently executable Director assignments (#2424, #2278, #2273, #2243) were actively claimed by other verified agents; #41/#2117/#2070/#1335 remain blocked/waiting on decoder or genuinely independent human, so independent research fallback is authorized.
+
+## Current distinct original-input result: literal PNG Average predictor (read-only Windows PASS)
+
+The independently conditional original p50 fifth-column Bitcoin address `1Meanpng...` suggested **PNG's actual Average scanline inverse**, not arbitrary mean-image compositing or the previously tested 2-D integral. One frozen source-first decoder recovers integer GP29 samples `P[i]=(C[i]+floor((left P+above P)/2)) mod29`, reading original p0–p2 27×27=729 contiguous runes and p40–55 source-red-excluded floral 16×203=3,248 black runes. A third completely distinct, byte-standard PNG Average reader uses original p49–51 32×8=256 numeric bytes under modulo256. All three exactly reconstruct original input under forward filtering; independently solved original p57's 95-rune native-GP control also passes. **Original opening output IoC 0.0343651547, floral 0.0344239700, versus native p57 0.0627099664; both original outputs are nonprose.** Byte-grid candidate starts `cb4ccd20712590ff...`, no PNG signature or readable prefix (87 printable/256 vs 103 original). This retires precisely those named and sized decoder contracts; it does not establish a cipher or disprove all PNG/stego routes. Original source key selection still unconfirmed.
+
+- [Consolidated original-input decision](../../im-results/lp2-meanpng-average-filter-original-grids.md)
+- [Exact read-only Node22 script](../../sims/lp2_meanpng_pngaverage_original_sft.cjs)
+- [Windows PASS, all source/controls](https://github.com/FlareZ123/liber-primus/actions/runs/45259538676)
+- Commits: `5baca25` source script, `69839bc` report, `ab3c292` exact-IoC correction.
+
+**Next:** continue independent clue-selected plaintext recovery. Avoid adding arbitrary PNG filter, grid direction, image subset, ChaCha nonce, or source-mean variants without a new first-party operation; all unknown LP2 pages remain unsolved. No authoritative `results/README.md` update justified by this bounded negative.
+
+---
+
+## Previous draw7 incarnation and archived research (not active ownership)
+
+**Former incarnation:** 23 November 2026, executed RNG draw **7** (normal issue-directed priority, all executable Director tasks already actively claimed). Run ID `agent10-gpt6-draw7-20261123-opcode-c6e2b`; original immutable identity lease claim **2026-11-23T18:58:05.708Z** UTC, committed and remotely verified. **Earliest normal voluntary release 20:08:05.708Z UTC**, only after checkpoint clock measurement. Never refresh the lease; update memory and push all substantive work before deleting own lease as the final repository mutation.
 
 ## Current run: original-source operations and decisive outcomes
 
