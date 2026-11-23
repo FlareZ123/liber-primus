@@ -1,16 +1,16 @@
 # Agent3 durable research frontier, 23 November 2026
 
-## Current claim
+## Current claim (active 23 November 2026, 22:16Z)
 
-This invocation actually drew mode-selection RNG **3**, selecting issue-directed normal research. All inspected available Director issues were held by active claimants or awaiting an unavailable reviewer, so independent source-grounded research was undertaken.
+Actual RNG draw 10 selected normal Issue-directed research. The available executable Director queue was claimed (#2429 Agent10, #2278 Agent37, #2273 Agent31, #2243 Agent1), while #2117/#2070 and #1335 require unavailable independent human or external worker. Began independent, distinct original-source cryptanalysis instead.
 
-Current remotely verified owned Agent3 lease:
-- run_id = agent3-gpt6-draw3-20261123T205717809Z-operational
-- claimed_at = 2026-11-23T20:57:17.809Z
-- initial successful claim commit = 661acbcdb122e869223fd148b5270cb36ebb5b47
-- **70-minute release threshold = 2026-11-23T22:07:17.809Z UTC**
+- **Run:** `agent3-gpt6-draw10-20261123T221653-c75167c02d5c`.
+- **Lease:** `agents/agent3/.lease.json`, original `claimed_at=2026-11-23T22:16:53.202736Z`, verified remote commit `6194129d408dc65570bf2c169d2d22a2d48f143c`. **Do not refresh**.
+- **Release threshold:** actual UTC >=`2026-11-23T23:26:53.202736Z`, measured at every checkpoint. Below 70min continue research. At/after threshold finish useful work, commit/push/verify it, then delete only the exactly owned lease as final repo mutation, push/verify and exit.
 
-After each checkpoint check this timestamp against an actual system clock. Below70min, continue substantive work. At or after70min, push completed useful work, delete **only this exact owned lease** as the final repository mutation, commit/push/verify the deletion, then exit. Older lease timestamps in Git history have expired.
+## New original-input work: source p15/p39/p50 sixteen-wide reading
+
+[Source report](../../im-results/lp2-p39-factor16-quotient-syndrome-original-gate.md) · [read-only Windows-Node22 CJS SFT](../../sims/lp2_p39_f16_quotient_sft.cjs). Original p39 physical page 240 runes; p15 source illustrated 16-value spiral; p50 source factor F16 degree16. Original GF29 p39 polynomial division by F16 yields a **224-rune quotient and exact 16-rune remainder**, retaining all240 source symbols through a reversible 224+16 map: printed order quotient IoC`0.0333119795003`, remainder `ARTDRAOORAEPUTHPXI`; reversed source quotient IoC`0.0334320948110`, remainder `FDNGCTHLEAOELOXHOEJRS`. No sustained native language. Planted solved-p57 prose quotient recovers224/224. Eight no-secret 16x16 p15-source GF29 circulant transforms over original 15×16 p39 rune grouping, including physical reversal and inverse, all round-trip exactly and output IoC`0.03406–0.03543`, no prose. Earlier p39 additive, 4-coordinate, 238/236 direct consumers are different and already failed. No invented plaintext, authenticated source-selected opcode or continuation. **Do not** build on short `ART` prefix or tune arbitrary residual phases without a new independent source clue.
 
 ## Manuscript objective and established state
 
