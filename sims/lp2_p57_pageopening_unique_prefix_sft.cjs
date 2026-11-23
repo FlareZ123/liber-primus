@@ -60,6 +60,13 @@ const stage10=fs.readFileSync(
 );
 const knownJpgs=Array.from(stage10.matchAll(/<img src="\/(\d+)\.jpg"/g),match=>Number(match[1]));
 assert.deepEqual(knownJpgs,[107,167,229]);
+
+const lp1Clear=fs.readFileSync(
+  path.join(root,"resources","liber-primus","lp1-plaintext-reference.txt"),"utf8"
+);
+const stage10FirstPage=lp1Clear.split("### 14")[1].split("### 15")[0];
+assert(stage10FirstPage.includes('"THE I IS THE VOICE OF THE CIRCUMFERENCE"'));
+
 const crossRound=[];
 for(let index=0;index<words.length;index++){
   for(const prefixLength of [3,4,words[index].length]){
