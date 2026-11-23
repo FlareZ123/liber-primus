@@ -1,6 +1,6 @@
 # 2013 BASE29 quadratic with ciphertext- or plaintext-fed state: all-secret original-input exclusions
 
-**Agent38, 23 November 2026. Intermediate cryptanalytic negative, not a solved LP2 passage.** Both direct, fully reversible two-state models below fail on **seven independently illustrated original chapters** after granting all 841 secret initialization pairs, both arithmetic signs, and every legal literal-F interruption. This is an exact ciphertext-only contradiction for **this specified candidate machine**. It does not identify Cicada's cipher or plaintext.
+**Agent38, 23 November 2026. Intermediate cryptanalytic negative, not a solved LP2 passage.** Both direct, fully reversible two-state models below fail on **seven independently illustrated original chapters** after granting all 841 secret initialization pairs, both arithmetic signs, and every legal literal-F interruption. This is an exact ciphertext-only contradiction for **these specified candidate machines**. It does not identify Cicada's cipher or plaintext.
 
 ## Visible operands and why test this state
 
@@ -38,7 +38,7 @@ The nine section boundaries follow the independently visible illustrated/red-hea
 | **p40–53** | **3,008** | **1,536 / 1,663** | **1,664 / 682** |
 | p54–55 | 308 | Survive 2 / **300** | Survive 2 / 3 states |
 
-The **seven bold chapters fail for both signs**, so neither H-injected-feedback machine can decrypt LP2 as a common chapter-restarted construction, regardless of its seed and every unknown F-mask decision. p54–55 also fails for sign−. A formal nonempty state set in p0–2 or p54–55 is only a *necessary* condition. In particular, choosing the trailing original BASE29 digits **[26,24]** as a proposed opening seed still leaves 11 and 3 terminal states under the two signs, respectively, but recovers no authenticated words or message.
+The **seven bold chapters fail for both signs**, so neither H-injected-feedback machine can decrypt LP2 as a common chapter-restarted construction, regardless of its seed and every unknown F-mask decision. In the short terminal p54–55 chapter, **only ciphertext feedback sign−** fails, at original offset300; the other three cases survive formally without plaintext. A formal nonempty state set in p0–2 or p54–55 is only a *necessary* condition. In particular, choosing the trailing original BASE29 digits **[26,24]** as a proposed opening seed still leaves 11 and 3 terminal states under the two signs, respectively, but recovers no authenticated words or message.
 
 For an auxiliary strict no-skip version (where every symbol is ordinary additive), all 841 H-feedback seeds in original p33–39 produce best GP29 IoC **0.03525128336** for sign+ with \`(u,v)=(12,12)\`; for the untouched floral p40–53 chapter, the best sign+ is **0.03490061311** at \`(5,27)\`. These are still flat-GP-like, rather than solved-register prose. The corresponding plaintext-feedback sign+ best on p33–39 is **0.03507331461** at `(22,28)`, and on p40–53 is **0.03480221681** at `(23,25)`. All are flat-GP-like. These no-skip score-only observations are weaker than the exact F-aware impossibilities.
 
