@@ -83,7 +83,7 @@ function fTransparentReach(ciphertext, pad) {
   };
 }
 
-// Authenticated cipher-primitive positive, NIST SP 800-38A AES-256 example.
+// Authenticated cipher-primitive positive, NIST FIPS 197 AES-256 Appendix C.3 example.
 const vectorKey = Buffer.from(Array.from({ length: 32 }, (_, i) => i));
 const vectorPlain = Buffer.from('00112233445566778899aabbccddeeff', 'hex');
 const vectorCipher = crypto.createCipheriv('aes-256-ecb', vectorKey, null);
