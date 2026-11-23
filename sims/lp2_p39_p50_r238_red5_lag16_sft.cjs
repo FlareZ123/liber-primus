@@ -322,6 +322,63 @@ assert.deepEqual(extractedPlant.quotient, genuinePlant);
 assert.ok(ioc(genuinePlant) > 0.06);
 
 
+
+// The highlighted p39 RED QUADRATIC itself supplies a source-typed
+// polynomial divisor of degree2. A 240-rune original p39 polynomial
+// divided by it yields exactly 238 quotient runes, naturally typed as
+// the same degree/order as p50's irreducible quotient nonleading cells.
+// The original printed red polynomial is G=27+5X+15X^2.
+// Its monic form is 2*G=[25,10,1] in GF29.
+const p39RedQuadratic = [27, 5, 15];
+const p39RedMonic = p39RedQuadratic.map(x => mod(2 * x));
+assert.deepEqual(p39RedMonic, [25, 10, 1]);
+const redDividedCases = [];
+for (const [p39Order, p39Polynomial] of [
+  ['printed-high-first', page39.slice().reverse()],
+  ['printed-low-first', page39]
+]) {
+  const quotientResult = divMonic(p39Polynomial, p39RedMonic);
+  const quotient = quotientResult.quotient.map(x => mod(2 * x));
+  assert.equal(quotient.length, 238);
+  assert.deepEqual(quotientResult.remainder,
+    p39Order === 'printed-high-first' ? [26, 27] : [21, 26]);
+  const recomposed = mul(p39RedQuadratic, quotient);
+  recomposed[0] = mod(recomposed[0] + quotientResult.remainder[0]);
+  recomposed[1] = mod(recomposed[1] + quotientResult.remainder[1]);
+  assert.deepEqual(recomposed, p39Polynomial);
+  for (const [r238Order, source] of [
+    ['high-degree-first', originalOrder],
+    ['low-degree-first', reverseOrder]
+  ]) {
+    for (const scalar of [1, 5, 15]) {
+      for (const sign of [-1, 1]) {
+        const candidate = quotient.map((v, i) =>
+          mod(v + sign * scalar * source[i]));
+        redDividedCases.push({ p39Order, r238Order, scalar, sign,
+          ioc: ioc(candidate) });
+      }
+    }
+  }
+}
+redDividedCases.sort((a, b) => b.ioc - a.ioc);
+assert.equal(redDividedCases.length, 24);
+assert.deepEqual(redDividedCases[0], {
+  p39Order: 'printed-high-first', r238Order: 'low-degree-first',
+  scalar: 15, sign: 1, ioc: 0.03645002304719356
+});
+assert.ok(redDividedCases.every(x => x.ioc < 0.04));
+// Reverse the true first-party RED polynomial: positive GP-native
+// 238-symbol plaintext planted as its quotient, arbitrary known remainder.
+const redDividedNativePlant = Array.from({ length: 238 },
+  (_, i) => solved57[i % solved57.length]);
+const redEncodedPlant = mul(p39RedQuadratic, redDividedNativePlant);
+redEncodedPlant[0] = mod(redEncodedPlant[0] + 26);
+redEncodedPlant[1] = mod(redEncodedPlant[1] + 27);
+const redPlantInverse = divMonic(redEncodedPlant, p39RedMonic);
+assert.deepEqual(redPlantInverse.quotient.map(x => mod(2 * x)),
+  redDividedNativePlant);
+assert.deepEqual(redPlantInverse.remainder, [26, 27]);
+
 // The cubic extraction has 236 coefficients. A second literal
 // circumference-shedding on full p39 also has 236 runes, which gives a
 // fixed original-cipher additive receiver with no fitted phases.
@@ -459,7 +516,9 @@ const report = {
     p39ShedTwiceOriginalReceiverCases: peeledSourceCases,
     p39PrintedBlockLengths: p39PrintedBlocks,
     blockwiseShedOriginalReceiverCases: blockwiseSourceCases,
-    p39PeelNativePlant: true },
+    p39PeelNativePlant: true,
+    directRedQuadraticOriginalQuotientCases: redDividedCases,
+    directRedQuadraticNativePlant: true },
   sourceSelectedSecondLayer: { candidates: sourceTwoLayer.length, best: sourceTwoLayer[0],
     allHaveIoCLessThanFourPercent: true, signedP15PositiveRoundtrip: true },
   positivePlants: { periodicMatches: 222, F16RecurrenceMatches: 222 },
