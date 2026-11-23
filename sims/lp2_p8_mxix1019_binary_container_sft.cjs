@@ -149,6 +149,64 @@ function directReadableInflation(input) {
   return hits;
 }
 
+
+/**
+ * Decisive source-framed alternative to the p8 black-only experiment:
+ * original p8 red first 4 runes = MXIX 1019 instruction; the exact next
+ * 251 p8 runes plus the first 5 p9 runes form a uniquely complete 256-rune
+ * printed-word frame. Test the very SAME historical F-transparent key there
+ * before trying binary layers. The path dies at offset 75.
+ *
+ * @param {number[]} ciphertext @param {number} start
+ */
+function sourceFrameReachability(ciphertext, start) {
+  let paths = [{used:0,skip:[]}];
+  for (let i=0; i<ciphertext.length; i++) {
+    const next = [];
+    for (const path of paths) {
+      const c = ciphertext[i];
+      // Historical p56 rule: only an actual F in C can represent a plain F.
+      if (c === 0)
+        next.push({used:path.used,skip:[...path.skip,i]});
+      const plain = mod(c - (prime[start + path.used] - 1));
+      if (plain !== 0)
+        next.push({used:path.used + 1,skip:path.skip});
+    }
+    if (!next.length) {
+      return {
+        firstFailure:i, absoluteP8Offset:i+4,
+        sourceCipher:ciphertext[i],
+        entering:paths.map(p=>({
+          primeIndex:start+p.used,
+          prime:prime[start+p.used],
+          keyMod29:mod(prime[start+p.used]-1),
+          transparentOffsets:p.skip
+        }))
+      };
+    }
+    paths=next;
+  }
+  return {firstFailure:null,paths:paths.length};
+}
+const p9 = source.pages.find(p => p.page === 9).indices;
+const sourceFrame = p8.slice(4).concat(p9.slice(0,5));
+assert.equal(sourceFrame.length, 256);
+const fullFrame = sourceFrameReachability(sourceFrame,1019);
+assert.equal(fullFrame.firstFailure,75);
+assert.equal(fullFrame.absoluteP8Offset,79);
+assert.equal(fullFrame.sourceCipher,20);
+assert.deepEqual(fullFrame.entering,[{
+  primeIndex:1093,prime:8779,keyMod29:20,transparentOffsets:[30]
+}]);
+// The exact same enumerative reachability must accept authentic native
+// Cicada English when forward encrypted using the selected start.
+const nativeP57 = source.pages.find(p=>p.page===57).indices;
+assert.equal(nativeP57.length,95);
+const nativePlant = Array.from({length:256},(_,i)=>
+  nativeP57[i%nativeP57.length]);
+const nativeReach = sourceFrameReachability(encrypt(nativePlant,1019),1019);
+assert.equal(nativeReach.firstFailure,null);
+
 const valid = [];
 for (let mask = 0; mask < 256; mask++) {
   const transparent = new Set(eventIndices.filter((_,i) => mask & (1 << i)));
@@ -224,6 +282,8 @@ console.log(JSON.stringify({
     plantedPrimeFCompressedPayloadRecovered:true,
     plantedPayloadBytes:compressed.length
   },
+  sourceFramedP8P9Prime1019NoGo:fullFrame,
+  sourceFramedNativeGPPositiveReachable:true,
   directContainerHits:recognized.length,
-  claim:"No directly readable compressed/container bytes. MXIX=1019 and the p56 F bypass are conditional source-selected hypotheses, not a proven p8 cipher. Other operations remain untested."
+  claim:"The source-complete p8→p9 4|256 prime1019 literal-F inverse is impossible at rune75; the black-only p8 branch has no directly readable container. MXIX=1019 remains a conditional source hypothesis."
 },null,2));
