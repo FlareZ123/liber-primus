@@ -142,6 +142,49 @@ const native = [
 ].map(([name,p])=>({name,ioc:ioc(nativeControl(load(p)))}));
 assert(native.every(x=>x.ioc>0.045));
 assert(report.every(x=>x.entireBookIoc<0.036));
+/*
+ * One further frozen, completely specified source-readable consumer:
+ * p15's 16 ORIGINAL PRINTED spiral values repeat in center-out printed order
+ * as Dirichlet coefficients a(n), not as a conventional additive rune pad.
+ * The infinity ornament is only a speculative repeated-kernel selector.
+ * a(1)=3299 mod29=22 has unique inverse4 in GF29.
+ */
+const p15Printed=[3299,3298,3296,3294,3288,3278,3258,3222,
+  3152,3038,2838,2472,1820,708,1206,4516];
+const p15Kernel=Array.from({length:originals.length+1},(_,i)=>
+  i===0?0:p15Printed[(i-1)%16]%29);
+assert.equal(p15Kernel[1],22);
+const p15KernelScale=4;
+assert.equal(p15KernelScale*p15Kernel[1]%29,1);
+/** @param {number[]} input */
+function inverseWithNonunitKernel(input) {
+  const partial=Array(input.length+1).fill(0),out=Array(input.length+1).fill(0);
+  for(let d=1;d<=input.length;d++) {
+    out[d]=((input[d-1]-partial[d])*p15KernelScale%29+29)%29;
+    for(let k=d*2;k<=input.length;k+=d)
+      partial[k]=(partial[k]+out[d]*p15Kernel[k/d])%29;
+  }
+  return out.slice(1);
+}
+const p15AfterFigure=[
+  ...gp.pages.find(p=>p.page===15).indices.slice(20),
+  ...gp.pages.filter(p=>p.page>=16&&p.page<=22).flatMap(p=>p.indices)
+];
+const p40Floral=gp.pages.filter(p=>p.page>=40&&p.page<=53)
+  .flatMap(p=>p.indices);
+const p15Runes=[p15AfterFigure,p40Floral];
+const p15OriginalCounts=[1883,3008];
+const p15NegativeIocs=[0.03444319468955129,0.03431686879550552];
+const p15KernelResults=p15Runes.map((source,i)=>{
+  assert.equal(source.length,p15OriginalCounts[i]);
+  const decoded=inverseWithNonunitKernel(source);
+  assert.deepEqual(forward(decoded,p15Kernel),source);
+  assert(Math.abs(ioc(decoded)-p15NegativeIocs[i])<1e-12);
+  return {receiver:i===0?'p15-postfigure-through-p22':'p40-p53-heldout',
+    runes:source.length,originalIoc:ioc(source),inverseIoc:ioc(decoded)};
+});
+const p15Solved=gp.pages[57].indices;
+assert.deepEqual(inverseWithNonunitKernel(forward(p15Solved,p15Kernel)),p15Solved);
 console.log(JSON.stringify({status:'PASS: exact source-preserving inverse, no original plaintext',
   hypothesis:'LP1 MOBIUS+TOTIENT Dirichlet convolution; unsourced receiver',
-  sourceIoc:originalIoc,nativeControls:native,eulerAllAffineOffsets:betaIocs,originalReceivers:report},null,2));
+  sourceIoc:originalIoc,nativeControls:native,eulerAllAffineOffsets:betaIocs,p15PrintedKernelResults:p15KernelResults,originalReceivers:report},null,2));
