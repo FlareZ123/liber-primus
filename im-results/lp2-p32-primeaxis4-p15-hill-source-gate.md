@@ -26,6 +26,12 @@ The original p15 image independently prints a visually explicit **4×4 numerical
 
 **Weakest premise:** neither original page nor the signed 2016 sentence tells the player to select the other prime-sum rows/columns, intersect them, or use p15's numbers as a Hill matrix. The apparent 4×4 match was noticed retrospectively. It is a specific test of a possible reversible operation, not proof that the author chose it.
 
+## Independent source-preserving significance calibration
+
+The new four-by-four match deserves a counterfactual before elevating it to an authored operation. Freeze **all 21 original p32 runes in its entire first row and first column**, preserving their known 563×569 dimension checksums. Shuffle **only the remaining 100 untouched p32 interior rune identities** using a seeded Fisher–Yates permutation, without changing their multiset; then recount which of the eleven complete rows and columns have GP-prime sums that are ordinary primes. In **120,000** fixed-seed draws, **16,371** have **at least four prime-sum rows and four prime-sum columns** (13.6425%); **6,048** have **exactly four of each** (5.04%). Original p32 has exactly four of each.
+
+Therefore the extra 4×4 size correspondence to p15 is **not statistically exceptional in this relevant matched null**, once the independently established image width/height constraints are held fixed. Those constraints themselves remain exact; the four-axis extension has no independent statistical significance claim and no cipher operation selected by the author. This prevents treating the Hill negatives as a disproof of a strongly supported p15 connection; that connection remains a low-priority interpretation without plaintext. The deterministic source-preserving null is implemented and asserted in the same SFT.
+
 ## Exact complete original-cipher inverse
 
 Reduce each of the three fixed 4×4 p15 matrices modulo29. Each is invertible; their respective determinants modulo29 are:
