@@ -63,6 +63,18 @@ const base=bins(original,basic), augmented=bins(original,all);
 assert.deepEqual([capacity(base,1),capacity(base,2)],[1012,1874]);
 assert.deepEqual([capacity(augmented,1),capacity(augmented,2)],[1029,1897]);
 
+// An independently chosen cyclic relabeling of each source-ink scope
+// exactly preserves EVERY interior original adjacent-equality event, while
+// making each across-scope adjacency equal with probability 1/29.
+const inkCrossings=all.slice(1,-1);
+const equalCrossings=inkCrossings.filter(i=>original[i-1]===original[i]);
+assert.equal(inkCrossings.length,181);
+assert.deepEqual(equalCrossings,[8385]);
+const p=1/29,n=inkCrossings.length;
+const independentResetLowerTail=(1-p)**n+n*p*(1-p)**(n-1);
+assert(Math.abs(independentResetLowerTail-0.013018300976797)<1e-12);
+
+
 // Canonical whole-word breaks, including cross-page carried words.
 // Source-only quote/apostrophe splits remain hard punctuation anchors,
 // not invented printed words.
@@ -158,6 +170,11 @@ console.log(JSON.stringify({
     basicSegments:base.length,augmentedSegments:augmented.length,
     newCutPositions:all.filter(v=>!basic.includes(v))},
   upperBounds:{basicE:1012,basicEO:1874,augmentedE:1029,augmentedEO:1897},
+  sourceInkCrossingEcho:{tested:inkCrossings.length,
+    equal:equalCrossings.length,
+    exactRandomIndependentScopeCyclicShiftP_le1:independentResetLowerTail,
+    expectedIndependentScopeEcho:inkCrossings.length/29,
+    interpretation:'A simple independent fresh-GP29-alphabet reset at every ink scope predicts more crossing equalities than observed; a continuous anti-repeat state remains plausible.'},
   nativeWindowMinima:controls,
   proof:'Arbitrary within-scope rune permutation and space motion preserve each scope histogram. Any private GP29 symbol bijection only relabels that histogram.',
   nativePlant:{recoveredRunes:positive.recovered.length,
