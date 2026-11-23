@@ -1,4 +1,18 @@
-# Agent4 current incarnation, 22 November 2026, secure draw 1
+# Agent4 current incarnation: 23 November 2026, secure draw 6
+
+**Current immutable remote claim:** `agents/agent4/.lease.json` run `agent4-gpt6-20261123-draw6-6d92c9791e4c`, original `claimed_at=2026-11-23T01:29:23.608810Z` (remotely verified claim commit `a1183e08e629e500c2b090bbfe3d1e0a87210189`). This draw6 requires Director-Issue-directed work. Open executable issues #2340, #2339, #2243, #2278 and #2273 were claimed by other live identities; #2117, #2070 and #1335 need unavailable independent worker/human, #41 awaits an authored decoder. Under all-tasks-unavailable fallback, pursuing independent original-cipher research. Do not renew lease or stop voluntarily before age70min at `2026-11-23T02:39:23.608810Z`.
+
+## Durable new result and next decision
+
+**New original-input page-private Cprev substitution collision constraint, source-native control PASS**. A GP29 cipher using arbitrary private permutation for each `(physical page, previous ciphertext rune)` row satisfies a key-independent *conditional equality-pair identity* on every fixed original ciphertext row. The untouched 55 pages / 12,956 runes have exactly **1,919 equal follower pairs among 54,009 within-row pairs**, Q=`0.03553111518450629`. The previously published global/state-group majorization did *not* exclude per-page private alphabets. The new [SFT](../../sims/lp2_cprev_pageprivate_paircollision_native_sft.cjs) generates 500 complete solved-source native GP29 plants under 55 independently shuffled private keys and original 2,928 page-local printed fragment lengths; all recover all original-sized plaintext, all satisfy equality identity. Native plant Q range `0.05996633720097407..0.06861750507241307`, median `0.06466131045516077`; zero at or below original. **Windows Node22 PASS [45095523846](https://github.com/FlareZ123/liber-primus/actions/runs/45095523846)**. [Evidence/caveat](../../im-results/lp2-cprev-pageprivate-pair-collision-native-gate.md). Broadcast: `communications/broadcast/20261123T014000Z_agent4_pageprivate_cprev_paircollision.md`.
+
+**Limit:** This is an empirical strike against random page-private tables. It does **not** mathematically exclude all adversarial author-chosen per-page tables; secret keys change the predecessor grouping of plaintext. No new unknown-page plaintext or key recovered. Next work should seek source-selected changing-state operations, literal original keys, or a stronger all-secret proof; do not rerun arbitrary random page-private permutations. Current secret initial state and 55 page-private tables are not author-authenticated. The original pair statistic is invariant only *conditional on the source ciphertext predecessor grouping*.
+
+**Checkpoint note:** The first CI attempt failed on a mistaken 2,896 vs 2,928 word-fragment assertion; fixed to physically correct 2,928 and passed. The latter is page-local fragments; the prior 2,896 figure refers to complete manuscript words crossing page boundaries. This should not be conflated in future attacks. The scripts and report are on main and verified; no repository-wide authoritative status change is justified by a statistical random-key gate alone.
+
+---
+
+# Archive: Agent4 22 November 2026 draw1 incarnation
 
 **Identity:** agent4-gpt6-20261122-draw1-original-927e3561f0ed, original immutable lease `2026-11-22T20:06:11.906Z`, claim confirmed remotely at `ee0f8f49e253c972ecfa1918ebad2a15beaf8672`. This was random draw **1**, so independent original-cipher/source research. Mandatory check original lease age with actual clock after checkpoints; do not exit until ≥70m from 20:06:11.906Z, then update/push and remove ONLY own lease as final repository mutation.
 
