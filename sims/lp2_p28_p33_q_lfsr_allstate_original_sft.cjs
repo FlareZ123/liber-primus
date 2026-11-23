@@ -137,10 +137,10 @@ function trainLanguageModel(train) {
 }
 
 
-/** @param {number} a @param {number} b @param {number} c @returns {number[]} */
-function qStream(a,b,c) {
+/** @param {number} a @param {number} b @param {number} c @param {number} [n] @returns {number[]} */
+function qStream(a,b,c,n=277) {
   const k=[a,b,c];
-  for (let i=3;i<277;i++) k.push(mod(-2*(18*k[i-1]+12*k[i-2]+6*k[i-3])));
+  for (let i=3;i<n;i++) k.push(mod(-2*(18*k[i-1]+12*k[i-2]+6*k[i-3])));
   for(let i=0;i<k.length-3;i++) {
     assert.equal(mod(15*k[i+3]+18*k[i+2]+12*k[i+1]+6*k[i]),0);
   }
@@ -227,11 +227,45 @@ const plain33=decoded(source33,checkKey,bestOriginal.sign);
 assert.deepEqual(decoded(plain28,checkKey,-bestOriginal.sign),source28);
 assert.deepEqual(decoded(plain33,checkKey,-bestOriginal.sign),source33);
 const latin=a=>a.map(x=>alphabet[x]).join('');
+// Q=15(X-3)(X-24)^2 in GF29; 3 has order 28, 24 order 7.
+// The repeated root introduces a characteristic-29 factor, so the
+// maximum complete sequence period is lcm(28,7*29)=812, independently
+// of the (unknown) seed. Test actual physical unchanged source groups.
+const groups=[[0,2],[3,7],[8,14],[15,21],[22,26],
+  [27,33],[34,39],[40,53],[54,55]];
+/** @param {number[]} a @param {number} lag */
+function lagHits(a,lag) {
+  let matches=0;
+  for(let i=lag;i<a.length;i++) if(a[i]===a[i-lag]) matches++;
+  return {comparisons:Math.max(0,a.length-lag),matches};
+}
+const period=812,periodRows=groups.map(([start,end])=>{
+  const arr=corpus.pages.filter(p=>p.page>=start&&p.page<=end)
+    .flatMap(p=>p.indices);
+  return {physicalPages:[start,end],runes:arr.length,
+    ...lagHits(arr,period)};
+});
+const periodN=periodRows.reduce((sum,x)=>sum+x.comparisons,0);
+const periodEqual=periodRows.reduce((sum,x)=>sum+x.matches,0);
+const nativeLong=heldout[0].slice(3000,6008);
+assert.equal(nativeLong.length,3008);
+const longKey=qStream(...nativeSeed,3008);
+assert(longKey.every((value,i)=>i<period||value===longKey[i-period]));
+const plantedLong=decoded(nativeLong,longKey,+1);
+const nativeLag=lagHits(nativeLong,period);
+assert.deepEqual(lagHits(plantedLong,period),nativeLag,
+  'source Q period must cancel exactly on native GP plaintext');
+assert(nativeLag.matches/nativeLag.comparisons>periodEqual/periodN);
 const result={
   status:'PASS',
   originalSource:'p39 G=(15,5,27), p29 Q=(15,18,12,6) via factor (X-3)',
   attackedOriginalPages:[28,33],
   fullSeedSpace:total,positivePadSeed:nativeSeed,
+  maximumSourceQLfsrPeriod:period,
+  sourceOriginalPeriod812:{rows:periodRows,comparisons:periodN,
+    equal:periodEqual,rate:periodEqual/periodN,uniformExpected:1/29},
+  genuineNativeGpPeriodPositive:{...nativeLag,
+    rate:nativeLag.matches/nativeLag.comparisons},
   originalTop: {
     p28:top.original28,
     p33:top.original33,
