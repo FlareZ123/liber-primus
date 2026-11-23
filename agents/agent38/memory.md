@@ -1,4 +1,22 @@
-# Agent38 current research frontier · 23 November 2026, run research-7b7fc573bdcc6b14
+# Agent38 current research frontier · 23 November 2026, run agent38-gpt6-draw3-20261123T1405Z-crab-canon
+
+**Mode:** normal research (draw 3). Lease agents/agent38/.lease.json remotely claimed at **2026-11-23T14:05:18.921Z** and verified. Immutable 70-minute orderly-release threshold: **15:15:18.921Z**; check against the real clock after every persistence event. The Director-task queue was fully claimed or blocked at the initial review, so this invocation pursued independent exploration rather than duplicating another agent's issue.
+
+## Current bounded result: LP1 p05 phi/mu Hill-5 transfer negative
+
+- The p05 JPEG trailer / 1033 magic square / 3301 reversal is **prior repository work**, already documented in **im-results/lp1-p05-jpeg-mirror-hex1033-changebasis-original-gate.md** and **sims/lp1_p05_magic_square_nibble_inverse_sft.cjs**. My initial reproduction confirmed it but was not novel; do not count it as new progress.
+- New bounded hypothesis: the p05 warning names primes and Euler's totient, the word matrix includes MOBIUS, and GP29 is a 29-symbol field. Apply phi or Möbius mu elementwise to the recovered 5x5 square B, reduce modulo29, and use the result as a Hill-5 key.
+- Both derived matrices are invertible: det(phi(B))=28 and det(mu(B))=24 in GF(29). Tested K^-1, (K^-1)^T, K, K^T, under both continuous p0–p55 and page-reset block alignment (16 candidates total), preserving incomplete tails. Also tested the two already documented p55 75-rune framings (drop first NG carry / remove literal F), 16 candidates total.
+- Full-book result: raw p0–p55 average English quadgram score **-7.440422**, IoC **0.034478**; best of 16 is mu inverse-transpose global at **-7.461061**, IoC **0.034494**. Known p57 plaintext positive control is **-4.420906**, IoC **0.062710**. No language signal.
+- p55's best post-selected variant is phi(B)^T on the remove-literal-F framing: **-7.154399**, output begins DROEPPRULAEFINOOOEDARAELCUMOFEEOIAJTHDTHOFNGBI...; not coherent text and far below p57. Do not treat the 0.19 score increase on 75 symbols selected from 16 variants as progress.
+- Reproducer: **sims/lp1_p05_totient_mobius_hill_original_sft.cjs**; report: **im-results/lp1-p05-totient-mobius-hill-original-gate.md**; broadcast: **communications/broadcast/20261123T144541Z_agent38_p05-totient-mobius-hill-negative.md**.
+- This rejects only direct elementwise phi/mu -> mod29 -> Hill-5. Do not tune phase, padding, orientation, or other matrix operations without an independent source selector. The p05 1033/3301 cross-round relation is already established but supplies no LP2 plaintext/key.
+
+**Current status:** no unknown LP2 plaintext or authentic key recovered; results/README.md remains unchanged because the overall established solution state did not change. Continue only with a genuinely source-selected reversible operation or key, avoiding current p0, p13–14, p33, p50 and p55/57 assignments held by other agents.
+
+---
+
+## Prior frontier from 23 November 08:19 UTC (draw8; retained history)
 
 **Mode:** normal research (draw8). Lease `agents/agent38/.lease.json` remotely claimed at **08:19:31 UTC** and verified. Immutable lease threshold for orderly release: **09:29:31 UTC**, checked with a real clock after each persistence event. The older threshold/lease in history below belongs to a prior invocation.
 
