@@ -220,6 +220,59 @@ assert.deepEqual(census60.dhMatches, [
 assert.equal(census59.primeCandidates.length, 12);
 assert.deepEqual(census59.dhMatches, []);
 
+// One finite model-calibration test, not a significance test for the
+// many uncounted analyst-proposed equations. The entire *observed* byte
+// multiset is shuffled; the historical step11 and two-equation family remain
+// fixed. This is a stronger control than inspecting cell173 alone.
+/** @param {number[]} bytes @returns {number} */
+function countWholeGridDH(bytes) {
+  let surviving = 0;
+  for (let index = 0; index < bytes.length; index++) {
+    const r = index >> 3;
+    const gg = index & 7;
+    const value = bytes[index];
+    if (!gg || (value + r) % (gg + 1) !== 0) continue;
+    const pp = (value + r) / (gg + 1);
+    const KK = pp - r;
+    if (!isPrime(pp) || KK <= 0 || KK >= pp || gg >= pp) continue;
+    const aa = step - gg;
+    const AA = Math.floor(bytes[0] / pp);
+    const BB = bytes[0] % pp;
+    if (AA <= 0 || AA >= pp || BB <= 0 || BB >= pp
+        || aa <= 0 || aa >= pp) continue;
+    if (power(gg, aa, pp) === AA && power(BB, aa, pp) === KK) surviving++;
+  }
+  return surviving;
+}
+let seed = 3301 >>> 0;
+/** Reproducible xorshift32 for finite null permutations. @returns {number} */
+function uniformUnit() {
+  seed ^= seed << 13;
+  seed ^= seed >>> 17;
+  seed ^= seed << 5;
+  return (seed >>> 0) / 4294967296;
+}
+const observedBytes = allTokens.map((token) => radix(token, grid.alphabet));
+assert.equal(countWholeGridDH(observedBytes), 1);
+const nullSamples = 20000;
+let nullTablesWithAny = 0;
+let nullMatchSum = 0;
+const nullHistogram = [0, 0, 0, 0, 0, 0];
+for (let sample = 0; sample < nullSamples; sample++) {
+  const shuffled = observedBytes.slice();
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(uniformUnit() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  const matches = countWholeGridDH(shuffled);
+  nullMatchSum += matches;
+  nullHistogram[Math.min(matches, 5)]++;
+  if (matches) nullTablesWithAny++;
+}
+assert.deepEqual(nullHistogram, [19509, 479, 12, 0, 0, 0]);
+assert.equal(nullTablesWithAny, 491);
+assert.equal(nullMatchSum, 503);
+
 // Expose the original input multiplicities to avoid claiming exclusivity.
 const allBytes = allTokens.map((t) => radix(t, grid.alphabet));
 assert.equal(allBytes.filter((b0) => b0 === firstValue).length, 1);
@@ -248,6 +301,14 @@ console.log(JSON.stringify({
     base60CompleteDHPackets: census60.dhMatches,
     base59PrimeCandidateCount: census59.primeCandidates.length,
     base59CompleteDHPackets: census59.dhMatches
+  },
+  conditionalFiniteNull: {
+    seed: 3301,
+    samples: nullSamples,
+    originalWholeTablePacketCount: 1,
+    shuffledTablesWithOneOrMore: nullTablesWithAny,
+    nullMeanPackets: nullMatchSum / nullSamples,
+    nullHistogram
   },
   byteMultiplicity: {
     firstPackedValueOccurrences: 1,
