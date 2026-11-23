@@ -1,6 +1,6 @@
 # All-secret GP29 phase-bijection original-cipher gate: periods 1–3301
 
-**Agent22, 23 November 2026.** This extends the established [order-840 single-rune invariant](lp2-h840-allsecret-phase-permutation-original-gate.md) from one algebraically distinguished period to complete ranges of possible fixed clocks, including independently secret page/chapter resets. **No new unknown LP2 plaintext, author-selected key, operative cipher or puzzle destination was recovered.** A fixed phase-cipher hypothesis is conditionally disfavoured for ordinary source-native GP29 English across every reported period. There is no first-party command selecting periodic mono-rune substitution of any period; the book's number 3301 bounds an investigative domain, not an authenticated algorithm.
+**Agent22, 23 November 2026.** This extends the established [order-840 single-rune invariant](lp2-h840-allsecret-phase-permutation-original-gate.md) from one algebraically distinguished period to complete ranges of possible fixed clocks, including independently secret chapter, page and source-authentic 13-dot mark resets. **No new unknown LP2 plaintext, author-selected key, operative cipher or puzzle destination was recovered.** A fixed phase-cipher hypothesis is conditionally disfavoured for ordinary source-native GP29 English across every reported period. There is no first-party command selecting periodic mono-rune substitution of any period; the book's number 3301 bounds an investigative domain, not an authenticated algorithm.
 
 ## The key-independent obstruction
 
@@ -33,13 +33,14 @@ The distinct authentic clock scopes are:
 
 1. One entire book-global continuous period: all `q=1..3301`.
 2. Nine authentically illustrated chapter ranges with GP indices `[0,729,1874,3603,5506,6761,7960,9640,12648,12956]`: `q=1..1000`, with independent unrelated secret per-phase alphabets and phase zero after every chapter boundary.
-3. Each of 56 original physical pages as a separate key/clock segment: `q=1..130` with 56 independent unrelated alphabets, p50 carrying no runes.
+3. The physical **28 original thirteen-dot marks** on unknown p0–55, from [the actual original-image mark inventory](../resources/liber-primus/lp2-ink-annotations.json): `q=1..1000`, every marker starts a new *independently secret* clock and all GP29 alphabets are separately private. The two co-located p7 black/red marks, p14-terminal and p15-initial marks at one stream offset, and the p55-terminal mark produce **three legitimate zero-rune intervals**; preserve them rather than inventing nonempty tokens. The 28 events produce 29 source intervals, 26 nonempty. No mark or rune is ignored, including those lying across physical pages.
+4. Each of 56 original physical pages as a separate key/clock segment: `q=1..130` with 56 independent unrelated alphabets, p50 carrying no runes.
 
-The finite maxima were fixed for these tests to cover the full canonical 3301 motif, the source 840 clock, and clocks shorter than about half a typical page, respectively. **No claim about untested q above these limits or arbitrary clock reset at word/line/mark boundaries is made.**
+The finite maxima cover the canonical 3301 motif under a global clock, the genuine source 840 clue under chapter and mark clocks, and clocks shorter than approximately half a physical page in the page-local case. These are four **independent conditional reset policies**: no author source selects fixed-period substitution at any of these boundaries. **No claim about untested q above the respective limits or alternative word/line/hand-tuned reset rules is made.**
 
 ## Complete original-control comparisons
 
-Every single period `q` in each tested interval yielded `M_original(q) < min_j M_control_j(q)`. Thus **3,301/3,301** continuous, **1,000/1,000** authentic-chapter-reset and **130/130** physical-page-reset clocks separate the original from *each* of the five controls. This result is exact for the finite source registers, not a frequentist p-value for human English.
+Every single period `q` in each tested interval yielded `M_original(q) < min_j M_control_j(q)`. Thus **3,301/3,301** continuous, **1,000/1,000** authentic-chapter-reset, **1,000/1,000** thirteen-dot mark-reset and **130/130** physical-page-reset clocks separate the original from *each* of the five controls. This result is exact for the finite source registers, not a frequentist p-value for human English.
 
 | Reset semantics; tested q | Original M(q) | Five genuine-source donor M(q) | Smallest control-minus-original gap in entire interval |
 | --- | ---: | --- | --- |
@@ -47,15 +48,17 @@ Every single period `q` in each tested interval yielded `M_original(q) < min_j M
 | Book-global q=3301 | **634 / 19,062** eligible pairs | **1,198; 1,175; 1,140; 1,160; 1,164** | same complete interval |
 | Nine chapters q=840 | 267 / 8,127 eligible pairs | 478; 497; 494; 502; 475 | 101 at q=932 |
 | Nine chapters q=1000 | 212 | 387; 369; 378; 370; 367 | same complete interval |
+| Authentic thirteen-dot intervals q=840 | 256 | 444; 457; 452; 470; 438 | 92 at q=932 |
+| Authentic thirteen-dot intervals q=1000 | 193 | 363; 342; 364; 345; 352 | same complete interval |
 | Physical pages q=64 | 636 | 1,179; 1,106; 1,199; 1,154; 1,187 | 131 at q=129 |
 | Physical pages q=130 | 224 | 401; 427; 425; 403; 397 | same complete interval |
 
 The exact original book-global q840 count 3,277 reproduces the earlier [H840 result](lp2-h840-allsecret-phase-permutation-original-gate.md) as an internal crosscheck. The previously documented ten Crowley controls and five Blake controls remain the broader period840-specific benchmark; the five particular windows above are chosen for a common all-period comparison, not claimed to supersede that work.
 
-The entire calculation and nonaffine positive control **PASS on actual Windows Node22 [GitHub Actions run 45266786087](https://github.com/FlareZ123/liber-primus/actions/runs/45266786087)**. The [complete Windows Node22/CommonJS reproducer](../sims/lp2_allperiod_secret_phase_bijection_original_sft.cjs) computes the entire original-versus-control interval with full per-q assertions and frozen anchor counts. It also constructs a genuinely **non-affine 29-rune permutation** independently for each phase and each reset segment, encrypts one original-length authentic-language donor, and checks exact inverse recovery and unchanged pair statistics. The positive is synthetic cipher text over real historical native plaintext; it validates the theorem's application, **not a historical Liber Primus encryption mechanism**.
+The entire calculation and nonaffine positive control **PASS on actual Windows Node22 [original three-scope run 45266786087](https://github.com/FlareZ123/liber-primus/actions/runs/45266786087)**; the source-mark clock added on 23 November 2026 is also explicitly run in [expanded four-scope CI 45273859213](https://github.com/FlareZ123/liber-primus/actions/runs/45273859213). The [complete Windows Node22/CommonJS reproducer](../sims/lp2_allperiod_secret_phase_bijection_original_sft.cjs) computes the entire original-versus-control interval with full per-q assertions and frozen anchor counts. It also constructs a genuinely **non-affine 29-rune permutation** independently for each phase and each reset segment, encrypts one original-length authentic-language donor, and checks exact inverse recovery and unchanged pair statistics. The positive is synthetic cipher text over real historical native plaintext; it validates the theorem's application, **not a historical Liber Primus encryption mechanism**.
 
 ## Decision and useful next action
 
-Further searches for an unknown 29-rune Caesar mask or even arbitrarily secret 29! mono-rune substitution alphabet at a constant book, chapter or physical-page clock within these ranges cannot change the counts. Recovering *ordinary* GP-native prose consistent with the above five donors requires a different architecture, for example an authenticated state-dependent nonperiodic cipher, a transform mixing or moving runes, or demonstrable additional side-information. An extremely atypical source-native English plaintext with original-like collision statistics remains mathematically possible.
+Further searches for an unknown 29-rune Caesar mask or even arbitrarily secret 29! mono-rune substitution alphabet at a constant book, chapter, thirteen-dot interval or physical-page clock within these ranges cannot change the counts. Recovering *ordinary* GP-native prose consistent with the above five donors requires a different architecture, for example an authenticated state-dependent nonperiodic cipher, a transform mixing or moving runes, or demonstrable additional side-information. An extremely atypical source-native English plaintext with original-like collision statistics remains mathematically possible.
 
 The actual author-issued operation remains the central missing input; a novel ciphertext-language model cannot supply it. Use this broad conditional result to **avoid more fixed-phase private-key sweeps**, not to claim any recovered rune or to exclude all possible English strings.
