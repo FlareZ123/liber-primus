@@ -397,3 +397,24 @@ The 2013 `INSTAR EMERGENCE` Parable sentence sums 1259/1031/1229 have inclusive 
 The problem is **an absent original key or authored value-changing operation**, not shortage of plausible numerics or nonlinguistic invertible formulas. Prioritize one authentically selected source text plus a full lossless GP29 inverse, with an untouched paragraph/page for held-out prediction, or recover original period-authentic off-book key material. Current long-run duplicate source hunts, calendar encodings, generic key families, table-byte pads, arbitrary wing flips, nine-chapter shared pads and raw prime numerology have no causal path to plaintext without a genuinely new first-party instruction. The most promising p55→p27 exact footer remains a **possible location clue with no cipher consumer**.
 
 At every checkpoint compare the actual UTC clock with the original *current* lease claim, not archival timestamps. Preserve research state; when age reaches 70 minutes, push, verify, release own lease last, and exit.
+
+
+## 23 November 2026 — historical first17-page key route and 560.17 correction
+
+The original 2016 IRC archive has now been retrieved from the pinned cicada-solvers/neuroretransmit-cicada blob (27,234,234 bytes; Git blob SHA-1 72634a9d071d32af767edbffc0493d810e88cd0d). Important correction: the January 2016 discussion's “first17 pages” means the solved first release (LP1), proposed as a possible key for the subsequent last57-page release—not LP2 p0–p16. The earlier local test of 560.17 against LP2 p0–p16 therefore tested the wrong receiver for that historical proposal.
+
+The 15 April 2016 discussion is more specific: participants identify two symmetric 5×5 matrices in LP1 pages5 and16, with totals 5165 and16505 (row sums 1033 and3301); they then discuss a short runic sequence as a warning and say the first17 pages should be in a shifted form using “basic gematria”, described as literal English-to-rune mapping. This is community speculation, not an author instruction. The matrix row sums match the 2013 prime_echo pause values 1033 and3301. Existing individual matrix/Hill/page-power investigations are already substantial; do not repeat them.
+
+The archived cicada-solvers/idkfa translator is the relevant historical implementation: readme.md lists LP1 segment transforms and keys; lib/gematria.js defines the rune/Latin graph mapping; data/liber contains the source transcription. Its opening segment begins with the runic sequence discussed in April 2016 and its known segment0 recipe uses the inverted Latin mapping. A full warning translation was not independently verified in this invocation.
+
+Historical January discussion also reports competing 480/490 word counts for LP1; one participant observes 490=φ(491). A simple token count of the current plaintext reference does not reproduce either figure, so do not use this count as established key material until the counting convention and source transcription are reconciled.
+
+The 560.17 file is a separate speculative lead raised by LuaKT; the same discussion distinguishes it from 560.13, which was used with phone-number data. Verified 560.17 source: 1,183,811 bytes, Git blob SHA-1 49df8e57f8e6052eb2d5c2b483282461e53ef5ff. The bounded low-five/high-five XOR test on LP2 p0–p16 at offset0 was negative (4,029 symbols; 386/385 invalid outputs; IoC 0.034390/0.034425). This rejects only that exact receiver/serialization, not first17-LP1→last57-LP2.
+
+Durable artifacts:
+- workplace/2016-first17-basic-gematria-key-hypothesis.md — historical source context, established matrix facts, uncertainties, and next experiment.
+- im-results/lp2-2013-56017-p0-p16-fivebit-xor-negative.md — exact bounded negative.
+- sims/2016_56017_first17_log_context_sft.cjs and sims/2016_first17_matrix_warning_context_sft.cjs — pinned-log context retrieval.
+- sims/lp2_p10_7g_dataset56017_first17_xor_sft.cjs — exact XOR test.
+
+Best next experiment: reconstruct the first17 LP1 pages in their historically indicated shifted basic-gematria Futhark form from the original transcription and the documented LP1 transforms, preserving page order and matrix/number representation. Test that stream as a repeating GP29 key over the 57-page continuation (idkfa source segments17–73) with the archived Shift.mutate semantics, default subtraction and reverse addition only, one global alignment, and p56 as a holdout/control. Do not assume the 560.17 file is part of this key; the January file-name speculation and April basic-gematria discussion are distinct leads.
