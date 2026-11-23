@@ -1,6 +1,6 @@
 # A source-exact 16 × 203 black-rune register in floral LP2, and the p15 value 3299
 
-**Status: newly identified source arithmetic and exploratory inverse; no unknown plaintext, source-authenticated key, or solved LP2 page.** Original pages 40–55 are the continuous sixteen flower-framed physical pages. Two alternative, carefully distinguished rune selections have exact factorizations but do not supply a standalone decipherment instruction.
+**Status (23 November 2026): established source-selection arithmetic, with a negative direct Hill16 consumer; no unknown plaintext, source-authenticated key, or solved LP2 page.** A new bounded test treated the original 256-token p49–51 table as a 16×16 GF29 Hill matrix acting on the 3248 black-floral runes. Its exact original-source inverse gave four near-uniform outputs with IoCs 0.03440–0.03456 despite full matrix invertibility and a 6496-rune native positive-control roundtrip. The formal original-cipher decision is in [the focused Hill16 gate](lp2-floral-p50-16hill-original-gate.md). The source itself does not authorize the reshaping, so this is a finite exclusion of a plausible source-shaped candidate rather than proof that the floral grid has no role. Original pages 40–55 are the continuous sixteen flower-framed physical pages. Two alternative, carefully distinguished rune selections have exact factorizations but do not supply a standalone decipherment instruction.
 
 ## Physical-source derivation
 
