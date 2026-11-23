@@ -1,0 +1,355 @@
+"use strict";
+/**
+ * Source-exact full LP2 original-cipher GP29/word-length-multiset enumerative SFT.
+ * Windows 11, Node 22: node sims/lp2_gp29_multiset_space_original_sft.cjs
+ *
+ * Original-input hypothesis: every large source-visible rubric ends a
+ * independently framed codeword, with precisely the original N runes,
+ * W printed words and E adjacent-equal rune transitions per frame. Allow
+ * permutations of the printed word lengths within each rubric to carry information. The two genuinely
+ * deficient one-word / three-rune frames must join their following frames.
+ * This script proves original-cipher and independent native-source invertibility.
+ * A codebook positive is not evidence that Cicada used this encoding.
+ */
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
+const root = path.join(__dirname, "..");
+
+/** @param {string} p @returns {string} */
+function read(p) {
+  return fs.readFileSync(path.join(root, p), "utf8");
+}
+const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
+const sourceMarks = JSON.parse(read("resources/liber-primus/lp2-punctuation-identity.json"));
+const map = new Map(corpus.runes.map((r, i) => [r, i]));
+const words = read("resources/liber-primus/lp2-transcription.txt")
+  .replace(/[\/\n\r%&$\s]/g, "")
+  .split(/[-.]/)
+  .filter(s => /[\u16A0-\u16FF]/u.test(s))
+  .slice(0, 2896)
+  .map(s => Array.from(s, rune => {
+    const i = map.get(rune);
+    assert.notEqual(i, undefined);
+    return i;
+  }));
+const sourcePages = corpus.pages.filter(p => p.page <= 55 && p.indices.length);
+const original = sourcePages.flatMap(p => p.indices);
+assert.equal(original.length, 12956);
+assert.equal(words.length, 2896);
+assert.deepEqual(words.flat(), original);
+let nEnd = 0;
+const wordEnds = words.map(word => (nEnd += word.length));
+assert.equal(nEnd, 12956);
+const printedRubrics = sourceMarks.events
+  .filter(e => e.symbol === "⁜").map(e => e.rune_offset);
+const rubricEnds = printedRubrics.filter((v, i) => !i || v !== printedRubrics[i - 1]);
+assert.equal(rubricEnds.length, 29);
+assert.equal(rubricEnds[rubricEnds.length - 1], original.length);
+assert.ok(rubricEnds.every(end => wordEnds.includes(end)));
+
+/** @param {number} n @param {number} k @returns {bigint} */
+function choose(n, k) {
+  if (k < 0 || k > n) return 0n;
+  k = Math.min(k, n - k);
+  let b = 1n;
+  for (let i = 1; i <= k; i++) {
+    b = b * BigInt(n - i + 1) / BigInt(i);
+  }
+  return b;
+}
+/** @param {number[]} locations @returns {bigint} */
+function rankSubset(locations) {
+  let rank = 0n;
+  for (let i = 0; i < locations.length; i++) {
+    assert.ok(i === 0 || locations[i] > locations[i - 1]);
+    rank += choose(locations[i], i + 1);
+  }
+  return rank;
+}
+/** @param {number} n @param {number} k @param {bigint} rank @returns {number[]} */
+function unrankSubset(n, k, rank) {
+  assert.ok(rank >= 0n && rank < choose(n, k));
+  const out = new Array(k);
+  let limit = n - 1;
+  for (let j = k; j >= 1; j--) {
+    let lo = j - 1;
+    let hi = limit;
+    let best = lo;
+    while (lo <= hi) {
+      const mid = Math.floor((lo + hi) / 2);
+      if (choose(mid, j) <= rank) {
+        best = mid;
+        lo = mid + 1;
+      } else {
+        hi = mid - 1;
+      }
+    }
+    out[j - 1] = best;
+    rank -= choose(best, j);
+    limit = best - 1;
+  }
+  assert.equal(rank, 0n);
+  return out;
+}
+/**
+ * @param {number[]} runes
+ * @returns {{e:number,rank:bigint}}
+ */
+function rankRunes(runes) {
+  const positions = [];
+  let v = 0n;
+  for (let i = 1; i < runes.length; i++) {
+    const prev = runes[i - 1];
+    const cur = runes[i];
+    if (prev === cur) {
+      positions.push(i - 1);
+    } else {
+      const d = cur < prev ? cur : cur - 1;
+      assert.ok(d >= 0 && d < 28);
+      v = v * 28n + BigInt(d);
+    }
+  }
+  const e = positions.length;
+  const count = choose(runes.length - 1, e);
+  return { e, rank:
+    (BigInt(runes[0]) * count + rankSubset(positions))
+      * 28n ** BigInt(runes.length - 1 - e) + v };
+}
+/**
+ * @param {number} n @param {number} e @param {bigint} rank
+ * @returns {number[]}
+ */
+function unrankRunes(n, e, rank) {
+  const free = n - 1 - e;
+  const base = 28n ** BigInt(free);
+  let v = rank % base;
+  let outer = rank / base;
+  const maskCount = choose(n - 1, e);
+  const first = Number(outer / maskCount);
+  assert.ok(first < 29);
+  outer %= maskCount;
+  const exceptions = new Set(unrankSubset(n - 1, e, outer));
+  const d = new Array(free);
+  for (let i = free - 1; i >= 0; i--) {
+    d[i] = Number(v % 28n);
+    v /= 28n;
+  }
+  assert.equal(v, 0n);
+  const result = [first];
+  let next = 0;
+  for (let i = 1; i < n; i++) {
+    const prev = result[i - 1];
+    const x = exceptions.has(i - 1) ? prev
+      : (d[next] < prev ? d[next] : d[next] + 1);
+    if (!exceptions.has(i - 1)) next++;
+    result.push(x);
+  }
+  assert.equal(next, free);
+  return result;
+}
+/** @param {number[]} arr @returns {bigint} */
+function radix29(arr) {
+  let result = 0n;
+  for (const n of arr) result = result * 29n + BigInt(n);
+  return result;
+}
+/** @param {bigint} x @param {number} length @returns {number[]} */
+function from29(x, length) {
+  const result = new Array(length);
+  for (let i = length - 1; i >= 0; i--) {
+    result[i] = Number(x % 29n);
+    x /= 29n;
+  }
+  assert.equal(x, 0n);
+  return result;
+}
+
+/** Original word-length histograms are fixed within each major rubric. */
+const factorial = [1n];
+for (let i = 1; i <= words.length; i++) {
+  factorial.push(factorial[i - 1] * BigInt(i));
+}
+/** @param {number[]} lengths @returns {Map<number,number>} */
+function countsFor(lengths) {
+  const counts = new Map();
+  for (const length of lengths) counts.set(length, (counts.get(length) || 0) + 1);
+  return new Map([...counts].sort((a, b) => a[0] - b[0]));
+}
+/** @param {number[]} lengths @returns {bigint} */
+function countWordOrders(lengths) {
+  let result = factorial[lengths.length];
+  for (const count of countsFor(lengths).values()) result /= factorial[count];
+  return result;
+}
+/** @param {number[]} lengths @returns {bigint} */
+function rankLengthOrders(lengths) {
+  const counts = countsFor(lengths);
+  let total = countWordOrders(lengths);
+  let remaining = lengths.length;
+  let rank = 0n;
+  for (const length of lengths) {
+    for (const [candidate, count] of counts) {
+      if (candidate >= length) break;
+      if (count > 0) rank += total * BigInt(count) / BigInt(remaining);
+    }
+    const count = counts.get(length);
+    assert.ok(count > 0);
+    total = total * BigInt(count) / BigInt(remaining);
+    counts.set(length, count - 1);
+    remaining--;
+  }
+  assert.equal(total, 1n);
+  return rank;
+}
+/**
+ * @param {number[]} sourceLengths
+ * @param {bigint} rank
+ * @returns {number[]}
+ */
+function unrankLengthOrders(sourceLengths, rank) {
+  const counts = countsFor(sourceLengths);
+  let total = countWordOrders(sourceLengths);
+  assert.ok(rank >= 0n && rank < total);
+  const result = [];
+  for (let remaining = sourceLengths.length; remaining > 0; remaining--) {
+    let chosen = false;
+    for (const [length, count] of counts) {
+      if (!count) continue;
+      const space = total * BigInt(count) / BigInt(remaining);
+      if (rank >= space) {
+        rank -= space;
+        continue;
+      }
+      result.push(length);
+      counts.set(length, count - 1);
+      total = space;
+      chosen = true;
+      break;
+    }
+    assert.ok(chosen);
+  }
+  assert.equal(rank, 0n);
+  return result;
+}
+/** @param {number[]} lengths @returns {number[]} */
+function lengthsToBreaks(lengths) {
+  let offset = 0;
+  return lengths.slice(0, -1).map(length => {
+    offset += length;
+    return offset - 1;
+  });
+}
+
+/** @param {number} start @param {number} end */
+function frame(start, end) {
+  const src = original.slice(start, end);
+  const wordBreaks = wordEnds.filter(x => x > start && x < end)
+    .map(x => x - start - 1);
+  const boundaries = [0, ...wordBreaks.map(x => x + 1), src.length];
+  const lengths = boundaries.slice(1).map((end, i) => end - boundaries[i]);
+  const W = lengths.length;
+  const {e, rank: runeRank} = rankRunes(src);
+  const G = countWordOrders(lengths);
+  const M = 29n * choose(src.length - 1, e)
+    * 28n ** BigInt(src.length - 1 - e) * G;
+  const Q = 29n ** BigInt(src.length);
+  const gapRank = rankLengthOrders(lengths);
+  assert.deepEqual(unrankLengthOrders(lengths, gapRank), lengths);
+  const R = runeRank * G + gapRank;
+  assert.ok(R >= 0n && R < M);
+  return {start, end, n: src.length, W, e, M, Q, R, G, lengths, originalBreaks: wordBreaks};
+}
+/**
+ * @param {ReturnType<typeof frame>} f
+ * @param {bigint} R
+ */
+function unrankCodeword(f, R) {
+  assert.ok(R >= 0n && R < f.M);
+  const lengths = unrankLengthOrders(f.lengths, R % f.G);
+  return {
+    runes: unrankRunes(f.n, f.e, R / f.G),
+    breaks: lengthsToBreaks(lengths)
+  };
+}
+/** @param {number[]} a @returns {number} */
+function indexOfCoincidence(a) {
+  const count = new Array(29).fill(0);
+  for (const x of a) count[x]++;
+  return count.reduce((s, x) => s + x * (x - 1), 0) / (a.length * (a.length - 1));
+}
+const natural = rubricEnds.map((end, i) => frame(i ? rubricEnds[i - 1] : 0, end));
+const fail = natural.map((x, i) => x.M < x.Q ? i : -1).filter(x => x >= 0);
+assert.deepEqual(fail, [4, 23]);
+assert.deepEqual(fail.map(i => [natural[i].n, natural[i].W, natural[i].e]),
+  [[3, 1, 0], [3, 1, 0]]);
+console.log("29 SOURCE MAJOR-RUBRIC FRAMES deficient", fail);
+const skip = new Set(fail.map(i => rubricEnds[i]));
+const combinedEnds = rubricEnds.filter(end => !skip.has(end));
+assert.equal(combinedEnds.length, 27);
+const frames = combinedEnds.map((end, i) => frame(i ? combinedEnds[i - 1] : 0, end));
+assert.ok(frames.every(f => f.M >= f.Q));
+assert.equal(frames.reduce((sum, f) => sum + f.n, 0), 12956);
+let observedSingletons = 0;
+let expectedSingletons = 0;
+let varianceSingletons = 0;
+let availableGapLog2 = 0;
+for (const f of frames) {
+  const p = (f.W - 1) / (f.n - 1);
+  const p2 = f.n > 2 ? (f.W - 1) * (f.W - 2) / ((f.n - 1) * (f.n - 2)) : 0;
+  observedSingletons += f.lengths.filter(x => x === 1).length;
+  expectedSingletons += f.W * p;
+  varianceSingletons += f.W * p * (1 - p) + f.W * (f.W - 1) * (p2 - p * p);
+  availableGapLog2 += Number(f.G.toString(2).length - 1);
+}
+console.log("GAP RANDOM-PLACEMENT CALIBRATION original singles", observedSingletons,
+  "uniform expected", expectedSingletons.toFixed(6),
+  "uniform SD", Math.sqrt(varianceSingletons).toFixed(6),
+  "z", ((observedSingletons - expectedSingletons) /
+    Math.sqrt(varianceSingletons)).toFixed(3),
+  "conservative floor-bits of authentic-length-multiset permutations", availableGapLog2);
+const candidate = [];
+const solved = corpus.pages.find(p => p.page === 57).indices;
+assert.equal(solved.length, 95);
+const native = Array.from({length: original.length}, (_, i) => solved[i % solved.length]);
+let pos = 0;
+let nonzeroResidual = 0;
+for (const f of frames) {
+  const P = f.R * f.Q / f.M;
+  const lower = (P * f.M + f.Q - 1n) / f.Q;
+  const residual = f.R - lower;
+  assert.ok(residual >= 0n);
+  if (residual > 0n) nonzeroResidual++;
+  const coded = unrankCodeword(f, lower + residual);
+  assert.deepEqual(coded.runes, original.slice(f.start, f.end));
+  assert.deepEqual(coded.breaks, f.originalBreaks);
+  candidate.push(...from29(P, f.n));
+  const input = native.slice(pos, pos + f.n);
+  const X = radix29(input);
+  const sourceRank = (X * f.M + f.Q - 1n) / f.Q;
+  const sourceCode = unrankCodeword(f, sourceRank);
+  assert.equal(sourceCode.runes.length, f.n);
+  assert.equal(sourceCode.breaks.length, f.W - 1);
+  const sourceRuneRank = rankRunes(sourceCode.runes);
+  assert.equal(sourceRuneRank.e, f.e);
+  const actualRank = sourceRuneRank.rank * choose(f.n - 1, f.W - 1)
+    + rankSubset(sourceCode.breaks);
+  assert.equal(actualRank, sourceRank);
+  assert.equal(actualRank * f.Q / f.M, X);
+  pos += f.n;
+}
+assert.equal(pos, 12956);
+const before16 = sourcePages.filter(p => p.page < 16)
+  .reduce((sum, p) => sum + p.indices.length, 0);
+const first = candidate.slice(0, 300);
+const heldout = candidate.slice(before16, before16 + 200);
+console.log("SOURCE-EXACT model GP29 word-length-multiset coder:");
+console.log("runes", original.length, "printed words", words.length,
+  "resets", frames.length, "ignored giant marks", Array.from(skip),
+  "nonzero original residuals", nonzeroResidual);
+console.log("actual first300 IoC", indexOfCoincidence(first).toFixed(9),
+  "actual original p16 first200 IoC", indexOfCoincidence(heldout).toFixed(9),
+  "source-native positive IoC", indexOfCoincidence(native).toFixed(9));
+console.log("first80 inferred GP29 indices", candidate.slice(0,80).join(","));
+console.log("PASS full 12956-rune original exact forward replay, all printed gaps,",
+  "plus 12956-rune authentic solved-GP native-plaintext plant.");
