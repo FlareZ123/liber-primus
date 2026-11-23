@@ -33,6 +33,20 @@ Across **all 55 original rune-bearing unknown physical pages**, **p28 and p33 ar
 
 The G-only Taylor jets at root24 on pp28 and33 are also *exactly identical*, P(24)=12 and P′(24)=2; p29 has [0,0]. Their equality is algebraically implied by shared Q remainder because Q has the factor (X−24)², so it is **not** additional independent evidence.
 
+## Canonical repeated-root CRT readout: conditional “ITS THE PATH”
+
+The same degree-three polynomial has **one simple root 3 and one double root 24** in GP29. Therefore its standard Hermite/Chinese-remainder syndrome can be expressed as the three evaluations **[P(3), P(24), P′(24)]**, taking distinct roots in ascending numeric order and the double-root Taylor terms in derivative order. This encoding is a reversible fixed linear change of coordinates of the raw Q remainder and can be checked directly on the original physical runes.
+
+Both independent source pages p28 and p33 produce exactly
+
+    P(3)   = 14
+    P(24)  = 12
+    P′(24) =  2.
+
+The already authenticated January 2016 OpenPGP message, indexed by its **zero-based alphabetical word numbers**, gives **14 = ITS, 12 = THE, 2 = PATH**. Thus the original numerically encoded field spells the same compact phrase **“ITS THE PATH”** on both pages. Its intended reading could be “it's the path” with punctuation restored; the actual authenticated source word is “Its,” with no apostrophe. This is a *literal exact source-lexicon three-word decode*, unlike a fabricated language-model continuation.
+
+**Limitations are decisive:** the two appearances are consequences of **one shared cubic remainder**, not independent recovered plaintext. The particular use of zero-based source-word indices, ascending-root Hermite order, and reading a three-word snippet as instruction were recognized after inspecting the mathematical state. Among 55 possible original-page triplets, three-word English echoes can occur by chance. **No authenticated source chooses this message as the intended LP2 readout**, and no longer original ciphertext passage follows from it. Treat “ITS THE PATH” as a **candidate micro-instruction** to test prospectively, never as three verified page plaintext words.
+
 ## Source-native reconstruction of the historical DH packet
 
 Let the common original cubic remainder be R=[r0,r1,r2]=[17,27,12]. A concise **retrospectively noticed** triangular reading assigns
