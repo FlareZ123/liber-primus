@@ -175,3 +175,39 @@ console.log(JSON.stringify({
   fullLengthNineZoneNativePositive:chapterResetPhaseEquality(chapterCipher),
   decision:'no native GP29 Book-of-Law whole-book reading under any nine-zone 840-phase private-rune cipher'
 },null,2));
+
+
+// Independently authored literary control: William Blake's Marriage of Heaven
+// and Hell, repository-pinned 2014 Gutenberg edition of a 2012 Cicada key text.
+// Restrict to the printed work after THE ARGUMENT, excluding Gutenberg license
+// front/back matter. This corroborates the Crowley Book-of-Law native control
+// with a distinct literary author and work.
+const blakeEdition=read('resources/external/cicada2012-blake-marriage-gutenberg45315.txt');
+const blakeWorkStart=blakeEdition.indexOf('THE ARGUMENT');
+const blakeWorkEnd=blakeEdition.indexOf('*** END OF THIS PROJECT GUTENBERG EBOOK');
+assert.ok(blakeWorkStart>0&&blakeWorkEnd>blakeWorkStart);
+const blakeGp=encodeNative(blakeEdition.slice(blakeWorkStart,blakeWorkEnd));
+assert.equal(blakeGp.length,18631);
+const blakeOffsets=[0,1418,2837,4256,5675];
+const blakeGlobalCounts=[5835,5779,5798,5724,5680];
+const blakeNineCounts=[502,477,507,465,475];
+const blakeControls=blakeOffsets.map((offset,j)=>{
+  const work=blakeGp.slice(offset,offset+12956);
+  assert.equal(work.length,12956);
+  const global=samePhaseEquality(work,period);
+  const zoned=chapterResetPhaseEquality(work);
+  assert.equal(global.pairs,93540);
+  assert.equal(zoned.pairs,8127);
+  assert.equal(global.matches,blakeGlobalCounts[j]);
+  assert.equal(zoned.matches,blakeNineCounts[j]);
+  assert.ok(global.matches>observed.matches);
+  assert.ok(zoned.matches>originalNine.matches);
+  return {offset,global:global.matches,nineChapter:zoned.matches};
+});
+console.log(JSON.stringify({
+  secondDistinctAuthor:'William Blake, Marriage of Heaven and Hell',
+  edition:'2014 Gutenberg 45315; not an original 2012 printed witness',
+  nativeSourceLength:blakeGp.length,
+  wholeBookWindows:blakeControls,
+  conclusion:'all five separate-author source windows retain native GP29 collision rates inaccessible to actual unknown LP2 under either all-secret H840 phase schedule'
+},null,2));
