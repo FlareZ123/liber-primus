@@ -189,6 +189,73 @@ for (let j = 0; j < 19; j++) {
   const b = synthetic.slice(j * 5, j * 5 + 5);
   assert.deepEqual(transform(mInv, transform(M, b)), b);
 }
+
+/** @param {number[]} digits @returns {Buffer} */
+function digitsToBytes(digits) {
+  let n = 0n;
+  for (const d of digits) n = n * 29n + BigInt(d);
+  const values = [];
+  while (n > 0n) {
+    values.push(Number(n & 255n));
+    n >>= 8n;
+  }
+  return Buffer.from(values.reverse());
+}
+/** @param {Buffer} bytes @returns {number[]} */
+function bytesToDigits(bytes) {
+  let n = 0n;
+  for (const value of bytes) n = n * 256n + BigInt(value);
+  const digits = [];
+  do {
+    digits.push(Number(n % 29n));
+    n /= 29n;
+  } while (n > 0n);
+  return digits.reverse();
+}
+/** @param {Buffer} b @returns {string[]} */
+function typedHeaders(b) {
+  const head = b.subarray(0, 8).toString('hex');
+  const names = [];
+  if (head.startsWith('1f8b08')) names.push('gzip');
+  if (head.startsWith('504b0304')) names.push('zip');
+  if (head.startsWith('89504e470d0a1a0a')) names.push('png');
+  if (head.startsWith('255044462d')) names.push('pdf');
+  if (b.length >= 2 && b[0] === 0x78 && ((b[0] * 256 + b[1]) % 31) === 0)
+    names.push('zlib');
+  return names;
+}
+const pageBytes = source.pages.filter(p => p.page < 56 && p.indices.length > 0).map(p => {
+  const raw = digitsToBytes(extract(p.indices, W));
+  return { page: p.page, bytes: raw, headers: typedHeaders(raw) };
+});
+assert.equal(pageBytes.length, 55);
+assert.equal(pageBytes.reduce((s, p) => s + p.bytes.length, 0), 4699);
+assert.deepEqual(pageBytes.flatMap(p => p.headers.map(name => [p.page, name])), []);
+// Demonstrate a genuine historical compressed-source register can survive the
+// same fixed 3/5 projection and exact base29 integer-to-byte serialization.
+// The source payload is every unmodified GP29 native-clear rune on solved p57.
+const zlib = require('node:zlib');
+const solvedGPBytes = Buffer.from(source.pages[57].indices);
+const genuineCompressed = zlib.gzipSync(solvedGPBytes);
+const packedDigits = bytesToDigits(genuineCompressed);
+while (packedDigits.length % 3 !== 0) packedDigits.unshift(0);
+const compressedPlantCipher = [];
+for (let i = 0; i < packedDigits.length; i += 3) {
+  const v = [...packedDigits.slice(i, i + 3), mod(i * 3 + 1), mod(i * 7 + 2)];
+  compressedPlantCipher.push(...transform(mInv, v));
+}
+const recoveredCompressed = digitsToBytes(extract(compressedPlantCipher, W));
+assert.deepEqual(recoveredCompressed, genuineCompressed);
+assert.deepEqual(zlib.gunzipSync(recoveredCompressed), solvedGPBytes);
+console.log('ORIGINAL_LP2_NATIVE_BASE29_BYTE_PACKETS', JSON.stringify({
+  originalPages: pageBytes.length,
+  candidateBytes: pageBytes.reduce((s, p) => s + p.bytes.length, 0),
+  typedHeaders: pageBytes.flatMap(p => p.headers),
+  p0Prefix: pageBytes.find(p => p.page === 0).bytes.subarray(0, 8).toString('hex'),
+  p55Prefix: pageBytes.find(p => p.page === 55).bytes.subarray(0, 8).toString('hex'),
+  solvedGzipPlantRecovered: true, originalP57GPRunes: solvedGPBytes.length,
+}));
+
 const hashes = Object.fromEntries([squarePath, corpusPath, signedPath].map(p =>
   [p, crypto.createHash('sha256').update(read(p)).digest('hex')]));
 console.log('INPUT_HASHES', JSON.stringify(hashes));
