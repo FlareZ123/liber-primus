@@ -156,7 +156,7 @@ for (const key of keys) {
     p0BodyIoC: ioc(output.slice(0, p0Body)),
     disjointP1P2IoC: ioc(output.slice(p0Body, p1p2End)),
     fullUnknownIoC: ioc(output),
-    75RuneOpen: output.slice(0, 75).map(x => corpus.translit[x]).join(''),
+    open75Runes: output.slice(0, 75).map(x => corpus.translit[x]).join(''),
     nativePlantedSymbolsRecovered: planted.length
   });
 }
