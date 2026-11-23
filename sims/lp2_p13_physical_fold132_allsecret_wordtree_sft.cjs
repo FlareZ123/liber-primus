@@ -25,7 +25,7 @@ assert.equal(original.length, 272);
 const p14 = corpus.pages.find(page => page.page === 14).indices;
 assert.equal(p14.length, 137);
 assert.equal(p14[2], 0, 'The F of the printed FOLD must occupy p14 position 2.');
-const lineRunes = source.split('/').map(line => [...line].filter(g => runeSet.has(g)));
+const lineRunes = source.split('/').map(line => [...line].filter(g => runeSet.has(g))).filter(line => line.length > 0);
 const lineLengths = lineRunes.map(line => line.length);
 assert.deepEqual(lineLengths, [24, 21, 23, 23, 22, 23, 22, 25, 21, 22, 22, 24]);
 const lineOffsets = [];
