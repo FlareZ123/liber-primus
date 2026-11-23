@@ -47,4 +47,17 @@ A small direct original-cipher consumer tests `K[i] = (T[(start+i) mod256]^127 m
 
 The lone marginally elevated 0.0406 for only 121 symbols has no connected GP-native words. The 13th-root map is therefore a **complete source-conditional numeric-table inverse**, not an identified LP2 cipher or authentic plaintext. The original 2013 DH challenge neither selects the 256-byte table as a key receiver nor authorizes repeated use of the 13-dot exponent to transform every cell. No expanded key search is warranted.
 
+### Source-illustrated 76-cell circumference recipient (original p55)
+
+A separately motivated *complete original 76-rune* receiver follows from solved p57's actual instruction **SHED OUR OWN CIRCUMFERENCES** and the original p50 panel's 32×8 shape: its exterior ring has **76 distinct cells**, matching the original terminal p55's **76 GP29 runes**. This is the literal same top-left orientation used by source panel navigation. For the conditional full DH-root table `R_i=T_i^127 mod331`, take the entire perimeter in either clockwise or counterclockwise order as `K_i=R_{ring_i} mod29`, then apply the conventional original-GP29 additive `P=C−K` and its opposite `C+K`. This is a finite four-model receiver whose ring dimensions, page length and root opcode are independently visible. (Older studies tested direct raw p50 circumference bytes; the DH-root inversion changes every key value and is a distinct test.)
+
+| Original 76-rune p55 candidate | GP29 index of coincidence | Original replay |
+|---|---:|---|
+| Clockwise, C−K | 0.02807018 | 76/76 |
+| Clockwise, C+K | 0.03192982 | 76/76 |
+| Counterclockwise, C−K | 0.03438596 | 76/76 |
+| Counterclockwise, C+K | 0.03087719 | 76/76 |
+
+**All four produce connected gibberish under the original printed 19-word receiver**, with no authentic unknown plaintext or missing punctuation supplied. The 2013 source still does not select DH exponentiation as an operation on a 256-cell table, so this finite failure retires the literal DH-root-perimeter **GP29 additive** model only. Do not tune the ring start, rune key map or ciphertext receiver to rescue a negative result.
+
 **Decision:** preserve the two exact source-conditioned arithmetic matches as a falsifiable intermediate lead. Treat any proposed use of `A=203` or `K=108` as an **unverified hypothesis** until a third *independently predeclared original source target* or an authored receiver selects the operation and recovers connected unknown plaintext. Do not broaden into modular-base, address, cipher-direction, or generator-menu searches. The authenticated 2013 TCP specification remains a historical explanation for the operator, not an authenticated command to decrypt LP2.
