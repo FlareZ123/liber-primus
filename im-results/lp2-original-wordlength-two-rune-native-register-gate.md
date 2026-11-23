@@ -21,6 +21,8 @@ For a longer-window control, use three pre-pinned reference texts from `resource
 | Shakespeare, first 300k | 55,407 | 52,512 | **527** | **448 < 527** |
 | **Total** | | **140,387 overlapping windows** | **527** | **0/140,387 windows** have ≤448 |
 
+**A bounded edit-budget implication.** If the plaintext were to match even the **least two-rune-rich** Shakespeare window (527 rather than448) and the encoder changed *only the position of existing word separators*, one relocated separator can change the two-rune status of **at most two** neighboring words. Thus **at least40 separate separator relocations** are needed to bridge the 79-word deficit (the Gibran and Emerson minima instead require ≥82 and ≥132 relocations). This is a strict combinatorial bound **conditional** on the target donor register and a fixed number of word separators. It gives a concrete minimal-change benchmark for space-moving decoders; it says nothing about encoders that add/drop separators, change rune lengths or use another plaintext register.
+
 The minimum Shakespeare donor proportion is **527/2896=18.20%**; the original is **448/2896=15.47%**. These heavily overlapping 140,387 windows are *not independent trials*, and these books were selected because they were already available in the repository. The result is a clear **source-conditional register mismatch**, not an unbiased p-value or proof for all English literature.
 
 ## What changes in the next cryptanalysis decision
