@@ -123,6 +123,22 @@ async function main() {
     assert.ok(plantedBest.some(m => m.atOriginal <= 1000 && m.atDonor <= 29000
       && m.atOriginal + m.length >= 1016 && m.atDonor + m.length >= 29016
       && 1000 - m.atOriginal === 29000 - m.atDonor));
+    if (!splitNg && best.length) {
+      const { atOriginal, atDonor, length } = best[0];
+      const originalRuneOffset = words.slice(0, atOriginal).reduce((sum, w) => sum + w.length, 0);
+      let pageOffset = originalRuneOffset, page = 0;
+      for (const p of corpus.pages.filter(p => p.page < 56)) {
+        if (pageOffset < p.indices.length) { page = p.page; break; }
+        pageOffset -= p.indices.length;
+      }
+      console.log(JSON.stringify({
+        originalPage: page, originalRuneOffset, originalWithinPageRune: pageOffset,
+        sourceGEBWordOffset: atDonor,
+        sourceTextExactlyMatchingWordLengths: englishWords.slice(atDonor, atDonor + length).join(' '),
+        originalCiphertextRunes: words.slice(atOriginal, atOriginal + length)
+          .map(w => w.map(i => corpus.translit[i]).join('')).join('-')
+      }));
+    }
     console.log(JSON.stringify({ donor:'2014 historically selected GEB', sourceWords:donor.length,
       originalWords:target.length, originalRunes:orig.length, splitNg, longestMatches:best.slice(0,12),
       totalLongestTies:best.length, longestLength:widest, copied16WordPositive: true,
