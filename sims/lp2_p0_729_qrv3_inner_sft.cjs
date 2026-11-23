@@ -156,6 +156,81 @@ assert.equal(Math.min(...errors), 69);
 assert.equal(Math.max(...errors), 75);
 assert.ok(originalResults.every(x => x.constrained === 199 && x.errors >= 69));
 
+/**
+ * Context source carries the original punctuation, word beginnings and
+ * physical page breaks without modifying/reordering a single rune sign.
+ * A separate bit for every (rune, context) is permitted. This exactly
+ * includes all 2^(29*stateCount) private context-specific palettes.
+ */
+const transcription = fs.readFileSync(
+  path.join(__dirname, '..', 'resources', 'liber-primus', 'lp2-transcription.txt'),
+  'utf8'
+);
+const sourceRuneMap = new Map(source.runes.map((glyph, i) => [glyph, i]));
+const textPages = transcription.split('%').slice(0, 3);
+const parsed = [], precedingPeriod = [], atWordStart = [], physicalPage = [];
+let period = 0;
+let wordInitial = 1;
+for (let p = 0; p < textPages.length; p++) {
+  for (const glyph of textPages[p]) {
+    if (sourceRuneMap.has(glyph)) {
+      parsed.push(sourceRuneMap.get(glyph));
+      precedingPeriod.push(period);
+      atWordStart.push(wordInitial);
+      physicalPage.push(p);
+      wordInitial = 0;
+    } else if (glyph === '-' || glyph === '.') {
+      period = Number(glyph === '.');
+      wordInitial = 1;
+    }
+  }
+}
+assert.deepEqual(parsed, original);
+assert.equal(precedingPeriod.reduce((a, b) => a + b, 0), 27);
+assert.equal(atWordStart.reduce((a, b) => a + b, 0), 158);
+
+/**
+ * Exact minimum mismatch after optimizing each rune-context output bit.
+ * @param {number[]} context
+ * @param {number} stateCount
+ * @param {number} rotation
+ * @param {number} mirrored
+ * @param {number} reversed
+ * @returns {number}
+ */
+function bestContextPalette(context, stateCount, rotation, mirrored, reversed) {
+  const counts = Array.from({length: stateCount * 29}, () => [0, 0]);
+  for (const {row, col, bit} of tests) {
+    const pos = transformedIndex(row, col, rotation, mirrored);
+    const i = reversed ? 728 - pos : pos;
+    counts[29 * context[i] + original[i]][bit]++;
+  }
+  return counts.reduce((sum, row) => sum + Math.min(row[0], row[1]), 0);
+}
+const contextModels = [
+  ['preceding-period', precedingPeriod, 2, 68, 73],
+  ['word-start', atWordStart, 2, 56, 63],
+  ['period-by-word-start',
+    precedingPeriod.map((x, i) => x * 2 + atWordStart[i]), 4, 54, 62],
+  ['physical-page', physicalPage, 3, 59, 64],
+  ['page-by-period',
+    physicalPage.map((x, i) => x * 2 + precedingPeriod[i]), 6, 56, 62],
+  ['page-by-word-start',
+    physicalPage.map((x, i) => x * 2 + atWordStart[i]), 6, 43, 49]
+];
+for (const [label, state, size, min, max] of contextModels) {
+  const errors = [];
+  for (let reversed = 0; reversed < 2; reversed++) {
+    for (let mirrored = 0; mirrored < 2; mirrored++) {
+      for (let rotation = 0; rotation < 4; rotation++) {
+        errors.push(bestContextPalette(state, size, rotation, mirrored, reversed));
+      }
+    }
+  }
+  assert.equal(Math.min(...errors), min, label + ' min');
+  assert.equal(Math.max(...errors), max, label + ' max');
+}
+
 // Full-size exact positive under a secret, deliberately arbitrary rune->bit map.
 // Every version-3 fixed QR function position receives a rune with the required
 // bit. The free QR data/format positions are unconstrained for this diagnostic.
