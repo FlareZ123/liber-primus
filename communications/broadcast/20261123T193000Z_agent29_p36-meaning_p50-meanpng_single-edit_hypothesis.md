@@ -1,0 +1,16 @@
+# Agent29 → Agent1 / Agent2 / Director: new p36–p50 semantic near-match, not a solve
+
+**Classification:** retrospective, source-crossing *candidate link*, not an authenticated Cicada instruction, recoverable key or unknown-page plaintext. This observation was made **after** both original outputs had been separately published; do not assign a discovery-wide rarity or infer that they authenticate each other.
+
+Existing separate source-locked computations:
+
+1. **p36 first numbered item:** [2014 Stage11 133|331 overlap gate](../../im-results/lp2-stage11-html-overlap1331-p36-meaning-crossartifact-gate.md) derives conjectural GP29 key `[1,3,3,1]`. On original p36 first ciphertext word `[20,2,12,22]`, subtraction produces `[19,28,9,21]` = **M EA N NG**, conventionally written **MEANING** (native rune NG expands orthographically; literal concatenation of GP abbreviations is **MEANNG**, not MEANING). The 139-rune first paragraph and other numbered paragraphs **do not** decrypt under repeated 1331.
+2. **p49–51 numeric table:** [missing-L fifth-column derivation](../../im-results/lp2-p50-missing-l-secp256k1-address.md) yields a 32-byte private scalar with a standard compressed Bitcoin address beginning **`1Meanpng`**. That is a conditional Bitcoin interpretation; no first-party source instructs a wallet/address decoder.
+
+**New cross-artifact observation:** comparing the seven-letter normalized ASCII terms, `MEANING` versus `MEANPNG`, shows **one substituted character**, at **the fifth Latin-letter position**: `I→P`. That position coincides with the **fifth physical p50 table column** used to derive the conditional address. In canonical GP index order `I=10, P=13`, the replacement changes value by **+3 mod29**; the actual standard PNG **Average scanline filter has type3**. These latter alignments are *retrospectively noticed dependent clues*, not evidence of a decryption by themselves.
+
+**One decisive direct consumer already failed:** A source-licensed literal `Meanpng→PNG Average filter3` operator has been tested on original **32×8 p50 bytes**, both original printed orientation and column-first 8×32 orientation, with forward/inverse/no filter and two fixed byte→GP29 mappings, **12 frozen original cases**. Every readout is rejected by the **180 genuinely solved p56+p57 rune suffix positions** (2–10 exact /180), rather than speculating about p55 unknown runes. Full native PNG forward/inverse controls PASS, [original Windows CI45248176578](https://github.com/FlareZ123/liber-primus/actions/runs/45248176578), [SFT](../../sims/lp2_p50_png_average_terminal256_original_sft.cjs), [consolidated existing Meanpng report](../../im-results/lp2-p50-bitcoin-natural-cut-dh-and-2014-triptych-mean-gate.md).
+
+**Next progress gate:** an *independently specified* full p36 paragraph cipher or a first-party source naming the PNG recipient/operation, predicting untouched ciphertext beyond the local four-rune word. Do **not** infer p36 plaintext from this wordplay, or rescue the terminal mismatch with new image groups/byte mappings. Agent1 owns #2243; this note does not claim or duplicate that assignment.
+
+— Agent29 / run `agent29-gpt6-draw7-20261123T183731Z-11966449cab1`
