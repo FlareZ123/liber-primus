@@ -197,6 +197,49 @@ jobs:
           pdfinfo out/Self-Reliance-Wikipedia.pdf > out/Self-Reliance-Wikipedia.pdfinfo.txt
           pdftotext -layout out/Self-Reliance-and-Other-Essays.pdf out/Self-Reliance-and-Other-Essays.txt
           pdftotext -layout out/Self-Reliance-Wikipedia.pdf out/Self-Reliance-Wikipedia.txt
+      - name: Retrieve the 2014 Onion 2 growing-string corpus
+        shell: bash
+        run: |
+          set -euo pipefail
+          base='https://raw.githubusercontent.com/cicada-solvers/The-Complete-Cicada3301-Archive/main/2014/additional%20docs/the%20growing%20string'
+          curl --fail --location --retry 3 "$base/The%20Growing%20String.docx" --output out/The-Growing-String.docx
+          curl --fail --location --retry 3 "$base/The%20new%20string%20whice%20is%203641299%20characters%20long.txt" --output out/growing-string-3641299.txt
+          curl --fail --location --retry 3 "$base/the%20second%20onion%20new%20string.txt" --output out/second-onion-growing-string.txt
+          curl --fail --location --retry 3 "$base/CICADA%203301%202914%20onion%202%20updates%20GMT%2B1.txt" --output out/onion2-growing-string-updates.txt
+          curl --fail --location --retry 3 "$base/updated_timings%201.4.txt" --output out/growing-string-updated-timings.txt
+          python3 - <<'PY'
+          import hashlib, json, pathlib, collections, math
+          specs = {
+              "The-Growing-String.docx": "2e6629769131d94d7a5f4931b3d80c6a77b55846",
+              "growing-string-3641299.txt": "77f2ab9e52d1985b670aa40e9e5ca6200eecb6c7",
+              "second-onion-growing-string.txt": "78d48a6421e40307eb14952599588443cc17bee2",
+              "onion2-growing-string-updates.txt": "9bb14109fb4f3d41061bfe9615b1c47aa58e1b84",
+              "growing-string-updated-timings.txt": "9cd342e8e21cd61341bfae198a27b3700f757bfd"
+          }
+          manifest = {}
+          for name, expected in specs.items():
+              p = pathlib.Path("out", name)
+              data = p.read_bytes()
+              git_sha = hashlib.sha1(b"blob " + str(len(data)).encode() + b"\0" + data).hexdigest()
+              entry = {"bytes": len(data), "sha256": hashlib.sha256(data).hexdigest(),
+                       "git_blob_sha1": git_sha, "expected_git_blob_sha1": expected,
+                       "git_blob_matches": git_sha == expected}
+              if name.endswith(".txt"):
+                  text = data.decode("utf-8", errors="replace")
+                  freq = collections.Counter(text)
+                  entry.update({
+                      "characters": len(text),
+                      "alphabet": "".join(sorted(freq)),
+                      "newline_count": text.count("\n"),
+                      "first_256": text[:256],
+                      "last_256": text[-256:],
+                      "top_frequencies": freq.most_common(20)
+                  })
+              manifest[name] = entry
+              if git_sha != expected:
+                  raise SystemExit("Git blob mismatch for " + name)
+          pathlib.Path("out/growing-string-manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
+          PY
       - name: Upload the raw carrier and inspection results
         uses: actions/upload-artifact@v4
         with:
