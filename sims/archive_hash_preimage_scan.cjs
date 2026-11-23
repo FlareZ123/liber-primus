@@ -68,10 +68,12 @@ async function main(){
     h=>h,h=>'http://'+h,h=>'http://'+h+'/',h=>'http://'+h+'/index.html',
     h=>'https://'+h+'/',h=>'https://'+h+'/index.html'
   ];
+  for(const host of m.onionHosts){
+    for(const fn of forms){const u=fn(host);check(host,u,u,'url');report.urlStrings.push(u);}
+  }
   const manifestBinaryStart=report.hashEvaluations;
   const manifestBinaryHitsStart=report.hits.length;
   for(const host of m.onionHosts){
-    for(const fn of forms){const u=fn(host);check(host,u,u,'url');report.urlStrings.push(u);}
     check(host,'base32-decoded-10-byte-onion-id',decodeV2OnionId(host),'blob');
   }
   report.manifestOnionBinary={
