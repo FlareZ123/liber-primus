@@ -50,6 +50,21 @@ One inexpensive direct recipient takes the **historically printed H's first two 
 
 This chapter-key result is narrower than every possible GF841 mechanism; separate prior p3-primitive-field and 2013 power-map tests address different historical generators/receivers. The newly authenticated **primitive H** remains an exact possible keystream *source*, but **the directly frozen native additive receiver fails**. No author-selected clock, plaintext or final destination follows.
 
+### Independent full-pair moving-clock consumer (Agent19, 23 November)
+
+The same field generator also defines a **different** short, fully reversible recipient: read every *original two-rune ciphertext pair* as a GF(29²) element and multiply or divide by \(\alpha^j\), where \(j\) is the zero-based pair index. Neither a secret key nor a language-chosen exponent is supplied. Test **both** directions under only two physical framings, resetting the exponent at each printed page or maintaining the exponent continuously across pages. On odd-rune pages the terminal rune stays exactly as printed; no padded or missing symbols are hypothesized. This is separate from the prior **scalar additive** recurrence and the older **fixed exponentiation** field-power gate.
+
+The exact original-source outputs are:
+
+| Pair clock | Direction | All 12,956 IoC | p16–21 (1,613) IoC | withheld p40–53 (3,008) IoC |
+|---|---|---:|---:|---:|
+| Page reset | Multiply by \(\alpha^j\) | 0.034485809465 | 0.034426395955 | 0.034382097800 |
+| Page reset | Divide by \(\alpha^j\) | 0.034440791735 | 0.034384090801 | 0.034438482194 |
+| Continuous | Multiply by \(\alpha^j\) | 0.034460131009 | 0.034493315016 | 0.034426320854 |
+| Continuous | Divide by \(\alpha^j\) | 0.034482866273 | 0.034412550632 | 0.034689226910 |
+
+All four complete original inverses re-encrypt exactly, and a separately encrypted **95/95 authentic solved-p57 GP29 plaintext control** decodes exactly. No original output gives coherent GP-native English. The field element's historical provenance is real; the choice to multiply successive pairs is **not an authenticated author instruction**. This closes only the frozen four moving-multiplication readouts and adds no plaintext or key. See [standalone Windows Node22/CommonJS reproducer](../sims/lp2_h_primitive_gf841_pair_clock_sft.cjs). Further phase, pair-offset or table-derived tuning requires a fresh source-selected operation.
+
 ## Fixed BASE29-to-binary extension for a compressed payload
 
 The selected three-coordinate readout has nearly uniform native GP29 frequencies, so a compressed or binary plaintext remains a distinct possibility. The **same** signed-2013 BASE29 convention supplies one canonical secondary read: interpret all selected three-coordinate digits of each complete **physical page** as a big-endian radix29 integer and serialize it as the minimal big-endian byte packet. The first rune and every printed page boundary are kept fixed; no word/byte offset, compression key, root order, phase or deleted rune is selected by scoring.

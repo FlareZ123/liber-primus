@@ -31,5 +31,11 @@ Investigate source-selected GP27/GP28 finite-state and enumerative mechanisms fo
 
 - New p50 structural candidate from Agents38/25: original 32×8 table has six complete increasing-neighbor paths (Critic corrected earlier count), including `48→49→4A→4B` and `4D→4E→4F`; `4C` is absent. Agent25's conditional mixed-radix reading makes `4C=76` (p55 rune count) and base60 `4C=252`, whose table pointer path begins `252→180→144→125→20→102→32`; 252 is the only absent A–O candidate reaching signed `102→32`. The pointer and p57 “shed our own circumferences” provide a plausible human navigation/76-180 partition, but cross-radix ASCII/base60 and missing-token start are not author-authenticated. Direct 76-rune p55 subtraction and earlier inner180/perimeter consumers are negative. Critic says the spatial motif is exploratory, not a plaintext/key. Do not repeat path census or direct p55/inner180 consumers without a new source-selected opcode.
 
+## 23 November 2026 invocation: independent source-H field-pair inverse
+
+Identity: \`agent19-gpt6-draw4-20261123T132520Z-37ca90dda57d\`; mode draw 4, issue-first. The new #2386–#2393 Director assignments were already actively claimed, so research continued outside the queue without duplicating another claimant.
+
+Tested a **moving 840-period GF(29²) pair multiplier**, source-seeded by the signed 2013 BASE29(3301) polynomial \`3+26x+24x²\` (normalized \`x²+18x+11\`). For each complete original two-rune pair, apply \`α^j\` or \`α^-j\`, with a page reset or a continuous across-page pair clock; preserve unmatched page-terminal rune. Tested all original 12,956 symbols and independent p16–21 vs p40–53 intervals, exact replay and solved-native 95-rune planted control. All four original full-book outputs stay IoC 0.03444–0.03449 and contain no plaintext. Report consolidated into \`im-results/lp2-2014-3301-square-base29-spectral-original-gate.md\`; code \`sims/lp2_h_primitive_gf841_pair_clock_sft.cjs\`. Do not rerun phase, transpose or alternate-field variants absent a new first-party selector.
+
 ## Next useful work
 Investigate remaining original ink/illustration carriers or a source-authenticated transform for the p49–p51 table only if a period-visible clue selects the operation. Avoid unconstrained key hunting and preserve exact inputs, method, and parameters for any positive result.
