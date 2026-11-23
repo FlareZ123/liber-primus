@@ -195,6 +195,71 @@ console.log('SIGNED_2013_TO_2014_MATRIX_AND_P50_TRIANGLE', JSON.stringify({
   evidence: 'Three exact source objects; coefficients versus roots are distinct; no plaintext'
 }));
 
+
+// Signed-BASE29 H also defines a primitive degree-two GF29 element. Its
+// recurrence gives a complete, source-fixed 840-symbol candidate pad clock.
+/** @param {[number,number]} a @param {[number,number]} b @returns {[number,number]} */
+function alphaMul(a, b) {
+  return [mod(a[0]*b[0]+18*a[1]*b[1]),
+    mod(a[0]*b[1]+a[1]*b[0]+11*a[1]*b[1])];
+}
+/** @param {number} exponent @returns {[number,number]} */
+function alphaPower(exponent) {
+  /** @type {[number,number]} */
+  let out = [1,0];
+  /** @type {[number,number]} */
+  let base = [0,1];
+  while (exponent > 0) {
+    if (exponent % 2 === 1) out = alphaMul(out, base);
+    base = alphaMul(base, base);
+    exponent = Math.floor(exponent/2);
+  }
+  return out;
+}
+assert.deepEqual(alphaPower(840), [1,0]);
+assert.deepEqual(alphaPower(420), [28,0]);
+assert.deepEqual(alphaPower(280), [12,3]);
+assert.deepEqual(alphaPower(168), [18,13]);
+assert.deepEqual(alphaPower(120), [25,0]);
+/** @param {number} n @returns {number[]} */
+function hRecurrence(n) {
+  const values = [3,26];
+  for (let i = 2; i < n; i++)
+    values.push(mod(11 * values[i-1] + 18 * values[i-2]));
+  return values.slice(0,n);
+}
+assert.deepEqual(hRecurrence(842).slice(840), [3,26]);
+const originalChapters = [[0,2],[3,7],[8,14],[15,22],[23,26],
+  [27,32],[33,39],[40,53],[54,55]];
+const hClockResults = originalChapters.map(([start,end]) => {
+  const originalPage = source.pages.filter(p => p.page >= start && p.page <= end)
+    .flatMap(p => p.indices);
+  const pad = hRecurrence(originalPage.length);
+  const outputs = [-1,1].map(sign =>
+    originalPage.map((v,i) => mod(v+sign*pad[i])));
+  for (let j = 0; j < 2; j++) {
+    const sign = [-1,1][j];
+    assert.deepEqual(outputs[j].map((v,i) => mod(v-sign*pad[i])), originalPage);
+    assert.ok(ioc(outputs[j]) < 0.040, 'original H recurrence must stay flat');
+  }
+  return {pages:start+'-'+end,n:originalPage.length,ioc:outputs.map(ioc)};
+});
+const sourceNativeTest = source.pages[57].indices;
+const nativeKey = hRecurrence(sourceNativeTest.length);
+for (const sign of [-1,1]) {
+  const ciphertext = sourceNativeTest.map((v,i)=>mod(v-sign*nativeKey[i]));
+  assert.deepEqual(ciphertext.map((v,i)=>mod(v+sign*nativeKey[i])),
+    sourceNativeTest);
+}
+console.log('SIGNED_H_PRIMITIVE840_NATIVE_KEY_GATE', JSON.stringify({
+  primitiveElementAlpha:'root of signed 3QO polynomial',
+  rootPowers: {e420:alphaPower(420),e280:alphaPower(280),
+    e168:alphaPower(168),e120:alphaPower(120),e840:alphaPower(840)},
+  publicSeed:[3,26], keyFirst16:hRecurrence(16),
+  chapters:hClockResults, plantedP57NativeRUNEPositions:sourceNativeTest.length,
+  evidence:'full 840-period primitive; direct source-defined pad remains nonlinguistic'
+}));
+
 const decodePages = (start, end) => source.pages
   .filter(p => p.page >= start && p.page <= end)
   .flatMap(p => extract(p.indices, W));
