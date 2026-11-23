@@ -42,7 +42,7 @@ function sub(X,Y) {
 }
 /** @param {number[][]} X @param {number} k @returns {number[][]} */
 function scale(X,k) {return X.map(r => r.map(x => mod(x*k)));}
-const numerals = [...historic.matchAll(/\\d+/g)].map(x=>Number(x[0]));
+const numerals = [...historic.matchAll(/\d+/g)].map(x=>Number(x[0]));
 assert.equal(numerals.length,99);
 const A = Array.from({length:5},(_,i)=>numerals.slice(i*5,i*5+5));
 for(const row of A) assert.equal(row.reduce((a,b)=>a+b),3301);
