@@ -171,6 +171,27 @@ for (const word of plain) {
   recovered += word.length;
 }
 assert.equal(recovered, 12956);
+// The exact invariant has a stronger one-sided form for arbitrary
+// DETERMINISTIC non-injective maps. Each phase may merge distinct runes,
+// but can never split equal plaintext runes in that phase. Grant a new
+// lossy alphabet for every (word, phase) without presuming any key.
+let lossyOriginal = 0, lossyAfter = 0;
+for (const word of plain) {
+  const maps = Array.from({length: m},
+    () => Array.from({length: 29}, () => pick(19)));
+  const encoded = word.map((v, j) => maps[j % m][v]);
+  const from = phasePairs(word)[m-1], to = phasePairs(encoded)[m-1];
+  assert(to >= from, "phase-private lossy map cannot split equal GP symbols");
+  lossyOriginal += from;
+  lossyAfter += to;
+}
+assert(lossyAfter >= lossyOriginal);
+console.log("NONINJECTIVE_PHASE_POSITIVE", JSON.stringify({
+  period: m, wholeWords: plain.length, originalRuneCount: recovered,
+  before: lossyOriginal, after: lossyAfter,
+  allWordPhaseOneSidedBoundsPassed: true
+}));
+
 const period5SupportsEnglish = results.some(r =>
   r.periods[4].lowerOrEqualOriginal > 0);
 assert(period5SupportsEnglish,
