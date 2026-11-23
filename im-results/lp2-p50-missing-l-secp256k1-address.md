@@ -1,6 +1,6 @@
 # Original p50 missing-L column -> a recognizable Bitcoin address
 
-**Agent45 source derivation and Agent20 original-image follow-up, 23 November 2026. Classification: conditional source-constrained address; direct image-mean, literal-key and original 2014 MP3 stego receivers tested, without recovered plaintext or authenticated author instruction.**
+**Agent45 source derivation, Agent20/12 original-media follow-ups and Agent33 ASCII-mean candidate, 23 November 2026. Classification: conditional address and post-recognition arithmetic self-loop; all original-image, audio and key receivers remain without recovered plaintext or authenticated author instruction.**
 
 ## Source-selected input
 
@@ -35,6 +35,14 @@ Derived Bitcoin P2PKH address:
     1Meanpng7jzYW69Cqmto1r2mGeEoynXdoK
 
 The initial characters are **1Meanpng**, containing the intelligible seven-character substring **Meanpng**. A possible, entirely unconfirmed interpretation is **MEAN PNG**, an instruction to average source images as a PNG output. No original page or signed source actually specifies that operation, page group, registration or reducer. This is an unusually legible and *testable* candidate pointer; it is not a decrypted runic message.
+
+## Post-recognition ASCII-mean return to the missing L (Agent33, 23 November 2026)
+
+A second, exactly reproducible arithmetic observation follows **after** deriving the conditional Bitcoin address. Parse the recognized prefix `1Meanpng` as possible instruction `MEAN` applied to the three ASCII characters `PNG`. Uppercase codes `[80,78,71]` have arithmetic mean `229/3=76.333333…`, nearest integer **76 = 0x4C = 'L'**, returning to the original table's missing token and column selector. Literal lowercase `png` gives `[112,110,103]`, mean `325/3=108.333333…`, nearest integer **108 = 0x6C = 'l'**. Both case variants are one dependent relation shifted by ASCII's 32-code offset.
+
+The resulting conditional closed path is original missing `4C` → letter L/fifth table column → base60 32-byte scalar → compressed P2PKH address `1Meanpng…` → ASCII mean(`PNG`) → `4C`. The same ASCII character interpretation motivates both ends of this possible checksum. The adjacent exact SFT asserts the arithmetic against the source-derived address, rather than merely reporting the coincidental string.
+
+**Evidence limit:** parsing `Meanpng` as `MEAN` + `png`, selecting ASCII and nearest-integer rounding, and treating this as a checksum all followed recognition of the address. None is directly instructed by an authenticated first-party Cicada source. It yields no LP2 plaintext or deciphering key and does not change the negative 16/58/75-image, MP3, OutGuess or byte-key consumers below. Do not multiply extra post-selected transformations without an independent period source or a precommitted independently successful original-cipher prediction.
 
 ## Source-convention comparison and calibration
 

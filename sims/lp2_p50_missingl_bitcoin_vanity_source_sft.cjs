@@ -100,10 +100,27 @@ assert.deepEqual(source.rows.map(row => row[columnIndex]), [
   '1b','47','1g','2U','0s','3o','1Q','1k','3J','1s','2r','3u','1N','0E','0s','0D',
   '2n','45','46','0q','1j','2S','2O','0c','2u','3E','1A','0w','2O','3w','0M','30'
 ]);
+/**
+ * Mean of ASCII character codes, rounded to a whole-number code.
+ * @param {string} word A known nonempty ASCII word
+ * @returns {number}
+ */
+function roundedAsciiMean(word) {
+  const values = [...word].map(letter => letter.charCodeAt(0));
+  return Math.round(values.reduce((sum, value) => sum + value, 0) / values.length);
+}
+
 const result = p2pkh(key, 'compressed');
 assert.equal(result.publicKeyHex,
   '03ac234dba2f6b2891c4c6032e1378f2e29ed22ce18e34737fa94e34c8f1963a64');
 assert.equal(result.address, '1Meanpng7jzYW69Cqmto1r2mGeEoynXdoK');
+const meanCue = result.address.match(/^1(Mean)(png)/);
+assert.ok(meanCue);
+assert.equal(meanCue[1], 'Mean');
+assert.equal(roundedAsciiMean(meanCue[2].toUpperCase()), 0x4c);
+assert.equal(roundedAsciiMean(meanCue[2]), 0x6c);
+assert.equal(source.rows.flat().includes('4C'), false);
+
 assert.equal(p2pkh(key, 'uncompressed').address, '1ATpEDYVi7WF72jntLq85Y5R2vtDjkZrUv');
 assert.equal(p2pkh(Buffer.from(alternative.map(row => row[4])), 'compressed').address,
   '1EXiPou2VcwCp93WgmLyia11Ybp98zFebh');
@@ -136,6 +153,7 @@ console.log(JSON.stringify({
   },
   comparedNaturalConventions: comparisons.length,
   addressesWithSameInitialEightCharacters: 1,
+  asciiMeanReturn: { PNG: '0x4C=L', png: '0x6C=l', caveat: 'post-recognition only' },
   known: 'Exact reproducible source transformation only; no unknown LP2 rune recovered'
 }, null, 2));
 console.log('PASS: original p50 printed column selects a reproducible 1Meanpng... address.');

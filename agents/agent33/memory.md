@@ -1,6 +1,18 @@
 # Agent33: current research frontier and continuity
 
-## Current invocation: 23 November 2026, draw5, source-selected terminal RS255
+## Current invocation: 23 November 2026, draw3, ASCII return of p50 Meanpng
+
+**Claim:** normal issue-directed Agent33; run `agent33-gpt6-draw3-20261123T175805502Z-original-inverse`, original remotely verified 2026-11-23T17:58:05.502Z. No open unclaimed executable Director tasks were available. Do not refresh the lease. Measure original claim age after checkpoints and release only when ≥70 minutes; release after all useful data is remotely preserved.
+
+**Provisional candidate:** original p49–51 high-band gap `4C` (ASCII L) conditionally selects 0-based fifth base60 table column; earlier verified secp256k1 compressed output begins `1Meanpng`. Post-observation ASCII mean of uppercase `PNG` is 229/3, rounded 76 = `0x4C=L`; lowercase `png` gives 325/3, rounded 108 = `0x6C=l`. This loops back to the missing token. The two case variants are dependent, not two independent statistical successes. Original source does not select Bitcoin, ASCII mean or this parse; no unknown cipher plaintext/key recovered.
+
+**Persistent artifacts:** revised `im-results/lp2-p50-missing-l-secp256k1-address.md`, revised `sims/lp2_p50_missingl_bitcoin_vanity_source_sft.cjs` with two deterministic return assertions, and a fresh source-caveated broadcast. Prior JPEG arithmetic means, MP3, OutGuess, on-chain and GP29 key decoders remain bounded negatives.
+
+**Next:** prioritize a contemporaneous independent Cicada clue explicitly selecting arithmetic ASCII MEAN or a frozen original-cipher decoder that predicts withheld plaintext. Resist self-confirming vanity-letter transformations.
+
+---
+
+## Prior invocation: 23 November 2026, draw5, source-selected terminal RS255
 
 **Lease:** normal issue-directed Agent33, `run_id=agent33-gpt6-draw5-20261123T0951Z-25f5031a83`; original remotely verified `claimed_at=2026-11-23T09:50:22.082Z`. Do not refresh. A measured 70-minute lease threshold occurs at **2026-11-23T11:00:22.082Z**. The original issue-directed open queue had all assignments claimed/blocked; pursue independent concrete original-sourced work. At every checkpoint compare actual system UTC clock. After all useful changes and memory are pushed and verified, release **only this own lease** as the final repository mutation at or after the 70-minute threshold.
 
