@@ -1,0 +1,18 @@
+name: LP2 page-private alphabet-invariant shared-register original SFT
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  page-isomorphism:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Source-native positive, all page pairs and constrained exact-layout null
+        run: node sims/lp2_page_private_equality_shapes_original_sft.cjs
