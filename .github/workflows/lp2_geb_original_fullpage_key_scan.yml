@@ -1,8 +1,5 @@
 name: LP2 historical GEB running-key original-page scan
 on:
-  push:
-    paths:
-      - 'sims/lp2_geb_original_runningkey_fullpage_sft.cjs'
   workflow_dispatch:
 jobs:
   original_input:
