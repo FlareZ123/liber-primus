@@ -54,10 +54,17 @@ def lp2_pages() -> list[np.ndarray]:
 
 def original_streams() -> list[tuple[str, np.ndarray]]:
     folder = ROOT / "outguess-results"
+    include_lp1 = os.environ.get("OUTGUESS_INCLUDE_LP1") == "1"
+    allowed_pages = set(range(17, 75))
+    if include_lp1:
+        # Three earlier solved-LP1 scans also yield the same 58,152-byte
+        # default-key extraction shape; test them as independent source streams.
+        allowed_pages.update({6, 7, 9})
     streams = sorted((p.name, np.frombuffer(p.read_bytes(), dtype=np.uint8))
                      for p in folder.glob("*.payload")
-                     if p.stem.isdigit() and 17 <= int(p.stem) <= 74)
-    assert len(streams) == 16, len(streams)
+                     if p.stem.isdigit() and int(p.stem) in allowed_pages)
+    expected = 19 if include_lp1 else 16
+    assert len(streams) == expected, (expected, [name for name, _ in streams])
     assert all(len(data) == 58152 for _, data in streams)
     return streams
 
@@ -124,7 +131,10 @@ def main():
     heldout = gp_encode(source[pivot:])
     weights = np.log((np.bincount(train, minlength=29) + 2) / (len(train) + 58))
     table = score_table(weights)
-    assert keys[0][:3] == ("17.payload", "mod29", "forward")
+    include_lp1 = os.environ.get("OUTGUESS_INCLUDE_LP1") == "1"
+    planted_key = next((key for key in keys
+                        if key[:3] == ("17.payload", "mod29", "forward")), None)
+    assert planted_key is not None
 
     report = {
         "source_sha256": hashlib.sha256((ROOT / "resources/lp2-transcription.txt").read_bytes()).hexdigest(),
@@ -134,6 +144,8 @@ def main():
         "total_pages": len(pages),
         "total_runes": sum(map(len, pages)),
         "source_streams": len(streams),
+        "include_lp1_sources": include_lp1,
+        "lp1_key_pages": [6, 7, 9] if include_lp1 else [],
         "settings_per_page_before_offsets": len(keys) * 2,
         "pages": []
     }
@@ -143,7 +155,7 @@ def main():
     assert len(plain) == 262
     start = 12345
     encrypted = (plain.astype(np.uint16) +
-                 keys[0][3][start:start + 262].astype(np.uint16)) % 29
+                 planted_key[3][start:start + 262].astype(np.uint16)) % 29
     positive = all_settings(encrypted.astype(np.uint8), keys, table)
     assert positive[0][1:] == ("17.payload", "mod29", "forward", "minus", start)
     report["control"] = {
