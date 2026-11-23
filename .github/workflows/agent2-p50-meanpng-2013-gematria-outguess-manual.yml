@@ -1,0 +1,27 @@
+name: Agent2 genuine 2013 Gematria JPEG full p50 address OutGuess
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-2013-source-outguess:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pin historical OutGuess 0.4 native binary
+        shell: bash
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y autoconf automake libtool build-essential libjpeg-dev
+          git clone --depth 1 https://github.com/resurrecting-open-source-projects/outguess.git /tmp/outguess
+          git -C /tmp/outguess fetch --depth 1 origin 24810e14327c2bbeedeaadd3e24491f2a4425c02
+          git -C /tmp/outguess checkout --detach 24810e14327c2bbeedeaadd3e24491f2a4425c02
+          cd /tmp/outguess
+          ./autogen.sh
+          CFLAGS='-O2 -std=gnu11' ./configure --with-generic-jconfig
+          make -j2 CC='gcc -std=gnu11' CFLAGS='-O2 -std=gnu11'
+          sudo make install
+      - name: Authenticate complete original-image source and one P2PKH candidate
+        shell: bash
+        run: node sims/lp2_2013_gematria_meanpng_fulladdress_outguess_sft.cjs
