@@ -64,7 +64,7 @@ function centreSpiral(h, w) {
     out.push(p);
   }
   mark();
-  for (let n = 1; out.length < h * w; n++) {
+  for (let n = 1; out.length < h * w; n += 2) {
     const directions = [[0, 1, n], [1, 0, n], [0, -1, n + 1], [-1, 0, n + 1]];
     for (const [dr, dc, count] of directions) {
       for (let step = 0; step < count; step++) {
