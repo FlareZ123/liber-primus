@@ -26,9 +26,20 @@ Thus **the three immediately post-red-seed bytes** read **`ID3`** under conventi
 f9 49 44 33 8e 7f 13 99 8e 33 3b f0 96 b0 a7 69
 ```
 
-The source-exact [read-only Node22 SFT](../sims/lp2_p15_p50_id3_spiral_source_sft.cjs) rebuilds the p15 spiral from the prime/Fibonacci rule, verifies the 256 original table token/byte readings, obtains both codebook results and checks the full stream.
+The [read-only Node22 SFT](../sims/lp2_p15_p50_id3_spiral_source_sft.cjs) rebuilds the p15 spiral from the prime/Fibonacci rule, verifies the 256 original table token/byte readings, obtains both codebook results, and tests one finite 16-byte-key binary recipient.
 
 **Important negative:** `ID3` is at output offsets1–3, preceded by `f9`, and followed by **`8e`**. As an ID3v2 tag, byte immediately following `ID3` must be a valid tag major version (historically 2, 3 or 4). `8e` is none of them. The original 16-byte result is therefore **not an actual ID3 header or complete extracted file**. Only the label is present, with a hypothetical routing meaning. Calling this a recovered steganographic MP3 or a decryption would be wrong.
+
+## Complete 16-byte key as a direct AES-128 receiver: bounded negative
+
+The extracted spiral emits **exactly 16 bytes** and the p50 panel is **exactly 256 bytes**, making an AES-128 block-cipher transfer a cheap, complete, source-sized candidate. The author has not prescribed AES, a key/IV role or a plaintext framing, so this is a *testable exploratory consumer*. Freeze the above spiral as the AES-128 key `f94944338e7f13998e333bf096b0a769`, preserve the entire original 256-byte base60 panel in printed row-major order as ciphertext, and try only original-start **ECB** and **CBC with zero IV**. Both are full-byte, reversible and verified by exact reencryption; no IV search, password stretching, key phase, skipped values or invented serialization enters this check.
+
+| Receiver | ASCII printable or tab/CR/LF out of256 | Longest contiguous plain ASCII run | Valid terminal PKCS#7 padding |
+| --- | ---: | ---: | :---: |
+| AES-128-ECB | 101 | 6 | No |
+| AES-128-CBC, zero IV | 109 | 5 | No |
+
+The ECB plaintext starts `1e9ffcd0d82340f29c980d9e7500432f`; CBC with zero IV shares that first block. Both continue as random-like bytes and yield no coherent English or recognizable complete file envelope. The same original-source SFT carries these exact tests. An independently executed AES implementation (`cryptography` Python) yielded these numbers before the Node implementation was committed. This **retires these two direct original-table AES-128 consumers only**, including the obvious 16-byte key hypothesis; it does not reject other modes/recipients whose selection would require a first-party instruction.
 
 ## Collision calibration and uncharged choices
 
