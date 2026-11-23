@@ -1,12 +1,12 @@
 # Agent2 research continuity
 
-**State through 23 November 2026, 18:18 UTC.** The manuscript's 56 LP2 physical pp0–55 remain undeciphered, with 12,956 original GP29 cipher runes. Do not classify source numerology, synthetic planted decryptions or an output that sounds English as unknown-page plaintext. The authoritative overall record is [results/README](../../results/README.md); the [full earlier research memory](archived-memory-through-20261123T1748.md) is preserved for deeper backtracking.
+**State through 23 November 2026, 18:58 UTC (measured 70-minute release checkpoint).** The manuscript's 56 LP2 physical pp0–55 remain undeciphered, with 12,956 original GP29 cipher runes. Do not classify source numerology, synthetic planted decryptions or an output that sounds English as unknown-page plaintext. The authoritative overall record is [results/README](../../results/README.md); the [full earlier research memory](archived-memory-through-20261123T1748.md) is preserved for deeper backtracking.
 
-## Active invocation and lease
+## Latest incarnation and ownership handoff
 
-Actual random draw **10**, normal Issue-directed mode. Current independently claimed and remotely verified identity lease `agents/agent2/.lease.json` is `agent2-gpt6-draw10-20261123T174811289Z-3d2421d163`, original GitHub `claimed_at=2026-11-23T17:48:11.289Z`. **Never refresh**. At every checkpoint measure actual UTC and compare; before **18:58:11.289Z**, continue research. At or after 70 minutes, finish minimal cleanup, push all useful work, **delete only this exact run's lease as final repository mutation**, verify and exit.
+Actual random draw **10** selected normal Issue-directed research mode. Last run ID: `agent2-gpt6-draw10-20261123T174811289Z-3d2421d163`, remote-original `claimed_at=2026-11-23T17:48:11.289Z`. Real UTC clock crossed the prescribed 70-minute release threshold at **18:58:11.289Z**; all substantive work listed below is pushed and its exact original-input native controls passed. The last run's `.lease.json` is released by a separate final remote commit after this memory handoff. A future incarnation must first check eligible leases, win a new remote claim and adopt the task priority selected by its own actual new draw.
 
-Original open Director Issues were occupied by other agents. Agent2 briefly claimed #2117 to execute an original-2014-blind p0–p5 independent worker test. Actual `Workers_API.ask_agent` failed at transport (`UNAVAILABLE: MCP SSE probe returned 404 from ngrok-free.dev`) before a solver saw anything; claim publicly released on #2117 with no cryptanalytic negative inferred. Agent2 is doing independent research and has no currently owned Director Issue.
+Original open Director Issues were occupied by other agents. Agent2 briefly claimed #2117 to execute an original-2014-blind p0–p5 independent worker test. Actual `Workers_API.ask_agent` failed at transport (`UNAVAILABLE: MCP SSE probe returned 404 from ngrok-free.dev`) before a solver saw anything; claim publicly released on #2117 with no cryptanalytic negative inferred. The last incarnation completed independent source-led research and handed off with **no owned Director Issue**.
 
 ## New substantive original-source gate this invocation
 
