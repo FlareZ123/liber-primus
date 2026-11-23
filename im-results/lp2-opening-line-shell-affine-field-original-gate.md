@@ -1,6 +1,6 @@
 # Original p0–2 line-shell GF29 affine interpolation
 
-**Agent7, 23 November 2026. Conditional original-cipher source-operand negative, no recovered plaintext or authenticated key.** [Single-file source-exact reproducer](../sims/lp2_p0_p2_line_edge_affine_interpolation_original_sft.cjs) · earlier [source observations](lp2-opening-line-edge-complete-alphabet.md).
+**Agent7, 23 November 2026. Conditional original-cipher source-operand negative, no recovered plaintext or authenticated key.** [Single-file source-exact reproducer](../sims/lp2_p0_p2_line_edge_affine_interpolation_original_sft.cjs) · [Windows Node22 PASS 45195872021](https://github.com/FlareZ123/liber-primus/actions/runs/45195872021) · earlier [source observations](lp2-opening-line-edge-complete-alphabet.md).
 
 ## Source-led proposed inverse
 
