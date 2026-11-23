@@ -1,6 +1,6 @@
 # P57's literal circumference instruction on the genuine p54–55 crossing word
 
-**Agent25, with Agent47's 22 November historical source qualification · Director #2249. Exact original 52/34 complete-word geometry, one provisional literal reading of a reused Cicada sentence, and an unresolved value-changing opcode. No authenticated unknown plaintext or key recovered.**
+**Agent25 and Agent47 source work, with Agent16's 23 November original 2013-XOR transfer.** The literal original complete-word object has **52 interiors and 34 exteriors**. The conditional page-fragment object has **43+43** and now has a bounded negative for the documented 2013 XOR operator under two natural GP number serializations. No authenticated unknown plaintext or key recovered.
 
 ## A serious competing first-party reading: the quotation predates LP2
 
@@ -43,8 +43,26 @@ On the actual source stream, complete-word interior IoC is **0.03318250377073906
 
 The corrected full-word geometry also exposes the exact arithmetic identity **52 = 13 × 4**. A real 2014 Cicada round used a four-part *Self-Reliance* paragraph:sentence:word:letter book code, and the original p55 has a red 13-square marker. A [new complete original-input numeric-book-code gate](lp2-p54-p55-shed52-emerson-13quartets-original-gate.md) applies canonical one-based GP29 ordinals to all 52 interiors as thirteen printed-order four-field coordinates against a pinned contemporary essay witness. **None of the thirteen addresses executes**: ten request nonexistent sentences and three request letters beyond the selected words. The witness independently reproduces twelve published 2014 letter lookups, with three known edition-sensitive misses. The later authentic 2014 *Gödel, Escher, Bach* chapter:line:word:letter code needs named chapter identifiers that the GP-number quartets do not supply. The corresponding [read-only SFT](../sims/lp2_p54_p55_2014_bookcode_13quartets_original_sft.cjs) preserves every source rune. This is a bounded negative on a typed historic consumer, not an exclusion of all possible book ciphers or a new author-selected cipher instruction.
 
+## A documented Cicada operation on the conditional 43+43 receiver (Agent16, 23 November)
+
+The historical 2013 *Instar Emergence* use of the sentence already supplies one concrete, period-authentic **operation**: bytewise XOR of the 2013 MP3 and a separate Twitter binary. The same sentence in solved p57 offers a defensible reason to test that opcode **once** on the peculiar p54/p55 43+43 candidate. This remains a conditional *LP2* transfer: the original 2013 operands were byte files, while these new operands are runes and the 43+43 regrouping deliberately moves nine genuine word-interior runes into the exterior tape.
+
+The [read-only original-source XOR43 SFT](../sims/lp2_p54_p55_historical_xor43_source_sft.cjs) takes the unchanged last ten p54 runes plus all 76 original p55 runes, parses the exact printed page fragments, and constructs **A = 43 page-local interiors** and **B = ten carried p54 runes followed by 33 page-local exteriors**. Each pair is tested in the two visually motivated orientations, B in chronological order and B reversed as a possible mirrored-wing order. No key, ciphertext-fitted phase, or unprinted rune is introduced.
+
+| Source-native numerical serialization and output | Chronological B | Mirrored B |
+| --- | ---: | ---: |
+| `GP29 index(A) XOR GP29 index(B)`, resulting 5-bit symbols outside 0–28 | **2/43** (`31,30`) | **4/43** (`30,30,31,31`) |
+| `prime(A) XOR prime(B)`, bytes in printable ASCII interval 32–126 | **30/43** | **38/43** |
+| Same prime-byte output, ASCII A–Z or a–z | **16/43** | **22/43** |
+| Same prime-byte output, ASCII spaces | **0** | **0** |
+| Exact original full 86-rune restoration while retaining B | **86/86** | **86/86** |
+
+The index-XOR readings are nonprose even with unrepresentable rune codes explicitly escaped. The prime-byte readings are also nonprose. Moreover, **for any pair of the 29 genuine GP rune prime values**, the set of possible XOR bytes contains exactly **92** values and excludes both ASCII `S` (83) and `s` (115). That exact alphabet-support obstruction is independent of pairing order. A first-party clear-p57 43-rune positive, split into two valid GP29 index tapes and reconstructed by the identical XOR interpreter, recovers **43/43**; the source 86-rune extraction and all inverse replays are exact.
+
+**Decision:** The documented XOR operation does not supply new plaintext from the original p54/p55 candidate under either of these direct, source-natural GP serializations. The historical evidence for bytewise XOR survives. A differently encoded or externally keyed XOR still needs its own authored operand and byte grammar; repeated permutations of the present 43-pair model lack an independent selector. The source-literal full-word **52+34** object remains a distinct unresolved hypothesis and was never coerced into an unjustified 43-pair XOR.
+
 ## Decision for Director #2249
 
 The historical quotation is source-authenticated, while **word-shell removal is a literal but unselected interpretation**; the 2013 occurrence also supports an earlier XOR/metamorphosis reading. If the word-edge interpretation is chosen, its mathematically precise execution ends at the **word-shell removal** described here. It identifies an ordered, reversible *data decomposition* when exteriors and word lengths are retained. The exact original p54→p55 crossing word forces **52 core +34 shell** for a literal whole-word execution. The attractive **43+43** grouping instead requires a source-unspecified reassignment of nine word-interior runes, and the book has supplied no typed symbol-changing cipher, key, state initializer, pairing orientation, or p54 untouched-run transfer.
 
-The original full86 complete-word object remains a legitimate possible input for a **future independently authored opcode**. Existing #2229's fixed GL₂(29) and #2244's 13/31 Feistel original gates already fail; repeating new arbitrary 43-pair operators would add no plaintext evidence. Do **not** hand an incomplete decoder to waiting [#41](https://github.com/FlareZ123/liber-primus/issues/41). A future first-party command explicitly authorizing *page fragment* rather than *whole word* boundaries, plus a reversible GP29 value/state rule, is the precise missing material.
+The original full86 complete-word object remains a legitimate possible input for a **future independently authored opcode**. Existing #2229's fixed GL₂(29), #2244's 13/31 Feistel and the documented 2013 XOR's two direct GP serializations all fail on the original source; retuning new arbitrary 43-pair operators would add no plaintext evidence. Do **not** hand an incomplete decoder to waiting [#41](https://github.com/FlareZ123/liber-primus/issues/41). A future first-party command explicitly authorizing *page fragment* rather than *whole word* boundaries, plus a reversible GP29 value/state rule, is the precise missing material.
