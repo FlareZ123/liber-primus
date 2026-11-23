@@ -223,6 +223,86 @@ const actualCipherPlant=plantCipher.slice(0,262);
 assert.deepEqual(mappingContradictions(actualCipherPlant,actualNativePlant,1),
   {forwardErrors:0,inverseErrors:0});
 
+/**
+ * Latin-donor sensitivity of the already proven all-secret period28 GP29
+ * escape-cipher equality invariant. The prior English-only test is
+ * independently established in the other agent's source report; here
+ * no original secret table is fitted, and Latin is frozen externally.
+ *
+ * All source page and major-mark phase resets are original physical data.
+ */
+const ink=JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"));
+const pageOffset=new Map();
+let cumulative=0;
+for(const page of pages){pageOffset.set(page.page,cumulative);
+  cumulative+=page.indices.length;}
+assert.equal(cumulative,original.length);
+const pageCuts=[0,...pages.map(p=>pageOffset.get(p.page)+p.indices.length)];
+const inkCuts=ink.pages.filter(p=>p.page<=55).flatMap(p=>
+  (p.large_punctuation||[]).map(mark=>pageOffset.get(p.page)+mark[0]));
+const uniqueSorted=values=>[...new Set(values)].sort((a,b)=>a-b);
+const conditions=[
+  ["global",[0,original.length]],
+  ["mark",uniqueSorted([0,original.length,...inkCuts])],
+  ["page",uniqueSorted(pageCuts)],
+  ["mark+page",uniqueSorted([0,original.length,...pageCuts,...inkCuts])]
+];
+assert.deepEqual(conditions.map(x=>x[1].length-1),[1,29,55,74]);
+/** @param {number[]} cuts @returns {number[][]} */
+function positionGroups(cuts){
+  /** @type {Map<string,number[]>} */
+  const groups=new Map();
+  for(let z=0;z<cuts.length-1;z++){
+    for(let i=Math.max(1,cuts[z]);i<cuts[z+1];i++){
+      if(original[i]===original[i-1])continue;
+      const tag=z+":"+((i-cuts[z])%28);
+      if(!groups.has(tag))groups.set(tag,[]);
+      groups.get(tag).push(i);
+    }
+  }
+  return [...groups.values()];
+}
+/**
+ * Same within-(source-segment,phase28) equality count after ANY secret
+ * permutation of 28 nonzero step ranks. Requires 29 native rune labels.
+ * @param {number[][]} groups
+ * @param {number[]} tape
+ * @param {number} start
+ * @returns {number}
+ */
+function repeatedInGroups(groups,tape,start){
+  let pairs=0;
+  for(const group of groups){
+    const frequency=new Uint8Array(29);
+    for(const i of group)frequency[tape[start+i]]++;
+    for(const n of frequency)pairs+=n*(n-1)/2;
+  }
+  return pairs;
+}
+const originalDelta=original.map((v,i)=>
+  i?(v-original[i-1]+29)%29:0);
+const latinAllSecret=[];
+for(const [name,cuts] of conditions){
+  const grouped=positionGroups(cuts);
+  const originalCount=repeatedInGroups(grouped,originalDelta,0);
+  const latinCounts=Array.from({length:128},(_,i)=>{
+    const shift=Math.floor(i*(latin.length-original.length)/127);
+    return repeatedInGroups(grouped,latin,shift);
+  }).sort((a,b)=>a-b);
+  latinAllSecret.push({
+    regime:name,sourceSegments:cuts.length-1,
+    occupiedPhaseBuckets:grouped.length,originalEqualPairs:originalCount,
+    latinSourceWindows:128,latinMin:latinCounts[0],
+    latinMedian:latinCounts[64],latinMax:latinCounts.at(-1),
+    latinWindowsAtOrBelowOriginal:latinCounts.filter(x=>x<=originalCount).length
+  });
+}
+assert.deepEqual(latinAllSecret.map(x=>x.originalEqualPairs),
+  [104918,11021,1775,1648]);
+assert.deepEqual(latinAllSecret.map(x=>x.latinMin),
+  [216715,22719,3593,3346]);
+assert.ok(latinAllSecret.every(x=>x.latinWindowsAtOrBelowOriginal===0));
+
 console.log(JSON.stringify({
   classification:"conditional Latin-language clue; literal Vulgate paragraph gate negative",
   originalRunes:original.length,originalEqualEvents:86,
@@ -234,6 +314,7 @@ console.log(JSON.stringify({
       x.forwardErrors+x.inverseErrors<best.forwardErrors+best.inverseErrors?x:best),
     zeroContradictionPeriods:p9Tests.filter(x=>!x.forwardErrors&&!x.inverseErrors).length,
     independentLatinNativePositive:true},
+  latinPrivatePeriod28EqualityGate:latinAllSecret,
   genuineLatin729RunePositive:{offset:startIndex,hits:plantedHit.count,
     correctSourceFound:true}
 },null,2));
