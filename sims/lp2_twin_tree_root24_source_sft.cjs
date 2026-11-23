@@ -112,8 +112,18 @@ const transcription = fs.readFileSync(path.resolve(__dirname, '..',
   'resources/liber-primus/lp2-transcription.txt'), 'utf8').split('%');
 assert.deepEqual(transcription.slice(8, 15)
   .map(text => (text.match(/\d+/g) || [])), [[], [], ['7'], [], [], [], []]);
-assert.ok(transcription[10].includes('-7-'));
+assert.ok(transcription[10].includes('-7-ᚷ-'));
 const numericSeven = 7;
+const gpG = corpus.runes.indexOf('ᚷ');
+assert.equal(gpG, 6);
+assert.equal(corpus.prime[gpG], 17);
+assert.equal(numericSeven + corpus.prime[gpG], r);
+assert.equal(numericSeven * corpus.prime[gpG], 119);
+assert.equal(evaluate(a.quotient, r), gpG);
+const q7 = divideLinear(p10, numericSeven);
+assert.equal(q7.remainder, 0);
+assert.equal(evaluate(q7.quotient, numericSeven), 5);
+
 assert.equal(evaluate(p10, numericSeven), 0);
 const p10Twice = divideLinear(a.quotient, numericSeven);
 assert.equal(p10Twice.remainder, 0);
@@ -204,6 +214,10 @@ console.log(JSON.stringify({
     distinctiveOriginalPages:[10,11], treeChapterPageResidues:treeResidues,
     p10AndP11Lengths:[p10.length,p11.length],
     p10Literal7IsRoot:evaluate(p10,numericSeven) === 0,
+    printedFollowingG:{index:gpG, prime:corpus.prime[gpG],
+      sumMod29:numericSeven+corpus.prime[gpG],
+      product:numericSeven*corpus.prime[gpG]},
+    p10DerivativeAt24:evaluate(a.quotient,r),
     originalSameTreeReceiverLengths:[p12.length,p13.length],
     neighborResidues:{p9:evaluate(p9,r),p12:evaluate(p12,r)},
     rootMultiplicities:{
