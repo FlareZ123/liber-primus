@@ -51,6 +51,21 @@ still **5.597616919 bits short** of the at-most-86-repeat universal full-GP29 bu
 
 This extension covers the *full original red-ink boundary morphology* in addition to the large marks, but depends on the explicit frozen attachment grammar: 16 red spans, with the same 29 boundaries anchored to their page edge or a large mark. A coder that allows any arbitrary glyph to toggle red independently, changes the number of spans, attaches headings to ordinary punctuation or converts colors into other visible signals is outside the stated model. Likewise a red span's rune values are already included among the 12,956 GP29 ciphertext glyphs and must not be counted again as side information. No source-authored red-span decoder or actual plaintext has been identified.
 
+## Stronger page-local obstruction on six entirely unmarked pages
+
+Six original pages have **zero repeated adjacent ciphertext runes**, **zero large punctuation marks** and **zero red-ink spans**. If each page is independently enciphered as a same-length, complete-GP29, universally injective no-repeat output channel and has no other side information, it is impossible even before considering the 31 book-wide marks. For a page of n runes the number of repeat-free ciphertexts is just \(29\cdot28^{n-1}\), compared with \(29^n\) unrestricted plaintexts.
+
+| Physical page | Original runes | Minimum page-isolated universal GP29 deficit |
+| ---: | ---: | ---: |
+| p5 | 263 | 13.264031 bits |
+| p13 | 272 | 13.719666 bits |
+| p17 | 273 | 13.770292 bits |
+| p28 | 269 | 13.567788 bits |
+| p31 | 269 | 13.567788 bits |
+| p37 | 228 | 11.492119 bits |
+
+This is an unusually clean original-source cross-check for any claimed *page-reset constrained alphabet* cipher. An actual encoded English page could still belong to the zero-repeat subset by happenstance, and a valid unrestricted GP29 cipher may produce other ciphertexts **with** repeated neighbors. Restricted native plaintext domains, page-external side bits, varying output lengths, movable word gaps, other typography, or cross-page carrying also escape the pagewise theorem. The result therefore rejects the explicitly **universal no-repeat page-local code**, not the hypothesis that each observed page happens to have no duplicates.
+
 ## Why printed spaces do not automatically supply a free sidecar
 
 The original 2,896 printed words determine 2,895 ordinary word-gap locations among N−1 rune boundaries, potentially **9,922.41134 bits** of layout information. If arbitrary plaintext gap locations must be preserved too, their number is the same on the input and output sides. They **cancel exactly in a pigeonhole count**. Treating all 9,922 bits as new key material silently assumes a *gap-free* plaintext input or an independent plaintext spacing restriction. Either is a separate, unestablished hypothesis.
@@ -63,4 +78,4 @@ There is an important capacity escape. If all 31 typed marks may relocate **acro
 
 **Decision for #2273:** avoid treating 31 physically page-local large marks as a complete unrestricted-GP29 repeat-exception sidecar. A proposed decoder must specify its additional information source, its exact handling of ordinary spaces, or why the original page assignments are part of a global movable marking scheme. Prior q26/q27 arithmetic-code experiments remain unaffected. Pursue a concrete original-cipher inverse only after a source-selected operation supplies that missing mapping.
 
-**Executable source control:** [sims/lp2_marksite_repeat_capacity_original_sft.cjs](../sims/lp2_marksite_repeat_capacity_original_sft.cjs). It reads the exact corpus and ink annotations, asserts physical counts and both separate p7 marks, enumerates every source red-span boundary and its attached/free state, exhausts a small-alphabet positive case and computes the original bounds. The [Windows Node.js 22 original-source test passed on GitHub Actions](https://github.com/FlareZ123/liber-primus/actions/runs/45138729715) on 23 November 2026, confirming all counts, both separate p7 marks, the three free red-span endpoints and the computed **5.5976169186-bit** residual deficit. The positive exhaustive small-alphabet counting assertion also passed. The input definitions can be reproduced without guessing plaintext, a key, word breaks or random samples.
+**Executable source control:** [sims/lp2_marksite_repeat_capacity_original_sft.cjs](../sims/lp2_marksite_repeat_capacity_original_sft.cjs). It reads the exact corpus and ink annotations, asserts physical counts and both separate p7 marks, enumerates every source red-span boundary and its attached/free state, checks all six mark-free zero-repeat page counts, exhausts a small-alphabet positive case and computes the original bounds. The [Windows Node.js 22 original-source test passed on GitHub Actions](https://github.com/FlareZ123/liber-primus/actions/runs/45138729715) on 23 November 2026, confirming all counts, both separate p7 marks, the three free red-span endpoints and the computed **5.5976169186-bit** residual deficit. The positive exhaustive small-alphabet counting assertion also passed. The input definitions can be reproduced without guessing plaintext, a key, word breaks or random samples.

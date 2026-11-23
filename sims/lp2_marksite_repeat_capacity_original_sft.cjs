@@ -101,6 +101,23 @@ function main(){
   ]);
   const extraRedBits=extraRedEndpoints.reduce((s,x)=>s+Math.log2(x.slots),0);
   assert(Math.abs(extraRedBits-23.3498340915)<0.000001);
+  // A stricter page-isolated corollary: these original pages have zero repeats
+  // and no source-large mark or red span to carry per-page exception metadata.
+  const annotationByPage=new Map(ink.pages.map(p=>[p.page,p]));
+  const zeroRepeatUnmarked=[];
+  for(const p of ink.pages){
+    if(p.page>55||p.rune_count===0)continue;
+    const a=annotationByPage.get(p.page);
+    const runeList=pages[p.page<50?p.page:p.page-1];
+    const r=runeList.slice(1).reduce((q,c,i)=>q+Number(c===runeList[i]),0);
+    if(r===0&&(a.large_punctuation||[]).length===0&&(a.red_spans||[]).length===0){
+      zeroRepeatUnmarked.push({
+        page:p.page,runes:runeList.length,
+        universalGP29DeficitBits:-(runeList.length-1)*Math.log2(28/29)
+      });
+    }
+  }
+  assert.deepEqual(zeroRepeatUnmarked.map(x=>x.page),[5,13,17,28,31,37]);
   const f=logFact(n+nPages+2);
   const logP=(m,r)=>chooseLog(f,m,r)+r*Math.log2(1/29)+(m-r)*Math.log2(28/29);
   const exact=logP(transitions,repeats);
@@ -130,6 +147,7 @@ function main(){
     repeatCapDeficitBits:{exact86:-exact,atMost86:-capped,perPageObservedCounts:-pageFixed},
     pageLocalMarkUpperBoundBits:{oneSitePerSeam:local,twoSitesPerSeam:localTwoSides,fourSitesPerSeam:localFourSides,eightSitesPerSeam:localEightSides},
     redInk:{runeCount:redRuneCount,spanCount:redSpanCount,freeEndpoints:extraRedEndpoints,additionalEndpointCapacityBits:extraRedBits},
+    zeroRepeatNoMarkNoRedPages:zeroRepeatUnmarked,
     pageLocalMarkPlusRedUpperBoundBits:{oneSitePerSeam:local+extraRedBits,fourSitesPerSeam:localFourSides+extraRedBits},
     deficitWithFourSlotMarksAndAllFreeRedEndpoints:-capped-localFourSides-extraRedBits,
     globallyMovable31TypedMarksBits:globalTyped31,
