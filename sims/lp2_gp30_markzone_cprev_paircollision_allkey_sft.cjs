@@ -216,6 +216,25 @@ function pairCount(groups,values){
 assert.equal(pairCount(generatedGroups,generated),pairCount(generatedGroups,P));
 const changedSpaces=generated.filter((x,i)=>(x===29)!==(P[i]===29)).length;
 assert(changedSpaces>0);
+// Source-shaped original ciphertext positive: the actual 29 visible mark
+// locations remain at the printed source-word boundaries. Encrypt/decrypt
+// the *original* tape with one private alphabet for every zone/predecessor.
+const sourcePlain=[],sourceReplay=[];
+for(let z=0;z<cuts.length-1;z++){
+  let previousC=29;
+  for(let i=cuts[z];i<cuts[z+1];i++){
+    const decoded=F[z][previousC][stream[i]];
+    sourcePlain.push(decoded);
+    const reen=B[z][previousC][decoded];
+    sourceReplay.push(reen);
+    previousC=reen;
+  }
+}
+assert.deepEqual(sourceReplay,stream);
+assert.equal(pairs(sourcePlain),sourcePairs);
+const sourceGapMoves=sourcePlain.filter((x,i)=>
+  (x===29)!==(stream[i]===29)).length;
+assert(sourceGapMoves>0);
 console.log(JSON.stringify({
   source:{runes:12956,words:2896,tokens:stream.length,
     marks:marks.length,independentMarkZones:cuts.length-1,
@@ -228,6 +247,8 @@ console.log(JSON.stringify({
       literary.every(x=>x.atMostOriginal===0)&&authentic.every(x=>x.atMostOriginal===0)},
   positive:{entireOriginalLength:true,exactForwardInverse:true,
     repeatedCipherPairEqInvariant:true,
-    changedSpaceStatuses:changedSpaces},
+    changedSpaceStatuses:changedSpaces,
+    sourceOriginalTapeRoundTrips:true,
+    sourceOriginalChangedSpaceStatuses:sourceGapMoves},
   decision:"conditional nonprose exclusion of every 29-zone shared-within-zone predecessor-ciphertext GP30 secret-row permutation; no decoded LP2 text or key"
 },null,2));
