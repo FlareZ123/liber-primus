@@ -13,6 +13,8 @@ There is an exact second reading of the same absent literal token:
 3. Of the **58** LP2 physical pages, only **p55 has exactly 76 printed runes**. Thus the ASCII code of this source-absent glyph is an exact, unambiguous *page-length selector*.
 4. Original physical **p32 starts with the GP rune L**. Separately, p32 and p55 contain the strongly registered blurred/sharp illustrations of the same tree; see [original-image correspondence](lp2-p32-p55-blurred-tree-correspondence.md). The first-rune observation is weaker than the numerical identity because **four** LP2 pages start with L (p3, p4, p17, p32).
 
+The **full grid geometry** strengthens the *conditional receiver* without decoding it: the 32×8 printed panel has an **outer circumference of exactly 76 cells**, while the three final LP2 pages have **76+85+95=256** printed runes. Peeling the outer 76 cells leaves **180** interior cells, matching solved p56+p57's **85+95** runes. This exact outer/inner partition and the p57 cleartext's "shed our own circumferences" clue are **established prior work** in [the terminal-256 original source gate](lp2-terminal256-grid-p56-knowntext-allsecret-lookup-gate.md); the only new conjunction here is the missing `4C` dual-radix pointer. That prior gate already rejects all eight natural row-major/reverse/peel byte-to-GP shift lookups, even with arbitrary secret 256-byte lookup keys, against genuine p56 known plaintext. This prevents interpreting the new numeral coincidence as if the matching 76-cell ring had been deciphered.
+
 These are reproducible coincidences between *different observable source registers*. Reading an absent table token as an instruction to visit a page is a hypothesis. The source does not supply that instruction, and the cross-radix reading was noticed after the spatial bands and page counts were already known. Do not attach a discovery-wide chance probability to the conjunction.
 
 ## Complete fixed candidate census, including rivals
@@ -30,7 +32,7 @@ Hexadecimal ASCII uppercase letters A through O produce literal two-character to
 
 The last row is an important **radix sensitivity**. The ASCII reading of `4C` is stable, but the 29-index self-match only exists if the speculative source convention is exactly **base60**, rather than the nearby base59 interpretation studied elsewhere in the repository. It therefore cannot be used as independent validation that base60 is correct without circularly assuming the intended cross-radix connection.
 
-This full finite comparison sharpens the newly observed missing-L pattern. It does not independently establish a key, source instruction, sequential traversal, or a decoded rune. The other absent letters and B→p49 count are explicit rivals to selecting p55 from absence alone.
+This full finite comparison sharpens the newly observed missing-L pattern and connects it conditionally to the **pre-existing** exact outer-ring76 / inner180 receiver. The outer-ring arithmetic is visible in original physical geometry, but the eight prior natural stationary lookup decoders fail independent p56 plaintext. It does not independently establish a key, source instruction, sequential traversal, or a decoded rune. The other absent letters and B→p49 count are explicit rivals to selecting p55 from absence alone.
 
 ## Reproducible original-input test
 
@@ -38,6 +40,6 @@ This full finite comparison sharpens the newly observed missing-L pattern. It do
 
 ## Decision and prospective requirement
 
-Retain this as an *exploratory navigational conjunction*: the numeral panel may mark a missing **L** that points to **p55**, while **p32** has the same rune at its first position and shares the illustrated tree motif. A human can reconstruct the arithmetic without unbounded cipher-key search, but the decisive missing element is **an original creator-selected operation consuming L or the p55 page**.
+Retain this as an *exploratory navigational conjunction*: the numeral panel may mark a missing **L** that points to **p55** and its 76-cell outer-ring counterpart, while **p32** has the same rune at its first position and shares the illustrated tree motif. A human can reconstruct the arithmetic without unbounded cipher-key search, but the decisive missing element is **an original creator-selected operation consuming L or the p55 page**.
 
 A useful next step requires either a historical first-party instruction prescribing the dual base60/ASCII/GP reading or a **frozen full-original p55 inverse** derived independently from this `L` pointer that recovers natural text and predicts untouched material, including the authentic p54→p55 word carry. Do not optimize shifts, KDFs, page rotations, alphabet alternatives or image thresholds until that operation is independently selected. Nothing here warrants changing the established solution status in `results/README.md`.
