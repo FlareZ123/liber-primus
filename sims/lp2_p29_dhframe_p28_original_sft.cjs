@@ -79,6 +79,33 @@ for (let i = 0; i < p29.length - 2; i++) {
 }
 assert.deepEqual(rem.slice(-2), [0, 0]);
 
+// Derive the last two GP29 runes from the preceding n-2 only, by requiring
+// exact division by G. The original two terminal glyphs do not enter.
+/** @param {number[]} values @returns {number[]} */
+function predictGTerminal(values) {
+  const work = values.slice();
+  const n = work.length;
+  work[n - 2] = 0;
+  work[n - 1] = 0;
+  for (let i = 0; i < n - 2; i++) {
+    const v = mod29(2 * work[i]);
+    work[i] = 0;
+    work[i + 1] = mod29(work[i + 1] - 5 * v);
+    work[i + 2] = mod29(work[i + 2] - 27 * v);
+  }
+  return [mod29(-work[n - 2]), mod29(-work[n - 1])];
+}
+assert.deepEqual(predictGTerminal(p29), [A, B]);
+const parityAudit = pages.slice(0, 56).filter(q => q.indices.length >= 3).map(q => ({
+  page: q.page,
+  predicted: predictGTerminal(q.indices),
+  observed: q.indices.slice(-2),
+}));
+const sourcePair = e => e[0] === A && e[1] === B;
+assert.deepEqual(parityAudit.filter(q => sourcePair(q.predicted)).map(q => q.page), [29]);
+assert.deepEqual(parityAudit.filter(q => sourcePair(q.observed)).map(q => q.page), [29]);
+assert.deepEqual(parityAudit.filter(q => q.predicted.every((v, i) => v === q.observed[i])).map(q => q.page), [29]);
+
 // For post-discovery calibration only: exact probability of these eight
 // distinct glyphs in these fixed edge slots under uniformly shuffled p29.
 const hist = Array(29).fill(0);
@@ -117,6 +144,8 @@ console.log('signed-DH state: p=23 g=5 a=6 b=15 A=8 B=19 K=2; H(A,B)[0]=18');
 console.log('original p29 head:', JSON.stringify(head), 'tail:', JSON.stringify(tail));
 console.log('original p29 inner length:', inner.length, 'unique adjacent +8 pair: p28/p29');
 console.log('p29 G=[15,5,27] division remainder:', JSON.stringify(rem.slice(-2)));
+console.log('p29 first 275 GP runes predict signed DH A,B as G parity:', JSON.stringify(predictGTerminal(p29)));
+console.log('among 55 rune pages, sole predicted A,B, observed A,B and valid G parity: p29');
 console.log('fixed-edge conditional shuffle reference:', shuffledEdgeProbability.toPrecision(13));
 console.log('original p28 IoC:', ioc(p28).toFixed(9), 'p29 inner IoC:', ioc(inner).toFixed(9));
 const minus = scores.find(s => s.left === 'identity' && s.right === 'identity' && s.sign === -1);
