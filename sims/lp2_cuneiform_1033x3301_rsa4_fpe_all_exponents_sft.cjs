@@ -145,6 +145,7 @@ assert.equal(fiveReset.bestExponent,89477);
 // and then ENCRYPTED before exhaustive key recovery.
 const solved=fs.readFileSync(path.join(ROOT,
   'resources','liber-primus','lp1-plaintext-reference.txt'),'utf8')
+  .replace(/\r\n/g,'\n')
   .split('### 6\n')[1].split('### 7\n')[0]
   .replace(/^A KOAN\r?\n/,'');
 const alphabet=gp.translit.map((s,i)=>({s,i}))
