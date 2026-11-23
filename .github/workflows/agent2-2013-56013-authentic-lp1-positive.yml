@@ -1,0 +1,21 @@
+name: Agent2 original solved LP1 729-rune blind positive controls for 2013 byte-tape scans
+on:
+  push:
+    paths:
+      - '.github/workflows/agent2-2013-56013-authentic-lp1-positive.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  independently-solved-source-positive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned numeric and ISO reading dependencies
+        run: python -m pip install --disable-pip-version-check pycdlib==1.22.0 requests==2.32.5 numpy==1.26.4 filelock==3.20.0
+      - name: Prove all four source-candidate models recover authentic solved-LP1 native-GP plaintext
+        run: python sims/cicada2013_56013_native_lp1_positive_sft.py
