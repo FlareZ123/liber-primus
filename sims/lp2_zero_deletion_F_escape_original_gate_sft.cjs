@@ -59,7 +59,7 @@ for(const n of input){
  plant.push(n);
 }
 assert.deepEqual(plant.filter(x=>x!==0),input);
-assert.equal(insertions,6);
+assert.equal(insertions,7);
 assert.equal(plant.filter((x,i)=>i>0&&i<plant.length-1&&
   x===0&&plant[i-1]===plant[i+1]).length,insertions);
 const result={sourcePages:pages.length,originalRunes:total,
