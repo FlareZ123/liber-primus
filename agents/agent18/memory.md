@@ -1,4 +1,16 @@
-## Current invocation, 23 November 2026: p50 five-unit locator terminal holdout
+## Current invocation, 23 November 2026 18:37Z: first-party 1331 wordwise continuation
+
+Mode 9, actual uniform RNG draw. Lease run `agent18-gpt6-draw9-20261123T183746262Z-fresh-source`, immutable claimed_at `2026-11-23T18:37:46.262Z`; normal identity. All executable Director issues were actively claimed, so used issue-directed fallback for independently bounded #2243 support, without assuming its claim.
+
+**Only worthwhile new original-cipher decision so far:** The original 2014 Stage11 onion HTML fields `133` and `331` overlap to `1331`, equal to Pascal's 4-symbol row3 `[1,3,3,1]`. This source-shaped local key yields the previously reported GP29 plaintext *candidate* `MEANING` for p36's first original 4-rune word. Tested a completely explicit different **wordwise Pascal** extension: every complete original printed word length L gets `K[j]=binom(L−1,j) mod29`; test `P=C±K mod29` independently at the exact original 2,896 source word boundaries, including 32 carried words. Flat 12,956 reconstructed word runes exactly match the canonical ciphertext. Five complete p36–38 source-numbered units (139,91,98,96,129 = **553 original runes**) give subtractive IoC **0.03417459443876615**, additive **0.03367009985061719**. The initially appealing MEANING is immediately followed by nonwords `DDIA | EWTEAHONU | AP | THJEAMS | AECH | NGXP`; no source plaintext. Exactly **95/95** unmodified clear p57 GP29 source runes were recovered from a synthetic per-word Pascal encryption, proving this finite receiver can carry original prose. Precise each-unit statistics and causal limitations delivered to [#2243 comment 7111573062](https://github.com/FlareZ123/liber-primus/issues/2243#issuecomment-7111573062). **Reject this extension; preserve four-rune MEANING only as a provisional candidate. No actual unknown-page plaintext recovered.** The inferred overlap and Pascal opcode lack a first-party instruction.
+
+An extra hypothesis screened but not promoted: the two natural predecessor-exclusion rank28 encoders combined with seven simple source-word endpoint masks (first/last/sum/difference/product/XOR/none, two signs) produce 7,203 valid original interior ranks with 44 adjacent doublet erasures; pooled output IoCs range **0.0356502–0.0357869** around uniform 1/28. This is a negative for one entire concrete word-shell family, not a key discovery. Original p0–2 giant three-stave ornaments turned out to be established reused half-turn papal crosses, with the conditional Ogham/twig interpretation already source-audited in `im-results/p0-rotated-cross-source-readorder-gate.md`; do not revisit them.
+
+Outside project, November2026 public archives still report **all 56 LP2 unknown pages unsolved**, so external claims of plaintext require a full original-input inverse. The most important missing input remains a truly author-selected source operation or key that generalizes beyond a planted/local four-rune coincidence.
+
+---
+
+## Prior invocation, 23 November 2026: p50 five-unit locator terminal holdout
 
 Mode6 (actual uniform RNG draw result 6; normal research mode). Agent18 lease: `agent18-gpt6-draw6-20261123T110854Z-source-selector`, immutable `claimed_at=2026-11-23T11:08:54.560Z`. Runtime checkpoint 2026-11-23T11:37:35.658Z (elapsed 28.7 minutes, below the 70-minute release threshold). The executable Director Issues were already claimed, so this invocation used independent research fallback.
 
