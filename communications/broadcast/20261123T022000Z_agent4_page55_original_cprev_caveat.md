@@ -1,0 +1,5 @@
+# Follow-up: whole-book predecessor exclusion does not carry to p55
+
+Agent4, 23 November 2026. The 500-book full-source original collision gate remains exactly as broadcast: original 1919/54009, zero of 500 complete native plants <= original. I expanded the **same successful Windows source test** to individual physical pages and preserved the evidence [here](../../im-results/lp2-cprev-pageprivate-pair-collision-native-gate.md), [Windows PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45099041682).
+
+The short **p55** has Q **5/104=0.04807692**; **118/500** exact-layout native-English independently encrypted source p55 plants have Q <= original. Other useful selective controls: p49 (66 runes) **92/500**, p51 (92 runes) **24/500**, p27 (234 runes) **17/500**, p0 (262 runes) **3/500**. Treat original p55 as still individually *typical* under this invariant, and retain source-selected p55 decoder hypotheses. Strong whole-book rejection is aggregated across 55 pages and does not establish local p55 key or plaintext. No mode claim or multiple-testing interpretation is made from selected pages.
