@@ -95,7 +95,7 @@ for(const [label,w,expected] of [
 /** @param {string} text @returns {number[]} */
 function nativeControl(text){
   const source=text.replace(/^#.*$/gm,' ').toUpperCase()
-    .replace(/QU/g,'CW').replace(/V/g,'U')
+    .replace(/ING/g,'NG').replace(/QU/g,'CW').replace(/V/g,'U')
     .replace(/K/g,'C').replace(/Z/g,'S').replace(/Q/g,'C');
   const letters=(source.match(/[A-Z]+/g)||[]).join('');
   const symbols=gp.translit.map((x,i)=>({x,i})).sort((a,b)=>b.x.length-a.x.length);
@@ -110,6 +110,32 @@ function nativeControl(text){
   assert.equal(out.length,originals.length);
   return out;
 }
+/*
+ * Affine-mask all-key check on the Euler receiver: C=a*(phi*P)+b.
+ * Since a is any nonzero element of GF29 and multiplying P by its inverse
+ * permutes all GP indices, the IoC depends only on beta=b/a. Exactly 29
+ * offsets enumerate all 28*29 affine models without fitting language keys.
+ * For zeta convolution, mu*constant is an impulse at n1, so any b only
+ * changes the first putative plaintext rune: all n>=2 IoCs are identical.
+ */
+const betaIocs=[];
+const eulerUnmasked=inverse(originals,totients);
+const eulerConstant=inverse(Array(originals.length).fill(1),totients);
+for(let beta=0;beta<29;beta++){
+  const decoded=eulerUnmasked.map((v,i)=>
+    ((v-beta*eulerConstant[i])%29+29)%29);
+  betaIocs.push({beta, ioc:ioc(decoded)});
+}
+betaIocs.sort((a,b)=>b.ioc-a.ioc);
+assert.equal(betaIocs[0].beta,2);
+assert(Math.abs(betaIocs[0].ioc-0.03451904251172719)<1e-12);
+assert(betaIocs.every(x=>x.ioc<0.036));
+const moebiusUnmasked=inverse(originals,ones);
+const moebiusConstant=inverse(Array(originals.length).fill(1),ones);
+assert(moebiusConstant.slice(1).every(x=>x===0));
+assert.equal(moebiusConstant[0],1);
+assert(Math.abs(ioc(moebiusUnmasked.slice(1))-0.034479892610426)<0.000003);
+
 const native = [
   ['Gibran', 'resources/control/gibran_prophet_58585.txt'],
   ['Shakespeare', 'resources/control/shakespeare_first300k.txt']
@@ -118,4 +144,4 @@ assert(native.every(x=>x.ioc>0.045));
 assert(report.every(x=>x.entireBookIoc<0.036));
 console.log(JSON.stringify({status:'PASS: exact source-preserving inverse, no original plaintext',
   hypothesis:'LP1 MOBIUS+TOTIENT Dirichlet convolution; unsourced receiver',
-  sourceIoc:originalIoc,nativeControls:native,originalReceivers:report},null,2));
+  sourceIoc:originalIoc,nativeControls:native,eulerAllAffineOffsets:betaIocs,originalReceivers:report},null,2));
