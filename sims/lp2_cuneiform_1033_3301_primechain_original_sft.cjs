@@ -90,9 +90,40 @@ for(const [k,seed] of [1033,3301].entries()){
 }
 const want=[0.03428597636082501,0.034213905705375164,0.033709411117226196,0.034548051471551745];
 result.forEach((r,i)=>assert(Math.abs(r.direct553Ioc-want[i])<1e-13));
+// The printed red item labels 1..5 also supply a distinct, finite
+// ordinal interpretation: start each item at its nth prime, then reset.
+/** @type {Array<object>} */
+const ordinalResults=[];
+const ordinals=[2,3,5,7,11];
+for(const [index,sign] of [-1,1].entries()){
+  const ciphers=[],firstImpossible=[];
+  let nativeRecovered=0;
+  for(let i=0;i<units.length;i++){
+    const shifts=keyChain(ordinals[i],units[i].length);
+    const g=allFSkipPaths(units[i],shifts,sign);
+    firstImpossible.push(g.firstImpossible);
+    ciphers.push(units[i].map((v,j)=>mod(v+sign*shifts[j])));
+    let phase=0;
+    const plant=units[i].map((_,j)=>{
+      const native=positive[(j+i*17)%positive.length];
+      return native===0?0:mod(native-sign*shifts[phase++]);
+    });
+    assert.equal(allFSkipPaths(plant,shifts,sign).firstImpossible,null);
+    nativeRecovered+=plant.length;
+  }
+  assert.equal(nativeRecovered,553);
+  const expectedOffsets=[[1,25,5,12,114],[13,24,40,20,7]][index];
+  assert.deepEqual(firstImpossible,expectedOffsets);
+  const score=ioc(ciphers.flat());
+  assert(Math.abs(score-[0.03470529653798779,0.03402390125009828][index])<1e-13);
+  ordinalResults.push({sign,startPrimes:ordinals,
+    original553Ioc:score,firstImpossibleItemOffsets:firstImpossible,
+    nativeSolvedP57PlantReplayed:nativeRecovered});
+}
 console.log(JSON.stringify({
   decision:'prime-seeded p56 exact original decoder algebraically impossible before 32nd ciphertext rune',
   source:'original cuneiform first-party numbers 1033 / 3301',
   note:'other prime/totient receivers or separate keys remain untouched',
-  results:result
+  results:result,
+  redOrdinalPrimeStarts:ordinalResults
 },null,2));
