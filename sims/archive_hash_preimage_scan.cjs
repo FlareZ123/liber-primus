@@ -19,7 +19,7 @@ function check(source,variant,bytes,kind){
   }
 }
 function decodeV2OnionId(host){
-  const label=host.toLowerCase().replace(/\\.onion$/,'');
+  const label=host.toLowerCase().replace(/\.onion$/,'');
   if(!/^[a-z2-7]{16}$/.test(label))throw Error('Not a v2 onion host: '+host);
   const alphabet='abcdefghijklmnopqrstuvwxyz234567';
   let acc=0,bits=0;
