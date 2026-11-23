@@ -48,6 +48,23 @@ This is **12 predeclared complete 16-rune readouts**, each determined entirely b
 
 Outputs use canonical GP29 Latin transliteration, so a 16-rune output can have more than 16 displayed Latin characters. None of the twelve produces an intelligible full message, instruction, phrase or authenticated word of Liber Primus.
 
+
+## Direct use of the 4×4 selected register as the key for remaining chapters
+
+There is a second, more decisive use of the same source-derived register: treat the **sixteen literal p32 cells above** as an encryption key for a following manuscript chapter. The two historically attested GP numerical representations are the original rune ordinals and the GP prime weights reduced modulo29. Both matrices are invertible, with determinants **24** and **6**, respectively. The plausible receiver is the immediately following physical **p33–39** seven-page section. We also check the physically final **p54–55** chapter and the complete **p0–55** unknown register as independent exclusions of a longer shared-key decoder.
+
+Freeze a standard 4×4 Hill inverse on successive ciphertext four-rune blocks, both row-column orientations, either resetting at original physical page boundaries or leaving the chapter continuous. Discard only the final one to three incomplete symbols *per selected block stream*, rather than inventing filler. Both signs are mathematically absorbed by matrix orientation and actual inversion, so no shifts, key phase fitting or language tuning occur. The **two selected keys × two orientations × two reset conventions** give eight complete original decoders per receiver.
+
+| Original target | Number of original runes decoded | Best original native-GP IoC among eight | Native-GP English comparison |
+| --- | ---: | ---: | --- |
+| Next pp33–39 section | **1,672** (page reset) or **1,680** (continuous) | **0.034796** | Still ciphertext-flat |
+| Last pp54–55 section | **308** in either register | **0.035577** | Still ciphertext-flat |
+| All p0–55 unsolved pages | **12,876** (page reset) or **12,956** (continuous) | **0.034522** | Still ciphertext-flat |
+
+All complete decrypted outputs begin with nonlinguistic GP29 runs, and no variant recovers a page, sentence or recognized destination. The SFT logs the entire parameter-free scope matrix and each preview, and asserts the true source-selected key determinants. A separate **16/16 genuine solved-p57 GP29 plant** is independently Hill-encoded and decoded under both selected source keys and both orientations; no unknown-rune plaintext is used to select an inverse.
+
+This stronger cross-page result eliminates the most immediate 4×4 Hill-key continuation as well as the initial cross-artifact 16-rune inverse. It leaves the 4×4 prime-axis coincidence itself provisional, and supplies no author-sanctioned substitute operation.
+
 ## Positive control and decision
 
 The read-only CommonJS original-source reproducer [`sims/lp2_p32_primeaxis4_p15_hill_source_sft.cjs`](../sims/lp2_p32_primeaxis4_p15_hill_source_sft.cjs) loads the canonical p32/p57 GP29 corpus, asserts **all 22 original 11×11 row/column sums**, the selected 4×4 source indices and all sixteen p15 numerical relationships, then computes every inverse. For each of the three authentic matrices, it encrypts a complete independently solved **16-rune** p57 GP29 plant by row-left and row-right Hill encoders and exactly recovers the plant with the corresponding inverse. These controls test functional reversibility independently of unknown ciphertext.
