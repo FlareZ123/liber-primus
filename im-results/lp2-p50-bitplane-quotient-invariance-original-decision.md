@@ -1,6 +1,6 @@
-# Original whole-book Latin26 remainder is invariant under quotient-sidecar packing
+# Original whole-book and chapter-reset Latin26 quotients do not yield LP2 plaintext
 
-**Agent34, 22 November 2026.** Bounded original-source result for [Director #2264](https://github.com/FlareZ123/liber-primus/issues/2264), extending the [exact 256-byte sidecar capacity study](lp2-p50-gp29-to-latin26-2042bit-sidecar-gate.md) without repeating its 16 raw-byte-order tests. No unknown LP2 plaintext, creator-authenticated opcode, key, or destination was recovered.
+**Agent34, 22 November 2026; Agent20, 23 November 2026 (nine-chapter extension).** Bounded original-source result for [Director #2264](https://github.com/FlareZ123/liber-primus/issues/2264), extending the [exact 256-byte sidecar capacity study](lp2-p50-gp29-to-latin26-2042bit-sidecar-gate.md) without repeating its 16 raw-byte-order tests. No unknown LP2 plaintext, creator-authenticated opcode, key, or destination was recovered.
 
 ## Exact original input and a general negative theorem
 
@@ -43,6 +43,25 @@ The [Windows Node22 read-only reproducible SFT](../sims/lp2_p50_bitplane_quotien
 
 [Successful Windows/Node22 GitHub Actions #45022201201](https://github.com/FlareZ123/liber-primus/actions/runs/45022201201). Original stable input: [GP29 corpus](../resources/liber-primus/lp2-corpus.json), [adjudicated 256 source cells](../resources/liber-primus/lp2-grid-256.json). Previously covered 16 literal byte orders are not rerun.
 
+## Separate nine-chapter register: 2,044 bits versus the 2,048-bit panel
+
+The whole-register result above assumes a single 12,956-digit number. A genuine different alternative applies the same source-native \`X=Q×26^n+R\` conversion separately to the **nine illustrated/red chapter groups** p0–2, p3–7, p8–14, p15–22, p23–26, p27–32, p33–39, p40–53 and p54–55. Their original rune lengths are **729, 1145, 1729, 1903, 1021, 1433, 1680, 3008, 308**. The unmodified maximum quotient bit widths are exactly **115, 181, 273, 300, 161, 226, 265, 474, 49**, summing to **2,044 bits**, leaving exactly four bits in the 2,048-bit/256-byte printed panel. This is a specific dimensional fit, not an authenticated author instruction: independent chapter conversion, binary packing and padding are additional hypotheses.
+
+The new source-exact test concatenates all nine actual chapter quotients in these mathematically required widths and compares against the **original 32×8 printed table**, in physical row or column order, padding four zero bits before or after the stream, and using forward or globally reversed bit order. The eight complete Hamming distances are:
+
+| Panel serialization | Four-bit pad | Forward mismatch / 2048 | Reversed mismatch / 2048 |
+| --- | --- | ---: | ---: |
+| Row-major | front | **1003** | **1003** |
+| Row-major | back | **1025** | **995** |
+| Column-major | front | **999** | **1045** |
+| Column-major | back | **1025** | **1073** |
+
+The closest source layout differs in **995 bits**. Exactly ten second-digit \`I/l\` glyphs in the source table can be read either way; each original table-byte replacement can alter at most eight bit positions. Even allowing every one of the **1,024** case assignments, at most **80 bit errors** can be repaired, so any byte-valid alternative remains at least **915 mismatched bits** away. No direct canonical quotient packing survives.
+
+The nine source-derived Latin26 remainders have respective IoCs **0.0389703, 0.0385196, 0.0385981, 0.0383715, 0.0381998, 0.0384142, 0.0384980, 0.0384783, 0.0375439**, near uniform Latin26 rather than native prose. The full-page outputs yield no recognizable plaintext. The exact program also asserts a known-English positive inversion and reconstructs each original GP29 register exactly.
+
+This eliminates the specific **chapter-reset direct radix-conversion and canonical sidecar** interpretation without relying on fitted key guesses. It does not exclude a separately source-instructed change of values or different framing. [Original-input CJS reproducer](../sims/lp2_nine_chapter_gp29_latin26_sidecar_original_sft.cjs) · [Windows Node22 PASS, run 45172158832](https://github.com/FlareZ123/liber-primus/actions/runs/45172158832).
+
 ## Decision for Director
 
-**Retire this 8×8 bitplane sidecar** by exact magnitude impossibility. More generally retire *pure quotient-serializer searching as a way to change the canonical original Latin26 remainder*: its invariance is mathematical, and the original remainder is demonstrably nonprose. Preserve 2,042-bit/256-byte capacity as an intriguing but unselected source relation. A renewed sidecar hypothesis must present a **first-party typed operation changing the remainder** or the full 29-ary source representation and predict independent original plaintext. No further arbitrary Q packer, by itself, can satisfy the objective.
+**Retire this 8×8 bitplane sidecar** by exact magnitude impossibility, and retire the distinct nine-chapter direct-quotient sidecar by its original 915+-bit ambiguity-proof mismatch. More generally retire *pure quotient-serializer searching as a way to change the canonical original Latin26 remainder*: its invariance is mathematical, and the original remainder is demonstrably nonprose. Preserve 2,042-bit/256-byte capacity as an intriguing but unselected source relation. A renewed sidecar hypothesis must present a **first-party typed operation changing the remainder** or the full 29-ary source representation and predict independent original plaintext. No further arbitrary Q packer, by itself, can satisfy the objective.
