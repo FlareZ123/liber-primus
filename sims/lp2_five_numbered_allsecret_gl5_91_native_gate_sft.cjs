@@ -24,7 +24,7 @@ const mod = (value) => ((value % modulus) + modulus) % modulus;
 
 /**
  * @param {readonly number[]} sequence GP29 rune indices.
- * @returns {{ distinct: number, pairCount: number, ioc: number }}
+ * @returns {{ distinct: number, pairCount: number, ioc: number, top3: number }}
  */
 function profile(sequence) {
   const hist = new Uint8Array(modulus);
@@ -35,8 +35,10 @@ function profile(sequence) {
     if (count > 0) distinct++;
     pairCount += count * (count - 1);
   }
+  const ranked = Array.from(hist).sort((a, b) => b - a);
   return {
     distinct,
+    top3: ranked[0] + ranked[1] + ranked[2],
     pairCount,
     ioc: pairCount / (sequence.length * (sequence.length - 1)),
   };
@@ -95,6 +97,8 @@ assert.equal(original.flat().length, 455);
 let directions = 0;
 let minimumDistinct = 29;
 let maximumIoC = -Infinity;
+let maximumTop3 = 0;
+let maximumTop3Witness = [];
 let minimumWitness = [];
 let maximumWitness = [];
 const distinctHistogram = {};
@@ -125,6 +129,12 @@ for (let lead = 0; lead < 5; lead++) {
       collisions += count * (count - 1);
     }
     const ioc = collisions / (length * (length - 1));
+    const frequencies = Array.from(counts).sort((a, b) => b - a);
+    const top3 = frequencies[0] + frequencies[1] + frequencies[2];
+    if (top3 > maximumTop3) {
+      maximumTop3 = top3;
+      maximumTop3Witness = coefficients.slice();
+    }
     directions++;
     distinctHistogram[distinct] = (distinctHistogram[distinct] || 0) + 1;
     if (distinct < minimumDistinct) {
@@ -139,6 +149,7 @@ for (let lead = 0; lead < 5; lead++) {
 }
 assert.equal(directions, 732541);
 assert.equal(minimumDistinct, 22);
+assert.equal(maximumTop3, 30);
 assert(Math.abs(maximumIoC - 0.05616605616605617) < 1e-12);
 assert.deepEqual(
   distinctHistogram,
@@ -160,6 +171,8 @@ assert.deepEqual(authorNative.slice(0, 4), [2, 18, 20, 3]);
 
 let nativeWindows = 0;
 let nativeLowDistinct = 0;
+let nativeHighTop3 = 0;
+let nativeEither = 0;
 const nativeDistinctHistogram = {};
 for (let at = 0; at + length <= authorNative.length; at++) {
   const data = profile(authorNative.slice(at, at + length));
@@ -167,9 +180,13 @@ for (let at = 0; at + length <= authorNative.length; at++) {
   nativeDistinctHistogram[data.distinct] =
     (nativeDistinctHistogram[data.distinct] || 0) + 1;
   if (data.distinct <= 21) nativeLowDistinct++;
+  if (data.top3 >= 31) nativeHighTop3++;
+  if (data.distinct <= 21 || data.top3 >= 31) nativeEither++;
 }
 assert.equal(nativeWindows, 665);
 assert.equal(nativeLowDistinct, 372);
+assert.equal(nativeHighTop3, 293);
+assert.equal(nativeEither, 504);
 assert.deepEqual(nativeDistinctHistogram,
   { 19: 19, 20: 109, 21: 244, 22: 245, 23: 48 });
 
@@ -178,23 +195,28 @@ assert.deepEqual(nativeDistinctHistogram,
 // precondition that at least one lane uses at most 21 distinct rune symbols.
 let fiveWindowControls = 0;
 let controlsWithLow = 0;
+let controlsWithEither = 0;
 for (let start = 0; start + 5 * length <= authorNative.length; start++) {
-  const distinct = Array.from({ length: 5 }, (_, k) =>
-    profile(authorNative.slice(start + k * length, start + (k + 1) * length))
-      .distinct);
+  const lanes = Array.from({ length: 5 }, (_, k) =>
+    profile(authorNative.slice(start + k * length, start + (k + 1) * length)));
   fiveWindowControls++;
-  if (distinct.some((value) => value <= 21)) controlsWithLow++;
+  if (lanes.some((lane) => lane.distinct <= 21)) controlsWithLow++;
+  if (lanes.some((lane) => lane.distinct <= 21 || lane.top3 >= 31)) controlsWithEither++;
 }
 assert.equal(fiveWindowControls, 301);
 assert.equal(controlsWithLow, 296);
+assert.equal(controlsWithEither, 301);
 
 // Independent source-native positive: the original, already-decrypted
 // 95-rune LP2 p57 has five contiguous 91-rune windows, all with <=21 glyphs.
 const solvedP57 = page(57);
 assert.equal(solvedP57.length, 95);
-const solvedWindowDistinct = Array.from({ length: 5 }, (_, start) =>
-  profile(solvedP57.slice(start, start + length)).distinct);
+const solvedProfiles = Array.from({ length: 5 }, (_, start) =>
+  profile(solvedP57.slice(start, start + length)));
+const solvedWindowDistinct = solvedProfiles.map((window) => window.distinct);
+const solvedWindowTop3 = solvedProfiles.map((window) => window.top3);
 assert.deepEqual(solvedWindowDistinct, [21, 20, 20, 21, 21]);
+assert.deepEqual(solvedWindowTop3, [31, 32, 32, 32, 33]);
 
 // A first-party 2014 order-five sum-3301 square provides a genuine,
 // nontrivial, invertible mixing plant. Its exact inverse restores all 455
@@ -223,12 +245,18 @@ const conclusion = {
   minimumWitness,
   maximumOriginalProjectedIoC: maximumIoC,
   maximumWitness,
+  maximumOriginalProjectedTop3: maximumTop3,
+  maximumTop3Witness,
   originalProjectionDistinctHistogram: distinctHistogram,
   authorNative91Windows: nativeWindows,
   authorNativeWindowsWithAtMost21Glyphs: nativeLowDistinct,
+  authorNativeWindowsWithAtLeast31Top3: nativeHighTop3,
+  authorNativeWindowsMeetingEitherCondition: nativeEither,
   authorNativeFiveLaneWindows: fiveWindowControls,
   authorNativeFiveLaneWindowsWithAtLeastOneAtMost21: controlsWithLow,
+  authorNativeFiveLaneWindowsMeetingEitherCondition: controlsWithEither,
   solvedP57WindowDistinct: solvedWindowDistinct,
+  solvedP57WindowTop3: solvedWindowTop3,
   plantedNontrivialSquareRoundTrip: '455/455',
 };
 process.stdout.write(JSON.stringify(conclusion, null, 2) + '\n');
