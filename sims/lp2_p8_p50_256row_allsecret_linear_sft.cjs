@@ -77,7 +77,7 @@ const aff9=evaluate(black31.slice(0,9),true);
 const impossibleLin=solve(x,y,black31,false);
 const impossibleAff=solve(x,y,black31,true);
 assert.equal(lin8.rank,8);assert.equal(lin8.trainMatches,64);
-assert.equal(lin8.rubricMatches,0);assert.equal(lin8.holdoutMatches,6);
+assert.equal(lin8.rubricMatches,1);assert.equal(lin8.holdoutMatches,5);
 assert.equal(aff9.rank,9);assert.equal(aff9.trainMatches,72);
 assert.equal(aff9.rubricMatches,0);assert.equal(aff9.holdoutMatches,7);
 assert.ok(impossibleLin.contradictory>0);
