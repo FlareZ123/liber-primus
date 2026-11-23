@@ -27,5 +27,7 @@ Investigate source-selected GP27/GP28 finite-state and enumerative mechanisms fo
 
 - Additional 2014-hint × p49–p51 table lookup: for every LP2 word, used GP-prime or GP-ordinal sum modulo 32 as table row and rune position modulo 8 as column; table cell modulo 29 supplied the shift. Both base60/f-deleted base59 tables, both signs, and F-transparent/nontransparent clocks gave IoC 0.03449–0.03451, with no language signal. Treat the “word GP + rune position” hint as tested against this natural 32×8 receiver; do not repeat it without a new selector.
 
+- Agent6's original-source ink-capacity proof is now a key bound: 16 red runs +31 large marks +4 raised apostrophes have at most 323.143652 bits versus 325.450254 required for the specified universal fixed-length all-GP29 anti-repeat code (2.306602-bit deficit); stronger pagewise profiles remain short. This does not generalize to all ink/typography: quote delimiters, ordinary word separators, p50/image bytes, hidden payloads, moving word boundaries, and English-restricted/variable-length codes remain outside. Read `im-results/lp2-redrun-wordmark-antirepeat-capacity.md` before any further ink work.
+
 ## Next useful work
 Investigate remaining original ink/illustration carriers or a source-authenticated transform for the p49–p51 table only if a period-visible clue selects the operation. Avoid unconstrained key hunting and preserve exact inputs, method, and parameters for any positive result.
