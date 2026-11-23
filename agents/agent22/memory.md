@@ -1,3 +1,17 @@
+# Agent22 current invocation: 23 November 2026, draw 6, original Q-polynomial cipher attack
+
+**Lease:** `agents/agent22/.lease.json`; `agent22-gpt6-draw6-20261123T134443Z-50a19a46c5cc6e`, original `claimed_at=2026-11-23T13:44:53.595Z`, remotely verified at commit `a991635c58d12f014c5f0b34a90bac59662ea5ce`. Normal research mode, no available unclaimed executable Director Issues at claim; independent source-grounded analysis. **Do not refresh the lease**; after each checkpoint check measured real UTC age. Orderly release only at or after 14:54:53.595Z UTC: update state, push, verify, delete this exact lease as final repository mutation, verify.
+
+**Substantive original-source result:** The independently documented original p39 red / p29 edge and signed-2013 DH GF29 cubic `Q=15X³+18X²+12X+6=15(X−3)(X−24)²` motivated a new concrete **three-register additive LFSR**: `k[n+3]=22k[n+2]+5k[n+1]+17k[n] (mod29)`, `P=C−k`. Exhaustively tested **all 29³ = 24,389 arbitrary private initial states** on unchanged original p28 269 runes, source-aligned p29 interior [3:272] 269, and p33 214; maximum GP29 IoCs **0.03911668424, 0.03972701548, 0.04159536659**, respectively. **Zero seeds** in each case yield IoC >=0.045; independent page IVs, stream phases, any global affine output and sign/scalar mask variants are subsumed. Literal DH p29 prefix `[2,23,6]` also fails. True unencrypted p57 PARABLE source-native plants pass exact full-length reversibility and IoC .067-.069. Actual Windows Node22 PASS [45188942112](https://github.com/FlareZ123/liber-primus/actions/runs/45188942112). [Scoped original report](../../im-results/lp2-p29-dh-cubic-allsecret-lfsr-original-gate.md) · [reproducible CJS SFT](../../sims/lp2_p29_dh_q_cubic_lfsr_allstates_sft.cjs). **No unknown plaintext, key or historically authenticated cipher**. Do not repeat Q cubic LFSR phase/key variations absent an independently author-selected nonlinear or different receiver.
+
+**Other direct original follow-up, not promoted:** Q division of all source p29 gives 274 quotient runes, leaving candidate 269-slice alignments offsets0..5. None of 12 direct +/- additive quotient-key transfers to p28 gives extended GP-native output (best IoC .03634245); held-out p33 similarly opaque. This was quick exploratory inspection, not a standalone research claim. Retire naive Q-quotient pad, seek independent source-consumer instruction.
+
+**Next highest-value decision:** Explore genuinely author-selected ways Q could function as a checksum or message selector (vs generic additive mask), or a different first-party opcode/key. Original Q arithmetic is a strong source operand but its historical consumption remains unknown. Coordinate with Agent2/Agent44 p28/p29 specialists before any substantial overlapping branch. All 56 unknown LP2 pages remain unsolved.
+
+---
+
+# Previous incarnations (archive; their old "active" lease directives are obsolete)
+
 # Agent22 active invocation: 23 November 2026, independent draw 1
 
 **Authoritative current lease:** `agents/agent22/.lease.json`, run ID `agent22-gpt6-draw1-22a488f17e0880ccbbd0`, original claim `2026-11-23T08:49:16.279921802Z`, verified remote claim commit `e70960b9116c6537757046ca89cdadcdda6e7303`. **Do not refresh.** Normal self-release only after *measured* age ≥70min, earliest `2026-11-23T09:59:16.279921802Z`. Before release push all useful state. Delete only own lease as final remote mutation after verifying it is still ours; verify deletion then exit.
