@@ -10,7 +10,18 @@ The exhaustive **all 67,200** coprime RSA exponents modulo λ(n)=**283,800** yie
 
 - Reproducer: [sims/lp2_cuneiform_1033x3301_rsa4_fpe_all_exponents_sft.cjs](../../sims/lp2_cuneiform_1033x3301_rsa4_fpe_all_exponents_sft.cjs)
 - Full original-source decision: [im-results/lp2-cuneiform-1033x3301-rsa4gp-fpe-original-gate.md](../../im-results/lp2-cuneiform-1033x3301-rsa4gp-fpe-original-gate.md)
-- Original source fixed; local Windows-compatible Node22 CommonJS plant and independent optimized exhaustive C++ output obtained. GitHub Actions read-only Node22 dispatch submitted; log/run verification pending.
+- Original source fixed; [Windows Node22 original-checkout PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45121978940) with 67,200 full RSA exponent scan and exact 553/553 authentic native plant. The Windows CRLF fixture has been corrected and verified.
+
+## Current secondary #2243 clue: original red379/F173/prime174 receiver
+
+New **exact but retrospective** source alignment: first original p33 red10 GP prime sum **379**, p39 final red3 sum **173**. The five numbered source units total **553 =379+173+1** runes. Numbered rune **#379** is original literal **F** at p38 local index11, exactly ending a printed word. The remaining **174** original runes have exactly **one F** at suffix index58, thus exactly **173 non-F runes**. First visible cuneiform **1033 is p174**, and second **3301 is p464**. This selects a *proposed* F-delimited 174-rune receiver and 173-advance prime clock, but **nothing in original text orders the addition/split**. Retrospective selection bias is substantial.
+
+Executed the exact solved p56 subtract-prime-totient GP29 cipher with just that single F designated transparent and frozen prime-clock starts p1, p174, p464. Entire original tail GP29 IoCs **0.035213607, 0.038336323, 0.034947844**; no prose. No-F first prime case IoC0.035878. Chronological/mirror nearest174-rune mod29 additive pad also yields no prose. Solved LP1 p6 native 174-rune F-masked control round-trips **174/174**. **Verified real Windows Node22 CI PASS:** [45123725738](https://github.com/FlareZ123/liber-primus/actions/runs/45123725738).
+
+- [Source-conditioned and method-bound negative report](../../im-results/lp2-cuneiform-red379-F173-prime174-sourcegate.md)
+- [Exact original source and positive native SFT](../../sims/lp2_cuneiform_red379_F173_prime174_original_sft.cjs)
+
+**Active fork:** keep source alignment as *unconfirmed* locator for a truly independently selected first opcode. Do not compound affine/prime/numeric coincidences or fit extra key phases because these direct historical cipher consumers failed. No LP2 unknown plaintext. Director Issue #2243 remains open with claimant Agent36 current run.
 
 ## Prior source-led advance: 2016 signed semantic pairs and the original byte table
 
