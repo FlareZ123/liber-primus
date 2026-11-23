@@ -59,9 +59,9 @@ function latin(tape) {
 }
 
 // Authentic solved-page positive control: the fixed p56 prime/totient
-// *direct* stream recovers the first 55 known GP29 runes of p56 exactly.
-// The later p56 F-interrupter handling is a separate operation; this finite
-// test does NOT rule out source-selected F-transparent variants.
+// direct stream recovers the first 55 known GP29 runes before the first
+// actual plaintext F. The separate exhaustive F-transparent test below
+// covers every literal-F branch of the genuine p56 mode.
 const known = 'ANENDWITHINTHEDEEPWEBTHEREEXISTSAPAGETHATHASHESTOITISTHEDUTY';
 const actual = latin(decode(corpus.pages[56].indices.slice(0, 55), 0, -1));
 assert.equal(actual, known, 'authentic known p56 control');
@@ -99,3 +99,75 @@ for (const [sign, values] of Object.entries(score)) {
   console.log('SIGN', sign, 'range', Math.min(...values), Math.max(...values));
 }
 console.log('No original unknown plaintext, no authenticated 16-page selector; direct transfer rejected.');
+
+
+/**
+ * In the authentic solved p56 plaintext-F-transparent mode, an actual P=F
+ * is copied as literal C=F and consumes no prime. At C=F the inverse
+ * branches across both valid histories. No cryptanalytic model fitting.
+ * @param {number[]} tape
+ * @param {number} start
+ * @param {-1 | 1} sign
+ * @returns {{ survivors: number, ways: number, impossibleAt: number | null }}
+ */
+function fTransparentStates(tape, start, sign) {
+  /** @type {Map<number,number>} consumedPrimeCount => possible histories */
+  let states = new Map([[0, 1]]);
+  for (let i = 0; i < tape.length; i++) {
+    const c = tape[i];
+    /** @type {Map<number,number>} */
+    const next = new Map();
+    for (const [used, ways] of states) {
+      const key = (primes[start + used] - 1) % 29;
+      // Non-F plaintext must use the additive key and consumes one prime.
+      const p = (c + sign * key + 29) % 29;
+      if (p !== 0) next.set(used + 1, (next.get(used + 1) || 0) + ways);
+      // Literal plaintext-F is possible ONLY at ciphertext F and does not
+      // consume a key element. This is a separate genuine inverse branch.
+      if (c === 0) next.set(used, (next.get(used) || 0) + ways);
+    }
+    states = next;
+    if (states.size === 0) return { survivors: 0, ways: 0, impossibleAt: i };
+  }
+  return {
+    survivors: states.size,
+    ways: [...states.values()].reduce((sum, count) => sum + count, 0),
+    impossibleAt: null
+  };
+}
+
+/** @param {number[]} tape @param {number} start @param {-1 | 1} sign */
+function encryptFTransparent(tape, start, sign) {
+  let used = 0;
+  return tape.map((p) => {
+    if (p === 0) return 0;
+    const c = (p - sign * ((primes[start + used] - 1) % 29) + 29) % 29;
+    used++;
+    return c;
+  });
+}
+
+const solvedF = fTransparentStates(corpus.pages[56].indices, 0, -1);
+assert.ok(solvedF.survivors > 0, 'authentic solved p56 mode must survive');
+console.log('PASS full original p56 F-transparent path count:', solvedF);
+
+const contradictionRows = [];
+for (let j = 0; j < 16; j++) {
+  const C = corpus.pages[16 + j].indices;
+  const nativePlant = Array.from({ length: C.length }, (_, i) => native[i % native.length]);
+  const start = starts[j];
+  const row = { page: 16 + j, seed: primes[start] };
+  for (const sign of /** @type {Array<-1 | 1>} */ ([-1, 1])) {
+    const original = fTransparentStates(C, start, sign);
+    assert.equal(original.survivors, 0, 'source p15 native F rule must be impossible');
+    assert.ok(original.impossibleAt !== null && original.impossibleAt < C.length);
+    const plantedCipher = encryptFTransparent(nativePlant, start, sign);
+    assert.ok(fTransparentStates(plantedCipher, start, sign).survivors > 0,
+      'authentic solved p57 F-transparent plant must survive');
+    row[sign === -1 ? 'subtractFirstImpossible' : 'addFirstImpossible'] = original.impossibleAt;
+  }
+  contradictionRows.push(row);
+}
+console.log('PASS key-mask-exhaustive genuine F-transparent original gate (0-based):');
+for (const row of contradictionRows) console.log(row);
+console.log('ALL 32 p15-page prime seeds/signs have ZERO legal F-transparent plaintext histories.');

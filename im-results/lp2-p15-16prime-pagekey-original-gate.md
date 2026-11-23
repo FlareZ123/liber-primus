@@ -1,6 +1,6 @@
 # P15's sixteen Fibonacci-prime cells as the next sixteen pages' direct prime/totient seeds
 
-**Decision (23 November 2026, Agent4):** A concrete source-led transfer of the authenticated solved p56 prime/totient additive decipherment to the 16 contiguous following pages p16–p31 **does not recover unknown LP2 prose**. The exact p15 16-cell Fibonacci-ordinal spiral provides sixteen real primes, and p16–p31 are exactly sixteen physical pages before the next distinctive p32 tree plate. The **one cell per next page** assignment remains a conjectured reading instruction rather than author-authenticated. This is a finite direct-prime-stream negative, not an exclusion of a more complicated changing-state/word-boundary cipher or all possible uses of p15.
+**Decision (23 November 2026, Agent4):** A concrete source-led transfer of the authenticated solved p56 prime/totient additive decipherment to the 16 contiguous following pages p16–p31 **does not recover unknown LP2 prose**. The exact p15 16-cell Fibonacci-ordinal spiral provides sixteen real primes, and p16–p31 are exactly sixteen physical pages before the next distinctive p32 tree plate. The **one cell per next page** assignment remains a conjectured reading instruction rather than author-authenticated. The direct mode is nonlinguistic; the **actual solved p56 plaintext-F-transparent extension is algebraically impossible on each of the 16 source-paired pages under every legal F-mask**. Neither result excludes other changing-state ciphers or other uses of p15.
 
 ## Source-derived receiver and actual ciphertext
 
@@ -27,12 +27,39 @@ The original p16 decryption begins `BNGLMGLEOFGSRNGCMGJEAWYMCOJN...`; the best s
 
 The same source code and arithmetic reproduce the **first 55 original p56 ciphertext runes** as the actual established solved text `ANENDWITHINTHEDEEPWEBTHEREEXISTSAPAGETHATHASHESTOITISTHEDUTY` with IoC 0.07676768, so the prime clock/sign and GP29 direction are independently calibrated on a genuinely solved source. The first 55 stop before later plaintext-F interrupter complications. Full original inverse→forward replay is exact in both orientations for all 4,077 original runes. A separate known-solved p57 native-GP plaintext plant, tiled only for the codec's functional test, returns exactly all 4,077 known symbols through both encoders. These round-trips are necessary correctness checks and cannot identify a historical key.
 
-**Important boundary:** Some solved-LP1 and p56 modes treat *plaintext F* as an interrupter with nonconsuming key state, requiring a source-provided plaintext-F mask to invert unambiguously. The direct transfer above consumes each original ciphertext rune, calibrated on p56's uninterrupted first55; it does **not** claim to exhaust secret F-mask choices or variants with new clocks. In particular, interpreting any ciphertext F as necessarily literal plaintext F is false, and this study does not rely on that assumption. No 2014 source demonstrates one prime seed per successive physical page or instructs the reader to use a p56 decryption mode there.
+## Stronger exact original-cipher gate: every genuine plaintext-F mask
+
+The authentic p56 prime/totient decipherment permits a special **plaintext F = GP29 zero**: when the plaintext rune is F, the cipher prints literal ciphertext F and **does not consume the next prime**. The direct-inverse IoC experiment above had allowed every ciphertext rune to consume one prime. A stronger lossless inverse now branches at **every genuine ciphertext F** between (a) literal plaintext F, key clock held and (b) ordinary shifted plaintext not F, key clock incremented; for any ciphertext not F it must use the shifted branch with non-F plaintext. This enumerates every legal F-mask history for the exact p56 rule without a guessed mask, fitted alphabet, language scores or word-break assumptions.
+
+For each source-selected page start and both additive signs, *no complete original p16–31 page has even one legal plaintext-F-transparent inverse*. The **first unavoidable original contradiction**, zero-based within each unchanged physical page, is:
+
+| Page | Printed source prime | Subtract: first contradiction | Add: first contradiction |
+|---|---:|---:|---:|
+| 16 | 2 | 7 | 47 |
+| 17 | 3 | 93 | 16 |
+| 18 | 5 | 3 | 205 |
+| 19 | 7 | 82 | 50 |
+| 20 | 13 | 12 | 140 |
+| 21 | 23 | 29 | 2 |
+| 22 | 43 | 24 | 82 |
+| 23 | 79 | 1 | 5 |
+| 24 | 149 | 57 | 46 |
+| 25 | 263 | 17 | 23 |
+| 26 | 463 | 0 | 4 |
+| 27 | 829 | 137 | 12 |
+| 28 | 1481 | 181 | 5 |
+| 29 | 2593 | 2 | 149 |
+| 30 | 4507 | 77 | 14 |
+| 31 | 7817 | 64 | 43 |
+
+The **whole authentic original p56 ciphertext** has legal F-transparent inverse histories under the historical subtract/prime2 seed (5 surviving final prime clocks / 22 finite paths). Full-length synthetic ciphertext encoded from genuinely solved p57 native-GP runes with correctly nonconsuming plaintext F has at least one legal inverse for **each of the 32 source-seeded orientations**. Thus the zero original survivors are a mathematical incompatibility of the exact candidate, stronger than the conditional IoC result. A ciphertext F does not force plaintext F; the dynamic program includes both lawful branches.
+
+**Scope:** The 16-page physical recipient alignment and the page-specific prime ordinal starts remain **proposed, not authenticated**. This excludes the full genuine solved-p56 additive/F-transparent mode with **these exact page seeds and no other state, initialization or extra key**. It does not exclude modified clocks, another source-selected F convention, a different 16-page correspondence or other uses of the p15 diagram. No unknown LP2 plaintext, key or intended 2014 instruction was recovered.
 
 **Research decision:** Do not search p15 page-prime offsets/signs until new evidence names a changing-state operator or recipient. The p15 figure's exact 16 original Fibonacci-prime values remain established. A stronger next step would locate an original instruction explaining how these sixteen seeds generate *a recoverable changing key or control path*, rather than brute-forcing another direct additive stream.
 
 ## Reproduction
 
-- `sims/lp2_p15_16prime_pagekey_original_sft.cjs`: one Windows Node22/CommonJS runnable test, reading existing canonical source JSON; prints all sixteen page IoCs, asserts the actual first55 p56 known text, all original inverse/forward replays and the source-native p57 planted controls.
+- `sims/lp2_p15_16prime_pagekey_original_sft.cjs`: one Windows Node22/CommonJS runnable test, reading existing canonical source JSON; prints all sixteen page IoCs and exact original F-transparent first contradictions, asserts the actual first55 p56 text, checks full solved-p56 legal F paths, all original direct inverse/forward replays and synthetic native p57 transparent-F controls.
 - Source corpus: `resources/liber-primus/lp2-corpus.json` with original LP2 p16–31 and solved p56–57 indices.
-- CI validation: [manual read-only Node22 run 45130083392](https://github.com/FlareZ123/liber-primus/actions/runs/45130083392) (consult run status; link identifies the dispatched source test).
+- CI validation: [manual read-only Node22 run 45130083392](https://github.com/FlareZ123/liber-primus/actions/runs/45130083392) (previous direct-mode PASS); the strengthened transparent-F gate requires a fresh run of the updated SFT.
