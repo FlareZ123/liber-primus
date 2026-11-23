@@ -281,7 +281,7 @@ console.log(JSON.stringify({
   originalTokenAt39:tokens[39],move:"SW",steps:tableValues[39],
   intermediateCells:routeFive,
   destination:74,originalTokenAt74:tokens[74],destinationBase60:tableValues[74],
-  p57PrimeClauseSums,p57PrimeClauseOneBasedRanks:p57PrimeRanks,
+  p57PrimeClauseSums:p57PrimeSums,p57PrimeClauseOneBasedRanks:p57PrimeRanks,
   exact2013ParableID3Product:p57PrimeSums.reduce((a,b)=>a*b,1),
   p50Byte205Address:74,
   conditionalMultisetNullTwoTokenProbability:conditionalTwoTokenProbability,
