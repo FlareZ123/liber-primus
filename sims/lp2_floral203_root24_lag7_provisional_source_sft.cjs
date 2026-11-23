@@ -72,6 +72,20 @@ const otherIntervals=[0,3248,6496,9708].map((start)=>{
 });
 assert.deepEqual(otherIntervals.map((x)=>x.count),[2,1,0,1]);
 
+// Source-boundary control: shift the entire continuous 3248-rune tape
+// cyclically by each of the 203 possible single-cell offsets and partition
+// again into sixteen logical rows. Offset0 is the actual red-heading boundary.
+const rotateCases = [];
+for(let start=0;start<203;start++){
+  const r = Array.from({length:16},(_,row) => Array.from({length:203},
+    (_,j) => black[(start + row*203 + j)%3248]));
+  const q = coincidences(readout(r,24),7);
+  rotateCases.push({start,match:q.count,longest:q.longest});
+}
+assert.deepEqual(rotateCases[0],{start:0,match:6,longest:4});
+assert.deepEqual(rotateCases.filter((x)=>x.match>=6).map((x)=>x.start),[0]);
+assert.deepEqual(rotateCases.filter((x)=>x.longest>=4).map((x)=>x.start),[0]);
+
 // Same input per-row histograms, but no inter-position order. A reproducible
 // null for the strength of the observed lag-seven signal rather than proof.
 let a=0x33012026,b=0x7f4a7c15,c=0xc1cad4d4,d=0x20142016;
@@ -105,6 +119,8 @@ console.log(JSON.stringify({
   root24Observed:trace,sourceReadout32:observed,
   otherSeventhRoots:roots7.map((r)=>({root:r.root,lag7:r.count})),
   nonfloralSourceIntervals:otherIntervals.map((r)=>({start:r.start,lag7:r.count,longest:r.longest})),
+  sourceBoundaryCyclic203Offsets: {cases:203,onlySixOrMore:[0],onlyRunFour:[0],
+    highestOtherOffset:Math.max(...rotateCases.slice(1).map((r)=>r.match))},
   originalRowHistogramPreservingShuffle:{
     samples:N,random:'sfc32 [0x33012026,0x7f4a7c15,0xc1cad4d4,0x20142016]',
     lag7AtLeastSix:nAtLeastSix,runAtLeastFour:nAtLeastFourRun,
