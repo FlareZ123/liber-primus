@@ -116,6 +116,10 @@ try {
     );
   }
   const transcript = (run.stdout || "") + "\n" + (run.stderr || "");
+  const bitsMatch = transcript.match(/Extracting usable bits:\s*(\d+)\s*bits/i);
+  assert.ok(bitsMatch, "OutGuess usable-bit count not reported");
+  const usableBits = Number(bitsMatch[1]);
+  assert.equal(usableBits, 29049);
   assert.match(transcript, /seed:\s*228,\s*len:\s*535/);
   const extracted = fs.readFileSync(extractedPath);
   assert.deepEqual(extracted, EXPECTED_PAYLOAD);
@@ -146,6 +150,8 @@ try {
         ascii_shift: -4,
         decoded_next_image: decoded,
         outguess_invocation: "outguess -r 1CcV1.jpg 1CcV1.jpg.out",
+        outguess_version: "0.4",
+        outguess_usable_bits: usableBits,
         outguess_seed: 228,
         extracted_payload_bytes: extracted.length,
         extracted_payload_sha256: sha256(extracted),
