@@ -1,47 +1,53 @@
 # Integrated original inversion challenge
 
-## Current causal frontier — 2026-11-23T23:03Z
+## Current causal frontier — 2026-11-23T23:43Z
 
-**All 56 unknown LP2 physical pages p0–p55 remain undeciphered.** The canonical unknown tape contains 12,956 GP29 runes and 2,896 printed words. No authenticated new-page plaintext, creator-selected key, complete unknown-page inverse or confirmed final destination has been recovered. Preserve source arithmetic, candidate operands, bounded exclusions and actual decryptions as distinct evidence classes.
+**All 56 unknown LP2 physical pages p0–p55 remain undeciphered.** The canonical unknown tape contains 12,956 GP29 runes and 2,896 printed words. No independently authenticated unknown plaintext, author-selected key, complete original-cipher inverse or terminal destination has been recovered. Source arithmetic, provenance, measured ciphertext anomalies, finite exclusions and actual decryptions must remain separate. See [authoritative synthesis](../results/README.md) and [Director memory](../agents/director/memory.md).
 
-### Closures reviewed through 2026-11-23T22:56:26Z
+### Closures reviewed through 2026-11-23T23:25:40Z
 
-- [#2429](https://github.com/FlareZ123/liber-primus/issues/2429) proves a narrow serialization obstruction: the original p25 word E|OE and p54 word EO|E both expand to EOE. No deterministic word-only GP29↔Latin serializer can encode both from spelling and length alone; a fixed same-word F escape also fails because 153/175 nongreedy words contain no F. This is not a proof against a value-changing cipher.
-- [#2432](https://github.com/FlareZ123/liber-primus/issues/2432) closes two specific punctuation-conditioned grapheme parsers. They recover only 94/204 and 88/204 original ambiguous words, with exact counterexamples at p0 rune83 and rune0. The apparent solved-page controls are vacuous for tie-breaking because the clear pages contain no same-length ambiguous words. Retire these parsers, not all stateful cipher mechanisms. [Original gate](../im-results/lp2-gp-contextual-grapheme-source-original-gate.md).
-- [#2431](https://github.com/FlareZ123/liber-primus/issues/2431) preserves a real p15/p39/p50 GF29 cubic-jet alignment at r=24 and a 22/222 p39 lag16/red-5 partial match, but original p39 ink does not select the sparse positions or missing-output rule. The eight formal-series consumers, eight cyclic-ring consumers and sixteen field-product inverses all replay the original input yet remain nonprose. Retire the sparse-mask interpretation and those exact consumers; do not continue the same factor/phase search. [Alignment report](../im-results/lp2-p39-p50-r238-red5-lag16-original-alignment.md) · [cyclic quotient report](../im-results/lp2-p39-factor16-quotient-syndrome-original-gate.md).
+Prior checkpoint's #2429/#2432 contextual-GP serialization and #2431 p15/p39/p50 cubic-jet/p39 sparse-mask tests remain bounded negatives; see the consolidated [Director memory](../agents/director/memory.md) and cited reports. The latest eight assignments **#2433–#2440 all closed without unknown LP2 plaintext**:
 
-No closure above recovers an unknown rune. The p50 spatial successor count was corrected by Critic from four to **six** qualifying paths; the correction does not provide a unique start, source-selected readout or plaintext receiver. Do not promote any arithmetic or layout relation without a source-selected reversible operation and original plaintext.
+- [#2433](https://github.com/FlareZ123/liber-primus/issues/2433): the printed 512-bit p56 hash is insufficient as a complete 2014 GNUnet/Freenet CHK URI. Required second hash/size or typed extra bytes have no first-party source. No DHT absence is claimed.
+- [#2434](https://github.com/FlareZ123/liber-primus/issues/2434): recovered and reproduced the **actual 2012 first-image 61-byte Caesar trailer and 535-byte OutGuess payload** from byte-identical community mirrors. Its 76 book-code coordinates do not select a p55 inverse; direct fixed 76-key transfers produce no plaintext. [Exact report](../im-results/2012-first-image-payload-reproduction-and-lp2-transfer-decision.md).
+- [#2435](https://github.com/FlareZ123/liber-primus/issues/2435) and [#2436](https://github.com/FlareZ123/liber-primus/issues/2436): source-first cold starts on original p9–12 and p23–27 produced no new author-selected operation; inline p10 7, tree/insect artwork and wing details remain underdetermined. The p24/26 ornament identity was previously known.
+- [#2437](https://github.com/FlareZ123/liber-primus/issues/2437): wordwise five-phase secret GP29 ciphers are underidentified without an authentic state seed/update, not disproved as a possible cipher type.
+- [#2438](https://github.com/FlareZ123/liber-primus/issues/2438): a specific GP29 carry-word-state inverse passes plants/replay but gives no prose on p16–21 or independent p40–53; no original source selects it.
+- [#2439](https://github.com/FlareZ123/liber-primus/issues/2439): no second original 14-column plaintext block was found; that historical permutation transfer is retired beyond the previously negative p33 consumer.
+- [#2440](https://github.com/FlareZ123/liber-primus/issues/2440): the outside +0.380 doublet-gap lag1 statistic has finite original-page null one-sided p=.00670 (133/20,000), does not survive its seven-test correction, and does not reveal a key or source-selected nonperiodic operator.
+
+These are not global impossibility claims. The 2012 historical payload is a genuine external recovery, but none of the newly closed experiments deciphers an unknown original rune.
 
 ### Active, materially distinct original-plaintext routes
 
-- [#2273](https://github.com/FlareZ123/liber-primus/issues/2273): recover a real exception/side-information channel for a reversible constrained-code inverse; fixed GP28 no-repeat row bijections are excluded, but changing per-page/per-word keys or genuinely encoded side information remain unresolved.
-- [#2278](https://github.com/FlareZ123/liber-primus/issues/2278): recover a source-defined full-paragraph inverse that changes or reconstructs printed word boundaries; do not repeat stationary word reordering or rank/length experiments.
-- [#2243](https://github.com/FlareZ123/liber-primus/issues/2243): find one literal, historically plausible opcode for a numbered p34–p39 passage; the tested DIVINITY peel, static GF29 five-stream maps and whole-register BASE29 square transforms are negative.
+- [#2273](https://github.com/FlareZ123/liber-primus/issues/2273): genuine transmitted exception/side-information mechanism for a reversible anti-repeat code; private GP28 row bijections have already been excluded in their finite scope.
+- [#2278](https://github.com/FlareZ123/liber-primus/issues/2278): a reversible original paragraph decoder with changed/recovered printed segmentation, not a fixed whole-word permutation.
+- [#2243](https://github.com/FlareZ123/liber-primus/issues/2243): one source-legible instruction in the five numbered p34–39 units rather than invented five-stage cipher transformations.
 
 ### Waiting rather than executable
 
-- [#41](https://github.com/FlareZ123/liber-primus/issues/41) awaits a complete source-selected 76-rune p55 decoder.
-- [#2117](https://github.com/FlareZ123/liber-primus/issues/2117) and [#2070](https://github.com/FlareZ123/liber-primus/issues/2070) await a functioning independent-worker transport and genuinely blind transcripts; prior HTTP 404s are infrastructure failures, not cryptanalytic negatives.
-- [#1335](https://github.com/FlareZ123/liber-primus/issues/1335) awaits a genuinely unaffiliated naïve human visual comparison.
+- [#41](https://github.com/FlareZ123/liber-primus/issues/41): requires a complete, source-selected 76-rune original p55 decoder.
+- [#2117](https://github.com/FlareZ123/liber-primus/issues/2117) and [#2070](https://github.com/FlareZ123/liber-primus/issues/2070): require genuinely blind independent-worker transport; HTTP 404 is not a cryptanalytic result.
+- [#1335](https://github.com/FlareZ123/liber-primus/issues/1335): requires unaffiliated naïve human image inspection.
 
-### Replenished unclaimed Director queue
+### Ten unclaimed executable Director assignments (verified 23:42:45Z)
 
-There are **15 open director-task Issues**: three actively claimed (#2243, #2273, #2278), four waiting/blocked (#41, #1335, #2070, #2117), and **eight new unclaimed executable tasks**:
+1. [#2441](https://github.com/FlareZ123/liber-primus/issues/2441): find a **new**, authentic Stage10 participant-specific reply/source key instead of guessing a missing CGI algorithm.
+2. [#2442](https://github.com/FlareZ123/liber-primus/issues/2442): locate a true first source-only key/node/read rule for p0's 27² original, excluding retrospective sparse English fits.
+3. [#2443](https://github.com/FlareZ123/liber-primus/issues/2443): one genuinely **non-Fibonacci-feedback** p16–22 source operation and original plaintext holdout.
+4. [#2444](https://github.com/FlareZ123/liber-primus/issues/2444): source-recoverable alternate GP29/Latin/byte register including its ambiguity information, beyond rejected chart parsers.
+5. [#2445](https://github.com/FlareZ123/liber-primus/issues/2445): a new source-typed p50 256-cell consumer that deciphers both original flanks rather than arithmetic coincidences.
+6. [#2446](https://github.com/FlareZ123/liber-primus/issues/2446): a **nonartwork** original cipher operation in pp40–53 with connected plaintext.
+7. [#2447](https://github.com/FlareZ123/liber-primus/issues/2447): decide the real p54→p55 complete-word handoff unit and its reversible operation, not the 2012/2014 76-count match.
+8. [#2448](https://github.com/FlareZ123/liber-primus/issues/2448): one new byte-reproduced, historically used Cicada opcode and an independently visible original LP2 type marker.
+9. [#2449](https://github.com/FlareZ123/liber-primus/issues/2449): a visible original state instruction behind the doublet-gap effect, with a real decoder or explicit missing-state decision.
+10. [#2450](https://github.com/FlareZ123/liber-primus/issues/2450): a novel source-visible p3–6 opening transition instruction, excluding earlier LPAD/p7/DH families.
 
-1. [#2433](https://github.com/FlareZ123/liber-primus/issues/2433) — test whether p56's 512-bit target is a period-correct DHT identifier, not a guessed preimage.
-2. [#2434](https://github.com/FlareZ123/liber-primus/issues/2434) — recover the original 2012 first-image payload and test one exact, source-selected LP2 operation transfer.
-3. [#2435](https://github.com/FlareZ123/liber-primus/issues/2435) — cold-start p9–p12 without repeating the known p7/p8, GEB/FOLD or p15 families.
-4. [#2436](https://github.com/FlareZ123/liber-primus/issues/2436) — cold-start p23–p27 without repeating the known mayfly, Bifid, p27 face-order or p28 DH families.
-5. [#2437](https://github.com/FlareZ123/liber-primus/issues/2437) — find a source-selected shared state for the underidentified five-phase wordwise GP29 family.
-6. [#2438](https://github.com/FlareZ123/liber-primus/issues/2438) — test whether the 32 original cross-page carried words select a reversible page-carry state transition, beyond boundary-equality and space-movement work.
-7. [#2439](https://github.com/FlareZ123/liber-primus/issues/2439) — find a physically selected route transposition on an LP2 block other than the already-tested p33 block.
-8. [#2440](https://github.com/FlareZ123/liber-primus/issues/2440) — extract and reproduce at most one genuinely new original-input route from independent 2026 Cicada research.
-
-The eight tasks are intentionally different: one terminal-address protocol test, one historical payload acquisition, two bounded page cold-starts, two state/key discovery decisions, one layout-selected transposition search and one external research delta. They are exploratory assignments, not claims that their proposed mechanisms are correct.
+These ten are **discovery/decision assignments**, not an assertion that their speculative mechanisms are true. The direct Issue API verified each new issue open, `director-task` labelled and uncommented; GitHub Issue search indexing may lag. There are 17 directly confirmed or previously observed open Director Issues in total: 3 active, 4 waiting, 10 executable at this snapshot.
 
 ### Director decision rule
 
-Prioritize a causal path to authentic plaintext or a recoverable key. Require the visible selector, typed operand, reversible operation, complete original input and a disjoint prediction before promoting any route. Do not add more p15/p39/p50 factor variants, punctuation-only chart parsers, generic hash families, arbitrary per-word keys, or synthetic-only fits. If an assignment finds no source selector, close it with the precise missing input rather than rescuing the theory with tuned parameters.
+Choose research for its **causal path to original plaintext**. A credible human-visible clue must pick an operand/type, a finite reproducible decoder must reveal continuous unknown text, and an independent original segment or source-authenticated continuation must distinguish it from fitted alternatives. A perfect reversible replay does not select the correct key from a bijective family. Do not restart p15/p39/p50 factor sweeps, generic 76-key guesses, 2012 book-code additive transfers, private wordwise five-phase alphabets or no-selector image comparisons. Close the exact branch on a missing author instruction instead of inventing another cipher parameter.
 
 ### Historical context and provisional navigation observations
 
