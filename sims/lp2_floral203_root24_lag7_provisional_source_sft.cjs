@@ -64,6 +64,8 @@ for(let root=1;root<29;root++){
   if(x===1)roots7.push({root,...coincidences(readout(rows,root),7)});
 }
 assert.deepEqual(roots7.map((x)=>[x.root,x.count]), [[1,1],[7,0],[16,0],[20,0],[23,3],[24,6],[25,3]]);
+const reversedCoefficient = coincidences(readout(rows.map((r)=>Array.from(r).reverse()),24),7);
+assert.deepEqual(reversedCoefficient,{count:0,positions:[],longest:0});
 const allRunes = pages.filter((p)=>p.page<=55).flatMap((p)=>p.indices);
 const otherIntervals=[0,3248,6496,9708].map((start)=>{
   const a=allRunes.slice(start,start+3248);
@@ -118,6 +120,7 @@ console.log(JSON.stringify({
   status:'PASS',source:'original floral black 16x203 and source red p39 (x-24)^2',
   root24Observed:trace,sourceReadout32:observed,
   otherSeventhRoots:roots7.map((r)=>({root:r.root,lag7:r.count})),
+  reverseCoefficientOrder: {lag7:reversedCoefficient.count,longest:reversedCoefficient.longest},
   nonfloralSourceIntervals:otherIntervals.map((r)=>({start:r.start,lag7:r.count,longest:r.longest})),
   sourceBoundaryCyclic203Offsets: {cases:203,onlySixOrMore:[0],onlyRunFour:[0],
     highestOtherOffset:Math.max(...rotateCases.slice(1).map((r)=>r.match))},
