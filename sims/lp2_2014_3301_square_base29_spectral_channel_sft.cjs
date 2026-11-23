@@ -152,6 +152,49 @@ for (let k = 0; k < H.length; k++) {
 const M = [...W, [1, 0, 0, 0, 0], [0, 1, 0, 0, 0]];
 const mInv = invert(M);
 assert.deepEqual(mul(M, mInv), eye(5));
+
+// The same signed BASE29 digits also form an exact *coefficient* factor of
+// the original p49-51 numeric table, unlike the eigenvalue-root polynomial.
+/** @param {number[]} factors @param {number[]} other @returns {number[]} */
+function polyMul(factors, other) {
+  const out = Array(factors.length + other.length - 1).fill(0);
+  for (let i = 0; i < factors.length; i++) {
+    for (let j = 0; j < other.length; j++) out[i+j] = mod(out[i+j] + factors[i]*other[j]);
+  }
+  return out;
+}
+/** @param {number[]} polynomial @param {number[]} divisor @returns {number[]} */
+function polyRemainder(polynomial, divisor) {
+  const out = polynomial.map(mod);
+  for (let i = out.length - divisor.length; i >= 0; i--) {
+    const lead = mod(out[i + divisor.length - 1] * inverse(divisor[divisor.length-1]));
+    for (let j = 0; j < divisor.length; j++) out[i+j] = mod(out[i+j] - lead*divisor[j]);
+  }
+  return out.slice(0, divisor.length-1);
+}
+const rawGrid = JSON.parse(read('resources/liber-primus/lp2-grid-256.json'));
+assert.equal(rawGrid.bytes.length, 256);
+const red39 = source.pages.find(p => p.page === 39).indices.slice(119, 122);
+assert.deepEqual(red39, [27,5,15]);
+const factorHG = polyMul(H, red39);
+assert.deepEqual(factorHG, [23,21,11,17,12]);
+const tableCoefficients = rawGrid.bytes.slice().reverse();
+assert.deepEqual(polyRemainder(tableCoefficients, H), [0,0]);
+assert.deepEqual(polyRemainder(tableCoefficients, red39), [0,0]);
+assert.deepEqual(polyRemainder(tableCoefficients, factorHG), [0,0,0,0]);
+const eigenRootPolynomial = polyMul(polyMul([-3,1],[-26,1]),[-24,1]);
+assert.deepEqual(eigenRootPolynomial, [13,20,5,1]);
+assert.deepEqual(polyRemainder(tableCoefficients, eigenRootPolynomial), [18,12,4]);
+console.log('SIGNED_2013_TO_2014_MATRIX_AND_P50_TRIANGLE', JSON.stringify({
+  signedBase29Digits: H, firstSquareGP29RationalEigenvalues: H,
+  p39OriginalRedTriad: red39,
+  originalGridHFactorRemainder: polyRemainder(tableCoefficients, H),
+  originalGridHGFactorRemainder: polyRemainder(tableCoefficients, factorHG),
+  originalGridSpectralRootPolynomialRemainder:
+    polyRemainder(tableCoefficients, eigenRootPolynomial),
+  evidence: 'Three exact source objects; coefficients versus roots are distinct; no plaintext'
+}));
+
 const decodePages = (start, end) => source.pages
   .filter(p => p.page >= start && p.page <= end)
   .flatMap(p => extract(p.indices, W));
