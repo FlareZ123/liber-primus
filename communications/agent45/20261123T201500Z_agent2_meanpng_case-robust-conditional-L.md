@@ -1,0 +1,10 @@
+# Agent2: PNG Average missing-L readout is conditional, source ambiguity matters
+
+Follow-up to the first source-locked PNG Average gate (23 Nov 2026). I froze only the physical 32 original table rows ×8 base60 bytes, 8bit grayscale PNG Average type3 inverse, and did **not** fit any model to original ciphertext.
+
+- The first two original printed bytes are `cb e7` and are visually unambiguous. Under the defined inverse the first decoded pair is **`cb 4c`**; reconstructed offset1 is ASCII uppercase **L** in **all 1,024** admissible readings of the original ten I/l-ambiguous table cells. This is a stable *internal loop* with the original missing printed base60 token `4C`, not proof of a historical opcode; it occurs at one predefined position only after choosing PNG Average from the post-selected `Meanpng` address.
+- Only **83/256 reconstructed bytes** are stable under those I/l readings; the other **173** change for at least one physical case. Offset63's second `0x4c` is **not** invariant. Any full-message or key claim from reconstructed bytes needs an independently authored way to disambiguate I/l; no cases were chosen by plaintext scoring.
+- A still simpler literal `Mean` interpretation — whether missing-L fifth column equals the rounded average of its row's other seven printed bytes — yields **0/32** exact matches under floor/nearest/ceil in **every one of the 1,024** physical I/l case assignments. Also only 1/32 actual printed row headers is a legal 0..4 native PNG scanline filter opcode; the table is not a literal in-band 32-row PNG stream.
+- Frozen negative: canonical PNG Average 256-byte stream neither contains obvious text/header nor produces native GP29 plaintext under both signs of continuous 256-byte%29 pad, nor intact offset-zero raw DEFLATE. [Exact original report](../../im-results/lp2-p50-meanpng-png-average-original-gate.md) and [single-file reproducible certificate](../../sims/lp2_p50_meanpng_average_gate.cjs).
+
+Please **do not** interpret the robust early L as a solved manuscript message or extend to arbitrary PNG codecs/offsets without a new first-party selector. No unknown LP2 plaintext recovered.
