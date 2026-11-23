@@ -83,44 +83,61 @@ function decrypt(c,key,sign){
   return c.map((x,i)=>(x+sign*key[i%key.length]+29)%29);
 }
 const candidates=[];
-for(let c=0;c<8;c++){
-  const ambiguous=grid.rows.reduce((count,row)=>count+Number(/[Il]/.test(row[c].slice(1))),0);
-  const bytes=Buffer.from(grid.byte_rows.map(row=>row[c]));
-  assert.equal(bytes.length,32);
-  const mn=mnemonic(bytes);
-  const seed=crypto.pbkdf2Sync(mn.phrase.normalize("NFKD"),"mnemonic",2048,64,"sha512");
-  const key=encodeSourceNativeGP(mn.phrase);
-  assert(key.length>=24);
-  // A complete original 95-rune solved positive uses the derived key
-  // with the same historic direct Vigenère combiner, not a tuned key.
-  const encrypted=decrypt(solved,key,+1);
-  assert.deepEqual(decrypt(encrypted,key,-1),solved);
-  for(const sign of [-1,+1]){
-    const x=decrypt(cipher,key,sign);
-    assert.deepEqual(decrypt(x,key,-sign),cipher);
-    candidates.push({
-      column:c,
-      sourceGlyphAmbiguities:ambiguous,
-      sourceRobust:ambiguous===0,
-      operation:sign<0?"C−K (LP1 direct Vigenere)":"C+K (inverse-sign)",
-      mnemonicWords:mn.words.join(" "),
-      nativeGPKeyLength:key.length,
-      bip39SeedFirst16Bytes:seed.subarray(0,16).toString("hex"),
-      score534:score(x),
-      initialSourcePage51LatinGP:x.slice(0,92).map(y=>corpus.translit[y]).join(" "),
-      first16RuneOrdinals:x.slice(0,16)
-    });
+const fullAlphabet=grid.alphabet;
+const dropFAlphabet=fullAlphabet.replace("f","");
+assert.equal(fullAlphabet.length,60);
+assert.equal(dropFAlphabet.length,59);
+for(const [radix,alphabet] of [[60,fullAlphabet],[59,dropFAlphabet]]){
+  const readByte=token=>{
+    assert.equal(token.length,2);
+    const first=alphabet.indexOf(token[0]),last=alphabet.indexOf(token[1]);
+    assert(first>=0&&last>=0);
+    const byte=radix*first+last;
+    assert(byte>=0&&byte<=255);
+    return byte;
+  };
+  assert.equal(readByte("3N"),radix===60?203:200);
+  for(let c=0;c<8;c++){
+    const ambiguous=grid.rows.reduce((count,row)=>count+Number(/[Il]/.test(row[c].slice(1))),0);
+    const bytes=Buffer.from(grid.rows.map(row=>readByte(row[c])));
+    assert.equal(bytes.length,32);
+    if(radix===60)assert.deepEqual([...bytes],grid.byte_rows.map(row=>row[c]));
+    const mn=mnemonic(bytes);
+    const seed=crypto.pbkdf2Sync(mn.phrase.normalize("NFKD"),"mnemonic",2048,64,"sha512");
+    const key=encodeSourceNativeGP(mn.phrase);
+    assert(key.length>=24);
+    // A complete original 95-rune solved positive uses the derived key
+    // with the same historic direct Vigenère combiner, not a tuned key.
+    const encrypted=decrypt(solved,key,+1);
+    assert.deepEqual(decrypt(encrypted,key,-1),solved);
+    for(const sign of [-1,+1]){
+      const x=decrypt(cipher,key,sign);
+      assert.deepEqual(decrypt(x,key,-sign),cipher);
+      candidates.push({
+        radix,
+        column:c,
+        sourceGlyphAmbiguities:ambiguous,
+        sourceRobust:ambiguous===0,
+        operation:sign<0?"C−K (LP1 direct Vigenere)":"C+K (inverse-sign)",
+        mnemonicWords:mn.words.join(" "),
+        nativeGPKeyLength:key.length,
+        bip39SeedFirst16Bytes:seed.subarray(0,16).toString("hex"),
+        score534:score(x),
+        initialSourcePage51LatinGP:x.slice(0,92).map(y=>corpus.translit[y]).join(" "),
+        first16RuneOrdinals:x.slice(0,16)
+      });
+    }
   }
 }
 const strong=candidates.filter(x=>x.sourceRobust);
-assert.equal(strong.length,6);
+assert.equal(strong.length,12);
 const solvedScore=score(solved);
 assert(solvedScore.logLikelihoodRatio>0, "known solved p57 must exceed native uniform likelihood");
 const output={
   sourceBip39:"https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki",
   sourceEnglishWordlist:"https://github.com/bitcoin/bips/blob/master/bip-0039/english.txt",
   historicUse:"BIP39 2013 mnemonic followed by Cicada LP1 documented Vigenere, no first-party LP2 selector",
-  gridDimensions:[32,8],cipherRunes:534,sourceRobustColumns:[0,3,4],
+  gridDimensions:[32,8],cipherRunes:534,sourceRobustColumns:[0,3,4],radices:[60,59],
   exactBIP39OfficialVector:true,knownSolved95SourceScore:solvedScore,
   fixedDirectVigenereCandidates:candidates
 };
