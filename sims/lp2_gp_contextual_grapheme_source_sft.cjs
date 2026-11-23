@@ -120,6 +120,31 @@ assert.equal(witness[0].original.join('|'), 'S|H|E|O|G|M|IA|F');
 assert.equal(witness[0].alternative.join('|'), 'S|H|EO|G|M|I|A|F');
 assert.equal(2n ** BigInt(witness.length), 4503599627370496n);
 
+/** The ordinary leftmost-longest GP29 glyph spelling used by clear p57. */
+const sortedTokens = corpus.translit.slice().sort((a, b) => b.length - a.length);
+/** @param {string[]} word */
+function greedyLiteralRomanizationInverse(word) {
+  const latin = word.join('');
+  const parsed = [];
+  for (let i = 0; i < latin.length;) {
+    const token = sortedTokens.find(candidate => latin.startsWith(candidate, i));
+    assert.ok(token, 'The canonical GP29 labels must cover the whole Latin expansion');
+    parsed.push(token);
+    i += token.length;
+  }
+  return parsed;
+}
+const originalNoncanonical = original.filter(word =>
+  greedyLiteralRomanizationInverse(word).join('|') !== word.join('|'));
+const greedyTotal = original.reduce((sum, word) =>
+  sum + greedyLiteralRomanizationInverse(word).length, 0);
+assert.equal(originalNoncanonical.length, 175);
+assert.equal(greedyTotal, 12856);
+const p57GlyphWords = wordsIn(allParts[56]);
+assert.equal(p57GlyphWords.length, 20);
+assert.equal(p57GlyphWords.filter(word =>
+  greedyLiteralRomanizationInverse(word).join('|') !== word.join('|')).length, 0);
+
 const solved = wordsIn(allParts[56]).map(word => word.join(''));
 assert.ok(solved.includes('LICE'), 'Source-runic LIKE has C/K spelling ambiguity');
 assert.ok(solved.includes('TUNNELNG'), 'Source-runic TUNNELING requires NG/ING context');
@@ -140,6 +165,9 @@ console.log('WITNESS word0_original=', witness[0].original.join('|'));
 console.log('WITNESS word0_alternative=', witness[0].alternative.join('|'));
 console.log('WITNESS both_spell=', witness[0].original.join(''));
 console.log('SOLVED_POSITIVE p57 requires LICE/LIKE, DIUINITY/DIVINITY, TUNNELNG/TUNNELING');
+console.log('GREEDY_LATIN_RESERIALIZATION source_unknown_changed_words=', originalNoncanonical.length,
+  'source_unknown_changed_rune_count=', 12956 - greedyTotal,
+  'authentic_solved_p57_changed_words=', 0);
 console.log('OPENING_ORIGINAL p0..2_runes=', opening.flat().length,
   'chart_start=', opening.slice(0, 8).map(w => w.join('')).join(' '));
 console.log('INDEPENDENT_ORIGINAL_HOLDOUT p40..53_runes=', holdout.flat().length,
