@@ -80,6 +80,24 @@ jobs:
           Write-Host "ORIGINAL_SCROLL5_RESULT $($result | Select-Object carrier_chain_order, native_probe_outcome, output_present, outputs, completion_dialogs, error_dialogs | ConvertTo-Json -Compress -Depth 12)"
           if ($result.native_probe_outcome -eq 'inconclusive-timeout') { throw 'Five-carrier native probe timed out' }
           if ($result.output_present) { Write-Host 'SCROLL5_NATIVE_PAYLOAD_FOUND' }
+      - name: Test original 2014 OpenPuff magic-square password on five-scroll original chain
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $arguments = @('--exe', $env:OPENPUFF_EXE)
+          foreach ($number in 20..24) {
+            $carrier = Join-Path $env:GITHUB_WORKSPACE "resources/liber-primus/$number.jpg"
+            if (-not (Test-Path -LiteralPath $carrier)) { throw "Missing original scroll carrier $number" }
+            $arguments += @('--carrier', $carrier)
+          }
+          $arguments += @('--password', '33011033', '--bit-format', 'Jpeg (Image)', '--bit-level', '1/2 (50%) - Maximum', '--out', 'probe-output/authentic2014-scroll5', '--wait-seconds', '220')
+          python sims/openpuff_v400_extract.py @arguments
+          if ($LASTEXITCODE -ne 0) { throw 'Published 2014 password on historical five-carrier native probe failed to execute' }
+          $result = Get-Content -LiteralPath probe-output/authentic2014-scroll5/result.json -Raw | ConvertFrom-Json
+          if ($result.carrier_count -ne 5 -or -not $result.carrier_chain_verified -or -not $result.bit_selection_verified -or -not $result.attempted) { throw 'Original source-order or native format verification failed' }
+          Write-Host "HISTORICAL_PASSWORD_SCROLL5_RESULT $($result | Select-Object carrier_chain_order, native_probe_outcome, output_present, outputs, completion_dialogs, error_dialogs | ConvertTo-Json -Compress -Depth 12)"
+          if ($result.native_probe_outcome -eq 'inconclusive-timeout') { throw 'Original 2014 password five-carrier probe timed out' }
+          if ($result.output_present) { Write-Host 'HISTORICAL_PASSWORD_NATIVE_PAYLOAD_FOUND' }
       - name: Retain screenshots, native error/completion dialogs and exact output
         if: always()
         uses: actions/upload-artifact@v4
