@@ -21,6 +21,8 @@ from PIL import Image
 
 FILES = tuple(f"{n:02}.jpg" for n in range(57, 73))
 EXPECTED_PIXEL_SHA256 = "1df3e6a9cd49cd2d09a9c945077e3877b956651d4b25cb38dcf9c9be9a26c259"
+EXPECTED_RGB_SHA512 = "67bef2bebed49baa9f05335610fe27ea2979f3e8bfd80b091c100796b65b1947fa4e27094eada5c653a2df9425cffcff15ec51c438886677a2af41de4a1aa7be"
+SOURCE_P56_SHA512 = "36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4"
 EXPECTED_PERSISTENT_PIXELS = 6008117
 CANVAS = (3600, 2400, 3)
 
@@ -57,6 +59,9 @@ def reproduce(source: Path, destination: Path) -> dict:
     pixel_sha = hashlib.sha256(mean.tobytes()).hexdigest()
     if pixel_sha != EXPECTED_PIXEL_SHA256:
         raise AssertionError(f"Unexpected original mean pixel SHA256: {pixel_sha}")
+    digest512 = hashlib.sha512(mean.tobytes()).hexdigest()
+    assert digest512 == EXPECTED_RGB_SHA512, digest512
+    assert digest512 != SOURCE_P56_SHA512
     fixed_count = int(fixed.sum())
     if fixed_count != EXPECTED_PERSISTENT_PIXELS:
         raise AssertionError(f"Unexpected unchanged-pixel count: {fixed_count}")
@@ -80,6 +85,8 @@ def reproduce(source: Path, destination: Path) -> dict:
         "source_physical_pages": "LP2 p40-p55",
         "mean_definition": "RGB arithmetic mean, round to nearest half-up",
         "pixel_sha256": pixel_sha,
+        "rgb_sha512": digest512,
+        "p56_original_hash_match": False,
         "identical_pixels_all_16": fixed_count,
         "identical_pixels_exterior": int(np.count_nonzero(fixed & outer)),
         "exterior_pixel_count": int(np.count_nonzero(outer)),
