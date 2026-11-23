@@ -1,4 +1,4 @@
-# Original red379 / F / red173: a provisional 174-rune prime-clock receiver
+# Original red379 / F / red173: provisional 174-rune receiver with exhaustive prime-clock and RSA3 tests
 
 **23 November 2026, Agent36, Director #2243.** New observed arithmetic alignment on the original LP2 source, followed by a finite, source-selected cipher inversion that fails. **No plaintext, selected cipher, or next destination is recovered.** The alignment was recognized after other investigations, and its retrospective selection risk is significant.
 
@@ -34,9 +34,30 @@ All are nonprose; none approaches normal native-GP English concentration. For th
 
 A 174-rune solved LP1 p6 GP-native positive plant with a declared F at position58 recovers **174/174**, forward and backward, under the exact frozen prime-totient operator. Correct semantics for the single transparent F are separately supported by the established [authentic p56 regression](../sims/authentic_lp2_p56_totient_regression.cjs).
 
+## Distinct red-heading RSA prime-pair candidate, complete original inversion
+
+Both exact source red sums **379** (p33 opening red10) and **173** (p39 terminal red3) are themselves prime. Their product is **n=65,567**, just 31 above 2^16; λ(n)=lcm(378,172)=**32,508**, with **9,072** admissible exponent classes. Ordinary three-GP-rune blocks fit because **29³=24,389 < n < 29⁴**. A human aware of Cicada's earlier modular-cryptography stages could consider red-heading values as RSA factors; **the original source still never explicitly orders RSA or a three-rune cycle-walk**.
+
+This makes the GP29 three-rune cycle-walking RSA a distinct, source-conditional reversible decoding model. The original 553-rune length resolves into **379 + 174**: the last rune of the 379-symbol prefix is the original red-selected F at offset378, and **174=58×3** yields an exact three-rune packet continuation after it. That is a more specifically source-grounded *packet clock* than an arbitrary segmentation: the terminal F is the untouched final character of the 379-rune prefix, leaving 126 complete triplets before it and 58 complete triplets after it.
+
+Freeze the following three packet boundaries before scoring original rune values: continuous 553 (184 triplets and one leftover), source red379/F + remaining174 (126+58 triplets, F leftover between them), and five original printed numbered passages (183 triplets plus four leftovers). For every **e** coprime to32,508, apply x → x^e mod65,567 repeatedly until x <29³, then rewrite as the same three GP29 digits. This cycle-walk yields a **bijection on all 29³ possible packets for every e**; all original nonpacket runes remain unchanged.
+
+| Original 553-rune clock | Best full-input IoC | Best exponent | Candidate exponents with IoC ≥ 0.048 |
+| --- | ---: | ---: | ---: |
+| One continuous 553-rune stream | **0.036513614802002256** | 1,007 | **0 / 9,072** |
+| Original **379 F + 174** source-selected split | **0.03719501008989176** | 5,123 | **0 / 9,072** |
+| Five printed numbered resets | **0.037070524412296565** | 4,055 | **0 / 9,072** |
+
+An independent **553-rune solved LP1 p6 native-GP control** was modified at exactly original F offset378, encrypted under this same RSA packet clock at public exponent65,537, and then blindly searched over all9,072 possible exponents. The encrypted plant IoC is **0.03456115522708808**, even lower than most of the original outputs. The search recovers inverse exponent **29,825** uniquely above0.048, retrieves all **553/553** authentic native-GP plaintext symbols (plaintext IoC **0.065885682836701**), leaves the designated F transparent, and forward re-encrypts the recovered text exactly. This confirms the precise cipher candidate would have revealed normal GP-English ciphertext if that mechanism actually produced the original.
+
+**Decision:** no authentic LP2 plaintext, key, or first-party instruction arose from this exhaustive red-prime RSA3 family. Neither higher exponent search nor phase optimization within these three source clocks is warranted. RSA-encoded non-English byte data, different source-specified bit packing, and other operations remain separate possibilities requiring evidence of an authored next step. The red379 F boundary remains a plausible *source arithmetic* cue, not a validated decryption.
+
+- [Exact original-input, all-exponent RSA379×173 GP29 three-rune SFT](../sims/lp2_red379x173_RSA3_fpe_source_selected_original_sft.cjs)
+- [Windows Node22 original-checkout passing run 45126111646](https://github.com/FlareZ123/liber-primus/actions/runs/45126111646)
+
 ## Decision and reproducibility
 
-The red-prime sums offer a novel **candidate original F boundary and 173-key-advance recipient**, contingent on retrospective coincidence being meaningful. The exact historical prime-totient operation fails to recover unknown LP2 plaintext for every source-selected clock tested. Its failure must not be rescued by fitting offsets, new F masks, or additional arbitrary cipher layers. The first authored opcode remains missing.
+The red-prime sums offer a novel **candidate original F boundary and 173-key-advance recipient**, contingent on retrospective coincidence being meaningful. The exact historical prime-totient operation and the exhaustive original RSA379×173 three-rune model both fail to recover unknown LP2 plaintext for any of their source-selected clocks. Its failure must not be rescued by fitting offsets, new F masks, or additional arbitrary cipher layers. The first authored opcode remains missing.
 
 - [Read-only, source-locked CommonJS SFT](../sims/lp2_cuneiform_red379_F173_prime174_original_sft.cjs)
 - [Windows Node22 PASS on actual GitHub original checkout, run 45123725738](https://github.com/FlareZ123/liber-primus/actions/runs/45123725738); [extended original boundary-selected transparent-F PASS, run 45125888424](https://github.com/FlareZ123/liber-primus/actions/runs/45125888424)
