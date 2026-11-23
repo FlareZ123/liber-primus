@@ -69,11 +69,12 @@ const starts=new Set(chapterStarts);
  * @returns {number[]}
  */
 function decode(cipher,k,sign,reset) {
-  let chapterClock=0, chapter=0;
+  let chapterClock=0, at=0;
   const output=[];
   for(const pg of pages){
     if(reset==='chapter' && starts.has(pg.page))chapterClock=0;
-    for(const c of pg.indices){
+    for(let j=0;j<pg.indices.length;j++){
+      const c=cipher[at++];
       const ki=reset==='chapter'?chapterClock++:output.length;
       output.push(mod(c+sign*k[ki]));
     }
