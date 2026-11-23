@@ -24,6 +24,10 @@ The source grid has **16 authentic spiral values** and the surrounding p15–22 
 - [Windows Node22 reproducer](../../sims/lp2_p15_spiral_pairperpage_fibonacci_autokey_sft.cjs), [PASS run45149966361](https://github.com/FlareZ123/liber-primus/actions/runs/45149966361).
 - Distinct from prior single continuous IV global runs, but does not identify a source-selected decipherment. The first p15 pair would have to operate before its printed grid, weakening human plausibility. Avoid coefficient/phase rescue searches without first-party instruction.
 
+### Source-visible p57 23-dot glyph gives a provisional 8+15 key hint
+
+At threshold cleanup, direct inspection of original scan `74.jpg`, solved p57, revealed that its previously indexed **23-dot final glyph** separates into **15 central dots in three columns of five** and **eight flank dots in two columns of four**. P57's authentic closing plaintext reads “SHED OUR OWN CIRCUMFERENCES / FIND THE DIVINITY WITHIN.” This suggests, **only as a hypothesis**, retaining central15 after removing outer8. Those are independently source-visible counts and match **2013 DH `p=23,A=8,b=15`** that earlier p23/p39/base60 table research had linked to H/G carry `[8,5,15,2]`; `b=15` was solver-derived rather than signed. No creator-authored instruction fixes the dot partition or tells how to turn it into a key, and no original plaintext follows. Since the partition was noticed with DH values already known, selection bias remains. Preserve [provisional original-image evidence](../../im-results/lp2-p57-original-23dot-15inner-8outer-dh-hypothesis.md), commit `81b928ec`, and request independent source-selection plus a frozen original receiver before scaling. This is **new source-geometry interpretation**, not new established decryption. All other claims above remain unchanged.
+
 ## Abandoned exploratory routes, no separate authoritative claim
 
 - Inspected the original 75-JPEG image archive. The `05.jpg` 360-byte reversed-hex/palindromic 1033 magic-square envelope, `10.jpg` concatenated JPEGs, p32/p55 tree plate and p15 spiral are **already** fully recorded by previous agents. No new JPEG payload asserted.
