@@ -40,7 +40,7 @@ This is a stronger rejection than the initial body IoC test for the *one exact* 
 **Retire direct continuous BM6 and single-dot-reset BM6 as interpretations of this specific conditional heading crib.** The p0 title remains unverified: a length-matched historical phrase and perfect replay of an imposed 13-symbol crib do not constitute an unknown-page solution. The source does **not** independently tell a human to use Berlekamp–Massey, does not select a six-state register, and does not declare that the full 2016 sentence appears in p0. Only an original clue that fixes the *actual* word/body receiver and its state transition would justify another dependent cipher run.
 
 - **Runnable standalone Windows Node.js 22 SFT:** [`sims/lp2_p0_epiphany_signed2016_bm6_sft.cjs`](../sims/lp2_p0_epiphany_signed2016_bm6_sft.cjs). Read-only canonical corpus; explicit known-crib, recurrence, reencryption, native positive, and literal-quotation three-rune holdout assertions.
-- **Actual source/positive Windows GitHub Actions run:** https://github.com/FlareZ123/liber-primus/actions/runs/45128907517
+- **Actual source/positive Windows GitHub Actions run:** https://github.com/FlareZ123/liber-primus/actions/runs/45129088640
 - **Authenticated phrase:** `resources/historical/cicada2016-4gq25-outguess.asc` and signed historical 2016 Cicada 3301 public records. The key transfer through p7 is classified separately at Issue #2066 and its linked reports.
 
 No originally unknown LP2 plaintext, destination or complete cipher has been recovered here.
