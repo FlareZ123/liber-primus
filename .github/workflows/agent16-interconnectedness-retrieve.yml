@@ -79,6 +79,78 @@ jobs:
             -show_entries format=duration,bit_rate,size,format_name:stream=codec_name,sample_rate,channels,channel_layout,bit_rate,duration,nb_frames,nb_read_frames \
             -of json out/3301-Interconnectedness.mp3 > out/ffprobe.json
           sha256sum out/3301-Interconnectedness.mp3 | tee out/sha256.txt
+      - name: Retrieve and split the signed Onion 5 message payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 --retry-delay 2 \
+            'https://raw.githubusercontent.com/cicada-solvers/The-Complete-Cicada3301-Archive/main/2014/additional%20docs/onion%205%20signed%20message.txt' \
+            --output out/onion5-signed-message.txt
+          python3 - <<'PY'
+          import hashlib, json, pathlib, re
+          p = pathlib.Path("out/onion5-signed-message.txt")
+          raw = p.read_bytes()
+          git_blob = hashlib.sha1(b"blob " + str(len(raw)).encode() + b"\0" + raw).hexdigest()
+          expected = "e0ed3d728782d9d42dab82fb7a54b8d07ae2cea3"
+          if git_blob != expected:
+              raise SystemExit("Signed message bytes do not match the archive Git blob SHA-1")
+          lines = raw.decode("utf-8", errors="replace").replace("\r", "").split("\n")
+          blocks, current = [], []
+          for line_no, line in enumerate(lines):
+              value = line.strip()
+              if re.fullmatch(r"[0-9a-fA-F]+", value or "!"):
+                  current.append((line_no + 1, value))
+              elif current:
+                  blocks.append(current)
+                  current = []
+          if current:
+              blocks.append(current)
+          large = []
+          for block in blocks:
+              hex_text = "".join(item[1] for item in block)
+              if len(hex_text) >= 1000 and len(hex_text) % 2 == 0:
+                  data = bytes.fromhex(hex_text)
+                  large.append((block[0][0], block[-1][0], data))
+          if len(large) != 3:
+              raise SystemExit("Expected 3 embedded binary blocks; got " + str(len(large)))
+          manifest = {
+              "archive_repository": "cicada-solvers/The-Complete-Cicada3301-Archive",
+              "archive_path": "2014/additional docs/onion 5 signed message.txt",
+              "archive_git_blob_sha1_expected": expected,
+              "archive_git_blob_sha1_downloaded": git_blob,
+              "signed_message_bytes": len(raw),
+              "signed_message_sha256": hashlib.sha256(raw).hexdigest(),
+              "blocks": []
+          }
+          for i, (first_line, last_line, data) in enumerate(large):
+              if data.startswith(b"\xff\xd8\xff"):
+                  ext = ".jpg"
+              elif data.startswith(b"\xff\xf3") or data.startswith(b"\xff\xfb"):
+                  ext = ".mp3-fragment.bin"
+              else:
+                  ext = ".bin"
+              name = "onion5-embedded-" + str(i) + ext
+              pathlib.Path("out", name).write_bytes(data)
+              manifest["blocks"].append({
+                  "index": i,
+                  "first_line": first_line,
+                  "last_line": last_line,
+                  "bytes": len(data),
+                  "sha256": hashlib.sha256(data).hexdigest(),
+                  "prefix_hex": data[:32].hex(),
+                  "suffix_hex": data[-32:].hex(),
+                  "filename": name
+              })
+          last_line = large[-1][1]
+          signature_at = next((i for i, line in enumerate(lines) if "-----BEGIN PGP SIGNATURE-----" in line), len(lines))
+          code_lines = [line for line in lines[last_line:signature_at] if line.strip()]
+          pathlib.Path("out/onion5-code-block.txt").write_text("\n".join(code_lines) + "\n")
+          pathlib.Path("out/onion5-embedded-manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
+          PY
+          file out/onion5-embedded-* | tee out/onion5-embedded-file-types.txt
+          ffprobe -v error -show_format -show_streams \
+            -of json out/onion5-embedded-2.mp3-fragment.bin \
+            > out/onion5-embedded-audio-ffprobe.json 2> out/onion5-embedded-audio-ffprobe.err || true
       - name: Upload the raw carrier and inspection results
         uses: actions/upload-artifact@v4
         with:
