@@ -41,6 +41,17 @@ function test(){
 }
 if(process.argv.includes("--selftest"))test();
 else{
+ if(!fs.existsSync(target)){
+  const unavailable={
+   historical_source:"original 2014 May19 participant UnRuneIt2.jar L181191",
+   expected_bytes:frozen.length,expected_sha256:frozen.sha256,
+   source_available:false,bytecode_inspection_only:true,
+   reason:"The pinned original retrieval did not produce irc-2014-nonpaste-live/unrune2.jar; consult the accompanying acquisition JSONL for the live-host status. No substitute binary is accepted.",
+   JAR_executed:false,unknown_LP2_plaintext_or_key:false
+  };
+  if(process.argv.includes("--allow-missing")){console.log(JSON.stringify(unavailable,null,2));process.exit(0);}
+  throw new Error("Original May-19 UnRuneIt2.jar is unavailable; rerun the pinned source acquisition before static inspection.");
+ }
  const binary=fs.readFileSync(target);
  assert.equal(binary.length,frozen.length);
  assert.equal(crypto.createHash("sha256").update(binary).digest("hex"),frozen.sha256);
@@ -56,6 +67,9 @@ else{
   "loadWordlistFromFile","patternParser","lengthByRunes","fileContents",
   "generateWordlist","categorizeByLength","run","main"];
  const selected=blocks.filter(b=>needles.some(n=>b.signature.includes(n+"(")));
+ for(const required of ["decipher","decipherWord","unShift","decompRunes","guessPhrases","patternSearch","getWordsOfTheLength","patternParser"]){
+  assert.ok(blocks.some(b=>b.signature.includes(required+"(")),`Missing expected original method ${required}`);
+ }
  const prompts=[...new Set([...output.matchAll(/\/\/ String ([^\n]+)/g)].map(m=>m[1]))]
    .filter(s=>/prime|rune|word|sentence|key|format|paste|enter|deciph|choice|list|error|length/i.test(s));
  assert.ok(prompts.some(s=>s.includes("You need to paste")));
@@ -63,6 +77,7 @@ else{
  assert.equal(output.includes(" of primes in this format 2 3 5 7"),true);
  console.log(JSON.stringify({
   historical_source:"original 2014 May19 participant UnRuneIt2.jar L181191",
+  source_available:true,
   sha256:frozen.sha256,
   bytecode_inspection_only:true,
   methodCount:blocks.length,
