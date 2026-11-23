@@ -100,11 +100,34 @@ assert.deepEqual(shared, cols[4].ecdh.computeSecret(rows[0].ecdh.getPublicKey())
 assert.equal(shared.toString('hex'),
   '3601bfb835efb6d19432d3a5b18f26d0192182b18923558ae29ccf8ecab27750');
 
+/** @param {Buffer} binary @returns {number[]} */
+function asBase29(binary) {
+  let integer = BigInt('0x' + binary.toString('hex'));
+  const out = [];
+  while (integer) {
+    out.push(Number(integer % 29n));
+    integer /= 29n;
+  }
+  return out.reverse();
+}
+
+// The authentic signed 2013 protocol exhibits BASE29 integer serialization.
+// This source-constrained counterpart converts the ECDH X *whole integer*
+// to one high-first 53-symbol GP29 key instead of using bytewise mod29.
+const naturalGPKey = asBase29(shared);
+assert.equal(naturalGPKey.length, 53);
+
 const cipher = corpus.pages[55].indices;
 const decoded = subtract(cipher, shared);
 assert.deepEqual(encrypt(decoded, shared), cipher);
 assert.ok(Math.abs(ioc(cipher) - 0.037894736842105266) < 1e-12);
 assert.ok(Math.abs(ioc(decoded) - 0.03192982456140351) < 1e-12);
+
+const decodedBASE29 = cipher.map((c, i) =>
+  (c - naturalGPKey[i % naturalGPKey.length] + 29) % 29);
+assert.ok(Math.abs(ioc(decodedBASE29) - 0.039649122807017545) < 1e-12);
+assert.deepEqual(cipher, decodedBASE29.map((p, i) =>
+  (p + naturalGPKey[i % naturalGPKey.length]) % 29));
 
 const solved = corpus.pages[57].indices;
 const planted = encrypt(solved, shared);
@@ -118,6 +141,9 @@ console.log('Two original-source private-key ECDH x-coordinate:', shared.toStrin
 console.log('Original p55 76-rune IoC:', ioc(cipher));
 console.log('Fixed raw ECDH inverse 76-rune IoC:', ioc(decoded));
 console.log('Fixed raw ECDH transcript:', spell(decoded));
+console.log('Source-2013 BASE29 ECDH key length:', naturalGPKey.length);
+console.log('Fixed BASE29 ECDH inverse 76-rune IoC:', ioc(decodedBASE29));
+console.log('Fixed BASE29 ECDH transcript:', spell(decodedBASE29));
 console.log('Solved p57 95-rune planted control exact: YES');
 console.log('Original p55 forward replay exact: YES');
 console.log('VERDICT: NO NATIVE GP29 PLAINTEXT UNDER THIS CONDITIONAL RECEIVER');
