@@ -158,8 +158,9 @@ function directReadableInflation(input) {
  * before trying binary layers. The path dies at offset 75.
  *
  * @param {number[]} ciphertext @param {number} start
+ * @param {1|-1} sign
  */
-function sourceFrameReachability(ciphertext, start) {
+function sourceFrameReachability(ciphertext, start, sign=1) {
   let paths = [{used:0,skip:[]}];
   for (let i=0; i<ciphertext.length; i++) {
     const next = [];
@@ -168,7 +169,7 @@ function sourceFrameReachability(ciphertext, start) {
       // Historical p56 rule: only an actual F in C can represent a plain F.
       if (c === 0)
         next.push({used:path.used,skip:[...path.skip,i]});
-      const plain = mod(c - (prime[start + path.used] - 1));
+      const plain = mod(c - sign * (prime[start + path.used] - 1));
       if (plain !== 0)
         next.push({used:path.used + 1,skip:path.skip});
     }
@@ -200,6 +201,26 @@ assert.deepEqual(fullFrame.entering,[{
 }]);
 // The exact same enumerative reachability must accept authentic native
 // Cicada English when forward encrypted using the selected start.
+// Explicit finite rival readings of the original source numeral: XIX=19
+// as 1/0-based prime ordinal; reversed MXIX=1019 as prime VALUE or 1/0-
+// based prime ordinal. Both +/- key signs are included as a fixed control.
+// All 10 fail on the exact source-complete 256-rune recipient.
+const sourceOrdinalRivals = [
+  {start:18,firstPrime:67},
+  {start:19,firstPrime:71},
+  {start:170,firstPrime:1019},
+  {start:1018,firstPrime:8101},
+  {start:1019,firstPrime:8111}
+];
+const rivalFailures = sourceOrdinalRivals.flatMap(entry =>
+  [1,-1].map(sign=>({
+    ...entry, sign,
+    failedAt:sourceFrameReachability(sourceFrame,entry.start,sign).firstFailure
+  }))
+);
+assert.deepEqual(rivalFailures.map(x=>x.failedAt),
+  [16,68,1,3,19,10,20,14,75,16]);
+
 const nativeP57 = source.pages.find(p=>p.page===57).indices;
 assert.equal(nativeP57.length,95);
 const nativePlant = Array.from({length:256},(_,i)=>
@@ -283,6 +304,7 @@ console.log(JSON.stringify({
     plantedPayloadBytes:compressed.length
   },
   sourceFramedP8P9Prime1019NoGo:fullFrame,
+  sourceTypedLiteralPrimeRivals:rivalFailures,
   sourceFramedNativeGPPositiveReachable:true,
   directContainerHits:recognized.length,
   claim:"The source-complete p8→p9 4|256 prime1019 literal-F inverse is impossible at rune75; the black-only p8 branch has no directly readable container. MXIX=1019 remains a conditional source hypothesis."
