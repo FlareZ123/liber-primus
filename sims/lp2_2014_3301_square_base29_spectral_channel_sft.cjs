@@ -195,8 +195,8 @@ console.log('INPUT_HASHES', JSON.stringify(hashes));
 console.log('SOURCE_2014_SQUARE_SPECTRA', JSON.stringify({
   char3301: charpoly(A), char1033: charpoly(B),
   spectralDigits3301: H, eigencoordinates: W,
-  3301_spectrum: '24,3,-3 and irreducible x^2-3',
-  1033_spectrum: '5,8,24,21,18 = GP word CHANGE',
+  spectrum3301: '24,3,-3 and irreducible x^2-3',
+  spectrum1033: '5,8,24,21,18 = GP word CHANGE',
   one3301EigenvalueForcedByRowSum: true,
   evidenceClass: 'cross-artifact arithmetic coincidence, no authored LP2 decoder'
 }));
