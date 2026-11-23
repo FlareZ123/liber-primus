@@ -41,7 +41,9 @@ Use the published two-GP29-symbol byte transport for each p50 byte B: high=floor
 
 **Result:** no complete byte-valid stream exists for **any of 66** combinations (both signs × all 33 initial phases), even with the permissive F-bypass branch. Failures occur within the first seven GP29 digits. Without F bypass, the source-fixed phase-zero C−K direction yields only **71/256** valid byte pairs; the opposite sign yields 61/256, and the best of all 66 no-skip phase/sign combinations reaches only **78/256**. Thus the 33-rune exterior does not decode the p50 table under this specific base29/repeating-key receiver.
 
-This is a bounded negative. It does not exclude a different original instruction, receiver, or non-Vigenere use of the exterior; it does not supply the missing full p55 decoder. The standalone original-input test is [sims/lp2_p55_outer33_p50_base29_key_gate.cjs](../sims/lp2_p55_outer33_p50_base29_key_gate.cjs).
+A second, size-matched control uses the **32 page-local word-boundary runes** (the 33rd exterior rune is the p54 carry and is excluded) as raw byte values 0–28 for an AES-256 key. The p50 table is exactly 256 bytes, so raw **AES-256-ECB** is the minimal no-IV receiver. With padding disabled, decryption returns 256 bytes but no recognizable header or plaintext: SHA-256 **b2dffb03fa2f45fc68e78958e46dd72322eb8f5804439b5f33a3747f588f2d21**, printable fraction **0.332**, alphabetic fraction **0.176**. No KDF, IV, key normalization or mode search was attempted. This rejects only the direct GP29-index-to-byte AES-256-ECB interpretation.
+
+This is a bounded negative. It does not exclude a different original instruction, receiver, or non-Vigenere use of the exterior; it does not supply the missing full p55 decoder. The standalone original-input tests are [sims/lp2_p55_outer33_p50_base29_key_gate.cjs](../sims/lp2_p55_outer33_p50_base29_key_gate.cjs) and [sims/lp2_p55_outer32_p50_aes256_ecb_gate.cjs](../sims/lp2_p55_outer32_p50_aes256_ecb_gate.cjs).
 
 ## Decision
 
