@@ -48,6 +48,24 @@ Both resulting streams have nonlinguistic word-internal sequences. The literal d
 
 Reproduce all source-coordinate assertions and original-flank checks in [the standalone Windows Node22 CommonJS test](../sims/lp2_p50_five_numbered_passage_lookup_sft.cjs). The script reads only the pinned canonical `lp2-transcription.txt`, `lp2-corpus.json` and `base60-grid.json`, prints original counts, exact lookup prefix, forward/backward flank outputs, and asserts a synthetic clear-p57 replay without any fitted parameters or HTTP access.
 
+## 23 November 2026: source-aligned terminal-256 receiver holdout
+
+The 256-rune locator output has a second natural length alignment: original p55 (76 runes) + solved p56 (85) + clear p57 (95) = **256**. This fixes the candidate p56 slice at lookup offsets **76–160** and p57 at **161–255**, with no fitted phase or offset search.
+
+The p56 plaintext and required additive key are independently reconstructed from its established prime-minus-one inverse: at each position use the next prime minus one, except the literal plaintext F at p56 local offset56, which consumes no prime. On this exact alignment:
+
+| Fixed comparison | Mismatches |
+|---|---:|
+| lookup[76:161] vs required p56 additive key | **84 / 85** |
+| lookup[76:161] vs recovered p56 plaintext | **83 / 85** |
+| lookup[161:256] vs clear p57 plaintext | **93 / 95** |
+
+Thus the 256-rune lookup is neither the direct terminal plaintext nor the additive key for the known p56 segment. The few matches are at or below chance-level expectation.
+
+A second fixed receiver test treats the lookup as ciphertext under the *same* established p56 prime-minus-one inverse, starting at the first prime (2). All seven lookup positions containing ciphertext F are exhaustively branched as either literal/no-clock F or encrypted F/clock-consuming; this yields **128 complete paths**, with final prime pointers 249–256. The maximum native-GP index of coincidence is **0.03615** (clear p57: 0.06271); no candidate forms coherent GP-native prose. This is a bounded test of the source-selected p56 operation, not an open-ended phase or key search.
+
+**Decision:** the natural 256→256 alignment does not rescue the five-unit locator as plaintext or as a key under the known p56 operation. The locator remains arithmetically valid, but these simplest terminal receivers fail; do not extend this branch without an independent first-party instruction selecting a different operation.
+
 ## Decision and next useful action
 
-The five-unit numeral→rune reading remains a fully specified *candidate locator* if an original source independently names the numbered messages as a keybook. The printed-digit domain itself strongly favors ordinary 8-bit radix60 representation over an unweighted five-passage address model, so the shared number five cannot justify treating those passages as a source-selected receiver. **For now it is a bounded negative on both simple interpretations as actual plaintext/key.** The task of finding an externally hosted named key and a first-party p50 table-address rule remains unsatisfied. Prefer source instructions that supply a genuine operand and cipher consumption rule over reinterpreting this 256-rune output through freely chosen further transforms.
+The five-unit numeral→rune reading remains a fully specified *candidate locator* if an original source independently names the numbered messages as a keybook. The printed-digit domain itself strongly favors ordinary 8-bit radix60 representation over an unweighted five-passage address model, so the shared number five cannot justify treating those passages as a source-selected receiver. The new terminal-256 holdout also rejects direct use as the p56 key/plaintext and the same p56 prime-totient cipher as a second layer. **For now this is a bounded negative on the simple locator, direct-key and same-cipher receiver interpretations.** The task of finding an externally hosted named key and a first-party p50 table-address rule remains unsatisfied. Prefer source instructions that supply a genuine operand and cipher consumption rule over reinterpreting this 256-rune output through freely chosen further transforms.

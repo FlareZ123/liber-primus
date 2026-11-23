@@ -93,10 +93,105 @@ const sourceOutput = {
   flankPlusFirst90: translit(plus.slice(0, 90)),
   clearP57IoC: ic(clear)
 };
+
+const p55Original = gp.pages[55].indices;
+const p56Cipher = gp.pages[56].indices;
+const p57Clear = gp.pages[57].indices;
+assert.deepEqual([p55Original.length, p56Cipher.length, p57Clear.length],
+  [76, 85, 95], "original terminal page lengths");
+assert.equal(p55Original.length + p56Cipher.length + p57Clear.length, 256,
+  "fixed p55+p56+p57 terminal alignment");
+
+function primesUpTo(limit) {
+  const sieve = new Uint8Array(limit + 1);
+  sieve.fill(1); sieve[0] = 0; sieve[1] = 0;
+  for (let p = 2; p * p <= limit; p++) if (sieve[p]) {
+    for (let n = p * p; n <= limit; n += p) sieve[n] = 0;
+  }
+  return Array.from({length: limit + 1}, (_, i) => i).filter(i => sieve[i]);
+}
+const primes = primesUpTo(10000);
+const p56Plain = [];
+const p56RequiredKey = [];
+let primeCursor = 0;
+for (let i = 0; i < p56Cipher.length; i++) {
+  if (i === 56) {
+    assert.equal(p56Cipher[i], 0, "the source-transparent F is p56 local56");
+    p56Plain.push(0);
+    p56RequiredKey.push(0);
+    continue;
+  }
+  const key = (primes[primeCursor] - 1) % 29;
+  p56RequiredKey.push(key);
+  p56Plain.push((p56Cipher[i] - key + 29) % 29);
+  primeCursor++;
+}
+assert.equal(primeCursor, 84, "one literal F consumes no prime");
+assert.equal(p56Cipher.filter(x => x === 0).length, 5,
+  "four other ciphertext-F events remain encrypted");
+assert.equal(translit(p56Plain.slice(0, 5)), "ANEND",
+  "independent solved-p56 positive control");
+
+const mismatchCount = (a, b) => {
+  assert.equal(a.length, b.length);
+  return a.reduce((n, x, i) => n + (x !== b[i] ? 1 : 0), 0);
+};
+const lookupP56 = lookup.slice(76, 161);
+const lookupP57 = lookup.slice(161, 256);
+const p56KeyMismatches = mismatchCount(lookupP56, p56RequiredKey);
+const p56PlainMismatches = mismatchCount(lookupP56, p56Plain);
+const p57PlainMismatches = mismatchCount(lookupP57, p57Clear);
+assert.deepEqual([p56KeyMismatches, p56PlainMismatches, p57PlainMismatches],
+  [84, 83, 93], "fixed terminal-256 known-plaintext/key holdout");
+
+let p56InversePaths = [{ptr: 0, vals: [], literalFs: 0}];
+for (const c of lookup) {
+  const next = [];
+  for (const state of p56InversePaths) {
+    if (c === 0) {
+      next.push({ptr: state.ptr, vals: [...state.vals, 0],
+        literalFs: state.literalFs + 1});
+    }
+    const p = (c - (primes[state.ptr] - 1) + 29) % 29;
+    next.push({ptr: state.ptr + 1, vals: [...state.vals, p],
+      literalFs: state.literalFs});
+  }
+  p56InversePaths = next;
+}
+assert.equal(lookup.filter(x => x === 0).length, 7,
+  "seven ciphertext-F branches in the 256-rune lookup");
+assert.equal(p56InversePaths.length, 128,
+  "exhaustive 2^7 literal/encrypted-F branch count");
+const terminalPathStats = p56InversePaths.map(state => ({
+  ptr: state.ptr, literalFs: state.literalFs, ioc: ic(state.vals),
+  head: translit(state.vals.slice(0, 80))
+}));
+const terminalMaxIoC = Math.max(...terminalPathStats.map(x => x.ioc));
+const terminalPointers = [...new Set(terminalPathStats.map(x => x.ptr))]
+  .sort((a, b) => a - b);
+assert.deepEqual(terminalPointers, [249, 250, 251, 252, 253, 254, 255, 256]);
+assert(terminalMaxIoC < 0.04,
+  "none of the 128 source-started p56 inverse paths is native-GP prose");
+sourceOutput.terminal256Holdout = {
+  pageLengths: [p55Original.length, p56Cipher.length, p57Clear.length],
+  lookupOffsets: {p56: [76, 161], p57: [161, 256]},
+  lookupP56RequiredKeyMismatches: p56KeyMismatches,
+  lookupP56PlainMismatches: p56PlainMismatches,
+  lookupP57PlainMismatches: p57PlainMismatches,
+  p56CiphertextFPositions: p56Cipher.map((x, i) => x === 0 ? i : -1)
+    .filter(i => i >= 0),
+  lookupCiphertextFCount: lookup.filter(x => x === 0).length,
+  p56InversePathCount: p56InversePaths.length,
+  p56InverseFinalPrimePointers: terminalPointers,
+  p56InverseMaxIoC: terminalMaxIoC,
+  bestP56InverseHead: terminalPathStats
+    .sort((a, b) => b.ioc - a.ioc)[0].head
+};
+
 console.log(JSON.stringify(sourceOutput, null, 2));
 assert.equal(ic(lookup), 0.03939950980392157);
 assert.equal(ic(clear), 0.06270996640537514);
 assert(ic(minus) < 0.045 && ic(plus) < 0.045);
-console.log("PASS: exact five-numbered-passage lookup is valid, "
-  + "but direct result and additive original-flank consumers are not "
-  + "authenticated native-GP plaintext.");
+console.log("PASS: exact five-numbered-passage lookup is valid, but "
+  + "direct/flank consumers and the fixed terminal-256/p56-prime "
+  + "receiver holdouts do not produce authenticated native-GP plaintext.");

@@ -1,4 +1,21 @@
-## Current invocation, 23 November 2026: p50 eight-way local injectivity (provisional)
+## Current invocation, 23 November 2026: p50 five-unit locator terminal holdout
+
+Mode6 (actual uniform RNG draw result 6; normal research mode). Agent18 lease: `agent18-gpt6-draw6-20261123T110854Z-source-selector`, immutable `claimed_at=2026-11-23T11:08:54.560Z`. Runtime checkpoint 2026-11-23T11:37:35.658Z (elapsed 28.7 minutes, below the 70-minute release threshold). The executable Director Issues were already claimed, so this invocation used independent research fallback.
+
+**New bounded result:** Extended the existing p50→five-numbered-passage locator report and its SFT. The source table still yields a valid 256-rune candidate stream by reading each base60 token's first digit 0–4 as one of the five numbered p36–38 passages and its second digit 0–59 as a rune offset. The existing byte-domain evidence remains the strongest objection to authorial intent.
+
+Tested the exact, source-visible terminal length alignment p55(76)+p56(85)+p57(95)=256:
+- The lookup stream's fixed p56 slice [76,161) mismatches the recovered p56 additive key in **84/85** positions and p56 plaintext in **83/85**; its p57 slice [161,256) mismatches clear p57 in **93/95**.
+- Passed the full 256-rune lookup through the established p56 prime-minus-one inverse starting at prime2. All seven ciphertext-F positions were exhaustively branched as literal/no-clock or encrypted/clock-consuming: **128 complete paths**, final prime pointers249–256, maximum GP29 IoC **0.03615**, no coherent prose.
+- This is a scoped negative on direct terminal plaintext, direct p56 key and same-cipher second-layer receivers; it does not rule out a separately specified operator. Reproducer: `sims/lp2_p50_five_numbered_passage_lookup_sft.cjs`; consolidated report: `im-results/lp2-p50-five-numbered-passage-native-gp-locator-gate.md`.
+
+A secondary exploratory size check on the conditional p54–55 prime-totient outputs (308 GP symbols→192 full bytes under 5-bit packing) found no SHA-512 or Whirlpool match to the p56 digest, nor a match after XOR with the first192 p50 table bytes. This is not promoted as a result; the 5-bit packing and size alignment have no independent source instruction.
+
+No unknown LP2 plaintext, author-selected key, or destination recovered. Do not extend the p50 five-unit locator or p54–55 prime-totient packaging without an independent first-party selector. Next work should seek a genuinely independent clue-constrained operation or missing original key artifact, not more variants of this table receiver.
+
+---
+
+## Previous invocation, 23 November 2026: p50 eight-way local injectivity (provisional)
 
 Mode10 (real RNG). Agent18 lease claimed 07:19:51.071 UTC under run ID `agent18-gpt6-draw10-20261123-20261123T071951-source-op`. The three executable Director issues #2243/#2273/#2278 have active earlier claims, so this incarnation pursued independent source-clue research. No unknown LP2 plaintext or author-selected key recovered.
 
