@@ -68,6 +68,18 @@ There is a distinct, short **alternative target type** at the same endpoint. Tak
 
 This **does not** decipher p55 or specify how a 205-ranked p57 sentence should act on its 76 original symbols. The source also does not independently state that the selected value should be *reused as a table address*. The separate known-clear-clause selector `prime[205]=1259`, the p55 size receipt `p50[205]=76`, and the SURFACE→PATH loop are different possible consumers of the same real number; treating all of them as compulsory chained operations would create an unsourced multistage theory. Retain the p55 interpretation as a **specific typed target for a future actual reversible 76-rune decoder**, and require that decoder to operate on the *entire* original page without ad hoc deletion.
 
+### Bounded p50 76-cell slice as a p55 additive key
+
+The exact `p50[205]=76` / unique 76-rune p55 match also suggests a concrete, low-complexity key candidate: treat cell205 as the start address, read 76 consecutive original p50 table tokens in row-major order, reduce their full base60 values mod29, and apply the solved p56 additive operation to all 76 p55 runes. This is a source-motivated test, not an author-authenticated instruction: the signed message selects the route candidate and the recipient length, but never says that table values are a Vigenère key.
+
+The original token stream was tested in both directions (forward with one wrap after cell255; backward without wrap), with both additive signs and with p56's F-transparent/non-consuming rule on and off. The p55 receiver has 76 runes, including F at [15,25,41]. **None of the eight fixed variants yields readable plaintext.** The best word-preserving result is the backward raw-base60 subtractive key with F transparency: IoC 0.034386, mean Duko quadgram log score −16.518299, and the original 19 word lengths decode to:
+
+`O | CNRL | NGEA | AEL | PINGPTHNG | FTHGHJJ | AENG | D | GFOJENMIMSMN | DOEIAMYF | EAMDI | DR | IATHOETLIU | XTYDTHRT | YS | AENGATH | NGU | OEIAL | LRX`
+
+This is not a phrase or an address. The forward-wrap variant is no better. Both selected slices contain a zero token; Euler's `φ(0)` is undefined, and no source rule licenses skipping or replacing that zero, so no totient-key variant is invented. The implementation exactly round-trips a p57 positive plant under the same additive/F-transparent logic. Reproducer: [p50 cell205 / p55 76-rune gate](../sims/lp2_signed2016_p50cell205_76_p55_additive_gate.cjs).
+
+**Decision:** reject the direct contiguous p50-table-slice → p55 additive-key transfer. Retain the 205/76 route only as a conditional navigation/recipient hypothesis; it is not a recovered key or plaintext. Do not revisit this exact slice/sign/direction family without a new source instruction.
+
 ### Independent signed WAY→MAP route crosses the PATH trajectory
 
 Two *other* consecutive signed THE-followers provide a separate literal **same-type** grid motion, using source values already fixed before this five-SW path was inspected: `GP0(WAY)=57`, `p50[57]=1w` = **one west** from57→56; `GP0(MAP)=56`, and `p50[56]=4E` = **four east** from56→60. **Cell60 is exactly the third of PATH's five southwest intermediate cells** (`39→46→53→60→67→74`). Thus the printed 2016 source-selected `PATH` and `WAY→MAP` address families converge at the same cell without tuning a starting phase or decrypting a rune. Original cell60 reads `1k`; there is **no authenticated next compass instruction** for its lowercase k. The direct `4E = 4 East` interpretation is simpler than the earlier optional `4E = hex ASCII N` mode switch in [the predecessor report](../im-results/lp2-way-map-here-direction-the-cycle.md) and does not need that unsourced ASCII conversion.
