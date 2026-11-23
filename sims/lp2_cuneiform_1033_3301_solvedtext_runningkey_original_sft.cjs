@@ -46,6 +46,28 @@ const models=[
   {label:'1033-3301-alternating',keys:units.map((_,i)=>i%2?b:a),reset:true},
   {label:'1033-3301-continuous',keys:units.map(()=>a.concat(b)),reset:false}
 ];
+/**
+ * Find the earliest impossible ciphertext position under the authentic
+ * Cicada plaintext-F literal/non-advancing Vigenere rule.
+ * @param {number[]} ciphertext
+ * @param {number[]} key
+ * @param {number} decodeSign
+ * @param {Set<number>} initial
+ */
+function fTransparentGate(ciphertext,key,decodeSign,initial){
+  let states=new Set(initial);
+  for(let i=0;i<ciphertext.length;i++){
+    const next=new Set();
+    for(const phase of states){
+      if(ciphertext[i]===0)next.add(phase);
+      const nonF=mod(ciphertext[i]+decodeSign*key[phase%key.length]);
+      if(nonF!==0)next.add(phase+1);
+    }
+    if(next.size===0)return {impossibleAt:i,states:next};
+    states=next;
+  }
+  return {impossibleAt:null,states};
+}
 const positive=page(57),out=[];
 assert.equal(positive.length,95);
 for(const model of models)for(const sign of [-1,1]){
@@ -67,9 +89,31 @@ for(const model of models)for(const sign of [-1,1]){
   }
   assert.equal(originalRecovered,553);
   assert.equal(nativeRecovered,553);
+  let fClockStates=new Set([0]),positiveStates=new Set([0]),fControlClock=0;
+  let fTransparentFirstImpossible=null;
+  for(let i=0;i<units.length;i++){
+    if(model.reset){fClockStates=new Set([0]);positiveStates=new Set([0]);fControlClock=0;}
+    const key=model.keys[i],startClock=fControlClock,plantCipher=[];
+    for(let j=0;j<units[i].length;j++){
+      const native=positive[(j+i*17)%positive.length];
+      plantCipher.push(native===0?0:mod(native-sign*key[fControlClock++%key.length]));
+    }
+    const positiveTest=fTransparentGate(plantCipher,key,sign,positiveStates);
+    assert(positiveTest.impossibleAt===null,'authentic native F-transparent plant invalid');
+    assert(positiveTest.states.has(fControlClock),'true native F-transparent phase lost');
+    positiveStates=positiveTest.states;
+    if(fTransparentFirstImpossible===null){
+      const hit=fTransparentGate(units[i],key,sign,fClockStates);
+      if(hit.impossibleAt!==null)fTransparentFirstImpossible={unit:i,offset:hit.impossibleAt};
+      else fClockStates=hit.states;
+    }
+  }
+  assert(fTransparentFirstImpossible);
+  assert.equal(fTransparentFirstImpossible.unit,0);
   out.push({
     model:model.label,sign,originalRecovered,nativeRecovered,
     ioc:ioc(decoded.flat()),perUnit:decoded.map(ioc),
+    fTransparentFirstImpossible,
     first60:render(decoded[0].slice(0,60)),
     second40:render(decoded[1].slice(0,40))
   });
