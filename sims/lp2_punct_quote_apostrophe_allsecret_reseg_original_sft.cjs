@@ -121,6 +121,46 @@ assert.deepEqual([capacity(bins(original,onlyLines),1),
 assert.equal(withLines.length-1,738);
 assert.deepEqual([capacity(bins(original,withLines),1),
   capacity(bins(original,withLines),2)],[1816,3218]);
+
+/** All 29 sorted-rank mass capacities over fully secret line alphabets.
+ * @param {number[][]} hist @returns {number[]} */
+function majorizationCaps(hist){
+  const out=Array(29).fill(0);
+  for(const counts of hist){
+    let s=0;
+    for(let k=0;k<29;k++){s+=counts[k];out[k]+=s;}
+  }
+  return out;
+}
+const lineRankCaps=majorizationCaps(bins(original,onlyLines));
+assert.deepEqual(lineRankCaps,
+  [1680,2997,4181,5274,6235,7033,7711,8318,8904,9489,
+    10074,10650,11213,11737,12200,12563,12794,12906,12945,
+    12955,12956,12956,12956,12956,12956,12956,12956,12956,12956]);
+
+/** Count complete original-length native windows failing at least one of the
+ * 29 necessary sorted-rank occupancy ceilings.
+ * @param {number[]} native @returns {{windows:number,failures:number}} */
+function rankCounter(native){
+  const counts=Array(29).fill(0);
+  for(let i=0;i<N;i++)counts[native[i]]++;
+  let failures=0,windows=0;
+  for(let begin=0;begin+N<=native.length;begin++){
+    if(begin){
+      counts[native[begin-1]]--;
+      counts[native[begin+N-1]]++;
+    }
+    const sorted=counts.slice().sort((a,b)=>b-a);
+    let mass=0,failed=false;
+    for(let k=0;k<29;k++){
+      mass+=sorted[k];
+      if(mass>lineRankCaps[k]){failed=true;break;}
+    }
+    if(failed)failures++;
+    windows++;
+  }
+  return {windows,failures};
+}
 const originalWordBreaks=wordEnds.filter(x=>x<=N);
 assert.equal(originalWordBreaks.length,2896);
 assert.equal(originalWordBreaks.at(-1),N);
@@ -256,8 +296,13 @@ const controls=sources.map(([name,file,expectE,expectEO])=>{
     minEO=minimumWindow(native,[E,O],N);
   assert.deepEqual([minE,minEO],[expectE,expectEO]);
   assert(1029<minE&&1897<minEO);
-  return {name,minE,minEO};
+  const rank=rankCounter(native);
+  return {name,minE,minEO,sourceLineFullRankCapacity:rank};
 });
+assert.deepEqual(controls.map(x=>[
+  x.sourceLineFullRankCapacity.windows,
+  x.sourceLineFullRankCapacity.failures]),
+  [[50159,0],[311675,5649],[205845,0]]);
 const native=encodeWords(read(sources[0][1])).flat().slice(0,N);
 const positive=plant(native),positiveCap=bins(positive.cipher,all);
 const nativeE=native.filter(x=>x===E).length,
@@ -278,6 +323,7 @@ console.log(JSON.stringify({
     pageAndInkCuts:{scopes:withPages.length-1,...pageAndInkEcho},
     physicalPrintedLines:{scopes:onlyLines.length-1,...lineEcho},
     allInkAndLineScopes:withLines.length-1,
+    physicalLineAll29RankUpperMass:lineRankCaps,
     continuousLowRepeatPageConditionedLineNull:pageConditionedLineEdges,
     decision:'Punctuation/page-level independently secret 29! alphabets lack enough English top-letter mass even with arbitrary internal resegmentation/reordering. A private alphabet on every single source line has sufficient top-letter *capacity*, but resets independently drawn at the line breaks predict far more crossing doublets than observed.'},
   sourceInkCrossingEcho:{tested:inkCrossings.length,
