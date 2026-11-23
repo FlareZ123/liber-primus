@@ -1,0 +1,15 @@
+name: Agent46 Blake Urizen source-key original gate
+on:
+  workflow_dispatch:
+
+jobs:
+  source-key:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run exact original-cipher and solved-native plants
+        run: node sims/lp2_blake_urizen_1794_runningkey_original_sft.cjs
