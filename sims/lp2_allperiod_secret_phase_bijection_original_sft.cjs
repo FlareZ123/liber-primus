@@ -218,7 +218,17 @@ for (const regime of regimes) {
     assert.equal(observed[check.q], check.original);
     assert.deepEqual(control.map(x => x[check.q]), check.donors);
   }
+  // Stronger one-way implication also covers arbitrary deterministic many-to-one
+  // phase maps: plaintext equality necessarily implies ciphertext equality.
+  // Such maps need an additional side channel if lossless decoding is desired.
   const witness = donors[0].values;
+  const mergedCipher = witness.map(v => Math.floor(v / 2)); // 29 -> 15 GP29 glyphs
+  const witnessEqualities = allPeriods(witness, regime.maximum, regime.spans);
+  const mergedEqualities = allPeriods(mergedCipher, regime.maximum, regime.spans);
+  for (let q = 1; q <= regime.maximum; q++) {
+    assert.ok(mergedEqualities[q] >= witnessEqualities[q],
+      regime.label + ' deterministic many-to-one monotonicity failed at q=' + q);
+  }
   const plantCipher = transform(witness, regime.maximum, regime.spans, false);
   const recovered = transform(plantCipher, regime.maximum, regime.spans, true);
   assert.deepEqual(recovered, witness);
@@ -234,7 +244,8 @@ for (const regime of regimes) {
     nearestObservedControlGap: closestGap,
     atPeriod: closestPeriod,
     frozenWitnesses: regime.checks,
-    privatePermutationPositive: 'Exact GP29 forward/decode and invariant PASS'
+    privatePermutationPositive: 'Exact GP29 forward/decode and invariant PASS',
+    manyToOneMonotonicityPositive: 'All phases cannot decrease plaintext equality PASS'
   }, null, 2));
 }
 console.log('PASS: all-secret GP29 fixed-period mono-rune families are');
