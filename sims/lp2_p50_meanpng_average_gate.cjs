@@ -6,6 +6,7 @@
 // See https://www.libpng.org/pub/png/spec/1.0/PNG-Filters.html
 // Execute from repository root: node sims/lp2_p50_meanpng_average_gate.cjs
 const fs = require("fs");
+const zlib = require("zlib");
 const assert = require("assert");
 const grid = JSON.parse(fs.readFileSync("resources/liber-primus/lp2-grid-256.json","utf8"));
 const corpus = JSON.parse(fs.readFileSync("resources/liber-primus/lp2-corpus.json","utf8"));
@@ -68,6 +69,16 @@ const literalFilterHeaders=Array.from({length:32},(_,r)=>source[r*8]);
 const validLiteralHeaders=literalFilterHeaders.filter(x=>x<=4).length;
 assert.equal(validLiteralHeaders,1);
 assert.equal(avg.slice(0,8).map(x=>x.toString(16).padStart(2,"0")).join(""),"cb4ccd20712590ff");
+// One fixed historical binary receiver: a complete offset-zero RFC1951 raw
+// DEFLATE body, which Cicada's authenticated 2013 OpenPGP ZIP channel used.
+// Do not fit offsets, skip bytes, or retune image-filter parameters.
+const authenticTransportPlant=Buffer.from("AN END. WITHIN THE DEEP WEB THERE EXISTS A PAGE.");
+const deflatedPlant=zlib.deflateRawSync(authenticTransportPlant);
+assert.deepEqual(zlib.inflateRawSync(deflatedPlant),authenticTransportPlant);
+let rawDeflateAccepts=false,rawDeflateLength=null,rawDeflateError=null;
+try { const d=zlib.inflateRawSync(Buffer.from(avg)); rawDeflateAccepts=true;rawDeflateLength=d.length; }
+catch(e) { rawDeflateError=String(e.message); }
+assert.equal(rawDeflateAccepts,false);
 const allPages=corpus.pages.filter(p=>p.page<=55);
 const C=allPages.flatMap(p=>p.indices);
 assert.equal(C.length,12956);
@@ -103,6 +114,7 @@ const output={
   shape:[32,8],bpp:1,
   literalPNGFilterHeadersValid:validLiteralHeaders,literalPNGFilterHeadersTotal:32,
   avg_filter_exact_replay:true,
+  rawDeflateAtOffset0:{accepted:rawDeflateAccepts,length:rawDeflateLength,error:rawDeflateError,sourceNativePlant:true},
   original_stats:stats(source),avg_reconstructed_stats:stats(avg),
   decoded_4c_positions:avg.flatMap((v,i)=>v===0x4c?[i]:[]),
   original_gp29_ic:profile(C),
