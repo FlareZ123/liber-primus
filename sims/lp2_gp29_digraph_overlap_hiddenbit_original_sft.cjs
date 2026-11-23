@@ -142,7 +142,6 @@ function asciiView(bytes) { return bytes.map(x => x >= 32 && x <= 126 ? String.f
 function hexView(bytes) { return bytes.map(x => x.toString(16).padStart(2, '0')).join(''); }
 const originalBits = stable.map(e => e.bit);
 const directBytes = bitsToBytes(originalBits);
-const reversedWithinByte = originalBits.flatMap(() => []); // explicit byte-order control below
 const lsbBytes = [];
 for (let i = 0; i + 7 < originalBits.length; i += 8) {
   lsbBytes.push(bitsToBytes(originalBits.slice(i, i + 8).reverse())[0]);
@@ -232,10 +231,109 @@ const distribution = (values, real) => {
   };
 };
 
+/**
+ * Stronger complete-word renderer: enumerate every GP29 tokenization of the
+ * original Latin spelling having EXACTLY the original number of rune slots.
+ * Lexicographic native GP indices define the public order. The mixed-radix
+ * rank stream can be inverted without knowing the particular original runes.
+ * @param {number[]} word
+ * @returns {number[][]}
+ */
+function sameLengthTokenizations(word) {
+  const latin = word.map(x => glyphs[x]).join('');
+  const memo = new Map();
+  /** @param {number} cursor @param {number} slots @returns {number[][]} */
+  function walk(cursor, slots) {
+    const label = cursor + ':' + slots;
+    if (memo.has(label)) return memo.get(label);
+    if (slots === 0) return cursor === latin.length ? [[]] : [];
+    const remaining = latin.length - cursor;
+    if (remaining < slots || remaining > 2 * slots) return [];
+    const result = [];
+    for (let i = 0; i < glyphs.length; i++) {
+      if (!latin.startsWith(glyphs[i], cursor)) continue;
+      for (const suffix of walk(cursor + glyphs[i].length, slots - 1)) {
+        result.push([i, ...suffix]);
+      }
+    }
+    memo.set(label, result);
+    return result;
+  }
+  return walk(0, word.length);
+}
+
+const tokenizations = words.map(sameLengthTokenizations);
+const radix = tokenizations.map(x => x.length);
+const selectedRanks = tokenizations.map((alternatives, i) => {
+  const original = words[i].join(',');
+  const rank = alternatives.findIndex(x => x.join(',') === original);
+  assert.ok(rank >= 0, 'original word must be a valid same-length GP29 parse');
+  return rank;
+});
+assert.equal(radix.filter(x => x > 1).length, 204);
+assert.equal(radix.filter(x => x > 2).length, 54);
+assert.equal(Math.max(...radix), 7);
+const mixedBits = radix.reduce((n, k) => n + Math.log2(k), 0);
+let nativeRankNumber = 0n, range = 1n;
+for (let i = 0; i < words.length; i++) {
+  nativeRankNumber = nativeRankNumber * BigInt(radix[i]) + BigInt(selectedRanks[i]);
+  range *= BigInt(radix[i]);
+}
+assert.equal(nativeRankNumber.toString(16), '18d11b78ee49747821c208d169910de9e849127bc0c8e87c9ad5e93dc257da1');
+
+/** @param {bigint} value @returns {number[][]} */
+function recoverWordsFromRankNumber(value) {
+  assert.ok(value >= 0n && value < range);
+  const digits = new Array(radix.length);
+  for (let i = radix.length - 1; i >= 0; i--) {
+    digits[i] = Number(value % BigInt(radix[i]));
+    value /= BigInt(radix[i]);
+  }
+  assert.equal(value, 0n);
+  return digits.map((r, i) => tokenizations[i][r]);
+}
+assert.deepEqual(recoverWordsFromRankNumber(nativeRankNumber), words);
+
+/** Independent 31-byte original solved-p57 phrase embedded into the full word-register. */
+const longDonor = 'LIKE THE INSTAR TUNNELING TO THE SURFACE'.slice(0, 31);
+const donorInteger = BigInt('0x' + Buffer.from(longDonor, 'ascii').toString('hex'));
+assert.equal(longDonor.length, 31);
+assert.ok(donorInteger < range, '31 ASCII bytes fit in 249-bit source-register capacity');
+const longPlant = recoverWordsFromRankNumber(donorInteger);
+assert.equal(longPlant.length, words.length);
+for (let i = 0; i < words.length; i++) {
+  assert.equal(longPlant[i].length, words[i].length);
+  assert.equal(longPlant[i].map(x => glyphs[x]).join(''), words[i].map(x => glyphs[x]).join(''));
+}
+const longRecovery = longPlant.reduce((n, w, i) => {
+  const rank = tokenizations[i].findIndex(x => x.join(',') === w.join(','));
+  assert.ok(rank >= 0);
+  return n * BigInt(radix[i]) + BigInt(rank);
+}, 0n);
+assert.equal(longRecovery, donorInteger);
+assert.equal(Buffer.from(longRecovery.toString(16).padStart(62, '0'), 'hex').toString('ascii'), longDonor);
+for (const part of solved.sections) {
+  for (const word of readWords(part.source_text, true)) {
+    assert.equal(sameLengthTokenizations(word).length, 1, 'genuine solved native prose has no same-length digraph alternatives');
+  }
+}
+
 console.log(JSON.stringify({
   source: 'original 55 rune-bearing LP2 unknown physical pages, genuine GP29 chart',
   book: { runes: tape.length, printedWords: words.length },
   sevenAmbiguities: [...switches.keys()],
+  exactWordRankRegister: {
+    wordsWithMoreThanOneSameLengthEncoding: radix.filter(x => x > 1).length,
+    wordsWithMoreThanTwo: radix.filter(x => x > 2).length,
+    maximumAlternativesForOneWord: Math.max(...radix),
+    mixedRadixCapacityBits: mixedBits,
+    originalRankHex: nativeRankNumber.toString(16),
+    allOriginalWordsReconstructedExactly: true,
+    solvedNativeWordsWithAlternative: 0,
+    plantedOriginalP57Phrase: longDonor,
+    recoveredOriginalP57AsciiBits: longDonor.length * 8,
+    originalPrintedWordLengthsAndLatinSpellingsPreserved: true
+  },
   allAdjacentTwoRuneOverlaps: { pairs: raw.length, right: raw.filter(e => e.bit).length },
   nonoverlapping: { pairs: originalEvents.length, right: originalEvents.filter(e => e.bit).length },
   strictSinglePairStableCarriers: { count: stable.length, bits: originalBits.join('') },
