@@ -219,7 +219,15 @@ function historicalGP(raw){
 const welshParts=read("resources/control/pwyll_pendeuic_dyuet_welsh_source.txt")
   .split(/={20,}\r?\n\r?\n/u);
 assert.equal(welshParts.length,2);
+const latinAlphabet="0123456789ABCDEFGHIJKLMNOPQRS";
+const latinSource=read("resources/control/latin-vulgate-gp-wholewords.txt")
+  .split(/\r?\n/).filter(line=>line&&(!line.trimStart().startsWith("#")))
+  .join("");
+const latinGP=Array.from(latinSource,ch=>latinAlphabet.indexOf(ch));
+assert.equal(latinGP.length,204802);
+assert(latinGP.every(x=>x>=0&&x<29));
 const medieval=[
+  ["Latin Vulgate",latinGP],
   ["Old English Beowulf",beowulfGP],
   ["Middle Welsh Mabinogion",historicalGP(welshParts[1])],
   ["Old Norse Havamal",historicalGP(
@@ -238,7 +246,7 @@ for(const [name,stream] of medieval){
     minTop4:Math.min(...samples.map(x=>x.top4))});
 }
 assert.deepEqual(historicalReference.map(x=>[x.windows,x.minTop1,x.minTop4]),[
-  [3,1480,4442],[2,1601,5122],[1,1481,4919]
+  [15,1485,5324],[3,1480,4442],[2,1601,5122],[1,1481,4919]
 ]);
 assert(historicalReference.every(x=>x.minTop1>bounds.firstZero.U1.upper
   && x.minTop4>bounds.firstZero.U4.upper));
