@@ -97,6 +97,17 @@ Use the same exact source-native GP transliteration as the existing [line and wo
 | Shakespeare | 32 | **6,599** | **1,133** | **0 / 0** |
 | **Actual original LP2** | Source | **3,956** | **683** | |
 
+A deliberately stronger **word-length-matched control** eliminates the possibility that the gap is an artifact of the donor's naturally different written word segmentation. Retain **all 2,896 original whole-word rune lengths exactly**, also retaining the exact *within-word* original physical line and punctuation cuts; independently sample genuine GP29-transliterated words of each required length from one literary reference with a fixed xorshift32 seed (`0x33012026`), placing them into the authentic source slots. Perform **256 complete 12,956-rune donor plants per reference**, recomputing the exact invariant at the same **3,320** original boundaries:
+
+| Same-length real native-word source | Complete 2,896-word plants | Minimum matching pairs | Mean matching pairs | Plants at/below original 683 |
+| --- | ---: | ---: | ---: | ---: |
+| Gibran | 256 | **1,023** | 1,109.109375 | **0** |
+| Emerson | 256 | **1,053** | 1,134.570313 | **0** |
+| Shakespeare | 256 | **1,059** | 1,150.773438 | **0** |
+| **Original ciphertext** | 1 | **683** | | |
+
+This added experiment respects the **entire original printed word-length distribution**, while the independent native-word resampling sacrifices continuous English syntax and is therefore not an exhaustive proof against every conceivable GP29 plaintext register. The exact original, donor lexicon, deterministic draws and all 768 population results are asserted in the same SFT. It blocks the straightforward rival that the complete contiguous donor windows only differed because of word cuts.
+
 The novel **3,320-scope**, all-source-visible intersection remains profoundly collision-sparse despite separately and arbitrarily rekeying **every printed word fragment between physical line and ink boundaries**. An independently planted 12,956-rune native Gibran text is encrypted with **3,320 unrelated pseudorandom complete GP29 bijections** and an in-scope reversal; exact inverse recovery and equality of the planted plaintext/cipher within-scope pair counts are asserted in the [same source SFT](../sims/lp2_punct_quote_apostrophe_allsecret_reseg_original_sft.cjs). An independent 182-scope plant additionally verifies *actual* involutive changed-word-boundary reflow.
 
 **Practical cipher consequence:** Under ordinary GP-native text and the printed source partition, every direct GP29 alphabet-per-unit decoder, even with independently arbitrary hidden line, word, page, punctuation, quote and apostrophe alphabets and all internal rune/word ordering freedom, is excluded by the combined histogram and pair invariants. The new **3,320-scope test covers the most generous physical-layout-preserving segmentation of this sort**, beyond the preexisting 594-line and 2,896-word private-key gates. The only remaining paths within GP-native English require a transform that **changes rune identities dynamically inside one of those smallest source units**, **transports runes across visible source separators**, or **uses a variable-length/other-symbol ciphertext encoding**. The manuscript still does not select a particular surviving cipher.
