@@ -27,12 +27,17 @@ assert.ok(tokens.every(x => typeof x === "string" && x.length === 2));
 const zero = tokens.map(t => Number(t[0] === "0"));
 assert.equal(zero.reduce((a,b)=>a+b,0),60);
 const count = new Int32Array(256), eligible = new Int32Array(256);
+const halves = Array.from({length:2},()=>({
+  count:new Int32Array(256), eligible:new Int32Array(256)
+}));
 let offset=0, events=0, pairs=0;
 for(const page of pages) {
   for(let i=0;i+1<page.indices.length;i++) {
     const at=(offset+i)&255;
-    eligible[at]++; pairs++;
-    if(page.indices[i] === page.indices[i+1]) {count[at]++; events++;}
+    eligible[at]++; halves[page.page<28?0:1].eligible[at]++; pairs++;
+    if(page.indices[i] === page.indices[i+1]) {
+      count[at]++; halves[page.page<28?0:1].count[at]++; events++;
+    }
   }
   offset+=page.indices.length;
 }
@@ -53,6 +58,35 @@ const raw=score(ident), historical=score(patience);
 assert.deepEqual(raw,{hits:33,exposure:3025});
 assert.deepEqual(historical,{hits:21,exposure:3018});
 
+const halfStats = halves.map(h => {
+  const baseCount=h.count.reduce((sum,x)=>sum+x,0);
+  const basePairs=h.eligible.reduce((sum,x)=>sum+x,0);
+  const hits=zero.reduce((sum,m,i)=>sum+m*h.count[i],0);
+  const exposure=zero.reduce((sum,m,i)=>sum+m*h.eligible[i],0);
+  const perm=ident.slice();
+  let atLeast=0, total=0, summed=0;
+  function walk(index) {
+    if(index===8) {
+      let score=0;
+      for(let r=0;r<32;r++) for(let col=0;col<8;col++)
+        score+=h.count[8*r+col]*zero[8*r+perm[col]];
+      total++; summed+=score;
+      if(score>=hits) atLeast++;
+      return;
+    }
+    for(let j=index;j<8;j++) {
+      [perm[index],perm[j]]=[perm[j],perm[index]];
+      walk(index+1);
+      [perm[index],perm[j]]=[perm[j],perm[index]];
+    }
+  }
+  walk(0);
+  return {pairs:basePairs,events:baseCount,hits,exposure,
+    atLeast,permCount:total,permutationMean:summed/total};
+});
+assert.deepEqual(halfStats.map(x=>x.events),[45,41]);
+assert.deepEqual(halfStats.map(x=>x.hits),[19,14]);
+assert.deepEqual(halfStats.map(x=>x.atLeast),[281,1849]);
 const array=ident.slice(), histogram=new Int32Array(87), winners=[];
 let total=0, higherOrEqual=0, maximal=-1, sum=0;
 function enumerate(at) {
@@ -110,5 +144,6 @@ console.log(JSON.stringify({
  maximizingOrders:winners,
  histogram33:histogram[33],histogram34:histogram[34],
  syntheticPrintMaskRecovery:match,
+ halfBookDisjointPageHoldout:halfStats,
  interpretation:"Printed column order is unusually well aligned to repeat events relative to row-preserving 8! column relabelings, conditional on the previously selected low-zero 256-phase statistic; no cipher/key/plaintext inferred."
 },null,2));
