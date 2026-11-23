@@ -19,7 +19,11 @@ number of rune-free original central physical page     = 50
 
 Equivalently, the original table has an exact additive deficit of **50** relative to an imagined total of **32 rows each summing 1033**. **Value 50 itself is absent** from its 256 radix60 cell values (source token would be `0o`); it is a possible inferred **257th check byte**, although there is **no source-selected insertion position or evidence of a deliberately deleted cell**. The original 32 rows are not themselves 1033-sum magic-square rows.
 
+The integer **50** has two independent labels in the genuine numbered artwork: the 1033/3301 cuneiform numeral chapter begins at original source file **`50.jpg`** (LP2 p33), whereas the numerical table's otherwise rune-free central sheet is **physical LP2 p50**, originally distributed as `67.jpg` (the book's second release starts at `17.jpg`). The missing-value arithmetic thus conditionally returns the **actual source filename containing its upstream 1033 numeral**, as well as the table's second-release-relative sheet number. This is a potentially human-recognizable cross-artifact closure. Its weak premise is important: the author did not explicitly ask a solver to multiply a square's **line sum** by an unrelated **table row count** or to interpret the resulting deficit as either a filename or an omitted byte. Using the original table file label `67` instead of its relative page number `50` breaks the equality.
+
 The historically plausible radix59 alternative (same literal token digits with 59 in the first-place multiplier) sums to **32582**, with deficit 474 relative to `32 × 1033`. This is one independent codec control, not a general familywise significance measurement. The identity was noticed in this research after knowing the source squares and printed table.
+
+The 2014 period solver's independently archived 256-byte `sexagesimal.bin` (see `resources/cicada2014-sexagesimal-source.json`) is a **fallible human transcription** of the later table: its ten differing positions have net byte difference **−31**, so its sum is **32975** rather than the original's **33006**. This does not falsify an authored table checksum, because the 2014 copy is already known to contain transcription errors. It supplies **no independent exact checksum corroboration** either.
 
 ## Alternative attractive arithmetic and nonunique corrections
 
