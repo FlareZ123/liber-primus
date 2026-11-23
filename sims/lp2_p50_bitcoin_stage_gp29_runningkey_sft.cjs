@@ -15,7 +15,7 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const {createECDH, createHash} = require('node:crypto');
+const {createECDH, createHash, createHmac, pbkdf2Sync} = require('node:crypto');
 const root = path.resolve(__dirname, '..');
 const readJSON = file => JSON.parse(
   fs.readFileSync(path.join(root, file), 'utf8')
@@ -86,6 +86,42 @@ for (const [name, input] of Object.entries(directSHA512Receivers)) {
   }));
 }
 assert.equal(Object.keys(directSHA512Receivers).length, 7);
+
+// Historical BIP39/BIP32 (2013/2012) gives three further exactly
+// specified 64-byte objects without tunable nonce, iteration or salt.
+// The official BIP39 2048-word English list gives this exact checksum-
+// valid 24-word mnemonic from the original 256-bit fifth-column source.
+// Source reference: https://github.com/bitcoin/bips/blob/master/bip-0039/english.txt
+const mnemonic =
+  'giggle robot pitch horse grace cube build fiber unable observe mirror ' +
+  'brave palm wild spider crater mother culture correct midnight poverty ' +
+  'jacket food name';
+assert.equal(mnemonic.split(' ').length, 24);
+assert.equal(sha256(bytes)[0], 0x96); // 8-bit BIP39 entropy checksum
+const bip39Seed = pbkdf2Sync(mnemonic, 'mnemonic', 2048, 64, 'sha512');
+const bip32FromOriginal32 = createHmac('sha512', 'Bitcoin seed')
+  .update(bytes).digest();
+const bip32FromBip39 = createHmac('sha512', 'Bitcoin seed')
+  .update(bip39Seed).digest();
+const standard64 = {
+  bip39PbkdHmacSha512: bip39Seed,
+  bip32DirectScalarSeed: bip32FromOriginal32,
+  bip32FromBip39Seed: bip32FromBip39
+};
+const expectedPrefixes = {
+  bip39PbkdHmacSha512: '5e29b067285c555a',
+  bip32DirectScalarSeed: '76355b5428b04cc8',
+  bip32FromBip39Seed: '2de4a70778dfe21f'
+};
+for (const [name, out] of Object.entries(standard64)) {
+  assert.equal(out.length, 64);
+  assert.equal(out.toString('hex').slice(0, 16), expectedPrefixes[name]);
+  assert.notEqual(out.toString('hex'), p56PrintedSHA512);
+  console.log('P50_BITCOIN_2013_BIP39_BIP32_P56', JSON.stringify({
+    name, digestHex:out.toString('hex'), matchesOriginalP56:false
+  }));
+}
+
 
 const stages = {
   scalar32: bytes,
