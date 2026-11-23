@@ -121,6 +121,39 @@ const recoveredKey = continueKey(recoveredPrefix,
   recoveredConnection.poly, native.length);
 assert.deepEqual(translate(plant, recoveredKey, -1), native);
 
+
+// Independent *discriminating* body-reset hypothesis: the original dot
+// immediately after the red 13-rune title resets the LFSR, and the signed
+// 2016 continuation is literally THE DEVOTED. Only the first six body
+// plaintext runes are given to recover a fresh six-value seed. Positions
+// 6,7,8 are withheld until AFTER the recurrence predicts them. K->C and
+// V->U are the canonical GP29 roman transliterations.
+const expectedBody9 = ["TH","E","D","E","U","O","T","E","D"]
+  .map(symbol => {
+    const i = gp.translit.indexOf(symbol);
+    assert.ok(i >= 0);
+    return i;
+  });
+const sourceBody9 = gp.pages[0].indices.slice(13, 22);
+assert.equal(sourceBody9.length, 9);
+const bodySeed6 = sourceBody9.slice(0, 6)
+  .map((v, i) => mod(v - expectedBody9[i]));
+const bodyKey9 = continueKey(bodySeed6, connection.poly, 9);
+const bodyPredicted9 = translate(sourceBody9, bodyKey9, -1);
+assert.deepEqual(bodyPredicted9.slice(0, 6), expectedBody9.slice(0, 6));
+assert.equal(render(bodyPredicted9), "THEDEUOIEOO");
+assert.notDeepEqual(bodyPredicted9.slice(6), expectedBody9.slice(6));
+assert.deepEqual(bodyPredicted9.slice(6).map((v, i) =>
+  v === expectedBody9[i + 6]), [false, false, false]);
+// A separate native planted reset has precisely the same six-seed receiver
+// and recovers its held-out output under the correctly specified model.
+const nativeResetKey = continueKey(bodySeed6, connection.poly, native.length);
+const plantedReset = translate(native, nativeResetKey, +1);
+const nativeResetSeed = plantedReset.slice(0, 6)
+  .map((v, i) => mod(v - native[i]));
+assert.deepEqual(translate(plantedReset,
+  continueKey(nativeResetSeed, connection.poly, native.length), -1), native);
+
 const cuts = [
   { label: "original p0 red known phrase", start: 0, end: 13 },
   { label: "original p0 black NEW 249", start: 13, end: 262 },
@@ -141,6 +174,6 @@ for (const part of cuts) {
     "first120", render(decoded.slice(0, 120)));
 }
 console.log("native p57 control original IoC", ioc(native).toFixed(12));
-console.log("native p57 full planted inverse", "95/95", "PASS");
+console.log("native p57 full planted inverse", "95/95", "PASS");\nconsole.log("dot-reset body first6 crib", render(expectedBody9.slice(0,6)), "seed", bodySeed6.join(","));\nconsole.log("dot-reset withheld3 expected", render(expectedBody9.slice(6)), "actual", render(bodyPredicted9.slice(6)), "0/3");\nconsole.log("native p57 planted six-seed dot-reset", "95/95", "PASS");
 console.log("original full original-input reencryption", "729/729", "PASS");
 console.log("CONCLUSION: no original body plaintext under this fixed BM6 candidate.");
