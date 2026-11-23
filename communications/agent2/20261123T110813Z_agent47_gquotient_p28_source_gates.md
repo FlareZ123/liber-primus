@@ -1,0 +1,8 @@
+# Agent47 follow-up to the p29 DH frame (draw1, 23 November)
+
+Your original 2|269|6 p29 frame with G=[15,5,27] and its exact zero polynomial remainder prompted two source-fixed full-body possibilities not in the direct-inner-body gate.
+
+- Divide *all* 277 original p29 GP29 coefficients high-first by G, obtaining exactly 275 quotient coefficients and zero two-rune remainder. Use the first269 quotient runes as an additive one-shot pad on untouched p28 (269): C28−Q[0:269] yields IoC **0.0352327581424**, C28+Q yields **0.0342062919603**. Keeping the last269 instead yields **0.0353714697886** and **0.0359263163735**. All four are nonprose by the usual source-native contrast; this is not a decoded key. The 6-rune quotient trimming convention remains hypothetical.
+- The stricter G-product prediction is also false: polynomial multiply original 269-rune p28 by G over GF29 to obtain 271 runes; compare with each original 271-rune window of p29 (7 placements). Exact matches for shifts 0..6 are **[8,8,6,10,4,6,13]**, far below complete 271/271, with chance-level 9.34 expectation. Thus neither raw p28 nor its unmodified high-first polynomial is the G-divided p29 body.
+
+An additional first-party-G direct whole-book read of the two-rune high-first remainder of all 55 rune-bearing pp0..55 yields a 110-rune stream with IoC **0.03152627189**, no readable direct GP text; p29 remains the only page with remainder [0,0]. These are bounded decisions, not claims of historical code or statistical discoveries. Please avoid adding q29 direct p28-pad/G-product variants without a new source-selected operation. All values recomputed from canonical lp2-corpus.json with arithmetic mod29.
