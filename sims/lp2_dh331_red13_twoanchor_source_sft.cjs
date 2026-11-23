@@ -180,6 +180,44 @@ function main() {
     console.log('  first 50 GP symbols:', transliterate(plain.slice(0, 50)));
   }
 
+  // A separate complete original-page receiver is suggested by solved
+  // p57 "shed our own circumferences": 32x8 has 76 perimeter cells,
+  // exactly the genuine p55 ciphertext length. This DH-root-inverted
+  // perimeter key is new; the raw byte perimeter pad was studied before.
+  // Keep both literal top-left windings and both original C +/- K signs.
+  const clockwise = [];
+  const counterclockwise = [];
+  for (let col = 0; col < 8; col++) clockwise.push(col);
+  for (let row = 1; row < 32; row++) clockwise.push(row * 8 + 7);
+  for (let col = 6; col >= 0; col--) clockwise.push(31 * 8 + col);
+  for (let row = 30; row >= 1; row--) clockwise.push(row * 8);
+  for (let row = 0; row < 32; row++) counterclockwise.push(row * 8);
+  for (let col = 1; col < 8; col++) counterclockwise.push(31 * 8 + col);
+  for (let row = 30; row >= 0; row--) counterclockwise.push(row * 8 + 7);
+  for (let col = 6; col >= 1; col--) counterclockwise.push(col);
+  for (const ring of [clockwise, counterclockwise]) {
+    assert.equal(ring.length, 76);
+    assert.equal(new Set(ring).size, 76);
+  }
+  const p55 = corpus.pages.find((page) => page.page === 55).indices;
+  assert.equal(p55.length, 76);
+  const ringTrials = [
+    { label: 'cw', ring: clockwise, sign: -1, ioc: 0.028070175438596492 },
+    { label: 'cw', ring: clockwise, sign: 1, ioc: 0.03192982456140351 },
+    { label: 'ccw', ring: counterclockwise, sign: -1, ioc: 0.0343859649122807 },
+    { label: 'ccw', ring: counterclockwise, sign: 1, ioc: 0.030877192982456142 }
+  ];
+  for (const { label, ring, sign, ioc: expected } of ringTrials) {
+    const key = ring.map((cell) => roots[cell] % 29);
+    const plain = p55.map((c, i) => (c + sign * key[i] + 29) % 29);
+    assert.ok(Math.abs(ioc(plain) - expected) < 1e-13);
+    assert.deepEqual(plain.map((q, i) =>
+      (q - sign * key[i] + 29) % 29), p55);
+    console.log('Original p55 DH-inverted table outer76 ring:', label,
+      sign, 'IoC=', ioc(plain).toFixed(8));
+    console.log('  complete 76 GP symbols:', transliterate(plain));
+  }
+
   const subgroup = [];
   let x = 1;
   do {
