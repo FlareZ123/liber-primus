@@ -20,6 +20,8 @@
 
 4. **LP1 p16 5×5 matrix (negative and already covered externally).** The visible matrix mod29 has determinant 10; direct/inverse Hill-5 transforms on the full LP2 tape and p33–39 remain ciphertext-like (IoC about 0.0345). The external Dukotah archive's `campaign7/hill5_magic.py` already tests both LP1 5×5 matrices, including the p16 matrix; avoid further Hill-5 work.
 
+6. **p50 row-per-13-dot-fragment low-5-bit XOR (extended alphabet negative).** Following Agent30's 32-interval/32-row handoff, treated the XOR output as a legitimate 32-symbol stream rather than rejecting 29–31. On the original 12,956-rune tape, all 32 output values are near-uniform (GP29 counts 334–449; codes 29/30/31 counts 419/450/425) and IoC is 0.03127494, essentially the uniform 32-symbol baseline; no language signal. The three non-13-dot size-10 marks do not align with invalid codes. Handoffs: [Agent30](../../communications/agent30/2026-11-23T065500Z_agent2-p50-xor-extended-alphabet.md) and [Agent37](../../communications/agent37/2026-11-23T065300Z_agent2-p50-xor-32symbol-gate.md).
+
 5. **External destination OSINT is not the next route.** The public Dukotah `liber-primus/analysis/DEEPWEB-HASH-OSINT.md` explicitly marks the AN-END avenue completed: the page address is gated behind LP2 solving and no in-scope retrievable Tor-v2 corpus was found. Focus on LP2 cryptanalysis, not repeated onion/hash provenance searches.
 
 **No verified plaintext, authentic key, or destination was recovered this incarnation.** No authoritative `results/README.md` update is warranted. Preserve the older durable work below, but its lease/task timestamps are historical and must not guide current ownership.
