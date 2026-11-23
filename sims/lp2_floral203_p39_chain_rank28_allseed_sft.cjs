@@ -202,3 +202,84 @@ console.log(JSON.stringify({
   positive: '203/203 original solved WELCOME runes recovered and replayed',
   inference: 'This exact GP28 chain class is disfavored for native GP English under all independent per-row IVs; no unknown plaintext'
 }, null, 2));
+
+
+// Aperiodic GP28 extensions. The same GF29 taps are forced by either the
+// published C_i or just recovered P_i, using the original index or GP prime.
+function feedbackDecode(C, first, second, sign, driver, symbolType) {
+  const K=[first,second],P=[C[0]];
+  for(let i=0;i<C.length;i++){
+    if(i>0){
+      const d=mod29(C[i]-C[i-1]);
+      P.push(d===0?28:mod28(d-1-sign*mod28(K[i])));
+    }
+    if(i+2<C.length){
+      const v=driver==='cipher'?C[i]:P[i];
+      const f=symbolType==='prime'?corpus.prime[v]:v;
+      K[i+2]=mod29(19*K[i+1]+4*K[i]+f);
+    }
+  }
+  return P;
+}
+function feedbackEncrypt(P, first, second, sign, driver, symbolType) {
+  const K=[first,second],C=[P[0]];
+  for(let i=0;i<P.length;i++){
+    if(i>0){
+      const d=P[i]===28?0:1+mod28(P[i]+sign*mod28(K[i]));
+      C.push(mod29(C[i-1]+d));
+    }
+    if(i+2<P.length){
+      const v=driver==='cipher'?C[i]:P[i];
+      const f=symbolType==='prime'?corpus.prime[v]:v;
+      K[i+2]=mod29(19*K[i+1]+4*K[i]+f);
+    }
+  }
+  return C;
+}
+const expectedFeedback={
+ 'cipher-index': [[847,829],[824,836],[826,817],[843,841],[864,829],[810,816],[818,826],[814,812],[845,853],[820,814],[811,833],[870,834],[844,833],[852,812],[857,833],[812,897]],
+ 'cipher-prime': [[819,815],[831,822],[821,811],[830,831],[845,841],[841,823],[818,828],[808,817],[823,819],[823,842],[874,828],[820,841],[827,825],[829,855],[825,886],[839,813]],
+ 'plain-index': [[829,893],[783,817],[820,811],[821,802],[786,840],[814,814],[804,798],[814,792],[818,810],[797,832],[814,779],[821,816],[793,837],[811,822],[788,886],[813,803]],
+ 'plain-prime': [[800,798],[797,795],[802,780],[798,777],[803,775],[771,755],[770,838],[788,769],[805,790],[789,764],[813,820],[802,796],[813,805],[834,750],[818,768],[816,774]]
+};
+const observedFeedback={};
+for(const driver of ['cipher','plain']){
+ for(const symbolType of ['index','prime']){
+  const kind=driver+'-'+symbolType;
+  const rowMaxima=[];
+  for(const C of rows){
+   const best=[{pairs:-1,first:0,second:0},{pairs:-1,first:0,second:0}];
+   for(let a=0;a<29;a++)for(let b=0;b<29;b++)for(const [si,sign] of [-1,1].entries()){
+    const plaintext=feedbackDecode(C,a,b,sign,driver,symbolType);
+    const pairs=equalPairs(plaintext);
+    if(pairs>best[si].pairs)best[si]={pairs,first:a,second:b};
+   }
+   rowMaxima.push(best.map(v=>v.pairs));
+   for(const [si,sign] of [-1,1].entries()){
+    const b=best[si];
+    const P=feedbackDecode(C,b.first,b.second,sign,driver,symbolType);
+    assert.deepEqual(feedbackEncrypt(P,b.first,b.second,sign,driver,symbolType),C);
+   }
+  }
+  assert.deepEqual(rowMaxima,expectedFeedback[kind]);
+  observedFeedback[kind]=Math.max(...rowMaxima.flat());
+  for(const sign of [-1,1]){
+   const encrypted=feedbackEncrypt(native,4,9,sign,driver,symbolType);
+   assert.deepEqual(feedbackDecode(encrypted,4,9,sign,driver,symbolType),native);
+  }
+  assert.ok(observedFeedback[kind]<referenceMinimum);
+  console.log('Aperiodic '+kind+' max native-equal-pairs '+observedFeedback[kind]+'/20503 < '+referenceMinimum);
+ }
+}
+assert.deepEqual(observedFeedback,{'cipher-index':897,'cipher-prime':886,'plain-index':893,'plain-prime':838});
+console.log(JSON.stringify({
+ status:'PASS_FEEDBACK',
+ original_source:'16x203 intact black GP runes, original p39 GF29 root24',
+ complete_original_inversions:16*29*29*2*(1+4),
+ aperiodic_inversions:16*29*29*2*4,
+ maxima:observedFeedback,
+ largest_original_max:897,
+ native_solved_min:referenceMinimum,
+ planted_native:'all 8 feedback orientations recovered 203/203 real WELCOME runes',
+ note:'no original unknown plaintext or authentic decoder'
+},null,2));
