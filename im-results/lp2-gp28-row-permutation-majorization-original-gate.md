@@ -77,13 +77,39 @@ A separate synthetic encoder uses genuinely random 28! row permutations for each
 
 Both reset modes recover all 12,956 runes exactly. The positive also satisfies every row-majorization inequality. This validates the model and the invariant implementation; it does not make the original ciphertext a positive instance.
 
+## F-output state-hold extension
+
+The solved-page F-transparent/key-clock behavior motivates a distinct no-op state model. Here F remains an ordinary ciphertext output in the row bijection, but emitting F does **not** update the predecessor state: the state is the most recent non-F ciphertext rune. Each of the 28 non-F states has a 28-output row containing every rune except that state, including F. A plaintext F-to-ciphertext F mapping for every row is a special case of this larger family.
+
+The model grants every printed word start, every reset at a visual chapter boundary, optional resets at all 32 physical page seams, all positions before the first non-F state after a reset, and every repeat of the last non-F state as free sidecar positions. In the original source this yields:
+
+| State/reset convention | Mapped transitions | Word starts | State-start / leading-F positions | Repeat exceptions | Page cuts | Total free positions |
+|---|---:|---:|---:|---:|---:|---:|
+| F holds state, carry across pages | 9,875 | 2,896 | 117 | 68 | 0 | 3,081 |
+| F holds state, reset at page seams | 9,844 | 2,896 | 117 | 67 | 32 | 3,112 |
+
+The 117 state-start positions comprise 116 first non-F runes after an F-leading run and one additional leading-F position; word starts and page cuts are counted separately. The same word-position-conditioned row-majorization inequality applies, now over the 28 non-F predecessor states and their 28 allowed outputs.
+
+| Excluded GP symbol | Control | Plants violating / 256 | Minimum maximum violation | Weakest witness at p40–53, word position 1 |
+|---|---|---:|---:|---|
+| EO | Gibran | 256/256 | +89 | k=7, bound 375, donor 464 |
+| EO | Emerson | 256/256 | +64 | k=6, bound 339, donor 403 |
+| EO | Shakespeare | 256/256 | +92 | k=4, bound 252, donor 344 |
+| OE | Gibran | 256/256 | +81 | k=5, bound 299, donor 380 |
+| OE | Emerson | 256/256 | +78 | k=7, bound 375, donor 453 |
+| OE | Shakespeare | 256/256 | +92 | k=8, bound 406, donor 498 |
+
+All 256 exact-word-length plants violate for each control/alphabet, with and without page resets. A synthetic F-hold encoder with random per-chapter/state row permutations recovers all 12,956 symbols exactly, satisfies every inequality, and uses exactly 3,081 or 3,112 sidecar positions.
+
+This excludes the simple F-output state-hold/transparent mapping family as well as the ordinary immediate-previous-ciphertext state family. It does not exclude an F escape that carries additional side information or changes the row/key schedule; those are different, untested mechanisms.
+
 ## Decision and limits
 
 **Retire the fixed per-chapter GP28 predecessor-ciphertext row-permutation family for ordinary native-GP English with either EO or OE omitted.** This result is stronger than a failed key search: it is independent of every possible row key and still holds after granting all word starts, all within-word repeat exceptions, optional page resets, and nine independent visual-chapter tables.
 
 It does not exclude:
 - a row table changing independently by physical page or by word;
-- an F-specific transparent/no-op/escape rule;
+- an F escape/flag mechanism carrying additional side information or changing the row/key schedule;
 - a different 28-symbol alphabet or non-English source register;
 - a plaintext-dependent state, position-varying row map, variable-length code, moving word boundaries, or nonlocal block transform;
 - a source-selected external key or sidecar not represented by this model.
