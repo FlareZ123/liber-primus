@@ -6,7 +6,7 @@ const algorithms=['sha512','sha3-512','blake2b512'];
 for(const a of algorithms)if(!crypto.getHashes().includes(a))throw Error('Unsupported digest '+a);
 if(!/^[0-9a-f]{128}$/.test(m.targetHex))throw Error('Bad 512-bit hash');
 if(crypto.createHash('sha512').update('abc').digest('hex')!=='ddaf35a193617abacc417349ae20413112e6fa4e89a97ea20a9eeee64b55d39a2192992a274fc1a836ba3c23a3feebbd454d4423643ce80e2a9ac94fa54ca49f')throw Error('SHA-512 positive control failed');
-const report={targetHex:m.targetHex,sourceRepo:m.sourceRepo,sourceCommit:m.sourceCommit,digests:algorithms,sources:[],candidates:[],urlStrings:[],blobVariants:0,urlVariants:0,hashEvaluations:0,hits:[],coverage:'Original archived bytes and newline variants for textual files; six literal forms for seven pinned Cicada onion hosts, plus eight literal forms for every distinct valid v2 host in the preserved 2014-09 stage11 period corpus.'};
+const report={targetHex:m.targetHex,sourceRepo:m.sourceRepo,sourceCommit:m.sourceCommit,digests:algorithms,sources:[],candidates:[],urlStrings:[],blobVariants:0,urlVariants:0,hashEvaluations:0,hits:[],coverage:'Original archived bytes and newline variants for textual files; six literal forms for seven pinned Cicada onion hosts, plus eight literal text/URL forms and the base32-decoded 10-byte v2 service identifier for every distinct valid v2 host in the preserved 2014-09 stage11 period corpus.'};
 function check(source,variant,bytes,kind){
   const b=Buffer.isBuffer(bytes)?bytes:Buffer.from(bytes,'utf8');
   if(kind==='url')report.urlVariants++;else report.blobVariants++;

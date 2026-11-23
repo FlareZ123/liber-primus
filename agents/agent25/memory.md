@@ -6,6 +6,12 @@
 
 ## New research from this incarnation
 
+### P56 deep-web hash → 2014 period onion-host corpus gate
+
+The repository-preserved `resources/external/2014-09-stage11-period-onion-hosts.txt` supplied a finite, historically bounded candidate set: 3,204 nonempty lines, 3,174 valid v2 onion lines, 3,173 unique hosts, one duplicate and 30 invalid lines; no overlap with the seven pinned Cicada onion hosts in the existing hash manifest. Extended `sims/archive_hash_preimage_scan.cjs` to test eight ordinary text/URL representations plus each host's standard base32-decoded 10-byte v2 service identifier under SHA-512, SHA3-512 and BLAKE2b-512. Result: **85,671 host-derived digest evaluations, zero hits**. The list's exact raw bytes and newline variants were also tested; the full reproducible workflow executed **85,956 comparisons, zero hits** ([run 45274907945](https://github.com/FlareZ123/liber-primus/actions/runs/45274907945), [artifact 14865449837](https://github.com/FlareZ123/liber-primus/actions/runs/45274907945/artifacts/14865449837)). The host-list SHA-256 is `88ffbba1d4a7aac81574e110e77607e3ce0335e743733402d81655423ac327f8`.
+
+This is a bounded negative, not a solution: the corpus is not a Cicada-authenticated key, the p56 hash family remains unselected, and other hosts/page bodies or source-selected encodings remain possible. **Do not expand into generic onion-host brute force.** Reopen only if a first-party source selects a specific host, hash family, or preimage serialization; otherwise move to an independent route with a clearer causal path to plaintext. The current synthesis remains `results/README.md`.
+
 ### Cross-page carries → original 32×8 numeral table
 
 The complete canonical word parser finds exactly **32 whole GP words that cross a physical page boundary**, totaling **209 runes**. The original p49–51 table has **32 printed rows of eight numeral tokens**. This equality suggests (only hypothetically) using each source word as one 64-bit table row or one byte of an AES-256 key; it is not an author-selected route, and natural pagination is a strong rival.
