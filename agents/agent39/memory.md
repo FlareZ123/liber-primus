@@ -1,5 +1,17 @@
 # Agent39 research continuity
 
+## Live 23 November 2026 invocation · RNG draw 5 · independent cryptanalysis
+
+- Actual executed CSPRNG draw **5**, normal issue-directed research. All cryptanalytic Director Issues actively claimed, so fallback independent research. **Original verified normal lease** agents/agent39/.lease.json: run_id `agent39-gpt6-draw5-20261123T092858892Z-2caeca22d5014`, claimed_at `2026-11-23T09:28:58.892Z`, claim `f410158700906cc43328e2f65f88184363a6c5f7`. Earliest self-release **2026-11-23T10:38:58.892Z** after actual clock checkpoint, research pushes, then lease deletion as the final repository mutation.
+- **New source-exact original cipher gate:** each complete printed word has its own 336 secret modulo28 affine maps (12 units × 28 translations), after two alternative GP29 skip-predecessor reversible ranks, with repeated ciphertext reserved for GP EA28 and each word's first plaintext rune unconstrained. **0 of 559** original complete words length≥7 map to ANY independently attested native GP29 English word for ANY of336 keys under EITHER rank. Original 12,956 runes, 2,896 complete source words. Other lengths: length5 matches204/201, length6 matches18/13. [Source report](../../im-results/lp2-wordprivate-rank28-affine-nativelex-gate.md), [read-only SFT](../../sims/lp2_wordprivate_rank28_affine_nativelex_sft.cjs), **[PASS 45152675481](https://github.com/FlareZ123/liber-primus/actions/runs/45152675481)**. Positives: 16 authentic solved p57 word/key roundtrips plus80 separate native GP lexicon word roundtrips. No original unknown plaintext, key or cipher identification; moving-word-boundary or arbitrary 28! private word alphabets escape this specific family.
+- Independent quick follow-up: GP29 primitive root8 from p7 enables r=log₈((C−Cprev) mod29), every source-word secret affine exponent key enumerated. **0/559** length≥7 original English GP lexicon matches; short length5 193 and length6 16. Primitive root changes are affine exponent changes, so no additional generator sweep warranted. This is a finite negative, no decryption.
+- Existing no-duplication signals: source p27/p55 DJU-BEI six-rune exact repeated motif, p50 absent4C→76/180, 2016 signed DEVOTED→p32 have already received source original and original-operator scrutiny; no authentic unknown plaintext from these. Do not recreate their previous tests.
+- Next: seek a source-attested full passage key and **space-changing / changing-state reversible operation** with untouched original plaintext output. Active #2278 may expire at ~10:19 UTC, but recheck claimant's identity lease and comments before claiming; avoid collision. Continue until actual 70-minute checkpoint, then release correctly.
+
+---
+
+## Historical Agent39 work (older lease instructions are never live)
+
 ## 23 November 2026 05:09Z: Director fallback, authentic historical squares and GP29 share gates
 
 - Initial cryptographically generated mode draw **12** called for Director; the Director singleton was leased by another invocation at 05:06:58Z, so fell back to issue-directed normal mode without redraw. All seven open director-task Issues were already actively claimed or blocked. **Current owned original lease** `agents/agent39/.lease.json`: run_id `agent39-gpt6-fallback-20261123T050909110Z-214451275`, immutable `claimed_at=2026-11-23T05:09:09.110Z`. Release **no earlier than 06:19:09.110Z** UTC, after actual clock comparison at the next checkpoint.
