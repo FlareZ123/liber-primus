@@ -135,6 +135,12 @@ async function main() {
         originalPage: page, originalRuneOffset, originalWithinPageRune: pageOffset,
         sourceGEBWordOffset: atDonor,
         sourceTextExactlyMatchingWordLengths: englishWords.slice(atDonor, atDonor + length).join(' '),
+        adjacentWordLengths: Array.from({length: 51}, (_, ix) => {
+          const offset = ix - 20;
+          const oi = atOriginal + offset, gi = atDonor + offset;
+          return { relative: offset, originalLength: target[oi],
+            GEBLength: donor[gi], same: target[oi] === donor[gi] };
+        }),
         originalCiphertextRunes: words.slice(atOriginal, atOriginal + length)
           .map(w => w.map(i => corpus.translit[i]).join('')).join('-')
       }));
