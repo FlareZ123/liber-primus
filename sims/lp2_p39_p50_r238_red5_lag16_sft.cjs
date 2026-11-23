@@ -519,7 +519,7 @@ assert.deepEqual(black237Counts, [6, 6, 6, 8]);
 // Test the same 12,719-window maximum over 240 seeded page-local word shuffles.
 const masterParts = fs.readFileSync(path.join(root,
   'resources/transcriptions/liber_primus_master.txt'), 'utf8').split('%');
-const pages0to55 = allPages.filter(p => p.page <= 55);
+const pages0to55 = corpus.pages.filter(p => p.page <= 55);
 const nativeWords = pages0to55.map((page, pi) => {
   const words = [];
   let word = [];
