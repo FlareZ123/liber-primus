@@ -326,11 +326,14 @@ function main() {
   for (const [name, filename, preprocessing] of donors) {
     const reference = encodeEnglish(preprocessing(read(filename)));
     assert(reference.length > LOOKAHEAD, name + ": source empty");
-    for (let mode = 0; mode < 2; mode++) {
-      for (const continuous of [false, true]) {
-        const result = scan(original, reference, mode, undefined, continuous);
-        output.push({source: name, ...result});
-        console.log("ORIGINAL " + JSON.stringify(output[output.length - 1]));
+    for (const reversed of [false, true]) {
+      const sample = reversed ? Uint8Array.from(reference).reverse() : reference;
+      for (let mode = 0; mode < 2; mode++) {
+        for (const continuous of [false, true]) {
+          const result = scan(original, sample, mode, undefined, continuous);
+          output.push({source: name, sourceOrientation: reversed ? "reverse" : "forward", ...result});
+          console.log("ORIGINAL " + JSON.stringify(output[output.length - 1]));
+        }
       }
     }
   }
@@ -338,11 +341,14 @@ function main() {
     const reference = obtain();
     assert(reference.length > LOOKAHEAD, name);
     assert(Array.from(reference).every(x => x >= 0 && x < 29), name);
-    for (let mode = 0; mode < 2; mode++) {
-      for (const continuous of [false, true]) {
-        const result = scan(original, reference, mode, undefined, continuous);
-        output.push({source: name, ...result});
-        console.log("ORIGINAL " + JSON.stringify(output[output.length - 1]));
+    for (const reversed of [false, true]) {
+      const sample = reversed ? Uint8Array.from(reference).reverse() : reference;
+      for (let mode = 0; mode < 2; mode++) {
+        for (const continuous of [false, true]) {
+          const result = scan(original, sample, mode, undefined, continuous);
+          output.push({source: name, sourceOrientation: reversed ? "reverse" : "forward", ...result});
+          console.log("ORIGINAL " + JSON.stringify(output[output.length - 1]));
+        }
       }
     }
   }
@@ -351,7 +357,7 @@ function main() {
     source: "unaltered 55 source pages, 12956 GP29 runes",
     hypothesis: "two 29^29 plaintext-predecessor tables, original print spaces ignored",
     attemptedSources: output.filter(x => x.models === "direct"
-      && x.cipherClock === "page-contained").map(x => x.source),
+      && x.cipherClock === "page-contained" && x.sourceOrientation === "forward").map(x => x.source),
     nativePositive: positive,
     strong40Plus: total,
     status: total ? "candidate requiring independent original validation"
