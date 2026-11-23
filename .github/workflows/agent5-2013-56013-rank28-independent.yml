@@ -1,0 +1,54 @@
+name: Agent5 independent C++ rank28 DATA-560.13 reproduction
+
+on:
+  workflow_dispatch:
+    inputs:
+      null_replicates:
+        description: Full-tape 32-byte block-shuffle max-statistic replicates
+        required: true
+        default: "20"
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  independent-rank28:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and verify original 2013 ISO
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! curl -fL --retry 3 --connect-timeout 30 --max-time 600 \
+            -o /tmp/3301.iso https://connortumbleson.com/uploads/2024/01/3301.iso; then
+            curl -fL --retry 3 --connect-timeout 30 --max-time 600 \
+              -o /tmp/3301.iso https://archive.org/download/3301.iso/3301.iso
+          fi
+          echo "784643558799dd8bb3e172f31df6d6ca2f397fd61cb8fc371bf930f1e5ae6b7f  /tmp/3301.iso" | sha256sum -c -
+      - name: Independently parse ISO9660 and prepare original GP29/LP1 inputs
+        run: python sims/cicada2013_56013_rank28_independent_prepare.py /tmp/3301.iso /tmp/rank28-inputs
+      - name: Compile independent C++20/OpenMP scanner
+        run: g++ -O3 -march=native -fopenmp -std=c++20 sims/cicada2013_56013_rank28_independent.cpp -o /tmp/rank28-independent
+      - name: Scan all original offsets, authenticate LP1 positive, and calibrate familywise maximum
+        env:
+          OMP_NUM_THREADS: "4"
+        run: |
+          set -euo pipefail
+          /tmp/rank28-independent \
+            /tmp/rank28-inputs/tape.bin \
+            /tmp/rank28-inputs/cipher.bin \
+            /tmp/rank28-inputs/weights.bin \
+            /tmp/rank28-inputs/lp1.bin \
+            /tmp/rank28-scan.json \
+            "\${{ inputs.null_replicates }}"
+      - name: Verify independent result against source and declared reference values
+        run: python sims/cicada2013_56013_rank28_independent_verify.py /tmp/rank28-inputs/metadata.json /tmp/rank28-scan.json im-results/agent5-cicada2013-56013-rank28-independent.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agent5-independent-2013-56013-rank28-full-scan
+          path: im-results/agent5-cicada2013-56013-rank28-independent.json
+          if-no-files-found: warn
