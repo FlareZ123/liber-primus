@@ -240,11 +240,52 @@ for (const [radixName, bytes] of [
     });
   }
 }
+// The source fixes a 242-cycle but does not authenticate its phase or
+// forward/backward direction. Enumerate every possible start state
+// (all 242), both physical scan directions, both table radices, and signs.
+// Three independently equal-input pairs are an all-three constraint.
+const phaseHistogram = [0, 0, 0, 0];
+const bestPhaseCases = [];
+/** @param {number} x @returns {number} */
+const mod242 = x => ((x % 242) + 242) % 242;
+for (const [radixName, bytes] of [
+  ['native60', grid.bytes], ['omittedF59', table]
+]) {
+  for (const sign of [-1, 1]) {
+    for (const direction of [-1, 1]) {
+      for (let phase = 0; phase < 242; phase++) {
+        const same = blackAnagrams.map(([i, j]) => {
+          const left = mod29(blackP8[i] +
+            sign * bytes[address3[mod242(phase + direction * i)]]);
+          const right = mod29(blackP8[j] +
+            sign * bytes[address3[mod242(phase + direction * j)]]);
+          return left === right;
+        });
+        const hits = same.filter(Boolean).length;
+        phaseHistogram[hits]++;
+        if (hits >= 2) bestPhaseCases.push({
+          radixName, sign, direction, phase, hits, same
+        });
+      }
+    }
+  }
+}
+assert.deepEqual(phaseHistogram, [1722, 208, 6, 0]);
+assert.equal(bestPhaseCases.length, 6);
+
 const blackPlant = blackScroll.map(w =>
   mod29(w.reduce((s, c) => s + c.value, 0) +
     3 * w.length + 7));
 assert(blackAnagrams.every(([a, b]) =>
   blackPlant[a] === blackPlant[b]));
+const plantedPhase = 37;
+const plantedBlackCipher = blackPlant.map((v, i) =>
+  mod29(v - grid.bytes[address3[mod242(plantedPhase + i)]]));
+const plantedBlackDecoded = plantedBlackCipher.map((v, i) =>
+  mod29(v + grid.bytes[address3[mod242(plantedPhase + i)]]));
+assert.deepEqual(plantedBlackDecoded, blackPlant);
+assert(blackAnagrams.every(([a, b]) =>
+  plantedBlackDecoded[a] === plantedBlackDecoded[b]));
 
 // Plant a genuine unknown 29x29 nonlinear hash, synthesize original p8
 // ciphertext with the same fixed table/state, and recover it exactly.
@@ -268,7 +309,7 @@ console.log('LP2_SCROLL255_WORD_EVAL34_ORIGINAL_GATE ' + JSON.stringify({
   black242: {
     originalAnagrams: blackAnagrams,
     originalOutputs: blackAnagrams.map(([a, b]) => [blackP8[a], blackP8[b]]),
-    field3Cases, syntheticPlantPassed: true
+    field3Cases, phaseHistogram, bestPhaseCases, syntheticPlantPassed: true
   },
   witness: {
     word13: values[13], word17: values[17],
