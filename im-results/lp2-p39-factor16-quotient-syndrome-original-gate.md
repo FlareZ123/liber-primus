@@ -4,7 +4,7 @@
 
 ## Motive and source-fixed inputs
 
-The unchanged p39 image (original `56.jpg`) contains exactly **240 GP29 glyphs**, split by its red paragraph mark into **119+121** glyphs. The triad at GP indices 119–121 is `[27,5,15]`, straddling the exact 120-rune center. Independently the p15 illustration (original `32.jpg`) prints **16 distinct four-digit values** in a 4×4 Fibonacci-prime spiral. The original p49–51 table is 256 exact, source-validated radix60 values, provisionally reduced modulo29; its degree254 normalized polynomial has the known exact degree16 factor
+The unchanged p39 source page (original Stage11 `39.jpg`; `56.jpg` in the 75-file archive) contains exactly **240 GP29 glyphs**, split by its red paragraph mark into **119+121** glyphs. The triad at GP indices 119–121 is `[27,5,15]`, straddling the exact 120-rune center. Independently the p15 illustration (original Stage11 `15.jpg`; `32.jpg` in the 75-file archive) prints **16 distinct four-digit values** in a 4×4 Fibonacci-prime spiral. The original p49–51 table is 256 exact, source-validated radix60 values, provisionally reduced modulo29; its degree254 normalized polynomial has the known exact degree16 factor
 
 ```
 F16(X) = [13,20,26,12,6,2,13,26,6,26,11,7,15,11,17,25,1]
