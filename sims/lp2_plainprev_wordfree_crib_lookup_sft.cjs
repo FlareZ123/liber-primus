@@ -252,6 +252,8 @@ function scan(cipher, reference, mode, onlyStart, continuous = false) {
 const donors = [
   ["Blake Song of Liberty", "resources/control/blake_song_of_liberty_train.txt",
     text => text.split("BEGIN SOURCE TEXT")[1] || text],
+  ["Blake Marriage Heaven and Hell 1906", "resources/external/blake-marriage-1906-gutenberg45315.txt",
+    text => text],
   ["Crowley Book of Law I", "resources/external/2013-book-of-law-I.txt",
     text => text],
   ["Crowley Book of Law II", "resources/external/2013-book-of-law-II.txt",
