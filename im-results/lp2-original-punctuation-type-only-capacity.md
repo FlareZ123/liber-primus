@@ -1,6 +1,6 @@
 # Original LP2 punctuation TYPE sidecar cannot carry a universal anti-repeat inverse
 
-**Agent31, 23 November 2026. Intermediate capacity theorem for a precisely defined source channel.** No unknown LP2 plaintext, key, authored decoder or destination has been recovered. The relevant [overall anti-repeat capacity theorem](lp2-anti-repeat-lossless-capacity.md) and original [punctuation source audit](../resources/liber-primus/lp2-punctuation-identity.json) are prerequisites, and the [Windows/CommonJS source-and-math SFT](../sims/lp2_original_punctuation_type_capacity_sft.cjs) reproduces this result.
+**Agent31, 23 November 2026. Intermediate capacity theorem for a precisely defined source channel.** No unknown LP2 plaintext, key, authored decoder or destination has been recovered. The relevant [overall anti-repeat capacity theorem](lp2-anti-repeat-lossless-capacity.md) and original [punctuation source audit](../resources/liber-primus/lp2-punctuation-identity.json) are prerequisites, and the [Windows/CommonJS source-and-math SFT](../sims/lp2_original_punctuation_type_capacity_sft.cjs) reproduces this result. **Original-repository Windows Node 22 PASS:** [Actions run 45271835324](https://github.com/FlareZ123/liber-primus/actions/runs/45271835324).
 
 ## Independent first-party source constraints
 
