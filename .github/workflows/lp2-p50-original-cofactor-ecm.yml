@@ -1,0 +1,59 @@
+name: LP2 p50 2013-bit original-cofactor bounded GMP-ECM
+on:
+  push:
+    paths:
+      - .github/workflows/lp2-p50-original-cofactor-ecm.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  factor:
+    name: "GMP-ECM B1=${{ matrix.b1 }} n=${{ matrix.curves }}"
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { b1: 25000, curves: 260 }
+          - { b1: 90000, curves: 145 }
+          - { b1: 220000, curves: 65 }
+    steps:
+      - name: Check out exact original table source
+        uses: actions/checkout@v4
+      - name: Install native GMP-ECM package
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq gmp-ecm
+          ecm -h | head -35
+      - name: Derive and validate 2013-bit residual cofactor
+        run: |
+          python3 -c "import json; a=json.load(open('resources/liber-primus/lp2-grid-256.json')); b=bytes(a['bytes']); n=int.from_bytes(b,'big'); f=36528277968; assert len(b)==256 and n%f==0; q=n//f; assert n.bit_length()==2048 and q.bit_length()==2013; print(q)" > p50q.dec
+          python3 -c "from pathlib import Path; q=int(Path('p50q.dec').read_text().strip()); print('Validated residual Q, bit count=',q.bit_length(),', decimal digits=',len(str(q)))"
+      - name: Perform independently bounded native ECM curves
+        env:
+          B1: ${{ matrix.b1 }}
+          CURVES: ${{ matrix.curves }}
+        run: |
+          set +e
+          timeout 495s ecm -v -one -c "$CURVES" "$B1" < p50q.dec > ecm.log 2>&1
+          status=$?
+          set -e
+          echo "ECM exit status $status; B1=$B1 curves=$CURVES"
+          tail -55 ecm.log
+          if grep -Eiq 'found (prime|composite)? ?factor|factor found' ecm.log; then
+            echo "Potential factor was found; verify exact original Q divisibility before claiming a discovery"
+          else
+            echo "No factor in the bounded run or process timed out; this is not a proof of primality or irreducibility"
+          fi
+      - name: Preserve exact native test log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p50-ecm-b1-${{ matrix.b1 }}-curves-${{ matrix.curves }}
+          path: |
+            p50q.dec
+            ecm.log
+          retention-days: 14
