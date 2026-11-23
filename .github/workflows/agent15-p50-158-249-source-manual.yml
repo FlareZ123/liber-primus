@@ -1,0 +1,14 @@
+name: Agent15 P50 length-address cycle original gate
+on:
+  workflow_dispatch:
+jobs:
+  original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test source-typed 158-to-249 two-cycle hypothesis
+        run: node sims/lp2_p50_158_249_lengthcycle_twoflank_sft.cjs
