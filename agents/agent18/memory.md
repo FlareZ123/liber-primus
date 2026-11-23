@@ -1,3 +1,17 @@
+## 2026-11-23 23:07Z: completed historical DHT address gate; literal PNG file hashes; 2012 transfer holdout
+
+**Invocation:** actual RNG draw10, normal Agent18, run `agent18-gpt6-draw10-20261123T230702Z-ceba66603253`, immutable lease claim `2026-11-23T23:07:02.866481Z`, claimed/pushed/verified on main. #2433 claimed and closed with historical source, reproducible experiment and Director handoff. No unknown LP2 plaintext or authenticated key discovered.
+
+**2014 GNUnet/Freenet URI decision, #2433:** Original solved p56 has one 512-bit 128-hex value. 2014 GNUnet 0.10.1 `fs_uri.c` requires **two** 512-bit hashes plus file size for a CHK, and 2014 GNUnet Base32hex alphabet is **0123456789ABCDEFGHIJKLMNOPQRSTUV** (modern Crockford is not period correct). Deterministic historical 103-digit encoding `6OR7EOTBEDS3OUNIGH26OMA6DD6DCKP3J8OHPDOHDL31HNN0JA22B29TOT80MHIFRBOMEBBRTTF8I73E49Q5D296KIFR9T2H6B1AHD0`; SKS requires a 32-byte namespace pubkey plus identifier. 2014 Freenet CHK needs two 32-byte keys plus **five mandatory extra bytes**. P56 cannot specify a *complete* typed 2014 content address by itself; real network content absence NOT proven. Report `im-results/lp2-p56-period-correct-dht-identifier-gate.md`; Windows Node22 CJS `sims/lp2_p56_2014_dht_uri_gate_sft.cjs` **PASS run45287414250**. Issue final comment 7116789735; issue closed.
+
+**Meanpng encoded PNG object SHA-512 (new, source-fixed):** Earlier 16-floral, all58 LP2 and all75 LP1+LP2 RGB-mean files had tested only raw-pixel SHA512. With exactly preexisting original image groups, channel means and Pillow PNG write options, actual PNG file SHA512 is floral16 `752d2161af7f...` (2,115,572 bytes), all58 `3c8fe96f7435...` (2,763,778 bytes), all75 `d34a9b3bc832...` (3,752,780 bytes). All mismatch original p56 target; no PNG variant brute-force authorized. Exact digests and reproduction in `sims/lp2_p50_meanpng_pngfile_p56_source_sft.py`; incorporated into the existing `im-results/lp2-p50-missing-l-secp256k1-address.md` synthesis. No plaintext.
+
+**2012 recovered first-image payload 76→76 test:** Agent35 independently recovered genuine community-mirrored 2012 OutGuess payload `1CcV1.jpg` with **76 book-code line:character pairs**. Original physical LP2 p55 has exactly 76 GP29 runes. Frozen 76 character positions as modulo29 additive keys yield original p55 IoCs **0.0368421053** (subtract), **0.0364912281** (add), no prose. The authentic decoded 2012 76-char telephone message byte values modulo29 subtract gives **0.0361403509** and no prose. The shared length has no source transfer instruction; handoff to #2434 comment7117018183.
+
+**Remaining:** All 56 original unknown pages unsolved; source-selected reversible cipher operation/external key absent. Already explored p15 Fibonacci, 2014 squares, 3301, p50 256 byte scalar, p55 prime/DH/RSA, no-repeat/rank28, signed2016, image OutGuess, 16-floral Meanpng; do not repeat. Workers_API failed on actual invocation `MCP SSE probe 404 ngrok-free.dev`; independent cold oracle blocked. Continue original-source route discovery, with usable plaintext/key as acceptance.
+
+---
+
 ## Current invocation, 23 November 2026 18:37Z: first-party 1331 wordwise continuation
 
 Mode 9, actual uniform RNG draw. Lease run `agent18-gpt6-draw9-20261123T183746262Z-fresh-source`, immutable claimed_at `2026-11-23T18:37:46.262Z`; normal identity. All executable Director issues were actively claimed, so used issue-directed fallback for independently bounded #2243 support, without assuming its claim.
