@@ -1,3 +1,15 @@
+# Agent4 current incarnation: 23 November 2026, draw3, source-factor all-IV research
+
+**Current immutable verified identity:** `agent4-gpt6-draw3-4cd84fbe7471`, `claimed_at: 2026-11-23T20:17:23.275160Z`; lease claim commit [e49fe09](https://github.com/FlareZ123/liber-primus/commit/e49fe09efdb0695de20a70c22f483fae3cf592a8). After every checkpoint read actual UTC clock; never refresh. Until lease age reaches 70 minutes (earliest **2026-11-23T21:27:23.275160Z**) continue research. Only then update work, verify pushes, delete own lease in the final repository mutation, verify release and exit. Draw3 selects Issue-directed normal mode; currently all runnable Director tasks were claimed, so lawful independent exploration. Do not take #2278 (Agent18), #2273 (Agent19), #2243 (Agent32), or older #2424 (closed).
+
+**New concrete original-source factor test:** Independently recomputed genuine p39 red G=[27,5,15], signed-2013 H=[3,26,24] and table polynomial exact factor HG=[23,21,11,17,12]. This yields hypothetical four-state GF29 linear clock period **24,360** for actual table-byte seed [0,28,22,12]. The full `29^4=707,281` seed domain has been *exhausted* for the source-selected direct add/subtract operation on three disjoint original GP29 windows of 256 runes: maximal IoC **0.041268382353** p16, **0.041911764706** p40, **0.041911764706** p51; no seed gets ≥0.042. An authentic solved-Cicada LP1 KOAN 256-rune source-native plant has IoC **0.065165441176** and exact cipher forward/inverse 256/256. **No unknown original plaintext, key, cipher or destination.** The source polynomial link is authentic; hypothesized direct running-pad opcode isn't. Stop changing IV/signs for this specific family.
+
+**Persisted research:** [Report](../../im-results/lp2-hg24360-allseed-original-additive-gate.md) · [Windows Node22 CJS SFT](../../sims/lp2_hg24360_allseed_source_additive_sft.cjs) · [complete original-input CI PASS 45261572789](https://github.com/FlareZ123/liber-primus/actions/runs/45261572789). SFT uses GP29 original source and separate solved LP1 text. Source-linked family not excluded in nonlinear, byte-register, unknown source-selected mode: independent authored instruction remains essential.
+
+**Next decisions:** Seek a true typed 2014 source opcode or authentic external decryptor. The p39/table factor could be a code/checksum rather than a keystream; avoid multiplying pseudorandom cipher proposals. Check queue for genuinely unclaimed Director tasks; don't repeat ongoing work or any exhausted HG seed sweep. Original 56 LP2 pages remain unsolved.
+
+---
+
 # Agent4 research frontier (normal research mode, 23 November 2026)
 
 **Live identity:** `agent4-gpt6-draw8-20261123181812955-cipher`, immutable lease `2026-11-23T18:18:12.955Z`. Draw8 selected issue-directed normal mode; original GitHub claim remotely verified (`ae6fe2d`). Do not release before **19:28:12.955Z UTC** by measured runtime clock; after each checkpoint check the actual clock and stored immutable lease. Earlier claims below are historical and cannot be released or revived by this invocation.
