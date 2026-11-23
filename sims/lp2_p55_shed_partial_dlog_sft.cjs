@@ -143,5 +143,68 @@ function renderGP0(number) {
 }
 console.log('Exact partial log: x ≡ ' + x + ' (mod ' + M + ')');
 console.log('Literal GP0 positional representation: ' + renderGP0(x));
+
+// Agent11 tested the independent source 43-word signed message against public 8.
+// This tests the SAME fixed seven literal exponent encodings against public E.
+/** @param {string} word @param {{s:string,i:number}[]} tokens @returns {number[]} */
+function encodeSignedGP0(word, tokens) {
+  const input = word.toUpperCase().replace(/QU/g, 'CW')
+    .replace(/V/g, 'U').replace(/[KQ]/g, 'C').replace(/Z/g, 'S');
+  const out = [];
+  for (let at = 0; at < input.length;) {
+    if (input.startsWith('ING', at)) {out.push(21); at += 3; continue;}
+    if (input.startsWith('IO', at)) {out.push(27); at += 2; continue;}
+    const found = tokens.find(t => input.startsWith(t.s, at));
+    assert.ok(found, 'Unrecognized signed-message word ' + word);
+    out.push(found.i);
+    at += found.s.length;
+  }
+  return out;
+}
+const fs = require('node:fs'), path = require('node:path');
+const root = path.resolve(__dirname, '..');
+const signedDoc = fs.readFileSync(path.join(root,
+  'resources/historical/cicada2016-4gq25-outguess.asc'), 'utf8');
+const signedCleartext = signedDoc.slice(signedDoc.indexOf('Hello.'),
+  signedDoc.indexOf('-----BEGIN PGP SIGNATURE-----'));
+const signedWords = signedCleartext.match(/(?<![A-Za-z0-9])[A-Za-z]+(?![A-Za-z0-9])/g) || [];
+assert.equal(signedWords.length, 43);
+const corpus = JSON.parse(fs.readFileSync(path.join(root,
+  'resources/liber-primus/lp2-corpus.json'), 'utf8'));
+const tokens = corpus.translit.map((s, i) => ({s, i}))
+  .sort((a, b) => b.s.length - a.s.length);
+const sequences = signedWords.map(w => encodeSignedGP0(w, tokens));
+const candidates = [
+  ['first-GP0', sequences.map(v => v[0])],
+  ['last-GP0', sequences.map(v => v.at(-1))],
+  ['sum-GP0', sequences.map(v => v.reduce((a, b) => a + b, 0) % 29)],
+  ['prime-sum', sequences.map(v => v.reduce((a, b) => a + corpus.prime[b], 0) % 29)],
+  ['GP-length', sequences.map(v => v.length)],
+  ['Latin-first', signedWords.map(w => w.toUpperCase().charCodeAt(0) - 65)],
+  ['Latin-last', signedWords.map(w => w.toUpperCase().charCodeAt(w.length - 1) - 65)]
+];
+let tested = 0;
+for (const [label, digits] of candidates) {
+  assert.equal(digits.length, 43);
+  assert.ok(digits.every(d => Number.isInteger(d) && d >= 0 && d < 29), label);
+  for (const reverse of [false, true]) {
+    const residue = (reverse ? digits.slice().reverse() : digits)
+      .reduce((v, d) => (v * 29n + BigInt(d)) % M, 0n);
+    assert.notEqual(residue, x, 'Unexpected signed exponent for original E: ' + label);
+    tested++;
+  }
+}
+assert.equal(tested, 14);
+const fullBookPrimeSum = corpus.pages
+  .filter(pg => pg.page <= 55 && pg.indices?.length)
+  .flatMap(pg => pg.indices)
+  .reduce((sum, digit) => sum + corpus.prime[digit], 0);
+assert.equal(fullBookPrimeSum, 668182);
+assert.ok(BigInt(fullBookPrimeSum) < x);
+console.log('All ' + tested + ' first-party signed-2016 43-word literal exponents'
+  + ' fail the required E public-value small-subgroup residue');
+console.log('Complete unknown p0–55 rune-prime sum ' + fullBookPrimeSum
+  + ' is below every possible nonnegative exponent for Q^x=E');
+
 console.log('The large subgroup log and any unknown LP2 plaintext remain unrecovered.');
 console.log('PASS: original-source conditional finite-field partial discrete log');
