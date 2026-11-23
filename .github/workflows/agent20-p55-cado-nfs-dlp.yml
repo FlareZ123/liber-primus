@@ -29,7 +29,7 @@ jobs:
           R=101149063843788281988908603592862658065019147521
           Q=1268532719737981052966698570711268391040527137
           cd /tmp/agent20-cado
-          timeout 3000 ./cado-nfs.py -dlp -ell "$R" "target=$Q" "$P" -t 4 workdir=/tmp/agent20-p55-dlp 2>&1 | tee "$GITHUB_WORKSPACE/agent20-p55-cado-Q.log"
+          timeout 3000 ./cado-nfs.py -dlp -ell "$R" "target=$Q" "$P" -t 4 --workdir /tmp/agent20-p55-dlp 2>&1 | tee "$GITHUB_WORKSPACE/agent20-p55-cado-Q.log"
           SNAP=$(find /tmp/agent20-p55-dlp -type f -name '*.parameters_snapshot.*' | sort | head -n 1)
           test -n "$SNAP"
           echo "Snapshot path $SNAP"
