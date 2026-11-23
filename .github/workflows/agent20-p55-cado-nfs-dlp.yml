@@ -1,0 +1,46 @@
+name: Agent20 P55 CADO GFp discrete log
+on:
+  workflow_dispatch:
+
+jobs:
+  p55-field-log:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout original source and finalizer
+        uses: actions/checkout@v4
+      - name: Install CADO prerequisites
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq build-essential cmake ninja-build libgmp-dev libecm-dev libhwloc-dev python3-venv python3-flask python3-requests
+      - name: Build official CADO-NFS
+        run: |
+          git clone --quiet --depth 1 https://github.com/cado-nfs/cado-nfs.git /tmp/agent20-cado
+          cd /tmp/agent20-cado
+          make -j4
+          ./cado-nfs.py --help > /dev/null
+      - name: Recover conditional P55 large-subgroup logs with one shared precomputation
+        shell: bash
+        run: |
+          set -euo pipefail
+          P=63755441409934721069036418908763882578170591536653256311514221
+          R=101149063843788281988908603592862658065019147521
+          Q=1268532719737981052966698570711268391040527137
+          cd /tmp/agent20-cado
+          timeout 3000 ./cado-nfs.py -dlp -ell "$R" "target=$Q" "$P" -t 4 workdir=/tmp/agent20-p55-dlp 2>&1 | tee "$GITHUB_WORKSPACE/agent20-p55-cado-Q.log"
+          SNAP=$(find /tmp/agent20-p55-dlp -type f -name '*.parameters_snapshot.*' | sort | head -n 1)
+          test -n "$SNAP"
+          echo "Snapshot path $SNAP"
+          for TARGET in 43 8; do
+            ./cado-nfs.py "$SNAP" "target=$TARGET" -t 4 2>&1 | tee "$GITHUB_WORKSPACE/agent20-p55-cado-$TARGET.log"
+          done
+      - name: Preserve source-computation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent20-p55-cado-logs
+          path: agent20-p55-cado-*.log
+          if-no-files-found: warn
+          retention-days: 30
