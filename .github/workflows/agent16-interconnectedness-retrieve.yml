@@ -169,6 +169,17 @@ jobs:
           curl --fail --location --retry 3 "$base/Img_diff2.jpg" --output out/Img_diff2.jpg
           sha256sum out/Goedel.png out/Eyebyext.png out/Brotherboxportrait.jpg out/Img_diff2.jpg > out/geb-companion-sha256.txt
           file out/Goedel.png out/Eyebyext.png out/Brotherboxportrait.jpg out/Img_diff2.jpg > out/geb-companion-file-types.txt
+      - name: Download related 2014 magic-square and audio images
+        shell: bash
+        run: |
+          set -euo pipefail
+          base='https://raw.githubusercontent.com/cicada-solvers/The-Complete-Cicada3301-Archive/main/2014/additional%20images'
+          curl --fail --location --retry 3 "$base/Magicsquare.jpg" --output out/Magicsquare.jpg
+          curl --fail --location --retry 3 "$base/DIAGupdated.jpg" --output out/DIAGupdated.jpg
+          curl --fail --location --retry 3 "$base/spectogram.jpg" --output out/spectogram.jpg
+          curl --fail --location --retry 3 "$base/42VKTWB.png" --output out/42VKTWB.png
+          sha256sum out/Magicsquare.jpg out/DIAGupdated.jpg out/spectogram.jpg out/42VKTWB.png > out/2014-related-image-sha256.txt
+          file out/Magicsquare.jpg out/DIAGupdated.jpg out/spectogram.jpg out/42VKTWB.png > out/2014-related-image-file-types.txt
       - name: Upload the raw carrier and inspection results
         uses: actions/upload-artifact@v4
         with:
