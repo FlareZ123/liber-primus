@@ -53,6 +53,46 @@ function coincidence(values) {
 const originalIoc = coincidence(centers);
 assert(Math.abs(originalIoc - 0.03438947193070132) < 1e-15);
 
+/** The only immediately authored-looking use is the solved p56 additive GP29 cipher.
+ * Grant either global or page-reset 1,450-rune key clock, both signs,
+ * with the extracted tape frozen as side material. No fitted initial phase.
+ * A tape derived from ciphertext itself is not proof of cipher invertibility;
+ * the forward replay is valid only with the frozen tape supplied separately.
+ */
+const pages = corpus.pages.filter((p) => p.page <= 55);
+const directPadReceivers = [];
+let bookOffset = 0;
+for (const [clock, sign] of [
+  ["book-global", -1], ["book-global", 1],
+  ["page-reset", -1], ["page-reset", 1]
+]) {
+  const output = [];
+  let start = 0;
+  for (const page of pages) {
+    for (let j = 0; j < page.indices.length; j++) {
+      const keyIndex = clock === "book-global" ? start + j : j;
+      const value = page.indices[j];
+      const key = centers[keyIndex % centers.length];
+      const plaintext = (value + sign * key + 29) % 29;
+      const reencryption = (plaintext - sign * key + 29) % 29;
+      assert.equal(reencryption, value, "Every original rune re-encodes with fixed tape");
+      output.push(plaintext);
+    }
+    start += page.indices.length;
+  }
+  assert.equal(output.length, 12956);
+  directPadReceivers.push({
+    clock, sign,
+    fullIoc: coincidence(output),
+    openingIoc: coincidence(output.slice(0, 729)),
+    floralIoc: coincidence(output.slice(9640, 12648))
+  });
+}
+assert.deepEqual(directPadReceivers.map((v) => v.fullIoc), [
+  0.03450184807433621, 0.034461727720423926,
+  0.034491016651198025, 0.03447829062269244
+]);
+
 const gpTokens = corpus.translit.map((name, i) => ({ name, i }))
   .sort((a, b) => b.name.length - a.name.length);
 function latinToGp(source) {
@@ -116,5 +156,6 @@ console.log(JSON.stringify({
     first60GP: centers.slice(0, 60).map((v) => corpus.translit[v]).join(" ")
   },
   controls,
+  directPadReceivers,
   interpretation: "Literal whole-book odd-center reading does not directly yield conventional native-GP prose. It neither disproves SHED as a key extraction nor tests a changing value cipher or changed word breaks."
 }, null, 2));
