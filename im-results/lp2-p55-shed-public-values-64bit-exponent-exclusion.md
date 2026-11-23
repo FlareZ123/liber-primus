@@ -46,16 +46,55 @@ This extends the earlier 32-bit lower bound for the public8 candidate and identi
 
 The fully original-source read-only Node22 CommonJS [single-file test](../sims/lp2_p55_shed_public_values_full64_dlog_sft.cjs) regenerates P,Q from the **unchanged original 76 p55 runes**, checks shell/interior sizes and factors, executes the two complete searches, checks both planted positives, and prints PASS. It also optionally accepts three CADO virtual logs and performs complete CRT plus direct original-field exponentiation and a fixed 43-symbol GP0 readout. **The exact original-input SFT passed cleanly on Windows Node22, [Actions run 45125095557](https://github.com/FlareZ123/liber-primus/actions/runs/45125095557): both 29,266-position exhaustions, both planted exponents and all original p55 input assertions succeeded.**
 
-## Full logarithm attempt, conditional status
+## Complete prime-field logarithms: original-input verified, fixed plaintext receiver fails
 
-Because Q is a primitive root, both private exponent logarithms exist in the full order P−1. Recovering them modulo the unsolved 157-bit R requires a nontrivial finite-field discrete logarithm. An exploratory [CADO-NFS index-calculus workflow](../.github/workflows/agent20-p55-cado-nfs-dlp.yml) uses [upstream's documented GF(p) DLP and reusable virtual-base logs](https://github.com/cado-nfs/cado-nfs/blob/master/README.dlp). Compute virtual logs of Q,43,8 moduloR with one precomputation; divide by virtual logQ in GF(R), combine with x modM using CRT and **verify `Q^x=target modP`**. These numbers are not author-selected key material without an original instruction.
+The official [CADO-NFS GF(p) DLP implementation](https://github.com/cado-nfs/cado-nfs/blob/master/README.dlp) performs a **single large-subgroup index-calculus precomputation** on the actual P with `ell=R`. Its separate individual descents for Q,43,8 use that same original-field database. [Actions run 45124056922](https://github.com/FlareZ123/liber-primus/actions/runs/45124056922) completed **successfully on 23 November 2026**. The first [failed run 45122777933](https://github.com/FlareZ123/liber-primus/actions/runs/45122777933) exposed only a CLI incompatibility; it compiled CADO but had supplied an obsolete workdir spelling. The successful run uses current `--workdir` syntax.
 
-**Frozen original-cipher receiver (specified before inspecting any full logs):** since `0≤x<P−1<29^43`, each candidate complete log has a unique exactly **43-digit, zero-padded, big-endian GP0 representation**. There are exactly **43 original p55 strict interior runes** under this same packet. Apply the historically authenticated GP29 *subtraction* direction, rune by rune, `plain[i]=(originalInterior[i]−digit29(x)[i]) mod29`, preserving the original sixteen complete-word interior slots and unchanged 32 word-endpoints. This constitutes one explicit reversible text-consumer test, now hardcoded in the Node SFT's optional CADO-log mode; no sign, phase, word boundaries, seed or English crib will be tuned after seeing the logarithm. It is only a hypothesis because neither DH equation nor this additive receiver is explicitly chosen by the author. A full log that outputs random rune text must close this particular route.
+CADO reports the following **virtual logarithms**, all modulo the original 157-bit R in one arbitrary but shared generator base:
 
-First [Actions run 45122777933](https://github.com/FlareZ123/liber-primus/actions/runs/45122777933) successfully compiled the CADO binary but failed on an outdated `workdir=...` argument. It was corrected to `--workdir` and relaunched as [45124056922](https://github.com/FlareZ123/liber-primus/actions/runs/45124056922). At the time of writing a successful full log has **not** been observed. Do not confuse a computation launch with a decoded manuscript.
+```text
+R     = 101149063843788281988908603592862658065019147521
+logQ  = 97177182119505488787450641888952849267188113103
+log43 = 58078282667687694670884451880964459541759378088
+log8  = 2238269577806535885929259066426301788624493571
+```
+
+The unknown CADO virtual base cancels when dividing by `logQ` modulo R. Use `x8_R=log8/logQ`, `xE_R=1+log43/logQ` and the *independently known* x residues moduloM. Exact CRT yields **both complete original-source conditional private exponents**:
+
+| Source-conditional equation | Complete exponent x (base10) | x modulo R | x bit length |
+| --- | --- | --- | ---: |
+| `Q^x=8 modP` | `14347449201966638813083683299370469317053765371148427588804751` | `43870182398455967548054954653128522859138643088` | 204 |
+| `Q^x=E modP` | `58027263295081800276048492624932826148348813312381561491440230` | `3514059847361986014044855366874037440049858274` | 206 |
+
+**Direct original P-field modular exponentiation verifies both equalities exactly**, so this is *complete conditional finite-field logarithm recovery*, beyond the 64-bit exclusion above. No generic 2^78 brute force was needed. CADO verified its virtual-log normalization against separate base2/3 checks. Both exponents are too large to be simple 64-bit DH secrets.
+
+### Frozen 43-rune original cipher recipient: decisive negative
+
+**This recipient was specified and committed before the CADO full logs were inspected.** Since `0≤x<P−1<29^43`, the complete x has a unique exactly 43-digit, big-endian zero-padded GP0 representation. Under the same page-local source packet there are exactly 43 original p55 strict word-interior runes. Use the historically solved LP1 *subtraction* direction, with zero offset and unchanged word layout:
+
+```text
+GPkey[i] = base29_digit_i(x)          for i=0..42
+P55innerPlain[i] = (P55innerCipher[i] - GPkey[i]) mod29
+```
+
+This is a complete, deterministic, reversible candidate operation on original unknown ciphertext. The 32 original exterior runes are not modified and the sixteen original complete-word interior slots are retained. Actual full-log readouts, with vertical bars separating the original **16 word-interior slots** (empty slots represent two-rune source words):
+
+```text
+Target8:
+MA | | | MWRB | OJIEO | | MEODFWRSJWGD | RIPEA | FP | | GCSIAOE | TNGNUEA | | XYCEO | Y | OE
+
+TargetE:
+BC | | | TIAFOE | WSEAG | | AETFHAEGNGYEACAE | AAESE | CY | | TNGADL | FLNGHS | | WTFH | AE | J
+```
+
+The recovered 43-symbol core IoC values are **0.02547065** (target8) and **0.04429679** (targetE), both unlike the previously measured native-GP English control regime around0.07. The frozen readings have no sustained coherent sentence, word or creator instruction, and do not resemble valid contiguous native-GP plaintext even with the original partial-word caveat. **This exact source-derived P/Q DH-log -> GP43 additive core-inverse route fails its plaintext gate**. No retuned phase, sign, IV, ciphertext window or KDF is justified. [The reproducible original-source SFT](../sims/lp2_p55_shed_public_values_full64_dlog_sft.cjs) takes the three virtual logs, reconstructs the CRT exponents, checks `Q^x` against the *actual* source numbers, and emits both exact 16-slot ciphertext-consumer reads.
+
+The source packet itself is not fully authenticated: including the p54→p55 crossing word erases N=8P. Thus even mathematically unique logarithms cannot establish a creator-selected key, and the 43-rune direct-read failure is conditional on this exact receiver.
 
 ## Decision
 
-Under the two stated equations, **no private exponent of at most 64 bits exists**. This is exact and independently reproducible, while the source's 16-word choice and both DH public-value assignments remain hypotheses. Even a completed number-field logarithm would be mathematical recovery of a **conditional** exponent, never by itself a Liber Primus plaintext. A genuine next solve requires a creator-selected reversible consumer on original unknown text, with independently checkable plaintext, not more unconstrained KDF/IV searches.
+**Established mathematics under the disclosed source parse:** both full 206-bit prime-field logarithms are now recovered, exactly verified by modular exponentiation, and the earlier 64-bit private-exponent search is a strict subset of this complete recovery.
+
+**Decipherment result:** the only pre-registered direct original 43-rune GP29 inverse fails to produce unknown manuscript plaintext under *both* complete logarithms. P/Q as a manuscript key remains unauthenticated because of the genuine p54/p55 carried-word competitor and absent explicit cipher-opcode instruction. Do not re-run arbitrary variations of this branch; require an independent first-party selector for a new ciphertext consumer. This calculation may supply test data if such an instruction is independently discovered.
 
 **Unknown LP2 plaintext recovered:** none.
