@@ -157,7 +157,7 @@ for (const page of pageResidues) assert.ok(chapterStarts.includes(page));
 assert.deepEqual(pageResidues.map((n) => n - 1), [39, 53]);
 assert.deepEqual([corpus.pages[40].page, corpus.pages[54].page], [40, 54]);
 assert.deepEqual(
-  [ink.pages[40].red_spans[0].length, ink.pages[54].red_spans[0].length],
+  [40, 54].map((page) => ink.pages.find((entry) => entry.page === page).red_spans[0].length),
   [8, 9],
 );
 const changedWordsOnTwoChapterStarts = changed.filter((entry) =>
