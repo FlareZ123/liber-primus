@@ -1,0 +1,19 @@
+name: Agent9 DH331 original-source two-anchor SFT
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-check:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run one original-source reproducible test
+        run: node sims/lp2_dh331_red13_twoanchor_source_sft.cjs
