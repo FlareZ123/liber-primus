@@ -44,13 +44,31 @@ For independent ordinary-English GP-native comparators, encode the pinned **Gibr
 
 The best Gibran count vector is `[391,693,2628,3325,2385,3098,210,226]`; the best Shakespeare vector is `[272,574,2583,3454,2604,3054,260,155]`. Even the closest original-length Shakespeare candidate requires changes to **1,213 of 12,956** original rune cycle memberships, **9.36%**, beyond all pure-cube secret-key freedom.
 
+### Local nine-chapter exclusion, allowing different secret cube schedules
+
+Even a different hidden Q-exponent/permutation key on **every visually marked original chapter** cannot fix this orbit-total mismatch. Segment the unmodified source at its nine printed chapter starts 0,3,8,15,23,27,33,40,54 and independently compare **every** source-length GP-English window for each chapter. The following are the smallest necessary number of orbit-changing runes for any tested matched native-English window; the Gibran/Shakespeare search is restarted at every chapter, giving this hypothesis maximal freedom to select unrelated texts.
+
+| Physical chapter | Original runes | Gibran minimum changes | Shakespeare minimum changes |
+| --- | ---: | ---: | ---: |
+| p0–2 | 729 | 60 | 54 |
+| p3–7 | 1,145 | 102 | 88 |
+| p8–14 | 1,729 | 138 | 125 |
+| p15–22 | 1,903 | 159 | 139 |
+| p23–26 | 1,021 | 67 | 67 |
+| p27–32 | 1,433 | 115 | 113 |
+| p33–39 | 1,680 | 124 | 108 |
+| p40–53 | 3,008 | 246 | 253 |
+| p54–55 | 308 | 16 | 12 |
+
+All **nine** chapters individually require rune movement across Q's fixed orbit partition, from at least 12 changes in the shortest p54–55 chapter to at least 246 changes on p40–53 under these pinned reference corpora. Thus the full-book exclusion is not an artifact of forcing a common cube key across stylistically different chapters; the cube-only step cannot by itself decode a complete natural English chapter in any of the nine observed sections. This does not logically rule out Q-only decipherment of a shorter isolated word or non-English intermediate code.
+
 A simpler independent necessary-condition check reaches the same direction: across all native GP original-length windows, EO/B appears **193–281** times in Gibran or **214–322** times in Shakespeare versus **844** original; native EA occurs **81–245** (Gibran) or **95–189** (Shakespeare) versus **460** original. Both signatures are categorically unchanged by any power of Q.
 
 As manuscript-native reference, genuinely clear physical p57 has 95 source runes with orbit counts **[3,6,14,28,23,20,1,0]**. Seven separately selected solved LP1 prose sections, encoded into native GP with the same documented spelling rules, provide 2,357 runes; their cycle 0/1/6/7 counts are **39/123/31/23**. These controls are comparatively short; neither is the statistical reference for the full 12,956-rune exclusion.
 
 ## Positive, scope, and research fork
 
-The [standalone CommonJS SFT](../sims/lp2_signed_cube_orbit_allkey_sft.cjs) asserts exact source and cycle counts, performs all **251,154** contiguous reference-window comparisons, and tests a full-length native GP Gibran positive under positionwise independently varying Q exponents `(7i+3) mod6`. This planted cipher decodes exactly **12,956/12,956**, and reversing all its rune positions retains the same eight cycle counts. It uses no historical secret key.
+The [standalone CommonJS SFT](../sims/lp2_signed_cube_orbit_allkey_sft.cjs) asserts exact source and cycle counts, performs all **251,154** contiguous reference-window comparisons, and asserts these nine independent original chapter bounds, and tests a full-length native GP Gibran positive under positionwise independently varying Q exponents `(7i+3) mod6`. This planted cipher decodes exactly **12,956/12,956**, and reversing all its rune positions retains the same eight cycle counts. It uses no historical secret key.
 
 **Decision:** retire *orbit-preserving-only* readings of the signed-2016 cube as a full-book ordinary-GP-English decoder, including secret exponent schedules, repeated Q layers, arbitrary within-orbit substitution and any pure post-cube rune permutation. This covers all possible hidden keys **within the stated architecture** rather than another brute-force shortlist. The original may encode a non-English/nontext register, an uncontracted alphabet, or a binary intermediate representation; those alternatives are not excluded.
 
