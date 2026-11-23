@@ -183,6 +183,35 @@ assert.equal(Math.floor(f59 / p), A);
 assert.notEqual(f59 % p, B);
 assert.notEqual(f59 % p, B);
 
+// One explicit, source-ordered chapter navigation check. Read every one
+// of the 18 physically marked red spans: GP0→original grid byte→GPprime.
+// A same-table / same-original-mark bridge exists only from the p33 opening
+// cuneiform header to the p39 closing red triad, within that exact family.
+// All other red spans are controls; no Arabic plaintext is fitted.
+const sourceRedMarks = ink.pages.flatMap((page) => (page.red_spans || []).map((span) => {
+  const indices = [...span.runes].map((glyph) => runes.get(glyph));
+  const gp0 = indices.reduce((a, n) => a + n, 0);
+  const gpPrime = indices.reduce((a, n) => a + primes29[n], 0);
+  const token = allTokens[gp0 % 256];
+  return {
+    page: page.page, local: span.start, len: span.length,
+    gp0, gpPrime, token, tableValue: radix(token, grid.alphabet)
+  };
+}));
+assert.equal(sourceRedMarks.length, 18);
+const markLinks = sourceRedMarks.flatMap((source) => sourceRedMarks
+  .filter((target) => target.gpPrime === source.tableValue)
+  .map((target) => ({
+    fromPage: source.page, fromLocal: source.local,
+    address: source.gp0, token: source.token, value: source.tableValue,
+    toPage: target.page, toLocal: target.local, toGpPrime: target.gpPrime
+  })));
+assert.deepEqual(markLinks, [{
+  fromPage: 33, fromLocal: 91,
+  address: 84, token: "2r", value: 173,
+  toPage: 39, toLocal: 119, toGpPrime: 173
+}]);
+
 // Finite, unkeyed discrimination over EVERY original p50 cell. Each source
 // cell independently gets the same inverse packet law; the historical ordinal
 // spacing and the literal first cell are fixed once for all 256 candidates.
@@ -288,6 +317,10 @@ console.log(JSON.stringify({
   classification: "Conditional original-source DH23 transcript, not plaintext",
   originalStage10Filenames: images,
   primeOrdinals: ordinals,
+  originalRedSpanNavigation: {
+    spansScanned: sourceRedMarks.length,
+    sourceToPrimeTargetEdges: markLinks
+  },
   redGPOrdinalSum: ordinalAddress,
   selectedRecipient: {page: 55, tableToken: receiverToken, originalRuneCount: receiverLength},
   redGPPrimeSum: address,
