@@ -109,6 +109,33 @@ assert.deepEqual(cycles.map(c => c.length), [1, 516, 516]);
 assert.deepEqual(cycles.map(c => c[0]), [0, 1, 5]);
 assert.equal(seen.size, 1033);
 
+// In the opposite source-number orientation, 1033 has exact order 550
+// modulo prime 3301. This is 553 numbered runes minus three. No printed
+// marker identifies a three-rune framing rule *inside* the numbered block.
+/** @param {number} b @param {number} e @param {number} m @returns {number} */
+function powMod(b, e, m) {
+  let result = 1;
+  let base = b % m;
+  for (let exponent = e; exponent > 0; exponent = Math.floor(exponent / 2)) {
+    if (exponent % 2 === 1) result = result * base % m;
+    base = base * base % m;
+  }
+  return result;
+}
+assert.equal(powMod(1033, 550, 3301), 1);
+for (const primeDivisor of [2, 5, 11])
+  assert.notEqual(powMod(1033, 550 / primeDivisor, 3301), 1);
+let state = 1;
+const reverseKey = [];
+for (let i = 0; i < numbered.length; i++) {
+  state = state * 1033 % 3301;
+  reverseKey.push(state % 29);
+}
+assert.deepEqual(reverseKey.slice(0, 3), reverseKey.slice(550, 553));
+const reverseDecryption = numbered.map((v, i) =>
+  (v - reverseKey[i] + 29) % 29);
+assert(Math.abs(ioc(reverseDecryption) - 0.03446942893833373) < 1e-12);
+
 // The marked red triple has GP-prime sum 173, the zero-based prime ordinal
 // of 1033. This cross-relation is source arithmetic, not an authored opcode.
 const redPrimeSum = red3.reduce((n, i) => n + corpus.prime[i], 0);
@@ -155,7 +182,7 @@ console.log(JSON.stringify({
     numberedLengths: units.map(u => u.length), numberedStarts: starts
   },
   hashes: {unnumbered: digest(unnumbered), numbered: digest(numbered)},
-  cuneiform: {modulus, multiplier, orbits: cycles.map(c => c.length)},
+  cuneiform: {modulus, multiplier, orbits: cycles.map(c => c.length), reverseModulus: 3301, reverseGenerator: 1033, reverseOrder: 550},
   red: {
     runeIndices: red3, gpPrimeSum: redPrimeSum, primeOrdinal0Of1033: primeCount - 1,
     literalOrbitAnchors: anchors, seedsMatch: false
@@ -164,7 +191,7 @@ console.log(JSON.stringify({
   actual: {
     rawNumberedIoC: ioc(numbered), rawUnnumberedIoC: ioc(unnumbered),
     directMinusIoC: ioc(decodedMinus), directPlusIoC: ioc(decodedPlus),
-    orbitDifferenceIoC: ioc(differences)
+    orbitDifferenceIoC: ioc(differences), reverseOrder550IoC: ioc(reverseDecryption)
   },
   plantedNativeRunnersRecovered: nativePlant.length,
   unknownPlaintextRecovered: false
