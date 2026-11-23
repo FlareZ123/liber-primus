@@ -182,6 +182,70 @@ assert.deepEqual(features.eval34[17], [0, 16]);
 assert.equal(corrected[13], 18);
 assert.equal(corrected[17], 25);
 
+// Independent, source-visible rival alignment: 242 wholly black source
+// words map to the 242 black p8 runes ending before the true p8->p9
+// cross-page word. A fixed order-invariant whole-word map must assign
+// identical outputs to anagrams without any knowledge of its secret map.
+/** @param {RuneCell} c @returns {boolean} */
+const isBlack = c => !red.get(c.page)?.has(c.offset);
+const blackScroll = scroll.filter(w => w.every(isBlack));
+const blackP8 = p8.slice(12, 254);
+assert.equal(blackScroll.length, 242);
+assert.equal(blackP8.length, 242);
+const blackKnown = new Map();
+const blackAnagrams = [];
+for (let i = 0; i < blackScroll.length; i++) {
+  const signature = blackScroll[i].map(c => c.value)
+    .sort((a, b) => a - b).join(',');
+  if (blackKnown.has(signature)) {
+    blackAnagrams.push([blackKnown.get(signature), i]);
+  } else {
+    blackKnown.set(signature, i);
+  }
+}
+assert.deepEqual(blackAnagrams,
+  [[44, 223], [227, 228], [43, 232]]);
+assert.deepEqual(blackAnagrams.map(([a, b]) => [blackP8[a], blackP8[b]]),
+  [[15, 17], [27, 8], [18, 9]]);
+
+// The natural GF(3) five-tap orbit from ALL five red p7 products has
+// period 3^5-1=242 with a conventional but unauthenticated start state.
+const taps3 = red7.map(x => x % 3);
+assert.deepEqual(taps3, [2, 2, 2, 0, 2]);
+const initial3 = [1, 0, 0, 0, 0];
+let state3 = initial3.slice();
+const address3 = [];
+for (let i = 0; i < 242; i++) {
+  address3.push(state3.reduce((x, v) => 3 * x + v, 0));
+  const feedback = taps3.reduce((s, t, j) => s + t * state3[j], 0) % 3;
+  state3 = [state3[1], state3[2], state3[3], state3[4], feedback];
+}
+assert.deepEqual(state3, initial3);
+assert.equal(new Set(address3).size, 242);
+const field3Cases = [];
+for (const [radixName, bytes] of [
+  ['native60', grid.bytes],
+  ['omittedF59', table]
+]) {
+  for (const sign of [-1, 1]) {
+    const correctedBlack = blackP8.map((v, i) =>
+      mod29(v + sign * bytes[address3[i]]));
+    const contradictions = blackAnagrams.filter(([a, b]) =>
+      correctedBlack[a] !== correctedBlack[b]);
+    assert.equal(contradictions.length, 3);
+    field3Cases.push({
+      radixName, sign, contradictions: contradictions.length,
+      corrected: blackAnagrams.map(([a, b]) =>
+        [correctedBlack[a], correctedBlack[b]])
+    });
+  }
+}
+const blackPlant = blackScroll.map(w =>
+  mod29(w.reduce((s, c) => s + c.value, 0) +
+    3 * w.length + 7));
+assert(blackAnagrams.every(([a, b]) =>
+  blackPlant[a] === blackPlant[b]));
+
 // Plant a genuine unknown 29x29 nonlinear hash, synthesize original p8
 // ciphertext with the same fixed table/state, and recover it exactly.
 const planted = features.eval34.map(([a, b]) =>
@@ -201,6 +265,11 @@ console.log('LP2_SCROLL255_WORD_EVAL34_ORIGINAL_GATE ' + JSON.stringify({
   tableDistinct: new Set(table).size,
   exactAnagramPairs: originalPairs,
   pair, triple, otherTriple, control,
+  black242: {
+    originalAnagrams: blackAnagrams,
+    originalOutputs: blackAnagrams.map(([a, b]) => [blackP8[a], blackP8[b]]),
+    field3Cases, syntheticPlantPassed: true
+  },
   witness: {
     word13: values[13], word17: values[17],
     sharedEvaluations34: features.eval34[13],
