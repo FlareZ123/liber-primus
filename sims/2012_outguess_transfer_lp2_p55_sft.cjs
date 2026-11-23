@@ -105,6 +105,8 @@ try {
   const p55Summary = {
     command: "outguess -r 55.jpg 55.jpg.out",
     exit_code: p55Run.result.status,
+    signal: p55Run.result.signal,
+    spawn_error: p55Run.result.error ? p55Run.result.error.message : null,
     output_file_created: p55Run.exists,
     output_bytes: p55Bytes.length,
     output_sha256: sha256(p55Bytes),
