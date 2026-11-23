@@ -20,7 +20,8 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const ROOT = path.resolve(__dirname, "..");
-const read = file => fs.readFileSync(path.join(ROOT, file), "utf8");
+const read = file => fs.readFileSync(path.join(ROOT, file), "utf8")
+  .replace(/\r\n/g, "\n");
 const gp = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const pages = gp.pages.filter(p => p.page <= 55 && p.indices.length);
 assert.equal(pages.length, 55);
@@ -313,6 +314,7 @@ function main() {
   const output = [];
   for (const [name, filename, preprocessing] of donors) {
     const reference = encodeEnglish(preprocessing(read(filename)));
+    assert(reference.length > LOOKAHEAD, name + ": source empty");
     for (let mode = 0; mode < 2; mode++) {
       const result = scan(original, reference, mode);
       output.push({source: name, ...result});
