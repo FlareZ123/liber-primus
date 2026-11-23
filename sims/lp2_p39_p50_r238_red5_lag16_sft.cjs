@@ -708,6 +708,32 @@ const primeRedPlant=fieldMultiply238(
   fieldMultiply238(fieldPlant,primeRedFieldUnit),primeRedInverse);
 assert.deepEqual(primeRedPlant,fieldPlant);
 
+// Genuinely nonlinear, reversible and fully keyless GF29^238 self-inversion.
+// Same printed field modulus, source-receiver and two literal red mappings.
+const sourceFieldReciprocal=[];
+for(const orientation of ['high','low']){
+  const input=orientation==='high'?originalTrim.slice().reverse():originalTrim.slice();
+  const invCipher=fieldInverse(input,R238);
+  const outputs=[
+    ['1/C',invCipher],
+    ['G/C',fieldMod(mul(redFieldUnit,invCipher),R238)],
+    ['Gprime/C',fieldMod(mul(primeRedFieldUnit,invCipher),R238)]
+  ];
+  for(const [name,candidate] of outputs){
+    const out=candidate.slice();
+    while(out.length<238)out.push(0);
+    if(orientation==='high')out.reverse();
+    sourceFieldReciprocal.push({orientation,name,ioc:ioc(out),
+      prefix:out.slice(0,100).map(v=>corpus.translit[v]).join('')});
+  }
+}
+assert.equal(sourceFieldReciprocal.length,6);
+assert.ok(sourceFieldReciprocal.every(x=>x.ioc<0.045));
+const reciprocalNative=fieldInverse(fieldInverse(fieldPlant,R238),R238);
+const reciprocalNativePad=reciprocalNative.slice();
+while(reciprocalNativePad.length<238)reciprocalNativePad.push(0);
+assert.deepEqual(reciprocalNativePad,fieldPlant);
+
 // All-secret 16-position alphabet gate: for ANY bijection applied separately
 // at each of the sixteen phases, equalities within a phase cannot change.
 /** @param {number[]} v @returns {{samePhasePairs:number,adjacentLag16:number}} */
@@ -787,6 +813,7 @@ const report = {
   keylessPhase16: { original: fixed16Original, donorWindows: fixed16DonorWindows.length,
     donorsAtMost75: 15, donorMaxLag16: 20, donorsMatchingBoth: 0,
     solvedNativePhasePermutationPlant: true },
+  sourceCipherReciprocal: { cases:sourceFieldReciprocal, nativePlantRecovered:true },
   sourcePrimeField: { sourceGpPrimes:[107,13,53],unit:primeRedFieldUnit,
     cases:primeRedSourceResults,nativePlantRecovered:true },
   sourceFiniteField: { originalCases: fieldOriginalResults, nativePlantExactlyRecovered: true },
