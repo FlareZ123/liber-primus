@@ -90,9 +90,63 @@ for(const ch of text){
 }
 if(cursor>prior)wordEnds.push(cursor);
 assert.equal(cursor,13136);
+
+// The original visible page seams and printed line wraps offer progressively
+// finer, source-defined reset clocks. Keep these as separate alternatives.
+let offset=0;
+const pageSeams=[];
+for(const page of gp.pages.filter(p=>p.page<=55 && p.indices.length)){
+  if(offset>0)pageSeams.push(offset);
+  offset+=page.indices.length;
+}
+assert.equal(offset,N);
+assert.equal(pageSeams.length,54);
+let runeAt=0;
+const slash=[];
+for(const ch of text){
+  if(rune.has(ch))runeAt++;
+  else if(ch==='/')slash.push(runeAt);
+}
+const lineEnds=slash.filter(i=>i>0&&i<=N);
+assert.equal(lineEnds.length,594);
+const withPages=uniqueCuts([...all,...pageSeams]);
+const onlyLines=uniqueCuts(lineEnds);
+const withLines=uniqueCuts([...all,...pageSeams,...lineEnds]);
+assert.equal(withPages.length-1,226);
+assert.deepEqual([capacity(bins(original,withPages),1),
+  capacity(bins(original,withPages),2)],[1109,2042]);
+assert.equal(onlyLines.length-1,594);
+assert.deepEqual([capacity(bins(original,onlyLines),1),
+  capacity(bins(original,onlyLines),2)],[1680,2997]);
+assert.equal(withLines.length-1,738);
+assert.deepEqual([capacity(bins(original,withLines),1),
+  capacity(bins(original,withLines),2)],[1816,3218]);
 const originalWordBreaks=wordEnds.filter(x=>x<=N);
 assert.equal(originalWordBreaks.length,2896);
 assert.equal(originalWordBreaks.at(-1),N);
+
+// Exact simplest independent-substitution-reset null: random independent
+// cyclic translations of each printed segment. All intra-segment source
+// doublet decisions remain unchanged, and each seam matches with p=1/29.
+/** @param {number[]} cuts @returns {{n:number,hits:number,expected:number,pAtMost:number}} */
+function crossingNull(cuts){
+  const edges=cuts.filter(i=>i>0&&i<N);
+  const hits=edges.filter(i=>original[i-1]===original[i]).length;
+  const p=1/29,n=edges.length;
+  let term=(1-p)**n,tail=term;
+  for(let k=1;k<=hits;k++){
+    term*=(n-k+1)*p/(k*(1-p));
+    tail+=term;
+  }
+  return {n,hits,expected:n*p,pAtMost:tail};
+}
+const pageAndInkEcho=crossingNull(withPages);
+const lineEcho=crossingNull(onlyLines);
+assert.deepEqual([pageAndInkEcho.n,pageAndInkEcho.hits],[225,1]);
+assert.deepEqual([lineEcho.n,lineEcho.hits],[593,4]);
+assert(Math.abs(pageAndInkEcho.pAtMost-0.003364883360697)<1e-12);
+assert(Math.abs(lineEcho.pAtMost-0.000009286425029802315)<1e-12);
+
 
 /** Involutive boundary reflow. All original authentic punctuation cuts
  * remain pinned; within every segment swap adjacent gap lengths.
@@ -169,7 +223,14 @@ console.log(JSON.stringify({
     realApostrophes:quotes.apostrophes_before_rune.length,
     basicSegments:base.length,augmentedSegments:augmented.length,
     newCutPositions:all.filter(v=>!basic.includes(v))},
-  upperBounds:{basicE:1012,basicEO:1874,augmentedE:1029,augmentedEO:1897},
+  upperBounds:{basicE:1012,basicEO:1874,augmentedE:1029,augmentedEO:1897,
+    plusPageSeamsE:1109,plusPageSeamsEO:2042,
+    lineOnlyE:1680,lineOnlyEO:2997,allInkAndLineE:1816,allInkAndLineEO:3218},
+  sourceLayoutResetResolution:{
+    pageAndInkCuts:{scopes:withPages.length-1,...pageAndInkEcho},
+    physicalPrintedLines:{scopes:onlyLines.length-1,...lineEcho},
+    allInkAndLineScopes:withLines.length-1,
+    decision:'Punctuation/page-level independently secret 29! alphabets lack enough English top-letter mass even with arbitrary internal resegmentation/reordering. A private alphabet on every single source line has sufficient top-letter *capacity*, but resets independently drawn at the line breaks predict far more crossing doublets than observed.'},
   sourceInkCrossingEcho:{tested:inkCrossings.length,
     equal:equalCrossings.length,
     exactRandomIndependentScopeCyclicShiftP_le1:independentResetLowerTail,
