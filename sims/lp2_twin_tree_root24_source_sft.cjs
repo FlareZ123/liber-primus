@@ -105,6 +105,66 @@ assert.equal(evaluate(b.quotient, r), 9);
 assert.deepEqual(multiplyLinear(a.quotient, r), p10);
 assert.deepEqual(multiplyLinear(b.quotient, r), p11);
 
+// Source-visible arithmetic 7 on p10 is a candidate factor selector that
+// exists independently of the 3301 residue. The same tree stencil reappears
+// on p12; the opposite stencil from p11 reappears on p13.
+const transcription = fs.readFileSync(path.resolve(__dirname, '..',
+  'resources/liber-primus/lp2-transcription.txt'), 'utf8').split('%');
+assert.deepEqual(transcription.slice(8, 15)
+  .map(text => (text.match(/\\d+/g) || [])), [[], [], ['7'], [], [], [], []]);
+assert.ok(transcription[10].includes('-7-'));
+const numericSeven = 7;
+assert.equal(evaluate(p10, numericSeven), 0);
+const p10Twice = divideLinear(a.quotient, numericSeven);
+assert.equal(p10Twice.remainder, 0);
+assert.equal(p10Twice.quotient.length, p12.length);
+const p13 = corpus.pages[13].indices;
+assert.equal(b.quotient.length, p13.length);
+assert.deepEqual(multiplyLinear(
+  multiplyLinear(p10Twice.quotient, numericSeven), r), p10);
+assert.deepEqual(multiplyLinear(b.quotient, r), p11);
+
+/**
+ * Is there an exact source-fixed copied stream, even after allowing any
+ * single global affine GP29 alphabet map?
+ * @param {number[]} quotient
+ * @param {number[]} counterpart
+ * @returns {{length:number,exactSymbolMatches:number,
+ *   bestAffine:{slope:number,offset:number,matches:number},
+ *   differenceIoC:number}}
+ */
+function compareSameTree(quotient, counterpart) {
+  assert.equal(quotient.length, counterpart.length);
+  const n = quotient.length;
+  const exactSymbolMatches = quotient.reduce(
+    (count, value, i) => count + Number(value === counterpart[i]), 0);
+  let bestAffine = {slope:1, offset:0, matches:exactSymbolMatches};
+  for (let slope = 1; slope < 29; slope++) {
+    for (let offset = 0; offset < 29; offset++) {
+      let matches = 0;
+      for (let i = 0; i < n; i++) {
+        if (mod(slope * quotient[i] + offset) === counterpart[i]) matches++;
+      }
+      if (matches > bestAffine.matches) {
+        bestAffine = {slope, offset, matches};
+      }
+    }
+  }
+  const difference = quotient.map((value, i) =>
+    mod(value - counterpart[i]));
+  return {length:n, exactSymbolMatches, bestAffine,
+    differenceIoC:ioc(difference)};
+}
+const sameTreeTransfers = [
+  compareSameTree(p10Twice.quotient, p12),
+  compareSameTree(b.quotient, p13)
+];
+assert.deepEqual(sameTreeTransfers.map(result =>
+  [result.length, result.exactSymbolMatches, result.bestAffine.matches]),
+  [[261, 5, 18], [272, 12, 21]]);
+assert.ok(sameTreeTransfers.every(result => result.differenceIoC < 0.04));
+
+
 const results = [];
 for (const [orientation, rhs] of [
   ['same-printed-order', b.quotient],
@@ -143,6 +203,8 @@ console.log(JSON.stringify({
     highDegreeFirstRoots:highZeros, lowDegreeFirstRoots:lowZeros,
     distinctiveOriginalPages:[10,11], treeChapterPageResidues:treeResidues,
     p10AndP11Lengths:[p10.length,p11.length],
+    p10Literal7IsRoot:evaluate(p10,numericSeven) === 0,
+    originalSameTreeReceiverLengths:[p12.length,p13.length],
     neighborResidues:{p9:evaluate(p9,r),p12:evaluate(p12,r)},
     rootMultiplicities:{
       p10LinearQuotientAtRoot:evaluate(a.quotient,r),
@@ -153,9 +215,12 @@ console.log(JSON.stringify({
     quotientRunes:[a.quotient.length,b.quotient.length],
     quotientIoCs:[ioc(a.quotient),ioc(b.quotient)],
     mirroredPageCombination:results,
+    identicalTreeQuotientTransfers:sameTreeTransfers,
     nativeGP29PlantRecovered:true,
     originalP10AndP11ExactlyReconstructed:true
   },
   decision:'A source-shared simple root is observed on illustrated twin ' +
-    'pages; four source-motivated merged readouts yield no unknown prose.'
+    'pages; source numeral7 gives a second exact p10 factor, but the ' +
+    'two complete same-tree quotient transfers and four merged readouts ' +
+    'yield no unknown prose.'
 }, null, 2));
