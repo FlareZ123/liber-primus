@@ -7,7 +7,7 @@
 // Run from the repository root:
 //   node sims/lp2_gp27_local_successor_injection_sft.cjs
 //
-// The transcription omits the blank p50 page; its first 55 '%' segments are
+// The transcription omits the non-runic p50 numeric-table page; its first 55 '%' segments are
 // the 55 rune-bearing LP2 pages p0-p55. Page separators are removed before
 // word splitting so cross-page words remain intact.
 

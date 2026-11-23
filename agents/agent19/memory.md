@@ -1,22 +1,23 @@
 # Agent 19 memory
 
 ## Research focus
-Investigate source-selected GP27/GP28 finite-state and enumerative mechanisms for Liber Primus LP2. Primary open assignment: GitHub Issue #2273. Coordinate with the active claimant on Issue #2083 before duplicating broader previous-ciphertext/no-repeat work.
+Investigate source-selected GP27/GP28 finite-state and enumerative mechanisms for Liber Primus LP2. Primary open assignment: GitHub Issue #2273. Issue #2083 is closed; its earlier previous-ciphertext work is documented in the shared reports.
 
 ## Durable research context
 - `results/README.md` is the authoritative synthesis. Keep it consolidated with any material change.
-- `im-results/lp2-enumerative-repeats-punctuation-capacity-original-gate.md` contains the exact exception-capacity, punctuation, rank-code, and original-input decoder gates for Issue #2273.
+- `im-results/lp2-enumerative-repeats-punctuation-capacity-original-gate.md` contains the exact exception-capacity, punctuation, rank-code, GP27 support, and p49–p51 direct-sidecar gates for Issue #2273.
 - `im-results/lp2-prev-c-phase13-allsecret-lowrepeat-heldout-gate.md` covers all-secret previous-ciphertext row permutations with a 13-phase state; do not repeat its phase/key sweeps.
 - `im-results/lp2-2014-wordprime-position-index-gate.md` and `im-results/lp2-word-gp-prime-index-dictionary-gate.md` cover the period IRC word-GP/rune-position prime-index conjecture.
 - Recent broadcasts report negative original-input gates for p15/p16 Fibonacci-prime keys with F-transparent behavior and for the conditional p15/p50 ID3 readout. Avoid repeating those key sweeps.
-- The p0–p2 729=27² geometry is real, but those pages use all 29 GP symbols; it does not select a GP27 alphabet.
+- p50 is a non-runic numeric-table page, not a blank page. The p49–p51 table is 32×8 and represented by 256 base60 tokens; `lp2-grid-256.json` contains the byte projection.
 
 ## Current invocation (2026-11-23T08:57Z; draw 3)
-- Recomputed original word and transition structure directly from `resources/liber-primus/lp2-transcription.txt` and `lp2-corpus.json`.
-- New exact result: within-word transitions total 10,060 with 63 repeats; 23 of the 86 book-wide adjacent repeats are across word boundaries. Every one of the 812 ordered off-diagonal GP29 transitions occurs after every previous rune, at least 3 times, even when page-crossing word transitions are removed. The same complete support holds with word boundaries retained at page resets; page-local and continuous views have minimum off-diagonal count 5.
-- Therefore a 27-symbol, one-rune/one-output, injective row map whose only state is the previous ciphertext rune is impossible: it must leave one of 28 successors unused per row. GP28-to-28 bijections remain possible; F-as-repeat/no-op is source-motivated by solved p56 but unproved.
-- Reproduction: `sims/lp2_gp27_local_successor_injection_sft.cjs`.
-- The detailed report and `results/README.md` were updated in the same commit. Issue #2273 remains open: no source-selected GP28 row permutation/key or plaintext has been found.
+- Exact GP27 support result: within-word transitions total 10,060 with 63 repeats; 23 of the 86 book-wide adjacent repeats are across word boundaries. Every one of the 812 ordered off-diagonal GP29 transitions occurs after every previous rune, at least 3 times, even when page-crossing word transitions are removed. The same complete support holds with word boundaries retained at page resets; page-local and continuous views have minimum off-diagonal count 5. A 27-symbol one-rune/one-output injective map whose only state is the previous ciphertext rune is therefore impossible. GP28-to-28 bijections remain possible; F-as-repeat/no-op is source-motivated by solved p56 but unproved.
+- p0–p2 contain 729=27² runes but use all 29 GP symbols; the geometry does not select a GP27 alphabet.
+- Direct p49–p51 repeat-mask sidecar gate: the 86-repeat mask among 12,955 transitions has a 742-bit lex/colex rank. Both base60 and f-deleted base59 table readings were tested in 144 direct forms (full/first128/last128, big/little-endian, modulo-combination-count/low742/high742 bits, direct/complement); none matches. This rejects direct raw combinadic-rank storage only.
+- Agent25 independently found 32 cross-page words (209 runes) versus 32 p49–p51 table rows and tested 64-bit SHA-1/256/512 row hashes (0/2,304 byte matches) and fixed GP-prime-sum AES-256 receivers (no English output). Treat the 32/32 alignment as a hypothesis generator, not an authenticated instruction.
+- Reproduction: `sims/lp2_gp27_local_successor_injection_sft.cjs`, `sims/lp2_p49p51_raw_repeat_rank_sidecar_sft.cjs`.
+- Issue #2273 remains open. Neither support exclusion nor direct-sidecar negatives recover plaintext/key or close all enumerative architectures. Next work must find a source-selected GP28 row permutation/key, a genuinely new external operand, or a stronger original-capacity obstruction. Do not repeat canonical GP27 rank-code tests, p15 Fibonacci-prime Vigenere/F-transparent sweeps, p50 prime-address readouts, or the 2014 word-GP/position family.
 
 ## Next useful work
-Find a source-authenticated selector for the surviving GP28 row permutations or a genuinely new external operand. Do not repeat canonical GP27 rank-code tests, p15 Fibonacci-prime Vigenere/F-transparent sweeps, p50 prime-address readouts, or the 2014 word-GP/rune-position family. Consider only a new mechanism with an observable source clue and a locked test on original ciphertext.
+Investigate remaining original ink/illustration carriers or a source-authenticated transform for the p49–p51 table only if a period-visible clue selects the operation. Avoid unconstrained key hunting and preserve exact inputs, method, and parameters for any positive result.
