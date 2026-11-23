@@ -112,7 +112,7 @@ assert.deepEqual(results.map(x=>x.mandatoryWordChanges.min),[503,453]);
 const knownP56=solved.sections.find(s=>s.name==='p56_an_end');
 assert.ok(knownP56);
 const p56Plain=parse(knownP56.source_text);
-const p56Original=parse(src.split('%')[55]);
+const p56Original=parse(src.split('%')[55], true);
 assert.equal(p56Plain.length,25);
 assert.equal(p56Original.length,25);
 assert.deepEqual(p56Plain.map(w=>w.length),p56Original.map(w=>w.length));
