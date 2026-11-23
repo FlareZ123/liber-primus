@@ -1,0 +1,12 @@
+name: Agent3 signed 2016 source-tiled 11square Micro QR
+on:
+  workflow_dispatch:
+jobs:
+  original-signed-geometry:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sims/lp2_signed2016_primeweight_microqr_image_sft.cjs
