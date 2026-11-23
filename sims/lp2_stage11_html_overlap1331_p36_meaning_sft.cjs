@@ -121,7 +121,7 @@ console.log(JSON.stringify({
   physicalReceiver: {page: 36, redSection: 1, indexRange: [99, 103]},
   ciphertextWord: firstCipherword,
   decodedWord: proposed,
-  2016SourceWord: 'MEANING',
+  sourceWord2016: 'MEANING',
   note: 'Retrospective source-key concordance only, no full-item decryption',
   independentlyHeldOutSection2FirstFour: outcomes[1].firstFour,
   entireFiveUnitInverse: {totalRunes: all.length, ioc: ioc(allDecoded)},
