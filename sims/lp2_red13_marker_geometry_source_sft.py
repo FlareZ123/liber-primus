@@ -73,6 +73,7 @@ def main():
     archive = ZipFile(args.zip) if args.zip else None
     all_marks = []
     residual_hist = Counter()
+    ink_color_medians = []
     for page in range(58):
         jpeg = f"{page + 17:02}.jpg"
         if archive:
@@ -80,6 +81,7 @@ def main():
         else:
             image = Image.open(ROOT / "resources/liber-primus" / jpeg)
         detected = markers(red_components(image))
+        rgb = np.asarray(image.convert("RGB"), dtype=np.uint8)
         count = expected.get(page, 0)
         assert len(detected) == count, f"page {page}: expected {count} red-13 glyphs, detected {len(detected)}"
         for mark in detected:
@@ -87,6 +89,11 @@ def main():
             assert all(dot[2] * dot[3] == dot[4] for dot in mark["dots"]), "non-solid dot"
             assert all(max(abs(dx), abs(dy)) <= 1 for dx, dy in mark["residuals"]), "nonstandard dot placement"
             residual_hist.update(mark["residuals"])
+            core_pixels = np.concatenate([
+                rgb[y + 2:y + h - 2, x + 2:x + w - 2].reshape(-1, 3)
+                for x, y, w, h, _ in mark["dots"]
+            ])
+            ink_color_medians.append(tuple(map(int, np.median(core_pixels, axis=0))))
             all_marks.append((page, mark))
             print(f"p{page:02}: red13 at xy={mark['origin']}")
     if archive:
@@ -95,8 +102,11 @@ def main():
     assert sum(residual_hist.values()) == 390
     assert len([m for p, m in all_marks if p == 56]) == 2
     assert len([m for p, m in all_marks if p == 57]) == 1
+    assert all(190 <= r <= 193 and g == 0 and 0 <= b <= 2
+               for r, g, b in ink_color_medians), "unexpected red-ink color"
     print(f"PASS source red13 marks={len(all_marks)}, solid component dots={sum(residual_hist.values())}")
     print("Relative-position integer raster residuals:", sorted(residual_hist.items()))
+    print("Median center-ink RGB values:", sorted(Counter(ink_color_medians).items()))
     print("All thirty marks share the same 5-center/4-left/4-right solid-dot topology.")
     print("Scope: no distinct large-scale marker variant; subpixel or JPEG color payload not ruled out.")
 
