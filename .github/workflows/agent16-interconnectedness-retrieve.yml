@@ -74,7 +74,7 @@ jobs:
         run: |
           set -euo pipefail
           sudo apt-get update
-          sudo apt-get install -y ffmpeg gnupg
+          sudo apt-get install -y ffmpeg gnupg poppler-utils
           file out/3301-Interconnectedness.mp3 | tee out/file-identification.txt
           ffprobe -v error -count_frames \
             -show_entries format=duration,bit_rate,size,format_name:stream=codec_name,sample_rate,channels,channel_layout,bit_rate,duration,nb_frames,nb_read_frames \
@@ -180,6 +180,23 @@ jobs:
           curl --fail --location --retry 3 "$base/42VKTWB.png" --output out/42VKTWB.png
           sha256sum out/Magicsquare.jpg out/DIAGupdated.jpg out/spectogram.jpg out/42VKTWB.png > out/2014-related-image-sha256.txt
           file out/Magicsquare.jpg out/DIAGupdated.jpg out/spectogram.jpg out/42VKTWB.png > out/2014-related-image-file-types.txt
+      - name: Download 2014 coordinate-source documents
+        shell: bash
+        run: |
+          set -euo pipefail
+          docs='https://raw.githubusercontent.com/cicada-solvers/The-Complete-Cicada3301-Archive/main/2014/additional%20docs'
+          curl --fail --location --retry 3 "$docs/Self-Reliance%20and%20Other%20Essays/Self-Reliance%20and%20Other%20Essays.pdf" --output out/Self-Reliance-and-Other-Essays.pdf
+          curl --fail --location --retry 3 "$docs/Self-Reliance%20and%20Other%20Essays/Self-Reliance%20-%20Wikipedia.pdf" --output out/Self-Reliance-Wikipedia.pdf
+          curl --fail --location --retry 3 "$docs/5x5%20Magic%20Squares%20based%20on%20numbers%20from%20onion5%20portrait.jpg.txt" --output out/5x5-magic-squares-onion5-portrait.txt
+          sha256sum out/Self-Reliance-and-Other-Essays.pdf out/Self-Reliance-Wikipedia.pdf out/5x5-magic-squares-onion5-portrait.txt > out/2014-coordinate-source-sha256.txt
+      - name: Extract coordinate-source PDF text
+        shell: bash
+        run: |
+          set -euo pipefail
+          pdfinfo out/Self-Reliance-and-Other-Essays.pdf > out/Self-Reliance-and-Other-Essays.pdfinfo.txt
+          pdfinfo out/Self-Reliance-Wikipedia.pdf > out/Self-Reliance-Wikipedia.pdfinfo.txt
+          pdftotext -layout out/Self-Reliance-and-Other-Essays.pdf out/Self-Reliance-and-Other-Essays.txt
+          pdftotext -layout out/Self-Reliance-Wikipedia.pdf out/Self-Reliance-Wikipedia.txt
       - name: Upload the raw carrier and inspection results
         uses: actions/upload-artifact@v4
         with:
