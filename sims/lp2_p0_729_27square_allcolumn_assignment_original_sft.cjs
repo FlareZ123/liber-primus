@@ -173,6 +173,18 @@ const bookCollisions=[];
 for (let start=0;start+729<=training.length;start+=729)
   bookCollisions.push(stripCollisionSum(columnarEncode(training.slice(start,start+729))));
 assert.equal(bookCollisions.length,29);
+// Row-major analogue: map the 27 consecutive ciphertext groups to plaintext
+// rows instead of columns. Both directions allow arbitrary private row alphabets.
+const rowBlakeCollisions=[];
+for (let start=0;start+729<=blake.length;start+=729)
+  rowBlakeCollisions.push(stripCollisionSum(blake.slice(start,start+729)));
+const rowBookCollisions=[];
+for (let start=0;start+729<=training.length;start+=729)
+  rowBookCollisions.push(stripCollisionSum(training.slice(start,start+729)));
+assert.equal(rowBlakeCollisions.length,25);
+assert.equal(rowBookCollisions.length,29);
+assert.ok(originalStripCollisions<Math.min(...rowBlakeCollisions));
+assert.ok(originalStripCollisions<Math.min(...rowBookCollisions));
 const blakeCollisionMin=Math.min(...heldoutBlakeCollisions);
 const bookCollisionMin=Math.min(...bookCollisions);
 assert.ok(originalStripCollisions<blakeCollisionMin);
@@ -222,6 +234,8 @@ console.log(JSON.stringify({
       max:Math.max(...heldoutBlakeCollisions)},
     disjointBookControl:{count:bookCollisions.length,min:bookCollisionMin,
       max:Math.max(...bookCollisions)},
+    privateRowBlakeControl:{min:Math.min(...rowBlakeCollisions),max:Math.max(...rowBlakeCollisions)},
+    privateRowBookControl:{min:Math.min(...rowBookCollisions),max:Math.max(...rowBookCollisions)},
     permutedAndCipheredPlant:stripCollisionSum(scrambled)},
   conclusion:'Bounded negative for unchanged-symbol 27x27 columnar transposition; no LP2 plaintext.'
 },null,2));
