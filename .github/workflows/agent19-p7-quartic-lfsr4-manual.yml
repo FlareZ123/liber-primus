@@ -12,3 +12,5 @@ jobs:
           node-version: '22'
       - name: Run source-exact GF29 quartic test
         run: node sims/lp2_p7_quartic_irreducible_lfsr4_original_sft.cjs
+      - name: Run p56 F-transparent source-clock recipient gate
+        run: node sims/lp2_p7_quartic_lfsr4_Ftransparent_original_sft.cjs
