@@ -165,6 +165,48 @@ assert.deepEqual(southwest,{row:5,col:6});
 const southwestCell=southwest.row*8+southwest.col;
 assert.equal(southwestCell,46);
 assert.equal(gp("ARE").reduce((a,b)=>a+b,0),46);
+// Full source-fixed radix60 continuation test after SW and address46.
+// Both the historically used prime-value convention and the p33 1033/3301
+// sexagesimal stamp are source-visible rivals, so we print the B59 alternative.
+const numeralAlphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx";
+assert.equal(tokens[46],"3J");
+const tableValues = tokens.map((token) =>
+ numeralAlphabet.indexOf(token[0])*60 + numeralAlphabet.indexOf(token[1]));
+assert.equal(tableValues[46],199);
+const primeNumbers=[];
+for(let n=2;primeNumbers.length<256;n++){
+  let prime=true;
+  for(let factor=2;factor*factor<=n;factor++)if(n%factor===0){prime=false;break;}
+  if(prime)primeNumbers.push(n);
+}
+assert.equal(primeNumbers[45],199); // unique index46 one-based prime-rank fixed point
+const oneBasedPrimeFixedPoints=tableValues
+ .map((value,index)=> ({index,value}))
+ .filter(({index,value})=>index>0&&value===primeNumbers[index-1]);
+assert.deepEqual(oneBasedPrimeFixedPoints,[{index:46,value:199}]);
+
+const p39Indices=corpus.pages[39].indices;
+assert.equal(p39Indices.length,240);
+const originalR39=(k)=>corpus.translit[p39Indices[k]];
+const candidateMoves=[
+ {cell:39,firstPageWord:"SW",target:46,token:tokens[46],byte:tableValues[46],next:originalR39(199)},
+ {cell:46,firstPageWord:"N",target:38,token:tokens[38],byte:tableValues[38],next:originalR39(133)},
+ {cell:38,firstPageWord:"W",target:37,token:tokens[37],byte:tableValues[37],next:originalR39(80)}
+];
+assert.deepEqual(candidateMoves,[
+ {cell:39,firstPageWord:"SW",target:46,token:"3J",byte:199,next:"N"},
+ {cell:46,firstPageWord:"N",target:38,token:"2D",byte:133,next:"W"},
+ {cell:38,firstPageWord:"W",target:37,token:"1K",byte:80,next:"M"}
+]);
+// In the alternative B59 no-f alphabet, the first dereference is
+// cell46=196→p39 glyph W, then cell45=105→p39 glyph H (halts earlier).
+const digits59=numeralAlphabet.replace("f","");
+const v59=(token)=>digits59.indexOf(token[0])*59+digits59.indexOf(token[1]);
+assert.equal(v59(tokens[46]),196);
+assert.equal(originalR39(196),"W");
+assert.equal(v59(tokens[45]),105);
+assert.equal(originalR39(105),"H");
+
 // Exact labelled-P,A,TH index permutation null for PATH's sum=39.
 let tripletCount=0,tripletTarget=0;
 for(let i=0;i<29;i++)for(let j=0;j<29;j++)for(let k=0;k<29;k++){
@@ -191,6 +233,10 @@ console.log(JSON.stringify({
   uniqueCompassHeadwordAcrossRunePages:compassFirstWords,
   exactIndependentAlphabetShuffleProbabilityPATH39:tripletTarget/tripletCount,
   possibleSWGridStep:"39(row4,col7) -> 46(row5,col6) = GP0(ARE)",
+  sourcePrimeSelfIndex:oneBasedPrimeFixedPoints,
+  sourceB60PointerTrace:candidateMoves,
+  alternativeB59PointerTrace:"SW:39→46(token 3J=196 rune W)→45(token1l=105 rune H), halt",
+
   caveat:"The page-start-word→table-compass grammar and target ARE are not source-authenticated."
  },
  fullMessage: {
