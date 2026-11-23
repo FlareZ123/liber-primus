@@ -136,11 +136,17 @@ for (const k of [10, 13]) {
     plaintextRune: corpus.translit[k],
     slots: sites.length,
     compulsoryOccurrences: sites.filter(i => repeat[i]).length,
+    freePageStarts: sites.filter(i => pageStarts.has(i)).length,
+    maximumOccurrences: sites.filter(i => repeat[i] || pageStarts.has(i)).length,
   };
 }
 assert.deepEqual([byClass[10].slots, byClass[13].slots], [1248, 11708]);
 assert.deepEqual([byClass[10].compulsoryOccurrences,
   byClass[13].compulsoryOccurrences], [3, 83]);
+assert.deepEqual([byClass[10].freePageStarts, byClass[13].freePageStarts],
+  [6, 49]);
+assert.deepEqual([byClass[10].maximumOccurrences,
+  byClass[13].maximumOccurrences], [9, 132]);
 
 const firstRuneWordStarts = new Set();
 let wordOffset = 0;
@@ -190,10 +196,10 @@ for (let trial = 0; trial < 1000; trial++) {
   let wrongThirteens = 0;
   for (let i = 0; i < sample.length; i++) {
     const isExpected = sample[i] === state[i];
-    if (isExpected !== repeat[i]) mismatches++;
+    if (!pageStarts.has(i) && isExpected !== repeat[i]) mismatches++;
     if (state[i] === 10 && sample[i] === 10) {
       tens++;
-      if (!repeat[i]) nonrepeatTens++;
+      if (!repeat[i] && !pageStarts.has(i)) nonrepeatTens++;
     }
     if (state[i] === 13 && repeat[i] && sample[i] !== 13) wrongThirteens++;
   }
