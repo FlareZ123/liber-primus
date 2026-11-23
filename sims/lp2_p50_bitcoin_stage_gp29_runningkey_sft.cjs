@@ -63,6 +63,30 @@ const addressBytes = Buffer.concat([
   addressPayload, sha256(sha256(addressPayload)).subarray(0, 4)
 ]);
 assert.equal(base58(addressBytes), '1Meanpng7jzYW69Cqmto1r2mGeEoynXdoK');
+// A second source-visible consumer is the original p56 printed SHA-512.
+// Compare direct canonical Bitcoin stages and both exact address spellings
+// with the original digest. No salt, nonce, prefix or chosen-subset search.
+const p56PrintedSHA512 =
+  '36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4';
+const directSHA512Receivers = {
+  scalar32: bytes,
+  compressedPubkey33: publicKey,
+  sha256Pubkey32: pubSha,
+  hash160Pubkey20: pubHash160,
+  p2pkhAddress25: addressBytes,
+  p2pkhText: Buffer.from(base58(addressBytes), 'ascii'),
+  meanpngText: Buffer.from('Meanpng', 'ascii')
+};
+for (const [name, input] of Object.entries(directSHA512Receivers)) {
+  const digest = createHash('sha512').update(input).digest('hex');
+  assert.notEqual(digest, p56PrintedSHA512,
+    'Direct Bitcoin-stage source receiver unexpectedly matches original p56 hash');
+  console.log('P50_BITCOIN_P56_DIRECT_SHA512', JSON.stringify({
+    name, bytes:input.length, digest, matchesOriginal:false
+  }));
+}
+assert.equal(Object.keys(directSHA512Receivers).length, 7);
+
 const stages = {
   scalar32: bytes,
   compressedPubkey33: publicKey,
