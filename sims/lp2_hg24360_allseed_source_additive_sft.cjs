@@ -324,5 +324,148 @@ for (const check of [
   }));
 }
 
-console.log('PASS: finite HG24360 all-IV additive plus all-phase companion original-source gates; no unknown plaintext');
+
+/**
+ * @param {number[]} a Four ascending GF29 polynomial coefficients.
+ * @param {number[]} b Four ascending GF29 polynomial coefficients.
+ * @returns {number[]} Product modulo the authentic degree-four HG.
+ */
+function ringMultiply(a, b) {
+  const z = Array(7).fill(0);
+  for (let i = 0; i < 4; i++) {
+    for (let j = 0; j < 4; j++) z[i + j] = mod(z[i + j] + a[i] * b[j]);
+  }
+  for (let i = 6; i >= 4; i--) {
+    const factor = mod(17 * z[i]);
+    for (let j = 0; j < 5; j++) {
+      z[i - 4 + j] = mod(z[i - 4 + j] - factor * HG[j]);
+    }
+  }
+  return z.slice(0, 4);
+}
+
+/**
+ * @param {number[]} u Four-coordinate ring element.
+ * @returns {number[]|null} Multiplicative inverse or null if zero divisor.
+ */
+function ringInverse(u) {
+  const rows = Array.from({length: 4}, (_, i) =>
+    Array.from({length: 5}, (_, j) => j === 4
+      ? Number(i === 0)
+      : ringMultiply(u, Array.from({length: 4}, (_, k) =>
+        Number(k === j)))[i]));
+  for (let col = 0; col < 4; col++) {
+    const pivot = rows.findIndex((row, i) => i >= col && row[col] !== 0);
+    if (pivot < 0) return null;
+    [rows[col], rows[pivot]] = [rows[pivot], rows[col]];
+    const factor = inverse(rows[col][col]);
+    for (let j = col; j < 5; j++) rows[col][j] = mod(rows[col][j] * factor);
+    for (let i = 0; i < 4; i++) {
+      if (i === col) continue;
+      const t = rows[i][col];
+      for (let j = col; j < 5; j++) {
+        rows[i][j] = mod(rows[i][j] - t * rows[col][j]);
+      }
+    }
+  }
+  return rows.map(row => row[4]);
+}
+
+/**
+ * @param {number[]} v Four GP29 runes.
+ * @param {(v:number[])=>number[]} op Fixed quartic multiplier.
+ * @param {number} times
+ * @returns {number[]}
+ */
+function applyPower(v, op, times) {
+  let output = v.slice();
+  for (let i = 0; i < times; i++) output = op(output);
+  return output;
+}
+const terminal = [55, 56, 57].map(page =>
+  src.pages.find(p => p.page === page));
+assert.deepEqual(terminal.map(p => p.indices.length), [76, 85, 95]);
+const terminalKnown = terminal[2].indices;
+// 76+85=161; complete p57 rune blocks begin at table offset164,
+// a genuine original non-tuned alignment containing 23 whole four-rune blocks.
+const firstKnownBlock = 41;
+assert.equal(firstKnownBlock * 4 - (76 + 85), 3);
+
+/**
+ * Recover the only secret ring multiplier U from the first complete
+ * original p57 four-rune known-plaintext block, then predict all other
+ * complete p57 blocks. Any global phase M^t absorbs into U, so the
+ * test exhausts every fixed phase and every fixed 4-coordinate secret U
+ * for the exact terminal-page alignment, whenever the source block is
+ * invertible (which it is for each authentic tested orientation).
+ *
+ * @param {number[]} tape 256 GF29 source table residues.
+ * @param {1|-1} direction Source-block moving clock.
+ * @returns {{u:number[],runes:number,wholeBlocks:number}}
+ */
+function terminalKnownReceiver(tape, direction) {
+  assert.equal(tape.length, 256);
+  const op = direction === 1 ? companionPlus : companionMinus;
+  const firstCipher = applyPower(tape.slice(164, 168), op, firstKnownBlock);
+  const firstInv = ringInverse(firstCipher);
+  assert.ok(firstInv, 'first original p57 input block must be invertible');
+  const u = ringMultiply(terminalKnown.slice(3, 7), firstInv);
+  const results = {u, runes: 0, wholeBlocks: 0};
+  for (let block = firstKnownBlock; block < 64; block++) {
+    const cipher = tape.slice(4 * block, 4 * block + 4);
+    const decoded = ringMultiply(u, applyPower(cipher, op, block));
+    const gold = terminalKnown.slice(4 * block - 161, 4 * block + 4 - 161);
+    if (decoded.every((v, i) => v === gold[i])) results.wholeBlocks++;
+    for (let i = 0; i < 4; i++) if (decoded[i] === gold[i]) results.runes++;
+  }
+  return results;
+}
+
+// Solved-native positive: generate an independently encrypted terminal
+// 23-block native p57 ciphertext under a full-rank source-table-derived U.
+const knownUnit = grid.bytes.slice(0, 4).map(mod);
+const knownUnitInverse = ringInverse(knownUnit);
+assert.ok(knownUnitInverse);
+assert.deepEqual(ringMultiply(knownUnit, knownUnitInverse), [1, 0, 0, 0]);
+const syntheticTerminal = Array(256).fill(0);
+for (let block = firstKnownBlock; block < 64; block++) {
+  const plaintext = terminalKnown.slice(4 * block - 161, 4 * block + 4 - 161);
+  const cipher = applyPower(ringMultiply(knownUnitInverse, plaintext),
+    companionMinus, block);
+  syntheticTerminal.splice(4 * block, 4, ...cipher);
+}
+const posTest = terminalKnownReceiver(syntheticTerminal, 1);
+assert.deepEqual(posTest, {u: knownUnit, runes: 92, wholeBlocks: 23});
+console.log('TERMINAL_KNOWN_POSITIVE', JSON.stringify({
+  originalNativeSource: 'LP2 p57 92 complete GP29 runes',
+  knownKey: knownUnit, recoveredKey: posTest.u,
+  recovered: posTest.runes, blocks: posTest.wholeBlocks
+}));
+
+for (const check of [
+  {order: 'printed', direction: 1, runes: 8,
+    u: [18, 26, 13, 12]},
+  {order: 'printed', direction: -1, runes: 7,
+    u: [0, 0, 4, 10]},
+  {order: 'reverse', direction: 1, runes: 10,
+    u: [5, 3, 26, 12]},
+  {order: 'reverse', direction: -1, runes: 7,
+    u: [14, 3, 15, 8]}
+]) {
+  const printed = check.order === 'printed'
+    ? grid.bytes : grid.bytes.slice().reverse();
+  const sourceTape = printed.map(mod);
+  const result = terminalKnownReceiver(sourceTape, check.direction);
+  assert.deepEqual(result.u, check.u, check.order);
+  assert.equal(result.runes, check.runes, check.order);
+  assert.equal(result.wholeBlocks, 1, check.order);
+  console.log('TERMINAL_KNOWN_ORIGINAL', JSON.stringify({
+    order: check.order, direction: check.direction,
+    knownSourceRunes: 92, calibratedSourceRunes: 4,
+    heldOutRunes: 88, heldOutRecovered: result.runes - 4,
+    ...result
+  }));
+}
+console.log('PASS: source HG all-IV scalar, all-phase companion, and terminal p57 known-plaintext receiver fail to decrypt unknown LP2');
+
 
