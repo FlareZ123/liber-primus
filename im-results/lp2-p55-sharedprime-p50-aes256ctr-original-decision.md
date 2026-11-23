@@ -8,6 +8,8 @@ The source-visible *PARABLE* (solved p57) says to shed circumferences. The origi
 
 A **different** concrete receiver is the 256 two-character entries printed across actual p49–51 (the numeric p50 grid). Exactly 256 source words are byte-shaped, and AES-256 in CTR mode is a historically available standard cipher. The proposed link to the later p55 prime is **speculative**: no author instruction selects the p55-to-table key handoff, AES, this KDF, a CTR initial counter, or the byte alphabet. A strong rival is unrelated encrypted or random table data.
 
+**Algebraic radix caveat.** Both digit alphabets express every printed table token as an in-range byte, but their historical support is asymmetric. The independently published exact H/G GF29 polynomial factors of the numeric table **select conventional base60 under standard token orientation** and fail under the base59 codebook; see [the source-radix residue analysis](2013-base29-gf29-grid-factor.md). Testing base59 here is an explicit competing-encoding control, rather than an equally authenticated intended input. The original AES-CTR base60 run is also a confirmed **Agent11 prior result** and should not be counted as fresh discovery.
+
 ## Frozen executable operation
 
 Re-read the original p55 rune tape and complete words, preserving the one-rune carry from p54. Excluding that carry only for the declared *page-local* SHED operation gives:
