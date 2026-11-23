@@ -1,6 +1,6 @@
-# P8's source-selected MXIX=1019 inverse has no direct binary container
+# P8's MXIX=1019 literal-F inverse fails the source-complete 4|256 frame
 
-**Scope and status (23 November 2026).** This is a bounded *negative decipherment decision* on actual physical LP2 page p8. It is **not** recovered plaintext, a proven p8 key, or an interpretation of the page's meaning. It tests one historically motivated second-stage readout left open by the existing [p8 red-heading/prime-clock study](../workplace/2014-prime19-p8-xix-black-clock-source-path.md), rather than retrying arbitrary additional keys.
+**Scope and status (23 November 2026).** This is a bounded *negative decipherment decision* on the original physical LP2 p8→p9 transition. It is **not** recovered plaintext, a proven p8 key, or an interpretation of the page's meaning. It tests one historically motivated second-stage readout left open by the existing [p8 red-heading/prime-clock study](../workplace/2014-prime19-p8-xix-black-clock-source-path.md), rather than retrying arbitrary additional keys.
 
 ## Independent original inputs and proposed human solve path
 
@@ -8,7 +8,19 @@ Physical p8 has a 12-rune red heading and 243 subsequent black runes, from [the 
 
 The final known solved page p56 uses the explicit **prime-totient key**, advancing its key clock only on non-F plaintext runes. Hypothesis: apply exactly that reversible historical cipher to p8's original black ciphertext with prime index **1019**, then regard its 243 plaintext GP29 symbols as a *single source-ordered radix29 integer containing compressed or otherwise typed binary data*. This tests a compressed intermediate even when direct GP-letter output is meaningless. The native 2014 puzzle used compressed payloads elsewhere, which makes a direct container check historically motivated. No arbitrary offsets or encryption passwords are selected.
 
-## Exhaustive literal-F inverse under the frozen prime index
+## Stronger first-stage obstruction: the unique 4|256 source frame
+
+The p8 red heading's **first four runes** can themselves be read as the instruction **XIXM→MXIX=1019**. The *next 256 consecutive runes*, after those four, are uniquely source-framed: **p8 remaining 251 runes plus p9's first five**, which complete the printed word crossing the physical page boundary. This 4|256 alignment is independently documented in the [source-frame decision](lp2-p8-p50-4plus256-original-frame-pad-gate.md). It offers a more direct candidate receiver than arbitrarily discarding the remaining red heading.
+
+Apply the **same** p56 authentic prime-totient/literal-F skip inverse with prime-index start **1019**. Branch exhaustively at each ciphertext F and disallow any non-F ciphertext symbol from decoding to plaintext F. **There are zero legal 256-symbol inverses.**
+
+The first key-independent fatal witness occurs at frame offset **75** (original p8 rune offset **79**). Only **one** legal state survives the preceding 75 symbols: it has transparently skipped the frame's F at offset **30** and consumed **74** primes. The next 0-based prime index is **1093**, with actual prime **8779**, giving key **(8779−1) mod29 = 20**. The original rune at this position is GP0 **20**, so decryption gives **plaintext F0** while its ciphertext is a **non-F rune**. The historical p56 law disallows this, and no further branch exists. The test uses only original runes and exact arithmetic; score models and guessed cribs are unnecessary.
+
+A native **256-rune solved-p57 English plant** encrypted with precisely this same prime-index/F bypass rule stays legal through all 256 positions. The negative is specific to the **untouched original p8 source frame**. Consequently the full, original 4|256 framing rules out this exact p8-prime1019 first-stage decipherment before binary decoding or any hypothesized extra layer. A source-selected **different** cipher law could remain viable; none is established here.
+
+## Secondary black-only p8 binary candidate
+
+### Exhaustive literal-F inverse under the frozen prime index
 
 The p8 black section has eight literal ciphertext F positions (zero-based black offsets) **22, 149, 171, 177, 180, 184, 191, 233**. Every F ciphertext has exactly two historical branches: transparent plaintext F with no prime step, or an ordinary non-F plaintext using the next prime. For every other ciphertext glyph, the ordinary inverse must produce a non-F symbol.
 
@@ -22,7 +34,7 @@ Enumerating the complete **2^8=256** branch family yields **exactly three legal,
 
 These same three paths and exact clocks are independently established in the prior p8 prime-clock study. In all three, the first sixteen inverse rune indices are **[8,13,14,2,3,25,12,26,20,4,17,6,27,10,14,14]**, with no native-GP text recovery.
 
-## Direct binary test and result
+### Direct binary test and result
 
 For each legal inverse, interpret (a) all 243 GP29 decoded symbols and (b) the non-F symbols only, as a **big-endian base29 integer** packed into minimal bytes. For each, inspect original and reversed byte order. This produces **12 concrete original-source byte streams**. Test initial magic for gzip, zlib, raw ZIP, bzip2, XZ, PNG, JPEG, PDF and PGP armor. Run native zlib, gzip and strict raw-DEFLATE on each, accepting only at least 50 decoded bytes with at least 90% readable ASCII.
 
@@ -32,4 +44,4 @@ The read-only, source-backed [Node22 CommonJS SFT](../sims/lp2_p8_mxix1019_binar
 
 ## Decision and precise open branch
 
-The **direct prime1019→radix29→standard compressed or typed file** route fails on the original p8 black ciphertext. It does **not** exclude a different key start, a genuinely supplied binary frame, altered radix packing, an additional keyed cipher, or a non-file intermediate; none is justified by the cited red source word. Further searches over such variables would require an independent original clue selecting the extra operation and a typed recipient. The uniquely readable XIXM/MXIX word remains an interesting but **provisional** navigation/key-source clue, with no unknown plaintext yet recovered.
+The **full 4|256 source-frame prime1019/F-transparent** route is algebraically impossible at rune 75. The less natural **black-only 243-rune prime1019→radix29→standard compressed or typed file** route also fails to produce a recognized payload. It does **not** exclude a different key start, a genuinely supplied binary frame, altered radix packing, an additional keyed cipher, or a non-file intermediate; none is justified by the cited red source word. Further searches over such variables would require an independent original clue selecting the extra operation and a typed recipient. The uniquely readable XIXM/MXIX word remains an interesting but **provisional** navigation/key-source clue, with no unknown plaintext yet recovered.
