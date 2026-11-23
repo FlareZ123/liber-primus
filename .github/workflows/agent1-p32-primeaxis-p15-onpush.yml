@@ -1,10 +1,6 @@
 name: Agent1 p32 prime-axis p15 exact original replay
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - .github/workflows/agent1-p32-primeaxis-p15-onpush.yml
 permissions:
   contents: read
 jobs:
