@@ -1,8 +1,5 @@
 name: Agent2 2013 560.13 complete 28-successor-rank source-key scan
 on:
-  push:
-    paths:
-      - '.github/workflows/agent2-2013-56013-full-rank28.yml'
   workflow_dispatch:
 permissions:
   contents: read
