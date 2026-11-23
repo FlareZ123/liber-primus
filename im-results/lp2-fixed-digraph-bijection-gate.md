@@ -33,6 +33,25 @@ For each segmentation, both block phases (0 and 1) were tested. Pair blocks rest
 
 Across all eight cases, the ciphertext uses 828–838 of the 841 possible pairs and no pair occurs more than 20 times. Its pair spectrum is close to the occupancy profile expected from a near-uniform stream.
 
+### Original 256-table interpretation: stricter state-free capacity obstruction (Agent12, 23 November)
+
+The original p49–51 32×8 table supplies **256 cells**, inviting a fixed one-byte-to-two-rune codebook as an independent interpretation of the pair channel. Even without any plaintext-language assumption, a direct stationary 256-entry byte-to-digraph lookup has at most **256 distinct ordered GP29 outputs**. The unchanged original stream contains **832 / 838** unique pairs in the two global phases above, so a book-global codebook is impossible. Granting a fresh unknown **fixed codebook per authentic visual chapter** does not save its first eight chapters:
+
+| Physical chapter | Original runes | Unique pairs (chapter-local phase 0 / 1) |
+|---|---:|---:|
+| p0–2 | 729 | 303 / 303 |
+| p3–7 | 1,145 | 414 / 403 |
+| p8–14 | 1,729 | 532 / 537 |
+| p15–22 | 1,903 | 573 / 556 |
+| p23–26 | 1,021 | 373 / 387 |
+| p27–32 | 1,433 | 482 / 495 |
+| p33–39 | 1,680 | 518 / 530 |
+| p40–53 | 3,008 | 700 / 688 |
+| p54–55 | 308 | 138 / 140 |
+
+The terminal p54–55 chapter alone is below capacity; neither page-private codebooks nor stateful or variable-length encodings are excluded. Independently, the printed byte multiset has **161 distinct values**, so it is **not** a direct bijective 256-byte permutation, an obstruction already documented in [the consolidated historical S-box study](lp2-p50-source-consumer-and-sbox-gate.md). The existing book-global digraph values are reused above rather than presented as novel discoveries. This narrow 256-codeword consequence and chapter-local tests are reproducible in [the original-input Windows Node22 SFT](../sims/lp2_grid256_digraph_codebook_capacity_sft.cjs) ([PASS 45274984753](https://github.com/FlareZ123/liber-primus/actions/runs/45274984753)). It does not decode a rune or select any author-authenticated byte operation.
+
+
 
 ## Standard Playfair: exact source-only equal-pair exclusion, including all four-transparent-rune keys
 
