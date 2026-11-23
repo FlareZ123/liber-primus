@@ -222,6 +222,29 @@ assert.equal(before.wordsWithRepeat, after.wordsWithRepeat);
 console.log("POSITIVE", JSON.stringify({ words: planted.length,
   runes: planted.flat().length, before, after,
   recoveredRunes: planted.flat().length }));
+// Stronger all-secret one-sided theorem, even allowing *non-injective*
+// deterministic 29->29 maps independently for every original word:
+// equal plaintext runes always map to equal ciphertext runes.
+// Such maps may merge distinct runes, never split an equal-rune pair.
+// This excludes more mechanisms than alphabet bijections alone.
+const lossyCipher = planted.map(word => {
+  const secretMap = Array.from({length: 29}, () => pick(19));
+  const order = shuffled(Array.from({length: word.length}, (_, i) => i));
+  const encoded = order.map(pos => secretMap[word[pos]]);
+  assert(equalPairs(encoded) >= equalPairs(word),
+    "deterministic secret symbol mapping cannot remove equal-rune pairs");
+  return encoded;
+});
+const lossyStats = count(lossyCipher);
+assert(lossyStats.pairs >= before.pairs);
+assert(lossyStats.wordsWithRepeat >= before.wordsWithRepeat);
+console.log("NONINJECTIVE_POSITIVE", JSON.stringify({
+  alphabetOutputs: 19, originalRunes: before.pairs,
+  extraCollisions: lossyStats.pairs - before.pairs,
+  input: before, output: lossyStats,
+  all2896WordsPassedOneSidedBound: true,
+  note: "A lossy word map needs additional hidden information for an injective complete cipher"
+}));
 // Author-authentic control from already-solved LP2 physical page 56.
 // Its actual prime-totient moving-key cipher does NOT conserve the
 // word-private monoalphabetic pair count, despite exact word lengths.
