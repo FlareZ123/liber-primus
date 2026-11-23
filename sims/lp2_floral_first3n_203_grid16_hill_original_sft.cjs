@@ -132,6 +132,35 @@ assert.equal(scores.direct,0.03456373522508841);
 assert.equal(scores['inverse-transpose'],0.03445601927356969);
 assert.equal(scores['direct-transpose'],0.03450305018197927);
 
+// Constrained field parse prompted by the *first* source byte 203:
+// one header, 203 following panel bytes, 51 candidate coda bytes, one footer.
+// This is a separate, falsifiable possible interpretation of the panel.
+const red53 = ink.pages.find(p=>p.page===53).red_spans.find(s=>s.length===51);
+assert.ok(red53);
+const nativeRed51 = corpus.pages.find(p=>p.page===53).indices.slice(
+  red53.start, red53.start + red53.length);
+const tail51 = grid.bytes.slice(204, 255).map(mod);
+assert.equal(tail51.length,51);
+assert.equal(grid.bytes.slice(1,204).length,203);
+assert.equal(grid.bytes[255],80);
+let directMatches=0;
+const assignments = Array.from({length:29},()=>new Map());
+for(let j=0;j<51;j++){
+  if(tail51[j]===nativeRed51[j])directMatches++;
+  const states=assignments[tail51[j]];
+  states.set(nativeRed51[j],(states.get(nativeRed51[j])||0)+1);
+}
+const matchable = assignments.reduce((sum,map)=>
+  sum+(map.size ? Math.max(...map.values()) : 0),0);
+const irreducibleMismatches = 51 - matchable;
+assert.equal(directMatches,0);
+assert.equal(irreducibleMismatches,25);
+// Planted deterministic 29-symbol mapping must have zero contradictions.
+const sourceMap = tail51.map(x=>(3*x+5)%29);
+const planted = Array.from({length:29},()=>new Set());
+tail51.forEach((x,i)=>planted[x].add(sourceMap[i]));
+assert.ok(planted.every(m=>m.size<=1));
+
 // Independent genuinely solved LP2 source-native rune plant.
 const native=corpus.pages.find(p=>p.page===57).indices;
 assert.equal(native.length,95);
@@ -150,5 +179,6 @@ console.log(JSON.stringify({
   inverseScores:scores,
   exactOriginalForwardReplay:models.map(x=>x[0]),
   solvedNativePlantRecovered:plant.length,
+  table203Header51Tail: {directMatches,irreducibleMismatches,declaredHeader:grid.bytes[0],footer:grid.bytes[255]},
   caveat:'Source-first number matches a retrospective dimension only under base60; no author-typed Hill command, and no original plaintext was recovered.',
 },null,2));
