@@ -175,6 +175,52 @@ const encryptedPlant = nativePlant.map((v, i) => (v + pad[i]) % 29);
 assert.deepEqual(encryptedPlant.map((v, i) => (v - pad[i] + 29) % 29),
   nativePlant);
 
+// Distinct first-opcode hypothesis: the original p33 FIRST red ten-rune heading
+// has GP-prime sum 379. The period-documented (unsigned) 2013 NUMBER rule
+// reverses the decimal digits 379 -> 973 and factors 973 = 7 * 139.
+// The source-marked seven-page chapter has a 139-rune *first* numbered item.
+// Treating 7 as a group multiplier modulo prime 139 gives exactly 3 orbits,
+// admitting (but not authenticating) the three separately red p39 runes as IV.
+// Decrypt the full original item through a causal orbit-predecessor difference.
+const redHeading = p33.indices.slice(0, 10);
+assert.equal(redHeading.reduce((sum, i) => sum + corpus.prime[i], 0), 379);
+assert.equal(Number(String(379).split('').reverse().join('')), 973);
+assert.equal(7 * 139, 973);
+assert.equal(units[0].length, 139);
+const firstNumbered = units[0];
+const seen139 = new Set();
+const cycles139 = [];
+for (let first = 0; first < 139; first++) {
+  if (seen139.has(first)) continue;
+  const orbit = [];
+  for (let i = first; !seen139.has(i); i = i * 7 % 139) {
+    orbit.push(i);
+    seen139.add(i);
+  }
+  cycles139.push(orbit);
+}
+assert.deepEqual(cycles139.map(c => c.length), [1, 69, 69]);
+assert.deepEqual(cycles139.map(c => c[0]), [0, 1, 2]);
+const predecessorDifference = Array(139).fill(0);
+const reconstructed = Array(139).fill(0);
+for (let k = 0; k < cycles139.length; k++) {
+  const orbit = cycles139[k];
+  predecessorDifference[orbit[0]] =
+    (firstNumbered[orbit[0]] - red3[k] + 29) % 29;
+  reconstructed[orbit[0]] =
+    (predecessorDifference[orbit[0]] + red3[k]) % 29;
+  for (let i = 1; i < orbit.length; i++) {
+    const at = orbit[i];
+    const prev = orbit[i - 1];
+    predecessorDifference[at] =
+      (firstNumbered[at] - firstNumbered[prev] + 29) % 29;
+    reconstructed[at] =
+      (predecessorDifference[at] + reconstructed[prev]) % 29;
+  }
+}
+assert.deepEqual(reconstructed, firstNumbered);
+assert(Math.abs(ioc(predecessorDifference) - 0.03273902617036805) < 1e-12);
+
 console.log(JSON.stringify({
   chapter: {pageRange: '33-39',startP33:91,length:chapter.length},
   originalSegments: {
@@ -193,6 +239,7 @@ console.log(JSON.stringify({
     directMinusIoC: ioc(decodedMinus), directPlusIoC: ioc(decodedPlus),
     orbitDifferenceIoC: ioc(differences), reverseOrder550IoC: ioc(reverseDecryption)
   },
+  firstOpcode379: {headPrimeSum: 379, reverse: 973, pageCount: 7, firstUnitLen: 139, orbitLengths: cycles139.map(c => c.length), red3AsIV: red3, firstUnitRawIoC: ioc(firstNumbered), inverseIoC: ioc(predecessorDifference), forwardReconstruction: firstNumbered.length},
   plantedNativeRunnersRecovered: nativePlant.length,
   unknownPlaintextRecovered: false
 }, null, 2));
