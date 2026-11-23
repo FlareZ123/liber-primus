@@ -49,6 +49,30 @@ The output space is short by a factor of **more than \(2^{34.62}\)**, irrespecti
 
 The actual source is stricter still: page starts, red intervals and punctuation placements visually form chapter headings rather than a free sidecar. The purpose of the generous bound is to exclude *all possible* universal decoders of the stated output format, not to infer the author's design.
 
+## Four confirmed original raised apostrophes still leave the page-locked channel short
+
+The original p4, p21, p35 and p41 contain four visually verified **12×40-pixel raised apostrophe strokes**, respectively inside the complete ciphertext words `MXI'W`, `AEO'Y`, `PE'T`, `XLJ'C`. The strokes are **independent of the 31 large marks** and are already source-audited against the solved LP1 `DON'T` positive [apostrophe study](lp2-apostrophe-four-source-cribs.md). Their actual locations inside a printed word remain fixed in the original artifact; to maximize the hypothetical side channel, grant one apostrophe on **any** of the `n_p+1` rune seams of its original physical page, including page edges and otherwise visually impossible between-word positions. Four distinct fixed pages remove any collision issue, giving exactly
+
+\[
+\log_2[(261+1)(273+1)(271+1)(273+1)]
+=\mathbf{32.3169500087\ bits}.
+\]
+
+This is a deliberately excessive allowance: the genuinely printed ticks have fixed 3+1/2+1/2+1/3+1 internal-word positions, and a human-readable contraction-mark restriction would reduce the options.
+
+| Source-ink sidecar (fixed original page membership) | Maximum information |
+|---|---:|
+| All 16 original ordered, fixed-length red runs moved to arbitrary original-page rune seams | 118.7487333514 bits |
+| All 31 original large marks moved to arbitrary original-page word boundaries with extra type flags | 172.0779687016 bits |
+| **All four raised apostrophes**, independently anywhere on their original pages | **32.3169500087 bits** |
+| **Combined red + large-mark + apostrophe channel** | **323.1436520617 bits** |
+| Uniform all-GP29, at-most-86-repeat capacity requirement | 325.4502541840 bits |
+| **Still missing despite every eligible ink coordinate** | **2.3066021223 bits** |
+
+The **stronger per-page budget** (k_p) gives a more robust exclusion: allowing the original 31 large marks to roam over **3,008 book-global word seams** and all four apostrophes to roam within their original physical pages, while 16 red runs remain fixed to their original pages, yields at most **413.9052488312 bits** against **430.5612013481 bits** of universal pagewise at-most-(k_p) repeat loss. There is **16.6559525169 bits** still missing. This latter output contract allows the original large marks to cross *all* book pages; it still preserves the original physical-page identity of each red run and raised apostrophe.
+
+**Scope:** Original **quotation-opening/closing strokes**, ordinary printed word separators, other line typography, movable page membership, arbitrary red-run lengths, independently colorable rune pixels, hidden JPEG/p50 payloads and an English-restricted input alphabet are **held fixed or outside this particular upper bound**. Accordingly this excludes the full explicitly listed three-channel coordinate-only universal code, not every imaginable use of all page artwork. Under the separate *exact-(k_p)* model that already grants unrestricted global red-run and large-mark movement, the extra apostrophes can make the cardinality inequality reverse, so that far more permissive model is **not** excluded by this extension. No original plaintext, key or chosen cipher is recovered.
+
 ## Stronger global-channel variants using each page's genuine repeat profile
 
 The above theorem preserves only the **total** maximum of 86 repeats, an especially generous output constraint. The original additionally exposes the *location* of those repeats: the 55 rune-bearing pages each have their own actual within-page count `k_p`, with **13 pages having zero** and **no page exceeding five**. This permits a second exact cardinality argument that drops the previous restriction on where the **large marks** may move.
