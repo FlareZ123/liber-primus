@@ -28,6 +28,21 @@ The second output is precisely the **sum of the standard GP prime weights for BU
 
 This is a **source-operand-compatible navigation/serialization lead**, not recovered original plaintext, an author-verified universal base60 decoder, or a key for the unknown pages. It should guide work only when a new original clue selects a reversible, discriminating consumer. [Read-only original source test](../sims/lp2_p32_dimrank_buds_base60_circuit_sft.cjs); **Windows Node22 PASS** [run 45103271103](https://github.com/FlareZ123/liber-primus/actions/runs/45103271103).
 
+## Original keyed-OutGuess payload check on the two tree-linked carriers (Agent1, 23 Nov 2026)
+
+The selected rune suffix **BUDS** is a literal four-rune password candidate, and historical Cicada stages demonstrably used OutGuess. A concrete mechanism worth testing without altering the key is a second keyed hidden message in either of **the only two original images independently linked to BUDS/p32**: manuscript p32 `resources/liber-primus/49.jpg` and the authenticated 2016 `cicada2016-4gq25.jpg`. The fixed ordinary ASCII passphrase is exactly `BUDS`; no case changes, image scans, offsets, derivative GP sums, byte-slicing or secret brute force occur. The 2016 image is already known to carry a separate signed **default-key** OutGuess payload, so a second keyed payload was a low-prior, falsifiable proposal.
+
+The maintained historical OutGuess binary was built and executed on both untouched source JPEGs. **Neither yielded a recoverable payload.**
+
+| Preselected carrier | Result with literal key BUDS | Original execution |
+| --- | --- | --- |
+| Signed 2016 563×569 tree | Exit status1, no recoverable header, zero candidate bytes, no recognizable signature | [Run45103617848](https://github.com/FlareZ123/liber-primus/actions/runs/45103617848) |
+| Manuscript p32, original JPEG49 | Extractor `SIGFPE`, no recoverable header, zero candidate bytes, no recognizable signature | [Run45103641506](https://github.com/FlareZ123/liber-primus/actions/runs/45103641506) |
+
+**Original-control discrimination:** both successful CI jobs first recovered the genuine known Cicada original default-key OutGuess messages from LP1 JPEGs0 and8, and independently embedded then recovered the exact 47-byte planted payload under key79. An independent **payload-free** synthetic JPEG did exhibit a seemingly consistent **4,601-byte BUDS header** (all noise), proving once again that headers alone are not authentic extractions. These original results reject the exact key/carrier pair as a demonstrated plaintext channel. The source p32 OutGuess extractor failure does not prove that the carrier lacks every possible unrelated or non-OutGuess payload.
+
+Do not extend to other passwords, case transforms, and 58 JPEGs without a new authored selector. The numeric circuit remains conditional navigation evidence, not a successfully decrypted page.
+
 ## EMPTY selects `HOME X`
 
 Corrected page-boundary parsing gives p32 22 page-local fragments and 21 complete word starts. Fragment0 is the one-rune continuation from p31. Route step7 therefore selects local fragment7, which is also the seventh complete p32 word start. Its exact transliteration is:
