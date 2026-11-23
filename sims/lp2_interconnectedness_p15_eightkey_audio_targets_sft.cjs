@@ -304,7 +304,12 @@ assert.deepEqual(totals, {
   29: { configurations: 320, viableConfigurations: 0, viableMasks: 0 },
   55: { configurations: 320, viableConfigurations: 108, viableMasks: 247 }
 });
-assert.equal(positivePlants, 2 * (320 * 3 + 4 * 2 * 3));
+assert.deepEqual(totals, {
+  0: { configurations: 320, viableConfigurations: 17, viableMasks: 752 },
+  29: { configurations: 320, viableConfigurations: 0, viableMasks: 0 },
+  55: { configurations: 320, viableConfigurations: 108, viableMasks: 247 }
+});
+assert.equal(positivePlants, 320 * 3 + 4 * 2 * 3);
 
 // Authentic solved p56 positive control.
 const expectedP56Words =
@@ -321,13 +326,12 @@ for (const word of expectedP56Words.split(' ')) {
   }
 }
 const p56 = page(56).indices;
-let p56Used=0;
-const p56Decoded=p56.map((value,index)=>{
-  if(value===0 && [35,47,51,56,74].includes(index)) return 0;
-  return mod29(value-(primeTable[p56Used++]-1));
-});
-assert.deepEqual(p56Decoded,expectedP56);
-const p56IoC=ioc(expectedP56);
+const p56KeyAt = used => primeTable[used] - 1;
+const p56Decoded = decodeF(p56, p56KeyAt, -1, 8);
+assert.ok(p56Decoded);
+assert.deepEqual(p56Decoded.plaintext, expectedP56);
+assert.deepEqual(encodeF(expectedP56, p56KeyAt, -1), p56);
+const p56IoC = ioc(expectedP56);
 
 const primeStarts=audioPrimeReports.map(x=>({
   page:x.page,prime:x.seedPrime,sign:x.sign,viableMasks:x.viable
