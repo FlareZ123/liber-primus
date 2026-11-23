@@ -410,6 +410,24 @@ assert.deepEqual(controls.map(x=>[
     [55407,1059,1244,1150.7734375,0]]);
 const native=encodeWords(read(sources[0][1])).flat().slice(0,N);
 const positive=plant(native),positiveCap=bins(positive.cipher,all);
+// Even independently arbitrary *non-injective* deterministic per-scope
+// tables cannot SPLIT two equal plaintext glyphs; they only add collisions.
+// Demonstrate with a fixed explicit collapse of glyph28 onto glyph0 in
+// each tiny scope, alongside an independent local reversal.
+const lossyCollapsed=new Array(N);
+let collapsedPositions=0;
+for(let j=1;j<withAllVisible.length;j++){
+  const begin=withAllVisible[j-1],end=withAllVisible[j];
+  for(let i=begin;i<end;i++){
+    const sourceRune=native[end-1-(i-begin)];
+    const b=sourceRune===28?0:sourceRune;
+    lossyCollapsed[i]=b;
+    if(sourceRune===28)collapsedPositions++;
+  }
+}
+assert(collapsedPositions>0);
+assert(equalPairs(lossyCollapsed,withAllVisible)>=
+  equalPairs(native,withAllVisible));
 const allVisiblePositive=plant(native,withAllVisible);
 assert.equal(allVisiblePositive.recovered.length,12956);
 assert.equal(equalPairs(native,withAllVisible),
@@ -443,13 +461,18 @@ console.log(JSON.stringify({
     expectedIndependentScopeEcho:inkCrossings.length/29,
     interpretation:'A simple independent fresh-GP29-alphabet reset at every ink scope predicts more crossing equalities than observed; a continuous anti-repeat state remains plausible.'},
   nativeWindowMinima:controls,
-  proof:'Arbitrary within-scope rune permutation and space motion preserve each scope histogram. Any private GP29 symbol bijection only relabels that histogram.',
+  proof:'Within-scope rune permutation and space motion preserve within-scope equal-runepair counts. An independently arbitrary deterministic 29-to-29 mapping per smallest scope can only MERGE source symbol classes, never SPLIT a plaintext equality. Thus ciphertext within-scope equal pairs are at least plaintext pairs even for lossy secret maps; original pair scarcity excludes GP-native donor controls.',
   nativePlant:{recoveredRunes:positive.recovered.length,
     ciphertextMaxE:capacity(positiveCap,1),
     ciphertextMaxEO:capacity(positiveCap,2),
     sourceNativeE:nativeE,sourceNativeEO:nativeEO,
     alternativeWordBreaks:moved.length,
     exactInverseOfWordBreakReflow:true,
-    allVisibleScopePrivateAlphabetAndRereadRestoresAllNativeGP:true},
+    allVisibleScopePrivateAlphabetAndRereadRestoresAllNativeGP:true,
+    lossyNoninjectiveCollapsePairCount:{
+      collapsedGlyphs:collapsedPositions,
+      native:equalPairs(native,withAllVisible),
+      cipher:equalPairs(lossyCollapsed,withAllVisible),
+      cannotSplitEqualSourcePairs:true}},
   decision:'All original source-anchored scope-static GP29 substitutions combined with arbitrary internal transposition and word resegmentation fail native-GP prose ceilings. A viable space-changing solver must move rune mass across anchor cuts or change rune identities through evolving/polygraphic states (or use another plaintext register).'
 },null,2));
