@@ -253,10 +253,10 @@ const donors = [
   ["Shakespeare", "resources/control/shakespeare_first300k.txt",
     text => text],
   ["Solved Cicada pages, editorial", "resources/liber-primus/lp1-plaintext-reference.txt",
-    text => text.split(/\\n### \\d+\\n/).slice(1).join("\\n")
-      .split("\\n").filter(line => !line.startsWith("[")
-        && !/^\\s*[\\d\\s]+$/.test(line)
-        && !/^\\s*CONTINUED/i.test(line)).join(" ")]
+    text => text.split(/\n### \d+\n/).slice(1).join("\n")
+      .split("\n").filter(line => !line.startsWith("[")
+        && !/^\s*[\d\s]+$/.test(line)
+        && !/^\s*CONTINUED/i.test(line)).join(" ")]
 ];
 
 /** Exact original-GP reference registers avoiding invented Latin spelling. */
@@ -274,7 +274,7 @@ const nativeSources = [
     const alphabet = new Map([..."0123456789ABCDEFGHIJKLMNOPQRS"]
       .map((ch, i) => [ch, i]));
     const words = read("resources/control/latin-vulgate-gp-wholewords.txt")
-      .split(/\\r?\\n/).map(line => line.trim())
+      .split(/\r?\n/).map(line => line.trim())
       .filter(line => /^[0-9A-S]+$/.test(line));
     assert.equal(words.length, 39835);
     return Uint8Array.from([...words.join("")], ch => alphabet.get(ch));
@@ -282,7 +282,7 @@ const nativeSources = [
   ["Solved LP1 authentic runes", () => {
     const alphabet = new Map(gp.runes.map((ch, i) => [ch, i]));
     return Uint8Array.from(read("resources/transcriptions/lp1_wulfic_canonical.txt")
-      .match(/[\\u16A0-\\u16FF]/gu) || [], ch => alphabet.get(ch));
+      .match(/[\u16A0-\u16FF]/gu) || [], ch => alphabet.get(ch));
   }],
   ["Solved LP2 p57 authentic runes", () => Uint8Array.from(gp.pages[57].indices)]
 ];
