@@ -1,0 +1,14 @@
+name: Agent39 original word-private rank28 affine native-lexicon SFT
+on:
+  workflow_dispatch:
+jobs:
+  rank28-original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact original LP2 all-key lexical gate
+        run: node sims/lp2_wordprivate_rank28_affine_nativelex_sft.cjs
