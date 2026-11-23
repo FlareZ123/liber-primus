@@ -241,8 +241,8 @@ function plantRoundtrip(plain,mode,withMarks) {
     const ciphertextPage=Array(size).fill(0);
     const recoveredPage=Array(size).fill(0);
     if(mode==="D") {
-      ciphertextPage[0]=0;
-      recoveredPage[0]=plain[global]; // public first-rune IV unchanged
+      ciphertextPage[0]=plain[global]; // source-visible literal page IV
+      recoveredPage[0]=ciphertextPage[0]; // recovered directly from bytes
     }
     for (let z=0;z<cuts.length-1;z++) {
       const beginning=Math.max(cuts[z],mode==="D"?1:0);
