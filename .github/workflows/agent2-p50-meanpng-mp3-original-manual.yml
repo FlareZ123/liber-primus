@@ -1,6 +1,15 @@
 name: Agent 2 fixed p50 Meanpng password on original 2014 MP3
 on:
   workflow_dispatch:
+    inputs:
+      receiver:
+        description: 'Fixed original MP3 carrier: 2014 stego positive or 2013 PARABLE source'
+        required: true
+        type: choice
+        options:
+          - interconnected2014
+          - parable2013
+        default: interconnected2014
 permissions:
   contents: read
 jobs:
@@ -31,6 +40,16 @@ jobs:
           if ((& git hash-object -- $mp3).Trim() -ne '09fe068192b76a3697c47ec1d604b527703db798') { throw '2014 original MP3 mismatch' }
           "EXE=$(Join-Path $dir 'OpenPuff.exe')" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
           "MP3=$mp3" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          $receiver = '${{ inputs.receiver }}'
+          if ($receiver -eq 'parable2013') {
+            $other = Join-Path $env:RUNNER_TEMP '761.MP3'
+            Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/rtkd/iddqd/f2267b0c2f1e1d2662806b90b9c3a2953b3a7023/2013/02/761.MP3' -OutFile $other
+            if ((Get-Item $other).Length -ne 4010732) { throw 'Original 2013 PARABLE MP3 byte length mismatch' }
+            if ((Get-FileHash $other -Algorithm SHA256).Hash.ToLowerInvariant() -ne '83008217439110c3b824898af73b99cb2cf0657dda88cb363c3aa34a4ec0a460') { throw 'Original 2013 PARABLE source mismatch' }
+            "TARGET_MP3=$other" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          } elseif ($receiver -eq 'interconnected2014') {
+            "TARGET_MP3=$mp3" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          } else { throw 'No such source-fixed receiver' }
       - name: Recover source-published 745-byte payload as positive
         shell: pwsh
         run: |
@@ -41,11 +60,11 @@ jobs:
       - name: Exact p50 fifth-column Bitcoin address as only candidate
         shell: pwsh
         run: |
-          python sims/openpuff_v400_extract.py --exe "$env:EXE" --carrier "$env:MP3" --password '1Meanpng7jzYW69Cqmto1r2mGeEoynXdoK' --bit-format 'Mp3 (Audio)' --bit-level '1/2 (50%) - Maximum' --out probe-output/meanpng --wait-seconds 120
+          python sims/openpuff_v400_extract.py --exe "$env:EXE" --carrier "$env:TARGET_MP3" --password '1Meanpng7jzYW69Cqmto1r2mGeEoynXdoK' --bit-format 'Mp3 (Audio)' --bit-level '1/2 (50%) - Maximum' --out probe-output/meanpng --wait-seconds 120
           if ($LASTEXITCODE -ne 0) { throw 'Original candidate execution failed' }
           $r = Get-Content probe-output/meanpng/result.json -Raw | ConvertFrom-Json
           if (-not $r.carrier_added -or -not $r.bit_selection_verified -or $r.native_probe_outcome -eq 'inconclusive-timeout') { throw 'Original candidate test inconclusive' }
-          Write-Host "ORIGINAL_MEANPNG_MP3 $($r | Select-Object native_probe_outcome,output_present,outputs,error_dialogs | ConvertTo-Json -Depth 10 -Compress)"
+          Write-Host "ORIGINAL_MEANPNG_MP3 receiver=${{ inputs.receiver }} $($r | Select-Object native_probe_outcome,output_present,outputs,error_dialogs | ConvertTo-Json -Depth 10 -Compress)"
       - name: Preserve native output and original GUI record
         if: always()
         uses: actions/upload-artifact@v4
