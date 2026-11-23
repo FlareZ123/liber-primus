@@ -93,7 +93,7 @@ function nativeCounts() {
   let types = 0;
   for (const line of source.split(/\r?\n/)) {
     const match = /^([a-z]+)\s+(\d+)$/.exec(line.trim());
-    if (!match) continue;
+    if (!match || /q(?!u)/.test(match[1])) continue; // Only original GP-encodable QU words.
     const weight = Number(match[2]);
     const symbols = plaintextWords(match[1])[0];
     if (symbols.length === 0) continue;
