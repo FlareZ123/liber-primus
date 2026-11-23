@@ -2,11 +2,6 @@ name: Agent 3 p15 DH28 nonzero-step complete source-key recovery
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - .github/workflows/agent3-p15-dh28-chain-inversion.yml
-      - sims/lp2_p15_dh28_r16_chapter_key_recovery_sft.cjs
 
 jobs:
   nonzero-group-chain:
