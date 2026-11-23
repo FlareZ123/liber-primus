@@ -135,6 +135,52 @@ for (const keyKind of ["node", "byte"]) {
     });
   }
 }
+// A second bounded, source-motivated consumer: p56's authenticated
+// consecutive-prime-totient GP29 pad with a fresh per-fragment prime-index
+// clock selected by each original p50 node or by its original printed byte.
+// This changes every rune and has no fitted initial phase or language score.
+const primeList = [];
+for (let n = 2; primeList.length < 275; n++) {
+  if (primeList.every((p) => p * p > n || n % p !== 0)) primeList.push(n);
+}
+/** @param {number[][]} input @param {"node"|"byte"} keyKind
+ * @param {-1|1} sign @returns {number[][]}
+ */
+function primeWordCipher(input, keyKind, sign) {
+  return input.map((word, i) => {
+    const seed = keyKind === "node" ? pathIndices[i] : sourceValues[i];
+    return word.map((c, j) =>
+      (c + sign * ((primeList[seed + j] - 1) % 29) + 29) % 29);
+  });
+}
+const primeCandidates = [];
+for (const keyKind of ["node", "byte"]) {
+  for (const sign of [-1, 1]) {
+    const decoded = primeWordCipher(fragments, keyKind, sign);
+    assert.deepEqual(primeWordCipher(decoded, keyKind, -sign), fragments);
+    assert.deepEqual(primeWordCipher(
+      primeWordCipher(positiveProxy(), keyKind, -sign), keyKind, sign),
+      positiveProxy());
+    primeCandidates.push({
+      keyKind,
+      sign,
+      gp29IoC: Number(ioc(decoded.flat()).toFixed(12)),
+      originalSeparatedGPTranslit: decoded
+        .map((w) => w.map((r) => gp.translit[r]).join("")).join(" "),
+    });
+  }
+}
+function positiveProxy() {
+  const solved = gp.pages.find((p) => p.page === 57).indices;
+  let offset = 0;
+  return fragments.map((w) => {
+    const part = solved.slice(offset, offset + w.length);
+    offset += w.length;
+    return part;
+  });
+}
+assert.equal(primeCandidates.length, 4);
+assert.ok(primeCandidates.every((c) => c.gp29IoC < 0.05));
 assert.equal(candidates.length, 4);
 assert.ok(candidates.every((c) => c.gp29IoC < 0.04));
 const solved = gp.pages.find((p) => p.page === 57).indices;
@@ -165,7 +211,8 @@ console.log(JSON.stringify({
   p55Runes: original.length,
   cipherIoC: Number(ioc(original).toFixed(12)),
   candidates,
-  solvedPlaintextPlants: "4/4 exact 76-rune forward-and-inverse",
+  primeTotientWordCandidates: primeCandidates,
+  solvedPlaintextPlants: "8/8 exact 76-rune forward-and-inverse",
   conclusion: "The natural word-Caesar consumer is negative; path is conditional"
 }, null, 2));
-console.log("PASS: exact source route, complete original 76-rune negative, four solved plants");
+console.log("PASS: exact source route, complete original 76-rune negative, eight solved plants");
