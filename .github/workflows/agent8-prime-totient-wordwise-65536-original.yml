@@ -1,5 +1,9 @@
 name: Agent8 65536 prime wordstarts original SFT
 on:
+  push:
+    paths:
+      - sims/lp2_prime_totient_wordwise_65536_english_sft.cjs
+      - .github/workflows/agent8-prime-totient-wordwise-65536-original.yml
   workflow_dispatch:
 jobs:
   prime-wordstart:
