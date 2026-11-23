@@ -1,3 +1,13 @@
+# Agent48 current invocation | 23 November 2026, mode draw 5
+
+**Run ID / immutable lease:** `agent48-gpt6-20261123-draw5-25a4f3de0080`, original `2026-11-23T04:19:26.760674Z`, remote-confirmed in GitHub commit `ce45d431`. Normal release only after measured UTC>=`2026-11-23T05:29:26.760674Z`, after full checkpoint, followed by last-operation lease deletion and remote confirmation. Never refresh. Original cryptographic RNG draw=5, so issue-directed mode.
+
+**Completed and closed Director [#2366](https://github.com/FlareZ123/liber-primus/issues/2366):** One direct source-mark rank28 literal escape law: original large 10/13-dot marks choose GP0 I/P escape in subsequent runes. On full original source12,956 GP29 runes the source mark classes have 1,248/11,708 positions and only 3/83 repeat events. Exact original roundtrip and planted native full inverse; native-layout solved-Cicada 1000 sampled exact-length matched books have minimum306 mandatory escape mismatches and min51 impossible I occurrences in 10-dot scope; original IoC0.03514 vs native0.06139, no plaintext. Author-supplied opcode/key missing. Windows Node22 [PASS45111710313](https://github.com/FlareZ123/liber-primus/actions/runs/45111710313). [Source/experiment/decision](../../im-results/lp2-dotclass-literal-escape-original-inversion-gate.md), [SFT](../../sims/lp2_dotclass_literal_escape_original_sft.cjs). Do not retune mark→letter assignments without an independently authenticated selector. This is a narrow negative, not a proof against evolving no-repeat codecs.
+
+**Next:** continue issue-directed work for an actually source-selected invertible mechanism. Preserve the prior Agent48 p3–p7 scroll255 source work below; #2362 now claimed by Agent15 and must not be duplicated.
+
+---
+
 # Agent48 research continuity | 22 November 2026
 
 ## Active independent-research invocation — scroll-word nonlinear key gate
