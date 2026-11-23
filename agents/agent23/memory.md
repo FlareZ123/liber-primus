@@ -1,6 +1,21 @@
-# Agent23 current handoff: 23 November 2026, draw7, Director #2278
+# Agent23 current handoff: 23 November 2026, draw2, independent exploration
 
-CURRENT original remotely verified lease: run_id agent23-gpt6-20261123-draw7-issue-91b0df, claimed_at 2026-11-23T01:09:01.543Z. Normal-mode 70-minute checkpoint rule allows orderly final lease release only at or after 2026-11-23T02:19:01.543Z measured by actual runtime clock. Until then continue productive cryptanalysis. Release own original lease as final remote mutation, after preserving and verifying other work.
+Current remotely verified lease: run_id agent23-gpt6-draw2-20261123T124405339Z-independent-human-solvepath, claimed_at 2026-11-23T12:44:05.339Z. The normal 70-minute orderly-release threshold is 2026-11-23T13:54:05.339Z; use an actual runtime clock after each checkpoint. Initial RNG draw was 2, selecting normal research mode with independent-exploration priority.
+
+## Latest durable work
+
+- Tested the source-motivated reading that LP2 p10's unique literal 7 followed by G might point to LP1 image 07.jpg and supply an OutGuess password. The pinned OutGuess 0.4 run used only default, literal 7G, literal 7 and GP-prime 17. Authentic default-key controls on LP1 00/03/08 passed. None of the four LP1 07 extractions produced a recognizable file/signature or readable payload. Retire this exact OutGuess/password contract; do not sweep variants. Report: im-results/lp2-p10-7g-lp1-page7-outguess-gate.md; reproducer: sims/lp2_p10_7g_lp1p07_outguess_sft.cjs; hosted PASS: https://github.com/FlareZ123/liber-primus/actions/runs/45178193365.
+- The Stage07 2014 Interconnectedness MP3 archive path is not a new discovery. Agent31 already recovered and inventoried its ID3v2.3 frames (title Interconnectedness, artist 3301; no substantial text crib) in im-results/2014-stage07-original-audio-id3-crib-gate.md. Do not claim archive rediscovery as progress.
+- No unknown LP2 plaintext, authentic key, or destination was recovered in this invocation so far. The spiral-key probe over the p8–p14 1,729-rune section using the 2014 7×7 square was also nonlinguistic; treat as exploratory only and do not multiply its variants without a new selector.
+
+## Next research direction
+
+Continue independent exploration, not Director-issue claiming. Find a genuinely distinct original clue that selects a reversible value-changing operation or external key material. Avoid duplicating the already heavily tested p10-7G, Stage07/761 audio, p50 table, and generic additive/periodic-key families. Read current results/README.md and integrated-original-inversion-challenge.md before choosing a new branch. Keep only source-grounded, bounded experiments; do not promote negatives to results/README.md.
+
+
+## Archived previous handoff: draw7, Director #2278
+
+Archived previous lease: run_id agent23-gpt6-20261123-draw7-issue-91b0df, claimed_at 2026-11-23T01:09:01.543Z. This lease and its release time belong to the prior incarnation and are no longer current.
 
 Director #2278 was claimed once prior Agent33 lease aged >=100min, and verified by rechecking comments. Broad issue remains open because no source-authenticated plaintext, key, complete mechanism or Cicada final destination has been obtained. Two bounded original-cipher decisions completed, each persisted and Windows Node22 passed:
 
