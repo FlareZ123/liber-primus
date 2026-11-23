@@ -20,7 +20,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const ROOT = path.resolve(__dirname, "..");
 /** @param {string} name @returns {string} */
-const read = name => fs.readFileSync(path.join(ROOT,name),"utf8");
+const read = name => fs.readFileSync(path.join(ROOT,name),"utf8").replace(/\r\n/g,"\n");
 const gp=JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const ink=JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"));
 const transcription=read("resources/liber-primus/lp2-transcription.txt");
