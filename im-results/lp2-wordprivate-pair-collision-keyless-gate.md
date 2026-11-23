@@ -61,6 +61,24 @@ All **1,280** native controls exceed the original count, with the closest at **1
 
 The SFT includes a full-length, exact native-language encryption/decryption positive control: encrypt **every independently sampled native word** under a freshly shuffled 29-rune alphabet and independently shuffled rune positions, then invert every one of the 12,956 encoded runes. It also checks the 2,896 individual equality-pair invariants and the aggregate repeated-word count. All original-input assertions and native controls pass on Windows Node 22. Source-file digests, seed, source lengths, exact original count, all control ranges and plant checks are printed by the test.
 
+## How many words must actually change state under native-text assumptions?
+
+The total deficit alone understates the mechanical requirement. For each of the **2,896 individual original printed words** \(w\), compare the native plaintext donor's equal-pair count \(E(P_w)\) against the *fixed original* ciphertext count \(E(C_w)\). If **\(E(P_w)>E(C_w)\)**, any deterministic, word-private *static* alphabet, even if entirely secret and non-injective, is impossible on that **particular word**. At least one within-word time/state change, length alteration, boundary rearrangement or multi-symbol decoder is required at that location. This can be counted exactly without identifying its secret key or predicted plaintext letters.
+
+For the same 256 independently seeded full-source length-matched samples per reference:
+
+| Source-native GP reference | Minimum / median / maximum individual printed words requiring nonstatic treatment | Minimum / median / maximum plaintext equal pairs whose survival is impossible under static word-local maps |
+|---|---:|---:|
+| Shakespeare | **567 / 608 / 667** | 814 / 876 / 976 |
+| Gibran | **514 / 560 / 603** | 741 / 829 / 909 |
+| Emerson | **534 / 590 / 634** | 788 / 859 / 931 |
+| Latin Vulgate | **646 / 692 / 741** | 922 / 1010 / 1116 |
+| Solved LP1 English | **513 / 562 / 614** | 798 / 908 / 1011 |
+
+**At least 513 different printed words** require a dynamic/stateful exception for every tested native sample; median sample requirements are **560–692 words** depending on reference. This is more discriminating than merely observing 811 instead of 1,207+ aggregate pairs: it makes a proposed architecture that changes the alphabet on only a *few dozens of special words* implausible. It **does not exclude** a continuous moving-key encoder with occasional visible repeat events: that kind of mechanism evolves at almost every rune and naturally supplies dynamic state in hundreds of words. The first-party p56 prime-totient positive illustrates the latter class directly. It is also **not a universal lower bound for every possible English passage**, since donor words are samples and the true plaintext remains unknown.
+
+The original-source Windows SFT now logs all five distributions, checks every donor rune length, and proves the stronger noninjective inequality [CI run 45100603355](https://github.com/FlareZ123/liber-primus/actions/runs/45100603355).
+
 ## Cryptanalytic decision
 
 **Retire an English/Latin-like decipherment architecture in which every intact printed word is allowed its *own wholly secret* monoalphabetic GP29 substitution and an arbitrary shuffle of all positions *inside that word*.** This extends far beyond known finite-key or fixed-position tests: granting all \(29!\) alphabet choices separately for each of 2,896 words **still cannot change any one original word's \(E\)**.
