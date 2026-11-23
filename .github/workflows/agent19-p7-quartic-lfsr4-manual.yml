@@ -14,3 +14,5 @@ jobs:
         run: node sims/lp2_p7_quartic_irreducible_lfsr4_original_sft.cjs
       - name: Run p56 F-transparent source-clock recipient gate
         run: node sims/lp2_p7_quartic_lfsr4_Ftransparent_original_sft.cjs
+      - name: Adjacent source GF29 quartic four-rune block multiplier
+        run: node sims/lp2_p7_gf29quartic_p8_red4_blockmul_original_sft.cjs
