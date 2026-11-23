@@ -9,9 +9,9 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const {createDecipheriv} = require('node:crypto');
-const {original, authenticate, plantControl} =
+const {original, minimalBigEndianBase29, authenticate, plantControl} =
   require('./lp2_p15_fullstream_aes128_gcm_sft.cjs');
+const {sourceUnits} = require('./lp2_p15_nineunit_gcm_sft.cjs');
 const ROOT=path.resolve(__dirname,'..');
 const panel=JSON.parse(fs.readFileSync(path.join(ROOT,
   'resources/liber-primus/lp2-grid-256.json'),'utf8'));
@@ -43,6 +43,27 @@ try{
 }
 assert.equal(authentication,false,
   'Unexpected genuine GCM tag; stop and investigate true candidate plaintext.');
+// A second source-defined receiver has nine independently red-titled units.
+// No alternative key, serialization, nonce, tag length, or phase is admitted.
+const nine=sourceUnits().map((runes,i)=>{
+  const encoded=minimalBigEndianBase29(runes);
+  const iv=encoded.subarray(0,12),body=encoded.subarray(12,-16),
+    authenticator=encoded.subarray(-16);
+  let accepted=false;
+  try{
+    authenticate(key,iv,body,authenticator);
+    accepted=true;
+  }catch(error){
+    if(!/authenticat|decrypt|bad decrypt|unable/i.test(String(error.message)))
+      throw error;
+  }
+  return {unit:i,runes:runes.length,bytes:encoded.length,
+    tag:authenticator.toString('hex'),authenticated:accepted};
+});
+assert.deepEqual(nine.map(x=>x.bytes),
+  [443,696,1056,1151,620,871,56,965,2013]);
+assert(nine.every(x=>!x.authenticated),'Unexpected authentic chapter GCM tag');
+
 console.log(JSON.stringify({
   classification:'one original whole-LP2 AES128-GCM key authentication gate',
   sourceKey:key.toString('hex'),
@@ -50,7 +71,8 @@ console.log(JSON.stringify({
   sourceOriginalRunes:12956,originalBinaryBytes:binary.length,
   envelope:'nonce12|body7840|tag16',
   nonce:nonce.toString('hex'),tag:tag.toString('hex'),
+  nineRedTitleUnits:nine,
   verifiedPlant:plant,authenticated:authentication,
   unexpected,
-  decision:'This exact source-derived 16-byte key does not authenticate the intact original whole-book AES128-GCM envelope. No plaintext/key recovered.'
+  decision:'This exact source-derived 16-byte key authenticates neither the whole 12,956-rune AES128-GCM envelope nor any of nine original red-title chapter envelopes. No plaintext recovered.'
 },null,2));
