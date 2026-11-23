@@ -81,6 +81,54 @@ assert.ok(Math.abs(arbitraryCoverageBits - 319.44768432665) < 0.00001);
 assert.ok(Math.abs(originalCoverageBits - 248.87414851929) < 0.00001);
 assert.equal(Math.ceil(freeShortfall), 7);
 assert.equal(Math.ceil(sourceShortfall), 77);
+
+// Joint carrier gate: keep each physical page's observed red count and
+// maximum red-span count, while allowing every possible span location,
+// red-run composition and overlap with a globally permutable type tape.
+// Treating punctuation/red channels as independent is a generous upper bound.
+const perPageRedMaskBits = pages.reduce((sum, page) => {
+  const sourcePage = ink.pages.find(entry => entry.page === page.page);
+  const spans = sourcePage?.red_spans || [];
+  if (!spans.length) return sum;
+  const r = spans.reduce((total, entry) => total + entry.length, 0);
+  const sMax = spans.length;
+  const n = page.indices.length;
+  const logCount = logSum(Array.from({length: sMax}, (_, j) => {
+    const s = j + 1;
+    return logChoose(r - 1, s - 1) + logChoose(n - r + 1, s);
+  }));
+  return sum + logCount / Math.LN2;
+}, 0);
+
+const punct = read("resources/liber-primus/lp2-punctuation-identity.json");
+const morphology = punct.source_audit.morphology;
+const largeInk = ink.pages.filter(page => page.page <= 55)
+  .flatMap(page => page.large_punctuation || []);
+const largeCounts = new Map();
+for (const [, number, color] of largeInk) {
+  const key = `${number}:${color}`;
+  largeCounts.set(key, (largeCounts.get(key) || 0) + 1);
+}
+const punctuationTypes = [
+  morphology.stop_four_dot_diamonds.black,
+  morphology.stop_four_dot_diamonds.red,
+  morphology.stop_three_dot_comma_form,
+  morphology.stop_single_dot_ambiguous,
+  morphology.comma_three_dot_zigzags,
+  largeCounts.get("13:red"),
+  largeCounts.get("13:black"),
+  largeCounts.get("10:red")
+];
+const physicalCount = punctuationTypes.reduce((a, b) => a + b, 0);
+assert.equal(physicalCount, 175);
+const punctuationTypeBits = (logFact[physicalCount] -
+  punctuationTypes.reduce((sum, count) => sum + logFact[count], 0)) / Math.LN2;
+const combinedPerPageBits = perPageRedMaskBits + punctuationTypeBits;
+const combinedMissingBits = Math.ceil(requiredBits - combinedPerPageBits);
+assert.ok(Math.abs(perPageRedMaskBits - 131.20705927537065) < 0.00001);
+assert.ok(Math.abs(punctuationTypeBits - 176.57877078182) < 0.00001);
+assert.equal(combinedMissingBits, 18);
+
 console.log(JSON.stringify({
   originalUnknownRuneCount: N,
   successorPositions: T,
@@ -92,5 +140,9 @@ console.log(JSON.stringify({
   extraBitsStillNeededIfRedCoverageFree: Math.ceil(freeShortfall),
   redMaskBitsWith213RedRunesAtMost16Runs: originalCoverageBits,
   extraBitsStillNeededIfRedCoverageFixed: Math.ceil(sourceShortfall),
-  decision: "Red-rune span placement alone cannot supply the full universal sidecar"
+  redMaskBitsWithOriginalPageRedCounts: perPageRedMaskBits,
+  maximumPunctuationTypePermutationBits: punctuationTypeBits,
+  combinedPageRedMaskAndFixedSitePunctuationBits: combinedPerPageBits,
+  minimumOtherChannelBitsBeyondJointCarriers: combinedMissingBits,
+  decision: "Red span placement and punctuation type jointly remain insufficient under original page red budgets"
 }, null, 2));
