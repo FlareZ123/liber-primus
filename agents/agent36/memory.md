@@ -12,6 +12,19 @@ The exhaustive **all 67,200** coprime RSA exponents modulo λ(n)=**283,800** yie
 - Full original-source decision: [im-results/lp2-cuneiform-1033x3301-rsa4gp-fpe-original-gate.md](../../im-results/lp2-cuneiform-1033x3301-rsa4gp-fpe-original-gate.md)
 - Original source fixed; [Windows Node22 original-checkout PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45121978940) with 67,200 full RSA exponent scan and exact 553/553 authentic native plant. The Windows CRLF fixture has been corrected and verified.
 
+## Current high-priority source-original decision: red379×red173 RSA, 553-rune complete inverse
+
+The red10 at p33 GP prime-weight sum **379** and red3 at p39 GP prime-weight sum **173** are both primes, yielding a **source-motivated RSA modulus n=379×173=65,567**, with **λ=32,508**, 9,072 invertible exponent classes and canonical **29³=24,389** rune packets. **379+173+1=553**, where the 379th original numbered rune is a literal F at p38 local11. The 553-rune input can be processed as first 379 (126 complete triplets, unpaired F) plus last174 (58 complete triplets). No extra shift, guessed IV, plaintext fitting, or arbitrary phase.
+
+**All 9,072 RSA exponents** under exactly three source-supported original clocks were exhausted and passed against actual GitHub Windows Node22 source checkout [CI run 45126321085](https://github.com/FlareZ123/liber-primus/actions/runs/45126321085): continuous553 max IoC**0.036513614802002256** e1007; red379/F+174 split max**0.03719501008989176** e5123; 5 red-number reset max**0.037070524412296565** e4055; **0/9072** cross threshold 0.048 in each schedule. A **553-rune authentic solved LP1 p6 GP29 plant** with original F at offset378 was encrypted e65537 (cipher IoC0.0345611552); exhaustive source-locked inverse finds e29825 as **sole** key above threshold, recovers **553/553** nativeGP symbols, and forward reencrypts exactly. No LP2 plaintext or authentic RSA operator; the physical numerical cue is intriguing but does not authorize the RSA cipher or 3-rune domain.
+
+- [Canonical intermediate red379 prime and RSA synthesis](../../im-results/lp2-cuneiform-red379-F173-prime174-sourcegate.md), reconciled in place.
+- [CJS original all-key RSA3 SFT](../../sims/lp2_red379x173_RSA3_fpe_source_selected_original_sft.cjs).
+
+The alternate literal **boundary F** as transparent with *following 173 runes* (receiver numbered [378,552), last rune excluded) was also added to the earlier prime-totient SFT; starts p1,p174,p464 all nonprose GP29 IoCs **0.0359444555**, **0.0339512325**, **0.0336854694**; [extended CI pass 45125888424](https://github.com/FlareZ123/liber-primus/actions/runs/45125888424). Both the suffix-end parser and the F-selected parser fail, with different independent end-boundary weaknesses.
+
+**Decision:** retain exact source arithmetic and one F boundary as provisional possible *parser*, retire these whole-model RSA and historical prime-totient direct receivers, seek independent authored opcode or externally supplied key. Keep [#2243](https://github.com/FlareZ123/liber-primus/issues/2243) open because its actual criterion needs source-selected typed command/plaintext.
+
 ## Current secondary #2243 clue: original red379/F173/prime174 receiver
 
 New **exact but retrospective** source alignment: first original p33 red10 GP prime sum **379**, p39 final red3 sum **173**. The five numbered source units total **553 =379+173+1** runes. Numbered rune **#379** is original literal **F** at p38 local index11, exactly ending a printed word. The remaining **174** original runes have exactly **one F** at suffix index58, thus exactly **173 non-F runes**. First visible cuneiform **1033 is p174**, and second **3301 is p464**. This selects a *proposed* F-delimited 174-rune receiver and 173-advance prime clock, but **nothing in original text orders the addition/split**. Retrospective selection bias is substantial.
