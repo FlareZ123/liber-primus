@@ -1,0 +1,16 @@
+name: LP2 p28-p29 shared-pad original word bridge (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-word-bridge:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original p28-p29 key-canceling gate and planted controls
+        run: node sims/lp2_p28_p29_dhframe_twotimepad_original_sft.cjs
