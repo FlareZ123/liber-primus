@@ -106,6 +106,16 @@ A deliberately stronger **word-length-matched control** eliminates the possibili
 | Shakespeare | 256 | **1,059** | 1,150.773438 | **0** |
 | **Original ciphertext** | 1 | **683** | | |
 
+The result can also be localized to **how many separate original source units must actually change**. For each source-exact English word-length matched plant, compare the native plaintext's matching-pair count separately inside **each of all 3,320 original visible scopes** with the corresponding original ciphertext's count. Whenever `E_plain(scope)>E_cipher(scope)`, **a static rune map in that individual scope is impossible even if all other scopes are given arbitrary different secret maps**. At least one output must depend on position/history, or a rune must cross the source boundary, in each such violating scope. Over the 256 complete planted texts per native source:
+
+| Matched native-word donor | Minimum distinct original source scopes needing changes | Maximum | Mean |
+| --- | ---: | ---: | ---: |
+| Gibran | **486** | 572 | 527.15 |
+| Emerson | **512** | 611 | 556.36 |
+| Shakespeare | **529** | 623 | 575.43 |
+
+Thus every one of the **768** native GP control books forces a value-changing or nonlocal exception in **at least 486 distinct physical word/line/ink fragments**, even under the extremely permissive one-secret-function-per-fragment model. This is not a proved universal minimum for the author's unknown exact plaintext. It is a sharply discriminating condition on genuine source-native text; a proposal whose state changes only near a handful of decorative glyphs or four apostrophes cannot satisfy these exact word-length-matched controls unless its influence **persists through hundreds of other fragments**. The new original/positive-count assertions are included in the same SFT.
+
 This added experiment respects the **entire original printed word-length distribution**, while the independent native-word resampling sacrifices continuous English syntax and is therefore not an exhaustive proof against every conceivable GP29 plaintext register. The exact original, donor lexicon, deterministic draws and all 768 population results are asserted in the same SFT. It blocks the straightforward rival that the complete contiguous donor windows only differed because of word cuts.
 
 The novel **3,320-scope**, all-source-visible intersection remains profoundly collision-sparse despite separately and arbitrarily rekeying **every printed word fragment between physical line and ink boundaries**. An independently planted 12,956-rune native Gibran text is encrypted with **3,320 unrelated pseudorandom complete GP29 bijections** and an in-scope reversal; exact inverse recovery and equality of the planted plaintext/cipher within-scope pair counts are asserted in the [same source SFT](../sims/lp2_punct_quote_apostrophe_allsecret_reseg_original_sft.cjs). An independent 182-scope plant additionally verifies *actual* involutive changed-word-boundary reflow.
