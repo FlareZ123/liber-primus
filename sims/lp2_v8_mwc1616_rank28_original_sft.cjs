@@ -29,17 +29,28 @@ function floorBound(value) {
   return Math.floor((value * 65536 + 27) / 28);
 }
 /**
- * The 2014 MWC1616 high-lane output contributes the 16 most significant
- * bits of the Math.random numerator. Its independent low lane can increase
- * floor(28*u) by one only at a 16-bit boundary: this exact fixed test
- * excludes that exceptional case and reports its scope.
- * @param {number} low16
+ * Complete high16 candidate interval for a full two-lane V8 observation.
+ * The low generator contributes < 1/65536 to the random float, so the
+ * previous high16 bin's final value can occasionally cross a bin edge.
+ * Include it even though its exact low16 state remains unknown.
+ * @param {number} observed
  */
+function candidateFloor(observed) {
+  const start = floorBound(observed);
+  return start - Number(observed > 0 &&
+    observed * 65536 - 28 * (start - 1) < 28);
+}
+/** @param {number} observed @param {number} high16 */
+function compatible(observed, high16) {
+  const min = candidateFloor(observed);
+  return high16 >= min && high16 < floorBound(observed + 1);
+}
+/** @param {number} low16 */
 function rank(low16) {
   return Math.floor(28 * low16 / 65536);
 }
 /**
- * Exact output seed-state search using the first two 28-ranks. Rather
+ * Necessary-condition state search using the first two 28-ranks. Rather
  * than 2^32 brute force, each candidate initial low16 and second low16
  * determines the carried high16 by a single modular subtraction.
  * @param {number[]} observed 28 successive 0..27 ranks
@@ -47,8 +58,8 @@ function rank(low16) {
  */
 function recover(observed, multiplier) {
   assert(observed.length >= 2 && observed.every(x => x >= 0 && x <= 27));
-  const lowA = floorBound(observed[0]), highA = floorBound(observed[0] + 1);
-  const lowB = floorBound(observed[1]), highB = floorBound(observed[1] + 1);
+  const lowA = candidateFloor(observed[0]), highA = floorBound(observed[0] + 1);
+  const lowB = candidateFloor(observed[1]), highB = floorBound(observed[1] + 1);
   const matches = Array(observed.length + 1).fill(0);
   let strongest = 0, bestState = null, twoMatches = 0, exact = [];
   for (let first = lowA; first < highA; first++) {
@@ -62,7 +73,7 @@ function recover(observed, multiplier) {
       let matched = 2;
       while (matched < observed.length) {
         state = next(state, multiplier);
-        if (rank(state & 65535) !== observed[matched]) break;
+        if (!compatible(observed[matched], state & 65535)) break;
         matched++;
       }
       matches[matched]++;
@@ -127,6 +138,7 @@ const max = Math.max(...results.map(r => r.strongest));
 assert.equal(max, 7);
 console.log(JSON.stringify({
   premise: '2014 V8 MWC1616 directly emits 28-successor step ranks at page start',
+  lowLaneTreatment: 'all mathematically possible rounding excursions included; exact low seed need not be guessed',
   original: 'physical LP2 p0-p55; 10 source-selected first-28-step windows',
   allRealPagesHaveZeroCompatiblePrefixes: true,
   variants: results.length,
@@ -136,4 +148,4 @@ console.log(JSON.stringify({
   perWindow: results,
   decision: 'Direct unkeyed 28-way MWC1616 emitter rejected for tested starts. Does not test a plaintext-masked keystream or undocumented output skipping.'
 }, null, 2));
-console.log('PASS: original 20 exact high-lane inversions and two full MWC plants');
+console.log('PASS: original 20 necessary high-lane state inversions and two full MWC plants');
