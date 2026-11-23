@@ -172,3 +172,85 @@ console.log(JSON.stringify({sourceWords: words.length, sourceRunes: runeCount,
   solvedLP1Words: lp1.length, solvedLP1EndpointsIoC: solvedEnds,
   solvedLP1Length2EndpointsIoC: nativeLength2, result}, null, 2));
 console.log("PASS: original 3301 word-number gates, native controls, all-secret endpoint invariant");
+
+
+/* Distinct source-geometry consumer: the published p7 quartic identity
+   P(X)-X = 2(X-3)(X-4)(X^2-8) mod29. Interpret *each whole printed word*
+   as a polynomial in the cyclic ring GF29[X]/(X^n-1). This is a direct,
+   invertible all-position within-word mixing operation, not the 3301 integer
+   multiplication above. The combination of p7 polynomial and the p57
+   "circumferences" wording is conjectural and is NOT an authored opcode. */
+const mod29 = x => ((x % 29) + 29) % 29;
+const quarticCoefficients = [11, 26, 8, 26, 2];
+/** @param {number} n */
+function circulant(n) {
+  const coefficients = Array(n).fill(0);
+  for (let i = 0; i < quarticCoefficients.length; i++) {
+    coefficients[i % n] = mod29(coefficients[i % n] + quarticCoefficients[i]);
+  }
+  return Array.from({ length: n }, (_, i) =>
+    Array.from({ length: n }, (_, j) => coefficients[((i - j) % n + n) % n]));
+}
+/** Invert square GF29 matrix by full Gauss-Jordan elimination. @param {number[][]} matrix */
+function matrixInverse(matrix) {
+  const n = matrix.length;
+  const a = matrix.map((row, i) => [...row,
+    ...Array.from({ length: n }, (_, j) => Number(i === j))]);
+  for (let c = 0; c < n; c++) {
+    const pivot = a.findIndex((row, i) => i >= c && row[c] !== 0);
+    assert.ok(pivot >= 0, "p7 quartic ring matrix is singular at word length " + n);
+    [a[c], a[pivot]] = [a[pivot], a[c]];
+    let unit = 1;
+    while (mod29(unit * a[c][c]) !== 1) unit++;
+    a[c] = a[c].map(x => mod29(x * unit));
+    for (let i = 0; i < n; i++) {
+      if (i === c) continue;
+      const f = a[i][c];
+      a[i] = a[i].map((x, j) => mod29(x - f * a[c][j]));
+    }
+  }
+  return a.map(row => row.slice(n));
+}
+/** @param {number[][]} m @param {number[]} vec */
+const matrixVec = (m, vec) =>
+  m.map(row => mod29(row.reduce((s, a, j) => s + a * vec[j], 0)));
+const quarticMats = new Map(Array.from({ length: 14 }, (_, i) => {
+  const n = i + 1, matrix = circulant(n);
+  return [n, { matrix, inverse: matrixInverse(matrix) }];
+}));
+/** @param {number[]} digits @param {boolean} firstIsConstant @param {boolean} decode */
+function quarticWord(digits, firstIsConstant, decode) {
+  const { matrix, inverse } = quarticMats.get(digits.length);
+  const a = firstIsConstant ? digits : digits.slice().reverse();
+  const output = matrixVec(decode ? inverse : matrix, a);
+  return firstIsConstant ? output : output.reverse();
+}
+const quarticResults = [];
+for (const firstIsConstant of [true, false]) {
+  for (const decode of [true, false]) {
+    const transformed = words.map(w => ({
+      page: w.page, digits: quarticWord(w.digits, firstIsConstant, decode)
+    }));
+    for (let i = 0; i < words.length; i++) {
+      assert.deepEqual(
+        quarticWord(transformed[i].digits, firstIsConstant, !decode), words[i].digits
+      );
+    }
+    quarticResults.push({
+      firstIsConstant, decode,
+      trainIoC: ioc(transformed.filter(w => w.page >= 16 && w.page <= 21)
+        .flatMap(w => w.digits)),
+      holdoutIoC: ioc(transformed.filter(w => w.page >= 40 && w.page <= 53)
+        .flatMap(w => w.digits)),
+      wholeBookIoC: ioc(transformed.flatMap(w => w.digits)),
+      samePairs: transformed.reduce((s, w) => s + equalPairs(w.digits), 0)
+    });
+  }
+}
+const quarticOriginalPlus = lp1.map(w =>
+  quarticWord(quarticWord(w, true, false), true, true));
+assert.deepEqual(quarticOriginalPlus, lp1);
+console.log(JSON.stringify({ p7SourceCoefficients: quarticCoefficients,
+  invertibleOriginalWordLengths: [...quarticMats.keys()],
+  circularQuarticOriginalResults: quarticResults }, null, 2));
+console.log("PASS: separate p7 cyclic all-word original/replay/native controls");
