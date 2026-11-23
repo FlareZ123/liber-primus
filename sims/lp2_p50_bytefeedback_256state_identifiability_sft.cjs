@@ -109,6 +109,40 @@ function exactMaximum(segments,channel,driver,combine) {
   }
   throw new Error("Fractional maximum did not converge");
 }
+/**
+ * Source-information density for the genuinely printed p33 red84 seed:
+ * every private segment/state alphabet has one free label for every
+ * distinct observed (segment,state,input) triple. Count triple reuse
+ * under the actual original source, never a planted positive.
+ * @param {number[][][]} segments
+ * @param {"C"|"D"} channel
+ * @param {"C"|"D"} driver
+ * @param {"XOR"|"ADD"} combine
+ */
+function fixedSeed84Freedom(segments,channel,driver,combine) {
+  let seenTriples=0,steps=0,reuse=0;
+  for(const pairs of segments) {
+    const seen=new Uint16Array(256*29);
+    let s=84;
+    for(const [c,d] of pairs) {
+      const input=channel==="C"?c:d;
+      const feedback=driver==="C"?c:d;
+      seen[s*29+input]++;
+      s=combine==="XOR"?(grid.bytes[s]^feedback):
+        ((grid.bytes[s]+feedback)&255);
+      steps++;
+    }
+    for(const n of seen) {
+      if(n) {
+        seenTriples++;
+        reuse+=n-1;
+      }
+    }
+  }
+  return {sourceSteps:steps,independentlyLabeledTriples:seenTriples,
+    reusedOriginalTriples:reuse,freeBinFraction:seenTriples/steps};
+}
+
 const outcomes=[];
 for(const channel of ["C","D"]) {
   const segments=originalSegments(channel);
@@ -116,7 +150,8 @@ for(const channel of ["C","D"]) {
   for(const driver of ["C","D"]) {
     for(const combine of ["XOR","ADD"]) {
       const result=exactMaximum(segments,channel,driver,combine);
-      outcomes.push({channel,driver,combine,...result});
+      outcomes.push({channel,driver,combine,...result,
+        originalRed84FixedSeed:fixedSeed84Freedom(segments,channel,driver,combine)});
     }
   }
 }
@@ -125,6 +160,8 @@ assert.deepEqual(outcomes.map(x=>[x.equalPairs,x.statePairs]),[
   [440,5821],[476,5885],[439,5971],[449,6076]
 ]);
 assert.ok(outcomes.every(x=>x.allSeedMaximum>0.07));
+assert.deepEqual(outcomes.map(x=>x.originalRed84FixedSeed.reusedOriginalTriples),
+  [200,190,183,204,218,221,205,211]);
 console.log(JSON.stringify({
   classification:"Feedback-state bound non-exclusion, not an actual decryption",
   originalRunes:12956, sourceSegments:74, realInternalMarks:19,
