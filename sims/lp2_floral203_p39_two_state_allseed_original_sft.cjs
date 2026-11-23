@@ -94,7 +94,7 @@ const expectedRed = new Map([[40, [{ start: 0, length: 8 }]],
   [53, [{ start: 128, length: 51 }]],
   [54, [{ start: 0, length: 9 }]]]);
 for (let p = 40; p <= 55; p++) {
-  const found = marks.get(p);
+  const found = marks.get(p) || [];
   const expected = expectedRed.get(p) || [];
   assert.deepEqual(found.map((s) => ({ start: s.start, length: s.length })), expected);
 }
@@ -102,7 +102,7 @@ const black = [];
 for (let p = 40; p <= 55; p++) {
   const original = corpus.pages.find((x) => x.page === p);
   for (let i = 0; i < original.indices.length; i++) {
-    if (marks.get(p).some((span) => i >= span.start && i < span.start + span.length)) continue;
+    if ((marks.get(p) || []).some((span) => i >= span.start && i < span.start + span.length)) continue;
     black.push(original.indices[i]);
   }
 }
