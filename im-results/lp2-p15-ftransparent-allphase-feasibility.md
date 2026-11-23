@@ -87,6 +87,20 @@ In particular p40, p42, p44, p45, p47, p48 and p54 have **zero feasible inverse 
 
 This is a **source-constrained cryptanalytic decision**, stronger than the earlier no-F, fixed-p15-page-order unigram score. It does not exclude a different mathematical consumer, a cryptographic hash/KDF applied to the printed numbers, hidden independent page keys, a nonperiodic stream not fixed to these ordinal starts, or the possibility that unknown pages deliberately abandon the historical plaintext-F rule.
 
+## Additional target: the period-16 prime-totient key on cuneiform p33–p39 (Agent 1, 23 November)
+
+A separate, source-motivated interpretation of the p15 grid is to repeat the **first 16 prime-totient values** recovered from its red-center-first Fibonacci-prime spiral. The period is not an authored instruction: the 16 printed cells and adjacent infinity mark motivate it, while the p33–p39 cuneiform block supplies an independent exact-length prediction (**1,680 runes = 105 × 16**). The p56 plaintext-F-transparent prime-totient operation supplies a known inverse convention, but its transfer to this block remains hypothetical.
+
+The recovered Fibonacci indices are `[0,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987]`; the selected primes `p_(F+1)` are `[2,3,5,7,13,23,43,79,149,263,463,829,1481,2593,4507,7817]`. Applying the p56 prime-totient rule gives the repeated GP29 key:
+
+`[1,2,4,6,12,22,13,20,3,1,27,16,1,11,11,15]`.
+
+On the original corpus pages p33–p39 (page lengths **214, 261, 271, 238, 228, 228, 240**), an exact state-mask inverse enumerated every legal plaintext-F bypass mask. For each of the **16 initial phases × 2 signs**, at every ciphertext rune it allowed (a) literal plaintext F to pass unchanged without consuming the key, and (b) the ordinary consuming inverse `P=(C−sK[j]) mod 29), provided it did not produce plaintext F. **All 32 configurations become impossible; none has a legal inverse through the chapter.** The longest legal prefix is **113 runes**; the red-start phase 0 / positive-forward convention dies at offset **47** (the 48th rune). No English score, guessed F mask, word segmentation, or page-local reset is used.
+
+A 1,680-rune planted GP29 plaintext containing literal Fs was also encrypted and inverted under the same rule; the true path survives, validating the transducer. Reproducer: [`sims/lp2_p15_prime_totient_period16_cuneiform_ftransparent_gate.cjs`](../sims/lp2_p15_prime_totient_period16_cuneiform_ftransparent_gate.cjs); CI: [workflow run](https://github.com/FlareZ123/liber-primus/actions/runs/45135319383).
+
+**Decision:** reject this specific period-16 prime-totient key, with p56 F-bypass, on p33–p39. This does not reject the established p15 Fibonacci-prime arithmetic, other uses of its numbers, a different target, a nonlinear receiver, or another independently selected key schedule.
+
 ## Required controls and what the decision means
 
 The same exact state machine accepts the **unaltered historically solved 85-rune LP2 p56 ciphertext** with its authentic prime-totient key; five legal final consumed-clock states survive (only a lexical constraint chooses the actual original plaintext). Additionally, **all 320** p16–22 candidate/sign/phase variants encrypt a 1,744-rune source-native GP English passage using the genuine plaintext-F passthrough, and the exact unknown-mask inverse finds the generated ciphertext feasible. The positive plaintext is checked by its complete original-length forward encoder, including every literal plaintext F. This is much stronger than merely observing uniform-looking nonsense after an imperfect key clock.
