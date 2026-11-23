@@ -66,6 +66,12 @@ A simpler independent necessary-condition check reaches the same direction: acro
 
 As manuscript-native reference, genuinely clear physical p57 has 95 source runes with orbit counts **[3,6,14,28,23,20,1,0]**. Seven separately selected solved LP1 prose sections, encoded into native GP with the same documented spelling rules, provide 2,357 runes; their cycle 0/1/6/7 counts are **39/123/31/23**. These controls are comparatively short; neither is the statistical reference for the full 12,956-rune exclusion.
 
+### Visual-exception sparsity cannot rescue the cube by local corrections alone
+
+The separate [image-verified physical feature inventory](lp2-redrun-wordmark-antirepeat-capacity.md) reports **213 source-red runes in 16 runs**, **31 large printed marks**, and **four raised apostrophes** across the unknown original register. Even if every one were granted **an entirely free extra cross-orbit correction at one GP rune position** (overgenerously treating all 248 as disjoint editable slots), the model would still fall **965 rune changes short** of the most permissive full-book native-English transport minimum 1,213. Therefore adding isolated red/mark exception edits to otherwise unbounded cube-only rounds cannot solve ordinary GP English across the entire book.
+
+This is **not** a rejection of those annotations as a **global seed**, mode switch, instructions, word-resegmentation side channel, or a stateful cipher modifier that propagates to many runes: any such model can affect more than one position per mark and escapes the direct sparse-correction theorem. The corollary makes the next required source-based mechanism sharply quantitative without implying that the visual marks are actually part of a cipher.
+
 ## Positive, scope, and research fork
 
 The [standalone CommonJS SFT](../sims/lp2_signed_cube_orbit_allkey_sft.cjs) asserts exact source and cycle counts, performs all **251,154** contiguous reference-window comparisons, and asserts these nine independent original chapter bounds, and tests a full-length native GP Gibran positive under positionwise independently varying Q exponents `(7i+3) mod6`. This planted cipher decodes exactly **12,956/12,956**, and reversing all its rune positions retains the same eight cycle counts. It uses no historical secret key.
