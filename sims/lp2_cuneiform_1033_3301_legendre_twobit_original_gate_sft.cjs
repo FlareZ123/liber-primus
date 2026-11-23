@@ -136,6 +136,21 @@ const primary=audit(section,'p33-p39');
 const holdout=audit(full,'whole-book');
 assert.equal(primary.length+holdout.length,768);
 
+
+const magic=[
+  ['bzip2','425a68'], ['gzip','1f8b08'], ['zip','504b0304'],
+  ['png','89504e470d0a1a0a'], ['pdf','255044462d']
+];
+const matchedHeaders=[];
+for(const trial of [...primary,...holdout]){
+  for(const [name,head] of magic){
+    if(trial.head.startsWith(head))matchedHeaders.push({name,...trial});
+  }
+}
+assert.deepEqual(matchedHeaders,[],
+  'a source-marked binary file header would be a nonrandom candidate to follow');
+console.log('HEADER original candidate scope=768 standard 2014 BZip2/Gzip/ZIP/PNG/PDF starts: none');
+
 // Source-authentic readable-payload positive:
 // encode genuine solved p57's opening phrase, repeatedly, into 3239 ASCII
 // bytes, then choose a rune of the appropriate Legendre class for each
