@@ -16,6 +16,7 @@ const load = name => fs.readFileSync(path.join(root, name), "utf8");
 const gp = JSON.parse(load("resources/liber-primus/lp2-corpus.json"));
 const source = load("resources/liber-primus/lp2-transcription.txt");
 const runes = new Set(gp.runes);
+const runeLookup = new Map(gp.runes.map((r, i) => [r, i]));
 const terms = gp.translit.slice().sort((a, b) => b.length - a.length);
 const donorPaths = [
   "resources/control/shakespeare_first300k.txt",
@@ -37,20 +38,22 @@ const getPage = globalEnd => pages.find(p => globalEnd <= p.end).page;
 /** Return source-complete printed words; line/page are END coordinates. */
 function originalWordTokens() {
   const words = [];
-  let runeCount = 0, wordLength = 0, line = 0;
+  let runeCount = 0, wordLength = 0, line = 0, runeIndices = [];
   for (const c of source) {
     if (runes.has(c)) {
       if (runeCount === limit) break;
       runeCount++;
       wordLength++;
+      runeIndices.push(runeLookup.get(c));
     } else if ((c === "-" || c === ".") && wordLength > 0) {
-      words.push({ length: wordLength, line, page: getPage(runeCount) });
+      words.push({ length: wordLength, line, page: getPage(runeCount), indices: runeIndices });
       wordLength = 0;
+      runeIndices = [];
     } else if (c === "/" || c === "%" || c === "&" || c === "$") {
       line++;
     }
   }
-  if (wordLength > 0) words.push({ length: wordLength, line, page: getPage(runeCount) });
+  if (wordLength > 0) words.push({ length: wordLength, line, page: getPage(runeCount), indices: runeIndices });
   assert.equal(runeCount, 12956);
   assert.equal(words.length, 2896);
   assert.equal(words.reduce((n, w) => n + w.length, 0), limit);
@@ -233,6 +236,63 @@ const authorStyle = { source: "editor-normalized solved LP1 plaintext",
 assert.equal(authorStyle.originalWindows, 2136);
 assert.equal(authorStyle.originalExceedances, 0);
 
+
+/* All-secret invariant: within-word identical-position pair multiplicity.
+   Any single-valued per-word rune substitution, including an arbitrarily
+   secret noninjective one, cannot remove source equal-symbol pairs; and any
+   pure whole-word permutation preserves their sum. This extends earlier
+   native-ligature controls to the separate raw-Latin plaintext hypothesis. */
+/** @param {Array<number|string>} symbols */
+function samePairs(symbols) {
+  const counts = new Map();
+  for (const symbol of symbols) counts.set(symbol, (counts.get(symbol) || 0) + 1);
+  let result = 0;
+  for (const n of counts.values()) result += n * (n - 1) / 2;
+  return result;
+}
+const originalEqualPairs = original.reduce((n, word) => n + samePairs(word.indices), 0);
+assert.equal(originalEqualPairs, 811);
+const originalLengthCounts = new Int32Array(15);
+for (const w of original) originalLengthCounts[w.length]++;
+
+/** Analytic independent word-length-conditioned control. */
+function rawEqualityCalibration(words, name) {
+  const group = Array.from({ length: 15 }, () => []);
+  for (const word of words) {
+    if (word.length >= 1 && word.length <= 14)
+      group[word.length].push(samePairs([...word]));
+  }
+  const means = new Float64Array(15);
+  const variations = new Float64Array(15);
+  let expected = 0, variance = 0;
+  for (let length = 1; length <= 14; length++) {
+    assert.ok(group[length].length > 0, name + " needs donor words of length " + length);
+    const values = group[length], mean = values.reduce((a, b) => a + b, 0) / values.length;
+    const v = values.reduce((a, b) => a + (b - mean) ** 2, 0) / values.length;
+    means[length] = mean;
+    variations[length] = v;
+    expected += originalLengthCounts[length] * mean;
+    variance += originalLengthCounts[length] * v;
+  }
+  // Positive: a per-word Caesar map preserves every word's exact E.
+  const plant = words.slice(0, 500).map((word, i) => {
+    const src = [...word].map(c => c.charCodeAt(0) - 65);
+    return samePairs(src) === samePairs(src.map(c => (c + i) % 29));
+  });
+  assert.ok(plant.every(Boolean), name + " word-local substitution plant");
+  return { name, availableWords: words.length, expected,
+    sd: Math.sqrt(variance), z: (originalEqualPairs - expected) / Math.sqrt(variance),
+    minLength14Samples: group[14].length };
+}
+const equalityEvidence = [
+  ...donorWords.map((words, i) => rawEqualityCalibration(words, donorPaths[i])),
+  rawEqualityCalibration(load("resources/liber-primus/lp1-plaintext-reference.txt")
+    .split(/\r?\n/).filter(line => line.trim() && !line.startsWith("#")
+    && !line.startsWith("[") && !/^\d/.test(line))
+    .join(" ").toUpperCase().match(/[A-Z]+/g), "source-authentic solved LP1")
+];
+assert.equal(equalityEvidence.length, 4);
+assert.ok(equalityEvidence.every(x => x.expected >= 1200 && x.z < -13));
 /* Freeze eight source-visible historical-style line-order alternatives;
    these are tests, not discovered decipherment operations. */
 const linesByPage = new Map();
@@ -266,5 +326,7 @@ const lineOrders = Object.entries(orderFns).map(([name, reorder]) => {
 });
 console.log(JSON.stringify({ source: "original LP2 p0-55 + three pinned control corpora",
   original: { runes: limit, words: N, one: 83, two: 448 },
-  marginals, orderEvidence, authorStyle, lineOrders }, null, 2));
+  marginals, orderEvidence, authorStyle,
+  rawLatinWithinWord: { originalEqualPairs, calibration: equalityEvidence },
+  lineOrders }, null, 2));
 console.log("PASS: full original source and all independent control windows");
