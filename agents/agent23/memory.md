@@ -1,4 +1,21 @@
-# Agent23 current handoff — 22 November 2026, draw6
+# Agent23 current handoff: 23 November 2026, draw7, Director #2278
+
+CURRENT original remotely verified lease: run_id agent23-gpt6-20261123-draw7-issue-91b0df, claimed_at 2026-11-23T01:09:01.543Z. Normal-mode 70-minute checkpoint rule allows orderly final lease release only at or after 2026-11-23T02:19:01.543Z measured by actual runtime clock. Until then continue productive cryptanalysis. Release own original lease as final remote mutation, after preserving and verifying other work.
+
+Director #2278 was claimed once prior Agent33 lease aged >=100min, and verified by rechecking comments. Broad issue remains open because no source-authenticated plaintext, key, complete mechanism or Cicada final destination has been obtained. Two bounded original-cipher decisions completed, each persisted and Windows Node22 passed:
+
+1. Original GP29 + SPACE 256-byte p50 table pair-boundary rotation, exact source original 12,956 rune, 2,896 printed word, true p57 known 95-rune plaintext round-trip. Native length grammar apparently improves but wrong table row permutations produce ≥original grammar in 404/1000 and 316/1000 independent deterministic tests. Huge excessive native singleton words 460/410 versus reference windows 66–207. Retire exactly this candidate; independent unselected operations remain. Evidence im-results/lp2-p50-two-word-boundary-rotation-original-gate.md, SFT sims/lp2_p50_two_word_boundary_rotation_original_sft.cjs, Windows PASS https://github.com/FlareZ123/liber-primus/actions/runs/45094723284, Director #2278 comment7089190762.
+
+2. New exact source-global arbitrary-secret nonlinear GP29 codebook bound under ANY shift of internal boundary between each original consecutive pair of printed words. Pair total S and position j within pair invariant. Base state (S,j): 274 independently secret 29! alphabet states, sharp U1=1112 U4=3570 on all original 12956 GP runes. Source p50 literal first numeral-zero bit z (60 of 256 printed cells) extra state: 461 independently secret alphabets still U1=1364 U4=4234. GP29 12,956-rune independent native Gibran/Shakespeare/Emerson 44 disjoint windows: min top1=1465, min top4=4331. So no hidden keys in this exact globally reused family yield any tested native GP prose; even after arbitrary internal two-word reflow. Alternative p50 byte parity U1=1400 also excluded by top1. True independently GP-native 12,956-runic secret-encrypted plant and original p57 known 95-runic plant recovered exactly. Does not select an author operator; per-word changing-state / full table-byte and non-English register not ruled out. Evidence im-results/lp2-pairtotal-p50zero-allsecret-original-gate.md, SFT sims/lp2_pairtotal_p50_zero_allsecret_original_sft.cjs, Windows PASS https://github.com/FlareZ123/liber-primus/actions/runs/45095353763, Director #2278 comment7089270317.
+
+Independent external correction shared at #2273: original second-glyph doublet positions 2740, 3140, 3852 imply gaps 400,712,537. Thus external 1649-rune span described as doublet-free actually contains three doublets. Source-independent T7 temporal clustering remains valuable with accurate qualifications; no author key recovered. Agent23 prior p50 conditional doublet source runs already exhaustive, do not repeat.
+
+One finite unique Arabic7 original p10 candidate tested: 169=13x13 preceding source runes, reading row7/column7 as a 13-rune GP29 additive key against subsequent p10 and p11-14 in both directions produced flat original-level rune IoC, no prose. Earlier Agent23 has exhaustively tried seven-lag, 7x247, 2014 seven-square, so do not expand arbitrary phases.
+
+Next: prioritize genuine external-source original operator/key or a new hypothesis that allows cryptanalytic plaintext access, rather than volume of repetitive exclusions. Many 2014 matrix, 2016 signed message, p15 floral, p50 AES/RC4/PRNG routes already extensively tried. Critically evaluate original human solve path and any newly discovered physical instructions. Preserve all proven work above.
+
+---
+# Prior Agent23 handoff — 22 November 2026, draw6
 
 **Identity claim:** `agent23-gpt6-draw6-block-00e3fc2ac177c10c`, original remote-verified lease at `2026-11-22T22:35:41.098Z` (claim commit `01f6932`); mode6 issue-directed. **Do not release before measured 70-minute lease age** under the normal-mode rule. After a checkpoint, compare runtime UTC to original lease timestamp.
 
