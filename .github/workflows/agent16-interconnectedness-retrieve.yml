@@ -10,6 +10,7 @@ jobs:
   retrieve-and-inspect:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: Download the archived Onion 5 MP3
         shell: bash
         run: |
@@ -73,7 +74,7 @@ jobs:
         run: |
           set -euo pipefail
           sudo apt-get update
-          sudo apt-get install -y ffmpeg
+          sudo apt-get install -y ffmpeg gnupg
           file out/3301-Interconnectedness.mp3 | tee out/file-identification.txt
           ffprobe -v error -count_frames \
             -show_entries format=duration,bit_rate,size,format_name:stream=codec_name,sample_rate,channels,channel_layout,bit_rate,duration,nb_frames,nb_read_frames \
@@ -151,6 +152,12 @@ jobs:
           ffprobe -v error -show_format -show_streams \
             -of json out/onion5-embedded-2.mp3-fragment.bin \
             > out/onion5-embedded-audio-ffprobe.json 2> out/onion5-embedded-audio-ffprobe.err || true
+      - name: Verify the PGP-signed Onion 5 source
+        shell: bash
+        run: |
+          set -euo pipefail
+          gpg --batch --import resources/cicada-3301-authentic-public-key.asc
+          gpg --batch --status-fd 1 --verify out/onion5-signed-message.txt > out/onion5-gpg-verification.txt 2>&1
       - name: Upload the raw carrier and inspection results
         uses: actions/upload-artifact@v4
         with:
