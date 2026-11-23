@@ -136,6 +136,41 @@ assert.deepEqual(
   ],
 );
 
+// Exact same-source token-order null census. Hold the 256 genuine printed
+// tokens and both alphabet conventions fixed; vary only the ordered addresses.
+/** @typedef {{first:number, second:number, source:string[], scan:number}} Match */
+/** @type {Match[]} */
+const offset14Matches = [];
+let allOrderedCrossRadixMatches = 0;
+let imageRangeCrossRadixMatches = 0;
+let exact72CrossRadixMatches = 0;
+for (let first = 0; first < tape.length; first++) {
+  for (let second = 0; second < tape.length; second++) {
+    if (first === second) continue;
+    const scan = cell(first, alpha60);
+    if (scan !== cell(second, alpha59)) continue;
+    allOrderedCrossRadixMatches++;
+    if (scan >= 17 && scan <= 74) imageRangeCrossRadixMatches++;
+    if (scan === 72) exact72CrossRadixMatches++;
+    if (second - first === 14) {
+      offset14Matches.push({
+        first,
+        second,
+        source: [tape[first], tape[second]],
+        scan,
+      });
+    }
+  }
+}
+assert.deepEqual(offset14Matches, [
+  { first: 98, second: 112, source: ["1C", "1D"], scan: 72 },
+  { first: 135, second: 149, source: ["2p", "2s"], scan: 171 },
+]);
+assert.equal(allOrderedCrossRadixMatches, 249);
+assert.equal(imageRangeCrossRadixMatches, 56);
+assert.equal(exact72CrossRadixMatches, 8);
+assert.equal(tape.length * (tape.length - 1), 65280);
+
 const namedFollowers = ["PATH", "DEVOTED", "WAY", "MAP", "ROAD", "DIRECTION"];
 assert.deepEqual(
   namedFollowers.map((word) => gp0(word, false)),
