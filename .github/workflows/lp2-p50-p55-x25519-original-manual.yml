@@ -1,0 +1,18 @@
+name: LP2 p50 eight-column X25519 original gate
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-receiver:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test original-source X25519 and ChaCha20 receiver
+        run: node sims/lp2_p50_p55_x25519_original_sft.cjs
