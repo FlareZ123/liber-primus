@@ -157,6 +157,52 @@ for (let t = 0; t < simulations; t++) {
   }
 }
 assert.equal(withinRowAtLeastObserved, 43);
+
+// Reproduce the separate, previously unrecorded 50k threshold-free path null.
+// A path must be entirely within the original physical page.
+/** @param {number[]} tape @param {number} firstRow @param {number} endRow @param {number} requiredLength */
+function hasIncreasingPath(tape, firstRow, endRow, requiredLength) {
+  /** @param {number} index @param {number} length */
+  function visit(index, length) {
+    if (length >= requiredLength) return true;
+    const row = Math.floor(index / 8), col = index % 8;
+    for (const dr of [-1, 0, 1]) {
+      for (const dc of [-1, 0, 1]) {
+        if (dr === 0 && dc === 0) continue;
+        const nr = row + dr, nc = col + dc;
+        if (nr < firstRow || nr >= endRow || nc < 0 || nc >= 8) continue;
+        const next = nr * 8 + nc;
+        if (tape[next] === tape[index] + 1 && visit(next, length + 1)) return true;
+      }
+    }
+    return false;
+  }
+  for (let i = firstRow * 8; i < endRow * 8; i++) {
+    if (visit(i, 1)) return true;
+  }
+  return false;
+}
+assert.ok(hasIncreasingPath(original, 0, 10, 3));
+assert.ok(hasIncreasingPath(original, 10, 23, 4));
+assert.equal(hasIncreasingPath(original, 23, 32, 3), false);
+state = 0x3301c1ca;
+let jointPageLongPathHits = 0;
+const pathNullRuns = 50000;
+for (let t = 0; t < pathNullRuns; t++) {
+  const tape = original.slice();
+  for (const [lo, hi] of sourcePageRows) {
+    const offset = lo * 8, length = (hi - lo) * 8;
+    for (let i = length - 1; i > 0; i--) {
+      const j = randomNumber() % (i + 1);
+      [tape[offset + i], tape[offset + j]] =
+        [tape[offset + j], tape[offset + i]];
+    }
+  }
+  if (hasIncreasingPath(tape, 0, 10, 3) &&
+      hasIncreasingPath(tape, 10, 23, 4)) jointPageLongPathHits++;
+}
+assert.equal(jointPageLongPathHits, 8);
+
 const output = {
   status: 'PASS',
   source: 'original 32x8 LP2 printed numeric panel',
@@ -183,6 +229,11 @@ const output = {
   nullBandMeans: means.map(v => v / simulations),
   withinRowShuffleSeed: '0x4a4b4d4f',
   withinRowMatchedOrExceeded: withinRowAtLeastObserved,
+  allPageLongPathNullRuns: pathNullRuns,
+  allPageLongPathNullSeed: '0x3301c1ca',
+  allPageLongPathNullJointHits: jointPageLongPathHits,
+  allPageLongPathNullPlusOne: (jointPageLongPathHits+1)/(pathNullRuns+1),
+
   withinRowPlusOne: (withinRowAtLeastObserved+1)/(simulations+1),
   nullMaxHistogram: maxima,
   caution: 'Postselected spatial hypothesis; finite permutation tail is not global cryptanalytic discovery probability; no plaintext/opcode.'
