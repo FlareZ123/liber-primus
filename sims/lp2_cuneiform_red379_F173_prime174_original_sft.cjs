@@ -80,12 +80,12 @@ assert.equal(prime[463],3301);
 /** @param {number[]} source @param {boolean} transparentF
  * @returns {{out:number[],consumed:number}}
  */
-function phiSubtract(source,transparentF,start=0) {
+function phiSubtract(source,transparentF,start=0,transparentIndex=58) {
   const out=[];
   let k=0;
   for(let i=0;i<source.length;i++){
     const v=source[i];
-    if(transparentF&&i===58&&v===0){out.push(0);continue;}
+    if(transparentF&&i===transparentIndex&&v===0){out.push(0);continue;}
     out.push((v-(prime[start+k++]-1)%29+29)%29);
   }
   return {out,consumed:k};
@@ -102,6 +102,16 @@ const allAdvance=phiSubtract(tail,false);
 const skipF=phiSubtract(tail,true);
 const startAt1033=phiSubtract(tail,true,173);
 const startAt3301=phiSubtract(tail,true,463);
+// Competing literal grammar: the red379-selected F ITSELF is transparent;
+// consume the immediately following 173 runes and keep the final item rune
+// outside the proposed frame. It does not coincide with a printed end.
+const fromBoundary=numbered.slice(openingSum-1,openingSum-1+174);
+assert.equal(fromBoundary.length,174);
+assert.equal(fromBoundary[0],0);
+assert.deepEqual(fromBoundary.flatMap((v,i)=>v===0?[i]:[]),[0,59]);
+const selectedBoundaryClocks=[0,173,463].map(start=>
+  phiSubtract(fromBoundary,true,start,0));
+for(const output of selectedBoundaryClocks)assert.equal(output.consumed,173);
 assert.equal(allAdvance.consumed,174);
 assert.equal(skipF.consumed,173);
 assert.equal(startAt1033.consumed,173);
@@ -110,6 +120,9 @@ assert.ok(Math.abs(ic(allAdvance.out)-0.03587801474985051)<1e-12);
 assert.ok(Math.abs(ic(skipF.out)-0.03521360706929772)<1e-12);
 assert.ok(ic(startAt1033.out)<0.048);
 assert.ok(ic(startAt3301.out)<0.048);
+assert.ok(Math.abs(ic(selectedBoundaryClocks[0].out)-0.03594445551790579)<1e-12);
+assert.ok(Math.abs(ic(selectedBoundaryClocks[1].out)-0.03395123247624743)<1e-12);
+assert.ok(Math.abs(ic(selectedBoundaryClocks[2].out)-0.03368546940402631)<1e-12);
 const neighboring=numbered.slice(openingSum-1-174,openingSum-1);
 assert.equal(neighboring.length,174);
 const direct=[],mirror=[];
@@ -175,6 +188,12 @@ const report={
     skipOneF:{ic:ic(skipF.out),consumed:skipF.consumed},
     firstPrime1033:{ic:ic(startAt1033.out),consumed:startAt1033.consumed},
     firstPrime3301:{ic:ic(startAt3301.out),consumed:startAt3301.consumed}
+  },
+  alternativeRedSelectedTransparentF:{
+    receiver:'numbered [378,552): selected F and following 173 runes; excludes final rune',
+    originalFOccurrences:[0,59],transparentF:0,consumedPrimeShifts:173,
+    initialPrimeOrdinals:[1,174,464],
+    full174IoCs:selectedBoundaryClocks.map(r=>ic(r.out))
   },
   adjacent174GP29:{chronologicalMinusPlus:direct,mirroredMinusPlus:mirror},
   plantedNativePhi:{
