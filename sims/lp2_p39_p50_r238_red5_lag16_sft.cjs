@@ -669,6 +669,45 @@ assert.deepEqual(fieldRecovered, fieldPlant);
 assert.ok(ioc(fieldRecovered) > 0.06);
 
 
+// Further genuinely source-labelled register: convert the three literal red
+// GP29 glyphs to their STANDARD PRINTED GP prime weights rather than alphabet
+// ordinal indices, then work in the independently original GF(29^238).
+const standardGpPrimes = [
+   2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,
+   53,59,61,67,71,73,79,83,89,97,101,103,107,109
+];
+assert.deepEqual(page39.slice(119,122).map(i=>standardGpPrimes[i]),
+  [107,13,53]);
+const primeRedFieldUnit=page39.slice(119,122)
+  .map(i=>mod(standardGpPrimes[i]));
+assert.deepEqual(primeRedFieldUnit,[20,13,24]);
+const primeRedInverse=fieldInverse(primeRedFieldUnit,R238);
+assert.deepEqual(fieldMod(mul(primeRedFieldUnit,primeRedInverse),R238),[1]);
+const primeRedSourceUnits=[
+  ['GP-printed-prime G',primeRedFieldUnit],
+  ['GP-printed-prime G inverse',primeRedInverse],
+  ['GP-printed-prime G times p15 A16',
+    fieldMod(mul(primeRedFieldUnit,spiralFieldUnit),R238)],
+  ['GP-printed-prime G times p15 A16 inverse',
+    fieldInverse(mul(primeRedFieldUnit,spiralFieldUnit),R238)]
+];
+const primeRedSourceResults=[];
+for(const [name,unit] of primeRedSourceUnits){
+  for(const orientation of ['high','low']){
+    const input=orientation==='high'
+      ?originalTrim.slice().reverse():originalTrim.slice();
+    const decoded=fieldMultiply238(input,unit);
+    const output=orientation==='high'?decoded.reverse():decoded;
+    primeRedSourceResults.push({name,orientation,ioc:ioc(output),
+      prefix:output.slice(0,95).map(i=>corpus.translit[i]).join('')});
+  }
+}
+assert.equal(primeRedSourceResults.length,8);
+assert.ok(primeRedSourceResults.every(x=>x.ioc<0.045));
+const primeRedPlant=fieldMultiply238(
+  fieldMultiply238(fieldPlant,primeRedFieldUnit),primeRedInverse);
+assert.deepEqual(primeRedPlant,fieldPlant);
+
 // All-secret 16-position alphabet gate: for ANY bijection applied separately
 // at each of the sixteen phases, equalities within a phase cannot change.
 /** @param {number[]} v @returns {{samePhasePairs:number,adjacentLag16:number}} */
@@ -748,6 +787,8 @@ const report = {
   keylessPhase16: { original: fixed16Original, donorWindows: fixed16DonorWindows.length,
     donorsAtMost75: 15, donorMaxLag16: 20, donorsMatchingBoth: 0,
     solvedNativePhasePermutationPlant: true },
+  sourcePrimeField: { sourceGpPrimes:[107,13,53],unit:primeRedFieldUnit,
+    cases:primeRedSourceResults,nativePlantRecovered:true },
   sourceFiniteField: { originalCases: fieldOriginalResults, nativePlantExactlyRecovered: true },
   physicalSelectorCalibration: { red13Markers: [119, 122, 240],
     physicalRedSelectorHits, black237Counts, wordShuffleSeed: '0x3301abcd',
