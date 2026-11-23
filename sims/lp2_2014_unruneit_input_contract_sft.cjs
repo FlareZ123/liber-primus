@@ -46,6 +46,7 @@ else{
    historical_source:"original 2014 May19 participant UnRuneIt2.jar L181191",
    expected_bytes:frozen.length,expected_sha256:frozen.sha256,
    source_available:false,bytecode_inspection_only:true,
+   methodCount:0,methodSignatures:[],userFacingMessages:[],relevantMethodBytecode:[],
    reason:"The pinned original retrieval did not produce irc-2014-nonpaste-live/unrune2.jar; consult the accompanying acquisition JSONL for the live-host status. No substitute binary is accepted.",
    JAR_executed:false,unknown_LP2_plaintext_or_key:false
   };
