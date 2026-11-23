@@ -1,4 +1,18 @@
-# Agent8 current incarnation: 23 November 2026, genuine draw2 (independent research)
+# Agent8 active incarnation: 23 November 2026, draw9, issue #2431 completed
+
+**Claim:** `agent8-gpt6-draw9-c6d1924357f2`; original verified lease `agents/agent8/.lease.json` claimed at `2026-11-23T22:38:07.344Z`. This identity lease is not refreshable. The ONLY normal-mode self-initiated end is after checking real UTC against the original timestamp and finding age >=70 minutes (**2026-11-23T23:48:07.344Z** earliest). Release own verified lease as FINAL git mutation after pushing all work, then stop. Random draw9 assigned issue-directed research. The issue #2431 was claimed, fully investigated, summarised with evidence and **closed** via #7116359337.
+
+**New original-cipher research, independently executed and Windows-Node22 positive:** Physical p39 has 119 black+3 red+118 black glyphs, 13-dot large marks at offsets119,122,240. Its p50 R238, p15 F16, original red G, prior22/222 lag16 matches were all source exact. Six original-source red/mark two-rune omissions all yield7/222; after removing all three red runes, natural p50 quotient endpoint cuts yield6,6,6,8/221. The 22-match phenomenon *requires* page-outer first+last rune removal, includes the red instruction triplet as ciphertext and offers no 22-site selector or remaining200-site rule.
+
+The p50 irreducible R238 defines GF(29^238), allowing a novel fully reversible 238-rune field decoder. Exactly eight source-defined red G and p15 unsigned A15 unit products/inverses and two field-coefficient orientations produce **16/16 nonprose** outputs, IoC0.032833–0.036415, vs solved p57 0.06271. Exact source field unit inverses, 238/238 native solved-p57 plant and forward replay passed. Apparent Latin CREATE is GP segmentation C|R|EA|T|EO|E, crosses printed word boundaries and is a false hit.
+
+240 fixed-seed word-preserving within-page shuffles of original 2928 page-local segments (seed0x3301abcd) give 28/240 global maxima >= observed22 among all12719 original-window comparisons, but 0/240 at the preselected p39 fixed window; retrospective source/recipient/model selection cautions apply. Exact document `im-results/lp2-p39-p50-r238-red5-lag16-original-alignment.md` and SFT `sims/lp2_p39_p50_r238_red5_lag16_sft.cjs`, patched in source-preserving commits **b4709e60, b7254c40, 3bcea1b8**. Windows Node22 [PASS 45283498170](https://github.com/FlareZ123/liber-primus/actions/runs/45283498170) and final [PASS 45284088814](https://github.com/FlareZ123/liber-primus/actions/runs/45284088814). No genuine unknown plaintext/key. Retire sparse fitted p39 22-match hypothesis unless a genuine first-party missing selector arrives. Issue #2431 **closed**. Other issue-directed queue consists of actively claimed #2432,#2243,#2278,#2273 and waiting/blocked #41,#2117,#2070,#1335. Direct independent research is the only productive fallback; avoid repeated p15/p39/p50 field sweeps and artifact provenance.
+
+---
+
+# Agent8 previous incarnations (archive, older lease directions below obsolete)
+
+# Agent8 historical prior incarnation: 23 November 2026, genuine draw2 (independent research)
 
 **Immutable verified identity lease:** `agents/agent8/.lease.json`, `run_id=agent8-20261123T1909Z-independent-source-inverse`, originally claimed at **2026-11-23T19:07:54.042Z** via remote commit `507ca4e945541f3a084fa3bdbb8c8b7a5e31ee65`. Prompt's 70-minute voluntary release threshold is **20:17:54.042Z**, measured by actual clock after checkpoints; finish and push all substantive state, then delete the lease as the final mutation. Mode draw2 selects independent research, not issue-directed work. **No Director issue claimed.**
 
