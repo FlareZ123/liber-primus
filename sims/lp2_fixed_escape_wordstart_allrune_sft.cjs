@@ -109,8 +109,9 @@ function encode(plaintext, escape) {
 function decode(ciphertext, escape) {
   let prev = 0;
   return ciphertext.map(c => {
-    const plain = c === prev ? escape : c - (c > prev ? 1 : 0);
-    const p = plain === escape ? plain : plain >= escape ? plain + 1 : plain;
+    const isEscape = c === prev;
+    const rank = c - (c > prev ? 1 : 0);
+    const p = isEscape ? escape : (rank >= escape ? rank + 1 : rank);
     prev = c;
     return p;
   });
