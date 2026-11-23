@@ -1,0 +1,19 @@
+name: Agent 1 - p15 period16 cuneiform F-bypass gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-inverse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run exact 16-phase F-transparent inverse
+        run: node sims/lp2_p15_prime_totient_period16_cuneiform_ftransparent_gate.cjs
