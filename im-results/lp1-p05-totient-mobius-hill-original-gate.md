@@ -2,11 +2,14 @@
 
 ## Decision
 
-The source gives a 5×5 numerical magic square B, explicitly names Euler's totient function, includes the word MOBIUS, and uses the 29-symbol Gematria Primus alphabet. Two compact, clue-constrained constructions are to apply phi or the Möbius function mu elementwise to B, reduce modulo 29, then use the resulting 25 symbols either as a repeating additive key or as a 5×5 Hill key over GF(29).
+The source gives a 5×5 numerical magic square B, explicitly names Euler's totient function, includes the word MOBIUS, and uses the 29-symbol Gematria Primus alphabet. Three compact, clue-constrained constructions are:
+1. apply phi or the Möbius function mu elementwise to B, reduce modulo 29, and use the resulting matrix as a Hill-5 key;
+2. flatten either 25-entry matrix row-major and repeat it as an additive key;
+3. use the two prime magic constants, 1033 and 3301, as a two-symbol key after applying phi and reducing modulo 29.
 
-**Neither direct construction decrypts LP2.** Both transformed matrices are invertible, so the Hill tests are well-defined. Across all 56 unsolved pages, the 16 natural Hill direction/transpose and global/page-reset conventions remain random-like. The 8 additive-key candidates also remain random-like; the best is slightly worse than raw ciphertext. A p55-specific Hill framing gives a small quadgram-score increase after selecting the best of 16 candidates, but its output is visibly nonlinguistic and far below the solved p57 positive control. No plaintext or key was recovered.
+**None decrypts LP2.** Across all 56 unsolved pages, the 16 Hill-5, 8 matrix-additive, and 8 prime-pair additive candidates remain random-like. All full-book best scores are slightly worse than raw ciphertext. A p55-specific Hill framing gives a small quadgram-score increase after selecting the best of 16 candidates, but its output is visibly nonlinguistic and far below the solved p57 positive control. No plaintext or key was recovered.
 
-This is a bounded rejection of phi(B)/mu(B) used directly as a GP29 additive key or Hill-5 key, not a rejection of every possible use of the p05 number-theory clues.
+This is a bounded rejection of these direct number-theoretic GP29 key constructions, not a rejection of every possible use of the p05 number-theory clues.
 
 ## Source and hypothesis
 
@@ -24,7 +27,9 @@ K_\phi[r,c]=\phi(B[r,c])\bmod29,\qquad
 K_\mu[r,c]=\mu(B[r,c])\bmod29.
 \]
 
-A 5×5 matrix over GF(29) naturally suggests Hill-5. Flattening the same source matrix row-major also gives a 25-symbol repeating additive key. These are compact candidate operations; the source does not explicitly name Hill or Vigenère.
+A 5×5 matrix over GF(29) naturally suggests Hill-5. Flattening the same source matrix row-major also gives a 25-symbol repeating additive key. Finally, the LP1/2014 magic constants 1033 and 3301 are both prime; their totients reduced modulo 29 give a source-derived two-symbol candidate.
+
+These are compact candidate operations; the source does not explicitly name Hill or Vigenère.
 
 ## Exact derived matrices
 
@@ -69,13 +74,24 @@ K_\mu=
 \qquad \det(K_\mu)=24\pmod{29}.
 \]
 
-Both keys are invertible in the GP29 field. The corresponding row-major additive keys are the 25 entries of each matrix in order.
+Both matrix keys are invertible in the GP29 field.
+
+For the two magic constants:
+
+\[
+\phi(1033)=1032,\quad \phi(3301)=3300,
+\]
+\[
+(1032\bmod29,\;3300\bmod29)=(17,23).
+\]
+
+The tested two-symbol key is therefore [17,23] in chronological LP1-to-2014 order, plus its reverse [23,17].
 
 ## Frozen tests
 
 ### Hill-5 interpretation
 
-For each candidate key, the reproducer tested four natural Hill conventions:
+For each candidate matrix, the reproducer tested four natural Hill conventions:
 - K inverse (column-vector decryption convention);
 - transpose of K inverse (row-vector decryption convention);
 - K (opposite direction);
@@ -89,11 +105,15 @@ Incomplete block tails were left unchanged. No phase or padding search was perfo
 
 A separate p55 check used two already documented source framings: remove the first NG carry, or remove the literal F at local offset 25. Each leaves 75 runes, exactly 15 complete Hill-5 blocks. The same four conventions were tested for both phi and mu.
 
-### Repeating additive-key interpretation
+### Repeating matrix-additive interpretation
 
 The 25 entries of Kphi or Kmu were flattened row-major and repeated as a GP29 additive key. Both directions, C-K and C+K, were tested under continuous-book and page-reset alignment: 2 keys × 2 directions × 2 alignments = 8 candidates.
 
 The earlier p05 experiment already tested the phi-derived additive key on p55. This test extends that candidate to the complete p0–p55 stream and adds the corresponding mu-derived key. No arbitrary phase, key rotation, or alphabet remapping was searched.
+
+### Prime magic-constant pair
+
+Since both 1033 and 3301 are prime, their totients provide two source-derived residues, 17 and 23. The reproducer tested [17,23] and [23,17], both additive directions, and global/page-reset alignment: 8 candidates. No other seed or key values were searched.
 
 ### Scoring
 
@@ -105,10 +125,11 @@ The score is the mean smoothed English quadgram log-frequency from **resources/c
 |---|---:|---:|
 | Raw p0–p55 | -7.440422 | 0.034478 |
 | Best of 16 Hill-5 candidates: mu, inverse-transpose, global | -7.461061 | 0.034494 |
-| Best of 8 additive candidates: mu, C-K, global | -7.453372 | 0.034515 |
+| Best of 8 matrix-additive candidates: mu, C-K, global | -7.453372 | 0.034515 |
+| Best of 8 prime-pair candidates: reverse order, C+K, page-reset | -7.478973 | 0.034499 |
 | Known plaintext p57 positive control | -4.420906 | 0.062710 |
 
-Both full-book families score slightly worse than raw ciphertext and remain far from the known plaintext control.
+All three full-book families score slightly worse than raw ciphertext and remain far from the known plaintext control.
 
 For p55, the best of 16 source-framed Hill candidates is phi(B) transpose on the remove-literal-F 75-rune framing:
 - mean quadgram score: **-7.154399**;
@@ -119,9 +140,10 @@ The small p55 score increase is selected from 16 variants on a 75-rune sample an
 
 ## Interpretation and next action
 
-The tested direct constructions do not support either of these readings:
+The tested direct constructions do not support:
 1. elementwise phi or mu, modulo 29, used as a Hill-5 matrix;
-2. the flattened 25-symbol phi or mu matrix repeated as a GP29 additive key.
+2. the flattened 25-symbol phi or mu matrix repeated as a GP29 additive key;
+3. the two prime magic constants transformed by phi and used as a two-symbol GP29 additive key.
 
 Do not continue tuning phase, padding, matrix orientation, key rotation, or other variants without an independent source-visible selector.
 
@@ -133,4 +155,4 @@ Run from repository root:
 
     node sims/lp1_p05_totient_mobius_hill_original_sft.cjs
 
-The script reconstructs the 1033 matrix from the already verified 360-byte original sidecar, checks the independent 2014 square, derives both number-theoretic keys, performs the 16 Hill-5, 8 additive, and 16 p55-framed tests, and prints the exact scores and previews. It passed the repository's manual Node 22 source-SFT workflow (#928; run 45199549943) on commit ab0facb620c1e1a8418be547e24a961554007ee5.
+The script reconstructs the 1033 matrix from the already verified 360-byte original sidecar, checks the independent 2014 square, derives both number-theoretic matrices and the prime-constant pair, performs the 16 Hill-5, 8 matrix-additive, 8 prime-pair, and 16 p55-framed tests, and prints the exact scores and previews. The earlier version passed Node 22 SFT workflow #928; rerun after the prime-pair extension.

@@ -2,8 +2,8 @@
 /**
  * Bounded original-source test: LP1 p05's hidden 1033 square transformed
  * elementwise by Euler phi or the Mobius function, reduced in GP29, then used
- * as either a 25-symbol additive key or a 5x5 Hill key. Tests natural
- * directions, row/column conventions, and global/page-reset alignment.
+ * as a 25-symbol additive key, a 5x5 Hill key, or a two-symbol totient key
+ * from the two prime magic constants. Tests only source-natural conventions.
  *
  * Run from repository root:
  *   node sims/lp1_p05_totient_mobius_hill_original_sft.cjs
@@ -266,6 +266,40 @@ for (const [keyName, matrix] of [['phi', Kphi], ['mu', Kmu]]) {
 }
 additiveCandidates.sort((a, b) => b.average - a.average);
 
+function isPrime(n) {
+  if (n < 2) return false;
+  for (let p = 2; p * p <= n; p++) if (n % p === 0) return false;
+  return true;
+}
+assert(isPrime(1033));
+assert(isPrime(3301));
+const magicPair = [phi(1033) % 29, phi(3301) % 29];
+assert.deepEqual(magicPair, [17, 23]);
+const magicPairCandidates = [];
+for (const [keyName, key] of [
+  ['LP1-to-2014', magicPair],
+  ['2014-to-LP1', magicPair.slice().reverse()]
+]) {
+  for (const sign of [-1, 1]) {
+    for (const pageReset of [true, false]) {
+      const output = pageReset
+        ? unknownPages.flatMap(page => page.map((value, index) =>
+            mod(value + sign * key[index % key.length])))
+        : unknown.map((value, index) => mod(value + sign * key[index % key.length]));
+      const score = languageScore(output);
+      magicPairCandidates.push({
+        key: keyName,
+        operation: sign === -1 ? 'C-K' : 'C+K',
+        alignment: pageReset ? 'page-reset' : 'global',
+        average: score.average,
+        ic: score.ic,
+        preview: score.preview
+      });
+    }
+  }
+}
+magicPairCandidates.sort((a, b) => b.average - a.average);
+
 const rawP55 = {
   full: languageScore(p55),
   dropFirstNG: languageScore(p55.slice(1)),
@@ -277,6 +311,8 @@ assert.equal(fullCandidates.length, 16);
 assert.equal(p55Candidates.length, 16);
 assert.equal(additiveCandidates.length, 8);
 assert(Math.abs(additiveCandidates[0].average - (-7.453372230171215)) < 1e-10);
+assert.equal(magicPairCandidates.length, 8);
+assert(Math.abs(magicPairCandidates[0].average - (-7.478973445125629)) < 1e-10);
 
 console.log(JSON.stringify({
   source: {
@@ -308,6 +344,9 @@ console.log(JSON.stringify({
   fullBookWorst: fullCandidates[fullCandidates.length - 1],
   additiveBest: additiveCandidates[0],
   additiveWorst: additiveCandidates[additiveCandidates.length - 1],
+  magicConstantTotientPair: magicPair,
+  magicConstantPairBest: magicPairCandidates[0],
+  magicConstantPairWorst: magicPairCandidates[magicPairCandidates.length - 1],
   p55Best: p55Candidates[0],
   p55Worst: p55Candidates[p55Candidates.length - 1]
 }, null, 2));
