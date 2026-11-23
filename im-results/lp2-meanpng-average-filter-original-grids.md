@@ -20,7 +20,7 @@ For all three, the forward encoder `filtered = original - floor((left+above)/2)`
 
 | Original source | Length | Input IoC | Average-unfiltered IoC | Result |
 | --- | ---: | ---: | ---: | --- |
-| p0–p2 27×27 GP29 | 729 runes | 0.0340825156 | **0.0343651517** | No native GP prose; full original 729/729 replay |
+| p0–p2 27×27 GP29 | 729 runes | 0.0340825156 | **0.0343651547** | No native GP prose; full original 729/729 replay |
 | p40–p55 16×203 GP29 | 3,248 black runes | 0.0344918614 | **0.0344239700** | No native GP prose; full original 3248/3248 replay |
 | p49–51 32×8 literal byte panel | 256 bytes | — | — | 103 printable ASCII source bytes vs **87/256** after unfilter; no PNG/file signature or readable instruction at byte start |
 
