@@ -57,6 +57,16 @@ The page does not independently specify the hash algorithm; SHA-512 is only the 
 
 This rejects only the idea that one of those exact strings is itself the p56 SHA-512 preimage. It says nothing about the candidate as a password for another receiver, and it does not establish that SHA-512 is the specified algorithm.
 
+## Bounded check against the 2016 signed-word map
+
+The authenticated 2016 message contains 43 alphabetic words under its preserved source segmentation. Its text says that LP's words are the map and their numbers are the direction. One natural reading of the new 29-rune selector is to use its GP29 indices as zero-based addresses into that 43-word list.
+
+The resulting 29-word readout is:
+
+Primus path epiphany the Hello Its Primus their The epiphany way devoted is meaning way the map Primus seeks Its seeks words the path path map epiphany is map
+
+It is not a coherent instruction or sentence. This rejects that exact direct-address interpretation. The broader 43-interior GP0/prime address and simple step-walk families were already rejected in [the 2016 43-word gate](lp2-p55-signed2016-43word-core-original-gate.md); do not expand this into new starts, offsets, or walks.
+
 ## Frozen native OpenPuff seven-JPEG experiment, completed 23 November 2026
 
 The previously proposed distinct p55-derived password **`A25S0EAJ15D8LKDCIA6E6FC22I5BI`** was tested exactly once with original OpenPuff v4.00 on the original **seven** contiguous cuneiform JPEGs `resources/liber-primus/50.jpg` through `56.jpg`, in published order; A-only, B/C disabled, JPEG Medium `1/5 (20%)`. The original executable and DLL were pinned to Git blob hashes, and the workflow verified all seven carrier entries and selected bit setting. The same Windows run recovered the exact **35-byte** independently published JPEG OpenPuff positive before testing the LP2 originals.
@@ -72,4 +82,4 @@ The previously proposed distinct p55-derived password **`A25S0EAJ15D8LKDCIA6E6FC
 - It does not provide a reversible p55 ciphertext/plaintext mapping for the 33 exterior runes or satisfy waiting [Issue #41](https://github.com/FlareZ123/liber-primus/issues/41).
 - It does not rescue the separate all-position, depth-totient, two-edge-sum codec rejected in [lp2-p55-whole-word-symmetric-totient-gate.md](lp2-p55-whole-word-symmetric-totient-gate.md).
 
-The next useful decision is whether the Director authorizes exactly one native OpenPuff test with this frozen source-derived password. Do not tune the selector, serialization, password, carrier subset, order, or depth if that test fails.
+The frozen OpenPuff receiver is closed; do not repeat or vary it. The 29-rune selector remains only a source-paired extraction hypothesis. Any further use requires a distinct first-party instruction selecting a different reversible receiver; absent that, retire the selector rather than search over transforms.
