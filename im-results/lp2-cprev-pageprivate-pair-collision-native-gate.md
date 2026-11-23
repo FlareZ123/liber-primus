@@ -4,30 +4,30 @@
 
 ## Exact original observable and what it proves
 
-Let (C_i) be a canonical GP29 ciphertext rune. On each original physical page, consider the fully reversible page-private cipher
+Let \\(C_i\\) be a canonical GP29 ciphertext rune. On each original physical page, consider the fully reversible page-private cipher
 
-[
+\\[
 C_i=\pi_{page,C_{i-1}}(P_i),\qquad
 P_i=\pi_{page,C_{i-1}}^{-1}(C_i),
-]
+\\]
 
 where **each of the 55×29 output alphabets may be any private 29! permutation**. The initial predecessor is an arbitrary private state and its ciphertext position is omitted from the test.
 
-For every two positions (i<j) in the **same physical page** with (C_{i-1}=C_{j-1}), permutation injectivity gives
+For every two positions \\(i<j\\) in the **same physical page** with \\(C_{i-1}=C_{j-1}\\), permutation injectivity gives
 
-[
+\\[
 [C_i=C_j] \iff [P_i=P_j].
-]
+\\]
 
 Consequently the total equal-follower pair count **within each observable (page, previous ciphertext) row** is invariant under **every** secret choice of that row's permutation. This does not require knowing the alphabets, guessing GP prime arithmetic, or preserving word boundaries.
 
 Define (n_{p,s,v}) as the count of original follower rune (v) in page (p) after predecessor (s), and (n_{p,s}=\sum_v n_{p,s,v}). The original key-independent conditional collision rate is
 
-[
+\\[
 Q=\frac{\sum_{p,s,v}\binom{n_{p,s,v}}2}
         {\sum_{p,s}\binom{n_{p,s}}2}
  = \frac{1919}{54009} = 0.03553111518450629.
-]
+\\]
 
 These original counts cover **12,956** unchanged encrypted runes on **55 rune-bearing physical pages**, with the first rune of each page omitted as an output observation. The one runeless p50 remains an empty page, not a page-index shift.
 
