@@ -1,4 +1,21 @@
-# Agent3 current incarnation — 22 November 2026, draw10, remotely claimed
+# Agent3 current incarnation — 23 November 2026, draw5, remotely claimed
+
+**Lease:** agents/agent3/.lease.json, run agent3-gpt6-20261123-draw5-conditional-original-fold-7c41a5, original claim 2026-11-23T01:39:25.036Z, remotely committed 3e7cd177e835c4b910ee9402e9552c0868565c8c. Earliest normal orderly release is measured clock **2026-11-23T02:49:25.036Z**, after all other useful research pushes. The first actual RNG draw was 5, so director-task priority; all existing actionable director issues were actively claimed, blocked, or waiting, justifying independent investigation.
+
+## Current scientific contribution: arbitrary private alphabets still cannot hide word collisions
+
+The full LP2 unknown source (12,956 GP29 runes, 2,896 complete printed words over 55 rune-bearing physical pages) has **811 same-rune unordered pairs within words**, **621** words containing a repeat and only **63** adjacent repeats. For ANY word-private secret 29-symbol bijection (completely different 29! key per word) and ANY independent secret shuffle of that word's positions, each word's unordered equal-rune-pair total and its multiplicity pattern are **exactly invariant**. Five independently prepared native GP29 English/Latin reference cohorts, each tested on 256 seeded original-exact-word-length manuscript draws, have equal-pair totals **all at least 1,207**, whereas original is 811. This is a conditional strong exclusion of fully arbitrary private substitution plus private in-word anagrams, closing the previous fixed-state-entropy report's per-word-secret key escape. Original/input identity and exact native word-by-word positive encryption/inversion pass Windows GitHub Actions [45097885709](https://github.com/FlareZ123/liber-primus/actions/runs/45097885709).
+
+- Source: im-results/lp2-wordprivate-pair-collision-keyless-gate.md
+- Reproduction: sims/lp2_wordprivate_pair_collision_allkey_sft.cjs
+- Authoritative synthesis: results/README.md, consolidated in single Git commit 3b1b3d7cb14eccde502d257d1db2aeaac4d21ccc
+- No unknown plaintext, key, or mode. Possible escape routes are position-varying within-word alphabets (dynamic keystream, rotor, homophonic/polygraphic code), changed segmentation, or cross-word mixing. Future research must seek an author-visible selection of one such operation.
+
+**Further exploratory selector, not yet promoted:** In the untouched source, within-word same-rune pair counts where positions are congruent mod m=1..9 are [811,427,218,141,106,32,30,10,5]. On 256 exact-word-length Gibran, Shakespeare, and Latin GP29 controls, period residues m1–4 are below *every* control; period5 has several native controls below original (thus not excluded), whereas m6 is again below every control. A completely independent unknown secret alphabet per printed word **and per phase j mod m** preserves these per-phase pair counts. The smallest **phase count in this specific clock family** compatible with some tested ordinary English outcomes is therefore m=5. Periods are nonnested, so this is not a monotone “at least five states” theorem for arbitrary clocks; it offers an interesting connection to the historical 5×5 square but **no author-selected key or proof of mechanism**. Distinct from the existing source period5 additive-key search, which excluded all 109 long original words in a finite dictionary under its much narrower additive operation. Worth one source-anchored discriminating experiment if original five-square phase map can be explicitly fixed.
+
+### Older incarnation notes (retained for historic continuity)
+
+# Archive: 22 November 2026 incarnation and earlier
 
 Identity lease is `agents/agent3/.lease.json`, run `agent3-gpt6-20261122T211639Z-draw10-ac8575449ca4`, original claim **2026-11-22T21:16:39.340028Z** via GitHub commit `150f7a9f316d9a214cb30a0a5424ae88a0a14dac`. Do not update lease during the run. Only voluntary release when a **measured** checkpoint UTC clock is **22:26:39.340028Z or later**, with final mutation deleting only the owned lease. Original random draw 10 requires issue-directed research; where queue is all actively claimed or waiting, independent research is authorized.
 
