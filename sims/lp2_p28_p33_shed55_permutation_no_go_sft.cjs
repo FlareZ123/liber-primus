@@ -159,6 +159,33 @@ assert.equal(cases[0].symbols,214);
 assert.equal(cases[1].symbols,214);
 assert.equal(cases[2].symbols,211);
 assert.equal(cases[3].symbols,211);
+// Exhaust the eight *source-only length-compatible* shedding routes. This is
+// a closed finite family of physically printed page pairs, never selected by
+// inspecting which plaintext/key candidate looks best.
+const pageRecords=gp.pages.filter(p=>p.page<=55&&p.indices.length)
+  .map(p=>({page:p.page,runicCount:p.indices.length,physicalWords:words(p.page)}));
+assert.equal(pageRecords.length,55);
+const lengthCompatible=[];
+for(const from of pageRecords)for(const to of pageRecords) {
+  const multi=from.physicalWords.filter(w=>w.length>1).length;
+  if(from.page===to.page || from.runicCount-multi!==to.runicCount)continue;
+  const results=[];
+  for(const side of ['first','last']){
+    const counts=bound(shed(from.physicalWords,side),to.physicalWords.flat());
+    results.push({
+      side,
+      minChangesOriginalGP29:counts.fixedAlphabetMinimumChangedRunes,
+      minChangesSecretAlphabet:counts.unknownPermutationMinimumChangedRunes
+    });
+  }
+  lengthCompatible.push({from:from.page,to:to.page,n:to.runicCount,results});
+}
+assert.deepEqual(lengthCompatible.map(x=>[x.from,x.to]), [
+  [7,15],[9,23],[13,33],[25,3],[28,33],[29,7],[44,3],[47,3]
+]);
+assert.deepEqual(lengthCompatible.flatMap(x=>x.results.map(y=>y.minChangesSecretAlphabet)),
+  [10,8,14,7,9,8,4,6,7,17,9,8,6,7,7,8]);
+
 console.log(JSON.stringify({
   source: 'LP2 original physical p28 words, source Q polynomial from p39, native p33 GP rune tape',
   physicalSourceWords:59, sourceMultiwordsShed:55,
@@ -167,6 +194,8 @@ console.log(JSON.stringify({
   independentSolvedP57SecretAlphabetPositive:control.unknownPermutationMinimumChangedRunes===0,
   conditionalHypothesis:'Shed one exterior rune per multiword, then arbitrary rune transposition, arbitrary printed-space rewriting, and even a secret fixed GP29 alphabet permutation',
   cases,
+  entireEightPairSourceLengthFamily:lengthCompatible,
+  anyExactDirectTranspositionInEightPairs:lengthCompatible.some(x=>x.results.some(y=>y.minChangesSecretAlphabet===0)),
   interpretation:'A nonzero minimum forbids this exact all-secret transcription family. No original LP2 plaintext or key is recovered.'
 },null,2));
 console.log('PASS: exact source-native shed55 multiset and secret-global-alphabet no-go gates');
