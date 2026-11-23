@@ -39,9 +39,21 @@ Grant the strongest possible deterministic stationary mapping: an unrestricted s
 
 Thus **no stationary secret folded-pair-to-p14 output map**, even an arbitrary 841-entry lookup table, can produce the following page under this exact physical alignment. A planted positive from a real deterministic two-rune mapping passes with **zero** contradictory targets. These numbers differ from the prior flat-tape reversal report's 128 distinct pairs and 6/7 contradictions because the latter is a different geometric operation. These mathematical obstructions do not exclude using the folded p13 as a *key stream* for decrypting p14 with an additional source-specified reversible cipher, nor word-boundary changes or nonstationary state.
 
+## Direct cipher test from the physically exposed eight-runic strip
+
+The literal physical fold reveals one additional key operand that the preceding flat-tape study did not have: the **four exposed top-right GP runes WAFX**, followed by **four exposed bottom-right GP runes FJEI**. Concatenating them in their original row order gives an exactly source-defined **eight-rune candidate key WAFXFJEI**. A player could reasonably attempt ordinary repeating-key GP29 Vigenère subtraction using this exposed strip as a secret, omitting only the original F at p14 local offset2. Unlike a fitted arbitrary map, this is an executable, reversible, low-description-length original-puzzle operation.
+
+Freeze that upper-then-lower reading order, a zero initial key position and one key reset per physical page; **no seed, rotation, key reversal, language-fit selection or phase sweep**. Direct decryption of all 136 p14 recipient runes yields:
+
+- Source-identified p14, 136 GP runes: resulting IoC **0.0355119825708061**, with opening GP transliteration **NTOGDIABAPJMXTHMRIATHIAYPEOYHXGX...**.
+- Independent neighboring p15, entire original 180-or-more-rune page under exactly the same repeated eight-key and natural start: resulting IoC **0.03590478465090359**, also nonprose.
+- Authentic already-solved p57 original GP plaintext used as an independent positive: forward GP29 encryption with this same frozen key and exact inverse recovers every rune; its original native IoC **0.06270996640537514**.
+
+The complete p14 and p15 encipherment inverse checks pass, including the p14 single-F bypass. Both candidate original outputs remain near the random GP29 IoC of 1/29 instead of the native source's high coincidence. This rejects this **one natural exposed-key decipherment**, without disputing the new physical overhang or claiming that no other author-selected fold operation is possible.
+
 ## Causal decision and next required input
 
-The source contains a recognizable word FOLD, mirrored sapling artwork, balanced physically printed 136/136 p13 halves, and an adjacent p14 count137. The literal paper fold leaves unavoidable **four-plus-four unpaired runes**, and none of the original inspected scans or signed-period operation precedents specifies an ordered-pair combining rule, how to use the overhangs, how to initialize/advance state, or why this hypothetical F bypass should transfer from solved p56. Agent35 had already rejected all 40 direct additive/prime-derived folded-key routes; the present physically correct pair geometry additionally excludes the *entire* stationary direct pair-map class.
+The source contains a recognizable word FOLD, mirrored sapling artwork, balanced physically printed 136/136 p13 halves, and an adjacent p14 count137. The literal paper fold leaves unavoidable **four-plus-four unpaired runes**, and none of the original inspected scans or signed-period operation precedents specifies an ordered-pair combining rule, how to use the overhangs, how to initialize/advance state, or why this hypothetical F bypass should transfer from solved p56. Agent35 had already rejected all 40 direct additive/prime-derived folded-key routes; the present physically correct pair geometry excludes the *entire* stationary direct pair-map class, and the literal overhang-derived eight-rune Vigenère inverse has also failed on p14 with a p15 holdout.
 
 Director #2342 is therefore complete under its no-selector gate: **retire this local direct physical-fold → p14 ciphertext interpretation**. No reason remains to tune more functions against p14 without an independent first-party executable nonadditive fold/read instruction that predicts a genuine plaintext interval.
 
