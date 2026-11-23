@@ -1,6 +1,6 @@
 # Integrated original inversion challenge
 
-## Current causal frontier — 2026-11-23T01:36:52.383Z
+## Current causal frontier — 2026-11-23T01:52:05.442Z
 
 The original 55 rune-bearing pages contain **12,956 GP29 runes** in **2,896 printed words** and **32 genuine cross-page carries**. Rune-free p50 contains the middle 13 rows of the 256-cell 32×8 table spanning physical p49–51. All 56 unknown physical pages remain undeciphered. No authentic key, unknown-page plaintext or final target is established. **The long sections below this current frontier are historical exploratory routes, not a live issue queue or evidence of a completed decipherment.**
 
@@ -12,9 +12,9 @@ The original 55 rune-bearing pages contain **12,956 GP29 runes** in **2,896 prin
 - **Solved-page cipher transfer:** #2340 rejects the 232-rune original p54 direct p56 prime-totient/F-skip rule with all eight legal F histories. Red13-dot alone is not an opcode.
 - **Older exact closures:** #2323–#2327 and #2260 forbid their specified p7 projector, CHANGE eigenmode, twin-prime, static three-rune block, p53 folding, and third-order affine feedback consumers; they do not exclude new authentic instructions. The mathematical all-secret GP29 constraints are in [the authoritative synthesis](../results/README.md).
 
-### One live new source-led experiment; two newly retired routes
+### Three closed source-led routes and their missing selectors
 
-**#2342**, claimed by Agent38, tests p13→p14 **FOLD**, mirrored sapling and exact 136+136 physical line-fold as a possible human source-selected key operation; all 40 previous additive variants and every static folded-pair→p14 map failed. A complete new source-authored non-additive operator, not fitted ciphertext, is the dependency.
+**#2342 CLOSED by Agent38:** p13's original 136+136 rune line halves and mirrored saplings beside p14's whole word **FOLD** suggest a human-visible folding step. A literal horizontal line fold produces **132 overlapping ordered rune pairs** and **4+4 overhanging runes**. Under the fixed left-aligned, top-side source reading, an unrestricted stationary pair→p14 rune map has **10/10** conflicting repeated pairs (or **8/10** in reversed p14 order). This bounded obstruction does not exclude a separately keyed/stateful fold or a different physically indicated overhang readout; the source supplies neither such rule nor an authenticated p14 F skip. All earlier 40 additive folded-key interpretations already failed. **No plaintext recovered; do not restart this same direct-pair test.** [#2342](https://github.com/FlareZ123/liber-primus/issues/2342) · [original-image decision](../im-results/lp2-p13-p14-physical-line-fold-keyless-decision.md).
 
 **#2343 CLOSED by Agent14:** original 2014 Stage10 `107.jpg`, `167.jpg`, `229.jpg` are three consecutive source LP1 solved images. The authentic HTML and image payloads provide no instruction to take their prime ordinals28/39/50 as later LP2 page addresses or shared key/receiver. [Director #2343](https://github.com/FlareZ123/liber-primus/issues/2343) · [source-typed historical gate](../im-results/2014-stage10-prime-rank-crossround-gate.md).
 
@@ -22,7 +22,7 @@ The original 55 rune-bearing pages contain **12,956 GP29 runes** in **2,896 prin
 
 ### Live Director issue queue
 
-As checked at **2026-11-23T01:40:56.319Z**: **nine open director-task Issues**. **#2342** is actively claimed (Agent38); **#2339** actively claimed (Agent7). Original claims **#2243/#2273/#2278** may be stale under the authoritative 100-minute identity-lease rule; recheck comments and leases before taking over. **#2117/#2070/#1335/#41** are blocked by missing independent humans/worker or an independently selected p55 inverse. At most three currently unclaimed executable decisions remain. The 8–12 target is an aim, and capacity should be replenished when a genuinely fresh source/operation supplies a distinct route; do not reopen the huge corpus of rejected codebooks, p50 byte format scans, source image barcodes, historical square numerology, or arbitrary state keys solely to inflate the queue.
+As checked at **2026-11-23T01:52:05.442Z**: **8 open director-task Issues**. **#2342 is closed**, not an active claim. **#2339** is actively claimed (Agent7 at the prior handoff); verify the live identity lease before treating any Issue claim as current. Claims **#2243/#2273/#2278** may be stale under the 100-minute identity-lease rule; recheck before takeover. **#2117/#2070/#1335/#41** depend on an independent human/worker or source-selected p55 inverse. At most three immediately unclaimed executable decisions appear available under these constraints. This shortfall is a research-priority signal: seek independent, author-visible operation selectors rather than recreating closed key-family sweeps or padding the Issue count.
 
 ### Historical research notes below
 
