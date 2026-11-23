@@ -30,6 +30,39 @@ Physical LP2 p6 has an original red 11-rune span at zero-based rune offsets [71,
 
 The remaining 2016-signed SEEKS=71 and p50 successor-graph route to p32 is a separately testable navigation hypothesis; introducing the 2013 prime stream supplies no missing reversible consumer. **Bounded decision:** retire the p6 71/181→`prime_echo` key-transfer claim under this available source record, without trying arbitrary offsets or rescoring more ciphers. A new source-authenticated receiver or key-clock instruction is required to reopen it. This does not alter the earlier negative results for the frozen 464/174/290 prime schedules below.
 
+## LP1 p13 “PROGRAM” imperative as a CicadaOS selector (23 November 2026; Issue #2354)
+
+### Exact clue and strongest apparent bridge
+
+The original LP1 p13 transcription reads:
+
+> SOME WISDOM  
+> AMASS GREAT WEALTH  
+> NEVER BECOME ATTACHED TO WHAT YOU OWN  
+> BE PREPARED TO DESTROY ALL THAT YOU OWN  
+>
+> AN INSTRUCTION  
+> PROGRAM YOUR MIND  
+> PROGRAM REALITY
+
+The final imperative contains exactly **29 alphabetic characters** after spaces are removed: PROGRAMYOURMINDPROGRAMREALITY. This is a reasonable reason for a human solver to notice the 29-symbol Gematria Primus alphabet. The same page's “SOME WISDOM” also makes the original CicadaOS files named tmp/wisdom and tmp/folly worth checking. Neither lexical/numerical match, by itself, names an executable, argument, input file, key schedule or LP2 receiver.
+
+### Original OS program and execution trace
+
+The complete embedded initramfs inventory is preserved in [the original-source inventory](cicada2013-os-original-full-rootfs-inventory.md) and reproduced by [its full-rootfs SFT](../sims/cicada2013_os_full_rootfs_inventory_sft.cjs). The only puzzle-specific startup wrapper is usr/local/bin/cicada, a 106-byte login-shell wrapper. It clears the screen, runs usr/local/bin/prime_echo with **no arguments**, clears again, displays message.txt, waits ten seconds and reboots.
+
+The invoked usr/local/bin/prime_echo is a fixed 12,248-byte list of 464 literal echo/sleep pairs. It prints every prime from 2 through 3301; 462 delays are 50 ms and two are 2 seconds, after 1033 and 3301. It does not read a file, accept a user input, call a cipher, or implement a reversible transform. The signed message companion says “The key is all around you”; it does not tell the player how to combine the prime output with LP2 ciphertext. The wrapper does not invoke 761.MP3.
+
+The apparent “wisdom” match also fails as a program handoff: tmp/wisdom and tmp/folly are identical 3,368-byte opaque files, and the rootfs call graph finds no consumer. The apparent cicada.ko.gz program is the conventional Linux Ethernet PHY driver. The complete embedded rootfs inventory finds no mind/reality executable or additional named puzzle decoder. This finding is scoped to the embedded initramfs; it is not a claim that every other ISO member or lost historical service has been recovered.
+
+### The 29 × 16 prime-table hypothesis and protocol rival
+
+The strongest numerical rival is that the 29-letter p13 imperative selects a 29-wide organization of prime_echo's 464 outputs, since 464 = 16×29. But the original script prints ten primes per newline row, not 29; the 16×29 table is a later mathematical reshape, not a source-authored execution layout. The signed 2013 BASE29 command belongs to a separate TCP-server challenge, not to the CicadaOS executable. Applying that conversion to the 464 primes yields 1,237 base-29 digits, and the existing [16×29 BASE29 receiver gate](lp2-primeecho-16x29-base29-source-gate.md) finds no original LP2 page, visual chapter or contiguous whole-page span of that length. The signed NEXT command only stores client-supplied text; the server does not compute or choose the next instruction.
+
+The existing [direct 464-prime periodic-key negative](prime-echo-464-periodic-key-negative.md), [cuneiform/prime-echo tests](lp2-cuneiform-prime-echo-290-key-gate.md), and [p40–53 original-input gate](lp2-2013-os-46row-prime-echo-p40-gate.md) already cover the obvious prime-stream receivers. This p13 audit adds no new receiver or reversible operation. Do not reopen prime offsets, base reductions, stream periods, or arbitrary page resets.
+
+**Decision:** p13's “PROGRAM” imperative is a genuine instruction to the reader but does not uniquely select a CicadaOS program. prime_echo is the only plausible custom executable, yet it is a fixed prime-output display with no input or inverse. The 29-letter/464=16×29 match is suggestive but does not select a source-authored layout or an LP2 ciphertext receiver. No p13→CicadaOS→LP2 decoder is established; close #2354 as a bounded negative, not as an impossibility claim about missing historical material.
+
 ## The actual missing key-selection step
 
 - The archived [2014 stage 1–11 walkthrough and preserved stage artifacts](https://github.com/neuroretransmit/cicada/tree/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014) were checked for a link selecting the 2013 boot executable as LP2's source. Stage 7 uses 33011033 as an actual *OpenPuff* password for an MP3, and the [signed 2 May 2014 handoff](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/010-hidden-service-reply/message.txt.asc) supplies the seventh onion URL. Neither selects \`prime_echo\` to decrypt unknown pages. This is a bounded search through those inspected archive contents, not an exhaustive proof against missing historical material.
