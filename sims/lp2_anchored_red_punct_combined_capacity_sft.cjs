@@ -94,12 +94,19 @@ function logBinomialCdf(n, k) {
 const deficit = -logBinomialCdf(nTransitions, repeats) / Math.LN2;
 const freeRedAndFixedMark = redCapacity + typedCapacity;
 const restrictedRedCount = log2Choose(212, 15) + typedCapacity;
+assert.deepEqual(punct.comma_events.map(e => e.page), [5, 11, 20, 46]);
+const mobileCommaCapacity = punct.comma_events.reduce((sum, e) =>
+  sum + Math.log2(pages[e.page].indices.length + 1), 0);
+const fourMobileCommaTotal = freeRedAndFixedMark + mobileCommaCapacity;
 
 assert.ok(Math.abs(deficit - 325.450254) < 0.00001);
 assert.ok(Math.abs(redCapacity - 114.55468057589805) < 0.000001);
 assert.ok(Math.abs(typedCapacity - 176.57877078182) < 0.000001);
 assert.equal(Math.ceil(deficit - freeRedAndFixedMark), 35);
 assert.equal(Math.ceil(deficit - restrictedRedCount), 74);
+assert.ok(Math.abs(mobileCommaCapacity - 32.301390840723684) < 0.000001);
+assert.equal(Math.ceil(deficit - fourMobileCommaTotal), 3);
+assert.equal(Math.ceil(deficit - restrictedRedCount - mobileCommaCapacity), 42);
 
 console.log(JSON.stringify({
   originalRunes: nRunes,
@@ -111,8 +118,15 @@ console.log(JSON.stringify({
   combinedCapacityBitsUpperBound: freeRedAndFixedMark,
   universalAtMost86RepeatDeficitBits: deficit,
   minimumExternalBitsRequired: Math.ceil(deficit - freeRedAndFixedMark),
+  allFourCommaMarksMobileWithinOriginalPagesCapacityBitsUpperBound:
+    mobileCommaCapacity,
+  combinedWithFourMobileCommaMarksCapacityBitsUpperBound: fourMobileCommaTotal,
+  minimumOtherBitsEvenWithFourMobileCommaMarks:
+    Math.ceil(deficit - fourMobileCommaTotal),
   preserving213RedGlyphsCombinedBitsUpperBound: restrictedRedCount,
   preserving213RedGlyphsMinimumExternalBitsRequired:
     Math.ceil(deficit - restrictedRedCount),
+  preservingRedCountAndMobileFourCommasAdditionalBitsRequired:
+    Math.ceil(deficit - restrictedRedCount - mobileCommaCapacity),
   decision: "Anchored red lengths + fixed-site punctuation identities are insufficient as a universal same-length GP29 anti-repeat sidecar"
 }, null, 2));
