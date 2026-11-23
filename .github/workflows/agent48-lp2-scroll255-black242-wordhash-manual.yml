@@ -1,0 +1,14 @@
+name: Agent48 LP2 p3-p8 source wordhash and black242 gates
+on:
+  workflow_dispatch:
+jobs:
+  original-source-sft:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original p3-p8 all-secret codebook and GF3 phase source gates
+        run: node sims/lp2_scroll255_eval34_allsecret_gate_sft.cjs
