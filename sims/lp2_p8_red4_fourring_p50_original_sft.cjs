@@ -58,6 +58,52 @@ const rings = [0, 1, 2, 3].map(ring);
 assert.deepEqual(rings.map((r) => r.length), [76, 68, 60, 52]);
 assert.equal(new Set(rings.flat()).size, 256);
 
+// Global congruences can look stronger than a cipher selector. Both
+// literal historical candidate readings give original GP29 residues that
+// happen to match the p8 red word. Test the natural local implications on
+// four concentric perimeters and eight printed columns without fitting.
+const tokens = grid.pages.flatMap((p) => p.tokens);
+const alphabet59 =
+  '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx'
+    .replace('f', '');
+assert.equal(tokens.length, 256);
+assert.equal(alphabet59.length, 59);
+const bytes59 = tokens.map((pair) =>
+  59 * alphabet59.indexOf(pair[0]) + alphabet59.indexOf(pair[1]));
+assert(bytes59.every((v) => v >= 0 && v < 256));
+/** @param {number[]} values @returns {number} */
+const sum = (values) => values.reduce((acc, x) => acc + x, 0);
+/** @param {number[]} values @param {number[]} positions @returns {number} */
+const subChecksum = (values, positions) =>
+  mod29(sum(positions.map((idx) => values[idx])));
+const cols = Array.from({length:8}, (_, x) =>
+  Array.from({length:32}, (_, y) => 8 * y + x));
+const checksum = {
+  base60Sum: sum(bytes),
+  base59Sum: sum(bytes59),
+  base60Residue: mod29(sum(bytes)),
+  base59Residue: mod29(sum(bytes59)),
+  radixDifferenceResidue: mod29(sum(bytes) - sum(bytes59)),
+  red4OrdinalProduct: mod29(preamble.reduce((a, b) => a * b, 1)),
+  redWord2: frame.slice(0, 8),
+  ringSum60: rings.map((indices) => subChecksum(bytes, indices)),
+  ringSum59: rings.map((indices) => subChecksum(bytes59, indices)),
+  columnSum60: cols.map((indices) => subChecksum(bytes, indices)),
+  columnSum59: cols.map((indices) => subChecksum(bytes59, indices))
+};
+assert.deepEqual(
+  [checksum.base60Sum, checksum.base59Sum, checksum.base60Residue,
+    checksum.base59Residue, checksum.radixDifferenceResidue,
+    checksum.red4OrdinalProduct],
+  [33006, 32499, 4, 19, 14, 4]);
+assert.deepEqual(checksum.ringSum60, [2,17,9,5]);
+assert.deepEqual(checksum.ringSum59, [14,16,20,27]);
+assert.deepEqual(checksum.columnSum60, [2,7,3,1,11,5,12,21]);
+assert.deepEqual(checksum.columnSum59, [17,20,2,1,3,11,2,21]);
+assert(checksum.ringSum60.every((v,i) => v !== preamble[i]));
+assert(checksum.columnSum60.every((v,i) => v !== frame[i]));
+assert(checksum.columnSum59.every((v,i) => v !== frame[i]));
+
 /**
  * Rotate table values *within* each clockwise ring by the
  * corresponding actual GP0 preamble index, leaving cell locations fixed.
@@ -145,6 +191,7 @@ console.log(JSON.stringify({
     panelRows: 32,
     panelColumns: 8,
     rings: rings.map((r) => r.length),
+    checksumLocalNegative: checksum,
     genuineSolvedP57Ioc: ioc(p57.indices)
   },
   experiment: {
