@@ -36,8 +36,28 @@ Exactly **nine of ten** signed source-key models contradict a real, unchanged or
 
 The separate direct interpretation of selected values themselves (rather than their prime *ordinals*) as starting ranks 79,149,263,463,829, including values-minus-one, also fails to supply a common viable five-passage cipher. The main test fixes the naturally ordinal rule and its strongest all-F-bypass inverse.
 
+## Separate historically taught consumer: five-of-five Shamir shares
+
+Cicada's independently documented 2013 puzzle had already taught **Shamir secret sharing**, unlike a speculative modern cipher. The natural additional recipient hypothesis is therefore to treat the original **five red-numbered cuneiform units as five shares**, using the five selected historical/spiral prime **values** as finite-field x coordinates. The printed rune register is GP29, so the x values reduce to **[21,4,2,28,17] mod29**, all nonzero and pairwise distinct. Each unit has a different original length; this direct interpretation is restricted to the **91-rune common aligned prefix** without padding or fitted offsets.
+
+In GF29, the unique degree-four reconstruction of f(0) has the complete, frozen Lagrange formula
+
+\[
+f(0) = 24y_1+26y_2+22y_3+3y_4+13y_5 \pmod{29}.
+\]
+
+The original direct plaintext candidate begins
+
+\`A TH OE O I S TH S X U H A A N M S A G W H IA C ...\`,
+
+with 91-rune GP29 index of coincidence **0.0351648351648**, very close to uniform 1/29. It is not recognizable GP-native prose. An actual degree-two share system would require **both** fifth/fourth values to agree with interpolation from the first three values: **0/91** original source positions satisfy both. An actual degree-three system would require its fifth value to match the polynomial of its first four: **4/91** positions satisfy the necessary relation. Neither forms a consistent full aligned message. A degree-four polynomial always fits any five points, so the fact of its existence is mathematically uninformative; the source text it produces supplies no plaintext evidence.
+
+The same original-input test constructs **91/91 recovered authentic p57-native plaintext plants at each degree 2,3,4**, using the five printed x-coordinate values and verifying all extra share consistency where applicable. This tests a distinct typed interface from the already published x=1..5 Shamir gate, without searching any shifts, prime-rank phases, codebooks, or cipher keys.
+
+**Decision:** the original five passages do **not** decode as a straightforward aligned Shamir polynomial with source-selected prime-coordinate values and native GP29 plaintext. This is a conditional no-go for the exact source interpretation. It leaves the unequal source tails unexplained, does not rule out an independently instructed different share alignment/field, and cannot turn the five-prime intersection into an author-established key. [Windows original and authentic-native positive PASS 45120941798](https://github.com/FlareZ123/liber-primus/actions/runs/45120941798).
+
 ## Research decision
 
-The historical missing-prime interval's selection of **five** among the exact sixteen p15 source-primes is a new, independently computable *candidate* link between the spiral and numbered cuneiform layout. The **known original p56 totient/F-transparent consumer is decisively rejected as the five-fragment transfer** with ordinal starts. This protects against mistaking a lone 98-rune feasible path or fitted short phrase for progress. Other cipher families or meanings of the five numbers remain untouched and need an independent author-selected operation. There is no recovered unknown plaintext or new confirmed key.
+The historical missing-prime interval's selection of **five** among the exact sixteen p15 source-primes is a new, independently computable *candidate* link between the spiral and numbered cuneiform layout. The **known original p56 totient/F-transparent consumer is decisively rejected as the five-fragment transfer** with ordinal starts. The independent historically motivated five-prime Shamir reconstruction also fails to reveal native plaintext and is inconsistent with full degree-two or degree-three aligned shares. This protects against mistaking a lone 98-rune feasible path or fitted short phrase for progress. Other cipher families or meanings of the five numbers remain untouched and need an independent author-selected operation. There is no recovered unknown plaintext or new confirmed key.
 
 [Reproduce the complete original-corpus and solved-page controls](../sims/lp2_telnet_gap_fibonacci_cuneiform5_phi_sft.cjs). [Windows Node22 manual PASS 45119108693](https://github.com/FlareZ123/liber-primus/actions/runs/45119108693). Related earlier but distinct gate: [printed consecutive rank1–5 and shared 460-phase test](lp2-cuneiform-five-number-prime-start-ftransparent.md).
