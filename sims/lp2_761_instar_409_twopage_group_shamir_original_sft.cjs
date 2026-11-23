@@ -145,5 +145,68 @@ console.log('RADIX409 original 136 triples quotient ASCII-base60 prefix40',
 console.log('GF409 order-three Fourier mode: only',
   mode.filter(v=>v<29).length,'of 136 elements are GP29 rune indices');
 
+
+/**
+ * Historical original Cicada 2013 XOR was a genuine byte operation. These
+ * original source strips also allow a *fixed* five-bit GP symbol readout:
+ * 136 columnwise XOR results become exactly 680 bits = 85 bytes, the
+ * known deciphered physical p56 source length.
+ */
+const xorFive=top.map((v,i)=>v^bottom[i]^third[i]);
+assert.ok(xorFive.every(v=>v>=0&&v<=31));
+const xorBits=xorFive.map(v=>v.toString(2).padStart(5,'0')).join('');
+assert.equal(xorBits.length,680);
+const xorBytes=Array.from({length:85},(_,i)=>
+ parseInt(xorBits.slice(8*i,8*i+8),2));
+const p56Plain=[...solved.sections.find(x=>x.name==='p56_an_end').source_text]
+ .filter(ch=>d.runes.includes(ch)).map(ch=>d.runes.indexOf(ch));
+const p56Cipher=d.pages[56].indices;
+assert.deepEqual([p56Plain.length,p56Cipher.length,xorBytes.length],[85,85,85]);
+const actualP56Key=p56Cipher.map((v,i)=>mod(v-p56Plain[i]));
+const xorExactKeyMatches=xorBytes.filter((v,i)=>v%29===actualP56Key[i]).length;
+const xorGPRange=xorBytes.filter(v=>v<29).length;
+const xorASCII=xorBytes.filter(v=>v>=32&&v<127).length;
+assert.deepEqual([xorExactKeyMatches,xorGPRange,xorASCII],[3,8,31]);
+const decodeXorBits=xorBytes.map(v=>v.toString(2).padStart(8,'0')).join('');
+assert.deepEqual(Array.from({length:136},(_,i)=>
+ parseInt(decodeXorBits.slice(i*5,i*5+5),2)),xorFive);
+console.log('P13/P14 source XOR 3x136 -> 136 base32 -> 85 bytes; authentic p56 key mod29 matches',
+ xorExactKeyMatches,'/85; 85-byte result ASCII-printable',xorASCII,
+ '/85; direct GP29 byte code range',xorGPRange,'/85');
+
+/**
+ * A separate full source-natural packing is 409*5=2045 bits, with exactly
+ * three terminal zero pad bits -> 256 bytes, equal to printed p50 cell count.
+ * Compare without fitted offset or key to both current source-compatible
+ * token alphabets, and enforce exact inverse GP29 codeword constraints.
+ */
+const encoded=original.map(v=>v.toString(2).padStart(5,'0')).join('')+'000';
+assert.equal(encoded.length,2048);
+const packed409=Array.from({length:256},(_,i)=>
+ parseInt(encoded.slice(i*8,i*8+8),2));
+const gridAlphabet=grid.alphabet,grid59=gridAlphabet.replace('f','');
+const tokens=grid.pages.flatMap(p=>p.tokens);
+assert.equal(tokens.length,256);
+const byteStreams=[gridAlphabet,grid59].map(a=>
+ tokens.map(t=>a.length*a.indexOf(t[0])+a.indexOf(t[1])));
+for(const [j,stream] of byteStreams.entries()) {
+ assert.ok(stream.every(v=>v>=0&&v<256));
+ const exact=packed409.filter((v,i)=>v===stream[i]).length;
+ const bits=stream.map(v=>v.toString(2).padStart(8,'0')).join('');
+ const runeCodes=Array.from({length:409},(_,i)=>
+  parseInt(bits.slice(i*5,i*5+5),2));
+ const invalid=runeCodes.filter(v=>v>=29).length;
+ const pad=bits.slice(2045);
+ assert.equal(exact,1);
+ assert.equal(invalid,j===0?30:36);
+ assert.equal(pad,j===0?'000':'111');
+ console.log('409 rune 5bit -> 256 byte vs printed p50 radix',
+  j===0?60:59,': exact byte equal',exact,
+  '/256, attempted reverse decoding invalid GP29 words',invalid,
+  '/409, last three bits',pad);
+}
+assert.deepEqual(Array.from({length:409},(_,i)=>
+ parseInt(encoded.slice(i*5,i*5+5),2)),original);
+
 console.log('PASS: original 409/409 replay, 408-orbit, 136-slot retained-share Shamir inverse, authentic p57 plant');
 console.log('DECISION: no original unknown plaintext or creator-selected decoder');
