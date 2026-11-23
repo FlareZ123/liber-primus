@@ -602,11 +602,7 @@ assert.deepEqual(totals, {
   29: { configurations: 416, viableConfigurations: 1, viableMasks: 4 },
   55: { configurations: 416, viableConfigurations: 143, viableMasks: 332 }
 });
-assert.deepEqual(totals, {
-  0: { configurations: 320, viableConfigurations: 17, viableMasks: 752 },
-  29: { configurations: 320, viableConfigurations: 0, viableMasks: 0 },
-  55: { configurations: 320, viableConfigurations: 108, viableMasks: 247 }
-});
+
 assert.equal(positivePlants, 416 * 3 + 4 * 2 * 3 + 13 * 2 * 3 + 2 * (16 * 2 + 16 * 2) + 4 * 2);
 
 // Authentic solved p56 positive control.
