@@ -18,6 +18,12 @@ For the 16×203 arrangement, the original same-column equality count is **857/24
 
 The complete unmodified 3299-tape's GP29 IoC is **0.034464934**. Reordering its positions by modular doubling preserves that exactly, yields **124 adjacent-equal glyph pairs**, and does not reveal GP-native prose. The direct modular-doubling residue-subtraction candidate yields IoC **0.034515669** and nonlinguistic output. For comparison, the solved p57 control's GP29 IoC is approximately **0.062709966**. The SFT includes complete invertible synthetic p57-text plants as a regression, which establishes correctness of the proposed machinery but does not validate its historical use.
 
+## Independent physical-page-order discriminator
+
+One natural human proposal is to lay out the sixteen flower pages in a 4×4 sheet and read them in the p15 spiral order, treating the sixteen 2014 pages as the sixteen source square cells. The original [page-preserving transcription](../resources/liber-primus/lp2-transcription.txt) supplies a direct falsifier for interpreting that as a *literal continuous prose reading*: **12** flower-section physically adjacent page seams carry an unfinished runic word across the boundary (40→41 through 48→49, 51→52, 52→53, 54→55). The original order preserves all **12/12** joins. With pages mapped row-major to the 4×4 p15 grid, its source-center-first spiral gives page order **45,46,50,49,48,44,40,41,42,43,47,51,55,54,53,52**, preserving only **4/12** original word joins. The SFT parses the unmodified source transcript and asserts the full list before evaluating that order.
+
+That strongly rejects a bare **physical-page spiral rearrangement as a plaintext reading order**; it does not exclude a secret-position transposition that first destroys and later reconstructs word breaks. The source itself does not indicate such reconstruction.
+
 ## Decision for further research
 
 **New usable observation:** the manuscript supports a 16×203 full-black register, and a separate 3299-rune register spanning the same physical pages. These are precisely specified alternative source selections, not interchangeable ciphertexts.
