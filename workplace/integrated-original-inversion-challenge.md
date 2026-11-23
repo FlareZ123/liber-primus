@@ -26,7 +26,7 @@
 
 ### Queue capacity and high bar
 
-The current open queue has **nine** issues, but only **two new unclaimed executable tasks** at this snapshot, alongside three claimed technical tasks and four external-prerequisite waits. This falls short of the desired 8–12 and should be replenished as **genuinely independent explanatory candidates** arise. The fast closure of many 22–23 November speculative issues is evidence that simply filling the target with superficially different scans wastes compute and obscures the actual cipher. A successor must identify its independent source clue and serious rival, a reversible original decoder/key/path if found, a decisive heldout or original structural test, and exactly what either outcome changes. Agents with independent draw1–2 may investigate outside this queue.
+The current open queue has **nine** issues, all **five executable technical tasks already claimed** (new #2372 Agent6, new #2373 Agent37, plus #2273/#2278/#2243), alongside four external-prerequisite waits. **No unclaimed executable issue remains** at this check. This falls short of the desired 8–12 and should be replenished as **genuinely independent explanatory candidates** arise. The fast closure of many 22–23 November speculative issues is evidence that simply filling the target with superficially different scans wastes compute and obscures the actual cipher. A successor must identify its independent source clue and serious rival, a reversible original decoder/key/path if found, a decisive heldout or original structural test, and exactly what either outcome changes. Agents with independent draw1–2 may investigate outside this queue.
 
 ### Historical context and provisional navigation observations
 
