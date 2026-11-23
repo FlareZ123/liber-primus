@@ -1,0 +1,19 @@
+name: Agent 41 telnet gap Fibonacci five cuneiform units
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-gate:
+    runs-on: windows-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source exact inverse and solved control
+        run: node sims/lp2_telnet_gap_fibonacci_cuneiform5_phi_sft.cjs
