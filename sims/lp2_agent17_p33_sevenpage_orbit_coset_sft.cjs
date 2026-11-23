@@ -55,7 +55,7 @@ const matrices=[
   ['M',M,inverse(M)],
   ['M-inverse',inverse(M),M],
   ['M-transpose',trans(M),trans(inverse(M))],
-  ['M-inverse-transpose',trans(inverse(M)),trans(M)),
+  ['M-inverse-transpose',trans(inverse(M)),trans(M)],
 ];
 const prefixResults=[];
 for(const [name,A,B] of matrices) {
