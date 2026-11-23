@@ -153,6 +153,34 @@ for(const scheme of ["suffix","windows"])for(const scope of scopes){
  const available=suffixOrWindowPairs(positivePerm,"cipher",scheme,scope);
  assert(forced.pairs<=available.pairs);
 }
+
+// Exact alphabet-affine gauge equivalence for an arbitrary 29-row table:
+// P' = u*P+v, s' = u*s+4v, and A'_{s'}(P') = A_s(P).
+// For v != 0 this also changes the unobserved initial four P values to v.
+function mod29(v){return (v%29+29)%29;}
+function affineGauge(rows,u,v){
+ const inv=Array.from({length:28},(_,i)=>i+1).find(x=>mod29(u*x)===1);
+ assert(inv!==undefined);
+ return Array.from({length:29},(_,ss)=>Array.from({length:29},(_,pp)=>
+   rows[mod29(inv*(ss-4*v))][mod29(inv*(pp-v))]));
+}
+function permEncodeIV(words,rows,iv){
+ let h=iv.slice();
+ return words.map(w=>({...w,seq:w.seq.map(p=>{
+   const s=(h[0]+h[1]+h[2]+h[3])%29,c=rows[s][p];
+   h.shift();h.push(p);return c;
+ })}));
+}
+let gaugeCases=0;
+for(const u of [1,2,3,7,28])for(const v of [0,1,5,8,17]){
+ const transformed=positiveNative.map(w=>({...w,seq:w.seq.map(p=>mod29(u*p+v))}));
+ const newRows=affineGauge(permutationRows,u,v);
+ for(const row of newRows)assert.equal(new Set(row).size,29);
+ assert.deepEqual(permEncodeIV(transformed,newRows,[v,v,v,v]),positivePerm);
+ gaugeCases++;
+}
+assert.equal(gaugeCases,25);
+
 /* Exact inverse per globally continuous or physical-page reset IV. */
 function affine(pages,a,b,mode,direction){
  let hist=[0,0,0,0];
