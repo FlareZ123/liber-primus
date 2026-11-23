@@ -24,6 +24,8 @@ For all three, the forward encoder `filtered = original - floor((left+above)/2)`
 | p40–p55 16×203 GP29 | 3,248 black runes | 0.0344918614 | **0.0344239700** | No native GP prose; full original 3248/3248 replay |
 | p49–51 32×8 literal byte panel | 256 bytes | — | — | 103 printable ASCII source bytes vs **87/256** after unfilter; no PNG/file signature or readable instruction at byte start |
 
+A **stricter byte-format exclusion** needs no decryption or language scoring. The PNG format requires every uncompressed scanline to begin with a one-byte filter method in `{0,1,2,3,4}`. Of the 32 original 8-byte source rows, **31/32** have first bytes outside that permitted set; only zero-based row24 has first byte `00`. Therefore the printed panel is *not itself* a 32-row byte stream of standard PNG scanline records. Reinterpreting arbitrary offsets/row boundaries would be an unsupported new serialization, not rescue this direct test.
+
 The rune decoder first outputs, spelled with the **actual canonical chart**:
 
 - Opening first 16: `S S AE S P AE I C B C L TH G C P EO`.
