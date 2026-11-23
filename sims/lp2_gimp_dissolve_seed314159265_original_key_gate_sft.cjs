@@ -132,5 +132,61 @@ for(const mode of ['mt-low8','mt-range255','row-low8','row-range255','row-high8'
     printable+'/256 longestASCII='+longest+
     ' XORhead='+Buffer.from(xor.slice(0,12)).toString('hex'));
 }
+
+/**
+ * Source-frozen constrained alternative: every nonzero ciphertext difference
+ * represents one GP29 symbol except F=0; a zero difference represents F.
+ * F is an explicit escape. Unlike a free alphabet fit, the natural
+ * printed rune order and the historical MT seed fully determine each stream.
+ * The page's first rune is a preserved IV, not decoded; 12901 positions.
+ * @param {number[][]} chunks
+ * @param {'global'|'page'} clock
+ * @param {-1|1} sign
+ * @param {'int28'|'threshold255'} keyType
+ * @param {boolean} inverse
+ */
+function gp28Chain(chunks,clock,sign,keyType,inverse){
+  let rng=new MT(seed);
+  return chunks.map(chunk=>{
+    if(clock==='page')rng=new MT(seed);
+    let last=chunk[0]; // always the original IV in both directions
+    const out=[last];
+    for(let i=1;i<chunk.length;i++){
+      const value=rng.next();
+      const key=(keyType==='int28'?value:value%255)%28;
+      if(inverse){
+        const d=mod(chunk[i]-last);
+        out.push(d===0?0:1+((d-1+sign*key)%28+28)%28);
+        last=chunk[i];
+      }else{
+        const plain=chunk[i];
+        const d=plain===0?0:1+((plain-1-sign*key)%28+28)%28;
+        const c=mod(last+d);
+        out.push(c);last=c;
+      }
+    }
+    return out;
+  });
+}
+for(const clock of ['global','page']){
+  for(const sign of [-1,1]){
+    for(const keyType of ['int28','threshold255']){
+      const received=gp28Chain(pages,clock,sign,keyType,true);
+      assert.deepEqual(gp28Chain(received,clock,sign,keyType,false),pages);
+      const nativeCipher=gp28Chain([[17,...controls]],clock,sign,keyType,false);
+      const nativeReceived=gp28Chain(nativeCipher,clock,sign,keyType,true)[0].slice(1);
+      assert.deepEqual(nativeReceived,controls);
+      const recovered=received.flatMap(p=>p.slice(1));
+      const score=ioc(recovered);
+      assert.equal(recovered.length,12901);
+      assert.equal(recovered.filter(v=>v===0).length,86);
+      assert(score>0.034&&score<0.036);
+      console.log('GP28 CHAIN '+clock+'/'+sign+'/'+keyType+
+        ' IoC='+score.toFixed(9)+
+        ' escapedF=86/12901 forward=12956/12956 native=95/95 PASS');
+    }
+  }
+}
+
 console.log('PASS: all 8 full-original GP inverse/forward and 5 GIMP-derived p50 byte receivers');
 console.log('No original unknown plaintext, authenticated key or final Cicada endpoint recovered');
