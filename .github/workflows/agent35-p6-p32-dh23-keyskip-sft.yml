@@ -2,15 +2,6 @@ name: Agent35 p6-p32 DH23 key-skip SFT
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - "sims/lp2_p6_p32_dh23_keyskip_sft.cjs"
-      - "resources/liber-primus/lp2-corpus.json"
-      - "resources/liber-primus/lp2-ink-annotations.json"
-      - "resources/liber-primus/lp2-grid-256.json"
-      - "resources/lp2-transcription.txt"
-      - "resources/control/dukotah_english_quadgrams.txt"
-      - "resources/control/gibran_prophet_58585.txt"
 
 permissions:
   contents: read
