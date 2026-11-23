@@ -135,6 +135,51 @@ function main() {
     'radix59', b59[index]);
   console.log('Two exact source-conditioned outputs under radix60 [PASS]');
 
+  // Because gcd(13, 330) = 1, the 13th power map is invertible on
+  // GF(331). A complete inverse for a conjectured DH-output table needs
+  // no fitted key: 13*127 = 5*330 + 1.
+  assert.equal(13 * 127 % 330, 1);
+  const roots = b60.map((value) =>
+    Number(modPow(BigInt(value), 127n, 331n)));
+  assert.equal(roots[0], g);
+  assert.equal(roots[index], B);
+  assert.deepEqual(
+    roots.map((value) => Number(modPow(BigInt(value), 13n, 331n))),
+    b60,
+    'All 256 numeric cells invert and replay under exponent 13'
+  );
+  const valuesAboveByteRange = roots.filter((value) => value >= 256).length;
+  const distinctOutputs = new Set(b60).size;
+  assert.equal(valuesAboveByteRange, 60);
+  assert.equal(distinctOutputs, 161);
+  console.log('Entire panel conditional 13th-root inverse [PASS],');
+  console.log('but 60 roots lie outside the 0..255 byte range, and');
+  console.log('only 161/256 output values are distinct.');
+  console.log('Reject fixed same-exponent DH of 256 distinct input');
+  console.log('bytes as a literal complete-table generator.');
+
+  // Test the fully source-locked inverse roots as GP29 additive keys on
+  // the *untouched* original p32 receiver. A p6/2016 SEEKS address
+  // supplies the competing source start 71; start 0 is literal panel order.
+  const p32 = corpus.pages.find((page) => page.page === 32).indices;
+  const expectedIoc = [
+    { start: 0, sign: -1, ioc: 0.032231404958677684 },
+    { start: 0, sign: 1, ioc: 0.040633608815427 },
+    { start: 71, sign: -1, ioc: 0.03402203856749311 },
+    { start: 71, sign: 1, ioc: 0.032231404958677684 }
+  ];
+  assert.equal(p32.length, 121);
+  for (const trial of expectedIoc) {
+    const key = p32.map((_, i) => roots[(trial.start + i) % 256] % 29);
+    const plain = p32.map((c, i) => (c + trial.sign * key[i] + 29) % 29);
+    assert.ok(Math.abs(ioc(plain) - trial.ioc) < 1e-13);
+    assert.deepEqual(plain.map((q, i) =>
+      (q - trial.sign * key[i] + 29) % 29), p32);
+    console.log('Original p32 DH-root GP29 receiver:', trial.start,
+      trial.sign, 'IoC=', ioc(plain).toFixed(8));
+    console.log('  first 50 GP symbols:', transliterate(plain.slice(0, 50)));
+  }
+
   const subgroup = [];
   let x = 1;
   do {
