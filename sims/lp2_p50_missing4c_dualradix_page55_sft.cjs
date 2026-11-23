@@ -151,6 +151,17 @@ assert.equal(
   93,
 );
 assert.equal(absentByteValues.filter((i) => reaches(i, 32)).length, 29);
+const missingUpperHexStarts = absentByteValues.filter(
+  (value) => value >= 241 && value <= 255,
+);
+assert.deepEqual(missingUpperHexStarts, [241, 242, 243, 244, 252]);
+assert.deepEqual(missingUpperHexStarts.filter((i) => reaches(i, 32)), [252]);
+console.log(
+  "Competing missing 4A..4O numeric starts 241,242,243,244 do not " +
+    "reach signed DEVOTED p32 cell32; 252 is the only A..O " +
+    "source-absent hex-letter numeric start that does.",
+);
+
 
 console.log(
   "Missing 4C canonical byte seed=252; source pointer path=" +
