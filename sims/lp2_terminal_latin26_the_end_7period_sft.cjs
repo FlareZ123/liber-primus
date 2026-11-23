@@ -45,7 +45,7 @@ for (const sign of [1, -1]) {
   const encrypt = (p, k) => mod29(sign === 1 ? p + k : k - p);
   const decrypt = (c, k) => mod29(sign === 1 ? c - k : k - c);
   const decode = (cipher, anchor) => cipher.map((c, i) =>
-    decrypt(c, key[mod29(i - anchor) % 7])
+    decrypt(c, key[((i - anchor) % 7 + 7) % 7])
   );
   const sourcePages = [
     { pageNo: 27, cipher: p27, anchor: 28 },
@@ -54,7 +54,7 @@ for (const sign of [1, -1]) {
   for (const entry of sourcePages) {
     const out = decode(entry.cipher, entry.anchor);
     for (let j = 0; j < out.length; j += 1) {
-      const phase = mod29(j - entry.anchor) % 7;
+      const phase = ((j - entry.anchor) % 7 + 7) % 7;
       assert.equal(encrypt(out[j], key[phase]), entry.cipher[j]);
     }
     const required = entry.pageNo === 27 ? 7 : 6;
