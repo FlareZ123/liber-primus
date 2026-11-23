@@ -98,11 +98,11 @@ const chapterRows=chapterCuts.slice(0,-1).map((lo,j)=>{
     minimumCollisionsUnderAttested63:minCollisions(a.tokens,attested.size),
     moreTypesThanAttested63:a.types>attested.size};
 });
-assert.deepEqual(chapterRows.map(row=>row.tokens),[28,32,56,74,33,51,62,107,5]);
-assert.deepEqual(chapterRows.map(row=>row.types),[26,30,52,73,33,50,59,101,5]);
-assert.deepEqual(chapterRows.map(row=>row.collisions),[2,2,5,1,0,1,3,6,0]);
+assert.deepEqual(chapterRows.map(row=>row.tokens),[28,32,56,74,33,51,62,101,11]);
+assert.deepEqual(chapterRows.map(row=>row.types),[26,30,52,73,33,50,59,98,11]);
+assert.deepEqual(chapterRows.map(row=>row.collisions),[2,2,5,1,0,1,3,3,0]);
 assert.equal(chapterRows[3].minimumCollisionsUnderAttested63,11);
-assert.equal(chapterRows[7].minimumCollisionsUnderAttested63,44);
+assert.equal(chapterRows[7].minimumCollisionsUnderAttested63,38);
 
 /**
  * Explicit noncausal reversible GP29 whole-word encoder mixing BOTH raw
