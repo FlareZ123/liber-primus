@@ -72,6 +72,47 @@ function paths(sought) {
   }
   return branches;
 }
+/**
+ * Source-only extraction: enumerate every maximal increasing-by-one
+ * 8-neighbor path without preselecting a byte range, ASCII, or token string.
+ * @returns {number[][]} Paths of source-cell indices.
+ */
+function maximalSuccessorPaths() {
+  const successors=bytes.map((v,i)=>bytes.flatMap((w,j)=>
+    near(i,j) && w===v+1 ? [j] : []));
+  const hasPredecessor=bytes.map((v,i)=>bytes.some((w,j)=>
+    near(i,j) && w===v-1));
+  /** @type {number[][]} */
+  const maximal=[];
+  /** @param {number[]} trail */
+  function visit(trail) {
+    const next=successors[trail[trail.length-1]];
+    if(next.length===0) {
+      if(trail.length>=3) maximal.push(trail);
+      return;
+    }
+    for(const j of next) visit([...trail,j]);
+  }
+  for(let i=0;i<bytes.length;i++) if(!hasPredecessor[i]) visit([i]);
+  return maximal;
+}
+const maximal=maximalSuccessorPaths();
+const maximalValues=maximal.map(trail=>trail.map(i=>bytes[i]))
+  .sort((a,b)=>a[0]-b[0]||a.length-b.length);
+assert.deepEqual(maximalValues,[
+  [248,249,250,251],
+  [248,249,250,251],
+  [253,254,255]
+]);
+const missingBetweenMaxima=maximalValues[2][0]-
+  maximalValues[1][maximalValues[1].length-1]-1;
+assert.equal(missingBetweenMaxima,1);
+const bridgeValue=maximalValues[1][maximalValues[1].length-1]+1;
+assert.equal(bridgeValue,252);
+const bridgeToken=alphabet[Math.floor(bridgeValue/60)]+alphabet[bridgeValue%60];
+assert.equal(bridgeToken,'4C');
+assert(!tokens.includes(bridgeToken));
+
 const lower=paths(['48','49','4A','4B']);
 const upper=paths(['4D','4E','4F']);
 assert.equal(lower.length,2);
@@ -123,6 +164,7 @@ console.log(JSON.stringify({
   source:'Original LP2 p49–p51 32×8 table and p55–p57 rune counts',
   sourceTableLength:bytes.length,
   consecutivePathCounts:{'48→49→4A→4B':lower.length,'4D→4E→4F':upper.length},
+  sourceOnlyMaximalPaths:maximal.map(trail=>({indices:trail,values:trail.map(i=>bytes[i])})),
   missingToken:'4C',
   missingHexValue:76,
   missingBase60Address:252,
