@@ -44,6 +44,19 @@ The quotient and original p8 agree as literal GP29 rune streams at only **12/255
 
 The source-selected original radix/root is independently discriminating at the level of the **polynomial arithmetic**: base60 with root24 has remainder0 and derivative0; base59 root24 instead has remainder20; even base60 root23 has remainder24. That does not rescue the missing p8 plaintext or prove the 2014 authors prescribed polynomial division.
 
+## Untouched original p9–p14 holdout: the whole next chapter also fails
+
+A genuine reusable chapter key could fail to spell words on p8 yet decrypt neighboring pages. Extend each **unchanged 255-symbol key** with one explicit cycle and freeze key phase0 at p8's **first original rune**. This gives 1,729 original rune events for physical **p8–p14**, with an independently untouched **1,474-rune suffix** p9–p14. No new offsets, restart guesses or trained plaintext alter the four original operations.
+
+| Frozen chapter-long GP29 decode | IoC all p8–p14 (1,729) | IoC original heldout p9–p14 (1,474) |
+|---|---:|---:|
+| Quotient, subtract | **0.03472757749** | **0.03479270929** |
+| Quotient, add | **0.03449797035** | **0.03447491297** |
+| Derivative, subtract | **0.03471820577** | **0.03467664455** |
+| Derivative, add | **0.03444174003** | **0.03467572340** |
+
+Each complete section remains almost uniform without GP-native prose; the reproducible test prints the first 75 held-out transliterations for every frozen candidate and verifies exact replay of all **1,729** original runes. This independent downstream failure makes accidental corruption of only p8's red heading an inadequate explanation for the negative key result. It is a negative specifically for **these public 255-symbol polynomial keys under repeating GP29 addition**; a differently instructed key schedule remains beyond scope.
+
 ## Decision
 
 This is a sharply bounded **negative** for **both direct 255-key GP29 additive quotient→p8 and derivative→p8 consumers**, in both sign conventions. It does not reject the real p39/p50 double-root arithmetic, other destinations, hidden encodings of quotient coefficients, a compressed payload, or a cipher with a separately authored key/clock. Such extensions require an independent source-visible operation and an untouched original-language prediction. The 255-length match alone is not a decryption instruction.
