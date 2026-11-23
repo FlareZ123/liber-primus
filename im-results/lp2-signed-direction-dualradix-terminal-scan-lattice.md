@@ -32,6 +32,28 @@ Therefore the initially tempting relation `DIRECTION -> 72.jpg -> p55` **fails a
 
 There is a separate **hypothetical** 2014-source route if numbers greater than 57 are interpreted modulo the 58 original pages: `71,72,72,73 mod58 = 13,14,14,15`, converging on physical **p14**. The page count58 is source-visible and modular arithmetic is historically available. But neither the signed phrase nor printed table says to reduce modulo58 after a lookup, and p14 has no selected reversible readout. This is an exploratory rival to the archive-specific p55 coincidence, **not** a new established page selector.
 
+## Distinct original-source-valid alternative: DIRECTION directly names two visual chapter seams
+
+The authentic 2014 index above gives a genuine original page universe of exactly 58 filenames `0.jpg..57.jpg`. There is a **separate, shorter potential navigation interpretation** that avoids the later archive names *and entirely skips the numeric table*: reduce the two independently source-defined GP0 readings of the signed word DIRECTION **modulo the authentic original page count58**.
+
+```text
+literal DIRECTION, GP0 98  -> 98 mod58  = physical p40
+ligated DIRECTION, GP0 112 -> 112 mod58 = physical p54
+```
+
+The original illustrated manuscript has visibly delineated unsolved chapters **p33–39**, **p40–53** and **p54–55**. Both residues **40 and54 are genuine chapter starts**. They are separated by exactly **14 pages**, which also equals the change in DIRECTION's GP sum when I+O is represented by the single IA/IO rune (`112−98=14`) and the actual length of the intervening p40–53 chapter. If the arithmetic values instead designate **one-based page numbers**, 40 and54 indicate physical **p39 and p53**, exactly the pages *immediately preceding* those two starts. Thus the two natural origin readings select both sides of the same two chapter boundaries:
+
+| GP spelling | GP0 mod58 | Source zero-based page | Page designated under one-based page count |
+| --- | ---: | --- | --- |
+| Separate I+O | **40** | **p40**, first of p40–53 floral chapter | **p39**, last of preceding p33–39 chapter |
+| Single IA/IO | **54** | **p54**, first of p54–55 terminal chapter | **p53**, last of preceding p40–53 chapter |
+
+This two-seam relation has no reliance on image archive renumbering. The original ink annotations also show source-distinct **red8** at p40 and **red9 = one A rune plus an eight-rune word** at p54. An independently preserved July 2014 solver proposed **DIRECTION** as the second eight-rune red word of p54; that unverified word crib predates the present route ([original discussion audit](lp2-2014-original-irc-unknown-page-crib-holdout.md)). The same signed THE-follower register contains **ROAD**, whose literal GP0 is **54**; it nominates p54 directly under the 2014 zero-based source page labels, without requiring this dual-spelling operation.
+
+A complete source-family check of all **43 authenticated signed words** finds precisely two that change GP0 under the legitimate historical ligatures: MEANING (`87→77`, modulo58 `29→19`), and DIRECTION (`98→112`, modulo58 `40→54`). **Only DIRECTION** lands on *two* of the nine original illustrative chapter starts `[0,3,8,15,23,27,33,40,54]`. Among these nine starts, `40→54` is the **only** pair 14 pages apart modulo58. This is a reproducible original-source structural alignment, with a more plausible human path than the invalid later-archive filename claim.
+
+**Essential qualification:** neither the signed message nor a manuscript page explicitly orders a solver to reduce English-word GP sums mod58 or to interpret both IA/IO readings as directions. The nine art chapters, spelling convention and modulo operation were all recognized in an exploratory program where many rival numbers have been examined. An exact two-seam match can be interesting without proving the author's cipher, page target, or a meaningful decryption. The p54 eight-rune 2014 crib remains unverified plaintext. A constructive next decision would require an original clue at p39→40 or p53→54 that specifies an actual reversible operation and recovers a withheld rune span.
+
 ## Same-source token-order control and its limit
 
 To characterize the bare numerical pairing, keep the entire original printed multiset of 256 table tokens and its two candidate radix alphabets fixed, then enumerate every ordered pair of two distinct table cells. Across **65,280** possible pairs:
@@ -47,6 +69,6 @@ For the exact signed word's GP difference **112−98=14**, the 242 admissible or
 
 **Retain** the exact DIRECTION `98→112`, original tokens `1C→1D`, and resulting 2×2 numeric values `71,72,72,73`. The diagram may be worth revisiting only if a *first-party* artifact provides an independently selected receiver for number72, or a historically valid reduction or instruction that predicts unknown plaintext.
 
-**Retire** the claim that the number72 selects p55 via the local `72.jpg` archive filename. The authentic original 2014 index rules that out as a direct human solve path. Do not spend additional compute on p55 decoding based on this link, nor infer a novel key or destination from the merged archive offset. Other genuinely source-selected p55 routes exist separately and were already tested. The signed EPIPHANY/DEVOTED→p32 source/table pointer is independent of this failed filename inference.
+**Retire** the claim that the number72 selects p55 via the local `72.jpg` merged-archive filename. The authentic 2014 index rules out that direct human path. Preserve the independent **98/112 modulo58 → chapter starts p40/p54** as a provisional original-source-valid *navigation hypothesis*, with no unambiguous signed instruction, recovered key or decrypted rune. A next experiment needs a creator-visible opcode at either selected chapter seam; further archive-offset p55 decryption attempts are unjustified. The signed EPIPHANY/DEVOTED→p32 source/table pointer is independent of both interpretations.
 
 **Reproducer:** [`sims/lp2_signed_direction_dualradix_terminal_scans_sft.cjs`](../sims/lp2_signed_direction_dualradix_terminal_scans_sft.cjs) reads the preserved signed ASC, original table and GP29 corpus, and **the first-party 0..57 HTML index**. It enumerates the 43 signed words, both rune interpretations, both radices, actual filename ranges and complete null census. It reports the archival convention separately from the original source to prevent future false promotion. [Manual Windows Node22 workflow](../.github/workflows/agent36-direction-dualradix-terminal-scans.yml).
