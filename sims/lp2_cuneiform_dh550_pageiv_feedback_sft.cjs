@@ -156,11 +156,33 @@ assert.ok(Math.abs(bestPageSeeded.ioc - 0.035032290114257326) < 1e-12);
 // 550 possible initial phases without fitting any plaintext or word model.
 // The cipher equation and the original three page IV locations remain fixed.
 const allPhaseBest = [];
+const allPageMax = [0, 0, 0];
+let maximumPagewiseMinimum = 0;
+const affineMono = (v) => (7 * v + 3) % gp; // bijective GP29 relabeling
 for (const map of ['raw', 'phi']) {
   for (const sign of [-1, 1]) {
     let best = { phase: -1, ioc: -1 };
     for (let phase = 0; phase < 550; phase++) {
-      const score = ioc(decode(map, sign, phase, fragments));
+      const pageParts = [];
+      let offset = 0;
+      for (const page of fragments) {
+        const output = page.slice(1).map((rune, i) =>
+          mod(rune - page[i] + sign * key(orbit[(phase + offset + i) % 550], map))
+        );
+        offset += page.length - 1;
+        pageParts.push(output);
+      }
+      const score = ioc(pageParts.flat());
+      const pageIoCs = pageParts.map(ioc);
+      pageIoCs.forEach((v, j) => {
+        if (v > allPageMax[j]) allPageMax[j] = v;
+      });
+      maximumPagewiseMinimum = Math.max(maximumPagewiseMinimum, Math.min(...pageIoCs));
+      // Even unknown fixed private symbol permutations on each printed page
+      // preserve within-page equality and therefore preserve this IoC.
+      for (const page of pageParts) {
+        assert.ok(Math.abs(ioc(page.map(affineMono)) - ioc(page)) < 1e-12);
+      }
       if (score > best.ioc) best = { phase, ioc: score };
     }
     allPhaseBest.push({ map, sign, ...best });
@@ -179,6 +201,12 @@ for (let i = 0; i < expected.length; i++) {
   assert.ok(Math.abs(allPhaseBest[i].ioc - expected[i].ioc) < 1e-12);
   assert.ok(allPhaseBest[i].ioc < 0.042);
 }
+const pageExpected = [0.04368983391515921, 0.0391407742388211, 0.041598119858989424];
+for (let i = 0; i < 3; i++) {
+  assert.ok(Math.abs(allPageMax[i] - pageExpected[i]) < 1e-12);
+  assert.ok(allPageMax[i] < 0.05);
+}
+assert.ok(Math.abs(maximumPagewiseMinimum - 0.03742544150325523) < 1e-12);
 
 console.log(JSON.stringify({
   status: 'PASS: authentic source 553 = 3 page IVs + full DH orbit of 550',
@@ -194,5 +222,8 @@ console.log(JSON.stringify({
   configurations: records,
   allSecretPhaseTests: 2200,
   allSecretPhaseBest: allPhaseBest,
+  independentSourcePageIoCMaxima: allPageMax,
+  maximumMinimumAcrossThreePageIoCs: maximumPagewiseMinimum,
+  arbitraryPagewiseFixedAlphabet: 'invariant: every page IoC is unchanged by any bijective GP29 relabeling',
   decision: 'All outputs remain nonprose; source does not authenticate DH feedback or three IV skips'
 }, null, 2));
