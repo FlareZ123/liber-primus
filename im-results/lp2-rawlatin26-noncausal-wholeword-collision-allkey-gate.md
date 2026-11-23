@@ -38,6 +38,19 @@ Direct raw two-letter tokenizations of three checked-in source-language controls
 
 The actual physical p50 number-only page is excluded, and 32 page carries remain joined. Each row excludes that particular chapter-private stationary whole-word model **under the attested 63-type vocabulary**. Neither row independently excludes a broader 168-word lexicon; the **full-book** 168-type argument excludes a **single shared** stationary map, not chapter-rekeyed variants.
 
+## Source-authentic word delimiters cannot themselves supply enough IV diversity
+
+A cheaper changing-state guess is that the *four different original punctuation marks* preceding a word select its whole-word key or block cipher. The original complete word parser normally discards delimiters; the reproducer additionally reparses **the exact printed separator marks** without treating typographical wraps or the 32 across-page word carries as delimiters. The 448 actual two-rune words separate by their immediately preceding punctuation:
+
+| Previous original delimiter | Two-rune word tokens | Distinct ciphertext types | Exact equal-word pairs |
+| --- | ---: | ---: | ---: |
+| Hyphen \`-\` | **416** | **334** | **92** |
+| Period \`.\` | 28 | 25 | 3 |
+| Dollar \`$\` | 3 | 3 | 0 |
+| Ampersand \`&\` | 1 | 1 | 0 |
+
+Even if the author uses a completely different unknown nonlinear whole-word secret cipher for **every delimiter category**, the **416 words following the same ordinary hyphen** still have to share one map in this proposed source-selector family. A 168-type English lexicon would allow at most 168 different outputs for that one fixed map, versus **334** actual GP words. Their 416 tokens require at least **328** identical-token pairs in any arrangement of 168 input types; actual output has only **92**. This is a mathematical contradiction conditional on the same permissive finite English lexicon. In particular, **using the immediately preceding \`-\`, \`.\`, \`$\`, or \`&\` mark as the entire word IV selector cannot explain the actual two-word ciphertext**. The modifier must also depend on a word ordinal, other original context or additional state; a cipher with persistent state whose transitions are **triggered** by hyphens but continue evolving is not excluded.
+
 ## Page-private key sensitivity: authentic 2-word repeats remain almost absent within pages
 
 An independent stronger *source-language* prediction tests the natural fallback of **one arbitrary secret whole-word cipher per physical page**, with the same page key for every two-letter plaintext word on that page. The full-book 168-type pigeonhole obstruction does not apply to 55 independently keyed pages, where each page has 0–15 two-rune words. Nevertheless identical two-letter words printed *on the same page* must still receive identical ciphertext words.
