@@ -99,6 +99,32 @@ These checks locate no authenticated cipher, key, plaintext, or destination. The
 
 The previously discussed assignment g=2,A=8 gives a trivial private exponent3 with B=Q but also lacks an independently selected consumer. Direct historical g=5,A=8 is mathematically impossible for P by quadratic characters. These tests narrow specific operators and do not rule out an intended use of P and Q in another mechanism.
 
+### Direct genuine p56 cipher transfer with candidate 206-bit starting prime: strict F-obstruction
+
+The **known actual p56 decryption** subtracts successive prime totients in GP29 and transmits a plaintext `F` *literally*, without advancing that prime clock. A direct and visually motivated continuation asks whether the p55 page-local `N=8P` source prime can become the first prime of that established algorithm, followed by actual consecutive primes above P. This is a distinct input from prior [authentic first-prime-2 transfer](p55-phi-prime-43-interior-gate.md) and requires **no invented new cipher type**. The strongest rival remains that the p55 206-bit prime itself depends on an unjustified physical-page versus complete-crossing-word choice; there is no first-party instruction selecting P as the cipher's next prime.
+
+The **source-exact, cipher-valid inversion fails deterministically**, independently of English recognition or any unknown key. Under p56's true F-transparency, a ciphertext rune other than `F` must decrypt to a plaintext rune other than `F`. Before the first observed ciphertext `F`, no skip decision exists, so the totient key clock is uniquely determined. The first seven successive candidate key digits `(nextprime(P+i)-1) mod29`, where `i` indexes consecutive primes rather than consecutive integers, are **[23,12,10,3,5,16,17]**.
+
+| Unmodified original receiver and page-start convention | First forced contradiction | Original non-F ciphertext index | Exact matching key index | Reason |
+| --- | ---: | ---: | ---: | --- |
+| All p0 physical runes, start at p0 first rune | Zero-based rune **3**, fourth glyph | **3** | **3** | Must decode to forbidden plaintext F |
+| All p55 physical runes including one carried rune, start at p55 first rune | Zero-based rune **6**, seventh glyph | **17** | **17** | Must decode to forbidden plaintext F |
+| All 75 p55 complete-word body runes, exclude carried first rune and restart | Body zero-based rune **2**, third glyph | **10** | **10** | Must decode to forbidden plaintext F |
+
+In each row **every preceding rune is non-F**, so neither a preceding skip nor any choice about a later F can repair this contradiction. This excludes the complete authentic p56-style transparent-F cipher with **P as the initial source prime** on each of these three physically well-defined receiver starts. It does **not** exclude another source-selected prime start, a new cipher with different F semantics, or an earlier hidden prime offset.
+
+For completeness, the same test exhausts **all 2¹⁴ = 16,384** hypothetical F-consumption masks on p0 and **all 2³ = 8** on physical p55, even allowing the masks to violate genuine F transparency. The best overpermissive arithmetic-only GP29 IoCs are respectively **0.04357872** and **0.04105263**, with **zero** outputs reaching 0.045. Such masks are *invalid p56 encryptions* once they force an untransmitted plaintext F; those descriptive IoCs are secondary and must not replace the strict early contradiction.
+
+A narrower genuinely different recipient survives the *formal* rune-legality gate: extract only the original **43 strict p55 interiors**, starting the prime clock at their first position. Its single source-valid F history consumes the interior ciphertext F as an ordinary encrypted non-F at compacted offset11. The complete deterministic output is
+
+```text
+AE IA TH O E S I Y AE J T G Y M U X X NG S R E R R O OE U H I M E OE I R E M N N E I A A G J
+```
+
+with GP29 IoC **0.0398671096**, no recovered native prose and no authored instruction to treat the shell's removal as a stand-alone short ciphertext. This is a limited negative language observation for 43 runes, not a mathematical no-go for all possible compacted-interior ciphers.
+
+The [single-file read-only CJS SFT](../sims/lp2_p55_prime206_p56_totient_start_original_sft.cjs) regenerates P from all 16 exact original p55 complete-word interiors; generates **280** 206-bit consecutive probable primes whose entire ordered list and GP29 key stream were independently calculated using SymPy 1.14; asserts all three forced contradictions, both complete F-mask enumerations, the valid 43-rune interior, full original arithmetic replay and a solved-GP plaintext positive. **[Windows Node22 PASS 45120800113](https://github.com/FlareZ123/liber-primus/actions/runs/45120800113)**. No original unknown plaintext, authentic key schedule or final continuation was recovered. The decisive next input would be an author-authenticated operation or first-prime selector, rather than a tuned restart.
+
 ### Conditional shell-as-public-value: exact small-subgroup discrete log
 
 A distinct, more demanding DH reading treats the original **entire exterior integer E** as a public value rather than merely as a multiple of the candidate generator Q=E/43. This would require a private exponent x satisfying Q^x ≡ E (mod P). In the group already certified by the source-core prime, the complete known group-order factorization is
