@@ -50,8 +50,11 @@ else{
  });
  const blocks=methodBlocks(output);
  assert.equal(blocks.length,30);
- const needles=["choiceManager","decipher","unShift","getRunePrime","run","main","getWord",
-  "getPhrase","getIndex","checkWord","start","compile"];
+ const needles=["choiceManager","decipher","decipherWord","unShift","decompRunes",
+  "getRuneFromTrans","getRuneFromIndex","getRunePrime","guessPhrases","patternSearch",
+  "checkForPattern","getWordsOfTheLength","checkWord","loadPhraseListFromFile",
+  "loadWordlistFromFile","patternParser","lengthByRunes","fileContents",
+  "generateWordlist","categorizeByLength","run","main"];
  const selected=blocks.filter(b=>needles.some(n=>b.signature.includes(n+"(")));
  const prompts=[...new Set([...output.matchAll(/\/\/ String ([^\n]+)/g)].map(m=>m[1]))]
    .filter(s=>/prime|rune|word|sentence|key|format|paste|enter|deciph|choice|list|error|length/i.test(s));
@@ -66,7 +69,7 @@ else{
   methodSignatures:blocks.map(b=>b.signature),
   userFacingMessages:prompts,
   relevantMethodBytecode:selected.map(b=>({signature:b.signature,
-   lines:b.bytecode.split("\n").slice(0,110)})),
+   lines:b.bytecode.split("\n")})),
   authorial_cicada_instruction:false
  },null,2));
 }
