@@ -105,7 +105,7 @@ assert.equal(candidates.length, 23);
 
 function edgesFor(table) {
   return candidates.filter((w) => table[w.gpPrimeSum] < 56).map((w) =>
-    {...w, targetPage: table[w.gpPrimeSum]});
+    ({...w, targetPage: table[w.gpPrimeSum]}));
 }
 function routesFor(table) {
   const edges = edgesFor(table);
