@@ -120,6 +120,54 @@ assert.equal(witness[0].original.join('|'), 'S|H|E|O|G|M|IA|F');
 assert.equal(witness[0].alternative.join('|'), 'S|H|EO|G|M|I|A|F');
 assert.equal(2n ** BigInt(witness.length), 4503599627370496n);
 
+/**
+ * Count all original-length GP29 parsings for the exact Latin spelling of a
+ * printed source word, with no greedy preference or fitted cipher key.
+ * This dynamic program is exhaustive on the fixed source vocabulary.
+ *
+ * @param {string[]} word
+ * @returns {bigint}
+ */
+function countExactLengthParses(word) {
+  const latin = word.join('');
+  const width = word.length;
+  /** @type {bigint[][]} */
+  const counts = Array.from({length: latin.length + 1},
+    () => Array(width + 1).fill(0n));
+  counts[0][0] = 1n;
+  for (let letter = 0; letter < latin.length; letter++) {
+    for (let runes = 0; runes < width; runes++) {
+      if (counts[letter][runes] === 0n) continue;
+      for (const token of corpus.translit) {
+        if (latin.startsWith(token, letter)) {
+          counts[letter + token.length][runes + 1] += counts[letter][runes];
+        }
+      }
+    }
+  }
+  return counts[latin.length][width];
+}
+
+const exactParseHistogram = new Map();
+let allExactParses = 1n;
+let exactAmbiguousWords = 0;
+for (const word of original) {
+  const parses = countExactLengthParses(word);
+  assert.ok(parses > 0n, 'Original word is always at least one valid parse');
+  const key = Number(parses);
+  exactParseHistogram.set(key, (exactParseHistogram.get(key) || 0) + 1);
+  allExactParses *= parses;
+  if (parses > 1n) exactAmbiguousWords++;
+}
+assert.deepEqual([...exactParseHistogram.entries()].sort((a, b) => a[0] - b[0]),
+  [[1, 2692], [2, 150], [3, 33], [4, 12], [5, 4], [6, 2], [7, 3]]);
+assert.equal(exactAmbiguousWords, 204);
+assert.equal(allExactParses,
+  1027300003126123037067341387479649450198562544404360969700613957835816960000n);
+assert.equal(allExactParses.toString(2).length, 250);
+assert.equal(countExactLengthParses(original[0]), 2n);
+assert.equal(countExactLengthParses(['T', 'H', 'AE', 'IA']), 3n);
+
 /** The ordinary leftmost-longest GP29 glyph spelling used by clear p57. */
 const sortedTokens = corpus.translit.slice().sort((a, b) => b.length - a.length);
 /** @param {string[]} word */
@@ -207,6 +255,11 @@ console.log('ONE_RUNE_REGISTER singleton_total=', singletons.length,
 console.log('LATIN_CHART_AMBIGUITY adjacent_pairs=', adjacentAmbiguities,
   'max_disjoint=', disjointAmbiguities, 'affected_words=', affectedWords,
   'same_word_length_witnesses=', witness.length, 'equivalent_tapes>=2^52');
+console.log('EXACT_GP29_SERIALIZER_INVERSE source_words=', original.length,
+  'ambiguous_words=', exactAmbiguousWords, 'multiplicity_histogram=',
+  Object.fromEntries([...exactParseHistogram.entries()].sort((a,b) => a[0]-b[0])),
+  'full_source_possible_rune_tapes=', allExactParses.toString(),
+  'exact_log2_floor=', allExactParses.toString(2).length - 1);
 console.log('WITNESS word0_original=', witness[0].original.join('|'));
 console.log('WITNESS word0_alternative=', witness[0].alternative.join('|'));
 console.log('WITNESS both_spell=', witness[0].original.join(''));
