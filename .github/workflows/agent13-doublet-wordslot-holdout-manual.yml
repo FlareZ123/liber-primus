@@ -1,0 +1,13 @@
+name: Agent13 GP29 doublet native word-slot holdout SFT
+on:
+  workflow_dispatch:
+jobs:
+  source-gate:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Calibrate original doublets against native English GP29 word positions
+        run: node sims/lp2_doublet_native_slot_holdout_sft.cjs
