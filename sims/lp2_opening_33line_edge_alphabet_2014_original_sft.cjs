@@ -103,11 +103,12 @@ let completeAlphabetAt46 = 0;
 for (let t = 0; t < trials; t++) {
   const seen = new Uint8Array(29);
   let count = 0;
-  for (let lineIndex = 0; lineIndex < 23; lineIndex++) {
+  for (let lineIndex = 0; lineIndex < 33; lineIndex++) {
     const line = black[lineIndex];
     const i = random() % line.length;
     let j = random() % (line.length - 1);
     if (j >= i) j++;
+    if (lineIndex >= 23) continue;
     for (const value of [line[i], line[j]]) {
       if (seen[value] === 0) { seen[value] = 1; count++; }
     }
