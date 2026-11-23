@@ -41,7 +41,7 @@ A source-calibrated native Gematria Primus encoder, using the established ING/IO
 | Shakespeare (first 300k characters) | 19 | **0.022234359** | 0.062891387 |
 | Emerson, *Essays* | 26 | **0.034180158** | 0.052166783 |
 
-All **eight original LP2 reconstructions** invert exactly to all 2,896 original whole rune words when their complementary direction masks are applied. Independently, for each direction the genuine source-native Gibran control of 2,896 whole GP-coded words is encoded into the exact printed square schedule and recovered **word-for-word**. This is 8/8 source replay plus 8/8 complete 2,896-word native plants; the SFT's output labels refer to 24 square-direction tests comprising 8 original and 16 native transforms. Native output-recovery establishes that an actual 2014-square word transposition would be detectable if this fixed rule produced it.
+All **eight original LP2 reconstructions** invert exactly to all 2,896 original whole rune words when their complementary direction masks are applied. Independently, for each direction the genuine source-native Gibran control of 2,896 whole GP-coded words is encoded into the exact printed square schedule and recovered **word-for-word**. This is **8/8** full-original inverse replays and **24/24** full native-plant recoveries (three independent literary sources × eight square direction masks), each at the complete 2,896-word length. Native output-recovery establishes that an actual 2014-square word transposition would be detectable if this fixed rule produced it.
 
 ## Decision
 
