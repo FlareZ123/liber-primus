@@ -64,3 +64,12 @@ Because the April discussion explicitly names both 5×5 matrices, I tested two f
 - Apply the two-sided block transform to each 5×5 ciphertext block, decrypting as A⁻¹·C·B⁻¹ or B⁻¹·C·A⁻¹.
 
 All matrices were invertible modulo29. The four outputs remained random-like (symbol IoC 0.034446–0.034502) and unreadable. This rejects these straightforward paired Hill consumers; it does not test the historical complete-first17 basic-gematria stream or an authored operation not yet identified.
+
+
+The exact normalized graph output from the source's first section is:
+
+\`\`\`text
+A-WARNNG.BELIEUE-NOTHNG-FROM-THIS-BOOC.EXCEPT-WHAT-YOU-CNOW-TO-BE-TRUE.TEST-THE-CNOWLEDGE.FIND-YOUR-TRUTH.EXPERIENCE-YOUR-DEATH.DO-NOT-EDIT-OR-CHANGE-THIS-BOOC.OR-THE-MESSAGE-CONTAINED-WITHIN.EITHER-THE-WORDS-OR-THEIR-NUMBERS.FOR-ALL-IS-SACRED.
+\`\`\`
+
+The nonstandard forms reflect the table's graph/alias conventions; the English reading above is a normalization, not a claim that the literal transliteration spells standard English.
