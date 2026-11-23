@@ -32,6 +32,19 @@ A finite multiple-target check grants **all 20 solved p57 words**, their first *
 
 This cross-round path is **retrospectively selected** from many plausible numeric grammars. It simultaneously assumes prefix extraction, deleting word separators at p12, GP0 addition, zero-based table indexing, f-excluded radix, and interpreting a resulting integer as a historical filename. The coincidence **raises a better-grounded question about authorial navigation** but does not supply a prescribed decipherment operator or even specify that 107.jpg should become a key. Existing direct LP1 solved-text and printed-rune running-key tests already failed to uncover new LP2 prose in their broad allowed-offset family; see \`im-results/lp2-lp1-solved-plaintext-direct-runningkey-original-gate.md\`. Do not simply repeat them with another guessed offset.
 
+### One executable source-selected receiver and holdout
+
+The new p12→107.jpg path makes a concrete direct cipher test cheaper than speculative additional addressing: treat the **entire already-solved LP1 107.jpg / physical p14 koan** (315 GP29 runes) or its unique quoted **THE I IS THE VOICE OF THE CIRCUMFERENCE** sentence (28 GP29 runes) as a starting-at-zero native GP29 additive key. These two source-text operands are selected from **the reached original 107.jpg**, with no fitted key phase or guessed third source. Decode every original rune on **physical p12 (261 runes)** and independently **p13 (272 runes)** with a page-local reset, under both ± original GP29 Vigenere signs. Original punctuation remains a visible interpretation constraint, and exact re-encryption and planted known-English inverse checks pass for every receiver.
+
+| Source-register key | p12 IoC, inverse minus/plus | untouched p13 IoC, minus/plus |
+|---|---|---|
+| all of 107.jpg p14 koan, 315 runes | **0.03457 / 0.03510** | **0.03381 / 0.03495** |
+| quoted circumference line, 28 runes | **0.03442 / 0.03422** | **0.03470 / 0.03427** |
+
+All eight outputs are visibly nonlinguistic in the canonical GP29 alphabet and near the 29-symbol random IoC ~0.03448. The p12 source itself is IoC 0.03395; p13 source 0.03343. The exact full-source inverse therefore **fails** to supply page12 plaintext and fails untouched p13 under these two natural key choices, even though the cross-round navigation coincidence is verified. This is a bounded negative for a particularly short human-plausible decoding step. It does not exclude using 107.jpg as a non-additive key, as a source of a separate operation or as a clue to a different source.
+
+[Deterministic whole-page and quotation SFT](../sims/lp2_p12_107_circumference_native_key_sft.cjs) · [Windows Node22 PASS 45155022653](https://github.com/FlareZ123/liber-primus/actions/runs/45155022653)
+
 ## Fixed conditional rotation control
 
 Against the canonical `resources/liber-primus/lp2-corpus.json` and `lp2-transcription.txt`, the standalone SFT asserts all 12,956 original rune positions and every page's original transcription. It parses all20 clear original p57 words and fixes their 15 distinct length-three and 12 distinct length-four prefixes *before* randomization.
