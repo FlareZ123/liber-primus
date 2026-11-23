@@ -94,16 +94,19 @@ function geometry(page,phase){
 /** @param {number[]} tape */
 function book(tape){
   assert.equal(tape.length,cipher.length);
-  let offset=0,totals=[0,0,0,0],totalMin=0,totalMax=0;\n  let collinearTotals=[0,0,0,0],collinearMin=0,collinearMax=0;
+  let offset=0,totals=[0,0,0,0],totalMin=0,totalMax=0;
+  let collinearTotals=[0,0,0,0],collinearMin=0,collinearMax=0;
   let pagesAnyZeroRepeated=0;
   const detail=[];
   for(const n of sizes){
     const page=tape.slice(offset,offset+n);
     const phases=Array.from({length:4},(_,ph)=>geometry(page,ph));
     const g=phases.map(x=>x.parallelograms);
-    const r=phases.map(x=>x.repeatedPackets);\n    const h=phases.map(x=>x.collinearTriples);
+    const r=phases.map(x=>x.repeatedPackets);
+    const h=phases.map(x=>x.collinearTriples);
     for(let ph=0;ph<4;ph++){totals[ph]+=g[ph];collinearTotals[ph]+=h[ph];}
-    totalMin+=Math.min(...g);totalMax+=Math.max(...g);\n    collinearMin+=Math.min(...h);collinearMax+=Math.max(...h);
+    totalMin+=Math.min(...g);totalMax+=Math.max(...g);
+    collinearMin+=Math.min(...h);collinearMax+=Math.max(...h);
     pagesAnyZeroRepeated+=Number(r.some(x=>x===0));
     detail.push({g,h,r,packets:phases.map(x=>x.packets)});
     offset+=n;
@@ -163,19 +166,22 @@ for(const [name,file] of controls){
     pool[enc.length].push(enc);
   }
   assert(lens.every(n=>pool[n].length));
-  const scores=[],common=[[],[],[],[]],minPhase=[], maxPhase=[];\n  const collinearCommon=[[],[],[],[]],collinearMins=[],collinearMaxes=[];
+  const scores=[],common=[[],[],[],[]],minPhase=[], maxPhase=[];
+  const collinearCommon=[[],[],[],[]],collinearMins=[],collinearMaxes=[];
   let priorEqualitySurvivors=0;
   for(let trial=0;trial<samplesPerSource;trial++){
     const data=[];
     for(const n of lens)data.push(...pool[n][rand()%pool[n].length]);
     assert.equal(data.length,cipher.length);
     const scored=book(data);
-    for(let ph=0;ph<4;ph++){common[ph].push(scored.totals[ph]);collinearCommon[ph].push(scored.collinearTotals[ph]);}\n    collinearMins.push(scored.collinearMin);collinearMaxes.push(scored.collinearMax);
+    for(let ph=0;ph<4;ph++){common[ph].push(scored.totals[ph]);collinearCommon[ph].push(scored.collinearTotals[ph]);}
+    collinearMins.push(scored.collinearMin);collinearMaxes.push(scored.collinearMax);
     minPhase.push(scored.totalMin);maxPhase.push(scored.totalMax);
     if(scored.pagesAnyZeroRepeated===55){
       priorEqualitySurvivors++;
       survivorDetails.push({name,trial,parallelogramsMin:scored.totalMin,
-        parallelogramsCommon:scored.totals,perPage:scored.detail.map(x=>x.g),\n        collinearMin:scored.collinearMin,collinearCommon:scored.collinearTotals});
+        parallelogramsCommon:scored.totals,perPage:scored.detail.map(x=>x.g),
+        collinearMin:scored.collinearMin,collinearCommon:scored.collinearTotals});
     }
     if(trial===0)plant(data);
   }
@@ -183,7 +189,10 @@ for(const [name,file] of controls){
     independentPagePhaseMin:{min:Math.min(...minPhase),max:Math.max(...minPhase),
       mean:minPhase.reduce((a,b)=>a+b,0)/minPhase.length,
       atMostSourceMax:minPhase.filter(x=>x<=original.totalMax).length},
-    collinearity:{independentPagePhaseMin:{min:Math.min(...collinearMins),max:Math.max(...collinearMins),\n      mean:collinearMins.reduce((a,b)=>a+b,0)/collinearMins.length},\n      commonPhase:collinearCommon.map(v=>({min:Math.min(...v),max:Math.max(...v)}))},\n    commonPhase:common.map(v=>({min:Math.min(...v),max:Math.max(...v),
+    collinearity:{independentPagePhaseMin:{min:Math.min(...collinearMins),max:Math.max(...collinearMins),
+      mean:collinearMins.reduce((a,b)=>a+b,0)/collinearMins.length},
+      commonPhase:collinearCommon.map(v=>({min:Math.min(...v),max:Math.max(...v)}))},
+    commonPhase:common.map(v=>({min:Math.min(...v),max:Math.max(...v),
       atMostSourceAtSamePhase:v.filter((x,i)=>x<=original.totals[common.indexOf(v)]).length}))});
 }
 assert.equal(survivorDetails.length,13);
@@ -192,7 +201,9 @@ const result={scope:"source original page-private affine four-rune GF29^4 block 
   seed:"0x33012026",samplesPerSource,original:{
     commonPhase:original.totals,independentPagePhaseMin:original.totalMin,
     independentPagePhaseMax:original.totalMax,
-    firstTenPagePhaseCounts:original.detail.slice(0,10).map(x=>x.g),\n    collinearity:{commonPhase:original.collinearTotals,independentPagePhaseMin:original.collinearMin,\n      independentPagePhaseMax:original.collinearMax}},
+    firstTenPagePhaseCounts:original.detail.slice(0,10).map(x=>x.g),
+    collinearity:{commonPhase:original.collinearTotals,independentPagePhaseMin:original.collinearMin,
+      independentPagePhaseMax:original.collinearMax}},
   controls:results,equalitySurvivors:survivorDetails.map(x=>({
     source:x.name,trial:x.trial,independentPhaseParallelogramMin:x.parallelogramsMin,
     commonPhase:x.parallelogramsCommon,collinearMin:x.collinearMin,collinearCommon:x.collinearCommon})),
