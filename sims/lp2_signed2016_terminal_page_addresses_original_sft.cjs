@@ -244,6 +244,16 @@ const wayMapIntersection={
 
 assert.equal(tableValues[74],205);
 assert.equal(primeNumbers[204],1259);
+// A second, distinct source-compatible *target-type* interpretation of
+// the same selected rank205: take 205 as a table ADDRESS, whose literal
+// base60 value is76, exactly the full original p55 rune count. Source p55
+// is the UNIQUE 76-rune physical manuscript page. Under base59 the same
+// token is75, requiring an unsourced loss of one glyph.
+assert.equal(tokens[205],"1G");
+assert.equal(tableValues[205],76);
+assert.deepEqual(corpus.pages.filter((page)=>page.indices.length===76).map((p)=>p.page),[55]);
+assert.equal(59+numeralAlphabet.indexOf("G"),75);
+
 const p57Source=JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json"))
  .sections.find((section)=>section.name==="p57_parable").source_text;
 const p57AfterTitle=p57Source.split("⁜")[1];
@@ -370,6 +380,7 @@ console.log(JSON.stringify({
   sourceSelectedSurfaceCandidate:surfaceClosedLoop,
   exact2013ParableID3Product:p57PrimeSums.reduce((a,b)=>a*b,1),
   p50Byte205Address:74,
+  alternateFullP55TypedRecipient:{sourceRank:205,tableCell205:tokens[205],base60Byte:tableValues[205],unique76RunePage:55,base59Byte:75,warning:"No source instruction directs rank-as-address or a complete 76-rune decoder."},
   signedWayMapLiteralIntersection:wayMapIntersection,
   sourceFiveByteMod29Key:fiveKey,
   completeOriginal553RuneShiftTests:sourceFiveShiftTests,
