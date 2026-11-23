@@ -82,6 +82,32 @@ Freeze the simplest additive GP29 use of the 43 base29 digits of S as a repeatin
 
 The previously discussed assignment g=2,A=8 gives a trivial private exponent3 with B=Q but also lacks an independently selected consumer. Direct historical g=5,A=8 is mathematically impossible for P by quadratic characters. These tests narrow specific operators and do not rule out an intended use of P and Q in another mechanism.
 
+### Conditional shell-as-public-value: exact small-subgroup discrete log
+
+A distinct, more demanding DH reading treats the original **entire exterior integer E** as a public value rather than merely as a multiple of the candidate generator Q=E/43. This would require a private exponent x satisfying Q^x ≡ E (mod P). In the group already certified by the source-core prime, the complete known group-order factorization is
+
+```text
+P-1 = 4 × 5 × 41 × 49477 × 15535963
+      × 101149063843788281988908603592862658065019147521
+    = 630311729907820 × 101149063843788281988908603592862658065019147521
+```
+
+The final factor is a **157-bit prime**; the smaller factors together form an exact **50-bit modulus M=630311729907820**. Running deterministic baby-step/giant-step on the five projected subgroups, followed by the Chinese remainder theorem, recovers the unique conditional residue
+
+```text
+x ≡ 2       (mod 4)
+x ≡ 0       (mod 5)
+x ≡ 40      (mod 41)
+x ≡ 700     (mod 49477)
+x ≡ 8516536 (mod 15535963)
+
+x ≡ 483581994079670 (mod 630311729907820).
+```
+
+All five original-field exponentiation identities and their CRT reconstruction are exact, checked directly against the unchanged p55 SHED-core and exterior GP0 streams. This rules out **every proposed nonnegative private exponent smaller than 483581994079670**, including the natural source numerals 8, 13, 23, 43, 76, 344, 1033 and 3301, **if and only if** E was intended as the DH public value for generator Q. The mere multiplicative relation E=43Q does not imply a small discrete logarithm. The 50-bit partial log's 11-digit canonical GP0 reading is `URNMIAWIAEOEAEU`, with no independently recognizable plaintext. The complete exponent remains undetermined modulo the 157-bit factor, and neither original cipher receiver nor author-selected DH invocation exists.
+
+[Read-only single-file Windows-compatible Node22 SFT](../sims/lp2_p55_shed_partial_dlog_sft.cjs) derives the numbers directly from the canonical embedded p55 physical transcription, verifies Q's factor-order tests, solves each small subgroup, and independently exponentiates the CRT result. This is an arithmetic **conditional negative** for short-exponent interpretations and a possible future key-recovery component, not a recovered manuscript plaintext or evidence of an actual Cicada encryption method.
+
 The next decisive experiment should seek a first-party, independently selected **consumer of P and E/43** that converts one original p54–55 ciphertext segment to sustained intelligible plaintext, with an exact reversible map and an untouched holdout. Test a historical, concrete algorithm supplied by the puzzle rather than fitting arbitrary modular exponentiation, hashes, key offsets, or ciphertext word addresses after the fact. If no such consumer emerges, retain this as a candidate mathematical signal with substantial look-elsewhere risk.
 
 ## Reproduction
