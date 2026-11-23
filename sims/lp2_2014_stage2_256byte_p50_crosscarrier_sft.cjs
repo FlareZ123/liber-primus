@@ -57,6 +57,20 @@ const strictASCII=decoded.filter(x=>x>=32&&x<=126).length;
 const knownHeaders=["25504446","504b0304","1f8b08","425a68","789c","89504e47","ffd8ff","7b22","7b0a","2d2d2d2d2d"];
 const magic=knownHeaders.filter(head=>decoded.toString("hex").startsWith(head));
 const allZero=decoded.every(b=>b===0);
+/* The exact original LP2 p56 128-hex target; no first-party digest
+ * algorithm is specified. SHA512 is the one-byte-size-matched candidate.
+ * The bare Onion2 payload's own SHA512 was already excluded separately.
+ */
+const p56Target="36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4";
+assert.match(p56Target,/^[0-9a-f]{128}$/);
+const terminalDigestChecks=[
+  ["original_p50_source_grid",printedBytes],
+  ["one_literal_prior_stage_xor",decoded]
+].map(([sourceName,bytes])=>({
+  source:sourceName,
+  sha512:crypto.createHash("sha512").update(bytes).digest("hex"),
+}));
+assert.ok(terminalDigestChecks.every(v=>v.sha512!==p56Target));
 const originalPageIndexByte=grid.byte_rows.flat()[0];
 
 /* Historic 2014 Onion1 RSA Crypt::RSA::ES::OAEP modulus is 432 bits.
@@ -87,6 +101,7 @@ const report={
   decrypted_unique_bytes:new Set(decoded).size,
   decrypted_entropy:entropy(decoded),
   decrypted_hex_prefix:decoded.toString("hex").slice(0,96),
+  p56_128hex_SHA512_scope:terminalDigestChecks.map(v=>({source:v.source,sha512_equals_p56:v.sha512===p56Target,sha512_prefix:v.sha512.slice(0,32)})),
   decoded_has_whole_grammar_or_file_header:!!magic.length,
   exact_hist_2014_RSA_modulus_bits:N.toString(2).length,
   exact_RSAPKCS1_four_8x8_cipher_groups:compare,
