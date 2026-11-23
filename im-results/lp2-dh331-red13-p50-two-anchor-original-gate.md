@@ -32,4 +32,19 @@ The existing table successor graph has `71→108→14→…→32` under the base
 3. **The two arithmetic equalities do not extend to a generator of the panel.** The p50 table has 161 distinct byte values; powers of base16 modulo331 can occupy at most 15 residues. The exact same-group power schedule cannot generate the remaining 254 cells.
 4. **A frozen simple original-cipher inverse fails.** Taking the only immediately available evolving sequence `key_i = 133^(13+i) mod331 mod29` and applying both GP29 additive directions to the complete **121-rune original p32** yields index of coincidence **0.03126722** for `C−key` and **0.03732782** for `C+key`, with no connected readable GP-native plaintext. Both re-encrypt exactly. The p32 recipient is the established 2016 word-map terminal page, rather than a page chosen to maximize a score. This finite failure does not eliminate other consumers, but no source specifies one.
 
+## New full-panel 13th-root inverse: exact but no plaintext
+
+The same **source-shaped exponent 13** supplies a complete, key-free reversible operation on every one of the 256 base60 bytes because `gcd(13,331−1)=1`. The inverse exponent is **127**, since `13×127 = 5×330+1`. For each original cell `y`, compute `x=y^127 mod331`; then `x^13 mod331=y` exactly, including zero. The frozen original-image p50 table reproduces **256/256** output cells without changing their order. The two anchor roots are `root(T[0])=16` and `root(T[71])=133`, returning the earlier original red-word half-difference and HTML title.
+
+The *complete* inverse exposes a decisive obstacle to treating the numerals as a straightforward **256-distinct-byte DH13 S-box or encrypted byte permutation**: **60** of the 256 unique-position roots are **at least256** (and so not bytes), while the original table contains only **161 distinct outputs**. Raising **256 distinct input field elements** to the invertible power13 would preserve all256 distinctions. Hence a straightforward full byte permutation is impossible. A noninjective source byte stream could of course still be transformed; the original provides no source-authored command to do so.
+
+A small direct original-cipher consumer tests `K[i] = (T[(start+i) mod256]^127 mod331) mod29` at the **121-rune p32** recipient independently selected by the signed-2016/p50 navigation route, with both printed-order start0 and source-red/signed-SEEKS address start71. With `P=C±K mod29`, all four exactly reverse and re-encode original p32, but are gibberish:
+
+| Table starting cell | P=C−K GP29 IoC | P=C+K GP29 IoC |
+|---|---:|---:|
+| 0 | 0.03223140 | 0.04063361 |
+| 71 | 0.03402204 | 0.03223140 |
+
+The lone marginally elevated 0.0406 for only 121 symbols has no connected GP-native words. The 13th-root map is therefore a **complete source-conditional numeric-table inverse**, not an identified LP2 cipher or authentic plaintext. The original 2013 DH challenge neither selects the 256-byte table as a key receiver nor authorizes repeated use of the 13-dot exponent to transform every cell. No expanded key search is warranted.
+
 **Decision:** preserve the two exact source-conditioned arithmetic matches as a falsifiable intermediate lead. Treat any proposed use of `A=203` or `K=108` as an **unverified hypothesis** until a third *independently predeclared original source target* or an authored receiver selects the operation and recovers connected unknown plaintext. Do not broaden into modular-base, address, cipher-direction, or generator-menu searches. The authenticated 2013 TCP specification remains a historical explanation for the operator, not an authenticated command to decrypt LP2.
