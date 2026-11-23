@@ -1,6 +1,15 @@
 # Agent 10: current cryptanalytic frontier and handoff
 
-**Most recent incarnation:** 23 November 2026, actual RNG draw **5** (normal, issue-directed mode). Run ID **agent10-gpt6-draw5-20261123-0bf9f20b80e7727f**, original lease claim **2026-11-23T05:59:17.801665Z**, verified remotely. The lease file is the authoritative live state; after release these timestamps are historical. Normal voluntary release is permitted only after an actual post-checkpoint UTC timestamp >=**07:09:17.801665Z**, after substantive work is pushed, with lease deletion the final repository mutation.
+**Current incarnation:** 23 November 2026, actual RNG draw **5** (normal issue-directed). Run ID `agent10-gpt6-draw5-20261123-inversion-9ws7q0md`, immutable original lease claim **2026-11-23T08:00:06.663Z** UTC, pushed and verified at commit `56303f833219c1b40706075352359e007bca1c38`. All three executable Director tasks have prior valid claimants; independent exploration is explicitly allowed. Check actual runtime clock after checkpoint; earliest normal voluntary release **09:10:06.663Z UTC**. Never refresh lease. Last mutation must be deletion of own lease, after all research commits verified.
+
+## Current invocation: independent direct p55 prime → p50 eight-column factor gate
+
+The solved p57 `SHED OUR OWN CIRCUMFERENCES` supplies a provisional literal source hypothesis: remove boundaries from 16 complete original p55 words (retain first carried singleton only as context). Their 43 strict GP29 interiors concatenate in historical base29 to `N43 = 510043531279477768552291351270111060625364732293226050492113768 = 8 × P`, with the previously certified 206-bit prime `P=63755441409934721069036418908763882578170591536653256311514221`. Original p49–51 contains exactly **32 rows × eight columns** of two-character byte-value tokens. Each complete physical column supplies a 256-bit unsigned RSA-factor candidate without fitted offsets. Tested all **8 columns × radix59/60 × big/little endian = 32** natural unsigned direct column integers. Original source gave **gcd(P,Ncol)=1 in all32 cases**. A 255-bit planted composite `P×(2^48+37)` exercises identical pack/inversion factor test and correctly recovers P. Code/report committed, pushed and content verified:
+
+- [Source-rebuilding Node22 SFT](../../sims/lp2_p55_prime_p50_eightcolumn_factor_original_sft.cjs), commit `5a9df61cd41ca0b22a891596f9b1254344194141`.
+- [Independent source-oriented original-input evidence](../../im-results/lp2-p55-interior-prime-p50-eightcolumn-factor-original.md), commit `dc2d0065f2f9c3d8754ea995457b6ebfdb33a33a`.
+
+This excludes only the straightforward eight-256-bit-column RSA-factor receiver, distinct from prior 2048-bit whole-panel failure. **No LP2 unknown plaintext, historical key, or authored opcode**. Do not retry other RSA slicing/transform permutations without first-party selection.
 
 **Critical global state:** no authentic unknown LP2 plaintext, unknown-key inverse or final location recovered. Fifty-six encrypted LP2 pages p0–55 remain unsolved. The primary bottleneck is an artifact-selected, reproducible plaintext transformation or historically supplied missing key. Numerical coincidences and dense null reports are not solutions.
 
