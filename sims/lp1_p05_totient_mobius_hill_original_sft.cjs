@@ -2,7 +2,8 @@
 /**
  * Bounded original-source test: LP1 p05's hidden 1033 square transformed
  * elementwise by Euler phi or the Mobius function, reduced in GP29, then used
- * as a 5x5 Hill key. Tests natural direction/transpose and global/page resets.
+ * as either a 25-symbol additive key or a 5x5 Hill key. Tests natural
+ * directions, row/column conventions, and global/page-reset alignment.
  *
  * Run from repository root:
  *   node sims/lp1_p05_totient_mobius_hill_original_sft.cjs
@@ -242,6 +243,29 @@ for (const [keyName, key, inverse] of [
 fullCandidates.sort((a, b) => b.average - a.average);
 p55Candidates.sort((a, b) => b.average - a.average);
 
+const additiveCandidates = [];
+for (const [keyName, matrix] of [['phi', Kphi], ['mu', Kmu]]) {
+  const key = matrix.flat();
+  for (const sign of [-1, 1]) {
+    for (const pageReset of [true, false]) {
+      const output = pageReset
+        ? unknownPages.flatMap(page => page.map((value, index) =>
+            mod(value + sign * key[index % key.length])))
+        : unknown.map((value, index) => mod(value + sign * key[index % key.length]));
+      const score = languageScore(output);
+      additiveCandidates.push({
+        key: keyName,
+        operation: sign === -1 ? 'C-K' : 'C+K',
+        alignment: pageReset ? 'page-reset' : 'global',
+        average: score.average,
+        ic: score.ic,
+        preview: score.preview
+      });
+    }
+  }
+}
+additiveCandidates.sort((a, b) => b.average - a.average);
+
 const rawP55 = {
   full: languageScore(p55),
   dropFirstNG: languageScore(p55.slice(1)),
@@ -251,6 +275,8 @@ assert(Math.abs(rawUnknown.average - (-7.440422303145423)) < 1e-10);
 assert(Math.abs(p57Control.average - (-4.420906439449695)) < 1e-10);
 assert.equal(fullCandidates.length, 16);
 assert.equal(p55Candidates.length, 16);
+assert.equal(additiveCandidates.length, 8);
+assert(Math.abs(additiveCandidates[0].average - (-7.453372230171215)) < 1e-10);
 
 console.log(JSON.stringify({
   source: {
@@ -280,6 +306,8 @@ console.log(JSON.stringify({
   },
   fullBookBest: fullCandidates[0],
   fullBookWorst: fullCandidates[fullCandidates.length - 1],
+  additiveBest: additiveCandidates[0],
+  additiveWorst: additiveCandidates[additiveCandidates.length - 1],
   p55Best: p55Candidates[0],
   p55Worst: p55Candidates[p55Candidates.length - 1]
 }, null, 2));
