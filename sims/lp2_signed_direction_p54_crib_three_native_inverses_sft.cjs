@@ -69,6 +69,12 @@ for (const model of models) {
   const plain = inverse(model, ciphertext);
   assert.deepEqual(plain.slice(0, 8), direction);
   assert.deepEqual(forward(model, plain), ciphertext);
+  // The solved-p56 transparent-F model has the key-independent necessary
+  // condition plaintext GP-F => ciphertext GP-F. This title-derived repeating
+  // key violates it at a known original non-F rune before any original C=F.
+  const firstNontransparentPlainF = plain.findIndex((p, i) =>
+    i >= 8 && p === 0 && ciphertext[i] !== 0);
+  if (model === "repeating8") assert.equal(firstNontransparentPlainF, 21);
   const remaining = plain.slice(8);
   const testPlain = Array.from({ length: 307 }, (_, i) =>
     i < 8 ? direction[i] : corpus.pages[57].indices[(i - 8) % 95]);
@@ -82,6 +88,7 @@ for (const model of models) {
     originalEntire307IoC: ioc(plain),
     originalHeldOut299IoC: ioc(remaining),
     originalPage55IoC: ioc(plain.slice(231)),
+    firstContradictionToSolvedP56PlainFRule: firstNontransparentPlainF,
     recoveredOriginalPage54BodyPrefix: plain.slice(8, 43)
       .map((index) => corpus.translit[index]).join("-"),
     nativeSolvedP57PlantRecovered: testRecovered.length,
