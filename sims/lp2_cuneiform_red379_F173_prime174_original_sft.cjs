@@ -74,19 +74,19 @@ function primes(n) {
   }
   return out;
 }
-const prime=primes(464);
+const prime=primes(636);
 assert.equal(prime[173],1033);
 assert.equal(prime[463],3301);
 /** @param {number[]} source @param {boolean} transparentF
  * @returns {{out:number[],consumed:number}}
  */
-function phiSubtract(source,transparentF) {
+function phiSubtract(source,transparentF,start=0) {
   const out=[];
   let k=0;
   for(let i=0;i<source.length;i++){
     const v=source[i];
     if(transparentF&&i===58&&v===0){out.push(0);continue;}
-    out.push((v-(prime[k++]-1)%29+29)%29);
+    out.push((v-(prime[start+k++]-1)%29+29)%29);
   }
   return {out,consumed:k};
 }
@@ -100,10 +100,16 @@ function ic(a) {
 }
 const allAdvance=phiSubtract(tail,false);
 const skipF=phiSubtract(tail,true);
+const startAt1033=phiSubtract(tail,true,173);
+const startAt3301=phiSubtract(tail,true,463);
 assert.equal(allAdvance.consumed,174);
 assert.equal(skipF.consumed,173);
+assert.equal(startAt1033.consumed,173);
+assert.equal(startAt3301.consumed,173);
 assert.ok(Math.abs(ic(allAdvance.out)-0.03587801474985051)<1e-12);
 assert.ok(Math.abs(ic(skipF.out)-0.03521360706929772)<1e-12);
+assert.ok(ic(startAt1033.out)<0.048);
+assert.ok(ic(startAt3301.out)<0.048);
 const neighboring=numbered.slice(openingSum-1-174,openingSum-1);
 assert.equal(neighboring.length,174);
 const direct=[],mirror=[];
@@ -166,7 +172,9 @@ const report={
   printedPrimeOrdinal:{prime174:prime[173],prime464:prime[463]},
   p56NativePhiCandidate:{
     all174Primes:{ic:ic(allAdvance.out),consumed:allAdvance.consumed},
-    skipOneF:{ic:ic(skipF.out),consumed:skipF.consumed}
+    skipOneF:{ic:ic(skipF.out),consumed:skipF.consumed},
+    firstPrime1033:{ic:ic(startAt1033.out),consumed:startAt1033.consumed},
+    firstPrime3301:{ic:ic(startAt3301.out),consumed:startAt3301.consumed}
   },
   adjacent174GP29:{chronologicalMinusPlus:direct,mirroredMinusPlus:mirror},
   plantedNativePhi:{
