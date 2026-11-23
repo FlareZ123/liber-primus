@@ -98,6 +98,23 @@ for (const alphabet of [Array.from({ length: 29 }, (_, i) => i), order]) {
   assert.deepEqual(bytes(fromBase29(decodedDigits)), plant);
 }
 
+/**
+ * Canonical seven-bit ASCII groups of one big-endian base29 integer.
+ * The left-padding restores whole 7-bit groups, with no chosen offset.
+ * @param {bigint} value @returns {Buffer}
+ */
+function ascii7(value) {
+  const bits = value.toString(2);
+  const aligned = bits.padStart(Math.ceil(bits.length / 7) * 7, '0');
+  const octets = [];
+  for (let i = 0; i < aligned.length; i += 7) {
+    octets.push(Number.parseInt(aligned.slice(i, i + 7), 2));
+  }
+  return Buffer.from(octets);
+}
+const plant7bits = [...plant].map(x => x.toString(2).padStart(7, '0')).join('');
+assert.deepEqual(ascii7(BigInt('0b' + plant7bits)), plant);
+
 const outputs = [];
 for (const [name, alphabet] of [
   ['canonical_GP29', Array.from({ length: 29 }, (_, i) => i)],
@@ -122,7 +139,24 @@ for (const [name, alphabet] of [
     first32hex: data.subarray(0, 32).toString('hex'),
     sha256: crypto.createHash('sha256').update(data).digest('hex'),
     printableFraction: Number(printable.toFixed(8)),
-    recognizable, roundTrip: true
+    recognizable, roundTrip: true,
+    sevenBitAscii: (() => {
+      const seven = ascii7(value);
+      const printable7 = [...seven].filter(v =>
+        (v >= 32 && v <= 126) || v === 9 || v === 10 || v === 13
+      ).length / seven.length;
+      const lettersOrSpaces = [...seven].filter(v =>
+        (v >= 65 && v <= 90) || (v >= 97 && v <= 122) || v === 32
+      ).length / seven.length;
+      return {
+        outputSymbols: seven.length,
+        first48hex: seven.subarray(0, 48).toString('hex'),
+        sha256: crypto.createHash('sha256').update(seven).digest('hex'),
+        printableFraction: Number(printable7.toFixed(8)),
+        lettersOrSpacesFraction: Number(lettersOrSpaces.toFixed(8)),
+        recognizableEnglish: printable7 > 0.96 && lettersOrSpaces > 0.72
+      };
+    })()
   });
 }
 assert.equal(outputs.length, 2);
