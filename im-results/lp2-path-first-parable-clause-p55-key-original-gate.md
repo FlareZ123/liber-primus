@@ -27,7 +27,7 @@ Let `C_i` be the original p55 GP0 symbol and `K_j` the source-selected repeated 
 
 All positions zero-based. For comparison, the **20** complete 76-rune source-native clear-p57 windows have IoC range **0.059298–0.063860**. Every original p55 output is visibly nonlinguistic, with IoC at most0.037895. The two subtractive F-bypass models also output unescaped F from non-F ciphertext, which a naive F-as-unique-literal forward codec would have to disambiguate. Four strict no-bypass native p57 plaintext plants encrypt and decrypt **exactly** under their corresponding GP29 variant, so the negative is not an arithmetic implementation failure. These are short-input calibration results, not a theorem excluding every potential cipher or language.
 
-**Reproducer:** `sims/lp2_path_first_parable_clause_p55_key_sft.cjs` (single read-only Windows-compatible Node22 CommonJS test; JSON console output; original corpus and four exact native p57 planted replays). No glyph corrections, keys searched, score-fitted clocks, alternate prime rank conventions, or speculative hash transforms.
+**Reproducer:** `sims/lp2_path_first_parable_clause_p55_key_sft.cjs` (single read-only Windows-compatible Node22 CommonJS test; JSON console output; original corpus and four exact native p57 planted replays). Executed on the actual checked-out original corpus in [manual Windows Node22 PASS 45134693608](https://github.com/FlareZ123/liber-primus/actions/runs/45134693608); source-test job 137558070362 printed all eight IoCs and completed successfully. No glyph corrections, keys searched, score-fitted clocks, alternate prime rank conventions, or speculative hash transforms.
 
 ## Decision
 
