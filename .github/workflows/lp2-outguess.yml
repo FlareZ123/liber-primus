@@ -35,7 +35,7 @@ on:
         required: false
         default: ''
       lp1_history:
-        description: Recheck all 17 historical LP1 source JPEGs with default OutGuess
+        description: Also scan LP1 originals and test the three 58,152-byte page 6/7/9 payloads as candidate keys
         type: boolean
         required: false
         default: false
@@ -111,17 +111,18 @@ jobs:
           OUTGUESS_PRINT_LP1_SIGNED: ${{ inputs.lp1_history && '1' || '0' }}
         run: node sims/outguess_lp2_scan.cjs
       - name: Install Python for direct binary-stream pad testing
-        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares && !inputs.lp1_history && !inputs.cicada2016 && !inputs.shed43 && !inputs.instar && !inputs.fragment7 && !inputs.historical2014_password && inputs.custom_password == '' }}
+        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares && !inputs.cicada2016 && !inputs.shed43 && !inputs.instar && !inputs.fragment7 && !inputs.historical2014_password && inputs.custom_password == '' }}
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
       - name: Install numeric dependencies
-        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares && !inputs.lp1_history && !inputs.cicada2016 && !inputs.shed43 && !inputs.instar && !inputs.fragment7 && !inputs.historical2014_password && inputs.custom_password == '' }}
+        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares && !inputs.cicada2016 && !inputs.shed43 && !inputs.instar && !inputs.fragment7 && !inputs.historical2014_password && inputs.custom_password == '' }}
         run: python -m pip install --disable-pip-version-check numpy numba
       - name: Scan original LP2 runes against all extracted pad-stream positions
-        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares && !inputs.lp1_history && !inputs.cicada2016 && !inputs.shed43 && !inputs.instar && !inputs.fragment7 && !inputs.historical2014_password && inputs.custom_password == '' }}
+        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares && !inputs.cicada2016 && !inputs.shed43 && !inputs.instar && !inputs.fragment7 && !inputs.historical2014_password && inputs.custom_password == '' }}
         env:
           OUTGUESS_NULL_REPLICATES: 64
+          OUTGUESS_INCLUDE_LP1: ${{ inputs.lp1_history && '1' || '0' }}
         run: python sims/outguess_lp2_directpad.py
       - name: Test the authentic historical XOR-share model against every extracted LP2 subset
         if: ${{ inputs.xor_shares }}
