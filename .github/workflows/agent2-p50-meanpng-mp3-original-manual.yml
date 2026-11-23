@@ -1,0 +1,55 @@
+name: Agent 2 fixed p50 Meanpng password on original 2014 MP3
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-mp3:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          architecture: x86
+      - name: Native original tool and input
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python -m pip install --disable-pip-version-check filelock pywinauto Pillow
+          python sims/openpuff_output_capture_sft.py
+          $dir = Join-Path $env:RUNNER_TEMP 'OpenPuff-v400'
+          New-Item -ItemType Directory -Force -Path $dir | Out-Null
+          $base = 'https://raw.githubusercontent.com/codejanus/ToolSuite/1eaf6d006d31ba842f6cc6b16e9d82dbf904aaf5/OpenPuff'
+          Invoke-WebRequest -Uri "$base/OpenPuff.exe" -OutFile (Join-Path $dir 'OpenPuff.exe')
+          Invoke-WebRequest -Uri "$base/libObfuscate.dll" -OutFile (Join-Path $dir 'libObfuscate.dll')
+          if ((& git hash-object -- (Join-Path $dir 'OpenPuff.exe')).Trim() -ne '466e03c792075313ce533a5dc7a789e8a41209f9') { throw 'OpenPuff executable mismatch' }
+          if ((& git hash-object -- (Join-Path $dir 'libObfuscate.dll')).Trim() -ne 'f3b1c3315f8286346416fefd6141410f422f2454') { throw 'OpenPuff DLL mismatch' }
+          $mp3 = Join-Path $env:RUNNER_TEMP 'interconnected.mp3'
+          Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/iBotPeaches/cicada_3301/a0a616d85717af59f8b806875b43d51e06e1e874/tool/storage/interconnected.mp3' -OutFile $mp3
+          if ((& git hash-object -- $mp3).Trim() -ne '09fe068192b76a3697c47ec1d604b527703db798') { throw '2014 original MP3 mismatch' }
+          "EXE=$(Join-Path $dir 'OpenPuff.exe')" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "MP3=$mp3" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+      - name: Recover source-published 745-byte payload as positive
+        shell: pwsh
+        run: |
+          python sims/openpuff_v400_extract.py --exe "$env:EXE" --carrier "$env:MP3" --password '33011033' --bit-format 'Mp3 (Audio)' --bit-level '1/2 (50%) - Maximum' --out probe-output/positive --expected-size 745 --expected-crc32 '6A8C41E3' --wait-seconds 90
+          if ($LASTEXITCODE -ne 0) { throw 'Historical positive execution failed' }
+          $r = Get-Content probe-output/positive/result.json -Raw | ConvertFrom-Json
+          if (-not $r.expected_match) { throw 'Historical positive did not match' }
+      - name: Exact p50 fifth-column Bitcoin address as only candidate
+        shell: pwsh
+        run: |
+          python sims/openpuff_v400_extract.py --exe "$env:EXE" --carrier "$env:MP3" --password '1Meanpng7jzYW69Cqmto1r2mGeEoynXdoK' --bit-format 'Mp3 (Audio)' --bit-level '1/2 (50%) - Maximum' --out probe-output/meanpng --wait-seconds 120
+          if ($LASTEXITCODE -ne 0) { throw 'Original candidate execution failed' }
+          $r = Get-Content probe-output/meanpng/result.json -Raw | ConvertFrom-Json
+          if (-not $r.carrier_added -or -not $r.bit_selection_verified -or $r.native_probe_outcome -eq 'inconclusive-timeout') { throw 'Original candidate test inconclusive' }
+          Write-Host "ORIGINAL_MEANPNG_MP3 $($r | Select-Object native_probe_outcome,output_present,outputs,error_dialogs | ConvertTo-Json -Depth 10 -Compress)"
+      - name: Preserve native output and original GUI record
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent2-meanpng-original-2014-mp3
+          path: probe-output/
+          if-no-files-found: warn
