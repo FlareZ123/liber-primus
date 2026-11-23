@@ -193,6 +193,66 @@ assert.equal(bestStaticMap(originalTrim, originalOrder), 50);
 const residual = originalTrim.map((x, i) => mod(x - alpha * originalOrder[i]));
 const f16RecurrenceHits = recurrenceMatches(residual, F16);
 assert.equal(f16RecurrenceHits.length, 5);
+
+// Test the stronger source-conditioned two-layer inverse:
+// Q removes one affine layer, then the sixteen original p15 values remove
+// a fixed 16-position additive shift. One can grant every circular phase,
+// both signs, reversed orientation and the F16 factor-coefficient rival.
+/** @param {number} n @returns {number} */
+function nthPrime(n) {
+  let count = 0;
+  for (let k = 2; ; k++) {
+    let isPrime = true;
+    for (let p = 2; p * p <= k; p++) {
+      if (k % p === 0) { isPrime = false; break; }
+    }
+    if (isPrime && ++count === n) return k;
+  }
+}
+const fibIndices = [0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144,
+  233, 377, 610, 987];
+const spiralPositions = [5, 6, 10, 9, 8, 4, 0, 1, 2, 3, 7, 11, 15, 14, 13, 12];
+const spiralSigned = fibIndices.map(i => 3301 - nthPrime(i + 1));
+assert.deepEqual(spiralSigned.map(Math.abs),
+  spiralPositions.map(i => p15Rows[i]));
+const sourceKeyLists = [
+  ['p15-row', p15Rows.map(mod)],
+  ['p15-spiral-absolute', spiralPositions.map(i => mod(p15Rows[i]))],
+  ['p15-spiral-signed', spiralSigned.map(mod)],
+  ['F16', F16.slice(0, 16)]
+];
+const sourceTwoLayer = [];
+for (const [keyName, fixedKey] of sourceKeyLists) {
+  for (const reversed of [false, true]) {
+    const key = reversed ? fixedKey.slice().reverse() : fixedKey;
+    for (const sign of [-1, 1]) {
+      for (let phase = 0; phase < 16; phase++) {
+        const plaintext = residual.map((x, i) =>
+          mod(x + sign * key[(i + phase) % 16]));
+        sourceTwoLayer.push({
+          keyName, reversed, sign, phase, ioc: ioc(plaintext)
+        });
+      }
+    }
+  }
+}
+sourceTwoLayer.sort((a, b) => b.ioc - a.ioc);
+assert.equal(sourceTwoLayer.length, 256);
+assert.deepEqual(sourceTwoLayer[0], {
+  keyName: 'F16', reversed: false, sign: -1, phase: 6,
+  ioc: 0.03974754458745523
+});
+assert.ok(sourceTwoLayer.every(x => x.ioc < 0.04));
+const nativePlant = Array.from({ length: 238 },
+  (_, i) => solved57[i % solved57.length]);
+const signedSeed16 = spiralSigned.map(mod);
+const twoLayerPlant = originalOrder.map((x, i) =>
+  mod(5 * x + signedSeed16[i % 16] + nativePlant[i]));
+const twoLayerInverse = twoLayerPlant.map((x, i) =>
+  mod(x - 5 * originalOrder[i] - signedSeed16[i % 16]));
+assert.deepEqual(twoLayerInverse, nativePlant);
+assert.ok(ioc(nativePlant) > 0.06);
+
 const plantedPeriodicKey = p15Rows.map(mod);
 const plantedPeriodic = originalOrder.map((x, i) =>
   mod(alpha * x + plantedPeriodicKey[i % 16]));
@@ -219,6 +279,8 @@ const report = {
   candidateDecode: { p39InverseIoC: ioc(residual), solvedP57IoC: ioc(solved57),
     p39InverseTransliterationPrefix: residual.slice(0, 80).map(i => corpus.translit[i]).join(''),
     p39F16RecurrencePredictionsCorrect: f16RecurrenceHits.length, recurrenceTrials: 222 },
+  sourceSelectedSecondLayer: { candidates: sourceTwoLayer.length, best: sourceTwoLayer[0],
+    allHaveIoCLessThanFourPercent: true, signedP15PositiveRoundtrip: true },
   positivePlants: { periodicMatches: 222, F16RecurrenceMatches: 222 },
   status: 'Intermediate alignment only; no direct decipherment, authentic key, or plaintext recovered.'
 };
