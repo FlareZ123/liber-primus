@@ -65,7 +65,7 @@ const lp1Clear=fs.readFileSync(
   path.join(root,"resources","liber-primus","lp1-plaintext-reference.txt"),"utf8"
 );
 const stage10FirstPage=lp1Clear.split("### 14")[1].split("### 15")[0];
-assert(stage10FirstPage.includes('"THE I IS THE VOICE OF THE CIRCUMFERENCE"'));
+assert(stage10FirstPage.includes("THE I IS THE VOICE OF THE CIRCUMFERENCE"));
 
 const crossRound=[];
 for(let index=0;index<words.length;index++){
