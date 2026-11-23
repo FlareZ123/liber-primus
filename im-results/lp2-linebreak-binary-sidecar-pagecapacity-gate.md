@@ -36,3 +36,5 @@ The **complete fourteen failing page IDs** are p5, p7, p13, p14, p15, p17, p28, 
 Retire the narrow **universally lossless, page-local, one-bit-per-existing-internal-linebreak anti-repeat code**. A viable proposal must identify a real original-authored side channel or lossless rule and show a complete inverse on untouched original ciphertext. The existence of a sufficient global bit budget does not establish that line breaks were authored as side information. These calculations do not identify the true ciphertext mechanism and do not advance the authenticated plaintext count.
 
 Reproduction: [source-locked Node.js 22 CommonJS test](../sims/lp2_linebreak_binary_sidecar_capacity_sft.cjs) recomputes all original source lengths, printed-line joins, repeat masks and exact binomial CDF bounds and asserts the fourteen failing pages. Its source inputs and assumptions are fixed, with no cryptographic key search or candidate plaintext.
+
+**Independent reproduction:** [Windows Node.js 22 PASS, workflow run 45157970257](https://github.com/FlareZ123/liber-primus/actions/runs/45157970257) executes the source-locked full 55-page SFT without altering original files.
