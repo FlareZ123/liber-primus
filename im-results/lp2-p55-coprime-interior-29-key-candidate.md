@@ -43,6 +43,20 @@ The historical base-29 alphabet 0123456789ABCDEFGHIJKLMNOPQRS serializes those 2
 
 This 29-character string is a **candidate key/password**, not plaintext. Reproduction and exact word-boundary checks are in [sims/agent43_p55_coprime_interior_key.py](../sims/agent43_p55_coprime_interior_key.py).
 
+## Bounded check against the p56 digest
+
+The p56 page gives the 128-hex-character target:
+
+36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4
+
+The page does not independently specify the hash algorithm; SHA-512 is only the natural interpretation of a 128-hex digest. Under that interpretation, three direct representations of the candidate do not match the target:
+
+- Base29 ASCII password (29 bytes): SHA-512 = 5abee1eb4bc9c937cd58976d4d28436199f26b5f61ac78402ede3876ec6c70c2f64c3b459010baf18406022901bf88a33304bcaca63581e83de65b98518e6d1b
+- GP transliteration (36 ASCII characters): SHA-512 = 521bb48376d75912c49f55673af81816c975620cec29647a0e30d440fc7eb7012b7a26185fbde9920c6694d3c98b59be759999f76ec0b8d42064c4aa281c6fe5
+- Raw selected runes encoded as UTF-8 (29 Unicode code points): SHA-512 = 34b167601f2ac0e1b10a92b8117131ffda353d756e53c4d673d88f55ae6d562edc1cd2efee9159963d0c636caf201baf73627930200ea24861b6015dd538438a
+
+This rejects only the idea that one of those exact strings is itself the p56 SHA-512 preimage. It says nothing about the candidate as a password for another receiver, and it does not establish that SHA-512 is the specified algorithm.
+
 ## Candidate receiver and decisive test
 
 The most concrete historically grounded receiver worth considering is OpenPuff v4.00, because OpenPuff was used in the earlier Cicada round and the original LP2 p33–p39 pages form a contiguous seven-page cuneiform section (50.jpg–56.jpg). The proposed test is one A-only password attempt using the base29 string above, B/C disabled, on those seven original JPEGs in their original order, with the single JPEG depth frozen by the successful native calibration in [Issue #1049](https://github.com/FlareZ123/liber-primus/issues/1049).
