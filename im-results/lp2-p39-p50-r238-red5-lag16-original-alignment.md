@@ -1,6 +1,6 @@
-# LP2 p39 ↔ p50 degree-238 quotient: unusual lag-16 source alignment, no inverse yet
+# LP2 p15/p39/p50 shared 3301 root, cubic source jet and localized lag-16 alignment
 
-**Agent3, 23 November 2026. Evidence class: provisional original-cipher cross-artifact alignment.** An exact 22/222 modular first-difference coincidence is localized to the source-selected p39 interior within the entire 12,956-rune unknown text. It does **not** yield an authenticated plaintext, key, reversible decoder or continuation. The original-source [single-file Node22 reproducer](../sims/lp2_p39_p50_r238_red5_lag16_sft.cjs) includes complete positive plants and exact original constraints.
+**Agent3, 23 November 2026. Evidence class: provisional original-cipher cross-artifact alignment.** Two mathematical cross-artifact relationships are pinned in the original LP2 sources: a common 3301 residue root with a cubic polynomial congruence, and a 22/222 modular first-difference coincidence localized to p39's interior within the entire 12,956-rune unknown text. It does **not** yield an authenticated plaintext, key, reversible decoder or continuation. The original-source [single-file Node22 reproducer](../sims/lp2_p39_p50_r238_red5_lag16_sft.cjs) includes complete positive plants and exact original constraints.
 
 ## Source-visible proposed solve path
 
@@ -20,6 +20,39 @@ with a **source-length-16** repeating key, which makes the testable necessary co
     for every 16 <= i < 238.
 
 This does not claim the creator instructed multiplication by five or a polynomial-quotient readout. It tests a concrete, fully specified source-operand receiver rather than searching for an unconstrained key.
+
+## A second original-source relationship: the 3301 root and cubic jet
+
+The Cicada identifier itself fixes one field element: **r = 3301 mod29 = 24 = −5**. Its role is visible in three distinct original artifacts:
+
+1. The physically highlighted p39 triad defines **G(X) = 27 + 5X + 15X² = 15(X − r)² (mod29)**. The factor is source-exact.
+2. The degree254 p50 polynomial contains that **double factor**. Its quotient **R238** is irreducible over GF29 and therefore has no root at r.
+3. The original p15 red-3299-centered **clockwise unsigned** Fibonacci-prime spiral, interpreted as 16 ascending field coefficients,
+
+       A15 = [22,21,19,17,11,1,10,3,20,22,25,7,22,12,17,21]
+
+   has **A15(r)=0**. Its only GF29 field root is exactly r and **A15'(r)=9**, so that root is simple. The alternative row-major reading gives value15 at r; restoring two mathematically inferred negative signs before reducing to GP29 gives value2. The identity therefore selects the **printed unsigned spiral orientation** among these physically distinguishable readings, with no fitted key.
+
+More surprising, the exact first four **Taylor coefficients about r**, computed by repeated polynomial division by X−r, are:
+
+| Source polynomial | Constant | Linear | Quadratic | Cubic |
+| --- | ---: | ---: | ---: | ---: |
+| p15 original unsigned A15(r+t) | 0 | 9 | 0 | 16 |
+| p50 irreducible quotient R238(r+t) | 2 | 0 | 19 | 15 |
+
+In GF29, 2 has inverse15, and **15×9 = 19 mod29**. The source therefore satisfies this exact, parameter-free **cubic congruence**:
+
+    R238(X) ≡ 2 + 15*(X-r)*A15(X)  (mod (X-r)^3),  r=3301 mod29.
+
+The constant2 is also the first Fibonacci-indexed prime in the p15 construction. The congruence fails already modulo **(X−r)^4**, because the first unmatched Taylor coefficients are15 versus0. This is a restricted local polynomial equality; it is not a global identity between the manuscript pages.
+
+One executable interpretation is **peel the known source terms** and divide by the cubic root factor:
+
+    E235(X) = [R238(X) - 2 - 15*(X-r)*A15(X)] / (X-r)^3  (mod29).
+
+The division is **exact with zero remainder** and yields236 original-source GF29 coefficients, so the operation is reproducible with no secret or fitted parameter. Both natural coefficient directions are nonprose; its GP29 coefficient IoC is **0.0347998558**, close to a uniform 29-symbol stream and below solved native p57 **0.0627099664**. The SFT plants a genuine solved-native GP29 passage as E235, constructs its source-compatible numerator and extracts **all236 original planted symbols exactly**. Hence the natural direct English readout fails while the mathematics is operational.
+
+**Selection caution.** A hypothetical source using the same Fibonacci-prime positions and varying the center from3200 to3400 admits **three of29** possible center residue classes **9,24,25** at which its own printed unsigned polynomial has that center as root. The p15-to-3301 root equality alone has limited evidentiary strength. The cubic cross-source jet is more specific, but was discovered during exploratory inspection of several factors, directions and operands; it has no validated chance level and no independent authorial instruction selecting Taylor arithmetic. No unknown plaintext, source-selected page cipher, or deep-web preimage follows from this relation.
 
 ## Exact original-cipher observations
 
@@ -54,12 +87,12 @@ A still simpler degree238 quotient copy model is incompatible with original p36 
 
 ## Interpretation and research decision
 
-This is a **bounded exploratory positive structural observation with a decisive negative for the two natural direct keys**. The 22-match spike is unusually localized to a human-motivated original layout. Its strength is insufficient to identify a lawful decipherment or prove a planted relationship, especially after extensive exploration of p50 and p39. One can fabricate many other 16-state or selective-mask models to fit 22 coincidences; doing so now risks numerology.
+These are **bounded exploratory structural observations with direct negative original-cipher consumers**. The common-root cubic peel produces a new, exact source-derived 236-coefficient object but no native plaintext. The 22-match spike is unusually localized to a human-motivated original layout. Its strength is insufficient to identify a lawful decipherment or prove a planted relationship, especially after extensive exploration of p50 and p39. One can fabricate many other 16-state or selective-mask models to fit 22 coincidences; doing so now risks numerology.
 
-**Keep the exact 22-position alignment as a conditional lead**, without promoting it to the authoritative results synthesis. Reopen it only if an independently recoverable original instruction or keyed artifact specifies a **selection/erasure rule** that predicts which p39 positions should satisfy the lag16 condition, or an alternative reversible receiver that predicts original plaintext in uninspected positions. An authentic full-text inverse or independent first-party key operand would be decisive. More arbitrary shifts, new multipliers, or fitted sparse masks are not justified by the present observation.
+**Keep the common-root cubic congruence and exact 22-position alignment as conditional leads**, without promoting it to the authoritative results synthesis. Reopen it only if an independently recoverable original instruction or keyed artifact specifies a **selection/erasure rule** that predicts which p39 positions should satisfy the lag16 condition, or an alternative reversible receiver that predicts original plaintext in uninspected positions. An authentic full-text inverse or independent first-party key operand would be decisive. More arbitrary shifts, new multipliers, or fitted sparse masks are not justified by the present observation.
 
 Reproduce with source-only, read-only Windows Node.js 22 script:
 
     node sims/lp2_p39_p50_r238_red5_lag16_sft.cjs
 
-Inputs: [original numerical table](../resources/liber-primus/lp2-grid-256.json), [canonical rune indices](../resources/liber-primus/lp2-corpus.json). The SFT checks the table's 256-byte SHA-256, original lengths, red p39 triad, full exact factor reconstruction, 12,719-window exhaustive source comparison, all 256 source-key inverse candidates, coefficient-copy capacity, local alignment controls and positive plants. Both the initial and extended versions passed on Windows Node22; the extended [GitHub Actions run 45270718588](https://github.com/FlareZ123/liber-primus/actions/runs/45270718588) is the reproducibility reference. Related prior, distinct tests: [p15/p36 LFSR](p50-degree254-composite-lfsr-p15-p36-gate.md), [p15/p39 LFSR](lp2-p15-p39-trim238-p50-degree254-lfsr-gate.md). Neither tested this quotient-coefficient/lag16 equation.
+Inputs: [original numerical table](../resources/liber-primus/lp2-grid-256.json), [canonical rune indices](../resources/liber-primus/lp2-corpus.json). The SFT checks the table's 256-byte SHA-256, original lengths, red p39 triad, full exact factor reconstruction, 12,719-window exhaustive source comparison, all 256 source-key inverse candidates, the unsigned p15 unique-root identity, exact cubic source-jet and 236-coefficient peel, coefficient-copy capacity, local alignment controls and positive plants. Both the initial and extended versions passed on Windows Node22; the extended [GitHub Actions run 45270718588](https://github.com/FlareZ123/liber-primus/actions/runs/45270718588) is the reproducibility reference. Related prior, distinct tests: [p15/p36 LFSR](p50-degree254-composite-lfsr-p15-p36-gate.md), [p15/p39 LFSR](lp2-p15-p39-trim238-p50-degree254-lfsr-gate.md). Neither tested this quotient-coefficient/lag16 equation.
