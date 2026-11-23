@@ -22,6 +22,12 @@ All **384 independently GP-native encoded, original-sized contiguous English win
 
 This is a *finite source-native plaintext-language exclusion*, since genuine unknown plaintext might be nonprose or have unusually flat symbol marginals. However the numerical **3,707 upper bound is exact and independent of the output segmentation**, whereas the equal-word-count immutability below is a stronger additional structural theorem for that output grammar.
 
+## Chapter-private keys still cannot explain the tested native plaintext
+
+Grant the cipher an **independent secret 30×30 predecessor table for every one of the nine physically visible LP2 chapters**: p0–2, p3–7, p8–14, p15–22, p23–26, p27–32, p33–39, p40–53 and p54–55. No secret row or alphabet is shared between chapters. For each chapter, count the two highest original successor frequencies under every one of 30 ciphertext predecessor states, with its first ciphertext token granted a free plaintext symbol. The nine exact source two-symbol caps are **[261, 397, 559, 626, 347, 479, 559, 931, 136]**, totaling **4,295**. Despite nine unrelated private substitution tables and free reset positions, *no native GP-language control can be produced*: all **384/384** ordinary English original-length windows exceed4,295 with minimum4,364, and all **256/256** original-word-length-matched authentic solved-Cicada windows exceed4,295 with minimum4,383. The space/rune pair can differ at the key table level between chapters, and this bound remains an overrelaxed global upper bound for any fixed plaintext space plus chosen rune.
+
+Making the tables wholly independent at **every physical page** instead raises the upper bound to **6,160** (55 first-token grants); this simple two-symbol invariant no longer excludes the tested ordinary/native samples. Independent keys at each punctuation marker, any per-position key evolution, private source keys of memory≥2 and nonprose plaintext remain outside the chapter-private result. Thus this gate moves the scope frontier from a single globally shared table to **nine distinct source-visible chapter tables** without assuming the word count or preserving any printed boundary.
+
 ## Exact all-secret obstruction
 
 Let N[r,s] count every adjacent ciphertext token pair in the complete original. For each secret state r there is exactly one source symbol s_r whose mapped plaintext is SPACE. Hence the number of output word spaces is the sum of N[r,s_r] across states, regardless of the other 29 secret mappings in each row.

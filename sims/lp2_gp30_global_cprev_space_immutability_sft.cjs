@@ -167,6 +167,31 @@ const privateByChapter=ranges.reduce((n,[a,b])=>
   n+maxSpace([pages.filter(p=>p.page>=a&&p.page<=b).flatMap(p=>p.t)]),0);
 assert.equal(privateByPage,3795);
 assert.equal(privateByChapter,3077);
+/** Exact two-output-symbol capacity when private predecessor keys restart
+ * at each authentic source chapter (or physical page). The one first
+ * token in each independent unit is granted completely free output.
+ */
+function maxTwoSymbols(chunks) {
+  const mat=Array.from({length:30},()=>Array(30).fill(0));
+  for(const chunk of chunks)
+    for(let i=1;i<chunk.length;i++)mat[chunk[i-1]][chunk[i]]++;
+  return chunks.length + mat.reduce((sum,row)=>{
+    const sorted=row.slice().sort((a,b)=>b-a);
+    return sum+sorted[0]+sorted[1];
+  },0);
+}
+const chapterTwoSymbolRows=ranges.map(([a,b])=>{
+  const unit=pages.filter(p=>p.page>=a&&p.page<=b)
+    .flatMap(p=>p.t);
+  return {chapter:[a,b],length:unit.length,
+    capacity:maxTwoSymbols([unit])};
+});
+const chapterPrivateTwoSymbol=chapterTwoSymbolRows
+  .reduce((sum,c)=>sum+c.capacity,0);
+const pagePrivateTwoSymbol=pages.reduce((sum,p)=>
+  sum+maxTwoSymbols([p.t]),0);
+assert.equal(chapterPrivateTwoSymbol,4295);
+assert.equal(pagePrivateTwoSymbol,6160);
 
 // Independent solved-LP2 author control checks GP30 spelling.
 const translit=gp.translit.map((s,i)=>({s,i})).sort((a,b)=>b.s.length-a.s.length);
@@ -216,7 +241,9 @@ for(const [name,file] of sources){
     spacePlusTopRune:{minimum:joint[0],median:joint[64],
       maximum:joint.at(-1),
       impossibleUnderAnyRowKey:
-        joint.filter(x=>x>maximumSpacePlusAnyRune).length}});
+        joint.filter(x=>x>maximumSpacePlusAnyRune).length,
+      impossibleUnderAnyChapterPrivateKey:
+        joint.filter(x=>x>chapterPrivateTwoSymbol).length}});
 }
 assert.deepEqual(controls.map(x=>x.beyondGlobal),[114,128,125]);
 assert.deepEqual(controls.map(x=>x.beyondAnyNonemptyGlobal),[121,128,127]);
@@ -224,6 +251,7 @@ assert.deepEqual(controls.map(x=>x.beyondChapter),[109,128,93]);
 assert.deepEqual(controls.map(x=>x.spacePlusTopRune.minimum),
   [4364,4620,4472]);
 assert(controls.every(x=>x.spacePlusTopRune.impossibleUnderAnyRowKey===128));
+assert(controls.every(x=>x.spacePlusTopRune.impossibleUnderAnyChapterPrivateKey===128));
 
 /** Author-authentic solved-Cicada GP29 words, exact original word lengths.
  * Rare absent long lengths get uniformly random rune fillers, deliberately
@@ -276,10 +304,13 @@ for(const [poolId,pool] of authorPools.entries()){
     "heldout-authentic",windows:128,
     minJoint:values[0],medianJoint:values[64],maxJoint:values.at(-1),
     impossibleUnderAnyRowKey:
-      values.filter(x=>x>maximumSpacePlusAnyRune).length});
+      values.filter(x=>x>maximumSpacePlusAnyRune).length,
+    impossibleUnderAnyChapterPrivateKey:
+      values.filter(x=>x>chapterPrivateTwoSymbol).length});
 }
 assert.deepEqual(creatorAuthentic.map(x=>x.minJoint),[4383,4471]);
 assert(creatorAuthentic.every(x=>x.impossibleUnderAnyRowKey===128));
+assert(creatorAuthentic.every(x=>x.impossibleUnderAnyChapterPrivateKey===128));
 console.log(JSON.stringify({
   source:{runes:12956,words,gp30:C.length,pages:pages.length},
   allKeyGlobal:{minRowDeficits:loss.slice(0,3),maxAfterSpaceGain:G,
@@ -292,7 +323,8 @@ console.log(JSON.stringify({
     maximumPlaintextSpacesIfAllWordsNonempty:legalNonemptyUpperBound,
     maximumSpacePlusAnyRuneUnderAllPrivateKeys:maximumSpacePlusAnyRune,
     maximumSpacesIfChangingAfterOriginalSpace:maxIfNewAfterSpace},
-  relaxations:{chapterPrivateMax:privateByChapter,pagePrivateMax:privateByPage},
+  relaxations:{chapterPrivateMax:privateByChapter,pagePrivateMax:privateByPage,
+    chapterPrivateTwoSymbol,chapterTwoSymbolRows,pagePrivateTwoSymbol},
   positive:{fullOriginalTokensReencrypt:true,
     changedRunePositions:P.filter((x,i)=>x!==C[i]).length,
     allWordBoundariesPreserved:true},
