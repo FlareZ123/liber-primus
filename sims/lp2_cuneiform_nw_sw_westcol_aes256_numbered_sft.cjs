@@ -83,8 +83,13 @@ assert(rubricPages[33].includes('-ᚾᚹ-'));
 assert(rubricPages[39].trimStart().startsWith('ᛋᚹ-'));
 const cardinals = new Set(['NE', 'NW', 'SE', 'SW']);
 const compassWords = [];
-for (let page = 0; page <= 55; page++) {
-  for (const printedToken of rubricPages[page].split(/[-.]/)) {
+// The transcription intentionally omits rune-free physical page p50. Its
+// text-segment index 50 is therefore physical p51, and segment 55 is p56
+// (already solved), which must not enter an unknown-page corpus census.
+for (let segment = 0; segment < 55; segment++) {
+  const page = segment < 50 ? segment : segment + 1;
+  assert.deepEqual(runeIndices(rubricPages[segment]), corpus.pages[page].indices);
+  for (const printedToken of rubricPages[segment].split(/[-.]/)) {
     const word = runeIndices(printedToken)
       .map(index => corpus.translit[index]).join('');
     if (cardinals.has(word)) compassWords.push({page, word});
