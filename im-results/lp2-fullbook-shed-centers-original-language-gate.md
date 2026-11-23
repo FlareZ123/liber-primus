@@ -31,6 +31,21 @@ All **3,000/3,000** controls have higher middle-rune repetition than the origina
 
 The observed 1,450 count and low coincidence are genuine source measurements. The donor values are finite sampling controls, not a universal English-language impossibility or an adjusted probability of author intent. A further changing-state cipher, a keyed transformation, an unusual plaintext register, or respecified word boundaries could in principle consume the middle-rune tape, but none is selected by the parable alone.
 
+## One directly source-nominated key consumer: the genuine p56 GP29 additive operation
+
+The solved last page p57 explicitly says to shed circumferences and find something within. The preceding solved p56 supplies an authenticated modular-29 additive cipher convention. A minimal falsifiable second step is therefore to treat the extracted **1,450-rune** full-book center tape as a fixed repeated GP29 key, without guessing an additional value map, starting shift, or alternate pass. Conditional on supplying that tape externally as key material, use \`P_i = C_i ± K_i (mod29)\`. Both orientations and two physically transparent clocks (one unbroken 12,956-rune stream, or page-by-page restart) are fully invertible with the frozen tape. There is no author-supplied instruction selecting a mode; all four are documented.
+
+| GP29 additive receiver | Full unknown 12,956-rune IoC | Opening p0–p2 729-rune IoC | Held-out p40–p53 3,008-rune IoC |
+| --- | ---: | ---: | ---: |
+| Book-global, subtract | **0.03450185** | 0.03416165 | 0.03438342 |
+| Book-global, add | **0.03446173** | 0.03490028 | 0.03442079 |
+| Page-reset, subtract | **0.03449102** | 0.03462141 | 0.03453224 |
+| Page-reset, add | **0.03447829** | 0.03453097 | 0.03452383 |
+
+Every original symbol re-encodes exactly when the extracted center tape is treated as an independently preserved key. All outputs remain near the GP29 uniform baseline (1/29), far below the native GP29 English controls above. **These four direct p56-like additive consumers fail to reveal genuine plaintext**. Because the key itself is computed from the original ciphertext, their algebraic replay says nothing about reconstructing an *unknown forward encoder* without supplying that tape, so it is not an independently recovered cryptosystem. More elaborate keyed center consumers are unconstrained and outside this gate.
+
+Reproduced in the same exact original-input CommonJS SFT and passed Windows Node.js22 [run 45141582966](https://github.com/FlareZ123/liber-primus/actions/runs/45141582966), source commit \`78f1d0cd5c51b68ad95c13879e6d22546d2f4a50\`.
+
 ## Research decision
 
 Retire only **whole-book wordwise SHED -> concatenate odd middle runes -> read directly as native GP29 prose**. This is distinct from the earlier page-specific p55 SHED->p50/base59 navigation and p55 interior 43-rune prime proposals, which remain conditional source-number observations and were not re-tested. There is no plaintext payoff from applying the same literal extraction across all pages without an additional authentic operation. The exact reproducible original readout remains useful if independent author-supplied key material later gives this register a typed role.
