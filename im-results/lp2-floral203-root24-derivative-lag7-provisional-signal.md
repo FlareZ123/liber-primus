@@ -10,7 +10,7 @@ Split the black register sequentially into sixteen 203-rune vectors (these are *
 
 `15,22,25,13,9,20,16,15,22,25,13,1,8,8,9,22,9,7,18,7,1,25,24,9,26,16,15,9,27,17,21,12`.
 
-Under the standard published Gematria Primus transliterations its first four indices are `S ING A P`. Exactly the same four GP indices occur at output positions **7–10**, in both cases without tuning any rune mapping. This can be rendered as the incomplete Roman letters **SINGAP**, but no original source spells a place name or completes this to a word. **Do not infer Singapore, coordinates or a destination from four indices.** No output here has been validated as recovered plaintext.
+The canonical zero-based Gematria Primus chart in `resources/liber-primus/lp2-corpus.json` transliterates these four indices as **S, OE, AE, P**, i.e. `SOEAEP`, **not** `S ING A P` or `SINGAP`. In particular, the NG/ING rune is index 21, not 22, and A is index 24, not 25. The previously reported geographic-looking string was a lookup error, not a recovered plaintext fragment. The same four-symbol **nonlinguistic sequence** occurs at output positions **7–10**, without tuning the rune mapping. No output here has been validated as recovered plaintext.
 
 ## Discriminating seven-position statistic
 
@@ -32,7 +32,7 @@ The actual starting offset of the black register is the first black rune after t
 
 ## What this signal actually changes
 
-The lag-seven repetition is a new **testable original-source output signature** of the p39/root24+203/floral register combination. It is stronger than a naked numeric length coincidence and gives a concrete frozen output to compare against newly discovered source instructions or source-derived independent material. The fact that a four-GP-symbol phrase appears twice is a repeat of *the same short pattern*, **not two corroborating plaintext decodes**.
+The lag-seven repetition is a new **testable original-source output signature** of the p39/root24+203/floral register combination. It is stronger than a naked numeric length coincidence and gives a concrete frozen output to compare against newly discovered source instructions or source-derived independent material. The fact that a four-GP-symbol sequence appears twice is a repeat of *the same short pattern*, **not two corroborating plaintext decodes**.
 
 The related 32-check error-correcting hypothesis was evaluated separately in [the original p50 parity gate](lp2-floral203-p39-double-root-p50-32check-original-decision.md). None of the natural direct 32-table-row consumers contains these required parity digits, and that mismatch persists under arbitrary fixed secret symbol lookup. This output register has **no known source-authenticated binary consumer**. Likewise, repeated source symbols at lag7 alone do not provide the cryptographic inverse for 3,248 black runes.
 

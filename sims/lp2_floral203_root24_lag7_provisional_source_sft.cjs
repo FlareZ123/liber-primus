@@ -12,7 +12,8 @@ const path = require('node:path');
 const repo = path.resolve(__dirname, '..');
 /** @param {string} p */
 function read(p) { return JSON.parse(fs.readFileSync(path.join(repo,p), 'utf8')); }
-const pages = read('resources/liber-primus/lp2-corpus.json').pages;
+const corpus = read('resources/liber-primus/lp2-corpus.json');
+const pages = corpus.pages;
 const ink = read('resources/liber-primus/lp2-ink-annotations.json').pages;
 const grid = read('resources/liber-primus/lp2-grid-256.json');
 const red = new Map(ink.map((p) => [p.page, p.red_spans || []]));
@@ -55,8 +56,9 @@ assert.deepEqual(observed, [15,22,25,13,9,20,16,15,22,25,13,1,8,8,9,22,9,7,18,7,
 const trace = coincidences(observed,7);
 assert.deepEqual(trace, {count:6,positions:[0,1,2,3,8,16],longest:4});
 assert.deepEqual(observed.slice(0,4),observed.slice(7,11));
-// Original GP spellings of indices15,22,25,13 are S, ING, A, P.
-// The incomplete roman letters SINGAP are a candidate string, not plaintext.
+assert.deepEqual(observed.slice(0,4).map((i) => corpus.translit[i]), ['S','OE','AE','P']);
+// Canonical GP29 indices 15/22/25/13 spell S/OE/AE/P, not S/ING/A/P;
+// the earlier SINGAP geographic-looking string was a chart-index error.
 
 const roots7 = [];
 for(let root=1;root<29;root++){
