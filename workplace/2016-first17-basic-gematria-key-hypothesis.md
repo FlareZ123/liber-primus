@@ -1,81 +1,35 @@
-# First17 LP1 pages as a basic-gematria key: historical solve-path hypothesis
+# Original LP1 first17 → LP2 basic-gematria repeating-key test
 
-**Status: promising historical hypothesis; not yet tested as a complete key. No LP2 plaintext is claimed.**
+**Status: exact source-rune and numeric-stream candidates tested against the unchanged original LP2 ciphertext; neither yields recovered plaintext.** Historical first17→last57 was an independent 2016 solver hypothesis, *not* a signed Cicada decryption instruction. Its direct executable forms are now reproducible; key phase and decoder direction were not tuned to an English outcome.
 
-## What the historical discussion actually says
+## Historical premise and source
 
-The pinned 2016 #cicadasolvers IRC archive contains two related but distinct discussions:
+The 2016 [archived cicadasolvers IRC log](https://github.com/cicada-solvers/neuroretransmit-cicada/blob/main/irc-logs/%23cicadasolvers.freenode.2.log) considers whether the first 17 **physical LP1 pages** could be a key for the following 57, and discusses a “shifted form with basic gematria.” That is a proposal by solvers, not an identified author opcode. The first17 pages contain the warning: **“Believe nothing from this book except what you know to be true ... do not edit or change ... either the words or their numbers.”** The two printed symmetric 5×5 objects have numerical row sums **1033** (LP1 page5) and **3301** (LP1 page16), which connect to earlier prime_echo values, but do not themselves specify a decoder.
 
-1. In January 2016, solvers asked whether the first17 pages were meant to decrypt the last57 pages, and whether methods used on the first17 should be reused on the latter. They also noticed competing word counts of 480 and 490; one participant connected 490 to φ(491).
-2. On 15 April 2016, participants discussed two symmetric 5×5 matrices in the first17 pages, with total sums 5165 and 16505. They then discussed a short runic sequence as a possible warning and the need for the first17 pages in a shifted form using “basic gematria”. In that exchange, basic gematria was described as the literal mapping of English to runes.
+The physical pages 0–16 correspond to **segments 0–6** of the archived [idkfa translator](https://github.com/cicada-solvers/idkfa) — **not** its first17 segment indexes; segment7 is already second-release text. The complete local original-runic transcription is `resources/transcriptions/lp1_wulfic_canonical.txt`. The idkfa `data/liber` omits **76 runes of the source page5 mixed word/number matrix**, which the complete Wulfic source retains.
 
-Source: [pinned 2016 IRC log](https://github.com/cicada-solvers/neuroretransmit-cicada/blob/main/irc-logs/%23cicadasolvers.freenode.2.log), verified Git blob SHA-1 `72634a9d071d32af767edbffc0493d810e88cd0d`. The January and April comments are community hypotheses, not Cicada-authenticated instructions.
+The historical source transforms were applied independently to all seven original segments, without substituting editor-normalized prose: 0 and 3 invert the Latin mapping (3 also shifts by 3), 1 subtracts the original DIVINITY key (with 11 literal-F transparent positions), 5 subtracts FIRFUMFERENFE (two F positions), and 2,4,6 are literal GP29 text. Exact F positions are defined by idkfa `config.js`. This recovers the clear text of the first17 while preserving its original rune spellings; segment2 includes original matrix labels such as SHADOWS, AETHEREAL, VOID, CABAL.
 
-## Source-grounded structure
+## Complete source-selected direct keys
 
-The two matrices are visible in the first release:
+- **Key A — all displayed runic glyphs:** 2,797 GP29 indices, across seven segments of lengths `184,515,157,778,755,319,89`. The 157 include all 76 additional rune glyphs on original page5. Non-rune punctuation and digits remain delimiters.
+- **Key B — all runes and printed numbers:** 2,836 GP29 elements, inserting the **39 printed decimal tokens** as integer `n mod 29` at their original positions, the documented `idkfa Key.fromInteger` rule. There are **12** printed number tokens within page5’s mixed 5×5, **2** numbered propositions on pages10–13, and **25** tokens in page16’s numeric 5×5. Original page5 word labels are not replaced by hypothetical numeric “translations”; no two different original representations are double-counted.
 
-- LP1 page5: symmetric 5×5 matrix, row sum 1033 and total 5165.
-- LP1 page16: symmetric 5×5 matrix, row sum 3301 and total 16505.
+A historical repeated-key `Shift.mutate` subtraction is the primary receiver. Its historically documented reverse shift (addition) is the sole competing direction. Both begin at key offset0 and run continuously across LP2 p0–56, including page boundaries, with **no tuned starting offset, rotations, alphabet, or page-specific exceptions**.
 
-These row sums match the 1033 and 3301 pause values in the earlier Cicada `prime_echo` material. The matrices themselves are already documented in `results/lp1-p05-embedded-matrix.md` and related LP1 matrix investigations. Their individual direct, Hill, and page-power consumers have substantial negative testing; do not simply repeat those attacks.
+## Original-input decision
 
-The archived [idkfa translator](https://github.com/cicada-solvers/idkfa) is relevant historical tooling. Its README records the LP1 segment transformations and keys, while `lib/gematria.js` defines the rune/Latin graph mapping. Its `data/liber` transcription begins with the runic sequence discussed in April 2016. The idkfa README's segment0 recipe uses the inverted Latin mapping; applying that mapping to the opening runes gives a warning-like fragment, but the full warning has not been independently reconstructed here.
+| Frozen key | Shift | LP2 unknown p0–55 IOC | LP2 p16–21 IOC | Unseen LP2 p40–53 IOC |
+| --- | --- | ---: | ---: | ---: |
+| 2,797 runes | subtract | 0.034504899 | 0.034612539 | 0.034453739 |
+| 2,797 runes | add | 0.034478231 | 0.034644075 | 0.034526265 |
+| 2,836 mixed | subtract | 0.034470796 | 0.034389475 | 0.034414602 |
+| 2,836 mixed | add | 0.034491696 | 0.034601770 | 0.034517199 |
 
-## What remains uncertain
+For comparison, flat 29-way monograms have expected IOC near **1/29 ≈ 0.034483**. Each of the four full 12,956-rune outputs and independent holdout ranges remains flat and nonlinguistic. The already-known p56 AN END section is also checked separately; inverse correctness is controlled with a planted 85-rune native cleartext at a nonzero key phase. **No unknown LP2 plaintext, authentic receiver, or destination is recovered.**
 
-- The 2016 “first17 → last57” proposal does not specify the exact key construction or cipher operation.
-- “Shifted form with basic gematria” could mean the LP1 plaintext converted to GP29 runes, a shifted Futhark stream, or a key derived from the two 5×5 matrices. The log does not settle this.
-- The 480/490 word-count discrepancy is not resolved. A simple token count of the current LP1 plaintext reference does not reproduce either count; the historical count likely used a different transcription or counting convention. Do not treat 490 or φ(491) as established key material.
-- The 560.17 file is only raised as a speculative lead in the January chat. Its relation to LP1/LP2 is unproven. The separate offset-zero XOR test against LP2 p0–p16 is negative and is documented in `im-results/lp2-2013-56017-p0-p16-fivebit-xor-negative.md`; that test did not address the actual first17-LP1-to-last57-LP2 proposal.
+[One-command exact source reproducer](../sims/lp1_first17_native_and_numeric_gpkey_lp2_inverse_sft.cjs): `node sims/lp1_first17_native_and_numeric_gpkey_lp2_inverse_sft.cjs` (Node22, read-only, original inputs). It reports source-key SHA256, full/holdout IOC, positive inversion, and p56 exact-character agreement.
 
-## Best next experiment
+**Decision:** retire the *direct repeating GP29 key made from every first17 printed rune or every rune-plus-integer-mod29*, both historical shift signs. This does **not** reject the broad first17→last57 premise: the 2016 chat never specifies that direct operation, an encoded numeric representation other than idkfa integer reduction, or whether the two original matrices should define a separate transformation. Future work must first obtain an independently source-selected such operation and an untouched full-page prediction, rather than adding arbitrary key phases, numeric interpretations or ciphers.
 
-Reconstruct a deterministic **basic-gematria Futhark stream** for LP1 pages0–16 using the original transcription and the documented LP1 page transformations (not merely the plaintext prose file). Preserve page order and record how numeric matrix entries and punctuation are represented. Then test that stream as a repeating GP29 Vigenère key over the 57-page continuation (the corresponding idkfa source segments17–73), using the archived idkfa `Shift.mutate` semantics.
-
-Run only the source-selected variants: default subtraction and reverse-shift addition, with a single global alignment and no page-specific tuning. Use the known solved LP2 p56 page as a holdout/control where applicable; compare IoC and language scores against the unmodified ciphertext. A failure rejects this exact key construction, not every possible first17-page mechanism.
-
-If the direct basic-gematria stream fails, investigate whether the two LP1 5×5 matrices supply the shift/seed or a paired transform. Do not re-run their already-tested individual Hill or page-power attacks.
-
-
-## Preliminary plaintext-only key check (not decisive)
-
-A quick exploratory check used only the LP1 plaintext-reference sections available for pages1 and3–16 (14 sections; page0 and page2 were absent). It removed digits/punctuation, greedily tokenized the remaining English with the GP29 graph list and obvious aliases, and obtained a 3,313-symbol key. Repeating that key over LP2 p0–p56 under GP29 additive shifts, both signs and all29 global Caesar offsets, produced a best symbol IoC of 0.034508 and no readable output.
-
-This rejects only the incomplete plaintext-only serialization tested. It is not a valid rejection of the historical hypothesis: the first17-page source is incomplete here, numeric matrix entries were omitted, and the exact idkfa page-specific shifted/basic-gematria transformation was not reconstructed. Do not tune this approximate key; build the complete source-derived stream first.
-
-
-## The April warning sequence is the LP1 opening
-
-The April 2016 “warning” runes are the opening of the idkfa transcription's LP1 segment0, not a separate LP2 ciphertext. Applying the idkfa README's documented segment0 operation (basic gematria with the Latin column inverted, option -i l) to the first source section yields the recognizable warning:
-
-> A warning. Believe nothing from this book except what you know to be true. Test the knowledge. Find your truth. Experience your death. Do not edit or change this book or the message contained within, either the words or their numbers. For all is sacred.
-
-The exact graph transliteration is nonstandard (for example, K/C and V/U aliases and the NG graph), but the warning's meaning is clear. This makes the 2016 discussion internally coherent: the first17-page material includes a warning about preserving both words and numbers, and the participants explicitly considered those pages as a key for the last57. Treat the warning as a source-derived LP1 plaintext recovered by the documented community translator, not as proof that the proposed LP1→LP2 key mechanism is correct.
-
-The quick plaintext-only key experiment noted above used only 14 available reference sections, omitted p0/p2 and all numeric matrix material, and is therefore only an exclusion of that incomplete serialization (not the historical proposal).
-
-
-## Paired-matrix consumer checks
-
-Because the April discussion explicitly names both 5×5 matrices, I tested two fixed paired uses over GP29:
-
-- Form a single Hill-5 key by multiplying the page5 and page16 matrices in page order (A·B), or reverse order (B·A), reduce modulo29, invert, and apply to LP2 p0–p56 in five-symbol blocks.
-- Apply the two-sided block transform to each 5×5 ciphertext block, decrypting as A⁻¹·C·B⁻¹ or B⁻¹·C·A⁻¹.
-
-All matrices were invertible modulo29. The four outputs remained random-like (symbol IoC 0.034446–0.034502) and unreadable. This rejects these straightforward paired Hill consumers; it does not test the historical complete-first17 basic-gematria stream or an authored operation not yet identified.
-
-
-The exact normalized graph output from the source's first section is:
-
-\`\`\`text
-A-WARNNG.BELIEUE-NOTHNG-FROM-THIS-BOOC.EXCEPT-WHAT-YOU-CNOW-TO-BE-TRUE.TEST-THE-CNOWLEDGE.FIND-YOUR-TRUTH.EXPERIENCE-YOUR-DEATH.DO-NOT-EDIT-OR-CHANGE-THIS-BOOC.OR-THE-MESSAGE-CONTAINED-WITHIN.EITHER-THE-WORDS-OR-THEIR-NUMBERS.FOR-ALL-IS-SACRED.
-\`\`\`
-
-The nonstandard forms reflect the table's graph/alias conventions; the English reading above is a normalization, not a claim that the literal transliteration spells standard English.
-
-
-A further bounded test treated the two 5×5 matrices' numeric entries themselves as a repeating GP29 shift stream (reduce each entry modulo29), in page order A||B. Row-major, column-major, reversed matrix order, and the two outer-perimeter readings were tested with both signs on LP2 p0–p56. All outputs remained random-like (IoC 0.034460–0.034516), with no plaintext. This rejects these direct numeric-stream serializations; it does not reject the complete first17-page basic-gematria stream.
-
-
-A second, broader but still approximate key serialization prepended the recovered LP1 opening warning, retained numeric tokens in pages1 and3–16 as one-symbol values modulo29, and used the same basic-gematria graph tokenizer for the English text. This produced a 3,608-symbol repeating key. Both Vigenère signs over LP2 p0–p56 remained random-like (IoC 0.034475 and0.034479), with no readable output. Page2 and the exact original shifted source representation are still absent, so this rejects only the explicit “normalized English plus decimal-number mod29” construction.
+Earlier exploratory plaintext-only serializations from 14 partial sections (3,313/3,608 glyphs), paired-matrix Hill inverses, and matrix-element direct modulo29 keys also failed; those are narrower and must not be mistaken for this completed exact original-rune test.
