@@ -74,7 +74,7 @@ jobs:
             Write-Host "STAGE11_AUTHENTIC_CARRIER $historicalName original=$archive sha256=$sha"
             $params += @('--carrier', "$target")
           }
-          if ($params.Count -ne 124) { throw "Parameter grammar mismatch for 58 carriers" }
+          if ($params.Count -ne 128) { throw "Parameter grammar mismatch for 58 carriers" }
           python sims/openpuff_v400_extract.py @params
           if ($LASTEXITCODE -ne 0) { throw 'Native 58-image Unhide automation failed; classify as inconclusive' }
           $result = Get-Content 'probe-output/stage11-58-chain/result.json' -Raw | ConvertFrom-Json
