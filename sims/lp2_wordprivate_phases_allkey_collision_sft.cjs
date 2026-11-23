@@ -128,6 +128,34 @@ function describe(list) {
   return {min: sorted[0], median: sorted[Math.floor(list.length / 2)],
     max: sorted.at(-1), lowerOrEqualOriginal: 0};
 }
+// A single independently pre-existing source-derived branch: the
+// original p15 red-start 4x4 Fibonacci-prime spiral. For every whole
+// original word <=14 runes, grant fresh secret symbol tables for each
+// original printed source state modulo five. Unlike cyclic j mod5,
+// these p15 Fibonacci/prime schedules collide at different positions.
+// This is a genuinely source-selected phase *schedule* but still lacks
+// any author-selected symbol-table/key extraction or word-reset rule.
+const p15Fibonacci = [0,1,2,3,5,8,13,21,34,55,89,144,233,377];
+const p15PrimeAtFibonacci = [2,3,5,7,13,23,43,79,149,263,463,829,1481,2593];
+assert(Math.max(...words.map(w => w.length)) <= p15Fibonacci.length);
+const p15Sources = [
+  ["fibonacci-mod5", p15Fibonacci.map(n => n % 5)],
+  ["prime-at-fibonacci-mod5", p15PrimeAtFibonacci.map(n => n % 5)]
+];
+/** @param {number[]} word @param {number[]} classes */
+function sourceClassesPairs(word, classes) {
+  let n = 0;
+  for (let i = 0; i < word.length; i++) {
+    for (let j = i + 1; j < word.length; j++) {
+      if (classes[i] === classes[j] && word[i] === word[j]) n++;
+    }
+  }
+  return n;
+}
+const originalP15 = p15Sources.map(([name, classes]) =>
+  ({source: name, original: words.reduce((n,w) => n +
+    sourceClassesPairs(w, classes), 0)}));
+assert.deepEqual(originalP15.map(x => x.original), [123,218]);
 const sources = [
   ["Shakespeare", "resources/control/shakespeare_first300k.txt", english],
   ["Gibran", "resources/control/gibran_prophet_58585.txt", english],
@@ -138,17 +166,26 @@ const sources = [
 const results = [];
 for (const [name, file, parser] of sources) {
   const pools = poolByLength(parser(read(file)));
-  const trials = [];
+  const trials = [], sourceTrials = [];
   for (let i = 0; i < 256; i++) {
-    trials.push(sum(sample(pools).map(w => w.pairCounts)));
+    const selected = sample(pools);
+    trials.push(sum(selected.map(w => w.pairCounts)));
+    sourceTrials.push(p15Sources.map(([, classes]) =>
+      selected.reduce((n, w) => n + sourceClassesPairs(w.runes, classes), 0)));
   }
   const distributions = Array.from({length: M}, (_, i) => {
     const v = describe(trials.map(t => t[i]));
     v.lowerOrEqualOriginal = trials.filter(t => t[i] <= original[i]).length;
     return {period: i + 1, observed: original[i], ...v};
   });
-  results.push({source: name, samples: 256, periods: distributions});
-  console.log("CONTROL", JSON.stringify({source: name, periods: distributions}));
+  const sourceStates = p15Sources.map(([stateName], k) => {
+    const actual = originalP15[k].original;
+    const samples = describe(sourceTrials.map(row => row[k]));
+    samples.lowerOrEqualOriginal = sourceTrials.filter(row => row[k] <= actual).length;
+    return {sourceState: stateName, observed: actual, ...samples};
+  });
+  results.push({source: name, samples: 256, periods: distributions, sourceStates});
+  console.log("CONTROL", JSON.stringify({source: name, periods: distributions, sourceStates}));
 }
 // Positive, independently random 29! secret substitution per word, per phase.
 // Exact recovered plaintext is verified at all 12,956 rune coordinates.
@@ -199,7 +236,9 @@ assert(period5SupportsEnglish,
 console.log("DECISION", JSON.stringify({originalRunes: 12956,
   completeWords: 2896, periodCounts: original,
   sourceConditionalPeriodResults: "read measured per-source distributions above",
+  p15SourcePhaseInvariants: originalP15,
   period5NotExcluded: true, secretFivePhaseNativeRecovery: recovered,
   meaningfulCaveat: "Periodic phase is word-position modulo m; arbitrary dynamic phase clocks, cross-word mixing and non-native GP plaintext are outside the statement",
   results: results.map(r => ({source: r.source,
+    p15SourceStates: r.sourceStates,
     byPeriod: r.periods.map(v => [v.period, v.min, v.median, v.max, v.lowerOrEqualOriginal])}))}));
