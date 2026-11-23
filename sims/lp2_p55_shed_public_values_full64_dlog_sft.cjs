@@ -104,3 +104,79 @@ for (const { name, target, x0 } of targets) {
   );
 }
 console.log('PASS: original p55 N=8P, E=43Q and two 64-bit DH exponent exclusions');
+
+/**
+ * When CADO-NFS supplies virtual logs in one shared base, use this mode to
+ * compute both complete conditional exponent values. The tiny 64-bit scans
+ * above still execute as the mandatory regression/positive control.
+ *
+ * node sims/lp2_p55_shed_public_values_full64_dlog_sft.cjs <logQ> <log43> <log8>
+ * CADO logs are residues modulo R and need no assumption about the virtual
+ * logarithm base; their common scale cancels.
+ */
+if (process.argv.length > 2) {
+  assert.equal(process.argv.length, 5, 'Expected virtual log Q, 43, 8');
+  for (const value of process.argv.slice(2)) {
+    assert.match(value, /^-?[0-9]+$/, 'CADO virtual logarithm must be decimal');
+  }
+
+  /** @param {bigint} n @param {bigint} modulus */
+  function positiveMod(n, modulus) {
+    return (n % modulus + modulus) % modulus;
+  }
+
+  /** @param {bigint} n @param {bigint} modulus */
+  function inverseMod(n, modulus) {
+    let [r, nextR, t, nextT] = [modulus, positiveMod(n, modulus), 0n, 1n];
+    while (nextR > 0n) {
+      const quotient = r / nextR;
+      [r, nextR] = [nextR, r - quotient * nextR];
+      [t, nextT] = [nextT, t - quotient * nextT];
+    }
+    assert.equal(r, 1n);
+    return positiveMod(t, modulus);
+  }
+
+  const virtualQ = positiveMod(BigInt(process.argv[2]), R);
+  const virtual43 = positiveMod(BigInt(process.argv[3]), R);
+  const virtual8 = positiveMod(BigInt(process.argv[4]), R);
+  const invQ = inverseMod(virtualQ, R);
+  const invM = inverseMod(M, R);
+
+  for (const { name, x0, target, large } of [
+    { name: 'shellE', x0: 483581994079670n, target: E, large: (1n + virtual43 * invQ) % R },
+    { name: 'public8', x0: 97883509924151n, target: 8n, large: virtual8 * invQ % R }
+  ]) {
+    const t = positiveMod((large - x0) * invM, R);
+    const x = x0 + M * t;
+    assert.ok(x >= 0n && x < P - 1n);
+    assert.equal(x % M, x0);
+    assert.equal(x % R, large);
+    assert.equal(powMod(Q, x, P), target, 'FULL original modulus DH equation failed');
+
+    let n = x;
+    const digits = [];
+    do {
+      digits.unshift(Number(n % 29n));
+      n /= 29n;
+    } while (n > 0n);
+    assert.ok(digits.length <= 43);
+    while (digits.length < 43) digits.unshift(0);
+    const GP = ['F','U','TH','O','R','C','G','W','H','N','I','J','EO','P','X','S','T','B','E','M','L','NG','OE','D','A','AE','Y','IA','EA'];
+    const counts = Array(29).fill(0);
+    for (const d of digits) counts[d]++;
+    const ioc = counts.reduce((a, count) => a + count * (count - 1), 0)
+      / (digits.length * (digits.length - 1));
+    console.log(JSON.stringify({
+      conditionalEquation: name,
+      privateExponent: x.toString(),
+      bitLength: x.toString(2).length,
+      largeSubgroupLog: large.toString(),
+      fullModulusVerification: true,
+      gp29RuneDigits: digits,
+      gp29Romanized: digits.map(d => GP[d]).join(' '),
+      gp29IoC: ioc,
+      authenticUnknownPlaintext: false
+    }));
+  }
+}
