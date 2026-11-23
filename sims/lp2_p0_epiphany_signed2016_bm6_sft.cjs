@@ -122,7 +122,7 @@ const recoveredKey = continueKey(recoveredPrefix,
 assert.deepEqual(translate(plant, recoveredKey, -1), native);
 
 
-// Independent *discriminating* body-reset hypothesis: the original dot
+// Independent *discriminating* body-reset hypothesis: the original 13-dot mark
 // immediately after the red 13-rune title resets the LFSR, and the signed
 // 2016 continuation is literally THE DEVOTED. Only the first six body
 // plaintext runes are given to recover a fresh six-value seed. Positions
@@ -218,8 +218,8 @@ for (const part of cuts) {
 }
 console.log("native p57 control original IoC", ioc(native).toFixed(12));
 console.log("native p57 full planted inverse", "95/95", "PASS");
-console.log("dot-reset body first6 crib", render(expectedBody9.slice(0,6)), "seed", bodySeed6.join(","));
-console.log("dot-reset withheld3 expected", render(expectedBody9.slice(6)), "actual", render(bodyPredicted9.slice(6)), "0/3");
-console.log("native p57 planted six-seed dot-reset", "95/95", "PASS");
+console.log("13-dot-reset body first6 crib", render(expectedBody9.slice(0,6)), "seed", bodySeed6.join(","));
+console.log("13-dot-reset withheld3 expected", render(expectedBody9.slice(6)), "actual", render(bodyPredicted9.slice(6)), "0/3");
+console.log("native p57 planted six-seed 13-dot-reset", "95/95", "PASS");
 console.log("original full original-input reencryption", "729/729", "PASS");
 console.log("CONCLUSION: no original body plaintext under this fixed BM6 candidate.");
