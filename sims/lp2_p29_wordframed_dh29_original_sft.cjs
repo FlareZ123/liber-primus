@@ -4,7 +4,7 @@
  * SFT: node sims/lp2_p29_wordframed_dh29_original_sft.cjs
  * Node.js 22 CommonJS; read-only; no third-party dependencies.
  *
- * This tests a distinct 3|269|2|3 complete-word packet. The earlier
+ * This tests a distinct 3|269|2|3 word-boundary packet; its terminal\n * three glyphs continue as a word on p30. The earlier
  * 2|269|6 packet slices through genuine printed source words.
  * Neither packet supplies an authenticated cipher consumption rule.
  */
@@ -91,7 +91,7 @@ assert.deepEqual(originalRed, [27, 5, 15]);
 const Ghigh = originalRed.slice().reverse();
 const Qhigh = multiply(Ghigh, [1, mod(-e)]);
 assert.deepEqual(Qhigh, [15, 18, 12, 6]);
-// The final complete source word is exactly the three Q parity symbols;
+// The final three-rune page fragment is exactly the three Q parity symbols;
 // with no access to these symbols, the rest fixes them uniquely.
 const predictedLastWord = remainder(p29.slice(0, -3).concat([0, 0, 0]), Qhigh)
   .map(x => mod(-x));
