@@ -33,17 +33,17 @@ Original targets: the unchanged `resources/liber-primus/lp2-corpus.json`, all 55
 | --- | ---: | ---: | ---: |
 | William Blake, *Song of Liberty*, held-out training body | 1,459 | 1,420 | 0 |
 | William Blake, *The Marriage of Heaven and Hell*, 2012 named literary source (1906 text) | 18,355 | 18,316 | 0 |
-| Aleister Crowley, *Book of the Law* I | 6,958 | 6,918 | 0 |
-| *Book of the Law* II | 7,059 | 7,019 | 0 |
-| *Book of the Law* III | 7,484 | 7,444 | 0 |
-| Kahlil Gibran, *The Prophet* | 62,492 | 62,452 | 0 |
-| Ralph Waldo Emerson, *Essays* | 321,327 | 321,287 | 0 |
-| Shakespeare, pinned reference | 217,106 | 217,066 | 0 |
-| Editor-normalized already solved Cicada LP1 / LP2 p56–57 excerpts | 3,246 | 3,206 | 0 |
-| Old English *Beowulf*, original corrected GP sequence | 48,012 | 47,972 | 0 |
-| Latin Vulgate NT, wordwise original GP sequence | 204,802 | 204,762 | 0 |
-| Actual solved LP1 rune transcription | 2,797 | 2,757 | 0 |
-| Actual solved LP2 p57 rune sequence | 95 | 55 | 0 |
+| Aleister Crowley, *Book of the Law* I | 6,958 | 6,919 | 0 |
+| *Book of the Law* II | 7,059 | 7,020 | 0 |
+| *Book of the Law* III | 7,484 | 7,445 | 0 |
+| Kahlil Gibran, *The Prophet* | 62,492 | 62,453 | 0 |
+| Ralph Waldo Emerson, *Essays* | 321,327 | 321,288 | 0 |
+| Shakespeare, pinned reference | 217,106 | 217,067 | 0 |
+| Editor-normalized already solved Cicada LP1 / LP2 p56–57 excerpts | 3,246 | 3,207 | 0 |
+| Old English *Beowulf*, original corrected GP sequence | 48,012 | 47,973 | 0 |
+| Latin Vulgate NT, wordwise original GP sequence | 204,802 | 204,763 | 0 |
+| Actual solved LP1 rune transcription | 2,797 | 2,758 | 0 |
+| Actual solved LP2 p57 rune sequence | 95 | 56 | 0 |
 | **Combined per model** | | **900,685** | **0** |
 
 The strongest original short alignments reach **23 runes** (reverse-source integrated Emerson), **22** (forward-source integrated Emerson and reversed-source direct Shakespeare) and fail before 40. These are small accidental partial-table fits with no recovered text and should **not** be treated as crib evidence. No tested literal historical or already-solved source segment is the exact unknown LP2 plaintext for 40 consecutive runes under either model/clock with either source orientation.
