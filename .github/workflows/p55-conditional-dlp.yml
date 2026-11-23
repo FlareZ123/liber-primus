@@ -1,0 +1,53 @@
+name: Experimental p55 full finite-field discrete logarithm
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-p55-conditional-dlp:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 65
+    steps:
+      - name: Check out cryptanalytic source
+        uses: actions/checkout@v4
+
+      - name: Install CADO-NFS prerequisites
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y build-essential cmake libgmp-dev libhwloc-dev libecm-dev python3-dev python3-venv python3-flask python3-requests
+
+      - name: Build upstream CADO-NFS
+        run: |
+          git clone --depth 1 https://github.com/cado-nfs/cado-nfs.git cado-nfs-upstream
+          make -C cado-nfs-upstream -j 4
+          python3 -m venv cado-venv --system-site-packages
+          cado-venv/bin/python3 -c "import flask, requests; print('Flask and requests ready')"
+
+      - name: Compute exact large-order logarithms of source Q and E
+        env:
+          P55_MODULUS: '63755441409934721069036418908763882578170591536653256311514221'
+          P55_ORDER: '101149063843788281988908603592862658065019147521'
+          P55_GENERATOR: '1268532719737981052966698570711268391040527137'
+          P55_PUBLIC_E: '54546906948733185277568038540584540814742666891'
+        run: |
+          mkdir -p "$RUNNER_TEMP/p55-dlp"
+          cd cado-nfs-upstream
+          ../cado-venv/bin/python3 ./cado-nfs.py -dlp -ell "$P55_ORDER" target="$P55_GENERATOR" "$P55_MODULUS" -t 4 tasks.workdir="$RUNNER_TEMP/p55-dlp" 2>&1 | tee "$RUNNER_TEMP/p55-dlp-Q.log"
+          snapshot=$(find "$RUNNER_TEMP/p55-dlp" -type f -name '*.parameters_snapshot.*' | sort -V | tail -n 1)
+          test -n "$snapshot"
+          ../cado-venv/bin/python3 ./cado-nfs.py "$snapshot" target="$P55_PUBLIC_E" 2>&1 | tee "$RUNNER_TEMP/p55-dlp-E.log"
+          echo "CADO-NFS modulo-157-bit-subgroup computations completed."
+
+      - name: Preserve computation output whether completed or interrupted
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p55-original-conditional-dlp-logs
+          path: |
+            ${{ runner.temp }}/p55-dlp-Q.log
+            ${{ runner.temp }}/p55-dlp-E.log
+          if-no-files-found: ignore
+          retention-days: 14
