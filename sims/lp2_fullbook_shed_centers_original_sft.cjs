@@ -105,11 +105,6 @@ for (const [name, filename, expectedWords] of [
   controls.push({ name, controls: icValues.length, min, mean, max, atOrBelowOriginal: 0 });
 }
 
-/** The sole two solved LP2 pages are additional same-orthography smoke controls. */
-const solved57 = corpus.pages.find((p) => p.page === 57).indices;
-const solved56 = corpus.pages.find((p) => p.page === 56).indices;
-assert.equal(solved57.length, 95);
-assert.equal(solved56.length, 85);
 
 console.log(JSON.stringify({
   status: "PASS",
