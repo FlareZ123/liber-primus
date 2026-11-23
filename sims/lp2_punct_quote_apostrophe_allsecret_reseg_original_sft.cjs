@@ -147,6 +147,54 @@ assert.deepEqual([lineEcho.n,lineEcho.hits],[593,4]);
 assert(Math.abs(pageAndInkEcho.pAtMost-0.003364883360697)<1e-12);
 assert(Math.abs(lineEcho.pAtMost-0.000009286425029802315)<1e-12);
 
+// Competing continuous-low-repeat null conditions on each source PAGE's
+// original number of observed doublets. Relocate those doublets uniformly
+// over the unchanged within-page adjacency opportunities; count hits only at
+// original within-page physical line-wrap coordinates. This makes no claim
+// that adjacent observed events are independent.
+const logFact=[0];
+for(let i=1;i<=N;i++)logFact[i]=logFact[i-1]+Math.log(i);
+/** @param {number} n @param {number} k @returns {number} */
+function logChoose(n,k){
+  return k<0||k>n?-Infinity:logFact[n]-logFact[k]-logFact[n-k];
+}
+let law=[1],beg=0,observed=0,expected=0,opportunities=0,wraps=0;
+for(const page of gp.pages.filter(p=>p.page<=55&&p.indices.length)){
+  const end=beg+page.indices.length,n=page.indices.length-1;
+  const validLineCuts=lineEnds.filter(i=>i>beg&&i<end);
+  let events=0,lineHits=0;
+  for(let i=beg+1;i<end;i++)if(original[i-1]===original[i]){
+    events++;
+    if(validLineCuts.includes(i))lineHits++;
+  }
+  const k=validLineCuts.length;
+  const probabilities=[];
+  for(let j=0;j<=Math.min(k,events);j++)
+    probabilities[j]=Math.exp(logChoose(k,j)+
+      logChoose(n-k,events-j)-logChoose(n,events));
+  const next=new Array(law.length+probabilities.length-1).fill(0);
+  for(let i=0;i<law.length;i++)
+    for(let j=0;j<probabilities.length;j++)
+      next[i+j]+=law[i]*probabilities[j];
+  law=next;
+  expected+=k*events/n;
+  observed+=lineHits;
+  wraps+=k;
+  opportunities+=n;
+  beg=end;
+}
+assert.deepEqual([observed,wraps,opportunities],[4,539,12901]);
+assert(Math.abs(expected-3.57937198717445)<1e-10);
+const lower=law.slice(0,observed+1).reduce((a,b)=>a+b,0);
+const upper=law.slice(observed).reduce((a,b)=>a+b,0);
+assert(Math.abs(lower-0.712458552206366)<1e-10);
+assert(Math.abs(upper-0.483437654932058)<1e-10);
+const pageConditionedLineEdges={
+  sourceEvents:86,withinPageOpportunities:opportunities,
+  withinPageLineWraps:wraps,lineWrapEvents:observed,
+  nullExpectation:expected,lowerTail:lower,upperTail:upper
+};
+
 
 /** Involutive boundary reflow. All original authentic punctuation cuts
  * remain pinned; within every segment swap adjacent gap lengths.
@@ -230,6 +278,7 @@ console.log(JSON.stringify({
     pageAndInkCuts:{scopes:withPages.length-1,...pageAndInkEcho},
     physicalPrintedLines:{scopes:onlyLines.length-1,...lineEcho},
     allInkAndLineScopes:withLines.length-1,
+    continuousLowRepeatPageConditionedLineNull:pageConditionedLineEdges,
     decision:'Punctuation/page-level independently secret 29! alphabets lack enough English top-letter mass even with arbitrary internal resegmentation/reordering. A private alphabet on every single source line has sufficient top-letter *capacity*, but resets independently drawn at the line breaks predict far more crossing doublets than observed.'},
   sourceInkCrossingEcho:{tested:inkCrossings.length,
     equal:equalCrossings.length,
