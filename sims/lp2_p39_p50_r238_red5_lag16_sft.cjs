@@ -581,6 +581,93 @@ assert.deepEqual(shuffledP39Histogram,
   { 1: 4, 2: 1, 3: 7, 4: 12, 5: 24, 6: 33, 7: 29, 8: 34,
     9: 41, 10: 22, 11: 12, 12: 11, 13: 5, 15: 4, 16: 1 });
 
+
+/** @param {number[]} poly @returns {number[]} */
+function fieldTrim(poly) {
+  while (poly.length && poly.at(-1) === 0) poly.pop();
+  return poly;
+}
+/** @param {number} a @returns {number} */
+function fieldScalarInv(a) {
+  assert.notEqual(a, 0);
+  let b = 1;
+  for (let i = 0; i < 27; i++) b = mod(b * a);
+  assert.equal(mod(a * b), 1);
+  return b;
+}
+/** @param {number[]} a @param {number[]} b @returns {{q:number[],r:number[]}} */
+function fieldDivide(a, b) {
+  const r = fieldTrim(a.slice());
+  const q = Array(Math.max(0, r.length - b.length + 1)).fill(0);
+  const inv = fieldScalarInv(b.at(-1));
+  while (r.length >= b.length && r.length) {
+    const k = r.length - b.length;
+    const x = mod(r.at(-1) * inv);
+    q[k] = x;
+    for (let j = 0; j < b.length; j++) r[k + j] = mod(r[k + j] - x * b[j]);
+    fieldTrim(r);
+  }
+  return { q: fieldTrim(q), r };
+}
+/** @param {number[]} a @param {number[]} b @returns {number[]} */
+function fieldSubtract(a, b) {
+  return fieldTrim(Array.from({ length: Math.max(a.length, b.length) },
+    (_, i) => mod((a[i] || 0) - (b[i] || 0))));
+}
+/** @param {number[]} a @param {number[]} field @returns {number[]} */
+function fieldInverse(a, field) {
+  let [r0, r1, t0, t1] = [field.slice(), fieldTrim(a.slice()), [], [1]];
+  while (r1.length) {
+    const { q, r } = fieldDivide(r0, r1);
+    [r0, r1] = [r1, r];
+    [t0, t1] = [t1, fieldSubtract(t0, mul(q, t1))];
+  }
+  assert.equal(r0.length, 1);
+  return fieldDivide(mul(t0, [fieldScalarInv(r0[0])]), field).r;
+}
+/** @param {number[]} a @param {number[]} b @returns {number[]} */
+const fieldMod = (a, b) => fieldDivide(a, b).r;
+/** @param {number[]} v @param {number[]} key @returns {number[]} */
+function fieldMultiply238(v, key) {
+  const out = fieldMod(mul(v, key), R238);
+  while (out.length < 238) out.push(0);
+  assert.equal(out.length, 238);
+  return out;
+}
+const redFieldUnit = page39.slice(119, 122);
+const spiralFieldUnit = spiralPositions.map(i => mod(p15Rows[i]));
+assert.deepEqual(spiralFieldUnit, [22,21,19,17,11,1,10,3,20,22,25,7,22,12,17,21]);
+const redFieldInverse = fieldInverse(redFieldUnit, R238);
+const spiralFieldInverse = fieldInverse(spiralFieldUnit, R238);
+assert.deepEqual(fieldMod(mul(redFieldUnit, redFieldInverse), R238), [1]);
+assert.deepEqual(fieldMod(mul(spiralFieldUnit, spiralFieldInverse), R238), [1]);
+const fieldSourceUnits = [
+  ['G', redFieldUnit], ['G-inverse', redFieldInverse],
+  ['A15', spiralFieldUnit], ['A15-inverse', spiralFieldInverse],
+  ['A15-over-G', fieldMod(mul(spiralFieldUnit, redFieldInverse), R238)],
+  ['G-over-A15', fieldMod(mul(redFieldUnit, spiralFieldInverse), R238)],
+  ['G-times-A15', fieldMod(mul(redFieldUnit, spiralFieldUnit), R238)],
+  ['GA15-inverse', fieldInverse(mul(redFieldUnit, spiralFieldUnit), R238)]
+];
+const fieldOriginalResults = [];
+for (const [name, unit] of fieldSourceUnits) {
+  for (const orientation of ['high', 'low']) {
+    const tape = orientation === 'high' ? originalTrim.slice().reverse() : originalTrim.slice();
+    const decoded = fieldMultiply238(tape, unit);
+    const output = orientation === 'high' ? decoded.reverse() : decoded;
+    fieldOriginalResults.push({ name, orientation, ioc: ioc(output),
+      transliterationPrefix: output.slice(0, 72).map(k => corpus.translit[k]).join('') });
+  }
+}
+assert.equal(fieldOriginalResults.length, 16);
+assert.ok(fieldOriginalResults.every(v => v.ioc < 0.037));
+assert.equal(Math.max(...fieldOriginalResults.map(v => v.ioc)), 0.036414565826330535);
+const fieldPlant = nativePlant.slice().reverse();
+const fieldEncrypted = fieldMultiply238(fieldPlant, redFieldUnit);
+const fieldRecovered = fieldMultiply238(fieldEncrypted, redFieldInverse);
+assert.deepEqual(fieldRecovered, fieldPlant);
+assert.ok(ioc(fieldRecovered) > 0.06);
+
 const report = {
   sources: { p50Bytes: grid.bytes.length, p50MonicDegree: originalMonic.length - 1,
     factorDegrees: [F16.length - 1, R238.length - 1],
@@ -610,6 +697,7 @@ const report = {
     directRedQuadraticNativePlant: true },
   sourceSelectedSecondLayer: { candidates: sourceTwoLayer.length, best: sourceTwoLayer[0],
     allHaveIoCLessThanFourPercent: true, signedP15PositiveRoundtrip: true },
+  sourceFiniteField: { originalCases: fieldOriginalResults, nativePlantExactlyRecovered: true },
   physicalSelectorCalibration: { red13Markers: [119, 122, 240],
     physicalRedSelectorHits, black237Counts, wordShuffleSeed: '0x3301abcd',
     wordShuffleTrials: 240, shuffledMaxHistogram, shuffledP39Histogram },

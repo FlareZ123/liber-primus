@@ -90,6 +90,14 @@ For an independent null preserving actual printed words, split the original 56 p
 
 **Decision:** The 22-hit alignment retains source-specific interest, but whole-book-maximality alone is weak selection evidence. Its 200 mismatches cannot be rescued by natural red/marker cuts. No first-party selector for the matched positions, reversible rule for unmatched positions, original plaintext, or authenticated key has been found. The expanded [exact Windows-compatible Node22 SFT](../sims/lp2_p39_p50_r238_red5_lag16_sft.cjs) reproduces the original and null tests. Do not fit a new sparse mask to the published hits.
 
+### Degree-238 finite-field inverse, original p39 (Agent8, 23 November)
+
+The irreducible monic p50 quotient **R238** defines a finite field `GF(29)[X]/(R238)` of dimension 238, matching the source-proposed outer-shed p39 body. The visible p39 red polynomial `G(X)=27+5X+15X²` and the independent p15 unsigned 16-cell spiral polynomial `A15(X)` are field units. Field division uses modular polynomial inversion, a different operation from the previously tested polynomial long division in GF29[X]. The original-source first-stage unit family was frozen at **G, G⁻¹, A15, A15⁻¹, A15/G, G/A15, G·A15, (G·A15)⁻¹**, each in two original coefficient directions.
+
+All **16 original p39 238-rune full-register inverse/readout candidates** remain nonprose with IoC **0.03283–0.03641**; maximum **0.0364145658** for A15/G in high-degree order, below the author's genuine p57 solved passage's IoC **0.06271**. Both original field inverses satisfy product=1 modulo R238. A 238-rune source-native solved-p57 positive plant multiplied by G recovers all 238 runes using G⁻¹, with exact forward replay. The G⁻¹ high-degree readout contains an isolated `CREATE` Latin transliteration, arising from the six original-GP rune values `[5,4,28,16,12,18]` transcribed as `C|R|EA|T|EO|E`; it crosses source word boundaries and produces no native connected plaintext. It is a short incidental substring.
+
+This bounded source-defined field consumer supplies no authentic unknown plaintext or key. The physical source still lacks an instruction selecting finite-field multiplication, a 22-position interpolation/erasure schedule, or the rule decoding its other 200 unmatched positions. Do not try free field powers or fitted masks as a rescue. The same [original-source Node22 SFT](../sims/lp2_p39_p50_r238_red5_lag16_sft.cjs) reproduces all original outputs and a positive solved-native plant.
+
 ## The decisive cipher gate
 
 An authentic **strict repeating 16-rune key** would satisfy **222/222** equations, not22. The residual source array K above has only22 lag16 matches. It has **IoC 0.0329752154**, close to uniform GP29 and below the solved p57 native-GP control **0.0627099664**. Its transliteration is nonlinguistic, beginning "IXAAEOEYDRIATHOJFWCNDRWNGMEAEAEWOOENGIOCBDY...". Direct additive inversion has recovered no plausible p39 prose.
