@@ -1,0 +1,51 @@
+name: Agent7 authentic phi plus DIVINITY under R4 (manual)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: agent7-r4-phi-divinity-original
+  cancel-in-progress: false
+
+jobs:
+  authentic-composite-300:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Checkout fixed original LP2 sources
+        uses: actions/checkout@v4
+      - name: Checkout pinned R4 engine and language model
+        uses: actions/checkout@v4
+        with:
+          repository: pnotisdev/cicada3301
+          ref: 15200c67abee106913ba01ff504c5b6e88d16cc7
+          path: upstream
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned numerical dependency
+        run: python -m pip install --disable-pip-version-check numpy==2.2.6
+      - name: Compile original external midword decoder
+        run: |
+          mkdir -p upstream/work/chanscreen/v2/build
+          rustc --edition=2021 --crate-type cdylib -O \
+            upstream/work/chanscreen/v2/backward_mid.rs \
+            -o upstream/work/chanscreen/v2/build/libbackward_mid.so
+      - name: Execute original H1 composite and matched controls
+        env:
+          PNOTISDEV_ROOT: ${{ github.workspace }}/upstream
+          PNOTISDEV_COMMIT: 15200c67abee106913ba01ff504c5b6e88d16cc7
+        run: python -u sims/lp2_r4_composite_h1_sft.py
+      - name: Export machine evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent7-original-phi-divinity-R4-300
+          path: im-results/lp2-r4-composite-h1-sft.json
+          if-no-files-found: warn
+          retention-days: 60
