@@ -5,6 +5,7 @@
  * Node.js 22, read-only; no network or external packages.
  */
 const assert = require('node:assert/strict');
+const {createCipheriv,createDecipheriv} = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -87,6 +88,47 @@ assert.deepEqual(matches,[1]);
 const hex=bytes60.map(b=>b.toString(16).padStart(2,'0')).join('');
 assert.equal(hex,'f94944338e7f13998e333bf096b0a769');
 
+
+// Exact finite typed binary receiver, motivated solely by the 16 extracted bytes.
+// These modes/IV semantics are exploratory, not specified by the creator.
+const sourceKey=Buffer.from(bytes60);
+const originalPanel=Buffer.from(grid.bytes);
+assert.equal(sourceKey.length,16);
+assert.equal(originalPanel.length,256);
+/** @param {Buffer} buffer */
+function printableStats(buffer){
+  let printable=0,maxRun=0,run=0;
+  for(const b of buffer){
+    if(b>=32&&b<=126){run++;maxRun=Math.max(maxRun,run);}
+    else run=0;
+    if((b>=32&&b<=126)||[9,10,13].includes(b))printable++;
+  }
+  return {printable,maxRun};
+}
+/** @param {Buffer} buffer */
+function validPkcs7(buffer){
+  const n=buffer[buffer.length-1];
+  return n>=1&&n<=16&&buffer.subarray(buffer.length-n).every(b=>b===n);
+}
+const aesVariants=[
+  {name:'ECB',mode:'aes-128-ecb',iv:null},
+  {name:'CBC_zeroIV',mode:'aes-128-cbc',iv:Buffer.alloc(16)}
+];
+const aesOutputs=aesVariants.map(x=>{
+  const dec=createDecipheriv(x.mode,sourceKey,x.iv);
+  dec.setAutoPadding(false);
+  const plain=Buffer.concat([dec.update(originalPanel),dec.final()]);
+  const enc=createCipheriv(x.mode,sourceKey,x.iv);
+  enc.setAutoPadding(false);
+  const roundtrip=Buffer.concat([enc.update(plain),enc.final()]);
+  assert.deepEqual(roundtrip,originalPanel);
+  return {name:x.name,...printableStats(plain),
+    validPkcs7:validPkcs7(plain),
+    first32:plain.subarray(0,32).toString('hex')};
+});
+assert.deepEqual(aesOutputs.map(x=>[x.printable,x.maxRun,x.validPkcs7]),
+  [[101,6,false],[109,5,false]]);
+
 console.log(JSON.stringify({
   source:{p15Image:'resources/liber-primus/32.jpg',
     p15PhysicalPage:15,sourceRedStart:3299,spiralCells:16,
@@ -99,6 +141,7 @@ console.log(JSON.stringify({
     magicAtSpiralOffset:matches,
     nextByte:bytes60[4],validID3Header:false},
   base59:{magicAlternative:String.fromCharCode(...bytes59.slice(1,4))},
+  aes128Exact16ByteKey:{keyHex:sourceKey.toString('hex'),original256ByteReceiver:aesOutputs},
   conditionalFixedAddressMultisetNull:{countI:counts[73],countD:counts[68],
     count3:counts[51],fixedTripleChance:pFixed,
     chanceAny14StartUnionBound:Math.min(1,total*pFixed)},
