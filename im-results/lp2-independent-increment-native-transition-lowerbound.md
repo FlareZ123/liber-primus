@@ -42,10 +42,47 @@ Six *genuinely clear* first-release Liber Primus source sections (the same group
 
 The original's nearly even 28 nonzero difference bins offer a second discriminator: a single constant increment preserves the nonuniform source GP-difference histogram under cyclic relabeling. A suitably mixed independent key increment can flatten those other 28 bins while changing the zero-bin rate. This complete tradeoff has not been claimed as a key-independent theorem for all possible author plaintexts. Nor can any source sample rule out a plaintext-specific key stream deliberately chosen to cancel the observed native increments.
 
+## Beyond one-repeat rates: an exact all-increment-mixture obstruction
+
+The rarest-single-difference bound is a coarse test. The original LP2 modular difference distribution is **nearly even on its 28 unequal-residue bins**, with a severe notch at zero. A candidate stationary, plaintext-independent additive key must account for **all 29 bin probabilities at once**.
+
+Fix a native GP plaintext difference distribution p and the actual source ciphertext difference distribution c. For *every possible* unknown stationary key-step law q, the convolution formula requires
+
+\[
+c_d=\sum_{j=0}^{28}p_{(d-j)\bmod29}\,q_j,\qquad
+q_j\ge0,\quad \sum_jq_j=1.
+\]
+
+Thus all possible outputs lie in the **convex hull of the 29 cyclic shifts of p**, no matter how the unobserved key increments are distributed. Two independently implementable certificates constrain that convex hull:
+
+1. **Discrete Fourier magnitude:** for every harmonic k, the circular transform satisfies \(|\widehat{p*q}(k)|=|\hat p(k)|\,|\hat q(k)|\le|\hat p(k)|\). The original GP29 c at harmonic **1** has normalized magnitude **0.030616217691**; its first-party-derived p has **0.0334** there, whereas the much larger Gibran and Shakespeare donor streams have amplitudes approximately **0.02077** and **0.01410**. At harmonic **4**, the original c has magnitude **0.027610623978** and the 991-transition original Cicada clear-GP comparator only **0.002168**, a 12.7-fold mismatch. Its harmonic 5 also fails. Original-length, original-word-slot-resampled positive donor controls violate at least one of the fourteen transform bounds in **50/128 Gibran plants and 128/128 Shakespeare plants**. Their other plants may still fail the stronger whole-convolution condition.
+2. **Exact minimal total variation:** minimize \(\tfrac12\sum_d|c_d-(p*q)_d|\) over **all 29 nonnegative key-increment probabilities** q, with no guessed key, periods or cipher resets. The SFT checks a frozen **29-coordinate optimal feasible q** and an independent **29-coordinate dual certificate v** for each source; it recomputes the primal and dual values from the original GP29 counts and asserts their equality. The dual inequality is valid for *every* unknown q:
+
+\[
+\operatorname{TV}(c,p*q)
+\ \ge\ \sum_dc_dv_d-
+ \max_{j=0}^{28}\sum_dp_{(d-j)\bmod29}v_d,
+ \quad 0\le v_d\le1.
+\]
+
+The two finite certificates agree, so each quoted minimum is the **global optimum for that *fixed native-source empirical distribution***, up to the explicitly tested numerical precision.
+
+| Empirical candidate plaintext-difference law p | Optimal TV distance from the **original ciphertext** law c, over **all** q | Equivalent probability mass on 12,901 original edges |
+|---|---:|---:|
+| Full Gibran native GP reference, 62,491 transitions | **0.020089445250** | 259.17 edge-equivalents |
+| Full Shakespeare native GP reference, 217,105 transitions | **0.022700760187** | 292.86 edge-equivalents |
+| **Original author's clear LP1**, 991 within-page transitions | **0.021326685697** | 275.14 edge-equivalents |
+
+Crucially, the first-party LP1 source **passes the isolated minimum-zero-bin test** (its rarest delta has 7/991 = 0.7064%), yet **fails to reproduce the entire ciphertext difference spectrum and 29-bin frequency shape under *any* independent stationary key mixture**. This closes the common argument that choosing a clever, unknown stationary GP29 increment distribution might simultaneously explain the authentic near-zero doublets *and* near-even other rune differences in **these exact native control registers**.
+
+The edge-equivalent column is the 12,901-edge-scaled *probability distance between empirical distributions*. It does **not** mean that a known number of individual ciphertext symbols has been decrypted, corrected, or necessarily generated differently. Both the finite original ciphertext histogram and the plaintext reference histograms have sampling error and correlations; the exact optimization treats these particular empirical histograms as probability models. In particular, the original author could have written an unknown GP text with a different transition distribution, chosen a key correlated with the text, changed alphabet/word order, or used a nonstationary cipher. None is excluded by the certificate. We do not interpret the optimum as a p-value, proof of author intent or proof of a particular decoder.
+
+**Scope/reproducibility:** All primal and dual witness entries are embedded in the existing [single-file Windows Node22 SFT](../sims/lp2_independent_increment_native_lowerbound_sft.cjs). They are validated against **fresh histograms from the original sources**, so no optimizer installation or trust in the original offline solver is required. A reversible counter-pad native GP positive plant verifies the Fourier-shift identity. The original author's clear-text source remains smaller and stylistically different from an unknown whole book; it is a conditional first-party comparator, rather than the hidden text.
+
 ## Research consequence and exact execution
 
 A plain **stationary, plaintext-independent additive keystream** on ordinarily generated, source-length-matched GP English is a poor explanation for the original's severe repeat suppression. Before brute-force key searches in this family, demand a creator-selected key, first-party plaintext register, or independently motivated operation explaining the suppressed repeated neighbors. This evidence raises priority for **plaintext/ciphertext feedback, output-constrained coding, hidden state, resegmentation or non-native registers**, without identifying which is true. It does not authorize inventing an anti-repeat layer to rescue a failed key.
 
-The [complete Windows-compatible CommonJS reproducer](../sims/lp2_independent_increment_native_lowerbound_sft.cjs) reads only fixed repository resources, checks the counts and source-shaped samples, and performs exact reversible counter-pad plants. **Windows Node22 CI PASS:** [run 45120609331](https://github.com/FlareZ123/liber-primus/actions/runs/45120609331). This is an intermediate mechanism constraint; **no novel LP2 plaintext or authentic key was recovered**.
+The [complete Windows-compatible CommonJS reproducer](../sims/lp2_independent_increment_native_lowerbound_sft.cjs) reads only fixed repository resources, checks the counts and source-shaped samples, and performs exact reversible counter-pad plants. **Windows Node22 CI PASS:** [source-plus-Fourier run 45122019222](https://github.com/FlareZ123/liber-primus/actions/runs/45122019222), [initial positive run 45120609331](https://github.com/FlareZ123/liber-primus/actions/runs/45120609331). The complete primal-dual extension was submitted to [run 45122180205](https://github.com/FlareZ123/liber-primus/actions/runs/45122180205) for an independent Windows run. This is an intermediate mechanism constraint; **no novel LP2 plaintext or authentic key was recovered**.
 
 **Earlier distinct observations:** [first-party GP doublet baseline](lp2-first-party-clear-gp-doublet-baseline.md), [original 86-event position clock](lp2-doublet-gap-source-boundary-conditional-gate.md), and [p56 prime/totient on repeat-triggered resets](lp2-doublet-prime-totient-reset-source-gate.md). This study addresses the **plaintext GP-difference geometry and its convolution with an independent additive stream**, rather than the prior event-gap clocks.
