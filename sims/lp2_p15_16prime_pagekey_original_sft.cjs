@@ -147,6 +147,31 @@ function encryptFTransparent(tape, start, sign) {
   });
 }
 
+// Independent authentic full-p56 known-plaintext control from
+// sims/authentic_lp2_p56_totient_regression.cjs. This includes the genuine
+// literal plaintext F at the historical third ciphertext-F position.
+/** @param {string} phrase */
+function parseKnownGp(phrase) {
+  const longestFirst = corpus.translit.map((token, index) => ({ token, index }))
+    .sort((a, b) => b.token.length - a.token.length);
+  const knownIndices = [];
+  for (const word of phrase.split(' ')) {
+    for (let i = 0; i < word.length;) {
+      const match = longestFirst.find(({ token }) => word.startsWith(token, i));
+      assert.ok(match, 'Unexpected known GP source spelling');
+      knownIndices.push(match.index);
+      i += match.token.length;
+    }
+  }
+  return knownIndices;
+}
+const fullSolvedWords = 'AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO IT IS THE DUTY OF EUERY PILGRIM TO SEEC OUT THIS PAGE';
+const fullSolved = parseKnownGp(fullSolvedWords);
+assert.equal(fullSolved.length, 85);
+assert.deepEqual(encryptFTransparent(fullSolved, 0, -1),
+  corpus.pages[56].indices, 'authentic complete solved-p56 encryption, exact F bypass');
+console.log('PASS 85/85 authentic known p56 plaintext with genuine nonconsuming F rule');
+
 const solvedF = fTransparentStates(corpus.pages[56].indices, 0, -1);
 assert.ok(solvedF.survivors > 0, 'authentic solved p56 mode must survive');
 console.log('PASS full original p56 F-transparent path count:', solvedF);
