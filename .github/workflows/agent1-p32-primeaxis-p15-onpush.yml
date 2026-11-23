@@ -1,5 +1,6 @@
 name: Agent1 p32 prime-axis p15 exact original replay
 on:
+  workflow_dispatch:
   push:
     branches: [main]
     paths:
