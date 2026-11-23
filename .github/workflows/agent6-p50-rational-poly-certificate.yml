@@ -1,0 +1,16 @@
+name: Agent6 LP2 p50 polynomial three-prime irreducibility certificate
+on:
+  workflow_dispatch:
+jobs:
+  rational-poly-certificate:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned polynomial library
+        run: python -m pip install sympy==1.14.0
+      - name: Verify source-byte irreducibility over rational polynomial field
+        run: python sims/lp2_p50_rational_irreducible_threeprimes_sft.py
