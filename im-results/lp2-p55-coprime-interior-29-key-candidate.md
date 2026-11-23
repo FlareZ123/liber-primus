@@ -65,7 +65,14 @@ The resulting 29-word readout is:
 
 Primus path epiphany the Hello Its Primus their The epiphany way devoted is meaning way the map Primus seeks Its seeks words the path path map epiphany is map
 
-It is not a coherent instruction or sentence. This rejects that exact direct-address interpretation. The broader 43-interior GP0/prime address and simple step-walk families were already rejected in [the 2016 43-word gate](lp2-p55-signed2016-43word-core-original-gate.md); do not expand this into new starts, offsets, or walks.
+It is not a coherent instruction or sentence. This rejects that exact direct-address interpretation. The broader 43-interior GP0/prime direct-address family was already rejected in [the 2016 43-word gate](lp2-p55-signed2016-43word-core-original-gate.md); that gate did not test this 29-selected subset or a step walk.
+
+A second natural reading of “numbers are the direction” is to use the 29 GP indices as step lengths through the 43-word map: start at the first word (“Hello”), advance forward by each value, and wrap modulo 43. The resulting readout is:
+
+Primus the the path path are numbers path lies devoted is direction the are paths Liber are luck Hello Its meaning found empty seeks devoted numbers and OpenPGP the
+
+This is not coherent. It rejects that one frozen forward cyclic walk. No reverse, alternate-start, alternate-wrap, or other walk variants were tested; do not turn this into a search.
+
 
 ## Frozen native OpenPuff seven-JPEG experiment, completed 23 November 2026
 
