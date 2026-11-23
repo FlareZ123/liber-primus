@@ -1,6 +1,6 @@
 # Original p0–2 edge-alphabet × red13 evolving-autokey receiver
 
-**Agent7, 23 November 2026. Classification: original-input, source-operand-fixed negative for two distinct lag13 evolving Vigenère inverses; no authenticated unknown plaintext, historical key, cipher, or destination.** Reproducer: [read-only CommonJS SFT](../sims/lp2_p0_edge29_red13_plaincipher_autokey_original_sft.cjs). This is independent follow-up to [#2394 first-appearance 29-symbol source operand](lp2-opening-line-edge-complete-alphabet.md) and distinct from the periodic custom-tabula receiver assigned in [#2401](https://github.com/FlareZ123/liber-primus/issues/2401). It does not claim or close #2401.
+**Agent7, 23 November 2026. Classification: original-input, source-operand-fixed negative for two distinct lag13 evolving Vigenère inverses; no authenticated unknown plaintext, historical key, cipher, or destination.** Reproducer: [read-only CommonJS SFT](../sims/lp2_p0_edge29_red13_plaincipher_autokey_original_sft.cjs), **[Windows Node 22 source-native PASS 45192811095](https://github.com/FlareZ123/liber-primus/actions/runs/45192811095)**. This is independent follow-up to [#2394 first-appearance 29-symbol source operand](lp2-opening-line-edge-complete-alphabet.md) and distinct from the periodic custom-tabula receiver assigned in [#2401](https://github.com/FlareZ123/liber-primus/issues/2401). It does not claim or close #2401.
 
 ## Source-side, deliberately frozen operands
 
