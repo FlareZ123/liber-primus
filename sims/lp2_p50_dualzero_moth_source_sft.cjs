@@ -179,6 +179,66 @@ for (const radix of [59,60]) {
       }
   }
 }
+
+/** @param {number} n */
+function totient(n) {
+  assert(n > 0);
+  let res = n, t = n;
+  for (let p=2; p*p<=t; p++) if(t%p===0) {
+    res = res/p*(p-1);
+    while(t%p===0) t/=p;
+  }
+  if(t>1) res=res/t*(t-1);
+  return res;
+}
+/** @param {number[]} source @param {number[]} key @param {number} sign */
+function transparentPaths(source,key,sign) {
+  let states = new Map([[0,1]]);
+  for(let i=0; i<source.length; i++) {
+    const next = new Map();
+    for(const [k,count] of states) {
+      if(source[i]===0) next.set(k,(next.get(k)||0)+count);
+      if(k<key.length && mod(source[i]+sign*key[k],29)!==0)
+        next.set(k+1,(next.get(k+1)||0)+count);
+    }
+    if(next.size===0) return {complete:false,first_invalid:i,paths:0};
+    states=next;
+  }
+  return {complete:true,paths:[...states.values()].reduce((a,b)=>a+b,0),consumed:[...states.keys()]};
+}
+/** @param {number[]} p @param {number[]} key @param {number} sign */
+function encryptTransparent(p,key,sign) {
+  let k=0;
+  return p.map(v=>{
+    if(v===0) return 0;
+    assert(k<key.length);
+    return mod(v-sign*key[k++],29);
+  });
+}
+const totientScores=[];
+for(const radix of [59,60]) {
+  const innerPhi=sourceBytes(keyInner,radix).map(v=>totient(v)%29);
+  const rimPhi=sourceBytes(keyRim,radix).map(v=>totient(v)%29);
+  for(const reverse of [false,true]) {
+    const a=reverse?innerPhi.slice().reverse():innerPhi;
+    const b=reverse?rimPhi.slice().reverse():rimPhi;
+    for(const sign of [-1,1]) {
+      const d53=direct(p53,a,sign), d55=direct(p55.slice(1),b,sign);
+      const legal53=transparentPaths(p53,a,sign);
+      const legal55=transparentPaths(p55.slice(1),b,sign);
+      assert.deepEqual(direct(d53,a,-sign),p53);
+      assert.deepEqual(direct(d55,b,-sign),p55.slice(1));
+      assert(transparentPaths(encryptTransparent(native179,a,sign),a,sign).complete);
+      assert(transparentPaths(encryptTransparent(native75,b,sign),b,sign).complete);
+      totientScores.push({radix,reverse,sign,p53_ioc:ioc(d53),p55_ioc:ioc(d55),
+        p53_F_transparent:legal53,p55_F_transparent:legal55});
+    }
+  }
+}
+assert.equal(totientScores.length,8);
+assert(totientScores.every(v=>!v.p53_F_transparent.complete));
+assert.equal(totientScores.filter(v=>v.p55_F_transparent.complete).length,1);
+
 /** @param {{p53_ioc:number,p55_ioc:number}[]} result */
 function extrema(result) {
   return {
@@ -191,6 +251,7 @@ assert.equal(rankScores.length,32);
 assert.equal(ascii.length,8);
 assert.equal(combined.length,32);
 const summary = {
+  totient_direct_range:extrema(totientScores), totient_Ftransparent:totientScores,
   source: {runes_p53:179,runes_p55:76,table:{rim:76,interior:180,zero_rim:192,zero_interior:229,
     rim_after_null:75,interior_after_null:179},old_hidden179_sha256:"82c135148b6cf85e9b550afdbc6204be075ff67717356a8ae18b76f9cc3af5fa"},
   native_p57_ioc:ioc(solved),
@@ -198,7 +259,7 @@ const summary = {
   p05_mix_ioc_range:[Math.min(...combined.map(v=>v.ioc)),Math.max(...combined.map(v=>v.ioc))],
   best_direct:directScores.sort((a,b)=>b.p53_ioc+b.p55_ioc-a.p53_ioc-a.p55_ioc).slice(0,3),
   best_rank28:rankScores.sort((a,b)=>b.p53_ioc+b.p55_ioc-a.p53_ioc-a.p55_ioc).slice(0,3),
-  ascii_xor:ascii,model_counts:{direct:16,rank28:32,p05_xor:32,ascii_xor:8}
+  ascii_xor:ascii,model_counts:{direct:16,rank28:32,p05_xor:32,ascii_xor:8,totient:8}
 };
 assert(summary.native_p57_ioc>0.05);
 assert(summary.direct_range.p53[1]<0.04);
