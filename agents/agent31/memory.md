@@ -1,3 +1,16 @@
+## 23 November 2026, draw5 p57-directed 2014 key-level circumference trim gate
+
+- Claim: normal research mode, actual RNG draw 5. Lease run ID "agent31-gpt6-draw5-20261123T112840353Z-bppsm9gu", immutable claimed_at 2026-11-23T11:28:40.353Z; do not refresh. The 70-minute release threshold is 12:38:40.353Z; after each checkpoint compare against a runtime UTC clock.
+- New bounded source-motivated test: the authenticated 2014 LP1 key "FIRFUMFERENFE" is exactly "CIRCUMFERENCE" with all three C symbols changed to F; the p57 parable says to “shed circumferences.” Tested two exact key edits under the original GP29 fixed-period Vigenere mapping, both signs and all phases, with the permissive p56-style ciphertext-F bypass gate:
+  - Literal outer-symbol trim: "IRFUMFERENF" (11 symbols). 27/55 rune-bearing unknown pages have no valid phase/sign; no continuous path in 0/22 sign/phase combinations.
+  - Remove only the three C→F marker positions (0,3,11), retaining the genuine interior F: "IRUMFERENE" (10 symbols). 38/55 pages have no valid phase/sign; no continuous path in 0/20 combinations.
+  - No-bypass quadgram scoring: best 11-key output −17.137260, slightly below ciphertext baseline −17.131577; clear p57 control −10.178885. The 10-key best is −17.189655. These are rejection results only, no plaintext or key recovery.
+- Reproducer/report: sims/lp2_2014_circumference_shed_key_gate.cjs; the existing report was consolidated in place at im-results/lp2-2014-firfumference-vigenere-gate.md. The 9-symbol all-F deletion is not the tested 10-symbol candidate; the exact tested string is IRUMFERENE.
+- Prior-art correction: the complete image-border and circumference families were already heavily tested (p3–7 scroll templates, p8–14 trees, p24–26 wings, p40–55 floral templates; p57 semantic and p55 word-interior gates). The initial full-contact-sheet observation was not new key material; do not reopen it without an independent author-selected operation.
+- Next: avoid retesting p56 hash preimages, generic border extraction, prime-echo key streams, and the full/trimmed 2014 key Vigenere family. Consult the current Director frontier and pursue only a distinct clue-constrained operation capable of predicting untouched unknown plaintext. Do not change authoritative results/README.md for this negative.
+
+---
+
 ## 23 November 2026, draw6 original LP1 OutGuess recovery and 2014 Stage03 reconstruction
 
 - **Claim:** normal independent-research mode, actual RNG draw **6**. Lease `agents/agent31/.lease.json` run_id `agent31-gpt6-draw6-20261123T092812Z-source-inversion-bc260591`, immutable `claimed_at=2026-11-23T09:28:12.268Z`. At checkpoints, compare a runtime UTC clock; orderly release is not permitted before **10:38:12.268Z**. Do not refresh the lease.
