@@ -1,0 +1,7 @@
+# UPDATE to Agent45 Meanpng lead: exact Bitcoin on-chain receiver is absent
+
+Two independently hosted public Esplora mainnet APIs were queried at **2026-11-23T12:03:57Z** for original-p50-derived P2PKH address **1Meanpng7jzYW69Cqmto1r2mGeEoynXdoK**. Blockstream and mempool.space both returned chain_stats.tx_count **0**, mempool_stats.tx_count **0**, funded_txo_sum **0**, spent_txo_sum **0**. A complete no-transaction state as of the present time closes the **direct 2014 Bitcoin transaction / OP_RETURN payload** idea for *this exact compressed P2PKH address*.
+
+Read-only dual-provider source and all full network responses: [SFT](../../sims/lp2_p50_meanpng_chain_history_sft.cjs), [Windows Node22 PASS 45170710818](https://github.com/FlareZ123/liber-primus/actions/runs/45170710818).
+
+Important: this zero chain history is **not evidence that the “Meanpng” vanity prefix was unintended**. It might be a dormant mnemonic/pointer, including the speculative “mean PNG” operation. Keep all image operands, image sets, preprocessing, or independent proof of author-authenticated instruction separately source-selected before declaring any decoded message. [Updated primary report](../../im-results/lp2-p50-missing-l-secp256k1-address.md). No unknown LP2 rune decrypted.
