@@ -1,8 +1,5 @@
 name: Agent2 original Stage10 three-JPEG native OpenPuff 2014 key handoff
 on:
-  push:
-    paths:
-      - '.github/workflows/agent2-stage10-triplet-openpuff.yml'
   workflow_dispatch:
 permissions:
   contents: read
