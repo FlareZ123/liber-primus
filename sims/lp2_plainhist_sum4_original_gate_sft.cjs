@@ -84,22 +84,22 @@ const sources=[
 ].map(([name,filename])=>{
  const pool=new Map();
  for(const word of load(filename).toUpperCase().match(/[A-Z]+/g)||[]){
-   const seq=encode(word);if(seq.length<3)continue;
+   const seq=encode(word);if(seq.length<1)continue;
    const items=pool.get(seq.length)||[];items.push(seq);pool.set(seq.length,items);
  }
  return {name,filename,pool};
 });
-function sampleNative(slots,source,rng){
+function sampleNative(slots,source,rng,allWords=false){
  const available=new Map();
  for(const [len,arr] of source.pool){
-  if(len<6)continue;
+  if(len<6&&!allWords)continue;
   const a=arr.slice();
   for(let i=a.length-1;i>0;i--){const j=rng()%(i+1);[a[i],a[j]]=[a[j],a[i]];}
   available.set(len,a);
  }
  const cursor=new Map();
  return slots.map(w=>{
-  if(w.seq.length<6)return {...w};
+  if(w.seq.length<6&&!allWords)return {...w};
   const len=w.seq.length,j=cursor.get(len)||0;cursor.set(len,j+1);
   const a=available.get(len);assert(a?.length,source.name+" length "+len);
   return {...w,seq:a[j%a.length]};
@@ -111,9 +111,7 @@ for(let si=0;si<sources.length;si++){
  const s=sources[si],rng=rand(0x330120+4000+si),samples=[];
  for(let trial=0;trial<128;trial++){
   const plant=sampleNative(original,s,rng);
-  // Only len>=6 words are replaced; this is sufficient for the
-  // four-memory invariant and maintains all 2896 original length slots.
-  if(si===1&&trial===0)positiveNative=plant;
+  // Control probes the six-rune invariant with exact original length slots.
   samples.push(Object.fromEntries(["suffix","windows"].map(scheme=>[
    scheme,scopes.map(scope=>suffixOrWindowPairs(plant,"plain",scheme,scope).pairs)
   ])));
@@ -127,6 +125,7 @@ for(let si=0;si<sources.length;si++){
    }))
   ]))});
 }
+positiveNative=sampleNative(original,sources[1],rand(0xc1cada33),true);
 /* Key-independent signature must hold on a fully bijective native plant. */
 function makeRandomRows(seed){
  const rng=rand(seed),rows=[];
