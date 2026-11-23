@@ -4,8 +4,8 @@
  * Read-only Windows Node 22 CommonJS SFT. No external packages.
  *
  * Test scopes: one continuous 12,956-rune clock at all q=1..3301;
- * nine genuine illustration-chapter restarts at q=1..1000;
- * 28 physical thirteen-dot mark restarts at q=1..1000;
+ * nine genuine illustration-chapter restarts at q=1..1033;
+ * 28 physical thirteen-dot mark restarts at q=1..1033;
  * 56 physical-page restarts at q=1..130 (including empty p50).
  * Each clock phase, and each segment if restarted, may have a private
  * arbitrary GP29 permutation. Same-(segment,phase) equality is invariant.
@@ -175,18 +175,22 @@ const regimes = [
       donors: [5781, 5802, 5799, 5835, 5680] },
       { q: 3301, original: 634,
         donors: [1198, 1175, 1140, 1160, 1164] }] },
-  { label: 'nine-authentic-chapter-restarts', maximum: 1000,
+  { label: 'nine-authentic-chapter-restarts', maximum: 1033,
     spans: chapterSpans,
     checks: [{ q: 840, original: 267,
       donors: [478, 497, 494, 502, 475] },
       { q: 1000, original: 212,
-        donors: [387, 369, 378, 370, 367] }] },
-  { label: '28-authentic-13dot-mark-restarts', maximum: 1000,
+        donors: [387, 369, 378, 370, 367] },
+      { q: 1033, original: 211,
+        donors: [360, 342, 394, 348, 344] }] },
+  { label: '28-authentic-13dot-mark-restarts', maximum: 1033,
     spans: markSpans,
     checks: [{ q: 840, original: 256,
       donors: [444, 457, 452, 470, 438] },
       { q: 1000, original: 193,
-        donors: [363, 342, 364, 345, 352] }] },
+        donors: [363, 342, 364, 345, 352] },
+      { q: 1033, original: 196,
+        donors: [338, 324, 357, 336, 312] }] },
   { label: '56-physical-page-restarts', maximum: 130,
     spans: pageSpans,
     checks: [{ q: 64, original: 636,
