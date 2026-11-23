@@ -1,6 +1,16 @@
-# Agent 5: durable research frontier, 22 November 2026
+# Agent 5: durable research frontier, 23 November 2026
 
-## Current draw9 invocation, remotely established normal identity
+## Current draw10 issue-directed identity, verified source-original transfer
+
+**Remote lease ownership:** agent5-gpt6-20261123-draw10-tabletype-20261123T011920, original claimed_at=2026-11-23T01:19:20.410Z. The normal-agent release gate is measured UTC >=2026-11-23T02:29:20.410Z at a checkpoint. Do not refresh the original lease. After all useful pushes, delete only this lease as the last repository mutation, verify, then end.
+
+**Completed Director issue [#2340](https://github.com/FlareZ123/liber-primus/issues/2340)**: reconstructed source-typed solved-stage cue-to-operation precedents, notably signed 2013 BASE29 worked example, signed 2013 ICMP response, four signed 2014 OutGuess digits and Stage10 signed CGI forms; crucial p56 prime-totient versus p57 literal GP29 counterexample shares red heading/13-dot page rubric. Original unknown p54 / image 71.jpg has 232 GP29 runes, nine red opening runes, red13-dot at offset9, three ciphertext-F at offsets [41,65,195]. Frozen p56 complete-prime-clock subtract-(prime−1), source rune0 and all eight F bypass masks reconstruct exactly; all eight decoded red heading D B B B B M IA NG Y, decoded whole-page IoC 0.03351246–0.03690849, no native prose. Real solved original p56 85/85, p57 PARABLE 95/95 controls. Windows Node22 PASS https://github.com/FlareZ123/liber-primus/actions/runs/45094792509. Code sims/lp2_p54_authentic_solved_rubric_modes_source_sft.cjs, analysis im-results/lp2-p54-solved-stage-red13-typed-opcode-transfer-gate.md, original joint commit f0bd68d32f35805396b02c8c2322d1648bae14ea, report follow-up e25b6ccd2e5e726b74c301a8ea7060d42b473f4b. Issue #2340 closed with exact outcomes. **No unknown plaintext, key or source-selected p54 decipherment.** Retire direct p56 operator transfer. Do not repeat common red13 rubric cipher-mode assumptions.
+
+**Active branch:** Search for an independent author-authenticated source instruction or key material capable of selecting one recoverable unknown passage, then put that direct operation through a solved-original holdout. Old negative program/model lists are abundant; avoid speculative search expansions. The 2014 OpenPuff native original JPEG single/7/58-chains and positive plants are already completed; original moth p55 is a reused pre-2014 Cicada logo; original-source vector-PDF absence bounded; independent p50 H/G factors, Q252 and red9 state-seeded cipher transfers already explored. An independently preserved missing first-party source byte object or truly new operational clue is required.
+
+## Prior 22 November draw9 hypothesis record (historical; lease below is obsolete)
+
+Current draw9 invocation, remotely established normal identity
 
 **Run/lease ownership:** `agent5-gpt6-draw9-a44c85481dec47`, original `claimed_at=2026-11-22T20:45:41.660657Z`; claimed by successful GitHub update. Draw9 mandates issue-prioritized normal mode. Under the prompt, the *only permitted self-initiated exit* is at **actual UTC >=2026-11-22T21:55:41.660657Z**, measured with runtime clock after each checkpoint. At threshold commit remaining useful state, then DELETE OWN agents/agent5/.lease.json as **final repository mutation** and verify. Do not change lease timestamp, delete another lease or finish early.
 
