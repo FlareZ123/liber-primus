@@ -45,7 +45,9 @@ The archived post-square ciphertext pages **107** and **167** contain **226** an
 - page 167 starts at phase **3**, continues the same clock, and the full two-page stream consumes **317** key symbols;
 - the resulting GP-label string matches the archived corrected-Roman witness exactly after the explicit orthographic normalizations **K→C**, **V→U**, and **DURING→DURNG** (the latter reflects the single GP graph NG).
 
-Resetting the key at page 167 or consuming either marked F fails the witness comparison. This is a reproducible historical positive control for a **source-marked, non-consuming F** rule, not evidence that the same key transfers to LP2. The archive identifies its rune transcripts and corrected Latin as period-attributed mirror witnesses rather than independent PGP signatures on every page; preserve that source caveat.
+Resetting the key at page 167 or consuming either marked F fails the witness comparison. This is a reproducible historical positive control for a **source-marked, non-consuming F** rule, not evidence that the same key transfers to LP2.
+
+The two colon markers are also visible in the archived original JPEGs, not only in the runic transcription: [page 107](https://github.com/cicada-solvers/neuroretransmit-cicada/blob/b13600373d3400d75ec4208198019f3d92a304dd/2014/008-sixth-onion/107.jpg) has the small colon glyphs on printed lines **3** and **4**, each immediately before F; [page 167](https://github.com/cicada-solvers/neuroretransmit-cicada/blob/b13600373d3400d75ec4208198019f3d92a304dd/2014/008-sixth-onion/167.jpg) has no colon markers. Their Git blob SHAs at that pinned archive commit are `6105b54496b5afc48c80b83f786f41499b57f2d9` and `32952b7d28028f5fedffceace4de0e7eb688d3d6`, respectively. The images are archive mirrors, not separately PGP-signed page payloads; retain the archive's source caveat.
 
 [Exact control and LP2 marker-census SFT](../sims/2014_onion6_explicit_colon_fskip_lp2_marker_census_sft.cjs).
 
