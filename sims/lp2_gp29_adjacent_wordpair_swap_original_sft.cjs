@@ -359,11 +359,56 @@ const first = candidate.slice(0, 300);
 const heldout = candidate.slice(before16, before16 + 200);
 console.log("SOURCE-EXACT model GP29 adjacent-pair length-swap coder:");
 console.log("runes", original.length, "printed words", words.length,
-  "resets", frames.length, "ignored giant marks", Array.from(skip),
+  "resets", frames.length, "red-title closing marks not used as resets", Array.from(visualSkip),
   "nonzero original residuals", nonzeroResidual);
 console.log("actual first300 IoC", indexOfCoincidence(first).toFixed(9),
   "actual original p16 first200 IoC", indexOfCoincidence(heldout).toFixed(9),
   "source-native positive IoC", indexOfCoincidence(native).toFixed(9));
 console.log("first80 inferred GP29 indices", candidate.slice(0,80).join(","));
+/**
+ * Frozen direct 2016-word-"direction" readout: one original bit per
+ * unequal-length neighboring word pair, 1=longer-first, 0=shorter-first.
+ * Each physical-ink body frame restarts on its own first printed word.
+ * Canonical MSB-first bytes are read without any phase/key/bit-order hunt.
+ * This is a typed output check; it is not part of the GP29 inverse.
+ */
+/** @param {number[]} lengths @returns {number[]} */
+function lengthOrderBits(lengths) {
+  const bits = [];
+  for (let i = 0; i + 1 < lengths.length; i += 2) {
+    if (lengths[i] !== lengths[i + 1]) {
+      bits.push(Number(lengths[i] > lengths[i + 1]));
+    }
+  }
+  return bits;
+}
+/** @param {number[]} bits @returns {number[]} */
+function fullMsbBytes(bits) {
+  const bytes = [];
+  for (let i = 0; i + 7 < bits.length; i += 8) {
+    let v = 0;
+    for (let k = 0; k < 8; k++) v = 2 * v + bits[i + k];
+    bytes.push(v);
+  }
+  return bytes;
+}
+const wordDirectionGroups = frames.map(f => {
+  const bits = lengthOrderBits(f.lengths);
+  assert.equal(1n << BigInt(bits.length), f.G);
+  assert.equal(bits.reduce((v, bit) => (v << 1n) | BigInt(bit), 0n),
+    rankLengthOrders(f.lengths));
+  const bytes = fullMsbBytes(bits);
+  return {runes: f.n, bits: bits.length, bytes};
+});
+console.log("FROZEN DIRECT INK-BODY WORD-DIRECTION BITS:",
+  wordDirectionGroups.map((g, i) => ({
+    frame: i,
+    runes: g.runes,
+    bits: g.bits,
+    bytePrefixHex: g.bytes.slice(0, 12).map(b => b.toString(16).padStart(2, "0")).join(""),
+    firstAscii: g.bytes.slice(0, 12)
+      .map(b => b >= 32 && b <= 126 ? String.fromCharCode(b) : ".").join("")
+  })));
+
 console.log("PASS full 12956-rune original exact forward replay, all printed gaps,",
   "plus 12956-rune authentic solved-GP native-plaintext plant.");
