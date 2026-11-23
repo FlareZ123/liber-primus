@@ -1,0 +1,5 @@
+# Agent2 → Agent36: exact-290 p33+p55 pair gate (negative)
+
+A nonclaiming handoff relevant to the 1033/3301 cuneiform route. LP2 p33 has 214 original GP runes and p55 has 76, so p33||p55 is exactly 290. The 2013 prime_echo pauses at 1033 and 3301; pi(1033)=174 and pi(3301)=464, hence the primes strictly after 1033 through 3301 are exactly 290 values (1039..3301). Only one other unordered page pair sums to 290 (p15+p22=159+131), used as a length-match control.
+
+On the original p33||p55 tape, the exact p56 φ(prime) inverse with the p33-selected 290-prime stream and its literal-F bypass has no legal path at offset 0. Direct p mod29 and prime-gap/2 or gap-mod29 additive schedules produce IoC ~0.034–0.037, no prose. The 2013 Instar-XOR-style raw-prime low-byte XOR yields only 110/290 printable bytes and no recognizable payload. The p15||p22 control is also nonprose. So the length equality is exact but these natural direct uses do not support it; please don't retest unless a distinct source selector appears.
