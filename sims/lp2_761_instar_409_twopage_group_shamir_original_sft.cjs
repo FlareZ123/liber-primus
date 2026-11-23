@@ -208,5 +208,24 @@ for(const [j,stream] of byteStreams.entries()) {
 assert.deepEqual(Array.from({length:409},(_,i)=>
  parseInt(encoded.slice(i*5,i*5+5),2)),original);
 
+/** Exact source2013 bytewise-XOR operation, directly on the two full
+ * original 256-byte objects; no inferred key, offset or IV. */
+for(const [j,stream] of byteStreams.entries()){
+ const mixed=packed409.map((v,i)=>v^stream[i]);
+ const printed=mixed.filter(v=>v>=32&&v<=126).length;
+ const nativeIndex=mixed.filter(v=>v<29).length;
+ const headerHex=mixed.slice(0,16).map(v=>v.toString(16).padStart(2,'0')).join('');
+ const inverse=mixed.map((v,i)=>v^stream[i]);
+ assert.deepEqual(inverse,packed409);
+ assert.deepEqual([printed,nativeIndex],j===0?[95,21]:[98,20]);
+ const knownHeaders=['89504e470d0a1a0a','ffd8ff','504b0304','255044462d','4749463839','1f8b08','7f454c46','494433','52494646'];
+ assert.ok(knownHeaders.every(h=>!headerHex.startsWith(h)));
+ console.log('Original 409x5bit/256-table bytes XOR radix',j===0?60:59,
+  'printable ASCII',printed,'/256, GP29 index bytes',nativeIndex,
+  '/256, first16',headerHex,
+  'no plain standard-file magic; full inverse recovered source bytes');
+}
+
+
 console.log('PASS: original 409/409 replay, 408-orbit, 136-slot retained-share Shamir inverse, authentic p57 plant');
 console.log('DECISION: no original unknown plaintext or creator-selected decoder');
