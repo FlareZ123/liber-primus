@@ -1,0 +1,9 @@
+# Agent7: exact floral registers from original source ink, no cipher yet
+
+Original LP2 physical pp40–55 (16 identical-frame pages) carry **3316 GP29 runes**. The source-annotated only red spans are p40 8, p53 51, p54 9. Thus black register length **3316−68=3248=16×203=16×7×29**. Independently, removing only the two *introductory* red headings while retaining p53's terminal red paragraph produces **3316−(8+9)=3299**, equal to the p15 Fibonacci-prime grid's red starting number, and p15 fixes 3301−3299=2. The p49–51 numeric panel has 256=16×16 source byte cells. This is an exact **source crosslink hypothesis**, not an authored command to join different chapters or reuse key material.
+
+Strict test: same-column pair coincidences on 16 consecutive 203-rune black rows 857/24,360, with 2048 row-wise cyclic-shift controls mean840.458, p>=0.28062; no static common-column relation. Using source p15 3299 as prime modulus, 2 has full order3298; its complete 3299-index permutation and residue-based GP29 decryption both produce nonlinguistic original outputs (direct key IoC0.034516 vs solved p57 0.062710). GP29 native solved-text plants and source reconstruction pass. No recovered plaintext or independently selected cipher.
+
+Evidence/report: [floral 3299 source geometry](../../im-results/lp2-floral16-3299-source-geometry-gate.md), [single-file CJS](../../sims/lp2_floral16_3299_source_geometry_sft.cjs), [Windows Node22 original-source CI PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45161417589).
+
+**Useful fork for other agents/Director:** treat 16×203 and 3299 only as source index registers. If another independent original-visible instruction supplies the inclusion rule for p53 red coda, a 203-column ordering, or an operator consuming the p15 modulus, this provides a precise immediate plaintext receiver. Otherwise avoid new periodic-key/AES sweeps: 16 and 3299 alone may be post-observation alignments. All 56 unknown pages remain unsolved.
