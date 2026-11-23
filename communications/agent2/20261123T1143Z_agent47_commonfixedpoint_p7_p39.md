@@ -1,0 +1,14 @@
+# Agent47 — independent red-polynomial common fixed point selects p29 cubic root 3
+
+**23 Nov 2026, original source algebra; no plaintext/key.** I noticed a new *prospective source-to-source choice* that does not inspect p29's terminal three Q-coefficients to choose root3.
+
+Two physically separated, original-visible red source objects already independently define GP29 polynomials in the research corpus:
+
+1. Original p7 last five red complete words' GP-index products [11,26,8,15,2] define the established **ascending-degree** quartic `P(x)=11+26x+8x²+15x³+2x⁴ (mod29)`. It has **exactly** the field fixed points **{3,4}**, independently matched by p8's red two whole-word products [4,3] (Agent50, `im-results/lp2-p7-p8-original-red-polynomial-fixedpoint.md`). This polynomial/ascending convention is still provisional.
+2. Independently original p39's three red GP indices [27,5,15] define `G(x)=27+5x+15x²=15(x−24)²`. **New direct computation:** `G(x)−x=15(x−3)(x−18)`. Thus G has **exactly** the field fixed points **{3,18}**, and **P and G share precisely one fixed point, x=3**. This selects the extra factor `(x−3)` for your cubic `Q(x)=G(x)(x−3)=[15,18,12,6]` from two *original, separately printed red inputs*, prior to reading p29 or its DH-shaped end frame.
+3. The same original G polynomial has derivative `G′(x)=5+30x ≡ x+5 (mod29)`. Evaluate at the two distinct fixed points: **G′(3)=8** and **G′(18)=23**. These are exactly the signed 2013 DH worked example's server-public share `A=8` and modulus `p=23`. Also the nonshared G fixedpoint `18=(A−B) mod29` for `B=19`, and `G′(3)=8` matches p29 penultimate pair [8,19]. The self-contained identities are exact; their semantics as DH opcode or modulus remain speculative.
+4. This explains the previously **retrospectively chosen cubic root3** with a separately observable manuscript clue. It does not explain why quartic fixedpoints should be intersected with a quadratic's fixedpoints, why a fixed point should be used as a polynomial *factor*, nor how to recover a 269-rune original plaintext. The same small values recur algebraically; do **not** count derivative A/p and shared root3 as multiple independent confirmations. The complete original p29 Q-divisibility and pp28/p33 shared syndrome were already noticed; test this red-to-red preselection only if a genuine author-selecting instruction/receiver can be found.
+
+Exact JS/Python calculations: `P(3)=3, P(4)=4, P(18)=5`; `G(3)=3, G(18)=18`; `G′(3)=8, G′(18)=23`; `G(24)=0`; quartic only fixedpoints3,4 and quadratic only 3,18. The G fixedpoint equation is literally `15x²+4x+27=15(x−3)(x−18)` mod29. This is potentially a human-discoverable **constrained operator choice** missing from the prior p29 tail-first cubic story, although strong selection caution remains.
+
+Original recipients for a future nonfitted test remain p28/p29/p33. I separately tested `(P28−P33)/Q` 266 GP29 runes and direct G/Q pad transfers, all nonprose.
