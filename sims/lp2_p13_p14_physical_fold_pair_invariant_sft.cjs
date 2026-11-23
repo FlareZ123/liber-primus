@@ -136,4 +136,43 @@ console.log('p14 after original F in FOLD omitted:', body.length, 'runes');
 console.log('Source pair -> original p14 rune, same order', JSON.stringify(forward));
 console.log('Source pair -> reverse p14 rune', JSON.stringify(reverse));
 console.log('Exact 12-line half-balanced pages:', JSON.stringify(exactlyHalf));
-console.log('PASSED synthetic stationary mapping control; actual fixed-pair-fold mapping impossible.');
+/**
+ * Separately: a human could notice the eight unpaired, literally exposed
+ * GP runes as a short Vigenere key. Freeze the unique reading convention:
+ * four upper-right overhangs from top row downward, then four lower-right
+ * overhangs from upper row downward. Standard subtractive GP29 encryption,
+ * repeat from the beginning on each new physical page. The isolated p14 F
+ * in the literal FOLD word is the one candidate bypass.
+ */
+const exposedKey = topOverhang.concat(bottomOverhang);
+assert.equal(gp(exposedKey), 'WAFXFJEI');
+assert.equal(exposedKey.length, 8);
+
+/** @param {number[]} values @param {boolean} inverse @returns {number[]} */
+function eightRuneVigenere(values, inverse) {
+  return values.map((v, i) => (v + (inverse ? -1 : 1) * exposedKey[i % 8] + 29) % 29);
+}
+
+/** @param {number[]} values @returns {number} */
+function symbolIoc(values) {
+  const counts = Array(29).fill(0);
+  for (const x of values) counts[x] += 1;
+  return counts.reduce((sum, n) => sum + n * (n - 1), 0) / (values.length * (values.length - 1));
+}
+
+const p14Inverse = eightRuneVigenere(body, true);
+const p15Original = corpus.pages.find((p) => p.page === 15).indices;
+const p15Inverse = eightRuneVigenere(p15Original, true);
+assert.deepEqual(eightRuneVigenere(p14Inverse, false), body);
+assert.deepEqual(eightRuneVigenere(p15Inverse, false), p15Original);
+const solvedNative = corpus.pages.find((p) => p.page === 57).indices;
+const controlCipher = eightRuneVigenere(solvedNative, false);
+assert.deepEqual(eightRuneVigenere(controlCipher, true), solvedNative);
+assert.ok(Math.abs(symbolIoc(p14Inverse) - 0.0355119825708061) < 1e-12);
+assert.ok(Math.abs(symbolIoc(p15Inverse) - 0.03590478465090359) < 1e-12);
+console.log('Human-readable exposed-key candidate', gp(exposedKey),
+  'p14-with-source-F-bypass IoC', symbolIoc(p14Inverse),
+  'independent p15 IoC', symbolIoc(p15Inverse),
+  'authentic native solved-p57 positive IoC', symbolIoc(solvedNative));
+console.log('Exposed-key original p14 decipherment prefix:', gp(p14Inverse.slice(0, 72)));
+console.log('PASSED original physical pair invariant, native-positive and full-packet 8-rune key replay.');
