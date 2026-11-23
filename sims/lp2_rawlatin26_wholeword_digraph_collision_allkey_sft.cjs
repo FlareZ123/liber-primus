@@ -139,9 +139,53 @@ const plantedOutput=census(plantedCipher.map(pair=>pair.join(',')));
 assert.deepEqual(plantedOutput,plantedPlain);
 assert.deepEqual(plantedCipher.map(pair=>decrypt(pair).map(x=>String.fromCharCode(97+x)).join('')),native);
 
+
+// A second, independently useful conditional prediction: under a single
+// fixed block map per physical page, every duplicated plaintext two-letter
+// word *on that page* must yield the same two-rune ciphertext word.
+// Preserve each original physical page's exact count of two-rune words.
+const pageNumbers=Array.from({length:56},(_,i)=>i).filter(p=>p!==50);
+const pageTwoCounts=pageNumbers.map(page=>
+  two.filter(w=>w.start===page).length);
+assert.equal(pageTwoCounts.reduce((a,b)=>a+b,0),448);
+assert.equal(pageTwoCounts.filter(n=>n>0).length,54);
+assert.equal(Math.max(...pageTwoCounts),15);
+function pageCollisionPairs(tokens) {
+  let at=0,collisions=0;
+  for(const n of pageTwoCounts) {
+    collisions+=census(tokens.slice(at,at+n)).collisions;
+    at+=n;
+  }
+  assert.equal(at,448);
+  return collisions;
+}
+const originalPageLocal=pageNumbers.reduce((sum,page)=>sum+
+  census(two.filter(w=>w.start===page).map(w=>w.word)).collisions,0);
+assert.equal(originalPageLocal,2);
+const nativePageWindows=controlNames.map(name=>{
+  const tokens=(read('resources/control/'+name).toLowerCase()
+    .match(/[a-z]+/g)||[]).filter(x=>x.length===2);
+  assert.ok(tokens.length>448);
+  const step=Math.max(1,Math.floor((tokens.length-448)/99));
+  const results=[];
+  for(let start=0;start+448<=tokens.length;start+=step)
+    results.push(pageCollisionPairs(tokens.slice(start,start+448)));
+  const sorted=results.slice().sort((a,b)=>a-b);
+  return {source:name,windows:results.length,min:sorted[0],
+    median:sorted[Math.floor(sorted.length/2)],max:sorted.at(-1)};
+});
+assert.deepEqual(nativePageWindows.map(x=>x.windows),[103,100,100]);
+assert.deepEqual(nativePageWindows.map(x=>x.min),[165,123,165]);
+assert.deepEqual(nativePageWindows.map(x=>x.median),[270,161,230]);
+assert.deepEqual(nativePageWindows.map(x=>x.max),[383,225,415]);
+assert.ok(nativePageWindows.every(x=>x.min>originalPageLocal));
+
 console.log(JSON.stringify({
   original:{runes:source.length,completeWords:words.length,crossPageWords:32,
     twoRune:actual},
+  pagePrivateFixedCipherLanguageControl:{originalWithinPagePairCollisions:originalPageLocal,
+    sourcePageTwoWordCounts:pageTwoCounts,
+    contiguousDonorWordWindows:nativePageWindows},
   rawLatinTwoLetterLexicon:{source:'TextBlob wordfreq, includes archaic/abbreviated tokens',
     distinctTypes:lexicon.length,
     minimum448TokenCollisions:allbound,
