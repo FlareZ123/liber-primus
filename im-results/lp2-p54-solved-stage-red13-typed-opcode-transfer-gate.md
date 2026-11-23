@@ -32,7 +32,7 @@ Apply the exact historically solved p56 prime-totient operation to all 232 runes
 - All eight full-page decoded indexes of coincidence lie in **0.03351246–0.03690849**. A genuinely native-GP readable page normally shows nonuniform language structure. Separate authentic solved controls have p56 plaintext IoC **0.07002801** and clear p57 IoC **0.06270997**.
 - The complete p56 positive recovers the actual 85-rune plaintext with only F at offset56 bypassed and exactly reconstructs its original ciphertext. The p57 positive confirms its original heading reads PARABLE directly. These make the control source-native, without plaintext tuning on p54.
 
-The [single-file Windows Node22 CommonJS test](../sims/lp2_p54_authentic_solved_rubric_modes_source_sft.cjs) reproduces metadata assertions, the p56 and p57 controls, the complete eight-mask p54 inverse and exact re-encodings. It prints the first 72 runes of every deciphered original candidate and all IoC values.
+The [single-file Windows Node22 CommonJS test](../sims/lp2_p54_authentic_solved_rubric_modes_source_sft.cjs), executed successfully in [manual Windows run 45094792509](https://github.com/FlareZ123/liber-primus/actions/runs/45094792509), reproduces metadata assertions, the p56 and p57 controls, the complete eight-mask p54 inverse and exact re-encodings. It prints the first 72 runes of every deciphered original candidate and all IoC values.
 
 The IoC comparison is a descriptive diagnostic and cannot rule out every unusual 232-rune English passage. The invariant fourfold B heading and absence of readable continuation make this specific original fixed-mode transfer unpromising.
 
