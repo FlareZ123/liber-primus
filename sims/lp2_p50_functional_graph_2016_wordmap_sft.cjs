@@ -431,6 +431,8 @@ if (bodyWords.length !== 29 || bodyWords[3].toLowerCase() !== 'empty' ||
   throw new Error('The source-selected 29-word body register no longer matches the signed payload');
 }
 const bodyWordValues = bodyWords.map(word => wordRunes(word).reduce((sum, x) => sum + x, 0));
+const wordPrimeValues = words.map(word => wordRunes(word).reduce((sum, x) => sum + corpus.prime[x], 0));
+const bodyPrimeValues = wordPrimeValues.slice(1, 30);
 
 const transcription = fs.readFileSync(path.join(ROOT, 'resources/lp2-transcription.txt'), 'utf8');
 const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
@@ -668,6 +670,64 @@ if (p32Route[23] !== 32 || p32Route[21] !== wordValues[firstTheIndex] ||
     next[32] !== 115 || firstTheWalk.entry !== 115) {
   throw new Error('The independent p32 route / 11-cycle phase bridge no longer reproduces');
 }
+// A second, single-word GP-prime start from the signed 29-word body register.
+// The 2013 worked DH example supplies g=5 and shared K=2; treating these as
+// graph-step milestones is a hypothesis, not an instruction in the protocol.
+const dhK = 2;
+const mapWordIndex = bodyWords.findIndex(word => word.toLowerCase() === 'map');
+const wayWordIndex = bodyWords.findIndex(word => word.toLowerCase() === 'way');
+const mapPrimeAddress = bodyPrimeValues[mapWordIndex];
+const wayPrimeAddress = bodyPrimeValues[wayWordIndex];
+const mapPrimeWalk = walkUntilRepeat(mapPrimeAddress, next);
+const wayPrimeWalk = walkUntilRepeat(wayPrimeAddress, next);
+const mapGp0Walk = walkUntilRepeat(bodyWordValues[mapWordIndex], next);
+const mapStepG = mapPrimeWalk.path[g];
+const mapStepGPlusK = mapPrimeWalk.path[g + dhK];
+const messagePrimeMilestoneMatches = words.map((word, index) => {
+  const address = wordPrimeValues[index];
+  if (address >= 256) return null;
+  const path = walkUntilRepeat(address, next).path;
+  return { word, address, stepG: path[g], stepGPlusK: path[g + dhK] };
+}).filter(item => item && item.stepG === 121 && item.stepGPlusK === 32);
+const bodyPrimeP32Matches = bodyWords.map((word, index) => {
+  const address = bodyPrimeValues[index];
+  if (address >= 256) return null;
+  const path = walkUntilRepeat(address, next).path;
+  return { word, address, stepToP32: path.indexOf(32) };
+}).filter(item => item && item.stepToP32 >= 0);
+function advance(start, steps) {
+  let node = start;
+  for (let step = 0; step < steps; step++) node = next[node];
+  return node;
+}
+const rawGraphMilestoneStarts = Array.from({ length: 256 }, (_, start) => start)
+  .filter(start => advance(start, g) === 121 && advance(start, g + dhK) === 32);
+const p32Section = transcription.split('%')[32];
+const p32Fragments = p32Section.split(/[-.&$§]/u)
+  .map(part => Array.from(part).filter(rune => runeIndex.has(rune)).join(''))
+  .filter(fragment => fragment.length > 0);
+const p32FragmentIndex7 = p32Fragments[7];
+const p32FragmentIndex7Translit = Array.from(p32FragmentIndex7)
+  .map(rune => corpus.translit[runeIndex.get(rune)]).join('');
+const p32FragmentIndex7StartOffset = p32Fragments.slice(0, 7)
+  .reduce((sum, fragment) => sum + Array.from(fragment).length, 0);
+if (mapWordIndex !== 17 || wayWordIndex !== 12 ||
+    mapPrimeAddress !== 211 || wayPrimeAddress !== 219 ||
+    cells[219].token !== '0x' || cells[211].token !== '11' ||
+    mapPrimeWalk.path[g] !== 121 || mapPrimeWalk.path[g + dhK] !== 32 ||
+    mapPrimeWalk.path.indexOf(32) !== g + dhK || mapPrimeWalk.entry !== 115 ||
+    mapGp0Walk.path.includes(32) || wayPrimeWalk.path.includes(32) ||
+    wayPrimeWalk.entry !== 76 ||
+    messagePrimeMilestoneMatches.length !== 1 ||
+    messagePrimeMilestoneMatches[0].word.toLowerCase() !== 'map' ||
+    rawGraphMilestoneStarts.join(',') !== '211,233' ||
+    p32RuneCount !== 121 || p32Fragments.length !== 22 ||
+    p32FragmentIndex7Translit !== 'HOMEXWDSLFD' ||
+    Array.from(p32FragmentIndex7).length !== 11 ||
+    p32FragmentIndex7StartOffset !== 33) {
+  throw new Error('The source-word MAP GP-prime → EPIPHANY → p32 route no longer reproduces');
+}
+
 const cycle11Start = next[32];
 
 const ordered2 = rotateCycle(cycle2.nodes, cycle2Start);
@@ -690,13 +750,13 @@ const rMode = mode(pairs11.map(pair => pair.r));
 const bodyWordRegister = bodyWords;
 
 const output = {
-  classification: 'source-selected navigation map plus one two-symbol p0 key candidate; plaintext sign unresolved; not a verified LP2 decryption',
+  classification: 'source-selected base60 navigation map with an additional conditional GP-prime(MAP) start to p32; one two-symbol p0 key candidate; no verified LP2 decryption',
   table: {
     source: 'resources/liber-primus/lp2-grid-256.json',
     shape: grid.shape,
     byteRule: grid.byte_rule,
     byteCount: next.length,
-    note: 'The forward base60 byte-as-next-address operation is selected by the separate unique 560-case EPIPHANY SEEKS THE DEVOTED → p32 route; q/r cycle-word readout remains intermediate.'
+    note: 'The forward base60 byte-as-next-address operation is selected by the independent EPIPHANY SEEKS THE DEVOTED → p32 route; the single-word GP-prime(MAP) start is a second conditional route, not part of the four-word-window family.'
   },
   signedMessage: {
     source: 'resources/historical/cicada2016-4gq25-outguess.asc',
@@ -720,6 +780,28 @@ const output = {
       terminalRuneCount: p32RuneCount,
       heldOutEmpty: { step: 7, address: p32Route[7], gp0: wordValues[emptyIndex] },
       cyclePhase: next[32]
+    },
+    mapPrimeP32Route: {
+      startWord: bodyWords[mapWordIndex],
+      bodyOrdinal: mapWordIndex + 1,
+      gpPrimeAddress: mapPrimeAddress,
+      gp0ControlAddress: bodyWordValues[mapWordIndex],
+      wayGpPrimeAddress: wayPrimeAddress,
+      wayMapCellTokens: [cells[219].token, cells[211].token],
+      path: mapPrimeWalk.path.slice(0, 9),
+      dhWorkedExample: { p: 23, g, K: dhK, milestones: { epiphanyAt: g, p32At: g + dhK } },
+      milestones: { step5: mapStepG, step7: mapStepGPlusK },
+      epiphanyGp0: 121,
+      p32RuneCount: p32RuneCount,
+      zeroBasedFragmentIndex: 7,
+      printedFragmentOrdinal: 8,
+      fragmentStartRuneOffset: p32FragmentIndex7StartOffset,
+      fragmentRuneCount: Array.from(p32FragmentIndex7).length,
+      fragmentTransliteration: p32FragmentIndex7Translit,
+      allMessageWordMilestoneMatches: messagePrimeMilestoneMatches,
+      bodyWordsThatReachP32: bodyPrimeP32Matches,
+      rawGraphStartsMatchingMilestones: rawGraphMilestoneStarts,
+      cycleEntry: mapPrimeWalk.entry
     }
   },
   historical2014Control: {
@@ -779,7 +861,10 @@ const output = {
     'The source-word GP0 values mostly enter the 252-node basin, so the first-THE path alone is not selective; the four-word p32 route supplies the selective grammar and fixes phase115.',
     'The p0 title candidate EPIPHANY SEEKS was already known and is not counted as a blind prediction.',
     'The direct successor relation does not reproduce the signed message word order.',
-    'The cycle values have not yielded the existing p0 13-atom additive key by direct mod-29, H/H-inverse, or p56 prime/totient transforms.'
+    'The cycle values have not yielded the existing p0 13-atom additive key by direct mod-29, H/H-inverse, or p56 prime/totient transforms.',
+    'A second single-word start GPprime(MAP)=211 reaches node 121 at step g=5 and p32 at step g+K=7. Only MAP among the 43 signed-message words matches both milestones; two of 256 raw starts (211 and 233) match, with 233 not message-derived.',
+    'The 2013 DH worked-example g=5 and shared K=2 are authenticated values, but the protocol does not instruct using them as graph-step counts. The MAP route is therefore a conditional navigation hypothesis, not a proved instruction.',
+    'The p32 terminal at zero-based path index 7 aligns with p32 zero-based fragment index 7 (the eighth printed fragment, HOMEXWDSLFD). Treating graph depth as a fragment index is a secondary hypothesis; the p6 red 4-1-4-2 shape is structural, not a cipher key.'
   ]
 };
 
