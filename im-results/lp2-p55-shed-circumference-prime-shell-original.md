@@ -35,7 +35,7 @@ E = 54546906948733185277568038540584540814742666891
   = 43 × 1268532719737981052966698570711268391040527137
 ~~~
 
-Thus the removed circumference's integer is divisible by exactly the **43-rune interior count**. The 2016 independently authenticated signed clue contains 43 natural-language words; the common number43 is a possible route cue, without selecting a specific cipher operation. The factor8 also equals the public DH value A=8 in a previously studied p28 worked example, but this is a **retrospective observation** and currently does not authorize using P as a DH modulus.
+Thus the removed circumference's integer is divisible by exactly the **43-rune interior count**. The 2016 independently authenticated signed clue contains 43 natural-language words; the common number43 is a possible route cue, without selecting a specific cipher operation. The factor8 also equals the public DH value A=8 in a previously studied p28 worked example, but a **direct transplant of the original worked-example group (g=5, A=8) to modulus P is mathematically impossible**. Specifically P ≡ 5 (mod 8), 5 is a quadratic residue modulo P, and 8 is a quadratic nonresidue. Thus no exponent a satisfies 5^a ≡ 8 (mod P). This falsifies the most immediate source-derived DH interpretation without relying on plaintext or chosen parameters. A different creator-specified group/operand would still require first-party evidence.
 
 ## Original-input controls
 
