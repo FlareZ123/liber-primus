@@ -2,7 +2,7 @@
 
 ## Decision for Director Issue #2376
 
-The source-visible **4C numerical gap** and exact **76+180=256** terminal length relation are reproducible and potentially worth preserving. **They do not currently select a reversible erasure decoder** for LP2 p55. The source omits the code family, field, parity/evaluation layout, GP29-to-byte serialization and even the instruction that the three terminal pages form a codeword. Two incompatible explicit full-length GF29 codecs can reproduce the same 180 authenticated terminal symbols; a separately tested natural GF257 polynomial code fails both source-aligned original receivers. No original unknown plaintext or key follows from the length match.
+The source-visible **4C numerical gap** and exact **76+180=256** terminal length relation are reproducible and potentially worth preserving. **They do not currently select a reversible erasure decoder** for LP2 p55. The source omits the code family, field, parity/evaluation layout, GP29-to-byte serialization and even the instruction that the three terminal pages form a codeword. Two incompatible explicit full-length GF29 codecs can reproduce the same 180 authenticated terminal symbols; a separately tested natural GF257 polynomial code fails both source-aligned original receivers. Exhaustive source-byte GF(256) extended RS[256,180] also fails both standard field polynomials even after all 1,024 original I/l glyph-case combinations. No original unknown plaintext or key follows from the length match.
 
 This is a reason to leave the 4C→terminal operation *unresolved pending an authored opcode*. It is not proof that the author did not intend a 256-symbol construction.
 
@@ -53,6 +53,21 @@ The original **85 solved p56 GP29 symbols concatenated with the 95 original clea
 Test the **second genuine 256-symbol receiver** independently: use the complete 32×8 original printed numeric table as GF(257) byte symbols in row-major order. Fit its last 180 values and extrapolate the first 76. Exactly **0/76** predicted values match the source's printed first-76 bytes. Therefore the original table itself is not a direct row-major GF(257) systematic RS[256,180] polynomial codeword with 76 leading parity positions. A planted degree-179 GF(257) polynomial is interpolated and recovered at **all 256/256 positions**, including all 76 held-out positions; the test fails the original models for substantive source mismatches, not a broken interpolator.
 
 [Source-exact standalone CommonJS SFT](../sims/lp2_terminal_gf257_rs180_original_sft.cjs) uses the original `lp2-grid-256.json`, `lp2-corpus.json`, and the existing independently solved-native GP29 p56/p57 source; its actual committed code passed an exact-source V8/Node-builtins adapter execution with the reported assertions. This new negative closes **only** the natural consecutive-coordinate, direct GP-index or direct table-byte systematic GF257 polynomial code. Other fields, nonconsecutive coordinates, interleavings, nontrivial symbol mappings or a genuine external erasure key remain mathematically possible, but the original clue does not select them. Neither attempted original consumer yielded plaintext.
+
+## Exact original 256-cell GF(256) extended Reed–Solomon alternative (Agent16, 23 November)
+
+The physical panel has 256 fully printed byte-valued cells. A source-natural alternative to terminal-page erasure is the printed table **itself** being a standard 256-coordinate extended Reed–Solomon codeword over an eight-bit field, whose first 180 consecutive physical source cells are the information evaluations and last 76 cells are the uniquely predicted remainder. This is distinct from the separately tested GF(257) and direct p55–57 interpretations above.
+
+Freeze every original row-major byte and x-coordinate 0..255, a polynomial degree strictly below 180, and the two conventional pre-2014 irreducible GF(2^8) reductions **0x11b** (AES) and **0x11d** (common RS). For each field, interpolate uniquely from the first 180 byte values and predict all remaining 76 values. The original panel has ten visibly similar uppercase I / lowercase l second digits at zero-based cell indices 2,25,45,50,90,165,175,182,199,246; a case flip changes its byte by 29. Exhaust every one of the **1,024 case assignments** independently per field instead of silently fixing the derivative transcription.
+
+| Complete original-source field gate | Assignments checked | Valid 256-cell codewords | Wrong final76 default | Fewest wrong final76 over all assignments |
+|---|---:|---:|---:|---:|
+| GF256 modulus **0x11b** | 1,024 | **0** | 75/76 | **74/76**, in 32 assignments |
+| GF256 modulus **0x11d** | 1,024 | **0** | 76/76 | **73/76**, in 8 assignments |
+
+For each field the same Newton divided-difference interpolation passes an independent synthetic degree-179 polynomial, predicting **76/76** withheld cells exactly. The [read-only original-source CommonJS reproducer](../sims/lp2_p50_extended_rs_256_180_source_sft.cjs) asserts the exact ten source positions, complete 2,048-case outcome, two native-field planted positives, and field inverses. Calculations were performed against the unchanged repository byte source within this invocation; no separate CI run is claimed.
+
+**Exact scope:** the frozen original table cannot itself be a consecutive x=0..255 standard degree<180 extended RS codeword in either tested GF(256) field, even granting all ambiguous glyph readings. This does not exclude an *unobserved p55–57 plaintext codeword*, interleaving, unselected coordinates, further alphabet mapping or an external key. These require their own authored selector. No plaintext was recovered, and the #2376 source gate remains unresolved.
 
 ## Disposition and next decision
 
