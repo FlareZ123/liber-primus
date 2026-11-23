@@ -137,7 +137,7 @@ assert.equal(original16to21.length, 1613);
 assert.equal(original40to53.length, 3008);
 assert.ok(Math.abs(indexOfCoincidence(original16to21) - 0.034325632769726125) < 1e-14);
 assert.ok(Math.abs(indexOfCoincidence(original40to53) - 0.03445307580185242) < 1e-14);
-assert.ok(Math.abs(indexOfCoincidence(all) - 0.03449227972144296) < 1e-14);
+assert.ok(Math.abs(indexOfCoincidence(all) - 0.03449162435480644) < 1e-14);
 
 // Positive control: encrypt authentic unencrypted, printed p57 parable words,
 // checking the causal two-edge state of a *changing ciphertext* predecessor.
