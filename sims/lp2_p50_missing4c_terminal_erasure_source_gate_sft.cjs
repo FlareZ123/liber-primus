@@ -64,7 +64,7 @@ assert.equal(parseInt('4C', 16), 76);
 assert.equal(4 * 60 + table.alphabet.indexOf('C'), 252);
 assert.equal(tokens[252], '30');
 assert.equal(3 * 60, 180);
-assert.equal(parseInt('4C', 16) + parseInt('30', 60), 256);
+assert.equal(parseInt('4C', 16) + 3 * 60, 256);
 
 /**
  * Direct GP29 glyph/byte correspondence is possible only if every occurrence
