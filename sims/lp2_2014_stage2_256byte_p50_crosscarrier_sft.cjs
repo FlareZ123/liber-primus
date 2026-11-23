@@ -47,6 +47,33 @@ assert.equal(historicalBytes.length,256);
 /* Explicit historical 2013/2014 XOR precedent: one exact, aligned
  * source-order byte xor with no fitted offset, direction or key phase.
  */
+/* The other two January2014 same-length original onion pages:
+ * <!--1033--> and X-Cicada:3301. All three chronological 256-byte
+ * streams are known sources, hence there is ONE natural XOR of all
+ * three followed by the physically 256-byte LP2 numeric receiver.
+ * These hex bytes are period participant archive objects.
+ */
+const stage3Hex="87de5b7fa26ab85d2256c453e7f5bc3ac7f25ee743297817febd7741ededf07ca0c7e8b1788ea4131441a8f71c63943d8b56aea6a45159e2f59f9a194af23eaabf9de0f3123c041c882d5b7e03e17ac49be67cef29fbc7786e3bda321a176498835f6198ef22e81c30d44281cd217f7a46f58c84dd7b29b941403ecd75c0c735d20266121f875aa8dec28f32fc153b1393e143fc71616945eea3c10d6820bd631cf775cf3c1f27925b4a2da655f783f7616f3359b23cff6fb5cb69bcb745c55dff439f7eb6a4094bd302b65a84360a62f94c8b010250fcc431c190d6ed8cc8a3bfce37dddb24b93f502ad83c5fa21923189d8be7a6127c4105fcf0e5275286f2";
+const stage4Hex="bf1d5574ca36efd524e6c34c26cbd628b19aa835aceb94ea7f2ca7f33d1b8f51476bc597d4bf9ad5111d8f39ef5351b3b090bce47f023002fe69928e79f6f8147f6fe051f2f159041f932f5190308d7441fc3cecead0851662d3217485827e640a4183fa5bc8cef5ff7d1473d2746a37fbc8b94318ff0d3aeb467017c0ea5cb33b3e6967453986e1450b35ad47861f679cf7db5a6c170bcfb67544983ec1e36b27ee8c5721da39d27dbfa0cdc15ba3cbaa425e8a8b96b81ab665f3ebc41563a0e9270695d3d68887cfab2c07b290718307f764afba684b17fcfd71323f64206e5fa378b4ee89e80885733080065dd34a5c838898906b8d43de9f1d8eb6922bad";
+const stage3Bytes=Buffer.from(stage3Hex,"hex");
+const stage4Bytes=Buffer.from(stage4Hex,"hex");
+assert.equal(stage3Bytes.length,256);
+assert.equal(stage4Bytes.length,256);
+const authenticThreeOnionXOR=Buffer.alloc(256);
+const fourSourceXOR=Buffer.alloc(256);
+for(let i=0;i<256;i++){
+  authenticThreeOnionXOR[i]=historicalBytes[i]^stage3Bytes[i]^stage4Bytes[i];
+  fourSourceXOR[i]=authenticThreeOnionXOR[i]^printedBytes[i];
+}
+function byteMetrics(buffer){
+  return {
+    strict_ascii:buffer.filter(x=>x>=32&&x<=126).length,
+    unique_bytes:new Set(buffer).size,
+    entropy_bits_per_byte:entropy(buffer),
+    hex_prefix:buffer.toString("hex").slice(0,96),
+    known_file_header:knownHeaders.some(h=>buffer.toString("hex").startsWith(h)),
+  };
+}
 const decoded = Buffer.alloc(256);
 for(let i=0;i<256;i++)decoded[i]=printedBytes[i]^historicalBytes[i];
 const recovered = Buffer.alloc(256);
@@ -65,7 +92,8 @@ const p56Target="36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8
 assert.match(p56Target,/^[0-9a-f]{128}$/);
 const terminalDigestChecks=[
   ["original_p50_source_grid",printedBytes],
-  ["one_literal_prior_stage_xor",decoded]
+  ["one_literal_prior_stage_xor",decoded],
+  ["one_literal_full_three_onion_xor_with_table",fourSourceXOR]
 ].map(([sourceName,bytes])=>({
   source:sourceName,
   sha512:crypto.createHash("sha512").update(bytes).digest("hex"),
@@ -102,6 +130,8 @@ const report={
   decrypted_entropy:entropy(decoded),
   decrypted_hex_prefix:decoded.toString("hex").slice(0,96),
   p56_128hex_SHA512_scope:terminalDigestChecks.map(v=>({source:v.source,sha512_equals_p56:v.sha512===p56Target,sha512_prefix:v.sha512.slice(0,32)})),
+  triple_source_2014_onion_xor:byteMetrics(authenticThreeOnionXOR),
+  four_source_2014_three_onions_plus_original_grid:byteMetrics(fourSourceXOR),
   decoded_has_whole_grammar_or_file_header:!!magic.length,
   exact_hist_2014_RSA_modulus_bits:N.toString(2).length,
   exact_RSAPKCS1_four_8x8_cipher_groups:compare,
