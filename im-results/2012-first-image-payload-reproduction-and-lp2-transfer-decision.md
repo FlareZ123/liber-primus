@@ -1,6 +1,6 @@
 # 2012 opening-image payload: byte-exact extraction and LP2 transfer decision
 
-**Decision (23 November 2026):** the 2012 opening image and its two separate payload channels have been recovered from two pinned community mirrors, and the historical OutGuess extraction has been independently reproduced with the pinned OutGuess 0.4 source. The result adds no LP2 key, operation selector, or plaintext. **Close the proposed 2012→LP2 transfer; retain this material as historical solve-path context.**
+**Current status (23 November 2026):** the 2012 opening image and both payload channels have been recovered from two pinned community mirrors, and the historical OutGuess extraction has been independently reproduced with pinned OutGuess 0.4. Its downstream book-code phrase yields a 75-symbol GP29 candidate that matches the 75 non-carry runes on LP2 p55. Direct substitution and constant-Caesar tests fail; a boundary-changing or polyalphabetic relation remains unproven. **Reopen the 2012→LP2 question for one bounded p55 crib test; no LP2 plaintext or key is yet recovered.**
 
 ## Original image and source limits
 
@@ -49,20 +49,28 @@ The output is a **book-code instruction**, a Reddit destination (`r/a2e7j6ic78h0
 
 A tempting LP2 overlap is that this payload has 76 coordinate entries while unknown p55 has 76 runes. This is a count-level match, not a selected transfer: the 2012 syntax is line:character addressing into a separately identified book, whereas p55 is a 76-rune page, not a 76-line reference text. Neither the 2012 payload nor an LP2 instruction says to map these coordinates to p55 rune positions, turn them into a GP29 key, or use them as a permutation. No source-defined operation connects the two 76-element objects.
 
-## LP2 transfer test: no source-selected receiver
+## LP2 transfer candidate: 75-symbol p55 crib
 
-The recovered 2012 material demonstrates three historically real operations or grammars:
+The recovered OutGuess payload contains 76 line:character coordinates. The pinned 2012 walkthrough resolves the book code to the exact visible message:
 
-1. the explicitly cued ASCII Caesar −4 URL transform;
-2. OutGuess extraction from the named 2012 JPEG;
-3. a book code whose external text and coordinate grammar are resolved by the 2012 subreddit chain.
+\`CALL US AT US TELE PHONE NUMBER TWO ONE FOUR THREE NINE OH NINE SIX OH EIGHT\`
 
-None independently selects an LP2 page, an LP2 ciphertext span, an LP2 alphabet, or an LP2 key/operand. The Caesar shift is a local instruction for the 2012 URL, not a reusable GP29 shift. OutGuess is a recurring historical tool, but recurrence alone does not select an LP2 carrier or password. The book-code coordinates address the 2012 reference text, not LP2 rune positions.
+This is **76 characters including spaces**. In GP29 transliteration, the \`TH\` in \`THREE\` is one rune, so the phrase has **75 GP29 tokens** (59 letter-runes plus 16 spaces).
 
-This is not a new visual-inheritance or creator-prior search. The already completed [#2332 visual audit](https://github.com/FlareZ123/liber-primus/issues/2332) found no new transferable 2012–13 visual opcode, and [#2352 historical solve-path audit](https://github.com/FlareZ123/liber-primus/issues/2352) found no new source-selected LP2 operation. The reconciled [historical player solve-path contract](../workplace/historical-player-solvepath-operator-contract.md) already distinguishes genuine historical operations from unsupported transfers. The original LP2 corpus mapping is also explicit: LP2 physical pages 0–57 are archive images `17.jpg`–`74.jpg`, not this 2012 image ([source archive README](../resources/liber-primus/README.md)).
+The canonical LP2 transcription has **76 runes on p55**. Its first rune, \`ᛝ\`, completes a word carried over the p54/p55 page boundary. Removing that one carry-in leaves **75 p55 body runes**. Thus the book-code phrase and p55 body have an exact 75-token length alignment. This is stronger than the superficial “76 coordinates versus 76 runes” count match.
 
-The separate [58-image 2014 original-distribution/carrier analysis](lp2-2014-original-distribution-carrier-gate.md) finds all 58 LP2 JPEGs byte-identical to the dated May 2014 Stage11 image set and no sibling key file. Its Huffman/entropy comparison also distinguishes the 58 LP2 images from the known historical OutGuess carrier-writer fingerprint. That is a bounded writer-representation result, not a proof that all forms of image steganography are absent; importantly, it still supplies no source selector for applying OutGuess to an LP2 page.
+The alignment is not yet a plaintext identification:
 
-**Decision:** no LP2 operation was run. The task's required independent LP2 selector is absent, so testing Caesar −4, OutGuess, the 2012 book, or its 76 coordinates against LP2 would be an unconstrained transfer. Close this branch unless a newly authenticated LP2 clue names a specific receiver and supplies the missing operation/key/coordinate grammar.
+- The phrase has 17 words; p55 has 16 complete printed word groups after the carry-in. The word-length vectors do not match after merging any single adjacent phrase-word pair.
+- A one-to-one monoalphabetic substitution over the 75-token alignment fails.
+- No constant GP29 Caesar shift maps the phrase's letter-runes to the p55 body.
+- No p55 rune occurs 16 times, so there is no straightforward single-rune encoding of all 16 plaintext spaces.
+- No Vigenère/OTP key search or coordinate-to-rune conversion has been run. Those would require a separately justified key schedule.
 
-**Research result class:** exact historical payload recovery and reproducible extraction; negative LP2 transfer decision. **No unknown LP2 plaintext, authentic LP2 key, complete inverse, or final Cicada destination recovered.**
+The exact source selector is therefore **p55's 75-rune body length after its documented one-rune page carry**, and the candidate operand is the 75-token GP29 rendering of the 2012 book-code message. The remaining uncertainty is the reversible mechanism that could account for the changed word boundaries and symbol mapping. A source-constrained boundary-changing reader is the cheapest next discriminating test; Agent37, who is already investigating that problem under [#2278](https://github.com/FlareZ123/liber-primus/issues/2278), has been sent the exact crib and the falsification results.
+
+This candidate should not be promoted to \`results/\` or described as plaintext unless a fixed, reversible mechanism decrypts the original p55 ciphertext and independently validates beyond this one phrase. The earlier no-transfer conclusion is superseded by this exact-length alignment, but the transfer remains **unproven**.
+
+**Decision:** keep the p55 crib test open and bounded. Do not run generic Caesar, OutGuess, book-cipher, Vigenère, or OTP sweeps. No unknown LP2 plaintext, authentic LP2 key, complete inverse, or final Cicada destination has yet been recovered.
+
+**Research result class:** exact historical payload recovery; source-derived 75-token p55 crib candidate; direct substitution/Caesar exclusions; unresolved cipher mechanism.
