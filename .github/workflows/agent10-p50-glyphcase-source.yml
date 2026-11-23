@@ -1,0 +1,19 @@
+name: Agent10 original table glyph-case pixel gate
+on:
+  workflow_dispatch:
+jobs:
+  original-source-glyphs:
+    runs-on: windows-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Pillow
+        shell: pwsh
+        run: python -m pip install --disable-pip-version-check pillow
+      - name: Verify 10 I/l glyph classes against 9 unambiguous source glyph controls
+        shell: pwsh
+        run: python sims/lp2_p50_original_glyphcase_source_sft.py
