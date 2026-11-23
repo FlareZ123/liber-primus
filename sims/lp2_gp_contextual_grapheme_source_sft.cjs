@@ -150,6 +150,52 @@ assert.ok(solved.includes('LICE'), 'Source-runic LIKE has C/K spelling ambiguity
 assert.ok(solved.includes('TUNNELNG'), 'Source-runic TUNNELING requires NG/ING context');
 assert.ok(solved.includes('DIUINITY'), 'Source-runic DIVINITY requires U/V context');
 
+// A source-only, low-cost sanity null for putative intentional split-ligature
+// choices. Reordering signs WITHIN each complete original printed word
+// preserves every original word length and its exact rune multiset, including
+// the all-secret within-word equality multiplicity. It randomizes only order.
+let lcg = 3301;
+function nextUnit() {
+  lcg = (Math.imul(lcg, 1664525) + 1013904223) >>> 0;
+  return lcg / 4294967296;
+}
+const nullTrials = 4096;
+let pairSum = 0, pairSumSq = 0, witnessSum = 0, witnessSumSq = 0;
+let countPairsGe = 0, countWitnessesGe = 0;
+for (let trial = 0; trial < nullTrials; trial++) {
+  let localPairs = 0, localWitnesses = 0;
+  for (const word of original) {
+    const shuffled = word.slice();
+    for (let j = shuffled.length - 1; j > 0; j--) {
+      const k = Math.floor(nextUnit() * (j + 1));
+      [shuffled[j], shuffled[k]] = [shuffled[k], shuffled[j]];
+    }
+    let splittable = 0, hasCompound = false;
+    for (let i = 0; i < shuffled.length; i++) {
+      if (compound.has(shuffled[i])) hasCompound = true;
+      if (i + 1 < shuffled.length && compound.has(shuffled[i] + shuffled[i + 1])) splittable++;
+    }
+    localPairs += splittable;
+    if (splittable && hasCompound) localWitnesses++;
+  }
+  pairSum += localPairs;
+  pairSumSq += localPairs * localPairs;
+  witnessSum += localWitnesses;
+  witnessSumSq += localWitnesses * localWitnesses;
+  if (localPairs >= adjacentAmbiguities) countPairsGe++;
+  if (localWitnesses >= witness.length) countWitnessesGe++;
+}
+const nullPairsMean = pairSum / nullTrials;
+const nullWitnessMean = witnessSum / nullTrials;
+const nullPairsStd = Math.sqrt(
+  (pairSumSq - nullTrials * nullPairsMean ** 2) / (nullTrials - 1));
+const nullWitnessStd = Math.sqrt(
+  (witnessSumSq - nullTrials * nullWitnessMean ** 2) / (nullTrials - 1));
+assert.equal(nullPairsMean, 97.7451171875);
+assert.equal(nullWitnessMean, 57.68408203125);
+assert.equal(countPairsGe, 1697);
+assert.equal(countWitnessesGe, 3441);
+
 const opening = wordsIn(allParts.slice(0, 3).join('%'));
 const holdout = wordsIn(allParts.slice(40, 53).join('%')); // physical p40..53, skip empty p50
 assert.ok(opening.flat().length >= 300);
@@ -165,6 +211,11 @@ console.log('WITNESS word0_original=', witness[0].original.join('|'));
 console.log('WITNESS word0_alternative=', witness[0].alternative.join('|'));
 console.log('WITNESS both_spell=', witness[0].original.join(''));
 console.log('SOLVED_POSITIVE p57 requires LICE/LIKE, DIUINITY/DIVINITY, TUNNELNG/TUNNELING');
+console.log('ORIGINAL_SPELLING_LOCAL_NULL trials=', nullTrials,
+  'pair_mean=', nullPairsMean, 'pair_sd=', nullPairsStd,
+  'pair_p_right=', (countPairsGe + 1) / (nullTrials + 1),
+  'same_length_word_mean=', nullWitnessMean, 'same_length_word_sd=', nullWitnessStd,
+  'same_length_word_p_right=', (countWitnessesGe + 1) / (nullTrials + 1));
 console.log('GREEDY_LATIN_RESERIALIZATION source_unknown_changed_words=', originalNoncanonical.length,
   'source_unknown_changed_rune_count=', 12956 - greedyTotal,
   'authentic_solved_p57_changed_words=', 0);
