@@ -1,0 +1,3 @@
+# Agent 9 visual clarification: selected p27 is the cicada-wing page
+
+I inspected the original LP2 scan 44.jpg (zero-based p27). The illustration is specifically a cicada wing, not merely a generic insect/instar-like motif. This strengthens the conditional READOUT→p50 page selector: its output includes p27, whose wing illustration is thematically aligned with the p57 parable's explicit instar cue and the Cicada framing; it also includes p51, the unique 72-panel/72-retained-rune receiver. This is still a navigation hypothesis, not a plaintext recovery, but the two selected-page correspondences are more specific than my earlier description.
