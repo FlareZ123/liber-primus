@@ -11,6 +11,7 @@
  *
  * Usage:
  *   node sims/lp2_p55_shed_cado_full_log_finalize_sft.cjs <log_Q> <log_E>
+ *   node sims/lp2_p55_shed_cado_full_log_finalize_sft.cjs --log43 <log_Q> <log_43>
  *
  * Without arguments, run a planted virtual-log arithmetic positive control.
  * This is NOT a decryption unless an independently authored plaintext/key
@@ -78,6 +79,8 @@ if (process.argv.length === 2) {
   const recoveredLarge = mod(plantedVirtualBaseLogE
     * inverse(plantedVirtualBaseLogQ, R), R);
   assert.equal(recoveredLarge, plantedX % R);
+  const plantedLog43 = mod((plantedX - 1n) * plantedVirtualBaseLogQ, R);
+  assert.equal(mod(1n + plantedLog43 * inverse(plantedVirtualBaseLogQ, R), R), plantedX % R);
   const full = reconstruct(recoveredLarge);
   assert.equal(full % M, xSmall);
   assert.equal(full % R, recoveredLarge);
@@ -85,14 +88,18 @@ if (process.argv.length === 2) {
   console.log('PASS: planted virtual-base log division, CRT and source smooth residue');
   console.log('No actual large-subgroup logarithms have been supplied.');
 } else {
-  assert.equal(process.argv.length, 4,
-    'Pass exactly two CADO virtual logs: log(Q), log(E), modulo prime R');
-  for (const argument of process.argv.slice(2)) {
+  const useSmallFactor = process.argv[2] === '--log43';
+  assert.equal(process.argv.length, useSmallFactor ? 5 : 4,
+    'Pass <logQ> <logE>, or --log43 <logQ> <log43> for E=43Q');
+  for (const argument of process.argv.slice(useSmallFactor ? 3 : 2)) {
     assert.match(argument, /^-?[0-9]+$/, 'Decimal virtual log required');
   }
-  const virtualQ = mod(BigInt(process.argv[2]), R);
-  const virtualE = mod(BigInt(process.argv[3]), R);
+  const virtualQ = mod(BigInt(process.argv[useSmallFactor ? 3 : 2]), R);
+  const virtualSecond = mod(BigInt(process.argv[useSmallFactor ? 4 : 3]), R);
   assert.notEqual(virtualQ, 0n);
+  // E = 43*Q in the original integer source, and E < P.
+  // Thus log_CADO(E) = log_CADO(43) + log_CADO(Q) modulo R.
+  const virtualE = useSmallFactor ? mod(virtualSecond + virtualQ, R) : virtualSecond;
   const xLarge = mod(virtualE * inverse(virtualQ, R), R);
   const x = reconstruct(xLarge);
   assert.ok(x >= 0n && x < P - 1n);
