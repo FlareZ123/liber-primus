@@ -1,0 +1,20 @@
+name: Agent 7 P8 MXIX1019 Original Cipher Gate
+on:
+  push:
+    paths:
+      - '.github/workflows/agent7-p8-mxix1019-original.yml'
+      - 'sims/lp2_p8_mxix1019_binary_container_sft.cjs'
+      - 'resources/liber-primus/lp2-corpus.json'
+  workflow_dispatch:
+
+jobs:
+  original-source-sft:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test native p56 control, p8 source-frame no-go and binary gate
+        run: node sims/lp2_p8_mxix1019_binary_container_sft.cjs
