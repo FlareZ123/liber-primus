@@ -59,7 +59,20 @@ A second independent 200,000-trial Python Mersenne-Twister word-permutation cont
 
 There is a compact potential player action: solved **SHED** clue → complete p55 word interiors → standard original BASE29 reading → a directly checkable 206-bit prime, with circumference integer independently carrying the number43. This is more operationally specific than a generic p55 prime-sum coincidence, but it **does not yet decode a rune**. A creator-authored rule must still explain why one should factor out eight, what the resulting prime is for, and how the circumference's 43 divisor directs an actual receiver. The 2013/2016 references and any interpretation as a DH key remain conjectural.
 
-A natural DH-style option would assign modulus P and generator Q = E/43. This makes a valid group but leaves a private exponent or ciphertext consumer unspecified; because P−1 includes a 157-bit prime factor, a generic discrete-log search cannot be passed off as a feasible human step. The simplest alternate assignment g=2, A=8 yields private exponent3, with B=Q and mathematically computable shared value Q³ mod P; no source instruction has yet selected this assignment or established an authentic plaintext receiver. These are explicit alternatives to the disproved historical g=5/A=8 transplant.
+### One fully specified conditional DH computation and a finite consumer gate
+
+The signed 2013 Cicada DH example supplies a historical operation grammar, and the original p55 SHED extraction supplies four numerically typed quantities **without fitting any output**: field prime p=P=N/8; field generator g=Q=E/43 (proven primitive in GF(P)); putative private exponents a=8 and b=43 (the two visible exact division factors). The standard DH shared secret is therefore **fully calculable**:
+
+~~~
+S = g^(a*b) mod p = Q^344 mod P
+  = 40058585108914257367732574161222353642573409865793191134873737
+~~~
+
+S is a 205-bit integer requiring 43 GP29 digits. This is a **conditional source-derived shared-secret candidate**, subject to the unsupported premise that a,b should be the two extracted factors and p55 was designed to invoke a new DH exchange. Its standard cryptographic computation is reproducible and reversible at the key-agreement level, but no first-party clue specifies a KDF, rune-cipher mode, ciphertext receiver, key clock, or how to use S as an output key. A fully secret arbitrary discrete-log solution is unnecessary under the simple a=8,b=43 hypothesis; the historical live DH source supplies no accompanying payload cipher.
+
+Freeze the simplest additive GP29 use of the 43 base29 digits of S as a repeating page-local p55 key, starting with the first physical p55 rune. The direct original inverse has **IoC .03578947** for subtraction and **.03824561** for addition; the unmodified p55 ciphertext is **.03789474**. Neither yields coherent GP-native words. A further natural *totient-exponent* proposal, selected by prime P and integer43, treats every 42-rune source block as one BASE29 integer and raises it to the 43rd power or the inverse exponent 43^(−1) mod φ(P). Since **29^42 < P < 29^43**, 42 is the maximum guaranteed in-range source-block width. On the original p54–55 308-rune contiguous chapter, **4/7 forward 43rd-power** and **5/7 inverse-power** outputs exceed the 42-digit GP29 register. Neither raw map is a complete 42-rune-to-42-rune cipher without a further source-selected framing or cycle-walking rule. The entire terminal chapter remains encrypted.
+
+The previously discussed assignment g=2,A=8 gives a trivial private exponent3 with B=Q but also lacks an independently selected consumer. Direct historical g=5,A=8 is mathematically impossible for P by quadratic characters. These tests narrow specific operators and do not rule out an intended use of P and Q in another mechanism.
 
 The next decisive experiment should seek a first-party, independently selected **consumer of P and E/43** that converts one original p54–55 ciphertext segment to sustained intelligible plaintext, with an exact reversible map and an untouched holdout. Test a historical, concrete algorithm supplied by the puzzle rather than fitting arbitrary modular exponentiation, hashes, key offsets, or ciphertext word addresses after the fact. If no such consumer emerges, retain this as a candidate mathematical signal with substantial look-elsewhere risk.
 
