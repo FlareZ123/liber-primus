@@ -6,17 +6,17 @@
 
 Physical p13 (original `30.jpg`) contains **272 original GP29 runes** on twelve printed lines; its first six lines and last six lines each contain **136 runes**. Its facing page p14 (original `31.jpg`) has **137 original runes** and prints the exact second word `FOLD`. Both pages carry complementary trees at facing margins. A finite-state trace is a mathematically distinct possibility from the already tested repeated pad or plain output substitution: **136 paired inputs could produce exactly 136 incremental state updates plus one initial state, explaining 137 without deleting the F**.
 
-Freeze the untouched p14 source as (C_0,\ldots,C_{136}). For each source pair ((A_i,B_i)) let a fixed, possibly secret set of field coefficients (u,v,w\in\mathbb F_{29}) update a previous output by
+Freeze the untouched p14 source as `C[0..136]`. For each source pair `(A[i], B[i])`, let a fixed, possibly secret coefficient triple `(u,v,w)` over the GP29 field update the previous state:
 
-[
-C_{i+1}=C_i+uA_i+vB_i+w\pmod{29},\qquad i=0,\ldots,135.
-]
+```text
+C[i+1] = (C[i] + u*A[i] + v*B[i] + w) mod 29,  i=0..135.
+```
 
-Test precisely three source-shaped pair registers: consecutive p13 pairs ((p_{2i},p_{2i+1})), aligned flat 136+136 halves ((p_i,p_{i+136})), and reverse-flat folded halves ((p_i,p_{271-i})). These are arithmetically definite and do **not** assert that aligned flat text is an exact same-column paper fold: physical fold geometry was separately measured as only **132 overlaps plus eight overhangs** [here](lp2-p13-p14-fold136-allsecret-wordtree.md).
+Test precisely three source-shaped pair registers: consecutive p13 pairs `(p[2i], p[2i+1])`, aligned flat 136+136 halves `(p[i], p[i+136])`, and reverse-flat folded halves `(p[i], p[271-i])`. These are arithmetically definite and do **not** assert that aligned flat text is an exact same-column paper fold: physical fold geometry was separately measured as only **132 overlaps plus eight overhangs** [here](lp2-p13-p14-fold136-allsecret-wordtree.md).
 
 ## Exact complete-original outcome
 
-For each proposed pairing, compute all 136 actual p14 finite differences (\Delta_i=(C_{i+1}-C_i)\bmod29). For each of the (29^2=841) choices of (u,v), count the 29 possible residual offsets (w_i=(\Delta_i-uA_i-vB_i)\bmod29). The maximum bin occupancy over every (u,v,w) is the **exact best original trace reproduction** in the entire 29³-secret-key model. No text model, plaintext crib, hidden offset, sign or fitted traversal is involved.
+For each proposed pairing, compute all 136 actual p14 finite differences `delta[i] = (C[i+1]-C[i]) mod29`. For each of the `29² = 841` choices of `(u,v)`, count the 29 possible residual offsets `w[i] = (delta[i]-u*A[i]-v*B[i]) mod29`. The maximum bin occupancy over every `(u,v,w)` is the **exact best original trace reproduction** in the entire 29³-secret-key model. No text model, plaintext crib, hidden offset, sign or fitted traversal is involved.
 
 | Pairing of 272 p13 source runes | Best matching p14 steps | Maximizing `(u,v,w)` | Required by a genuine trace |
 | --- | ---: | --- | ---: |
