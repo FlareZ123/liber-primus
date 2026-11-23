@@ -48,6 +48,21 @@ Thus, under **any possible secret 13-symbol key** and any alignment, an interval
 
 A 200-rune native historic-source segment encrypted with an arbitrary fixed 13-key passes the independently planted exact detection, and the existing seven-quote source positives remain intact. The two actual maxima are too short for an authentic key/crib. **This exhausts the full historical seven-source / any-location / all-secret fixed-period-13 Vigenère plaintext-reuse family** under the unchanged original glyph spelling, including changed word boundaries. It does not rule out authentic 2014-style selectively marked F-skips in LP2 if someone first discovers a genuine LP2 ink marker-to-clock selector, or any key period other than13. It recovers no unknown plaintext or cipher key.
 
+
+## Seven historically ordered 2014 texts as one fixed running key
+
+The same sources have a different, independently testable role as a **key**, not plaintext. Before reading the original cipher output, freeze the exact 1,163-rune sequence of the seven historical 2014 source pages in distribution order (10, 11, 12, 13, 107, 167, 229), then **repeat** that entire GP29 source stream from LP2 p0 rune index0 without a hand-adjusted phase, chapter rekey, subset, deleted word or fitted skip marker. The ordinary additive/subtractive GP29 inverse is historically documented in LP1 and the authentic Onion6 KOAN. This is a motivated but **not first-party-instructed** hypothesis; neither stage explicitly directs solvers to recycle all seven texts as a later-period key.
+
+The actual full-book original-input inverse has the following native-GP29 index of coincidence, versus **0.06270997** for independently clear LP2 p57 (95 original source GP runes). Every indicated register preserves the exact original order and source-pinned page boundaries:
+
+| Frozen source-as-key direction | p0–2, 729 original runes | p16–21, 1,613 original runes | pp40–53, 3,008 original runes | Full unknown p0–55, 12,956 runes |
+|---|---:|---:|---:|---:|
+| GP29 + historical source stream | 0.03450459 | 0.03440255 | 0.03453179 | 0.03446713 |
+| GP29 − historical source stream | 0.03407498 | 0.03437025 | 0.03470117 | 0.03451634 |
+
+The read-only source SFT tests both complete actual registers and replays a separate 400-rune historically sourced GP29 positive through the same fixed-index cipher. Neither direction approaches the clear p57 GP-native prose control across the opening receiver and independent late-page holdout; neither produces an authentic, linguistically interpretable decrypted passage. This rejects the **exact all-seven-2014-source, single global phase0, period1163 repeating running key** as a direct native-GP LP2 decoder. A specifically authored subset, offset, transposition or key-derivation instruction would constitute a distinct hypothesis, and no such instruction is established here. Do not rescue the present negative by selecting from that combinatorial family after seeing output.
+
+
 ## Research consequence
 
 This source-specific original-input decision closes the literal quotation-reuse fork and the unchanged-period13 secret-Vigenere historical-plaintext fork for all **seven physically quoted** LP2 spans and the seven archived Onion6/2014 post-square pages. It does **not** undermine the 2014 stage-specific `FIRFUMFERENFE` decryptions or exclude the historical Onion6 prose as a possible **running key**, paragraph-level paraphrase, hidden-state donor, or a source with altered punctuation; those mechanisms still need an author-visible independent selector and exact original-cipher inverse. Do not run new arbitrary source-quote rotations or approximate substring alignments on this same corpus. The existing 53,000-book Gutenberg source-negative has a distinct scope and was not rerun.

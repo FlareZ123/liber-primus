@@ -255,3 +255,68 @@ console.log(JSON.stringify({
   nativePositive,
   decision:'no original >=40-rune period-13 GP29 Vigenere source crib in either sign'
 },null,2));
+
+
+// Independently frozen running-key alternative: the seven 2014 Onion6
+// plaintext pages themselves as one unmodified historical GP29 key.
+// Source order is 10,11,12,13,107,167,229; no subset, shift, key offset or
+// chapter reset chosen after reading candidate plaintext.
+/** @param {number[]} values
+ * @returns {number}
+ */
+function indexOfCoincidence(values) {
+  const counts=new Array(29).fill(0);
+  for(const v of values)counts[v]++;
+  return counts.reduce((sum,n)=>sum+n*(n-1),0)/
+    (values.length*(values.length-1));
+}
+const sourcedCorpus=JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
+let position=0;
+const firstRuneByPage={};
+for(const p of sourcedCorpus.pages) {
+  firstRuneByPage[p.page]=position;
+  position+=p.runic_count;
+}
+assert.equal(firstRuneByPage[3],729);
+assert.equal(firstRuneByPage[16],3762);
+assert.equal(firstRuneByPage[22],5375);
+assert.equal(firstRuneByPage[40],9640);
+assert.equal(firstRuneByPage[54],12648);
+const originalWindows={
+  p0to2:[0,729],
+  p16to21:[3762,5375],
+  p40to53:[9640,12648],
+  allUnknown:[0,12956]
+};
+const historicalRunningKey={};
+for(const direction of [1,-1]) {
+  const plaintext=cipherNums.map((x,i)=>
+    (x+direction*sourceNums[i%sourceNums.length]+29)%29);
+  const record={};
+  for(const [name,[a,b]] of Object.entries(originalWindows)) {
+    record[name]=indexOfCoincidence(plaintext.slice(a,b));
+  }
+  historicalRunningKey[direction]=record;
+
+  // Source-native solved 2014 prose plant: same stream encrypts and decrypts
+  // with the identical key and a fixed first position, without source tuning.
+  const plantedPlain=sourceNums.slice(0,400);
+  const encrypted=plantedPlain.map((p,i)=>
+    (p-direction*sourceNums[i%sourceNums.length]+29)%29);
+  const replay=encrypted.map((c,i)=>
+    (c+direction*sourceNums[i%sourceNums.length]+29)%29);
+  assert.deepEqual(replay,plantedPlain);
+}
+const clearP57=sourcedCorpus.pages.find(p=>p.page===57);
+assert.ok(clearP57);
+const clearIoc=indexOfCoincidence(clearP57.indices);
+assert.ok(clearIoc>0.06);
+assert.ok(Object.values(historicalRunningKey).every(
+  x=>x.p0to2<0.04&&x.p16to21<0.04&&x.p40to53<0.04));
+console.log(JSON.stringify({
+  sourceKeyLength:sourceNums.length,
+  keySourcePageOrder:archive.originals.map(x=>x.page),
+  fixedSourceKeyOriginalGP29Ioc:historicalRunningKey,
+  genuinelyClearP57Ioc:clearIoc,
+  decision:'source-ordered 2014 1163-rune uninterrupted repeated running-key inversion yields no GP-native prose'
+},null,2));
