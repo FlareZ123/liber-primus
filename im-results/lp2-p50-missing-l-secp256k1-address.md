@@ -102,6 +102,18 @@ The exact mean of all **75** original scan arrays from the maintainer's original
 
 Consequently three complete, separately source-defined RGB-mean scopes have now been consumed: 16 floral pages, 58 LP2 pages and the full **75-image Liber Primus**. All three are original-input negatives for literal mean-PNG plaintext and direct raw-RGB p56 digest matching. Image-group retuning would require an independent first-party instruction, not the continued hope of making the vanity string readable.
 
+### Actual PNG *file* SHA-512, separate from mean RGB SHA-512 (Agent18, 23 November 2026)
+
+The `1Meanpng` reading also explicitly suggests a **PNG file**, whose bytes differ from the original image-mean RGB pixel array. The three existing SFTs created deterministic Pillow PNG files but recorded hashes of their *raw pixels only*. A newly frozen experiment hashes exactly those previously chosen **encoded PNG files**, without trying image-subset, averaging, output-mode, compression-level or metadata variations. Source: original 75 JPEGs; exact channelwise arithmetic means with nearest-integer half-up, same selections and Pillow save settings as the existing three SFTs. Tested Python 3 with Pillow **12.3.0**, NumPy **2.3.5** and zlib **1.3.1**. PNG encoding is not universal/canonical across different encoder versions, so the result excludes only these concrete output bytes.
+
+| Original fixed scope and original encoder | Output PNG bytes | SHA-512 of exact PNG container bytes |
+| --- | ---: | --- |
+| p40–55 sixteen floral JPEGs, `optimize=True` | 2,115,572 | `752d2161af7f99557862754d8123beee796bb78cf9a8b6c79aa45c358bde4551fca8f07a76ddcbf4f07c5fadc00e4c9936a757bf7bf0aa28493d851cc060eedd` |
+| all LP2 fifty-eight JPEGs, default `optimize=False` | 2,763,778 | `3c8fe96f7435f75c17718041d3012d0327b22fde0855ad7337d3423d7912b0fe9d05786d1b42920f0f02a8eeb43cb9bb412d82c1cc76082b12a6bd5f2a0ba440` |
+| all seventy-five original LP1+LP2 JPEGs, default `optimize=False` | 3,752,780 | `d34a9b3bc8325beb28370b98835a43867ca79c13dfaab978695ab94aea315b0adb11deaf371141a49ac50e6c1ca4f6fa6258a39be322443259cfa69ab45311d4` |
+
+All three values **differ from the exact original p56 target** `36367763ab73783c...b4f45132c2a8b4`. Their corresponding raw RGB hashes independently match the three prior source reports, confirming that the consumer changed only from pixel bytes to *encoded-file* bytes. [Original-source self-contained SFT](../sims/lp2_p50_meanpng_pngfile_p56_source_sft.py) recomputes every JPEG, mean, PNG byte length and SHA-512. This closes the natural *preexisting Pillow PNG files* as p56 preimages, **not** all PNG serializers, alternate image selections or the broader conditional MEAN PNG interpretation. Without a new independent source fixing a different encoder/receiver, sweeping PNG parameters would be unsupported. No plaintext or typed key emerges.
+
 ## Standard Bitcoin computation stages as literal GP29 running keys
 
 **Agent12, 23 November 2026.** The original source-selected 32-byte missing-L column also yields **five successive, standard, losslessly reproducible Bitcoin operands**: (1) original 32-byte secp256k1 scalar, (2) compressed 33-byte public key, (3) 32-byte SHA-256 public-key digest, (4) 20-byte RIPEMD-160 of that digest, (5) 25-byte Base58Check address payload (version, HASH160, four checksum bytes). Their full bytes are fixed by the same standard source construction as the independently checked vanity address. This source-proximate direct receiver tests the actual Cicada-documented GP29 additive/Vigenère operation, which is different from the prior table AES/CTR candidates. It is still only a **hypothesis**: no authenticated source says to use any Bitcoin derivation byte string as a rune keystream.
