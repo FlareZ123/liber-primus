@@ -86,6 +86,9 @@ const p11 = corpus.pages[11].indices;
 const p12 = corpus.pages[12].indices;
 assert.equal(evaluate(p9, r), 8);
 assert.equal(evaluate(p12, r), 23);
+const treePages = corpus.pages.slice(8, 15);
+const treeResidues = treePages.map(page => evaluate(page.indices, r));
+assert.deepEqual(treeResidues, [7, 8, 0, 0, 23, 9, 18]);
 assert.equal(p10.length, 263);
 assert.equal(p11.length, 273);
 const a = divideLinear(p10, r);
@@ -135,7 +138,7 @@ assert.ok(results.every(result => result.ioc < 0.04));
 console.log(JSON.stringify({
   source: {r, originalUnknownPages:pages.length, originalRunes:12956,
     highDegreeFirstRoots:highZeros, lowDegreeFirstRoots:lowZeros,
-    distinctiveOriginalPages:[10,11],
+    distinctiveOriginalPages:[10,11], treeChapterPageResidues:treeResidues,
     p10AndP11Lengths:[p10.length,p11.length],
     neighborResidues:{p9:evaluate(p9,r),p12:evaluate(p12,r)},
     rootMultiplicities:{
