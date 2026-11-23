@@ -17,6 +17,21 @@ The exact three-rune `S H E` occurs only once in the *entire* 12,956-rune unknow
 
 **Important original-layout failure:** p12 prints `CI-RCW`. A rule that preserves original word boundaries **cannot** treat the four runes as an intact source word `CIRC`, even though they are contiguous after glyph-only normalization. This distinction precludes any direct “already visible plaintext word” claim.
 
+## Typed cross-round lookups using the original 2014 source table
+
+A second, *conditionally defined* link reuses **the existing proposed table receiver**, rather than changing a ciphertext to make words appear. The original p49–51 numeric register has 256 two-character cells; original base60 alphabet "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx" contains lowercase **f** at alphabet position **41**. The historically hypothesized "SHED" operation excludes this letter to yield radix59. This interpretation has not been authored as a command to decode LP2.
+
+| Original opening | Canonical GP0 sum | Original p50 cell at that zero-based address | Base59 result | Independently attested referent |
+|---|---:|---|---:|---|
+| p0 \`SHE\` | **41** | cell41 \`1O\` | **83** | \`EMERGE\`, a complete solved p57 word with GP0=83 |
+| p12 \`CIRC\` | **24** | cell24 \`1n\` | **107** | \`107.jpg\`, named in the original 2014 Stage10 post-magic-square response |
+
+The preserved 2014 Stage10 response in \`resources/external/2014-stage10-post-square-response.html\` **literally lists only \`107.jpg\`, \`167.jpg\` and \`229.jpg\`**. The original LP1 page corresponding to image **107.jpg** starts the first-release koan and includes exactly the earlier solved line **“THE I IS THE VOICE OF THE CIRCUMFERENCE”**, in \`resources/liber-primus/lp1-plaintext-reference.txt\` section14. Thus the p12 prefix chosen by solved p57 **CIRCUMFERENCES** reaches a historical page that directly discusses the **circumference**, rather than an arbitrary unrelated digit. The cell output **107** occurs exactly once in all 256 tokens under the f-shed base59 reading.
+
+A finite multiple-target check grants **all 20 solved p57 words**, their first **3**, first **4**, and **complete** GP0 word sums as original table addresses (where legal), and **both** base60/base59 interpretations for every addressed token. Across that whole frozen family, exactly **one hit** reaches **any** of the three original Stage10 source image filenames: the **four-rune CIRC** prefix of **CIRCUMFERENCES**, GP0 address24, base59 output107. The same check requires the p0 \`SHE\` address to recover clear p57 **EMERGE** independently, though that second target is word-selected. All statements are asserted against immutable committed source inputs in the common SFT.
+
+This cross-round path is **retrospectively selected** from many plausible numeric grammars. It simultaneously assumes prefix extraction, deleting word separators at p12, GP0 addition, zero-based table indexing, f-excluded radix, and interpreting a resulting integer as a historical filename. The coincidence **raises a better-grounded question about authorial navigation** but does not supply a prescribed decipherment operator or even specify that 107.jpg should become a key. Existing direct LP1 solved-text and printed-rune running-key tests already failed to uncover new LP2 prose in their broad allowed-offset family; see \`im-results/lp2-lp1-solved-plaintext-direct-runningkey-original-gate.md\`. Do not simply repeat them with another guessed offset.
+
 ## Fixed conditional rotation control
 
 Against the canonical `resources/liber-primus/lp2-corpus.json` and `lp2-transcription.txt`, the standalone SFT asserts all 12,956 original rune positions and every page's original transcription. It parses all20 clear original p57 words and fixes their 15 distinct length-three and 12 distinct length-four prefixes *before* randomization.
@@ -41,4 +56,4 @@ The **first unrecovered rune after each matched prefix already disagrees** with 
 
 **Next discriminating action:** obtain independent first-party evidence selecting page-opening prefixes as a navigation or typed cryptographic operand, then freeze a prediction on an *untouched* different page or an explicit plaintext fragment **before** investigating matches. In its absence leave this as a source-level curiosity, with no claimed effect on the canonical unsolved status.
 
-**Reproduction:** [Windows-compatible deterministic CommonJS SFT](../sims/lp2_p57_pageopening_unique_prefix_sft.cjs), [passing Windows Node22 GitHub Actions run 45150579489](https://github.com/FlareZ123/liber-primus/actions/runs/45150579489). Original source scans: `17.jpg` (p0), `29.jpg` (p12), and clear `74.jpg` (p57).
+**Reproduction:** [Windows-compatible deterministic CommonJS SFT](../sims/lp2_p57_pageopening_unique_prefix_sft.cjs), [original-opening PASS 45150579489](https://github.com/FlareZ123/liber-primus/actions/runs/45150579489); [original Stage10 cross-round PASS 45154370922](https://github.com/FlareZ123/liber-primus/actions/runs/45154370922). Original source scans: `17.jpg` (p0), `29.jpg` (p12), and clear `74.jpg` (p57).
