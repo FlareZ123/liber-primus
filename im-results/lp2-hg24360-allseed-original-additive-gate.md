@@ -1,4 +1,4 @@
-# Exact all-IV gate: p39 red quadratic × signed BASE29 quadratic as a 24,360-step GP29 additive stream
+# Exact original receiver gates: p39 × signed BASE29 polynomial clock, additive and quartic
 
 **Agent4, 23 November 2026. Status: bounded finite original-input exclusion.** No unknown LP2 plaintext, authentic decipherment key, opcode, or final destination recovered. This report distinguishes genuine source-derived polynomial factors from a subsequently hypothesized additive-keystream consumer.
 
@@ -32,10 +32,25 @@ These windows are physically separated; p50 contains the original numeric grid a
 
 The independently solved LP1 p6 *A KOAN* starts `A MAN DECIDED TO GO AND STUDY WITH A MASTER ...`. Reversible canonical longest-match GP29 transliteration of its first 256 native letters gives **IoC=4254/65280=0.065165441176**. Applying the same candidate recurrence with independently chosen seed [11,18,15,12] makes near-flat ciphertext IoC **2264/65280=0.034681372549** and the identical subtractive decoder recovers all **256/256** native GP runes exactly. The source is `resources/liber-primus/lp1-plaintext-reference.txt`; editorial Latin spellings normalize K→C, V→U, Z→S, Q→C before greedy GP29 transliteration. The plant checks implementation and shows that 256 GP runes are sufficient to distinguish a genuine source-native clear passage, without treating synthetic success as proof of the proposed original cipher.
 
+## Distinct four-rune companion-ring receiver: all 24,360 phases eliminated
+
+The same source HG polynomial canonically gives a 4×4 invertible companion multiplication `M: v(x)→xv(x) mod HG(x)`, and its exact inverse `M^-1`; **M has order24,360**, established over all four basis vectors. This supplies a different *lossless, four-rune mixing* candidate, independent of the failed scalar additive running-pad. Group the authentic original contiguous GP29 tape in four-rune blocks, and decode block number j as `P_j=M^(j+φ) C_j` or `M^-(j+φ) C_j`. Search **every integer φ from0 to24,359**, both orientations, with no text-selected blocking, shifted alphabet, or source-drawn free key. The entire unknown tape has exactly **12,956=4×3,239** original runes, so global alignment leaves zero unaccounted symbols. The exact complete book's original page landmarks remain recorded separately; the measured 1,024-rune windows below start at the original p16 and p40 span boundaries.
+
+| Untouched original source window | Block direction | Full phase candidates | Maximum native-GP IoC on 1,024 runes | Maximizing phase | Phases with IoC ≥0.042 |
+|---|---|---:|---:|---:|---:|
+| p16–21, first1,024 | +j | 24,360 | **37894/1047552=0.036173860582** | 11 | 0 |
+| p16–21, first1,024 | −j | 24,360 | **37610/1047552=0.035902752322** | 1774 | 0 |
+| p40–53, first1,024 | +j | 24,360 | **37624/1047552=0.035916116813** | 1674 | 0 |
+| p40–53, first1,024 | −j | 24,360 | **37594/1047552=0.035887478617** | 16294 | 0 |
+
+An **independently solved native LP1 KOAN 512-rune ciphertext plant**, encrypted blockwise with `M^-j`, is recovered **512/512** under the exact `M^j` inverse and yields IoC above0.06 on genuine native plaintext; the artificial encrypted text lies near uniform frequency. The same SFT asserts all four global maxima, source-correct matrix inverse and period, original input lengths, and positive. **Windows Node22 source-exact PASS:** [workflow 45263033868](https://github.com/FlareZ123/liber-primus/actions/runs/45263033868).
+
+This is a second finite rejection of the **specific multiplication-by-x quartic operator**, not a theorem against arbitrary changing-state quartic ciphers, hidden nonlinear permutations, alternative clocks, or source-unknown state functions. Even the additional four-rune block architecture does not recover a single authentic unknown original rune as recognizable plaintext.
+
 ## What this decides
 
-The authentic source-factor coincidence and long 24,360-period linear clock survive. **For the precise, continuous direct GP29 additive/subtractive stream defined by their product HG, no secret four-state IV can recover a 256-rune native-LP1-like plaintext in any of three untouched original manuscript windows**, whereas the identical decoder exactly recovers a source-native plant. This excludes spending further computation tuning seeds, signs or Caesar shifts for **that family**.
+The authentic source-factor coincidence and its 24,360-period register survive. **Neither the exhaustive four-secret-IV direct additive receiver nor the exhaustive 24,360-phase quartic companion x-clock recovers source-native prose in independently separated original manuscript windows**, whereas each faithfully recovers an independently planted source-native GP29 cleartext. This decisively retires both narrowly defined continuous receivers rather than encouraging further seed, sign or phase tuning.
 
 It does **not** exclude interval-specific resets plus different key laws, nonlinear or byte-mode consumers, independently supplied non-GP plaintext, all possible author-selected registers, or an alternative purpose for the table's factors. A truly productive successor must find an independent first-party operation that maps the source factors or table data into a *different exact reversible receiver* with independently predicted original plaintext.
 
-**Reproduction:** `node sims/lp2_hg24360_allseed_source_additive_sft.cjs` on Windows Node22 using committed source resources; no network access or optional dependencies needed. SFT prints the three complete maxima and source-native positive. Avoid re-running completed IV domains merely to change a presentation threshold.
+**Reproduction:** `node sims/lp2_hg24360_allseed_source_additive_sft.cjs` on Windows Node22 using committed source resources; no network access or optional dependencies needed. [Full Windows PASS 45263033868](https://github.com/FlareZ123/liber-primus/actions/runs/45263033868). SFT prints the three complete maxima and source-native positive. Avoid re-running completed IV domains merely to change a presentation threshold.
