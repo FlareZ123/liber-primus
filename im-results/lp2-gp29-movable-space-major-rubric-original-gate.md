@@ -43,6 +43,24 @@ The [Windows Node22 PASS run 45103386507](https://github.com/FlareZ123/liber-pri
 
 Both unknown-original inverses are uniform-looking, with no sustained recognizable language. The simplest canonical E=0 sender model is also not the author-selected original encryption under the fixed assumptions: 26 original groups have nonzero residual. Full original reencryption proves algorithmic consistency but cannot distinguish arbitrary reversible wrong keys or codebooks.
 
+## Stronger construction: preserve the exact natural word-length multiset
+
+A direct **all-gap** code permits uniformly distributing W−1 breaks among N−1 positions. This is severely unlike the original printed word morphology: conditional on each of the same **27 source major-rubric frame lengths and word counts**, uniformly selected nonempty word compositions would yield **643.602076 singleton words on average** (independent-frame standard deviation **19.712881**). The book has **83 original one-rune words**, **−28.438** standardized units under that narrowly defined random-gap model. The calculation uses exact per-frame word lengths and the analytic indicator covariance for each uniformly distributed composition. It does not supply a valid English-text or actual-cipher p-value; it says the *maximally free word-gap picture is physically implausible as an approximately uniform printer*.
+
+There is a stronger and more language-morphology-friendly alternative: fix **the entire original word-length multiset in each rubric frame**, allowing only its order to permute. For a source group with original word-length multiplicities c₁,c₂,… summing to W, the word-gap capacity becomes precisely
+
+\[
+G=\frac{W!}{\prod_{\ell} c_{\ell}!},
+\quad
+M_{\mathrm{multiset}}(N,W,E)=29\binom{N-1}{E}28^{N-1-E}G.
+\]
+
+Original printed word totals, **the complete source length histogram**, original rune count and original adjacent-equality count are now all immutable within each frame. The only variable side field is the *ordering* of already observed word lengths. Exact BigInt comparisons again show **exactly two failed independent literal rubric frames**, the same red119 three-rune insets [848,851) and [9519,9522). After the same two explicitly scoped merges, **all 27 frames remain individually capable of carrying unrestricted GP29**. Thus no hypothetical excess of singleton words or unnatural word-length inventory is needed to meet the information-theoretic capacity inequality.
+
+A separate full [Windows Node22 source SFT](../sims/lp2_gp29_multiset_space_original_sft.cjs) now ranks/unranks distinct **multiset permutations of each frame's exact original word lengths** using a lexicographic multinomial code. It combines that rank with the exact rune+repeat mixed radix, saves original per-frame residue for fully faithful re-encryption, and carries out the same independent solved-native **12,956-rune GP29 plaintext plant**. [Windows PASS run 45104390605](https://github.com/FlareZ123/liber-primus/actions/runs/45104390605) confirms **every source rune, every word break, all 27 frame capacities and all planted source runes**. It reports **8,224 conservative floor-bits of frame-by-frame real-length-permutation choices** and **22 of 27 original frames with nonzero rank residual**. Its unknown-original first300 and independent p16 first200 IoC remain **0.034537347** and **0.033266332**, still nonlinguistic. This is the more plausible *capacity witness* for natural word-length statistics, **not an authenticated source-selected inverse**.
+
+This exact-histogram model must **not** be conflated with previous source-global word-length-permutation rank extraction (#1472), which was tested as a direct external byte channel; the present model uses a frame-by-frame space permutation as part of a **complete rune-cipher reverse/forward construction**, while holding each rubric's repeat count fixed. Nor does it identify the missing authored arithmetic state and codeword ranking: the printed language morphology alone cannot select that operation.
+
 ## Decision and next causal route
 
 This source-faithful experiment **removes the whole-book GP29 capacity objection** to near-no-repeat coding as soon as **spaces may move**, while exposing an exact two-rubric obstruction when every visible large mark forces a state reset. The model is distinct from previous **fixed-word GP26/GP27 arithmetic rank** and from p50-byte-key two-word rotations.
