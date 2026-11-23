@@ -116,6 +116,76 @@ assert.equal(outputs.magnitudes.attempts.inverseRows,
   'HYLELSEAAXNLAEATPC');
 assert.equal(outputs.decodedPrimes.attempts.inverseCols,
   'IMOEAWOXAIAJAECMIAO');
+
+/** @param {number[]} xs @returns {number} */
+function ioc(xs) {
+  const counts=Array(29).fill(0);
+  for (const x of xs) counts[x]++;
+  return counts.reduce((sum,n)=>sum+n*(n-1),0)/(xs.length*(xs.length-1));
+}
+/**
+ * Hill inverse of every complete four-rune block. The source chooses
+ * a page reset or one uninterrupted chapter; incomplete final blocks
+ * remain untouched and are excluded from this fixed-block inverse screen.
+ * @param {number[][]} parts
+ * @param {number[][]} K
+ * @param {'left'|'right'} orientation
+ * @returns {number[]}
+ */
+function hillDecode(parts,K,orientation) {
+  const decoded=[];
+  for(const part of parts) for(let offset=0;offset+4<=part.length;offset+=4) {
+    const block=part.slice(offset,offset+4);
+    const v=orientation==='left'
+      ? K.map(row=>m(row.reduce((sum,x,j)=>sum+x*block[j],0)))
+      : K[0].map((_,j)=>m(block.reduce((sum,x,i)=>sum+x*K[i][j],0)));
+    decoded.push(...v);
+  }
+  return decoded;
+}
+// Candidate key: p32's *own* source-selected 4x4 prime-axis register.
+// The nearest 7-page physical chapter p33-39 is the primary independent target.
+// Other scopes discriminate a misleading page-specific lucky short readout.
+const originalScopes={
+  'p33-p39':gp.pages.filter(p=>p.page>=33&&p.page<=39),
+  'p54-p55':gp.pages.filter(p=>p.page>=54&&p.page<=55),
+  'allUnknown':gp.pages.filter(p=>p.page<=55)
+};
+const chapterOutputs={};
+for(const [label,K] of Object.entries({
+  'p32GpOrdinal':C,
+  'p32GpPrime':C.map(row=>row.map(index=>gp.prime[index]%29))
+})) {
+  const {inverse,determinant}=inverseAndDet(K);
+  chapterOutputs[label]={determinant};
+  // Actual, previously solved plaintext control under both matrix orientations.
+  assert.deepEqual(hillDecode([multiply(K,plant).flat()],inverse,'left'),plant.flat());
+  assert.deepEqual(hillDecode([multiply(plant,K).flat()],inverse,'right'),plant.flat());
+  for(const [scope,pages] of Object.entries(originalScopes)) {
+    const blocks={
+      page:pages.map(page=>page.indices),
+      chapter:[pages.flatMap(page=>page.indices)]
+    };
+    for(const [reset,parts] of Object.entries(blocks)) {
+      for(const orientation of ['left','right']) {
+        const decoded=hillDecode(parts,inverse,orientation);
+        const key=scope+':'+reset+':'+orientation;
+        chapterOutputs[label][key]={
+          runeCount:decoded.length,
+          ioc:+ioc(decoded).toFixed(8),
+          prefix:decoded.slice(0,48).map(i=>gp.translit[i]).join('')
+        };
+        assert.ok(ioc(decoded)<0.04,'unexpected native-language cipher candidate');
+      }
+    }
+  }
+}
+assert.equal(chapterOutputs.p32GpOrdinal.determinant,24);
+assert.equal(chapterOutputs.p32GpPrime.determinant,6);
+assert.equal(chapterOutputs.p32GpOrdinal['p33-p39:page:left'].runeCount,1672);
+assert.equal(chapterOutputs.p32GpOrdinal['p33-p39:chapter:right'].runeCount,1680);
+assert.equal(chapterOutputs.p32GpOrdinal['allUnknown:chapter:left'].runeCount,12956);
+
 console.log(JSON.stringify({
   p32RowsPrime: selectedRows,
   p32ColsPrime: selectedCols,
@@ -124,6 +194,7 @@ console.log(JSON.stringify({
   selectedIndices: C,
   selectedTransliteration:roman(C),
   outputs,
+  chapterOutputs,
   knownSolvedP57Plant:'16/16 under all six real-key inverses',
-  decision:'No full original plaintext under the twelve source-fixed Hill orientations'
+  decision:'Neither twelve cross-artifact keys nor eight p32-key chapter/full-book variants recover English'
 },null,2));
