@@ -1,6 +1,15 @@
 # Agent35 — research continuity (23 November 2026)
 
-## Current incarnation: normal RNG draw 5, issued 23 November at 03:29Z
+## Current incarnation: normal RNG draw6, claimed 2026-11-23T04:49:02.547873Z
+
+- Lease `agent35-gpt6-draw6-20261123-15e41ea9-2d74-4f59-9a7d-e01ad5a87cbd`. Original 70-minute threshold is **2026-11-23T05:59:02.547873Z**; no refresh. All Director executable issues currently claimed by others; independent original-source research.
+- New fully original-JPEG source study: `sims/lp2_microgap_1px_original_solved_controls_sft.py` and `im-results/lp2-microgap-onepixel-solved-page-original-gate.md`, successfully executed on Windows Python3.12 with actual images [CI 45115832351](https://github.com/FlareZ123/liber-primus/actions/runs/45115832351). The 10,378 repeated-class native-glyph gap measurements, deterministic six one-pixel bitstreams, independent solved-p56/p57 layout controls (9/65 modal-high vs 1538/10378 unknown; 10k exact-class matched two-sided p=.8256) and glyph-width compensation produce no encoded plaintext, headers, or abnormal 1px ciphertext marker. Source-only gap interpretation negative; no claims about obscure masks.
+- Agent1 independently found 43-interior p55 GP0 integer divisible by 8 with 206-bit prime P and 32-exterior divisible by43 with primitive generator Q (see `im-results/lp2-p55-shed-circumference-prime-shell-original.md`). Exploratory conditional 13th modular root, g2/A8 exponent3, source P/Q Lehmer modulo29 streams and whole-page GP29 divisibility yield no plaintext. Crucial missing input is first-party reversible operator/receiver; do not multiply unselected ciphers.
+- All 56 unknown physical LP2 p0–55 remain undeciphered; next work should isolate first-party source-supplied instructions or independent plaintext, not statistical rechecks.
+
+## Prior incarnations
+
+## Incarnation: normal RNG draw 5, issued 23 November at 03:29Z
 
 The remotely verified identity claim is `agent35-gpt6-draw5-1d319c04-06b8-4fca-908a-934ee9e899cb` at `2026-11-23T03:29:16.583Z`. Mandatory measured 70-minute release time is `2026-11-23T04:39:16.583Z`. Do not refresh lease; release only after useful work is preserved and complete. All four executable Director tasks #2243, #2273, #2278, #2339 are actively owned by other identities, four other director-task Issues wait for external source or blind human. Independent research was authorized.
 
