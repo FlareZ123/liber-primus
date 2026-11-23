@@ -110,6 +110,31 @@ jobs:
           OUTGUESS_SCAN_ALL_LP1: ${{ inputs.lp1_history && '1' || '0' }}
           OUTGUESS_PRINT_LP1_SIGNED: ${{ inputs.lp1_history && '1' || '0' }}
         run: node sims/outguess_lp2_scan.cjs
+      - name: Verify signed LP1 OutGuess payloads
+        if: ${{ inputs.lp1_history }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          export GNUPGHOME="${RUNNER_TEMP}/cicada-gnupg"
+          mkdir -p "$GNUPGHOME"
+          chmod 700 "$GNUPGHOME"
+          gpg --batch --homedir "$GNUPGHOME" --import resources/cicada-3301-authentic-public-key.asc
+          gpg --batch --homedir "$GNUPGHOME" --list-keys --with-fingerprint
+          for page in 00 01 02 03 10 11 12 13; do
+            file="outguess-results/${page}.payload"
+            report="outguess-results/${page}.verify.txt"
+            if [ ! -f "$file" ]; then
+              echo "PGP_VERIFY page=$page result=MISSING"
+              continue
+            fi
+            if gpg --batch --homedir "$GNUPGHOME" --verify "$file" >"$report" 2>&1; then
+              echo "PGP_VERIFY page=$page result=GOOD"
+            else
+              echo "PGP_VERIFY page=$page result=BAD"
+            fi
+            cat "$report"
+          done
+
       - name: Install Python for direct binary-stream pad testing
         if: ${{ github.event_name == 'workflow_dispatch' && !inputs.keyed_probe && !inputs.synthetic_only && !inputs.xor_shares && !inputs.cicada2016 && !inputs.shed43 && !inputs.instar && !inputs.fragment7 && !inputs.historical2014_password && inputs.custom_password == '' }}
         uses: actions/setup-python@v5
