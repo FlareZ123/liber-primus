@@ -69,6 +69,17 @@ For each field the same Newton divided-difference interpolation passes an indepe
 
 **Exact scope:** the frozen original table cannot itself be a consecutive x=0..255 standard degree<180 extended RS codeword in either tested GF(256) field, even granting all ambiguous glyph readings. This does not exclude an *unobserved p55–57 plaintext codeword*, interleaving, unselected coordinates, further alphabet mapping or an external key. These require their own authored selector. No plaintext was recovered, and the #2376 source gate remains unresolved.
 
+### Independent GF256 terminal-page polynomial inverse
+
+The source also supports a more ambitious original plaintext receiver: the **76 unknown GP29 plaintext runes on p55** may be erased positions 0..75, and **p56's 85 authenticated plaintext runes followed by p57's 95 original unencrypted runes** could be 180 known polynomial evaluations at positions 76..255. This uses source-terminal data, rather than treating the printed table itself as a codeword. Freeze exactly that original page order, direct GP29 index-to-byte conversion, a degree-less-than-180 polynomial, and the same two conventional GF256 moduli above. Test full 76-symbol extrapolation with no tuning.
+
+| Eight-bit field | Authenticated known source symbols regenerated | Inferred first76 within GP29 index domain 0..28 | Inferred first76 equal to printed p55 ciphertext |
+|---|---:|---:|---:|
+| 0x11b | 180/180 | **6/76** | 0/76 |
+| 0x11d | 180/180 | **8/76** | 0/76 |
+
+The actual first 16 inferred bytes are **38,71,163,208,44,210,24,51,155,253,77,235,183,0,15,167** for modulus 0x11b, and **103,134,125,74,217,50,194,31,211,66,164,111,230,172,96,116** for modulus 0x11d. Most cannot represent any native GP29 rune. The same interpolator passes two independently planted **256/256** degree179 polynomial recovery controls, so this is a complete and exact *negative* for the direct terminal-native-GP29 extended RS interpretation. Other field-to-rune transports or an external authored code remain possible, but no such instruction appears in the original table. Both table-as-codeword and terminal-as-codeword tests are preserved in the same [CommonJS SFT](../sims/lp2_p50_extended_rs_256_180_source_sft.cjs).
+
 ## Disposition and next decision
 
 **Close #2376 unresolved under the stated source gate.** The bridge's numerical observations survive, but no exact authenticated operator exists to invert. The next productive action requires a source-selected decoding instruction or a new original artifact that fixes the necessary field/serialization/code family; a random GF256 Reed–Solomon matrix, an alphabet fit, or exhaustive radix/row/path tuning cannot establish the author's plaintext. Do not promote this conditional receiver to `results/README.md` as a verified key or decryption.

@@ -107,3 +107,65 @@ for (const poly of [0x11b, 0x11d]) {
 }
 console.log(JSON.stringify({source:'Physical p49-51 original byte panel',ambiguous:ambiguous.map((x)=>x.i),results},null,2));
 console.log('PASS: complete 2048-case original table gate and both GF256 polynomial plants');
+
+/**
+ * Terminal alternative: known p56+p57 GP29 plaintext values at coordinates
+ * 76..255, infer erased 76 p55 plaintext symbols under exactly the same
+ * GF256 fields and consecutive coordinate order.
+ * @param {readonly number[]} known
+ * @param {number} poly
+ * @returns {(x:number)=>number}
+ */
+function interpolateLast180(known, poly) {
+  assert.equal(known.length, 180);
+  const co = known.slice();
+  const inv = new Array(256);
+  for (let d = 1; d < 256; d += 1) inv[d] = pow(d, 254, poly);
+  for (let order = 1; order < 180; order += 1) {
+    for (let i = 179; i >= order; i -= 1) {
+      co[i] = mul(co[i] ^ co[i - 1], inv[(i + 76) ^ (i - order + 76)], poly);
+    }
+  }
+  return (x) => {
+    let val = co[179];
+    for (let i = 178; i >= 0; i -= 1) val = co[i] ^ mul(val, x ^ (i + 76), poly);
+    return val;
+  };
+}
+const solved = JSON.parse(fs.readFileSync(
+  path.join(__dirname, '..', 'resources', 'external', 'relikd-solved-gp29-native-v1.json'), 'utf8'
+));
+const corpus = JSON.parse(fs.readFileSync(
+  path.join(__dirname, '..', 'resources', 'liber-primus', 'lp2-corpus.json'), 'utf8'
+));
+const sourcePlain = (name) => Array.from(solved.sections.find((v) => v.name === name).source_text)
+  .filter((ch) => solved.runes.includes(ch)).map((ch) => solved.runes.indexOf(ch));
+const p56 = sourcePlain('p56_an_end');
+const p57 = sourcePlain('p57_parable');
+const c55 = corpus.pages.find((v) => v.page === 55).indices;
+assert.deepEqual([p56.length, p57.length, c55.length], [85, 95, 76]);
+assert.deepEqual(p57, corpus.pages.find((v) => v.page === 57).indices);
+const terminal = p56.concat(p57);
+const terminalResults = [];
+for (const poly of [0x11b, 0x11d]) {
+  const ev = interpolateLast180(terminal, poly);
+  assert.ok(terminal.every((v, i) => ev(i + 76) === v));
+  const prediction = Array.from({length: 76}, (_, x) => ev(x));
+  const nativeGP = prediction.filter((v) => v < 29).length;
+  const exactCipher = prediction.filter((v, i) => v === c55[i]).length;
+  assert.deepEqual([nativeGP, exactCipher], poly === 0x11b ? [6, 0] : [8, 0]);
+  const coeffs = Array.from({length: 180}, (_, i) => (17 * i + 7) & 255);
+  const polynomial = (x) => {
+    let v = 0;
+    for (let i = 179; i >= 0; i -= 1) v = coeffs[i] ^ mul(v, x, poly);
+    return v;
+  };
+  const plant = Array.from({length: 256}, (_, x) => polynomial(x));
+  const recover = interpolateLast180(plant.slice(76), poly);
+  assert.ok(plant.every((v, x) => recover(x) === v));
+  terminalResults.push({field:'0x' + poly.toString(16), nativeGPoutOf76:nativeGP,
+    originalCipherMatches:exactCipher, first16:prediction.slice(0,16), syntheticAll256Match:true});
+}
+console.log(JSON.stringify({terminalRS:{knownP56:85, knownP57:95, unknownP55:76, terminalResults}},null,2));
+console.log('PASS: full 180 authenticated solved GP29 values and two original 76-erasure inverse negatives');
+
