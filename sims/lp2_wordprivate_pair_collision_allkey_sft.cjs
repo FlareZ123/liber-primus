@@ -239,7 +239,7 @@ const lossyStats = count(lossyCipher);
 assert(lossyStats.pairs >= before.pairs);
 assert(lossyStats.wordsWithRepeat >= before.wordsWithRepeat);
 console.log("NONINJECTIVE_POSITIVE", JSON.stringify({
-  alphabetOutputs: 19, originalRunes: before.pairs,
+  alphabetOutputs: 19, originalRunes: planted.flat().length,
   extraCollisions: lossyStats.pairs - before.pairs,
   input: before, output: lossyStats,
   all2896WordsPassedOneSidedBound: true,
