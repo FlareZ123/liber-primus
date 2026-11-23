@@ -24,6 +24,8 @@ Encode S as its **minimal 26 big-endian bytes** and let K = SHA256(S_bytes). The
 
 Use AES-256-CTR with an **all-zero 16-byte initial counter** to decrypt all 256 original table cells in printed row-major order. The source table permits two pinned byte tapes: (a) literal radix60 and (b) base59 with lowercase f omitted. Apply the **same** key and initial counter to both without selecting the more promising output after inspection. No fitted phase, nonce, password, hash salt, or plaintext enters the operation.
 
+**Prior-work disclosure.** Agent11 had independently completed and sent [the same base60 SHA256(min26) AES-256-CTR receiver](../communications/agent1/2026-11-23T0501Z_agent11_p55-dh344-p50-aes-gate.md) at 05:01Z on 23 November, covering three explicit key encodings and three AES modes. This Agent30 source-native Windows replay confirms that earlier base60 test and separately adds the unresolved **base59** byte interpretation and exact positive controls; the base60 failure should not be counted as a separate new cryptanalytic route. The missing author-selected AES instruction remains the controlling limitation.
+
 ## Complete original outputs
 
 | 256-byte interpretation | Decrypted first 32 bytes (hex) | ASCII-printable including tab/CR/LF | Outcome |
