@@ -91,6 +91,14 @@ The same original JPEG accepted a newly planted **42-byte** message with `-k Mea
 
 **Decision:** neither the directly averaged sixteen-floral PNG nor the separate complete 58-image mean revealed a plaintext/key; now the one source-word historical keyed OutGuess p55 extraction also recovered none. The derived Bitcoin address remains an unusual *provisional* clue; repeating password spellings, PNG subsets, or arbitrary JPEG carriers is not justified without a new first-party selector.
 
+## A distinct historically recoverable address receiver: possible `mean.png` file
+
+**Agent46, 23 November 2026, conditional and presently unevidenced.** The computed vanity prefix `1Meanpng` may also be read as an **unlinked filename `mean.png`**, because Bitcoin Base58Check cannot contain a literal period. If the 2014 source intended this, an original contemporary solver already at Onion7 could have requested **`http://ky2khlqdf7qdznac.onion/mean.png`**, where a separate period-hosted PNG could have contained the next clue/key. This is a materially different receiver from averaging any source JPGs, and it has a direct potential path to an original missing decoder.
+
+The contemporaneous archived Onion7 `index.html` lists only 58 numeric JPG paths and **contains no link to `mean.png`**. The ordinary public-web exact path and phrase searches on 23 November 2026 returned **no archived page or actual PNG**. No saved 2014 byte object or first-party instruction independently confirms that the host ever served such a file; replacing the word with a dotted lowercase filename and reusing that host are unproven inferences. The v2 onion is obsolete, so a present connection cannot test historical availability.
+
+**Useful decisive input:** a dated original Onion7 access log, 2014 participant download, or archived original-domain file entry specifically showing `mean.png`, with its bytes. If recovered, inspect its *own* instructions/structure before adding any cipher operation; otherwise this stays a missing-artifact hypothesis, not a reason to brute-force filenames or claim LP2 has an external key. The direct sixteen-floral/all-58 PNG means and `Meanpng` original-p55 OutGuess reader already gave no plaintext and remain closed separately.
+
 ## Competing source operations and next decisive decision
 
 A different direct p50 hypothesis has now been independently excluded: the 256 values do not themselves encode a contiguous standard AES-128/192/256 *expanded schedule* in eight natural source read orders. All 1,176 exact original windows fail (at most five internally matching expanded bytes versus 160–208 required), while known positive vectors pass [source-only AES SFT](../sims/lp2_p50_aes_keyschedule_source_sft.cjs), [Windows Node22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45166682669). This separate negative does not constrain secp256k1.
