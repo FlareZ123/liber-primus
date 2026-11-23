@@ -215,6 +215,24 @@ function bestIndependent(plain,regions) {
   return {contradictions,cycles,packets};
 }
 
+// Locked four-edge cycle witness, independently of nonlinear plant controls.
+/** @param {number} r @param {number} a @param {number} weight */
+function edge(r,a,weight) {
+  return {plain:[0,0,Math.floor(r/29),r%29],
+    cipher:[Math.floor(a/29),a%29,weight,0]};
+}
+const consistent=[edge(0,0,0),edge(0,1,1),edge(1,0,2),edge(1,1,3)];
+const inconsistent=[...consistent.slice(0,3),edge(1,1,4)];
+/** @param {{plain:number[],cipher:number[]}[]} list */
+function gateEdges(list) {
+  return graphGate(list.flatMap(x=>x.plain),
+    list.flatMap(x=>x.cipher),0);
+}
+assert.deepEqual(gateEdges(consistent),
+  {packets:4,cycles:1,contradictions:0});
+assert.deepEqual(gateEdges(inconsistent),
+  {packets:4,cycles:1,contradictions:1});
+
 const solved57=gp.pages.find(p=>p.page===57).indices;
 assert.equal(solved57.length,95);
 const solved57cipher=encrypt(solved57);
