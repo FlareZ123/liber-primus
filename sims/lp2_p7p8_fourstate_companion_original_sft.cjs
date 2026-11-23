@@ -122,6 +122,14 @@ function encryptAffine(plain, M, offset) {
   }
   return out;
 }
+function decryptAffine(cipher, MInverse, offset) {
+  const out = [];
+  for (let off = 0; off + 4 <= cipher.length; off += 4) {
+    const shifted = cipher.slice(off, off + 4).map((x, j) => mod(x - offset[j]));
+    out.push(...matVec(MInverse, shifted));
+  }
+  return out;
+}
 
 const matrices = {
   forward: A,
@@ -172,7 +180,7 @@ const plantedPlain = Array.from({ length: 300 }, (_, i) => mod(7 * i + 3));
 const plantedCipher = encryptBlocks(plantedPlain, seed, A);
 assert.deepEqual(blockTransform(plantedCipher, seed, A, -1), plantedPlain);
 const plantedAffineCipher = encryptAffine(plantedPlain, A, seed);
-const plantedAffinePlain = affineBlocks(plantedAffineCipher, inverse(A), seed, -1);
+const plantedAffinePlain = decryptAffine(plantedAffineCipher, inverse(A), seed);
 assert.deepEqual(plantedAffinePlain, plantedPlain);
 
 // Measure the exact state period for this nonzero seed.
