@@ -39,6 +39,51 @@ This is a narrower possible *human solve-path* than beginning with an arbitrary 
 
 The two distinct GP numerical readings are both authentic features of Gematria Primus. **Switching from ordinal sum on the source to prime sum on the target is analyst-selected**. Further, among all 18 red spans only two have full prime sums within byte range, so one graph edge is not statistically extraordinary. The original text does not directly instruct this cross-radix traversal or its continuation to p55. No additional plaintext emerges merely from the observed edge. [Reproducer](../sims/lp2_stage10_p39_p50_dh23_packet_sft.cjs).
 
+## Complete original 17-step chapter-to-page55 word register
+
+A new finite and easily read source continuation resolves the previously missing relation between a **potential p55 recipient** and a **source-derived per-word key register**, without choosing source positions from output.
+
+Take the physically identified opening **p33 red8** GP0=84, read each subsequent *original base60 printed table byte* as the index of the next table cell, and **stop at the separately source-identified p39 red3** GP0=47. This is the simple table functional-pointer mechanism previously documented for other starting cells in [the original table graph study](lp2-p50-direct-byte-pointer-firstcell-cycle-gate.md), now with a distinct start/stop fixed by **two source-red marks**. It traverses exactly the following **17 original cell addresses**:
+
+\`\`\`text
+84 → 173 → 117 → 171 → 54 → 156 → 52 → 86 → 111 →
+115 → 247 → 192 → 0 → 203 → 68 → 199 → 47
+\`\`\`
+
+The **printed base60 values on those 17 cells** are
+
+\`\`\`text
+173,117,171,54,156,52,86,111,115,247,192,0,203,68,199,47,76
+\`\`\`
+
+Notice the final byte **76** is the full number of unknown **p55 GP29 runes**. More specifically, the 17 visited cells are exactly the number of originally separated **p55 source text fragments**, which consist of its inherited single-rune carry plus **16 complete printed page-local words**. Their 17 fixed lengths are
+
+\`\`\`text
+1,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3
+\`\`\`
+
+and sum to76. Thus the fragment-by-fragment alignment and stop value require no candidate plaintext editing or phase tuning. The original table graph itself and its 11+2 cycle had been found earlier; the **new contribution is the source-identified p33→p39 bridge and complete 17-fragment p55 recipient**. Original source image evidence supports both red start and end marks, though the table-pointer opcode is still an analyst-chosen plausible operation.
+
+### First actual 76-rune receiver: source-local word Caesar, negative
+
+The two natural key registers are (A) the **17 source node indices**, or (B) their **17 printed numeric values**. For each complete p55 printed fragment with index \(j\) use the exact original glyph sequence and the stationary word-key GP29 inverse
+\[
+P_{j,i} = (C_{j,i} \pm K_j)\bmod29.
+\]
+Both signs and both key registers, precisely **four source-fixed complete original inverses**, are exhaustively computed in the dedicated [read-only source-exact SFT](../sims/lp2_p33_red84_p50_chain17_p55_wordkey_sft.cjs), with exact re-encryption and four independent solved-p57-native source plants. These keep the leading one-rune carry and full 13-rune eighth printed fragment; they do not accidentally split words at physical line breaks.
+
+| Complete p55 76-rune candidate | Original GP29 IoC |
+|---|---:|
+| Unmodified original source p55 | 0.037894736842 |
+| Node addresses, subtract | 0.032280701754 |
+| Node addresses, add | 0.038596491228 |
+| Source bytes, subtract | 0.035087719298 |
+| Source bytes, add | 0.035087719298 |
+
+None yields a coherent original-language GP29 passage; each is still ciphertext-like. The strongest add-node IoC is below0.04, while the authentic solved-p57 plaintext first76 has IoC ~0.05965. This is a **complete bounded negative** for a one-stationary-shift-per-fragment interpreter. It does not exclude keyed changing-state encipherment, a table-driven transposition, a preimage/nonce instruction, or an external document as receiver. The value of the route is its unusually exact source-selected **17 nodes → 17 printed fragments → 76 original runes** alignment, rather than success at the easiest proposed decoder.
+
+**Potential first-party discriminator:** Does a historical 2014–2016 Cicada instruction name byte-as-next-address, word-relative key consumption, or a keyed nonlinear operation on the p55 17-fragment sequence? Without such an instruction, hunting more fitted transforms is apt to turn the exact positional structure into overfitting. The output of this chain alone cannot establish author-selected plaintext.
+
 ## Independent full DH23 transcript recovered algebraically from three public objects
 
 The address173 is the **zero-based** position row21,col5 in the original 32×8 grid. The following packet interpretation is deliberately specified as equations to expose the unsupported step, rather than retroactively calling it plaintext:
