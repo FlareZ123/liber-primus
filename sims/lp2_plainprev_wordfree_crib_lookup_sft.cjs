@@ -79,6 +79,8 @@ const LOOKAHEAD = 40;
 const MARKS = 6;
 const validStarts = Array.from({length: original.length}, (_, i) => i)
   .filter(i => END[i] - i >= LOOKAHEAD);
+const bookStarts = Array.from({length: original.length - LOOKAHEAD + 1},
+  (_, i) => i);
 const mod = x => (x % 29 + 29) % 29;
 
 /**
@@ -117,12 +119,13 @@ function witnesses(plain, start) {
  * @param {number} s
  * @param {number} mode
  */
-function exactPrefix(cipher, plain, t, s, mode) {
+function exactPrefix(cipher, plain, t, s, mode, continuous = false) {
   const seen = new Int8Array(29);
   seen.fill(-1);
   let duplicateChecks = 0;
   let assigned = 0;
-  const n = Math.min(END[t] - t, plain.length - s);
+  const n = Math.min((continuous ? cipher.length : END[t]) - t,
+    plain.length - s);
   let k = 1;
   for (; k < n; k++) {
     const predictor = plain[s + k - 1];
@@ -145,9 +148,14 @@ function exactPrefix(cipher, plain, t, s, mode) {
  * @param {Uint8Array} cipher
  * @param {number} mode
  */
-function targetArray(cipher, mode) {
+function targetArray(cipher, mode, continuous = false) {
   const delta = new Uint8Array(cipher.length);
   if (mode === 0) return cipher;
+  if (continuous) {
+    for (let i = 1; i < cipher.length; i++)
+      delta[i] = mod(cipher[i] - cipher[i - 1]);
+    return delta;
+  }
   let prevEnd = 0;
   for (const p of pages) {
     for (let i = prevEnd + 1; i < prevEnd + p.indices.length; i++) {
@@ -165,15 +173,16 @@ function targetArray(cipher, mode) {
  * @param {Uint8Array} cipher
  * @param {number} mode
  */
-function indexFor(cipher, mode) {
-  const T = targetArray(cipher, mode);
+function indexFor(cipher, mode, continuous = false) {
+  const T = targetArray(cipher, mode, continuous);
+  const starts = continuous ? bookStarts : validStarts;
   const cache = new Map();
   function firstWitness(i, j, d) {
     const key = ((i * 64 + j) * 29 + d);
     const found = cache.get(key);
     if (found) return found;
     const choices = [];
-    for (const t of validStarts) {
+    for (const t of starts) {
       if (mod(T[t + i] - T[t + j]) === d) choices.push(t);
     }
     cache.set(key, choices);
@@ -188,8 +197,8 @@ function indexFor(cipher, mode) {
  * @param {number} mode
  * @param {number} [onlyStart]
  */
-function scan(cipher, reference, mode, onlyStart) {
-  const index = indexFor(cipher, mode);
+function scan(cipher, reference, mode, onlyStart, continuous = false) {
+  const index = indexFor(cipher, mode, continuous);
   let looked = 0, skipped = 0, anchored = 0, sixPass = 0;
   let valid40 = 0;
   const best = [];
@@ -215,7 +224,7 @@ function scan(cipher, reference, mode, onlyStart) {
       }
       if (!okay) continue;
       sixPass++;
-      const result = exactPrefix(cipher, reference, t, s, mode);
+      const result = exactPrefix(cipher, reference, t, s, mode, continuous);
       if (result.length >= LOOKAHEAD) valid40++;
       const record = {page: PAGE[t], globalCipherOffset: t,
         sourceRuneOffset: s, runes: result.length,
@@ -229,6 +238,8 @@ function scan(cipher, reference, mode, onlyStart) {
     }
   }
   return {models: mode === 0 ? "direct" : "integrated",
+    cipherClock: continuous ? "book-continuous" : "page-contained",
+    originalTargets: continuous ? bookStarts.length : validStarts.length,
     sourceRunes: reference.length,
     scannedSourceStarts: looked,
     sixWitnessUnavailable: skipped,
@@ -316,9 +327,11 @@ function main() {
     const reference = encodeEnglish(preprocessing(read(filename)));
     assert(reference.length > LOOKAHEAD, name + ": source empty");
     for (let mode = 0; mode < 2; mode++) {
-      const result = scan(original, reference, mode);
-      output.push({source: name, ...result});
-      console.log("ORIGINAL " + JSON.stringify(output[output.length - 1]));
+      for (const continuous of [false, true]) {
+        const result = scan(original, reference, mode, undefined, continuous);
+        output.push({source: name, ...result});
+        console.log("ORIGINAL " + JSON.stringify(output[output.length - 1]));
+      }
     }
   }
   for (const [name, obtain] of nativeSources) {
@@ -326,16 +339,19 @@ function main() {
     assert(reference.length > LOOKAHEAD, name);
     assert(Array.from(reference).every(x => x >= 0 && x < 29), name);
     for (let mode = 0; mode < 2; mode++) {
-      const result = scan(original, reference, mode);
-      output.push({source: name, ...result});
-      console.log("ORIGINAL " + JSON.stringify(output[output.length - 1]));
+      for (const continuous of [false, true]) {
+        const result = scan(original, reference, mode, undefined, continuous);
+        output.push({source: name, ...result});
+        console.log("ORIGINAL " + JSON.stringify(output[output.length - 1]));
+      }
     }
   }
   const total = output.reduce((n, v) => n + v.exactConsistent40Plus, 0);
   console.log("SUMMARY " + JSON.stringify({
     source: "unaltered 55 source pages, 12956 GP29 runes",
     hypothesis: "two 29^29 plaintext-predecessor tables, original print spaces ignored",
-    attemptedSources: output.filter(x => x.models === "direct").map(x => x.source),
+    attemptedSources: output.filter(x => x.models === "direct"
+      && x.cipherClock === "page-contained").map(x => x.source),
     nativePositive: positive,
     strong40Plus: total,
     status: total ? "candidate requiring independent original validation"
