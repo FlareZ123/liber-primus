@@ -55,7 +55,7 @@ const p16End=pages.filter(p=>p.page<=21).reduce((a,p)=>a+p.indices.length,0);
 const pages40=pages.filter(p=>p.page<40).reduce((a,p)=>a+p.indices.length,0);
 const pages54=pages.filter(p=>p.page<54).reduce((a,p)=>a+p.indices.length,0);
 const pagesAfter53=pages.filter(p=>p.page<=53).reduce((a,p)=>a+p.indices.length,0);
-assert(p16End>500&&pages40>p16End&&pages54>pages40&&pagesAfter53>pages54);
+assert(p16End>500&&pages40>p16End&&pages54>pages40&&pagesAfter53===pages54);
 const page56=gp.pages.find(p=>p.page===56),page57=gp.pages.find(p=>p.page===57);
 assert(page56&&page57);
 
