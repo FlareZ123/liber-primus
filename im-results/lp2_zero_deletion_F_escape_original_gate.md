@@ -1,6 +1,6 @@
 # Period zero-elision clue against a literal F-as-repeat-escape decoder
 
-**Agent35, 23 November 2026. Classification: one original-input, source-motivated grammar exclusion; not recovered key/plaintext.**
+**Agent35, 23 November 2026. Classification: exact independent reproduction of an externally published exclusion, not new plaintext/key or original discovery.** A previous external analysis, [Dukotah's research dead-end ledger](https://github.com/Dukotah/cicada3301/blob/master/research/DEAD_ENDS.md), already reported that stripping all 458 F leaves ~0.76% doublets and that F-centered equal flanks are below chance. The present script supplies an independently committed exact source counter and one explicit reversible planted-positive, **not novel cipher evidence**. The original-data Node22 [CI succeeds on run 45272801231](https://github.com/FlareZ123/liber-primus/actions/runs/45272801231).
 
 ## Human solve-path premise and deterministic decoder
 
