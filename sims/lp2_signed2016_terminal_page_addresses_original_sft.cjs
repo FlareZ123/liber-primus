@@ -207,6 +207,49 @@ assert.equal(originalR39(196),"W");
 assert.equal(v59(tokens[45]),105);
 assert.equal(originalR39(105),"H");
 
+// Stronger, source-typed movement: the STARTING grid token at PATH's exact
+// source address 39 is the LITERAL 05, furnishing the five SW steps. The
+// destination is fixed before any p57 clause is opened.
+assert.equal(tokens[39],"05");
+assert.equal(tableValues[39],5);
+const routeFive=[];
+const initialRow=Math.floor(39/8), initialColumn=39%8;
+for(let step=1;step<=tableValues[39];step++){
+  const row=initialRow+step, col=initialColumn-step;
+  assert(row>=0&&row<32&&col>=0&&col<8);
+  routeFive.push({step,row,col,cell:row*8+col});
+}
+assert.deepEqual(routeFive.map(x=>x.cell),[46,53,60,67,74]);
+const endpoint=routeFive[routeFive.length-1].cell;
+assert.equal(endpoint,74);
+assert.equal(tokens[74],"3P");
+assert.equal(tableValues[74],205);
+assert.equal(primeNumbers[204],1259);
+const p57Source=JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json"))
+ .sections.find((section)=>section.name==="p57_parable").source_text;
+const p57AfterTitle=p57Source.split("⁜")[1];
+const p57Clauses=p57AfterTitle.split("⁘")
+ .filter((part)=>Array.from(part).some((rune)=>runeMap.has(rune)));
+const runeNums=new Map(realRuneAlphabet.map((rune,i)=>[rune,i]));
+const p57PrimeSums=p57Clauses.map((clause)=>Array.from(clause)
+ .filter((rune)=>runeNums.has(rune))
+ .reduce((sum,rune)=>sum+primeNumbers[runeNums.get(rune)],0));
+assert.deepEqual(p57PrimeSums,[1259,1031,1229]);
+const p57PrimeRanks=p57PrimeSums.map((sum)=>primeNumbers.indexOf(sum)+1);
+assert.deepEqual(p57PrimeRanks,[205,173,201]);
+assert.equal(tableValues[endpoint],p57PrimeRanks[0]);
+assert.equal(p57PrimeSums.reduce((product,n)=>product*n,1),1595277641);
+assert.equal(tokens.filter((v)=>v==="05").length,1);
+assert.equal(tokens.filter((v)=>v==="3P").length,1);
+assert.deepEqual(tableValues.map((value,i)=>value===205?i:null).filter(x=>x!==null),[74]);
+// If BOTH already-selected fixed source addresses are held and the 256
+// source token instances are randomly permuted, the two exact singleton
+// token assignments have joint probability (1/256)*(1/255), CONDITIONAL
+// on the source word/page, first-runic direction, movement grammar, radix
+// and the newly noticed first-clause target.
+const conditionalTwoTokenProbability=1/(256*255);
+
+
 // Exact labelled-P,A,TH index permutation null for PATH's sum=39.
 let tripletCount=0,tripletTarget=0;
 for(let i=0;i<29;i++)for(let j=0;j<29;j++)for(let k=0;k<29;k++){
@@ -233,7 +276,18 @@ console.log(JSON.stringify({
   uniqueCompassHeadwordAcrossRunePages:compassFirstWords,
   exactIndependentAlphabetShuffleProbabilityPATH39:tripletTarget/tripletCount,
   possibleSWGridStep:"39(row4,col7) -> 46(row5,col6) = GP0(ARE)",
-  sourcePrimeSelfIndex:oneBasedPrimeFixedPoints,
+  sourceTypedFiveStep: {
+  sourceStart:"signed THE follower PATH GP0=39 → first p39 word SW",
+  originalTokenAt39:tokens[39],move:"SW",steps:tableValues[39],
+  intermediateCells:routeFive,
+  destination:74,originalTokenAt74:tokens[74],destinationBase60:tableValues[74],
+  p57PrimeClauseSums,p57PrimeClauseOneBasedRanks:p57PrimeRanks,
+  exact2013ParableID3Product:p57PrimeSums.reduce((a,b)=>a*b,1),
+  p50Byte205Address:74,
+  conditionalMultisetNullTwoTokenProbability:conditionalTwoTokenProbability,
+  caveat:"Observation after wider search; no original-source instruction formally selects cross-page GP0→page-first-word→p50 compass and prime-ranking."
+ },
+ sourcePrimeSelfIndex:oneBasedPrimeFixedPoints,
   sourceB60PointerTrace:candidateMoves,
   alternativeB59PointerTrace:"SW:39→46(token 3J=196 rune W)→45(token1l=105 rune H), halt",
 
