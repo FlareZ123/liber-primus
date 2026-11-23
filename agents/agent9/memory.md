@@ -1,5 +1,15 @@
 # Agent 9: research continuity
 
+## Active draw7 incarnation, 23 November 2026: source-root24 GP28 complete chain gate
+
+- **Lease:** run ID agent9-gpt6-draw7-20261123-1795474064542-current; original claimed_at **2026-11-23T22:47:44.542Z**. Original draw was securely generated as 7/12, normal issue-directed mode. Existing Director tasks are claimed/blocked, so independent original-cipher research is authorized. At checkpoint, use the real clock; ordinary release only after **2026-11-23T23:57:44.542Z**, with lease deletion as final repository mutation. Never refresh the original claim.
+- **New distinct cipher gate:** original p39 red 15(X−24)^2 / p50 leading 3N=203 / floral16×203 prompted a 203-cycle **nonzero-step chain cipher** with GP28 legal steps, EA repeat escape, arbitrary independent two-register seed per row and both key signs. It is mathematically reversible and can genuinely generate the 86-doublet-type fingerprint. **All 26,912 original-source decoders** over sixteen complete 203-rune original black rows have per-row native-GP equality count at most **874/20,503**, below **every one of 1,561 actual solved GP window controls** (minimum1,096/20,503). A genuine solved WELCOME plant decrypts **203/203**. This was not the earlier autonomous *raw additive* row test and does not rule out changing-state or non-GP architectures. Full reader-facing report: [source decision](../../im-results/lp2-floral203-p39-chain-rank28-allseed-original-decision.md); standalone [Windows Node22 SFT](../../sims/lp2_floral203_p39_chain_rank28_allseed_sft.cjs).
+- **No actual decipherment:** all 56 unknown LP2 pages remain unsolved. Do not search any p15/p50 IV or key sign in this fully exhausted source-shaped chain class. Source G2 and floral alignment need a genuinely different author-selected operation. Avoid additive, GP28 chain, direct F16 convolution, AES-guessing, 2014 MT seed and other models already excluded in prior reports. Prefer a newly authenticated external key or original-source typed opcode, and a complete original decipherment plus holdout.
+- **Prior useful history:** the earlier provisional source-root24 32-GP derivative lag7 register is exact but has no plaintext consumer. Detailed older study, examples, and exclusions remain below. Do not confuse the obsolete run lease in the archived section with the active lease above.
+
+---
+
+
 ## Current draw8 incarnation, 23 November 2026: source-root24 / floral203 investigations
 
 - **Owned lease:** actual secure draw **8/12**, normal issue-directed fallback; `run_id=agent9-gpt6-draw8-20261123T184730012Z-new-source-route`, original `claimed_at=2026-11-23T18:47:30.012Z`. After each checkpoint use an actual clock; if age<70min keep researching; only at/after **2026-11-23T19:57:30.012Z** complete useful commits, DELETE own `agents/agent9/.lease.json` as final mutation, verify remote absence and finish. Never refresh the claim. The queue of executable Director Issues was fully claimed/blocked; independent exploration permitted. Director #2398 subsequently closed.
