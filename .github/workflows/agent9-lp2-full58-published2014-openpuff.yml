@@ -1,0 +1,87 @@
+name: Agent9 2014 authentic-password OpenPuff all 58 LP2 JPEGs
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  historical-password-all58:
+    runs-on: windows-latest
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          architecture: x86
+      - name: Prepare pinned historical OpenPuff v4 and native public JPEG control
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python -c "import struct; assert struct.calcsize('P') == 4"
+          python -m pip install --disable-pip-version-check pywinauto Pillow filelock
+          python sims/openpuff_output_capture_sft.py
+          if ($LASTEXITCODE -ne 0) { throw 'Original GUI regression failed' }
+          $directory = Join-Path $env:RUNNER_TEMP 'OpenPuff-v400-original-p33-single'
+          New-Item -ItemType Directory -Force -Path $directory | Out-Null
+          $base = 'https://raw.githubusercontent.com/codejanus/ToolSuite/1eaf6d006d31ba842f6cc6b16e9d82dbf904aaf5/OpenPuff'
+          $expected = @{
+            'OpenPuff.exe' = '466e03c792075313ce533a5dc7a789e8a41209f9'
+            'libObfuscate.dll' = 'f3b1c3315f8286346416fefd6141410f422f2454'
+          }
+          foreach ($name in $expected.Keys) {
+            $file = Join-Path $directory $name
+            Invoke-WebRequest -Uri "$base/$name" -OutFile $file
+            $actual = (& git hash-object -- $file).Trim().ToLowerInvariant()
+            if ($LASTEXITCODE -ne 0 -or $actual -ne $expected[$name]) { throw "Historical binary mismatch: $name" }
+          }
+          "OPENPUFF_EXE=$(Join-Path $directory 'OpenPuff.exe')" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+      - name: Confirm original native JPEG extractor recovers publisher's exact 35 bytes
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python sims/openpuff_public_jpeg_positive_source.py --out probe-output/public-source
+          if ($LASTEXITCODE -ne 0) { throw 'Original public carrier unavailable' }
+          python sims/openpuff_v400_extract.py --exe "$env:OPENPUFF_EXE" --carrier probe-output/public-source/openpuff.jpg --password 12345678 --bit-format 'Jpeg (Image)' --bit-level '1/2 (50%) - Maximum' --out probe-output/public-positive --wait-seconds 65
+          if ($LASTEXITCODE -ne 0) { throw 'Native positive failed to execute' }
+          python -c "from pathlib import Path; p=Path('probe-output/public-positive/extracted/hidden.txt'); assert p.read_bytes()==b'Dies ist eine versteckte Nachricht!'; print('ORIGINAL_NATIVE_JPEG_POSITIVE_PASS')"
+          if ($LASTEXITCODE -ne 0) { throw 'Original public JPEG positive bytes not recovered' }
+      - name: Probe original LP2 JPEGs with exact 2014 published password and historically native JPEG level
+        shell: pwsh
+        env:
+          SHARD: ${{ matrix.shard }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $shard = [int]$env:SHARD
+          $first = 17 + 8 * $shard
+          $last = [Math]::Min(74, $first + 7)
+          $entries = @()
+          foreach ($number in $first..$last) {
+            $label = '{0:d2}' -f $number
+            $carrier = Join-Path $env:GITHUB_WORKSPACE "resources/liber-primus/$label.jpg"
+            if (-not (Test-Path -LiteralPath $carrier)) { throw "Original source JPEG absent: $carrier" }
+            $target = "probe-output/lp2-jpeg-$label"
+            python sims/openpuff_v400_extract.py --exe "$env:OPENPUFF_EXE" --carrier "$carrier" --password '33011033' --bit-format 'Jpeg (Image)' --bit-level '1/2 (50%) - Maximum' --out "$target" --wait-seconds 85
+            if ($LASTEXITCODE -ne 0) { throw "Historical v4 probe executable failure at $label" }
+            $data = Get-Content -LiteralPath "$target/result.json" -Raw | ConvertFrom-Json
+            if ($data.carrier_count -ne 1 -or -not $data.carrier_chain_verified -or -not $data.bit_selection_verified -or -not $data.attempted) { throw "Native input selection failed for $label" }
+            $record = [ordered]@{scan="$label.jpg";outcome=$data.native_probe_outcome;payload=$data.output_present;files=$data.outputs;sha256=(Get-FileHash -LiteralPath $carrier -Algorithm SHA256).Hash.ToLowerInvariant()}
+            $entries += $record
+            Write-Host "AUTHENTIC_2014_NATIVE_SCAN $($record | ConvertTo-Json -Compress -Depth 12)"
+            if ($data.output_present) { Write-Host "AUTHENTIC_2014_PAYLOAD_FOUND $label" }
+            if ($data.native_probe_outcome -eq 'inconclusive-timeout') { throw "Inconclusive native timeout at original source $label" }
+          }
+          if ($entries.Count -ne ($last-$first+1)) { throw 'Incomplete full-range shard' }
+          $resultsPath = "probe-output/source-shard-$shard.json"
+          $entries | ConvertTo-Json -Depth 12 | Set-Content -LiteralPath $resultsPath -Encoding utf8
+          Write-Host "AUTHENTIC_2014_SHARD_COMPLETE shard=$shard count=$($entries.Count) payloads=$(@($entries | Where-Object payload).Count)"
+      - name: Retain original native evidence by source shard
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent9-2014-original58-shard-${{ matrix.shard }}
+          path: probe-output/
+          if-no-files-found: warn
