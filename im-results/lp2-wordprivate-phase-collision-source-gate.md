@@ -13,6 +13,8 @@ Q_m(w)=\sum_{0\le i<j<|w|,\ i\equiv j\;(\mathrm{mod}\;m)}
 
 is **exactly conserved**. Unknown starting phase offsets do not affect this sum because they merely relabel the residue classes. The summed \(Q_m=\sum_w Q_m(w)\) is an all-key invariant. It tests a more permissive family than five-phase *additive* Vigenere: each of the 2,896 words may have entirely new, arbitrary 29! bijections at each of the m positions. The model **does** require a fixed periodic phase-clock *within* each word and does not allow arbitrary cross-phase position mixing, changing phase per symbol or changes to the printed word segmentation.
 
+**One-sided strengthening beyond invertible alphabets:** for any arbitrary secret deterministic lookup \(f_{w,r}:\mathrm{GP29}\to\mathrm{GP29}\) in each word/phase, including every non-injective 29-to-19 (or other) mapping, an equal pair at two positions sharing a phase can never be split. Thus **\(Q_m(C)\ge Q_m(P)\)** even when \(f_{w,r}\) is *not* a permutation. A second 12,956-rune native-positive case in the SFT assigns random non-injective maps separately to every word's five position phases, checking all 2,896 individual inequalities. Any phase-preserving shuffle also retains the one-sided guarantee. This extends the negative native-word gates from secret cyclic Vigenere and arbitrary bijections to **arbitrary deterministic symbol lookups**, unless the hidden state genuinely advances *within one period class*, words are resegmented or an additional channel carries an inverse.
+
 The complete source-verified 12,956-rune unknown LP2 corpus gives:
 
 | Secret position-phase period \(m\) | Original \(Q_m\) | Lowest count in 1,280 length-matched native samples | Samples at or below original (of 1,280) |
