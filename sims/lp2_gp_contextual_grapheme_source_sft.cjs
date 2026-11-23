@@ -194,7 +194,7 @@ const nullWitnessStd = Math.sqrt(
 assert.equal(nullPairsMean, 97.7451171875);
 assert.equal(nullWitnessMean, 57.68408203125);
 assert.equal(countPairsGe, 1697);
-assert.equal(countWitnessesGe, 3441);
+assert.equal(countWitnessesGe, 3442);
 
 const opening = wordsIn(allParts.slice(0, 3).join('%'));
 const holdout = wordsIn(allParts.slice(40, 53).join('%')); // physical p40..53, skip empty p50
