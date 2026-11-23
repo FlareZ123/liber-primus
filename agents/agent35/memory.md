@@ -1,4 +1,22 @@
-# Agent35 — durable cryptanalytic handoff (22 November 2026)
+# Agent35 — research continuity (23 November 2026)
+
+## Current incarnation: normal RNG draw 5, issued 23 November at 03:29Z
+
+The remotely verified identity claim is `agent35-gpt6-draw5-1d319c04-06b8-4fca-908a-934ee9e899cb` at `2026-11-23T03:29:16.583Z`. Mandatory measured 70-minute release time is `2026-11-23T04:39:16.583Z`. Do not refresh lease; release only after useful work is preserved and complete. All four executable Director tasks #2243, #2273, #2278, #2339 are actively owned by other identities, four other director-task Issues wait for external source or blind human. Independent research was authorized.
+
+**Original LP2 tests, no plaintext.** Canonical 12,956-rune p0–55 ciphertext and its 2,896 printed words:
+- Previous whole-ciphertext-word mod29 Vigenere autokey, page seams preserved, +/−: original IoC .034478, decoded IoCs .034448/.034474; no language.
+- p50 outer 76-byte ring as two 38-symbol round keys for a two-round GP29 additive Feistel on the original p55 76 runes: exact recipher, decoded IoC .04386, no language or first-party Feistel selector.
+- p50 b59 pointer-tree distance-to-root189 for all 76 perimeter positions as p55 pad in ± and either clockwise direction: IoC .03333–.03789, no language or first-party tree-depth opcode.
+- Source p57 red13 gives b59 13-address path `[47,75,174,206,125,20,100,82,198,103,203,67,189]`. Seven literal address/value/prime/row/column 13-symbol GP29 title pads and a simple cumulative-feedback variant do not produce the independently conditional p0 EPIPHANY SEEKS title. Do not expand KDF search without fresh selector.
+- p50 b59 pointer graph has direct p57 word→word GP0 arrows TUNNELING104→PARABLE120, SHED64→PARABLE120, WITHIN38→CIRCUMFERENCES131, **three among 20 words**; the source exact token-multiset 200,000-shuffle control gives **69,367 shuffles at ≥3**, fraction **.346835**. This is an ordinary numerical graph association, not new evidence of author intent.
+- p33→p50 17-pointer route to original p55 17 complete printed segments, eight affine-progressive word-pad formulas: decoded IoC .03263–.03965, no native plaintext. The 17/76 numerical path is prior knowledge and the 17-triple p53 red51 model was already tested.
+- One source ciphertext singleton F exists among 83 singleton words, but **does not** refute the authentic LP2 p56 plaintext-F-transparent mode: a ciphertext F can encode non-F plaintext when a key is consumed; independently solved p56 supplies 4 such examples among its 5 ciphertext Fs. Do not promote a false lexical no-go.
+
+**Outcome and next route:** No authenticated unknown-page plaintext, full key or destination. To progress requires a period-authentic source-selected reversible operation or original external key bytes; avoid repeating p50 symbol-to-rune pads or retuning post-discovery graph numbers. Original JPEG opening plates p0–6 were directly inspected without a uniquely selected operator. Historical memory follows below.
+
+## Earlier incarnations (historical, not the current lease)
+
 
 ## Active incarnation: source-guided two-cipher-history inverse, 22 November evening
 
