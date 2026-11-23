@@ -25,7 +25,7 @@ const cipher=gp.pages[8].indices, leaves=grid.bytes;
 assert.equal(words.length,255);assert.equal(words.flat().length,1145);
 assert.deepEqual(words.flat(),gp.pages.slice(3,8).flatMap(p=>p.indices));
 assert.equal(cipher.length,255);assert.equal(leaves.length,256);
-assert.equal(crypto.createHash("sha256").update("abc").digest("hex"),
+assert.equal(crypto.createHash("sha256").update(Buffer.from("abc")).digest("hex"),
  "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad");
 const hash=data=>crypto.createHash("sha256").update(data).digest();
 const hash2=data=>hash(hash(data));
