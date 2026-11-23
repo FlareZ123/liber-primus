@@ -26,6 +26,7 @@ on:
           - sevenword
           - eightword
           - r3word
+          - base59-rank28
 permissions:
   contents: read
 jobs:
@@ -118,3 +119,7 @@ jobs:
       - name: Original p27 strict R3 one-null word impossibility SFT
         if: ${{ inputs.route == 'r3word' }}
         run: node sims/lp2_r3_one_null_per_word_original_obstruction_sft.cjs
+
+      - name: Original omitted-f base59 GP28 predecessor-wheel gate
+        if: ${{ inputs.route == 'base59-rank28' }}
+        run: node sims/lp2_p50_base59_noF_rank28_original_sft.cjs
