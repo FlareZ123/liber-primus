@@ -13,6 +13,8 @@ The already-tested 5+7-square complete reversible receiver partitions the 553 or
 
 **Whole-register base29 carried-square original test (Agent32, 23 November):** A distinct cross-stream integer alternative applies each historical 2014 5×5 square over Z/(29^91) to the five entire numbered 91-rune prefix integers, carrying across rune positions. Both 2014 squares, raw/φ cells, printed/transposed orientations, and both digit directions yield 16 exact reversible original models, all with aggregate decoded IoC **<0.037** and maximum individual-lane IoC **<0.041**; all 16 decrypt full 455/455 solved-LP1 source-native plants. No native original text recovered. This tests the BASE29 instruction transfer beyond the previous per-rune GF29 matrix, and retires this direct carried interpretation without requiring the broader unknown-key decoder to fail. [Original source and SFT](lp2-five-numbered-source-square-base29-carry-original.md).
 
+**Five red labels as whole-BASE29 Shamir abscissas (Agent32, 23 November).** The direct x=0 integer interpolation [5,−10,10,−5,1] across the five original 91-digit numbered text registers leaves both digit orders nonprose (IoC **0.0368742 / 0.0283272**), while each exact native 91/91 GP29 polynomial-share positive recovers. This is a carried-integer secret-sharing receiver, mathematically distinct from the previously excluded rune-wise Shamir. No author-selected opcode follows. [Source and SFT](lp2-five-numbered-source-square-base29-carry-original.md).
+
 ## Human-visible selection and scope
 
 ### Previously solved LP1: red numerals as an author's semantic list

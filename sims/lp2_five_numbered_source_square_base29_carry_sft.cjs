@@ -168,6 +168,40 @@ for (const square of squares) {
     }
   }
 }
+
+// Five integer shares at printed red abscissas 1..5 encode polynomial f(x).
+// The exact degree-four interpolation at x=0 has fixed weights 5,-10,10,-5,1.
+// This carried-register operation is distinct from rune-by-rune GF29 Shamir.
+const shareWeights = [5n, -10n, 10n, -5n, 1n];
+const integerShareTests = [];
+for (const reverse of [false, true]) {
+  const encoded = original.map((lane) => pack(lane, reverse));
+  const secret = mod(encoded.reduce((sum, value, k) => sum + shareWeights[k] * value, 0n));
+  const decoded = unpack(secret, reverse);
+  const nativeCoefficients = native.map((lane) => pack(lane, reverse));
+  const shares = Array.from({ length: 5 }, (_, i) => {
+    const x = BigInt(i + 1);
+    let value = 0n;
+    let xPower = 1n;
+    for (const coefficient of nativeCoefficients) {
+      value += coefficient * xPower;
+      xPower *= x;
+    }
+    return mod(value);
+  });
+  const trueSecret = mod(shares.reduce((sum, value, k) => sum + shareWeights[k] * value, 0n));
+  assert.equal(trueSecret, nativeCoefficients[0]);
+  const ioc = profile(decoded);
+  assert(ioc < 0.041);
+  integerShareTests.push({
+    reversedDigits: reverse,
+    originalIoC: ioc,
+    positive: '91/91',
+    first24: decoded.slice(0, 24).map((value) => corpus.translit[value]).join(''),
+  });
+}
+assert.deepEqual(integerShareTests.map((row) => row.originalIoC),
+  [0.036874236874236875, 0.028327228327228327]);
 assert.equal(output.length, 16);
 const maximum = Math.max(...output.map((row) => row.originalIoC));
 assert(maximum < 0.037, 'A whole-register carried matrix produced atypically high original IoC');
@@ -180,5 +214,6 @@ process.stdout.write(JSON.stringify({
     Math.min(...output.map((row) => row.originalIoC)), maximum,
   ],
   fullModels: output,
+  integerShareTests,
 }, null, 2) + '\n');
 process.stdout.write('PASS original 16 BASE29 carried matrices, 16 source-native plants, exact replay\n');
