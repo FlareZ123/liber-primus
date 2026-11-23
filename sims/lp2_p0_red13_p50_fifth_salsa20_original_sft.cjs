@@ -67,7 +67,7 @@ const nonce=Buffer.from(nonceN.toString(16),'hex');
 const key=Buffer.from(grid.rows.map(r=>grid.alphabet.indexOf(r[4][0])*60+grid.alphabet.indexOf(r[4][1])));
 assert.equal(key.toString('hex'),'61f7669636e6566ac772adec530e360da9f5f63469949026b0c2463a90ee16b4');
 assert.equal(key.length,32);
-const known=Buffer.from('e3be8fdd8beca2e3ea8ef9475b29a6e7003951e1097a5c38d23b7a5fad9f684b','hex');
+const known=Buffer.from('e3be8fdd8beca2e3ea8ef9475b29a6e7003951e1097a5c38d23b7a5fad9f6844','hex');
 const testKey=Buffer.alloc(32);testKey[0]=0x80;
 assert.deepEqual(salsa(testKey,Buffer.alloc(8),64).subarray(0,32),known);
 const body=all.slice(13),stream=salsa(key,nonce,body.length*2);
