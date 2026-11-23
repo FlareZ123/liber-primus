@@ -1,0 +1,16 @@
+name: Agent9 source 5x7x5 matrix Tor v2 capacity SFT
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-source-onion:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original p7 and historic three-square exact arithmetic
+        run: node sims/lp2_p7_2014_magic575_onion80_capacity_sft.cjs
