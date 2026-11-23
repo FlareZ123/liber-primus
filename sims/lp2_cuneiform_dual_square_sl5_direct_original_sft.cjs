@@ -76,6 +76,27 @@ for(const [name,M] of Object.entries({...matrices,invAB:eliminate(matrices.AB).i
   assert.deepEqual(apply(inverse,nativeOutput),nativeLanes);
   outcome.matrices[name]={determinant,originalIoc:ioc(originalOutput.flat()),originalPerLaneIoc:originalOutput.map(ioc),nativeDecodedIoc:ioc(apply(inverse,nativeOutput).flat())};
 }
+// A second source-fixed interpretation: run a 5-vector key state under both
+// squares, seeded solely by the five printed red item labels 1..5. No key fitting.
+// Both composites have period 28, a natural GF29 multiplicative-group period.
+outcome.period28 = {};
+const identity = Array.from({length:5},(_,i)=>Array.from({length:5},(_,j)=>Number(i===j)));
+for(const [name,M] of Object.entries(matrices)) {
+  let state=[1,2,3,4,5], keys=[];
+  for(let t=0;t<28;t++) { keys.push(state); state=M.map(row=>mod(row.reduce((sum,x,j)=>sum+x*state[j],0))); }
+  assert.deepEqual(state,[1,2,3,4,5]);
+  const key91=Array.from({length:91},(_,t)=>keys[t%28]);
+  outcome.period28[name]={};
+  for(const sign of [-1,1]) {
+    const plain=first91.map((lane,i)=>lane.map((x,t)=>mod(x+sign*key91[t][i])));
+    const replay=plain.map((lane,i)=>lane.map((x,t)=>mod(x-sign*key91[t][i])));
+    assert.deepEqual(replay,first91);
+    const plantedCipher=nativeLanes.map((lane,i)=>lane.map((x,t)=>mod(x-sign*key91[t][i])));
+    const plantedDecode=plantedCipher.map((lane,i)=>lane.map((x,t)=>mod(x+sign*key91[t][i])));
+    assert.deepEqual(plantedDecode,nativeLanes);
+    outcome.period28[name][sign<0?'subtract':'add']={originalIoc:ioc(plain.flat()),originalPerLaneIoc:plain.map(ioc),nativeDecodedIoc:ioc(plantedDecode.flat())};
+  }
+}
 assert.ok(outcome.matrices.AB.originalIoc<0.04);
 assert.ok(outcome.matrices.BA.originalIoc<0.04);
 assert.ok(outcome.matrices.invAB.originalIoc<0.04);
