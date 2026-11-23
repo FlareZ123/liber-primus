@@ -103,6 +103,70 @@ assert.equal(corpus.pages.filter((page) => page.indices.length === 76).length, 1
 // the same literal characters give 4*59+12 = 248, residue 16.
 assert.equal((4 * 59 + 12) % 29, 16);
 
+// The established byte-as-next-cell operation is tested with the missing
+// literal 4C's proposed canonical base60 address: 4C=252.
+// This is a conjectural starting rule; the graph operation and the
+// EPIPHANY/DEVOTED→p32 source navigation predate this study.
+const missingSeed = parse60("4C");
+assert.equal(missingSeed, 252);
+const seenAddresses = new Set();
+const pointerPath = [];
+let cursor = missingSeed;
+while (!seenAddresses.has(cursor)) {
+  seenAddresses.add(cursor);
+  pointerPath.push(cursor);
+  cursor = bytes[cursor];
+}
+assert.equal(cursor, 115);
+assert.deepEqual(pointerPath, [
+  252, 180, 144, 125, 20, 102, 32, 115, 247, 192,
+  0, 203, 68, 199, 47, 76, 114, 197,
+]);
+assert.equal(bytes[252], 180);
+assert.equal(bytes[102], 32);
+assert.equal(bytes[47], 76);
+const addressSources180 = bytes.flatMap((value, address) =>
+  value === 180 ? [address] : []
+);
+assert.deepEqual(addressSources180, [252]);
+const absentByteValues = Array.from({ length: 256 }, (_, value) => value)
+  .filter((value) => !new Set(bytes).has(value));
+assert.equal(absentByteValues.length, 95);
+assert.deepEqual(
+  absentByteValues.filter((value) => value >= 241 && value <= 255),
+  [241, 242, 243, 244, 252],
+);
+const reaches = (origin, target) => {
+  const visited = new Set();
+  let next = origin;
+  while (!visited.has(next)) {
+    if (next === target) return true;
+    visited.add(next);
+    next = bytes[next];
+  }
+  return false;
+};
+assert.equal(
+  Array.from({ length: 256 }, (_, i) => i).filter((i) => reaches(i, 32)).length,
+  93,
+);
+assert.equal(absentByteValues.filter((i) => reaches(i, 32)).length, 29);
+
+console.log(
+  "Missing 4C canonical byte seed=252; source pointer path=" +
+    pointerPath.join("->") + " (then repeats 115).",
+);
+console.log(
+  "Unique source table address with byte value 180 is 252; " +
+    "180=30*6 table interior; 102->32 repeats previously recorded " +
+    "signed DEVOTED selector; 76 lies on original 11-cycle.",
+);
+console.log(
+  "Source counterexamples: 95 absent byte values; 93/256 starts and " +
+    "29/95 absent starts reach address32, so landing on p32 alone " +
+    "is common and not a solved instruction.",
+);
+
 console.log("Original LP2 source: 32 rows x 8 cells, 256 tokens; 58 pages");
 for (const c of candidates) {
   console.log(
