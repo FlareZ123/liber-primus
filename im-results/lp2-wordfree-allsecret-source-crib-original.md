@@ -25,14 +25,14 @@ where `T_i=C_i` (direct) or `T_i=C_i−C_(i-1)` (integrated).
 
 Build an inverted index of the **first six repeated-predecessor equalities within each 40-rune source window**. Every legitimate 40-rune match must satisfy all six. The first equality indexes all valid original start offsets; the remaining five reject false candidates. Any survivor must satisfy the complete unrestricted 29-entry table simultaneously at every subsequent position until the first conflict. **All source windows have at least six constraints**, so no source start is skipped for lack of witnesses.
 
-Original targets: the unchanged `resources/liber-primus/lp2-corpus.json`, all 55 rune-bearing physical pp0–55 (p50 excluded), 12,956 runes. The **page-contained** scan has **10,811** eligible original offsets with at least 40 runes remaining on that page. The **book-continuous** scan has **12,917** original offsets leaving at least 40 total runes, and permits source phrases to cross printed page boundaries, including numerical p50's intervening non-runic physical page. Across 13 reference inputs, there are **900,672** eligible source starts per model/clock/orientation. Two models × two clocks × two source orientations give **85,484,580,864 implicitly screened source/target 40-rune comparisons**. The index evaluates necessary constraints rather than performing that many independent decryptions, and the comparison count is not a multiple-testing p-value.
+Original targets: the unchanged `resources/liber-primus/lp2-corpus.json`, all 55 rune-bearing physical pp0–55 (p50 excluded), 12,956 runes. The **page-contained** scan has **10,811** eligible original offsets with at least 40 runes remaining on that page. The **book-continuous** scan has **12,917** original offsets leaving at least 40 total runes, and permits source phrases to cross printed page boundaries, including numerical p50's intervening non-runic physical page. Across 13 reference inputs, there are **900,685** eligible source starts per model/clock/orientation. Two models × two clocks × two source orientations give **85,485,814,720 implicitly screened source/target 40-rune comparisons**. The index evaluates necessary constraints rather than performing that many independent decryptions, and the comparison count is not a multiple-testing p-value.
 
 ## Source inputs and original decision
 
 | Source register | GP runes | 40-rune source starts | ≥40 match, any model/clock/orientation |
 | --- | ---: | ---: | ---: |
-| William Blake, *Song of Liberty*, held-out training body | 1,459 | 1,419 | 0 |
-| William Blake, *The Marriage of Heaven and Hell*, 2012 named literary source (1906 text) | 18,355 | 18,315 | 0 |
+| William Blake, *Song of Liberty*, held-out training body | 1,459 | 1,420 | 0 |
+| William Blake, *The Marriage of Heaven and Hell*, 2012 named literary source (1906 text) | 18,355 | 18,316 | 0 |
 | Aleister Crowley, *Book of the Law* I | 6,958 | 6,918 | 0 |
 | *Book of the Law* II | 7,059 | 7,019 | 0 |
 | *Book of the Law* III | 7,484 | 7,444 | 0 |
@@ -44,7 +44,7 @@ Original targets: the unchanged `resources/liber-primus/lp2-corpus.json`, all 55
 | Latin Vulgate NT, wordwise original GP sequence | 204,802 | 204,762 | 0 |
 | Actual solved LP1 rune transcription | 2,797 | 2,757 | 0 |
 | Actual solved LP2 p57 rune sequence | 95 | 55 | 0 |
-| **Combined per model** | | **900,672** | **0** |
+| **Combined per model** | | **900,685** | **0** |
 
 The strongest original short alignments reach **23 runes** (reverse-source integrated Emerson), **22** (forward-source integrated Emerson and reversed-source direct Shakespeare) and fail before 40. These are small accidental partial-table fits with no recovered text and should **not** be treated as crib evidence. No tested literal historical or already-solved source segment is the exact unknown LP2 plaintext for 40 consecutive runes under either model/clock with either source orientation.
 
@@ -60,4 +60,4 @@ Do not commission further variants of this source-crib operation without a newly
 
 - [Exact read-only CommonJS SFT](../sims/lp2_plainprev_wordfree_crib_lookup_sft.cjs)
 - [Manual Windows Node22 workflow](../.github/workflows/agent10-wordfree-crib-lookup.yml)
-- [Full original/all-source CI run, both clocks and both source orientations, **45128340695**, success](https://github.com/FlareZ123/liber-primus/actions/runs/45128340695).
+- [Full original/all-source CI run, both clocks and both source orientations, **45128942599**, success](https://github.com/FlareZ123/liber-primus/actions/runs/45128942599).
