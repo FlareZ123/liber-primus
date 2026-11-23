@@ -79,7 +79,7 @@ Both reset modes recover all 12,956 runes exactly. The positive also satisfies e
 
 ## F-output state-hold extension
 
-The solved-page F-transparent/key-clock behavior motivates a distinct no-op state model. Here F remains an ordinary ciphertext output in the row bijection, but emitting F does **not** update the predecessor state: the state is the most recent non-F ciphertext rune. Each of the 28 non-F states has a 28-output row containing every rune except that state, including F. A plaintext F-to-ciphertext F mapping for every row is a special case of this larger family.
+The solved-page F-transparent/key-clock behavior motivates a distinct no-op state model. Here F remains an ordinary ciphertext output in the row bijection, but emitting F does **not** update the predecessor state: the state is the most recent non-F ciphertext rune. Each of the 28 non-F states has a 28-output row containing every rune except that state, including F. A plaintext F-to-ciphertext F mapping for every row is a special case of this larger family. This is **not** the authentic p56 prime-totient cipher itself: that distinct transfer has its own negative in [the p56 native-F-transparent nine-chapter report](lp2-p56-native-F-transparent-ninechapter-impossibility.md). Only the F no-consume/state-hold behavior is borrowed as a candidate rule for this different row-permutation receiver.
 
 The model grants every printed word start, every reset at a visual chapter boundary, optional resets at all 32 physical page seams, all positions before the first non-F state after a reset, and every repeat of the last non-F state as free sidecar positions. In the original source this yields:
 
