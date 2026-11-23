@@ -247,10 +247,165 @@ for (const driver of ['cipher', 'difference']) {
 }
 assert.deepEqual(original.map(x => x.maximum), [1026,1120,1056,1146]);
 assert.deepEqual(original.map(x => x.groups), [55,74,55,74]);
+
+/**
+ * Independent-segment invariant: within one source-delimited segment,
+ * positions with the same current Q state have equal plaintext GP runes
+ * if and only if their observed predecessor ciphertext differences equal.
+ * This is true under ANY private 29! bijection per state AND per segment.
+ * Changing every secret alphabet at every genuine mark cannot affect the
+ * equality partition. A different secret initial state *can*, so bound
+ * its effect by enumerating all 29 seeds independently in every segment.
+ * @param {number[][]} h
+ * @returns {{equals:number,pairs:number}}
+ */
+function sameStatePairs(h) {
+  let equals = 0, pairs = 0;
+  for (const row of h) {
+    let n = 0;
+    for (const freq of row) {
+      equals += freq * (freq - 1) / 2;
+      n += freq;
+    }
+    pairs += n * (n - 1) / 2;
+  }
+  return {equals, pairs};
+}
+/**
+ * Deliberately over-relaxed upper ratio, allowing the numerator to
+ * maximize its own seed separately from the denominator's minimum seed.
+ * @param {Array<{page:number,indices:number[]}>} textPages
+ * @param {'cipher'|'difference'} driver
+ * @param {boolean} resetAtLargeMarks
+ * @returns {{segments:number,equalsUpper:number,pairsLower:number,ratioUpper:number}}
+ */
+function independentSegmentCollisionBound(textPages, driver, resetAtLargeMarks) {
+  let segmentsCount = 0, equalsUpper = 0, pairsLower = 0;
+  for (const p of textPages) for (const span of segments(p, resetAtLargeMarks)) {
+    const variants = segmentHistograms(p.indices, span.start, span.end, driver)
+      .map(sameStatePairs);
+    equalsUpper += Math.max(...variants.map(v => v.equals));
+    pairsLower += Math.min(...variants.map(v => v.pairs));
+    segmentsCount++;
+  }
+  return {segments:segmentsCount, equalsUpper, pairsLower,
+    ratioUpper:equalsUpper / pairsLower};
+}
+/**
+ * Full 55-page GP native-language source planted under completely private
+ * alphabet permutations at EVERY physical page or source-original mark
+ * segment; these do not share a single state alphabet across the book.
+ * Encryption and decryption both reproduce every native GP rune,
+ * including authentic intra-page word and mark positions.
+ *
+ * @param {number[]} plaintext
+ * @param {'cipher'|'difference'} driver
+ * @param {boolean} resetAtLargeMarks
+ * @param {number} initialRandom
+ * @returns {{sameStateEquals:number,sameStatePairs:number,recovered:number,reencrypted:number}}
+ */
+function privateSegmentPlant(plaintext, driver, resetAtLargeMarks, initialRandom) {
+  let rng = initialRandom >>> 0, cursor = 0;
+  /** @returns {number} */
+  function nextRandom() {
+    rng = (Math.imul(rng, 1664525) + 1013904223) >>> 0;
+    return rng;
+  }
+  /** @returns {number[]} */
+  function secretPermutation() {
+    const a = Array.from({length:29}, (_, i) => i);
+    for (let j = 28; j > 0; j--) {
+      const k = nextRandom() % (j + 1);
+      [a[j], a[k]] = [a[k], a[j]];
+    }
+    return a;
+  }
+  let sameStateEquals = 0, sameStatePairs = 0, recovered = 0, reencrypted = 0;
+  for (const p of pages) {
+    const desired = plaintext.slice(cursor, cursor + p.indices.length);
+    assert.equal(desired.length, p.indices.length);
+    cursor += desired.length;
+    const encrypted = [desired[0]];
+    recovered++;
+    for (const span of segments(p, resetAtLargeMarks)) {
+      const seed = nextRandom() % 29;
+      const secretMaps = Array.from({length:29}, secretPermutation);
+      const inverse = secretMaps.map(map =>
+        map.map((_, value) => map.indexOf(value)));
+      let state = seed;
+      const h = Array.from({length:29}, () => Array(29).fill(0));
+      for (let j = span.start; j < span.end; j++) {
+        const delta = inverse[state][desired[j]];
+        const cipher = mod(encrypted[j - 1] + delta);
+        encrypted.push(cipher);
+        assert.equal(secretMaps[state][mod(cipher - encrypted[j - 1])], desired[j]);
+        h[state][delta]++;
+        state = mod(quartic(state) +
+          (driver === 'cipher' ? cipher : delta));
+      }
+      let checkState = seed;
+      for (let j = span.start; j < span.end; j++) {
+        const delta = mod(encrypted[j] - encrypted[j - 1]);
+        const recoveredRune = secretMaps[checkState][delta];
+        assert.equal(recoveredRune, desired[j], 'Native GP original-layout decoder');
+        assert.equal(mod(encrypted[j - 1] + inverse[checkState][recoveredRune]),
+          encrypted[j], 'Native GP original-layout forward replay');
+        checkState = mod(quartic(checkState) +
+          (driver === 'cipher' ? encrypted[j] : delta));
+        recovered++;
+        reencrypted++;
+      }
+      const pairs = sameStatePairs(h);
+      sameStateEquals += pairs.equals;
+      sameStatePairs += pairs.pairs;
+    }
+    assert.equal(encrypted.length, p.indices.length);
+  }
+  assert.equal(cursor, total);
+  assert.equal(recovered, total);
+  assert.equal(reencrypted, interiors);
+  return {sameStateEquals, sameStatePairs, recovered, reencrypted};
+}
+const privateCollisionGate = [];
+for (const driver of ['cipher', 'difference']) {
+  for (const resetAtLargeMarks of [false, true]) {
+    const originalUpper = independentSegmentCollisionBound(
+      pages, driver, resetAtLargeMarks);
+    const controls = [];
+    let sampleNo = 0;
+    for (const source of sources) {
+      for (const offset of source.starts) {
+        const plaintext = source.data.slice(offset, offset + total);
+        assert.equal(plaintext.length, total);
+        const planted = privateSegmentPlant(
+          plaintext, driver, resetAtLargeMarks,
+          (0x33014623 ^ ((sampleNo++ + 1) * 0x9e3779b9)) >>> 0);
+        const ratio = planted.sameStateEquals / planted.sameStatePairs;
+        assert(ratio > originalUpper.ratioUpper,
+          'Original collision ceiling must fall below native-source private-key positive');
+        controls.push({source:source.name, offset,
+          equals:planted.sameStateEquals,
+          pairs:planted.sameStatePairs,
+          ratio});
+      }
+    }
+    privateCollisionGate.push({driver, resetAtLargeMarks, originalUpper,
+      minNativeRatio:Math.min(...controls.map(x => x.ratio)),
+      controls});
+  }
+}
+assert.deepEqual(privateCollisionGate.map(x => x.originalUpper.equalsUpper),
+  [2157, 2059, 2237, 2108]);
+assert.deepEqual(privateCollisionGate.map(x => x.originalUpper.pairsLower),
+  [53756, 50749, 53479, 50342]);
+assert.deepEqual(privateCollisionGate.map(x => x.originalUpper.segments),
+  [55, 74, 55, 74]);
+
 console.log(JSON.stringify({
   hypothesis:'one evolving 29-state carry, original p7 quartic + observed ciphertext/delta, 29 globally shared entirely secret bijections',
   source:{runePages:pages.length, runes:total,eligible:interiors,adjacentEqual:originalDoubles,
     visibleLargeMarks:pages.reduce((z,p)=>z+(inkPages.get(p.page)?.large_punctuation?.length||0),0)},
   original, nativeComparisons:native,positiveControls:controls,
-  decision:'All four tested shared-alphabet page/mark-seeded evolving states are excluded for all ten native GP prose controls. No unknown LP2 key/plaintext or authenticated operator.'
+  independentPrivateSegmentCollisionGate:privateCollisionGate,
+  decision:'All four original Q+cipher/difference variants fail two independent all-secret necessary conditions in ten full-layout native GP controls, even with independently private alphabet tables at each original page/mark segment. No unknown LP2 key/plaintext or authenticated operator.'
 }, null, 2));
