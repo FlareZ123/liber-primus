@@ -69,7 +69,11 @@ assert.deepEqual(sourceSeed, [22, 21]);
 const transcribed = read('resources/liber-primus/lp2-transcription.txt').split('%');
 const runeIndex = new Map(gp.runes.map((symbol, i) => [symbol, i]));
 for (const p of pages) {
-  const raw = transcribed[p.page] || '';
+  // The plain transcription omits the rune-free physical numeric p50 entirely,
+  // so its '%' segment indices run one behind the canonical physical page IDs
+  // after p49. The canonical corpus itself correctly preserves the page number.
+  const transcriptionIndex = p.page >= 51 ? p.page - 1 : p.page;
+  const raw = transcribed[transcriptionIndex] || '';
   const fromSource = [...raw].filter((ch) => runeIndex.has(ch)).map((ch) => runeIndex.get(ch));
   assert.deepEqual(fromSource, p.indices, 'transcription mismatch physical p' + p.page);
 }
