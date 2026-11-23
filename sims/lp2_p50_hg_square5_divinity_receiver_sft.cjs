@@ -145,6 +145,11 @@ function main() {
   assert.ok(decodeDivinity(reference.cipher,key).survivors>=1);
   const plant=encryptDivinity(hill(A,solved),key);
   assert.ok(decodeDivinity(plant,key).survivors>=1);
+  // Original p57 reads SHED -> DIVINITY -> EMERGE. If interpreted as
+  // decode DIVINITY directly on Q250 *before* A inverse, it also fails.
+  const literalSentenceOrder=decodeDivinity(inside,key);
+  assert.equal(literalSentenceOrder.survivors,0);
+  assert.equal(literalSentenceOrder.firstImpossible,21);
   const result=decodeDivinity(hillPlain,key);
   // This is the actual original receiver; exact F-zero branch reaches an
   // impossible state even before any English language inference.
@@ -157,6 +162,8 @@ function main() {
     originalHillOutputIoc:ioc(hillPlain),
     originalHillOutputPrefix:hillPlain.slice(0,85).map(x=>corpus.translit[x]).join(''),
     originalDivinityLegalPaths:result.survivors,
+    p57SentenceOrderDivinityLegalPaths:literalSentenceOrder.survivors,
+    p57SentenceOrderEarliestImpossibleRuneIndex:literalSentenceOrder.firstImpossible,
     earliestImpossibleRuneIndex:result.firstImpossible,
     maximalFStateCount:result.maxima,
     positiveOriginalLP1Reproduced:515,
