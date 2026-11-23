@@ -1,0 +1,14 @@
+name: Agent15 LP2 source-word chained-hash original gate
+on:
+  workflow_dispatch:
+jobs:
+  original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test original p3-p8 chained hash 255-rule
+        run: node sims/lp2_scroll255_historical_hashchain_original_sft.cjs
