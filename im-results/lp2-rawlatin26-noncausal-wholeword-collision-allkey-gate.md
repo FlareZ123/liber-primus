@@ -38,6 +38,10 @@ Direct raw two-letter tokenizations of three checked-in source-language controls
 
 The actual physical p50 number-only page is excluded, and 32 page carries remain joined. Each row excludes that particular chapter-private stationary whole-word model **under the attested 63-type vocabulary**. Neither row independently excludes a broader 168-word lexicon; the **full-book** 168-type argument excludes a **single shared** stationary map, not chapter-rekeyed variants.
 
+## Minimal changing-state consequence
+
+A decoder that assigns one of `s` fixed deterministic maps to each printed two-letter word, with no other input distinguishing repeated plaintext types, can produce **at most `168 × s` distinct ciphertext two-letter types** from the permissive 168-type raw-English lexicon. Since the unmodified original contains **354 distinct two-rune ciphertext words**, any surviving model in that register must have at least **`ceil(354/168) = 3` different effective word-encryption maps** across the full manuscript. Under the narrower **63-type observed donor union**, the corresponding lower bound is **six maps** globally. This is only a necessary state-support bound; it does not identify IV values, establish where state transitions occur, or exclude independent page keys. Under the 63-type control, the actual p15–22 and p40–53 sections each require **at least two effective maps within that chapter**. A source-selected clock with more than these counts remains entirely possible.
+
 ## Exact noncausal positive control
 
 The reproducer defines a complete **two-letter block cipher** over GP29:
