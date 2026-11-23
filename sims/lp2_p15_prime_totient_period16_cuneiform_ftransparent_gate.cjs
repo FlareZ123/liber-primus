@@ -24,7 +24,10 @@ assert.deepEqual(pages.map(p => p.page), [33, 34, 35, 36, 37, 38, 39]);
 // Reconstruct the exact 16 primes selected by the original p15 grid:
 // p_(F+1), where F is the distinct Fibonacci sequence 0,1,2,3,5,... .
 const fib = [0, 1];
-while (fib.length < 16) fib.push(fib.at(-1) + fib.at(-2));
+while (fib.length < 16) {
+  const next = fib.at(-1) + fib.at(-2);
+  if (next !== 1) fib.push(next); // omit the duplicate F1=F2=1
+}
 const limit = 10000;
 const isPrime = new Uint8Array(limit + 1);
 isPrime.fill(1);
@@ -37,7 +40,6 @@ for (let n = 2; n <= limit; n++) if (isPrime[n]) primes.push(n);
 const selectedPrimes = fib.map(f => primes[f]); // zero-based array index = one-based prime rank - 1
 const expectedPrimes = [2, 3, 5, 7, 13, 23, 43, 79, 149, 263, 463, 829, 1481, 2593, 4507, 7817];
 assert.deepEqual(selectedPrimes, expectedPrimes);
-const spiralGrid = [3299, 3298, 3296, 3294, 3288, 3278, 3258, 3222, 3152, 3038, 2838, 2472, 1206, 708, 1820, 4516];
 // Keep the established spiral order explicit; the last two terms exceed 3301,
 // hence the source prints absolute differences.
 assert.deepEqual(
