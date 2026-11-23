@@ -55,6 +55,14 @@ computed tag   d1b2e74fb814f6d2db4db5b3c3886e92
 
 The tag **fails**, so **no plaintext from the proposed whole-book AES-128-GCM envelope is authenticated**. This is a decisive exclusion of this exact key, serialized receiver and standard 12/16 framing, rather than a statistical non-English diagnostic. The [Node22 native-crypto source-original SFT](../sims/lp2_p15_p50_id3_wholelp2_gcm_sft.cjs) reuses the established canonical serialization and positive LP1 plant, performs a normal tag-verified decrypt and expects this rejection. The direct result was executed independently in the agent's tool runtime; the new Node SFT has not been CI-dispatched, so this report makes no Node CI PASS claim.
 
+### Nine independently red-titled LP2 message envelopes also reject
+
+The manuscript additionally has **nine physical red-rubric-delimited text units**, an original framing independent of GCM assumptions. Their unchanged GP29 rune lengths are `729, 1145, 1738, 1894, 1021, 1433, 91, 1589, 3316`. Applying the *same frozen 16-byte p15→p50 key* and the *same nonce12|ciphertext|tag16 framing* to each unit's own minimal big-endian base29 integer produces source byte lengths `443, 696, 1056, 1151, 620, 871, 56, 965, 2013`, exactly as in the earlier forty-p15-key original-framing baseline.
+
+A separate all-nine execution of the standard-vector-validated AES-128/GHASH tag calculator yields **0/9 authenticated chapter tags**. In unit0 actual tag `f55e365a81f3505ec2727e741ca79b19` differs from computed `ce4f5a8266a5ff45546b2580227ef606`; in unit8 actual `2f7ce541dad7d1f7d6c8bc404adb1bf3` differs from computed `71605da1558df1fff96df5b24a00ba49`. All nine original-source comparisons and the whole-book negative are represented by [the combined native-crypto read-only SFT](../sims/lp2_p15_p50_id3_wholelp2_gcm_sft.cjs), importing the existing original-source message serializer and rubric-unit resolver.
+
+Together these ten **complete authentication failures** eliminate the most direct full-book and independently titled AES-128-GCM uses of this one candidate key. They do not authenticate the upstream modulo256 locator or exclude fundamentally different cipher arrangements.
+
 ## Collision calibration and uncharged choices
 
 In the actual base60 panel, byte `I` (=73) occurs4 times, `D` (=68) twice, and `3` (=51) twice. Conditional on three **fixed distinct** panel addresses and an exchangeable 256-cell byte multiset, the exact chance of ordered `ID3` is
