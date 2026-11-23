@@ -33,6 +33,20 @@ assert.deepEqual(counts, [76, 85, 95]);
 const knownLength = counts[1] + counts[2];
 const total = counts.reduce((a,b) => a+b, 0);
 assert.equal(total, bytes.length);
+// p57's source-visible “shed circumferences”: one outer ring / 30×6 core.
+/** @type {number[]} */
+const outer=[];
+/** @type {number[]} */
+const inner=[];
+for(let row=0;row<32;row++)for(let col=0;col<8;col++) {
+  const i=row*8+col;
+  if(row===0 || row===31 || col===0 || col===7) outer.push(i);
+  else inner.push(i);
+}
+assert.equal(outer.length,76);
+assert.equal(inner.length,180);
+assert.equal(outer.length,counts[0]);
+assert.equal(inner.length,knownLength);
 
 /** @param {number} i @param {number} j @returns {boolean} */
 function near(i, j) {
@@ -115,6 +129,7 @@ console.log(JSON.stringify({
   addressToken:tokens[252],
   addressValue:bytes[252],
   terminalRunes:{p55:counts[0],p56:counts[1],p57:counts[2]},
+  p57Circumference:{outerGridCells:outer.length,innerGridCells:inner.length},
   completenessScan:{eligibleCount,missingCount,complements},
   pointerWalkThrough76:walk.slice(0,16),
   interpretation:'Exact original-data coincidence; no source-selected cipher, recovered unknown plaintext, or key'
