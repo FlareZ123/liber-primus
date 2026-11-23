@@ -1,10 +1,6 @@
 name: Agent11 original LP2 opening ternary-six collision SAT
 
 on:
-  push:
-    paths:
-      - 'sims/lp2_p0p2_ternary6_collision_sat_sft.py'
-      - '.github/workflows/agent11-p0p2-ternary6-original.yml'
   workflow_dispatch:
 
 permissions:
