@@ -93,6 +93,54 @@ for(const [name,cipher] of [['whole98',whole],['interior49',interior],['edges49'
 assert.equal(results[0].legalDecodings,0);
 assert.equal(results[1].legalDecodings,1);
 assert.equal(results[2].legalDecodings,0);
+// Independent original holdouts under the exact same solved cipher and
+// original one-layer SHED rule. Red item3/4 stand-alone algebraic survival is
+// insufficient to establish prose: a true source key should transfer.
+const allRawPages=read('resources/lp2-transcription.txt').split('%');
+/** @param {number} pageIndex */
+function parseWords(pageIndex){
+  const words=[];
+  let current=[],offset=0,start=0;
+  const flush=()=>{
+    if(current.length){words.push({start,end:offset,w:current});current=[];}
+  };
+  for(const ch of allRawPages[pageIndex]){
+    if(map.has(ch)){
+      if(!current.length)start=offset;
+      current.push(map.get(ch));offset++;
+    }else if(ch==='/'||/\\s/u.test(ch)){}else flush();
+  }
+  flush();
+  return words;
+}
+const parsed={36:parseWords(36),37:parseWords(37),38:parseWords(38)};
+const specs=[
+  [{page:36,start:99,end:238}],
+  [{page:37,start:0,end:91}],
+  [{page:37,start:91,end:189}],
+  [{page:37,start:189,end:228},{page:38,start:0,end:57}],
+  [{page:38,start:57,end:186}]
+];
+const itemHoldouts=specs.map((parts,index)=>{
+  const complete=parts.flatMap(({page,start,end})=>
+    parsed[page].filter(w=>w.start>=start&&w.end<=end).map(w=>w.w));
+  const intact=complete.flat();
+  const peeled=complete.flatMap(w=>w.slice(1,-1));
+  const border=complete.flatMap(w=>w.length===1?[w[0]]:[w[0],w.at(-1)]);
+  return {
+    item:index+1,wordCount:complete.length,intact: intact.length,
+    peeled:peeled.length,border:border.length,
+    intactSurvives:decodeAll(intact).paths.some(v=>v.plain.length===intact.length),
+    peeledSurvives:decodeAll(peeled).paths.some(v=>v.plain.length===peeled.length),
+    borderSurvives:decodeAll(border).paths.some(v=>v.plain.length===border.length)
+  };
+});
+assert.deepEqual(itemHoldouts.map(x=>x.intact),[139,91,98,96,129]);
+assert.deepEqual(itemHoldouts.map(x=>x.peeled),[79,51,49,58,74]);
+assert.deepEqual(itemHoldouts.map(x=>x.border),[60,40,49,38,55]);
+assert.deepEqual(itemHoldouts.map(x=>x.peeledSurvives),[false,false,true,true,false]);
+assert.deepEqual(itemHoldouts.map(x=>x.intactSurvives),[false,false,false,false,false]);
+assert.deepEqual(itemHoldouts.map(x=>x.borderSurvives),[false,false,false,false,false]);
 const p57=corpus.pages.find(p=>p.page===57).indices;
 const native=p57.slice(0,49);
 assert.equal(native.length,49);
@@ -108,5 +156,5 @@ console.log(JSON.stringify({
   testedKey: key,sourceNativeP57Positive49:nativeRecovered,
   sourceNativeP57Positive95:true,
   conclusion:'interior49 algebraically compatible with authenticated historical cipher but resulting native symbols are not coherent unknown-page plaintext',
-  results
+  results,itemHoldouts
 },null,2));
