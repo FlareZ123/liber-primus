@@ -1,0 +1,14 @@
+name: Agent8 65536 prime wordstarts original SFT
+on:
+  workflow_dispatch:
+jobs:
+  prime-wordstart:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: All-source prime-totient arbitrary-word starts
+        run: node sims/lp2_prime_totient_wordwise_65536_english_sft.cjs
