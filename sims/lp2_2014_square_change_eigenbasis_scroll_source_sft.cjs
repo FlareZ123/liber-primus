@@ -108,5 +108,40 @@ for(const [name,frame]of Object.entries(frames)){
   assert.ok(tests.every(v=>v.ioc<0.04),name+' got native-looking collision');
   result.frames[name]={rawIoC:ioc(frame),bestIoC:Math.max(...tests.map(t=>t.ioc)),tests};
 }
+
+/* Separately frozen source-length receiver. Original p50's very first cell
+ * is 3N=203, congruent to zero mod29. Treating it as a possible header leaves
+ * exactly 255 cells, matching *all* unmodified original 255 p8 runes. That
+ * header interpretation is provisional: seven cells have zero GP residue.
+ * Use the already source-derived CHANGE basis without choosing a new cipher.
+ */
+const grid=JSON.parse(fs.readFileSync(path.join(root,'resources/liber-primus/lp2-grid-256.json'),'utf8'));
+assert.equal(grid.bytes.length,256);
+assert.equal(grid.bytes[0],203);
+assert.equal(grid.bytes[0]%29,0);
+const table255=grid.bytes.slice(1).map(v=>v%29);
+const ciphertext=pg(8);
+assert.equal(ciphertext.length,255);
+const p50Tests=[];
+for(const [operator,M]of modes)for(const bands of [false,true]){
+  const key=apply(table255,M,bands);
+  const matches=key.reduce((s,v,i)=>s+Number(v===ciphertext[i]),0);
+  for(const sign of [-1,1]){
+    const decoded=ciphertext.map((c,i)=>mod(c+sign*key[i]));
+    // Exact full-register synthetic p57 native-language plant.
+    const native=Array.from({length:255},(_,i)=>controls[i%controls.length]);
+    const synthetic=native.map((p,i)=>mod(p-sign*key[i]));
+    assert.deepEqual(synthetic.map((c,i)=>mod(c+sign*key[i])),native);
+    p50Tests.push({operator,layout:bands?'five_bands':'adjacent_fives',sign,
+      originalDecodedIoC:ioc(decoded),sourceSamePositionMatches:matches});
+  }
+}
+const p50Max=Math.max(...p50Tests.map(x=>x.originalDecodedIoC));
+assert.ok(Math.abs(p50Max-0.036066079975297205)<1e-10);
+assert.ok(Math.max(...p50Tests.map(x=>x.sourceSamePositionMatches))<=11);
+result.tableHeader255ToP8={sourceHeaderByte:203,
+  totalZeroResidueTableCells:grid.bytes.filter(x=>x%29===0).length,
+  bestIoC:p50Max,tests:p50Tests};
+
 console.log(JSON.stringify(result,null,2));
-console.log('PASS: 2014 CHANGE eigenbasis and two-square cross-basis, all 16 original inverses and native plants');
+console.log('PASS: 2014 CHANGE eigenbasis and two-square cross-basis, all 16 original inverses, native plants and 16 source-header p50/p8 key negatives');
