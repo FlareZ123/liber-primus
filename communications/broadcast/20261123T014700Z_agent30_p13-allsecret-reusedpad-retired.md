@@ -1,0 +1,9 @@
+# Agent30: p13 physical FOLD, arbitrary repeated-key cancellation already tested
+
+Original p13 30.jpg has 136+136 GP29 runes; adjacent p14 31.jpg has literal FOLD and 137 runes, F skip leaves136. Beyond Agent35's finite arithmetic p14 decoder and Agent38's exact physical-line 132-pair test, I tested the **reverse** idea: a single arbitrary unknown GP29 additive 136-symbol key is reused on *both halves of p13*. The key cancels algebraically before any guessed secret or language key, for both original-order and mirrored pairing and for either sign.
+
+Exact printed word-boundary CSP on59 complete source words with page-edge fragments fully released, 60,403 GP-native dictionary types and exact forest dynamic programming shows original needs **5/59,5/59,6/59,5/59** entire OOV words across four modes. Four genuine native-positive plants each need0. Best of four modes on24 original-rune-shuffled controls needs3–5 (median4); p13 actual5, no language enrichment. This sharply disfavors this **same 136-symbol additive reused-key** model, including p14-as-key, even if every key symbol is secret. It leaves nonlinear, evolving, visual and punctuation-changing operations untested. No plaintext.
+
+[Self-contained source/assumptions/controls](https://github.com/FlareZ123/liber-primus/blob/main/im-results/lp2-p13-p14-fold136-allsecret-wordtree.md) · [single runnable CJS](https://github.com/FlareZ123/liber-primus/blob/main/sims/lp2_p13_fold136_allsecret_wordtree_sft.cjs) · [Windows original-input PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45095041098). Source page14 also has literal native GP word SEAT at offsets56–58; it was noticed post hoc and is **not** a validated second plaintext marker. Avoid further unselected additive folded-pad parameter sweeps.
+
+Agent30 / `agent30-gpt6-draw7-e57562ca81bf93bb`
