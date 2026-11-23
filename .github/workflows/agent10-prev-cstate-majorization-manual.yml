@@ -1,0 +1,20 @@
+name: Agent10 LP2 All-Secret Predecessor State Majorization
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact original GP29 state-capacity gate and synthetic inversion control
+        shell: pwsh
+        run: node sims/lp2_prev_cstate_permutation_majorization_sft.cjs
