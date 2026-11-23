@@ -55,6 +55,10 @@ function stats(bytes){
     head32:bytes.slice(0,32).map(x=>x.toString(16).padStart(2,"0")).join("")
   };
 }
+// Independent miniature 2x2 PNG-average worked example. Row 0 original
+// [10,20] filters [10,15]; row 1 [30,40] filters [25,15].
+assert.deepEqual(filter([10,20,30,40],2),[10,15,25,15]);
+assert.deepEqual(reconstruct([10,15,25,15],2),[10,20,30,40]);
 const avg=reconstruct(source);
 assert.deepEqual(filter(avg),source);
 // Literal PNG scanlines cannot be read directly from the 32x8 printed grid:
