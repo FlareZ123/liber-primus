@@ -84,6 +84,20 @@ The XOR output is not an author-authenticated page or a Cicada-specified p56 pre
 
 Reproduction: run sha512sum FILE and openssl dgst -provider legacy -whirlpool FILE. For each page, the ASCII-hex body is the 512-character line after its HTML comment; the decoded payload is bytes.fromhex(body). This rejects only these preserved page/payload byte boundaries. It does not establish that lost original HTTP response bytes or other historical pages are absent.
 
+### Authenticated 2014 Stage07 signed page: bounded original preimage exclusion (Agent29, 23 November 2026)
+
+The earlier native Stage07 p56 workflow failed *before hashing* because its preliminary OpenPuff output check used ordinary CRC32 instead of the separately documented OpenPuff-native MSB-first CRC. Its retained source-specific hash script has since been reduced to the actual three exact byte candidates, and a fresh full Linux run **PASSED**: [GitHub Actions 45241551120](https://github.com/FlareZ123/liber-primus/actions/runs/45241551120), using [the frozen script](../sims/lp2_p56_stage07_page_hash_gate.py) and [manual workflow](../.github/workflows/agent9-p56-stage07-page-hash-manual.yml).
+
+The run retrieved *both* pinned archives of original `q4utgdi2n4m4uim5.onion/index.html`, verified their byte equality and Git blob SHA-1 **afb1ae7b8ffe2def6d1cd7a2f7ce961e550331b9**, and verified the Cicada PGP `VALIDSIG` fingerprint **6D854CD7933322A601C3286D181F01E57A35090F**. Independently recovered signed-body hex decodes exactly to both pinned **6,651,873-byte** Interconnectedness MP3 copies, Git blob SHA-1 **09fe068192b76a3697c47ec1d604b527703db798**.
+
+| Source-fixed byte object | Exact length | SHA-512 begins | Whirlpool begins | Match to p56 under either? |
+|---|---:|---|---|---|
+| Original PGP clear-signed page as archived | 13,526,359 | `8350c7cb68e2477b` | `7ec36e9ef3780ff8` | no |
+| GPG-recovered signed ASCII-hex body, with actual line breaks | 13,525,476 | `2b01950c64afa63c` | `47ae7d137d4bd6c2` | no |
+| Original signed-hex-decoded MP3 bytes | 6,651,873 | `4b5c9e89b76f1cdf` | `4c15ec2e6db02a8b` | no |
+
+For **each** of these three byte objects the completed run also tested **SHA3-512, BLAKE2b-512, Skein-512-512, and Streebog-512**, for **18/18 exact comparisons, zero p56 matches**. Known-answer vectors and original input identity checks passed; the complete 128-hex-character digests are printed in the CI log and retained in [the archived report artifact](https://github.com/FlareZ123/liber-primus/actions/runs/45241551120/artifacts/14851078255). This is a negative for these precisely framed authentic source objects, **not** for any lost original HTTP wrapper, undiscovered deep-web page, alternate canonicalization, or unspecified digest algorithm. No unknown LP2 plaintext or key is supplied by the test.
+
 ## The misleading “liber-primus-hash-block” archive label
 
 The archived signed object named `2014-01-liber-primus-hash-block.asc` does not supply a webpage-hash positive control. Direct inspection of the signed cleartext at krisyotam/cicada3301 commit `76d3ee8c762f60025822c8c05edbf31351636469` gives:
