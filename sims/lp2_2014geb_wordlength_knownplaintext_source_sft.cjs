@@ -120,7 +120,9 @@ async function main() {
     const planted = target.slice();
     planted.splice(1000, 16, ...donor.slice(29000, 29016));
     const plantedBest = matches(planted, donor, 8);
-    assert.ok(plantedBest.some(m => m.atOriginal === 1000 && m.atDonor === 29000 && m.length >= 16));
+    assert.ok(plantedBest.some(m => m.atOriginal <= 1000 && m.atDonor <= 29000
+      && m.atOriginal + m.length >= 1016 && m.atDonor + m.length >= 29016
+      && 1000 - m.atOriginal === 29000 - m.atDonor));
     console.log(JSON.stringify({ donor:'2014 historically selected GEB', sourceWords:donor.length,
       originalWords:target.length, originalRunes:orig.length, splitNg, longestMatches:best.slice(0,12),
       totalLongestTies:best.length, longestLength:widest, copied16WordPositive: true,
