@@ -155,6 +155,29 @@ for (let i = 0; i < modulus; i++) {
 }
 const permuted = order.map((i) => withoutIntroRubrics[i]);
 const additive = withoutIntroRubrics.map((ci, i) => (ci - key[i] + 29) % 29);
+// Source-control against treating p15's 4x4 spiral as a literal physical-page shuffle.
+// The source transcription omits the runeless numeric page50 as a rune segment.
+const physicalLines = fs.readFileSync(path.join(root, 'lp2-transcription.txt'), 'utf8').split(/\\n%\\n/);
+assert.equal(physicalLines.length, 57);
+const runeChars = new Set(corpus.runes);
+const printed = (page) => physicalLines[page < 50 ? page : page - 1].trim();
+const carriedEdges = [];
+for (let pg = 40; pg < 55; pg++) {
+  if (pg === 49 || pg === 50) continue;
+  if (printed(pg).endsWith('/') && runeChars.has([...printed(pg + 1)][0])) {
+    carriedEdges.push(pg + '>' + (pg + 1));
+  }
+}
+assert.equal(carriedEdges.length, 12);
+const spiralPages = [45, 46, 50, 49, 48, 44, 40, 41, 42, 43, 47, 51, 55, 54, 53, 52];
+assert.equal(new Set(spiralPages).size, 16);
+const joinedSpiral = [];
+for (let k = 1; k < spiralPages.length; k++) {
+  const edge = spiralPages[k - 1] + '>' + spiralPages[k];
+  if (carriedEdges.includes(edge)) joinedSpiral.push(edge);
+}
+assert.equal(joinedSpiral.length, 4);
+
 const known = corpus.pages.find((p) => p.page === 57).indices;
 assert.equal(known.length, 95);
 const planted = Array.from({ length: modulus }, (_, i) => known[i % known.length]);
@@ -173,6 +196,7 @@ console.log('DIAGNOSTIC period203 equality=' + observedCollisions + '/' + compar
   + ', IoC=' + (observedCollisions / comparisonPairs).toFixed(9));
 console.log('NULL       2048 row-rotation controls, mean=' + (sum / 2048).toFixed(4)
   + ', range=[' + min + ',' + max + '], one-sided p>=' + ((ge + 1) / 2049).toFixed(6));
+console.log('SHEAR      literal p15 spiral page-order: preserves ' + joinedSpiral.length + '/' + carriedEdges.length + ' printed runic carries (not a prose-order solution)');
 console.log('CONTROL    native solved p57 IoC=' + ioc(known).toFixed(9));
 console.log('INVERSE    original 3299-runic IoC=' + ioc(withoutIntroRubrics).toFixed(9)
   + ', adjacent equals=' + equalNeighbours(withoutIntroRubrics));
