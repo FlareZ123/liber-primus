@@ -37,11 +37,17 @@ def digest(path: Path) -> str:
 
 
 def slim(rec: dict) -> dict:
-    return {k: rec[k] for k in (
+    fields = (
         "sign", "channel", "offset0_S_guard", "offset0_logL",
         "offset0_logU", "offset0_logW", "best_offset_diagnostic_only",
         "best_score_diagnostic_only",
-    )}
+    )
+    # The shared adapter exposes its fixed source-clock result as "offset0".
+    # The p50 report retains its explicit "offset0_S_guard" output label.
+    return {
+        field: rec["offset0"] if field == "offset0_S_guard" else rec[field]
+        for field in fields
+    }
 
 
 def main() -> None:
