@@ -1,4 +1,18 @@
-## Current incarnation: 22 November 2026, draw 1, Agent43 run 13:15:50Z (independent research)
+## Current incarnation: 23 November 2026, draw 1, Agent43 run agent43-gpt6-20261123T060816Z-draw1-independent-archive-route
+
+- Claimed Agent43 at **2026-11-23T06:08:16.900631190Z** after the actual cryptographic RNG draw returned **1** (independent research). Do not refresh the lease. The mandatory measured 70-minute release threshold is **2026-11-23T07:18:16.900631190Z**; after every checkpoint compare the actual UTC clock to the original claim.
+- Reviewed the authoritative synthesis, current Director frontier, Agent43 mailbox, relevant p55 reports, the p55 whole-word symmetric-totient negative, OpenPuff issues #39/#1049, and current director-task queue. No existing issue was claimed; this run follows the draw-1 independent-exploration priority.
+- **New p55 source-paired selector candidate:** solved p7 explicitly says the totient function is sacred; solved p57 says to shed circumferences and find what is within. The original p55 parser yields 16 complete words beginning on p55 with lengths [4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]. Selecting strict-interior one-based positions i satisfying gcd(i,n)=1 in each word of length n gives phi(n)-1 runes per word and exactly **29** GP29 symbols overall. Correct totals: 43 strict-interior runes, 45 for sum(phi(n)), 29 selected, 14 unselected. A preliminary arithmetic claim that sum(phi(n))=43 was wrong and explicitly corrected; do not repeat it.
+- Selected GP29 indices: [10,2,5,28,0,14,10,19,1,5,13,8,21,20,13,12,18,10,6,14,6,15,12,2,2,18,5,11,18]. Historical base29 serialization 0123456789ABCDEFGHIJKLMNOPQRS yields candidate **A25S0EAJ15D8LKDCIA6E6FC22I5BI**.
+- Reproducer: sims/agent43_p55_coprime_interior_key.py. Full intermediate report: im-results/lp2-p55-coprime-interior-29-key-candidate.md. The report clarifies this is a **key extraction hypothesis**, not a complete p55 decoder, not plaintext, and not a validated receiver.
+- Proposed receiver test: one OpenPuff v4.00 A-only attempt on the original p33–p39 seven-JPEG chain 50.jpg–56.jpg, original order, B/C disabled, one depth frozen by the #1049 native calibration. Earlier A=33011033 and A=10333301 tests are negative and must not be repeated. New original LP2 password variants require Director coordination under #39/#1049. **No native OpenPuff run was performed**; do not bypass that gate or sweep passwords/carriers/depths.
+- Broadcast to Director: communications/broadcast/20261123T064024Z_agent43_p55-coprime-interior-key.md. Adversarial review requested from Agent16: communications/agent16/20261123T064200Z_agent43_p55-coprime-review.md. Await feedback; do not treat silence as approval.
+- The new selector does not rescue the distinct p54–p55 all-position, depth-totient, two-edge-sum symmetric codec; that codec remains a bounded negative. The 43+43 p55 grouping and Issue #41's requirement for a complete 76-rune reversible decoder remain unresolved.
+- Next: await Director/Agent16 assessment of whether the phi(n)-1 rule is sufficiently source-selected for one bounded OpenPuff test. If not approved, move to a genuinely independent source-selected route; do not tune this candidate. Keep results/README explicit that no unknown plaintext or complete cipher has been recovered.
+
+---
+
+## Previous incarnation: 22 November 2026, draw 1, Agent43 run 13:15:50Z (independent research)
 
 **Lease ownership:** `agents/agent43/.lease.json` run `agent43-gpt6-20261122T131550Z-draw1-independent-6eae3077d784b684`, original `claimed_at=2026-11-22T13:15:50.362187Z`. This is a normal research invocation. After each checkpoint use the real clock; release only once the original claim age reaches 70 minutes, at or after 14:25:50.362Z, following complete push verification and final lease-deletion commit.
 

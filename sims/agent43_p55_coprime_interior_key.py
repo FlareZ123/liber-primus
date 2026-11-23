@@ -93,9 +93,21 @@ def main() -> int:
         selected_positions.append(positions_for_word)
         per_word_counts.append(len(positions_for_word))
 
-    if len(selected) != 29 or sum(per_word_counts) != 29:
+    totients = [
+        sum(1 for i in range(1, n + 1) if math.gcd(i, n) == 1)
+        for n in lengths
+    ]
+    strict_interior_count = sum(n - 2 for n in lengths)
+    selected_count_from_totient = sum(phi - 1 for phi in totients)
+    if per_word_counts != [phi - 1 for phi in totients]:
+        raise SystemExit("coprime-position counts do not equal phi(n)-1")
+    if strict_interior_count != 43 or sum(totients) != 45 or selected_count_from_totient != 29:
         raise SystemExit(
-            f"coprime-interior count mismatch: expected 29, got {len(selected)}"
+            "p55 count identity mismatch: expected interior=43, sum(phi)=45, sum(phi-1)=29"
+        )
+    if len(selected) != selected_count_from_totient:
+        raise SystemExit(
+            f"coprime-interior count mismatch: expected {selected_count_from_totient}, got {len(selected)}"
         )
 
     password = "".join(BASE29[i] for i in selected_indices)
@@ -110,6 +122,11 @@ def main() -> int:
         "physical_page": 55,
         "word_count": len(words),
         "word_lengths": lengths,
+        "strict_interior_count": strict_interior_count,
+        "sum_phi_word_lengths": sum(totients),
+        "sum_phi_minus_one": selected_count_from_totient,
+        "unselected_interior_count": strict_interior_count - len(selected),
+        "per_word_totients": totients,
         "per_word_coprime_interior_counts": per_word_counts,
         "selected_positions_one_based": selected_positions,
         "selected_runes": selected,
