@@ -393,6 +393,7 @@ console.log(JSON.stringify({
   p55AudioTarget: targetSummary(p55TargetResults),
   controls: {
     p56AuthenticCipher: 'PASS: original 85-rune solved plaintext and re-encryption',
+    p56AuthenticPlaintextIoC: ioc(expectedP56),
     p15OrdinalPlants: 'PASS: all 96 synthetic F-transparent positive plants across p0, p29, p55',
     p15Period16Plants: 'PASS: all 96 synthetic F-transparent positive plants across p0, p29, p55'
   },
