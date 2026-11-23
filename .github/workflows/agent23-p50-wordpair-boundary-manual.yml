@@ -1,0 +1,16 @@
+name: Agent 23 p50 two-word original boundary gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  original-boundary-test:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run complete original source and native controls
+        run: node sims/lp2_p50_two_word_boundary_rotation_original_sft.cjs
