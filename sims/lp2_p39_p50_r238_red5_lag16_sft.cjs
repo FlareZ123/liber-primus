@@ -282,6 +282,45 @@ assert.notEqual(quotientJet[3], sourceJetPrediction[3]);
 // Exact interpretation: R238(X) == 2 + inv(2)*(X-3301)*A15(X)
 // modulo (X-3301)^3. At degree3 the equality fails.
 
+
+// The cubic jet congruence selects a fully reversible, source-only peeling:
+// E235(X) = [R238(X)-2-inv2*(X-3301)*A15(X)]/(X-3301)^3.
+// It extracts 236 original GP29 field coefficients, but no native prose.
+const rootLinear = [5, 1];
+const rootCubic = mul(mul(rootLinear, rootLinear), rootLinear);
+const sourceContribution = mul(rootLinear, unsignedSpiral)
+  .map(value => mod(15 * value));
+const reduced = R238.slice();
+reduced[0] = mod(reduced[0] - 2);
+for (let i = 0; i < sourceContribution.length; i++) {
+  reduced[i] = mod(reduced[i] - sourceContribution[i]);
+}
+const cubicExtraction = divMonic(reduced, rootCubic);
+assert.ok(cubicExtraction.remainder.every(value => value === 0));
+assert.equal(cubicExtraction.quotient.length, 236);
+const extractedIoC = ioc(cubicExtraction.quotient);
+assert.equal(extractedIoC, 0.034799855751893254);
+
+// Exact positive control: an untouched native source passage is planted as
+// E235 and recovered through this identical GF29 polynomial constructor.
+const genuinePlant = Array.from({ length: 236 },
+  (_, i) => solved57[i % solved57.length]);
+const generated = mul(rootCubic, genuinePlant);
+generated[0] = mod(generated[0] + 2);
+for (let i = 0; i < sourceContribution.length; i++) {
+  generated[i] = mod(generated[i] + sourceContribution[i]);
+}
+assert.equal(generated.length, R238.length);
+const reducedPlant = generated.slice();
+reducedPlant[0] = mod(reducedPlant[0] - 2);
+for (let i = 0; i < sourceContribution.length; i++) {
+  reducedPlant[i] = mod(reducedPlant[i] - sourceContribution[i]);
+}
+const extractedPlant = divMonic(reducedPlant, rootCubic);
+assert.ok(extractedPlant.remainder.every(value => value === 0));
+assert.deepEqual(extractedPlant.quotient, genuinePlant);
+assert.ok(ioc(genuinePlant) > 0.06);
+
 const sourceKeyLists = [
   ['p15-row', p15Rows.map(mod)],
   ['p15-spiral-absolute', spiralPositions.map(i => mod(p15Rows[i]))],
@@ -350,7 +389,8 @@ const report = {
     p39RedQuadraticDoubleRoot: cicadaRoot, p15SignedValueAt3301: 2,
     nearbyCenterRootResidueClasses: [9, 24, 25],
     p15TaylorAt3301: p15Jet, r238TaylorAt3301: quotientJet,
-    cubicCongruence: true, quarticCongruence: false },
+    cubicCongruence: true, quarticCongruence: false,
+    extracted236IoC: extractedIoC, extractedNativePlant: true },
   sourceSelectedSecondLayer: { candidates: sourceTwoLayer.length, best: sourceTwoLayer[0],
     allHaveIoCLessThanFourPercent: true, signedP15PositiveRoundtrip: true },
   positivePlants: { periodicMatches: 222, F16RecurrenceMatches: 222 },
