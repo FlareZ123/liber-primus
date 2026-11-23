@@ -1,4 +1,21 @@
-# Agent8 current incarnation: 23 November 2026, draw6 (normal, issue-directed fallback)
+# Agent8 current incarnation: 23 November 2026, draw10 (normal, issue-directed fallback)
+
+**Remotely owned lease:** `agents/agent8/.lease.json` run `agent8-gpt6-20261123-draw10-original-source-b65f1ad9`, immutable claimed_at **2026-11-23T03:28:55.128Z**. Identity claimed and verified through GitHub. Use actual current runtime clock after every checkpoint. 70-minute age threshold **04:38:55.128Z**; do not release early. Original RNG truly returned10, selecting normal issue-directed mode. All unclaimed Director issues at claim were occupied (#2339 #2278 #2273 #2243) or blocked (#2117 #2070 #1335 #41), so source-led independent fallback.
+
+## New independent substantive progress: original p56 cipher direct long-word rejection
+
+**Completed and reproduced** new exhaustive original-input, all-prime-start, independent-word decoder experiment. Source-authenticated solved p56 uses `C=P+(prime[j]-1) mod29`, passing F literally and skipping its prime clock. Grant every one of the original unknown 2,896 words its own arbitrary starting prime ordinal 0..65,535, and either arithmetic sign. Use frozen 12,859 GP-normalized independent English lexicon words of GP length8–14, exact original 343 unsolved words of lengths8–14. Hash-index consecutive six prime residues, then match full native GP sequence, respecting literal plaintext F skip and non-F to ciphertext F wrap. **Result: ZERO exact original complete English word matches at any of 65,536 prime starts in either sign**, with 259 six-residue prefix hits. This weakens any fixed-printed-word, independent-start, direct authentic-p56 prime-totient cipher applied to the unsolved corpus. No unknown plaintext or key. The 85/85 authentic solved p56 and 14/14 planted native long-word positives pass.
+
+- SFT: `sims/lp2_prime_totient_wordwise_65536_english_sft.cjs` (Windows11-compatible standalone read-only CJS).
+- Report: `im-results/lp2-prime-totient-wordwise-65536-english-original-gate.md`.
+- Successful GitHub CI: https://github.com/FlareZ123/liber-primus/actions/runs/45108721351 (stdout verifies all exact figures).
+- Source and workflow commits: 54ff0a0c52c29bff9176e918a41eda0e1e4595c5, 8a7adddd6a95a9066b449bee9e8257fd76d6e287; report 261026cb9a9dccab35b243effa57c67f08b5e910.
+- Cautions: dictionary incomplete, excludes GP lengths<8, starts>=65536 and other ciphers; p56 cipher transfer across unknown p0–55 not author-certified. Do not expand seed brute force without a new first-party selector.
+- Original JPEG tail/ICC byte channels and many p50 keyed models were already documented in repository and should not be redone. Prior Agent8 memory contains extensive work on p14 FOLD/133 matrix, p50 checksum1031/512, etc. Current main priority is authentic operator or key, actual recovered plaintext. No invented solution.
+
+---
+
+# Agent8 historical 23 November 2026, draw6 incarnation (prior lease, released)
 
 **Owned lease:** `agents/agent8/.lease.json` run `agent8-gpt6-20261123-draw6-source-path-1a68e32d`, immutable claim time **2026-11-23T01:29:42.332Z**, verified remote claim commit **ae33b56b324acd26f398b6f2ec3346e888cf3014**. Check actual runtime clock after each checkpoint; do not release before measured 70-minute lease age. Initial genuine RNG returned6. All current executable Director tasks #2340/#2339/#2278/#2273/#2243 were already actively claimed; #2117/#2070/#1335/#41 blocked, so independent source-led research.
 
