@@ -25,6 +25,10 @@ The reproducible frequency-preserving null takes each **original** 203-rune row 
 
 For independent uniform GP29 output symbols, the count at one fixed lag in a 32-symbol register has a binomial `Binomial(25,1/29)` distribution, with upper tail at6 around `0.000169`. That heuristic ignores cipher dependence and exploratory source-selection uncertainty, so the row-shuffle control above is preferable for empirical calibration.
 
+## Source-defined start boundary versus 202 adjacent alternatives
+
+The actual starting offset of the black register is the first black rune after the physical red p40 heading. To assess whether the signal is a generic consequence of the 203-width polynomial transform, retain the same **complete original 3,248-rune circular tape** and, one by one, shift its mathematical row-boundary start through **all 203 possible unit offsets** before constructing the sixteen203-rune rows. The **original offset0 is the only one of 203** with six lag-seven equalities or a four-symbol consecutive lag-seven run. The strongest of the 202 alternate starts has **four** equalities; the complete count histogram is **90 starts with0, 71 with1, 27 with2, 13 with3, one with4 and one with6**. This is a deterministic original-register consistency observation rather than an independent probability or an excuse to optimize phase. It strengthens the *specific original heading boundary* interpretation, still without identifying a source-selected plaintext consumer.
+
 ## What this signal actually changes
 
 The lag-seven repetition is a new **testable original-source output signature** of the p39/root24+203/floral register combination. It is stronger than a naked numeric length coincidence and gives a concrete frozen output to compare against newly discovered source instructions or source-derived independent material. The fact that a four-GP-symbol phrase appears twice is a repeat of *the same short pattern*, **not two corroborating plaintext decodes**.
