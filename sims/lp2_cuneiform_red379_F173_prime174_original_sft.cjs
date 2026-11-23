@@ -83,8 +83,9 @@ assert.equal(prime[463],3301);
 function phiSubtract(source,transparentF) {
   const out=[];
   let k=0;
-  for(const v of source){
-    if(transparentF&&v===0){out.push(0);continue;}
+  for(let i=0;i<source.length;i++){
+    const v=source[i];
+    if(transparentF&&i===58&&v===0){out.push(0);continue;}
     out.push((v-(prime[k++]-1)%29+29)%29);
   }
   return {out,consumed:k};
