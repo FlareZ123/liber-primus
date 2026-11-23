@@ -176,6 +176,27 @@ if (process.argv.length > 2) {
       gp29RuneDigits: digits,
       gp29Romanized: digits.map(d => GP[d]).join(' '),
       gp29IoC: ioc,
+      // One predeclared original recipient: 43 strict p55 word-interior runes.
+      // Subtract the complete x's left-to-right 43 GP0 digits as an additive pad.
+      // Use the historical LP1 subtraction sign and preserve each real word cut.
+      // This is a *conditional* ciphertext consumer; it needs actual original
+      // plaintext before any authorial identification.
+      p55InteriorSubtractionReadout: (() => {
+        const plaintext = interior.map((c, i) => (c - digits[i] + 29) % 29);
+        let cursor = 0;
+        const byOriginalWord = words.map((word) => {
+          const n = word.length - 2;
+          const value = plaintext.slice(cursor, cursor + n).map(d => GP[d]).join('');
+          cursor += n;
+          return value;
+        });
+        assert.equal(cursor, 43);
+        const counts = Array(29).fill(0);
+        for (const digit of plaintext) counts[digit]++;
+        const originalSourceIoC = counts.reduce((a, count) => a + count * (count - 1), 0)
+          / (43 * 42);
+        return { byOriginalWord, originalSourceIoC };
+      })(),
       authenticUnknownPlaintext: false
     }));
   }
