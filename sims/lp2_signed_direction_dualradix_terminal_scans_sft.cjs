@@ -13,6 +13,7 @@ function read(relative) {
 
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const grid = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
+const ink = JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"));
 const signed = read("resources/historical/cicada2016-4gq25-outguess.asc");
 const firstPartyHtml = read("resources/cicada2014-onion7-index.html");
 const firstPartyPageNames = Array.from(firstPartyHtml.matchAll(/<img src="(\d+)\.jpg"/g),
@@ -140,6 +141,34 @@ assert.deepEqual(
   ],
 );
 
+// Source-valid alternative: cyclic page labels in the genuine 2014 0..57 index.
+// Both GP spellings of DIRECTION pick chapter starts; one-based origin moves to
+// the corresponding previous chapter-ending page. This is a conditional
+// navigation grammar, not a demonstrated authorial cipher.
+const chapterStarts = [0, 3, 8, 15, 23, 27, 33, 40, 54];
+const chapterEndToNextStart = [39, 40, 53, 54];
+const pageResidues = [
+  direction.literalIndex % firstPartyPageNames.length,
+  direction.ligatedIndex % firstPartyPageNames.length,
+];
+assert.deepEqual(pageResidues, [40, 54]);
+assert.deepEqual(chapterEndToNextStart, [39, 40, 53, 54]);
+for (const page of pageResidues) assert.ok(chapterStarts.includes(page));
+assert.deepEqual(pageResidues.map((n) => n - 1), [39, 53]);
+assert.deepEqual([corpus.pages[40].page, corpus.pages[54].page], [40, 54]);
+assert.deepEqual(
+  [ink.pages[40].red_spans[0].length, ink.pages[54].red_spans[0].length],
+  [8, 9],
+);
+const changedWordsOnTwoChapterStarts = changed.filter((entry) =>
+  chapterStarts.includes(entry.literalIndex % 58) &&
+  chapterStarts.includes(entry.ligatedIndex % 58));
+assert.deepEqual(changedWordsOnTwoChapterStarts.map((entry) => entry.word),
+  ["DIRECTION"]);
+const separated14ChapterStartPairs = chapterStarts.filter((page) =>
+  chapterStarts.includes((page + 14) % 58));
+assert.deepEqual(separated14ChapterStartPairs, [40]);
+
 // Exact same-source token-order null census. Hold the 256 genuine printed
 // tokens and both alphabet conventions fixed; vary only the ordered addresses.
 /** @typedef {{first:number, second:number, source:string[], scan:number}} Match */
@@ -200,6 +229,18 @@ console.log(JSON.stringify({
     offset14Matches,
     conditionalLaterArchiveRangeRate: laterArchiveRangeCrossRadixMatches / 65280,
     conditionalLaterArchive72Rate: exact72CrossRadixMatches / 65280,
+  },
+  conditionalContemporaneousModulo58Route: {
+    authorPublishedPageCount: firstPartyPageNames.length,
+    signedWord: "DIRECTION",
+    gpLiteral98ToPage40: pageResidues[0],
+    gpLigated112ToPage54: pageResidues[1],
+    zeroBasedSelectedChapterStarts: [40, 54],
+    oneBasedSelectedPreviousChapterEnds: [39, 53],
+    uniqueSignedChangedWordAtTwoVisualChapterStarts: changedWordsOnTwoChapterStarts.map((w) => w.word),
+    uniqueFourteenSeparatedChapterStart: separated14ChapterStartPairs,
+    alreadySignedFollowerRoadGp0: gp0("ROAD", false),
+    inferenceLimit: "Modulo-58 is hypothetical; no original cipher operation or plaintext",
   },
   originalSignedWords: register.length,
   distinctWords: new Set(words).size,
