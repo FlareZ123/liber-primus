@@ -183,6 +183,43 @@ assert.equal(Math.floor(f59 / p), A);
 assert.notEqual(f59 % p, B);
 assert.notEqual(f59 % p, B);
 
+// Finite, unkeyed discrimination over EVERY original p50 cell. Each source
+// cell independently gets the same inverse packet law; the historical ordinal
+// spacing and the literal first cell are fixed once for all 256 candidates.
+// This shows uniqueness *within this postidentified equation family*.
+function fullTablePacketCensus(alphabet) {
+  const bytes = allTokens.map((token) => radix(token, alphabet));
+  const primeCandidates = [];
+  const dhMatches = [];
+  for (let index = 0; index < bytes.length; index++) {
+    const r = Math.floor(index / cols);
+    const gg = index % cols;
+    const value = bytes[index];
+    if (gg === 0 || (value + r) % (gg + 1) !== 0) continue;
+    const pp = (value + r) / (gg + 1);
+    const KK = pp - r;
+    if (!isPrime(pp) || KK <= 0 || KK >= pp || gg >= pp) continue;
+    primeCandidates.push(index);
+    const AA = Math.floor(bytes[0] / pp);
+    const BB = bytes[0] % pp;
+    const aa = step - gg;
+    if (AA <= 0 || AA >= pp || BB <= 0 || BB >= pp
+        || aa <= 0 || aa >= pp) continue;
+    if (power(gg, aa, pp) === AA && power(BB, aa, pp) === KK) {
+      dhMatches.push({index, p: pp, g: gg, K: KK, A: AA, B: BB, a: aa});
+    }
+  }
+  return {radix: alphabet.length, primeCandidates, dhMatches};
+}
+const census60 = fullTablePacketCensus(grid.alphabet);
+const census59 = fullTablePacketCensus(base59);
+assert.equal(census60.primeCandidates.length, 15);
+assert.deepEqual(census60.dhMatches, [
+  {index: 173, p: 23, g: 5, K: 2, A: 8, B: 19, a: 6}
+]);
+assert.equal(census59.primeCandidates.length, 12);
+assert.deepEqual(census59.dhMatches, []);
+
 // Expose the original input multiplicities to avoid claiming exclusivity.
 const allBytes = allTokens.map((t) => radix(t, grid.alphabet));
 assert.equal(allBytes.filter((b0) => b0 === firstValue).length, 1);
@@ -206,6 +243,12 @@ console.log(JSON.stringify({
   recovered,
   independentP28: independentlyPrinted,
   base59Control: {indexed: v59, first: f59, invalidPrime: true},
+  fullTableInverse: {
+    base60PrimeCandidateCount: census60.primeCandidates.length,
+    base60CompleteDHPackets: census60.dhMatches,
+    base59PrimeCandidateCount: census59.primeCandidates.length,
+    base59CompleteDHPackets: census59.dhMatches
+  },
   byteMultiplicity: {
     firstPackedValueOccurrences: 1,
     secondPackedValueOccurrences: 2,
