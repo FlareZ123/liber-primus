@@ -237,6 +237,85 @@ for (let trial = 0; trial < 3; trial++) {
 }
 assert.equal(plantedChecks, 120);
 
+/**
+ * A stronger all-secret family: the second page has an unknown invertible
+ * multiplier of the same arbitrary pad. In GF29 every nonzero multiplier
+ * is a legal unit. With
+ *
+ *   C28 = orientation*P28 + K + a
+ *   C29 = orientation*P29 + gain*K + b
+ *
+ * the pad again cancels, now giving
+ *   P29 = gain*P28 + orientation*(C29-gain*C28) + shift,
+ * where shift = orientation*(gain*a-b) can be any GF29 symbol.
+ * @param {number[]} C28
+ * @param {number[]} C29
+ * @param {{start:number,width:number,a:{start:number,len:number},b:{start:number,len:number}}} span
+ * @param {number} gain Nonzero GF29 element.
+ * @param {1|-1} orientation
+ * @returns {number[]}
+ */
+function affinePadShifts(C28, C29, span, gain, orientation) {
+  const { start, width, a, b } = span;
+  const bSlices = new Set((dictionary.get(b.len) || [])
+    .map(w => w.slice(start - b.start, start - b.start + width).join(',')));
+  const aSlices = (dictionary.get(a.len) || [])
+    .map(w => w.slice(start - a.start, start - a.start + width));
+  const delta = Array.from({ length: width }, (_, i) =>
+    mod29(C29[start + i] - gain * C28[start + i]));
+  const matches = [];
+  for (let shift = 0; shift < 29; shift++) {
+    if (aSlices.some(word => bSlices.has(word
+      .map((v, i) => mod29(gain * v + orientation * delta[i] + shift))
+      .join(',')))) matches.push(shift);
+  }
+  return matches;
+}
+
+// Original p28/p29: grant every nonzero gain, both orientations, and every
+// possible relative affine offset. These four source overlaps alone exclude
+// the complete family without guessing even one keystream symbol.
+const widthSix = spans.filter(span => span.width === 6);
+assert.deepEqual(widthSix.map(span => span.start), [20, 45, 65, 219]);
+const affineCases = [];
+for (let gain = 1; gain < 29; gain++) {
+  for (const orientation of [1, -1]) {
+    const candidates = widthSix.map(span =>
+      affinePadShifts(original28, originalBody29, span, gain, orientation));
+    const common = Array.from({ length: 29 }, (_, i) => i)
+      .filter(shift => candidates.every(choices => choices.includes(shift)));
+    assert.equal(common.length, 0, 'Original shared affine-pad family survived');
+    affineCases.push({
+      gain, orientation, perSpanCandidateCounts: candidates.map(v => v.length),
+    });
+  }
+}
+assert.equal(affineCases.length, 56);
+
+// True positive: independent native dictionary words, unrelated arbitrary
+// pads, an explicitly unequal page offset, every source word boundary and
+// three independently chosen non-unit/nontrivial gains.
+let affinePlantedChecks = 0;
+for (let trial = 0; trial < 2; trial++) {
+  const p = plant(words28, 269), q = plant(words29, 269);
+  const key = Array.from({ length: 269 }, () => Math.floor(rng() * 29));
+  const offsetA = 7, offsetB = 11;
+  for (const gain of [2, 5, 19]) for (const orientation of [1, -1]) {
+    const ca = p.map((v, i) => mod29(orientation * v + key[i] + offsetA));
+    const cb = q.map((v, i) => mod29(orientation * v + gain * key[i] + offsetB));
+    const shift = mod29(orientation * (gain * offsetA - offsetB));
+    for (const span of spans) {
+      assert(affinePadShifts(ca, cb, span, gain, orientation).includes(shift));
+      affinePlantedChecks++;
+    }
+    for (let i = 0; i < 269; i++) {
+      assert.equal(mod29(ca[i] - orientation * p[i] - offsetA), key[i]);
+      assert.equal(mod29(cb[i] - orientation * q[i] - offsetB), mod29(gain * key[i]));
+    }
+  }
+}
+assert.equal(affinePlantedChecks, 240);
+
 // Secondary broad English control: independent, original-length GP donor pairs.
 const donors = ['gibran_prophet_58585.txt', 'shakespeare_first300k.txt',
   'emerson_essays_2944.txt'].map(n => encodeText(read('resources/control/' + n)));
@@ -265,10 +344,15 @@ console.log(JSON.stringify({
     overlappingWordPairsWidthAtLeast4: spans.length,
     lexiconByLength: [6, 7, 11].map(n => [n, dictionary.get(n).length]),
     gates,
+    affinePad: {
+      nonzeroGains: 28, orientations: 2, candidateOffsets: 29,
+      widthSixOverlaps: 4, candidateGainSignPairs: affineCases.length,
+      survivors: 0, nonzeroSpanCountsForGain5Plus: affineCases.find(c => c.gain === 5 && c.orientation === 1).perSpanCandidateCounts,
+    },
     deltaChiSquared28Degrees: originalChi,
     donorPairsAtOrBelowChi: [atOrBelow, distribution.length],
     donorMedianChi: distribution[3000],
   },
-  positive: { plantedSharedPadWordOverlaps: plantedChecks, nativeDonorWindows: distribution.length },
-  conclusion: 'No shared additive pad can yield words from this declared finite GP-English dictionary across both original page word tapes; altered segmentation/other alphabets remain open. No unknown plaintext recovered.',
+  positive: { plantedSharedPadWordOverlaps: plantedChecks, affineScaledPlantedOverlaps: affinePlantedChecks, nativeDonorWindows: distribution.length },
+  conclusion: 'Neither a same-register shared additive pad nor any nonzero-scaled shared additive pad can yield words from this declared finite GP-English dictionary across both original page word tapes; altered segmentation/other alphabets remain open. No unknown plaintext recovered.',
 }, null, 2));
