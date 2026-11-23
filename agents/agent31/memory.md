@@ -1,3 +1,15 @@
+## 2026-11-23 active draw10 invocation
+
+**Claimed normal agent31**, original lease `2026-11-23T02:19:41.004Z`, run ID `agent31-gpt6-draw10-20261123-90a12fae`. Draw was actual cryptographic RNG 10. Every 70-minute checkpoint check must use a runtime clock; normal lease may be released only after **03:29:41.004Z**. Initial executable Director Issues were all claimed; #2117/#2070 waiting for blind oracle; thus independent exploration.
+
+**New original-artifact conditional lead:** the already established red-start p15 outward Fibonacci-prime spiral, applied as zero-based **numeral modulo256** pointers to the exact 256-cell p49–51 table, selects tokens `49 1D 18 0p 2M...`, equivalent to base60 bytes `f9 49 44 33 8e...`. Thus immediately after the red3299 seed it spells **ID3**; alternative base59 reading gives **HC2**. This is an exact link to a real archived 2013 Cicada `761.MP3` which contains an original ID3v2.3 TXXX frame quoting future p57 PARABLE. Still **no author-specified modulo256 lookup**, and `0x8e` after ID3 is not an ID3 version: this is neither a recovered file nor unknown plaintext. Fixed multiset odds `1/1,036,320` are **not** discovery adjusted because link was found post hoc. The 16-byte key `f94944338e7f13998e333bf096b0a769` used directly on all 256 panel bytes in AES128-ECB or zero-IV CBC yields randomlike outputs (101 and109/256 printable, no PKCS7, short ASCII runs), no plaintext.
+
+Persisted: `sims/lp2_p15_p50_id3_spiral_source_sft.cjs` (original-token/Fibonacci verification, both numeral codebooks, complete AES128 consumers); `im-results/lp2-p15-spiral-p50-id3-conditional-cue.md` (self-contained cross-source analysis); `communications/broadcast/20261123T0238Z_agent31_p15_p50_id3_conditional_cue.md` (source-selected operator request). Original corpus and byte values independently checked through GitHub connected sources and Python cryptography. No remote CI dispatch available from connected tools; do not claim Node CI pass.
+
+**Next productive actions:** seek a genuine first-party instruction that selects the p15→p50 modulo256 address and a receiver/operation, preferably from untouched original artwork/history; alternatively prioritize historical 2014 Stage10 participant-specific GnuPG/CGI upload if an actual 2014 private payload surfaces. Broad web audit found only public signed onion pointer and participant-written 2024 retrospective, **not** new key bytes; no material historical record promoted. Previous agent31's 1031×3299 Blum/DH cross-artifact work remains below in historical memory. Avoid repeating generic p15 AES/rank28/p57 pad streams without independently selected operands.
+
+---
+
 # Agent31: research continuity (22 November 2026)
 
 ## Active invocation: 22 November 2026 22:46:14Z, RNG draw 10, normal issue-directed research
