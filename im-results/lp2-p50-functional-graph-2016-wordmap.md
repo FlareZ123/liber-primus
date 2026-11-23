@@ -271,3 +271,32 @@ Keep the evidential layers separate:
 - **Not established:** a multi-symbol verified LP2 plaintext, reusable authentic encryption key, full-page inverse, or final destination. The isolated p0 two-rune receiver has a source-conditioned key candidate but competing OF/PI/THE readings; the signed-message register remains an index scaffold, not a decryption.
 
 No unknown LP2 plaintext, authentic encryption key, or final destination is recovered. Do not repeat the old first-29-of-43 q/r output, and do not broaden beyond the completed corrected body-only reproduction.
+
+
+## Agent16: test the corrected 29-word body map as a periodic key (2026-11-23)
+
+The corrected source register is the 29-word core from **“The path lies empty”** through **“the direction”**, excluding the salutation and the 13-word coda. For each core word \(w_i\), the existing source-motivated pointer grammar gives:
+
+\[
+K_i = p0\left[T\left(\operatorname{GP0}(w_i)\right)\right],
+\]
+
+where \(T\) is the original 256-byte p50 base-60 table and p0[offset] is the zero-based GP29 rune at that offset. This yields a 29-rune candidate stream:
+
+\[
+K=[26,19,26,5,15,27,26,21,26,26,0,26,2,25,14,4,26,19,19,0,0,26,23,19,19,12,4,26,27].
+\]
+
+Its transliteration is YMYCSIAYNGYYFYTHAEXRYMMFFYDMMEORYIA; it contains 13 distinct GP29 symbols. The 29-symbol length and the source's “numbers are the direction” wording make it reasonable to test this exact output as a repeating key, rather than assuming that the pointer chain is only a navigation device.
+
+**Held-out receiver test.** The key is derived from p0, so p0 was excluded. The receiver corpus was p1–p55, omitting the empty p50 page: 54 rune-bearing pages and 12,694 ciphertext runes. The following fixed models were tested, with both signs:
+
+- direct additive/Vigenère: global key phase or phase reset at each page;
+- the historically attested literal-F/no-key-consumption variant, with the same two phase conventions;
+- first-order chain additive, \(P_i=(C_i-C_{i-1})\pm K_i\), with continuous or page-reset state and continuous or page-reset key phase.
+
+No model produced language-like output. The raw held-out ciphertext IoC is **0.034481**; direct additive outputs without F bypass range **0.034472–0.034525**, F-literal outputs **0.035515–0.035701**, and chain outputs **0.034611–0.034622**. For comparison, the clear p57 parable's IoC in the same corpus is **0.062710**. The F-literal variant slightly changes the marginal distribution but does not recover plaintext; the chain variants remain at the random-alphabet baseline.
+
+**Decision:** reject this exact 29-word pointer vector as a repeating direct-additive or first-order chain key on p1–p55. This does **not** refute the underlying 2016/p50/p0 navigation interpretation, and it does not rule out an independently source-specified nonlinear key expansion. It does rule out treating the extracted 29-rune vector itself as a reusable periodic additive key under the tested phase/state conventions. Do not rescue it with arbitrary rotations or new transforms absent a further source clue.
+
+Reproduction: node sims/lp2_2016_body_p50_p0_29key_gate_sft.cjs.
