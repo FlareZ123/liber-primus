@@ -400,6 +400,36 @@ const wordDirectionGroups = frames.map(f => {
   const bytes = fullMsbBytes(bits);
   return {runes: f.n, bits: bits.length, bytes};
 });
+/**
+ * The second source-typed readout packs five printed direction bits per
+ * GP29 digit (0..28) with 29..31 forbidden. A real unencrypted GP29 word
+ * stream cannot contain any forbidden five-bit digit.
+ */
+function fullFiveBitValues(bits) {
+  const out = [];
+  for (let j = 0; j + 4 < bits.length; j += 5) {
+    let n = 0;
+    for (let k = 0; k < 5; k++) n = (n << 1) | bits[j + k];
+    out.push(n);
+  }
+  return out;
+}
+const sourceGpFiveBit = frames.map((f, i) => {
+  const values = fullFiveBitValues(lengthOrderBits(f.lengths));
+  return {
+    frame: i,
+    total: values.length,
+    forbidden: values.filter(v => v >= 29).length,
+    prefix: values.slice(0, 22).map(v =>
+      v < 29 ? corpus.translit[v] : "[" + v + "]").join("-")
+  };
+});
+console.log("FROZEN FIVE-BIT GP29 DIRECT WORD-DIRECTION READOUT:",
+  sourceGpFiveBit);
+console.log("FIVE-BIT DIRECT REJECTED DIGITS",
+  sourceGpFiveBit.reduce((a, f) => a + f.forbidden, 0),
+  "/", sourceGpFiveBit.reduce((a, f) => a + f.total, 0));
+
 console.log("FROZEN DIRECT INK-BODY WORD-DIRECTION BITS:",
   wordDirectionGroups.map((g, i) => ({
     frame: i,
