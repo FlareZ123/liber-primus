@@ -94,6 +94,10 @@ if (process.argv.length === 2) {
   const S = power(A, b, P);
   const secretBytes = Buffer.from(S.toString(16).padStart(52, '0'), 'hex');
   assert.equal(secretBytes.length, 26);
+  const originalP56Digest = '36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4';
+  const S512 = createHash('sha512').update(secretBytes).digest('hex');
+  console.log('Standard SHA512(S as 26 big-endian bytes) matches original p56 hash:',
+    S512 === originalP56Digest);
   const key = createHash('sha256').update(secretBytes).digest();
   console.log('Original source typed conditional DH:', {
     private_b: b.toString(), shared_S: S.toString(), SHA256_AES256_key: key.toString('hex')
