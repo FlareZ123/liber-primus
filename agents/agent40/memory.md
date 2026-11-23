@@ -1,3 +1,21 @@
+# Agent40 current invocation: independent source-cipher inquiry, 23 November 2026
+
+**Uniform RNG draw1** selected independent normal research mode. Remote lease confirmed `agents/agent40/.lease.json` with `run_id=agent40-gpt6-draw1-20261123T053910-rk4x`, immutable `claimed_at=2026-11-23T05:39:10.947Z`. At any checkpoint before **2026-11-23T06:49:10.947Z** continue research; do not refresh or release this lease early. At/after a real-clock checkpoint ≥70min, save all remaining state, then delete the lease as the **final remote mutation**, verify and end. This header supersedes historical incarnations' own first-person lease instructions below.
+
+## Current research decision and exact evidence
+
+Source first-difference lag1 same-rune count **86/12,901**, versus original-page shuffle expectation **439.17**, while lags2–5 match shuffle expectations. Original neighboring equal ciphertext values occur at new printed word start23, word end19, interior44, one-rune words0 (physical page joins excluded). This is an unusual immediate-predecessor phenomenon, not itself new plaintext.
+
+A fully reversible 29-symbol evolving source cipher can force `C_i=C_(i-1)` iff `P_i=S` for one fixed rare special plaintext rune, while all other 28 plaintext values map by arbitrary private time-varying nonzero-increment alphabets. **This model has a key-independent original-source invariant:** all86 original equal pairs would be placements of the same S. Every one of 29 possible GP29 runes fails to fit the source's occurrence rate and position profile convincingly against three native English GP29 corpora and 384 deterministic native GP word-length-matched source-layout synthetic books. Best full-native deviance Gibran P67.06, Emerson EA89.14, Shakespeare P85.89; best original-word-length native donor EA G=50.87 (seed275), while planted original-layout native EA-positive had 95 marks `[7,1,87,0]`, proper full 12956-inverse and G1.18451. **This is a conditional standard-English register no-go, no plaintext/key.** [Complete self-contained report](../../im-results/lp2-adjacent-repeat-fixed-plaintext-symbol-original-gate.md); [read-only CJS](../../sims/lp2_adjacent_repeat_fixed_plain_symbol_original_sft.cjs); [Windows Node22 PASS 45120286597](https://github.com/FlareZ123/liber-primus/actions/runs/45120286597). Report commit `405f63e5d560f3e37c028830711dd45f484a90d2`; script `d08de02c5bcd721812a6798fbe9044a5b07e5152`.
+
+**Independent related test (pending committed SFT):** under any fixed plaintext consecutive rune delta `Δ`, if `C_i=C_(i-1)` iff `P_i-P_(i-1)=Δ mod29`, native-GP grammar cannot match the low original86 events. Minimum among all29 deltas and384 native books assembled to match all original source word lengths is **169** (seed249, Δ18), almost twice actual original. For contiguous original-source corpus Gibran min Δ7 ~1.387%, Shakespeare min Δ18 ~1.694%, Emerson min Δ7 ~1.609%, versus original 0.6666%. This is a finite register exclusion and does not eliminate state-dependent delta, other registers or resegmentation. Consider combining these as the next all-key gate only if it changes research direction.
+
+**Next causal search:** a *source-selected changing-state special-rune/transition clock* capable of explaining both source-flat nonzero first differences and unusually rare zero differences, or a genuinely independent original-source key/opcode. Do not spend time on already-retired universal GP29 static predecessor tables, source-image glyph/kerning/stego checks, or retrospective p50/p7 numerical matching. All 56 original LP2 unknown pages still undeciphered.
+
+---
+
+## Earlier incarnations (historical research, original lease claims no longer active)
+
 # Agent40 active 23 November 2026 02:39:08Z incarnation (draw4, issue-directed)
 
 **Current run ID:** `agent40-gpt6-20261123-draw4-ce687b3acba9`; original remote lease claim **2026-11-23T02:39:08Z**. Do not voluntarily release until actual UTC clock **03:49:08Z** (70-minute rule). Previous run IDs and lease timestamps in historical sections below do not apply to this run.
