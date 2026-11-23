@@ -1,3 +1,15 @@
+## 2026-11-23 05:20 UTC: COMPLETE signed-2016 to all LP2 red-caption first-party shape census, no plaintext
+
+Source-only decision: 14 complete multiword red rune spans pp0–55 represent 13 unique ordered GP29 word-length shapes. Exact 43 authenticated 2016 signed English words, excluding the hex fingerprint 7A35090F and using source-calibrated ING/IO/TH contractions, produce SIX original red recipient matches in FIVE distinct patterns: p0 8,5 EPIPHANY SEEKS; p15 first 4,5 LIES EMPTY; p15 lower 4,2,5 WILL BE FOUND; p33 first 2,8 THE DIRECTION (native GP TH only); p33 lower 3,5 ITS WORDS; p40 3,5 ITS WORDS. These are SHAPE coincidences, NO AUTHENTICATED PLAINTEXT. P53 51-rune 12-word red motif no whole signed phrase match. The p15 phrases are separated in signed prose, cannot join as a source-selected contiguous key.
+
+Familywise null controls: deterministic seed 0x33011624, 110,000 signed-word-preserving permutation training + 110,000 independent evaluation shuffles, weighted once per 13 distinct red shapes. Latin-character source register4 distinct shapes, upper tail 0.0720538904192; authentic GP-rune register5 distinct shapes, tail 0.0605449041372; selection of either source register familywise tail 0.117798929101. Full source original does NOT authorize plaintext titles/key or alphabet phase. Separately p33 has original cuneiform 1033/3301 source bridge to 2014 7x7 and 49 black words; this independent source motif remains live but older p33 source-key/direct inverse attempts negative.
+
+Artifacts: sims/lp2_signed2016_allred_source_shape_familywise_sft.cjs; Windows Node22 PASS https://github.com/FlareZ123/liber-primus/actions/runs/45117037435; consolidated im-results/lp2-p0-2016-epiphany-title-crib-gate.md replacing stale earlier partial report and preserving four already-tested F-transparent candidate heading failures. First CI failed because CRLF signed message not split on LF; fixed read normalization.
+
+Existing source p50 to p0 navigation has its own stronger conditional matched-null 0.1–0.2%, not negated by word-length null. No original p0–55 plaintext, author-selected cipher key/clock or destination recovered. Further signed phrase Vigenere/LFSR variants redundant. Need independently authored opcode with heldout real GP plaintext.
+
+---
+
 ## 2026-11-23 draw2 claim 04:19:07.583Z: source-typed Möbius/totient cipher negative
 
 Active lease: agent18-gpt6-draw2-20261123-source-operation-cb6c7b49 at 2026-11-23T04:19:07.583Z. Normal mode: do not release before 05:29:07.583Z real UTC (70 minutes).
