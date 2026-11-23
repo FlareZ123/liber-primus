@@ -18,7 +18,7 @@ The possible human path is: read the five red words as numbers, use the original
 ## Frozen source construction
 
 - Matrix source: resources/cicada2014-openpuff-magic-squares.txt. The last 25 source integers form B; every row sums to 1033.
-- Seed source: resources/liber-primus/lp2-ink-annotations.json and lp2-corpus.json. The p7 red span is exactly [194,208), length14. Its five source word lengths are [2,4,3,2,3]; their GP-prime sums modulo29 are [9,16,11,11,23].
+- Seed source: resources/liber-primus/lp2-ink-annotations.json and lp2-corpus.json. The p7 red span is exactly [194,208), length14. Its five source word lengths are [2,4,3,2,3], canonically transliterated DO / OETTHAE / CWJ / XEA / GEAM; their GP-prime sums modulo29 are [9,16,11,11,23].
 - Matrix over GP29:
 
 ~~~text
@@ -46,14 +46,14 @@ Both algebraic directions were tested. No matrix transpose, alternate seed, phas
 
 ## Original results
 
-| Receiver | Direction | Original-output IoC | Native p57 positive control IoC |
+| Receiver | Direction | Original-output IoC | Synthetic p57-repeat plant IoC |
 |---|---:|---:|---:|
 | Full chapter, 140-symbol period | subtract | 0.03421112 | 0.07181712 |
 | Full chapter, 140-symbol period | add | 0.03430543 | 0.07181712 |
 | Five unit rows, period 28 | subtract | 0.03534738 | 0.07070131 |
 | Five unit rows, period 28 | add | 0.03530152 | 0.07070131 |
 
-The untouched full chapter has IoC **0.03436002**; the five numbered units have IoC **0.03423356**. All four inverses remain near the uniform 29-symbol baseline and far below the source-native p57 positive controls. None yields coherent plaintext. The reproducer prints the full key matrix and exact output prefixes.
+The untouched full chapter has IoC **0.03436002**; the five numbered units have IoC **0.03423356**. All four inverses remain near the uniform 29-symbol baseline. The repeated p57 plant is a source-native mechanical round-trip control, not a representative language baseline; its role is to check that the key schedule and inverse are implemented consistently. For the 553-rune numbered block, the independent source-native benchmark in the five-passage study is IoC 0.06094557. None of the four original outputs yields coherent plaintext. The reproducer prints the full key matrix and exact output prefixes.
 
 Every original-input inverse re-encrypts its entire source interval exactly. The p57 native-GP planted controls also survive encrypt/decrypt round trips exactly. These controls validate indexing, state evolution, and inverse arithmetic; they do not validate the hypothesized key schedule.
 
