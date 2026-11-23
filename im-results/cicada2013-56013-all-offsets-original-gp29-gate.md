@@ -1,4 +1,4 @@
-# Full literal 2013 CicadaOS DATA/560.13 pad-source scan against the original LP2 opening
+# Full original 2013 CicadaOS DATA/560.13 byte-key source against LP2: four exhaustive GP29 and GP28 inverses
 
 **Agent2, 23 November 2026. Classification: original-source, complete-offset, source-bounded negative with genuine 729-rune GP-native positives. No unknown LP2 plaintext, creator-selected key or destination recovered.**
 
@@ -6,7 +6,7 @@
 
 The preserved 2013 Cicada bootable ISO distributed unusually large non-system data objects, including `DATA/560.13`. Its original startup message tells a 2013 player, “The key is all around you.” That message does **not** specify using the large data object for Liber Primus, and neither the first-party LP2 pictures nor the archived ISO gives a GP29 byte-reduction or starting offset. Nevertheless, unlike a model-invented password, this is a finite actual historical Cicada-distributed high-entropy byte source. A direct running-byte key at an arbitrary offset could potentially decrypt an entire original LP2 chapter. Earlier independent [pnotisdev 2026 work](https://github.com/pnotisdev/cicada3301/blob/main/STATUS.md) had tested starting segments and sparse samples of `560.13` as a key, while explicitly leaving approximately **93% of positions** unscreened for additive models.
 
-This experiment therefore searches **every possible 128-byte offset** of this exact original 2013 image member, with no hypothesized start index chosen from ciphertext. It evaluates precisely two source-defined GP29 decoders, then validates the best-ranked locations on the unchanged 729-rune opening chapter. The scan is a **key acquisition experiment**, not a decipherment claim.
+This experiment therefore searches **every possible 128-byte offset** of this exact original 2013 image member, with no hypothesized start index chosen from ciphertext. The first experiment evaluates two native GP29 direct decoders, followed by a second, independent full-offset experiment covering two 28-successor no-repeat transports. Both validate the best-ranked locations on the unchanged 729-rune opening chapter. The scan is a **key acquisition experiment**, not a decipherment claim.
 
 ## Original bytes and fixed decoder
 
@@ -22,7 +22,7 @@ This experiment therefore searches **every possible 128-byte offset** of this ex
 | Genuine LP2 target | Original physical pp0,1,2; **729 GP29 runes** with no ciphertext modifications |
 | Original first-pass span | Fixed first **128 original runes** of that chapter; remaining **601** withheld for continuation |
 
-The two explicit byte-key reductions are `K[j] = source[offset+j] mod 29`, and `P[j] = (X[j] - K[j]) mod29`, with the same original rune clock and no skip policy. Here `X[j]` is either (a) untouched GP29 ciphertext `C[j]` (**raw29**) or (b) its first-order predecessor difference `(C[j]-C[j-1]) mod29` (**difference29**, with first difference `X[0]=C[0]`). Neither model varies an alphabet, direction, seed, pad offset inside the file, per-word/page state or external transformation. Each candidate uses the contiguous source tape from that candidate's starting offset.
+The first experiment's two explicit byte-key reductions are `K[j] = source[offset+j] mod 29`, and `P[j] = (X[j] - K[j]) mod29`, with the same original rune clock and no skip policy. Here `X[j]` is either (a) untouched GP29 ciphertext `C[j]` (**raw29**) or (b) its first-order predecessor difference `(C[j]-C[j-1]) mod29` (**difference29**, with first difference `X[0]=C[0]`). Neither model varies an alphabet, direction, seed, pad offset inside the file, per-word/page state or external transformation. Each candidate uses the contiguous source tape from that candidate's starting offset.
 
 The single first-pass ranking is **128-position unigram** GP-native language-weighted likelihood. The source's independently known Gibran text was converted to the authenticated 29-rune orthographic convention: `QU→CW`, `K/Q→C`, `V→U`, `Z→S`, `ING→NG`, `IO→IA`. The frozen score weights are `round(12*ln(29*(source_frequency+0.5)/(source_total+29*0.5)))` per decoded GP symbol. No source-specific threshold was fitted to original LP2. The top **2,048** first-128 candidates in each model were subsequently checked on the original 729-runic source chapter, using the exact same fixed key clock, language scorer and IoC.
 
@@ -46,9 +46,30 @@ In particular, across the entire **118,818,684 candidate-offset** corpus, the **
 
 The program's full first-pass top ranks, first-729 verification leaders, source checksums and positive-control outputs are in the attached `agent2-2013-original-56013-full-offset-cryptanalytic-report` artifact of the successful run. Source scan itself performed a complete byte-offset sweep; the 729-rune verification intentionally covered only the top-ranked 2,048 positions under the **precommitted** 128-rune language rule. A true plaintext segment in the tested ordinary GP-English register would have passed that first-pass rule with ample positive-control margin.
 
+## Second exact full-file experiment: GP28 anti-repeat successors
+
+The ordinary GP29 additive model cannot itself account for the **86 genuine adjacent repeated runes** against approximately 447 independent-random expectations. An independently distinct, source-constrained next test uses the 29-symbol **predecessor-exclusion alphabet**. For each later rune, permit **28 non-repeating successors** of the preceding original ciphertext rune; the remaining equality event is mapped literally to plaintext ordinal **28 (EA)**, an illustrative hypothesized rare-rune escape. The first rune remains an ordinary mod29 byte-key operation. This is a concrete invertible algorithm consistent with the gross anti-repeat fingerprint, **not an attested author encoding**. In particular, literal EA-at-doublet conflicts with other tested word-boundary statistics, so success would require true plaintext rather than an ad hoc special-rune interpretation.
+
+The original source bytes are *identical* to experiment 1, SHA-256 `db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f`. Fixed contiguous key clock `source[offset+i] mod28` at all positions, including equal-rune markers; no key skips or word reset. For every `C_i != C_{i-1}`, consider precisely two source-independent natural orderings of the 28 available ciphertext successors:
+
+1. **Circular difference rank:** `r_i = (C_i-C_(i-1)-1) mod29` lies in 0..27; `P_i = (r_i-K_i) mod28`.
+2. **Ordinal excluded-predecessor rank:** `r_i = C_i-[C_i>C_(i-1)]` lies in 0..27, the ordered alphabet with preceding rune deleted; the same `P_i=(r_i-K_i) mod28` inverse.
+
+Each fixed rank scheme has an *exact and independently proved* planted 729-GP-rune English positive: original-language sample encrypted at independent byte source offset **220,103**, then exactly recovered **729/729** rune indices under the unchanged inversion and ranked **first** among 999,873 synthetic offset windows. Both positives score **+640** over first128 and **+3,380** over entire 729 runes, with IoC **0.061909**. These are actual source-native GP positive controls with a fully reversible, runnable cipher.
+
+The second successful [118 MB GP28 Windows-equivalent Linux CI 45101857887](https://github.com/FlareZ123/liber-primus/actions/runs/45101857887) runs the complete original read-only ISO extraction and both 118,818,684-offset native scans. Exact [standalone decoder and original-source SFT](../sims/cicada2013_56013_full_rank28_sft.py) and [on-push workflow](../.github/workflows/agent2-2013-56013-full-rank28.yml) preserve original byte digests, both decoder definitions, both true plants, and the full top candidates with the 729-rune held-out tests in its attached JSON.
+
+| GP28 source-key consumer | Highest first128 original score across **all 118,818,684** offsets | Best original full729 score among top2,048 first128 | Associated original IoC |
+| --- | ---: | ---: | ---: |
+| Circular difference successor rank | **−46** | **−4,376** | 0.036238 |
+| Ordinal excluded-predecessor successor rank | **+2** | **−4,313** | 0.036785 |
+| Known 729-rune GP-native positive in both variants | **+640** | **+3,380** | 0.061909 |
+
+Even the first-pass **global maxima** of the two entire real-source scans (−46 and +2) remain far below the same exact detector's controlled positive (+640). The strongest 729-rune continuations are likewise at near-random IoC **0.036–0.037**, with no coherent unknown original English. A complete full-file search of **both** fixed successor alphabets therefore yields no authentic LP2 plaintext or key offset. This rules out this explicitly defined direct 2013 byte-tape/GP28 mapping for ordinary native-GP English *at all valid starting byte positions* on the first chapter. It does not exclude untested historical key derivations, unreadable plaintext registers or secret state feedback beyond the fixed successor rank.
+
 ## Decision and honest limitations
 
-**Retire direct, contiguous `DATA/560.13` bytes mod29 as an unknown-offset GP29 additive or predecessor-difference key for the 729-rune opening LP2 chapter in ordinary native-GP English.** This is stronger than earlier partial offset scans and covers every valid offset for the fixed 128-rune discriminator, with a genuine positive detector and a separate continuation check.
+**Retire direct, contiguous `DATA/560.13` byte keys in all four specified models: GP29 additive, GP29 predecessor difference, GP28 circular successor rank and GP28 ordered excluded-predecessor rank, against the 729-rune opening LP2 chapter in ordinary native-GP English.** The paired original runs cover **118,818,684 valid starting positions per model**, with 729-rune true-plaintext positives that rank the true offset first, plus disjoint original continuation checks. This is stronger than earlier partial offset scans.
 
 The original 2013 object is independently real but no known author instruction transfers it as an LP2 key. This negative does **not** exclude a hidden exact offset with a different native language, nonbinary/rank28 transport, original file transformations, skip-aware key pointer, a key independently selected from a different original, a cipher using data files other than `560.13`, or genuinely encrypted nontext payload. None of these possibilities should be promoted by inventing new search parameters merely to rescue this failed direct mode.
 
