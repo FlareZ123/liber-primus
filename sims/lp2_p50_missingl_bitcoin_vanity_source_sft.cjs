@@ -118,6 +118,12 @@ const meanCue = result.address.match(/^1(Mean)(png)/);
 assert.ok(meanCue);
 assert.equal(meanCue[1], 'Mean');
 assert.equal(roundedAsciiMean(meanCue[2].toUpperCase()), 0x4c);
+const upperAsciiSum = [...meanCue[2].toUpperCase()].reduce((sum, x) => sum + x.charCodeAt(0), 0);
+assert.equal(upperAsciiSum, 229); // exact first-party Stage10 filename /229.jpg, independent image identity
+const primeRank229 = Array.from({length:228}, (_, i) => i+2)
+  .filter(n => Array.from({length:Math.floor(Math.sqrt(n)) - 1}, (_, i) => i + 2).every(d => n % d !== 0)).length;
+assert.equal(primeRank229, 50); // known 2014 /229.jpg filename's one-based prime ordinal
+
 assert.equal(roundedAsciiMean(meanCue[2]), 0x6c);
 assert.equal(source.rows.flat().includes('4C'), false);
 
@@ -154,6 +160,7 @@ console.log(JSON.stringify({
   comparedNaturalConventions: comparisons.length,
   addressesWithSameInitialEightCharacters: 1,
   asciiMeanReturn: { PNG: '0x4C=L', png: '0x6C=l', caveat: 'post-recognition only' },
+  historicalDependentSum: { upperAsciiSum: 229, ordinalPrime: 50, originalStage10File: '229.jpg' },
   known: 'Exact reproducible source transformation only; no unknown LP2 rune recovered'
 }, null, 2));
 console.log('PASS: original p50 printed column selects a reproducible 1Meanpng... address.');
