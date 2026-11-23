@@ -164,3 +164,39 @@ for name, (a, c, width) in FAMILIES.items():
         assert seed in candidates and any(
             sequence(candidate, a, c, shift, 32) == plant for candidate in candidates)
     print(f'{name}: eight independently seeded 32-byte planted column streams PASS')
+
+# Original-I/l typography robustness: the published tokens have ten
+# visually ambiguous second-character cells, all of which are represented
+# as one of I/l. Under base60 their digit values differ by 29; under
+# omitted-f base59, the lower-case l digit shifts down one and differs
+# from uppercase I by 28. A secret PRNG state must fit the first 8 bytes;
+# enumerate *every* image-permitted reading of those first 8 positions,
+# for each continuous traversal and each independent printed column.
+spots = {i for i, token in enumerate(TOKENS) if token[1] in ('I','l')}
+assert spots == {2,25,45,50,90,165,175,182,199,246}
+for name, (a, c, width) in FAMILIES.items():
+    cases, candidates_found = 0, 0
+    for radix in (60,59):
+        flat = decode(radix,'row')
+        delta = 29 if radix == 60 else 28
+        shifts = {i: (delta if TOKENS[i][1] == 'I' else -delta)
+                  for i in spots}
+        windows = [
+            list(range(8)),                    # row-major continuous
+            [8*r for r in range(8)],         # column-major continuous
+        ] + [[8*r+col for r in range(8)] for col in range(8)]
+        for positions in windows:
+            changed = [j for j, i in enumerate(positions) if i in spots]
+            for mask in range(1 << len(changed)):
+                values = [flat[i] for i in positions]
+                for k, j in enumerate(changed):
+                    if (mask >> k) & 1:
+                        values[j] += shifts[positions[j]]
+                assert all(0 <= x < 256 for x in values)
+                for s in range(width - 7):
+                    fits, _ = solve8(values, a, c, s)
+                    cases += 1
+                    candidates_found += len(fits)
+    assert cases == 32*(width - 7) and candidates_found == 0
+    print(f'{name}: all {cases} first8 allographic/source/clock possibilities '
+          f'exclude every seed; exact additional ambiguity controls PASS')
