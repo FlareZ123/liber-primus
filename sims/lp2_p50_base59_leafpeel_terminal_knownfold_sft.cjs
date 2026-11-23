@@ -53,7 +53,7 @@ function testKnown(layersByOrder, suppliedLeafText, suppliedMiddleText, convert)
   const order = layersByOrder.flat();
   const value = new Array(256).fill(null);
   for (let i = 0; i < 95; i++) value[order[i]] = convert(suppliedLeafText[i]);
-  for (let i = 0; i < 85; i++) value[order[i + 95]] = convert(suppliedMiddleText[i]);
+  for (let i = 0; i < suppliedMiddleText.length; i++) value[order[i + 95]] = convert(suppliedMiddleText[i]);
 
   const lookup = new Map();
   let pairs = 0, conflicts = 0, firstConflict = null;
@@ -105,7 +105,12 @@ const p56Reencrypted = known56.map((p) => p === 0 ? 0 : (p + primeClock[primeInd
 assert.equal(primeIndex, 84);
 assert.deepEqual(p56Reencrypted, physical(56));
 
+const nonF56 = known56.filter((x) => x !== 0);
+assert.equal(nonF56.length, 84);
+assert.equal(95 + 84 + 76 + 1, 256); // leaves, prime-consuming p56, p55, unassigned root
+
 const orientations = [];
+const nonFOrientations = [];
 for (const reverseLayer of [false, true]) {
   const oriented = layers.map((layer) => reverseLayer ? [...layer].reverse() : [...layer]);
   for (const reverseLeafText of [false, true]) {
@@ -115,6 +120,9 @@ for (const reverseLayer of [false, true]) {
       for (const asPrime of [false, true]) {
         const result = testKnown(oriented, leaf, middle, (x) => asPrime ? prime[x] % 29 : x);
         orientations.push({ reverseLayer, reverseLeafText, reverseMiddleText, asPrime, ...result });
+        const nonF = reverseMiddleText ? [...nonF56].reverse() : nonF56;
+        const nonFResult = testKnown(oriented, leaf, nonF, (x) => asPrime ? prime[x] % 29 : x);
+        nonFOrientations.push({ reverseLayer, reverseLeafText, reverseMiddleText, asPrime, ...nonFResult });
       }
     }
   }
@@ -124,12 +132,20 @@ assert(orientations.every((x) => x.pairs === 85));
 const counts = orientations.map((x) => x.conflicts).sort((a, b) => a - b);
 assert.equal(counts[0], 24);
 assert.equal(counts.at(-1), 38);
+assert.equal(nonFOrientations.length, 16);
+assert(nonFOrientations.every((x) => x.pairs === 84));
+const nonFCounts = nonFOrientations.map((x) => x.conflicts).sort((a, b) => a - b);
+assert.equal(nonFCounts[0], 28);
+assert.equal(nonFCounts.at(-1), 36);
 console.log('Original table: 256 cells; base59 unique rooted tree; 39 leaf-removal layers.');
 console.log('Leaf-peel layers:', layers.map((x) => x.length).join(','));
 console.log('HTML-title-sized first two layers:', layers[0].length, '+', layers[1].length, '= 133');
 console.log('Original p57/p56 known-only all-secret per-depth necessary condition:');
 for (const candidate of orientations) console.log(JSON.stringify(candidate));
 console.log('Conflicting observations per 85 independently solved p56 runes: min', counts[0], 'max', counts.at(-1));
+console.log('Source-correct p56 skip-F and root unassigned 95+84+76+1=256 gate:');
+for (const candidate of nonFOrientations) console.log(JSON.stringify(candidate));
+console.log('Conflicting observations per 84 genuinely prime-consuming p56 runes: min', nonFCounts[0], 'max', nonFCounts.at(-1));
 
 /** Independently generated reversible positive with actual solved p57 runes as leaves. */
 const generated = new Array(256).fill(null);
@@ -145,11 +161,14 @@ const ordered = layers.flat();
 const positive = testKnown(layers, physical(57), ordered.slice(95, 180).map((v) => generated[v]), (x) => x);
 assert.equal(positive.conflicts, 0);
 assert.equal(positive.pairs, 85);
+const positiveNonF = testKnown(layers, physical(57), ordered.slice(95, 179).map((v) => generated[v]), (x) => x);
+assert.equal(positiveNonF.conflicts, 0);
+assert.equal(positiveNonF.pairs, 84);
 for (let d = 1; d < layers.length; d++) {
   for (const node of layers[d]) {
     const sum = children[node].reduce((total, k) => total + generated[k], 0) % 29;
     assert.equal(generated[node], (17 * sum + 3 * d + 2) % 29);
   }
 }
-console.log('Positive source-leaf plant: 256 / 256 full source-tree forward checks; 85 / 85 known-middle lookup constraints PASS.');
+console.log('Positive source-leaf plant: 256 / 256 full source-tree forward checks; 85/85 and 84/84 independently selected middle-lookup constraints PASS.');
 console.log('DECISION: all 16 frozen source-natural source-end breadth-first leaf-peel fold hypotheses fail; no unknown plaintext or key recovered.');
