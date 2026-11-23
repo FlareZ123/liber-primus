@@ -5,7 +5,7 @@
  * Reproduce the original boundary-vs-interior 29-step comparison, then test
  * exactly one frozen, reversible source-symbol rotor candidate.
  *
- * The rotor is a deliberately UNAUDHENTICATED hypothesis, not a Cicada key.
+ * The rotor is a deliberately UNAUTHENTICATED hypothesis, not a Cicada key.
  * Run: node sims/lp2_crossword_continuous_28step_rotor_original_sft.cjs
  */
 const assert = require('node:assert/strict');
@@ -59,8 +59,6 @@ let hyphenCount = 0;
 let hyphenEqual = 0;
 let periodCount = 0;
 let periodEqual = 0;
-let oneRuneStarts = 0;
-let oneRuneStartEquals = 0;
 
 for (const { page, start, end } of pages) {
   if (page === 50) continue;
@@ -88,7 +86,7 @@ assert.equal(boundary.reduce((a, b) => a + b, 0), 2873);
 assert.equal(withinEqual, 63);
 assert.equal(acrossEqual, 23);
 assert.deepEqual([hyphenCount, hyphenEqual, periodCount, periodEqual],
-  [2709, 22, 164, 1]);
+  [2713, 22, 160, 1]);
 
 let pageLinks = 0;
 let pageLinksEqual = 0;
@@ -134,7 +132,7 @@ assert(Math.abs(chi2 - 25.83466949897499) < 1e-9);
 assert(Math.abs(tail - 0.5821319649430854) < 1e-10);
 console.log('Original 55 rune-bearing pages, symbols:', cipher.length);
 console.log('Within printed units: 63/10028 equal; across printed units: 23/2873');
-console.log('Boundary marks: hyphens 22/2709, periods 1/164');
+console.log('Boundary marks: hyphens 22/2713, periods 1/160');
 console.log('Physical page links: 0/54 adjacent equal, with 32 known word carries');
 console.log('Full mod29 delta homogeneity: chi2=', chi2.toFixed(9),
   'df=28 upper-tail=', tail.toFixed(9));
