@@ -94,7 +94,7 @@ function decode(chunks,mode,clock,signA,offsetA,signB,offsetB,swap,byteDir,phase
     const b=adjust(quartic[1][r],signB,offsetB);
     if(mode==='1033')return a;
     if(mode==='3301')return b;
-    return swap?16*b+a:16*a+b;
+    return swap?4*b+a:4*a+b;
   }));
   const streams=clock==='global'?[native.flat()]:native;
   return streams.flatMap(stream=>{
