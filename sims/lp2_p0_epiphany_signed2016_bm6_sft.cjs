@@ -154,6 +154,49 @@ const nativeResetSeed = plantedReset.slice(0, 6)
 assert.deepEqual(translate(plantedReset,
   continueKey(nativeResetSeed, connection.poly, native.length), -1), native);
 
+
+// Strongest independently printed competing title: solved original p57
+// literally contains DIVINITY WITHIN, also 8|5 Gematria Primus runes.
+// Grant the rival its OWN shortest BM recurrence, selected by exactly
+// the same public algorithm, and check the same untouched original spans.
+const rivalSymbols = [
+  "D", "I", "U", "I", "N", "I", "T", "Y",
+  "W", "I", "TH", "I", "N"
+];
+const rivalPlain = rivalSymbols.map(s => {
+  const value = gp.translit.indexOf(s);
+  assert.ok(value >= 0);
+  return value;
+});
+assert.equal(render(rivalPlain), "DIUINITYWITHIN");
+const rivalPrefix = ciphertext.slice(0, 13)
+  .map((v, i) => mod(v - rivalPlain[i]));
+assert.deepEqual(rivalPrefix, [21,27,17,22,26,9,11,3,8,16,16,11,25]);
+const rivalConnection = berlekampMassey(rivalPrefix);
+assert.deepEqual(rivalConnection,
+  {degree: 7, poly: [1,9,7,26,7,22,16,4]});
+const rivalKey = continueKey(rivalPrefix,
+  rivalConnection.poly, ciphertext.length);
+const rivalDecoded = translate(ciphertext, rivalKey, -1);
+assert.deepEqual(rivalDecoded.slice(0, 13), rivalPlain);
+assert.deepEqual(translate(rivalDecoded, rivalKey, +1), ciphertext);
+const rivalParts = [
+  rivalDecoded.slice(13, 262),
+  rivalDecoded.slice(262, 528),
+  rivalDecoded.slice(528, 729)
+];
+assert.ok(Math.abs(ioc(rivalParts[0]) - 0.03436325948957119) < 1e-14);
+assert.ok(Math.abs(ioc(rivalParts[1]) - 0.034302737977018015) < 1e-14);
+assert.ok(Math.abs(ioc(rivalParts[2]) - 0.038507462686567163) < 1e-14);
+console.log("independent rival p57 native DIVINITYWITHIN title");
+console.log("rival BM degree", rivalConnection.degree,
+  "connection", rivalConnection.poly.join(","));
+console.log("rival untouched original p0 body IoC", ioc(rivalParts[0]),
+  "first50", render(rivalParts[0].slice(0, 50)));
+console.log("rival untouched original p1 IoC", ioc(rivalParts[1]),
+  "p2 IoC", ioc(rivalParts[2]));
+console.log("rival exact original reencryption", "729/729", "PASS");
+
 const cuts = [
   { label: "original p0 red known phrase", start: 0, end: 13 },
   { label: "original p0 black NEW 249", start: 13, end: 262 },
