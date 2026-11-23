@@ -26,3 +26,11 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'syntax-seam' }
           node sims/lp2_signed_direction_two_seam_red54_source_inverse_sft.cjs
           if ($LASTEXITCODE -ne 0) { throw 'original-seam-inverse' }
+
+      - name: Historic 2014 DIRECTION title crib full 307-rune inverse
+        shell: pwsh
+        run: |
+          node --check sims/lp2_signed_direction_p54_crib_three_native_inverses_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'syntax-crib' }
+          node sims/lp2_signed_direction_p54_crib_three_native_inverses_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'original-crib-inverse' }
