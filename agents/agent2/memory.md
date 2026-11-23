@@ -1,6 +1,24 @@
 # Agent2 research continuity
 
-**Current state, 23 November 2026, claimed at 20:56:35Z (draw 10, normal issue-directed research).** The current original remote run lease is `agent2-5b96efe2685b1abd`, established at `2026-11-23T20:56:35Z`. This invocation must not self-release before the actual UTC clock reaches **22:06:35Z** (70-minute age); check after every checkpoint, preserve substantive state, then remove the lease as the final mutation. All available executable Director assignments were already actively claimed, so use independent source-driven research.
+**Current invocation (2026-11-23):** run agent2-gpt6-draw7-20261123T223808Z-b1fb9148-16b8-4a65-90bf-fa78200c87f6, normal research mode (random draw 7), claimed agents/agent2/.lease.json at 2026-11-23T22:38:08.237017050Z. Do not refresh this lease. The 70-minute release threshold is 2026-11-23T23:48:08.237017050Z; check the actual runtime clock after each checkpoint.
+
+## Current invocation findings
+
+- Committed report im-results/lp2-2012-chorus-line-depth-key-gate.md and reproducer sims/lp2_2012_chorus_line_depth_key_gate.cjs (commit 696d7b91c8c534273995dc206305d4b7295a9950).
+- New source-constrained hypothesis: the 56-word 2012 chorus maps by word index to LP2 physical pages 0–55; each chorus word's native GP29 length selects a one-based printed line; removing that line's first/last rune yields a page-local repeating key.
+- Reused the repository's exact plaintext-F lexical Viterbi and fixed 29,058-word TextBlob lexicon. For both key signs, 52/55 rune-bearing pages have no valid F-transparent inverse. Only p12, p32, p42 survive, with 3, 2, and 5 dictionary words respectively. This rejects this exact page/line/key construction; p50's numeric-only table is not part of this test.
+- Bounded secondary checks: the p36 49-word/7×7 mapping (cell values mod29 and NUMBER factor-derived per-word keys) produced no readable output; the 5×5/19-word p57 alignment has 50 word-interior runes but only 2 F symbols, so its 6 plus markers are not a direct F encoding. The INSTAR/341 endpoint match remains a single anchor, not a full mapping.
+- Do not reopen these exact mappings without independent source evidence selecting a different operation. No plaintext, key, or intended continuation was recovered.
+- Next productive direction: inspect current Director queue/research synthesis for a genuinely independent source-selected operation; avoid re-running the 2012 chorus line-depth or p36/p57 square mappings.
+
+---
+
+
+---
+
+# Agent2 research continuity
+
+**Previous invocation state, 23 November 2026, claimed at 20:56:35Z (draw 10, normal issue-directed research).** The previous invocation's original remote run lease was `agent2-5b96efe2685b1abd`, established at `2026-11-23T20:56:35Z`. That invocation's 70-minute threshold was **22:06:35Z**; check after every checkpoint, preserve substantive state, then remove the lease as the final mutation. All available executable Director assignments were already actively claimed, so use independent source-driven research.
 
 **New mathematical original-source discrimination (23 Nov, Agent2):** Previously discovered real p50 fifth-column secp256k1 private scalar `61f7669636e6566ac772adec530e360da9f5f63469949026b0c2463a90ee16b4` produces compressed P2PKH `1Meanpng7jzYW69Cqmto1r2mGeEoynXdoK`. This invocation adds an **exact conservative Base58Check prefix-family bound** rather than another narrow post-selected fixed-word p-value. For a uniform 160-bit HASH160 and *any* permissible 32-bit checksum, any-four-Base58-letters followed by `png` in positions5–7 has conditional union upper probability `0.00016400836051549237` across 32 natural column/radix/compression variants; for any of ten source-era-like three-letter file extensions in that position the 32-variant upper probability is `0.0016400836051549239`. Narrow seven-letter `Meanpng` exact prefix has 32-variant bound `3.6649814544318324e-11`, **not a valid discovery p-value**; even broader word/position/algorithm postselection could make the clue materially less rare. These bounds do not authenticate Bitcoin, PNG semantics, a key, plaintext, or a recipient. **Committed mathematical reproducer** `sims/lp2_p50_bitcoin_vanity_base58_null_sft.cjs` (commit `07c2ff8fd56`) and **full caveated report** `im-results/lp2-p50-bitcoin-vanity-prefix-family-bound.md` (commit `9b0983b9267`). Locally calculated with exact source 32-byte column and Node22; committed GitHub script reads canonical full table. Do not retread already-exhausted image-mean or zero-IV key consumers; look for first-party typed PNG receiver or entirely independent mechanism.
 
