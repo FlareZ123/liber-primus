@@ -52,6 +52,23 @@ function sourceBreakFlags() {
   return Array.from(marks);
 }
 const originalFlags = sourceBreakFlags();
+const allRunes = gp.pages.slice(0, 56).flatMap(page => page.indices);
+assert.equal(allRunes.length, runeLimit);
+const sourceSections = ends.map((end, i) => allRunes.slice(
+  i === 0 ? 0 : ends[i - 1], end
+));
+/** @param {number[]} a @returns {number} */
+const adjacentEquals = a => a.reduce((n, x, i) =>
+  n + Number(i > 0 && x === a[i - 1]), 0);
+const sourceDoublets = sourceSections.map((section, i) => ({
+  chapter: i,
+  sourcePairs: adjacentEquals(section),
+  rowToColumnPairs: adjacentEquals(rowToColumn(section, primes[i])),
+  columnToRowPairs: adjacentEquals(columnToRow(section, primes[i]))
+}));
+assert.deepEqual(sourceDoublets.map(x => x.sourcePairs), [4, 6, 9, 10]);
+assert.deepEqual(sourceDoublets.map(x => x.rowToColumnPairs), [26, 31, 55, 58]);
+assert.deepEqual(sourceDoublets.map(x => x.columnToRowPairs), [26, 46, 68, 60]);
 const sections = ends.map((end, i) => originalFlags.slice(
   i === 0 ? 0 : ends[i - 1], end
 ));
@@ -237,6 +254,7 @@ console.log(JSON.stringify({
     printedBreaks: printWordCounts[i]
   })),
   original: results,
+  primeTranspositionRuneDoublets: sourceDoublets,
   sourceNativePlants: positive,
   verdict: "Neither canonical prime-width boundary transpose restores native adjacent word-length structure; no cipher or plaintext recovered."
 }, null, 2));
