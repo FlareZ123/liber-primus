@@ -329,6 +329,45 @@ function plant(plain,cuts=all){
   assert.deepEqual(recovered,plain);
   return {cipher,recovered};
 }
+/** Exactly match all 2,896 original whole-word rune lengths, allowing
+ * independently sampled *real* source-native words in each source slot.
+ * All original printed line/ink cuts stay fixed independently of the choices.
+ * @param {string} donor
+ * @param {()=>number} draw
+ * @returns {{replicates:number,donorWords:number,min:number,max:number,mean:number,atOrBelow:number}} */
+function lengthMatchedCollisionDonor(donor,draw){
+  const lexicon=encodeWords(donor);
+  const byLen=new Map();
+  for(const w of lexicon){
+    let bucket=byLen.get(w.length);
+    if(!bucket){bucket=[];byLen.set(w.length,bucket);}
+    bucket.push(w);
+  }
+  const widths=originalWordBreaks.map((end,j)=>end-
+    (j===0?0:originalWordBreaks[j-1]));
+  assert.equal(widths.length,2896);
+  for(const width of widths)assert(byLen.has(width));
+  const trials=256;
+  let min=Infinity,max=-Infinity,sum=0,atOrBelow=0;
+  for(let k=0;k<trials;k++){
+    const candidate=new Array(N);
+    let offset=0;
+    for(const width of widths){
+      const bucket=byLen.get(width);
+      const chosen=bucket[draw()%bucket.length];
+      for(const v of chosen)candidate[offset++]=v;
+    }
+    assert.equal(offset,N);
+    const pairs=equalPairs(candidate,withAllVisible);
+    min=Math.min(min,pairs);
+    max=Math.max(max,pairs);
+    sum+=pairs;
+    if(pairs<=exactOriginalEquality.everyPrintedTokenAndInk)atOrBelow++;
+  }
+  return {replicates:trials,donorWords:lexicon.length,
+    min,max,mean:sum/trials,atOrBelow};
+}
+const matchedDraw=rng();
 const E=gp.translit.indexOf('E'),O=gp.translit.indexOf('O');
 const sources=[
   ['Gibran','resources/control/gibran_prophet_58585.txt',1407,2556],
@@ -342,9 +381,11 @@ const controls=sources.map(([name,file,expectE,expectEO])=>{
   assert.deepEqual([minE,minEO],[expectE,expectEO]);
   assert(1029<minE&&1897<minEO);
   const rank=rankCounter(native);
-  const matching= fixedLayoutNativeCollisionControls(native);
+  const matching=fixedLayoutNativeCollisionControls(native);
+  const nativeWordLengths=lengthMatchedCollisionDonor(read(file),matchedDraw);
   return {name,minE,minEO,sourceLineFullRankCapacity:rank,
-    fullVisibleInkAndWordCollision:matching};
+    fullVisibleInkAndWordCollision:matching,
+    originalWordLengthMatchedInkCollision:nativeWordLengths};
 });
 assert.deepEqual(controls.map(x=>[
   x.sourceLineFullRankCapacity.windows,
@@ -358,6 +399,15 @@ assert.deepEqual(controls.map(x=>[
   x.fullVisibleInkAndWordCollision.atOrBelowOriginal3320]),
   [[8,6658,1101,0,0],[49,6958,1137,0,0],
     [32,6599,1133,0,0]]);
+assert.deepEqual(controls.map(x=>[
+  x.originalWordLengthMatchedInkCollision.donorWords,
+  x.originalWordLengthMatchedInkCollision.min,
+  x.originalWordLengthMatchedInkCollision.max,
+  x.originalWordLengthMatchedInkCollision.mean,
+  x.originalWordLengthMatchedInkCollision.atOrBelow]),
+  [[15733,1023,1200,1109.109375,0],
+    [77932,1053,1249,1134.5703125,0],
+    [55407,1059,1244,1150.7734375,0]]);
 const native=encodeWords(read(sources[0][1])).flat().slice(0,N);
 const positive=plant(native),positiveCap=bins(positive.cipher,all);
 const allVisiblePositive=plant(native,withAllVisible);
