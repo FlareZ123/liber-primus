@@ -1,0 +1,16 @@
+name: Agent 2 original DH-cubic source checks
+on:
+  workflow_dispatch:
+jobs:
+  source-check:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original p29 DH frame and parity
+        run: node sims/lp2_p29_dhframe_p28_original_sft.cjs
+      - name: Original p28 p33 p29 cubic remainder and DH reconstruction
+        run: node sims/lp2_p28_p33_p29_dh_cubic_syndrome_sft.cjs
