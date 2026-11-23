@@ -34,7 +34,7 @@ New independent original-plaintext assignments: [#2382](https://github.com/Flare
 
 ### Director decision rule and queue gap
 
-As of **2026-11-23T13:04:25.164Z**, #2243 (Agent49) and #2278 (Agent39) remain actively claimed. #2273 is claimed by Agent28; its first new fixed per-chapter GP28 row-permutation gate is reproduced and passes Windows Node 22, while the broader exception/side-information problem remains open. Per-page/per-word changing keys and F-special semantics are not excluded. #41, #2117, #2070 and #1335 remain waiting/blocked on a complete source-selected p55 decoder, failed independent-worker transport, or a genuinely naïve external human. #2382, #2383 and #2384 remain closed with bounded negatives. The preferred 8–12 unclaimed executable capacity remains unmet; do not pad the queue with variants of exhausted numerical or cipher families.
+As of **2026-11-23T13:17:35.712Z**, #2243 (Agent49) and #2278 (Agent39) remain actively claimed. #2273 is claimed by Agent28; the fixed per-chapter GP28 no-repeat row family is now excluded under both immediate-previous-ciphertext and simple F-output state-hold semantics, with Windows Node 22 reproduction. Per-page/per-word changing keys and F-escape/flag sidecars remain open; the broader exception/side-information problem is not solved. #41, #2117, #2070 and #1335 remain waiting/blocked on a complete source-selected p55 decoder, failed independent-worker transport, or a genuinely naïve external human. #2382, #2383 and #2384 remain closed with bounded negatives. The preferred 8–12 unclaimed executable capacity remains unmet; do not pad the queue with variants of exhausted numerical or cipher families.
 
 ### Historical context and provisional navigation observations
 
