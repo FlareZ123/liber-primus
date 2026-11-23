@@ -1,8 +1,5 @@
 name: Agent5 - original GEB title-crib full-source key gate
 on:
-  push:
-    paths:
-      - .github/workflows/agent5-2014-geb-title-key-source.yml
   workflow_dispatch:
 
 jobs:
