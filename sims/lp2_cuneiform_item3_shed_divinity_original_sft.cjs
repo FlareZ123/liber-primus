@@ -141,6 +141,70 @@ assert.deepEqual(itemHoldouts.map(x=>x.border),[60,40,49,38,55]);
 assert.deepEqual(itemHoldouts.map(x=>x.peeledSurvives),[false,false,true,true,false]);
 assert.deepEqual(itemHoldouts.map(x=>x.intactSurvives),[false,false,false,false,false]);
 assert.deepEqual(itemHoldouts.map(x=>x.borderSurvives),[false,false,false,false,false]);
+// Calibrate the two algebraically permitted interior results against real
+// solved native GP29 words in the same EXACT printed word-length shapes.
+// This is a finite source-register test, not a universal English theorem.
+const solved=require('../resources/external/relikd-solved-gp29-native-v1.json');
+assert.deepEqual(solved.runes,corpus.runes);
+const wordByLength=new Map();
+/** @param {number[]} values */
+function addNativeWord(values){
+  if(values.length){
+    if(!wordByLength.has(values.length))wordByLength.set(values.length,[]);
+    wordByLength.get(values.length).push(values);
+  }
+}
+for(const section of solved.sections){
+  let word=[];
+  for(const ch of section.source_text){
+    if(map.has(ch))word.push(map.get(ch));
+    else {addNativeWord(word);word=[];}
+  }
+  addNativeWord(word);
+}
+const originalWordShapes=specs.map(parts=>
+  parts.flatMap(({page,start,end})=>parsed[page]
+    .filter(w=>w.start>=start&&w.end<=end).map(w=>w.w.length)));
+let seed=0x33017a43;
+/** Deterministic unsigned xorshift32 for source-word sampling. */
+function random32(){
+  seed^=seed<<13;
+  seed^=seed>>>17;
+  seed^=seed<<5;
+  return seed>>>0;
+}
+const donors=[];
+for(const itemIndex of [2,3]){
+  const lengths=originalWordShapes[itemIndex];
+  const inside=specs[itemIndex].flatMap(({page,start,end})=>parsed[page]
+    .filter(w=>w.start>=start&&w.end<=end).flatMap(w=>w.w.slice(1,-1)));
+  const decoded=decodeAll(inside).paths;
+  assert.equal(decoded.length,1);
+  const expectedLength=inside.length;
+  const observedIoc=ioc(decoded[0].plain);
+  let min=Infinity,countAtOrBelow=0;
+  const samples=30000;
+  for(let i=0;i<samples;i++){
+    const plant=[];
+    for(const length of lengths){
+      const pool=wordByLength.get(length);
+      assert(pool && pool.length);
+      const picked=pool[Math.floor((random32()/4294967296)*pool.length)];
+      plant.push(...picked.slice(1,-1));
+    }
+    assert.equal(plant.length,expectedLength);
+    const score=ioc(plant);
+    if(score<min)min=score;
+    if(score<=observedIoc)countAtOrBelow++;
+  }
+  assert.equal(countAtOrBelow,0);
+  donors.push({
+    item:itemIndex+1,wordLengths:lengths,interiorRunes:expectedLength,
+    originalCipherIoC:ioc(inside),decodedIoC:observedIoc,
+    nativeWordShapeSamples:samples,nativeMinIoC:min,
+    nativeAtOrBelowDecoded:countAtOrBelow
+  });
+}
 const p57=corpus.pages.find(p=>p.page===57).indices;
 const native=p57.slice(0,49);
 assert.equal(native.length,49);
@@ -156,5 +220,5 @@ console.log(JSON.stringify({
   testedKey: key,sourceNativeP57Positive49:nativeRecovered,
   sourceNativeP57Positive95:true,
   conclusion:'interior49 algebraically compatible with authenticated historical cipher but resulting native symbols are not coherent unknown-page plaintext',
-  results,itemHoldouts
+  results,itemHoldouts,solvedNativeWordShapeDonors:donors
 },null,2));
