@@ -1,0 +1,14 @@
+name: Agent7 floral 3299 source SFT
+on:
+  workflow_dispatch:
+jobs:
+  floral-source-gate:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reproduce all original-source measurements and synthetic plants
+        run: node sims/lp2_floral16_3299_source_geometry_sft.cjs
