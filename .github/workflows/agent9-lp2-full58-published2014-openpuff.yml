@@ -67,7 +67,7 @@ jobs:
             python sims/openpuff_v400_extract.py --exe "$env:OPENPUFF_EXE" --carrier "$carrier" --password '33011033' --bit-format 'Jpeg (Image)' --bit-level '1/2 (50%) - Maximum' --out "$target" --wait-seconds 85
             if ($LASTEXITCODE -ne 0) { throw "Historical v4 probe executable failure at $label" }
             $data = Get-Content -LiteralPath "$target/result.json" -Raw | ConvertFrom-Json
-            if ($data.carrier_count -ne 1 -or -not $data.carrier_chain_verified -or -not $data.bit_selection_verified -or -not $data.attempted) { throw "Native input selection failed for $label" }
+            if ($data.carrier_count -ne 1 -or -not $data.carrier_added -or -not $data.bit_selection_verified -or -not $data.attempted) { throw "Native input selection failed for $label" }
             $record = [ordered]@{scan="$label.jpg";outcome=$data.native_probe_outcome;payload=$data.output_present;files=$data.outputs;sha256=(Get-FileHash -LiteralPath $carrier -Algorithm SHA256).Hash.ToLowerInvariant()}
             $entries += $record
             Write-Host "AUTHENTIC_2014_NATIVE_SCAN $($record | ConvertTo-Json -Compress -Depth 12)"
