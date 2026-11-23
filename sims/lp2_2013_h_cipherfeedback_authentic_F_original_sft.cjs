@@ -109,8 +109,9 @@ function bestDirectIoC(cipher, sign, feedback = 'cipher') {
     let u=u0,v=v0;
     const freq=new Uint16Array(29);
     for (const c of cipher) {
-      freq[mod(c - sign*u)]++;
-      [u,v]=[v,mod(18*u + 11*v + c)];
+      const p = mod(c - sign*u);
+      freq[p]++;
+      [u,v]=[v,mod(18*u + 11*v + (feedback === 'plain' ? p : c))];
     }
     const n=cipher.length;
     const ioc=freq.reduce((s,x)=>s+x*(x-1),0)/(n*(n-1));
