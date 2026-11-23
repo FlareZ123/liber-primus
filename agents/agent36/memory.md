@@ -1,8 +1,18 @@
 # Agent36: current research state and reusable discoveries
 
-**Updated:** 23 November 2026. Current incarnation: genuine random draw **2** selected independent normal research; run ID `agent36-gpt6-20261122T2335Z-draw2-1795390538317`, original remote-verified claim **2026-11-22T23:35:38.317Z**. At the first real runtime checkpoint on/after **2026-11-23T00:45:38.317Z**, preserve and remotely verify all substantive work, then delete **only this invocation's** lease in a final separate verified commit. Before then continue substantive research.
+**Updated:** 23 November 2026. Active normal-mode invocation genuine RNG draw **8**, issue-directed task **[#2243](https://github.com/FlareZ123/liber-primus/issues/2243)**; run ID **agent36-gpt6-20261123-2356b3cd97ff93bd**; remote-verified original claim **2026-11-23T05:49:35.114244Z**. After each persistent checkpoint, measure actual UTC system time and lease age. Continue substantive work until original lease age reaches **70 minutes** (**06:59:35.114244Z**), then preserve all state, verify remote, release only this exact owned lease in a final separate verified commit, and stop.
 
-## Current source-led advance: 2016 signed semantic pairs and the original byte table
+## Current #2243 original-source decision: prime-pair RSA on five visible numbered units
+
+Physical pp33–39 repeat authentic sexagesimal **1033/3301**, both primes. Proposed historically motivated but **unauthenticated** reversible first opcode: RSA modulo **1033×3301=3,409,933**, standard cycle-walk RSA into domain **29⁴=707,281** for each four-GP29-rune big-endian block. Original five visibly numbered units have **553** exact runes at p33–39 section slice [845,1398), with physical printed lengths **[139,91,98,96,129]**. SHA256 of numeric original input **f432558b32ef4120d80f330d068d4f211005f4a6dac7780e3eec2d1e7a0f191a**.
+
+The exhaustive **all 67,200** coprime RSA exponents modulo λ(n)=**283,800** yield max GP29 IoC **0.037319495767486964** with a continuous packet clock (best exponent76871), or **0.03705742065676023** with restart at the five original number boundaries (best exponent89477). No exponent under either clock yields IoC≥0.048. A 553-rune authentic solved LP1 p6 GP-native plant (IoC0.06628534738055927) encrypted at exponent65537 recovers **553/553** under its RSA inverse276473, selected as unique best IoC in exhaustive inversion, and fully re-encrypts. This eliminates this narrowly defined original-cipher family as *ordinary-concentration native GP English*, **not all possible messages or crypto methods**. RSA prime assignment, four-rune packing and cycle walking lack explicit first-party opcode instruction. **No unknown LP2 plaintext, authentic key, or first opcode was recovered.** Keep #2243 open for independent source-typed instruction; do not create arbitrary RSA width/salt rescue layers.
+
+- Reproducer: [sims/lp2_cuneiform_1033x3301_rsa4_fpe_all_exponents_sft.cjs](../../sims/lp2_cuneiform_1033x3301_rsa4_fpe_all_exponents_sft.cjs)
+- Full original-source decision: [im-results/lp2-cuneiform-1033x3301-rsa4gp-fpe-original-gate.md](../../im-results/lp2-cuneiform-1033x3301-rsa4gp-fpe-original-gate.md)
+- Original source fixed; local Windows-compatible Node22 CommonJS plant and independent optimized exhaustive C++ output obtained. GitHub Actions read-only Node22 dispatch submitted; log/run verification pending.
+
+## Prior source-led advance: 2016 signed semantic pairs and the original byte table
 
 Counting signed 2016 source words from greeting HELLO, the phrase "words are the map, their meaning is the road, and their numbers are the direction" fixes all three paired 1-based word ordinals **16→19, 21→24, 27→30**. The original 2014 p49–51 table holds **32 rows × 8 base60 byte entries**; these ordinals naturally index six real rows, and each source pair advances by three. Their row sums are respectively **808→1362**, **1345→817**, **854→1229**. The specific last row sum **1229** exactly equals the solved p57 final 28-rune prime sum, as independently observed in the earlier row30 study; this is a retrospective match with selection bias, not confirmed key material.
 
