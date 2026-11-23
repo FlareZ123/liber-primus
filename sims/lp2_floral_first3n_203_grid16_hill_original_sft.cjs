@@ -41,7 +41,7 @@ for (let p = 40; p <= 55; p++) {
   assert.ok(page);
   assert.equal(page.indices.length, pageLengths[p - 40]);
   const a = ink.pages.find(x => x.page === p);
-  const mask = new Set((a ? a.red_spans : []).flatMap(s =>
+  const mask = new Set((a?.red_spans || []).flatMap(s =>
     Array.from({length:s.length}, (_,j) => s.start+j)));
   page.indices.forEach((x,i) => {if (!mask.has(i)) black.push(x);});
 }
