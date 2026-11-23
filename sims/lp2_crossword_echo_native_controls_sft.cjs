@@ -117,6 +117,71 @@ assert.equal(nativeControls.length, 13);
 assert(nativeControls.every(test => test.ratio > actual.ratio),
   'native GP reader-text control now resembles the unknown cipher');
 
+// Secondary English-language controls are deliberately labelled approximate:
+// derive native-GP rune *spelling* from Latin letters by the already used
+// repository policy V=>U K/Q=>C Z=>S J=>I and greedy GP digraphs. This retains
+// every original whole English word and its adjacent-word ordering but is
+// not an image-authenticated English->GP transcription.
+const romanValues = new Map(original.translit.map((label, i) => [label, i]));
+const digraphs = ['ING', 'TH', 'NG', 'EO', 'OE', 'AE', 'IA', 'EA'];
+/**
+ * @param {string} english
+ * @returns {number[]}
+ */
+function approximateEnglishGP(english) {
+  const word = english.replace(/[KQ]/g, 'C').replace(/V/g, 'U')
+    .replace(/Z/g, 'S').replace(/J/g, 'I');
+  const out = [];
+  for (let i = 0; i < word.length;) {
+    const token = digraphs.find(seq => word.startsWith(seq, i)) || word[i];
+    const label = token === 'ING' ? 'NG' : token;
+    const rune = romanValues.get(label);
+    assert(rune !== undefined, 'unrepresented native GP letter: ' + label);
+    out.push(rune);
+    i += token.length;
+  }
+  return out;
+}
+
+const gibranFull = read('control/gibran_prophet_58585.txt');
+const gibran = gibranFull.slice(gibranFull.indexOf('Almustafa'),
+  gibranFull.indexOf('*** END OF THIS PROJECT GUTENBERG EBOOK'));
+const englishSource = [
+  ['Gibran / The Prophet', gibran],
+  ['Shakespeare / first 300k', read('control/shakespeare_first300k.txt')],
+  ['Emerson / Essays', read('control/emerson_essays_2944.txt')]
+];
+const englishControls = [];
+for (const [name, text] of englishSource) {
+  const words = (text.toUpperCase().match(/[A-Z]+/g) || [])
+    .map(approximateEnglishGP);
+  const numberOfNonoverlappingWindows = Math.floor(words.length / unitCount);
+  assert(numberOfNonoverlappingWindows >= 2);
+  const spacing = Math.floor((words.length - unitCount) /
+    (numberOfNonoverlappingWindows - 1));
+  const controls = [];
+  for (let offset = 0; offset + unitCount <= words.length;
+    offset += spacing) {
+    let position = offset;
+    const shaped = pageSize.map(count => {
+      const part = words.slice(position, position + count);
+      position += count;
+      return part;
+    });
+    controls.push({ startWord: offset, ...boundaryStatistics(shaped) });
+    if (controls.length >= 10) break;
+  }
+  englishControls.push({
+    text: name,
+    sourceWordCount: words.length,
+    comparisonWindows: controls,
+    minimumRatio: Math.min(...controls.map(x => x.ratio)),
+    maximumRatio: Math.max(...controls.map(x => x.ratio))
+  });
+}
+assert(englishControls.every(text => text.minimumRatio > actual.ratio),
+  'an English-source word-order control matched the LP2 edge constraint');
+
 // Independent concrete source-shaped constrained generator:
 // 55 physical page lengths and the complete authentic *word-length slots*
 // are fixed, exactly 86 of the 12,901 eligible same-page rune transitions are
@@ -208,6 +273,7 @@ console.log(JSON.stringify({
   scope: '55 authentic rune-bearing LP2 original physical pages, 2928 page units, 12956 runes',
   sourceOriginal: actual,
   nativeGPLatinControls: nativeControls,
+  approximateGPTextControls: englishControls,
   nativeGPControlRatios: {
     minimum: Math.min(...nativeControls.map(x => x.ratio)),
     maximum: Math.max(...nativeControls.map(x => x.ratio))
