@@ -45,6 +45,26 @@ The [read-only standalone Node22/CommonJS SFT](../sims/lp2_p0_729_qrv3_inner_sft
 
 The same 199-module QR function template was also independently compared against a genuine standard **version-3 QR symbol** generated with the Python `qrcode` library (forced version3, payload `CICADA3301`, ECC level M, border0): **all 199/199 expected fixed module values agree**. This check validates the public module coordinates independently of the original GP manuscript. Library generation is a diagnostic rather than a dependency of the complete committed Node22 SFT.
 
+## Source-visible contextual palette extension (23 November 2026)
+
+The independent original-context observation `E|OE` versus `EO|E` for the same flat Latin word `EOE` shows that a hypothetical grapheme-level decoder might be **stateful**. In particular, its two original occurrences are preceded by different punctuation: a period and a hyphen. A straightforward proposed rescue for the QR-v3 picture is a second secret rune→bit palette selected by the immediately preceding original punctuation mark. Original text word starts and page identity are equally author-visible selectors and require no guessed plaintext.
+
+The same script now reads the **original Futhorc Unicode transcription**, asserts exact rune-for-rune agreement with the first 729 independent canonical corpus indices and measures **27 original runes in period-preceded state** and **158 source word-initial runes**. The original page sequence is retained without editing any sign or punctuation. Each state is allowed an **arbitrary independent hidden bit for every one of 29 rune identities**. Thus a two-state model exactly optimizes across all `2^58` private palette assignments, and each six-state model exactly optimizes across all `2^174` assignments using the same independent-majority identity. All **16** dihedral/reversal choices are still exhausted separately.
+
+| Independently visible source state | Private rune→bit palettes | Exact best mismatches / 199 | Worst / 199 |
+|---|---:|---:|---:|
+| One unchanged secret palette | 1 | **69** | 75 |
+| Last printed separator was hyphen vs period | 2 | **68** | 73 |
+| First rune of printed word vs remaining runes | 2 | **56** | 63 |
+| Previous mark × word-initiality | 4 | **54** | 62 |
+| Physical LP2 page p0/p1/p2 | 3 | **59** | 64 |
+| Physical page × preceding period | 6 | **56** | 62 |
+| Physical page × printed word-initiality | 6 | **43** | 49 |
+
+**Decision:** the direct QRv3 interior still has **at least 43 hard function-module contradictions**, even if its secret binary palette may change independently at each original printed page and between the first/subsequent runes of every word. The EOE-derived punctuator alone reduces the mismatch minimum by just one (69→68). These source state rules are not authenticated QR instructions; they are stronger *generous* exact negatives on plausible variants and close this particular punctuation-rescued hypothesis. A genuine QR bit sequence might still be produced by a further author-supplied running cipher, per-rune position clock, or completely different source-input ordering, which lies outside the claims.
+
+The QR geometric template and its genuine-version3 and independently planted positive controls are unchanged; see the updated [source/QR SFT](../sims/lp2_p0_729_qrv3_inner_sft.cjs).
+
 ## Research fork
 
 Retire this particular human-motivated **direct, static rune→QR-bit interior embedding**, including any arbitrary secret alphabet choice, rotation, reflection and full-tape reverse. The observation 729 = 27² remains authentic, but it does not establish a QR decoder or key. A version-3 QR remains possible only after an independently selected additional **position-dependent operation**, a very different spatial encoding or a source-authored overlay. Such extra transformations remove the decisive equality invariant and must be motivated by new original artwork or authenticated 2014-era instructions before ciphertext-dependent fitting. Meanwhile preserve the separate p0–p2 27×27 arithmetic studies, which test genuinely different inverse families.
