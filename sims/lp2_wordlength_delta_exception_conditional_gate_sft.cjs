@@ -17,7 +17,7 @@ const { parseSharedCorpus } = require('./lp2_word_pages.cjs');
 const { words, runeCount, crossPageWords } = parseSharedCorpus();
 assert.equal(words.length, 2896);
 assert.equal(runeCount, 12956);
-assert.equal(crossPageWords.length, 32);
+assert.equal(crossPageWords, 32);
 
 const RANGES = [
   [0, 2], [3, 7], [8, 14], [15, 22], [23, 26],
