@@ -9,6 +9,8 @@ const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const runeIndex = new Map(corpus.runes.map((r, i) => [r, i]));
 const chapterRanges = [[0,2],[3,7],[8,14],[15,22],[23,26],[27,32],[33,39],[40,53],[54,55]];
 const MAX_SYMBOLS = 29;
+const F_INDEX = corpus.translit.indexOf("F");
+assert.equal(F_INDEX, 0, "expected F to be GP symbol zero");
 const SAMPLES = 256;
 
 function physicalPage(runeBearingPage) {
@@ -235,6 +237,150 @@ function positivePlant(donorWords, excluded, pageReset, seed) {
   assert.deepEqual(recovered,donorWords);
   return {cipherWords,sidecarPositions,recoveredRunes:recovered.reduce((n,w)=>n+w.length,0)};
 }
+
+/**
+ * F-output state-hold variant. F remains an ordinary output of the 28-way
+ * row bijection, but emitting F leaves the predecessor state unchanged.
+ * Thus the state is the most recent non-F ciphertext rune. This includes
+ * the simple F-transparent mapping as a special row assignment.
+ */
+function classifyFHold(words, pageReset) {
+  const types = [];
+  const stats = {wordStarts:0,chapterCuts:0,pageCuts:0,leadingF:0,
+    stateStarts:0,repeats:0,mapped:0};
+  for (const w of words) {
+    const wordTypes=[];
+    let state=null;
+    for (let j=0;j<w.runes.length;j++) {
+      const y=w.runes[j],g=chapterOfPage(w.pages[j]);
+      let type;
+      if (j===0) {type="word-start";stats.wordStarts++;}
+      else if (g!==chapterOfPage(w.pages[j-1])) {type="chapter-reset";stats.chapterCuts++;}
+      else if (pageReset && w.pages[j]!==w.pages[j-1]) {type="page-reset";stats.pageCuts++;}
+      else if (state===null) {
+        if (y===F_INDEX) {type="leading-F";stats.leadingF++;}
+        else {type="state-start";stats.stateStarts++;}
+      } else if (y===state) {type="repeat";stats.repeats++;}
+      else {type="mapped";stats.mapped++;}
+      wordTypes.push({type,g,j});
+      if (type==="word-start"||type==="chapter-reset"||type==="page-reset"||type==="state-start")
+        state=y===F_INDEX?null:y;
+      else if (type==="leading-F") state=null;
+      else if (type==="repeat") {}
+      else if (type==="mapped" && y!==F_INDEX) state=y;
+    }
+    types.push(wordTypes);
+  }
+  stats.freePositions=stats.wordStarts+stats.chapterCuts+stats.pageCuts+
+    stats.leadingF+stats.stateStarts+stats.repeats;
+  return {types,stats};
+}
+function makeFHoldModel(words,pageReset) {
+  const G=chapterRanges.length;
+  const states=Array.from({length:MAX_SYMBOLS},(_,i)=>i).filter(i=>i!==F_INDEX);
+  const T=Array.from({length:G},()=>Array.from({length:maxWordLength},()=>
+    Array.from({length:MAX_SYMBOLS},()=>new Array(MAX_SYMBOLS).fill(0))));
+  const classification=classifyFHold(words,pageReset);
+  const mappedPositions=[];
+  for(let wi=0;wi<words.length;wi++) {
+    let state=null;
+    for(let j=0;j<words[wi].runes.length;j++) {
+      const {type,g}=classification.types[wi][j],y=words[wi].runes[j];
+      if(type==="word-start"||type==="chapter-reset"||type==="page-reset"||type==="state-start") {
+        state=y===F_INDEX?null:y; continue;
+      }
+      if(type==="leading-F") {state=null;continue;}
+      if(type==="repeat") continue;
+      assert.notEqual(state,null,"mapped F-hold position lacks a state");
+      T[g][j][state][y]++;
+      mappedPositions.push({wi,j,g,s:state,y});
+      if(y!==F_INDEX) state=y;
+    }
+  }
+  const U=Array.from({length:G},()=>Array.from({length:maxWordLength},()=>new Array(29).fill(0)));
+  for(let g=0;g<G;g++) for(let j=1;j<maxWordLength;j++) {
+    const rows=states.map(state=>T[g][j][state]
+      .filter((_,y)=>y!==state).sort((a,b)=>b-a));
+    for(let k=1;k<=28;k++)
+      U[g][j][k]=rows.reduce((sum,row)=>sum+row.slice(0,k).reduce((a,b)=>a+b,0),0);
+  }
+  return {pageReset,T,U,mappedPositions,mapped:mappedPositions.length,
+    repeats:classification.stats.repeats,pageCuts:classification.stats.pageCuts,
+    stats:classification.stats,types:classification.types};
+}
+function positiveFHoldPlant(donorWords,excluded,pageReset,seed) {
+  const active=Array.from({length:MAX_SYMBOLS},(_,i)=>i)
+    .filter(i=>i!==corpus.translit.indexOf(excluded));
+  const states=Array.from({length:MAX_SYMBOLS},(_,i)=>i).filter(i=>i!==F_INDEX);
+  assert.equal(active.length,28);
+  const next=rng32(seed);
+  const maps=Array.from({length:chapterRanges.length},()=>Array.from({length:MAX_SYMBOLS},()=>new Array(MAX_SYMBOLS).fill(-1)));
+  const inverses=Array.from({length:chapterRanges.length},()=>Array.from({length:MAX_SYMBOLS},()=>new Array(MAX_SYMBOLS).fill(-1)));
+  for(let g=0;g<chapterRanges.length;g++) for(const state of states) {
+    const outputs=Array.from({length:MAX_SYMBOLS},(_,i)=>i).filter(i=>i!==state);
+    for(let i=27;i>0;i--) {
+      const j=next()%(i+1);
+      [outputs[i],outputs[j]]=[outputs[j],outputs[i]];
+    }
+    for(let i=0;i<28;i++) {
+      maps[g][state][active[i]]=outputs[i];
+      inverses[g][state][outputs[i]]=active[i];
+    }
+  }
+  const sourceModel=makeFHoldModel(originalWords,pageReset);
+  const cipherWords=[],sidecars=[];
+  let sidecarPositions=0;
+  for(let wi=0;wi<originalWords.length;wi++) {
+    const source=originalWords[wi],plain=donorWords[wi],cipher=new Array(plain.length),side=new Array(plain.length);
+    let state=null;
+    for(let j=0;j<plain.length;j++) {
+      const {type,g}=sourceModel.types[wi][j];
+      if(type==="word-start"||type==="chapter-reset"||type==="page-reset"||type==="state-start") {
+        cipher[j]=source.runes[j];side[j]=plain[j];sidecarPositions++;
+        state=cipher[j]===F_INDEX?null:cipher[j];
+      } else if(type==="leading-F") {
+        cipher[j]=F_INDEX;side[j]=plain[j];sidecarPositions++;state=null;
+      } else if(type==="repeat") {
+        assert.notEqual(state,null);
+        cipher[j]=state;side[j]=plain[j];sidecarPositions++;
+      } else {
+        assert.notEqual(state,null);
+        cipher[j]=maps[g][state][plain[j]];
+        assert.ok(cipher[j]>=0 && cipher[j]!==state);
+        if(cipher[j]!==F_INDEX)state=cipher[j];
+      }
+    }
+    cipherWords.push({runes:cipher,pages:source.pages});
+    sidecars.push(side);
+  }
+  const cipherModel=makeFHoldModel(cipherWords,pageReset);
+  assert.deepEqual(cipherModel.types.map(w=>w.map(x=>x.type)),
+    sourceModel.types.map(w=>w.map(x=>x.type)),
+    "synthetic F-hold ciphertext must preserve the sidecar/reset classification");
+  const recovered=[];
+  for(let wi=0;wi<cipherWords.length;wi++) {
+    const cipher=cipherWords[wi].runes,side=sidecars[wi],plain=new Array(cipher.length);
+    let state=null;
+    for(let j=0;j<cipher.length;j++) {
+      const {type,g}=cipherModel.types[wi][j];
+      if(type==="word-start"||type==="chapter-reset"||type==="page-reset"||type==="state-start") {
+        plain[j]=side[j];state=cipher[j]===F_INDEX?null:cipher[j];
+      } else if(type==="leading-F") {
+        plain[j]=side[j];state=null;
+      } else if(type==="repeat") {
+        plain[j]=side[j];
+      } else {
+        plain[j]=inverses[g][state][cipher[j]];
+        assert.ok(plain[j]>=0);
+        if(cipher[j]!==F_INDEX)state=cipher[j];
+      }
+    }
+    recovered.push(plain);
+  }
+  assert.deepEqual(recovered,donorWords);
+  return {cipherWords,sidecarPositions,recoveredRunes:recovered.reduce((n,w)=>n+w.length,0)};
+}
+
 function main() {
   const controls = [
     ["Gibran","resources/control/gibran_prophet_58585.txt"],
@@ -290,12 +436,59 @@ function main() {
       sidecarPositions:plant.sidecarPositions,mappedTransitions:model.mapped,
       maximumInvariantViolation:bound.best.margin});
   }
+  const fHoldNegative=[];
+  for(const excluded of ["EO","OE"]) {
+    const pools=controls.map(([name,file])=>({name,pools:donorPools(read(file),excluded)}));
+    for(const pageReset of [false,true]) {
+      const model=makeFHoldModel(originalWords,pageReset);
+      assert.deepEqual([model.mapped,model.stats.wordStarts,model.stats.leadingF,
+        model.stats.stateStarts,model.stats.repeats,model.stats.pageCuts,
+        model.stats.chapterCuts,model.stats.freePositions],
+        pageReset?[9844,2896,1,116,67,32,0,3112]:[9875,2896,1,116,68,0,0,3081]);
+      for(let ci=0;ci<pools.length;ci++) {
+        const {name,pools:byLength}=pools[ci];
+        let plantsWithViolation=0,minimumMaximumViolation=Infinity;
+        let maximumMaximumViolation=-Infinity,weakestWitness=null;
+        for(let sample=0;sample<SAMPLES;sample++) {
+          const seed=(0x33012026 ^ ((ci+1)*0x9e3779b9) ^
+            ((excluded==="EO"?1:2)<<16) ^ sample)>>>0;
+          const donor=sampleDonorWords(byLength,seed);
+          const result=evaluateDonor(donor,model);
+          if(result.best.margin>0)plantsWithViolation++;
+          if(result.best.margin<minimumMaximumViolation) {
+            minimumMaximumViolation=result.best.margin;
+            weakestWitness={sample,...result.best};
+          }
+          if(result.best.margin>maximumMaximumViolation)
+            maximumMaximumViolation=result.best.margin;
+        }
+        assert.equal(plantsWithViolation,SAMPLES);
+        assert.ok(minimumMaximumViolation>0);
+        fHoldNegative.push({excluded,pageReset,control:name,samples:SAMPLES,
+          plantsWithViolation,minimumMaximumViolation,maximumMaximumViolation,
+          weakestWitness});
+      }
+    }
+  }
+  const fHoldPositive=[];
+  for(const pageReset of [false,true]) {
+    const plant=positiveFHoldPlant(positiveDonor,"EO",pageReset,
+      pageReset?0x6c696266:0x7072696d);
+    const model=makeFHoldModel(plant.cipherWords,pageReset);
+    const bound=evaluateDonor(positiveDonor,model);
+    assert.ok(bound.best.margin<=0);
+    assert.equal(plant.sidecarPositions,model.stats.freePositions);
+    fHoldPositive.push({pageReset,exactRecovery:true,recoveredRunes:plant.recoveredRunes,
+      sidecarPositions:plant.sidecarPositions,mappedTransitions:model.mapped,
+      repeats:model.repeats,pageCuts:model.pageCuts,
+      maximumInvariantViolation:bound.best.margin});
+  }
   const output={
     source:{runes:originalRuneCount,words:originalWords.length,crossPageWords,
       maxWordLength,chapters:chapterRanges},
     model:"one arbitrary 29x28 bijection per (visual chapter, previous ciphertext rune); word resets; repeat sidecar; optional page resets",
-    negative,positive,
-    decision:"EXCLUDED for the tested native-GP-English controls: fixed per-chapter GP28 predecessor-ciphertext row permutations excluding EO or OE, even when word starts, repeat exceptions, and optional page-reset positions are supplied freely. Not excluded: per-page/per-word changing keys, F-special no-op/transparent mechanisms, other alphabets or languages, moving spaces, variable-length/nonlocal transforms. No original plaintext or source-selected key recovered."
+    negative,positive,fHoldNegative,fHoldPositive,
+    decision:"EXCLUDED for the tested native-GP-English controls: fixed per-chapter GP28 predecessor-ciphertext row permutations excluding EO or OE, under both immediate-previous-ciphertext and F-output-state-hold semantics, even when word starts, state starts, repeat exceptions, and optional page-reset positions are supplied freely. Not excluded: per-page/per-word changing keys, F-escape sidecars beyond simple state-hold, other alphabets or languages, moving spaces, variable-length/nonlocal transforms. No original plaintext or source-selected key recovered."
   };
   console.log(JSON.stringify(output,null,2));
   return output;
