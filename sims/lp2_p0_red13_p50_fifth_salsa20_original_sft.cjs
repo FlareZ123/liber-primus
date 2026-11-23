@@ -75,6 +75,29 @@ assert.equal(body.length,12943);
 const p0end=corpus.pages[0].indices.length-13;
 const p2end=corpus.pages.slice(0,3).reduce((s,p)=>s+p.indices.length,0)-13;
 const positive=corpus.pages[57].indices;assert.equal(positive.length,95);
+/** Genuine solved-LP1/p56 no-advance literal-F constraint; exact reachability.
+ * Ciphertext F has two possibilities: literal plaintext F (no advance), or
+ * shifted non-F plaintext (advance). Non-F ciphertext cannot decode to F.
+ */
+function strictFReach(cipher,ks){
+ let live=new Uint8Array(cipher.length+1);live[0]=1;
+ let lo=0,hi=0,peak=1,lastCount=1;
+ for(let i=0;i<cipher.length;i++){
+  const next=new Uint8Array(cipher.length+1);
+  let nlo=cipher.length+1,nhi=-1,count=0;
+  for(let j=lo;j<=hi;j++)if(live[j]){
+   if(cipher[i]===0)next[j]=1;
+   if(j<ks.length&&((cipher[i]-ks[j]+29)%29)!==0)next[j+1]=1;
+  }
+  for(let j=Math.max(0,lo);j<=Math.min(cipher.length,hi+1);j++)if(next[j]){
+   nlo=Math.min(nlo,j);nhi=Math.max(nhi,j);count++;
+  }
+  peak=Math.max(peak,count);
+  if(count===0)return {feasible:false,firstImpossibleAt:i,symbolsChecked:i+1,peakStates:peak};
+  live=next;lo=nlo;hi=nhi;lastCount=count;
+ }
+ return {feasible:true,symbolsChecked:cipher.length,endingStates:lastCount,lowConsumed:lo,highConsumed:hi,peakStates:peak,endingOffsets:[...live.entries()].filter(([j,yes])=>yes).map(([j])=>j)};
+}
 const methods=[];
 for(const [name,ks] of [
  ['streamBytesMod29',[...stream.subarray(0,body.length)].map(x=>x%29)],
@@ -85,7 +108,17 @@ for(const [name,ks] of [
  assert.deepEqual(p.map((v,i)=>(v+ks[i])%29),body);
  const plant=positive.map((v,i)=>(v+ks[i])%29);
  assert.deepEqual(decode(plant,ks),positive);
- methods.push({name,p0BlackIoC:ioc(p.slice(0,p0end)),holdoutP1P2IoC:ioc(p.slice(p0end,p2end)),fullIoC:ioc(p),first100:p.slice(0,100).map(x=>corpus.translit[x]).join(''),plantRunes:95});
+
+ let cursor=0;
+ const plantedStrictF=positive.map(v=>v===0?0:(v+ks[cursor++])%29);
+ const plantedGate=strictFReach(plantedStrictF,ks);
+ assert(plantedGate.feasible);
+ assert(plantedGate.endingOffsets.includes(cursor));
+ const strictFOriginal=strictFReach(body,ks);
+ methods.push({
+  strictFOriginal:Object.fromEntries(Object.entries(strictFOriginal).filter(([k])=>k!=='endingOffsets')),
+  strictFNativePlant:{runes:positive.length,consumedKeySymbols:cursor,feasible:plantedGate.feasible},
+  name,p0BlackIoC:ioc(p.slice(0,p0end)),holdoutP1P2IoC:ioc(p.slice(p0end,p2end)),fullIoC:ioc(p),first100:p.slice(0,100).map(x=>corpus.translit[x]).join(''),plantRunes:95});
 }
 let value=big(body),h=value.toString(16);if(h.length%2)h='0'+h;
 const raw=Buffer.from(h,'hex');
