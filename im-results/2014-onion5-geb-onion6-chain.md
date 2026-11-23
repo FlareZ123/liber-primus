@@ -37,6 +37,18 @@ The archived Onion6 page at `ut3qtzbrvs7dtvzp.onion` contains four plaintext man
 
 After the square submission, three additional pages were returned. The first two are decrypted in the historical archive with the Vigenère key **`FIRFUMFERENFE`**, with selected F runes marked by a preceding colon (`:`) to hold the key index, and the key continuing across the page boundary; the third page is plaintext and includes **“Question all things. Discover truth inside yourself. Follow your truth. Impose nothing on others.”** The key is `CIRCUMFERENCE` with C replaced by F. The phrase **“PROGRAM YOUR MIND / PROGRAM REALITY”** occurs in the Onion6-era material and should not be treated as a newly discovered LP2 key.
 
+### Exact two-page marked-F positive control (23 November 2026)
+
+The archived post-square ciphertext pages **107** and **167** contain **226** and **93** runes. The two literal colon characters in page 107 occur at character offsets **68** and **82**, immediately before GP rune offsets **49** and **58**; both following runes are F. With the documented 13-rune key **FIRFUMFERENFE**, subtracting the current key symbol and leaving only those two explicitly colon-marked F runes literal gives:
+
+- page 107 consumes **224** key symbols and ends at phase **3**;
+- page 167 starts at phase **3**, continues the same clock, and the full two-page stream consumes **317** key symbols;
+- the resulting GP-label string matches the archived corrected-Roman witness exactly after the explicit orthographic normalizations **K→C**, **V→U**, and **DURING→DURNG** (the latter reflects the single GP graph NG).
+
+Resetting the key at page 167 or consuming either marked F fails the witness comparison. This is a reproducible historical positive control for a **source-marked, non-consuming F** rule, not evidence that the same key transfers to LP2. The archive identifies its rune transcripts and corrected Latin as period-attributed mirror witnesses rather than independent PGP signatures on every page; preserve that source caveat.
+
+[Exact control and LP2 marker-census SFT](../sims/2014_onion6_explicit_colon_fskip_lp2_marker_census_sft.cjs).
+
 The signed hidden-service reply points to **`ky2khlqdf7qdznac.onion`**. The archived Onion7 page lists images 0–57; this is the 58-image LP2 release corresponding to the corpus analyzed in this repository. This connects the 2014 submission path to the later LP2 dump, but it does not supply the missing decryption key or plaintext for pages 0–55.
 
 ## Direct transfer test to LP2
@@ -45,7 +57,9 @@ I tested whether the 2014 Vigenère key itself transfers to the 56 unknown LP2 p
 
 `[0,19,25,0,28,10,0,11,25,11,20,0,11]`
 
-Applied in standard GP29 order to LP2 pages 0–55, continuous or page-reset, with or without treating every F as transparent, and in both signs, it produces no native prose. The historical 2014 pages use **selected, explicitly marked F skips**; the LP2 transcription has no corresponding colon markers, so the all-F skip variants are only transfer tests, not exact reproductions of the 2014 procedure. The direct key-transfer hypothesis is rejected; this does not reject other uses of the historical F-skip precedent.
+Applied in standard GP29 order to LP2 pages 0–55, continuous or page-reset, with or without treating every F as transparent, and in both signs, it produces no native prose. The historical 2014 pages use **selected, explicitly marked F skips**. A fresh source-image census finds no literal colon in LP2: seven small punctuation events immediately before F are the ordinary ⁘ full-stop class, and no ⁚ comma event precedes F. There are, however, **two unique large red 13-dot section marks immediately before F at page starts p15 and p40**, at global rune offsets **3603** and **9640**. These are the only page-start F runes, and both are preceded by a red13 mark. This is a reproducible *candidate* selector, but not an authenticated F-skip instruction: red13 is a general section delimiter (the p0 red13/body boundary precedes TH, and other red13 marks precede non-F runes).
+
+The only directly source-selected key candidate in the p0 construction is its 13-red-rune title, **SHEOGMIAFSYENGC**. Using it as the 13-symbol Vigenère key, starting after the p0 red13 boundary and holding only the two red13-marked page-start F runes, produces no recognizable plaintext under either additive sign. This rejects only the untransformed title-as-key hypothesis; it does not prove that the red13 candidate could never select a skip for some independently sourced key. The exact positive control, marker census, and bounded title-key test are reproduced in [the source SFT](../sims/2014_onion6_explicit_colon_fskip_lp2_marker_census_sft.cjs). The direct key-transfer hypothesis is rejected; this does not reject other uses of the historical F-skip precedent.
 
 ## Sources
 
