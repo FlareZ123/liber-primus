@@ -65,6 +65,24 @@ Every native-source dictionary word of these lengths fails at least one exact **
 
 This result excludes the broad class of original p8 **fixed-clock additive fourth-order p7-quartic LFSRs with any hidden seed**, for English/Latin words represented in these source lexica and genuine printed word boundaries. It does not cover plaintext-dependent key clocks, nonlinear alphabets, non-GP output, transparent interrupters, altered word segmentation, or a different source-selected cipher.
 
+## Direct original four-rune field multiplication using adjacent source registers
+
+The p7 red quartic is irreducible and thus creates a field **GF(29⁴)**. The next p8 red title starts with exactly four GP29 indices **A=[14,10,14,19]**. Those are physically adjacent original operands for a candidate **fixed four-rune block multiplier**: interpret four consecutive ciphertext symbols as a polynomial-basis field element, then multiply by the field inverse of A modulo p7's original source quartic. The exact field inverse is **A⁻¹=[18,18,28,23]**, with A×A⁻¹=[1,0,0,0].
+
+Freeze the two operation directions (multiply by A⁻¹ or A), and the three natural original p8 recipient starts (whole p8 at0, after first red word at4, after full red title at12). The intact original p8–p14 register contains **1,729** GP29 runes. Whole four-rune blocks are transformed and the 0–3 remaining original tail runes are copied unchanged, keeping the receiver completely invertible without a fitted key.
+
+| Original recipient starts at p8 offset | Multiply by A⁻¹: decoded GP29 IOC | Multiply by A: decoded GP29 IOC |
+| --- | ---: | ---: |
+| 0, complete p8–p14 section | **0.03453613** | **0.03441898** |
+| 4, after the initial red four-rune word | **0.03453647** | **0.03441407** |
+| 12, after both red heading words | **0.03452178** | **0.03440842** |
+
+All six exact original outputs remain close to uniform ciphertext with no continuous native GP29 prose. Their every original rune exactly reencrypts, and every model recovers all **1,729** symbols of an independently encrypted solved-p57 GP29 positive. The complete source-first inverse starts `U F F F O E S EA T EO A A`, inconsistent with a native title. These tests sharply reject this particular complete GF(29⁴) block-cipher interpretation, while leaving arbitrary **unknown** four-rune mappings outside their scope.
+
+**Source-selector limitation:** the two original operands are real and adjacent, but Cicada supplies no instruction to interpret the p7 five-word products as a polynomial basis or to multiply the p8 red4 field element. Source arithmetic and cipher plausibility must remain distinct.
+
+[Read-only Windows/CommonJS original-and-positive SFT](../sims/lp2_p7_gf29quartic_p8_red4_blockmul_original_sft.cjs) · [original-input GitHub Actions CI](https://github.com/FlareZ123/liber-primus/actions/runs/45119364598).
+
 ## Authentic Cicada p56 literal-F clock transfer (separate, stronger failure)
 
 Because the solved original p56 has an authentic **literal-F transparent key clock**, a direct fourth-order key test alone is insufficient: a 2014 solver might apply exactly that already demonstrated author operation to the independently printed p7 field polynomial. Here the rule is precise: original ciphertext `F=0` may represent literal plaintext `F=0` with **no** key advance, or an encrypted **non-F** rune consuming one key; any other ciphertext rune must be encrypted **non-F**, consuming one key. This strictly preserves the existing source's F behavior. No extra escape codes, secret skip flags or fitted key schedule are allowed.
@@ -95,4 +113,4 @@ For each of these six original recipient/seed placements and both additive signs
 
 ## Next decision
 
-The degree-four construction is a plausible new mathematical reading of five red words and the four-rune adjacent opening, but its simplest complete consumers fail an untouched native-GP original. **Retire degree-four additive p7 generators with both fixed clocks and the authentically observed p56 literal-F skip, absent a genuinely new first-party state-update or output selector.** The irreducibility and period are reproducible mathematical facts, not an authenticated encrypted message or recovered key. No new source-independent parameter search is recommended. The next useful result needs a first-party instruction selecting a genuinely evolving original-cipher inverse, or authentic key material, sufficient to predict contiguous plaintext without fitting it.
+The degree-four construction is a plausible new mathematical reading of five red words and the four-rune adjacent opening, but its simplest complete consumers fail an untouched native-GP original. **Retire the source-derived degree-four additive key generators, their authentically observed p56 F-transparent clock variants, and the directly adjacent red4 fixed GF(29⁴) multiplier absent a genuinely new first-party state-update or output selector.** The irreducibility and period are reproducible mathematical facts, not an authenticated encrypted message or recovered key. No new source-independent parameter search is recommended. The next useful result needs a first-party instruction selecting a genuinely evolving original-cipher inverse, or authentic key material, sufficient to predict contiguous plaintext without fitting it.
