@@ -89,6 +89,9 @@ assert.equal(evaluate(p12, r), 23);
 const treePages = corpus.pages.slice(8, 15);
 const treeResidues = treePages.map(page => evaluate(page.indices, r));
 assert.deepEqual(treeResidues, [7, 8, 0, 0, 23, 9, 18]);
+// Rival shared linear factor within the same reused seven-page tree chapter.
+assert.equal(evaluate(corpus.pages[8].indices, 22), 0);
+assert.equal(evaluate(corpus.pages[13].indices, 22), 0);
 assert.equal(p10.length, 263);
 assert.equal(p11.length, 273);
 const a = divideLinear(p10, r);
