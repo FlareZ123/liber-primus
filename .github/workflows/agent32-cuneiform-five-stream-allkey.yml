@@ -1,0 +1,17 @@
+name: Agent32 cuneiform five-stream all-key capacity
+on:
+  push:
+    paths:
+      - sims/lp2_five_numbered_allsecret_gl5_91_native_gate_sft.cjs
+      - .github/workflows/agent32-cuneiform-five-stream-allkey.yml
+  workflow_dispatch:
+jobs:
+  original-source-sft:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sims/lp2_five_numbered_allsecret_gl5_91_native_gate_sft.cjs
