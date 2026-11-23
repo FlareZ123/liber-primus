@@ -218,7 +218,6 @@ for(let seed=0;seed<total;seed++){
 }
 const isTrue=x=>x.a===nativeSeed[0]&&x.b===nativeSeed[1]&&x.c===nativeSeed[2]&&x.sign===-1;
 assert(isTrue(top.nativeJoint[0]),'native heldout same-pad plant must recover exact 3-symbol seed and direction');
-const originalKeys=Object.fromEntries(['original28','original33','originalJoint'].map(name=>[name,top[name].map(v=>({...v,output28: name==='original33' ? undefined : corpus.translit.map(()=>null)}))]));
 // Every original winner exactly reencrypts; report only a readable first100
 // from each best output rather than introducing a fitted ciphertext exception.
 const bestOriginal=top.originalJoint[0];
