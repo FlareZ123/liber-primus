@@ -124,3 +124,95 @@ for (const clock of /** @type {const} */ (['continuous', 'page-reset'])) {
 console.log('PASS native 95-rune GP29 solved-p57 encrypt/decrypt plants, ' +
   'GLib MT19937 vector, all original runes and four source-fixed inverses.');
 console.log('No authenticated LP2 key/plaintext. GIMP 314159265 is a software default.');
+
+
+/**
+ * Separately fixed known chain-cipher rule, using the SAME historical MT
+ * stream. This inverse is motivated by the rare original GP29 adjacent
+ * repeats, not by anything explicitly inscribed in the GIMP artifact.
+ * @param {number[]} ciphertext
+ * @param {"continuous"|"page-reset"} clock
+ * @param {number} sign
+ * @returns {number[]}
+ */
+function decodeDerivative(ciphertext, clock, sign) {
+  let mt = new MT19937(seed);
+  let previous = 0;
+  let cursor = 0;
+  const out = [];
+  for (const page of pages) {
+    if (clock === 'page-reset') {
+      mt = new MT19937(seed);
+      previous = 0;
+    }
+    for (const c of ciphertext.slice(cursor, cursor + page.indices.length)) {
+      const delta = (c - previous + 29) % 29;
+      out.push((delta + sign * (mt.next() % 29) + 29) % 29);
+      previous = c;
+    }
+    cursor += page.indices.length;
+  }
+  assert.equal(cursor, ciphertext.length);
+  return out;
+}
+
+/**
+ * @param {number[]} plaintext
+ * @param {"continuous"|"page-reset"} clock
+ * @param {number} sign
+ * @returns {number[]}
+ */
+function encodeDerivative(plaintext, clock, sign) {
+  let mt = new MT19937(seed);
+  let previous = 0;
+  let cursor = 0;
+  const out = [];
+  for (const page of pages) {
+    if (clock === 'page-reset') {
+      mt = new MT19937(seed);
+      previous = 0;
+    }
+    for (const p of plaintext.slice(cursor, cursor + page.indices.length)) {
+      const current = (previous + p - sign * (mt.next() % 29) + 29) % 29;
+      out.push(current);
+      previous = current;
+    }
+    cursor += page.indices.length;
+  }
+  assert.equal(cursor, plaintext.length);
+  return out;
+}
+
+const derivativeExpected = {
+  'continuous-minus': 0.034483715882850256,
+  'continuous-plus': 0.03449473600087488,
+  'page-reset-minus': 0.03446573758779591,
+  'page-reset-plus': 0.03451331517477463,
+};
+for (const clock of /** @type {const} */ (['continuous', 'page-reset'])) {
+  for (const sign of [-1, 1]) {
+    const plain = decodeDerivative(original, clock, sign);
+    assert.deepEqual(encodeDerivative(plain, clock, sign), original,
+      'original full derivative forward replay');
+    const key = clock + (sign < 0 ? '-minus' : '-plus');
+    const interior = [];
+    let cursor = 0;
+    for (const page of pages) {
+      interior.push(...plain.slice(cursor + 1, cursor + page.indices.length));
+      cursor += page.indices.length;
+    }
+    assert.equal(interior.length, 12901);
+    const score = ioc(interior);
+    assert.ok(Math.abs(score - derivativeExpected[key]) < 1e-12, key);
+    const first = plain.slice(0, 70).map((index) => corpus.translit[index]).join('');
+    console.log('ORIGINAL derivative ' + key + ' inner-page IoC=' +
+      score.toFixed(14) + ' p0=' + first);
+    const testPlain = original.slice();
+    testPlain.splice(0, known.length, ...known);
+    const cipher = encodeDerivative(testPlain, clock, sign);
+    assert.deepEqual(decodeDerivative(cipher, clock, sign)
+      .slice(0, known.length), known);
+  }
+}
+console.log('PASS fixed GIMP-source MT19937 ciphertext differential plus ' +
+  'native-rune plants, all four original full-source cases.');
