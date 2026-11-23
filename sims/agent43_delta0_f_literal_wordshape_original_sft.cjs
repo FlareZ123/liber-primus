@@ -90,39 +90,114 @@ const donors=[
 ];
 
 /**
- * Source-matched native control: each original 1..14-rune
- * printed word independently replaced by a naturally occurring
- * native-English word of the SAME GP29 rune length. This
- * preserves the full original word-length sequence and all 2896
- * true word boundaries. Count F and F-at-word-start.
- * @param {{total:number,start:number}[][]} choices
+ * Complete source-word-length and native-rune conditional mean,
+ * variance, start-site variance and covariance for EACH of the
+ * 29 GP symbols. This eliminates a secret-symbol-choice loophole:
+ * any fixed bijection from plaintext rune to ciphertext delta
+ * must designate some ONE GP rune as delta0.
+ *
+ * @param {{word:number[],total:number,start:number}[][]} choices
+ * @param {number[]} sourceLengths
+ * @returns {{mean:number,meanStart:number,variance:number,varianceStart:number,covariance:number}[]}
+ */
+function profilesFor(choices,sourceLengths){
+ const countByLength=new Map();
+ for(const n of sourceLengths)countByLength.set(n,(countByLength.get(n)||0)+1);
+ const moments=Array.from({length:29},()=>({
+  mean:0,meanStart:0,variance:0,varianceStart:0,covariance:0
+ }));
+ for(const [n,number] of countByLength){
+  const sample=choices[n];
+  assert(sample?.length,"missing independent native length "+n);
+  for(let letter=0;letter<29;letter++){
+   let sum=0,head=0,sumsq=0,headSquare=0,cross=0;
+   for(const pick of sample){
+    const x=pick.word.filter(c=>c===letter).length;
+    const y=Number(pick.word[0]===letter);
+    sum+=x;head+=y;sumsq+=x*x;headSquare+=y*y;cross+=x*y;
+   }
+   const N=sample.length,mean=sum/N,meanStart=head/N,p=moments[letter];
+   p.mean+=number*mean;
+   p.meanStart+=number*meanStart;
+   p.variance+=number*(sumsq/N-mean*mean);
+   p.varianceStart+=number*(headSquare/N-meanStart*meanStart);
+   p.covariance+=number*(cross/N-mean*meanStart);
+  }
+ }
+ return moments;
+}
+
+/**
+ * Minimum source-conditioned 2D Mahalanobis distance over all
+ * possible secret mappings delta0 -> one GP plaintext rune.
+ * No plaintext letter assignment is fitted into the output;
+ * min over all 29 is the *optimistic* secret-key control.
+ * @param {number[]} counts
+ * @param {number[]} starts
+ * @param {ReturnType<typeof profilesFor>} profiles
+ */
+function minDistance(counts,starts,profiles){
+ let min=Infinity,which=-1;
+ for(let letter=0;letter<29;letter++){
+  const m=profiles[letter];
+  const det=m.variance*m.varianceStart-m.covariance*m.covariance;
+  if(det<1e-8)continue;
+  const x=counts[letter]-m.mean;
+  const y=starts[letter]-m.meanStart;
+  const square=Math.max(0,(m.varianceStart*x*x+m.variance*y*y-2*m.covariance*x*y)/det);
+  if(square<min){min=square;which=letter}
+ }
+ return {square:min,letter:which,translit:gp.translit[which]};
+}
+
+/**
+ * Source-matched native control: replace each of the original
+ * 2,896 printed words with an independently sampled native-English
+ * word of exactly the same GP29 rune length. Every replicate
+ * preserves all original word slots and length counts.
+ *
+ * Compute the original F gate AND family-wise 29-symbol secret
+ * mapping null on complete synthetic native books, with no
+ * alphabet parameter fitted to the source ciphertext.
+ * @param {{word:number[],total:number,start:number}[][]} choices
  * @param {number[]} sourceLengths
  */
 function simulate(choices,sourceLengths){
  let seed=0x3301feed;
  const random=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
- const trials=5000;
- let sum=0,sumStart=0,sumSquares=0,minTotal=Infinity,minStart=Infinity,
-  tailTotal=0,tailStart=0;
+ const trials=5000,profiles=profilesFor(choices,sourceLengths);
+ const originalCounts=Array(29).fill(original.total);
+ const originalStarts=Array(29).fill(original.atStart);
+ const originalBest=minDistance(originalCounts,originalStarts,profiles);
+ let sum=0,sumStart=0,minTotal=Infinity,minStart=Infinity,
+  tailTotal=0,tailStart=0,tailAnySecret=0,maxNativeMinDistance=0;
  for(let k=0;k<trials;k++){
-  let number=0,start=0;
+  const symbols=new Array(29).fill(0),starts=new Array(29).fill(0);
   for(const length of sourceLengths){
    const pool=choices[length];
-   assert(pool?.length,"missing source-length-matched native word "+length);
    const pick=pool[Math.floor(random()*pool.length)];
-   number+=pick.total;
-   start+=pick.start;
+   for(const rune of pick.word)symbols[rune]++;
+   starts[pick.word[0]]++;
   }
-  sum+=number;sumStart+=start;sumSquares+=number*number;
+  const number=symbols[0],start=starts[0];
+  sum+=number;sumStart+=start;
   minTotal=Math.min(minTotal,number);minStart=Math.min(minStart,start);
   if(number<=original.total)tailTotal++;
   if(start<=original.atStart)tailStart++;
+  const trialBest=minDistance(symbols,starts,profiles);
+  maxNativeMinDistance=Math.max(maxNativeMinDistance,trialBest.square);
+  if(trialBest.square>=originalBest.square)tailAnySecret++;
  }
+ assert(originalBest.square>20,"unexpected new plausible letter mapping");
+ assert.equal(tailAnySecret,0);
  return {trials,meanF:sum/trials,meanFAtStart:sumStart/trials,
   minF:minTotal,minFAtStart:minStart,
   expectedFStartAmongF:sumStart/sum,
   hitsAtOrBelowOriginalF:tailTotal,
-  hitsAtOrBelowOriginalStartF:tailStart};
+  hitsAtOrBelowOriginalStartF:tailStart,
+  bestOf29PlaintextRune:originalBest,
+  nativeMaxMinDistance:maxNativeMinDistance,
+  nativeCountAsExtremeAsActualUnderAnySecretRune:tailAnySecret};
 }
 const sourceLengths=words.map(w=>w.length);
 for(const [name,file,expectedCount] of donors){
@@ -131,6 +206,7 @@ for(const [name,file,expectedCount] of donors){
  const choices=Array.from({length:15},()=>[]);
  for(const word of native)if(word.length<choices.length){
   choices[word.length].push({
+   word,
    total:word.filter(v=>v===0).length,
    start:Number(word[0]===0)
   });
