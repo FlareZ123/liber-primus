@@ -249,7 +249,29 @@ Six minimal direct reversible consumers were predeclared on the 49 inner symbols
 
 [One-file source-exact Node22 SFT](../sims/lp2_cuneiform_item3_shed_7x7_original_sft.cjs) · [Windows Node22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45164986192).
 
-**Research decision:** This is a repeatable physical partition and a specific visually/historically motivated candidate input to a 7×7 operation, **not a proven cipher, source-selected encoder, or newly deciphered paragraph**. Even with the source square, a general invertible Hill/mask candidate is not selected by a first-party instruction; 49 output symbols alone also lack a genuinely untouched original-language holdout. Preserve the 49/49 split and independently establish a typed opcode/key or convincing withheld plaintext before increasing 7×7 model complexity. Do not multiply matrix variants or post-fit output words.
+### Typed source phrase: exact solved-LP1 DIVINITY key on the word interiors
+
+The original solved **p57 sentence itself names "DIVINITY" and "WITHIN"**, giving a more explicit first-operation/key hypothesis than the square's numeric matrix: first peel the original 25 item3 words, then run the **actually solved LP1 DIVINITY GP29 Vigenère law** `P=(C−K) mod29` with its source-authentic 8-symbol key indices **[23,10,1,10,9,10,16,26]** and **literal plaintext F nonadvancing/pass-through**. No key, phase, sign or word placement is optimized.
+
+The original item3 intact **98** runes fail that exact decoder's F-transparent algebra at rune **0**, as do its exterior **49** runes. The strictly interior **49**, however, permit **exactly one** complete legal plaintext history, advancing **48** key positions. It yields, in GP transliteration, `WEABIUFPHXBJAETHRGEOEAPAINGDNGMEEOXNEOXXLUIABOEMHCMAEWAAGUAEON`, with GP29 IoC **0.02721088435**; this is not coherent plaintext or a plausible original LP narrative. The original source has two ciphertext F symbols in those 49 rune positions; the legal history resolves their semantics without a guessed skip mask.
+
+The same fixed, zero-phase one-peel plus authentic DIVINITY law applied independently to **all five** red-numbered units gives the following **holdout** decision:
+
+| Original red item | Complete untouched runes | One-peel strict interior / exterior | Intact legal decrypt? | Interior legal decrypt? | Exterior legal decrypt? |
+| ---: | ---: | ---: | --- | --- | --- |
+| 1 | **139** | **79 / 60** | No | **No**, fails interior offset **20** | No |
+| 2 | **91** | **51 / 40** | No | No | No |
+| 3 | **98** | **49 / 49** | No | **Yes**, 1 path, IoC 0.02721088 | No |
+| 4 | **96** | **58 / 38** | No | **Yes**, 1 path, IoC 0.03690260 | No |
+| 5 | **129** | **74 / 55** | No | No | No |
+
+The second surviving item4 interior produces the incoherent 58-rune string `BCINAWEAOELPWREIAITHLHEXBSHEAJTHRSWHEWWCLNXSXTHWJEOYCOEJITGICDNAEOTH`. **The necessary item1 139-rune and independent item2 91-rune holds fail.** Algebraic validity of 2 of 5 isolated interior subsets therefore cannot justify claiming a keyed source instruction or extending to arbitrary additional layers.
+
+The literal *unknown-language* objection can be bounded without pretending that any old ciphertext must be English. To test the actual register of **nine independently solved Cicada GP29 sections**, a deterministic seed `0x33017a43` samples **30,000 planted authentic solved words** with each candidate's **exact original printed word-length pattern**, peeling their interiors in the same way. For the length49 item3, the lowest of those 30,000 solved-native IoCs is **0.04251700680**; for length58 item4 it is **0.04174228675**, with **0/30,000 native register controls at or below either surviving decoded IoC**. Independent contiguous solved-native rune-window controls produce **2,547** 49-rune and **2,466** 58-rune windows, with minima **0.03911565** and **0.04113733**, again above the corresponding candidate outputs. These empirically reject coherent native Cicada narrative prose under this exact old cipher and source-selected interior shape; they do **not** exclude a deliberately nonlinguistic intermediary or any cipher not actually specified by the solved phrase. Planted authentic p57 source-native positive text of lengths **49 and 95** is encrypted and recovered exactly by the same F-skip machine.
+
+[Original-source SHED + historical DIVINITY opcode + five-unit holdouts + native-wordshape SFT](../sims/lp2_cuneiform_item3_shed_divinity_original_sft.cjs) · [Windows Node22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45166346344).
+
+**Research decision:** The 25-word third passage (also a 5×5 word-count footprint), its balanced 49/49 interior/exterior pair and a directly named historical key are reproducible human-visible test inputs. The full original item1 and item2 are not decrypted by the unmodified operation. The six square/word-mask consumers and authentic keyed interior consumer produce no independently readable unknown plaintext. Preserve the exact source-word role split as an exploratory clue and require **an author-selected second opcode** or a substantial untouched positive plaintext before adding another layer; the source does not supply one.
 
 ## Native JPEG glyph readback (Agent 27, 11 November 2026)
 
