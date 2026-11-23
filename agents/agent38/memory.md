@@ -2,15 +2,16 @@
 
 **Mode:** normal research (draw 3). Lease agents/agent38/.lease.json remotely claimed at **2026-11-23T14:05:18.921Z** and verified. Immutable 70-minute orderly-release threshold: **15:15:18.921Z**; check against the real clock after every persistence event. The Director-task queue was fully claimed or blocked at the initial review, so this invocation pursued independent exploration rather than duplicating another agent's issue.
 
-## Current bounded result: LP1 p05 phi/mu Hill-5 transfer negative
+## Current bounded result: LP1 p05 phi/mu-derived GP29 keys negative
 
 - The p05 JPEG trailer / 1033 magic square / 3301 reversal is **prior repository work**, already documented in **im-results/lp1-p05-jpeg-mirror-hex1033-changebasis-original-gate.md** and **sims/lp1_p05_magic_square_nibble_inverse_sft.cjs**. My initial reproduction confirmed it but was not novel; do not count it as new progress.
-- New bounded hypothesis: the p05 warning names primes and Euler's totient, the word matrix includes MOBIUS, and GP29 is a 29-symbol field. Apply phi or Möbius mu elementwise to the recovered 5x5 square B, reduce modulo29, and use the result as a Hill-5 key.
-- Both derived matrices are invertible: det(phi(B))=28 and det(mu(B))=24 in GF(29). Tested K^-1, (K^-1)^T, K, K^T, under both continuous p0–p55 and page-reset block alignment (16 candidates total), preserving incomplete tails. Also tested the two already documented p55 75-rune framings (drop first NG carry / remove literal F), 16 candidates total.
-- Full-book result: raw p0–p55 average English quadgram score **-7.440422**, IoC **0.034478**; best of 16 is mu inverse-transpose global at **-7.461061**, IoC **0.034494**. Known p57 plaintext positive control is **-4.420906**, IoC **0.062710**. No language signal.
-- p55's best post-selected variant is phi(B)^T on the remove-literal-F framing: **-7.154399**, output begins DROEPPRULAEFINOOOEDARAELCUMOFEEOIAJTHDTHOFNGBI...; not coherent text and far below p57. Do not treat the 0.19 score increase on 75 symbols selected from 16 variants as progress.
-- Reproducer: **sims/lp1_p05_totient_mobius_hill_original_sft.cjs**; report: **im-results/lp1-p05-totient-mobius-hill-original-gate.md**; broadcast: **communications/broadcast/20261123T145503Z_agent38_p05-number-theory-key-transforms-followup.md**.
-- This rejects only direct elementwise phi/mu -> mod29 -> Hill-5. Do not tune phase, padding, orientation, or other matrix operations without an independent source selector. The p05 1033/3301 cross-round relation is already established but supplies no LP2 plaintext/key.
+- New bounded hypothesis: the p05 warning names primes and Euler's totient, the word matrix includes MOBIUS, and GP29 is a 29-symbol field. Apply phi or Möbius mu elementwise to the recovered 5x5 square B, reduce modulo29, then use the matrix either as a Hill-5 key or its 25 row-major entries as a repeating additive key.
+- Hill-5: 16 natural direction/transpose and global/page-reset variants. Additive: 8 variants (C-K/C+K, global/page-reset). Both key matrices are invertible: det(phi(B))=28 and det(mu(B))=24 in GF(29).
+- Full-book result: raw p0–p55 average English quadgram score **-7.440422**, IoC **0.034478**; best Hill candidate **-7.461061**; best additive candidate **-7.453372**. Known p57 plaintext positive control is **-4.420906**, IoC **0.062710**. Neither key family produces language.
+- p55's best post-selected Hill variant is phi(B)^T on the remove-literal-F framing: **-7.154399**, output begins DROEPPRULAEFINOOOEDARAELCUMOFEEOIAJTHDTHOFNGBI...; not coherent text and far below p57. Do not treat the 0.19 score increase on 75 symbols selected from 16 variants as progress.
+- Reproducer: **sims/lp1_p05_totient_mobius_hill_original_sft.cjs**; consolidated report: **im-results/lp1-p05-totient-mobius-hill-original-gate.md**. Node 22 SFT workflow #928 (run 45199549943) completed successfully on commit ab0facb620c1e1a8418be547e24a961554007ee5. Combined follow-up: **communications/broadcast/20261123T145503Z_agent38_p05-number-theory-key-transforms-followup.md**.
+- This rejects only direct elementwise phi/mu -> mod29 -> Hill-5 or 25-symbol repeating additive use. Do not tune phase, padding, orientation, key rotation, or other matrix operations without an independent source selector. The p05 1033/3301 cross-round relation is already established but supplies no LP2 plaintext/key.
+
 
 **Coordination:** answered Agent31's p50 receiver-scope question; prior 256-cell fixed-width BASE29 and 252-digit quotient-to-byte tests are adjacent but do not cover the exact outer33 + two-digit receiver proposal. See **communications/agent31/20261123T145738Z_agent38_p50-receiver-sweep-scope.md**.
 
