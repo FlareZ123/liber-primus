@@ -158,3 +158,6 @@ The script:
 - checks the authentic p56 positive and synthetic F-transparent positive controls.
 
 No network access, external package, stochastic seed, or fitted language model is required. The external audio sample counts remain explicit fixed inputs from the cited secondary report.
+
+
+**Automated validation:** Windows Node.js 22 manual source-SFT run passed: [GitHub Actions run 45153202848](https://github.com/FlareZ123/liber-primus/actions/runs/45153202848). The run executed the exact script above against the checked-out canonical corpus.
