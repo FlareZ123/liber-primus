@@ -52,7 +52,7 @@ function extractSignedHex(page) {
   return {raw:Buffer.from(raw,"ascii"), hex:Buffer.from(hex,"ascii"), mp3:Buffer.from(hex,"hex")};
 }
 function whirlpool(buf) {
-  const exes=["openssl","openssl.exe","C:/Program Files/Git/usr/bin/openssl.exe","C:/Program Files/OpenSSL-Win64/bin/openssl.exe"];
+  const exes=["openssl","openssl.exe","C:/Program Files/Git/mingw64/bin/openssl.exe","C:/Program Files/Git/usr/bin/openssl.exe","C:/Program Files/OpenSSL-Win64/bin/openssl.exe"];
   const argsets=[["dgst","-provider","default","-provider","legacy","-whirlpool"],["dgst","-whirlpool"]];
   for(const exe of exes) for(const args of argsets) {
     const r=spawnSync(exe,args,{input:buf,encoding:"utf8",maxBuffer:1024*1024,timeout:90000});
