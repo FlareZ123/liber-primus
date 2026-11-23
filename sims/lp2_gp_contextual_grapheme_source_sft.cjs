@@ -214,6 +214,8 @@ const originalNoncanonical = original.filter(word =>
 const greedyTotal = original.reduce((sum, word) =>
   sum + greedyLiteralRomanizationInverse(word).length, 0);
 assert.equal(originalNoncanonical.length, 175);
+// A same-word plaintext-F interrupter cannot signal the original split cases.
+assert.equal(originalNoncanonical.filter(word => !word.includes('F')).length, 153);
 assert.equal(greedyTotal, 12856);
 const p57GlyphWords = wordsIn(allParts[56]);
 assert.equal(p57GlyphWords.length, 20);
