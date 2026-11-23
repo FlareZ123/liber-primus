@@ -241,6 +241,28 @@ if (fs.existsSync(originalPath)) {
   const pages = fs.readFileSync(originalPath, 'utf8').split('%');
   assert.equal(pages.length, 57);
   assert.deepEqual(wordsInPage(pages[54]), fragments);
+  // Adversarially include the genuine p54->p55 spanning word in the SHED
+  // operation. This is a second natural source-delimited receiver and it
+  // DOES NOT inherit the prime/core43 and divisible43/shell coincidences.
+  const p54Fragments = wordsInPage(pages[53]);
+  const acrossBoundary = [
+    p54Fragments.at(-1) + fragments[0],
+    ...complete,
+  ];
+  const other = splitCoreShell(acrossBoundary);
+  assert.equal(acrossBoundary[0].length, 11);
+  assert.equal(other.core.length, 52);
+  assert.equal(other.shell.length, 34);
+  const otherInterior = base29(other.core);
+  const otherExterior = base29(other.shell);
+  assert.equal(otherInterior % 3n, 0n);
+  assert.equal(otherInterior % 7n, 0n);
+  assert.equal(otherInterior % 13n, 0n);
+  assert.equal(otherInterior % 8n, 1n);
+  assert.equal(otherExterior % 43n, 15n);
+  assert.equal(otherExterior % 52n, 30n);
+  console.log('Whole-word seam rival: core52 divisible 3*7*13, N%8=1, shell34 E%43=15');
+
   const hits = [];
   for (let i = 0; i < pages.length; i++) {
     const digits = wordsInPage(pages[i])
