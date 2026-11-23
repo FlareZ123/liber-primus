@@ -1,0 +1,81 @@
+{
+  "schema": 1,
+  "description": "2014 Onion6 four initial and three post-square runic pages, exact GitHub-archived unicode rune transcripts; corrected-Latin witnesses are editorial derivations.",
+  "source_repository": "https://github.com/cicada-solvers/neuroretransmit-cicada",
+  "preserved_archive_ref": "main",
+  "originals": [
+    {
+      "page": "10",
+      "archive_path": "2014/008-sixth-onion/10.jpg.runes.txt",
+      "blob_sha": "e4e428e52043a31928ad34c9e40b69b4f423aff1",
+      "runic_text": "ᚦᛖ-ᛚᚩᛋᛋ-ᚩᚠ-ᛞᛁᚢᛁᚾᛁᛏᚣ.ᚦᛖ-ᚳᛁᚱᚳᚢ/\nᛗᚠᛖᚱᛖᚾᚳᛖ-ᛈᚱᚪᚳᛏᛁᚳᛖᛋ-ᚦᚱᛖ/\nᛖ-ᛒᛖᚻᚪᚢᛡᚱᛋ-ᚹᚻᛁᚳᚻ-ᚳᚪᚢᛋᛖ-ᚦ/\nᛖ-ᛚᚩᛋᛋ-ᚩᚠ-ᛞᛁᚢᛁᚾᛁᛏᚣ./\nᚳᚩᚾᛋᚢᛗᛈᛏᛡᚾ.ᚹᛖ-ᚳᚩᚾᛋᚢᛗᛖ-ᛏᚩᚩ/\n-ᛗᚢᚳᚻ-ᛒᛖᚳᚪᚢᛋᛖ-ᚹᛖ-ᛒᛖᛚᛖᛁᚢᛖ-ᚦᛖ-/\nᚠᚩᛚᛚᚩᚹᛝ-ᛏᚹᚩ-ᛖᚱᚱᚩᚱᛋ-ᚹᛁᚦᛁᚾ-ᚦᛖ-ᛞᛖᚳ/\nᛖᛈᛏᛡᚾ./\n1-ᚹᛖ-ᛞᚩ-ᚾᚩᛏ-ᚻᚪᚢᛖ-ᛖᚾᚩᚢᚷᚻ-/\nᚩᚱ-ᚦᛖᚱᛖ-ᛁᛋ-ᚾᚩᛏ-ᛖᚾᚩᚢᚷᚻ./"
+    },
+    {
+      "page": "11",
+      "archive_path": "2014/008-sixth-onion/11.jpg.runes.txt",
+      "blob_sha": "d04b9a7090a06b427ef0a4b394e16d7466485474",
+      "runic_text": "2-ᚹᛖ-ᚻᚪᚢᛖ-ᚹᚻᚪᛏ-ᚹᛖ-ᚻᚪᚢᛖ-ᚾ/\nᚩᚹ-ᛒᚣ-ᛚᚢᚳᚳ-ᚪᚾᛞ-ᚹᛖ-ᚹᛁᛚᛚ-ᚾᚩᛏ-/\nᛒᛖ-ᛋᛏᚱᚩᛝ-ᛖᚾᚩᚢᚷᚻ-ᛚᚪᛏᛖᚱ-ᛏ/\nᚩ-ᚩᛒᛏᚪᛁᚾ-ᚹᚻᚪᛏ-ᚹᛖ-ᚾᛖᛖᛞ./\nᛗᚩᛋᛏ-ᚦᛝᛋ-ᚪᚱᛖ-ᚾᚩᛏ-ᚹᚩᚱᚦ-ᚳᚩᚾᛋᚢᛗ/\nᛝ./\nᛈᚱᛖᛋᛖᚱᚢᚪᛏᛡᚾ.ᚹᛖ-ᛈᚱᛖᛋᛖᚱᚢᛖ-/\nᚦᛝᛋ-ᛒᛖᚳᚪᚢᛋᛖ-ᚹᛖ-ᛒᛖᛚᛁᛖᚢᛖ-ᚹᛖ-ᚪᚱ/\nᛖ-ᚹᛠᚳ.ᛁᚠ-ᚹᛖ-ᛚᚩᛋᛖ-ᚦᛖᛗ-ᚹᛖ-ᚹᛁᛚᛚ-ᚾᚩ/\nᛏ-ᛒᛖ-ᛋᛏᚱᚩᛝ-ᛖᚾᚩᚢᚷᚻ-ᛏᚩ-ᚷᚪᛁᚾ-ᚦᛖᛗ-/\nᚪᚷᚪᛁᚾ.ᚦᛁᛋ-ᛁᛋ-ᚦᛖ-ᛞᛖᚳᛖᛈᛏᛡᚾ./"
+    },
+    {
+      "page": "12",
+      "archive_path": "2014/008-sixth-onion/12.jpg.runes.txt",
+      "blob_sha": "157269ff97e12f942eee5dde05cfae5639752012",
+      "runic_text": "ᛗᚩᛋᛏ-ᚦᛝᛋ-ᚪᚱᛖ-ᚾᚩᛏ-ᚹᚩᚱᚦ-ᛈᚱᛖᛋᛖᚱᚢ/\nᛝ./\nᚪᛞᚻᛖᚱᛖᚾᚳᛖ.ᚹᛖ-ᚠᚩᛚᛚᚩᚹ-ᛞᚩᚷᛗᚪ-/\nᛋᚩ-ᚦᚪᛏ-ᚹᛖ-ᚳᚪᚾ-ᛒᛖᛚᚩᛝ-ᚪᚾᛞ-ᛒᛖ-ᚱᛁᚷᚻ/\nᛏ-ᚩᚱ-ᚹᛖ-ᚠᚩᛚᛚᚩᚹ-ᚱᛠᛋᚩᚾ-ᛋᚩ-ᚹᛖ-ᚳᚪᚾ-/\nᛒᛖᛚᚩᛝ-ᚪᚾᛞ-ᛒᛖ-ᚱᛁᚷᚻᛏ./\nᚦᛖᚱᛖ-ᛁᛋ-ᚾᚩᚦᛝ-ᛏᚩ-ᛒᛖ-ᚱᛁᚷᚻᛏ-ᚪᛒᚩᚢᛏ-/\nᛏᚩ-ᛒᛖᛚᚩᛝ-ᛁᛋ-ᛞᛠᚦ./\nᛁᛏ-ᛁᛋ-ᚦᛖ-ᛒᛖᚻᚪᚢᛡᚱᛋ-ᚩᚠ-ᚳᚩᚾᛋᚢᛗᛈᛏ/\nᛡᚾ-ᛈᚱᛖᛋᛖᚱᚢᚪᛏᛡᚾ-ᚪᚾᛞ-ᚪᛞᚻᛖᚱᛖᚾ/"
+    },
+    {
+      "page": "13",
+      "archive_path": "2014/008-sixth-onion/13.jpg.runes.txt",
+      "blob_sha": "2cf5fb510803a3e6db5a55bb29476d6554f8c23d",
+      "runic_text": "ᚳᛖ-ᚦᚪᛏ-ᚻᚪᚢᛖ-ᚢᛋ-ᛚᚩᛋᛖ-ᚩᚢᚱ-ᛈᚱᛁᛗᚪᛚ/\nᛁᛏᚣ-ᚪᚾᛞ-ᚦᚢᛋ-ᚩᚢᚱ-ᛞᛁᚢᛁᚾᛁᛏᚣ./\n\nᛋᚩᛗᛖ-ᚹᛁᛋᛞᚩᛗ.ᚪᛗᚪᛋᛋ-ᚷᚱᛠᛏ-ᚹ/\nᛠᛚᚦ.ᚾᛖᚢᛖᚱ-ᛒᛖᚳᚩᛗᛖ-ᚪᛏᛏᚪ/\nᚳᚻᛖᛞ-ᛏᚩ-ᚹᚻᚪᛏ-ᚣᚩᚢ-ᚩᚹᚾ.ᛒᛖ-/\nᛈᚱᛖᛈᚪᚱᛖᛞ-ᛏᚩ-ᛞᛖᛋᛏᚱᚩᚣ-ᚪᛚᛚ-ᚦᚪᛏ-/\nᚣᚩᚢ-ᚩᚹᚾ./\n\nᚪᚾ-ᛁᚾᛋᛏᚱᚢᚳᛏᛡᚾ.ᛈᚱᚩᚷᚱᚪᛗ-ᚣᚩᚢ/\nᚱ-ᛗᛁᚾᛞ.ᛈᚱᚩᚷᚱᚪᛗ-ᚱᛠᛚᛁᛏᚣ./"
+    },
+    {
+      "page": "107",
+      "archive_path": "2014/008-sixth-onion/107.jpg.runes.txt",
+      "blob_sha": "375ffe36be26e90b45fddced1a4d6055c22be5e6",
+      "runic_text": "ᚪ-ᛋᚹᚪᛁ.ᛈᚢᛟᚫ-ᛈ-ᚠᛖᚱᛋᛈᛈ-ᚦᛗ-ᚾᚪᚱ/\nᛚᚹᛈ-ᛖᚩᛈᚢᛠᛁᛁᚻᛞ-ᛚᛟ-ᛠ.ᛄᛖ-/\nᛠ-ᛁᚫ-ᚷᛖ-ᚦᛟᛁᛞᛟ-ᛝ:ᚠ-ᛄᛖ-ᛞᛁᛉᚾᚢ/\nᛚ:ᚠᚻᚱᚹᛈᛞᛡ-ᚻᚹ-ᛋᚳᛉᛞ.ᚻᛡᛖᛡ-ᛠᚱ/\nᛉᛖᛇ-ᛒᚹ-ᛠ-ᛋᛒᛚᛞᚹᛈᚳ-ᚫᚩ-ᚹᛉᛞᚪᚪᛄᛠ/\n-ᚹᚣᛠᚳ-ᛄᚪᚳ-ᛗᚾᛈᛏ-ᚩᚻ-ᛗᛈᛗᚳᛡᚱ-ᚱᚪ/\nᛚᛡ-ᛁᛒ-ᚠᛋ-ᛈ-ᚳᛝᛗᚳᚹ-ᛁᛗᛗᛁᚪᚻ-ᚣᛝᚳᛟ-ᛒ/\nᛠᛇ.ᛁ-ᚱᚹᚾᛒ-ᛡᚪᛗᛟ-ᛈ-ᛁᚩᛠᚳᛠ-ᛉ/\nᚾ-ᛚᛏ-ᚻᛒᛡ-ᛚᛇᚢᚪᚻᚣ-ᚷᛖ-ᛏᚷᚢᛇᛟᛡᚫ-/\nᚪᛡᛞ-ᛖᛟ-ᚱᚫᚠᛋᚹᛡ-ᚣᛗᛋ-ᚣᚪᛗᛡ-ᛏᚱ-ᚷᛖ/\nᚾᚪ-ᛚᛡ-ᛗᛈᛋᚣᛟᚱ.ᚩᚻ-ᛗᛈᛗᚳᛡᚱ-ᚱᛏᛈᛒ/\n"
+    },
+    {
+      "page": "167",
+      "archive_path": "2014/008-sixth-onion/167.jpg.runes.txt",
+      "blob_sha": "ed779da7d02bbbfd450646b9c1ebfa6c16375095",
+      "runic_text": "ᛈᛗᛈ-ᚦᚹ-ᛗᚳᛁᛞᚹᚾᚣ-ᛠᚾᚪ-ᚳᚪᛠᛡ-ᛚᛡ-/\nᚢᛝᛁᛋᛟ-ᚦᚫᚷ-ᛄᛗᛗᚳ-ᚪᚪᛠᛞ-ᚹᚹᚢ-ᚾᛉᚢ/\nᚹ-ᛈᛝ-ᛁᚩᛠᚳᛠ-ᛉᚾ-ᛡᛟᚢᛟ-ᛇᛒᚩ-ᛁᚱ-ᚦᛠ-/\nᛉ.ᚪᛁᛈ-ᚦᚹ-ᛗᚳᛁᛞᚹᚾᚣᛗ-ᚹᛗᛞᛖ-ᚹᛈᚾ/\nᛗᚷᚣᛏᛠᛈᛖᚪ./\n"
+    },
+    {
+      "page": "229",
+      "archive_path": "2014/008-sixth-onion/229.jpg.runes.txt",
+      "blob_sha": "0088429b09bb0214b7d079b88d1992e1249e064f",
+      "runic_text": "ᚪᚾ-ᛁᚾᛋᛏᚱᚢᚳᛏᛡᚾ.ᚳᚹᛖᛋᛏᛡᚾ-ᚪᛚᛚ-/\nᚦᛝᛋ.ᛞᛁᛋᚳᚩᚢᛖᚱ-ᛏᚱᚢᚦ-ᛁᚾᛋᛁᛞᛖ-/\nᚣᚩᚢᚱᛋᛖᛚᚠ.ᚠᚩᛚᛚᚩᚹ-ᚣᚩᚢᚱ-ᛏᚱᚢ/\nᚦ.ᛁᛗᛈᚩᛋᛖ-ᚾᚩᚦᛝ-ᚩᚾ-ᚩᚦᛖᚱᛋ./\n&\nᚳᚾᚩᚹ-ᚦᛁᛋ./\n434-1311-312-278-966/\n204-812-934-280-1071/\n626-620-809-620-626/\n1071-280-934-812-204/\n966-278-312-1311-434/\n\n"
+    }
+  ],
+  "corrected_roman": [
+    {
+      "pages": [
+        "10",
+        "11",
+        "12",
+        "13"
+      ],
+      "archive_path": "2014/008-sixth-onion/README.md",
+      "blob_sha": "28e94936182062b79bef9ff5a1bf4eed50e5b2ae",
+      "text": "THE-LOSS-OF-DIVINITY.THE-CIRCU/\nMFERENCE-PRACTICES-THRE/\nE-BEHAVIORS-WHICH-CAUSE-TH/\nE-LOSS-OF-DIVINITY./\nCONSUMPTION.WE-CONSUME-TOO/\n-MUCH-BECAUSE-WE-BELEIUE-THE-/\nFOLLOWNG-TWO-ERRORS-WITHIN-THE-DEC/\nEPTION./\n1-WE-DO-NOT-HAVE-ENOUGH-/\nOR-THERE-IS-NOT-ENOUGH./\n2-WE-HAVE-WHAT-WE-HAVE-N/\nOW-BY-LUCK-AND-WE-WILL-NOT-/\nBE-STRONG-ENOUGH-LATER-T/\nO-OBTAIN-WHAT-WE-NEED./\nMOST-THNGS-ARE-NOT-WORTH-CONSUM/\nNG./\nPRESERVATION.WE-PRESERVE-/\nTHINGS-BECAUSE-WE-BELIEVE-WE-AR/\nE-WEAK.IF-WE-LOSE-THEM-WE-WILL-NO/\nT-BE-STRONG-ENOUGH-TO-GAIN-THEM-/\nAGAIN.THIS-IS-THE-DECEPTION./\nMOST-THINGS-ARE-NOT-WORTH-PRESERV/\nNG./\nADHERENCE.WE-FOLLOW-DOGMA-/\nSO-THAT-WE-CAN-BELONG-AND-BE-RIGH/\nT-OR-WE-FOLLOW-REASON-SO-WE-CAN-/\nBELONG-AND-BE-RIGHT./\nTHERE-IS-NOTHING-TO-BE-RIGHT-ABOUT-/\nTO-BELONG-IS-DEATH./\nIT-IS-THE-BEHAVIORS-OF-CONSUMPT/\nION-PRESERVATION-AND-ADHEREN/\nCE-THAT-HAVE-US-LOSE-OUR-PRIMAL/\nITY-AND-THUS-OUR-DIVINITY./\n\nSOME-WISDOM.AMASS-GREAT-W/\nEALTH.NEVER-BECOME-ATTA/\nCHED-TO-WHAT-YOU-OWN.BE-/\nPREPARED-TO-DESTROY-ALL-THAT-/\nYOU-OWN./\n\nAN-INSTRUCTION.PROGRAM-YOU/\nR-MIND.PROGRAM-REALITY./"
+    },
+    {
+      "pages": [
+        "107",
+        "167"
+      ],
+      "archive_path": "2014/009-squares-submission-pages/README.md",
+      "blob_sha": "596554dfa797e3b52b958c67f04ff0a7dd37af8c",
+      "text": "A-KOAN.DURING-A-LESSON-THE-MAS/\nTER-EXPLAINED-THE-I.THE-/\nI-IS-THE-VOICE-OF-THE-CIRCU/\nMFERENCE-HE-SAID.WHEN-AS/\nKED-BY-A-STUDENT-TO-EXPLAIN/\n-WHAT-THAT-MEANT-THE-MASTER-SA/\nID-IT-IS-A-VOICE-INSIDE-YOUR-H/\nEAD.I-DONT-HAUE-A-VOICE-I/\nN-MY-HEAD-THOUGHT-THE-STUDENT-/\nAND-HE-RAISED-HIS-HAND-TO-TE/\nLL-THE-MASTER.THE-MASTER-STOP/\nPED-THE-STUDENT-AND-SAID-THE-/\nVOICE-THAT-JUST-SAID-YOU-HAV/\nE-NO-VOICE-IN-YOUR-HEAD-IS-THE-/\nI.AND-THE-STUDENTS-WERE-ENL/\nIGHTENED./"
+    },
+    {
+      "pages": [
+        "229"
+      ],
+      "archive_path": "2014/009-squares-submission-pages/README.md",
+      "blob_sha": "596554dfa797e3b52b958c67f04ff0a7dd37af8c",
+      "text": "AN-INSTRUCTION.QUESTION-ALL-/\nTHINGS.DISCOVER-TRUTH-INSIDE-/\nYOURSELF.FOLLOW-YOUR-TRU/\nTH.IMPOSE-NOTHING-ON-OTHERS./\n&\nKNOW-THIS./\n 434 1311 312  278  966\n 204  812 934  280 1071\n 626  620 809  620  626\n1071  280 934  812  204\n 966  278 312 1311  434"
+    }
+  ],
+  "source_caveat": "Archival mirror transcripts and corrected Latin prose are period-attributed witnesses, not independent PGP signatures on every page. The two post-square encoded pages' ciphertext word spaces are invariant under the documented Vigenere operation."
+}
