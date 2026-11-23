@@ -19,6 +19,8 @@ mean(347, 315)           = 331 = prime(67) = prime(GP(E))
 (347 - 315) / 2          = 16
 ```
 
+The **red heading itself** also supplies `(first word length, second word length)=(8,5)`. Once the independently printed p49–51 table's geometry is observed as **32 rows × 8 columns**, the exact title-derived dimensions give a more direct conditional table locator: **sum difference32 → 32 rows; first word length8 → eight columns; second word length5 → fifth column**. This additional route uses only the physical red title and printed grid, before any page-crossing interpretation. The author has not instructed which numerical properties to pair. It is a source-driven structural match discovered retrospectively and must not be treated as a decryption proof.
+
 These are fixed original-source integer identities. The paired mean and difference operations **were inferred in this investigation**, and no first-party caption explicitly says to perform them. There are nevertheless already known original objects with the resulting dimensions: the original LP2 book-delivery HTML's unique `div id="331"` carries the 58 page images, and the p49–51 numeric panel has **32 rows**. The independently established p15 Fibonacci-prime spiral has **16 cells**. The prior [integrated 331 source route](../workplace/integrated-original-inversion-challenge.md) separately notes that clear solved-p57 **SURFACE** has GP0 ordinal67 and prime(67)=331, pointing conditionally to that same historical HTML div. These multiple sources give candidate recipient choices; their interpretation remains conditional and potentially post-selected.
 
 ## Manuscript-wide page-join words make 331 an exact, unique fifth-column selector
