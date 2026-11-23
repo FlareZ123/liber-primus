@@ -10,6 +10,17 @@
 
 ---
 
+
+## 23 Nov 2026 20:24Z checkpoint: p0-red13/p50 fifth-column Salsa20 source-pair
+
+After closing #2416 and #2422, performed one independent 2014-available **Salsa20/20** original exact inverse (not a source-authenticated opcode). Source key: fifth p50 base60 column 32-byte `61f7669636e6566ac772adec530e360da9f5f63469949026b0c2463a90ee16b4`; source nonce: red p0 BASE29 13-rune 8 bytes `4b1cde6f9c9af1e1`. Keystream counter0, whole body p0 red13 removed =12,943 GP29 runes; raw bytes mod29 and unbiased bytes under232; original GP subtractive shift. Three original receivers: two GP29 and whole radix29 binary. **Both GP29 mappings mathematically fail ALL legal transparent-F key-consumption branches**: raw-byte mapping impossible at original p0 body symbol156 (original rune168), rejection mapping impossible at original p0 body symbol32 (original rune44). The 95-native-p57-rune F-skip planted positives pass both; standard Salsa20 E3BE8F... 32byte test vector PASS. Direct IoCs ≈0.0345 whole, random-like. Whole-binary 7,860 bytes printable3017, longest run8, no prose/file header. [Windows PASS CI 45258556026](https://github.com/FlareZ123/liber-primus/actions/runs/45258556026) and [report](../../im-results/lp2-p0-red13-p50-salsa20-fbranch-original-gate.md) and [script](../../sims/lp2_p0_red13_p50_fifth_salsa20_original_sft.cjs). No plaintext, no more Salsa variant search without creator opcode. Baseline test-run 45257980125 failed **only** due erroneous manually transcribed last byte of known Salsa test vector; fixed vector to `...6844`, script test PASS on 45258211682 and full F branch PASS on 45258556026.
+
+Avoid repeating p10 appended-JPEG discovery: 10.jpg exactly 4 JPEG streams 10+11+12+13, already documented in `im-results/jpeg10-concatenated-pages.md` (source 2014 signed; no new payload). Already communicated user. Avoid repeated p05 76-moth/p55 tests (full report `im-results/lp1-p05-spiral76-moth55-ftransparent-gate.md`), reverse prime/totient (several checked). The 2016 historical participant `560.17` ISO question was only speculation: contemporaneous 2013 archived workflow says all three 560 ISO pads had already been used, external Dukotah original pad sweeps negative.
+
+Next useful work remains an **uncovered first-party operation/key source**, not cycling cipher families around p0/p50 or p55. Current actual 20:24Z lease 19:47:06Z; **below70**: continue research until independent system clock at/after 20:57:06.317Z, then final memory checkpoint and release own lease as LAST Git mutation.
+
+---
+
 # Current incarnation: 23 November 2026 05:09 UTC, Agent27 source-native inverse research
 
 **Mode and lease:** Actual CSPRNG draw **5** through executed local Python before repository inspection. Normal issue-directed mode. Claim `agent27-gpt6-draw5-20261123-a3d8d77840bc0735ea00` at **2026-11-23T05:09:04.493Z**, committed `02d9a480ea864deb1b789fe56aa94ada37b27eaf` and re-fetched to verify. At initial claim, #2278, #2273, #2243 were claimed; #41, #1335, #2070 and #2117 externally blocked; nine new #2361–#2369 had all closed by 05:10. Therefore continuing permitted independent research until new executable Director issues. **Do not refresh original lease.** The earliest permitted release is **2026-11-23T06:19:04.493Z**, only after actual clock check and all research/memory pushed; deleting own lease is the final repository mutation. Commit prefix `Agent 27:`.
