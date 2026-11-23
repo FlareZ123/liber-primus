@@ -1,6 +1,6 @@
 # Full original 2013 CicadaOS DATA/560.13 byte-key source against LP2: four exhaustive GP29 and GP28 inverses
 
-**Agent2, 23 November 2026. Classification: original-source, complete-offset, source-bounded negative with genuine 729-rune GP-native positives. No unknown LP2 plaintext, creator-selected key or destination recovered.**
+**Agent2 (original Python scans) + Agent5 (independent C++ GP28 reproduction), 23 November 2026. Classification: original-source, complete-offset, source-bounded negative with genuine 729-rune GP-native positives. The two GP28 transports now have a second implementation and a full-search familywise null calibration. No unknown LP2 plaintext, creator-selected key or destination recovered.**
 
 ## Why this was a plausible, finite key-source candidate
 
@@ -64,6 +64,28 @@ The second successful [118 MB GP28 Ubuntu CI 45101857887](https://github.com/Fla
 | Circular difference successor rank | **−46** | **−4,376** | 0.036238 |
 | Ordinal excluded-predecessor successor rank | **+2** | **−4,313** | 0.036785 |
 | Known 729-rune GP-native positive in both variants | **+640** | **+3,380** | 0.061909 |
+
+### Independent C++ reproduction and max-statistic null (Agent5, 23 November 2026)
+
+The two GP28 transports above were reimplemented independently in C++20/OpenMP, rather than calling the original Python decoder or scanner. The [input preparer](../sims/cicada2013_56013_rank28_independent_prepare.py) parses the ISO9660 primary volume descriptor and directory records itself, locates /DATA/560.13;1 at LBA 1996 (byte offset 4,087,808), and verifies the original ISO (136,398,848 bytes; SHA256 784643558799dd8bb3e172f31df6d6ca2f397fd61cb8fc371bf930f1e5ae6b7f) and member (118,818,811 bytes; SHA256 db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f). It extracts the unchanged 729-rune GP29 receiver from physical pp0–2. The C++ scanner uses position-major 256-entry lookup tables and exhaustively self-tests both inverse orderings across all 29 previous symbols × 29 plaintext values × 256 key bytes.
+
+The scoring model is independently rebuilt from 62,492 GP29 runes of Gibran's *The Prophet*, with add-0.5 smoothing and integer weights round-to-nearest/ties-to-even: [-3, 5, 0, 11, 8, -1, -10, -4, -2, 8, 6, -33, -55, -8, -47, 8, 7, -10, 15, -6, 2, -17, -58, 3, 8, -87, -2, -26, -15]. The exact receiver, source tape and fixed 128-rune probe are the same as above. Both modes scan all **118,818,684** valid offsets:
+
+| Independent C++ result | Circular difference rank | Ordered excluded-predecessor rank |
+| --- | ---: | ---: |
+| Global first128 maximum | −46 | +2 |
+| Best full729 candidate offset | **81,152,333** | **251,599** |
+| That candidate's first128 score | −297 | −263 |
+| Best full729 language score | −4,376 | −4,313 |
+| Best full729 IoC | 0.036238110312 | 0.036784546044 |
+
+The full 729-rune GP29 index arrays for the top five full-chapter candidates in each mode, the top 20 first-pass offsets, and both positive-control plaintexts are preserved in the [independent scan artifact](https://github.com/FlareZ123/liber-primus/actions/runs/45105667021/artifacts/14787616282). The [workflow run](https://github.com/FlareZ123/liber-primus/actions/runs/45105667021) completed successfully; its verification step matched the published maxima, best offsets, full729 scores and IoCs exactly.
+
+**Independent authentic solved-LP1 positive:** the C++ implementation plants the original first 729 runes from solved LP1 pp10–13 at offset 330,103 in a deterministic 1,000,000-byte MT19937-64 tape, encrypts and decrypts under each GP28 ordering, then scans all 999,873 probe offsets. Both modes recover 729/729 original runes exactly and rank the planted offset **#1**, with first128 score **+598**, full729 score **+3,327**, and IoC **0.06230874749**. This uses the authentic solved-LP1 plaintext but a synthetic key/tape, so it is a detector positive, not a historical Cicada key claim.
+
+**Familywise max-statistic calibration:** 20 deterministic 32-byte block permutations of the original 560.13 tape preserve its exact byte histogram and within-block structure while disrupting longer contiguous order. Every replicate scans all 118,818,684 offsets under both GP28 modes; the family statistic is the larger of the two maxima. The observed family maximum is **+2**; **15/20** null family maxima are at least +2, giving empirical Monte Carlo p = (1+15)/(20+1) = **0.761905**. The 20 family maxima are [37, 82, 33, 44, −8, 36, 61, 65, 9, −14, 10, 8, −24, 0, 25, 37, 111, 0, 50, 14]. This is a modest-resolution, explicitly conditional block-exchangeability null—not a universal probability for all cipher families—but it shows the real-source maximum is ordinary under a null that accounts for searching the entire offset space and both models.
+
+[Independent C++ source](../sims/cicada2013_56013_rank28_independent.cpp), [ISO/input preparer](../sims/cicada2013_56013_rank28_independent_prepare.py), [result verifier](../sims/cicada2013_56013_rank28_independent_verify.py), and [workflow](../.github/workflows/agent5-2013-56013-rank28-independent.yml) make the run reproducible.
 
 Even the first-pass **global maxima** of the two entire real-source scans (−46 and +2) remain far below the same exact detector's controlled positive (+640). The strongest 729-rune continuations are likewise at near-random IoC **0.036–0.037**, with no coherent unknown original English. A complete full-file search of **both** fixed successor alphabets therefore yields no authentic LP2 plaintext or key offset. This rules out this explicitly defined direct 2013 byte-tape/GP28 mapping for ordinary native-GP English *at all valid starting byte positions* on the first chapter. It does not exclude untested historical key derivations, unreadable plaintext registers or secret state feedback beyond the fixed successor rank.
 
