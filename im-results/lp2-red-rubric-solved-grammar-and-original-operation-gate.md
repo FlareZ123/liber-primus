@@ -29,10 +29,10 @@ The 16 unknown red spans comprise exactly **213 original red runes**; nine begin
 | p23 / 0, 16 | UA-WNGGXDG-IBI-EOTBIY | opening label, red13 after |
 | p27 / 0, 19 | MPY-LSOAAEHLEEOIML-LSCP | opening label, red13 after |
 | p33 / 0, 10 | DEO-XCFIAWHG | first label, red13 after |
-| p33 / 91, 8 | NGT HEO-IFCOEEO | second inset, red13 after |
+| p33 / 91, 8 | NGTHEO-IFCOEEO | second inset, red13 after |
 | p39 / 119, 3 | IACS | isolated inset, red13 on both sides |
 | p40 / 0, 8 | FNM-YGDAEH | opening label, **no immediate red13** |
-| p53 / 128, 51 | 13 printed word slots | exceptionally long page-terminal highlighted passage, red13 after |
+| p53 / 128, 51 | 12 printed word slots | exceptionally long page-terminal highlighted passage, red13 after |
 | p54 / 0, 9 | A-MNGDIATHXIM | opening label, red13 after |
 
 The p3 and p39 isolated three-rune red insets both begin at rune position119 and are bracketed by 13-dot marks. Their GP29 coefficient triples **[13,23,2]** and **[27,5,15]** have mathematically examined polynomial interpretations elsewhere. A common colored three-rune *format* is source-visible. An instruction to treat either as a polynomial key, choose a coefficient order, and apply it to an exact black-text receiver is **absent**. The source p53 terminal passage's 51 colored runes also prevents a single grammar that treats every red span as a short opcode.
