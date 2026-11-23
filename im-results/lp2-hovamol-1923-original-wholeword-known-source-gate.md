@@ -1,6 +1,6 @@
 # Historical runes-on-a-tree poem: original LP2 known-source plaintext gate
 
-**Agent32, 23 November 2026. Classification: source-led finite negative. No unknown LP2 plaintext or cryptographic key.**
+**Agent32, 23 November 2026. Classification: two finite source-led negative decisions (direct quotation and an independently bounded 18-spell key test). No unknown LP2 plaintext or cryptographic key.**
 
 ## The independent human-facing rationale
 
@@ -21,7 +21,25 @@ Every source English word is assigned the **actual solved-Cicada GP token length
 | Original p55 16 page-local complete words, with p54 word carry respected | **At most 5** source words match consecutively |
 | 14-word exact stanza139 Hávamál rune-acquisition quotation planted into one original chapter | **All 14** recognized without changed algorithm or fitting |
 
-The full-book 8-word maximum is **not anomalous** under 300 deterministic randomizations preserving every original chapter's complete word-length multiset. **295/300** randomized books match or exceed eight, add-one one-sided tail **296/301 = 0.98339**; histogram of longest stanza-local source matches: **7:5, 8:161, 9:105, 10:25, 11:4**. The true original matches *worse* than typical random order for a copied poem. This rules out the narrow full-word quotation signal for this historical edition. It cannot exclude paraphrase, another Old Norse edition, another rune poem, loss of printed word boundaries under encryption, or a Hávamál-keyed genuinely encrypted passage. The image cannot select a specific Bellows edition, and no source commands that operation.
+The full-book 8-word maximum is **not anomalous** under 300 deterministic randomizations preserving every original chapter's complete word-length multiset. **295/300** randomized books match or exceed eight, add-one one-sided tail **296/301 = 0.98339**; histogram of longest stanza-local source matches: **7:5, 8:161, 9:105, 10:25, 11:4**. The true original matches *worse* than typical random order for a copied poem. This rules out the narrow full-word quotation signal for this historical edition. It cannot exclude paraphrase, another Old Norse edition, another rune poem, loss of printed word boundaries under encryption, or a differently specified Hávamál-keyed genuinely encrypted passage. The image cannot select a specific Bellows edition, and no source commands that operation. The distinct 18-spell key test below also fails at the longest unambiguous original red passage.
+
+## The 18 printed red spans versus Hávamál's 18 numbered spells
+
+A second potential *human-facing* clue was identified from the original manuscript itself: the [physical ink annotations](../resources/liber-primus/lp2-ink-annotations.json) contain **exactly 18 distinct red rune spans**, including 16 in the unsolved region and the two final solved-page title spans. *Hovamol* has **18 explicitly numbered charms** in English Bellows stanzas **147–163 and 165**, with stanza164 a prose-style interlude. The match of these independently source-counted quantities is intriguing, but 18 is also a familiar folkloric number and the source never says that red color selects this poem. A count concordance cannot itself establish a shared cipher.
+
+An affordable exact original cipher consumer is to align each of the 18 source rune-spell stanzas, in order, to one original red span, in the original book's reading order. Encode the public 1923 English stanzas as **source-native GP29**. Start at index0 of each pair and decrypt under the three ordinary reversible GP29 field operations `P=C−K`, `P=C+K`, and `P=K−C` (mod29). No private phase or translation variant is fitted to unknown ciphertext. A full passage's English word spaces must survive its *actual original printed whole-word lengths*.
+
+Original physical p53 supplies the strongest explicit checkpoint: red span15 consists of **51 genuine runes** in **twelve whole words** with the original printed lengths `5,4,4,11,2,3,2,6,5,5,2,2`. It would pair with Hovamol spell15 (stanza161), whose first 51 GP-native symbols form a definite key. The source-calibrated TextBlob dictionary contains **29,060 distinct GP29 word spellings**, including positive types in every printed target word length.
+
+| Fixed stanza161-key original p53 decryptor | Recognized genuine printed word tokens, of 12 | Full 51-rune cipher reencryption | Source-native 12-word planted positive |
+| --- | ---: | --- | ---: |
+| `P=C−K` | **1/12** | Exact original input | **12/12** |
+| `P=C+K` | **0/12** | Exact original input | **12/12** |
+| `P=K−C` | **1/12** | Exact original input | **12/12** |
+
+Thus **none** of these three first-party motivated, zero-private-key direct source-aligned inverses yields an ordinary GP English original p53 red paragraph. This gate is narrower than all possible Hávamál ciphers: a keyed transposition, altered stanza/key phase, selective red masks, or a different English translation could still be invented, but would require independent instruction to constrain the choices. The original final red page57 is already *clear* GP29 `PARABLE`, so there is no justification for forcing all eighteen spans to undergo the same encryption operation regardless of the original solved-page status. The 18-count link remains a weak conjectural clue.
+
+Exact 18 original red spans, the 18 source spell numbers, all unchanged original rune values, original p53 split profile, complete forward/reverse cipher equations, the solved p57 `PARABLE` witness and every source-native positive are verified in the [read-only native GP29 SFT](../sims/lp2_hovamol_eighteen_charm_red_span_native_cipher_sft.cjs). Its committed Windows Node22 run [45089838734 passed](https://github.com/FlareZ123/liber-primus/actions/runs/45089838734). Avoid building more key-phase families on the count alone.
 
 ## Reproduce and stop criterion
 
