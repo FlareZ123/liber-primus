@@ -184,6 +184,65 @@ function mapSecret(p,states,reverse=false){
     return reverse?(((x-b+29)*inv(a))%29):((a*x+b)%29);
   });
 }
+/** 
+ * Independent pre-2014 historical-language native-GP registers:
+ * Old English Beowulf's pinned full GP29 stream, medieval Middle Welsh
+ * Mabinogion original, and original-language Old Norse Havamal.
+ * These are plausible alternative languages, never an author key.
+ */
+const beowulf=JSON.parse(read("resources/control/beowulf_oe_gp_profile_corrected.json"));
+const alpha=beowulf.positiveControlAlphabet;
+const beowulfGP=Array.from(beowulf.sourceGpBase29,ch=>alpha.indexOf(ch));
+assert.equal(beowulfGP.length,48012);
+assert(beowulfGP.every(x=>x>=0&&x<29));
+const historicalTokens=corpus.translit.map((s,i)=>({s,i})).sort((a,b)=>b.s.length-a.s.length);
+/** @param {string} raw @returns {number[]} */
+function historicalGP(raw){
+  const out=[];
+  for(const word of raw.match(/\p{L}+/gu)||[]){
+    const s=word.toUpperCase().replace(/Þ/g,"TH").replace(/Ð/g,"TH")
+      .replace(/Æ/g,"AE").replace(/Œ/g,"OE")
+      .replace(/[ØǪÖ]/g,"O").replace(/ỽ/g,"W").replace(/Ẏ/g,"Y")
+      .normalize("NFD").replace(/\p{M}/gu,"")
+      .replace(/QU/g,"CW").replace(/V/g,"U")
+      .replace(/[KQ]/g,"C").replace(/Z/g,"S");
+    for(let i=0;i<s.length;){
+      if(s.startsWith("ING",i)){out.push(21);i+=3;continue;}
+      if(s.startsWith("IO",i)){out.push(27);i+=2;continue;}
+      const t=historicalTokens.find(x=>s.startsWith(x.s,i));
+      assert(t,"invalid native GP for "+word+" at "+i);
+      out.push(t.i);i+=t.s.length;
+    }
+  }
+  return out;
+}
+const welshParts=read("resources/control/pwyll_pendeuic_dyuet_welsh_source.txt")
+  .split(/={20,}\r?\n\r?\n/u);
+assert.equal(welshParts.length,2);
+const medieval=[
+  ["Old English Beowulf",beowulfGP],
+  ["Middle Welsh Mabinogion",historicalGP(welshParts[1])],
+  ["Old Norse Havamal",historicalGP(
+    read("resources/control/havamal_old_norse_source.txt").replace(/^I\.\s*/u,""))]
+];
+const historicalReference=[];
+for(const [name,stream] of medieval){
+  const samples=[];
+  for(let i=0;i+12956<=stream.length;i+=12956){
+    const part=stream.slice(i,i+12956);
+    samples.push({top1:topK(part,1),top4:topK(part,4)});
+  }
+  assert(samples.length);
+  historicalReference.push({name,nativeRunes:stream.length,windows:samples.length,
+    minTop1:Math.min(...samples.map(x=>x.top1)),
+    minTop4:Math.min(...samples.map(x=>x.top4))});
+}
+assert.deepEqual(historicalReference.map(x=>[x.windows,x.minTop1,x.minTop4]),[
+  [3,1480,4442],[2,1601,5122],[1,1481,4919]
+]);
+assert(historicalReference.every(x=>x.minTop1>bounds.firstZero.U1.upper
+  && x.minTop4>bounds.firstZero.U4.upper));
+
 const nativePositive=planted;
 const originalNativeTop4=topK(nativePositive,4);
 const plantCipher=mapSecret(nativePositive,labels.firstZero,false);
@@ -216,6 +275,7 @@ console.log(JSON.stringify({
     pairs:source.lengths.length/2,p50Cells:bytes.length,printedZeroCells:60},
   allSecretBounds:bounds,
   independentNativeOriginalLengthWindows:reference,
+  sourcePlausibleHistoricalRegisters:historicalReference,
   typedPlantedNative: {GP29Length:nativePositive.length,top4:originalNativeTop4,
     encodedTop4Bound:occupancy(plantCipher,labels.firstZero,4).upper,
     exactRecovered:true,authenticP57RunesRecovered:p57.length},
