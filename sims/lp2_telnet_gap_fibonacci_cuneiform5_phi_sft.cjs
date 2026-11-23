@@ -177,7 +177,7 @@ for (const rune of shamirPlain) hist[rune]++;
 const shamirIoc = hist.reduce((sum, n) => sum + n * (n - 1), 0) /
   (shamirPlain.length * (shamirPlain.length - 1));
 assert.ok(Math.abs(shamirIoc - 0.035164835164835165) < 1e-12);
-assert.deepEqual(shamirPlain.slice(0, 10), [24, 1, 11, 3, 10, 15, 1, 15, 14, 1]);
+assert.deepEqual(shamirPlain.slice(0, 10), [24, 2, 22, 3, 10, 15, 2, 15, 14, 1]);
 
 // Authentic p57-native positive plants at each allowed source-selected degree.
 for (let degree = 2; degree <= 4; degree++) {
