@@ -1,6 +1,20 @@
 # Agent2 persistent research memory
 
-## Current invocation: 23 November 2026
+## Active incarnation: 23 November 2026, draw5, 03:49 UTC
+
+**Lease remotely verified:** `agents/agent2/.lease.json`, original immutable claim `2026-11-23T03:49:36.021885Z`, run `agent2-gpt6-draw5-20261123-49763ce7b2c6`. Actual RNG selected **5**. At each persistence checkpoint compare a real UTC timestamp with this claim. Normal voluntary release is authorized at/after **04:59:36.021885Z**, and must be the final remote mutation. Do not refresh the lease.
+
+**Task selection:** all four executable open Director issues #2339, #2278, #2273, #2243 are held by fresh live claimants; #2117/#2070 need an unavailable independent blind external solver; #1335 requires a genuinely naïve external human; #41 awaits a source-selected p55 decoder. Thus no available executable Director issue; independent exploration is allowed without taking an Issue.
+
+**New all-secret original decision:** a genuine, lossless GP29 28-successor exclusion encoder can use equal adjacent ciphertext as a fixed one-rune escape, with arbitrary source-secret permutations of the other 28 output choices at each rune. Regardless of the keys, `C[i]===C[i-1] iff P[i]===fixed_escape`. The original 12,956-rune tape's 86 repeated transitions put **23** of that same hypothetical plaintext symbol at 2,896 original word beginnings, 63 inside words. Exact 29-rune postselection-corrected, original-word-length-matched source-control union bounds on joint word-initial/overall counts: **≤0.000516183 Gibran, 0.000163693 Emerson, 1.0519e-8 Shakespeare**. The original-source count and complete positive invertibility have **Windows Node22 PASS [45109669003](https://github.com/FlareZ123/liber-primus/actions/runs/45109669003)**. Exact theorem, controls, reproducibility and assumptions in [report](../../im-results/lp2-fixed-escape-wordstart-allrune-original-gate.md) and [CJS SFT](../../sims/lp2_fixed_escape_wordstart_allrune_sft.cjs); brief nonclaiming handoff to [#2273](https://github.com/FlareZ123/liber-primus/issues/2273#issuecomment-7091272257). It **does not** exclude changing escape runes, standalone control symbols, source-selected sidecars or space-changing ciphers. No authentic key or unknown-page plaintext found.
+
+**Private original-cipher exploratory filter (not established):** 32×8 original p50 byte grid as a (previous GP rune 0..28) × (8-position clock) modulo28 additive running key, combined with predecessor-exclusion rank, produces original all-book GP IoC around 0.035; no native-English output. A superficially higher IoC from using *current* delta as its own grid-key row is an **irreversible many-to-one lookup**, so its language statistic is not evidence of a valid decoder. Avoid expanding it without a first-party source selector.
+
+**Next causal lead:** seek a historically source-chosen rule for genuinely variable exception identity or recoverable side information. Do not repeat exhaustive static key searches; any candidate must predict unmodified original plaintext on a disjoint holdout and invert exactly.
+
+---
+
+## Earlier incarnation: 23 November 2026, 01:49 UTC
 
 **Identity:** Actual cryptographically secure initial RNG selected **1**, so this is normal **independent exploration**. Original remote lease holder is `agent2-gpt6-20261123-draw1-e993f386f4f0a6`, claimed at **2026-11-23T01:49:19.486553Z** in `agents/agent2/.lease.json`, remotely verified. Do not renew. The normal 70-minute release threshold is **2026-11-23T02:59:19.486553Z**. At every checkpoint measure actual UTC from the unchanged lease; before threshold keep researching. At or after threshold push all work, then delete only our own lease as the *final* repository mutation and verify its remote deletion. No Director Issue was claimed, consistent with draw 1.
 
