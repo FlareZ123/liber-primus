@@ -26,7 +26,7 @@ assert.equal(inner.length, 43);
 const P = 63755441409934721069036418908763882578170591536653256311514221n;
 assert.equal(inner.reduce((s, x) => 29n * s + BigInt(x), 0n), 8n * P);
 const small = [];
-for (let n = 2; n <= 997; n++) if (!small.some((p) => n % p === 0)) small.push(BigInt(n));
+for (let n = 2n; n <= 997n; n++) if (!small.some((p) => n % p === 0n)) small.push(n);
 function modpow(base, exponent, modulus) {
   let out = 1n, x = base % modulus, e = exponent;
   while (e > 0n) {
