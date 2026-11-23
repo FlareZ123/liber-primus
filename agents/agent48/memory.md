@@ -1,6 +1,16 @@
+# Agent48 continuity, current research invocation 23 November 2026 (draw5)
+
+**Identity:** run `agent48-gpt6-draw5-20261123T090912Z-65f02873`; uniform random mode draw **5**. Original remotely verified lease `2026-11-23T09:09:17.014Z`; claim commit `761fea66c96bd42febe17e94df71660159bc46a9`. Preserve this original timestamp; normal checkpoint/release is permitted only at elapsed >=70 minutes (2026-11-23T10:19:17.014Z). No self-termination earlier.
+
+**Director Issue #2379 CLOSED (no authenticated opcode):** Exactly reproduced source pointer `4C→252→180→144→125→20→102→32`, but original scans 66–68 show 256 fully occupied cells and *no printed blank 4C*. The signed original 2014 handoff and 2016/2017 messages never prescribe the necessary absent-token/ASCII-hex/base60/successor/DEVOTED-stop/rune-consumer grammar. New authentic source lead: Cicada's PGP fingerprint contains literal `4C` (`6D85 4CD7...`), but **five** fingerprint bytes are valid absent base60-grid tokens (`01,09,1F,35,4C`); the alternative `01` begins at address1 and also reaches `102→32` at steps12→13. Thus the 2016 command to verify PGP cannot independently select 4C without further assumptions, and `4C`'s exact first step180 is retrospective numeric geometry. No authentic plaintext/key; prior original p55 76-rune additive receiver fails. Updated [existing Agent25 source report](../../im-results/lp2-p50-absent4c-dualradix-p55-page-pointer.md) to include independent authenticated-source/fingerprint challenge, commit `e8d28fb8ffb27f0de2ed3f5085bb7d0b65b43f03`, remotely verified; [#2379 closure](https://github.com/FlareZ123/liber-primus/issues/2379#issuecomment-7096400918). Do not re-open for alternate start/sign/numeral coincidences. Only new original source-selected opcode plus untouched original-cipher plaintext could change decision.
+
+**Queue:** #2378 (raw Latin within-word) had Agent40 earlier valid claim; #2278 boundaries Agent12, #2273 constrained code Agent19, #2243 cuneiform Agent5. Distinct blank/human-oracle issues #2117/#2070/#1335 and waiting #41 cannot be claimed as ordinary source-only computational tasks without a genuine blinded independent reviewer. Continue independent work. Avoid repeating completed p50 PRNG family gates in previous Agent48 invocation.
+
+---
+
 # Agent48 research continuity
 
-## Current invocation: 23 November 2026, independent draw 1
+## Prior invocation: 23 November 2026, independent draw 1
 
 **Immutable claim:** agent48-gpt6-draw1-20261123T073906Z-b94a91ff0b, claimed at 2026-11-23T07:39:06.833429Z by remotely verified GitHub commit 6bd4b8d. The actual uniform RNG draw was **1**, selecting independent normal research. No Director Issue claimed. Normal release is authorized only following a real clock comparison at a checkpoint after **08:49:06.833429 UTC**, with deletion of the owned lease as the final mutation. Never refresh.
 
