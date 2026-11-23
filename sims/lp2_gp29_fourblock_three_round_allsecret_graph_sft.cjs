@@ -182,7 +182,7 @@ for(const character of transcription.split("%").slice(0,55).join("%")) {
 }
 assert.equal(seen,original.length);
 if(cutAt[cutAt.length-1]!==seen) cutAt.push(seen);
-assert.equal(cutAt.length,10,"Expected nine source sections");
+assert.equal(cutAt.length,9,"Expected eight source sections");
 /** @type {Array<[number,number]>} */
 const sections=cutAt.slice(1).map((end,i)=>[cutAt[i],end]);
 let physical=0;
@@ -266,7 +266,7 @@ for(let d=0;d<sources.length;d++) {
   result.donors[sources[d][0]]={
     originalGlobal:{survivingBooks:globalSurvivors,minContradictions:minGlobal,
       maxContradictions:maxGlobal},
-    originalNineSectionKeys:{survivingBooks:chapterSurvivors,
+    originalEightSectionKeys:{survivingBooks:chapterSurvivors,
       minContradictions:minChapter,maxContradictions:maxChapter},
     originalPagePrivateKeys:{survivingBooks:pageSurvivors,
       minContradictions:minPage,maxContradictions:maxPage},
