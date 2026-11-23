@@ -41,17 +41,20 @@ assert.deepEqual(physicalNums,Array.from({length:56},(_,i)=>i)
 const pages=[];
 const sourceEventTape=[];
 const marks=[];
+let gapPending=false;
 for(let k=0;k<55;k++){
   const physical=physicalNums[k];
   const part=transcript[k];
   const start=sourceEventTape.length;
   let seenRunes=0,printedGaps=0;
   for(const ch of part){
-    if(runeIds.has(ch)){sourceEventTape.push(runeIds.get(ch));seenRunes++;}
-    else if('- .&$§'.includes(ch)&&!/\s/.test(ch)){
+    if(runeIds.has(ch)){
+      sourceEventTape.push(runeIds.get(ch));seenRunes++;gapPending=false;
+    }else if('- .&$§'.includes(ch)&&!/\s/.test(ch)&&!gapPending){
       sourceEventTape.push(29);
       marks.push(ch);
       printedGaps++;
+      gapPending=true;
     }
   }
   assert.equal(seenRunes,c.pages[physical].indices.length);
@@ -125,9 +128,12 @@ for(const sign of [-1,1]){
 // A complete solved genuine author-native p57 plaintext has its real
 // printed gaps. Seed a separate 99-cell key clock; assert exact transform.
 const solved57=[];
+let priorGap=false;
 for(const ch of transcript[56]){
-  if(runeIds.has(ch))solved57.push(runeIds.get(ch));
-  else if('- .&$§'.includes(ch)&&!/\s/.test(ch))solved57.push(29);
+  if(runeIds.has(ch)){solved57.push(runeIds.get(ch));priorGap=false;}
+  else if('- .&$§'.includes(ch)&&!/\s/.test(ch)&&!priorGap){
+    solved57.push(29);priorGap=true;
+  }
 }
 assert.deepEqual(solved57.filter(x=>x<29),c.pages[57].indices);
 assert(solved57.length>99);
