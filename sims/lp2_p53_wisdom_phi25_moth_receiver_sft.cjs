@@ -42,14 +42,14 @@ function sha256(values) {
 }
 
 /** @param {string} source @param {number[]} indices @param {string[]} runes @param {string[]} translit */
-function preserveLayout(source, indices, runes, translit) {
+function preserveLayout(source, sourceIndices, outputIndices, runes, translit) {
   const index = new Map(runes.map((rune, i) => [rune, i]));
   let position = 0;
   const result = source.replace(/\p{Script=Runic}/gu, rune => {
-    assert.equal(index.get(rune), indices[position], 'source transcript must match canonical GP29 rune');
-    return translit[indices[position++]];
+    assert.equal(index.get(rune), sourceIndices[position], 'source transcript must match canonical GP29 rune');
+    return translit[outputIndices[position++]];
   });
-  assert.equal(position, indices.length);
+  assert.equal(position, sourceIndices.length);
   return result;
 }
 
@@ -63,7 +63,7 @@ function run() {
   const reference = fs.readFileSync(
     path.join(ROOT, 'resources/liber-primus/lp2-transcription.txt'), 'utf8')
     .split('%')[52]; // physical p53: p50 is numeric and has no rune-transcript segment.
-  const originalLayout = preserveLayout(reference, original, corpus.runes, corpus.translit);
+  const originalLayout = preserveLayout(reference, original, original, corpus.runes, corpus.translit);
 
   const key = SQUARE.map(value => phi(value) % 29);
   assert.deepEqual(key, KEY);
@@ -71,7 +71,7 @@ function run() {
   const { plaintext, consumed } = decode(original, key);
   assert.equal(consumed, 179);
   assert.deepEqual(encode(plaintext, key), original);
-  const outputLayout = preserveLayout(reference, plaintext, corpus.runes, corpus.translit);
+  const outputLayout = preserveLayout(reference, original, plaintext, corpus.runes, corpus.translit);
   assert.equal(plaintext.length, 179);
 
   const nativeReference = fs.readFileSync(
