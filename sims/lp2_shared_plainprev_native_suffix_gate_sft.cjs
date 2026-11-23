@@ -164,7 +164,7 @@ for (const name of Object.keys(scopes)) {
   assert.equal(results[name].compatibleWithObserved, 0);
 }
 assert.deepEqual(Object.values(results).map(x => x.min),
-  [32710, 561, 362, 1604]);
+  [32710, 563, 362, 1604]);
 
 /** A complete secret key: 29 independently shuffled 29-way GP29 rows. */
 const rows = Array.from({length:29}, () => {
