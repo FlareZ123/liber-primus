@@ -88,6 +88,14 @@ Every one of these original column streams therefore fails its direct historical
 
 This leaves cryptographic DRBG, independent nonlinear column transforms, skipped outputs, shuffled bytes, or original numbers used as *seeds*, ciphertext, or addresses. The required original instruction to turn these bytes into LP2 plaintext remains unidentified.
 
+## Full original ink I/l ambiguity gate
+
+A final source-integrity safeguard matters: **ten** printed tokens have a documented second-character uppercase-I/lowercase-l typography ambiguity (positions 2,25,45,50,90,165,175,182,199,246), giving up to **1,024** image-permitted byte streams per radix. The previous 2,300 counts applied to one conventional transcription of each radix; a different value at an ambiguous cell might otherwise rescue a generator.
+
+The exact hidden-state contradiction requires **only the first eight consecutive bytes** of each tested traversal. For each source-natural 256-byte row/column traversal and all eight independently seeded printed 32-byte column traversals, enumerate every original-I/l resolution at positions within *its first eight output bytes*. The I/l digit offset is **29 in base60**, but **28 in omitted-f base59**. Enumerating these directly covers every one of the 1,024 full-panel image readings for the stated necessary first-eight condition without repeating identical unaffected tail choices. There are **16 distinct first-eight windows per radix**, including 3 continuous and 13 column-local readings. Under 115 generator/slice laws, **32 × 115 = 3,680 exact source-allograph necessary tests**. **Zero** of these variants admits a hidden state matching even its first eight bytes (Java/drand48 1,312; glibc TYPE_0 768; MSVC 800; Numerical Recipes 800). The same planted generator controls remain positive.
+
+Therefore, the direct-output exclusions in this report apply to **all ten original I/l ink ambiguities**, including the cases where the very first byte window differs from the canonical transcription. The 3,680 allograph-aware tests **subsume**, rather than add to, the earlier 2,300 canonical radix/order/column tests. This is an exact necessary-condition proof for the four named fixed-slice, consecutive-output PRNGs, including eight independent column states. It does not authenticate any source-selected generator or resolve LP2 plaintext.
+
 ## Reproduce and research decision
 
 [Read-only Node.js 22 single-file SFT](../sims/lp2_p50_unwhitened_prng_state_rank_sft.cjs). Run it from the repository with Node.js 22; it reconstructs the original row/column streams, asserts the SHA-256 hashes of both radix readings, performs exact GF(2) elimination and the all-secret recurrence tests, and requires three independent positive plants to pass. It writes no files. The same calculations and plants passed locally on Node.js 22.16.0 using the source-token-identical fixture; the repository script reads the authoritative 256-cell JSON directly.
