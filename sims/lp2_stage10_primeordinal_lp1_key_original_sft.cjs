@@ -74,9 +74,13 @@ const show=(a,n)=>a.slice(0,n).map(x=>book.translit[x]).join("");
 function inv(cipher,key,sign) {
   return cipher.map((x,i)=>(x + sign*key[i%key.length]+29)%29);
 }
-for (const {target, key,sourceName} of [
-  {target:28,key:key14,sourceName:"2014 107.jpg"},
-  {target:39,key:key15,sourceName:"2014 167.jpg"}
+// The 2014 source names `0.jpg`–`57.jpg` make zero-based pages the
+// primary clock; include one-based ordinals as a second, frozen alternative.
+for (const {target, key,sourceName,indexing} of [
+  {target:27,key:key14,sourceName:"2014 107.jpg",indexing:"zero"},
+  {target:38,key:key15,sourceName:"2014 167.jpg",indexing:"zero"},
+  {target:28,key:key14,sourceName:"2014 107.jpg",indexing:"one"},
+  {target:39,key:key15,sourceName:"2014 167.jpg",indexing:"one"}
 ]) {
   const page=book.pages.find(p=>p.page===target);
   const c=page.indices;
@@ -91,7 +95,7 @@ for (const {target, key,sourceName} of [
   for (const [label,start,end] of [["training",0,hold],["holdout",hold,c.length]]) {
     const minus=realMinus.slice(start,end),plus=realPlus.slice(start,end);
     const control=positive.slice(start,end);
-    console.log("SOURCE_PAGE",sourceName,"target",target,label,
+    console.log("SOURCE_PAGE",sourceName,"indexing",indexing,"target",target,label,
       "n",minus.length,"minus_ioc",ioc(minus).toFixed(8),
       "plus_ioc",ioc(plus).toFixed(8),
       "native_planted_ioc",ioc(control).toFixed(8));
