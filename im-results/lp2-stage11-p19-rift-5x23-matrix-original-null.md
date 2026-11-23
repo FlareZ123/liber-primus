@@ -2,9 +2,9 @@
 
 ## Independent source and hypothesis
 
-The first-party 2014 Stage11 signed redirect (`resources/historical/cicada2014-stage11-message.asc`) presents whitespace-run sizes `2,3,5,7,11,13,17,23,29,31,37`. The consecutive-prime list omits **19**. A bounded earlier exploratory observation (see `sims/lp2_stage11_p19_rift_split_sft.cjs`) locates the word `RIFT` at the original physical LP2 page19 zero-based rune offset **152** (19 × the one-based ordinal8 of prime19). This 271-rune page splits into 152 runes, the four `RIFT` runes, and 115 runes. Removing the first 37 runes of its left fragment leaves **two 115-rune panels**, with 115 = **5×23**; 37,5,23 occur in the original prime margins.
+The first-party 2014 Stage11 signed redirect (`resources/historical/cicada2014-stage11-message.asc`) presents whitespace-run sizes `2,3,5,7,11,13,17,23,29,31,37`. The sequence matches the previously documented **OEIS A194954** prime subsequence and skips **19** by its own generating rule. The omission therefore **does not independently select LP2 page19**. A bounded earlier exploratory observation (see `sims/lp2_stage11_p19_rift_split_sft.cjs`) locates the word `RIFT` at the original physical LP2 page19 zero-based rune offset **152** (19 × the one-based ordinal8 of prime19). This 271-rune page splits into 152 runes, the four `RIFT` runes, and 115 runes. Removing the first 37 runes of its left fragment leaves **two 115-rune panels**, with 115 = **5×23**; 37,5,23 occur in the original prime margins.
 
-**All choices are exploratory.** The source does not explicitly select the address 19×8, discard the first37 runes, or request a matrix transposition. The earlier source SFT already tested direct additive folds. The present experiment tests a distinct, finite two-dimensional operation and its null, without optimizing candidate keys after looking at English.
+**All choices are exploratory.** A194954 independently explains the missing 19, and the source does not select the address 19×8, discard the first37 runes, or request a matrix transposition. The earlier source SFT already tested direct additive folds. The present experiment tests a distinct, finite two-dimensional operation and its null, without optimizing candidate keys after looking at English.
 
 ## Fixed 5×23 receiver and exact original-result test
 
