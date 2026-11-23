@@ -65,6 +65,8 @@ A second independent 200,000-trial Python Mersenne-Twister word-permutation cont
 
 ## Interpretation and missing cipher
 
+The exact candidate field is now subject to a stronger [cyclic-group obstruction and conditional DH exponent bound](lp2-p55-shedprime-gp29-subgroup-dh-obstruction.md): `P−1` is coprime to 29 and 43, and has greatest common divisor only 4 with 28. Thus no direct GP29 additive cyclic alphabet, 28-step nonrepeat wheel or 43-step clock can be realized as the corresponding multiplicative subgroup or full character in `GF(P)`. Using the conditional reconstructed p28 public values A=8/B=19 and this page-local generator Q also forces the private exponents to be at least 97,883,509,924,151 and 250,111,533,132,869 respectively, modulo an exactly known 50-bit subgroup. This excludes short historic-style DH secrets in this specific field, not other large-field consumers; the source-derived 43rd root of Q is well-defined but does not produce plaintext. The original p54→55 whole-word seam remains the prior and more fundamental selector objection.
+
 There is a compact potential player action: solved **SHED** clue → complete p55 word interiors → standard original BASE29 reading → a directly checkable 206-bit prime, with circumference integer independently carrying the number43. This is more operationally specific than a generic p55 prime-sum coincidence, but it **does not yet decode a rune**. A creator-authored rule must still explain why one should factor out eight, what the resulting prime is for, and how the circumference's 43 divisor directs an actual receiver. The 2013/2016 references and any interpretation as a DH key remain conjectural.
 
 ### One fully specified conditional DH computation and a finite consumer gate
