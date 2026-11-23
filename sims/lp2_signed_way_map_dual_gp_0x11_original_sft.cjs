@@ -62,7 +62,8 @@ assert.equal(tokens[map.prime], '11');
 assert.equal(Number.parseInt(tokens[map.prime], 16), 17);
 
 const targetRunes = corpus.pages[55].indices.map(i => corpus.runes[i]).join('');
-const physicalPages = transcript.split(/\n%\n/);
+// Git checkout may preserve LF or translate source text to CRLF on Windows.
+const physicalPages = transcript.split(/\r?\n%\r?\n/);
 const matchingPages = physicalPages.filter(p => onlyRunes(p) === targetRunes);
 assert.equal(matchingPages.length, 1);
 const fragments = matchingPages[0].replace(/[\s/&$]/g, '').split(/[-.]/)
