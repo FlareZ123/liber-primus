@@ -11,7 +11,7 @@ The image is `1CcV1.jpg`, originally referenced as `http://i.imgur.com/1CcV1.jpg
 
 The two files are byte-identical: **29,279 bytes**, SHA-256 `870353b8fbe4d1dd83fdbfc61b07d80213bab035526d3e5fd6a43f7d77db1ead`, Git blob SHA-1 `467a24a6f70bb589a994fd73ee37b6f9c7a827f8`. This agrees with the independent artifact comparison in [`Dukotah/cicada3301` REPORT-A.md](https://github.com/Dukotah/cicada3301/blob/fd13fe88a0bfef13f07c03c666b831e9ddae7f2d/corpus/A-primary-artifacts/REPORT-A.md), pinned to commit `fd13fe88a0bfef13f07c03c666b831e9ddae7f2d`.
 
-**Authentication boundary:** the direct 4chan upload has not been recovered as a separately hashable binary, and this first image has no preserved Cicada PGP signature. The two matching copies are byte-pinned community mirrors, consistent with contemporary reports, not a cryptographically authenticated 4chan download. This matches the existing [local first-image source record](../resources/historical/cicada2012-first-image-source.md). The Internet Archive/Imgur-derived 27,517-byte copy is not a substitute: it lacks the 61-byte trailer and has a different JPEG encoding.
+**Authentication boundary:** the direct 4chan upload has not been recovered as a separately hashable binary, and this first image has no preserved Cicada PGP signature. The two matching copies are byte-pinned community mirrors, consistent with contemporary reports, not a cryptographically authenticated 4chan download. This matches the existing [local first-image source record](../resources/historical/cicada2012-first-image-source.md). The alternate 27,517-byte copy documented in the local source record is not a substitute: it lacks the 61-byte trailer and has a different JPEG encoding.
 
 ## Channel 1: the post-EOI Caesar URL
 
@@ -33,7 +33,7 @@ The historical walkthrough [scream314/cicada3301/2012.md](https://github.com/scr
 outguess -r 1CcV1.jpg 1CcV1.jpg.out
 ```
 
-No password or additional flags are supplied. The extraction was reproduced in [workflow run 45287777862](https://github.com/FlareZ123/liber-primus/actions/runs/45287777862) using the repository's existing manual runner and OutGuess 0.4 source commit `24810e14327c2bbeedeaadd3e24491f2a4425c02`.
+No password or additional flags are supplied. The extraction was reproduced in [workflow run 45287777862](https://github.com/FlareZ123/liber-primus/actions/runs/45288446664) using the repository's existing manual runner and OutGuess 0.4 source commit `24810e14327c2bbeedeaadd3e24491f2a4425c02`.
 
 The run independently downloaded both pinned mirrors and verified that:
 
