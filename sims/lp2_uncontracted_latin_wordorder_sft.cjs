@@ -185,6 +185,54 @@ for (const representation of ["raw", "gp"]) {
   });
 }
 
+/* Authenticated author-style control: editor-normalized translations from
+   solved LP1. Exclude commentary/meta rows, numeric grids and continuation
+   editorial annotations. The corpus is a short, annotated author sample,
+   so do not treat its sliding comparison as an English-universality claim. */
+const lp1 = load("resources/liber-primus/lp1-plaintext-reference.txt")
+  .split(/\\r?\\n/)
+  .filter(line => line.trim() && !line.startsWith("#")
+    && !line.startsWith("[") && !/^\\d/.test(line))
+  .join(" ").toUpperCase().match(/[A-Z]+/g).map(word => Math.min(15, word.length));
+assert.equal(lp1.length, 761);
+const authorStyleModel = fit(donor.map(x => x.raw));
+const authorStyleGain = score(lp1, authorStyleModel);
+const sourceLength = originalLengths;
+let sourceBest = -Infinity, sourceExceed = 0, sourceMin = Infinity;
+for (let i = 0; i <= sourceLength.length - lp1.length; i++) {
+  const g = score(sourceLength.slice(i, i + lp1.length), authorStyleModel);
+  sourceMin = Math.min(sourceMin, g);
+  sourceBest = Math.max(sourceBest, g);
+  if (g >= authorStyleGain) sourceExceed++;
+}
+let lp1Seed = 0xacd334;
+function lp1Random() {
+  lp1Seed ^= lp1Seed << 13;
+  lp1Seed ^= lp1Seed >>> 17;
+  lp1Seed ^= lp1Seed << 5;
+  return lp1Seed >>> 0;
+}
+const lp1Null = [];
+for (let trial = 0; trial < 1000; trial++) {
+  const a = lp1.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = lp1Random() % (i + 1);
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  lp1Null.push(score(a, authorStyleModel));
+}
+const lp1NullMean = lp1Null.reduce((s, n) => s + n, 0) / lp1Null.length;
+const lp1NullSd = Math.sqrt(lp1Null.reduce((s, n) =>
+  s + (n - lp1NullMean) ** 2, 0) / (lp1Null.length - 1));
+const authorStyle = { source: "editor-normalized solved LP1 plaintext",
+  words: lp1.length, nativeGain: authorStyleGain,
+  nativeVsShuffledZ: (authorStyleGain - lp1NullMean) / lp1NullSd,
+  originalWindows: sourceLength.length - lp1.length + 1,
+  originalMinimum: sourceMin, originalMaximum: sourceBest,
+  originalExceedances: sourceExceed };
+assert.equal(authorStyle.originalWindows, 2136);
+assert.equal(authorStyle.originalExceedances, 0);
+
 /* Freeze eight source-visible historical-style line-order alternatives;
    these are tests, not discovered decipherment operations. */
 const linesByPage = new Map();
@@ -218,5 +266,5 @@ const lineOrders = Object.entries(orderFns).map(([name, reorder]) => {
 });
 console.log(JSON.stringify({ source: "original LP2 p0-55 + three pinned control corpora",
   original: { runes: limit, words: N, one: 83, two: 448 },
-  marginals, orderEvidence, lineOrders }, null, 2));
+  marginals, orderEvidence, authorStyle, lineOrders }, null, 2));
 console.log("PASS: full original source and all independent control windows");
