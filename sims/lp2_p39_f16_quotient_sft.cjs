@@ -79,6 +79,60 @@ function blockMap(m,v) {
   }
   return out;
 }
+
+/** @param {number[]} a @returns {number[]} */
+function trimPolynomial(a) {
+  let n=a.length;
+  while(n>0 && a[n-1]===0)n--;
+  return a.slice(0,n);
+}
+/** @param {number[]} a @param {number[]} b @param {number} sign @returns {number[]} */
+function addPolynomial(a,b,sign=1) {
+  return trimPolynomial(Array.from({length:Math.max(a.length,b.length)},
+    (_,i)=>mod((a[i]||0)+sign*(b[i]||0))));
+}
+/** @param {number[]} a @param {number[]} b @returns {number[]} */
+function multiplyPolynomial(a,b) {
+  if(!a.length || !b.length) return [];
+  const out=Array(a.length+b.length-1).fill(0);
+  for(let i=0;i<a.length;i++) for(let j=0;j<b.length;j++)
+    out[i+j]=mod(out[i+j]+a[i]*b[j]);
+  return trimPolynomial(out);
+}
+/** @param {number[]} a @param {number[]} b @returns {{q:number[],r:number[]}} */
+function dividePolynomial(a,b) {
+  assert.ok(b.length && b[b.length-1]!==0);
+  let r=trimPolynomial(a);
+  const q=Array(Math.max(0,a.length-b.length+1)).fill(0);
+  const invLead=inverse(b.at(-1));
+  while(r.length>=b.length) {
+    const shift=r.length-b.length,coeff=mod(r.at(-1)*invLead);
+    q[shift]=coeff;
+    for(let i=0;i<b.length;i++)r[shift+i]=mod(r[shift+i]-coeff*b[i]);
+    r=trimPolynomial(r);
+  }
+  return {q:trimPolynomial(q),r};
+}
+/** @param {number[]} key @param {number[]} modulus @returns {number[]} */
+function invertPolynomialModulo(key,modulus) {
+  let a=trimPolynomial(modulus), b=trimPolynomial(key), u=[],v=[1];
+  while(b.length) {
+    const {q,r}=dividePolynomial(a,b);
+    [a,b]=[b,r];
+    [u,v]=[v,addPolynomial(u,multiplyPolynomial(q,v),-1)];
+  }
+  assert.equal(a.length,1,'p50 source quotient must be invertible in the 240-cycle');
+  return dividePolynomial(u.map(x=>mod(x*inverse(a[0]))),modulus).r;
+}
+/** @param {number[]} a @param {number[]} b @returns {number[]} */
+function cyclic240(a,b) {
+  assert.equal(a.length,240);
+  assert.equal(b.length,240);
+  const v=multiplyPolynomial(a,b),out=Array(240).fill(0);
+  for(let i=0;i<v.length;i++)out[i%240]=mod(out[i%240]+v[i]);
+  return out;
+}
+
 function run() {
   assert.equal(grid.bytes.length,256);
   const hash=crypto.createHash('sha256').update(Buffer.from(grid.bytes)).digest('hex');
@@ -130,6 +184,37 @@ function run() {
       }
     }
   }
+
+  // A separate no-secret original receiver: 240-symbol cyclic polynomial
+  // convolution by the exact normalized table quotient, over GF29[x]/(x^240-1).
+  // Both coefficient directions and both input directions are frozen.
+  const normalizedQ240=divMonic(monic,F).q.concat([0]);
+  assert.equal(normalizedQ240.length,240);
+  assert.deepEqual(mul(normalizedQ240,F).slice(0,255),monic);
+  const modulus240=[28,...Array(239).fill(0),1];
+  for(const orientation of ['printed','reversed']) {
+    const cipher=orientation==='printed'?original.slice().reverse():original.slice();
+    for(const quotientOrder of ['printed','reversed']) {
+      const quotient=quotientOrder==='printed'
+        ?normalizedQ240.slice():normalizedQ240.slice().reverse();
+      const inverseKey=invertPolynomialModulo(quotient,modulus240);
+      const inverseLength240=inverseKey.concat(Array(240-inverseKey.length).fill(0));
+      const forward=cyclic240(cipher,quotient);
+      const decoded=cyclic240(cipher,inverseLength240);
+      assert.deepEqual(cyclic240(decoded,quotient),cipher);
+      const plantedNative=Array.from({length:240},(_,i)=>solved[i%solved.length]);
+      assert.deepEqual(cyclic240(cyclic240(plantedNative,quotient),inverseLength240),
+        plantedNative);
+      results.push({operation:'cyclic240 quotient receiver',orientation,quotientOrder,
+        forwardIoC:ioc(forward),inverseIoC:ioc(decoded),
+        forwardPrefix:gp(forward.slice().reverse().slice(0,32)),
+        inversePrefix:gp(decoded.slice().reverse().slice(0,32))});
+    }
+  }
+  const cyclicCases=results.filter(x=>x.operation==='cyclic240 quotient receiver');
+  assert.equal(cyclicCases.length,4);
+  assert.ok(cyclicCases.every(x=>x.forwardIoC<0.04 && x.inverseIoC<0.04));
+
   const divisions=results.filter(x=>x.operation==='factor16 division');
   assert.ok(Math.abs(divisions[0].quotientIoC-0.033311979500320305)<1e-12);
   assert.ok(Math.abs(divisions[1].quotientIoC-0.03343209481101858)<1e-12);
@@ -139,6 +224,6 @@ function run() {
   console.log(JSON.stringify({source:'unchanged p39/p50 and p15 spiral',
     sourceP39IoC:ioc(original),positivePlantedNative:224,
     solvedP57IoC:ioc(solved),results},null,2));
-  console.log('PASS: exact table factor, original replay, native plant, all 8 circulant replays');
+  console.log('PASS: table factor; 224/16 reconstruction; native plants; eight 16-wide and four cyclic240 quotient receiver inverses');
 }
 run();
