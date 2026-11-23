@@ -160,7 +160,7 @@ const nativeNinePlant=native.slice(0,12956);
 const chapterCipher=[];
 for(let chapter=0;chapter<chapterStarts.length-1;chapter++) {
   for(let i=chapterStarts[chapter];i<chapterStarts[chapter+1];i++) {
-    const phase=i-chapterStarts[chapter];
+    const phase=(i-chapterStarts[chapter])%period;
     const secretShift=(17*phase*phase+13*chapter+11*phase+5)%29;
     chapterCipher.push((nativeNinePlant[i]+secretShift)%29);
   }
