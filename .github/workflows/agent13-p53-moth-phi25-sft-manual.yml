@@ -1,0 +1,13 @@
+name: Agent13 p53 moth phi25 one-source SFT
+on:
+  workflow_dispatch:
+jobs:
+  source-gate:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Frozen p05 square key on original p53
+        run: node sims/lp2_p53_wisdom_phi25_moth_receiver_sft.cjs
