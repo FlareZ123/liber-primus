@@ -96,7 +96,7 @@ function subgroupLog(g, h, order, prime) {
   throw new Error('No subgroup logarithm: original candidate group assertion failed');
 }
 
-// Complete published factorization of P-1; the 160-bit last prime prevents
+// Complete published factorization of P-1; the 157-bit last prime prevents
 // the present subgroup computation from identifying the full group logarithm.
 const small = [4n, 5n, 41n, 49477n, 15535963n];
 const hard = 101149063843788281988908603592862658065019147521n;
