@@ -17,6 +17,9 @@ const root = path.resolve(__dirname, '..', 'resources', 'liber-primus');
 const read = (name) => fs.readFileSync(path.join(root, name), 'utf8');
 const corpus = JSON.parse(read('lp2-corpus.json'));
 const ink = JSON.parse(read('lp2-ink-annotations.json'));
+const typography = JSON.parse(read('lp2-quote-punctuation-spans.json'));
+const apostrophes = typography.source_visible_apostrophes;
+assert.equal(apostrophes.length, 4);
 const printed = read('lp2-transcription.txt').split('%');
 const alphabet = new Set(corpus.runes);
 const wordBreaks = new Set(['-', '.', '⁘', '⁚', '⁜', '⁕']);
@@ -88,6 +91,8 @@ let pageCount = 0;
 let redTotal = 0;
 let redRunCount = 0;
 let markCount = 0;
+let sourceApostropheCount = 0;
+let pageApostropheBits = 0;
 let pageSeamTotal = 0;
 let pagewiseAtMostRepeatLoss = 0;
 let pagewiseExactRepeatLoss = 0;
@@ -124,6 +129,17 @@ for (let segment = 0; segment < printed.length; segment += 1) {
   const m = marks.length;
   const n = source.indices.length;
   const slots = boundary.size;
+
+  // Four source-ink tall apostrophes are fixed to physical p4/p21/p35/p41.
+  // Give each one ANY rune seam of its original page, even invalid positions
+  // between words or at page edges; this exceeds actual within-word mobility.
+  for (const apostrophe of apostrophes.filter((x) => x.page === page)) {
+    assert(apostrophe.local_before_rune >= 0 && apostrophe.local_before_rune <= n);
+    assert(!boundary.has(apostrophe.local_before_rune),
+      'Original apostrophe is genuinely inside its printed word: p' + page);
+    sourceApostropheCount += 1;
+    pageApostropheBits += Math.log2(n + 1);
+  }
 
   // Generous: ordered, fixed-length red intervals can start at ANY rune
   // seam, so they need not even be at source word boundaries in a code.
@@ -162,6 +178,7 @@ assert.equal(repetitions, 86);
 assert.equal(redTotal, 213);
 assert.equal(redRunCount, 16);
 assert.equal(markCount, 31);
+assert.equal(sourceApostropheCount, 4);
 assert.equal(pageSeamTotal, 2983);
 
 const markerLabels = logChoose(31, 3) + Math.log2(31);
@@ -169,6 +186,7 @@ const lost = lostBits(transitions, repetitions);
 const combined = redPositionBits + markWordBoundaryBits + markerLabels;
 const strictCombined = redWordBoundaryBits + markWordBoundaryBits + markerLabels;
 const oneExtraBitPerRedRun = combined + redRunCount;
+const combinedIncludingFourPageLockedApostrophes = combined + pageApostropheBits;
 // Global mark movement is more permissive than the observed per-page
 // totals: allow 31 marks to occupy ANY 3,008 candidate printed word gaps.
 // This grants 25 nonexistent gaps beyond the original 2,983.
@@ -189,6 +207,8 @@ near(markWordBoundaryBits, 154.98966699083067);
 near(redWordBoundaryBits, 86.62198765948989);
 near(markerLabels, 17.088301710788684);
 near(combined, 290.82670205298956);
+near(pageApostropheBits, 32.316950008708844);
+near(combinedIncludingFourPageLockedApostrophes, 323.1436520616984);
 near(strictCombined, 258.69995636110923);
 near(pagewiseAtMostRepeatLoss, 430.5612013481064);
 near(pagewiseExactRepeatLoss, 445.73155790087196);
@@ -198,6 +218,8 @@ assert(pagewiseAtMostRepeatLoss > redFixedPagesMarksGlobalBits);
 assert(pagewiseExactRepeatLoss > allSidecarsGlobalBits);
 assert(lost > combined);
 assert(lost > oneExtraBitPerRedRun);
+assert(lost > combinedIncludingFourPageLockedApostrophes);
+assert(pagewiseAtMostRepeatLoss > redFixedPagesMarksGlobalBits + pageApostropheBits);
 
 console.log(JSON.stringify({
   source: 'original LP2 p0–p55; runeless p50 omitted in transcript',
@@ -209,6 +231,10 @@ console.log(JSON.stringify({
   generouslyAssignedThreeTenOneBlackBits: markerLabels,
   combinedSidecarUpperBits: combined,
   deficitBits: lost - combined,
+  sourceVisibleApostropheCount: sourceApostropheCount,
+  apostropheRuneSeamBitsOnFixedPages: pageApostropheBits,
+  allRedRunsLargeMarksAndApostrophesCapacityBits: combinedIncludingFourPageLockedApostrophes,
+  allThreeSidecarsUniformRepeatDeficitBits: lost - combinedIncludingFourPageLockedApostrophes,
   strictWordAnchoredRedUpperBits: strictCombined,
   withExtraBinaryPerRedRunBits: oneExtraBitPerRedRun,
   withExtraBinaryPerRedRunDeficit: lost - oneExtraBitPerRedRun,
@@ -219,6 +245,7 @@ console.log(JSON.stringify({
   globallyMovableLargeMarksBits: globallyMovableMarksBits,
   globalMarksLocalRedCapacityBits: redFixedPagesMarksGlobalBits,
   globalMarksLocalRedDeficitBits: pagewiseAtMostRepeatLoss - redFixedPagesMarksGlobalBits,
+  globalMarksLocalRedPlusApostrophesDeficitBits: pagewiseAtMostRepeatLoss - redFixedPagesMarksGlobalBits - pageApostropheBits,
   globallyMovableOrderedRedBits: globallyMovableOrderedRedBits,
   allSidecarsGlobalCapacityBits: allSidecarsGlobalBits,
   globallyMovableExactRepeatDeficitBits: pagewiseExactRepeatLoss - allSidecarsGlobalBits
