@@ -1,0 +1,17 @@
+name: Agent11 p0 red13 p50 AES256CTR original
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/agent11-p0-red13-p50-aes256ctr-original.yml'
+      - 'sims/lp2_p0_red13_p50_fifth_aes256ctr_original_sft.cjs'
+jobs:
+  aes256ctr_original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sims/lp2_p0_red13_p50_fifth_aes256ctr_original_sft.cjs
