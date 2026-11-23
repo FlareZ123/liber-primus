@@ -46,6 +46,16 @@ The reproducible script encodes actual words of Shakespeare, Gibran, and Emerson
 
 The **final-six** variant is unexpectedly stronger than summing all windows: aggregating arbitrary interior output-pairs increases original ciphertext collision capacity faster than it increases some native signature repeats. The 10 Emerson page-private controls passing the final-six bound are genuine witnesses against an indiscriminate 'all four-history tables are impossible' claim. Even failure in all 128 Shakespeare/Gibran samples is a **finite original-native-register comparison**, not a logical impossibility for all English or artificial plaintext. Full 29×29 native forward plants satisfy both inequalities and reproduce their ciphertext exactly.
 
+## Exact key/letter gauge: 812 equivalent parametrizations unless the plaintext spelling is fixed
+
+The sum-state model has a **predictable full affine alphabet symmetry** useful for normalizing any future blind joint optimizer. For every `u∈GF(29)^×` and `v∈GF(29)`, set `P'_i=u P_i+v`, so `s'_i=u s_i+4v`, and redefine every secret row by
+
+```
+A'[s'][p'] = A[(s' - 4*v) * u^-1 mod29][(p' - v) * u^-1 mod29].
+```
+
+This changes neither `C_i` nor any plaintext word boundary, and every transformed row remains a true bijection. It is therefore an exact **29×28 = 812-element family** of cipher/key/hidden-plain-coordinate-equivalent solutions when the initial four plaintext state symbols may transform to `v`. If the cipher requires a publicly fixed **zero** plaintext IV, only the **28 pure-scaling transforms** (`v=0`) preserve that IV without changing the protocol. Natural GP29-English spelling/known plaintext can break this symmetry by fixing a coordinate frame; ciphertext plus word boundaries alone cannot. The single-file SFT constructs 25 separate nontrivial affine gauges on a complete 12,956-rune native planted manuscript and asserts identical ciphertext and 29! row validity under the transformed IV. Recovering a blind key should measure performance **up to this affine gauge** before asking whether the recovered text has its intended GP-native spelling; this prevents treating mathematically equivalent keys as optimizer failures.
+
 ## Complete original-cipher test of a tractable reversible subfamily
 
 The affine-row subfamily `A[s][p] = (p + a*s + b) mod 29` is an exactly invertible, low-dimensional special case, with `a,b ∈ {0,..,28}`. Both source-visible reset choices are frozen: **one global zero four-rune IV**, or **a new zero four-rune IV at each physical page start**. All 841 keys are exhausted separately under each policy, no fitted page-private coefficients. Every original rune is decrypted sequentially by induction, then scored on original training pp16–21; untouched pp40–53 remains an independent original source check.
