@@ -74,6 +74,27 @@ assert.deepEqual([power(expectedK, e, 29), power(expectedA, e, 29), power(expect
 const Q = multiply(G, [1, M(-e)]);
 assert.deepEqual(Q, [15, 18, 12, 6]);
 
+// An independently *visible* source selector for e=3 is the three consecutive
+// p29 original terminal runes immediately preceding the two DH public values.
+// With p39 G fixed, exactly one field-linear factor makes its three trailing
+// coefficients equal that unchanged printed triple. This was recognized
+// retrospectively, not an independently prospective discovery test.
+const originalEnd = pages[29].indices.slice(-6);
+assert.deepEqual(originalEnd, [5, 18, 12, 6, 8, 19]);
+const triples = [];
+for (let rootCandidate = 0; rootCandidate < 29; rootCandidate++) {
+  const trial = multiply(G, [1, M(-rootCandidate)]);
+  if (trial.slice(1).every((v, i) => v === originalEnd[i + 1])) {
+    triples.push({root: rootCandidate, coefficients: trial});
+  }
+}
+assert.deepEqual(triples, [{root: 3, coefficients: Q}]);
+const zeros = x => Array.from({length:29}, (_, rootCandidate) => rootCandidate)
+  .filter(rootCandidate => jet(x, rootCandidate)[0] === 0);
+assert.deepEqual(zeros(pages[29].indices), [3, 24]);
+assert.deepEqual(zeros(pages[28].indices), []);
+assert.deepEqual(zeros(pages[33].indices), [4, 14]);
+
 const r28 = divide(pages[28].indices, Q);
 const r33 = divide(pages[33].indices, Q);
 const r29 = divide(pages[29].indices, Q);
@@ -134,6 +155,8 @@ for (const [num, original] of [[28, r28], [33, r33], [29, r29]]) {
     'solved-p57 plant IoC', ioc(plant).toFixed(9));
 }
 console.log('Q(X)=', Q.join(','), 'p28/p33 unique R=', R.join(','), 'p29 R=0');
+console.log('p29 original terminal middle3 independently selects unique X-3 factor:', JSON.stringify(triples));
+console.log('p29 only GF29 linear roots [3,24] (24 double), no others');
 console.log('recovered historical DH:', JSON.stringify({p, g, a: recoveredA, b: bDH, A, B, K, ka}));
 console.log('p29 original prefix predicts terminal A,B:', JSON.stringify(last));
 console.log('PASS: 55-page syndrome census, original replay, three native plants');
