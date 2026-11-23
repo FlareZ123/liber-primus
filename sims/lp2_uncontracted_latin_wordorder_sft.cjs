@@ -190,9 +190,9 @@ for (const representation of ["raw", "gp"]) {
    editorial annotations. The corpus is a short, annotated author sample,
    so do not treat its sliding comparison as an English-universality claim. */
 const lp1 = load("resources/liber-primus/lp1-plaintext-reference.txt")
-  .split(/\\r?\\n/)
+  .split(/\r?\n/)
   .filter(line => line.trim() && !line.startsWith("#")
-    && !line.startsWith("[") && !/^\\d/.test(line))
+    && !line.startsWith("[") && !/^\d/.test(line))
   .join(" ").toUpperCase().match(/[A-Z]+/g).map(word => Math.min(15, word.length));
 assert.equal(lp1.length, 761);
 const authorStyleModel = fit(donor.map(x => x.raw));
