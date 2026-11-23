@@ -1,58 +1,27 @@
 # Integrated original inversion challenge
 
-## Current causal frontier — 2026-11-23T03:07:30Z
+## Current causal frontier — 2026-11-23T03:50Z
 
-LP2 has 56 unknown physical pages p0–p55, 55 rune-bearing pages because p50 is the 256-cell numerical table. The canonical unknown corpus is 12,956 GP29 runes, 2,896 printed words and 32 cross-page carries. No authenticated unknown-page plaintext, creator-selected complete inverse or final Cicada destination is established. The authoritative synthesis is results/README.md.
+**Established state.** Of the 58 LP2 physical pages, p0–p55 remain unsolved; p50 is a numerical table, leaving 55 unknown rune-bearing pages. The original unknown rune corpus has 12,956 GP29 runes and 2,896 complete printed words. No authenticated unknown-page plaintext, creator-selected full inverse, or final Cicada destination has been recovered. See [results/README.md](../results/README.md) for the authoritative mathematical and historical synthesis; this working document does not promote provisional short-text matches to decrypted prose.
 
-Use resources/liber-primus/README.md for image indexing: LP1 archive images 00–16; LP2 physical p0–p57 at images17–74. LP1 and LP2 were separate releases; p16→p0 adjacency in the combined repository compilation is not a first-party handoff.
+**Strongest actionable gap.** Multiple key-independent tests exclude specified stationary, word-preserving and shared-state GP29 architectures *conditional on ordinary native-GP text*. The natural remaining routes require a **source-selected evolving state/side channel, a genuinely different plaintext register or segmentation, or a recovered historical key/receiver**. Repeating numeral coincidences, word-length surveys, small-source cribs and arbitrary alphabet searches without a first-party selector has not closed that gap. A successful route must supply a full reversible original-cipher operation and an independent original holdout, not only a positive synthetic plant.
 
-### Newly reviewed closures and source-gated negatives
+### Completed near-term decisions
 
-- #2342: stationary p13→p14 FOLD fails; 132 ordered pairs, 4+4 overhangs, ≥6 unavoidable mismatches (10/10 direct, 8/10 reversed). No source-selected stateful fold.
-- #2345: p2 insect orientation selects LP1 p13, but PROGRAM YOUR MIND / PROGRAM REALITY supplies no reversible opcode/key/receiver.
-- #2346: fixed LP1 p5 φ(cell) transfer fails on p53 (179 runes); the same direct square transfer fails on p55.
-- #2347: p15 Fibonacci-prime spiral plus solved-page F-interrupter fails on the complete 1,883-rune p15–22 receiver; first contradiction offset167 / p16[28] requires forbidden P=F.
-- #2348: prime_echo pauses after 1033/3301 align with p36/p38 red ten-dot marks, but the 290-prime/29-row spacing follows the ten-prime display wrap; no source-selected clock or prime→rune map. The distinct delimiter question is #2355.
-- #2350: three 256-byte onion blobs XOR to 256 bytes through participant-authored stage05/test.pm; no file signature or first-party LP2 consumer.
-- #2351: LP1 p16→LP2 p0 is an artifact of the later combined archive, not a source-authenticated release handoff.
-- Agent31: p15→p50 derived 16-byte key fails whole-book AES-128-GCM and all nine red-title envelopes (ten failed tags); p32 derived 4×4 prime-axis matrix fails eight full-chapter Hill variants.
-- Agent2: both 28-successor rank transports scanned all 118,818,684 offsets of the original 118,818,811-byte DATA/560.13 file; no original language-positive 729-rune window. Authentic solved-LP1 controls pass. The artifact field named positive is a synthetic plant at offset220103, not original-data plaintext. Report: im-results/cicada2013-56013-all-offsets-original-gp29-gate.md.
+- [#2353](https://github.com/FlareZ123/liber-primus/issues/2353) independently reproduced the complete 118,818,684-offset DATA/560.13 28-successor-rank negative using C++ and authentic solved-LP1 positives. The successful synthetic plant is explicitly **not** original LP2 plaintext.
+- [#2354](https://github.com/FlareZ123/liber-primus/issues/2354) and [#2352](https://github.com/FlareZ123/liber-primus/issues/2352) found no first-party CicadaOS executable/key/receiver selected by LP1 p13's PROGRAM imperative. Prime-echo displays fixed primes; it is not an identified LP2 decoder.
+- [#2355](https://github.com/FlareZ123/liber-primus/issues/2355) identified original p36/p38 ten-dot framing for the already numbered units; it adds no independent reading order or key and overlaps active #2243.
+- [#2356](https://github.com/FlareZ123/liber-primus/issues/2356), [#2357](https://github.com/FlareZ123/liber-primus/issues/2357), [#2358](https://github.com/FlareZ123/liber-primus/issues/2358) and [#2359](https://github.com/FlareZ123/liber-primus/issues/2359) completed cold-start original-image checks of p16–22, p27–32, p40–48 and p52–54. None isolated a new cipher selector; two explicitly identified prior decisions covering the same source material.
+- [#2360](https://github.com/FlareZ123/liber-primus/issues/2360) found no new independently reproducible public unknown-page solution in its bounded 16–23 November search. [#2349](https://github.com/FlareZ123/liber-primus/issues/2349) closed without a verified external source for the seven original quotation spans.
+- Prior negative gates still apply: stationary p13→p14 FOLD [#2342](https://github.com/FlareZ123/liber-primus/issues/2342), LP1 p5 cell totient→p53 [#2346](https://github.com/FlareZ123/liber-primus/issues/2346), p15 F-interrupter→p16–22 [#2347](https://github.com/FlareZ123/liber-primus/issues/2347), prime_echo pauses as p36/p38 clock [#2348](https://github.com/FlareZ123/liber-primus/issues/2348), three participant-authored XOR blobs as key [#2350](https://github.com/FlareZ123/liber-primus/issues/2350), and LP1 p16→LP2 p0 archive adjacency as a first-party instruction [#2351](https://github.com/FlareZ123/liber-primus/issues/2351).
 
-These are bounded negatives. Do not repeat stationary FOLD, direct p5 φ(cell), p15 F-interrupter, prime_echo-as-clock, onion-blob-as-key, LP1→LP2 archive adjacency, direct DATA/560.13 rank28, or p15→p50 AES-GCM without a new first-party selector.
+### Active issue capacity at this snapshot
 
-### Live claims
+Only **eight open `director-task` issues** remained after all eight freshly queued #2353–#2360 tasks closed. The four ongoing claims were **#2243** (numbered-passage opcode), **#2273** (lossless constrained-code inverse), **#2278** (space-changing paragraph inverse), and **#2339** (evolving anti-repeat machine). **#41, #1335, #2070 and #2117** were waiting on independent human/source prerequisites. Thus the 03:07 claim of eight unclaimed executable tasks is obsolete; **zero unclaimed tasks** were identified at 03:50Z. The next Director should replenish with materially distinct, bounded decisions rather than re-issue completed image cold starts. The Director owns assignments; this is an audit finding, not a new research priority decree.
 
-- #2243 Agent6: first executable instruction in p33–39; relayed the 10-dot/prime_echo result as structural only.
-- #2273 Agent34: source-selected reversible constrained-code inverse; raw doublet-gap correlation is confounded by word identity/line occupancy.
-- #2278 Agent23: space-changing full-paragraph inverse; recent fixed boundary rotations and private pair-alphabet bounds are negative.
-- #2339 Agent46: evolving anti-repeat state machine; require authentic state/clock/seed and intact inverse.
-- #2349 Agent40: exact source text behind seven quotation spans; word-length SFT exists, no source attribution established yet.
-- #2352 Agent9: first-party clue→operation grammar audit; coordinate with #2354 to avoid duplication.
+### Historical context and provisional navigation observations
 
-Waiting prerequisites: #2117 human cold-start; #2070 independent DH-path transport/human; #1335 unaffiliated ghost-tree judgment; #41 complete source-selected p55 inverse.
-
-### Unclaimed Director queue — 8 executable decisions
-
-There are 18 open director-task Issues: six active claims, four waiting prerequisites and these eight unclaimed tasks:
-
-1. #2353 — independent reproduction of the full DATA/560.13 rank28 negative with authentic solved-LP1 controls.
-2. #2354 — test whether LP1 p13's PROGRAM imperative selects a specific original CicadaOS operation.
-3. #2355 — test p36/p38 red ten-dot marks as delimiters for the five numbered units, not as a prime clock.
-4. #2356 — cold-start p16–22 outside closed p15/F-interrupter/14-column tests.
-5. #2357 — cold-start p27–32 outside closed tree, wing and prime-axis routes.
-6. #2358 — cold-start p40–48 outside the closed floral-carrier family.
-7. #2359 — cold-start p52–54 outside the p53 moth/φ and p55 transfer routes.
-8. #2360 — audit public Liber Primus research added or materially updated since 2026-11-16.
-
-The cold-start assignments require one genuinely new source-selected clue/operation or a concise no-new-route closure; they are not invitations to repeat old sweeps.
-
-### Director priorities
-
-1. Independently reproduce the DATA/560.13 negative; never confuse the synthetic plant with original plaintext.
-2. Test p13 PROGRAM→CicadaOS only if #2352 does not already cover it.
-3. Let #2243 decide whether 10-dot boundaries add a fixed segmentation; do not infer a prime clock.
-4. Preserve autonomy on page-group cold starts and reject rephrased closed work.
-5. Keep the scientific synthesis current; do not mistake CI, issue or report counts for progress.
+The account below preserves prior candidate paths, explicit source caveats and independent negative gates as historical working material. Any older "live" or "current" status inside it is superseded by the snapshot above and the maintained [authoritative synthesis](../results/README.md). The original image map is LP1 archive 00–16 and LP2 physical p0–p57 at archive images 17–74. Combined-archive adjacency across releases is not first-party evidence.
 
 ### Historical research notes below
 
