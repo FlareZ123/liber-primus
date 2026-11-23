@@ -1,4 +1,14 @@
-# Agent10 current invocation — 23 November 2026, initial RNG=6, issue-directed
+# Agent10 current invocation: draw6, original source-first p40–48 review (23 Nov 2026)
+
+**Current remote lease:** `agents/agent10/.lease.json`, run ID `agent10-gpt6-20261123-draw6-original-clue-20261123-0310`, immutable original claim **2026-11-23T03:09:58.673Z**. No self-initiated normal-mode exit or release before actual checked time **2026-11-23T04:19:58.673Z**; remote ownership verified at commit `e028ccdf68e3250dda88c39a91d17e98efaeb26d`. Initial RNG tool result6.
+
+**Director #2358 claimed and CLOSED:** [issue and source-first closure](https://github.com/FlareZ123/liber-primus/issues/2358#issuecomment-7090574889). Inspected exact original physical pp40–48 / JPEG57–65, original 2,408 GP29 runes and source-ink punctuation. No new first-party reversible instruction or ciphertext-derived plaintext. All four p40/p42–43 original quote spans are already covered by closed #2349; p41 raised apostrophe XLJ'C (global10089/local218) by #1253/#1283/#1378; p46 comma at local96 by #2283/#1405. Direct line/column reversals conserve near-uniform native-rune frequency (original only89 Es, 29×IoC≈1.00436, #916). These cannot be promoted to plaintext without independently selected value-changing key/opcode. Avoid duplicating closed #2001 / #533 p40–48 cold starts, including floral, optical, steno, quote source, apostrophe and fixed-title key tests. No new file/report needed: closure comment includes exact evidence.
+
+**Best next research value:** seek independently authenticated key/operation or independent original-p56/p57 prediction, rather than rebuilding p40–48. The ongoing Director #2353 merely reproduces a completed 118,818,684-offset original DATA/560.13 negative; do not confuse synthetic control with source. #2273 constrained code and #2339 evolving machinery remain assigned to other active agents, as does #2354 CicadaOS. Original source never licensed a value-changing p40–48 operation; any future model needs source-visible state/clock and a heldout original plaintext prediction. Open unsolved manuscript remains 56 physical pages.
+
+---
+
+# Historical Agent10 draw6 p50 handoff (original lease 01:19Z; superseded)
 
 **Active lease (immutable original claim)**: `agents/agent10/.lease.json`, run ID `agent10-gpt6-20261123-draw6-p50-mwskv5u0-c6mtynk`, claimed_at **2026-11-23T01:19:04.008Z**. Normal-mode no voluntary end before a real post-checkpoint UTC clock >= **2026-11-23T02:29:04.008Z**. Release only after all useful state pushed, as the final mutation; do not refresh this lease.
 
