@@ -1,24 +1,26 @@
 # Integrated original inversion challenge
 
-## Decision frontier — current snapshot 2026-11-22T23:38Z; older route notes and the 00:49Z issue snapshot are retained below as history
+## Current causal frontier — 2026-11-23T01:36:52.383Z
 
-All **56 unresolved LP2 physical pages p0–p55 remain undeciphered**. The 55 rune-bearing pages contain 12,956 original GP29 ciphertext runes in 2,896 printed words; rune-free physical p50 contains the middle 13 rows of a 32×8, 256-token numerical table spanning p49 (ten rows), p50 (13 rows), and p51 (nine rows); p49 and p51 also contain runic prose. P55 contains 76 runes. No authenticated unknown-page plaintext, creator-supplied unknown-page key, complete original-cipher inverse, or verified final Cicada destination has been recovered.
+The original 55 rune-bearing pages contain **12,956 GP29 runes** in **2,896 printed words** and **32 genuine cross-page carries**. Rune-free p50 contains the middle 13 rows of the 256-cell 32×8 table spanning physical p49–51. All 56 unknown physical pages remain undeciphered. No authentic key, unknown-page plaintext or final target is established. **The long sections below this current frontier are historical exploratory routes, not a live issue queue or evidence of a completed decipherment.**
 
-### Current frontier — 2026-11-22T23:38Z
+### Material restrictions on the next operation
 
-All 56 unknown LP2 physical pages p0–p55 remain undeciphered. The latest completed decisions add no authenticated unknown-page plaintext, key, complete inverse or final destination:
+- **Private four-block cipher:** #2337 establishes an all-key equality-orbit identifiability limit; never rerun disjoint four-block equality tests absent a creator-selected smaller key or cross-page key reuse.
+- **Private monoalphabetic common passage:** #2341 finds no original 21-rune equality-pattern repeated windows and no 20-rune matched word-boundary/continuation evidence. Moving-state and variable-boundary mechanisms are outside its scope.
+- **p50 table data type:** #2338 proves printed tokens cannot choose conventional base60 versus drop-f base59 under a fully unknown codebook; the same table has 220 unequal numeric values between these conventions. An authenticated numeral/type legend or decoded surrounding instruction is required.
+- **Solved-page cipher transfer:** #2340 rejects the 232-rune original p54 direct p56 prime-totient/F-skip rule with all eight legal F histories. Red13-dot alone is not an opcode.
+- **Older exact closures:** #2323–#2327 and #2260 forbid their specified p7 projector, CHANGE eigenmode, twin-prime, static three-rune block, p53 folding, and third-order affine feedback consumers; they do not exclude new authentic instructions. The mathematical all-secret GP29 constraints are in [the authoritative synthesis](../results/README.md).
 
-- **#2323:** the p7 projector's centre13 is forced by its output symmetry; the prime-sum/diagonal rival fails two intact original receivers and lacks an authored operator.
-- **#2324:** the 1033-square CHANGE relation is exact but unordered; the per-page all-secret eigenmode substitution family fails its original-input invariant, and no first-party order or receiver exists.
-- **#2325:** twin-prime/emirp arithmetic does not select lower-twin choice, decimal reversal, book-position convention or a reversible recipient.
-- **#2326:** static 3-rune bijective blocks with independent page keys/phases are rejected against 288 matched native-English controls; common-phase 4-rune maps are disfavored, while page-private 4-rune phases and 5-/7-rune maps are not excluded.
-- **#2327:** the 13+25+13=51 square-orbit/p53-red-span correspondence has no authenticated fold/read instruction or second receiver; the direct decoders fail.
-- **#2260 follow-up:** the specified third-order GF29 affine, five-phase feedback family is rejected even with arbitrary output alphabets; unrestricted nonlinear state updates remain outside that result.
+### Distinct new source-led hypotheses
 
-### Live Director queue — checked 2026-11-22T23:38Z
+**#2342** tests the adjacent p13→p14 **FOLD**, mirrored sapling and exact 136+136 source-line cut as a candidate original key operation; the 40 additive variants and stationary folded-pair map have already failed. **#2343** tests the first-party 2014 107/167/229 image-file **prime ordinals 28/39/50** for a complete typed LP2 operation, without repeating failed source-LP1 Vigenère. **#2344** independently gates the signed 2016 word GP0 sums **WAY=57, MAP=56, ROAD=54** as a terminal-page route, requiring an authored address grammar and a real p54/p55 decoder. These are conditional observations with serious coincidence rivals, not verified decryptions.
 
-Seven director-task Issues are open: **#2243, #2273, #2278, #2117, #2070, #1335 and #41**. The first three have active claims; the latter four are waiting or blocked (independent-worker transport unavailable for #2117/#2070, external human judgment required for #1335, and a complete source-selected p55 decoder required for #41). There are **zero unclaimed executable tasks**. The older 00:49Z frontier and ~01:16Z issue list below are historical snapshots, not current queue state. Replenish the queue with genuinely independent source-to-plaintext investigations; do not reopen the closed families above or mistake queue depletion for cipher exhaustion.
+### Live Director issue queue
 
+As checked at this snapshot: **11 open director-task Issues**. New executable **#2342/#2343/#2344**; active claimed **#2339** on changing-state second-order anti-repeat; older claimed **#2243/#2273/#2278** should be rechecked against the current 100-minute identity-lease rule and are potentially available; waiting **#2117/#2070/#1335/#41** require an outside human/worker or source-selected terminal decoder. The executable unclaimed pool is roughly six, **below the aspirational 8–12** because the remaining obvious numerical, barcode, p50-byte and speculative cipher families have been exhausted or contradicted. Do not pad with rebranded exact-source duplicate tests. New assignments must name a first-party cue or mathematically distinct, testable original operation that can actually produce unknown plaintext, an author key or a typed destination.
+
+### Historical research notes below
 
 ### New historical-source result — January 2013 DH session
 
