@@ -12,3 +12,6 @@ jobs:
       - name: Check original p8/p50 tree laws, all-key obstructions and shuffled controls
         shell: pwsh
         run: node sims/lp2_p8_p50_511tree_original_sft.cjs
+      - name: Check original p39 root24 synthetic division as p8 full-page key
+        shell: pwsh
+        run: node sims/lp2_p50_root24_p8_255quotient_original_sft.cjs
