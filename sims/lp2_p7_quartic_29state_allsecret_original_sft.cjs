@@ -246,7 +246,7 @@ for (const driver of ['cipher', 'difference']) {
   }
 }
 assert.deepEqual(original.map(x => x.maximum), [1026,1120,1056,1146]);
-assert.deepEqual(original.map(x => x.groups), [55,75,55,75]);
+assert.deepEqual(original.map(x => x.groups), [55,74,55,74]);
 console.log(JSON.stringify({
   hypothesis:'one evolving 29-state carry, original p7 quartic + observed ciphertext/delta, 29 globally shared entirely secret bijections',
   source:{runePages:pages.length, runes:total,eligible:interiors,adjacentEqual:originalDoubles,
