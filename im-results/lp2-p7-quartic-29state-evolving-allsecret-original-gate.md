@@ -1,47 +1,73 @@
-# Original LP2: 29-state evolving quartic, all-key exclusion with authentic marks
+# Original LP2 p7 quartic state: all-secret source-segment collision obstruction
 
-**Agent46 · 23 November 2026 · conditional original-cipher theorem.** A compact changing-state GP29 first-difference cipher using the original p7 red-quartic can be excluded as the direct source-native GP English encoder **even if all 29 output alphabets are wholly unknown, nonlinear and globally shared, and even if the state restarts at every original source-visible large mark**. No unknown-page plaintext, author-selected opcode or authentic key is recovered.
+**Agent46, 23 November 2026. Original-cipher key-independent necessary condition. [Windows Node22 PASS 45104330372](https://github.com/FlareZ123/liber-primus/actions/runs/45104330372).** The visible p7→p8 five-red-word polynomial nominates a compact 29-state evolving first-difference GP29 cipher. For **both** natural choices of publicly observable update operand, the entire authentic 12,956-rune unknown manuscript exhibits so few repeated ciphertext differences within the same hidden state that it cannot resemble any of ten real native-GP literary texts *encrypted under the same machine*, even with an arbitrary secret 29! plaintext alphabet in **every state, every physical page and every genuine large-punctuation segment**, plus any of 29 initial seeds independently in every segment. This strengthens the earlier global-secret-alphabet monogram result by excluding the chapter-private escape under the stated English register. It recovers **no unknown plaintext, Cicada key, author-declared cipher opcode or final destination**.
 
-## Source-selected operand versus conjectured machine
+## Source prompt, explicitly conjectured receiver
 
-The five genuine complete red words ending original physical p7 have GP0 products **[11,26,8,15,2]**. Their ascending-coefficient interpretation gives \`Q(x)=11+26x+8x²+15x³+2x⁴ (mod29)\`. Source arithmetic: its fixed points are3,4, the next p8 rubric's two red-word products are4,3, and Q'(4)=17 is p8's terminal red-rune value. The polynomial identities are exact; **neither their ascending-degree interpretation nor a hidden carry update is an authenticated Cicada instruction**. Distinct earlier direct Q feedback, chapter-static difference substitutions and second-cipher-history Q receiver experiments are already closed.
+On original physical p7, the five completely red whole words have GP0 index-products **[11,26,8,15,2]**. An ascending-coefficient polynomial \`Q(x)=11+26x+8x²+15x³+2x⁴ (mod29)\` has exact field fixedpoints **3,4**; these match p8's two following complete red-word products **4,3**, and \`Q'(4)=17\` matches p8's terminal single red rune. These arithmetic and image facts are fixed by original p7/p8, and a human could compute them in GP29. **The coefficient direction and use of Q as a cipher state have never been selected by first-party instructions**; a separate mathematical clue or coincidence is a serious rival.
 
-The new **hypothetical** 2014-executable reversible machine is
-
-\`\`\`text
-D[p,j] = C[p,j] − C[p,j−1]            (mod29)
-P[p,j] = A_{S[p,j]}(D[p,j])
-S[p,j+1] = Q(S[p,j]) + X[p,j]        (mod29)
-X[p,j] = C[p,j]  OR  D[p,j]
-\`\`\`
-
-for every real rune j≥1 of physical page p. The first original ciphertext rune per page is a freely supplied IV excluded from the count. The 29 \`A_s\` are **arbitrary independent secret 29! GP29 permutations**, but each state's table is reused across pages and marks. Every physical page can choose a different fully secret starting carry s∈0..28. The second interpretation also allows a new secret carry after **every** genuine interior large mark. These are extra grants to the hypothesis. The previous original ciphertext rune remains unchanged across marks. There are **31** large marks within pp0–55, with **20 internal mark occurrences at 19 distinct eligible reset offsets**, producing **74** source segment runs (55 page starts +19 additional distinct cuts).
-
-## Exact theorem eliminating all private keys without fitting any
-
-Let \`H[g,q,s,d]\` count the unchanged original ciphertext steps \`D=d\` that visit state s in real source segment g, after seeding that segment with any q∈0..28 and running the declared Q update on observed C or D. For any particular candidate native-GP plaintext rune e and its hidden globally shared maps \`A_s\`, **only one** input value \`d_s=A_s⁻¹(e)\` can produce e per state. Hence every output possible under every secret map and every page/mark seed obeys:
+The fully specified **test hypothesis** operates on source physical-page GP29 ciphertext C and same-page difference D, ignoring printed spaces only as state-update events:
 
 \`\`\`text
-freq_P(e) <= B1 = Σ_s max_d Σ_g max_q H[g,q,s,d].
+D[p,j] = C[p,j] - C[p,j-1]                (mod29)
+P[p,j] = A[g, S[p,j]](D[p,j])
+S[p,j+1] = Q(S[p,j]) + X[p,j]             (mod29)
+
+X[p,j] = C[p,j]   [observable-ciphertext driver]
+      or D[p,j]   [observable-difference driver]
 \`\`\`
 
-This is an **overrelaxed upper bound**: it even lets a different secret seed be chosen for each state within the same segment. A real one-carry machine must share its seed across all states in that segment, so its possible common-rune count can only be smaller. All 12,901 source positions following their 55 original physical-page first glyphs are charged, including **86** equal-adjacent ciphertext transitions, and original punctuation offsets are independently read from the committed source annotations. Nothing is selected by English likelihood.
+For each real source segment g and each of 29 states s, **A[g,s] can be an unrelated, completely secret bijection of all 29 GP29 runes**. No shared key is required between pages, chapters or genuine punctuated units. A starting state \`S[g,0]\` may be independently any of 29 values. A source page's first rune is the public predecessor IV and is not counted as a decoded step. A new source-visible large mark can optionally restart the state while keeping the literally preceding ciphertext rune as the next input's predecessor. These are two alternative reset policies, neither declared by Cicada. This receiver is uniquely reversible under its fully private alphabet keys, but replay alone is insufficient to authenticate it.
 
-| State update operand | Reset scope | Independently seeded segments | Max possible count of any one plaintext rune |
+The original unknown pages p0–55 comprise **55 rune-bearing physical pages**, **12,956 original GP29 runes**, **12,901 eligible internal steps** and **86 within-page repeated adjacent runes**; p50 contains a numeral table and no rune sequence. The original ink data mark **31 large punctuation occurrences**, including **20 internal occurrences at 19 distinct eligible offsets**, so the optional real-mark reset makes **74** distinct private segments, versus **55** page-only units. All text and mark coordinates are original, source-adjudicated input rather than artificially chosen trial boundaries.
+
+## Exact new within-segment all-private theorem
+
+For any **one** segment g and secret initial state q, the entire series \`(state s,input difference d)\` depends only on **observed unchanged C** and declared Q. No secret key is involved. For two positions in the **same segment and same state**, the completely unknown bijection \`A[g,s]\` ensures
+
+\`\`\`text
+P[j] = P[k]  if and only if  D[j] = D[k].
+\`\`\`
+
+This equality-equivalence survives changing **all 29 alphabet permutations independently inside every segment**. Group the source's actual differences into histograms H[g,q,s,d] after seeding a segment at q∈{0..28}. Define within-state pair comparisons \`T_g(q)=Σ_s n(g,q,s)(n(g,q,s)-1)/2\` and equal-difference pairs \`E_g(q)=Σ_sΣ_d H(g,q,s,d)(H(g,q,s,d)-1)/2\`, with \`n(g,q,s)=Σ_d H(g,q,s,d)\`. For any choice of all secret seeds and all separately private alphabets, the true plaintext's same-state within-segment equality rate must obey
+
+\`\`\`text
+ρ = [Σ_g E_g(q_g)] / [Σ_g T_g(q_g)]
+  ≤ [Σ_g max_(q=0..28) E_g(q)] / [Σ_g min_(q=0..28) T_g(q)].
+\`\`\`
+
+This is a **deliberately overrelaxed exact inequality**: its numerator and denominator can use different imaginary seeds for the *same* segment, while a real solver has to use one seed throughout it. Both sources of alphabet freedom disappear from the proof. It is therefore a necessary source-cipher test across **all 29^(55 or74) possible secret seed tuples and all independent 29! output alphabets at every state and source segment**, without a fitted model.
+
+| State driver | Reset scope | Original source segments | Max equal pairs \`Σ max E\` | Min within-state comparisons \`Σ min T\` | **All-key original upper bound on ρ** |
+| --- | --- | ---: | ---: | ---: | ---: |
+| Current C | Page only | 55 | **2,157** | 53,756 | **0.0401257534** |
+| Current C | Page + genuine internal large marks | 74 | **2,059** | 50,749 | **0.0405722280** |
+| Current D | Page only | 55 | **2,237** | 53,479 | **0.0418295032** |
+| Current D | Page + genuine internal large marks | 74 | **2,108** | 50,342 | **0.0418735847** |
+
+Even the most generous state/mark interpretation can have **at most 4.1874%** equal plaintext pairs among positions in its own true private state classes under every secret alphabet and every segment seed.
+
+## Complete, independently authored native-language forward-encryption positives
+
+The exact source test fixes ten consecutive native-GP prose samples *independently of ciphertext fitting*: **five Gibran** source rune offsets [1000,11000,21000,31000,41000] and **five Shakespeare** offsets [20000,56000,92000,128000,164000]. Each is **12,956 actual GP29 symbols**, partitioned into precisely the 55 authentic source page lengths and 19 optional same-page large-mark cuts.
+
+For each one of the four machine variants, **each** of the ten native samples is **forward encrypted** under a newly seeded, fully independent secret bijection for every GP29 state and **every source segment**. The resulting 40 complete native-language private-key plants decode all 12,956 native source GP runes and reencrypt all 12,901 original-layout differences without a single mismatch. The detector measures true same-state pair equality under the planted original-length ciphertext, including the real punctuation reset positions. The per-mode **minimum among all ten independent native source plants** is:
+
+| Driver | Reset policy | Original all-secret maximal ratio | **Minimum of ten genuine native-GP full-length plants** |
 | --- | --- | ---: | ---: |
-| Observed current ciphertext C | Original pages | 55 | **1,026 / 12,901** |
-| Observed current ciphertext C | Pages plus genuine large marks | 74 | **1,120 / 12,901** |
-| Observed current difference D | Original pages | 55 | **1,056 / 12,901** |
-| Observed current difference D | Pages plus genuine large marks | 74 | **1,146 / 12,901** |
+| C | Page | **0.04012575** | **0.05906261** |
+| C | Page and genuine marks | **0.04057223** | **0.05862163** |
+| D | Page | **0.04182950** | **0.06300062** |
+| D | Page and genuine marks | **0.04187358** | **0.06322518** |
 
-The **most permissive upper bound is 1,146**. The least concentrated most-common-GP-rune count among **ten independently fixed, genuine prose controls** of the identical 12,901 interior-page output positions is **1,410**. Those ten GP29 books comprise five Gibran and five Shakespeare windows, at exactly the previously calibrated offsets [1000,11000,21000,31000,41000] and [20000,56000,92000,128000,164000]; each 12,956-rune source is split into the untouched original 55 physical page lengths before excluding each first glyph. Thus **none of the hidden 29!^29 globally shared substitution alphabets, nor any 29^55 page seeds or 29^74 mark seeds, can decode the authentic original LP2 source into any of those native-GP English controls under either update**. The hidden key search is mathematically unnecessary.
+All 40 source-native plants exceed the original **mathematical upper bound**, despite using genuinely unrelated 29! state-output alphabets at every original segment. This rejects the entire declared all-private Q+C-or-D state/cipher architecture as a **direct native-GP encoding of ordinary English of these measured source registers**, without making any language-scored key search. Comparison with ten windows of two literary works is empirical control evidence, not a proof about *all* grammatically possible texts or an authenticity certificate for the hypothetical cipher itself.
 
-## Complete executable source/positive controls and scope
+## Relationship to earlier global-key proof, and the real next decision
 
-The [single-file original-source Node22 CJS SFT](../sims/lp2_p7_quartic_29state_allsecret_original_sft.cjs) computes all four exact all-secret bounds from \`resources/liber-primus/lp2-corpus.json\`, \`lp2-ink-annotations.json\` and the two pinned genuine-English references. It also creates **four full original-geometry, 12,956-rune authentic GP-English plaintext plants** using 29 randomly seeded genuine bijections and physically correct page and optional dot-reset clocks. For each plant, full plaintext decoding and 12,901 exact forward reencryptions pass, and the plant satisfies the same overrelaxed theorem. **A synthetic roundtrip is an implementation invariant, never identification of the historical cipher.**
+The original [shared-key monogram theorem](../sims/lp2_p7_quartic_29state_allsecret_original_sft.cjs) also establishes a weaker but exact all-key limit when **one secret state alphabet is reused globally**. Original maximum appearance of any single plaintext rune under the four variants is respectively **1,026, 1,120, 1,056 and 1,146** among 12,901 steps. Ten fixed native-GP samples have minimum largest-rune count1,410. But if nine genuine illustration-delimited chapters each have a separately private 29-state lookup, the weaker mark-reset C-driver one-rune bound increases to **1,800**, leaving that old theorem inconclusive. The **within-segment equality theorem above is independent of all such global/chapter sharing assumptions**, and therefore resolves that loophole for the stated receiver.
 
-The result is an original-cipher **necessary condition** against the ten predeclared ordinary native-GP English sources. It cannot exclude deliberately frequency-balanced text, compressed/non-GP payload, ciphertext-dependent transpositions, altered spaces, additional hidden carries, plaintext-driven state transitions, different source-selected Q operands, or independent 29! alphabets separately supplied for every page/segment. That last escape would require an unauthenticated large amount of extra key material. The genuine lag2/lag3 collision profile and mark discontinuities cannot rescue this exact model once it fails a more basic all-secret one-letter frequency obstruction.
+**Decision:** retire this exact p7-quartic *observable C or D driven*, 29-state, first-difference, one-layer GP29 receiver as a candidate for direct ordinary native-English. Do **not** rescue it by sweeping hidden alphabet permutations, chapter-private maps, genuine mark-reset seeds or lucky starting states; no such change can beat the new within-segment invariant. A future mechanism would require a **different original source-selected operand** (for example genuinely plaintext-dependent state), a larger or secret-driven register, changed word segmentation, a further transposition/encoding layer, or authentic independent key material. None of these alternatives is asserted to be the intended path.
 
-**Research fork:** retire this fixed p7-quartic + public C/D state-update + globally shared 29-table family. Future work should first recover an *actual original author opcode/key*, a strictly different reversible register or ciphertext-selected next action. Do not retune 29 phase origins, hidden alphabets or stylistic plaintext scoring within this closed architecture.
+[Original-input Node22 CommonJS all-key SFT](../sims/lp2_p7_quartic_29state_allsecret_original_sft.cjs) checks Q arithmetic, 55/74 source units, four old monogram maxima and **all four new exact collision numerators and denominators**, authentic full-book GP text plants and all forward replay checks, and outputs full source-native score tables. [Original Windows Node22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45104330372). Other source controls: [p7/p8 original rubric](lp2-p7-p8-original-red-polynomial-fixedpoint.md), [direct historical Q receiver negative](lp2-p7-quartic-two-cipher-history-original-decision.md), [source large-mark annotations](../resources/liber-primus/lp2-ink-annotations.json), [live Director Issue #2339](https://github.com/FlareZ123/liber-primus/issues/2339).
 
-Previous literature within the shared repository: [source red p7 polynomial](lp2-p7-p8-original-red-polynomial-fixedpoint.md), [prior direct two-cipher-history Q negative](lp2-p7-quartic-two-cipher-history-original-decision.md), [stationary page-secret delta theorem](lp2-delta-pagekey-allsecret-capacity.md), [ink-mark source](../resources/liber-primus/lp2-ink-annotations.json), [live issue #2339](https://github.com/FlareZ123/liber-primus/issues/2339).
+**No unknown-page plaintext, authentic Cicada cipher, real decoding key, or confirmed destination has been recovered.**
