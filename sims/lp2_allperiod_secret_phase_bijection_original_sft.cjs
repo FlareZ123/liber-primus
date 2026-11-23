@@ -5,6 +5,7 @@
  *
  * Test scopes: one continuous 12,956-rune clock at all q=1..3301;
  * nine genuine illustration-chapter restarts at q=1..1000;
+ * 28 physical thirteen-dot mark restarts at q=1..1000;
  * 56 physical-page restarts at q=1..130 (including empty p50).
  * Each clock phase, and each segment if restarted, may have a private
  * arbitrary GP29 permutation. Same-(segment,phase) equality is invariant.
@@ -77,6 +78,20 @@ const ends = [0];
 for (const page of pages) ends.push(ends.at(-1) + page.indices.length);
 assert.equal(ends.at(-1), N);
 const pageSpans = pages.map((_, i) => [ends[i], ends[i + 1]]);
+const ink = JSON.parse(read('resources/liber-primus/lp2-ink-annotations.json'));
+assert.equal(ink.counts.red13 + ink.counts.black13, 31);
+const markCuts = [0];
+for (const entry of ink.pages.filter(p => p.page <= 55)) {
+  for (const mark of entry.large_punctuation || []) {
+    if (mark[1] === 13) markCuts.push(ends[entry.page] + mark[0]);
+  }
+}
+markCuts.push(N);
+markCuts.sort((a, b) => a - b);
+assert.equal(markCuts.length, 30); // 28 13-dot physical marks plus endpoints
+const markSpans = markCuts.slice(1).map((end, i) => [markCuts[i], end]);
+assert.equal(markSpans.filter(([a, b]) => a === b).length, 3);
+assert.equal(markSpans.at(-1)[1], N);
 const chapterPages = [0, 3, 8, 15, 23, 28, 33, 40, 54, 56];
 const starts = chapterPages.map(p => ends[p]);
 assert.deepEqual(starts,
@@ -166,6 +181,12 @@ const regimes = [
       donors: [478, 497, 494, 502, 475] },
       { q: 1000, original: 212,
         donors: [387, 369, 378, 370, 367] }] },
+  { label: '28-authentic-13dot-mark-restarts', maximum: 1000,
+    spans: markSpans,
+    checks: [{ q: 840, original: 256,
+      donors: [444, 457, 452, 470, 438] },
+      { q: 1000, original: 193,
+        donors: [363, 342, 364, 345, 352] }] },
   { label: '56-physical-page-restarts', maximum: 130,
     spans: pageSpans,
     checks: [{ q: 64, original: 636,
