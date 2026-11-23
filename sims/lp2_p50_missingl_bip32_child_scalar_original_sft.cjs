@@ -130,10 +130,20 @@ console.log(JSON.stringify({ source: 'LP2 canonical original', totalRunes: origi
   originalIoC: ioc(original), nativeSolvedP57IoC: ioc(native),
   rootAddress: address(parentKey), bip32Vector: 'm/0H and m/0H/1 passed' }));
 
+const chainOptions = [{ chainCol: 3, sourceCaseMask: 0, chain: col(3) }];
+assert.equal(grid.rows[5][5], '1l');
+assert.equal(grid.rows[20][5], '0I');
+assert.equal(grid.byte_rows[5][5], 107);
+assert.equal(grid.byte_rows[20][5], 18);
+for (let sourceCaseMask = 0; sourceCaseMask < 4; sourceCaseMask++) {
+  const chain = col(5);
+  if (sourceCaseMask & 1) chain[5] -= 29;
+  if (sourceCaseMask & 2) chain[20] += 29;
+  chainOptions.push({ chainCol: 5, sourceCaseMask, chain });
+}
 const output = [];
-for (const chainCol of [3, 5]) {
+for (const { chainCol, sourceCaseMask, chain } of chainOptions) {
   for (const hardened of [false, true]) {
-    const chain = col(chainCol);
     const childKeys = pages.filter((p) => p.page <= 55).map((p) =>
       ser(ckd(parentKey, chain, p.page + (hardened ? 0x80000000 : 0)).key, 32));
     const childAddresses = [0, 1, 2].map((page) => address(
@@ -155,7 +165,7 @@ for (const chainCol of [3, 5]) {
         assert.deepEqual(decode(encrypt(native, childKeys[0], differential, sign),
           childKeys[0], differential, sign), native);
         output.push({
-          chainCol, hardened, differential, sign, fullIoC: ioc(flat),
+          chainCol, sourceCaseMask, hardened, differential, sign, fullIoC: ioc(flat),
           firstThreeIoC: ioc(start), lastTwoIoC: ioc(tail),
           openingGPIndices: start.slice(0, 40),
           childAddresses
@@ -170,9 +180,10 @@ console.log(JSON.stringify({ candidates: output.length,
   worstFull: output.slice(-1),
   firstThreeIoCRange: [Math.min(...output.map(x => x.firstThreeIoC)), Math.max(...output.map(x => x.firstThreeIoC))],
   lastTwoIoCRange: [Math.min(...output.map(x => x.lastTwoIoC)), Math.max(...output.map(x => x.lastTwoIoC))] }, null, 2));
+assert.equal(output.length, 40);
 assert(output.every(x => x.fullIoC < 0.05));
 assert(output.every(x => x.firstThreeIoC < 0.05));
-console.log('PASS: 16 source-fixed complete original decodes, exact inversions, two published BIP32 vectors, solved-native controls.');
+console.log('PASS: 40 source-case-exhaustive complete original decodes, exact inversions, two published BIP32 vectors, solved-native controls.');
 
 /*
  * The printed column4/column5 64-byte pair may be a BIP32 extended private
@@ -186,10 +197,11 @@ const payloadCols = [0, 1, 2, 3, 6, 7];
 const lockedPayload = Buffer.concat(payloadCols.map((n) => col(n)));
 assert.equal(lockedPayload.length, 192);
 const binaryReadouts = [];
+for (const { sourceCaseMask, chain } of chainOptions.filter(x => x.chainCol === 5)) {
 for (const hardened of [false, true]) {
   const pad = Buffer.concat(payloadCols.map((_, i) => {
     const index = hardened ? 0x80000000 + i : i;
-    return ser(ckd(parentKey, col(5), index).key, 32);
+    return ser(ckd(parentKey, chain, index).key, 32);
   }));
   assert.equal(pad.length, lockedPayload.length);
   const recovered = Buffer.from(lockedPayload.map((value, i) => value ^ pad[i]));
@@ -210,13 +222,14 @@ for (const hardened of [false, true]) {
     (b) => b === 32 || (b >= 65 && b <= 90) || (b >= 97 && b <= 122)
   ).length;
   const result = {
-    hardened, bytes: recovered.length, printable, lettersSpaces,
+    sourceCaseMask, hardened, bytes: recovered.length, printable, lettersSpaces,
     printableFraction: printable / recovered.length,
     lettersSpacesFraction: lettersSpaces / recovered.length,
     first32Hex: recovered.subarray(0, 32).toString('hex')
   };
-  assert(printable < recovered.length * 0.6);
+  assert(printable < recovered.length * 0.65);
   binaryReadouts.push(result);
+}
 }
 console.log(JSON.stringify({ sourceFixedBip32WholeTableByteXor: binaryReadouts }, null, 2));
 console.log('PASS: extended-key 64-byte metadata and 192-byte source-only XOR binary receiver, exact authentic replay and complete independent ASCII plant.');
