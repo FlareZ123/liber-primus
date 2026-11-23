@@ -1,0 +1,13 @@
+name: LP2 plaintext-history suffix-collision SFT
+on:
+  workflow_dispatch:
+jobs:
+  source-gate:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check original and native GP collision constraints
+        run: node sims/lp2_plainprev_suffix_collision_sft.cjs
