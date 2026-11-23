@@ -129,6 +129,35 @@ For the global case the exact minimizing single-rank adjacent pair is original G
 
 Thus the **literal 26 ordinary Latin letters + two never-used or at-most-86-in-band exception codes** cannot explain all original unequal GP29 ciphertext transitions under a stationary global or visual-chapter-reset predecessor-exclusion ordering, *however its 29 underlying runes are secretly permuted*. A page-reset rank ordering survives this particular **support-only** bound, **but not the existing stronger native-GP plaintext-frequency test**: the [prior all-secret single/two-rank maxima](lp2-no-repeat-allorder-page-capacity.md) reject every one of over one million native-GP English/Latin control windows, even granting an independently chosen underlying order and plaintext alphabet on all 55 pages. A different low-frequency source language, frequently changing states during a page, or other transform remains mathematically possible. No authenticated source clue selects a page-specific rank order.
 
+## GP27 previous-ciphertext-only row injection: exact support obstruction
+
+This tests a distinct local finite-state family, not the whole-book enumerative rank code above. Assume each plaintext GP symbol emits exactly one ciphertext rune, the only encoder state is the immediately previous ciphertext rune, and for each previous rune the plaintext-to-successor map is injective. Repeats may be handled separately; the active plaintext alphabet must map into the 28 nonidentical successor runes. No key phase, word-position state, page-index state, variable-length block, or external side information is included in this model.
+
+The original transcription parses to 2,896 words and 12,956 runes. Hyphens and periods delimit words; line and page separators are removed before splitting so words crossing page boundaries remain continuous. The blank p50 page is omitted from the transcription. The support result is unchanged when page-crossing word transitions are removed.
+
+| Original transition view | Transitions | Repeats | Off-diagonal pairs present | Minimum count among the 812 pairs |
+| --- | ---: | ---: | ---: | ---: |
+| Within words, preserving page-crossing words | 10,060 | 63 | 812/812 | 3 |
+| Within words, resetting at page boundaries | 10,028 | 63 | 812/812 | 3 |
+| Within pages, retaining word-boundary transitions | 12,901 | 86 | 812/812 | 5 |
+| Continuous page-joined stream | 12,955 | 86 | 812/812 | 5 |
+
+Thus **every one of the 28 nonidentical successors occurs after every one of the 29 possible previous runes**. Even in the strict within-word view, each of the 812 ordered off-diagonal pairs occurs at least three times. Of the 86 book-wide adjacent repeats, 63 are within words and 23 occur across word boundaries. There are 32 within-word transitions that cross physical page boundaries; excluding them leaves the same complete 812-pair support.
+
+### Consequence for GP27
+
+For any 27-symbol source alphabet, an injective one-rune/one-output map from a fixed previous-rune state can use at most 27 of the 28 nonrepeat successors. It must leave at least one successor unused in every row. The original uses all 28 after every previous rune, so **no previous-ciphertext-only GP27 row injection can have produced this corpus**. This is independent of which 27 symbols are selected. A noninjective row map would merge plaintext symbols and therefore require future context, a variable-length code, or side information; that is a different architecture.
+
+A 28-symbol alphabet can biject onto all 28 nonrepeat successors. In particular, a GP28 active alphabet with a separate F repeat/no-op control remains combinatorially possible. The solved p56 F-transparent rule makes that a source-motivated hypothesis, not an established LP2 mechanism. The 63 within-word repeats are compatible with such a control interpretation, but do not prove it. No source-selected 29×28 row permutation or key has been recovered.
+
+### Alphabet-selection guard
+
+The first three LP2 pages contain exactly 729 = 27² runes, but those 729 ciphertext runes use **all 29 GP symbols**. The 27×27 geometry is therefore not, by itself, evidence for a 27-symbol plaintext alphabet. Treat that geometry as a separate route, not an alphabet selector.
+
+### Scope and reproduction
+
+This excludes only the one-symbol/one-rune, injective, previous-ciphertext-only GP27 transducer. It does not exclude GP28 bijections, additional key/phase/position state, variable-length or block enumerative codes, or external side information. The standalone original-input SFT is `node sims/lp2_gp27_local_successor_injection_sft.cjs`.
+
 ## Direct original-input arithmetic inversion
 
 The cheapest source-legible inverse removes each literal repeated-cipher event and labels each remaining next-cipher choice by its order among the 28 allowed symbols. Two independently simple orders were tried: alphabetically skipping the previous symbol, and cyclic forward step \((C_i-C_{i-1}-1)\bmod29\). Each was evaluated in normal and reversed order, with forward or backward digit significance, producing eight fully specified no-key base28-to-base29 integer conversions. Each physical page supplies an explicit first-symbol anchor; observed repeats are preserved as visible event masks. This is a direct arithmetic-rank diagnostic, **not** a demonstrated length-preserving original cipher.
@@ -148,6 +177,7 @@ A perfect forward re-encryption of the original rank tape, possible when the obs
 
 1. **Retire** fixed-position, three-identity punctuation as the entire side-information channel for unrestricted, length-preserving GP29 enumerative coding with original repeat counts.
 2. **Retire** the eight direct unkeyed ordinal/cyclic base28 arithmetic inverses as immediate original prose decoders under the stated original-page framing.
-3. **Keep open only when the source selects a real receiver**: variable punctuation placement across page boundaries has enough abstract information capacity, but original p51 proves that independently page-local punctuation placement cannot suffice. Additional carriers, such as ink and the p49–p51 table, remain unexplored in this particular exact coding model. Require an actual period-visible instruction giving input length, exception semantics, rank convention, and a forward-replayable side-state reconstruction before searching keys or adding layers.
+3. **Reject** the one-symbol/one-rune, previous-ciphertext-only GP27 row-injection family. The original uses all 28 nonrepeat successors after every previous rune, including within words and with page resets; a 27-to-28 injection must leave one unused. The exact result and SFT are given above.
+4. **Keep open only when the source selects a real receiver**: variable punctuation placement across page boundaries has enough abstract information capacity, but original p51 proves that independently page-local punctuation placement cannot suffice. Additional carriers, such as ink and the p49–p51 table, remain unexplored in this particular exact coding model. A GP28 row bijection (possibly with F as a repeat/no-op control) remains possible but still lacks a source-selected row permutation/key. Require an actual period-visible instruction giving input length, exception semantics, rank convention, and a forward-replayable side-state reconstruction before searching keys or adding layers.
 
-**Bottom line:** exact capacity locates the missing operand and rules out a visually tempting but insufficient punctuation alphabet. The original corpus does not yet provide a human-discoverable operation capable of recovering plaintext.
+**Bottom line:** exact capacity locates the missing operand; the new support theorem rules out the simplest GP27 local transducer. The original corpus still does not provide a human-discoverable operation capable of recovering plaintext.
