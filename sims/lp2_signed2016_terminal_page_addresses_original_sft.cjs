@@ -258,6 +258,29 @@ const p57PrimeRanks=p57PrimeSums.map((sum)=>primeNumbers.indexOf(sum)+1);
 assert.deepEqual(p57PrimeRanks,[205,173,201]);
 assert.equal(tableValues[endpoint],p57PrimeRanks[0]);
 assert.equal(p57PrimeSums.reduce((product,n)=>product*n,1),1595277641);
+// Prospective exact returning loop from the genuine FIRST p57 sentence,
+// which literally says "LIKE THE INSTAR TUNNELING TO THE SURFACE".
+// A straight vertical rise in the original 32x8 table from end cell74,
+// row9/col2, reaches the visible SURFACE row0 at the same column, cell2.
+const endRow=Math.floor(endpoint/8),endColumn=endpoint%8;
+assert.deepEqual([endRow,endColumn],[9,2]);
+const upperSurfaceCell=endColumn;
+assert.equal(upperSurfaceCell,2);
+assert.equal(tokens[upperSurfaceCell],"2l");
+assert.equal(tableValues[upperSurfaceCell],167);
+assert.equal(primeNumbers[38],167);
+assert.equal(primeNumbers.indexOf(tableValues[upperSurfaceCell])+1,39);
+assert.equal(gp("PATH").reduce((total,x)=>total+x,0),39);
+const surfaceClosedLoop={
+  sourceFirstSentence:"LIKE THE INSTAR TUNNELING TO THE SURFACE",
+  fromOriginalCell:74,straightUpNineRowsToCell:2,
+  originalSurfaceToken:tokens[2],base60SurfaceByte:tableValues[2],
+  oneBasedOrdinaryPrimeRank:primeNumbers.indexOf(tableValues[2])+1,
+  returnsToSignedWord:"PATH",returnsToOriginalAddress:39,
+  alternateOtherCellWithSameByte:tableValues.map((v,i)=>v===167?i:null).filter((v)=>v!==null),
+  caveat:"The p57 metaphor is not an explicit authenticated straight-up-grid instruction."
+};
+assert.deepEqual(surfaceClosedLoop.alternateOtherCellWithSameByte,[2,182]);
 assert.equal(tokens.filter((v)=>v==="05").length,1);
 assert.equal(tokens.filter((v)=>v==="3P").length,1);
 assert.deepEqual(tableValues.map((value,i)=>value===205?i:null).filter(x=>x!==null),[74]);
@@ -344,6 +367,7 @@ console.log(JSON.stringify({
   intermediateCells:routeFive,
   destination:74,originalTokenAt74:tokens[74],destinationBase60:tableValues[74],
   p57PrimeClauseSums:p57PrimeSums,p57PrimeClauseOneBasedRanks:p57PrimeRanks,
+  sourceSelectedSurfaceCandidate:surfaceClosedLoop,
   exact2013ParableID3Product:p57PrimeSums.reduce((a,b)=>a*b,1),
   p50Byte205Address:74,
   signedWayMapLiteralIntersection:wayMapIntersection,
