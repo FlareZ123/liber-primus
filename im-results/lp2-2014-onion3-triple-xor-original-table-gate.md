@@ -30,6 +30,20 @@ Applying the documented 14-column order `[2,8,9,1,12,13,11,4,5,7,3,0,6,10]` to t
 
 The operation is now independently reproduced from signed original inputs and corroborated by a signed output and separately signed next-stage object. The **operator itself remains documented in a community reconstruction**, not in a Cicada-signed instruction. This is strong historical evidence for a real three-share XOR solve path, not an author-authenticated rule for the LP2 p49–51 table.
 
+### Independent extraction from the original LP1 JPEGs (Agent31, 23 November 2026)
+
+The same Stage03 share set is now recovered independently from the repository's **original LP1 page JPEGs**, rather than only from the pinned historical archive. [OutGuess workflow run 45155798760](https://github.com/FlareZ123/liber-primus/actions/runs/45155798760) ran the maintained default-key extractor over the original page images, then executed [`sims/cicada2014_stage03_xor.py`](../sims/cicada2014_stage03_xor.py).
+
+- LP1 pages **00, 01 and 02** each yield a 2,899-byte PGP clear-signed wrapper. Each cleartext body is exactly **1,982 hexadecimal characters / 991 decoded bytes**.
+- The three wrapper SHA-256 values are respectively `2efba5e2283fa16592bedb7c339223bf2db94f07cf2d42188684aa393c12d180`, `da4ad19d7e46a9df54fe800bb2477914fbb7b83d34e4ea748760ce2e0902e656`, and `b1d1d69e32e6c5725dffbcd871c2acb482371889d48ce6734c17741816ad23a3`. Their decoded-body SHA-256 values exactly match the three pinned archive operands in the table above.
+- The workflow verifies all three wrapper signatures against the pinned Cicada public-key fingerprint `6D854CD7933322A601C3286D181F01E57A35090F`. GnuPG reports **Good signature** for pages 00–02 (signature times 2014-01-07 03:16:41, 03:16:48 and 03:16:44 UTC).
+- The script XORs the three decoded 991-byte bodies and reproduces the exact 991-byte signed message, SHA-256 `81139c4d7e025878767fe79ad91024c6cf4b4ede6c763e6b5e500de43fd90866`. Its bytes match the pinned Stage04 `00^01^02.asc` object; GnuPG independently reports **Good signature** for the reconstructed output (signature time 2014-01-07 03:00:31 UTC).
+- The same original-image scan recovers the page **03** signed payload and pages **10–13**. All five signatures verify under the same key. Page 03's signed text contains the 587×109 runic JPEG; pages 10–13 are the dated 2014 Stage10 message sequence. This independently binds the three shares and the following rune image to the original LP1 scan set.
+
+The page-03 image is the small runic image in the fourth-onion response chain: the preceding text supplies the Vigenère key phrase **WELCOME PILGRIM TO**, and the historical decode selects the next host `avowyfgl5lkzfj3n.onion`. The chain and subsequent archived material are consolidated in [`2014-fourth-onion-response-chain.md`](2014-fourth-onion-response-chain.md); the fourth-onion host is also the one used by the archived [Stage04 README](https://github.com/micheloosterhof/cicada-2014/blob/master/stage04/README.md), with the next host recorded in [Stage05](https://github.com/micheloosterhof/cicada-2014/blob/master/stage05/README.md).
+
+This closes the gap between the archived 2014 share set and the original LP1 scans: the 991-byte objects are authentic historical **XOR shares**, not plausible independent LP2 key streams. The result strengthens the historical reconstruction but does not create an LP2 plaintext or a direct LP2 cipher rule. GnuPG's "Good signature" is a mathematical verification under the pinned fingerprint; the key's trust certification is a separate question.
+
 ## One LP2 recipient selected by original physical layout
 
 The original LP2 printed numeral table occupies p49, p50 (rune-free), and p51. The [canonical original transcription](../resources/liber-primus/lp2-grid-256.json) has 32 rows × 8 cells, split **10+13+9 rows** over those three pages. Under the explicitly provisional mapping `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx` of two base60 digits to a byte, the input streams have lengths **80, 104, 72**.
