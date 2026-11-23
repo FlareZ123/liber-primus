@@ -36,7 +36,7 @@ The [read-only exact-source single-file test](../sims/lp2_twoexterior_cube_words
 | --- | ---: | ---: | --- |
 | Original physical pp16–21, first gate | **1,613** | **0.034325632770** | \`LEABEMFUDNGWHAEEIAYJTRPYOEUEIAW...\` |
 | Distinct physical pp40–53 | **3,008** | **0.034453075802** | \`UJEOWIANGEAYMNNAEWNGIPSMGCR...\` |
-| Entire original unknown pp0–55 | **12,956** | **0.034492279721** | No coherent English passage |
+| Entire original unknown pp0–55 | **12,956** | **0.034491624355** | No coherent English passage |
 | Genuine clear p57 GP29 source reference | **95** | **0.0627099664** | \`PARABLE LIKE THE INSTAR...\` |
 
 Both original source passages remain near the uniform alphabet coincidence level \`1/29≈0.0344828\`, and neither yields 300 continuous native-English original runes under the fixed algorithm. The 3,008-rune second passage was not used to select the law. Its rejection is a genuine independent original-input test, within the limits of the same unknown-book text register.
