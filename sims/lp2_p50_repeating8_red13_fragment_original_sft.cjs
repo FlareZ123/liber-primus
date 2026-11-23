@@ -8,7 +8,6 @@
  * Node.js 22, Windows 11: node sims/lp2_p50_rowdes_red13_fragment_original_sft.cjs
  */
 const assert = require('node:assert/strict');
-const crypto = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -172,6 +171,19 @@ for (const relation of ['gp29', 'cyclic28', 'ordered28']) {
     });
   }
 }
+// Independently source-historical XOR, with low-five-bit GP ordinal transport.
+// A valid complete native GP29 output requires every decoded byte in 0..28.
+const xored = new Array(cipherFull.length).fill(0);
+for (let j = 0; j < 28; j++) {
+  const key = keypads[j];
+  for (let i = bounds[j]; i < bounds[j + 1]; i++) {
+    xored[i] = cipherFull[i] ^ (key[i - bounds[j]] & 31);
+    assert.equal(xored[i] ^ (key[i - bounds[j]] & 31), cipherFull[i]);
+  }
+}
+const invalidXor = xored.reduce((total, v) => total + Number(v >= 29), 0);
+const xor5 = { invalidGp29: invalidXor, nativeCount: xored.length - invalidXor };
+assert.ok(invalidXor > 0, 'Source cannot be an unescaped GP29 original under the frozen XOR rule');
 models.sort((x, y) => y.p0_2 - x.p0_2);
 console.log(JSON.stringify({
   source: 'Original p50 32x8 bytes as 32 repeating-eight-byte row keys for red13-separated intervals',
@@ -183,6 +195,7 @@ console.log(JSON.stringify({
     p8_14: score(cipherFull, ...b), p40_53: score(cipherFull, ...c),
   },
   heldoutNative: score(sample),
+  directSourceXor5: xor5,
   models,
   assertion: 'All six original-output roundtrips and independent source-shaped native-GP planted roundtrips pass',
   limit: 'No creator-selected table-to-interval byte/rune reduction or rank28 escape rule is established',
