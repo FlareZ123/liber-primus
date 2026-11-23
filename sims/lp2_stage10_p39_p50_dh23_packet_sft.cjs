@@ -88,6 +88,16 @@ const wordIndexes = [...red[0].runes].map((glyph) => {
   return i;
 });
 assert.deepEqual(wordIndexes, [27, 5, 15]);
+// The SAME three source runes also select the original full p55 rune count
+// under their GP ordinal rather than prime-value weights.
+const ordinalAddress = wordIndexes.reduce((sum, value) => sum + value, 0);
+assert.equal(ordinalAddress, 47);
+const receiverToken = allTokens[ordinalAddress];
+assert.equal(receiverToken, "1G");
+const receiverLength = radix(receiverToken, grid.alphabet);
+assert.equal(receiverLength, 76);
+assert.equal(ink.pages.find((page) => page.page === 55).rune_count, receiverLength);
+assert.equal(corpus.pages.find((page) => page.page === 55).indices.length, receiverLength);
 const address = wordIndexes.reduce((sum, i) => sum + primes29[i], 0);
 assert.equal(address, 173);
 
@@ -188,6 +198,8 @@ console.log(JSON.stringify({
   classification: "Conditional original-source DH23 transcript, not plaintext",
   originalStage10Filenames: images,
   primeOrdinals: ordinals,
+  redGPOrdinalSum: ordinalAddress,
+  selectedRecipient: {page: 55, tableToken: receiverToken, originalRuneCount: receiverLength},
   redGPPrimeSum: address,
   selectedGridCell: {row, col, token: indexed, base60: literal},
   firstGridCell: {token: first, base60: firstValue},
