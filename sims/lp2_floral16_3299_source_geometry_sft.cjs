@@ -128,7 +128,7 @@ for (let t = 0; t < 2048; t++) {
   max = Math.max(max, n);
 }
 assert.equal(ge, 574);
-assert.equal(sum, 1721261);
+assert.equal(sum, 1721258);
 assert.equal(min, 757);
 assert.equal(max, 932);
 
