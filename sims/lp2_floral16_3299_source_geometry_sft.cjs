@@ -157,7 +157,7 @@ const permuted = order.map((i) => withoutIntroRubrics[i]);
 const additive = withoutIntroRubrics.map((ci, i) => (ci - key[i] + 29) % 29);
 // Source-control against treating p15's 4x4 spiral as a literal physical-page shuffle.
 // The source transcription omits the runeless numeric page50 as a rune segment.
-const physicalLines = fs.readFileSync(path.join(root, 'lp2-transcription.txt'), 'utf8').split(/\\n%\\n/);
+const physicalLines = fs.readFileSync(path.join(root, 'lp2-transcription.txt'), 'utf8').split(/\n%\n/);
 assert.equal(physicalLines.length, 57);
 const runeChars = new Set(corpus.runes);
 const printed = (page) => physicalLines[page < 50 ? page : page - 1].trim();
