@@ -96,7 +96,7 @@ function witnesses(plain, start) {
   const first = new Int8Array(29);
   first.fill(-1);
   const constraints = [];
-  for (let i = 1; i <= LOOKAHEAD && constraints.length < MARKS; i++) {
+  for (let i = 1; i < LOOKAHEAD && constraints.length < MARKS; i++) {
     const predictor = plain[start + i - 1];
     if (first[predictor] === -1) {
       first[predictor] = i;
@@ -204,7 +204,7 @@ function scan(cipher, reference, mode, onlyStart, continuous = false) {
   const best = [];
   const start = onlyStart ?? 0;
   const limit = onlyStart === undefined
-    ? reference.length - LOOKAHEAD
+    ? reference.length - LOOKAHEAD + 1
     : onlyStart + 1;
   for (let s = start; s < limit; s++) {
     const eq = witnesses(reference, s);
