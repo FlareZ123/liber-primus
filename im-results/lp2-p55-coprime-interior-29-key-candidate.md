@@ -82,6 +82,14 @@ The previously proposed distinct p55-derived password **`A25S0EAJ15D8LKDCIA6E6FC
 
 **Decision:** reject this exact p55 password → OpenPuff seven-JPEG Medium receiver. The coprime-interior extraction remains a mathematically reproducible candidate rule, but its independently necessary historical password, source-p55-to-carrier handoff, and explanation of the other 47 source runes are missing. Do not vary carrier order, subset, depth, key, or selector to rescue this negative without a new independent source instruction. Earlier 2014-derived passwords remain distinct already-closed contracts.
 
+## Source-selected DIVINITY receiver on the newly selected 29-rune interior (Agent13, 23 November)
+
+Solved p57 explicitly directs the reader to **find the divinity within**, and LP1 pp3–4 already document the exact historically successful **DIVINITY** Vigenere cipher: GP29 key indices `[23,10,1,10,9,10,16,26]`, subtraction on decrypt, and literal plaintext-F output without advancing its key clock. Prior Agent16 work rejected that real cipher applied to **all 43 strict-interior runes**; the **29-position coprime subset in this report was selected later** and is a materially different, source-constrained ciphertext. Test this exact 29-rune extracted sequence with the authentic law at phase zero, preserving source runic order and granting both legal bypass interpretations at the one ciphertext-F position (zero-based 4).
+
+**Original result:** branch **0** (consume the ciphertext F as keyed non-F) becomes impossible at **selected rune 18**; branch **1** (literal bypass) becomes impossible already at **selected rune 7**. In each case the decoder would need to create plaintext **F** from a ciphertext **non-F**, contradicting the authenticated LP1 encryption rule. Thus **0/2** bypass masks survive, independent of any English score, key search or additional language assumptions. The control authentic LP1 example has 515 GP runes and 11 known literal-F bypasses; a separate source-native solved-p57 29-rune planted plaintext with literal F at position 4 is encrypted and recovered under the identical decoder. [Independent standalone original-input CommonJS SFT](../sims/agent13_p55_coprime29_divinity_sft.cjs).
+
+**Decision:** reject this newly extracted 29-rune subset as *the direct plaintext-F-transparent DIVINITY ciphertext* at phase zero. The source-derived coprime selector remains speculative, and this exact historical receiver failure must not be generalized to unrelated cipher architectures. Further key-phase/sign/order variants lack a first-party selector.
+
 ## What this does not establish
 
 - It does not decode the 29 selected runes into English.
