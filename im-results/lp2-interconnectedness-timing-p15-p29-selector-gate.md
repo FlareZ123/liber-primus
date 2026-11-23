@@ -145,34 +145,68 @@ The solved p56 plaintext's IoC is **0.070028**. None of the p0/p55 candidates ap
 
 Across all three audio-selected targets, the two key families test **1,065,472** original-cipher F masks: 16,384 on p29, 1,048,576 on p0, and 512 on p55. p29 has no legal inverse at all; p0 and p55 have some legal algebraic branches, but no plausible plaintext emerged.
 
+### Expanded source-key screen: all eight p15 families and audio-derived prime starts
+
+The earlier two-family gate is a subset of a broader finite screen. The p15 study already defines eight source-derived key families: printed values, prime values, prime totients, Fibonacci values, Fibonacci ordinals, and the base-29 expansions of printed values, prime values, and 3301. All phases and both signs were tested against p0, p29, and p55 with the exact F-bypass rule. A state-set dynamic program exhausts the F-mask possibilities; masks are explicitly enumerated only for configurations that survive.
+
+| Target | Configurations | Viable configurations | Legal original F masks | Best IoC |
+|---|---:|---:|---:|---:|
+| p0 | 320 | 17 | 752 | 0.03922 |
+| p29 | 320 | 0 | 0 | none |
+| p55 | 320 | 108 | 247 | 0.05053 |
+
+The best p0 candidate is from the period-16 totient family, phase 14, sign −1; its coarse word-dictionary score is only 2/57, both one-letter fragments. The best p55 IoC candidate is from the ordinal16 family, phase 11, sign +1; its best dictionary-scoring candidate matches only 3/17 fragments (including one-letter material), with no coherent sentence. The dictionary is a deliberately weak diagnostic built from the repository's Gibran control text plus common words, not a trained language model. The authentic p56 plaintext IoC is 0.070028, well above these candidates.
+
+Four primes have direct derivations from the audio arithmetic: 173 from the MP3-frame quotient factorization, 439 from the frame remainder, and 257/263 from the 55th/56th-prime interpretation of π(262). Testing these as initial primes for the authentic p56 prime-totient stream on p0, p29, and p55 gives **only two legal masks in total**: both are on p55 with start prime 257, one for each sign, with IoCs 0.03053 and 0.03368. p0 and p29 have no legal paths for these starts.
+
+### p0 red-13 heading as a cross-page key candidate
+
+Original p0 has thirteen red heading runes (the source adjudication fixes the 8+5 word split), followed by the 13-dot marker; the black body begins at rune offset 13. The p55 page also has the same 13-dot glyph, a correspondence already documented in the [p0 dot-topology readout](lp2-p0-red13-dot-topology-readout.md) and the [p54–55 13-dot framing report](lp2-p54p55-13dot-base29-packet-gate.md). Since the audio arithmetic independently links p0 to p55, a natural test is to use the raw thirteen p0 heading runes as a repeating GP29 additive key.
+
+All thirteen phases and both signs were tested, with every F mask, on the p0 black body, p29, and p55:
+- p0 black body (249 runes, 13 Fs): 1 viable configuration, 30 legal masks; best IoC 0.03708.
+- p29: no legal inverse.
+- p55: 9 viable configurations, 35 legal masks; best IoC 0.04175.
+
+This rejects the simple repeating-key interpretation, not every possible use of the shared 13-dot mark or red heading. The matching glyph is a useful cross-page navigation clue, not an authenticated cipher instruction.
+
+### p15 16-cell grid and p55 16-word structure
+
+The original p55 transcription has 17 word fragments: the first is a one-rune continuation from p54, leaving **16 page-local words**, exactly matching the **16 cells** in p15's 4×4 grid. This is a source-visible structural alignment, not proof that the words are a key or should be permuted.
+
+A frozen exploratory test kept the continuation fragment first, then applied the p15 spiral order or its inverse to the 16 local words. The two most direct p15 consumers of the solved p56 rule (Fibonacci-prime ordinal starts and the period-16 prime-totient key) were then tested with both signs and all F masks. The spiral ordering yielded 37 legal candidates and the inverse ordering 38; the best IoC in either direction was only 0.04105, and word-boundary outputs were not coherent. A simpler per-word Caesar interpretation—one p15 grid value modulo 29 per local word in spiral order—also failed: the raw printed-value key had 8 legal masks with best IoC 0.03123, while prime and totient per-word keys had no legal paths.
+
+These results preserve the 16↔16 correspondence as a possible routing clue, while rejecting the tested direct word transposition and per-word Caesar consumers. The 13-dot and 16-word structures may still specify a different operation on p55's tree/butterfly illustration; no such operation has yet been identified.
+
 ### Positive controls
 
 - The original solved p56 ciphertext decodes exactly to its established 85-rune plaintext under the authentic prime-totient stream and its known literal-F mask, then re-encrypts byte-for-byte at the GP29 index level.
-- All 96 p15-ordinal/sign combinations correctly invert synthetic F-transparent positive plants at the p0, p29, and p55 target lengths.
-- All 96 period-16 phase/sign combinations correctly invert synthetic F-transparent positive plants at the p0, p29, and p55 target lengths.
+- The p29-focused script passes its synthetic F-transparent positive plants.
+- The expanded eight-family script passes 1,062 synthetic F-transparent positive plants across p0, p29, p55, the audio-prime starts, and the p0 red-header tests.
 
 The negative result is therefore not caused by a reversed sign, wrong prime indexing, broken F-bypass handling, or a decoder that cannot recover its own generated ciphertext.
 
 ## Decision and next work
 
-**Retain the audio timing as a low-to-medium-confidence page-selector hypothesis; reject both direct p15→p29 uses and the low-IoC p15→p0/p55 candidates under the solved p56 cipher.** Do not continue re-scoring the same outputs or launching generic audio key sweeps.
+**Retain the audio timing as a low-to-medium-confidence page-selector hypothesis, strengthened by the p0↔p55 repeated 13-dot glyph and p15↔p55 16-cell/16-word alignment. Reject the tested direct p15 key families on p29 and the low-IoC candidates on p0/p55; reject the simple p0-red13 repeating-key consumer as well.** Do not repeat these key families, audio-prime starts, or direct word-shift tests.
 
-The useful next question is whether the selector pattern predicts a different source-authored operation on p29 or on the p55–p56 seam. That requires a concrete clue beyond the fact that the timing values match page counts. The audio binary and signed carrier should be added to resources only if a reproducible acquisition route is found; the current report does not claim their independent verification.
+The useful next question is whether the 13-dot and 16-word structures prescribe a specific route through the p55 tree/butterfly illustration or a reversible operation at the p55–p56 seam. Do not invent further key families or phase sweeps without an independent source clue. The audio binary and signed carrier should be added to resources only if a reproducible acquisition route is found; the current report does not claim their independent verification.
 
 ## Reproduction
 
 Run from repository root with Node.js 20+:
 
     node sims/lp2_interconnectedness_timing_p15_p29_selector_gate.cjs
+node sims/lp2_interconnectedness_p15_eightkey_audio_targets_sft.cjs
 
 The script:
-- reads the canonical GP29 corpus;
+- reads the canonical GP29 corpus and original word transcription;
 - recomputes the title sum, sample-time arithmetic, prime counts, and unique page-length matches;
-- exhausts every original F mask for p0, p29, and p55 under all 32 p15 ordinal-start/sign choices and all 32 period-16 phase/sign choices per page;
+- exhausts the p0/p29/p55 F-bypass paths for all eight p15 source-key families, all four audio-derived prime starts, and the p0 red13 header key;
 - verifies forward re-encryption for every surviving path;
 - checks the authentic p56 positive and synthetic F-transparent positive controls.
 
 No network access, external package, stochastic seed, or fitted language model is required. The external audio sample counts remain explicit fixed inputs from the cited secondary report.
 
 
-**Automated validation:** Windows Node.js 22 manual source-SFT run passed on the expanded script: [GitHub Actions run 45154067296](https://github.com/FlareZ123/liber-primus/actions/runs/45154067296).
+**Automated validation:** Windows Node.js 22 manual source-SFT run passed on the expanded eight-family, audio-prime, and red13-header script: [GitHub Actions run 45156053324](https://github.com/FlareZ123/liber-primus/actions/runs/45156053324).
