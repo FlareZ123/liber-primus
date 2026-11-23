@@ -121,6 +121,43 @@ assert.equal(shellInteger % 43n, 0n);
 const prime = coreInteger / 8n;
 assert.equal(prime, targetPrime);
 verifyPrimalityCertificate(prime);
+
+// A fully specified but unproven DH *candidate*: native source supplies
+// p = core/8, g = shell/43, and natural private exponents a=8, b=43.
+// The signed Cicada 2013 DH source motivates only the DH grammar; no ciphertext
+// consumer or authentic plaintext has been selected.
+const sourceGenerator = shellInteger / 43n;
+const sourceShared = powMod(sourceGenerator, 8n * 43n, prime);
+assert.equal(sourceShared,
+  40058585108914257367732574161222353642573409865793191134873737n);
+for (const [factor] of pratt.at(-1).f) {
+  assert.notEqual(powMod(sourceGenerator, (prime - 1n) / BigInt(factor), prime), 1n);
+}
+console.log('Conditional DH p=core/8, g=shell/43 is a primitive-root group; a=8,b=43');
+console.log('Conditional DH shared integer = ' + sourceShared);
+
+const sharedDigits = [];
+let share = sourceShared;
+while (share) {
+  sharedDigits.unshift(Number(share % 29n));
+  share /= 29n;
+}
+assert.equal(sharedDigits.length, 43);
+const p55Digits = [...fragments.join('')].map(gp0);
+/** @param {number[]} data */
+const ioc = data => {
+  const freq = Array(29).fill(0);
+  for (const x of data) freq[x]++;
+  return freq.reduce((a, f) => a + f * (f - 1), 0)
+    / (data.length * (data.length - 1));
+};
+for (const sign of [-1, 1]) {
+  const decoded = p55Digits.map((x, i) =>
+    (x + 29 + sign * sharedDigits[i % sharedDigits.length]) % 29);
+  console.log('DH K fixed GP29 additive p55 sign=' + sign
+    + ' IoC=' + ioc(decoded).toFixed(8)
+    + ' first8=' + decoded.slice(0, 8).join(','));
+}
 assert.ok(crypto.checkPrimeSync(prime, { checks: 24 }));
 // Exact quadratic-character obstruction to transplanting old DH g=5, A=8.
 assert.equal(prime % 8n, 5n);
@@ -185,6 +222,31 @@ if (fs.existsSync(originalPath)) {
   }
   assert.deepEqual(hits, [55]);
   console.log('All 57 original physical pages, prime-cofactor hits: ' + hits);
+
+  // RSA-style 43rd-power analogy uses only source p and exponent43.
+  // A 42-digit GP29 block is always below p; each modular-power result
+  // may exceed the 42-digit register, so the plain operation lacks a
+  // lossless native GP29 serialization without extra framing.
+  const unknownTerminal = [...pages[53] + pages[54]]
+    .filter(ch => runeMap.has(ch)).map(gp0);
+  assert.equal(unknownTerminal.length, 308);
+  const inverseExponent43 =
+    10378792787663791801936161217705748326678933505966809166990687n;
+  assert.equal((43n * inverseExponent43) % (prime - 1n), 1n);
+  const blockBound = 29n ** 42n;
+  for (const [label, exponent, predictedOverflows] of [
+    ['43rd power', 43n, 4],
+    ['inverse 43rd power', inverseExponent43, 5],
+  ]) {
+    let overflows = 0;
+    for (let offset = 0; offset + 42 <= unknownTerminal.length; offset += 42) {
+      const block = base29(unknownTerminal.slice(offset, offset + 42));
+      if (powMod(block, exponent, prime) >= blockBound) overflows++;
+    }
+    assert.equal(overflows, predictedOverflows);
+    console.log(label + ': ' + overflows +
+      '/7 original terminal 42-rune blocks overflow 42-digit GP29');
+  }
 } else {
   console.log('Only embedded original p55 checked; repository full corpus not mounted');
 }
