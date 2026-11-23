@@ -16,15 +16,15 @@ For *any* proposed aligned plaintext and original ciphertext, these secret maps 
 
 ## Original-input decision
 
-We reused the predeclared original-word-length-matched native-source controls from the repository's four-block all-secret packet gate: 96 seeded source-native books each from Kahlil Gibran, Shakespeare and Emerson, preserving **all 2,896 original GP word-length slots**, page lengths and page-carry geometry. Their GP29 conversion uses the solved-Cicada-calibrated actual IO→IA and ING→NG ligatures. The fixed xorshift32 seed is `0x33012026`. For *each* candidate book, the adversary may independently optimize every original page's phase 0, 1, 2 or 3, with entirely new unknown F1/F2 on each page.
+We reused the predeclared original-word-length-matched native-source controls from the repository's four-block all-secret packet gate: 96 seeded **independently sampled donor-word sequences** each from Kahlil Gibran, Shakespeare and Emerson, preserving **all 2,896 original GP word-length slots**, page lengths and page-carry geometry. These are GP-native donor words assembled to match the original word-length slots, **not contiguous grammatical prose from the donor books**. Their GP29 conversion uses the solved-Cicada-calibrated actual IO→IA and ING→NG ligatures. The fixed xorshift32 seed is `0x33012026`. For *each* candidate book, the adversary may independently optimize every original page's phase 0, 1, 2 or 3, with entirely new unknown F1/F2 on each page.
 
-| Exact native control | Complete books compatible among 96 | Fewest total required conflicting secret-map assignments | Mean individually compatible pages out of 55 |
+| Native donor-word control | Complete sampled sequences compatible among 96 | Fewest total required conflicting secret-map assignments | Mean individually compatible pages out of 55 |
 |---|---:|---:|---:|
 | Gibran | **0** | **398** | **2.59375** |
 | Shakespeare | **0** | **384** | **2.73958** |
 | Emerson | **0** | **383** | **2.51042** |
 
-All **288/288** tested ordinary native English books violate the exact cipher equations, even after granting entirely secret page-dependent round functions and all phase choices. The first frozen Gibran sample has **447 minimum conflicts** and only **2 compatible pages**. Even though the previously established arbitrary page-private 29^4-state permutation allows 13/288 native word-length samples to share the original equality pattern, the concrete *two-round Feistel* cannot map any of these 288 donor texts to the unchanged original ciphertext. These are conditional finite-native-prose exclusions. It remains mathematically possible that an especially unusual or resegmented unknown message satisfies the equations.
+All **288/288** original-word-length-matched GP-native donor-word sequences violate the exact cipher equations, even after granting entirely secret page-dependent round functions and all phase choices. The first frozen Gibran sample has **447 minimum conflicts** and only **2 compatible pages**. Even though the previously established arbitrary page-private 29^4-state permutation allows 13/288 native word-length samples to share the original equality pattern, the concrete *two-round Feistel* cannot map any of these 288 donor texts to the unchanged original ciphertext. These are **conditional finite controls on sampled donor-word registers**, and cannot exclude arbitrary connected grammatical English or other plaintext registers. It remains mathematically possible that an especially unusual or resegmented unknown message satisfies the equations.
 
 ## End-to-end positive controls and limitations
 

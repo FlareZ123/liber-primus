@@ -280,7 +280,7 @@ result.independentSolvedP57Positive = {runes:solved.length,
   exactRoundTrip:true};
 result.firstGibranSourceControl = firstSample;
 result.decision =
-  "0/288 exact-original-layout source-native English books are compatible " +
+  "0/288 exact-original-layout source-native resampled donor-word sequences are compatible " +
   "with any page-private two-round additive GP29 half-block Feistel at any " +
   "independent phase. This is a finite plaintext-register exclusion, " +
   "NOT evidence for an authored four-rune cipher or unknown plaintext.";
