@@ -12,3 +12,5 @@ jobs:
           node-version: '22'
       - name: Source-locked XIX Carmichael original receiver
         run: node sims/lp2_p8_xix1729_carmichael_involution_original_sft.cjs
+      - name: Cuneiform RSA13 exact digraph native positive
+        run: node sims/lp2_1729_carmichael_3301_1033_rsa13_digraph_fpe_sft.cjs
