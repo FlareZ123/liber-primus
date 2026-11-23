@@ -72,11 +72,11 @@ assert.equal(secretBytes.length, 26);
 const key = sha256(secretBytes);
 assert.equal(key.toString('hex'), '40c0a1166d98e3cd7bfed42ed8540b8d67edc6ffbbf1636a7b95c5d8cec0e284');
 
-const aes = (operation, algorithm, data) => {
+const aes = (operation, algorithm, data, keyBytes = key) => {
   const iv = algorithm.endsWith('-ecb') ? null : Buffer.alloc(16);
   const cipher = operation === 'encrypt'
-    ? createCipheriv(algorithm, key, iv)
-    : createDecipheriv(algorithm, key, iv);
+    ? createCipheriv(algorithm, keyBytes, iv)
+    : createDecipheriv(algorithm, keyBytes, iv);
   cipher.setAutoPadding(false);
   return Buffer.concat([cipher.update(data), cipher.final()]);
 };
@@ -98,6 +98,32 @@ for (const [mode, want] of Object.entries(expected)) {
   assert.equal(printable, want.printable);
   assert.equal(gp29, want.gp29);
   console.log(mode, { first16: want.first, printable, directGP29: gp29 });
+}
+
+// Independent conditional cross-manuscript bridge: original p28 literal-DH
+// reconstruction has private exponents a=6,b=15. Replace only its small
+// worked-example p=23,g=5 with the candidate p55 field P,Q. Neither transplant
+// nor byte receiver is author-selected. This is distinct from p55 a=8,b=43.
+const p28Secret = powmod(Q, 6n * 15n, P);
+assert.equal(p28Secret, 63337863704637604097047186544219358522514145600880876704658494n);
+const p28SecretBytes = Buffer.from(p28Secret.toString(16).padStart(52, '0'), 'hex');
+const p28Key = sha256(p28SecretBytes);
+assert.equal(p28Key.toString('hex'), '57c94dfd0a2fc062ba3a6a9e4ec8e0d9e56a746ffec770a255c1a3ab9528453f');
+const wantP28 = {
+  'aes-256-ctr': { first: '3174c441fd184117d80fccfdea545944', printable: 109, gp29: 30 },
+  'aes-256-cbc': { first: '7d989e032d29312be4f08f917ee718f8', printable: 98, gp29: 32 },
+  'aes-256-ecb': { first: '7d989e032d29312be4f08f917ee718f8', printable: 105, gp29: 28 },
+};
+for (const [mode, want] of Object.entries(wantP28)) {
+  const decoded = aes('decrypt', mode, ciphertext, p28Key);
+  assert.deepEqual(aes('encrypt', mode, decoded, p28Key), ciphertext);
+  assert.deepEqual(aes('decrypt', mode, aes('encrypt', mode, plaintextSample, p28Key), p28Key), plaintextSample);
+  const printable = [...decoded].filter((v) => v >= 32 && v < 127).length;
+  const gp29 = [...decoded].filter((v) => v < 29).length;
+  assert.equal(decoded.subarray(0, 16).toString('hex'), want.first);
+  assert.equal(printable, want.printable);
+  assert.equal(gp29, want.gp29);
+  console.log('p28-private-exponent-bridge', mode, { first16: want.first, printable, directGP29: gp29 });
 }
 
 const key29 = bytes.map((b) => Number(powmod(Q, BigInt(b), P) % 29n));
