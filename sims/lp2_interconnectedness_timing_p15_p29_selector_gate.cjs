@@ -211,13 +211,59 @@ for (let phase = 0; phase < 16; phase++) {
 assert.equal(period16Results.length, 32);
 assert.equal(period16Results.reduce((sum, result) => sum + result.viable, 0), 0);
 
-// Positive controls for every tested source-key consumer: synthetic 277-rune
-// plaintexts with five literal Fs and no encrypted non-F outputs.
-function positivePlant(keyAt, sign) {
-  const literalFPositions = new Set([7, 53, 111, 166, 220]);
+// Extend the same p15 consumers to the two other pages selected by the
+// audio arithmetic: p0 from the repeat lag and p55 from pi(262).
+function runP15TargetTests(targetPageNumber) {
+  const ciphertext = page(targetPageNumber).indices;
+  const ordinalResults = [];
+  for (const start of p15PrimeOrdinals) {
+    for (const sign of [-1, +1]) {
+      const keyAt = used => primes[start - 1 + used] - 1;
+      ordinalResults.push({
+        startOrdinal: start,
+        firstPrime: primes[start - 1],
+        sign,
+        ...enumerateAllMasks(ciphertext, keyAt, sign)
+      });
+    }
+  }
+  const periodResults = [];
+  for (let phase = 0; phase < 16; phase++) {
+    for (const sign of [-1, +1]) {
+      const keyAt = used => p15TotientPeriod16[(used + phase) % 16];
+      periodResults.push({
+        phase,
+        sign,
+        ...enumerateAllMasks(ciphertext, keyAt, sign)
+      });
+    }
+  }
+  return {
+    ciphertextFPositions: ciphertext.map((value, index) => value === 0 ? index : -1)
+      .filter(index => index >= 0),
+    masksPerConfiguration: 1 << ciphertext.filter(value => value === 0).length,
+    ordinalResults,
+    periodResults
+  };
+}
+const p0TargetResults = runP15TargetTests(0);
+const p55TargetResults = runP15TargetTests(55);
+assert.equal(p0TargetResults.ordinalResults.reduce((sum, result) => sum + result.viable, 0), 32);
+assert.equal(p0TargetResults.periodResults.reduce((sum, result) => sum + result.viable, 0), 540);
+assert.equal(p55TargetResults.ordinalResults.reduce((sum, result) => sum + result.viable, 0), 12);
+assert.equal(p55TargetResults.periodResults.reduce((sum, result) => sum + result.viable, 0), 17);
+
+function positivePlant(length, keyAt, sign) {
+  const literalFPositions = new Set([
+    7,
+    Math.floor(length * 0.2),
+    Math.floor(length * 0.4),
+    Math.floor(length * 0.6),
+    Math.floor(length * 0.8)
+  ]);
   let used = 0;
   const plaintext = [];
-  for (let i = 0; i < 277; i++) {
+  for (let i = 0; i < length; i++) {
     if (literalFPositions.has(i)) {
       plaintext.push(0);
       continue;
@@ -229,25 +275,50 @@ function positivePlant(keyAt, sign) {
     used++;
   }
   const ciphertext = encodeF(plaintext, keyAt, sign);
-  assert.deepEqual(ciphertext.map((value, index) =>
-    literalFPositions.has(index) ? value : value), ciphertext);
   assert.equal(ciphertext.filter(value => value === 0).length, 5);
   const decoded = decodeF(ciphertext, keyAt, sign, 31);
   assert.ok(decoded);
   assert.deepEqual(decoded.plaintext, plaintext);
   return true;
 }
-for (const start of p15PrimeOrdinals) {
-  for (const sign of [-1, +1]) {
-    const keyAt = used => primes[start - 1 + used] - 1;
-    assert.ok(positivePlant(keyAt, sign));
+function validatePositivePlants(length, ordinalResults, periodResults) {
+  for (const result of ordinalResults) {
+    const keyAt = used => primes[result.startOrdinal - 1 + used] - 1;
+    assert.ok(positivePlant(length, keyAt, result.sign));
+  }
+  for (const result of periodResults) {
+    const keyAt = used => p15TotientPeriod16[(used + result.phase) % 16];
+    assert.ok(positivePlant(length, keyAt, result.sign));
   }
 }
-for (let phase = 0; phase < 16; phase++) {
-  for (const sign of [-1, +1]) {
-    const keyAt = used => p15TotientPeriod16[(used + phase) % 16];
-    assert.ok(positivePlant(keyAt, sign));
-  }
+validatePositivePlants(277, ordinalStartResults, period16Results);
+validatePositivePlants(page(0).indices.length, p0TargetResults.ordinalResults, p0TargetResults.periodResults);
+validatePositivePlants(page(55).indices.length, p55TargetResults.ordinalResults, p55TargetResults.periodResults);
+
+function targetSummary(target) {
+  const max = rows => Math.max(...rows.map(result => result.best ? result.best.ioc : -1));
+  return {
+    originalRunes: target === p0TargetResults ? page(0).indices.length : page(55).indices.length,
+    ciphertextFPositions: target.ciphertextFPositions,
+    masksPerConfiguration: target.masksPerConfiguration,
+    ordinalStartGate: {
+      configurations: target.ordinalResults.length,
+      totalMasksTested: target.ordinalResults.length * target.masksPerConfiguration,
+      viableOriginalMasks: target.ordinalResults.reduce((sum, result) => sum + result.viable, 0),
+      maxViableCandidateIoC: max(target.ordinalResults),
+      viableConfigurations: target.ordinalResults.filter(result => result.viable > 0)
+        .map(({startOrdinal, firstPrime, sign, viable, best}) =>
+          ({startOrdinal, firstPrime, sign, viable, bestIoC: best.ioc}))
+    },
+    period16Gate: {
+      configurations: target.periodResults.length,
+      totalMasksTested: target.periodResults.length * target.masksPerConfiguration,
+      viableOriginalMasks: target.periodResults.reduce((sum, result) => sum + result.viable, 0),
+      maxViableCandidateIoC: max(target.periodResults),
+      viableConfigurations: target.periodResults.filter(result => result.viable > 0)
+        .map(({phase, sign, viable, best}) => ({phase, sign, viable, bestIoC: best.ioc}))
+    }
+  };
 }
 
 // Authentic solved-p56 positive control: exact 85-rune plaintext, original
@@ -318,11 +389,13 @@ console.log(JSON.stringify({
       results: period16Results.map(({phase, sign, viable}) => ({phase, sign, viable}))
     }
   },
+  p0AudioTarget: targetSummary(p0TargetResults),
+  p55AudioTarget: targetSummary(p55TargetResults),
   controls: {
     p56AuthenticCipher: 'PASS: original 85-rune solved plaintext and re-encryption',
     p15OrdinalPlants: 'PASS: all 32 synthetic F-transparent positive plants',
-    p15Period16Plants: 'PASS: all 32 synthetic F-transparent positive plants'
+    p15Period16Plants: 'PASS: all 96 synthetic F-transparent positive plants across p0, p29, p55'
   },
   conclusion:
-    'The timing/page-selector pattern is a hypothesis, not a decryption. Both direct p15-to-p29 consumers of the solved p56 prime-totient/F-bypass rule are exactly impossible on the original p29 ciphertext.'
+    'The timing/page-selector pattern is a hypothesis, not a decryption. Both direct p15-to-p29 consumers are exactly impossible; p0 and p55 retain only low-IoC legal branches and no plausible GP-English plaintext under the same p56 rule.'
 }, null, 2));
