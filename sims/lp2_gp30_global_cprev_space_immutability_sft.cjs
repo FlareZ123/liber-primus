@@ -192,6 +192,56 @@ const pagePrivateTwoSymbol=pages.reduce((sum,p)=>
   sum+maxTwoSymbols([p.t]),0);
 assert.equal(chapterPrivateTwoSymbol,4295);
 assert.equal(pagePrivateTwoSymbol,6160);
+/** Exact max two-symbol capacity over any k contiguous page-key zones.
+ * Key resets may occur at ANY physical page seam, selected freely
+ * after seeing the ciphertext. No fixed chapter boundaries assumed.
+ */
+const nPages=pages.length;
+const intervalUpper=Array.from({length:nPages},()=>
+  Array(nPages).fill(0));
+for(let left=0;left<nPages;left++){
+  const bytes=[];
+  for(let right=left;right<nPages;right++){
+    bytes.push(...pages[right].t);
+    intervalUpper[left][right]=maxTwoSymbols([bytes]);
+  }
+}
+const dp=Array.from({length:nPages+1},()=>
+  Array(nPages+1).fill(-Infinity));
+const previousCut=Array.from({length:nPages+1},()=>
+  Array(nPages+1).fill(-1));
+dp[0][0]=0;
+for(let groups=1;groups<=nPages;groups++)
+  for(let end=groups;end<=nPages;end++)
+    for(let begin=groups-1;begin<end;begin++){
+      const value=dp[groups-1][begin]+intervalUpper[begin][end-1];
+      if(value>dp[groups][end]){
+        dp[groups][end]=value;
+        previousCut[groups][end]=begin;
+      }
+    }
+function keyZones(groups){
+  let end=nPages;
+  const result=[];
+  while(groups){
+    const begin=previousCut[groups][end];
+    assert(begin>=0);
+    result.push([pages[begin].page,pages[end-1].page]);
+    end=begin;groups--;
+  }
+  return result.reverse();
+}
+const optimalCaps=Array.from({length:nPages},(_,i)=>
+  dp[i+1][nPages]);
+assert.deepEqual(optimalCaps.slice(0,10),
+  [3707,3853,3946,4025,4102,4167,4226,4283,4340,4396]);
+assert.equal(optimalCaps.at(-1),6160);
+assert.equal(optimalCaps[8],4340);
+assert.equal(optimalCaps[9],4396);
+const minimumZonesForNativeControls=[4364,4383,4471,4620]
+  .map(target=>({target,minZones:optimalCaps.findIndex(x=>x>=target)+1}));
+assert.deepEqual(minimumZonesForNativeControls.map(x=>x.minZones),
+  [10,10,12,15]);
 
 // Independent solved-LP2 author control checks GP30 spelling.
 const translit=gp.translit.map((s,i)=>({s,i})).sort((a,b)=>b.s.length-a.s.length);
@@ -243,7 +293,9 @@ for(const [name,file] of sources){
       impossibleUnderAnyRowKey:
         joint.filter(x=>x>maximumSpacePlusAnyRune).length,
       impossibleUnderAnyChapterPrivateKey:
-        joint.filter(x=>x>chapterPrivateTwoSymbol).length}});
+        joint.filter(x=>x>chapterPrivateTwoSymbol).length,
+      impossibleWithAnyNinePageKeyZones:
+        joint.filter(x=>x>optimalCaps[8]).length}});
 }
 assert.deepEqual(controls.map(x=>x.beyondGlobal),[114,128,125]);
 assert.deepEqual(controls.map(x=>x.beyondAnyNonemptyGlobal),[121,128,127]);
@@ -252,6 +304,7 @@ assert.deepEqual(controls.map(x=>x.spacePlusTopRune.minimum),
   [4364,4620,4472]);
 assert(controls.every(x=>x.spacePlusTopRune.impossibleUnderAnyRowKey===128));
 assert(controls.every(x=>x.spacePlusTopRune.impossibleUnderAnyChapterPrivateKey===128));
+assert(controls.every(x=>x.spacePlusTopRune.impossibleWithAnyNinePageKeyZones===128));
 
 /** Author-authentic solved-Cicada GP29 words, exact original word lengths.
  * Rare absent long lengths get uniformly random rune fillers, deliberately
@@ -306,11 +359,14 @@ for(const [poolId,pool] of authorPools.entries()){
     impossibleUnderAnyRowKey:
       values.filter(x=>x>maximumSpacePlusAnyRune).length,
     impossibleUnderAnyChapterPrivateKey:
-      values.filter(x=>x>chapterPrivateTwoSymbol).length});
+      values.filter(x=>x>chapterPrivateTwoSymbol).length,
+    impossibleWithAnyNinePageKeyZones:
+      values.filter(x=>x>optimalCaps[8]).length});
 }
 assert.deepEqual(creatorAuthentic.map(x=>x.minJoint),[4383,4471]);
 assert(creatorAuthentic.every(x=>x.impossibleUnderAnyRowKey===128));
 assert(creatorAuthentic.every(x=>x.impossibleUnderAnyChapterPrivateKey===128));
+assert(creatorAuthentic.every(x=>x.impossibleWithAnyNinePageKeyZones===128));
 console.log(JSON.stringify({
   source:{runes:12956,words,gp30:C.length,pages:pages.length},
   allKeyGlobal:{minRowDeficits:loss.slice(0,3),maxAfterSpaceGain:G,
@@ -324,7 +380,10 @@ console.log(JSON.stringify({
     maximumSpacePlusAnyRuneUnderAllPrivateKeys:maximumSpacePlusAnyRune,
     maximumSpacesIfChangingAfterOriginalSpace:maxIfNewAfterSpace},
   relaxations:{chapterPrivateMax:privateByChapter,pagePrivateMax:privateByPage,
-    chapterPrivateTwoSymbol,chapterTwoSymbolRows,pagePrivateTwoSymbol},
+    chapterPrivateTwoSymbol,chapterTwoSymbolRows,pagePrivateTwoSymbol,
+    optimalCapsByNumberOfPageKeyZones:optimalCaps,
+    bestNineSourcePageZones:keyZones(9),
+    minimumZonesForNativeControls},
   positive:{fullOriginalTokensReencrypt:true,
     changedRunePositions:P.filter((x,i)=>x!==C[i]).length,
     allWordBoundariesPreserved:true},
