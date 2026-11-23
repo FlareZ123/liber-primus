@@ -194,6 +194,24 @@ const exactOriginalEquality={
 assert.deepEqual(exactOriginalEquality,
   {lineAndAllInk:3956,everyPrintedTokenAndInk:683});
 
+/** Per-scope equal-pair counts, preserved as exact source-local gates.
+ * @param {number[]} values @param {number[]} cuts @returns {number[]} */
+function pairVector(values,cuts){
+  const out=[],counts=Array(29).fill(0);
+  for(let j=1;j<cuts.length;j++){
+    counts.fill(0);
+    for(let k=cuts[j-1];k<cuts[j];k++)counts[values[k]]++;
+    let n=0;
+    for(const count of counts)n+=count*(count-1)/2;
+    out.push(n);
+  }
+  return out;
+}
+const sourceLocalPairs=pairVector(original,withAllVisible);
+assert.equal(sourceLocalPairs.length,3320);
+assert.equal(sourceLocalPairs.filter(n=>n>0).length,553);
+assert.equal(sourceLocalPairs.reduce((a,b)=>a+b,0),683);
+
 /** Native contiguous original-length windows at fixed half-book steps, to
  * match the long-standing exact-original layout control convention.
  * @param {number[]} native @returns {{samples:number,min738:number,min3320:number,atOrBelowOriginal738:number,atOrBelowOriginal3320:number}} */
@@ -349,6 +367,7 @@ function lengthMatchedCollisionDonor(donor,draw){
   for(const width of widths)assert(byLen.has(width));
   const trials=256;
   let min=Infinity,max=-Infinity,sum=0,atOrBelow=0;
+  let minFail=Infinity,maxFail=0,totalFail=0,totalExcess=0;
   for(let k=0;k<trials;k++){
     const candidate=new Array(N);
     let offset=0;
@@ -359,13 +378,26 @@ function lengthMatchedCollisionDonor(donor,draw){
     }
     assert.equal(offset,N);
     const pairs=equalPairs(candidate,withAllVisible);
+    const local=pairVector(candidate,withAllVisible);
+    let fails=0,excess=0;
+    for(let j=0;j<local.length;j++)if(local[j]>sourceLocalPairs[j]){
+      fails++;
+      excess+=local[j]-sourceLocalPairs[j];
+    }
+    minFail=Math.min(minFail,fails);
+    maxFail=Math.max(maxFail,fails);
+    totalFail+=fails;
+    totalExcess+=excess;
     min=Math.min(min,pairs);
     max=Math.max(max,pairs);
     sum+=pairs;
     if(pairs<=exactOriginalEquality.everyPrintedTokenAndInk)atOrBelow++;
   }
   return {replicates:trials,donorWords:lexicon.length,
-    min,max,mean:sum/trials,atOrBelow};
+    min,max,mean:sum/trials,atOrBelow,
+    sourceScopesRequiringDynamicChange:{
+      min:minFail,max:maxFail,mean:totalFail/trials,
+      meanExcessEqualPairs:totalExcess/trials}};
 }
 const matchedDraw=rng();
 const E=gp.translit.indexOf('E'),O=gp.translit.indexOf('O');
@@ -408,6 +440,14 @@ assert.deepEqual(controls.map(x=>[
   [[15733,1023,1200,1109.109375,0],
     [77932,1053,1249,1134.5703125,0],
     [55407,1059,1244,1150.7734375,0]]);
+assert.deepEqual(controls.map(x=>[
+  x.originalWordLengthMatchedInkCollision.sourceScopesRequiringDynamicChange.min,
+  x.originalWordLengthMatchedInkCollision.sourceScopesRequiringDynamicChange.max,
+  x.originalWordLengthMatchedInkCollision.sourceScopesRequiringDynamicChange.mean,
+  x.originalWordLengthMatchedInkCollision.sourceScopesRequiringDynamicChange.meanExcessEqualPairs]),
+  [[486,572,527.1484375,747.69921875],
+    [512,611,556.36328125,773.984375],
+    [529,623,575.4296875,791.4140625]]);
 const native=encodeWords(read(sources[0][1])).flat().slice(0,N);
 const positive=plant(native),positiveCap=bins(positive.cipher,all);
 // Even independently arbitrary *non-injective* deterministic per-scope
