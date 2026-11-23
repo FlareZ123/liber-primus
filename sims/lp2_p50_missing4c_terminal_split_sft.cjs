@@ -112,6 +112,14 @@ assert.equal(bridgeValue,252);
 const bridgeToken=alphabet[Math.floor(bridgeValue/60)]+alphabet[bridgeValue%60];
 assert.equal(bridgeToken,'4C');
 assert(!tokens.includes(bridgeToken));
+// An independent source-only route starts with the *printed* 32×8
+// circumference and solved p57's word SHED, without consulting p55.
+const peeledCircumferenceToken=outer.length.toString(16).toUpperCase();
+assert.equal(peeledCircumferenceToken,bridgeToken);
+const inferredAddress=radix60(peeledCircumferenceToken);
+assert.equal(inferredAddress,252);
+assert.equal(bytes[inferredAddress],inner.length);
+assert.equal(tokens[inferredAddress],'30');
 
 const lower=paths(['48','49','4A','4B']);
 const upper=paths(['4D','4E','4F']);
@@ -166,6 +174,11 @@ console.log(JSON.stringify({
   consecutivePathCounts:{'48→49→4A→4B':lower.length,'4D→4E→4F':upper.length},
   sourceOnlyMaximalPaths:maximal.map(trail=>({indices:trail,values:trail.map(i=>bytes[i])})),
   missingToken:'4C',
+  independentSourceSelectors:{
+    maximalPathBridge:bridgeToken,
+    p57ShedCircumferenceHex:peeledCircumferenceToken,
+    peeledRemainder:grid.rows.length*8-outer.length
+  },
   missingHexValue:76,
   missingBase60Address:252,
   addressToken:tokens[252],
