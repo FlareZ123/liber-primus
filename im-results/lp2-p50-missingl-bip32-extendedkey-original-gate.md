@@ -40,10 +40,23 @@ The best full-book score uses the **right-adjacent M column chain code, hardened
 
 The source-only first three BIP32 child addresses under that leading case are `15Tn4TugaQNukWx6FpaMhMpi8dyzEX6AJR`, `154RvyNKJ7mue76A7Vx3K1K5xG8PLZpT8b`, `1AFodXNoE1pXTFmYGMRcDPQpBMcjDEXK2g`. Unlike the established parent `1Meanpng` prefix, these supply no obvious typed continuation.
 
+## Independent complete 192-byte original-table receiver
+
+A second original-byte consumer asks whether **the two adjacent 32-byte columns L/M are an unencrypted extended-key header** and the other **six original columns (192 bytes)** constitute a short encrypted file. This keeps all 256 table cells accounted for without assuming any unknown plaintext or repeated source byte. It has a distinct possible human solve-path: historical Cicada used XOR on binary operands in 2013, and BIP32 defines exactly a 32-byte child private scalar.
+
+Freeze L at original column4 as the private parent and M at column5 as the 32-byte chain. The unchanged ordered ciphertext columns are `[0,1,2,3,6,7]`; derive **six standard BIP32 child scalars** at `m/0,…,m/5`, concatenate their fixed32-byte encodings and XOR the six ciphertext columns positionwise. As a bounded alternative, use the six standard hardened children `m/0',…,m/5'` with the same prescribed XOR. No missing data, language score, byte offsets, 32-byte phase, trial passwords or arbitrary source variants.
+
+| Complete 192-byte unchanged table XOR | Printable ASCII | ASCII letters or spaces | Exact first 32 recovered bytes |
+| --- | ---: | ---: | --- |
+| Unhardened m/0..5 | **80/192 = 41.67%** | **47/192 = 24.48%** | `2777d9c9ce4cd9b2565a79aec94b5085fbf80936a63f16773aa2917e746778a1` |
+| Hardened m/0'..5' | **76/192 = 39.58%** | **44/192 = 22.92%** | `00a0e8366decf930b94f687cecfa027c5b8f944783de66d4ba18959bea6b7a9c` |
+
+The unchanged source-derived outputs remain binary-looking, with **no conventional plaintext ASCII file header**. Both exactly replay all192 original bytes by forward XOR. An independent original 192-byte genuine readable-ASCII plant XOR-encrypts and then recovers all192 bytes under each identical pad; these are implementation controls. This finite interpretation does not produce a hidden message, file signature, LP2 key or location. It cannot rule out a different author-selected BIP32 receiver or compressed/encrypted payload, since there is **no original BIP32 or XOR opcode** selecting this operation. The added complete test passed in [Windows Node22 run 45237440098](https://github.com/FlareZ123/liber-primus/actions/runs/45237440098).
+
 ## Reproduction, decision and next meaningful input
 
 - [Complete read-only CommonJS/Node22 SFT](../sims/lp2_p50_missingl_bip32_child_scalar_original_sft.cjs), consuming the current canonical numerical table and all 58 LP2 page records.
-- [Source-original Windows Node22 GitHub Actions PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45233262923); full result includes 16 exact inverse outputs, source table SHA, Bitcoin parent address, two official BIP32 child test vectors and source-native positive controls.
+- [Source-original Windows Node22 GitHub Actions PASS, including later binary receiver](https://github.com/FlareZ123/liber-primus/actions/runs/45237440098); full result includes 16 exact inverse outputs, source table SHA, Bitcoin parent address, two official BIP32 child test vectors and source-native positive controls.
 - [Normative pre-2014 BIP32 specification and test vectors](https://bips.dev/32/).
 
-**Retire the tested complete BIP32 immediate-child scalar GP29 additive and first-difference pad family**. The experiment leaves open a distinct, *author-selected* BIP32 consumer, e.g. a named child public key, signed destination, or separate original encrypted asset requiring one particular extended key. Further arbitrary key-stream derivations from the table would provide little discriminating evidence without a first-party instruction. The strongest remaining decision is whether an original author clue establishes a Bitcoin-style recipient at all; none has been recovered here.
+**Retire the tested complete BIP32 immediate-child scalar GP29 additive/first-difference pad family and the six-column direct-XOR byte-file consumer**. The experiment leaves open a distinct, *author-selected* BIP32 consumer, e.g. a named child public key, signed destination, or separate original encrypted asset requiring one particular extended key. Further arbitrary key-stream derivations from the table would provide little discriminating evidence without a first-party instruction. The strongest remaining decision is whether an original author clue establishes a Bitcoin-style recipient at all; none has been recovered here.
