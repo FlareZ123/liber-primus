@@ -61,6 +61,17 @@ with independent DH checks \(5^6\bmod23=8\), \(19^6\bmod23=2\) and \(8^{15}\bmod
 
 **Exact source multiplicities:** in the original 256-cell base60 table, numeric203 occurs **once** (cell0) and numeric117 occurs **twice** (cells173 and230). Conditioned on the *specific already-chosen* address0, address173, output203 and output117, a uniformly random permutation of the observed 256 numbers would have probability \((1/256)(2/255)=1/32640\) of these two simultaneous cells. The source selection rules and packet form were discovered while inspecting the manuscript; the conditional value is **not** a calibrated discovery P-value. Other address definitions, modular equations, public variable serializations and historical links are possible, so the actual explanatory force remains unsettled.
 
+### Complete original-grid packet census
+
+To avoid treating an attractive cell173 as evidence without checking rival cells, apply the **same equations and the same historical 2014 ordinal step11 to every one of the 256 original table addresses**, with the same literal first cell and no newly fitted constants. Under the conventional base60 digit alphabet, **15** of 256 addressed cells admit an integer prime modulus `p`, a generator `g=column`, and a legal shared `K=p−row` at the first two equations. Requiring the *independent first cell* to unpack two nonzero DH public values `A,B` and satisfy the two DH identities `g^(11−g)=A (mod p)` and `B^(11−g)=K (mod p)` leaves **exactly one** address in the whole table:
+
+```text
+index=173, row=21, col=5, token=1v, value=117
+p=23, g=5, K=2, A=8, B=19, a=6
+```
+
+Under the other source-attested **base59 (omit f)** digit alphabet, **12** of 256 cells initially admit prime `p` and legal `K`, but **zero** satisfy the complete public-packet DH identities from first cell `3N=200`. These all-cell censuses appear as exact assertions and complete raw matching sets in [the reproducer](../sims/lp2_stage10_p39_p50_dh23_packet_sft.cjs), independent of p28 as the input receiver. This makes cell173 **unique within the declared, analyst-proposed equation family**. It does not establish that the authors chose this particular two-equation family, or that a 256-way table scan was an intended human step. Other arithmetic families would generate different survivors, and the complete DH23 tuple was already a public 2013 worked example.
+
 ## An additional independent 203 convergence, kept secondary
 
 Earlier Stage10-prime-ordinal [original evidence](lp2-2014-stage10-triple-primeordinal-original-inverse.md) established the p55 terminal six-rune ciphertext echo at **p27 offset28** and the immediate next complete p27 word **AE.F**, which has native GP-prime sum**103**. This selects table \`p50[103]="3Q"\`. Under the competing page57-inspired **skip-\`f\` base59**, that token is also exactly **203**:
