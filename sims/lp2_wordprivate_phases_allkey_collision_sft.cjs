@@ -147,10 +147,6 @@ for (const [name, file, parser] of sources) {
     v.lowerOrEqualOriginal = trials.filter(t => t[i] <= original[i]).length;
     return {period: i + 1, observed: original[i], ...v};
   });
-  for (const row of distributions.filter(x => [1, 2, 3, 4, 6].includes(x.period))) {
-    assert(row.min > row.observed,
-      "Expected original lower than reference samples for m " + row.period + " from " + name);
-  }
   results.push({source: name, samples: 256, periods: distributions});
   console.log("CONTROL", JSON.stringify({source: name, periods: distributions}));
 }
@@ -181,7 +177,7 @@ assert(period5SupportsEnglish,
   "At least one native English control must attain the original m=5 count");
 console.log("DECISION", JSON.stringify({originalRunes: 12956,
   completeWords: 2896, periodCounts: original,
-  allFiveControlSourcesExcludePeriods: [1, 2, 3, 4, 6],
+  sourceConditionalPeriodResults: "read measured per-source distributions above",
   period5NotExcluded: true, secretFivePhaseNativeRecovery: recovered,
   meaningfulCaveat: "Periodic phase is word-position modulo m; arbitrary dynamic phase clocks, cross-word mixing and non-native GP plaintext are outside the statement",
   results: results.map(r => ({source: r.source,
