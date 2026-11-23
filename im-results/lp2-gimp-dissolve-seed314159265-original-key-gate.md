@@ -1,6 +1,6 @@
 # Historical GIMP Dissolve source seed as an original LP2 stream-key candidate
 
-**23 November 2026, Agent41. Classification: source-motivated bounded negative on 8 direct GP29 and 5 table-byte receivers. No recovered unknown LP2 plaintext, authenticated cipher key, or final destination.** This study tests whether the known image-production pseudorandom stream operates as an actual reversible manuscript cipher or external 256-byte table key, without treating its software default as an authored instruction.
+**23 November 2026, Agent41. Classification: source-motivated bounded negative on 8 direct GP29, 8 no-repeat GP28, and 5 table-byte receivers. No recovered unknown LP2 plaintext, authenticated cipher key, or final destination.** This study tests whether the known image-production pseudorandom stream operates as an actual reversible manuscript cipher or external 256-byte table key, without treating its software default as an authored instruction.
 
 ## Source-to-receiver motivation
 
@@ -39,6 +39,21 @@ Read all 256 printed table cells in unchanged row-major order using the already-
 | GIMP 32×8 row MT high8 | 1 | 92 | 4 |
 
 No direct copied key/table, readable bytewise XOR or obvious file header emerges. The five choices are historically typed serialization choices; scanning unknown row offsets and mixtures would add an unsupported key-hunt degree of freedom.
+
+## Additional source-constrained no-repeat GP28 receiver
+
+The GP29 direct/feedback experiments above preserve all rune values but do not explain the original **86/12,901 matching adjacent within-page ciphertext pairs**. A second explicit *reversible* decoder instead treats the first original rune of each page as a preserved IV, and each following nonzero ciphertext difference (1..28) as a member of a 28-symbol alphabet in printed GP order. The zero difference is the 29th symbol F (index0), so the 86 genuine exceptions remain completely reconstructible without hidden side bits. For all nonzero differences `D_i=(C_i-C_(i-1)) mod29` it yields `P_i=1+((D_i-1 ± K_i) mod28)`, with a zero difference emitting F. The authentic GLib MT seed314159265 advances once per original non-IV rune, as either native `g_rand_int()%28` or the actual GIMP range255 threshold reduced modulo28. The RNG is global or page-reset and sign is fixed ±1; these **eight** original-input constructions cover no other hidden parameters.
+
+The original 12,901 resulting rune slots have exactly **86 F** and all eight decoder outputs remain near-uniform over the 28 non-F symbols:
+
+| Native key arithmetic | Book continuous, negative/positive sign | Page-reset, negative/positive sign |
+|---|---:|---:|
+| `g_rand_int()%28` | 0.035308903 / 0.035286550 | 0.035265435 / 0.035280001 |
+| `g_rand_int_range(0,255)%28` | 0.035247902 / 0.035338730 | 0.035301163 / 0.035305490 |
+
+The unchanged 55 original page-IV runes are retained independently, so all 12,956 original runes **re-encrypt exactly**. Each of the eight complete models also correctly round-trips a separate genuine **95-rune native solved p57 plaintext** through the matching synthetic encoder. This does not reproduce the original author's cipher. The sharp weakness is independent of the seed: mapping every rare source repeat to literal GP F would yield only **86 F in 12,901 recovered runes**. A different exception semantics may be viable but would require an authored locator, not a freely assigned alphabet.
+
+[Additional Windows Node22 CI PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45091490404). The source-led MT candidate is now tested both in direct GP29 and the no-repeat-compatible GP28 chain architecture. Neither recovers contiguous original plaintext.
 
 ## Reproducer and next research fork
 
