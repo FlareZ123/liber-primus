@@ -17,7 +17,7 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "resources" / "liber-primus"
 OUTPUT = Path(tempfile.gettempdir()) / "lp2-mean58.png"
-EXPECTED_RGB_SHA256 = "2b85992cb5b994f2cc6731796bcbd6d46f48e5504e8c57cef0bb1be8dcef5b5b2"
+EXPECTED_RGB_SHA256 = "2b8592cb5b994f2cc6731796bcbd6d46f48e5504e8c57cef0bb1be8dcef5b5b2"
 
 
 def main() -> None:
