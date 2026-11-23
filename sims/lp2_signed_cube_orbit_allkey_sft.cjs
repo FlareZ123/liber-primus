@@ -157,6 +157,27 @@ assert.deepEqual(
   [202191, 1213, 149402, [214, 322], [95, 189]]
 );
 
+// Independent visually marked chapter clocks: Q-only must also preserve each
+// chapter's orbit totals even when the secret exponent/permutation resets.
+const chapterRanges = [[0, 2], [3, 7], [8, 14], [15, 22], [23, 26],
+  [27, 32], [33, 39], [40, 53], [54, 55]];
+const chapterOracleMinimums = [
+  [60, 54], [102, 88], [138, 125], [159, 139], [67, 67],
+  [115, 113], [124, 108], [246, 253], [16, 12]
+];
+const chapterGates = chapterRanges.map(([first, last], k) => {
+  const source = unknownPages.filter((p) => p.page >= first && p.page <= last)
+    .flatMap((p) => p.indices);
+  const target = orbitCounts(source);
+  const gb = nativeWindowBounds(gibran, target, source.length);
+  const sh = nativeWindowBounds(shakespeare, target, source.length);
+  assert.deepEqual([gb.minMoves, sh.minMoves], chapterOracleMinimums[k]);
+  return { pages: [first, last], runes: source.length,
+    originalOrbitCounts: target,
+    minimumOrbitChanges: { gibran: gb.minMoves, shakespeare: sh.minMoves } };
+});
+assert.equal(chapterGates.reduce((sum, g) => sum + g.runes, 0), unknown.length);
+
 // Full-length native positive: an arbitrary per-symbol secret cube exponent
 // and a complete position reversal cannot change the eight orbit totals.
 const original = gibran.slice(0, unknown.length);
@@ -174,6 +195,7 @@ console.log(JSON.stringify({
   p57Clear: { runes: solved57.length, orbitCounts: orbitCounts(solved57) },
   gibran: g,
   shakespeare: s,
+  nineOriginalChapterGates: chapterGates,
   minimumOrbitChangingRunesForMatchedNativeEnglish: Math.min(g.minMoves, s.minMoves),
   positiveNativeRoundTrip: original.length
 }, null, 2));
