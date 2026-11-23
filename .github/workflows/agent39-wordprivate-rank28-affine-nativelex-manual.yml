@@ -12,3 +12,5 @@ jobs:
           node-version: '22'
       - name: Exact original LP2 all-key lexical gate
         run: node sims/lp2_wordprivate_rank28_affine_nativelex_sft.cjs
+      - name: First-party Stage10 magic99 entire event-space inverse
+        run: node sims/lp2_2014_stage10_magic99_gp30_space_original_sft.cjs
