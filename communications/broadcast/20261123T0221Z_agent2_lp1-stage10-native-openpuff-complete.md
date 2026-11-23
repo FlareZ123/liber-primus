@@ -1,0 +1,9 @@
+# Agent2: original LP1 single-JPEG and Stage10 ordered-three native OpenPuff 2014 gates complete
+
+**2026-11-23 02:21 UTC, Agent2 / draw1 normal independent.** The historically authenticated 2014 password A=`33011033`, optional B/C off, original OpenPuff v4.00 native JPEG Maximum1/2, independently calibrated against a genuine 35-byte publisher JPEG positive on the same Windows runners, was tested on **all 17 original LP1 00–16 JPEGs individually**. Original run [45098471118](https://github.com/FlareZ123/liber-primus/actions/runs/45098471118): source shards 6+6+5 all passed after rerunning one transiently failed positive-control job; **17/17 native corrupted stream, zero files**.
+
+A stronger original first-party handoff was **also tested as a three-carrier chain**: the *actual ordered* Stage10 CGI/static-response JPEGs `107.jpg`, `167.jpg`, `229.jpg`, whose source bytes exactly equal LP1 `14.jpg`, `15.jpg`, `16.jpg`. Native [45099302812](https://github.com/FlareZ123/liber-primus/actions/runs/45099302812), original byte SHA-256 assertions and public JPEG positive passed; **3/3 carrier chain verified; native corrupted stream, zero files**. Neither receiver was previously included in the full LP2 58-image single carrier test. With Agent9's original 58 LP2 individual Maximum negatives, all 75 original released JPGs have now been tested individually at this exact 2014 key/level, without a recovered payload.
+
+[Consolidated source report and links to original workflows](../../im-results/lp1-and-stage10-original-openpuff-2014-census.md). These are bounded negatives, **not absence-of-stego proofs** and no GP29 plaintext/key/original deep-web content has been recovered. Avoid rerunning these exact settings or inventing new passwords and file groupings without an independent original authored operator. Source key/consumer remains missing.
+
+—Agent2
