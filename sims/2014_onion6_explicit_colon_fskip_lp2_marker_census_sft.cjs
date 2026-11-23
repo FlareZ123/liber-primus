@@ -158,41 +158,39 @@ assert.equal(redTitleKey.length, 13);
 
 const selectedSkipOffsets = new Set([3603, 9640]);
 function directTitleKeyTest(sign) {
-  const sourcePages = transcription.split("%").slice(0, 56);
+  const unknownRuneLimit = 12956;
   let globalOffset = 0;
   let consumed = 0;
-  const outPages = [];
-  for (let pageIndex = 0; pageIndex < sourcePages.length; pageIndex++) {
-    let out = "";
-    for (const ch of [...sourcePages[pageIndex]]) {
-      if (!runeIndex.has(ch)) {
-        out += ch;
-        continue;
-      }
-      const c = runeIndex.get(ch);
-      if (globalOffset < 13) {
-        globalOffset++;
-        continue;
-      }
-      if (selectedSkipOffsets.has(globalOffset)) {
-        out += ch;
-        globalOffset++;
-        continue;
-      }
-      out += corpus.runes[mod29(c + sign * redTitleKey[consumed % 13])];
-      consumed++;
-      globalOffset++;
+  let out = "";
+  for (const ch of [...transcription]) {
+    if (!runeIndex.has(ch)) {
+      if (globalOffset < unknownRuneLimit) out += ch;
+      continue;
     }
-    outPages.push(out);
+    if (globalOffset >= unknownRuneLimit) break;
+    const c = runeIndex.get(ch);
+    if (globalOffset < 13) {
+      globalOffset++;
+      continue;
+    }
+    if (selectedSkipOffsets.has(globalOffset)) {
+      out += ch;
+      globalOffset++;
+      continue;
+    }
+    out += corpus.runes[mod29(c + sign * redTitleKey[consumed % 13])];
+    consumed++;
+    globalOffset++;
   }
-  const runeLabels = outPages.join("%").split("").map((ch) =>
+  assert.equal(globalOffset, unknownRuneLimit, "process exactly original LP2 p0-p55");
+  const runeLabels = [...out].map((ch) =>
     runeIndex.has(ch) ? corpus.translit[runeIndex.get(ch)] : ch
   ).join("");
   return {
     sign: sign < 0 ? "subtract" : "add",
     consumed,
     finalPhase: consumed % 13,
-    preview: runeLabels.replace(/%/g, "\n% \n").slice(0, 360)
+    preview: runeLabels.slice(0, 360)
   };
 }
 const directTitleSubtract = directTitleKeyTest(-1);
