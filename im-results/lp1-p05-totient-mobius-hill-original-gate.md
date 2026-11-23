@@ -155,4 +155,4 @@ Run from repository root:
 
     node sims/lp1_p05_totient_mobius_hill_original_sft.cjs
 
-The script reconstructs the 1033 matrix from the already verified 360-byte original sidecar, checks the independent 2014 square, derives both number-theoretic matrices and the prime-constant pair, performs the 16 Hill-5, 8 matrix-additive, 8 prime-pair, and 16 p55-framed tests, and prints the exact scores and previews. The earlier version passed Node 22 SFT workflow #928; rerun after the prime-pair extension.
+The script reconstructs the 1033 matrix from the already verified 360-byte original sidecar, checks the independent 2014 square, derives both number-theoretic matrices and the prime-constant pair, performs the 16 Hill-5, 8 matrix-additive, 8 prime-pair, and 16 p55-framed tests, and prints the exact scores and previews. The updated script passed the repository's manual Node 22 source-SFT workflow (#929; run 45201109769) on commit 392b27595bdff28bc370ab48d25dffc6ddf1414d.
