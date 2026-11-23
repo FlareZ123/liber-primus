@@ -111,7 +111,7 @@ assert.deepEqual(multiplyLinear(b.quotient, r), p11);
 const transcription = fs.readFileSync(path.resolve(__dirname, '..',
   'resources/liber-primus/lp2-transcription.txt'), 'utf8').split('%');
 assert.deepEqual(transcription.slice(8, 15)
-  .map(text => (text.match(/\\d+/g) || [])), [[], [], ['7'], [], [], [], []]);
+  .map(text => (text.match(/\d+/g) || [])), [[], [], ['7'], [], [], [], []]);
 assert.ok(transcription[10].includes('-7-'));
 const numericSeven = 7;
 assert.equal(evaluate(p10, numericSeven), 0);
