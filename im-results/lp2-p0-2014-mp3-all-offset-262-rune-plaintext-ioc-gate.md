@@ -21,7 +21,7 @@ The complete native Windows Node.js 22 execution [run 45161168117](https://githu
 | `floor(29*byte/256)` | −1 | **0.04360797** | 633,915 | **0** |
 | `floor(29*byte/256)` | +1 | **0.04191161** | 4,403,511 | **0** |
 
-The exact threshold printed by the count script is the smallest attainable lattice IoC **≥0.044**, namely **0.044016...**. There are no hits at this or any more demanding printed threshold under any of the four modes. The extreme best candidate, **offset 633,915** in the scaled/negative mode, begins `F T EO U B EA EO IA B P A EA TH EA G E Y TH EO IA L U W T R IA IA` in canonical source GP rune-label order, not a coherent message. This highest result is an empirical extreme selected from millions of overlapping key phases, so its numerical value is **not** a successful plaintext indication.
+The exact threshold printed by the count script is the smallest attainable lattice IoC **≥0.044**, namely **0.044002807756**. There are no hits at this or any more demanding printed threshold under any of the four modes. The extreme best candidate, **offset 633,915** in the scaled/negative mode, begins `F T EO U B EA EO IA B P A EA TH EA G E Y TH EO IA L U W T R IA IA` in canonical source GP rune-label order, not a coherent message. This highest result is an empirical extreme selected from millions of overlapping key phases, so its numerical value is **not** a successful plaintext indication.
 
 The authentic solved-language plant has IoC **0.06794**, far higher than **every** original decoded candidate. For added calibration the original counts exceeding the lower score bands are:
 
