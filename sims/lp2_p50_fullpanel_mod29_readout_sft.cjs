@@ -41,6 +41,12 @@ assert.equal(alphabet, '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrst
 assert.equal(base29(3301n), '3QO', 'authentic 2013 BASE29 3301 positive control');
 
 const tokens = grid.pages.flatMap((page) => page.tokens);
+const signedBase29Digits = new Set('0123456789ABCDEFGHIJKLMNOPQRS');
+const incompatibleBase29 = tokens.filter((token) =>
+  [...token].some((ch) => !signedBase29Digits.has(ch))
+);
+assert.equal(incompatibleBase29.length, 124,
+  '124 of 256 tokens are invalid digits in the signed 2013 BASE29 convention');
 assert.deepEqual(grid.pages.map((page) => page.tokens.length), [80, 104, 72]);
 assert.equal(tokens.length, 256);
 
@@ -74,6 +80,7 @@ assert.equal(p57.indices.length, 95);
 assert.equal(p57.indices.filter((v) => v === 28).length, 0);
 
 console.log('PASS: signed 2013 worked BASE29 example 3301 -> 3QO');
+console.log('PASS: 124 / 256 original p50 tokens are outside the signed BASE29 digit set');
 console.log('PASS: 32x8 original tokens; 80 + 104 + 72 byte split; SHA256 confirmed');
 console.log('READOUT: each original two-digit cell -> integer modulo 29 -> GP rune');
 console.log('NOTE: author selection of this cellwise operation is NOT established');
