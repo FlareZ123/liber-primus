@@ -136,6 +136,44 @@ assert.equal(terminalAtLeast8AndNo55,260);
 assert.equal(anyValidTotal/broadRuns,24.032748);
 
 
+// Follow the individually named signed word PATH through its source GP0 page
+// address, and read that page's actual first *printed* GP word. The missing
+// p50 rune-free table shifts the text-transcription index after p49.
+const originalTextPages = read("resources/lp2-transcription.txt").split("%");
+const realRuneAlphabet = JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json")).runes;
+const runeMap = new Map(realRuneAlphabet.map((rune,i)=>[rune,corpus.translit[i]]));
+const firstPageWords=[];
+for(let number=0;number<58;number++){
+  if(number===50)continue;
+  const textNumber = number<=49?number:number-1;
+  const first=originalTextPages[textNumber].match(/[\u16a0-\u16ff]+/u);
+  assert(first!==null);
+  firstPageWords.push({page:number,word:Array.from(first[0]).map((x)=>runeMap.get(x)).join("")});
+}
+assert.equal(firstPageWords.length,57);
+const compass=new Set(["N","E","S","W","NE","NW","SE","SW"]);
+const compassFirstWords=firstPageWords.filter((item)=>compass.has(item.word));
+assert.deepEqual(compassFirstWords,[{page:39,word:"SW"}]);
+assert.equal(followers[0],"PATH");
+assert.equal(sums[0],39);
+assert.equal(firstPageWords.find((item)=>item.page===39).word,"SW");
+// A source-compatible diagonal map route exists, but no original source
+// commands using the *first word of a page* as a p50-table movement opcode.
+const start39={row:Math.floor(39/8),col:39%8};
+const southwest={row:start39.row+1,col:start39.col-1};
+assert.deepEqual(southwest,{row:5,col:6});
+const southwestCell=southwest.row*8+southwest.col;
+assert.equal(southwestCell,46);
+assert.equal(gp("ARE").reduce((a,b)=>a+b,0),46);
+// Exact labelled-P,A,TH index permutation null for PATH's sum=39.
+let tripletCount=0,tripletTarget=0;
+for(let i=0;i<29;i++)for(let j=0;j<29;j++)for(let k=0;k<29;k++){
+  if(i===j||j===k||i===k)continue;
+  tripletCount++;
+  if(i+j+k===39)tripletTarget++;
+}
+assert.deepEqual([tripletTarget,tripletCount],[582,21924]);
+
 console.log(JSON.stringify({
  source:"Cicada 2016 original clearsigned LP2 words/numbers instruction",
  observedFollowers:addressed,
@@ -148,6 +186,13 @@ console.log(JSON.stringify({
  empiricalSelectedExact:selectedExact/runs,
  empiricalFourTriplesExact:allTriplesExact/runs,
  empiricalFourTriplesDescendingTerminal:allTriplesDescendingTerminal/runs,
+ path39: {
+  sourceSignedWord:"PATH",sourcePage:39,firstOriginalPrintedWord:"SW",
+  uniqueCompassHeadwordAcrossRunePages:compassFirstWords,
+  exactIndependentAlphabetShuffleProbabilityPATH39:tripletTarget/tripletCount,
+  possibleSWGridStep:"39(row4,col7) -> 46(row5,col6) = GP0(ARE)",
+  caveat:"The page-start-word→table-compass grammar and target ARE are not source-authenticated."
+ },
  fullMessage: {
   validPageAddresses:wholeInBook, invalidPageAddresses:words.length-wholeInBook,
   sourceTerminal, sourcePage55WordCount:0,
