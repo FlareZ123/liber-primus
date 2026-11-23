@@ -101,6 +101,16 @@ assert.equal(nonempty,1);
 // Upper capacity even if output word count is allowed to change.
 const U=N.reduce((a,row)=>a+Math.max(...row),0);
 assert.equal(U,3013);
+/*
+ * Stronger bound independent of ANY plaintext word-count / nonempty-word
+ * premise: each secret bijection assigns distinct source symbols to output
+ * SPACE and any ONE output rune. For each previous-source state, their
+ * combined observed count is at most the sum of its two largest entries.
+ */
+const maximumSpacePlusAnyRune=1+N.reduce((sum,row)=>
+  sum+row.slice().sort((a,b)=>b-a).slice(0,2)
+    .reduce((a,b)=>a+b,0),0);
+assert.equal(maximumSpacePlusAnyRune,3707);
 // In the REAL output-grammar case, adjacent plaintext spaces are forbidden.
 // If the previous-SPACE row creates a gap from rune s, every distinct
 // predecessor r in (r,SPACE,s) MUST suppress original SPACE. All those
@@ -188,22 +198,88 @@ const sources=[
 ];
 const controls=[];
 for(const [name,file] of sources){
-  const donor=native(read(file)),values=[];
+  const donor=native(read(file)),values=[],joint=[];
   for(let z=0;z<128;z++){
     const offset=Math.floor(random()*(donor.length-C.length));
-    values.push(donor.slice(offset,offset+C.length)
-      .filter(x=>x===29).length);
+    const counts=Array(30).fill(0);
+    for(const symbol of donor.slice(offset,offset+C.length))
+      counts[symbol]++;
+    values.push(counts[29]);
+    joint.push(counts[29]+Math.max(...counts.slice(0,29)));
   }
-  values.sort((a,b)=>a-b);
+  values.sort((a,b)=>a-b);joint.sort((a,b)=>a-b);
   controls.push({name,donorTokens:donor.length,
     min:values[0],median:values[64],max:values.at(-1),
     beyondGlobal:values.filter(x=>x>U).length,
     beyondAnyNonemptyGlobal:values.filter(x=>x>legalNonemptyUpperBound).length,
-    beyondChapter:values.filter(x=>x>privateByChapter).length});
+    beyondChapter:values.filter(x=>x>privateByChapter).length,
+    spacePlusTopRune:{minimum:joint[0],median:joint[64],
+      maximum:joint.at(-1),
+      impossibleUnderAnyRowKey:
+        joint.filter(x=>x>maximumSpacePlusAnyRune).length}});
 }
 assert.deepEqual(controls.map(x=>x.beyondGlobal),[114,128,125]);
 assert.deepEqual(controls.map(x=>x.beyondAnyNonemptyGlobal),[121,128,127]);
 assert.deepEqual(controls.map(x=>x.beyondChapter),[109,128,93]);
+assert.deepEqual(controls.map(x=>x.spacePlusTopRune.minimum),
+  [4364,4620,4472]);
+assert(controls.every(x=>x.spacePlusTopRune.impossibleUnderAnyRowKey===128));
+
+/** Author-authentic solved-Cicada GP29 words, exact original word lengths.
+ * Rare absent long lengths get uniformly random rune fillers, deliberately
+ * reducing the native control's recurrent-symbol advantage.
+ */
+const solved=JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json"));
+assert.deepEqual(solved.runes,gp.runes);
+function runeWords(input,original=false){
+  const result=[];let word=[];
+  for(const ch of input){
+    if(runes.has(ch))word.push(runes.get(ch));
+    else if(original&&(ch==="%"||ch==="/"||/\s/u.test(ch))){}
+    else if(word.length){result.push(word);word=[];}
+  }
+  if(word.length)result.push(word);
+  return result;
+}
+const sourceWords=runeWords(text.split("%").slice(0,55).join("%"),true);
+assert.equal(sourceWords.length,2896);
+const authorPools=[solved.sections.slice(0,5),solved.sections.slice(5)]
+  .map(sections=>{
+    const m=new Map();
+    for(const word of sections.flatMap(s=>runeWords(s.source_text))){
+      if(!m.has(word.length))m.set(word.length,[]);
+      m.get(word.length).push(word);
+    }
+    return m;
+  });
+let nativeSeed=0x3301a211;
+function nativeRandom(){
+  nativeSeed=(Math.imul(nativeSeed,1664525)+1013904223)>>>0;
+  return nativeSeed/4294967296;
+}
+const creatorAuthentic=[];
+for(const [poolId,pool] of authorPools.entries()){
+  const values=[];
+  for(let z=0;z<128;z++){
+    const freq=Array(29).fill(0);
+    for(const original of sourceWords){
+      const donor=pool.get(original.length);
+      const word=donor?donor[Math.floor(nativeRandom()*donor.length)]:
+        Array.from({length:original.length},()=>
+          Math.floor(nativeRandom()*29));
+      for(const rune of word)freq[rune]++;
+    }
+    values.push(2896+Math.max(...freq));
+  }
+  values.sort((a,b)=>a-b);
+  creatorAuthentic.push({pool:poolId===0?"training-authentic":
+    "heldout-authentic",windows:128,
+    minJoint:values[0],medianJoint:values[64],maxJoint:values.at(-1),
+    impossibleUnderAnyRowKey:
+      values.filter(x=>x>maximumSpacePlusAnyRune).length});
+}
+assert.deepEqual(creatorAuthentic.map(x=>x.minJoint),[4383,4471]);
+assert(creatorAuthentic.every(x=>x.impossibleUnderAnyRowKey===128));
 console.log(JSON.stringify({
   source:{runes:12956,words,gp30:C.length,pages:pages.length},
   allKeyGlobal:{minRowDeficits:loss.slice(0,3),maxAfterSpaceGain:G,
@@ -214,10 +290,11 @@ console.log(JSON.stringify({
     maxMovedSourceSpacesIfAllowEmptyWords:158,
     maximumPlaintextSpacesAllowingEmptyWords:U,
     maximumPlaintextSpacesIfAllWordsNonempty:legalNonemptyUpperBound,
+    maximumSpacePlusAnyRuneUnderAllPrivateKeys:maximumSpacePlusAnyRune,
     maximumSpacesIfChangingAfterOriginalSpace:maxIfNewAfterSpace},
   relaxations:{chapterPrivateMax:privateByChapter,pagePrivateMax:privateByPage},
   positive:{fullOriginalTokensReencrypt:true,
     changedRunePositions:P.filter((x,i)=>x!==C[i]).length,
     allWordBoundariesPreserved:true},
-  controls,claim:"conditional exact all-secret theorem; no plaintext or key"
+  controls,creatorAuthentic,claim:"conditional exact all-secret theorem; no plaintext or key"
 },null,2));

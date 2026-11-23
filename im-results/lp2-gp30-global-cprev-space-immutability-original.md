@@ -8,6 +8,20 @@ The original 55 rune-bearing pages (physical p0–55, skipping numerical p50) co
 
 Consider a **single book-global table of 30 wholly secret, arbitrary bijections of 30 symbols**. At every location the *preceding original ciphertext token* selects a private alphabet mapping the current ciphertext token to a plaintext rune or SPACE. The first output token must be a rune. Every row permits any 30! permutation; the whole cipher is reversible, since encryption can recover the preceding ciphertext symbol as it advances. Original word-gap positions are allowed to move.
 
+## Stronger all-key exclusion: SPACE plus any plaintext rune
+
+This is the broadest useful theorem for this model. Let N[r,s] be the original 30×30 ciphertext bigram contingency table. In any secret row-bijection, **two distinct plaintext symbols**, including SPACE and any chosen GP29 rune, must have **two different source preimages** in each row. Therefore, without presuming output word count, nonempty words, any word-boundary preservation, target language or any known key, their combined output frequency is bounded by the **two largest observed entries in every source row**:
+
+    count(plaintext SPACE) + count(plaintext rune x)
+      <= 1 + sum over 30 predecessor rows of (largest entry + second-largest entry)
+      = 3,707
+
+The extra one grants the first token any value, rather than fitting an initial state. This covers every possible book-global private 30×30 S-box even when it deliberately changes all printed word boundaries. The original itself has 2,896 spaces and a largest rune count492, safely within 3,707.
+
+All **384 independently GP-native encoded, original-sized contiguous English windows** have **SPACE plus their most frequent rune** above 3,707, and therefore cannot be plaintext under *any* secret row permutations: Gibran minimum4,364 (128/128 excluded), Shakespeare minimum4,620 (128/128), Emerson minimum4,472 (128/128). Independent **creator-authentic Cicada solved-GP29** controls yield the same conclusion with the *exact original 2,896 word lengths*: 128 training bootstrap witnesses have minimum **4,383**, and 128 separately held-out solved-Cicada bootstraps have minimum **4,471**. The few missing length12/14 donor slots use deliberately flat uniform rune fillers. All **256/256** authentic-layout controls exceed3,707 despite this favorable dilution.
+
+This is a *finite source-native plaintext-language exclusion*, since genuine unknown plaintext might be nonprose or have unusually flat symbol marginals. However the numerical **3,707 upper bound is exact and independent of the output segmentation**, whereas the equal-word-count immutability below is a stronger additional structural theorem for that output grammar.
+
 ## Exact all-secret obstruction
 
 Let N[r,s] count every adjacent ciphertext token pair in the complete original. For each secret state r there is exactly one source symbol s_r whose mapped plaintext is SPACE. Hence the number of output word spaces is the sum of N[r,s_r] across states, regardless of the other 29 secret mappings in each row.
@@ -24,4 +38,4 @@ An exhaustive collapse of the enormous arbitrary-key class to its single SPACE p
 
 Shared **book-global predecessor-state rows** are essential. Repeating the capacity calculation with fully independent per-chapter private rows gives **3,077** maximum spaces; fully page-private rows give **3,795**. Those different models, a plaintext with a **different word count**, plaintext-dependent state, evolving keys, non-bijective maps with supplied side information or a variable-length receiver are not covered by the exact boundary-immutability theorem. The solved p56 cipher preserves printed word breaks but does not establish how many words the unknown pages contain. No original source currently supplies this predecessor-table instruction.
 
-This closes one genuine stateful, potentially space-changing route **without trying any secret alphabets**. [Read-only CommonJS SFT](../sims/lp2_gp30_global_cprev_space_immutability_sft.cjs) checks original source, the exact all-key count/triple argument, exhaustive 400 selector cases, a fully reversible original-source plant, source-authenticated GP spelling, and all 384 independently fixed English windows.
+This closes one genuine stateful, potentially space-changing route **without trying any secret alphabets**. [Read-only CommonJS SFT](../sims/lp2_gp30_global_cprev_space_immutability_sft.cjs) checks original source, the exact all-key count/triple argument, exhaustive 400 selector cases, a fully reversible original-source plant, source-authenticated GP spelling, all 384 independently fixed English windows, and 256 exact-original-length creator-authentic solved-Cicada samples.
