@@ -109,11 +109,51 @@ for (const start of [0, 4, 12]) {
   }
 }
 assert.ok(results.every(r => r.resultIoc < 0.05));
+
+/**
+ * Field-power model prompted by the visually literal Roman XIX=19
+ * substring in p8's original red first word.
+ * @param {number[]} runes
+ * @param {number} exponent
+ * @param {number} start
+ * @returns {number[]}
+ */
+function powerTransform(runes, exponent, start) {
+  const out = runes.slice();
+  for (let i = start; i + 3 < runes.length; i += 4) {
+    const changed = power(runes.slice(i, i + 4), exponent);
+    for (let j = 0; j < 4; j++) out[i + j] = changed[j];
+  }
+  return out;
+}
+const exponentXIX = 19;
+const inverseXIX = 558379;
+assert.equal((exponentXIX * inverseXIX) % (29 ** 4 - 1), 1);
+const powers = [];
+for (const start of [0, 4, 12]) {
+  for (const [exponent, reverse] of [
+    [exponentXIX, inverseXIX], [inverseXIX, exponentXIX]]) {
+    const plaintext = powerTransform(source, exponent, start);
+    assert.deepEqual(powerTransform(plaintext, reverse, start), source);
+    const nativeCipher = powerTransform(native, reverse, start);
+    assert.deepEqual(powerTransform(nativeCipher, exponent, start), native);
+    const value = coincidence(plaintext.slice(start));
+    assert.ok(value < 0.05);
+    powers.push({ start, exponent, originalIoc: value,
+      recoveredOriginalRunes: source.length,
+      recoveredNativeRunes: native.length,
+      outputFirst24: plaintext.slice(start, start + 24)
+        .map(index => gp.translit[index]).join(' ') });
+  }
+}
+
 console.log(JSON.stringify({
   sourcePolynomial: polynomial,
   originalFourRuneFieldMultiplier: seed,
   exactFieldInverse: inverse,
   fullOriginalRunes: source.length,
-  tests: results
+  tests: results,
+  sourceRomanXIXFieldPowerInverse: inverseXIX,
+  powerTests: powers
 }, null, 2));
 console.log('PASS: source p7 quartic plus p8 four-rune field block multiplier original/positive.');
