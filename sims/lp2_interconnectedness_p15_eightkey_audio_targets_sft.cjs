@@ -93,6 +93,14 @@ function wordLengthsForPage(pageNumber) {
   assert.equal(lengths.reduce((sum, n) => sum + n, 0), page(pageNumber).indices.length);
   return lengths;
 }
+function runeWordsForPage(pageNumber) {
+  const chunks = transcription.split('%');
+  const chunkIndex = pageNumber <= 49 ? pageNumber : pageNumber - 1;
+  assert.ok(chunks[chunkIndex], 'Missing transcription chunk for p' + pageNumber);
+  return chunks[chunkIndex].split('-')
+    .map(segment => [...segment].filter(ch => runeIndex.has(ch)).map(ch => runeIndex.get(ch)))
+    .filter(word => word.length > 0);
+}
 function wordsFromPlaintext(plaintext, lengths) {
   let at = 0;
   const words = lengths.map(length => {
@@ -380,6 +388,188 @@ assert.deepEqual(p0HeaderKeyReports.map(x => ({
   { target: 'p55', viableConfigurations: 9, viableMasks: 35 }
 ]);
 
+// The 17 transcription fragments on p55 consist of one incoming
+// one-rune continuation plus 16 page-local words. Test the 16-cell p15
+// spiral as a fixed permutation of those 16 local words.
+const p55WordArrays = runeWordsForPage(55);
+assert.equal(p55WordArrays.length, 17);
+assert.equal(p55WordArrays[0].length, 1);
+assert.deepEqual(p55WordArrays.flat(), page(55).indices);
+const p55LocalWords = p55WordArrays.slice(1);
+assert.equal(p55LocalWords.length, 16);
+const p15SpiralOrder = [5,6,10,9,8,4,0,1,2,3,7,11,15,14,13,12];
+const p15InverseOrder = Array(16);
+p15SpiralOrder.forEach((cell, position) => { p15InverseOrder[cell] = position; });
+const p55WordDirections = [
+  {
+    direction: 'spiral',
+    words: [p55WordArrays[0], ...p15SpiralOrder.map(i => p55LocalWords[i])]
+  },
+  {
+    direction: 'inverse',
+    words: [p55WordArrays[0], ...p15InverseOrder.map(i => p55LocalWords[i])]
+  }
+];
+const p15TotientPeriod16 = p15Primes.map(p => mod29(p - 1));
+const p55WordTranspositionReports = [];
+for (const direction of p55WordDirections) {
+  const ciphertext = direction.words.flat();
+  const lengths = direction.words.map(word => word.length);
+  let configurations = 0;
+  let viableConfigurations = 0;
+  let viableMasks = 0;
+  let bestIoC = null;
+  let bestDictionary = null;
+  for (const startOrdinal of fibonacci.map(n => n + 1)) {
+    for (const sign of [-1, +1]) {
+      configurations++;
+      const keyAt = used => primeTable[startOrdinal - 1 + used] - 1;
+      assert.ok(positivePlant(ciphertext.length, keyAt, sign));
+      positivePlants++;
+      if (!hasLegalPath(ciphertext, keyAt, sign)) continue;
+      viableConfigurations++;
+      const result = enumerateMasks(ciphertext, keyAt, sign, lengths, dictionary);
+      viableMasks += result.viable;
+      if (result.bestIoC && (!bestIoC || result.bestIoC.ioc > bestIoC.ioc))
+        bestIoC = { ...result.bestIoC, startOrdinal, sign, family: 'prime-ordinal-start' };
+      if (result.bestDictionary &&
+          (!bestDictionary ||
+           result.bestDictionary.dictionaryMatches > bestDictionary.dictionaryMatches ||
+           (result.bestDictionary.dictionaryMatches === bestDictionary.dictionaryMatches &&
+            result.bestDictionary.ioc > bestDictionary.ioc)))
+        bestDictionary = { ...result.bestDictionary, startOrdinal, sign, family: 'prime-ordinal-start' };
+    }
+  }
+  for (let phase = 0; phase < 16; phase++) {
+    for (const sign of [-1, +1]) {
+      configurations++;
+      const keyAt = used => p15TotientPeriod16[(used + phase) % 16];
+      assert.ok(positivePlant(ciphertext.length, keyAt, sign));
+      positivePlants++;
+      if (!hasLegalPath(ciphertext, keyAt, sign)) continue;
+      viableConfigurations++;
+      const result = enumerateMasks(ciphertext, keyAt, sign, lengths, dictionary);
+      viableMasks += result.viable;
+      if (result.bestIoC && (!bestIoC || result.bestIoC.ioc > bestIoC.ioc))
+        bestIoC = { ...result.bestIoC, phase, sign, family: 'period16-totient' };
+      if (result.bestDictionary &&
+          (!bestDictionary ||
+           result.bestDictionary.dictionaryMatches > bestDictionary.dictionaryMatches ||
+           (result.bestDictionary.dictionaryMatches === bestDictionary.dictionaryMatches &&
+            result.bestDictionary.ioc > bestDictionary.ioc)))
+        bestDictionary = { ...result.bestDictionary, phase, sign, family: 'period16-totient' };
+    }
+  }
+  p55WordTranspositionReports.push({
+    direction: direction.direction,
+    runes: ciphertext.length,
+    wordLengths: lengths,
+    configurations,
+    viableConfigurations,
+    viableMasks,
+    bestIoC: bestIoC ? {
+      family: bestIoC.family, phase: bestIoC.phase ?? null,
+      startOrdinal: bestIoC.startOrdinal ?? null, sign: bestIoC.sign,
+      mask: bestIoC.mask, ioc: bestIoC.ioc, words: bestIoC.words
+    } : null,
+    bestDictionary: bestDictionary ? {
+      family: bestDictionary.family, phase: bestDictionary.phase ?? null,
+      startOrdinal: bestDictionary.startOrdinal ?? null, sign: bestDictionary.sign,
+      mask: bestDictionary.mask, ioc: bestDictionary.ioc,
+      dictionaryMatches: bestDictionary.dictionaryMatches,
+      matchedWords: bestDictionary.matchedWords, words: bestDictionary.words
+    } : null
+  });
+}
+assert.deepEqual(p55WordTranspositionReports.map(x => ({
+  direction: x.direction, viableMasks: x.viableMasks
+})), [
+  { direction: 'spiral', viableMasks: 37 },
+  { direction: 'inverse', viableMasks: 38 }
+]);
+
+function decodeWordShift(cipherWords, key, sign, mask) {
+  let fOrdinal = 0;
+  const out = [cipherWords[0].slice()]; // incoming continuation is not one of the 16 keyed words
+  for (let wordIndex = 0; wordIndex < 16; wordIndex++) {
+    const outWord = [];
+    for (const value of cipherWords[wordIndex + 1]) {
+      if (value === 0) {
+        const literal = (mask >> fOrdinal) & 1;
+        fOrdinal++;
+        if (literal) { outWord.push(0); continue; }
+      }
+      const decoded = mod29(value + sign * key[wordIndex]);
+      if (decoded === 0) return null;
+      outWord.push(decoded);
+    }
+    out.push(outWord);
+  }
+  return out;
+}
+function encodeWordShift(plainWords, key, sign) {
+  return [
+    plainWords[0].slice(),
+    ...plainWords.slice(1).map((word, index) =>
+      word.map(value => value === 0 ? 0 : mod29(value - sign * key[index])))
+  ];
+}
+function positiveWordShiftPlant(key, sign) {
+  const plainWords = p55WordArrays.map((word, wordIndex) =>
+    word.map((_, runeIndex) => mod29(wordIndex * 7 + runeIndex * 11 + 1)));
+  // Three literal F positions, matching the original p55 F count.
+  for (const [wordIndex, runeIndex] of [[1,0],[5,1],[9,0]]) plainWords[wordIndex][runeIndex] = 0;
+  const ciphertextWords = encodeWordShift(plainWords, key, sign);
+  const decodedWords = decodeWordShift(ciphertextWords, key, sign, 7);
+  assert.deepEqual(decodedWords, plainWords);
+  return true;
+}
+const p55WordShiftReports = [];
+const wordShiftFamilies = [
+  { name: 'printed16', values: printed },
+  { name: 'prime16', values: p15Primes },
+  { name: 'totient16', values: p15Primes.map(p => p - 1) }
+];
+for (const family of wordShiftFamilies) {
+  const key = p15SpiralOrder.map(i => mod29(family.values[i]));
+  let viableMasks = 0;
+  let bestIoC = null;
+  let bestWords = null;
+  for (const sign of [-1, +1]) {
+    assert.ok(positiveWordShiftPlant(key, sign));
+    positivePlants++;
+    for (let mask = 0; mask < 8; mask++) {
+      const decodedWords = decodeWordShift(p55WordArrays, key, sign, mask);
+      if (!decodedWords) continue;
+      viableMasks++;
+      const flattened = decodedWords.flat();
+      const words = decodedWords.map(word => word.map(value => corpus.translit[value]).join('').toLowerCase());
+      const candidate = { mask, sign, ioc: ioc(flattened), words };
+      if (!bestIoC || candidate.ioc > bestIoC.ioc) bestIoC = candidate;
+      if (!bestWords || candidate.words.filter(w => dictionary.has(w)).length >
+          bestWords.words.filter(w => dictionary.has(w)).length) bestWords = candidate;
+    }
+  }
+  p55WordShiftReports.push({
+    family: family.name,
+    keyInSpiralOrder: key,
+    viableMasks,
+    bestIoC: bestIoC ? { mask: bestIoC.mask, sign: bestIoC.sign, ioc: bestIoC.ioc, words: bestIoC.words } : null,
+    bestDictionary: bestWords ? {
+      mask: bestWords.mask, sign: bestWords.sign, ioc: bestWords.ioc,
+      dictionaryMatches: bestWords.words.filter(w => dictionary.has(w)).length,
+      words: bestWords.words
+    } : null
+  });
+}
+assert.deepEqual(p55WordShiftReports.map(x => ({
+  family: x.family, viableMasks: x.viableMasks
+})), [
+  { family: 'printed16', viableMasks: 8 },
+  { family: 'prime16', viableMasks: 0 },
+  { family: 'totient16', viableMasks: 0 }
+]);
+
 // Exact expected totals freeze the current result and guard against accidental
 // changes to source arrays, word segmentation, F semantics, or sign convention.
 const totals = Object.fromEntries([0,29,55].map(n => {
@@ -400,7 +590,7 @@ assert.deepEqual(totals, {
   29: { configurations: 320, viableConfigurations: 0, viableMasks: 0 },
   55: { configurations: 320, viableConfigurations: 108, viableMasks: 247 }
 });
-assert.equal(positivePlants, 320 * 3 + 4 * 2 * 3 + 13 * 2 * 3);
+assert.equal(positivePlants, 320 * 3 + 4 * 2 * 3 + 13 * 2 * 3 + 2 * (16 * 2 + 16 * 2) + 3 * 2);
 
 // Authentic solved p56 positive control.
 const expectedP56Words =
@@ -458,10 +648,12 @@ console.log(JSON.stringify({
   audioPrimeSeeds,
   targetSummaries:summaries,
   p0RedHeaderKeyTests:p0HeaderKeyReports,
+  p55WordTranspositionTests:p55WordTranspositionReports,
+  p55WordwiseCaesarTests:p55WordShiftReports,
   exactTotals:totals,
   audioPrimeTotalViableMasks:audioPrimeReports.reduce((s,x)=>s+x.viable,0),
   p56PositiveControl:{runes:p56.length,ioc:p56IoC,exactPlaintext:true},
   syntheticPositivePlants:positivePlants,
   conclusion:
-    'All eight p15 source-key families have zero legal inverse on p29. p0 and p55 have some F-transparent paths but no coherent word-level plaintext. The p0 red13 header as a repeating key likewise yields no coherent plaintext on its black body, p29, or p55. The four audio-derived prime starts are tested separately. The audio/page selector remains a hypothesis, not a decryption.'
+    'All eight p15 source-key families have zero legal inverse on p29. p0 and p55 have some F-transparent paths but no coherent word-level plaintext. The p0 red13 header as a repeating key likewise yields no coherent plaintext on its black body, p29, or p55. The p55 16-word/p15 16-cell mapping and word-wise Caesar consumers also fail. The four audio-derived prime starts are tested separately. The audio/page selector remains a hypothesis, not a decryption.'
 }, null, 2));
