@@ -26,6 +26,8 @@ const pageLengths = [231, 273, 272, 274, 273, 270, 270, 274, 271, 66, 0, 92, 263
 
 /** @type {number[]} */
 const black = [];
+/** @type {{page:number, end:number, black:number}[]} */
+const pageBlackEnds = [];
 for (let page = 40; page <= 55; page++) {
   const original = corpus.pages.find(p => p.page === page);
   assert.ok(original);
@@ -39,11 +41,18 @@ for (let page = 40; page <= 55; page++) {
     assert.ok(Number.isInteger(x) && x >= 0 && x < 29);
     if (!red.has(i)) black.push(x);
   }
+  pageBlackEnds.push({page, end:black.length, black:original.indices.length-red.size});
 }
 assert.equal(black.length, 3248);
 const redCounts = [40,53,54].map(page => ink.pages.find(p =>
   p.page === page).red_spans.reduce((sum,s) => sum + s.length,0));
 assert.deepEqual(redCounts, [8,51,9]);
+const printedBlackSeams = pageBlackEnds.filter(x => x.page !== 50 && x.page !== 55);
+assert.equal(printedBlackSeams.length, 14);
+const seamOffsets = printedBlackSeams.map(x => x.end % 203);
+assert.deepEqual(seamOffsets, [20,90,159,27,97,164,28,99,167,30,122,182,107,127]);
+assert.ok(seamOffsets.every(remainder => remainder > 0));
+
 
 /**
  * Exact number of equal unordered pairs across sixteen rows for each of
@@ -160,6 +169,8 @@ console.log(JSON.stringify({
   source: 'original LP2 p40-55 black ink, pages concatenated',
   sourceBlackRunes: black.length,
   shape: '16 x 203',
+  physicalPageSeamsInside203Rows: seamOffsets,
+  alignedNonemptyPrintedSeams: 0,
   sourceEqualPairs: originalPairs,
   comparedPairs: 24360,
   sourcePairProbability: originalPairs / 24360,

@@ -10,6 +10,8 @@
 
 **Next:** prioritize a contemporaneous independent Cicada clue explicitly selecting arithmetic ASCII MEAN or a frozen original-cipher decoder that predicts withheld plaintext. Resist self-confirming vanity-letter transformations.
 
+**Director #2413 (claimed same invocation):** The source-selected p40–55 black register is 3,248=16×203 and p50 first base60 token is exactly 3N=203. Crucially, **none of fourteen nonempty original page seams align with a derived 203-rune row boundary**; exact residues [20,90,159,27,97,164,28,99,167,30,122,182,107,127]. The existing 16×16 table-Hill original inverse and historically authenticated seven/14-column positional transforms do not supply a two-symbol coupled changing-state update. Added source-exact seam assertions to the existing floral16 SFT and consolidated its report; close #2413 on missing typed 203-rune row clock/coupler, not as a generic impossibility of coupling.
+
 ---
 
 ## Prior invocation: 23 November 2026, draw5, source-selected terminal RS255
