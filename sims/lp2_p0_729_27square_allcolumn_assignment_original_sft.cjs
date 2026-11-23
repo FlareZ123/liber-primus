@@ -148,6 +148,45 @@ function assignmentUpperBound(edges) {
   return total;
 }
 
+
+// Stronger key-independent test: each source strip may have its own arbitrary
+// 29! secret monoalphabetic cipher. Equal-symbol pair counts within each strip
+// are invariant under bijections, and nondecreasing under many-to-one maps.
+function stripCollisionSum(source) {
+  assert.equal(source.length,729);
+  let total=0;
+  for (let col=0;col<27;col++) {
+    const counts=Array(29).fill(0);
+    for (let row=0;row<27;row++) counts[source[col*27+row]]++;
+    for (const count of counts) total += count*(count-1)/2;
+  }
+  return total;
+}
+const originalStripCollisions=stripCollisionSum(original);
+assert.equal(originalStripCollisions,337);
+
+const heldoutBlakeCollisions=[];
+for (let start=0;start+729<=blake.length;start+=729)
+  heldoutBlakeCollisions.push(stripCollisionSum(columnarEncode(blake.slice(start,start+729))));
+assert.equal(heldoutBlakeCollisions.length,25);
+const bookCollisions=[];
+for (let start=0;start+729<=training.length;start+=729)
+  bookCollisions.push(stripCollisionSum(columnarEncode(training.slice(start,start+729))));
+assert.equal(bookCollisions.length,29);
+const blakeCollisionMin=Math.min(...heldoutBlakeCollisions);
+const bookCollisionMin=Math.min(...bookCollisions);
+assert.ok(originalStripCollisions<blakeCollisionMin);
+assert.ok(originalStripCollisions<bookCollisionMin);
+
+// All 27 strips may have unrelated Caesar substitution tables, reversals,
+// and a secret strip order without changing within-strip equality.
+const scrambled=[];
+for (let j=26;j>=0;j--) {
+  const strip=planted.slice(j*27,j*27+27);
+  scrambled.push(...(j%2?strip.reverse():strip).map(k=>(k+7*j+3)%29));
+}
+assert.equal(stripCollisionSum(scrambled),stripCollisionSum(planted));
+
 const originalBounds = {
   fixed:assignmentUpperBound(edgeWeights(original,false,false)),
   reversible:assignmentUpperBound(edgeWeights(original,true,false)),
@@ -178,5 +217,11 @@ console.log(JSON.stringify({
   originalBounds, nativeColumnarPlant:{score:plantScore,bound:plantBound},
   disjointBlakeControls:{count:donorScores.length,min:low,max:high,
     median:[...donorScores].sort((a,b)=>a-b)[12]},
+  stripCollisionAllSecret:{original:originalStripCollisions,
+    disjointBlakeControl:{count:heldoutBlakeCollisions.length,min:blakeCollisionMin,
+      max:Math.max(...heldoutBlakeCollisions)},
+    disjointBookControl:{count:bookCollisions.length,min:bookCollisionMin,
+      max:Math.max(...bookCollisions)},
+    permutedAndCipheredPlant:stripCollisionSum(scrambled)},
   conclusion:'Bounded negative for unchanged-symbol 27x27 columnar transposition; no LP2 plaintext.'
 },null,2));
