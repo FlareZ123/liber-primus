@@ -34,9 +34,9 @@ The published [BIP39 English wordlist](../resources/external/bip39-english-2013.
 
 | Grid column | 24-word native-GP key length | Direct `C−K` log-likelihood advantage | Inverse-sign `C+K` advantage | Result |
 | ---: | ---: | ---: | ---: | --- |
-| 0 | source-derived | **−470.2254** | **−475.8095** | near-uniform nonprose |
-| 3 | source-derived | **−498.1012** | **−396.9490** | near-uniform nonprose |
-| 4 | source-derived | **−458.4030** | **−457.1733** | near-uniform nonprose |
+| 0 | **139 GP29 runes** | **−470.2254** | **−475.8095** | near-uniform nonprose |
+| 3 | **127 GP29 runes** | **−498.1012** | **−396.9490** | near-uniform nonprose |
+| 4 | **132 GP29 runes** | **−458.4030** | **−457.1733** | near-uniform nonprose |
 
 These six outputs have GP29 rune IoC **0.03360–0.03485**, near the uniform **1/29≈0.03448**, and none begins recognizable native-GP English. The other five glyph-ambiguous column candidates likewise fail at the current literal transcription, with log-likelihood advantages between **−514.71** and **−386.03** for the sixteen total fixed output paths. By construction *every* arbitrary 32-byte column generates 24 BIP39 words; the existence of apparently meaningful dictionary words is **zero evidence** that this was intended by Cicada. The first-party packet supplies no selection among columns or an instruction to use the standard BIP39 PBKDF2 seed as another cipher operator.
 
