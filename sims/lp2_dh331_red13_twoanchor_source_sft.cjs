@@ -84,6 +84,11 @@ function main() {
   const A = Number(modPow(BigInt(g), BigInt(a), BigInt(p)));
   const K = Number(modPow(BigInt(B), BigInt(a), BigInt(p)));
   assert.deepEqual({ A, K }, { A: 203, K: 108 });
+  const misleadingHtmlExponentK = Number(modPow(BigInt(B), BigInt(B), BigInt(p)));
+  assert.equal(misleadingHtmlExponentK, 133);
+  assert.notEqual(misleadingHtmlExponentK, K);
+  console.log('Competing a=133 (HTML title as exponent) predicts K=133;');
+  console.log('original 13-dot a=13 instead predicts both table anchors.');
   console.log('2014 HTML p/B:', p, B);
   console.log('Original p0 red-word prime sums:', gpPrimeSums);
   console.log('p0 first red13-dot mark supplies a:', a);
