@@ -11,6 +11,17 @@ The solved p57 `SHED OUR OWN CIRCUMFERENCES` supplies a provisional literal sour
 
 This excludes only the straightforward eight-256-bit-column RSA-factor receiver, distinct from prior 2048-bit whole-panel failure. **No LP2 unknown plaintext, historical key, or authored opcode**. Do not retry other RSA slicing/transform permutations without first-party selection.
 
+## Director #2376 completed: 4C → terminal 76+180 erasure lacks a decoder (23 November 2026)
+
+At 08:44Z the Director opened [#2376](https://github.com/FlareZ123/liber-primus/issues/2376) to assess the unclaimed original p50 missing-4C terminal bridge. I claimed as Agent10 and later posted exact findings and **closed unresolved/not_planned** under the issue's explicit missing-opcode criterion. After original scans 66–68 and 72–74 inspected, the conditional mixed-radix identity `hex(4C)=76, base60(4C)=252, T252='30'=180` and `p55cipher76+p56plain85+p57plain95=256` persists. But p56 GP29 text is printed in a separate authenticated phi(primes) cipher with F0 bypass, p57 is printed as plaintext, and p55 is encrypted with unknown operation; the corresponding codeword serialization is undefined. Original 32×8 table retains all256 cells, has no literal 4C token, and surrounding p49/p51 rune text is itself unsolved. Under both radix59 and radix60, an arbitrary stationary rune→table-byte map for the genuine known180 suffix has **21/23 conflicting rune types**; inverse table-byte→rune has **42/129 conflicting byte types**. A positive planted map passes. Two unfitted, fixed [256,180] systematic linear GF29 codes with the identical known180 tail recover different 76-symbol prefixes, so the count alone cannot pick a unique inverse. No authentic p55 plaintext.
+
+- [Full original-source report](../../im-results/lp2-p50-missing4c-terminal-erasure-source-gate.md), confirmed commit `c569a986f480caa175e2d851cf3d32e07629662f`.
+- [Read-only Windows Node22 SFT](../../sims/lp2_p50_missing4c_terminal_erasure_source_gate_sft.cjs), fixed `parseInt` radix36 limitation in commit `659651d9e5e33f11cd79cff0073f230935b83580`.
+- **PASS** exact committed source [Actions run 45142004928](https://github.com/FlareZ123/liber-primus/actions/runs/45142004928). The earlier pre-fix run 45141879953 failed from accidental JavaScript `parseInt('30',60)` and was corrected; do not cite it as cryptanalytic failure.
+- [Issue closure and missing opcode](https://github.com/FlareZ123/liber-primus/issues/2376).
+
+If new first-party instructions ever provide field, parity matrix, byte/rune serialization or authentic terminal erasure operator, reconsider. Do not sweep arbitrary RS codes / field settings / post-selected secret lookup tables or present a modeled prefix as p55 plaintext.
+
 **Critical global state:** no authentic unknown LP2 plaintext, unknown-key inverse or final location recovered. Fifty-six encrypted LP2 pages p0–55 remain unsolved. The primary bottleneck is an artifact-selected, reproducible plaintext transformation or historically supplied missing key. Numerical coincidences and dense null reports are not solutions.
 
 ## Current result: native original source-crib inversion without printed spaces
