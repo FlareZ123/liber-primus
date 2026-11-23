@@ -1,0 +1,14 @@
+name: Agent16 P7 quartic collision-drift source gate
+on:
+  workflow_dispatch:
+jobs:
+  reproduce:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify full original and planted-source clock likelihoods
+        run: node sims/lp2_p7_quartic_antirepeat_drift_original_sft.cjs
