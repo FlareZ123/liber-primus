@@ -89,6 +89,8 @@ BC | | | TIAFOE | WSEAG | | AETFHAEGNGYEACAE | AAESE | CY | | TNGADL | FLNGHS | 
 
 The recovered 43-symbol core IoC values are **0.02547065** (target8) and **0.04429679** (targetE), both unlike the previously measured native-GP English control regime around0.07. The frozen readings have no sustained coherent sentence, word or creator instruction, and do not resemble valid contiguous native-GP plaintext even with the original partial-word caveat. **This exact source-derived P/Q DH-log -> GP43 additive core-inverse route fails its plaintext gate**. No retuned phase, sign, IV, ciphertext window or KDF is justified. [The reproducible original-source SFT](../sims/lp2_p55_shed_public_values_full64_dlog_sft.cjs) takes the three virtual logs, reconstructs the CRT exponents, checks `Q^x` against the *actual* source numbers, and emits both exact 16-slot ciphertext-consumer reads.
 
+The entire computation, from untouched p55 corpus to both exact original modular checks and both frozen ciphertext readouts, **passed independently on a clean Windows Node22 runner: [Actions 45126108228](https://github.com/FlareZ123/liber-primus/actions/runs/45126108228)**. The CADO field computation also finished green: [Actions 45124056922](https://github.com/FlareZ123/liber-primus/actions/runs/45124056922).
+
 The source packet itself is not fully authenticated: including the p54→p55 crossing word erases N=8P. Thus even mathematically unique logarithms cannot establish a creator-selected key, and the 43-rune direct-read failure is conditional on this exact receiver.
 
 ## Decision
