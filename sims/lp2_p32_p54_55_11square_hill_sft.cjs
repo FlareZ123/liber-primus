@@ -90,12 +90,75 @@ function main(){
   assert.equal(plants,16);
   assert.ok(outputs[0].ioc<0.04);
   assert.ok(ioc(target)<0.04);
+
+  function primesUpTo(limit){
+    const sieve=new Uint8Array(limit+1);sieve.fill(1);sieve[0]=0;sieve[1]=0;
+    for(let q=2;q*q<=limit;q++)if(sieve[q])
+      for(let n=q*q;n<=limit;n+=q)sieve[n]=0;
+    return Array.from({length:limit+1},(_,i)=>i).filter(i=>sieve[i]);
+  }
+  const primeNumbers=primesUpTo(4000);
+  const literalF=new Set([65,195,247]);
+  function primeTotientCandidate(cyclic){
+    let pointer=167;const out=[];
+    for(let i=0;i<target.length;i++){
+      if(literalF.has(i)){out.push(0);continue;}
+      const prime=primeNumbers[cyclic?pointer%464:pointer];
+      out.push(mod(target[i]-(prime-1)));
+      pointer++;
+    }
+    return {out,pointer};
+  }
+  const linearCandidate=primeTotientCandidate(false);
+  const cyclicCandidate=primeTotientCandidate(true);
+  assert.equal(linearCandidate.pointer,472);
+  assert.equal(cyclicCandidate.pointer,472);
+  assert.ok(Math.abs(ioc(linearCandidate.out)-0.03492110495367824)<1e-12);
+  assert.ok(Math.abs(ioc(cyclicCandidate.out)-0.03473074157113245)<1e-12);
+  const sequential=[];
+  for(const [primeClock,input] of [
+    ["linear-464+",linearCandidate.out],
+    ["cyclic-464",cyclicCandidate.out]
+  ]){
+    for(const [sourceKey,rawKey] of Object.entries(matrices)){
+      const inverted=invert(rawKey);
+      for(const [operation,M] of Object.entries({original:rawKey,inverse:inverted})){
+        for(const transposed of [false,true]){
+          const K=transposed?transpose(M):M;
+          for(const shape of ["row","column"]){
+            const decoded=transform(K,input,shape);
+            sequential.push({primeClock,sourceKey,operation,transposed,shape,
+              ioc:ioc(decoded),head:decoded.slice(0,50)
+                .map(i=>corpus.translit[i]).join(" ")});
+          }
+        }
+      }
+    }
+  }
+  const linearSeq=sequential.filter(x=>x.primeClock==="linear-464+");
+  const cyclicSeq=sequential.filter(x=>x.primeClock==="cyclic-464");
+  assert.equal(sequential.length,32);
+  const linearMax=Math.max(...linearSeq.map(x=>x.ioc));
+  const cyclicMax=Math.max(...cyclicSeq.map(x=>x.ioc));
+  assert.ok(linearMax<0.04);
+  assert.ok(cyclicMax<0.04);
+
   console.log(JSON.stringify({sourcePage32:121,sourceImagePrimeSums:[563,569],
     targetPages:[54,55],targetLength:308,shape:"28x11 or 11x28",
     inputIoc:ioc(target),knownP57PlantIoc:ioc(known),plants,
     highestIoc:outputs[0],all:outputs.map(({sourceKey,operation,transposed,shape,ioc})=>
       ({sourceKey,operation,transposed,shape,ioc})),
-    finding:"No native-GP plaintext among all 16 direct source-matrix operations."
+    sequentialPrimeLayer:{
+      selector:{primeStartIndex:167,primeStartValue:primeNumbers[167],
+        equation:"1033 - p36 = 997",literalFOffsets:[65,195,247]},
+      linearInputIoC:ioc(linearCandidate.out),
+      cyclicInputIoC:ioc(cyclicCandidate.out),
+      operationCount:sequential.length,
+      bestLinearIoC:linearMax,
+      bestCyclicIoC:cyclicMax,
+      allBelowPoint04:sequential.every(x=>x.ioc<0.04)
+    },
+    finding:"No native-GP plaintext among 16 direct or 32 sequential source-matrix operations."
   },null,2));
 }
 if(require.main===module)main();

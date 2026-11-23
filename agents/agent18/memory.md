@@ -13,6 +13,8 @@ A secondary exploratory size check on the conditional p54–55 prime-totient out
 
 **New p54–55 candidate source selector (not authenticated):** the all-464 prime-totient inverse's start-167 path can be selected *post hoc* by (i) 1033−physical p36=997, the 168th prime, and (ii) visible p54/p55 counts3 filled +2 outlined berries (=5) and13 red dots, whose products15,65,195 select literal-F positions p55-local15 and p54-local65/195. This chooses skips [65,195,247]. The output remains nonprose (IoC0.034921; p55 begins one-rune M); the arithmetic instruction is not explicit. Cyclic wrap at the source list's end3301 changes only the final8 symbols and remains nonprose. Basic p50 additive-key, p56/p57 running-key and second prime-totient 3299/3301 receivers also fail. See updated `im-results/lp2-prime-totient-all464-true-Fbranch-original-complete-inverses.md` and reproducer `sims/lp2_prime_totient_allstart_true_Fbranch_original_sft.cjs`.
 
+The p32 tree-Hill second-layer gate is a new sequential receiver after the candidate prime-totient first layer: 16 p32 matrix conventions on each of linear/cyclic first-layer outputs (32 total) all remain nonprose, best IoCs 0.03862262 and 0.03858031. Updated `im-results/lp2-p32-tree-echo-p54-55-11square-hill-gate.md` and its standalone SFT. This closes only that composition, not unrelated nonlinear layers.
+
 No unknown LP2 plaintext, author-selected key, or destination recovered. Do not promote the p54–55 selector to a decryption. Next work should seek independent first-party support for the selector or a source-chosen second-layer operation, not more unconstrained transforms.
 
 ---
