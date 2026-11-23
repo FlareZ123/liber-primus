@@ -182,7 +182,7 @@ function sourceRunicFirstParty() {
   return {pages: pages.length, nRunes, nPairs, nativeRepeats: 28,
     minimumPossibleRepeatCountUnderOneCounterStep: 7,
     minimumNativeDifferenceResidue: counts.indexOf(7),
-    allKeyFourierIncompatibilities: excludedFourierModes(spectrum(counts))};
+    allKeyFourierIncompatibilities: excludedFourierModes(spectrum(counts)), deltaCounts: counts};
 }
 
 const counts = [];
@@ -253,6 +253,119 @@ assert.deepEqual(counts.map(x => x.sourceShapeFourierFailures),[50,128]);
 assert.equal(counts[0].allKeyFourierIncompatibilitiesFullDonor[0].harmonic,1);
 assert.equal(counts[1].allKeyFourierIncompatibilitiesFullDonor[0].harmonic,1);
 
+
+/**
+ * Primal/dual certificates for the *whole* GP29 difference distribution.
+ *
+ * For a fixed plaintext native delta law p, all independent stationary
+ * additive increment laws q lie in the convex hull of 29 cyclic shifts of p.
+ * For any certificate 0<=v[d]<=1, the total-variation distance obeys
+ *
+ *   TV(c,p*q) >= dot(v,c) - max_j dot(v,shift_j(p)).
+ *
+ * A supplied nonnegative q with sum1 gives an attainable upper bound.
+ * Equality of the bounds certifies the exact global optimum, independently
+ * of the optimizer used to find these vectors. Witnesses obtained with
+ * SciPy HiGHS, then FROZEN as data; this Node program checks them from scratch.
+ */
+const convolutionCertificates = {
+  Gibran: {
+    dual: [
+      0,0.886577546447720,0.853654048682991,0.894238916220717,1,
+      0.948698128238870,0.796679395846780,1,0.364882276495596,
+      0.893664870799552,0.884231793575851,1,0.739664907872389,1,
+      1,1,0.918510505935619,0.433372394311454,0.918464157980121,
+      1,0.007227641035081,1,0.310592918226174,1,0.769930205159138,
+      1,0.517068391528606,0.959900830092424,0.849461291029766],
+    primal: [
+      0.058565608079121,0.032378955253077,0,0,0.123018445332227,
+      0.050966728187590,0,0.069498580573593,0.045923742533399,0,
+      0.082564624834091,0.073053610947069,0.021503211532858,
+      0.000657476041774,0,0,0.043019049351124,0.069339438396016,
+      0.024026608021657,0,0.002447146682763,0,0.071006482937008,0,
+      0.081678476742025,0.083741543263695,0,0.018801259190142,
+      0.047809012100770],
+    target: 0.0200894452497737
+  },
+  Shakespeare: {
+    dual: [
+      0,0.738112431984205,1,0.683001003998659,1,0.493753053584455,
+      1,1,0,0.895075832853168,0.805564881000530,0.831068978199515,
+      0.844313987597061,1,1,1,0.914132031447635,0.064490521811919,
+      1,0.999541067555562,0,1,0.408701846675700,0.947718385515487,
+      0.800685019991840,0.564189568671489,0.497116762972415,
+      0.958125015211440,0.407384454616524],
+    primal: [
+      0.031562287892632,0,0,0,0.115116349019518,0.072346528260990,
+      0,0.051421376521191,0.013143553515595,0,0.057584997734781,
+      0.018658427944587,0.003902726484975,0.050372272293114,0,0,
+      0.090823677144463,0.011620933100793,0.040338744059325,0,
+      0.020261889652051,0,0.136712798274058,0,0.104292447241372,
+      0.153589207047988,0,0.005256982203557,0.022994801609008],
+    target: 0.0227007601866970
+  },
+  AuthorLP1: {
+    dual: [
+      0,0.687045212962449,1,1,0.439685159886845,0.096539342995993,
+      0.311500906036582,0.789808649538263,0.692295189302714,1,1,1,
+      0.627820882503046,1,1,0.945957527486982,0.924985280009610,
+      0.781860463169317,0.931166458730515,1,1,0.663305138454793,
+      0.694800370366909,0.904722220687505,0.546324339898270,1,
+      0.922586987742662,0.640375044261994,0],
+    primal: [
+      0.049100972561278,0,0.027279917138966,0.096113215648078,
+      0.155940208839403,0,0,0.014776781111400,0.026252841511724,
+      0.050137909157953,0.136025199900663,0.081020762011371,
+      0.025278134866945,0,0,0,0.029237468926561,0,0,0,
+      0.060409824284146,0,0.088469838784539,0,0.043268103161617,
+      0.050196086435013,0.030614092119794,0.033273544209688,
+      0.002605099330831],
+    target: 0.0213266856965488
+  }
+};
+/**
+ * @param {number[]} plainCounts
+ * @param {{dual:number[],primal:number[],target:number}} cert
+ */
+function certifyConvolution(plainCounts, cert) {
+  const plainTotal = plainCounts.reduce((a,b)=>a+b,0);
+  const cipherTotal = origCounts.reduce((a,b)=>a+b,0);
+  const p = plainCounts.map(x=>x/plainTotal);
+  const c = origCounts.map(x=>x/cipherTotal);
+  const {dual, primal, target} = cert;
+  assert.equal(dual.length,29);
+  assert.equal(primal.length,29);
+  assert.ok(dual.every(x=>x>=0 && x<=1));
+  assert.ok(primal.every(x=>x>=0));
+  assert.ok(Math.abs(primal.reduce((a,b)=>a+b,0)-1)<1e-10);
+  const shiftExpectation = Array.from({length:29},(_,j)=>
+    dual.reduce((sum,w,d)=>sum+w*p[(d-j+29)%29],0));
+  const certifiedLower = dual.reduce((sum,w,d)=>sum+w*c[d],0)
+    - Math.max(...shiftExpectation);
+  const predicted = Array.from({length:29},(_,d)=>
+    primal.reduce((sum,q,j)=>sum+q*p[(d-j+29)%29],0));
+  const attainedUpper = predicted.reduce((sum,x,d)=>sum+Math.abs(x-c[d]),0)/2;
+  assert.ok(certifiedLower>0);
+  assert.ok(attainedUpper+1e-10>=certifiedLower);
+  assert.ok(Math.abs(certifiedLower-target)<1e-10);
+  assert.ok(Math.abs(attainedUpper-target)<1e-10);
+  return {optimalTotalVariationDistance:certifiedLower,
+    minimumAbsoluteDifferenceMassOn12901OriginalPositions:
+      certifiedLower*12901,
+    positiveProbabilityWeights:primal.filter(x=>x>1e-10).length,
+    dualCertificateLower:certifiedLower,primalWitnessUpper:attainedUpper,
+    bestAchievableDoubletRateInJointL1Fit:predicted[0]};
+}
+const originalFirstParty = sourceRunicFirstParty();
+const exactConvolutionTV = {
+  Gibran: certifyConvolution(donors[0][1].fullSourceDeltas,
+    convolutionCertificates.Gibran),
+  Shakespeare: certifyConvolution(donors[1][1].fullSourceDeltas,
+    convolutionCertificates.Shakespeare),
+  AuthorLP1: certifyConvolution(originalFirstParty.deltaCounts,
+    convolutionCertificates.AuthorLP1)
+};
+
 const nonzero = origCounts.slice(1);
 const mean = nonzero.reduce((a,b)=>a+b,0)/nonzero.length;
 const nonzeroChi2 = nonzero.reduce((sum,n)=>sum+(n-mean)**2/mean,0);
@@ -266,7 +379,8 @@ const result = {
   spectralExpectation: 'For each k=1..14, |DFT(Cdiff)[k]| <= |DFT(Pdiff)[k]| for any stationary independent increment distribution; a violating native control excludes an exact population convolution, not every finite plaintext instance',
   originalNonzeroFourierMagnitudes: originalSpectrum,
   nativeSourceWordshapeExactLengthPlants: counts,
-  firstPartyClearLP1: sourceRunicFirstParty(),
+  firstPartyClearLP1: originalFirstParty,
+  allIndependentStationaryAdditiveIncrementMixtures: exactConvolutionTV,
   positive: 'Exact deterministic additive counter-pad forward+inverse plants pass and attain their native-delta minimum by choosing the best constant step',
   decision: 'Original repeats are below all 256 native donor wordshape-plant minimum transition counts, and source-shape Fourier constraints fail for 50 Gibran plus all 128 Shakespeare controls. Exact population convolution also fails at author LP1 modes 4 and 5 despite that source having a 7/991 native delta. These are model-dependent expected-register conflicts, NOT an all-key, all-language or finite one-time-pad impossibility.'
 };
