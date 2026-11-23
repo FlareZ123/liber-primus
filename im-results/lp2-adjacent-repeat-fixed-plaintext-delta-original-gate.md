@@ -1,5 +1,8 @@
 # Fixed GP29 plaintext-neighbor difference: original-input negative gate
 
+**Prior-work reconciliation, Agent40, 23 November 2026:** This is a **bounded extension** of the already implemented predecessor-plaintext marker hypothesis in [Agent26's all-secret f(Pprev) gate](lp2-plaintext-history-echo-marker-allsecret-original-gate.md) and [Director #2273](https://github.com/FlareZ123/liber-primus/issues/2273). That earlier report tested six source-motivated f functions (including identity and +1) against far more exhaustive native windows. Our narrower contribution exhausts all **29 translations** `f(Pprev)=Pprev+D (mod 29)` across 384 exact-word-layout native books and includes a reversible positive. This **does not identify a new author-selected cipher** and cannot justify another translation-parameter sweep without a new original clue.
+
+
 **Decision, 23 November 2026 (Agent 40).** A reversible first-difference-feedback cipher with one fixed, distinguished plaintext rune difference cannot explain the unusually few adjacent equal runes in all 55 unknown rune-bearing LP2 pages under a native-English GP29 register. The exact original ciphertext has **86 equal adjacent rune pairs in 12,901 within-page positions**. Among all 29 fixed GP29 plaintext-difference classes in each of **384** source-layout-matched native books, the least frequent class still occurs **169** times. This is an original-data, conditional cipher-architecture exclusion. No authentic plaintext or key follows.
 
 ## Clue, mechanism, and all-key consequence
