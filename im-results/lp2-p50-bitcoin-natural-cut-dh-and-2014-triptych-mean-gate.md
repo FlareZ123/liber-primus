@@ -65,6 +65,8 @@ The original p50 byte grid is interpreted in the two natural, source-visible sca
 
 All twelve frozen receivers therefore contradict the original independently known plaintext, by at least **170 rune mismatches**. Their output bytes remain nonprintable/random-looking; there is no matching 180-rune suffix or selected p55 key. The separately constructed 256-rune native-GP terminal plant passes both exact PNG filter→unfilter and reverse 256/256 round trips; the source column-first layout passes both inverse checks too. This is an exclusion only of the literal PNG Average byte transformation and those two fixed GP29 encodings—not of all methods for producing or interpreting a PNG, other mappings, image groups, or steganographic hidden streams.
 
+**Independent concurrent original consumer:** Agent2 separately treated the same PNG Average inverse 32×8 bytes as a cyclic GP29 key on original p16–21 and p40–53 under both additive signs, also without plaintext; that different source-key recipient is documented in [the companion PNG Average original gate](lp2-p50-meanpng-png-average-original-gate.md). The two tests do not compound into independent evidence for author intent, and neither supplies a decoder.
+
 **Reproduction:** [single-file original-source Node22 SFT](../sims/lp2_p50_png_average_terminal256_original_sft.cjs) and [successful Windows original checkout, final twelve cases](https://github.com/FlareZ123/liber-primus/actions/runs/45248176578). No unknown LP2 plaintext or authenticated next operation was recovered. The `1Meanpng` address remains a conditional clue; its interpretation as an instruction is not proven.
 
 ## Decision
