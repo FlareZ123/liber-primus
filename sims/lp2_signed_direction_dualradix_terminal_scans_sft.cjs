@@ -14,6 +14,10 @@ function read(relative) {
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const grid = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
 const signed = read("resources/historical/cicada2016-4gq25-outguess.asc");
+const firstPartyHtml = read("resources/cicada2014-onion7-index.html");
+const firstPartyPageNames = Array.from(firstPartyHtml.matchAll(/<img src="(\d+)\.jpg"/g),
+  (match) => Number(match[1]));
+assert.deepEqual(firstPartyPageNames, [...Array(58).keys()]);
 const alpha60 = grid.alphabet;
 const alpha59 = alpha60.replace("f", "");
 const tape = grid.pages.flatMap((p) => p.tokens.flat());
@@ -103,9 +107,7 @@ const register = words.map((word, ordinal) => {
 const changed = register.filter((entry) => entry.literalIndex !== entry.ligatedIndex);
 assert.deepEqual(changed.map((entry) => entry.word), ["MEANING", "DIRECTION"]);
 const convergent = changed.filter((entry) =>
-  entry.literalBase60 === entry.ligatedBase59
-  && entry.literalBase60 >= 17
-  && entry.literalBase60 <= 74);
+  entry.literalBase60 === entry.ligatedBase59);
 assert.deepEqual(convergent.map((entry) => entry.word), ["DIRECTION"]);
 
 const direction = register[29];
@@ -126,13 +128,15 @@ assert.deepEqual(
 assert.deepEqual(
   [71, 72, 73].map((scan) => ({
     scan,
-    physicalPage: scan - 17,
+    laterArchivePhysicalPage: scan - 17,
     runes: corpus.pages[scan - 17].runic_count,
+    original2014FilenameExists: firstPartyPageNames.includes(scan),
+    hypotheticalModulo58PhysicalPage: scan % 58,
   })),
   [
-    { scan: 71, physicalPage: 54, runes: 232 },
-    { scan: 72, physicalPage: 55, runes: 76 },
-    { scan: 73, physicalPage: 56, runes: 85 },
+    { scan: 71, laterArchivePhysicalPage: 54, runes: 232, original2014FilenameExists: false, hypotheticalModulo58PhysicalPage: 13 },
+    { scan: 72, laterArchivePhysicalPage: 55, runes: 76, original2014FilenameExists: false, hypotheticalModulo58PhysicalPage: 14 },
+    { scan: 73, laterArchivePhysicalPage: 56, runes: 85, original2014FilenameExists: false, hypotheticalModulo58PhysicalPage: 15 },
   ],
 );
 
@@ -142,7 +146,8 @@ assert.deepEqual(
 /** @type {Match[]} */
 const offset14Matches = [];
 let allOrderedCrossRadixMatches = 0;
-let imageRangeCrossRadixMatches = 0;
+let laterArchiveRangeCrossRadixMatches = 0;
+let original2014PageMatches = 0;
 let exact72CrossRadixMatches = 0;
 for (let first = 0; first < tape.length; first++) {
   for (let second = 0; second < tape.length; second++) {
@@ -150,7 +155,8 @@ for (let first = 0; first < tape.length; first++) {
     const scan = cell(first, alpha60);
     if (scan !== cell(second, alpha59)) continue;
     allOrderedCrossRadixMatches++;
-    if (scan >= 17 && scan <= 74) imageRangeCrossRadixMatches++;
+    if (scan >= 17 && scan <= 74) laterArchiveRangeCrossRadixMatches++;
+    if (firstPartyPageNames.includes(scan)) original2014PageMatches++;
     if (scan === 72) exact72CrossRadixMatches++;
     if (second - first === 14) {
       offset14Matches.push({
@@ -167,7 +173,8 @@ assert.deepEqual(offset14Matches, [
   { first: 135, second: 149, source: ["2p", "2s"], scan: 171 },
 ]);
 assert.equal(allOrderedCrossRadixMatches, 249);
-assert.equal(imageRangeCrossRadixMatches, 56);
+assert.equal(laterArchiveRangeCrossRadixMatches, 56);
+assert.equal(original2014PageMatches, 40);
 assert.equal(exact72CrossRadixMatches, 8);
 assert.equal(tape.length * (tape.length - 1), 65280);
 
@@ -187,11 +194,12 @@ console.log(JSON.stringify({
   tokenOrderNullCensus: {
     orderedDistinctCellPairs: 65280,
     base60LiteralEqualsBase59Ligated: allOrderedCrossRadixMatches,
-    landingInOriginalScans17To74: imageRangeCrossRadixMatches,
-    landingOnOriginalScan72: exact72CrossRadixMatches,
+    landingInLaterMergedArchive17To74: laterArchiveRangeCrossRadixMatches,
+    landingOnLaterArchive72: exact72CrossRadixMatches,
+    landingInActual2014Pages0To57: original2014PageMatches,
     offset14Matches,
-    conditionalScanRangeRate: imageRangeCrossRadixMatches / 65280,
-    conditionalExact72Rate: exact72CrossRadixMatches / 65280,
+    conditionalLaterArchiveRangeRate: laterArchiveRangeCrossRadixMatches / 65280,
+    conditionalLaterArchive72Rate: exact72CrossRadixMatches / 65280,
   },
   originalSignedWords: register.length,
   distinctWords: new Set(words).size,
@@ -202,12 +210,11 @@ console.log(JSON.stringify({
     direct: direction.literalIndex,
     phoneticIoToIa: direction.ligatedIndex,
     originalTokens: ["1C", "1D"],
-    destinations: {
-      literalBase59: { scan: 71, physicalPage: 54 },
-      literalBase60: { scan: 72, physicalPage: 55 },
-      ligatedBase59: { scan: 72, physicalPage: 55 },
-      ligatedBase60: { scan: 73, physicalPage: 56 },
-    },
+    numericTableOutputs: { literalBase59: 71, literalBase60: 72,
+      ligatedBase59: 72, ligatedBase60: 73 },
+    firstParty2014ValidFilenameOutputs: [],
+    laterMergedArchivePageOutputs: [54, 55, 55, 56],
+    conditionalModulo58PageOutputs: [13, 14, 14, 15],
   },
   independentSignedDevoted: {
     gp0: 102,
@@ -216,5 +223,5 @@ console.log(JSON.stringify({
     pageRunes: 121,
     epiphanyGp0: 121,
   },
-  inferenceLimit: "Terminal page selection only; no original LP2 plaintext, key or cipher",
+  inferenceLimit: "No 2014 page selector: all four outputs exceed source HTML last page 57. Later 17-page archive offset is unauthorized; neither plaintext nor cipher found.",
 }, null, 2));
