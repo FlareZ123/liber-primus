@@ -28,7 +28,9 @@ Freeze the original 174-rune suffix after the F at numbered offset378. Use the p
 | p174 = 1033 | p346 = 2339 | 0.03833632316789582 |
 | p464 = 3301 | p636 = 4721 | 0.03494784399707661 |
 
-All are nonprose; none approaches normal native-GP English concentration. For the first-prime clock, the rival **no transparent F** case consumes through p174=1033 and scores **0.03587801474985051**, also nonprose. An independent last174-vs-immediately-preceding174 direct mod29 additive-pad test in chronological and 1033↔3301 mirror key orientations was likewise nonprose: four output IoCs between **0.03249 and 0.03541**.
+All are nonprose; none approaches normal native-GP English concentration. For the first-prime clock, the rival **no transparent F** case consumes through p174=1033 and scores **0.03587801474985051**, also nonprose.
+
+**A separate, more literal transparent-F reading** uses the actual selected original F *at numbered offset378* itself as the one transparent symbol. Its receiver is numbered [378,552), consisting of that F followed by exactly173 key-consuming runes (174 total), with the second F inside at receiver offset59 encrypted as normal. This alternative leaves the final rune of the fifth numbered item unused; its endpoint is not independently marked by printed punctuation, so it has a weaker frame closure than the suffix-to-end model. It is nevertheless the correct source-selected-F comparator, without moving transparency to an unmarked internal F. With original prime-clock starts p1/p174/p464, full-receiver IoCs are respectively **0.03594445551790579**, **0.03395123247624743**, **0.03368546940402631**, all nonprose. The same Windows source-original test now controls and reports all six selected-F inverses. **No alternative key phase or mask is inferred from these failures.** An independent last174-vs-immediately-preceding174 direct mod29 additive-pad test in chronological and 1033↔3301 mirror key orientations was likewise nonprose: four output IoCs between **0.03249 and 0.03541**.
 
 A 174-rune solved LP1 p6 GP-native positive plant with a declared F at position58 recovers **174/174**, forward and backward, under the exact frozen prime-totient operator. Correct semantics for the single transparent F are separately supported by the established [authentic p56 regression](../sims/authentic_lp2_p56_totient_regression.cjs).
 
@@ -37,7 +39,7 @@ A 174-rune solved LP1 p6 GP-native positive plant with a declared F at position5
 The red-prime sums offer a novel **candidate original F boundary and 173-key-advance recipient**, contingent on retrospective coincidence being meaningful. The exact historical prime-totient operation fails to recover unknown LP2 plaintext for every source-selected clock tested. Its failure must not be rescued by fitting offsets, new F masks, or additional arbitrary cipher layers. The first authored opcode remains missing.
 
 - [Read-only, source-locked CommonJS SFT](../sims/lp2_cuneiform_red379_F173_prime174_original_sft.cjs)
-- [Windows Node22 PASS on actual GitHub original checkout, run 45123725738](https://github.com/FlareZ123/liber-primus/actions/runs/45123725738)
+- [Windows Node22 PASS on actual GitHub original checkout, run 45123725738](https://github.com/FlareZ123/liber-primus/actions/runs/45123725738); [extended original boundary-selected transparent-F PASS, run 45125888424](https://github.com/FlareZ123/liber-primus/actions/runs/45125888424)
 - [Parent Director Issue #2243](https://github.com/FlareZ123/liber-primus/issues/2243)
 
 Keep this alignment exploratory until independent source evidence selects the F split and subsequent cipher operation.
