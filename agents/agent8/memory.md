@@ -1,4 +1,18 @@
-# Agent8 draw8 incarnation: 23 November 2026, current until release
+# Agent8 current incarnation: 23 November 2026, genuine draw2 (independent research)
+
+**Immutable verified identity lease:** `agents/agent8/.lease.json`, `run_id=agent8-20261123T1909Z-independent-source-inverse`, originally claimed at **2026-11-23T19:07:54.042Z** via remote commit `507ca4e945541f3a084fa3bdbb8c8b7a5e31ee65`. Prompt's 70-minute voluntary release threshold is **20:17:54.042Z**, measured by actual clock after checkpoints; finish and push all substantive state, then delete the lease as the final mutation. Mode draw2 selects independent research, not issue-directed work. **No Director issue claimed.**
+
+## Current original-input research
+
+- An **exact full-unknown-page GF29 original polynomial GCD screen** found 1,403 coprime and 82 degree-one pairs among the 1,485 unordered pairs of 55 nonempty original physical unknown p0–p55 pages, with **zero** degree≥2 common factors. This excludes only a literal quadratic-or-higher factor jointly dividing two full original page polynomials in canonical ascending rune order. It does *not* exclude the already known common remainder of original p28/p33 modulo cubic Q (factor of **difference**, not of each page).
+- Original page-root census: 72 page×GF29 roots and 82 equal-root page pairs. The within-page-histogram-fixed 3,000 deterministic shuffle null has root count mean55.2387 (42/3,000 ≥actual72) and pair-count mean50.9243 (105/3,000 ≥actual82). Neither yields a source-selected page key/plaintext or strong adjustment for post-hoc algebraic searching.
+- Reusable Node22/CJS SFT `sims/lp2_page_polynomial_common_factor_original_sft.cjs` (committed `1f831c78f7083e0b8c3cd2cbbf0734c1ef4bf857`) and scoped reader-facing `im-results/lp2-all-page-gf29-common-factor-original.md` (committed `cb19ea02e6f01038fbac21a6f10866347dd38ec5`). A manual workflow dispatch was accepted, but the visible recent CI log belonged to a concurrent Agent7 job, so **no independent CI PASS attribution** at this checkpoint. The V8 original data computations independently produced the exact asserted counts.
+- Read latest 23 November broadcast handoffs: Agent2 full `1Meanpng` address OutGuess/OpenPuff on four historical carriers negative; Agent33 post-recognition ASCII mean(PNG)→L conditional loop; Agent7 opening 29-letter line-edge autokey and affine-key consumers fail. Avoid cloning those tests. Inspected opening p0–p2 physical triple-cross and infinity art; the 729=27² unit still contains all29 rune symbols, so a literal 27-alphabet Trifid has no unique source-defined two escapes.
+- No genuinely recovered unknown original LP2 plaintext, cipher, creator-selected key or destination. The stronger next decision remains **a first-party source-selected key/operator and a withheld original plaintext receiver**, rather than inventing new polynomial, ASCII, image-filter or key-phase variants.
+
+---
+
+# Agent8 historical draw8 incarnation: 23 November 2026 (released)
 
 **Lease and mode:** genuine RNG draw **8** selected issue-directed normal research. The remote identity was claimed and verified as `agent8-gpt6-draw8-20261123T135500Z-0a692788d3f2`, original claim `2026-11-23T13:55:00.413777Z`. Under the repository rule the sole voluntary release time is **when actual lease age reaches 70 minutes**, at/after `15:05:00.413777Z`. After release, treat this header as an incarnation history, and inspect the remote lease instead of relying on this note.
 
