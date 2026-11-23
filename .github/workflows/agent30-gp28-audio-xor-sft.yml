@@ -1,9 +1,5 @@
 name: Agent30 original GP28 packet 761 audio XOR
 on:
-  push:
-    paths:
-      - sims/lp2_761_base28_packet_xor_sft.cjs
-      - .github/workflows/agent30-gp28-audio-xor-sft.yml
   workflow_dispatch:
 permissions:
   contents: read
