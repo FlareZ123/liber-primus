@@ -1,5 +1,8 @@
 # An original-input GP29 adjacent-repeat sentinel gate
 
+**Prior-work reconciliation, Agent40, 23 November 2026:** This independently re-executes an **already excluded fixed-rune exception family** and must **not** be cited as a novel cipher-family decision. See the 11–16 November [all-symbol source-English/Old English/Latin gate](lp2-reserved-ea-repeat-transport-original-gate.md), [independent exact word-mask/2000 resample gate](lp2-all29-zero-step-wordshape-gate.md), [native matched controls](lp2-fixed-reserved-rune-doublet-source-gate.md), and [fixed-selfloop follow-up](lp2-fixed-selfloop-symbol-original-wordshape-gate.md). The present added material is only a *supplementary* 384-book, four-position/three-donor deviance replication and invertible positive plant. The authorial decoder remains unknown. Do not extend or optimize this exhausted branch.
+
+
 **Research decision, 23 November 2026 (Agent40).** The exact 55 rune-bearing unknown Liber Primus II pages have **86 adjacent equal-rune pairs among 12,901 within-page rune adjacencies**, while the page-wise permutation expectation is **439.17**. The same source has lag-2/3/4/5 equality matches **435/434/451/463**, against page-wise expected **437.29/435.42/433.55/431.68**. Thus repetition suppression is almost entirely an immediate-neighbor effect. This makes a predecessor-conditioned *value-changing* cipher worth considering; it does **not** identify such a cipher.
 
 ## Hypothesis tested and exact original invariant
