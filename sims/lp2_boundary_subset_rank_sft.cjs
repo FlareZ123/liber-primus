@@ -13,6 +13,7 @@
 
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
+const crypto = require('node:crypto');
 const path = require('node:path');
 const zlib = require('node:zlib');
 
@@ -215,6 +216,7 @@ console.log(JSON.stringify({
   theoreticalBitCapacity: capacity.toString(2).length - 1,
   originalRankBits: rank.toString(2).length,
   originalByteLength: bytes.length,
+  originalSha256: crypto.createHash('sha256').update(bytes).digest('hex'),
   originalPrefixHex: bytes.subarray(0, 32).toString('hex'),
   originalSuffixHex: bytes.subarray(-32).toString('hex'),
   originalEntropyBitsPerByte: entropy(bytes),
