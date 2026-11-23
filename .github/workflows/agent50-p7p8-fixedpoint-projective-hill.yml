@@ -1,10 +1,5 @@
 name: Agent50 P7 P8 fixedpoint PGL Hill original inverse
 on:
-  push:
-    paths:
-      - 'sims/lp2_p7_p8_fixedpoint_projective_hill_original_sft.cjs'
-      - 'im-results/lp2-p7-p8-original-red-polynomial-fixedpoint.md'
-      - '.github/workflows/agent50-p7p8-fixedpoint-projective-hill.yml'
   workflow_dispatch:
 permissions:
   contents: read
