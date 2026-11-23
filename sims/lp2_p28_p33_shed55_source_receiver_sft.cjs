@@ -109,6 +109,24 @@ function main() {
     [7,15],[9,23],[13,33],[25,3],[28,33],
     [29,7],[44,3],[47,3]
   ]);
+  /** @param {number[]} lengths @returns {number[]} */
+  function interiorWordBoundaries(lengths) {
+    let offset=0;
+    return lengths.slice(0,-1).map(length=>(offset+=length));
+  }
+  const nativeBoundaryControls=[];
+  for(const [from,to] of lengthMatches) {
+    const source=printedWords(from).map(word=>word.length>1?word.length-1:word.length);
+    const destination=printedWords(to).map(word=>word.length);
+    const s=new Set(interiorWordBoundaries(source));
+    const d=interiorWordBoundaries(destination);
+    const overlap=d.filter(x=>s.has(x)).length;
+    const expected=(source.length-1)*(destination.length-1)/(stats.find(x=>x.page===to).n-1);
+    nativeBoundaryControls.push({from,to,overlap,sourceBoundaries:source.length-1,
+      destinationBoundaries:destination.length-1,uniformSlotExpectation:expected});
+  }
+  assert.deepEqual(nativeBoundaryControls.map(x=>x.overlap),
+    [9,11,11,7,13,14,12,14]);
   const p28=printedWords(28),p33=book.pages[33].indices;
   const n28=stats.find(x=>x.page===28),n33=stats.find(x=>x.page===33);
   assert.deepEqual([n28.n,n28.words,n28.multi,n28.single,n28.retained,n33.n],
@@ -178,6 +196,7 @@ function main() {
   console.log(JSON.stringify({
     originalBookRunePages:55,
     originalOneExteriorLengthMatchPairs:lengthMatches,
+    noWordBoundaryCarryEvidence:nativeBoundaryControls,
     novelPair:[28,33],p28:n28,p33:n33,
     sharedQ:[17,27,12],
     exactOriginalQReplays:true,
