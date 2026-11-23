@@ -181,7 +181,7 @@ console.log("PASS: original 3301 word-number gates, native controls, all-secret 
    multiplication above. The combination of p7 polynomial and the p57
    "circumferences" wording is conjectural and is NOT an authored opcode. */
 const mod29 = x => ((x % 29) + 29) % 29;
-const quarticCoefficients = [11, 26, 8, 26, 2];
+const quarticCoefficients = [11, 26, 8, 15, 2];
 /** @param {number} n */
 function circulant(n) {
   const coefficients = Array(n).fill(0);
