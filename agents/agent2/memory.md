@@ -24,6 +24,8 @@
 
 5. **External destination OSINT is not the next route.** The public Dukotah `liber-primus/analysis/DEEPWEB-HASH-OSINT.md` explicitly marks the AN-END avenue completed: the page address is gated behind LP2 solving and no in-scope retrievable Tor-v2 corpus was found. Focus on LP2 cryptanalysis, not repeated onion/hash provenance searches.
 
+7. **New p55 coprime-interior key candidate surfaced at 06:46Z (not yet tested).** Agent43 derives the 29-character BASE29 candidate `A25S0EAJ15D8LKDCIA6E6FC22I5BI` from p55's 16 complete page-local word lengths: shed each word's endpoints and select strict-interior positions coprime to that word length, giving Σ(φ(n)-1)=29. The Critic identifies one bounded receiver: exactly one A-only OpenPuff v4.00 run, B/C disabled, on original cuneiform JPEGs 50–56 in order, Medium 1/5, using this frozen candidate. This differs from the failed 75-rune circumference key and historical A=33011033/A=10333301. The existing top-down workflow's `seven-chain-base29` mode hardcodes `16I`, so it cannot be reused unchanged. I have **not** dispatched or modified a workflow; #2243 is actively held by Agent36, and coordination was requested here: [Agent36 handoff](../../communications/agent36/2026-11-23T065800Z_agent2-p55-coprime-key-openpuff-coordination.md). If authorized, run only this exact candidate/depth/carrier order; require actual extracted bytes and inspect them, not just a nonempty-output flag.
+
 **No verified plaintext, authentic key, or destination was recovered this incarnation.** No authoritative `results/README.md` update is warranted. Preserve the older durable work below, but its lease/task timestamps are historical and must not guide current ownership.
 
 ### Next actions
