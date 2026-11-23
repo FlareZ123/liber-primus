@@ -102,6 +102,23 @@ assert.deepEqual(filter(avg),source);
 const literalFilterHeaders=Array.from({length:32},(_,r)=>source[r*8]);
 const validLiteralHeaders=literalFilterHeaders.filter(x=>x<=4).length;
 assert.equal(validLiteralHeaders,1);
+// The same 2^10 physical I/l alternatives yield different reconstructed
+// bytes. This is an ambiguity bound, NOT a plaintext-scored case search.
+const reconstructionInvariant=new Array(256).fill(true);
+let variantsWithEarlyL=0;
+for(let mask=0;mask<(1<<ambiguousIndices.length);mask++){
+  const sourceVariant=source.slice();
+  for(let j=0;j<ambiguousIndices.length;j++)if(mask&(1<<j)){
+    const pos=ambiguousIndices[j];
+    sourceVariant[pos]+=(sourceVariant[pos]%60===18?29:-29);
+  }
+  const trial=reconstruct(sourceVariant);
+  if(trial[1]===0x4c)variantsWithEarlyL++;
+  for(let i=0;i<256;i++)if(trial[i]!==avg[i])reconstructionInvariant[i]=false;
+}
+const invariantReconstructedByteCount=reconstructionInvariant.filter(Boolean).length;
+assert.equal(variantsWithEarlyL,1024);
+assert.equal(invariantReconstructedByteCount,83);
 assert.equal(avg.slice(0,8).map(x=>x.toString(16).padStart(2,"0")).join(""),"cb4ccd20712590ff");
 // One fixed historical binary receiver: a complete offset-zero RFC1951 raw
 // DEFLATE body, which Cicada's authenticated 2013 OpenPGP ZIP channel used.
@@ -150,6 +167,7 @@ const output={
   avg_filter_exact_replay:true,
   missingLColumnAsMeanOfOther7RowBytes:rowMeanMatches,
   rowMeanHitsUnderAnyPhysicalI_lCase:anyRowMeanAtAnyCase,
+  reconstructionI_lCases:1024,invariantReconstructedByteCount,variantsWithEarlyL,
   rawDeflateAtOffset0:{accepted:rawDeflateAccepts,length:rawDeflateLength,error:rawDeflateError,sourceNativePlant:true},
   original_stats:stats(source),avg_reconstructed_stats:stats(avg),
   decoded_4c_positions:avg.flatMap((v,i)=>v===0x4c?[i]:[]),
