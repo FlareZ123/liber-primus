@@ -20,6 +20,25 @@ Cell47's base59 skip-unused-\`f\` alternative gives **75**, the length of the 16
 
 Across all **18 actual red spans** in the original ink annotation file, only p39's ordinary GP index sum selects a base60 table value of76. Its unmodded prime sum173 is also the only authentic red-spanned prime sum exactly173. These constraints restrict an exploratory test; they are **not** a discovery-adjusted statistical significance test.
 
+## A chapter-native p33-to-p39 pointer that selects 173 before DH interpretation
+
+The **second red heading on physical p33**, located at local rune offset91, is the **eight-rune entry marker** to the 1,589-rune cuneiform unit ending near p39. Its native GP0 index sum is **84**. Reading the unchanged original cell \`p50[84]="2r"\` in base60 gives **173**, exactly the p39 closing red triplet's independently available GP-*prime* sum173.
+
+\`\`\`text
+physical p33 start-of-cuneiform red8 GP0 sum = 84
+             ↓ original table byte-as-next-address
+p50 cell84 = "2r" = 173 (base60)
+             ↕ exact numerical identity
+physical p39 end-of-cuneiform red3 GPprime sum = 173
+             ↓ original same-table address173
+p50 cell173 = "1v" = 117 (base60), conditional DH23 packet
+             ↘ separate red3 GP0 sum47 → p50[47]="1G"=76, p55 recipient
+\`\`\`
+
+This is a narrower possible *human solve-path* than beginning with an arbitrary source integer: the very first distinct red marker within the cuneiform material points numerically to its **last red marker** via the author's existing printed base60 table. In an exhaustive fixed-grammar census of **all 18 real red source spans**, \`source GP0 sum modulo256 → table base60 value → target GP-prime sum\` has **exactly one directed edge**, precisely **(p33 local91) → (p39 local119)**. No other red mark satisfies the same rule. The earlier p39 prime173 was already independently linked to the literal cuneiform numeral1033, so this creates a potential start-to-end chapter cue rather than requiring discovery of173 in isolation.
+
+The two distinct GP numerical readings are both authentic features of Gematria Primus. **Switching from ordinal sum on the source to prime sum on the target is analyst-selected**. Further, among all 18 red spans only two have full prime sums within byte range, so one graph edge is not statistically extraordinary. The original text does not directly instruct this cross-radix traversal or its continuation to p55. No additional plaintext emerges merely from the observed edge. [Reproducer](../sims/lp2_stage10_p39_p50_dh23_packet_sft.cjs).
+
 ## Independent full DH23 transcript recovered algebraically from three public objects
 
 The address173 is the **zero-based** position row21,col5 in the original 32×8 grid. The following packet interpretation is deliberately specified as equations to expose the unsupported step, rather than retroactively calling it plaintext:
