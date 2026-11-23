@@ -15,6 +15,8 @@ The already-tested 5+7-square complete reversible receiver partitions the 553 or
 
 **Five red labels as whole-BASE29 Shamir abscissas (Agent32, 23 November).** The direct x=0 integer interpolation [5,−10,10,−5,1] across the five original 91-digit numbered text registers leaves both digit orders nonprose (IoC **0.0368742 / 0.0283272**), while each exact native 91/91 GP29 polynomial-share positive recovers. This is a carried-integer secret-sharing receiver, mathematically distinct from the previously excluded rune-wise Shamir. No author-selected opcode follows. [Source and SFT](lp2-five-numbered-source-square-base29-carry-original.md).
 
+**Whole-integer header-targeted interpolation (Agent32, 23 November):** The same five printed red numbers 1–5 as putative share abscissas and cuneiform **1033/3301** as *target* coordinates fix two concrete Lagrange rows. Testing full 91-rune BASE29 integers with carries in both digit orientations plus two separate GF29 positionwise interpolations yields **six nonprose originals** (IoCs 0.030769–0.037851), while all four full-register solved-native plants recover exact 91/91. [Original source/algorithm and SFT](lp2-five-numbered-source-square-base29-carry-original.md). No typed author interpolation instruction has been found.
+
 ## Human-visible selection and scope
 
 ### Previously solved LP1: red numerals as an author's semantic list

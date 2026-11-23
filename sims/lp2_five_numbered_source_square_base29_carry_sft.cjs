@@ -202,6 +202,81 @@ for (const reverse of [false, true]) {
 }
 assert.deepEqual(integerShareTests.map((row) => row.originalIoC),
   [0.036874236874236875, 0.028327228327228327]);
+
+// Alternate literal coordinates: the cuneiform 1033/3301 are target x
+// values for the five numbered shares at x=1..5. Lagrange weights are
+// integer-valued at these integer targets, even modulo 29**91.
+/** @param {bigint} target */
+function lagrangeWeights(target) {
+  return Array.from({ length: 5 }, (_, row) => {
+    let numerator = 1n;
+    let denominator = 1n;
+    for (let col = 0; col < 5; col++) {
+      if (row === col) continue;
+      numerator *= target - BigInt(col + 1);
+      denominator *= BigInt(row - col);
+    }
+    assert.equal(numerator % denominator, 0n);
+    return numerator / denominator;
+  });
+}
+const targetTests = [];
+for (const target of [1033n, 3301n]) {
+  const weights = lagrangeWeights(target);
+  for (const reverse of [false, true]) {
+    const originalIntegers = original.map((lane) => pack(lane, reverse));
+    const decodedInteger = mod(originalIntegers.reduce(
+      (sum, value, k) => sum + value * weights[k], 0n
+    ));
+    const decoded = unpack(decodedInteger, reverse);
+    const targetPlain = pack(native[0], reverse);
+    const higher = native.slice(1).map((lane) => pack(lane, reverse));
+    let contribution = 0n;
+    let power = 1n;
+    for (const coefficient of higher) {
+      power *= target;
+      contribution += coefficient * power;
+    }
+    const coefficients = [mod(targetPlain - contribution), ...higher];
+    const shares = Array.from({ length: 5 }, (_, i) => {
+      const x = BigInt(i + 1);
+      let value = 0n;
+      let power = 1n;
+      for (const coefficient of coefficients) {
+        value += coefficient * power;
+        power *= x;
+      }
+      return mod(value);
+    });
+    const reconstructed = mod(shares.reduce(
+      (sum, value, k) => sum + value * weights[k], 0n
+    ));
+    assert.equal(reconstructed, targetPlain);
+    const ioc = profile(decoded);
+    assert(ioc < 0.041);
+    targetTests.push({
+      target: String(target), wholeRegister: true,
+      reversedDigits: reverse, originalIoC: ioc,
+      positive: '91/91',
+      first24: decoded.slice(0, 24).map((value) => corpus.translit[value]).join(''),
+    });
+  }
+  const perRune = Array.from({ length }, (_, at) => Number(
+    (original.reduce((sum, lane, k) =>
+      sum + weights[k] * BigInt(lane[at]), 0n) % radix + radix) % radix
+  ));
+  const ioc = profile(perRune);
+  assert(ioc < 0.041);
+  targetTests.push({
+    target: String(target), wholeRegister: false,
+    originalIoC: ioc, positive: 'exact GF29 Lagrange polynomial identity',
+    first24: perRune.slice(0, 24).map((value) => corpus.translit[value]).join(''),
+  });
+}
+assert.deepEqual(targetTests.map((row) => row.originalIoC), [
+  0.03076923076923077, 0.03638583638583639, 0.03785103785103785,
+  0.03638583638583639, 0.03247863247863248, 0.03199023199023199,
+]);
 assert.equal(output.length, 16);
 const maximum = Math.max(...output.map((row) => row.originalIoC));
 assert(maximum < 0.037, 'A whole-register carried matrix produced atypically high original IoC');
@@ -215,5 +290,6 @@ process.stdout.write(JSON.stringify({
   ],
   fullModels: output,
   integerShareTests,
+  targetTests,
 }, null, 2) + '\n');
 process.stdout.write('PASS original 16 BASE29 carried matrices, 16 source-native plants, exact replay\n');
