@@ -50,12 +50,40 @@ function differences(runes) {
   }
   return count;
 }
+/**
+ * Nontrivial Fourier magnitudes of an empirical circular GP29 difference distribution.
+ * Independence gives spectrum(C)=spectrum(P)*spectrum(K) and |spectrum(K)| <= 1.
+ * @param {number[]} histogram
+ * @returns {number[]}
+ */
+function spectrum(histogram) {
+  const total = histogram.reduce((sum, x) => sum + x, 0);
+  assert.ok(total > 0);
+  return Array.from({length: 14}, (_, k) => {
+    let real = 0, imag = 0;
+    for (let d = 0; d < 29; d++) {
+      const angle = 2 * Math.PI * (k + 1) * d / 29;
+      real += histogram[d] * Math.cos(angle);
+      imag += histogram[d] * Math.sin(angle);
+    }
+    return Math.hypot(real, imag) / total;
+  });
+}
 const origCounts = differences(original);
 assert.equal(origCounts.reduce((a, b) => a + b, 0), 12901);
 assert.equal(origCounts[0], 86);
 assert.deepEqual(origCounts, [86,457,503,436,435,445,430,470,425,510,
   497,454,443,499,470,468,446,401,432,472,467,460,420,485,
   466,466,456,472,430]);
+const originalSpectrum = spectrum(origCounts);
+assert.ok(Math.abs(originalSpectrum[4] - 0.043846016962099) < 1e-12);
+/** @param {number[]} sourceSpectrum */
+function excludedFourierModes(sourceSpectrum) {
+  return sourceSpectrum.flatMap((amplitude, i) =>
+    originalSpectrum[i] > amplitude + 1e-12
+      ? [{harmonic: i + 1, plainAmplitude: amplitude,
+          cipherAmplitude: originalSpectrum[i]}] : []);
+}
 
 const runeSet = new Set(corpus.runes);
 const slotLengths = [];
@@ -102,20 +130,27 @@ function gpWord(raw) {
 }
 /**
  * @param {string} sourceText
- * @returns {{buckets:number[][][],nWords:number,nRunes:number}}
+ * @returns {{buckets:number[][][],nWords:number,nRunes:number,fullSourceDeltas:number[]}}
  */
 function donor(sourceText) {
   const sourceWords = sourceText.match(/[A-Za-z]+/g) || [];
   const buckets = Array.from({length: 15}, () => []);
   let nRunes = 0;
+  let lastSymbol = null;
+  const fullSourceDeltas = Array(29).fill(0);
   for (const w of sourceWords) {
     const g = gpWord(w);
     nRunes += g.length;
     if (g.length <= 14) buckets[g.length].push(g);
+    for (const rune of g) {
+      if (lastSymbol !== null) fullSourceDeltas[(rune - lastSymbol + 29) % 29]++;
+      lastSymbol = rune;
+    }
   }
   for (const width of new Set(slotLengths)) assert.ok(buckets[width]?.length,
     'Missing native GP word-length bucket ' + width);
-  return {buckets, nWords: sourceWords.length, nRunes};
+  assert.equal(fullSourceDeltas.reduce((a,b)=>a+b,0),nRunes-1);
+  return {buckets, nWords: sourceWords.length, nRunes, fullSourceDeltas};
 }
 
 /** Exact conversion of a fixed word stream to stationary-increment pad and back. */
@@ -146,7 +181,8 @@ function sourceRunicFirstParty() {
     [10, 1001, 991, 28, 7]);
   return {pages: pages.length, nRunes, nPairs, nativeRepeats: 28,
     minimumPossibleRepeatCountUnderOneCounterStep: 7,
-    minimumNativeDifferenceResidue: counts.indexOf(7)};
+    minimumNativeDifferenceResidue: counts.indexOf(7),
+    allKeyFourierIncompatibilities: excludedFourierModes(spectrum(counts))};
 }
 
 const counts = [];
@@ -161,6 +197,7 @@ for (const [name, source] of donors) {
   const minima = [];
   const originalShapedRepeats = [];
   const rarestResidues = [];
+  let sourceShapeFourierFailures = 0;
   // This is exactly the source-shaped 128-plant experiment, seeded once
   // per donor and advanced continuously through all 2,896 word slots.
   let state = 0x33011717;
@@ -179,6 +216,8 @@ for (const [name, source] of donors) {
     minima.push(min);
     originalShapedRepeats.push(histogram[0]);
     rarestResidues.push(histogram.indexOf(min));
+    const frequencies = spectrum(histogram);
+    if (excludedFourierModes(frequencies).length) sourceShapeFourierFailures++;
     if (sample === 0) {
       // A shift at the *rarest native difference* attains the exact lower
       // count for a single deterministic counter key. It stays visibly
@@ -187,6 +226,9 @@ for (const [name, source] of donors) {
       const encrypted = counterPad(plant, step);
       assert.deepEqual(counterPad(encrypted, step, true), plant);
       assert.equal(differences(encrypted)[0], min);
+      assert.ok(spectrum(differences(encrypted)).every((value, i) =>
+        Math.abs(value - frequencies[i]) < 1e-10),
+        'Counterpad GP29 difference spectra must be pure circular shifts');
     }
   }
   minima.sort((a, b) => a - b);
@@ -197,13 +239,19 @@ for (const [name, source] of donors) {
     nativeActualRepeatCount: {
       min: originalShapedRepeats[0], max: originalShapedRepeats[127]},
     dominantRarestDelta: rarestResidues.reduce((acc, x) =>
-      (acc[x] = (acc[x] || 0) + 1, acc), {})});
+      (acc[x] = (acc[x] || 0) + 1, acc), {}),
+    sourceShapeFourierFailures,
+    allKeyFourierIncompatibilitiesFullDonor: excludedFourierModes(
+      spectrum(source.fullSourceDeltas))});
 }
 assert.deepEqual(counts.map(x => x.minimumNativeDifferenceCount),
   [{min:151,median:188,max:227},{min:165,median:209,max:249}]);
 assert.deepEqual(counts.map(x => x.nativeActualRepeatCount),
   [{min:381,max:486},{min:400,max:492}]);
 assert.ok(counts.every(x=>x.minimumNativeDifferenceCount.min > 86));
+assert.deepEqual(counts.map(x => x.sourceShapeFourierFailures),[50,128]);
+assert.equal(counts[0].allKeyFourierIncompatibilitiesFullDonor[0].harmonic,1);
+assert.equal(counts[1].allKeyFourierIncompatibilitiesFullDonor[0].harmonic,1);
 
 const nonzero = origCounts.slice(1);
 const mean = nonzero.reduce((a,b)=>a+b,0)/nonzero.length;
@@ -215,9 +263,11 @@ const result = {
   observed: {withinPagePairs:12901,repeatPairs:86,
     repeatRate:86/12901, nonzeroMod29DifferenceChi2df27:nonzeroChi2},
   independentIncrementExpectation: 'Pr(Cdiff=0) = sum_d Pr(Pdiff=d) Pr(Kdiff=-d) >= min_d Pr(Pdiff=d)',
+  spectralExpectation: 'For each k=1..14, |DFT(Cdiff)[k]| <= |DFT(Pdiff)[k]| for any stationary independent increment distribution; a violating native control excludes an exact population convolution, not every finite plaintext instance',
+  originalNonzeroFourierMagnitudes: originalSpectrum,
   nativeSourceWordshapeExactLengthPlants: counts,
   firstPartyClearLP1: sourceRunicFirstParty(),
   positive: 'Exact deterministic additive counter-pad forward+inverse plants pass and attain their native-delta minimum by choosing the best constant step',
-  decision: 'Original repeats are below all 256 native donor wordshape-plant minimum transition counts. This disfavors stationary plaintext-independent additive key increments in native GP English. It is NOT an all-key, all-language or one-time-pad impossibility: LP1 first-party sample has rare 7/991 native delta, and key/text positional correlation or other plaintext registers can evade the expectation.'
+  decision: 'Original repeats are below all 256 native donor wordshape-plant minimum transition counts, and source-shape Fourier constraints fail for 50 Gibran plus all 128 Shakespeare controls. Exact population convolution also fails at author LP1 modes 4 and 5 despite that source having a 7/991 native delta. These are model-dependent expected-register conflicts, NOT an all-key, all-language or finite one-time-pad impossibility.'
 };
 console.log(JSON.stringify(result, null, 2));
