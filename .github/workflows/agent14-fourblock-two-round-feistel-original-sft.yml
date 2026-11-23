@@ -1,0 +1,18 @@
+name: LP2 four-block two-round Feistel all-secret original control
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-feistel:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Exact source-native, positive and original four-phase Feistel gates
+        run: node sims/lp2_gp29_fourblock_two_round_feistel_allkey_sft.cjs
