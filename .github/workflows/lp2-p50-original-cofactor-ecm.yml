@@ -1,8 +1,5 @@
 name: LP2 p50 2013-bit original-cofactor bounded GMP-ECM
 on:
-  push:
-    paths:
-      - .github/workflows/lp2-p50-original-cofactor-ecm.yml
   workflow_dispatch:
 
 permissions:
