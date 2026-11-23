@@ -36,6 +36,21 @@ The p9 candidate also fails a *much stronger all-secret mapping constraint*. Def
 
 A separate authentic-source positive plants a **729-rune Latin passage** from Vulgate GP offset10,000, transforms it with a wholly reversible fixed 28-nonzero-step alphabet and F→0 through the exact pp0–2 physical page lengths, and recovers the original real source offset **uniquely** from the same mask decoder. The fixed-alphabet forward/inverse equality constraint also passes on the first 262 planted source runes. The test runs from repository-frozen original sources with all counts and exact recoveries asserted.
 
+## Stronger all-secret period-28 invariant against actual Latin Vulgate
+
+The rare GP0 frequency alone does not make a Latin plaintext recoverable. A separately motivated, strictly reversible 28-phase cipher reserves zero ciphertext difference as one plaintext symbol and independently permutes the other 28 ciphertext differences at every phase. **Even granting an arbitrary unrelated private 28! alphabet in each source-visible page or major-ink-mark segment**, the observed original ciphertext determines the number of identical first differences inside every (physical segment, phase modulo28) bucket. An unknown bijection can rename those differences but **cannot change their within-bucket pair-equality count**. This is a stronger, key-independent necessary condition than the 86 F-site comparison.
+
+The independently tested source-invariant construction uses actual original page starts, 31 source-authenticated major mark events, all 12,956 original ciphertext runes and **128 evenly spaced complete 12,956-rune literal Latin donor windows**, with no donor-dependent phase adjustment or alphabet tuning. It reproduces the original-source equality counts established by Agent4 for English controls, then applies exactly the same buckets to Latin:
+
+| Secret phase28 reset condition | Independent source segments | Equal original source step pairs | Smallest Latin plaintext equal pairs (128 whole-length windows) | Latin donors no greater than original |
+| --- | ---: | ---: | ---: | ---: |
+| Global period28 | 1 | **104,918** | 216,715 | **0** |
+| Major printed mark | 29 | **11,021** | 22,719 | **0** |
+| Physical page | 55 | **1,775** | 3,593 | **0** |
+| Page plus major printed mark | 74 | **1,648** | **3,346** | **0** |
+
+The strongest 74-zone test permits **2,072 unrelated private 28-way alphabet tables**, of which 1,848 have occupied original input positions. Nevertheless all 128 authentic Vulgate windows exceed the original equality count by at least **1,698**; zero complete Latin windows survive any of four reset assumptions. The assertion-complete CJS SFT reproduces every exact original count and Latin result. This independently settles an important objection to the English-native no-go: **the low Latin frequency of F does not rescue a source-clocked 28-phase feedback cipher against an all-secret collision invariant**. The result excludes this precise family on these fixed literary donor windows, including all its private hidden alphabets. It does *not* exclude any plaintext with arbitrary changing per-rune state or unrelated unknown language registers.
+
 ## Decision
 
-**Do not identify the original pp0–14 as verbatim Latin Vulgate under this zero-sentinel mechanism. Do not expand the isolated p9 Latin coincidence.** Preserve the lower Latin F-frequency observation as a strictly conditional register alternative only; an independent author-selected feedback law, complete long plaintext or authentic key is still required. A random/compressed binary plaintext, other source texts, altered word segmentation and more general feedback remain open.
+**Do not identify the original pp0–14 as verbatim Latin Vulgate under this zero-sentinel mechanism. Do not expand the isolated p9 Latin coincidence.** Retain the lower Latin F-frequency observation as a strictly conditional register alternative only; the entire authentic Latin donor set is also incompatible with every source-reset period28 all-secret nonzero-step cipher tested; an independent author-selected feedback law, complete long plaintext or authentic key is still required. A random/compressed binary plaintext, other source texts, altered word segmentation and more general feedback remain open.
