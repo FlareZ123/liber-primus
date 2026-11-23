@@ -67,6 +67,8 @@ A more restrictive, original-exact repetition-profile contract gives **445.73155
 
 These two global-channel variants sharpen the family of excluded **universal** no-repeat architectures. They do **not** suggest that the author programmed the precise observed pagewise repeat counts as targets, nor can they exclude a text-source-restricted compressor, arbitrary redistribution of individual red-run lengths/order, punctuation outside the 31 large marks, or additional concealed image/number payload.
 
+**Independent execution:** [Windows Node22 workflow 45143544020](https://github.com/FlareZ123/liber-primus/actions/runs/45143544020) completed successfully, asserting all three distinct capacity exclusions, every original pagewise repeat count, 2,983 actual page word-seam locations and the stronger 3,008-slot grant, with exhaustive toy controls.
+
 ## What this does and does not decide
 
 **Decision:** Merely promoting the **16 original movable contiguous red-run positions** to an additional exception channel **cannot** rescue a universal, rune-length-preserving, all-GP29 anti-repeat encoder whose large marks stay at existing printed word breaks with their original per-page multiplicities. There is not enough combined output capacity even under arbitrary unknown keys. That conclusion is independent of language scoring or finding the cipher.
