@@ -94,6 +94,45 @@ const clocks=[
 for(const k of clocks)assert.equal(packets(source,k.windows).length,k.count);
 assert.equal(packets(source,clocks[1].windows).some(b=>b.i<=378&&b.i+2>=378),false);
 assert.equal(packets(source,clocks[1].windows).some(b=>b.i===379),true);
+/**
+ * Raw, non-cyclewalking textbook RSA ciphertext framing has to be <n,
+ * regardless of the secret exponent. Test BOTH standard radix29 digit
+ * directions on all source-fixed packet windows. Any violation rules out
+ * the complete fixed-width raw RSA serialization on that window.
+ * @param {Uint8Array} src
+ * @param {number[][]} windows
+ * @param {number} modulus
+ * @param {number} width
+ * @returns {{blocks:number,badBE:number,badLE:number,firstBadBE:number,firstBadLE:number}}
+ */
+function rawRange(src,windows,modulus,width) {
+  let blocks=0,badBE=0,badLE=0,firstBadBE=-1,firstBadLE=-1;
+  for(const [start,len] of windows) {
+    for(let i=start;i+width<=start+len;i+=width) {
+      let be=0,le=0,p=1;
+      for(let j=0;j<width;j++){
+        be=be*29+src[i+j];
+        le+=src[i+j]*p;
+        p*=29;
+      }
+      if(be>=modulus){badBE++;if(firstBadBE<0)firstBadBE=i;}
+      if(le>=modulus){badLE++;if(firstBadLE<0)firstBadLE=i;}
+      blocks++;
+    }
+  }
+  return {blocks,badBE,badLE,firstBadBE,firstBadLE};
+}
+const raw379x173=clocks.map(clock=>rawRange(source,clock.windows,N,4));
+const raw1033x3301=clocks.map(clock=>rawRange(source,clock.windows,1033*3301,5));
+assert.deepEqual(raw379x173.map(v=>[v.blocks,v.badBE,v.badLE]),[
+  [138,124,126],[137,122,128],[136,126,124]
+]);
+assert.deepEqual(raw1033x3301.map(v=>[v.blocks,v.badBE,v.badLE]),[
+  [110,95,95],[109,92,97],[108,91,91]
+]);
+assert.ok(raw379x173.every(v=>v.firstBadBE===0&&v.firstBadLE===0));
+assert.ok(raw1033x3301.every(v=>v.firstBadBE===0&&v.firstBadLE===0));
+
 /** @param {Uint8Array} src @param {number[][]} windows */
 function exhaust(src,windows) {
   const blocks=packets(src,windows);
@@ -178,6 +217,7 @@ console.log(JSON.stringify({
   math:{p:RSA_P,q:RSA_Q,n:N,lambda:LAMBDA,domain:DOMAIN,
     admissibleExponents:9072,selectedFZeroBasedOffset:378},
   originalIoC:ic(source),tests,
+  directRawRsaFraming:{red379x173Width4:raw379x173,cuneiform1033x3301Width5:raw1033x3301},
   sourceNativePlanted:{
     originalNativeIoC:ic(native),rsaCipherIoC:ic(encrypted),
     bestRecoveredExponent:plantedScan.bestExponent,
@@ -186,4 +226,4 @@ console.log(JSON.stringify({
   },
   recoveredUnknownLP2Plaintext:false
 },null,2));
-console.log('PASS: 9072 exponent whole-source exhaustive scans and positive 553/553 GP29 native recovery');
+console.log('PASS: all source-fixed raw RSA frames impossible; 9072 original FPE exponents and 553/553 native plant controlled');
