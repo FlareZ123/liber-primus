@@ -38,6 +38,23 @@ There are **2,567 groups** under that conditioning, with maximum size **four**. 
 
 This extreme tail is **conditional on a very specific random-order null**. It is not a global discovery-adjusted probability for the author's cipher design, and a language with unusual word ordering could cause other dependencies. The manuscript-wide repeat deficit was known beforehand. The new and more discriminating fact is that conditioning on every *printed word-initial rune and word-length slot* still leaves the observed sequence near the combinatorial no-echo optimum.
 
+## Source-native control and explicit constrained-emitter positive
+
+The exact random-order tail is compelling **only relative to its stated word-permutation null**. For a causal comparison, the [second original-input SFT](../sims/lp2_crossword_echo_native_controls_sft.cjs) checks two independent mechanisms while preserving actual physical page sizes, the 2,928 page-local word-length slots, and 2,873 source boundary locations.
+
+* **Native-GP readable text:** Thirteen disjoint 2,928-word windows from the committed 39,835-word source-native, word-preserved **Latin Vulgate GP29** control, placed in those same original 55 page word-count shapes, have observed/conditioned-expected boundary-echo ratios **0.9270–1.0020**. In these unencrypted natural-language GP word streams the first-rune-and-length-controlled permutation expectation mostly explains genuine word-edge matching. This is a source-native Latin control, not a claim to sample every possible English orthography or the unknown LP2 plaintext.
+* **Continuous near-no-repeat emitter:** Generate 1,000 entirely new 55-page GP29 rune streams using the authentic word-length slots and original page lengths. Choose exactly **86** of the **12,901** legal within-page rune transitions as exceptional *repeat* transitions, uniformly without replacement; all other transitions move by an independently uniform element of `{1,…,28}` modulo 29. At each physical page start, choose a fresh rune uniformly. This emitter needs **no knowledge of the actual original rune values**. It yields mean **19.191** cross-word equalities and a mean source-conditioned expectation of **28.96783**. The model's mean observed/expected ratio is **0.660737**, SD **0.082640**; the original **0.644860** is entirely ordinary within the model (**424/1,000** simulated ratios are at most the original).
+
+| Independent input / model | Boundary echo ratio observed / exact conditioned expectation |
+|:--|--:|
+| Original unknown LP2 ciphertext | **0.644860** |
+| Source-native, readable Latin GP29: 13 windows | **0.927002–1.001800** |
+| Uniform nonrepeat-transition GP29 emitter with 86 source-sized escapes | **0.660737** mean |
+
+The gap between the original ciphertext and natural-language control therefore has a **constructive, simple causal explanation**: a previous-rune-constrained *continuous* ciphertext producer with sparse escapes. The native-GP control weakens the rival that ordinary human language word order **alone** causes the strong first-rune-conditioned anomaly. This is a mechanism-class consistency test, not a demonstration that Cicada selected the exact model. Specifically the emitter requires **extra plaintext and escape-location information** to be a full lossless cipher, and its sampled ranks are independently random rather than decoded original English. It does not supply the original author’s sidecar, key, or plaintext. A source-authenticated reversible receiver remains the decisive next input.
+
+Both the original word-order exact SFT and the causal control SFT passed source-read-only Windows Node22 ([source-native and emitter positive run 45088682633](https://github.com/FlareZ123/liber-primus/actions/runs/45088682633)).
+
 ## Mechanism implications and next discriminating decision
 
 Three materially different routes remain:
