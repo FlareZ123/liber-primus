@@ -172,19 +172,55 @@ function nullTest(name, key, seed, samples) {
   };
 }
 
+// Source-authored physical 10/13-dot marks are delimiters, not GP symbols.
+const ink = JSON.parse(read('resources/liber-primus/lp2-ink-annotations.json'));
+const pageStarts = new Map();
+let cumul = 0;
+for (const page of original) {
+  pageStarts.set(page.page, cumul);
+  cumul += page.indices.length;
+}
+const red13 = [];
+const allLarge = [];
+for (const page of ink.pages.filter(p => p.page <= 55)) {
+  for (const [local, dots] of page.large_punctuation || []) {
+    const spot = pageStarts.get(page.page) + local;
+    if (dots === 13) red13.push(spot);
+    if (dots === 10 || dots === 13) allLarge.push(spot);
+  }
+}
+red13.sort((a, b) => a - b);
+allLarge.sort((a, b) => a - b);
+assert.equal(red13.length, 28);
+assert.equal(allLarge.length, 31);
+/** @param {number} point @param {number[]} marks */
+function punctuationInterval(point, marks) {
+  let low = 0, high = marks.length;
+  while (low < high) {
+    const mid = (low + high) >>> 1;
+    if (marks[mid] <= point) low = mid + 1;
+    else high = mid;
+  }
+  return low;
+}
+
 const tests = [
   nullTest('uniform eligible-runic sites', () => 0, 0x33010001, 30000),
   nullTest('nine original red-heading chapters',
     s => section(s.page, largeChapters), 0x33010002, 30000),
   nullTest('thirteen original red-section starts',
     s => section(s.page, redSections), 0x33010003, 30000),
+  nullTest('original 13-dot punctuation intervals',
+    s => punctuationInterval(s.position, red13), 0x3301a15e, 30000),
+  nullTest('original 10- and 13-dot punctuation intervals',
+    s => punctuationInterval(s.position, allLarge), 0x3301a16e, 30000),
   nullTest('all physical pages, fixed observed page counts',
     s => s.page, 0x33010004, 30000),
   nullTest('pages and original across/within-word class, fixed observed counts',
     s => 2 * s.page + Number(s.across), 0x3301a14e, 40000)
 ];
 assert.ok(tests.every(t => t.oneSidedAddOneP < 0.01));
-assert.ok(tests[4].oneSidedAddOneP > 0.001,
+assert.ok(tests[6].oneSidedAddOneP > 0.001,
   'p is a measured finite Monte Carlo tail, not deterministic exclusion');
 console.log(JSON.stringify({
   source: 'LP2 original physical pp0-55, 12956 runes, 2896 words',
