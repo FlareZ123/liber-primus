@@ -233,6 +233,37 @@ for(const sign of [-1,1])for(const reset of ["book","word"]){
   });
 }
 
+/**
+ * First and most economical source-square rune inverse:
+ * every complete printed word receives its exact historical square
+ * number reduced mod29 as an additive key. No fitted phase, no new
+ * secret state, no alphabet replacement. Entire 12956 runes reversible.
+ * @param {{runes:number[],punct:boolean}[]} words
+ * @param {number} sign
+ * @returns {{runes:number[],punct:boolean}[]}
+ */
+function squareCaesar(words,sign){
+  const keys=squares.flat(),out=[];
+  for(let w=0;w<words.length;w++){
+    const key=keys[w%99]%29;
+    out.push({punct:words[w].punct,
+      runes:words[w].runes.map(v=>(v+sign*key+29)%29)});
+  }
+  return out;
+}
+const caesarResults=[];
+for(const sign of [-1,1]){
+  const decoded=squareCaesar(original,sign);
+  assert.deepEqual(squareCaesar(decoded,-sign),original);
+  const planted=squareCaesar(firstNative,-sign);
+  assert.deepEqual(squareCaesar(planted,sign),firstNative);
+  caesarResults.push({
+    sign,wholeBookGpIoC:gpIoC(decoded),
+    originalFirst120:decoded.flatMap(x=>x.runes).slice(0,120)
+      .map(i=>gp.translit[i]).join("")
+  });
+}
+
 console.log(JSON.stringify({
   result:"finite original word-order inversion negative; no unknown plaintext",
   originalWords:original.length,originalRunes:total,
@@ -242,6 +273,7 @@ console.log(JSON.stringify({
   exactSourceInverse:"8/8 original masks",
   genuineNativeWordRecovery:"24/24 2896-word plants",
   squareWordKeyRank28Results:rank28Results,
+  squareWordKeyCaesarResults:caesarResults,
   squareWordKeyNativeControls:"4/4 2896-word real-GP recoveries",
   squareWordKeyOriginalReplay:"4/4 12956-rune original inverses"
 },null,2));
