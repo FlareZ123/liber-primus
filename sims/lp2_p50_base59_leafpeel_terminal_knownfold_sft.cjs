@@ -56,13 +56,28 @@ function testKnown(layersByOrder, suppliedLeafText, suppliedMiddleText, convert)
   for (let i = 0; i < suppliedMiddleText.length; i++) value[order[i + 95]] = convert(suppliedMiddleText[i]);
 
   const lookup = new Map();
+  const unaryLookup = new Map();
+  const fullChildLookup = new Map();
   let pairs = 0, conflicts = 0, firstConflict = null;
+  let unaryConflicts = 0, fullChildConflicts = 0, unaryPairs = 0;
   for (let d = 1; d < layers.length; d++) {
     for (const node of layers[d]) {
       const observed = value[node];
       if (observed === null || children[node].some((k) => value[k] === null)) continue;
       const input = children[node].reduce((sum, k) => sum + value[k], 0) % 29;
       const key = d + ':' + input;
+      const childVector = children[node].map((k) => value[k]); // original address-sorted children
+      const fullKey = d + ':' + childVector.join(',');
+      const fullOld = fullChildLookup.get(fullKey);
+      if (fullOld === undefined) fullChildLookup.set(fullKey, observed);
+      else if (fullOld !== observed) fullChildConflicts++;
+      if (childVector.length === 1) {
+        unaryPairs++;
+        const oneKey = d + ':' + childVector[0];
+        const oneOld = unaryLookup.get(oneKey);
+        if (oneOld === undefined) unaryLookup.set(oneKey, observed);
+        else if (oneOld !== observed) unaryConflicts++;
+      }
       const old = lookup.get(key);
       pairs++;
       if (old === undefined) lookup.set(key, observed);
@@ -72,7 +87,8 @@ function testKnown(layersByOrder, suppliedLeafText, suppliedMiddleText, convert)
       }
     }
   }
-  return { pairs, conflicts, firstConflict, distinctKeys: lookup.size };
+  return { pairs, conflicts, firstConflict, distinctKeys: lookup.size,
+    unaryPairs, unaryConflicts, fullChildConflicts };
 }
 
 const physical = (p) => corpus.pages[p].indices;
@@ -137,6 +153,11 @@ assert(nonFOrientations.every((x) => x.pairs === 84));
 const nonFCounts = nonFOrientations.map((x) => x.conflicts).sort((a, b) => a - b);
 assert.equal(nonFCounts[0], 28);
 assert.equal(nonFCounts.at(-1), 36);
+const fullChildCounts = nonFOrientations.map((x) => x.fullChildConflicts).sort((a, b) => a - b);
+const unaryCounts = nonFOrientations.map((x) => x.unaryConflicts).sort((a, b) => a - b);
+assert.deepEqual([fullChildCounts[0], fullChildCounts.at(-1)], [17, 28]);
+assert.deepEqual([unaryCounts[0], unaryCounts.at(-1)], [17, 28]);
+assert(nonFOrientations.every((x) => x.unaryPairs > 0));
 console.log('Original table: 256 cells; base59 unique rooted tree; 39 leaf-removal layers.');
 console.log('Leaf-peel layers:', layers.map((x) => x.length).join(','));
 console.log('HTML-title-sized first two layers:', layers[0].length, '+', layers[1].length, '= 133');
@@ -146,6 +167,8 @@ console.log('Conflicting observations per 85 independently solved p56 runes: min
 console.log('Source-correct p56 skip-F and root unassigned 95+84+76+1=256 gate:');
 for (const candidate of nonFOrientations) console.log(JSON.stringify(candidate));
 console.log('Conflicting observations per 84 genuinely prime-consuming p56 runes: min', nonFCounts[0], 'max', nonFCounts.at(-1));
+console.log('All-secret per-depth, ANY ordered-child rule: conflicts', fullChildCounts[0], 'through', fullChildCounts.at(-1));
+console.log('All-secret per-depth, ANY unary rule: conflicts', unaryCounts[0], 'through', unaryCounts.at(-1));
 
 /** Independently generated reversible positive with actual solved p57 runes as leaves. */
 const generated = new Array(256).fill(null);
@@ -164,6 +187,8 @@ assert.equal(positive.pairs, 85);
 const positiveNonF = testKnown(layers, physical(57), ordered.slice(95, 179).map((v) => generated[v]), (x) => x);
 assert.equal(positiveNonF.conflicts, 0);
 assert.equal(positiveNonF.pairs, 84);
+assert.equal(positiveNonF.unaryConflicts, 0);
+assert.equal(positiveNonF.fullChildConflicts, 0);
 for (let d = 1; d < layers.length; d++) {
   for (const node of layers[d]) {
     const sum = children[node].reduce((total, k) => total + generated[k], 0) % 29;
