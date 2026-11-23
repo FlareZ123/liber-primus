@@ -2,9 +2,9 @@
 
 ## Question
 
-The canonical pp49–51 numeric stream is 256 bytes, exactly four 64-byte blocks. The solved p56 page publishes a 512-bit (64-byte) SHA-512 digest. An external pp49–51 analysis explicitly left the four-block relationship to p56 as an untested structural possibility ([Campaign VII findings](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/pp49_51/CAMPAIGN-VII-FINDINGS.md), §5).
+The canonical pp49–51 numeric stream is 256 bytes, exactly four 64-byte blocks. Campaign VII raised a possible relationship to p56's 64-byte SHA-512 digest ([Campaign VII findings](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/pp49_51/CAMPAIGN-VII-FINDINGS.md), §5). However, later Campaign IX and XX reports in the same external repository supersede that open question: they document broader p50/p56 hash investigations, including 32/64-byte block checks and HMAC, and conclude no link ([Campaign IX findings](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/pp49_51/CAMPAIGN-IX-FINDINGS.md); [Campaign XX external-cipher report](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/pp49_51/CAMPAIGN-XX-EXTCIPHER.md)).
 
-This gate tests the direct, low-complexity relations implied by that 4×64 alignment. It does not assume the p50 table is a GNUnet CHK object or a runic keystream.
+This is therefore a narrow independent reproduction against the current repository's canonical grid and its ten I/l ambiguities, not a new research lead. It checks raw block equality, per-block SHA-512, concatenated block digests, and simple four-leaf Merkle roots.
 
 ## Frozen inputs and test
 
@@ -34,4 +34,4 @@ Reproduce from the repository root:
 
 ## Decision
 
-Do not continue trying arbitrary block permutations or Merkle constructions without a source clue. The 4×64 size match is not itself evidence of a relationship; the direct and simplest digest-tree consequences have now been tested and rejected.
+This local reproduction agrees with the broader negative results already documented in Campaign IX/XX. Treat it as a reproducibility cross-check, not a novel discovery. Do not continue trying arbitrary block permutations or Merkle constructions without a genuinely new source clue.
