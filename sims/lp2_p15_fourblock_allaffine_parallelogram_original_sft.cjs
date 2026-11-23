@@ -58,27 +58,58 @@ function geometry(page,phase){
       }else pairs.set(key,[i,j]);
     }
   }
-  return {packets,repeatedPackets,parallelograms,rawBucketCollisions};
+
+  // Every invertible affine GF29^4 block map also preserves collinearity
+  // among three distinct packet values. Direction normalization is keyless.
+  const distinct=[];
+  for(const at of sites){
+    const v=page.slice(at,at+4);
+    const key=(((v[0]*M+v[1])*M+v[2])*M+v[3]);
+    if(distinct.some(x=>x.id===key))continue;
+    distinct.push({id:key,v});
+  }
+  const inverses=Array.from({length:29},(_,a)=>{
+    if(a===0)return 0;
+    for(let i=1;i<29;i++)if(a*i%29===1)return i;
+    throw Error("no inverse");
+  });
+  let anchored=0;
+  for(let i=0;i<distinct.length;i++){
+    const slopes=new Map(),x=distinct[i].v;
+    for(let j=0;j<distinct.length;j++){
+      if(j===i)continue;
+      const y=distinct[j].v,delta=y.map((v,k)=>mod(v-x[k]));
+      const first=delta.find(v=>v!==0);
+      assert(first>0);
+      const inv=inverses[first];
+      let slope=0;
+      for(const v of delta)slope=M*slope+mod(v*inv);
+      const n=slopes.get(slope)||0;
+      anchored+=n;slopes.set(slope,n+1);
+    }
+  }
+  assert.equal(anchored%3,0);
+  return {packets,repeatedPackets,parallelograms,rawBucketCollisions,collinearTriples:anchored/3};
 }
 /** @param {number[]} tape */
 function book(tape){
   assert.equal(tape.length,cipher.length);
-  let offset=0,totals=[0,0,0,0],totalMin=0,totalMax=0;
+  let offset=0,totals=[0,0,0,0],totalMin=0,totalMax=0;\n  let collinearTotals=[0,0,0,0],collinearMin=0,collinearMax=0;
   let pagesAnyZeroRepeated=0;
   const detail=[];
   for(const n of sizes){
     const page=tape.slice(offset,offset+n);
     const phases=Array.from({length:4},(_,ph)=>geometry(page,ph));
     const g=phases.map(x=>x.parallelograms);
-    const r=phases.map(x=>x.repeatedPackets);
-    for(let ph=0;ph<4;ph++)totals[ph]+=g[ph];
-    totalMin+=Math.min(...g);totalMax+=Math.max(...g);
+    const r=phases.map(x=>x.repeatedPackets);\n    const h=phases.map(x=>x.collinearTriples);
+    for(let ph=0;ph<4;ph++){totals[ph]+=g[ph];collinearTotals[ph]+=h[ph];}
+    totalMin+=Math.min(...g);totalMax+=Math.max(...g);\n    collinearMin+=Math.min(...h);collinearMax+=Math.max(...h);
     pagesAnyZeroRepeated+=Number(r.some(x=>x===0));
-    detail.push({g,r,packets:phases.map(x=>x.packets)});
+    detail.push({g,h,r,packets:phases.map(x=>x.packets)});
     offset+=n;
   }
   assert.equal(offset,cipher.length);
-  return {totals,totalMin,totalMax,pagesAnyZeroRepeated,detail};
+  return {totals,totalMin,totalMax,collinearTotals,collinearMin,collinearMax,pagesAnyZeroRepeated,detail};
 }
 const original=book(cipher);
 assert.equal(original.pagesAnyZeroRepeated,55);
@@ -132,19 +163,19 @@ for(const [name,file] of controls){
     pool[enc.length].push(enc);
   }
   assert(lens.every(n=>pool[n].length));
-  const scores=[],common=[[],[],[],[]],minPhase=[], maxPhase=[];
+  const scores=[],common=[[],[],[],[]],minPhase=[], maxPhase=[];\n  const collinearCommon=[[],[],[],[]],collinearMins=[],collinearMaxes=[];
   let priorEqualitySurvivors=0;
   for(let trial=0;trial<samplesPerSource;trial++){
     const data=[];
     for(const n of lens)data.push(...pool[n][rand()%pool[n].length]);
     assert.equal(data.length,cipher.length);
     const scored=book(data);
-    for(let ph=0;ph<4;ph++)common[ph].push(scored.totals[ph]);
+    for(let ph=0;ph<4;ph++){common[ph].push(scored.totals[ph]);collinearCommon[ph].push(scored.collinearTotals[ph]);}\n    collinearMins.push(scored.collinearMin);collinearMaxes.push(scored.collinearMax);
     minPhase.push(scored.totalMin);maxPhase.push(scored.totalMax);
     if(scored.pagesAnyZeroRepeated===55){
       priorEqualitySurvivors++;
       survivorDetails.push({name,trial,parallelogramsMin:scored.totalMin,
-        parallelogramsCommon:scored.totals,perPage:scored.detail.map(x=>x.g)});
+        parallelogramsCommon:scored.totals,perPage:scored.detail.map(x=>x.g),\n        collinearMin:scored.collinearMin,collinearCommon:scored.collinearTotals});
     }
     if(trial===0)plant(data);
   }
@@ -152,7 +183,7 @@ for(const [name,file] of controls){
     independentPagePhaseMin:{min:Math.min(...minPhase),max:Math.max(...minPhase),
       mean:minPhase.reduce((a,b)=>a+b,0)/minPhase.length,
       atMostSourceMax:minPhase.filter(x=>x<=original.totalMax).length},
-    commonPhase:common.map(v=>({min:Math.min(...v),max:Math.max(...v),
+    collinearity:{independentPagePhaseMin:{min:Math.min(...collinearMins),max:Math.max(...collinearMins),\n      mean:collinearMins.reduce((a,b)=>a+b,0)/collinearMins.length},\n      commonPhase:collinearCommon.map(v=>({min:Math.min(...v),max:Math.max(...v)}))},\n    commonPhase:common.map(v=>({min:Math.min(...v),max:Math.max(...v),
       atMostSourceAtSamePhase:v.filter((x,i)=>x<=original.totals[common.indexOf(v)]).length}))});
 }
 assert.equal(survivorDetails.length,13);
@@ -161,9 +192,9 @@ const result={scope:"source original page-private affine four-rune GF29^4 block 
   seed:"0x33012026",samplesPerSource,original:{
     commonPhase:original.totals,independentPagePhaseMin:original.totalMin,
     independentPagePhaseMax:original.totalMax,
-    firstTenPagePhaseCounts:original.detail.slice(0,10).map(x=>x.g)},
+    firstTenPagePhaseCounts:original.detail.slice(0,10).map(x=>x.g),\n    collinearity:{commonPhase:original.collinearTotals,independentPagePhaseMin:original.collinearMin,\n      independentPagePhaseMax:original.collinearMax}},
   controls:results,equalitySurvivors:survivorDetails.map(x=>({
     source:x.name,trial:x.trial,independentPhaseParallelogramMin:x.parallelogramsMin,
-    commonPhase:x.parallelogramsCommon})),
+    commonPhase:x.parallelogramsCommon,collinearMin:x.collinearMin,collinearCommon:x.collinearCommon})),
   positivePlants:"One source-native independently invertible 4x4 affine pagewise plant per donor, with different page keys and phases, exactly reencrypted and proved invariance."};
 process.stdout.write(JSON.stringify(result,null,2)+"\n");
