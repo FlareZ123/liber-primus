@@ -66,6 +66,7 @@ function encrypt(decoded, stream, chain) {
 
 assert.equal(book.pages.length, 58);
 assert.equal(book.pages[55].indices.length, 76);
+assert.equal(book.pages[57].indices.length, 95);
 assert.equal(grid.byte_rows.length, 32);
 assert.ok(grid.byte_rows.every(r => r.length === 8));
 const columnKeys = Array.from({length: 8}, (_, col) => Buffer.from(grid.byte_rows.map(row => row[col])));
@@ -89,6 +90,9 @@ for (const [label, source] of [['P', sourcePrime], ['S', sourceShared]]) {
     const keyStream = chacha20Zero(secret, original[section].length);
     const baseline = ioc(original[section]);
     for (const chain of [false, true]) {
+      const plant = book.pages[57].indices;
+      const plantStream = keyStream.subarray(0, plant.length);
+      assert.deepEqual(decrypt(encrypt(plant, plantStream, chain), plantStream, chain), plant);
       const decoded = decrypt(original[section], keyStream, chain);
       assert.deepEqual(encrypt(decoded, keyStream, chain), original[section]);
       const digest = crypto.createHash('sha256').update(Buffer.from(decoded)).digest('hex');
