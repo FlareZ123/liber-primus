@@ -51,7 +51,29 @@ The **first complete printed word on original physical p55 is exactly one rune**
 
 Thus the authentic-prime transfer yields a **fully specified, deterministic 76-rune terminal intermediate** over this bounded 464-start family, although it is not grammatical plaintext. The three full-chapter skip-position lists, zero-based from p54's first red rune, are **[41,195,247]**, **[65,195,247]**, and **[41,65,195,247]**; their common final skip247 is the p55-local index15. This is more informative than merely reporting three possible plaintexts. It still cannot be promoted to a genuine decryption absent a first-party reason to choose the prime start or an independently identified second operation. For example, the first candidate begins with GP transliterations `X | YALOETYTS | NGWAYBMCAE | TEW | UCHSPIA`; the third begins `TH | OEEEEOXLGP | JCEHPBUM | IIU | AEOGCCB`. No candidate yields an identifiable original plaintext sentence, native GP29 word register, authenticated key or destination. These short transcriptions demonstrate the negative honestly; a perfect re-encryption and a finite three-path list are necessary mechanical results, **not** proof of decipherment.
 
-The short chapter's nonempty result is therefore **algebraic compatibility**, with no independently published historical reason to select prime start167/168. Because the starting offset was deliberately granted all 464 possibilities, the two surviving values cannot be retrospectively treated as keys that Cicada specified. The ordinary p56 key starts at prime2, and its documented rule may be intended solely for that solved page.
+The short chapter's nonempty result remains **algebraic compatibility**, not a decryption. A post hoc source-selector candidate now points to the start-167 trajectory: 1033−p36=997 (the 168th prime), and the visible 3/5/13 counts give the literal-F positions 15,65,195, mapping to p55-local15 and p54-local65/195. This selects skips [65,195,247], but neither arithmetic instruction is explicit in the source and the resulting text remains nonprose. The ordinary p56 key starts at prime2; its documented rule may be intended solely for that solved page. Preserve the new route as a hypothesis for independent criticism and second-layer discovery, not as established plaintext or creator intent.
+
+## Candidate source selector for the p54–55 intermediate (23 November; hypothesis, not decryption)
+
+The three-path result admits a striking *post hoc* selector for one trajectory. It is worth preserving because it links original-page details to both the phase and the otherwise ambiguous literal-F mask, but it is **not** yet an authenticated instruction.
+
+**Prime start.** The cuneiform header supplies **1033**, also the row-sum of the authentic 2014 7×7 magic square. The five numbered units begin on physical LP2 **p36**. Subtracting that first-unit page number gives
+
+`1033 − 36 = 997 = the 168th prime`.
+
+Thus the zero-based p56-style prime-stream start is **167**, one of the two surviving starts. This is a simple, testable candidate rule, but no source text explicitly says to subtract the page number from 1033.
+
+**Literal-F selector.** Original p54 and p55 images (`resources/liber-primus/71.jpg`, `72.jpg`) show a berry cluster with **three filled circles and two outlined circles** (counts 3 and 5), alongside a **13-dot red marker**. The earlier five numbered units independently reinforce the count five. The distinct products of the visible counts include
+
+- `3 × 5 = 15` → p55-local F at **15** (global p54–55 offset247);
+- `5 × 13 = 65` → p54-local F at **65**;
+- `3 × 5 × 13 = 195` → p54-local F at **195**.
+
+These are exactly the literal-F skips of the **start-167** path `[65,195,247]`. The remaining ciphertext-F positions, p54-local41 and p55-local25/41, remain key-consuming encrypted non-F events. The competing start-167 path skips `[41,195,247]`; the start-168 path skips all four `[41,65,195,247]`. The candidate selector therefore singles out one of the three complete trajectories without fitting an English score.
+
+**What it does and does not establish.** The selected 308-rune output still has native-GP IoC **0.03492110495367824**; its p55 suffix is the shared 76-rune nonprose candidate and begins with the one-rune word **M**. Re-encryption is exact, but that is mechanical consistency, not plaintext recovery. Wrapping the 464-prime 2013 source list cyclically at3301 changes only the final **eight** output symbols and leaves IoC **0.03473074157113245**, also nonprose. A few source-adjacent second-layer checks (the p50 five-unit lookup as an additive key; solved p56/p57 text as running keys; a second prime-totient pass starting at p15/2014 primes3299 or3301) also remain flat.
+
+**Strongest objection:** both selectors are post hoc arithmetic interpretations. The berry/outline count may be decorative, the 13 dots may be punctuation, and neither the multiplication rule nor `1033 − page36` is explicitly stated by Cicada. The resulting text is still not plaintext. Treat `start=167, skips=[65,195,247]` as a **candidate first-layer route**, not a solved page or a proven creator-intended cipher. The next useful decision is whether an independently source-selected second operation exists; do not expand arbitrary phase, key or layer menus to rescue this path.
 
 ## Source-positive controls and boundary
 

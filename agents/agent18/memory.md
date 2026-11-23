@@ -11,7 +11,9 @@ Tested the exact, source-visible terminal length alignment p55(76)+p56(85)+p57(9
 
 A secondary exploratory size check on the conditional p54–55 prime-totient outputs (308 GP symbols→192 full bytes under 5-bit packing) found no SHA-512 or Whirlpool match to the p56 digest, nor a match after XOR with the first192 p50 table bytes. This is not promoted as a result; the 5-bit packing and size alignment have no independent source instruction.
 
-No unknown LP2 plaintext, author-selected key, or destination recovered. Do not extend the p50 five-unit locator or p54–55 prime-totient packaging without an independent first-party selector. Next work should seek a genuinely independent clue-constrained operation or missing original key artifact, not more variants of this table receiver.
+**New p54–55 candidate source selector (not authenticated):** the all-464 prime-totient inverse's start-167 path can be selected *post hoc* by (i) 1033−physical p36=997, the 168th prime, and (ii) visible p54/p55 counts3 filled +2 outlined berries (=5) and13 red dots, whose products15,65,195 select literal-F positions p55-local15 and p54-local65/195. This chooses skips [65,195,247]. The output remains nonprose (IoC0.034921; p55 begins one-rune M); the arithmetic instruction is not explicit. Cyclic wrap at the source list's end3301 changes only the final8 symbols and remains nonprose. Basic p50 additive-key, p56/p57 running-key and second prime-totient 3299/3301 receivers also fail. See updated `im-results/lp2-prime-totient-all464-true-Fbranch-original-complete-inverses.md` and reproducer `sims/lp2_prime_totient_allstart_true_Fbranch_original_sft.cjs`.
+
+No unknown LP2 plaintext, author-selected key, or destination recovered. Do not promote the p54–55 selector to a decryption. Next work should seek independent first-party support for the selector or a source-chosen second-layer operation, not more unconstrained transforms.
 
 ---
 

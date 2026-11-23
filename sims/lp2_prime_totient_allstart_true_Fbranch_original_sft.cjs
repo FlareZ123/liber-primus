@@ -229,6 +229,56 @@ function main() {
           assert.deepEqual(sent.ciphertext,cipher);
           assert.equal(sent.endPointer,472);
         }
+        const sourceSelectorProducts = [3 * 5, 5 * 13, 3 * 5 * 13].sort((a, b) => a - b);
+        const sourceSelectorSkips = [5 * 13, 3 * 5 * 13, 232 + 3 * 5]
+          .sort((a, b) => a - b);
+        assert.deepEqual(sourceSelectorProducts, [15, 65, 195]);
+        assert.deepEqual(sourceSelectorSkips, [65, 195, 247]);
+        assert.deepEqual(original.pages[54].indices
+          .map((p, i) => p === 0 ? i : -1).filter(i => i >= 0), [41, 65, 195]);
+        assert.deepEqual(original.pages[55].indices
+          .map((p, i) => p === 0 ? i : -1).filter(i => i >= 0), [15, 25, 41]);
+        assert.equal(1033 - 36, 997);
+        assert.equal(primes[167], 997);
+        const sourceSelectorCandidate = candidates.find(c =>
+          c.start === 167 &&
+          JSON.stringify(c.skipIndices) === JSON.stringify(sourceSelectorSkips));
+        assert.ok(sourceSelectorCandidate,
+          'visible 3/5/13 product candidate selects one complete start-167 path');
+        assert.equal(ioc(sourceSelectorCandidate.plain), 0.03492110495367824);
+        assert.equal(original.translit[sourceSelectorCandidate.plain[232]], 'M',
+          'selected p55 candidate still begins with a one-rune M word');
+
+        // The 2013 prime_echo list is finite at its 464th prime, 3301.
+        // Test the natural cyclic interpretation without changing the F mask.
+        let cyclicPointer = 167;
+        const cyclicPlain = [];
+        for (let i = 0; i < cipher.length; i++) {
+          if (sourceSelectorSkips.includes(i)) {
+            cyclicPlain.push(0);
+          } else {
+            cyclicPlain.push(mod(cipher[i] - key[cyclicPointer % STARTS]));
+            cyclicPointer++;
+          }
+        }
+        const cyclicChanges = cyclicPlain.reduce((n, x, i) =>
+          n + (x !== sourceSelectorCandidate.plain[i] ? 1 : 0), 0);
+        assert.equal(cyclicPointer, 472);
+        assert.equal(cyclicChanges, 8);
+        assert(Math.abs(ioc(cyclicPlain) - 0.03473074157113245) < 1e-12);
+        console.log(JSON.stringify({
+          candidate_source_selector: {
+            prime_start_zero_based: 167,
+            prime_start_value: primes[167],
+            selector_equation: '1033 - physical_page36 = 997',
+            selected_literal_F_global_offsets: sourceSelectorSkips,
+            dot_products: sourceSelectorProducts,
+            output_IoC: ioc(sourceSelectorCandidate.plain),
+            p55_first_word: original.translit[sourceSelectorCandidate.plain[232]],
+            cyclic_prime_wrap_changes: cyclicChanges,
+            cyclic_output_IoC: ioc(cyclicPlain)
+          }
+        }));
         console.log(JSON.stringify({
           physical_pages:'54–55',
           prime_starts:'0..463',
@@ -246,6 +296,6 @@ function main() {
         sign,first_impossible_zero_based:hit.firstEmpty,reachable_prime_states:hit.count}));
     }
   }
-  console.log('PASS: authenticated prime/F plant and full all-prime-start all-skip original feasibility, three exact p54–55 inverses.');
+  console.log('PASS: authenticated prime/F plant, all-prime-start all-skip inverse, three p54–55 paths, and a separately flagged post hoc source-selector candidate.');
 }
 main();
