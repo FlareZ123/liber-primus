@@ -332,8 +332,12 @@ for (const f of frames) {
   assert.equal(sourceCode.breaks.length, f.W - 1);
   const sourceRuneRank = rankRunes(sourceCode.runes);
   assert.equal(sourceRuneRank.e, f.e);
-  const actualRank = sourceRuneRank.rank * choose(f.n - 1, f.W - 1)
-    + rankSubset(sourceCode.breaks);
+  const points = [0, ...sourceCode.breaks.map(x => x + 1), f.n];
+  const recoveredLengths = points.slice(1).map((end, i) => end - points[i]);
+  assert.deepEqual([...recoveredLengths].sort((a, b) => a - b),
+    [...f.lengths].sort((a, b) => a - b));
+  const actualRank = sourceRuneRank.rank * f.G
+    + rankLengthOrders(recoveredLengths);
   assert.equal(actualRank, sourceRank);
   assert.equal(actualRank * f.Q / f.M, X);
   pos += f.n;
