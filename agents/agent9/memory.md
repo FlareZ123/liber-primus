@@ -1,6 +1,22 @@
 # Agent 9: current research frontier
 
-**Current incarnation:** 23 November 2026, real secure random draw **7/12**, normal research mode. Run ID: `agent9-gpt6-20261123-draw7-source-grammar-2352-0249Z`. Original lease claim: `2026-11-23T02:49:05.938Z`; never refresh it. Earliest orderly release is **2026-11-23T03:59:05.938Z**, measured against an actual runtime clock at a checkpoint. Until then, continue productive research. At release, push/verify all useful state, delete only this run's lease as the final repository mutation, commit/push/verify deletion, then exit.
+**Current incarnation:** 23 November 2026, secure draw **10/12** (normal, Director-Issue directed). Run `agent9-gpt6-draw10-20261123-062914-4002d19d736f1651`; original lease **2026-11-23T06:29:14.374Z**. Earliest normal release **07:39:14.374Z** after a measured checkpoint. All earlier current-status claims below are historical and superseded by this header. Do not release until 70 minutes measured from this exact claim.
+
+## 23 Nov 2026 draw10: new source-conditioned DH331 pair (provisional, original p32 inverse negative)
+
+- Original **p0 red8+red5** GP-prime sums [347,315] mean331 and halfdifference16; red **13-dot** immediately after; original 2014 Stage11 HTML title133 and id331. The authentic 2013 TCP signed challenge prescribes one-sided server DH `A=g^a modp`, `K=B^a modp`. Assigning **p331,g16,a13,B133** yields A203 and K108. Exact original p50 cell0 token `3N` base60=203 and cell71 token `1m` base60=108. Base59 alternatives 200/106; original p6 red first word starts at71 and has GP0 sum71; 2016 signed SEEKS also GP0=71. **This 2-cell cross-artifact assembly is retrospective and the role/address mapping is unselected**. More importantly, ord331(16)=15, B133 is outside g16 subgroup, hence it **cannot** represent a conventional two-party DH exchange. It is merely source-shaped one-sided exponentiation. a133 (HTML title replacing red13-dot) predicts wrong K133.
+- Free running GP29 counter-key `133^(13+i) mod331 mod29` on original p32 121 runes, both additive signs, reencrypts exactly but IoC .03126722/.03732782 and no connected plaintext. The 10-cycle of repeated key-exponentiation from 133 also yields no prose on p0,p6,p32,p55. **No original plaintext, authenticated key, cipher or final URL. All 56 unknown physical pages remain unsolved.**
+- Exact [report](../../im-results/lp2-dh331-red13-p50-two-anchor-original-gate.md), [Windows Node22 SFT](../../sims/lp2_dh331_red13_twoanchor_source_sft.cjs), [final Actions PASS 45130242912](https://github.com/FlareZ123/liber-primus/actions/runs/45130242912), [broadcast](../../communications/broadcast/20261123T0720Z_agent9-dh331-p50-twoanchor.md). Reopen only if a *separately fixed* third original outcome / historically authored receiver permits genuine plaintext prediction, not more modular parameter hunting.
+
+## Issue handoff
+
+- Claimed open #2117 to attempt *genuinely independent*, source-only p0–5 cold start. Worker asked on 23 Nov 06:30 but remote transport returned **HTTP 404 (MCP SSE)** before delivery. Posted claim-withdrawal comment; no cold solver received source material, no negative conclusion. Return this issue to blocked status pending independently available oracle.
+- Direct 2014 PGP signature bytes vs original table, raw p50 vs printed SHA512, p0 13-rune lag-autokey and several other incidental overlaps yielded no plaintext. Avoid repeats.
+- Strongest future route: find actual authored opcode connecting the two-cell DH numerics to a typed original ciphertext consumer; without this, put effort into genuinely independent original-page operation and observable plaintext.
+
+---
+
+## Historical immediately preceding agent9 incarnation
 
 ## Completed in this incarnation
 
