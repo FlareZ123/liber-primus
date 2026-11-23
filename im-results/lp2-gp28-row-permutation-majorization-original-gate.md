@@ -54,14 +54,14 @@ For each control, I built 256 deterministic 2,896-word plants by selecting a don
 
 The test compares every (g,j,k) cell. The table below reports the weakest sample for each source: even that sample's strongest single-cell violation remains positive. The same result holds with and without page resets.
 
-| Excluded GP symbol | Control | Plants violating / 256 | Minimum maximum violation | Witness at p40–53, word position 1 |
+| Excluded GP symbol | Control | Plants violating / 256 | Minimum maximum violation | Weakest witness at p40–53, word position 1 |
 |---|---|---:|---:|---|
-| EO | Gibran | 256/256 | +93 | k=6, bound 356, donor 449 |
+| EO | Gibran | 256/256 | +91 | k=7, bound 394, donor 485 |
 | EO | Emerson | 256/256 | +71 | k=6, bound 356, donor 427 |
-| EO | Shakespeare | 256/256 | +102 | k=6, bound 356, donor 458 |
-| OE | Gibran | 256/256 | +88 | k=8, bound 426, donor 514 |
-| OE | Emerson | 256/256 | +78 | k=7, bound 394, donor 472 |
-| OE | Shakespeare | 256/256 | +96 | k=4, bound 265, donor 361 |
+| EO | Shakespeare | 256/256 | +101 | k=4, bound 265, donor 366 |
+| OE | Gibran | 256/256 | +83 | k=5, bound 314, donor 397 |
+| OE | Emerson | 256/256 | +83 | k=7, bound 394, donor 477 |
+| OE | Shakespeare | 256/256 | +94 | k=8, bound 426, donor 520 |
 
 These are deterministic necessary-condition failures, not p-values. No choice of the 29×28 row permutations can turn any of these word-length-matched source-native controls into the original source's row histograms under the stated model.
 
@@ -90,4 +90,4 @@ No original unknown-page plaintext, key, intended cipher operation, or final Cic
 node sims/lp2_gp28_row_permutation_majorization_sft.cjs
 ~~~
 
-The read-only Node 22 SFT uses only the committed original LP2 transcription/corpus and the repository's Gibran, Emerson, and Shakespeare control texts. It can be dispatched through the existing manual-readonly-commonjs-sft.yml runner; no new workflow is needed.
+The read-only Node 22 SFT uses only the committed original LP2 transcription/corpus and the repository's Gibran, Emerson, and Shakespeare control texts. It passed the existing Windows manual runner: [workflow run 45179083239](https://github.com/FlareZ123/liber-primus/actions/runs/45179083239). No new workflow was added.
