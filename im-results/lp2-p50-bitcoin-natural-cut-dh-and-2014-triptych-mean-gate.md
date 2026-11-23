@@ -52,17 +52,20 @@ A different possible, but **not Cicada-authenticated**, reading of the existing 
 
 A particularly useful independent positive receiver is the manuscript's literal terminal alignment: p55 has 76 unsolved GP29 runes, and the **next 180 GP29 runes are fully known** from solved p56 (85) and solved p57 (95). Thus p55+p56+p57 occupies exactly256 positions, one for each original numeric-table cell, and any proposed unkeyed one-to-one byte-to-GP29 lookup can be checked against 180 complete original solved positions without attempting or fitting p55 ciphertext.
 
-The original p50 byte grid is interpreted as either unfiltered raw grayscale raster, bytes after PNG Average forward filtering, or bytes after Average inverse reconstruction, row-major with byte-per-pixel1; each uses only two obvious fixed GP29 byte readings: `byte mod29` and `floor(byte*29/256)`. On source indices76..255, the exact-match counts against the **180 actual solved runes** are:
+The original p50 byte grid is interpreted in the two natural, source-visible scanline orientations: its printed physical **32 rows of8 bytes**, and **8 rows of32 bytes** formed by reading each original column vertically, as the `Meanpng` key itself is column-selected. For each orientation use the unfiltered bytes, PNG Average forward filtering, or Average inverse reconstruction, byte-per-pixel1, then only two fixed GP29 readings: `byte mod29` and `floor(byte*29/256)`. On serialized source indices76..255, the exact-match counts against the **180 actual solved runes** are:
 
-| Original p50 row-major bytes | Byte mod29 | Byte scaled to GP29 |
+| Source layout and operation | Byte mod29 | Byte scaled to GP29 |
 |---|---:|---:|
-| Unfiltered | 9 / 180 | 10 / 180 |
-| PNG Average forward | **2 / 180** | 5 / 180 |
-| PNG Average inverse | 10 / 180 | 5 / 180 |
+| Physical 32×8, unfiltered | 9 / 180 | 10 / 180 |
+| Physical 32×8, PNG Average forward | **2 / 180** | 5 / 180 |
+| Physical 32×8, PNG Average inverse | 10 / 180 | 5 / 180 |
+| Original-column-first 8×32, unfiltered | 4 / 180 | 10 / 180 |
+| Original-column-first 8×32, PNG Average forward | 6 / 180 | 5 / 180 |
+| Original-column-first 8×32, PNG Average inverse | 6 / 180 | 5 / 180 |
 
-All six frozen receivers therefore contradict the original independently known plaintext, by at least **170 rune mismatches**. Their output bytes remain nonprintable/random-looking; there is no matching 180-rune suffix or selected p55 key. The separately constructed 256-rune native-GP terminal plant passes both exact PNG filter→unfilter and reverse 256/256 round trips. This is an exclusion only of the literal PNG Average byte transformation and those two fixed GP29 encodings—not of all methods for producing or interpreting a PNG, other mappings, image groups, or steganographic hidden streams.
+All twelve frozen receivers therefore contradict the original independently known plaintext, by at least **170 rune mismatches**. Their output bytes remain nonprintable/random-looking; there is no matching 180-rune suffix or selected p55 key. The separately constructed 256-rune native-GP terminal plant passes both exact PNG filter→unfilter and reverse 256/256 round trips; the source column-first layout passes both inverse checks too. This is an exclusion only of the literal PNG Average byte transformation and those two fixed GP29 encodings—not of all methods for producing or interpreting a PNG, other mappings, image groups, or steganographic hidden streams.
 
-**Reproduction:** [single-file original-source Node22 SFT](../sims/lp2_p50_png_average_terminal256_original_sft.cjs) and [successful Windows original checkout](https://github.com/FlareZ123/liber-primus/actions/runs/45247622327). No unknown LP2 plaintext or authenticated next operation was recovered. The `1Meanpng` address remains a conditional clue; its interpretation as an instruction is not proven.
+**Reproduction:** [single-file original-source Node22 SFT](../sims/lp2_p50_png_average_terminal256_original_sft.cjs) and [successful Windows original checkout, final twelve cases](https://github.com/FlareZ123/liber-primus/actions/runs/45248176578). No unknown LP2 plaintext or authenticated next operation was recovered. The `1Meanpng` address remains a conditional clue; its interpretation as an instruction is not proven.
 
 ## Decision
 
