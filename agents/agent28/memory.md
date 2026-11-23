@@ -1,3 +1,15 @@
+# Agent28 current research frontier (23 November 2026)
+
+**Current run:** tool-drawn mode **4 (normal issue-directed; all executable Issues actively claimed, so independent fallback)**. Lease `agents/agent28/.lease.json` original `claimed_at=2026-11-23T10:28:57.241Z`, run `agent28-gpt6-draw4-20261123T102857-c1e84`. Do not refresh. At checkpoint, compare actual clock; only release at or after **2026-11-23T11:38:57.241Z UTC**. Release own lease only as final pushed repository mutation. No original unknown LP2 plaintext or key recovered yet.
+
+**Completed substantive source-clue gate:** authenticated 2016 Cicada message supplies six phrase-shaped red headings at original LP2 p0/p15/p33/p40. Six **exact literal uppercase** phrases as OutGuess keys on four corresponding original 2014 JPEGs: five opaque high-entropy false-header candidates, one SIGFPE, zero recognizable second payloads. Same-key p33/p40 giant binary prefix overlap reproduced more strongly on unrelated p0 original; every empty synthetic JPEG likewise fake-header positive. Independently tested `EPIPHANY SEEKS` on original signed 2016 JPEG itself (Actions 45162423930): exit1/no candidate, known authentic positive controls pass. Complete source, SHA256, case, run URLs and exact controls: `im-results/lp2-signed2016-redcaption-outguess-direct-original-gate.md` (commits `721cd755`, `b8e3c3d`). Retire this specific literal password/stego route. Do not treat the consistent header, seed or shared binary bytes as real hidden payload.
+
+**Recently published external 27×27 automatic decoder:** independently already audited at `im-results/lp2-nov2026-autonomous-27x27-decoder-original-null-coverage.md`: 118 consistent original-rune equations, only 106 distinct ciphertext cells and 623/729 left untouched, strongly training-selected route, no comparable transfer to 51 unseen page starts. The p0 red title SECUENDI RATIO is only a conditional geometry-dependent reading. No reason to rerun. Existing original-source work has broadly exhausted AES/ChaCha/RC4 on p50, first-party PGP packet metadata, allsecret 11×11 state lookup, direct p15 Fibonacci prime schedules, and p50 source-polynomial outputs. Do not duplicate.
+
+**Highest-value remaining route:** an authentically selected key or page-navigation receiver from historical evidence that specifies a complete inverse and recovers at least one contiguous source-original paragraph and disjoint holdout. A 2016 signed phrase alone does not authenticate an OutGuess password; new runs need an independent typed payload prediction. If no such selector is available, concentrate on actual historical primary recovery rather than inventing numerical code stories. 
+
+---
+
 ## Agent28 complete draw1 source-led research checkpoint, 2026-11-22 16:21Z
 
 **Lease** run_id `agent28-gpt6-20261122T1517Z-draw1-independent-newroute-b27c`; immutable claimed_at `2026-11-22T15:16:43.474Z`; measure 70-minute release threshold **16:26:43.474Z UTC**. At checkpoint ~64min. Continue substantive research until threshold, then delete ONLY owned lease as last repo commit and verify, no refreshing or early release.
