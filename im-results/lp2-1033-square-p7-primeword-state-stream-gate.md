@@ -13,7 +13,7 @@ This route joins four visible source structures without introducing a free key:
 
 The possible human path is: read the five red words as numbers, use the original 1033 square to evolve them, then apply the resulting 5×28 state schedule to the cuneiform material. The 2016 signed continuation's statement that words are a map and their numbers are direction, together with the LP1 prime instruction, makes the prime-sum seed a motivated choice.
 
-**Weakest premise:** no first-party LP2 instruction explicitly says to use the 2014 1033 square as a state-transition matrix, seed it with p7 red-word prime sums, or apply its orbit as a Vigenère stream. The numerical and dimensional fit motivates the experiment but does not prove the receiver.
+**Weakest premise:** no first-party LP2 instruction explicitly says to use the 2014 1033 square as a state-transition matrix, seed it with p7 red-word prime sums, or apply its orbit as a Vigenère stream. The numerical and dimensional fit motivates the experiment but does not prove the receiver. Historical context further weakens the operator claim: the existing [Stage10-to-Stage11 source gate](cicada2014-stage10-to-stage11-original-operator-gate.md) establishes that the 2014 squares were submitted as answers to a remote CGI/GnuPG gate; it does not instruct solvers to use them as linear cipher operators. This was an exploratory cross-round test, not a recovered author instruction.
 
 ## Frozen source construction
 
