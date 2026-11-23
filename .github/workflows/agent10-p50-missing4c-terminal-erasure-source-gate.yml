@@ -1,0 +1,15 @@
+name: Agent10 P50 missing-4C terminal erasure source gate
+on:
+  workflow_dispatch:
+
+jobs:
+  source-gate:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original p50-p57 source and synthetic [256,180] gate
+        run: node sims/lp2_p50_missing4c_terminal_erasure_source_gate_sft.cjs
