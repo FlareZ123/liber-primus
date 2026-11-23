@@ -80,6 +80,47 @@ const selectedRows=rowSums.flatMap((v,i)=>isPrime(v)?[i]:[]);
 const selectedCols=colSums.flatMap((v,i)=>isPrime(v)?[i]:[]);
 assert.deepEqual(selectedRows,[0,1,4,6]);
 assert.deepEqual(selectedCols,[0,2,6,10]);
+
+/**
+ * Matched original-source conditional null: freeze the complete matched
+ * 563/569 first row and first column (21 runes). Shuffle only the 100
+ * unconstrained interior runes, preserving their exact original multiset.
+ * This quantifies whether 4 prime rows AND 4 prime columns add evidence.
+ * Xorshift32/Fisher-Yates uses a fully frozen seed and 120000 permutations.
+ */
+const interior100=Array.from({length:100},(_,i)=>
+  p32[(Math.floor(i/10)+1)*11+(i%10)+1]);
+let rng=0xF16F0630;
+/** @returns {number} */
+function rand32() {
+  rng^=rng<<13;
+  rng^=rng>>>17;
+  rng^=rng<<5;
+  return rng>>>0;
+}
+const replicates=120000;
+let atLeastFourBoth=0,exactlyFourBoth=0;
+for(let iteration=0;iteration<replicates;iteration++) {
+  for(let i=99;i>0;i--) {
+    const j=rand32()%(i+1);
+    [interior100[i],interior100[j]]=[interior100[j],interior100[i]];
+  }
+  let primeRows=1,primeCols=1; // fixed genuine first row/col
+  for(let k=0;k<10;k++) {
+    let rowSum=weights[p32[11*(k+1)]],colSum=weights[p32[k+1]];
+    for(let j=0;j<10;j++) {
+      rowSum+=weights[interior100[10*k+j]];
+      colSum+=weights[interior100[10*j+k]];
+    }
+    if(isPrime(rowSum))primeRows++;
+    if(isPrime(colSum))primeCols++;
+  }
+  if(primeRows>=4&&primeCols>=4)atLeastFourBoth++;
+  if(primeRows===4&&primeCols===4)exactlyFourBoth++;
+}
+assert.equal(atLeastFourBoth,16371);
+assert.equal(exactlyFourBoth,6048);
+
 const C=selectedRows.map(r=>selectedCols.map(c=>p32[11*r+c]));
 assert.deepEqual(C,[[20,25,13,21],[8,17,18,7],[21,12,7,14],[15,14,1,7]]);
 // Every source p15 decimal cell equals |3301 - prime(F_n+1)|.
@@ -197,6 +238,7 @@ console.log(JSON.stringify({
   selectedTransliteration:roman(C),
   outputs,
   chapterOutputs,
+  conditionalNull:{replicates,seed:'0xF16F0630',atLeastFourBoth,exactlyFourBoth},
   knownSolvedP57Plant:'16/16 under all six real-key inverses',
   decision:'Neither twelve cross-artifact keys nor eight p32-key chapter/full-book variants recover English'
 },null,2));
