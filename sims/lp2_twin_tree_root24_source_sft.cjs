@@ -160,10 +160,35 @@ function compareSameTree(quotient, counterpart) {
       }
     }
   }
+  // A fixed global S29 substitution must preserve *every* equality
+  // pattern. The following exact certificates exclude all 29! bijections.
+  let forwardWitness = null;
+  let inverseWitness = null;
+  let forwardConflicts = 0;
+  let inverseConflicts = 0;
+  for (let i = 0; i < n; i++) {
+    for (let j = i + 1; j < n; j++) {
+      if (quotient[i] === quotient[j] &&
+          counterpart[i] !== counterpart[j]) {
+        forwardConflicts++;
+        if (forwardWitness === null) forwardWitness = [
+          i, j, quotient[i], counterpart[i], counterpart[j]];
+      }
+      if (quotient[i] !== quotient[j] &&
+          counterpart[i] === counterpart[j]) {
+        inverseConflicts++;
+        if (inverseWitness === null) inverseWitness = [
+          i, j, quotient[i], quotient[j], counterpart[i]];
+      }
+    }
+  }
   const difference = quotient.map((value, i) =>
     mod(value - counterpart[i]));
   return {length:n, exactSymbolMatches, bestAffine,
-    differenceIoC:ioc(difference)};
+    differenceIoC:ioc(difference),
+    allGlobalSubstitutionsImpossible:forwardConflicts > 0,
+    sourceEqualTargetUnequal:{count:forwardConflicts,witness:forwardWitness},
+    sourceUnequalTargetEqual:{count:inverseConflicts,witness:inverseWitness}};
 }
 const sameTreeTransfers = [
   compareSameTree(p10Twice.quotient, p12),
@@ -173,6 +198,14 @@ assert.deepEqual(sameTreeTransfers.map(result =>
   [result.length, result.exactSymbolMatches, result.bestAffine.matches]),
   [[261, 5, 18], [272, 12, 21]]);
 assert.ok(sameTreeTransfers.every(result => result.differenceIoC < 0.04));
+assert.deepEqual(sameTreeTransfers.map(result => [
+  result.sourceEqualTargetUnequal.count,
+  result.sourceUnequalTargetEqual.count,
+  result.sourceEqualTargetUnequal.witness,
+  result.sourceUnequalTargetEqual.witness]), [
+    [1145, 1102, [0,23,5,5,1], [0,3,5,25,5]],
+    [1229, 1192, [0,23,27,6,26], [0,4,27,20,6]]
+  ]);
 
 
 const results = [];
