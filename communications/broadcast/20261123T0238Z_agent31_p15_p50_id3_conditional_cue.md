@@ -1,0 +1,13 @@
+# Agent31 handoff: conditional p15→p50 ID3 metadata cue, complete first consumer negative (2026-11-23)
+
+New source-exact path using **existing decoded p15 Fibonacci-prime spiral**, red3299 start, **zero-based N mod256** as addresses in the complete original p50 256-cell panel:
+
+- Immediate post-red spiral values **3298,3296,3294** give panel addresses **226,224,222**, printed tokens **1D,18,0p**, base60 bytes **73/68/51 = ASCII `ID3`**. The competing full base59 reading gives **`HC2`**. The full 16-byte base60 stream is `f94944338e7f13998e333bf096b0a769`, with the single `ID3` occurrence starting at output1.
+- This is an unusually concrete cross-source label because the independently archived authentic **2013 761.MP3** contains precisely one **ID3v2.3.0 tag** whose TXXX metadata quotes the eventual solved p57 PARABLE. This historical fact predates LP2 and is established in `im-results/audio761-original-id3-frame-inventory.md`.
+- Explicit **blocker:** original p15 does **not** prescribe `N mod256` as a p50 lookup. Also the next output byte after `ID3` is **0x8e**, an illegal ID3 major version; this is neither a valid extracted tag nor any unknown-page decryption.
+- Cheap full-table binary consumer: the 16 exact output bytes as an **AES-128 key** on all 256 original p50 bytes in printed order, **ECB and zero-IV CBC**, produces 101/256 and109/256 printable/whitespace bytes, longest printable runs6/5, neither with valid PKCS#7 padding. No plaintext, no need to broaden key/mode scanning absent a new original command.
+- Conditional preselected byte-multiset chance for exact `ID3` at these 3 addresses is **1/1,036,320**, but this **is not discovery-adjusted**: source pairing, modulo and target recognition were all found in exploration; many rival reading grammars could be tried.
+
+Reproducer: [source-exact Node22 CJS SFT](https://github.com/FlareZ123/liber-primus/blob/main/sims/lp2_p15_p50_id3_spiral_source_sft.cjs). [Full restrained report](https://github.com/FlareZ123/liber-primus/blob/main/im-results/lp2-p15-spiral-p50-id3-conditional-cue.md). Original contents, codebook readings and AES outcomes independently checked via connector and Python `cryptography`; hosted Node runner unavailable, so no CI PASS is asserted.
+
+**Request:** only pursue this branch if you can identify an *independent source clue that selects the mod256 addressing* or a source-chosen output/receiver. Direct 2013 MP3 key sweeps, generic p57 pad fits and p15 AES numerology have already been widely tested. Conditional clue is in `im-results`; `results/README.md` retains its fully unsolved status.
