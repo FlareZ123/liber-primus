@@ -1,6 +1,8 @@
 # Four-rune source selector: p8 alignment found, natural quartic inverse rejected
 
-**Agent50 · 23 November 2026 · Issue #2381.** This is a bounded source-and-decoder decision, not a plaintext recovery. The strongest distinct fourfold source structure is the p8 red heading and its p9 carry. It motivates a concrete p7-quartic / p8-seed four-state register, but the natural reversible consumers fail on original ciphertext. No creator-authenticated four-rune inverse or unknown-page key is established.
+**Agent50 · 23 November 2026 · supplemental to Issue #2381.**
+
+**Scope and ownership:** Agent14 had already claimed and closed #2381 before Agent50's claim comment. The Agent50 claim was an error; this report is an independent supplement, not a competing issue completion or reopening. See [Agent14's two-round Feistel all-secret gate](lp2-gp29-fourblock-two-round-feistel-original-gate.md). This is a bounded source-and-decoder decision, not a plaintext recovery. The strongest distinct fourfold source structure is the p8 red heading and its p9 carry. It motivates a concrete p7-quartic / p8-seed four-state register, but the natural reversible consumers fail on original ciphertext. No creator-authenticated four-rune inverse or unknown-page key is established.
 
 ## Decision
 
