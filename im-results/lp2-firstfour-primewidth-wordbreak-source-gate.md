@@ -17,19 +17,21 @@ The 3,5,7,11 sequence is a precise new *candidate* source-selected geometry, and
 
 ## The direct original-cipher test
 
-The most economical reversible receiver is to attach each exact printed word break ('-' or '.') to its preceding rune, preserve the original 5,506 rune slots and 1,233 printed word breaks, and invert a rectangular row/column reading order *separately* in each original first-four chapter. The widths [3,5,7,11] and lengths above were frozen before scoring. Both canonical operations, row-to-column and column-to-row, are exact inverses with no guessed key, no reordered chapters, and no inserted or deleted letters. Page wraps have no break value, and source-crossing words are not split.
+The most economical reversible receiver is to attach each exact printed word break ('-' or '.') to its preceding rune **or** to the following rune, preserve the original 5,506 rune slots and 1,233 printed word breaks, and invert a rectangular row/column reading order *separately* in each original first-four chapter. The widths [3,5,7,11] and lengths above were frozen before scoring. Both canonical operations, row-to-column and column-to-row, are exact inverses with no guessed key, no reordered chapters, and no inserted or deleted letters. Page wraps have no break value, and source-crossing words are not split. For attached-before encoding the break flags are cyclically rotated inside each original chapter before the rectangle operation, then rotated back for the language test.
 
 To test whether the boundary channel alone restores ordinary prose, score consecutive reconstructed word lengths against a smoothed 16×16 two-word English length transition model fitted to **three independent, existing raw Latin text controls:** Gibran's *Prophet*, Shakespeare, and Emerson. The baseline original source boundary sequence and each complete four-chapter prime inverse yield:
 
 | Whole-book first-four break order | Single-rune words | Two-rune words | Longest word | Words longer than 20 | Adjacent English length gain (nats per pair) |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | Original printed | 42 | 190 | 14 | 0 | −0.03023570 |
-| Prime-width row→column | 268 | 188 | 33 | 9 | −0.08695198 |
-| Prime-width column→row | 286 | 221 | 26 | 2 | −0.11129024 |
+| Prime-width row→column, break after | 268 | 188 | 33 | 9 | −0.08695198 |
+| Prime-width column→row, break after | 286 | 221 | 26 | 2 | −0.11129024 |
+| Prime-width row→column, break before | 267 | 189 | 33 | 8 | −0.08845140 |
+| Prime-width column→row, break before | 285 | 220 | 26 | 1 | −0.11315500 |
 
-Both frozen operations **degrade** the original adjacent-length structure, sharply inflate singleton boundaries, and create words of length 26 or 33. The two orientations with prime width as row rather than column duplicate these exact inverse maps mathematically, so no additional rectangular variants are needed.
+All four frozen operations **degrade** the original adjacent-length structure, sharply inflate singleton boundaries, and create words of length 26 or 33. The two orientations with prime width as row rather than column duplicate these exact inverse maps mathematically, so no additional rectangular variants are needed.
 
-**Real-text planted positives:** four disjoint consecutive Gibran raw-Latin word-break samples were laid into the exact original chapter rune lengths; their boundary flags were permuted by the exact inverse and restored **bit-for-bit** on each chapter. Each native donor window's English length gain exceeds its correctly encoded counterpart: original [0.02778, 0.06045, 0.00987, 0.01162] against encoded [−0.04228, −0.14153, −0.10704, −0.12365]. This validates the test's direction and sensitivity to a genuine source-shaped word-break permutation. It says nothing about any GP29 cipher attached to the letter values.
+**Real-text planted positives:** four disjoint consecutive Gibran raw-Latin word-break samples were laid into the exact original chapter rune lengths; their boundary flags were permuted by the exact inverse and restored **bit-for-bit** on each chapter, under both attach-before and attach-after conventions. Each native donor window's English length gain exceeds its correctly encoded counterpart: original [0.02778, 0.06045, 0.00987, 0.01162] against encoded [−0.04228, −0.14153, −0.10704, −0.12365]. This validates the test's direction and sensitivity to a genuine source-shaped word-break permutation. It says nothing about any GP29 cipher attached to the letter values.
 
 ## Decision and missing plaintext bridge
 
