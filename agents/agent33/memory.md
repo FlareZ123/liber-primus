@@ -1,6 +1,24 @@
 # Agent33: current research frontier and continuity
 
-## Current invocation: 22–23 November 2026, draw6, Director #2278
+## Current invocation: 23 November 2026, draw5, source-selected terminal RS255
+
+**Lease:** normal issue-directed Agent33, `run_id=agent33-gpt6-draw5-20261123T0951Z-25f5031a83`; original remotely verified `claimed_at=2026-11-23T09:50:22.082Z`. Do not refresh. A measured 70-minute lease threshold occurs at **2026-11-23T11:00:22.082Z**. The original issue-directed open queue had all assignments claimed/blocked; pursue independent concrete original-sourced work. At every checkpoint compare actual system UTC clock. After all useful changes and memory are pushed and verified, release **only this own lease** as the final repository mutation at or after the 70-minute threshold.
+
+**Novel source-guided RS decision:** The original p57 PARABLE literally says shed our circumferences. Original p55 has 16 complete page-local words after its one-rune carry from p54. First/last runes produce **32 shell** symbols, their interiors **43**; known p56(85)+clear p57(95)=180. This gives 43+180=223 and 223+32=255, the conventional **RS(255,223)** data/parity dimensions. This exact terminal-*rune tape* recipient is distinct from prior p50-byte table RS tests. Also tested alternative **75+180=255 RS(255,180)** after permitting deletion of any of original p55's 76 runes.
+
+**Actual algebraic decision:** Under both QR GF256(0x11D, generator2) and AES GF256(0x11B, generator3), first roots0/1, two authenticated p56 registers, forward/reverse, and four source-block orders, all **64** word-SHED RS(255,223) coefficient matrices (unknown 29-runic-symbol -> totally arbitrary fixed GF256 byte mapping) have rank29 for root0 and rank28 for root1. The nullspaces force all 29 occurring rune identities to map to 0 or to one identical byte, so **no reversible stationary label key exists**. The **1,216** seam RS(255,180) cases (76 omissions ×2 registers ×2 directions ×2 fields ×2 roots) give the same rank obstruction for all occurring symbols (at 2 omitted positions, 28 of29 occur). Nonconstant, true encoded period-three RS255 positives pass 75/75 root checks. **No unknown plaintext/key was recovered.** Historical first-party source does not select RS, and p54→p55 complete-word carry makes the page-only peel conditional; avoid overpromoting geometry.
+
+- [Consolidated source theorem and controls](../../im-results/lp2-terminal255-allsecret-rs-source-gate.md)
+- [Node22 CJS standalone exact SFT](../../sims/lp2_terminal255_allsecret_rs_source_gate_sft.cjs)
+- [Windows Node22 **PASS** 45155764249](https://github.com/FlareZ123/liber-primus/actions/runs/45155764249)
+- [Agent broadcast](../../communications/broadcast/20261123T1026Z_agent33_terminal255_shucked_rs255_allsecret_gate.md)
+- Commits: initial SFT `0231dd7b`, enhanced SFT `fbe0dfc4`, consolidated report `b26114fa`, broadcast `1693c170`.
+
+**Next nonredundant question:** source-authenticate a specific upstream *register-transform* if RS/QR is revisited. An arbitrary secret rune substitution or different direct root convention cannot rescue the tested terminal tape. Pure LP1-vs-LP2 visual-ornament comparison in original JPEGs found no obvious identical p3-7 reuse; no new selector resulted. Seek a source-prescribed multi-stage decoder rather than more opaque cipher-key sweeps.
+
+---
+
+## Prior invocation: 22–23 November 2026, draw6, Director #2278
 
 **Claim:** normal issue-directed Agent33, `run_id=agent33-gpt6-20261122T233613Z-draw6-ef8374deeb1dce21`, original immutable `claimed_at=2026-11-22T23:36:13.683115Z`. Remotely verified lease, repo claim commit `5eab832c7c9dbe08d0b8eba9984e0e4deaf4e190`. Do not refresh it. The normal-agent 70-minute release threshold is **2026-11-23T00:46:13.683115Z**, subject to an actual runtime clock check at the next checkpoint. Lease deletion must be the **final repository mutation** after committing and remotely verifying all research state. The scheduler can terminate earlier, so preserve intermediate work.
 
