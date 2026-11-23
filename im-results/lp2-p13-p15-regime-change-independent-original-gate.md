@@ -24,7 +24,7 @@ The seam-only χ² is a **post-observation upper-tail finding** (~2.56% of overl
 
 Among all **54 physically consecutive three-page groups**, p13–p15 is the only group with zero adjacent repeats, but its **nonzero modular-difference G-score 25.66756509 ranks only 29th from most divergent**. Across all 12,815 nonzero within-page steps, giving the p13–p15 interval its own 28-outcome difference distribution adds 27 free parameters. The likelihood-ratio statistic is only **26.90257799**, while the extra BIC penalty exceeds this by **228.47345626**. The comparison is descriptive about this specified model, not an exclusion of all possible cryptographic state changes.
 
-A separate equal-length **400 nonzero-step context on either side of each physical cut** compares modular difference profiles by Jensen–Shannon divergence. The physically motivated cuts do not form a coherent change pair: p13 ranks **14/55** largest, p14 **18/55**, p15 **5/55**, p16 **50/55**, p40 **38/55**. The isolated p15 high rank has no corresponding p16 reset signal. No one boundary determines a key clock or changed permutation.
+A separate equal-length **400-rune context on either side of each physical cut**, retaining its nonzero within-page steps, compares modular difference profiles by Jensen–Shannon divergence. The physically motivated cuts do not form a coherent change pair: p13 ranks **14/55** largest, p14 **18/55**, p15 **5/55**, p16 **50/55**, p40 **38/55**. The isolated p15 high rank has no corresponding p16 reset signal. No one boundary determines a key clock or changed permutation.
 
 ## Explicit correction for searching whole-book windows
 
