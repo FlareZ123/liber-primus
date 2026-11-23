@@ -47,6 +47,21 @@ For each of **500** deterministic trials (xorshift32 initial seed `0xc4a5be33`) 
 
 The empirical lower-tail rank under this **specific** source-word donor and random-secret-key generator is smaller than 1/501. All 500 positive source-native complete ciphertexts round-trip and satisfy the algebraic invariant. [Windows Node22 PASS, 23 November 2026](https://github.com/FlareZ123/liber-primus/actions/runs/45095523846). A preliminary independent 200-trial JS calculation using the same source inputs found 0/200 below the original; the committed script's definitive values use 500 trials.
 
+## Pagewise viability fork: terminal p55 is not excluded
+
+A second [source-exact Windows PASS run](https://github.com/FlareZ123/liber-primus/actions/runs/45099041682) adds an original-state **per-page** view to the same deterministic 500-book SFT. Each one-page native control has its own valid 29-row secret permutation, true decrypt replay, original printed word-fragment lengths, and distinct page seed state; the full-book total and all 500 previously published Q values are bit-identical.
+
+| Physical page | Original rune count | Original page Q | Native controls with Q ≤ original, among 500 |
+| --- | ---: | ---: | ---: |
+| 0 | 262 | 49/1169 = 0.0419162 | 3 |
+| 7 | 208 | 37/768 = 0.0481771 | 22 |
+| 27 | 234 | 46/915 = 0.0502732 | 17 |
+| 49, pretable fragment | 66 | 2/60 = 0.0333333 | 92 |
+| 51, posttable fragment | 92 | 4/134 = 0.0298507 | 24 |
+| **55, 76-rune final unknown** | **76** | **5/104 = 0.0480769** | **118** |
+
+These page indices were selected as diagnostic pages because they are the opening, long red-section transitions, two typed numeral-table flanks and short final unknown, **not** as a familywise page-selection significance claim. The p55 source could perfectly well be a typical length-matched private-predecessor-table ciphertext under this statistic (118/500, 23.6% lower tail). By contrast the 55-page complete-book source Q lies below every complete-book control because the numerous longer pages accumulate evidence. **Do not apply the full-book empirical exclusion to p55 alone.** It remains an appropriate intact 76-rune original target if a genuine source-selected decoder materializes. The statistic itself supplies no key.
+
 ## Constructive all-secret ambiguity on untouched p0
 
 The random-key rejection must not be overread as an absolute no-key theorem. A separate [full-page original-cipher ambiguity SFT](../sims/lp2_p0_pageprivate_secret_table_ambiguity_sft.cjs) now supplies **two explicit different 59-word GP29 word mosaics**, each exactly 262 GP29 glyphs long, **with every original page0 word length and rune boundary preserved**. The words were selected adversarially from an English vocabulary; they include proper names and disconnected clauses, and use an explicitly approximate Latin→GP29 spelling converter. **They are deliberately noncoherent control strings, not candidate authentic plaintext.**
