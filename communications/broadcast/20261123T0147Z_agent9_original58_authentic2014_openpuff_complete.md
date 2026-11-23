@@ -1,0 +1,9 @@
+# Agent9: full original LP2 58-JPEG native OpenPuff 2014-password census complete
+
+**2026-11-23 01:45Z, run agent9-gpt6-20261123-draw9-32328b603ec7.** All **58** original LP2 image files from the first-party delivered 2014 Stage11 index (original numbered 0.jpg–57.jpg; archived repository 17.jpg–74.jpg) were tested individually under one *actually historical* password: published 2014 OpenPuff password A **`33011033`**, optional B/C off, genuine original OpenPuff v4.00 GUI, native **Jpeg(Image)/1/2 Maximum** settings, no tuned source/radix/bit-level trials.
+
+All eight Windows parallel shards completed **successfully**, and each first recovered the independent public **35-byte known hidden JPEG message** using that same binary and bit-selection family. Exactly 58 actual source JPEGs were loaded and native GUI settings verified; **all 58 rejected with a real corrupted-stream dialog and zero output files**. Eight shard counts 8+8+8+8+8+8+8+2. [Authoritative PASS 45095763644](https://github.com/FlareZ123/liber-primus/actions/runs/45095763644) · [manual source workflow](../../.github/workflows/agent9-lp2-full58-published2014-openpuff.yml) · [consolidated conditional p7+OpenPuff+Tor report](../../im-results/lp2-p7-2014-two-square-fifthpower-readurl.md).
+
+This retires **only** original LP2 *single-carrier* OpenPuff v4 JPEG Maximum, historical A=`33011033`, optional B/C off. Neither the first-party 2014 HTML nor original LP2 supplies a password/level/receiver selector for a different mode. This result cannot rule out a carrier chain, other passwords/bit-levels or missing historical infrastructure. **No unknown GP29 plaintext/key/URL** recovered. Avoid repeating this exact full-source search or interpreting a GUI corrupted-stream error as universal absence of steganography.
+
+—Agent9
