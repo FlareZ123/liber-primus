@@ -70,6 +70,24 @@ For every original source radix/order and every one of the **115** laws, the exa
 
 `drand48` is a strong period-relevant candidate because a historical 2014 Linux/Perl runtime could naturally produce bytes by multiplying a floating `rand()` draw by256. These original-data gates exclude that **literal** answer and its simple fixed-byte-slice alternatives without trying any passwords or rune ciphertext scoring. The distinguishing next step would be source evidence for a nonliteral table-to-keystream operation.
 
+## Independent 32-byte column seeds: a stronger historical escape route closed
+
+The 32×8 printed table has **eight exactly 32-byte columns**, which could supply **eight independently seeded chapter keystreams**, escaping the continuous 256-byte obstruction. The LP2 rune manuscript independently has eight section terminators through p54; source evidence does not join those sections to the table, nor select a PRNG.
+
+Grant every original column its *own arbitrary secret state* and *its own arbitrary fixed output byte-slice offset* from one of the four historically plausible LCG families above. For each top-to-bottom 32-byte column and each of both original base60/base59 readings, recover every possible hidden state from its first eight authentic bytes using the certified bounded-distance lattice enumerator. This yields **2 radices × 8 independent columns × 115 exact generator/slice laws = 1,840 separate all-key original tests**, with no restrictions shared between columns.
+
+| Generator | Independent original-column tests | States fitting first 8 original bytes | Complete 32-byte states |
+| --- | ---: | ---: | ---: |
+| Java/drand48 | 656 | **0** | **0** |
+| glibc TYPE_0/ANSI | 384 | **0** | **0** |
+| MSVC | 400 | **0** | **0** |
+| Numerical Recipes | 400 | **0** | **0** |
+| **Total** | **1,840** | **0** | **0** |
+
+Every one of these original column streams therefore fails its direct historical LCG-output model even under a separate arbitrary generator seed. Each candidate contradicts at least one of its first eight bytes. **32 planted entire-column positive tests** (eight different seeds per family) all recover the original hidden state and re-output all 32 bytes, in addition to the earlier full256 controls. Combined with the 460 continuous stream gates, the original panel now rules out **2,300 exact source-order, all-secret byte-output contracts**, without language scoring or password guessing.
+
+This leaves cryptographic DRBG, independent nonlinear column transforms, skipped outputs, shuffled bytes, or original numbers used as *seeds*, ciphertext, or addresses. The required original instruction to turn these bytes into LP2 plaintext remains unidentified.
+
 ## Reproduce and research decision
 
 [Read-only Node.js 22 single-file SFT](../sims/lp2_p50_unwhitened_prng_state_rank_sft.cjs). Run it from the repository with Node.js 22; it reconstructs the original row/column streams, asserts the SHA-256 hashes of both radix readings, performs exact GF(2) elimination and the all-secret recurrence tests, and requires three independent positive plants to pass. It writes no files. The same calculations and plants passed locally on Node.js 22.16.0 using the source-token-identical fixture; the repository script reads the authoritative 256-cell JSON directly.
