@@ -1,6 +1,6 @@
-# Original p55's 75 complete-word runes under the LP1 Wisdom-square inverse
+# LP1 p05 Wisdom-square inverses on the original p55 and p53 moth pages
 
-**Decision:** Three source-led mechanism families from the LP1 p05 SOME WISDOM square have now been tested on the original 75-rune LP2 p55 body: the 5×5 Hill inverse in both conventional row- and column-vector orientations, a 25-period Euler-totient additive key, and six arithmetic inverses pairing 25 three-rune BASE29 numbers with the 25 square entries. Every frozen operation is reversible, but all outputs remain nonlinguistic. The inherited p54 rune stays outside every model; **no authentic unknown plaintext or historical key has been recovered**.
+**Decision:** Three source-led mechanism families from the LP1 p05 SOME WISDOM square were tested on the original 75-rune LP2 p55 body: both 5×5 Hill vector orientations, a 25-period Euler-totient additive key, and six BASE29 per-cell arithmetic inverses. The same **single frozen phase-zero φ(cell) key** has now also been tested on all 179 original runes of the other moth-bearing page, **p53**, and is strongly nonlinguistic. The p55 inherited p54 rune stays outside only the p55 body models; all 179 p53 symbols are retained. Every operation described below is reversible; **no authentic unknown plaintext or cipher key was recovered**.
 
 ## Human-visible premise and uncertainty
 
@@ -125,6 +125,16 @@ The decoded complete words (original boundaries) are:
 The raw 75-rune ciphertext scores **−6.178724220**; the fixed totient-key output scores **−6.023560953** under the existing Gibran-trained GP trigram model. That is still below the minimum **−3.811507205** among 151 frozen, source-native 75-rune control windows (median **−2.406472148**). The inverse forward-encodes all 75 original runes exactly and recovers an independently selected 75-rune native-GP positive plant exactly; these are implementation checks, not evidence for the historical cipher. The reproducer is [`p55_wisdom_totient25_sft.cjs`](../sims/p55_wisdom_totient25_sft.cjs).
 
 **Decision:** retire this exact p05-cell-`φ` / 25-period p55 transfer. The p55/p05 image reuse and 75=3×25 alignment remain observations, but neither selects another key schedule. The moth also occurs on p53, and no source says to apply `φ` to each square cell or repeat the key. Do not expand this family without a new independent selector or a withheld original-cipher prediction.
+
+### Independent p53 moth page: same fixed φ(cell) key, complete 179-rune receiver
+
+The original moth is also printed on physical **p53**, JPEG `70.jpg`; this is an independently source-selected recipient of LP1 p05's printed 5×5 square. Director issue [#2346](https://github.com/FlareZ123/liber-primus/issues/2346) froze the **same 25-symbol row-major key and phase-zero subtraction** as the p55 test above. On p53, the key consumes **all 179 source runes**, including the original 51-rune red final portion, with no excluded carry, color reset, alternative phase, sign, or F-bypass. No key entry is zero, so the authentic solved-p56 literal-F exception never applies.
+
+The entire original page is reproduced by exact forward re-encipherment (**179/179**). A separately planted 179-rune authentic solved-LP1 native sample is recovered exactly by the same encoder and inverse. On the actual p53 input, source GP29 IoC **0.0335195531** becomes **0.0332056996** after the fixed inverse. Gibran-trained GP-language score changes from **−6.12743723** to **−6.32404891**, compared with a minimum **−3.07914348** across **146** original solved-LP1 179-rune windows. The smallest control IoC is **0.05429665**. The 179-symbol output remains incoherent at the unchanged printed word and punctuation boundaries.
+
+The original input index SHA256 is `c0f14aadadfc66a0a37bdae019c2cc27f53982ecff554f546b347cb45f26981c`; the inverse index SHA256 is `5a32d2020ff3a8f3b3eb0ad16ae1d3a30a4660162f552d8132534f64427539d5`. [Exact original-input CJS SFT](../sims/lp2_p53_wisdom_phi25_moth_receiver_sft.cjs) passed [Windows Node22 source and native controls](https://github.com/FlareZ123/liber-primus/actions/runs/45101719299).
+
+**Combined p55/p53 decision:** neither original moth page decrypts under this one p05-square Euler-totient additive key. The visual relation still selects an attractive possible operand, but without another independently specified operation it cannot justify retuning the key. This exclusion is for this exact 25-period key law and does not exhaust other nonperiodic moth-linked mechanisms.
 
 ### Full-page and body frequency-preserving invariant
 
