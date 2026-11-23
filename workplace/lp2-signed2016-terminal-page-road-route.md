@@ -60,6 +60,21 @@ The **base59** interpretation of endpoint `3P` gives **202**, which is not a one
 
 **Weakest still-missing original instructions:** first-party confirmation that 2016 `numbers` means GP **ordinal indices** (rather than historically favored GP *prime* values); permission to use a *different page's first word* as the p50 grid compass; the 32×8 southwest step law; and the p50-byte→**one-based ordinary-prime rank** interpretation. An exact existing recipient is stronger evidence than choosing a key to fit ciphertext, but no authentic decoder from prime1259 / PARABLE into **original p54** has been recovered. Stop at the clear first sentence until one more first-party instruction selects a reversible unsolved rune operation. Avoid further free movement/key/nonce sweeps.
 
+## Bounded source-key test on all five genuine numbered unknown passages
+
+The original five consecutive p50 cells traversed by the literal `05 SW` instruction are **46,53,60,67,74** with authentic base60 values **199,171,106,192,205**, reducing modulo the 29-symbol Gematria alphabet to `[25,26,19,18,2]`. This is a concrete **five-number, source-generated key candidate** whose complete input is fixed before reading the five original numbered cuneiform passages (physical p36–38, lengths **139/91/98/96/129**, 553 runes). We tested two standard historically readable direct cipher receivers with both ± signs and **no seed or phase search**:
+
+| Original-input receiver | Sign | Full 553-rune output IoC |
+| --- | ---: | ---: |
+| One fixed shift per original numbered passage, passage ordinal selects respective key | − | **0.034908405** |
+| Same five fixed per-passage shifts | + | **0.034626674** |
+| A single continuous five-key Vigenère on all five source passages | − | **0.034672537** |
+| Same continuous five-key Vigenère | + | **0.034259769** |
+
+The original joined source has IoC **0.034233561**. All four complete 553-rune outputs are nonprose and **exactly reencrypt** all original source runes, with the observed 122 printed words/word boundaries retained as evidence. This **excludes only two direct GP29 shift uses** of the authentic five-number path as a numbered-unit decryption key; it does not exclude a source-authored different consumer, word resegmentation or a typed object. It does directly answer the temptation to treat the five intermediate numeral values as the five missing cuneiform section keys, and supplies an original-cipher negative rather than another key coincidence. [Full original rune SFT and source-key replay](../sims/lp2_signed2016_terminal_page_addresses_original_sft.cjs), [Windows Node22 PASS 45096454020](https://github.com/FlareZ123/liber-primus/actions/runs/45096454020).
+
+A separate direct transfer used the **exact 30 authentic plaintext runes** selected at p57 as a repeated GP29 Vigenère key on the *complete original terminal chapter* p54 (232 runes) + p55 (76 runes), both signs, once continuous and once reset at the page boundary. The four 308-rune output IoCs were **0.034392318/0.034794196/0.035259529/0.035196074**, none coherent. This small source-frozen test further limits simple interpretations of the genuine p57 clause, while leaving any genuinely specified complex operation open. The detailed numeric witness is in Agent45's current research memory; an independent original-byte SFT would be needed before treating it as a formal complete exclusion.
+
 ## Conditional specificity and selection penalty
 
 A deterministic one-million-sample control permutes the **29 official GP29 index labels together**, preserving every whole signed word's exact spelling and overlap, then recomputes the six follower sums with no unknown LP2 cipher readout. Fixed PRNG seed `0x4ea7f137`, full Fisher–Yates shuffle:
@@ -83,4 +98,4 @@ The new source-complete word-address screen also **rejects a literal use-every-w
 
 **Next causal decision**: a first-party independent operation or key handoff from the clear p57 / prime-totient p56 or from the signed message must specify a complete invertible transform of p54≥150 unknown runes and successfully predict an untrained p55 original passage. Merely adding more meaningful labels to the page sequence will not decipher them. Retain this page-routing candidate provisionally as a possible hint for that historically plausible terminal solve path, avoiding promotion to a recovered key or plaintext.
 
-**Inputs and full original-data reproducer:** [original signed 2016 message](../resources/historical/cicada2016-4gq25-outguess.asc), [official corpus](../resources/liber-primus/lp2-corpus.json), [original 256-cell table](../resources/liber-primus/lp2-grid-256.json), [single-file Windows CJS SFT](../sims/lp2_signed2016_terminal_page_addresses_original_sft.cjs), [Windows Node22 PASS, source-typed five-SW and WAY-MAP cross-route run 45095960629](https://github.com/FlareZ123/liber-primus/actions/runs/45095960629).
+**Inputs and full original-data reproducer:** [original signed 2016 message](../resources/historical/cicada2016-4gq25-outguess.asc), [official corpus](../resources/liber-primus/lp2-corpus.json), [original 256-cell table](../resources/liber-primus/lp2-grid-256.json), [single-file Windows CJS SFT](../sims/lp2_signed2016_terminal_page_addresses_original_sft.cjs), [Windows Node22 PASS, source-typed five-SW, WAY-MAP and 553-rune heldout-shift run 45096454020](https://github.com/FlareZ123/liber-primus/actions/runs/45096454020).
