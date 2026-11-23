@@ -1,0 +1,14 @@
+name: Agent6 source-native wordhash constrained inverse
+on:
+  workflow_dispatch:
+jobs:
+  wordhash-original:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original LP2 SHA-512/256 dictionary inverse
+        run: node sims/lp2_sha512_constrained_wordhash_native_sft.cjs
