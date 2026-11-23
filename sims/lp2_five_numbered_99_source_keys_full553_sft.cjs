@@ -52,7 +52,7 @@ const wordSource=[
  p37.slice(2,p37.indexOf("\n3-")),
  cut(p37,"3","4"),
  cut(p37,"4",null)+p38.slice(0,p38.indexOf("\n5-")),
- cut(p38,"5",null).split("\n&\n")[0]
+ cut(p38,"5",null).split(/\r?\n&\r?\n/)[0]
 ];
 const letters=new Map(corpus.runes.map((r,i)=>[r,i]));
 const words=wordSource.map(s=>s.replace(/[\/\r\n]/g,"")
@@ -102,7 +102,6 @@ for(const f of [
  }
 }
 /**
- * @param {number[]} allRunes
  * @param {number[][]} expectedUnits
  * @param {number[]} key
  * @param {1|-1} sign
@@ -110,7 +109,7 @@ for(const f of [
  * @param {number} bias
  * @returns {number[][]}
  */
-function transform(allRunes,expectedUnits,key,sign,reset,bias){
+function transform(expectedUnits,key,sign,reset,bias){
  let consumed=0,at=0;
  return expectedUnits.map((v,i)=>{
    if(reset)consumed=0;
@@ -146,7 +145,7 @@ function scan(input){
  for(const sign of [1,-1])
  for(const reset of [true,false])
  for(let bias=0;bias<29;bias++){
-   const v=transform(null,input,key,sign,reset,bias);
+   const v=transform(input,key,sign,reset,bias);
    const scored=score(v);
    const itemMax=Math.max(...scored.items.map(x=>x.words));
    results.push({keyName,sign,reset,bias,totalWords:scored.totalWords,
