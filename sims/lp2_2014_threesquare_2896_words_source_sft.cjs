@@ -174,6 +174,65 @@ for(const filename of sources){
 const allNativeMin=Math.min(...nativeSummary.map(x=>x.min));
 assert.ok(allNativeMin>Math.max(...results.map(x=>x.mi)),
   "original square reads must remain below independent native controls");
+
+/**
+ * Distinct full-rune inverse: the three source-square numbers also define
+ * one changing 28-step key per complete printed word (29 cycles plus A25).
+ * An original ciphertext repeat is an exact, uniquely decodable F/GP0
+ * escape. Every original glyph and every word is recovered on reencryption.
+ *
+ * @param {{runes:number[],punct:boolean}[]} words
+ * @param {number} sign
+ * @param {"book"|"word"} reset
+ * @param {boolean} encrypt
+ * @returns {{runes:number[],punct:boolean}[]}
+ */
+function rank28(words,sign,reset,encrypt){
+  const result=[];let previous=0;
+  for(let w=0;w<words.length;w++){
+    if(reset==="word")previous=0;
+    const key=squares.flat()[w%99]%28, symbols=[];
+    for(const symbol of words[w].runes){
+      let value;
+      if(encrypt){
+        value=symbol===0?previous:
+          (previous+1+((symbol-1-sign*key)%28+28)%28)%29;
+        previous=value;
+      }else{
+        const delta=(symbol-previous+29)%29;
+        value=delta===0?0:
+          1+((delta-1+sign*key)%28+28)%28;
+        previous=symbol;
+      }
+      symbols.push(value);
+    }
+    result.push({runes:symbols,punct:words[w].punct});
+  }
+  return result;
+}
+/** @param {{runes:number[]}[]} words @returns {number} */
+function gpIoC(words){
+  const count=Array(29).fill(0);
+  let n=0;for(const word of words)for(const x of word.runes){count[x]++;n++;}
+  return count.reduce((a,x)=>a+x*(x-1),0)/(n*(n-1));
+}
+const firstNative=(read(sources[0]).match(/[A-Za-z]+/g)||[])
+  .slice(0,2896).map(word=>({runes:encodeGP(word),punct:false}));
+const rank28Results=[];
+for(const sign of [-1,1])for(const reset of ["book","word"]){
+  const originalPlain=rank28(original,sign,reset,false);
+  assert.deepEqual(rank28(originalPlain,sign,reset,true),original,
+    "full-original exact 12956-rune inverse");
+  const nativeCipher=rank28(firstNative,sign,reset,true);
+  assert.deepEqual(rank28(nativeCipher,sign,reset,false),firstNative,
+    "full-native exact 2896-word positive");
+  rank28Results.push({
+    sign,reset,wholeBookGpIoC:gpIoC(originalPlain),
+    originalFirst120:originalPlain.flatMap(x=>x.runes).slice(0,120)
+      .map(i=>gp.translit[i]).join("")
+  });
+}
+
 console.log(JSON.stringify({
   result:"finite original word-order inversion negative; no unknown plaintext",
   originalWords:original.length,originalRunes:total,
@@ -181,5 +240,8 @@ console.log(JSON.stringify({
   originalMetrics,decodedDirections:results,
   sourceNativeControl:nativeSummary,
   exactSourceInverse:"8/8 original masks",
-  genuineNativeWordRecovery:"24/24 2896-word plants"
+  genuineNativeWordRecovery:"24/24 2896-word plants",
+  squareWordKeyRank28Results:rank28Results,
+  squareWordKeyNativeControls:"4/4 2896-word real-GP recoveries",
+  squareWordKeyOriginalReplay:"4/4 12956-rune original inverses"
 },null,2));
