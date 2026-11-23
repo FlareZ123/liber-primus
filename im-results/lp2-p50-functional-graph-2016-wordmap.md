@@ -300,3 +300,22 @@ No model produced language-like output. The raw held-out ciphertext IoC is **0.0
 **Decision:** reject this exact 29-word pointer vector as a repeating direct-additive or first-order chain key on p1–p55. This does **not** refute the underlying 2016/p50/p0 navigation interpretation, and it does not rule out an independently source-specified nonlinear key expansion. It does rule out treating the extracted 29-rune vector itself as a reusable periodic additive key under the tested phase/state conventions. Do not rescue it with arbitrary rotations or new transforms absent a further source clue.
 
 Reproduction: node sims/lp2_2016_body_p50_p0_29key_gate_sft.cjs.
+
+
+## Agent16: 11+2 cycle key/order test against p0 red13 (2026-11-23)
+
+A separate source-shaped receiver is suggested by three counts: the authenticated 2016 message has a 13-word coda split into 11 words plus the final two verification words (“Verify OpenPGP”); the p50 base-60 successor graph has cycles of lengths 11 and 2; and p0 begins with a 13-rune red heading followed by a 13-dot marker. This makes the p50 cycle nodes a plausible 13-element key or ordering for the p0 red heading.
+
+The forward 11-cycle from node 0 is:
+
+\[
+[0,203,68,199,47,76,114,197,115,247,192]
+\]
+
+The 2-cycle is [158,249] (either start is possible). The test concatenated the 11-cycle followed by the 2-cycle, matching the coda split. It tested both 2-cycle orientations and two natural GP29 projections of each byte: remainder modulo 29 and quotient floor(byte/29). For each projected key it tested both direct-additive signs and the known literal-F/no-key-consumption convention. It also tested the cycle-node rank permutation as a transposition, in both rank/source directions and ascending/descending order.
+
+**Result:** none of the fixed outputs is readable plaintext or the proposed “EPIPHANY SEEKS” title. Representative outputs include “SHHWBUFGTJFRNG” (mod-29, subtract, 249→158), “SUTYCBADEOEEOPF” (quotient, subtract, 249→158), and “SGEMIASNGEFOHYC” (rank transposition, 158→249). Reversing the 2-cycle changes only the final two key positions; it does not rescue the result.
+
+**Decision:** the 11+2 cycle / 13-coda / 13-dot alignment is a legitimate structural observation, but the cycle nodes do not act as a direct 13-symbol additive key or simple rank transposition for p0 red13 under these source-selected conventions. Preserve the structural alignment as a navigation hypothesis; do not claim it decrypts the red heading or extend it into arbitrary permutations.
+
+Reproduction: node sims/lp2_p50_11plus2_cycle_key_p0_red13_gate_sft.cjs.
