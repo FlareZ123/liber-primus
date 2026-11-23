@@ -1,0 +1,16 @@
+name: Agent22 original p10-p11 twin-tree root24 source SFT
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Test original GP29 tree pages and source-native control
+        shell: cmd
+        run: node sims\lp2_twin_tree_root24_source_sft.cjs
