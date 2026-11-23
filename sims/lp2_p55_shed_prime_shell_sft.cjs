@@ -26,7 +26,7 @@ const pratt = [{"p":"3","g":2,"f":[["2",1]]},{"p":"5","g":2,"f":[["2",2]]},{"p":
 
 /** @param {string} originalPage */
 function wordsInPage(originalPage) {
-  return originalPage.replace(/[\/\n&$§123457]/g, '').split(/[-.]/g).filter(Boolean);
+  return originalPage.replace(/[\r\/\n&$§123457]/g, '').split(/[-.]/g).filter(Boolean);
 }
 
 /** @param {string} rune */
