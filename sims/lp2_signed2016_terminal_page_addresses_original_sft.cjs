@@ -261,6 +261,49 @@ assert.equal(p57PrimeSums.reduce((product,n)=>product*n,1),1595277641);
 assert.equal(tokens.filter((v)=>v==="05").length,1);
 assert.equal(tokens.filter((v)=>v==="3P").length,1);
 assert.deepEqual(tableValues.map((value,i)=>value===205?i:null).filter(x=>x!==null),[74]);
+// One finite direct complete-original cipher inverse for #2243: the FIVE
+// source-selected intermediate p50 grid bytes are GP29 shift keys for the
+// five genuine numbered passages. Test both signs with sectionwise fixed
+// shifts, and the standard historically available continuous 5-key stream.
+// No free seeds or phase tuning. Any other opcode needs first-party syntax.
+const fiveKey=routeFive.map(({cell})=>tableValues[cell]%29);
+assert.deepEqual(fiveKey,[25,26,19,18,2]);
+const numberedPages=originalTextPages.slice(36,39).join("\n");
+const itemRaw=numberedPages.slice(numberedPages.indexOf("1-"),numberedPages.indexOf("&",numberedPages.indexOf("5-")));
+const numberedUnits=itemRaw.split(/[1-5]-/).slice(1).map((part)=>
+  Array.from(part).filter((rune)=>runeNums.has(rune)).map((rune)=>runeNums.get(rune)));
+assert.deepEqual(numberedUnits.map((unit)=>unit.length),[139,91,98,96,129]);
+/** @param {number[]} input */
+function ioc(input){
+  const frequencies=Array(29).fill(0);
+  for(const value of input)frequencies[value]++;
+  return frequencies.reduce((sum,n)=>sum+n*(n-1),0)/(input.length*(input.length-1));
+}
+const sourceFiveShiftTests=[];
+for(const mode of ["sectionShift","periodic5"])for(const sign of [-1,1]){
+  let offset=0;
+  const decoded=numberedUnits.map((unit,section)=>{
+    const first=offset;
+    offset+=unit.length;
+    return unit.map((value,i)=>{
+      const key=fiveKey[mode==="sectionShift"?section:(first+i)%5];
+      return (value+sign*key+29)%29;
+    });
+  });
+  const original=numberedUnits.flat();
+  const reencoded=decoded.flat().map((value,i)=>{
+    const section=numberedUnits.findIndex((unit,j)=>i< numberedUnits.slice(0,j+1).reduce((sum,v)=>sum+v.length,0));
+    const key=fiveKey[mode==="sectionShift"?section:i%5];
+    return (value-sign*key+29)%29;
+  });
+  assert.deepEqual(reencoded,original);
+  const decodedIoc=ioc(decoded.flat());
+  assert(decodedIoc<0.045, "source-selected five-runic direct additive inverse remains nonlinguistic");
+  sourceFiveShiftTests.push({mode,sign,decodedIoc,perSection:decoded.map(ioc)});
+}
+assert.deepEqual(sourceFiveShiftTests.map(x=>Number(x.decodedIoc.toFixed(6))),
+ [0.034908,0.034627,0.034673,0.03426]);
+
 // If BOTH already-selected fixed source addresses are held and the 256
 // source token instances are randomly permuted, the two exact singleton
 // token assignments have joint probability (1/256)*(1/255), CONDITIONAL
@@ -304,6 +347,8 @@ console.log(JSON.stringify({
   exact2013ParableID3Product:p57PrimeSums.reduce((a,b)=>a*b,1),
   p50Byte205Address:74,
   signedWayMapLiteralIntersection:wayMapIntersection,
+  sourceFiveByteMod29Key:fiveKey,
+  completeOriginal553RuneShiftTests:sourceFiveShiftTests,
   conditionalMultisetNullTwoTokenProbability:conditionalTwoTokenProbability,
   caveat:"Observation after wider search; no original-source instruction formally selects cross-page GP0→page-first-word→p50 compass and prime-ranking."
  },
