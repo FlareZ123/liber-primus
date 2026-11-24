@@ -49,7 +49,7 @@ function sourceSections() {
 }
 
 function removeP0RedKey(parts) {
-  const redRunes = ink.pages[0].red_spans[0].runes;
+  const redRunes = [...ink.pages[0].red_spans[0].runes];
   const redIndices = redRunes.map((r) => GLYPHS.get(r));
   assert.equal(redIndices.length, 13, "p0 red key must contain 13 runes");
   const prefix = parts[0].slice(0, 15);
