@@ -100,7 +100,7 @@ The key has 10 distinct values. All counts are 14–24, so modulo 29 does not al
 
 Both candidates re-encrypt exactly to the original 12,956 symbols. The slight changes in short dictionary counts do not approach a plaintext result; neither sign creates even one dictionary word of five or more symbols. **Reject this specific stanza-word-count key.** This does not invalidate the 29/29 source selection, but it supplies no decryption and does not justify trying other stanza statistics.
 
-**Reproduction:** `node sims/lp2_anglo_saxon_rune_poem_wordcount_sft.cjs` (Node 22). The script pins the 29 stanza counts, original transcription parse, dictionary, key, signs, and exact round-trip checks.
+**Reproduction:** `node sims/lp2_anglo_saxon_rune_poem_wordcount_sft.cjs` — read-only Node 22 SFT PASS: [workflow run 45435723005](https://github.com/FlareZ123/liber-primus/actions/runs/45435723005) (Node 22). The script pins the 29 stanza counts, original transcription parse, dictionary, key, signs, and exact round-trip checks.
 
 ## Decision
 
