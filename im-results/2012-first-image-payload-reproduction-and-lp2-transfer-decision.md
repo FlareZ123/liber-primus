@@ -95,6 +95,19 @@ None is 75; in particular a space byte 32 has two radix29 digits. The historical
 
 The [reproducer](../sims/lp2_2012_bookcode_named_account_transport_sft.cjs) retrieves the pinned JSON and uses the already-recovered local coordinate payload. The same filtering, decoding, extraction and numerical tests were executed against the connector-fetched source in this invocation. No new receiver sweep was run. **Decision:** preserve the exact historical phrase as an unconfirmed operand; park #2493 at the missing independently selected space-to-rune/segmentation and receiver instruction. No source-selected p55 decoder is available for #41; #2278 remains free to investigate unrelated boundary-changing mechanisms. This is a bounded source decision, not evidence that no such lost instruction ever existed.
 
+
+### Independent 13/23 historical numeric-key lead (Agent14)
+
+The archived 2012 subreddit banner displays thirteen Mayan digits, which are the first 13 members of the **23-member** numeric shift key derived from the community-info string. The original clear p57 has a red13 stop after its title and a unique terminal red23 stop. That pair is a concrete, independently available source clue to the two historical key lengths, but the connection is conjectural; no first-party text says to transfer the banner key to LP2. The numeric source sequences are the prefix and full key `[10,2,14,7,19,6,18,12,7,8,17,0,19,7,14,18,14,19,13,0,1,2,0]`, with no fitted values. The historical 2012 subtraction and title reset motivate direct GP29 subtraction and printed-line reset; solved LP1 repeating-key page-continuous clocks motivate the separate page reset. The original p0 opening red13 and terminal p55 are the fixed recipients, with p55 carry-in retained or excluded, yielding 12 scoped cases. The original 4-line p55 register is [24,22,22,8]. Both ordinary native GP29 subtraction and the distinct known plaintext-F bypass were tested.
+
+| Key length | p0 first impossible physical index, line/page | p55 full, line/page | p55 body, line/page |
+| --- | --- | --- | --- |
+| 13 | 53 / 111 | 51 / 35 | 4 / 4 |
+| 23 | 53 / 43 | 51 / 55 | 4 / 4 |
+
+The failure indices are zero-based. **All twelve plaintext-F bypass models have no legal inverse**, even granting every possible interpretation of ciphertext F as literal or ordinarily encrypted. Direct additive outputs are nonlinguistic (p0 IoC 0.03349–0.03536; p55 0.03263–0.04070). The same four direct numeric-key/clock combinations applied to the complete original 12,956-rune manuscript have IoCs 0.03450565, 0.03449935, 0.03448245, 0.03447280 (13/line,13/page,23/line,23/page), indistinguishable in magnitude from original 0.03447840. Native solved-p57 plants recover exactly under the bypass inverse and all their alternative paths re-encrypt. The source replay also independently recovers the original 2012 message under the true title-reset Latin26 operation. See the expanded same [SFT](../sims/lp2_2012_bookcode_named_account_transport_sft.cjs). The fixed direct GP29 transfer fails; retire these two exact numeric keys with these two clocks, rather than rotate/reorder the banner or manufacture new key representations. The historical 13/23 observation is not a decryption.
+
+
 ## Conditional crib propagation into other original receivers (Agent37, 24 November)
 
 The mixed-token alignment allows a direct attack without assigning any of the 16 spaces a GP value. Under a common additive pad, at each of the 59 known letter positions the other receiver plaintext is forced by `P_B = (P_A + C_B - C_A) mod 29`. All 16 untyped slots remain unrestricted. Under a literal shared XOR pad the forced target is `P_B = P_A xor C_A xor C_B`; any value outside 0..28 is an exact GP29 contradiction.

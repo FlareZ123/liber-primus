@@ -68,5 +68,90 @@ async function main() {
   };
   assert.deepEqual(serialization,{asciiPerChar:152,asciiPackedBigEndian:125,gpWithAsciiSpace:91,columnFields:89,lineAndColumnFields:213});
   console.log({all,named,guest,allStats:stats(all.text),namedStats:stats(named.text),serialization});
+  testBannerKey();
 }
+
+/** @param {number} x */
+const mod29=x=>(x%29+29)%29;
+/** @param {number[]} plain */
+function ioc(plain) {
+  const f=Array(29).fill(0);
+  for(const x of plain)f[x]++;
+  return f.reduce((a,n)=>a+n*(n-1),0)/(plain.length*(plain.length-1));
+}
+/** @param {number[]} cipher @param {number[]} key */
+function direct(cipher,key) {
+  return cipher.map((x,i)=>mod29(x-key[i%key.length]));
+}
+/** @param {number[]} plain @param {number[]} key */
+function encryptF(plain,key) {
+  let i=0;
+  return plain.map(x=>x===0?0:mod29(x+key[i++%key.length]));
+}
+/** @param {number[]} cipher @param {number[]} key */
+function invertF(cipher,key) {
+  let states=[{i:0,p:[]}];
+  for(let k=0;k<cipher.length;k++) {
+    const next=[];
+    for(const s of states) {
+      if(cipher[k]===0)next.push({i:s.i,p:[...s.p,0]});
+      const x=mod29(cipher[k]-key[s.i%key.length]);
+      if(x!==0)next.push({i:s.i+1,p:[...s.p,x]});
+    }
+    states=next;
+    if(!states.length)return {paths:[],fail:k};
+  }
+  return {paths:states.map(s=>s.p),fail:null};
+}
+function testBannerKey(){
+  const dir=path.join(__dirname,"../resources/liber-primus");
+  const j=JSON.parse(fs.readFileSync(path.join(dir,"lp2-corpus.json"),"utf8"));
+  const map=new Map(j.runes.map((r,i)=>[r,i]));
+  const src=fs.readFileSync(path.join(dir,"lp2-transcription.txt"),"utf8").split("%")
+    .map(p=>p.split(/[\n/]+/).map(l=>Array.from(l).filter(x=>map.has(x)).map(x=>map.get(x))).filter(l=>l.length));
+  let n=0;
+  const rows=j.pages.map(p=>p.runic_count===0?[]:src[n++]);
+  rows.forEach((r,i)=>assert.deepEqual(r.flat(),j.pages[i].indices));
+  assert.deepEqual(rows[55].map(l=>l.length),[24,22,22,8]);
+  const expected=[53,111,51,35,4,4,53,43,51,55,4,4];
+  const output=[];
+  for(const q of [13,23]) {
+    const key=KEY.slice(0,q);
+    for(const page of [0,55]) for(const start of page===55?[0,1]:[0]) {
+      const rr=rows[page].map((l,i)=>i===0?l.slice(start):l);
+      for(const mode of ["line","page"]) {
+        const segs=mode==="line"?rr:[rr.flat()];
+        const d=segs.flatMap(s=>direct(s,key));
+        for(const s of segs)assert.deepEqual(direct(s,key).map((x,i)=>mod29(x+key[i%key.length])),s);
+        let total=0,fail=null;
+        for(const s of segs){
+          const inv=invertF(s,key);
+          if(!inv.paths.length){fail=start+total+inv.fail;break;}
+          total+=s.length;
+        }
+        assert.equal(fail,expected[output.length]);
+        // Use the original solved p57 native rune sequence as the plant.
+        // Preserve the proposed line reset rule by splitting at the test line lengths.
+        const control=j.pages[57].indices.slice(0,page===55?76-start:95);
+        let off=0;
+        for(const s of segs) {
+          const p=control.slice(off,off+s.length);
+          off+=p.length;
+          if(!p.length)break;
+          const c=encryptF(p,key),inv=invertF(c,key);
+          assert.ok(inv.paths.some(x=>x.join()===p.join()));
+          assert.ok(inv.paths.every(x=>encryptF(x,key).join()===c.join()));
+        }
+        output.push({q,page,start,mode,firstImpossiblePhysicalIndex:fail,ioc:ioc(d),prefix:d.map(x=>j.translit[x]).join("").slice(0,80)});
+      }
+    }
+    for(const mode of ["line","page"]){
+      const p=rows.slice(0,56).flatMap(rr=>(mode==="line"?rr:[rr.flat()]).flatMap(s=>direct(s,key)));
+      assert.equal(p.length,12956);
+      console.log({q,mode,wholeIoC:ioc(p)});
+    }
+  }
+  console.log({bannerKeyTests:output});
+}
+
 main();
