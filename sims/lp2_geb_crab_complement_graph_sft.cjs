@@ -127,3 +127,32 @@ assert.ok(graph(cp).components.every(c=>c.bipartite));
 assert.ok(graph(cp).rowBound<native.length);
 console.log(JSON.stringify({nativeLength:native.length,bijectiveControl:graph(bp),coarseControl:graph(cp)}));
 console.log('PASS: original reverse-complement collapse and native-positive controls');
+
+/**
+ * Independent voice label maps: f(x)=g(y), absorbing any fixed invertible
+ * complement into g. A component forces every incident label identical.
+ * @param {number[][]} pairs
+ * @returns {number[][]}
+ */
+function voiceComponents(pairs) {
+  const adj=Array.from({length:58},()=>[]);
+  for(const [x,y] of pairs){adj[x].push(y+29);adj[y+29].push(x);}
+  const seen=new Set(),components=[];
+  for(let x=0;x<58;x++){
+    if(seen.has(x))continue;
+    const q=[x];seen.add(x);
+    for(const u of q)for(const v of adj[u])if(!seen.has(v)){seen.add(v);q.push(v);}
+    components.push([q.filter(v=>v<29).length,q.filter(v=>v>=29).length]);
+  }
+  return components.sort((a,b)=>b[0]+b[1]-a[0]-a[1]);
+}
+for(const p of [13,24,42]){
+  const flat=voiceComponents(flatPairs(p)),physical=voiceComponents(physicalPairs(p));
+  const expected=p===13?[[28,28],[1,0],[0,1]]:[[29,28],[0,1]];
+  assert.deepEqual(flat,expected);
+  assert.deepEqual(physical,expected);
+  console.log(JSON.stringify({p,independentVoices:{flat,physical}}));
+}
+const independentControl=voiceComponents(bp);
+assert.equal(independentControl.filter(([x,y])=>x===1&&y===1).length,new Set(native).size);
+console.log('PASS: independent voice alphabets collapse on every observed original paired position');

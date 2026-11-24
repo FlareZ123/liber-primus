@@ -28,7 +28,7 @@ The necessary new historical instruction or actual pre-2014 musical note-to-GP29
 
 Build the undirected graph on the 29 original rune values, adding an edge for each pair. Along a path of length (k), the final label must be (J^k) of the initial label. An odd cycle (including a self-loop) forces its label to be fixed by (J); every connected neighbor then has the same label. Consequently a connected non-bipartite graph spanning all 29 runes permits **only a constant (f)**, which carries no alphabet distinction. This proof makes no assumption about language, the number of output labels, or the value of a secret key. In particular a complement with no fixed points is infeasible even for a constant (f).
 
-Separately let (N_{xy}) count directed pairs. Every stationary function (y=h(x)) satisfies at most (sum_x max_y N_{xy}) original pairs; this is the exact optimum over arbitrary functions and an upper bound on any involutive/bijective complement.
+Separately let (N_{xy}) count directed pairs. Every stationary function (y=h(x)) satisfies at most Σₓ maxᵧ Nₓᵧ original pairs; this is the exact optimum over arbitrary functions and an upper bound on any involutive/bijective complement.
 
 | Original pairing | Pairs | Self-pairs | Max arbitrary-function matches | Graph components |
 |---|---:|---:|---:|---|
@@ -43,8 +43,20 @@ Separately let (N_{xy}) count directed pairs. Every stationary function (y=h(x))
 
 The original source line parser is the previously used canonical slash-delimited transcription, cross-checked against all corresponding GP29 corpus arrays. p13 is the prespecified receiver; p24 and p42 are geometry-matched comparators (not independent author-selected keys or plaintext predictions). No placement, offset, or complement alphabet was fitted. Even the first and second p13 pair sets individually force collapse, so withholding half cannot rescue the hypothesis.
 
-Positive controls use all 95 native p57 GP runes: a planted reverse-complement (J(x)=28-x) reconstructs 95/95 symbols exactly, with only bipartite pair components and row bound 95. A distinct four-label plant uses (f(x)=xmod4) and (J(v)=v\mathbin{\mathrm{xor}}1), choosing varying representatives of the complementary class. All 95 class relations hold, the graph remains bipartite, and the direct-function bound is only 83/95, confirming that the graph gate genuinely permits many-to-one mappings rather than requiring a rune-to-rune function.
+Positive controls use all 95 native p57 GP runes: a planted reverse-complement (J(x)=28-x) reconstructs 95/95 symbols exactly, with only bipartite pair components and row bound 95. A distinct four-label plant uses (f(x)=x mod 4) and J(v) = v XOR 1, choosing varying representatives of the complementary class. All 95 class relations hold, the graph remains bipartite, and the direct-function bound is only 83/95, confirming that the graph gate genuinely permits many-to-one mappings rather than requiring a rune-to-rune function.
 
 Reproducer: [`sims/lp2_geb_crab_complement_graph_sft.cjs`](../sims/lp2_geb_crab_complement_graph_sft.cjs). Input corpus blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`. Core experiment executed against the live canonical corpus and transcription; no new CI required. The complete six-dialogue source audit is consolidated in [the 2014 source chain](2014-onion5-geb-onion6-chain.md#complete-selected-dialogue-review-director-2581-24-november-2026).
 
 **Scope:** this rules out literal stationary reverse-complement *label* consistency, even after arbitrary coarsening. It does not establish that LP2 should be a DNA code; applying the GEB role/base analogy to GP29 is the hypothesis tested. A source-defined position-dependent complement, changing voices, hidden state, different registration, or an independent value-changing binary operation is not excluded. No unknown plaintext was produced. No further complement fit or arbitrary alphabet sweep is warranted on this receiver.
+
+### Independent voice alphabets: stronger exact obstruction
+
+A two-voice encoding could use two completely independent secret rune-to-label maps rather than one common alphabet. Write its matching condition as f(x)=g(y), absorbing any fixed bijective complement into g. Construct a bipartite graph with 29 left and 29 right vertices and one edge for every aligned original pair. Every connected component must carry one common label. This includes arbitrary many-to-one maps on both sides, and even a noninvertible directional map h(f(x))=g(y) after composition on the left.
+
+| Source receiver | Flat reverse components (left,right) | Physical fold components |
+|---|---|---|
+| p13 | (28,28), (1,0), (0,1) | same |
+| p24 | (29,28), (0,1) | same |
+| p42 | (29,28), (0,1) | same |
+
+All non-isolated vertices lie in exactly one component for each pairing. Thus every observed position of the paired label stream must carry the same label, even with completely separate secret stationary alphabets. Isolated vertices represent runes absent from the corresponding paired voice, and impose no constraint. A p57-derived planted bijective complement instead yields 22 separate matched two-vertex components. The conclusion is a necessary exact rejection of stationary two-voice label equivalence, not a rejection of dynamic keys, arbitrary pair-to-value operations, or noncanonical pairings. The same SFT now includes this independent-alphabet gate. Core tests executed directly on canonical inputs.
