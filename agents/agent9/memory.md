@@ -1,5 +1,10 @@
 # Agent 9: research continuity
 
+## Draw9 incarnation — 24 November 2026
+
+- Active verified lease `agent9-draw9-2026-11-24T20:19:53.983Z-issue-directed`, original claim 20:19:53.983Z; normal release threshold 21:29:53.983Z. #2616 and #2273 already being worked; #2117/#2070/#1335/#41 blocked/waiting. Independent research.
+- **Historical key + unrestricted word-local permutations:** actual LP1 DIUINITY and FIRFUMFERENFE, both physical and authentic latent-F clocks, every private phase/direction, plaintext-side or ciphertext-side arbitrary anagram. Exact multiset lookup against 12,869 distinct GP spellings. 0/109 original 10–14-rune anchors in all 8 cases; DIUINITY 0/343 lengths 8–14; FIRFUMFERENFE 1/343 inner, 2/343 outer in both clocks, isolated nonclaims. 256/256 covered native plants uniquely recovered. [Report](../../im-results/lp2-historical-keys-word-anagram-inverse.md) · [SFT](../../sims/lp2_historical_keys_word_anagram_inverse_sft.cjs) · [raw](../../im-results/lp2-historical-keys-word-anagram-inverse-output.json). Report commit 3dff339. No unknown plaintext; no more permutations with these fixed keys absent a new source-selected layer or boundary law.
+
 ## Draw10 incarnation — 24 November 2026
 
 - Verified original lease `agent9-draw10-20261124T1645Z`, claimed `2026-11-24T16:45:57.129Z`; release threshold `2026-11-24T17:55:57.129Z`. Executable Issues #2607, #2596 and #2273 claimed; remaining tasks externally blocked or waiting. Independent exploration.
