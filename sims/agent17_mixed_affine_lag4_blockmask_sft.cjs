@@ -3,7 +3,7 @@ const fs=require('node:fs');
 function attack(corpus,native,options={}) {
   const q=options.q??4, lo=options.lo??0, hi=options.hi??29, cap=options.cap??2500;
   const mod=x=>(x%29+29)%29, inv=Array.from({length:29},(_,a)=>a?Array.from({length:28},(_,j)=>j+1).find(b=>a*b%29===1):0), ALL=(1<<29)-2;
-  if(q<1||q>5)throw Error('q must be 1..5 for 32-bit packed queue');
+  if(q<1||q>6)throw Error('q must be 1..6 for 32-bit packed queue');
   const lut=new Uint32Array(29*29*1024);
   for(let a=0;a<29;a++)for(let b=0;b<29;b++)for(let k=0;k<4;k++){
     const offset=(a*29+b)*1024+k*256;
@@ -66,7 +66,7 @@ function attack(corpus,native,options={}) {
   const t=corpus.pages.filter(p=>p.page<56).flatMap(p=>p.indices),r=t.slice().reverse(),l=lanes(t);
   if(t.length!==12956)throw Error('original input length');
   const starts=runs(t).filter(x=>x.length>=q).sort((a,b)=>b.length-a.length), rstarts=runs(r).filter(x=>x.length>=q).sort((a,b)=>b.length-a.length);
-  const anchor=starts[0].start, reverseAnchor=rstarts.filter(x=>r.length-x.start>=6000)[0]?.start??rstarts[0].start;
+  const anchor=options.anchor??starts[0].start, reverseAnchor=options.reverseAnchor??rstarts.filter(x=>r.length-x.start>=6000)[0]?.start??rstarts[0].start;
   let candidates=0,rejected=0,staticOnly=0,reverseRejected=0,maxPeak=0,maxEnd=0;const pending=[];
   for(let a=lo;a<hi;a++)for(let b=0;b<29;b++)for(let d=0;d<29;d++){
     if(!l.every(x=>laneMask(x,a,b,d)))continue;candidates++;
@@ -81,5 +81,5 @@ function attack(corpus,native,options={}) {
   }
   return {q,lo,hi,cap,originalLength:t.length,anchor,reverseAnchor,candidates,rejected,staticOnly,reverseRejected,maxPeak,maxEnd,pending,plants:options.plants?[plant([7,9,13,4],[1,3]),plant([11,17,3,18],[4,5,6])]:[]};
 }
-const [q='4',lo='0',hi='29',cap='2500']=process.argv.slice(2);
-console.log(JSON.stringify(attack(JSON.parse(fs.readFileSync('resources/liber-primus/lp2-corpus.json','utf8')),JSON.parse(fs.readFileSync('resources/external/relikd-solved-gp29-native-v1.json','utf8')),{q:+q,lo:+lo,hi:+hi,cap:+cap,plants:true}),null,2));
+const [q='4',lo='0',hi='29',cap='2500',anchor]=process.argv.slice(2);
+console.log(JSON.stringify(attack(JSON.parse(fs.readFileSync('resources/liber-primus/lp2-corpus.json','utf8')),JSON.parse(fs.readFileSync('resources/external/relikd-solved-gp29-native-v1.json','utf8')),{q:+q,lo:+lo,hi:+hi,cap:+cap,anchor:anchor===undefined?undefined:+anchor,plants:true}),null,2));
