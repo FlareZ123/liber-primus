@@ -36,3 +36,32 @@ function experiment(raw){
   return {orig:orig.length,wordCount:words.length,lexicon:d.size,plants,key,holdout,preview:p.slice(0,100).map(x=>corpus.translit[x]).join(" "),census,windows,broadPlants}
 }
 console.log(JSON.stringify(experiment(files.map(f=>fs.readFileSync(path.resolve(__dirname,'..',f),'utf8'))),null,2));
+
+// Generalized arbitrary nonlinear context shifts and arbitrary static pair permutation.
+function generalized(corpus,raw){
+  const check=(ok,msg)=>{if(!ok)throw Error(msg)}, mod=x=>((x%29)+29)%29;
+  const orig=corpus.pages.filter(p=>p.page<56).flatMap(p=>p.indices), chapter=orig.slice(7960,9640);
+  check(chapter.length===1680,"chapter length");
+  function pairQ(x){const f=new Uint32Array(841);for(let i=0;i+1<x.length;i+=2)f[29*x[i]+x[i+1]]++;return f.reduce((s,n)=>s+n*(n-1)/2,0)}
+  // Histograms keyed by the preceding ciphertext y. Independent shifts of
+  // each context can only change cross-context collisions by a relative shift.
+  function bound(ch,prev){const H=Array.from({length:29},()=>new Uint32Array(841));for(let i=0;i<ch.length;i+=2){H[prev][ch[i]*29+ch[i+1]]++;prev=ch[i+1]}let within=0,cross=0;for(let a=0;a<29;a++){for(const n of H[a])within+=n*(n-1)/2;for(let b=a+1;b<29;b++){const m=Array(29).fill(0);for(let d=0;d<29;d++)for(let x=0;x<29;x++)for(let y=0;y<29;y++)m[d]+=H[a][29*x+y]*H[b][29*((x+d)%29)+y];cross+=Math.max(...m)}}return {within,cross,upper:within+cross}}
+  const allIV=Array.from({length:29},(_,iv)=>({iv,...bound(chapter,iv)}));
+  const tokens=corpus.translit.map((s,i)=>({s,i})).sort((x,y)=>y.s.length-x.s.length);
+  function nativeGP(t){const out=[];for(const w of t.toUpperCase().replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S").match(/[A-Z]+/g)||[]){for(let i=0;i<w.length;){if(w.startsWith("ING",i)){out.push(21);i+=3}else if(w.startsWith("IO",i)){out.push(27);i+=2}else{const z=tokens.find(z=>w.startsWith(z.s,i));check(z,"unmapped "+w);out.push(z.i);i+=z.s.length}}}return out}
+  // Deterministic nonlinear table and independently shuffled pair codebook.
+  let seed=0x33012470;const next=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed};
+  const f=Array.from({length:29},()=>next()%29);
+  const pi=Array.from({length:841},(_,i)=>i);
+  for(let i=840;i>0;i--){const j=next()%(i+1);[pi[i],pi[j]]=[pi[j],pi[i]]}
+  const inv=Array(841);pi.forEach((v,i)=>inv[v]=i);
+  const plants=raw.map((t,j)=>{const p=nativeGP(t).slice(0,1680),iv=17,c=[],mid=[],rec=[];let prev=iv;
+    for(let i=0;i<p.length;i+=2){const z=pi[p[i]*29+p[i+1]],u=Math.floor(z/29),y=z%29;c.push(mod(u+f[prev]),y);prev=y}
+    prev=iv;for(let i=0;i<c.length;i+=2){const u=mod(c[i]-f[prev]),y=c[i+1],z=inv[u*29+y];mid.push(u,y);rec.push(Math.floor(z/29),z%29);prev=y}
+    check(rec.join(",")===p.join(","),"generalized plant inverse");check(pairQ(mid)===pairQ(p),"stationary pair bijection invariant");
+    const b=bound(c,iv);check(b.upper>=pairQ(p),"upper bound must admit planted control");
+    return {source:["Gibran","Shakespeare"][j],plaintextQ:pairQ(p),ciphertextQ:pairQ(c),shearQ:pairQ(mid),...b,recovered:rec.length};
+  });
+  return {allIV,originalIV:orig[7959],maximum:Math.max(...allIV.map(x=>x.upper)),plants}
+}
+console.log(JSON.stringify(generalized(JSON.parse(fs.readFileSync(path.resolve(__dirname,'..',files[0]),'utf8')),files.slice(3).map(f=>fs.readFileSync(path.resolve(__dirname,'..',f),'utf8'))),null,2));
