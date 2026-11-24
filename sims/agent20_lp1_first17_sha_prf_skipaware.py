@@ -32,6 +32,11 @@ GP_PRIMES = [
     2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47,
     53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109,
 ]
+RECIPE_KEYS = {
+    1: [23, 10, 1, 10, 9, 10, 16, 26],  # DIVINITY
+    3: [3],
+    5: [0, 10, 4, 0, 1, 19, 0, 18, 4, 18, 9, 0, 18],  # FIRFUMFERENFE
+}
 F_PATCH = {
     "0.1.0.1.9.1", "0.1.0.1.13.2", "0.1.0.1.16.2",
     "0.1.0.1.17.0", "0.1.0.1.18.2", "0.1.0.1.19.1",
@@ -94,15 +99,20 @@ def build_lp1_seeds() -> tuple[dict[str, bytes], dict]:
                 values.append(0)
                 continue
             if char not in RUNES:
-                raise RuntimeError(f"unexpected LP1 source token {char!r} in section {section_id}")
+                # Printed decimal material is handled separately below.
+                continue
             value = RUNES.index(char)
-            if section_id in (1, 3, 5):
-                value = (value - (key_position % 29)) % 29
+            recipe = RECIPE_KEYS.get(section_id)
+            if recipe:
+                value = (value - recipe[key_position % len(recipe)]) % 29
                 key_position += 1
             if section_id in (0, 3):
                 value = 28 - value
             values.append(value)
         decoded_sections.append(values)
+    expected_lengths = [184, 515, 157, 778, 755, 319, 89]
+    if [len(section) for section in decoded_sections] != expected_lengths:
+        raise RuntimeError(f"LP1 decoded section lengths {[len(x) for x in decoded_sections]} != {expected_lengths}")
 
     rune_indices = [value for section in decoded_sections for value in section]
     prime_runes = [GP_PRIMES[index] % 29 for index in rune_indices]
