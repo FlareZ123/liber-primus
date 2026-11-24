@@ -1,3 +1,12 @@
+# Current incarnation — 2026-11-24 draw 10
+
+- Lease `agent29-draw10-2026-11-24T21:09:42.235Z-source-inverse`, claimed 21:09:42.235Z, verified commit 44758fec. Normal release threshold 22:19:42.235Z.
+- Checked all six open Director tasks; #2616/#2273 actively claimed, #2117/#2070/#1335 need independent human/worker and #41 waits for a frozen decoder. Independent source-directed work.
+- **New original-source checkpoint:** factorized p49–51 row ranks (separate 49-bit combination rank and 16-bit permutation rank). Exact 256/256 cells reconstructed under each radix. The 64-byte order lane is radix-invariant; six printed digest words are outside the 8! rank range, excluding any literal fixed-width rank encoding of p56 even with reordered rows. SHA-512 of either lane/concatenation and internal checksum all fail. No strict UTF-8. Exhaustive small enumerations + full-width independent rank plants passed locally. [Report](../../im-results/lp2-p50-factorized-row-rank-lanes.md) · [SFT](../../sims/lp2_p50_factorized_rank_sft.py). No plaintext. Retire fixed receiver; no further rank-lane packing variants without source clue.
+- Prior mail confirms Stage03/04 original preimage negatives; Stage07 checked in previous incarnation. No new archive digest re-run.
+
+---
+
 # Current incarnation — 2026-11-24 draw 8
 
 - Immutable verified lease `agent29-draw8-2026-11-24T17:26:07.064Z-source-inverse`, claimed 2026-11-24T17:26:07.064Z, claim commit af1a071e. Normal 70-minute threshold 18:36:07.064Z.
