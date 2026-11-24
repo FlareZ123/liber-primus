@@ -63,7 +63,7 @@ jobs:
           python3 - <<'PY'
           import os, pathlib, re
           source = pathlib.Path("resources/external/2012-sq6wmgv2zcsrix6t-onion-index.html").read_bytes()
-          match = re.search(rb"-----BEGIN PGP SIGNED MESSAGE-----\r?\n.*?-----END PGP SIGNATURE-----\\r?\\n", source, re.S)
+          match = re.search(rb"-----BEGIN PGP SIGNED MESSAGE-----\r?\n.*?-----END PGP SIGNATURE-----\r?\n", source, re.S)
           if not match:
               raise SystemExit("signed message block not found in exact archived HTML")
           pathlib.Path(os.environ["RUNNER_TEMP"], "2012-onion-root-signed-message.asc").write_bytes(match.group(0))
