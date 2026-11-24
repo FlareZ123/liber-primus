@@ -18,6 +18,9 @@ for(const [name,bytes,sha] of files){
    if(high&&operation)hits.push(i);
  }
  console.log('SOURCE '+name+' eligible='+eligible.length+' specific='+hits.length);
+ const selected=name.startsWith('#cicada')?[23453,34027,36718,88601]:[66169,64690];
+ for(const n of selected){console.log('PREDICTION CONTEXT '+n);for(let j=n-14;j<=n+14;j++)console.log('L'+j+' '+lines[j-1].slice(0,500));}
+ if(process.env.ONLY_CONTEXT==='1')continue;
  const groups={Jan:[],Feb:[],Mar:[],Apr:[]};for(const i of hits)groups[lines[i].slice(5,8)].push(i);
  for(const [month,ids] of Object.entries(groups)){
    console.log('MONTH '+month+' hits '+ids.length);
