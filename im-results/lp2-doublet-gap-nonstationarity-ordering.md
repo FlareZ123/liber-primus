@@ -4,7 +4,7 @@
 
 ## What the local conditional result establishes
 
-The p50 table has 256 printed two-character tokens, 60 of which begin with `0`. Across the 12,956-rune unknown LP2 stream there are 86 same-page adjacent-equality events. Under the candidate predecessor-rune alignment, 33 of those 86 events fall on leading-zero cells.
+The p49–51 panel contains 256 printed two-character tokens in a 32×8 layout; 60 begin with `0`. The token alphabet is the source-visible base60 alphabet, but the numeric rule `60×first+second` (and the base59 alternative) remains a hypothesis. The raw first-character masks do not depend on that numeric conversion. Across the 12,956-rune unknown LP2 stream there are 86 same-page adjacent-equality events. Under the candidate predecessor-rune alignment, 33 of those 86 events fall on leading-zero cells.
 
 The existing exact within-group analysis fixes the 85 printed word/page groups that contain the events and preserves each group's event count. Its finite hypergeometric convolution gives:
 
@@ -23,7 +23,7 @@ This is a real conditional association within the frozen groups. It is not a glo
 
 The local SFT's “phase zero” uses the first rune of each adjacent pair as the table index. In the external zero-based second-rune convention this is **phase 255**, the predecessor-rune alignment. The phase itself has no explicit first-party instruction fixing it.
 
-I independently reimplemented the Round45 phase-family test and exhaustively enumerated **all 12,956 circular shifts** of the 86 original event positions. This preserves the complete observed gap sequence while testing the mask against every possible phase. The family contains 17 source-visible table predicates (five leading digits, parity, below-128, mod-3, eight bits and primality), each across 256 phases.
+I independently reimplemented the Round45 phase-family test and exhaustively enumerated **all 12,956 circular shifts** of the 86 original event positions. This preserves the complete observed gap sequence while testing the mask against every possible phase. The family contains 17 candidate predicates across 256 phases: five raw token-prefix classes, plus parity, below-128, mod-3, eight bits and primality derived under the provisional base60 numeric rule. The five prefix classes are source-visible; the other 12 depend on the base60 interpretation.
 
 | Statistic | Observed z | Exact shifts at least as large | Exact p |
 | --- | ---: | ---: | ---: |
@@ -31,7 +31,13 @@ I independently reimplemented the Round45 phase-family test and exhaustively enu
 | Maximum leading-zero phase | 3.269482 | 6,066/12,956 | **0.4682000617** |
 | Maximum absolute 17-mask × 256-phase family | 4.500185 | 6,597/12,956 | **0.5091849336** |
 
-The exact enumeration agrees with the external Round45 400-shift estimates (approximately 0.526 for max-phase and 0.536 for max-family) within Monte Carlo variation. The fixed-phase result would be interesting if a source clue independently fixed the predecessor alignment. Without that selector, the max-phase and max-family nulls show that the observed peak is ordinary after charging phase/predicate search. The local row/column-preserving table nulls answer a different question: they hold the phase fixed and do not correct this selection.
+The five raw prefix classes alone give an all-phase family p=0.505557 (maximum z=4.500185 is prefix `2`, phase194, 40/86); adding the 12 base60-derived predicates gives p=0.509185. The exact enumeration agrees with the external Round45 400-shift estimates (approximately 0.526 for max-phase and 0.536 for max-family) within Monte Carlo variation. The fixed-phase result would be interesting if a source clue independently fixed the predecessor alignment. Without that selector, the max-phase and max-family nulls show that the observed peak is ordinary after charging phase/predicate search. The local row/column-preserving table nulls answer a different question: they hold the phase fixed and do not correct this selection.
+
+### Source-motivated offset-13 check
+
+The original p0 page has a 13-rune red header/13-dot divider, and the p49 page has a 13-dot delimiter immediately before the 256-token panel. A single source-motivated interpretation is to align table token 0 with the first black p0 rune (rune offset13), while indexing an adjacent event by its predecessor rune. This is external phase242.
+
+At phase242, the raw prefix-0 mask catches **29/86** events (z=2.251249; exact circular-shift p=484/12,956=0.037357 if prefix0 was preselected). But the five source-visible prefix classes at that same fixed phase give a max-positive family p=1,928/12,956=0.148811 (two-sided max-absolute p=0.193501). The 13 markers motivate the offset, not the choice of prefix0; the five-dot ornament can at most motivate testing all five prefixes. Thus this is a useful human-solve-path candidate, not a supported selector. Do not expand it into additional offsets.
 
 ## T7 gap ordering remains a separate live constraint
 
