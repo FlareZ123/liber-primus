@@ -129,6 +129,27 @@ The one relaxed survivor is Shakespeare window 23 (zero-based, native GP offset 
 
 **Consequence:** The source-correction premise does not rescue the native period-13 route with one or two ±1 slips. Only one of #2597's two separator corrections lies in this chapter, and a corrected separator is not itself evidence of a consuming-clock slip. Three slips in a 3,008-rune chapter is still a small lower bound; do not claim a large complexity obstruction or that three suffice. No independently visible slip locations, key or held-out plaintext exist. Stop this finite gate and require an independent source-selected clock law before reopening key recovery.
 
+
+## Progressive period-eight keyword (#2641, Agent46)
+
+**Decision:** Reject the source-continuous progressive-q8 additive model under the same frozen 96-window native reference register, for all 28 nonzero increments, arbitrary initial phase and every possible latent F history. This is a new nonstationary family, not the already excluded ordinary q8 model.
+
+A real period-available example is Helen Fouché Gaines, *Elementary Cryptanalysis* (1939), chapter XX, Fig.155: each consecutive eight-letter keyword is alphabetically advanced by a fixed increment. [Original book text, Project Gutenberg](https://www.gutenberg.org/files/75074/75074-h/75074-h.htm), ch.XX (the book predates 2014; the digital edition need not). This supplies a recognizable operation, not evidence Cicada selected it.
+
+Freeze consuming position j and `C'[j]=P'[j]+K[j mod 8]+d floor(j/8) mod29`, d=1..28. As in WELCOME, physical plaintext F emits F without advancing j; a consuming non-F may emit ciphertext F. For each m=1,2,3, same-base-phase pairs separated by 8m satisfy
+```
+P'[j] == P'[j-8m] iff (C'[j]-C'[j-8m]) mod29 == m*d mod29.
+```
+The preceding pair has the same shift difference, so this also exactly characterizes equality of active bigrams. An arbitrary initial clock merely rotates/rebases the eight-vector; the invariant does not depend on it. The effective key period is 232, but the shorter translated-lag invariant remains.
+
+Reuse the exact suffix DP with 25 most recent consumed symbols, replacing equality by the translated comparison above. Independently exact rune and bigram extrema, permitting *every* deletion subset of ciphertext zeros, even those inconsistent with an actual key. Retain the original corrected p40–53 full 3008-rune tape (125 ciphertext zeros) and the same 96 fixed length-matched Shakespeare/Emerson/Gibran windows. Their native minima remain 493 rune and38 bigram collisions; conservative active-length normalized minima .0559147102189 and .00436029833620.
+
+Across all d=1..28, the strongest original maximum occurs at d=7 for both statistics: **431 rune and28 bigram** collisions, normalized upper .0501104522730 and .00325657129565. Thus every increment rejects every reference window independently on either statistic, even after the conservative normalization. Zero joint passes; peak64 suffix states. No mask cap or language selection.
+
+Three independently encrypted 3008-rune source-native literary plants with secret eight-vectors, d=1,17,28 and initial consuming origins0,3,7, have true counts 569/59,558/63,607/94, inside the corresponding exact relaxed bounds. Direct active plaintext-versus-ciphertext collision replay agrees in all three; 32 independently seeded toy tapes exhaust every zero mask and match DP extrema. No blind key recovery claimed or performed because the necessary gate fails on original. No unknown plaintext.
+
+[Node22/CommonJS exact reproducer](../sims/lp2_progressive_q8_fhold_exact_gate_sft.cjs) · [all28 increment bounds, 96 native windows, and plants](lp2-progressive-q8-fhold-exact-gate-output.json) · [checkpoint a5808dd](https://github.com/FlareZ123/liber-primus/commit/a5808dd9695738a66befb4516c954cf073ebae14). Executed in connected V8. No Windows CI claim. No arbitrary increments, reset positions, alternative periods or native registers are excluded beyond this stated family. Reopen only upon a new independently source-selected progression or clock.
+
 ## Research decision
 
 Retire the fixed period **2–32** F-transparent continuous-chapter route for the frozen p40–53 native register, and treat whole-book q8/q13 reuse as very strongly disfavored under the same register. The result expands the fixed-phase theorem by allowing latent plaintext-F pauses exactly, and is independent of the previous all-secret period8 digit enumeration. Do not repeat a heuristic key search for these same assumptions. It does not exclude a distinct non-native register, different period, state-dependent bijection, transposition or independently source-selected internal reset. For the original q8/q13 supplemental experiment, the only unresolved small-scope windows are period13 p23–26 and p54–55; a surviving relaxed window is not a basis for speculative extra reset tuning.
