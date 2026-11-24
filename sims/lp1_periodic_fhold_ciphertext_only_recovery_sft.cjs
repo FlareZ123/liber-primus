@@ -175,7 +175,6 @@ function recoverKey(C, period, excludedSection, seed, restarts) {
   }
 
   const ranked = Array.from(candidates.values()).sort((a, b) => b.score - a.score);
-  assert(ranked.length >= 1, "No feasible key candidate");
   return {
     validStarts,
     distinctCandidates: ranked.length,
@@ -401,14 +400,14 @@ function randomPlantSuite() {
       test.seed ^ 0x9E3779B9,
       test.restarts
     );
-    const best = result.ranked[0];
+    const best = result.ranked[0] || null;
     return {
       sourceSection: goldSections[test.source].name,
       period: test.period,
       plaintextLength: plantPlaintext.length,
       plantedKeyIndices: plantedKey,
-      recoveredKeyIndices: best.key,
-      exactKeyRecovery: best.key.every((x, i) => x === plantedKey[i]),
+      recoveredKeyIndices: best ? best.key : null,
+      exactKeyRecovery: !!best && best.key.every((x, i) => x === plantedKey[i]),
       validStarts: result.validStarts,
       distinctCandidates: result.distinctCandidates,
       topScoreGap: result.scoreGap
@@ -443,6 +442,7 @@ const controlResults = targets.map((target) => {
   const ciphertext = cipherSections[target.section];
   assert(ciphertext.length > 0, target.label + ": missing ciphertext section");
   const recovered = recoverKey(ciphertext, target.period, target.section, target.seed, target.restarts);
+  assert(recovered.ranked.length > 0, target.label + ": no feasible key candidate");
   const best = recovered.ranked[0];
   const languageModel = trainLanguageModel(target.section);
   const decoded = decodeTrigram(ciphertext, best.key, languageModel);
