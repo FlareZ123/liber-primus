@@ -64,8 +64,7 @@ function experiment(corpus,transcript,solved,lexicalSources){
   const trueKey=truth?pack(truth):null;
   return{hold,trainingBest:best,trainingTies:ties,firstTrainingKey:b,heldout:test[first],trainingTiesHeldoutRange:[minTest,maxTest],fullBest,fullTies,fullFirstKey:unpack(fullFirst),truth,truthTraining:truth?train[trueKey]:null,truthHeldout:truth?test[trueKey]:null,truthIsTrainingWinner:truth?train[trueKey]===best:null,readouts,stats};
  }
- // Exhaustively validate clause expansion on a small 2-slot, 3-value independent analogue.
- // Then verify real five-slot point membership against direct forward support on random cases.
+ // Verify actual five-slot partial assignment membership against direct forward support on 900 seeded cases.
  let z=0x33011405;const rng=()=>{z^=z<<13;z^=z>>>17;z^=z<<5;return z>>>0};
  function partialContains(ids,b){return [...ids].some(id=>{for(let j=0;j<5;j++){const v=id%30;id=Math.floor(id/30);if(v&&v!==b[j]+1)return false}return true})}
  for(let t=0;t<100;t++){const p=Array.from({length:7},()=>rng()%29),b=Array.from({length:5},()=>rng()%29),hold=t%2===0,c=p.map(x=>{const j=rng()%5;return hold&&x===0?0:mod(R[j]*x+b[j])});let r=clauses(c,p,hold),set=new Set();if(r)enumeratePartial(r,x=>set.add(x));check(partialContains(set,b),"planted clauses");for(let u=0;u<8;u++){const q=Array.from({length:5},()=>rng()%29);check(partialContains(set,q)===matches(c,p,q,hold),"clause direct-membership mismatch")}}
