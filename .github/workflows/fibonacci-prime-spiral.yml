@@ -27,8 +27,6 @@ jobs:
         run: node sims/parable_threeprime_bbs_source_inverse.cjs
       - name: Test Parable modular-squaring source with collision-only hidden key skips
         run: node sims/parable_bbs_keyskip_inverse.cjs
-      - name: Test SHA-512 of canonical p57 rune and prime streams as Parable BBS seeds
-        run: node sims/parable_bbs_hashseed_inverse.cjs
       - name: Exhaust every historical Parable Blum-square state on original LP2 and blinded source text
         run: node sims/parable_blum_exhaustive_state_inverse.cjs
       - name: Test 153 and 1224 modulus-forced GP cipher equality on original ciphertext

@@ -11,7 +11,7 @@ const assert=require("node:assert/strict");
 const crypto=require("node:crypto");
 const fs=require("node:fs");
 const path=require("node:path");
-const {pad,twoStage}=require("./parable_bbs_keyskip_inverse.cjs");
+const {pad,twoStage,positive}=require("./parable_bbs_keyskip_inverse.cjs");
 const root=path.resolve(__dirname,"..");
 const read=name=>fs.readFileSync(path.join(root,name),"utf8");
 const corpus=JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
@@ -44,6 +44,8 @@ for(const input of hashInputs){
   }
 }
 assert.equal(derived.length,4);
+const positiveControl=positive();
+assert(positiveControl.accuracy>=0.85 && positiveControl.exactRecoveredPlainRunes>=1071);
 const results=[];
 for(const d of derived){
   const N=d.modulus==="threeprime"?N3:N2;
@@ -69,7 +71,7 @@ for(const d of derived){
 assert.equal(results.length,40);
 const bestTrain=[...results].sort((a,b)=>b.train-a.train);
 const bestHold=[...results].sort((a,b)=>b.hold-a.hold);
-console.log(JSON.stringify({
+const report={
   question:"Does SHA-512 of the solved p57 Parable supply a source-derived BBS seed?",
   status:"fixed bounded experiment; no hash, endian or representation search",
   source:{
@@ -86,7 +88,12 @@ console.log(JSON.stringify({
     clock:"page-reset",cipher:"GP29 additive with collision-only hidden key skips",
     formats,signs:[-1,1],models:results.length
   },
+  positiveControl,
   bestTrain:bestTrain.slice(0,10),
   bestHeldout:bestHold.slice(0,10),
   decision:"No plaintext or authentic key is established by a score alone; inspect heldout text and require independent linguistic coherence."
-},null,2));
+};
+const reportText=JSON.stringify(report,null,2)+"\\n";
+fs.mkdirSync(path.join(root,"run-artifacts"),{recursive:true});
+fs.writeFileSync(path.join(root,"run-artifacts/parable-bbs-hashseed-report.json"),reportText);
+console.log(reportText);

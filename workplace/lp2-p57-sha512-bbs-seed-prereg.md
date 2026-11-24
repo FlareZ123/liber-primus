@@ -25,7 +25,7 @@ This produces exactly four seeds. No SHA-256, little-endian digest, salts, alter
 
 For each of the four derived seeds, test the five existing BBS output encodings (state-low8, state-low5, bits5-lsb, bits5-msb, bits8-msb), both signs, and the existing collision-only GP29-additive Viterbi. Use page-reset key generation and the six fixed pages [0, 3, 8, 23, 27, 40], with 130 training and 80 held-out runes per page. Total: 40 models.
 
-The preceding workflow step runs the established planted-positive control in parable_bbs_keyskip_inverse.cjs. It must pass before this experiment runs.
+The script runs the established planted-positive control exported by parable_bbs_keyskip_inverse.cjs before evaluating the hash-derived seeds. It must pass before the original-cipher experiment is reported.
 
 ## Decision rule
 

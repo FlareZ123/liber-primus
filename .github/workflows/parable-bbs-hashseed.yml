@@ -1,0 +1,28 @@
+name: p57 SHA-512 Parable BBS seed gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  hashseed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run fixed hash-derived seed test and planted positive control
+        run: node sims/parable_bbs_hashseed_inverse.cjs
+      - name: Commit reproducible report
+        if: success()
+        run: |
+          set -euo pipefail
+          cp run-artifacts/parable-bbs-hashseed-report.json im-results/parable-bbs-hashseed-inverse.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git pull --rebase origin main
+          git add im-results/parable-bbs-hashseed-inverse.json
+          git commit -m "Agent25: Preserve p57 SHA-512 BBS seed result"
+          git push origin HEAD:main
