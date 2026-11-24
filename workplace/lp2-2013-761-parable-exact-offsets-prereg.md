@@ -4,7 +4,7 @@
 
 ## Why these four positions
 
-The solved LP2 p57 Parable and the original 2013 audio provide a small, player-visible numerical bridge. The original file is named 761.MP3; the source-native GP-prime sum of its title, THE INSTAR EMERGENCE, is 761. A recent source-gap handoff identifies the three p57 Parable clause sums as 1031, 1229 and 1259. These four numbers are the complete frozen offset set:
+The solved LP2 p57 Parable and the original 2013 audio provide a small, player-visible numerical bridge. The original file is named 761.MP3; the source-native GP-prime sum of its title, THE INSTAR EMERGENCE, is 761. The original 2013 audio ID3 field gives the Parable value 1,595,277,641, whose three prime factors are 1031, 1229 and 1259. The source-native GP-prime sum of the audio title THE INSTAR EMERGENCE is 761. The same parable poem appears on solved LP2 p57. These four numbers are the complete frozen offset set:
 
 **761, 1031, 1229, 1259**.
 
