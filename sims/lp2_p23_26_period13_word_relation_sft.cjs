@@ -21,6 +21,27 @@ function experiment(inputs){
  }
  function cutAt(ws,min){let cut=0,n=0;while(n<min&&cut<ws.length)n+=ws[cut++].length;return {cut,n}}
  function summary(x){return {...x,keys:x.keys.map(v=>({key:v.key,paths:v.paths,endPhases:v.endPhases,runes:v.p.flat().length}))}}
+
+ /** Optimistic pairwise word compatibility with arbitrary legal intervening F holds. */
+ function conflictBound(ws,period,dict,minLength=4){
+  const mod=(x,n)=>(x%n+n)%n,groups=[],start=[],zeros=[0];let offset=0;
+  for(const c of ws){start.push(offset);offset+=c.length;zeros.push(zeros.at(-1)+c.filter(v=>v===0).length);const a=new Map();
+   if(c.length>=minLength)for(const p of (dict[c.length]||new Map()).values()){const d=[];let legal=true;for(let i=0;i<c.length;i++){if(p[i]===0){if(c[i]!==0){legal=false;break}}else d.push(mod(c[i]-p[i],29))}if(!legal||d.some((v,i)=>i>=period&&v!==d[i%period]))continue;
+    const holds=c.length-d.length;if(!a.has(holds))a.set(holds,[]);a.get(holds).push(d.slice(0,period))}
+   groups.push(a)
+  }
+  const eligible=ws.flatMap((w,i)=>w.length>=minLength?[i]:[]),mandatory=eligible.filter(i=>!groups[i].size),edges=[];
+  function compatible(i,j){const gapF=zeros[j]-zeros[i+1],distance=start[j]-start[i];
+   for(const [ha,as] of groups[i])for(const [hb,bs] of groups[j])for(let h=0;h<=Math.min(gapF,period-1);h++){
+    const phase=mod(distance-ha-h,period),pairs=[];for(let b=0;b<bs[0].length;b++){const a=mod(phase+b,period);if(a<as[0].length)pairs.push([a,b])}
+    if(!pairs.length)return true;const sig=(row,k)=>pairs.map(p=>row[p[k]]).join(",");const hashes=new Set(as.map(a=>sig(a,0)));if(bs.some(b=>hashes.has(sig(b,1))))return true
+   }return false
+  }
+  for(let a=0;a<eligible.length;a++){const i=eligible[a];if(!groups[i].size)continue;for(let b=a+1;b<eligible.length;b++){const j=eligible[b];if(groups[j].size&&!compatible(i,j))edges.push([i,j])}}
+  let best=edges.length,bestCover=null,nodes=0;const memo=new Map();
+  function cover(es,chosen){nodes++;const n=chosen.length;if(!es.length){if(n<=best){best=n;bestCover=chosen.slice()}return}if(n>=best)return;const used=new Set();let matching=0;for(const [u,v] of es)if(!used.has(u)&&!used.has(v)){used.add(u);used.add(v);matching++}if(n+matching>best)return;const id=es.map(e=>e.join(":")).join(",");if((memo.get(id)??Infinity)<=n)return;memo.set(id,n);const deg=new Map();for(const [u,v] of es){deg.set(u,(deg.get(u)||0)+1);deg.set(v,(deg.get(v)||0)+1)}const v=[...deg].sort((a,b)=>b[1]-a[1])[0][0],neigh=new Set(es.filter(e=>e.includes(v)).map(e=>e[0]===v?e[1]:e[0]));cover(es.filter(e=>!e.includes(v)),[...chosen,v]);cover(es.filter(e=>!e.some(u=>neigh.has(u))),[...chosen,...neigh])}
+  cover(edges,[]);return {eligible:eligible.length,minLength,mandatory,edges,minimumOOVLowerBound:mandatory.length+best,cover:bestCover,nodes};
+ }
  function authentic(section,period,trainLength,expectedKey){
   const dict=buildLexicon(section),engine=createSolver(period,dict),ws=cipherSections[section],{cut,n}=cutAt(ws,trainLength),prefix=ws.slice(0,cut);
   const strict=engine.solve(prefix);let result=strict,escape=null;
@@ -31,7 +52,7 @@ function experiment(inputs){
   out.truthOOV=solved[section].slice(0,cut).flatMap((w,i)=>dict[w.length].has(String(w))?[]:[i]);
   out.correctKey=result.keys.length===1&&result.exact&&String(result.keys[0].key)===String(expectedKey);
   if(out.correctKey&&result.keys[0].endPhases.length===1){const learned=result.keys[0],held=decodeFixed(ws.slice(cut),learned.key,dict,learned.endPhases[0]),full=learned.p.concat(held?.p||[]).flat();out.continuation=held?{runes:held.p.flat().length,score:held.score,paths:held.paths,exactMatches:held.p.flat().filter((v,i)=>v===solved[section].flat()[n+i]).length}:null;out.correctFull=String(full)===String(solved[section].flat());out.replay=String(encode(learned.p.concat(held?.p||[]),learned.key).flat())===String(ws.flat())}
-  return out;
+  out.conflict=conflictBound(prefix,period,dict);return out;
  }
 
  const controls=[authentic(1,8,255,[23,10,1,10,9,10,16,26]),authentic(5,13,155,[0,10,4,0,1,19,0,18,4,18,9,0,18])];
@@ -42,6 +63,7 @@ function experiment(inputs){
  const {cut,n}=cutAt(ws,500),prefix=ws.slice(0,cut),strict=engine.solve(prefix),target={chapter:"p23-26",vocabulary:dict.reduce((n,d)=>n+d.size,0),trainWords:cut,trainRunes:n,held:1021-n,strict:summary(strict)};
  let chosen=strict;if(strict.exact&&!strict.keys.length&&strict.failure){const escape=strict.failure.word;chosen=engine.solve(prefix,{wildcard:new Set([escape])});target.escape={word:escape,result:summary(chosen)}}
  if(chosen.exact&&chosen.keys.length===1&&chosen.keys[0].endPhases.length===1){const k=chosen.keys[0],held=decodeFixed(ws.slice(cut),k.key,dict,k.endPhases[0]);target.continuation=held?{score:held.score,paths:held.paths,plaintext:held.p.map(w=>w.map(v=>gp.translit[v]).join("")).join(" "),replay:String(encode(k.p.concat(held.p),k.key).flat())===String(ws.flat())}:null}
+ target.conflict=conflictBound(prefix,13,dict);
  return {controls,target};
 
 }
