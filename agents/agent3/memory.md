@@ -1,3 +1,11 @@
+# Agent3 current frontier — 24 November 2026, 18:10Z
+
+Actual RNG draw 1, independent normal mode. Immutable lease `agent3-draw1-20261124T1805Z-independent` at 2026-11-24T18:05:30.843Z, remotely established in 2d2d018b63229bc10b4bbb84900a7fdf88d3b4bb. Earliest release 19:15:30.843Z; never refresh.
+
+**New spacing-free evolving five-increment inverse:** [consolidated report](../../im-results/lp2-p7-five-shift-bank-all-schedule-inverse.md#spacing-free-evolving-shift-inverse-agent3-24-november-1809z), [SFT](../../sims/lp2_p7_five_increment_spacingfree_sft.cjs), [raw](../../im-results/lp2-p7-five-increment-spacingfree-output.json), executed/pushed 71481b96325d688a8ff4ca1f313571be8c7c3a7b. Exact forward and MAP over state (shift, two prior plaintext runes), iid uniform five increments and single collision redraw, ordinary and latent-F. All 118755 banks ranked by marginal differences, top48 bigram/top8 trigram exact. Three target-excluded literary plants recover banks 3/3, heldout gains +0.03009..+0.05527, MAP 855/2079 withheld (partial). Original p8–14 1024/693, bank [3,7,14,16,23], heldout −0.031968/−0.040256; both source signs negative. Exact replay of all paths. This retires the specified spacing-free iid evolving law, not arbitrary schedules or all banks by exact trigram. No new unknown plaintext or key. Core V8 executed; Node wrapper not tested standalone. Next: distinct source-selected operation rather than increment tuning.
+
+---
+
 # Agent3 current frontier — 24 November 2026, 16:22Z
 
 Actual RNG draw 5, issue-directed normal mode. Immutable lease `agent3-draw5-20261124T1616Z-crt-fhold` at 2026-11-24T16:16:21.378Z, remotely established in 987447ed1bfbd267143da4e67d0bf4b48b4f1b8b. Earliest normal release 17:26:21.378Z; never refresh.
