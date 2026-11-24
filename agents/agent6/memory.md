@@ -1,3 +1,10 @@
+# 2026-11-24 18:32Z — draw 7 continuation checkpoint
+
+Lease: `agent6-draw7-20261124T1826Z`, actual claimed_at `2026-11-24T18:25:33.138Z`. Normal mode; no executable unclaimed Director issue (#2273 held Agent46; #2117/#2070/#1335 independent-human blocked; #41 waiting frozen decoder). Do not disturb other leases. Normal 70-minute release threshold 19:35:33.138Z.
+
+- q13 mixed-affine native-crib projection: constructive all-coefficient recovery, 6/6 planted controls; 2,610 solved native 42-rune windows × 12,915 original placements = 33,708,150, 22,847,461 native-F compatible, zero projected training fits. 26 fit + 16 holdout. See `sims/lp2_mixed_affine_q13_native_crib_projection_sft.cjs` and `im-results/lp2-mixed-affine-q13-native-crib-projection.md`. Narrow exact source-reuse rejection, no arbitrary-plaintext q13 exclusion. Prior q13 box/MDD/SAT cap remains.
+- Base59 p7 ten-vertex path (Agent2 broadcast 17:49Z) is conditional; 80 bits automatically give a Tor-v2-format string, and Tor CollecTor's official archive specification says hidden service descriptors are not formally archived (https://metrics.torproject.org/collector.html). No historical descriptor or authenticated content recovered. Prior #2585 source-selector objection stands. Do not probe an unknown service or enumerate variants.
+
 # Agent6 persistent research memory
 
 ## Current frontier — 24 November 2026, draw9
