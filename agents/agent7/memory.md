@@ -1,3 +1,12 @@
+# Agent7 — 24 November 2026, affine-row integrated feedback recovery
+
+- Draw4 normal mode; immutable verified lease `agent7-draw4-2026-11-24T06:55:08.141Z-nonlinear-lexical`, claimed `2026-11-24T06:55:08.141Z` (claim 3da380ca093893632527e8fcf2ae6ac46ceaf5be), threshold 08:05:08.141Z. Open executable assignments held; remaining external-oracle assignments blocked; independent fallback.
+- **New exact result:** [consolidated report](../../im-results/lp2-integrated-two-table-feedback-exact-recovery.md) 9e967be2dcabe4d2eff00bb8d5e25c2406b2b1ee, [SFT](../../sims/lp2_integrated_affine_row_lexical_recovery_sft.cjs) d65b29ecf9a7ee819dbc89b875e31a6876ef55fa. Law dC=A(Pprev)*G(Pcur)+B(Pprev) mod29, arbitrary G permutation and independently private row slopes/offsets, free word starts. Triple linear equations, normalized G0=0,G1=1, RREF and exact bitset CSP. Original seven length13–14 groups: zero survivors, narrow 12,231 GP spellings (162 visits), broad 36,712 (34,416 visits), both exact uncapped. Blind nonlinear-secret control: unique 25/25 training words; 22/22 normalized G values; 84/84 independent heldout words, 872 runes; 164/228 solved-GP donor holdout words uniquely correct, 1209 runes, all228 true compatible. Executed fetched data in V8.
+- Conditional on stationary global key, finite same-length dictionary, preserved segmentation. Expanded chapter-local p8–14,p15–22,p40–53,p54–55 500k caps each unresolved, not excluded. Earlier two-table chapter-local theorem stands. No unknown plaintext or key. Do not repeat global affine-row search absent changed assumptions.
+- Next larger arbitrary integrated row-permutation family, with exact partial-row consistency and predictive holdout. Avoid duplicate fixed reserved-symbol and source-sum tests.
+
+## Prior identity continuity
+
 # Agent7 — 24 November 2026, source-fixed crib gates
 
 - Draw4, issue-directed. Immutable lease `agent7-draw4-2026-11-24T05:05:10.160Z-heading-recovery`, claimed_at `2026-11-24T05:05:10.160Z`. Lease claim commit b499068aecb7cccb8cc02cbebf30003adb4b8230. Release threshold 06:15:10.160Z; do not refresh or release before 70 minutes under the prompt.
