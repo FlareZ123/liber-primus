@@ -83,9 +83,34 @@ A synthetic plant with the exact original p15 word-length vector and three inter
 
 **Reproduction:** node sims/lp2_p15_base29_ftransparent_viterbi_sft.cjs
 
+
+## Collision-suppressed key-skip extension (24 November 2026; bounded negative)
+
+The preceding BASE29 tests assume rigid one-rune/one-key alignment. A distinct, motivated alternative is the collision-skip encoder: when the next candidate ciphertext rune would repeat the previous emitted ciphertext rune, reject that key position and try the next. This is a plausible response to LP2's unusually low adjacent-doublet rate, but it is **not** a first-party-authenticated LP2 instruction. The independently published Campaign XVIII implementation is pinned at [Dukotah/cicada3301, commit f63501d8f2d835b80c30230eb89a1110fb9197d2](https://github.com/Dukotah/cicada3301/tree/f63501d8f2d835b80c30230eb89a1110fb9197d2/liber-primus/analysis/campaign18_skip); this local test independently implements its skip-validity condition.
+
+The target is the source-natural 150-rune p15 body: the 16-cell Fibonacci-prime spiral is above it, and the infinity/arrow ornament points toward it. The clockwise spiral starts at the red 3299 cell. The signed 2013 server's BASE29 operation motivates the number-to-base29 conversion, while identifying the resulting digit values with GP29 shifts remains an assumption. Key phase is fixed at zero on the first body rune. There are no word/page resets, offset search, Atbash, reversal, or fitted exceptions. The beam allows at most three rejected key symbols per emitted rune and has width 400. It checks that every rejected key position would have emitted the preceding ciphertext rune; the fitted 0.83 suppression probability is used only to plant the positive control, not to rank candidate paths.
+
+Five fixed source-derived key constructions were tested in both arithmetic directions:
+
+| Key construction | Length | Key (BASE29 digits or mod-29 values) | Best sign | Best quadgram score |
+|---|---:|---|---:|---:|
+| Printed grid values, BASE29 | 47 | 3QM3QL3QJ3QH3QB3Q13PA3O33LK3HM3AP2R724MOC1CH5AL | − | −7.443365 |
+| Underlying Fibonacci-indexed primes, BASE29 | 30 | 2357DN1E2L5492FSSH1M232C5AC98G | + | −7.123658 |
+| 3301, BASE29 | 3 | 3QO | + | −7.360630 |
+| Fibonacci-indexed primes mod 29 | 16 | 2357DNEL42SH2CCG | + | −7.341666 |
+| Printed grid values mod 29 | 16 | MLJHB1A3KMY7MCHL | − | −7.429665 |
+
+The raw p15 body scores −7.452341 on the same quadgram scale; the clear p57 control scores −4.420633. The least-poor candidate is the 30-digit prime BASE29 key, but its output is not readable prose (prefix OERYTEAEDENGYXIEOTNGAEAUEONTAEANHWYBIANGJAENPJTICSJEABHMRDEOUGEASIAAXHOECCFBYTHE...). A 200-permutation, digit-multiset-preserving null gives this key an add-one p=0.268657 (null mean −7.215624, 95th percentile −6.988501, maximum −6.763658). The 16-symbol prime-residue key has p=0.800995 (null mean −7.208185, 95th percentile −6.911622, maximum −6.688882). Neither source order is exceptional.
+
+**Decoder validation:** a 150-rune known-English plant, encrypted under the 16-symbol prime-residue key with the same collision-skip rule, sign −, suppression 0.83, and deterministic seed 3301, planted three key skips. The beam recovered all 150/150 runes exactly (score −4.237386). This validates the implementation on a synthetic control; it does not authenticate the cipher.
+
+**Decision:** reject only these five p15 key constructions under this fixed collision-skip model. The result does not invalidate the p15 Fibonacci-prime construction or the historical BASE29 operation, and it does not exclude a different nonlinear, matrix, transposition, stateful, or externally keyed use of p15. Do not tune phases, skip limits, digit order, or encodings without a new independent source selector.
+
+**Reproduction:** node sims/lp2_p15_base29_keyskip_sft.cjs. The script asserts the original p15 segmentation and the pinned quadgram Git blob, validates a synthetic collision-skip plant, reproduces the five source-key scores, and runs the two 200-permutation nulls.
+
 ## Conclusion and scope
 
-Reject only the tested **direct periodic additive/subtractive GP29** interpretations and the exact authentic plaintext-F-transparent inverse of the primary 47-digit key on p15 body phase zero:
+Reject only the tested **direct periodic additive/subtractive GP29** interpretations, the exact authentic plaintext-F-transparent inverse of the primary 47-digit key on p15 body phase zero, and the five fixed p15 key constructions under the collision-skip extension above:
 
 1. BASE29 expansion of the 16 printed p15 values;
 2. BASE29 expansion of the 16 underlying primes;
@@ -99,6 +124,7 @@ Run with Node 22:
 
 node sims/lp2_p15_base29_repeating_key_gate.cjs
 node sims/lp2_p15_base29_ftransparent_viterbi_sft.cjs
+node sims/lp2_p15_base29_keyskip_sft.cjs
 
 The script asserts the 12,956-rune unknown stream, p15's 3,603 global start, its nine-rune red heading and 150-rune body, the 1,903-rune p15–22 chapter, and the nine original visual cuts. It performs the exact inverse plant on solved p57 plaintext under each key (an arithmetic positive control, not evidence that the key is correct) and reproduces the quadgram scores and 5,000-permutation nulls.
 
