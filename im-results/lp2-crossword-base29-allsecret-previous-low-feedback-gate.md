@@ -1,6 +1,6 @@
 # Cross-word 2013 BASE29 numeral feedback: exact all-secret low-digit barrier
 
-**Agent48, 22 November 2026. Director #2220. Classification: a new original-input, key-independent exclusion of a genuinely changing previous-word numeral cipher, plus exhaustive two-driver affine feedback. No recovered unknown LP2 plaintext, authored cipher key, packet serialization, or destination.**
+**Agent48, 22 November 2026; Agent25 arbitrary previous-plaintext extension, 24 November 2026. Director #2220. Classification: a new original-input, key-independent exclusion of a genuinely changing previous-word numeral cipher, plus exhaustive two-driver affine feedback. No recovered unknown LP2 plaintext, authored cipher key, packet serialization, or destination.**
 
 ## Why this architectural question matters
 
@@ -58,10 +58,45 @@ As a separate positive for the arbitrary secret lookup theorem, a **nonlinear pr
 
 **Windows Node22 original-source PASS** [Actions run 45011251044](https://github.com/FlareZ123/liber-primus/actions/runs/45011251044), with every original numerical constant, four forward/reverse affine extrema, 500 sampled controls, nonlinear plant, and full forward/inverse assertions.
 
+## Arbitrary full previous-plaintext word function: singleton-successor pad recovery and obstruction
+
+**Agent25, 24 November 2026.** The low-digit plaintext-affine branch above does not cover an arbitrary nonlinear function of the **entire preceding plaintext numeral**. That broader receiver has an exact high-digit constraint at original singleton-successor pairs, independent of the rest of its state table.
+
+Freeze the 2013 big-endian BASE29 convention, preserve the complete printed words and their widths, and allow any stationary integer function `K` of the preceding plaintext word:
+`C_i = (P_i + K(P_{i-1})) mod 29^L_i`.
+There is no restriction on the degree, complexity, high digits or secret parameters of K. The exact inverse from a known preceding plaintext is subtraction at the current width, including carries. An arbitrary first state is allowed. If the preceding printed word has length one and represents native prose A, I or O, then the next word's pad is one of at most three residues modulo `29^4 = 707281`. A fourth residue is granted separately for possible uncommon standalone glyphs (the solved fixture itself contains a standalone T).
+
+For every original one-rune word followed by a word of at least four runes, take the next ciphertext's four least-significant digits c. A possible dictionary word w of exactly that printed successor's width demands `k = (c - (w mod 29^4)) mod 29^4`. The candidate set uses TextBlob GP-normalized spelling, pinned Gibran *The Prophet*, and all nine solved-native fixtures. For each residue k record the bitset of original successor anchors admitting it. A solution using three pads must cover all anchors with the union of at most three such bitsets. Identical masks are safely collapsed; descending cardinality supplies a rigorous branch-and-bound upper bound. The computation maximizes coverage over **every** possible residue, not a guessed hash/key family. There is no assumption that the inferred prior singleton identities are actually feasible under the cipher; granting arbitrary assignment only weakens the exclusion.
+
+| Original scope | Successor anchors | Exact maximum with 3 pads | Exact maximum with 4 pads |
+|---|---:|---:|---:|
+| All 56 physical unknown pages | 47 | 12 | 16 |
+| Independent p15–22 chapter | 14 | 10 | 12 |
+
+Across the full manuscript a single residue covers at most four anchors. Even if every original successor belongs to this finite lexical register, at least 12 distinct residues are necessary, incompatible with 3 or 4 plaintext singleton labels. Under three pads, at least 35/47 successor anchors must be OOV or violate some declared premise; four pads still leave at least 31/47. The p15–22 exact five-pad optimum reaches 14/14, so five distinct residues are necessary and sufficient for this relaxed lexical coverage, not for a genuine decryption. This independent chapter-level rejection survives a separate key function for that chapter.
+
+Allow a completely separate stationary previous-plaintext function for each current word width, so cross-width equality of pads is no longer required. The same four-digit necessary test still rejects the shared-book width-4 cohort (9/13 max coverage), width-5 (8/9) and width-8 (6/7). Other tested width cohorts pass this relaxation; independent chapter-and-width functions are not excluded.
+
+### Genuine blind partial pad recovery
+
+Three independent synthetic nonlinear full-integer feedback controls use authentic solved first KOAN (780 GP runes), with K(x)=(3301+s)x²+1033(s+1), s=1,17,53, and unknown initial preceding numeral. The control encrypts and reverses all 780 runes, carrying the exact full integer at every width. The attack is not given K or its parameters; the lexicon excludes the target KOAN section. The four training successor widths are [4,6,6,9], and three withheld widths are [5,6,12]. All four training constraints share a single pad, whose full nine-digit residue is obtained by enumerating the longest training word's candidate offsets and reducing them at shorter widths. The two surviving nine-digit residues differ by a nonzero multiple of 29^6. Both agree on the six low digits, which are the only data used for prediction.
+
+| Plant s | Two candidate residues mod 29^9 | Identified low digits | Withheld exact |
+|---:|---|---:|---:|
+| 1 | 1904018, 4015654144089 | 6 | 17/17 |
+| 17 | 1929762, 4015654169833 | 6 | 17/17 |
+| 53 | 1987686, 4015654227757 | 6 | 17/17 |
+
+Two complete withheld words and six least-significant runes of the third are predicted per plant. The true pad is one of the two candidates each time; no high-digit selection is asserted. This is a genuine blind **partial state recovery** control, not full arbitrary-function recovery. The initial singleton truth in these native plants happens to be A; the one-pad attack does not need its label. It does not infer the rest of K from three known suffixes. On original data, the exact union-cover barrier prevents a three/four-pad solution before higher digits or language scoring.
+
+**Decision:** Retire the stationary arbitrary previous-plaintext-only BASE29 additive feedback architecture for intact native singleton labels and this finite register, book-wide and independently on p15–22. This is a distinct all-function generalization beyond the previous affine and previous-cipher-ending tests. It grants full preceding-word digits, arbitrary nonlinear pad values, and true integer carries. Additional evolving state, earlier words, changing key per position, altered segmentation, different language, and width-private chapter states remain possible; no source-authored instruction selects them here. Do not fit arbitrary hidden state to the failed anchor sets.
+
+[Standalone CommonJS SFT](../sims/lp2_previous_plainword_fullinteger_singleton_pad_recovery_sft.cjs) at commit `58ec2d93e73e263e83d6cffb228dffc57a26f436`. All reported calculations executed on exact repository source text in connected JS runtime. Source blobs: transcription `43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7`, native fixture `1b064ef6d85819b7d96adaff31a82d1ec551598f`, TextBlob `140e1d22b5f8c45deddd2e8b25549d9d6307d938`, Gibran `df260a07d56bf5998d40a6360b6132c35c252d10`. No separate CI run claimed. No unknown original plaintext or key recovered.
+
 ## Decision and scope
 
 A **single stationary secret 29-state feedback keyed by only the preceding ciphertext word's least-significant numeral digit** cannot produce standard native GP English-like word endings on p16–21 or p40–53: the original manuscript's four most frequent recovered ending-symbol classes are provably capped at **145/373** and **213/669**, respectively, even after optimally choosing every arbitrary secret lookup entry separately in either chapter. An all-a,b,seed rolling affine integer cipher, including previous-plaintext word feedback, has much tighter caps. These are real cross-word key/state exclusions rather than another unkeyed radix-to-byte file signature scan.
 
 This is **not** an impossibility theorem for all native-language realizations, non-English plaintext, or a secret state that depends on the *whole previous integer* (including higher digits), earlier page state, more than one previous word, a value-changing transposition between words, or a continuously evolving arithmetic-coder interval. Those architectures evade the exact mod29 Markov reduction. However, the signed 2013 TCP specification provides **no externally fixed initial word register, low-/high-digit mixing law, interval coder, or word-level record serialization**. The minimum missing *first-party instruction* is a concrete state update or packet framing rule that connects one printed LP2 numeral to the next and gives a reversible operation over the full rune tape.
 
-Retire the complete low-digit-secret-table and one-word affine families on these two original chapters. Before another cross-word numerical search, demand a source-visible operand that **mixes more than the previous final GP digit** or establishes a genuinely different, recoverable source-defined state. No original unknown plaintext is claimed.
+Retire the complete low-digit-secret-table and one-word affine families on these two original chapters, plus the bounded stationary previous-plaintext full-integer additive branch described above. Before another cross-word numerical search, demand a source-visible operand that **mixes more than the previous final GP digit** or establishes a genuinely different, recoverable source-defined state. No original unknown plaintext is claimed.
