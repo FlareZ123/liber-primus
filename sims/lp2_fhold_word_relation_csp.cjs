@@ -9,12 +9,14 @@ const VALUE_ALL=(1<<29)-1,bit=i=>1<<i,mod29=x=>(x%29+29)%29;
 const pop=x=>{let n=0;while(x){x&=x-1;n++}return n};
 function* bits(x){while(x){const b=x&-x;yield 31-Math.clz32(b);x^=b}}
 /** @param {number[][]} words @param {number[]} key */
-function encode(words,key){let phase=0;return words.map(w=>w.map(p=>p===0?0:mod29(p+key[phase++%key.length])))}
+function encode(words,key,a=1){let phase=0;return words.map(w=>w.map(p=>p===0?0:mod29(a*p+key[phase++%key.length])))}
 /**
  * @param {number} period 1..29
  * @param {Map<string,number[]>[]} dict GP spellings grouped by rune length
  */
-function createSolver(period,dict){
+function createSolver(period,dict,a=1){
+ if(!Number.isInteger(a)||a<1||a>28)throw Error("nonzero GP29 slope required");
+ const ai=Array.from({length:28},(_,i)=>i+1).find(v=>mod29(v*a)===1);
  if(!Number.isInteger(period)||period<1||period>29)throw Error("period out of range");
  const PHASE_ALL=(1<<period)-1,modPhase=x=>(x%period+period)%period;
  const rot=(x,k)=>{k=modPhase(k);return k?((x<<k)|(x>>>(period-k)))&PHASE_ALL:x};
@@ -26,7 +28,7 @@ function createSolver(period,dict){
    if(wildcard.has(wi)){
     const positions=c.flatMap((v,i)=>v===0?[i]:[]);if(positions.length>20)throw Error("too many zero branches in word");
     for(let mask=0;mask<(1<<positions.length);mask++){const holds=new Set(positions.filter((_,i)=>(mask>>i)&1));add(c.flatMap((v,i)=>holds.has(i)?[]:[VALUE_ALL^bit(v)]),null,holds)}
-   }else for(const p of (dict[c.length]||new Map()).values()){const req=[];let legal=true;for(let i=0;i<c.length;i++){if(p[i]===0){if(c[i]!==0){legal=false;break}}else req.push(bit(mod29(c[i]-p[i])))}if(legal)add(req,p,null)}
+   }else for(const p of (dict[c.length]||new Map()).values()){const req=[];let legal=true;for(let i=0;i<c.length;i++){if(p[i]===0){if(c[i]!==0){legal=false;break}}else req.push(bit(mod29(c[i]-a*p[i])))}if(legal)add(req,p,null)}
    rows.push(candidates);offset+=c.length;zeros+=c.filter(x=>x===0).length;let mask=0;
    for(let h=0;h<=Math.min(zeros,period-1);h++)mask|=bit(modPhase(offset-h));domains.push(mask)
   }return {rows,domains}}
@@ -57,8 +59,8 @@ function createSolver(period,dict){
    }
   }return true}
   function witness(s){const key=s.keys.map(v=>31-Math.clz32(v));let states=new Map([[0,{prev:null,p:null,n:1}]]);
-   for(let w=0;w<rows.length;w++){const next=new Map();for(let j=0;j<rows[w].length;j++){const row=rows[w][j];for(const ph of bits(s.masks[w][j])){const prev=states.get(ph);if(!prev)continue;let phase=ph;const p=row.p||ws[w].map((c,i)=>row.holds.has(i)?0:mod29(c-key[phase++%period]));const end=modPhase(ph+row.advance),old=next.get(end);if(old)old.n=Math.min(2,old.n+prev.n);else next.set(end,{prev,p,n:prev.n})}}states=next}
-   if(!states.size)return;let h=states.values().next().value;const p=[];while(h.p){p.unshift(h.p);h=h.prev}const id=key.join(",");if(String(encode(p,key).flat())!==String(ws.flat()))throw Error("replay mismatch");
+   for(let w=0;w<rows.length;w++){const next=new Map();for(let j=0;j<rows[w].length;j++){const row=rows[w][j];for(const ph of bits(s.masks[w][j])){const prev=states.get(ph);if(!prev)continue;let phase=ph;const p=row.p||ws[w].map((c,i)=>row.holds.has(i)?0:mod29(ai*(c-key[phase++%period])));const end=modPhase(ph+row.advance),old=next.get(end);if(old)old.n=Math.min(2,old.n+prev.n);else next.set(end,{prev,p,n:prev.n})}}states=next}
+   if(!states.size)return;let h=states.values().next().value;const p=[];while(h.p){p.unshift(h.p);h=h.prev}const id=key.join(",");if(String(encode(p,key,a).flat())!==String(ws.flat()))throw Error("replay mismatch");
    const paths=Math.min(2,[...states.values()].reduce((a,b)=>a+b.n,0)),endPhases=[...states.keys()],old=keysFound.get(id);
    if(old){old.paths=Math.min(2,old.paths+paths);old.endPhases=[...new Set([...old.endPhases,...endPhases])]}else keysFound.set(id,{key,p,paths,endPhases})
   }
@@ -76,12 +78,14 @@ function createSolver(period,dict){
  * Unknown words allowed; ties reported, not silently resolved as unique.
  * @param {number[][]} ws @param {number[]} key @param {Map<string,number[]>[]} dict @param {number} initialPhase
  */
-function decodeFixed(ws,key,dict,initialPhase=0){
+function decodeFixed(ws,key,dict,initialPhase=0,a=1){
+ if(!Number.isInteger(a)||a<1||a>28)throw Error("nonzero GP29 slope required");
+ const ai=Array.from({length:28},(_,i)=>i+1).find(v=>mod29(v*a)===1);
  const period=key.length;let states=new Map([[initialPhase,{score:0,n:1,prev:null,p:null}]]);
  for(const c of ws){const next=new Map();
   for(const [phase,head] of states){const p=[];function walk(i,ph){if(i===c.length){const known=!!dict[p.length]?.has(String(p)),score=head.score+(known?p.length:0),old=next.get(ph);if(!old||score>old.score)next.set(ph,{score,n:head.n,prev:head,p:p.slice()});else if(score===old.score)old.n=Math.min(2,old.n+head.n);return}
     if(c[i]===0){p.push(0);walk(i+1,ph);p.pop()}
-    const v=mod29(c[i]-key[ph]);if(v!==0){p.push(v);walk(i+1,(ph+1)%period);p.pop()}
+    const v=mod29(ai*(c[i]-key[ph]));if(v!==0){p.push(v);walk(i+1,(ph+1)%period);p.pop()}
    }walk(0,phase)}
   if(!next.size)return null;states=next;
  }
