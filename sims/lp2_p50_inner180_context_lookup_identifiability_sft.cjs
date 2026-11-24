@@ -40,12 +40,43 @@ function experiment(corpus, grid){
         const equations=A.concat(E.map((r,i)=>({r,v:target[i]})));const complete=build(equations);check(!complete.bad(),"prescribed perimeter impossible");const x=complete.solution();check(equations.every(({r,v})=>dot(r,x)===v),"back-substitution failed");constructions++;
       }
     }
-    const expected=raw?(mode==="cropped"?[178,0,76,0]:[180,0,76,0]):mode==="cropped"?(geo?[62,115,5,12]:[57,119,0,76]):(geo?[62,116,5,12]:[57,115,0,76]);
-    check(rank===expected[0]&&bad===expected[1]&&predicted===expected[3],"frozen original rank/control mismatch");
+    const expected=raw?(mode==="cropped"?[178,0,76,0]:[180,0,76,0]):mode==="cropped"?(geo?[62,115,2,12]:[57,119,0,76]):(geo?[62,116,2,12]:[57,115,0,76]);
+    check(rank===expected[0]&&bad===expected[1]&&dim===expected[2]&&predicted===expected[3],"frozen original rank/control mismatch");
     if(raw)check(dim===76&&constructions===3,"full output freedom");
     output.push({raw,mode,geo,parameters:n,innerEquations:A.length,rank,contradictions:bad,outerDimension:dim,plantPredicted:predicted,constructions});
   }
-  return output;
+
+  // Restrict the independent lookup functions to ONE shared table:
+  // P_i=f(B_i)+slope*f(B_prev)+intercept+h(column), all 29 slopes.
+  const shared=[];
+  for(const mode of ["cropped","physical"])for(const geo of [false,true]){
+    const n=257+(geo?8:0), cases=[];
+    for(let slope=0;slope<29;slope++){
+      const build=(plant)=>{const s=linear(n);
+        for(let i=0;i<I.length;i++){
+          if(mode==="cropped"&&(i===0||i===85))continue;
+          const idx=I[i],prev=mode==="cropped"?I[i-1]:idx-1;
+          const r=Array(n+1).fill(0);
+          r[G[idx]]=1;r[G[prev]]=mod(r[G[prev]]+slope);
+          r[256]=1;if(geo)r[257+idx%8]=1;
+          const f=x=>mod(x*x+2*x+11);
+          r[n]=plant?mod(f(G[idx])+slope*f(G[prev])+13+(geo?3*(idx%8):0)):P[i];
+          s.add(r);
+        }
+        return s;
+      };
+      const s=build(false);
+      check(s.bad()>0,"shared table unexpectedly consistent");
+      check(build(true).bad()===0,"shared table positive");
+      cases.push({slope,rank:s.rank(),contradictions:s.bad()});
+    }
+    const min=Math.min(...cases.map(v=>v.contradictions));
+    const expected=mode==="cropped"?(geo?41:45):(geo?30:33);
+    check(min===expected,"shared table residual mismatch");
+    shared.push({mode,geo,slopesTested:29,compatible:0,minimumResidual:min,positiveControls:29,cases});
+  }
+  return {independentTables:output,sharedTable:shared};
+
 }
 const root=path.resolve(__dirname,"..");
 const read=p=>JSON.parse(fs.readFileSync(path.join(root,p),"utf8"));
