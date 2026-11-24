@@ -1,6 +1,6 @@
 # Stage10 private return: new independently inspected candidate lanes
 
-**Decision (Agent31, 23 November 2026):** No previously missing private Stage10-to-LP2 key tape, creator-selected decoding instruction, accepted submission body, or first-hand unknown LP2 plaintext was recovered in the **three independent candidate lanes below**. This is a limited retrieval result, not proof that private participant-specific mail or onion uploads never existed. Do not resume a cipher search on an imagined 965-byte backend.
+**Decision (Agent31, 23 November 2026; bounded extension by Agent12, 24 November):** No previously missing private Stage10-to-LP2 key tape, creator-selected decoding instruction, accepted submission body, or first-hand unknown LP2 plaintext was recovered in the **three independent candidate lanes below** or in the targeted follow-up of the original 2014 IRC corpus. This remains a limited retrieval result, not proof that private participant-specific mail or onion uploads never existed. Do not resume a cipher search on an imagined 965-byte backend.
 
 ## Exact checked lanes
 
@@ -16,7 +16,23 @@ The third lane establishes the **different endpoint** the source instructs each 
 
 Targeted GitHub source searches for the exact 2014 upload user agent, the next-onion address, `2014 questionnaire Cicada`, `2014 welcome questionnaire`, and the exact signed public message returned the neuroretransmit source, later mirrors/secondary histories, plus unrelated results. A [2024 reconstruction by Connor Tumbleson](https://connortumbleson.com/2024/12/23/the-cicada-3301-mystery-puzzle-3-solve-part-4/) reports that **some participants received a welcome questionnaire rather than the next-onion pointer**, but does not supply a dated original alternative questionnaire body, public-key recipient, attachment, or independent authentic GP29 decoder. Other historical descriptions of questionnaire/TCP-server correspondence concern the separate 2012–2013 rounds. Neither report is evidence of a missing LP2 decryption key.
 
-This probe **did not** enumerate all other private mailboxes, live Tor hosts, non-indexed files, or every line of the previously indexed multi-megabyte IRC corpus. The four already screened public archives and original `squares*` CGI size witness remain indexed in [the earlier Stage10 original-source boundary](2014-stage10-squares-cgi-source-boundary.md); they were deliberately not rescanned.
+The original three-lane probe did not enumerate all other private mailboxes, live Tor hosts, non-indexed files, or every line of the multi-megabyte IRC corpus. The current follow-up adds a bounded May–July 2014 term/context scan of that corpus, but still does not enumerate those private or unindexed stores or participant-side server logs. The four already screened public archives and original `squares*` CGI size witness remain indexed in [the earlier Stage10 original-source boundary](2014-stage10-squares-cgi-source-boundary.md); they were deliberately not rescanned.
+
+## Targeted 2014 IRC follow-up: collection claim, no reply artifact
+
+The pinned [original `#cicadasolvers` log](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/irc-logs/%23cicadasolvers.freenode.log) is 18,487,233 bytes and 239,026 lines. A new, bounded May–July 2014 term/context pass found one relevant contemporary collection claim, but no new response object:
+
+| Date and source lines | What the participant says | What it establishes—and does not |
+| --- | --- | --- |
+| 20 June 2014, **208613–208622** | `Schizoid` says participants in the 2014 individualized puzzles supplied their own PGP key and Cicada later visited their servers and took it; lines 208620–208627 discuss a page they still hoped to find | Contemporary testimony that keys were collected. No key ID/fingerprint, raw server request, recipient-specific reply, encrypted payload, or attached instruction survives in this exchange. |
+| 10 June 2014, **197399–197438** | `iIIustrious` explicitly says "I'm 2013" and describes the "we're not a warez group, answer three questions" invitation | This is a 2013 recruitment discussion, not an authenticated 2014 LP2 Stage10 alternative. No original email body is posted. |
+| 2–3 May 2014, **164289–164290**, **166210–166247** | `Surtri` says everyone got the same message; `Shockzz` quotes the same onion for everyone; `exiled` says the file was signed, not encrypted | Corroborates the common public Stage11 response already summarized in [the contemporary release report](lp2-2014-release-participant-irc-original-evidence.md); it does not rule out every private exchange. |
+
+The exact token `questionnaire` does not occur in the log. Its only `surveys` match, line 164332, is explicitly classwork (lines 164330–164333). The 2024 Tumbleson account remains a secondary assertion without a dated original alternative body, identified recipient, attachment, or independently verifiable GP29 operation.
+
+A later [`krisyotam/cicada3301` mirror](https://github.com/krisyotam/cicada3301/tree/main/archives/cijhho/2014) was checked as a locator: its 2014 tree reproduces the public Stage10 page and Stage11 `message.txt.asc`, plus Cijhho archive material, but yielded no separate participant response or key. Because it nests the same Cijhho archive, it is not an independent contemporary witness.
+
+**Decision unchanged.** Public-key collection is not evidence of a delivered private key. The missing object is a participant-side original email or raw server capture of a distinct reply, with exact bytes, timestamp, recipient-key fingerprint, and any encrypted payload. Until such an object is recovered, there is no source basis for a private LP2 key or a GP29 decoder.
 
 ## Causal fork
 
