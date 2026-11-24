@@ -1,0 +1,110 @@
+{
+  "trainingPairs": 818,
+  "controlPairs": 671,
+  "tests": [
+    {
+      "key": {
+        "e": 17,
+        "k": 237
+      },
+      "recovered": {
+        "e": 17,
+        "k": 237,
+        "meanLog": -6.000876346451403
+      },
+      "heldoutExact": true,
+      "nativeTrainPairIoC": 0.006228456913827655,
+      "maxPairIoC": 0.006228456913827655,
+      "exponentInTop32": true
+    },
+    {
+      "key": {
+        "e": 331,
+        "k": 103
+      },
+      "recovered": {
+        "e": 331,
+        "k": 103,
+        "meanLog": -6.000876346451408
+      },
+      "heldoutExact": true,
+      "nativeTrainPairIoC": 0.006228456913827655,
+      "maxPairIoC": 0.006228456913827655,
+      "exponentInTop32": true
+    },
+    {
+      "key": {
+        "e": 839,
+        "k": 56
+      },
+      "recovered": {
+        "e": 839,
+        "k": 56,
+        "meanLog": -6.000876346451406
+      },
+      "heldoutExact": true,
+      "nativeTrainPairIoC": 0.006228456913827655,
+      "maxPairIoC": 0.006228456913827655,
+      "exponentInTop32": true
+    }
+  ],
+  "original": {
+    "best": {
+      "e": 414,
+      "k": 418,
+      "meanLog": -8.703276006601733
+    },
+    "maxPairIoC": 0.0013735172257222316,
+    "outputPairIoC": 0.0013110846245530394,
+    "outputRuneIoC": 0.034808843132249925,
+    "head": "DOEGTHHOPLEOJIALYLUYWMDYHEACSEAWNIAEINNGAENGOEAOAEXTHHHXEONGISTNGCSAETIALEAYNNGJDBRYDTHLGPTHUEANCONGEOAEEAFEGBPJTUEAI",
+    "topExponent": 664,
+    "top32": [
+      664,
+      104,
+      48,
+      24,
+      258,
+      25,
+      423,
+      819,
+      210,
+      488,
+      735,
+      39,
+      630,
+      669,
+      36,
+      414,
+      0,
+      15,
+      40,
+      435,
+      204,
+      538,
+      624,
+      694,
+      129,
+      305,
+      384,
+      219,
+      221,
+      353,
+      468,
+      654
+    ],
+    "rawPairIoC": 0.0013082467790453487,
+    "holdout": {
+      "meanLog": -9.00069730182177,
+      "pairIoC": 0.0012183080647216206,
+      "runeIoC": 0.034445778997940976,
+      "head": "WLUXPLOESEMMMGJSATHJWTHTHJCIALOETHSUNHTEIAEAREJETIJGTGFEAYAFJDBEOEODTGEAEWOEDNGFOOGITNGLMCIALHEFEAGYOEWLPBNGM"
+    }
+  },
+  "native": {
+    "trainingMeanLog": -5.159825783190975,
+    "testMeanLog": -6.013861459376062,
+    "testRuneIoC": 0.06254646809163257,
+    "testPairIoC": 0.006250417065195631
+  }
+}
