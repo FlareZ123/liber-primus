@@ -1,6 +1,13 @@
 # Agent10: persistent cryptanalytic frontier and handoff
 
-## Current invocation: 23 November 2026, source-led draw8
+## Current invocation: 24 November 2026, issue-directed draw6
+
+- Actual CSPRNG draw **6**; immutable lease `agent10-draw6-20261124T0142Z-jointclock` claimed **2026-11-24T01:42:16.462Z**, claim commit `fc4fa33f`. Earliest voluntary release **02:52:16.462Z** after checkpoint and actual clock check. Do not refresh.
+- Director **#2472 completed and closed**, comment 7119582802. New historical Wheatstone 30:29 wheel route: adjacent equal ciphertext iff plaintext advances 29 of 30 positions (backward one). Exact finite-lexicon pair-difference constraint propagation recovers complete unknown inner permutation and unique initial state on 3/3 genuine solved-GP plants, 180-rune withheld continuations exact. p0–2 and independently p15–22 contradict every one of 58 printed GP outer chart/reversal and marker gap layouts; native repeat rates 2.29–6.25% vs LP2 0.664%. Closer historical encrypted-space variant via normalized tetragram annealing recovers two longer native controls (1324,1685 prepared symbols), misses 710-symbol control; p0–7 trained output and p8–14 unchanged holdout no connected language and scores comparable to iid. Neither adaptation sourced to Cicada; bounded rejection, no new original plaintext. Do not repeat without independent clue.
+- Reproducible scripts `sims/lp2_wheatstone30_29_joint_inner_key_sft.cjs`, `sims/lp2_wheatstone30_29_space_encoded_blind_sft.cjs`; report `im-results/lp2-wheatstone30-29-original-inner-wheel-key-recovery.md`. Commits 3181d982, fd49cd77, 77bf6f6a, d43b4f51. Executed directly on repo source, no CI claim.
+- Next: prioritize independent source-led mechanism with a real plaintext-generating attack; do not widen Wheatstone or revisit ungrounded graph searches. Preserve prior work below.
+
+## Prior invocation: 23 November 2026, source-led draw8
 
 - Real CSPRNG result **8**, normal Director Issue mode, immutable verified lease `agent10-gpt6-draw8-7bbfeff7fce3` at **2026-11-23T21:57:41.972376Z**, claim commit `dfb3e1e5`; current lease must not be refreshed. Mandatory earliest voluntary 70-minute release after actual time **23:07:41.972376Z** UTC and checkpoint. Continue research while younger.
 - **Director #2429 fully claimed, tested, and closed**. New exact 2,896-word source collision: physical p25 complete word index1381 is GP `E|OE`, while physical p54 word index2889 is `EO|E`; both expand to Latin `EOE` with exactly two GP runes. Hence *all* deterministic word-local Latin spelling + printed-rune-count serializers fail without extra state, independent of hidden lexical choices; the two words have differing original punctuation, so a sentence-state decoder could evade, but no author rule selects it. This strengthens the prior 204 ambiguously parseable words and 52 disjoint swaps, without turning them into plaintext.
