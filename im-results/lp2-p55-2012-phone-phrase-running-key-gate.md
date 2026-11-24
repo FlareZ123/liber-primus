@@ -1,62 +1,78 @@
-# p55 2012 phone-phrase running-key gate
+# p55 / 2012 phone phrase: Gematria arithmetic and running-key gates
 
-**Status: bounded negative; no unknown plaintext recovered.**
+**Status: an interesting arithmetic alignment, but no decryption or authenticated key.**
 
-## Question and source-constrained candidate
+## Source-derived candidate
 
-The 2012 book-code walkthrough output recorded in Agent35's source note is:
+The historical 2012 book-code output recorded in Agent35's note is:
 
 > CALL US AT US TELE PHONE NUMBER TWO ONE FOUR THREE NINE OH NINE SIX OH EIGHT
 
-It contains 17 words and 76 characters including 16 spaces. GP29 contracts the TH in THREE to one rune, leaving 59 letter-runes; retaining the 16 spaces as tokens gives a 75-token candidate stream.
+It has 17 words, 76 characters including spaces, and 16 spaces. Contracting TH in THREE to the single GP29 rune leaves 59 letter-runes; retaining the 16 spaces as tokens gives 75 candidate tokens.
 
-Canonical p55 has 76 runes. Its first rune is the NG carry from p54; removing that carry leaves a 75-rune p55 body. This is an exact length match, not evidence that the phrase is plaintext or an intended key.
+Canonical p55 has 76 runes. Its first rune is the NG carry from p54; the remaining body has 75 runes and contains three F symbols at zero-based positions 14, 24 and 40.
 
-The 2013 source note describes the GP29-to-prime mapping and BASE29/prime-echo conventions. It supplies a historically plausible value representation, but does not say that the 2012 phrase is a p55 key or how spaces should be encoded.
+The 2013 source note documents the GP29-to-prime mapping and the prime/totient conventions. The 2014 Stage11 source note records HTML selectors 133 and 331. These facts motivate a narrow arithmetic check; they do not establish that the historical 2012 phrase was intended as a p55 key.
 
-## Frozen test
+## Arithmetic alignment (hypothesis, not proof)
 
-The test keeps p55 body order and aligns the 75 candidate tokens at offset zero. It tests:
+Using the first 29 primes for the 59 GP29 letter-runes, excluding spaces:
 
-- GP29-index key, with spaces represented as F/index 0.
-- 2013 Gematria prime values reduced modulo 29, with spaces represented either as F's prime value or numeric zero.
-- Both additive directions: plaintext = ciphertext minus key, and plaintext = ciphertext plus key.
-- Byte-XOR using GP29 indices and raw Gematria prime values for the cipher and key.
+- Gematria prime sum: **2262 = 78 × 29**.
+- Euler totient of that sum: **φ(2262) = 672 = 16 × 42**.
+- The phrase has **16 spaces**; the 2012 phone number 2143909608 has digit sum **42**.
+- The 2014 HTML selectors sum to **133 + 331 = 464 = 16 × 29**.
+- p55 has **75 body runes + 3 F symbols = 78**.
+- The sum of the 59 letter totients is **2203 = 76 × 29 − 1**, while full p55 has 76 runes. This last relation is algebraically dependent on the prime sum and the 59-letter count; it is not independent corroboration.
+- The 59-letter count is also 2 × 29 + 1.
 
-No key offset, permutation, transposition, fitted alphabet shift, or dictionary-selected spacing is introduced. The code also checks that each additive representation exactly reverses a planted 75-rune GP29 control.
+This is a compact cross-round numerical alignment among the 2012 phone phrase, the 2013 Gematria alphabet, the 2014 HTML selectors, and p55's length/F structure. It may be intentional, but numerical coincidence remains a live explanation. No first-party instruction currently says to sum the phrase, apply φ to that sum, interpret 78 as a deck or other object, or use 16 × 42 as a grid.
 
-## Results
+## Frozen decipherment tests
 
-| Key representation | Space value | Direction | IoC | Mean quadgram score |
-|---|---:|---|---:|---:|
-| GP29 index | F / 0 | subtract | 0.034234 | -7.457816 |
-| GP29 index | F / 0 | add | 0.032072 | -7.405517 |
-| prime mod 29 | prime(F) = 2 | subtract | 0.027387 | -7.278194 |
-| prime mod 29 | prime(F) = 2 | add | 0.027387 | -7.858919 |
-| prime mod 29 | numeric 0 | subtract | 0.031712 | -7.313106 |
-| prime mod 29 | numeric 0 | add | 0.028468 | -7.842922 |
+### Direct fixed running key
 
-The best additive output is still non-linguistic:
+The 75-token phrase was aligned at offset zero against the 75-rune p55 body. Both additive directions were tested using GP29 indices and 2013 prime values reduced modulo 29, with the two minimal space encodings. All outputs are non-linguistic; the best mean quadgram score is -7.278.
 
-EONANGPXMBCJRLWDEAENHOTPYBMIAXWGIAAETHGLUCBHDEJIAICUOWWMNHGEOGGTHEFTHTSOELIYNGBIALNGTHEAFAN
+Four direct byte-XOR representations were also tested. Their printable ASCII counts are 0/75, 26/75, 45/75 and 54/75; none yields coherent text.
 
-The same quadgram model scores the clear p57 control at approximately -4.42; the candidate outputs are materially worse. These short-text scores are ranking evidence, not a calibrated p-value.
+### p56-style totient receiver
 
-The four byte-XOR variants yield respectively 0/75, 26/75, 45/75 and 54/75 printable ASCII bytes. None produces coherent text. The strongest printable ratio is not itself evidence of plaintext.
+The solved p56 method uses φ(p) = p − 1 modulo 29 and treats ciphertext F as transparent: copy F unchanged and do not consume a key symbol. Applying that exact receiver to p55 with the phrase-derived prime/totient key was a motivated next test because p55 has three F symbols.
 
-All planted additive round-trip controls pass.
+Tested space-as-F versus space-as-zero, F-transparent versus non-transparent, and both signs. The p56-authentic subtract/F-transparent variants score:
 
-## Decision and scope
+| Key space value | Key symbols consumed | Unused | Mean quadgram |
+|---|---:|---:|---:|
+| F, shift φ(2)=1 | 72 | 3 | -7.776 |
+| numeric zero | 72 | 3 | -7.505 |
 
-The exact fixed-alignment 2012 phone phrase is **not** a direct additive/running key for the p55 body under GP29 indices or the source-derived prime-mod-29 representation. The tested byte-XOR representations also fail.
+The other sign and non-transparent controls also produce gibberish; the best totient variant overall is -7.240 and is not the p56-authentic F-transparent receiver.
 
-This does not reject a source-selected space-changing reader, a transposition with an independently specified key, or another transformation that uses the phrase in a different role. In particular, it does not close Agent6's broader #2278 investigation. It only removes the simplest length-matched running-key interpretation; do not rescue it with arbitrary offsets or fitted permutations.
+### Prime-stream offsets derived from the arithmetic
+
+The quotient 78 and φ-sum 672 are the only source-derived candidate prime-stream indices suggested by the arithmetic. Starting the p56-style φ(prime) stream at the 78th prime (397) or the 672nd prime (5011), with F-transparent subtraction, also fails:
+
+| One-based prime index | First prime | Mean quadgram |
+|---:|---:|---:|
+| 78 | 397 | -7.808 |
+| 672 | 5011 | -7.728 |
+
+No arbitrary offsets or key permutations were searched.
+
+All synthetic additive and p56-style totient round-trip controls pass. The same quadgram model scores clear p57 at approximately -4.42; these short-text scores are ranking evidence, not calibrated probabilities.
+
+## Decision
+
+The direct 2012 phrase running key, the p56-style phrase-derived totient key, and the two arithmetic-derived prime-stream starts do **not** decrypt p55.
+
+Preserve the arithmetic alignment as an unverified clue, not as a solution or a reason for further unconstrained search. The next useful action is an independent source audit: find a first-party instruction or original artifact that uniquely selects an operation involving the 2012 phrase, Gematria, φ, 16, 42 or 78. Without that, park the branch. In particular, do not promote a Tarot/78-card interpretation or invent a 16 × 42 grid merely because the numbers fit.
+
+This does not reject Agent6's broader #2278 space-changing-reader investigation or other independently specified receivers.
 
 ## Reproduction
 
-Run:
-
-- sims/lp2_p55_2012_phone_phrase_running_key_sft.cjs
+Run sims/lp2_p55_2012_phone_phrase_running_key_sft.cjs with Node 22.
 
 Inputs:
 
@@ -64,6 +80,6 @@ Inputs:
 - resources/control/dukotah_english_quadgrams.txt
 - resources/external/2013-twitter-stage-gematria-source.md
 - workplace/2014-html-133-331-arithmetic-page-selector.md
-- agents/agent35/memory.md (the historical 2012 phrase and its qualifications)
+- agents/agent35/memory.md (historical phrase and qualifications)
 
-This is an intermediate negative, not an established result; results/README.md is unchanged.
+This remains an intermediate research note; results/README.md is unchanged.
