@@ -35,8 +35,29 @@ For a fixed choice of ciphertext-zero holds, the eight queue lanes evolve indepe
 
 Thus an exact round trip cannot authenticate this cipher, and the lexical exclusion must not be generalized to all possible plaintexts or spacing-free receivers. The symbolic block-domain algorithm provides a reusable construction for exact state feasibility and an eventual independently constrained language search, not evidence that an original key has been found.
 
+## Exact spacing-free trigram inverse: all primers and all terminal masks
+
+An independent extension removes the intact-word assumption entirely. For each fixed F-hold mask, each consuming position is assigned to a queue lane modulo eight; the lane plaintext is an affine alternating trajectory of its unknown initial key value. Exclude initial values that ever emit consuming plaintext zero. A physical trigram spans at most three consecutive consuming lanes, even across literal F holds. Aggregate its log-probability into cyclic unary, binary and ternary factors. Conditioning on the first two lane values, dynamic programming over the last two values maximizes the complete cyclic factor graph, including both wraparound factors. This optimizes all 29^8 possible primers (subject to legality) for each mask without heuristic pruning. Recompute the winning score from the decoded runes and check forward replay.
+
+Training uses 217,106 Shakespeare runes, 62,492 Gibran runes, and five non-target native sections of lengths 184,157,89,85,95 (including solved LP2 p56/p57). All four targeted native sections are excluded from training. The score is a backed-off trigram log-likelihood, not a universal definition of prose. Synthetic controls use deterministic xorshift primers and a ciphertext-visible mask-count eligibility cap (at most eight prefix zeros and twelve suffix zeros, at least one consuming zero in the prefix); if the initial window is ineligible, take the first eligible 308-rune window in steps of sixteen. Eligibility is assessed before key recovery, not by plaintext recovery quality.
+
+| Native control | Prefix/holdout | Exact prefix | Exact holdout | Fitted primer | Prefix / holdout score (nats/rune) |
+| --- | --- | --- | --- | --- | --- |
+| First KOAN | 205/103 | 205 | 103 | Exact | -2.228 / -2.137 |
+| Second KOAN | 205/103 | 205 | 103 | Exact | -2.273 / -2.056 |
+| LOSS (offset 16) | 205/103 | 196 | 103 | Different | -2.414 / -2.462 |
+| WELCOME | — | — | — | No eligible window | — |
+
+The three eligible controls recover 606/615 prefix runes and 309/309 withheld runes, with exact ciphertext replay. Two of three recover their entire initial primer. LOSS illustrates genuine ambiguity: the fitted mask/primer differs, but the queue converges and the heldout plaintext is exact. WELCOME could not satisfy the declared eligibility cap and is not counted as a success or failure of inference.
+
+Original p54–55, fixed 205/103 split: all eight prefix masks admit legal primers. The exact prefix optimum is -5.121855339508181 nats/rune, primer [14,17,19,14,4,6,19,25], literal hold offsets 41 and 195 (zero-based). It replays the prefix exactly. Freezing the fitted end state and enumerating all eight suffix masks gives **zero legal continuations**. No original holdout score or plaintext exists for that fitted state.
+
+A separate retrospective full-308-rune optimum enumerates all 64 masks; all are mathematically feasible. Its globally optimal score is **-5.292708029970063 nats/rune** with primer [3,24,20,14,22,6,27,4], holds 247 and 273, exact 308/308 replay, and nonlinguistic output. This is a model-conditional all-primer MAP result, not merely a failure to guess a key; it is not an all-primer feasibility exclusion or a proof against arbitrary plaintext distributions. Neither original result authenticates a primer. Retire this fixed eight-lane additive plaintext-feedback/F-hold spacing-free prose route on p54–55, in addition to the intact-word route on p0–2.
+
+[Exact cyclic trigram SFT](../sims/lp2_plaintext_autokey_q8_fhold_spacingfree_trigram_sft.cjs), executed in connected JS; no independent CI run claimed.
+
 ## Scope and next decision
 
-Retire only the fixed q8 intact-group native lexical route on p0–2. Do not tune primer length, feedback sign or reset policy to rescue it. A broader spacing-free linguistic attack needs an independently selected crib or state constraint that distinguishes a candidate from the demonstrated legal nonprose witnesses. Earlier no-F autokey invariants and q13 F-hold anchor tests address distinct models.
+Retire the fixed q8 intact-group native lexical route on p0–2 and the fixed q8 spacing-free native-prose route on p54–55. Do not tune primer length, feedback sign or reset policy to rescue them. A different linguistic attack needs an independently selected crib or state constraint that distinguishes a candidate from the demonstrated legal nonprose witnesses. Earlier no-F autokey invariants and q13 F-hold anchor tests address distinct models.
 
 Reproducers: [exact primer/anchor SFT](../sims/lp2_plaintext_autokey_q8_fhold_primer_exact_sft.cjs) and [spacing-free block-domain SFT](../sims/lp2_plaintext_autokey_q8_fhold_spacingfree_reach_sft.cjs). Inputs: canonical corpus blob 054f2a0f780b7d46901acbe3d9bf4f0ac1801165, intact transcription 43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7, native solved reference 1b064ef6d85819b7d96adaff31a82d1ec551598f, spelling lexicon 140e1d22b5f8c45deddd2e8b25549d9d6307d938. Actual connected JS execution; no independent CI execution claimed.
