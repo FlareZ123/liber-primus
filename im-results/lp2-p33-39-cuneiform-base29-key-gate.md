@@ -4,12 +4,7 @@
 
 ## Source-constrained premise
 
-The p33–39 cuneiform section supplies the numerical inputs **1033** and **3301**. The repeated header raster and its page scope are documented in [the p33–39 cuneiform raster-reuse gate](lp2-p33-39-cuneiform-raster-reuse-source-gate.md). The authenticated 2013 Cicada TCP-server specification defines the `BASE29` operation with alphabet `0123456789ABCDEFGHIJKLMNOPQRS`; it gives:
-
-- `BASE29(1033) = 16I`
-- `BASE29(3301) = 3QO`
-
-See [the 2013 signed server source](../resources/external/2013-tcp-server-signed-source.md).
+The p33–39 cuneiform section supplies the numerical inputs **1033** and **3301**. The repeated header raster and its page scope are documented in [the p33–39 cuneiform raster-reuse gate](lp2-p33-39-cuneiform-raster-reuse-source-gate.md). The signed 2013 Cicada TCP-server specification defines `BASE29` with alphabet `0123456789ABCDEFGHIJKLMNOPQRS` and explicitly prints only `BASE29(3301) = 3QO`. The March 3 participant transcript records `BASE29 1033 → 16I`; the January 26 participant transcript records `BASE29 30 → 11` and returns a participant-side handler. Neither participant log is PGP-signed as a whole; the March NEXT signature authenticates only its terminal payload. The `30 → 11` response is a two-digit witness against fixed three-character framing. The Jan26 handler parses decimal integers and emits minimal-width positive outputs; its zero/negative behavior is participant-specific, not official protocol semantics. See [the signed server source and reconciled vectors](../resources/external/2013-tcp-server-signed-source.md) and [the structured transcript index](../resources/external/2013-tcp-live-test-vectors.json).
 
 Mapping those base-29 digit values directly to GP29 indices is an inference, not an instruction explicitly stated by either source. It yields:
 
@@ -59,7 +54,7 @@ Finally, the six- and three-digit sequences were used as ordinary column-rank ke
 
 The original images 50.jpg–56.jpg show the same two sexagesimal numerals (17,13) and (55,1), i.e. 1033 and 3301. The footer on physical p33 becomes a repeated header on p34–39. The five red numbered units are actually on **p36–38**, not five separate fields on p33: 139/91/98/96/129 runes, with item4 continuing across p37→38. The repeated emblem and five labels establish chapter scope and ordering, not a typed protocol trace.
 
-The [preserved participant-side March log](../resources/historical/cicada2013-clientlog-1362290293-9.txt) gives the exact ordered command exchange below. The [signed January 2013 specification](../resources/external/2013-tcp-server-signed-source.md) independently establishes command semantics. The literal 2013 challenge example is BASE29 3301 → 3QO; it is not the March BASE29 1033/DH 3301 pair. The signature on the March NEXT text authenticates only its payload, not the earlier numerical transcript. Prior work already analyzed the same DH3301 tuple and the [session census](../sims/lp2_2013_dh_session_census_sft.cjs); the new raw file is a local preservation of a known witness, not a new DH discovery.
+The [preserved participant-side March log](../resources/historical/cicada2013-clientlog-1362290293-9.txt) gives the exact ordered command exchange below, including the observed `BASE29 1033 → 16I` response. The [signed January 2013 specification](../resources/external/2013-tcp-server-signed-source.md) independently establishes command semantics and its own `BASE29 3301 → 3QO` example. A separate January 26 participant log records `BASE29 30 → 11` and returns a CODE handler; that two-digit response resolves positive-output width but remains an unsigned participant witness. The signature on the March NEXT text authenticates only its payload, not the earlier numerical transcript. Prior work already analyzed the same DH3301 tuple and the [session census](../sims/lp2_2013_dh_session_census_sft.cjs); the new raw file is a local preservation of a known witness, not a new DH discovery.
 
 | Wire value, in recorded order | Protocol type | Source-fixed from p33's two numerals? |
 |---|---|---|

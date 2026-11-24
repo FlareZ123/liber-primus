@@ -109,7 +109,7 @@ Consequently “take the next manuscript word” is an English-name reinterpreta
 The task was to determine whether the exact signed 2013 protocol defines a reversible state update that can be applied to LP2 without inventing a recurrence. Replaying its actual arithmetic confirms:
 
 - DH: 5^6 mod23 = 8; 5^15 mod23 = 19; 8^15 mod23 = 19^6 mod23 = 2. The protocol returns one shared scalar K=2.
-- BASE29: 3301 converts to 3QO; 1033 converts to 16I. This is stateless integer-to-base29 conversion, not a rune decoder, key schedule or stream generator.
+- BASE29: the signed specification explicitly gives `3301 → 3QO`; the March 3 participant log records `1033 → 16I`; the January 26 participant log records `30 → 11` and returns a participant-side handler. The two-digit `30 → 11` response rules out fixed three-character output and supports minimal-width positive-integer conversion. Participant logs are not PGP-signed as a whole; the March signature covers only `NEXT`. This remains stateless integer-to-base29 conversion, not a rune decoder, key schedule or stream generator.
 - NEXT: the client supplies text and the server stores it. The server does not calculate a successor, advance a counter, or emit a new state.
 
 The now-reconstructed LP2 tuple is (p,g,a,b,A,B,K,e,q)=(23,5,6,15,8,19,2,3,4). The signed 2013 specification directly exposes p,g,A,B,K; the private exponents a,b are recoverable from this small public example, while e=3 and q=4 come from the independent LP2 marker/square construction. The protocol has no e or q fields, no per-symbol update, and no function S(n+1)=F(S(n)). The exact 2013 command family also contains no NUMBER, PRIMES, COUNT, GP29 mapping, KDF, byte/rune serialization, or symmetric payload cipher.

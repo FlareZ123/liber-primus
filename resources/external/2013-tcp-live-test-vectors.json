@@ -1,5 +1,5 @@
 {
-  "classification": "Mixed provenance: the TCP protocol specification is authenticated by Cicada's 2013 signing key; the participant logs are timestamped 2013 but first appear in the pinned public GitHub archive in 2024, and are not OpenPGP-signed as a whole. The March DH3301 transcript's subsequent NEXT payload is independently signed, but that signature does not authenticate the surrounding log. The January DH118818811 session has no signed NEXT payload. Tor hidden-service instructions and the participant server's localhost binding mean 127.0.0.1 log addresses are expected and do not establish self-testing.",
+  "classification": "Mixed provenance: the TCP protocol specification is authenticated by Cicada's 2013 signing key; the participant logs are timestamped 2013 but first appear in the pinned public GitHub archive in 2024, and are not OpenPGP-signed as a whole. The January 26 BASE29 30→11 session includes participant-authored CODE source; the March 3 BASE29/DH session's subsequent NEXT payload is independently signed, but that signature does not authenticate the surrounding log or its BASE29 response. The separate January DH118818811 session has no signed NEXT payload. Tor hidden-service instructions and participant-server localhost binding mean 127.0.0.1 log addresses are expected and do not establish self-testing.",
   "archiveCommit": "ade9a02889ef8acbc8cde8edbfd0a785c369f4c3",
   "sources": [
     {
@@ -125,30 +125,31 @@
       }
     },
     {
-      "role": "full participant server transcript of a January 2013 small-modulus DH exchange",
+      "role": "full participant-server transcript of a January 26 2013 BASE29 exchange and returned CODE handler",
       "url": "https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/irc-logs/clientlog-1359239635-3.txt",
       "observed": {
-        "timestamp": "2013-01-26 22:35:47.064",
-        "dhModulus": 5,
-        "serverSelectedBase": 3,
-        "serverSelectedSecret": 3,
-        "serverPublic": 2,
-        "clientPublic": 3,
-        "sharedKeyReturned": 2
+        "base29Request": 30,
+        "base29Response": "11",
+        "base29RequestAt": "2013-01-26 22:35:23.884",
+        "base29ResponseAt": "2013-01-26 22:35:23.885",
+        "codeRequestAt": "2013-01-26 22:36:23.651",
+        "codeResponseContainsBase29Handler": true,
+        "effectiveAlphabet": "0123456789ABCDEFGHIJKLMNOPQRS",
+        "alphabetLiteral": "0123456789ABCDEFGHIJKLMNOPQRSTUVXYZ",
+        "inputParser": "int(parts[1])",
+        "positiveIntegerRule": "Repeated n % 29 digit extraction and integer division while n > 0",
+        "zeroOutput": "0",
+        "negativeOutput": "0 (participant-specific loop behavior)",
+        "leadingZeroInput": "Discarded by int()"
       },
-      "provenanceNote": "A complete participant-side exchange, but no signed NEXT payload or other session-level organizer authentication is preserved. It is a live-protocol record, not the signed DH23 worked example.",
+      "provenanceNote": "This is a contemporaneous participant-server transcript and returned participant source, not a Cicada-signed response. It records a second positive-input BASE29 witness and a two-digit output that distinguishes minimal-width from fixed three-character framing. The log and CODE response do not authenticate the remote client's identity; zero/negative/leading-zero behavior is specific to this participant implementation.",
       "archiveRecord": {
         "path": "irc-logs/clientlog-1359239635-3.txt",
         "rawUrl": "https://raw.githubusercontent.com/neuroretransmit/cicada/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/irc-logs/clientlog-1359239635-3.txt",
         "bytes": 18221,
         "gitBlobSha1": "db9c74299aa61ba14ef5367d45384d32fc936aa3",
-        "sha256": "bcaa0d237487651f81ea906d5aed6e00d5a6857655b98c63b7ff2be8f094521a",
         "first": "2013-01-26 22:33:55.757",
-        "last": "2013-01-26 22:36:44.288",
-        "dhRequest": 5,
-        "serverBase": 3,
-        "serverSecret": 3,
-        "next": false
+        "last": "2013-01-26 22:36:44.288"
       }
     }
   ],
@@ -411,5 +412,31 @@
       "The participant logs' embedded 2013 timestamps are not independently authenticated by their 2024 GitHub archive custody. The January 118818811 session has no signed NEXT payload and no authenticated client identity.",
       "The mainlog's 127.0.0.1 addresses are consistent with the signed protocol's Tor hidden-service instructions and localhost server binding; they do not establish a local self-test."
     ]
+  },
+  "base29Framing": {
+    "alphabet": "0123456789ABCDEFGHIJKLMNOPQRS",
+    "signedProtocolVector": {
+      "input": 3301,
+      "output": "3QO",
+      "source": "messages/2013/tcp-server.asc; OpenPGP VALID under Cicada fingerprint 6D854CD7933322A601C3286D181F01E57A35090F"
+    },
+    "participantVectors": [
+      {
+        "input": 30,
+        "output": "11",
+        "source": "irc-logs/clientlog-1359239635-3.txt; 2013-01-26 22:35:23.884 UTC",
+        "status": "participant transcript; not OpenPGP-signed"
+      },
+      {
+        "input": 1033,
+        "output": "16I",
+        "source": "irc-logs/clientlog-1362290293-9.txt; 2013-03-03",
+        "status": "participant transcript; not OpenPGP-signed as a whole; NEXT payload separately signed"
+      }
+    ],
+    "positiveIntegerFraming": "The observed 30→11 output is minimal-width and rules out a fixed three-character field (which would be 011).",
+    "participantHandler": "The Jan26 CODE response parses a decimal integer, indexes the first 29 characters of its alphabet literal by n%29, repeatedly divides positive n by 29, and returns 0 for an empty result.",
+    "edgeCaseCaveat": "The Jan26 participant handler discards input leading zeros and returns 0 for zero and negative values. These are participant-specific implementation details, not authenticated official Cicada semantics.",
+    "receiver": "No GP29 rune mapping, page address, keystream clock, key schedule or inverse decoder is specified."
   }
 }

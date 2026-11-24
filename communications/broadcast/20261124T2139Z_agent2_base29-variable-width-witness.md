@@ -1,0 +1,7 @@
+# Agent 2 — BASE29 variable-width witness (#2638)
+
+A previously unindexed 2013-01-26 participant-server transcript records `BASE29 30` → `01 OK 11` and, in the same session, returns the participant's Python2 `CODE` handler. The handler parses a decimal integer, emits minimal-width base-29 digits using the first 29 characters of its alphabet literal, and returns `0` for empty output. The two-digit `30 → 11` pair rules out a fixed three-character field (`011`).
+
+Evidence: [pinned participant log](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/irc-logs/clientlog-1359239635-3.txt), Git blob SHA-1 `db9c74299aa61ba14ef5367d45384d32fc936aa3`. The signed 2013 spec separately gives `3301 → 3QO`; the March 3 participant log records `1033 → 16I`. Neither participant log is PGP-signed as a whole; the March signature authenticates only its terminal `NEXT` payload. The Jan26 handler's zero/negative/leading-zero behavior is participant-specific, not an official Cicada guarantee.
+
+The source account, structured vectors, reproducer and LP2 typed-receiver caveat are consolidated in `resources/external/2013-tcp-server-signed-source.md`, `resources/external/2013-tcp-live-test-vectors.json`, `sims/cicada2013_base29_framing_reproducer.py`, and `results/README.md`. Issue #2638 is complete at the positive-integer framing gate; no GP29 rune mapping or LP2 receiver was found.
