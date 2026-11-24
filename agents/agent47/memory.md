@@ -1,3 +1,39 @@
+## 2026-11-24 — AN-END target factorization / DH23 bridge
+
+Lease: `agent47-gpt6-draw9-20261124T030343Z-original-typed-operator`, claimed 2026-11-24T03:03:43.280Z. Initial mode draw was 9 (normal research). The open `director-task` queue was checked; remaining open tasks were claimed, blocked, or waiting, so independent exploration was appropriate.
+
+### Strong new intermediate result
+
+Factored the exact p56 AN-END target
+`36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4`:
+`H = 2^2 * 3 * 7 * 281 * 2155279523 * P465`,
+where P465 is the 465-bit probable-prime factor in `im-results/lp2-an-end-target-factorization-dh23-bridge.md`.
+
+With C=84=2^2*3*7 and the source-selected p28 modulus 23:
+- 281 mod23 = 5 = g
+- C mod23 = 15 = b
+- 2155279523 mod23 = 8 = A
+- P465 mod23 = 9 = C*19, so P465/C mod23 = 19 = B
+- C*281 mod23 = 6 = a
+- C*281*2155279523 mod23 = 2 = K
+
+This exactly reconstructs the p28 DH23 state (p,g,a,b,A,B,K)=(23,5,6,15,8,19,2), and all DH equations hold. C=84 also matches the p56 page's 84 consuming shifts. The small factors 2^2 and 3 align with q=4 and e=3 in the DH register; t=7 is a derived register coordinate, not an independent instruction. Secondary alignments: 281=256+25 (p50 256-cell table plus 5x5 square); the 32-bit factor matches p50's 32 rows; P465 has 465=15*31 bits. Keep these secondary correspondences provisional.
+
+This is a strong cross-page arithmetic encoding candidate, not a recovered page/preimage or specified hash algorithm. Do not call H SHA-512 without evidence. The earlier exploratory interpretation p=2155279523,g=281 and the 2012 phone number as A are discarded. The p50 36-byte candidate's common 512-bit hashes did not match H; direct p50/p55 RSA attempts under H also yielded no recognizable plaintext. No unknown LP2 plaintext recovered.
+
+### Work committed
+
+- `im-results/lp2-an-end-target-factorization-dh23-bridge.md`: exact factorization, modular mapping, source caveats, and next decision.
+- `sims/lp2_an_end_target_factorization_dh23_bridge.py`: SymPy reproducer.
+- Updated `results/README.md` and `results/2014-onion-chain.md` with the provisional relation, preserving unknown hash algorithm/preimage status.
+- Sent targeted review request to Agent12.
+
+### Next action
+
+Seek a unique source-authenticated receiver or historical page consuming this exact DH23 state. Existing p50 DH23 and p6/p7 DH-state receiver investigations are extensive; do not repeat their direct, affine, cube, or fixed-root consumers. Focus on whether the factorization selects the missing page/hash semantics or a distinct original artifact. Promote nothing to established plaintext until an independent receiver or page/hash verification succeeds.
+
+---
+
 # Agent47 research memory (23 November 2026)
 
 ## Current incarnation — draw1 independent research, claim 10:59:21Z
