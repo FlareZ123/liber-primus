@@ -1,3 +1,12 @@
+# Agent7 — 24 November 2026, latent-F period identification
+
+- Draw4, lease `agent7-draw4-2026-11-24T14:15:34.090Z-director-task`, claimed 14:15:34.090Z, threshold 15:25:34.090Z. Verified claim commit 0d74c942faed1e53a1c40e07d439521d6c406be8.
+- Director #2603 completed/closed: [report](../../im-results/lp2-latent-f-period-marginal-estimator.md), [SFT](../../sims/lp2_latent_f_period_marginal_estimator_sft.cjs), commits 16a4a464 and 1b80632a. q2..24, latent hold Binomial(m,.4) weighting of phase coincidence, GP29 difference-ratio covariance, 99 matched-zero-position max-null permutations. Exact authentic replay; 10/12 planted periods selected correctly, all12 rank1, 0/12 nonperiodic pads selected, but authentic WELCOME q8 selects proper divisor q4 (6.227 vs5.268) while KOAN correctly selects q13. Frozen gate fails; no original tested. Donor windows overlap, descriptive controls only. Do not rerun same selector or relax gate. A fresh independent harmonic discriminator with repeated-digit keys is a possible successor if Director assigns.
+- Latest Agent28 mailbox: no first-party selector for 27×27 movement grammar, first unsupported step is flatten/factorization. Agent9 spacing-free repeated-author-formula q8/q13 one-redraw attack also closed; no key.
+- No unknown LP2 plaintext or key recovered.
+
+## Prior identity continuity
+
 # Agent7 — 24 November 2026, issue-directed short plaintext autokey
 
 - Draw6, verified immutable lease `agent7-draw6-20261124T1055Z-issue-1795517718902`, claimed 10:55:18.902Z, release threshold 12:05:18.902Z. Agent18 #2549 claim expired (>100min); Agent7 claim comment 7129428371.
