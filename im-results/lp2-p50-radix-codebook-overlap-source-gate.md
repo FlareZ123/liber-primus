@@ -29,6 +29,20 @@ The equivalence is also algebraic for unconstrained downstream byte lookup funct
 
 The standalone [CommonJS test](../sims/lp2_p50_radix_codebook_overlap_sft.cjs) enumerates both entire codebooks, verifies every original printed cell, constructs the complete byte permutation T, tests all 256 round trips and publishes a row-major source digest. It also uses the eight discriminating strings as positive rejection controls. No search for fluent LP2 output is involved.
 
+## Direct lookup-box classification (Director #2568)
+
+The same source-exact 256 tokens also give a stronger exclusion of the direct lookup interpretation, independent of row/column ordering and of the two surviving radix choices. Using the independently adjudicated `lp2-grid-256.json` original readings, the multiplicity histogram is:
+
+| Number of occurrences of a byte | 0 | 1 | 2 | 3 | 4 |
+|---|---:|---:|---:|---:|---:|
+| Number of byte values | 95 | 92 | 49 | 14 | 6 |
+
+The base60 range is 0–255; the base59 range is 0–251. Both have exactly 161 distinct values and 127 equal-value unordered pairs. For example, the original token `33` is at zero-based printed positions 7 and 14 (p49 row1 column8 and row2 column7). Thus any deterministic token-to-byte relabeling retains at least 95 excess duplicate positions. No inverse permutation exists; changing order, reversing rows or bijectively relabeling values cannot repair it. AES S-box/inverse and all bijective byte substitutions are excluded without comparing particular arrays.
+
+**Additional algebraic exclusion:** any full-domain affine map F₂⁸→F₂⁸ of rank r has exactly 2^r distinct outputs and constant nonempty fiber size 2^(8−r). The observed 161 is not a power of two, and its nonempty fibers have sizes 1, 2, 3 and 4. This excludes *every* linear or affine eight-bit lookup, including conventional CRC-8 byte tables (fixed initial state, reflection and constant XOR do not affect the argument), even after arbitrary reordering of input indices or bijective output relabeling. This covers singular CRC choices too. For the familiar uniform-iid byte null, expected distinct values are 162.0071 and expected equal-value pairs 127.5; the observed counts are close to those expectations, not evidence for a particular cipher or for randomness.
+
+The existing [SFT](../sims/lp2_p50_radix_codebook_overlap_sft.cjs) now prints exact missing byte lists, multiplicities and collision totals for both codebooks. The arithmetic was executed in the connector runtime against the source JSON; no new CI run is required or claimed. No direct standard-table inverse or affine lookup can be the consumer. Nonbijective nonlinear functions (for example as part of a larger reversible construction), byte ciphertext or context-dependent registers remain possible. No authored receiver or unknown plaintext was obtained. Since the permutation prerequisite fails, no specific standard-table comparisons or fitted transforms are warranted.
+
 ## Historical evidence gate and next discriminating action
 
 The first-party 2013 specification gives an explicit `BASE29 3301 -> 3QO` example, whereas no surviving source-authenticated original instruction gives a p50 digit alphabet, unsigned-byte type, grouping, row direction or recipient. The original 2014 Stage11 delivery index has only sequential JPEG references and no separate table legend. The 11 May 2014 `decimal.txt`/`sexagesimal.bin` files are participant-derived from copied manuscript tokens, with documented corrections, so their base60 choices cannot settle author intent. These points are separately documented by [source-codec decision #1968](https://github.com/FlareZ123/liber-primus/issues/1968), [binary typing decision #2087](https://github.com/FlareZ123/liber-primus/issues/2087), and [exact provenance decision #2029](https://github.com/FlareZ123/liber-primus/issues/2029).
