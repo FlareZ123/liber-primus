@@ -100,20 +100,87 @@ function attack(corpus, transcript, lexicon) {
     for(let i=0;i<784;i++)if(alive[i])for(let s=0;s<29;s++)if(alive[i]&(1<<s))survivors.push([Math.floor(i/28)+1,i%28+1,s]);
     return {survivors,first,checked};
   }
+
+  /** Exact full-overlap inverse on the forest of two interval partitions. */
+  function solveFull(CA,CB,va,vb,drop,offset,state) {
+    const [a,b,s]=state, sites=vb.sites.filter(i=>i>=drop);
+    const domains=new Map(),edges=new Map(),adj=new Map();
+    function domain(page,variant,wi,prefix) {
+      const key=prefix+wi;
+      if(!domains.has(key)){
+        const opt=variant.opts[wi];
+        // The incoming single-rune fragments are not independent words.
+        const w=wi===0&&page.spans[0].len===1
+          ?Array.from({length:29},(_,j)=>[j]).filter(x=>opt.key.endsWith("*")||((x[0]===0)===opt.key.endsWith("1")))
+          :opt.words;
+        domains.set(key,w);adj.set(key,[]);
+      }
+      return key;
+    }
+    for(let k=0;k<sites.length;k++){
+      const i=va.sites[offset+k],j=sites[k],wa=A.where[i],wb=B.where[j];
+      const l=domain(A,va,wa,"A"),r=domain(B,vb,wb,"B"),key=l+":"+r;
+      if(!edges.has(key)){const edge={l,r,g:[]};edges.set(key,edge);adj.get(l).push(edge);adj.get(r).push(edge);}
+      edges.get(key).g.push({ai:i-A.spans[wa].start,bi:j-B.spans[wb].start,d:mod(CA[i]-CB[j])});
+    }
+    // D=a*PA-b*PB+s, hence b*PB=a*PA+s-D.
+    const signature=(w,e,isA)=>e.g.map(x=>isA?mod(a*w[x.ai]+s-x.d):mod(b*w[x.bi])).join(",");
+    const seen=new Set();
+    function acyclic(k,parent) {
+      check(!seen.has(k),"overlap cycle");seen.add(k);
+      for(const e of adj.get(k)){const other=e.l===k?e.r:e.l;if(other!==parent)acyclic(other,k);}
+    }
+    for(const k of domains.keys())if(!seen.has(k))acyclic(k,null);
+    function reduce(k,parent) {
+      for(const e of adj.get(k)){
+        const other=e.l===k?e.r:e.l;if(other===parent)continue;
+        if(!reduce(other,k))return false;
+        const support=new Set(domains.get(other).map(w=>signature(w,e,other===e.l)));
+        const next=domains.get(k).filter(w=>support.has(signature(w,e,k===e.l)));
+        domains.set(k,next);if(!next.length)return false;
+      }
+      return domains.get(k).length>0;
+    }
+    const chosen=new Map();
+    function select(k,parent,required,edge) {
+      const w=domains.get(k).find(w=>!edge||signature(w,edge,k===edge.l)===required);
+      check(w!==undefined,"constructive forest failure");chosen.set(k,w);
+      for(const e of adj.get(k)){
+        const other=e.l===k?e.r:e.l;if(other===parent)continue;
+        select(other,k,signature(w,e,k===e.l),e);
+      }
+    }
+    for(const k of domains.keys())if(!chosen.has(k)){
+      if(!reduce(k,null))return null;
+      select(k,null,"",null);
+    }
+    const pA=A.spans.map((_,i)=>chosen.get("A"+i)||null),pB=B.spans.map((_,i)=>chosen.get("B"+i)||null);
+    const render=p=>p.map(w=>w?w.map(x=>corpus.translit[x]).join(""):"?").join(" ");
+    const recoveredPad=[];
+    for(let k=0;k<sites.length;k++){
+      const i=va.sites[offset+k],j=sites[k],wa=A.where[i],wb=B.where[j];
+      const pa=pA[wa][i-A.spans[wa].start],pb=pB[wb][j-B.spans[wb].start];
+      const K=mod(CA[i]-a*pa-s);
+      check(mod(b*pb+K)===CB[j],"full candidate forward replay");
+      recoveredPad.push(K);
+    }
+    return {plaintextA:render(pA),plaintextB:render(pB),recoveredPad};
+  }
+
   const summaries=[];
   for(const mode of [false,true]){
     const aa=variants(A,mode),bb=variants(B,mode);
-    let placements=0,pass=0,triples=0;const hist={},examples=[];
+    let placements=0,pass=0,triples=0,fullPass=0,fullStates=0;const hist={},examples=[],fullExamples=[];
     for(const va of aa)for(const vb of bb)for(const drop of [0,1]){
       const n=vb.sites.filter(i=>i>=drop).length;
       for(let offset=0;offset<=va.sites.length-n;offset++){
         const result=gate(A.C,B.C,va,vb,drop,offset);
         placements++;
-        if(result.survivors.length){pass++;triples+=result.survivors.length;if(examples.length<10)examples.push({maskA:va.mask,maskB:vb.mask,drop,offset,triples:result.survivors.slice(0,15)})}
+        if(result.survivors.length){pass++;triples+=result.survivors.length;let complete=false;for(const state of result.survivors){const solved=solveFull(A.C,B.C,va,vb,drop,offset,state);if(solved){fullStates++;complete=true;if(fullExamples.length<10)fullExamples.push({maskA:va.mask,maskB:vb.mask,drop,offset,state,...solved});}}if(complete)fullPass++;if(examples.length<10)examples.push({maskA:va.mask,maskB:vb.mask,drop,offset,triples:result.survivors.slice(0,15)})}
         else hist[result.first]=(hist[result.first]||0)+1;
       }
     }
-    summaries.push({transparent:mode,masks:[aa.length,bb.length],placements,pass,triples,hist,examples});
+    summaries.push({transparent:mode,masks:[aa.length,bb.length],placements,pass,triples,fullPass,fullStates,hist,examples,fullExamples});
   }
   // Independent planted original word-slot pair with both non-unit coefficients.
   const positive=[];
@@ -133,6 +200,7 @@ function attack(corpus, transcript, lexicon) {
       vb.sites.filter(i=>i>=drop).forEach((j,i)=>check(mod((cb[j]-K[i+offset]-sB)*inv[b])===pb[j],"plant B replay"));
       const res=gate(ca,cb,va,vb,drop,offset),truth=[a,b,mod(sA-sB)];
       check(res.survivors.some(x=>x.join()===truth.join()),"planted affine state lost");
+      check(solveFull(ca,cb,va,vb,drop,offset,truth)!==null,"full planted CSP lost");
       positive.push({mode,maskA:va.mask,maskB:vb.mask,drop,offset,truth,remaining:res.survivors.length});
     }
   }
