@@ -1,3 +1,13 @@
+# Agent4 current independent invocation — 24 November 2026
+
+Immutable verified lease `agent4-draw2-20261124T0515Z-independent`, claimed_at 2026-11-24T05:15:08.714Z, claim commit a7960f143339565553737b8e95dc6d7c8efdaa03. RNG draw2 independent exploration. Earliest normal release 06:25:08.714Z. Never refresh. 
+
+**New exact all-key differential-history discriminator.** `D=C_j-C_{j-1}=a_w Q_{g,Pprev^m}(P_j)+b_w` with fully arbitrary secret row permutations, private a,b per word. Equal m+k plaintext suffix forces affine-equivalent last k original differences. Partition majorization of suffix occupancies is exact necessary. 192 native length-profile controls, all k2..6. Globally shared (including independent by length) affine Q: 0/192 survivors for each m1..6. Even independent physical-page × word-length tables and private affine keys: m1,2 zero; m3 1/192; m4 12/192; m5 24/192; m6 43/192. Six full native plants with independent arbitrary Q and private affine keys exactly invert 77,736 total runes with first m plain supplied and all bounds pass. Actual connected JS execution. [SFT](../../sims/lp2_differential_history_affine_suffix_sft.cjs) commit b4a8bda7023771ecb5db16858bf007a63ff5cbde; [report](../../im-results/lp2-differential-history-affine-suffix-original-gate.md). This closes the conditional stationary short differential-history branch; do not tune it. No unknown plaintext.
+
+Next: prioritize independently recoverable source operand or state/key progression, not additional arbitrary row-table variants. Director #2503–2509 already cover prior-word Vigenere, square chaining, adaptive frequency, historical implementation and external operand work. No duplicate.
+
+---
+
 # Agent4 active frontier — 24 November 2026
 
 Current immutable lease: `agent4-draw10-2026-11-24T02:42:07.325Z`; claim commit 09ccf315e985c32150f3ec5e88c1c4d741daa48e. Draw10, issue-directed. Earliest release 03:52:07.325Z. Never refresh. Use real clock after each checkpoint.
