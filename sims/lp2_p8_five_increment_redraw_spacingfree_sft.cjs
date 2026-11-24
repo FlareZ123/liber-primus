@@ -51,6 +51,35 @@ function experiment(corpus,solved,literary,config={topK:128,controls:true,origin
   const order=Array.from({length:banks.length},(_,i)=>i).sort((a,b)=>scores[b]-scores[a]||a-b);
   return {order,scores};
  }
+
+ // Second-order difference composite screen, conditional on three
+ // consecutive nonzero C symbols for F-hold. No original plaintext or
+ // holdout is used; exact forward filtering remains the refinement.
+ function rank2(c,cut,hold,M){
+  const D=new Float64Array(N*N),counts=new Uint16Array(N*N);
+  for(let a=0;a<N;a++)for(let b=0;b<N;b++)for(let q=0;q<N;q++)if(!hold||a&&b&&q)D[mod(b-a)*N+mod(q-b)]+=M.u[a]*M.b[a*N+b]*M.t[(a*N+b)*N+q];
+  let total=D.reduce((a,b)=>a+b,0);for(let j=0;j<D.length;j++)D[j]/=total;
+  for(let i=2;i<cut;i++)if(!hold||c[i-2]&&c[i-1]&&c[i])counts[mod(c[i-1]-c[i-2])*N+mod(c[i]-c[i-1])]++;
+  let n=counts.reduce((a,b)=>a+b,0),valid=Array.from({length:N*N},(_,j)=>{let d0=Math.floor(j/N),d1=j%N;return (N-new Set([0,d0,mod(d0+d1)]).size)/N});
+  const scores=new Float64Array(banks.length),X=new Float64Array(N*N),ti=new Uint8Array(N*5),wt=new Float64Array(N*5);
+  for(let id=0;id<banks.length;id++){
+   let B=banks[id],m=mask(B),s=0,mass=0;
+   for(let d=0;d<N;d++){
+    let k=d*5;for(let j=0;j<5;j++){let t=mod(d-B[j]);ti[k+j]=t;wt[k+j]=d===0?.04:.2+((m&(1<<mod(-t)))?.04:0)}
+    let a=ti[k]*N,b=ti[k+1]*N,e=ti[k+2]*N,f=ti[k+3]*N,g=ti[k+4]*N,r0=wt[k],r1=wt[k+1],r2=wt[k+2],r3=wt[k+3],r4=wt[k+4];
+    for(let t=0;t<N;t++)X[d*N+t]=r0*D[a+t]+r1*D[b+t]+r2*D[e+t]+r3*D[f+t]+r4*D[g+t]
+   }
+   for(let j=0;j<N*N;j++){
+    if(!hold&&!counts[j])continue;
+    let d1=j%N,off=j-d1,k=d1*5;
+    let z=wt[k]*X[off+ti[k]]+wt[k+1]*X[off+ti[k+1]]+wt[k+2]*X[off+ti[k+2]]+wt[k+3]*X[off+ti[k+3]]+wt[k+4]*X[off+ti[k+4]];
+    if(hold){z*=valid[j];mass+=z}if(counts[j])s+=counts[j]*Math.log(z)
+   }
+   if(hold)s-=n*Math.log(mass);scores[id]=s
+  }
+  const order=Array.from({length:banks.length},(_,i)=>i).sort((a,b)=>scores[b]-scores[a]||a-b);
+  return {order,scores};
+ }
  function filter(c,cut,B,hold,M,wantPath=false){
   const n=c.length,m=mask(B);
   // For each observed ciphertext, enumerate all (plaintext,key-state) pairs.
@@ -119,7 +148,7 @@ function experiment(corpus,solved,literary,config={topK:128,controls:true,origin
   return {B,c}
  }
  function fit(c,hold,M,truth=null,p=null){
-  const cut=1024,started=Date.now(),R=rank(c,cut,hold,M),tid=truth===null?null:ids.get(mask(truth)),rankMs=Date.now()-started;
+  const cut=1024,started=Date.now(),R=(config.rankOrder===2?rank2:rank)(c,cut,hold,M),tid=truth===null?null:ids.get(mask(truth)),rankMs=Date.now()-started;
   const shortlist=[...new Set([...R.order.slice(0,config.topK),...sourceIds])],prefix=c.slice(0,cut);
   const scores=shortlist.map(id=>({id,score:filter(prefix,cut,banks[id],hold,M).log})).sort((a,b)=>b.score-a.score||a.id-b.id);
   const best=scores[0],B=banks[best.id],f=filter(c,cut,B,hold,M,true),nul=nullLog(c,cut);
