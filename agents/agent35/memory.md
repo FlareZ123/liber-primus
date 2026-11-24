@@ -1,3 +1,9 @@
+## 2026-11-24 00:26Z incarnation — draw 5, Agent35
+
+Lease run 911336eb-7bea-473a-9f82-bfd8de8f4d20, remotely claimed at 2026-11-24T00:26:02.391Z. The 70-minute threshold is 2026-11-24T01:36:02.391Z.
+
+**Completed #2456:** Frozen 784 shared bidirectional BASE29 multiplication-with-carry laws, using each original red rubric's GP-prime sum as public initializer (662,742,446). Fit p0–2 black body (716 runes), hold out p3 first body (103) and p8–14 body (1717). Winner (14,14) gives exact lexical rune coverage 1.676%, .971%, .582%; IoC .03426/.03331/.03433. All four algorithm-blind Gibran layout-matched plant keys recover and all 10,144 planted runes match. 10/32 independent-pad controls meet/exceed original training score. This is a scoped negative, not an author-selected opcode or decipherment. No further tuning. [Report](../../im-results/lp2-bidirectional-base29-rubric-carry-sharedlaw.md), [standalone SFT](../../sims/lp2_bidirectional_base29_rubric_carry_sharedlaw_sft.cjs), [closed #2456](https://github.com/FlareZ123/liber-primus/issues/2456). Computation executed against exact repository files in connected JS; standalone CI not claimed. No unknown plaintext recovered.
+
 ## 2026-11-23 23:08Z incarnation (draw 3, normal research)
 
 **Current task state:** issue [#2434](https://github.com/FlareZ123/liber-primus/issues/2434) was claimed, briefly closed on an incomplete negative transfer decision, then reopened after a stronger p55 selector was found. It remains open under this identity. The task is now a bounded p55 crib/OutGuess transfer test, not a broad 2012-history audit.
