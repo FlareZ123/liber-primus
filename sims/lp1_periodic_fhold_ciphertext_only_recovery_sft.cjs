@@ -23,7 +23,7 @@ const cipherText = readText("resources/transcriptions/lp1_wulfic_canonical.txt")
 const runeToIndex = new Map(alphabet.runes.map((r, i) => [r, i]));
 const translit = alphabet.translit;
 const extract = (s) => Array.from(s).filter((ch) => runeToIndex.has(ch)).map((ch) => runeToIndex.get(ch));
-const goldSections = gold.sections.map((s) => extract(s.source_text));
+const goldSections = gold.sections;
 const cipherSections = cipherText.split("$").map(extract);
 
 const tokenString = (xs) => xs.map((x) => translit[x]).join("");
@@ -42,7 +42,7 @@ function trainUnigram(excludedSection, alpha = 0.25) {
   let total = 0;
   for (let s = 0; s < goldSections.length; s++) {
     if (s === excludedSection) continue;
-    for (const symbol of goldSections[s]) {
+    for (const symbol of extract(goldSections[s].source_text)) {
       counts[symbol]++;
       total++;
     }
@@ -186,21 +186,23 @@ function recoverKey(C, period, excludedSection, seed, restarts) {
 
 function trainLanguageModel(excludedSection, alpha = 0.1) {
   const unigramCounts = new Float64Array(29);
-  const bigramCounts = Array.from({ length: 841 }, () => new Float64Array(29));
+  const bigramCounts = Array.from({ length: 29 }, () => new Float64Array(29));
   const trigramCounts = Array.from({ length: 841 }, () => new Float64Array(29));
-  const bigramTotals = new Float64Array(841);
+  const bigramTotals = new Float64Array(29);
   const trigramTotals = new Float64Array(841);
   let total = 0;
 
-  for (let s = 0; s < goldSections.length; s++) {
-    if (s === excludedSection) continue;
-    const sequence = goldSections[s];
+  for (let section = 0; section < goldSections.length; section++) {
+    if (section === excludedSection) continue;
+    const sequence = extract(goldSections[section].source_text);
     for (const symbol of sequence) {
       unigramCounts[symbol]++;
       total++;
     }
     for (let i = 1; i < sequence.length; i++) {
-      bigramTotals[sequence[i - 1] * 29 + sequence[i]]++;
+      const context = sequence[i - 1];
+      bigramCounts[context][sequence[i]]++;
+      bigramTotals[context]++;
     }
     for (let i = 2; i < sequence.length; i++) {
       const context = sequence[i - 2] * 29 + sequence[i - 1];
@@ -210,16 +212,20 @@ function trainLanguageModel(excludedSection, alpha = 0.1) {
   }
 
   const logUnigram = Array.from(unigramCounts, (n) => Math.log((n + alpha) / (total + 29 * alpha)));
-  const logBigram = new Array(841);
+  const logBigram = new Array(29);
   const logTrigram = new Array(841);
-  for (let context = 0; context < 841; context++) {
-    const bDenominator = bigramTotals[context] + alpha * 29;
-    const tDenominator = trigramTotals[context] + alpha * 29;
+  for (let context = 0; context < 29; context++) {
+    const denominator = bigramTotals[context] + alpha * 29;
     logBigram[context] = new Float64Array(29);
+    for (let symbol = 0; symbol < 29; symbol++) {
+      logBigram[context][symbol] = Math.log((bigramCounts[context][symbol] + alpha) / denominator);
+    }
+  }
+  for (let context = 0; context < 841; context++) {
+    const denominator = trigramTotals[context] + alpha * 29;
     logTrigram[context] = new Float64Array(29);
     for (let symbol = 0; symbol < 29; symbol++) {
-      logBigram[context][symbol] = Math.log((bigramCounts[context][symbol] + alpha) / bDenominator);
-      logTrigram[context][symbol] = Math.log((trigramCounts[context][symbol] + alpha) / tDenominator);
+      logTrigram[context][symbol] = Math.log((trigramCounts[context][symbol] + alpha) / denominator);
     }
   }
   return { logUnigram, logBigram, logTrigram };
@@ -260,7 +266,7 @@ function decodeTrigram(C, key, languageModel) {
     const previous = state % 29;
     transition(C[1], phase, (plain, nextPhase) => {
       const nextState = nextPhase * contextCount + previous * 29 + plain;
-      const candidate = scores0[state] + languageModel.logBigram[previous * 29][plain];
+      const candidate = scores0[state] + languageModel.logBigram[previous][plain];
       if (candidate > scores[nextState] + 1e-12) {
         scores[nextState] = candidate;
         paths[nextState] = paths0[state];
@@ -372,23 +378,22 @@ function encrypt(plaintext, key) {
 }
 
 function randomPlantSuite() {
+  // Plant plaintext sections are disjoint from the two actual targets.
+  // Each plant's source section is excluded from its own unigram training.
   const tests = [
-    { source: 4, period: 8, seed: 0xA5A50000, restarts: 1500 },
-    { source: 4, period: 13, seed: 0xA5A50001, restarts: 1500 },
-    { source: 5, period: 8, seed: 0xA5A50002, restarts: 1500 },
-    { source: 5, period: 13, seed: 0xA5A50003, restarts: 1500 },
-    { source: 3, period: 8, seed: 0xA5A50004, restarts: 1500 },
-    { source: 3, period: 13, seed: 0xA5A50005, restarts: 1500 },
     { source: 0, period: 8, seed: 0xCCDD0000, restarts: 1000 },
     { source: 0, period: 13, seed: 0xCCDD0001, restarts: 1000 },
-    { source: 1, period: 8, seed: 0xCCDD0002, restarts: 1000 },
-    { source: 1, period: 13, seed: 0xCCDD0003, restarts: 1000 }
+    { source: 3, period: 8, seed: 0xA5A50004, restarts: 1500 },
+    { source: 3, period: 13, seed: 0xA5A50005, restarts: 1500 },
+    { source: 4, period: 8, seed: 0xA5A50000, restarts: 1500 },
+    { source: 4, period: 13, seed: 0xA5A50001, restarts: 1500 }
   ];
 
   return tests.map((test) => {
     const random = xorshift32(test.seed);
     const plantedKey = Array.from({ length: test.period }, () => Math.floor(random() * 29));
-    const plantCiphertext = encrypt(goldSections[test.source], plantedKey);
+    const plantPlaintext = extract(goldSections[test.source].source_text);
+    const plantCiphertext = encrypt(plantPlaintext, plantedKey);
     const result = recoverKey(
       plantCiphertext,
       test.period,
@@ -398,17 +403,35 @@ function randomPlantSuite() {
     );
     const best = result.ranked[0];
     return {
-      sourceSection: gold.sections[test.source].name,
+      sourceSection: goldSections[test.source].name,
       period: test.period,
-      plaintextLength: goldSections[test.source].length,
-      plantedKey: plantedKey,
-      recoveredKey: best.key,
+      plaintextLength: plantPlaintext.length,
+      plantedKeyIndices: plantedKey,
+      recoveredKeyIndices: best.key,
       exactKeyRecovery: best.key.every((x, i) => x === plantedKey[i]),
       validStarts: result.validStarts,
       distinctCandidates: result.distinctCandidates,
       topScoreGap: result.scoreGap
     };
   });
+}
+
+function randomWrongKeyBaseline(C, period, excludedSection, seed, samples = 1000) {
+  const logProbability = trainUnigram(excludedSection);
+  const random = xorshift32(seed);
+  const scores = [];
+  for (let i = 0; i < samples; i++) {
+    const key = Array.from({ length: period }, () => Math.floor(random() * 29));
+    const decoded = decodeUnigram(C, key, logProbability);
+    if (decoded) scores.push(decoded.score);
+  }
+  scores.sort((a, b) => a - b);
+  return {
+    samples,
+    feasibleRandomKeys: scores.length,
+    medianFeasibleScore: scores.length ? scores[Math.floor(scores.length / 2)] : null,
+    bestFeasibleScore: scores.length ? scores[scores.length - 1] : null
+  };
 }
 
 const targets = [
@@ -448,6 +471,7 @@ const controlResults = targets.map((target) => {
     uniqueTrigramPath: decoded.unique,
     plaintextFHoldPositions: decoded.holdPositions,
     exactForwardReplay: decoded.reencryptionExact,
+    rawRandomWrongKeyBaseline: randomWrongKeyBaseline(ciphertext, target.period, target.section, target.seed ^ 0xBAD5EED, 1000),
     predictedPlaintextIndices: decoded.plaintext,
     predictedPlaintextTokens: decoded.plaintext.map((x) => translit[x])
   };
