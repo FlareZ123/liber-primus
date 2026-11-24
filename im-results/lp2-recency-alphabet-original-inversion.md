@@ -71,3 +71,33 @@ Continuous original suffix: 12,793 runes. With fixed greedy GP tokenizer (QU→C
 **Controls:** two independently randomized initial lists and rank maps with r=1/2; deterministic alphabet-coverage preludes of 31/29 symbols followed by 1,800 native Law/Shakespeare runes each. Known-key/mask inverse exactly reproduces generated plaintext and all 1,742/1,763 consuming suffix ranks match the independent recency identity. Plants include 58/37 true F holds and 61/66 consuming-zero events (including preludes). Every actual rank count lies under its DP bound; actual largest counts 239/214 versus 239/229 upper bounds. This is an implementation/necessary-bound control, not blind key recovery.
 
 [Executed SFT](../sims/lp2_recency_interior_fhold_smallside_sft.cjs) · [raw output](lp2-recency-interior-fhold-smallside-output.json) · [code/output commit](https://github.com/FlareZ123/liber-primus/commit/fb77d618664d873d48c9dee5b43769d9144346d7). Executed on actual repository inputs in connected V8, no independent Windows CI claim. The preliminary permissive lexical pattern gate for a fixed center marker was nonidentifying (ten original markers have zero pattern-level OOV, and no unique marker on four plants); do not treat it as recovered words. Retain this state reduction for independently selected mechanisms; no source authenticates a center position and no unknown plaintext/key recovered.
+
+
+## Joint center-marker and transparent-F inverse: native control recovery, original count contradiction
+
+The above center-list model implies a stronger exact local invariant for every center position and secret key: the fixed non-F plaintext marker R mapped to rank r is emitted precisely when a consuming glyph equals the previous consuming center. A literal plaintext F produces zero without changing that center; a consuming zero may be a marker or another rune. Thus R/F placement can be inferred without a rank permutation if all noncentral plaintexts are temporarily marginalized. The prior lexical-support-only pattern test was nonidentifying, so replace its binary support with conditional word-pattern likelihood.
+
+For each of 28 possible R, train the distribution of ternary GP word patterns (other/F/R), conditioned on original word length, on Shakespeare/Emerson/Gibran: 147,658 words, 600,893 runes, with a 20-pseudocount iid category prior. In the reduced generative model, the marker emits the center, F emits zero without update, and an other rune emits a uniformly random one of 28 noncenter glyphs. Exact forward summation over 29 possible previous centers and all latent zero masks gives the likelihood; this is an exact calculation **for the reduced model**, not the likelihood under a fixed actual secret rank map. The F-only baseline consumes uniform GP29 outputs and uses the corresponding binary pattern probabilities. Independently keyed full adaptive-list plants use actual fixed permutations, not the reduced emission model. Freeze R on the training portion before reading heldout scores.
+
+| Plant (center position; true R) | Blind rank of true R | Heldout log BF/rune over F-only | Heldout log BF/rune over uniform |
+|---|---:|---:|---:|
+| Law (5; J) | 1 | +0.023284 | +0.054996 |
+| Law (8; X) | 1 | +0.027548 | +0.046703 |
+| Blake (14; NG) | 1 | +0.019506 | +0.031722 |
+| Blake (20; IA) | 1 | +0.026713 | +0.041685 |
+| Original (unknown; train-selected G) | not known | +0.008585 | +0.001768 |
+
+Original p0–39 prefix: 9,640 runes / 2,161 words. Remaining p40–55 heldout: 3,316 runes. Top prefix marker G has training log BF/rune +0.009337 versus F-only and +0.001151 versus uniform. NG and B follow; EA is fifth on training and retrospectively scores +0.011553 on heldout versus F-only. The four controls recover all true marker identities, but the two Law windows overlap and likewise the two Blake windows: these are four keyed trials on two works, not four independent authors. Three geometry-matched uniform ciphertext controls' train-selected markers have heldout BF versus F-only between -0.027318 and -0.023553. Uniform controls do not preserve the original anti-repeat anomaly; original positive scores against them do not independently identify the cipher.
+
+**Exact decisive marker-count test.** Replace likelihood by min/max-plus accumulation of the indicator that a consuming glyph equals the center. At each printed zero branch both hold and consume; permit every starting center. On all 12,956 original runes the number of R occurrences is necessarily **82–100** irrespective of position, initial alphabet, rank map or F mask. Grant all masks even if inconsistent with a real fixed rank map, so the bound is conservative. Compare all equal-length windows of the five pinned GP-transcribed works used above (same tokenizer, including the <19-rune word rule):
+
+| Candidate | Law min–max | Blake | Shakespeare | Emerson | Gibran |
+|---|---:|---:|---:|---:|---:|
+| G | 133–150 | 150–165 | 107–232 | 108–292 | 138–301 |
+| B | 218–247 | 237–249 | 180–276 | 141–250 | 153–243 |
+| NG | 85–100 | 125–150 | 50–161 | 45–119 | 77–156 |
+| EA | 127–141 | 102–116 | 47–135 | 36–127 | 35–174 |
+
+The total comparison comprises 576,032 windows (8,546 Law, 5,458 Blake, 204,120 Shakespeare, 308,371 Emerson, 49,537 Gibran). G and B fit **zero** windows; reject those marker identities for the fixed continuous architecture on these finite native registers, despite the original likelihood nomination of G. NG and EA fit some windows and are not excluded by count alone; neither constitutes authentic plaintext or a source-selected rank. No source clue selects R or the operation. Do not expand these scores into a claimed crib or run arbitrary marker/model tuning.
+
+[Executed SFT](../sims/lp2_recency_fhold_center_marker_likelihood_sft.cjs) · [raw results](lp2-recency-fhold-center-marker-likelihood-output.json) · [code/output commit](https://github.com/FlareZ123/liber-primus/commit/4e62620383e420735676b9bb492e5681f33f7583). Run with Node from repository root. Executed in connected V8, no independent Windows CI claimed. The earlier four near-edge position exclusions and the new G/B marker exclusions are complementary, not a full exclusion of every interior key. No unknown-LP2 plaintext/key.
