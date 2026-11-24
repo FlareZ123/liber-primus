@@ -1,4 +1,8 @@
 "use strict";
+// Exact historical p56 F-hold cipher; one bounded shared prime origin and five source-defined reset bits.
+// Fit only the first 60 authentic p56 cipher symbols; its last 25 are held out.
+// Original: p40–53, training prefix 1500, remaining 1508 withheld. No key scoring on impossible paths.
+// Read-only, standalone CommonJS; no dependency or network access.
 const fs=require("node:fs"),path=require("node:path");
 const run=function run(gp,pu,ink,sol){
 const mod=x=>(x%29+29)%29;
@@ -60,6 +64,8 @@ fitOriginal.sort((a,b)=>b.v.l-a.v.l);
 let orig=null;
 if(fitOriginal.length){const b=fitOriginal[0],v=viterbi(target,targetMark,b.s,b.mask,1500,target.length,b.v);orig={s:b.s,mask:b.mask,trainScore:b.v.l/1500,fullLegal:!!v,holdoutScore:v?(v.l-b.v.l)/(target.length-1500):null,first100:decode(b.v.seq.slice(0,100)),holdoutFirst100:v?decode(v.seq.slice(1500,1600)):null,replay:v?encode(decode(v.seq),targetMark,b.s,b.mask).every((x,i)=>x===target[i]):false}}
 const targetClasses=Array.from({length:5},(_,i)=>Array.from(targetMark).filter(v=>v&(1<<i)).length);
+check(control.actual===85&&control.replay&&control.origin===0&&control.mask===0,"blind positive");
+check(results.length===32&&results.every(v=>v.train===0&&v.full===0)&&Math.max(...results.map(v=>v.max))===628,"original exact rejection");
 return {control,targetClasses,results,orig}
 };
 const files=["resources/liber-primus/lp2-corpus.json","resources/liber-primus/lp2-punctuation-identity.json","resources/liber-primus/lp2-ink-annotations.json","resources/external/relikd-solved-gp29-native-v1.json"];
