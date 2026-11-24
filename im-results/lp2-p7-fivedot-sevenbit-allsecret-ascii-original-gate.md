@@ -91,6 +91,25 @@ Both SAT witnesses are gibberish, with only 8 and 17 spaces respectively, and re
 
 Actual original runs used Z3 4.13.3 native C API; both saved witnesses were independently replayed against the canonical repository tape in JavaScript. [Portable Python z3-solver reproducer](../sims/lp2_p7_fivedot_period16_ascii_sat_sft.py) · [exact witnesses and results](lp2-p7-fivedot-period16-ascii-sat.json). The portable frontend is provided for replication; it is equivalent to the executed bitvector model, not a claimed CI run. Only this one source order and phase convention have been tested. The rational decision is to retire the two actual spiral-key receivers and the one-case arbitrary-dictionary models, and require a new independently sourced bit/key rule before searching the vast mixed-case survivor. No authentic unknown plaintext or key was recovered.
 
+## All unknown period-16 XOR keys, and the literal BASE29 alternative (24 November)
+
+A simpler subfamily of the arbitrary dictionaries above is every possible 16-symbol five-bit XOR key. Its keystream is 80 repeating bits. When regrouped as seven-bit ASCII, output septets at positions j congruent modulo 80 have the same unknown seven-bit XOR mask. For each of 80 groups, intersect the 128 masks that make every observed ciphertext septet printable. Empty intersection proves impossibility even granting independently secret seven-bit masks, a relaxation of the actual 80-bit key consistency constraints.
+
+| Source order | Empty mask groups, MSB-first | Reversed within 5-bit symbols |
+| --- | ---: | ---: |
+| Physical | 75 | 72 |
+| Five-dot | 76 | 79 |
+| Seven-tuple | 76 | 76 |
+| Inverse seven-tuple | 77 | 76 |
+| Seven-column down | 78 | 80 |
+| Seven-column across | 77 | 74 |
+
+Thus **every period-16 XOR key fails direct all-printable ASCII** in these twelve cases. This includes both literal spiral-derived XOR keys. Arbitrary non-XOR dictionaries have exact mixed-case witnesses above.
+
+The signed historical BASE29 instruction separately motivates interpreting each successive seven-rune source group as one positional base29 integer, then as exactly five base128 digits. On the source five-dot order this gives 247 exact reversible blocks and **884/1,235 printable characters**, only 48/247 wholly printable blocks. The mathematical leading base128 digit is always at most floor((29^7-1)/128^4)=64, so no block can start with an ASCII letter, regardless of rune-digit alphabet. Using base95 printable-rank digits instead cannot represent 143/247 actual GP29 blocks (values exceed 95^5-1). Neither yields plaintext. These are fixed canonical positional transports, not exclusions of alternate coded binary formats.
+
+[CommonJS SFT](../sims/lp2_p7_fivedot_period16_xor_and_base29_sft.cjs). Direct transport and XOR intersections executed on canonical source with exact BASE29 replay. The arbitrary-dictionary mixed-case survivor remains underidentified.
+
 ## Decision
 
 **Retire direct stationary or period-5, period-7, period-14 and period-35 injective five-bit GP29 → seven-bit *printable ASCII* as the complete decoder for physical LP2 pp8–14 in each of the six source-fixed reading orders.** Neither the 7×5 dimension match nor the p7 source-mark relocation supplies a viable direct English ASCII message, even granting the entire unknown five-bit codebook. This rejects every plain binary alphabet substitution in this precise receiver class without brute force.

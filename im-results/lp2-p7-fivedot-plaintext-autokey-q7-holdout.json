@@ -1,0 +1,192 @@
+{
+  "beamWidth": 4096,
+  "fitLength": 1417,
+  "heldoutLength": 312,
+  "plants": [
+    {
+      "name": "Shakespeare",
+      "primer": [
+        3,
+        27,
+        14,
+        0,
+        22,
+        6,
+        11
+      ],
+      "exactSeed": true,
+      "fitAccuracy": 1415,
+      "fitScore": -2.880700993897349,
+      "heldoutAccuracy": 312,
+      "heldoutScore": -2.8576495661527295,
+      "exactReplay": true
+    },
+    {
+      "name": "Gibran",
+      "primer": [
+        28,
+        8,
+        1,
+        25,
+        13,
+        2,
+        16
+      ],
+      "exactSeed": true,
+      "fitAccuracy": 1417,
+      "fitScore": -2.684287778302282,
+      "heldoutAccuracy": 312,
+      "heldoutScore": -2.5657016969199873,
+      "exactReplay": true
+    }
+  ],
+  "original": [
+    {
+      "name": "five-dot",
+      "primer": [
+        21,
+        5,
+        4,
+        23,
+        28,
+        18,
+        13
+      ],
+      "fitScore": -5.1381958220919985,
+      "fitPruned": 42154,
+      "fitScored": 1,
+      "heldoutStatus": "empty",
+      "heldoutMaxWidth": 2,
+      "heldoutPruned": 0
+    },
+    {
+      "name": "seven-tuple",
+      "primer": [
+        13,
+        27,
+        0,
+        18,
+        23,
+        28,
+        15
+      ],
+      "fitScore": -5.093114000996005,
+      "fitPruned": 35264,
+      "fitScored": 13,
+      "heldoutStatus": "empty",
+      "heldoutMaxWidth": 2,
+      "heldoutPruned": 0
+    }
+  ],
+  "fullLegalNonproseWitnesses": [
+    {
+      "name": "five-dot",
+      "primer": [
+        25,
+        19,
+        27,
+        26,
+        0,
+        21,
+        3
+      ],
+      "holds": [
+        135,
+        150,
+        171,
+        213,
+        233,
+        307,
+        400,
+        422,
+        478,
+        568,
+        579,
+        597,
+        620,
+        679,
+        687,
+        806,
+        832,
+        847,
+        904,
+        946,
+        949,
+        981,
+        984,
+        1069,
+        1088,
+        1226,
+        1427,
+        1474,
+        1535,
+        1567,
+        1568,
+        1586,
+        1591,
+        1597,
+        1667,
+        1668,
+        1703,
+        1706,
+        1717
+      ],
+      "visits": 46768
+    },
+    {
+      "name": "seven-tuple",
+      "primer": [
+        25,
+        24,
+        22,
+        25,
+        26,
+        0,
+        7
+      ],
+      "holds": [
+        135,
+        153,
+        174,
+        216,
+        233,
+        359,
+        392,
+        403,
+        422,
+        577,
+        597,
+        621,
+        676,
+        799,
+        813,
+        847,
+        907,
+        923,
+        949,
+        950,
+        961,
+        1053,
+        1067,
+        1091,
+        1229,
+        1244,
+        1285,
+        1302,
+        1363,
+        1422,
+        1469,
+        1475,
+        1535,
+        1587,
+        1600,
+        1668,
+        1670,
+        1691,
+        1703,
+        1704
+      ],
+      "visits": 111303
+    }
+  ]
+}
