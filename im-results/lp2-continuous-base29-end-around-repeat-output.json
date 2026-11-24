@@ -1,0 +1,128 @@
+{
+  "originalRunes": 12956,
+  "originalRepeats": 86,
+  "rate": 0.00663836356619066,
+  "nativeRunes": 2979,
+  "nativeRepeats": 77,
+  "threshold": 19,
+  "result": [
+    {
+      "rev": false,
+      "units": 1287,
+      "min": {
+        "a": 3,
+        "repeats": 53
+      },
+      "top10": [
+        {
+          "a": 3,
+          "repeats": 53
+        },
+        {
+          "a": 87,
+          "repeats": 53
+        },
+        {
+          "a": 2523,
+          "repeats": 53
+        },
+        {
+          "a": 37,
+          "repeats": 60
+        },
+        {
+          "a": 1073,
+          "repeats": 60
+        },
+        {
+          "a": 1545,
+          "repeats": 63
+        },
+        {
+          "a": 1077,
+          "repeats": 64
+        },
+        {
+          "a": 2141,
+          "repeats": 65
+        },
+        {
+          "a": 2459,
+          "repeats": 65
+        },
+        {
+          "a": 305,
+          "repeats": 66
+        }
+      ],
+      "median": {
+        "a": 2773,
+        "repeats": 102
+      },
+      "max": {
+        "a": 1119,
+        "repeats": 163
+      },
+      "matchingRate": 0
+    },
+    {
+      "rev": true,
+      "units": 1287,
+      "min": {
+        "a": 513,
+        "repeats": 61
+      },
+      "top10": [
+        {
+          "a": 513,
+          "repeats": 61
+        },
+        {
+          "a": 895,
+          "repeats": 64
+        },
+        {
+          "a": 817,
+          "repeats": 65
+        },
+        {
+          "a": 2131,
+          "repeats": 66
+        },
+        {
+          "a": 1789,
+          "repeats": 68
+        },
+        {
+          "a": 2865,
+          "repeats": 68
+        },
+        {
+          "a": 1159,
+          "repeats": 69
+        },
+        {
+          "a": 1177,
+          "repeats": 69
+        },
+        {
+          "a": 1377,
+          "repeats": 70
+        },
+        {
+          "a": 1719,
+          "repeats": 70
+        }
+      ],
+      "median": {
+        "a": 1635,
+        "repeats": 102
+      },
+      "max": {
+        "a": 125,
+        "repeats": 172
+      },
+      "matchingRate": 0
+    }
+  ]
+}
