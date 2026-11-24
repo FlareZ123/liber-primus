@@ -98,12 +98,35 @@ function ioc(values) {
 
 const results = [];
 for (const [mapping, K] of Object.entries(keys)) {
+  // Exact ten-state class used by the p50 pair-majorization gate:
+  // z = 2*first_base60_digit + second_digit_parity selects M7^z.
+  const tenStateP = [];
+  const tenStateQ = [];
+  for (let index = 0; index < C.length; index++) {
+    const byte = phase[index];
+    const state = 2 * Math.floor(byte / 60) + ((byte % 60) % 2);
+    const matrix = matrixPower(M7, state);
+    tenStateP.push(mod(matrix[0][0] * K[index] + matrix[0][1] * C[index]));
+    tenStateQ.push(mod(matrix[1][0] * K[index] + matrix[1][1] * C[index]));
+  }
+  for (const [lane, values] of [['P', tenStateP], ['Q', tenStateQ]]) {
+    const value = ioc(values);
+    results.push({
+      key_mapping: mapping,
+      p50_state_mapping: 'z=2*first_digit+second_digit_parity; M7^z',
+      plaintext_lane: lane,
+      entropy_bits: entropy(values),
+      ioc: value,
+      normalized_ioc_29x: value * 29
+    });
+  }
+
+  // Alternative literal reading: first digit is exponent, parity chooses
+  // forward or inverse direction.
   for (const evenMeansForward of [true, false]) {
     const P = [];
     const Q = [];
-    const tenStateP = [];
-  const tenStateQ = [];
-  for (let index = 0; index < C.length; index++) {
+    for (let index = 0; index < C.length; index++) {
       const byte = phase[index];
       const exponent = Math.floor(byte / 60);
       const parity = (byte % 60) % 2;
@@ -111,18 +134,12 @@ for (const [mapping, K] of Object.entries(keys)) {
       const matrix = forward ? forwardPowers[exponent] : inversePowers[exponent];
       P.push(mod(matrix[0][0] * K[index] + matrix[0][1] * C[index]));
       Q.push(mod(matrix[1][0] * K[index] + matrix[1][1] * C[index]));
-
-    // Exact 10-state class used in the p50 full-pair majorization:
-    // z = 2*first_digit + second_digit_parity selects M7^z.
-    const state = 2 * Math.floor(phase[index] / 60) + ((phase[index] % 60) % 2);
-    const tenStateMatrix = matrixPower(M7, state);
-    tenStateP.push(mod(tenStateMatrix[0][0] * K[index] + tenStateMatrix[0][1] * C[index]));
-    tenStateQ.push(mod(tenStateMatrix[1][0] * K[index] + tenStateMatrix[1][1] * C[index]));
     }
-    for (const [lane, values] of [['P', P], ['Q', Q], ['P-10state-index', tenStateP], ['Q-10state-index', tenStateQ]]) {
+    for (const [lane, values] of [['P', P], ['Q', Q]]) {
       const value = ioc(values);
       results.push({
         key_mapping: mapping,
+        p50_state_mapping: 'first_digit exponent; second_digit parity selects direction',
         even_digit_parity_means_forward: evenMeansForward,
         plaintext_lane: lane,
         entropy_bits: entropy(values),
@@ -136,7 +153,7 @@ for (const [mapping, K] of Object.entries(keys)) {
 console.log(JSON.stringify({
   source: 'Original A81x81/B80x80 bookend, p50 predecessor-byte clock, p32 M7 pair matrix',
   source_dimensions: { full_runes: full.length, A_runes: A.length, B_runes: C.length, paired_positions: positions.length },
-  p50_state: 'first base60 digit d=0..4 selects M7 power; second digit parity selects M7^d or M7^-d',
+  p50_state: 'both z=2*d+parity and d-exponent/parity-direction mappings tested',
   matrix: M7,
   determinant_mod29: determinant,
   inverse: inverse,
