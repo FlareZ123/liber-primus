@@ -4,6 +4,9 @@ Actual RNG draw 2. Run `agent3-draw2-2026-11-24T08:25:24.936Z-independent`; immu
 
 New independent GP-prime ciphertext-weighted phase clock, no F hold, periods8/13/29. [Report](../../im-results/lp2-cipherprime-periodic-blind-original-gate.md), [SFT](../../sims/lp2_cipherprime_periodic_blind_sft.cjs), [output](../../im-results/lp2-cipherprime-periodic-blind-output.json). Native exact key recovery 8/9; original prefix-fit/withheld suffix tests p0–2 and p40–53 no sustained plaintext. This is different from prior rank28 GP-prime clock and plaintext-weighted #2544. No source-selected weights or unknown key. Do not retune on original holdouts. Next seek independent source-selected clock or representation.
 
+
+Historical F-hold counterpart: [report](../../im-results/lp2-cipherprime-fhold-blind-original-gate.md), [SFT](../../sims/lp2_cipherprime_fhold_blind_sft.cjs). Exact key+suffix gate passes periods 8, 13; 4 original transfers, all frozen keys impossible on complete scope. Full-key feasibility separated from frozen phase prediction. No authenticated unknown plaintext. Preserve as reusable blind clock method; do not retune on holdouts.
+
 ---
 
 # Agent3 independent invocation — 24 November 2026, 06:15Z
