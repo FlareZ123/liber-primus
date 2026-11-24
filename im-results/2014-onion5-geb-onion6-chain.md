@@ -120,6 +120,35 @@ Fifteen candidates fail on untouched surrounding p40 ciphertext; two survive the
 
 **Decision:** the full fourteen-dialogue coordinate set is now audited for formal-operation transfer. The one new selected receiver yields a bounded negative, not a solution. Do not expand the GEB branch into generic recursion, arbitrary offsets, musical encodings or quote hunting without a new independent LP2 selector. Gap shift, interval scaling, Collatz and diagonalization are documented source mechanisms with missing LP2 operands/serialization, not authenticated instructions or broadly excluded cipher families.
 
+#### Independent exploratory extension: the literal one-unit reading-frame shift
+
+The Canon by Intervallic Augmentation's fortune-cookie example motivates a fixed displacement of every printed word gap one rune to the right. This is different from rotating a list of word lengths. No LP2 instruction independently selects this displacement; the following is a deliberately conditional independent solver attempt, not a second claimed authenticated transfer under #2596.
+
+Use the seven original complete 13–14-rune words (no selection by ciphertext score); shift both endpoints of each interior word by +1. Use the same pinned normalized TextBlob/dwyl long-word lexicon as [the independent recurrence study](lp2-long-anchor-ftransparent-recurrence-gate.md): 17,566 distinct GP13 spellings and 11,342 GP14 spellings. For each possible shifted plaintext word, derive every forced periodic additive key digit under the transparent plaintext-F rule, enumerate all missing digits, and exhaust both directions of the enclosing original 13-dot marker interval using exact bitset phase reachability. This allows independent arbitrary q8 or q13 keys per marker interval. Native p57 segments with a planted CIRCUMFERENCE word recover the true key and plaintext under each historical period. The q8 control has one surviving candidate, the q13 control 2,677, illustrating that the longer key is weakly constrained by a short control.
+
+[First SFT](../sims/lp2_geb_shifted_boundary_periodic_anchor_sft.cjs), code frozen at ea3fc66f84cc9034d8de0a4cb64e74c5cd16479a before original scoring. Counts are distinct full key/consumption-length tuples, not distinct English words.
+
+| Page | Shifted global anchor | q8 enumerated / complete interval | q13 enumerated / complete interval |
+|---|---|---:|---:|
+| 11 | [2887,2900) | 0 / 0 | 18445 / 0 |
+| 13 | [3406,3420) | 0 / 0 | 330 / 0 |
+| 16 | [3763,3776) | 1 / 0 | 15690 / 0 |
+| 25 | [6036,6050) | 0 / 0 | 404 / 0 |
+| 43 | [10454,10468) | 0 / 0 | 597 / 0 |
+| 52 | [12285,12298) | 0 / 0 | 15690 / 0 |
+| 55 | [12904,12917) | 0 / 0 | 16009 / 4 |
+
+The four surviving p55 q13 keys all cover marker interval [12657,12956). The [second SFT](../sims/lp2_geb_shifted_boundary_survivor_score_sft.cjs) computes the exact maximum number of TextBlob GP words over every F-hold branch, with the forced anchor and shifted word gaps (clip partial words at interval endpoints; do not score those or the forced anchor). Each reconstructed path exactly re-encrypts the original 299 runes.
+
+| Forced long word | Maximum dictionary matches among 62 other complete words |
+|---|---:|
+| noncontributing | 8 |
+| onomatopoeical | 5 |
+| transcondylar | 7 |
+| transcribbler | 5 |
+
+No coherent plaintext, no authentic key. The full mechanical inverse outputs are printed by the SFT. This finite lexical attack does not exclude unknown vocabulary, alternative spelling, shifted segmentation with other clocks, or marker resets inside a marker interval. There is no new evidence selecting a more general space displacement. The explicit rightward one-rune variant has no credible result in the historical periodic-key family; avoid expanding the shift into arbitrary gap offsets or repeating the intact-boundary searches.
+
 ## What the destination returned
 
 The archived Onion6 page at `ut3qtzbrvs7dtvzp.onion` contains four plaintext manifesto pages and an instruction to create a Tor hidden service that accepts CGI uploads, then submit the three magic squares and the service URL; it says to work alone. The archived form posts to `/cgi-bin/upload`, names the file field `file`, and exposes the public key at `/key.asc`. This establishes the intended 2014 continuation as an interactive hidden-service submission, not merely a static page.
