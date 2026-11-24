@@ -1,0 +1,91 @@
+{
+  "issue": 2578,
+  "run": "agent48-draw3-20261124T1145Z-typed-field",
+  "selection": "Exact literal clauses immediately introducing an external typed hash, numerical table, ciphertext blob or serialized key. One candidate per distinct clause; no paraphrases, no subclauses or word-length tuning. Historical RSA content used as linguistic precedent only. Native LP1/p56 transcriptions retained. For Latin originals use greedy longest GP chart, K/C, V/U, Q/C, Z/S; literal words, no phonetic spelling changes. Check full template at final complete-word boundary of pretable prose; compare exact width vector before cipher values. Period 1–13 LP1 calibrated recovery only for >=26 rune crib with compatible boundaries and F-clock support. Require independent continuation. No expansion after observing p49.",
+  "candidates": [
+    {
+      "id": "p56",
+      "source": "resources/external/relikd-solved-gp29-native-v1.json#p56_an_end",
+      "text": "WITHIN THE DEEP WEB, THERE EXISTS A PAGE THAT HASHES TO",
+      "runes": "ᚹᛁᚦᛁᚾ•ᚦᛖ•ᛞᛖᛖᛈ•ᚹᛖᛒ⁚•ᚦᛖᚱᛖ•ᛖᛉᛁᛋᛏᛋ•ᚪ•ᛈᚪᚷᛖ•ᚦᚪᛏ•ᚻᚪᛋᚻᛖᛋ•ᛏᚩ⁜",
+      "widths": [
+        5,
+        2,
+        4,
+        3,
+        4,
+        6,
+        1,
+        4,
+        3,
+        6,
+        2
+      ]
+    },
+    {
+      "id": "lp1",
+      "source": "resources/external/relikd-solved-gp29-native-v1.json#0_wisdom and #jpg229",
+      "text": "KNOW THIS",
+      "runes": "ᚳᚾᚩᚹ•ᚦᛁᛋ⁜",
+      "widths": [
+        4,
+        3
+      ]
+    },
+    {
+      "id": "2012-0",
+      "source": "resources/external/2012-sq6wmgv2zcsrix6t-unknown.asc",
+      "text": "Here is a message that has been encrypted with RSA (the Crypt::RSA Perl module available in CPAN) :",
+      "runes": "ᚻᛖᚱᛖ•ᛁᛋ•ᚪ•ᛗᛖᛋᛋᚪᚷᛖ•ᚦᚪᛏ•ᚻᚪᛋ•ᛒᛖᛖᚾ•ᛖᚾᚳᚱᚣᛈᛏᛖᛞ•ᚹᛁᚦ•ᚱᛋᚪ•ᚦᛖ•ᚳᚱᚣᛈᛏ•ᚱᛋᚪ•ᛈᛖᚱᛚ•ᛗᚩᛞᚢᛚᛖ•ᚪᚢᚪᛁᛚᚪᛒᛚᛖ•ᛁᚾ•ᚳᛈᚪᚾ",
+      "widths": [
+        4,
+        2,
+        1,
+        7,
+        3,
+        3,
+        4,
+        9,
+        3,
+        3,
+        2,
+        5,
+        3,
+        4,
+        6,
+        9,
+        2,
+        4
+      ]
+    },
+    {
+      "id": "2012-1",
+      "source": "resources/external/2012-sq6wmgv2zcsrix6t-unknown.asc",
+      "text": "Here is the public key used to encrypt it. Note that it has a low bit modulus and is therefore breakable:",
+      "runes": "ᚻᛖᚱᛖ•ᛁᛋ•ᚦᛖ•ᛈᚢᛒᛚᛁᚳ•ᚳᛖᚣ•ᚢᛋᛖᛞ•ᛏᚩ•ᛖᚾᚳᚱᚣᛈᛏ•ᛁᛏ•ᚾᚩᛏᛖ•ᚦᚪᛏ•ᛁᛏ•ᚻᚪᛋ•ᚪ•ᛚᚩᚹ•ᛒᛁᛏ•ᛗᚩᛞᚢᛚᚢᛋ•ᚪᚾᛞ•ᛁᛋ•ᚦᛖᚱᛖᚠᚩᚱᛖ•ᛒᚱᛠᚳᚪᛒᛚᛖ",
+      "widths": [
+        4,
+        2,
+        2,
+        6,
+        3,
+        4,
+        2,
+        7,
+        2,
+        4,
+        3,
+        2,
+        3,
+        1,
+        3,
+        3,
+        7,
+        3,
+        2,
+        8,
+        8
+      ]
+    }
+  ]
+}
