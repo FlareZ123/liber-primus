@@ -1,142 +1,21 @@
 {
-  "period": 8,
   "vocabulary": 38938,
-  "plant": {
-    "controlStart": 135,
-    "total": 292,
-    "key": [
-      4,
-      27,
-      15,
-      8,
-      21,
-      0,
-      12,
-      19
-    ],
-    "expected": [
-      13,
-      7,
-      24,
-      17,
-      1,
-      9,
-      21,
-      28
-    ],
-    "initial": 3,
-    "split": {
-      "i": 37,
-      "n": 151
-    },
-    "runs": [
-      {
-        "s": 0,
-        "stop": "infeasible",
-        "used": 2,
-        "nodes": 35280,
-        "states": 0,
-        "history": [
-          4412,
-          0
-        ]
-      },
-      {
-        "s": 1,
-        "stop": "infeasible",
-        "used": 2,
-        "nodes": 154980,
-        "states": 0,
-        "history": [
-          6652,
-          0
-        ]
-      },
-      {
-        "s": 2,
-        "stop": "infeasible",
-        "used": 2,
-        "nodes": 259367,
-        "states": 0,
-        "history": [
-          6652,
-          0
-        ]
-      },
-      {
-        "s": 3,
-        "stop": "complete",
-        "used": 37,
-        "nodes": 356522,
-        "states": 1,
-        "history": [
-          6652,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1
-        ]
-      },
-      {
-        "s": 4,
-        "stop": "infeasible",
-        "used": 6,
-        "nodes": 442470,
-        "states": 0,
-        "history": [
-          6652,
-          1,
-          1,
-          1,
-          1,
-          0
-        ]
-      },
-      {
-        "s": 5,
-        "stop": "infeasible",
-        "used": 2,
-        "nodes": 513835,
-        "states": 0,
-        "history": [
-          6652,
-          0
-        ]
-      },
-      {
-        "s": 6,
-        "stop": "infeasible",
-        "used": 2,
-        "nodes": 585636,
-        "states": 0,
-        "history": [
-          6652,
-          0
-        ]
-      },
-      {
-        "s": 7,
-        "stop": "infeasible",
-        "used": 2,
-        "nodes": 715525,
-        "states": 0,
-        "history": [
-          6652,
-          0
-        ]
-      }
-    ],
-    "held": {
-      "prefixScore": -187.0532604432487,
-      "initial": 3,
+  "q8": {
+    "period": 8,
+    "plant": {
+      "controlStart": 135,
+      "total": 292,
       "key": [
+        4,
+        27,
+        15,
+        8,
+        21,
+        0,
+        12,
+        19
+      ],
+      "expected": [
         13,
         7,
         24,
@@ -146,116 +25,647 @@
         21,
         28
       ],
-      "keyMatches": 8,
-      "prefixKeyCount": 1,
-      "holdStop": "complete",
-      "holdStates": 6,
-      "paths": 1,
-      "fullScore": -379.53434553101613,
-      "exactMatches": 292,
-      "holdMatches": 141,
-      "replay": true,
-      "sample": "PROFESSOR REPLIED I AM A CONSCIAUSNESS INHABITNG AN ARBITRARY BODY THAT IS MERELY WHAT YOU ARE NOT WHO YOU ARE WHO ARE YOU WHO"
+      "initial": 3,
+      "split": {
+        "i": 37,
+        "n": 151
+      },
+      "runs": [
+        {
+          "s": 0,
+          "stop": "infeasible",
+          "used": 2,
+          "nodes": 35280,
+          "states": 0,
+          "history": [
+            4412,
+            0
+          ]
+        },
+        {
+          "s": 1,
+          "stop": "infeasible",
+          "used": 2,
+          "nodes": 154980,
+          "states": 0,
+          "history": [
+            6652,
+            0
+          ]
+        },
+        {
+          "s": 2,
+          "stop": "infeasible",
+          "used": 2,
+          "nodes": 259367,
+          "states": 0,
+          "history": [
+            6652,
+            0
+          ]
+        },
+        {
+          "s": 3,
+          "stop": "complete",
+          "used": 37,
+          "nodes": 356522,
+          "states": 1,
+          "history": [
+            6652,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "s": 4,
+          "stop": "infeasible",
+          "used": 6,
+          "nodes": 442470,
+          "states": 0,
+          "history": [
+            6652,
+            1,
+            1,
+            1,
+            1,
+            0
+          ]
+        },
+        {
+          "s": 5,
+          "stop": "infeasible",
+          "used": 2,
+          "nodes": 513835,
+          "states": 0,
+          "history": [
+            6652,
+            0
+          ]
+        },
+        {
+          "s": 6,
+          "stop": "infeasible",
+          "used": 2,
+          "nodes": 585636,
+          "states": 0,
+          "history": [
+            6652,
+            0
+          ]
+        },
+        {
+          "s": 7,
+          "stop": "infeasible",
+          "used": 2,
+          "nodes": 715525,
+          "states": 0,
+          "history": [
+            6652,
+            0
+          ]
+        }
+      ],
+      "held": {
+        "prefixScore": -187.0532604432487,
+        "initial": 3,
+        "key": [
+          13,
+          7,
+          24,
+          17,
+          1,
+          9,
+          21,
+          28
+        ],
+        "keyMatches": 8,
+        "prefixKeyCount": 1,
+        "holdStop": "complete",
+        "holdStates": 6,
+        "paths": 1,
+        "fullScore": -379.53434553101613,
+        "exactMatches": 292,
+        "holdMatches": 141,
+        "replay": true,
+        "sample": "PROFESSOR REPLIED I AM A CONSCIAUSNESS INHABITNG AN ARBITRARY BODY THAT IS MERELY WHAT YOU ARE NOT WHO YOU ARE WHO ARE YOU WHO"
+      }
+    },
+    "original": {
+      "chapter": "p54-55 after opening singleton",
+      "total": 307,
+      "split": {
+        "i": 33,
+        "n": 150
+      },
+      "runs": [
+        {
+          "s": 0,
+          "stop": "infeasible",
+          "used": 2,
+          "nodes": 218315,
+          "states": 0,
+          "history": [
+            5416,
+            0
+          ]
+        },
+        {
+          "s": 1,
+          "stop": "infeasible",
+          "used": 2,
+          "nodes": 521611,
+          "states": 0,
+          "history": [
+            157064,
+            0
+          ]
+        },
+        {
+          "s": 2,
+          "stop": "infeasible",
+          "used": 2,
+          "nodes": 662983,
+          "states": 0,
+          "history": [
+            157064,
+            0
+          ]
+        },
+        {
+          "s": 3,
+          "stop": "infeasible",
+          "used": 2,
+          "nodes": 785175,
+          "states": 0,
+          "history": [
+            157064,
+            0
+          ]
+        },
+        {
+          "s": 4,
+          "stop": "infeasible",
+          "used": 2,
+          "nodes": 895220,
+          "states": 0,
+          "history": [
+            157064,
+            0
+          ]
+        },
+        {
+          "s": 5,
+          "stop": "infeasible",
+          "used": 3,
+          "nodes": 993203,
+          "states": 0,
+          "history": [
+            157064,
+            1,
+            0
+          ]
+        },
+        {
+          "s": 6,
+          "stop": "infeasible",
+          "used": 2,
+          "nodes": 1269045,
+          "states": 0,
+          "history": [
+            157064,
+            0
+          ]
+        },
+        {
+          "s": 7,
+          "stop": "infeasible",
+          "used": 2,
+          "nodes": 2499621,
+          "states": 0,
+          "history": [
+            157064,
+            0
+          ]
+        }
+      ],
+      "held": null
     }
   },
-  "original": {
-    "chapter": "p54-55 after opening singleton",
-    "total": 307,
-    "split": {
-      "i": 33,
-      "n": 150
-    },
-    "runs": [
-      {
-        "s": 0,
-        "stop": "infeasible",
-        "used": 2,
-        "nodes": 218315,
-        "states": 0,
-        "history": [
-          5416,
-          0
-        ]
+  "q13": {
+    "period": 13,
+    "plant": {
+      "controlStart": 5,
+      "total": 737,
+      "key": [
+        17,
+        4,
+        26,
+        11,
+        2,
+        8,
+        21,
+        0,
+        15,
+        5,
+        19,
+        7,
+        27
+      ],
+      "expected": [
+        4,
+        20,
+        13,
+        27,
+        18,
+        24,
+        8,
+        16,
+        2,
+        21,
+        6,
+        23,
+        14
+      ],
+      "initial": 5,
+      "split": {
+        "i": 30,
+        "n": 152
       },
-      {
-        "s": 1,
-        "stop": "infeasible",
-        "used": 2,
-        "nodes": 521611,
-        "states": 0,
-        "history": [
-          157064,
-          0
-        ]
-      },
-      {
-        "s": 2,
-        "stop": "infeasible",
-        "used": 2,
-        "nodes": 662983,
-        "states": 0,
-        "history": [
-          157064,
-          0
-        ]
-      },
-      {
-        "s": 3,
-        "stop": "infeasible",
-        "used": 2,
-        "nodes": 785175,
-        "states": 0,
-        "history": [
-          157064,
-          0
-        ]
-      },
-      {
-        "s": 4,
-        "stop": "infeasible",
-        "used": 2,
-        "nodes": 895220,
-        "states": 0,
-        "history": [
-          157064,
-          0
-        ]
-      },
-      {
-        "s": 5,
-        "stop": "infeasible",
-        "used": 3,
-        "nodes": 993203,
-        "states": 0,
-        "history": [
-          157064,
-          1,
-          0
-        ]
-      },
-      {
-        "s": 6,
-        "stop": "infeasible",
-        "used": 2,
-        "nodes": 1269045,
-        "states": 0,
-        "history": [
-          157064,
-          0
-        ]
-      },
-      {
-        "s": 7,
-        "stop": "infeasible",
-        "used": 2,
-        "nodes": 2499621,
-        "states": 0,
-        "history": [
-          157064,
-          0
-        ]
+      "runs": [
+        {
+          "s": 0,
+          "stop": "infeasible",
+          "used": 3,
+          "nodes": 28163,
+          "states": 0,
+          "history": [
+            574,
+            1,
+            0
+          ]
+        },
+        {
+          "s": 1,
+          "stop": "infeasible",
+          "used": 3,
+          "nodes": 71311,
+          "states": 0,
+          "history": [
+            16394,
+            1,
+            0
+          ]
+        },
+        {
+          "s": 2,
+          "stop": "infeasible",
+          "used": 3,
+          "nodes": 87915,
+          "states": 0,
+          "history": [
+            16618,
+            1,
+            0
+          ]
+        },
+        {
+          "s": 3,
+          "stop": "infeasible",
+          "used": 3,
+          "nodes": 102811,
+          "states": 0,
+          "history": [
+            16646,
+            1,
+            0
+          ]
+        },
+        {
+          "s": 4,
+          "stop": "infeasible",
+          "used": 4,
+          "nodes": 117313,
+          "states": 0,
+          "history": [
+            16646,
+            1,
+            1,
+            0
+          ]
+        },
+        {
+          "s": 5,
+          "stop": "complete",
+          "used": 30,
+          "nodes": 131882,
+          "states": 1,
+          "history": [
+            16646,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            3,
+            2,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "s": 6,
+          "stop": "infeasible",
+          "used": 3,
+          "nodes": 145766,
+          "states": 0,
+          "history": [
+            16646,
+            2,
+            0
+          ]
+        },
+        {
+          "s": 7,
+          "stop": "infeasible",
+          "used": 3,
+          "nodes": 159597,
+          "states": 0,
+          "history": [
+            16646,
+            1,
+            0
+          ]
+        },
+        {
+          "s": 8,
+          "stop": "infeasible",
+          "used": 3,
+          "nodes": 172700,
+          "states": 0,
+          "history": [
+            16646,
+            1,
+            0
+          ]
+        },
+        {
+          "s": 9,
+          "stop": "infeasible",
+          "used": 3,
+          "nodes": 184601,
+          "states": 0,
+          "history": [
+            16646,
+            1,
+            0
+          ]
+        },
+        {
+          "s": 10,
+          "stop": "infeasible",
+          "used": 3,
+          "nodes": 195859,
+          "states": 0,
+          "history": [
+            16646,
+            1,
+            0
+          ]
+        },
+        {
+          "s": 11,
+          "stop": "infeasible",
+          "used": 3,
+          "nodes": 223947,
+          "states": 0,
+          "history": [
+            16646,
+            1,
+            0
+          ]
+        },
+        {
+          "s": 12,
+          "stop": "infeasible",
+          "used": 3,
+          "nodes": 355674,
+          "states": 0,
+          "history": [
+            16646,
+            1,
+            0
+          ]
+        }
+      ],
+      "held": {
+        "prefixScore": -187.33666867559702,
+        "initial": 5,
+        "key": [
+          4,
+          20,
+          13,
+          27,
+          18,
+          24,
+          8,
+          16,
+          2,
+          21,
+          6,
+          23,
+          14
+        ],
+        "keyMatches": 13,
+        "prefixKeyCount": 1,
+        "holdStop": "complete",
+        "holdStates": 1,
+        "paths": 1,
+        "fullScore": -1008.8789905016214,
+        "exactMatches": 737,
+        "holdMatches": 585,
+        "replay": true,
+        "sample": "CIRCUMFERENCE PRACTICES THREE BEHAUIARS WHICH CAUSE THE LOSS OF DIUINITY CONSUMPTIAN WE CONSUME TOO MUCH BECAUSE WE BELEIUE THE FOLLOWNG TWO ERRORS WITHIN THE"
       }
-    ],
-    "held": null
+    },
+    "original": {
+      "chapter": "p54-55 unique longest word suffix",
+      "anchor": 56,
+      "total": 53,
+      "split": {
+        "i": 5,
+        "n": 32
+      },
+      "runs": [
+        {
+          "s": 0,
+          "stop": "infeasible",
+          "used": 3,
+          "nodes": 29760,
+          "states": 0,
+          "history": [
+            573,
+            1,
+            0
+          ]
+        },
+        {
+          "s": 1,
+          "stop": "infeasible",
+          "used": 3,
+          "nodes": 67224,
+          "states": 0,
+          "history": [
+            16393,
+            1,
+            0
+          ]
+        },
+        {
+          "s": 2,
+          "stop": "infeasible",
+          "used": 3,
+          "nodes": 83156,
+          "states": 0,
+          "history": [
+            16617,
+            1,
+            0
+          ]
+        },
+        {
+          "s": 3,
+          "stop": "infeasible",
+          "used": 3,
+          "nodes": 97996,
+          "states": 0,
+          "history": [
+            16617,
+            1,
+            0
+          ]
+        },
+        {
+          "s": 4,
+          "stop": "infeasible",
+          "used": 3,
+          "nodes": 112444,
+          "states": 0,
+          "history": [
+            16617,
+            1,
+            0
+          ]
+        },
+        {
+          "s": 5,
+          "stop": "infeasible",
+          "used": 4,
+          "nodes": 126711,
+          "states": 0,
+          "history": [
+            16617,
+            1,
+            1,
+            0
+          ]
+        },
+        {
+          "s": 6,
+          "stop": "infeasible",
+          "used": 3,
+          "nodes": 140874,
+          "states": 0,
+          "history": [
+            16617,
+            1,
+            0
+          ]
+        },
+        {
+          "s": 7,
+          "stop": "infeasible",
+          "used": 3,
+          "nodes": 154701,
+          "states": 0,
+          "history": [
+            16617,
+            1,
+            0
+          ]
+        },
+        {
+          "s": 8,
+          "stop": "infeasible",
+          "used": 3,
+          "nodes": 167751,
+          "states": 0,
+          "history": [
+            16617,
+            3,
+            0
+          ]
+        },
+        {
+          "s": 9,
+          "stop": "infeasible",
+          "used": 3,
+          "nodes": 179689,
+          "states": 0,
+          "history": [
+            16617,
+            3,
+            0
+          ]
+        },
+        {
+          "s": 10,
+          "stop": "infeasible",
+          "used": 3,
+          "nodes": 191922,
+          "states": 0,
+          "history": [
+            16617,
+            4,
+            0
+          ]
+        },
+        {
+          "s": 11,
+          "stop": "infeasible",
+          "used": 3,
+          "nodes": 230292,
+          "states": 0,
+          "history": [
+            16617,
+            5,
+            0
+          ]
+        },
+        {
+          "s": 12,
+          "stop": "infeasible",
+          "used": 3,
+          "nodes": 384066,
+          "states": 0,
+          "history": [
+            16617,
+            4,
+            0
+          ]
+        }
+      ],
+      "held": null
+    }
   }
 }
