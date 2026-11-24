@@ -87,6 +87,7 @@ jobs:
             exiftool -a -u -g1 data.out > exiftool.txt
             tesseract data.out stdout --psm 6 2>tesseract.stderr.txt > ocr.txt || true
             strings -a -n 4 data.out | head -300 > strings.txt
+            python3 sims/known_gp29_image_readback.py data.out > gp29-readback.json
           else
             echo "Payload is not JPEG; see report.json magic scan." > image-inspection.txt
             strings -a -n 4 data.out | head -300 > strings.txt
@@ -120,6 +121,16 @@ jobs:
           open("page-similarity.json", "w").write(json.dumps(rows[:20], indent=2) + "\\n")
           print("=== PAGE SIMILARITY ===")
           print(json.dumps(rows[:20], indent=2))
+          PY
+          echo "=== GP29 GLYPH READBACK ==="
+          python3 - <<'PY'
+          import json, pathlib
+          p = pathlib.Path("gp29-readback.json")
+          if p.exists():
+              d = json.loads(p.read_text())
+              print(json.dumps({k: d.get(k) for k in ("row_count", "row_lengths", "predicted_letters", "predicted_runes", "nearest_distance_summary", "claim")}, ensure_ascii=False, indent=2))
+          else:
+              print("No GP29 readback produced.")
           PY
           echo "=== DECODE REPORT ==="
           cat report.json
@@ -166,6 +177,7 @@ jobs:
             ocr.txt
             tesseract.stderr.txt
             strings.txt
+            gp29-readback.json
             image-inspection.txt
           if-no-files-found: ignore
           retention-days: 14
