@@ -8,6 +8,8 @@ This entry point prioritizes facts and decisions that change a plausible route t
 
 **Active-28 reciprocal Porta (#2635):** the period-eight canonical half-exchange table with literal F holds has zero A/I/O/T-singleton-compatible row vectors in all nine independently keyed chapters. The terminal phase-0 A/NG singleton restrictions are disjoint ({0,7} vs {4,11}). Independently, exact phasewise J/EO lower and E upper bounds exclude all 10,789,539 length-matched chapter literary windows, including the short p54–55; whole-tape bounds are J+EO ≥755 and E ≤540 versus native ≤83 and ≥1397. Five native/literary constructed controls replay 40,163/40,163 runes. Retire this precise architecture under the stated grammar/finite prose register; no original plaintext or key. [Report](../im-results/lp2-active28-porta-q8-gate.md) · [SFT](../sims/lp2_active28_porta_q8_gate_sft.cjs).
 
+**Previous-clause plaintext autokey (#2634):** the shortest source-selected complete black-body opening is p40 global 9648–9669 (21 runes), followed by 46 runes. Grant an arbitrary first seed and enumerate both literal/consuming choices for the single visible F in each clause. Exact shared-key lexical projection joins exhaust all four cases under 36,718 GP forms and intact groups, before DFS. Two target-excluded native hidden-q8 plants recover unique seeds and predict both later clauses (97/97 withheld runes). Retire only this fixed clause-reset law within the stated lexical register. [Report](../im-results/lp2-clause-fed-autokey-csp-gate.md) · [SFT](../sims/lp2_clause_fed_autokey_csp_sft.cjs).
+
 ## 1. Original source and real decoding controls
 
 | Source object | Established constraint |

@@ -4,7 +4,11 @@ Immutable verified lease `agent17-draw5-2026-11-24T21:39:35.604Z-integer-transpo
 
 **Completed research gate #2635:** canonical active-28 Porta with literal F hold and period8 rejects all nine private chapter keys under native singleton A/I/O/T. Terminal A/NG both phase0 and row masks {0,7}/{4,11} disjoint. Independent spacing-free all-key min J/EO and max E exclude 10,789,539 matched chapter windows (plus 1,129,739 whole windows). Five native and literary plants replay 40,163/40,163; historical Fig. 95 example passes. [Report](../../im-results/lp2-active28-porta-q8-gate.md), [SFT](../../sims/lp2_active28_porta_q8_gate_sft.cjs), [raw](../../im-results/lp2-active28-porta-q8-gate-output.json). Code and output commits de174e40 / 02306fb4. No unknown key or plaintext. Do not expand Porta alphabet/split/period absent a new source selector. Claim #2636 was already taken by Agent31; not duplicated.
 
-**Next:** close #2635 with scoped decision; continue only on distinct open Director tasks or genuinely source-selected mechanisms. No new CI. Prior memory preserved below.
+**Completed #2635:** closed and remote verified (comment 7145280853), synthesis commit e1cdfbb7934efc26a857c1aefe7353d558851132.
+
+**#2634 (claim 7145286141):** source-selected shortest p40 body clause 21 runes, followed by 46; exact arbitrary-first-seed prior-clause autokey CSP rejects all 4 original F mask pairs before DFS, with 36,718 GP forms. Two target-excluded native plants uniquely infer their hidden q8 seeds and both later clauses, 97/97 withheld runes. [Report](../../im-results/lp2-clause-fed-autokey-csp-gate.md), [SFT](../../sims/lp2_clause_fed_autokey_csp_sft.cjs), code commit 063956b0. Conditional on intact printed groups and finite native lexicon. No original plaintext. Retire fixed grammar; no additional sign/reset search.
+
+**Next:** close #2634 with scoped decision and pursue distinct source-selected tasks. No new CI. Prior memory preserved below.
 
 ---
 
