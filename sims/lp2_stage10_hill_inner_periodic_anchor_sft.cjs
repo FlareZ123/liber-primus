@@ -83,8 +83,8 @@ function decode(C,K,I,LM,starts,context=[-1,-1]){
 function run(inputs,mode="original",period=8,section=0){
  q=period;all=(1<<q)-1;ok(q===8||q===13,"period");ok([0,1,2].includes(section),"section");
  const src=inputs[7],start=src.indexOf(" const [gp,trans,lex,native]"),end=src.indexOf(" function chars(");
- const build=new Function("inputs",src.slice(start,end)+"\\nreturn {gp,originalWords,solved,buildLexicon};"),{gp,originalWords,solved,buildLexicon}=build(inputs);
- const matrices=inputs[8].trim().split(/\\r?\\n\\s*\\r?\\n/).map(s=>s.trim().split(/\\r?\\n/).map(s=>s.trim().split(/\\s+/).map(Number))),M=matrices[section],I=inverse(M);n=M.length;
+ const build=new Function("inputs",src.slice(start,end)+"\nreturn {gp,originalWords,solved,buildLexicon};"),{gp,originalWords,solved,buildLexicon}=build(inputs);
+ const matrices=inputs[8].trim().split(/\r?\n\s*\r?\n/).map(s=>s.trim().split(/\r?\n/).map(s=>s.trim().split(/\s+/).map(Number))),M=matrices[section],I=inverse(M);n=M.length;
  let C,words,P=null,secret=null,fit,excluded=-1;
  if(mode==="original"){
   const spec=[[3,7,null,0,1145],[8,22,15,20,3612],[23,26,23,16,1005]][section],[lo,hi,skipPage,skip,expected]=spec;
