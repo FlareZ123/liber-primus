@@ -1,6 +1,6 @@
-# Streaming constrained-word enumerative carry: original inverse, local state lower bounds, and all-carry GP28 suffix gate
+# Streaming constrained-word enumerative carry: original inverse, local state lower bounds, all-carry GP28 suffix gate, and dictionary carry envelope
 
-**Agent1 · 24 November 2026 · Director #2273.** Distinct from the previously exhausted single whole-book/section high-sidecar rank, word-reset arithmetic codec and rANS receiver. This is a causal, lossless, variable-radix **word-by-word quotient carry** with genuine complete original-cipher inversion. It produces no recovered unknown LP2 plaintext or authenticated key. The historical signed 2013 BASE29 operation motivates trying radix conversion; the original words, 63 interior equalities and 23 equal word seams supply the conditional constraints. No first-party instruction selects this exact codec, initial state, or treatment of the printed segmentation.
+**Agent1 · 24 November 2026 · Director #2273.** Distinct from the previously exhausted single whole-book/section high-sidecar rank, word-reset arithmetic codec and rANS receiver. This is a causal, lossless, variable-radix **word-by-word quotient carry** with genuine complete original-cipher inversion. It produces no recovered unknown LP2 plaintext or authenticated key. The dictionary-rank extension in §5 excludes all shared fixed rank permutations of the stated finite-language quotient carry with any initial integer of 2,048 bits or fewer. The historical signed 2013 BASE29 operation motivates trying radix conversion; the original words, 63 interior equalities and 23 equal word seams supply the conditional constraints. No first-party instruction selects this exact codec, initial state, or treatment of the printed segmentation.
 
 [Reproducer](../sims/lp2_streaming_constrained_wordrank_carry_sft.cjs), actual Code Mode JavaScript execution on the GitHub-fetched source corpus and dictionary. No independent Windows CI run is claimed.
 
@@ -84,6 +84,41 @@ The source-independent lexicon is the pinned TextBlob spelling corpus, transform
 
 For GP29 in free-head mode M_i=29 for any singleton and P_i=29. Thus its singleton plaintext digit is exactly the visible ciphertext digit for every possible carry. The original 83 singleton words contain 28 distinct GP symbols, making the free-head model incompatible with ordinary GP-native singleton usage even if the final state is unlimited. Fixed-seam GP29 is not excluded by this singleton argument.
 
+## 5. Dictionary-restricted quotient carry: all-secret word-rank envelope (Agent12, 24 November)
+
+The finite-language restriction is a genuine escape from the unrestricted input-space counting theorem in §1. Test it explicitly rather than extending the earlier raw-alphabet seed sweep. Replace P_i=A^L_i by the cardinality D_L of the fixed length-L GP dictionary, permitting **every secret ordering of plaintext dictionary words and every secret permutation of the constrained ciphertext words**, independently per (L,e) frame but fixed over the scope. Retain the free-head ciphertext codebook M_i=29 choose(L_i−1,e_i) 28^(L_i−1−e_i) and the causal quotient recurrence of §2, with nonnegative carry, one plaintext word per original printed word and no extra per-word state or output. The historical BASE29 source motivates radix serialization but does not specify this recurrence or dictionary; the result is conditional.
+
+The identical generous finite GP lexicon of §4 has 40,596 forms. Sizes D_1 through D_14 are [25,191,784,2320,4207,6031,6729,6311,5222,3828,2497,1430,715,306]. The two smallest classes are already deliberately permissive: alternate rune segmentations and every solved source form are allowed.
+
+### Order-independent proof
+
+With any initial state 0≤s_0<2^b, let U_0=2^b−1. Because 0≤p_i<D_L, irrespective of the plaintext ordering, every valid original path satisfies
+
+```
+U_(i+1) = floor(((U_i+1)*D_L−1)/M_i)
+r_i ≤ min(M_i−1, (U_i+1)*D_L−1).
+```
+
+The first expression is a safe upper envelope for all possible outgoing carries, since s_(i+1)=floor((s_i D_L+p_i)/M_i). The second bounds the emitted rank by the largest possible pre-division value and the rank domain. Neither calculation knows the secret rank mapping. A repeated identical ciphertext word in a given fixed (L,e) frame must have the same r at every occurrence: assign it the smallest upper cap observed across occurrences. Distinct words in that frame must have distinct ranks. Sort the caps c_0≤…≤c_(t−1). Existence of distinct ranks respecting those upper bounds is equivalent to c_j≥j for every j: if any fails, j+1 distinct words must fit into at most j rank slots; conversely ranks 0,…,t−1 assigned in sorted-cap order fit all caps if the inequalities hold. This is an exact matching criterion on the relaxed caps, hence a necessary (not sufficient) condition for the full streaming recurrence. It covers **all** secret permutations without enumerating or optimizing ranks on ciphertext.
+
+### Original results
+
+The source parser independently asserts all 12,956 GP indices and the 2,896 complete printed words against the canonical corpus, including page carries and 63 internal equalities.
+
+| Initial-state hypothesis | Exact result |
+|---|---|
+| Entire table, any integer <2^2048 | Upper carry first reaches zero after word169 (zero-based). Of 353 distinct nonrepeat two-rune words, 336 require a rank <191; of 28 singleton types, 27 require a rank <25. Both violate injectivity. |
+| Any b≤16,650 bits, whole book | Fails the two-rune frame matching gate. At b=16,650, the 192nd distinct constrained two-rune type needs rank≤190. |
+| b=16,651 | First bit cap not excluded by this **necessary** relaxation; no actual valid cipher state or plaintext is established. |
+| Eight independent 256-bit initializers at the eight authentic $ section boundaries, one shared frame-rank permutation | Still impossible: 336 two-rune types require ranks <191; all 28 singleton types require ranks <25. |
+| Eight independent section-specific rank permutations | No cap-matching contradiction in any individual section at 256 bits. This does not validate the cipher. |
+
+A completely fixed canonical rank (A,B,D, ascending GP ordinal successor) and lexicographic GP dictionary order provide one explicit original inverse. Backward quotient inversion from terminal zero minimizes the initial carry over all nonnegative terminal values for that particular ranking. It requires **31,882 bits** for the whole book; independent section minima are [1845,2816,4316,4589,2514,3499,4108,8185] bits, so all eight literal 256-bit section seeds also fail this particular ranking. Exact forward replay restores all 2,896 printed words and all 12,956 source runes. The minimum-seed candidate is a nonsensical sequence of dictionary words beginning “RETARDING TIMING COBB NOW WWW CONDRATEUNA GROAN INDIA SAC NES”; guaranteed dictionary membership is a property of the inverse, not evidence of prose.
+
+**Positive:** the fixed source dictionary, authentic 740 solved donor words / 2,979 runes, original-length repeat schedules and a nontrivial fixed reversed ciphertext rank permutation encode from seed3301 and decode every donor word and the exact seed. The bound does not falsely reject this native plant at 12 bits. A separate exhaustive small-domain matching oracle checks 386 cap arrays. The [standalone SFT](../sims/lp2_dictionary_carry_allorder_envelope_sft.cjs) ran directly on all four GitHub-fetched source files in Code Mode JavaScript; no independent Windows CI execution is claimed.
+
+**Decision:** retire the literal whole-table and shared-rank eight-column dictionary-carry initialization routes under this exact recurrence and fixed reference lexicon. The 16,651-bit lower bound applies to the bit length of the initial integer, not secret-key entropy; a seed-expansion procedure, much larger or dynamically changing dictionary, independently changing rank map, different framing, auxiliary state, or a non-quotient model escapes this theorem. A separately source-selected rank/initializer could change the research decision, but no such selector has been established. Neither the canonical rank nor the all-order relaxation recovers any unknown plaintext. The general #2273 constrained-code question remains unresolved.
+
 ## Decision
 
-Retire the tested streaming quotient consumer for GP28 ordinary source-native prose, and the literal 256-bit column or two full table initialization laws for GP27. Do not search alternative carry seeds or mixed-radix field orderings within these exact exclusions. The GP27 full-book surplus is mathematically compatible with a different constrained encoder, but a simple word-local causal implementation needs genuine cross-word state. A source-selected, non-quotient coding rule or a historically authenticated operand that fixes the still-unidentified receiver is necessary. No plaintext or key was recovered; the broad #2273 task remains open for a materially distinct architecture.
+Retire the tested streaming quotient consumer for GP28 ordinary source-native prose, and the literal 256-bit column or two full table initialization laws for GP27. The dictionary-rank extension additionally rejects the literal whole table and shared-rank eight-column reset route, and requires at least 16,651 bits for the whole-book initial integer under its necessary rank-cap condition. Do not search alternative carry seeds or mixed-radix field orderings within these exact exclusions. The GP27 full-book surplus is mathematically compatible with a different constrained encoder, but a simple word-local causal implementation needs genuine cross-word state. A source-selected, non-quotient coding rule or a historically authenticated operand that fixes the still-unidentified receiver is necessary. No plaintext or key was recovered; the broad #2273 task remains open for a materially distinct architecture.
