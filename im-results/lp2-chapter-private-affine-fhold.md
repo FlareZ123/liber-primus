@@ -13,9 +13,9 @@ For each consuming P, C=(a_j P+b_j) mod29, with 1<=a_j<=28, and j advances mod q
 | 8–14 | 1,729 | infeasible (15,073) | infeasible (478,819) |
 | 15–22 | 1,903 | infeasible (4,110) | infeasible (686,723) |
 | 23–26 | 1,021 | infeasible (9,985) | infeasible (832,938) |
-| 27–32 | 1,433 | infeasible (32,614) | cap (2,500,001) |
+| 27–32 | 1,433 | infeasible (32,614) | infeasible (reverse: 91,360) |
 | 33–39 | 1,680 | infeasible (1,727) | infeasible (35,801) |
-| 40–53 | 3,008 | infeasible (46,842) | cap (2,500,001) |
+| 40–53 | 3,008 | infeasible (46,842) | infeasible (reverse: 716,495) |
 | 54–55 | 308 | witness (10) | witness (7) |
 
 Six source-native controls (WELCOME, first KOAN, LOSS OF DIVINITY, independently planted q8 and q13 phase rows) retain the actual known rows and a legal full path. This is feasibility calibration, distinct from the blind inverse below. The p0–2 q13 witness has row-domain sizes 1,2,1,8,2,2,1,1,1,1,3,3,1 for its **first** legal clock only; no unique key is implied. Capped cells are unresolved, not excluded.
@@ -78,7 +78,7 @@ Five distinct seeded q13 keys, all 65 rows exact, all 630 withheld runes exact. 
 
 A compiled 812-bitset DFS completed the full 729-rune chapter without a cap: **12,484,453 nodes, 536 legal clocks, 1,028,184 key-clock assignments** (sum of independent domain products; not necessarily unique keys). Every leaf's domain was reconstructed independently, and all 536 exact cyclic objective maxima were scored with forward replay. Max estimated DP operation count per leaf 580; small domains make exact ranking inexpensive. Best five clock maxima, nats/rune: −4.7237947060, −4.7261704150, −4.7264173289, −4.7282416824, −4.7296077390. Best row pairs: [(12,1),(13,7),(22,11),(4,27),(28,25),(21,0),(28,22),(27,20),(28,12),(24,23),(6,27),(22,27),(5,24)]. Its literal GP rendering begins `GNEADMDAFBSUEAEAPAELIASXMMLIYPWTXXSESUNGLTSTHTLJEGJHBI...` and does not form connected prose. This consumes all original p0–2 for retrospective inference; it is **not** a held-out prediction and does not prove every lower-scoring text is non-English.
 
-The prospective failures and full q13 opening objective maximum retire these fixed native-register affine inverses as practical routes absent a new independent clue. This is not a universal all-language exclusion. Two capped q13 long regions remain unknown at this checkpoint. No source-selected affine row key or unknown plaintext recovered.
+The prospective failures and full q13 opening objective maximum retire these fixed native-register affine inverses as practical routes absent a new independent clue. This is not a universal all-language exclusion. Both formerly capped q13 regions are now exactly infeasible by reverse traversal. If forward total consuming count is M, reverse phase j uses forward row (M−1−j) mod q. Because every row is free, this relabeling is allowed for any M. Transparent F holds and intact singleton constraints are invariant under reversing the rune tape and singleton offsets. Thus reverse search is an equivalent feasibility problem, not an extra cipher assumption. The two reverse searches visited 91,360 and 716,495 nodes, respectively, without caps. The SFT retains the original forward cap counts and adds the two reverse certificates. Seven of nine chapters are excluded at q13; only p0–2 and p54–55 remain feasible under support alone. No source-selected affine row key or unknown plaintext recovered.
 
 Additional reproducibility:
 - `python sims/lp2_chapter_private_affine_q13.py . --original` (opening)

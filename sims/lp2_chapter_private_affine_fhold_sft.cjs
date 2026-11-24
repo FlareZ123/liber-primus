@@ -53,7 +53,14 @@ function experiment(d,raw,native){
  }
  assert.equal(offset,12956);
  assert.deepEqual(original.map(v=>v.nodes),[92811,145703,2008,23547,15073,478819,4110,686723,9985,832938,32614,2500001,1727,35801,46842,2500001,10,7]);
- return {controls,original}
+ const reverse=[];
+ for(const [lo,hi] of [[27,32],[40,53]]){
+  const off=d.pages.slice(0,lo).reduce((s,p)=>s+p.indices.length,0),n=d.pages.slice(lo,hi+1).reduce((s,p)=>s+p.indices.length,0);
+  const cc=C.slice(off,off+n).reverse(),sing=new Set([...ss].filter(i=>i>=off&&i<off+n).map(i=>n-1-(i-off)));
+  reverse.push({chapter:[lo,hi],q:13,...solve(cc,sing,13)});
+ }
+ assert.deepEqual(reverse.map(v=>[v.ok,v.capped,v.nodes]),[[false,false,91360],[false,false,716495]]);
+ return {controls,original,reverse}
 }
 module.exports={solve,experiment,parse};
 if(require.main===module){
