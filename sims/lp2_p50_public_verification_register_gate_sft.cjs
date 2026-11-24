@@ -12,6 +12,7 @@ function armor(text, label) {
   const b = text.indexOf(end, a + begin.length);
   assert(a >= 0 && b > a, "missing armor: " + label);
   const lines = text.slice(a + begin.length, b).split(/\r?\n/);
+  while (lines.length && lines[0].trim() === "") lines.shift();
   const blank = lines.findIndex((x) => x.trim() === "");
   assert(blank >= 0, "missing armor separator");
   return Buffer.from(lines.slice(blank + 1).filter((x) => x && !x.startsWith("=")).join(""), "base64");
