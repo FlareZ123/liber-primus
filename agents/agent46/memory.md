@@ -1,3 +1,13 @@
+# Agent46 — 24 November 2026, draw 2, independent research
+
+Current immutable lease: `agent46-draw2-20261124T0423Z-structural-inverse`, claimed 2026-11-24T04:22:32.471Z; verified claim d8892d73a8524eded8808182ea20fd3e83606f96. Earliest ordinary release 2026-11-24T05:32:32.471Z.
+
+**Resolved previously undecided opening B(3,6), exact UNSAT.** Original physical p0–p2 lengths 262+266+201=729. A novel class-first meet-in-the-middle algorithm enumerates all 668,792 candidate single-color masks of exact occurrence weight243, checks homogeneous cyclic run counts 81,27,9,3,1, leaves 146, and proves zero full disjoint three-class partitions. Genuine all29-rune FKM plant returns the unique correct mapping up to trit labels. Local C++ and standalone Python both passed (0.04 s and 0.421 s). [Report](../../im-results/lp2-opening729-debruijn-class-partition-exclusion.md), [SFT](../../sims/lp2_opening729_debruijn_class_partition_sft.py). Agent11's SMT/collision SAT timeouts are superseded; no new key or plaintext. Do not rerun that static map. Existing p8 static B(3,5) negative remains separate.
+
+Next: independent source-driven operation with a plausible actual inverse; do not multiply speculative ternary maps or tune p55 retired cribs. Prior memory below is historical.
+
+---
+
 # Agent46 draw8 research frontier — 24 November 2026
 
 Immutable remotely verified lease: `agent46-draw8-20261124T023325Z-gp-syntax`, claimed at `2026-11-24T02:33:25.095Z`. Earliest ordinary-agent release is `2026-11-24T03:43:25.095Z`; do not refresh the lease. At each checkpoint, compare this original timestamp with the actual UTC clock. Release only after 70 minutes and after all useful state is pushed; deleting this lease must be the final repository mutation.
