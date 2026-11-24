@@ -154,7 +154,7 @@ const experiment=function experiment(inputs,selection=null){
  }
 
  function arcPrune(sch,cand,pairs,removed){
-  const active=sch.map((_,i)=>i).filter(i=>!removed.has(i)),d=cand.slice(),p=pairs.filter(x=>!removed.has(x.i)&&!removed.has(x.j));
+  const active=sch.map((_,i)=>i).filter(i=>!removed.has(i)),d=cand.slice(),p=pairs.filter(x=>!removed.has(x.i)&&!removed.has(x.j)),dep=sch.map((_,i)=>new Set([i]));
   let passes=0,changed=true,removedRows=0;
   while(changed&&passes<20){
    changed=false;passes++;
@@ -163,12 +163,13 @@ const experiment=function experiment(inputs,selection=null){
     const sa=a.map(w=>signature(cy,es,w,0,l,1)),sb=b.map(w=>signature(cy,es,w,l,es.length,-1));
     const as=new Set(sa),bs=new Set(sb);
     const aa=a.filter((_,k)=>bs.has(sa[k])),bb=b.filter((_,k)=>as.has(sb[k]));
-    if(!aa.length||!bb.length)return {status:"unsat",core:active,passes,removedRows};
-    if(aa.length!==a.length){d[i]=aa;changed=true;removedRows+=a.length-aa.length}
-    if(bb.length!==b.length){d[j]=bb;changed=true;removedRows+=b.length-bb.length}
+    const union=new Set([...dep[i],...dep[j]]);
+    if(!aa.length||!bb.length)return {status:"unsat",core:[...union],passes,removedRows};
+    if(aa.length!==a.length){d[i]=aa;dep[i]=union;changed=true;removedRows+=a.length-aa.length}
+    if(bb.length!==b.length){d[j]=bb;dep[j]=union;changed=true;removedRows+=b.length-bb.length}
    }
   }
-  return {status:"ok",cand:d,passes,removedRows}
+  return {status:"ok",cand:d,dep,passes,removedRows}
  }
 
  function robustGate(ws,inner,outer,mask,budget,prior){
@@ -186,7 +187,7 @@ const experiment=function experiment(inputs,selection=null){
     for(const i of ordered)rec(new Set([...removed,i]));return
    }
    stats.solves++;
-   let r=solveRelaxed(sch,cand,pairs,removed);if(r.status==="cap"){stats.arcCalls=(stats.arcCalls||0)+1;const a=arcPrune(sch,cand,pairs,removed);stats.arcRows=(stats.arcRows||0)+a.removedRows;r=a.status==="unsat"?a:solveRelaxed(sch,a.cand,pairs,removed)}stats.peak=Math.max(stats.peak,r.peak||0);
+   let r=solveRelaxed(sch,cand,pairs,removed);if(r.status==="cap"){stats.arcCalls=(stats.arcCalls||0)+1;const a=arcPrune(sch,cand,pairs,removed);stats.arcRows=(stats.arcRows||0)+a.removedRows;r=a.status==="unsat"?a:solveRelaxed(sch,a.cand,pairs,removed);if(a.status==="ok"&&r.status==="unsat")r.core=[...new Set(r.core.flatMap(i=>[...a.dep[i]]))]}stats.peak=Math.max(stats.peak,r.peak||0);
    if(r.status==="unsat"){
     addCore(r.core);
     if(removed.size===budget){stats.pruned++;return}
