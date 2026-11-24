@@ -49,7 +49,9 @@ function experiment(raw,corp,freq,solved,gibran) {
   }
   function decode(rows,a,b){return rows.map(x=>ranked[x.L][Number(mod(val(x.w)-BigInt(a)-BigInt(b)*BigInt(x.t),M[x.L]))]?.w??null)}
   let seed=2468;function rng(n){seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed%n}
-  const g=sourceWords(gibran),windows=[];
+  const begin=gibran.indexOf("|Almustafa,");
+  check(begin>=0,"Gibran body marker");
+  const g=sourceWords(gibran.slice(begin).split("*** END OF")[0]),windows=[];
   for(let start=0;start+80<=g.length;start+=80){const w=g.slice(start,start+80);if(w.every(x=>x&&x.length<15&&ranks[x.length].has(x.join(","))))windows.push(w)}
   check(windows.length>=5,"independent contiguous Gibran controls");
   const plants=[p57,...Array.from({length:5},(_,i)=>nativeLP1.slice(i*80,(i+1)*80)),...windows.slice(0,5)];
