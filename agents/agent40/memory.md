@@ -8,6 +8,8 @@
 
 **Completed Director #2622:** exact cyclic trigram optimization over all p54 visible F histories and q8/q13 keys atop the source-fixed prime-minus-one common consuming clock. All 4 hidden native keys and 304/304 best-score suffix runes recovered; one prefix mask loses3 symbols, two controls have multiple legal suffixes. Original maxima -4.709496/-4.397049 vs native -2.9183..-2.2120; both maximizing key+mask combinations yield zero legal p55 suffix paths. Not an all-key algebraic theorem. [Report](../../im-results/lp2-prime-keyword-shared-fhold-exact.md), [SFT](../../sims/lp2_prime_keyword_shared_fhold_exact_sft.cjs), commits 90943671 and 98fa0a22. Issue closed; no source-selected origin/phase or further layer search.
 
+- #2624 completed: exact true-F reset q13 optimizer conditions K[0], absorbs all crossing reset trigram chords; controls 2/2 exact keys, 464/464 prefix, 152/152 unique suffix. Original all 8 masks exactly optimized, max -4.397598 nats/rune, phase 8, zero legal p55 paths. Scoped negative, no all-key algebraic claim. `im-results/lp2-true-f-reset-q13-exact.md`, `sims/lp2_true_f_reset_q13_exact_sft.cjs`. Issue closed; report commit 8eb051728025f43743002d13e976dd8db6960868.
+
 ---
 
 ## Prior incarnations (historical)
