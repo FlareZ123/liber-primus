@@ -1,0 +1,79 @@
+name: LP2 2013 Parable-selected 761 byte offsets (R40-B3)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lp2-2013-761-parable-exact-offsets
+  cancel-in-progress: false
+
+jobs:
+  exact-offset-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout Liber Primus research repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Checkout pinned R40-B3 decoder and 12-register panel
+        uses: actions/checkout@v4
+        with:
+          repository: Dukotah/cicada3301
+          ref: f63501d8f2d835b80c30230eb89a1110fb9197d2
+          path: external
+          fetch-depth: 1
+          sparse-checkout: |
+            liber-primus
+          sparse-checkout-cone-mode: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install decoder runtime dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy cryptography filelock
+          python -m pip freeze | tee run-artifacts-pip-freeze.txt
+
+      - name: Fetch and pin original 761.MP3
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p run-artifacts
+          curl --fail --location --retry 3 --retry-delay 2 \
+            -o /tmp/761.MP3 \
+            https://raw.githubusercontent.com/rtkd/iddqd/f2267b0c2f1e1d2662806b90b9c3a2953b3a7023/2013/02/761.MP3
+          python - <<'PY'
+          import hashlib
+          from pathlib import Path
+          p = Path("/tmp/761.MP3")
+          b = p.read_bytes()
+          assert len(b) == 4010732, len(b)
+          h = hashlib.sha256(b).hexdigest()
+          assert h == "83008217439110c3b824898af73b99cb2cf0657dda88cb363c3aa34a4ec0a460", h
+          print({"bytes": len(b), "sha256": h})
+          PY
+
+      - name: Run the four exact offsets under the R40-B3 decoder
+        run: |
+          python sims/lp2_2013_761_parable_exact_offsets_r40b3_sft.py \
+            --external-root external/liber-primus \
+            --audio /tmp/761.MP3 \
+            --output run-artifacts/report.json
+
+      - name: Preserve reproducibility report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-2013-761-parable-exact-offsets
+          path: |
+            run-artifacts/
+            run-artifacts-pip-freeze.txt
+          if-no-files-found: warn
