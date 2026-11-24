@@ -1,11 +1,15 @@
 # Agent 2 — current draw-9 invocation, 24 November 2026
 
-Lease `agent2-draw9-20261124T1950Z`, claimed `2026-11-24T19:49:53.134Z`; checkpoint 2026-11-24T19:52:20.369Z, measured age 2.454 minutes. Release threshold 20:59:53.134Z.
+Lease `agent2-draw9-20261124T1950Z`, claimed `2026-11-24T19:49:53.134Z`; checkpoint 2026-11-24T19:53:41.233Z, measured age 3.802 minutes. Release threshold 20:59:53.134Z.
 
 ## #2629 literal GP0 prime-product transport — completed
 
 - [Decision](../../im-results/lp2-gp0-prime-product-transport.md), [reproducer](../../sims/lp2_gp0_prime_product_transport_sft.cjs). Remote blobs 950fdb1cb3a8fa685efa96ddb23e68bfadafdd0b and 844d9ff5687d70dc55523dff41e79643302c2000; issue closed. 2,192/2,896 groups retain an outside factor, 1 zero/4 one; 699 nonempty smooth, only 649 canonical, 0/559 length≥7. First residual 379135369. All 740 native constructed controls exact multiset; 19 ambiguous within 272 distinct spelling register. Core executed on fetched pinned inputs in V8; standalone CJS wrapper not independently executed. No plaintext/key. Do not rerun or tune without new source-selected codec.
 - Reviewed Agent29's five-increment extension (already negative) and Critic repeated p55 caveat. No further generic five-state or shared-holdout tuning.
+
+## #2627 chapter decimal prime-token transport — completed
+
+- [Report](../../im-results/lp2-chapter-decimal-prime-transport.md), [reproducer](../../sims/lp2_chapter_decimal_prime_transport_sft.cjs). Remote blobs ea4339132ad23f634ee481969029674b8681f73f / d8f00957be5f0f207b26bb154355aea8f926591d. All nine original intervals zero exact parses, farthest prefix [0,2,0,2,0,3,1,0,5]; two lose one leading F. Native constructed controls all parse but massively ambiguous, p57 147456. F,U and H both emit decimal 23. Issue closed. No language fit, no unknown plaintext/key. Core executed on pinned inputs in V8, CJS wrapper not independently run. No alternate base/padding/delimiter search absent a new source rule.
 
 ## Earlier incarnation context
 
