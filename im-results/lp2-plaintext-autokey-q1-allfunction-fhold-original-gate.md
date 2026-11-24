@@ -39,6 +39,14 @@ The separate long-word test grants each word an arbitrary incoming shift and for
 - Complete p54–55 unit: ten long groups, ten edges and one disjoint pair (group 2879, offset12870, p54, length11; group 2886, offset12903, p55, length13). Thus at least one of the ten is OOV for a shared function. Neither 201/205-rune initial prefix has a pairwise long-word conflict; its stronger full CSP result depends on joint constraints.
 - This is a conservative bound, not a maximum matching or a language-independent impossibility. It does not exclude alternative segmentation, more OOV, changing f, nonstationary clocks, other taps or other registers.
 
+## Page-private functions, independent word primers
+
+A stronger relaxation removes every interword link. Each equal-length dictionary word imposes only its internally consistent partial predecessor map, ignoring its first consuming shift. A page CSP intersects row masks, prunes candidate domains via BigInt bitsets, and exhaustively branches on unresolved partial maps. SAT witnesses exactly replay each word with its own primer. Words crossing pages are omitted. The lexicon remains 38,920 spellings.
+
+**54 of 55 rune-bearing physical pages are UNSAT.** Only p49 (65 contained runes) is SAT, with incoherent relaxed witness `AR FAS CU SYRIA EAGERLY BL MYXO THIN WRNGNG THITHER NOEL BAN AERIAL ABDUCT JUICE AM PROWLNG`. Page 50 has no runes. Formerly capped p17, p20 and p51 terminate UNSAT after 18,965, 16,872 and 18,605 branch nodes. Continuous-prefix searches on p49 and p51 cap at 30 million candidate checks without a found path; the relaxed full-page gate decisively excludes p51. Three planted noninjective native controls admit exactly replaying relaxed witnesses (feasibility, not plaintext recovery).
+
+Raw results: [p00–10](lp2-q1-allfunction-wordreset-page-00-10.json), [p01–20 refinement](lp2-q1-allfunction-wordreset-page-01-20-refinement.json), [p21–37](lp2-q1-allfunction-wordreset-page-21-37.json), [p38–55](lp2-q1-allfunction-wordreset-page-38-55.json), [cap refinement](lp2-q1-allfunction-wordreset-capped-refinement.json), [final three](lp2-q1-allfunction-wordreset-final-three.json), [continuous p49/p51](lp2-q1-allfunction-page-private-49-51.json). [Bitset solver](../sims/lp2_plaintext_autokey_q1_allfunction_wordreset_bitset_sft.cjs); default cap 50,000 nodes, overridable by LP2_Q1_NODE_CAP. Earlier raw outputs retain their original caps and branch order.
+
 ## Reproduction and decision
 
 - [Permutation and initial unrestricted bidirectional inverse](../sims/lp2_plaintext_autokey_q1_permutation_fhold_bidirectional_sft.cjs)

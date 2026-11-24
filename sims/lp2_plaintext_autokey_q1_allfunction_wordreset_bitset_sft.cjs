@@ -112,4 +112,4 @@ function experiment(corpus,trans,solved,lex,injective=true,options={}){
 }
 const args=["resources/liber-primus/lp2-corpus.json","resources/lp2-transcription.txt","resources/external/relikd-solved-gp29-native-v1.json","resources/control/english_wordfreq_textblob.txt"].map(p=>fs.readFileSync(p,'utf8'));
 const pages=process.argv.slice(2).map(Number);
-console.log(JSON.stringify(experiment(...args,false,{pages:pages.length?pages:Array.from({length:56},(_,i)=>i),controls:!pages.length,cap:1000}),null,2));
+console.log(JSON.stringify(experiment(...args,false,{pages:pages.length?pages:Array.from({length:56},(_,i)=>i),controls:!pages.length,cap:Number(process.env.LP2_Q1_NODE_CAP||50000)}),null,2));
