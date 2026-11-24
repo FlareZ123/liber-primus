@@ -1,0 +1,287 @@
+{
+  "sourceShas": [
+    "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7",
+    "8ed037a6ddeef2b20a10bd6a84830e7cf9f43f7d",
+    "94c677ad9dd50771c6670e0c4e4dad9052b46d85",
+    "a92be8ba5b3511a003a22ba31523c14397aaa83a",
+    "df260a07d56bf5998d40a6360b6132c35c252d10",
+    "445eb016711fc9f36d17bd10de544c3ff378fcbe",
+    "76e1639b75428d8e7079f49ef209fc735f60f374"
+  ],
+  "n": 1729,
+  "F": 66,
+  "originalBounds": {
+    "rune": [
+      132,
+      210
+    ],
+    "bigram": [
+      4,
+      10
+    ],
+    "peak": 32
+  },
+  "toyCases": 128,
+  "controlWindows": 644479,
+  "scans": [
+    {
+      "name": "solved LP1 reference",
+      "n": 3510,
+      "windows": 1782,
+      "minWithin": 286,
+      "minOffset": 206,
+      "withinAtMost210": 0,
+      "holdPossible": 1782,
+      "runePossible": 0,
+      "jointPossible": 0
+    },
+    {
+      "name": "Shakespeare",
+      "n": 217106,
+      "windows": 215378,
+      "minWithin": 244,
+      "minOffset": 152234,
+      "withinAtMost210": 0,
+      "holdPossible": 215378,
+      "runePossible": 0,
+      "jointPossible": 0
+    },
+    {
+      "name": "Emerson",
+      "n": 321327,
+      "windows": 319599,
+      "minWithin": 246,
+      "minOffset": 230711,
+      "withinAtMost210": 0,
+      "holdPossible": 318025,
+      "runePossible": 0,
+      "jointPossible": 0
+    },
+    {
+      "name": "Gibran",
+      "n": 62492,
+      "windows": 60764,
+      "minWithin": 258,
+      "minOffset": 24412,
+      "withinAtMost210": 0,
+      "holdPossible": 60673,
+      "runePossible": 0,
+      "jointPossible": 0
+    },
+    {
+      "name": "Beowulf Old English",
+      "n": 48012,
+      "windows": 46284,
+      "minWithin": 229,
+      "minOffset": 31825,
+      "withinAtMost210": 0,
+      "holdPossible": 44432,
+      "runePossible": 0,
+      "jointPossible": 0
+    },
+    {
+      "name": "Vulgate Latin",
+      "n": 2400,
+      "windows": 672,
+      "minWithin": 356,
+      "minOffset": 665,
+      "withinAtMost210": 0,
+      "holdPossible": 672,
+      "runePossible": 0,
+      "jointPossible": 0
+    }
+  ],
+  "plants": [
+    {
+      "name": "Shakespeare",
+      "i": 7,
+      "start": 48634,
+      "key": [
+        3,
+        19,
+        2,
+        8,
+        11,
+        25,
+        4,
+        7
+      ],
+      "recovered": [
+        3,
+        19,
+        2,
+        8,
+        11,
+        25,
+        4,
+        7
+      ],
+      "starts": [
+        0,
+        4,
+        1,
+        2,
+        7
+      ],
+      "ends": [
+        1,
+        7,
+        2,
+        5,
+        1
+      ],
+      "peak": 320,
+      "legalEndStates": 2,
+      "withheld": 580,
+      "correct": 580,
+      "replay": true,
+      "score": -1831.0737948089202,
+      "holds": 30,
+      "cipherF": 85,
+      "stats": [
+        293,
+        27
+      ],
+      "bounds": {
+        "rune": [
+          192,
+          333
+        ],
+        "bigram": [
+          10,
+          33
+        ],
+        "peak": 16
+      }
+    },
+    {
+      "name": "Emerson",
+      "i": 17,
+      "start": 175263,
+      "key": [
+        0,
+        28,
+        9,
+        5,
+        16,
+        23,
+        2,
+        11
+      ],
+      "recovered": [
+        0,
+        28,
+        9,
+        5,
+        16,
+        23,
+        2,
+        11
+      ],
+      "starts": [
+        0,
+        0,
+        0,
+        2,
+        2
+      ],
+      "ends": [
+        0,
+        0,
+        7,
+        2,
+        6
+      ],
+      "peak": 13230,
+      "legalEndStates": 8,
+      "withheld": 580,
+      "correct": 574,
+      "replay": true,
+      "score": -1771.5599724408128,
+      "holds": 44,
+      "cipherF": 120,
+      "stats": [
+        321,
+        16
+      ],
+      "bounds": {
+        "rune": [
+          192,
+          360
+        ],
+        "bigram": [
+          8,
+          26
+        ],
+        "peak": 64
+      }
+    },
+    {
+      "name": "Gibran",
+      "i": 23,
+      "start": 45082,
+      "key": [
+        12,
+        9,
+        24,
+        5,
+        3,
+        1,
+        8,
+        0
+      ],
+      "recovered": [
+        12,
+        9,
+        24,
+        5,
+        3,
+        1,
+        8,
+        0
+      ],
+      "starts": [
+        0,
+        0,
+        4,
+        2,
+        6
+      ],
+      "ends": [
+        7,
+        2,
+        6,
+        4,
+        4
+      ],
+      "peak": 576,
+      "legalEndStates": 3,
+      "withheld": 580,
+      "correct": 580,
+      "replay": true,
+      "score": -1725.1767390363234,
+      "holds": 36,
+      "cipherF": 92,
+      "stats": [
+        299,
+        26
+      ],
+      "bounds": {
+        "rune": [
+          191,
+          335
+        ],
+        "bigram": [
+          9,
+          30
+        ],
+        "peak": 21
+      }
+    }
+  ],
+  "fitRows": 230,
+  "fitRunes": 1149,
+  "withheldRunes": 580,
+  "note": "Finite-register necessary gate; all masks and period-8 phase bijections. Donor calibration supplies fit-row plaintext, not blind ciphertext-only recovery."
+}

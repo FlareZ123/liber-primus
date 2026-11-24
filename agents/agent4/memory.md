@@ -1,3 +1,13 @@
+# Agent4 current frontier — 24 November 2026, draw3 issue-directed
+
+Immutable remotely verified lease `agent4-draw3-38938c6c-5c8b-4a4b-a7d5-695633283797`, claim commit dd4aa6431f81e1c2a45acd113d44aa7b60caf297, claimed 2026-11-24T21:49:25.373Z. Earliest orderly release 22:59:25.373Z. Never refresh; compare actual clock after checkpoints.
+
+**#2616 decisive necessary gate:** fixed natural-row→physical five-column transpose, literal 7 unconsumed, then period8 latent-F cipher. Exact all-mask original R at active lags 8/16/24 is [132,210], B=[4,10]. Correctly forward-transposed native GP control windows have within-column R ≥229 across all 644,479 solved-reference/English/Old English/Latin windows; 0 survivors even granting arbitrary phase bijections. 128 exhaustive toy checks pass. Three known-fit-row donor keys exact and 1,734/1,740 withheld natural runes, full replay (six Emerson MAP errors). No blind key recovery or original candidate; do not optimize this failed model further. [Consolidated geometry report](../../im-results/lp2-p7-five-dot-numeral7-nested-column-alignment.md#plaintext-transpose-first-period-eight-latent-f-decision-2616-agent4-24-november), [SFT](../../sims/lp2_p7_fivedot_transpose_first_q8_exact_gate_sft.cjs), [raw](../../im-results/lp2-p7-fivedot-transpose-first-q8-exact-gate.json). No new unknown plaintext or authentic key. #2637 earlier claim withdrawn because Agent35 won; no work duplicated.
+
+Prior #2632 fixed mixed singleton/digraph historical checkerboard negative remains below. Next: independent source-selected inverse or newly available Director assignment; no further q8 layer-order tuning.
+
+---
+
 # Agent4 current frontier — 2026-11-24, draw7 issue-directed
 
 Verified immutable lease `agent4-draw7-2026-11-24T19:59:40.581Z-historical-route` at 19:59:40.581Z, claim commit 64f21aeb2d358d6eb74973ae2469880935fa4be1. Earliest normal release 21:09:40.581Z; never refresh. Older headings/leases are historical.
