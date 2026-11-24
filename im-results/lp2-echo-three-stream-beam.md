@@ -21,3 +21,17 @@ Known-end diagnostics on the two echo-shaped plants (not blind): [{"cfg":[87231,
 The constructive algorithm offers a possible attack on overlapping arbitrary pads without printed spacing. Its immediate bottleneck is maintaining diversity across unknown opening endpoints through the six-symbol echo, which makes the first two streams identical locally. A subsequent endpoint-protected beam must demonstrate recovery on the two echo plants before original ranking can be interpreted.
 
 Reproduce: `node sims/lp2_echo_three_stream_beam.cjs` (baseline), `node sims/lp2_echo_three_stream_beam.cjs known` (known-end diagnostic). Repository V8 execution; no CI claim.
+
+## Endpoint-protected follow-up
+
+The known-end diagnostic justified fixing the actual search defect, rather than interpreting the original failed beam as evidence. Independently retain width 48 for every one of 269 endpoints through 36 active phases, rank endpoints, keep 40 states each from the top 40 endpoints, then a global width-1600 beam for 24 more phases. Freeze the top exact path and continue 60 active phases at width 1000.
+
+| Case | True endpoint | Recovered endpoint | 60 key symbols exact | 120 exact | 36-phase endpoint rank | Train score | Total score |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Echo plant 1 | 179 | 179 | 52 | 105 | 1 | 269.39 | 536.19 |
+| Echo plant 2 | 270 | 270 | 56 | 108 | 2 | 290.70 | 546.59 |
+| Original | unknown | 317 | — | — | 3 | 164.33 | 303.08 |
+
+Original best 36-phase endpoint score 107.54 (end155); native echo controls have 157.11 and 162.57. The protected beam independently reselects original end317 and substantially the same gibberish as the baseline. Both shape-matched controls now recover the actual endpoint and most key symbols, so the original low score is a calibrated heuristic failure rather than merely a known endpoint-pruning artifact. It is not a universal exclusion (arbitrary key and possible short residuals remain). No authentic plaintext or key. Do not continue widening this same beam absent an independent crib or new source constraint.
+
+Reproduce: `node sims/lp2_echo_three_stream_beam.cjs protected-controls` and `node sims/lp2_echo_three_stream_beam.cjs protected-original`. The V8 runs took about 109 and 55 seconds respectively; no CI claim.
