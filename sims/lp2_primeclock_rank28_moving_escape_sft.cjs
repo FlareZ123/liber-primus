@@ -19,18 +19,18 @@ function experiment(corpus,transcript,solved,lexicon) {
  const identity=Array.from({length:28},(_,i)=>i);
  const render=p=>p.map(x=>corpus.translit[x]).join("");
  // S maps de-shifted ciphertext ranks to plaintext exclusion ranks.
- function transform(ws,S,encode,hold=true){const inv=Array(28);S.forEach((r,q)=>inv[r]=q);let prev=0,t=0;return ws.map(w=>w.map(x=>{const p=primes[t],e=p%29,k=(p-1)%28;let c,y,d;
- if(encode){y=x;d=y===e?0:pow[mod(inv[y-(y>e)]+k,28)];c=mod(prev+d,29);}
- else{c=x;d=mod(c-prev,29);if(!d)y=e;else{const r=S[mod(log[d]-k,28)];y=r+(r>=e);}}
+ function transform(ws,S,encode,hold=true,order='shift-then-map'){const inv=Array(28);S.forEach((r,q)=>inv[r]=q);let prev=0,t=0;return ws.map(w=>w.map(x=>{const p=primes[t],e=p%29,k=(p-1)%28;let c,y,d;
+ if(encode){y=x;d=y===e?0:pow[order==='shift-then-map'?mod(inv[y-(y>e)]+k,28):inv[mod(y-(y>e)+k,28)]];c=mod(prev+d,29);}
+ else{c=x;d=mod(c-prev,29);if(!d)y=e;else{const r=order==='shift-then-map'?S[mod(log[d]-k,28)]:mod(S[log[d]]-k,28);y=r+(r>=e);}}
  prev=c;if(!hold||d)t++;return encode?c:y;}));}
- function observations(ws,hold=true){let prev=0,t=0;return ws.map(w=>w.map(c=>{const d=mod(c-prev,29),p=primes[t],q=d?mod(log[d]-(p-1),28):-1,e=p%29;prev=c;if(!hold||d)t++;return {q,e};}));}
+ function observations(ws,hold=true,order='shift-then-map',start=0,unit=1){let prev=0,t=start;return ws.map(w=>w.map(c=>{const d=mod(c-prev,29),p=primes[t],q=d?mod(unit*log[d]-(order==='shift-then-map'?p-1:0),28):-1,e=p%29,k=order==='shift-then-map'?0:(p-1)%28;prev=c;if(!hold||d)t++;return {q,e,k};}));}
  // Every compatible word constrains the same unknown 28! substitution.
  // In the broad envelope, escape is allowed to be arbitrary at EACH position.
  function constraints(obs,p,broad){const m=Array(28).fill(ALL);
- for(let i=0;i<p.length;i++){const {q,e}=obs[i],y=p[i];if(q<0){if(!broad&&y!==e)return null;continue;}
+ for(let i=0;i<p.length;i++){const {q,e,k}=obs[i],y=p[i];if(q<0){if(!broad&&y!==e)return null;continue;}
  let mask=0;
- if(broad){if(y<28)mask|=1<<y;if(y>0)mask|=1<<(y-1);}
- else {if(y===e)return null;mask=1<<(y-(y>e));}
+ if(broad){if(y<28)mask|=1<<mod(y+k,28);if(y>0)mask|=1<<mod(y-1+k,28);}
+ else {if(y===e)return null;mask=1<<mod(y-(y>e)+k,28);}
  m[q]&=mask;if(!m[q])return null;}
  return matching(m)?m:null;}
  function matching(m){const owner=Array(28).fill(-1);
@@ -51,28 +51,52 @@ function experiment(corpus,transcript,solved,lexicon) {
  const pages=[];n=0;for(const p of corpus.pages.filter(p=>p.page<=55)){if(p.indices.length)pages.push([p.page,n]);n+=p.indices.length;}
  const pageAt=i=>pages.filter(p=>p[1]<=i).at(-1)[0];
  const results=[];
- for(const hold of [true,false]){
- const obs=observations(words,hold);const byLen={},failed=[],exactFailed=[],broadRows=[];
- for(let j=0;j<words.length;j++){if(words[j].length<7)continue;const cs=candidates(obs[j],true),ex=candidates(obs[j],false);const z=byLen[words[j].length]??={n:0,broad:0,exact:0};z.n++;if(cs.length){z.broad++;broadRows.push([j,cs]);}else failed.push(j);if(ex.length)z.exact++;else exactFailed.push(j);}
+ for(const order of ['shift-then-map','map-then-shift'])for(const hold of [true,false]){
+ const obs=observations(words,hold,order);const byLen={},failed=[],exactFailed=[];
+ for(let j=0;j<words.length;j++){if(words[j].length<7)continue;const cs=candidates(obs[j],true),ex=candidates(obs[j],false);const z=byLen[words[j].length]??={n:0,broad:0,exact:0};z.n++;if(cs.length)z.broad++;else failed.push(j);if(ex.length)z.exact++;else exactFailed.push(j);}
  const witness=j=>({word:j,page:pageAt(offsets[j]),offset:offsets[j],cipher:render(words[j]),q:obs[j].map(x=>x.q),e:obs[j].map(x=>x.e),dictionary:lex.get(words[j].length)?.length||0});
  const firstByLength={};for(const j of failed)firstByLength[words[j].length]??=witness(j);
- const dec=transform(words,identity,false,hold);check(same(transform(dec,identity,true,hold),words),"original replay");
+ const dec=transform(words,identity,false,hold,order);check(same(transform(dec,identity,true,hold,order),words),"original replay");
  const region=(lo,hi)=>dec.filter((w,i)=>pageAt(offsets[i])>=lo&&pageAt(offsets[i])<=hi);
- results.push({hold,repeatCount:obs.flat().filter(x=>x.q<0).length,byLen,broadFailed:failed.length,exactFailed:exactFailed.length,firstByLength,firstExactFailure:exactFailed.length?witness(exactFailed[0]):null,canonical:stats(dec),opening:stats(region(0,2)),holdout:stats(region(40,53)),openingWords:dec.slice(0,25).map(render).join(" "),holdoutWords:region(40,53).slice(0,25).map(render).join(" ")});
+ results.push({order,hold,repeatCount:obs.flat().filter(x=>x.q<0).length,byLen,broadFailed:failed.length,exactFailed:exactFailed.length,firstByLength,firstExactFailure:exactFailed.length?witness(exactFailed[0]):null,canonical:stats(dec),opening:stats(region(0,2)),holdout:stats(region(40,53)),openingWords:dec.slice(0,25).map(render).join(" "),holdoutWords:region(40,53).slice(0,25).map(render).join(" ")});
  }
  const donor=solved.sections.flatMap(s=>(s.source_text.match(/[\u16a0-\u16ff]+/gu)||[]).map(w=>[...w].map(c=>idx.get(c))));
  const plants=[];
- for(let j=0;j<3;j++){
+ for(const order of ['shift-then-map','map-then-shift'])for(let j=0;j<3;j++){
  const p=donor.slice(j*200,j*200+200),S=identity.slice();let state=(3301+j)>>>0;for(let i=27;i>0;i--){state=(Math.imul(state,1664525)+1013904223)>>>0;const t=state%(i+1);[S[i],S[t]]=[S[t],S[i]];}
- const c=transform(p,S,true,true),o=observations(c,true);check(same(transform(c,S,false,true),p),"plant replay");
+ const c=transform(p,S,true,true,order),o=observations(c,true,order);check(same(transform(c,S,false,true,order),p),"plant replay");
  // Train on only the first 150 words whose GP spellings are in the pinned lexicon.
  const train=[];for(let i=0;i<150;i++)if(p[i].length>=3&&known.has(key(p[i]))){const row=candidates(o[i],false);check(row.some(x=>same(x.p,p[i])),"true candidate");train.push(row);}
  const sol=propagate(train);check(sol.domains&&S.every((r,q)=>sol.domains[q]&(1<<r)),"true key retained");
  const single=sol.domains.every(x=>pop(x)===1);const recovered=single?sol.domains.map(x=>31-Math.clz32(x)):null;
- const plain=recovered?transform(c,recovered,false,true):null;
- plants.push({runes:p.flat().length,training:train.length,rounds:sol.rounds,domainSizes:sol.domains.map(pop),unique:single,exact:plain?same(plain,p):false,holdoutExact:plain?same(plain.slice(150),p.slice(150)):false});
+ const plain=recovered?transform(c,recovered,false,true,order):null;
+ plants.push({order,runes:p.flat().length,training:train.length,rounds:sol.rounds,domainSizes:sol.domains.map(pop),unique:single,exact:plain?same(plain,p):false,holdoutExact:plain?same(plain.slice(150),p.slice(150)):false});
  }
- return {lexicon:known.size,results,plants};
+ // Singletons alone: exact all-secret matching over arbitrary moving escape,
+ // plus a bounded start range independently motivated by the historical prime 3301.
+ const singles=words.map((w,j)=>w.length===1?j:-1).filter(j=>j>=0);
+ check(singles.length===83,"singletons");
+ const singleObs=[];let prev=0,allT=0,holdT=0;for(let j=0;j<words.length;j++)for(const c of words[j]){const d=mod(c-prev,29);if(words[j].length===1)singleObs.push({d,allT,holdT});prev=c;allT++;if(d)holdT++;}
+ check(singleObs.every(x=>x.d!==0),"singleton nonrepeat");
+ const ordinary=[3,10,24]; // GP O,I,A
+ check(ordinary.map(x=>corpus.translit[x]).join(",")==="O,I,A","singleton alphabet");
+ const units=[1,3,5,9,11,13,15,17,19,23,25,27];
+ const singletonGate=[];
+ for(const order of ['shift-then-map','map-then-shift'])for(const hold of [true,false]){
+ let minimumDistinct=28,survivors=0,emptyDomain=0,checked=0,examples=[];
+ for(let start=0;start<464;start++)for(const unit of order==='shift-then-map'?units:[1]){
+ const m=Array(28).fill(ALL),qs=new Set();
+ for(const {d,allT,holdT} of singleObs){
+ const p=primes[start+(hold?holdT:allT)],k=order==='shift-then-map'?0:(p-1)%28,q=mod(unit*log[d]-(order==='shift-then-map'?p-1:0),28);
+ qs.add(q);let mask=0;for(const y of ordinary){if(y<28)mask|=1<<mod(y+k,28);if(y>0)mask|=1<<mod(y-1+k,28);}m[q]&=mask;
+ }
+ checked++;if(qs.size<minimumDistinct){minimumDistinct=qs.size;examples=[start,unit];}
+ if(!m.every(Boolean))emptyDomain++;else if(matching(m))survivors++;
+ }
+ singletonGate.push({order,hold,checked,minimumDistinct,examples,emptyDomain,survivors,minPlaintextTypes:order==='shift-then-map'?Math.ceil(minimumDistinct/2):null});
+ }
+ const donorSingletons=[...new Set(donor.filter(w=>w.length===1).map(w=>w[0]))];
+ return {lexicon:known.size,results,plants,singletonGate,donorSingletons:donorSingletons.map(i=>corpus.translit[i])};
 }
 const paths=["resources/liber-primus/lp2-corpus.json","resources/liber-primus/lp2-transcription.txt","resources/external/relikd-solved-gp29-native-v1.json","resources/control/english_wordfreq_textblob.txt"];
 const r=p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8');
