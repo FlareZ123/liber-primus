@@ -455,6 +455,33 @@ function nativeGP(text) {
   return out;
 }
 
+function firstDeadLane(values, key) {
+  const lanes = splitLanes(values);
+  return lanes.map((lane, laneIndex) => {
+    let states = new Set([0]);
+    for (let i = 0; i < lane.length; i++) {
+      const c = lane[i];
+      const next = new Set();
+      for (const phase of states) {
+        if (c === 0) next.add(phase);
+        const plain = mod29(c - key[phase]);
+        if (plain !== 0) next.add((phase + 1) % PERIOD);
+      }
+      if (next.size === 0) {
+        return {
+          lane: laneIndex,
+          laneOffset: i,
+          originalBodyOffset: laneIndex + 5 * i,
+          ciphertextRune: c,
+          priorReachablePhases: Array.from(states)
+        };
+      }
+      states = next;
+    }
+    return { lane: laneIndex, fullLength: lane.length, terminalPhases: Array.from(states), deadAt: null };
+  });
+}
+
 function runPlant(name, plaintext, seed, lm, restarts = 1000, keyOverride = null) {
   assert.ok(plaintext.length >= 1005, name + " plant too short");
   const P = plaintext.slice(0, 1005);
@@ -510,9 +537,10 @@ const trainingLanes = targetLanes.map((lane) => lane.slice(0, TRAIN_ROWS));
 const recovered = recoverFiveKey(trainingLanes, lm.logUnigram, 0x3301F013, 1500);
 assert.ok(recovered.ranked.length > 0, "Original prefix produced no feasible period-13 key");
 const selected = recovered.ranked[0];
+const originalPrefixDecoded = decodeFiveJointBeam(body.slice(0, TRAIN_LENGTH), selected.key, lm, 20000);
 const originalDecoded = decodeFiveJointBeam(body, selected.key, lm, 20000);
-assert.ok(originalDecoded, "No legal joint F-hold path under selected key");
-assert.ok(originalDecoded.exactReplay, "Original candidate did not forward-reencrypt exactly");
+const originalLaneReachability = firstDeadLane(body, selected.key);
+if (originalDecoded) assert.ok(originalDecoded.exactReplay, "Original candidate did not forward-reencrypt exactly");
 
 const random = xorshift32(0x3301BAD5);
 const randomKeyScores = [];
@@ -522,7 +550,7 @@ for (let i = 0; i < 250; i++) {
   if (decoded) randomKeyScores.push(decoded.score);
 }
 randomKeyScores.sort((a, b) => a - b);
-const targetHoldout = scoreSequence(originalDecoded.plaintext, lm);
+const targetHoldout = originalDecoded ? scoreSequence(originalDecoded.plaintext, lm) : null;
 
 const output = {
   model: {
@@ -567,7 +595,8 @@ const output = {
     bestVsRandomKeyMax: recovered.ranked[0].score - randomKeyScores[randomKeyScores.length - 1],
     randomKeySamples: randomKeyScores.length
   },
-  originalFrozenKeyDecode: {
+  originalFrozenKeyDecode: originalDecoded ? {
+    fullPath: true,
     key: selected.key,
     keyTokens: tokenString(selected.key),
     plaintext: tokenString(originalDecoded.plaintext),
@@ -579,7 +608,16 @@ const output = {
     bestPathCountCappedAtTwo: originalDecoded.bestPathCountCappedAtTwo,
     holdCount: originalDecoded.holdPositions.length,
     holdPositions: originalDecoded.holdPositions,
-    exactForwardReplay: originalDecoded.exactReplay
+    exactForwardReplay: originalDecoded.exactReplay,
+    prefixBeamFound: !!originalPrefixDecoded,
+    prefixPlaintextFirst200: originalPrefixDecoded ? tokenString(originalPrefixDecoded.plaintext.slice(0, 200)) : null
+  } : {
+    fullPath: false,
+    key: selected.key,
+    keyTokens: tokenString(selected.key),
+    prefixBeamFound: !!originalPrefixDecoded,
+    prefixPlaintextFirst200: originalPrefixDecoded ? tokenString(originalPrefixDecoded.plaintext.slice(0, 200)) : null,
+    exactLaneReachability: originalLaneReachability
   }
 };
 process.stdout.write(JSON.stringify(output, null, 2) + "\n");
