@@ -1,0 +1,83 @@
+{
+  "coverageGate": true,
+  "cut": 113,
+  "trainRunes": 502,
+  "untouchedRunes": 519,
+  "anchors": [
+    {
+      "i": 16,
+      "len": 9,
+      "nonF": 9
+    },
+    {
+      "i": 21,
+      "len": 10,
+      "nonF": 9
+    },
+    {
+      "i": 63,
+      "len": 10,
+      "nonF": 9
+    },
+    {
+      "i": 95,
+      "len": 9,
+      "nonF": 9
+    },
+    {
+      "i": 104,
+      "len": 10,
+      "nonF": 10
+    },
+    {
+      "i": 108,
+      "len": 10,
+      "nonF": 10
+    }
+  ],
+  "oldCounts": [
+    32491,
+    28004,
+    27109,
+    32491,
+    27016,
+    27016
+  ],
+  "baselineClasses": 165,
+  "baselineLegal": 0,
+  "source": {
+    "anchorRelationDelta": [
+      69,
+      107,
+      107,
+      69,
+      107,
+      107
+    ],
+    "classes": 165,
+    "newClasses": 0,
+    "newFullClasses": 0,
+    "legalNewClasses": 0,
+    "legalFullKeys": [],
+    "legalPartialKeys": []
+  },
+  "technicalControl": {
+    "anchorRelationDelta": [
+      20,
+      8,
+      8,
+      20,
+      8,
+      8
+    ],
+    "classes": 165,
+    "newClasses": 0,
+    "newFullClasses": 0,
+    "legalNewClasses": 0,
+    "legalFullKeys": [],
+    "legalPartialKeys": []
+  },
+  "random": [],
+  "randomDesign": "same added GP tuple count per length and F mask, xorshift32 seeds 3301 through 3300+randomCount; fixed diagnostic, not calibrated significance",
+  "noSuffixScoring": true
+}
