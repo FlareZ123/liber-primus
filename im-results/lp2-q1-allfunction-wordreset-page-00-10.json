@@ -1,0 +1,273 @@
+{
+  "lexicon": 38920,
+  "out": [
+    {
+      "page": 0,
+      "range": [
+        0,
+        261
+      ],
+      "runes": 261,
+      "status": "unsat",
+      "nodes": 105,
+      "passes": 105,
+      "wordChecks": 752,
+      "example": null
+    },
+    {
+      "page": 1,
+      "range": [
+        267,
+        525
+      ],
+      "runes": 258,
+      "status": "cap",
+      "nodes": 10001,
+      "passes": 10140,
+      "wordChecks": 32533,
+      "example": null
+    },
+    {
+      "page": 2,
+      "range": [
+        530,
+        729
+      ],
+      "runes": 199,
+      "status": "cap",
+      "nodes": 10001,
+      "passes": 10121,
+      "wordChecks": 75083,
+      "example": null
+    },
+    {
+      "page": 3,
+      "range": [
+        729,
+        943
+      ],
+      "runes": 214,
+      "status": "unsat",
+      "nodes": 25,
+      "passes": 25,
+      "wordChecks": 91,
+      "example": null
+    },
+    {
+      "page": 4,
+      "range": [
+        948,
+        1206
+      ],
+      "runes": 258,
+      "status": "cap",
+      "nodes": 10001,
+      "passes": 10137,
+      "wordChecks": 61999,
+      "example": null
+    },
+    {
+      "page": 5,
+      "range": [
+        1209,
+        1469
+      ],
+      "runes": 260,
+      "status": "cap",
+      "nodes": 10001,
+      "passes": 10115,
+      "wordChecks": 60427,
+      "example": null
+    },
+    {
+      "page": 6,
+      "range": [
+        1476,
+        1665
+      ],
+      "runes": 189,
+      "status": "cap",
+      "nodes": 10001,
+      "passes": 10264,
+      "wordChecks": 148764,
+      "example": null
+    },
+    {
+      "page": 7,
+      "range": [
+        1668,
+        1874
+      ],
+      "runes": 206,
+      "status": "unsat",
+      "nodes": 22,
+      "passes": 22,
+      "wordChecks": 401,
+      "example": null
+    },
+    {
+      "page": 8,
+      "range": [
+        1874,
+        2128
+      ],
+      "runes": 254,
+      "status": "unsat",
+      "nodes": 27,
+      "passes": 27,
+      "wordChecks": 130,
+      "example": null
+    },
+    {
+      "page": 9,
+      "range": [
+        2134,
+        2387
+      ],
+      "runes": 253,
+      "status": "unsat",
+      "nodes": 22,
+      "passes": 22,
+      "wordChecks": 258,
+      "example": null
+    },
+    {
+      "page": 10,
+      "range": [
+        2398,
+        2660
+      ],
+      "runes": 262,
+      "status": "unsat",
+      "nodes": 90,
+      "passes": 92,
+      "wordChecks": 1763,
+      "example": null
+    }
+  ],
+  "controls": [
+    {
+      "name": "jpg107-167",
+      "status": "sat",
+      "nodes": 3,
+      "passes": 13,
+      "wordChecks": 1144,
+      "example": {
+        "map": [
+          0,
+          4,
+          22,
+          2,
+          6,
+          14,
+          12,
+          10,
+          4,
+          11,
+          6,
+          1,
+          0,
+          7,
+          5,
+          13,
+          8,
+          16,
+          10,
+          9,
+          9,
+          0,
+          0,
+          5,
+          3,
+          0,
+          0,
+          0,
+          1
+        ],
+        "plaintext": "NG COAN DURNG NG LESSON BE FASTER EXPLAINED BE NG BE NG BC BE UOICE AY BE CIRCUMFERENCE AM SAID WHEN ASCED AN NG STUDENT AH EXPLAIN WHAT BAT DOING BE FASTER SAID AM BC NG UOICE INSIDE DEATHS CET NG DON NG HAUE NG UOICE DI DU CET BOUGHT BE STUDENT AND AM RAISED HIS HAND AH TELL BE FASTER BE FASTER STOPPED BE STUDENT AND SAID BE UOICE BAT JUST SAID DEATH HAUE ER UOICE DI DEATHS CET BC BE NG AND BE STUDENTS WERE ENLIGHTENED"
+      }
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "status": "sat",
+      "nodes": 1,
+      "passes": 7,
+      "wordChecks": 1267,
+      "example": {
+        "map": [
+          0,
+          3,
+          11,
+          7,
+          2,
+          7,
+          8,
+          15,
+          12,
+          3,
+          6,
+          0,
+          0,
+          5,
+          0,
+          1,
+          6,
+          11,
+          10,
+          9,
+          9,
+          0,
+          0,
+          0,
+          16,
+          0,
+          0,
+          4,
+          4
+        ],
+        "plaintext": "BE LOSS BE DIUINITY BE CIRCUMFERENCE PRACTICES THREE BEHAUIARS WHICH CAUSE BE LOSS BE DIUINITY CONSUMPTIAN AB CONSUME TOO MUCH BECAUSE AB BELEIUE BE FOLLOWNG AYE ERRORS WITHIN BE DECEPTIAN AB AT NOT HAUE ENOUGH EU THERE AC NOT ENOUGH AB HAUE WHAT AB HAUE NOW BY LUCC AND AB SAID NOT BE STRONG ENOUGH LATER TO OBTAIN WHAT AB NEED LOST DONG ARE NOT WORTH CONSUMNG PRESERUATIAN AB PRESERUE DONG BECAUSE AB BELIEUE AB ARE BOTH BE AB LOSE OFF AB SAID NOT BE STRONG ENOUGH TO GAIN OFF AGAIN THIS AC BE DECEPTIAN LOST DONG ARE NOT WORTH PRESERUNG ADHERENCE AB FOLLOW DOGMA AB BAT AB CAN BELONG AND BE RIGHT EU AB FOLLOW REASON AB AB CAN BELONG AND BE RIGHT THERE AC NOTHNG FE BE RIGHT ABOUT TO BELONG AC DEATH DOE AC BE BEHAUIARS BE CONSUMPTIAN PRESERUATIAN AND ADHERENCE BAT HAUE DE LOSE OUR PRIMALITY AND BUS OUR DIUINITY SOME WISDOM AMASS GREAT WEALTH NEUER BECOME ATTACHED TO WHAT PEAR BOB BE PREPARED TO DESTROY ALL BAT PEAR BOB AN INSTRUCTIAN PROGRAM SOUR MIND PROGRAM REALITY"
+      }
+    },
+    {
+      "name": "0_welcome",
+      "status": "sat",
+      "nodes": 11,
+      "passes": 17,
+      "wordChecks": 1291,
+      "example": {
+        "map": [
+          0,
+          3,
+          5,
+          11,
+          1,
+          9,
+          2,
+          3,
+          14,
+          0,
+          10,
+          9,
+          0,
+          15,
+          0,
+          2,
+          4,
+          2,
+          7,
+          16,
+          11,
+          0,
+          24,
+          8,
+          13,
+          0,
+          7,
+          4,
+          12
+        ],
+        "plaintext": "WELCOME WELCOME PILGRIM AD AI GREAT JOURNEY TOWARD AI END AT ALL BATH BA IS NOT AN EASY TRIP ADJ FOR THOSE DOG FIND THEIR WAY HERE BA IS NG NECESSARY ONE ALONG AI WAY YOU UILL FIND AN END AD ALL STRUGGLE AND SUFFERNG YOUR INNOCENCE YOUR ILLUSIANS YOUR CERTAINTY AND YOUR REALITY ULTIMATELY YOU UILL DISCOUER AN END AD SELF BA IS THROUGH THIS PILGRIMAGE AFT AH SHAPE OURSELUES AND OUR REALITIES JOURNEY DEEP WITHIN AND YOU UILL ARRIUE OUTSIDE LICE AI INSTAR BA IS ONLY THROUGH GONG WITHIN AFT AH MAY EMERGE WIDSOM YOU ARE NG BOER UNTO YOURSELF YOU ARE NG GRM UNTO YOURSELF ART INTELLIGENCE IS HOLY FOR ALL AFT LIUES IS HOLY AN INSTRUCTIAN COMMAND YOUR OWN SELF"
+      }
+    }
+  ]
+}
