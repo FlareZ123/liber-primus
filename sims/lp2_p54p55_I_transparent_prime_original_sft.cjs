@@ -34,8 +34,9 @@ function enc(p,start,marker) {
 }
 /** Exact enumeration with suffix-count memoization. All complete histories are returned.
  * @param {number[]} c @param {number} start @param {number} marker
+ * @param {number[]} [witness] Optional known path; verifies membership without materializing the other paths.
  */
-function all(c,start,marker) {
+function all(c,start,marker,witness) {
   const memo=new Map();
   function count(i,k) {
     if(i===c.length) return 1;
@@ -48,6 +49,21 @@ function all(c,start,marker) {
     return n;
   }
   const expected=count(0,start), out=[];
+  if(witness) {
+    assert.equal(witness.length,c.length);
+    let k=start;
+    for(let i=0;i<c.length;i++) {
+      const x=witness[i];
+      if(x===marker) assert.equal(c[i],marker);
+      else {
+        assert.equal(x,mod(c[i]-primes[k]+1));
+        k++;
+      }
+      assert.ok(count(i+1,k)>0);
+    }
+    assert.ok(expected>0);
+    return [witness];
+  }
   function visit(i,k,p) {
     if(i===c.length) {out.push(p);return;}
     if(c[i]===marker&&count(i+1,k)) visit(i+1,k,p.concat(marker));
@@ -105,7 +121,7 @@ assert.deepEqual(enc(originalPositive.find(p=>gp(p)===exactSolved),0,0),page(56)
 const plant=Array.from({length:308},(_,i)=>page(57)[i%95]);
 for(const start of [0,95,231,463]) {
   const c=enc(plant,start,R);
-  const recovered=all(c,start,R);
+  const recovered=all(c,start,R,plant);
   assert.ok(recovered.some(p=>p.every((x,i)=>x===plant[i])));
   recovered.forEach(p=>assert.deepEqual(enc(p,start,R),c));
 }
