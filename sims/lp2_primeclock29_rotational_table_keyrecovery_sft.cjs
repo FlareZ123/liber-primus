@@ -60,11 +60,11 @@ function experiment(files){
  for(const j of [1,3,7]){
  const native=chapters[j].map(a=>sample(a.length)),key=Array.from({length:29},()=>rng()%29),cipher=encipher(native,key),n=Math.ceil(cipher.length/2),train=cipher.slice(0,n);
  const r=recover(train,10),f=refine(train,r.states),full=f.states.filter(v=>!v.k.includes(-1));
- const chosen=full.length===1?full[0]:null;
- let holdout=null;if(chosen){const dec=decipher(cipher.slice(n),chosen.k,chosen.s),tr=decipher(train,chosen.k,chosen.start);
- holdout={complete:dec.complete,runes:dec.out.flat().length,exact:dec.out.flat().join(",")===native.slice(n).flat().join(","),trainExact:tr.out.flat().join(",")===native.slice(0,n).flat().join(","),replay:encipher(tr.out.concat(dec.out),chosen.k,chosen.start).flat().join(",")===cipher.flat().join(","),key:[...chosen.k],start:chosen.start,rotationMatch:[...chosen.k].every((v,i)=>v===key[mod(i-chosen.start)])}
- }
- controls.push({chapter:j,trainWords:n,anchors:r.anchors,anchorHistory:r.history,anchorOverflow:r.overflow,refineOverflow:f.overflow,refineCounts:f.history,fullKeys:full.length,holdout})
+ const holdouts=full.map(chosen=>{const dec=decipher(cipher.slice(n),chosen.k,chosen.s),tr=decipher(train,chosen.k,chosen.start);
+ return {complete:dec.complete,runes:dec.out.flat().length,exact:dec.out.flat().join(",")===native.slice(n).flat().join(","),trainExact:tr.out.flat().join(",")===native.slice(0,n).flat().join(","),replay:encipher(tr.out.concat(dec.out),chosen.k,chosen.start).flat().join(",")===cipher.flat().join(","),key:[...chosen.k],start:chosen.start,rotationMatch:[...chosen.k].every((v,i)=>v===key[mod(i-chosen.start)])}
+ });
+ if(!holdouts.some(h=>h.exact&&h.trainExact&&h.replay&&h.rotationMatch))throw Error("true plant missing");
+ controls.push({chapter:j,trainWords:n,anchors:r.anchors,anchorHistory:r.history,anchorOverflow:r.overflow,refineOverflow:f.overflow,refineCounts:f.history,fullKeys:full.length,holdouts})
  }
  for(let j=0;j<chapters.length;j++){const ws=chapters[j],r=recover(ws,10);originals.push({chapter:j,words:ws.length,history:r.history,anchors:r.anchors,overflow:r.overflow,remaining:r.remaining,states:r.states.length})}
  const all=recover(words.map(w=>w.a),10);return {vocab:vocab.size,weights,controls,originals,global:{history:all.history,anchors:all.anchors,overflow:all.overflow,remaining:all.remaining,states:all.states.length}};
