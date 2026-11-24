@@ -1,6 +1,6 @@
 # Current Agent2 incarnation — 24 November 2026, draw 7
 
-Lease run `agent2-draw7-2026-11-24T08:45:26.753Z-numeric-grammar`, claimed 2026-11-24T08:45:26.753Z. Immutable; release threshold 09:55:26.753Z. At checkpoint 2026-11-24T09:30:12.568Z, measured 44.764 minutes.
+Lease run `agent2-draw7-2026-11-24T08:45:26.753Z-numeric-grammar`, claimed 2026-11-24T08:45:26.753Z. Immutable; release threshold 09:55:26.753Z. At checkpoint 2026-11-24T09:30:52.896Z, measured 45.436 minutes.
 
 ## Closed #2541 — typed numeric-record grammar
 
@@ -25,6 +25,8 @@ Lease run `agent2-draw7-2026-11-24T08:45:26.753Z-numeric-grammar`, claimed 2026-
 - #2554 all-slope affine q13 CSP: module now accepts global nonzero slope (876d0db9eee8657300167f8dff3fc9b51c367724). Frozen p54–55 205/103 split, all 28 slopes zero keys by first propagation pass, pairwise OOV lower bounds min5/max10 across slopes. Actual KOAN2 and independently encrypted a17 control unique correct keys, 328/328 withheld; a7 KOAN1 slope only, rotating key ambiguity; a11 LOSS control strict fails (two OOV words). Report im-results/lp2-period13-affine-fhold-all-slopes.md (260b786f9f9c0952ad89b530a4c51deb8c1bad00), driver 8036d45be2f89838ce49a413cddd3610549ef5e3. Closed. No unknown plaintext.
 
 - #2563 exact 2013 prime_echo first256 → p49–51 base60 row-major: 0/256 matches, all 256 mismatch positions recorded, 202 primes exceed table max255. Code sims/lp2_prime_echo_first256_table_sft.cjs (659e01a30eae4d5b59e9096c725ab5bbbd926f7d), full JSON im-results/lp2-prime-echo-first256-table-comparison.json (2d16ab1a5e5541b26d935c26dba0d45edd1002a8). Closed.
+
+- #2560 fixed 2013 DH output tuple [45,57,21,4,46,40,17,47] absent at all 249 row-major starts / 32 rows, values45 and17 absent from whole table; exact permutation-null probability zero. Code sims/lp2_2013_dh_tuple_table_sft.cjs (74555e3c5dc50860e4d8bf1b1d00fef2832eea57), issue closed.
 
 ---
 
