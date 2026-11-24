@@ -101,7 +101,9 @@ for (const [mapping, K] of Object.entries(keys)) {
   for (const evenMeansForward of [true, false]) {
     const P = [];
     const Q = [];
-    for (let index = 0; index < C.length; index++) {
+    const tenStateP = [];
+  const tenStateQ = [];
+  for (let index = 0; index < C.length; index++) {
       const byte = phase[index];
       const exponent = Math.floor(byte / 60);
       const parity = (byte % 60) % 2;
@@ -109,8 +111,15 @@ for (const [mapping, K] of Object.entries(keys)) {
       const matrix = forward ? forwardPowers[exponent] : inversePowers[exponent];
       P.push(mod(matrix[0][0] * K[index] + matrix[0][1] * C[index]));
       Q.push(mod(matrix[1][0] * K[index] + matrix[1][1] * C[index]));
+
+    // Exact 10-state class used in the p50 full-pair majorization:
+    // z = 2*first_digit + second_digit_parity selects M7^z.
+    const state = 2 * Math.floor(phase[index] / 60) + ((phase[index] % 60) % 2);
+    const tenStateMatrix = matrixPower(M7, state);
+    tenStateP.push(mod(tenStateMatrix[0][0] * K[index] + tenStateMatrix[0][1] * C[index]));
+    tenStateQ.push(mod(tenStateMatrix[1][0] * K[index] + tenStateMatrix[1][1] * C[index]));
     }
-    for (const [lane, values] of [['P', P], ['Q', Q]]) {
+    for (const [lane, values] of [['P', P], ['Q', Q], ['P-10state-index', tenStateP], ['Q-10state-index', tenStateQ]]) {
       const value = ioc(values);
       results.push({
         key_mapping: mapping,
