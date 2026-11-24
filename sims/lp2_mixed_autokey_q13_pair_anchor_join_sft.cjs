@@ -111,6 +111,7 @@ function experiment(corpus,trans,solved,lex,donors,lib,mode='strict'){
   }
   // Original selection depends only on the strongest guaranteed equation count.
   if(!truth)pairs=pairs.sort((a,b)=>b.nz-a.nz||b.c.length-a.c.length||a.j-b.j).slice(0,1);
+  else if(truth.anchorJ!=null)pairs=pairs.filter(x=>x.j===truth.anchorJ);
   for(const {j,at,end,L,R,rev,c,nz} of pairs){
    const c1=words[j],c2=words[j+1],fitLeft=C.slice(L,at),fitRight=C.slice(end,R),held=rev?C.slice(L-76,L):C.slice(R,R+76);
    const trueP=truth?.P.slice(at,end),trueLex=truth?dict[c1.length].has(String.fromCharCode(...trueP.slice(0,c1.length)))&&dict[c2.length].has(String.fromCharCode(...trueP.slice(c1.length))):null;
@@ -138,6 +139,21 @@ function experiment(corpus,trans,solved,lex,donors,lib,mode='strict'){
   }return {name,n:C.length,anchors};
  }
  const controls=specs.map(([name,a,b,d,salt])=>{const s=src.find(x=>x.name===name),P=s.w.flat(),K=Array.from({length:q},(_,i)=>(i*i*7+i*11+salt)%29),C=encrypt(P,K,a,b,d).C;let j=0;return attack(name,s.w.map(w=>{const v=C.slice(j,j+w.length);j+=w.length;return v}),{P,K,a,b,d});});
+
+ // Independent workload-matched prose controls: disjoint from each donor's training prefix.
+ // The first in-vocabulary pair with >=20 consuming plaintext runes is selected before encryption.
+ function donorPlant(text,name,a,b,d,salt){
+  const st=/\*\*\* START OF (?:THIS|THE) PROJECT GUTENBERG EBOOK[^\r\n]*\*\*\*/i.exec(text);if(st)text=text.slice(st.index+st[0].length);
+  const w=[],off=[0];for(let t of text.match(/[A-Za-z]+/g)||[]){t=t.toUpperCase().replace(/QU/g,'CW').replace(/[KQ]/g,'C').replace(/V/g,'U').replace(/Z/g,'S');const p=[];while(t.length){let ok=false;for(let k=Math.min(t.length,3);k>=1;k--){const x=t.slice(0,k),v=k===3?(x==="ING"?21:undefined):alpha.get(x);if(v!==undefined){p.push(v);t=t.slice(k);ok=true;break;}}assert(ok,"donor word");}w.push(p);off.push(off.at(-1)+p.length);}
+  const eligible=p=>p.length>=5&&p.length<dict.length&&dict[p.length].has(String.fromCharCode(...p));
+  const j=w.findIndex((p,i)=>i+1<w.length&&off[i]>=2300&&off.at(-1)-off[i+2]>=160&&eligible(p)&&eligible(w[i+1])&&p.concat(w[i+1]).filter(Boolean).length>=20);
+  assert(j>=0,"donor informative anchor");let l=j,h=j+2;while(off[j]-off[l]<160)l--;while(off[h]-off[j+2]<160)h++;
+  const words=w.slice(l,h),P=words.flat(),K=Array.from({length:q},(_,i)=>(i*i*7+i*11+salt)%29),C=encrypt(P,K,a,b,d).C;let k=0;
+  assert(off[l]>=2000,"disjoint donor training");
+  const out=attack(name,words.map(w=>{const v=C.slice(k,k+w.length);k+=w.length;return v}),{P,K,a,b,d,anchorJ:j-l});
+  return {...out,donorWindow:[off[l],off[h]],anchorSourceOffset:off[j]};
+ }
+ controls.push(donorPlant(donors[1],"Shakespeare-disjoint",17,8,3,7),donorPlant(donors[2],"Emerson-disjoint",7,21,19,19));
  const calibration=controls.flatMap(c=>c.anchors).filter(a=>a.trueLex),eligibleFit=calibration.filter(a=>a.fitStatus==="complete"),exact=eligibleFit.filter(a=>a.result?.correct.model&&a.result.correct.holdout===76).length;
  const supportPass=calibration.length>=2&&calibration.every(a=>a.trueModelCount===1);
  const pass=eligibleFit.length>=2&&exact===eligibleFit.length;
