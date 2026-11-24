@@ -4,9 +4,9 @@
 
 ## Decision
 
-The p56 destination value is fixed exactly, but the surviving first-party corpus does **not** fix the hash algorithm, page serialization, canonicalization, HTTP byte boundary, or URL/body choice. No authenticated positive control was found that maps a preserved web page to a published digest under a source-stated rule.
+The p56 destination value is fixed exactly, but the surviving first-party corpus does **not** fix the hash algorithm, page serialization, canonicalization, HTTP byte boundary, or URL/body choice. No preserved page object tested so far maps to the target under SHA-512, and no source-stated digest rule has been found.
 
-This closes the issue by its second fork: preserve the exact target, keep algorithm and byte framing unknown, and do not launch normalization or hash-family sweeps as though they were author-selected.
+A concrete 2012 hidden-service lane is now source-located: the archived `sq6wmgv2zcsrix6t.onion` root HTML contains a Cicada-signed message and the original `/NUMBER` workflow. Its exact bytes and the preserved 2012 signed messages/MIDI were tested; none matches p56. The participant-specific `/NUMBER` response and the second-chance onion page remain missing. The prior "no locator" closure is therefore superseded: the source lane is real, but the target response is not yet recovered.
 
 ## Exact target from the original page
 
@@ -142,12 +142,34 @@ Manual Windows Node 22 workflow run:
 - head commit `8a8c86a5435cd8aace777ed8ddd674a3332c75bd`
 - script: `sims/lp2_p56_firstparty_hash_semantics_sft.cjs`
 
+## 2012 hidden-service page lane
+
+The external archive `neuroretransmit/cicada` at commit `ade9a02889ef8acbc8cde8edbfd0a785c369f4c3` preserves `2012/007-onions/sq6wmgv2zcsrix6t.onion/site/index.html`. The exact 1,788-byte file is mirrored at [`resources/external/2012-sq6wmgv2zcsrix6t-onion-index.html`](../resources/external/2012-sq6wmgv2zcsrix6t-onion-index.html), with the same Git blob SHA-1 `03a7bd9e98578fd51ae3f798375cbbe8bc41dd96`. Its SHA-256 is `073fa32218d56494aa14d47067a97a57b1c936fb92dec027543e7b7ee433855b`; its SHA-512 is `71ae971c27c3852bb4648b7b3bd973568fe25ee8dfc930eb35010f40c0056d8fc9040069cfd0c17a194dbfb99b2c95e61a0dd0967bb2405833421712719e9fbb`, not the p56 target. The embedded clear-signed message verifies with the Cicada 2012 key ID `181F01E57A35090F`. The archived root page contains the email form and the signed instructions for the original `/NUMBER` return path.
+
+The 2012 archive's [`007-onions` README](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2012/007-onions/README.md) identifies `sq6wmgv2zcsrix6t.onion` as the preserved original onion and records another onion page as missing. Its [`008-second-chance` README](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2012/008-second-chance/README.md) names `cginiziglyaobyph.onion` as the second-chance hidden service. A [2014 participant archive](https://gist.github.com/tekknolagi/8526671) and a [2019 reconstruction](https://connortumbleson.com/2021/04/12/the-cicada-3301-mystery-puzzle-1-extra/) describe the `sq6wmgv2zcsrix6t.onion/NUM` flow and the one-time page response. These are retrospective/participant records, not the original server response; the specific path token in a 2021 account is not treated as first-party evidence.
+
+The [2012 exact-object SHA-512 gate](../sims/lp2_p56_2012_second_chance_page_sha512_gate.cjs) tests seven source-pinned objects. The workflow verifies the PGP signatures where the archive supports verification; the two participant-message mirrors are explicitly marked unverified because their signatures do not verify, as documented in [2012 RSA participant-page recovery](2012-rsa-participant-page-recovery.md).
+
+| Exact object | Bytes | SHA-512 | Authentication |
+|---|---:|---|---|
+| `sq6wmgv2zcsrix6t.onion` root HTML | 1,788 | `71ae971c27c3852bb4648b7b3bd973568fe25ee8dfc930eb35010f40c0056d8fc9040069cfd0c17a194dbfb99b2c95e61a0dd0967bb2405833421712719e9fbb` | Embedded Cicada PGP message verifies |
+| Participant-mirrored one-time RSA page message | 2,537 | `d2f227ba5f26703362a23b1fb4c4840d46725040a1a231c9ad0b8b2a010b4951afcb209f0a68fe8a46a38080ac1266d480d74fd5593ea4221c9302428f037e98` | Provenance-qualified mirror; signature does not verify |
+| Participant-mirrored second-chance RSA page message | 2,476 | `c48d28701e8bef1ee797a868d6d5e7f68be6f863ea86192bccbab602d3c94fcdd4b49040b90aca222ac87aaa696e74a5a9b64655cd2f665d74e1145be3e491d7` | Provenance-qualified mirror; signature does not verify |
+| 2012 countdown clear-signed message | 1,001 | `a8e36a66c6536bee3d42a92664c05183b3e755084363f1e75f9c150dfb33e0d924524485f67fac0342a0f1f3241566f05968ddbd0b72b90ffd2818d8740bf6c5` | Cicada PGP signature verifies |
+| 2012 one-time RSA page clear-signed message | 2,494 | `ea3eabb162d45dc3dbc7ac1ef5dd2b5236e7e7232645cb1e9a6c71565122098a0e109c2489342273b7cedd98fb68608cf56279da9f3992ba8a55f6fa304d6225` | Cicada PGP signature verifies |
+| 2012 second-chance MIDI follow-up email | 4,322 | `9e1eb8c3871c68da5487eaf96989a149b7690d5bf2d38d25aa8013b68e3f554ec40b21fbd4416d5812c6f72c24837750e6333fd04fa862fa04eea60d461ea189` | Cicada PGP signature verifies |
+| Signed literal `Cicada.mid` attachment | 10,889 | `64b8c44bab17868fc9ef72bd7621426ecef3f41f93d5d3d3eb283bf4c1c602f5b9add0fd235443e7069ad9664e2c3333dcde1a29564d9fd8c00aaa4fae013f0d` | Embedded Cicada PGP signature verifies |
+
+None matches the p56 target under SHA-512. This is a candidate-specific negative, not proof that SHA-512 is the intended digest family or that no page on these services matched.
+
+**Precisely missing:** the original HTTP entity bytes for the participant-specific `/NUMBER` response at `sq6wmgv2zcsrix6t.onion`, or the original response page at `cginiziglyaobyph.onion` (and the corresponding source-authenticated path token). The archived root page and signed email/MIDI objects do not substitute for those dynamic server responses. The exact 2012 gate passed in [workflow run 45344955217](https://github.com/FlareZ123/liber-primus/actions/runs/45344955217).
+
 ## Consequence
 
-The source-supported p56 contract is currently only:
+The source-supported p56 contract remains:
 
 > find a deep-web page whose unspecified hash equals the fixed 64-byte value above.
 
-The following remain unknown inputs: digest family, whether the preimage is raw HTTP entity bytes or another representation, whether headers are included, content decoding, newline/character encoding, HTML/text normalization, and whether the URL itself participates.
+The 2012 route now supplies a concrete original hidden-service root page and a known `/NUMBER` interaction, but not the participant-specific response bytes. The 2016 InfoTomb clue carrier and the 2014 Stage11 index/images are also exact negative candidates under their tested SHA-512 semantics. No target preimage or authenticated digest convention has been recovered.
 
-A future destination claim can become established only by recovering an independently period-linked page object together with a source-authenticated rule, or by a candidate whose provenance and exact bytes yield a uniquely compelling match under independently motivated semantics. A guessed 512-bit family or fitted normalization remains exploratory evidence.
+Still unknown: the actual target page and path, digest family, whether the preimage is raw HTTP entity bytes or another representation, whether headers are included, content decoding, newline/character encoding, HTML/text normalization, and whether the URL itself participates. A future destination claim requires the original `/NUMBER`/second-chance response or another independently period-linked page object, plus source-authenticated digest semantics. Do not guess wrappers or launch hash-family sweeps.
