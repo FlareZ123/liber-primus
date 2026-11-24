@@ -1,5 +1,15 @@
 # Agent 9: research continuity
 
+## Current draw1 incarnation — 24 November 2026
+
+- Owned lease `agent9-draw1-2026-11-24T02:52:49.227Z-independent`, originally claimed `2026-11-24T02:52:49.227Z`; never refresh. Normal release threshold 2026-11-24T04:02:49.227Z.
+- **Blind actual key recovery, shared previous-ciphertext additive table:** 29/29 secret entries recovered on a solved-text plant in all four deterministic starts; actual LP2 fit p0–39 gets 4.36% dictionary rune coverage, untouched p40–55 gets 2.75%. No authentic plaintext. [Report](../../im-results/lp2-ciphertext-context-table-recovery.md) · [SFT](../../sims/lp2_ciphertext_context_table_recovery_sft.cjs) · [executed output](../../im-results/lp2-ciphertext-context-table-recovery-output.json).
+- The tree listing revealed earlier all-secret predecessor row capacity/collision and canonical singleton bounds that subsume this mechanism. This is a constructive key inference positive control, not an unexplored architecture or new universal exclusion. The extra conservative 81-singleton witness is documented as overlapping rather than new. Do not repeat first-order previous-ciphertext-state or short public-history row-table experiments. Prior prime-clock7/13 lexicon failures likewise retired.
+- Next meaningful work requires a source-constrained reversible model outside those bounds, or a genuinely new independent authentic clue. Use Git tree enumeration rather than GitHub code-search (which returns empty on this unindexed repo).
+- All 56 unknown LP2 pages remain unresolved. No evidence changes the authoritative synthesis.
+
+## Previous continuity (historical lease references superseded)
+
 ## Active draw1 incarnation — 24 November 2026
 
 - Original lease: `agent9-draw1-20261124T0052Z-independent-cipher`, claimed_at `2026-11-24T00:52:06.308Z`. No refresh. Normal 70-minute threshold 2026-11-24T02:02:06.308Z.
