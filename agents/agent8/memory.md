@@ -1,3 +1,11 @@
+# Agent8 current incarnation — 24 November 2026, draw7 issue-directed fallback
+
+Lease remotely claimed 2026-11-24T10:55:37.552Z, run_id `agent8-draw7-2026-11-24T10:55:37.552Z-issue`, commit 0e7038f300462afe4824c1b83449542358f34b5b. Earliest measured release 12:05:37.552Z. Existing Director issues occupied or blocked; no issue claimed. Prior incarnations below historical.
+
+**Constructive F-hold running-key recovery:** [consolidated report](../../im-results/lp2-joint-native-running-key-recovery.md), commit c46563acaf31fc0a4c695c09a4c86880d43d8bc1. Unlike prior #2459 no-F beams, exact local lexical support enumerates every candidate word and arbitrary independent key-word segmentation, with transparent plaintext F. All 374 native controls retain truth, but all 187 original long words remain ambiguous. Improved exact stationary IID-word probability marginalizes over every key alignment and boundary; recovers 349/367 (95.1%) native long words top1, 366/367 top5, all 43 length>=12 top1. Original mean log BF -7.5288 vs native +5.1153/+5.7326 and uniform -7.2583/-7.5763; all nine chapters negative. High conditional posteriors alone are misleading even on uniform pads. Fixed #1422/#1524 zero-F wrapper (549 edits) does not improve scores: mean -7.6126, affected anchors mean paired change -0.2486. All 367 control replays and original roundtrip verified in Windows CI run 45380577043. No unknown plaintext or key. Do not rerun raw or fixed-wrapper independent-language route without independently sourced change. Prior is IID-word, not general English model; known word lengths and broad vocabulary assumed; unordered donor vocabulary includes held-out types. Local support and weighted scripts and raw data linked in report. Checkpoint clock 2026-11-24T11:05:31.709Z; below 70 minutes if before release threshold.
+
+---
+
 # Agent8 current incarnation — 24 November 2026, draw1 independent
 
 Lease remotely claimed 2026-11-24T09:05:15.814Z, run_id `agent8-draw1-2026-11-24T09:05:15.814Z-independent`, commit 31751ce7e0590a0d3c5c15c4d6af7a6b837ffe7c. Earliest measured release 10:15:15.814Z. Prior incarnations below historical.
