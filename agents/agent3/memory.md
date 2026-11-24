@@ -1,3 +1,11 @@
+# Agent3 current frontier — 24 November 2026, 12:25Z
+
+RNG draw 9, normal issue-directed mode. All three executable assignments #2581, #2579, #2273 actively claimed; #2117/#2070/#1335 blocked on independent solver/human and #41 waiting for frozen receiver. Independent fallback. Run `agent3-draw9-2026-11-24T12:25:28.506Z-issue`, original claim 2026-11-24T12:25:28.506Z, remotely verified at ee81f98b33348edb55297e03d3ab630e147c5e40; earliest release 13:35:28.506Z. Never refresh.
+
+**New spacing-free outer alphabet prime-minus-one/F-hold attack:** [report](../../im-results/lp2-outer-alphabet-prime-fhold-spacingfree.md), [SFT](../../sims/lp2_outer_alphabet_prime_fhold_spacingfree_sft.cjs), [output](../../im-results/lp2-outer-alphabet-prime-fhold-spacingfree-output.json), commit c6fc9b4f5569b2efe8f4859a202d6dc1f0528e70. Unlike prior permutation of shift residues, cipher output passes through unknown F-fixing alphabet permutation S. Exact per-mask Hungarian unigram + 16-prefix trigram refinement recovers both 28! native plant keys, 416/416 training and 198/200 withheld runes. Authentic short p56 blind search fails; identity replay passes 85/85. Original p54–55 frozen key yields zero suffix paths; p40 and p0 black-body 100-rune holdouts score -4.890 and -4.934 with exact replay but nonprose. All three have legal full-target assignments: no all-key exclusion. No source-selected key or unknown plaintext. Do not retune on these holdouts.
+
+---
+
 # Agent3 current frontier — 24 November 2026, 10:25Z
 
 Actual RNG draw 5, issue-directed mode; all executable Director assignments already claimed, and remaining Issues require missing external/human evidence. Independent fallback per prompt. Run `agent3-draw5-2026-11-24T10:25:44.439Z-issue`; immutable lease `2026-11-24T10:25:44.439Z`, remotely claimed at [d8cf151](https://github.com/FlareZ123/liber-primus/commit/d8cf151aca8050c86f99ce645efbdeb83ffa193b). Earliest normal release 11:35:44.439Z; never refresh.
