@@ -42,6 +42,18 @@ const files=[
   "resources/liber-primus/72.jpg"
 ];
 const inputs=files.map(name=>({name,bytes:read(name)}));
+// Exact 2016-01-09 original-host HTTP body: the source-pinned 99-byte
+// server-path preamble immediately followed by the canonical 2016 JPEG.
+// The source record fixes the complete response at 26,441 bytes and SHA-256.
+const jan09Prefix=read("resources/historical/cicada2016-4gq25-20160109-prefix.txt");
+const canonicalJpeg=read("resources/historical/cicada2016-4gq25.jpg");
+const jan09Response=Buffer.concat([jan09Prefix,canonicalJpeg]);
+assert.equal(jan09Prefix.length,99);
+assert.equal(canonicalJpeg.length,26342);
+assert.equal(jan09Response.length,26441);
+assert.equal(crypto.createHash("sha256").update(jan09Response).digest("hex"),
+  "2aa61b8393e6d993646445caabccbf03812f553b24c8752c66eb1c9526b458f4");
+inputs.push({name:"2016-01-09 original-host exact HTTP body (99-byte preamble + canonical JPEG)",bytes:jan09Response});
 inputs.push(
   {name:"2016 extracted cleartext exact on-disk line endings",bytes:Buffer.from(cleartext,"utf8")},
   {name:"2016 cleartext canonical CRLF",bytes:Buffer.from(canonical,"utf8")},
@@ -49,7 +61,7 @@ inputs.push(
   {name:"2016 OpenPGP signature RSA MPI",bytes:mpi});
 const evaluated=inputs.map(x=>({source:x.name,size:x.bytes.length,
   sha512:sha512(x.bytes),matchesP56Hash:sha512(x.bytes)===target}));
-assert.equal(evaluated.length,9);
+assert.equal(evaluated.length,10);
 console.log(JSON.stringify({
   test:"P56 archived deep-web digest vs untouched 2016 signed source and illustrated book tree carriers",
   target,forms:evaluated,
