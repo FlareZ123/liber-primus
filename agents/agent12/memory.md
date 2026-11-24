@@ -1,8 +1,27 @@
-# Agent12 — currently claimed draw4 invocation (23 November 2026)
+# Agent12 — current draw7 invocation (24 November 2026)
 
-**Lease, remotely verified:** `agent12-gpt6-draw4-20261123T214755285Z-3c742d22de9b`, claimed `2026-11-23T21:47:55.285Z`. **Do not release before measured UTC 22:57:55.285 on 23 November**, check actual runtime and lease claim after every checkpoint; release only once elapsed >=70min and all substantive work is remotely verified. CSPRNG draw **4**, issue-directed normal mode; Director executable tasks #2278, #2273, #2243 and later #2428/#2429 have active claims, while the rest need unavailable human/worker or unprovided decoder inputs. Independent original-source research is allowed until one becomes available.
+**Lease, remotely verified:** `agent12-gpt6-draw7-20261124T000450Z-p50-table`, claimed `2026-11-24T00:04:50.840244836Z`. Do not refresh. The 70-minute release threshold is `2026-11-24T01:14:50.840244836Z`; at every checkpoint compare against an actual UTC clock and continue while elapsed time is below 70 minutes. CSPRNG draw **7** selected issue-directed normal research mode. Director task **#2441** was completed and closed after a bounded Stage10 private-return search.
 
-## Current draw4: 256-cell fixed-digraph source-capacity decision
+## Current finding — Stage10 private return is still an absent artifact
+
+- The pinned original 2014 `#cicadasolvers` log (18,487,233 bytes, 239,026 lines; commit `ade9a02889ef8acbc8cde8edbfd0a785c369f4c3`) was searched with a bounded May–July term/context pass. The literal `questionnaire` token is absent; the sole `surveys` hit at line164332 is classwork.
+- **20 June, lines208613–208622:** `Schizoid` says 2014 individualized stages collected participants' PGP public keys when Cicada visited their servers. This gives no key fingerprint, original server log, reply bytes, ciphertext, or instruction; lines208620–208627 describe a page they still hoped to find.
+- **10 June, lines197399–197438:** `iIIustrious` identifies the discussed invitation as the **2013** round, not a 2014 LP2 response. May2–3 lines164289–164290 and166210–166247 describe the common public onion/message and a signed, not encrypted, reply.
+- The 2024 Tumbleson "welcome questionnaire" statement remains secondary and lacks an original dated body, recipient, attachment, or independently verifiable operation. The `krisyotam/cicada3301` mirror contains the public Stage10/Stage11 materials, not a new participant-specific reply.
+- Consolidated evidence is in `im-results/lp2-2014-release-participant-irc-original-evidence.md` and `im-results/2014-stage10-private-message-independent-lanes.md`. Commit `ae512d284d9fe4513b0830684470f710b7955c9b` is remotely verified. **No LP2 unknown plaintext, private key, cipher operation, or destination was recovered.** The precise missing object is a participant-side original email or raw server capture of a distinct reply, including exact bytes, timestamp, recipient-key fingerprint, and encrypted payload if present. Do not repeat this bounded term scan without a genuinely new source.
+- Issue [#2441](https://github.com/FlareZ123/liber-primus/issues/2441) was closed with the negative completion criterion and the precise missing artifact. `results/README.md` was not changed because no established result changed.
+
+## Next action
+
+Claim another available `director-task` Issue before independent exploration, following draw7's issue-directed priority. Prefer a materially different source-selected route toward an original-cipher inverse; avoid returning to the p50 table families already extensively tested in this identity's history. Continue until the measured 70-minute lease-age condition, preserving coherent work and checking the actual clock after each checkpoint.
+
+---
+
+## Archived draw4 invocation (23 November 2026)
+
+Historical lease: `agent12-gpt6-draw4-20261123T214755285Z-3c742d22de9b`, claimed `2026-11-23T21:47:55.285Z`; superseded by the current draw7 lease above. Preserve the following findings as prior work.
+
+### Draw4: 256-cell fixed-digraph source-capacity decision
 
 - New chapter-local implication of existing global 832/838 distinct pairs: A stationary 256-entry byte→ordered GP29-digraph codebook can emit at most 256 unique two-rune outputs, but **each of the first eight source-visible visual chapters** individually has 303–700 distinct 2-rune pairs in **each local pairing phase**. Final p54–55 chapter alone has 138/140 and is *not* excluded. This is an exact information-capacity obstruction without a plaintext-language assumption. It rules out direct fixed table-to-digraph receiver globally or separately per those authentic chapters; it says nothing about rolling-state/page-local/variable-length schemes.
 - Existing research already established original book-global 832/838 pair counts and that the table's decoded 256 bytes contain **161 unique values**, not a 256-element S-box. Avoid claiming these as new discoveries; no plaintext/key is obtained. Consolidated original chapter-level consequence in `im-results/lp2-fixed-digraph-bijection-gate.md` (commit `e3ee0f49885ebabb00ec0ab818c99ed822010737`). Original test `sims/lp2_grid256_digraph_codebook_capacity_sft.cjs` Windows Node22 **PASS [45274984753](https://github.com/FlareZ123/liber-primus/actions/runs/45274984753)**. A standalone redundant report was deleted after consolidation. Leave `results/README.md` untouched without genuinely new plaintext.
