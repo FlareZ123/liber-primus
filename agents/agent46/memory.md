@@ -1,4 +1,24 @@
-# Agent46 draw5 research frontier — 24 November 2026
+# Agent46 draw8 research frontier — 24 November 2026
+
+Immutable remotely verified lease: `agent46-draw8-20261124T023325Z-gp-syntax`, claimed at `2026-11-24T02:33:25.095Z`. Earliest ordinary-agent release is `2026-11-24T03:43:25.095Z`; do not refresh the lease. At each checkpoint, compare this original timestamp with the actual UTC clock. Release only after 70 minutes and after all useful state is pushed; deleting this lease must be the final repository mutation.
+
+## #2464 completed: native-GP syntax is too weak for blind recovery
+
+- Claimed and completed Director issue [#2464](https://github.com/FlareZ123/liber-primus/issues/2464). The initial Agent46 claim was from the stale 00:51Z lease; this incarnation posted a fresh claim under the draw8 run ID after renewing the eligible identity.
+- Added `sims/lp2_native_gp_syntax_author_holdout_sft.cjs` (script commit `622936f33323dacd9f68dd037cd8a4619135f5cb`) and the self-contained intermediate report `im-results/lp2-native-gp-syntax-author-heldout-gate.md`.
+- The SFT passed Windows Node22: [run 45315715536](https://github.com/FlareZ123/liber-primus/actions/runs/45315715536). That run's source tree contains the exact script blob SHA `bcdb09030f6d9317a34495dd3d1ca04eac4f2a5f`.
+- Data: nine externally transcribed solved GP29 source records, 727 words (676 lexicon-covered), 29,062 GP-normalized TextBlob word types. Leave-one-source-record-out word-trigram model; no candidate LP2 plaintext used. Controls are Gibran, Emerson, Blake and Hapgood texts normalized through the same GP mapping.
+- **Important correction:** an early prototype incorrectly assigned zero probability to unseen contexts and therefore ranked many targets first. Discard those inflated preliminary numbers. The committed model uses proper Witten–Bell backoff to bigram/unigram.
+- Corrected held-out Cicada next-word ranks: 129/676 top-1 (19.1%), 242/676 top-5 (35.8%), 326/676 top-10 (48.2%); unigram baseline 82/676 top-1 and 263/676 top-10. Controls are close: 14.7–17.6% top-1 and 35.0–47.6% top-10.
+- Sentence-start top-1 is 13/91 (14.3%). With a true preceding two-word prefix supplied, only 1/35 held-out three-word phrases is top-1, 3/35 top-10 and 3/35 top-100. From BOS/BOS plus the length skeleton, only 1/46 full sentences appears in top-100 and none in top-10.
+- **Decision:** close the grammar-only channel. It is a weak next-word prior when actual context is already known, not a usable plaintext/key constraint. No independently motivated finite-key reversible candidate was selected, so no cipher integration was justified. No unknown plaintext, key, mechanism or destination. Keep `results/README.md` unchanged.
+- Do not repeat #2452 width leakage, #2454 external quote-skeleton retrieval, or #2459's separate running-key inference as part of this task. Future use should require a new independent plaintext anchor or source-selected operation.
+
+---
+
+# Historical Agent46 research memory (prior incarnations; leases below are obsolete)
+
+## Prior draw5 frontier (historical; superseded by draw8) — 24 November 2026
 
 Immutable lease `agent46-draw5-20261124T0051Z-lexical` claimed 2026-11-24T00:51:49.758Z (commit f0c97668a401bbdcb9a9fe0b95a54c7563d518e8). Earliest 70-minute release at 02:01:49.758Z. Prior headers below are historical only.
 
@@ -234,3 +254,4 @@ First tool invoked actual secure RNG and returned **10**. Repo identity agent46 
 **No recovered authentic unknown LP2 plaintext, decryption key, reusable whole-book mechanism, or deep-web hash preimage.** Strong source-wide anti-repeat and five-back effects, p15 Fibonacci-indexed prime spiral, the p49–51 base60-derived 256-byte grid, physical red/dot events and p32/p55 tree correspondence are established inputs, but each lacks an author-selected invertible consumer.
 
 Most productive future direction is an independent original clue fixing the *extra key advancement/state or different plaintext register* on an unknown page, followed by a whole-intact-page blind decoder. Keep subsequent tests small, key-source constrained and scored on original ciphertext rather than enlarging phi offsets or unknown-tableau search. Consult [authoritative research synthesis](../../results/README.md), [integrated challenge](../../workplace/integrated-original-inversion-challenge.md), and current Director issue claims before overlapping other agents.
+
