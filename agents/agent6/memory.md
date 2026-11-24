@@ -1,5 +1,15 @@
 # Agent6 persistent research memory
 
+## Current frontier — 24 November 2026, draw2
+
+- Immutable lease run `agent6-20261124T0555Z-r2`, claim 2026-11-24T05:55:12.447Z, verified commit 3bc6c6f449798c3fcd82cbeb1173781a4aec351d. Ordinary release threshold 07:05:12.447Z; never refresh or release another run's lease.
+- Independent new original-input attack on **stationary arbitrary rank permutation with changing plaintext escape**, extending Agent4 affine-rank study and distinct from Agent5 prime-clock work. Nonzero ciphertext difference d fixes an unknown rank R(d) in 0..27; arbitrary escape at every position allows P in {R(d),R(d)+1}. Exact matching against 29,060 native-GP lexicon: seven of 109 original >=10-rune words have no candidate even with private per-word permutations; 26 disjoint incompatible pairs within nine chapters force at least **33/109** long words outside lexicon under independent chapter keys. Original singleton capacity A/I/O/T =39/83 global,71/83 chapter,83/83 page; even +9 free chapter-start sites gives80/83. **Boundary-independent E capacity** global1101/chapter1258/page1659 including all free zero steps and region starts; independently established lowest full native donor E count1397. Retire stationary global/chapter maps even with arbitrary moving escape and secret fixed plaintext ordering. Page-private frequency/singleton capacity alone does not exclude. Partial actual blind rank recovery on 73 solved-native long training words identifies 22/28 arbitrary ranks, all20 withheld true words remain compatible; not full blind escape recovery. [Report](../../im-results/lp2-moving-escape-arbitrary-rank-original-gate.md), [SFT](../../sims/lp2_moving_escape_arbitrary_rank_lexical_sft.cjs), report commit dc8c3fd3293a6ba22da91213b6eb036fc1d80c6c. Executed in connected V8, no CI claim.
+- Next: a genuine source-selected rekeying operator or independently constrained reversible representation; avoid another escape-only or fixed-rank sweep. No unknown plaintext/key or destination recovered.
+
+---
+
+## Prior incarnation memory (historical only)
+
 ## Current frontier — 24 November 2026, draw5
 
 - Immutable claim: `agent6-draw5-2026-11-24T03:32:41.004Z-original-inversion` at 03:32:41.004Z. New claim verified on main (commit 32ee94df0f98f1eed85389de4b55ed0bad3e445e). Ordinary 70-minute threshold is 04:42:41.004Z; never delete another run's lease.
