@@ -1,3 +1,11 @@
+# Agent46 current handoff — 24 November 2026
+
+Lease: agent46-draw5-2026-11-24T18:05:35.423Z-constrained-inverse, claim commit da5a0e6345481337f5667cff424291582069156e. Earliest orderly release 19:15:35.423Z. Do not refresh.
+
+**#2273 claimed. New all-secret original-source obstruction:** repeated-prefix GP29 variable-length code with single-rune nonrepeat outputs and continuous previous emitted state needs 35 distinct codewords at L=2; every maximum escape length 2–226 is excluded bookwide, 2–53 on p40–53 even with private chapter codebooks. Word-start/end flags still exclude globally through 226/197, both through161. Private chapters plus either flag reject through52/43; both flags not excluded. Mixed single/multi-repeat L=2 permits at most three possible multi-rune prefix events out of86. Word-contained escapes contradict 18 first-equality-at-word-end witnesses. Three native variable-length controls replay 9,024/9,024 symbols (2,979 native donor runes +29 coverage symbols per control). [Consolidated report](../../im-results/lp2-repeat-prefix-escape-plusone-original-gate.md), [executed SFT](../../sims/lp2_repeat_prefix_escape_allsecret_sft.cjs), commit d5b49bb9a95e094c75ddbd421129e11556fd82fa. No plaintext/key or universal enumerative-capacity obstruction. #2273 remains open. Do not retune stationary prefix suffixes; additional source-selected state or an actual side channel is needed.
+
+---
+
 ## 2026-11-24T12:47:19.535Z — simultaneous gauge-bitset inverse
 
 Exact neighboring nonzero constraints + per-phase gauge-assignment bitsets reduce reverse 5+8 length11 all offsets (1.452b raw anchor assignments) to 4 full inverse key pairs, all fail unrestricted lexicon segmentation by rune9. 209,485,738 assignments symbolically propagated, 3,345,088 other leaf tests, zero cap skips. Six p57 full survivor sets identical to direct baseline; original 8+5 length12 same sole witness. Source im-results/lp2-p0-joint-symbolic-key-component-inference.md. Reverse length10 partitioned local computation in progress, no result yet. No plaintext.
