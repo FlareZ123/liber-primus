@@ -32,7 +32,7 @@ This is sharper than testing arbitrary backward prime starts: p56 is fixed to th
 
 The previous public-reset conclusion assumes the established p56 prime rule. The known plaintext/ciphertext pairs actually force a stronger result even if the initial prime index, direction, fixed residue-to-shift map, and any number of skipped primes are all unknown.
 
-Let an emitted non-F rune obey (C_i=P_i+f(p_{j_i}\bmod29)\pmod{29}), where (f) is **any fixed function** from 29 residues to 29 shifts (not necessarily assumed injective), and the selected prime indices (j_i) are strictly monotone, allowing arbitrarily many omissions but no reuse, wrap or reset. Literal F may bypass the prime clock, as in the known p56 control. The function on p55 need not equal the p56 function: only the monotonicity of the shared prime counter across the boundary is required.
+Let an emitted non-F rune obey `C_i = P_i + f(p_{j_i} mod 29) (mod 29)`, where `f` is **any fixed function** from 29 residues to 29 shifts (not necessarily assumed injective), and the selected prime indices `j_i` are strictly monotone, allowing arbitrarily many omissions but no reuse, wrap or reset. Literal F may bypass the prime clock, as in the known p56 control. The function on p55 need not equal the p56 function: only the monotonicity of the shared prime counter across the boundary is required.
 
 The 84 consuming original p56 pairs exhibit **all 29 distinct shifts**, with multiplicities in shift order 0–28:
 
@@ -40,7 +40,7 @@ The 84 consuming original p56 pairs exhibit **all 29 distinct shifts**, with mul
 3 5 4 1 3 2 3 3 2 2 3 4 3 2 3 2 3 3 4 4 3 3 4 3 5 2 2 2 1
 ```
 
-Surjectivity forces (f) to be bijective. The residue 0 occurs for only one ordinary prime, 29; consequently its image must be a shift occurring exactly once. There are just two candidates:
+Surjectivity forces `f` to be bijective. The residue 0 occurs for only one ordinary prime, 29; consequently its image must be a shift occurring exactly once. There are just two candidates:
 
 | Singleton shift | Original zero-based p56 rune position | Earlier consumed primes within p56 | Later consumed primes within p56 |
 |---:|---:|---:|---:|
@@ -51,7 +51,7 @@ There are exactly nine primes below 29. An increasing clock cannot place prime29
 
 The forced prefix determines ten entries of the arbitrary p56 map; the remaining nineteen entries cannot be selected by the anchor alone. If unbounded skipping is permitted, Dirichlet's theorem guarantees that every permutation extending the forced ten entries can realize the subsequent nonzero residue demands in increasing order. Thus arbitrary-skip flexibility does not restore backwards continuity or uniquely determine the post-anchor schedule. A new independently sourced reset/coupling, nonmonotone or prime-reusing state law would be required.
 
-**Reproduction and positive control:** [standalone original-corpus CommonJS SFT](../sims/lp2_p56_full_residue_monotone_endpoint_sft.cjs), executed with the exact repository corpus in the isolated JavaScript runtime. Genuine p56 85/85 replay passes. A planted noncanonical fixed residue map (f(r)=7r+4\bmod29) uses four hidden prime-consuming prefix runes from authentic clear p57 and a 475-rune known suffix comprising five repetitions of that page. The known suffix has 460 consuming runes and selects its unique feasible prime29 anchor at consuming position5 (shift4). Given the four required preceding consumptions, the recovered prefix clock is exactly primes 2,3,5,7; with the planted map supplied to the inverse, all four hidden plaintext runes recover exactly. This tests clock identification rather than recovery of an arbitrary unknown map.
+**Reproduction and positive control:** [standalone original-corpus CommonJS SFT](../sims/lp2_p56_full_residue_monotone_endpoint_sft.cjs), executed with the exact repository corpus in the isolated JavaScript runtime. Genuine p56 85/85 replay passes. A planted noncanonical fixed residue map `f(r) = (7r + 4) mod 29` uses four hidden prime-consuming prefix runes from authentic clear p57 and a 475-rune known suffix comprising five repetitions of that page. The known suffix has 460 consuming runes and selects its unique feasible prime29 anchor at consuming position5 (shift4). Given the four required preceding consumptions, the recovered prefix clock is exactly primes 2,3,5,7; with the planted map supplied to the inverse, all four hidden plaintext runes recover exactly. This tests clock identification rather than recovery of an arbitrary unknown map.
 
 **Decision for #2471:** no continuous backward ordinary-prime clock from the known p56 endpoint, even after arbitrary residue relabeling and skipping. This is an exact original-input exclusion, not a new unknown-page decryption. A p55 state unrelated to the monotone prime clock remains underdetermined; the source does not select an alternate invertible endpoint transition.
 
