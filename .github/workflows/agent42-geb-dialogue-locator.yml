@@ -1,0 +1,24 @@
+name: Agent42 locate eight remaining GEB dialogues
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  locate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Fetch and locate exact pinned GEB OCR headings
+        run: python sims/agent42_geb_dialogue_locator.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: agent42-geb-dialogue-locator
+          path: geb-dialogue-locator.json
+          retention-days: 30
