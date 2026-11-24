@@ -1,133 +1,194 @@
 "use strict";
 
-/**
- * Cicada's authenticated 2014 "Let the text guide you" stage used previous
- * solved Liber Primus prose as the next GP29 Vigenere key. This bounded test
- * applies the same prior-solved-plaintext principle across original LP2.
- *
- * Run: node sims/lp1_prior_release_textguide_lp2_sft.cjs
- * Sources: historical_text_guide_terminal_vigenere_sft.cjs, LP1 reference,
- * and exact canonical LP2 ciphertext. No unknown language-model tuning.
- */
-const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
-const {encodeGP, historicalOnionInverse} = require("./historical_text_guide_terminal_vigenere_sft.cjs");
+const assert = require("node:assert/strict");
+const {
+  encodeGP,
+  historicalOnionInverse,
+  trigramScorer
+} = require("./historical_text_guide_terminal_vigenere_sft.cjs");
+const { encodeSourceNativeGP } = require("./lp2_native_gp_source_orthography_sft.cjs");
 
-const root = path.resolve(__dirname, "..");
-const corpus = JSON.parse(fs.readFileSync(
-  path.join(root, "resources", "liber-primus", "lp2-corpus.json"), "utf8"));
-const source = fs.readFileSync(
-  path.join(root, "resources", "liber-primus", "lp1-plaintext-reference.txt"), "utf8");
-const stripComments = x => x.replace(/^#.*$/gm, "");
-const allLP1 = source.split("### 56")[0];
-const lp1Welcome = allLP1.slice(allLP1.indexOf("### 3"));
+const ROOT = path.join(__dirname, "..");
+const source = fs.readFileSync(path.join(ROOT, "resources/liber-primus/lp1-plaintext-reference.txt"), "utf8");
+const corpus = JSON.parse(fs.readFileSync(path.join(ROOT, "resources/liber-primus/lp2-corpus.json"), "utf8"));
 
-/** @param {number[]} data @returns {string} */
-function transliterate(data) {
-  return data.map(i => corpus.translit[i]).join("");
+function cleanSolvedText(text) {
+  return text.split(/\r?\n/)
+    .map(line => line.trim())
+    .filter(line => line && !line.startsWith("#") && !(line.startsWith("[") && line.endsWith("]")))
+    .join(" ");
 }
 
-/** @param {number[]} text @param {number[]} key @param {number} direction @param {number} phase */
-function inverse(text, key, direction, phase) {
-  return text.map((x, i) => (x + direction * key[(phase + i) % key.length] + 29) % 29);
-}
-
-/**
- * Fixed smoothed trigram reference from the first solved LP release.
- * p57 is independent historical solved-page language control.
- * @param {number[]} sourceRunes
- */
-function trigramScore(sourceRunes) {
-  const bi = new Map(), tri = new Map();
-  for (let i = 2; i < sourceRunes.length; i++) {
-    const b = sourceRunes[i - 2] * 29 + sourceRunes[i - 1];
-    bi.set(b, (bi.get(b) || 0) + 1);
-    const t = b * 29 + sourceRunes[i];
-    tri.set(t, (tri.get(t) || 0) + 1);
-  }
-  /** @param {number[]} text */
-  return text => {
-    let logSum = 0;
-    for (let i = 2; i < text.length; i++) {
-      const b = text[i - 2] * 29 + text[i - 1];
-      logSum += Math.log(
-        (1 + (tri.get(b * 29 + text[i]) || 0)) / (29 + (bi.get(b) || 0)));
+function firstPrimes(count) {
+  const result = [];
+  for (let candidate = 2; result.length < count; candidate++) {
+    let prime = true;
+    for (let d = 2; d * d <= candidate; d++) {
+      if (candidate % d === 0) {
+        prime = false;
+        break;
+      }
     }
-    return logSum / (text.length - 2);
-  };
+    if (prime) result.push(candidate);
+  }
+  return result;
+}
+
+function solveP56(ciphertext) {
+  const primes = firstPrimes(90);
+  let keyPosition = 0;
+  return ciphertext.map((value, i) => {
+    if (i === 56) return value;
+    return (value - (primes[keyPosition++] - 1) % 29 + 29) % 29;
+  });
+}
+
+function inverse(ciphertext, key, direction, phase) {
+  return ciphertext.map((value, i) => (value + direction * key[(phase + i) % key.length] + 29) % 29);
+}
+
+function printGP(values) {
+  return values.map(i => corpus.translit[i]).join("");
 }
 
 function main() {
-  // Actual solved 2014 stage: previously solved text supplied the next key.
-  const onion = "ᚦᛗᛞᛇᚠᛗᚪᚱ5ᚢᚫᛝᚱᛝ3 ᛠᛗᛇᚠᛡ";
-  assert.equal(historicalOnionInverse(
-    onion, encodeGP("WELCOME PILGRIM TO THE GREAT")),
-  "AUOWYFGL5LCSFJ3 NONIAN");
+  // The previous version left bracketed editorial continuation notes in the
+  // key and language model. They contributed 272 non-source GP symbols to
+  // both historical key starts. Remove those notes and all section headings.
+  const lp1OnlyRaw = source.split(/^### 56$/m)[0];
+  const welcomeStart = lp1OnlyRaw.indexOf("### 3");
+  assert.notEqual(welcomeStart, -1);
+  const welcomeRaw = lp1OnlyRaw.slice(welcomeStart);
 
-  const keys = {
-    full_prior_lp1: encodeGP(stripComments(allLP1)),
-    welcome_onward: encodeGP(stripComments(lp1Welcome)),
-  };
-  assert.equal(keys.full_prior_lp1.length, 3340);
-  assert.equal(keys.welcome_onward.length, 3154);
+  const cleanFullLP1 = cleanSolvedText(lp1OnlyRaw);
+  const cleanWelcomeOnward = cleanSolvedText(welcomeRaw);
+  const oldFullLength = encodeGP(lp1OnlyRaw.replace(/^#.*$/gm, "")).length;
+  const oldWelcomeLength = encodeGP(welcomeRaw.replace(/^#.*$/gm, "")).length;
 
-  const unknownPages = corpus.pages.filter(x => x.page < 56);
-  const unknown = unknownPages.flatMap(x => x.indices);
-  assert.equal(unknown.length, 12956);
-  const score = trigramScore(keys.full_prior_lp1);
-  const solvedP57 = corpus.pages[57].indices;
-  assert.equal(solvedP57.length, 95);
-  assert.ok(transliterate(solvedP57).startsWith("PARABLELICETHEINSTAR"));
+  const keys = [
+    {
+      name: "full_prior_lp1_legacy",
+      encoder: "legacy GP label encoder",
+      values: encodeGP(cleanFullLP1)
+    },
+    {
+      name: "full_prior_lp1_source_native",
+      encoder: "source-calibrated GP encoder",
+      values: encodeSourceNativeGP(cleanFullLP1)
+    },
+    {
+      name: "welcome_onward_legacy",
+      encoder: "legacy GP label encoder",
+      values: encodeGP(cleanWelcomeOnward)
+    },
+    {
+      name: "welcome_onward_source_native",
+      encoder: "source-calibrated GP encoder",
+      values: encodeSourceNativeGP(cleanWelcomeOnward)
+    }
+  ];
 
-  const models = [];
-  for (const [name, key] of Object.entries(keys)) {
+  assert.equal(oldFullLength - keys[0].values.length, 272);
+  assert.equal(oldWelcomeLength - keys[2].values.length, 272);
+  assert.equal(keys[0].values.length, 3068);
+  assert.equal(keys[1].values.length, 3028);
+  assert.equal(keys[2].values.length, 2882);
+  assert.equal(keys[3].values.length, 2844);
+
+  // The 2014 positive control is the exact 22-rune opening phrase. Both
+  // encoders agree on this phrase, and the 18-rune clue image uses no wrap.
+  const phraseLegacy = encodeGP("WELCOME PILGRIM TO THE GREAT");
+  const phraseNative = encodeSourceNativeGP("WELCOME PILGRIM TO THE GREAT");
+  assert.deepEqual(phraseLegacy, phraseNative);
+  assert.equal(phraseLegacy.length, 22);
+  const historicalCiphertext = "ᚦᛗᛞᛇᚠᛗᚪᚱ5ᚢᚫᛝᚱᛝ3 ᛠᛗᛇᚠᛡ";
+  const historicalPlaintext = historicalOnionInverse(historicalCiphertext, phraseLegacy);
+  assert.equal(historicalPlaintext, "AUOWYFGL5LCSFJ3 NONIAN");
+
+  // Train two fixed LP1-only models. The source-native encoder is a sensitivity
+  // model, not a universal spelling claim; its source-attested scope is
+  // documented in lp2-native-gp-source-orthography.
+  const scoreLegacy = trigramScorer(encodeGP(cleanFullLP1));
+  const scoreNative = trigramScorer(encodeSourceNativeGP(cleanFullLP1));
+
+  const unknownPages = corpus.pages.filter(page => page.page < 56);
+  const unknown = unknownPages.flatMap(page => page.indices);
+  const p56 = solveP56(corpus.pages.find(page => page.page === 56).indices);
+  const p57 = corpus.pages.find(page => page.page === 57).indices;
+
+  const variants = [];
+  for (const key of keys) {
     for (const clock of ["continuous", "page_reset"]) {
-      for (const direction of [-1, +1]) {
-        let at = 0;
-        const whole = [];
-        for (const page of unknownPages) {
-          if (clock === "page_reset") at = 0;
-          const decoded = inverse(page.indices, key, direction, at);
-          const reenciphered = inverse(decoded, key, -direction, at);
-          assert.deepEqual(reenciphered, page.indices);
-          whole.push(...decoded);
-          at += page.indices.length;
+      for (const direction of [-1, 1]) {
+        let plaintext;
+        if (clock === "continuous") {
+          plaintext = inverse(unknown, key.values, direction, 0);
+          assert.deepEqual(inverse(plaintext, key.values, -direction, 0), unknown);
+        } else {
+          plaintext = unknownPages.flatMap(page => {
+            const decoded = inverse(page.indices, key.values, direction, 0);
+            assert.deepEqual(inverse(decoded, key.values, -direction, 0), page.indices);
+            return decoded;
+          });
         }
-        models.push({
-          key_source: name,
-          key_length: key.length,
+        variants.push({
+          key: key.name,
+          encoder: key.encoder,
+          keyRunes: key.values.length,
           clock,
           direction,
-          score: score(whole),
-          first_75: transliterate(whole.slice(0, 75)),
-          p55_76: transliterate(whole.slice(-76)),
+          scoreLegacy: scoreLegacy(plaintext),
+          scoreSourceNative: scoreNative(plaintext),
+          preview: printGP(plaintext.slice(0, 100)),
+          tail: printGP(plaintext.slice(-72))
         });
       }
     }
   }
-  assert.equal(models.length, 8);
-  const best = models.slice().sort((a, b) => b.score - a.score)[0];
-  const worst = models.slice().sort((a, b) => a.score - b.score)[0];
 
-  // Blind source-only plant with independently known final-page plaintext.
-  const plantKey = keys.full_prior_lp1;
-  const planted = inverse(solvedP57, plantKey, +1, 0);
-  assert.deepEqual(inverse(planted, plantKey, -1, 0), solvedP57);
-  assert.equal(transliterate(inverse(planted, plantKey, -1, 0)).slice(0, 7), "PARABLE");
+  const byLegacy = variants.slice().sort((a, b) => b.scoreLegacy - a.scoreLegacy);
+  const byNative = variants.slice().sort((a, b) => b.scoreSourceNative - a.scoreSourceNative);
+
+  // Reversible synthetic plant: the exact source-derived key and inverse
+  // recover a known plaintext page when the ciphertext is constructed here.
+  const plantCipher = inverse(p57, keys[1].values, 1, 0);
+  assert.deepEqual(inverse(plantCipher, keys[1].values, -1, 0), p57);
 
   console.log(JSON.stringify({
-    historical_onion_positive_control: true,
-    lp2_original_runes: unknown.length,
-    fixed_keys: Object.fromEntries(Object.entries(keys).map(([k, v]) => [k, v.length])),
-    raw_ciphertext_score: score(unknown),
-    solved_p57_score: score(solvedP57),
-    blind_planted_solved_p57_roundtrip: true,
-    variants: models,
-    best, worst,
-    recovered_original_unknown_plaintext: false,
+    historicalPositiveControl: {
+      key: "WELCOME PILGRIM TO THE GREAT",
+      keyRunes: phraseLegacy.length,
+      ciphertextRunes: 18,
+      plaintext: historicalPlaintext,
+      knownReading: "AVOWYFGL5LKZFJ3N.ONION"
+    },
+    sourceCleanup: {
+      oldLegacyFullKeyRunes: oldFullLength,
+      cleanLegacyFullKeyRunes: keys[0].values.length,
+      cleanSourceNativeFullKeyRunes: keys[1].values.length,
+      oldLegacyWelcomeOnwardRunes: oldWelcomeLength,
+      cleanLegacyWelcomeOnwardRunes: keys[2].values.length,
+      cleanSourceNativeWelcomeOnwardRunes: keys[3].values.length,
+      editorialSymbolsRemovedFromEachOldKey: 272
+    },
+    corpus: {
+      unknownRunes: unknown.length,
+      rawScoreLegacy: scoreLegacy(unknown),
+      rawScoreSourceNative: scoreNative(unknown),
+      heldOutP56ScoreLegacy: scoreLegacy(p56),
+      heldOutP56ScoreSourceNative: scoreNative(p56),
+      heldOutP57ScoreLegacy: scoreLegacy(p57),
+      heldOutP57ScoreSourceNative: scoreNative(p57)
+    },
+    variants: variants.length,
+    bestByLegacy: byLegacy.slice(0, 6),
+    bestBySourceNative: byNative.slice(0, 6),
+    allVariants: variants
   }, null, 2));
 }
 
 if (require.main === module) main();
-module.exports = {main, inverse, trigramScore};
+
+module.exports = { main, inverse, cleanSolvedText };
