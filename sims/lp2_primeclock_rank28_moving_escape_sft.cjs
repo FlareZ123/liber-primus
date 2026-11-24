@@ -10,8 +10,10 @@ function experiment(corpus,transcript,solved,lexicon) {
  const tokens=corpus.translit.map((s,i)=>({s,i})).sort((a,b)=>b.s.length-a.s.length);
  const key=p=>p.join(",");
  function gp(s){s=s.toUpperCase().replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S").replace(/ING/g,"NG").replace(/IO/g,"IA");const p=[];while(s.length){const m=tokens.find(t=>s.startsWith(t.s));if(!m)return null;p.push(m.i);s=s.slice(m.s.length);}return p;}
- const lex=new Map(),known=new Set();
- for(const l of lexicon.split(/\r?\n/)){const m=/^([a-z]+) (\d+)$/.exec(l);if(!m)continue;const p=gp(m[1]);if(!p||known.has(key(p)))continue;known.add(key(p));if(!lex.has(p.length))lex.set(p.length,[]);lex.get(p.length).push(p);}
+ const lex=new Map(),known=new Set(),frequency=new Map();
+ const bigram=Array.from({length:30},()=>Array(30).fill(.5));
+ for(const l of lexicon.split(/\r?\n/)){const m=/^([a-z]+) (\d+)$/.exec(l);if(!m)continue;const p=gp(m[1]);if(!p)continue;const f=Number(m[2]),s=key(p);frequency.set(s,(frequency.get(s)||0)+f);let prev=29;for(const x of p.concat(29)){bigram[prev][x]+=Math.sqrt(f);prev=x;}if(known.has(s))continue;known.add(s);if(!lex.has(p.length))lex.set(p.length,[]);lex.get(p.length).push(p);}
+ const logBigram=bigram.map(row=>{const n=row.reduce((a,b)=>a+b,0);return row.map(v=>Math.log(v/n));});
  const primes=[];for(let n=2;primes.length<14000;n++){if(primes.every(q=>q*q>n||n%q!==0))primes.push(n);}
  check(primes[463]===3301,"prime clock");
  const pow=[],log=Array(29).fill(-1);let a=1;for(let i=0;i<28;i++){pow.push(a);log[a]=i;a=a*15%29;}check(new Set(pow).size===28,"root");
@@ -46,7 +48,39 @@ function experiment(corpus,transcript,solved,lexicon) {
  let repeat=true;while(repeat){repeat=false;for(let j=0;j<28;j++)if(pop(nd[j])===1)for(let k=0;k<28;k++)if(j!==k&&(nd[k]&nd[j])){nd[k]&=~nd[j];if(!nd[k])return {failure:i,rounds};repeat=true;}}
  if(nd.some((v,j)=>v!==ds[j]))changed=true;ds=nd;
  }}return {rounds,domains:ds,remaining:rows.map(x=>x.length)};}
- function stats(ws){const p=ws.flat(),freq=Array(29).fill(0);p.forEach(x=>freq[x]++);return {runes:p.length,ioc:freq.reduce((s,n)=>s+n*(n-1),0)/(p.length*(p.length-1)),lexical:ws.filter(w=>known.has(key(w))).length,words:ws.length};}
+ // Maximum weight bijection, exact O(28^3) Hungarian assignment.
+ function assignment(W){
+ const N=W.length,u=Array(N+1).fill(0),v=Array(N+1).fill(0),p=Array(N+1).fill(0),way=Array(N+1).fill(0);
+ for(let i=1;i<=N;i++){
+ p[0]=i;let j0=0;const min=Array(N+1).fill(Infinity),used=Array(N+1).fill(false);
+ do{used[j0]=true;const i0=p[j0];let delta=Infinity,j1=0;
+ for(let j=1;j<=N;j++)if(!used[j]){const cur=-W[i0-1][j-1]-u[i0]-v[j];if(cur<min[j]){min[j]=cur;way[j]=j0;}if(min[j]<delta){delta=min[j];j1=j;}}
+ for(let j=0;j<=N;j++)if(used[j]){u[p[j]]+=delta;v[j]-=delta;}else min[j]-=delta;
+ j0=j1;}while(p[j0]!==0);
+ do{const j1=way[j0];p[j0]=p[j1];j0=j1;}while(j0!==0);
+ }
+ const S=Array(N);for(let j=1;j<=N;j++)S[p[j]-1]=j-1;
+ return {S,weight:S.reduce((s,r,q)=>s+W[q][r],0)};
+ }
+ check(assignment([[3,1,0],[2,0,4],[0,5,1]]).weight===12,"assignment positive");
+ function decodeObs(obs,S){return obs.map(({q,e,k})=>{if(q<0)return e;const r=mod(S[q]-k,28);return r+(r>=e);});}
+ function scoreWord(p){let prev=29,score=0;for(const x of p.concat(29)){score+=.1*logBigram[prev][x];prev=x;}
+ const f=frequency.get(key(p));return score+(f?(p.length>=3?p.length:.25*p.length)+.05*Math.log1p(f):0);}
+ // Plaintext-blind: every training word participates. No true-word or holdout oracle.
+ function attack(obs){
+ const votes=Array.from({length:28},()=>Array(28).fill(0));let usable=0;
+ for(const o of obs){const row=candidates(o,false);if(!row.length)continue;usable++;
+ const weight=Math.max(1,o.length-1)/row.length;
+ for(const {m} of row)for(let q=0;q<28;q++)if(m[q]!==ALL)votes[q][31-Math.clz32(m[q])]+=weight;}
+ let {S}=assignment(votes);const score=s=>obs.reduce((n,o)=>n+scoreWord(decodeObs(o,s)),0);
+ let best=score(S),initial=best,steps=0;
+ for(;steps<30;steps++){let next=best,pair=null;
+ for(let i=0;i<28;i++)for(let j=i+1;j<28;j++){[S[i],S[j]]=[S[j],S[i]];const x=score(S);[S[i],S[j]]=[S[j],S[i]];if(x>next+1e-9){next=x;pair=[i,j];}}
+ if(!pair)break;const [i,j]=pair;[S[i],S[j]]=[S[j],S[i]];best=next;
+ }
+ return {S,usable,steps,initial,score:best};
+ }
+ function stats(ws){const p=ws.flat(),freq=Array(29).fill(0);p.forEach(x=>freq[x]++);return {runes:p.length,ioc:freq.reduce((s,n)=>s+n*(n-1),0)/(p.length*(p.length-1)),lexical:ws.filter(w=>known.has(key(w))).length,words:ws.length,longLexical:ws.filter(w=>w.length>=5&&known.has(key(w))).length,longWords:ws.filter(w=>w.length>=5).length};}
  const offsets=[];let n=0;for(const w of words){offsets.push(n);n+=w.length;}
  const pages=[];n=0;for(const p of corpus.pages.filter(p=>p.page<=55)){if(p.indices.length)pages.push([p.page,n]);n+=p.indices.length;}
  const pageAt=i=>pages.filter(p=>p[1]<=i).at(-1)[0];
@@ -57,8 +91,11 @@ function experiment(corpus,transcript,solved,lexicon) {
  const witness=j=>({word:j,page:pageAt(offsets[j]),offset:offsets[j],cipher:render(words[j]),q:obs[j].map(x=>x.q),e:obs[j].map(x=>x.e),dictionary:lex.get(words[j].length)?.length||0});
  const firstByLength={};for(const j of failed)firstByLength[words[j].length]??=witness(j);
  const dec=transform(words,identity,false,hold,order);check(same(transform(dec,identity,true,hold,order),words),"original replay");
- const region=(lo,hi)=>dec.filter((w,i)=>pageAt(offsets[i])>=lo&&pageAt(offsets[i])<=hi);
- results.push({order,hold,repeatCount:obs.flat().filter(x=>x.q<0).length,byLen,broadFailed:failed.length,exactFailed:exactFailed.length,firstByLength,firstExactFailure:exactFailed.length?witness(exactFailed[0]):null,canonical:stats(dec),opening:stats(region(0,2)),holdout:stats(region(40,53)),openingWords:dec.slice(0,25).map(render).join(" "),holdoutWords:region(40,53).slice(0,25).map(render).join(" ")});
+ const region=(lo,hi,tape=dec)=>tape.filter((w,i)=>pageAt(offsets[i])>=lo&&pageAt(offsets[i])<=hi);
+ const learned=attack(obs.slice(0,158)),learnedDec=transform(words,learned.S,false,hold,order);
+ check(same(transform(learnedDec,learned.S,true,hold,order),words),"learned original replay");
+ const learnedResult={...learned,opening:stats(region(0,2,learnedDec)),holdout16:stats(region(16,21,learnedDec)),holdout40:stats(region(40,53,learnedDec)),full:stats(learnedDec),openingWords:learnedDec.slice(0,25).map(render).join(" "),holdoutWords:region(40,53,learnedDec).slice(0,25).map(render).join(" ")};
+ results.push({order,hold,learned:learnedResult,repeatCount:obs.flat().filter(x=>x.q<0).length,byLen,broadFailed:failed.length,exactFailed:exactFailed.length,firstByLength,firstExactFailure:exactFailed.length?witness(exactFailed[0]):null,canonical:stats(dec),opening:stats(region(0,2)),holdout:stats(region(40,53)),openingWords:dec.slice(0,25).map(render).join(" "),holdoutWords:region(40,53).slice(0,25).map(render).join(" ")});
  }
  const donor=solved.sections.flatMap(s=>(s.source_text.match(/[\u16a0-\u16ff]+/gu)||[]).map(w=>[...w].map(c=>idx.get(c))));
  const plants=[];
@@ -70,7 +107,9 @@ function experiment(corpus,transcript,solved,lexicon) {
  const sol=propagate(train);check(sol.domains&&S.every((r,q)=>sol.domains[q]&(1<<r)),"true key retained");
  const single=sol.domains.every(x=>pop(x)===1);const recovered=single?sol.domains.map(x=>31-Math.clz32(x)):null;
  const plain=recovered?transform(c,recovered,false,true,order):null;
- plants.push({order,runes:p.flat().length,training:train.length,rounds:sol.rounds,domainSizes:sol.domains.map(pop),unique:single,exact:plain?same(plain,p):false,holdoutExact:plain?same(plain.slice(150),p.slice(150)):false});
+ const blind=attack(o.slice(0,150)),blindPlain=transform(c,blind.S,false,true,order);
+ check(same(transform(blindPlain,blind.S,true,true,order),c),"blind plant replay");
+ plants.push({order,blind:{...blind,correctRankEntries:blind.S.filter((r,q)=>r===S[q]).length,exact:same(blindPlain,p),holdoutExact:same(blindPlain.slice(150),p.slice(150)),holdoutRuneAccuracy:blindPlain.slice(150).flat().filter((x,i)=>x===p.slice(150).flat()[i]).length/p.slice(150).flat().length},runes:p.flat().length,training:train.length,rounds:sol.rounds,domainSizes:sol.domains.map(pop),unique:single,exact:plain?same(plain,p):false,holdoutExact:plain?same(plain.slice(150),p.slice(150)):false});
  }
  // Singletons alone: exact all-secret matching over arbitrary moving escape,
  // plus a bounded start range independently motivated by the historical prime 3301.
@@ -79,21 +118,25 @@ function experiment(corpus,transcript,solved,lexicon) {
  const singleObs=[];let prev=0,allT=0,holdT=0;for(let j=0;j<words.length;j++)for(const c of words[j]){const d=mod(c-prev,29);if(words[j].length===1)singleObs.push({d,allT,holdT});prev=c;allT++;if(d)holdT++;}
  check(singleObs.every(x=>x.d!==0),"singleton nonrepeat");
  const ordinary=[3,10,24]; // GP O,I,A
+ const expanded=ordinary.concat(corpus.translit.indexOf('T'));
  check(ordinary.map(x=>corpus.translit[x]).join(",")==="O,I,A","singleton alphabet");
  const units=[1,3,5,9,11,13,15,17,19,23,25,27];
  const singletonGate=[];
  for(const order of ['shift-then-map','map-then-shift'])for(const hold of [true,false]){
- let minimumDistinct=28,survivors=0,emptyDomain=0,checked=0,examples=[];
+ let minimumDistinct=28,survivors=0,emptyDomain=0,checked=0,examples=[],expandedSurvivors=0,maxOrdinary=0,maxExpanded=0;
  for(let start=0;start<464;start++)for(const unit of order==='shift-then-map'?units:[1]){
- const m=Array(28).fill(ALL),qs=new Set();
+ const m=Array(28).fill(ALL),m2=Array(28).fill(ALL),qs=new Set(),freq=Array(28).fill(0),W=Array.from({length:28},()=>Array(28).fill(0)),W2=Array.from({length:28},()=>Array(28).fill(0));
  for(const {d,allT,holdT} of singleObs){
  const p=primes[start+(hold?holdT:allT)],k=order==='shift-then-map'?0:(p-1)%28,q=mod(unit*log[d]-(order==='shift-then-map'?p-1:0),28);
- qs.add(q);let mask=0;for(const y of ordinary){if(y<28)mask|=1<<mod(y+k,28);if(y>0)mask|=1<<mod(y-1+k,28);}m[q]&=mask;
+ qs.add(q);freq[q]++;let mask=0,mask2=0;for(const y of ordinary){if(y<28)mask|=1<<mod(y+k,28);if(y>0)mask|=1<<mod(y-1+k,28);}for(const y of expanded){if(y<28)mask2|=1<<mod(y+k,28);if(y>0)mask2|=1<<mod(y-1+k,28);}m[q]&=mask;m2[q]&=mask2;
+ if(order==='map-then-shift')for(let r=0;r<28;r++){if(mask&(1<<r))W[q][r]++;if(mask2&(1<<r))W2[q][r]++;}
  }
  checked++;if(qs.size<minimumDistinct){minimumDistinct=qs.size;examples=[start,unit];}
  if(!m.every(Boolean))emptyDomain++;else if(matching(m))survivors++;
+ if(m2.every(Boolean)&&matching(m2))expandedSurvivors++;
+ if(order==='shift-then-map'){const f=freq.slice().sort((a,b)=>b-a);maxOrdinary=Math.max(maxOrdinary,f.slice(0,6).reduce((a,b)=>a+b,0));maxExpanded=Math.max(maxExpanded,f.slice(0,8).reduce((a,b)=>a+b,0));}else{maxOrdinary=Math.max(maxOrdinary,assignment(W).weight);maxExpanded=Math.max(maxExpanded,assignment(W2).weight);}
  }
- singletonGate.push({order,hold,checked,minimumDistinct,examples,emptyDomain,survivors,minPlaintextTypes:order==='shift-then-map'?Math.ceil(minimumDistinct/2):null});
+ singletonGate.push({order,hold,checked,minimumDistinct,examples,emptyDomain,survivors,expandedSurvivors,maxOrdinary,maxExpanded,minPlaintextTypes:order==='shift-then-map'?Math.ceil(minimumDistinct/2):null});
  }
  const donorSingletons=[...new Set(donor.filter(w=>w.length===1).map(w=>w[0]))];
  return {lexicon:known.size,results,plants,singletonGate,donorSingletons:donorSingletons.map(i=>corpus.translit[i])};
