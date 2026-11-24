@@ -71,13 +71,46 @@ function experiment(input) {
   for(let pass=0;pass<2;pass++){for(let j=0;j<q;j++)block([j,(j+1)%q]);aliases()}
   let score=0;for(let i=0;i<n;i++)score+=at(p,i);return {...result,key,plain:letters(p),cipher:letters(c),score};
  }
+
+ function exactAliases(init,key,trace=false){
+  // Position is fixed by the length mask, so only the last three plaintext letters
+  // are state. Dense integer context coding avoids string allocation in the score loop.
+  let dp=new Map([[0,{score:0,ctx:0,prev:null}]]);
+  for(const z of init.g){
+   const next=new Map();for(const old of dp.values())for(const a of z.choices){
+    let ctx=old.ctx,score=old.score;
+    for(let j=0;j<a.length;j++){const i=z.pos+j,v=(a[j]-key[i%q]+26)%26;const k=Math.min(4,i+1),code=ctx*26+v;score+=log[k][code];ctx=code%17576}
+    const prev=next.get(ctx);if(!prev||score>prev.score)next.set(ctx,{ctx,score,prev:trace?old:null,a:trace?a:null});
+   }dp=next;
+  }
+  let best;for(const z of dp.values())if(!best||z.score>best.score)best=z;
+  if(!trace)return best.score;
+  const choices=[];for(let z=best;z.prev;z=z.prev)choices.push(z.a);const cipher=letters(choices.reverse().flat());
+  return {score:best.score,cipher,plain:dec(cipher,key)};
+ }
+ function profileRefine(init,result){
+  const key=result.key.slice();let best=exactAliases(init,key);
+  // Three full coordinate passes. Each key test maximizes over ALL aliases
+  // conditional on the length mask, rather than freezing a guessed expansion.
+  for(let pass=0;pass<3;pass++){let changes=0;for(let j=0;j<q;j++){
+   const orig=key[j];let chosen=orig,score=best;for(let t=0;t<26;t++){if(t===orig)continue;key[j]=t;const v=exactAliases(init,key);if(v>score+1e-10){score=v;chosen=t}}
+   key[j]=chosen;best=score;if(chosen!==orig)changes++;
+  }if(!changes)break}
+  // One adjacent-block pass, conditional exact alias objective. Reject any
+  // apparent gain if it cannot be emitted by the same chart relation.
+  for(let j=0;j<q;j++){const k=(j+1)%q,oldA=key[j],oldB=key[k];let a=oldA,b=oldB,score=best;
+   for(let x=0;x<26;x++)for(let y=0;y<26;y++){if(x===oldA&&y===oldB)continue;key[j]=x;key[k]=y;const v=exactAliases(init,key);if(v>score+1e-10){score=v;a=x;b=y}}
+   key[j]=a;key[k]=b;best=score;
+  }
+  const a=exactAliases(init,key,true);return {...result,...a,key};
+ }
  function fit(rs,trueMask=null){const n=rs.filter(v=>v===21).length;if(n>12)throw Error("length-mask cap");
   const all=Array.from({length:1<<n},(_,m)=>initialize(rs,m)).sort((a,b)=>b.score-a.score),selected=all.slice(0,24);
   let best=null;for(const z of selected)for(let j=0;j<3;j++){const a=optimize(z,0x2345+z.mask*137+j*719,j>0);if(!best||a.score>best.score)best=a}
-  const preRefineScore=best.score;best=refine(all.find(z=>z.mask===best.mask),best);if(best.score+1e-7<preRefineScore)throw Error("nonmonotone refinement");
+  const preRefineScore=best.score;best=refine(all.find(z=>z.mask===best.mask),best);const preProfileScore=best.score;best=profileRefine(all.find(z=>z.mask===best.mask),best);if(best.score+1e-7<preProfileScore)throw Error("nonmonotone profile refinement");if(best.score+1e-7<preRefineScore)throw Error("nonmonotone refinement");
   if(enc(best.plain,best.key)!==best.cipher)throw Error("fit replay failed");
   let p=0;for(const z of groups(rs,best.mask).g){const l=z.choices[0].length;if(!z.choices.some(a=>letters(a)===best.cipher.slice(p,p+l)))throw Error("fit relation replay");p+=l}
-  return {...best,preRefineScore,scorePerRune:best.score/rs.length,maskCount:all.length,optimizedMasks:selected.length,trueMaskRank:trueMask===null?null:all.findIndex(x=>x.mask===trueMask)+1,runes:rs.length};
+  return {...best,preRefineScore,preProfileScore,scorePerRune:best.score/rs.length,maskCount:all.length,optimizedMasks:selected.length,trueMaskRank:trueMask===null?null:all.findIndex(x=>x.mask===trueMask)+1,runes:rs.length};
  }
  // Exact Viterbi with the fitted key and last three fit letters; no key changes in heldout.
  function hold(rs,k,start,context){const dp=Array.from({length:rs.length+1},()=>new Map());dp[0].set(start+"|"+context,{score:0,phase:start,ctx:context,prev:null});
