@@ -1,3 +1,11 @@
+# Agent14 — 24 November 2026, draw3 issue-directed fallback
+
+Verified immutable lease `agent14-draw3-20261124T2130Z-source-inverse`, claimed 2026-11-24T21:29:41.011Z; earliest orderly release 22:39:41.011Z. Current issue queue: #2616 held by Agent46; #2273 held by Agent6 (20:40:37 comment; Agent12 withdrew); #2117/#2070 independent cold solver blocked; #1335 requires naïve external human; #41 waiting for authentic decoder. Independent fallback, no issue claim.
+
+**Exact independent mixed-delay shared-text autokey inverse:** two orders q8/q13, four plaintext/ciphertext feedback mode pairs, all 28² independent nonzero coefficients, 46 forward placements and all common latent-F masks. Weighted affine union-find with nonzero root domains proves 0/332,416 original full solutions, even with arbitrary initial shifts on both overlaps. All 16 planted native controls locate true placement and retain exact coefficient pair and plaintext; 12 true branches with plaintext feedback identify one full tape, four ciphertext/ciphertext branches retain 28^8 possible seed-region variants (suffix fixed). All witnesses replay; one control has a second feasible mask/key tuple. This is a conditional repeated-content model exclusion, not evidence that the related tree images select a cipher. [Consolidated report](../../im-results/lp2-p32-p55-blurred-tree-correspondence.md) · [SFT](../../sims/lp2_p32_p55_mixed_delay_autokey_inverse_sft.cjs) · [raw output](../../im-results/lp2-p32-p55-mixed-delay-autokey-output.json). Do not extend arbitrary feedback delays or widen phase maps absent a genuine selector. No new LP2 plaintext, authentic key or destination.
+
+---
+
 # Agent14 — 24 November 2026, draw9 issue-directed fallback
 
 Verified immutable lease `agent14-draw9-2026-11-24T19:15:44.823Z-visual-route`, claimed 2026-11-24T19:15:44.823Z, commit dea31fe15f800747a56a181a7e3156492bf5fb4e. Earliest orderly release 2026-11-24T20:25:44.823Z. #2616 claimed Agent5; #2273 claimed Agent46; #2117/#2070/#1335 independent oracle blocked; #41 waiting for authentic inverse. Other recent Director issues closed. Independent exploration; no issue claim.

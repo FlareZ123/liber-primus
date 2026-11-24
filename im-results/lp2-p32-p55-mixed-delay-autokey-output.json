@@ -1,0 +1,334 @@
+{
+  "original": [
+    {
+      "qa": 8,
+      "qb": 13,
+      "ma": "plain",
+      "mb": "plain",
+      "masksTested": 53,
+      "tested": 41552,
+      "hits": []
+    },
+    {
+      "qa": 8,
+      "qb": 13,
+      "ma": "plain",
+      "mb": "cipher",
+      "masksTested": 53,
+      "tested": 41552,
+      "hits": []
+    },
+    {
+      "qa": 8,
+      "qb": 13,
+      "ma": "cipher",
+      "mb": "plain",
+      "masksTested": 53,
+      "tested": 41552,
+      "hits": []
+    },
+    {
+      "qa": 8,
+      "qb": 13,
+      "ma": "cipher",
+      "mb": "cipher",
+      "masksTested": 53,
+      "tested": 41552,
+      "hits": []
+    },
+    {
+      "qa": 13,
+      "qb": 8,
+      "ma": "plain",
+      "mb": "plain",
+      "masksTested": 53,
+      "tested": 41552,
+      "hits": []
+    },
+    {
+      "qa": 13,
+      "qb": 8,
+      "ma": "plain",
+      "mb": "cipher",
+      "masksTested": 53,
+      "tested": 41552,
+      "hits": []
+    },
+    {
+      "qa": 13,
+      "qb": 8,
+      "ma": "cipher",
+      "mb": "plain",
+      "masksTested": 53,
+      "tested": 41552,
+      "hits": []
+    },
+    {
+      "qa": 13,
+      "qb": 8,
+      "ma": "cipher",
+      "mb": "cipher",
+      "masksTested": 53,
+      "tested": 41552,
+      "hits": []
+    }
+  ],
+  "controls": [
+    {
+      "qa": 8,
+      "qb": 13,
+      "ma": "plain",
+      "mb": "plain",
+      "name": "0_welcome",
+      "off": 5,
+      "ka": 21,
+      "kb": 1,
+      "active": 74,
+      "exactPlaintextCount": "1",
+      "acceptedOffsets": [
+        5
+      ],
+      "acceptedKeyMaskTuples": 1
+    },
+    {
+      "qa": 8,
+      "qb": 13,
+      "ma": "plain",
+      "mb": "plain",
+      "name": "0_koan_1",
+      "off": 12,
+      "ka": 21,
+      "kb": 21,
+      "active": 75,
+      "exactPlaintextCount": "1",
+      "acceptedOffsets": [
+        12
+      ],
+      "acceptedKeyMaskTuples": 1
+    },
+    {
+      "qa": 8,
+      "qb": 13,
+      "ma": "plain",
+      "mb": "cipher",
+      "name": "0_wisdom",
+      "off": 19,
+      "ka": 13,
+      "kb": 19,
+      "active": 75,
+      "exactPlaintextCount": "1",
+      "acceptedOffsets": [
+        19
+      ],
+      "acceptedKeyMaskTuples": 1
+    },
+    {
+      "qa": 8,
+      "qb": 13,
+      "ma": "plain",
+      "mb": "cipher",
+      "name": "0_loss_of_divinity",
+      "off": 26,
+      "ka": 17,
+      "kb": 3,
+      "active": 75,
+      "exactPlaintextCount": "1",
+      "acceptedOffsets": [
+        26
+      ],
+      "acceptedKeyMaskTuples": 1
+    },
+    {
+      "qa": 8,
+      "qb": 13,
+      "ma": "cipher",
+      "mb": "plain",
+      "name": "0_welcome",
+      "off": 33,
+      "ka": 21,
+      "kb": 6,
+      "active": 73,
+      "exactPlaintextCount": "1",
+      "acceptedOffsets": [
+        33
+      ],
+      "acceptedKeyMaskTuples": 1
+    },
+    {
+      "qa": 8,
+      "qb": 13,
+      "ma": "cipher",
+      "mb": "plain",
+      "name": "0_koan_1",
+      "off": 40,
+      "ka": 17,
+      "kb": 20,
+      "active": 75,
+      "exactPlaintextCount": "1",
+      "acceptedOffsets": [
+        40
+      ],
+      "acceptedKeyMaskTuples": 1
+    },
+    {
+      "qa": 8,
+      "qb": 13,
+      "ma": "cipher",
+      "mb": "cipher",
+      "name": "0_wisdom",
+      "off": 7,
+      "ka": 8,
+      "kb": 19,
+      "active": 75,
+      "exactPlaintextCount": "377801998336",
+      "acceptedOffsets": [
+        7
+      ],
+      "acceptedKeyMaskTuples": 1
+    },
+    {
+      "qa": 8,
+      "qb": 13,
+      "ma": "cipher",
+      "mb": "cipher",
+      "name": "0_loss_of_divinity",
+      "off": 14,
+      "ka": 22,
+      "kb": 19,
+      "active": 74,
+      "exactPlaintextCount": "377801998336",
+      "acceptedOffsets": [
+        14
+      ],
+      "acceptedKeyMaskTuples": 1
+    },
+    {
+      "qa": 13,
+      "qb": 8,
+      "ma": "plain",
+      "mb": "plain",
+      "name": "0_welcome",
+      "off": 21,
+      "ka": 4,
+      "kb": 27,
+      "active": 73,
+      "exactPlaintextCount": "1",
+      "acceptedOffsets": [
+        21
+      ],
+      "acceptedKeyMaskTuples": 1
+    },
+    {
+      "qa": 13,
+      "qb": 8,
+      "ma": "plain",
+      "mb": "plain",
+      "name": "0_koan_1",
+      "off": 28,
+      "ka": 4,
+      "kb": 26,
+      "active": 75,
+      "exactPlaintextCount": "1",
+      "acceptedOffsets": [
+        28
+      ],
+      "acceptedKeyMaskTuples": 1
+    },
+    {
+      "qa": 13,
+      "qb": 8,
+      "ma": "plain",
+      "mb": "cipher",
+      "name": "0_wisdom",
+      "off": 35,
+      "ka": 1,
+      "kb": 11,
+      "active": 73,
+      "exactPlaintextCount": "1",
+      "acceptedOffsets": [
+        35
+      ],
+      "acceptedKeyMaskTuples": 1
+    },
+    {
+      "qa": 13,
+      "qb": 8,
+      "ma": "plain",
+      "mb": "cipher",
+      "name": "0_loss_of_divinity",
+      "off": 42,
+      "ka": 7,
+      "kb": 28,
+      "active": 75,
+      "exactPlaintextCount": "1",
+      "acceptedOffsets": [
+        42
+      ],
+      "acceptedKeyMaskTuples": 1
+    },
+    {
+      "qa": 13,
+      "qb": 8,
+      "ma": "cipher",
+      "mb": "plain",
+      "name": "0_welcome",
+      "off": 9,
+      "ka": 14,
+      "kb": 6,
+      "active": 73,
+      "exactPlaintextCount": "1",
+      "acceptedOffsets": [
+        9
+      ],
+      "acceptedKeyMaskTuples": 2
+    },
+    {
+      "qa": 13,
+      "qb": 8,
+      "ma": "cipher",
+      "mb": "plain",
+      "name": "0_koan_1",
+      "off": 16,
+      "ka": 9,
+      "kb": 4,
+      "active": 75,
+      "exactPlaintextCount": "1",
+      "acceptedOffsets": [
+        16
+      ],
+      "acceptedKeyMaskTuples": 1
+    },
+    {
+      "qa": 13,
+      "qb": 8,
+      "ma": "cipher",
+      "mb": "cipher",
+      "name": "0_wisdom",
+      "off": 23,
+      "ka": 28,
+      "kb": 2,
+      "active": 73,
+      "exactPlaintextCount": "377801998336",
+      "acceptedOffsets": [
+        23
+      ],
+      "acceptedKeyMaskTuples": 1
+    },
+    {
+      "qa": 13,
+      "qb": 8,
+      "ma": "cipher",
+      "mb": "cipher",
+      "name": "0_loss_of_divinity",
+      "off": 30,
+      "ka": 25,
+      "kb": 14,
+      "active": 75,
+      "exactPlaintextCount": "377801998336",
+      "acceptedOffsets": [
+        30
+      ],
+      "acceptedKeyMaskTuples": 1
+    }
+  ]
+}
