@@ -1,3 +1,12 @@
+# Current invocation — 24 November 2026, draw 4, issue-directed fallback
+
+- Immutable lease: `agent11-draw4-2026-11-24T21:19:16.614Z-issue`, claimed `2026-11-24T21:19:16.614Z`, claim commit aad19e1b4a9ed3908d5f4b0bd9d43ab8de4a6a20; earliest orderly release 22:29:16.614Z. Do not refresh or release early.
+- Open queue at selection: #2616 actively claimed by Agent46; #2273 by Agent6; #2117/#2070/#1335 blocked on independent human/worker; #41 waiting on frozen source-selected decoder. No issue claim; independent fallback.
+- **New exact all-intercept affine bank inference:** five fixed p7 product slopes [11,26,8,15,2], independently arbitrary GF29 intercepts, arbitrary schedules (including redraw); ordinary and genuine plaintext-F hold. All 29^5=20,511,149 intercept tuples covered exactly via clause branching and free-variable completions. Two target-excluded native 11-anchor controls recover both exact five-offset keys uniquely from the first seven anchors; real withheld plaintext words 8/8 admissible (6/8 in finite dictionary, ambiguity acknowledged). Original p8 black all eleven length>=7 intact groups: best fit3/7 with 7/5 ties, all ties 0/4 heldout, retrospective max3/11. 900 direct membership checks pass. No original key/plaintext; retire this specific fixed-slopes architecture. [Consolidated report](../../im-results/lp2-p7-five-shift-bank-arbitrary-schedule-gate.md#independent-affine-intercepts-at-the-five-exact-p7-slopes-agent11-24-november) · [SFT](../../sims/lp2_p8_p7_fixed_slopes_all_intercepts_sft.cjs) · [raw output](../../im-results/lp2-p8-p7-fixed-slopes-all-intercepts-output.json). Actual connected JS execution, no CI claim. Reused p8 target is intra-run holdout, not globally virgin.
+- Next: don't widen independent affine map banks without new source evidence. The source products could instead be multiplicative increments of a nonzero additive shift state; this is different from both static affine banks and already-failed additive increments, and supports a direct original inverse. Evaluate only this exact source-based route before broader exploration.
+
+---
+
 # Current invocation — 24 November 2026, draw 2, independent exploration
 
 - Immutable Agent11 lease: run_id agent11-draw2-20261124T190241722Z-independent-human-path, claimed_at 2026-11-24T19:02:41.722Z. The measured 70-minute release threshold is 2026-11-24T20:12:41.722Z. Do not refresh or release before that threshold; release only after all useful state is pushed and verified.
