@@ -1,0 +1,175 @@
+[
+  {
+    "mode": "original",
+    "period": 13,
+    "section": 0,
+    "blockSize": 5,
+    "length": 1145,
+    "fit": 500,
+    "holdout": 645,
+    "dictSize": 42468,
+    "anchors": [
+      {
+        "off": 2,
+        "len": 11,
+        "lo": 0,
+        "hi": 15,
+        "dict": 2551,
+        "actual": null
+      },
+      {
+        "off": 338,
+        "len": 9,
+        "lo": 335,
+        "hi": 350,
+        "dict": 5389,
+        "actual": null
+      },
+      {
+        "off": 368,
+        "len": 10,
+        "lo": 365,
+        "hi": 380,
+        "dict": 3919,
+        "actual": null
+      },
+      {
+        "off": 382,
+        "len": 9,
+        "lo": 380,
+        "hi": 395,
+        "dict": 5389,
+        "actual": null
+      },
+      {
+        "off": 405,
+        "len": 9,
+        "lo": 405,
+        "hi": 415,
+        "dict": 5389,
+        "actual": null
+      },
+      {
+        "off": 455,
+        "len": 10,
+        "lo": 455,
+        "hi": 465,
+        "dict": 3919,
+        "actual": null
+      }
+    ],
+    "phaseCases": 81,
+    "rankHistogram": {
+      "11": 4,
+      "12": 3,
+      "13": 74
+    },
+    "joins": 2,
+    "singleJoins": 0,
+    "keyClasses": 2,
+    "legalClasses": 0,
+    "oracleKeyInPool": null,
+    "selectedKey": null,
+    "expectedKey": null,
+    "prefix": null,
+    "prediction": null,
+    "prefixCorrect": null,
+    "holdoutCorrect": null
+  },
+  {
+    "mode": "original",
+    "period": 13,
+    "section": 1,
+    "blockSize": 7,
+    "length": 3612,
+    "fit": 497,
+    "holdout": 3115,
+    "dictSize": 42468,
+    "anchors": [
+      {
+        "off": 4,
+        "len": 8,
+        "lo": 0,
+        "hi": 14,
+        "dict": 6577,
+        "actual": null
+      },
+      {
+        "off": 70,
+        "len": 8,
+        "lo": 70,
+        "hi": 84,
+        "dict": 6577,
+        "actual": null
+      },
+      {
+        "off": 124,
+        "len": 10,
+        "lo": 119,
+        "hi": 140,
+        "dict": 3919,
+        "actual": null
+      },
+      {
+        "off": 140,
+        "len": 12,
+        "lo": 140,
+        "hi": 154,
+        "dict": 1457,
+        "actual": null
+      },
+      {
+        "off": 172,
+        "len": 10,
+        "lo": 168,
+        "hi": 182,
+        "dict": 3919,
+        "actual": null
+      },
+      {
+        "off": 233,
+        "len": 9,
+        "lo": 231,
+        "hi": 245,
+        "dict": 5389,
+        "actual": null
+      }
+    ],
+    "phaseCases": 51,
+    "rankHistogram": {
+      "11": 2,
+      "12": 2,
+      "13": 47
+    },
+    "joins": 644,
+    "singleJoins": 0,
+    "keyClasses": 644,
+    "legalClasses": 2,
+    "oracleKeyInPool": null,
+    "selectedKey": [
+      8,
+      8,
+      24,
+      17,
+      11,
+      6,
+      0,
+      24,
+      21,
+      6,
+      22,
+      1,
+      12
+    ],
+    "expectedKey": null,
+    "prefix": {
+      "scorePerRune": -3.7470905070314666,
+      "plaintext": "QJNRUJMMITTONB]KBCPTQYE[BEUSREUVPNGHYALCP]MNNR]FLSTIPEJMATULCLWJBZKCLZT[SBJLET\\BNMLVWHWHFSFVKIY\\CUDYWHU[ZUODRWYOPDMHSUH]RPEJHEO]UAOO]DFUMW[UXVNFUJASRFCJSSKTGHA\\VOR[T[NHZMSUEIKRPMDYR]XVUWJCQEHWMBOMU[IKEMT[MSDJ]PVEWNWVMKUK[JBWATGVFUESL[WY\\GYIC\\YUWLHZMPPADBQPZVMKGISLBYPZWQOMOYIHJ\\CVCRXNIIDKJ[W]ARMNPXU]HSXHPLP[]QYUIIHVYNPNUK]VSDUAEZ\\QDAAVGCZQRDMFXKBYNNLJKXOWMKXCFUKRPMA]CTNDRBZJDGZZJOPZUBMSQBSXCYGG]JHNCR[HEYIUFGISNUVX\\[NB]UOJFOT[E[HTDGXXQF[ELZONWZY[APSUYAWHMEAGGEFSKZBQLGXFDXIZPEV]EGDN[CQPTZZCADEPB",
+      "translit": "T N P B L N EO EO H M M X P U EA I U TH S M T A R Y U R L E B R L NG S P G W A F J TH S EA EO P P B EA C J E M H S R N EO F M L J TH J OE N U AE I TH J AE M Y E U N J R M IA U P EO J NG OE W OE W C E C NG I H A IA TH L O A OE W L Y AE L X O B OE A X S O EO W E L W EA B S R N W R X EA L F X X EA O C L EO OE Y L D NG P C L N F E B C TH N E E I M G W F IA NG X B Y M Y P W AE EO E L R H I B S EO O A B EA D NG L OE N TH T R W OE EO U X EO L Y H I R EO M Y EO E O N EA S NG R OE P OE NG EO I L I Y N U OE F M G NG C L R E J Y OE A IA G A H TH IA A L OE J W AE EO S S F O U T S AE NG EO I G H E J U A S AE OE T X EO X A H W N IA TH NG TH B D P H H O I N Y OE EA F B EO P S D L EA W E D W S J S Y EA T A L H H W NG A P S P L I EA NG E O L F R AE IA T O F F NG G TH AE T B O EO C D I U A P P J N I D X OE EO I D TH C L I B S EO F EA TH M P O B U AE N O G AE AE N X S AE L U EO E T U E D TH A G G EA N W P TH B Y W R A H L C G H E P L NG D IA Y P U EA L X N C X M Y R Y W M O G D D T C Y R J AE X P OE AE A Y F S E L A F OE W EO R F G G R C E I AE U T J G D C O D H AE S R NG EA R G O P Y TH T S M AE AE TH F O R S U",
+      "phase": 0
+    },
+    "prediction": null,
+    "prefixCorrect": null,
+    "holdoutCorrect": null
+  }
+]
