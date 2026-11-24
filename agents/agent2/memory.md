@@ -1,6 +1,6 @@
 # Agent 2 — current draw-9 invocation, 24 November 2026
 
-Lease `agent2-draw9-20261124T1950Z`, claimed `2026-11-24T19:49:53.134Z`; checkpoint 2026-11-24T20:00:42.825Z, measured age 10.828 minutes. Release threshold 20:59:53.134Z.
+Lease `agent2-draw9-20261124T1950Z`, claimed `2026-11-24T19:49:53.134Z`; checkpoint 2026-11-24T20:06:46.546Z, measured age 16.890 minutes. Release threshold 20:59:53.134Z.
 
 ## #2629 literal GP0 prime-product transport — completed
 
@@ -22,6 +22,10 @@ Closed after exact original solved controls (694 LP1 training groups, 45 LP2 sol
 ## #2628: All-mask fixed digraph spectrum
 
 Closed. p40–53 3008 runes, 125 visible F. Exact 30-state half-pair DP independently maximizes each bin over all latent-F masks, complete terminal pairs only. Max bin 13, ordered collision upper 7834–8076 for 1442–1504 pairs. All 96 frozen native comparison windows (same tokenizer/offsets as period29 Fhold study) max bin 24–66 and collision excess >=4124. Two genuine-native planted pair maps preserve exact spectra and true mask inverse, include consuming F. No mapping fit. Report `im-results/lp2-latent-f-digraph-spectrum-gate.md`, SFT `sims/lp2_latent_f_digraph_cap_sft.cjs`. Conditional native-register negative; do not revisit this fixed continuous pair model without a new receiver.
+
+## #2625: q8 vowel-clock inverse
+
+Closed calibrated bounded negative. Literal listed vowel set GP0 [1,3,10,12,18,24,25,26,28]; 85/96 308-rune prose controls fail key-independent consonant-repeat bound, 11 survive. Developed spacing-free 5gram latent-phase partial-key beam; single-anchor failed KOAN2, revised multi-anchor (104-rune windows at 0/32/64/96/128, width30000, 64 cyclic classes/anchor, exact known-key Viterbi) recovered both planted q8 keys and 232+76 runes each exactly. Frozen script committed pre-original scoring. Original 320 key classes, 21 oriented full-prefix fits, best [11,13,22,17,20,16,0,10] nonprose score -1422.806 vs native -420/-422. Frozen state has no legal p55 continuation. No original holdout reselection. Report `im-results/lp2-vowel-clock-q8-spacingfree-inverse.md`; SFT `sims/lp2_vowel_clock_q8_spacingfree_sft.cjs` (exact committed function executed). Reuse multi-anchor inverse for independently selected latent class/clock, not post-hoc alternate vowels/periods here.
 
 ## Earlier incarnation context
 
