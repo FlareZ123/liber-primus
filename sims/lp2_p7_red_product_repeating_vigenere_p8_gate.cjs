@@ -210,3 +210,37 @@ console.log(JSON.stringify({
   exact_p56_plaintext_F_transparent_DP: transparent,
   exact_transparent_planted_p57_controls: transparentPositive
 }, null, 2));
+
+// Agent 9: use the full integer product digits, retaining all upper places.
+const fullProducts = p7RedWords.map(w => w.indices.reduce((a, b) => a * b, 1));
+function base29(n) {
+  const digits = [];
+  do { digits.unshift(n % 29); n = Math.floor(n / 29); } while (n);
+  return digits;
+}
+const fullKey = fullProducts.flatMap(base29);
+assert.deepEqual(fullKey, [2,11,20,26,26,13,8,13,15,3,23,2]);
+assert.equal(fullKey.length, p8RedWords.flatMap(w => w.indices).length);
+function firstImpossible(ct, sign) {
+  let states = new Set([0]);
+  for (let i = 0; i < ct.length; i++) {
+    const next = new Set();
+    for (const j of states) {
+      if (ct[i] === 0) next.add(j);
+      if (mod(ct[i] + sign * fullKey[j]) !== 0) next.add((j + 1) % fullKey.length);
+    }
+    if (!next.size) return i;
+    states = next;
+  }
+  return null;
+}
+for (const sign of [-1, 1]) {
+  const p = p8.map((x, i) => mod(x + sign * fullKey[i % fullKey.length]));
+  assert.deepEqual(p.map((x, i) => mod(x - sign * fullKey[i % fullKey.length])), p8);
+  let k = 0;
+  const ctrl = p57.map(x => x === 0 ? 0 : mod(x - sign * fullKey[(k++) % fullKey.length]));
+  assert.equal(firstImpossible(ctrl, sign), null);
+  const failure = firstImpossible(p8, sign);
+  assert.equal(failure, sign === -1 ? 17 : 12);
+  console.log(JSON.stringify({fullProducts, fullKey, sign, ioc:ioc(p), heading:p.slice(0,12).map(x=>corpus.translit[x]).join(''), firstImpossible:failure, controlReach:true}));
+}

@@ -67,3 +67,9 @@ node sims/lp2_p7_red_product_repeating_vigenere_p8_gate.cjs
 ~~~
 
 Sources: **resources/liber-primus/lp2-corpus.json**; **resources/liber-primus/lp2-ink-annotations.json**; **resources/liber-primus/lp2-transcription.txt**; **resources/liber-primus/lp1-plaintext-reference.txt**; **sims/lp2_native_gp_source_orthography_sft.cjs**; the p7 source arithmetic is consolidated in **im-results/lp2-p7-p8-red-product-state-header-keyclock.md**.
+
+## Agent 9 extension, 24 November: retain the full product digits
+
+Reducing each product modulo 29 discards all its upper digits. The unreduced GP0 products are `[69,17600,385,392,3192]`; writing each in base 29, most significant digit first, gives `[[2,11],[20,26,26],[13,8],[13,15],[3,23,2]]`. Their concatenation has **exactly 12 runes**, the adjacent p8 red-heading length. This selects a distinct literal 12-symbol key, not a fitted phase or permutation. It does not establish intentionality.
+
+Use that key from the first p8 rune through all 255 runes, without reset. Ordinary subtraction gives heading `EOEADOERUJNGTINS`, IoC 0.0337810715; addition gives `TNGCTIAIAIAEBTYM`, IoC 0.0325459318. Both re-encrypt exactly, but neither yields readable heading or body. Under the exact plaintext-F-transparent rule, the reachable phase set becomes empty at zero-based rune 17 (subtraction) and 12 (addition). Both clear-p57 planted controls retain their true plaintext path. Thus retaining upper product digits does not rescue this direct repeating-key receiver. The SFT now includes these independent checks; no claim is made about other consumers.
