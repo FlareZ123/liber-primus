@@ -10668,6 +10668,457 @@
           "remainingIfOmitted": 6
         }
       ]
+    },
+    "transparentF": {
+      "pages": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        18,
+        20,
+        21,
+        26,
+        29,
+        31,
+        32,
+        35,
+        37,
+        38,
+        39
+      ],
+      "minOOVWords": 2,
+      "bestKeys": [
+        [
+          0,
+          27
+        ],
+        [
+          20,
+          24
+        ],
+        [
+          21,
+          6
+        ],
+        [
+          25,
+          1
+        ],
+        [
+          26,
+          7
+        ],
+        [
+          26,
+          24
+        ],
+        [
+          27,
+          26
+        ],
+        [
+          28,
+          21
+        ]
+      ],
+      "failPages": [
+        [
+          11,
+          18
+        ],
+        [
+          18,
+          31
+        ],
+        [
+          13,
+          31
+        ],
+        [
+          12,
+          39
+        ],
+        [
+          18,
+          37
+        ],
+        [
+          13,
+          37
+        ],
+        [
+          13,
+          37
+        ],
+        [
+          12,
+          35
+        ]
+      ],
+      "witness": {
+        "all": 0,
+        "irreducible": [
+          {
+            "page": 11,
+            "first2": [
+              27,
+              15
+            ],
+            "whole": [
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                2
+              ],
+              [
+                6,
+                3
+              ]
+            ],
+            "localPairs": 423,
+            "remainingIfOmitted": 9
+          },
+          {
+            "page": 12,
+            "first2": [
+              5,
+              10
+            ],
+            "whole": [
+              [
+                0,
+                2
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                5,
+                3
+              ],
+              [
+                8,
+                4
+              ]
+            ],
+            "localPairs": 335,
+            "remainingIfOmitted": 6
+          },
+          {
+            "page": 13,
+            "first2": [
+              6,
+              2
+            ],
+            "whole": [
+              [
+                0,
+                6
+              ]
+            ],
+            "localPairs": 421,
+            "remainingIfOmitted": 6
+          },
+          {
+            "page": 14,
+            "first2": [
+              16,
+              11
+            ],
+            "whole": [
+              [
+                0,
+                2
+              ],
+              [
+                2,
+                4
+              ],
+              [
+                6,
+                3
+              ],
+              [
+                9,
+                3
+              ]
+            ],
+            "localPairs": 335,
+            "remainingIfOmitted": 5
+          },
+          {
+            "page": 18,
+            "first2": [
+              28,
+              24
+            ],
+            "whole": [
+              [
+                0,
+                6
+              ],
+              [
+                6,
+                3
+              ]
+            ],
+            "localPairs": 421,
+            "remainingIfOmitted": 8
+          },
+          {
+            "page": 21,
+            "first2": [
+              5,
+              25
+            ],
+            "whole": [
+              [
+                0,
+                3
+              ],
+              [
+                3,
+                3
+              ],
+              [
+                6,
+                3
+              ]
+            ],
+            "localPairs": 411,
+            "remainingIfOmitted": 2
+          },
+          {
+            "page": 35,
+            "first2": [
+              21,
+              16
+            ],
+            "whole": [
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                3
+              ]
+            ],
+            "localPairs": 445,
+            "remainingIfOmitted": 6
+          }
+        ]
+      }
+    },
+    "transparentFFull": {
+      "pages": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        18,
+        20,
+        21,
+        26,
+        29,
+        31,
+        32,
+        35,
+        37,
+        38,
+        39,
+        42,
+        45,
+        49,
+        51,
+        55
+      ],
+      "minOOVWords": 2,
+      "bestKeys": [
+        [
+          26,
+          7
+        ],
+        [
+          27,
+          26
+        ]
+      ],
+      "failPages": [
+        [
+          18,
+          37
+        ],
+        [
+          13,
+          37
+        ]
+      ],
+      "witness": {
+        "all": 0,
+        "irreducible": [
+          {
+            "page": 11,
+            "first2": [
+              27,
+              15
+            ],
+            "whole": [
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                2
+              ],
+              [
+                6,
+                3
+              ]
+            ],
+            "localPairs": 423,
+            "remainingIfOmitted": 9
+          },
+          {
+            "page": 12,
+            "first2": [
+              5,
+              10
+            ],
+            "whole": [
+              [
+                0,
+                2
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                5,
+                3
+              ],
+              [
+                8,
+                4
+              ]
+            ],
+            "localPairs": 335,
+            "remainingIfOmitted": 6
+          },
+          {
+            "page": 13,
+            "first2": [
+              6,
+              2
+            ],
+            "whole": [
+              [
+                0,
+                6
+              ]
+            ],
+            "localPairs": 421,
+            "remainingIfOmitted": 6
+          },
+          {
+            "page": 14,
+            "first2": [
+              16,
+              11
+            ],
+            "whole": [
+              [
+                0,
+                2
+              ],
+              [
+                2,
+                4
+              ],
+              [
+                6,
+                3
+              ],
+              [
+                9,
+                3
+              ]
+            ],
+            "localPairs": 335,
+            "remainingIfOmitted": 5
+          },
+          {
+            "page": 18,
+            "first2": [
+              28,
+              24
+            ],
+            "whole": [
+              [
+                0,
+                6
+              ],
+              [
+                6,
+                3
+              ]
+            ],
+            "localPairs": 421,
+            "remainingIfOmitted": 8
+          },
+          {
+            "page": 21,
+            "first2": [
+              5,
+              25
+            ],
+            "whole": [
+              [
+                0,
+                3
+              ],
+              [
+                3,
+                3
+              ],
+              [
+                6,
+                3
+              ]
+            ],
+            "localPairs": 411,
+            "remainingIfOmitted": 2
+          },
+          {
+            "page": 35,
+            "first2": [
+              21,
+              16
+            ],
+            "whole": [
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                3
+              ]
+            ],
+            "localPairs": 445,
+            "remainingIfOmitted": 6
+          }
+        ]
+      }
     }
   },
   "sectionReset": {

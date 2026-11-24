@@ -76,7 +76,19 @@ function experiment(corpus,transcript,native,ink,raws){
   if(all===0)for(let i=ms.length-1;i>=0;i--){const test=ms.filter((_,j)=>j!==i);if(count(test)===0)ms=test;}
   return {all,irreducible:all===0?ms.map(x=>({page:x.f.page,first2:x.f.c.slice(0,2),whole:x.f.whole,localPairs:x.m.reduce((a,b)=>a+b,0),remainingIfOmitted:count(ms.filter(y=>y!==x))})):[]};
  }
- const witnesses={training:witness(training),blackTraining:witness(blackTrain)};
+ 
+ // On frames with two non-F ciphertext runes, transparent plaintext F
+ // cannot hold before the first two pad draws. Ignore all other frames.
+ function robustness(F){
+  const active=F.filter(f=>f.c[0]!==0&&f.c[1]!==0&&f.whole.some(([s])=>s<2));
+  const masks=active.map(f=>mask(f));
+  const scores=Array.from({length:841},(_,i)=>masks.reduce((a,m)=>a+!m[i],0));
+  const min=Math.min(...scores),best=scores.flatMap((v,i)=>v===min?[[Math.floor(i/29),i%29]]:[]);
+  return {pages:active.map(f=>f.page),minOOVWords:min,bestKeys:best,failPages:best.map(([a,b])=>active.filter((f,j)=>!masks[j][a*29+b]).map(f=>f.page)),witness:witness(active)};
+ }
+ assert(corpus.translit[0]==="F","F index");
+ const witnesses={training:witness(training),blackTraining:witness(blackTrain),transparentF:robustness(blackTrain),transparentFFull:robustness(black)};
+ assert(witnesses.transparentF.minOOVWords===2&&witnesses.transparentFFull.minOOVWords===2,"transparent-F OOV bound");
  const sectionReset={starts:sectionStarts,fit:search(sections.slice(0,6),8,true),all:search(sections,8,true)};sectionReset.fitStall=stall(sections.slice(0,6),sectionReset.fit);
  let rng=0x3301761;const rand=()=>{rng^=rng<<13;rng^=rng>>>17;rng^=rng<<5;return rng>>>0;};
  const donors=Array.from({length:13},(_,i)=>nativeWords.filter(w=>w.length===i)),controls=[];
