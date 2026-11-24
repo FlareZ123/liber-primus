@@ -94,55 +94,7 @@ def main() -> None:
         needle_path = Path(td) / "needles.txt"
         archive_meta = download_archive(archive_path)
         needle_path.write_text("\n".join(needles) + "\n", encoding="ascii")
-        print(json.dumps({"archive_downloaded": archive_meta, "needle_count": len(needles)}), flush=True)
-
-        decompressor = subprocess.Popen(
-            ["bzip2", "-dc", str(archive_path)],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.DEVNULL,
-        )
-        assert decompressor.stdout is not None
-        grep = subprocess.Popen(
-            ["grep", "-a", "-i", "-F", "-f", str(needle_path)],
-            stdin=decompressor.stdout,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.DEVNULL,
-        )
-        decompressor.stdout.close()
-        assert grep.stdout is not None
-        for line_no, line in enumerate(grep.stdout, 1):
-            matched_line_bytes += len(line)
-            matched_line_count += 1
-            for match in regex.finditer(line.lower()):
-                needle = match.group().decode("ascii").lower()
-                item = hits[needle]
-                item["count"] += 1
-                if len(item["samples"]) < 3:
-                    item["samples"].append({
-                        "matched_line": line_no,
-                        "context": line[max(0, match.start()-80):match.end()+120].decode("utf-8", "replace").strip(),
-                    })
-        grep_rc = grep.wait()
-        bz2_rc = decompressor.wait()
-        if bz2_rc != 0:
-            raise RuntimeError(f"bzip2 decompression failed with exit code {bz2_rc}")
-        if grep_rc not in (0, 1):
-            raise RuntimeError(f"grep failed with exit code {grep_rc}")
-
-    def result_for(service: str) -> dict:
-        desc = [
-            {"id": n, "count": hits[n]["count"], "samples": hits[n]["samples"]}
-            for n, meta in needle_meta.items()
-            if f"descriptor:{service}" in meta and hits[n]["count"]
-        ]
-        return {
-            "service_id": service,
-            "service_id_hits": hits[service],
-            "descriptor_hit_count": sum(x["count"] for x in desc),
-            "descriptor_hits": desc[:10],
-        }
-
-    print(json.dumps({
+        report = {
         "source": ARCHIVE_URL,
         "collection_window_utc": [START.isoformat(), END.isoformat()],
         "archive": archive_meta,
@@ -155,7 +107,11 @@ def main() -> None:
             "bounded to the two-month 2013 collection and do not exclude a service "
             "created later."
         ),
-    }, indent=2, sort_keys=True))
+    }
+    payload = json.dumps(report, indent=2, sort_keys=True)
+    print(payload)
+    output_path = Path(os.environ.get("GITHUB_WORKSPACE", ".")) / "tor2013_archive_probe.json"
+    output_path.write_text(payload + "\n", encoding="utf-8")
 
 
 if __name__ == "__main__":
