@@ -1,6 +1,6 @@
 # Original pp33–39 reciprocal GF(29²) ciphertext-feedback inverse
 
-**24 November 2026 · Agent27 · exploratory finite negative.** No unknown plaintext or authenticated key. A blind 707,281-candidate coefficient search plus 841 output translations recovers an independently sourced native-GP plant exactly; the strongest original candidate fails its sealed suffix and a separate chapter. The source arithmetic motivates the field, not the feedback equation.
+**24 November 2026 · Agent27 · exact conditional all-key exclusion with blind positive.** No unknown plaintext or authenticated key. All complete field keys fail the original native singleton constraints on each of two chapters independently. A blind 707,281-candidate coefficient search plus 841 output translations recovers an independently sourced native-GP plant exactly; the strongest original candidate fails its sealed suffix and a separate chapter. The source arithmetic motivates the field, not the feedback equation.
 
 ## Mechanism and source
 
@@ -30,3 +30,19 @@ The native positive recovers all three field coefficients (326,511,703), in inte
 No plausible text. Exact forward replay is an implementation invariant, not evidence for these keys. The training rank and transferred suffix scores show that this bounded reciprocal feedback architecture is not a productive direct native-GP decoder under this search criterion; the result does not exclude all GF841 ciphers, altered pairing, richer state, or an unrelated historical mode.
 
 [Read-only CommonJS SFT](../sims/lp2_gf841_reciprocal_feedback_sft.cjs). Executed directly against repository source in connected V8, with the positive and original training scans taking about 50 seconds total. No Windows CI execution is claimed. The SFT logs the same values and exact replay assertions. No authoritative synthesis change is warranted.
+
+## Exact all-secret singleton compatibility (stronger independent gate)
+
+The printed source spaces give a second key-recovery mechanism without a statistical score. Under the explicit intact GP-native English assumption, each complete one-rune word is A, I or O (indices24,10,3). There are nine complete singleton words in pp33–39, at chapter rune offsets `138,318,367,599,718,1112,1286,1442,1595`; the floral pp40–53 has thirteen at `136,306,1211,1332,1355,1446,1886,2007,2162,2311,2525,2593,2614`. Parsing joins words across physical pages and verifies all original page rune counts and all 2,896 complete unknown words. None of these singleton positions is in the literal first pair.
+
+For fixed (a,b) each selected coordinate r of the untranslated decoded field pair restricts the corresponding component of d to {r−3,r−10,r−24} mod29. Intersect these 29-bit sets separately for the two field coordinates. Both intersections must be nonempty. Each nonempty product contains exactly popcount(U)×popcount(V) permissible d keys. Therefore this search covers **every one of 841³=594,823,321 complete field keys**, including ones the earlier collision ranking did not select, without language model optimization.
+
+| Input | Actual singleton constraints | Compatible (a,b) | Complete compatible (a,b,d) |
+|---|---:|---:|---:|
+| Original pp33–39 | 9 | 0 | 0 |
+| Original pp40–53 | 13 | 0 | 0 |
+| Both, same full key | 22 | 0 | 0 |
+
+Independently, a synthetic mask over the first 94 actual clear p57 runes marks all 16 noninitial A/I/O occurrences (not claimed to be printed singleton words). It recovers a unique key (326,511,703), with d coordinates (7,24), among the entire field keyspace. This validates the exact bitset intersection. The earlier 438-rune genuine native blind recovery is separate from this synthetic-mask test.
+
+**Decision:** retire this exact reciprocal-feedback family for intact ordinary GP-native English and the declared pair clock, even with entirely independent keys in the two chapters. This mathematical conditional conclusion is stronger than failure of the top training candidate, and requires no guessed ranking threshold. It does not exclude changed word boundaries, other one-letter conventions, different pairing/reset mechanisms, or other fields/state laws. No unknown plaintext recovered. Do not add further speculative field variants absent an independent author instruction.

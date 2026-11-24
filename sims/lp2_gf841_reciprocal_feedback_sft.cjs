@@ -68,3 +68,57 @@ const a=source(33,39),b=source(40,53);assert.equal(a.length,840);assert.equal(b.
 const rr=scan(a,400),s=shift(a,rr.a,rr.b,400),d=dec(a,rr.a,rr.b,s.d),d2=dec(b,rr.a,rr.b,s.d);
 assert.deepEqual([rr.a,rr.b,s.d],[161,188,254]);assert.equal(rr.ties,1);assert.deepEqual(enc(d,rr.a,rr.b,s.d),a);assert.deepEqual(enc(d2,rr.a,rr.b,s.d),b);
 console.log('original',JSON.stringify({rank:rr,shift:s,holdoutLane:lane(d.slice(401)),holdoutLang:lang(d.slice(401)),transferLane:lane(d2.slice(1)),transferLang:lang(d2.slice(1)),exact:true,prefix:d.slice(1,21).flatMap(x=>[g.translit[A(x)],g.translit[B(x)]]).join(' ')}));
+
+// All-key original singleton gate, independent of the collision/language optimizer.
+const words=[];let word=[],off=0;
+const flush=()=>{if(word.length)words.push(word);word=[];};
+const pages=read('resources/liber-primus/lp2-transcription.txt').split(/^\s*%\s*$/m);
+assert.equal(pages.length,57);
+for(let i=0;i<pages.length;i++){
+  const id=i<=49?i:i+1;let p=0;
+  for(const ch of pages[i]){
+    if(lpmap.has(ch)){word.push({id,off:off+p});p++;}
+    else if('-.$&§'.includes(ch))flush();
+  }
+  assert.equal(p,g.pages[id].indices.length);off+=p;
+}
+flush();assert.equal(words.filter(w=>w.some(x=>x.id<56)).length,2896);
+const allowed=[3,10,24],masks=Array.from({length:29},(_,x)=>allowed.reduce((s,p)=>s|(1<<m(x-p)),0)),all=(1<<29)-1;
+const pop=x=>{let n=0;for(;x;x&=x-1)n++;return n;};
+const bits=x=>Array.from({length:29},(_,i)=>i).filter(i=>x&(1<<i));
+function singletonPositions(lo,hi){
+  const off=g.pages.slice(0,lo).reduce((s,p)=>s+p.indices.length,0);
+  return words.filter(w=>w.length===1&&w[0].id>=lo&&w[0].id<=hi).map(w=>w[0].off-off);
+}
+/** Every remaining (a,b) has an exactly factored Cartesian set of permissible d coordinates.
+ * @param {number[]} c @param {number[]} sites */
+function preSingleton(c,sites){
+  assert.ok(sites.every(i=>i>=2)); // No tested singleton lies in the literal first pair.
+  return sites.map(i=>{
+    const j=i>>1,coord=i%2===0?A:B,prev=c[j-1],delta=minus(c[j],prev);
+    return {i,p:Uint8Array.from({length:841},(_,k)=>coord(mul(k,prev))),q:Uint8Array.from({length:841},(_,k)=>coord(inv[minus(delta,k)]))};
+  });
+}
+function scanSingleton(arr){
+  let pairs=0,keys=0;const sample=[];
+  for(let a=0;a<841;a++)for(let b=0;b<841;b++){
+    let u=all,v=all;
+    for(const x of arr){
+      const s=x.q[b]-x.p[a],mask=masks[s<0?s+29:s];
+      if(x.i%2===0)u&=mask;else v&=mask;
+      if(!u||!v)break;
+    }
+    if(u&&v){pairs++;keys+=pop(u)*pop(v);if(sample.length<10)sample.push({a,b,du:bits(u),dv:bits(v)});}
+  }
+  return {pairs,keys,sample,sites:arr.length};
+}
+const sa=singletonPositions(33,39),sb=singletonPositions(40,53);
+assert.deepEqual(sa,[138,318,367,599,718,1112,1286,1442,1595]);
+assert.deepEqual(sb,[136,306,1211,1332,1355,1446,1886,2007,2162,2311,2525,2593,2614]);
+const spa=preSingleton(a,sa),spb=preSingleton(b,sb);
+for(const ar of [spa,spb,spa.concat(spb)]){const q=scanSingleton(ar);assert.equal(q.keys,0);console.log('original singleton gate',JSON.stringify(q));}
+// Synthetic mask over actual native clear p57: mark every actual A/I/O occurrence (not only printed words).
+const native94=g.pages[57].indices.slice(0,94),nativeSites=native94.flatMap((x,i)=>i>=2&&allowed.includes(x)?[i]:[]);
+const nativeCipher=enc(pairs(native94),326,511,703),nativeResult=scanSingleton(preSingleton(nativeCipher,nativeSites));
+assert.equal(nativeResult.keys,1);assert.deepEqual(nativeResult.sample,[{a:326,b:511,du:[7],dv:[24]}]);
+console.log('native synthetic-mask singleton positive',JSON.stringify(nativeResult));
