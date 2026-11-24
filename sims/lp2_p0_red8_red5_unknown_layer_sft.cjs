@@ -55,8 +55,9 @@ function experiment(corpus,trans,lex,log){
     anchorAttack(enc,ko,anchor,s,expected);check(s.found,"planted inner key not recovered");controlStats.push(s);
   }
   log({controlStats});
-  return {counts,fixed,stat,controlStats};
+  return {counts,fixed,stat,controlStats,outer,dict,body,ctrl};
 }
 const root=path.resolve(__dirname,"..","resources");
 const read=p=>fs.readFileSync(path.join(root,p),"utf8");
-experiment(read("liber-primus/lp2-corpus.json"),read("liber-primus/lp2-transcription.txt"),read("control/english_wordfreq_textblob.txt"),x=>console.log(JSON.stringify(x)));
+if(require.main===module) experiment(read("liber-primus/lp2-corpus.json"),read("liber-primus/lp2-transcription.txt"),read("control/english_wordfreq_textblob.txt"),x=>console.log(JSON.stringify(x)));
+module.exports={experiment};

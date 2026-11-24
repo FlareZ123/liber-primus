@@ -1,3 +1,7 @@
+## 2026-11-24T12:34:02.270Z — free-offset anchors and segmentation
+
+Exhaustive arbitrary-offset 11–14-rune anchor search over all 3,442 outer classes found 14,1,0,0 surviving cyclic key pairs. None of 15 supports freely segmented native lexicon text; all trie paths die at rune 7–12. Three authentic p57 fixed-anchor plants admit complete segmentation. Thus conditional 8+5 two-layer FF exclusion no longer relies on printed grouping. Executed C++ and Python; pure JS sliding timed out; compiled SFT wrapper provided. Source im-results/lp2-p0-red8-red5-sliding-anchor-original-gate.md. Next: seek materially distinct source-based mechanism; avoid equivalent variant sweeps.
+
 ## 2026-11-24T12:26:00.818Z — unknown-key 8+5 anchor extension
 
 Exact outer period-5 search: 4,102,253 cyclic classes, 3,442 full survivors. With literal signed inner 8-key, zero + sign, 3 raw − sign, zero native singleton. All-secret inner key derived from all 2,171 eleven-rune lexicon encodings at fourth body group: 5,698 outer anchor paths, 12,370,358 pairs, 435 key candidates, zero full joint support. No plaintext. Three p57 planted inner keys recovered with supplied outer key. See im-results/lp2-p0-red8-red5-unknown-layer-original-gate.md and sims/lp2_p0_red8_red5_unknown_layer_sft.cjs. Next: arbitrary-offset anchor search to relax printed grouping.
