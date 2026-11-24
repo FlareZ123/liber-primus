@@ -1,0 +1,1733 @@
+{
+  "N": 12956,
+  "donorStats": [
+    {
+      "name": "resources/control/gibran_prophet_58585.txt",
+      "windows": 16,
+      "minTop9": 8249
+    },
+    {
+      "name": "resources/control/shakespeare_first300k.txt",
+      "windows": 64,
+      "minTop9": 7946
+    },
+    {
+      "name": "resources/control/emerson_essays_2944.txt",
+      "windows": 96,
+      "minTop9": 8377
+    }
+  ],
+  "minTop9": 7946,
+  "ordinary": {
+    "continuous": {
+      "tested": 3301,
+      "excluded": 3301,
+      "excludedRanges": [
+        [
+          1,
+          3301
+        ]
+      ],
+      "top9Excluded": 3301,
+      "top9Ranges": [
+        [
+          1,
+          3301
+        ]
+      ],
+      "maxTop9": {
+        "q": 3299,
+        "top9": 7358,
+        "unknown": 3299,
+        "survivors": 0
+      },
+      "selected": [
+        {
+          "q": 1,
+          "top9": 5293,
+          "unknown": 1,
+          "survivors": 0
+        },
+        {
+          "q": 8,
+          "top9": 5187,
+          "unknown": 8,
+          "survivors": 0
+        },
+        {
+          "q": 13,
+          "top9": 5167,
+          "unknown": 13,
+          "survivors": 0
+        },
+        {
+          "q": 16,
+          "top9": 5216,
+          "unknown": 16,
+          "survivors": 0
+        },
+        {
+          "q": 29,
+          "top9": 5170,
+          "unknown": 29,
+          "survivors": 0
+        },
+        {
+          "q": 40,
+          "top9": 5142,
+          "unknown": 40,
+          "survivors": 0
+        },
+        {
+          "q": 43,
+          "top9": 5199,
+          "unknown": 43,
+          "survivors": 0
+        },
+        {
+          "q": 45,
+          "top9": 5219,
+          "unknown": 45,
+          "survivors": 0
+        },
+        {
+          "q": 46,
+          "top9": 5163,
+          "unknown": 46,
+          "survivors": 0
+        },
+        {
+          "q": 47,
+          "top9": 5208,
+          "unknown": 47,
+          "survivors": 0
+        },
+        {
+          "q": 48,
+          "top9": 5167,
+          "unknown": 48,
+          "survivors": 0
+        },
+        {
+          "q": 49,
+          "top9": 5206,
+          "unknown": 49,
+          "survivors": 0
+        },
+        {
+          "q": 50,
+          "top9": 5204,
+          "unknown": 50,
+          "survivors": 0
+        },
+        {
+          "q": 51,
+          "top9": 5150,
+          "unknown": 51,
+          "survivors": 0
+        },
+        {
+          "q": 52,
+          "top9": 5188,
+          "unknown": 52,
+          "survivors": 0
+        },
+        {
+          "q": 53,
+          "top9": 5163,
+          "unknown": 53,
+          "survivors": 0
+        },
+        {
+          "q": 59,
+          "top9": 5233,
+          "unknown": 59,
+          "survivors": 0
+        },
+        {
+          "q": 75,
+          "top9": 5184,
+          "unknown": 75,
+          "survivors": 0
+        },
+        {
+          "q": 100,
+          "top9": 5256,
+          "unknown": 100,
+          "survivors": 0
+        },
+        {
+          "q": 133,
+          "top9": 5297,
+          "unknown": 133,
+          "survivors": 0
+        },
+        {
+          "q": 256,
+          "top9": 5350,
+          "unknown": 256,
+          "survivors": 0
+        },
+        {
+          "q": 729,
+          "top9": 5665,
+          "unknown": 729,
+          "survivors": 0
+        },
+        {
+          "q": 1033,
+          "top9": 5877,
+          "unknown": 1033,
+          "survivors": 0
+        },
+        {
+          "q": 2000,
+          "top9": 6460,
+          "unknown": 2000,
+          "survivors": 0
+        },
+        {
+          "q": 3301,
+          "top9": 7334,
+          "unknown": 3301,
+          "survivors": 0
+        }
+      ]
+    },
+    "section": {
+      "tested": 3301,
+      "excluded": 1675,
+      "excludedRanges": [
+        [
+          1,
+          1642
+        ],
+        [
+          1644,
+          1650
+        ],
+        [
+          1653,
+          1660
+        ],
+        [
+          1662,
+          1662
+        ],
+        [
+          1665,
+          1665
+        ],
+        [
+          1669,
+          1670
+        ],
+        [
+          1674,
+          1674
+        ],
+        [
+          1676,
+          1677
+        ],
+        [
+          1680,
+          1682
+        ],
+        [
+          1684,
+          1684
+        ],
+        [
+          1690,
+          1691
+        ],
+        [
+          1697,
+          1698
+        ],
+        [
+          1705,
+          1705
+        ],
+        [
+          1710,
+          1710
+        ],
+        [
+          1715,
+          1715
+        ]
+      ],
+      "top9Excluded": 538,
+      "top9Ranges": [
+        [
+          1,
+          533
+        ],
+        [
+          535,
+          535
+        ],
+        [
+          537,
+          539
+        ],
+        [
+          546,
+          546
+        ]
+      ],
+      "maxTop9": {
+        "q": 3093,
+        "top9": 12956,
+        "unknown": 12733,
+        "survivors": 176
+      },
+      "selected": [
+        {
+          "q": 1,
+          "top9": 5297,
+          "unknown": 8,
+          "survivors": 0
+        },
+        {
+          "q": 8,
+          "top9": 5226,
+          "unknown": 64,
+          "survivors": 0
+        },
+        {
+          "q": 13,
+          "top9": 5226,
+          "unknown": 104,
+          "survivors": 0
+        },
+        {
+          "q": 16,
+          "top9": 5291,
+          "unknown": 128,
+          "survivors": 0
+        },
+        {
+          "q": 29,
+          "top9": 5303,
+          "unknown": 232,
+          "survivors": 0
+        },
+        {
+          "q": 40,
+          "top9": 5335,
+          "unknown": 320,
+          "survivors": 0
+        },
+        {
+          "q": 43,
+          "top9": 5397,
+          "unknown": 344,
+          "survivors": 0
+        },
+        {
+          "q": 45,
+          "top9": 5428,
+          "unknown": 360,
+          "survivors": 0
+        },
+        {
+          "q": 46,
+          "top9": 5365,
+          "unknown": 368,
+          "survivors": 0
+        },
+        {
+          "q": 47,
+          "top9": 5426,
+          "unknown": 376,
+          "survivors": 0
+        },
+        {
+          "q": 48,
+          "top9": 5400,
+          "unknown": 384,
+          "survivors": 0
+        },
+        {
+          "q": 49,
+          "top9": 5431,
+          "unknown": 392,
+          "survivors": 0
+        },
+        {
+          "q": 50,
+          "top9": 5433,
+          "unknown": 400,
+          "survivors": 0
+        },
+        {
+          "q": 51,
+          "top9": 5382,
+          "unknown": 408,
+          "survivors": 0
+        },
+        {
+          "q": 52,
+          "top9": 5428,
+          "unknown": 416,
+          "survivors": 0
+        },
+        {
+          "q": 53,
+          "top9": 5407,
+          "unknown": 424,
+          "survivors": 0
+        },
+        {
+          "q": 59,
+          "top9": 5506,
+          "unknown": 472,
+          "survivors": 0
+        },
+        {
+          "q": 75,
+          "top9": 5519,
+          "unknown": 600,
+          "survivors": 0
+        },
+        {
+          "q": 100,
+          "top9": 5737,
+          "unknown": 800,
+          "survivors": 0
+        },
+        {
+          "q": 133,
+          "top9": 5867,
+          "unknown": 1064,
+          "survivors": 0
+        },
+        {
+          "q": 256,
+          "top9": 6512,
+          "unknown": 2048,
+          "survivors": 0
+        },
+        {
+          "q": 729,
+          "top9": 8909,
+          "unknown": 5832,
+          "survivors": 0
+        },
+        {
+          "q": 1033,
+          "top9": 10194,
+          "unknown": 7948,
+          "survivors": 0
+        },
+        {
+          "q": 2000,
+          "top9": 12441,
+          "unknown": 11640,
+          "survivors": 91
+        },
+        {
+          "q": 3301,
+          "top9": 12956,
+          "unknown": 12941,
+          "survivors": 176
+        }
+      ]
+    },
+    "page": {
+      "tested": 3301,
+      "excluded": 214,
+      "excludedRanges": [
+        [
+          1,
+          213
+        ],
+        [
+          216,
+          216
+        ]
+      ],
+      "top9Excluded": 78,
+      "top9Ranges": [
+        [
+          1,
+          78
+        ]
+      ],
+      "maxTop9": {
+        "q": 268,
+        "top9": 12956,
+        "unknown": 12879,
+        "survivors": 176
+      },
+      "selected": [
+        {
+          "q": 1,
+          "top9": 5329,
+          "unknown": 55,
+          "survivors": 0
+        },
+        {
+          "q": 8,
+          "top9": 5456,
+          "unknown": 440,
+          "survivors": 0
+        },
+        {
+          "q": 13,
+          "top9": 5617,
+          "unknown": 715,
+          "survivors": 0
+        },
+        {
+          "q": 16,
+          "top9": 5781,
+          "unknown": 880,
+          "survivors": 0
+        },
+        {
+          "q": 29,
+          "top9": 6166,
+          "unknown": 1595,
+          "survivors": 0
+        },
+        {
+          "q": 40,
+          "top9": 6553,
+          "unknown": 2200,
+          "survivors": 0
+        },
+        {
+          "q": 43,
+          "top9": 6706,
+          "unknown": 2365,
+          "survivors": 0
+        },
+        {
+          "q": 45,
+          "top9": 6780,
+          "unknown": 2475,
+          "survivors": 0
+        },
+        {
+          "q": 46,
+          "top9": 6772,
+          "unknown": 2530,
+          "survivors": 0
+        },
+        {
+          "q": 47,
+          "top9": 6869,
+          "unknown": 2585,
+          "survivors": 0
+        },
+        {
+          "q": 48,
+          "top9": 6858,
+          "unknown": 2640,
+          "survivors": 0
+        },
+        {
+          "q": 49,
+          "top9": 6885,
+          "unknown": 2695,
+          "survivors": 0
+        },
+        {
+          "q": 50,
+          "top9": 6925,
+          "unknown": 2750,
+          "survivors": 0
+        },
+        {
+          "q": 51,
+          "top9": 6917,
+          "unknown": 2805,
+          "survivors": 0
+        },
+        {
+          "q": 52,
+          "top9": 7048,
+          "unknown": 2860,
+          "survivors": 0
+        },
+        {
+          "q": 53,
+          "top9": 7016,
+          "unknown": 2915,
+          "survivors": 0
+        },
+        {
+          "q": 59,
+          "top9": 7258,
+          "unknown": 3245,
+          "survivors": 0
+        },
+        {
+          "q": 75,
+          "top9": 7817,
+          "unknown": 4116,
+          "survivors": 0
+        },
+        {
+          "q": 100,
+          "top9": 8678,
+          "unknown": 5434,
+          "survivors": 0
+        },
+        {
+          "q": 133,
+          "top9": 9730,
+          "unknown": 7136,
+          "survivors": 0
+        },
+        {
+          "q": 256,
+          "top9": 12892,
+          "unknown": 12544,
+          "survivors": 176
+        },
+        {
+          "q": 729,
+          "top9": 12956,
+          "unknown": 12956,
+          "survivors": 176
+        },
+        {
+          "q": 1033,
+          "top9": 12956,
+          "unknown": 12956,
+          "survivors": 176
+        },
+        {
+          "q": 2000,
+          "top9": 12956,
+          "unknown": 12956,
+          "survivors": 176
+        },
+        {
+          "q": 3301,
+          "top9": 12956,
+          "unknown": 12956,
+          "survivors": 176
+        }
+      ]
+    }
+  },
+  "hold": {
+    "continuous": {
+      "tested": 3301,
+      "excluded": 51,
+      "excludedRanges": [
+        [
+          1,
+          49
+        ],
+        [
+          51,
+          52
+        ]
+      ],
+      "top9Excluded": 49,
+      "top9Ranges": [
+        [
+          1,
+          45
+        ],
+        [
+          47,
+          49
+        ],
+        [
+          52,
+          52
+        ]
+      ],
+      "maxTop9": {
+        "q": 114,
+        "top9": 12956,
+        "unknown": 12780,
+        "known": 176,
+        "holds": 0,
+        "forced": 0,
+        "iterations": 1,
+        "survivors": 176
+      },
+      "selected": [
+        {
+          "q": 1,
+          "top9": 5286,
+          "unknown": 39,
+          "known": 12478,
+          "holds": 439,
+          "forced": 27,
+          "iterations": 3,
+          "survivors": 0
+        },
+        {
+          "q": 8,
+          "top9": 5176,
+          "unknown": 16,
+          "known": 12483,
+          "holds": 457,
+          "forced": 28,
+          "iterations": 3,
+          "survivors": 0
+        },
+        {
+          "q": 13,
+          "top9": 5142,
+          "unknown": 21,
+          "known": 12478,
+          "holds": 457,
+          "forced": 28,
+          "iterations": 4,
+          "survivors": 0
+        },
+        {
+          "q": 16,
+          "top9": 5120,
+          "unknown": 24,
+          "known": 12475,
+          "holds": 457,
+          "forced": 28,
+          "iterations": 3,
+          "survivors": 0
+        },
+        {
+          "q": 29,
+          "top9": 5108,
+          "unknown": 47,
+          "known": 12453,
+          "holds": 456,
+          "forced": 28,
+          "iterations": 4,
+          "survivors": 0
+        },
+        {
+          "q": 40,
+          "top9": 5131,
+          "unknown": 58,
+          "known": 12442,
+          "holds": 456,
+          "forced": 28,
+          "iterations": 5,
+          "survivors": 0
+        },
+        {
+          "q": 43,
+          "top9": 5182,
+          "unknown": 104,
+          "known": 12397,
+          "holds": 455,
+          "forced": 28,
+          "iterations": 6,
+          "survivors": 0
+        },
+        {
+          "q": 45,
+          "top9": 5114,
+          "unknown": 63,
+          "known": 12437,
+          "holds": 456,
+          "forced": 28,
+          "iterations": 7,
+          "survivors": 0
+        },
+        {
+          "q": 46,
+          "top9": 11868,
+          "unknown": 10657,
+          "known": 2294,
+          "holds": 5,
+          "forced": 2,
+          "iterations": 3,
+          "survivors": 0
+        },
+        {
+          "q": 47,
+          "top9": 5169,
+          "unknown": 65,
+          "known": 12435,
+          "holds": 456,
+          "forced": 28,
+          "iterations": 9,
+          "survivors": 0
+        },
+        {
+          "q": 48,
+          "top9": 5119,
+          "unknown": 66,
+          "known": 12434,
+          "holds": 456,
+          "forced": 28,
+          "iterations": 8,
+          "survivors": 0
+        },
+        {
+          "q": 49,
+          "top9": 5149,
+          "unknown": 67,
+          "known": 12433,
+          "holds": 456,
+          "forced": 28,
+          "iterations": 8,
+          "survivors": 0
+        },
+        {
+          "q": 50,
+          "top9": 12118,
+          "unknown": 11088,
+          "known": 1868,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 73
+        },
+        {
+          "q": 51,
+          "top9": 12022,
+          "unknown": 10931,
+          "known": 2015,
+          "holds": 10,
+          "forced": 3,
+          "iterations": 2,
+          "survivors": 0
+        },
+        {
+          "q": 52,
+          "top9": 5224,
+          "unknown": 165,
+          "known": 12337,
+          "holds": 454,
+          "forced": 28,
+          "iterations": 12,
+          "survivors": 0
+        },
+        {
+          "q": 53,
+          "top9": 12118,
+          "unknown": 11106,
+          "known": 1843,
+          "holds": 7,
+          "forced": 3,
+          "iterations": 2,
+          "survivors": 3
+        },
+        {
+          "q": 59,
+          "top9": 12442,
+          "unknown": 11667,
+          "known": 1289,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 176
+        },
+        {
+          "q": 75,
+          "top9": 12741,
+          "unknown": 12266,
+          "known": 690,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 176
+        },
+        {
+          "q": 100,
+          "top9": 12941,
+          "unknown": 12672,
+          "known": 284,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 176
+        },
+        {
+          "q": 133,
+          "top9": 12956,
+          "unknown": 12866,
+          "known": 90,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 176
+        },
+        {
+          "q": 256,
+          "top9": 12956,
+          "unknown": 12956,
+          "known": 0,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 176
+        },
+        {
+          "q": 729,
+          "top9": 12956,
+          "unknown": 12956,
+          "known": 0,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 176
+        },
+        {
+          "q": 1033,
+          "top9": 12956,
+          "unknown": 12956,
+          "known": 0,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 176
+        },
+        {
+          "q": 2000,
+          "top9": 12956,
+          "unknown": 12956,
+          "known": 0,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 176
+        },
+        {
+          "q": 3301,
+          "top9": 12956,
+          "unknown": 12956,
+          "known": 0,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 176
+        }
+      ]
+    },
+    "section": {
+      "tested": 3301,
+      "excluded": 50,
+      "excludedRanges": [
+        [
+          1,
+          49
+        ],
+        [
+          51,
+          51
+        ]
+      ],
+      "top9Excluded": 48,
+      "top9Ranges": [
+        [
+          1,
+          45
+        ],
+        [
+          47,
+          49
+        ]
+      ],
+      "maxTop9": {
+        "q": 114,
+        "top9": 12956,
+        "unknown": 12814,
+        "known": 142,
+        "holds": 0,
+        "forced": 0,
+        "iterations": 1,
+        "survivors": 176
+      },
+      "selected": [
+        {
+          "q": 1,
+          "top9": 5292,
+          "unknown": 47,
+          "known": 12471,
+          "holds": 438,
+          "forced": 27,
+          "iterations": 3,
+          "survivors": 0
+        },
+        {
+          "q": 8,
+          "top9": 5218,
+          "unknown": 86,
+          "known": 12416,
+          "holds": 454,
+          "forced": 28,
+          "iterations": 3,
+          "survivors": 0
+        },
+        {
+          "q": 13,
+          "top9": 5231,
+          "unknown": 136,
+          "known": 12367,
+          "holds": 453,
+          "forced": 28,
+          "iterations": 4,
+          "survivors": 0
+        },
+        {
+          "q": 16,
+          "top9": 5208,
+          "unknown": 160,
+          "known": 12343,
+          "holds": 453,
+          "forced": 28,
+          "iterations": 3,
+          "survivors": 0
+        },
+        {
+          "q": 29,
+          "top9": 5301,
+          "unknown": 363,
+          "known": 12145,
+          "holds": 448,
+          "forced": 28,
+          "iterations": 4,
+          "survivors": 0
+        },
+        {
+          "q": 40,
+          "top9": 5406,
+          "unknown": 495,
+          "known": 12015,
+          "holds": 446,
+          "forced": 28,
+          "iterations": 6,
+          "survivors": 0
+        },
+        {
+          "q": 43,
+          "top9": 5530,
+          "unknown": 618,
+          "known": 11895,
+          "holds": 443,
+          "forced": 28,
+          "iterations": 6,
+          "survivors": 0
+        },
+        {
+          "q": 45,
+          "top9": 5487,
+          "unknown": 600,
+          "known": 11912,
+          "holds": 444,
+          "forced": 28,
+          "iterations": 7,
+          "survivors": 0
+        },
+        {
+          "q": 46,
+          "top9": 11919,
+          "unknown": 10744,
+          "known": 2209,
+          "holds": 3,
+          "forced": 1,
+          "iterations": 2,
+          "survivors": 0
+        },
+        {
+          "q": 47,
+          "top9": 5604,
+          "unknown": 738,
+          "known": 11777,
+          "holds": 441,
+          "forced": 28,
+          "iterations": 9,
+          "survivors": 0
+        },
+        {
+          "q": 48,
+          "top9": 5540,
+          "unknown": 699,
+          "known": 11815,
+          "holds": 442,
+          "forced": 28,
+          "iterations": 8,
+          "survivors": 0
+        },
+        {
+          "q": 49,
+          "top9": 5528,
+          "unknown": 668,
+          "known": 11845,
+          "holds": 443,
+          "forced": 28,
+          "iterations": 8,
+          "survivors": 0
+        },
+        {
+          "q": 50,
+          "top9": 12133,
+          "unknown": 11122,
+          "known": 1834,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 73
+        },
+        {
+          "q": 51,
+          "top9": 12039,
+          "unknown": 10965,
+          "known": 1981,
+          "holds": 10,
+          "forced": 3,
+          "iterations": 2,
+          "survivors": 0
+        },
+        {
+          "q": 52,
+          "top9": 12178,
+          "unknown": 11215,
+          "known": 1740,
+          "holds": 1,
+          "forced": 1,
+          "iterations": 2,
+          "survivors": 61
+        },
+        {
+          "q": 53,
+          "top9": 12201,
+          "unknown": 11242,
+          "known": 1710,
+          "holds": 4,
+          "forced": 2,
+          "iterations": 2,
+          "survivors": 20
+        },
+        {
+          "q": 59,
+          "top9": 12457,
+          "unknown": 11701,
+          "known": 1255,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 176
+        },
+        {
+          "q": 75,
+          "top9": 12762,
+          "unknown": 12300,
+          "known": 656,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 176
+        },
+        {
+          "q": 100,
+          "top9": 12948,
+          "unknown": 12707,
+          "known": 249,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 176
+        },
+        {
+          "q": 133,
+          "top9": 12956,
+          "unknown": 12900,
+          "known": 56,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 176
+        },
+        {
+          "q": 256,
+          "top9": 12956,
+          "unknown": 12956,
+          "known": 0,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 176
+        },
+        {
+          "q": 729,
+          "top9": 12956,
+          "unknown": 12956,
+          "known": 0,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 176
+        },
+        {
+          "q": 1033,
+          "top9": 12956,
+          "unknown": 12956,
+          "known": 0,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 176
+        },
+        {
+          "q": 2000,
+          "top9": 12956,
+          "unknown": 12956,
+          "known": 0,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 176
+        },
+        {
+          "q": 3301,
+          "top9": 12956,
+          "unknown": 12956,
+          "known": 0,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 176
+        }
+      ]
+    },
+    "page": {
+      "tested": 3301,
+      "excluded": 44,
+      "excludedRanges": [
+        [
+          1,
+          44
+        ]
+      ],
+      "top9Excluded": 43,
+      "top9Ranges": [
+        [
+          1,
+          43
+        ]
+      ],
+      "maxTop9": {
+        "q": 109,
+        "top9": 12956,
+        "unknown": 12804,
+        "known": 152,
+        "holds": 0,
+        "forced": 0,
+        "iterations": 1,
+        "survivors": 176
+      },
+      "selected": [
+        {
+          "q": 1,
+          "top9": 5321,
+          "unknown": 94,
+          "known": 12425,
+          "holds": 437,
+          "forced": 27,
+          "iterations": 3,
+          "survivors": 0
+        },
+        {
+          "q": 8,
+          "top9": 5462,
+          "unknown": 489,
+          "known": 12022,
+          "holds": 445,
+          "forced": 28,
+          "iterations": 3,
+          "survivors": 0
+        },
+        {
+          "q": 13,
+          "top9": 5647,
+          "unknown": 831,
+          "known": 11686,
+          "holds": 439,
+          "forced": 28,
+          "iterations": 4,
+          "survivors": 0
+        },
+        {
+          "q": 16,
+          "top9": 5809,
+          "unknown": 1057,
+          "known": 11464,
+          "holds": 435,
+          "forced": 28,
+          "iterations": 3,
+          "survivors": 0
+        },
+        {
+          "q": 29,
+          "top9": 6482,
+          "unknown": 2209,
+          "known": 10337,
+          "holds": 410,
+          "forced": 28,
+          "iterations": 4,
+          "survivors": 0
+        },
+        {
+          "q": 40,
+          "top9": 7229,
+          "unknown": 3299,
+          "known": 9274,
+          "holds": 383,
+          "forced": 28,
+          "iterations": 8,
+          "survivors": 0
+        },
+        {
+          "q": 43,
+          "top9": 7668,
+          "unknown": 3907,
+          "known": 8678,
+          "holds": 371,
+          "forced": 28,
+          "iterations": 8,
+          "survivors": 0
+        },
+        {
+          "q": 45,
+          "top9": 12136,
+          "unknown": 11130,
+          "known": 1826,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 79
+        },
+        {
+          "q": 46,
+          "top9": 12189,
+          "unknown": 11213,
+          "known": 1743,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 129
+        },
+        {
+          "q": 47,
+          "top9": 12191,
+          "unknown": 11214,
+          "known": 1739,
+          "holds": 3,
+          "forced": 2,
+          "iterations": 4,
+          "survivors": 23
+        },
+        {
+          "q": 48,
+          "top9": 12226,
+          "unknown": 11293,
+          "known": 1660,
+          "holds": 3,
+          "forced": 1,
+          "iterations": 2,
+          "survivors": 68
+        },
+        {
+          "q": 49,
+          "top9": 12292,
+          "unknown": 11431,
+          "known": 1525,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 173
+        },
+        {
+          "q": 50,
+          "top9": 12348,
+          "unknown": 11501,
+          "known": 1455,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 173
+        },
+        {
+          "q": 51,
+          "top9": 12375,
+          "unknown": 11565,
+          "known": 1391,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 176
+        },
+        {
+          "q": 52,
+          "top9": 12410,
+          "unknown": 11628,
+          "known": 1328,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 176
+        },
+        {
+          "q": 53,
+          "top9": 12444,
+          "unknown": 11688,
+          "known": 1268,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 176
+        },
+        {
+          "q": 59,
+          "top9": 12627,
+          "unknown": 12002,
+          "known": 954,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 176
+        },
+        {
+          "q": 75,
+          "top9": 12854,
+          "unknown": 12482,
+          "known": 474,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 176
+        },
+        {
+          "q": 100,
+          "top9": 12953,
+          "unknown": 12754,
+          "known": 202,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 176
+        },
+        {
+          "q": 133,
+          "top9": 12956,
+          "unknown": 12900,
+          "known": 56,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 176
+        },
+        {
+          "q": 256,
+          "top9": 12956,
+          "unknown": 12956,
+          "known": 0,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 176
+        },
+        {
+          "q": 729,
+          "top9": 12956,
+          "unknown": 12956,
+          "known": 0,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 176
+        },
+        {
+          "q": 1033,
+          "top9": 12956,
+          "unknown": 12956,
+          "known": 0,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 176
+        },
+        {
+          "q": 2000,
+          "top9": 12956,
+          "unknown": 12956,
+          "known": 0,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 176
+        },
+        {
+          "q": 3301,
+          "top9": 12956,
+          "unknown": 12956,
+          "known": 0,
+          "holds": 0,
+          "forced": 0,
+          "iterations": 1,
+          "survivors": 176
+        }
+      ]
+    }
+  },
+  "controls": [
+    {
+      "q": 1,
+      "mode": "ordinary",
+      "n": 2979,
+      "consumedZeros": 98,
+      "realHolds": 0,
+      "inferredHolds": 0,
+      "known": 12955,
+      "top9": 1958,
+      "boundTop9": 2145,
+      "replay": true
+    },
+    {
+      "q": 1,
+      "mode": "hold-fixed",
+      "n": 2979,
+      "consumedZeros": 0,
+      "realHolds": 48,
+      "inferredHolds": 0,
+      "known": 2886,
+      "top9": 1958,
+      "boundTop9": 2224,
+      "replay": true
+    },
+    {
+      "q": 1,
+      "mode": "hold-mixed",
+      "n": 2979,
+      "consumedZeros": 96,
+      "realHolds": 48,
+      "inferredHolds": 0,
+      "known": 2695,
+      "top9": 1958,
+      "boundTop9": 2286,
+      "replay": true
+    },
+    {
+      "q": 8,
+      "mode": "ordinary",
+      "n": 2979,
+      "consumedZeros": 104,
+      "realHolds": 0,
+      "inferredHolds": 0,
+      "known": 12948,
+      "top9": 1958,
+      "boundTop9": 2069,
+      "replay": true
+    },
+    {
+      "q": 8,
+      "mode": "hold-fixed",
+      "n": 2979,
+      "consumedZeros": 0,
+      "realHolds": 48,
+      "inferredHolds": 0,
+      "known": 2586,
+      "top9": 1958,
+      "boundTop9": 2214,
+      "replay": true
+    },
+    {
+      "q": 8,
+      "mode": "hold-mixed",
+      "n": 2979,
+      "consumedZeros": 88,
+      "realHolds": 48,
+      "inferredHolds": 0,
+      "known": 1967,
+      "top9": 1958,
+      "boundTop9": 2473,
+      "replay": true
+    },
+    {
+      "q": 13,
+      "mode": "ordinary",
+      "n": 2979,
+      "consumedZeros": 95,
+      "realHolds": 0,
+      "inferredHolds": 0,
+      "known": 12943,
+      "top9": 1958,
+      "boundTop9": 2094,
+      "replay": true
+    },
+    {
+      "q": 13,
+      "mode": "hold-fixed",
+      "n": 2979,
+      "consumedZeros": 0,
+      "realHolds": 48,
+      "inferredHolds": 0,
+      "known": 2389,
+      "top9": 1958,
+      "boundTop9": 2312,
+      "replay": true
+    },
+    {
+      "q": 13,
+      "mode": "hold-mixed",
+      "n": 2979,
+      "consumedZeros": 82,
+      "realHolds": 48,
+      "inferredHolds": 0,
+      "known": 1655,
+      "top9": 1958,
+      "boundTop9": 2563,
+      "replay": true
+    },
+    {
+      "q": 29,
+      "mode": "ordinary",
+      "n": 2979,
+      "consumedZeros": 125,
+      "realHolds": 0,
+      "inferredHolds": 0,
+      "known": 12927,
+      "top9": 1958,
+      "boundTop9": 2082,
+      "replay": true
+    },
+    {
+      "q": 29,
+      "mode": "hold-fixed",
+      "n": 2979,
+      "consumedZeros": 0,
+      "realHolds": 48,
+      "inferredHolds": 0,
+      "known": 1854,
+      "top9": 1958,
+      "boundTop9": 2505,
+      "replay": true
+    },
+    {
+      "q": 29,
+      "mode": "hold-mixed",
+      "n": 2979,
+      "consumedZeros": 39,
+      "realHolds": 48,
+      "inferredHolds": 0,
+      "known": 1223,
+      "top9": 1958,
+      "boundTop9": 2701,
+      "replay": true
+    },
+    {
+      "q": 43,
+      "mode": "ordinary",
+      "n": 2979,
+      "consumedZeros": 98,
+      "realHolds": 0,
+      "inferredHolds": 0,
+      "known": 12913,
+      "top9": 1958,
+      "boundTop9": 2110,
+      "replay": true
+    },
+    {
+      "q": 43,
+      "mode": "hold-fixed",
+      "n": 2979,
+      "consumedZeros": 0,
+      "realHolds": 48,
+      "inferredHolds": 0,
+      "known": 1520,
+      "top9": 1958,
+      "boundTop9": 2602,
+      "replay": true
+    },
+    {
+      "q": 43,
+      "mode": "hold-mixed",
+      "n": 2979,
+      "consumedZeros": 63,
+      "realHolds": 48,
+      "inferredHolds": 0,
+      "known": 492,
+      "top9": 1958,
+      "boundTop9": 2927,
+      "replay": true
+    },
+    {
+      "q": 59,
+      "mode": "ordinary",
+      "n": 2979,
+      "consumedZeros": 113,
+      "realHolds": 0,
+      "inferredHolds": 0,
+      "known": 12897,
+      "top9": 1958,
+      "boundTop9": 2103,
+      "replay": true
+    },
+    {
+      "q": 59,
+      "mode": "hold-fixed",
+      "n": 2979,
+      "consumedZeros": 0,
+      "realHolds": 48,
+      "inferredHolds": 0,
+      "known": 1229,
+      "top9": 1958,
+      "boundTop9": 2677,
+      "replay": true
+    },
+    {
+      "q": 59,
+      "mode": "hold-mixed",
+      "n": 2979,
+      "consumedZeros": 60,
+      "realHolds": 48,
+      "inferredHolds": 0,
+      "known": 346,
+      "top9": 1958,
+      "boundTop9": 2952,
+      "replay": true
+    },
+    {
+      "q": 133,
+      "mode": "ordinary",
+      "n": 2979,
+      "consumedZeros": 121,
+      "realHolds": 0,
+      "inferredHolds": 0,
+      "known": 12823,
+      "top9": 1958,
+      "boundTop9": 2110,
+      "replay": true
+    },
+    {
+      "q": 133,
+      "mode": "hold-fixed",
+      "n": 2979,
+      "consumedZeros": 0,
+      "realHolds": 48,
+      "inferredHolds": 0,
+      "known": 501,
+      "top9": 1958,
+      "boundTop9": 2917,
+      "replay": true
+    },
+    {
+      "q": 133,
+      "mode": "hold-mixed",
+      "n": 2979,
+      "consumedZeros": 54,
+      "realHolds": 48,
+      "inferredHolds": 0,
+      "known": 49,
+      "top9": 1958,
+      "boundTop9": 2979,
+      "replay": true
+    }
+  ]
+}
