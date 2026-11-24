@@ -1,0 +1,238 @@
+{
+  "dictionaryForms": 29154,
+  "uniqueForms": 29058,
+  "summaries": [
+    {
+      "mode": false,
+      "masks": [
+        1,
+        1
+      ],
+      "placements": 93,
+      "directLocal": 0,
+      "relativeLocal": 0,
+      "directFull": 0,
+      "relativeFull": 0,
+      "examples": []
+    },
+    {
+      "mode": true,
+      "masks": [
+        8,
+        8
+      ],
+      "placements": 5952,
+      "directLocal": 0,
+      "relativeLocal": 8,
+      "directFull": 0,
+      "relativeFull": 0,
+      "examples": []
+    }
+  ],
+  "soft": {
+    "placements": 93,
+    "histogram": {
+      "4": 2,
+      "5": 43,
+      "6": 40,
+      "7": 6,
+      "8": 2
+    },
+    "best": [
+      {
+        "offset": 4,
+        "drop": 0,
+        "oov": 4,
+        "frequencyCost": 96.91704514576122,
+        "wilds": [
+          "A3",
+          "B7",
+          "A9",
+          "B12"
+        ],
+        "A": "? ? PAINS IOERGMNGIACLUO THROWNG PETYA AND RHABDOMYOMA ELATIAN NDRAELBGWF WHICH EARTHWORCS FWOM SWEETNESS ? ? ? ? ? ? ? ?",
+        "B": "U FLAP THE THE PIERRE ASIATIC BE BRAOEFGPXGJEOTH GARLIC COOL THE BETWEEN DFHEAHNY SNG HOURRA EARN OUT",
+        "replay": 76
+      },
+      {
+        "offset": 5,
+        "drop": 1,
+        "oov": 4,
+        "frequencyCost": 96.91704514576122,
+        "wilds": [
+          "A3",
+          "B7",
+          "A9",
+          "B12"
+        ],
+        "A": "? ? PAINS IOERGMNGIACLUO THROWNG PETYA AND RHABDOMYOMA ELATIAN NDRAELBGWF WHICH EARTHWORCS FWOM SWEETNESS ? ? ? ? ? ? ? ?",
+        "B": "? FLAP THE THE PIERRE ASIATIC BE BRAOEFGPXGJEOTH GARLIC COOL THE BETWEEN DFHEAHNY SNG HOURRA EARN OUT",
+        "replay": 75
+      },
+      {
+        "offset": 0,
+        "drop": 0,
+        "oov": 5,
+        "frequencyCost": 55.50779780652374,
+        "wilds": [
+          "A3",
+          "B7",
+          "A7",
+          "A9",
+          "A11"
+        ],
+        "A": "F MAN SPEACNG CMEALDATHNFEIA CASES WHICH THAT UFOEOJTHHGGBP PRINCE NUPPXEBPD BULLAE SWDMSWUY DATE ? ? ? ? ? ? ? ? ?",
+        "B": "U HERB OF TO PIERRE PRINCE AN JTHEATHTLNWOEYEADEA PIERRE FELT IF PARTIES TREMBLNG PP PIERRE AND AIR",
+        "replay": 76
+      },
+      {
+        "offset": 1,
+        "drop": 1,
+        "oov": 5,
+        "frequencyCost": 55.50779780652374,
+        "wilds": [
+          "A3",
+          "B7",
+          "A7",
+          "A9",
+          "A11"
+        ],
+        "A": "? MAN SPEACNG CMEALDATHNFEIA CASES WHICH THAT UFOEOJTHHGGBP PRINCE NUPPXEBPD BULLAE SWDMSWUY DATE ? ? ? ? ? ? ? ? ?",
+        "B": "? HERB OF TO PIERRE PRINCE AN JTHEATHTLNWOEYEADEA PIERRE FELT IF PARTIES TREMBLNG PP PIERRE AND AIR",
+        "replay": 75
+      },
+      {
+        "offset": 24,
+        "drop": 0,
+        "oov": 5,
+        "frequencyCost": 62.77487895358354,
+        "wilds": [
+          "A7",
+          "B7",
+          "A11",
+          "A13",
+          "A15"
+        ],
+        "A": "? ? ? ? WHICH POETIC ARE ICWUHEOREOEAUF TWENTY ESPECIALLY REPAY EOJOELOEOFA CLOTH FOEEAEABTJYU LADY THEABTHHXNGAE AT USE ? ? ? ?",
+        "B": "EO SUIS IN NO PIERRE MATTER BY OATHIAEDIXGGEHI GEOLOGY HAUE THE ADUANCE GENERAL DO SHOULD AND AND",
+        "replay": 76
+      }
+    ]
+  },
+  "positives": [
+    {
+      "type": "source-shaped dictionary",
+      "mode": false,
+      "relative": 0,
+      "offset": 5,
+      "actualHolds": [
+        5,
+        0
+      ],
+      "overlap": 76,
+      "forcedA": 66,
+      "forcedB": 66,
+      "matchedA": 73,
+      "matchedB": 73,
+      "padMatches": 73
+    },
+    {
+      "type": "source-shaped dictionary",
+      "mode": false,
+      "relative": 7,
+      "offset": 13,
+      "actualHolds": [
+        2,
+        1
+      ],
+      "overlap": 76,
+      "forcedA": 61,
+      "forcedB": 61,
+      "matchedA": 69,
+      "matchedB": 69,
+      "padMatches": 69
+    },
+    {
+      "type": "source-shaped dictionary",
+      "mode": false,
+      "relative": 14,
+      "offset": 21,
+      "actualHolds": [
+        3,
+        3
+      ],
+      "overlap": 76,
+      "forcedA": 64,
+      "forcedB": 64,
+      "matchedA": 65,
+      "matchedB": 65,
+      "padMatches": 65
+    },
+    {
+      "type": "source-shaped dictionary",
+      "mode": true,
+      "relative": 0,
+      "offset": 5,
+      "actualHolds": [
+        0,
+        0
+      ],
+      "overlap": 76,
+      "forcedA": 65,
+      "forcedB": 65,
+      "matchedA": 72,
+      "matchedB": 72,
+      "padMatches": 72
+    },
+    {
+      "type": "source-shaped dictionary",
+      "mode": true,
+      "relative": 7,
+      "offset": 13,
+      "actualHolds": [
+        2,
+        2
+      ],
+      "overlap": 74,
+      "forcedA": 57,
+      "forcedB": 57,
+      "matchedA": 70,
+      "matchedB": 70,
+      "padMatches": 70
+    },
+    {
+      "type": "source-shaped dictionary",
+      "mode": true,
+      "relative": 14,
+      "offset": 21,
+      "actualHolds": [
+        2,
+        1
+      ],
+      "overlap": 75,
+      "forcedA": 65,
+      "forcedB": 65,
+      "matchedA": 68,
+      "matchedB": 68,
+      "padMatches": 68
+    }
+  ],
+  "nativeMissing": [
+    "PARABLE",
+    "INSTAR",
+    "TUNNELNG",
+    "CIRCUMFERENCES"
+  ],
+  "cache": {
+    "projection": 141,
+    "allowed": 321
+  },
+  "sourceBlobs": {
+    "resources/liber-primus/lp2-corpus.json": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "resources/liber-primus/lp2-transcription.txt": "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7",
+    "resources/control/english_wordfreq_textblob.txt": "140e1d22b5f8c45deddd2e8b25549d9d6307d938",
+    "resources/liber-primus/lp1-plaintext-reference.txt": "8ed037a6ddeef2b20a10bd6a84830e7cf9f43f7d"
+  },
+  "scriptCommit": "22e3095c607b10d8d07900a1ede3ae91a3136fea",
+  "execution": "connected JavaScript, exact source blobs; standalone Node wrapper not independently executed"
+}
