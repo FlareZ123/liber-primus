@@ -74,7 +74,7 @@ function study(files) {
  const rng=makeRng(2484);
  const qfun=(a,p)=>a.slice().sort((x,y)=>x-y)[Math.min(a.length-1,Math.ceil(p*a.length)-1)];
  // Resample complete consecutive blocks, preserving within-block dependence.
- // Simultaneous one-sided max-t style band over 4 source strata weightings x 29 shifts.
+ // Simultaneous absolute max-t style band (lower edge used) over 4 source strata weightings x 29 shifts.
  // This is an empirical sensitivity interval, not distribution-free coverage.
  function bootstrap(t,size,B=3000){
   const chunks=[];
@@ -89,7 +89,7 @@ function study(files) {
    draws.push(w.flatMap(v=>estimate(a,v)));
   }
   const sd=point.map((v,j)=>Math.sqrt(sum(draws.map(a=>(a[j]-v)**2))/B));
-  const max=draws.map(a=>Math.max(...point.map((v,j)=>sd[j]?(v-a[j])/sd[j]:0)));
+  const max=draws.map(a=>Math.max(...point.map((v,j)=>sd[j]?Math.abs(v-a[j])/sd[j]:0)));
   const crit=qfun(max,.99),lows=point.map((v,j)=>Math.max(0,v-crit*sd[j]));
   return {size,chunks:chunks.length,crit,results:tests.map((x,j)=>{
    const l=lows.slice(j*29,(j+1)*29),min=Math.min(...l);
