@@ -1,0 +1,814 @@
+{
+  "sourceSlopes": [
+    11,
+    26,
+    8,
+    15,
+    2
+  ],
+  "allInterceptTuples": 20511149,
+  "anchorMinLength": 7,
+  "fitAnchors": 7,
+  "holdoutAnchors": 4,
+  "membershipChecks": 900,
+  "controls": [
+    {
+      "hold": false,
+      "trainingBest": 7,
+      "trainingTies": 1,
+      "firstTrainingKey": [
+        1,
+        1,
+        27,
+        24,
+        2
+      ],
+      "heldout": 3,
+      "trainingTiesHeldoutRange": [
+        3,
+        3
+      ],
+      "fullBest": 10,
+      "fullTies": 1,
+      "fullFirstKey": [
+        1,
+        1,
+        27,
+        24,
+        2
+      ],
+      "truth": [
+        1,
+        1,
+        27,
+        24,
+        2
+      ],
+      "truthTraining": 7,
+      "truthHeldout": 3,
+      "truthIsTrainingWinner": true,
+      "readouts": [
+        {
+          "start": 0,
+          "count": 1,
+          "sample": [
+            "WELCOME"
+          ]
+        },
+        {
+          "start": 7,
+          "count": 1,
+          "sample": [
+            "WELCOME"
+          ]
+        },
+        {
+          "start": 14,
+          "count": 1,
+          "sample": [
+            "PILGRIM"
+          ]
+        },
+        {
+          "start": 29,
+          "count": 1,
+          "sample": [
+            "JOURNEY"
+          ]
+        },
+        {
+          "start": 104,
+          "count": 1,
+          "sample": [
+            "NECESSARY"
+          ]
+        },
+        {
+          "start": 146,
+          "count": 3,
+          "sample": [
+            "SERENELY",
+            "STRAGGLY",
+            "STRUGGLE"
+          ]
+        },
+        {
+          "start": 157,
+          "count": 1,
+          "sample": [
+            "SUFFERNG"
+          ]
+        },
+        {
+          "start": 168,
+          "count": 2,
+          "sample": [
+            "INNOCENCE",
+            "INNOCENCY"
+          ]
+        },
+        {
+          "start": 181,
+          "count": 0,
+          "sample": []
+        },
+        {
+          "start": 193,
+          "count": 1,
+          "sample": [
+            "CERTAINTY"
+          ]
+        },
+        {
+          "start": 215,
+          "count": 1,
+          "sample": [
+            "ULTIMATELY"
+          ]
+        }
+      ],
+      "stats": [
+        {
+          "start": 0,
+          "length": 7,
+          "lexicon": 5294,
+          "partial": 64237,
+          "compatibleKeys": 257851
+        },
+        {
+          "start": 7,
+          "length": 7,
+          "lexicon": 5294,
+          "partial": 58316,
+          "compatibleKeys": 188107
+        },
+        {
+          "start": 14,
+          "length": 7,
+          "lexicon": 5294,
+          "partial": 61405,
+          "compatibleKeys": 246871
+        },
+        {
+          "start": 29,
+          "length": 7,
+          "lexicon": 5294,
+          "partial": 63438,
+          "compatibleKeys": 230651
+        },
+        {
+          "start": 104,
+          "length": 9,
+          "lexicon": 3774,
+          "partial": 2738,
+          "compatibleKeys": 7367
+        },
+        {
+          "start": 146,
+          "length": 8,
+          "lexicon": 4793,
+          "partial": 14997,
+          "compatibleKeys": 56347
+        },
+        {
+          "start": 157,
+          "length": 7,
+          "lexicon": 5294,
+          "partial": 67652,
+          "compatibleKeys": 281681
+        },
+        {
+          "start": 168,
+          "length": 9,
+          "lexicon": 3774,
+          "partial": 2553,
+          "compatibleKeys": 6296
+        },
+        {
+          "start": 181,
+          "length": 8,
+          "lexicon": 4793,
+          "partial": 14178,
+          "compatibleKeys": 42332
+        },
+        {
+          "start": 193,
+          "length": 9,
+          "lexicon": 3774,
+          "partial": 3088,
+          "compatibleKeys": 9962
+        },
+        {
+          "start": 215,
+          "length": 10,
+          "lexicon": 2652,
+          "partial": 485,
+          "compatibleKeys": 951
+        }
+      ],
+      "name": "0_welcome",
+      "donorInLexicon": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        true
+      ],
+      "frozenKeyExactWords": 11,
+      "frozenKeyExactHeldoutWords": 4
+    },
+    {
+      "hold": true,
+      "trainingBest": 6,
+      "trainingTies": 1,
+      "firstTrainingKey": [
+        24,
+        27,
+        18,
+        2,
+        24
+      ],
+      "heldout": 3,
+      "trainingTiesHeldoutRange": [
+        3,
+        3
+      ],
+      "fullBest": 9,
+      "fullTies": 1,
+      "fullFirstKey": [
+        24,
+        27,
+        18,
+        2,
+        24
+      ],
+      "truth": [
+        24,
+        27,
+        18,
+        2,
+        24
+      ],
+      "truthTraining": 6,
+      "truthHeldout": 3,
+      "truthIsTrainingWinner": true,
+      "readouts": [
+        {
+          "start": 8,
+          "count": 1,
+          "sample": [
+            "DIUINITY"
+          ]
+        },
+        {
+          "start": 18,
+          "count": 1,
+          "sample": [
+            "CIRCUMFERENCE"
+          ]
+        },
+        {
+          "start": 31,
+          "count": 1,
+          "sample": [
+            "PRACTICES"
+          ]
+        },
+        {
+          "start": 44,
+          "count": 0,
+          "sample": []
+        },
+        {
+          "start": 70,
+          "count": 1,
+          "sample": [
+            "DIUINITY"
+          ]
+        },
+        {
+          "start": 78,
+          "count": 1,
+          "sample": [
+            "CONSUMPTIAN"
+          ]
+        },
+        {
+          "start": 90,
+          "count": 1,
+          "sample": [
+            "CONSUME"
+          ]
+        },
+        {
+          "start": 104,
+          "count": 1,
+          "sample": [
+            "BECAUSE"
+          ]
+        },
+        {
+          "start": 113,
+          "count": 0,
+          "sample": []
+        },
+        {
+          "start": 122,
+          "count": 2,
+          "sample": [
+            "COLLIDNG",
+            "FOLLOWNG"
+          ]
+        },
+        {
+          "start": 145,
+          "count": 1,
+          "sample": [
+            "DECEPTIAN"
+          ]
+        }
+      ],
+      "stats": [
+        {
+          "start": 8,
+          "length": 8,
+          "lexicon": 4793,
+          "partial": 13037,
+          "compatibleKeys": 38961
+        },
+        {
+          "start": 18,
+          "length": 13,
+          "lexicon": 422,
+          "partial": 2,
+          "compatibleKeys": 2
+        },
+        {
+          "start": 31,
+          "length": 9,
+          "lexicon": 3773,
+          "partial": 2100,
+          "compatibleKeys": 3868
+        },
+        {
+          "start": 44,
+          "length": 8,
+          "lexicon": 4793,
+          "partial": 14065,
+          "compatibleKeys": 42686
+        },
+        {
+          "start": 70,
+          "length": 8,
+          "lexicon": 4793,
+          "partial": 18468,
+          "compatibleKeys": 65275
+        },
+        {
+          "start": 78,
+          "length": 10,
+          "lexicon": 2652,
+          "partial": 331,
+          "compatibleKeys": 676
+        },
+        {
+          "start": 90,
+          "length": 7,
+          "lexicon": 5293,
+          "partial": 57224,
+          "compatibleKeys": 282195
+        },
+        {
+          "start": 104,
+          "length": 7,
+          "lexicon": 5293,
+          "partial": 75135,
+          "compatibleKeys": 434921
+        },
+        {
+          "start": 113,
+          "length": 7,
+          "lexicon": 5293,
+          "partial": 52602,
+          "compatibleKeys": 197902
+        },
+        {
+          "start": 122,
+          "length": 7,
+          "lexicon": 5293,
+          "partial": 64767,
+          "compatibleKeys": 287836
+        },
+        {
+          "start": 145,
+          "length": 8,
+          "lexicon": 4793,
+          "partial": 12636,
+          "compatibleKeys": 38970
+        }
+      ],
+      "name": "0_loss_of_divinity",
+      "donorInLexicon": [
+        true,
+        true,
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        true
+      ],
+      "frozenKeyExactWords": 11,
+      "frozenKeyExactHeldoutWords": 4
+    }
+  ],
+  "original": [
+    {
+      "hold": false,
+      "trainingBest": 3,
+      "trainingTies": 7,
+      "firstTrainingKey": [
+        18,
+        15,
+        13,
+        20,
+        7
+      ],
+      "heldout": 0,
+      "trainingTiesHeldoutRange": [
+        0,
+        0
+      ],
+      "fullBest": 3,
+      "fullTies": 44,
+      "fullFirstKey": [
+        7,
+        4,
+        5,
+        2,
+        1
+      ],
+      "truth": null,
+      "truthTraining": null,
+      "truthHeldout": null,
+      "truthIsTrainingWinner": null,
+      "readouts": [
+        {
+          "start": 1894,
+          "count": 0,
+          "sample": []
+        },
+        {
+          "start": 1927,
+          "count": 1,
+          "sample": [
+            "TALCERS"
+          ]
+        },
+        {
+          "start": 1944,
+          "count": 1,
+          "sample": [
+            "CORDIALLY"
+          ]
+        },
+        {
+          "start": 1986,
+          "count": 1,
+          "sample": [
+            "MATHILDE"
+          ]
+        },
+        {
+          "start": 1998,
+          "count": 0,
+          "sample": []
+        },
+        {
+          "start": 2014,
+          "count": 0,
+          "sample": []
+        },
+        {
+          "start": 2046,
+          "count": 0,
+          "sample": []
+        },
+        {
+          "start": 2060,
+          "count": 0,
+          "sample": []
+        },
+        {
+          "start": 2086,
+          "count": 0,
+          "sample": []
+        },
+        {
+          "start": 2094,
+          "count": 0,
+          "sample": []
+        },
+        {
+          "start": 2107,
+          "count": 0,
+          "sample": []
+        }
+      ],
+      "stats": [
+        {
+          "start": 1894,
+          "length": 9,
+          "lexicon": 3774,
+          "partial": 2197,
+          "compatibleKeys": 4422
+        },
+        {
+          "start": 1927,
+          "length": 7,
+          "lexicon": 5294,
+          "partial": 59434,
+          "compatibleKeys": 211079
+        },
+        {
+          "start": 1944,
+          "length": 8,
+          "lexicon": 4794,
+          "partial": 14358,
+          "compatibleKeys": 42239
+        },
+        {
+          "start": 1986,
+          "length": 7,
+          "lexicon": 5294,
+          "partial": 74205,
+          "compatibleKeys": 300954
+        },
+        {
+          "start": 1998,
+          "length": 10,
+          "lexicon": 2652,
+          "partial": 257,
+          "compatibleKeys": 330
+        },
+        {
+          "start": 2014,
+          "length": 12,
+          "lexicon": 867,
+          "partial": 12,
+          "compatibleKeys": 12
+        },
+        {
+          "start": 2046,
+          "length": 10,
+          "lexicon": 2652,
+          "partial": 596,
+          "compatibleKeys": 913
+        },
+        {
+          "start": 2060,
+          "length": 9,
+          "lexicon": 3774,
+          "partial": 2419,
+          "compatibleKeys": 5701
+        },
+        {
+          "start": 2086,
+          "length": 8,
+          "lexicon": 4794,
+          "partial": 14528,
+          "compatibleKeys": 46287
+        },
+        {
+          "start": 2094,
+          "length": 8,
+          "lexicon": 4794,
+          "partial": 12915,
+          "compatibleKeys": 33505
+        },
+        {
+          "start": 2107,
+          "length": 9,
+          "lexicon": 3774,
+          "partial": 2585,
+          "compatibleKeys": 8222
+        }
+      ]
+    },
+    {
+      "hold": true,
+      "trainingBest": 3,
+      "trainingTies": 5,
+      "firstTrainingKey": [
+        18,
+        15,
+        13,
+        20,
+        7
+      ],
+      "heldout": 0,
+      "trainingTiesHeldoutRange": [
+        0,
+        0
+      ],
+      "fullBest": 3,
+      "fullTies": 36,
+      "fullFirstKey": [
+        13,
+        12,
+        8,
+        2,
+        1
+      ],
+      "truth": null,
+      "truthTraining": null,
+      "truthHeldout": null,
+      "truthIsTrainingWinner": null,
+      "readouts": [
+        {
+          "start": 1894,
+          "count": 0,
+          "sample": []
+        },
+        {
+          "start": 1927,
+          "count": 1,
+          "sample": [
+            "TALCERS"
+          ]
+        },
+        {
+          "start": 1944,
+          "count": 1,
+          "sample": [
+            "CORDIALLY"
+          ]
+        },
+        {
+          "start": 1986,
+          "count": 1,
+          "sample": [
+            "MATHILDE"
+          ]
+        },
+        {
+          "start": 1998,
+          "count": 0,
+          "sample": []
+        },
+        {
+          "start": 2014,
+          "count": 0,
+          "sample": []
+        },
+        {
+          "start": 2046,
+          "count": 0,
+          "sample": []
+        },
+        {
+          "start": 2060,
+          "count": 0,
+          "sample": []
+        },
+        {
+          "start": 2086,
+          "count": 0,
+          "sample": []
+        },
+        {
+          "start": 2094,
+          "count": 0,
+          "sample": []
+        },
+        {
+          "start": 2107,
+          "count": 0,
+          "sample": []
+        }
+      ],
+      "stats": [
+        {
+          "start": 1894,
+          "length": 9,
+          "lexicon": 3774,
+          "partial": 2025,
+          "compatibleKeys": 4153
+        },
+        {
+          "start": 1927,
+          "length": 7,
+          "lexicon": 5294,
+          "partial": 52402,
+          "compatibleKeys": 182799
+        },
+        {
+          "start": 1944,
+          "length": 8,
+          "lexicon": 4794,
+          "partial": 12755,
+          "compatibleKeys": 38373
+        },
+        {
+          "start": 1986,
+          "length": 7,
+          "lexicon": 5294,
+          "partial": 66901,
+          "compatibleKeys": 273765
+        },
+        {
+          "start": 1998,
+          "length": 10,
+          "lexicon": 2652,
+          "partial": 234,
+          "compatibleKeys": 307
+        },
+        {
+          "start": 2014,
+          "length": 12,
+          "lexicon": 867,
+          "partial": 12,
+          "compatibleKeys": 12
+        },
+        {
+          "start": 2046,
+          "length": 10,
+          "lexicon": 2652,
+          "partial": 493,
+          "compatibleKeys": 615
+        },
+        {
+          "start": 2060,
+          "length": 9,
+          "lexicon": 3774,
+          "partial": 2257,
+          "compatibleKeys": 5605
+        },
+        {
+          "start": 2086,
+          "length": 8,
+          "lexicon": 4794,
+          "partial": 13275,
+          "compatibleKeys": 43441
+        },
+        {
+          "start": 2094,
+          "length": 8,
+          "lexicon": 4794,
+          "partial": 11502,
+          "compatibleKeys": 30259
+        },
+        {
+          "start": 2107,
+          "length": 9,
+          "lexicon": 3774,
+          "partial": 2230,
+          "compatibleKeys": 5167
+        }
+      ]
+    }
+  ],
+  "inputs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/liber-primus/lp2-transcription.txt",
+      "sha": "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/control/english_wordfreq_textblob.txt",
+      "sha": "140e1d22b5f8c45deddd2e8b25549d9d6307d938"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    },
+    {
+      "path": "resources/control/blake_song_of_liberty_train.txt",
+      "sha": "c8d8afda002f2585ce64a959c26c20d24a5c990b"
+    }
+  ]
+}
