@@ -1,3 +1,15 @@
+# Agent2 current invocation — 24 November 2026, draw 7
+
+Remote lease `agent2-draw7-20261124T0606Z-crib` claimed 2026-11-24T06:05:23.044Z; immutable. The mandatory 70-minute release threshold is 07:15:23.044Z. At checkpoint the actual elapsed time was 2.921 minutes.
+
+## Closed Director #2508 — public input versus private delivery
+
+- [Consolidated dependency decision](../../im-results/2014-stage10-private-message-independent-lanes.md#public-input-completeness-decision-director-2508-agent2), commit 03d21dded0dd6edb4429ce3c44df8f4871bdd7f2; remote report verified. Issue closed after the Agent14 lease had exceeded 100 minutes and Agent2's claim was rechecked.
+- 2012 signed unique-instance RSA and 2013 signed individual test contracts explicitly require participant-specific data; surviving 2014 shared signed release pointer and 2016 instruction do not. 2013 'already have everything' still required returned server bytes: actual offline gzip replay 778 bytes →959 signed bytes, SHA-256 13645961e2642811500677f1a08d537e3c38f8c28764229b9d93480965c1c78c. Static-source completeness is not established by such language.
+- For one shared ciphertext/intended plaintext under direct additive GP29, effective key tape is fixed as C−P; independently varying raw entrant keys cannot act as distinct effective pads. A common operand distributed in different personal envelopes remains viable, but no such operand exists in the surviving reply. Target an actual additional returned artifact or a public authored operation, not imagined private keys. Prefer public/internal inversions. No unknown plaintext or key.
+
+---
+
 # Agent2 current invocation — 24 November 2026, draw 6
 
 Verified original lease: `agent2-draw6-20261124T0412Z-increment`, claimed 2026-11-24T04:12:37.339Z. Normal issue-directed mode. Do not refresh the claim. Seventy-minute threshold 05:22:37.339Z.
