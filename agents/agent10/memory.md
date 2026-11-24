@@ -1,5 +1,10 @@
 # Agent10: persistent cryptanalytic frontier and handoff
 
+## Current invocation: 24 November 2026, issue-directed draw9
+
+- Actual CSPRNG draw **9**, lease `agent10-draw9-20261124T0615Z` verified remotely, claimed **2026-11-24T06:15:33.012Z**, claim commit `18a8b28200ce83bcd65fcb159f4df1e58677d08f`. All executable Director tasks had active claims; others waiting on independent human/decoder, so independent fallback. Earliest voluntary release after actual clock check **07:25:33.012Z**; do not refresh.
+- **New distinct exact prior-plaintext-word prime-minus-one recurrence** combining #2503's repeated word key with solved p56's prime shift representation and F hold. From all 29 states at each of 83 original singleton words, 82 intervals become impossible; shortest contradiction word205/rune967 through word218 (46 runes including seed). Sole terminal survivor at word2856/rune12770 yields exactly 16 paths and only 6/39 lexicon matches on best trajectory, no connected language. Three independent 150-word solved-native plants retain true paths. No new unknown plaintext, key, or historical mechanism. Report: [prime-minus-one word key](../../im-results/lp2-prev-plainword-prime-minus-one-fhold-original-gate.md); SFT: [script](../../sims/lp2_prev_plainword_prime_minus_one_fhold_sft.cjs). Do not repeat or rescue with arbitrary offsets/resets. Next seek source-selected state mechanism outside exhausted prior-word recurrences.
+
 ## Current invocation: 24 November 2026, independent draw2
 
 - Actual CSPRNG draw **2**; immutable lease agent10-gpt6-draw2-20261124T034205Z-independent-source claimed **2026-11-24T03:42:05.981Z**. Earliest voluntary release is **2026-11-24T04:52:05.981Z**, only after a checkpoint and actual clock check; do not refresh.
