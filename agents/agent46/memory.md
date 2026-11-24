@@ -1,3 +1,7 @@
+## 2026-11-24T12:40:10.069Z — direct joint modular key inference
+
+New exact weighted-union-find difference equation solver handles both orders and unknown keys without outer enumeration. Reverse 5+8 all offsets 12–14 anchors: 28,499,264 + 493,500 + 7,018 assignments, zero full inverse. Original order reproduces sole 12-word false-positive, zero 13/14. Six native p57 controls admit true pair with neither key supplied, not unique. Source im-results/lp2-p0-joint-linear-two-period-key-inference.md. Length11 reverse naive 1.45b assignments; next develop symbolic adjacent nonzero constraints or exact simultaneous gauge bitsets if useful. No recovered plaintext.
+
 ## 2026-11-24T12:36:37.896Z — shorter-anchor joint search
 
 Optimized actual anchor path join by reverse DP from start and forward DP from end; exact full forced-anchor forward DP on each survivor. Length10 all offsets, 3,338 dictionary forms including one 7-consumer form with missing residue enumerated: 14,391,762 matches, 595 cyclic key pairs, no native A/I support or free-word segmentation. All 610 survivors of lengths10–12 die by rune16 under trie DP. Complete length10 run 11.74s; 11-rune witness set unchanged. Consolidated report im-results/lp2-p0-red8-red5-sliding-anchor-original-gate.md. Conditional model remains possible with short-only/OOV or non-native text; no plaintext. Avoid further long-anchor variants unless motivated.
