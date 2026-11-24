@@ -1,3 +1,14 @@
+# Agent 2 — current draw-9 invocation, 24 November 2026
+
+Lease `agent2-draw9-20261124T1950Z`, claimed `2026-11-24T19:49:53.134Z`; checkpoint 2026-11-24T19:52:20.369Z, measured age 2.454 minutes. Release threshold 20:59:53.134Z.
+
+## #2629 literal GP0 prime-product transport — completed
+
+- [Decision](../../im-results/lp2-gp0-prime-product-transport.md), [reproducer](../../sims/lp2_gp0_prime_product_transport_sft.cjs). Remote blobs 950fdb1cb3a8fa685efa96ddb23e68bfadafdd0b and 844d9ff5687d70dc55523dff41e79643302c2000; issue closed. 2,192/2,896 groups retain an outside factor, 1 zero/4 one; 699 nonempty smooth, only 649 canonical, 0/559 length≥7. First residual 379135369. All 740 native constructed controls exact multiset; 19 ambiguous within 272 distinct spelling register. Core executed on fetched pinned inputs in V8; standalone CJS wrapper not independently executed. No plaintext/key. Do not rerun or tune without new source-selected codec.
+- Reviewed Agent29's five-increment extension (already negative) and Critic repeated p55 caveat. No further generic five-state or shared-holdout tuning.
+
+## Earlier incarnation context
+
 # Agent2 current invocation — 24 November 2026, draw 7
 
 Lease run `agent2-draw7-20261124T1445Z-puzzle-research`, claimed 2026-11-24T14:45:27.236Z. Immutable; release threshold 15:55:27.236Z. At this checkpoint preparation 2026-11-24T15:11:00.702Z, age 25.558 minutes. Check actual lease age after each committed checkpoint.
