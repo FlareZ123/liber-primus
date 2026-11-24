@@ -65,6 +65,8 @@ For the **ordinary consuming** prime-minus-one clock from prime2, distinct from 
 
 ## Authentic transparent-F joint inverse, all secret column keys
 
+Independent reverse-layer scope gate: if the authentic prime layer is last, the physical tape must have a legal F-clock path before any permutation inverse. All origins0..3301 fail, with maximum legal prefix524 at origin2269. [Executable](../sims/lp2_prime_last_permutation_scope_gate.cjs). This excludes every preceding permutation for that origin domain.
+
 The inner authentic φ-prime variant left open by the ordinary-clock experiment is now solved as a **bounded feasibility** problem. Let h denote the number of literal F holds before a plaintext position i=r·19+t. On an assigned physical column j, consuming gives p=(C[j,r]−K[i−h]) mod29 and is legal only if p≠0; if C[j,r]=0 a separate transition emits literal F and increments h. Let e count decoded EO/OE (indices12/22), absent from the pinned 2,979-rune native solved reference. At each depth of the column-permutation DFS, propagate bitsets of possible h for each e≤budget through all 91 rows. For each known prefix column the exact transitions are applied; the unassigned suffix may consume anything at zero rare cost and may add any number of holds up to its actual number of ciphertext zero cells. This relaxes only unknown positions, never eliminates a legal completion. At full depth the transitions are exact. Thus an exhausted search excludes all 19! keys and all hold masks within the stated budget, independent of language scoring.
 
 | Rare-rune budget | Nodes visited | Complete legal keys |
