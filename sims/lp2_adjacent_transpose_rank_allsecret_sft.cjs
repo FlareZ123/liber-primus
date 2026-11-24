@@ -92,6 +92,14 @@ function run(d,trans,native,lex){
       out.controls.push({model:m,name:control.name,training:train.length,keyMatches:sol.key.filter((v,i)=>v===secret[i]).length,holdout:truth.length,holdoutMatches:tail.filter((v,i)=>v===truth[i]).length,nodes:sol.nodes});
     }
   }
+  // Inverse-rank emitter: the observed ciphertext is the symbol, not the rank.
+  // This orientation does NOT share the all-initial-key relabeling invariant.
+  out.emitterSamples=[];
+  for(const m of models.filter(m=>!m.wrap)){
+    const x=transform(C,m,true),y=transform(C,m,true,secret);
+    check(eq(transform(x,m,false),C)&&eq(transform(y,m,false,secret),C),"emitter replay");
+    out.emitterSamples.push({model:m,canonical:stat(x),privateInitial:stat(y)});
+  }
   return out;
 }
 const read=p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8');
