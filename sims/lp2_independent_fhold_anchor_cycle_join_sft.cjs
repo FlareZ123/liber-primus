@@ -3,7 +3,7 @@ const fs=require('node:fs');
 const path=require('node:path');
 const root=process.argv[2]||path.join(__dirname,'..');
 const files=["resources/liber-primus/lp2-corpus.json","resources/lp2-transcription.txt","resources/control/english_wordfreq_textblob.txt","resources/external/relikd-solved-gp29-native-v1.json"];
-const experiment=function experiment(inputs){
+const experiment=function experiment(inputs,selection=null){
  const mod=x=>((x%29)+29)%29;
  const gp=JSON.parse(inputs[0]), native=JSON.parse(inputs[3]), sym=new Map(gp.runes.map((c,i)=>[c,i]));
  function parse(s){let words=[],w=[];for(const c of s){if(sym.has(c))w.push(sym.get(c));else if(c!=="/"&&c!=="%"&&!/\s/u.test(c)&&w.length){words.push(w);w=[]}}if(w.length)words.push(w);return words}
@@ -152,6 +152,25 @@ const experiment=function experiment(inputs){
   }
   return {status:"relaxed survivors",states,es,used,peak}
  }
+
+ function arcPrune(sch,cand,pairs,removed){
+  const active=sch.map((_,i)=>i).filter(i=>!removed.has(i)),d=cand.slice(),p=pairs.filter(x=>!removed.has(x.i)&&!removed.has(x.j));
+  let passes=0,changed=true,removedRows=0;
+  while(changed&&passes<20){
+   changed=false;passes++;
+   for(const {i,j,es,cy} of p){
+    const a=d[i],b=d[j],l=sch[i].length;
+    const sa=a.map(w=>signature(cy,es,w,0,l,1)),sb=b.map(w=>signature(cy,es,w,l,es.length,-1));
+    const as=new Set(sa),bs=new Set(sb);
+    const aa=a.filter((_,k)=>bs.has(sa[k])),bb=b.filter((_,k)=>as.has(sb[k]));
+    if(!aa.length||!bb.length)return {status:"unsat",core:active,passes,removedRows};
+    if(aa.length!==a.length){d[i]=aa;changed=true;removedRows+=a.length-aa.length}
+    if(bb.length!==b.length){d[j]=bb;changed=true;removedRows+=b.length-bb.length}
+   }
+  }
+  return {status:"ok",cand:d,passes,removedRows}
+ }
+
  function robustGate(ws,inner,outer,mask,budget,prior){
   const sch=schedule(ws,inner,outer,mask),cand=sch.map(candidates),pairs=pairInfo(sch);
   const cores=prior.edges.slice(),seen=new Set(),unresolved=[],stats={nodes:0,solves:0,learned:0,pruned:0,caps:0,survivors:0,peak:0};
@@ -167,7 +186,7 @@ const experiment=function experiment(inputs){
     for(const i of ordered)rec(new Set([...removed,i]));return
    }
    stats.solves++;
-   const r=solveRelaxed(sch,cand,pairs,removed);stats.peak=Math.max(stats.peak,r.peak||0);
+   let r=solveRelaxed(sch,cand,pairs,removed);if(r.status==="cap"){stats.arcCalls=(stats.arcCalls||0)+1;const a=arcPrune(sch,cand,pairs,removed);stats.arcRows=(stats.arcRows||0)+a.removedRows;r=a.status==="unsat"?a:solveRelaxed(sch,a.cand,pairs,removed)}stats.peak=Math.max(stats.peak,r.peak||0);
    if(r.status==="unsat"){
     addCore(r.core);
     if(removed.size===budget){stats.pruned++;return}
@@ -183,8 +202,8 @@ const experiment=function experiment(inputs){
  }
 
  const checks=[];
- for(const [di,inner,outer] of [[1,8,13],[4,13,8]]){let ws=[],n=0;for(const w of donors[di]){if(n+w.length>222)break;ws.push(w);n+=w.length}if(!ws.length)throw Error("donor");let keys=[Array.from({length:inner},(_,i)=>mod(7*i*i+3*i+4)),Array.from({length:outer},(_,i)=>mod(11*i*i+5*i+3))];let e=encrypt(ws,keys),sch=schedule(e.ws,inner,outer,e.mask),p=pairInfo(sch)[0];if(!p)throw Error("no pair");let ca=candidates(sch[p.i]),cb=candidates(sch[p.j]),j=testPair(p,ca,cb,2000),trueA=signature(p.cy,p.es,ws[p.i],0,ws[p.i].length,1),trueB=signature(p.cy,p.es,ws[p.j],ws[p.i].length,p.es.length,-1);if(trueA!==trueB||!j.n)throw Error("positive");const recovery=recoverKnownMask(e.ws,inner,outer,e.mask);const found=recovery.solutions?.some(x=>JSON.stringify(x.key)===JSON.stringify(keys)&&JSON.stringify(x.plain)===JSON.stringify(ws))||false;let hold=[],hn=0;for(const w of donors[di].slice(ws.length)){if(hn+w.length>86)break;hold.push(w);hn+=w.length}const both=encrypt(ws.concat(hold),keys);let aa=0,bb=0;for(const e of sch.flat()){if(e.t)aa=(aa+1)%inner;if(e.t===2)bb=(bb+1)%outer}const pred=recovery.solutions?.length===1?heldout(both.ws.slice(ws.length),recovery.solutions[0].key,[aa,bb]):null;checks.push({donor:di,length:n,words:ws.length,inner,outer,zeros:e.z,mask:e.mask,pair:[p.i,p.j],cycles:p.cy.length,matches:j.n,trueSignature:true,recovery:{status:recovery.status,solutionCount:recovery.solutions?.length,found,trace:recovery.trace},withheld:{runes:hn,words:hold.length,status:pred?.status,solutionCount:pred?.states?.length,exact:pred?.states?.some(s=>JSON.stringify(s.plain)===JSON.stringify(hold)),peak:pred?.peak}})}
- const result=[];for(const [i,o]of [[8,13],[13,8]]){let masks=[];for(let m=0;m<27;m++)masks.push(gate(train,i,o,m));const bounds=Array.from({length:27},(_,m)=>disjointGate(train,i,o,m));const covers=Array.from({length:27},(_,m)=>coverGate(train,i,o,m,5));const robust=Array.from({length:27},(_,m)=>robustGate(train,i,o,m,3,covers[m]));result.push({inner:i,outer:o,rejected:masks.filter(m=>m.zero||m.empty!==undefined).length,masks,bounds,minimumOOV:Math.min(...bounds.map(b=>b.lowerBound)),covers,minimumCover:Math.min(...covers.map(b=>b.minCover)),robust})}
+ for(const [di,inner,outer] of (selection?[]:[[1,8,13],[4,13,8]])){let ws=[],n=0;for(const w of donors[di]){if(n+w.length>222)break;ws.push(w);n+=w.length}if(!ws.length)throw Error("donor");let keys=[Array.from({length:inner},(_,i)=>mod(7*i*i+3*i+4)),Array.from({length:outer},(_,i)=>mod(11*i*i+5*i+3))];let e=encrypt(ws,keys),sch=schedule(e.ws,inner,outer,e.mask),p=pairInfo(sch)[0];if(!p)throw Error("no pair");let ca=candidates(sch[p.i]),cb=candidates(sch[p.j]),j=testPair(p,ca,cb,2000),trueA=signature(p.cy,p.es,ws[p.i],0,ws[p.i].length,1),trueB=signature(p.cy,p.es,ws[p.j],ws[p.i].length,p.es.length,-1);if(trueA!==trueB||!j.n)throw Error("positive");const recovery=recoverKnownMask(e.ws,inner,outer,e.mask);const found=recovery.solutions?.some(x=>JSON.stringify(x.key)===JSON.stringify(keys)&&JSON.stringify(x.plain)===JSON.stringify(ws))||false;let hold=[],hn=0;for(const w of donors[di].slice(ws.length)){if(hn+w.length>86)break;hold.push(w);hn+=w.length}const both=encrypt(ws.concat(hold),keys);let aa=0,bb=0;for(const e of sch.flat()){if(e.t)aa=(aa+1)%inner;if(e.t===2)bb=(bb+1)%outer}const pred=recovery.solutions?.length===1?heldout(both.ws.slice(ws.length),recovery.solutions[0].key,[aa,bb]):null;checks.push({donor:di,length:n,words:ws.length,inner,outer,zeros:e.z,mask:e.mask,pair:[p.i,p.j],cycles:p.cy.length,matches:j.n,trueSignature:true,recovery:{status:recovery.status,solutionCount:recovery.solutions?.length,found,trace:recovery.trace},withheld:{runes:hn,words:hold.length,status:pred?.status,solutionCount:pred?.states?.length,exact:pred?.states?.some(s=>JSON.stringify(s.plain)===JSON.stringify(hold)),peak:pred?.peak}})}
+ const result=[];for(const [i,o]of [[8,13],[13,8]]){if(selection&&selection.inner!==i)continue;const ms=selection?selection.masks:Array.from({length:27},(_,m)=>m);let masks=[];for(const m of ms)masks.push(gate(train,i,o,m));const bounds=ms.map(m=>disjointGate(train,i,o,m));const covers=ms.map(m=>coverGate(train,i,o,m,5));const robust=ms.map((m,k)=>robustGate(train,i,o,m,selection?.budget??3,covers[k]));result.push({inner:i,outer:o,rejected:masks.filter(m=>m.zero||m.empty!==undefined).length,masks,bounds,minimumOOV:Math.min(...bounds.map(b=>b.lowerBound)),covers,minimumCover:Math.min(...covers.map(b=>b.minCover)),robust})}
  return {base,expanded:D.reduce((n,a)=>n+a.length,0),sizes:D.map(a=>a.length),checks,original:result};
 };
-console.log(JSON.stringify(experiment(files.map(p=>fs.readFileSync(path.join(root,p),'utf8'))),null,2));
+console.log(JSON.stringify(experiment(files.map(p=>fs.readFileSync(path.join(root,p),'utf8')),process.argv[3]?JSON.parse(process.argv[3]):null),null,2));
