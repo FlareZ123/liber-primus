@@ -61,7 +61,7 @@ It records the same “Welcome back” state at 17:14 GMT+1. The hidden comment 
 
     3301
 
-The surrounding HTML and the v1/“Welcome back” pages are **not signed**. The signed message body is; the exact original HTTP headers and body bytes are not preserved.
+Neither HTML wrapper is signed; the embedded clear-signed PGP message is separately signed. The exact original HTTP headers and body bytes are not preserved.
 
 ## P56 hash test of the v1 page body (bounded negative)
 
@@ -78,7 +78,7 @@ The 129-byte Git blob is verified by SHA-1 `7f591aaf6754b6b0a4acf27f912241a40a5c
 
 None matches. The first three are reproduced by Windows Node 22 [SFT run 45499202553](https://github.com/FlareZ123/liber-primus/actions/runs/45499202553); Whirlpool was independently computed with `openssl dgst -provider legacy -whirlpool` over the same 129-byte Git blob. Reproducer: [`lp2_p56_xsxnaks_patience_html_hash_sft.cjs`](../sims/lp2_p56_xsxnaks_patience_html_hash_sft.cjs).
 
-**Scope:** this rejects only the exact 129-byte community-archive v1 body under these four digest families. It is not the original 2013 HTTP entity, WARC, or signed response. It does not reject the later “Welcome back” v2 page, a lost original server serialization, other page objects, or an unspecified digest algorithm.
+**Scope:** this rejects only the exact 129-byte community-archive v1 body under these four digest families. It is not the original 2013 HTTP entity, WARC, or signed response. The reopened “Everything You Need” HTML page is tested separately below; this does not reject a lost original server serialization, other unpreserved page objects, or an unspecified digest algorithm.
 
 ## P56 hash test of the “Everything You Need” page (bounded negative)
 
@@ -116,7 +116,7 @@ The three surviving tcpdump data fragments match hex lines 19–21 and carry ICM
 ## Source inventory and archive limits
 
 - **Project-authenticated message files:** [first-onion hello](../resources/historical/cicada2013-first-onion-hello.asc), [second-onion “everything you need”](../resources/historical/cicada2013-second-onion-everything-you-need.asc), and [ICMP echo reply](../resources/historical/cicada2013-second-onion-icmp-echo.asc). The project source set records the PGP signatures as verified. Signature time, page observation time, and live availability time are distinct.
-- **Pinned participant archive:** [neuroretransmit/cicada second-onion README](https://github.com/neuroretransmit/cicada/blob/6c6d3318414775f7febce3c982607039e70f176d/2013/005-second-onion/README.md), plus the v1 HTML, signed-message copy, ICMP hex and decoded message. This is a later community archive, not a 2013 WARC.
+- **Pinned participant archive:** [neuroretransmit/cicada second-onion README](https://github.com/neuroretransmit/cicada/blob/6c6d3318414775f7febce3c982607039e70f176d/2013/005-second-onion/README.md), plus the v1 patience.html and reopened everything-you-need.html copies, signed-message copy, ICMP hex and decoded message. This is a later community archive, not a 2013 WARC.
 - **Two error-page copies:** [n7xtuNqh.txt](https://github.com/cijhho123/cicada3301/blob/d360ad97d39c4719e42dc88b0cbbb81ed54aa02c/2013/additional%20docs/TOR%202.2%20PAGE/n7xtuNqh.txt) and [nB98cRuT.txt](https://github.com/cijhho123/cicada3301/blob/d360ad97d39c4719e42dc88b0cbbb81ed54aa02c/2013/additional%20docs/TOR%202.2%20PAGE/nB98cRuT.txt). The latter preserves both the old li528 and replacement li498 error banners. These are later GitHub copies of participant material; original Pastebin timestamps were not recovered.
 - **Detailed participant chronology:** [scream314/cicada3301 2013.md](https://github.com/scream314/cicada3301/blob/10733feb487bb8beb9966d534727ee5897aa54fc/2013.md) describes the two onion states, both server banners, ICMP replies and decoded pointer. The overlapping text in these repositories is not independent corroboration.
 - **Wiki export:** [Dukotah's pinned Uncovering Cicada export, export_cur_00160.xml](https://github.com/Dukotah/cicada3301/blob/f63501d8f2d835b80c30230eb89a1110fb9197d2/corpus/C-community/wikis/uncovering-cicada/export_cur_00160.xml) contains the “TOR 2 DOWNTIME” page at revision **2016-05-02 04:38:16Z**, with embedded 7, 11 and 14 January 2013 observations. The related [export_cur_00840.xml](https://github.com/Dukotah/cicada3301/blob/f63501d8f2d835b80c30230eb89a1110fb9197d2/corpus/C-community/wikis/uncovering-cicada/export_cur_00840.xml) is a 2025 revision of the wiki material. These embedded dates are participant transcriptions, not independently captured HTTP timestamps.
