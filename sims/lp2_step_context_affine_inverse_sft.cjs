@@ -72,3 +72,24 @@ function experiment(corpus, native, literary) {
 }
 const r=experiment(JSON.parse(fs.readFileSync("resources/liber-primus/lp2-corpus.json",'utf8')),JSON.parse(fs.readFileSync("resources/external/relikd-solved-gp29-native-v1.json",'utf8')),fs.readFileSync("resources/control/gibran_prophet_58585.txt",'utf8'));
 assert.equal(r.train,9640);assert.equal(r.test,3008);console.log(JSON.stringify(r,null,2));
+function permutationBound(corpus,native){
+  const m=x=>(x%29+29)%29;
+  const p=Array(29).fill(.5);for(const section of native.sections)for(const c of section.source_text){const x=native.runes.indexOf(c);if(x>=0)p[x]++}
+  const total=p.reduce((a,b)=>a+b), logs=p.map(x=>Math.log(x/total)).sort((a,b)=>b-a);
+  const order=Array.from({length:29},(_,x)=>x).sort((a,b)=>p[b]-p[a]||a-b);
+  const c=corpus.pages.filter(x=>x.page<54).flatMap(x=>x.indices),nTrain=corpus.pages.filter(x=>x.page<40).reduce((a,b)=>a+b.indices.length,0);
+  function counts(start,end){const mat=Array.from({length:29},()=>Array(29).fill(0)), nonzero=Array.from({length:29},()=>Array(29).fill(0)); for(let i=start;i<end;i++){const j=m(c[i-1]-c[i-2]),d=m(c[i]-c[i-1]);mat[j][d]++;if(c[i]!==0)nonzero[j][d]++}return {mat,nonzero}}
+  function summarize(start,end){
+    const {mat,nonzero}=counts(start,end); const marg=Array(29).fill(.5);for(let i=start;i<end;i++)marg[m(c[i]-c[i-1])]++;
+    const tot=marg.reduce((a,b)=>a+b), baseline=marg.reduce((acc,x)=>acc+(x-.5)*Math.log(x/tot),0);
+    const max=mat.reduce((acc,r)=>acc+r.slice().sort((a,b)=>b-a).reduce((s,x,i)=>s+x*logs[i],0),0);
+    const top9=mat.reduce((a,r)=>a+r.slice().sort((a,b)=>b-a).slice(0,9).reduce((s,x)=>s+x,0),0);
+    return {n:end-start,baseline,max,gainPerRune:(max-baseline)/(end-start),top9,top9Fraction:top9/(end-start),nativeTop9Fraction:order.slice(0,9).reduce((a,i)=>a+p[i],0)/total,impossibleRows:nonzero.map((r,i)=>r.every(x=>x>0)?i:null).filter(x=>x!==null),rowDistinctNonzero:nonzero.map(r=>r.filter(x=>x>0).length)};
+  }
+  const training=summarize(2,nTrain), suffix=summarize(nTrain,c.length),all=summarize(2,c.length),{mat}=counts(2,nTrain),key=mat.map(r=>{const dOrder=Array.from({length:29},(_,i)=>i).sort((a,b)=>r[b]-r[a]||a-b);return Object.fromEntries(dOrder.map((d,i)=>[d,order[i]]))});
+  const baselineCounts=Array(29).fill(.5);for(let i=2;i<nTrain;i++)baselineCounts[m(c[i]-c[i-1])]++;
+  let score=0,base=0,preview=[];const norm=baselineCounts.reduce((a,b)=>a+b);
+  for(let i=nTrain;i<c.length;i++){const d=m(c[i]-c[i-1]),j=m(c[i-1]-c[i-2]),x=key[j][d];score+=Math.log(p[x]/total);base+=Math.log(baselineCounts[d]/norm);if(preview.length<100)preview.push(corpus.translit[x])}
+  return {training,suffix,all,frozenSuffixGain:(score-base)/(c.length-nTrain),frozenSuffixPreview:preview.join(" ")};
+}
+console.log(JSON.stringify(permutationBound(JSON.parse(fs.readFileSync("resources/liber-primus/lp2-corpus.json","utf8")),JSON.parse(fs.readFileSync("resources/external/relikd-solved-gp29-native-v1.json","utf8"))),null,2));
