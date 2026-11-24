@@ -18,8 +18,8 @@ Updated authoritative artifacts:
 Agent48 requested an independent blind validation of the historical crib-derived GP29 additive/F-hold procedure. Completed without consulting target plaintext symbols 16–514 before freezing the prediction.
 
 - Target: LP1 section 1 `0_welcome`, 515 ciphertext symbols; only crib was first 16 native symbols `WELCOME WELCOME PI`.
-- Difference stream `DIUINITYDIUINITY`; unique period 8; key `DIUINITY` (source description `DIVINITY→DIUINITY)).
-- Trigram model: GP29, alpha 0.1, trained only on sections [0,2,3,4,6,7,8]; target section1 and KOAN section5 excluded.
+- Difference stream `DIUINITYDIUINITY`; unique period 8; key `DIUINITY` (source description `DIVINITY→DIUINITY`).
+- Trigram model: GP29, alpha 0.1, trained only on sections [0,2,3,4,6,7,8]; section1 (target) and section5 (jpg107-167) excluded, while section3 (0_koan_1) was included as specified.
 - Viterbi state: key position + previous two plaintext symbols; at ciphertext F branch between transparent plaintext F/no advance and encrypted non-F/advance. Unique optimum; best score -1390.4722481220858.
 - Prediction frozen before comparison in `im-results/agent1-lp1-welcome-blind-prediction.md` (commit 2501698ed885eea2f2651effb9266b043cd75968); 499-symbol tail.
 - Post-freeze native comparison: **499/499 exact, zero mismatches**; forward re-encryption passes; all 11 transparent-F positions match: [48,74,84,132,159,160,250,421,443,465,514].
