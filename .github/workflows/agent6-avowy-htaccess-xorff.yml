@@ -1,0 +1,112 @@
+name: Agent6 - inspect Avowy .htaccess XOR-FF payload
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  decode:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download, hex-decode, complement and inspect
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL="https://raw.githubusercontent.com/Dukotah/cicada3301/master/corpus/D-archives/iarchive/items/avowyfgl5lkzfj3n.onion/.htaccess"
+          curl --fail --location --silent --show-error "$URL" -o raw.htaccess.hex
+          python3 - <<'PY'
+          import gzip, hashlib, json, pathlib, re, struct
+          from collections import Counter
+
+          p = pathlib.Path("raw.htaccess.hex")
+          text = p.read_text(encoding="ascii")
+          clean = re.sub(r"\s+", "", text)
+          if not clean or len(clean) % 2 or re.search(r"[^0-9a-fA-F]", clean):
+              raise SystemExit("source is not an even-length hexadecimal stream")
+          raw = bytes.fromhex(clean)
+          decoded = bytes(b ^ 0xff for b in raw)
+          if decoded[:4] != bytes.fromhex("1f8b0808"):
+              raise SystemExit(f"XOR-FF did not produce expected gzip header: {decoded[:8].hex()}")
+          pathlib.Path("xorff.gz").write_bytes(decoded)
+          payload = gzip.decompress(decoded)
+          pathlib.Path("data.out").write_bytes(payload)
+
+          report = {
+              "source_url": "https://raw.githubusercontent.com/Dukotah/cicada3301/master/corpus/D-archives/iarchive/items/avowyfgl5lkzfj3n.onion/.htaccess",
+              "source_hex_chars": len(clean),
+              "source_decoded_bytes": len(raw),
+              "source_sha256": hashlib.sha256(raw).hexdigest(),
+              "xorff_gzip_bytes": len(decoded),
+              "xorff_gzip_sha256": hashlib.sha256(decoded).hexdigest(),
+              "gzip_header_hex": decoded[:32].hex(),
+              "payload_bytes": len(payload),
+              "payload_sha256": hashlib.sha256(payload).hexdigest(),
+              "payload_header_hex": payload[:64].hex(),
+              "payload_prefix_ascii": "".join(chr(b) if 32 <= b < 127 else "." for b in payload[:64]),
+              "payload_byte_entropy": round(-sum((n/len(payload))*__import__("math").log2(n/len(payload)) for n in Counter(payload).values()), 6),
+              "payload_magic_offsets": {},
+          }
+          signatures = {
+              "jpeg": bytes.fromhex("ffd8ff"),
+              "png": bytes.fromhex("89504e47"),
+              "zip": bytes.fromhex("504b0304"),
+              "pdf": b"%PDF",
+              "gzip": bytes.fromhex("1f8b"),
+          }
+          for name, sig in signatures.items():
+              offsets = []
+              start = 0
+              while True:
+                  i = payload.find(sig, start)
+                  if i < 0: break
+                  offsets.append(i)
+                  start = i + 1
+              report["payload_magic_offsets"][name] = offsets[:50]
+          pathlib.Path("report.json").write_text(json.dumps(report, indent=2) + "\n")
+          print(json.dumps(report, indent=2))
+          PY
+
+      - name: Install image inspection tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends imagemagick tesseract-ocr libimage-exiftool-perl
+          python3 -m pip install --quiet pillow
+
+      - name: Inspect extracted payload if it is an image
+        shell: bash
+        run: |
+          set -euo pipefail
+          file data.out | tee file-report.txt
+          if head -c 3 data.out | od -An -tx1 | tr -d ' \n' | grep -qi '^ffd8ff'; then
+            identify -verbose data.out > identify.txt
+            exiftool -a -u -g1 data.out > exiftool.txt
+            tesseract data.out stdout --psm 6 2>tesseract.stderr.txt > ocr.txt || true
+            strings -a -n 4 data.out | head -300 > strings.txt
+          else
+            echo "Payload is not JPEG; see report.json magic scan." > image-inspection.txt
+            strings -a -n 4 data.out | head -300 > strings.txt
+          fi
+
+      - name: Upload decoded evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent6-avowy-htaccess-xorff-evidence
+          path: |
+            raw.htaccess.hex
+            xorff.gz
+            data.out
+            report.json
+            file-report.txt
+            identify.txt
+            exiftool.txt
+            ocr.txt
+            tesseract.stderr.txt
+            strings.txt
+            image-inspection.txt
+          if-no-files-found: ignore
+          retention-days: 14
