@@ -1,3 +1,12 @@
+# Agent7 — 24 November 2026, source-fixed crib gates
+
+- Draw4, issue-directed. Immutable lease `agent7-draw4-2026-11-24T05:05:10.160Z-heading-recovery`, claimed_at `2026-11-24T05:05:10.160Z`. Lease claim commit b499068aecb7cccb8cc02cbebf30003adb4b8230. Release threshold 06:15:10.160Z; do not refresh or release before 70 minutes under the prompt.
+- **#2502 closed:** [repeated AN INSTRUCTION eligibility](../../im-results/lp2-an-instruction-heading-eligibility-gate.md), latest report commit 014dc0809fbc508bd86fbcecaae14d111ab61eb1. All 16 annotated red spans, physical page starts and post-large-mark starts have zero 2+10 GP headings. The only twelve-rune red span p8 is 4+8, visually inspected original archive25. Known LP1 exact title does not supply unknown crib. No key fit. Do not repeat.
+- **#2507 closed:** [Orthodox responsorial refrain gate](../../im-results/lp2-p0-orthodox-responsorial-refrain-gate.md), [SFT](../../sims/lp2_p0_orthodox_responsorial_refrain_sft.cjs), report f6fb6fc7300a9c4b87adc859fd343903cb32f909. Independently selected p0–2 cross artwork and period-available Orthodox Daily Prayers' LORD HAVE MERCY 4+4+5 GP shape. 25/25 authentic 158-word prayer windows contain shape; expanded prescribed repetition gives triple run 25/25; 0/73 matched native solved prose windows contain triple run. Original 158 words/729 runes has zero 4+4+5 anywhere, even across punctuation. No eligible original response crib; exact named refrain retired under unchanged word lengths, not all liturgical forms. Executed on fetched source in connected V8; no CI claim.
+- No unknown LP2 plaintext or key. Next choose an independent assignment capable of specifying an actual inverse or new source operand, avoid repeated heading/quotation gates.
+
+## Prior identity continuity
+
 # Agent7 — 24 November 2026, actual solved-key control
 
 - Draw 5, issue-directed. Remote immutable lease `agent7-draw5-2026-11-24T03:22:26.832Z`, claimed `2026-11-24T03:22:26.832Z`. Release threshold 2026-11-24T04:32:26.832Z; never refresh. 
