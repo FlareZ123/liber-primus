@@ -33,23 +33,34 @@ function experiment(corpus,source,control,assert) {
   const top=(h,k)=>sorted(h).slice(0,k).reduce((a,b)=>a+b,0);
   const ioc=(h,n)=>h.reduce((s,x)=>s+x*(x-1),0)/(n*(n-1));
   const table={...Object.fromEntries(corpus.translit.map((x,i)=>[x,i])),K:5,Q:5,V:1,Z:15,ING:21};
-  const native=[];
-  for(let w of control.toUpperCase().match(/[A-Z]+/g)??[]){
+  const native=[],rareFlags=[];
+  let priorEnd=0;
+  // Every ordinary word start may use a common boundary label. Count a
+  // start preceded by any of these punctuation marks as a rare label.
+  for(const match of control.toUpperCase().matchAll(/[A-Z]+/g)){
+    let w=match[0];
+    let rare=/[.!?,;:'"()—–]/.test(control.slice(priorEnd,match.index));
+    priorEnd=match.index+w.length;
     while(w.length){
       const k=[w.slice(0,3),w.slice(0,2),w[0]].find(x=>Object.hasOwn(table,x));
       assert(k!==undefined,"control token "+w);
-      native.push(table[k]);w=w.slice(k.length);
+      native.push(table[k]);rareFlags.push(rare?1:0);rare=false;w=w.slice(k.length);
     }
   }
-  function nativeWindows(n){
+  function nativeWindows(n,bound){
     const h=counts(native.slice(0,n),29);
     let minTop5=Infinity,minIoc=Infinity,windows=0;
+    let rare=rareFlags.slice(0,n).reduce((a,b)=>a+b,0),minTop5MinusRare=Infinity,excludedByRareBound=0,maxRare=0;
     for(let i=0;i+n<=native.length;i++){
-      if(i){h[native[i-1]]--;h[native[i+n-1]]++;}
+      if(i){h[native[i-1]]--;h[native[i+n-1]]++;rare+=rareFlags[i+n-1]-rareFlags[i-1];}
+      const adjusted=top(h,5)-rare;
+      minTop5MinusRare=Math.min(minTop5MinusRare,adjusted);
+      maxRare=Math.max(maxRare,rare);
+      if(adjusted>bound)excludedByRareBound++;
       minTop5=Math.min(minTop5,top(h,5)/n);
       minIoc=Math.min(minIoc,ioc(h,n));windows++;
     }
-    return {windows,minTop5,minIoc};
+    return {windows,minTop5,minIoc,minTop5MinusRare,maxRare,excludedByRareBound};
   }
   function region(lo,hi,withControl=true){
     const t=tape.filter(x=>x.page>=lo&&x.page<=hi);
@@ -84,11 +95,16 @@ function experiment(corpus,source,control,assert) {
     const backFlags=Array(n);
     for(let i=0;i<n;i++)backFlags[perm[i]]=restored[i]%2;
     assert(restored.every((x,i)=>Math.floor(x/2)===t[i].rune&&backFlags[i]===t[i].flag),"exact original tuple roundtrip");
-    return {lo,hi,n,starts,support:h.filter(Boolean).length,runeTop5:top(hr,5)/n,runeIoc:ioc(hr,n),fixedTupleTop5:fixedTop5/n,fixedTupleMaxIoc:ioc(pairs,n),freeFlagMaxTop5:freeTop5/n,freeFlagAttained:true,roundTrip:true,...(withControl?{control:nativeWindows(n)}:{})};
+    return {lo,hi,n,starts,support:h.filter(Boolean).length,runeTop5:top(hr,5)/n,runeIoc:ioc(hr,n),fixedTupleTop5:fixedTop5/n,fixedTupleMaxIoc:ioc(pairs,n),freeFlagMaxTop5:freeTop5/n,freeFlagAttained:true,roundTrip:true,...(withControl?{control:nativeWindows(n,freeTop5)}:{})};
   }
   const regions=[[0,55],[16,21],[40,53]].map(([lo,hi])=>region(lo,hi));
   assert(regions[0].n===12956&&regions[0].starts===2896,"original count");
   for(const x of regions)assert(x.freeFlagMaxTop5<x.control.minTop5,"original region below every donor window");
+
+  // More than two punctuation labels cannot evade the bound if the decoded
+  // rare-label population R is small: top5 <= top10(original runes) + R.
+  // The control comparison counts even commas, quotes and parentheses as rare.
+  assert(regions[0].control.excludedByRareBound===regions[0].control.windows,'whole-book rare-punctuation extension');
 
   // Grant independently chosen GP58 maps on any partition of the physical
   // rune-bearing pages. Optimize the bound over every possible cut set.
