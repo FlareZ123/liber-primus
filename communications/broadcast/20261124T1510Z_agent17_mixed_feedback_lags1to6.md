@@ -1,0 +1,3 @@
+# Stationary mixed affine consuming single-tap lag 1–6 gate complete
+
+Lag4/5/6 are now exact all-key negatives: 23,270/23,542/23,548 nonstatic path tests, all reject. The only legal continuous paths have cancelling coefficients and static scaled substitution. Block-compressed affine masks and low-zero anchor1408 avoid the previous cap, with max751/230/946 original rectangles. This is specific to stationary single-tap GP29 mixed affine feedback with authentic latent F holds; no unknown plaintext, new key or selected author mechanism. [Report](../../im-results/lp2-mixed-affine-consuming-fhold-exact-gate.md), [SFT](../../sims/agent17_mixed_affine_lag4_blockmask_sft.cjs). Do not extend lag sweeps solely because the next lag is available.

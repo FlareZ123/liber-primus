@@ -1,0 +1,204 @@
+[
+  {
+    "q": 5,
+    "n": 12956,
+    "anchor": 1408,
+    "anchorLength": 114,
+    "cap": 2500,
+    "candidates": 23543,
+    "rejected": 23542,
+    "cancellingStatic": 29,
+    "pending": 0,
+    "maxPeak": 230,
+    "maxBlockEnd": 3854,
+    "shards": [
+      {
+        "lo": 0,
+        "hi": 7,
+        "candidates": 5045,
+        "rejected": 5044,
+        "peak": 136,
+        "end": 3854
+      },
+      {
+        "lo": 7,
+        "hi": 14,
+        "candidates": 5887,
+        "rejected": 5887,
+        "peak": 230,
+        "end": 2156
+      },
+      {
+        "lo": 14,
+        "hi": 21,
+        "candidates": 5885,
+        "rejected": 5885,
+        "peak": 122,
+        "end": 2156
+      },
+      {
+        "lo": 21,
+        "hi": 29,
+        "candidates": 6726,
+        "rejected": 6726,
+        "peak": 195,
+        "end": 1973
+      }
+    ],
+    "plants": [
+      {
+        "n": 1295,
+        "key": [
+          7,
+          9,
+          13,
+          4
+        ],
+        "forward": {
+          "ok": null,
+          "end": 325,
+          "peak": 3846
+        },
+        "reverse": {
+          "ok": null,
+          "end": 228,
+          "peak": 4096
+        },
+        "necessary": true
+      },
+      {
+        "n": 1163,
+        "key": [
+          11,
+          17,
+          3,
+          18
+        ],
+        "forward": {
+          "ok": null,
+          "end": 296,
+          "peak": 3980
+        },
+        "reverse": {
+          "ok": true,
+          "end": 305,
+          "peak": 1515
+        },
+        "necessary": true
+      }
+    ]
+  },
+  {
+    "q": 6,
+    "n": 12956,
+    "anchor": 1408,
+    "anchorLength": 114,
+    "cap": 2500,
+    "candidates": 23549,
+    "rejected": 23548,
+    "cancellingStatic": 29,
+    "pending": 0,
+    "maxPeak": 946,
+    "maxBlockEnd": 3132,
+    "shards": [
+      {
+        "lo": 0,
+        "hi": 2,
+        "candidates": 842,
+        "rejected": 841,
+        "peak": 548,
+        "end": 2281
+      },
+      {
+        "lo": 2,
+        "hi": 6,
+        "candidates": 3364,
+        "rejected": 3364,
+        "peak": 561,
+        "end": 3132
+      },
+      {
+        "lo": 6,
+        "hi": 11,
+        "candidates": 4205,
+        "rejected": 4205,
+        "peak": 845,
+        "end": 2409
+      },
+      {
+        "lo": 11,
+        "hi": 16,
+        "candidates": 4205,
+        "rejected": 4205,
+        "peak": 642,
+        "end": 2516
+      },
+      {
+        "lo": 16,
+        "hi": 21,
+        "candidates": 4205,
+        "rejected": 4205,
+        "peak": 946,
+        "end": 2849
+      },
+      {
+        "lo": 21,
+        "hi": 25,
+        "candidates": 3364,
+        "rejected": 3364,
+        "peak": 369,
+        "end": 2516
+      },
+      {
+        "lo": 25,
+        "hi": 29,
+        "candidates": 3364,
+        "rejected": 3364,
+        "peak": 640,
+        "end": 2409
+      }
+    ],
+    "plants": [
+      {
+        "n": 1295,
+        "key": [
+          7,
+          9,
+          13,
+          4
+        ],
+        "forward": {
+          "ok": null,
+          "end": 311,
+          "peak": 3060
+        },
+        "reverse": {
+          "ok": null,
+          "end": 319,
+          "peak": 4592
+        },
+        "necessary": true
+      },
+      {
+        "n": 1163,
+        "key": [
+          11,
+          17,
+          3,
+          18
+        ],
+        "forward": {
+          "ok": true,
+          "end": 349,
+          "peak": 2030
+        },
+        "reverse": {
+          "ok": null,
+          "end": 435,
+          "peak": 4215
+        },
+        "necessary": true
+      }
+    ]
+  }
+]
