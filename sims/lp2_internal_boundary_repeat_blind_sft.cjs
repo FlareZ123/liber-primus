@@ -31,14 +31,14 @@ function experiment(files){
  // For each pair of distinct, non-overlapping boundary starts, match full length
  // and all interior punctuation. Initial boundary is an eligibility condition,
  // not a feature: permit both identical and different rhetorical boundary types.
- function rank(w,mode="boundary",limit=0){
+ function rank(w,mode="boundary",limit=0,ignorePunctuation=false){
   let anchors=w.map((x,i)=>mode==="all"||x.before?i:-1).filter(i=>i>=0);
   if(limit&&anchors.length>limit)anchors=Array.from({length:limit},(_,i)=>anchors[Math.floor(i*anchors.length/limit)]);
   let comparisons=0,top=[],max=0,held=0,train=0,truth=0,truthTrain=0,relaxedTrain=0,relaxedHold=0,relaxedTrue=0;const histogram={};
   for(let a=0;a<anchors.length;a++)for(let b=a+1;b<anchors.length;b++){
    let i=anchors[a],j=anchors[b],k=0,runes=0,inside=0;
    comparisons++;
-   while(i+k<j&&j+k<w.length&&w[i+k].len===w[j+k].len&&(k===0||w[i+k].before===w[j+k].before)){
+   while(i+k<j&&j+k<w.length&&w[i+k].len===w[j+k].len&&(ignorePunctuation||k===0||w[i+k].before===w[j+k].before)){
     runes+=w[i+k].len;if(k>0&&w[i+k].before)inside++;k++;
    }
    histogram[k]=(histogram[k]||0)+1;
@@ -72,9 +72,9 @@ function experiment(files){
  // Deterministic contiguous disjoint 2,896-word windows. Search all eligible
  // pairs in each window, not an artificial IID sequence.
  const ctr={};for(const key of ["gibran","shakespeare","crowley"]){let t=files[key];if(key!=="crowley"){let k=t.search(/\*\*\*\s*START OF (?:THE|THIS) PROJECT GUTENBERG/i);if(k>=0)t=t.slice(t.indexOf("\n",k));let e=t.search(/\*\*\*\s*END OF (?:THE|THIS) PROJECT GUTENBERG/i);if(e>=0)t=t.slice(0,e)}let w=native(t);let windows=[],matched=[];if(w.length<2896){windows.push(rank(w));matched.push(rank(w,"boundary",179));}else for(let i=0;i+2896<=w.length;i+=2896){const v=w.slice(i,i+2896);windows.push(rank(v));matched.push(rank(v,"boundary",179));}const brief=x=>({words:x.words,anchors:x.anchors,comparisons:x.comparisons,max:x.max,ties:x.ties,train:x.train,held:x.held,truthTrain:x.truthTrain,truth:x.truth,relaxedTrain:x.relaxedTrain,relaxedHold:x.relaxedHold,relaxedTrue:x.relaxedTrue});ctr[key]={total:w.length,windows:windows.map(brief),matched:matched.map(brief)};}
- return {original:rank(origW),solved:rank(sw),allWordOriginal:rank(origW,"all"),allWordSolved:rank(sw,"all"),controls:ctr};
+ return {original:rank(origW),solved:rank(sw),allWordOriginal:rank(origW,"all"),allWordSolved:rank(sw,"all"),lengthOnlyOriginal:rank(origW,"all",0,true),controls:ctr};
 }
 const result=experiment(files);
 const assert=require("node:assert/strict");
-assert.equal(result.original.max,5);assert.equal(result.original.comparisons,15931);assert.equal(result.original.train,0);assert.equal(result.original.held,0);assert.equal(result.solved.max,12);assert.ok(result.solved.top[0].exactWords);
+assert.equal(result.original.max,5);assert.equal(result.original.comparisons,15931);assert.equal(result.original.train,0);assert.equal(result.original.held,0);assert.equal(result.solved.max,12);assert.ok(result.solved.top[0].exactWords);assert.equal(result.allWordOriginal.max,7);assert.equal(result.original.relaxedHold,0);assert.equal(result.solved.relaxedTrue,2);
 console.log(JSON.stringify(result,null,2));
