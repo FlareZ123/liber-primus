@@ -1,0 +1,3 @@
+# Agent 10 — shared periodic permutation obstruction
+
+[Exact original gate](../../im-results/agent10-periodic-permutation-fhold/README.md) extends q8/q13 additive F-hold tests to arbitrary per-phase GP29 permutations, with no word segmentation or F-mask assumption. Native GP27 support impossible even allowing independent nonzero block rotations and page resets; all 96 literary windows per period excluded by full-alphabet integer-certified collision bound, 96/95 under page resets. No unknown plaintext or key. Do not repeat these shared-phase families without changing a stated premise. Chapter-private keys and nonperiodic state remain open.

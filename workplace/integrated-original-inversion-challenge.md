@@ -1,5 +1,11 @@
 # Integrated original inversion challenge
 
+
+### Shared periodic phase permutations with latent F holds
+
+The manuscript-wide Agent10 result excludes the full native GP27 support at q8/q13 even with arbitrary per-phase bijections and independently rotated nonzero blocks, including splits at physical page boundaries. BigInt-certified full-alphabet collision upper bounds are 922601 and 665076, below all 96 finite literary window lower bounds per period. Arbitrary page starts leave q8 at 96/96 and q13 at 95/96 excluded. This eliminates a shared-periodic explanation under the stated native controls, while leaving chapter-private state, altered clocks, transpositions and other models open. [Exact gate](../im-results/agent10-periodic-permutation-fhold/README.md).
+
+
 ## Current causal frontier — 2026-11-24
 
 The dynamic phrase-reference decision (#2583) finds that the historical signed book codes use fixed carriers and explicit literals, without a growing phrase dictionary. The conditional direct printed-group BASE29 pointer+literal model with one new entry per record fails 897/2,896 original records even with 29 preinitialized phrases and independently optimized digit permutations. Native p57 control replays 95/95 with explicit terminal reference. Retire this small-seed direct transport only; no source-fixed dynamic framing or update law, key, or unknown plaintext. [Report](../im-results/lp2-dynamic-phrase-reference-bound.md).
