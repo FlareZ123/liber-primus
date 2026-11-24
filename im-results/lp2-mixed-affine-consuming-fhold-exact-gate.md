@@ -23,9 +23,24 @@ The exact Viterbi decoder keeps previous consuming X,C and previous physical pla
 
 True u ranks first in both. This demonstrates conditional scale recovery and latent-hold inference, not blind recovery of a,b,d. Cheap run-gate alone retains 16,832 and 1,933 triples on the respective plants; it is not a universally identifying attack.
 
-## Larger consuming lags
+## Exact longer-lag extension: q=2 and q=3
 
-Split each nonzero run into q interleaved lanes for mixed lag-q feedback. This necessary gate retains 4,367/19,172/23,271 triples at q=2/3/4, including 4,338/19,143/23,242 noncancellation triples. These are not demonstrated legal global inverses. Do not generalize the first-order theorem to longer lag. A future investigation would need a joint F-state queue constraint and a source-selected lag, not arbitrary retuning.
+The initial necessary lane gate retains 4,367/19,172/23,271 triples at q=2/3/4, including 4,338/19,143/23,242 noncancellation triples. For q=2 and q=3, a new exact joint path test closes every remaining nonstatic possibility. The recurrence uses the oldest pair in a queue of q previous consuming (X,C) pairs; a hold leaves the whole queue unchanged.
+
+At the longest nonzero run (zero-based corpus offset 1691, length 217), grant the first q symbols arbitrary nonzero X values and fixed observed C values. This is a relaxation of any reachable initial queue, so an empty path set is sufficient to reject the global model. Represent state sets as a union of products of q 29-bit X masks for fixed q C values. On consumption, affine-transform the oldest mask, remove zero, rotate both queues and append the new C and X mask. On observed zero, also retain a hold branch. Remove a product only when contained coordinatewise in another product with identical C queue. These operations are exact (no beam ranking).
+
+For cancellation b=-a,d=0 and a nonzero, delta=X-C evolves by nonzero multiplier -a and rotates on consumption; the number of nonzero deltas in the queue is invariant. To test every nonstatic path, initialize the union of q products in which at least one delta is nonzero. If this union dies, any globally legal inverse must be static. For a=b=d=0 the inverse is directly static.
+
+| q | Lane gate survivors | Exact path tests (exclude static when cancelling) | Rejected | Largest rejection offset after anchor | Peak products |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| 2 | 4367 | 4366 | 4366 | 926 | 53 |
+| 3 | 19172 | 19171 | 19171 | 1975 | 228 |
+
+No cap reached. Thus stationary continuous consuming lag q=1,2,3 mixed affine laws all reduce to static substitution. This is not an exclusion of q>=4, irregular clock, multiple taps, or piecewise coefficients. The monolithic q=4 path run hit an execution timeout; no q=4 conclusion.
+
+Two separate native-text q=2,3 plants with the same keys and donors as the first-order plants survive both the lane gate and the exact anchored path test (actual output in the script); this checks preservation of a true path, not full blind key recovery.
+
+Reproduce with `node sims/lp2_mixed_affine_consuming_queue_exact_gate_sft.cjs`. Both first-order and queue scripts were executed in connected JavaScript on canonical inputs; no CI run claimed.
 
 ## Reproduction
 
