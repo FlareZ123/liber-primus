@@ -1,10 +1,5 @@
 name: Agent6 SHED historical two-primitive original SFT
 on:
-  push:
-    paths:
-      - 'sims/lp2_shed_historical_program_original_sft.cjs'
-      - 'sims/lp2_grid_inner180_memoryless_gp_ending_sft.cjs'
-      - '.github/workflows/agent6-shed-historical-program.yml'
   workflow_dispatch:
 
 jobs:
