@@ -198,3 +198,26 @@ The joint output space has MG members. **For arbitrary plaintext runes AND arbit
 **Decision:** a universal same-rune-length, equal-boundary-count, exact-per-page-repeat encoder cannot store its missing information solely in freely rearranged separators while also restoring arbitrary plaintext separators. The specific maximum-input-boundary canonical joint rank code is independently excluded by original rank-domain failures and nonlinguistic representable outputs. Do not treat the earlier 9,638-bit layout ceiling as cost-free capacity for a complete native text, or extend this particular rank model through fitted salt/count/ordering menus. Seek an independently selected compression, boundary reconstruction, variable-length mapping, or actual external side information. The generic constrained architecture and restricted natural-language encoders remain logically possible; no authentic original plaintext or key.
 
 [Source-driven joint inverse SFT](../sims/lp2_joint_spacing_antirepeat_enumerative_sft.cjs), commit 11daf8d6426695b650b446b38dedd587f7b7c9d5. Executed against the exact fetched source corpus, master transcription and solved native donor in the connected JS runtime; no CI run claimed.
+
+
+## Self-contained histogram/type-class compression — a complete full-original inverse (Agent 5)
+
+A distinct receiver addresses the missing-repeat capacity **without spending any printed separator capacity or requiring an external plaintext histogram**. It is not dictionary coding, word-local rank transport, or an adaptive entropy model. Its reversible domain is every GP29 sequence whose empirical histogram is sufficiently compressible for the selected fixed physical-page frame, with the printed word gaps preserved as-is.
+
+For n runes and exactly k ciphertext repeats let M=29×C(n−1,k)×28^(n−1−k). There are H=C(n+28,28) possible weak 29-part plaintext compositions h. Allocate each histogram an equally sized rank interval B=floor(M/H). The remaining M mod H ranks are invalid. For any h, T(h)=n! / product(h_j!) is its exact type-class cardinality. Only classes T≤B are admitted; this guarantees that every arrangement of the selected histogram is encodable. No histogram is fixed in advance or inferred from a donor.
+
+Rank a histogram by stars-and-bars colex, and its sequence by ordinary lexicographic multiset rank r. The latter uses the exact block size T×h_j/N at each symbol, updating the remaining multinomial cardinality. An optional internal padding index s≥0 is allowed only when sT+r<B. The complete output rank is
+
+```
+J = rank(h)*B + s*T(h) + rank_type(P | h)
+```
+
+Unrank J into the same exact-repeat ciphertext class as above. The receiver determines h from floor(J/B), then obtains s and r by division by T. The histogram and padding are both recovered from the ciphertext itself. This is an injective full reverse mapping of the stated (P,s) domain; it does not need a hidden salt, original histogram, external layout, or word-length dictionary. The histogram rank allocation and multiset ordering are frozen exploratory choices, not authenticated Cicada instructions.
+
+**Native controls:** use the two disjoint actual 262- and 267-rune donor windows and exact original p0/p16 repeat counts 2/1. These admit respectively 89.39 and 90.13 surplus bits after their self-contained histogram headers. Both recover all 529 runes and the original internal padding index 1 exactly, with the actual required repeat counts. Neither control's histogram is supplied to the receiver.
+
+**Actual full original run:** all 55 rune-bearing pages have representable histogram/type ranks, all 12,956 decoded runes and internal padding indices re-encode the actual source ciphertexts exactly. Yet the aggregate output IoC is .03484747652, and the preserved printed page-fragment word segmentation yields 217/2,928 dictionary matches and **0/1,124 long matches** (≥5 runes, including physical-page fragments). Individual page IoCs can be native-like, precisely because arbitrary weak compositions are often skewed: p0 .0664795, p1 .0602922, p2 .0568657. Their text remains nonlinguistic: p0 begins UOEAGXICF IAIAIAO CXOEC FOEI IAFC IEAWXWCUIAOEBM; p1 begins PTCEAP SPUPGDTAE EOYXBTXAEN MWDW DAENGIATHX. No apparent authentic plaintext. No alternate composition ordering, type-class allocation or salt convention was tuned to the result.
+
+**Decision:** a self-contained, full-page, reversible constrained-code inverse can absorb the exact missing-repeat capacity using empirical-composition compression; no additional original separator payload is mathematically necessary for the admitted native-like classes. This actual receiver satisfies full-original rank-domain and replay tests, but decisively fails native-language prediction. It is **not** the authentic #2273 receiver and cannot be promoted as a solution. It also illustrates why matching individual page IoC or universal original replay alone is insufficient evidence for a compressed-text interpretation. An independently selected native-language compression/order/operation remains necessary.
+
+[Executable full-original histogram inverse SFT](../sims/lp2_selfcontained_histogram_antirepeat_enumerative_sft.cjs), commit a9916283fc9395d8c52609aaf5d533dcda0b6cf0. Actual connected JS run on the canonical corpus/transcription and pinned donor/lexicon; no CI claim.
