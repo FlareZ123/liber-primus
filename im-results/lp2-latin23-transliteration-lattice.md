@@ -1,0 +1,41 @@
+# Joint Latin Vigenère / ambiguous GP29 observation inverse
+
+**Decision for Director #2579:** the 2012 Reddit Latin Vigenère key followed by an ambiguity-preserving GP29 encoding does not yield prose on physical LP2 p54–55. A genuine joint inverse substantially outperforms canonical greedy expansion on planted native plaintext controls. No unknown LP2 plaintext or key was recovered. The mechanism is not historically selected for LP2 itself.
+
+## Source-motivated law and limits
+
+The authentic 2012 Reddit sequence `a2e7j6ic78h0j7eiejd0120` supplies the 23 shifts [10,2,14,7,19,6,18,12,7,8,17,0,19,7,14,18,14,19,13,0,1,2,0], i.e. KCOHTGSMHIRATHOSOTNABCA under A=0. See the [period walkthrough and ciphertext](https://3301cicada.wordpress.com/2012-2/) and [archived 2012 source explanation](https://github.com/neuroretransmit/cicada/blob/main/2012/003-subreddit/README.md). The 2012 usage establishes the Latin Vigenère operation and exact historical key, not a 2014 reuse instruction. This is a fixed transfer hypothesis, not an exhaustive Vigenère search.
+
+Encrypt ordinary Latin letters with the 23-shift key, advancing on each Latin letter, then encode ciphertext Latin into GP29. Retain printed word boundaries and allow arbitrary initial cyclic phase. The first 49 complete original words ending on p54 are the fit scope; the 17 complete words on p55 use the fitted ending phase. The 308 total runes come from the unchanged canonical original transcription; word count and global 12,956-rune/2,896-word alignment are asserted. No phase reset between these pages.
+
+## Executable joint relation
+
+A finite transducer consumes one or more Latin ciphertext letters per observed rune: U/V; C/K/Q; S/Z; NG/ING; IA/IO; ordinary chart singletons and ligatures; plus QU -> C,W as a source-native spelling convention. All other spellings are rejected by the relation. The chart aliases are independently documented in the [GP table](https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/data/gematria_primus.md) and the repository's native spelling gate `sims/lp2_uncontracted_latin_wordorder_sft.cjs`. This intentionally liberal grammar admits all chart-compatible segmentations, including non-greedy ones; exact native compositor segmentation is not claimed. Different edges can consume different numbers of letters and thus change the subsequent Vigenère phase. A QU edge consumes two Latin characters and two runes.
+
+For every word of the pinned 29,157-word TextBlob frequency lexicon and each of 23 start phases, encrypt it and traverse the trie of observed rune words through every valid spelling edge. Each accepted candidate contributes a word-frequency weight and a start/end phase. Dynamic programming over the printed-word sequence maximizes the number of lexicon-covered words, then the sum of log word frequencies. For every OOV word, retain **all** attainable end phases from its letter-length lattice, with a representative compatible Latin witness. This makes the covered-word count a finite-lexicon upper bound, rather than an artifact of dropping ambiguous paths. The held-out decoder receives only the fit's ending phase; its words are decoded from their ciphertext, not predicted without it. Every selected word is forward encrypted and accepted by the original rune-word relation. Replaying the relation establishes implementation consistency, not uniqueness of spelling or historical key.
+
+## Calibrated positive controls and original result
+
+Three nonoverlapping 75-word windows from the repository's solved LP1 Latin reference (two A KOAN windows, one WELCOME window) were encrypted with the fixed historical key and concealed phases 3,11,19. The decoder receives the observations and the known key, with all 23 start phases; it does not receive the planted phase or target sequence. The first 45 words fit phase and the last 30 are held out. This is blinded **phase** recovery conditional on the known key, not recovery of an arbitrary 23-letter key. The synthetic observations use longest available chart spellings; the inverse admits all spellings. TextBlob is an external frequency lexicon, not a sequence model.
+
+| Trial | Initial phase recovered | Fit exact words | Joint held-out exact | Greedy held-out exact |
+|---|---:|---:|---:|---:|
+| KOAN first | 3/3 | 44/45 | 29/30 | 14/30 |
+| KOAN second | 11/11 | 45/45 | 27/30 | 13/30 |
+| WELCOME | 19/19 | 44/45 | 29/30 | 15/30 |
+| Total | 3/3 | 133/135 | **85/90** | **42/90** |
+
+All three fitted ending phases equal their actual phases. The joint solver covers 224/225 words with the finite lexicon; errors such as A AM and MATTER instead of MASTER show genuine transliteration nonuniqueness. The native controls replay all 905 observed runes under the relation. No contextual reranker was fitted to these failures.
+
+| Original | Fit p54 | Held-out p55 | Full retrospective maximum |
+|---|---:|---:|---:|
+| Joint | 7/49 | 2/17 | **9/66** |
+| Greedy | 6/49 | 0/17 | not computed |
+
+The joint original witness replays **308/308** original runes. Nevertheless it is nonlinguistic and needs at least **57/66 OOV words**, even when all starting phases, word spelling alternatives and latent OOV length clocks are allowed across both pages retrospectively. The seven and two covered words include fragments/abbreviations such as CO, HA, TY, LI, KM, not a candidate sentence. The raw witness and all control strings are in the output JSON.
+
+## Decision and next step
+
+Retire the fixed 2012 23-shift key, continuous Latin clock, printed-word receiver on p54–55, conditional on the stated lexical/native-language model. This does not exclude other Latin keys, changed boundaries, non-English plaintext, another cipher family, or a source-selected different segmentation rule. Because the historical Vigenère source supplies no LP2 reuse selector, searching other arbitrary Latin keys would not satisfy the source gate. Preserve the joint finite relation as a reusable component if an independent LP2 source fixes a Latin cipher/key law; do not repeat greedy expansion or this 23-phase scan. The original alternative remains unsolved.
+
+Reproduce: `node sims/lp2_latin23_transliteration_lattice_sft.cjs`. [Output](lp2-latin23-transliteration-lattice-output.json). Executed the same JS function in the connected JS runtime against repository inputs. An initial implementation accidentally supplied a 40-word third control; it was corrected and the full three 75-word trials rerun before the decision. No Windows CI run claimed.
