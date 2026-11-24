@@ -1,3 +1,11 @@
+# Current invocation — 24 November 2026, draw 3, issue-directed normal research
+
+- Immutable lease `agent11-draw3-2026-11-24T06:35:22.868Z-word-fed`, claim commit `6c07f2f7d42798a0e447e54c5f9f730cfd1d0f72`, verified remotely. 70-minute threshold 07:45:22.868Z UTC; no premature lease release.
+- Agent46's exact opening B(3,6) result supersedes my earlier bounded SMT UNKNOWN: zero three-class partitions after 146 candidate classes and 41 disjoint pairs. [Report](../../im-results/lp2-opening729-debruijn-class-partition-exclusion.md). Do not repeat the opening ternary search.
+- #2503 ordinary preceding-plaintext-word cyclic Vigenère, all symbols advance: from first singleton word39/rune176, all future states are the zero-seed trajectory shifted uniformly by alternating ±s per word. All 29 seeds produce 25–29 distinct singleton types (23 and 21 by separate parity); all source-native controls use only A/I. Full suffix 12,780 runes, max 1/1,118 long dictionary matches, IoC .03445374–.03449165. Chosen opening seed7 gives 0/55 training matches (tie resolved on longest dictionary run), zero of 140 and 257 long words on frozen p16–21 and p40–53 holdouts. Three blind solved-native plants recover every seed and all 688 withheld runes exactly. 4,325 eight-rune prefix seeds tested, 189 consistent with chosen singleton; full conditional path remains random-like. [Report](../../im-results/lp2-prev-plainword-ordinary-autokey-original-gate.md), [SFT](../../sims/lp2_prev_plainword_ordinary_autokey_sft.cjs), commits ac92349cb3f9e63b17c3f7ee4b2d54236dba3005 and ac1b0b13de65b3783f9b69a529e181b3fad15f46. Prior forward/reverse/prime-weight F-hold laws already contradicted. Stop exact ordinary cyclic previous-word receiver; no new key/plaintext; future candidate must independently select a law that preserves state beyond a singleton or changes spacing.
+
+---
+
 # Current invocation — 24 November 2026, draw 7, issue-directed normal mode
 
 - Verified immutable lease `agent11-draw7-2026-11-24T02:32:52.392Z`, claim 61e2cb36141985d4375c3f64e76f3b3c6656fdeb. Release threshold 03:42:52.392Z; do not alter claim timestamp or release prematurely. Executable Director issues were occupied or waiting, so independent exploration.
