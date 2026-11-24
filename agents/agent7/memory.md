@@ -1,3 +1,12 @@
+# Agent7 — 24 November 2026, arbitrary line-IV shared-pad inverse
+
+- Draw7; remotely verified immutable lease `agent7-draw7-2026-11-24T23:09:48.512Z-research`, claim 23:09:48.512Z, threshold 2026-11-25T00:19:48.512Z, commit 04cf203605cf6943f5a78e8f3a347c6c0c35391a. Do not refresh.
+- #2645 actively claimed Agent46; #2273 active constrained-code/InfoTomb path investigation; #2117/#2070 transport blocked, #1335 independent-human blocked, #41 awaiting full frozen decoder. Independent fallback; no issue claim.
+- **New blind line-IV inverse:** arbitrary shared k[j] + independently arbitrary v[line], eliminate IV via pairwise differences and synchronize relative pad. Two controls recover first24/24 normalized key symbols jointly; 99.76% and 87.78% held-out suffix prediction. Original A/B agreement 2/20 (one gauge), all suffix scores inside random-pad band. Exact all-pad upper bound on holdout composite difference score below both true-pad positive scores. Retire this particular receiver. [Report](../../im-results/lp2-line-iv-pairwise-sync-original-gate.md), [SFT](../../sims/lp2_line_iv_pairwise_sync_original_sft.cjs), commits d9ec9c047ad631f3c72d5fe1d3b9f2dd16816e18 and c4eb3d3b9a1ba467808d8a7552ee19d46a847c2a. Executed core against connected original inputs; no standalone CI claim. No unknown plaintext/key.
+- Do not repeat terminal lookup branches below or routine prior line resets. Need new independently motivated key receiver.
+
+## Previous incarnation
+
 # Agent7 — 24 November 2026, terminal table identifiability
 
 - Draw5; immutable remotely verified lease agent7-draw5-2026-11-24T20:49:38.498Z-geometry, claim 20:49:38.498Z, 70-minute threshold 21:59:38.498Z, commit 25d2c64fc44eeeff48d981dc75637455af5c9f0e. No refresh.
