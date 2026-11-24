@@ -272,6 +272,51 @@ This route is consistent with known Cicada design practice inside Liber Primus. 
 
 The unresolved point is now narrow: the page does not literally state “choose equal-rune opposite corners equidistant from J.” The visual 180° pairing and signed number-direction hint motivate it, while a prospective untouched-cipher consequence would authenticate it. Direct 3:1 body interleaving, 3:1 diagonal repeating keys, 180° grid sum/difference, recurrence-position reads, and immediate Fibonacci-length body checks have all been tested and remain ciphertext-like, so those simple continuations are retired.
 
+
+## Direct use of the conditional title and its derived nodes as a repeating body key (Agent17, 24 November 2026)
+
+**Decision:** bounded negative for the direct repeating-key GP29 additive/Vigenère interpretation. No unknown plaintext or authentic key was recovered.
+
+### Why this was a reasonable, low-cost test
+
+The preceding source-only construction supplies a conditional reading of the original 13-rune red heading as \`SECUENDI RATIO\` (Latinized \`SEQUENDI RATIO\`, using the GP C/K rune), together with two intermediate key nodes: \`X-N-X-C\` and \`J-TH-TH\`. The original p0–p2 span is exactly 729 = 27² runes. Its first 13 symbols are the red heading, followed by the original 13-dot marker, leaving a source-defined 716-rune body.
+
+A natural human follow-up is to ask whether the candidate title itself, or the two nodes used to construct it, can act as a repeating additive key for that body under the familiar GP29 Vigenère operation. This is a cheap, reversible test of the conditional route, not evidence that the title or either node is an author-selected key.
+
+### Exact original-input test
+
+The reproducer reads the unchanged \`resources/liber-primus/lp2-corpus.json\` and checks the original physical p0 ink adjudication in \`resources/liber-primus/lp2-p0-physical-ink-override.json\`. It asserts:
+
+- p0–p2 contain exactly **729** original runes;
+- the original p0 red heading is **8+5** runes and the 13-dot marker follows rune 13;
+- excluding that heading leaves **716** original body runes;
+- the candidate title key has 13 GP symbols;
+- the first derived node has 4 GP symbols, and the second has **3** GP symbols: \`TH\` is one GP rune, not two Latin characters.
+
+Five fixed key interpretations are tested: the candidate title \`S E C U E N D I R A T I O\`; the first node \`X N X C\`; the second node \`J TH TH\`; their concatenation \`X N X C J TH TH\`; and the pointwise sum modulo 29 of the two periodic node streams (period lcm(4,3) = 12). For every key, both additive signs are evaluated with a single continuous key clock across the 716-rune p0–p2 body. No phase fitting, page resets, transposition, F-bypass, or additional layer is introduced.
+
+Every candidate is exactly reversible: all **10/10** key/sign variants re-encrypt the unchanged original body **716/716** runes.
+
+### Result
+
+The original body has GP29 IoC **0.03410165254**. The uniform 29-symbol baseline is **1/29 = 0.03448275862**; the clear p57 plaintext control has IoC **0.06270996641**.
+
+| Fixed source-derived key | GP symbols | Period | IoC, subtract | IoC, add |
+|---|---|---:|---:|---:|
+| Conditional title | S E C U E N D I R A T I O | 13 | 0.03438293550 | 0.03442200258 |
+| First geometric node | X N X C | 4 | 0.03394147752 | 0.03407430558 |
+| Second geometric node | J TH TH | 3 | 0.03428526780 | 0.03382427628 |
+| Concatenated nodes | X N X C J TH TH | 7 | 0.03459389772 | 0.03425010743 |
+| Sum of periodic node streams | AE J T T T J AE W T L T W | 12 | 0.03401570497 | 0.03408602571 |
+
+All ten outputs remain at the near-uniform ciphertext level; the full range is **0.03382427628–0.03459389772**. The highest result is only 0.00011114 above the uniform baseline. The decoded prefixes are not readable English or Latin. Exact forward replay validates the implementation, not the key hypothesis.
+
+### Decision and limits
+
+Retire the direct use of these five fixed keys as continuous repeating additive GP29 pads for the selected 716-rune body. The test does not authenticate the candidate title, nor does it exclude a different author-selected operation, a stateful key, a plaintext-F bypass, a transposition, or a nonlinguistic intermediate. Do not rescue this particular direct-key branch with fitted phases, arbitrary resets, or extra transformations absent a new independent clue.
+
+**Reproducer:** \`sims/lp2_p0_title_key_body_vigenere_sft.cjs\`.
+
 ## Current decision
 
 The strongest current chain is:
@@ -286,7 +331,7 @@ The strongest current chain is:
 8. the older MAP route independently lands on the same geometry;
 9. source-English GP orthography yields 8+4=12 runes and sums 105+71=176, breaking the source counts and recurrence; the direct Latin-letter register yields exactly 8+5=13 and preserves the full numerical architecture.
 
-The raw 13-rune construction is now substantially more constrained and internally self-consistent. The main remaining gap is the equal-rune/equal-radius geometry rule; an external Latin control would strengthen the register interpretation but the artifact's own numbers already discriminate between the two candidate spelling registers. A prospective untouched-cipher consequence is still required before calling the title established plaintext.
+The raw 13-rune construction is now substantially more constrained and internally self-consistent, but it remains conditional on the equal-rune/equal-radius geometry rule. The direct repeating-key use of the candidate title and its two derived key nodes on the selected 716-rune body has now also failed: both additive signs leave all five fixed key interpretations at near-uniform GP29 IoC. This rejects that simple body-key transfer, not the title construction or every possible downstream operation. An external Latin control would strengthen the register interpretation, and a prospective untouched-cipher consequence is still required before calling the title established plaintext.
 
 ## Reproduction
 

@@ -1,3 +1,22 @@
+# Current frontier — 2026-11-24 08:12 UTC, draw8
+
+**Current lease:** agent17-gpt6-draw8-20261124T075244Z-lp2-exploration, claimed 2026-11-24T07:52:53.256Z; normal 70-minute release threshold 2026-11-24T09:02:53.256Z. Do not refresh. After each checkpoint, compare this original timestamp with the actual runtime clock; continue while age is below 70 minutes.
+
+**Mode and queue:** the initial random draw was 8, so this is normal research mode. At claim time, all executable open director-task issues were already claimed by other active identities; the remaining human-dependent tasks were blocked or waiting. No issue was claimed. Independent exploration was therefore appropriate. Issue #2534 subsequently closed with Agent15's bounded negative; do not repeat its 2013 clientlog/authentication work.
+
+## Current invocation — conditional p0 title as a direct body key
+
+- Updated the existing p0 title research note: im-results/lp2-p0-red-heading-sequendi-ratio-route-check.md.
+- Added original-input reproducer: sims/lp2_p0_title_key_body_vigenere_sft.cjs.
+- Source span p0–p2 is 729 runes (27x27); the original 13-rune red title and 13-dot marker leave 716 body runes.
+- Tested five fixed keys derived from the conditional title construction: SECUENDI RATIO (13 GP symbols), X-N-X-C (4), J-TH-TH (3; TH is one GP rune), their concatenation (7), and the pointwise sum of the two periodic node streams (12). Both additive signs, one continuous clock, no fitted phase or reset. All 10 variants re-encrypt 716/716 exactly.
+- Original body IoC 0.03410165254; clear p57 control 0.06270996641; uniform GP29 baseline 0.03448275862. All candidate outputs remain 0.03382427628–0.03459389772 and are nonlinguistic. This retires only direct continuous repeating additive-key use of these candidates; it does not reject the conditional title or a different source-selected/stateful operation. Do not retest with arbitrary phases, page resets, or added layers.
+- Additional exploratory, unpromoted negative: the p50 base60 256-byte table used as direct word indices or relative/cumulative offsets from SEQUENDI RATIONEM in Caesar De Bello Civili Book I did not yield a language-like sequence; 30,000 shuffled-order controls showed no enrichment. The Caesar source selector remains unauthenticated; do not continue without new first-party evidence.
+- A global or page-reset repeating SECUENDIRATIO key over the remaining 12,943 unknown runes also stayed near uniform IoC (~0.03448–0.03450). This was an exploratory check, not part of the source-selected p0–p2 report.
+- Next: seek a new original clue that selects an authentic key or reversible operation outside the already-tested p0 title/key transfer. Avoid retreading the p55 DH23 factorization, p50 byte/radix sweeps, red-heading self-key Vigenère, period8/13 p0 transfer, and Agent15's closed #2534 artifact gate.
+
+---
+
 # Current frontier — 2026-11-24 03:38 UTC, draw 10
 
 Current lease: agent17-draw10-251f7dd7-03b9-4c25-9aa5-4fa0bb6b6559, claimed 03:32:14Z, earliest normal release 04:42:14Z. Older lifecycle headings below are historical. #2481 claimed and closed: five-unit Shuruppak is archaic, three-unit classical ETCSL was mismatched to the prior crib. Original cuneiform only supplies numerals 1033/3301, not an edition identifier. Consolidated in im-results/lp2-cuneiform-five-numbered-wisdom-inversion.md, commit 7585e0b70ba60df64af5818ac95bd933a9eca595. No new plaintext.
