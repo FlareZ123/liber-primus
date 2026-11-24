@@ -1,7 +1,7 @@
 'use strict';
 /** Exact bounded GP27 terminal carry recovery by dictionary residue classes. Agent1. */
 const fs=require('node:fs'),path=require('node:path');
-const analyze=(C,raw,dict,N,bits=40)=>{
+const analyze=(C,raw,dict,N,bits=40,filter="all")=>{
 const check=(x,m)=>{if(!x)throw Error(m)};
 const gp=new Map(C.runes.map((r,i)=>[r,i]));
 const words=[];let w=[];for(const c of raw.split("%").slice(0,55).join("%")){if(gp.has(c))w.push(gp.get(c));else if(c!=="%"&&c!=="/"&&!/\s/u.test(c)&&w.length){words.push(w);w=[]}}if(w.length)words.push(w);
@@ -27,7 +27,7 @@ const mod=(x,m)=>((x%m)+m)%m;
 const inv=(a,m)=>{if(m===1n)return 0n;let x=0n,y=1n,b=m;a=mod(a,m);while(a){const q=b/a;[b,a]=[a,b%a];[x,y]=[y,x-q*y]}check(b===1n,"inverse");return mod(x,m)};
 const lower=(a,x)=>{let l=0,h=a.length;while(l<h){let m=(l+h)>>1;if(a[m]<x)l=m+1;else h=m}return l};
 /** Exact residue-class search over all terminal states 0 <= T <= max. Rows are in reverse order. */
-function search(rows,max){
+function search(rows,max,onHit=null){
 let d=1n,step=1n;
 const levels=rows.map(({M,r,L,P})=>{
 const k=M*d,g=gcd(k,P),m=P/g,iv=inv(k/g,m),groups=new Map;
@@ -38,10 +38,10 @@ const level={M,r,L,P,g,m,iv,d,step,groups};d=k*m/P;step*=m;return level;
 const counts=Array(rows.length).fill(0n),classes=Array(rows.length).fill(0),hits=[];
 function direct(i,t,c){
 for(;i<rows.length;i++){const {M,r,P,L}=rows[i],v=M*c+r;if(!lex[L].has(v%P))return;counts[i]++;classes[i]++;c=v/P}
-hits.push(t.toString());
+if(onHit)onHit(t,c);else hits.push(t.toString());
 }
 function walk(i,t,c,U){
-if(i===levels.length){for(let u=0n;u<=U&&hits.length<100;u++)hits.push((t+step*u).toString());return}
+if(i===levels.length){for(let u=0n;u<=U;u++){if(onHit)onHit(t+step*u,c+d*u);else hits.push((t+step*u).toString())}return}
 if(U===0n){direct(i,t,c);return}
 const {M,r,P,g,m,iv,d,step,groups}=levels[i],b=M*c+r,key=b%g,a=groups.get(key);
 if(!a)return;
@@ -61,10 +61,19 @@ return {counts:counts.map(x=>x.toString()),classes,hits};
 }
 const seen=new Map,results=[];
 for(const mode of ["word","gap"])for(const cyc of [false,true])for(const order of ["ABD","ADB","BAD","BDA","DAB","DBA"]){
-const rows=words.slice(-8).map((w,i)=>pack(w,words[words.length-9+i].at(-1),mode,cyc,order)).reverse();
-const key=rows.map(x=>`${x.M}/${x.r}`).join(",");
-if(seen.has(key)){seen.get(key).variants.push({mode,cyc,order});continue}
-const rec={variants:[{mode,cyc,order}],...search(rows,(1n<<BigInt(bits))-1n)};seen.set(key,rec);results.push(rec);
+if(filter!=="all"&&filter!==mode+":"+Number(cyc))continue;
+const rows=words.slice(-12).map((w,i)=>pack(w,words[words.length-13+i].at(-1),mode,cyc,order)).reverse();
+const key=rows.slice(0,4).map(x=>`${x.M}/${x.r}`).join(",");
+if(!seen.has(key))seen.set(key,[]);
+seen.get(key).push({mode,cyc,order,rows,tailCounts:Array(8).fill(0),candidates:[]});
+}
+const show=(v,L)=>{let out=[];for(let i=0;i<L;i++){out.unshift(C.translit[alphabet[Number(v%27n)]]);v/=27n}return out.join("")};
+for(const variants of seen.values()){
+const prefix=variants[0].rows.slice(0,4);
+const summary=search(prefix,(1n<<BigInt(bits))-1n,(T,S)=>{
+for(const v of variants){let s=S;for(let i=4;i<v.rows.length;i++){const {M,r,P,L}=v.rows[i],z=M*s+r,p=z%P;s=z/P;if(!lex[L].has(p))break;v.tailCounts[i-4]++;if(i===4){let t=T,a=[];for(let j=0;j<5;j++){const q=v.rows[j],z=q.M*t+q.r;a.unshift(show(z%q.P,q.L));t=z/q.P}v.candidates.push({terminal:T.toString(),fiveWords:a.join(" ")})}}}
+});
+results.push({prefixCounts:summary.counts,classes:summary.classes,variants:variants.map(({rows,...v})=>v)});
 }
 const rows=words.slice(-5).map((w,i)=>pack(w,words[words.length-6+i].at(-1),"word",false,"ABD")).reverse();
 const target=(1n<<31n)+3301n;let state=target;const plant=[];
@@ -74,4 +83,4 @@ check(positive.hits.includes(target.toString()),"planted terminal not found");
 return {bits,lex:lex.map(s=>s.size),results,positive:{target:target.toString(),hits:positive.hits.length,counts:positive.counts}};
 };
 const root=path.join(__dirname,'..','resources'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
-console.log(JSON.stringify(analyze(JSON.parse(read('liber-primus/lp2-corpus.json')),read('lp2-transcription.txt'),read('control/english_wordfreq_textblob.txt'),JSON.parse(read('external/relikd-solved-gp29-native-v1.json')),Number(process.argv[2]||40)),null,2));
+console.log(JSON.stringify(analyze(JSON.parse(read('liber-primus/lp2-corpus.json')),read('lp2-transcription.txt'),read('control/english_wordfreq_textblob.txt'),JSON.parse(read('external/relikd-solved-gp29-native-v1.json')),Number(process.argv[2]||40),process.argv[3]||'all'),null,2));
