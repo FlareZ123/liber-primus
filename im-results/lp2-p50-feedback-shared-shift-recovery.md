@@ -19,7 +19,28 @@ The two independent layout-matched Gibran plants have random hidden 256-shift ke
 
 Original holdout XOR starts `SOUOWDNDHFMJSCBEACSORIEANGYOCBNWFJEAXMJHYIARDUDMTHSAEANGWYM`; ADD starts `YBEPEAAEOHUAEUURXOHOEMTEAGFOEODNROEPEADIOESHNEFPTHOERNGWSDEOE`. Neither produces sustained original prose. All plants and original candidate streams re-encrypt exactly, an implementation invariant only.
 
-**Decision:** a shared hidden shift table under the specified source-grid feedback and continuous clock is a calibrated negative for ordinary GP English. This is a heuristic optimizer result, not an all-key impossibility theorem. Do not multiply similar shift experiments without new independent key/state evidence. Unknown plaintext, author-selected opcode and key remain unresolved. More complex output alphabets or changed feedback/state clocks are not excluded.
+**Decision:** a shared hidden shift table under the specified source-grid feedback and continuous clock is a calibrated negative for ordinary GP English. This is a heuristic optimizer result, not an all-key impossibility theorem. Do not multiply similar shift experiments without new independent key/state evidence. Unknown plaintext, author-selected opcode and key remain unresolved. Changed feedback/state clocks remain open. The stronger shared-alphabet result below covers more complex output alphabets under the continuous global clock.
+
+## Stronger exact all-key gate: shared arbitrary state alphabets
+
+The subsequent [all-seed capacity SFT](../sims/lp2_p50_feedback_global_allsecret_capacity_sft.cjs) shows that the global-clock hypothesis fails more generally, without optimizer assumptions or preserved word boundaries. Let C be the full 12,956-rune original tape and D_i=(C_i−C_(i−1)) mod29 with public initial predecessor zero. Each state uses an entirely arbitrary secret GP29 permutation E_s, shared across the whole tape. Use X=C or D as the emitted symbol, and A=C or D as the public feedback operand. Advance s to T[s] XOR A or (T[s]+A) mod256, where T is the same conditional base60 original table. All 256 initial states are allowed for each of the eight regimes.
+
+For a fixed seed, let n_{s,x} count observed input symbols x at state s. Because E_s is a permutation, every candidate plaintext's k most frequent symbols can account for at most the sum over states of the k largest entries in n_{s,*}. This is a deterministic key-independent upper bound, attained for k=1 by assigning each state row's most frequent observed symbol to the same plaintext symbol. Maximize the bound over every seed separately for every k. The result for the actual original is:
+
+| Feedback | Driver | Emission | Max top1 | Max top2 | Max top5 | Max top9 |
+|---|---|---|---:|---:|---:|---:|
+| XOR | C | C | 1,259 | 2,311 | 4,876 | 7,526 |
+| XOR | C | D | 1,267 | 2,324 | 4,911 | 7,553 |
+| XOR | D | C | 1,249 | 2,283 | 4,828 | 7,454 |
+| XOR | D | D | 1,309 | 2,370 | 4,948 | 7,570 |
+| ADD | C | C | 1,267 | 2,316 | 4,883 | 7,517 |
+| ADD | C | D | 1,277 | 2,324 | 4,913 | 7,540 |
+| ADD | D | C | 1,247 | 2,280 | 4,825 | 7,458 |
+| ADD | D | D | 1,276 | 2,335 | 4,933 | 7,577 |
+
+Native controls: the minimum largest-symbol count in 1,000 independently layout-matched 12,956-rune books per donor is **1,438 Shakespeare / 1,431 Gibran**. The minimum across **204,151** contiguous Shakespeare and **49,537** contiguous Gibran native rune windows of exactly 12,956 runes is **1,408 / 1,416**, respectively. Thus all eight complete seed families violate even the top-one capacity for every one of these 255,688 finite controls, including those with no matching segmentation. Eight native Gibran plants with genuinely arbitrary independently shuffled secret state permutations pass exact original-sized encryption/decryption and all top-k bounds (12,956/12,956 runes each; true top-one 1,529, plant capacities 1,866–2,016). RNG seed 0x50330186.
+
+**Decision:** the global, single shared 256-state alphabet hypothesis is conditionally excluded for the tested native-GP language registers, over every initial seed and arbitrary secret row permutations. This includes all shared affine and shift subfamilies; no optimizer extension is justified. The earlier per-page/per-mark-private feedback ceilings remain valid and are a different regime, as are reset clocks or externally supplied state. No unknown original text, authenticated feedback opcode or key is recovered. The theorem makes no assumption about printed word boundary preservation for the contiguous native controls. It does not prove impossibility for every possible English string, non-native register or additional encryption layer.
 
 [Standalone Node22 CJS](../sims/lp2_p50_feedback_shared_shift_recovery_sft.cjs); the experiment was executed against five exact repository inputs in the connected JS runtime. No independent Windows CI claim.
 
