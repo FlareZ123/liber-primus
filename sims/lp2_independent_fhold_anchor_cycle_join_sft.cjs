@@ -83,9 +83,52 @@ const experiment=function experiment(inputs){
   return {mask,lowerBound:conflicts.length,conflicts};
  }
 
+
+ function relationExists(pair,ca,cb){
+  if(!ca.length||!cb.length)return false;
+  const {es,cy}=pair,l=ca[0].length;
+  const key=cy.map(c=>c.map(([i,k])=>i+":"+k).join(",")).join("|")+";"+es.map(e=>e.c+":"+e.t).join(",");
+  if(relationCache.has(key))return relationCache.get(key);
+  const a=new Set();for(const w of ca)a.add(signature(cy,es,w,0,l,1));
+  let exists=false;for(const w of cb)if(a.has(signature(cy,es,w,l,es.length,-1))){exists=true;break}
+  relationCache.set(key,exists);return exists
+ }
+ const relationCache=new Map();
+ function coverGate(ws,inner,outer,mask,budget){
+  const sch=schedule(ws,inner,outer,mask),cand=sch.map(candidates),pairs=pairInfo(sch),edges=[];
+  for(let i=0;i<cand.length;i++)if(!cand[i].length)edges.push([i]);
+  for(const p of pairs)if(p.cy.length>=4&&!relationExists(p,cand[p.i],cand[p.j]))edges.push([p.i,p.j]);
+  // Enumerate all minimal covers up to budget by branching on any uncovered edge.
+  const covers=new Map(),seen=new Set();let nodes=0;
+  function rec(removed){
+   const k=[...removed].sort((a,b)=>a-b).join(",");if(seen.has(k))return;seen.add(k);nodes++;
+   const e=edges.find(e=>e.every(i=>!removed.has(i)));
+   if(!e){covers.set(k,[...removed].sort((a,b)=>a-b));return}
+   if(removed.size===budget)return;
+   for(const i of e)rec(new Set([...removed,i]))
+  }
+  rec(new Set());
+  return {mask,edges,covers:[...covers.values()],nodes,minCover:covers.size?Math.min(...[...covers.values()].map(x=>x.length)):budget+1}
+ }
+ function heldout(cipher,keys,phase){
+  const [k,h]=keys,seen=new Map();let states=[{a:phase[0],b:phase[1],plain:[]}],peak=1;
+  for(const word of cipher){
+   const next=[];
+   for(const st of states){
+    function walk(i,a,b,p){
+     if(i===word.length){if(lex[p.length]?.has(p.join(",")))next.push({a,b,plain:[...st.plain,p]});return}
+     const c=word[i];if(c===0){walk(i+1,a,b,[...p,0]);const pp=mod(-k[a]);if(pp)walk(i+1,(a+1)%k.length,b,[...p,pp])}
+     const m=mod(c-h[b]),pp=mod(m-k[a]);if(m&&pp)walk(i+1,(a+1)%k.length,(b+1)%h.length,[...p,pp])
+    }walk(0,st.a,st.b,[])
+   }
+   states=next;peak=Math.max(peak,states.length);if(peak>10000)return {status:"cap",peak};if(!states.length)return {status:"none",peak}
+  }
+  return {status:"ok",peak,states}
+ }
+
  const checks=[];
- for(const [di,inner,outer] of [[1,8,13],[4,13,8]]){let ws=[],n=0;for(const w of donors[di]){if(n+w.length>222)break;ws.push(w);n+=w.length}if(!ws.length)throw Error("donor");let keys=[Array.from({length:inner},(_,i)=>mod(7*i*i+3*i+4)),Array.from({length:outer},(_,i)=>mod(11*i*i+5*i+3))];let e=encrypt(ws,keys),sch=schedule(e.ws,inner,outer,e.mask),p=pairInfo(sch)[0];if(!p)throw Error("no pair");let ca=candidates(sch[p.i]),cb=candidates(sch[p.j]),j=testPair(p,ca,cb,2000),trueA=signature(p.cy,p.es,ws[p.i],0,ws[p.i].length,1),trueB=signature(p.cy,p.es,ws[p.j],ws[p.i].length,p.es.length,-1);if(trueA!==trueB||!j.n)throw Error("positive");const recovery=recoverKnownMask(e.ws,inner,outer,e.mask);const found=recovery.solutions?.some(x=>JSON.stringify(x.key)===JSON.stringify(keys)&&JSON.stringify(x.plain)===JSON.stringify(ws))||false;checks.push({donor:di,length:n,words:ws.length,inner,outer,zeros:e.z,mask:e.mask,pair:[p.i,p.j],cycles:p.cy.length,matches:j.n,trueSignature:true,recovery:{status:recovery.status,solutionCount:recovery.solutions?.length,found,trace:recovery.trace}})}
- const result=[];for(const [i,o]of [[8,13],[13,8]]){let masks=[];for(let m=0;m<27;m++)masks.push(gate(train,i,o,m));const bounds=Array.from({length:27},(_,m)=>disjointGate(train,i,o,m));result.push({inner:i,outer:o,rejected:masks.filter(m=>m.zero||m.empty!==undefined).length,masks,bounds,minimumOOV:Math.min(...bounds.map(b=>b.lowerBound))})}
+ for(const [di,inner,outer] of [[1,8,13],[4,13,8]]){let ws=[],n=0;for(const w of donors[di]){if(n+w.length>222)break;ws.push(w);n+=w.length}if(!ws.length)throw Error("donor");let keys=[Array.from({length:inner},(_,i)=>mod(7*i*i+3*i+4)),Array.from({length:outer},(_,i)=>mod(11*i*i+5*i+3))];let e=encrypt(ws,keys),sch=schedule(e.ws,inner,outer,e.mask),p=pairInfo(sch)[0];if(!p)throw Error("no pair");let ca=candidates(sch[p.i]),cb=candidates(sch[p.j]),j=testPair(p,ca,cb,2000),trueA=signature(p.cy,p.es,ws[p.i],0,ws[p.i].length,1),trueB=signature(p.cy,p.es,ws[p.j],ws[p.i].length,p.es.length,-1);if(trueA!==trueB||!j.n)throw Error("positive");const recovery=recoverKnownMask(e.ws,inner,outer,e.mask);const found=recovery.solutions?.some(x=>JSON.stringify(x.key)===JSON.stringify(keys)&&JSON.stringify(x.plain)===JSON.stringify(ws))||false;let hold=[],hn=0;for(const w of donors[di].slice(ws.length)){if(hn+w.length>86)break;hold.push(w);hn+=w.length}const both=encrypt(ws.concat(hold),keys);let aa=0,bb=0;for(const e of sch.flat()){if(e.t)aa=(aa+1)%inner;if(e.t===2)bb=(bb+1)%outer}const pred=recovery.solutions?.length===1?heldout(both.ws.slice(ws.length),recovery.solutions[0].key,[aa,bb]):null;checks.push({donor:di,length:n,words:ws.length,inner,outer,zeros:e.z,mask:e.mask,pair:[p.i,p.j],cycles:p.cy.length,matches:j.n,trueSignature:true,recovery:{status:recovery.status,solutionCount:recovery.solutions?.length,found,trace:recovery.trace},withheld:{runes:hn,words:hold.length,status:pred?.status,solutionCount:pred?.states?.length,exact:pred?.states?.some(s=>JSON.stringify(s.plain)===JSON.stringify(hold)),peak:pred?.peak}})}
+ const result=[];for(const [i,o]of [[8,13],[13,8]]){let masks=[];for(let m=0;m<27;m++)masks.push(gate(train,i,o,m));const bounds=Array.from({length:27},(_,m)=>disjointGate(train,i,o,m));const covers=Array.from({length:27},(_,m)=>coverGate(train,i,o,m,5));result.push({inner:i,outer:o,rejected:masks.filter(m=>m.zero||m.empty!==undefined).length,masks,bounds,minimumOOV:Math.min(...bounds.map(b=>b.lowerBound)),covers,minimumCover:Math.min(...covers.map(b=>b.minCover))})}
  return {base,expanded:D.reduce((n,a)=>n+a.length,0),sizes:D.map(a=>a.length),checks,original:result};
 };
 console.log(JSON.stringify(experiment(files.map(p=>fs.readFileSync(path.join(root,p),'utf8'))),null,2));
