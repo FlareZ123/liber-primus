@@ -37,6 +37,26 @@ function experiment(inputs){
   }
   dfs(fresh());return {keys:[...keysFound.values()],exhausted,nodes,passes,rowVisits,initialRows,exact:!exhausted&&keysFound.size<2}
  }
+
+ function boundedEscapes(ws,budget=2){const C=ws.flat(),zeros=C.flatMap((c,i)=>c===0?[i]:[]);assert(zeros.length<=12,"bounded F-mask enumeration");const records=[];let solutions=0,exhausted=false,nodes=0;
+  for(let mask=0;mask<(1<<zeros.length);mask++){const skip=new Set(zeros.filter((_,i)=>(mask>>i)&1)),keyDom=Array(29).fill(ALL),wordPh=[],wordRows=[];let phase=0,off=0;
+   for(const c of ws){const positions=[];for(let i=0;i<c.length;i++,off++){if(skip.has(off))positions.push(-1);else{positions.push(phase);keyDom[phase]&=ALL^bit(c[i]);phase=(phase+1)%29}}wordPh.push(positions)}
+   if(keyDom.some(v=>!v)){records.push({mask,reason:"non-F key domain empty"});continue}
+   for(let w=0;w<ws.length;w++){const c=ws[w],ph=wordPh[w],a=[];for(const p of dict[c.length].values()){if(!p.every((v,i)=>(v===0)===(ph[i]===-1)))continue;const shifts=p.map((v,i)=>ph[i]===-1?-1:mod(c[i]-v));if(shifts.every((v,i)=>v===-1||(keyDom[ph[i]]&bit(v))))a.push(shifts)}wordRows.push(a)}
+   const mandatory=wordRows.flatMap((a,i)=>a.length?[]:[i]);if(mandatory.length>budget){records.push({mask,reason:"mandatory OOV",lowerBound:mandatory.length,mandatory});continue}
+   const edges=[];for(let i=0;i<ws.length;i++){if(!wordRows[i].length)continue;for(let j=i+1;j<ws.length;j++){if(!wordRows[j].length)continue;const pairs=wordPh[i].flatMap((v,k)=>v>=0&&wordPh[j].includes(v)?[[k,wordPh[j].indexOf(v)]]:[]);if(!pairs.length)continue;const sig=(row,k)=>pairs.map(p=>row[p[k]]).join(",");const a=new Set(wordRows[i].map(row=>sig(row,0)));if(!wordRows[j].some(row=>a.has(sig(row,1))))edges.push([i,j])}}
+   let covers=[],coverNodes=0;function cover(del){coverNodes++;if(del.size>budget)return;const e=edges.find(([i,j])=>!del.has(i)&&!del.has(j));if(!e){covers.push([...del].sort((a,b)=>a-b));return}for(const v of e)cover(new Set([...del,v]))}cover(new Set(mandatory));if(!covers.length){records.push({mask,reason:"conflict graph needs > budget",mandatory,edges:edges.length,coverNodes});continue}
+   const checked=new Set();let caseSolutions=0;let example=null;
+   function search(del){const sig=[...del].sort((a,b)=>a-b).join(",");if(checked.has(sig))return;checked.add(sig);let found=false;const active=wordRows.map((a,i)=>del.has(i)?null:a);
+    function solveFixed(dom,rows){if(++nodes>200000){exhausted=true;return null}let changed=true;while(changed){changed=false;for(let w=0;w<rows.length;w++){if(!rows[w])continue;const ph=wordPh[w],a=rows[w].filter(row=>row.every((v,i)=>v===-1||(dom[ph[i]]&bit(v))));if(!a.length)return null;if(a.length!==rows[w].length){rows[w]=a;changed=true}for(let i=0;i<ph.length;i++){if(ph[i]<0)continue;let support=0;for(const row of a)support|=bit(row[i]);const v=dom[ph[i]]&support;if(!v)return null;if(v!==dom[ph[i]]){dom[ph[i]]=v;changed=true}}}}
+     let best=-1,size=30;for(let i=0;i<29;i++){const n=pop(dom[i]);if(n>1&&n<size){best=i;size=n}}if(best<0)return dom.map(v=>31-Math.clz32(v));for(const v of bits(dom[best])){const d=dom.slice();d[best]=bit(v);const res=solveFixed(d,rows.slice());if(res)return res;if(exhausted)return null}return null}
+    const key=solveFixed(keyDom.slice(),active);if(key){found=true;caseSolutions++;solutions++;let p=0;const plain=C.map((c,i)=>skip.has(i)?0:mod(c-key[p++%29]));assert(String(encode([plain],key).flat())===String(C),"escape replay");example={key,erased:[...del],plain:plain.map(v=>gp.translit[v]).join("")};return}
+    if(exhausted||del.size===budget)return;for(let i=0;i<ws.length;i++){if(!del.has(i))search(new Set([...del,i]));if(exhausted||caseSolutions)return}
+   }
+   for(const del of covers){search(new Set(del));if(exhausted||caseSolutions)break}records.push({mask,reason:caseSolutions?"witness":exhausted?"cap":"exact empty",mandatory,edges:edges.length,covers:covers.length,checked:checked.size,example});if(exhausted)break
+  }
+  return {budget,Fzeros:zeros.length,masks:1<<zeros.length,records,solutions,exhausted,nodes};
+ }
  function summarize(x){return {...x,keys:x.keys.map(v=>({key:v.key,paths:v.paths,runecount:v.p.flat().length}))}}
 
  function plant(name,control,seed,trainLength){let x=seed;const rand=()=>{x^=x<<13;x^=x>>>17;x^=x<<5;return (x>>>0)%29};const rawKey=Array.from({length:29},rand),phase=rand(),key=rawKey.slice(phase).concat(rawKey.slice(0,phase)),cipher=encode(control,key);let cut=0,total=0;while(total<trainLength&&cut<cipher.length)total+=cipher[cut++].length;
@@ -56,6 +76,7 @@ function experiment(inputs){
  const res=solve(original.slice(0,cut),3000);
  const target={chapter:"p54-55",trainRunes,held:308-trainRunes,trainWords:cut,result:summarize(res)};
  if(res.exact&&res.keys.length===1){const full=solve(original,3000,res.keys[0].key);target.full=summarize(full);if(full.keys.length===1)target.plaintext=full.keys[0].p.map(w=>w.map(x=>gp.translit[x]).join("")).join(" ")}
+ target.escaped=boundedEscapes(original.slice(0,cut),2);
  return {baseVocabulary,vocabulary:dict.reduce((n,d)=>n+d.size,0),plants,target};
 }
 
