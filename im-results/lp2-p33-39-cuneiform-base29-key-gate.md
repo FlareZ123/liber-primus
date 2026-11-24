@@ -55,9 +55,47 @@ The second test applies the established p56 F-transparent rule: plaintext F pass
 
 Finally, the six- and three-digit sequences were used as ordinary column-rank keys for the corresponding 6- and 3-column transpositions, in both inverse directions and both header orders. None of these outputs admits a complete segmentation using the same TextBlob GP29 lexicon. This is only a bounded rejection of that simple columnar interpretation, not an exhaustive transposition search.
 
+## March 2013 BASE29/DH command-transfer gate (#2557, 24 November 2026)
+
+The original images 50.jpg–56.jpg show the same two sexagesimal numerals (17,13) and (55,1), i.e. 1033 and 3301. The footer on physical p33 becomes a repeated header on p34–39. The five red numbered units are actually on **p36–38**, not five separate fields on p33: 139/91/98/96/129 runes, with item4 continuing across p37→38. The repeated emblem and five labels establish chapter scope and ordering, not a typed protocol trace.
+
+The [preserved participant-side March log](../resources/historical/cicada2013-clientlog-1362290293-9.txt) gives the exact ordered command exchange below. The [signed January 2013 specification](../resources/external/2013-tcp-server-signed-source.md) independently establishes command semantics. The literal 2013 challenge example is BASE29 3301 → 3QO; it is not the March BASE29 1033/DH 3301 pair. The signature on the March NEXT text authenticates only its payload, not the earlier numerical transcript. Prior work already analyzed the same DH3301 tuple and the [session census](../sims/lp2_2013_dh_session_census_sft.cjs); the new raw file is a local preservation of a known witness, not a new DH discovery.
+
+| Wire value, in recorded order | Protocol type | Source-fixed from p33's two numerals? |
+|---|---|---|
+| 16I | BASE29 numeral representation of 1033 | Yes, **conditional on choosing BASE29**; digits [1,6,18] |
+| 2757 | Participant-server-selected group base | No |
+| 1264 | Participant-server public share, 2757^331 mod3301 | No |
+| 2800 | Organizer/client public share, received by participant server | No |
+| 1067 | Shared DH value, 2800^331 mod3301 | No |
+| NEXT | Command carrying organizer-supplied text for storage | No LP2 ciphertext consumer |
+
+The participant server sends 16I and 2757 1264, receives 2800, sends DATA 1067, then receives NEXT and the signed payload. Between BASE29 and DH the transcript contains four repeated participant-authored KOAN responses; these are not four organizer-authored stages. The five numbered LP2 units do not supply command tags, the private exponent 331, an integer serialization, or a rule that assigns any of the above values to an intact unit.
+
+### Exact missing-state counterexample
+
+Hold even more than the two manuscript numerals fixed: grant the recorded modulus 3301, participant base 2757, and organizer public share 2800. The signed protocol permits the participant to select its own secret. With secret 331 the transmitted share is 1264 and shared value is 1067. With secret 332, an equally admissible choice, the transmitted share is 2293 and shared value is 195. Both obey precisely the same protocol. For secrets 2..3299, there are **50 distinct shared results** even with the recorded public share held fixed. Conversely, with the actual participant secret 331 held fixed but client secret variable, there are **550 distinct shared results** in that same range; client exponents 11 and12 give public shares 2800 and1862 and shared results 1067 and1880 respectively. These are toy-protocol arithmetic controls, not LP2 key candidates.
+
+Reproduce the exact finite ambiguity count (executed in local Python and separately in connected JavaScript on the preserved record):
+
+```python
+p, g, a, B = 3301, 2757, 331, 2800
+assert 17*60+13 == 1*29**2+6*29+18 == 1033
+assert 55*60+1 == 3*29**2+26*29+24 == p
+assert (pow(g,a,p),pow(B,a,p)) == (1264,1067)
+assert (pow(g,332,p),pow(B,332,p)) == (2293,195)
+assert len({pow(B,x,p) for x in range(2,p-1)}) == 50
+assert len({pow(pow(g,b,p),a,p) for b in range(2,p-1)}) == 550
+assert (pow(g,12,p),pow(pow(g,12,p),a,p)) == (1862,1880)
+```
+
+This is an exact counterexample to the proposed deterministic handoff from the printed two numerals alone: even the command choice and most of the observed DH inputs do not uniquely specify 1067. The five ordered runic units could in principle supply the missing private/public state, but no independent source rule specifies their roles, nor a reversible mapping from variable-length native rune text to these fields. Merely counting 16I plus four integer fields gives five only by suppressing the private state, KOAN calls, control tokens and NEXT payload. Choosing them as five keys, positions, lengths, or base29 GP digits would invent the missing receiver.
+
+**Decision for #2557:** stop before ciphertext scoring because the source-fixed typed mapping prerequisite fails. Even a positive period-availability result in #2556 would establish access to historical command semantics or the actual transcript, not the required LP2 item-to-field binding. A new independent original clue that fixes the full DH state and the recipient's inverse/serialization would justify a different test. The known DH23 route is outside this specific rejection. This is not a rejection of BASE29 or DH as general operations, and no original plaintext or key is recovered.
+
 ## Decision
 
-Reject the direct repeating additive-key and simple columnar-key interpretations of `16I` and `3QO) for p33–39. The F-transparent result is decisive for those exact fixed-phase key schedules. Do **not** infer that the BASE29 conversion is a false clue: the outputs could still be addresses, selectors, or inputs to a different source-specified operation. No further cipher families or fitted phases are justified by the current evidence.
+Reject the direct repeating additive-key and simple columnar-key interpretations of `16I` and `3QO` for p33–39. The F-transparent result is decisive for those exact fixed-phase key schedules. Do **not** infer that the BASE29 conversion is a false clue: the outputs could still be addresses, selectors, or inputs to a different source-specified operation. The exact March BASE29/DH command-transfer branch also fails its typed mapping prerequisite; do not use the participant-generated state as an LP2 key without a separate source selector. No further cipher families or fitted phases are justified by the current evidence.
 
 Reproduce with:
 

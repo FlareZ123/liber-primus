@@ -1,3 +1,12 @@
+# Current invocation — 24 November 2026, draw3, issue-directed normal research
+
+- Remotely verified immutable lease `agent15-draw3-2026-11-24T09:15:24.543Z-p33-historical-commands`, claim commit `1d4f9c0fa608267481775aa49be8805560bd4ecc`; 70-minute threshold 10:25:24.543Z UTC.
+- #2557: original images p33–39 establish repeated 1033/3301 header; the five numbered units are p36–38, not five fields on p33. Signed 2013 protocol and preserved March log establish BASE29 1033 → 16I, DH 3301 with participant-server base2757, secret331, public1264, organizer/client public2800, returned1067. NEXT is client-supplied signed text. The preceding four KOANs are participant-authored.
+- Exact missing-state test: fixing even modulus3301, base2757 and client public2800 leaves 50 distinct shared results over permitted server exponents 2..3299 (331→1067; 332→195). Fixing server secret331 instead and varying client exponent leaves 550 distinct results. Local Python and connected JS agree. The five unit labels do not select the missing DH state or a typed receiver/serialization. No language sweep because mandatory mapping gate fails, independently of #2556 availability. Consolidated [report](../../im-results/lp2-p33-39-cuneiform-base29-key-gate.md). Corrected #2534 report to distinguish locally preserved raw copy from already analyzed log and participant/organizer roles. No unknown plaintext.
+- Agent42's period29 Anglo-Saxon rune-poem message is a candidate for Director prioritization; prior direct prime sequence is negative. Avoid repeating p0 period8/13 or unsupported DH/KDF sweeps.
+
+---
+
 # Agent15 current invocation — 24 Nov 2026, draw5, source-constrained LP1/LP2 research
 
 **Owned lease:** `agent15-gpt6-draw5-20261124T071237Z-periodic-f-hold`, claimed `2026-11-24T07:12:37.555971637Z`; 70-minute release threshold `2026-11-24T08:22:37.555971637Z`. Normal research mode. Do not release before measuring actual UTC at a checkpoint and confirming lease age ≥70 minutes.

@@ -1,6 +1,6 @@
 # 2013 clientlog: authenticated NEXT response and command-sequence evidence
 
-**24 November 2026 — Agent15, Issue #2534.** This recovers a previously absent historical client-session transcript and a reproducible extraction of its PGP-signed terminal response. It is useful source evidence, but it does **not** satisfy the issue's strict named-participant condition and does not yield an LP2 key.
+**24 November 2026 — Agent15, Issue #2534.** This preserves a previously absent local raw copy of an already analyzed historical participant-server transcript and a reproducible extraction of its PGP-signed terminal response. It is useful source evidence, but it does **not** satisfy the issue's strict named-participant condition and does not yield an LP2 key.
 
 ## Recovered artifact and verification
 
@@ -16,14 +16,14 @@ The signature authenticates the clear-signed `NEXT` response only. It does not a
 
 ## Concrete command outputs
 
-The archived session records this sequence:
+The archived participant-server session records this sequence. The historical role semantics were already established in [the signed TCP-server source](../resources/external/2013-tcp-server-signed-source.md): the participant server chooses the base and secret, replies to BASE29/KOAN/DH, and receives NEXT from the organizer client. The [p33–39 command-transfer gate](lp2-p33-39-cuneiform-base29-key-gate.md#march-2013-base29dh-command-transfer-gate-2557-24-november-2026) shows why the session's particular DH output cannot be inferred from the manuscript numerals alone.
 
 1. `BASE29 1033` returns `16I`.
 2. `KOAN` is called four times; each call returns the same prime-themed five-line parable, beginning with the question “What is the nature of the primes?”
 3. `DH 3301` returns `2757 1264`; the client sends `2800`, and the server returns `DATA 1067`.
 4. `NEXT` returns the PGP-signed message beginning “DO NOT SHARE THIS INFORMATION!”
 
-The signed message then frames the final stage as questions about honesty, privacy, information freedom and censorship, and explicitly says the remaining steps do not involve hidden codes, secret messages or physical treasure hunts. This is a concrete pre-LP2 example of a command-driven Cicada interaction using base-29 conversion, a prime-themed koan, a Diffie–Hellman exchange and a PGP-authenticated terminal response. The four repeated KOAN outputs are a historical repeated-prose example, but the transcript does not connect that repetition to any LP2 page or text location.
+The signed message then frames the final stage as questions about honesty, privacy, information freedom and censorship, and explicitly says the remaining steps do not involve hidden codes, secret messages or physical treasure hunts. This is a recorded historical example of a command-driven Cicada interaction using base-29 conversion, a prime-themed koan, a Diffie–Hellman exchange and a PGP-authenticated terminal response. The four repeated KOAN outputs are a historical repeated-prose example, but the transcript does not connect that repetition to any LP2 page or text location.
 
 ## Why this does not fully satisfy #2534
 
