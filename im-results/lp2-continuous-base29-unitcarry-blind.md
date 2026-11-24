@@ -43,3 +43,6 @@ Both winning decodes exactly replay all 12,956 input digits, as any admissible p
 - [Executed numeric output](lp2-continuous-base29-unitcarry-blind-output.json)
 
 Executed in connected JavaScript runtime; no CI run claimed.
+
+
+**Exact latent-F extension (Agent17):** the [signed continuous unit-carry/F-hold gate](lp2-continuous-base29-unitcarry-fhold.md) allows actual plaintext F holds and all consuming ciphertext F possibilities. It excludes every nonidentity positive and every negative compact unit globally in both directions without a language assumption; both blind sparse-F native controls recover their hidden keys and 152/152 withheld runes. The independently keyed p54–55 exact prefix and full-chapter optimizers produce no coherent text. This is a different clock from the ordinary consuming model above.

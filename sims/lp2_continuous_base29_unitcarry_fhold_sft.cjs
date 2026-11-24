@@ -3,6 +3,7 @@ const fs=require("node:fs");
 const assert=require("node:assert/strict");
 function mod(x,m){return ((x%m)+m)%m;}
 
+/** Exact support propagation over all admissible carries for each unit. */
 function gate(c,sign,lo=1,hi=3302){
  const inv=Array(29).fill(0);for(let a=1;a<29;a++)for(let x=1;x<29;x++)if(a*x%29===1)inv[a]=x;
  let valid=0,states0=0,maxEnd=0;const survivors=[];
@@ -20,8 +21,10 @@ function gate(c,sign,lo=1,hi=3302){
  return {valid,states0,maxEnd,survivors};
 }
 
+/** Forward latent-F BASE29 encoder; negative sign uses the complement digit. */
 function enc(p,a,s,sign){const c=[];for(const x of p){if(!x){c.push(0);continue;}const v=a*x+s;s=Math.floor(v/29);const y=v%29;c.push(sign===1?y:28-y);}return {c,s}}
 
+/** Interpolated GP29 trigram probabilities, with no cross-section transitions. */
 function train(sections){
  const un=new Float64Array(29),bi=new Float64Array(841),tri=new Float64Array(24389),bn=new Float64Array(29),tn=new Float64Array(841);let total=0;
  for(const p of sections){for(let i=0;i<p.length;i++){const x=p[i];un[x]++;total++;if(i>0){const j=p[i-1];bi[j*29+x]++;bn[j]++;}if(i>1){const j=p[i-2]*29+p[i-1];tri[j*29+x]++;tn[j]++;}}}
@@ -33,6 +36,7 @@ function train(sections){
 
 function score(p,lm){let v=lm.u[p[0]];if(p.length>1)v+=lm.b[p[0]*29+p[1]];for(let i=2;i<p.length;i++)v+=lm.t[(p[i-2]*29+p[i-1])*29+p[i]];return v;}
 
+/** Enumerate every legal predecessor history from the exact terminal support. */
 function exactFit(c,sign,lm,g){
  const path=new Int8Array(c.length);let complete=0,nodes=0;let best=null,runner=null;
  function visit(i,s,a,end,v){
@@ -64,6 +68,6 @@ function attack(c,sign,lm,n=232){
  return {fitN:prefix.length,holdN:tail.length,fitZeros:prefix.filter(x=>x===0).length,multipliers:g.survivors.length,terminalStates:g.survivors.reduce((v,x)=>v+x.terminal.length,0),fit,hold,rawHold:score(tail,lm)/tail.length};
 }
 
-function main(){const corpus=JSON.parse(fs.readFileSync("resources/liber-primus/lp2-corpus.json","utf8"));const native=JSON.parse(fs.readFileSync("resources/external/relikd-solved-gp29-native-v1.json","utf8"));const sections=native.sections.map(x=>({name:x.name,p:[...x.source_text].map(r=>native.runes.indexOf(r)).filter(n=>n>=0)}));const all=corpus.pages.slice(0,56).flatMap(x=>x.indices);assert.equal(all.length,12956);const mode=process.argv[2]??"global";const dir=Number(process.argv[3]??1),sign=Number(process.argv[4]??1);assert.ok([1,-1].includes(dir)&&[1,-1].includes(sign));const order=x=>dir===1?x:x.slice().reverse();if(mode==="global"){const offset=dir===1?1408:0;const g=gate(order(all).slice(offset),sign);assert.equal(g.states0,5263162);assert.equal(g.valid,3188);assert.deepEqual(g.survivors,sign===1?[{a:1,terminal:[0]}]:[]);console.log(JSON.stringify({mode,dir,sign,offset,...g}));}else if(mode==="terminal"){const c=order(corpus.pages.slice(54,56).flatMap(x=>x.indices));assert.equal(c.length,308);const lm=train(sections.map(x=>order(x.p)));console.log(JSON.stringify({mode,dir,sign,...attack(c,sign,lm)}));}else if(mode==="plant"){const name=process.argv[5],a=Number(process.argv[6]),s=Number(process.argv[7]);assert.ok(a>0&&a<=3301&&a%29!==0&&s>=0&&s<a);const target=sections.find(x=>x.name===name);assert.ok(target);const p=order(target.p).slice(0,308);assert.equal(p.length,308);const e=enc(p,a,s,sign),lm=train(sections.filter(x=>x.name!==name).map(x=>order(x.p)));const result=attack(e.c,sign,lm);console.log(JSON.stringify({mode,dir,sign,name,a,s,truth:p,...result,fitCorrect:result.fit.best?.p.filter((x,i)=>x===p[i]).length??0,holdCorrect:result.hold?.best?.p.filter((x,i)=>x===p[232+i]).length??0}));}else throw Error("unknown mode");}
+function main(){const corpus=JSON.parse(fs.readFileSync("resources/liber-primus/lp2-corpus.json","utf8"));const native=JSON.parse(fs.readFileSync("resources/external/relikd-solved-gp29-native-v1.json","utf8"));const sections=native.sections.map(x=>({name:x.name,p:[...x.source_text].map(r=>native.runes.indexOf(r)).filter(n=>n>=0)}));const all=corpus.pages.slice(0,56).flatMap(x=>x.indices);assert.equal(all.length,12956);const mode=process.argv[2]??"global";const dir=Number(process.argv[3]??1),sign=Number(process.argv[4]??1);assert.ok([1,-1].includes(dir)&&[1,-1].includes(sign));const order=x=>dir===1?x:x.slice().reverse();if(mode==="global"){const offset=dir===1?1408:0;const g=gate(order(all).slice(offset),sign);assert.equal(g.states0,5263162);assert.equal(g.valid,3188);assert.deepEqual(g.survivors,sign===1?[{a:1,terminal:[0]}]:[]);console.log(JSON.stringify({mode,dir,sign,offset,...g}));}else if(mode==="terminal"){const c=order(corpus.pages.slice(54,56).flatMap(x=>x.indices));assert.equal(c.length,308);const lm=train(sections.map(x=>order(x.p)));console.log(JSON.stringify({mode,dir,sign,...attack(c,sign,lm)}));}else if(mode==="retro"){const c=order(corpus.pages.slice(54,56).flatMap(x=>x.indices));const lm=train(sections.map(x=>order(x.p)));const g=gate(c,sign),fit=exactFit(c,sign,lm,g);const b=fit.best;assert.ok(b);const replay=enc(b.p,b.a,b.s,sign);assert.deepEqual(replay.c,c);assert.equal(replay.s,b.end);console.log(JSON.stringify({mode,dir,sign,multipliers:g.survivors.length,terminalStates:g.survivors.reduce((n,x)=>n+x.terminal.length,0),fit,raw:score(c,lm)/c.length}));}else if(mode==="plant"){const name=process.argv[5],a=Number(process.argv[6]),s=Number(process.argv[7]),offset=Number(process.argv[8]??0);assert.ok(a>0&&a<=3301&&a%29!==0&&s>=0&&s<a);const target=sections.find(x=>x.name===name);assert.ok(target);const p=order(target.p).slice(offset,offset+308);assert.equal(p.length,308);const e=enc(p,a,s,sign),lm=train(sections.filter(x=>x.name!==name).map(x=>order(x.p)));const result=attack(e.c,sign,lm);console.log(JSON.stringify({mode,dir,sign,name,a,s,offset,truth:p,...result,fitCorrect:result.fit.best?.p.filter((x,i)=>x===p[i]).length??0,holdCorrect:result.hold?.best?.p.filter((x,i)=>x===p[232+i]).length??0}));}else throw Error("unknown mode");}
 if(require.main===module)main();
 module.exports={mod,gate,enc,train,score,exactFit,continuation,attack};

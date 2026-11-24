@@ -1,0 +1,273 @@
+{
+  "schema": "lp2-continuous-base29-unitcarry-fhold-v1",
+  "sourceLength": 12956,
+  "aMin": 1,
+  "aMax": 3301,
+  "units": 3188,
+  "initialStatesPerSignDirection": 5263162,
+  "globals": [
+    {
+      "dir": 1,
+      "sign": 1,
+      "offset": 1408,
+      "nontrivialLastDeath": 554,
+      "survivors": [
+        {
+          "a": 1,
+          "terminal": [
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "dir": 1,
+      "sign": -1,
+      "offset": 1408,
+      "nontrivialLastDeath": 483,
+      "survivors": []
+    },
+    {
+      "dir": -1,
+      "sign": 1,
+      "offset": 0,
+      "nontrivialLastDeath": 1089,
+      "survivors": [
+        {
+          "a": 1,
+          "terminal": [
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "dir": -1,
+      "sign": -1,
+      "offset": 0,
+      "nontrivialLastDeath": 1276,
+      "survivors": []
+    }
+  ],
+  "fitN": 232,
+  "holdN": 76,
+  "terminal": [
+    {
+      "dir": 1,
+      "sign": 1,
+      "zeros": 3,
+      "multipliers": 2613,
+      "terminal": 9967,
+      "paths": 12561,
+      "nodes": 3150149,
+      "a": 3081,
+      "s": 553,
+      "end": 2786,
+      "fit": -1134.1956482895162,
+      "holdPaths": 0,
+      "hold": null,
+      "runner": -1136.7997518459324
+    },
+    {
+      "dir": 1,
+      "sign": -1,
+      "zeros": 3,
+      "multipliers": 2605,
+      "terminal": 10234,
+      "paths": 12819,
+      "nodes": 3233967,
+      "a": 933,
+      "s": 679,
+      "end": 750,
+      "fit": -1123.7142021648774,
+      "holdPaths": 1,
+      "hold": -434.5140814987575,
+      "runner": -1131.8253812258083
+    },
+    {
+      "dir": -1,
+      "sign": 1,
+      "zeros": 4,
+      "multipliers": 2837,
+      "terminal": 14350,
+      "paths": 26123,
+      "nodes": 5343358,
+      "a": 2922,
+      "s": 1785,
+      "end": 2170,
+      "fit": -1078.7440744278404,
+      "holdPaths": 0,
+      "hold": null,
+      "runner": -1111.443167611504
+    },
+    {
+      "dir": -1,
+      "sign": -1,
+      "zeros": 4,
+      "multipliers": 2831,
+      "terminal": 14698,
+      "paths": 26768,
+      "nodes": 5473658,
+      "a": 711,
+      "s": 478,
+      "end": 622,
+      "fit": -1121.1252039308918,
+      "holdPaths": 1,
+      "hold": -412.03452929707686,
+      "runner": -1124.2028769343765
+    }
+  ],
+  "retro": [
+    {
+      "dir": 1,
+      "sign": 1,
+      "multipliers": 1822,
+      "terminal": 5630,
+      "paths": 7179,
+      "nodes": 3201777,
+      "a": 2528,
+      "s": 2360,
+      "end": 1505,
+      "score": -1527.750688230305,
+      "runner": -1529.6886831946742
+    },
+    {
+      "dir": 1,
+      "sign": -1,
+      "multipliers": 1857,
+      "terminal": 5836,
+      "paths": 7377,
+      "nodes": 3322324,
+      "a": 2376,
+      "s": 230,
+      "end": 1521,
+      "score": -1515.0924105701015,
+      "runner": -1515.8862059561395
+    },
+    {
+      "dir": -1,
+      "sign": 1,
+      "multipliers": 1829,
+      "terminal": 4089,
+      "paths": 7539,
+      "nodes": 2140308,
+      "a": 2025,
+      "s": 494,
+      "end": 189,
+      "score": -1508.8732205423335,
+      "runner": -1530.3055977622357
+    },
+    {
+      "dir": -1,
+      "sign": -1,
+      "multipliers": 1836,
+      "terminal": 4209,
+      "paths": 7797,
+      "nodes": 2206141,
+      "a": 2205,
+      "s": 704,
+      "end": 1424,
+      "score": -1502.7573312642467,
+      "runner": -1506.2436247664498
+    }
+  ],
+  "plants": [
+    {
+      "name": "jpg107-167",
+      "offset": 0,
+      "dir": -1,
+      "sign": 1,
+      "a": 3301,
+      "s": 123,
+      "end": 2086,
+      "fitPlainF": 0,
+      "totalPlainF": 2,
+      "fitCipherF": 6,
+      "multipliers": 3032,
+      "terminal": 100479,
+      "paths": 108323,
+      "nodes": 59871936,
+      "fit": -584.5047871521033,
+      "runner": -620.6505538896193,
+      "holdPaths": 13,
+      "hold": -179.06301974146243,
+      "fitCorrect": 232,
+      "holdCorrect": 76
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "offset": 45,
+      "dir": 1,
+      "sign": -1,
+      "a": 463,
+      "s": 255,
+      "end": 34,
+      "fitPlainF": 2,
+      "fitCipherF": 6,
+      "multipliers": 3011,
+      "terminal": 34475,
+      "paths": 108646,
+      "nodes": 16610522,
+      "fit": -672.1122425156567,
+      "runner": -758.8336907753259,
+      "holdPaths": 2,
+      "hold": -244.5279795532866,
+      "fitCorrect": 232,
+      "holdCorrect": 76
+    }
+  ],
+  "knownKeySupportPlants": [
+    {
+      "name": "0_welcome",
+      "a": 1033,
+      "s": 761,
+      "sign": 1,
+      "reverse": false,
+      "n": 515,
+      "pf": 11,
+      "cf": 30,
+      "terminalCount": 185,
+      "trueTerminal": 735,
+      "exactReplay": 515
+    },
+    {
+      "name": "0_koan_1",
+      "a": 3299,
+      "s": 1764,
+      "sign": -1,
+      "reverse": true,
+      "n": 780,
+      "pf": 13,
+      "cf": 22,
+      "terminalCount": 2,
+      "trueTerminal": 2750,
+      "exactReplay": 780
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "a": 463,
+      "s": 255,
+      "sign": -1,
+      "reverse": false,
+      "n": 755,
+      "pf": 8,
+      "cf": 35,
+      "terminalCount": 4,
+      "trueTerminal": 424,
+      "exactReplay": 755
+    },
+    {
+      "name": "jpg107-167",
+      "a": 3301,
+      "s": 123,
+      "sign": 1,
+      "reverse": true,
+      "n": 319,
+      "pf": 2,
+      "cf": 14,
+      "terminalCount": 730,
+      "trueTerminal": 2752,
+      "exactReplay": 319
+    }
+  ]
+}
