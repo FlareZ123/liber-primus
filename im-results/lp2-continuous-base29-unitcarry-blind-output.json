@@ -1,0 +1,179 @@
+{
+  "bound": 3301,
+  "shortlist": 512,
+  "screen": 48,
+  "fit": 144,
+  "holdout": 144,
+  "results": [
+    {
+      "name": "0_welcome",
+      "rev": false,
+      "planted": {
+        "a": 1033,
+        "s": 761
+      },
+      "n": 5263162,
+      "win": {
+        "a": 1033,
+        "s": 761,
+        "screen": -2.561994310411563,
+        "train": -2.6071734074798614
+      },
+      "runner": {
+        "a": 1675,
+        "s": 945,
+        "screen": -3.287717979523475,
+        "train": -3.4798446316110407
+      },
+      "test": -2.570345166158249,
+      "preview": "W E L C O M E W E L C O M E P I L G R I M T O TH E G R EA T J O U R N E Y T O W A R D TH E E N D O F A L L TH NG S I T I S N O T A N EA S Y T R I P B U T F O R TH O S",
+      "replay": true,
+      "adjacent": 20,
+      "plantedShortlisted": true,
+      "exact": 515,
+      "holdoutExact": 144,
+      "total": 515,
+      "goldTest": -2.570345166158249
+    },
+    {
+      "name": "0_koan_1",
+      "rev": true,
+      "planted": {
+        "a": 3299,
+        "s": 1764
+      },
+      "n": 5263162,
+      "win": {
+        "a": 3299,
+        "s": 1764,
+        "screen": -2.3438057563595303,
+        "train": -2.5886680666277457
+      },
+      "runner": {
+        "a": 2064,
+        "s": 759,
+        "screen": -3.329277984842736,
+        "train": -3.4916376706306727
+      },
+      "test": -2.825687281276484,
+      "preview": "Y A D H C EA S NG TH E L B A N O S EA R N U R U O F O D N IA T C U R T S N I N A Y D U T S E M O C O T E M O C L E W E R A U O Y N E TH D E I L P E R R E T S A M E TH",
+      "replay": true,
+      "adjacent": 14,
+      "plantedShortlisted": true,
+      "exact": 780,
+      "holdoutExact": 144,
+      "total": 780,
+      "goldTest": -2.825687281276484
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "rev": false,
+      "planted": {
+        "a": 463,
+        "s": 255
+      },
+      "n": 5263162,
+      "win": {
+        "a": 463,
+        "s": 255,
+        "screen": -2.6489127910810435,
+        "train": -2.9704665156008154
+      },
+      "runner": {
+        "a": 559,
+        "s": 435,
+        "screen": -3.27686013544472,
+        "train": -3.4059199920928442
+      },
+      "test": -2.622819590829748,
+      "preview": "TH E L O S S O F D I U I N I T Y TH E C I R C U M F E R E N C E P R A C T I C E S TH R E E B E H A U IA R S W H I C H C A U S E TH E L O S S O F D I U I N I T Y C O",
+      "replay": true,
+      "adjacent": 18,
+      "plantedShortlisted": true,
+      "exact": 755,
+      "holdoutExact": 144,
+      "total": 755,
+      "goldTest": -2.622819590829748
+    },
+    {
+      "name": "jpg107-167",
+      "rev": true,
+      "planted": {
+        "a": 3301,
+        "s": 123
+      },
+      "n": 5263162,
+      "win": {
+        "a": 3301,
+        "s": 123,
+        "screen": -2.4467300676516874,
+        "train": -2.337112519912597
+      },
+      "runner": {
+        "a": 1495,
+        "s": 82,
+        "screen": -3.3465742494337323,
+        "train": -3.500232729424263
+      },
+      "test": -2.530229193285434,
+      "preview": "D E N E T H G I L N E E R E W S T N E D U T S E TH D N A I E TH S I D EA H R U O Y N I E C I O U O N E U A H U O Y D I A S T S U J T A TH E C I O U E TH D I A S D N",
+      "replay": true,
+      "adjacent": 6,
+      "plantedShortlisted": true,
+      "exact": 319,
+      "holdoutExact": 144,
+      "total": 319,
+      "goldTest": -2.530229193285434
+    },
+    {
+      "name": "LP2 p0–55",
+      "rev": false,
+      "n": 5263162,
+      "win": {
+        "a": 436,
+        "s": 241,
+        "screen": -3.3677452561283143,
+        "train": -3.4794829485058116
+      },
+      "runner": {
+        "a": 2287,
+        "s": 704,
+        "screen": -3.3523158513308284,
+        "train": -3.4843435146932236
+      },
+      "test": -3.7012206856174448,
+      "preview": "G Y U R O U J N M Y A A N EA L I N C E I E D A P P H G B E R U OE N F R D W N H EA IA A F U TH H W E E C A J J L W X W TH AE X S EA NG TH R Y Y O L X R C H L D N EA S A NG",
+      "replay": true,
+      "adjacent": 492,
+      "testPreview": "X I EA E AE IA R IA R S U B EA U NG N E Y I P OE D B I EA M NG T NG B O A X I U C AE C P C AE G AE X C C S P M I C T I G NG R X S S IA EO U OE TH F OE G H T W G NG",
+      "fullScore": -3.7464685812098253,
+      "cipherTest": -3.741654164736433,
+      "fullCount": 12956
+    },
+    {
+      "name": "LP2 p0–55",
+      "rev": true,
+      "n": 5263162,
+      "win": {
+        "a": 2161,
+        "s": 430,
+        "screen": -3.3593947555964867,
+        "train": -3.4648072467224824
+      },
+      "runner": {
+        "a": 1234,
+        "s": 1136,
+        "screen": -3.1850903716926946,
+        "train": -3.49198850560484
+      },
+      "test": -3.7269454693802735,
+      "preview": "U O B G Y A U A M A O E I B D F F F A NG O D B S G O L E W B M R T R E B N H H OE I TH N IA T N A H N C L G A D F AE NG A X B TH I I EO EA OE EA J J T A H W D H H C N O Y",
+      "replay": true,
+      "adjacent": 432,
+      "testPreview": "OE E NG C O EO P S EA P N O Y EA EO AE TH D A NG D H H EO AE AE OE A T M R Y R F R S B E C A F C IA TH OE IA L U E I EA R B N I X U W O EO G T M A M D E P T G C T",
+      "fullScore": -3.7588624131729556,
+      "cipherTest": -3.7153012151474414,
+      "fullCount": 12956
+    }
+  ]
+}
