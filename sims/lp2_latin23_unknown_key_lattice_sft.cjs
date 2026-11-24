@@ -8,7 +8,7 @@ const paths={
   "emerson": "resources/control/emerson_essays_2944.txt"
 };
 const inputs=Object.fromEntries(Object.entries(paths).map(([k,p])=>[k,fs.readFileSync(path.resolve(__dirname,"..",p),"utf8")]));
-function experiment(input) {
+function experiment(input, config={}) {
  const gp=JSON.parse(input.corpus),q=23, A=26;
  const opt=gp.translit.map(x=>[x]);opt[1]=["U","V"];opt[5]=["C","K","Q"];opt[15]=["S","Z"];opt[21]=["NG","ING"];opt[27]=["IA","IO"];
  const arcs=opt.flatMap((ss,r)=>ss.map(s=>({s,rs:[r]})));arcs.push({s:"QU",rs:[5,7]});
@@ -121,6 +121,49 @@ function experiment(input) {
   return {plain:plain.join(""),score:best.score,scorePerRune:best.score/rs.length,runes:rs.length,end:best.phase};
  }
  function edit(a,b){let x=Array.from({length:b.length+1},(_,i)=>i);for(let i=0;i<a.length;i++){const y=[i+1];for(let j=0;j<b.length;j++)y.push(Math.min(y[j]+1,x[j+1]+1,x[j]+(a[i]!==b[j])));x=y}return x.at(-1)}
+
+ if(config.range){
+  const rs=gp.pages[54].indices,n=rs.filter(v=>v===21).length;
+  const all=Array.from({length:1<<n},(_,m)=>initialize(rs,m)).sort((a,b)=>b.score-a.score);
+  const [lo,hi]=config.range, raw=[];
+  for(const z of all.slice(lo,hi)){
+   let best=null;for(let j=0;j<3;j++){const a=optimize(z,0x2345+z.mask*137+j*719,j>0);if(!best||a.score>best.score)best=a}
+   raw.push(best);
+  }
+  raw.sort((a,b)=>b.score-a.score);
+  const selected=raw.slice(0,3).map(a=>{
+   const z=all.find(x=>x.mask===a.mask),preRefineScore=a.score;
+   let best=refine(z,a);const preProfileScore=best.score;best=profileRefine(z,best);
+   if(enc(best.plain,best.key)!==best.cipher)throw Error("full fit replay failed");
+   let p=0;for(const g of z.g){const l=g.choices[0].length;if(!g.choices.some(a=>letters(a)===best.cipher.slice(p,p+l)))throw Error("full relation replay");p+=l}
+   return {...best,preRefineScore,preProfileScore,rank:all.indexOf(z)+1,scorePerRune:best.score/rs.length};
+  }).sort((a,b)=>b.score-a.score);
+  return {range:[lo,hi],maskCount:all.length,rawScores:raw.map(a=>[a.mask,a.score]),selected};
+ }
+ if(config.candidate){
+  const a=config.candidate,b=hold(gp.pages[55].indices,a.key,a.latinLength%q,a.plain.slice(-3));
+  return {fit:a,test:b};
+ }
+ if(config.high){
+ const native=norm(input.solved.split("### 10\n")[1].split("### 13")[0].replace(/\[[^\]]*\]/g,""));
+ const plain=native.slice(0,360);if(plain.length!==360)throw Error("short held-out native");
+ // Construct a source-native plant with disjoint key-phase constraints forcing
+ // three ING and six NG strings at distinct positions in the training region.
+ // The selected key is deliberately not sampled uniformly.
+ let plant;
+ for(let seed=1;seed<=128&&!plant;seed++){
+  const rand=rng(0x7841+seed*997),key=Array.from({length:q},()=>Math.floor(rand()*26));
+  let phase=0;for(const pattern of ["ING","ING","ING","NG","NG","NG","NG","NG","NG"]){const starts=[];for(let i=phase+q;i<220-pattern.length;i+=q)starts.push(i);const start=starts[Math.floor(rand()*starts.length)];for(let j=0;j<pattern.length;j++)key[phase+j]=(pattern.charCodeAt(j)-plain.charCodeAt(start+j)+26)%26;phase+=pattern.length;}
+  const obs=encode(enc(plain,key));let split=Math.floor(obs.rs.length*2/3);if(obs.rs[split-1]===5&&obs.rs[split]===7)split++;const cut=obs.offset[split],n=obs.rs.slice(0,split).filter(v=>v===21).length;
+  const lengths=obs.lengths.slice(0,n),mask=lengths.reduce((m,b,j)=>m+(b<<j),0);
+  if(n>=9&&n<=12&&lengths.filter(x=>x).length>=3)plant={seed,key,obs,split,cut,n,mask};
+ }
+ if(!plant)throw Error("no high-ambiguity plant in fixed seed budget");
+ const {seed,key,obs,split,cut,n,mask}=plant;
+ const a=fit(obs.rs.slice(0,split),mask),b=hold(obs.rs.slice(split),a.key,a.latinLength%q,a.plain.slice(-3));
+ return {seed,forcedNG:n,trueMask:mask,trueKey:key,keyExact:a.key.filter((k,i)=>k===key[i]).length,fit:a,test:b,fitEdit:edit(a.plain,plain.slice(0,cut)),testEdit:edit(b.plain,plain.slice(cut)),testTrueLength:plain.length-cut};
+
+ }
  const native=norm(input.solved.split("### 6\n")[1].split("### 7")[0]),welcome=norm(input.solved.split("### 3\n")[1].split("WISDOM")[0]);
  const plants=[native.slice(0,360),native.slice(360,720),welcome.slice(0,360)];const control=plants.map((plain,j)=>{
   const rand=rng(0x1209+j*913),key=Array.from({length:q},()=>Math.floor(rand()*26)),obs=encode(enc(plain,key));
@@ -131,4 +174,5 @@ function experiment(input) {
  const a=fit(gp.pages[54].indices),b=hold(gp.pages[55].indices,a.key,a.latinLength%q,a.plain.slice(-3));
  return {trainingLetters:total,period:q,control,original:{fit:a,test:b}};
 }
-console.log(JSON.stringify(experiment(inputs),null,2));
+if(require.main===module){const args=process.argv.slice(2);const config=args[0]==="--high-ambiguity"?{high:true}:args[0]==="--range"?{range:[Number(args[1]),Number(args[2])]}:args[0]==="--candidate"?{candidate:JSON.parse(fs.readFileSync(args[1],"utf8"))}:{};console.log(JSON.stringify(experiment(inputs,config),null,2));}
+module.exports={experiment,inputs};
