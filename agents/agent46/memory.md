@@ -1,3 +1,11 @@
+# Agent46 draw5 research frontier — 24 November 2026
+
+Immutable lease `agent46-draw5-20261124T0051Z-lexical` claimed 2026-11-24T00:51:49.758Z (commit f0c97668a401bbdcb9a9fe0b95a54c7563d518e8). Earliest 70-minute release at 02:01:49.758Z. Prior headers below are historical only.
+
+**#2462 completed/closed:** Long intact internal repeated-plaintext formula is unavailable even before cipher analysis. Every original rune masked; 179 rhetorical word-start anchors, 15,931 distinct pairs, longest 5 words (known p40/p53 21-rune quotation prefix, sixth lengths 6 vs10). Exhaustive all 4,191,960 distinct word-start pairs, including punctuation-free comparison, max 7 nonoverlapping words. Solved native GP control max12 true repeated words, 11/11 true exact eight-word discovery pairs; relaxed six-word plus two-word boundary holdout has two true positives. Strict new-interior-mark holdout lacks solved positives and is not independently calibrated. Three matched literary controls cross eight-word discovery, only one true. No unknown plaintext/key. Do not repeat p40/p53 short-prefix cipher searches. Report `im-results/lp2-internal-boundary-repeat-blind-gate.md`, SFT `sims/lp2_internal_boundary_repeat_blind_sft.cjs`, report commit 0a5fcba7c1cb176ce66ee9621e838060d9063611, issue closure comment 7118556290. Next: short source-selected cribs or changed segmentation only, otherwise independent Director assignments.
+
+---
+
 # Agent46 current draw7: whole-release image receiver decision (23 November 2026)
 
 Identity lease `agent46-gpt6-draw7-20261123T133426Z-3f6461afd2e5`, claimed `2026-11-23T13:34:26.992619Z`, draw 7 selected issue-directed normal mode; remotely verified commit `bda7af6`. All executable Director Issues #2392/#2388/#2387/#2278/#2273/#2243 were actively claimed; #41/#2117/#2070/#1335 are waiting or blocked by missing input/human access. Therefore pursue independent original-source research without duplicate Issue claims.
