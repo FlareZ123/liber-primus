@@ -98,6 +98,30 @@ function experiment(corpus,trans,solved,lex,donors,lib,mode='strict'){
    assert(same(actual.sort(),expected.sort()),"join vs direct triples");
   }return cases.length;
  }
+
+ // Exact concrete-queue whole-side reachability. Only dead branch states are memoized.
+ // Cap is measured in visited physical-rune transitions, never treated as impossibility.
+ const REACH_CAP=2000000;
+ function reach(C,K,a,b,d,rev){
+  const seq=rev?C.slice().reverse():C,plain=new Uint8Array(seq.length),dead=new Map(),ai=inv[a];let visits=0,final=null,capped=false;
+  const check=()=>{if(++visits>REACH_CAP)throw Error("reach cap");};
+  function consume(c,queue){
+   if(rev){const p=mod((queue.at(-1)-b*c-d)*ai);return p?{p,k:[mod(c-p),...queue.slice(0,-1)]}:null;}
+   const p=mod(c-queue[0]);return p?{p,k:queue.slice(1).concat(mod(a*p+b*c+d))}:null;
+  }
+  function go(i,k){
+   while(i<seq.length&&seq[i]){check();const x=consume(seq[i],k);if(!x)return false;plain[i++]=x.p;k=x.k;}
+   if(i===seq.length){final=k.slice();return true;}
+   let cache=dead.get(i);if(!cache){cache=new Set();dead.set(i,cache);}
+   const id=String.fromCharCode(...k);if(cache.has(id))return false;
+   check();plain[i]=0;if(go(i+1,k))return true;
+   const x=consume(0,k);if(x){check();plain[i]=x.p;if(go(i+1,x.k))return true;}
+   cache.add(id);return false;
+  }
+  let yes=false;try{yes=go(0,K);}catch(e){if(e.message!=="reach cap")throw e;capped=true;}
+  const p=yes?Array.from(plain):null;if(p&&rev)p.reverse();
+  return {status:yes?"legal":capped?"cap":"empty",visits,p,queue:final};
+ }
  const joinTests=testJoin(),FIT_CAP=2048;
  function attack(name,words,truth=null,partial=new Set(),prediction=true){
   const C=words.flat(),offsets=[0],anchors=[];for(const w of words)offsets.push(offsets.at(-1)+w.length);
@@ -115,7 +139,7 @@ function experiment(corpus,trans,solved,lex,donors,lib,mode='strict'){
   for(const {j,at,end,L,R,rev,c,nz} of pairs){
    const c1=words[j],c2=words[j+1],fitLeft=C.slice(L,at),fitRight=C.slice(end,R),held=rev?C.slice(L-76,L):C.slice(R,R+76);
    const trueP=truth?.P.slice(at,end),trueLex=truth?dict[c1.length].has(String.fromCharCode(...trueP.slice(0,c1.length)))&&dict[c2.length].has(String.fromCharCode(...trueP.slice(c1.length))):null;
-   let trueModelCount=0,fitLegal=0,best=null,stored=[];
+   let trueModelCount=0,fitLegal=0,best=null,stored=[],fullLegal=0,fullCap=0,fullEmpty=0,fullVisits=0,bestFull=null,trueFull=null;
    const support=join(c1,c2,dict[c1.length],dict[c2.length],x=>{
     if(truth&&x.a===truth.a&&x.b===truth.b&&x.d===truth.d&&same(x.p,trueP))trueModelCount++;
     if(stored.length<=FIT_CAP)stored.push(x);
@@ -125,7 +149,16 @@ function experiment(corpus,trans,solved,lex,donors,lib,mode='strict'){
      const check=encrypt(p,start,a,b,d);assert(same(check.C,c),"join replay");
      const left=bestSide(fitLeft,start,a,b,d,true,p);if(!left.best)continue;
      const right=bestSide(fitRight,check.queue,a,b,d,false,p);if(!right.best)continue;
-     fitLegal++;const fit=left.best.p.concat(p,right.best.p),s=score(fit),seed=left.best.queue,after=right.best.queue;
+     fitLegal++;
+     // A complete chapter witness is independent of the locally preferred F path.
+     // Test the longer side first; an empty side certifies rejection even if the other caps.
+     const LC=C.slice(0,at),RC=C.slice(end),rr=LC.length>=RC.length?[[LC,start,true],[RC,check.queue,false]]:[[RC,check.queue,false],[LC,start,true]];
+     const one=reach(rr[0][0],rr[0][1],a,b,d,rr[0][2]);fullVisits+=one.visits;let status="empty",two=null;
+     if(one.status!=="empty"){two=reach(rr[1][0],rr[1][1],a,b,d,rr[1][2]);fullVisits+=two.visits;status=two.status==="empty"?"empty":one.status==="cap"||two.status==="cap"?"cap":"legal";}
+     if(status==="legal"){fullLegal++;const ll=rr[0][2]?one:two,rt=rr[0][2]?two:one,all=ll.p.concat(p,rt.p);assert(same(encrypt(all,ll.queue,a,b,d).C,C),"full chapter replay");const wscore=score(all)/all.length;if(!bestFull||wscore>bestFull.score)bestFull={a,b,d,anchor:render(p),score:wscore,first100:render(all.slice(0,100)),last100:render(all.slice(-100))};}
+     else if(status==="cap")fullCap++;else fullEmpty++;
+     if(truth&&a===truth.a&&b===truth.b&&d===truth.d&&same(p,trueP))trueFull=status;
+     const fit=left.best.p.concat(p,right.best.p),s=score(fit),seed=left.best.queue,after=right.best.queue;
      assert(same(encrypt(fit,seed,a,b,d).C,C.slice(L,R)),"fit replay");
      if(!best||s>best.s)best={a,b,d,p,seed,after,fit,s};
     }
@@ -135,7 +168,7 @@ function experiment(corpus,trans,solved,lex,donors,lib,mode='strict'){
     if(h.best){const full=rev?h.best.p.concat(best.fit):best.fit.concat(h.best.p),seed=rev?h.best.queue:best.seed;assert(same(encrypt(full,seed,best.a,best.b,best.d).C,C.slice(rev?L-76:L,rev?R:R+76)),"holdout replay");}
     result={a:best.a,b:best.b,d:best.d,word:render(best.p.slice(0,c1.length))+" "+render(best.p.slice(c1.length)),fitScore:best.s/(R-L),fit:render(best.fit),holdout:h.best?render(h.best.p):null,holdoutScore:h.best?h.best.s/76:null,holdoutPaths:h.paths,correct:truth?{model:best.a===truth.a&&best.b===truth.b&&best.d===truth.d,fit:best.fit.filter((x,i)=>x===truth.P[L+i]).length,fitTotal:R-L,holdout:h.best?h.best.p.filter((x,i)=>x===truth.P[(rev?L-76:R)+i]).length:0}:null};
    }
-   anchors.push({j,at,n:[c1.length,c2.length],guaranteed:nz,L,R,holdoutSide:rev?"left":"right",dictWords:[dict[c1.length].size,dict[c2.length].size],...support,fitStatus:!prediction?"unqualified":support.models>FIT_CAP?"cap":"complete",fitLegal,trueLex,trueModelCount,result});
+   anchors.push({j,at,n:[c1.length,c2.length],guaranteed:nz,L,R,holdoutSide:rev?"left":"right",dictWords:[dict[c1.length].size,dict[c2.length].size],...support,fitStatus:!prediction?"unqualified":support.models>FIT_CAP?"cap":"complete",fitLegal,fullReach:prediction&&support.models<=FIT_CAP?{legal:fullLegal,cap:fullCap,empty:support.models-fullLegal-fullCap,visits:fullVisits,bestWitness:bestFull,trueFull}:null,trueLex,trueModelCount,result});
   }return {name,n:C.length,anchors};
  }
  const controls=specs.map(([name,a,b,d,salt])=>{const s=src.find(x=>x.name===name),P=s.w.flat(),K=Array.from({length:q},(_,i)=>(i*i*7+i*11+salt)%29),C=encrypt(P,K,a,b,d).C;let j=0;return attack(name,s.w.map(w=>{const v=C.slice(j,j+w.length);j+=w.length;return v}),{P,K,a,b,d});});
@@ -160,7 +193,7 @@ function experiment(corpus,trans,solved,lex,donors,lib,mode='strict'){
  const pages=[0,3,8,15,23,27,34,40,54,56],starts=pages.map(p=>gp.pages.slice(0,p).reduce((s,x)=>s+x.indices.length,0));
  let off=0;const ww=original.map(w=>{const x={w,off};off+=w.length;return x});
  const originalResults=supportPass?starts.slice(0,-1).map((s,i)=>{const e=starts[i+1],w=[],partial=new Set();for(const x of ww){const lo=Math.max(s,x.off),hi=Math.min(e,x.off+x.w.length);if(lo>=hi)continue;if(lo!==x.off||hi!==x.off+x.w.length)partial.add(w.length);w.push(x.w.slice(lo-x.off,hi-x.off));}assert(w.flat().length===e-s,"chapter group carry");assert(same(w.flat(),gp.pages.slice(pages[i],pages[i+1]).flatMap(x=>x.indices)),"chapter tape");return attack("p"+pages[i],w,null,partial,pass);}):null;
- return {q,trainLengths:train.map(x=>x.length),lexicon:dict.reduce((s,d)=>s+d.size,0),joinTests,FIT_CAP,calibration:{eligible:calibration.length,eligibleFit:eligibleFit.length,exact,passed:pass,supportPassed:supportPass},controls,original:originalResults};
+ return {q,trainLengths:train.map(x=>x.length),lexicon:dict.reduce((s,d)=>s+d.size,0),joinTests,FIT_CAP,REACH_CAP,calibration:{eligible:calibration.length,eligibleFit:eligibleFit.length,exact,passed:pass,supportPassed:supportPass},controls,original:originalResults};
 }
 if(typeof module!=="undefined")module.exports={experiment};
 
