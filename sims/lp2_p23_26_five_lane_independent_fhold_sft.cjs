@@ -443,7 +443,7 @@ function runPlant(name, plaintext, seed, lm, restarts = 1000, keyOverride = null
     : 0;
   return {
     name,
-    plantedKey,
+    plantedKey: key,
     recoveredKey: best.key,
     exactKeyRecovery: best.key.every((value, i) => value === key[i]),
     topKeyTokens: tokenString(best.key),
