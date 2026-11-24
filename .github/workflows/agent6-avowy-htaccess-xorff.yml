@@ -109,9 +109,9 @@ jobs:
                   for angle in (0, 90, 180, 270):
                       candidate = im.rotate(angle, expand=True) if angle else im
                       for kind in ("phash", "dhash"):
-                          distance = hashes[kind] - getattr(imagehash, kind)(candidate)
+                          distance = int(hashes[kind] - getattr(imagehash, kind)(candidate))
                           if distance < best[kind]:
-                              best[kind] = distance
+                              best[kind] = int(distance)
                               best["rotation"] = angle
                   rows.append({"path": path, **best})
               except Exception as e:
