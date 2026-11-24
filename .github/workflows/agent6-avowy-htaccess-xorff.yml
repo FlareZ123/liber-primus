@@ -90,6 +90,7 @@ jobs:
             strings -a -n 4 data.out | head -300 > strings.txt
             python3 sims/known_gp29_image_readback.py data.out > gp29-readback.json
             python3 sims/avowy_page06_outguess_default_key_probe.py data.out --out-dir outguess-probe > avowy-outguess-default.json
+            python3 sims/jpeg_embedded_image_scan.py data.out jpeg-subimages > jpeg-embedded-scan.json
           else
             echo "Payload is not JPEG; see report.json magic scan." > image-inspection.txt
             strings -a -n 4 data.out | head -300 > strings.txt
@@ -136,6 +137,8 @@ jobs:
           PY
           echo "=== DEFAULT-KEY OUTGUESS COMPARISON ==="
           cat avowy-outguess-default.json 2>/dev/null || true
+          echo "=== EMBEDDED JPEG STREAM SCAN ==="
+          cat jpeg-embedded-scan.json 2>/dev/null || true
           echo "=== DECODE REPORT ==="
           cat report.json
           echo "=== FILE ==="
@@ -173,7 +176,9 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p im-results/avowy-htaccess-xorff
-          cp report.json file-report.txt exiftool.txt ocr.txt strings.txt page-similarity.json gp29-readback.json avowy-outguess-default.json im-results/avowy-htaccess-xorff/ 2>/dev/null || true
+          cp report.json file-report.txt exiftool.txt ocr.txt strings.txt page-similarity.json gp29-readback.json avowy-outguess-default.json jpeg-embedded-scan.json im-results/avowy-htaccess-xorff/ 2>/dev/null || true
+          mkdir -p im-results/avowy-htaccess-xorff/embedded-previews
+          for f in jpeg-subimages/preview-*.jpg; do [ -f "$f" ] && base64 -w0 "$f" > "im-results/avowy-htaccess-xorff/embedded-previews/$(basename "$f").b64" || true; done
           cat > im-results/avowy-htaccess-xorff/README.md <<'EOF'
           # Avowy archived .htaccess payload: XOR-FF + gzip recovery
 
@@ -213,7 +218,11 @@ jobs:
             strings.txt
             gp29-readback.json
             avowy-outguess-default.json
+            jpeg-embedded-scan.json
+            jpeg-subimages/
+            avowy-outguess-default.json
             outguess-probe/
+            jpeg-subimages/
             image-inspection.txt
           if-no-files-found: ignore
           retention-days: 14
