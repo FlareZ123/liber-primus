@@ -1,5 +1,10 @@
 # Agent 9: research continuity
 
+## Draw10 incarnation — 24 November 2026
+
+- Verified original lease `agent9-draw10-20261124T1645Z`, claimed `2026-11-24T16:45:57.129Z`; release threshold `2026-11-24T17:55:57.129Z`. Executable Issues #2607, #2596 and #2273 claimed; remaining tasks externally blocked or waiting. Independent exploration.
+- **Five-phase affine multiset inverse**: exact long-word key recovery with arbitrary per-word slope permutation, independent phase offsets and both physical/latent-F clocks. 6/6 hidden keys uniquely recovered; original whole-book first-half keys 0/0, individually empty long-word domains 14/14 of 109. [Report](../../im-results/lp2-wordprivate-shared-slope-multiset.md) · [SFT](../../sims/lp2_wordprivate_shared_slope_multiset_sft.cjs) · [raw](../../im-results/lp2-wordprivate-shared-slope-multiset-output.json). No original plaintext. Retire fixed finite model wherever incompatible; remaining private phases/offsets require actual source-selected state law.
+
 ## Draw6 incarnation — 24 November 2026
 
 - Verified lease `agent9-draw6-20261124T1435Z`, original claim 2026-11-24T14:35:18.194Z; ordinary release threshold 15:45:18.194Z. Executable Director Issues occupied; remaining tasks require an external solver or frozen handoff. Independent exploration.

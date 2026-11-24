@@ -1,0 +1,3836 @@
+{
+  "dictionary": {
+    "10": 2388,
+    "11": 1450,
+    "12": 767,
+    "13": 379,
+    "14": 153
+  },
+  "controlP57Runes": 95,
+  "controls": [
+    {
+      "source": 0,
+      "hold": false,
+      "key": [
+        3,
+        8,
+        11,
+        17,
+        25
+      ],
+      "fitKeys": 1,
+      "exactKey": true,
+      "fitTrace": [
+        {
+          "id": 2,
+          "lexicalCandidates": 1,
+          "partialRelations": 1,
+          "keys": 1
+        },
+        {
+          "id": 0,
+          "lexicalCandidates": 30,
+          "partialRelations": 30,
+          "keys": 1
+        },
+        {
+          "id": 8,
+          "lexicalCandidates": 46,
+          "partialRelations": 46,
+          "keys": 1
+        },
+        {
+          "id": 5,
+          "lexicalCandidates": 1741,
+          "partialRelations": 1730,
+          "keys": 1
+        },
+        {
+          "id": 6,
+          "lexicalCandidates": 1741,
+          "partialRelations": 1730,
+          "keys": 1
+        },
+        {
+          "id": 1,
+          "lexicalCandidates": 1741,
+          "partialRelations": 1732,
+          "keys": 1
+        },
+        {
+          "id": 10,
+          "lexicalCandidates": 1741,
+          "partialRelations": 1732,
+          "keys": 1
+        },
+        {
+          "id": 11,
+          "lexicalCandidates": 1741,
+          "partialRelations": 1734,
+          "keys": 1
+        },
+        {
+          "id": 3,
+          "lexicalCandidates": 1741,
+          "partialRelations": 1735,
+          "keys": 1
+        },
+        {
+          "id": 7,
+          "lexicalCandidates": 101,
+          "partialRelations": 101,
+          "keys": 1
+        },
+        {
+          "id": 9,
+          "lexicalCandidates": 101,
+          "partialRelations": 101,
+          "keys": 1
+        },
+        {
+          "id": 4,
+          "lexicalCandidates": 9,
+          "partialRelations": 9,
+          "keys": 1
+        }
+      ],
+      "heldout": {
+        "initialKeys": 1,
+        "allWithheldCompatible": 1,
+        "trace": [
+          {
+            "id": 12,
+            "remainingKeys": 1,
+            "lexicalCandidates": 26,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              1,
+              9,
+              23,
+              18,
+              4,
+              15,
+              16,
+              24,
+              9,
+              23,
+              21
+            ]
+          },
+          {
+            "id": 13,
+            "remainingKeys": 1,
+            "lexicalCandidates": 51,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              0,
+              3,
+              4,
+              18,
+              1,
+              18,
+              4,
+              19,
+              3,
+              4,
+              18
+            ]
+          },
+          {
+            "id": 14,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1741,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              13,
+              3,
+              15,
+              15,
+              18,
+              15,
+              15,
+              27,
+              9,
+              15
+            ]
+          },
+          {
+            "id": 15,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1741,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              4,
+              18,
+              5,
+              3,
+              6,
+              9,
+              10,
+              16,
+              27,
+              9
+            ]
+          },
+          {
+            "id": 16,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1741,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              10,
+              9,
+              15,
+              16,
+              4,
+              1,
+              19,
+              18,
+              9,
+              16
+            ]
+          },
+          {
+            "id": 17,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1741,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              6,
+              18,
+              9,
+              18,
+              4,
+              3,
+              15,
+              10,
+              16,
+              26
+            ]
+          },
+          {
+            "id": 18,
+            "remainingKeys": 1,
+            "lexicalCandidates": 101,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              15,
+              24,
+              5,
+              4,
+              10,
+              0,
+              10,
+              5,
+              18,
+              23
+            ]
+          },
+          {
+            "id": 19,
+            "remainingKeys": 1,
+            "lexicalCandidates": 34,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              4,
+              18,
+              19,
+              18,
+              19,
+              17,
+              4,
+              24,
+              9,
+              5,
+              18
+            ]
+          },
+          {
+            "id": 20,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1741,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              19,
+              10,
+              15,
+              0,
+              3,
+              4,
+              16,
+              1,
+              9,
+              18
+            ]
+          },
+          {
+            "id": 21,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              10,
+              9,
+              23,
+              10,
+              0,
+              0,
+              18,
+              4,
+              18,
+              9,
+              5,
+              18
+            ]
+          },
+          {
+            "id": 22,
+            "remainingKeys": 1,
+            "lexicalCandidates": 36,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              10,
+              9,
+              15,
+              18,
+              13,
+              24,
+              4,
+              24,
+              17,
+              20,
+              18
+            ]
+          },
+          {
+            "id": 23,
+            "remainingKeys": 1,
+            "lexicalCandidates": 14,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              15,
+              16,
+              24,
+              9,
+              23,
+              15,
+              16,
+              10,
+              20,
+              20
+            ]
+          }
+        ]
+      },
+      "heldoutTruthAdmitted": 12,
+      "heldoutUniqueTruth": 12
+    },
+    {
+      "source": 0,
+      "hold": true,
+      "key": [
+        3,
+        8,
+        11,
+        17,
+        25
+      ],
+      "fitKeys": 1,
+      "exactKey": true,
+      "fitTrace": [
+        {
+          "id": 2,
+          "lexicalCandidates": 1,
+          "partialRelations": 1,
+          "keys": 1
+        },
+        {
+          "id": 0,
+          "lexicalCandidates": 26,
+          "partialRelations": 26,
+          "keys": 1
+        },
+        {
+          "id": 8,
+          "lexicalCandidates": 55,
+          "partialRelations": 55,
+          "keys": 1
+        },
+        {
+          "id": 3,
+          "lexicalCandidates": 1545,
+          "partialRelations": 1533,
+          "keys": 1
+        },
+        {
+          "id": 1,
+          "lexicalCandidates": 1545,
+          "partialRelations": 1535,
+          "keys": 1
+        },
+        {
+          "id": 10,
+          "lexicalCandidates": 1545,
+          "partialRelations": 1536,
+          "keys": 1
+        },
+        {
+          "id": 5,
+          "lexicalCandidates": 1545,
+          "partialRelations": 1538,
+          "keys": 1
+        },
+        {
+          "id": 9,
+          "lexicalCandidates": 87,
+          "partialRelations": 86,
+          "keys": 1
+        },
+        {
+          "id": 7,
+          "lexicalCandidates": 1577,
+          "partialRelations": 1574,
+          "keys": 1
+        },
+        {
+          "id": 6,
+          "lexicalCandidates": 1600,
+          "partialRelations": 1597,
+          "keys": 1
+        },
+        {
+          "id": 11,
+          "lexicalCandidates": 1612,
+          "partialRelations": 1605,
+          "keys": 1
+        },
+        {
+          "id": 4,
+          "lexicalCandidates": 9,
+          "partialRelations": 9,
+          "keys": 1
+        }
+      ],
+      "heldout": {
+        "initialKeys": 1,
+        "allWithheldCompatible": 1,
+        "trace": [
+          {
+            "id": 12,
+            "remainingKeys": 1,
+            "lexicalCandidates": 41,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              1,
+              9,
+              23,
+              18,
+              4,
+              15,
+              16,
+              24,
+              9,
+              23,
+              21
+            ]
+          },
+          {
+            "id": 13,
+            "remainingKeys": 1,
+            "lexicalCandidates": 50,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              0,
+              3,
+              4,
+              18,
+              1,
+              18,
+              4,
+              19,
+              3,
+              4,
+              18
+            ]
+          },
+          {
+            "id": 14,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1545,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              13,
+              3,
+              15,
+              15,
+              18,
+              15,
+              15,
+              27,
+              9,
+              15
+            ]
+          },
+          {
+            "id": 15,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1555,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              4,
+              18,
+              5,
+              3,
+              6,
+              9,
+              10,
+              16,
+              27,
+              9
+            ]
+          },
+          {
+            "id": 16,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1545,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              10,
+              9,
+              15,
+              16,
+              4,
+              1,
+              19,
+              18,
+              9,
+              16
+            ]
+          },
+          {
+            "id": 17,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1545,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              6,
+              18,
+              9,
+              18,
+              4,
+              3,
+              15,
+              10,
+              16,
+              26
+            ]
+          },
+          {
+            "id": 18,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1573,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              15,
+              24,
+              5,
+              4,
+              10,
+              0,
+              10,
+              5,
+              18,
+              23
+            ]
+          },
+          {
+            "id": 19,
+            "remainingKeys": 1,
+            "lexicalCandidates": 31,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              4,
+              18,
+              19,
+              18,
+              19,
+              17,
+              4,
+              24,
+              9,
+              5,
+              18
+            ]
+          },
+          {
+            "id": 20,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1594,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              19,
+              10,
+              15,
+              0,
+              3,
+              4,
+              16,
+              1,
+              9,
+              18
+            ]
+          },
+          {
+            "id": 21,
+            "remainingKeys": 1,
+            "lexicalCandidates": 3,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              10,
+              9,
+              23,
+              10,
+              0,
+              0,
+              18,
+              4,
+              18,
+              9,
+              5,
+              18
+            ]
+          },
+          {
+            "id": 22,
+            "remainingKeys": 1,
+            "lexicalCandidates": 36,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              10,
+              9,
+              15,
+              18,
+              13,
+              24,
+              4,
+              24,
+              17,
+              20,
+              18
+            ]
+          },
+          {
+            "id": 23,
+            "remainingKeys": 1,
+            "lexicalCandidates": 13,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              15,
+              16,
+              24,
+              9,
+              23,
+              15,
+              16,
+              10,
+              20,
+              20
+            ]
+          }
+        ]
+      },
+      "heldoutTruthAdmitted": 12,
+      "heldoutUniqueTruth": 12
+    },
+    {
+      "source": 1,
+      "hold": false,
+      "key": [
+        2,
+        2,
+        9,
+        18,
+        27
+      ],
+      "fitKeys": 1,
+      "exactKey": true,
+      "fitTrace": [
+        {
+          "id": 6,
+          "lexicalCandidates": 1,
+          "partialRelations": 1,
+          "keys": 1
+        },
+        {
+          "id": 0,
+          "lexicalCandidates": 30,
+          "partialRelations": 30,
+          "keys": 1
+        },
+        {
+          "id": 7,
+          "lexicalCandidates": 30,
+          "partialRelations": 30,
+          "keys": 1
+        },
+        {
+          "id": 8,
+          "lexicalCandidates": 32,
+          "partialRelations": 32,
+          "keys": 1
+        },
+        {
+          "id": 4,
+          "lexicalCandidates": 44,
+          "partialRelations": 44,
+          "keys": 1
+        },
+        {
+          "id": 11,
+          "lexicalCandidates": 3,
+          "partialRelations": 3,
+          "keys": 1
+        },
+        {
+          "id": 9,
+          "lexicalCandidates": 1741,
+          "partialRelations": 1729,
+          "keys": 1
+        },
+        {
+          "id": 3,
+          "lexicalCandidates": 1741,
+          "partialRelations": 1732,
+          "keys": 1
+        },
+        {
+          "id": 5,
+          "lexicalCandidates": 1741,
+          "partialRelations": 1732,
+          "keys": 1
+        },
+        {
+          "id": 10,
+          "lexicalCandidates": 1741,
+          "partialRelations": 1736,
+          "keys": 1
+        },
+        {
+          "id": 2,
+          "lexicalCandidates": 105,
+          "partialRelations": 104,
+          "keys": 1
+        },
+        {
+          "id": 1,
+          "lexicalCandidates": 12,
+          "partialRelations": 12,
+          "keys": 1
+        }
+      ],
+      "heldout": {
+        "initialKeys": 1,
+        "allWithheldCompatible": 1,
+        "trace": [
+          {
+            "id": 12,
+            "remainingKeys": 1,
+            "lexicalCandidates": 41,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              5,
+              18,
+              9,
+              16,
+              4,
+              10,
+              0,
+              1,
+              6,
+              24,
+              20
+            ]
+          },
+          {
+            "id": 13,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1741,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              10,
+              9,
+              15,
+              16,
+              4,
+              1,
+              5,
+              16,
+              18,
+              23
+            ]
+          },
+          {
+            "id": 14,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1741,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              13,
+              4,
+              3,
+              13,
+              18,
+              4,
+              16,
+              10,
+              18,
+              15
+            ]
+          },
+          {
+            "id": 15,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1741,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              5,
+              3,
+              4,
+              4,
+              18,
+              15,
+              13,
+              3,
+              9,
+              23
+            ]
+          },
+          {
+            "id": 16,
+            "remainingKeys": 1,
+            "lexicalCandidates": 4,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              10,
+              9,
+              16,
+              18,
+              20,
+              20,
+              10,
+              6,
+              10,
+              17,
+              20,
+              18
+            ]
+          },
+          {
+            "id": 17,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1741,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              18,
+              14,
+              18,
+              5,
+              1,
+              16,
+              27,
+              9,
+              18,
+              4
+            ]
+          },
+          {
+            "id": 18,
+            "remainingKeys": 1,
+            "lexicalCandidates": 46,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              10,
+              20,
+              20,
+              1,
+              15,
+              16,
+              4,
+              24,
+              16,
+              27,
+              9
+            ]
+          },
+          {
+            "id": 19,
+            "remainingKeys": 1,
+            "lexicalCandidates": 51,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              13,
+              18,
+              4,
+              15,
+              13,
+              18,
+              5,
+              16,
+              10,
+              1,
+              18
+            ]
+          },
+          {
+            "id": 20,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1741,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              13,
+              24,
+              4,
+              16,
+              10,
+              5,
+              1,
+              20,
+              24,
+              4
+            ]
+          },
+          {
+            "id": 21,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1741,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              23,
+              10,
+              15,
+              16,
+              10,
+              9,
+              5,
+              16,
+              20,
+              26
+            ]
+          },
+          {
+            "id": 22,
+            "remainingKeys": 1,
+            "lexicalCandidates": 58,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              10,
+              20,
+              20,
+              10,
+              19,
+              10,
+              16,
+              24,
+              17,
+              20,
+              18
+            ]
+          },
+          {
+            "id": 23,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              10,
+              9,
+              15,
+              16,
+              10,
+              9,
+              5,
+              16,
+              10,
+              1,
+              18,
+              20,
+              26
+            ]
+          }
+        ]
+      },
+      "heldoutTruthAdmitted": 12,
+      "heldoutUniqueTruth": 12
+    },
+    {
+      "source": 1,
+      "hold": true,
+      "key": [
+        2,
+        2,
+        9,
+        18,
+        27
+      ],
+      "fitKeys": 1,
+      "exactKey": true,
+      "fitTrace": [
+        {
+          "id": 6,
+          "lexicalCandidates": 1,
+          "partialRelations": 1,
+          "keys": 1
+        },
+        {
+          "id": 0,
+          "lexicalCandidates": 26,
+          "partialRelations": 26,
+          "keys": 1
+        },
+        {
+          "id": 8,
+          "lexicalCandidates": 29,
+          "partialRelations": 29,
+          "keys": 1
+        },
+        {
+          "id": 7,
+          "lexicalCandidates": 35,
+          "partialRelations": 35,
+          "keys": 1
+        },
+        {
+          "id": 4,
+          "lexicalCandidates": 45,
+          "partialRelations": 45,
+          "keys": 1
+        },
+        {
+          "id": 11,
+          "lexicalCandidates": 5,
+          "partialRelations": 5,
+          "keys": 1
+        },
+        {
+          "id": 3,
+          "lexicalCandidates": 1545,
+          "partialRelations": 1535,
+          "keys": 1
+        },
+        {
+          "id": 10,
+          "lexicalCandidates": 1545,
+          "partialRelations": 1539,
+          "keys": 1
+        },
+        {
+          "id": 9,
+          "lexicalCandidates": 1550,
+          "partialRelations": 1540,
+          "keys": 1
+        },
+        {
+          "id": 5,
+          "lexicalCandidates": 1556,
+          "partialRelations": 1545,
+          "keys": 1
+        },
+        {
+          "id": 2,
+          "lexicalCandidates": 132,
+          "partialRelations": 132,
+          "keys": 1
+        },
+        {
+          "id": 1,
+          "lexicalCandidates": 12,
+          "partialRelations": 12,
+          "keys": 1
+        }
+      ],
+      "heldout": {
+        "initialKeys": 1,
+        "allWithheldCompatible": 1,
+        "trace": [
+          {
+            "id": 12,
+            "remainingKeys": 1,
+            "lexicalCandidates": 49,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              5,
+              18,
+              9,
+              16,
+              4,
+              10,
+              0,
+              1,
+              6,
+              24,
+              20
+            ]
+          },
+          {
+            "id": 13,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1545,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              10,
+              9,
+              15,
+              16,
+              4,
+              1,
+              5,
+              16,
+              18,
+              23
+            ]
+          },
+          {
+            "id": 14,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1545,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              13,
+              4,
+              3,
+              13,
+              18,
+              4,
+              16,
+              10,
+              18,
+              15
+            ]
+          },
+          {
+            "id": 15,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1600,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              5,
+              3,
+              4,
+              4,
+              18,
+              15,
+              13,
+              3,
+              9,
+              23
+            ]
+          },
+          {
+            "id": 16,
+            "remainingKeys": 1,
+            "lexicalCandidates": 4,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              10,
+              9,
+              16,
+              18,
+              20,
+              20,
+              10,
+              6,
+              10,
+              17,
+              20,
+              18
+            ]
+          },
+          {
+            "id": 17,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1551,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              18,
+              14,
+              18,
+              5,
+              1,
+              16,
+              27,
+              9,
+              18,
+              4
+            ]
+          },
+          {
+            "id": 18,
+            "remainingKeys": 1,
+            "lexicalCandidates": 37,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              10,
+              20,
+              20,
+              1,
+              15,
+              16,
+              4,
+              24,
+              16,
+              27,
+              9
+            ]
+          },
+          {
+            "id": 19,
+            "remainingKeys": 1,
+            "lexicalCandidates": 47,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              13,
+              18,
+              4,
+              15,
+              13,
+              18,
+              5,
+              16,
+              10,
+              1,
+              18
+            ]
+          },
+          {
+            "id": 20,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1577,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              13,
+              24,
+              4,
+              16,
+              10,
+              5,
+              1,
+              20,
+              24,
+              4
+            ]
+          },
+          {
+            "id": 21,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1545,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              23,
+              10,
+              15,
+              16,
+              10,
+              9,
+              5,
+              16,
+              20,
+              26
+            ]
+          },
+          {
+            "id": 22,
+            "remainingKeys": 1,
+            "lexicalCandidates": 58,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              10,
+              20,
+              20,
+              10,
+              19,
+              10,
+              16,
+              24,
+              17,
+              20,
+              18
+            ]
+          },
+          {
+            "id": 23,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              10,
+              9,
+              15,
+              16,
+              10,
+              9,
+              5,
+              16,
+              10,
+              1,
+              18,
+              20,
+              26
+            ]
+          }
+        ]
+      },
+      "heldoutTruthAdmitted": 12,
+      "heldoutUniqueTruth": 12
+    },
+    {
+      "source": 2,
+      "hold": false,
+      "key": [
+        1,
+        7,
+        13,
+        19,
+        28
+      ],
+      "fitKeys": 1,
+      "exactKey": true,
+      "fitTrace": [
+        {
+          "id": 9,
+          "lexicalCandidates": 32,
+          "partialRelations": 32,
+          "keys": 32
+        },
+        {
+          "id": 10,
+          "lexicalCandidates": 32,
+          "partialRelations": 32,
+          "keys": 1
+        },
+        {
+          "id": 11,
+          "lexicalCandidates": 35,
+          "partialRelations": 35,
+          "keys": 1
+        },
+        {
+          "id": 0,
+          "lexicalCandidates": 44,
+          "partialRelations": 44,
+          "keys": 1
+        },
+        {
+          "id": 4,
+          "lexicalCandidates": 1741,
+          "partialRelations": 1728,
+          "keys": 1
+        },
+        {
+          "id": 2,
+          "lexicalCandidates": 1741,
+          "partialRelations": 1731,
+          "keys": 1
+        },
+        {
+          "id": 5,
+          "lexicalCandidates": 1741,
+          "partialRelations": 1733,
+          "keys": 1
+        },
+        {
+          "id": 7,
+          "lexicalCandidates": 1741,
+          "partialRelations": 1734,
+          "keys": 1
+        },
+        {
+          "id": 1,
+          "lexicalCandidates": 97,
+          "partialRelations": 97,
+          "keys": 1
+        },
+        {
+          "id": 6,
+          "lexicalCandidates": 8,
+          "partialRelations": 8,
+          "keys": 1
+        },
+        {
+          "id": 3,
+          "lexicalCandidates": 10,
+          "partialRelations": 10,
+          "keys": 1
+        },
+        {
+          "id": 8,
+          "lexicalCandidates": 14,
+          "partialRelations": 14,
+          "keys": 1
+        }
+      ],
+      "heldout": {
+        "initialKeys": 1,
+        "allWithheldCompatible": 1,
+        "trace": [
+          {
+            "id": 12,
+            "remainingKeys": 1,
+            "lexicalCandidates": 41,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              13,
+              24,
+              4,
+              16,
+              10,
+              5,
+              10,
+              13,
+              24,
+              16,
+              18
+            ]
+          },
+          {
+            "id": 13,
+            "remainingKeys": 1,
+            "lexicalCandidates": 3,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              23,
+              10,
+              15,
+              5,
+              3,
+              9,
+              16,
+              18,
+              9,
+              16,
+              18,
+              23
+            ]
+          },
+          {
+            "id": 14,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1741,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              5,
+              3,
+              1,
+              9,
+              15,
+              18,
+              20,
+              20,
+              3,
+              4
+            ]
+          },
+          {
+            "id": 15,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1741,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              23,
+              18,
+              20,
+              10,
+              17,
+              18,
+              4,
+              24,
+              16,
+              18
+            ]
+          },
+          {
+            "id": 16,
+            "remainingKeys": 1,
+            "lexicalCandidates": 35,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              10,
+              9,
+              5,
+              3,
+              4,
+              13,
+              3,
+              4,
+              24,
+              16,
+              18
+            ]
+          },
+          {
+            "id": 17,
+            "remainingKeys": 1,
+            "lexicalCandidates": 105,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              24,
+              17,
+              1,
+              9,
+              23,
+              24,
+              9,
+              16,
+              20,
+              26
+            ]
+          },
+          {
+            "id": 18,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1741,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              6,
+              18,
+              9,
+              18,
+              4,
+              3,
+              15,
+              10,
+              16,
+              26
+            ]
+          },
+          {
+            "id": 19,
+            "remainingKeys": 1,
+            "lexicalCandidates": 28,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              10,
+              9,
+              15,
+              1,
+              4,
+              4,
+              18,
+              5,
+              16,
+              27,
+              9
+            ]
+          },
+          {
+            "id": 20,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1741,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              13,
+              4,
+              18,
+              13,
+              24,
+              4,
+              24,
+              16,
+              27,
+              9
+            ]
+          },
+          {
+            "id": 21,
+            "remainingKeys": 1,
+            "lexicalCandidates": 38,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              5,
+              3,
+              19,
+              0,
+              3,
+              4,
+              16,
+              24,
+              17,
+              20,
+              18
+            ]
+          },
+          {
+            "id": 22,
+            "remainingKeys": 1,
+            "lexicalCandidates": 35,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              6,
+              18,
+              9,
+              16,
+              20,
+              18,
+              7,
+              3,
+              19,
+              24,
+              9
+            ]
+          },
+          {
+            "id": 23,
+            "remainingKeys": 1,
+            "lexicalCandidates": 4,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              5,
+              3,
+              1,
+              9,
+              16,
+              18,
+              9,
+              24,
+              9,
+              5,
+              18
+            ]
+          }
+        ]
+      },
+      "heldoutTruthAdmitted": 12,
+      "heldoutUniqueTruth": 12
+    },
+    {
+      "source": 2,
+      "hold": true,
+      "key": [
+        1,
+        7,
+        13,
+        19,
+        28
+      ],
+      "fitKeys": 1,
+      "exactKey": true,
+      "fitTrace": [
+        {
+          "id": 10,
+          "lexicalCandidates": 27,
+          "partialRelations": 27,
+          "keys": 27
+        },
+        {
+          "id": 9,
+          "lexicalCandidates": 41,
+          "partialRelations": 41,
+          "keys": 1
+        },
+        {
+          "id": 11,
+          "lexicalCandidates": 53,
+          "partialRelations": 53,
+          "keys": 1
+        },
+        {
+          "id": 0,
+          "lexicalCandidates": 55,
+          "partialRelations": 55,
+          "keys": 1
+        },
+        {
+          "id": 2,
+          "lexicalCandidates": 1545,
+          "partialRelations": 1537,
+          "keys": 1
+        },
+        {
+          "id": 4,
+          "lexicalCandidates": 1545,
+          "partialRelations": 1538,
+          "keys": 1
+        },
+        {
+          "id": 5,
+          "lexicalCandidates": 1545,
+          "partialRelations": 1539,
+          "keys": 1
+        },
+        {
+          "id": 7,
+          "lexicalCandidates": 1565,
+          "partialRelations": 1554,
+          "keys": 1
+        },
+        {
+          "id": 6,
+          "lexicalCandidates": 7,
+          "partialRelations": 7,
+          "keys": 1
+        },
+        {
+          "id": 3,
+          "lexicalCandidates": 10,
+          "partialRelations": 10,
+          "keys": 1
+        },
+        {
+          "id": 8,
+          "lexicalCandidates": 13,
+          "partialRelations": 13,
+          "keys": 1
+        },
+        {
+          "id": 1,
+          "lexicalCandidates": 91,
+          "partialRelations": 91,
+          "keys": 1
+        }
+      ],
+      "heldout": {
+        "initialKeys": 1,
+        "allWithheldCompatible": 1,
+        "trace": [
+          {
+            "id": 12,
+            "remainingKeys": 1,
+            "lexicalCandidates": 39,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              13,
+              24,
+              4,
+              16,
+              10,
+              5,
+              10,
+              13,
+              24,
+              16,
+              18
+            ]
+          },
+          {
+            "id": 13,
+            "remainingKeys": 1,
+            "lexicalCandidates": 3,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              23,
+              10,
+              15,
+              5,
+              3,
+              9,
+              16,
+              18,
+              9,
+              16,
+              18,
+              23
+            ]
+          },
+          {
+            "id": 14,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1573,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              5,
+              3,
+              1,
+              9,
+              15,
+              18,
+              20,
+              20,
+              3,
+              4
+            ]
+          },
+          {
+            "id": 15,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1545,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              23,
+              18,
+              20,
+              10,
+              17,
+              18,
+              4,
+              24,
+              16,
+              18
+            ]
+          },
+          {
+            "id": 16,
+            "remainingKeys": 1,
+            "lexicalCandidates": 32,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              10,
+              9,
+              5,
+              3,
+              4,
+              13,
+              3,
+              4,
+              24,
+              16,
+              18
+            ]
+          },
+          {
+            "id": 17,
+            "remainingKeys": 1,
+            "lexicalCandidates": 99,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              24,
+              17,
+              1,
+              9,
+              23,
+              24,
+              9,
+              16,
+              20,
+              26
+            ]
+          },
+          {
+            "id": 18,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1545,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              6,
+              18,
+              9,
+              18,
+              4,
+              3,
+              15,
+              10,
+              16,
+              26
+            ]
+          },
+          {
+            "id": 19,
+            "remainingKeys": 1,
+            "lexicalCandidates": 21,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              10,
+              9,
+              15,
+              1,
+              4,
+              4,
+              18,
+              5,
+              16,
+              27,
+              9
+            ]
+          },
+          {
+            "id": 20,
+            "remainingKeys": 1,
+            "lexicalCandidates": 1545,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              13,
+              4,
+              18,
+              13,
+              24,
+              4,
+              24,
+              16,
+              27,
+              9
+            ]
+          },
+          {
+            "id": 21,
+            "remainingKeys": 1,
+            "lexicalCandidates": 54,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              5,
+              3,
+              19,
+              0,
+              3,
+              4,
+              16,
+              24,
+              17,
+              20,
+              18
+            ]
+          },
+          {
+            "id": 22,
+            "remainingKeys": 1,
+            "lexicalCandidates": 32,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              6,
+              18,
+              9,
+              16,
+              20,
+              18,
+              7,
+              3,
+              19,
+              24,
+              9
+            ]
+          },
+          {
+            "id": 23,
+            "remainingKeys": 1,
+            "lexicalCandidates": 4,
+            "uniqueKeyCandidateCount": 1,
+            "truthAdmitted": true,
+            "uniquePlaintext": [
+              5,
+              3,
+              1,
+              9,
+              16,
+              18,
+              9,
+              24,
+              9,
+              5,
+              18
+            ]
+          }
+        ]
+      },
+      "heldoutTruthAdmitted": 12,
+      "heldoutUniqueTruth": 12
+    }
+  ],
+  "result": [
+    {
+      "hold": false,
+      "privateEmpty": 14,
+      "privateEmptyZeroFree": 9,
+      "individual": [
+        {
+          "id": 5,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 26
+        },
+        {
+          "id": 13,
+          "length": 11,
+          "zeroFree": false,
+          "candidates": 46
+        },
+        {
+          "id": 90,
+          "length": 10,
+          "zeroFree": false,
+          "candidates": 97
+        },
+        {
+          "id": 131,
+          "length": 10,
+          "zeroFree": false,
+          "candidates": 1741
+        },
+        {
+          "id": 147,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1741
+        },
+        {
+          "id": 155,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1741
+        },
+        {
+          "id": 159,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 36
+        },
+        {
+          "id": 167,
+          "length": 12,
+          "zeroFree": false,
+          "candidates": 0
+        },
+        {
+          "id": 189,
+          "length": 11,
+          "zeroFree": false,
+          "candidates": 33
+        },
+        {
+          "id": 241,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1741
+        },
+        {
+          "id": 257,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1741
+        },
+        {
+          "id": 295,
+          "length": 10,
+          "zeroFree": false,
+          "candidates": 1741
+        },
+        {
+          "id": 307,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 105
+        },
+        {
+          "id": 325,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 129
+        },
+        {
+          "id": 376,
+          "length": 12,
+          "zeroFree": true,
+          "candidates": 1
+        },
+        {
+          "id": 406,
+          "length": 12,
+          "zeroFree": true,
+          "candidates": 1
+        },
+        {
+          "id": 442,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1741
+        },
+        {
+          "id": 444,
+          "length": 12,
+          "zeroFree": true,
+          "candidates": 1
+        },
+        {
+          "id": 450,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1741
+        },
+        {
+          "id": 473,
+          "length": 11,
+          "zeroFree": false,
+          "candidates": 1
+        },
+        {
+          "id": 506,
+          "length": 11,
+          "zeroFree": false,
+          "candidates": 53
+        },
+        {
+          "id": 512,
+          "length": 12,
+          "zeroFree": false,
+          "candidates": 1
+        },
+        {
+          "id": 519,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 6
+        },
+        {
+          "id": 578,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 36
+        },
+        {
+          "id": 605,
+          "length": 11,
+          "zeroFree": false,
+          "candidates": 51
+        },
+        {
+          "id": 626,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 36
+        },
+        {
+          "id": 630,
+          "length": 11,
+          "zeroFree": false,
+          "candidates": 28
+        },
+        {
+          "id": 631,
+          "length": 13,
+          "zeroFree": false,
+          "candidates": 0
+        },
+        {
+          "id": 637,
+          "length": 12,
+          "zeroFree": true,
+          "candidates": 1
+        },
+        {
+          "id": 650,
+          "length": 10,
+          "zeroFree": false,
+          "candidates": 1741
+        },
+        {
+          "id": 700,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1741
+        },
+        {
+          "id": 754,
+          "length": 14,
+          "zeroFree": true,
+          "candidates": 0
+        },
+        {
+          "id": 833,
+          "length": 13,
+          "zeroFree": true,
+          "candidates": 0
+        },
+        {
+          "id": 871,
+          "length": 12,
+          "zeroFree": true,
+          "candidates": 0
+        },
+        {
+          "id": 874,
+          "length": 12,
+          "zeroFree": true,
+          "candidates": 0
+        },
+        {
+          "id": 994,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1741
+        },
+        {
+          "id": 1157,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 31
+        },
+        {
+          "id": 1161,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1741
+        },
+        {
+          "id": 1166,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 60
+        },
+        {
+          "id": 1167,
+          "length": 11,
+          "zeroFree": false,
+          "candidates": 40
+        },
+        {
+          "id": 1168,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1741
+        },
+        {
+          "id": 1181,
+          "length": 10,
+          "zeroFree": false,
+          "candidates": 1741
+        },
+        {
+          "id": 1203,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1741
+        },
+        {
+          "id": 1205,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 129
+        },
+        {
+          "id": 1215,
+          "length": 12,
+          "zeroFree": true,
+          "candidates": 1
+        },
+        {
+          "id": 1217,
+          "length": 11,
+          "zeroFree": false,
+          "candidates": 36
+        },
+        {
+          "id": 1220,
+          "length": 12,
+          "zeroFree": true,
+          "candidates": 0
+        },
+        {
+          "id": 1254,
+          "length": 10,
+          "zeroFree": false,
+          "candidates": 1741
+        },
+        {
+          "id": 1296,
+          "length": 10,
+          "zeroFree": false,
+          "candidates": 1741
+        },
+        {
+          "id": 1337,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1741
+        },
+        {
+          "id": 1341,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1741
+        },
+        {
+          "id": 1353,
+          "length": 14,
+          "zeroFree": false,
+          "candidates": 0
+        },
+        {
+          "id": 1356,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 101
+        },
+        {
+          "id": 1409,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1741
+        },
+        {
+          "id": 1458,
+          "length": 12,
+          "zeroFree": true,
+          "candidates": 2
+        },
+        {
+          "id": 1476,
+          "length": 12,
+          "zeroFree": true,
+          "candidates": 2
+        },
+        {
+          "id": 1498,
+          "length": 12,
+          "zeroFree": false,
+          "candidates": 2
+        },
+        {
+          "id": 1500,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 14
+        },
+        {
+          "id": 1501,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1741
+        },
+        {
+          "id": 1504,
+          "length": 10,
+          "zeroFree": false,
+          "candidates": 1741
+        },
+        {
+          "id": 1527,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1741
+        },
+        {
+          "id": 1545,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 129
+        },
+        {
+          "id": 1554,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 38
+        },
+        {
+          "id": 1580,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 0
+        },
+        {
+          "id": 1689,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 41
+        },
+        {
+          "id": 1758,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1741
+        },
+        {
+          "id": 1764,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 40
+        },
+        {
+          "id": 1768,
+          "length": 11,
+          "zeroFree": false,
+          "candidates": 29
+        },
+        {
+          "id": 1891,
+          "length": 12,
+          "zeroFree": true,
+          "candidates": 1
+        },
+        {
+          "id": 1898,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1741
+        },
+        {
+          "id": 1916,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 51
+        },
+        {
+          "id": 1934,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1741
+        },
+        {
+          "id": 1967,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1
+        },
+        {
+          "id": 1970,
+          "length": 10,
+          "zeroFree": false,
+          "candidates": 1741
+        },
+        {
+          "id": 1997,
+          "length": 11,
+          "zeroFree": false,
+          "candidates": 44
+        },
+        {
+          "id": 2010,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 105
+        },
+        {
+          "id": 2063,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1741
+        },
+        {
+          "id": 2067,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 4
+        },
+        {
+          "id": 2089,
+          "length": 12,
+          "zeroFree": true,
+          "candidates": 0
+        },
+        {
+          "id": 2102,
+          "length": 10,
+          "zeroFree": false,
+          "candidates": 1741
+        },
+        {
+          "id": 2148,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 7
+        },
+        {
+          "id": 2169,
+          "length": 12,
+          "zeroFree": true,
+          "candidates": 1
+        },
+        {
+          "id": 2193,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1741
+        },
+        {
+          "id": 2235,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 97
+        },
+        {
+          "id": 2285,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1741
+        },
+        {
+          "id": 2297,
+          "length": 10,
+          "zeroFree": false,
+          "candidates": 97
+        },
+        {
+          "id": 2333,
+          "length": 11,
+          "zeroFree": false,
+          "candidates": 24
+        },
+        {
+          "id": 2341,
+          "length": 14,
+          "zeroFree": false,
+          "candidates": 0
+        },
+        {
+          "id": 2344,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 97
+        },
+        {
+          "id": 2354,
+          "length": 10,
+          "zeroFree": false,
+          "candidates": 105
+        },
+        {
+          "id": 2357,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 31
+        },
+        {
+          "id": 2388,
+          "length": 11,
+          "zeroFree": false,
+          "candidates": 41
+        },
+        {
+          "id": 2394,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 33
+        },
+        {
+          "id": 2475,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1741
+        },
+        {
+          "id": 2534,
+          "length": 12,
+          "zeroFree": true,
+          "candidates": 0
+        },
+        {
+          "id": 2570,
+          "length": 11,
+          "zeroFree": false,
+          "candidates": 30
+        },
+        {
+          "id": 2572,
+          "length": 10,
+          "zeroFree": false,
+          "candidates": 129
+        },
+        {
+          "id": 2580,
+          "length": 11,
+          "zeroFree": false,
+          "candidates": 58
+        },
+        {
+          "id": 2623,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1741
+        },
+        {
+          "id": 2626,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 36
+        },
+        {
+          "id": 2752,
+          "length": 13,
+          "zeroFree": true,
+          "candidates": 0
+        },
+        {
+          "id": 2781,
+          "length": 12,
+          "zeroFree": true,
+          "candidates": 2
+        },
+        {
+          "id": 2790,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1741
+        },
+        {
+          "id": 2807,
+          "length": 10,
+          "zeroFree": false,
+          "candidates": 123
+        },
+        {
+          "id": 2821,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 46
+        },
+        {
+          "id": 2844,
+          "length": 10,
+          "zeroFree": false,
+          "candidates": 1741
+        },
+        {
+          "id": 2877,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1741
+        },
+        {
+          "id": 2879,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 36
+        },
+        {
+          "id": 2886,
+          "length": 13,
+          "zeroFree": false,
+          "candidates": 0
+        }
+      ],
+      "scopes": [
+        {
+          "scope": "book",
+          "train": 54,
+          "test": 55,
+          "fitKeys": 0,
+          "fitTrace": [
+            {
+              "id": 167,
+              "lexicalCandidates": 0,
+              "partialRelations": 0,
+              "keys": 0
+            }
+          ],
+          "heldout": null,
+          "privateEmpty": [
+            167,
+            631,
+            754,
+            833,
+            871,
+            874,
+            1220,
+            1353,
+            1580,
+            2089,
+            2341,
+            2534,
+            2752,
+            2886
+          ]
+        },
+        {
+          "scope": "p0-2",
+          "train": 2,
+          "test": 4,
+          "fitKeys": 0,
+          "fitTrace": [
+            {
+              "id": 5,
+              "lexicalCandidates": 26,
+              "partialRelations": 26,
+              "keys": 26
+            },
+            {
+              "id": 13,
+              "lexicalCandidates": 46,
+              "partialRelations": 46,
+              "keys": 0
+            }
+          ],
+          "heldout": null,
+          "privateEmpty": []
+        },
+        {
+          "scope": "p3-7",
+          "train": 5,
+          "test": 5,
+          "fitKeys": 0,
+          "fitTrace": [
+            {
+              "id": 167,
+              "lexicalCandidates": 0,
+              "partialRelations": 0,
+              "keys": 0
+            }
+          ],
+          "heldout": null,
+          "privateEmpty": [
+            167
+          ]
+        },
+        {
+          "scope": "p8-14",
+          "train": 8,
+          "test": 8,
+          "fitKeys": 0,
+          "fitTrace": [
+            {
+              "id": 444,
+              "lexicalCandidates": 1,
+              "partialRelations": 1,
+              "keys": 1
+            },
+            {
+              "id": 512,
+              "lexicalCandidates": 1,
+              "partialRelations": 1,
+              "keys": 0
+            }
+          ],
+          "heldout": null,
+          "privateEmpty": [
+            631,
+            754
+          ]
+        },
+        {
+          "scope": "p15-22",
+          "train": 4,
+          "test": 11,
+          "fitKeys": 0,
+          "fitTrace": [
+            {
+              "id": 833,
+              "lexicalCandidates": 0,
+              "partialRelations": 0,
+              "keys": 0
+            }
+          ],
+          "heldout": null,
+          "privateEmpty": [
+            833,
+            871,
+            874,
+            1220
+          ]
+        },
+        {
+          "scope": "p23-26",
+          "train": 4,
+          "test": 3,
+          "fitKeys": 0,
+          "fitTrace": [
+            {
+              "id": 1341,
+              "lexicalCandidates": 1741,
+              "partialRelations": 1723,
+              "keys": 1723
+            },
+            {
+              "id": 1337,
+              "lexicalCandidates": 1741,
+              "partialRelations": 1731,
+              "keys": 20
+            },
+            {
+              "id": 1254,
+              "lexicalCandidates": 1741,
+              "partialRelations": 1732,
+              "keys": 0
+            }
+          ],
+          "heldout": null,
+          "privateEmpty": [
+            1353
+          ]
+        },
+        {
+          "scope": "p27-32",
+          "train": 10,
+          "test": 4,
+          "fitKeys": 0,
+          "fitTrace": [
+            {
+              "id": 1580,
+              "lexicalCandidates": 0,
+              "partialRelations": 0,
+              "keys": 0
+            }
+          ],
+          "heldout": null,
+          "privateEmpty": [
+            1580
+          ]
+        },
+        {
+          "scope": "p33-39",
+          "train": 6,
+          "test": 7,
+          "fitKeys": 0,
+          "fitTrace": [
+            {
+              "id": 1891,
+              "lexicalCandidates": 1,
+              "partialRelations": 1,
+              "keys": 1
+            },
+            {
+              "id": 1916,
+              "lexicalCandidates": 51,
+              "partialRelations": 51,
+              "keys": 0
+            }
+          ],
+          "heldout": null,
+          "privateEmpty": [
+            2089
+          ]
+        },
+        {
+          "scope": "p40-53",
+          "train": 13,
+          "test": 11,
+          "fitKeys": 0,
+          "fitTrace": [
+            {
+              "id": 2341,
+              "lexicalCandidates": 0,
+              "partialRelations": 0,
+              "keys": 0
+            }
+          ],
+          "heldout": null,
+          "privateEmpty": [
+            2341,
+            2534,
+            2752
+          ]
+        },
+        {
+          "scope": "p54-55",
+          "train": 1,
+          "test": 3,
+          "fitKeys": 1731,
+          "fitTrace": [
+            {
+              "id": 2844,
+              "lexicalCandidates": 1741,
+              "partialRelations": 1731,
+              "keys": 1731
+            }
+          ],
+          "heldout": {
+            "initialKeys": 1731,
+            "allWithheldCompatible": 0,
+            "trace": [
+              {
+                "id": 2877,
+                "remainingKeys": 11,
+                "lexicalCandidates": 1741,
+                "uniqueKeyCandidateCount": null,
+                "truthAdmitted": null,
+                "uniquePlaintext": null
+              },
+              {
+                "id": 2879,
+                "remainingKeys": 0,
+                "lexicalCandidates": 36,
+                "uniqueKeyCandidateCount": null,
+                "truthAdmitted": null,
+                "uniquePlaintext": null
+              },
+              {
+                "id": 2886,
+                "remainingKeys": 0,
+                "lexicalCandidates": 0,
+                "uniqueKeyCandidateCount": null,
+                "truthAdmitted": null,
+                "uniquePlaintext": null
+              }
+            ]
+          },
+          "privateEmpty": [
+            2886
+          ]
+        }
+      ]
+    },
+    {
+      "hold": true,
+      "privateEmpty": 14,
+      "privateEmptyZeroFree": 9,
+      "individual": [
+        {
+          "id": 5,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 23
+        },
+        {
+          "id": 13,
+          "length": 11,
+          "zeroFree": false,
+          "candidates": 53
+        },
+        {
+          "id": 90,
+          "length": 10,
+          "zeroFree": false,
+          "candidates": 86
+        },
+        {
+          "id": 131,
+          "length": 10,
+          "zeroFree": false,
+          "candidates": 1576
+        },
+        {
+          "id": 147,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1545
+        },
+        {
+          "id": 155,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1545
+        },
+        {
+          "id": 159,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 32
+        },
+        {
+          "id": 167,
+          "length": 12,
+          "zeroFree": false,
+          "candidates": 0
+        },
+        {
+          "id": 189,
+          "length": 11,
+          "zeroFree": false,
+          "candidates": 30
+        },
+        {
+          "id": 241,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1545
+        },
+        {
+          "id": 257,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1545
+        },
+        {
+          "id": 295,
+          "length": 10,
+          "zeroFree": false,
+          "candidates": 1551
+        },
+        {
+          "id": 307,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 99
+        },
+        {
+          "id": 325,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 114
+        },
+        {
+          "id": 376,
+          "length": 12,
+          "zeroFree": true,
+          "candidates": 1
+        },
+        {
+          "id": 406,
+          "length": 12,
+          "zeroFree": true,
+          "candidates": 1
+        },
+        {
+          "id": 442,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1545
+        },
+        {
+          "id": 444,
+          "length": 12,
+          "zeroFree": true,
+          "candidates": 1
+        },
+        {
+          "id": 450,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1545
+        },
+        {
+          "id": 473,
+          "length": 11,
+          "zeroFree": false,
+          "candidates": 1
+        },
+        {
+          "id": 506,
+          "length": 11,
+          "zeroFree": false,
+          "candidates": 64
+        },
+        {
+          "id": 512,
+          "length": 12,
+          "zeroFree": false,
+          "candidates": 1
+        },
+        {
+          "id": 519,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 5
+        },
+        {
+          "id": 578,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 33
+        },
+        {
+          "id": 605,
+          "length": 11,
+          "zeroFree": false,
+          "candidates": 47
+        },
+        {
+          "id": 626,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 32
+        },
+        {
+          "id": 630,
+          "length": 11,
+          "zeroFree": false,
+          "candidates": 39
+        },
+        {
+          "id": 631,
+          "length": 13,
+          "zeroFree": false,
+          "candidates": 0
+        },
+        {
+          "id": 637,
+          "length": 12,
+          "zeroFree": true,
+          "candidates": 1
+        },
+        {
+          "id": 650,
+          "length": 10,
+          "zeroFree": false,
+          "candidates": 1555
+        },
+        {
+          "id": 700,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1545
+        },
+        {
+          "id": 754,
+          "length": 14,
+          "zeroFree": true,
+          "candidates": 0
+        },
+        {
+          "id": 833,
+          "length": 13,
+          "zeroFree": true,
+          "candidates": 0
+        },
+        {
+          "id": 871,
+          "length": 12,
+          "zeroFree": true,
+          "candidates": 0
+        },
+        {
+          "id": 874,
+          "length": 12,
+          "zeroFree": true,
+          "candidates": 0
+        },
+        {
+          "id": 994,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1545
+        },
+        {
+          "id": 1157,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 28
+        },
+        {
+          "id": 1161,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1545
+        },
+        {
+          "id": 1166,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 50
+        },
+        {
+          "id": 1167,
+          "length": 11,
+          "zeroFree": false,
+          "candidates": 36
+        },
+        {
+          "id": 1168,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1545
+        },
+        {
+          "id": 1181,
+          "length": 10,
+          "zeroFree": false,
+          "candidates": 1573
+        },
+        {
+          "id": 1203,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1545
+        },
+        {
+          "id": 1205,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 114
+        },
+        {
+          "id": 1215,
+          "length": 12,
+          "zeroFree": true,
+          "candidates": 1
+        },
+        {
+          "id": 1217,
+          "length": 11,
+          "zeroFree": false,
+          "candidates": 32
+        },
+        {
+          "id": 1220,
+          "length": 12,
+          "zeroFree": true,
+          "candidates": 0
+        },
+        {
+          "id": 1254,
+          "length": 10,
+          "zeroFree": false,
+          "candidates": 1600
+        },
+        {
+          "id": 1296,
+          "length": 10,
+          "zeroFree": false,
+          "candidates": 1551
+        },
+        {
+          "id": 1337,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1545
+        },
+        {
+          "id": 1341,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1545
+        },
+        {
+          "id": 1353,
+          "length": 14,
+          "zeroFree": false,
+          "candidates": 0
+        },
+        {
+          "id": 1356,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 87
+        },
+        {
+          "id": 1409,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1545
+        },
+        {
+          "id": 1458,
+          "length": 12,
+          "zeroFree": true,
+          "candidates": 1
+        },
+        {
+          "id": 1476,
+          "length": 12,
+          "zeroFree": true,
+          "candidates": 2
+        },
+        {
+          "id": 1498,
+          "length": 12,
+          "zeroFree": false,
+          "candidates": 2
+        },
+        {
+          "id": 1500,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 13
+        },
+        {
+          "id": 1501,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1545
+        },
+        {
+          "id": 1504,
+          "length": 10,
+          "zeroFree": false,
+          "candidates": 1555
+        },
+        {
+          "id": 1527,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1545
+        },
+        {
+          "id": 1545,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 114
+        },
+        {
+          "id": 1554,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 35
+        },
+        {
+          "id": 1580,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 0
+        },
+        {
+          "id": 1689,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 39
+        },
+        {
+          "id": 1758,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1545
+        },
+        {
+          "id": 1764,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 35
+        },
+        {
+          "id": 1768,
+          "length": 11,
+          "zeroFree": false,
+          "candidates": 28
+        },
+        {
+          "id": 1891,
+          "length": 12,
+          "zeroFree": true,
+          "candidates": 1
+        },
+        {
+          "id": 1898,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1545
+        },
+        {
+          "id": 1916,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 47
+        },
+        {
+          "id": 1934,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1545
+        },
+        {
+          "id": 1967,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1
+        },
+        {
+          "id": 1970,
+          "length": 10,
+          "zeroFree": false,
+          "candidates": 1562
+        },
+        {
+          "id": 1997,
+          "length": 11,
+          "zeroFree": false,
+          "candidates": 45
+        },
+        {
+          "id": 2010,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 99
+        },
+        {
+          "id": 2063,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1545
+        },
+        {
+          "id": 2067,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 4
+        },
+        {
+          "id": 2089,
+          "length": 12,
+          "zeroFree": true,
+          "candidates": 0
+        },
+        {
+          "id": 2102,
+          "length": 10,
+          "zeroFree": false,
+          "candidates": 1555
+        },
+        {
+          "id": 2148,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 7
+        },
+        {
+          "id": 2169,
+          "length": 12,
+          "zeroFree": true,
+          "candidates": 1
+        },
+        {
+          "id": 2193,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1545
+        },
+        {
+          "id": 2235,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 86
+        },
+        {
+          "id": 2285,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1545
+        },
+        {
+          "id": 2297,
+          "length": 10,
+          "zeroFree": false,
+          "candidates": 88
+        },
+        {
+          "id": 2333,
+          "length": 11,
+          "zeroFree": false,
+          "candidates": 37
+        },
+        {
+          "id": 2341,
+          "length": 14,
+          "zeroFree": false,
+          "candidates": 0
+        },
+        {
+          "id": 2344,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 86
+        },
+        {
+          "id": 2354,
+          "length": 10,
+          "zeroFree": false,
+          "candidates": 99
+        },
+        {
+          "id": 2357,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 28
+        },
+        {
+          "id": 2388,
+          "length": 11,
+          "zeroFree": false,
+          "candidates": 53
+        },
+        {
+          "id": 2394,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 29
+        },
+        {
+          "id": 2475,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1545
+        },
+        {
+          "id": 2534,
+          "length": 12,
+          "zeroFree": true,
+          "candidates": 0
+        },
+        {
+          "id": 2570,
+          "length": 11,
+          "zeroFree": false,
+          "candidates": 35
+        },
+        {
+          "id": 2572,
+          "length": 10,
+          "zeroFree": false,
+          "candidates": 120
+        },
+        {
+          "id": 2580,
+          "length": 11,
+          "zeroFree": false,
+          "candidates": 59
+        },
+        {
+          "id": 2623,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1545
+        },
+        {
+          "id": 2626,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 33
+        },
+        {
+          "id": 2752,
+          "length": 13,
+          "zeroFree": true,
+          "candidates": 0
+        },
+        {
+          "id": 2781,
+          "length": 12,
+          "zeroFree": true,
+          "candidates": 2
+        },
+        {
+          "id": 2790,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1545
+        },
+        {
+          "id": 2807,
+          "length": 10,
+          "zeroFree": false,
+          "candidates": 132
+        },
+        {
+          "id": 2821,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 37
+        },
+        {
+          "id": 2844,
+          "length": 10,
+          "zeroFree": false,
+          "candidates": 1573
+        },
+        {
+          "id": 2877,
+          "length": 10,
+          "zeroFree": true,
+          "candidates": 1545
+        },
+        {
+          "id": 2879,
+          "length": 11,
+          "zeroFree": true,
+          "candidates": 33
+        },
+        {
+          "id": 2886,
+          "length": 13,
+          "zeroFree": false,
+          "candidates": 0
+        }
+      ],
+      "scopes": [
+        {
+          "scope": "book",
+          "train": 54,
+          "test": 55,
+          "fitKeys": 0,
+          "fitTrace": [
+            {
+              "id": 167,
+              "lexicalCandidates": 0,
+              "partialRelations": 0,
+              "keys": 0
+            }
+          ],
+          "heldout": null,
+          "privateEmpty": [
+            167,
+            631,
+            754,
+            833,
+            871,
+            874,
+            1220,
+            1353,
+            1580,
+            2089,
+            2341,
+            2534,
+            2752,
+            2886
+          ]
+        },
+        {
+          "scope": "p0-2",
+          "train": 2,
+          "test": 4,
+          "fitKeys": 0,
+          "fitTrace": [
+            {
+              "id": 5,
+              "lexicalCandidates": 23,
+              "partialRelations": 23,
+              "keys": 23
+            },
+            {
+              "id": 13,
+              "lexicalCandidates": 53,
+              "partialRelations": 53,
+              "keys": 0
+            }
+          ],
+          "heldout": null,
+          "privateEmpty": []
+        },
+        {
+          "scope": "p3-7",
+          "train": 5,
+          "test": 5,
+          "fitKeys": 0,
+          "fitTrace": [
+            {
+              "id": 167,
+              "lexicalCandidates": 0,
+              "partialRelations": 0,
+              "keys": 0
+            }
+          ],
+          "heldout": null,
+          "privateEmpty": [
+            167
+          ]
+        },
+        {
+          "scope": "p8-14",
+          "train": 8,
+          "test": 8,
+          "fitKeys": 0,
+          "fitTrace": [
+            {
+              "id": 444,
+              "lexicalCandidates": 1,
+              "partialRelations": 1,
+              "keys": 1
+            },
+            {
+              "id": 512,
+              "lexicalCandidates": 1,
+              "partialRelations": 1,
+              "keys": 0
+            }
+          ],
+          "heldout": null,
+          "privateEmpty": [
+            631,
+            754
+          ]
+        },
+        {
+          "scope": "p15-22",
+          "train": 4,
+          "test": 11,
+          "fitKeys": 0,
+          "fitTrace": [
+            {
+              "id": 833,
+              "lexicalCandidates": 0,
+              "partialRelations": 0,
+              "keys": 0
+            }
+          ],
+          "heldout": null,
+          "privateEmpty": [
+            833,
+            871,
+            874,
+            1220
+          ]
+        },
+        {
+          "scope": "p23-26",
+          "train": 4,
+          "test": 3,
+          "fitKeys": 0,
+          "fitTrace": [
+            {
+              "id": 1341,
+              "lexicalCandidates": 1545,
+              "partialRelations": 1528,
+              "keys": 1528
+            },
+            {
+              "id": 1337,
+              "lexicalCandidates": 1545,
+              "partialRelations": 1536,
+              "keys": 12
+            },
+            {
+              "id": 1296,
+              "lexicalCandidates": 1551,
+              "partialRelations": 1544,
+              "keys": 0
+            }
+          ],
+          "heldout": null,
+          "privateEmpty": [
+            1353
+          ]
+        },
+        {
+          "scope": "p27-32",
+          "train": 10,
+          "test": 4,
+          "fitKeys": 0,
+          "fitTrace": [
+            {
+              "id": 1580,
+              "lexicalCandidates": 0,
+              "partialRelations": 0,
+              "keys": 0
+            }
+          ],
+          "heldout": null,
+          "privateEmpty": [
+            1580
+          ]
+        },
+        {
+          "scope": "p33-39",
+          "train": 6,
+          "test": 7,
+          "fitKeys": 0,
+          "fitTrace": [
+            {
+              "id": 1891,
+              "lexicalCandidates": 1,
+              "partialRelations": 1,
+              "keys": 1
+            },
+            {
+              "id": 1916,
+              "lexicalCandidates": 47,
+              "partialRelations": 47,
+              "keys": 0
+            }
+          ],
+          "heldout": null,
+          "privateEmpty": [
+            2089
+          ]
+        },
+        {
+          "scope": "p40-53",
+          "train": 13,
+          "test": 11,
+          "fitKeys": 0,
+          "fitTrace": [
+            {
+              "id": 2341,
+              "lexicalCandidates": 0,
+              "partialRelations": 0,
+              "keys": 0
+            }
+          ],
+          "heldout": null,
+          "privateEmpty": [
+            2341,
+            2534,
+            2752
+          ]
+        },
+        {
+          "scope": "p54-55",
+          "train": 1,
+          "test": 3,
+          "fitKeys": 2310,
+          "fitTrace": [
+            {
+              "id": 2844,
+              "lexicalCandidates": 1573,
+              "partialRelations": 1567,
+              "keys": 2310
+            }
+          ],
+          "heldout": {
+            "initialKeys": 2310,
+            "allWithheldCompatible": 0,
+            "trace": [
+              {
+                "id": 2877,
+                "remainingKeys": 19,
+                "lexicalCandidates": 1545,
+                "uniqueKeyCandidateCount": null,
+                "truthAdmitted": null,
+                "uniquePlaintext": null
+              },
+              {
+                "id": 2879,
+                "remainingKeys": 0,
+                "lexicalCandidates": 33,
+                "uniqueKeyCandidateCount": null,
+                "truthAdmitted": null,
+                "uniquePlaintext": null
+              },
+              {
+                "id": 2886,
+                "remainingKeys": 0,
+                "lexicalCandidates": 0,
+                "uniqueKeyCandidateCount": null,
+                "truthAdmitted": null,
+                "uniquePlaintext": null
+              }
+            ]
+          },
+          "privateEmpty": [
+            2886
+          ]
+        }
+      ]
+    }
+  ]
+}
