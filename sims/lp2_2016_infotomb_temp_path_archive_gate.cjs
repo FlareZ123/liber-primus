@@ -136,9 +136,14 @@ async function locateCluster(indexUrl,size,target){
   const eligible=rows.filter(row=>row.key<=target);
   const floor=eligible.length?eligible[eligible.length-1]:null;
   const next=rows.find(row=>row.key>target);
-  return {floor,next_key:next?next.key:null,certified:!!next&&(floor===null||floor.key<=target),
+  const firstKey=rows[0]&&rows[0].key,lastKey=rows.length&&rows[rows.length-1].key;
+  const before=begin===0&&!!firstKey&&target<firstKey;
+  const after=end===size-1&&!!lastKey&&target>lastKey;
+  const exactFloor=!!floor&&floor.key===target;
+  return {floor,next_key:next?next.key:null,certified:before||after||exactFloor||!!next,
+    outside_range:before?'before':after?'after':null,
     rounds,probes:probes.slice(-5),scanned_range:[begin,end],candidate_rows:rows.length,
-    first_key:rows[0]&&rows[0].key,last_key:rows.length&&rows[rows.length-1].key};
+    first_key:firstKey,last_key:lastKey};
 }
 async function readCdxBlock(collection,indexRow){
   if(indexRow.length<10||indexRow.length>400000)return {error:'Unexpected CDX block length '+indexRow.length};
@@ -179,6 +184,9 @@ async function commonCrawlAudit(){
     item.searches=await limit(TARGETS,2,async target=>{
       const located=await locateCluster(indexUrl,size,target.surt);
       const search={id:target.id,surt:target.surt,locate:located,certified:false,matches:[],warc:[]};
+      if(located.certified&&located.outside_range){
+        search.certified=true;search.certified_no_match=true;search.outside_range=located.outside_range;return search;
+      }
       if(located.error||!located.floor||!located.certified){search.error='Cluster lookup not certified; no absence claim.';return search;}
       const block=await readCdxBlock(collection,located.floor);
       search.block={object:located.floor.object,offset:located.floor.offset,length:located.floor.length,
