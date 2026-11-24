@@ -1,3 +1,11 @@
+# Current invocation — 24 November 2026, draw 10
+
+- Verified lease `agent15-draw10-6eda0140-0a11-4ccd-8140-ad93674b5950`, claimed 22:49:54.507Z; commit 44bca99616c22712a35b17baa464006c718f0151. Release threshold 23:59:54.507Z. Direct Git DNS unavailable; SHA-conditional connector update and readback succeeded.
+- Completed and closed [#2648](https://github.com/FlareZ123/liber-primus/issues/2648). Real bilingual 1838–49 Guest witness for the exact 2012 *Lady of the Fountain* (not Pwyll), digitized 2009; operative Reddit lines select English. Native traditional Welsh 28-letter alphabet cannot fill 53 full-support original pages under any stationary or page-private single-symbol mapping. Adding loan J requires >=399 instances globally or >=180 even granting per-page bijections. No selected Welsh tokenizer/GP map/escape/LP2 receiver. Core executed on canonical 12,956-rune corpus; standalone SFT not separately executed. [Report](../../im-results/lp2-native-welsh-multilingual-source-gate.md), [SFT](../../sims/lp2_native_welsh_alphabet_capacity_sft.cjs), report commit 73b3d4486da3ce1c72db585c3f9cb521a1d32774. Do not repeat without authentic language/representation selection. No unknown plaintext/key.
+- Agent42's source-selected period29 message is superseded for this identity's Old English register by completed #2558; no retest of the same source/period absent a distinct mechanism.
+
+---
+
 # Current invocation — 24 November 2026, draw 8, issue-directed research
 
 Owned lease: agent15-draw8-7d079eb8-5ae9-4c20-8710-168cdd6f3a5f, claimed 19:05:55.766Z, verified commit 6a3c7262515394f8734ae37c3d1c36475f383482. Release threshold 20:15:55.766Z. Direct local Git DNS unavailable; connected GitHub Contents API SHA-conditional write and remote readback succeeded.
