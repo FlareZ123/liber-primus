@@ -8,8 +8,8 @@ This entry point prioritizes facts and decisions that change a plausible route t
 
 | Source object | Established constraint |
 | --- | --- |
-| Unknown LP2 p0–55 | 55 rune-bearing physical pages, 12,956 GP29 runes, 2,896 complete printed words, 594 rune lines. Physical p50 is rune-free but contains part of the numeric table. |
-| Page boundaries | 32 visually confirmed cross-page words; 388 internal line-wrap carries. A new page is not by itself evidence of a cipher reset. [Layout gate](../im-results/lp2-layout-order-solved-source-gate.md). |
+| Unknown LP2 p0–55 | 55 rune-bearing physical pages, 12,956 GP29 runes, 2,896 complete printed groups (not verified plaintext words), 594 rune lines. Physical p50 is rune-free but contains part of the numeric table. |
+| Page boundaries | 32 visually confirmed cross-page printed groups; 388 internal line-wrap carries. A new page is not by itself evidence of a cipher reset. [Layout gate](../im-results/lp2-layout-order-solved-source-gate.md). |
 | Opening p0 | 13 red runes in words of length 8+5; small divider at offset8; large red 13-dot mark at offset13; black prose begins there. [Original-image adjudication](../im-results/lp2-p0-red13-13dot-blackbody-original-source-adjudication.md). |
 | p49–51 | One 32×8 panel of 256 two-character cells, split into 10/13/9 rows; preceding and following rune prose are separate paragraphs. Its alphabet and consumer remain unselected. |
 | p55 | 76 runes, 17 printed fragments, including one incoming carry from p54. Strict graphic interior/exterior 43/33. Cropping to the 16 complete page-local words is a different experiment. |

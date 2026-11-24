@@ -35,7 +35,7 @@ The exact enumeration agrees with the external Round45 400-shift estimates (appr
 
 ## T7 gap ordering remains a separate live constraint
 
-The 86 repeat sites have lag-one gap correlation **+0.380019689**. The 1,649-rune figure is the sum of three gaps (400+712+537), not one uninterrupted doublet-free gap; the longest single gap is 712. The Round45 analysis of the same rune-identical transcription reports that T7 survives chapter, page, page×13-dot, word/line-class and exact-word-length conditioning. Its line-occupancy null at p≈0.23 has only 0.04 power against the tested rate-heterogeneity plant; the event-bearing-word-identity null at p≈0.26 has unmeasured power. These controls therefore do not explain away T7, but T7 still identifies no cipher or key.
+The 86 repeat sites have lag-one gap correlation **+0.380019689**. The 1,649-rune figure is the sum of three gaps (400+712+537), not one uninterrupted doublet-free gap; the longest single gap is 712. The Round45 analysis of the same rune-identical transcription reports that T7 survives chapter, page, page×13-dot, word/line-class and exact-word-length conditioning. Its line-occupancy null at p≈0.23 has only 0.04 power against the tested rate-heterogeneity plant; the event-bearing-printed-group-identity null at p≈0.26 has unmeasured power. These controls therefore do not explain away T7, but T7 still identifies no cipher or key.
 
 The external Round45 analysis is an independent analysis of the same canonical rune stream, not an independent transcription. Its phase-family code and conditioned-null results are linked below.
 
