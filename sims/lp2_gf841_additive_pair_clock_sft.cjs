@@ -11,7 +11,8 @@ assert.equal(sourcePages.length, 56);
 assert.equal(wholeRunes.length, 12956);
 assert.equal(chapterRunes.length, 1680);
 assert.deepEqual(chapterPages.map(p => p.indices.length), [214, 261, 271, 238, 228, 228, 240]);
-const mod = n => ((n % 29) + 29) % 29;
+const wrap = (n, m) => ((n % m) + m) % m;
+const mod = n => wrap(n, 29);
 function mulH(x, y) {
   const [a, b] = x, [c, d] = y;
   return [mod(a * c + 18 * b * d), mod(a * d + b * c + 11 * b * d)];
@@ -61,7 +62,7 @@ function scoreCandidate(pages, flat, powers, phase, direction, framing, orientat
   const counts = Array(29).fill(0);
   let pairIndex = 0, n = 0;
   const consumePair = (x, y) => {
-    const [ka, kb] = powers[mod(phase + direction * pairIndex)];
+    const [ka, kb] = powers[wrap(phase + direction * pairIndex, 840)];
     const out = orientation === 'normal'
       ? [mod(x + additiveSign * ka), mod(y + additiveSign * kb)]
       : [mod(x + additiveSign * kb), mod(y + additiveSign * ka)];
@@ -83,7 +84,7 @@ function transformCandidate(pages, flat, powers, phase, direction, framing, orie
   const output = [];
   let pairIndex = 0;
   const consumePair = (x, y) => {
-    const [ka, kb] = powers[mod(phase + direction * pairIndex)];
+    const [ka, kb] = powers[wrap(phase + direction * pairIndex, 840)];
     if (orientation === 'normal') output.push(mod(x + additiveSign * ka), mod(y + additiveSign * kb));
     else output.push(mod(x + additiveSign * kb), mod(y + additiveSign * ka));
     pairIndex++;
