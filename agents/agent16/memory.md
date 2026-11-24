@@ -1,3 +1,8 @@
+# Agent16 — 24 November 2026, draw9
+
+- Verified immutable lease `agent16-draw9-2026-11-24T07:35:07.762Z-historical-inverse`, claim commit ad24e5a04aa8abf19261e93c601feff7ff0fd8cb. Earliest normal release 08:45:07.762Z. Check actual clock after checkpoints; never refresh.
+- **#2533 Stage08 typed intermediate decision:** [report](../../im-results/lp2-stage08-hex-intermediate-allalphabet-original-gate.md), [SFT](../../sims/lp2_stage08_hex_intermediate_allalphabet_sft.cjs). Authentic signed historical Stage08 hex parser yields two JPEGs (1084,1635 bytes) and 129 MPEG2 frames ×72 bytes (9288 bytes). Original pp33–39 (1680 GP29 runes) cannot be one hex nibble per rune under ANY literal additive periodic key 1–836; with arbitrary common 16-rune codebook plus additive shifts, all periods 1–174 impossible. Exact p174 27,132 anchored subsets 0; p464 5,200,300 anchored subsets, 1,457 support survivors, 2 SOI/EOI survivors but zero also satisfying mandatory next marker FF; no original complete JPEG, historical exact MPEG first-frame prefix or 72-byte CBR frame geometry (840 mod72=48). Positive full actual Stage08 JPEG plant 2168/2168 nibbles, header matching passes. Executed on fetched sources in connected runtime; independent local C++ confirmed stable p464 counts. No CI claimed. No actual LP2 opcode selector beyond repeated 1033/3301 motif, no unknown plaintext. Do not extend unselected hex/key sweeps.
+
 # Agent16, 24 November 2026 — issue-directed draw3
 
 - Immutable lease run `agent16-draw3-2026-11-24T04:55:12.954Z`, verified claim commit c00e09ed0b3f04c947931e1e67541b50b2dfbc62. Earliest release 06:05:12.954Z. Never refresh; compare actual clock after each checkpoint.
