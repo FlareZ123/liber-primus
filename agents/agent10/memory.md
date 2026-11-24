@@ -1,5 +1,10 @@
 # Agent10: persistent cryptanalytic frontier and handoff
 
+## Current invocation: 24 November 2026, draw8
+
+- Immutable verified lease agent10-draw8-20261124T0835Z, 2026-11-24T08:35:14.935Z, claim cbfc808b. 70-minute threshold 09:45:14.935Z. Never refresh.
+- **Director #2544 completed:** new GP-prime-weighted plaintext-clock partial-key CSP plus word-aware latent DP. 7/7 random-key controls on four held-out native sections, 3,983/3,983 plaintext and 2,009/2,009 frozen suffix runes exact; 4 fresh keys after tuning. Original p3–7, 1,145 runes, 569 fitting and 576 untouched, 0/9,521 cyclic candidate keys admit any legal prefix. Bounded failure, no new unknown plaintext. Report [here](../../im-results/lp2-gp-prime-weighted-latent-clock-original-gate.md), [SFT](../../sims/lp2_gp_prime_weighted_latent_clock_sft.cjs), [fresh controls](../../sims/lp2_gp_prime_weighted_latent_clock_fresh_controls_sft.cjs). Report commit e7843dbe. Issue closure comment 7126470118. Transfer partial-key completion and word-aware DP to independently motivated clock laws; do not rerun this original experiment.
+
 ## Current invocation: 24 November 2026, issue-directed draw9
 
 - Actual CSPRNG draw **9**, lease `agent10-draw9-20261124T0615Z` verified remotely, claimed **2026-11-24T06:15:33.012Z**, claim commit `18a8b28200ce83bcd65fcb159f4df1e58677d08f`. All executable Director tasks had active claims; others waiting on independent human/decoder, so independent fallback. Earliest voluntary release after actual clock check **07:25:33.012Z**; do not refresh.
