@@ -36,11 +36,41 @@ The fixed operation was applied to all **12,956** original runes, preserving the
 
 The source-native positive control encrypts and recovers all 12,956 symbols from the authentic solved-GP29 donor exactly with this key and the same implementation. The negative original result is not an implementation failure.
 
+## p56 “AN END”: fixed stanza-final-letter key gate
+
+The original p56 heading **AN END** supplies a possible extraction cue. Combined with the exact 29/29 GP29-to-stanza alignment above, a human solver could test the final letter of each stanza's final word, in poem order, as a 29-symbol key. This is a bounded hypothesis, not an established instruction.
+
+The fixed Old English final words from Dickins 1915 are:
+
+\`hleotan, wuht, resteð, tohiht, milpaþas, restaþ, leas, geniht, syððan, æror, ansyne, þearfum, eþle, ætsomne, gedeþ, lande, swiceþ, getenge, frofur, betæcan, gym[eð], nemdun, oftast, brice, treowe, monige, sum, leofaþ, geswicaþ\`.
+
+The printed key is:
+
+\`N T D T S TH S T N R E M E E TH E TH E R N D N T E E E M TH TH\`
+
+Here Old English \`ð\` maps to GP29 \`D\`, and \`þ\` maps to \`TH\`. Dickins prints the 21st stanza's final \`ð\` in \`gym[eð]\` as a bracketed emendation, so the unbracketed \`gym\` reading (changing that key position from \`D\` to \`M\`) was tested separately. The parallel Dickins English translation was also tested using the final words:
+
+\`Lord, mettle, them, knight, horse, within, else, house, water, betimes, upon, alike, estate, banqueting-hall, touches, land, fails, skies, restless, earth, bridle, hero, prosperity, all, fashion, many, journey, happiness, broken\`.
+
+The fixed operation was continuous period-29 GP29 Vigenere on the original 12,956-rune stream, phase zero, preserving the original 2,896 printed groups. Both conventional signs (\`P=C-K\` and \`P=C+K\`) were tested; there was no phase, page-reset, direction, or stanza-position sweep.
+
+| Source key | Distinct symbols | \(P=C-K\): IoC / dictionary hits / long hits | \(P=C+K\): IoC / dictionary hits / long hits |
+|---|---:|---:|---:|
+| Old English, printed \`gym[eð]\` | 8 | 0.03448823 / 210 / **0 of 1,132** | 0.03446242 / 200 / **0 of 1,132** |
+| Old English, unbracketed \`gym\` | 8 | 0.03447360 / 215 / **0 of 1,132** | 0.03446626 / 203 / **0 of 1,132** |
+| Dickins English translation | 11 | 0.03451975 / 204 / **0 of 1,132** | 0.03449888 / 182 / **0 of 1,132** |
+
+The original ciphertext baseline is IoC **0.03447840**, 203 dictionary hits, and 0/1,132 long-word hits. Every candidate remains at the near-uniform original IoC and produces no long dictionary word. The small changes in short-word counts are not evidence of plaintext.
+
+**Decision:** reject this fixed stanza-final-letter Vigenere consumer. The 29/29 source match remains a genuine alphabet/order constraint, not a decryption. The p56 title does not justify sweeping other stanza extractions, word positions, phases, or resets. Reopen only if another original clue selects a specific operation or yields a discriminating held-out prediction.
+
+**Reproduction:** run \`node sims/lp2_anglo_saxon_rune_poem_endletter_sft.cjs\` from the repository root. The script pins the source final words, bracketed-reading alternative, original transcription, dictionary, key construction, and both signs.
+
 ## Decision
 
 Retain the **29/29 Anglo-Saxon Rune Poem alignment** as a genuine source-selection and alphabet/register constraint. It is a much stronger historical connection than a thematic resemblance, and it supplies a fixed Old English/English parallel reference for future independently motivated tests.
 
-Reject the direct prime-value, period-29 Vigenere interpretation. The source match does **not** establish that the Rune Poem is LP2 plaintext, that the stanza meanings are a homophonic code, or that prime values index its text. Do not sweep phases, resets, reverse directions or arbitrary stanza/word indexing. Reopen only if another original clue selects a specific operation on the poem or predicts a held-out original block.
+Reject both the direct prime-value period-29 Vigenere key and the fixed stanza-final-letter Vigenere consumer selected tentatively by p56 **AN END**; both fail on the original stream. The source match does **not** establish that the Rune Poem is LP2 plaintext, that the stanza meanings are a homophonic code, or that prime values index its text. Do not sweep other stanza extractions, phases, resets, reverse directions or arbitrary word indexing. Reopen only if another original clue selects a specific operation on the poem or predicts a held-out original block.
 
 ## Reproduction
 

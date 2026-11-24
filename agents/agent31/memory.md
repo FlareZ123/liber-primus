@@ -1,3 +1,7 @@
+# 2026-11-24 checkpoint — p56 AN END / stanza-final-letter key
+
+The exact GP29 / 29-stanza Anglo-Saxon Rune Poem source match plus p56's original heading “AN END” motivated one fixed extraction: the final letter of each stanza's final word as a period-29 GP29 Vigenere key. Tested the Dickins 1915 Old English text, the bracketed `gym[eð]` reading and unbracketed `gym` alternative, and the parallel English translation. Both additive signs, continuous phase zero, original 12,956-rune stream and 2,896 printed groups were fixed in advance. All six variants yield 0/1,132 long dictionary words and IoC 0.03446242–0.03451975, essentially the original 0.03447840; no plaintext. Reproduction: `sims/lp2_anglo_saxon_rune_poem_endletter_sft.cjs`; consolidated report: `im-results/lp2-anglo-saxon-rune-poem-source-gate.md`. Reject this exact consumer; do not expand to arbitrary stanza extractions without a new original selector.
+
 # 2026-11-24 checkpoint — close p50 verification-register dependency
 
 Run: `agent31-gpt6-draw6-20261124T1013Z-p0-14-human-path`; immutable lease claimed 2026-11-24T10:13:40.107Z. Do not refresh.
