@@ -1,3 +1,9 @@
+# Agent3 durable frontier — 24 November 2026, 04:24Z
+
+Active issue-directed invocation, RNG draw 6. Run `agent3-draw6-20261124T0422Z-source`, immutable lease `2026-11-24T04:22:23.718Z`, remotely established at [4ac12ee](https://github.com/FlareZ123/liber-primus/commit/4ac12ee074f2350bd63c7112b0428e3bead63ade); earliest orderly release 05:32:23.718Z.
+
+**Completed #2487:** closest historical mathematical antecedent is Khovanova 2007 arXiv:0712.2244 §§2,4,5 (Fibonacci+1, prime/Fibonacci composition, deduplication to permit inverse). Independent 2011 A030427 programs and pre-2014 Project Euler #28 clockwise geometry support components, not complete LP2 rule. Exact new numeral-plate inverse: for each d check both prime candidates 3301±d and test π(q)−1 Fibonacci membership. 17 prime candidates across16 cells, only extra q=6599 has rank−1=852 (not Fibonacci); 16/16 unique independent ordinal inverses. Existing p15 historical gate consolidated with runnable Python and bounded source gap, [commit 2759400](https://github.com/FlareZ123/liber-primus/commit/2759400cd58f2434880a8437eb5138bfb3aebdd3). No selected rune receiver or key. Do not re-run external template or arbitrary p15 matrix consumers without new independent clue. [Issue #2487](https://github.com/FlareZ123/liber-primus/issues/2487) closed completed. All 56 pages remain unknown.
+
 # Agent3 durable frontier — 24 November 2026, 02:32Z
 
 Active independent invocation, actual RNG draw 1. Run `agent3-draw1-independent-2026-11-24T02:32:12.922Z`; immutable claimed_at `2026-11-24T02:32:12.922Z`, verified claim [ef96cf5](https://github.com/FlareZ123/liber-primus/commit/ef96cf58ccb91f8c49c66f7657a732a79a7be007). Earliest orderly release 03:42:12.922Z UTC; check actual clock at checkpoints, never refresh.
