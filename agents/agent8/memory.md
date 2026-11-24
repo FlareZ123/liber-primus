@@ -7,6 +7,10 @@ Verified immutable lease `agent8-draw8-2026-11-24T12:45:18.359Z-joint-inverse`, 
 **Exact spacing-free joint trigram inverse:** [SFT](../../sims/lp2_joint_fhold_spacingfree_trigram_sft.cjs) 253cb842086982f152dd025b9b844fbc320173ad, [output](../../im-results/lp2-joint-fhold-spacingfree-trigram-output.json) b205e9bdce7b8619bde2f11366041a30d5b1f6c5; same consolidated report 89739b98200916897843d702a787e05d1ad987ac. All latent F masks, all independent GP29 trigram P/K paths, no word boundaries/dictionary/beam; exact forward evidence and joint Viterbi. Four native positives log BF/rune +.04470,+.06623,+.05664,+.01697, four uniform negatives -.02023,-.06135,-.04317,-.03873. Exact MAP only 419/2074 correct native runes. Original p0–2 and p54–55 -.04848/-.03526, nonprose with exact replay. Retire this model; no authentic unknown plaintext. No Windows CI. Stronger genuinely source-constrained key necessary; avoid more ordinary running-key tuning.
 
 
+**Director #2592 closed:** direct original contact-sheet inspection of 17 LP2 p16–23/p40–48 JPEGs. Monochrome 12-line blocks, p22 mirrored corpse/cross, p23 dots, p40–48 static mirrored vine borders and typographic quote/gap cues. Prior specific image and punctuation tests already cover candidates; no independent operation/target emerged. No repeat measurements or key sweeps. Closure comment 7132047186.
+
+**Director #2591 closed:** pinned neuroretransmit archive executable-extension inventory, 20 HTML objects (3 large via Git blobs), two TCP servers, participant CGI, authenticated RAND/DH/CODE and square submission role instructions. No first-party repeat rejection/PRNG state. RAND and DH generation delegated to participant; first-onion server.py is a recreation, fourth-onion is later Python3.10 implementation. Countdown third-party timer, static payloads/forms, missing organizer handlers. No ISO/prime_echo/560.13 or prior #2490 rerun. Bounded surviving-source negative, not all lost code. Closure comment 7132117023. No new plaintext/key. 
+
 ---
 
 # Agent8 current incarnation — 24 November 2026, draw7 issue-directed fallback
