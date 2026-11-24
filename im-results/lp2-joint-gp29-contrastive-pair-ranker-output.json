@@ -1,0 +1,336 @@
+{
+  "modelFeatures": [
+    "P character4",
+    "K character4",
+    "P initial OOV",
+    "K initial OOV",
+    "P continued OOV",
+    "K continued OOV",
+    "P word bigram",
+    "K word bigram",
+    "P lexical by length",
+    "K lexical by length",
+    "P character5 improvement",
+    "K character5 improvement"
+  ],
+  "sourceSplits": {
+    "lm": [
+      "Shakespeare",
+      "Emerson"
+    ],
+    "contrastive": [
+      "Gibran",
+      "Orthodox Daily Prayers"
+    ],
+    "holdout": [
+      "native solved LP",
+      "Blake"
+    ],
+    "trainWords": [
+      55407,
+      74866
+    ],
+    "contrastWords": [
+      12572,
+      25088
+    ],
+    "blakeWords": 353
+  },
+  "trainTokens": 656395,
+  "trieNodes": 29968,
+  "base": [
+    1,
+    1,
+    3,
+    3,
+    0.12,
+    0.12,
+    0.65,
+    0.65,
+    0,
+    0,
+    0,
+    0
+  ],
+  "first": {
+    "w": [
+      0,
+      0,
+      1.2310584812488863,
+      2.6144927564311393,
+      0,
+      2.5411623918721866,
+      0,
+      0,
+      0,
+      1.632920952558316,
+      2.502396067218118,
+      0.4821929799229559
+    ],
+    "accuracy": 0.875,
+    "examples": 40
+  },
+  "frozen": {
+    "w": [
+      0.9620085526505802,
+      0.9937295966178464,
+      3.545201650829538,
+      2.8339598863946107,
+      0,
+      0.13411520215807943,
+      0,
+      0,
+      0,
+      0.03335214267973862,
+      0.08608525800073615,
+      2.381668375018521
+    ],
+    "accuracy": 0.75,
+    "examples": 80
+  },
+  "trainRound": [
+    {
+      "round": 0,
+      "name": "contrast 0 Gibran/Prayer",
+      "n": 108,
+      "decoys": 5,
+      "bestGap": -33.98849705750746,
+      "bestCorrect": 88
+    },
+    {
+      "round": 0,
+      "name": "contrast 1 Prayer/Gibran",
+      "n": 128,
+      "decoys": 5,
+      "bestGap": -54.7735579837497,
+      "bestCorrect": 86
+    },
+    {
+      "round": 0,
+      "name": "contrast 2 Gibran/Prayer",
+      "n": 143,
+      "decoys": 5,
+      "bestGap": -32.64493169618754,
+      "bestCorrect": 111
+    },
+    {
+      "round": 0,
+      "name": "contrast 3 Prayer/Gibran",
+      "n": 109,
+      "decoys": 5,
+      "bestGap": -0.3894555896918632,
+      "bestCorrect": 105
+    },
+    {
+      "round": 0,
+      "name": "contrast 4 Gibran/Prayer",
+      "n": 127,
+      "decoys": 5,
+      "bestGap": -2.9593306138468165,
+      "bestCorrect": 117
+    },
+    {
+      "round": 0,
+      "name": "contrast 5 Prayer/Gibran",
+      "n": 144,
+      "decoys": 5,
+      "bestGap": -63.980937418750045,
+      "bestCorrect": 105
+    },
+    {
+      "round": 0,
+      "name": "contrast 6 Gibran/Prayer",
+      "n": 111,
+      "decoys": 5,
+      "bestGap": -26.905587569846602,
+      "bestCorrect": 77
+    },
+    {
+      "round": 0,
+      "name": "contrast 7 Prayer/Gibran",
+      "n": 124,
+      "decoys": 5,
+      "bestGap": -18.901534007238638,
+      "bestCorrect": 101
+    },
+    {
+      "round": 1,
+      "name": "contrast 0 Gibran/Prayer",
+      "n": 108,
+      "decoys": 5,
+      "bestGap": -190.19790430050998,
+      "bestCorrect": 16
+    },
+    {
+      "round": 1,
+      "name": "contrast 1 Prayer/Gibran",
+      "n": 128,
+      "decoys": 5,
+      "bestGap": -304.4037867494496,
+      "bestCorrect": 9
+    },
+    {
+      "round": 1,
+      "name": "contrast 2 Gibran/Prayer",
+      "n": 143,
+      "decoys": 5,
+      "bestGap": -288.1561024000176,
+      "bestCorrect": 10
+    },
+    {
+      "round": 1,
+      "name": "contrast 3 Prayer/Gibran",
+      "n": 109,
+      "decoys": 5,
+      "bestGap": -182.72649392680663,
+      "bestCorrect": 7
+    },
+    {
+      "round": 1,
+      "name": "contrast 4 Gibran/Prayer",
+      "n": 127,
+      "decoys": 5,
+      "bestGap": -262.72876947640987,
+      "bestCorrect": 7
+    },
+    {
+      "round": 1,
+      "name": "contrast 5 Prayer/Gibran",
+      "n": 144,
+      "decoys": 5,
+      "bestGap": -340.7277853205225,
+      "bestCorrect": 16
+    },
+    {
+      "round": 1,
+      "name": "contrast 6 Gibran/Prayer",
+      "n": 111,
+      "decoys": 5,
+      "bestGap": -265.31409479066133,
+      "bestCorrect": 8
+    },
+    {
+      "round": 1,
+      "name": "contrast 7 Prayer/Gibran",
+      "n": 124,
+      "decoys": 5,
+      "bestGap": -255.36767845969152,
+      "bestCorrect": 5
+    }
+  ],
+  "results": [
+    {
+      "name": "heldout LP welcome / Blake",
+      "n": 120,
+      "model": "baseline",
+      "correct": 69,
+      "score": -4.0862731054945876,
+      "trueActualGap": -37.47576899815755,
+      "trueBestSegmentGap": -34.047567984161844,
+      "exactReplay": true
+    },
+    {
+      "name": "heldout LP welcome / Blake",
+      "n": 120,
+      "model": "contrastive",
+      "correct": 78,
+      "score": -3.6752902729168317,
+      "trueActualGap": -63.39609995050455,
+      "trueBestSegmentGap": -57.724048745098344,
+      "exactReplay": true
+    },
+    {
+      "name": "heldout LP welcome / Blake / uniform pad",
+      "n": 120,
+      "model": "contrastive",
+      "correct": 10,
+      "score": -4.150516489228599,
+      "exactReplay": true
+    },
+    {
+      "name": "heldout LP koan / Blake",
+      "n": 149,
+      "model": "baseline",
+      "correct": 89,
+      "score": -4.048371892474588,
+      "trueActualGap": -34.616344790556695,
+      "trueBestSegmentGap": -24.27024590271435,
+      "exactReplay": true
+    },
+    {
+      "name": "heldout LP koan / Blake",
+      "n": 149,
+      "model": "contrastive",
+      "correct": 96,
+      "score": -3.6562215998876306,
+      "trueActualGap": -55.71706052057846,
+      "trueBestSegmentGap": -48.37672283597931,
+      "exactReplay": true
+    },
+    {
+      "name": "heldout LP koan / Blake / uniform pad",
+      "n": 149,
+      "model": "contrastive",
+      "correct": 18,
+      "score": -4.098314707327672,
+      "exactReplay": true
+    },
+    {
+      "name": "heldout LP divinity / Blake",
+      "n": 168,
+      "model": "baseline",
+      "correct": 108,
+      "score": -4.2182747146008195,
+      "trueActualGap": -56.38293018903073,
+      "trueBestSegmentGap": -53.79613767197816,
+      "exactReplay": true
+    },
+    {
+      "name": "heldout LP divinity / Blake",
+      "n": 168,
+      "model": "contrastive",
+      "correct": 91,
+      "score": -3.8114467660237246,
+      "trueActualGap": -87.1196659259939,
+      "trueBestSegmentGap": -87.11966592599401,
+      "exactReplay": true
+    },
+    {
+      "name": "heldout LP divinity / Blake / uniform pad",
+      "n": 168,
+      "model": "contrastive",
+      "correct": 13,
+      "score": -4.136756036777396,
+      "exactReplay": true
+    },
+    {
+      "name": "heldout Blake / LP koan",
+      "n": 113,
+      "model": "baseline",
+      "correct": 58,
+      "score": -4.244064011484163,
+      "trueActualGap": -57.003686452344084,
+      "trueBestSegmentGap": -57.00368645234397,
+      "exactReplay": true
+    },
+    {
+      "name": "heldout Blake / LP koan",
+      "n": 113,
+      "model": "contrastive",
+      "correct": 58,
+      "score": -3.778076911846118,
+      "trueActualGap": -67.66567896032586,
+      "trueBestSegmentGap": -67.66567896032586,
+      "exactReplay": true
+    },
+    {
+      "name": "heldout Blake / LP koan / uniform pad",
+      "n": 113,
+      "model": "contrastive",
+      "correct": 3,
+      "score": -4.260674304122935,
+      "exactReplay": true
+    }
+  ],
+  "gate": false
+}
