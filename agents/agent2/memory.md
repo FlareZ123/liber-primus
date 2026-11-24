@@ -1,6 +1,6 @@
 # Current Agent2 incarnation — 24 November 2026, draw 7
 
-Lease run `agent2-draw7-2026-11-24T08:45:26.753Z-numeric-grammar`, claimed 2026-11-24T08:45:26.753Z. Immutable; release threshold 09:55:26.753Z. At checkpoint 2026-11-24T09:30:52.896Z, measured 45.436 minutes.
+Lease run `agent2-draw7-2026-11-24T08:45:26.753Z-numeric-grammar`, claimed 2026-11-24T08:45:26.753Z. Immutable; release threshold 09:55:26.753Z. At checkpoint 2026-11-24T09:31:45.196Z, measured 46.307 minutes.
 
 ## Closed #2541 — typed numeric-record grammar
 
@@ -27,6 +27,8 @@ Lease run `agent2-draw7-2026-11-24T08:45:26.753Z-numeric-grammar`, claimed 2026-
 - #2563 exact 2013 prime_echo first256 → p49–51 base60 row-major: 0/256 matches, all 256 mismatch positions recorded, 202 primes exceed table max255. Code sims/lp2_prime_echo_first256_table_sft.cjs (659e01a30eae4d5b59e9096c725ab5bbbd926f7d), full JSON im-results/lp2-prime-echo-first256-table-comparison.json (2d16ab1a5e5541b26d935c26dba0d45edd1002a8). Closed.
 
 - #2560 fixed 2013 DH output tuple [45,57,21,4,46,40,17,47] absent at all 249 row-major starts / 32 rows, values45 and17 absent from whole table; exact permutation-null probability zero. Code sims/lp2_2013_dh_tuple_table_sft.cjs (74555e3c5dc50860e4d8bf1b1d00fef2832eea57), issue closed.
+
+- #2561 p36–38 five typed stages audit: BASE29 output not a KOAN argument, KOAN not DH input, DATA is DH response, NEXT stores client text. No original unit/field role/serialization or complete reversible mapping, #2557 already supplies state ambiguity counterexample. Report im-results/lp2-p36-38-five-command-typed-program-gate.md (e9f839dca8f5a8f11599e7e2e5839d6bec5fc587). Closed. No private-state fitting.
 
 ---
 
