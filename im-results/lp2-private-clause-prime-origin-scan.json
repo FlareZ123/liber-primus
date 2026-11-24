@@ -1,0 +1,2092 @@
+{
+  "privateScan": [
+    {
+      "chapter": [
+        0,
+        3
+      ],
+      "unit": 1,
+      "len": 141,
+      "paths": 2969,
+      "keys": 516,
+      "best": {
+        "o": 2478,
+        "score": -3.5052038309341484,
+        "coverage": 2,
+        "readout": "NGEAJAANGYOWBGJOEXNBOEHRJEOHLDNGAEAAEWMOETHSEOCNMXUHLTRODNGRXTHSYIAWEOJNGXODYBAIAEATHEIIHIIANSXAECBTHIAEAXEAOAEGYCXWXEOXAEJUPDJSAEOFANXJDWUAEUNGYEEOYTOJTIADURWAFHOEPDSPADAJAEAX"
+      },
+      "bestLex": {
+        "o": 662,
+        "score": -3.6181043675936553,
+        "coverage": 12,
+        "readout": "JXEATFIAAEAEABEAEREOOJIJCIWPDIAAEEEPUJTEONGGUMHIOXSCEBEOFEAEFUIAATHNEORYWXNENGEOJGEOTHRGTHSNGDXMGOEFNEOSMIEASANAPIHHNGEAALEAEAXDINGMLPOEEDCDYEEAIARXEASYAIAHJXOEDEOEARHGIAOHBRPU"
+      }
+    },
+    {
+      "chapter": [
+        0,
+        3
+      ],
+      "unit": 2,
+      "len": 121,
+      "paths": 3251,
+      "keys": 650,
+      "best": {
+        "o": 2180,
+        "score": -3.489751039560761,
+        "coverage": 2,
+        "readout": "GWXOMAEOHENTDYICAEPOEAEOTAUIARNTOCFNMETPFBAEAETXYYEFYGYJUUYNWAIAJROETDSXDUTAESRGOSLWLDBEOAEGBHGJUOEJESHENTTAEPCFGDTHCOTHXTSYDXIAMNRWSJOEDA"
+      },
+      "bestLex": {
+        "o": 1123,
+        "score": -3.6902407584945385,
+        "coverage": 11,
+        "readout": "CTDXOOEDNPGMYCLCDNETHWITEOFAELBGEOFHGOOIAIATHEATOYNSOWNOEBRSPPTHAEBTRASEAGDONGOEHTEANGETPGYRPTIAOTOEIUOEIANNRUAEUOTHJBOAIFOOEOERMXWJGCXEEOWJAEUAENGBLNG"
+      }
+    },
+    {
+      "chapter": [
+        0,
+        3
+      ],
+      "unit": 4,
+      "len": 53,
+      "paths": 4304,
+      "keys": 1612,
+      "best": {
+        "o": 1150,
+        "score": -3.352795526578507,
+        "coverage": 0,
+        "readout": "LIAEAJMFUTHEAEOTEAAEGWNGOPRAEYPTWHLJEPAYYDGEORNGEONGCWYBEOXOCOMTHGOTH"
+      },
+      "bestLex": {
+        "o": 1257,
+        "score": -3.6441386277121537,
+        "coverage": 13,
+        "readout": "WEFLEAFOEJIASTHEOPIAUMOEOEUTOENUORLPENOEOOMHMIMXAEWNTSHINWJSTRJR"
+      }
+    },
+    {
+      "chapter": [
+        0,
+        3
+      ],
+      "unit": 7,
+      "len": 97,
+      "paths": 7742,
+      "keys": 1244,
+      "best": {
+        "o": 737,
+        "score": -3.430222280601473,
+        "coverage": 5,
+        "readout": "AOEGFJWMOOEDOEOENJUWHIHTPOENGAEJEAUBTXBURSWRYEOONGPENGAETGEXIIAURMRLDIACIAUXSOWSHFNIAEADLSFISDAERYXDNGDNIAYJWGDNSIS"
+      },
+      "bestLex": {
+        "o": 2400,
+        "score": -3.6352004465607615,
+        "coverage": 17,
+        "readout": "IAIAHTHMCNNGEAIAAOIATHJNGUOOEOIAWEAYEGEOFTHRSTHNIAETYTHEEACRNGMTGCOCOEAECTYSAAAEIYEOMYALBFLDCAMENFIAFMOUIWIDMIAJAEAJJGJOHTS"
+      }
+    },
+    {
+      "chapter": [
+        0,
+        3
+      ],
+      "unit": 8,
+      "len": 198,
+      "paths": 352,
+      "keys": 81,
+      "best": {
+        "o": 1517,
+        "score": -3.5720814666634126,
+        "coverage": 1,
+        "readout": "HGEACNIAGYEMXSCIAAPDAEUMTHUXAEYMDAEIAAXTHIATSYJBTCOENGMUNILAEEOEMBCPTHDWJIAXYFHYYNTXABNGUCGCIAUEUNEAXWXEAEPFIANEORTDNGOELWAERYFTGNGXFHCXCEODFNXHXDAEYNTHPJENXOOBEATHWIATEIWXMPSOEAEXHWGPYEEARRSWPOEGOOEYLOTHTHSEWHIUNGHIALGAEPLEOEEARAEFYMLTHXJNGBEAO"
+      },
+      "bestLex": {
+        "o": 243,
+        "score": -3.740056182195909,
+        "coverage": 12,
+        "readout": "OCTHLLMAEUEDOERNGXNGTDNXWNGTHPYGEAWWWRNGNGUBXEAYMXTWOTCHWGAYAEJOEATBCPTHAPEAWAEIAEODJBGYECGWDEALJMJUNGUEAAEMFEOTHOOAEUEARGLMEOJEOENGCIAOSESISUMEARBNGPNTUERPAELYDHOEOTMIEABRNGSEOPEABAHYEAROIHEAJEERIAXAEMAIRYSLWGEAIAEASEWBCNGNYXBWUMWOFTYISAEAOELIANG"
+      }
+    },
+    {
+      "chapter": [
+        3,
+        8
+      ],
+      "unit": 1,
+      "len": 103,
+      "paths": 1669,
+      "keys": 707,
+      "best": {
+        "o": 2483,
+        "score": -3.480312598352106,
+        "coverage": 1,
+        "readout": "AEBRREOGBNGNGJWFOEOWIYHYHBGIASMHEOTOJJRPOIADPNTHOUIAIATHOEUOJDHGIDAEECIOEBOEDAEEAODYLEOFPPCTHRAEGFEOUEAYOUTSNGHAEBNGOEIAXNPSHOTPGEA"
+      },
+      "bestLex": {
+        "o": 947,
+        "score": -3.603675687832223,
+        "coverage": 7,
+        "readout": "BNIAMTHRPETNGOEAFHEXNGXDBOETOEHTHGTJSTHEOLNGELNGDJCTHLEOEIATHEOAXLWHEOIDSIEARISILARHIMJEAFAATMMAEGFLULUCCEAMDXAENGDEASHOAYAEYTHCRT"
+      }
+    },
+    {
+      "chapter": [
+        3,
+        8
+      ],
+      "unit": 3,
+      "len": 174,
+      "paths": 499,
+      "keys": 167,
+      "best": {
+        "o": 1665,
+        "score": -3.545735086365863,
+        "coverage": 5,
+        "readout": "TDGCAEMTHTHAEEAAEWTHYWEOTBPAMTCOEEOLMENGTNAEAELCCTJGCFPEAONGGJIAAEIAABIAEORGPTEONHAPSAEGEAXBLDHPNGGNEONGGCGTHIAEOIWTHAMGXEAXLWJGUJRMIHPEOLAEFTOESEJEOOLOEWJHIAEAIAXYCGSCEIAOTHEAHEANNGBHECNGNGIACARUHIASDNMEAYTHDFNAEXGDEOHBLNNEYS"
+      },
+      "bestLex": {
+        "o": 1000,
+        "score": -3.7234966266179543,
+        "coverage": 24,
+        "readout": "JXYGEUJAATHAXWGAMNGCOEATHAMEIAHWGOMRUNEOWBOESEOOFNEAONTJTHAEDTCIASSAEBOEEWHAEGGTOENGWIAAFCTHXOEDUAEATHAEEOMSESREANGTHJYJXEWTHIAAHOCXBBLEOBSTABOAENWRIXRCIYOWEONGJENGAMIBIFWNILONGMIACOINUEAEHTHXWSOEEOFRUSETHEXNGOENOEAEROE"
+      }
+    },
+    {
+      "chapter": [
+        3,
+        8
+      ],
+      "unit": 7,
+      "len": 183,
+      "paths": 837,
+      "keys": 95,
+      "best": {
+        "o": 2707,
+        "score": -3.534602496892191,
+        "coverage": 3,
+        "readout": "OEXCAENTHIAOEDNEOIAMRAETHTHSBEAEOJCAESMNBOEJOEJEGYAAEEHCAEOAEUSOEHHBJAGWJTOENGGLGEOTEOHOEEONGCRNGEAXAEOHAHNOEMUEOXPTHJUPCFINGDNGCYIAWNANGTHMXFYMWMICCJEOAETHNGACRBTDJTHHPFNGXYBOEIANGLAEAEYCXXBNGTOWMIAHAENGULXMDIXYSOEEAOEEOFTHPGSIAFAFJLAEPUBSA"
+      },
+      "bestLex": {
+        "o": 1167,
+        "score": -3.584505703172858,
+        "coverage": 10,
+        "readout": "GHJGOAEGEALIAOOEXALACSDSJEXTHNGAENNENWMNEBDANNXRNGUTWLEOHNBNOESNGXATHEAPOEJPBESEODLRAEOEODWXDAIASGSUHUMETHLAELYIXXXHEAEYEOCBWTHYMPWARJOEEARAEMCHEANGOEROEHEOAGHTJIATNGALHEAAEMELAEIPMIYEAPLUEOITHTHGYEAIADHIIAAYHPBAPLAOEBFRBTGTHRTR"
+      }
+    },
+    {
+      "chapter": [
+        3,
+        8
+      ],
+      "unit": 9,
+      "len": 111,
+      "paths": 548,
+      "keys": 314,
+      "best": {
+        "o": 2985,
+        "score": -3.4471555628305115,
+        "coverage": 0,
+        "readout": "OJIAXPTHLJEOJEOIUIBETTWEDBPNGIAEODDROEEAPIREAAELNGAEERABPIATCMDJXPFBEAAEWWCIAAPEOEOJNEDHDEAEOEJEOREONJNGSEADSRLNGTMBUMEAIAISPJEAPNGGCGLRPSHJ"
+      },
+      "bestLex": {
+        "o": 4,
+        "score": -3.574872657655838,
+        "coverage": 8,
+        "readout": "WBGLRMIDUEOEAIAHYIDEABPGRMJSNGGBTJNGOECDCNTHEANGFTHTRYMSNGEOCIAIAMTSEASUAEDAETCGNGXNUXDHTHSONGEONBDOECJPOEDJRSYGEAWYSUPSOEHHAEGETHYANYIHPT"
+      }
+    },
+    {
+      "chapter": [
+        3,
+        8
+      ],
+      "unit": 10,
+      "len": 113,
+      "paths": 143,
+      "keys": 103,
+      "best": {
+        "o": 2946,
+        "score": -3.517198963204513,
+        "coverage": 2,
+        "readout": "MCHXIEAXTHNGOTHSMNAETXGMIANGHEOMEAAIARJSYAEEAJCIADLASYAENGAEGMIOEDTAERPNXTHTHUCLOEPMLIAXIEDTHGAENGUTHOEXMMAEIAIBIYIEOBNGTOEEAIFMIASYDRAGINXEAIEORNGAA"
+      },
+      "bestLex": {
+        "o": 351,
+        "score": -3.6412754116041692,
+        "coverage": 8,
+        "readout": "RSUWWDPWYOEJOEYYJTHXSACWNGAEWXTHCPGLXHNBDJURHWOENGPAEOOETHIIOGEAIAMAECTHITHHYWTHPYGCGOEWAUXOGMEOMOEUEACLONGOCGREACEAGEOUOLOIAIPXCIAOSEOEOEOEBW"
+      }
+    },
+    {
+      "chapter": [
+        3,
+        8
+      ],
+      "unit": 12,
+      "len": 107,
+      "paths": 299,
+      "keys": 234,
+      "best": {
+        "o": 2476,
+        "score": -3.5276064104423255,
+        "coverage": 0,
+        "readout": "XSEPJLEAOETUNGAXDPMEOYWIEOXWEAEATJEJNGTAEJWNIAMLEXEOFAAEAEAGXCENGAXOEEOXBNXXOEPAWGLEOPHTHTHTHOPYOEUSTHNGTHOEREOTUOEBOEWJXPCEAGNTTDAEDIAN"
+      },
+      "bestLex": {
+        "o": 1567,
+        "score": -3.640444104171497,
+        "coverage": 9,
+        "readout": "THEAEOCXIAMIADJMIAPAWUSXEAXCAOAESENGAIAYJRSPOUJOTHNGNGDERGGAEUODEOBLOELEOEOTHIAOEOEUIAEAWTHLNGURBNNEAFEAPAEHEATAENGMPYBDDLTHGIOIAMMHTNGMALAYPTH"
+      }
+    },
+    {
+      "chapter": [
+        3,
+        8
+      ],
+      "unit": 14,
+      "len": 143,
+      "paths": 45,
+      "keys": 45,
+      "best": {
+        "o": 822,
+        "score": -3.4915821958841575,
+        "coverage": 1,
+        "readout": "CMWTEAFMNGEOTHOEEOEOSOEJBIARIAUAEAAAMNGLYYGAEEOTHAEEOYAEOEOEIAABIATHJNNMDREYDREEUAEHNSSODXNGEPPEATHDCTHEOEOTEOIALTEODNGGDIJIAACUPJEIAAEGOAAEOCUJIEAGHLNXBDEOHNGACNEOBNGRIAXLCNGEATHTHHJAEGTHTHUEATHNG"
+      },
+      "bestLex": {
+        "o": 2950,
+        "score": -3.621074687214456,
+        "coverage": 11,
+        "readout": "NGIDOECAJBRWIABNXTHXYWAEBAXWWDRNGDDMLSERRYNGOEMSAEAANXMAENGTHAABCITELCNGGCYUAEEOUHWSCMETYAEHIXTAEELTDTHXEOCHPEOXEODRJOEEAOETHDMCTHMNGLYYNJAEUTHREAATEOEAIBOEUYEAJPICTDNGDOJYOEAELLNGS"
+      }
+    },
+    {
+      "chapter": [
+        8,
+        15
+      ],
+      "unit": 1,
+      "len": 94,
+      "paths": 97,
+      "keys": 97,
+      "best": {
+        "o": 1694,
+        "score": -3.5278687578904155,
+        "coverage": 2,
+        "readout": "EAPDETNGEPREWIBDOESIIEOCEOJCTHIAOEEDEAYRXMURPANEAHIAYPOEMCDEIASLACREOYSEAJHTSOEJTBPUSIAYPJPIALTHNXEAETHIEOAHEOXNGNTDJ"
+      },
+      "bestLex": {
+        "o": 803,
+        "score": -3.549431787046319,
+        "coverage": 6,
+        "readout": "EAOERHMYTHELCRJMXAEIWCDEAIAIAOELDRBITTNGJTJEBEAPYMBGAGCOEAETTHNIHYSIAEEAEOYGCGNGOENGUGIARAMETRTBWENGAEOAETHDGRGPLRMOET"
+      }
+    },
+    {
+      "chapter": [
+        8,
+        15
+      ],
+      "unit": 2,
+      "len": 86,
+      "paths": 10115,
+      "keys": 877,
+      "best": {
+        "o": 3260,
+        "score": -3.363713125292933,
+        "coverage": 0,
+        "readout": "UICCDHTHNUJPXTHYOERHRIABSLWJOEEEOLYTHIAIAEAEEAAAEUOETHOEOJWOEANDOFATNGROEFNIPHMHAETOIDAOEREPRWHATHEAIAYSEOMMI"
+      },
+      "bestLex": {
+        "o": 1315,
+        "score": -3.6737964478149534,
+        "coverage": 7,
+        "readout": "AERSPHOEATHSTHLNGNSJCSUAILNGRIPMIAFOXHWRRBNRNPTWTHGAMDGYEONNGBEAJMNGXFBOECCAEHSANGAEFNILIANHXAEEOYTEOWNJAE"
+      }
+    },
+    {
+      "chapter": [
+        8,
+        15
+      ],
+      "unit": 3,
+      "len": 54,
+      "paths": 966,
+      "keys": 803,
+      "best": {
+        "o": 1734,
+        "score": -3.372298566625558,
+        "coverage": 2,
+        "readout": "JTXPIBLLEAMHNYOEUXNGDIDMOICHLNGIAPOEMTHSBXYYOUNGAEBRGGNYUEAJYSEW"
+      },
+      "bestLex": {
+        "o": 269,
+        "score": -3.64394175610965,
+        "coverage": 8,
+        "readout": "GBSXNOESAETHUSINGGRPOEASWSMENGJPAEHORXGXSAEIAIIPPYNGIANGUONOCAWIO"
+      }
+    },
+    {
+      "chapter": [
+        8,
+        15
+      ],
+      "unit": 4,
+      "len": 178,
+      "paths": 2271,
+      "keys": 416,
+      "best": {
+        "o": 2453,
+        "score": -3.5573106866185653,
+        "coverage": 4,
+        "readout": "XIPOEFIAEAMAETNSUOEPEOTYIFNGNGXMGIONGRPXNGEOGEJUNTEOWRFFYENGTHTAEEOHONGATNGOGUTHHBEOIWRBCEOAEYBBEAGUWDNAETHGUNGXIAJOEAAOEMHOOEMETHRASCNUSOEEIXIEAFSUEAFMYIAXNGWRUTHIHYIAIHOENGGOTHNHXJJOGGAEOETHGJADIARPOEEYTHSEACIIAUJEADJMBYLUAEA"
+      },
+      "bestLex": {
+        "o": 2014,
+        "score": -3.6309825319596665,
+        "coverage": 15,
+        "readout": "UOEAEYFHNRIBIEAIDLONSEHSNGTHCBTHXYCASGWAELOENWWSIAATHFFLGOECSUBXPAETHRSUGDTTDEOLPATXAELSXIJDELMEGRDMANIABWGTHTHBLMRAEXMUOYSUJESEXEYAPHYEAUTHXOIAEONAJXWCUMXEOENGEAEJHLDGOOTHJNGDHNGDXGUOEUIGHPEAEAIYAEAEEABAELIAIRWAOAEA"
+      }
+    },
+    {
+      "chapter": [
+        8,
+        15
+      ],
+      "unit": 5,
+      "len": 111,
+      "paths": 506,
+      "keys": 386,
+      "best": {
+        "o": 923,
+        "score": -3.497877311762038,
+        "coverage": 7,
+        "readout": "GCTHEAIAWREOJBNGOEIALXOEUUXIAINGIRRJAEEACXAGONGWAGGEGTHOBHTAEYSXLXWSEOOENMFEIAJIAXPBCNGGAEXNIAUPDOEOEOBYTHEXEAJBHUNMYBROEEOGNGLTEYEAXCGIEOTCU"
+      },
+      "bestLex": {
+        "o": 2088,
+        "score": -3.5948244297891776,
+        "coverage": 11,
+        "readout": "OEAEYJEODNFOEEAOHJEIAEOOWOEXYIETXNGRNFWMTNNGEAXRMEONGOEAEGXGCXEANGHDELNNGREOFOIRYILSGCDSXOEPHEHOIAAGNTHALJMDXYNGIANSIOERNGEIIWWTOTHRPNGII"
+      }
+    },
+    {
+      "chapter": [
+        8,
+        15
+      ],
+      "unit": 6,
+      "len": 66,
+      "paths": 1354,
+      "keys": 1027,
+      "best": {
+        "o": 2267,
+        "score": -3.3606561957237386,
+        "coverage": 5,
+        "readout": "OERLNGIAOOEPMMNGGEAAEXNGOENUDAEOPAEEAAEWUJAAEOONGIAEPOAEMNGCJTHATAEHXYYTHBEONGADISPEOTRABA"
+      },
+      "bestLex": {
+        "o": 1608,
+        "score": -3.8526601104853753,
+        "coverage": 10,
+        "readout": "FLOGOERPMMDAELSIEATJTHGAOIONEOBUEAJLIFTCDSCYNGBSNDSNTHPITOEUIAPAEWNIEOWRATSTHN"
+      }
+    },
+    {
+      "chapter": [
+        8,
+        15
+      ],
+      "unit": 7,
+      "len": 68,
+      "paths": 4995,
+      "keys": 862,
+      "best": {
+        "o": 574,
+        "score": -3.4166291164616447,
+        "coverage": 4,
+        "readout": "EANGENCNGSEAXBEAUDIATHEONGAEIAEASYXTUXOERIATHFHJMDBCAEBPEUJSYWMEOTHPNPNGRFPNFPAEIEAWXTEDA"
+      },
+      "bestLex": {
+        "o": 850,
+        "score": -3.782703946665329,
+        "coverage": 13,
+        "readout": "EODYCANTDCTNGMEOTLCTJNHIIACSHAEGNUNGEONGEOLACEOYAOEAENNGINGHOEAEBYFSGHFSNFOBDIXNBAEYTH"
+      }
+    },
+    {
+      "chapter": [
+        8,
+        15
+      ],
+      "unit": 9,
+      "len": 88,
+      "paths": 296,
+      "keys": 243,
+      "best": {
+        "o": 1797,
+        "score": -3.4717576738380913,
+        "coverage": 0,
+        "readout": "RTHDWICEJOEEJGEOOEPHWTOWYJBUNGIAEIAYTXAETAESMYTUDGCDOEOELOEHLPYGGREAMUHDOOMNIEOERDOEAEEAOIAOEXAEIAHEWOEAEJSUEOYEO"
+      },
+      "bestLex": {
+        "o": 1728,
+        "score": -3.6457236441666576,
+        "coverage": 10,
+        "readout": "MBNEAGJOEOXXNIATXBEDNIASJBRMTLNMEAEPOECEGBERHOENEOAEIASBOODWSSPHEATMNXICJXOEYHTHSNIHYJOEGHTOEPNRBLDOEUO"
+      }
+    },
+    {
+      "chapter": [
+        8,
+        15
+      ],
+      "unit": 11,
+      "len": 103,
+      "paths": 13467,
+      "keys": 1070,
+      "best": {
+        "o": 2004,
+        "score": -3.4506597569874162,
+        "coverage": 11,
+        "readout": "OAEUAETISMRXTHEATHPUNTOEMOEOLADTHEAACNSSOMXAIJHWJACEDSUMPOEEAULCFEONLYGBUTNGAHTHLUAEWXRAEITSIAGWAWEPIAHEOFOEEOWAEAENGGHICMEOR"
+      },
+      "bestLex": {
+        "o": 1676,
+        "score": -3.7588386935915636,
+        "coverage": 17,
+        "readout": "NTHNNGEAOEMDNGSNGFXTHNGMIAOSWHMAYBTHGJOTHIYUYTNGAEJEONGCCTYHSOYSOYILYEAWLXPXIPPNGYFOIREAPEOIOEEOIAGEBHXATYNGXOEOMMPUDLTOEOYESGCOE"
+      }
+    },
+    {
+      "chapter": [
+        8,
+        15
+      ],
+      "unit": 14,
+      "len": 77,
+      "paths": 3941,
+      "keys": 1037,
+      "best": {
+        "o": 3005,
+        "score": -3.379733424290636,
+        "coverage": 0,
+        "readout": "JGEOXNTDXCEDTHOEAEOAEDEABIBXXAEUCHRIACFSAETHOEBAABEAIANGAEAETTHECJAWUNGHUEADWEACTINGOEXOEJAELIAAEROHNGGP"
+      },
+      "bestLex": {
+        "o": 3074,
+        "score": -3.53565701134109,
+        "coverage": 6,
+        "readout": "SEELIAPBRSAEOYOEXUMPTGXMXEONEORWAYSFIAGTCDOBTHIPJMMFXUJMUAETHLWIADUHGTHBSTFOMOEPOEJNGDOEREAOEAE"
+      }
+    },
+    {
+      "chapter": [
+        8,
+        15
+      ],
+      "unit": 16,
+      "len": 58,
+      "paths": 3760,
+      "keys": 1025,
+      "best": {
+        "o": 1578,
+        "score": -3.3742119024582484,
+        "coverage": 2,
+        "readout": "MOEAECYDCSCAEAUEOUXNGANGIATOSAPTHLEAFLBAXGBEARYPAWSOEEAIAFXCHDMAECHISBDEO"
+      },
+      "bestLex": {
+        "o": 201,
+        "score": -3.6965355167608207,
+        "coverage": 10,
+        "readout": "BARCUPEAWMNGGGIAEDMYAUMGINGICGYEOENGJUYRNGEAGNAYEATHIAAXPIAWTXEAINPOWNGEO"
+      }
+    },
+    {
+      "chapter": [
+        8,
+        15
+      ],
+      "unit": 19,
+      "len": 106,
+      "paths": 658,
+      "keys": 389,
+      "best": {
+        "o": 1958,
+        "score": -3.4862727377928944,
+        "coverage": 2,
+        "readout": "OEGNGDMMOBMOEFBSXUAEJHMNTHATNIACARBAMRJTHEAOWUFTRFDNEEOOEOPGPIATHNDIAAEOIJHPGNXYRNGYMXLNGXTDBCPWPOEGOEJMREOOETHDSEJEAWNGEAXIAMNYNTH"
+      },
+      "bestLex": {
+        "o": 233,
+        "score": -3.5066002939566334,
+        "coverage": 17,
+        "readout": "BYTOWNEAOEDAGAREBCRSDONIASECRAEWCSBRIAEOOJPNFYYFTBOETPYMEODIAGJIAGGPTBEHAXWDIHWRNBSTHHBJPPPNGEAEOWTLABTHMWWLNGJPNXRJOELOEEAB"
+      }
+    },
+    {
+      "chapter": [
+        8,
+        15
+      ],
+      "unit": 23,
+      "len": 255,
+      "paths": 680,
+      "keys": 91,
+      "best": {
+        "o": 1827,
+        "score": -3.572813967785176,
+        "coverage": 4,
+        "readout": "RYRXEANGTHXDAEGIEHECNDNSBFTHHEDMHTEOTHSEAIABIAIIARCCAWAEYIWEXCOESCLAEXAEOMRAESIAOCTHMYSYEOTJXOEIEAUPJUOEMBEFXCYSDUTHXNPJIIAOEPXSXHOENGILOEHUEANGPMTHIEAOEIADOOEWEOAAAEOEWTOEYBAESEOTHTBESTHWOEOEBXJAEOEJRNYNGUSJPSLPUWEODIOEAGLGOEMUAERHEOEJWRXPIAGXWJYMOEHOENHTODEAAEIWWNGSULONGCTHAOARAEAEEATGAEWLIGUBNNGROXSGRUEOAEEAGOENOESXNGNGL"
+      },
+      "bestLex": {
+        "o": 1945,
+        "score": -3.6924588332461754,
+        "coverage": 22,
+        "readout": "EOOIOEEAOECYNXLOETEAYCNNDSDAFNGAEBHIYUYGJNRMTYTBLTMUMEIAAGTHOETPTNXOPBXOPPHTDEIADCIANTGUTYEOCYNGPLOOCTHIITLEAWISTOEOJAENAELPXFNMIMIHRAWGHHTOXXEATHNGNIJAESIMIAWPMYCAOXYAELGOHIAMEAEOWEUMOOEOOEOOGTHATHJNXIALPNGUEARXCEADIAEOIRYOEUYOAEXDEOCNGEASXHHLIAGBOIAYEONGFYAEJDLRIJGMAXHAEBBWSLIAEAJOOFLGOGYPEAEOAETWEMNTEP"
+      }
+    },
+    {
+      "chapter": [
+        8,
+        15
+      ],
+      "unit": 25,
+      "len": 64,
+      "paths": 401,
+      "keys": 401,
+      "best": {
+        "o": 2669,
+        "score": -3.421810530363839,
+        "coverage": 3,
+        "readout": "GTHOEAIAIABSIAMCEOAPBEODXXRIGHTMCLNGYILLBDHACYGNGXEMAHGDIEAJLWAEOEUEAXELNGGOT"
+      },
+      "bestLex": {
+        "o": 2167,
+        "score": -3.704893864069653,
+        "coverage": 8,
+        "readout": "IAIAAAETJSXRLDPAWBBRPHGDGRIAHGGAEUISEOSOEOHOWEAIGEAWRNGOSUUIAEAETEARIXTODEOMEG"
+      }
+    },
+    {
+      "chapter": [
+        15,
+        23
+      ],
+      "unit": 2,
+      "len": 226,
+      "paths": 183,
+      "keys": 37,
+      "best": {
+        "o": 2482,
+        "score": -3.6078726692233047,
+        "coverage": 5,
+        "readout": "CJXULJHFETOEAXPILETHDNIAELOETYURMWGOLPTHGYROEEEOTHWLWFGTPTHNDHSEATEOEALREOEOTDGFIAOEEOBIAIAPEOFWTHBEOLCXXDAEIAICJTHJJUUWNPSLPNEAPDCAEPRLOETDCEOWJNGHXNGUJBOEHACSJWBHJXBAEEADTPTHXAEOWEOEOAEIYWAOOENAIABMIGPNNNXOEOETDOGSYGTHJPNGAEUXHHODWTRMMWLRPIAOETHRUCYHYTHDOTHTHEONGLJUOEYLDUNGEAI"
+      },
+      "bestLex": {
+        "o": 2021,
+        "score": -3.6675248135743885,
+        "coverage": 14,
+        "readout": "GABGBGBCEADTOEAELCNULEONJUIAJWAEDYERYDAELNAETAEOHHTRNNOFTHANGRBRTIAAEOEOOYGLTHRMTHTHJRXEAUTEDXJUXTHNBAEJEAXEAOENIADXMAENSNGCUUTHYOANGTHEADJDIAMYOEGTHSXEEOSTBIAGDXEOJNWBGNHJOEUPIWMRGPEAOTUMEOWEOBAEYMCOOUPCEOHIATHJNGPRNEIIAUTHTHSMGHJUPNGTNEAIIAPFCHBWNGTMDLTGPEOCOGBAEHNEOYCYWASSUXJ"
+      }
+    },
+    {
+      "chapter": [
+        15,
+        23
+      ],
+      "unit": 4,
+      "len": 123,
+      "paths": 1432,
+      "keys": 213,
+      "best": {
+        "o": 1566,
+        "score": -3.4878592291684365,
+        "coverage": 1,
+        "readout": "THXCMCIBTHIAHYIAYEORITNGEAJMGWPSOEOEEONGMTHJHPBNGHGNOFWIALHGYHOSAYSEHSJTHEONDPLIEEOWSLYBAEOEAWGXUGIARYHEAHGEOPPMJFJEGCXPLHYBBPNGYSNDANNGIATHGOETHEFIANWH"
+      },
+      "bestLex": {
+        "o": 1814,
+        "score": -3.6096115541014364,
+        "coverage": 10,
+        "readout": "NGRLEATRWMBDLAEBYAUPETYTHEAXEOXNGMSUEAJLBYGGEACOEEFYAEEEHXMEAPOELEUEIATHOENDITDWOORNESRIAWBTHXOEPXJCNGWMBBENELYFAXDOLYRGAEAEMOMLDNGMNBMAAWGPNGFYFOT"
+      }
+    },
+    {
+      "chapter": [
+        15,
+        23
+      ],
+      "unit": 5,
+      "len": 86,
+      "paths": 5678,
+      "keys": 650,
+      "best": {
+        "o": 3121,
+        "score": -3.4583403621348854,
+        "coverage": 2,
+        "readout": "OEIAMCOEIAXBSXAXOWTORWEOOGONTMWWCRHEEABUOXTNGAWBIALSPGTHNCCDDOEMUCIAYHDDAEBEAFPNGGNYJHWFWAEOCFDFJWYAN"
+      },
+      "bestLex": {
+        "o": 1766,
+        "score": -3.6975829940369174,
+        "coverage": 12,
+        "readout": "SXFDIAOPEOHWRWNGTHNGDCHSLMUCHPBSDIICSEYEARAELBOEEAPAGMIIAEATLWOTHWGGEAIANUSRDCMSGJTIWOESTEALAEAFMFWCOEAOE"
+      }
+    },
+    {
+      "chapter": [
+        15,
+        23
+      ],
+      "unit": 9,
+      "len": 50,
+      "paths": 1101,
+      "keys": 932,
+      "best": {
+        "o": 3005,
+        "score": -3.3886279886210158,
+        "coverage": 2,
+        "readout": "IAEADDJNEOEOAOORMLEOOEYLXEOSIAJGONLHJHIATHOEWXWAEDITEAPBGEOMXIAIAD"
+      },
+      "bestLex": {
+        "o": 3114,
+        "score": -3.6539544120181975,
+        "coverage": 9,
+        "readout": "THNRHDMBJEUNHMCCCNXNCFXSHOWLDOSOWAEAEUSEXBNGDDNGEACEOWTHRTH"
+      }
+    },
+    {
+      "chapter": [
+        15,
+        23
+      ],
+      "unit": 10,
+      "len": 127,
+      "paths": 6701,
+      "keys": 1189,
+      "best": {
+        "o": 2417,
+        "score": -3.4779366682536965,
+        "coverage": 1,
+        "readout": "GAEPTHASXSRYOERBWNADHLNWELTHTTHAYJTHBAEIAYSYLEOPPWEORXHXSJHYTOOEWFGIAHOWYDDLGIAIAXEAOAELRRTEHAROEIBTHNAENXXEOCAOEEOOCAEBWDXTCFIAEABGPEAEAETNSEAADEAJDDRMMOT"
+      },
+      "bestLex": {
+        "o": 398,
+        "score": -3.726307387235278,
+        "coverage": 18,
+        "readout": "XUINFIAXCROEMFEAJTTIPHYAESLAGAHCWJEOAETEEADEAOELMRHNUBDHATNGHCDPIAFOAEADTHMARJEAOEAECCRJAAEAYAUEOOEEOJGUEBAEAAEBAEBHRAOEOEWILDJXCMAAEEADOMLOERNGYIUCUBOYHIA"
+      }
+    },
+    {
+      "chapter": [
+        15,
+        23
+      ],
+      "unit": 11,
+      "len": 115,
+      "paths": 979,
+      "keys": 425,
+      "best": {
+        "o": 2588,
+        "score": -3.486427675914861,
+        "coverage": 7,
+        "readout": "DPSDADLWCOEWLHAEFJCJWTHWPAEIEAIJTNGEYDDIASEASTUNFGWFGOEEOAAGEAAEMWAHAEDPBBODEOBHXAXNGAEOEBCLSYNGIANGIAASAERYPEODYHMJLTESTHEAPNGMEOUTHAUPRWNIWU"
+      },
+      "bestLex": {
+        "o": 951,
+        "score": -3.7202368356991604,
+        "coverage": 12,
+        "readout": "AHGXAESAMMWPWEATFGDXHTTCJHULEONGSRHJCUFROSTHMFTAEFTOETHNJOEBGAETHRPUOEETNGWHONGGIEOXIAROIAJYAEXUPTHXCJDHYDEAPIAULIANGCCEAAERHTYEASTCRGOBWUGGNG"
+      }
+    },
+    {
+      "chapter": [
+        15,
+        23
+      ],
+      "unit": 12,
+      "len": 121,
+      "paths": 7920,
+      "keys": 1338,
+      "best": {
+        "o": 1243,
+        "score": -3.449136790297998,
+        "coverage": 3,
+        "readout": "BEOLOEUCDAEBHOFTHEWYRNGYOECLJCIASLBUXCHXIATSIAEAEEOSAETEAFLOEHPPINFGEOPXWAJPJAWIIAXNGCYHADXNOENMFORBTATHINGUHIEABNUHIAJBCPSTHRNUPEEAEORBIALMPTEAWURS"
+      },
+      "bestLex": {
+        "o": 83,
+        "score": -3.6235218743336164,
+        "coverage": 9,
+        "readout": "ROWSAEAETATWEOFMEWYIANGEOROEXUOIASTJEALBNNGNGTHOXIADEOBRUWAEOEUIHIAEAIASMOEDIDLELRCTHDHAEJOEGCEEAIAPOEUBXSFNGTHMIAOEMTUIABDUEGEOOESNDRWCSEPAAEMHODNGLEASNGSA"
+      }
+    },
+    {
+      "chapter": [
+        15,
+        23
+      ],
+      "unit": 13,
+      "len": 105,
+      "paths": 426,
+      "keys": 341,
+      "best": {
+        "o": 1743,
+        "score": -3.5060131822881972,
+        "coverage": 2,
+        "readout": "PDYNGWEOIAPYIDDECEIAEAHWAEEAAEPSIAHOEEAEXWAAEABEOTHOGAEAPPTHYXTHBXEADNOEOEOEMPSXXSCGIYJEORIADLRAEOIALTIIPJHGMUSXSNGBBXGAETTHIOXXOAEM"
+      },
+      "bestLex": {
+        "o": 544,
+        "score": -3.5850045716309054,
+        "coverage": 10,
+        "readout": "WMAPNGEOSYEOIABAEMRNNEOFLNIAEOPOEASDEOGNGOEOTHJXJRICEOOEYMJHUEREABHXWEAGDAELXEANGMAEMJTAAEIATHGWGHCEOAAOEEASUIARBUBXLAITHEOEOHURELRHEADNG"
+      }
+    },
+    {
+      "chapter": [
+        15,
+        23
+      ],
+      "unit": 14,
+      "len": 69,
+      "paths": 5002,
+      "keys": 1689,
+      "best": {
+        "o": 276,
+        "score": -3.3997554793194666,
+        "coverage": 1,
+        "readout": "LOEIXBAEEONGTXYBAEUOIWFTWWUUTPEOOENGLNGEOAEMJPBROEWIAAENEOPUEAGTHLHBUTFIACXEAEAEXAEBBBBOEDB"
+      },
+      "bestLex": {
+        "o": 182,
+        "score": -3.7484527931325724,
+        "coverage": 11,
+        "readout": "TLGTFXULDCMTHGONOEBGTMSDMSHYJICHUTEHHASCAEEOGOGCLOHRERNGWEAFARSGERNGEAEAETLAEAE"
+      }
+    },
+    {
+      "chapter": [
+        15,
+        23
+      ],
+      "unit": 15,
+      "len": 184,
+      "paths": 3136,
+      "keys": 376,
+      "best": {
+        "o": 1087,
+        "score": -3.5156038363668207,
+        "coverage": 10,
+        "readout": "PYIPMSEOCAEIALSFCFPEODLDIAYOEMEAEOUXGBEOEOLSYEOTHXHTHHMIAESELLEYNGSOEUPCOIATOEYRYIARYEOYEOXMERNGOECEAAEEAENGIDFEMPAEWFNFSEOSRNGIAOEOOEXHWPOEILTEONGCNJEAAUOIEANGAEATAIAPIRYPBEALEAXGEAUDOHMWTHCUNGXJNGNGAEEOSNGEEAPIPHREOYCBGYMJTGIAALEACHIPNGSTH"
+      },
+      "bestLex": {
+        "o": 1603,
+        "score": -3.70855136112198,
+        "coverage": 22,
+        "readout": "NEDLEXOHAJNGHFMFGCXMUAAETHOWRLIHPGIAYUTAEEAPFJNGNWLAEEAJWWEAAEOEITOETEADNGIACIJXOANGUOTHAIAEATOIUMEECXNEOEAOESOEOTLTPEJUEAGWNLBAWLGEXDWRELXEOYYRXAMHNGRWOEAENGXCNEEEMSXTJEDNESOEUUOEJEOIUJTHBOELEJIDMNGGTFPTHOEAHIAIAXIEXJNLOEXC"
+      }
+    },
+    {
+      "chapter": [
+        15,
+        23
+      ],
+      "unit": 16,
+      "len": 375,
+      "paths": 0,
+      "keys": 0,
+      "best": null,
+      "bestLex": null
+    },
+    {
+      "chapter": [
+        15,
+        23
+      ],
+      "unit": 17,
+      "len": 68,
+      "paths": 2513,
+      "keys": 1106,
+      "best": {
+        "o": 1234,
+        "score": -3.3522411619036565,
+        "coverage": 6,
+        "readout": "NMMNGAEHABESEABTYOUIXIANGHOEFTEPLSOEESSAEPTHDOEOMASOXMXFSTELUUEOYRCNDHPOEBRHMNA"
+      },
+      "bestLex": {
+        "o": 1439,
+        "score": -3.629087130015962,
+        "coverage": 10,
+        "readout": "GEDTHTAAMRMOEEAIAEAEAOETHTPPEOXFTHHUIYXXNJBOEWEMBEOHAUGJENWAEAEAEIXDXTHYDGUEOMXLUITHB"
+      }
+    },
+    {
+      "chapter": [
+        15,
+        23
+      ],
+      "unit": 18,
+      "len": 68,
+      "paths": 1291,
+      "keys": 819,
+      "best": {
+        "o": 1874,
+        "score": -3.4017181093014908,
+        "coverage": 0,
+        "readout": "TBBTTJJOIDTHJXSJMFEACAENDSOIAXROECMEOOUUBIAPEAOEATJOSEOAEICYCBWOBTXTJYWJPEAYEARC"
+      },
+      "bestLex": {
+        "o": 1403,
+        "score": -3.5612995127487137,
+        "coverage": 4,
+        "readout": "TPMEEAPXCEOAEOEAEEAAETHHFIAHNGEADUEMTHPIBTHYJNPTHRHWPEEATHGTHJWTHJHHOEEOEOTHEMANIAOCRHIAIAIAMJ"
+      }
+    },
+    {
+      "chapter": [
+        23,
+        27
+      ],
+      "unit": 1,
+      "len": 320,
+      "paths": 160,
+      "keys": 17,
+      "best": {
+        "o": 1650,
+        "score": -3.612977604426366,
+        "coverage": 5,
+        "readout": "JBAAISDXNGGYMTIATOBAGPJAEYIAARLOARODHJGOCIAUCPAAJLCYSPCSPHCAEAEATHAOERMOCJOEDEOAEWJDOBTHEOYCNGIAAEXSPHTHEAFPNAEOYIAOENGCBCPJNGFCBEOWTEOSTREATHOFEAINGTHUBOEABMIBWBAEDTGWDCOEXOEAWPCACTHHNMLWEAPTEOJNOEHBENGTOESOBOFBWJRMRXDTPRAEOCSAEDOEIAOEBFJEONGNPFNGHXNGIAMETHCXTOEMNGXTGPBYICEOATHSYTGCPXPDOEXBPHYMRHCXRJRSTHEOEJAESOBOELEOTDCEAEDAESIAOHTHTHOXEANGRFAJTCWEAMHEAEGAEUPIALFEAEOAENIJAEFYNGAEEAAEWRSNWWWNI"
+      },
+      "bestLex": {
+        "o": 3200,
+        "score": -3.7238420437159623,
+        "coverage": 14,
+        "readout": "NGEWWGOJXYDLWTHNGCNDEATHWDGTREBEANGFOENBTHWIPPEOSNGUEOXTDSPIARDTHTHEOIAOEYIAENHEGBMARTCCIAIATHJDEORIECSEAMRDOOEUFSCJOGSXCTPYUOSFTAAXNGAENHTHEMOECENGTUAEGNJRHAGROEUYGMXXJOOEOLONIAEIJWHTPGIADNUAEIAMCTHMAIATYLCAFJUMEOTHOENMRUIAEGTHAEDOEIAIWXUNGINTTIAYCHSEOLNEAECNUMPYWYIXJMTNGBIAJTGMTXTHJDTJGIAHMAEIXAEOEAGNGJDHTHCCTGSCEOIBTHEAGLWTLUJOIIANGOEUPTCFDGOAENGMTCWELTNGEOGNGTHAEMOXNGPMFEBDTBEAAGNGRTTDH"
+      }
+    },
+    {
+      "chapter": [
+        23,
+        27
+      ],
+      "unit": 4,
+      "len": 121,
+      "paths": 178,
+      "keys": 151,
+      "best": {
+        "o": 870,
+        "score": -3.5389153120548515,
+        "coverage": 4,
+        "readout": "EOTAEIIAEAAEPEABAELOEEAMNGSUFSYEOELNTOBIAOUSDPEANGAEREOJGUAETHDXGUYCTAEYAEEAUETSPAMJNSXAEMCXWGPEIAJWIABXGDPRAMECHEYOETHSLIACWPAEEADXEOIJMEOBDUPTHBSCTHSDEOEO"
+      },
+      "bestLex": {
+        "o": 2102,
+        "score": -3.6874690370549783,
+        "coverage": 16,
+        "readout": "OYHLIAIADEAPMEEACIAJCYFCTGYEASDEOATWEEAOOEROEOOPESECBJIACBNGNXGWGTTIAAEGTHIUYEOEOBAOXWGNGERPURNUIANUTWAELJMLOEYPEAXMEAAEAETHYXJRXINBHMDNNGTHAEJANGAETHOO"
+      }
+    },
+    {
+      "chapter": [
+        23,
+        27
+      ],
+      "unit": 5,
+      "len": 155,
+      "paths": 2098,
+      "keys": 355,
+      "best": {
+        "o": 233,
+        "score": -3.5309737642692958,
+        "coverage": 5,
+        "readout": "AECRRGYIYAECYIDYNFEAWTHAEMDCBPEADANNGEOERTOETHJMBTHWOEOGLGGLNGOOECYLCRJGBGNGEATYBBRPBTHEDXWARBIXEITHNUAEBANGNGTHEAOEEAFMOBJPTIAMRJMXYINGTSEOWFARXTHXHEADHETHEOSSDNOXPPJEODAENGHPFJXAYBIJRMLP"
+      },
+      "bestLex": {
+        "o": 969,
+        "score": -3.616254142801904,
+        "coverage": 10,
+        "readout": "CLSEAEASFIACXXMUGEOLMRTHGNPLAXBEOMOEWMMPNGDNEYOEXNNEHXIAMRNUASJCBDLJEANGUAENGTHEAEARPCMGEAMEHFEAAETHNGNWHDEMCIAEOEOJAYYIDLEAOHWCPHOEDDWAPEOYIAFNWSUPODYCPAJDRIAHNPTMNGNGYTHEENGJXFBTEASHLTHUNGOR"
+      }
+    },
+    {
+      "chapter": [
+        23,
+        27
+      ],
+      "unit": 6,
+      "len": 156,
+      "paths": 324,
+      "keys": 135,
+      "best": {
+        "o": 2893,
+        "score": -3.570932243951055,
+        "coverage": 5,
+        "readout": "UTTIIADHIAXUOOEEAAEMASNGYERGJJMAEDYIXYUJIAWBBIANWULHTHBTHCSPNGCBJUSDNGANGNGLIEODAEAENGOEHANGIAAEANUNYJEOTBCGNEGNGSGJPCBLMIANBTHBUIOECYEOLWXNGIHOEEAIAINGNGREOGEAGRCAELRSEOEABXMOETHIAMWEMXTHXMOHWOETHIAXMU"
+      },
+      "bestLex": {
+        "o": 771,
+        "score": -3.695409936543138,
+        "coverage": 13,
+        "readout": "TXLXYJIIREYHIAAEEAATHAUEOTXXNGHEOWORNGHAEOELREOXLTHIANLHELCTYUJAJJAMMNGAAEFPBPETHEIAOEWIETHAYLUOEPTTTHBBLBOJCAEUCUWIMEDOEEOIMIAEOMTHNXMXACMHXETNGCJINGRBREAHTPMGUAEWGAEPEAELPCOGCLBNGWFEOPW"
+      }
+    },
+    {
+      "chapter": [
+        23,
+        27
+      ],
+      "unit": 7,
+      "len": 117,
+      "paths": 912,
+      "keys": 476,
+      "best": {
+        "o": 734,
+        "score": -3.5423158669120682,
+        "coverage": 5,
+        "readout": "GAANGMWIANAAECBXEAATHEMEOOHTHCPAEWEAOFJAEUHUIACBCOECIAPYARTNGPRJNGEABOIHPOYOERPBEADAECTHDWJGEAEWDUIAHLEAWXXIAAAEFBTCMJNDEDMUCYOYMAEEXCXXAEGNGIAAEEAM"
+      },
+      "bestLex": {
+        "o": 1045,
+        "score": -3.7313711378107017,
+        "coverage": 10,
+        "readout": "AAEBBIAOSOTHJSILAOJEONAEMFEEOSOEGECHAGWGLIARDWNGIIAWSESLEBSPWNNEOXPONUGDAEYIAWLSNLADNTHOEJLMNGIYCHTHYNGEAFRWIARAEIAGOHDWJYWYEOHOYRWYIBYBBTA"
+      }
+    },
+    {
+      "chapter": [
+        23,
+        27
+      ],
+      "unit": 8,
+      "len": 71,
+      "paths": 2127,
+      "keys": 967,
+      "best": {
+        "o": 2144,
+        "score": -3.3977663097550983,
+        "coverage": 3,
+        "readout": "AXGUWGOORTHCFUBWITEAXLREAEAEAYEMEOEEYDPOFAEYIHUMPWIALXYNGGMYNEAEAEGBTHNEODLGRFXOWIDIA"
+      },
+      "bestLex": {
+        "o": 104,
+        "score": -3.7753308575191977,
+        "coverage": 11,
+        "readout": "WEALEOOGTHHCOGFEWNXWNGNNGWILXIDOELWUBXETHFSGJOGLAANGIGYIAETHTOLAEOBOPEMYPOURWAEDAHT"
+      }
+    },
+    {
+      "chapter": [
+        27,
+        33
+      ],
+      "unit": 1,
+      "len": 125,
+      "paths": 6416,
+      "keys": 932,
+      "best": {
+        "o": 2472,
+        "score": -3.4842244733580867,
+        "coverage": 3,
+        "readout": "TJONGGXLCFEAIAEIAOEIDSIEEAEAENGLUJAEHEDCWTHOEIAFAELXTHEOAEDAEGYWWLOEHBHAEEEOUGTHTHMOMSLXXDNPEATEOMIASCMTHEOPNGLHOXCLCANGMGTLAEDNMIXIAAWOEEOJDIAAEOEOEAXIATMDIGEITHI"
+      },
+      "bestLex": {
+        "o": 1981,
+        "score": -3.695180006318515,
+        "coverage": 17,
+        "readout": "REAAYSWANSLRBIALTHNATHIAEIROTHRRTEWIOEAGOEIAIACDJMTHMWDGXNELFIPLBGAJHEHWOEAESEOTHTHNLINGNUTOYTANNGTAEYIPGOEEOWJRELEASHEOIAHOEATAWYGNGOENFDCUPSAUEEOYPWJAE"
+      }
+    },
+    {
+      "chapter": [
+        27,
+        33
+      ],
+      "unit": 3,
+      "len": 181,
+      "paths": 1700,
+      "keys": 298,
+      "best": {
+        "o": 1016,
+        "score": -3.525679724758684,
+        "coverage": 3,
+        "readout": "GUOFTHOEHAECWPANGPHPSNEANECOAEREMXTHGXGDOTHTFISICRAEYPEOIHGMJAEEAAEGBTHAIAAXDWUAEEOHLAEPPAECNGGTAERCAETAENGNGWLHAEUJJUEOJSYTIYALAPIAUSGOEMTGBINGEOANGDIANNGXNGALTDGONGPEATTHGOEIAAEAXBEOSMTHERFTOEAIDPEAJIANGWMUCTOONGWCBIABHIGHAEONFCP"
+      },
+      "bestLex": {
+        "o": 324,
+        "score": -3.7511420215151166,
+        "coverage": 11,
+        "readout": "CNGMFHXTHMSSAEWRNGOXIHDRWEODXCBTNYUBTHDCGELTHDEPTHIAYDTHTTFRTHEOBEAYROJTDCTHBSOEWCSAXTUHYNGTHCBXCINSWOEOGIAEAOEAENSNYXOCCCPEOPIATOBAGSXMUBHOELTHOEUTHSOHDHEADBOTIUPIARBPHEDDGNYWSSMOLTHAEDEONGDBTETHEAUTHCWPAENCBMAEIDLYGE"
+      }
+    },
+    {
+      "chapter": [
+        27,
+        33
+      ],
+      "unit": 4,
+      "len": 116,
+      "paths": 18513,
+      "keys": 1469,
+      "best": {
+        "o": 186,
+        "score": -3.439525774369474,
+        "coverage": 3,
+        "readout": "BHRLRTWORSUYSDAMYJTHHSWOEEOAEIAEIAAIAEAGOWNAEOENGEAWAEAEJSEOHLCIXHFNOEAEHHYEOEAGAAYIASTHTHTMEANGLSYBHBELRTAEOMOSEAGJGAEMIATJLIAEARNGOEGPAEIAMAEOERIADNUC"
+      },
+      "bestLex": {
+        "o": 824,
+        "score": -3.599521776956595,
+        "coverage": 13,
+        "readout": "BHRTTEADNGYRBYNGJTEARFMAELGWEAEOOEGHOXEARFRDTHJEFIAEHINUNNGOXIHATHNDSHROEAERGGPOEWBJSNGCMOENGFTCIIAIANMRSLHEOMOENGTIABFCMEARNXNGLGNNGIAMIAWMSONAY"
+      }
+    },
+    {
+      "chapter": [
+        27,
+        33
+      ],
+      "unit": 6,
+      "len": 91,
+      "paths": 271,
+      "keys": 204,
+      "best": {
+        "o": 2488,
+        "score": -3.4894938215563593,
+        "coverage": 3,
+        "readout": "CAPEIAAEBUHAIPBXEAAUMEMUEOPJMOEXBTHOESXWTMIALAOETIEOEACOAROEJAETACSBBIAOEWBJDEAAEXBBEOLNGTEOOEHYJOEHNCEADRIEOBCBHPX"
+      },
+      "bestLex": {
+        "o": 1667,
+        "score": -3.6139418872909275,
+        "coverage": 13,
+        "readout": "THJOGBPXAEOOERNEAUBBMIAEDCCIGTIAAELNGICRXPLEABYEAEAYEUEXRANMXXTOEEOEJGLUNMALJHXUBTMIATHIATHATRNCGUOJJOETHTHAECTH"
+      }
+    },
+    {
+      "chapter": [
+        27,
+        33
+      ],
+      "unit": 10,
+      "len": 294,
+      "paths": 20,
+      "keys": 6,
+      "best": {
+        "o": 2697,
+        "score": -3.5912906049025777,
+        "coverage": 8,
+        "readout": "NJIALAOECDIAAPYXXTHEOCUDNDTNJOEONGAJLLOEIHPAEEAEARIAOEDWWHMTTHHMJDEYYTHEIAPTJORCNAGOEPDIEAYEAYPECTIWJPHNROECNGAELMLDGOAMIAFCPLHDIAHOEOOEUGEAERGCIAGOEDGNWEOTGYHEOMIAGADIUPSXCYXIADDJBIANXTHBXHONEOWIAURTNGRHMMEUOMULHEOMNGLYEMONGLROEYJLEGDXJUSYTHAEJAEIAYMEXAEOAHCGIHEOEOACOANUIAMRHXTHHINGDDJIAEASOACNJWBYNLJNIARNEIDWMPOEEGYOEIAISIYRBNGNGYEATHAEFTHNAWCCAECNGOROGWNG"
+      },
+      "bestLex": {
+        "o": 2737,
+        "score": -3.6727860915797916,
+        "coverage": 13,
+        "readout": "HTHHIAAOEWHEOLNUYXAEMLEROSEOJSCJMHPJNWECHLAEIAEEIANCYGEANGNNGMJMJGXGLPEATPFXSOIXWPMLNGIARXPHYHNGYOUAEULWSTHGOEMAEAYSCTHGFPBUTIAXAOWEAJFLIANGOGYPXJDATJCCRWJAUOYDEOPIXYBCLLTEORYAIANUOETHTHGLPGYMOBAOEAXIWAETHPEATBPENHAENEOMAEONGOEEAMHRNGNLSSIAJUYTPAEHEMWEOMCANGUPONJEWLEUALEOEOTNLOEXMJJOSTAGAEIFNATAEIMBDACEMCYRCSCEOFOGGEAAEUIAEMOWLJAEUYFAMMIXGAYATHWEOBMTH"
+      }
+    },
+    {
+      "chapter": [
+        27,
+        33
+      ],
+      "unit": 17,
+      "len": 83,
+      "paths": 1694,
+      "keys": 478,
+      "best": {
+        "o": 2506,
+        "score": -3.4403946830152057,
+        "coverage": 3,
+        "readout": "NBEHNGTXCIAHDXYTHRIEOIAORRJOEASTHEIDMXMIATHXISTHHDOEWMWDLIAIIOECNGFWPXGEEOTHJCWJRPFIABIAPNGMIONEATEOSHOEO"
+      },
+      "bestLex": {
+        "o": 2869,
+        "score": -3.704902116819796,
+        "coverage": 10,
+        "readout": "CSYCROEESXLECTHEAOEOEJLAERPEXRLYDSYEOOEOLEUUTHTUREANHBPEAHITHXLWJOEOEBAEGRHAEBDIALAEHEOJSEALIUNGIAMPNGLIAIA"
+      }
+    },
+    {
+      "chapter": [
+        27,
+        33
+      ],
+      "unit": 19,
+      "len": 61,
+      "paths": 3190,
+      "keys": 1606,
+      "best": {
+        "o": 2130,
+        "score": -3.4392550818256273,
+        "coverage": 0,
+        "readout": "FNGANDSTHEALEAOTHNGOAEAMGEOOEOGNXCAHIANOERMIAGEOIAOEUXIANBJUWLAAEEOHIOEIAHAERREATH"
+      },
+      "bestLex": {
+        "o": 1583,
+        "score": -3.602623486695486,
+        "coverage": 9,
+        "readout": "IXIGXFEAGNGGEOLEOEOTOSTOPOTHANTOELPAEAEEAIAXYJJHENGNGUTHGDPGBIAAOYECEOXAEGLDT"
+      }
+    },
+    {
+      "chapter": [
+        27,
+        33
+      ],
+      "unit": 21,
+      "len": 71,
+      "paths": 1006,
+      "keys": 279,
+      "best": {
+        "o": 2534,
+        "score": -3.4651362673626274,
+        "coverage": 3,
+        "readout": "MDPBTHAERMOICWMUSACOESOAEAENGIARAEIEOUGNGUUTHEEABLGCARESBAELRRHLOEEIAYEHMAESNGBXOEAOEIAMPIL"
+      },
+      "bestLex": {
+        "o": 2534,
+        "score": -3.506879957960561,
+        "coverage": 6,
+        "readout": "MDPBTHAERMOICWMUSACOESOAEAENGIARAEIEOUGNGUUTHEEABLGCARESBAELRRHLOEEIAYEHMAESNGBXOEAOEIAFFOES"
+      }
+    },
+    {
+      "chapter": [
+        27,
+        33
+      ],
+      "unit": 22,
+      "len": 88,
+      "paths": 611,
+      "keys": 360,
+      "best": {
+        "o": 710,
+        "score": -3.508771014273684,
+        "coverage": 5,
+        "readout": "TCSGAEXEAHWEORAEEABUMCSIAUSIAAENAEGIAANGTHMOEYLWPAUYYNNGTHRIAOHGXTNJNUJMPHPIAMEASCYEMETHTTHUDIAPEAEATTAEFGCWHBTH"
+      },
+      "bestLex": {
+        "o": 710,
+        "score": -3.508771014273684,
+        "coverage": 5,
+        "readout": "TCSGAEXEAHWEORAEEABUMCSIAUSIAAENAEGIAANGTHMOEYLWPAUYYNNGTHRIAOHGXTNJNUJMPHPIAMEASCYEMETHTTHUDIAPEAEATTAEFGCWHBTH"
+      }
+    },
+    {
+      "chapter": [
+        33,
+        40
+      ],
+      "unit": 1,
+      "len": 81,
+      "paths": 793,
+      "keys": 664,
+      "best": {
+        "o": 1815,
+        "score": -3.4033156263289124,
+        "coverage": 7,
+        "readout": "IAIAOEWLEEOIAERLNEAONGWJASCEDEPRNGGMIXCXCOHMXMFMGJMNNGHEOHIASNGAEAEHOWNELUCMRCNYIAXCYPMLBPIAEOERLS"
+      },
+      "bestLex": {
+        "o": 2124,
+        "score": -3.8083267383593564,
+        "coverage": 18,
+        "readout": "OUWMSAIJRPNGTHNGAEGBMIEAEWINNSEAYTHYOIATUNGNTHAIAFNGHCULJEEANGJWOIARELAYRHTXANLLIARXOEWEOOEDELAAERIPE"
+      }
+    },
+    {
+      "chapter": [
+        33,
+        40
+      ],
+      "unit": 3,
+      "len": 125,
+      "paths": 1695,
+      "keys": 458,
+      "best": {
+        "o": 2592,
+        "score": -3.5039676245005946,
+        "coverage": 3,
+        "readout": "YAETWDAEBSIADTHYEAEIANDTOJDCNPNGBNJBIANGNNJMSGAEETLNCLXGOOTARDUANGIHXJOENAEUUEOIAWXHIAMXAEHAEFTHNGUMNYWOEHHWAEJAAHPYBGCGFJPCAEFNGNGYJIDEEAHYEONGWYMJGXMEM"
+      },
+      "bestLex": {
+        "o": 110,
+        "score": -3.615998850494015,
+        "coverage": 14,
+        "readout": "OLDLBNACDMIAYCOHIOTHAWIAIAIEAWUAUYEAXXTOEUUAECAEAEYWULLDBTHWJOEXNGWTJSMENGGJYLGDEAIRDSRICAFEAAROEEBTHNGCWIEAEONGDWIDEOYIAXFTHEXCNWJOJERIAOPGJOTRUUGEOMETH"
+      }
+    },
+    {
+      "chapter": [
+        33,
+        40
+      ],
+      "unit": 5,
+      "len": 138,
+      "paths": 92,
+      "keys": 71,
+      "best": {
+        "o": 633,
+        "score": -3.540225994880364,
+        "coverage": 4,
+        "readout": "WIHOEEWOEOTHALPTHGEOCHBCEOAELEABTHPOEFEUDUIAMXLONGNGYBGDEOHRHIANGAEOTLAEACOEIAEAXEABGPGHNGXXHMJPIIAODXXYIOENMAEAEWRWARDXYAEITHLGIAOEBTHXAEXSPYEPBGXJBAEAEBPJWRHAEOPRNGOEEOCBNAEBU"
+      },
+      "bestLex": {
+        "o": 1052,
+        "score": -3.6413461784384187,
+        "coverage": 9,
+        "readout": "HMDAIUTXTHPTHDIOCOMEAOEENGOHLWIAATHANGREAIULDDGAAAEELLUUONAAEATHNBBTHLJEAEJIAOENTXNEADDBOEEEAAEMRPRNGRNGAEIEAOETHEDIAUTEAIAEOIIEAIBUIARTRYHTBNTHIAXOEMHELIATHTHEOWUBNGTOADSNPCMPOE"
+      }
+    },
+    {
+      "chapter": [
+        33,
+        40
+      ],
+      "unit": 6,
+      "len": 57,
+      "paths": 1839,
+      "keys": 1256,
+      "best": {
+        "o": 3064,
+        "score": -3.3853256826782823,
+        "coverage": 0,
+        "readout": "WEAEOGTPWIHLLACHABUICTIOAEMBEONGOEEOFIAYAYHERRGGEANJEAUIAUEAEACHTWOMC"
+      },
+      "bestLex": {
+        "o": 242,
+        "score": -3.6595201273839475,
+        "coverage": 7,
+        "readout": "EAEIAIARCDUFIATHEOAGHYEONGXSCRAEYIAYGULHGOUCXOUCNORITHYWNGEDTHIAIAEAPBBNGB"
+      }
+    },
+    {
+      "chapter": [
+        33,
+        40
+      ],
+      "unit": 8,
+      "len": 54,
+      "paths": 2007,
+      "keys": 1076,
+      "best": {
+        "o": 3044,
+        "score": -3.403282604567811,
+        "coverage": 0,
+        "readout": "CCAEBXNGREASMCTHGEOOEHNGPIYBDEODURMIAGPHEOWTHOEHIAGAEBLYBWEANNGTOFIXRP"
+      },
+      "bestLex": {
+        "o": 3041,
+        "score": -3.583626971145434,
+        "coverage": 10,
+        "readout": "OEYUXAEEOJRIGNJMDNAXMIAEOEUTSEAONGGTBPXUUIDEXEOJMULNASNNGFWNOTH"
+      }
+    },
+    {
+      "chapter": [
+        33,
+        40
+      ],
+      "unit": 10,
+      "len": 292,
+      "paths": 8,
+      "keys": 3,
+      "best": {
+        "o": 277,
+        "score": -3.6660183107975604,
+        "coverage": 11,
+        "readout": "AEEAXEAMEUEOREIUFIDATANBGXIAOCGIAULYOEAGLBGOECOEIADTHEABOEXJTTHCNGARSHEOOEEAAETHEOARNNGAEOEGIPLWYYYRAEOJPEOXWTCIAOEDEHFOWJEOOEXXEBAEAEYEOCHWIAOYNUEADYWUUEOCDMWYCAEYLYXIABNOUOEWGIASNPXDEOOPAEOEATHIYNJPIEHWEXOSTNGCOESTAEPXLIEBHFJJIOEHGONTHEAGXOEHEOXYEOUIAASDAEAEAGHLBIHOEAEHHCGYNDDEOHDEOIAXTHXPXHJDLCANGJRUPHDLJLXJLEADOETHOESOTHAIAEAEDDOIANOESEATHCSCEOGUFYOEEAOEEOWAENCC"
+      },
+      "bestLex": {
+        "o": 277,
+        "score": -3.6660183107975604,
+        "coverage": 11,
+        "readout": "AEEAXEAMEUEOREIUFIDATANBGXIAOCGIAULYOEAGLBGOECOEIADTHEABOEXJTTHCNGARSHEOOEEAAETHEOARNNGAEOEGIPLWYYYRAEOJPEOXWTCIAOEDEHFOWJEOOEXXEBAEAEYEOCHWIAOYNUEADYWUUEOCDMWYCAEYLYXIABNOUOEWGIASNPXDEOOPAEOEATHIYNJPIEHWEXOSTNGCOESTAEPXLIEBHFJJIOEHGONTHEAGXOEHEOXYEOUIAASDAEAEAGHLBIHOEAEHHCGYNDDEOHDEOIAXTHXPXHJDLCANGJRUPHDLJLXJLEADOETHOESOTHAIAEAEDDOIANOESEATHCSCEOGUFYOEEAOEEOWAENCC"
+      }
+    },
+    {
+      "chapter": [
+        33,
+        40
+      ],
+      "unit": 11,
+      "len": 139,
+      "paths": 426,
+      "keys": 169,
+      "best": {
+        "o": 2366,
+        "score": -3.5263760605147625,
+        "coverage": 0,
+        "readout": "DYHTEOLJAEGJRWNARBIAEOOEDTHEHAEMYMPROYNYCDOEIBIOEEEWWEOEOXYAGXGNGAEPUDEOEABYOEROEJCLDSAJBEPLASOEDRYIAIAAEEMUXXEONGXHNEAPTOEEONNGDONGAAEEIAGIRONGFIAOELHMXRRYNEDNGETXEAXEAWOENGCLB"
+      },
+      "bestLex": {
+        "o": 2761,
+        "score": -3.7081961843231834,
+        "coverage": 11,
+        "readout": "JEOIAMMTEAOPYNEOEREATAWBAWEAEAUYGDPAAERLFWJXTHCDEORLNGSHTHRTOETHIXXTBADEUBYYIAHNGPYTHIAMRXJNGOWAECEOEOOTTHAEXDAGIANGOFLBJHDGPRIARXSLPXIANGMTMJEADMULSOLMTHCCMEYOEXIAREOGLOXS"
+      }
+    },
+    {
+      "chapter": [
+        33,
+        40
+      ],
+      "unit": 12,
+      "len": 91,
+      "paths": 497,
+      "keys": 206,
+      "best": {
+        "o": 1696,
+        "score": -3.4529181959599233,
+        "coverage": 0,
+        "readout": "LMUEOLIAWYTHASCJDJAOTHHBRRITNGGHYWTHYDIAAEEASITEAEATJOECOETHTHBJJEOEAEOROENGJRHJIAAEOJELOEFCUYDOGBYLRPGOJHEOBXEIAOEFA"
+      },
+      "bestLex": {
+        "o": 892,
+        "score": -3.6294292344790806,
+        "coverage": 9,
+        "readout": "NGEAEHEAXNGNXCMWWGNGMNGEOIAWAEDIHNGTHIATLBXJJWEOEAAECBDBGJRPWLNGCODETHTHINEATHIGTNGAEAIITFYULIAJXAEOCTNGTPMOEATHPPAWFN"
+      }
+    },
+    {
+      "chapter": [
+        33,
+        40
+      ],
+      "unit": 13,
+      "len": 98,
+      "paths": 1682,
+      "keys": 564,
+      "best": {
+        "o": 1220,
+        "score": -3.4874279652132643,
+        "coverage": 3,
+        "readout": "YMAEOEAGTHOUXGOEEOBOLMXMJHPOEINOEABEAOTDBYIAJAORMNGOESCECOUYEAPCEOAXBXXSNGYPBOEOENGIIWCBXHGGAEFCEANGIOEIEOHEOIATAEOTAEPHCAAED"
+      },
+      "bestLex": {
+        "o": 2793,
+        "score": -3.7042455914139656,
+        "coverage": 17,
+        "readout": "LNBCEAIAIAETRELUTHGDENGSADEOPNGOETHTHUIHBOEAHJNLLBYTJXRSRBMSOUUECYEOYLGRNDHSNIAEOYNGRLTHNGJTAEFJCREAAFEOLETUSAYDSTNGNES"
+      }
+    },
+    {
+      "chapter": [
+        33,
+        40
+      ],
+      "unit": 14,
+      "len": 67,
+      "paths": 647,
+      "keys": 471,
+      "best": {
+        "o": 1293,
+        "score": -3.4433365016218445,
+        "coverage": 0,
+        "readout": "GMBEAONEOAEIANGCAETEAOEEOAMSSWXIAIEAWEOMTXWGNEAARLNJLNIJDLUEWEAPAEWDIAMHIAOEYXTXEAISC"
+      },
+      "bestLex": {
+        "o": 347,
+        "score": -3.6274268004712713,
+        "coverage": 10,
+        "readout": "UXXRIAGBCWUEAJXOEXGTCWMBGJTOBOERYHCHYLEXEWSWDYIATGOAWCMFDGJMHCEADBPJNEODJU"
+      }
+    },
+    {
+      "chapter": [
+        33,
+        40
+      ],
+      "unit": 16,
+      "len": 112,
+      "paths": 144,
+      "keys": 140,
+      "best": {
+        "o": 1443,
+        "score": -3.4869782001813143,
+        "coverage": 3,
+        "readout": "UEOHDXSOWBSCTHXLXEPJLWBAEWTHNDYAGNGADIAHIAPYSIABMOERIMYIUINWLCIABAEODIAXOAEUPMETEARAWEANGYTDBOIAOEYLYXAEGBEAEOIYWMHIEANGIIAOAEOEBYUAANOEILG"
+      },
+      "bestLex": {
+        "o": 1844,
+        "score": -3.623576991122197,
+        "coverage": 6,
+        "readout": "JOEOXOENEAEAJOJHOEFAMIANGSAEIAIYWTWIXRIAOIEOJEDBOMJBHBTHSLGLIARMYJRDTHNDPTHOESYCNEORTNGEORIALIASYOEAELBSAEAEMCDADBNGJEACAEMIIHTHPIOCEOTOEEOEAAETHEOIA"
+      }
+    },
+    {
+      "chapter": [
+        33,
+        40
+      ],
+      "unit": 18,
+      "len": 134,
+      "paths": 293,
+      "keys": 180,
+      "best": {
+        "o": 243,
+        "score": -3.5511396443869687,
+        "coverage": 8,
+        "readout": "LEOWROESINDOOEGPOCAUTSIAIEOXRONTNXTHEOXLRJJRAENGAECMCOESEOEWOEAETEOOEODLTTEGCTHINPAEBMOEBONGEANGBYJUAEDCNTHWBFHAETHJNGFEORBJAEEPUOUGUIBPPJMJAEABDNGEAPYTHPTHNDEMAENMILWBH"
+      },
+      "bestLex": {
+        "o": 1549,
+        "score": -3.729062907700536,
+        "coverage": 12,
+        "readout": "SNGXWIAAPJEIMEHNGPNGDLUNTHWYFXJGNATEUTPJIIMBYDOENAENGITHCDIAHMOEIAPWCEOWNGTHEAWCTOEREAOEJEUCTUUCOTEOHYFROPLEAMOYXGLPIAEDDIORSOWLUETHAEGTXWYIBWSAUDTRHCCJNGMI"
+      }
+    },
+    {
+      "chapter": [
+        33,
+        40
+      ],
+      "unit": 21,
+      "len": 118,
+      "paths": 237,
+      "keys": 174,
+      "best": {
+        "o": 850,
+        "score": -3.524670748143011,
+        "coverage": 0,
+        "readout": "YUEEOUUNGDMOBEANGYOEOOJTGEOLUXTAEUMPWGGFAECYGNGMLBRTOEEJIJSTRWCIACCMXWAEWUUTHNMEAWYJPUNGTIPJBCSWWUWIEORMJECNGFBHHACYCCPARYJDEATHUMLIAAEGRAEM"
+      },
+      "bestLex": {
+        "o": 3086,
+        "score": -3.742050210344999,
+        "coverage": 13,
+        "readout": "IAGLYPMYYAROEDEOOOUOUTROOBUWGSEEOAEYEAFURAEEAOECHLOIIROECHEOWXMWGSODGCTHSJNIBDNPOYYABIRLOELBJIAIHGSPUYHDEATHFNGEANOAYYEARSEOAYMOEAEGSXEOLTHD"
+      }
+    },
+    {
+      "chapter": [
+        40,
+        54
+      ],
+      "unit": 3,
+      "len": 69,
+      "paths": 579,
+      "keys": 308,
+      "best": {
+        "o": 2747,
+        "score": -3.474083118885313,
+        "coverage": 5,
+        "readout": "OEGIOESGRCPTRIAIIABOOBIHDANIUTEAEACJWIIAIWOIAXMIAIABTHEAEMTHNDWLEOEOYRNGTHWMGUOTAABIAFM"
+      },
+      "bestLex": {
+        "o": 551,
+        "score": -3.726066451185337,
+        "coverage": 11,
+        "readout": "BOJGCEOXACOERGITHBUNIUYETHEANGTHPDIAXALIAWAEYPTUGISOYCHIAEOMTHNEEGOAHAIATEAPSUNEAJDFD"
+      }
+    },
+    {
+      "chapter": [
+        40,
+        54
+      ],
+      "unit": 4,
+      "len": 64,
+      "paths": 25910,
+      "keys": 1966,
+      "best": {
+        "o": 2925,
+        "score": -3.3539309371260133,
+        "coverage": 0,
+        "readout": "HTHITHESYTLNXSEOOBSEOOERXNGPFHCEAAEPSEONOEJNGBJXLAEEARLXIAPLEOAEIAFAEEORTBEFLUTHAUB"
+      },
+      "bestLex": {
+        "o": 1762,
+        "score": -3.534038219080023,
+        "coverage": 13,
+        "readout": "HIATHDIAATHDDGUDWIEOENGTHWMUOWPAINOEEARCLOPOSEOEGOHAUHMYTDRFNGDMHHJOECJMUMMT"
+      }
+    },
+    {
+      "chapter": [
+        40,
+        54
+      ],
+      "unit": 6,
+      "len": 71,
+      "paths": 4641,
+      "keys": 1073,
+      "best": {
+        "o": 2554,
+        "score": -3.3914754887539726,
+        "coverage": 1,
+        "readout": "XXYAAIAEEOEORJGDFCWEONGRCXNEEEABOEAAECAUSNIATGGWSGWFTELSGEATJTHIAXNGWNXEOAEEAJRNGIABDYFEOAE"
+      },
+      "bestLex": {
+        "o": 751,
+        "score": -3.570470382462213,
+        "coverage": 11,
+        "readout": "TEOPYWASYAEGCAFRROIYIAPHPSDLAEIAOEEOTHIRIAEOCIRCIAWEOFAERIAAFOERYPAEXSBIAOECYGWHIRSAEUDEOB"
+      }
+    },
+    {
+      "chapter": [
+        40,
+        54
+      ],
+      "unit": 7,
+      "len": 114,
+      "paths": 2252,
+      "keys": 415,
+      "best": {
+        "o": 632,
+        "score": -3.4850635303684063,
+        "coverage": 7,
+        "readout": "JWUYIIAUHNGUJJEAXOPTHMEOSNGEOPAEPNWEBEODTHBTHMBPILIATNGIAEOEOMOEODOOBEAGADHCTHDGSNGXGEAXNEAEOOTHBINGNROEEOSCWEDIAMBEOABUHNHHLNNGWYEAIAEIXUHHRLGTDF"
+      },
+      "bestLex": {
+        "o": 2932,
+        "score": -3.678104264578265,
+        "coverage": 10,
+        "readout": "WOONCTHOEIAJTPCEIAILFYTHAEIYFEGNGIANGXIAGPDUUTBAEOMLTPDLGEOBOLEOIAEAIOAEOEAEJUXXCIAXOEJOEOWROHDOPUTDNERXXRNGXHLATHUUSIATCLRGAETTHHYIWJDJCIT"
+      }
+    },
+    {
+      "chapter": [
+        40,
+        54
+      ],
+      "unit": 8,
+      "len": 142,
+      "paths": 816,
+      "keys": 222,
+      "best": {
+        "o": 2557,
+        "score": -3.5631038027075923,
+        "coverage": 4,
+        "readout": "HIWOEYXEBNGXPLAPXAEAPBRMOEATEXEOBRNHGFOERLPNGCYTEOTHGCATHSXNSMIAOEEAIAEATEOEOEXTHITHILLAEXYLEAEEYTCPMBTHADGAOETHHOJYSRYPEAESUJUWNGIOEGCRTMJPDIAJHXEDJXEXNBNTHDNGNGJIAOEAAEGWFGY"
+      },
+      "bestLex": {
+        "o": 1680,
+        "score": -3.6751423157984804,
+        "coverage": 12,
+        "readout": "HLMCCGEAERUIACWNGOEROWONTSMBTHIXTHAWLIAMIMGOTHNGNAHIAIJUIDCGGCDEAWTHNSAEIHSJBCJMWEOJWPEOOERLUEOEESTHODRXIMFJNGWMTHOECTAEPYYEABTHIRNGYNIREOITTHOENPOEIWOANGIAPTHNGWSANEXCNGTLSG"
+      }
+    },
+    {
+      "chapter": [
+        40,
+        54
+      ],
+      "unit": 9,
+      "len": 68,
+      "paths": 2493,
+      "keys": 1039,
+      "best": {
+        "o": 3295,
+        "score": -3.3980510828250146,
+        "coverage": 4,
+        "readout": "FYJEAEBEOXDYNSGGTEANGLDNJUSTUUNGPRWGAEOFTHOESRUTSXAECEACHDTNHGNGCDNRGATWTHCLYFNT"
+      },
+      "bestLex": {
+        "o": 826,
+        "score": -3.8905868248423916,
+        "coverage": 8,
+        "readout": "NRAIAESGTRNGRDEEOEANRIJEOTEDABMEAHEATHOEIANIAETNIAALTHJXDUIALIDLDWUASOPMOAMGCEAFAR"
+      }
+    },
+    {
+      "chapter": [
+        40,
+        54
+      ],
+      "unit": 11,
+      "len": 129,
+      "paths": 22537,
+      "keys": 911,
+      "best": {
+        "o": 1415,
+        "score": -3.4815654383764163,
+        "coverage": 2,
+        "readout": "SEURRXECHPNNGJLXAEAMMUWJRYNGLTGGIAIFGNGRYFEAJWGJYEAIADAYCIAPUEOMIANGSEAFBOECXAEXYAEAEJMTHLNGLCXBNNASGTNGOSACRMMAEFWRUJHEOEXMNGPBSCLWEOTHMOEWCJWCEFLNGFLJPCIR"
+      },
+      "bestLex": {
+        "o": 815,
+        "score": -3.6925060216650443,
+        "coverage": 16,
+        "readout": "XNGGCYWWEOPOUPEATEOOEYPSATTYDLMRBEHARTTYDFNGRBOTHWYNGLSMRWXIBAAOEAESHIASTHSINGGOWTYWTHOMIFJOIIAXNNGEAXOGTBWNPFEDTTNPSUGEODHAEJUJUOEEBEOXAARCFOXFPUCTIAW"
+      }
+    },
+    {
+      "chapter": [
+        40,
+        54
+      ],
+      "unit": 14,
+      "len": 52,
+      "paths": 1129,
+      "keys": 969,
+      "best": {
+        "o": 520,
+        "score": -3.3467073090905277,
+        "coverage": 0,
+        "readout": "IEUCOEIAYMPEAERMIOOEDSLIACNGNUBGBOEEOOENMONSTOPAEATPMBNMEOJPJNGX"
+      },
+      "bestLex": {
+        "o": 773,
+        "score": -3.6137153607266588,
+        "coverage": 7,
+        "readout": "XECSOMAMOSCATONGWXXNFXEAEORXYTHNUNGOEOHDRWBIAIAAEURIXGTJXTHEM"
+      }
+    },
+    {
+      "chapter": [
+        40,
+        54
+      ],
+      "unit": 16,
+      "len": 142,
+      "paths": 6875,
+      "keys": 462,
+      "best": {
+        "o": 2903,
+        "score": -3.5088065964341633,
+        "coverage": 4,
+        "readout": "CCSOEOETIAEAJRRCYXGXJHXULOEIAMDXLNGXUNGEAEOECBCYRSTHNOEMCIATXISOEAENGGDPBAEIFWELDAEFIFGAMDEAEASYTFYTXEAJLCSJAEEWEEOOEEOGUGUUURSAIAAIYBITHOEJBAEHEAUCFHCRSFROFAELMEATHBNTHERIATAJ"
+      },
+      "bestLex": {
+        "o": 820,
+        "score": -3.692788522017879,
+        "coverage": 14,
+        "readout": "UEANOEYOEBIAUNGCAXTGIAHLAONGUOJSANDEAEPCTHLAEMOLWXIACEOMRTHSYIACCNGUAJCNGTUIIMUALDFBGNATHDYEJFIABNGEANEOBWNGTHAYROTCHOEIAPNEDNGANGMTOTHMMAOEIAREASNTEOUPANGEOHAXWRBEOTHBIYTHYWM"
+      }
+    },
+    {
+      "chapter": [
+        40,
+        54
+      ],
+      "unit": 17,
+      "len": 128,
+      "paths": 5207,
+      "keys": 680,
+      "best": {
+        "o": 2301,
+        "score": -3.457030442350364,
+        "coverage": 1,
+        "readout": "EOGFMEAUEOUAESLFHTOAEONMSNCWLTTWUAAENGWDHYEUSEOANIIAEOOMEAOEOMLWOETHXJMRNGEOTAEXXOEREATOEOAEOEBAENGEOOEROJMIANGRAEEOUTHDEOOBHNNGIISIBPDFULWITHCGEAXEAUEOPDEOHOYWCFWPD"
+      },
+      "bestLex": {
+        "o": 232,
+        "score": -3.7562533689643884,
+        "coverage": 11,
+        "readout": "RAEFMUCOEJLHOWCNAEGBOEWNAEYNWPEERWSNHHAYJBLEAENGRECEAXOEIAURGJOMAWTHPIIFUXANGENGLABOHELDIAPIIXYTULDEOWBEONDJXEOOMJXGHASUWLOEOETHAIXLPOECMBCTAAAEYNS"
+      }
+    },
+    {
+      "chapter": [
+        40,
+        54
+      ],
+      "unit": 18,
+      "len": 104,
+      "paths": 362,
+      "keys": 295,
+      "best": {
+        "o": 1942,
+        "score": -3.511072498142304,
+        "coverage": 0,
+        "readout": "MDANBTLPEIACOEIAEAXFXGEAEAUOECEAJCCSWIEANTTHPNGGLIADGYTNRPYTHYMEAMCOETHMRWANAJUOWSNGCUYWJMMDNGMEOIOEIAEYNAAEXEAHXIAWOEAEXOEOENWMAOAE"
+      },
+      "bestLex": {
+        "o": 1681,
+        "score": -3.7051005626052267,
+        "coverage": 12,
+        "readout": "IAMYBSTXPTGSEARUCFNXOAEATULUUUPIAEJUEOTHDEYDAHTYXDEIAAELAEUDWNLAEDHJEEAGWEAWSFUYEYEAWWWAUIAWBAOEMRDOEIARBRNUISGETHLCSRATH"
+      }
+    },
+    {
+      "chapter": [
+        40,
+        54
+      ],
+      "unit": 19,
+      "len": 90,
+      "paths": 551,
+      "keys": 465,
+      "best": {
+        "o": 2880,
+        "score": -3.494960690694161,
+        "coverage": 1,
+        "readout": "SENGLGFEATIAUBGXJRXISHOEAWTNGEOIEOIALNGEOOEUBAAEJAXEOEJIAILNINWTHBOESGEONGEOYIEAEIABIARNAEYXNGEACCIAYYCSNGYYHTTHEAEAEONXNG"
+      },
+      "bestLex": {
+        "o": 665,
+        "score": -3.638196365964412,
+        "coverage": 9,
+        "readout": "NGYRWEAFMJOEMUWSEOLSPTNGYOEUMEAJPFJRBGGXJJGPONYIALUNIAAYDNGTAECAEEEIATCCMNCOOMYJOEGAEHEXPOEEXEOEDEOIAHIOOOETHUR"
+      }
+    },
+    {
+      "chapter": [
+        40,
+        54
+      ],
+      "unit": 20,
+      "len": 76,
+      "paths": 3702,
+      "keys": 906,
+      "best": {
+        "o": 2631,
+        "score": -3.4462523840278565,
+        "coverage": 4,
+        "readout": "CCDPOEFNGNXGEANGTICEDAEAEGNGXYIAJHNGUIAEALLREOHCIOUAUGHAEOEACPLSYOPAERCJEWEOCIAEAENMWDTOOMRIAF"
+      },
+      "bestLex": {
+        "o": 1333,
+        "score": -3.5741635076676737,
+        "coverage": 11,
+        "readout": "SHYHEAOWALOSHOXJEAHRGLREANXDIAPOEMEOTHGMXEBEUCEOENGDPFEAOEOAHHTEACHIPFBEXPLLTIOEANGASIAEOF"
+      }
+    },
+    {
+      "chapter": [
+        40,
+        54
+      ],
+      "unit": 21,
+      "len": 137,
+      "paths": 520,
+      "keys": 188,
+      "best": {
+        "o": 920,
+        "score": -3.5090749923251474,
+        "coverage": 2,
+        "readout": "YREAEOGPGWXAWGDEOEAEAEGNAEPJEOIJEAAECEOUAEORABOJEAOESTHNSAEERIEIANGBGOENGTXNGDOEANGOEOSOEOOELNSUPWSBOEEAEMWOEAEAETEARILGJTHRBAETHIAMEANTHJIAFAEEAROESNGUEOIAMIAMSSBTCFWAEMMTWGHRMNGEEOGAE"
+      },
+      "bestLex": {
+        "o": 445,
+        "score": -3.6516760473105476,
+        "coverage": 10,
+        "readout": "DEERGNTHORNIAOXOEBCYYMEAEAYHLNGNEONGOEJCEAXNNGNUHAEAJYCEAMAWNUNOAEYMLEOPNGXTFEAEIAUWNGWHEGTFNPXEOIAJEARNPIAHJDTTPAETEOTEOEEOCSIIATFXIBHXGSMIUYCAROEAJHFTHLEOXUTHNGIASCSAEAEPO"
+      }
+    },
+    {
+      "chapter": [
+        40,
+        54
+      ],
+      "unit": 24,
+      "len": 197,
+      "paths": 554,
+      "keys": 133,
+      "best": {
+        "o": 208,
+        "score": -3.539306914952144,
+        "coverage": 8,
+        "readout": "XWRMWEADXAEEIAUOETEOTHAEITHWEACHJYJXTHCCCOEIANGJTHJLEAYRIAUUYEONGCHAECPUUBLWRLONGUXAEJBFAELAECXPLNGEOXEOICCRXCGROEJHSIAORTDOETHCNGGUTHNXNEOEAWXOAESMEDGIAWYWAGNSPIAAEPTBUOWICWBXEOUEOXTHNGFIASWSPEARONOCUEOMIOETHANGTHANGUUOFXURNGANGOEOJNGTHIAJIMXCYTRPSBX"
+      },
+      "bestLex": {
+        "o": 1183,
+        "score": -3.67543519864844,
+        "coverage": 11,
+        "readout": "JOBYEOTHAAEYMNGXITHHSNGIASLEOHPGNGXSYIABBCFROEORSBPEORMPWGPIAUAEPMWNBONGXWDNGCATHSDFXWEOJXJISTYOELSONGIOTHAEUFURADILOTHJTHLPGOXBTMNGTHEOOSEASISFJYTONEDBIAAEAENOENGOEALMIXDWUSYUEGFEOTHPNGAXNGEXTXIDXLWBNIOPGXAETEFPGSYIBEPMREOHFOEDENOETHMCULD"
+      }
+    },
+    {
+      "chapter": [
+        40,
+        54
+      ],
+      "unit": 27,
+      "len": 87,
+      "paths": 2596,
+      "keys": 913,
+      "best": {
+        "o": 2097,
+        "score": -3.4312381899344535,
+        "coverage": 3,
+        "readout": "IAHNGEATNAEYIAEOEAOEEAWAOEIIANREABAJRHYAEWEAREABBRIAXDHIAYOUWMECONAEJEDBXXIAENGHTTHTAAWJEJNDREOHOESOENGIRJEOEOBD"
+      },
+      "bestLex": {
+        "o": 2987,
+        "score": -3.602765337195383,
+        "coverage": 13,
+        "readout": "HOEDTHIAHUSOEXNGBBAETHOOOEDLRUIANEANGPIAAFTNGLPGYFDIONTHILXODOEUOIPFJLIWENRREOALSBHOEIAIAEEONIANGTHAHYRNGEAAEGCA"
+      }
+    },
+    {
+      "chapter": [
+        40,
+        54
+      ],
+      "unit": 28,
+      "len": 108,
+      "paths": 300,
+      "keys": 189,
+      "best": {
+        "o": 411,
+        "score": -3.539640738235738,
+        "coverage": 2,
+        "readout": "THTHIAPJMAYEANGWUPAEMXPEOPBHAMOEGOEDEATYNGBENGTHYNOERPMEOPDAOJIAHOEEJIAPIAAEEOHMASWMNGEODNGTHYJEAGMWNEBTHEAALAEANRNGEHMRHBIAFBHMNGWNGNGTBAIAE"
+      },
+      "bestLex": {
+        "o": 198,
+        "score": -3.5628224554317227,
+        "coverage": 9,
+        "readout": "IAIADJPMUUANGNCAEXESTNIWASEOJLUAENUMFXIAWBOEMYHAEGEAGIWJSUPAOWLCEOEAYSPLGAEEOEWOAECCIEAOEDUTXIEAMEOEHGRHOEGEAYTEAJAEAHIEGIABAETHLMWXC"
+      }
+    },
+    {
+      "chapter": [
+        40,
+        54
+      ],
+      "unit": 32,
+      "len": 56,
+      "paths": 1929,
+      "keys": 1336,
+      "best": {
+        "o": 1876,
+        "score": -3.3472544005048124,
+        "coverage": 2,
+        "readout": "THMBCEAFHPEOIABAELMNGIRLEOEONGBEACIXGAEDLOELAWGCARTPIAJAEXXTHUEOIJGSJJHY"
+      },
+      "bestLex": {
+        "o": 3104,
+        "score": -3.5820256547963676,
+        "coverage": 8,
+        "readout": "PJMEADOEEADLATEPAYBJEAWTRBMOEYPTFMNGNGJNGUIAMXBHOEOCONGDBHUJCCEOS"
+      }
+    },
+    {
+      "chapter": [
+        40,
+        54
+      ],
+      "unit": 33,
+      "len": 56,
+      "paths": 993,
+      "keys": 685,
+      "best": {
+        "o": 1446,
+        "score": -3.394639148282497,
+        "coverage": 2,
+        "readout": "MDRNGPCNGPEAWPTSDOAEEEOUESSIAPIARPMIUPDEONTHISILLTHLEOGRLEANNWEXCBEA"
+      },
+      "bestLex": {
+        "o": 354,
+        "score": -3.5282856379718464,
+        "coverage": 10,
+        "readout": "DTYTHEDSEOGDDDAEYTDECCMSEOIATHDRAGXATHTABEPNGOGXLRWEALLONDSPALJAENG"
+      }
+    },
+    {
+      "chapter": [
+        40,
+        54
+      ],
+      "unit": 35,
+      "len": 138,
+      "paths": 7303,
+      "keys": 885,
+      "best": {
+        "o": 2433,
+        "score": -3.4630460734056463,
+        "coverage": 7,
+        "readout": "JEOTMHHCJAIAHTHNFNUEOOAEOEIACSAEXTHSNGLEONUFEOEAFJFAEIATHSUAEUPRUTHGIPBRSTOPDOECWWWXFUMLXTHEAOEGOEFPPEOTHULHMNOUBOPPIEUCPNIEYNOEAEWFCIADGEANXUYEAXBGWWNGAEOIABAAENIACUEOSRMMM"
+      },
+      "bestLex": {
+        "o": 1883,
+        "score": -3.693532080226086,
+        "coverage": 14,
+        "readout": "IYPOEDSIXIAEOIRBHEAOEONORPEUWRHSAEAEASJFIYFJFRRPAICEOXNEOJMWLAJICMMHUOEMTHEOMFNDOEXIAFOCNGFYOERHYGXROEOEUSJAEIOETEAPSWCYEAJLAEOLPDDDPTHNJNBEARUTHMTHNGJEABXSYNCEIDEOIIX"
+      }
+    },
+    {
+      "chapter": [
+        40,
+        54
+      ],
+      "unit": 36,
+      "len": 170,
+      "paths": 631,
+      "keys": 220,
+      "best": {
+        "o": 1383,
+        "score": -3.5565334404626827,
+        "coverage": 7,
+        "readout": "NGNNDSTHNROYEODEODNGJOEAEOEAYXEAWBTIAJDCAEXNGNGNGCLDPDJYPOCEEAWAETHBEOAELJOEAEILOEJSXDGPBIAIXNGJIAPEAAEJYIWJAEOIAEAMPTBEONGJYYBAPOEEANGMBIEOSGPLAOECNGDSTWNBENPCUIUEGXTIGASGITHMBAEAAEDMONGSDJTECINGSBEOYTHSTIAEOTHTHEAEI"
+      },
+      "bestLex": {
+        "o": 572,
+        "score": -3.6027432035158236,
+        "coverage": 13,
+        "readout": "IAAEPCOENUDPEAJLNOEUOEGIAWEOEOHXUWHPAEIAUAEHSBMORWOEPEAUAEBUYEAWSSWTHGSAEEXFUNFTHEPCNRHTUJTMGNGHRRUAAETHIATBGCDBJXBOEFOEXSEAJEYIADROENTHENGTOEOEEAJXIAMIAEAACRYOXIANGXROCPDFGUDTHBCCURWNNENPNGISNGIYHTHREADUISYJOEEPUN"
+      }
+    },
+    {
+      "chapter": [
+        40,
+        54
+      ],
+      "unit": 37,
+      "len": 86,
+      "paths": 6065,
+      "keys": 1359,
+      "best": {
+        "o": 1268,
+        "score": -3.405043762095168,
+        "coverage": 0,
+        "readout": "COEDIAUYJYRBENGPRFEONGNGIAYPMTHNEBAEAWEMWOEEAEUEAXBTTHBMNYNGXWMGEAEAGAEFDXYEOGNGITHINPCEOHAENHANGPAUAMWEOEODTHIAJ"
+      },
+      "bestLex": {
+        "o": 1197,
+        "score": -3.625866360290844,
+        "coverage": 9,
+        "readout": "OTHWPOEWDMYTHBLTHESOEHXISTEOJOEIJWGOEHCEORUEOOENGNGLHBNGJNXAMIMITDJEAAOMLEOROECJEXINGSUXGNIMEAXEOEORAENEWBY"
+      }
+    },
+    {
+      "chapter": [
+        40,
+        54
+      ],
+      "unit": 39,
+      "len": 123,
+      "paths": 108,
+      "keys": 100,
+      "best": {
+        "o": 1415,
+        "score": -3.5412364031998953,
+        "coverage": 0,
+        "readout": "AWDEAJINNGDGLOEAOEPJNGGXAEDCGCTDTOPOEADAEDAEAPDHPUPLBRTUEAUUCNGOTBTGANBHOETNEACIHEBBTPDEXEATJEAPJOEILJEOEOTHDOEEAAESEODWIDNTHWJLPEOWIAMYCBXTGLENGSRHIB"
+      },
+      "bestLex": {
+        "o": 1010,
+        "score": -3.635091250765144,
+        "coverage": 8,
+        "readout": "SJNGYONGLAEIAOEWMSEANWMIAGCOXSETNGLCPXCRYXTCONEOSUSDNGHYSNGJSTUIAELAEDXANFEAANYNLIOEBSLMHCOPUAENDIASEAWSEATHDONTHAEURNGYAEBIACJOEPEJXPWMGJNEWJTNWCNTH"
+      }
+    },
+    {
+      "chapter": [
+        40,
+        54
+      ],
+      "unit": 40,
+      "len": 75,
+      "paths": 4010,
+      "keys": 1281,
+      "best": {
+        "o": 138,
+        "score": -3.409565865397323,
+        "coverage": 2,
+        "readout": "AEUUXAEOEEAEAHXRABCHBEAJFPTHUPEADJLHXXIAUHEADIXUWJMIISOCXOEOEYNGEJRIAUAONGPAELAETOEPOEJMBBIJCIA"
+      },
+      "bestLex": {
+        "o": 2339,
+        "score": -3.580449378126929,
+        "coverage": 8,
+        "readout": "CHEBLBTIPIAPAELEWISIFRYBGWIAMFUJPYWAPNGIAGIRXEJWEOHGPDJJHLYRDGRLJLCJEJSTHPHXTPAEYES"
+      }
+    },
+    {
+      "chapter": [
+        40,
+        54
+      ],
+      "unit": 41,
+      "len": 51,
+      "paths": 1004,
+      "keys": 709,
+      "best": {
+        "o": 3069,
+        "score": -3.3831284770490426,
+        "coverage": 2,
+        "readout": "AOERLNGAAJLHCEAIAEOAEMPTWSJXYURTNIAIAIMJHXJBOEDFMXIAAIAUHOEGWITH"
+      },
+      "bestLex": {
+        "o": 6,
+        "score": -3.6111620464198726,
+        "coverage": 11,
+        "readout": "RYEMTGIUENGXGNAESNWWDUEAIAEATEPRECEALAETHPBYMFDYIURNLCAAEAX"
+      }
+    },
+    {
+      "chapter": [
+        54,
+        56
+      ],
+      "unit": 1,
+      "len": 299,
+      "paths": 8,
+      "keys": 4,
+      "best": {
+        "o": 3057,
+        "score": -3.5899000228034343,
+        "coverage": 7,
+        "readout": "DJYXBJTCNGIAXEOIWRDXIAEOATHAOAEGEOEXEUMHFAEMEANGDEAINGNGJXXDNREALTHUTHURAEFOEYEAGGHLNXTIAIAUAEAEOEAOEETGPJGEAECDTHDEAOEJEOOMSOEAEPARXWTHDUMTBNGGSXICLYCPCRRJEOLSUXNGIMADHISOTHBEAUBMEOEORTDEIAGCCIAEOOIABAEHYOEAARMTIADEXNIAEWHOYBNGMTGYBXTHCOOENGDIMIHJBCDSTHEHRCEOXOEANGEOWXEADYOYCBCMHHPIARMMRXGXMCLEOEOIATYRSBEOWTHFHIAUGIAAEXSGNGAXHJLFXYHADBBCTIEODUDHTSNNGIREABOEBYDLTHJAETW"
+      },
+      "bestLex": {
+        "o": 3057,
+        "score": -3.5899000228034343,
+        "coverage": 7,
+        "readout": "DJYXBJTCNGIAXEOIWRDXIAEOATHAOAEGEOEXEUMHFAEMEANGDEAINGNGJXXDNREALTHUTHURAEFOEYEAGGHLNXTIAIAUAEAEOEAOEETGPJGEAECDTHDEAOEJEOOMSOEAEPARXWTHDUMTBNGGSXICLYCPCRRJEOLSUXNGIMADHISOTHBEAUBMEOEORTDEIAGCCIAEOOIABAEHYOEAARMTIADEXNIAEWHOYBNGMTGYBXTHCOOENGDIMIHJBCDSTHEHRCEOXOEANGEOWXEADYOYCBCMHHPIARMMRXGXMCLEOEOIATYRSBEOWTHFHIAUGIAAEXSGNGAXHJLFXYHADBBCTIEODUDHTSNNGIREABOEBYDLTHJAETW"
+      }
+    }
+  ],
+  "privateControls": [
+    {
+      "ex": 4,
+      "i": 1,
+      "len": 62,
+      "o": 2571,
+      "predicted": 2571,
+      "errors": 9,
+      "paths": 5896
+    },
+    {
+      "ex": 4,
+      "i": 3,
+      "len": 65,
+      "o": 1336,
+      "predicted": 1336,
+      "errors": 0,
+      "paths": 740
+    },
+    {
+      "ex": 4,
+      "i": 5,
+      "len": 73,
+      "o": 101,
+      "predicted": 101,
+      "errors": 0,
+      "paths": 505
+    },
+    {
+      "ex": 4,
+      "i": 13,
+      "len": 75,
+      "o": 1763,
+      "predicted": 1763,
+      "errors": 0,
+      "paths": 8261
+    },
+    {
+      "ex": 4,
+      "i": 15,
+      "len": 91,
+      "o": 528,
+      "predicted": 528,
+      "errors": 5,
+      "paths": 1180
+    }
+  ],
+  "p56": {
+    "o": 1,
+    "errors": 6,
+    "paths": 5444
+  }
+}

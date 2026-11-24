@@ -118,3 +118,59 @@ assert.equal(original[0].hist.at(-1).paths,'213');assert.equal(original[8].hist.
 assert.deepEqual([original[0].header.paths,original[8].header.paths],[113,10]);
 assert.equal(original[0].header.someLex.length,0);assert.equal(original[8].header.allLex.length,0);
 console.log(JSON.stringify({controls,lex:lex.size,original},null,2));
+
+/** Exhaustive private prime origin, with transparent-F ambiguity. */
+function privateOrigins(c,lens,score){
+ let paths=0,keys=0,best=null,bestLex=null;
+ const P=[],stride=c.filter(x=>!x).length+1,memo=new Uint8Array((c.length+1)*stride);
+ for(let o=1;o<=3301;o++){
+  let keyPaths=0;memo.fill(0);
+  function can(i,j){
+   if(i===c.length)return true;
+   const at=i*stride+i-j,x=memo[at];if(x)return x===1;
+   const p=(c[i]-sh[o+j]+29)%29;
+   const ok=(c[i]===0&&can(i+1,j))||(p!==0&&can(i+1,j+1));
+   memo[at]=ok?1:2;return ok;
+  }
+  if(!can(0,0))continue;
+  function walk(i,j,z){
+   if(i===c.length){
+    paths++;keyPaths++;let at=0,coverage=0;
+    for(const l of lens){if(lex.has(P.slice(at,at+l).join(',')))coverage+=l;at+=l;}
+    if(!best||z>best.z)best={o,z,coverage,P:P.slice()};
+    if(!bestLex||coverage>bestLex.coverage||coverage===bestLex.coverage&&z>bestLex.z)bestLex={o,z,coverage,P:P.slice()};
+    return;
+   }
+   const p=(c[i]-sh[o+j]+29)%29;
+   function step(x,k){const t=score(P,i,x);P.push(x);walk(i+1,k,z+t);P.pop();}
+   if(c[i]===0&&can(i+1,j))step(0,j);
+   if(p&&can(i+1,j+1))step(p,j+1);
+  }
+  walk(0,0,0);if(keyPaths)keys++;
+ }
+ return{paths,keys,best,bestLex};
+}
+const wordLens=u=>u.match(new RegExp("["+A.runes.join("")+"]+","gu")).map(w=>w.length);
+const privateScan=[];
+for(let ci=0;ci<chapters.length;ci++)for(let i=0;i<chapters[ci].length;i++){
+ const c=chapters[ci][i];if(c.length<50)continue;
+ const x=privateOrigins(c,wordLens(rawUnits(raw[ci])[i]),lm(-1));
+ const compact=b=>b?{o:b.o,score:b.z/(c.length-2),coverage:b.coverage,readout:b.P.map(j=>A.translit[j]).join('')}:null;
+ privateScan.push({chapter:ranges[ci],unit:i,len:c.length,paths:x.paths,keys:x.keys,best:compact(x.best),bestLex:compact(x.bestLex)});
+}
+assert.equal(privateScan.length,93);
+assert.equal(privateScan.reduce((v,u)=>v+u.paths,0),255182);
+assert.deepEqual(privateScan.filter(u=>!u.paths).map(u=>[u.chapter[0],u.unit,u.len]),[[15,16,375]]);
+assert.equal(Math.max(...privateScan.map(u=>(u.bestLex?.coverage??0)/u.len)),13/53);
+// Independent synthetic examples use a section-excluded language model.
+const privateControls=[];
+for(const [ex,list] of [[0,warnings],[4,loss]])for(let i=0;i<list.length;i++){
+ const plain=list[i];if(plain.length<50)continue;
+ const o=1+(1033*(i+1)+761*(ex+1))%3301;
+ const x=privateOrigins(enc(plain,o),[plain.length],lm(ex));
+ privateControls.push({ex,i,len:plain.length,o,predicted:x.best.o,errors:errors(x.best.P,plain),paths:x.paths});
+}
+const p56=native[7];
+assert.deepEqual(enc(p56,1),A.pages.find(p=>p.page===56).indices);
+const x56=privateOrigins(enc(p56,1),[p56.length],lm(7));
+console.log(JSON.stringify({privateScan,privateControls,p56:{o:x56.best.o,errors:errors(x56.best.P,p56),paths:x56.paths}},null,2));
