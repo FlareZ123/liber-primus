@@ -17,6 +17,12 @@ Six dictionary-slot plants retain their true states and match 65–73 paired pla
 
 Reproduce: `node sims/lp2_p32_p55_xor_sharedpad_exact_sft.cjs` and add `--native` for the known-vocabulary sensitivity. [Baseline raw](lp2-p32-p55-xor-sharedpad-exact.json), [native raw](lp2-p32-p55-xor-sharedpad-native.json). Both executed in connected JS against repository inputs; no CI execution asserted.
 
+### Changed-word-boundary sensitivity (ordinary direct XOR)
+
+A spacing-free forward marginal sums every GP29 pair compatible with each XOR difference, under two independently generated add-0.25 trigram sources trained on the repository Shakespeare tape (217,106 runes). Rank all 46 complete p55 placements on the first 48 paired differences, freeze the winning offset, and evaluate its 28 withheld differences by conditional likelihood. Exact Viterbi reconstructs the best pair on that alignment, with no word segmentation assumption.
+
+Original offset3 wins by only 0.132 total log units; prefix and withheld log likelihood per paired difference are -3.415 and -3.543. Four matched-marginal shuffled controls produce similarly word-like gibberish and heldout scores -3.463, -3.458, -3.466, -3.645. Crucially, four coherent source controls (independent Gibran/Emerson slices, valid conditioned shared XOR keys) recover the correct alignment only **1/4**; true ranks 1/9/8/3. Even the correctly aligned plant recovers only 16/76 paired rune values under Viterbi. The original best sequences contain apparent English fragments but no coherent passage. This model is insufficiently calibrated to rule out changed segmentation or identify plaintext; **do not interpret those fragments as evidence of a decipherment**. [Reproducer](../sims/lp2_p32_p55_xor_spacingfree_sft.cjs), [raw outputs](lp2-p32-p55-xor-spacingfree.json). Connected JS executed; no CI claim.
+
 ## Complete affine shared-pad recovery (Agent45)
 
 The distinct extension of the earlier cancellation attack grants
