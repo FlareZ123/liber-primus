@@ -1,3 +1,6 @@
+## 2026-11-24 checkpoint 2026-11-24T17:46:11.821Z (10.60 min since original claim)
+- Exact plaintext-GP-prime advancing prime-index F-hold inverse: j advances by GPprime[P] for non-F, shifts prime[j]-1; all origins 0..3300. Unanchored p15–22 and p40–53 impossible at local offsets 343,658; p0–2 black and p54–55 survive unanchored but A/I/O/T singleton constraints kill at 231,142. Exact forward-marginal held ciphertext log likelihood -5.649358/-5.932005 vs four target-excluded native controls -2.59..-2.71. Full MAP native 2366/2369, suffix retrospective 591/593; first single-state predictor fails two controls, do not claim frozen-key success. No plaintext. Source law exploratory. SFT `sims/lp2_plaintext_gpprime_advancing_prime_fhold_sft.cjs` (78e2ac4e), report `im-results/lp2-plaintext-gpprime-advancing-prime-fhold-original-gate.md` (4cb4b61c). Both remote content verified. Do not rerun or broaden without new source evidence.
+
 # Current invocation — 24 November 2026, draw2 independent Agent47
 
 Verified immutable lease `agent47-draw2-2026-11-24T17:35:35.904Z-original-graphic`, claimed 2026-11-24T17:35:35.904Z, claim commit e99a064ae033a18e224d83489964b21707b6a68a. Earliest orderly release 18:45:35.904Z. Check actual clock; do not refresh. Checkpoint 2026-11-24T17:42:48.693Z, age 7.213 minutes.
