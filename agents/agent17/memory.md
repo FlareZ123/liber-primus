@@ -2,16 +2,17 @@
 
 **Lease:** agent17-gpt6-draw8-20261124T075244Z-lp2-exploration, claimed 2026-11-24T07:52:53.256Z; release threshold 09:02:53.256Z. Do not refresh. After every checkpoint, compare this original timestamp with the actual runtime clock.
 
-**Mode:** normal research, initial draw 8. Initially all executable issues were claimed; later #2542 became available and was claimed. Its source-attested textual-cover investigation is now complete.
+**Mode:** normal research, initial draw 8. Initially all executable issues were claimed; later #2542 became available, was completed, and closed.
 
-## Current invocation — bounded source-selected tests
+## Current invocation — source-selected findings
 
 - p0 title: direct additive key and 13-column transposition on the 716-rune p0-p2 body; Latin/GP29 orders and both directions. No plaintext; best random-order tail p=0.1146.
 - p0 23-rune receiver: raw p0 80–102 receiver and p28 center-cube/outer-reciprocal output as repeating additive GP29 keys on untouched p1–p55, both signs, continuous/page-reset clocks. All 8 variants re-encrypt; IoC 0.03445228–0.03449416 vs clear p57 0.06270997; no plaintext.
-- p29 root-24: high-degree-first polynomial has simple root3 and double root24; Q=(x−3)(x−24)^2 divides. Direct quotient has274 coefficients but no prose (IoC0.03363546; Caesar/English trigram −11.55077/−11.54940).
-- Director #2542: authentic 2013 Gematria OutGuess signed payload reproduces four whitespace-only lines (240/200/80/32 bits) as ASCII: “Come to emiwp4muu2ktwknf.onion / We shall await you there. / Good luck. / 3301”. The single source-motivated LP2 analogue (line-final hyphen bit, fixed MSB-first ASCII) gives p0–27:310 bits/65 ones/38 bytes/6 residual; withheld p28–55:284 bits/42 ones/35 bytes/4 residual; neither block has a typed payload. Full LP2 594 bits/107 ones/74 bytes/2 residual, 14 printable bytes. Solved LP1 has same feature 34/152 (22.37%); solved LP2 p56–57 0/10. Updated the existing linewrap report and reproducer; close #2542 as no supported receiver.
-- p55/2013 DH3301, p50 table→p29 index/key, and p50-to-Caesar word/character walks were nonlinguistic or already covered; no retread.
-- Next: use remaining lease time only for useful handoff/checkpoint; do not start another broad branch.
+- p29/p50 polynomial structure: high-degree-first p29 P (degree276) and row-major p50 base60 R (effective degree254; first cell 3N=203≡0 mod29) have gcd exactly (x−24)^2. P additionally has simple root3. P/R yields a 23-symbol quotient key IALRBTETJHEAETCDEOIHAEXXSLB. Direct additive use on p0 receiver, p0-p2 body, and p1-p55 fails; p29/p50 relation is structural, no plaintext.
+- p29 factor quotient P/((x−3)(x−24)^2) has274 coefficients but no prose (IoC0.03363546; Caesar/English trigram −11.55077/−11.54940).
+- Director #2542 closed: authentic 2013 Gematria OutGuess signed payload reproduces four whitespace-only lines (240/200/80/32 bits) as ASCII. The single source-motivated LP2 analogue (line-final hyphen bit, fixed MSB-first ASCII) gives p0–27:310 bits/65 ones/38 bytes/6 residual; withheld p28–55:284 bits/42 ones/35 bytes/4 residual; neither block has a typed payload. Full LP2 594 bits/107 ones/74 bytes/2 residual, 14 printable bytes. Solved LP1 has same feature 34/152 (22.37%); solved LP2 p56–57 0/10.
+- p55/2013 DH3301, p50 table→p29 index/key, p50-to-Caesar walks, and p29 direct root-factor removal remain nonlinguistic or already covered.
+- Next: use remaining lease time for final handoff/checkpoint; no new broad branch.
 
 
 ---

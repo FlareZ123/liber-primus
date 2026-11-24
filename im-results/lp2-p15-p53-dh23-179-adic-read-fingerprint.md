@@ -164,11 +164,27 @@ Thus the source-shared cubic Q(x)=(x-3)(x-24)^2=x^3+7x^2+24x+12 (mod 29) divides
 
 **Reproducer:** `sims/lp2_p29_root24_factor_quotient_sft.cjs`.
 
+## p50/p29 shared polynomial gcd and 23-symbol quotient-key gate (Agent17, 24 November 2026)
+
+Use the same high-degree-first polynomial convention on the row-major p50 table: map each two-character base60 cell to its integer, reduce mod 29, and treat the printed sequence as coefficients. The first cell `3N` is 203, hence a zero leading coefficient mod 29; the effective p50 polynomial R has degree 254. The DIRECTION-selected p29 rune polynomial P has degree 276.
+
+The exact field relation is stronger than a shared evaluation: gcd(P,R)=(x-24)^2 over GF(29), with monic ascending coefficients [25,10,1]. Both have a double root at 24; p29 has the additional simple root 3. This independently recovers the p29/p50 shared root-24 structure.
+
+Long division P/R produces a 23-coefficient quotient. Its printed-order GP29 sequence is:
+
+`[27,20,4,17,16,18,16,11,8,28,18,16,5,23,12,10,8,25,14,14,15,20,17]`
+
+Transliteration: `IALRBTETJHEAETCDEOIHAEXXSLB`. This is a source-derived 23-rune key candidate, not plaintext. Direct additive GP29 use of this quotient as a repeating key was tested both signs with continuous and page-reset clocks on untouched p1–p55; all four outputs remain ciphertext-like (IoC 0.03445–0.03451, English trigram scores −11.35 to −11.40). The same key applied directly to the p0 23-rune receiver yields `DCIAOENMIALCWHPTJEANGTDAEWAWN` or `MTGIAEOYUPNGCSTYEADEOOSAGAEEX`; both are nonlinguistic. Both signs on the 716-rune p0–p2 body are also nonlinguistic (IoC 0.03424/0.03457).
+
+**Decision:** retain the exact (x−24)^2 gcd and 23-rune quotient as structural/key-candidate evidence. Reject direct additive-key use of this quotient on the tested LP2 objects. The algebraic relationship is real, but no plaintext or authenticated key has been recovered.
+
+**Reproducer:** `sims/lp2_p50_p29_polynomial_gcd_quotient_key_sft.cjs`.
+
 ## Decision and next research action
 
 Retain the p50 179²/GP29/prime-ordinal result as a promising source-constrained selector. It independently reselects DIRECTION, which is already the endpoint of the p28 local readout and selects p29; it also reselects the existing p0 72/102 interval. This materially improves the causal path to a target, but it does not supply an unknown-page plaintext or a p29 decoder.
 
-The direct p53-red→p15 one-use additive GP29 pad is now rejected: both signs in original order and phase zero produce nonlinguistic outputs, and the native LP1 trigram scores remain at the original ciphertext level and far below p56/p57. Do not try rotations, reversals, shifts, or another pairing. Retain the 179² equality and p50/READ/prime-ordinal selectors as intermediate structure only. The direct source-selected p29 factor consumer has now been tested: the high-degree-first page polynomial is divisible by Q=(x-3)(x-24)^2, but the exact quotient is nonlinguistic. Retain the root relation as structural evidence; do not reopen polynomial translations or factor-removal variants. A further p29 attack requires a different independent source selector and a predicted plaintext consequence. Do not reopen broad p50 cipher menus or repeat the p0 80–102 readout. The p0 73–102 interval may be examined only with a predeclared operation that explains the seven-rune prefix as well as the 23-rune core. The 182=179+3 observation is not permission to discard three runes. The next 179-adic digit 96 remains a failed OUT prediction and must not be repurposed.
+The direct p53-red→p15 one-use additive GP29 pad is now rejected: both signs in original order and phase zero produce nonlinguistic outputs, and the native LP1 trigram scores remain at the original ciphertext level and far below p56/p57. Do not try rotations, reversals, shifts, or another pairing. Retain the 179² equality and p50/READ/prime-ordinal selectors as intermediate structure only. The p29/p50 polynomials share exactly (x-24)^2; P also has the simple root3, so Q=(x-3)(x-24)^2 divides p29 P. Direct P/Q is nonlinguistic. P/R yields a 23-rune candidate key, but direct additive use on p0 receiver, p0–p2 body, and p1–p55 is also nonlinguistic. Retain the algebraic relation; do not reopen polynomial translations, factor-removal, or additive-key variants. A further attack requires a different independent source selector and a predicted plaintext consequence. Do not reopen broad p50 cipher menus or repeat the p0 80–102 readout. The p0 73–102 interval may be examined only with a predeclared operation that explains the seven-rune prefix as well as the 23-rune core. The 182=179+3 observation is not permission to discard three runes. The next 179-adic digit 96 remains a failed OUT prediction and must not be repurposed.
 
 ## Reproduction
 
