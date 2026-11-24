@@ -143,6 +143,7 @@ const keyMatrix = Array.from({ length: 4 }, (_, row) => wordInnerPrimeSums.slice
 const keyDeterminant = determinantMod(keyMatrix, 29);
 const keyInverse = invertMatrix(keyMatrix, 29);
 assert.notEqual(keyDeterminant, 0);
+assert.equal(keyDeterminant, 7);
 assert.ok(keyInverse);
 
 // Frozen receiver: the entire 32x8 p50 table, byte -> byte mod 29,
@@ -169,9 +170,10 @@ assert.equal(P.toString(), '6375544140993472106903641890876388257817059153665325
 assert.equal(Q.toString(), '1268532719737981052966698570711268391040527137');
 
 const dIndex = translit.indexOf('D');
-const dPositions = inner.map((value, i) => value === dIndex ? i : -1).filter(i => i >= 0);
-assert.deepEqual(dPositions, [5, 23]);
-const [firstD, secondD] = dPositions;
+const dPositionsZeroBased = inner.map((value, i) => value === dIndex ? i : -1).filter(i => i >= 0);
+assert.deepEqual(dPositionsZeroBased, [4, 22]);
+const dPositionsOneBased = dPositionsZeroBased.map(i => i + 1);
+const [firstD, secondD] = dPositionsOneBased;
 const inferredSmallTuple = {
   p: dIndex,
   g: firstD,
@@ -206,6 +208,8 @@ for (let i = 0; i <= dhShellTokens.length - 4; i++) {
   if (dhShellTokens.slice(i, i + 4).join('') === 'FOLD') foldOffsets.push(i);
 }
 
+assert.deepEqual(foldOffsets, [15]);
+
 const output = {
   source: {
     p55_transcription_page_index: 54,
@@ -231,6 +235,8 @@ const output = {
   provisional_p55_dh_crosslink: {
     P: P.toString(),
     Q: Q.toString(),
+    d_positions_zero_based: dPositionsZeroBased,
+    d_positions_one_based: dPositionsOneBased,
     inferred_small_tuple: inferredSmallTuple,
     small_group_shared_secret: smallK.toString(),
     large_group_public_A: largeA.toString(),
