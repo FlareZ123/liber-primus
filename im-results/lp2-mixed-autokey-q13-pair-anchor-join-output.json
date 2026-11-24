@@ -14,10 +14,10 @@
   "joinTests": 3,
   "FIT_CAP": 2048,
   "calibration": {
-    "eligible": 4,
-    "eligibleFit": 1,
-    "exact": 1,
-    "passed": false,
+    "eligible": 6,
+    "eligibleFit": 3,
+    "exact": 3,
+    "passed": true,
     "supportPassed": true
   },
   "controls": [
@@ -259,6 +259,106 @@
       "name": "jpg107-167",
       "n": 319,
       "anchors": []
+    },
+    {
+      "name": "Shakespeare-disjoint",
+      "n": 348,
+      "anchors": [
+        {
+          "j": 36,
+          "at": 162,
+          "n": [
+            10,
+            11
+          ],
+          "guaranteed": 20,
+          "L": 114,
+          "R": 231,
+          "holdoutSide": "right",
+          "dictWords": [
+            3480,
+            2243
+          ],
+          "models": 1,
+          "maskPairs": 2,
+          "fitStatus": "complete",
+          "fitLegal": 1,
+          "trueLex": true,
+          "trueModelCount": 1,
+          "result": {
+            "a": 17,
+            "b": 8,
+            "d": 3,
+            "word": "PROSPEROUS APPROBATION",
+            "fitScore": -2.6617361046796275,
+            "fit": "AMARCIUSCOMNGHOMEUOLUMNIAAYWORTHYMENENIUSANDWITHMOSTPROSPEROUSAPPROBATIONMENENIUSTACEMYCAPJUPITERANDITHANCTHEEHOOMARCIUSCOM",
+            "holdout": "NGHOMEUOLUMNIANAYTISTRUEUOLUMNIALOOCHERESALETTERFROMHIMTHESTATEHATHANOTHERHISWIFEA",
+            "holdoutScore": -2.6811017963897505,
+            "holdoutPaths": 2,
+            "correct": {
+              "model": true,
+              "fit": 117,
+              "fitTotal": 117,
+              "holdout": 76
+            }
+          }
+        }
+      ],
+      "donorWindow": [
+        28761,
+        29109
+      ],
+      "anchorSourceOffset": 28923
+    },
+    {
+      "name": "Emerson-disjoint",
+      "n": 352,
+      "anchors": [
+        {
+          "j": 34,
+          "at": 166,
+          "n": [
+            7,
+            13
+          ],
+          "guaranteed": 18,
+          "L": 118,
+          "R": 234,
+          "holdoutSide": "left",
+          "dictWords": [
+            6580,
+            637
+          ],
+          "models": 7,
+          "maskPairs": 4,
+          "fitStatus": "complete",
+          "fitLegal": 1,
+          "trueLex": true,
+          "trueModelCount": 1,
+          "result": {
+            "a": 7,
+            "b": 21,
+            "d": 19,
+            "word": "OBSCURE CONSCIOUSNESS",
+            "fitScore": -2.3423305100669074,
+            "fit": "TWITHSWORDSANDLAWSANDWIDEANDCOMPLEXCOMBINATIONSTHEOBSCURECONSCIOUSNESSOFTHISFACTISTHELIGHTOFALLOURDAYTHECLAIMOFCLAIMSTHEPL",
+            "holdout": "RTYALSOHOLDSOFTHESOULCOUERSGREATSPIRITUALFACTSANDINSTINCTIUELYWEATFIRSTHOLDTOI",
+            "holdoutScore": -2.509081420768418,
+            "holdoutPaths": 2,
+            "correct": {
+              "model": true,
+              "fit": 116,
+              "fitTotal": 116,
+              "holdout": 76
+            }
+          }
+        }
+      ],
+      "donorWindow": [
+        2945,
+        3297
+      ],
+      "anchorSourceOffset": 3111
     }
   ],
   "original": [
@@ -283,7 +383,7 @@
           ],
           "models": 750605,
           "maskPairs": 1,
-          "fitStatus": "unqualified",
+          "fitStatus": "cap",
           "fitLegal": 0,
           "trueLex": null,
           "trueModelCount": 0,
@@ -312,11 +412,22 @@
           ],
           "models": 1170,
           "maskPairs": 2,
-          "fitStatus": "unqualified",
-          "fitLegal": 0,
+          "fitStatus": "complete",
+          "fitLegal": 52,
           "trueLex": null,
           "trueModelCount": 0,
-          "result": null
+          "result": {
+            "a": 14,
+            "b": 8,
+            "d": 21,
+            "word": "FIREPLACE CONTORTING",
+            "fitScore": -4.888788391156313,
+            "fit": "MEWMBBTHHDYXEUGOHMUSOEJAGMTGTEOSOEEARHJWIOXNGPJTNGSTYSNFIREPLACECONTORTINGCXEUWMIUGOSIAJIEOIEJIATNLAOEOEOYSLOEWUCAEDTHUTCTHEMUGIRTH",
+            "holdout": null,
+            "holdoutScore": null,
+            "holdoutPaths": 0,
+            "correct": null
+          }
         }
       ]
     },
@@ -341,7 +452,7 @@
           ],
           "models": 0,
           "maskPairs": 4,
-          "fitStatus": "unqualified",
+          "fitStatus": "complete",
           "fitLegal": 0,
           "trueLex": null,
           "trueModelCount": 0,
@@ -370,7 +481,7 @@
           ],
           "models": 0,
           "maskPairs": 1,
-          "fitStatus": "unqualified",
+          "fitStatus": "complete",
           "fitLegal": 0,
           "trueLex": null,
           "trueModelCount": 0,
@@ -399,7 +510,7 @@
           ],
           "models": 0,
           "maskPairs": 1,
-          "fitStatus": "unqualified",
+          "fitStatus": "complete",
           "fitLegal": 0,
           "trueLex": null,
           "trueModelCount": 0,
@@ -428,11 +539,22 @@
           ],
           "models": 16,
           "maskPairs": 1,
-          "fitStatus": "unqualified",
-          "fitLegal": 0,
+          "fitStatus": "complete",
+          "fitLegal": 3,
           "trueLex": null,
           "trueModelCount": 0,
-          "result": null
+          "result": {
+            "a": 11,
+            "b": 21,
+            "d": 26,
+            "word": "DISPLAYING OSTEOTOMIES",
+            "fitScore": -4.963362794725186,
+            "fit": "UTATAXUEAMNGCYYYOAYSEATHSENOGTEEOGNGNGANGTNGTSEOIEOSAEUNGGGYHDISPLAYINGOSTEOTOMIESOETHFWMUSDEAANNAPFBAEEOOEYTPLEOABSATHBNGSJGTEORIGNGSHAHIACO",
+            "holdout": null,
+            "holdoutScore": null,
+            "holdoutPaths": 0,
+            "correct": null
+          }
         }
       ]
     },
@@ -457,7 +579,7 @@
           ],
           "models": 7,
           "maskPairs": 1,
-          "fitStatus": "unqualified",
+          "fitStatus": "complete",
           "fitLegal": 0,
           "trueLex": null,
           "trueModelCount": 0,
@@ -486,11 +608,22 @@
           ],
           "models": 255,
           "maskPairs": 1,
-          "fitStatus": "unqualified",
-          "fitLegal": 0,
+          "fitStatus": "complete",
+          "fitLegal": 42,
           "trueLex": null,
           "trueModelCount": 0,
-          "result": null
+          "result": {
+            "a": 1,
+            "b": 25,
+            "d": 3,
+            "word": "CAPABILITIES MENTION",
+            "fitScore": -4.786742287748366,
+            "fit": "NGGOETTHNEONGJYIADMODAETAAEDEEOTXOLNJHGREALLHIDOGAOENEAOEFECAPABILITIESMENTIONRAYGUOBIWWEXWFUWLWTYTMYDHOBYAJBAEWOENGLRIAIOUNGXEWTHROE",
+            "holdout": null,
+            "holdoutScore": null,
+            "holdoutPaths": 0,
+            "correct": null
+          }
         }
       ]
     },
@@ -515,11 +648,22 @@
           ],
           "models": 169,
           "maskPairs": 4,
-          "fitStatus": "unqualified",
-          "fitLegal": 0,
+          "fitStatus": "complete",
+          "fitLegal": 13,
           "trueLex": null,
           "trueModelCount": 0,
-          "result": null
+          "result": {
+            "a": 13,
+            "b": 17,
+            "d": 14,
+            "word": "REFRIGERATION CHAPEL",
+            "fitScore": -4.643997440262762,
+            "fit": "YUYPMEAEALSAEOUUEDHOREASNEWIAAWCROEMAEJTHBTPONRXFSEXLMMYREFRIGERATIONCHAPELPTHTARTHEOOEXXIUTHIPNGYOELWCRYDYXMJAETHSBGP",
+            "holdout": null,
+            "holdoutScore": null,
+            "holdoutPaths": 0,
+            "correct": null
+          }
         }
       ]
     }
