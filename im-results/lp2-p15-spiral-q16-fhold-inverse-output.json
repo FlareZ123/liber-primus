@@ -1,0 +1,923 @@
+{
+  "gate": true,
+  "plants": [
+    {
+      "name": "plant0",
+      "truth": [
+        27,
+        25,
+        13,
+        26,
+        8,
+        11,
+        21,
+        19,
+        27,
+        9,
+        5,
+        11,
+        19,
+        21,
+        26,
+        25
+      ],
+      "split": [
+        728,
+        190,
+        202
+      ],
+      "win": {
+        "q": 16,
+        "primitive": 16,
+        "key": [
+          27,
+          25,
+          13,
+          26,
+          8,
+          11,
+          21,
+          19,
+          27,
+          9,
+          5,
+          11,
+          19,
+          21,
+          26,
+          25
+        ],
+        "conf": 0.9181837278215293,
+        "train": -2.9436520336778824,
+        "validation": -3.0331369091698615,
+        "hold": -3.007941526766968,
+        "hardTrain": -2.9464956614819715,
+        "hardValidation": -3.0170644661238613,
+        "hardHold": -2.9868981402670345
+      },
+      "baseline": -3.3527065776409457,
+      "softGain": 0.3447650508739777,
+      "accept": true,
+      "hardening": {
+        "expanded": 27335,
+        "rotationsWithLegalKeys": 384,
+        "fixed": {
+          "key": [
+            27,
+            25,
+            13,
+            26,
+            8,
+            11,
+            21,
+            19,
+            27,
+            9,
+            5,
+            11,
+            19,
+            21,
+            26,
+            25
+          ],
+          "effectiveKey": [
+            27,
+            25,
+            13,
+            26,
+            8,
+            11,
+            21,
+            19,
+            27,
+            9,
+            5,
+            11,
+            19,
+            21,
+            26,
+            25
+          ],
+          "effectiveExactKey": true,
+          "changes": 0,
+          "train": -2.9464956614819715,
+          "validation": -3.0170644661238613,
+          "hold": -2.9868981402670345,
+          "exactKey": true,
+          "viterbi": -2.6751681861004895,
+          "accuracy": 0.9964285714285714,
+          "heldoutAccuracy": 1,
+          "plaintext": "ᚻᛖᛚᚩᚩᚳᛖᛞᚢᛈᚩᚾᚻᛖᚱᚹᛁᚦᛖᛉᚳᛖᛖᛞᛝᛏᛖᚾᛞᛖᚱᚾᛖᛋᛋᚩᚠᚱᛁᛏᚹᚪᛋᛋᚻᛖᚹᚻᚩᚻᚪᛞᚠᛁᚱᛋᛏᛋᚩᚢᚷᚻᛏᚪᚾᛞᛒᛖᛚᛁᛖᚢᛖᛞᛁᚾᚻᛁᛗᚹᚻᛖᚾᚻᛖᚻᚪᛞᛒᛖᛖᚾᛒᚢᛏᚪᛞᚪᚣᛁᚾᚦᛖᛁᚱᚳᛁᛏᚣᚪᚾᛞᛋᚻᛖᚻᚪᛁᛚᛖᛞᚻᛁᛗᛋᚪᚣᛝᛈᚱᚩᛈᚻᛖᛏᚩᚠᚷᚩᛞᛁᚾᚳᚹᛖᛋᛏᚩᚠᚦᛖᚢᛏᛏᛖᚱᛗᚩᛋᛏᛚᚩᛝᚻᚪᚢᛖᚣᚩᚢᛋᛠᚱᚳᚻᛖᛞᚦᛖᛞᛁᛋᛏᚪᚾᚳᛖᛋᚠᚩᚱᚣᚩᚢᚱᛋᚻᛁᛈᚪᚾᛞᚾᚩᚹᚣᚩᚢᚱᛋᚻᛁᛈᚻᚪᛋᚳᚩᛗᛖᚪᚾᛞᚣᚩᚢᛗᚢᛋᛏᚾᛖᛖᛞᛋᚷᚩᛞᛖᛖᛈᛁᛋᚣᚩᚢᚱᛚᚩᛝᛝᚠᚩᚱᚦᛖᛚᚪᚾᛞᚩᚠᚣᚩᚢᚱᛗᛖᛗᚩᚱᛁᛖᛋᚪᚾᛞᚦᛖᛞᚹᛖᛚᛚᛝᛈᛚᚪᚳᛖᚩᚠᚣᚩᚢᚱᚷᚱᛠᛏᛖᚱᛞᛖᛋᛁᚱᛖᛋᚪᚾᛞᚩᚢᚱᛚᚩᚢᛖᚹᚩᚢᛚᛞᚾᚩᛏᛒᛁᚾᛞᚣᚩᚢᚾᚩᚱᚩᚢᚱᚾᛖᛖᛞᛋᚻᚩᛚᛞᚣᚩᚢᚣᛖᛏᚦᛁᛋᚹᛖᚪᛋᚳᛖᚱᛖᚣᚩᚢᛚᛠᚢᛖᚢᛋᚦᚪᛏᚣᚩᚢᛋᛈᛠᚳᛏᚩᚢᛋᚪᚾᛞᚷᛁᚢᛖᚢᛋᚩᚠᚣᚩᚢᚱᛏᚱᚢᚦᚪᚾᛞᚹᛖᚹᛁᛚᛚᚷᛁᚢᛖᛁᛏᚢᚾᛏᚩᚩᚢᚱᚳᚻᛁᛚᛞᚱᛖᚾᚪᚾᛞᚦᛖᚣᚢᚾᛏᚩᚦᛖᛁᚱᚳᚻᛁᛚᛞᚱᛖᚾᚪᚾᛞᛁᛏᛋᚻᚪᛚᛚᚾᚩᛏᛈᛖᚱᛁᛋᚻᛁᚾᚣᚩᚢᚱᚪᛚᚩᚾᛖᚾᛖᛋᛋᚣᚩᚢᚻᚪᚢᛖᚹᚪᛏᚳᚻᛖᛞᚹᛁᚦᚩᚢᚱᛞᚪᚣᛋᚪᚾᛞᛁᚾᚣᚩᚢᚱᚹᚪᚳᛖᚠᚢᛚᚾᛖᛋᛋᚣᚩᚢᚻᚪᚢᛖᛚᛁᛋᛏᛖᚾᛖᛞᛏᚩᚦᛖᚹᛖᛖᛈᛝᚪᚾᛞᚦᛖᛚᚪᚢᚷᚻᛏᛖᚱᚩᚠᚩᚢᚱᛋᛚᛖᛖᛈᚾᚩᚹᚦᛖᚱᛖᚠᚩᚱᛖᛞᛁᛋᚳᛚᚩᛋᛖᚢᛋᛏᚩᚩᚢᚱᛋᛖᛚᚢᛖᛋᚪᚾᛞᛏᛖᛚᛚᚢᛋᚪᛚᛚᚦᚪᛏᚻᚪᛋᛒᛖᛖᚾᛋᚻᚩᚹᚾᚣᚩᚢᚩᚠᚦᚪᛏᚹᚻᛁᚳᚻᛁᛋᛒᛖᛏᚹᛖᛖᚾᛒᛁᚱᚦᚪᚾᛞᛞᛠᚦᚪᚾᛞᚻᛖᚪᚾᛋᚹᛖᚱᛖᛞᛈᛇᛈᛚᛖᚩᚠᚩᚱᛈᚻᚪᛚᛖᛋᛖᚩᚠᚹᚻᚪᛏᚳᚪᚾᛁᛋᛈᛠᚳᛋᚪᚢᛖᚩᚠᚦᚪᛏᚹᚻᛁᚳᚻᛁᛋᛖᚢᛖᚾᚾᚩᚹᛗᚩᚢᛝᚹᛁᚦᛁᚾᚣᚩᚢᚱᛋᚩᚢᛚᛋᚦᛖᚾᛋᚪᛁᛞᚪᛚᛗᛁᛏᚱᚪᛋᛈᛠᚳᛏᚩᚢᛋᚠᚩᛚᚩᚢᛖᚪᚾᛞᚻᛖᚱᚪᛁᛋᛖᛞᚻᛁᛋᚻᛠᛞᚪᚾᛞᛚᚩᚩᚳᛖᛞᚢᛈᚩᚾᚦᛖᛈᛇᛈᛚᛖᚪᚾᛞᚦᛖᚱᛖᚠᛖᛚᛚᚪᛋᛏᛁᛚᛚᚾᛖᛋᛋᚢᛈᚩᚾᚦᛖᛗᚪᚾᛞᚹᛁᚦᚪᚷᚱᛠᛏᚢᚩᛁᚳᛖᚻᛖᛋᚪᛁᛞᚹᚻᛖᚾᛚᚩᚢᛖᛒᛖᚳᚳᚩᚾᛋᛏᚩᚣᚩᚢᚠᚩᛚᛚᚩᚹᚻᛁᛗᚦᚩᚢᚷᚻᚻᛁᛋᚹᚪᚣᛋᚪᚱᛖᚻᚪᚱᛞᚪᚾᛞᛋᛏᛖᛖᛈᚪᚾᛞᚹᚻᛖᚾᚻᛁᛋᚹᛝᛋᛖᚾᚠᚩᛚᛞᚣᚩᚢᚣᛁᛖᛚᛞᛏᚩᚻᛁᛗᚦᚩᚢᚷᚻᚦᛖᛋᚹᚩᚱᛞᚻᛁᛞᛞᛖᚾᚪᛗᚩᛝᚻᛁᛋᛈᛁᚾᛡᚾᛋᛗᚪᚣᚹᚩᚢᚾᛞᚣᚩᚢᚪᚾᛞᚹᚻᛖᚾᚻᛖᛋᛈᛠᚳᛋᛏᚩᚣᚩᚢᛒᛖᛚᛁᛖᚢᛖᛁᚾᚻᛁᛗᚦᚩᚢᚷᚻᚻᛁᛋᚢᚩᛁᚳᛖᛗᚪᚣᛋᚻᚪᛏᛏᛖᚱᚣᚩᚢᚱᛞᚱᛠᛗᛋᚪᛋᚦᛖᚾᚩᚱᚦᚹᛁᚾᛞᛚᚪᚣᛋᚹᚪᛋᛏᛖᚦᛖᚷᚪᚱᛞᛖᚾᚠᚩᚱᛖᚢᛖᚾᚪᛋᛚᚩᚢᛖᚳᚱᚩᚹᚾᛋᚣᚩᚢᛋ"
+        }
+      },
+      "continuation": {
+        "key": [
+          27,
+          25,
+          13,
+          26,
+          8,
+          11,
+          21,
+          19,
+          27,
+          9,
+          5,
+          11,
+          19,
+          21,
+          26,
+          25
+        ],
+        "score": -2.9679373582159525,
+        "baseline": -3.3515607438686925,
+        "gain": 0.38362338565274,
+        "legal": true,
+        "heldoutAccuracy": 0.9964285714285714,
+        "plaintext": "H E L O O C E D U P O N H E R W I TH E X C E E D NG T E N D E R N E S S O F R I T W A S S H E W H O H A D F I R S T S O U G H T A N D B E L I E U E D I N H I M W H E N H E H A D B E E N B U T A D A Y I N TH E I R C I T Y A N D S H E H A I L E D H I M S A Y NG P R O P H E T O F G O D I N C W E S T O F TH E U T T E R M O S T L O NG H A U E Y O U S EA R C H E D TH E D I S T A N C E S F O R Y O U R S H I P A N D N O W Y O U R S H I P H A S C O M E A N D Y O U M U S T N E E D S G O D E E P I S Y O U R L O NG NG F O R TH E L A N D O F Y O U R M E M O R I E S A N D TH E D W E L L NG P L A C E O F Y O U R G R EA T E R D E S I R E S A N D O U R L O U E W O U L D N O T B I N D Y O U N O R O U R N E E D S H O L D Y O U Y E T TH I S W E A S C E R E Y O U L EA U E U S TH A T Y O U S P EA C T O U S A N D G I U E U S O F Y O U R T R U TH A N D W E W I L L G I U E I T U N T O O U R C H I L D R E N A N D TH E Y U N T O TH E I R C H I L D R E N A N D I T S H A L L N O T P E R I S H I N Y O U R A L O N E N E S S Y O U H A U E W A T C H E D W I TH O U R D A Y S A N D I N Y O U R W A C E F U L N E S S Y O U H A U E L I S T E N E D T O TH E W E E P NG A N D TH E L A U G H T E R O F O U R S L E E P N O W TH E R E F O R E D I S C L O S E U S T O O U R S E L U E S A N D T E L L U S A L L TH A T H A S B E E N S H O W N Y O U O F TH A T W H I C H I S B E T W E E N B I R TH A N D D EA TH A N D H E A N S W E R E D P EO P L E O F O R P H A L E S E O F W H A T C A N I S P EA C S A U E O F TH A T W H I C H I S E U E N N O W M O U NG W I TH I N Y O U R S O U L S TH E N S A I D A L M I T R A S P EA C T O U S F O L O U E A N D H E R A I S E D H I S H EA D A N D L O O C E D U P O N TH E P EO P L E A N D TH E R E F E L L A S T I L L N E S S U P O N TH E M A N D W I TH A G R EA T U O I C E H E S A I D W H E N L O U E B E C C O N S T O Y O U F O L L O W H I M TH O U G H H I S W A Y S A R E H A R D A N D S T E E P A N D W H E N H I S W NG S E N F O L D Y O U Y I E L D T O H I M TH O U G H TH E S W O R D H I D D E N A M O NG H I S P I N IA N S M A Y W O U N D Y O U A N D W H E N H E S P EA C S T O Y O U B E L I E U E I N H I M TH O U G H H I S U O I C E M A Y S H A T T E R Y O U R D R EA M S A S TH E N O R TH W I N D L A Y S W A S T E TH E G A R D E N F O R E U E N A S L O U E C R O W N S Y O U S O S H A L L H E C R U C I F Y Y O U E U E N A S H E I S F O R Y O U R G R O W TH S O I S H E F O R Y O U R P R U N NG E U E N A S H E A S C E N D S T O Y O U R H E I G H T A N D C A R E S S E S Y O U R T E N D E R E S T B R A N C H E S TH A T C W I U E R I N TH E S U N S O S H A L L H E D E S C E N D T O Y O U R R O O T S A N D S H A C E TH E M I N TH E I R C L NG NG T O TH E EA R TH L I C E S H EA U E S O F C O R N H E G A TH E R S Y O U U N T O H I M S E L F H E TH R E S H E S Y O U T O M A C E Y O U N A C E D H E S I F T S Y O U T O F R E E Y O U F R O M Y O U R H U S C S H E G R I N D S Y O U T O W H I T E N E S S H E C N EA D S Y O U U N T I L Y O U A R E P L IA N T A N D TH E N H E A S S I G N S Y O U T O H I S S A C R E D I F R E TH A T Y O U M A Y B E C O M E S A C R E D B R EA D F O R G O D S S A C R E D F EA S T A L L TH E S E TH NG S S H A L L L O U E D O U N T O Y O U TH A T Y O U M A Y C N O W TH E S E C R E T S O F Y O U R H EA R T A N D I N TH A T C N O W L E D G E B E C O M E A F R A G M E N T O F L I F E S H EA R T B U T I F I N Y O U R F EA R Y O U W O U L D S E E C O N L Y L O U E S P EA C E A N D L O U E S P L EA"
+      }
+    },
+    {
+      "name": "plant1",
+      "truth": [
+        25,
+        14,
+        18,
+        26,
+        11,
+        22,
+        28,
+        26,
+        9,
+        6,
+        19,
+        21,
+        14,
+        14,
+        14,
+        13
+      ],
+      "split": [
+        728,
+        190,
+        202
+      ],
+      "win": {
+        "q": 16,
+        "primitive": 16,
+        "key": [
+          25,
+          14,
+          18,
+          26,
+          11,
+          22,
+          28,
+          26,
+          9,
+          6,
+          19,
+          21,
+          14,
+          14,
+          14,
+          13
+        ],
+        "conf": 0.8837163642529717,
+        "train": -2.9543474170814616,
+        "validation": -2.977917151041719,
+        "hold": -2.9781249999775157,
+        "hardTrain": -2.9741489723215837,
+        "hardValidation": -2.9559669369520454,
+        "hardHold": -2.945943136369425
+      },
+      "baseline": -3.3411101876564735,
+      "softGain": 0.3629851876789578,
+      "accept": true,
+      "hardening": {
+        "expanded": 27075,
+        "rotationsWithLegalKeys": 384,
+        "fixed": {
+          "key": [
+            25,
+            14,
+            18,
+            26,
+            11,
+            22,
+            28,
+            26,
+            9,
+            6,
+            19,
+            21,
+            14,
+            14,
+            14,
+            13
+          ],
+          "effectiveKey": [
+            25,
+            14,
+            18,
+            26,
+            11,
+            22,
+            28,
+            26,
+            9,
+            6,
+            19,
+            21,
+            14,
+            14,
+            14,
+            13
+          ],
+          "effectiveExactKey": true,
+          "changes": 0,
+          "train": -2.9741489723215837,
+          "validation": -2.9559669369520454,
+          "hold": -2.945943136369425,
+          "exactKey": true,
+          "viterbi": -2.8159590313910967,
+          "accuracy": 1,
+          "heldoutAccuracy": 1,
+          "plaintext": "ᛗᚣᚩᚢᚱᛋᛖᛚᚢᛖᛋᚹᚻᚪᛏᛞᚩᚣᚩᚢᚦᛁᚾᚳᚣᚩᚢᚦᛖᚷᚱᛠᛏᛏᛟᚩᚠᚦᛁᛋᚪᛋᛋᛖᛗᛒᛚᚣᚠᛁᚱᛋᛏᚳᛁᛏᛁᛋᛖᚾᛁᚦᛖᚷᚱᛠᛏᛏᛟᚹᚻᚣᚦᛖᚷᚱᛠᛏᛏᛟᛗᛖᚾᛖᚾᛁᚢᛋᚠᚩᚱᚦᚪᛏᛒᛖᛝᚩᚾᛖᚩᚦᛖᛚᚩᚹᛖᛋᛏᛒᚪᛋᛖᛋᛏᛈᚩᚩᚱᛖᛋᛏᚩᚠᚦᛁᛋᛗᚩᛋᛏᚹᛁᛋᛖᚱᛖᛒᛖᛚᛚᛡᚾᚦᚩᚢᚷᚩᛋᛏᚠᚩᚱᛖᛗᚩᛋᛏᚦᚩᚢᚱᚪᛋᚳᚪᛚᚦᚪᛏᚪᚱᛏᚹᚩᚱᛋᛏᛁᚾᛒᛚᚩᚩᛞᛏᚩᚱᚢᚾᛚᛠᛞᛋᛏᚠᛁᚱᛋᛏᛏᚩᚹᛁᚾᛋᚩᛗᛖᚢᚪᚾᛏᚪᚷᛖᛒᚢᛏᛗᚪᚳᛖᚣᚩᚢᚱᛠᛞᚣᚣᚩᚢᚱᛋᛏᛁᚠᚠᛒᚪᛏᛋᚪᚾᛞᚳᛚᚢᛒᛋᚱᚩᛗᛖᚪᚾᛞᚻᛖᚱᚱᚪᛏᛋᚪᚱᛖᚪᛏᚦᛖᛈᚩᛁᚾᛏᚩᚠᛒᚪᛏᛏᛚᛖᚦᛖᚩᚾᛖᛋᛁᛞᛖᛗᚢᛋᛏᚻᚪᚢᛖᛒᚪᛚᛖᚻᚪᛁᛚᚾᚩᛒᛚᛖᛗᚪᚱᚳᛁᚢᛋᛗᚪᚱᚳᛁᚢᛋᚦᚪᚾᚳᛋᚹᚻᚪᛏᛋᚦᛖᛗᚪᛏᛏᛖᚱᚣᚩᚢᛞᛁᛋᛋᛖᚾᛏᛡᚢᛋᚱᚩᚷᚢᛖᛋᚦᚪᛏᚱᚢᛒᛒᛝᚦᛖᛈᚩᚩᚱᛁᛏᚳᚻᚩᚠᚣᚩᚢᚱᚩᛈᛁᚾᛡᚾᛗᚪᚳᛖᚣᚩᚢᚱᛋᛖᛚᚢᛖᛋᛋᚳᚪᛒᛋᚠᛁᚱᛋᛏᚳᛁᛏᛁᛋᛖᚾᚹᛖᚻᚪᚢᛖᛖᚢᛖᚱᚣᚩᚢᚱᚷᚩᚩᛞᚹᚩᚱᛞᛗᚪᚱᚳᛁᚢᛋᚻᛖᚦᚪᛏᚹᛁᛚᛚᚷᛁᚢᛖᚷᚩᚩᛞᚹᚩᚱᛞᛋᛏᚩᚦᛖᛖᚹᛁᛚᛚᚠᛚᚪᛏᛏᛖᚱᛒᛖᚾᛠᚦᚪᛒᚻᚩᚱᚱᛝᚹᚻᚪᛏᚹᚩᚢᛚᛞᚣᚩᚢᚻᚪᚢᛖᚣᚩᚢᚳᚢᚱᛋᚦᚪᛏᛚᛁᚳᛖᚾᚩᚱᛈᛠᚳᛖᚾᚩᚱᚹᚪᚱᚦᛖᚩᚾᛖᚪᚠᚠᚱᛁᚷᚻᛏᛋᚣᚩᚢᚦᛖᚩᚦᛖᚱᛗᚪᚳᛖᛋᚣᚩᚢᛈᚱᚩᚢᛞᚻᛖᚦᚪᛏᛏᚱᚢᛋᛏᛋᛏᚩᚣᚩᚢᚹᚻᛖᚱᛖᚻᛖᛋᚻᚩᚢᛚᛞᚠᛁᚾᛞᚣᚩᚢᛚᛡᚾᛋᚠᛁᚾᛞᛋᚣᚩᚢᚻᚪᚱᛖᛋᚹᚻᛖᚱᛖᚠᚩᛉᛖᛋᚷᛖᛖᛋᛖᚣᚩᚢᚪᚱᛖᚾᚩᛋᚢᚱᛖᚱᚾᚩᚦᚪᚾᛁᛋᚦᛖᚳᚩᚪᛚᚩᚠᚠᛁᚱᛖᚢᛈᚩᚾᚦᛖᛁᚳᛖᚩᚱᚻᚪᛁᛚᛋᛏᚩᚾᛖᛁᚾᚦᛖᛋᚢᚾᚣᚩᚢᚱᚢᛁᚱᛏᚢᛖᛁᛋᛏᚩᛗᚪᚳᛖᚻᛁᛗᚹᚩᚱᚦᚣᚹᚻᚩᛋᛖᚩᚠᚠᛖᚾᚳᛖᛋᚢᛒᛞᚢᛖᛋᚻᛁᛗᚪᚾᛞᚳᚢᚱᛋᛖᚦᚪᛏᛄᚢᛋᛏᛁᚳᛖᛞᛁᛞᛁᛏᚹᚻᚩᛞᛖᛋᛖᚱᚢᛖᛋᚷᚱᛠᛏᚾᛖᛋᛋᛞᛖᛋᛖᚱᚢᛖᛋᚣᚩᚢᚱᚻᚪᛏᛖᚪᚾᛞᚣᚩᚢᚱᚪᚠᚠᛖᚳᛏᛡᚾᛋᚪᚱᛖᚪᛋᛁᚳᚳᛗᚪᚾᛋᚪᛈᛈᛖᛏᛁᛏᛖᚹᚻᚩᛞᛖᛋᛁᚱᛖᛋᛗᚩᛋᛏᚦᚪᛏᚹᚻᛁᚳᚻᚹᚩᚢᛚᛞᛁᚾᚳᚱᛠᛋᛖᚻᛁᛋᛖᚢᛁᛚᚻᛖᚦᚪᛏᛞᛖᛈᛖᚾᛞᛋᚢᛈᚩᚾᚣᚩᚢᚱᚠᚪᚢᚩᚢᚱᛋᛋᚹᛁᛗᛋᚹᛁᚦᚠᛁᚾᛋᚩᚠᛚᛠᛞᚪᚾᛞᚻᛖᚹᛋᛞᚩᚹᚾᚩᚪᚳᛋᚹᛁᚦᚱᚢᛋᚻᛖᛋᚻᚪᛝᚣᛖᛏᚱᚢᛋᛏᚣᛖᚹᛁᚦᛖᚢᛖᚱᚣᛗᛁᚾᚢᛏᛖᚣᚩᚢᛞᚩᚳᚻᚪᛝᛖᚪᛗᛁᚾᛞᚪᚾᛞᚳᚪᛚᛚᚻᛁᛗᚾᚩᛒᛚᛖᚦᚪᛏᚹᚪᛋᚾᚩᚹᚣᚩᚢᚱᚻᚪᛏᛖᚻᛁᛗᚢᛁᛚᛖᚦᚪᛏᚹᚪᛋᚣᚩᚢᚱᚷᚪᚱᛚᚪᚾᛞᚹᚻᚪᛏᛋᚦᛖᛗᚪᛏᛏᛖᚱᚦᚪᛏᛁᚾᚦᛖᛋᛖᛋᛖᚢᛖᚱᚪᛚᛈᛚᚪᚳᛖᛋᚩᚠᚦᛖᚳᛁᛏᚣᚣᚩᚢᚳᚱᚣᚪᚷᚪᛁᚾᛋᛏᚦᛖᚾᚩ"
+        }
+      },
+      "continuation": {
+        "key": [
+          25,
+          14,
+          18,
+          26,
+          11,
+          22,
+          28,
+          26,
+          9,
+          6,
+          19,
+          21,
+          14,
+          14,
+          14,
+          13
+        ],
+        "score": -2.973786645467515,
+        "baseline": -3.352955071712064,
+        "gain": 0.37916842624454894,
+        "legal": true,
+        "heldoutAccuracy": 0.9910714285714286,
+        "plaintext": "M Y O U R S E L U E S W H A T D O Y O U TH I N C Y O U TH E G R EA T T OE O F TH I S A S S E M B L Y F I R S T C I T I S E N I TH E G R EA T T OE W H Y TH E G R EA T T OE M E N E N I U S F O R TH A T B E NG O N E O TH E L O W E S T B A S E S T P O O R E S T O F TH I S M O S T W I S E R E B E L L IA N TH O U G O S T F O R E M O S T TH O U R A S C A L TH A T A R T W O R S T I N B L O O D T O R U N L EA D S T F I R S T T O W I N S O M E U A N T A G E B U T M A C E Y O U R EA D Y Y O U R S T I F F B A T S A N D C L U B S R O M E A N D H E R R A T S A R E A T TH E P O I N T O F B A T T L E TH E O N E S I D E M U S T H A U E B A L E H A I L N O B L E M A R C I U S M A R C I U S TH A N C S W H A T S TH E M A T T E R Y O U D I S S E N T IA U S R O G U E S TH A T R U B B NG TH E P O O R I T C H O F Y O U R O P I N IA N M A C E Y O U R S E L U E S S C A B S F I R S T C I T I S E N W E H A U E E U E R Y O U R G O O D W O R D M A R C I U S H E TH A T W I L L G I U E G O O D W O R D S T O TH E E W I L L F L A T T E R B E N EA TH A B H O R R NG W H A T W O U L D Y O U H A U E Y O U C U R S TH A T L I C E N O R P EA C E N O R W A R TH E O N E A F F R I G H T S Y O U TH E O TH E R M A C E S Y O U P R O U D H E TH A T T R U S T S T O Y O U W H E R E H E S H O U L D F I N D Y O U L IA N S F I N D S Y O U H A R E S W H E R E F O X E S G E E S E Y O U A R E N O S U R E R N O TH A N I S TH E C O A L O F F I R E U P O N TH E I C E O R H A I L S T O N E I N TH E S U N Y O U R U I R T U E I S T O M A C E H I M W O R TH Y W H O S E O F F E N C E S U B D U E S H I M A N D C U R S E TH A T J U S T I C E D I D I T W H O D E S E R U E S G R EA T N E S S D E S E R U E S Y O U R H A T E A N D Y O U R A F F E C T IA N S A R E A S I C C M A N S A P P E T I T E W H O D E S I R E S M O S T TH A T W H I C H W O U L D I N C R EA S E H I S E U I L H E TH A T D E P E N D S U P O N Y O U R F A U O U R S S W I M S W I TH F I N S O F L EA D A N D H E W S D O W N O A C S W I TH R U S H E S H A NG Y E T R U S T Y E W I TH E U E R Y M I N U T E Y O U D O C H A NG E A M I N D A N D C A L L H I M N O B L E TH A T W A S N O W Y O U R H A T E H I M U I L E TH A T W A S Y O U R G A R L A N D W H A T S TH E M A T T E R TH A T I N TH E S E S E U E R A L P L A C E S O F TH E C I T Y Y O U C R Y A G A I N S T TH E N O B L E S E N A T E W H O U N D E R TH E G O D S C E E P Y O U I N A W E W H I C H E L S E W O U L D F E E D O N O N E A N O TH E R W H A T S TH E I R S E E C NG M E N E N I U S F O R C O R N A T TH E I R O W N R A T E S W H E R EO F TH E Y S A Y TH E C I T Y I S W E L L S T O R E D M A R C I U S H A NG E M TH E Y S A Y TH E Y L L S I T B Y TH E F I R E A N D P R E S U M E T O C N O W W H A T S D O N E I TH E C A P I T O L W H O S L I C E T O R I S E W H O TH R I U E S A N D W H O D E C L I N E S S I D E F A C T IA N S A N D G I U E O U T C O N J E C T U R A L M A R R IA G E S M A C NG P A R T I E S S T R O NG A N D F E E B L NG S U C H A S S T A N D N O T I N TH E I R L I C NG B E L O W TH E I R C O B B L E D S H OE S TH E Y S A Y TH E R E S G R A I N E N O U G H W O U L D TH E N O B I L I T Y L A Y A S I D E TH E I R R U TH A N D L E T M E U S E M Y S W O R D I L L M A C E A C W A R R Y W I TH TH O U S A N D S O F TH E S E C W A R T E R D S L A U E S A S H I G H A S I C O U L D P I C C M Y L A N C E M E N E N I U S N A Y TH E S E A R E A L M O S T TH O R O U G H L Y P E R S U A D E D F O R TH O U G H A B U N D A N T L Y TH E Y F NG E W T"
+      }
+    }
+  ],
+  "negative": {
+    "name": "independent-pad",
+    "truth": null,
+    "split": [
+      728,
+      190,
+      202
+    ],
+    "win": {
+      "q": 16,
+      "primitive": 16,
+      "key": [
+        14,
+        0,
+        10,
+        5,
+        9,
+        20,
+        21,
+        24,
+        20,
+        27,
+        18,
+        3,
+        18,
+        14,
+        16,
+        23
+      ],
+      "conf": 0.32206254490737246,
+      "train": -3.23593961846838,
+      "validation": -3.4126049370772673,
+      "hold": -3.3974427426314766,
+      "hardTrain": null,
+      "hardValidation": null,
+      "hardHold": null
+    },
+    "baseline": -3.3681684309535753,
+    "softGain": -0.029274311677901288,
+    "accept": false,
+    "hardening": {
+      "expanded": 0,
+      "rotationsWithLegalKeys": 0,
+      "fixed": null
+    },
+    "continuation": null
+  },
+  "known": [
+    {
+      "name": "printed",
+      "survivors": 0,
+      "maxLegalPrefix": 113,
+      "details": [
+        {
+          "sign": 1,
+          "start": 0,
+          "legalPrefix": 47
+        },
+        {
+          "sign": 1,
+          "start": 1,
+          "legalPrefix": 62
+        },
+        {
+          "sign": 1,
+          "start": 2,
+          "legalPrefix": 63
+        },
+        {
+          "sign": 1,
+          "start": 3,
+          "legalPrefix": 1
+        },
+        {
+          "sign": 1,
+          "start": 4,
+          "legalPrefix": 63
+        },
+        {
+          "sign": 1,
+          "start": 5,
+          "legalPrefix": 57
+        },
+        {
+          "sign": 1,
+          "start": 6,
+          "legalPrefix": 57
+        },
+        {
+          "sign": 1,
+          "start": 7,
+          "legalPrefix": 55
+        },
+        {
+          "sign": 1,
+          "start": 8,
+          "legalPrefix": 36
+        },
+        {
+          "sign": 1,
+          "start": 9,
+          "legalPrefix": 36
+        },
+        {
+          "sign": 1,
+          "start": 10,
+          "legalPrefix": 24
+        },
+        {
+          "sign": 1,
+          "start": 11,
+          "legalPrefix": 42
+        },
+        {
+          "sign": 1,
+          "start": 12,
+          "legalPrefix": 42
+        },
+        {
+          "sign": 1,
+          "start": 13,
+          "legalPrefix": 42
+        },
+        {
+          "sign": 1,
+          "start": 14,
+          "legalPrefix": 27
+        },
+        {
+          "sign": 1,
+          "start": 15,
+          "legalPrefix": 27
+        },
+        {
+          "sign": -1,
+          "start": 0,
+          "legalPrefix": 80
+        },
+        {
+          "sign": -1,
+          "start": 1,
+          "legalPrefix": 34
+        },
+        {
+          "sign": -1,
+          "start": 2,
+          "legalPrefix": 34
+        },
+        {
+          "sign": -1,
+          "start": 3,
+          "legalPrefix": 0
+        },
+        {
+          "sign": -1,
+          "start": 4,
+          "legalPrefix": 113
+        },
+        {
+          "sign": -1,
+          "start": 5,
+          "legalPrefix": 113
+        },
+        {
+          "sign": -1,
+          "start": 6,
+          "legalPrefix": 113
+        },
+        {
+          "sign": -1,
+          "start": 7,
+          "legalPrefix": 30
+        },
+        {
+          "sign": -1,
+          "start": 8,
+          "legalPrefix": 45
+        },
+        {
+          "sign": -1,
+          "start": 9,
+          "legalPrefix": 45
+        },
+        {
+          "sign": -1,
+          "start": 10,
+          "legalPrefix": 45
+        },
+        {
+          "sign": -1,
+          "start": 11,
+          "legalPrefix": 63
+        },
+        {
+          "sign": -1,
+          "start": 12,
+          "legalPrefix": 63
+        },
+        {
+          "sign": -1,
+          "start": 13,
+          "legalPrefix": 2
+        },
+        {
+          "sign": -1,
+          "start": 14,
+          "legalPrefix": 64
+        },
+        {
+          "sign": -1,
+          "start": 15,
+          "legalPrefix": 80
+        }
+      ]
+    },
+    {
+      "name": "read-spiral",
+      "survivors": 0,
+      "maxLegalPrefix": 172,
+      "details": [
+        {
+          "sign": 1,
+          "start": 0,
+          "legalPrefix": 3
+        },
+        {
+          "sign": 1,
+          "start": 1,
+          "legalPrefix": 77
+        },
+        {
+          "sign": 1,
+          "start": 2,
+          "legalPrefix": 2
+        },
+        {
+          "sign": 1,
+          "start": 3,
+          "legalPrefix": 77
+        },
+        {
+          "sign": 1,
+          "start": 4,
+          "legalPrefix": 42
+        },
+        {
+          "sign": 1,
+          "start": 5,
+          "legalPrefix": 133
+        },
+        {
+          "sign": 1,
+          "start": 6,
+          "legalPrefix": 133
+        },
+        {
+          "sign": 1,
+          "start": 7,
+          "legalPrefix": 133
+        },
+        {
+          "sign": 1,
+          "start": 8,
+          "legalPrefix": 115
+        },
+        {
+          "sign": 1,
+          "start": 9,
+          "legalPrefix": 115
+        },
+        {
+          "sign": 1,
+          "start": 10,
+          "legalPrefix": 12
+        },
+        {
+          "sign": 1,
+          "start": 11,
+          "legalPrefix": 83
+        },
+        {
+          "sign": 1,
+          "start": 12,
+          "legalPrefix": 131
+        },
+        {
+          "sign": 1,
+          "start": 13,
+          "legalPrefix": 131
+        },
+        {
+          "sign": 1,
+          "start": 14,
+          "legalPrefix": 21
+        },
+        {
+          "sign": 1,
+          "start": 15,
+          "legalPrefix": 33
+        },
+        {
+          "sign": -1,
+          "start": 0,
+          "legalPrefix": 172
+        },
+        {
+          "sign": -1,
+          "start": 1,
+          "legalPrefix": 13
+        },
+        {
+          "sign": -1,
+          "start": 2,
+          "legalPrefix": 37
+        },
+        {
+          "sign": -1,
+          "start": 3,
+          "legalPrefix": 37
+        },
+        {
+          "sign": -1,
+          "start": 4,
+          "legalPrefix": 49
+        },
+        {
+          "sign": -1,
+          "start": 5,
+          "legalPrefix": 50
+        },
+        {
+          "sign": -1,
+          "start": 6,
+          "legalPrefix": 50
+        },
+        {
+          "sign": -1,
+          "start": 7,
+          "legalPrefix": 50
+        },
+        {
+          "sign": -1,
+          "start": 8,
+          "legalPrefix": 14
+        },
+        {
+          "sign": -1,
+          "start": 9,
+          "legalPrefix": 24
+        },
+        {
+          "sign": -1,
+          "start": 10,
+          "legalPrefix": 24
+        },
+        {
+          "sign": -1,
+          "start": 11,
+          "legalPrefix": 24
+        },
+        {
+          "sign": -1,
+          "start": 12,
+          "legalPrefix": 105
+        },
+        {
+          "sign": -1,
+          "start": 13,
+          "legalPrefix": 105
+        },
+        {
+          "sign": -1,
+          "start": 14,
+          "legalPrefix": 172
+        },
+        {
+          "sign": -1,
+          "start": 15,
+          "legalPrefix": 172
+        }
+      ]
+    },
+    {
+      "name": "write-spiral",
+      "survivors": 0,
+      "maxLegalPrefix": 118,
+      "details": [
+        {
+          "sign": 1,
+          "start": 0,
+          "legalPrefix": 3
+        },
+        {
+          "sign": 1,
+          "start": 1,
+          "legalPrefix": 77
+        },
+        {
+          "sign": 1,
+          "start": 2,
+          "legalPrefix": 77
+        },
+        {
+          "sign": 1,
+          "start": 3,
+          "legalPrefix": 77
+        },
+        {
+          "sign": 1,
+          "start": 4,
+          "legalPrefix": 77
+        },
+        {
+          "sign": 1,
+          "start": 5,
+          "legalPrefix": 60
+        },
+        {
+          "sign": 1,
+          "start": 6,
+          "legalPrefix": 60
+        },
+        {
+          "sign": 1,
+          "start": 7,
+          "legalPrefix": 98
+        },
+        {
+          "sign": 1,
+          "start": 8,
+          "legalPrefix": 98
+        },
+        {
+          "sign": 1,
+          "start": 9,
+          "legalPrefix": 98
+        },
+        {
+          "sign": 1,
+          "start": 10,
+          "legalPrefix": 12
+        },
+        {
+          "sign": 1,
+          "start": 11,
+          "legalPrefix": 49
+        },
+        {
+          "sign": 1,
+          "start": 12,
+          "legalPrefix": 49
+        },
+        {
+          "sign": 1,
+          "start": 13,
+          "legalPrefix": 7
+        },
+        {
+          "sign": 1,
+          "start": 14,
+          "legalPrefix": 6
+        },
+        {
+          "sign": 1,
+          "start": 15,
+          "legalPrefix": 36
+        },
+        {
+          "sign": -1,
+          "start": 0,
+          "legalPrefix": 40
+        },
+        {
+          "sign": -1,
+          "start": 1,
+          "legalPrefix": 13
+        },
+        {
+          "sign": -1,
+          "start": 2,
+          "legalPrefix": 57
+        },
+        {
+          "sign": -1,
+          "start": 3,
+          "legalPrefix": 57
+        },
+        {
+          "sign": -1,
+          "start": 4,
+          "legalPrefix": 1
+        },
+        {
+          "sign": -1,
+          "start": 5,
+          "legalPrefix": 28
+        },
+        {
+          "sign": -1,
+          "start": 6,
+          "legalPrefix": 48
+        },
+        {
+          "sign": -1,
+          "start": 7,
+          "legalPrefix": 48
+        },
+        {
+          "sign": -1,
+          "start": 8,
+          "legalPrefix": 21
+        },
+        {
+          "sign": -1,
+          "start": 9,
+          "legalPrefix": 18
+        },
+        {
+          "sign": -1,
+          "start": 10,
+          "legalPrefix": 76
+        },
+        {
+          "sign": -1,
+          "start": 11,
+          "legalPrefix": 76
+        },
+        {
+          "sign": -1,
+          "start": 12,
+          "legalPrefix": 76
+        },
+        {
+          "sign": -1,
+          "start": 13,
+          "legalPrefix": 118
+        },
+        {
+          "sign": -1,
+          "start": 14,
+          "legalPrefix": 5
+        },
+        {
+          "sign": -1,
+          "start": 15,
+          "legalPrefix": 118
+        }
+      ]
+    }
+  ],
+  "target": [
+    {
+      "name": "read-spiral",
+      "truth": null,
+      "split": [
+        728,
+        190,
+        202
+      ],
+      "win": {
+        "q": 16,
+        "primitive": 16,
+        "key": [
+          9,
+          0,
+          10,
+          17,
+          12,
+          10,
+          21,
+          5,
+          13,
+          7,
+          17,
+          13,
+          17,
+          17,
+          9,
+          0
+        ],
+        "conf": 0.2941757928754255,
+        "train": -3.2480800977167825,
+        "validation": -3.4303687392246784,
+        "hold": -3.3909715776962157,
+        "hardTrain": null,
+        "hardValidation": null,
+        "hardHold": null
+      },
+      "baseline": -3.3701011626176536,
+      "softGain": -0.020870415078562132,
+      "accept": false,
+      "hardening": {
+        "expanded": 0,
+        "rotationsWithLegalKeys": 0,
+        "fixed": null
+      },
+      "continuation": null
+    },
+    {
+      "name": "write-spiral",
+      "truth": null,
+      "split": [
+        728,
+        190,
+        202
+      ],
+      "win": {
+        "q": 16,
+        "primitive": 16,
+        "key": [
+          8,
+          27,
+          10,
+          23,
+          15,
+          6,
+          2,
+          1,
+          4,
+          3,
+          16,
+          15,
+          17,
+          0,
+          13,
+          8
+        ],
+        "conf": 0.27643649695690176,
+        "train": -3.250413313967313,
+        "validation": -3.4091513495253043,
+        "hold": -3.3704632488271655,
+        "hardTrain": null,
+        "hardValidation": null,
+        "hardHold": null
+      },
+      "baseline": -3.3701011626176536,
+      "softGain": -0.00036208620951194703,
+      "accept": false,
+      "hardening": {
+        "expanded": 0,
+        "rotationsWithLegalKeys": 0,
+        "fixed": null
+      },
+      "continuation": null
+    }
+  ]
+}
