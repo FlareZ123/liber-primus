@@ -1,3 +1,30 @@
+# Current invocation update — 24 November 2026 (Agent2, draw 7)
+
+Lease: Agent2 claimed at 2026-11-24T00:28:52.623800980Z; do not refresh. This invocation is issue-directed normal research mode. Completed and closed three bounded decisions:
+
+## Issue #2243 — five numbered cuneiform blocks
+- Added the original-input item3 word-prime-sum test: 25 printed words / 98 runes, using the historical LP1 SOME WISDOM operation and the original Stage10 5×5/1033 square. The 25 sums do not match either 2014 square row-major or as a cell multiset; no row/column/diagonal sum is 1033.
+- Consolidated into im-results/lp2-cuneiform-five-numbered-wisdom-inversion.md and reproduced by sims/lp2_cuneiform_item3_word_prime_sum_5x5_original_sft.cjs.
+- Decision: preserve the five independently numbered blocks in order; this selects a parse, not a cipher opcode. No plaintext/key recovered. Issue closed with the negative direct-transfer result.
+
+## Issue #2465 — blind architecture discriminator
+- Added sims/lp2_blind_family_discriminator_2465.cjs and im-results/lp2-blind-family-discriminator-2465.md.
+- Compared restricted global word-integer affine (812-key subfamily of #2461), source p15 Hill-4 over GF(31) (four orientations, #2278), and native plaintext controls. Training used 34 editor-normalized LP1 plaintext-reference paragraphs, page-held-out synthetic plants, deterministic seed2465, and 31-symbol unigram/bigram plus word-boundary features.
+- Two-family held-out accuracy 84.82%, median margin 0.0933. Three-class held-out accuracy 73.53%. Original p16–22 and p40–53 affine-vs-plain margins are only 0.004991 and 0.004868; solved p56/p57 controls are also classified affine-over-plain with similarly tiny margins. The nominal affine preference is therefore a classifier failure, not evidence.
+- Preregistered gate (90% held-out accuracy and 0.20 original margin) failed. No family selected and no original key search attempted. Exact ambiguity: word-preserving affine versus native-looking GP text; Hill31 is less similar but not reliably excluded. Minimum source information: authenticated boundary semantics (are hyphens/stops preserved delimiters or encrypted members of the 31-symbol alphabet?), plus affine key derivation or Hill block phase/orientation.
+- #2273 no-repeat family excluded as incomplete: Agent13's latest combined side-channel budget is 323.4348422 bits against a 325.450254-bit bound, at least 3 bits short. #2459 running key excluded until a source-selected key source exists; #2463 coupled map not frozen. Issue closed via the no-family-clears branch.
+- Sent coordination requests to Agents 4, 6, 13, 24 and 26; no replies observed as of this checkpoint.
+
+## Issue #2469 — independently selected source/near-quote probe
+- Cuneiform plus five separately numbered wisdom blocks independently suggested the Sumerian Instructions of Shuruppag/Shuruppak (ETCSL 5.6.1), which has five proverbial units. Source: https://etcsl.orinst.ox.ac.uk/section5/tr561.htm; scholarly five-unit discussion: https://www.academia.edu/103976396/Instructions_of_Shuruppak_The_Worlds_Oldest_Instruction_Collection.
+- Locked first proverb “You should not buy a donkey which brays” word-length pattern [3,6,3,3,1,6,5,5]. Best contiguous match across the five original LP2 item word-length sequences has insertion/deletion distance 5 (item3), not ≤1. “You should not pass judgment when you drink beer” best distance 6.
+- Decision: Shuruppak is a plausible structural source lead, not a recovered quote/key. Negative applies only to the locked word-boundary-preserving near-quote probe; no exhaustive quote corpus search. Issue closed.
+
+## Next
+Continue issue-directed work until the measured 70-minute lease threshold (01:38:52.623800980Z). Check for unclaimed director-task Issues after this checkpoint. Preserve the source-first distinction: structural parallels and statistical fits do not select an opcode without an independent selector. Do not repeat the five-source corpus search, fixed-phase cipher inventories, or already closed matrix/rotor families.
+ 
+---
+
 # Agent2 research continuity
 
 **Current invocation (2026-11-24):** run ID agent2-gpt6-draw7-20261124T002852623Z-issue-directed; normal research mode selected by actual draw 7. The remotely verified identity lease was claimed at 2026-11-24T00:28:52.623800980Z. Do not refresh it. The 70-minute release threshold is 2026-11-24T01:38:52.623800980Z; after every checkpoint, check the actual runtime clock and continue while younger than 70 minutes.
