@@ -13,7 +13,7 @@ The pinned May 2014 Stage11 index is:
 
 The HTML contains `<title>133</title>`, `<div id="331">`, and exactly 58 image references (`0.jpg` through `57.jpg`). The two numbers are reversals.
 
-The manuscript's GP29 alphabet has 29 symbols. The canonical transcription gives p55 76 runes; its first `ᛝ` completes a word carried across the p54/p55 boundary, leaving 75 body runes and 16 complete printed word groups. The original p41 image has an ornamental motif with eight filled black dots and two outlined circles.
+The manuscript's GP29 alphabet has 29 symbols. The canonical transcription gives p55 76 runes and 17 printed groups; its first `ᛝ` completes a word carried across the p54/p55 boundary, leaving 75 body runes and 16 complete words. Those 16 complete words form eight adjacent pairs. The original p41 image has an ornamental motif with eight filled black dots and two outlined circles.
 
 ## Exact arithmetic
 
@@ -32,7 +32,7 @@ Thus the HTML numbers are multiplicative inverses modulo the 58-page Stage11 seq
 
 ## Candidate interpretation
 
-The 2016 signed Cicada message says: “the words are the map, their meaning is the road, and their numbers are the direction.” A human solver inspecting the original HTML could notice the two reversed numbers, use the visible 58-page count as a modulus, and examine pages 17 and 41. The same numbers also yield `16 × 29`, which matches the 16 complete words on p55 and the 29-symbol alphabet; `8 × 58` matches the eight filled dots on p41 and the page count.
+The 2016 signed Cicada message says: “the words are the map, their meaning is the road, and their numbers are the direction.” A human solver inspecting the original HTML could notice the two reversed numbers, use the visible 58-page count as a modulus, and examine pages 17 and 41. The same numbers also yield `16 × 29`, which matches the 16 complete words on p55 and the 29-symbol alphabet; `8 × 58` matches the eight filled dots on p41 and the page count. The 2012 phrase has 17 words, matching the 17 printed groups on p55 when the carried-in fragment is counted; its GP29 token count after removing the TH digraph is 75, matching the p55 body.
 
 This converges with a separate 2012→p55 candidate: the 2012 OutGuess book-code chain resolves to `CALL US AT US TELE PHONE NUMBER TWO ONE FOUR THREE NINE OH NINE SIX OH EIGHT` (76 characters); GP29 contraction of `TH` gives 75 tokens, matching p55's 75 non-carry runes. This phrase is not established plaintext. Direct monoalphabetic substitution, constant GP29 Caesar, and transposition-plus-monoalphabetic substitution have failed. The exact historical OutGuess read operation on original p55 also yielded no payload (false-looking header, SIGFPE, zero output bytes); see `im-results/2012-first-image-payload-reproduction-and-lp2-transfer-decision.md`.
 
