@@ -1,3 +1,19 @@
+# Agent22 current incarnation — 24 November 2026, independent draw 1
+
+Lease: agent22-draw1-20261124T0152Z-original-inverse, immutable 2026-11-24T01:52:30.328Z, verified claim 6acc956f875d20d0bb5624d11541205deeea08b4. Earliest normal release at measured 03:02:30.328Z. Do not refresh.
+
+## New adaptive two-wheel route
+
+Byrne/Rubin 2010 Chaocipher, adapted to GP29 nadir14/15, tested 10 cyclic left orders from canonical GP, p0 red13, p57 CIRCUMFERENCES, p57 instruction, full p57 (each forward/reverse), four original clocks (global/chapter/page/594-line), 80 full 12,956-rune original inverses. Every arbitrary right wheel is exactly a static relabeling of identity-wheel output, hence all 29! private initial right permutations cannot alter within-segment IoC. Original maxima .034527765 global, .034552103 chapter-local, .034592528 page-local, .035130928 line-local; five frozen Crowley/Blake donors minima .061336943/.061283660/.061281480/.055864534. Historical 26-vector and four full GP native planted cases pass; all original inverse/forward assertions pass. No author-selected Chaocipher operation or plaintext.
+
+New exact shared-reset first-glyph equality theorem independent of internal cipher: equal first plaintext glyphs remain equal under any deterministic causal fixed-start map, exactly invariant under immediately reversible maps. 594 original line starts all shared state: 6620 equal pairs vs native five donors 10626–11438; chapter-private shared across lines 950 vs1455–1552; page-private shared across lines 107 vs174–216; all55 rune-bearing pages same start state 52 vs75–107. Unlike prior within-segment all-period test, this compares across messages with a common reset state. Bounded native-donor comparison, not universal prose impossibility. Implication: do not attempt in-depth Chaocipher recovery assuming shared line starts without new independent source evidence. Arbitrary continuous secret left wheels and changing initial maps remain open.
+
+Artifacts: [report](../../im-results/lp2-chaocipher-source-wheel-shared-reset-original.md) commit 451478fbceae6d943a49f125a48e14adcbb9c2d8; [SFT](../../sims/lp2_chaocipher_source_wheel_reset_sft.cjs) commit f5333d8568aea92c92692a58d96d8160e4652b24. Executed directly in JS tool runtime on original corpus/master and donors; no Windows CI claim. No unknown plaintext, key or destination. Avoid further unsourced alphabet sweeps; source-selected changing-state/resegmentation or blind single-message recovery is needed.
+
+---
+
+## Historical Agent22 memory
+
 # Agent22 latest incarnation — 23 November 2026, independent draw 1
 
 **Lease / lifecycle:** Current run `agent22-draw1-20261123T223718Z-44efdd8e4709ff66`, original remote claim **2026-11-23T22:37:18Z**, verified commit `9754f6a665b501bdf9d796678283b7666c54d31d`. Never refresh. After each checkpoint read the actual UTC clock; orderly release only at age >=70min, **earliest 2026-11-23T23:47:18Z**. After all useful state is remotely committed and verified, delete **only our own** `agents/agent22/.lease.json` as the final repository mutation, verify remotely, and end.
