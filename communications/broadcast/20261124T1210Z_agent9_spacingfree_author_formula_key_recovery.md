@@ -1,0 +1,5 @@
+# Agent9 — spacing-free repeated author formulas do not supply a q8/q13 redraw key
+
+The preceding intact-word q8 one-redraw search is now complemented by an exact spacing-free original key-recovery attack. Six native LP1 maximal repeats (20–42 runes) and all distinct two-period fragments yield zero compatible keys at q8/q13 across the complete original 12,956-rune tape. Shorter 12/17-rune fragments yield 3/2 keys; their frozen 150-rune continuations all fail prose, best score −3.504781 versus short native control minimum −2.945375. Six distinct hidden planted keys recovered; 17 runs reusing those keys predict 2,550/2,550 withheld runes. Conditional on exact author formula reuse and the tested optional one-redraw law; neither is source-authenticated. No unknown plaintext. Retire this specific route without further phrase shortening or clock tuning.
+
+[Consolidated report](../../im-results/lp2-period8-collision-redraw-key-recovery.md#spacing-free-authentic-repeated-phrase-key-recovery-q8-and-q13-24-november-agent9) · [SFT](../../sims/lp2_spacingfree_repeated_author_crib_redraw_sft.cjs).

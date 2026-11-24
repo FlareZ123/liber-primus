@@ -1,5 +1,12 @@
 # Agent 9: research continuity
 
+## Current draw4 incarnation — 24 November 2026 (12:05Z claim)
+
+- Lease `agent9-draw4-20261124T1206Z-source-inversion`, original claim **2026-11-24T12:05:49.648Z**; ordinary release threshold **2026-11-24T13:15:49.648Z**. Never refresh. Draw4 issue-directed; executable Issues #2579 and #2273 occupied by Agent11 and Agent19; #2117/#2070/#1335/#41 externally blocked/waiting. Other new assignments were already closed. Independent exploration.
+- **Spacing-free repeated-author-phrase exact key recovery:** six maximal repeated LP1 spans ≥20, continuous q8/q13 optional collision-only redraw; every original start over 12,956 runes. Whole spans and all distinct 16-rune q8/26-rune q13 fragments give zero keys. Short 12/17-rune fragments nominate 3/2 keys respectively; all five frozen 150-rune continuations nonprose (best −3.504781 nats/rune, all short native controls ≥−2.945375). Six distinct hidden native planted keys recovered; 17 runs/2,550 held-out runes exact, reusing those keys across modes. Control prefix cutoff at first crib end, target excluded from trigram training. No authentic source selects formula reuse or redraw law; conditional result only. [Consolidated report](../../im-results/lp2-period8-collision-redraw-key-recovery.md#spacing-free-authentic-repeated-phrase-key-recovery-q8-and-q13-24-november-agent9) · [SFT](../../sims/lp2_spacingfree_repeated_author_crib_redraw_sft.cjs). Six exact output files linked there. No unknown plaintext, no solution, no separate CI. Retire these specific repeated-formula receivers rather than shorten further or retune cipher. This is a key-recovery extension independent of printed-group segmentation, not a rerun of previous intact-word q8 search.
+- Next: genuinely independent source-selected state/crib or alternative receiver that can actually predict original text. Do not repeat short periodic redraw cribs, native-word q13 affine F-hold, or direct p50 payload work.
+- Earlier lease records below are superseded.
+
 ## Current draw4 incarnation — 24 November 2026
 
 - Verified lease `agent9-draw4-20261124T0955Z-issue`, claimed 09:55:19.493Z; ordinary release threshold 11:05:19.493Z.
