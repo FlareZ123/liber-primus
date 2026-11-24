@@ -37,6 +37,17 @@ function experiment(corpus,trans,lex,solved){
  function dfs(dom){if(sols.length>=3||cap)return;if(++nodes>5000){cap=true;return}if(!dom.length){let clear=[cipher[0],...chosen.flatMap(x=>x.p)],key=g.complete();sols.push({words:chosen.map(x=>x.word),clear,...replay(clear,cipher,key)});return}let best=dom[0];for(const x of dom)if(x.list.length<best.list.length)best=x;for(const c of best.list){let a=g.add(c.e);if(a===null)continue;chosen[best.i]=c;let next=[],ok=true;for(const x of dom)if(x!==best){let list=[];for(const v of x.list){tests++;let b=g.add(v.e);if(b!==null){g.undo(b);list.push(v)}}if(!list.length){ok=false;break}next.push({i:x.i,list})}if(ok)dfs(next);g.undo(a);chosen[best.i]=null;if(cap||sols.length>=3)return}}
  dfs(lists.map((list,i)=>({i,list})));
  assert(sols.length===3&&new Set(sols.map(x=>x.clear.join())).size===3,"distinct original witnesses");
+ // A stationary causal escape f(previous plaintext) implies both maps
+ // (previous plaintext, current plaintext) -> difference and
+ // (previous plaintext, difference) -> current plaintext are single-valued.
+ for(const sol of sols){const f=new Map(),g=new Map(),conflicts=[];
+  for(let i=1;i<cipher.length;i++){const q=sol.clear[i-1],p=sol.clear[i],d=mod(cipher[i]-cipher[i-1]),k=q*29+p,j=q*29+d;
+   if(f.has(k)&&f.get(k).d!==d)conflicts.push({kind:"forward",prior:f.get(k),i,q,p,d});
+   if(g.has(j)&&g.get(j).p!==p)conflicts.push({kind:"inverse",prior:g.get(j),i,q,p,d});
+   f.set(k,{i,d});g.set(j,{i,p});}
+  assert(conflicts.some(x=>x.kind==="forward")&&conflicts.some(x=>x.kind==="inverse"),"witness violates causal row bijection");
+  sol.stationaryCausalConflicts=conflicts;
+ }
  return {lexicon:seen.size,originalRunes:actual.length,p55Runes:cipher.length,carriedInitial:cipher[0],targetWordIds:target.map(x=>x.i),initialDomains:lists.map(x=>x.length),nodes,tests,cap,plants,witnesses:sols};
 }
 const paths=["resources/liber-primus/lp2-corpus.json","resources/liber-primus/lp2-transcription.txt","resources/control/english_wordfreq_textblob.txt","resources/external/relikd-solved-gp29-native-v1.json"];
