@@ -1,4 +1,8 @@
-## Director #2601 cue-selection ablation — 24 November 2026 14:37Z
+## Independent mixed-autokey q13 constructive inverse — 24 November 2026 14:43Z
+
+[Report](../../im-results/lp2-mixed-autokey-q13-fhold-original-gate.md), [SFT](../../sims/lp2_mixed_autokey_q13_fhold_sft.cjs). Joint recurrence C=P+K, next lane K=aP+bC+d; both nonzero slopes, arbitrary offset, authentic F holds. Exact affine seed support/marginal over all 181,888 q13 models/masks, exact cyclic MAP top128 bigram/top12 trigram, frozen prefix mask and suffix. Native KOAN1/LOSS controls exact keys 26/26 and 152/152 withheld, true triple/mask rank1 at all stages. Original p54–55 max all-key unigram -3.2572265, best frozen suffix -5.6094144; 6/12 full legal nonprose, no unknown plaintext. Not all-model trigram exhaustive. This tests mixed feedback rather than earlier pure families. Avoid retuning p54–55 q13 holdout; if extending receiver, independently select scope and keep controls calibrated. Local Node22 source FNV checked, no CI claim.
+
+## Director #2601 cue-selection ablation — 24 November 2026 14:35Z
 
 [Report](../../im-results/cicada-cue-hierarchy-ablation.md), [SFT](../../sims/cicada_cue_hierarchy_ablation_sft.cjs). Frozen parser trained on 2012 Britannica/Agrippa, 2013 Book of Law, 2014 Emerson recognizes held-out GEB 14 four-field coordinates plus 3/7/ONION; 3 genuine unrelated signed artifacts reject, colon deletion/record removal fail. Prefix-label rotation still passes. Literal OCR title binding 10/14; two wrong natural unit segmentations pass all 6 tested base32 character slots, speaker-turn parser only 4/6 exact. A retrospective coarse cue gate, not a new source-selected inverse. No LP2 test after failed exact-operation calibration. Retire standalone cue-prior approach; demand independently fixed carrier and coordinate unit. No new plaintext.
 
