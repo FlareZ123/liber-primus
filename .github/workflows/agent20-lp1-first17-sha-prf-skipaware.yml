@@ -32,7 +32,7 @@ jobs:
       - name: Run LP1 first17 derived-key test
         run: |
           python sims/agent20_lp1_first17_sha_prf_skipaware.py \
-            --external-root /tmp/cicada3301 \
+            --external-root /tmp/cicada3301/liber-primus \
             --output im-results/agent20_lp1_first17_sha_prf_skipaware.json
 
       - name: Upload reproducible report
