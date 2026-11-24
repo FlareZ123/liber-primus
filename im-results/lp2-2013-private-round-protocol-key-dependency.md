@@ -20,7 +20,7 @@ The Gist's sample Python implementation uses `os.urandom(1)` for `RAND` and Pyth
 A separate community archive of a participant implementation records test commands including `rand 3`, `rand 0`, `rand 1`, `dh 3301`, and `next`. Treat this as corroborating community material, not an authenticated Cicada transcript:
 https://github.com/neuroretransmit/cicada/tree/main/2013/007-fourth-onion
 
-A leaked 2013 IRC transcript also describes successful participants receiving individual random words and onion credentials. This is anecdotal and should not be promoted to fact without an authenticated primary copy:
+Do not use the often-cited 2013 IRC log as corroboration for this protocol: it is dated February 2013, and the speaker explicitly says "last year" while describing the unique random words/onion credentials, so that exchange recounts a 2012 path, not the 2013 private server protocol. It is a community leak and is not evidence for the 2013 `RAND`/`DH`/`NEXT` stage:
 https://github.com/Dukotah/cicada3301/blob/master/corpus/C-community/irc/2013_winners-leak_irc-log.txt
 
 ## Why this is relevant to Liber Primus
