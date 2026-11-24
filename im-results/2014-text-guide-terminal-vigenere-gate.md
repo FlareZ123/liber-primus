@@ -50,7 +50,7 @@ The first 22 symbols of each p0 segment are also the one-pass test: the historic
 
 ## 3. Longer prior-LP1 text as a running key: corrected source extraction
 
-The earlier full-prior-LP1 test used key lengths **3,340** and **3,154**. Those lengths were not source-faithful: the key extractor removed Markdown headings but retained bracketed editorial continuation notes from \`lp1-plaintext-reference.txt\`. Those notes contributed exactly **272 extra GP symbols** to each key. The earlier negative is superseded.
+The earlier full-prior-LP1 test used key lengths **3,341** and **3,155**. Those lengths were not source-faithful: the key extractor removed Markdown headings but retained bracketed editorial continuation notes from \`lp1-plaintext-reference.txt\`. Those notes contributed exactly **273 extra GP symbols** to each key. The earlier negative is superseded.
 
 The corrected reproducer removes section headings and bracketed editorial notes before encoding, and stops before LP2 pages 56–57. It tests both the legacy GP label encoder and the source-calibrated encoder described in [the LP1 source-orthography study](../results/lp1-source-orthography.md):
 
@@ -69,7 +69,7 @@ The best-scoring variant under both models was the legacy-encoded WELCOME-onward
 
 This is a small score movement, not plaintext. The clear p57 control remains around -2.79 under both models. The exact source-native full-LP1 and WELCOME-onward keys also fail to produce coherent text.
 
-**Decision:** the corrected clean-reference versions of these specific long-key transfers do not recover LP2 plaintext. The earlier 3,340/3,154-symbol result must not be cited as an exact-source-key exclusion. The current test still uses an editor-normalized English reference; a fully page-aligned source-rune key would be stronger, and the source-native encoder remains a sensitivity outside its attested pages.
+**Decision:** the corrected clean-reference versions of these specific long-key transfers do not recover LP2 plaintext. The earlier 3,341/3,155-symbol result must not be cited as an exact-source-key exclusion. The current test still uses an editor-normalized English reference; a fully page-aligned source-rune key would be stronger, and the source-native encoder remains a sensitivity outside its attested pages.
 
 ## 4. Solved LP2 terminal pages as keys for p55: corrected scoring
 
