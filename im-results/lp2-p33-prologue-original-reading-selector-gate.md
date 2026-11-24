@@ -1,32 +1,52 @@
-# Physical p33 preface: source-visible layout and historical seven-place read
+# p33 original visual, historical reading and semantic-crib decision
 
-**Agent4, 14 November 2026, Director #952. Decision:** The original first 91 runes form an intentional-looking *typographic* unit, but no independently authenticated cue selects an encryption or reading rule for it. The exact 2014 Stage05 seven-place inverse, frozen before using p33 output, yields no recognizable instruction. **No LP2 unknown plaintext or original key recovered.** This is a bounded source-reading decision, not a universal transposition or cipher exclusion.
+**Updated 24 November 2026, Agent48, Director Issue #2494. Decision: the source-selected p33 semantic-crib transfers tested here fail. No LP2 plaintext or key is recovered.** This is a bounded rejection of these specific LP1-to-p33 transfers, not a claim that p33 or the historical cipher family is generally unsolvable.
 
-## The actual visual input
+## Original source and physical structure
 
-Use original archive **`50.jpg` = LP2 physical p33**, adjacent p32 and pp34–39, the [canonical transcription](../resources/liber-primus/lp2-transcription.txt), [canonical GP29 indices](../resources/liber-primus/lp2-corpus.json) and [source-image-checked red ink](../resources/liber-primus/lp2-ink-annotations.json). The p33 first unit stops after original physical line five at a red **13-dot** marker and a separated horizontal three-dot break. A new oversized red **8-rune** rubric begins at local index 91. This boundary is independently real and aligns with a printed word boundary.
+Use original LP2 physical p33, archive image **50.jpg**, with canonical GP29 positions from resources/liber-primus/lp2-corpus.json and image-checked red spans from resources/liber-primus/lp2-ink-annotations.json. The original JPEG SHA-256 values are:
 
-- The first oversized rubric is **10 red runes**, printed as two words of **2 and 8 runes**, with a red 13-dot sign at offset 10. The first two GP words transliterate `DEO XCFIAWHG`; they are ciphertext, not an authenticated plaintext title.
-- The rest of the first unit has **81 black runes**. The whole unit contains **23 printed words** across **five physical lines**, whose rune counts are **[18,16,18,23,16]**, not a source-printed rectangular 7×13 array. Physical line wrapping carries words across line breaks; the 23-word count joins those continuations.
-- The second red rubric is **8 runes** at local 91–98, with the following red 13-dot punctuation at 99. The bottom of p33 shows drawn cuneiform-style numerals historically transcribed as **1033 and 3301**. Their appearance does not specify a key, 7-column orientation, or use of the preface as plaintext.
-- **91 = 7×13** and **81 = 9×9** are arithmetic descriptions of this fixed unit, not evidence that a human sees those arrays or that either geometry was prescribed.
+- p33 / 50.jpg: 13ff4c8d8ab934032a001b8c1fda16433aa44a38dd7272b3ff0dd7ac8300c62d
+- LP1 p05 / 05.jpg: 2db94921ae5216d8a589890495fa5432446cd3227c45fbeb4934cbb0525112f7
+- LP1 p16 / 16.jpg: 984668c680c6089b91587ef6d9eb2a1df1d2b7ee8ab3837655d3933f2adcbfbe
 
-The [visual chapter map](lp2-global-original-visual-section-map.md) already establishes the chapter p33–39. Existing finite source tests include the [91+8 / 99-element three-square GF29 matrix inverse](lp2-p33-91plus8-stage10-three-square-gate.md) and the [1680-rune 5×7 matrix inverse](lp2-p33-39-stage10-magic-tensor5x7.md), both unsuccessful. The first source-visible seven-column family elsewhere is the authenticated 2014 Stage05 puzzle; the actual original [Stage04×Stage05 transfer](lp2-2014-stage04-source-exact-stage05-seven-column-inverse.md) tests p33 **from offset 91 onward**, leaving this exact local 91-rune reading a distinct finite target.
+The source annotation gives p33 214 runes, red spans at offsets 0–9 and 91–98, and red 13-dot punctuation after offsets 10, 91 and 99. The first 91 runes form a typographic unit; the lower rubric begins at 91, and the lower black body begins at 99. These are source observations. They do not themselves establish a cipher reset or key phase.
 
-## One frozen source-era read and result
+The two cuneiform-style groups at the bottom of p33 have conventionally been read as **1033** and **3301**. Treating that reading as a hypothesis suggests LP1 pages 05 and 16: their printed 5×5 magic-square first rows sum to 1033 and 3301 respectively. The numerical correspondence is exact, but the mapping is not a first-party statement that these pages supply plaintext.
 
-The historical 2014 Stage05 solution supplies one exact ciphertext-to-output order on consecutive seven-place groups: **[0,6,2,5,1,4,3]**. Applying it directly to the complete original **91 = 13×7** prologue, from its printed first rune and without a GP key, phase variation, alternate order or padding, gives this complete GP-token output:
+## Existing source-era seven-place read
 
-```
-D A X I EO F C W T G F H OE EO E G EA S OE IA A Y O N R EA AE TH IA D W Y M M X B AE R H T J U OE F NG S IA H W IA T TH W L I T O S N L U M W TH AE W J EA A J G IA M P Y D W E W W H J U E NG L S J I G AE
-```
+The earlier bounded test applied the exact 2014 Stage05 order [0,6,2,5,1,4,3] to the original first 91 p33 runes, from the printed first rune, without key or phase variation. It produced no recognizable instruction or key. The output and planted inverse control are retained in sims/lp2_p33_original_five_line_stage05_sft.cjs. This rejects that particular standalone seven-place reading only; it does not exclude a mechanism selected elsewhere.
 
-There is no recognizable independent short English instruction or typed key in that output. Its GP29 IoC is **0.031990231990**, identical to the original by mathematical necessity (reordering changes no symbol frequencies). For comparison, the first 91 genuinely solved original p57 runes give IoC **0.060317460317**. These 91-rune diagnostics are descriptive, and do not exclude non-English or a further independently indicated decryption layer. A complete original 91/91 reconstruction and a 91/91 planted solved-p57 inversion verify this specific implementation without conferring historical authenticity.
+## February 2014 semantic-crib transfer gate (#2494)
 
-**Reproducer:** [single-file original-source Node 22 check](../sims/lp2_p33_original_five_line_stage05_sft.cjs). This executable pins the five line counts, 23 original words, red spans, 91 marker and exact original rune sequence; it prints the output and round-trip controls. No original ciphertext or punctuation is altered.
+The historical control is real and reproducible: the second LP1 KOAN opening yields the period-13 GP29 key FIRFUMFERENFE from a short known plaintext; plaintext F is transparent and does not advance the key. Ciphertext F is not automatically a hold. The original dated discovery record and independent LP1 WELCOME blind continuation are consolidated in im-results/lp1-self-revealing-key-source-selection-gate.md. That positive control validates the method on solved LP1 material, not its transfer to LP2.
 
-## Missing selector and the Director fork
+### Upper p33 block: LP1 p05 source phrase
 
-The five actual printed lines and red/black rubric distinction are human-visible, but the preceding solved Cicada material does not tell a player to select p33, partition its initial 91 runes into thirteen arbitrary seven-tuples, apply Stage05, or extract a key from the result. Although one literal historical read was checked, **the premise for treating that reading as an intended instruction fails the independent-selector gate**. Further shifts, alternate 7×13 column traversals, matrix powers, or letter-frequency ranking would tune on the same ciphertext after seeing a negative result.
+The 1033 correspondence nominates the LP1 p05 sequence SOMEWISDOM (10 GP29 runes) followed by THEPRIMESARESACRED (17 GP29 runes). Their concatenation is a 27-rune candidate for p33 offsets 0–26, exactly spanning the 10-rune red rubric and the following black text.
 
-Retire the *p33 local-preface-as-seven-place-standalone-instruction* route unless a dated author-authenticated clue specifies its operation or a new archival original plaintext witness appears. The 91-rune region remains unknown ciphertext, and the boundary may still have a role in a mechanism selected elsewhere.
+Under the historically motivated continuous period-13 additive relation, the 27 differences give **14 repeat checks and 0 matches**. If the first red 13-dot marker is instead treated as a key reset, the 17-rune body-only crib gives **4 checks and 0 matches**. The crib contains no plaintext F, so the transparent-F rule cannot repair either failure. These are locked rejections of the exact source phrase under both natural clock readings; no alternate sign, offset, phrase, or reset was tried.
+
+### Lower p33 block: LP1 p16 source phrase
+
+The 3301 correspondence nominates LP1's AN INSTRUCTION title. Its native GP29 spelling is ANINSTRUCTIAN, **12 symbols**, because the IA rune carries the IO sequence. It is not a 13-symbol crib. The LP1 KNOW THIS subheading is only **7 GP29 symbols**, while p33's lower red span is 8; it is not an exact length-preserving heading crib.
+
+A deliberately generous lower-body test places the 12-rune ANINSTRUCTIAN crib at p33 offset 99, immediately after the lower red 13-dot mark. The first 12 original ciphertext runes there are ᛞᛒᚣᛡᚣᚢᚣᚾᚦᚱᛖᛗ. A period-13 key therefore has 12 known symbols and exactly one unknown symbol. The crib contains no F, so the next position begins at key phase 12. I exhaustively tested all **29** possible GP29 values for that one missing symbol—no other key, phase, sign, or offset search.
+
+- 23 completions admit a legal plaintext-F-transparent continuation; 6 have no legal path.
+- Every surviving best path is unique and re-encrypts exactly, as required by the transducer.
+- The best completion uses missing symbol EA, giving the 13 key tokens EA H T E J X OE H Y B L I EA. Its 103-rune continuation is JPSBEOOSYXIREAHIJFAENGUIIWLCAEUXMCAXAETGPITHXOEBBNGXOEEOXNGABXSPERHRDEAOCTNGFJIHXTEAWCRPXDYIAUUNGWOEJLOFMTHEOEEOJIACAEAENGAHUN, not recognizable plaintext.
+- A GP29 trigram model (alpha 0.1, no cross-section trigrams), trained without the source section supplying the crib, gives this best continuation **−3.609955 nats/rune**. Comparable leave-two-out windows from six native solved sections range from **−3.234725 to −2.504856 nats/rune**. Thus even the best of the 29 source-constrained completions scores below every native control.
+
+Exact inputs, the 29-way enumeration, language calibration, plaintext-F branching, and forward replay are reproduced by sims/lp2_p33_historical_semantic_crib_sft.cjs. The manual Node 22 workflow is .github/workflows/agent48-p33-historical-semantic-crib.yml.
+
+## Current decision
+
+The p33 1033/3301 visual cross-reference is a plausible way for a human solver to notice LP1 pages 05 and 16. It does **not** supply a successful plaintext crib or a usable period-13 key:
+
+- the exact p05 heading/body transfer fails all period checks;
+- the p16 heading candidate is too short for period 13, and its one-symbol completion exhausts all 29 possibilities without native-language continuation;
+- the lower KNOW THIS heading does not match the eight-rune p33 red span.
+
+Close this exact semantic-crib branch. Do not rescue it with new phrases, altered orthography, alternate offsets, guessed F holds, or tuned resets. Reopen only if an independent first-party clue selects a different exact plaintext passage or a different reversible operation. p33 remains unsolved; no unknown plaintext, authentic LP2 key, or final destination has been recovered.

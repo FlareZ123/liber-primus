@@ -1,0 +1,18 @@
+name: Agent48 p33 historical semantic crib gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Reproduce original-source p33 semantic crib gate
+        run: node sims/lp2_p33_historical_semantic_crib_sft.cjs
