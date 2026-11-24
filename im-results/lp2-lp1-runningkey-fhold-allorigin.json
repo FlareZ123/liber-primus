@@ -1,0 +1,999 @@
+{
+  "method": {
+    "streams": [
+      {
+        "name": "edited LP1 index",
+        "n": 2799
+      },
+      {
+        "name": "edited LP1 prime",
+        "n": 2799
+      },
+      {
+        "name": "source-corrected LP1 index",
+        "n": 2797
+      },
+      {
+        "name": "source-corrected LP1 prime",
+        "n": 2797
+      },
+      {
+        "name": "printed LP1 index",
+        "n": 2797
+      },
+      {
+        "name": "printed LP1 prime",
+        "n": 2797
+      }
+    ],
+    "clock": "all cyclic origins, genuine plaintext-F transparent, exact union reachability, chapter-private origin"
+  },
+  "naiveChecks": 120,
+  "authentic": [
+    {
+      "name": "WELCOME",
+      "n": 515,
+      "endCount": 8,
+      "trueEnd": 0
+    },
+    {
+      "name": "KOAN",
+      "n": 319,
+      "endCount": 1,
+      "trueEnd": 5
+    }
+  ],
+  "plants": [
+    {
+      "name": "edited LP1 index",
+      "sign": -1,
+      "start": 2706,
+      "end": 621,
+      "correct": true,
+      "endCount": 151,
+      "plainF": 15,
+      "cipherF": 59
+    },
+    {
+      "name": "edited LP1 index",
+      "sign": 1,
+      "start": 2749,
+      "end": 667,
+      "correct": true,
+      "endCount": 1,
+      "plainF": 12,
+      "cipherF": 29
+    },
+    {
+      "name": "edited LP1 prime",
+      "sign": -1,
+      "start": 2652,
+      "end": 566,
+      "correct": true,
+      "endCount": 11,
+      "plainF": 16,
+      "cipherF": 46
+    },
+    {
+      "name": "edited LP1 prime",
+      "sign": 1,
+      "start": 2739,
+      "end": 656,
+      "correct": true,
+      "endCount": 9,
+      "plainF": 13,
+      "cipherF": 33
+    },
+    {
+      "name": "source-corrected LP1 index",
+      "sign": -1,
+      "start": 2661,
+      "end": 576,
+      "correct": true,
+      "endCount": 142,
+      "plainF": 17,
+      "cipherF": 58
+    },
+    {
+      "name": "source-corrected LP1 index",
+      "sign": 1,
+      "start": 2746,
+      "end": 669,
+      "correct": true,
+      "endCount": 2,
+      "plainF": 9,
+      "cipherF": 22
+    },
+    {
+      "name": "source-corrected LP1 prime",
+      "sign": -1,
+      "start": 2665,
+      "end": 584,
+      "correct": true,
+      "endCount": 5,
+      "plainF": 13,
+      "cipherF": 43
+    },
+    {
+      "name": "source-corrected LP1 prime",
+      "sign": 1,
+      "start": 2687,
+      "end": 605,
+      "correct": true,
+      "endCount": 13,
+      "plainF": 14,
+      "cipherF": 41
+    },
+    {
+      "name": "printed LP1 index",
+      "sign": -1,
+      "start": 2690,
+      "end": 607,
+      "correct": true,
+      "endCount": 2,
+      "plainF": 15,
+      "cipherF": 45
+    },
+    {
+      "name": "printed LP1 index",
+      "sign": 1,
+      "start": 2648,
+      "end": 567,
+      "correct": true,
+      "endCount": 18,
+      "plainF": 13,
+      "cipherF": 51
+    },
+    {
+      "name": "printed LP1 prime",
+      "sign": -1,
+      "start": 2684,
+      "end": 603,
+      "correct": true,
+      "endCount": 3,
+      "plainF": 13,
+      "cipherF": 39
+    },
+    {
+      "name": "printed LP1 prime",
+      "sign": 1,
+      "start": 2680,
+      "end": 599,
+      "correct": true,
+      "endCount": 2,
+      "plainF": 13,
+      "cipherF": 38
+    }
+  ],
+  "gate": true,
+  "target": [
+    {
+      "name": "edited LP1 index",
+      "sign": 1,
+      "chapters": [
+        {
+          "j": 0,
+          "n": 729,
+          "legal": false,
+          "firstImpossible": 703,
+          "endCount": 0
+        },
+        {
+          "j": 1,
+          "n": 1145,
+          "legal": false,
+          "firstImpossible": 453,
+          "endCount": 0
+        },
+        {
+          "j": 2,
+          "n": 1729,
+          "legal": false,
+          "firstImpossible": 535,
+          "endCount": 0
+        },
+        {
+          "j": 3,
+          "n": 1903,
+          "legal": false,
+          "firstImpossible": 632,
+          "endCount": 0
+        },
+        {
+          "j": 4,
+          "n": 1021,
+          "legal": false,
+          "firstImpossible": 500,
+          "endCount": 0
+        },
+        {
+          "j": 5,
+          "n": 1433,
+          "legal": false,
+          "firstImpossible": 522,
+          "endCount": 0
+        },
+        {
+          "j": 6,
+          "n": 1680,
+          "legal": false,
+          "firstImpossible": 317,
+          "endCount": 0
+        },
+        {
+          "j": 7,
+          "n": 3008,
+          "legal": false,
+          "firstImpossible": 379,
+          "endCount": 0
+        },
+        {
+          "j": 8,
+          "n": 308,
+          "legal": false,
+          "firstImpossible": 231,
+          "endCount": 0
+        }
+      ]
+    },
+    {
+      "name": "edited LP1 index",
+      "sign": -1,
+      "chapters": [
+        {
+          "j": 0,
+          "n": 729,
+          "legal": false,
+          "firstImpossible": 459,
+          "endCount": 0
+        },
+        {
+          "j": 1,
+          "n": 1145,
+          "legal": false,
+          "firstImpossible": 364,
+          "endCount": 0
+        },
+        {
+          "j": 2,
+          "n": 1729,
+          "legal": false,
+          "firstImpossible": 412,
+          "endCount": 0
+        },
+        {
+          "j": 3,
+          "n": 1903,
+          "legal": false,
+          "firstImpossible": 518,
+          "endCount": 0
+        },
+        {
+          "j": 4,
+          "n": 1021,
+          "legal": false,
+          "firstImpossible": 685,
+          "endCount": 0
+        },
+        {
+          "j": 5,
+          "n": 1433,
+          "legal": false,
+          "firstImpossible": 557,
+          "endCount": 0
+        },
+        {
+          "j": 6,
+          "n": 1680,
+          "legal": false,
+          "firstImpossible": 544,
+          "endCount": 0
+        },
+        {
+          "j": 7,
+          "n": 3008,
+          "legal": false,
+          "firstImpossible": 627,
+          "endCount": 0
+        },
+        {
+          "j": 8,
+          "n": 308,
+          "legal": false,
+          "firstImpossible": 234,
+          "endCount": 0
+        }
+      ]
+    },
+    {
+      "name": "edited LP1 prime",
+      "sign": 1,
+      "chapters": [
+        {
+          "j": 0,
+          "n": 729,
+          "legal": false,
+          "firstImpossible": 695,
+          "endCount": 0
+        },
+        {
+          "j": 1,
+          "n": 1145,
+          "legal": false,
+          "firstImpossible": 695,
+          "endCount": 0
+        },
+        {
+          "j": 2,
+          "n": 1729,
+          "legal": false,
+          "firstImpossible": 424,
+          "endCount": 0
+        },
+        {
+          "j": 3,
+          "n": 1903,
+          "legal": false,
+          "firstImpossible": 589,
+          "endCount": 0
+        },
+        {
+          "j": 4,
+          "n": 1021,
+          "legal": false,
+          "firstImpossible": 590,
+          "endCount": 0
+        },
+        {
+          "j": 5,
+          "n": 1433,
+          "legal": false,
+          "firstImpossible": 509,
+          "endCount": 0
+        },
+        {
+          "j": 6,
+          "n": 1680,
+          "legal": false,
+          "firstImpossible": 371,
+          "endCount": 0
+        },
+        {
+          "j": 7,
+          "n": 3008,
+          "legal": false,
+          "firstImpossible": 542,
+          "endCount": 0
+        },
+        {
+          "j": 8,
+          "n": 308,
+          "legal": true,
+          "firstImpossible": null,
+          "endCount": 4
+        }
+      ]
+    },
+    {
+      "name": "edited LP1 prime",
+      "sign": -1,
+      "chapters": [
+        {
+          "j": 0,
+          "n": 729,
+          "legal": false,
+          "firstImpossible": 677,
+          "endCount": 0
+        },
+        {
+          "j": 1,
+          "n": 1145,
+          "legal": false,
+          "firstImpossible": 364,
+          "endCount": 0
+        },
+        {
+          "j": 2,
+          "n": 1729,
+          "legal": false,
+          "firstImpossible": 545,
+          "endCount": 0
+        },
+        {
+          "j": 3,
+          "n": 1903,
+          "legal": false,
+          "firstImpossible": 396,
+          "endCount": 0
+        },
+        {
+          "j": 4,
+          "n": 1021,
+          "legal": false,
+          "firstImpossible": 612,
+          "endCount": 0
+        },
+        {
+          "j": 5,
+          "n": 1433,
+          "legal": false,
+          "firstImpossible": 528,
+          "endCount": 0
+        },
+        {
+          "j": 6,
+          "n": 1680,
+          "legal": false,
+          "firstImpossible": 467,
+          "endCount": 0
+        },
+        {
+          "j": 7,
+          "n": 3008,
+          "legal": false,
+          "firstImpossible": 501,
+          "endCount": 0
+        },
+        {
+          "j": 8,
+          "n": 308,
+          "legal": true,
+          "firstImpossible": null,
+          "endCount": 1
+        }
+      ]
+    },
+    {
+      "name": "source-corrected LP1 index",
+      "sign": 1,
+      "chapters": [
+        {
+          "j": 0,
+          "n": 729,
+          "legal": false,
+          "firstImpossible": 703,
+          "endCount": 0
+        },
+        {
+          "j": 1,
+          "n": 1145,
+          "legal": false,
+          "firstImpossible": 453,
+          "endCount": 0
+        },
+        {
+          "j": 2,
+          "n": 1729,
+          "legal": false,
+          "firstImpossible": 535,
+          "endCount": 0
+        },
+        {
+          "j": 3,
+          "n": 1903,
+          "legal": false,
+          "firstImpossible": 632,
+          "endCount": 0
+        },
+        {
+          "j": 4,
+          "n": 1021,
+          "legal": false,
+          "firstImpossible": 500,
+          "endCount": 0
+        },
+        {
+          "j": 5,
+          "n": 1433,
+          "legal": false,
+          "firstImpossible": 522,
+          "endCount": 0
+        },
+        {
+          "j": 6,
+          "n": 1680,
+          "legal": false,
+          "firstImpossible": 317,
+          "endCount": 0
+        },
+        {
+          "j": 7,
+          "n": 3008,
+          "legal": false,
+          "firstImpossible": 380,
+          "endCount": 0
+        },
+        {
+          "j": 8,
+          "n": 308,
+          "legal": false,
+          "firstImpossible": 227,
+          "endCount": 0
+        }
+      ]
+    },
+    {
+      "name": "source-corrected LP1 index",
+      "sign": -1,
+      "chapters": [
+        {
+          "j": 0,
+          "n": 729,
+          "legal": false,
+          "firstImpossible": 459,
+          "endCount": 0
+        },
+        {
+          "j": 1,
+          "n": 1145,
+          "legal": false,
+          "firstImpossible": 364,
+          "endCount": 0
+        },
+        {
+          "j": 2,
+          "n": 1729,
+          "legal": false,
+          "firstImpossible": 412,
+          "endCount": 0
+        },
+        {
+          "j": 3,
+          "n": 1903,
+          "legal": false,
+          "firstImpossible": 518,
+          "endCount": 0
+        },
+        {
+          "j": 4,
+          "n": 1021,
+          "legal": false,
+          "firstImpossible": 685,
+          "endCount": 0
+        },
+        {
+          "j": 5,
+          "n": 1433,
+          "legal": false,
+          "firstImpossible": 557,
+          "endCount": 0
+        },
+        {
+          "j": 6,
+          "n": 1680,
+          "legal": false,
+          "firstImpossible": 544,
+          "endCount": 0
+        },
+        {
+          "j": 7,
+          "n": 3008,
+          "legal": false,
+          "firstImpossible": 627,
+          "endCount": 0
+        },
+        {
+          "j": 8,
+          "n": 308,
+          "legal": false,
+          "firstImpossible": 234,
+          "endCount": 0
+        }
+      ]
+    },
+    {
+      "name": "source-corrected LP1 prime",
+      "sign": 1,
+      "chapters": [
+        {
+          "j": 0,
+          "n": 729,
+          "legal": false,
+          "firstImpossible": 695,
+          "endCount": 0
+        },
+        {
+          "j": 1,
+          "n": 1145,
+          "legal": false,
+          "firstImpossible": 695,
+          "endCount": 0
+        },
+        {
+          "j": 2,
+          "n": 1729,
+          "legal": false,
+          "firstImpossible": 424,
+          "endCount": 0
+        },
+        {
+          "j": 3,
+          "n": 1903,
+          "legal": false,
+          "firstImpossible": 589,
+          "endCount": 0
+        },
+        {
+          "j": 4,
+          "n": 1021,
+          "legal": false,
+          "firstImpossible": 590,
+          "endCount": 0
+        },
+        {
+          "j": 5,
+          "n": 1433,
+          "legal": false,
+          "firstImpossible": 509,
+          "endCount": 0
+        },
+        {
+          "j": 6,
+          "n": 1680,
+          "legal": false,
+          "firstImpossible": 371,
+          "endCount": 0
+        },
+        {
+          "j": 7,
+          "n": 3008,
+          "legal": false,
+          "firstImpossible": 542,
+          "endCount": 0
+        },
+        {
+          "j": 8,
+          "n": 308,
+          "legal": true,
+          "firstImpossible": null,
+          "endCount": 4
+        }
+      ]
+    },
+    {
+      "name": "source-corrected LP1 prime",
+      "sign": -1,
+      "chapters": [
+        {
+          "j": 0,
+          "n": 729,
+          "legal": false,
+          "firstImpossible": 604,
+          "endCount": 0
+        },
+        {
+          "j": 1,
+          "n": 1145,
+          "legal": false,
+          "firstImpossible": 364,
+          "endCount": 0
+        },
+        {
+          "j": 2,
+          "n": 1729,
+          "legal": false,
+          "firstImpossible": 545,
+          "endCount": 0
+        },
+        {
+          "j": 3,
+          "n": 1903,
+          "legal": false,
+          "firstImpossible": 396,
+          "endCount": 0
+        },
+        {
+          "j": 4,
+          "n": 1021,
+          "legal": false,
+          "firstImpossible": 554,
+          "endCount": 0
+        },
+        {
+          "j": 5,
+          "n": 1433,
+          "legal": false,
+          "firstImpossible": 528,
+          "endCount": 0
+        },
+        {
+          "j": 6,
+          "n": 1680,
+          "legal": false,
+          "firstImpossible": 588,
+          "endCount": 0
+        },
+        {
+          "j": 7,
+          "n": 3008,
+          "legal": false,
+          "firstImpossible": 501,
+          "endCount": 0
+        },
+        {
+          "j": 8,
+          "n": 308,
+          "legal": true,
+          "firstImpossible": null,
+          "endCount": 1
+        }
+      ]
+    },
+    {
+      "name": "printed LP1 index",
+      "sign": 1,
+      "chapters": [
+        {
+          "j": 0,
+          "n": 729,
+          "legal": true,
+          "firstImpossible": null,
+          "endCount": 1
+        },
+        {
+          "j": 1,
+          "n": 1145,
+          "legal": false,
+          "firstImpossible": 570,
+          "endCount": 0
+        },
+        {
+          "j": 2,
+          "n": 1729,
+          "legal": false,
+          "firstImpossible": 527,
+          "endCount": 0
+        },
+        {
+          "j": 3,
+          "n": 1903,
+          "legal": false,
+          "firstImpossible": 460,
+          "endCount": 0
+        },
+        {
+          "j": 4,
+          "n": 1021,
+          "legal": false,
+          "firstImpossible": 500,
+          "endCount": 0
+        },
+        {
+          "j": 5,
+          "n": 1433,
+          "legal": false,
+          "firstImpossible": 528,
+          "endCount": 0
+        },
+        {
+          "j": 6,
+          "n": 1680,
+          "legal": false,
+          "firstImpossible": 601,
+          "endCount": 0
+        },
+        {
+          "j": 7,
+          "n": 3008,
+          "legal": false,
+          "firstImpossible": 629,
+          "endCount": 0
+        },
+        {
+          "j": 8,
+          "n": 308,
+          "legal": true,
+          "firstImpossible": null,
+          "endCount": 4
+        }
+      ]
+    },
+    {
+      "name": "printed LP1 index",
+      "sign": -1,
+      "chapters": [
+        {
+          "j": 0,
+          "n": 729,
+          "legal": true,
+          "firstImpossible": null,
+          "endCount": 1
+        },
+        {
+          "j": 1,
+          "n": 1145,
+          "legal": false,
+          "firstImpossible": 599,
+          "endCount": 0
+        },
+        {
+          "j": 2,
+          "n": 1729,
+          "legal": false,
+          "firstImpossible": 439,
+          "endCount": 0
+        },
+        {
+          "j": 3,
+          "n": 1903,
+          "legal": false,
+          "firstImpossible": 467,
+          "endCount": 0
+        },
+        {
+          "j": 4,
+          "n": 1021,
+          "legal": false,
+          "firstImpossible": 519,
+          "endCount": 0
+        },
+        {
+          "j": 5,
+          "n": 1433,
+          "legal": false,
+          "firstImpossible": 661,
+          "endCount": 0
+        },
+        {
+          "j": 6,
+          "n": 1680,
+          "legal": false,
+          "firstImpossible": 365,
+          "endCount": 0
+        },
+        {
+          "j": 7,
+          "n": 3008,
+          "legal": false,
+          "firstImpossible": 594,
+          "endCount": 0
+        },
+        {
+          "j": 8,
+          "n": 308,
+          "legal": false,
+          "firstImpossible": 294,
+          "endCount": 0
+        }
+      ]
+    },
+    {
+      "name": "printed LP1 prime",
+      "sign": 1,
+      "chapters": [
+        {
+          "j": 0,
+          "n": 729,
+          "legal": false,
+          "firstImpossible": 569,
+          "endCount": 0
+        },
+        {
+          "j": 1,
+          "n": 1145,
+          "legal": false,
+          "firstImpossible": 517,
+          "endCount": 0
+        },
+        {
+          "j": 2,
+          "n": 1729,
+          "legal": false,
+          "firstImpossible": 415,
+          "endCount": 0
+        },
+        {
+          "j": 3,
+          "n": 1903,
+          "legal": false,
+          "firstImpossible": 589,
+          "endCount": 0
+        },
+        {
+          "j": 4,
+          "n": 1021,
+          "legal": false,
+          "firstImpossible": 534,
+          "endCount": 0
+        },
+        {
+          "j": 5,
+          "n": 1433,
+          "legal": false,
+          "firstImpossible": 538,
+          "endCount": 0
+        },
+        {
+          "j": 6,
+          "n": 1680,
+          "legal": false,
+          "firstImpossible": 405,
+          "endCount": 0
+        },
+        {
+          "j": 7,
+          "n": 3008,
+          "legal": false,
+          "firstImpossible": 542,
+          "endCount": 0
+        },
+        {
+          "j": 8,
+          "n": 308,
+          "legal": true,
+          "firstImpossible": null,
+          "endCount": 1
+        }
+      ]
+    },
+    {
+      "name": "printed LP1 prime",
+      "sign": -1,
+      "chapters": [
+        {
+          "j": 0,
+          "n": 729,
+          "legal": true,
+          "firstImpossible": null,
+          "endCount": 1
+        },
+        {
+          "j": 1,
+          "n": 1145,
+          "legal": false,
+          "firstImpossible": 392,
+          "endCount": 0
+        },
+        {
+          "j": 2,
+          "n": 1729,
+          "legal": false,
+          "firstImpossible": 526,
+          "endCount": 0
+        },
+        {
+          "j": 3,
+          "n": 1903,
+          "legal": false,
+          "firstImpossible": 573,
+          "endCount": 0
+        },
+        {
+          "j": 4,
+          "n": 1021,
+          "legal": false,
+          "firstImpossible": 583,
+          "endCount": 0
+        },
+        {
+          "j": 5,
+          "n": 1433,
+          "legal": false,
+          "firstImpossible": 565,
+          "endCount": 0
+        },
+        {
+          "j": 6,
+          "n": 1680,
+          "legal": false,
+          "firstImpossible": 502,
+          "endCount": 0
+        },
+        {
+          "j": 7,
+          "n": 3008,
+          "legal": false,
+          "firstImpossible": 592,
+          "endCount": 0
+        },
+        {
+          "j": 8,
+          "n": 308,
+          "legal": true,
+          "firstImpossible": null,
+          "endCount": 5
+        }
+      ]
+    }
+  ]
+}
