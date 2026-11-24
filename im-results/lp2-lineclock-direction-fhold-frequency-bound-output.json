@@ -1,0 +1,185 @@
+{
+  "source": {
+    "lines": 594,
+    "runes": 12956,
+    "zeroCipherRunes": 458,
+    "partitions": [
+      [
+        [
+          0,
+          1,
+          2,
+          3
+        ],
+        [
+          4,
+          5,
+          6,
+          7
+        ],
+        [
+          8,
+          9,
+          10,
+          11
+        ],
+        [
+          12,
+          13,
+          14,
+          15
+        ],
+        [
+          16,
+          17,
+          18,
+          19
+        ],
+        [
+          20,
+          21,
+          22,
+          23
+        ],
+        [
+          24,
+          25
+        ]
+      ],
+      [
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          3,
+          4,
+          5
+        ],
+        [
+          6,
+          7,
+          8,
+          9
+        ],
+        [
+          10,
+          11,
+          12,
+          13
+        ],
+        [
+          14,
+          15,
+          16,
+          17
+        ],
+        [
+          18,
+          19,
+          20,
+          21
+        ],
+        [
+          22,
+          23,
+          24,
+          25
+        ]
+      ]
+    ],
+    "noHold": {
+      "blockMaxima": [
+        [
+          218,
+          193,
+          188,
+          200,
+          193,
+          130,
+          6
+        ],
+        [
+          109,
+          211,
+          191,
+          194,
+          199,
+          187,
+          46
+        ]
+      ],
+      "bounds": [
+        1128,
+        1137
+      ],
+      "bestBound": 1128
+    },
+    "fHold": {
+      "blockMaxima": [
+        [
+          226,
+          234,
+          241,
+          272,
+          275,
+          160,
+          6
+        ],
+        [
+          111,
+          226,
+          235,
+          251,
+          276,
+          249,
+          51
+        ]
+      ],
+      "bounds": [
+        1414,
+        1399
+      ],
+      "bestBound": 1399,
+      "maxOptionsPerLine": 128
+    }
+  },
+  "controls": [
+    {
+      "name": "Gibran",
+      "runes": 62492,
+      "windows": 49537,
+      "minLargestNonF": 1416,
+      "maxLargestNonF": 1618,
+      "minAt": 16749,
+      "windowsAtOrBelowBound": 0
+    },
+    {
+      "name": "Shakespeare",
+      "runes": 217106,
+      "windows": 204151,
+      "minLargestNonF": 1408,
+      "maxLargestNonF": 1675,
+      "minAt": 99596,
+      "windowsAtOrBelowBound": 0
+    },
+    {
+      "name": "Emerson",
+      "runes": 321327,
+      "windows": 308372,
+      "minLargestNonF": 1491,
+      "maxLargestNonF": 1717,
+      "minAt": 38640,
+      "windowsAtOrBelowBound": 0
+    }
+  ],
+  "plant": {
+    "knownKeyExactInverse": 12956,
+    "held": 362,
+    "reversed": 288,
+    "eCount": 1463,
+    "trueEKeyRelaxedBlockScore": 2003
+  },
+  "note": "Recorded key statistics from the executed algorithm; standalone SFT additionally prints every maximizing tuple."
+}
