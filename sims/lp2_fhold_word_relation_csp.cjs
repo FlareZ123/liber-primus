@@ -59,7 +59,8 @@ function createSolver(period,dict){
   function witness(s){const key=s.keys.map(v=>31-Math.clz32(v));let states=new Map([[0,{prev:null,p:null,n:1}]]);
    for(let w=0;w<rows.length;w++){const next=new Map();for(let j=0;j<rows[w].length;j++){const row=rows[w][j];for(const ph of bits(s.masks[w][j])){const prev=states.get(ph);if(!prev)continue;let phase=ph;const p=row.p||ws[w].map((c,i)=>row.holds.has(i)?0:mod29(c-key[phase++%period]));const end=modPhase(ph+row.advance),old=next.get(end);if(old)old.n=Math.min(2,old.n+prev.n);else next.set(end,{prev,p,n:prev.n})}}states=next}
    if(!states.size)return;let h=states.values().next().value;const p=[];while(h.p){p.unshift(h.p);h=h.prev}const id=key.join(",");if(String(encode(p,key).flat())!==String(ws.flat()))throw Error("replay mismatch");
-   keysFound.set(id,{key,p,paths:Math.min(2,[...states.values()].reduce((a,b)=>a+b.n,0)),endPhases:[...states.keys()]})
+   const paths=Math.min(2,[...states.values()].reduce((a,b)=>a+b.n,0)),endPhases=[...states.keys()],old=keysFound.get(id);
+   if(old){old.paths=Math.min(2,old.paths+paths);old.endPhases=[...new Set([...old.endPhases,...endPhases])]}else keysFound.set(id,{key,p,paths,endPhases})
   }
   function dfs(s){if(keysFound.size>=2||exhausted)return;if(++nodes>limit){exhausted=true;return}if(!propagate(s))return;let best={size:30,type:null,index:-1};
    for(let i=0;i<period;i++){const size=pop(s.keys[i]);if(size>1&&size<best.size)best={size,type:"keys",index:i}}if(!best.type){witness(s);return}
