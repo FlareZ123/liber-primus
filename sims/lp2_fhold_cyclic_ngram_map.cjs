@@ -5,6 +5,7 @@
  * q>=3; order 2 or 3. Each score factor spans consecutive consuming phases.
  */
 const MOD=29,ALL=(1<<29)-1,mod=x=>(x%MOD+MOD)%MOD;
+const inv=a=>{if(!Number.isInteger(a)||a<1||a>28)throw Error('nonzero slope required');return Array.from({length:28},(_,i)=>i+1).find(i=>mod(i*a)===1)};
 const logadd=(a,b)=>a===-Infinity?b:b===-Infinity?a:Math.max(a,b)+Math.log1p(Math.exp(-Math.abs(a-b)));
 /** @param {number[]} C @param {number} q @param {number} mask */
 function fixedMask(C,q,mask){
@@ -14,9 +15,10 @@ function fixedMask(C,q,mask){
  return {phase,domains,endPhase:active%q,holds:zero?C.length-active:0};
 }
 /** @param {number[]} C @param {number} q @param {{phase:Int16Array,domains:number[][]}} state @param {{uni:Float64Array,bi:Float64Array,tri:Float64Array}} lm @param {2|3} order */
-function factors(C,q,state,lm,order){
+function factors(C,q,state,lm,order,a=1){
+ const ai=inv(a);
  const {phase,domains}=state,D=domains.map(a=>a.length),U=D.map(n=>new Float64Array(n)),B=D.map((n,j)=>new Float64Array(n*D[(j+1)%q])),T=order===3?D.map((n,j)=>new Float64Array(n*D[(j+1)%q]*D[(j+2)%q])):null;
- const values=C.map((c,i)=>phase[i]<0?[0]:domains[phase[i]].map(k=>mod(c-k)));
+ const values=C.map((c,i)=>phase[i]<0?[0]:domains[phase[i]].map(k=>mod(ai*(c-k))));
  let constant=0;
  for(let i=0;i<C.length;i++){const n=Math.min(i+1,order),start=i-n+1,ph=Array.from(phase.slice(start,i+1)).filter(v=>v>=0),m=ph.length;
   if(!m){constant+=(n===1?lm.uni[0]:n===2?lm.bi[0]:lm.tri[0]);continue}
@@ -54,7 +56,7 @@ function optimize(state,fac,order){
  const result=order===2?run2(chosen[0],true):run3(chosen[0],chosen[1],true),key=Array(q);
  for(let i=0;i<q;i++){const j=(r+i)%q;key[j]=state.domains[j][result.idx[i]]}return {key,score:result.score+fac.constant};
 }
-function plainFor(C,state,key){return C.map((c,i)=>state.phase[i]<0?0:mod(c-key[state.phase[i]]))}
+function plainFor(C,state,key,a=1){const ai=inv(a);return C.map((c,i)=>state.phase[i]<0?0:mod(ai*(c-key[state.phase[i]])))}
 function scorePlain(P,lm,order=3){let s=0;for(let i=0;i<P.length;i++)s+=i===0?lm.uni[P[i]]:i===1||order===2?lm.bi[P[i-1]*29+P[i]]:lm.tri[(P[i-2]*29+P[i-1])*29+P[i]];return s}
 function train(seqs,alpha=.15){
  const u=new Float64Array(29),b=new Float64Array(29*29),t=new Float64Array(29**3),bt=new Float64Array(29),tt=new Float64Array(29**2);let total=0;
@@ -74,16 +76,17 @@ function recover(C,q,lm,{maxZeros=13,trigramMasks=16,exactIfZeros=5}={}){
 }
 
 /** Fixed-key prefix marginal and posterior-predictive suffix; no refitting. */
-function continueFrozen(C,split,key,lm){
+function continueFrozen(C,split,key,lm,a=1){
+ const ai=inv(a);
  const q=key.length,enc=(j,a,b)=>j*900+a*30+b,decode=s=>[Math.floor(s/900),Math.floor(s%900/30),s%30];
- function next(s,c){const [j,a,b]=decode(s),p=mod(c-key[j]),v=[];function emit(x,k){const score=b===29?lm.uni[x]:a===29?lm.bi[b*29+x]:lm.tri[(a*29+b)*29+x];v.push([enc(k,b,x),x,score]);}if(!c)emit(0,j);if(p!==0)emit(p,(j+1)%q);return v}
+ function next(s,c){const [j,a,b]=decode(s),p=mod(ai*(c-key[j])),v=[];function emit(x,k){const score=b===29?lm.uni[x]:a===29?lm.bi[b*29+x]:lm.tri[(a*29+b)*29+x];v.push([enc(k,b,x),x,score]);}if(!c)emit(0,j);if(p!==0)emit(p,(j+1)%q);return v}
  let states=new Map([[enc(0,29,29),{z:0,v:0,path:[]}]]); 
  for(let i=0;i<split;i++){const dst=new Map();for(const [s,r] of states)for(const [t,p,w] of next(s,C[i])){let x=dst.get(t),v=r.v+w,z=r.z+w;if(!x)dst.set(t,{z,v,path:[...r.path,p]});else{x.z=logadd(x.z,z);if(v>x.v){x.v=v;x.path=[...r.path,p]}}}states=dst;if(!states.size)return {legal:false,failedAt:i};}
  const prefix=states,prefixZ=[...prefix.values()].reduce((a,x)=>logadd(a,x.z),-Infinity);
  states=new Map([...prefix].map(([s,x])=>[s,{z:x.z,v:x.z,path:[],origin:s}]));
  for(let i=split;i<C.length;i++){const dst=new Map();for(const [s,r] of states)for(const [t,p,w] of next(s,C[i])){let x=dst.get(t),v=r.v+w,z=r.z+w;if(!x)dst.set(t,{z,v,path:[...r.path,p],origin:r.origin});else{x.z=logadd(x.z,z);if(v>x.v){x.v=v;x.path=[...r.path,p];x.origin=r.origin}}}states=dst;if(!states.size)return {legal:false,failedAt:i,prefixStates:prefix.size,prefixZ};}
  const all=[...states.values()],best=all.reduce((a,b)=>a.v>b.v?a:b),z=all.reduce((a,x)=>logadd(a,x.z),-Infinity);
- const prior=prefix.get(best.origin),P=prior.path.concat(best.path);let j=0;const replay=P.map(x=>x===0?0:mod(x+key[j++%q]));
+ const prior=prefix.get(best.origin),P=prior.path.concat(best.path);let j=0;const replay=P.map(x=>x===0?0:mod(a*x+key[j++%q]));
  return {legal:true,prefixStates:prefix.size,endStates:states.size,prefixZ,conditionalLogEvidence:z-prefixZ,suffixMap:best.v-prefixZ,chosenBoundaryLogPosterior:prior.z-prefixZ,prefix:prior.path,suffix:best.path,replay:replay.every((x,i)=>x===C[i])};
 }
 
