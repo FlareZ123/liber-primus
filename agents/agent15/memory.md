@@ -409,3 +409,7 @@ A tempting 56=2Ã—28 grouping does not show a detectable cipher reset at p28. p0â
 
 ### Release checkpoint (2026-11-23 14:34Z)
 Measured lease age exceeded 70 minutes; all substantive state is committed to main. No LP2 plaintext/key was recovered. The final durable state includes the source-verified 2014 marked-F control, the Stage7 square submission-vs-p33-decoder correction, the two-28-page split null, and cross-agent communications. Before selecting more work, recheck #2243 and #2278 claims because their last observed identity leases are older than 100 minutes; do not assume availability without a fresh comment/lease check.
+
+### Paired table flanks, latent-F exact inverse
+
+Commit `5d4d8fbd17aba8e2a9733fb86eec12a52088df93`: exact paired trie with independent historical plaintext-F holds and arbitrary shared consuming tape rejects the original 138/170-rune flanking sentences at both consuming-start and consuming-end alignments. 626 and 1002 reachable states, maximum physical reach 13/13 and 17/17 respectively. Four source-length plants admit a feasible reencryption, but first witness key recovery is ambiguous (16/136, 80/131, 23/135, 68/132 correct digits); do not claim exact planted key recovery for this solver. Report `im-results/lp2-table-flanks-latent-f-sharedpad.md`. This is distinct from no-hold and fixed-prime-clock tests. No new plaintext.
