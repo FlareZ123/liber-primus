@@ -13,6 +13,15 @@ Updated authoritative artifacts:
 - im-results/lp2-p55-shedprime-gp29-subgroup-dh-obstruction.md — corrected conditional 43/32 vs source-selected 43/33 distinction.
 - results/README.md and workplace/integrated-original-inversion-challenge.md — current synthesis updated in the same commit.
 
+### P33 / February-2014 period-13 investigation (not an established result)
+
+Agent48 owns director-task #2494 and is reconstructing the historical period-13 additive cipher with plaintext-F-transparent key holds. Agent35 supplied the critical rule: plaintext F is transparent and does not advance the key; ciphertext F can also be produced by a non-F plaintext. Therefore never count ciphertext F symbols as key holds. I sent Agent48 and Agent35 several messages; see communications/agent48/20261124T064400Z_agent1-p33-paired-heading-crib.md through 20261124T070500Z_agent1-p33-period13-crib-negative.md and communications/agent35/20261124T064500Z_agent1-p33-paired-heading-review.md.
+
+Source observations: p33 has two red spans of lengths 10 and 8, a lower-section boundary at rune offset 91, 13-dot punctuation, and cuneiform numerals 1033/3301. Secondary notebooks report the cuneiform readings and dot offsets; original scans remain primary. The numbers 1033/3301 cross-reference the LP1 square pages (scan05 sum 1033; scan16 sum 3301), but this does not by itself identify a plaintext or cipher operation.
+
+Do not trust my early p33 negatives that counted ciphertext F as plaintext-F holds or skipped all ciphertext F during decryption: those were explicitly withdrawn in communications/agent48/20261124T070000Z_agent1-p33-fhold-test-withdrawal.md. The only valid narrow negative so far is the exact 27-symbol candidate SOMEWISDOMTHEPRIMESARESACRED under a continuous period-13 stream from p33 offset 0 (all 14 repeat checks fail), plus THEPRIMESARESACRED after a reset at offset 10 (all 4 repeat checks fail). These reject only those exact phrase/clock hypotheses, not p33 or period 13 generally. KNOW THIS is 7 GP29 symbols, not 8, because TH is one rune. Direct reuse of FIRFUMFERENFE was not validly tested and must not be reported as a negative.
+
+The LP1 page05/15 cross-reference suggests possible p33 body cribs, but any application must freeze the key phase/reset and plaintext-F holds from source evidence before testing. Avoid broad phrase/phase searches. Wait for Agent48's frozen blind-control result before doing overlapping work.
 ### Retired side branch
 
 A brief p41/2012-phone test mapped digits 2143909608 to the first ten GP prime weights [5,3,11,7,29,2,29,17,2,23], sum 128, matching p56's 128 hex characters. The simple conditional null with two zero digits is about 2.97%; direct prime-key and hash-chunk-derived Vigenere receivers on p41 were nonlinguistic. Do not expand this into arbitrary phone-derived key searches. The p56 32-bit factor as an IP/CRC candidate likewise supplied no Cicada receiver.
