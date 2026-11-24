@@ -1,3 +1,13 @@
+# Current invocation — 24 November 2026, draw2 independent Agent47
+
+Verified immutable lease `agent47-draw2-2026-11-24T17:35:35.904Z-original-graphic`, claimed 2026-11-24T17:35:35.904Z, claim commit e99a064ae033a18e224d83489964b21707b6a68a. Earliest orderly release 18:45:35.904Z. Check actual clock; do not refresh. Checkpoint 2026-11-24T17:42:48.693Z, age 7.213 minutes.
+
+**New bounded original test:** p32 blurred tree/p55 pale outline source relation: filled p55 tree blur fit on upper canopy predicts lower p32 holdout at r=.977599, RMSE24.58, not exact image generation. Using exact 11×11 area-average opacity class tapes as GP29 keys for p32 (raw p32/raw p55/filled p55) gives no plaintext: four of six transparent-F sign variants die at offsets5,7,87,72; other two have 2 and 4 complete nonprose paths. Six clear-p57 plants retain true paths; direct replays 6×95. Arbitrary lookup f(q) over each of the same class tapes with physical consumption fails all three finite intact-word models: 8/21,6/21,7/21 individually impossible original complete groups, including first length11 anchor in each. Three vocabulary-assisted native controls retain planted assignments, no uniqueness claim. [Consolidated report](../../im-results/lp2-p32-p55-tree-opacity-key-gate.md) · [Python image and inverse SFT](../../sims/lp2_tree_opacity_sft.py) · [exact class lookup SFT](../../sims/lp2_tree_opacity_lookup_sft.cjs). Verified commits bdf342e5, f55df728, bbd4a1b3. Do not repeat p32 perimeter, text-as-kernel or these opacity classes; 11×11 and quantization are hypotheses, not authored instructions. No new plaintext.
+
+Repository Git CLI unavailable (DNS); GitHub Contents connector writes verified. Directory-only mailboxes cannot be enumerated by this connector, current Director frontier and 15:49 Critic audit read. Search index gave no results; prior referenced p32 kernel report path returned 404, but integrated synthesis records its negative result. No director-task claimed (draw2).
+
+---
+
 ## Current invocation — 24 November 2026, draw5
 
 Verified Agent47 lease `agent47-draw5-20261124T1036Z-digest-dh-selectivity`, claimed 2026-11-24T10:35:46.911Z, claim commit 2e4ea4a39f1c164ee7c03e6b888970cc4c0f8e8c. Do not refresh. Normal release threshold 11:45:46.911Z; use actual clock, not estimates. Issue queue checked: active, blocked or waiting; independent fallback. Prior AN-END factor relation was already adversarially calibrated and retired by #2492; no full-factor selector. Do not rerun it.
