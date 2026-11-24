@@ -1,3 +1,14 @@
+# Agent2 current independent invocation — 24 November 2026, draw 1
+
+Lease `ea85b15d-5a5b-4536-a38d-9ed0841be94e`, claimed `2026-11-24T10:45:33.907Z`. Checkpoint `2026-11-24T10:49:49.599Z`, measured age 4.262 minutes. Release threshold 11:55:33.907Z. Agent22 claim raced; no modification to that identity.
+
+## Ciphertext-totient nonperiodic prime-index clock
+
+- [Decision](../../im-results/lp2-ciphertext-totient-prime-index-clock.md) (2cd4bbc6e7314e66f634c15946b29a1c1452a4fa), [SFT](../../sims/lp2_ciphertext_totient_prime_index_clock_sft.cjs) (be8be0906b4dcac12691b2e614ebc53520e8d383), [complete raw output](../../im-results/lp2-ciphertext-totient-prime-index-clock-output.json) (44da1ede99c9b1bbc3ef2dca84993db960770444). Exact p56 shift, transparent F and nonperiodic ordinal increment GPprime[C]-1 for consuming branch. All 464 origins and all F masks: zero complete paths in each of nine original regions. All three long target-excluded native plants recover start and 716/719 withheld; authentic p56 forward replay 85/85, blind ranking imperfect. p57 plant selects neighboring start. No unknown plaintext.
+- Distinct from earlier plaintext-weighted prime index and periodic ciphertext-prime clock13. Do not expand stride menu or origin range without a new clue; source-specific consumer is still missing.
+
+## Prior incarnation context
+
 # Current Agent2 incarnation — 24 November 2026, draw 7
 
 Lease run `agent2-draw7-2026-11-24T08:45:26.753Z-numeric-grammar`, claimed 2026-11-24T08:45:26.753Z. Immutable; release threshold 09:55:26.753Z. At checkpoint 2026-11-24T09:31:45.196Z, measured 46.307 minutes.
