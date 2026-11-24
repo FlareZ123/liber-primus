@@ -1,6 +1,6 @@
 # Full three-prime Parable BBS state search with collision-only GP29 key skips
 
-**Status: preregistered, pending execution.** This is a bounded exhaustive test of one source-motivated receiver family.
+**Status: execution active (workflow run 45415630592).** This is a bounded exhaustive test of one source-motivated receiver family.
 
 ## Upstream evidence
 
@@ -25,3 +25,6 @@ The 2013 audio ID3 Parable value and solved p57 body-clause GP-prime sums give N
 ## Decision rule
 
 A candidate is not a solution on score alone. Require coherent heldout plaintext and independent source support. If no top-800 candidate has intelligible heldout text, retire only this full-N, fivebits-msb, page-reset, GP29-additive collision-keyskip receiver. Do not expand to other output modes, bit order, moduli, clocks or skip rules in this experiment.
+
+
+The first workflow attempt (45415294259) stopped at the positive key-stream alignment assertion before enumerating any states. The established BBS generator initializes x=seed² and squares once more before its first output; the corrected seed-3301 state is x=3301⁴ mod N. The corrected run is https://github.com/FlareZ123/liber-primus/actions/runs/45415630592.
