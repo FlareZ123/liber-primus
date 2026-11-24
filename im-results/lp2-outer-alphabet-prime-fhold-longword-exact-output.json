@@ -1,0 +1,2652 @@
+{
+  "anchors": [
+    {
+      "wi": 754,
+      "g": 3405,
+      "ct": [
+        17,
+        6,
+        23,
+        14,
+        19,
+        17,
+        14,
+        5,
+        21,
+        2,
+        26,
+        23,
+        25,
+        28
+      ],
+      "page": 13,
+      "pageStart": 3194,
+      "chapterStart": 1874
+    },
+    {
+      "wi": 1353,
+      "g": 6035,
+      "ct": [
+        28,
+        10,
+        27,
+        2,
+        21,
+        9,
+        18,
+        9,
+        0,
+        3,
+        19,
+        18,
+        26,
+        24
+      ],
+      "page": 25,
+      "pageStart": 5989,
+      "chapterStart": 5506
+    },
+    {
+      "wi": 2341,
+      "g": 10453,
+      "ct": [
+        16,
+        0,
+        11,
+        4,
+        7,
+        0,
+        15,
+        9,
+        7,
+        11,
+        18,
+        17,
+        1,
+        2
+      ],
+      "page": 43,
+      "pageStart": 10416,
+      "chapterStart": 9640
+    }
+  ],
+  "dictionary": 175,
+  "rows": [
+    {
+      "mode": "page",
+      "sign": 1,
+      "marker": 0,
+      "pin": false,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": 1,
+      "marker": 0,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": 1,
+      "marker": 1,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": 1,
+      "marker": 2,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": 1,
+      "marker": 3,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": 1,
+      "marker": 4,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": 1,
+      "marker": 5,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": 1,
+      "marker": 6,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": 1,
+      "marker": 7,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": 1,
+      "marker": 8,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": 1,
+      "marker": 9,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": 1,
+      "marker": 10,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": 1,
+      "marker": 11,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": 1,
+      "marker": 12,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": 1,
+      "marker": 13,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": 1,
+      "marker": 14,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": 1,
+      "marker": 15,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": 1,
+      "marker": 16,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": 1,
+      "marker": 17,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": 1,
+      "marker": 18,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": 1,
+      "marker": 19,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": 1,
+      "marker": 20,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": 1,
+      "marker": 21,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": 1,
+      "marker": 22,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": 1,
+      "marker": 23,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": 1,
+      "marker": 24,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": 1,
+      "marker": 25,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": 1,
+      "marker": 26,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": 1,
+      "marker": 27,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": 1,
+      "marker": 28,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": -1,
+      "marker": 0,
+      "pin": false,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": -1,
+      "marker": 0,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": -1,
+      "marker": 1,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": -1,
+      "marker": 2,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": -1,
+      "marker": 3,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": -1,
+      "marker": 4,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": -1,
+      "marker": 5,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": -1,
+      "marker": 6,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": -1,
+      "marker": 7,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": -1,
+      "marker": 8,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": -1,
+      "marker": 9,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": -1,
+      "marker": 10,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": -1,
+      "marker": 11,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": -1,
+      "marker": 12,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": -1,
+      "marker": 13,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": -1,
+      "marker": 14,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": -1,
+      "marker": 15,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": -1,
+      "marker": 16,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": -1,
+      "marker": 17,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": -1,
+      "marker": 18,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": -1,
+      "marker": 19,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": -1,
+      "marker": 20,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": -1,
+      "marker": 21,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": -1,
+      "marker": 22,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": -1,
+      "marker": 23,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": -1,
+      "marker": 24,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": -1,
+      "marker": 25,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": -1,
+      "marker": 26,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": -1,
+      "marker": 27,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "page",
+      "sign": -1,
+      "marker": 28,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": 1,
+      "marker": 0,
+      "pin": false,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": 1,
+      "marker": 0,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": 1,
+      "marker": 1,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": 1,
+      "marker": 2,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": 1,
+      "marker": 3,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": 1,
+      "marker": 4,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": 1,
+      "marker": 5,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": 1,
+      "marker": 6,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": 1,
+      "marker": 7,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": 1,
+      "marker": 8,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": 1,
+      "marker": 9,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": 1,
+      "marker": 10,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": 1,
+      "marker": 11,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": 1,
+      "marker": 12,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": 1,
+      "marker": 13,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": 1,
+      "marker": 14,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": 1,
+      "marker": 15,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": 1,
+      "marker": 16,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": 1,
+      "marker": 17,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": 1,
+      "marker": 18,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": 1,
+      "marker": 19,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": 1,
+      "marker": 20,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": 1,
+      "marker": 21,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": 1,
+      "marker": 22,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": 1,
+      "marker": 23,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": 1,
+      "marker": 24,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": 1,
+      "marker": 25,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": 1,
+      "marker": 26,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": 1,
+      "marker": 27,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": 1,
+      "marker": 28,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": -1,
+      "marker": 0,
+      "pin": false,
+      "local": [
+        0,
+        1,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": -1,
+      "marker": 0,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": -1,
+      "marker": 1,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": -1,
+      "marker": 2,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": -1,
+      "marker": 3,
+      "pin": true,
+      "local": [
+        0,
+        1,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": -1,
+      "marker": 4,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": -1,
+      "marker": 5,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": -1,
+      "marker": 6,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": -1,
+      "marker": 7,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": -1,
+      "marker": 8,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": -1,
+      "marker": 9,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": -1,
+      "marker": 10,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": -1,
+      "marker": 11,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": -1,
+      "marker": 12,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": -1,
+      "marker": 13,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": -1,
+      "marker": 14,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": -1,
+      "marker": 15,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": -1,
+      "marker": 16,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": -1,
+      "marker": 17,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": -1,
+      "marker": 18,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": -1,
+      "marker": 19,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": -1,
+      "marker": 20,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": -1,
+      "marker": 21,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": -1,
+      "marker": 22,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": -1,
+      "marker": 23,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": -1,
+      "marker": 24,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": -1,
+      "marker": 25,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": -1,
+      "marker": 26,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": -1,
+      "marker": 27,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "chapter",
+      "sign": -1,
+      "marker": 28,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": 1,
+      "marker": 0,
+      "pin": false,
+      "local": [
+        0,
+        2,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": 1,
+      "marker": 0,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": 1,
+      "marker": 1,
+      "pin": true,
+      "local": [
+        0,
+        1,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": 1,
+      "marker": 2,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": 1,
+      "marker": 3,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": 1,
+      "marker": 4,
+      "pin": true,
+      "local": [
+        0,
+        1,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": 1,
+      "marker": 5,
+      "pin": true,
+      "local": [
+        0,
+        1,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": 1,
+      "marker": 6,
+      "pin": true,
+      "local": [
+        0,
+        1,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": 1,
+      "marker": 7,
+      "pin": true,
+      "local": [
+        0,
+        1,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": 1,
+      "marker": 8,
+      "pin": true,
+      "local": [
+        0,
+        1,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": 1,
+      "marker": 9,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": 1,
+      "marker": 10,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": 1,
+      "marker": 11,
+      "pin": true,
+      "local": [
+        0,
+        1,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": 1,
+      "marker": 12,
+      "pin": true,
+      "local": [
+        0,
+        1,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": 1,
+      "marker": 13,
+      "pin": true,
+      "local": [
+        0,
+        1,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": 1,
+      "marker": 14,
+      "pin": true,
+      "local": [
+        0,
+        1,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": 1,
+      "marker": 15,
+      "pin": true,
+      "local": [
+        0,
+        1,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": 1,
+      "marker": 16,
+      "pin": true,
+      "local": [
+        0,
+        1,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": 1,
+      "marker": 17,
+      "pin": true,
+      "local": [
+        0,
+        1,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": 1,
+      "marker": 18,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": 1,
+      "marker": 19,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": 1,
+      "marker": 20,
+      "pin": true,
+      "local": [
+        0,
+        1,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": 1,
+      "marker": 21,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": 1,
+      "marker": 22,
+      "pin": true,
+      "local": [
+        0,
+        1,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": 1,
+      "marker": 23,
+      "pin": true,
+      "local": [
+        0,
+        1,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": 1,
+      "marker": 24,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": 1,
+      "marker": 25,
+      "pin": true,
+      "local": [
+        0,
+        1,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": 1,
+      "marker": 26,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": 1,
+      "marker": 27,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": 1,
+      "marker": 28,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": -1,
+      "marker": 0,
+      "pin": false,
+      "local": [
+        0,
+        3,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": -1,
+      "marker": 0,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": -1,
+      "marker": 1,
+      "pin": true,
+      "local": [
+        0,
+        2,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": -1,
+      "marker": 2,
+      "pin": true,
+      "local": [
+        0,
+        1,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": -1,
+      "marker": 3,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": -1,
+      "marker": 4,
+      "pin": true,
+      "local": [
+        0,
+        1,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": -1,
+      "marker": 5,
+      "pin": true,
+      "local": [
+        0,
+        3,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": -1,
+      "marker": 6,
+      "pin": true,
+      "local": [
+        0,
+        2,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": -1,
+      "marker": 7,
+      "pin": true,
+      "local": [
+        0,
+        1,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": -1,
+      "marker": 8,
+      "pin": true,
+      "local": [
+        0,
+        1,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": -1,
+      "marker": 9,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": -1,
+      "marker": 10,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": -1,
+      "marker": 11,
+      "pin": true,
+      "local": [
+        0,
+        1,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": -1,
+      "marker": 12,
+      "pin": true,
+      "local": [
+        0,
+        1,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": -1,
+      "marker": 13,
+      "pin": true,
+      "local": [
+        0,
+        2,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": -1,
+      "marker": 14,
+      "pin": true,
+      "local": [
+        0,
+        3,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": -1,
+      "marker": 15,
+      "pin": true,
+      "local": [
+        0,
+        1,
+        1
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": -1,
+      "marker": 16,
+      "pin": true,
+      "local": [
+        0,
+        1,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": -1,
+      "marker": 17,
+      "pin": true,
+      "local": [
+        0,
+        1,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": -1,
+      "marker": 18,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": -1,
+      "marker": 19,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": -1,
+      "marker": 20,
+      "pin": true,
+      "local": [
+        0,
+        2,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": -1,
+      "marker": 21,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": -1,
+      "marker": 22,
+      "pin": true,
+      "local": [
+        0,
+        3,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": -1,
+      "marker": 23,
+      "pin": true,
+      "local": [
+        0,
+        1,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": -1,
+      "marker": 24,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": -1,
+      "marker": 25,
+      "pin": true,
+      "local": [
+        0,
+        1,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": -1,
+      "marker": 26,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": -1,
+      "marker": 27,
+      "pin": true,
+      "local": [
+        0,
+        1,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    },
+    {
+      "mode": "continuous",
+      "sign": -1,
+      "marker": 28,
+      "pin": true,
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "pair": 0,
+      "triple": 0,
+      "witness": null
+    }
+  ],
+  "controls": [
+    {
+      "marker": 0,
+      "pin": false,
+      "sign": 1,
+      "assigned": 23
+    },
+    {
+      "marker": 0,
+      "pin": false,
+      "sign": -1,
+      "assigned": 20
+    },
+    {
+      "marker": 4,
+      "pin": true,
+      "sign": 1,
+      "assigned": 23
+    },
+    {
+      "marker": 4,
+      "pin": true,
+      "sign": -1,
+      "assigned": 21
+    }
+  ],
+  "inputs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/lp2-transcription.txt",
+      "sha": "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7"
+    },
+    {
+      "path": "resources/control/english_wordfreq_textblob.txt",
+      "sha": "140e1d22b5f8c45deddd2e8b25549d9d6307d938"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/liber-primus/lp1-plaintext-reference.txt",
+      "sha": "8ed037a6ddeef2b20a10bd6a84830e7cf9f43f7d"
+    }
+  ]
+}
