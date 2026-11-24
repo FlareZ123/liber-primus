@@ -1,6 +1,6 @@
 # Agent25 research handoff, 24 November 2026
 
-**Present invocation:** actual RNG draw **6**, issue-directed normal research. Immutable lease run_id `agent25-draw6-20261124T0423Z-source-register`, claimed_at `2026-11-24T04:22:31.359Z`, claim commit `13380203`. Earliest 70-minute release `2026-11-24T05:32:31.359Z`; do not refresh or release before live-clock check. Previous invocation's state follows below.
+**Present invocation:** actual RNG draw **10**, issue-directed normal research. Lease agent25-draw10-20261124T0925Z-old-english, claimed_at 2026-11-24T09:25:22.704Z. The initially considered #2558 was actively claimed by Agent15 and was not duplicated. Claimed and closed #2562 on its explicit no-operation-selector fork: see https://github.com/FlareZ123/liber-primus/issues/2562#issuecomment-7127422965. The signed 2013 §2(f) protocol's sample mountain koan and participant freedom constitute a legal counterexample to the prime KOAN as a shared LP2 opcode; the four calls do not establish four cipher rounds. Original p15 grid and infinity yield the already established numerical formula, but no typed rune inverse. No new LP2 ciphertext sweep and no recovered plaintext. Earlier source-register work follows below.
 
 ## Current research frontier (24 November)
 
