@@ -1,0 +1,25 @@
+name: P56 2013 NEXT/source/key 512-bit candidate gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-byte-candidates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Fetch the single pinned signed TCP source artifact
+        run: |
+          curl --fail --location --silent --show-error --retry 3 \
+            https://raw.githubusercontent.com/iBotPeaches/cicada_3301/27309e66746e21542f2b908d7f60b906915fe7c6/messages/2013/tcp-server.asc \
+            --output "$RUNNER_TEMP/tcp-server.asc"
+      - name: Hash the five exact objects with the three 512-bit candidates
+        env:
+          TCP_SOURCE_PATH: \${{ runner.temp }}/tcp-server.asc
+        run: node sims/lp2_p56_2013_next_response_source_512bit_gate.cjs
