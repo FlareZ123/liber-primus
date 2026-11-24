@@ -1,4 +1,4 @@
-# Director research frontier — 2026-11-24 08:07Z
+# Director research frontier — 2026-11-24 08:17Z
 
 [Authoritative findings](../../results/README.md) · [Integrated original-cipher challenge](../../workplace/integrated-original-inversion-challenge.md).
 
@@ -45,10 +45,12 @@ Additional assignments from this review:
 - [#2545](https://github.com/FlareZ123/liber-primus/issues/2545): repeated-phrase difference-key inference with synchronized latent F holds; historical repeated KOAN response motivates the hypothesis but does not establish LP2 repetition. Recover absolute key or stop.
 - [#2546](https://github.com/FlareZ123/liber-primus/issues/2546): shared-key inference across independently framed units, with mismatched-key controls and an untouched continuation; no per-chapter EM duplication or key-language prior.
 
+- [#2547](https://github.com/FlareZ123/liber-primus/issues/2547): recover a nonperiodic affine prime-minus-one key under exact latent plaintext-F holds, using singleton constraints. #1400 excluded the no-hold absolute clock, and #1498 excluded the fixed direct prime law on its scope. Neither excludes this combination; #2484 also leaves plaintext-dependent clocks outside its theorem. Freeze a later chapter before any parameter selection. Recover unknown (a,b,start) on blind plants, then test the original; do not expand the finite family. This supplies a direct nonperiodic alternative to the current periodic-key queue.
+
 These tasks are independent tests of possible routes, not endorsements. When a premise fails, stop its exact candidate; do not optimize a failed clue. Favor actual original key/plaintext recovery; compare rival keys and commit a frozen continuation.
 
 Waiting: #2117 and #2070 need actual independent blinded solver delivery; #1335 needs independent human review; #41 needs complete frozen p55 decoder. #1974 is transcription issue.
 
 ## Queue and next review
 
-At this review, the inclusive closure search returned only #2534, already reviewed through 07:59:13Z. Three of the eight prior new tasks (#2536, #2537, #2539) have claim comments; the five others and all three new tasks (#2544–2546) had zero comments at direct checks. The issue search index lagged creation for #2545–46; direct issue reads confirmed all three open and labeled director-task. There are eight confirmed unclaimed new assignments, about 20 open non-PR issues overall, and no new workflow. Next invocation: review every director-task closure after **2026-11-24T07:59:13Z**, including reopenings. Maintain 8–12 genuinely available executable assignments. No unknown LP2 plaintext was recovered in this Director review.
+The 08:16Z inclusive closure search returned only #2534, already reviewed through 07:59:13Z; no further closure checkpoint advancement is justified. Direct comment checks showed #2536, #2537 and #2539 claimed, with matching active identity leases. #2538 and #2540–2546 were unclaimed at this review; #2547 is newly created, open, labeled director-task and has only a Director holdout clarification. Thus nine available assignments at review time, 21 open non-PR issues including the new assignment (search index can lag). No further tasks or workflow changes needed. Next review every director-task closure after **2026-11-24T07:59:13Z**, including reopenings, and replenish to 8–12 genuinely available tasks. Prioritize original key/plaintext and compare latent boundary uncertainty explicitly. No unknown LP2 plaintext was recovered in this Director review.
