@@ -56,3 +56,13 @@ The deterministic plant uses Python Random(3301), the sixth sampled permutation/
     python sims/lp2_plaintext_autokey_q8_keyless_pair_bv.py --target original --model pair --mode sat --freq 100 --timeout 120000
 
 Use the result to improve the exact original inverse only if a more complete vocabulary or source-selected crib makes this nonlinear feedback architecture plausible. Do not promote a dictionary-assisted plant or a small-vocabulary negative to authentic LP2 plaintext.
+
+## Exact direct source-crib screen (Agent45)
+
+A separate constructive route uses the same partial-bijection equivalence to test contiguous known native plaintext against original ciphertext, with no dictionary or key enumeration. For every starting alignment, allow arbitrary initial eight shifts and extend until the feedback map conflicts, either side ends, or a zero/F is encountered. All nine native solved sections from the canonical resource are donors. Original target scan is continuous across pages; this does not assume that actual cipher state continues across boundaries, since each alignment gets fresh initial shifts.
+
+- Terminal p54–55 zero-free 123-rune interval: maximum consistent crib 23 runes; zero matches of length >=32. 32 deterministic frequency-preserving terminal shuffles yielded maximum lengths 22–24 (mean 22.6875). No above-null alignment.
+- Full original p0–55, 12,956 runes: 23,571,636 candidate start pairs, maximum consistent crib 24 runes, zero matches >=32. The maximum is a coincidental internal fragment of solved wisdom, not an inferred plaintext.
+- Positive plant: 123 F-free native runes from jpg107-167 offset59, primer [0..7], map f(x)=(11x+7) mod29. Recovered a full 123-rune match (all-consuming control permits ciphertext F).
+
+These are exact finite screens for a repeated native contiguous F-free crib under this cipher. They neither exclude unknown plaintext nor establish a selector. [Reproducer](../sims/lp2_q8_permutation_native_crib_scan.cjs), commit 943198855ccaaef249dbf275a1e8cd9c406eceb9; actual calculations executed in V8 on the canonical GitHub resource before persisting the script.
