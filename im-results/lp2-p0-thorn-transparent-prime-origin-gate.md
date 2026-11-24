@@ -1,6 +1,6 @@
 # Opening twig-rune TH: exact prime-origin recovery and source-cipher decision
 
-**Agent14, 24 November 2026.** The source-visible p0 paired 3|3 twig corresponds to thorn (þ) under the dominant historical convention documented in [the opening audit](lp2-opening-3x3-yf-cipher-rune-literature-audit.md). It matches the first black ciphertext symbol TH. The correspondence does not itself establish an encryption operation. One concrete historically motivated interpretation is that TH has the literal, clock-transparent role of F in solved p56. A rival retains the historic F and adds TH as a second hold symbol. This investigation tests those two exact models without trusting printed word boundaries. No unknown LP2 plaintext or authentic new key recovered.
+**Agent14, 24 November 2026.** The source-visible p0 paired 3|3 twig corresponds to thorn (þ) under the dominant historical convention documented in [the opening audit](lp2-opening-3x3-yf-cipher-rune-literature-audit.md). It matches the first black ciphertext symbol TH. The correspondence does not itself establish an encryption operation. One concrete historically motivated interpretation is that TH has the literal, clock-transparent role of F in solved p56. A rival retains the historic F and adds TH as a second hold symbol. This investigation tests those two exact models without trusting printed word boundaries. No unknown LP2 plaintext or authentic new key recovered. The distinct alternating physical-line prime-clock extension below also fails every frozen p0→p1–2 prediction; its only complete retrospective paths are nonprose.
 
 ## Frozen inverse and original decision
 
@@ -90,3 +90,34 @@ The twig's historically conditional TH reading is a specific selector for the th
 The exact phase/previous-two-rune Viterbi inverse tests each possible literal hold path; a path that reaches no state cannot be rescued by a language score. Each of the nine literal-marker variants dies in at most 34 runes. In particular the natural OE phonetic and English F-hold keys die on the first TH: their first key symbol is TH, so consuming would decode F, which must emit F literally. The ordinary receivers survive but produce nonprose on both the 351-rune prefix and frozen-phase 365-rune continuation. Target-section-excluded native trigram scoring gives −2.323 to −2.831 for the twelve planted controls; exact ciphertext replay holds for all, with 1901/1928 plaintext symbols recovered (ambiguity in literal-marker paths accounts for the errors). This excludes the direct cyclic stanza receiver only, not every possible use of the poem or twig. No unknown plaintext.
 
 Reproducer: `node sims/lp2_p0_thorn_stanza_direct_key_sft.cjs`; raw `im-results/lp2-p0-thorn-stanza-direct-key.json`.
+
+## Alternating physical-line prime clock (Agent3, 24 November 2026)
+
+The two opposed twig staves on original p0 motivate a distinct, conditional reading-direction hypothesis: the prime clock visits physical lines in alternating left-to-right/right-to-left order while plaintext is read in ordinary physical order. This grants the historical F hold, the conditional TH hold, and both together. The staves do not independently authenticate this traversal. This experiment changes the clock traversal, rather than extending the previously failed direct prime origin range.
+
+### Frozen receiver and exact inversion
+
+Use the canonical p0–2 729-rune tape and its literal physical line partition (12/12/9 lines). Test both starting line directions, both additive signs, each of F, TH, F+TH as literal no-consumption symbols, and the complete chapter or black-body start (drop precisely the 13 red runes before visiting the first partial line). Each model grants origins 0..3301 inclusive: **79,248 model-origin combinations**. The clock is continuous over all 33 lines and both physical page boundaries; it does not consume spaces or punctuation. Prime shifts are (prime[k]−1) mod29.
+
+For each visited ciphertext symbol c and state k, a hold is legal if c belongs to the hold set Q; a consuming inverse p=(c−sign·shift[k]) mod29 is legal only if p is outside Q. The exact state-count DP uses BigInt path multiplicities, no cap. A second exact optimization enumerates legal paths inside each short physical line, reverses decoded lines where required, and propagates the best natural-order trigram score for each (prime index, previous two physical-order plaintext runes). This is exact for the stated smoothed native trigram model, including cross-line language context. No dictionary or printed-word assumption is used. For prediction, select the best complete p0 prefix per variant (262 or 249 runes), then freeze its origin, phase, sign, hold set, consumed clock and terminal language context before solving p1–2 (467 runes). The separate retrospective optimum uses complete-original feasibility and is not a held-out prediction.
+
+### Original result
+
+Every model with the authentic additive sign, TH-only holds, or combined F+TH holds has **zero** complete p0–2 paths; maximum legal positive-sign F prefix is 704/729. The only complete survivors have negative sign and F-only holds:
+
+| Frame | First line | Complete origins | Total origin-path pairs | Best complete score (nats/rune) |
+|---|---|---|---:|---:|
+| Full | forward | 937,938 | 156 | −3.535267 |
+| Full | reverse | 417,418,419,421,422,423 | 48 | −3.550102 |
+| Black only | forward | 950,951 | 156 | −3.529999 |
+| Black only | reverse | 430,431,434,435 | 24 | −3.551623 |
+
+There are 14 surviving model-origin pairs and 384 origin-path pairs, counting overlapping framings separately; these are not necessarily distinct plaintexts. All four exact retrospective optimum texts are nonprose (e.g. full/forward begins B C R A X T U C N A OE IA NG Y T B P AE J EA J J M OE). All 24 independent prefix winners have **no legal p1–2 continuation from their frozen terminal state**, including all four retrospectively feasible variants. The global prefix winner is black-only/forward/TH-only/negative at origin1392, −3.448520 nats/rune, nonprose. All reported complete candidate inverses replay exactly; this is an implementation invariant, not historical key authentication.
+
+### Controls and disposition
+
+Actual solved p56 replays 85/85 with 84 consuming primes in ordinary forward order. Two source-native 729-rune planted controls use the same line geometry, target-section-excluded GP29 trigrams (additive smoothing .2), and blind enumeration of all 3,302 prime origins. KOAN I (forward,+,origin137,F) recovers the exact origin, 262/262 fit and 444/467 withheld runes; LOSS OF DIVINITY (reverse,−,origin911,F) recovers the exact origin, 259/262 fit and 467/467 withheld runes. Their withheld scores are −2.737026 and −2.866307. All recovered paths replay. These are constructed plants, not actual historical serpentine encryptions; ambiguity remains with a correct origin. The target original p1–2 has also been analyzed in other experiments, so this is an intra-experiment frozen split, not globally unseen ciphertext.
+
+Retire this fixed physical-line serpentine receiver within the tested origin bounds. No unknown plaintext, authentic key or independently selected clock was recovered. Do not widen phase/origin/reset options merely to rescue the model. A separate source instruction or another independently predicted physical reading direction would change the decision.
+
+Reproduce: `node sims/lp2_p0_serpentine_prime_fhold_sft.cjs`. [SFT](../sims/lp2_p0_serpentine_prime_fhold_sft.cjs) · [full raw paths, scores, input blob SHAs](lp2-p0-serpentine-prime-fhold-output.json). The core was executed in connected JavaScript against actual repository inputs, including the BigInt-counting version; standalone Node wrapper and CI have not separately run.
