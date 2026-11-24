@@ -50,6 +50,25 @@ The two means for original LP2 and the second uniform negative exclude two zero-
 
 **Decision:** retire the fixed prime-value projected independent native-language running-key branch under intact printed-group assumptions; it fails even after exact projection-collision marginalization. No authentic key, unknown plaintext or continuous continuation is recovered. Do not tune alternate prime offsets or alphabet projections without independent source selection. The result is conditional on the fixed vocabulary, language prior, and additive receiver, not a general impossibility theorem. The [full output](lp2-joint-fhold-prime-projected-running-key-output.json) records all 187 original anchors, 367 matched sets of controls, and input blob SHAs. Executed directly on exact repository files in an isolated JavaScript runtime; Windows CI has not been run.
 
+## Exact continuous-rune joint inversion with transparent F
+
+The fixed-word local models do not address a possible false printed grouping. The [spacing-free trigram inverse](../sims/lp2_joint_fhold_spacingfree_trigram_sft.cjs) therefore marginalizes over every plaintext and key rune path with **no word lengths, no dictionary, no beam pruning and no fixed F mask**. Both independent language streams use the same hierarchical GP29 unigram/bigram/trigram model trained on the first 70% of trimmed Gibran/Shakespeare/Emerson rune streams (401,676 total runes; no authentic LP1/LP2 plaintext used for training). The empirical half-count unigram, bigram prior mass16 and trigram prior mass32 were fixed in code.
+
+State is the last two plaintext runes and last two consumed key runes, with initial sentinel contexts. For each ciphertext rune c, the nonhold transitions enumerate p=1..28 with k=(c-p) mod29, multiplying both language transitions. If c=0 the additional p=0 transition advances only plaintext context. Exact forward summation merges equal states; scaled forward evidence is compared with a plaintext-only trigram model under an independent uniform consuming pad. Viterbi retains an exact maximum joint path and every recovered candidate is re-encrypted. Maximum reachable state count across the tested streams is 3,164; no search cap. The p57 native source transcription is asserted against authentic clear p57.
+
+| Plant or original | Runes | Exact Viterbi plaintext correct | Log BF/rune vs uniform | Matched uniform control log BF/rune |
+|---|---:|---:|---:|---:|
+| Native LP1 KOAN / Shakespeare | 729 | 151 (20.7%) | +0.04470 | -0.02023 |
+| Native LP1 LOSS / Gibran | 308 | 65 (21.1%) | +0.06623 | -0.06135 |
+| Held-out Gibran / Emerson | 308 | 83 (26.9%) | +0.05664 | -0.04317 |
+| Held-out Emerson / Shakespeare | 729 | 120 (16.5%) | +0.01697 | -0.03873 |
+| Original p0–2 | 729 | unknown | -0.04848 | |
+| Original p54–55 | 308 | unknown | -0.03526 | |
+
+All four positive controls have positive evidence against the uniform null and all four matched uniform controls have negative evidence. Their exact MAP paths nevertheless recover only 419/2,074 original plaintext runes, so **exact dynamic programming cannot overcome this weak language model**. Unlike the prior beam tests, the limitation here is not search pruning. Both original sections score within or near the small uniform-negative comparison range and output only incoherent language-like fragments with exact ciphertext replay. The exact joint log BFs are -35.341 and -10.859 respectively. No full original plaintext or authentic key is established.
+
+**Decision:** retire this particular spacing-free independent trigram running-key inverse; do not confuse the weak Viterbi recovery with a universal exclusion of running keys or changed word boundaries. A genuinely stronger source-constrained key or language representation is required. The [full output](lp2-joint-fhold-spacingfree-trigram-output.json) preserves input blob SHAs, plaintext/key candidate indices, all matched control truths and exact replay lengths. Executed in connected JS; no independent Windows CI claimed.
+
 ## Earlier no-interruption model and controls
 
 The candidate is additive GP29 encryption C=P+K mod29, with P's true word lengths supplied and K independently segmented. Both rune streams must be inferred jointly. The key begins at an ordinary word boundary and may end inside a word. No named-book search, known plaintext crib, key reuse or LP2 scoring is used.
