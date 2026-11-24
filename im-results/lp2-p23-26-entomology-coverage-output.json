@@ -1,0 +1,311 @@
+{
+  "base": 42468,
+  "expanded": 224885,
+  "sourceTerms": [
+    "abdomen",
+    "aerodynamic",
+    "appendages",
+    "archidipterygia",
+    "archodonata",
+    "baetididae",
+    "baetidae",
+    "baetiscidae",
+    "behningiidae",
+    "behninggiidae",
+    "behningia",
+    "brachycercidae",
+    "cerci",
+    "cloeon",
+    "crossveins",
+    "danica",
+    "dipterum",
+    "dipterygia",
+    "dolichopterygia",
+    "ephemera",
+    "ephemerella",
+    "ephemerellidae",
+    "ephemeridae",
+    "ephemeroptera",
+    "fanwinged",
+    "habrophlebia",
+    "heptageniidae",
+    "hindwings",
+    "horaria",
+    "ignita",
+    "lacustris",
+    "lauta",
+    "lentophlebiidae",
+    "leptophlebiidae",
+    "longitudinal",
+    "longwingedness",
+    "mayflies",
+    "mesozoic",
+    "oligoneuriella",
+    "oligoneuriidae",
+    "ordella",
+    "palaeopterous",
+    "palingeniidae",
+    "paracercus",
+    "permian",
+    "pleural",
+    "polymitarcidae",
+    "polymitarcis",
+    "rhenana",
+    "sclerites",
+    "siphlonuridae",
+    "siphlonurus",
+    "strepsidipterygia",
+    "teloganodes",
+    "thoracic",
+    "thorax",
+    "tristis",
+    "ulmeri",
+    "venation",
+    "virgo",
+    "wingvenation"
+  ],
+  "sourceNewTerms": [
+    "aerodynamic",
+    "archidipterygia",
+    "archodonata",
+    "baetididae",
+    "baetidae",
+    "baetiscidae",
+    "behningiidae",
+    "behninggiidae",
+    "behningia",
+    "brachycercidae",
+    "cerci",
+    "cloeon",
+    "crossveins",
+    "danica",
+    "dipterum",
+    "dipterygia",
+    "dolichopterygia",
+    "ephemera",
+    "ephemerella",
+    "ephemerellidae",
+    "ephemeridae",
+    "ephemeroptera",
+    "fanwinged",
+    "habrophlebia",
+    "heptageniidae",
+    "hindwings",
+    "horaria",
+    "ignita",
+    "lacustris",
+    "lauta",
+    "lentophlebiidae",
+    "leptophlebiidae",
+    "longwingedness",
+    "mayflies",
+    "mesozoic",
+    "oligoneuriella",
+    "oligoneuriidae",
+    "ordella",
+    "palaeopterous",
+    "palingeniidae",
+    "paracercus",
+    "permian",
+    "polymitarcidae",
+    "polymitarcis",
+    "rhenana",
+    "sclerites",
+    "siphlonuridae",
+    "siphlonurus",
+    "strepsidipterygia",
+    "teloganodes",
+    "tristis",
+    "ulmeri",
+    "venation",
+    "virgo",
+    "wingvenation"
+  ],
+  "sourceAdded": 952,
+  "matched": [
+    {
+      "term": "aerodynamic",
+      "control": "crystalline"
+    },
+    {
+      "term": "archidipterygia",
+      "control": "parallelopipeda"
+    },
+    {
+      "term": "archodonata",
+      "control": "isomorphism"
+    },
+    {
+      "term": "baetididae",
+      "control": "octahedral"
+    },
+    {
+      "term": "baetiscidae",
+      "control": "morphotropy"
+    },
+    {
+      "term": "behningiidae",
+      "control": "polymorphism"
+    },
+    {
+      "term": "behninggiidae",
+      "control": "enantiomorphs"
+    },
+    {
+      "term": "behningia",
+      "control": "prerosion"
+    },
+    {
+      "term": "brachycercidae",
+      "control": "intermolecular"
+    },
+    {
+      "term": "cerci",
+      "control": "miers"
+    },
+    {
+      "term": "cloeon",
+      "control": "etched"
+    },
+    {
+      "term": "ephemerella",
+      "control": "pointsystem"
+    },
+    {
+      "term": "ephemeridae",
+      "control": "schoenflies"
+    },
+    {
+      "term": "fanwinged",
+      "control": "corrosion"
+    },
+    {
+      "term": "habrophlebia",
+      "control": "spacelattice"
+    },
+    {
+      "term": "hindwings",
+      "control": "molecules"
+    },
+    {
+      "term": "horaria",
+      "control": "vicinal"
+    },
+    {
+      "term": "ordella",
+      "control": "indices"
+    },
+    {
+      "term": "permian",
+      "control": "bravais"
+    },
+    {
+      "term": "polymitarcis",
+      "control": "pointsystems"
+    },
+    {
+      "term": "rhenana",
+      "control": "sohncke"
+    },
+    {
+      "term": "siphlonurus",
+      "control": "interatomic"
+    },
+    {
+      "term": "tristis",
+      "control": "fedorov"
+    }
+  ],
+  "unmatched": [
+    "baetidae",
+    "crossveins",
+    "danica",
+    "dipterum",
+    "dipterygia",
+    "dolichopterygia",
+    "ephemera",
+    "ephemerellidae",
+    "ephemeroptera",
+    "heptageniidae",
+    "ignita",
+    "lacustris",
+    "lauta",
+    "lentophlebiidae",
+    "leptophlebiidae",
+    "longwingedness",
+    "mayflies",
+    "mesozoic",
+    "oligoneuriella",
+    "oligoneuriidae",
+    "palaeopterous",
+    "palingeniidae",
+    "paracercus",
+    "polymitarcidae",
+    "sclerites",
+    "siphlonuridae",
+    "strepsidipterygia",
+    "teloganodes",
+    "ulmeri",
+    "venation",
+    "virgo",
+    "wingvenation"
+  ],
+  "unrelatedAdded": 201,
+  "mayfly": {
+    "n": 200,
+    "baselineOOV": [
+      "mayfly",
+      "mayflies",
+      "ephemeridae",
+      "linnaeus",
+      "neuroptera",
+      "neuropterous",
+      "pseudoneuropterous",
+      "aquatic",
+      "subaquatic",
+      "cloeon",
+      "j",
+      "lubbock",
+      "avebury",
+      "palingenia",
+      "elongate",
+      "campodeiform"
+    ],
+    "sourceRescued": [
+      "mayflies",
+      "ephemeridae",
+      "cloeon"
+    ],
+    "unrelatedRescued": [],
+    "sourceNullGain": 0.000019121011703759905,
+    "unrelatedNullGain": 0.0000037239125614263457
+  },
+  "crystal": {
+    "n": 200,
+    "baselineOOV": [
+      "crystallography",
+      "amorphous",
+      "crystalline",
+      "amorphous",
+      "crystalline",
+      "crystalline",
+      "meltingpoint",
+      "directional",
+      "cohesion",
+      "homogeneity",
+      "crystalline",
+      "directional",
+      "crystallization"
+    ],
+    "sourceRescued": [],
+    "unrelatedRescued": [
+      "crystalline",
+      "crystalline",
+      "crystalline",
+      "crystalline"
+    ],
+    "sourceNullGain": 0.000015095910207207908,
+    "unrelatedNullGain": 0.0000029946392228197283
+  },
+  "gate": true
+}
