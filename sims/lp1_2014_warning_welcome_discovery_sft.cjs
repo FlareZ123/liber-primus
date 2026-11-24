@@ -36,7 +36,7 @@ function originalGate(){
   offset+=p.runic_count;
  }
  assert.deepEqual(chapters,[[0,8,5],[3,2,11],[8,4,8],[15,4,5],[23,2,6],[28,2,5],[33,2,8],[40,3,5],[54,1,8]]);
- assert(!chapters.some(([,a,b])=>a===7&&b===7||a===1&&b===6));
+ assert(!chapters.some(([,a,b])=>a===7&&b===7||a===1&&b===5));
  console.log('Original source historical crib shifts:',shift,'chapter opening pairs:',chapters);
 }
 async function main(){
