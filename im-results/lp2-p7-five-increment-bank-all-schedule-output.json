@@ -1,0 +1,7848 @@
+{
+  "mode": "increment",
+  "R": [
+    11,
+    26,
+    8,
+    15,
+    2
+  ],
+  "red": [
+    [
+      23,
+      3
+    ],
+    [
+      22,
+      16,
+      2,
+      25
+    ],
+    [
+      5,
+      7,
+      11
+    ],
+    [
+      14,
+      28
+    ],
+    [
+      6,
+      28,
+      19
+    ]
+  ],
+  "bankCount": 118755,
+  "base": {
+    "words": 2896,
+    "runes": 12956,
+    "lexicon": 42468,
+    "fixed": {
+      "plus": 2214,
+      "minus": 2236,
+      "plusLong": 5,
+      "minusLong": 4
+    },
+    "lenHist": {
+      "1": [
+        83,
+        83,
+        83
+      ],
+      "2": [
+        448,
+        448,
+        448
+      ],
+      "3": [
+        720,
+        720,
+        720
+      ],
+      "4": [
+        513,
+        513,
+        513
+      ],
+      "5": [
+        317,
+        297,
+        299
+      ],
+      "6": [
+        256,
+        119,
+        142
+      ],
+      "7": [
+        216,
+        29,
+        27
+      ],
+      "8": [
+        156,
+        5,
+        4
+      ],
+      "9": [
+        78,
+        0,
+        0
+      ],
+      "10": [
+        52,
+        0,
+        0
+      ],
+      "11": [
+        32,
+        0,
+        0
+      ],
+      "12": [
+        18,
+        0,
+        0
+      ],
+      "13": [
+        4,
+        0,
+        0
+      ],
+      "14": [
+        3,
+        0,
+        0
+      ]
+    },
+    "longAnchors": 343,
+    "minHist": {
+      "2": 3,
+      "3": 140,
+      "4": 124,
+      "5": 55,
+      "6": 17,
+      "7": 3,
+      "8": 1
+    },
+    "zeroAnchors": 21,
+    "examples": [
+      {
+        "wi": 167,
+        "offset": 780,
+        "len": 12,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "RLLEBWNHMFOEB"
+      },
+      {
+        "wi": 376,
+        "offset": 1717,
+        "len": 12,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IAAETHWHPEOAGPHEA"
+      },
+      {
+        "wi": 444,
+        "offset": 2014,
+        "len": 12,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NOEOESGMPETLNJ"
+      },
+      {
+        "wi": 512,
+        "offset": 2347,
+        "len": 12,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ASIATHSTHSFMGDEA"
+      },
+      {
+        "wi": 631,
+        "offset": 2886,
+        "len": 13,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EOPSULAPUCEFDX"
+      },
+      {
+        "wi": 637,
+        "offset": 2918,
+        "len": 12,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ITHTGUWCHEOAE"
+      },
+      {
+        "wi": 754,
+        "offset": 3405,
+        "len": 14,
+        "min": 7,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BGDXMBXCNGTHYDAEEA"
+      },
+      {
+        "wi": 833,
+        "offset": 3762,
+        "len": 13,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EDAAETOEAEEAXCEAT"
+      },
+      {
+        "wi": 871,
+        "offset": 3925,
+        "len": 12,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "JTSMDOEINGAXEP"
+      },
+      {
+        "wi": 1220,
+        "offset": 5447,
+        "len": 12,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "WBMRNMHMINAD"
+      },
+      {
+        "wi": 1353,
+        "offset": 6035,
+        "len": 14,
+        "min": 7,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EAIIATHNGNENFOMEYA"
+      },
+      {
+        "wi": 1476,
+        "offset": 6606,
+        "len": 12,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EORNSOOCAEYEE"
+      }
+    ],
+    "maxCovered": 14,
+    "topCount": 7,
+    "top": [
+      [
+        0,
+        1,
+        2,
+        4,
+        19
+      ],
+      [
+        0,
+        1,
+        4,
+        16,
+        24
+      ],
+      [
+        0,
+        3,
+        7,
+        23,
+        24
+      ],
+      [
+        0,
+        5,
+        12,
+        16,
+        26
+      ],
+      [
+        1,
+        3,
+        4,
+        14,
+        22
+      ],
+      [
+        2,
+        5,
+        19,
+        24,
+        27
+      ],
+      [
+        5,
+        8,
+        16,
+        22,
+        26
+      ]
+    ],
+    "minimumLongOOV": 329,
+    "sourcePlusRank": 28638,
+    "sourceMinusRank": 48395,
+    "trueBank": null,
+    "anchors": [
+      {
+        "wi": 0,
+        "offset": 0,
+        "len": 8,
+        "min": 3,
+        "reqs": 677,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "SHEOGMIAF"
+      },
+      {
+        "wi": 5,
+        "offset": 23,
+        "len": 11,
+        "min": 5,
+        "reqs": 5,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NEWBASOEEOINGU"
+      },
+      {
+        "wi": 13,
+        "offset": 62,
+        "len": 11,
+        "min": 5,
+        "reqs": 2,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "SPTFPUNGYNGXIA"
+      },
+      {
+        "wi": 20,
+        "offset": 95,
+        "len": 8,
+        "min": 3,
+        "reqs": 797,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "THAMINGIIAY"
+      },
+      {
+        "wi": 36,
+        "offset": 158,
+        "len": 8,
+        "min": 3,
+        "reqs": 745,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NGGMJROLEO"
+      },
+      {
+        "wi": 46,
+        "offset": 203,
+        "len": 8,
+        "min": 3,
+        "reqs": 685,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EAMNGXXEODB"
+      },
+      {
+        "wi": 55,
+        "offset": 245,
+        "len": 9,
+        "min": 3,
+        "reqs": 148,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "FOEWEAOELFAE"
+      },
+      {
+        "wi": 59,
+        "offset": 267,
+        "len": 8,
+        "min": 4,
+        "reqs": 786,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "SOERUWSLIA"
+      },
+      {
+        "wi": 60,
+        "offset": 275,
+        "len": 8,
+        "min": 3,
+        "reqs": 722,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OEAAENGSDPT"
+      },
+      {
+        "wi": 67,
+        "offset": 304,
+        "len": 9,
+        "min": 4,
+        "reqs": 157,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ROOEMHMGPH"
+      },
+      {
+        "wi": 90,
+        "offset": 397,
+        "len": 10,
+        "min": 5,
+        "reqs": 19,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "JFINIACYEAIIA"
+      },
+      {
+        "wi": 95,
+        "offset": 425,
+        "len": 9,
+        "min": 4,
+        "reqs": 180,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "DCLEASXCGIA"
+      },
+      {
+        "wi": 131,
+        "offset": 575,
+        "len": 10,
+        "min": 4,
+        "reqs": 24,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NGEAFNIEDIANGR"
+      },
+      {
+        "wi": 140,
+        "offset": 630,
+        "len": 9,
+        "min": 4,
+        "reqs": 155,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "PTFHRDEFT"
+      },
+      {
+        "wi": 144,
+        "offset": 645,
+        "len": 8,
+        "min": 4,
+        "reqs": 700,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "PALUEANLJ"
+      },
+      {
+        "wi": 145,
+        "offset": 653,
+        "len": 9,
+        "min": 4,
+        "reqs": 148,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "JCLWEADUDEO"
+      },
+      {
+        "wi": 147,
+        "offset": 668,
+        "len": 10,
+        "min": 4,
+        "reqs": 50,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "THIAAECLTWEIC"
+      },
+      {
+        "wi": 150,
+        "offset": 685,
+        "len": 8,
+        "min": 3,
+        "reqs": 746,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "RIGTHEAETG"
+      },
+      {
+        "wi": 151,
+        "offset": 693,
+        "len": 8,
+        "min": 3,
+        "reqs": 756,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "THHOIAWAEJE"
+      },
+      {
+        "wi": 155,
+        "offset": 708,
+        "len": 10,
+        "min": 4,
+        "reqs": 23,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BJCUXTABJP"
+      },
+      {
+        "wi": 157,
+        "offset": 720,
+        "len": 9,
+        "min": 4,
+        "reqs": 145,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HDNIAUPSUW"
+      },
+      {
+        "wi": 159,
+        "offset": 731,
+        "len": 11,
+        "min": 5,
+        "reqs": 5,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EOHNGCTHTAEJTXH"
+      },
+      {
+        "wi": 167,
+        "offset": 780,
+        "len": 12,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "RLLEBWNHMFOEB"
+      },
+      {
+        "wi": 169,
+        "offset": 793,
+        "len": 9,
+        "min": 4,
+        "reqs": 164,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "RAIAGOEEOTMX"
+      },
+      {
+        "wi": 173,
+        "offset": 811,
+        "len": 8,
+        "min": 3,
+        "reqs": 841,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NWCFPMPL"
+      },
+      {
+        "wi": 189,
+        "offset": 881,
+        "len": 11,
+        "min": 5,
+        "reqs": 2,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "SXOHWDMEMAF"
+      },
+      {
+        "wi": 198,
+        "offset": 927,
+        "len": 8,
+        "min": 3,
+        "reqs": 696,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "XIYGSSBEA"
+      },
+      {
+        "wi": 202,
+        "offset": 948,
+        "len": 8,
+        "min": 4,
+        "reqs": 678,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "YPXIWMCI"
+      },
+      {
+        "wi": 235,
+        "offset": 1067,
+        "len": 9,
+        "min": 4,
+        "reqs": 159,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EOYNGJNGMWCN"
+      },
+      {
+        "wi": 241,
+        "offset": 1097,
+        "len": 10,
+        "min": 5,
+        "reqs": 23,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "RLRBAPTXLT"
+      },
+      {
+        "wi": 243,
+        "offset": 1111,
+        "len": 9,
+        "min": 3,
+        "reqs": 160,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "JSOEMNREBS"
+      },
+      {
+        "wi": 245,
+        "offset": 1124,
+        "len": 8,
+        "min": 3,
+        "reqs": 870,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "SBFXTHAEAU"
+      },
+      {
+        "wi": 247,
+        "offset": 1134,
+        "len": 9,
+        "min": 4,
+        "reqs": 153,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "RGTEOEAIJBOE"
+      },
+      {
+        "wi": 251,
+        "offset": 1152,
+        "len": 8,
+        "min": 3,
+        "reqs": 650,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NUANGBPSEA"
+      },
+      {
+        "wi": 257,
+        "offset": 1184,
+        "len": 10,
+        "min": 5,
+        "reqs": 20,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "PAEOGSCGDPY"
+      },
+      {
+        "wi": 265,
+        "offset": 1222,
+        "len": 8,
+        "min": 4,
+        "reqs": 776,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "CSOEEYOEHU"
+      },
+      {
+        "wi": 277,
+        "offset": 1269,
+        "len": 9,
+        "min": 4,
+        "reqs": 154,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "PNGEOPOILEF"
+      },
+      {
+        "wi": 285,
+        "offset": 1308,
+        "len": 8,
+        "min": 3,
+        "reqs": 687,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "THJYJLOEEL"
+      },
+      {
+        "wi": 291,
+        "offset": 1329,
+        "len": 8,
+        "min": 3,
+        "reqs": 741,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "THYEOTHJTHRU"
+      },
+      {
+        "wi": 295,
+        "offset": 1348,
+        "len": 10,
+        "min": 5,
+        "reqs": 24,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HEATYDYAEFHO"
+      },
+      {
+        "wi": 306,
+        "offset": 1407,
+        "len": 9,
+        "min": 4,
+        "reqs": 201,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "FDLIEAPOEYO"
+      },
+      {
+        "wi": 307,
+        "offset": 1416,
+        "len": 10,
+        "min": 5,
+        "reqs": 19,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "UBGNGOEUNGSUC"
+      },
+      {
+        "wi": 325,
+        "offset": 1490,
+        "len": 10,
+        "min": 4,
+        "reqs": 19,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "WIIASPLTHASJ"
+      },
+      {
+        "wi": 345,
+        "offset": 1582,
+        "len": 8,
+        "min": 3,
+        "reqs": 727,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "DATYUNREO"
+      },
+      {
+        "wi": 346,
+        "offset": 1590,
+        "len": 8,
+        "min": 3,
+        "reqs": 796,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AEAEIEFNGTHH"
+      },
+      {
+        "wi": 376,
+        "offset": 1717,
+        "len": 12,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IAAETHWHPEOAGPHEA"
+      },
+      {
+        "wi": 384,
+        "offset": 1758,
+        "len": 8,
+        "min": 3,
+        "reqs": 795,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "CHOEEANPCTH"
+      },
+      {
+        "wi": 406,
+        "offset": 1845,
+        "len": 12,
+        "min": 5,
+        "reqs": 2,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ICETSWENIAYJM"
+      },
+      {
+        "wi": 414,
+        "offset": 1878,
+        "len": 8,
+        "min": 3,
+        "reqs": 745,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "UXMCTHPOB"
+      },
+      {
+        "wi": 418,
+        "offset": 1894,
+        "len": 9,
+        "min": 4,
+        "reqs": 168,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OCEAMNGGXLU"
+      },
+      {
+        "wi": 430,
+        "offset": 1944,
+        "len": 8,
+        "min": 4,
+        "reqs": 809,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AHOERNGUER"
+      },
+      {
+        "wi": 442,
+        "offset": 1998,
+        "len": 10,
+        "min": 4,
+        "reqs": 24,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "MIEOLEAHTHMEAY"
+      },
+      {
+        "wi": 444,
+        "offset": 2014,
+        "len": 12,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NOEOESGMPETLNJ"
+      },
+      {
+        "wi": 450,
+        "offset": 2046,
+        "len": 10,
+        "min": 5,
+        "reqs": 21,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HNGXPHPCPRU"
+      },
+      {
+        "wi": 452,
+        "offset": 2060,
+        "len": 9,
+        "min": 4,
+        "reqs": 155,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "GABFIAEFUOE"
+      },
+      {
+        "wi": 456,
+        "offset": 2086,
+        "len": 8,
+        "min": 3,
+        "reqs": 738,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AEOAMOEUWEO"
+      },
+      {
+        "wi": 457,
+        "offset": 2094,
+        "len": 8,
+        "min": 3,
+        "reqs": 702,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BNSLNGJOEN"
+      },
+      {
+        "wi": 460,
+        "offset": 2107,
+        "len": 9,
+        "min": 4,
+        "reqs": 161,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NDBONTHIAHOE"
+      },
+      {
+        "wi": 473,
+        "offset": 2165,
+        "len": 11,
+        "min": 5,
+        "reqs": 4,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OEHFTHXJOESTHYTH"
+      },
+      {
+        "wi": 488,
+        "offset": 2236,
+        "len": 8,
+        "min": 3,
+        "reqs": 772,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EALGXYYRJ"
+      },
+      {
+        "wi": 493,
+        "offset": 2256,
+        "len": 8,
+        "min": 3,
+        "reqs": 727,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EEAWBTHOEFM"
+      },
+      {
+        "wi": 503,
+        "offset": 2299,
+        "len": 8,
+        "min": 3,
+        "reqs": 769,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "LEIAHLGREO"
+      },
+      {
+        "wi": 506,
+        "offset": 2315,
+        "len": 11,
+        "min": 5,
+        "reqs": 10,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "FIJUMAENCMEAI"
+      },
+      {
+        "wi": 512,
+        "offset": 2347,
+        "len": 12,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ASIATHSTHSFMGDEA"
+      },
+      {
+        "wi": 513,
+        "offset": 2359,
+        "len": 8,
+        "min": 3,
+        "reqs": 745,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "NGPOAYNGPS"
+      },
+      {
+        "wi": 518,
+        "offset": 2379,
+        "len": 8,
+        "min": 3,
+        "reqs": 768,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BGYNGFYIH"
+      },
+      {
+        "wi": 519,
+        "offset": 2387,
+        "len": 11,
+        "min": 5,
+        "reqs": 2,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "WIAEARAEWIADATHC"
+      },
+      {
+        "wi": 554,
+        "offset": 2526,
+        "len": 8,
+        "min": 3,
+        "reqs": 747,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NEOTHOETEOCF"
+      },
+      {
+        "wi": 559,
+        "offset": 2550,
+        "len": 8,
+        "min": 3,
+        "reqs": 804,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EOIIAFOEBTHF"
+      },
+      {
+        "wi": 570,
+        "offset": 2590,
+        "len": 8,
+        "min": 3,
+        "reqs": 719,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EOHMOOEBTH"
+      },
+      {
+        "wi": 578,
+        "offset": 2622,
+        "len": 11,
+        "min": 5,
+        "reqs": 6,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OCPCDAXUMNGOE"
+      },
+      {
+        "wi": 580,
+        "offset": 2637,
+        "len": 9,
+        "min": 4,
+        "reqs": 192,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "FRCBUJRAENG"
+      },
+      {
+        "wi": 591,
+        "offset": 2690,
+        "len": 9,
+        "min": 4,
+        "reqs": 173,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NGYXSAOERXC"
+      },
+      {
+        "wi": 598,
+        "offset": 2718,
+        "len": 8,
+        "min": 3,
+        "reqs": 695,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "TNGTHAOUMY"
+      },
+      {
+        "wi": 605,
+        "offset": 2744,
+        "len": 11,
+        "min": 5,
+        "reqs": 2,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AEEOFTHCLOXLOL"
+      },
+      {
+        "wi": 612,
+        "offset": 2775,
+        "len": 9,
+        "min": 3,
+        "reqs": 169,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "DXEANGFRIACEO"
+      },
+      {
+        "wi": 613,
+        "offset": 2784,
+        "len": 9,
+        "min": 4,
+        "reqs": 133,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "XOEPMDCTHWP"
+      },
+      {
+        "wi": 626,
+        "offset": 2848,
+        "len": 11,
+        "min": 5,
+        "reqs": 4,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "LARAEOETHONOEIE"
+      },
+      {
+        "wi": 629,
+        "offset": 2866,
+        "len": 9,
+        "min": 3,
+        "reqs": 162,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EAIAEAIUIAEONGD"
+      },
+      {
+        "wi": 630,
+        "offset": 2875,
+        "len": 11,
+        "min": 5,
+        "reqs": 4,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "XTFBHUSCREOW"
+      },
+      {
+        "wi": 631,
+        "offset": 2886,
+        "len": 13,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EOPSULAPUCEFDX"
+      },
+      {
+        "wi": 637,
+        "offset": 2918,
+        "len": 12,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ITHTGUWCHEOAE"
+      },
+      {
+        "wi": 647,
+        "offset": 2959,
+        "len": 9,
+        "min": 4,
+        "reqs": 138,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "WCENGREADTH"
+      },
+      {
+        "wi": 648,
+        "offset": 2968,
+        "len": 9,
+        "min": 4,
+        "reqs": 155,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "JIPHFXNGPN"
+      },
+      {
+        "wi": 650,
+        "offset": 2983,
+        "len": 10,
+        "min": 4,
+        "reqs": 30,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "XEAPAOGFCIAJ"
+      },
+      {
+        "wi": 696,
+        "offset": 3151,
+        "len": 9,
+        "min": 4,
+        "reqs": 147,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HLNSRIAAELAE"
+      },
+      {
+        "wi": 700,
+        "offset": 3173,
+        "len": 10,
+        "min": 4,
+        "reqs": 26,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BEORWTXNEAEI"
+      },
+      {
+        "wi": 720,
+        "offset": 3259,
+        "len": 9,
+        "min": 4,
+        "reqs": 185,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IAOEWNOUWEI"
+      },
+      {
+        "wi": 727,
+        "offset": 3286,
+        "len": 8,
+        "min": 4,
+        "reqs": 703,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "LFLCBUNGX"
+      },
+      {
+        "wi": 748,
+        "offset": 3369,
+        "len": 9,
+        "min": 4,
+        "reqs": 118,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OEEBJRJEIP"
+      },
+      {
+        "wi": 754,
+        "offset": 3405,
+        "len": 14,
+        "min": 7,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BGDXMBXCNGTHYDAEEA"
+      },
+      {
+        "wi": 785,
+        "offset": 3546,
+        "len": 9,
+        "min": 4,
+        "reqs": 155,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EADCBGXWNGU"
+      },
+      {
+        "wi": 789,
+        "offset": 3568,
+        "len": 8,
+        "min": 3,
+        "reqs": 718,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "XAEHRYEAEO"
+      },
+      {
+        "wi": 793,
+        "offset": 3587,
+        "len": 8,
+        "min": 3,
+        "reqs": 678,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HYAEISOTHL"
+      },
+      {
+        "wi": 808,
+        "offset": 3655,
+        "len": 9,
+        "min": 4,
+        "reqs": 149,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "PENTHOUIIAR"
+      },
+      {
+        "wi": 812,
+        "offset": 3679,
+        "len": 8,
+        "min": 3,
+        "reqs": 731,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "WPHRDXTU"
+      },
+      {
+        "wi": 821,
+        "offset": 3714,
+        "len": 8,
+        "min": 4,
+        "reqs": 713,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "THPDSIAHEOL"
+      },
+      {
+        "wi": 833,
+        "offset": 3762,
+        "len": 13,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EDAAETOEAEEAXCEAT"
+      },
+      {
+        "wi": 834,
+        "offset": 3775,
+        "len": 8,
+        "min": 3,
+        "reqs": 704,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ODCEANCTHM"
+      },
+      {
+        "wi": 865,
+        "offset": 3890,
+        "len": 8,
+        "min": 3,
+        "reqs": 865,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "JGXOTHJCY"
+      },
+      {
+        "wi": 866,
+        "offset": 3898,
+        "len": 8,
+        "min": 4,
+        "reqs": 660,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "UJTHJANTB"
+      },
+      {
+        "wi": 871,
+        "offset": 3925,
+        "len": 12,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "JTSMDOEINGAXEP"
+      },
+      {
+        "wi": 874,
+        "offset": 3944,
+        "len": 12,
+        "min": 5,
+        "reqs": 2,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "CBUOECBLNOENGXO"
+      },
+      {
+        "wi": 888,
+        "offset": 4007,
+        "len": 8,
+        "min": 3,
+        "reqs": 722,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "YGFNGIAPGB"
+      },
+      {
+        "wi": 897,
+        "offset": 4042,
+        "len": 8,
+        "min": 3,
+        "reqs": 690,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "CNEIAWNGTR"
+      },
+      {
+        "wi": 910,
+        "offset": 4096,
+        "len": 8,
+        "min": 3,
+        "reqs": 707,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EORNGIABWLT"
+      },
+      {
+        "wi": 946,
+        "offset": 4234,
+        "len": 8,
+        "min": 3,
+        "reqs": 886,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "DIUTHHMIAN"
+      },
+      {
+        "wi": 951,
+        "offset": 4256,
+        "len": 8,
+        "min": 3,
+        "reqs": 729,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "THFSFNGGRP"
+      },
+      {
+        "wi": 978,
+        "offset": 4364,
+        "len": 9,
+        "min": 4,
+        "reqs": 123,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EADEOXCEAOOEE"
+      },
+      {
+        "wi": 979,
+        "offset": 4373,
+        "len": 8,
+        "min": 3,
+        "reqs": 703,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "MPBTHNGSUIA"
+      },
+      {
+        "wi": 981,
+        "offset": 4384,
+        "len": 8,
+        "min": 3,
+        "reqs": 852,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "XEOGFIAIAOEU"
+      },
+      {
+        "wi": 982,
+        "offset": 4392,
+        "len": 8,
+        "min": 3,
+        "reqs": 753,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IATHYDAAENGB"
+      },
+      {
+        "wi": 994,
+        "offset": 4437,
+        "len": 10,
+        "min": 4,
+        "reqs": 24,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "YAEGEOOEURWU"
+      },
+      {
+        "wi": 1007,
+        "offset": 4494,
+        "len": 9,
+        "min": 3,
+        "reqs": 152,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EOOEENGCFTDT"
+      },
+      {
+        "wi": 1010,
+        "offset": 4507,
+        "len": 8,
+        "min": 3,
+        "reqs": 692,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EAIAAEEOEDNGEA"
+      },
+      {
+        "wi": 1019,
+        "offset": 4549,
+        "len": 9,
+        "min": 4,
+        "reqs": 126,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "UENGEACDPOEA"
+      },
+      {
+        "wi": 1038,
+        "offset": 4634,
+        "len": 8,
+        "min": 3,
+        "reqs": 763,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AEHOJUROY"
+      },
+      {
+        "wi": 1047,
+        "offset": 4683,
+        "len": 8,
+        "min": 3,
+        "reqs": 720,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OEOAEAOWMA"
+      },
+      {
+        "wi": 1048,
+        "offset": 4691,
+        "len": 8,
+        "min": 3,
+        "reqs": 765,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "YAEGAEJRWD"
+      },
+      {
+        "wi": 1078,
+        "offset": 4798,
+        "len": 9,
+        "min": 4,
+        "reqs": 161,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IAOTDNSECH"
+      },
+      {
+        "wi": 1090,
+        "offset": 4843,
+        "len": 8,
+        "min": 3,
+        "reqs": 749,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "POETHDREAAIA"
+      },
+      {
+        "wi": 1091,
+        "offset": 4851,
+        "len": 8,
+        "min": 3,
+        "reqs": 770,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NGIABLHTHAEX"
+      },
+      {
+        "wi": 1119,
+        "offset": 4959,
+        "len": 8,
+        "min": 3,
+        "reqs": 787,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "LCEOTGYOEM"
+      },
+      {
+        "wi": 1124,
+        "offset": 4983,
+        "len": 8,
+        "min": 2,
+        "reqs": 738,
+        "plusOK": false,
+        "minusOK": true,
+        "cipher": "OSTMRYSX"
+      },
+      {
+        "wi": 1126,
+        "offset": 4997,
+        "len": 8,
+        "min": 4,
+        "reqs": 661,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "XUEAMEOUSH"
+      },
+      {
+        "wi": 1138,
+        "offset": 5043,
+        "len": 8,
+        "min": 3,
+        "reqs": 714,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BEOWAEUJCB"
+      },
+      {
+        "wi": 1142,
+        "offset": 5065,
+        "len": 8,
+        "min": 3,
+        "reqs": 742,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "RDRBJCUEA"
+      },
+      {
+        "wi": 1154,
+        "offset": 5111,
+        "len": 8,
+        "min": 3,
+        "reqs": 678,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NOEGYCTHCTH"
+      },
+      {
+        "wi": 1157,
+        "offset": 5125,
+        "len": 11,
+        "min": 5,
+        "reqs": 4,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HUHNTAEBEOOIP"
+      },
+      {
+        "wi": 1161,
+        "offset": 5148,
+        "len": 10,
+        "min": 4,
+        "reqs": 18,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EOEOPLOGIOEEA"
+      },
+      {
+        "wi": 1166,
+        "offset": 5174,
+        "len": 11,
+        "min": 5,
+        "reqs": 1,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "THEOJGSNGYMOEH"
+      },
+      {
+        "wi": 1167,
+        "offset": 5185,
+        "len": 11,
+        "min": 5,
+        "reqs": 2,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "MFTHXTHAESPYOF"
+      },
+      {
+        "wi": 1168,
+        "offset": 5196,
+        "len": 10,
+        "min": 5,
+        "reqs": 35,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "POESEAEEOMLPN"
+      },
+      {
+        "wi": 1169,
+        "offset": 5206,
+        "len": 8,
+        "min": 3,
+        "reqs": 697,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IAFCNOJSIA"
+      },
+      {
+        "wi": 1181,
+        "offset": 5257,
+        "len": 10,
+        "min": 4,
+        "reqs": 26,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ENGTHJJFLNOB"
+      },
+      {
+        "wi": 1185,
+        "offset": 5274,
+        "len": 8,
+        "min": 3,
+        "reqs": 687,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "DHCWLIADEO"
+      },
+      {
+        "wi": 1188,
+        "offset": 5290,
+        "len": 8,
+        "min": 3,
+        "reqs": 802,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NGEANGGNGDJT"
+      },
+      {
+        "wi": 1203,
+        "offset": 5351,
+        "len": 10,
+        "min": 4,
+        "reqs": 24,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "YGXBANNGIAJIA"
+      },
+      {
+        "wi": 1205,
+        "offset": 5367,
+        "len": 10,
+        "min": 5,
+        "reqs": 22,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IPANGSDOEONGM"
+      },
+      {
+        "wi": 1215,
+        "offset": 5410,
+        "len": 12,
+        "min": 5,
+        "reqs": 1,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BAOEUIAJWTRWOE"
+      },
+      {
+        "wi": 1217,
+        "offset": 5429,
+        "len": 11,
+        "min": 4,
+        "reqs": 2,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IAFEAYATHLTBUNG"
+      },
+      {
+        "wi": 1220,
+        "offset": 5447,
+        "len": 12,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "WBMRNMHMINAD"
+      },
+      {
+        "wi": 1237,
+        "offset": 5522,
+        "len": 8,
+        "min": 3,
+        "reqs": 691,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EAGSAEPWMEA"
+      },
+      {
+        "wi": 1249,
+        "offset": 5584,
+        "len": 9,
+        "min": 4,
+        "reqs": 149,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "PBIASUDEYTH"
+      },
+      {
+        "wi": 1254,
+        "offset": 5610,
+        "len": 10,
+        "min": 5,
+        "reqs": 23,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "FAOIANGBEATHCA"
+      },
+      {
+        "wi": 1256,
+        "offset": 5623,
+        "len": 8,
+        "min": 3,
+        "reqs": 800,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OEWFYNGUYI"
+      },
+      {
+        "wi": 1294,
+        "offset": 5783,
+        "len": 8,
+        "min": 3,
+        "reqs": 809,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "UMUXOYHT"
+      },
+      {
+        "wi": 1296,
+        "offset": 5795,
+        "len": 10,
+        "min": 4,
+        "reqs": 31,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ONTEABOEBFIP"
+      },
+      {
+        "wi": 1299,
+        "offset": 5813,
+        "len": 8,
+        "min": 3,
+        "reqs": 768,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "UOXNIASFE"
+      },
+      {
+        "wi": 1317,
+        "offset": 5880,
+        "len": 8,
+        "min": 3,
+        "reqs": 778,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "FASIAIHBR"
+      },
+      {
+        "wi": 1326,
+        "offset": 5914,
+        "len": 8,
+        "min": 3,
+        "reqs": 666,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "LIUPTCBX"
+      },
+      {
+        "wi": 1327,
+        "offset": 5922,
+        "len": 8,
+        "min": 2,
+        "reqs": 623,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EAYFMCYR"
+      },
+      {
+        "wi": 1328,
+        "offset": 5930,
+        "len": 9,
+        "min": 4,
+        "reqs": 158,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HWTNIAXAETHOE"
+      },
+      {
+        "wi": 1337,
+        "offset": 5964,
+        "len": 10,
+        "min": 4,
+        "reqs": 28,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HJSIAWNNIAWL"
+      },
+      {
+        "wi": 1341,
+        "offset": 5981,
+        "len": 10,
+        "min": 4,
+        "reqs": 37,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AXEONGSEEOIHN"
+      },
+      {
+        "wi": 1353,
+        "offset": 6035,
+        "len": 14,
+        "min": 7,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EAIIATHNGNENFOMEYA"
+      },
+      {
+        "wi": 1356,
+        "offset": 6063,
+        "len": 10,
+        "min": 4,
+        "reqs": 25,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EALUNTHPSUPR"
+      },
+      {
+        "wi": 1357,
+        "offset": 6073,
+        "len": 8,
+        "min": 3,
+        "reqs": 692,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "DAEOERIAAEAU"
+      },
+      {
+        "wi": 1360,
+        "offset": 6090,
+        "len": 9,
+        "min": 4,
+        "reqs": 128,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OSOEARMTHOEP"
+      },
+      {
+        "wi": 1375,
+        "offset": 6154,
+        "len": 8,
+        "min": 4,
+        "reqs": 727,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BGEOAOED"
+      },
+      {
+        "wi": 1390,
+        "offset": 6216,
+        "len": 9,
+        "min": 4,
+        "reqs": 162,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BIAEHEUTLL"
+      },
+      {
+        "wi": 1393,
+        "offset": 6233,
+        "len": 9,
+        "min": 4,
+        "reqs": 151,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EAEJBNILEAR"
+      },
+      {
+        "wi": 1405,
+        "offset": 6289,
+        "len": 8,
+        "min": 3,
+        "reqs": 807,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EAYPOETHSYP"
+      },
+      {
+        "wi": 1409,
+        "offset": 6307,
+        "len": 10,
+        "min": 4,
+        "reqs": 31,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NGIIALNGNDAPG"
+      },
+      {
+        "wi": 1414,
+        "offset": 6330,
+        "len": 9,
+        "min": 4,
+        "reqs": 176,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EXBGAEFOIX"
+      },
+      {
+        "wi": 1417,
+        "offset": 6344,
+        "len": 9,
+        "min": 4,
+        "reqs": 144,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OIDSLTHEBEO"
+      },
+      {
+        "wi": 1438,
+        "offset": 6439,
+        "len": 8,
+        "min": 3,
+        "reqs": 754,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AJPUPEAYG"
+      },
+      {
+        "wi": 1452,
+        "offset": 6504,
+        "len": 8,
+        "min": 3,
+        "reqs": 663,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IHYSWOXW"
+      },
+      {
+        "wi": 1458,
+        "offset": 6530,
+        "len": 12,
+        "min": 4,
+        "reqs": 1,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "LSOAAEHLEEOIML"
+      },
+      {
+        "wi": 1470,
+        "offset": 6580,
+        "len": 9,
+        "min": 4,
+        "reqs": 112,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "MFIAEACBGAEF"
+      },
+      {
+        "wi": 1476,
+        "offset": 6606,
+        "len": 12,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EORNSOOCAEYEE"
+      },
+      {
+        "wi": 1498,
+        "offset": 6693,
+        "len": 12,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "UIARFJEORIATHEUT"
+      },
+      {
+        "wi": 1500,
+        "offset": 6707,
+        "len": 10,
+        "min": 5,
+        "reqs": 25,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NAEAOANATHGO"
+      },
+      {
+        "wi": 1501,
+        "offset": 6717,
+        "len": 10,
+        "min": 4,
+        "reqs": 26,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AEXBTEEAMGRM"
+      },
+      {
+        "wi": 1504,
+        "offset": 6735,
+        "len": 10,
+        "min": 3,
+        "reqs": 25,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EARCIPDFMNGH"
+      },
+      {
+        "wi": 1527,
+        "offset": 6846,
+        "len": 10,
+        "min": 5,
+        "reqs": 27,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HRENCPIAPDJ"
+      },
+      {
+        "wi": 1528,
+        "offset": 6856,
+        "len": 8,
+        "min": 3,
+        "reqs": 701,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ITMSAEXOY"
+      },
+      {
+        "wi": 1533,
+        "offset": 6883,
+        "len": 9,
+        "min": 4,
+        "reqs": 113,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EORHNNGEAFNF"
+      },
+      {
+        "wi": 1545,
+        "offset": 6930,
+        "len": 10,
+        "min": 5,
+        "reqs": 18,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OEMBINGTAUITH"
+      },
+      {
+        "wi": 1554,
+        "offset": 6979,
+        "len": 11,
+        "min": 5,
+        "reqs": 3,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EAPJDNOEOUNWM"
+      },
+      {
+        "wi": 1564,
+        "offset": 7011,
+        "len": 8,
+        "min": 3,
+        "reqs": 723,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BTHIJLIANGIA"
+      },
+      {
+        "wi": 1566,
+        "offset": 7022,
+        "len": 8,
+        "min": 3,
+        "reqs": 724,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "SMAIAEAEONGT"
+      },
+      {
+        "wi": 1580,
+        "offset": 7074,
+        "len": 11,
+        "min": 5,
+        "reqs": 3,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "POEAOEDGOEYXGL"
+      },
+      {
+        "wi": 1604,
+        "offset": 7168,
+        "len": 8,
+        "min": 3,
+        "reqs": 766,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "XAEAESCIANEO"
+      },
+      {
+        "wi": 1631,
+        "offset": 7269,
+        "len": 8,
+        "min": 3,
+        "reqs": 710,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NGEBLDIMF"
+      },
+      {
+        "wi": 1632,
+        "offset": 7277,
+        "len": 8,
+        "min": 3,
+        "reqs": 717,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "WBMOEIEIEA"
+      },
+      {
+        "wi": 1633,
+        "offset": 7285,
+        "len": 9,
+        "min": 3,
+        "reqs": 173,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "PHNGEDOEOHJ"
+      },
+      {
+        "wi": 1670,
+        "offset": 7447,
+        "len": 9,
+        "min": 4,
+        "reqs": 140,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IABRBFULUOE"
+      },
+      {
+        "wi": 1689,
+        "offset": 7523,
+        "len": 11,
+        "min": 5,
+        "reqs": 6,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "YXNTAEXSTHAWM"
+      },
+      {
+        "wi": 1697,
+        "offset": 7561,
+        "len": 9,
+        "min": 4,
+        "reqs": 141,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "UTHOEGEAOEEOEO"
+      },
+      {
+        "wi": 1698,
+        "offset": 7570,
+        "len": 8,
+        "min": 3,
+        "reqs": 626,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "THCBNGTXIAD"
+      },
+      {
+        "wi": 1712,
+        "offset": 7631,
+        "len": 8,
+        "min": 3,
+        "reqs": 781,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BHOHIGHC"
+      },
+      {
+        "wi": 1731,
+        "offset": 7701,
+        "len": 9,
+        "min": 4,
+        "reqs": 146,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HOAEFYGRAJ"
+      },
+      {
+        "wi": 1735,
+        "offset": 7720,
+        "len": 9,
+        "min": 4,
+        "reqs": 147,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AEJEPCBTHUNG"
+      },
+      {
+        "wi": 1740,
+        "offset": 7745,
+        "len": 8,
+        "min": 3,
+        "reqs": 763,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EROHYEAPTH"
+      },
+      {
+        "wi": 1758,
+        "offset": 7814,
+        "len": 10,
+        "min": 4,
+        "reqs": 35,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OEIAJIAOENGJXLJ"
+      },
+      {
+        "wi": 1760,
+        "offset": 7828,
+        "len": 8,
+        "min": 3,
+        "reqs": 791,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "RAITGXNGEO"
+      },
+      {
+        "wi": 1764,
+        "offset": 7848,
+        "len": 11,
+        "min": 5,
+        "reqs": 1,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "WNGHWBMSOEEIIA"
+      },
+      {
+        "wi": 1768,
+        "offset": 7872,
+        "len": 11,
+        "min": 5,
+        "reqs": 2,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HOMEXWDSLFD"
+      },
+      {
+        "wi": 1770,
+        "offset": 7889,
+        "len": 9,
+        "min": 4,
+        "reqs": 137,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "WDNAEXTYMG"
+      },
+      {
+        "wi": 1772,
+        "offset": 7903,
+        "len": 8,
+        "min": 4,
+        "reqs": 685,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "WBSRXIAXA"
+      },
+      {
+        "wi": 1774,
+        "offset": 7915,
+        "len": 9,
+        "min": 4,
+        "reqs": 131,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "WNGUHEONGIAEAJ"
+      },
+      {
+        "wi": 1776,
+        "offset": 7928,
+        "len": 8,
+        "min": 4,
+        "reqs": 721,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OENGOMBUDS"
+      },
+      {
+        "wi": 1780,
+        "offset": 7943,
+        "len": 8,
+        "min": 3,
+        "reqs": 722,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NWGULAOY"
+      },
+      {
+        "wi": 1784,
+        "offset": 7962,
+        "len": 8,
+        "min": 3,
+        "reqs": 759,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "XCFIAWHG"
+      },
+      {
+        "wi": 1786,
+        "offset": 7972,
+        "len": 9,
+        "min": 4,
+        "reqs": 193,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "FTEOEEAAIASG"
+      },
+      {
+        "wi": 1798,
+        "offset": 8027,
+        "len": 8,
+        "min": 3,
+        "reqs": 702,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AJAEGYMWD"
+      },
+      {
+        "wi": 1820,
+        "offset": 8099,
+        "len": 9,
+        "min": 4,
+        "reqs": 135,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EPJOWUEANGW"
+      },
+      {
+        "wi": 1821,
+        "offset": 8108,
+        "len": 8,
+        "min": 3,
+        "reqs": 709,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "MCOTTFUJ"
+      },
+      {
+        "wi": 1824,
+        "offset": 8124,
+        "len": 9,
+        "min": 4,
+        "reqs": 176,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BOTLEOIBIAA"
+      },
+      {
+        "wi": 1846,
+        "offset": 8214,
+        "len": 9,
+        "min": 4,
+        "reqs": 162,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "CTHSEAFUNGLH"
+      },
+      {
+        "wi": 1853,
+        "offset": 8246,
+        "len": 9,
+        "min": 4,
+        "reqs": 184,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NUXAEMTDTAE"
+      },
+      {
+        "wi": 1867,
+        "offset": 8307,
+        "len": 8,
+        "min": 3,
+        "reqs": 804,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "FRRIXUTHH"
+      },
+      {
+        "wi": 1879,
+        "offset": 8358,
+        "len": 8,
+        "min": 3,
+        "reqs": 722,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "GNPDNGTEA"
+      },
+      {
+        "wi": 1891,
+        "offset": 8411,
+        "len": 12,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HTHWLDEAODEAUOEE"
+      },
+      {
+        "wi": 1898,
+        "offset": 8442,
+        "len": 10,
+        "min": 4,
+        "reqs": 28,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "CTHENUIAEIUIA"
+      },
+      {
+        "wi": 1905,
+        "offset": 8469,
+        "len": 8,
+        "min": 3,
+        "reqs": 754,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OROEFEYOEI"
+      },
+      {
+        "wi": 1909,
+        "offset": 8492,
+        "len": 8,
+        "min": 3,
+        "reqs": 852,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AEOEAEDEDYIA"
+      },
+      {
+        "wi": 1914,
+        "offset": 8520,
+        "len": 8,
+        "min": 3,
+        "reqs": 711,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "TXOYNGFOY"
+      },
+      {
+        "wi": 1916,
+        "offset": 8530,
+        "len": 11,
+        "min": 5,
+        "reqs": 1,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OEAEGJNGIANMYOEIA"
+      },
+      {
+        "wi": 1926,
+        "offset": 8572,
+        "len": 8,
+        "min": 3,
+        "reqs": 721,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "PGECOEROEU"
+      },
+      {
+        "wi": 1929,
+        "offset": 8587,
+        "len": 9,
+        "min": 4,
+        "reqs": 124,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "RETHYTNGIAOB"
+      },
+      {
+        "wi": 1934,
+        "offset": 8609,
+        "len": 10,
+        "min": 4,
+        "reqs": 21,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IAEOIEOOEXCWAE"
+      },
+      {
+        "wi": 1940,
+        "offset": 8632,
+        "len": 8,
+        "min": 4,
+        "reqs": 769,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IAELSNGJJIA"
+      },
+      {
+        "wi": 1947,
+        "offset": 8666,
+        "len": 9,
+        "min": 4,
+        "reqs": 126,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EOOEHOECSTNO"
+      },
+      {
+        "wi": 1950,
+        "offset": 8679,
+        "len": 8,
+        "min": 3,
+        "reqs": 726,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "DUYLIMBU"
+      },
+      {
+        "wi": 1967,
+        "offset": 8747,
+        "len": 10,
+        "min": 5,
+        "reqs": 24,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "POEJANGPTHPANG"
+      },
+      {
+        "wi": 1969,
+        "offset": 8760,
+        "len": 9,
+        "min": 4,
+        "reqs": 139,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "XBUTEOMPAEY"
+      },
+      {
+        "wi": 1970,
+        "offset": 8769,
+        "len": 10,
+        "min": 5,
+        "reqs": 30,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "XAEYRAEYFFMIA"
+      },
+      {
+        "wi": 1978,
+        "offset": 8812,
+        "len": 8,
+        "min": 3,
+        "reqs": 649,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "MXHCXATTH"
+      },
+      {
+        "wi": 1989,
+        "offset": 8859,
+        "len": 8,
+        "min": 4,
+        "reqs": 773,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EAOEDOEJINGIA"
+      },
+      {
+        "wi": 1997,
+        "offset": 8897,
+        "len": 11,
+        "min": 5,
+        "reqs": 7,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EONGBLIUYFOENOE"
+      },
+      {
+        "wi": 1998,
+        "offset": 8908,
+        "len": 8,
+        "min": 3,
+        "reqs": 694,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BOEGJANMAE"
+      },
+      {
+        "wi": 2000,
+        "offset": 8919,
+        "len": 8,
+        "min": 3,
+        "reqs": 727,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IBNGPNIRG"
+      },
+      {
+        "wi": 2010,
+        "offset": 8962,
+        "len": 10,
+        "min": 3,
+        "reqs": 24,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AIJSRATSNGT"
+      },
+      {
+        "wi": 2023,
+        "offset": 9021,
+        "len": 9,
+        "min": 4,
+        "reqs": 141,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NOTHCTHNMOE"
+      },
+      {
+        "wi": 2044,
+        "offset": 9094,
+        "len": 9,
+        "min": 4,
+        "reqs": 114,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HSGAIOEDAJ"
+      },
+      {
+        "wi": 2046,
+        "offset": 9107,
+        "len": 8,
+        "min": 3,
+        "reqs": 852,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "MNGIADFBST"
+      },
+      {
+        "wi": 2048,
+        "offset": 9118,
+        "len": 8,
+        "min": 4,
+        "reqs": 673,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "GOEUCAETIE"
+      },
+      {
+        "wi": 2052,
+        "offset": 9140,
+        "len": 9,
+        "min": 4,
+        "reqs": 142,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NBSMXDHXI"
+      },
+      {
+        "wi": 2063,
+        "offset": 9190,
+        "len": 10,
+        "min": 5,
+        "reqs": 20,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ISNGMDAEUEAUA"
+      },
+      {
+        "wi": 2067,
+        "offset": 9210,
+        "len": 11,
+        "min": 5,
+        "reqs": 2,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NPCHRYWLXRB"
+      },
+      {
+        "wi": 2078,
+        "offset": 9264,
+        "len": 9,
+        "min": 4,
+        "reqs": 183,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HRODBIAPEAM"
+      },
+      {
+        "wi": 2085,
+        "offset": 9292,
+        "len": 9,
+        "min": 4,
+        "reqs": 124,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HTNGHAGONGAE"
+      },
+      {
+        "wi": 2089,
+        "offset": 9315,
+        "len": 12,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NGNCSNDEONSICIA"
+      },
+      {
+        "wi": 2090,
+        "offset": 9327,
+        "len": 8,
+        "min": 3,
+        "reqs": 630,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "RNGLAEYEOLO"
+      },
+      {
+        "wi": 2102,
+        "offset": 9376,
+        "len": 10,
+        "min": 4,
+        "reqs": 22,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AJAEOEEALFEIAU"
+      },
+      {
+        "wi": 2114,
+        "offset": 9430,
+        "len": 8,
+        "min": 3,
+        "reqs": 748,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "YNGIAMGEONP"
+      },
+      {
+        "wi": 2148,
+        "offset": 9586,
+        "len": 10,
+        "min": 5,
+        "reqs": 19,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "UPSTHICPSIW"
+      },
+      {
+        "wi": 2169,
+        "offset": 9671,
+        "len": 12,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "TROEGEANAEBUEBU"
+      },
+      {
+        "wi": 2179,
+        "offset": 9718,
+        "len": 9,
+        "min": 4,
+        "reqs": 171,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "DOLIXEANGER"
+      },
+      {
+        "wi": 2193,
+        "offset": 9777,
+        "len": 10,
+        "min": 4,
+        "reqs": 28,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EXOXICUMNU"
+      },
+      {
+        "wi": 2230,
+        "offset": 9929,
+        "len": 9,
+        "min": 4,
+        "reqs": 158,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AEAFOYIAANH"
+      },
+      {
+        "wi": 2231,
+        "offset": 9938,
+        "len": 8,
+        "min": 3,
+        "reqs": 702,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BTHOEEOYOEIB"
+      },
+      {
+        "wi": 2235,
+        "offset": 9955,
+        "len": 10,
+        "min": 5,
+        "reqs": 35,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "XTOEUOOETHPSO"
+      },
+      {
+        "wi": 2244,
+        "offset": 9993,
+        "len": 8,
+        "min": 3,
+        "reqs": 792,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "CENAORTTH"
+      },
+      {
+        "wi": 2273,
+        "offset": 10126,
+        "len": 8,
+        "min": 3,
+        "reqs": 633,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OEWRIRTHEX"
+      },
+      {
+        "wi": 2279,
+        "offset": 10152,
+        "len": 9,
+        "min": 4,
+        "reqs": 147,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "PXUAETHBFJTH"
+      },
+      {
+        "wi": 2285,
+        "offset": 10178,
+        "len": 10,
+        "min": 5,
+        "reqs": 26,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "LNTLUBRNGAS"
+      },
+      {
+        "wi": 2290,
+        "offset": 10203,
+        "len": 8,
+        "min": 3,
+        "reqs": 837,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "XLMTDFPI"
+      },
+      {
+        "wi": 2291,
+        "offset": 10211,
+        "len": 9,
+        "min": 4,
+        "reqs": 141,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "FCTHMJWRAL"
+      },
+      {
+        "wi": 2292,
+        "offset": 10220,
+        "len": 8,
+        "min": 3,
+        "reqs": 680,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ONGRUPROEIA"
+      },
+      {
+        "wi": 2297,
+        "offset": 10244,
+        "len": 10,
+        "min": 5,
+        "reqs": 34,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "FIAAIAEAEDJUE"
+      },
+      {
+        "wi": 2309,
+        "offset": 10301,
+        "len": 8,
+        "min": 4,
+        "reqs": 785,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ITDEABFOP"
+      },
+      {
+        "wi": 2310,
+        "offset": 10309,
+        "len": 8,
+        "min": 3,
+        "reqs": 688,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EOIAOEWRNOT"
+      },
+      {
+        "wi": 2314,
+        "offset": 10330,
+        "len": 9,
+        "min": 3,
+        "reqs": 170,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "SRFDNGHEJD"
+      },
+      {
+        "wi": 2321,
+        "offset": 10355,
+        "len": 8,
+        "min": 3,
+        "reqs": 729,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IFXUOYHTH"
+      },
+      {
+        "wi": 2333,
+        "offset": 10407,
+        "len": 11,
+        "min": 5,
+        "reqs": 7,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "DEAUNNGFNEAEHJ"
+      },
+      {
+        "wi": 2336,
+        "offset": 10426,
+        "len": 8,
+        "min": 3,
+        "reqs": 694,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "CUAEMPSAIA"
+      },
+      {
+        "wi": 2339,
+        "offset": 10441,
+        "len": 8,
+        "min": 3,
+        "reqs": 714,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "XFAEDFIAJN"
+      },
+      {
+        "wi": 2341,
+        "offset": 10453,
+        "len": 14,
+        "min": 8,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "TFJRWFSNWJEBUTH"
+      },
+      {
+        "wi": 2344,
+        "offset": 10473,
+        "len": 10,
+        "min": 5,
+        "reqs": 15,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "UIOJOEOOEJDO"
+      },
+      {
+        "wi": 2350,
+        "offset": 10503,
+        "len": 8,
+        "min": 3,
+        "reqs": 695,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EAHIAREAEAXS"
+      },
+      {
+        "wi": 2354,
+        "offset": 10526,
+        "len": 10,
+        "min": 4,
+        "reqs": 23,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BIADEAAEBEACXF"
+      },
+      {
+        "wi": 2357,
+        "offset": 10547,
+        "len": 11,
+        "min": 5,
+        "reqs": 4,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BOPAEONGHEOEEOAE"
+      },
+      {
+        "wi": 2372,
+        "offset": 10604,
+        "len": 8,
+        "min": 3,
+        "reqs": 718,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BNECIWYOE"
+      },
+      {
+        "wi": 2375,
+        "offset": 10618,
+        "len": 8,
+        "min": 3,
+        "reqs": 723,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AEHOEFAEGOJ"
+      },
+      {
+        "wi": 2388,
+        "offset": 10672,
+        "len": 11,
+        "min": 5,
+        "reqs": 8,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "MNGYANGFXIOEGL"
+      },
+      {
+        "wi": 2394,
+        "offset": 10702,
+        "len": 11,
+        "min": 4,
+        "reqs": 2,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ISEYTHAIANGOEEOL"
+      },
+      {
+        "wi": 2408,
+        "offset": 10779,
+        "len": 8,
+        "min": 3,
+        "reqs": 701,
+        "plusOK": false,
+        "minusOK": true,
+        "cipher": "THLESEOEAEE"
+      },
+      {
+        "wi": 2421,
+        "offset": 10833,
+        "len": 9,
+        "min": 4,
+        "reqs": 153,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "PCIABGBPOE"
+      },
+      {
+        "wi": 2433,
+        "offset": 10882,
+        "len": 8,
+        "min": 3,
+        "reqs": 735,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "CJFIANGLYB"
+      },
+      {
+        "wi": 2438,
+        "offset": 10911,
+        "len": 8,
+        "min": 3,
+        "reqs": 734,
+        "plusOK": false,
+        "minusOK": true,
+        "cipher": "IAPTXOIJOE"
+      },
+      {
+        "wi": 2440,
+        "offset": 10923,
+        "len": 9,
+        "min": 4,
+        "reqs": 127,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "YEASOEEOUAIA"
+      },
+      {
+        "wi": 2445,
+        "offset": 10945,
+        "len": 8,
+        "min": 4,
+        "reqs": 660,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "XAGHYTENG"
+      },
+      {
+        "wi": 2452,
+        "offset": 10973,
+        "len": 8,
+        "min": 3,
+        "reqs": 724,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "UITHJNFRTH"
+      },
+      {
+        "wi": 2454,
+        "offset": 10987,
+        "len": 8,
+        "min": 4,
+        "reqs": 699,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NGLAIBEAUS"
+      },
+      {
+        "wi": 2463,
+        "offset": 11027,
+        "len": 9,
+        "min": 4,
+        "reqs": 155,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AEJRAUHRTHR"
+      },
+      {
+        "wi": 2475,
+        "offset": 11076,
+        "len": 10,
+        "min": 5,
+        "reqs": 33,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "MLITHTEASNGL"
+      },
+      {
+        "wi": 2486,
+        "offset": 11118,
+        "len": 8,
+        "min": 4,
+        "reqs": 734,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BYSYFDYNG"
+      },
+      {
+        "wi": 2491,
+        "offset": 11144,
+        "len": 8,
+        "min": 3,
+        "reqs": 786,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EAIAOTIAARD"
+      },
+      {
+        "wi": 2492,
+        "offset": 11152,
+        "len": 9,
+        "min": 4,
+        "reqs": 179,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ANGPWMJOEEAO"
+      },
+      {
+        "wi": 2509,
+        "offset": 11222,
+        "len": 9,
+        "min": 4,
+        "reqs": 192,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "GUHYHIBXN"
+      },
+      {
+        "wi": 2510,
+        "offset": 11231,
+        "len": 9,
+        "min": 4,
+        "reqs": 141,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "WNGHTXAEIJU"
+      },
+      {
+        "wi": 2528,
+        "offset": 11299,
+        "len": 9,
+        "min": 4,
+        "reqs": 101,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AXNGBDXJTHU"
+      },
+      {
+        "wi": 2534,
+        "offset": 11329,
+        "len": 12,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "LMEITHAEAIAJIAR"
+      },
+      {
+        "wi": 2536,
+        "offset": 11348,
+        "len": 8,
+        "min": 4,
+        "reqs": 828,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ETUHPCTHS"
+      },
+      {
+        "wi": 2551,
+        "offset": 11414,
+        "len": 8,
+        "min": 3,
+        "reqs": 781,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IATHNFPOEIAN"
+      },
+      {
+        "wi": 2566,
+        "offset": 11471,
+        "len": 8,
+        "min": 3,
+        "reqs": 754,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "SNPFAEBJAE"
+      },
+      {
+        "wi": 2568,
+        "offset": 11482,
+        "len": 9,
+        "min": 4,
+        "reqs": 109,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EOAONJCLBX"
+      },
+      {
+        "wi": 2570,
+        "offset": 11495,
+        "len": 11,
+        "min": 5,
+        "reqs": 5,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NGLMCIAEOFAEEAITH"
+      },
+      {
+        "wi": 2571,
+        "offset": 11506,
+        "len": 8,
+        "min": 3,
+        "reqs": 708,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BEALTHCDIEO"
+      },
+      {
+        "wi": 2572,
+        "offset": 11514,
+        "len": 10,
+        "min": 4,
+        "reqs": 33,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "FUXSXITHAESM"
+      },
+      {
+        "wi": 2580,
+        "offset": 11553,
+        "len": 11,
+        "min": 5,
+        "reqs": 5,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IAYEOEIAGAEFNW"
+      },
+      {
+        "wi": 2593,
+        "offset": 11610,
+        "len": 8,
+        "min": 3,
+        "reqs": 738,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BNFASGBF"
+      },
+      {
+        "wi": 2594,
+        "offset": 11618,
+        "len": 8,
+        "min": 3,
+        "reqs": 827,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AEWYGUIAFEA"
+      },
+      {
+        "wi": 2603,
+        "offset": 11650,
+        "len": 9,
+        "min": 4,
+        "reqs": 149,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NGSRUWRYHW"
+      },
+      {
+        "wi": 2615,
+        "offset": 11700,
+        "len": 9,
+        "min": 4,
+        "reqs": 200,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BYXHUFTHDW"
+      },
+      {
+        "wi": 2623,
+        "offset": 11739,
+        "len": 10,
+        "min": 4,
+        "reqs": 23,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IALEGMNGWHRS"
+      },
+      {
+        "wi": 2626,
+        "offset": 11759,
+        "len": 11,
+        "min": 5,
+        "reqs": 1,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EAJEOINJOMRIAX"
+      },
+      {
+        "wi": 2628,
+        "offset": 11773,
+        "len": 8,
+        "min": 3,
+        "reqs": 738,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AOAAEHCITH"
+      },
+      {
+        "wi": 2662,
+        "offset": 11906,
+        "len": 9,
+        "min": 4,
+        "reqs": 195,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "TAJCTHUTWTH"
+      },
+      {
+        "wi": 2663,
+        "offset": 11915,
+        "len": 8,
+        "min": 3,
+        "reqs": 730,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "MGEMYIAID"
+      },
+      {
+        "wi": 2671,
+        "offset": 11943,
+        "len": 8,
+        "min": 3,
+        "reqs": 716,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OENGBUSDHD"
+      },
+      {
+        "wi": 2685,
+        "offset": 11998,
+        "len": 8,
+        "min": 4,
+        "reqs": 700,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "MIJBMRNM"
+      },
+      {
+        "wi": 2694,
+        "offset": 12040,
+        "len": 9,
+        "min": 4,
+        "reqs": 127,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EOFUDYALFIA"
+      },
+      {
+        "wi": 2720,
+        "offset": 12146,
+        "len": 8,
+        "min": 3,
+        "reqs": 715,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AUNEAEDMA"
+      },
+      {
+        "wi": 2722,
+        "offset": 12157,
+        "len": 8,
+        "min": 3,
+        "reqs": 716,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "SDNGGLSDNG"
+      },
+      {
+        "wi": 2727,
+        "offset": 12180,
+        "len": 8,
+        "min": 3,
+        "reqs": 727,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "YOBGCETW"
+      },
+      {
+        "wi": 2729,
+        "offset": 12191,
+        "len": 8,
+        "min": 3,
+        "reqs": 759,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "MEAYEOMAELR"
+      },
+      {
+        "wi": 2733,
+        "offset": 12209,
+        "len": 8,
+        "min": 3,
+        "reqs": 668,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NGAEONOEWEOX"
+      },
+      {
+        "wi": 2752,
+        "offset": 12284,
+        "len": 13,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "PCEOUTCIAEONGNUHTH"
+      },
+      {
+        "wi": 2758,
+        "offset": 12319,
+        "len": 8,
+        "min": 3,
+        "reqs": 697,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "APOAAEDSNG"
+      },
+      {
+        "wi": 2761,
+        "offset": 12335,
+        "len": 8,
+        "min": 2,
+        "reqs": 729,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EAEOHFHCRAE"
+      },
+      {
+        "wi": 2765,
+        "offset": 12357,
+        "len": 8,
+        "min": 3,
+        "reqs": 746,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EAOEXOEEAIANGB"
+      },
+      {
+        "wi": 2781,
+        "offset": 12412,
+        "len": 12,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AELAJIAEGXIANXT"
+      },
+      {
+        "wi": 2784,
+        "offset": 12432,
+        "len": 8,
+        "min": 3,
+        "reqs": 675,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "UNIOMEAIG"
+      },
+      {
+        "wi": 2787,
+        "offset": 12449,
+        "len": 8,
+        "min": 3,
+        "reqs": 721,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "MTRAEUHING"
+      },
+      {
+        "wi": 2790,
+        "offset": 12464,
+        "len": 10,
+        "min": 4,
+        "reqs": 29,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OEGHYHEOAEEAAEY"
+      },
+      {
+        "wi": 2796,
+        "offset": 12494,
+        "len": 8,
+        "min": 3,
+        "reqs": 726,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "MNEHGBUJ"
+      },
+      {
+        "wi": 2807,
+        "offset": 12543,
+        "len": 10,
+        "min": 4,
+        "reqs": 28,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "UNGJEOGFNGRITH"
+      },
+      {
+        "wi": 2809,
+        "offset": 12556,
+        "len": 9,
+        "min": 4,
+        "reqs": 136,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "YSFEUSAEYEA"
+      },
+      {
+        "wi": 2821,
+        "offset": 12610,
+        "len": 11,
+        "min": 5,
+        "reqs": 1,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "RIADIATHAIEOAEXL"
+      },
+      {
+        "wi": 2831,
+        "offset": 12649,
+        "len": 8,
+        "min": 3,
+        "reqs": 686,
+        "plusOK": false,
+        "minusOK": true,
+        "cipher": "MNGDIATHXIM"
+      },
+      {
+        "wi": 2832,
+        "offset": 12657,
+        "len": 8,
+        "min": 4,
+        "reqs": 715,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IADPNGUWAM"
+      },
+      {
+        "wi": 2844,
+        "offset": 12708,
+        "len": 10,
+        "min": 5,
+        "reqs": 31,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "DWHBNGFACJU"
+      },
+      {
+        "wi": 2845,
+        "offset": 12718,
+        "len": 8,
+        "min": 3,
+        "reqs": 863,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "OJIAEAILGH"
+      },
+      {
+        "wi": 2848,
+        "offset": 12734,
+        "len": 8,
+        "min": 3,
+        "reqs": 734,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "MOPYDIALP"
+      },
+      {
+        "wi": 2866,
+        "offset": 12807,
+        "len": 8,
+        "min": 3,
+        "reqs": 759,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NGOELMBTH"
+      },
+      {
+        "wi": 2869,
+        "offset": 12824,
+        "len": 8,
+        "min": 3,
+        "reqs": 767,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ELREOPRDY"
+      },
+      {
+        "wi": 2877,
+        "offset": 12858,
+        "len": 10,
+        "min": 4,
+        "reqs": 28,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HEAACIMXJME"
+      },
+      {
+        "wi": 2879,
+        "offset": 12870,
+        "len": 11,
+        "min": 5,
+        "reqs": 1,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "GOTTHXEEARGYNG"
+      },
+      {
+        "wi": 2886,
+        "offset": 12903,
+        "len": 13,
+        "min": 7,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BEAFXIMUCPHNGLEO"
+      }
+    ]
+  },
+  "expanded": {
+    "words": 2896,
+    "runes": 12956,
+    "lexicon": 224885,
+    "fixed": {
+      "plus": 2446,
+      "minus": 2450,
+      "plusLong": 30,
+      "minusLong": 21
+    },
+    "lenHist": {
+      "1": [
+        83,
+        83,
+        83
+      ],
+      "2": [
+        448,
+        448,
+        448
+      ],
+      "3": [
+        720,
+        720,
+        720
+      ],
+      "4": [
+        513,
+        513,
+        513
+      ],
+      "5": [
+        317,
+        316,
+        317
+      ],
+      "6": [
+        256,
+        233,
+        238
+      ],
+      "7": [
+        216,
+        103,
+        110
+      ],
+      "8": [
+        156,
+        26,
+        20
+      ],
+      "9": [
+        78,
+        4,
+        1
+      ],
+      "10": [
+        52,
+        0,
+        0
+      ],
+      "11": [
+        32,
+        0,
+        0
+      ],
+      "12": [
+        18,
+        0,
+        0
+      ],
+      "13": [
+        4,
+        0,
+        0
+      ],
+      "14": [
+        3,
+        0,
+        0
+      ]
+    },
+    "longAnchors": 343,
+    "minHist": {
+      "2": 12,
+      "3": 207,
+      "4": 89,
+      "5": 29,
+      "6": 5,
+      "7": 1
+    },
+    "zeroAnchors": 6,
+    "examples": [
+      {
+        "wi": 631,
+        "offset": 2886,
+        "len": 13,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EOPSULAPUCEFDX"
+      },
+      {
+        "wi": 754,
+        "offset": 3405,
+        "len": 14,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BGDXMBXCNGTHYDAEEA"
+      },
+      {
+        "wi": 833,
+        "offset": 3762,
+        "len": 13,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EDAAETOEAEEAXCEAT"
+      },
+      {
+        "wi": 1353,
+        "offset": 6035,
+        "len": 14,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EAIIATHNGNENFOMEYA"
+      },
+      {
+        "wi": 1891,
+        "offset": 8411,
+        "len": 12,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HTHWLDEAODEAUOEE"
+      },
+      {
+        "wi": 2341,
+        "offset": 10453,
+        "len": 14,
+        "min": 7,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "TFJRWFSNWJEBUTH"
+      }
+    ],
+    "maxCovered": 45,
+    "topCount": 1,
+    "top": [
+      [
+        6,
+        8,
+        10,
+        17,
+        22
+      ]
+    ],
+    "minimumLongOOV": 298,
+    "sourcePlusRank": 5757,
+    "sourceMinusRank": 73095,
+    "trueBank": null,
+    "anchors": [
+      {
+        "wi": 0,
+        "offset": 0,
+        "len": 8,
+        "min": 3,
+        "reqs": 4175,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "SHEOGMIAF"
+      },
+      {
+        "wi": 5,
+        "offset": 23,
+        "len": 11,
+        "min": 5,
+        "reqs": 44,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NEWBASOEEOINGU"
+      },
+      {
+        "wi": 13,
+        "offset": 62,
+        "len": 11,
+        "min": 4,
+        "reqs": 31,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "SPTFPUNGYNGXIA"
+      },
+      {
+        "wi": 20,
+        "offset": 95,
+        "len": 8,
+        "min": 2,
+        "reqs": 4193,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "THAMINGIIAY"
+      },
+      {
+        "wi": 36,
+        "offset": 158,
+        "len": 8,
+        "min": 3,
+        "reqs": 4326,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NGGMJROLEO"
+      },
+      {
+        "wi": 46,
+        "offset": 203,
+        "len": 8,
+        "min": 3,
+        "reqs": 3894,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "EAMNGXXEODB"
+      },
+      {
+        "wi": 55,
+        "offset": 245,
+        "len": 9,
+        "min": 3,
+        "reqs": 1082,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "FOEWEAOELFAE"
+      },
+      {
+        "wi": 59,
+        "offset": 267,
+        "len": 8,
+        "min": 3,
+        "reqs": 4278,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "SOERUWSLIA"
+      },
+      {
+        "wi": 60,
+        "offset": 275,
+        "len": 8,
+        "min": 3,
+        "reqs": 4110,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OEAAENGSDPT"
+      },
+      {
+        "wi": 67,
+        "offset": 304,
+        "len": 9,
+        "min": 3,
+        "reqs": 999,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ROOEMHMGPH"
+      },
+      {
+        "wi": 90,
+        "offset": 397,
+        "len": 10,
+        "min": 4,
+        "reqs": 153,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "JFINIACYEAIIA"
+      },
+      {
+        "wi": 95,
+        "offset": 425,
+        "len": 9,
+        "min": 3,
+        "reqs": 1001,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "DCLEASXCGIA"
+      },
+      {
+        "wi": 131,
+        "offset": 575,
+        "len": 10,
+        "min": 4,
+        "reqs": 203,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NGEAFNIEDIANGR"
+      },
+      {
+        "wi": 140,
+        "offset": 630,
+        "len": 9,
+        "min": 4,
+        "reqs": 1030,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "PTFHRDEFT"
+      },
+      {
+        "wi": 144,
+        "offset": 645,
+        "len": 8,
+        "min": 3,
+        "reqs": 4017,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "PALUEANLJ"
+      },
+      {
+        "wi": 145,
+        "offset": 653,
+        "len": 9,
+        "min": 3,
+        "reqs": 1001,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "JCLWEADUDEO"
+      },
+      {
+        "wi": 147,
+        "offset": 668,
+        "len": 10,
+        "min": 4,
+        "reqs": 285,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "THIAAECLTWEIC"
+      },
+      {
+        "wi": 150,
+        "offset": 685,
+        "len": 8,
+        "min": 3,
+        "reqs": 4307,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "RIGTHEAETG"
+      },
+      {
+        "wi": 151,
+        "offset": 693,
+        "len": 8,
+        "min": 2,
+        "reqs": 4158,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "THHOIAWAEJE"
+      },
+      {
+        "wi": 155,
+        "offset": 708,
+        "len": 10,
+        "min": 4,
+        "reqs": 168,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BJCUXTABJP"
+      },
+      {
+        "wi": 157,
+        "offset": 720,
+        "len": 9,
+        "min": 3,
+        "reqs": 952,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HDNIAUPSUW"
+      },
+      {
+        "wi": 159,
+        "offset": 731,
+        "len": 11,
+        "min": 4,
+        "reqs": 31,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EOHNGCTHTAEJTXH"
+      },
+      {
+        "wi": 167,
+        "offset": 780,
+        "len": 12,
+        "min": 5,
+        "reqs": 2,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "RLLEBWNHMFOEB"
+      },
+      {
+        "wi": 169,
+        "offset": 793,
+        "len": 9,
+        "min": 3,
+        "reqs": 1092,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "RAIAGOEEOTMX"
+      },
+      {
+        "wi": 173,
+        "offset": 811,
+        "len": 8,
+        "min": 3,
+        "reqs": 4401,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NWCFPMPL"
+      },
+      {
+        "wi": 189,
+        "offset": 881,
+        "len": 11,
+        "min": 5,
+        "reqs": 25,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "SXOHWDMEMAF"
+      },
+      {
+        "wi": 198,
+        "offset": 927,
+        "len": 8,
+        "min": 3,
+        "reqs": 3929,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "XIYGSSBEA"
+      },
+      {
+        "wi": 202,
+        "offset": 948,
+        "len": 8,
+        "min": 3,
+        "reqs": 3907,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "YPXIWMCI"
+      },
+      {
+        "wi": 235,
+        "offset": 1067,
+        "len": 9,
+        "min": 3,
+        "reqs": 1004,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EOYNGJNGMWCN"
+      },
+      {
+        "wi": 241,
+        "offset": 1097,
+        "len": 10,
+        "min": 4,
+        "reqs": 157,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "RLRBAPTXLT"
+      },
+      {
+        "wi": 243,
+        "offset": 1111,
+        "len": 9,
+        "min": 3,
+        "reqs": 1076,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "JSOEMNREBS"
+      },
+      {
+        "wi": 245,
+        "offset": 1124,
+        "len": 8,
+        "min": 3,
+        "reqs": 4590,
+        "plusOK": false,
+        "minusOK": true,
+        "cipher": "SBFXTHAEAU"
+      },
+      {
+        "wi": 247,
+        "offset": 1134,
+        "len": 9,
+        "min": 4,
+        "reqs": 1009,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "RGTEOEAIJBOE"
+      },
+      {
+        "wi": 251,
+        "offset": 1152,
+        "len": 8,
+        "min": 3,
+        "reqs": 3871,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "NUANGBPSEA"
+      },
+      {
+        "wi": 257,
+        "offset": 1184,
+        "len": 10,
+        "min": 4,
+        "reqs": 163,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "PAEOGSCGDPY"
+      },
+      {
+        "wi": 265,
+        "offset": 1222,
+        "len": 8,
+        "min": 3,
+        "reqs": 4224,
+        "plusOK": false,
+        "minusOK": true,
+        "cipher": "CSOEEYOEHU"
+      },
+      {
+        "wi": 277,
+        "offset": 1269,
+        "len": 9,
+        "min": 3,
+        "reqs": 1090,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "PNGEOPOILEF"
+      },
+      {
+        "wi": 285,
+        "offset": 1308,
+        "len": 8,
+        "min": 3,
+        "reqs": 3993,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "THJYJLOEEL"
+      },
+      {
+        "wi": 291,
+        "offset": 1329,
+        "len": 8,
+        "min": 3,
+        "reqs": 4317,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "THYEOTHJTHRU"
+      },
+      {
+        "wi": 295,
+        "offset": 1348,
+        "len": 10,
+        "min": 4,
+        "reqs": 194,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HEATYDYAEFHO"
+      },
+      {
+        "wi": 306,
+        "offset": 1407,
+        "len": 9,
+        "min": 3,
+        "reqs": 1277,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "FDLIEAPOEYO"
+      },
+      {
+        "wi": 307,
+        "offset": 1416,
+        "len": 10,
+        "min": 4,
+        "reqs": 172,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "UBGNGOEUNGSUC"
+      },
+      {
+        "wi": 325,
+        "offset": 1490,
+        "len": 10,
+        "min": 4,
+        "reqs": 160,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "WIIASPLTHASJ"
+      },
+      {
+        "wi": 345,
+        "offset": 1582,
+        "len": 8,
+        "min": 3,
+        "reqs": 4257,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "DATYUNREO"
+      },
+      {
+        "wi": 346,
+        "offset": 1590,
+        "len": 8,
+        "min": 3,
+        "reqs": 4353,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AEAEIEFNGTHH"
+      },
+      {
+        "wi": 376,
+        "offset": 1717,
+        "len": 12,
+        "min": 5,
+        "reqs": 6,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IAAETHWHPEOAGPHEA"
+      },
+      {
+        "wi": 384,
+        "offset": 1758,
+        "len": 8,
+        "min": 3,
+        "reqs": 4273,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "CHOEEANPCTH"
+      },
+      {
+        "wi": 406,
+        "offset": 1845,
+        "len": 12,
+        "min": 5,
+        "reqs": 10,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ICETSWENIAYJM"
+      },
+      {
+        "wi": 414,
+        "offset": 1878,
+        "len": 8,
+        "min": 3,
+        "reqs": 4357,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "UXMCTHPOB"
+      },
+      {
+        "wi": 418,
+        "offset": 1894,
+        "len": 9,
+        "min": 3,
+        "reqs": 1063,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OCEAMNGGXLU"
+      },
+      {
+        "wi": 430,
+        "offset": 1944,
+        "len": 8,
+        "min": 3,
+        "reqs": 4419,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AHOERNGUER"
+      },
+      {
+        "wi": 442,
+        "offset": 1998,
+        "len": 10,
+        "min": 4,
+        "reqs": 181,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "MIEOLEAHTHMEAY"
+      },
+      {
+        "wi": 444,
+        "offset": 2014,
+        "len": 12,
+        "min": 5,
+        "reqs": 1,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NOEOESGMPETLNJ"
+      },
+      {
+        "wi": 450,
+        "offset": 2046,
+        "len": 10,
+        "min": 4,
+        "reqs": 174,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HNGXPHPCPRU"
+      },
+      {
+        "wi": 452,
+        "offset": 2060,
+        "len": 9,
+        "min": 4,
+        "reqs": 1030,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "GABFIAEFUOE"
+      },
+      {
+        "wi": 456,
+        "offset": 2086,
+        "len": 8,
+        "min": 2,
+        "reqs": 4048,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "AEOAMOEUWEO"
+      },
+      {
+        "wi": 457,
+        "offset": 2094,
+        "len": 8,
+        "min": 3,
+        "reqs": 4038,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BNSLNGJOEN"
+      },
+      {
+        "wi": 460,
+        "offset": 2107,
+        "len": 9,
+        "min": 3,
+        "reqs": 1017,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NDBONTHIAHOE"
+      },
+      {
+        "wi": 473,
+        "offset": 2165,
+        "len": 11,
+        "min": 4,
+        "reqs": 34,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OEHFTHXJOESTHYTH"
+      },
+      {
+        "wi": 488,
+        "offset": 2236,
+        "len": 8,
+        "min": 3,
+        "reqs": 4251,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EALGXYYRJ"
+      },
+      {
+        "wi": 493,
+        "offset": 2256,
+        "len": 8,
+        "min": 3,
+        "reqs": 4165,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EEAWBTHOEFM"
+      },
+      {
+        "wi": 503,
+        "offset": 2299,
+        "len": 8,
+        "min": 3,
+        "reqs": 4361,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "LEIAHLGREO"
+      },
+      {
+        "wi": 506,
+        "offset": 2315,
+        "len": 11,
+        "min": 4,
+        "reqs": 36,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "FIJUMAENCMEAI"
+      },
+      {
+        "wi": 512,
+        "offset": 2347,
+        "len": 12,
+        "min": 5,
+        "reqs": 3,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ASIATHSTHSFMGDEA"
+      },
+      {
+        "wi": 513,
+        "offset": 2359,
+        "len": 8,
+        "min": 3,
+        "reqs": 4277,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "NGPOAYNGPS"
+      },
+      {
+        "wi": 518,
+        "offset": 2379,
+        "len": 8,
+        "min": 3,
+        "reqs": 4243,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BGYNGFYIH"
+      },
+      {
+        "wi": 519,
+        "offset": 2387,
+        "len": 11,
+        "min": 4,
+        "reqs": 27,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "WIAEARAEWIADATHC"
+      },
+      {
+        "wi": 554,
+        "offset": 2526,
+        "len": 8,
+        "min": 3,
+        "reqs": 4311,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NEOTHOETEOCF"
+      },
+      {
+        "wi": 559,
+        "offset": 2550,
+        "len": 8,
+        "min": 3,
+        "reqs": 4460,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EOIIAFOEBTHF"
+      },
+      {
+        "wi": 570,
+        "offset": 2590,
+        "len": 8,
+        "min": 3,
+        "reqs": 3993,
+        "plusOK": false,
+        "minusOK": true,
+        "cipher": "EOHMOOEBTH"
+      },
+      {
+        "wi": 578,
+        "offset": 2622,
+        "len": 11,
+        "min": 4,
+        "reqs": 43,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OCPCDAXUMNGOE"
+      },
+      {
+        "wi": 580,
+        "offset": 2637,
+        "len": 9,
+        "min": 3,
+        "reqs": 1309,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "FRCBUJRAENG"
+      },
+      {
+        "wi": 591,
+        "offset": 2690,
+        "len": 9,
+        "min": 4,
+        "reqs": 1052,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NGYXSAOERXC"
+      },
+      {
+        "wi": 598,
+        "offset": 2718,
+        "len": 8,
+        "min": 3,
+        "reqs": 4036,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "TNGTHAOUMY"
+      },
+      {
+        "wi": 605,
+        "offset": 2744,
+        "len": 11,
+        "min": 5,
+        "reqs": 21,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AEEOFTHCLOXLOL"
+      },
+      {
+        "wi": 612,
+        "offset": 2775,
+        "len": 9,
+        "min": 3,
+        "reqs": 1092,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "DXEANGFRIACEO"
+      },
+      {
+        "wi": 613,
+        "offset": 2784,
+        "len": 9,
+        "min": 3,
+        "reqs": 926,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "XOEPMDCTHWP"
+      },
+      {
+        "wi": 626,
+        "offset": 2848,
+        "len": 11,
+        "min": 5,
+        "reqs": 34,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "LARAEOETHONOEIE"
+      },
+      {
+        "wi": 629,
+        "offset": 2866,
+        "len": 9,
+        "min": 3,
+        "reqs": 1051,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EAIAEAIUIAEONGD"
+      },
+      {
+        "wi": 630,
+        "offset": 2875,
+        "len": 11,
+        "min": 5,
+        "reqs": 25,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "XTFBHUSCREOW"
+      },
+      {
+        "wi": 631,
+        "offset": 2886,
+        "len": 13,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EOPSULAPUCEFDX"
+      },
+      {
+        "wi": 637,
+        "offset": 2918,
+        "len": 12,
+        "min": 5,
+        "reqs": 1,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ITHTGUWCHEOAE"
+      },
+      {
+        "wi": 647,
+        "offset": 2959,
+        "len": 9,
+        "min": 3,
+        "reqs": 966,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "WCENGREADTH"
+      },
+      {
+        "wi": 648,
+        "offset": 2968,
+        "len": 9,
+        "min": 3,
+        "reqs": 1004,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "JIPHFXNGPN"
+      },
+      {
+        "wi": 650,
+        "offset": 2983,
+        "len": 10,
+        "min": 4,
+        "reqs": 205,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "XEAPAOGFCIAJ"
+      },
+      {
+        "wi": 696,
+        "offset": 3151,
+        "len": 9,
+        "min": 3,
+        "reqs": 1035,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HLNSRIAAELAE"
+      },
+      {
+        "wi": 700,
+        "offset": 3173,
+        "len": 10,
+        "min": 4,
+        "reqs": 187,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BEORWTXNEAEI"
+      },
+      {
+        "wi": 720,
+        "offset": 3259,
+        "len": 9,
+        "min": 3,
+        "reqs": 1121,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IAOEWNOUWEI"
+      },
+      {
+        "wi": 727,
+        "offset": 3286,
+        "len": 8,
+        "min": 3,
+        "reqs": 4007,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "LFLCBUNGX"
+      },
+      {
+        "wi": 748,
+        "offset": 3369,
+        "len": 9,
+        "min": 4,
+        "reqs": 965,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OEEBJRJEIP"
+      },
+      {
+        "wi": 754,
+        "offset": 3405,
+        "len": 14,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BGDXMBXCNGTHYDAEEA"
+      },
+      {
+        "wi": 785,
+        "offset": 3546,
+        "len": 9,
+        "min": 3,
+        "reqs": 1066,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EADCBGXWNGU"
+      },
+      {
+        "wi": 789,
+        "offset": 3568,
+        "len": 8,
+        "min": 3,
+        "reqs": 4167,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "XAEHRYEAEO"
+      },
+      {
+        "wi": 793,
+        "offset": 3587,
+        "len": 8,
+        "min": 3,
+        "reqs": 3899,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HYAEISOTHL"
+      },
+      {
+        "wi": 808,
+        "offset": 3655,
+        "len": 9,
+        "min": 3,
+        "reqs": 997,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "PENTHOUIIAR"
+      },
+      {
+        "wi": 812,
+        "offset": 3679,
+        "len": 8,
+        "min": 3,
+        "reqs": 4128,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "WPHRDXTU"
+      },
+      {
+        "wi": 821,
+        "offset": 3714,
+        "len": 8,
+        "min": 3,
+        "reqs": 4172,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "THPDSIAHEOL"
+      },
+      {
+        "wi": 833,
+        "offset": 3762,
+        "len": 13,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EDAAETOEAEEAXCEAT"
+      },
+      {
+        "wi": 834,
+        "offset": 3775,
+        "len": 8,
+        "min": 3,
+        "reqs": 4054,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ODCEANCTHM"
+      },
+      {
+        "wi": 865,
+        "offset": 3890,
+        "len": 8,
+        "min": 3,
+        "reqs": 4592,
+        "plusOK": false,
+        "minusOK": true,
+        "cipher": "JGXOTHJCY"
+      },
+      {
+        "wi": 866,
+        "offset": 3898,
+        "len": 8,
+        "min": 3,
+        "reqs": 3954,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "UJTHJANTB"
+      },
+      {
+        "wi": 871,
+        "offset": 3925,
+        "len": 12,
+        "min": 4,
+        "reqs": 3,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "JTSMDOEINGAXEP"
+      },
+      {
+        "wi": 874,
+        "offset": 3944,
+        "len": 12,
+        "min": 5,
+        "reqs": 6,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "CBUOECBLNOENGXO"
+      },
+      {
+        "wi": 888,
+        "offset": 4007,
+        "len": 8,
+        "min": 3,
+        "reqs": 4095,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "YGFNGIAPGB"
+      },
+      {
+        "wi": 897,
+        "offset": 4042,
+        "len": 8,
+        "min": 3,
+        "reqs": 3927,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "CNEIAWNGTR"
+      },
+      {
+        "wi": 910,
+        "offset": 4096,
+        "len": 8,
+        "min": 3,
+        "reqs": 3931,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EORNGIABWLT"
+      },
+      {
+        "wi": 946,
+        "offset": 4234,
+        "len": 8,
+        "min": 3,
+        "reqs": 4627,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "DIUTHHMIAN"
+      },
+      {
+        "wi": 951,
+        "offset": 4256,
+        "len": 8,
+        "min": 3,
+        "reqs": 4190,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "THFSFNGGRP"
+      },
+      {
+        "wi": 978,
+        "offset": 4364,
+        "len": 9,
+        "min": 3,
+        "reqs": 947,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EADEOXCEAOOEE"
+      },
+      {
+        "wi": 979,
+        "offset": 4373,
+        "len": 8,
+        "min": 3,
+        "reqs": 4149,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "MPBTHNGSUIA"
+      },
+      {
+        "wi": 981,
+        "offset": 4384,
+        "len": 8,
+        "min": 3,
+        "reqs": 4588,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "XEOGFIAIAOEU"
+      },
+      {
+        "wi": 982,
+        "offset": 4392,
+        "len": 8,
+        "min": 2,
+        "reqs": 4126,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IATHYDAAENGB"
+      },
+      {
+        "wi": 994,
+        "offset": 4437,
+        "len": 10,
+        "min": 4,
+        "reqs": 203,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "YAEGEOOEURWU"
+      },
+      {
+        "wi": 1007,
+        "offset": 4494,
+        "len": 9,
+        "min": 3,
+        "reqs": 1024,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EOOEENGCFTDT"
+      },
+      {
+        "wi": 1010,
+        "offset": 4507,
+        "len": 8,
+        "min": 3,
+        "reqs": 4079,
+        "plusOK": false,
+        "minusOK": true,
+        "cipher": "EAIAAEEOEDNGEA"
+      },
+      {
+        "wi": 1019,
+        "offset": 4549,
+        "len": 9,
+        "min": 4,
+        "reqs": 936,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "UENGEACDPOEA"
+      },
+      {
+        "wi": 1038,
+        "offset": 4634,
+        "len": 8,
+        "min": 3,
+        "reqs": 4472,
+        "plusOK": false,
+        "minusOK": true,
+        "cipher": "AEHOJUROY"
+      },
+      {
+        "wi": 1047,
+        "offset": 4683,
+        "len": 8,
+        "min": 3,
+        "reqs": 4076,
+        "plusOK": false,
+        "minusOK": true,
+        "cipher": "OEOAEAOWMA"
+      },
+      {
+        "wi": 1048,
+        "offset": 4691,
+        "len": 8,
+        "min": 3,
+        "reqs": 4088,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "YAEGAEJRWD"
+      },
+      {
+        "wi": 1078,
+        "offset": 4798,
+        "len": 9,
+        "min": 3,
+        "reqs": 1151,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IAOTDNSECH"
+      },
+      {
+        "wi": 1090,
+        "offset": 4843,
+        "len": 8,
+        "min": 3,
+        "reqs": 4099,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "POETHDREAAIA"
+      },
+      {
+        "wi": 1091,
+        "offset": 4851,
+        "len": 8,
+        "min": 3,
+        "reqs": 4155,
+        "plusOK": false,
+        "minusOK": true,
+        "cipher": "NGIABLHTHAEX"
+      },
+      {
+        "wi": 1119,
+        "offset": 4959,
+        "len": 8,
+        "min": 3,
+        "reqs": 4259,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "LCEOTGYOEM"
+      },
+      {
+        "wi": 1124,
+        "offset": 4983,
+        "len": 8,
+        "min": 2,
+        "reqs": 4305,
+        "plusOK": false,
+        "minusOK": true,
+        "cipher": "OSTMRYSX"
+      },
+      {
+        "wi": 1126,
+        "offset": 4997,
+        "len": 8,
+        "min": 3,
+        "reqs": 3882,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "XUEAMEOUSH"
+      },
+      {
+        "wi": 1138,
+        "offset": 5043,
+        "len": 8,
+        "min": 3,
+        "reqs": 4093,
+        "plusOK": true,
+        "minusOK": true,
+        "cipher": "BEOWAEUJCB"
+      },
+      {
+        "wi": 1142,
+        "offset": 5065,
+        "len": 8,
+        "min": 3,
+        "reqs": 4069,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "RDRBJCUEA"
+      },
+      {
+        "wi": 1154,
+        "offset": 5111,
+        "len": 8,
+        "min": 3,
+        "reqs": 4070,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NOEGYCTHCTH"
+      },
+      {
+        "wi": 1157,
+        "offset": 5125,
+        "len": 11,
+        "min": 4,
+        "reqs": 30,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HUHNTAEBEOOIP"
+      },
+      {
+        "wi": 1161,
+        "offset": 5148,
+        "len": 10,
+        "min": 4,
+        "reqs": 194,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EOEOPLOGIOEEA"
+      },
+      {
+        "wi": 1166,
+        "offset": 5174,
+        "len": 11,
+        "min": 5,
+        "reqs": 27,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "THEOJGSNGYMOEH"
+      },
+      {
+        "wi": 1167,
+        "offset": 5185,
+        "len": 11,
+        "min": 4,
+        "reqs": 30,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "MFTHXTHAESPYOF"
+      },
+      {
+        "wi": 1168,
+        "offset": 5196,
+        "len": 10,
+        "min": 4,
+        "reqs": 197,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "POESEAEEOMLPN"
+      },
+      {
+        "wi": 1169,
+        "offset": 5206,
+        "len": 8,
+        "min": 3,
+        "reqs": 4024,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IAFCNOJSIA"
+      },
+      {
+        "wi": 1181,
+        "offset": 5257,
+        "len": 10,
+        "min": 3,
+        "reqs": 198,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ENGTHJJFLNOB"
+      },
+      {
+        "wi": 1185,
+        "offset": 5274,
+        "len": 8,
+        "min": 3,
+        "reqs": 3968,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "DHCWLIADEO"
+      },
+      {
+        "wi": 1188,
+        "offset": 5290,
+        "len": 8,
+        "min": 3,
+        "reqs": 4375,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NGEANGGNGDJT"
+      },
+      {
+        "wi": 1203,
+        "offset": 5351,
+        "len": 10,
+        "min": 4,
+        "reqs": 185,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "YGXBANNGIAJIA"
+      },
+      {
+        "wi": 1205,
+        "offset": 5367,
+        "len": 10,
+        "min": 4,
+        "reqs": 190,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IPANGSDOEONGM"
+      },
+      {
+        "wi": 1215,
+        "offset": 5410,
+        "len": 12,
+        "min": 5,
+        "reqs": 5,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BAOEUIAJWTRWOE"
+      },
+      {
+        "wi": 1217,
+        "offset": 5429,
+        "len": 11,
+        "min": 4,
+        "reqs": 19,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IAFEAYATHLTBUNG"
+      },
+      {
+        "wi": 1220,
+        "offset": 5447,
+        "len": 12,
+        "min": 5,
+        "reqs": 2,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "WBMRNMHMINAD"
+      },
+      {
+        "wi": 1237,
+        "offset": 5522,
+        "len": 8,
+        "min": 3,
+        "reqs": 4032,
+        "plusOK": false,
+        "minusOK": true,
+        "cipher": "EAGSAEPWMEA"
+      },
+      {
+        "wi": 1249,
+        "offset": 5584,
+        "len": 9,
+        "min": 4,
+        "reqs": 967,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "PBIASUDEYTH"
+      },
+      {
+        "wi": 1254,
+        "offset": 5610,
+        "len": 10,
+        "min": 4,
+        "reqs": 205,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "FAOIANGBEATHCA"
+      },
+      {
+        "wi": 1256,
+        "offset": 5623,
+        "len": 8,
+        "min": 3,
+        "reqs": 4447,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OEWFYNGUYI"
+      },
+      {
+        "wi": 1294,
+        "offset": 5783,
+        "len": 8,
+        "min": 3,
+        "reqs": 4280,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "UMUXOYHT"
+      },
+      {
+        "wi": 1296,
+        "offset": 5795,
+        "len": 10,
+        "min": 4,
+        "reqs": 217,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ONTEABOEBFIP"
+      },
+      {
+        "wi": 1299,
+        "offset": 5813,
+        "len": 8,
+        "min": 3,
+        "reqs": 4442,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "UOXNIASFE"
+      },
+      {
+        "wi": 1317,
+        "offset": 5880,
+        "len": 8,
+        "min": 3,
+        "reqs": 4388,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "FASIAIHBR"
+      },
+      {
+        "wi": 1326,
+        "offset": 5914,
+        "len": 8,
+        "min": 3,
+        "reqs": 4021,
+        "plusOK": false,
+        "minusOK": true,
+        "cipher": "LIUPTCBX"
+      },
+      {
+        "wi": 1327,
+        "offset": 5922,
+        "len": 8,
+        "min": 2,
+        "reqs": 3814,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "EAYFMCYR"
+      },
+      {
+        "wi": 1328,
+        "offset": 5930,
+        "len": 9,
+        "min": 4,
+        "reqs": 1038,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "HWTNIAXAETHOE"
+      },
+      {
+        "wi": 1337,
+        "offset": 5964,
+        "len": 10,
+        "min": 4,
+        "reqs": 214,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HJSIAWNNIAWL"
+      },
+      {
+        "wi": 1341,
+        "offset": 5981,
+        "len": 10,
+        "min": 4,
+        "reqs": 238,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AXEONGSEEOIHN"
+      },
+      {
+        "wi": 1353,
+        "offset": 6035,
+        "len": 14,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EAIIATHNGNENFOMEYA"
+      },
+      {
+        "wi": 1356,
+        "offset": 6063,
+        "len": 10,
+        "min": 4,
+        "reqs": 214,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EALUNTHPSUPR"
+      },
+      {
+        "wi": 1357,
+        "offset": 6073,
+        "len": 8,
+        "min": 3,
+        "reqs": 4019,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "DAEOERIAAEAU"
+      },
+      {
+        "wi": 1360,
+        "offset": 6090,
+        "len": 9,
+        "min": 4,
+        "reqs": 909,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OSOEARMTHOEP"
+      },
+      {
+        "wi": 1375,
+        "offset": 6154,
+        "len": 8,
+        "min": 3,
+        "reqs": 4236,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BGEOAOED"
+      },
+      {
+        "wi": 1390,
+        "offset": 6216,
+        "len": 9,
+        "min": 3,
+        "reqs": 1017,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BIAEHEUTLL"
+      },
+      {
+        "wi": 1393,
+        "offset": 6233,
+        "len": 9,
+        "min": 3,
+        "reqs": 1012,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EAEJBNILEAR"
+      },
+      {
+        "wi": 1405,
+        "offset": 6289,
+        "len": 8,
+        "min": 3,
+        "reqs": 4491,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "EAYPOETHSYP"
+      },
+      {
+        "wi": 1409,
+        "offset": 6307,
+        "len": 10,
+        "min": 4,
+        "reqs": 193,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NGIIALNGNDAPG"
+      },
+      {
+        "wi": 1414,
+        "offset": 6330,
+        "len": 9,
+        "min": 3,
+        "reqs": 1098,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EXBGAEFOIX"
+      },
+      {
+        "wi": 1417,
+        "offset": 6344,
+        "len": 9,
+        "min": 3,
+        "reqs": 969,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OIDSLTHEBEO"
+      },
+      {
+        "wi": 1438,
+        "offset": 6439,
+        "len": 8,
+        "min": 3,
+        "reqs": 4246,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AJPUPEAYG"
+      },
+      {
+        "wi": 1452,
+        "offset": 6504,
+        "len": 8,
+        "min": 3,
+        "reqs": 3903,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "IHYSWOXW"
+      },
+      {
+        "wi": 1458,
+        "offset": 6530,
+        "len": 12,
+        "min": 4,
+        "reqs": 7,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "LSOAAEHLEEOIML"
+      },
+      {
+        "wi": 1470,
+        "offset": 6580,
+        "len": 9,
+        "min": 3,
+        "reqs": 857,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "MFIAEACBGAEF"
+      },
+      {
+        "wi": 1476,
+        "offset": 6606,
+        "len": 12,
+        "min": 5,
+        "reqs": 3,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EORNSOOCAEYEE"
+      },
+      {
+        "wi": 1498,
+        "offset": 6693,
+        "len": 12,
+        "min": 5,
+        "reqs": 3,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "UIARFJEORIATHEUT"
+      },
+      {
+        "wi": 1500,
+        "offset": 6707,
+        "len": 10,
+        "min": 4,
+        "reqs": 181,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NAEAOANATHGO"
+      },
+      {
+        "wi": 1501,
+        "offset": 6717,
+        "len": 10,
+        "min": 4,
+        "reqs": 217,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AEXBTEEAMGRM"
+      },
+      {
+        "wi": 1504,
+        "offset": 6735,
+        "len": 10,
+        "min": 3,
+        "reqs": 162,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EARCIPDFMNGH"
+      },
+      {
+        "wi": 1527,
+        "offset": 6846,
+        "len": 10,
+        "min": 4,
+        "reqs": 201,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HRENCPIAPDJ"
+      },
+      {
+        "wi": 1528,
+        "offset": 6856,
+        "len": 8,
+        "min": 3,
+        "reqs": 4004,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ITMSAEXOY"
+      },
+      {
+        "wi": 1533,
+        "offset": 6883,
+        "len": 9,
+        "min": 3,
+        "reqs": 959,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EORHNNGEAFNF"
+      },
+      {
+        "wi": 1545,
+        "offset": 6930,
+        "len": 10,
+        "min": 3,
+        "reqs": 178,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OEMBINGTAUITH"
+      },
+      {
+        "wi": 1554,
+        "offset": 6979,
+        "len": 11,
+        "min": 4,
+        "reqs": 30,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EAPJDNOEOUNWM"
+      },
+      {
+        "wi": 1564,
+        "offset": 7011,
+        "len": 8,
+        "min": 3,
+        "reqs": 4037,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BTHIJLIANGIA"
+      },
+      {
+        "wi": 1566,
+        "offset": 7022,
+        "len": 8,
+        "min": 3,
+        "reqs": 4012,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "SMAIAEAEONGT"
+      },
+      {
+        "wi": 1580,
+        "offset": 7074,
+        "len": 11,
+        "min": 5,
+        "reqs": 24,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "POEAOEDGOEYXGL"
+      },
+      {
+        "wi": 1604,
+        "offset": 7168,
+        "len": 8,
+        "min": 2,
+        "reqs": 4319,
+        "plusOK": true,
+        "minusOK": true,
+        "cipher": "XAEAESCIANEO"
+      },
+      {
+        "wi": 1631,
+        "offset": 7269,
+        "len": 8,
+        "min": 3,
+        "reqs": 4069,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "NGEBLDIMF"
+      },
+      {
+        "wi": 1632,
+        "offset": 7277,
+        "len": 8,
+        "min": 3,
+        "reqs": 3991,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "WBMOEIEIEA"
+      },
+      {
+        "wi": 1633,
+        "offset": 7285,
+        "len": 9,
+        "min": 3,
+        "reqs": 1178,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "PHNGEDOEOHJ"
+      },
+      {
+        "wi": 1670,
+        "offset": 7447,
+        "len": 9,
+        "min": 3,
+        "reqs": 1024,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IABRBFULUOE"
+      },
+      {
+        "wi": 1689,
+        "offset": 7523,
+        "len": 11,
+        "min": 4,
+        "reqs": 54,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "YXNTAEXSTHAWM"
+      },
+      {
+        "wi": 1697,
+        "offset": 7561,
+        "len": 9,
+        "min": 4,
+        "reqs": 949,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "UTHOEGEAOEEOEO"
+      },
+      {
+        "wi": 1698,
+        "offset": 7570,
+        "len": 8,
+        "min": 3,
+        "reqs": 3868,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "THCBNGTXIAD"
+      },
+      {
+        "wi": 1712,
+        "offset": 7631,
+        "len": 8,
+        "min": 3,
+        "reqs": 4577,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "BHOHIGHC"
+      },
+      {
+        "wi": 1731,
+        "offset": 7701,
+        "len": 9,
+        "min": 4,
+        "reqs": 990,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HOAEFYGRAJ"
+      },
+      {
+        "wi": 1735,
+        "offset": 7720,
+        "len": 9,
+        "min": 3,
+        "reqs": 950,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AEJEPCBTHUNG"
+      },
+      {
+        "wi": 1740,
+        "offset": 7745,
+        "len": 8,
+        "min": 3,
+        "reqs": 4274,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EROHYEAPTH"
+      },
+      {
+        "wi": 1758,
+        "offset": 7814,
+        "len": 10,
+        "min": 4,
+        "reqs": 224,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OEIAJIAOENGJXLJ"
+      },
+      {
+        "wi": 1760,
+        "offset": 7828,
+        "len": 8,
+        "min": 3,
+        "reqs": 4248,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "RAITGXNGEO"
+      },
+      {
+        "wi": 1764,
+        "offset": 7848,
+        "len": 11,
+        "min": 4,
+        "reqs": 28,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "WNGHWBMSOEEIIA"
+      },
+      {
+        "wi": 1768,
+        "offset": 7872,
+        "len": 11,
+        "min": 4,
+        "reqs": 24,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HOMEXWDSLFD"
+      },
+      {
+        "wi": 1770,
+        "offset": 7889,
+        "len": 9,
+        "min": 3,
+        "reqs": 901,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "WDNAEXTYMG"
+      },
+      {
+        "wi": 1772,
+        "offset": 7903,
+        "len": 8,
+        "min": 3,
+        "reqs": 3972,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "WBSRXIAXA"
+      },
+      {
+        "wi": 1774,
+        "offset": 7915,
+        "len": 9,
+        "min": 4,
+        "reqs": 932,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "WNGUHEONGIAEAJ"
+      },
+      {
+        "wi": 1776,
+        "offset": 7928,
+        "len": 8,
+        "min": 3,
+        "reqs": 3981,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OENGOMBUDS"
+      },
+      {
+        "wi": 1780,
+        "offset": 7943,
+        "len": 8,
+        "min": 2,
+        "reqs": 4017,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NWGULAOY"
+      },
+      {
+        "wi": 1784,
+        "offset": 7962,
+        "len": 8,
+        "min": 3,
+        "reqs": 4279,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "XCFIAWHG"
+      },
+      {
+        "wi": 1786,
+        "offset": 7972,
+        "len": 9,
+        "min": 3,
+        "reqs": 1271,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "FTEOEEAAIASG"
+      },
+      {
+        "wi": 1798,
+        "offset": 8027,
+        "len": 8,
+        "min": 3,
+        "reqs": 4331,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AJAEGYMWD"
+      },
+      {
+        "wi": 1820,
+        "offset": 8099,
+        "len": 9,
+        "min": 4,
+        "reqs": 962,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EPJOWUEANGW"
+      },
+      {
+        "wi": 1821,
+        "offset": 8108,
+        "len": 8,
+        "min": 3,
+        "reqs": 4248,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "MCOTTFUJ"
+      },
+      {
+        "wi": 1824,
+        "offset": 8124,
+        "len": 9,
+        "min": 3,
+        "reqs": 1039,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BOTLEOIBIAA"
+      },
+      {
+        "wi": 1846,
+        "offset": 8214,
+        "len": 9,
+        "min": 3,
+        "reqs": 989,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "CTHSEAFUNGLH"
+      },
+      {
+        "wi": 1853,
+        "offset": 8246,
+        "len": 9,
+        "min": 3,
+        "reqs": 1038,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NUXAEMTDTAE"
+      },
+      {
+        "wi": 1867,
+        "offset": 8307,
+        "len": 8,
+        "min": 3,
+        "reqs": 4503,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "FRRIXUTHH"
+      },
+      {
+        "wi": 1879,
+        "offset": 8358,
+        "len": 8,
+        "min": 3,
+        "reqs": 4326,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "GNPDNGTEA"
+      },
+      {
+        "wi": 1891,
+        "offset": 8411,
+        "len": 12,
+        "min": 6,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HTHWLDEAODEAUOEE"
+      },
+      {
+        "wi": 1898,
+        "offset": 8442,
+        "len": 10,
+        "min": 4,
+        "reqs": 184,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "CTHENUIAEIUIA"
+      },
+      {
+        "wi": 1905,
+        "offset": 8469,
+        "len": 8,
+        "min": 3,
+        "reqs": 4350,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OROEFEYOEI"
+      },
+      {
+        "wi": 1909,
+        "offset": 8492,
+        "len": 8,
+        "min": 3,
+        "reqs": 4498,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AEOEAEDEDYIA"
+      },
+      {
+        "wi": 1914,
+        "offset": 8520,
+        "len": 8,
+        "min": 3,
+        "reqs": 4108,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "TXOYNGFOY"
+      },
+      {
+        "wi": 1916,
+        "offset": 8530,
+        "len": 11,
+        "min": 5,
+        "reqs": 21,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OEAEGJNGIANMYOEIA"
+      },
+      {
+        "wi": 1926,
+        "offset": 8572,
+        "len": 8,
+        "min": 3,
+        "reqs": 4298,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "PGECOEROEU"
+      },
+      {
+        "wi": 1929,
+        "offset": 8587,
+        "len": 9,
+        "min": 3,
+        "reqs": 937,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "RETHYTNGIAOB"
+      },
+      {
+        "wi": 1934,
+        "offset": 8609,
+        "len": 10,
+        "min": 4,
+        "reqs": 157,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IAEOIEOOEXCWAE"
+      },
+      {
+        "wi": 1940,
+        "offset": 8632,
+        "len": 8,
+        "min": 2,
+        "reqs": 4129,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IAELSNGJJIA"
+      },
+      {
+        "wi": 1947,
+        "offset": 8666,
+        "len": 9,
+        "min": 3,
+        "reqs": 916,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EOOEHOECSTNO"
+      },
+      {
+        "wi": 1950,
+        "offset": 8679,
+        "len": 8,
+        "min": 3,
+        "reqs": 4089,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "DUYLIMBU"
+      },
+      {
+        "wi": 1967,
+        "offset": 8747,
+        "len": 10,
+        "min": 4,
+        "reqs": 153,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "POEJANGPTHPANG"
+      },
+      {
+        "wi": 1969,
+        "offset": 8760,
+        "len": 9,
+        "min": 4,
+        "reqs": 971,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "XBUTEOMPAEY"
+      },
+      {
+        "wi": 1970,
+        "offset": 8769,
+        "len": 10,
+        "min": 4,
+        "reqs": 186,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "XAEYRAEYFFMIA"
+      },
+      {
+        "wi": 1978,
+        "offset": 8812,
+        "len": 8,
+        "min": 3,
+        "reqs": 4020,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "MXHCXATTH"
+      },
+      {
+        "wi": 1989,
+        "offset": 8859,
+        "len": 8,
+        "min": 3,
+        "reqs": 4559,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EAOEDOEJINGIA"
+      },
+      {
+        "wi": 1997,
+        "offset": 8897,
+        "len": 11,
+        "min": 4,
+        "reqs": 38,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EONGBLIUYFOENOE"
+      },
+      {
+        "wi": 1998,
+        "offset": 8908,
+        "len": 8,
+        "min": 3,
+        "reqs": 4241,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BOEGJANMAE"
+      },
+      {
+        "wi": 2000,
+        "offset": 8919,
+        "len": 8,
+        "min": 3,
+        "reqs": 4001,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IBNGPNIRG"
+      },
+      {
+        "wi": 2010,
+        "offset": 8962,
+        "len": 10,
+        "min": 3,
+        "reqs": 179,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AIJSRATSNGT"
+      },
+      {
+        "wi": 2023,
+        "offset": 9021,
+        "len": 9,
+        "min": 3,
+        "reqs": 994,
+        "plusOK": false,
+        "minusOK": true,
+        "cipher": "NOTHCTHNMOE"
+      },
+      {
+        "wi": 2044,
+        "offset": 9094,
+        "len": 9,
+        "min": 3,
+        "reqs": 829,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HSGAIOEDAJ"
+      },
+      {
+        "wi": 2046,
+        "offset": 9107,
+        "len": 8,
+        "min": 3,
+        "reqs": 4591,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "MNGIADFBST"
+      },
+      {
+        "wi": 2048,
+        "offset": 9118,
+        "len": 8,
+        "min": 3,
+        "reqs": 3912,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "GOEUCAETIE"
+      },
+      {
+        "wi": 2052,
+        "offset": 9140,
+        "len": 9,
+        "min": 3,
+        "reqs": 962,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NBSMXDHXI"
+      },
+      {
+        "wi": 2063,
+        "offset": 9190,
+        "len": 10,
+        "min": 4,
+        "reqs": 184,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ISNGMDAEUEAUA"
+      },
+      {
+        "wi": 2067,
+        "offset": 9210,
+        "len": 11,
+        "min": 5,
+        "reqs": 23,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NPCHRYWLXRB"
+      },
+      {
+        "wi": 2078,
+        "offset": 9264,
+        "len": 9,
+        "min": 4,
+        "reqs": 1067,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HRODBIAPEAM"
+      },
+      {
+        "wi": 2085,
+        "offset": 9292,
+        "len": 9,
+        "min": 4,
+        "reqs": 866,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HTNGHAGONGAE"
+      },
+      {
+        "wi": 2089,
+        "offset": 9315,
+        "len": 12,
+        "min": 5,
+        "reqs": 7,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NGNCSNDEONSICIA"
+      },
+      {
+        "wi": 2090,
+        "offset": 9327,
+        "len": 8,
+        "min": 3,
+        "reqs": 4052,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "RNGLAEYEOLO"
+      },
+      {
+        "wi": 2102,
+        "offset": 9376,
+        "len": 10,
+        "min": 4,
+        "reqs": 154,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AJAEOEEALFEIAU"
+      },
+      {
+        "wi": 2114,
+        "offset": 9430,
+        "len": 8,
+        "min": 3,
+        "reqs": 4191,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "YNGIAMGEONP"
+      },
+      {
+        "wi": 2148,
+        "offset": 9586,
+        "len": 10,
+        "min": 4,
+        "reqs": 149,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "UPSTHICPSIW"
+      },
+      {
+        "wi": 2169,
+        "offset": 9671,
+        "len": 12,
+        "min": 5,
+        "reqs": 5,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "TROEGEANAEBUEBU"
+      },
+      {
+        "wi": 2179,
+        "offset": 9718,
+        "len": 9,
+        "min": 3,
+        "reqs": 1126,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "DOLIXEANGER"
+      },
+      {
+        "wi": 2193,
+        "offset": 9777,
+        "len": 10,
+        "min": 4,
+        "reqs": 186,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EXOXICUMNU"
+      },
+      {
+        "wi": 2230,
+        "offset": 9929,
+        "len": 9,
+        "min": 3,
+        "reqs": 994,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AEAFOYIAANH"
+      },
+      {
+        "wi": 2231,
+        "offset": 9938,
+        "len": 8,
+        "min": 3,
+        "reqs": 3924,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "BTHOEEOYOEIB"
+      },
+      {
+        "wi": 2235,
+        "offset": 9955,
+        "len": 10,
+        "min": 4,
+        "reqs": 191,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "XTOEUOOETHPSO"
+      },
+      {
+        "wi": 2244,
+        "offset": 9993,
+        "len": 8,
+        "min": 3,
+        "reqs": 4341,
+        "plusOK": false,
+        "minusOK": true,
+        "cipher": "CENAORTTH"
+      },
+      {
+        "wi": 2273,
+        "offset": 10126,
+        "len": 8,
+        "min": 3,
+        "reqs": 3940,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OEWRIRTHEX"
+      },
+      {
+        "wi": 2279,
+        "offset": 10152,
+        "len": 9,
+        "min": 3,
+        "reqs": 1045,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "PXUAETHBFJTH"
+      },
+      {
+        "wi": 2285,
+        "offset": 10178,
+        "len": 10,
+        "min": 3,
+        "reqs": 213,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "LNTLUBRNGAS"
+      },
+      {
+        "wi": 2290,
+        "offset": 10203,
+        "len": 8,
+        "min": 2,
+        "reqs": 4540,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "XLMTDFPI"
+      },
+      {
+        "wi": 2291,
+        "offset": 10211,
+        "len": 9,
+        "min": 4,
+        "reqs": 1115,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "FCTHMJWRAL"
+      },
+      {
+        "wi": 2292,
+        "offset": 10220,
+        "len": 8,
+        "min": 3,
+        "reqs": 4054,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ONGRUPROEIA"
+      },
+      {
+        "wi": 2297,
+        "offset": 10244,
+        "len": 10,
+        "min": 4,
+        "reqs": 269,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "FIAAIAEAEDJUE"
+      },
+      {
+        "wi": 2309,
+        "offset": 10301,
+        "len": 8,
+        "min": 3,
+        "reqs": 4182,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ITDEABFOP"
+      },
+      {
+        "wi": 2310,
+        "offset": 10309,
+        "len": 8,
+        "min": 3,
+        "reqs": 4024,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EOIAOEWRNOT"
+      },
+      {
+        "wi": 2314,
+        "offset": 10330,
+        "len": 9,
+        "min": 3,
+        "reqs": 1052,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "SRFDNGHEJD"
+      },
+      {
+        "wi": 2321,
+        "offset": 10355,
+        "len": 8,
+        "min": 3,
+        "reqs": 4041,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IFXUOYHTH"
+      },
+      {
+        "wi": 2333,
+        "offset": 10407,
+        "len": 11,
+        "min": 4,
+        "reqs": 39,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "DEAUNNGFNEAEHJ"
+      },
+      {
+        "wi": 2336,
+        "offset": 10426,
+        "len": 8,
+        "min": 3,
+        "reqs": 4061,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "CUAEMPSAIA"
+      },
+      {
+        "wi": 2339,
+        "offset": 10441,
+        "len": 8,
+        "min": 3,
+        "reqs": 4208,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "XFAEDFIAJN"
+      },
+      {
+        "wi": 2341,
+        "offset": 10453,
+        "len": 14,
+        "min": 7,
+        "reqs": 0,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "TFJRWFSNWJEBUTH"
+      },
+      {
+        "wi": 2344,
+        "offset": 10473,
+        "len": 10,
+        "min": 4,
+        "reqs": 162,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "UIOJOEOOEJDO"
+      },
+      {
+        "wi": 2350,
+        "offset": 10503,
+        "len": 8,
+        "min": 3,
+        "reqs": 3863,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EAHIAREAEAXS"
+      },
+      {
+        "wi": 2354,
+        "offset": 10526,
+        "len": 10,
+        "min": 4,
+        "reqs": 159,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BIADEAAEBEACXF"
+      },
+      {
+        "wi": 2357,
+        "offset": 10547,
+        "len": 11,
+        "min": 4,
+        "reqs": 34,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BOPAEONGHEOEEOAE"
+      },
+      {
+        "wi": 2372,
+        "offset": 10604,
+        "len": 8,
+        "min": 3,
+        "reqs": 4051,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BNECIWYOE"
+      },
+      {
+        "wi": 2375,
+        "offset": 10618,
+        "len": 8,
+        "min": 3,
+        "reqs": 4116,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "AEHOEFAEGOJ"
+      },
+      {
+        "wi": 2388,
+        "offset": 10672,
+        "len": 11,
+        "min": 4,
+        "reqs": 53,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "MNGYANGFXIOEGL"
+      },
+      {
+        "wi": 2394,
+        "offset": 10702,
+        "len": 11,
+        "min": 4,
+        "reqs": 35,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ISEYTHAIANGOEEOL"
+      },
+      {
+        "wi": 2408,
+        "offset": 10779,
+        "len": 8,
+        "min": 3,
+        "reqs": 3989,
+        "plusOK": false,
+        "minusOK": true,
+        "cipher": "THLESEOEAEE"
+      },
+      {
+        "wi": 2421,
+        "offset": 10833,
+        "len": 9,
+        "min": 3,
+        "reqs": 986,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "PCIABGBPOE"
+      },
+      {
+        "wi": 2433,
+        "offset": 10882,
+        "len": 8,
+        "min": 3,
+        "reqs": 4089,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "CJFIANGLYB"
+      },
+      {
+        "wi": 2438,
+        "offset": 10911,
+        "len": 8,
+        "min": 3,
+        "reqs": 4203,
+        "plusOK": false,
+        "minusOK": true,
+        "cipher": "IAPTXOIJOE"
+      },
+      {
+        "wi": 2440,
+        "offset": 10923,
+        "len": 9,
+        "min": 4,
+        "reqs": 887,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "YEASOEEOUAIA"
+      },
+      {
+        "wi": 2445,
+        "offset": 10945,
+        "len": 8,
+        "min": 2,
+        "reqs": 3977,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "XAGHYTENG"
+      },
+      {
+        "wi": 2452,
+        "offset": 10973,
+        "len": 8,
+        "min": 3,
+        "reqs": 4136,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "UITHJNFRTH"
+      },
+      {
+        "wi": 2454,
+        "offset": 10987,
+        "len": 8,
+        "min": 3,
+        "reqs": 4119,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NGLAIBEAUS"
+      },
+      {
+        "wi": 2463,
+        "offset": 11027,
+        "len": 9,
+        "min": 3,
+        "reqs": 1012,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AEJRAUHRTHR"
+      },
+      {
+        "wi": 2475,
+        "offset": 11076,
+        "len": 10,
+        "min": 4,
+        "reqs": 233,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "MLITHTEASNGL"
+      },
+      {
+        "wi": 2486,
+        "offset": 11118,
+        "len": 8,
+        "min": 3,
+        "reqs": 4217,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BYSYFDYNG"
+      },
+      {
+        "wi": 2491,
+        "offset": 11144,
+        "len": 8,
+        "min": 3,
+        "reqs": 4309,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EAIAOTIAARD"
+      },
+      {
+        "wi": 2492,
+        "offset": 11152,
+        "len": 9,
+        "min": 4,
+        "reqs": 1194,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ANGPWMJOEEAO"
+      },
+      {
+        "wi": 2509,
+        "offset": 11222,
+        "len": 9,
+        "min": 3,
+        "reqs": 1224,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "GUHYHIBXN"
+      },
+      {
+        "wi": 2510,
+        "offset": 11231,
+        "len": 9,
+        "min": 4,
+        "reqs": 1010,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "WNGHTXAEIJU"
+      },
+      {
+        "wi": 2528,
+        "offset": 11299,
+        "len": 9,
+        "min": 3,
+        "reqs": 869,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AXNGBDXJTHU"
+      },
+      {
+        "wi": 2534,
+        "offset": 11329,
+        "len": 12,
+        "min": 5,
+        "reqs": 7,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "LMEITHAEAIAJIAR"
+      },
+      {
+        "wi": 2536,
+        "offset": 11348,
+        "len": 8,
+        "min": 3,
+        "reqs": 4348,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ETUHPCTHS"
+      },
+      {
+        "wi": 2551,
+        "offset": 11414,
+        "len": 8,
+        "min": 3,
+        "reqs": 4363,
+        "plusOK": false,
+        "minusOK": true,
+        "cipher": "IATHNFPOEIAN"
+      },
+      {
+        "wi": 2566,
+        "offset": 11471,
+        "len": 8,
+        "min": 3,
+        "reqs": 4212,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "SNPFAEBJAE"
+      },
+      {
+        "wi": 2568,
+        "offset": 11482,
+        "len": 9,
+        "min": 3,
+        "reqs": 893,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EOAONJCLBX"
+      },
+      {
+        "wi": 2570,
+        "offset": 11495,
+        "len": 11,
+        "min": 4,
+        "reqs": 43,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NGLMCIAEOFAEEAITH"
+      },
+      {
+        "wi": 2571,
+        "offset": 11506,
+        "len": 8,
+        "min": 3,
+        "reqs": 4012,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BEALTHCDIEO"
+      },
+      {
+        "wi": 2572,
+        "offset": 11514,
+        "len": 10,
+        "min": 4,
+        "reqs": 219,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "FUXSXITHAESM"
+      },
+      {
+        "wi": 2580,
+        "offset": 11553,
+        "len": 11,
+        "min": 4,
+        "reqs": 40,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IAYEOEIAGAEFNW"
+      },
+      {
+        "wi": 2593,
+        "offset": 11610,
+        "len": 8,
+        "min": 3,
+        "reqs": 4266,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BNFASGBF"
+      },
+      {
+        "wi": 2594,
+        "offset": 11618,
+        "len": 8,
+        "min": 3,
+        "reqs": 4406,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AEWYGUIAFEA"
+      },
+      {
+        "wi": 2603,
+        "offset": 11650,
+        "len": 9,
+        "min": 3,
+        "reqs": 983,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "NGSRUWRYHW"
+      },
+      {
+        "wi": 2615,
+        "offset": 11700,
+        "len": 9,
+        "min": 3,
+        "reqs": 1196,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BYXHUFTHDW"
+      },
+      {
+        "wi": 2623,
+        "offset": 11739,
+        "len": 10,
+        "min": 4,
+        "reqs": 186,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "IALEGMNGWHRS"
+      },
+      {
+        "wi": 2626,
+        "offset": 11759,
+        "len": 11,
+        "min": 5,
+        "reqs": 27,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EAJEOINJOMRIAX"
+      },
+      {
+        "wi": 2628,
+        "offset": 11773,
+        "len": 8,
+        "min": 3,
+        "reqs": 4055,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AOAAEHCITH"
+      },
+      {
+        "wi": 2662,
+        "offset": 11906,
+        "len": 9,
+        "min": 3,
+        "reqs": 1211,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "TAJCTHUTWTH"
+      },
+      {
+        "wi": 2663,
+        "offset": 11915,
+        "len": 8,
+        "min": 3,
+        "reqs": 4228,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "MGEMYIAID"
+      },
+      {
+        "wi": 2671,
+        "offset": 11943,
+        "len": 8,
+        "min": 3,
+        "reqs": 4062,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OENGBUSDHD"
+      },
+      {
+        "wi": 2685,
+        "offset": 11998,
+        "len": 8,
+        "min": 3,
+        "reqs": 4099,
+        "plusOK": false,
+        "minusOK": true,
+        "cipher": "MIJBMRNM"
+      },
+      {
+        "wi": 2694,
+        "offset": 12040,
+        "len": 9,
+        "min": 3,
+        "reqs": 1008,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EOFUDYALFIA"
+      },
+      {
+        "wi": 2720,
+        "offset": 12146,
+        "len": 8,
+        "min": 3,
+        "reqs": 4075,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "AUNEAEDMA"
+      },
+      {
+        "wi": 2722,
+        "offset": 12157,
+        "len": 8,
+        "min": 3,
+        "reqs": 4167,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "SDNGGLSDNG"
+      },
+      {
+        "wi": 2727,
+        "offset": 12180,
+        "len": 8,
+        "min": 3,
+        "reqs": 4156,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "YOBGCETW"
+      },
+      {
+        "wi": 2729,
+        "offset": 12191,
+        "len": 8,
+        "min": 3,
+        "reqs": 4126,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "MEAYEOMAELR"
+      },
+      {
+        "wi": 2733,
+        "offset": 12209,
+        "len": 8,
+        "min": 3,
+        "reqs": 3941,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NGAEONOEWEOX"
+      },
+      {
+        "wi": 2752,
+        "offset": 12284,
+        "len": 13,
+        "min": 5,
+        "reqs": 1,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "PCEOUTCIAEONGNUHTH"
+      },
+      {
+        "wi": 2758,
+        "offset": 12319,
+        "len": 8,
+        "min": 3,
+        "reqs": 3974,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "APOAAEDSNG"
+      },
+      {
+        "wi": 2761,
+        "offset": 12335,
+        "len": 8,
+        "min": 2,
+        "reqs": 4211,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EAEOHFHCRAE"
+      },
+      {
+        "wi": 2765,
+        "offset": 12357,
+        "len": 8,
+        "min": 3,
+        "reqs": 4222,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "EAOEXOEEAIANGB"
+      },
+      {
+        "wi": 2781,
+        "offset": 12412,
+        "len": 12,
+        "min": 5,
+        "reqs": 3,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "AELAJIAEGXIANXT"
+      },
+      {
+        "wi": 2784,
+        "offset": 12432,
+        "len": 8,
+        "min": 3,
+        "reqs": 3979,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "UNIOMEAIG"
+      },
+      {
+        "wi": 2787,
+        "offset": 12449,
+        "len": 8,
+        "min": 3,
+        "reqs": 4029,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "MTRAEUHING"
+      },
+      {
+        "wi": 2790,
+        "offset": 12464,
+        "len": 10,
+        "min": 4,
+        "reqs": 189,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "OEGHYHEOAEEAAEY"
+      },
+      {
+        "wi": 2796,
+        "offset": 12494,
+        "len": 8,
+        "min": 3,
+        "reqs": 4139,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "MNEHGBUJ"
+      },
+      {
+        "wi": 2807,
+        "offset": 12543,
+        "len": 10,
+        "min": 4,
+        "reqs": 179,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "UNGJEOGFNGRITH"
+      },
+      {
+        "wi": 2809,
+        "offset": 12556,
+        "len": 9,
+        "min": 3,
+        "reqs": 998,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "YSFEUSAEYEA"
+      },
+      {
+        "wi": 2821,
+        "offset": 12610,
+        "len": 11,
+        "min": 5,
+        "reqs": 23,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "RIADIATHAIEOAEXL"
+      },
+      {
+        "wi": 2831,
+        "offset": 12649,
+        "len": 8,
+        "min": 3,
+        "reqs": 4050,
+        "plusOK": false,
+        "minusOK": true,
+        "cipher": "MNGDIATHXIM"
+      },
+      {
+        "wi": 2832,
+        "offset": 12657,
+        "len": 8,
+        "min": 3,
+        "reqs": 4008,
+        "plusOK": false,
+        "minusOK": true,
+        "cipher": "IADPNGUWAM"
+      },
+      {
+        "wi": 2844,
+        "offset": 12708,
+        "len": 10,
+        "min": 4,
+        "reqs": 223,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "DWHBNGFACJU"
+      },
+      {
+        "wi": 2845,
+        "offset": 12718,
+        "len": 8,
+        "min": 3,
+        "reqs": 4430,
+        "plusOK": true,
+        "minusOK": false,
+        "cipher": "OJIAEAILGH"
+      },
+      {
+        "wi": 2848,
+        "offset": 12734,
+        "len": 8,
+        "min": 3,
+        "reqs": 4119,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "MOPYDIALP"
+      },
+      {
+        "wi": 2866,
+        "offset": 12807,
+        "len": 8,
+        "min": 3,
+        "reqs": 4195,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "NGOELMBTH"
+      },
+      {
+        "wi": 2869,
+        "offset": 12824,
+        "len": 8,
+        "min": 3,
+        "reqs": 4299,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "ELREOPRDY"
+      },
+      {
+        "wi": 2877,
+        "offset": 12858,
+        "len": 10,
+        "min": 4,
+        "reqs": 146,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "HEAACIMXJME"
+      },
+      {
+        "wi": 2879,
+        "offset": 12870,
+        "len": 11,
+        "min": 5,
+        "reqs": 23,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "GOTTHXEEARGYNG"
+      },
+      {
+        "wi": 2886,
+        "offset": 12903,
+        "len": 13,
+        "min": 5,
+        "reqs": 2,
+        "plusOK": false,
+        "minusOK": false,
+        "cipher": "BEAFXIMUCPHNGLEO"
+      }
+    ]
+  },
+  "controls": [
+    {
+      "name": "0_welcome",
+      "seed": 3301,
+      "words": 124,
+      "runes": 515,
+      "lexicon": 224878,
+      "fixed": {
+        "plus": 123,
+        "minus": 102,
+        "plusLong": 13,
+        "minusLong": 1
+      },
+      "lenHist": {
+        "1": [
+          3,
+          3,
+          3
+        ],
+        "2": [
+          24,
+          24,
+          24
+        ],
+        "3": [
+          38,
+          38,
+          38
+        ],
+        "4": [
+          25,
+          25,
+          25
+        ],
+        "5": [
+          4,
+          4,
+          4
+        ],
+        "6": [
+          8,
+          8,
+          5
+        ],
+        "7": [
+          8,
+          8,
+          2
+        ],
+        "8": [
+          6,
+          5,
+          1
+        ],
+        "9": [
+          4,
+          4,
+          0
+        ],
+        "10": [
+          3,
+          3,
+          0
+        ],
+        "12": [
+          1,
+          1,
+          0
+        ]
+      },
+      "longAnchors": 14,
+      "minHist": {
+        "2": 1,
+        "3": 11,
+        "4": 2
+      },
+      "zeroAnchors": 0,
+      "examples": [],
+      "maxCovered": 13,
+      "topCount": 1,
+      "top": [
+        [
+          2,
+          8,
+          11,
+          15,
+          26
+        ]
+      ],
+      "minimumLongOOV": 1,
+      "sourcePlusRank": 1,
+      "sourceMinusRank": 32138,
+      "trueBank": {
+        "coverage": 13,
+        "rank": 1,
+        "key": [
+          11,
+          26,
+          8,
+          15,
+          2
+        ]
+      },
+      "anchors": [
+        {
+          "wi": 30,
+          "offset": 104,
+          "len": 9,
+          "min": 3,
+          "reqs": 1114,
+          "plusOK": true,
+          "minusOK": false,
+          "cipher": "XTHLMIAGDXS",
+          "truth": "NECESSARY"
+        },
+        {
+          "wi": 42,
+          "offset": 146,
+          "len": 8,
+          "min": 3,
+          "reqs": 4704,
+          "plusOK": true,
+          "minusOK": false,
+          "cipher": "TMOENGEAXAEC",
+          "truth": "STRUGGLE"
+        },
+        {
+          "wi": 46,
+          "offset": 168,
+          "len": 9,
+          "min": 3,
+          "reqs": 1099,
+          "plusOK": true,
+          "minusOK": false,
+          "cipher": "SJYBUAEPGIA",
+          "truth": "INNOCENCE"
+        },
+        {
+          "wi": 48,
+          "offset": 181,
+          "len": 8,
+          "min": 3,
+          "reqs": 4446,
+          "plusOK": false,
+          "minusOK": true,
+          "cipher": "FAEOEEXHNGA",
+          "truth": "ILLUSIANS"
+        },
+        {
+          "wi": 50,
+          "offset": 193,
+          "len": 9,
+          "min": 3,
+          "reqs": 849,
+          "plusOK": true,
+          "minusOK": false,
+          "cipher": "PHTHTIRJSW",
+          "truth": "CERTAINTY"
+        },
+        {
+          "wi": 54,
+          "offset": 215,
+          "len": 10,
+          "min": 4,
+          "reqs": 211,
+          "plusOK": true,
+          "minusOK": false,
+          "cipher": "SLIAWELNYAER",
+          "truth": "ULTIMATELY"
+        },
+        {
+          "wi": 57,
+          "offset": 232,
+          "len": 8,
+          "min": 2,
+          "reqs": 4410,
+          "plusOK": true,
+          "minusOK": false,
+          "cipher": "IEOAEDWLDA",
+          "truth": "DISCOUER"
+        },
+        {
+          "wi": 66,
+          "offset": 264,
+          "len": 10,
+          "min": 4,
+          "reqs": 199,
+          "plusOK": true,
+          "minusOK": false,
+          "cipher": "WEOMLFODAENW",
+          "truth": "PILGRIMAGE"
+        },
+        {
+          "wi": 70,
+          "offset": 284,
+          "len": 9,
+          "min": 3,
+          "reqs": 1076,
+          "plusOK": true,
+          "minusOK": false,
+          "cipher": "REAIFXIADYAE",
+          "truth": "OURSELUES"
+        },
+        {
+          "wi": 73,
+          "offset": 299,
+          "len": 8,
+          "min": 3,
+          "reqs": 4197,
+          "plusOK": true,
+          "minusOK": false,
+          "cipher": "YWXSWEOEAJ",
+          "truth": "REALITIES"
+        },
+        {
+          "wi": 101,
+          "offset": 414,
+          "len": 8,
+          "min": 3,
+          "reqs": 4032,
+          "plusOK": true,
+          "minusOK": false,
+          "cipher": "LEAHPNGGDF",
+          "truth": "YOURSELF"
+        },
+        {
+          "wi": 107,
+          "offset": 436,
+          "len": 8,
+          "min": 3,
+          "reqs": 4333,
+          "plusOK": true,
+          "minusOK": false,
+          "cipher": "WEAHYDHEOF",
+          "truth": "YOURSELF"
+        },
+        {
+          "wi": 109,
+          "offset": 447,
+          "len": 12,
+          "min": 3,
+          "reqs": 14,
+          "plusOK": true,
+          "minusOK": false,
+          "cipher": "STNOEINGOELCWXF",
+          "truth": "INTELLIGENCE"
+        },
+        {
+          "wi": 119,
+          "offset": 487,
+          "len": 10,
+          "min": 3,
+          "reqs": 185,
+          "plusOK": true,
+          "minusOK": false,
+          "cipher": "EOPTMEUWRBI",
+          "truth": "INSTRUCTIAN"
+        }
+      ],
+      "unique": {
+        "coveredWords": 123,
+        "uniqueWords": 17,
+        "exactUniqueWords": 17,
+        "exactUniqueRunes": 144,
+        "truthInCandidates": 123,
+        "longCovered": 13,
+        "longUnique": 11,
+        "longExactUnique": 11,
+        "longTruthInCandidates": 13
+      }
+    },
+    {
+      "name": "0_koan_1",
+      "seed": 1033,
+      "words": 208,
+      "runes": 778,
+      "lexicon": 224879,
+      "fixed": {
+        "plus": 190,
+        "minus": 196,
+        "plusLong": 0,
+        "minusLong": 0
+      },
+      "lenHist": {
+        "1": [
+          13,
+          13,
+          13
+        ],
+        "2": [
+          45,
+          45,
+          45
+        ],
+        "3": [
+          68,
+          68,
+          68
+        ],
+        "4": [
+          23,
+          23,
+          23
+        ],
+        "5": [
+          19,
+          19,
+          19
+        ],
+        "6": [
+          19,
+          19,
+          19
+        ],
+        "7": [
+          11,
+          3,
+          9
+        ],
+        "8": [
+          3,
+          0,
+          0
+        ],
+        "9": [
+          4,
+          0,
+          0
+        ],
+        "10": [
+          1,
+          0,
+          0
+        ],
+        "11": [
+          1,
+          0,
+          0
+        ],
+        "12": [
+          1,
+          0,
+          0
+        ]
+      },
+      "longAnchors": 10,
+      "minHist": {
+        "2": 1,
+        "3": 6,
+        "4": 2,
+        "5": 1
+      },
+      "zeroAnchors": 0,
+      "examples": [],
+      "maxCovered": 9,
+      "topCount": 1,
+      "top": [
+        [
+          1,
+          7,
+          14,
+          22,
+          28
+        ]
+      ],
+      "minimumLongOOV": 1,
+      "sourcePlusRank": 49485,
+      "sourceMinusRank": 49485,
+      "trueBank": {
+        "coverage": 9,
+        "rank": 1,
+        "key": [
+          1,
+          7,
+          14,
+          22,
+          28
+        ]
+      },
+      "anchors": [
+        {
+          "wi": 73,
+          "offset": 250,
+          "len": 9,
+          "min": 3,
+          "reqs": 1070,
+          "plusOK": false,
+          "minusOK": false,
+          "cipher": "LRBFTHPLSB",
+          "truth": "PROFESSOR"
+        },
+        {
+          "wi": 94,
+          "offset": 329,
+          "len": 8,
+          "min": 2,
+          "reqs": 4589,
+          "plusOK": false,
+          "minusOK": false,
+          "cipher": "UGMFRJEAC",
+          "truth": "CONFUSED"
+        },
+        {
+          "wi": 102,
+          "offset": 365,
+          "len": 8,
+          "min": 3,
+          "reqs": 3750,
+          "plusOK": false,
+          "minusOK": false,
+          "cipher": "LRJIXOEXL",
+          "truth": "ANSWERED"
+        },
+        {
+          "wi": 135,
+          "offset": 486,
+          "len": 9,
+          "min": 3,
+          "reqs": 939,
+          "plusOK": false,
+          "minusOK": false,
+          "cipher": "ULYFJOESBO",
+          "truth": "PROFESSOR"
+        },
+        {
+          "wi": 140,
+          "offset": 506,
+          "len": 12,
+          "min": 5,
+          "reqs": 4,
+          "plusOK": false,
+          "minusOK": false,
+          "cipher": "FLAENGPUXNBWNG",
+          "truth": "CONSCIAUSNESS"
+        },
+        {
+          "wi": 141,
+          "offset": 518,
+          "len": 8,
+          "min": 3,
+          "reqs": 4078,
+          "plusOK": false,
+          "minusOK": false,
+          "cipher": "NSWUATSC",
+          "truth": "INHABITNG"
+        },
+        {
+          "wi": 143,
+          "offset": 528,
+          "len": 9,
+          "min": 3,
+          "reqs": 940,
+          "plusOK": false,
+          "minusOK": false,
+          "cipher": "OEUNGEARXEOGNG",
+          "truth": "ARBITRARY"
+        },
+        {
+          "wi": 167,
+          "offset": 616,
+          "len": 9,
+          "min": 3,
+          "reqs": 1081,
+          "plusOK": false,
+          "minusOK": false,
+          "cipher": "PXEARAIUIOE",
+          "truth": "IRRITATED"
+        },
+        {
+          "wi": 201,
+          "offset": 742,
+          "len": 10,
+          "min": 4,
+          "reqs": 195,
+          "plusOK": false,
+          "minusOK": false,
+          "cipher": "GRBAEIANEOAPTH",
+          "truth": "INSTRUCTIAN"
+        },
+        {
+          "wi": 204,
+          "offset": 758,
+          "len": 11,
+          "min": 4,
+          "reqs": 58,
+          "plusOK": false,
+          "minusOK": false,
+          "cipher": "EAXDAEJNGEAPWNG",
+          "truth": "UNREASONABLE"
+        }
+      ],
+      "unique": {
+        "coveredWords": 207,
+        "uniqueWords": 11,
+        "exactUniqueWords": 11,
+        "exactUniqueRunes": 98,
+        "truthInCandidates": 207,
+        "longCovered": 9,
+        "longUnique": 8,
+        "longExactUnique": 8,
+        "longTruthInCandidates": 9
+      }
+    }
+  ]
+}

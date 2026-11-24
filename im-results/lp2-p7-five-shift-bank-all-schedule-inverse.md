@@ -30,9 +30,22 @@ Generate a deterministic arbitrary state stream by xorshift32 selecting uniforml
 
 Both hidden key alphabets are uniquely recovered by exhaustive original-style word-mask support. Once a bank is recovered, exact word candidates are constructed; unique true words are explicitly counted. Ambiguous words are not claimed as recovered, and no full schedule can be inferred without a generator. These controls demonstrate the actual bank-recovery procedure, not historical adoption of the synthetic generator.
 
+## Evolving 29-state shift: five possible increments
+
+Interpret the five p7 values as increments: on each consuming rune Knew=(Kold+r) mod29, C=(P+Knew) mod29, r in the bank. Plaintext F emits F without advancing. Optional collision redraw replaces r from the same old state. All 29 effective shifts may occur, unlike the fixed absolute bank. The prior singleton state-support bound therefore does not exclude this variant. Compute successive differences of consuming shifts (C-P) mod29 per candidate group, allowing an independent starting shift per group and dropping cross-group constraints. Enumerate all 118,755 size-five increment banks under this necessary relaxation.
+
+| Lexicon | Source + / − all groups | Source + / − long anchors | Individually impossible long groups | Best common bank | Forced OOV |
+|---|---:|---:|---:|---:|---:|
+| Base | 2214 / 2236 | 5 / 4 | 21 | 14/343 | ≥329 |
+| Expanded | 2446 / 2450 | 30 / 21 | 6 | 45/343 | ≥298 |
+
+Unique postselected optimum [6,8,10,17,22] is not a recovered key. All 109 groups of length ≥10 fail either fixed source sign. Six long groups fail even with individually private banks. Two target-excluded native increment plants uniquely recover both hidden increment banks (13/14, 9/10 compatible anchors), 11 and 8 uniquely correct long words, 17 and 11 unique exact words overall. Each plant has one true word absent from its lexicon. The random-walk model thus fails under the stated intact-group lexical assumptions before any generator selection. Other nonlinear or changing increment laws remain untested.
+
+Run `node sims/lp2_five_shift_bank_all_schedule_inverse_sft.cjs increment`. [Exact output](lp2-p7-five-increment-bank-all-schedule-output.json).
+
 ## Interpretation and next decision
 
-Do not spend CI selecting generators for the five-value additive proposal while intact native GP groups are the intended output. The obstruction precedes the generator entirely; it is also independent of the specific five p7 values. An independent source-selected operation that changes the printed-group/inner-layer assumptions would be required to revisit. The proof does not exclude arbitrary five-state *permutations* or a larger/evolving additive bank. The near-one-fifth doublet ratio alone is insufficient to select the cipher.
+Do not spend CI selecting generators for the five-value additive proposal while intact native GP groups are the intended output. The obstruction precedes the generator entirely; it is also independent of the specific five p7 values. An independent source-selected operation that changes the printed-group/inner-layer assumptions would be required to revisit. The proof does not exclude arbitrary five-state *permutations* or other larger/evolving additive banks. The near-one-fifth doublet ratio alone is insufficient to select the cipher.
 
 Run `node sims/lp2_five_shift_bank_all_schedule_inverse_sft.cjs` from the repo root. [Code](../sims/lp2_five_shift_bank_all_schedule_inverse_sft.cjs) · [complete exact output](../im-results/lp2-p7-five-shift-bank-all-schedule-output.json). Executed in connected JavaScript runtime, no CI run claimed.
 

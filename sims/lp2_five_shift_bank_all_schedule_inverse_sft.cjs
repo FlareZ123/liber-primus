@@ -1,6 +1,6 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path');
-function experiment(inputs){
+function experiment(inputs,mode='absolute'){
   const gp=JSON.parse(inputs[0]),native=JSON.parse(inputs[3]);
   const map=new Map(gp.runes.map((r,i)=>[r,i])),alpha=new Map(gp.translit.map((s,i)=>[s,i]));
   const assert=(x,m)=>{if(!x)throw Error(m)};
@@ -30,7 +30,7 @@ function experiment(inputs){
   function choose(start,left,mask,fn){if(!left){fn(mask);return}for(let i=start;i<=29-left;i++)if(!(mask&bit(i)))choose(i+1,left-1,mask|bit(i),fn)}
   choose(0,5,0,m=>{bankIds.set(m,bankList.length);bankList.push(m)});
   assert(bankList.length===118755,"bank enumeration");
-  function decodeMask(c,p){let mask=0;for(let i=0;i<c.length;i++){if(p[i]===0){if(c[i]!==0)return -1}else mask|=bit(mod(c[i]-p[i]))}return mask}
+  function decodeMask(c,p){let mask=0,last=null;for(let i=0;i<c.length;i++){if(p[i]===0){if(c[i]!==0)return -1}else{const k=mod(c[i]-p[i]);if(mode==='absolute')mask|=bit(k);else if(last!==null)mask|=bit(mod(k-last));last=k}}return mask}
   function asKey(m){return Array.from({length:29},(_,i)=>i).filter(i=>m&bit(i))}
   function display(w){return w.map(x=>gp.translit[x]).join("")}
   function assess(words,dict,truth=null,trueBank=null){
@@ -61,13 +61,13 @@ function experiment(inputs){
     const trueId=trueBank?bankIds.get(trueBank.reduce((m,x)=>m|bit(x),0)):undefined;
     return {words:words.length,runes:offs,lexicon:dict.reduce((a,d)=>a+d.length,0),fixed,lenHist,longAnchors:wordCount,minHist,zeroAnchors:zeroAnchors.length,examples:zeroAnchors.slice(0,12),maxCovered:max,topCount,top,minimumLongOOV:wordCount-max,sourcePlusRank:1+coverage.filter(x=>x>coverage[bankIds.get(plus)]).length,sourceMinusRank:1+coverage.filter(x=>x>coverage[bankIds.get(minus)]).length,trueBank:trueId===undefined?null:{coverage:coverage[trueId],rank:1+coverage.filter(x=>x>coverage[trueId]).length,key:trueBank},anchors};
   }
-  function plant(words,key,seed){let s=seed>>>0,prev=-1;const draw=()=>{s^=s<<13;s^=s>>>17;s^=s<<5;return key[(s>>>0)%key.length]};return words.map(w=>w.map(p=>{let c;if(p===0)c=0;else{c=mod(p+draw());if(c===prev)c=mod(p+draw())}prev=c;return c}))}
+  function plant(words,key,seed){let s=seed>>>0,prev=-1,k=seed%29;const draw=()=>{s^=s<<13;s^=s>>>17;s^=s<<5;return key[(s>>>0)%key.length]};return words.map(w=>w.map(p=>{let c;if(p===0)c=0;else{let next=mode==='absolute'?draw():mod(k+draw());c=mod(p+next);if(c===prev){next=mode==='absolute'?draw():mod(k+draw());c=mod(p+next)}k=next}prev=c;return c}))}
   function recoverUnique(words,dict,key,truth){
     const bank=key.reduce((m,x)=>m|bit(x),0),stats={coveredWords:0,uniqueWords:0,exactUniqueWords:0,exactUniqueRunes:0,truthInCandidates:0,longCovered:0,longUnique:0,longExactUnique:0,longTruthInCandidates:0};
     for(let i=0;i<words.length;i++){const c=words[i],long=c.length>=8;let n=0,found=false,sole=null;
       for(const p of dict[c.length]||[]){const m=decodeMask(c,p);if(m<0||(m&bank)!==m)continue;n++;sole=p;if(String(p)===String(truth[i]))found=true}
       stats.coveredWords+=Number(n>0);stats.uniqueWords+=Number(n===1);stats.truthInCandidates+=Number(found);
-      if(n===1&&found){stats.exactUniqueWords++;stats.exactUniqueRunes+=sole.length;assert(sole.every((p,j)=>p===0?c[j]===0:key.includes(mod(c[j]-p))),"exact inverse witness")}
+      if(n===1&&found){stats.exactUniqueWords++;stats.exactUniqueRunes+=sole.length;assert(decodeMask(c,sole)>=0&&(decodeMask(c,sole)&bank)===decodeMask(c,sole),"exact inverse witness")}
       if(long){stats.longCovered+=Number(n>0);stats.longUnique+=Number(n===1);stats.longExactUnique+=Number(n===1&&found);stats.longTruthInCandidates+=Number(found)}
     }
     return stats;
@@ -75,7 +75,7 @@ function experiment(inputs){
   const base=lexicon(-1,false),exp=lexicon(-1,true);
   const results={base:assess(original,base),expanded:assess(original,exp),controls:[]};
   for(const [i,key,seed] of [[1,R,3301],[3,[1,7,14,22,28],1033]]){const P=solved[i],C=plant(P,key,seed),dict=lexicon(i,true);const r=assess(C,dict,P,key);const unique=r.topCount===1?recoverUnique(C,dict,r.top[0],P):null;results.controls.push({name:native.sections[i].name,seed,...r,unique})}
-  return {R,red,bankCount:bankList.length,...results};
+  return {mode,R,red,bankCount:bankList.length,...results};
 }
 const files=[
   "resources/liber-primus/lp2-corpus.json",
@@ -86,4 +86,6 @@ const files=[
   "resources/control/shakespeare_first300k.txt",
   "resources/transcriptions/lp1_wulfic_canonical.txt"
 ];
-console.log(JSON.stringify(experiment(files.map(f=>fs.readFileSync(path.resolve(__dirname,'..',f),'utf8'))),null,2));
+const mode=process.argv[2]||'absolute';
+if(!['absolute','increment'].includes(mode))throw Error('mode must be absolute or increment');
+console.log(JSON.stringify(experiment(files.map(f=>fs.readFileSync(path.resolve(__dirname,'..',f),'utf8')),mode),null,2));
