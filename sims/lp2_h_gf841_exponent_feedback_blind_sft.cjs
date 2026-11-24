@@ -1,7 +1,7 @@
 'use strict';
 /** Original GF841 exponent-feedback pair decoder; 2013 BASE29 field H. */
 const fs=require('node:fs'),path=require('node:path');
-function experiment(g,native){
+function experiment(g,native,bodyMode=false){
  const mod=(v,q=29)=>((v%q)+q)%q, pack=(a,b)=>a+29*b;
  const mul=(x,y)=>{const a=x%29,b=x/29|0,c=y%29,d=y/29|0;return pack(mod(a*c+18*b*d),mod(a*d+b*c+11*b*d));};
  const pow=[1],log=new Int16Array(841).fill(-1);
@@ -44,10 +44,24 @@ function experiment(g,native){
    tests.push({key:{e,k},recovered:a.best,heldoutExact:equal(held,test.slice(split)),nativeTrainPairIoC:ioc(test.slice(0,split),841),maxPairIoC:a.maxPairIoC,exponentInTop32:a.top32.includes(e)});
  }
  const src=(a,b)=>g.pages.filter(p=>p.page>=a&&p.page<=b).flatMap(p=>p.indices);
- const c=pairs(src(33,39)),h=pairs(src(40,53));if(c.length!==840||h.length!==1504)throw Error("register length");
+ const body=src(33,39).slice(91,-121);if(body.length!==1468)throw Error('source body size');const c=bodyMode?pairs(body.slice(0,734)):pairs(src(33,39)),h=bodyMode?pairs(body.slice(734)):pairs(src(40,53));if(c.length!==(bodyMode?367:840)||h.length!==(bodyMode?367:1504))throw Error('register length');
  const a=scan(c), held=decode(h,a.best.e,a.best.k,c.at(-1));
  if(!equal(h,encode(held,a.best.e,a.best.k,c.at(-1))))throw Error("holdout replay");
  return {trainingPairs:training.length,controlPairs:test.length,tests,original:{...a,rawPairIoC:ioc(c,841),holdout:{meanLog:pairScore(held),pairIoC:ioc(held,841),runeIoC:ioc(unpack(held),29),head:unpack(held).slice(0,90).map(x=>g.translit[x]).join("")}},native:{trainingMeanLog:pairScore(training),testMeanLog:pairScore(test),testRuneIoC:ioc(unpack(test),29),testPairIoC:ioc(test,841)}};
 }
 const read=p=>JSON.parse(fs.readFileSync(path.join(__dirname,'..',p),'utf8'));
-console.log(JSON.stringify(experiment(read('resources/liber-primus/lp2-corpus.json'),read('resources/external/relikd-solved-gp29-native-v1.json')),null,2));
+const g=read('resources/liber-primus/lp2-corpus.json'),n=read('resources/external/relikd-solved-gp29-native-v1.json');
+/** Finite source-native control windows; each window keeps its own pair alignment. */
+function pairWindows(n,runes){
+ const ix=new Map(n.runes.map((x,i)=>[x,i]));
+ const data=n.sections.flatMap(s=>[...s.source_text].filter(x=>ix.has(x)).map(x=>ix.get(x)));
+ const k=runes/2, count=data.length-runes+1;let min=Infinity,max=0;
+ for(let j=0;j<count;j++){
+  const h=new Uint16Array(841);
+  for(let i=0;i<k;i++)h[data[j+2*i]+29*data[j+2*i+1]]++;
+  const v=h.reduce((s,x)=>s+x*(x-1),0)/(k*(k-1));
+  min=Math.min(min,v);max=Math.max(max,v);
+ }
+ return {count,min,max};
+}
+console.log(JSON.stringify({physicalSpan:experiment(g,n),exactBody:experiment(g,n,true),native734RuneWindows:pairWindows(n,734),native1680RuneWindows:pairWindows(n,1680)},null,2));
