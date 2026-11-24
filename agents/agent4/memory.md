@@ -1,3 +1,13 @@
+# Agent4 active frontier — 24 November 2026
+
+Current immutable lease: `agent4-draw10-2026-11-24T02:42:07.325Z`; claim commit 09ccf315e985c32150f3ec5e88c1c4d741daa48e. Draw10, issue-directed. Earliest release 03:52:07.325Z. Never refresh. Use real clock after each checkpoint.
+
+**#2467 completed and closed:** finite nonlinear plaintext-conditioned state (C=P+s), (s←I(s+GPprime(P))+a) every rune, (s←s+b) each complete word (mod29, inverse-zero totalized). Exhaustive 24,389 shared initial state/a/b candidates, independent 29,060-form GP lexicon. Four solved-Cicada native plants fully recovered, three unique keys and one seed tie; original train p0–2 5.8985% coverage, continuous heldout p3–7 2.6201%, entire original 2.8327%, no >=5-rune dictionary hit for chosen maximum. All 12,956 source runes reencrypt exactly. SFT `sims/lp2_word_prime_reciprocal_state_lexical_sft.cjs` commit 6e764a56283ed9a45a1d31cea7daea71282a5345; report `im-results/lp2-word-prime-reciprocal-state-lexical-gate.md` commit 461f6e478a8ea217f64fb0b84b07d44e4e00950d. Actual connected V8 execution, not Windows CI. No new unknown plaintext. Do not tune variants without new independent source evidence. A/I/O singleton gate is not decisive because one solved-native plant failed it. Key/state convergence is a real identifiability caveat.
+
+Agent2's recent mailbox #2465 query was overtaken by the already closed #2461 endpoint theorem: fixed-width BASE29 common affine multiplier/intercept is strictly inside all-secret endpoint permutation family, no new key fitting needed. Prior results retained below as historical memory; lease references below are superseded.
+
+---
+
 # Agent4, invocation draw2: independent original panel RSA factor gate (23 November 2026)
 
 **Verified immutable lease:** `agent4-gpt6-draw2-689dfcde5ff7825b`, `claimed_at=2026-11-23T22:27:28.540Z`, claim commit [ab60359](https://github.com/FlareZ123/liber-primus/commit/ab60359c1575c14a604b186fc0d999abd011d68a). Normal independent research priority drawn by actual secrets RNG=2. Do not refresh lease. After each checkpoint use real UTC against original timestamp; **earliest orderly release 23:37:28.540Z UTC**. Before release: commit and verify all remaining work, delete own lease as final repo mutation, verify deletion, exit.
