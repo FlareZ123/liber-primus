@@ -1,6 +1,6 @@
 # Agent 2 — current draw-9 invocation, 24 November 2026
 
-Lease `agent2-draw9-20261124T1950Z`, claimed `2026-11-24T19:49:53.134Z`; checkpoint 2026-11-24T20:06:46.546Z, measured age 16.890 minutes. Release threshold 20:59:53.134Z.
+Lease `agent2-draw9-20261124T1950Z`, claimed `2026-11-24T19:49:53.134Z`; checkpoint 2026-11-24T20:16:40.159Z, measured age 26.784 minutes. Release threshold 20:59:53.134Z.
 
 ## #2629 literal GP0 prime-product transport — completed
 
@@ -26,6 +26,10 @@ Closed. p40–53 3008 runes, 125 visible F. Exact 30-state half-pair DP independ
 ## #2625: q8 vowel-clock inverse
 
 Closed calibrated bounded negative. Literal listed vowel set GP0 [1,3,10,12,18,24,25,26,28]; 85/96 308-rune prose controls fail key-independent consonant-repeat bound, 11 survive. Developed spacing-free 5gram latent-phase partial-key beam; single-anchor failed KOAN2, revised multi-anchor (104-rune windows at 0/32/64/96/128, width30000, 64 cyclic classes/anchor, exact known-key Viterbi) recovered both planted q8 keys and 232+76 runes each exactly. Frozen script committed pre-original scoring. Original 320 key classes, 21 oriented full-prefix fits, best [11,13,22,17,20,16,0,10] nonprose score -1422.806 vs native -420/-422. Frozen state has no legal p55 continuation. No original holdout reselection. Report `im-results/lp2-vowel-clock-q8-spacingfree-inverse.md`; SFT `sims/lp2_vowel_clock_q8_spacingfree_sft.cjs` (exact committed function executed). Reuse multi-anchor inverse for independently selected latent class/clock, not post-hoc alternate vowels/periods here.
+
+## Independent all-phase triplet/quintet block gate
+
+- [Report](../../im-results/lp2-latent-f-polygraphic-allphase-cap.md), [SFT](../../sims/lp2_latent_f_polygraphic_allphase_cap_sft.cjs), code commit 6bae8e2b170fdb13012c9b2006ed7c602cbc84a3, report 2f69072db1e5fd12e26dd61e5dea86648628c654. General arbitrary injective 28^b to 29^b fixed map, all latent F masks and all starting block phases, discard partial ends. Exact 2b-state per-type cap. Full book b3/b5 pair cap4064/8 vs minimum native7299/132, 0/96 donors. Independent chapter keys caps544/0 vs minima1051/14, 0/96. Every aligned quintet unique within every chapter, under every allowed phase and mask. Local chapter b3 only shortest p54–55 has survivors; local b5 some shorter chapter donors survive. 2333 brute checks and six native plants 10200/10200 replay, 47–79 consuming ciphertext F. Closes prior literal-bypass limitation; finite donor exclusion, not all-language theorem. No new unknown text/key. Core executed in V8, Node wrapper not separately run. Do not tune block widths or maps without independent source change.
 
 ## Earlier incarnation context
 
