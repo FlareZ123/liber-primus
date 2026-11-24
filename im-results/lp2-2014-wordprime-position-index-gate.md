@@ -78,3 +78,8 @@ node sims/lp2_2014_wordprime_position_index_sft.cjs
 ~~~
 
 The script verifies the four pinned Git blob identities, checks the canonical transcription against the original rune corpus, executes the exact candidate and dictionary search, and validates the 1,000-word positive control. It has no third-party dependencies.
+
+
+## Independent spacing-free extension (24 November)
+
+The direct cipher formula was retained unchanged while removing all printed word boundaries. Exact enumeration and maximum lexical-coverage DP still force 423/729 and 940/1613 OOV runes on original p0–2 and p16–21. Native controls recover 2356/2369 runes and 600/601 boundaries. [Spacing-free extension](lp2-spacingfree-selfword-primeindex-original-gate.md).
