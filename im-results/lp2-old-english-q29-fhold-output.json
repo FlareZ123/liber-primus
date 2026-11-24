@@ -1,0 +1,784 @@
+{
+  "source": {
+    "poemWords": 546,
+    "poemRunes": 2533,
+    "beowulfWords": 17387,
+    "beowulfRunes": 82644,
+    "dictionary": 5669
+  },
+  "plants": [
+    {
+      "name": "Dickins stanzas opening",
+      "key": [
+        23,
+        9,
+        2,
+        13,
+        17,
+        2,
+        15,
+        13,
+        27,
+        10,
+        11,
+        10,
+        16,
+        12,
+        9,
+        1,
+        11,
+        20,
+        3,
+        28,
+        3,
+        10,
+        19,
+        22,
+        19,
+        17,
+        6,
+        9,
+        0
+      ],
+      "trainRunes": 207,
+      "heldRunes": 105,
+      "cipherF": 30,
+      "plainF": 15,
+      "result": {
+        "nkeys": 1,
+        "keys": [
+          {
+            "key": [
+              23,
+              9,
+              2,
+              13,
+              17,
+              2,
+              15,
+              13,
+              27,
+              10,
+              11,
+              10,
+              16,
+              12,
+              9,
+              1,
+              11,
+              20,
+              3,
+              28,
+              3,
+              10,
+              19,
+              22,
+              19,
+              17,
+              6,
+              9,
+              0
+            ],
+            "paths": 1,
+            "endPhases": [
+              21
+            ]
+          }
+        ],
+        "exact": true,
+        "exhausted": false,
+        "nodes": 21,
+        "passes": 42,
+        "initialRows": 23844,
+        "rowVisits": 1376534,
+        "failure": {
+          "word": 30,
+          "kind": "no relation",
+          "pass": 42
+        }
+      },
+      "keyCorrect": true,
+      "full": {
+        "nkeys": 1,
+        "keys": [
+          {
+            "key": [
+              23,
+              9,
+              2,
+              13,
+              17,
+              2,
+              15,
+              13,
+              27,
+              10,
+              11,
+              10,
+              16,
+              12,
+              9,
+              1,
+              11,
+              20,
+              3,
+              28,
+              3,
+              10,
+              19,
+              22,
+              19,
+              17,
+              6,
+              9,
+              0
+            ],
+            "paths": 1,
+            "endPhases": [
+              7
+            ]
+          }
+        ],
+        "exact": true,
+        "exhausted": false,
+        "nodes": 1,
+        "passes": 2,
+        "initialRows": 35800,
+        "rowVisits": 35995,
+        "failure": null
+      },
+      "replay": true,
+      "heldCorrect": 105,
+      "heldScore": -2.3364503309793583
+    },
+    {
+      "name": "Beowulf opening",
+      "key": [
+        23,
+        10,
+        18,
+        0,
+        28,
+        0,
+        7,
+        6,
+        22,
+        18,
+        20,
+        22,
+        6,
+        23,
+        9,
+        9,
+        21,
+        3,
+        2,
+        5,
+        12,
+        6,
+        11,
+        21,
+        23,
+        15,
+        19,
+        25,
+        12
+      ],
+      "trainRunes": 206,
+      "heldRunes": 105,
+      "cipherF": 19,
+      "plainF": 13,
+      "result": {
+        "nkeys": 1,
+        "keys": [
+          {
+            "key": [
+              23,
+              10,
+              18,
+              0,
+              28,
+              0,
+              7,
+              6,
+              22,
+              18,
+              20,
+              22,
+              6,
+              23,
+              9,
+              9,
+              21,
+              3,
+              2,
+              5,
+              12,
+              6,
+              11,
+              21,
+              23,
+              15,
+              19,
+              25,
+              12
+            ],
+            "paths": 1,
+            "endPhases": [
+              22
+            ]
+          }
+        ],
+        "exact": true,
+        "exhausted": false,
+        "nodes": 3,
+        "passes": 7,
+        "initialRows": 21900,
+        "rowVisits": 169780,
+        "failure": {
+          "word": 10,
+          "kind": "no relation",
+          "pass": 5
+        }
+      },
+      "keyCorrect": true,
+      "full": {
+        "nkeys": 1,
+        "keys": [
+          {
+            "key": [
+              23,
+              10,
+              18,
+              0,
+              28,
+              0,
+              7,
+              6,
+              22,
+              18,
+              20,
+              22,
+              6,
+              23,
+              9,
+              9,
+              21,
+              3,
+              2,
+              5,
+              12,
+              6,
+              11,
+              21,
+              23,
+              15,
+              19,
+              25,
+              12
+            ],
+            "paths": 1,
+            "endPhases": [
+              8
+            ]
+          }
+        ],
+        "exact": true,
+        "exhausted": false,
+        "nodes": 1,
+        "passes": 2,
+        "initialRows": 33872,
+        "rowVisits": 34055,
+        "failure": null
+      },
+      "replay": true,
+      "heldCorrect": 105,
+      "heldScore": -2.054931010231639
+    },
+    {
+      "name": "Beowulf midpoint",
+      "key": [
+        23,
+        10,
+        6,
+        2,
+        13,
+        4,
+        11,
+        4,
+        21,
+        5,
+        5,
+        18,
+        15,
+        24,
+        9,
+        15,
+        15,
+        25,
+        0,
+        23,
+        25,
+        24,
+        6,
+        2,
+        23,
+        24,
+        7,
+        23,
+        9
+      ],
+      "trainRunes": 207,
+      "heldRunes": 107,
+      "cipherF": 18,
+      "plainF": 7,
+      "result": {
+        "nkeys": 1,
+        "keys": [
+          {
+            "key": [
+              23,
+              10,
+              6,
+              2,
+              13,
+              4,
+              11,
+              4,
+              21,
+              5,
+              5,
+              18,
+              15,
+              24,
+              9,
+              15,
+              15,
+              25,
+              0,
+              23,
+              25,
+              24,
+              6,
+              2,
+              23,
+              24,
+              7,
+              23,
+              9
+            ],
+            "paths": 1,
+            "endPhases": [
+              1
+            ]
+          }
+        ],
+        "exact": true,
+        "exhausted": false,
+        "nodes": 3,
+        "passes": 6,
+        "initialRows": 21514,
+        "rowVisits": 151090,
+        "failure": {
+          "word": 14,
+          "kind": "no relation",
+          "pass": 3
+        }
+      },
+      "keyCorrect": true,
+      "full": {
+        "nkeys": 1,
+        "keys": [
+          {
+            "key": [
+              23,
+              10,
+              6,
+              2,
+              13,
+              4,
+              11,
+              4,
+              21,
+              5,
+              5,
+              18,
+              15,
+              24,
+              9,
+              15,
+              15,
+              25,
+              0,
+              23,
+              25,
+              24,
+              6,
+              2,
+              23,
+              24,
+              7,
+              23,
+              9
+            ],
+            "paths": 1,
+            "endPhases": [
+              17
+            ]
+          }
+        ],
+        "exact": true,
+        "exhausted": false,
+        "nodes": 1,
+        "passes": 2,
+        "initialRows": 34090,
+        "rowVisits": 34288,
+        "failure": null
+      },
+      "replay": true,
+      "heldCorrect": 107,
+      "heldScore": -2.0909694298180015
+    }
+  ],
+  "englishPlant": {
+    "name": "Solved native English KOAN1",
+    "key": [
+      23,
+      8,
+      25,
+      18,
+      25,
+      9,
+      12,
+      1,
+      25,
+      4,
+      22,
+      21,
+      25,
+      10,
+      5,
+      9,
+      6,
+      0,
+      13,
+      19,
+      28,
+      10,
+      25,
+      25,
+      22,
+      9,
+      11,
+      9,
+      2
+    ],
+    "trainRunes": 206,
+    "heldRunes": 105,
+    "cipherF": 17,
+    "plainF": 3,
+    "result": {
+      "nkeys": 1,
+      "keys": [
+        {
+          "key": [
+            23,
+            8,
+            25,
+            18,
+            25,
+            9,
+            12,
+            1,
+            25,
+            4,
+            22,
+            21,
+            25,
+            10,
+            5,
+            9,
+            6,
+            0,
+            13,
+            19,
+            28,
+            10,
+            25,
+            25,
+            22,
+            9,
+            11,
+            9,
+            2
+          ],
+          "paths": 1,
+          "endPhases": [
+            2
+          ]
+        }
+      ],
+      "exact": true,
+      "exhausted": false,
+      "nodes": 1,
+      "passes": 2,
+      "initialRows": 2066,
+      "rowVisits": 2520,
+      "failure": null
+    },
+    "keyCorrect": true,
+    "full": {
+      "nkeys": 1,
+      "keys": [
+        {
+          "key": [
+            23,
+            8,
+            25,
+            18,
+            25,
+            9,
+            12,
+            1,
+            25,
+            4,
+            22,
+            21,
+            25,
+            10,
+            5,
+            9,
+            6,
+            0,
+            13,
+            19,
+            28,
+            10,
+            25,
+            25,
+            22,
+            9,
+            11,
+            9,
+            2
+          ],
+          "paths": 1,
+          "endPhases": [
+            18
+          ]
+        }
+      ],
+      "exact": true,
+      "exhausted": false,
+      "nodes": 1,
+      "passes": 2,
+      "initialRows": 2969,
+      "rowVisits": 3236,
+      "failure": null
+    },
+    "replay": true,
+    "heldCorrect": 105,
+    "heldScore": -1.4226812316608284
+  },
+  "original": {
+    "train": 205,
+    "holdout": 103,
+    "result": {
+      "nkeys": 0,
+      "keys": [],
+      "exact": true,
+      "exhausted": false,
+      "nodes": 1,
+      "passes": 1,
+      "initialRows": 23102,
+      "rowVisits": 8667,
+      "failure": {
+        "word": 18,
+        "kind": "no relation",
+        "pass": 1
+      }
+    }
+  },
+  "shuffled": [
+    {
+      "nkeys": 0,
+      "keys": [],
+      "exact": true,
+      "exhausted": false,
+      "nodes": 1,
+      "passes": 1,
+      "initialRows": 23038,
+      "rowVisits": 8620,
+      "failure": {
+        "word": 18,
+        "kind": "no relation",
+        "pass": 1
+      }
+    },
+    {
+      "nkeys": 0,
+      "keys": [],
+      "exact": true,
+      "exhausted": false,
+      "nodes": 1,
+      "passes": 1,
+      "initialRows": 23052,
+      "rowVisits": 6396,
+      "failure": {
+        "word": 14,
+        "kind": "no relation",
+        "pass": 1
+      }
+    },
+    {
+      "nkeys": 0,
+      "keys": [],
+      "exact": true,
+      "exhausted": false,
+      "nodes": 1,
+      "passes": 1,
+      "initialRows": 23031,
+      "rowVisits": 11767,
+      "failure": {
+        "word": 24,
+        "kind": "no relation",
+        "pass": 1
+      }
+    },
+    {
+      "nkeys": 0,
+      "keys": [],
+      "exact": true,
+      "exhausted": false,
+      "nodes": 1,
+      "passes": 1,
+      "initialRows": 23028,
+      "rowVisits": 12697,
+      "failure": {
+        "word": 25,
+        "kind": "no relation",
+        "pass": 1
+      }
+    },
+    {
+      "nkeys": 0,
+      "keys": [],
+      "exact": true,
+      "exhausted": false,
+      "nodes": 1,
+      "passes": 1,
+      "initialRows": 23127,
+      "rowVisits": 12796,
+      "failure": {
+        "word": 25,
+        "kind": "no relation",
+        "pass": 1
+      }
+    },
+    {
+      "nkeys": 0,
+      "keys": [],
+      "exact": true,
+      "exhausted": false,
+      "nodes": 1,
+      "passes": 1,
+      "initialRows": 23043,
+      "rowVisits": 8588,
+      "failure": {
+        "word": 18,
+        "kind": "no relation",
+        "pass": 1
+      }
+    },
+    {
+      "nkeys": 0,
+      "keys": [],
+      "exact": true,
+      "exhausted": false,
+      "nodes": 1,
+      "passes": 1,
+      "initialRows": 23118,
+      "rowVisits": 6401,
+      "failure": {
+        "word": 14,
+        "kind": "no relation",
+        "pass": 1
+      }
+    },
+    {
+      "nkeys": 0,
+      "keys": [],
+      "exact": true,
+      "exhausted": false,
+      "nodes": 1,
+      "passes": 1,
+      "initialRows": 23091,
+      "rowVisits": 6396,
+      "failure": {
+        "word": 14,
+        "kind": "no relation",
+        "pass": 1
+      }
+    },
+    {
+      "nkeys": 0,
+      "keys": [],
+      "exact": true,
+      "exhausted": false,
+      "nodes": 1,
+      "passes": 1,
+      "initialRows": 23024,
+      "rowVisits": 8600,
+      "failure": {
+        "word": 18,
+        "kind": "no relation",
+        "pass": 1
+      }
+    },
+    {
+      "nkeys": 0,
+      "keys": [],
+      "exact": true,
+      "exhausted": false,
+      "nodes": 1,
+      "passes": 1,
+      "initialRows": 23059,
+      "rowVisits": 6396,
+      "failure": {
+        "word": 14,
+        "kind": "no relation",
+        "pass": 1
+      }
+    },
+    {
+      "nkeys": 0,
+      "keys": [],
+      "exact": true,
+      "exhausted": false,
+      "nodes": 1,
+      "passes": 1,
+      "initialRows": 23032,
+      "rowVisits": 8599,
+      "failure": {
+        "word": 18,
+        "kind": "no relation",
+        "pass": 1
+      }
+    },
+    {
+      "nkeys": 0,
+      "keys": [],
+      "exact": true,
+      "exhausted": false,
+      "nodes": 1,
+      "passes": 1,
+      "initialRows": 23059,
+      "rowVisits": 8642,
+      "failure": {
+        "word": 18,
+        "kind": "no relation",
+        "pass": 1
+      }
+    }
+  ]
+}
