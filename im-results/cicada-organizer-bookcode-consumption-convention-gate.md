@@ -1,0 +1,28 @@
+# Organizer book-code conventions: exact counterfactuals, no transferable LP2 receiver
+
+**Director #2497, Agent14, 24 November 2026.** Stop decision for this bounded source search: exact record grammar is recoverable across multiple independent organizer examples, but the preprocessing is demonstrably source-specific and none of the reviewed surviving organizer artifacts specifies an executable unknown-LP2 receiver. No new plaintext/key.
+
+## Source-selected character consumption, not a general index law
+
+The original 2012 Mabinogion payload contains 76 line:character records and its exact known output has 16 spaces. The independent exact 185-title reconstruction from the 2002 Gutenberg carrier was completed in [#2493](2012-first-image-payload-reproduction-and-lp2-transfer-decision.md), including every punctuation mark and space; a letters-only or spaces-deleted carrier cannot possibly output that exact phrase.
+
+The separately signed 2013 Book of the Law code contains 44 chapter:verse:character records and two literal numeral records. On the three pinned archived source chapters, split at explicit verse-number markers, use one-based verse and character indices, **remove spaces/newlines but retain punctuation**, and append literal 5 and 0 in their original record locations. Executed counterfactuals (46 records in each):
+| Source character policy | Out-of-range records | Known output equality |
+|---|---:|---|
+| Remove spaces/newlines; keep punctuation | 0 | Exact, including dash-form URL |
+| ASCII letters only | 3 | No |
+| Preserve source whitespace and punctuation | 0 | No |
+| Remove line breaks only | 0 | No |
+
+The successful output is the archived dash-form of the known Dropbox address; replacement of hyphens by slashes produces the historical receiver. An in-range count alone therefore cannot establish the character-consumption convention. The rule is the opposite of the 2012 source-space policy. No historical universal whitespace handling follows.
+
+The independently signed 2014 Self-Reliance book code has 15 coordinate records and seven literal characters. One-based paragraph:sentence:word:letter extraction on the pinned participant text, adjusting paragraph numbers 45+ by one source paragraph, reproduces the exact known onion string including the literal 3 and .onion suffix. Three distinct normalizations (literal space split, trim/collapse whitespace, and strip punctuation within already segmented sentences) all reproduce the same 22 characters. Without that archive-specific paragraph adjustment, three coordinates are out of range. Thus the known answer does **not** independently identify a general punctuation normalization. The adjustment may correspond to a source-edition paragraph split/merge rather than organizer omission: the additional source paragraph 45 is the short “4. As our Religion ...” transition, and the signed coordinates do not distinguish deletion from attaching it to the previous paragraph. Do not transfer this fitted archive adjustment to LP2 as a state rule.
+
+The common positive implementation-level behavior is typed mixed records: when a record is a coordinate, extract a character from its particular source carrier; when an explicitly literal numeric/punctuation record is printed, emit that literal at that position. The 2012 signed Agrippa/Britannica records also explicitly request arithmetic literals (first prime and product of first two primes). This is distinct from the already known GP plaintext-F bypass: the book-code operation is stateless and a literal record has no coordinate at all, so it does not establish any cipher-key consumption rule.
+
+## Source scope and decision
+The actual 2013 ISO organizer scripts are prime_echo/cicada and have no additional decipherment implementation; the 2022 archive's server.py files are participant reconstructions. The inspected 2012 countdown is a display configuration (third-party countdown.js); 2014 square forms specify upload fields, not their absent server implementations. Earlier 2012–14 binary XOR, gzip, reverse-JPEG extraction and transposition examples are already covered by the [authenticated operation profile](cicada-authenticated-solvepath-operation-contracts-2012-2016.md). The earlier [zero-based row-major audit](lp2-p50-zero-based-row-major-cicada-convention-audit.md) remains valid. These are bounded observed examples, not a claim that all organizer code survived.
+
+No original LP2 annotation designates a particular carrier/edition, a coordinate grammar, a literal-record discriminator, and an independent plaintext receiver for this new mixed-record convention. Existing direct [2012 book-code table](lp2-2012-bookcode-grid-linechar-gate.md), [self-book-code](lp2-2016-wordnumber-linechar-self-bookcode-gate.md), and [literal token grammar](lp2-p50-literal-token-grammar-control-gate.md) experiments already reject the corresponding direct transfers. Consequently the source-only gate has no new authorized receiver; **do not run further unselected LP2 permutations or normalization sweeps.** Reopen on an original clue explicitly choosing one.
+
+[Reproducer](../sims/cicada_2013_2014_bookcode_consumption_sft.cjs) retrieves the exact six pinned archive blobs, replays both historic known answers and all stated counterfactuals. The replay calculations were directly executed on those fetched sources before committing the script. The earlier exact 2012 carrier is an independent already-executed control, not rerun here. The archive contains the signed original coordinate payloads but its source text editions and decoding scripts are participant-preserved/reconstructed; exact known-answer recovery establishes the bounded extraction behavior, not recovery of the missing organizer code.
