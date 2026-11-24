@@ -136,6 +136,68 @@ function run(corpus,raw,assert){
   }
   const best=scopes.map(([scope])=>({scope,best:results.filter(r=>r.scope===scope).sort((a,b)=>b.ioc-a.ioc)[0],bestHoldout:results.filter(r=>r.scope===scope).sort((a,b)=>b.holdout-a.holdout)[0]}));
   const fSummary=scopes.map(([scope])=>{const a=fResults.filter(r=>r.scope===scope);return {scope,count:a.length,wholeScopeSurvivors:a.filter(r=>r.surviving===r.segments).length,maximumSurvivingSegments:Math.max(...a.map(r=>r.surviving)),maximumFirstDead:Math.max(...a.map(r=>r.firstDead===null?-1:r.firstDead)),segments:a[0].segments}});
-  return {historicalVectors:4,sourceDecks:decks.length,deterministicOriginalInverses:results.length,transparentOriginalGates:fResults.length,nativeIoc:ioc(native),nativeFCount:native.length-trueClock,originalFCount:C.filter(v=>v===0).length,best,fSummary};
+
+  // Predecessor-exclusion rank cipher: 28 ordinary ranks plus one repeat
+  // escape. Unknown plaintext relabeling preserves within-segment IoC.
+  function rankTail(input,K,sign,order,advance,j){
+    const out=[];
+    for(let i=1;i<input.length;i++){
+      const c=input[i],prev=input[i-1];
+      if(c===prev){out.push(28);if(advance)j++;continue;}
+      const rank=order==="cyclic"?mod(c-prev-1,29):(c<prev?c:c-1);
+      out.push(mod(rank+sign*K[j++],28));
+    }
+    return out;
+  }
+  function rankInverse(input,K,sign,order,advance,prev){
+    const c=input[0],repeat=c===prev;
+    const rank=order==="cyclic"?mod(c-prev-1,29):(c<prev?c:c-1);
+    return [repeat?28:mod(rank+sign*K[0],28),...rankTail(input,K,sign,order,advance,repeat&&!advance?0:1)];
+  }
+  function rankForward(input,K,sign,order,advance,prev){
+    let j=0;
+    return input.map(label=>{
+      if(label===28){if(advance)j++;return prev;}
+      const rank=mod(label-sign*K[j++],28);
+      prev=order==="cyclic"?mod(prev+rank+1,29):(rank<prev?rank:rank+1);
+      return prev;
+    });
+  }
+  function pairCounts(a){
+    const f=Array(29).fill(0);for(const v of a)f[v]++;
+    return {f,m:f.reduce((s,n)=>s+n*(n-1)/2,0)};
+  }
+  function bestSeedPairs(input,K,sign,order,advance){
+    const one=pairCounts(rankTail(input,K,sign,order,advance,1)),c=input[0];
+    const labels=order==="cyclic"?identity(28).map(v=>v-1):[...(c<28?[mod(c+sign*K[0],28)]:[]),...(c>0?[mod(c-1+sign*K[0],28)]:[])];
+    const nonrepeat=one.m+Math.max(...labels.map(v=>one.f[v]));
+    const repeat=advance?one:pairCounts(rankTail(input,K,sign,order,advance,0));
+    return Math.max(nonrepeat,repeat.m+repeat.f[28]);
+  }
+  const rankResults=[];
+  for(const d of decks){
+    const keyStream=stream(d.deck,C.length);
+    for(const order of ["cyclic","sorted"])for(const advance of [false,true])for(const sign of [-1,1]){
+      const control=rankForward(native,keyStream,sign,order,advance,17);
+      assert(same(rankInverse(control,keyStream,sign,order,advance,17),native),"rank native plant");
+      for(const test of [pages[0],[0],[28],[1,1,0,28]]){
+        const exhaustive=Math.max(...identity(29).map(v=>pairCounts(rankInverse(test,keyStream,sign,order,advance,v-1)).m));
+        assert(exhaustive===bestSeedPairs(test,keyStream,sign,order,advance),"all-seed reduction");
+      }
+      for(const [scope,spans] of scopes){
+        let pairs=0,total=0,nativePairs=0;
+        for(const [a,b] of spans){
+          const input=C.slice(a,b),plain=rankInverse(input,keyStream,sign,order,advance,0);
+          assert(same(rankForward(plain,keyStream,sign,order,advance,0),input),"original rank replay");
+          pairs+=bestSeedPairs(input,keyStream,sign,order,advance);
+          nativePairs+=pairCounts(native.slice(a,b)).m;
+          total+=(b-a)*(b-a-1)/2;
+        }
+        rankResults.push({scope,name:d.name,reverse:d.reverse,swap:d.swap,order,advance,sign,upperIoC:pairs/total,nativeIoC:nativePairs/total});
+      }
+    }
+  }
+  const rankMax=scopes.map(([scope])=>({scope,count:rankResults.filter(r=>r.scope===scope).length,best:rankResults.filter(r=>r.scope===scope).sort((a,b)=>b.upperIoC-a.upperIoC)[0]}));
+  return {rankMax,rankOriginalInverses:rankResults.length,historicalVectors:4,sourceDecks:decks.length,deterministicOriginalInverses:results.length,transparentOriginalGates:fResults.length,nativeIoc:ioc(native),nativeFCount:native.length-trueClock,originalFCount:C.filter(v=>v===0).length,best,fSummary};
 }
 console.log(JSON.stringify(run(JSON.parse(read('resources/liber-primus/lp2-corpus.json')),['I','II','III'].map(i=>read('resources/external/2013-book-of-law-'+i+'.txt')).join('\n'),assert.ok),null,2));
