@@ -95,7 +95,7 @@ function run(corpus,transcript,annotations,lextext,widelex) {
      top.push({anchor:show(p),key,score:sc.score,eligible:sc.eligible,ioc:sc.ioc,opening:sc.opening,hold,holdoutCount:independent.length});
    });
    top.sort((a,b)=>b.score-a.score);
-   rows.push({word:i,page,offset:a,anchorLength:n,cipherF:cipher.filter(x=>x===0).length,interval:[start,end],candidatesTotal,unique:seen.size,prefixPass,suffixPass,survivors,bestPrefix,bestSuffix,top:top.slice(0,3)});
+   rows.push({word:i,page,offset:a,anchorLength:n,cipherF:cipher.filter(x=>x===0).length,interval:[start,end],candidatesTotal,unique:seen.size,prefixPass,suffixPass,survivors,bestPrefix,bestSuffix,maxHold:top.length?Math.max(...top.map(x=>x.hold)):null,maxIoC:top.length?Math.max(...top.map(x=>x.ioc)):null,maxLex:top.length?top[0].score:null,top:top.slice(0,3)});
  }
  // Native solved p56 genuine source regression.
  const primes=[];for(let n=2;primes.length<85;n++){let ok=true;for(let j=2;j*j<=n;j++)if(n%j===0){ok=false;break;}if(ok)primes.push((n-1)%29);}
