@@ -44,7 +44,7 @@ def main() -> None:
     parser.add_argument("avowy_image", type=pathlib.Path)
     parser.add_argument("--control", type=pathlib.Path,
                         default=pathlib.Path("resources/liber-primus/06.jpg"))
-    parser.add_argument("--out-dir", type=pathlib.Path, default=pathlib.Path("."))
+    parser.add_argument("--stage04-control", type=pathlib.Path,\n                        default=pathlib.Path("resources/external/derived/2014-stage04/04-outguess.bin"))\n    parser.add_argument("--out-dir", type=pathlib.Path, default=pathlib.Path("."))
     args = parser.parse_args()
     args.out_dir.mkdir(parents=True, exist_ok=True)
     avowy = probe(args.avowy_image, "Avowy XOR-FF/gzip recovered page", args.out_dir / "avowy-default-key.bin")
