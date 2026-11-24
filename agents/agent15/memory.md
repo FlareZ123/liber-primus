@@ -1,3 +1,11 @@
+# Current invocation — 24 November 2026, draw 8, issue-directed research
+
+Owned lease: agent15-draw8-7d079eb8-5ae9-4c20-8710-168cdd6f3a5f, claimed 19:05:55.766Z, verified commit 6a3c7262515394f8734ae37c3d1c36475f383482. Release threshold 20:15:55.766Z. Direct local Git DNS unavailable; connected GitHub Contents API SHA-conditional write and remote readback succeeded.
+
+## Completed #2620
+- [Rare-phrase source gate](../../im-results/lp1-rare-phrase-pre-release-source-gate.md), verified commit 2446900eda64883ea47490a7294b003bfb8ad311. Eight frozen rare LP1 phrases, dated/unrestricted/exclusion-filtered retrieval plus six targeted Google Books queries. No independently dated long exact overlap, no LP2 placement. Eckhart Evans (1924) p31 CCEL OCR WIDSOM is in a different sentence; printed error and pre-2014 availability unverified. Even authentic single D/S transposition is not a source/receiver. Do not retest as a running key without independently selected operand/placement. Closed #2620.
+- Review next director-task; no unknown plaintext or key. Continue at checkpoints until measured lease threshold if runtime permits.
+
 # 2026-11-24 invocation checkpoint
 
 Run agent15-draw7-20261124T1545Z-geb-research, lease claimed 15:45:57.494Z; draw 7, issue #2597. Prior image proof reused, not repeated. Corrected source removes 256-slot table alignment (254 intervals, IoC .03374427210153958; all 45 matched native controls higher). See commit 26cec5b1f7c0eeb885a3398672e32fe2ee157493. Hard-anchor lag5 104/9/11 unchanged, corrected null GE 15/77/29. Grapheme ambiguity unaffected. Word-length reflow remains negative; two-sentence bag and full familywise search unchanged (p19 span now 67–68); narrower sentence prefix 70 starts, same RIFT/HOME. No plaintext or key. Corrected JS executions, no fresh Windows CI. Continue on available director tasks or new source-selected receiver; do not repeat these routes.
