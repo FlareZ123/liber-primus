@@ -85,9 +85,9 @@ function attack(gp,raw,allowOriginal=false) {
   function enc(P,K,phase=0){return P.map(v=>v===0?0:mod(v+K[phase++%K.length],29))}
   function rng(seed){let x=seed>>>0;return()=>{x^=x<<13;x^=x>>>17;x^=x<<5;return(x>>>0)/4294967296}}
   function spelling(g,random){
-    const out=[];let p=0,split=0;
-    while(g.rem[p]){const opts=g.f[p];check(opts.length,"unspellable "+g.s.slice(p,p+15));const [v,n]=opts[Math.floor(random()*opts.length)];if(opts.length>1&&gp.translit[v].length===1)split++;out.push(v);p=n}
-    return {out,split};
+    const out=[];let p=0,split=0;const splits=[];
+    while(g.rem[p]){const opts=g.f[p];check(opts.length,"unspellable "+g.s.slice(p,p+15));const [v,n]=opts[Math.floor(random()*opts.length)];if(opts.length>1&&gp.translit[v].length===1){split++;splits.push(out.length)}out.push(v);p=n}
+    return {out,split,splits};
   }
   function countPaths(g,p,n,memo=new Map()){
     if(!n)return 1n;if(g.rem[p]<n)return 0n;
@@ -127,7 +127,7 @@ function attack(gp,raw,allowOriginal=false) {
     const before=plain.slice(0,A).filter(v=>v!==0).length,phase=mod(-before,q);
     const C=enc(plain,key,phase);
     // Require actual non-greedy spelling in the selected physical window, not just elsewhere in sentence.
-    const nonGreedy=plain.some((v,i)=>i+1<plain.length&&idx.has(gp.translit[v]+gp.translit[plain[i+1]]));
+    const nonGreedy=L.splits.some(i=>i>=L.out.length-A)||R.splits.some(i=>i<N-A);
     const truth={source:pair.source,stop:pair.stop,q,key,plain};
     const result=run(C,truth);
     controls.push({id:j*4+k,truth,nonGreedy,...result});
