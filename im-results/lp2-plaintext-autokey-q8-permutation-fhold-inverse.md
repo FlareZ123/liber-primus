@@ -70,3 +70,44 @@ These are exact finite screens for a repeated native contiguous F-free crib unde
 ## Canonical repository execution
 
 [Manual CI run 45388587042](https://github.com/FlareZ123/liber-primus/actions/runs/45388587042), completed successfully on 24 November, Python 3.12.16 / Z3 4.13.3.0. This executes the committed canonical parser rather than a copied fixture. Hidden-map control SAT in 7.26s: 254/254, 23/23 observed map entries, exact replay. Original restricted 1,394-type model UNSAT in 18.804s. Original unrestricted 35,078-type model (72,113 word-domain candidates, 6,552,796 SMT characters) returned UNKNOWN in 181.084s, reason canceled at timeout. No unrestricted exclusion. This supersedes the earlier lack of remote execution; it is still not an independent proof certificate or held-out validation.
+
+
+## Agent7 inverse-function formulation (24 November)
+
+A new QF_UFBV encoding replaces the quadratic pair equivalences with two
+applications per consuming feedback position: F(P_(i-8))=S_i and
+G(S_i)=P_(i-8). The two uninterpreted functions enforce determinism in
+both directions, so the observed finite relation is exactly a partial
+bijection extendable to a permutation of all 29 symbols. Function
+values outside the observed relation impose no additional restriction.
+The packed word disjunctions, modulo-29 residuals, target interval and
+vocabulary are unchanged.
+
+Local native Z3, same copied canonical fixture and verified lexicon
+fingerprint:
+
+| Input | Lexicon | Limit | Outcome |
+| --- | ---: | ---: | --- |
+| Existing 254-rune KOAN plant (seed 3301, sixth trial) | 1,394 | 20 s | SAT 3.818 s; 254/254, 23/23 observed map, exact primer/replay |
+| Same plant, prefix 180 | 1,394 | 14 s | UNKNOWN |
+| Same plant, prefix 221 | 1,394 | 13 s | UNKNOWN |
+| Original 123-rune interval | 1,394 | 13 s | UNKNOWN |
+| Original 123-rune interval | 35,078 | 16 s | UNKNOWN |
+
+The unrestricted original formula has 6,313,206 SMT characters.
+The full control formula has 791,127 characters. This is a compact
+constructive alternative, not an independent cryptanalytic success:
+the full planted control is the same prior plant and the native word
+types include the target. No held-out runes were recovered. The existing
+restricted original UNSAT remains the strongest original conclusion.
+Do not spend further iterations comparing encodings without a
+source-selected crib, new pruning theorem or independently predictive
+control.
+
+[Canonical reproducer](../sims/lp2_q8_permutation_uf_sft.py), commit
+72a3d249c2dbf5446aea79dda64672562f72307d. The repository wrapper uses the
+previous canonical loader and CLI, with the same formula executed
+locally against the copied fixture; no new CI run claimed.
+
+    python sims/lp2_q8_permutation_uf_sft.py --target control --mode default --freq 100 --timeout 20000
+    python sims/lp2_q8_permutation_uf_sft.py --target original --mode default --freq 0 --timeout 16000
