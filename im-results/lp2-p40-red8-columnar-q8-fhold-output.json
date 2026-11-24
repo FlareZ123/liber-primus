@@ -1,0 +1,131 @@
+{
+  "sourceFixtureFNV32": 3537298945,
+  "sourceCodeFNV32": [
+    2203944622,
+    2347643063,
+    1083315887
+  ],
+  "seed": 604014,
+  "starts": 128,
+  "iterationsPerPenalty": 16,
+  "controls": [
+    {
+      "label": "control1",
+      "legalStarts": 89,
+      "cycles": 593,
+      "key": [
+        23,
+        10,
+        1,
+        10,
+        9,
+        10,
+        16,
+        26
+      ],
+      "fitScore": -2.777565588649875,
+      "fitPhase": 7,
+      "holdoutScore": -2.515548390256306,
+      "keyExact": true,
+      "fitExact": 757,
+      "holdoutExact": 256,
+      "holdoutLength": 256,
+      "fitLength": 768,
+      "length": 1024,
+      "strictReplay": true
+    },
+    {
+      "label": "control2",
+      "legalStarts": 81,
+      "cycles": 538,
+      "key": [
+        3,
+        17,
+        9,
+        22,
+        6,
+        1,
+        14,
+        10
+      ],
+      "fitScore": -2.79335100043278,
+      "fitPhase": 0,
+      "holdoutScore": -2.685456485018702,
+      "keyExact": true,
+      "fitExact": 768,
+      "holdoutExact": 256,
+      "holdoutLength": 256,
+      "fitLength": 768,
+      "length": 1024,
+      "strictReplay": true
+    }
+  ],
+  "original": {
+    "legalFit": true,
+    "legalStarts": 48,
+    "cycles": 979,
+    "key": [
+      5,
+      0,
+      6,
+      0,
+      12,
+      21,
+      22,
+      4
+    ],
+    "fitScore": -3.827786251476187,
+    "fitPhase": 5,
+    "fitLength": 768,
+    "length": 3000,
+    "legalHoldout": false,
+    "relaxedHoldoutScore": -4.990037743049234,
+    "relaxedHoldoutViolations": 18,
+    "strictReplay": false
+  },
+  "sat": {
+    "unrestricted": {
+      "result": "sat",
+      "variables": 2300,
+      "clauses": 35144,
+      "key": [
+        7,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "replay": true,
+      "seconds": 0.9922413140000117
+    },
+    "nativeGP27": {
+      "result": "unsat",
+      "variables": 2300,
+      "clauses": 68544,
+      "seconds": 1.1603590659999554
+    },
+    "nativeGP27Control": {
+      "result": "sat",
+      "variables": 2488,
+      "clauses": 70766,
+      "seconds": 0.7039683279999736,
+      "key": [
+        23,
+        10,
+        1,
+        10,
+        9,
+        10,
+        16,
+        26
+      ],
+      "keyExact": true,
+      "plaintextExact": 2835,
+      "length": 3000,
+      "replay": true
+    }
+  }
+}
