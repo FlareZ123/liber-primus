@@ -75,9 +75,11 @@ assert(tokens(instructionRunes) === "ANINSTRUCTIAN", "Unexpected native GP29 AN 
 assert(instructionRunes.length === 12, "AN INSTRUCTION must be 12 native GP29 runes");
 const instructionTokens = extract(instruction.source_text).map((x) => corpus.translit[x]).join("");
 assert(instructionTokens.includes("CNOWTHIS"), "Expected the native 7-rune KNOW THIS subheading");
+const knowThisTokens = ["C", "N", "O", "W", "TH", "I", "S"];
+const knowThisStart = extract(instruction.source_text).map((x) => corpus.translit[x]).join(",").indexOf(knowThisTokens.join(","));
+assert(knowThisStart >= 0 && knowThisTokens.length === 7, "KNOW THIS must be seven GP29 symbols");
 const lowerRubricLength = ink33.red_spans[1].length;
 assert(lowerRubricLength === 8, "Unexpected lower rubric length");
-assert("CNOWTHIS".length === 7, "KNOW THIS must be seven GP29 symbols");
 
 const cribStart = 99;
 const cribEnd = cribStart + instructionRunes.length;
@@ -302,7 +304,7 @@ const output = {
     nativePlaintext: tokens(instructionRunes),
     length: instructionRunes.length,
     redRubricLength: lowerRubricLength,
-    knowThisNativeLength: 7,
+    knowThisNativeLength: knowThisTokens.length,
     knownKeySymbols: knownKeyPrefix.length,
     period: 13,
     missingKeySymbols: 1,
