@@ -2,6 +2,25 @@
 const fs=require('node:fs');
 const path=require('node:path');
 const read=p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8');
+
+function mirrorProjectionEnvelope(x){
+  const n=x.length,m=Math.floor(n/2);
+  const directions=Array.from({length:29},(_,t)=>[1,t]).concat([[0,1]]);
+  const histograms=directions.map(([a,b])=>{
+    const h=Array(29).fill(0);
+    for(let i=0;i<m;i++)h[(a*x[i]+b*x[n-1-i])%29]++;
+    return h.sort((a,b)=>b-a);
+  });
+  let best={pairs:-1,rows:null,hist:null};
+  for(let i=0;i<30;i++)for(let j=i+1;j<30;j++){
+    const h=histograms[i].map((c,k)=>c+histograms[j][k]);
+    h[0]+=n%2;
+    const pairs=h.reduce((s,c)=>s+c*(c-1),0);
+    if(pairs>best.pairs)best={pairs,rows:[directions[i],directions[j]],hist:h};
+  }
+  return {...best,ioc:best.pairs/(n*(n-1))};
+}
+function disjointWindowIoC(donor,n){const scores=[];for(let i=0;i+n<=donor.length;i+=n){const h=Array(29).fill(0);for(let j=i;j<i+n;j++)h[donor[j]]++;scores.push(h.reduce((s,c)=>s+c*(c-1),0)/(n*(n-1)));}return {count:scores.length,min:Math.min(...scores),max:Math.max(...scores)};}
 function experiment(corpus,ink,transcript,shakespeare,gibran){
   const assert=(v,m)=>{if(!v)throw Error(m)};
   const eq=(a,b)=>a.length===b.length&&a.every((v,i)=>v===b[i]);
@@ -58,7 +77,16 @@ function experiment(corpus,ink,transcript,shakespeare,gibran){
   for(let t=0;t<32;t++){const c=sections.map(s=>s.c.map(()=>rand()%29));const found=fit(c[1]);nulls.push(c.map((x,i)=>assess(x,sections[i],found).score));}
   const key=fit(sections[1].c),original=sections.map(s=>assess(s.c,s,key));
   const maxIoc=sections.map(s=>Math.max(...keys.map(k=>ioc(decode(s.c,k)))));
-  return {cuts,scope:sections.map(s=>({runes:s.c.length,words:s.lengths.length})),key,original,maxIoc,plants,nullTrials:nulls.length,nullTrainAtLeastOriginal:nulls.filter(x=>x[1].value>=key.score.value).length,maxNull:sections.map((_,i)=>({value:Math.max(...nulls.map(n=>n[i].value)),coverage:Math.max(...nulls.map(n=>n[i].coverage))})),allOriginalReplays:true};
+  const donor=nativeWords(gibran).flat();
+  const projectionEnvelope=sections.map(s=>{
+    const p=Array.from({length:s.c.length},(_,i)=>p57[i%p57.length]);
+    const encrypted=p.slice(),m=Math.floor(p.length/2);
+    for(let i=0;i<m;i++){const a=p[i],b=p[p.length-1-i];encrypted[i]=(3*a+5*b)%29;encrypted[p.length-1-i]=(7*a+11*b)%29;}
+    const positive={ioc:ioc(p),envelope:mirrorProjectionEnvelope(encrypted).ioc};
+    assert(positive.envelope>=positive.ioc,"arbitrary matrix positive");
+    return {n:s.c.length,envelope:mirrorProjectionEnvelope(s.c),donor:disjointWindowIoC(donor,s.c.length),positive};
+  });
+  return {projectionEnvelope,cuts,scope:sections.map(s=>({runes:s.c.length,words:s.lengths.length})),key,original,maxIoc,plants,nullTrials:nulls.length,nullTrainAtLeastOriginal:nulls.filter(x=>x[1].value>=key.score.value).length,maxNull:sections.map((_,i)=>({value:Math.max(...nulls.map(n=>n[i].value)),coverage:Math.max(...nulls.map(n=>n[i].coverage))})),allOriginalReplays:true};
 }
 const input=["resources/liber-primus/lp2-corpus.json","resources/liber-primus/lp2-ink-annotations.json","resources/liber-primus/lp2-transcription.txt","resources/control/shakespeare_first300k.txt","resources/control/gibran_prophet_58585.txt"].map(read);
 console.log(JSON.stringify(experiment(JSON.parse(input[0]),JSON.parse(input[1]),...input.slice(2)),null,2));
