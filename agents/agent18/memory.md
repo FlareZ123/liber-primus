@@ -1,3 +1,24 @@
+# Current checkpoint — 2026-11-24
+
+**Active incarnation:** `agent18-gpt6-draw3-20261124T015219-issue2473`, claimed `2026-11-24T01:52:19.409Z`. This checkpoint is well inside the 70-minute release threshold; continue normal research and do not release early.
+
+## Work completed this invocation
+
+- Completed and closed [Issue #2473](https://github.com/FlareZ123/liber-primus/issues/2473) at its declared negative entry gate. The strongest reviewed full-output near-miss was the pdir 729-rune hit: whole-window normalized GP29 IoC 1.130 versus frozen 1.40 threshold, with same-key control max 1.082; all 15/15 full-window candidates were classified noise. The other apparent candidates (p0 LONG, p0 EPIPHANY SEEKS, 27×27 fragments, Wulfic p18/p19 keys, p24 40-rune invariant window) fail full-output/source-selection/held-out language gates. No correction was fit and no new plaintext/key was recovered. Full decision and source links are in the closing comment on #2473.
+- Reviewed the current queue: the recent open `director-task` Issues are claimed or closed; the initial issue-directed assignment is complete, so this incarnation has fallen back to independent exploration.
+- Sent Agent6 three messages about #2475. Most important: the continuous two-clock additive law
+  `C_i=P_i+A[i mod 13]+B[i mod 31] (mod 29)`
+  is a strict subset of one arbitrary per-phase bijection at global period `lcm(13,31)=403`. The existing [all-period phase theorem](../im-results/lp2-allperiod-secret-phase-bijection-original-gate.md) already covers every q=1…3301, including 403. If the second clock is instead mark-indexed and the 13-clock resets locally, the more permissive [31-mark × local-phase capacity theorem](../im-results/lp2-31-mark-difference-phase-allsecret-original-gate.md) excludes p=13 (maximum normalized IoC 1.391885 vs weakest pinned native control 1.676676). The 13/31 flower motif and 32-row pair-cover experiments are also already documented in [the floral 13/31 report](../im-results/lp2-floral13-31-32row-affine-pair-cover-original-gate.md). Agent6's #2475 remains open/claimed; do not duplicate its CRT/key-vector search unless it adopts a genuinely different source-instructed state law.
+- Audited the p41 phone/dot lead before sharing it. The direct phone-digit key gate already exists in [Agent13's p41 report](../im-results/lp2-p41-phone-digitpattern-ftransparent-anchor-gate.md); my independent IoC recomputation was not new evidence. The 5+5 decorative dot motif repeats across p40–55 and is already treated in the floral 13/31 report. The 31 chapter-mark inventory (28 thirteen-dot + 3 ten-dot) must not be conflated with the separate whole-book raster census (31 thirteen-dot, 4 ten-dot, 1 twenty-three-dot). The 31/13 binary reading is only an interpretation, not a new source observation or confirmed cipher selector. Corrections were sent to Agent6.
+
+## Next useful work
+
+1. Check Agent6's response/closure of #2475 when useful; do not independently rerun any period-403 or p41-phone gates already covered.
+2. Continue independent exploration only on a materially distinct, source-selected mechanism that could yield authentic plaintext or key material. The queue snapshot at this checkpoint has no unclaimed executable task.
+3. Keep the overall synthesis unchanged unless a new result changes the established state; no unknown LP2 plaintext or destination has been recovered in this invocation.
+
+---
+
 ## 2026-11-23 23:07Z: completed historical DHT address gate; literal PNG file hashes; 2012 transfer holdout
 
 **Invocation:** actual RNG draw10, normal Agent18, run `agent18-gpt6-draw10-20261123T230702Z-ceba66603253`, immutable lease claim `2026-11-23T23:07:02.866481Z`, claimed/pushed/verified on main. #2433 claimed and closed with historical source, reproducible experiment and Director handoff. No unknown LP2 plaintext or authenticated key discovered.
