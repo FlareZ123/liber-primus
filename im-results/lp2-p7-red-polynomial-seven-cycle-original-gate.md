@@ -158,6 +158,33 @@ Four independent deterministic secret-key plants use disjoint native solved-sour
 
 Retire the exact affine circulant/constant-offset model with intact native word boundaries and this lexical register. The prior source-fixed NTT alone and this all-secret spectral-multiplier family are distinct; no unknown LP2 plaintext or author key is recovered. Different phase-specific bias, hidden F-clock, transformed word boundaries or non-circulant mixing are outside the exact decision. [Executed CommonJS SFT](../sims/lp2_p7_circulant7_affine_key_inference_sft.cjs) (connected V8 execution, no CI claim).
 
+### Period-seven additive layer in either composition order (Agent46, 24 November)
+
+The scalar-bias test does not cover an independently keyed ordinary period-seven additive cipher. The literal 7 and the prior seven-point NTT motivate a separate, narrowly defined layer combination. Each of the seven coordinates in either geometry has a distinct physical rune index modulo 7 (lane height 247 is coprime to 7). The composition of a fixed invertible circulant mixer and an arbitrary period-seven additive pad, in **either order**, reduces to
+
+```
+P[i] = dot(k, C[geometry-group cyclic row i]) + b[i mod 7] (mod 29)
+```
+
+where the seven circulant coefficients and seven physical phase offsets are all secret. This equivalence concerns ordinary consuming shifts, not latent-F holds; no author instruction authenticates the combination.
+
+**Exact constructive elimination:** for each length ≥11 training word, retain one pivot position per phase. Subtract the corresponding pivot row from every additional word position and each training singleton of that phase. This eliminates all seven additive offsets. A rank-seven basis fixes the circulant coefficients from a proposed complete word spelling plus at most three selected singleton labels, with unused equations checked exactly. The offsets are recovered from the pivot plaintexts. Enumerate all eligible spellings in the 38,920-form register and all A/I/O/T singleton labels on selected rows; reject singular matrices. The union of full-rank anchor candidate sets is complete for every key admitting at least one such anchor and all six training singletons. Fit only the first 1,124 output runes, maximizing compatible anchors then ≥3-rune dictionary coverage.
+
+| Original result | Adjacent groups | Seven equal lanes |
+|---|---:|---:|
+| Rank-full length ≥11 training anchors | 11 | 11 |
+| Distinct nonsingular candidate keys | 2,069 | 2,101 |
+| Maximum anchors compatible with any key | **1/11** | **1/11** |
+| Frozen prefix winner eligible dictionary coverage | 39/1,054 | 36/1,054 |
+| Frozen 605-rune suffix eligible dictionary coverage | **3/552** | **3/552** |
+| Frozen suffix singletons in A/I/O/T inventory | 1/5 | 1/5 |
+
+The 13-rune group at offset 1012 admits zero candidates in both geometries. Every key must put at least 10 of 11 selected long words outside the fixed lexicon, conditional on six native singleton labels. Both prefix winners re-encrypt the full original exactly, but their decoded strings are nonprose and their frozen continuation fails. The SFT prints both candidate readouts. No suffix language is used for selection; lane ciphertext coordinates can cross the training boundary.
+
+The two disjoint native donor pools were encoded with new deterministic 14-coefficient keys. Separate `phase-groups` and `phase-lanes` executions use the same two keys across both geometries (controlled cross-geometry comparison, not four independent key draws). Each recovers its true key as unique top candidate, with candidate counts 1/4184 and 2/4262 respectively, and **2,050/2,050** combined withheld native runes. The lexicon includes donor vocabulary. Initial unoptimized execution timed out without a result; precomputed unused-equation projections and a frozen ≥11-rune anchor register completed each exact run in about four seconds of connected JS execution. No CI claimed.
+
+Reproduce with the [same SFT](../sims/lp2_p7_circulant7_affine_key_inference_sft.cjs), arguments `phase-groups` and `phase-lanes`. Both geometries and both layer orders are now conditionally retired for ordinary period-seven offsets, intact printed word boundaries and the fixed native lexical/singleton register. A new source-selected state, clock or output register is required. No unknown plaintext or authentic author key.
+
 ## Source-derived p39 root24 cross-chapter prediction
 
 The **physically last red p8 title rune is GP index17**, and 17²=-1 modulo29. This provides a printed choice of imaginary unit for the p7/p8 norm-one 3–4–5 rotation:
