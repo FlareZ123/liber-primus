@@ -1,7 +1,7 @@
 'use strict';
 /** Plaintext-fed GP29 autokey, latent F holds, q29 primer. */
 const files=["resources/liber-primus/lp2-corpus.json","resources/external/relikd-solved-gp29-native-v1.json","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt"];
-function study(inputs,lib,which='both'){
+function study(inputs,lib,which='both',q=29,seed=0x330129a5){
  const gp=JSON.parse(inputs[0]),native=JSON.parse(inputs[1]),assert=(x,m)=>{if(!x)throw Error(m)};
  const alpha=new Map(gp.translit.map((x,i)=>[x,i]));alpha.set("ING",21);
  const rune=new Map(gp.runes.map((x,i)=>[x,i]));
@@ -9,8 +9,8 @@ function study(inputs,lib,which='both'){
  assert(String(seqs.get("p57_parable"))===String(gp.pages[57].indices),"actual p57");
  function donor(s){const start=/\*\*\* START OF (?:THIS|THE) PROJECT GUTENBERG EBOOK[^\r\n]*\*\*\*/i.exec(s);if(start)s=s.slice(start.index+start[0].length);const end=/\*\*\* END OF (?:THIS|THE) PROJECT GUTENBERG EBOOK/i.exec(s);if(end)s=s.slice(0,end.index);let out=[];for(let t of s.match(/[A-Za-z]+/g)||[]){t=t.toUpperCase().replace(/QU/g,"CW").replace(/[KQ]/g,"C").replace(/V/g,"U").replace(/Z/g,"S");while(t.length){let ok=false;for(let n=Math.min(t.length,3);n>=1;n--){const v=alpha.get(t.slice(0,n));if(v!==undefined){out.push(v);t=t.slice(n);ok=true;break}}assert(ok,"native translation");}}return out}
  const train=inputs.slice(2).map(donor).map(p=>p.slice(0,Math.floor(p.length*.7)));
- const lm=lib.train(train),q=29,split=232,n=308,mod=x=>((x%29)+29)%29;
- let rng=0x330129a5;function rand(n){rng^=rng<<13;rng^=rng>>>17;rng^=rng<<5;return (rng>>>0)%n}
+ const lm=lib.train(train),split=232,n=308,mod=x=>((x%29)+29)%29;
+ let rng=seed;function rand(n){rng^=rng<<13;rng^=rng>>>17;rng^=rng<<5;return (rng>>>0)%n}
 
  function encrypt(P,K){const k=K.slice();return P.map(x=>{if(x===0)return 0;const c=mod(x+k.shift());k.push(x);return c})}
  const render=P=>P.map(x=>gp.translit[x]).join("");
