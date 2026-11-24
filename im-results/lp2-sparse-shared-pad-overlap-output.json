@@ -1,0 +1,804 @@
+{
+  "cfg": {
+    "L": 64,
+    "plantL": 80,
+    "screenEdges": 4,
+    "nullReplicates": 99,
+    "minimumLLR": 13.815510557964274,
+    "refinementSweeps": 3,
+    "seed": 258011,
+    "chapterPairs": [
+      [
+        15,
+        22
+      ],
+      [
+        40,
+        53
+      ]
+    ],
+    "startAtEitherBoundary": true
+  },
+  "controls": [
+    {
+      "names": [
+        "0_koan_1",
+        "0_welcome"
+      ],
+      "eligible": [
+        164,
+        64
+      ],
+      "plant": {
+        "i": 514,
+        "j": 295,
+        "windows": 1777,
+        "screened": 254,
+        "feasible": 7,
+        "best": {
+          "i": 515,
+          "j": 296,
+          "llr": 72.16726264922562
+        },
+        "aligned": true,
+        "unigramKeyMatch": 64,
+        "matchA": 64,
+        "matchB": 64,
+        "keyMatch": 64,
+        "count": 1360,
+        "logPosterior": -0.013992482215002155,
+        "changes": 0,
+        "contextScore": -451.7171713145095,
+        "baselineContextScore": -451.7171713145095
+      },
+      "independent": {
+        "windows": 1260,
+        "screened": 54,
+        "feasible": 0,
+        "best": null
+      }
+    },
+    {
+      "names": [
+        "0_loss_of_divinity",
+        "jpg107-167"
+      ],
+      "eligible": [
+        48,
+        88
+      ],
+      "plant": {
+        "i": 165,
+        "j": 211,
+        "windows": 3188,
+        "screened": 776,
+        "feasible": 6,
+        "best": {
+          "i": 172,
+          "j": 218,
+          "llr": 68.03413730668183
+        },
+        "aligned": true,
+        "unigramKeyMatch": 63,
+        "matchA": 63,
+        "matchB": 63,
+        "keyMatch": 63,
+        "count": 387891840,
+        "logPosterior": -0.6252187606661153,
+        "changes": 0,
+        "contextScore": -432.23603351067595,
+        "baselineContextScore": -432.23603351067595
+      },
+      "independent": {
+        "windows": 4037,
+        "screened": 797,
+        "feasible": 16,
+        "best": {
+          "i": 181,
+          "j": 234,
+          "llr": -34.620411743515746
+        }
+      }
+    },
+    {
+      "names": [
+        "jpg107-167",
+        "0_welcome"
+      ],
+      "eligible": [
+        88,
+        64
+      ],
+      "plant": {
+        "i": 179,
+        "j": 281,
+        "windows": 977,
+        "screened": 80,
+        "feasible": 10,
+        "best": {
+          "i": 182,
+          "j": 284,
+          "llr": 83.36539044543647
+        },
+        "aligned": true,
+        "unigramKeyMatch": 64,
+        "matchA": 64,
+        "matchB": 64,
+        "keyMatch": 64,
+        "count": 1632,
+        "logPosterior": -0.643476938928984,
+        "changes": 0,
+        "contextScore": -427.943827568246,
+        "baselineContextScore": -427.943827568246
+      },
+      "independent": {
+        "windows": 1957,
+        "screened": 190,
+        "feasible": 0,
+        "best": null
+      }
+    },
+    {
+      "names": [
+        "0_koan_1",
+        "0_loss_of_divinity"
+      ],
+      "eligible": [
+        164,
+        48
+      ],
+      "plant": {
+        "i": 102,
+        "j": 186,
+        "windows": 1284,
+        "screened": 479,
+        "feasible": 13,
+        "best": {
+          "i": 105,
+          "j": 189,
+          "llr": 72.2064355029458
+        },
+        "aligned": true,
+        "unigramKeyMatch": 60,
+        "matchA": 60,
+        "matchB": 60,
+        "keyMatch": 60,
+        "count": 19700550144,
+        "logPosterior": -1.6895635693418285,
+        "changes": 0,
+        "contextScore": -423.1067212786537,
+        "baselineContextScore": -423.1067212786537
+      },
+      "independent": {
+        "windows": 6939,
+        "screened": 1988,
+        "feasible": 24,
+        "best": {
+          "i": 128,
+          "j": 210,
+          "llr": -40.51617934762882
+        }
+      }
+    }
+  ],
+  "exactPass": false,
+  "pass": true,
+  "original": {
+    "lengths": [
+      1903,
+      3008
+    ],
+    "types": 12267,
+    "zeroFreeWindows": [
+      103,
+      106
+    ],
+    "boundaryEligible": 4142,
+    "emptyLexicon": 0,
+    "scoredWindows": 4142,
+    "windows": 4142,
+    "screened": 131,
+    "feasible": 0,
+    "best": null,
+    "nulls": [
+      {
+        "replicate": 0,
+        "screened": 112,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 1,
+        "screened": 156,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 2,
+        "screened": 139,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 3,
+        "screened": 112,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 4,
+        "screened": 152,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 5,
+        "screened": 143,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 6,
+        "screened": 145,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 7,
+        "screened": 127,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 8,
+        "screened": 166,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 9,
+        "screened": 130,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 10,
+        "screened": 153,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 11,
+        "screened": 128,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 12,
+        "screened": 163,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 13,
+        "screened": 124,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 14,
+        "screened": 166,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 15,
+        "screened": 120,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 16,
+        "screened": 131,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 17,
+        "screened": 144,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 18,
+        "screened": 127,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 19,
+        "screened": 121,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 20,
+        "screened": 162,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 21,
+        "screened": 112,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 22,
+        "screened": 165,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 23,
+        "screened": 164,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 24,
+        "screened": 102,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 25,
+        "screened": 155,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 26,
+        "screened": 131,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 27,
+        "screened": 175,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 28,
+        "screened": 118,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 29,
+        "screened": 159,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 30,
+        "screened": 177,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 31,
+        "screened": 114,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 32,
+        "screened": 146,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 33,
+        "screened": 139,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 34,
+        "screened": 151,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 35,
+        "screened": 132,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 36,
+        "screened": 152,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 37,
+        "screened": 147,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 38,
+        "screened": 111,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 39,
+        "screened": 138,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 40,
+        "screened": 127,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 41,
+        "screened": 128,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 42,
+        "screened": 183,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 43,
+        "screened": 117,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 44,
+        "screened": 183,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 45,
+        "screened": 132,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 46,
+        "screened": 120,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 47,
+        "screened": 131,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 48,
+        "screened": 134,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 49,
+        "screened": 142,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 50,
+        "screened": 137,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 51,
+        "screened": 175,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 52,
+        "screened": 158,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 53,
+        "screened": 145,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 54,
+        "screened": 142,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 55,
+        "screened": 106,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 56,
+        "screened": 125,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 57,
+        "screened": 128,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 58,
+        "screened": 142,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 59,
+        "screened": 152,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 60,
+        "screened": 138,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 61,
+        "screened": 132,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 62,
+        "screened": 135,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 63,
+        "screened": 121,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 64,
+        "screened": 149,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 65,
+        "screened": 130,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 66,
+        "screened": 145,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 67,
+        "screened": 134,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 68,
+        "screened": 96,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 69,
+        "screened": 159,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 70,
+        "screened": 162,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 71,
+        "screened": 156,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 72,
+        "screened": 188,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 73,
+        "screened": 168,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 74,
+        "screened": 147,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 75,
+        "screened": 102,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 76,
+        "screened": 160,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 77,
+        "screened": 171,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 78,
+        "screened": 97,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 79,
+        "screened": 127,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 80,
+        "screened": 87,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 81,
+        "screened": 126,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 82,
+        "screened": 135,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 83,
+        "screened": 174,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 84,
+        "screened": 149,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 85,
+        "screened": 140,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 86,
+        "screened": 125,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 87,
+        "screened": 113,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 88,
+        "screened": 155,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 89,
+        "screened": 193,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 90,
+        "screened": 130,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 91,
+        "screened": 158,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 92,
+        "screened": 106,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 93,
+        "screened": 123,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 94,
+        "screened": 162,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 95,
+        "screened": 169,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 96,
+        "screened": 150,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 97,
+        "screened": 133,
+        "feasible": 0,
+        "max": null
+      },
+      {
+        "replicate": 98,
+        "screened": 106,
+        "feasible": 0,
+        "max": null
+      }
+    ],
+    "maxNull": null,
+    "p": 1,
+    "nominated": false
+  },
+  "execution": "Same committed JS function executed in connector runtime; calibration and deterministic null batches combined; no Windows CI claim."
+}
