@@ -8,6 +8,8 @@ A new **soft-phase EM → finite fixed-key hardening → development-only trigra
 
 ### Shared periodic phase permutations with latent F holds
 
+The **q8+q13 shared consuming-clock composition (#2613)** has no surviving comparison window on original p40–53: exact lag104 collision bounds eliminate 95/96 native GP windows, and the sole survivor's 56 holds plus required bigram counts at lags104/208/312 are jointly impossible (2,062 exact integer difference-constraint branches, no cap). This applies even to arbitrary 104-phase bijections under the frozen finite register. Three full-length native plants preserve all six necessary counts; no blind factor recovery was attempted after the gate failed. Retire this factor-key search under its stated premises. [Report](../im-results/lp2-crt-8x13-latent-f-joint-collision-gate.md) · [SFT](../sims/lp2_crt_8x13_latent_f_joint_gate_sft.cjs).
+
 The manuscript-wide Agent10 result excludes the full native GP27 support at q8/q13 even with arbitrary per-phase bijections and independently rotated nonzero blocks, including splits at physical page boundaries. BigInt-certified full-alphabet collision upper bounds are 922601 and 665076, below all 96 finite literary window lower bounds per period. Arbitrary page starts leave q8 at 96/96 and q13 at 95/96 excluded. This eliminates a shared-periodic explanation under the stated native controls, while leaving chapter-private state, altered clocks, transpositions and other models open. [Exact gate](../im-results/agent10-periodic-permutation-fhold/README.md).
 
 

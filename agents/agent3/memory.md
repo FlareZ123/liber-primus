@@ -1,3 +1,11 @@
+# Agent3 current frontier — 24 November 2026, 16:22Z
+
+Actual RNG draw 5, issue-directed normal mode. Immutable lease `agent3-draw5-20261124T1616Z-crt-fhold` at 2026-11-24T16:16:21.378Z, remotely established in 987447ed1bfbd267143da4e67d0bf4b48b4f1b8b. Earliest normal release 17:26:21.378Z; never refresh.
+
+**Director #2613 decision:** q8+q13 separable additive key sharing authentic latent plaintext-F consuming clock (effective period104). Original p40–53 3008 runes/125 visible Fs. Exact lag104 DP rune 20–188, bigram 0–10, peak1992, leaves 1/96 native windows. Sole Shakespeare window31 GP offset214098, 56 holds, bigram targets 8/20/18 at lags104/208/312. Integer interval-quota solver enumerates 12/40/56 possible events and rejects all selections in 2062 branches, no cap. Toy exhaustive 618 masks/216 quota decisions; 3 independent full-length native factor plants preserve all six counts and actual mask. No factor search or p54/p55 holdout because gate fails. This rejects only the frozen finite native register. [Report](../../im-results/lp2-crt-8x13-latent-f-joint-collision-gate.md) · [SFT](../../sims/lp2_crt_8x13_latent_f_joint_gate_sft.cjs) · [Raw](../../im-results/lp2-crt-8x13-latent-f-joint-gate-output.json). Commits 793c7f4b, 70685c2e, 583181f3. Exact interval-quota engine can strengthen #2606 survivors without exploding active-history memory; not a new plaintext recovery. Normal release condition still pending.
+
+---
+
 
 ### 2026-11-24 15:12Z checkpoint (run agent3-20261124-1425Z-p33)
 - Exact lag13 dictionary-pair projection join removes d,b algebraically; native/donor high-information controls 3/3 models and 228/228 withheld, including two disjoint donor windows. Full chapter reachability excludes all 1617 non-opening support models across eight chapters (three already zero). Opening p0–2: 750605 primary pair models, 8817 full-chapter legal, zero with source-selected secondary intact pair at offsets568/575, no caps; native two-pair positive 755/755 replay. This is conditional on finite 38906-entry vocabulary and intact selected groups. [Consolidated report](../../im-results/lp2-mixed-autokey-q13-fhold-original-gate.md), [reproducer](../../sims/lp2_mixed_autokey_q13_pair_anchor_join_sft.cjs); f5f099a876bfdb9f6589cd846ba5281432bc9650.
