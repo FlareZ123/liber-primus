@@ -215,8 +215,27 @@ function assessPathInit(corpus,gold,ct,mode){
  independentTrainingScore:first.score!=null&&second.score!=null?first.score+second.score:null};
 }
 
+
+function boundaryAudit(corpus,gold){
+ const ex=s=>Array.from(s).filter(x=>corpus.runes.includes(x)).map(x=>corpus.runes.indexOf(x)),model=train(gold.sections.map(s=>ex(s.source_text)),-1);
+ const B=corpus.pages.filter(p=>p.page>=54&&p.page<=55).flatMap(p=>p.indices),prefix=B.slice(0,208);
+ const keys=[{name:"pooled",K:[0,0,12,27,11,11,21,14,23,0,15,14,12],start:9},{name:"independent",K:[6,16,20,15,24,27,17,4,13,26,17,19,14],start:0}];
+ return keys.map(({name,K,start})=>{
+  const pre=tri(prefix,K,model,false,[start,29,29]),fixed=tri(B,K,model,false,[start,29,29]),free=tri(B,K,model,true);
+  function describe(result,initial){
+   if(!result)return null;
+   const p=result.plain;let ps=model.u[p[0]]+model.b[p[0]*29+p[1]],hs=0;
+   for(let i=2;i<p.length;i++){let z=model.t[p[i-2]*841+p[i-1]*29+p[i]];if(i<208)ps+=z;else hs+=z;}
+   return {start:result.start,prefixScore:ps,suffixPerRune:hs/100,plain:p.slice(208).map(x=>corpus.translit[x]).join(""),replay:encrypt(p,K,result.start).every((x,i)=>x===B[i])};
+  }
+  return {name,prefixScore:pre?.score,fixedStartFull:describe(fixed,start),freeStartDiagnostic:describe(free,null)};
+ });
+}
+
 console.log(JSON.stringify(control(JSON.parse(fs.readFileSync("resources/liber-primus/lp2-corpus.json","utf8")),JSON.parse(fs.readFileSync("resources/external/relikd-solved-gp29-native-v1.json","utf8")),fs.readFileSync("resources/transcriptions/lp1_wulfic_canonical.txt","utf8")),null,2));
 
 for(const mode of ["matched","mismatch","original"])console.log(JSON.stringify(assess(JSON.parse(fs.readFileSync("resources/liber-primus/lp2-corpus.json","utf8")),JSON.parse(fs.readFileSync("resources/external/relikd-solved-gp29-native-v1.json","utf8")),fs.readFileSync("resources/transcriptions/lp1_wulfic_canonical.txt","utf8"),mode),null,2));
 
 for(const mode of ["matched","mismatch","original"])console.log(JSON.stringify(assessPathInit(JSON.parse(fs.readFileSync("resources/liber-primus/lp2-corpus.json","utf8")),JSON.parse(fs.readFileSync("resources/external/relikd-solved-gp29-native-v1.json","utf8")),fs.readFileSync("resources/transcriptions/lp1_wulfic_canonical.txt","utf8"),mode),null,2));
+
+console.log(JSON.stringify(boundaryAudit(JSON.parse(fs.readFileSync("resources/liber-primus/lp2-corpus.json","utf8")),JSON.parse(fs.readFileSync("resources/external/relikd-solved-gp29-native-v1.json","utf8"))),null,2));
