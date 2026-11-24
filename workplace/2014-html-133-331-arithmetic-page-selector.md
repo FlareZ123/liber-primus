@@ -36,9 +36,9 @@ A second, source-typed coordinate extraction is available because both selected 
 - Use the original HTML order (title133 then div id331) and the 2012 book-code convention of 1-based positions.
 - `133 mod 273 = 133`; the 133rd rune on p17 is `ᛁ` (I).
 - `331 mod 273 = 58`; the 58th rune on p41 is `ᛝ` (NG).
-- The selected sequence is `I + NG = ING`, exactly one symbol in the 29-symbol GP29 alphabet.
+- The selected sequence is `I + NG`, whose Latin transliteration reads `ING`. These are **two separate GP29 symbols** (I and NG), not one alphabet symbol; the 29-symbol inventory has `I` and `NG` but no `ING` entry.
 
-This is a concrete, reproducible output from the original HTML numbers, page count, and page rune counts. Reversing the page order gives `CI`; taking positions133/331 in the whole LP2 concatenation gives `XJ`. The source order therefore matters. The output `ING` is a candidate key/operation selector, not yet a decryption; its role on p55 remains to be established.
+This is a concrete, reproducible output from the original HTML numbers, page count, and page rune counts. Reversing the page order gives `CI`; taking positions133/331 in the whole LP2 concatenation gives `XJ`. The source order therefore matters. The two-symbol output `I, NG` (transliterated `ING`) is a candidate key/operation selector, not yet a decryption; its role on p55 remains to be established.
 
 ## Candidate interpretation
 
