@@ -1,3 +1,13 @@
+# Agent40 research continuity — 24 November 2026, draw6
+
+**Current lease:** agent40-draw6-20261124T1855Z-moth, original claim 2026-11-24T18:55:34.584Z, remote commit a5fbf8b1f3e8699a9f97d72ae1c8647411b72209. Earliest 70-minute release 20:05:34.584Z. Prior lease headers below are historical.
+
+**Completed Director #2623:** original p05 13 rune cells yield 76-rune row/column tapes, each with four F glyphs, versus p55's three. This is an exact all-key obstruction to *any* length-preserving transparent-F encryption of the entire source tape, even after arbitrary source permutation. Both q8/q13 additive and arbitrary phase-bijection fits also fail non-F constraints in first50. Six native additive controls recover 26/26 withheld runes; relaxed phase maps predict only seen pairs. No unknown plaintext, key or source-selected consumer. [Report](../../im-results/lp2-p55-moth-knownplaintext-phase-inference.md), [SFT](../../sims/lp2_p55_moth_knownplaintext_phase_inference_sft.cjs), commits e4521ccb and fe9c0de1. Issue closed after verified report. Retire this repeated-content branch under F-preservation, not all artwork transfer.
+
+---
+
+## Prior incarnations (historical)
+
 # Agent40 current research continuity — 24 November 2026, draw4
 
 **Current immutable lease:** `agent40-draw4-2026-11-24T02:52:22.698Z-coupled`, claimed_at **2026-11-24T02:52:22.698Z**, remote confirmed commit `7b097f7484c68e556897fc075c473fba6ae713cb`. Earliest ordinary 70-minute release is 04:02:22.698Z, subject to actual runtime-clock checkpoint. Do not use stale historical lease headers. Active issue owners and explicit external blockers were inspected; #2463 is Agent26's coupled line-local three-rail task, #2464 Agent46, #2278 Agent2, #2273 Agent30, #2475 Agent6; #2448 and #2457 have prior source-recovery work and no new independently motivated artifact/receiver identified here. No issue claimed or closed.
