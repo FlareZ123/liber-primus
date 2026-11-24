@@ -30,6 +30,26 @@ The same frozen model also tests the previously studied reversible zero-F wrappe
 
 **Decision:** exact local recovery is demonstrably effective in these synthetic native-GP plants, and the original long-word evidence disfavors the specified independent native-language additive running-key model with F interruption, either directly or after the fixed wrapper. This narrows the route beyond the previous no-interruption beam failure. It does not exclude out-of-vocabulary plaintext, a different key distribution, dependent streams, incorrect word boundaries, or other ciphers. It recovers no authenticated original plaintext, key, or continuous passage. No further tuning of these two negative routes is justified without independent source constraints.
 
+## Gematria-prime projected running key (Agent8, 24 November)
+
+This distinct source-motivated model follows the historical emphasis on Gematria prime values: keep native GP index plaintext and transparent plaintext F, but derive each consuming additive pad symbol as the published prime of the key rune modulo29. The prime projection has 24 residues and collisions (e.g. F, I and D all project to2). It is not a bijective replacement for the plaintext alphabet; the many-to-one key representation is marginalized, not inverted uniquely. No author instruction selects this precise running-key combination.
+
+The [exact local inverse](../sims/lp2_joint_fhold_prime_projected_running_key_sft.cjs) retains the earlier 41,947 native spellings and stationary IID-word prior, aggregates collisions into 41,528 distinct projected word types, and sums all projected key fragment alignments including partial boundaries. It tests both a uniform GP29 pad null and an IID pad with the *same projected single-symbol marginal*. The latter distinguishes key-language structure from the projection's restricted support and nonuniform frequencies. All 29 one- and two-symbol marginal identities and every selected anchor candidate's exact forward replay are asserted. Control texts use held-out literary regions (their unordered vocabulary is included), with projected natural-language, matched-IID, and uniform pads. The source map and random seed were fixed before original scoring.
+
+| Sample | Anchors | Rank-one true word | Mean log BF vs uniform | Mean log BF vs projected IID |
+|---|---:|---:|---:|---:|
+| Gibran / Shakespeare | 180 | 173 | +5.078 | +4.105 |
+| Emerson / Gibran | 187 | 177 | +6.660 | +5.507 |
+| Gibran / matched IID | 180 | 34 | -4.904 | -6.134 |
+| Emerson / matched IID | 187 | 33 | -5.645 | -6.927 |
+| Gibran / uniform | 180 | 0 | -9.230 | -7.939 |
+| Emerson / uniform | 187 | 0 | -10.383 | -8.789 |
+| Original LP2 | 187 | unknown | -9.809 | -8.372 |
+
+The two means for original LP2 and the second uniform negative exclude two zero-language-support words each; these are exact zero likelihoods within the finite model (log BF negative infinity), not missing data. All 367 projected native controls retain truth, all rank in the top five, and 43/43 controls of length at least12 are recovered at rank one. Original words at offsets3925 and10453 (lengths12 and14) have no compatible joint lexical fragment despite all 187 anchors having support under the projected IID null. Of 187 original anchors, 12 have positive BF against projected IID and only six have both positive BFs and posterior at least0.9; the same criterion passes 296/367 native controls, 15/367 matched-IID controls and 6/367 uniform controls. The original top candidate MINNESINGERS has posterior >0.999999999999 but negative BF against the uniform null, illustrating why conditional confidence cannot certify plaintext.
+
+**Decision:** retire the fixed prime-value projected independent native-language running-key branch under intact printed-group assumptions; it fails even after exact projection-collision marginalization. No authentic key, unknown plaintext or continuous continuation is recovered. Do not tune alternate prime offsets or alphabet projections without independent source selection. The result is conditional on the fixed vocabulary, language prior, and additive receiver, not a general impossibility theorem. The [full output](lp2-joint-fhold-prime-projected-running-key-output.json) records all 187 original anchors, 367 matched sets of controls, and input blob SHAs. Executed directly on exact repository files in an isolated JavaScript runtime; Windows CI has not been run.
+
 ## Earlier no-interruption model and controls
 
 The candidate is additive GP29 encryption C=P+K mod29, with P's true word lengths supplied and K independently segmented. Both rune streams must be inferred jointly. The key begins at an ordinary word boundary and may end inside a word. No named-book search, known plaintext crib, key reuse or LP2 scoring is used.
