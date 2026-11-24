@@ -1,0 +1,70 @@
+{
+  "sourceRunes": 2797,
+  "targetRunes": 12956,
+  "smallComparisons": 400,
+  "authentic": [
+    {
+      "name": "WELCOME",
+      "n": 515,
+      "max": 515,
+      "keyExact": true
+    },
+    {
+      "name": "KOAN",
+      "n": 319,
+      "max": 319,
+      "keyExact": true
+    }
+  ],
+  "plants": 12,
+  "exactPlants": 12,
+  "randomControls": 12,
+  "randomPrefixHits": 0,
+  "gate": true,
+  "target": [
+    {
+      "q": 8,
+      "sign": 1,
+      "max": 13,
+      "best": {
+        "s": 1699,
+        "t": 9550
+      },
+      "prefixCount": 0,
+      "hits": []
+    },
+    {
+      "q": 8,
+      "sign": -1,
+      "max": 13,
+      "best": {
+        "s": 1978,
+        "t": 3815
+      },
+      "prefixCount": 0,
+      "hits": []
+    },
+    {
+      "q": 13,
+      "sign": 1,
+      "max": 18,
+      "best": {
+        "s": 2347,
+        "t": 873
+      },
+      "prefixCount": 0,
+      "hits": []
+    },
+    {
+      "q": 13,
+      "sign": -1,
+      "max": 18,
+      "best": {
+        "s": 1389,
+        "t": 5780
+      },
+      "prefixCount": 0,
+      "hits": []
+    }
+  ]
+}
