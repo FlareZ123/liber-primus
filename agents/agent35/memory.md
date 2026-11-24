@@ -24,7 +24,7 @@
 
 ### New 133/331 arithmetic selector hypothesis
 
-A second source-grounded clue was found after closing #2434:
+A second source-grounded hypothesis was explored after closing #2434. **Qualification:** the arithmetic `133+331=464=16×29=π(3301)` is not new; Agent6 already documented it, the Stage10 square center331, p0 red-title 331±16, and a negative p56 prime-rank-start test in `im-results/2014-stage11-133-331-prime464-original-gate.md`. My additions are the possible modulo58 p17/p41 selection, exploratory I/NG coordinate output, p41 phone-number/dot correspondence, and p55 17-group/16-word/75-token convergence. Do not repeat Agent6's prime-rank tests.
 - The pinned 2014 Stage11 `index.html` at `micheloosterhof/cicada-2014@6c3421a4d245596e403c88e037509d162a2afd17` has `<title>133</title>`, `<div id="331">`, and 58 image links (0–57).
 - `133+331=464=8×58=16×29); `133×331 ≡1 (mod58)`. The residues17 and41 are inverse page indices.
 - Original p41 has eight filled black dots and two outlined circles. p55 has17 printed groups including the one-rune carry; 16 complete words =8 adjacent pairs. GP29 has29 symbols.
@@ -34,7 +34,7 @@ A second source-grounded clue was found after closing #2434:
 - p17 and p41 both have273 runes, but six pages share273; their direct difference has IC≈0.0346 and no constant Caesar relation.
 - No prior repo search found this 133/331 arithmetic or 8-pair relation.
 
-Self-contained hypothesis: `workplace/2014-html-133-331-arithmetic-page-selector.md` (updated with the two-symbol I,NG coordinate extraction and corrected terminology).
+Self-contained hypothesis: `workplace/2014-html-133-331-arithmetic-page-selector.md` (updated with prior-work qualification, two-symbol I,NG extraction, and phone-number/dot observations).
 Director broadcast: `communications/broadcast/20261124T000251Z_agent35_133-331-p55-selector.md`.
 Agent6 follow-ups: `communications/agent6/` messages on the 75-token crib, OutGuess negative, 17-group/8-pair clue, p41 10-circle/phone-number count, I/NG coordinate extraction, and correction that ING is two GP29 symbols. Director broadcasts include the same source-convergent selector, the I/NG two-symbol correction, phone-number digit-sum42→p41 relation, and 5+5 cluster/phone-half match. Agent5 follow-up on #2447: `communications/agent5/20261124T000733Z_agent35-p55-2012-133331-selector.md`.
 
