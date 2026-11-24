@@ -44,10 +44,10 @@ function experiment(d,raw,lextext,nativeData){
   function decode(words,ring,loc,key,initial){let a=loc[29],b=initial,last=29,plain=[];for(const t of words){let p=t.w.map(c=>{let target=key[c],s=mod(target-b)||N;b=target;a=mod(a+s,M);return ring[a]});let w=p.filter(x=>x!==29);if(!w.length||prep(w,last).join(",")!==p.join(","))return null;last=w.at(-1);plain.push(w)}return plain}
   const starts=[0,3,8,15,23,27,33,40,54,56].map(p=>d.pages.slice(0,p).reduce((s,x)=>s+x.indices.length,0));
   const chapterWords=starts.slice(0,-1).map((s,i)=>orig.filter(x=>x.start>=s&&x.start<starts[i+1]));
-  let scans=[],originalCases=[];
+  let scans=[],originalCases=[];const sigHits=new Int32Array(orig.length),nativeRepeats=[];
   for(const dir of [1,-1])for(let gap=0;gap<N;gap++){
-    const {ring,loc}=outer(dir,gap),m=build(loc);let misses=0,first=[];for(let i=0;i<orig.length;i++){if(!m.has(sig(orig[i].w))){misses++;if(first.length<3)first.push([i,orig[i].start,orig[i].w])}}
-    scans.push({dir,gap,misses,first});
+    const {ring,loc}=outer(dir,gap),m=build(loc);let misses=0,first=[];for(let i=0;i<orig.length;i++){if(m.has(sig(orig[i].w)))sigHits[i]++;else{misses++;if(first.length<3)first.push([i,orig[i].start,orig[i].w])}}
+    scans.push({dir,gap,misses,first});const ct=encode(native.flatMap(x=>x.words),loc,alphabet,0).flatMap(x=>x.w);nativeRepeats.push({dir,gap,n:ct.length,repeats:ct.slice(1).filter((v,i)=>v===ct[i]).length});
     const a=keyrecover(chapterWords[0],m),b=keyrecover(chapterWords[3],m);
     originalCases.push({dir,gap,opening:a,withheld:b});
   }
@@ -65,7 +65,7 @@ function experiment(d,raw,lextext,nativeData){
   for(const dir of [1,-1])for(const gap of [0]){const {ring,loc}=outer(dir,gap);for(const rev of [false,true]){const key=alphabet.map(x=>mod(rev?-x:x));let best=0,complete=0;for(let initial=0;initial<N;initial++){let p=decode(orig,ring,loc,key,initial);if(p){complete++;best=Math.max(best,p.filter(w=>lex.has(w.join(","))).length)}}direct.push({dir,gap,rev,complete,best})}}
   scans.sort((a,b)=>a.misses-b.misses);
   const summarize=k=>({status:k.status,miss:k.miss,word:k.word,known:k.known,pass:k.pass,firstMiss:k.firstMiss});
-  const out={lex:lex.size,origWords:orig.length,chapterWords:chapterWords.map(x=>x.length),plants,scans,best:scans.slice(0,4),origStatusCounts:originalCases.reduce((a,x)=>{let k=x.opening.status+"/"+x.withheld.status;a[k]=(a[k]||0)+1;return a},{}),fixedChart:originalCases.filter(x=>x.gap===0).map(x=>({dir:x.dir,opening:x.opening,withheld:x.withheld})),direct,sourceKeyGate:originalCases.map(x=>({dir:x.dir,gap:x.gap,opening:summarize(x.opening),withheld:summarize(x.withheld)}))};return out
+  const out={lex:lex.size,origWords:orig.length,noSignatureAnyLayout:[...sigHits.entries()].filter(([,v])=>!v).map(([i])=>i),nativeRepeats,chapterWords:chapterWords.map(x=>x.length),plants,scans,best:scans.slice(0,4),origStatusCounts:originalCases.reduce((a,x)=>{let k=x.opening.status+"/"+x.withheld.status;a[k]=(a[k]||0)+1;return a},{}),fixedChart:originalCases.filter(x=>x.gap===0).map(x=>({dir:x.dir,opening:x.opening,withheld:x.withheld})),direct,sourceKeyGate:originalCases.map(x=>({dir:x.dir,gap:x.gap,opening:summarize(x.opening),withheld:summarize(x.withheld)}))};return out
 }
 const read=p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8");
 const result=experiment(JSON.parse(read("resources/liber-primus/lp2-corpus.json")),read("resources/liber-primus/lp2-transcription.txt"),read("resources/control/english_wordfreq_textblob.txt"),JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json")));
