@@ -1,0 +1,306 @@
+{
+  "definition": "chapter 308-rune prefixes, 232 fit + 76 holdout, exact unigram ranking, top128 bigram, top12 trigram",
+  "controls": [
+    {
+      "name": "high13",
+      "q": 13,
+      "zeros": 12,
+      "totalModels": 93126656,
+      "pruned": 88332323,
+      "maxUnigramUpper": -2.890941301,
+      "legalShortlist": 2,
+      "truth": {
+        "ranks": [
+          1,
+          1,
+          2
+        ],
+        "a": 9,
+        "b": 17,
+        "d": 16,
+        "mask": 1025,
+        "key": [
+          14,
+          0,
+          16,
+          3,
+          17,
+          9,
+          20,
+          25,
+          2,
+          21,
+          4,
+          16,
+          2
+        ],
+        "prefixCorrect": 232,
+        "suffixCorrect": 76,
+        "score": -2.412847236
+      }
+    },
+    {
+      "name": "high8",
+      "q": 8,
+      "zeros": 12,
+      "totalModels": 93126656,
+      "pruned": 93049849,
+      "maxUnigramUpper": -2.980496423,
+      "legalShortlist": 8,
+      "truth": {
+        "ranks": [
+          1,
+          1,
+          1
+        ],
+        "a": 17,
+        "b": 8,
+        "d": 3,
+        "mask": 163,
+        "key": [
+          1,
+          24,
+          20,
+          21,
+          7,
+          8,
+          1,
+          14
+        ],
+        "prefixCorrect": 232,
+        "suffixCorrect": 76,
+        "score": -2.74076368
+      }
+    },
+    {
+      "name": "low8",
+      "q": 8,
+      "zeros": 3,
+      "totalModels": 181888,
+      "pruned": 169261,
+      "maxUnigramUpper": -2.890941301,
+      "legalShortlist": 8,
+      "truth": {
+        "ranks": [
+          1,
+          1,
+          1
+        ],
+        "a": 11,
+        "b": 19,
+        "d": 6,
+        "mask": 5,
+        "key": [
+          2,
+          11,
+          14,
+          12,
+          22,
+          3,
+          4,
+          12
+        ],
+        "prefixCorrect": 232,
+        "suffixCorrect": 76,
+        "score": -2.412847236
+      }
+    }
+  ],
+  "original": [
+    {
+      "page": 0,
+      "q": 8,
+      "zeros": 12,
+      "totalModels": 93126656,
+      "legalModels": 93126656,
+      "exactMarginalPruned": 93009103,
+      "maxUnigramUpper": -3.370974721,
+      "legalShortlist": 6,
+      "bestSuffixScore": -5.500842097
+    },
+    {
+      "page": 0,
+      "q": 13,
+      "zeros": 12,
+      "totalModels": 93126656,
+      "legalModels": 93126656,
+      "exactMarginalPruned": 87323774,
+      "maxUnigramUpper": -3.222253118,
+      "legalShortlist": 5,
+      "bestSuffixScore": -5.135898359
+    },
+    {
+      "page": 3,
+      "q": 8,
+      "zeros": 8,
+      "totalModels": 5820416,
+      "legalModels": 5820416,
+      "exactMarginalPruned": 5774917,
+      "maxUnigramUpper": -3.368979981,
+      "legalShortlist": 2,
+      "bestSuffixScore": -5.498023119
+    },
+    {
+      "page": 3,
+      "q": 13,
+      "zeros": 8,
+      "totalModels": 5820416,
+      "legalModels": 5820416,
+      "exactMarginalPruned": 4781203,
+      "maxUnigramUpper": -3.256142792,
+      "legalShortlist": 2,
+      "bestSuffixScore": -5.547718342
+    },
+    {
+      "page": 8,
+      "q": 8,
+      "zeros": 7,
+      "totalModels": 2910208,
+      "legalModels": 2910208,
+      "exactMarginalPruned": 2872587,
+      "maxUnigramUpper": -3.39673494,
+      "legalShortlist": 2,
+      "bestSuffixScore": -5.530043864
+    },
+    {
+      "page": 8,
+      "q": 13,
+      "zeros": 7,
+      "totalModels": 2910208,
+      "legalModels": 2910208,
+      "exactMarginalPruned": 2238816,
+      "maxUnigramUpper": -3.254905216,
+      "legalShortlist": 3,
+      "bestSuffixScore": -5.400542278
+    },
+    {
+      "page": 15,
+      "q": 8,
+      "zeros": 8,
+      "totalModels": 5820416,
+      "legalModels": 5820416,
+      "exactMarginalPruned": 5776166,
+      "maxUnigramUpper": -3.367065535,
+      "legalShortlist": 3,
+      "bestSuffixScore": -5.27806463
+    },
+    {
+      "page": 15,
+      "q": 13,
+      "zeros": 8,
+      "totalModels": 5820416,
+      "legalModels": 5820416,
+      "exactMarginalPruned": 4758598,
+      "maxUnigramUpper": -3.251748654,
+      "legalShortlist": 4,
+      "bestSuffixScore": -5.835884785
+    },
+    {
+      "page": 23,
+      "q": 8,
+      "zeros": 8,
+      "totalModels": 5820416,
+      "legalModels": 5820416,
+      "exactMarginalPruned": 5772004,
+      "maxUnigramUpper": -3.382611866,
+      "legalShortlist": 2,
+      "bestSuffixScore": -5.3676487
+    },
+    {
+      "page": 23,
+      "q": 13,
+      "zeros": 8,
+      "totalModels": 5820416,
+      "legalModels": 5820416,
+      "exactMarginalPruned": 4731975,
+      "maxUnigramUpper": -3.216837608,
+      "legalShortlist": 0,
+      "bestSuffixScore": null
+    },
+    {
+      "page": 27,
+      "q": 8,
+      "zeros": 10,
+      "totalModels": 23281664,
+      "legalModels": 23281664,
+      "exactMarginalPruned": 23204409,
+      "maxUnigramUpper": -3.329319749,
+      "legalShortlist": 1,
+      "bestSuffixScore": -5.750090708
+    },
+    {
+      "page": 27,
+      "q": 13,
+      "zeros": 10,
+      "totalModels": 23281664,
+      "legalModels": 23281664,
+      "exactMarginalPruned": 20750733,
+      "maxUnigramUpper": -3.215041252,
+      "legalShortlist": 1,
+      "bestSuffixScore": -5.34805912
+    },
+    {
+      "page": 34,
+      "q": 8,
+      "zeros": 5,
+      "totalModels": 727552,
+      "legalModels": 727552,
+      "exactMarginalPruned": 706434,
+      "maxUnigramUpper": -3.425126682,
+      "legalShortlist": 4,
+      "bestSuffixScore": -5.189834369
+    },
+    {
+      "page": 34,
+      "q": 13,
+      "zeros": 5,
+      "totalModels": 727552,
+      "legalModels": 727552,
+      "exactMarginalPruned": 465610,
+      "maxUnigramUpper": -3.272870875,
+      "legalShortlist": 1,
+      "bestSuffixScore": -4.859027942
+    },
+    {
+      "page": 40,
+      "q": 8,
+      "zeros": 10,
+      "totalModels": 23281664,
+      "legalModels": 23281664,
+      "exactMarginalPruned": 23201147,
+      "maxUnigramUpper": -3.379392315,
+      "legalShortlist": 2,
+      "bestSuffixScore": -5.790086106
+    },
+    {
+      "page": 40,
+      "q": 13,
+      "zeros": 10,
+      "totalModels": 23281664,
+      "legalModels": 23281664,
+      "exactMarginalPruned": 20380546,
+      "maxUnigramUpper": -3.237033284,
+      "legalShortlist": 0,
+      "bestSuffixScore": null
+    },
+    {
+      "page": 54,
+      "q": 8,
+      "zeros": 3,
+      "totalModels": 181888,
+      "legalModels": 181888,
+      "exactMarginalPruned": 169018,
+      "maxUnigramUpper": -3.430415248,
+      "legalShortlist": 4,
+      "bestSuffixScore": -5.135630912
+    }
+  ],
+  "priorBaseline": {
+    "page": 54,
+    "q": 13,
+    "totalModels": 181888,
+    "legalShortlist": 6,
+    "bestSuffixScore": -5.6094144
+  },
+  "newOriginalModels": 321759872
+}
