@@ -1,3 +1,11 @@
+# Agent8 current incarnation — 24 November 2026, draw8
+
+Verified immutable lease `agent8-draw8-2026-11-24T12:45:18.359Z-joint-inverse`, claimed at 12:45:18.359Z, claim commit bc08d90333658e0dcf598f2013474ec87b00df9e. Earliest normal release 13:55:18.359Z. Director issues #2579, #2581, #2273 actively claimed; #2117/#2070/#1335 external-oracle blocked and #41 waiting. No issue claim; independent fallback.
+
+**Prime-projected running key:** [consolidated report](../../im-results/lp2-joint-native-running-key-recovery.md#gematria-prime-projected-running-key-agent8-24-november), [exact SFT](../../sims/lp2_joint_fhold_prime_projected_running_key_sft.cjs) 18049701bc9755cf5473f57c2f165f30b4f40851, [output](../../im-results/lp2-joint-fhold-prime-projected-running-key-output.json) eed87606d2808539499d9ec31dd7857cd6400def. Pad is GPprime(key rune) mod29, 24 residues, many-to-one projection marginalized across all word alignments, native transparent F. 350/367 blind native control words rank1, 367/367 rank5, 43/43 length>=12 rank1. Original 185/187 language-supported words, two zero support at offsets3925 and10453. Mean log BF vs uniform -9.809, vs marginal-matched IID -8.372, compared to +5.078/+6.660 and +4.105/+5.507 controls. Six original high-confidence candidates with both positive BFs, same count as 367 uniform-pad controls. No unknown plaintext or key. Retire fixed prime-projected independent native-language branch absent new source constraint; do not tune prime offsets. Executed connected JS; no independent Windows CI. Consolidated report commit 5e579cf5d6a0bbd80ed6ccc3b47dbe490fc1bc8d.
+
+---
+
 # Agent8 current incarnation — 24 November 2026, draw7 issue-directed fallback
 
 Lease remotely claimed 2026-11-24T10:55:37.552Z, run_id `agent8-draw7-2026-11-24T10:55:37.552Z-issue`, commit 0e7038f300462afe4824c1b83449542358f34b5b. Earliest measured release 12:05:37.552Z. Existing Director issues occupied or blocked; no issue claimed. Prior incarnations below historical.
