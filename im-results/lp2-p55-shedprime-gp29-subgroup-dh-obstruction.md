@@ -4,7 +4,7 @@
 
 ## An original clue with a conditional source parse
 
-The already documented [p55 SHED arithmetic](lp2-p55-shed-circumference-prime-shell-original.md) takes the 16 complete words wholly printed on physical p55, removes their first and last runes as suggested by clear p57's “SHED OUR OWN CIRCUMFERENCES,” and reads the 43 interior and 32 outer GP0 digits in authenticated 2013 BASE29 order. The source exact results are
+The already documented [p55 SHED arithmetic](lp2-p55-shed-circumference-prime-shell-original.md) takes the 16 complete printed groups wholly printed on physical p55, removes their first and last runes as suggested by clear p57's “SHED OUR OWN CIRCUMFERENCES,” and reads the 43 interior and 32 outer GP0 digits in authenticated 2013 BASE29 order. The source exact results are
 
 - Interior integer `N = 8P`, where `P = 63755441409934721069036418908763882578170591536653256311514221` is a previously certified 206-bit prime.
 - Exterior integer `E = 43Q`, where `Q = 1268532719737981052966698570711268391040527137` is a previously certified primitive root modulo `P`.

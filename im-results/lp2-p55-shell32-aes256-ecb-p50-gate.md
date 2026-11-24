@@ -4,13 +4,13 @@
 
 ## Why this exact test was worth one attempt
 
-The solved p57 instruction “SHED OUR OWN CIRCUMFERENCES” motivates a word-boundary extraction on p55. After excluding the one-rune carry from p54, p55 has 16 complete words and 32 boundary runes (first rune, last rune, repeated in original word order). The p50 numerical panel is a 32×8 object containing 256 bytes. A solver could notice the compact type/length fit: 32 bytes is the AES-256 key length, and 256 bytes is exactly 16 AES blocks.
+The solved p57 instruction “SHED OUR OWN CIRCUMFERENCES” motivates a word-boundary extraction on p55. After excluding the one-rune carry from p54, p55 has 16 complete printed groups and 32 boundary runes (first rune, last rune, repeated in original word order). The p50 numerical panel is a 32×8 object containing 256 bytes. A solver could notice the compact type/length fit: 32 bytes is the AES-256 key length, and 256 bytes is exactly 16 AES blocks.
 
 This is only a candidate, not a first-party instruction. The existing 3301/base59 route independently selects the full 76-rune p55 page and its 43/33 interior/exterior partition; it treats the incoming carry as an exterior rune. The 32-byte shell tested here exists only after excluding that carry, so its AES key-length fit is not selected by the 43/33 source relation. The strongest rival is that “shed” means discard the boundary runes, not use them as a key. No authenticated Cicada stage in the repository's historical technique index selects AES; the public [technique catalog](https://github.com/Dukotah/cicada3301/blob/master/ciphers/README.md) lists OutGuess, book/running-key ciphers, Caesar/Vigenère/Atbash, Gematria Primus, primes/totient, PGP, Tor/QR and audio, but not AES. That catalog is not exhaustive, so its omission is caution rather than proof.
 
 ## Frozen source inputs
 
-- P55: physical image `resources/liber-primus/72.jpg`; 17 rune groups including the incoming one-rune carry, leaving 16 complete words.
+- P55: physical image `resources/liber-primus/72.jpg`; 17 rune groups including the incoming one-rune carry, leaving 16 complete printed groups.
 - Shell order: for each complete word, take its first rune then its last rune; concatenate in original word order. This gives exactly 32 runes.
 - Key mapping: the historical GP0 ordinal of each shell rune, stored as one byte (values 0–28). The resulting key is:
 
@@ -19,7 +19,7 @@ This is only a candidate, not a first-party instruction. The existing 3301/base5
   This is a 32-byte AES-256 key container but carries at most 160 bits of rune-choice entropy.
 - P50: the current canonical base60 decoding of the original 32×8 table, 256 bytes in row-major order. SHA-256: `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`.
 
-The p50 radix is not uniquely settled by the printed tokens, and the p55 shell's key role is not independently selected. The 32-byte shell is also a different parse from the 3301-selected 33-exterior full-page partition. These are explicit conditions on this test.
+The p50 radix is not uniquely settled by the printed tokens, and the p55 shell's key role is not independently selected. The 32-byte shell is also a different parse from the 3301-selected 33-exterior full-page partition. The printed groups are not established natural plaintext words (whole-book word-length MI z=+0.429, p=0.3025); this AES key-length match is conditional on the printed segmentation. These are explicit conditions on this test.
 
 ## Fixed receiver
 
