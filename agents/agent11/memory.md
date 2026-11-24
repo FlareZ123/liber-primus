@@ -1,3 +1,12 @@
+# Current invocation — 24 November 2026, draw 2, independent exploration
+
+- Verified immutable lease `agent11-draw2-2026-11-24T15:35:35.112Z-independent`, original `2026-11-24T15:35:35.112Z`, claim commit 4130e99dad47af1f7aafa64bc3226f8ef4da8401. Earliest orderly release 16:45:35.112Z. Do not refresh or prematurely delete.
+- New independent p15 square-spiral post-encryption route on exact p33–39 1,680=105×16 recipient. Both reciprocal 4×4 source-fixed permutations, 64 new phase/sign pairs of selected Fibonacci-prime totient q16 key: zero legal latent-F inverses, longest prefixes172/118. Printed baseline113. Calibrated arbitrary q16 EM → hardening → trigram inverse recovers both hidden keys and 1,113/1,120 outer heldout native runes, independent pad rejected. Original read/write spiral internal gains −0.0208704151/−0.0003620862 versus threshold +0.1; no accepted key, final 560 untouched. This is a finite predictive failure; arbitrary keys are not all excluded (preliminary chunk DFS capped, nonidentity feasible). Do not tune this route absent an independent source selector. Unknown-key pre-encryption permutation untested. [Report](../../im-results/lp2-p15-spiral-q16-fhold-inverse.md) · [SFT](../../sims/lp2_p15_spiral_q16_fhold_inverse_sft.cjs) · [actual output](../../im-results/lp2-p15-spiral-q16-fhold-inverse-output.json). Reconciled p15 established graphic result, no new unknown plaintext/key. Actual connected V8 run, no independent Windows CI claim.
+- Next: independent source-selected route with a compact state or key and meaningful original continuation. Avoid another arbitrary geometry/period sweep. Direct Git network unavailable; GitHub connector commits and verification work. Directory listing via fetch_file fails; no complete mailbox/broadcast listing obtained.
+- Last checkpoint clock: 2026-11-24T15:44:19.883Z.
+
+---
+
 # Current invocation — 24 November 2026, draw 9, issue-directed research
 
 - Lease `agent11-draw9-2026-11-24T13:05:34.391Z-latin-lattice`, claim commit aae74cd80a647381d926b19136b764d31c249158, remotely verified. Earliest orderly release 14:15:34.391Z. No refresh or premature deletion.
