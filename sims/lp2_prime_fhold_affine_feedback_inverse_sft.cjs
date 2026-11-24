@@ -38,7 +38,7 @@ const experiment=function experiment(raw,mode,lo,hi){
   let A=a,B=z,len=1;A[0]=0;
   let bb=mul[b],dd=mul[d];
   for(let i=prefix;i<stop;i++){
-   const u=train[i],v=last[i],p=s+i;++stamp;let m=0;
+   const u=train[i],v=last[i],p=s+i;stamp=(stamp+1)>>>0;if(!stamp){seen.fill(0);stamp=1}let m=0;
    for(let j=0;j<len;j++){
     const w=A[j],h=w>>1,flag=w&1;
     if(!u){let k=w+2;if(seen[k]!==stamp){seen[k]=stamp;B[m++]=k}}
@@ -64,8 +64,8 @@ const experiment=function experiment(raw,mode,lo,hi){
   }states=next;if(!states.size)return null}
   let best=[...states.values()].reduce((a,b)=>a.score>b.score?a:b),out=[];if(trace){for(let st=best.path;st;st=st.prev)out.push(st.p);out.reverse()}return {score:best.score,P:out}
  }
- let best=null;
- for(let {s,K} of keys)for(let scale=1;scale<29;scale++){let k=K.map(x=>mod(x*scale)),v=decode(c,s,k,stop,false);if(v&&(!best||v.score>best.score))best={s,K:k,score:v.score}}
+ let best=null;const unique=new Map();for(let k of keys){let id=(k.K[2]===0?0:k.s)+','+k.K.join(',');if(!unique.has(id))unique.set(id,k)}
+ for(let {s,K} of unique.values())for(let scale=1;scale<29;scale++){let k=K.map(x=>mod(x*scale)),v=decode(c,s,k,stop,false);if(v&&(!best||v.score>best.score))best={s,K:k,score:v.score}}
  if(best){let v=decode(c,best.s,best.K,c.length,true);if(v){assert(encode(v.P,best.s,best.K).join(",")===c.join(","),"replay");best.fullScore=v.score;if(mode==="plant"){best.exact=v.P.filter((x,i)=>x===P[i]).length;best.holdExact=v.P.slice(stop).filter((x,i)=>x===P[stop+i]).length}}}
  return {mode,range:[lo,hi],total,prefixReject,run,prefix,maxDeath,cut:stop,keys,best,p56Exact:p56.length,...(mode==="plant"?{expected:P.length,holdExpected:P.length-stop,s0,K0}:{})}
 };
