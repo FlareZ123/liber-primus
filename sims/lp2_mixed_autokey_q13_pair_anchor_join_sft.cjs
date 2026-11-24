@@ -1,0 +1,151 @@
+'use strict';
+/** Mixed lag-thirteen adjacent-word anchor join; exact GF29 projection eliminates two coefficients. */
+function experiment(corpus,trans,solved,lex,donors,lib,mode='strict'){
+ const gp=JSON.parse(corpus),native=JSON.parse(solved),q=13,mod=x=>((x%29)+29)%29;
+ const assert=(x,m)=>{if(!x)throw Error(m)};
+ const same=(x,y)=>String(x)===String(y),rune=new Map(gp.runes.map((x,i)=>[x,i])),alpha=new Map(gp.translit.map((x,i)=>[x,i]));
+ const parse=s=>(s.match(/[\u16a0-\u16ff]+/gu)||[]).map(w=>Array.from(w,c=>rune.get(c)));
+ const original=parse(trans.replace(/[\s/%]/g,"")).slice(0,2896);
+ assert(same(original.flat(),gp.pages.slice(0,56).flatMap(x=>x.indices)),"corpus alignment");
+ const src=native.sections.map(s=>({name:s.name,w:parse(s.source_text)}));
+ const specs=[["0_welcome",11,19,6,2],["0_koan_1",13,7,2,17],["0_loss_of_divinity",28,5,11,23],["jpg107-167",9,17,16,11]];
+ const excluded=new Set(specs.map(x=>x[0])),dict=Array.from({length:40},()=>new Set());
+ function add(w){if(w.length&&w.length<40)dict[w.length].add(String.fromCharCode(...w));}
+ function variants(w){const s=w.toUpperCase().replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S");
+  function go(i,p){if(i===s.length){add(p);return;}for(const len of [1,2,3]){const a=s.slice(i,i+len);if(a.length!==len)continue;const v=len===3?(a==="ING"?21:undefined):alpha.get(a);if(v!==undefined)go(i+len,[...p,v]);}}go(0,[]);}
+ for(const line of lex.split(/\r?\n/)){const m=/^([a-z]+)\s+(\d+)$/.exec(line);if(m&&m[1].length>=2)variants(m[1]);}
+ for(const s of src)if(!excluded.has(s.name))for(const w of s.w)add(w);
+ function donor(s){const start=/\*\*\* START OF (?:THIS|THE) PROJECT GUTENBERG EBOOK[^\r\n]*\*\*\*/i.exec(s);if(start)s=s.slice(start.index+start[0].length);let out=[];for(let t of s.match(/[A-Za-z]+/g)||[]){t=t.toUpperCase().replace(/QU/g,'CW').replace(/[KQ]/g,'C').replace(/V/g,'U').replace(/Z/g,'S');while(t.length){let ok=false;for(let k=Math.min(t.length,3);k>=1;k--){const a=t.slice(0,k),v=k===3?(a==="ING"?21:undefined):alpha.get(a);if(v!==undefined){out.push(v);t=t.slice(k);ok=true;break}}assert(ok,'native translation');if(out.length===2000)return out}}throw Error('short donor')}
+ const train=[...src.filter(s=>!excluded.has(s.name)).map(s=>s.w.flat()),...donors.map(donor)],lm=lib.train(train);
+ const score=P=>lib.scorePlain(P,lm),inv=Array.from({length:29},(_,a)=>Array.from({length:29},(_,b)=>b).find(b=>mod(a*b)===1)||0);
+ const render=p=>p.map(x=>gp.translit[x]).join("");
+ // All triples satisfying a*previousP+b*previousC+d=currentC-currentP.
+ function triples(cp){
+  const E=[];for(let i=q;i<cp.length;i++)E.push([cp[i-q][1],cp[i-q][0],mod(cp[i][0]-cp[i][1])]);assert(E.length>=3,"insufficient equations");
+  const [x,y,z]=E[0],D=E.slice(1).map(([u,v,w])=>[mod(u-x),mod(v-y),mod(w-z)]),row=D.find(([u,v])=>u||v);
+  if(D.some(([u,v,w])=>!u&&!v&&w))return [];
+  let pairs=[];
+  if(!row){for(let a=1;a<29;a++)for(let b=1;b<29;b++)pairs.push([a,b]);}
+  else {const [u,v,w]=row,second=D.find(([j,k])=>mod(u*k-v*j)!==0);
+   if(second){const [j,k,l]=second,den=inv[mod(u*k-v*j)];pairs=[[mod((w*k-v*l)*den),mod((u*l-w*j)*den)]];}
+   else if(v){for(let a=1;a<29;a++)pairs.push([a,mod((w-u*a)*inv[v])]);}
+   else{const a=mod(w*inv[u]);for(let b=1;b<29;b++)pairs.push([a,b]);}}
+  return pairs.filter(([a,b])=>a&&b&&D.every(([u,v,w])=>mod(a*u+b*v)===w)).map(([a,b])=>[a,b,mod(z-a*x-b*y)]);
+ }
+ function encrypt(P,K,a,b,d){let queue=K.slice();const C=P.map(p=>{if(!p)return 0;const c=mod(p+queue[0]);queue=queue.slice(1).concat(mod(a*p+b*c+d));return c});return {C,queue};}
+ // Exhaust all latent F masks in the local window, scoring in original reading order.
+ function bestSide(C,K,a,b,d,rev,context){
+  const seq=rev?C.slice().reverse():C,plain=[],ai=inv[a];let best=null,paths=0;
+  function visit(i,queue){if(i===seq.length){paths++;const p=rev?plain.slice().reverse():plain.slice(),s=rev?score(p.concat(context.slice(0,2)))-score(context.slice(0,2)):score(context.slice(-2).concat(p))-score(context.slice(-2));if(!best||s>best.s)best={p,queue:queue.slice(),s};return;}
+   const c=seq[i];if(!c){plain.push(0);visit(i+1,queue);plain.pop();}
+   if(rev){const p=mod((queue.at(-1)-b*c-d)*ai);if(p){plain.push(p);visit(i+1,[mod(c-p),...queue.slice(0,-1)]);plain.pop();}}
+   else{const p=mod(c-queue[0]);if(p){plain.push(p);visit(i+1,queue.slice(1).concat(mod(a*p+b*c+d)));plain.pop();}}}
+  visit(0,K);return {best,paths};
+ }
+ // Group dictionary words by the exact transparent-F locations; consuming C is then fixed.
+ function group(c,list){
+  const groups=new Map();
+  for(const str of list){const p=Array.from(str,x=>x.charCodeAt(0));if(p.some((x,i)=>!x&&c[i]))continue;
+   const mask=p.map(x=>x?'1':'0').join("");let g=groups.get(mask);
+   if(!g){g={C:c.filter((_,i)=>p[i]!==0),words:[]};groups.set(mask,g);}
+   g.words.push({p,v:p.filter(Boolean)});
+  }return [...groups.values()];
+ }
+ /** Exact join over all dictionary pairs and all nonzero a,b, all d.
+  * Difference rows remove d; quotient by the observed Cprev-difference vector removes b.
+  * One word contributes additively to each equation, so a signature lookup replaces the pair product. */
+ function join(c1,c2,list1,list2,emit){
+  let models=0,maskPairs=0;
+  for(const g1 of group(c1,list1))for(const g2 of group(c2,list2)){
+   const C=g1.C.concat(g2.C),n=g1.C.length,m=C.length-q;
+   if(m<3)continue;maskPairs++;
+   const B=Array.from({length:m-1},(_,i)=>mod(C[i+1]-C[0])),D=Array.from({length:m-1},(_,i)=>mod(C[q+i+1]-C[q])),h=B.findIndex(x=>x!==0);
+   const project=V=>V.map((v,i)=>h<0?mod(v):mod(B[h]*v-B[i]*V[h])).filter((_,i)=>i!==h);
+   const target=project(D);
+   function vector(P,left,a){const get=i=>i<n?(left?P[i]:0):(!left?P[i-n]:0),first=a*get(0)+get(q);return Array.from({length:m-1},(_,i)=>mod(a*get(i+1)+get(q+i+1)-first));}
+   const key=(v,complement)=>String.fromCharCode(...project(v).map((x,i)=>complement?mod(target[i]-x):x));
+   // Index the smaller side to limit memory; retain every collision exactly.
+   const indexLeft=g1.words.length<=g2.words.length,I=indexLeft?g1.words:g2.words,J=indexLeft?g2.words:g1.words;
+   for(let a=1;a<29;a++){
+    const map=new Map();for(const w of I){const v=vector(w.v,indexLeft,a),k=key(v,false);let arr=map.get(k);if(!arr){arr=[];map.set(k,arr);}arr.push({w,v});}
+    for(const w of J){const v=vector(w.v,!indexLeft,a),arr=map.get(key(v,true));if(!arr)continue;
+     for(const x of arr){
+      const left=indexLeft?x.w:w,right=indexLeft?w:x.w;
+      const bs=h<0?Array.from({length:28},(_,i)=>i+1):[mod((D[h]-v[h]-x.v[h])*inv[B[h]])];
+      for(const b of bs){if(!b)continue;const p=left.p.concat(right.p),P=left.v.concat(right.v),d=mod(C[q]-P[q]-a*P[0]-b*C[0]);models++;
+       emit({a,b,d,p,P,C});
+      }
+     }
+    }
+   }
+  }return {models,maskPairs};
+ }
+ // Deterministic small Cartesian comparison tests all hold-pattern and rank-deficient cases.
+ function testJoin(){
+  const cases=[
+   {c1:Array.from({length:9},(_,i)=>mod(i*3+1)),c2:Array.from({length:11},(_,i)=>mod(i*7+4))},
+   {c1:[0,2,2,2,0,2,2,2,2],c2:[3,3,0,3,3,3,3,3,3,3,3,3]},
+   {c1:Array(9).fill(4),c2:Array(11).fill(9)}
+  ];
+  for(const {c1,c2} of cases){
+   const mk=c=>Array.from({length:5},(_,j)=>String.fromCharCode(...c.map((x,i)=>!x&&((i+j)%2===0)?0:1+((i*7+j*11)%28))));
+   const A=mk(c1),B=mk(c2),actual=[],expected=[];
+   const repr=(a,b,d,p)=>[a,b,d,...p].join(",");
+   join(c1,c2,A,B,x=>actual.push(repr(x.a,x.b,x.d,x.p)));
+   for(const a of A)for(const b of B){const p=Array.from(a+b,x=>x.charCodeAt(0)),c=c1.concat(c2);if(p.some((x,i)=>!x&&c[i]))continue;const cp=p.map((x,i)=>[c[i],x]).filter(x=>x[1]);if(cp.length<q+3)continue;
+    for(const [aa,bb,dd] of triples(cp))expected.push(repr(aa,bb,dd,p));
+   }
+   assert(same(actual.sort(),expected.sort()),"join vs direct triples");
+  }return cases.length;
+ }
+ const joinTests=testJoin(),FIT_CAP=2048;
+ function attack(name,words,truth=null,partial=new Set(),prediction=true){
+  const C=words.flat(),offsets=[0],anchors=[];for(const w of words)offsets.push(offsets.at(-1)+w.length);
+  let pairs=[];
+  for(let j=0;j+1<words.length;j++){
+   if(partial.has(j)||partial.has(j+1)||words[j].length<5||words[j+1].length<5)continue;
+   const c=words[j].concat(words[j+1]);if(c.filter(Boolean).length<q+3)continue;
+   const at=offsets[j],end=offsets[j+2],L=Math.max(0,at-48),R=Math.min(C.length,end+48),rev=L>=C.length-R;
+   if((rev?L:C.length-R)<76)continue;
+   pairs.push({j,at,end,L,R,rev,c,nz:c.filter(Boolean).length});
+  }
+  // Original selection depends only on the strongest guaranteed equation count.
+  if(!truth)pairs=pairs.sort((a,b)=>b.nz-a.nz||b.c.length-a.c.length||a.j-b.j).slice(0,1);
+  for(const {j,at,end,L,R,rev,c,nz} of pairs){
+   const c1=words[j],c2=words[j+1],fitLeft=C.slice(L,at),fitRight=C.slice(end,R),held=rev?C.slice(L-76,L):C.slice(R,R+76);
+   const trueP=truth?.P.slice(at,end),trueLex=truth?dict[c1.length].has(String.fromCharCode(...trueP.slice(0,c1.length)))&&dict[c2.length].has(String.fromCharCode(...trueP.slice(c1.length))):null;
+   let trueModelCount=0,fitLegal=0,best=null,stored=[];
+   const support=join(c1,c2,dict[c1.length],dict[c2.length],x=>{
+    if(truth&&x.a===truth.a&&x.b===truth.b&&x.d===truth.d&&same(x.p,trueP))trueModelCount++;
+    if(stored.length<=FIT_CAP)stored.push(x);
+   });
+   if(prediction&&support.models<=FIT_CAP){
+    for(const x of stored){const {a,b,d,p,P,C:consumed}=x,start=P.slice(0,q).map((v,i)=>mod(consumed[i]-v));
+     const check=encrypt(p,start,a,b,d);assert(same(check.C,c),"join replay");
+     const left=bestSide(fitLeft,start,a,b,d,true,p);if(!left.best)continue;
+     const right=bestSide(fitRight,check.queue,a,b,d,false,p);if(!right.best)continue;
+     fitLegal++;const fit=left.best.p.concat(p,right.best.p),s=score(fit),seed=left.best.queue,after=right.best.queue;
+     assert(same(encrypt(fit,seed,a,b,d).C,C.slice(L,R)),"fit replay");
+     if(!best||s>best.s)best={a,b,d,p,seed,after,fit,s};
+    }
+   }
+   let result=null;
+   if(best){const h=bestSide(held,rev?best.seed:best.after,best.a,best.b,best.d,rev,best.fit);
+    if(h.best){const full=rev?h.best.p.concat(best.fit):best.fit.concat(h.best.p),seed=rev?h.best.queue:best.seed;assert(same(encrypt(full,seed,best.a,best.b,best.d).C,C.slice(rev?L-76:L,rev?R:R+76)),"holdout replay");}
+    result={a:best.a,b:best.b,d:best.d,word:render(best.p.slice(0,c1.length))+" "+render(best.p.slice(c1.length)),fitScore:best.s/(R-L),fit:render(best.fit),holdout:h.best?render(h.best.p):null,holdoutScore:h.best?h.best.s/76:null,holdoutPaths:h.paths,correct:truth?{model:best.a===truth.a&&best.b===truth.b&&best.d===truth.d,fit:best.fit.filter((x,i)=>x===truth.P[L+i]).length,fitTotal:R-L,holdout:h.best?h.best.p.filter((x,i)=>x===truth.P[(rev?L-76:R)+i]).length:0}:null};
+   }
+   anchors.push({j,at,n:[c1.length,c2.length],guaranteed:nz,L,R,holdoutSide:rev?"left":"right",dictWords:[dict[c1.length].size,dict[c2.length].size],...support,fitStatus:!prediction?"unqualified":support.models>FIT_CAP?"cap":"complete",fitLegal,trueLex,trueModelCount,result});
+  }return {name,n:C.length,anchors};
+ }
+ const controls=specs.map(([name,a,b,d,salt])=>{const s=src.find(x=>x.name===name),P=s.w.flat(),K=Array.from({length:q},(_,i)=>(i*i*7+i*11+salt)%29),C=encrypt(P,K,a,b,d).C;let j=0;return attack(name,s.w.map(w=>{const v=C.slice(j,j+w.length);j+=w.length;return v}),{P,K,a,b,d});});
+ const calibration=controls.flatMap(c=>c.anchors).filter(a=>a.trueLex),eligibleFit=calibration.filter(a=>a.fitStatus==="complete"),exact=eligibleFit.filter(a=>a.result?.correct.model&&a.result.correct.holdout===76).length;
+ const supportPass=calibration.length>=2&&calibration.every(a=>a.trueModelCount===1);
+ const pass=eligibleFit.length>=2&&exact===eligibleFit.length;
+ const pages=[0,3,8,15,23,27,34,40,54,56],starts=pages.map(p=>gp.pages.slice(0,p).reduce((s,x)=>s+x.indices.length,0));
+ let off=0;const ww=original.map(w=>{const x={w,off};off+=w.length;return x});
+ const originalResults=supportPass?starts.slice(0,-1).map((s,i)=>{const e=starts[i+1],w=[],partial=new Set();for(const x of ww){const lo=Math.max(s,x.off),hi=Math.min(e,x.off+x.w.length);if(lo>=hi)continue;if(lo!==x.off||hi!==x.off+x.w.length)partial.add(w.length);w.push(x.w.slice(lo-x.off,hi-x.off));}assert(w.flat().length===e-s,"chapter group carry");assert(same(w.flat(),gp.pages.slice(pages[i],pages[i+1]).flatMap(x=>x.indices)),"chapter tape");return attack("p"+pages[i],w,null,partial,pass);}):null;
+ return {q,trainLengths:train.map(x=>x.length),lexicon:dict.reduce((s,d)=>s+d.size,0),joinTests,FIT_CAP,calibration:{eligible:calibration.length,eligibleFit:eligibleFit.length,exact,passed:pass,supportPassed:supportPass},controls,original:originalResults};
+}
+if(typeof module!=="undefined")module.exports={experiment};
+
+if(require.main===module){const fs=require('node:fs'),path=require('node:path'),lib=require('./lp2_fhold_cyclic_ngram_map.cjs');const paths=["resources/liber-primus/lp2-corpus.json","resources/lp2-transcription.txt","resources/external/relikd-solved-gp29-native-v1.json","resources/control/english_wordfreq_textblob.txt","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt"];const a=paths.map(p=>fs.readFileSync(path.resolve(__dirname,'..',p),'utf8'));console.log(JSON.stringify(experiment(...a.slice(0,4),a.slice(4),lib,process.argv[2]||'strict'),null,2));}
