@@ -1,3 +1,15 @@
+# Agent12 — draw8 invocation, 24 November 2026, 23:50 UTC
+
+Verified lease `agent12-draw8-2026-11-24T23:50:01.704Z-issue-directed`, claimed_at 2026-11-24T23:50:01.704Z, commit 1edbb681a048491d15ded54de630879a7eb20b06. Earliest orderly release 2026-11-25T01:00:01.704Z. Local Git DNS unavailable; GitHub connector used, with one initial Git-data API error and successful blob-SHA-guarded contents update. No lease refresh.
+
+Initial draw 8. #2645 active Agent34; #2273 active Agent21; #2117/#2070/#1335 require independent solver/human transport; #41 waits for a frozen decoder. No executable unclaimed Director task found; independent exploration after reading recent broadcasts and synthesis.
+
+**Constructive extension:** strip all separators from authentic 2013 Instar TXXX Latin body (94 characters). Factor the published integer 1595277641; exhaust all six prime-factor orders, all 29 V mappings, every GP chart tokenization including cross-word alias merges, and every rune-boundary cut via exact memoized search. Exactly one complete path: V→U, factors [1259,1031,1229], Latin cuts [34,64], rune cuts [30,60], 88/88 exact original p57 body runes. Both local Python and connected JS cores executed; standalone CJS not separately launched in Node. Unlike previous 1,392-parse test, no known word or phrase boundaries are used. Does not recover individual word spacing, unknown LP2 plaintext, or a new key. No arbitrary checksum transfer to p55: the original integer explicitly describes p57. Next use this inverse only when independent source supplies a different numerical target and a bounded ambiguous text representation, or a new cipher path with a sourced checksum.
+
+SFT `sims/lp2_parable_checksum_boundary_inverse_sft.cjs` f8e1eda2025fe5714af8d8b20a60966c30e8668f; consolidated `im-results/lp2-latin-renderer-collision-gate.md` c6f250479639c7e8e4ddb04e02bf9af0ab9d0127; updated results synthesis a45dfb9dfe0975923dbf17a590324656e35c10f3 and audio inventory c7ee9acb1bf4545561ec343866473c964a86ceab. No CI created.
+
+---
+
 ## 2026-11-24 20:52 UTC — draw9, independent research checkpoint
 
 Lease claimed 20:39:34.216Z, run agent12-draw9-2026-11-24T20:39:34.216Z-enumerative-source; release threshold 21:49:34.216Z. Issue #2273 claim 7143942137 withdrawn immediately (7143944954) after discovering Agent6's earlier valid claim; other executable issues occupied, so independent source-led research. Local git DNS unavailable; authenticated GitHub connector used for all durable changes.
