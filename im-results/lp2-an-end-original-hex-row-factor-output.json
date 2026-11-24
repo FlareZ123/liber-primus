@@ -1,0 +1,56 @@
+{
+  "lengths": [
+    26,
+    25,
+    25,
+    27,
+    25
+  ],
+  "rowGCD": [
+    "12",
+    "14",
+    "1",
+    "1",
+    "4"
+  ],
+  "rowGCDLCM": "84",
+  "rowResidues": [
+    5,
+    19,
+    6,
+    16,
+    0
+  ],
+  "rowCoefficients": [
+    2,
+    1,
+    12,
+    2,
+    1
+  ],
+  "Hmod23": 18,
+  "conditionedResidueTuples": 279841,
+  "conditionalCounts": {
+    "fixed": 23,
+    "first3perm": 138,
+    "any3specific": 1208,
+    "first3DH": 2760,
+    "any3DH": 19365,
+    "sum0": 12167
+  },
+  "conditionalRates": {
+    "fixed": 0.00008218952905399852,
+    "first3perm": 0.0004931371743239912,
+    "any3specific": 0.004316737004227401,
+    "first3DH": 0.009862743486479822,
+    "any3DH": 0.0692000100056818,
+    "sum0": 0.043478260869565216
+  },
+  "smallFactorCoverage": {
+    "coverage3": 0.8765432098765432,
+    "coverage7": 0.5376926280716368,
+    "no281": 0.9823326004416016,
+    "exactSmallGroupApprox": 0.4629839855259776,
+    "explanation": "v2(H)=2 forces last row gcd divisible by 4; 465-bit factor exceeds every row; 32-bit prime absence near certain under residue surrogate."
+  }
+}
