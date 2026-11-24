@@ -416,3 +416,15 @@ All 56 unknown LP2 pages remain unsolved. The most productive next work should s
 
 ### 2026-11-24: F-transparent recurrence anchor attack
 - [Report](../../im-results/lp2-long-anchor-ftransparent-recurrence-gate.md); [reproducer](../../sims/lp2_long_anchor_ftransparent_recurrence_sft.cjs). Seven original long words, arbitrary invertible homogeneous GF29 recurrences orders 1–6 with authentic F clock and independent marker-interval state. 2,414 inferred candidates; one mechanical terminal survivor, 4/63 held-out lexical hits, IoC .03542, fails adjacent continuous holdout. No credible plaintext. Planted control passes. Do not retread generic recurrence expansion.
+
+
+## 2026-11-24 — source-shaped Instar XOR and signed-word prime-sum gates
+
+- Added and successfully ran `sims/lp2_terminal180_instar_xor_consumer_gate_sft.cjs` via `.github/workflows/terminal180-instar-xor-consumer-gate.yml`, run `45346141527`.
+- Source-shaped pair: p50's 30×6 inner cells = 180 base60 byte values; solved p56 plaintext = 85 GP29 indices; clear p57 = 95 indices; terminal stream = 180. Apply the documented 2013 Instar offset-zero XOR: p50 inner180 XOR terminal180 GP ordinal bytes.
+- Output SHA-256 `d7894712f2ed533edfeefa120fb72c0973764020928f98e0ea04f95a6c8af5af`; 71/180 printable (39.4%), entropy 6.799 bits/byte; modulo29 output not readable. First76 bytes as p55 key under additive ±, raw XOR, and reduced XOR consumers all fail (IoC 0.0316–0.0361). This retires direct plaintext and obvious first76 p55-pad readings; no KDF/output type is authenticated.
+- Separate p50 inner180 XOR 761.mp3-prefix180 workflow run `45344537691`: no readable ASCII payload (75/180 printable, entropy 6.98); this is not the original Twitter.bin/MP3 pair.
+- Extended `sims/lp2_signed43_p50_tree_selfpointer_sft.cjs` and ran `.github/workflows/signed43-primesum-p50-p56-start-gate.yml`, run `45346510801`. New reading: each signed 2016 word's GP-prime-weight sum mod256 addresses p50; returned byte is a page's p56 zero-based prime-stream start. Across p0..42 only p13 (WAY: sum219→address219→start59, 13 legal F paths) and p14 (ITS: sum143→address143→start152, 1 path) survive. Candidate plaintexts begin `TIFNMXAPHOXEAOEA...` and `RAOENGUDUDTAEYG...`, respectively; no English plaintext. Retire this exact word→prime-sum→p50→p56 mapping.
+- The existing direct GP0 and T[GP0] p56 start mappings remain negative (p13 only and none). Do not repeat these variants.
+- Updated the relevant reports: `im-results/lp2-terminal180-76carry-p55-original-inverse.md` and `im-results/lp2-signed43-p50-tree-selfpointer-original-gate.md`. Base60 vs drop-f base59 remains unresolved; the current tests use conventional base60 bytes.
+- Next work should seek a genuinely new source-selected receiver or cipher mechanism, not another unconstrained table lookup, KDF, or key-start mapping.
