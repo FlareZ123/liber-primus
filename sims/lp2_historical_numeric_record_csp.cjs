@@ -1,6 +1,11 @@
 "use strict";
 // Node 22: node sims/lp2_historical_numeric_record_csp.cjs self-reliance.txt zN4h51m.jpg.asc
 // Source files: neuroretransmit/cicada @ ade9a02889ef8acbc8cde8edbfd0a785c369f4c3, 2014/001-twitter/.
+/**
+ * Exact CSP on planted digit-only period-13 additive encryption.
+ * @param {string} book pinned historical text
+ * @param {string} signed archived clearsigned coordinate record
+ */
 function run(book,signed) {
  const mod=x=>(x%29+29)%29;
  const lines=signed.split(/\r?\n/).filter(l=>/^(?:[1-9]\d*:){3}[1-9]\d*$|^3$/.test(l));
@@ -55,7 +60,7 @@ function run(book,signed) {
  return {keySpace:(29n**BigInt(q)).toString(),withheldConsensus,historical,lines,recordCount:lines.length,addresses:address.size,trainingDigits:train.reduce((a,r)=>a+r.c.length,0),initial,searchNodes:nodes,solutionCount:solutions.length,plantedIncluded:solutions.some(k=>String(k)===String(key)),predictions:predictions.slice(0,20),expectedHeld:lines.slice(13),encoded:enc,sourceShapeCounts:[...byShape].map(([shape,v])=>[shape,v.length])};
 }
 const fs=require("node:fs");
-const [book,signed]=process.argv.slice(2).map(p=>fs.readFileSync(p,"utf8"));
+const [book,signed]=process.argv.slice(2,4).map(p=>fs.readFileSync(p,"utf8"));
 const result=run(book,signed);
 if(process.argv[4]){
  const pages=fs.readFileSync(process.argv[4],"utf8").split(/^\s*%\s*$/m);
