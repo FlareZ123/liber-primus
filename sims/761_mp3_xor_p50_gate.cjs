@@ -23,10 +23,11 @@ const summary = b => {
   return {length:b.length,sha256:sha(b),first16:b.subarray(0,16).toString('hex'),
     hex:b.toString('hex'),ascii,printable_ratio:Number((printable/b.length).toFixed(4)),
     unique_byte_count:new Set(b).size,permutation_0_to_255:b.length===256&&new Set(b).size===256,
-    entropy_bits_per_byte:Number(entropy.toFixed(4)),leading_magic:magic?magic[0]:null};
+    entropy_bits_per_byte:Number(entropy.toFixed(4)),leading_magic:magic?magic[0]:null,jpeg_structure:jpeg(b)};
 };
 
 const mp3=fs.readFileSync(process.argv[2]);
+if(mp3.length!==4010732 || sha(mp3)!=='83008217439110c3b824898af73b99cb2cf0657dda88cb363c3aa34a4ec0a460') throw new Error('Pinned 761.MP3 length/SHA-256 mismatch');
 if(mp3.toString('ascii',0,3)!=='ID3') throw new Error('Pinned 761.MP3 lacks ID3 header');
 const tag=10+(mp3[6]&127)*0x200000+(mp3[7]&127)*0x4000+(mp3[8]&127)*0x80+(mp3[9]&127);
 const records=fs.readFileSync('resources/cicada2013-twitter-hex-stream.txt','utf8').trim().split(/\r?\n/).map((line,i)=>{
@@ -79,3 +80,24 @@ console.log(JSON.stringify({stage:'p22-emerged-809-p50-xor-test',
  selected_offset:emergedOffset,
  pad_sha256:sha(emergedKey),
  candidate:summary(emergedCandidate)},null,2));
+ 
+// Fixed p57/2013 Parable-number follow-up. The 2013 ID3 TXXX value is
+// 1,595,277,641 = 1259*1031*1229 (the three p57 body-clause GP-prime sums);
+// the title THE INSTAR EMERGENCE sums to 761. Test only these four zero-based
+// full-file byte positions with the historically authenticated raw XOR primitive.
+const parableOffsets=[761,1031,1229,1259];
+const parableXors=parableOffsets.map(offset=>{
+  const pad=mp3.subarray(offset,offset+256);
+  if(pad.length!==256)throw new Error('Short MP3 pad at Parable offset '+offset);
+  const out=xor(p50,pad);
+  return {offset_zero_based:offset,pad_sha256:sha(pad),candidate:summary(out)};
+});
+console.log(JSON.stringify({
+  stage:'p57-parable-exact-raw-byte-offset-p50-xor',
+  provenance:'ID3 Parable product 1259*1031*1229; p57 body-clause GP-prime sums; title sum 761',
+  operation:'p50[i] XOR complete-761.MP3[offset+i]',
+  offset_convention:'zero-based bytes from the beginning of the complete file, including ID3',
+  offsets:parableOffsets,
+  candidates:parableXors
+},null,2));
+
