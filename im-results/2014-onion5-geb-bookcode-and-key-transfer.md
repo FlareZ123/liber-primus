@@ -54,6 +54,8 @@ The community archive's [sixth-onion README](https://github.com/cicada-solvers/n
 
 The archived [three-square transcription](https://github.com/cicada-solvers/neuroretransmit-cicada/blob/main/2014/007-fifth-onion/magicsquares.txt) contains 5×5, 7×7, and 5×5 squares. The third is the 5×5 square also present on LP2 p05; the first appears on prime page 229. These are real historical relationships, but they do not by themselves specify a decipherment of other LP2 pages.
 
+The archived [original sixth-onion form](https://github.com/cicada-solvers/neuroretransmit-cicada/blob/main/2014/008-sixth-onion/ut3qtzbrvs7dtvzp.onion.v2-form.html) makes the selection explicit: its three fields are **Order 5 Square, 3301**, **Order 7 Square, 1033**, and **Order 5 Square, 1033**, followed by the solver's onion address. The form's signed message asks for a Tor CGI upload endpoint and a GnuPG public key at `/key.asc`. The captured [HTTP headers](https://github.com/cicada-solvers/neuroretransmit-cicada/blob/main/2014/008-sixth-onion/ut3qtzbrvs7dtvzp.onion.headers) include `X-Cicada: 1033`. This is strong evidence for the intended three-square submission and the 3301/1033 values; it still does not specify a cipher operation for the unknown LP2 pages.
+
 ## Bounded direct-key transfer test
 
 I reconstructed the 2014 `gematriaprimus.py` key mapping and applied the reported `FIRFUMFERENCE` key to the LP2 transcription. The historical script uses GP29 rune order with key shifts derived from the reversed lookup values; for this key the modulo-29 shifts are:
