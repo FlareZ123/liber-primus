@@ -1,0 +1,19 @@
+name: Agent 1 GF841 additive pair gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-test:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run original-source additive pair gate
+        run: node sims/lp2_gf841_additive_pair_clock_sft.cjs
