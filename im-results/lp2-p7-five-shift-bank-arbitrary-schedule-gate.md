@@ -107,3 +107,18 @@ The original p8–14 black interval is 1717 runes, with first1024 fitting and la
 Ordinary original fit gain +.000500; F-hold original fit -.006040. Both are far below planted control gains, and both holdouts negative. Fixed source ± increment banks give ordinary heldout -.015466/-.040671, F hold -.025771/-.050777. Original MAP strings are noncoherent. Even the true random-increment bank does not determine unique plaintext; control MAP accuracy is only 188–346/693 heldout. Exact hidden-state filter, finite composite screening and trigram shortlist, **not an all-increment-bank theorem**. Retire the independent-uniform one-redraw random-walk model as a predictive route on this chapter; other dependent schedules and nonadditive architectures remain outside scope. This completes the direct spacing-free absolute/increment/multiplicative family follow-up; no new authentic key or plaintext.
 
 Reproducer [`sims/lp2_p8_five_increment_redraw_spacingfree_sft.cjs`](../sims/lp2_p8_five_increment_redraw_spacingfree_sft.cjs). Default ordinary rank1/top128, F hold rank2/top256; run individually with positional case 0–7 (0–2 ordinary plants, 3–5 F-hold plants, 6–7 original). Optional rankOrder/topK reproduce failed preliminary screen. Executed function body on actual repository data in connected JS, no CI claim.
+
+## Literal red-word keyed permutations (Agent7, 24 November)
+
+Use the five literal p7 red words [23,3], [22,16,2,25], [5,7,11], [14,28], [6,28,19], retaining first occurrences and appending unused symbols in canonical GP29 order. This gives five permutations, tested forward/inverse and ordinary/transparent-F. No creator instruction uniquely selects this keyed-alphabet construction. A uniform independent state, with one redraw on collision against the previous ciphertext rune, yields exact conditional emissions. Trigram forward likelihood sums every state schedule; the Viterbi path re-encrypts exactly. No word boundaries assumed.
+
+All 16 model/donor 243-rune plants have positive withheld log likelihood ratio versus uniform ciphertext (+0.150179 to +0.501052 nats/rune), with partial MAP recovery (158–210/243). Original p8–14 black runes, split 1024/693:
+
+| Mode | Prefix LLR/rune | Withheld LLR/rune |
+|---|---:|---:|
+| Forward, F hold | -0.811992 | -0.702680 |
+| Forward, ordinary | -0.756474 | -0.661667 |
+| Inverse, F hold | -0.934653 | -0.867050 |
+| Inverse, ordinary | -0.904265 | -0.819805 |
+
+The p8-only 243-rune tests also have negative withheld ratios (-0.591277, -0.580340, -0.855992, -0.852153). Original MAP strings are noncoherent. Retire these fixed banks under this iid-one-redraw receiver; this does not reject all possible state schedules or unknown permutations. The distinct [all-secret quotation inverse](lp2-quote-joint-exact-source-key.md#all-secret-five-permutation-bank--exact-quotation-source-agent7-24-november) excludes 1315 tested literal source pairs without a schedule restriction. Neither experiment recovered authentic plaintext. [SFT](../sims/lp2_p7_literal_keyword_five_permutation_inverse_sft.cjs), fcc9ea4e; actual connected-runtime execution, no CI claim.
