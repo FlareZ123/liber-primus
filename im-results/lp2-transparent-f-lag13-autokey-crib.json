@@ -1,0 +1,151 @@
+{
+  "period": 13,
+  "controls": [
+    {
+      "name": "Gibran heldout",
+      "skipped": "no full-state anchor"
+    },
+    {
+      "name": "Emerson heldout",
+      "anchor": 434,
+      "length": 13,
+      "anchorNonF": 13,
+      "anchorRune": 1698,
+      "dict": 491,
+      "tries": 226,
+      "survivors": 0,
+      "unresolved": 9,
+      "scoreDead": 0,
+      "n": 1802,
+      "oracleSeen": false,
+      "oracleCovered": false,
+      "best": null
+    },
+    {
+      "name": "LP1 reference",
+      "anchor": 369,
+      "length": 13,
+      "anchorNonF": 13,
+      "anchorRune": 1487,
+      "dict": 491,
+      "tries": 246,
+      "survivors": 18,
+      "unresolved": 172,
+      "scoreDead": 13,
+      "n": 1500,
+      "oracleSeen": false,
+      "oracleCovered": true,
+      "best": {
+        "key": [
+          4,
+          18,
+          16,
+          10,
+          6,
+          10,
+          19,
+          18,
+          14,
+          15,
+          12,
+          27,
+          24
+        ],
+        "score": -8.33099723442905,
+        "margin": 0.05636516305715844,
+        "lex": 36,
+        "words": 370,
+        "output": "IA WHCAES PYXFRUX NEOMB ABND DTNG CMEOTH THEATHCWEO STHEEA IDR NGAGL FEO EOJ NTHEAJ DMOA OX AEXIXOELUEAB FOEUOE UEOAEY NTHEAA AESUYCGNXEOAE EACHY OEJD OEW EIAN JNGHN IC OETAEBN WBOE MCIIA THT DB DIAIHBRT IAIIROJCNEA XBREOT JNXIO GIA THAEYNGP AEJ OGEC CNGAAAEGB RAC LLAE NO NGMYTCC SBACIALU UDEAOETHI XGLJOIAAE JA XC BEOIAL JIATHTODF DWHJLEO OEI NGJT EF IAPT UCEA NGAE EEO WIU NGT OTP OOEUC LON FEW AEAXTH LMEO FEGNG NOWJ JAEP AWAI PE OU IA THXRTHEAYREOD UTO NGFMEO TTH DOEY JEON NTHMR BSNE NW RDB HH SWD ITNTHLGA ORO EAIAMPARB WOEONG AUMEAUGOCOE TOMT AEEAICMOENNJ WOEONG MIXEOLIAOTU XNEO NEND HOOTTOE JLIAIARTYXTX LOC YINO NECNWPAR LM ELJ UA AEXTF IAI IM NGRNGPNGT NGXM AETLTHXIUEOLI EOLEO AEO SEOXPW STEOCOEAPAS LMD XEE AENTGRREM UOMTAYT IAOEUM WGEOIL EODS WEAY ARLA XROEOETY OECLIATDX UITG TI LCJRER XG IR SAEAT GHSWGR TOO AADLC IAEOI WOE NAS UCYDIOE MTSMPM HLS TXX L CEONG CEATNG NENDMOEOB DMO BEAEO O XTHNG DAMF FIGCTXEAF LIAW IATHAAEPSNCOEUPAE JIA SAPR XXN HHF DBS HONAEH EAC DSOC THI OETWNJEOSUIALU IATHWEOOTT SOETT SST TUIAY SODIAMR SLNG BEN E NAEP YOETHF XPRLSRMF GEAE WIAM W INGL UDBD USEIXGUF THNGH AEHAEXHORWUFONG YB NGJPO NGLI DHY STN XWLGL OEN NSXP OT TEOAEEAEAEJSIANOE FNFEODPTH EANEAO LEC AEEAIAF TEAJT UEOTGNGD NGH GOXIALNG OEOG YLSXAEA IAI XYEJUIAL XNGBEAEOTHWEA AL ASDGIAS FHE ODY GOOLUG PIA UJRTHSOENGER AYWIA MHT BMSEOYAE HIAIATUM SMFFIANS JOEIAIA AEEOTHIYTH DEOSAJTL FEOTNG EUGMGS CEAEOADD EAREOC IIAUDMBUB CNSARR YYANF H AJNGE P DJI NGNCNGIEAS MD BEA HHAE ATMWT SWJ P DJTXNR MC BIEOW IAEA SB AEEOOOE TF NGY TRRLCC CEAO GLEA EGNG ERT GEOAHWEA GJ EOAEMIAF EAOEWTH CDOESIA GD DDAEOSL NGI IAMYMPCB WWDW EOY WNGMLDH WMJ FAXA AEOI WP MOM OGO THYH WING RXT WM CNSF JANGA WDO EEOTH NGTHTTHY EAIAEO OEII PEAM AEEOM REAEEALN AT MIAEOMF AEAUU IAP THDRSY GPWREO MEA ABU OGIAAUR FNU W NIAYYHP IALU TEOTHLDT TH AEOE NG THYLBLLSMG DNE HH DNGIX NGOX NGJ AUE XNGM JCG ALL AEOSEOCW BT XAEAXYM CII HLO EAHU DIA NGEOPUCEA THU ITXNGC DTGAE EMDFOLEI RI RYW AMXNGGJ STBY CUGAE IEAEABNGAE DJ HIAEOSYSND P DL N SBUIAU NWU THNGB NU AEOEND CJEOA STBGAAETH FLM CIAA BUO FYU IANGR LNGNG FFG PSG OELOEPNGS XH YJATD OEHYP NGSWPEO WA YIAUYAEN IAGOESL MFIJU N NAEXSNE IAF LHWPJTH EOAE EWOFTLYIAIA YSIAIOPL I YX P INTELLIGENTLY",
+        "trunc": 22,
+        "correct": 109,
+        "keyCorrect": false
+      }
+    }
+  ],
+  "originals": [
+    {
+      "name": "section1",
+      "skipped": "no full-state anchor"
+    },
+    {
+      "name": "section2",
+      "skipped": "no full-state anchor"
+    },
+    {
+      "name": "section3",
+      "anchor": 341,
+      "length": 14,
+      "anchorNonF": 14,
+      "anchorRune": 1531,
+      "dict": 209,
+      "tries": 10,
+      "survivors": 0,
+      "unresolved": 0,
+      "scoreDead": 0,
+      "n": 1738,
+      "oracleSeen": false,
+      "oracleCovered": null,
+      "best": null
+    },
+    {
+      "name": "section4",
+      "anchor": 35,
+      "length": 13,
+      "anchorNonF": 13,
+      "anchorRune": 150,
+      "dict": 491,
+      "tries": 274,
+      "survivors": 0,
+      "unresolved": 0,
+      "scoreDead": 0,
+      "n": 1894,
+      "oracleSeen": false,
+      "oracleCovered": null,
+      "best": null
+    },
+    {
+      "name": "section5",
+      "anchor": 120,
+      "length": 14,
+      "anchorNonF": 13,
+      "anchorRune": 529,
+      "dict": 209,
+      "tries": 2,
+      "survivors": 0,
+      "unresolved": 0,
+      "scoreDead": 0,
+      "n": 1021,
+      "oracleSeen": false,
+      "oracleCovered": null,
+      "best": null
+    },
+    {
+      "name": "section6",
+      "skipped": "no full-state anchor"
+    },
+    {
+      "name": "section7",
+      "skipped": "no full-state anchor"
+    },
+    {
+      "name": "section8",
+      "anchor": 591,
+      "length": 13,
+      "anchorNonF": 13,
+      "anchorRune": 2644,
+      "dict": 491,
+      "tries": 250,
+      "survivors": 0,
+      "unresolved": 0,
+      "scoreDead": 0,
+      "n": 3316,
+      "oracleSeen": false,
+      "oracleCovered": null,
+      "best": null
+    },
+    {
+      "name": "supplemental p54–55",
+      "skipped": "no full-state anchor"
+    }
+  ]
+}
