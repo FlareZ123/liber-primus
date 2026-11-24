@@ -89,6 +89,12 @@ function evaluate(name,a) {
 const targets=[
   ['p39',pages[39].indices],
   ['p34-39',pages.slice(34,40).flatMap(p=>p.indices)],
+  ['p33-39',pages.slice(33,40).flatMap(p=>p.indices)],
+  ['p33-upper',pages[33].indices.slice(0,91)],
+  ['p33-lower-to-p39-upper',pages[33].indices.slice(91).concat(pages.slice(34,39).flatMap(p=>p.indices),pages[39].indices.slice(0,119))],
+  ['p39-upper',pages[39].indices.slice(0,119)],
+  ['p39-lower',pages[39].indices.slice(119)],
+  ['p39-lower-black',pages[39].indices.slice(122)],
   ['p0-black',pages[0].indices.slice(13)],
   ['p0-55',pages.slice(0,56).flatMap(p=>p.indices)]
 ];

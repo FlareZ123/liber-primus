@@ -10,10 +10,16 @@ For low-first coefficients, P_j=Σ_{i≥j} binom(i,j) r^(i−j) C_i mod29. Lucas
 | --- | ---: | ---: | ---: |
 | p39 | 240 | .035774059 | .036576011 |
 | p34–39, continuous | 1466 | .034473318 | .034528261 |
+| p33–39, complete cuneiform chapter | 1680 | — | .034519555 |
+| p33 upper (before three-dot break) | 91 | — | .034432234 |
+| p33 lower through p39 upper | 1468 | — | .034730464 |
+| p39 upper | 119 | — | .035465033 |
+| p39 lower | 121 | — | .034848485 |
+| p39 lower body after red triad | 118 | — | .036216138 |
 | p0 black body, offset13 | 249 | .034363259 | .035399663 |
 | p0–55, continuous | 12956 | .034478398 | .034500490 |
 | Genuine clear p57 (control) | 95 | .062709966 | exact recovery |
 
-The 220 separate physical-page modes (55 rune-bearing pages × 2 signs × 2 coefficient orders) have highest IoC .042148760 on p32 (r24 reverse), with opening GP output `L-H-H-EA-E-U-E-H-TH-U-H-EA-IA-Y-I-H-E-IA-B-O-NG-A-D-B-S`. Next highest p55 .040350877. No visible sustained native prose in the original outputs inspected; all continuous receiver scores remain close to uniform 1/29. IoC and opening inspection are only diagnostics, not a comprehensive language test or a general theorem about polynomial transforms.
+The source-visible [p33/p39 three-dot section breaks](lp2-p33-p39-original-three-dot-ellipsis-gate.md) independently motivate the six additional recipient registrations, rather than treating arbitrary offsets as keys. They give 24 additional inverses, all replaying exactly. The entire actual cuneiform chapter begins at p33; p34–39 is only its header-bearing subset. The 220 separate physical-page modes (55 rune-bearing pages × 2 signs × 2 coefficient orders) have highest IoC .042148760 on p32 (r24 reverse), with opening GP output `L-H-H-EA-E-U-E-H-TH-U-H-EA-IA-Y-I-H-E-IA-B-O-NG-A-D-B-S`. Next highest p55 .040350877. No visible sustained native prose in the original outputs inspected; all continuous receiver scores remain close to uniform 1/29. IoC and opening inspection are only diagnostics, not a comprehensive language test or a general theorem about polynomial transforms.
 
 **Decision:** retire this particular direct root-coordinate decoder on the specified original tapes. A shared root is an exact algebraic fact but does not establish this cipher. Further arbitrary coordinates, hidden rescalings and post-selected polynomial operations are low priority absent an independent source instruction. No claim of a CI run; core arithmetic executed against the canonical original corpus in the JavaScript runtime.
