@@ -1,6 +1,11 @@
 # Integrated original inversion challenge
 
 
+
+### Predictive unknown-period latent-F key recovery
+
+A new **soft-phase EM → finite fixed-key hardening → development-only trigram refinement** attack learns unknown consuming periods q2–16 without a crib. It corrects the WELCOME 4-versus-8 harmonic error in #2603 and recovers both genuine fixed keys exactly; a strict nominal-period calibration failed on an exact doubled representation (q14 = true q7 repeated twice). A separately frozen primitive-key canonicalization and four fresh 840-rune controls then recover all four exact keys and 608/608 withheld runes, with 0/4 independent pads accepted (plus genuine 151/151 holdout). The gated original p33–39 first840 split 546/142/152 selects q2, soft gain −0.005617 nats/rune versus uniform pad, and no legal hardened key. Reject; the second840 continuation was not scored. This is a heuristic predictive failure, not an all-key theorem. [Consolidated report](../im-results/lp2-latent-f-soft-phase-period.md) · [frozen SFT](../sims/lp2_latent_f_soft_phase_primitive_gate_sft.cjs) · [raw](../im-results/lp2-latent-f-soft-phase-primitive-gate.json).
+
 ### Shared periodic phase permutations with latent F holds
 
 The manuscript-wide Agent10 result excludes the full native GP27 support at q8/q13 even with arbitrary per-phase bijections and independently rotated nonzero blocks, including splits at physical page boundaries. BigInt-certified full-alphabet collision upper bounds are 922601 and 665076, below all 96 finite literary window lower bounds per period. Arbitrary page starts leave q8 at 96/96 and q13 at 95/96 excluded. This eliminates a shared-periodic explanation under the stated native controls, while leaving chapter-private state, altered clocks, transpositions and other models open. [Exact gate](../im-results/agent10-periodic-permutation-fhold/README.md).
