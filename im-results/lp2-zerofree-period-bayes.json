@@ -1,0 +1,166 @@
+{
+  "rows": [
+    {
+      "id": "WELCOME",
+      "n": 515,
+      "truth": 8,
+      "selected": 4,
+      "trueRank": 2,
+      "topLogBF": 35.862576391838694,
+      "topGap": 9.053851403598234,
+      "longestSpan": 66
+    },
+    {
+      "id": "KOAN",
+      "n": 319,
+      "truth": 13,
+      "selected": 13,
+      "trueRank": 1,
+      "topLogBF": 35.4312517350187,
+      "topGap": 45.65044460827283,
+      "longestSpan": 129
+    },
+    {
+      "id": 0,
+      "n": 319,
+      "truth": 3,
+      "selected": 3,
+      "trueRank": 1,
+      "topLogBF": 33.54201847182653,
+      "topGap": 21.53882552146624,
+      "longestSpan": 43
+    },
+    {
+      "id": 1,
+      "n": 515,
+      "truth": 5,
+      "selected": 5,
+      "trueRank": 1,
+      "topLogBF": 68.36018820318641,
+      "topGap": 34.565293544187426,
+      "longestSpan": 97
+    },
+    {
+      "id": 2,
+      "n": 840,
+      "truth": 7,
+      "selected": 7,
+      "trueRank": 1,
+      "topLogBF": 51.10450380669955,
+      "topGap": 24.79280705133576,
+      "longestSpan": 82
+    },
+    {
+      "id": 3,
+      "n": 319,
+      "truth": 9,
+      "selected": null,
+      "trueRank": 1,
+      "topLogBF": 6.899822915613446,
+      "topGap": 1.08819063597074,
+      "longestSpan": 63
+    },
+    {
+      "id": 4,
+      "n": 515,
+      "truth": 11,
+      "selected": 11,
+      "trueRank": 1,
+      "topLogBF": 19.22883613100823,
+      "topGap": 9.463862624833098,
+      "longestSpan": 58
+    },
+    {
+      "id": 5,
+      "n": 840,
+      "truth": 12,
+      "selected": 12,
+      "trueRank": 1,
+      "topLogBF": 30.877625131738093,
+      "topGap": 21.544217733699664,
+      "longestSpan": 90
+    },
+    {
+      "id": 6,
+      "n": 319,
+      "truth": 15,
+      "selected": null,
+      "trueRank": 1,
+      "topLogBF": 4.422198208162639,
+      "topGap": 1.8982737722188974,
+      "longestSpan": 41
+    },
+    {
+      "id": 7,
+      "n": 515,
+      "truth": 17,
+      "selected": 17,
+      "trueRank": 1,
+      "topLogBF": 11.22974272409939,
+      "topGap": 11.530806274938051,
+      "longestSpan": 91
+    },
+    {
+      "id": 8,
+      "n": 840,
+      "truth": 19,
+      "selected": null,
+      "trueRank": 1,
+      "topLogBF": 5.872396263062144,
+      "topGap": 3.609378365377591,
+      "longestSpan": 56
+    },
+    {
+      "id": 9,
+      "n": 319,
+      "truth": 21,
+      "selected": null,
+      "trueRank": 4,
+      "topLogBF": 1.8711619943251907,
+      "topGap": 0.3980633384121992,
+      "longestSpan": 56
+    },
+    {
+      "id": 10,
+      "n": 515,
+      "truth": 23,
+      "selected": null,
+      "trueRank": 3,
+      "topLogBF": 3.032333653496503,
+      "topGap": 1.6756682693514602,
+      "longestSpan": 49
+    },
+    {
+      "id": 11,
+      "n": 840,
+      "truth": 24,
+      "selected": null,
+      "trueRank": 2,
+      "topLogBF": -0.9235956111648832,
+      "topGap": 0.166116756470282,
+      "longestSpan": 82
+    }
+  ],
+  "nullMax": [
+    2.491259218573477,
+    2.626264243830673,
+    -7.153491602710762,
+    -0.9265666602720349,
+    0.07006372558695162,
+    -0.40825660163901867,
+    0.8482086512131599,
+    3.90904787594301,
+    -4.6334932737509975,
+    0.10494471121347926,
+    0.5346970196365305,
+    0.3341625190138443
+  ],
+  "gate": {
+    "authentic": 1,
+    "correct": 6,
+    "wrong": 0,
+    "falseSelections": 0,
+    "pass": false
+  },
+  "target": null
+}
