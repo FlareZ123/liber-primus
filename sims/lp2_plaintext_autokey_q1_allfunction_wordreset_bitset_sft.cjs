@@ -35,13 +35,13 @@ function experiment(corpus,trans,solved,lex,injective=true,options={}){
   cand.forEach((c,i)=>{const b=1n<<BigInt(i);for(const [k,v] of c.edges){by[k].present|=b;by[k].values[v]|=b}});
   return {cand,by,full:(1n<<BigInt(cand.length))-1n};
  }
- const domains=words.map(domain);const stats={nodes:0,passes:0,wordChecks:0,domains:domains.map(d=>d.cand.length)};
+ const domains=words.map(domain);const order=Array.from(domains.keys()).sort((a,b)=>domains[a].cand.length-domains[b].cand.length||words[b].length-words[a].length);const stats={nodes:0,passes:0,wordChecks:0,domains:domains.map(d=>d.cand.length)};
  function prop(masks,active){
   let change=true;
   while(change){
    stats.passes++;change=false;
    const vals=masks.map(maskBits);
-   for(let j=0;j<domains.length;j++){
+   for(const j of order){
     stats.wordChecks++;
     const d=domains[j],by=d.by;let a=active[j];
     for(let k=1;k<29;k++)if(masks[k]!==ALL&&(a&by[k].present)){
@@ -67,7 +67,9 @@ function experiment(corpus,trans,solved,lex,injective=true,options={}){
    let satisfied=active[j];for(const k of free){satisfied&=~domains[j].by[k].present;if(!satisfied)break}
    if(satisfied)continue;
    const count=active[j].toString(2).replace(/0/g,"").length;
-   if(count<bestCount){best=j;bestCount=count}
+   let information=0;for(const k of free)if(domains[j].by[k].present&active[j])information+=(domains[j].by[k].present&active[j]).toString(2).replace(/0/g,"").length/count;
+   const score=Math.log(count+1)/(1+information)**1.5;
+   if(score<bestCount){best=j;bestCount=score}
   }
   if(best<0){const map=masks.map(m=>maskBits(m)[0]);return map}
   const d=domains[best],seen=new Set();
@@ -110,4 +112,4 @@ function experiment(corpus,trans,solved,lex,injective=true,options={}){
 }
 const args=["resources/liber-primus/lp2-corpus.json","resources/lp2-transcription.txt","resources/external/relikd-solved-gp29-native-v1.json","resources/control/english_wordfreq_textblob.txt"].map(p=>fs.readFileSync(p,'utf8'));
 const pages=process.argv.slice(2).map(Number);
-console.log(JSON.stringify(experiment(...args,false,{pages:pages.length?pages:Array.from({length:56},(_,i)=>i),controls:!pages.length,cap:10000}),null,2));
+console.log(JSON.stringify(experiment(...args,false,{pages:pages.length?pages:Array.from({length:56},(_,i)=>i),controls:!pages.length,cap:1000}),null,2));
