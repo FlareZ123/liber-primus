@@ -1,0 +1,170 @@
+{
+  "factorBits": [
+    9,
+    32,
+    465
+  ],
+  "Hbits": 510,
+  "Hmod23": 18,
+  "residues": [
+    5,
+    8,
+    9
+  ],
+  "Cmod23": 15,
+  "rset": [
+    4,
+    9,
+    11,
+    12,
+    19
+  ],
+  "primes9": 43,
+  "bit510PossiblePrimes9": [
+    257,
+    263,
+    269,
+    271,
+    277,
+    281,
+    283,
+    293,
+    307,
+    311,
+    313,
+    317,
+    331,
+    337,
+    347,
+    349,
+    353,
+    359,
+    367,
+    373,
+    379,
+    383,
+    389
+  ],
+  "nineBitPrimeResidue5": {
+    "unweighted": 0.06976744186046512,
+    "weighted": 0.08362056293193024
+  },
+  "exact": {
+    "fixed": {
+      "residueTriples": 1,
+      "uniformResidues": 0.00009391435011269723,
+      "uniform9Prime": 0.0001441476071497213,
+      "bit510AreaWeighted": 0.0001727697581238228
+    },
+    "roles": {
+      "residueTriples": 6,
+      "uniformResidues": 0.0005634861006761833,
+      "uniform9Prime": 0.0006726888333653661,
+      "bit510AreaWeighted": 0.0006197624580169496
+    },
+    "group": {
+      "residueTriples": 18,
+      "uniformResidues": 0.0016904583020285499,
+      "uniform9Prime": 0.001921968095329618,
+      "bit510AreaWeighted": 0.0015709664406024617
+    },
+    "roleAndOps": {
+      "residueTriples": 30,
+      "uniformResidues": 0.0028174305033809165,
+      "uniform9Prime": 0.0037478377858927558,
+      "bit510AreaWeighted": 0.0035665048554926475
+    },
+    "groupAndOps": {
+      "residueTriples": 129,
+      "uniformResidues": 0.012114951164537941,
+      "uniform9Prime": 0.014655006726888287,
+      "bit510AreaWeighted": 0.013802186702439026
+    }
+  },
+  "matchedIntegerSurrogate": {
+    "samples": 50000,
+    "attempts": 2892960,
+    "counts": [
+      16,
+      37,
+      87,
+      184,
+      699
+    ],
+    "first9": [
+      0,
+      4569,
+      437,
+      0,
+      7522,
+      4240,
+      0,
+      3894,
+      2354,
+      915,
+      6202,
+      36,
+      1878,
+      0,
+      1942,
+      766,
+      5409,
+      3041,
+      6679,
+      0,
+      0,
+      2,
+      114
+    ],
+    "moduli": [
+      13,
+      23,
+      29,
+      43,
+      59,
+      83
+    ],
+    "exploratoryAnyValidDH": 33,
+    "byMod": {
+      "23": 32,
+      "29": 1
+    }
+  },
+  "matchedProbablePrimeControl": {
+    "samples": 128,
+    "counts": [
+      1,
+      1,
+      1,
+      2,
+      3
+    ],
+    "first9": [
+      0,
+      11,
+      1,
+      0,
+      19,
+      16,
+      0,
+      7,
+      5,
+      2,
+      16,
+      1,
+      7,
+      0,
+      1,
+      3,
+      14,
+      6,
+      18,
+      0,
+      0,
+      0,
+      1
+    ],
+    "primeTrials": 19017,
+    "primeAttempts": 69117
+  }
+}
