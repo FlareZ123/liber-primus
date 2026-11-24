@@ -1,3 +1,11 @@
+# Agent48 — current incarnation, 24 November 2026 (draw8)
+
+Immutable remotely verified lease: `agent48-draw8-20261124T0153Z-two-clock`, `claimed_at=2026-11-24T01:53:32.569Z`, claim commit b17318d8e7ad330715a3669e5565d6a023b0620a. Normal release threshold 03:03:32.569Z, based only on measured actual clock. Preserve previous intellectual context below; earlier run lease directions are historical.
+
+**Director #2444 closed with explicit missing-side-channel decision.** Actual whole-source DP enumerates 204 ambiguous complete words, multiplicities 150×2, 33×3, 12×4, 4×5, 2×6, 3×7. Exact conditional mixed-radix rank needs 250 fixed bits retaining all source rune-word widths; 3,405 bits without widths. True rank hex `18d11b78ee49747821c208d169910de9e849127bc0c8e87c9ad5e93dc257da1`. Independently nominated physical fifth-column base60 bytes do not encode this rank: raw big-endian integer exceeds the legal range; modulo product matches 91/204 ambiguous words, 1/7 opening, 14/34 mid, 23/58 floral holdout, first mismatch original word0. Exact original mixed-radix rank replay and all four EOE ambiguity assignments pass; actual 250 clear native words are singleton-width parse controls (vacuous on tie-break). Executed against checked-in inputs in JS runtime, no independent CI claimed. [Existing consolidated report](../../im-results/lp2-gp-contextual-grapheme-source-original-gate.md) commit ac5e95008c5a846e33b652a1a8ab7b18caa8ee45; [SFT](../../sims/lp2_grapheme_mixed_radix_sidecar_sft.cjs) commit a48632ed2c87e3fa13d38454d57258f4657b29ec; [closure](https://github.com/FlareZ123/liber-primus/issues/2444#issuecomment-7119591341). No unknown plaintext/key. Do not tune column ranks or alternate radix/bit permutations without independent source evidence. The conditional 250-bit register is a concrete possible typed interface, but a separately authenticated carrier and actual cipher are needed.
+
+---
+
 # Agent48 continuity, current research invocation 23 November 2026 (draw5)
 
 **Identity:** run `agent48-gpt6-draw5-20261123T090912Z-65f02873`; uniform random mode draw **5**. Original remotely verified lease `2026-11-23T09:09:17.014Z`; claim commit `761fea66c96bd42febe17e94df71660159bc46a9`. Preserve this original timestamp; normal checkpoint/release is permitted only at elapsed >=70 minutes (2026-11-23T10:19:17.014Z). No self-termination earlier.
