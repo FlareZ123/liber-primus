@@ -30,10 +30,20 @@ function experiment(inputs){
   assert(String(ws.map(w=>w.length))===String(solved[section].map(w=>w.length)),"authentic source boundaries "+section);
   out.truthOOV=solved[section].slice(0,cut).flatMap((w,i)=>dict[w.length].has(String(w))?[]:[i]);
   out.correctKey=result.keys.length===1&&result.exact&&String(result.keys[0].key)===String(expectedKey);
-  if(out.correctKey&&result.keys[0].paths===1){const learned=result.keys[0],held=decodeFixed(ws.slice(cut),learned.key,dict,learned.endPhases[0]),full=learned.p.concat(held?.p||[]).flat();out.continuation=held?{runes:held.p.flat().length,score:held.score,paths:held.paths,exactMatches:held.p.flat().filter((v,i)=>v===solved[section].flat()[n+i]).length}:null;out.correctFull=String(full)===String(solved[section].flat());out.replay=String(encode(learned.p.concat(held?.p||[]),learned.key).flat())===String(ws.flat())}
+  if(out.correctKey&&result.keys[0].endPhases.length===1){const learned=result.keys[0],held=decodeFixed(ws.slice(cut),learned.key,dict,learned.endPhases[0]),full=learned.p.concat(held?.p||[]).flat();out.continuation=held?{runes:held.p.flat().length,score:held.score,paths:held.paths,exactMatches:held.p.flat().filter((v,i)=>v===solved[section].flat()[n+i]).length}:null;out.correctFull=String(full)===String(solved[section].flat());out.replay=String(encode(learned.p.concat(held?.p||[]),learned.key).flat())===String(ws.flat())}
   return out;
  }
- return {controls:[authentic(1,8,255,[23,10,1,10,9,10,16,26]),authentic(5,13,155,[0,10,4,0,1,19,0,18,4,18,9,0,18])]};
+
+ const controls=[authentic(1,8,255,[23,10,1,10,9,10,16,26]),authentic(5,13,155,[0,10,4,0,1,19,0,18,4,18,9,0,18])];
+ assert(controls.every(x=>x.correctKey&&x.continuation?.exactMatches===x.held&&x.continuation.paths===1&&x.replay),"authentic key/holdout gate");
+ const dict=buildLexicon(-1),engine=createSolver(13,dict);
+ const begin=gp.pages.slice(0,23).reduce((n,p)=>n+p.indices.length,0),end=gp.pages.slice(0,27).reduce((n,p)=>n+p.indices.length,0);let off=0;
+ const ws=originalWords.filter(w=>{const i=off;off+=w.length;return i>=begin&&off<=end});assert(ws.flat().length===1021&&String(ws.flat())===String(gp.pages.slice(23,27).flatMap(p=>p.indices)),"p23-26 original chapter");
+ const {cut,n}=cutAt(ws,500),prefix=ws.slice(0,cut),strict=engine.solve(prefix),target={chapter:"p23-26",vocabulary:dict.reduce((n,d)=>n+d.size,0),trainWords:cut,trainRunes:n,held:1021-n,strict:summary(strict)};
+ let chosen=strict;if(strict.exact&&!strict.keys.length&&strict.failure){const escape=strict.failure.word;chosen=engine.solve(prefix,{wildcard:new Set([escape])});target.escape={word:escape,result:summary(chosen)}}
+ if(chosen.exact&&chosen.keys.length===1&&chosen.keys[0].endPhases.length===1){const k=chosen.keys[0],held=decodeFixed(ws.slice(cut),k.key,dict,k.endPhases[0]);target.continuation=held?{score:held.score,paths:held.paths,plaintext:held.p.map(w=>w.map(v=>gp.translit[v]).join("")).join(" "),replay:String(encode(k.p.concat(held.p),k.key).flat())===String(ws.flat())}:null}
+ return {controls,target};
+
 }
 const fs=require("node:fs"),path=require("node:path");
 const files=["resources/liber-primus/lp2-corpus.json","resources/liber-primus/lp2-transcription.txt","resources/control/english_wordfreq_textblob.txt","resources/external/relikd-solved-gp29-native-v1.json","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/transcriptions/lp1_wulfic_canonical.txt"];
