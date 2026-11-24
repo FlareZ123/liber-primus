@@ -336,31 +336,38 @@ function scan(C,all){
  return {fCompatible,prefixCandidates:out.length,distinctPredictions:distinct.length,selected:distinct.length===1?distinct[0]:null};
 }
 function rng(seed){let x=seed>>>0;return()=>{x^=x<<13;x^=x>>>17;x^=x<<5;return(x>>>0)/4294967296;};}
-function calibrate(sources){
- const all=sources.flatMap(s=>s.candidates),controls=[],nulls=[];
- const names=['The Time Machine','The Book of Tea','Beowulf Old English'];
+function plants(sources){
+ const out=[],names=['The Time Machine','The Book of Tea','Beowulf Old English'];
  for(let j=0;j<names.length;j++){
   const s=sources.find(s=>s.name===names[j]);assert(s,names[j]);
-  // One fixed eligible placement in each of two disjoint halves.
   for(let h=0;h<2;h++){
    const options=s.candidates.filter(c=>c.start>=Math.floor(h*s.runes/2)+N&&c.start+N<Math.floor((h+1)*s.runes/2));assert(options.length,'fresh source windows '+s.name);
    const random=rng((0x726bfe19^Math.imul(2*j+h+1,0x9e3779b9))>>>0);
    const c=options[Math.floor(random()*options.length)],q=h?13:8,K=Array.from({length:q},()=>Math.floor(random()*29)),C=encrypt(c.P,K);
-   const r=scan(C.slice(0,SPLIT),all),sel=r.selected;
-   controls.push({source:s.name,start:c.start,q,keyExact:!!sel&&sel.K.join()===K.join(),correct:!!sel&&sel.name===c.name&&sel.start===c.start&&sel.q===q&&sel.full.slice(SPLIT).join()===C.slice(SPLIT).join(),predicted:sel?sel.full.slice(SPLIT).filter((x,i)=>x===C[SPLIT+i]).length:0,prefixCandidates:r.prefixCandidates});
-   const pad=Array.from({length:N},()=>Math.floor(random()*29)),n=scan(encrypt(c.P,pad).slice(0,SPLIT),all);nulls.push({source:s.name,q,prefixCandidates:n.prefixCandidates});
+   const pad=Array.from({length:N},()=>Math.floor(random()*29));
+   out.push({name:s.name,start:c.start,q,K,C,padC:encrypt(c.P,pad)});
   }
+ }
+ return out;
+}
+function evaluateControls(sources, cases){
+ const all=sources.flatMap(s=>s.candidates),controls=[],nulls=[];
+ for(const c of cases){
+   const r=scan(c.C.slice(0,SPLIT),all),sel=r.selected;
+   controls.push({source:c.name,start:c.start,q:c.q,keyExact:!!sel&&sel.K.join()===c.K.join(),correct:!!sel&&sel.name===c.name&&sel.start===c.start&&sel.q===c.q&&sel.full.slice(SPLIT).join()===c.C.slice(SPLIT).join(),predicted:sel?sel.full.slice(SPLIT).filter((x,i)=>x===c.C[SPLIT+i]).length:0,prefixCandidates:r.prefixCandidates,distinctPredictions:r.distinctPredictions});
+   const n=scan(c.padC.slice(0,SPLIT),all);nulls.push({source:c.name,q:c.q,prefixCandidates:n.prefixCandidates});
  }
  const pass=controls.every(c=>c.correct&&c.keyExact)&&nulls.every(c=>c.prefixCandidates===0);
  return {pass,controls,nulls,totalCandidates:all.length};
 }
+function calibrate(sources){return evaluateControls(sources,plants(sources));}
 function original(sources,gp,gate){
  assert(gate.pass,'control gate failed');
  const U=gp.pages.filter(p=>p.page<=55).sort((a,b)=>a.page-b.page).flatMap(p=>p.indices);assert(U.length===12956,'corpus length');
  const C=U.slice(10279,10439),r=scan(C.slice(0,SPLIT),sources.flatMap(s=>s.candidates));
  return {...r,continuationExact:!!r.selected&&r.selected.full.slice(SPLIT).join()===C.slice(SPLIT).join()};
 }
-module.exports={MANIFEST,parse,scan,calibrate,original};
+module.exports={MANIFEST,parse,scan,plants,evaluateControls,calibrate,original};
 if(require.main===module){
  const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),root=path.join(__dirname,'..');
  const folder=process.argv[2];assert(folder,'provide frozen source directory, filenames as in MANIFEST');
