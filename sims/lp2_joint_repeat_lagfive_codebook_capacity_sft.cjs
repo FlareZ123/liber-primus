@@ -53,15 +53,34 @@ function analyze(gp,raw,ink,typography){
       const minimum=pow(ax,E1)*pow(ay,A-E1)*pow(bx,E5)*pow(by,L-E5)*pow(cx,E55)*pow(cy,P-E55);
       const mode=Number(BigInt(B+1)*ax/cross);
       const maxNumerator=choose(B,mode)*pow(ax,mode)*pow(28n*ay,B-mode);
-      const num=wordNumerator*pow(29n,free)*maxNumerator*ay,den=minimum*(ay-ax);
+      let num=wordNumerator*pow(29n,free)*maxNumerator*ay,den=minimum*(ay-ax);
+      // Six-rune words with no physical page cut have precisely one possible
+      // lag-five echo and no successive-echo pair. Condition on which of them
+      // have zero adjacent repeats. At least M-E1 must be in that subset on
+      // every admissible tape; other words can be granted completely freely.
+      // Their tilted echo count is binomial, and its maximum point mass
+      // cannot increase with additional independent Bernoulli trials.
+      const sixCount=groups.get("6:0")||0, minSix=Math.max(0,sixCount-E1);
+      let echoRefinementBits=0;
+      if(bx>by&&minSix>0){
+        const same=pow(28n,5)-28n,other=29n*pow(28n,5)-same;
+        const yes=same*bx,no=other*by,total=yes+no;
+        const m=Number(BigInt(minSix+1)*yes/total);
+        const peak=choose(minSix,m)*pow(yes,m)*pow(no,minSix-m);
+        const refineNum=peak*bx,refineDen=pow(total,minSix)*(bx-by);
+        if(refineNum<refineDen){
+          num*=refineNum;den*=refineDen;
+          echoRefinementBits=log2(refineDen)-log2(refineNum);
+        }
+      }
       const baseLoss=log2(full*minimum)-log2(Z),improvedLoss=log2(full*den)-log2(num);
       let missing=0;while(num*extra*pow(2n,missing)<full*den)missing++;
-      return {baseLoss,improvedLoss,mode,ordinaryChannelExcluded:num*side<full*den,extraChannelExcluded:num*extra<full*den,minFurtherBinaryBitsBeyondExtra:missing};
+      return {baseLoss,improvedLoss,mode,minSix,echoRefinementBits,ordinaryChannelExcluded:num*side<full*den,extraChannelExcluded:num*extra<full*den,minFurtherBinaryBitsBeyondExtra:missing};
     }
     const bounds=[[3n,16n,1n,1n,1n,1n],[3n,16n,3n,2n,1n,1n],weights].map(w=>bound(...w));
     out.push({continuous,A,E1,B,groups:groups.size,bounds});
   }
-  check(out[1].bounds[2].extraChannelExcluded,"continuous joint exact bound");
+  check(out.every(x=>x.bounds[2].extraChannelExcluded),"joint exact bound in both framing modes");
   return {N,L,E5,P,E55,words:wordList.length,redTotal,redCount,markCount,apostrophes,sideBits:log2(side),extraSideBits:log2(extra),results:out,exactToyControl:true};
 }
 const root=path.join(__dirname,"..","resources","liber-primus");
