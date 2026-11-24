@@ -33,7 +33,7 @@ function decode(C,graph,LM){const at=Array.from({length:C.length+1},()=>new Map(
  const p=[];for(let s=best;s.p;s=s.prev)p.unshift(s.p);return {P:p.flat(),score:best.score/C.length};
 }
 function run(data){const gp=JSON.parse(data[0]),native=JSON.parse(data[1]),map=new Map(gp.runes.map((v,i)=>[v,i])),secs=native.sections.map(s=>[...s.source_text].filter(v=>map.has(v)).map(v=>map.get(v))),I=inverse(M),out=[];
- // Explicit exact small-mask graph control: every 0/1 split of this short example.
+ // Known native toy exercises transparent F and block support.
  const toy=[0,1,2,0,3,4,0,5,6,0,7,8,0];const toyC=encode(toy),g=support(toyC,I);ok(g.legal,"toy support");
  for(const j of [1,4,5]){const P=secs[j],C=encode(P),{graph,...s}=support(C,I);ok(s.legal,"native support "+j);
   const d=decode(C,graph,language(secs,j));ok(d&&eq(encode(d.P),C),"native replay");
