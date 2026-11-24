@@ -20,15 +20,15 @@ function experiment(corpus,trans,solved){
  function unit(lo,hi){const start=corpus.pages.filter(p=>p.page<lo).reduce((s,p)=>s+p.indices.length,0),tape=corpus.pages.filter(p=>p.page>=lo&&p.page<=hi).flatMap(p=>p.indices);return {tape,sing:orig.sing.filter(i=>i>=start&&i<start+tape.length).map(i=>i-start)};}
  function lm(excluded){const counts=new Float64Array(30*30*29).fill(0.1);for(const s of solved.sections){if(s.name===excluded)continue;let a=29,b=29;for(const p of parse(s.source_text).tape){counts[(a*30+b)*29+p]++;a=b;b=p;}}for(let i=0;i<counts.length;i+=29){let total=0;for(let j=0;j<29;j++)total+=counts[i+j];for(let j=0;j<29;j++)counts[i+j]=Math.log(counts[i+j]/total);}return counts;}
  function decode(tape,sing,start,model,initial=null){
- const ss=new Set(sing);let map=new Map([[initial?initial.id:(start-1)*900+29*30+29,{score:0,node:null}]]);
+ const ss=new Set(sing);let map=initial?initial.states:new Map([[(start-1)*900+29*30+29,{score:0,node:null}]]);
  for(let i=0;i<tape.length;i++){const next=new Map();for(const [id,v] of map){const j=Math.floor(id/900),a=Math.floor((id%900)/30),b=id%30;for(const [p,k] of edges(tape[i],j,ss.has(i))){const nid=k*900+b*30+p,score=v.score+model[(a*30+b)*29+p];if(!next.has(nid)||score>next.get(nid).score)next.set(nid,{score,node:{p,prev:v.node}});}}map=next;if(!map.size)return null;}
  let best=null;for(const [id,v] of map)if(!best||v.score>best.score)best={id,...v};
- const plain=[];for(let n=best.node;n;n=n.prev)plain.push(n.p);plain.reverse();return {id:best.id,score:best.score,plain};}
+ const plain=[];for(let n=best.node;n;n=n.prev)plain.push(n.p);plain.reverse();return {id:best.id,score:best.score,plain,states:map};}
  const tests=[];for(const [lo,hi] of [[15,22],[54,55],[0,2]]){const {tape,sing}=unit(lo,hi),fit=Math.floor(tape.length*.8),g=gate(tape,sing,fit);tests.push({lo,hi,len:tape.length,fit,sing:sing.length,dead:g.dead,peak:g.peak,ops:g.ops,survivors:g.origins.length,checkpoints:g.checkpoints});}
  const plants=[];for(const [name,start] of [["0_koan_1",73],["0_koan_1",167],["0_welcome",1033]]){const p=parse(solved.sections.find(s=>s.name===name).source_text),c=enc(p.tape,start).cipher,fit=Math.floor(c.length*.8),g=gate(c,p.sing,fit),model=lm(name);
- check(g.origins.includes(start),"true origin pruned");const cand=g.origins.map(origin=>({origin,...decode(c.slice(0,fit),p.sing,origin,model)})).sort((a,b)=>b.score-a.score);const best=cand[0],suffix=decode(c.slice(fit),[],best.origin,model,best);let exact=null,replay=false;if(suffix){const combined=[...best.plain,...suffix.plain];replay=enc(combined,best.origin).cipher.every((x,i)=>x===c[i]);check(replay,"plant replay failure");exact=suffix.plain.filter((x,i)=>x===p.tape[fit+i]).length;}
+ check(g.origins.includes(start),"true origin pruned");const cand=g.origins.map(origin=>({origin,...decode(c.slice(0,fit),p.sing,origin,model)})).sort((a,b)=>b.score-a.score);const best=cand[0],suffix=decode(c.slice(fit),[],best.origin,model,best);let exact=null,replay=false;if(suffix){const combined=suffix.plain;replay=enc(combined,best.origin).cipher.every((x,i)=>x===c[i]);check(replay,"plant replay failure");exact=suffix.plain.slice(fit).filter((x,i)=>x===p.tape[fit+i]).length;}
  plants.push({name,start,len:c.length,fit,origins:g.origins.length,selected:best.origin,truthRank:cand.findIndex(x=>x.origin===start)+1,scoreGap:cand.length>1?best.score-cand[1].score:null,holdout:c.length-fit,exact,replay});}
- check(tests.every(t=>t.survivors===0),"original gate changed");return {tests,plants};
+ check(tests.every(t=>t.survivors===0),"original gate changed");check(plants.every(p=>p.selected===p.start&&p.replay),"plant origin or replay changed");return {tests,plants};
 }
 const result=experiment(JSON.parse(read("resources/liber-primus/lp2-corpus.json")),read("resources/lp2-transcription.txt"),JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json")));
 console.log(JSON.stringify(result,null,2));
