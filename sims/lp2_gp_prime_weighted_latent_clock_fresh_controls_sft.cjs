@@ -1,0 +1,43 @@
+"use strict";
+const fs=require("node:fs");
+function experiment(goldText,dictText,gpText,transcription) {
+ const gold=JSON.parse(goldText),gp=JSON.parse(gpText),pr=gp.prime.map((p,i)=>i?p%13:0),rmap=new Map(gp.runes.map((x,i)=>[x,i]));
+ const words=s=>(s.match(/[\u16a0-\u16ff]+/g)||[]).map(w=>Array.from(w,x=>rmap.get(x)));
+ const sec=gold.sections.map(x=>words(x.source_text)),mod=x=>(x+29)%29;
+ const latin=s=>{s=s.toUpperCase().replace(/QU/g,"CW").replace(/[KQ]/g,"C").replace(/V/g,"U").replace(/Z/g,"S");let out=[];while(s.length){let m=["ING","TH","EO","OE","AE","IA","IO","EA","NG"].find(x=>s.startsWith(x));if(m){out.push(m==="ING"||m==="NG"?21:m==="IO"?27:gp.translit.indexOf(m));s=s.slice(m.length)}else{let v=gp.translit.indexOf(s[0]);if(v<0)return null;out.push(v);s=s.slice(1)}}return out};
+ const lex=new Map();for(const l of dictText.split("\n")){let m=l.match(/^([a-z]+) (\d+)$/);if(!m)continue;let w=latin(m[1]);if(w&&(w.length>1||[3,10,24].includes(w[0]))){let k=w.join(",");lex.set(k,(lex.get(k)||0)+ +m[2])}}
+ const rng=seed=>()=>{seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return seed>>>0};
+ const rotate=(k,n)=>k.slice(n).concat(k.slice(0,n));
+ const canon=k=>Array.from({length:13},(_,i)=>rotate(k,i).join(",")).sort()[0];
+ function encode(P,key,q=0){return P.map(p=>{let c=p?mod(p+key[q]):0;q=(q+pr[p])%13;return c})}
+ function train(ex){let m=new Map(lex);const uni=new Float64Array(29).fill(.25),bi=new Float64Array(841).fill(.1),tri=new Float64Array(24389).fill(.1);for(let j=0;j<sec.length;j++)if(j!==ex){for(const w of sec[j]){let k=w.join(",");m.set(k,(m.get(k)||0)+100)}let p=sec[j].flat();for(let i=0;i<p.length;i++){uni[p[i]]++;if(i)bi[p[i-1]*29+p[i]]++;if(i>1)tri[(p[i-2]*29+p[i-1])*29+p[i]]++}}
+ const norm=(a,n)=>{for(let i=0;i<a.length;i+=n){let z=0;for(let j=0;j<n;j++)z+=a[i+j];for(let j=0;j<n;j++)a[i+j]=Math.log(a[i+j]/z)}};norm(uni,29);norm(bi,29);norm(tri,29);let by=Array.from({length:50},()=>[]);for(const [k,v] of m){let w=k.split(",").map(Number);if(w.length<50)by[w.length].push({w,s:Math.log(v+1)});}for(const x of by)x.sort((a,b)=>b.s-a.s);return {by,uni,bi,tri,lex:m}}
+ function opts(C,by){let out=[];for(const {w,s} of by[C.length]||[]){let q=0,k=Array(13).fill(-1),ok=true;for(let i=0;i<w.length;i++){let p=w[i],c=C[i];if(!p){if(c){ok=false;break}}else{let v=mod(c-p);if(k[q]>=0&&k[q]!==v){ok=false;break}k[q]=v;}q=(q+pr[p])%13}if(ok)out.push({pairs:k.flatMap((x,i)=>x<0?[]:[[i,x]]),advance:q,s})}return out}
+ function searchWindow(options,beamWidth=3000){let states=[{key:Array(13).fill(-1),q:0,s:0,n:0}],log=[],found=new Set(),lastStates=[];for(let wi=0;wi<options.length;wi++){let candidates=options[wi],next=new Map();for(const a of states){for(const o of candidates){let ok=true;for(const [j,k] of o.pairs){let z=a.key[(a.q+j)%13];if(z>=0&&z!==k){ok=false;break}}if(!ok)continue;let key=a.key.slice(),n=a.n;for(const [j,k] of o.pairs){let x=(a.q+j)%13;if(key[x]<0){key[x]=k;n++}}let q=(a.q+o.advance)%13,s=a.s+o.s,id=key.join(",")+":"+q;let old=next.get(id);if(!old||old.s<s)next.set(id,{key,q,s,n});}}
+ states=Array.from(next.values()).sort((a,b)=>b.s-a.s).slice(0,beamWidth);for(const a of states)if(a.n===13)found.add(canon(a.key));log.push([wi,candidates.length,next.size,states.length,found.size]);if(states.length)lastStates=states;if(!states.length||found.size>=1200)break;}
+ let expansions=0;for(const x of lastStates.filter(x=>x.n>=11&&x.n<13).slice(0,12)){const holes=x.key.flatMap((v,i)=>v<0?[i]:[]);const k=x.key.slice();function fill(i){if(i===holes.length){found.add(canon(k));expansions++;return}for(let v=0;v<29;v++){k[holes[i]]=v;fill(i+1)}}fill(0);}
+ return {found,log,expansions}}
+ function recover(Cwords,M){const options=Cwords.map(w=>opts(w,M.by));let ws=[];for(let i=0;i+8<=Cwords.length;i++){let ww=Cwords.slice(i,i+8),op=options.slice(i,i+8);if(op.some(x=>x.length===0))continue;let len=ww.flat().length;if(len<27)continue;let ratio=op.reduce((s,x)=>s+Math.log(x.length),0)/len;ws.push({i,ratio,len})}ws.sort((a,b)=>a.ratio-b.ratio||a.i-b.i);let chosen=[];for(const w of ws){if(chosen.some(v=>Math.abs(v.i-w.i)<4))continue;chosen.push(w);if(chosen.length===5)break;}let keys=new Set(),logs=[];for(const w of chosen){let z=searchWindow(options.slice(w.i,w.i+8));for(const k of z.found)keys.add(k);logs.push({start:w.i,len:w.len,ratio:w.ratio,found:z.found.size,expansions:z.expansions,log:z.log});}return {keys:[...keys].map(k=>k.split(",").map(Number)),logs}}
+ function decode(C,key,M,start=null){let states=new Map();for(let q=0;q<13;q++)if(!start||q===start.q){let x=start||{q,a:29,b:29};states.set(q*900+x.a*30+x.b,{...x,s:0,p:null,initial:q});}for(const c of C){let n=new Map;for(const x of states.values()){let p=mod(c-key[x.q]);for(const z of (c===0?(p?[0,p]:[0]):p?[p]:[])){let q=(x.q+pr[z])%13,a=x.b,b=z,s=x.s+(x.b===29?M.uni[z]:x.a===29?M.bi[x.b*29+z]:M.tri[(x.a*29+x.b)*29+z]);let id=q*900+a*30+b;if(!n.has(id)||n.get(id).s<s)n.set(id,{q,a,b,s,p:x,initial:x.initial});}}states=n;if(!states.size)return null;}let x=[...states.values()].sort((a,b)=>b.s-a.s)[0],out=[],end={q:x.q,a:x.a,b:x.b},score=x.s,initial=x.initial;while(x.p){out.push(x.b);x=x.p}return {P:out.reverse(),end,score,initial}}
+ function decodeWords(Cwords,key,M,start=null) {
+ let states=new Map();for(let q=0;q<13;q++)if(!start||q===start.q){let x=start||{q,a:29,b:29};states.set(q*900+x.a*30+x.b,{...x,s:0,p:null,initial:q});}
+ for(const C of Cwords){let next=new Map();for(const x of states.values()){
+ const word=[];function visit(i,q,a,b,s){if(i===C.length){let freq=M.lex.get(word.join(","))||0;s+=freq?4+.15*Math.log(freq+1):0;let id=q*900+a*30+b;if(!next.has(id)||next.get(id).s<s)next.set(id,{q,a,b,s,p:x,w:word.slice(),initial:x.initial});return;}
+ let c=C[i],p=mod(c-key[q]);for(const z of (c===0?(p?[0,p]:[0]):p?[p]:[])){let v=b===29?M.uni[z]:a===29?M.bi[b*29+z]:M.tri[(a*29+b)*29+z];word.push(z);visit(i+1,(q+pr[z])%13,b,z,s+v);word.pop();}}visit(0,x.q,x.a,x.b,x.s);}
+ states=next;if(!states.size)return null;}
+ let x=[...states.values()].sort((a,b)=>b.s-a.s)[0],out=[],end={q:x.q,a:x.a,b:x.b},score=x.s,initial=x.initial;while(x.p){out.push(x.w);x=x.p}return {P:out.reverse().flat(),end,score,initial};
+}
+ function feasible(C,key){let bits=8191;for(const c of C){let next=0;for(let q=0;q<13;q++)if(bits&(1<<q)){let p=mod(c-key[q]);if(c===0)next|=1<<q;if(p)next|=1<<((q+pr[p])%13)}bits=next;if(!bits)return false;}return true;}
+ function test(Cwords,M,P=null,key=null){let split=0,j=0,C=Cwords.flat();while(j<Cwords.length&&split+Cwords[j].length<=Math.floor(C.length/2)){split+=Cwords[j++].length}let res=recover(Cwords.slice(0,j),M),ranked=res.keys.filter(k=>feasible(C.slice(0,split),k)).map(k=>({k,d:decodeWords(Cwords.slice(0,j),k,M)})).filter(x=>x.d).sort((a,b)=>b.d.score-a.d.score),best=ranked[0],d=best&&decodeWords(Cwords.slice(j),best.k,M,best.d.end),oracle=P?decodeWords(Cwords,key,M,{q:0,a:29,b:29}):null;
+ const match=(x,y)=>x.filter((v,i)=>v===y[i]).length;
+ return {len:C.length,split,keys:res.keys.length,valid:ranked.length,windows:res.logs,rank:key?ranked.findIndex(x=>canon(x.k)===canon(key))+1:null,trueKey:key,top:best?.k,topStart:best?.d.initial,score:best?.d.score,runner:ranked[1]?.d.score,holdout:d?{match:P?match(d.P,P.slice(split)):null,total:d.P.length,score:d.score,preview:d.P.slice(0,100).map(i=>gp.translit[i]).join(""),replay:encode(d.P,best.k,best.d.end.q).every((v,i)=>v===C[split+i])}:null,prefixMatch:best&&P?match(best.d.P,P.slice(0,split)):null,prefixReplay:best?encode(best.d.P,best.k,best.d.initial).every((v,i)=>v===C[i]):null,knownKeyExact:oracle&&P?match(oracle.P,P):null,zero:C.filter(x=>x===0).length,trueF:P?P.filter(x=>x===0).length:null}}
+ let controls=[];for(const ex of [1,3,4,5]){let M=train(ex),P=sec[ex].flat(),rand=rng(67890+ex*101),key=Array.from({length:13},()=>rand()%29),C=encode(P,key),offset=0,Cwords=sec[ex].map(w=>{let z=C.slice(offset,offset+w.length);offset+=w.length;return z});controls.push({ex,...test(Cwords,M,P,key)})}
+ // Preselected original chapter 2 in the transcription (p3–7; 1,145 runes).
+ // Remove line/page wrap marks rather than converting them to word separators.
+ const ch=transcription.split("$")[1].replace(/[/%\s]/g,"");
+ const original=words(ch);
+ const gate=controls.every(x=>x.rank===1&&x.holdout&&x.holdout.match/x.holdout.total>=.95);
+ return {controls,gate,chapter:{runes:original.flat().length,first:original[0]},original:null};
+}
+const paths=["resources/external/relikd-solved-gp29-native-v1.json","resources/control/english_wordfreq_textblob.txt","resources/liber-primus/lp2-corpus.json","resources/liber-primus/lp2-transcription.txt"];
+console.log(JSON.stringify(experiment(...paths.map(p=>fs.readFileSync(p,"utf8"))),null,2));
