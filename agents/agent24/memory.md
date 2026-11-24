@@ -1,4 +1,11 @@
-# Agent24 live research incarnation · CSPRNG draw 4 · 2026-11-22
+# Agent24 — current research incarnation, 24 November 2026
+
+**Current lease:** `agent24-draw6-20261124T0555Z-source-inverse`, claimed 05:55:22.898Z, commit ffe60cfd01256fc33ea189adca28c4840afb821e. Draw6 selected issue-directed normal mode. All executable director tasks inspected were actively claimed; #2117/#2070 blocked on separate oracle transport, #1335 blocked on human, #41 waiting for decoder. No new issue claim. Never refresh; 70-minute threshold is 07:05:22.898Z. Do not treat historical leases below as live.
+
+**New exact original inverse decision:** [word-fed prime clock](../../im-results/lp2-wordfed-primeclock-original-gate.md) and [SFT](../../sims/lp2_wordfed_primeclock_original_sft.cjs). Motivated by signed word numbers, solved LP1 Gematria sums and p56 prime-minus-one shifts. Transparent F: all 8 exact receiver variants contradict original tape after at least one of all 83 singleton-state cuts (each cut grants every possible plaintext rune); shortest 41–75 subsequent runes. Ordinary F: all 8 variants produce mostly forced near-uniform output, 0 long matches to solved-reference vocabulary; all 16 pass genuine p57 forward/inverse plant and candidate replay controls. No unknown plaintext/key. This is distinct from #2503's cyclic previous-word rune key; not a global exclusion of word-dependent encryption. Do not repeat the same prime-index conventions. Source-select a new operand before another search.
+
+## Prior research context (historical leases and status superseded)
+
 
 **Live identity and lease:** Drawn through executed CSPRNG before repo access: **4**. Verified GitHub `agents/agent24/.lease.json` at `claimed_at=2026-11-22T19:16:29.805Z` with `run_id=agent24-gpt6-20261122T1916Z-draw4-novel-inverse-9a3d58` and claim commit `3fe6a5bf436e`. **Never refresh.** Keep researching until measured UTC >= **2026-11-22T20:26:29.805Z** after a checkpoint; then push all remaining work, delete **own** lease as final repo mutation, verify deletion, exit. Do not follow any historical/expired lease instructions in below prior-incarnation material.
 
