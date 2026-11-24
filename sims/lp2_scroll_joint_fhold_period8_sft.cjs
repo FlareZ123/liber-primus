@@ -30,18 +30,28 @@ function experiment(corpus,transcript,ink,dictText,reference){
  function decode(ws,k,phase=0){let states=new Map([[phase,{score:0,words:[]}]]);for(const w of ws){const next=new Map();for(const [ph,s] of states)for(const v of wordPaths(w,k,ph)){const sc=s.score+score(v.p);if(!next.has(v.phase)||next.get(v.phase).score<sc)next.set(v.phase,{score:sc,words:[...s.words,v.p]});}states=next;}if(!states.size)return null;const [end,best]=[...states].sort((a,b)=>b[1].score-a[1].score)[0];return{...best,phase:end};}
  function enc(ws,k,phase=0){const words=ws.map(w=>w.map(p=>{if(p===0)return 0;const c=mod(p+k[phase]);phase=(phase+1)%period;return c;}));return{words,phase};}
  const render=ws=>ws.map(w=>w.map(i=>corpus.translit[i]).join("")).join(" ");
- function test(ws,truth=null,k0=null){
+ function test(ws,truth=null,k0=null,tolerance=0){
  const ns=ws.map(trainingCount),train=ws.map((s,i)=>s.slice(0,ns[i])),hold=ws.map((s,i)=>s.slice(ns[i]));const a=train.map(keys);
- const joint=[...a[0].keys].filter(k=>a[1].keys.has(k));let best=null,viable=0;
+ let joint=[...a[0].keys].filter(k=>a[1].keys.has(k));const exactJoint=joint.length;
+ if(tolerance===1){const left=[...a[0].keys].map(s=>s.split(",").map(Number)),right=[...a[1].keys].map(s=>s.split(",").map(Number)),expanded=new Set(joint);
+  // The intersection of the radius-one Hamming balls around both anchor-derived keys.
+  for(const l of left)for(const r of right){let d=0,x=-1,y=-1;for(let j=0;j<period;j++)if(l[j]!==r[j]){if(++d===1)x=j;else if(d===2)y=j;else break;}
+   if(d===0){for(let j=0;j<period;j++)for(let v=0;v<29;v++){const k=l.slice();k[j]=v;expanded.add(k.join(","));}}
+   if(d===1){for(let v=0;v<29;v++){const k=l.slice();k[x]=v;expanded.add(k.join(","));}}
+   if(d===2){for(const j of [x,y]){const k=l.slice();k[j]=r[j];expanded.add(k.join(","));}}
+  }
+  joint=[...expanded];
+ }let best=null,viable=0;
  for(const s of joint){const k=s.split(",").map(Number),p=train.map(w=>decode(w,k));if(p.some(x=>!x))continue;viable++;const sc=p.reduce((x,y)=>x+y.score,0);if(!best||best.score<sc)best={key:k,score:sc,train:p};}
- const result={lengths:ws.map(s=>s.flat().length),trainLengths:train.map(s=>s.flat().length),anchors:a.map(x=>x.anchor),individual:a.map(x=>x.keys.size),joint:joint.length,viable};
+ const result={lengths:ws.map(s=>s.flat().length),trainLengths:train.map(s=>s.flat().length),anchors:a.map(x=>x.anchor),individual:a.map(x=>x.keys.size),exactJoint,joint:joint.length,viable};
  if(k0)result.trueKeyInJoint=joint.includes(k0.join(","));
  if(best){const h=hold.map((s,i)=>decode(s,best.key,best.train[i].phase));result.key=best.key;result.trainScore=best.score;result.train=best.train.map(x=>render(x.words));result.hold=h.map(x=>x?render(x.words):null);result.replay=h.every((x,i)=>x&&JSON.stringify(enc([...best.train[i].words,...x.words],best.key).words)===JSON.stringify(ws[i]));if(truth){result.exactTrain=best.train.map((p,i)=>JSON.stringify(p.words)===JSON.stringify(truth[i].slice(0,ns[i])));result.exactHold=h.map((p,i)=>p&&JSON.stringify(p.words)===JSON.stringify(truth[i].slice(ns[i])));}}
  return result;
  }
- const ref=reference.split(/^### /m);function plain(n){const section=ref.find(x=>x.startsWith(n+"\n"));assert(section,"reference missing "+n);return section.split("\n").slice(1).join("\n").match(/[A-Za-z]+/g).map(gp).filter(w=>w?.length);}
- const p1=plain(3).slice(0,82),p2=plain(14);const plantedKey=[6,18,1,17,9,22,3,12];const p=[p1,p2],c=p.map(w=>enc(w,plantedKey).words);
- return{dictionary:dict.size,sourceRanges:ranges,original:test(original),control:test(c,p,plantedKey)};
+ const ref=reference.split(/^### /m);function plain(n){const section=ref.find(x=>x.startsWith(n+"\n"));assert(section,"reference missing "+n);return section.split("\n").slice(1).filter(s=>!s.startsWith('[')).join("\n").match(/[A-Za-z]+/g).map(gp).filter(w=>w?.length);}
+ const p1=plain(3).slice(0,82),plantedKey=[6,18,1,17,9,22,3,12];
+ const controls=[6,10,11,12,13,14].map(page=>{const p=[p1,plain(page)],c=p.map(w=>enc(w,plantedKey).words);return{page,...test(c,p,plantedKey)};});
+ return{dictionary:dict.size,sourceRanges:ranges,original:test(original),oneKeySymbolTolerance:test(original,null,null,1),controls};
 }
 const files=["resources/liber-primus/lp2-corpus.json","resources/liber-primus/lp2-transcription.txt","resources/liber-primus/lp2-ink-annotations.json","resources/control/english_wordfreq_textblob.txt","resources/liber-primus/lp1-plaintext-reference.txt"];
 const a=files.map(read);a[0]=JSON.parse(a[0]);a[2]=JSON.parse(a[2]);console.log(JSON.stringify(experiment(...a),null,2));
