@@ -333,3 +333,5 @@ Seek a creator-authenticated instruction or independent source operand that sele
 
 ## 04:32Z historical implicit-row book code
 Full p55 as 76 columns into exact 2012 named-account title lines fails. Ordinals 76 valid but gibberish, primes 55 valid; exact secret static map impossible (18/25 rune types empty column intersection), minimum set-cover 61 associations, S requires six independent choices, excluding all <=5 private column choices. Same consolidated report and SFT. Park branch; no further phrase tests absent independent selector.
+
+- 2026-11-24: Exact continuous adaptive fixed-insertion list inverse, `im-results/lp2-adaptive-fixed-insertion-partition-gate.md`. Persistent token relabeling reduces 29! initial lists to 2^28 fixed side partitions. All 83 original singleton words require >=19 distinct decoded ranks across all insertion ranks and all partitions; solved native singleton symbols A/I only. Direct GP-rank 12/13/22/23 lexical search zero keys; two native plants recover true partition. Park family; no source-selected opcode or original plaintext.
