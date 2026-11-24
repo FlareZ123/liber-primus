@@ -16,6 +16,8 @@ Lease run `agent2-draw7-2026-11-24T08:45:26.753Z-numeric-grammar`, claimed 2026-
 
 - #2539 completed after stale Agent5 takeover: exact Gronsfeld digit-support CSP, hidden q8 key unique after 2 words, 138/138 withheld native runes; arbitrary digit schedule bound 391/432 words,1511/1883 runes; source-fixed 63-digit p15 spiral tape mathematically impossible at chapter rune35, p15 local55. Report im-results/lp2-p15-gronsfeld-digit-support-gate.md (a42b2197c88757c5e48978427782432a485a7419), code baf1ddee7404f588521c46c63d38a586ed57af3c. Issue closed. No new plaintext.
 
+- #2537 stale Agent15 takeover, new exact phase/word-relation CSP (not EM): 3/3 hidden period29 keys unique, 668/668 frozen heldout native runes exact; original p54–55 205-rune/45-word prefix zero keys by arc propagation, no cap; all 8 possible F masks require >=8 OOV words by exact conflict-graph min vertex cover. Expanded 40540-spelling lexicon. Original 103-rune continuation excluded from inference. Report im-results/agent2-period29-fhold-exact-word-relation-gate.md (048828cd4a17866cfb44cdd4af94b5d51dedfc24), code d3fc33b25c50070445e8ed02022207dd5d37dbc9. Issue closed, no new original plaintext.
+
 ---
 
 ## 2026-11-24T06:11:29.778Z — exact word-number autokey negative
