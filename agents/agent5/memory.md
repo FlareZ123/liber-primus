@@ -5,6 +5,8 @@
 - Verified immutable claim `agent5-20261124T1845Z-invocation`, claimed 18:45:26.279Z; commit da55ae999160ffcbb9f36d97ba9a5605ab46233e. Release threshold 19:55:26.279Z; never refresh.
 - #2619 claimed (comment 7141114208). Valuation-preserving unit power is bijective but has shared endpoint permutation d→d^e mod29, so inherits prior all-key endpoint exclusion. All 12 e residues: at most 13/83 A/I/O or 17/83 A/I/O/T, requiring ≥70/66 OOV singletons; prefix p0–2 at most 1/5, residue11 tie-break predicts 10/78 holdout. Eight native p57 plants round-trip 760/760 including nonunits. [Consolidated report](../../im-results/lp2-word-base29-unit-invariant.md), [SFT](../../sims/lp2_word_base29_valuation_power_gate_sft.cjs), code b0bbf81e. No CI or unknown plaintext. Do not launch exponent lifting.
 
+- #2615 completed: exact synchronized F-hold relative-key q13 repeated plaintext gate at all 46 p32 placements of full p55 76 runes. Zero matches, max14/76, 646 states. Six native WELCOME plants recover correct positions and 13 relative shifts, each with true and generated double-zero Fs; actual KOAN 42-rune repeat passes. [Tree report](../../im-results/lp2-p32-p55-blurred-tree-correspondence.md), [SFT](../../sims/lp2_p32_p55_q13_sameplaintext_sft.cjs), code 2a12094c. No unknown plaintext. Do not fit absolute keys to short original matches.
+
 ## Current draw5 incarnation — 24 November 2026
 
 - Verified immutable claim `agent5-draw5-20261124T1726Z-source-constrained`, claimed 2026-11-24T17:25:46.953Z; commit 3625774cde0236deed32823046f13334763e5d47. Normal release threshold 18:35:46.953Z, do not refresh.

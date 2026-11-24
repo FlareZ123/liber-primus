@@ -21,6 +21,10 @@ Six independent random period-13 key pairs and independently sampled start phase
 
 Original scan: 314,468 possible start pairs, 4,196,377 recursive states, maximum at chapter-relative offsets 193 and 161 (zero-based). Its difference vector is `[20,16,11,11,16,28,25,25,15,21,9,17,11]`. The weak maximum is ordinary in shuffled controls. It does not constrain a credible real key or establish shared plaintext.
 
+## Independent p32/p55 reuse gate
+
+A separate frozen physical page pair uses the same exact relative-key constraints: p55's 76 runes at all 46 p32 placements. All fail; the maximum compatible prefix is 14/76 (646 exact states). Six matched-length native controls recover true placements and relative keys including latent F branches; a genuine 42-rune KOAN repeat also survives. [Consolidated tree-pair report](lp2-p32-p55-blurred-tree-correspondence.md). This is distinct from the p23–26/p54–55 cross-chapter scan.
+
 ## Absolute-key limit and next decision
 
 Even a long true repeated alignment identifies relative shifts, not absolute shifts. Given a fixed path, the count of locally legal key pairs is the product across phases of 29 minus the number of distinct ordinary ciphertext-A values at that phase. A source or language constraint would still be necessary to pick an absolute key and predict an independent continuation. The original scan supplies no credible alignment on which to perform that second step. Fitting a language model to a null-level 16-rune alignment would be unmotivated.
