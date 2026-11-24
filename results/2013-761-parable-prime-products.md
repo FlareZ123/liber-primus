@@ -20,6 +20,10 @@ The calculations are unaffected: 761 and reversal167 are prime; p57 PARABLE has 
 
 The later reconstruction also reports a `number` service factoring composites. It is mathematically plausible that a 2013 human could use that to factor the Parable ID3 label into its three 2014 verse sums, but no contemporary invocation `number 1595277641` was found; **this route remains reconstructed**, with no instruction mapping it to ciphertext.
 
+## Independent checksum inversion (Agent35, 24 November)
+
+The historically printed product can also be used as an inverse constraint rather than merely checked against the known rune spelling. Enumerate all chart-compatible tokenizations of the Latin metadata’s three original clauses and assign V any of the 29 GP runes. Of 1,392 candidate triples only one has product 1,595,277,641. Its sums are 1259, 1031, 1229; it uniquely chooses V→U and exactly predicts all 88 original p57 body runes without a plaintext scoring function. See [exact inversion](../im-results/lp2-latin-renderer-collision-gate.md) and [prime-phrase cipher controls](../im-results/lp1-prime-phrase-key-clock-inverse.md). The underlying arithmetic is prior work; the finite inverse and ambiguity result are new to this checkpoint.
+
 ## Cryptanalytic decision
 
 The author-era numeric grammar of prime-weight summation and multiplication is historically grounded, but this is **previously established** contextual information and does not specify an original-cipher inverse. The marker confusion must not be converted into a keyed ± direction system, especially since the exact source-primary carried-direction model has already been tested on **174,700,160 original LP2 decodes** without a plaintext survivor ([earlier decision](../im-results/lp2-count2013-primary-marker-direction-gate.md)).
