@@ -89,6 +89,48 @@ function experiment(corpus,source,control,assert) {
   const regions=[[0,55],[16,21],[40,53]].map(([lo,hi])=>region(lo,hi));
   assert(regions[0].n===12956&&regions[0].starts===2896,"original count");
   for(const x of regions)assert(x.freeFlagMaxTop5<x.control.minTop5,"original region below every donor window");
+
+  // Grant independently chosen GP58 maps on any partition of the physical
+  // rune-bearing pages. Optimize the bound over every possible cut set.
+  function rekeyEnvelope(lo,hi){
+    const hist=[];
+    for(let p=lo;p<=hi;p++){
+      const page=tape.filter(x=>x.page===p);
+      if(page.length)hist.push(counts(page.map(x=>2*x.rune+x.flag),58));
+    }
+    const m=hist.length;
+    const n=hist.flat().reduce((a,b)=>a+b,0);
+    const weights=Array.from({length:m},()=>Array(m+1).fill(null));
+    for(let i=0;i<m;i++){
+      let h=Array(58).fill(0);
+      for(let j=i;j<m;j++){
+        h=h.map((x,k)=>x+hist[j][k]);
+        const hr=Array.from({length:29},(_,k)=>h[2*k]+h[2*k+1]);
+        weights[i][j+1]=[top(h,10),top(hr,10)];
+      }
+    }
+    return [0,1].map(mode=>{
+      let dp=Array(m+1).fill(-Infinity);dp[0]=0;
+      const maxByK=[];
+      for(let k=1;k<=m;k++){
+        const next=Array(m+1).fill(-Infinity);
+        for(let j=k;j<=m;j++){
+          for(let i=k-1;i<j;i++)next[j]=Math.max(next[j],dp[i]+weights[i][j][mode]);
+        }
+        dp=next;
+        maxByK.push(dp[m]/n);
+      }
+      return {mode:mode===0?'fixed tuples':'free flag reflow',maxByK};
+    });
+  }
+  for(const x of regions){
+    x.rekeyEnvelope=rekeyEnvelope(x.lo,x.hi);
+    const [fixed,free]=x.rekeyEnvelope;
+    assert(fixed.maxByK.at(-1)<x.control.minTop5,'even page-private fixed tuples fail donor minimum');
+    x.minimumFreeRekeyBlocks=free.maxByK.findIndex(v=>v>=x.control.minTop5)+1;
+  }
+  assert(regions.map(x=>x.minimumFreeRekeyBlocks).join(',')==='12,2,3','rekey thresholds');
+
   // A distinct genuinely space-changing plant: arbitrary 58-symbol bijection
   // with a known inverse, plus reversal of the boundary channel.
   const p57=tape.filter(x=>x.page===57);
