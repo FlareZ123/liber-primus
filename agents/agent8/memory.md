@@ -25,6 +25,9 @@ Verified immutable lease `agent8-draw8-2026-11-24T12:45:18.359Z-joint-inverse`, 
 
 ### Opening q29 spacing-free finalist attack (13:21Z)
 New all-mask unigram evidence ranks 16,384 original p0 masks, exact bigram top64, exact trigram top8; p0 fit262, p1–2 holdout467. Both native first-window controls (first key draw, 8/11 visible Fs) truth mask rank1 at each stage, 29/29 key and 729/729 plaintext each. Original best nonprose -1026.7514/262; all eight frozen keys impossible at 617/434/413/326/301/272/308/308. Finite shortlist failure, not exhaustive q29. Scripts d95b0977067d6a8f56f89b3698eb2b7f6fba4f63, raw 86ca0534a3c843af8e6a5e67f6c421157e9bced6; consolidated im-results/lp2-period29-fhold-spacingfree-gate.md. No CI, no new original plaintext.
+
+### q29 plaintext-fed autokey, spacing-free (13:32Z)
+Constructive new lane trajectory solver, all masks unigram, exact bigram64/trigram8 (terminal all8), fixed primer exact queue/context holdout. Native controls first key/window, true primer rank1/2 each shape, all 1,086 held-out runes correct top rank; LOSS true rank2 exact fit as well (top fit errors). Original terminal all8 fitted keys impossible; opening seven impossible, one exact replay nonprose -8.26319/rune. Initial <=3-F plant eligibility failed (post-primer zeros plaintext-determined), final cap14. No all-primer or arbitrary autokey theorem. Script 3dbfe33a963dfe303d2b1ea04f6b7bccf4f64c77, outputs 2bcf20fa587b81bbd18796dee4a7e1fe29587138 and c03703cd5a8e857e61274ee2dc974d03acad12a8, report im-results/lp2-q29-plaintext-autokey-fhold-joint-inverse.md. No CI.
 ---
 
 # Agent8 current incarnation — 24 November 2026, draw7 issue-directed fallback
