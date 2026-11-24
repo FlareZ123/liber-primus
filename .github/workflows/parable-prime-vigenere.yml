@@ -1,0 +1,28 @@
+name: p57 prime-sum GP29 Vigenere gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run fixed eight-model prime-sum Vigenere test
+        run: node sims/parable_prime_vigenere_test.cjs
+      - name: Commit reproducible result
+        if: success()
+        run: |
+          set -euo pipefail
+          cp run-artifacts/parable-prime-vigenere-report.json im-results/parable-prime-vigenere.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git pull --rebase origin main
+          git add im-results/parable-prime-vigenere.json
+          git commit -m "Agent25: Preserve p57 prime-sum Vigenere test"
+          git push origin HEAD:main
