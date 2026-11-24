@@ -77,3 +77,44 @@ assert.equal(tail.length,13592);
 assert.equal(match,18106);
 assert.equal(tailB64.slice(match),'EB8E/cYf0kdRPiNaI=');
 console.log(JSON.stringify({width,height,depth,type,interlace,filterCounts,grayCounts:grayCounts.slice(0,8),graySum,grayMean:graySum/(width*height),alpha:255,planes,mirrorTailBytes:tail.length,base64PaddingMatch:match,unclassifiedSuffix:tailB64.slice(match)},null,2));
+
+// Independently archived profile copy shared by the 2013 and 2014 paths.
+// This is an RGB8, non-interlaced image with Sub on every row.
+const profile=load('cicada2013-2014-twitter-profile.png.b64');
+assert.equal(gitBlob(profile),'0c1f977b134d4779b10ac26ffbd84c029d3163d7');
+assert.equal(profile.readUInt32BE(16),400);
+assert.equal(profile.readUInt32BE(20),400);
+assert.deepEqual([...profile.subarray(24,29)],[8,2,0,0,0]);
+const pdat=[];
+for(let i=8;i<profile.length;){
+  const n=profile.readUInt32BE(i),type=profile.toString('ascii',i+4,i+8);
+  if(type==='IDAT')pdat.push(profile.subarray(i+8,i+8+n));
+  i+=n+12;
+}
+const pr=zlib.inflateSync(Buffer.concat(pdat)), w=400,h=400,ps=w*3;
+assert.equal(pr.length,h*(ps+1));
+const pp=Buffer.alloc(w*h), hist=Array(256).fill(0);
+for(let y=0;y<h;y++){
+  assert.equal(pr[y*(ps+1)],1);
+  const row=Buffer.alloc(ps);
+  for(let x=0;x<ps;x++)row[x]=(pr[y*(ps+1)+x+1]+(x>=3?row[x-3]:0))&255;
+  for(let x=0;x<w;x++){
+    assert.equal(row[3*x],row[3*x+1]); assert.equal(row[3*x],row[3*x+2]);
+    pp[y*w+x]=row[3*x]; hist[row[3*x]]++;
+  }
+}
+assert.deepEqual(hist.slice(0,8),[149060,1943,1819,1625,1509,2200,1841,3]);
+assert.equal(hist.slice(8).reduce((a,b)=>a+b,0),0);
+const at=(x,y)=>pixel[Math.max(0,Math.min(height-1,y))*width+Math.max(0,Math.min(width-1,x))];
+let sums=Array(6).fill(0);
+for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+  const sx=(x+.5)*width/w-.5,sy=(y+.5)*height/h-.5;
+  const ix=Math.floor(sx),iy=Math.floor(sy),u=sx-ix,v=sy-iy;
+  const a=at(ix,iy)*(1-u)*(1-v)+at(ix+1,iy)*u*(1-v)+at(ix,iy+1)*(1-u)*v+at(ix+1,iy+1)*u*v;
+  const b=pp[y*w+x];
+  sums[0]+=a;sums[1]+=b;sums[2]+=a*a;sums[3]+=b*b;sums[4]+=a*b;sums[5]+=(b-a)**2;
+}
+const n=w*h,cor=(sums[4]-sums[0]*sums[1]/n)/Math.sqrt((sums[2]-sums[0]**2/n)*(sums[3]-sums[1]**2/n)),rmse=Math.sqrt(sums[5]/n);
+assert(Math.abs(cor-0.9336772008445936)<1e-10);
+assert(Math.abs(rmse-0.46690029889990703)<1e-10);
+console.log(JSON.stringify({profile:{w,h,filterCounts:[0,400,0,0,0],grayHistogram:hist.slice(0,8),correlation:cor,rmse}},null,2));
