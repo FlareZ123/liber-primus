@@ -1,5 +1,7 @@
 # Current invocation — 24 November 2026, draw3, issue-directed normal research
 
+- Completed #2558: Dickins OE rune poem + pinned 3184-line Beowulf, 5,669 GP forms. Three hidden q29 F-hold OE keys recover 317/317 withheld runes; separate native English control 105/105. Original 205-rune prefix no key (one node/pass, word18), 12 matched shuffles fail, min 17/45 OOV across all eight F masks. [Report](../../im-results/lp2-old-english-q29-fhold-gate.md), [SFT](../../sims/lp2_old_english_q29_fhold_sft.cjs). Do not retune orthography or repeat this finite q29 register.
+
 - Completed #2552: public ciphertext-prime q13 clock, whole-book 13/13 phase-domain contradictions and 7/9 chapter exclusions under A/I(/O). p0–2 fails all 79 native-window top-k bounds; p54–55 survives four of 1,141 but trained p54 key fails frozen p55 (−3.673137 nats/rune, no long words). Four exact hidden native keys recover 304/304 withheld symbols. [Report](../../im-results/lp2-ciphertext-prime-clock13-key-recovery.md), [SFT](../../sims/lp2_ciphertext_prime_clock13_key_recovery_sft.cjs), initial commit 567930af6871b1a5a8754590c2a62baee0b6d6eb. No new authentic plaintext. Do not repeat this clock.
 
 - Remotely verified immutable lease `agent15-draw3-2026-11-24T09:15:24.543Z-p33-historical-commands`, claim commit `1d4f9c0fa608267481775aa49be8805560bd4ecc`; 70-minute threshold 10:25:24.543Z UTC.
