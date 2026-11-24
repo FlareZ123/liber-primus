@@ -1,6 +1,6 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path');
-function recover(d,trans,native,lex){
+function recover(d,trans,native,lex,ink){
  const gp=d.runes,mp=new Map(gp.map((v,i)=>[v,i])),alpha=new Map(d.translit.map((v,i)=>[v,i]));
  const parse=s=>[...s].filter(c=>mp.has(c)).map(c=>mp.get(c));
  const words=s=>(s.replace(/[\/%\r\n'’]/g,"").match(new RegExp("["+gp.join("")+"]+","gu"))||[]).map(parse);
@@ -44,7 +44,9 @@ function recover(d,trans,native,lex){
  function prefix(wds,n){let len=0;const a=[];for(const w of wds){if(len+w.length>n)break;a.push(w);len+=w.length;}return a;}
  const section=[];let off=0;for(const w of ws){if(off>=12648)section.push(w);off+=w.length;}
  const out={lexicon:dict.size,original:[],controls:[]};
- for(const [name,w] of [["opening",ws],["terminal",section]]){
+ const red=ink.physical_zero_based.red_words;const start=ink.physical_zero_based.large_punctuation[0].after_runes;
+ check(start===13&&red.length===2&&eq(ws.slice(0,2).flat(),red.flatMap(w=>w.gp_indices)),"p0 original rubric boundary");
+ for(const [name,w] of [["opening",ws],["p0-black-body",ws.slice(2)],["terminal",section]]){
   const fit=prefix(w,200),s=solve(fit);out.original.push({name,fitWords:fit.length,fitRunes:fit.flat().length,...s});
  }
  for(const [name,seed] of [["0_welcome",7],["jpg107-167",11]]){
@@ -63,4 +65,4 @@ function recover(d,trans,native,lex){
  return out;
 }
 const read=p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8');
-console.log(JSON.stringify(recover(JSON.parse(read("resources/liber-primus/lp2-corpus.json")),read("resources/liber-primus/lp2-transcription.txt"),JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json")),read("resources/control/english_wordfreq_textblob.txt")),null,2));
+console.log(JSON.stringify(recover(JSON.parse(read("resources/liber-primus/lp2-corpus.json")),read("resources/liber-primus/lp2-transcription.txt"),JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json")),read("resources/control/english_wordfreq_textblob.txt"),JSON.parse(read("resources/liber-primus/lp2-p0-physical-ink-override.json"))),null,2));
