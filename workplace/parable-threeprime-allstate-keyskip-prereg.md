@@ -13,7 +13,7 @@ The 2013 audio ID3 Parable value and solved p57 body-clause GP-prime sums give N
 ## Frozen search
 
 - Modulus: full N = 1,595,277,641 only.
-- State domain: every x1 = x0² mod N, represented exactly by CRT over the three component quadratic-residue sets (sizes 630, 516, 615; 199,924,200 states).
+- State domain: every x1 = x0² mod N, represented exactly by CRT over the three component quadratic-residue sets (sizes 630, 516, 615; 199,924,200 states). The established generator initializes x=seed² and squares once more before emitting the first bit; its seed-3301 control therefore starts from x=3301⁴ mod N, which is checked inside this exhaustive x1 domain.
 - Key extraction: five successive state LSBs packed MSB-first, then value mod29. This is the source-native planted-positive format; no other output format is searched.
 - Cipher: GP29 additive, both signs.
 - Clock: page-reset.

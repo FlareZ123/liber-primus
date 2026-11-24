@@ -14,7 +14,8 @@ const lmBuffer=Buffer.concat(arrays.map(a=>Buffer.from(a.buffer,a.byteOffset,a.b
 const cipher=Buffer.from(corpus.pages[0].indices.slice(0,28));
 if(cipher.length!==28)throw new Error("p0 head length mismatch");
 const N=BigInt(1259*1031*1229);
-const trueState=Number((3301n*3301n)%N);
+const firstSquare=(3301n*3301n)%N;
+const trueState=Number((firstSquare*firstSquare)%N);
 const trueKey=Buffer.from(pad(N,3301,"bits5-msb"));
 fs.mkdirSync(path.join(root,"run-artifacts"),{recursive:true});
 fs.writeFileSync(path.join(root,"run-artifacts/lm.bin"),lmBuffer);

@@ -110,7 +110,7 @@ int main(int argc,char**argv){
   uint64_t a=trueState%P,b=trueState%Q,c=trueState%R;
   uint64_t recon=(a*cp+b*cq+c*cr)%N;
   if(recon!=trueState)throw runtime_error("CRT does not reconstruct known source state");
-  if(!((a*cp+b*cq+c*cr)%N==trueState))throw runtime_error("known state absent from CRT domain");
+  if(!binary_search(rp.begin(),rp.end(),(int)a)||!binary_search(rq.begin(),rq.end(),(int)b)||!binary_search(rr.begin(),rr.end(),(int)c))throw runtime_error("known state absent from quadratic-residue CRT domain");
 
   priority_queue<Candidate,vector<Candidate>,MinCmp> heap;
   uint64_t processed=0;
