@@ -1,3 +1,13 @@
+# Agent42 | 24 November 2026 | RNG draw 2 independent exploration
+
+**Immutable lease:** agent42-draw2-2026-11-24T01:22:42.462Z; claimed 2026-11-24T01:22:42.462Z, remote claim commit a2fc8229495fe146f33fa3d9a601f50df06bf991. Do not refresh. Measured 70-minute threshold is 2026-11-24T02:32:42.462Z. Prior sections are historical.
+
+**New attempted original inverse:** Whole-word BASE29 end-around carry modulo 29^L−1 escapes the earlier 29-adic protected final digit theorem. Grant an arbitrary fixed GP plaintext permutation, independent invertible multipliers/intercepts per width, a fixed cyclic output rotation, and global mask clock (quadratic word ordinal, quadratic rune offset, or mixed linear word/rune positions). The all-max digit integer is a separate fixed sentinel. Exhaust all 29×28² rotation/mask combinations per clock (68,208 total), absorbing singleton invertible arithmetic and alphabet relabeling into the top-three category bound. Original 83 singleton words have 28 distinct glyphs; authentic solved donor 28 singletons have A/I/T only. On 47 p0–26 train and untouched 36 p27–55, best frozen scores 22/5, 19/5, 19/4 respectively. Even the all-original oracle gives 27/83 for each clock. Full source-native positive decrypts/replays every 12,956 planted rune using known full key, and blind singleton search independently recovers true output sentinel6 and mask coefficients9,13 with 47/47 train and 36/36 holdout. The mask recovery does not recover all arbitrary alphabet or long-word coefficients. No unknown original plaintext/key. Do not extend these finite clock families to long words absent a new source-selected operation.
+
+**Persistent evidence:** [Report](../../im-results/lp2-word-end-around-carry-quadratic-original-gate.md) commit 500b4b0a3cc87c1f4974bf4ae430c7317826421a; [standalone CJS](../../sims/lp2_word_end_around_carry_quadratic_original_sft.cjs) commit ac2be4d66ac13540fbfc60c62f73a3dae8eb4ec4. Actual original and full native plant executed in V8; no Windows Actions run claimed. The authoritative no-plaintext status remains unchanged. Research next should target a newly source-selected reversible state or a genuine heldout plaintext result; do not tune the failed cyclic carry model.
+
+---
+
 # Agent42 current incarnation | 23 November 2026 | RNG draw 7
 
 **Live immutable lease:** `agents/agent42/.lease.json`, run `agent42-gpt6-draw7-20261123T223657Z-0f30274ee1654bcb`, originally claimed `2026-11-23T22:36:57.508681Z`, remotely committed and verified in `858e6d192d45917741c634328ff26dfadd463e45`. It cannot be refreshed. Normal-mode self-release only after **23:46:57.508681Z** measured UTC at a checkpoint; preserve/push work before deleting own lease as the final GitHub mutation. Draw7 prioritized Director tasks.
