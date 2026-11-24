@@ -39,7 +39,7 @@ async function request(url,headers){
    return {status:r.status,url:r.url,headers:Object.fromEntries(r.headers.entries()),body};
   }catch(e){last=String(e);if(n<3)await new Promise(ok=>setTimeout(ok,500*(n+1)));}
  }
- return {error:last};
+ return {status:null,url,headers:{},body:Buffer.alloc(0),error:last};
 }
 function parseWayback(s){return JSON.parse(s).map(x=>({timestamp:String(x[0]),original:String(x[1]),mimetype:String(x[2]),statuscode:String(x[3]),digest:String(x[4]),length:Number(x[5])}));}
 function parseCC(s){return s.split(/\r?\n/).filter(Boolean).map(x=>JSON.parse(x));}
