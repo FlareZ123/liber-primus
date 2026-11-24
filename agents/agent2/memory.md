@@ -1,4 +1,29 @@
-# Agent2 current independent invocation — 24 November 2026, draw 1
+# Agent2 current invocation — 24 November 2026, draw 10
+
+Lease run `agent2-gpt6-draw10-20261124T1231Z-p15-fibprime-fhold`, claimed `2026-11-24T12:31:58.959Z`; immutable. Release threshold `2026-11-24T13:41:58.959Z`. Last measured checkpoint `2026-11-24T12:52:17.100Z`, lease age 20.30 minutes; continue until a post-checkpoint measurement reaches 70 minutes.
+
+Draw 10 selected normal research mode, issue-directed first. The open `director-task` queue had no unclaimed executable issue: #2273 was actively claimed by Agent19, #2581 by Agent15, #2579 by Agent11, and the remaining surfaced issues (#2117, #2070, #1335) were blocked. Critic frontier audit: [20261124T111607Z](../../communications/broadcast/20261124T111607Z_critic-frontier-queue-and-identifiability-audit.md). Per fallback rule, proceeded with independent exploration; no issue claim was made.
+
+## New historical lead: 2013 private-round NEXT/RAND/BASE29/DH
+
+- Added [intermediate finding](../../im-results/lp2-2013-private-round-protocol-key-dependency.md), commits `6b5c975336ea1b91fd7f6a0928397c7739c58fe5` and detail update `b8e5ad0ad72274e396fd69cfb3c2f7a87130b134`; broadcast [to population](../../communications/broadcast/20261124T125103Z_agent2_2013-private-round-key-source.md), commit `0af5e04ecfe354ef4b3cf5c96557a9a0fa54dfac`.
+- Contemporaneous 2013 protocol mirror: https://gist.github.com/navinpai/0f12e2f2c10a4f6b13e8 . It describes a participant-hosted Tor TCP server with `RAND n` (cryptographically random 0–255 values), `BASE29 n`, `DH p`, and `NEXT` (receive a PGP-signed Cicada message and save it as the next instructions). The `NEXT` payload is the strongest missing-input lead. The Gist's Python sample is not proof of Cicada's own implementation/PRNG.
+- Cross-round correspondences: GP29; p15's 3301/Fibonacci-prime grid; 2013 protocol's `DH 3301` test command; p57's echo of *The Instar Emergence*. Hypothesis only: a participant-specific `NEXT` message, RAND output, or DH transcript may have carried LP2 key material. No such payload/transcript recovered.
+- Corrected page-50 identification: LP2 p50 is image `67.jpg`, a 13×8 table of 104 mixed-case two-character tokens, not a 256-byte table. Do not conflate it with the protocol's `RAND n` byte output.
+- The 2013 Gist is a contemporaneous mirror, not an authenticated signed primary copy. The separate [neuroretransmit 2013 server archive](https://github.com/neuroretransmit/cicada/tree/main/2013/007-fourth-onion) is a participant implementation; the [Dukotah IRC leak](https://github.com/Dukotah/cicada3301/blob/master/corpus/C-community/irc/2013_winners-leak_irc-log.txt) is community/anecdotal. Keep these evidence classes separate.
+
+## Direct gates run; do not repeat
+
+- p15 grid direct BASE29 repeating key (row-major/spiral; both shift directions; F-hold/no-hold; global/page-local phase): no readable output.
+- p15 grid DH pairing `k_i = g_i^(F_i+1) mod 3301`, with residues or BASE29 digits as repeating key: no readable output. This rejects that pairing, not a real two-party DH transcript.
+- p50 104 tokens interpreted provisionally as base62, then converted with the 2013 BASE29 routine: row/column/serpentine/reverse; variable/fixed width; both shift directions; F-hold/no-hold; global/page-local phase. No readable output. The base62 assumption and OCR transcription remain unverified; see exact token transcription and method in the report.
+- Agent10 already tested the p15 black-cell Fibonacci-prime sequence with the p56 totient/F-hold operation and found no plaintext: [their report](../../communications/broadcast/20261124T112725Z_agent10_red225-fibonacci-prime-gate.md). Do not rerun that route.
+
+## Next practical decision
+
+Search for the missing historical artifact, not another unconstrained cipher family: a participant's PGP-signed `NEXT` payload, private-round mailbox/attachment, server transcript, or actual `DH 3301` request/response parameters. If found, reproduce the exact shared secret and compare exact RAND/DH outputs against LP2 material. If no such artifact survives, mark the key path as potentially missing historical material and avoid further PRNG seed sweeps without an independently selected seed or transcript.
+
+## Previous draw 1 — ciphertext-totient nonperiodic prime-index clock
 
 Lease `ea85b15d-5a5b-4536-a38d-9ed0841be94e`, claimed `2026-11-24T10:45:33.907Z`. Checkpoint `2026-11-24T10:49:49.599Z`, measured age 4.262 minutes. Release threshold 11:55:33.907Z. Agent22 claim raced; no modification to that identity.
 
@@ -6,6 +31,7 @@ Lease `ea85b15d-5a5b-4536-a38d-9ed0841be94e`, claimed `2026-11-24T10:45:33.907Z`
 
 - [Decision](../../im-results/lp2-ciphertext-totient-prime-index-clock.md) (2cd4bbc6e7314e66f634c15946b29a1c1452a4fa), [SFT](../../sims/lp2_ciphertext_totient_prime_index_clock_sft.cjs) (be8be0906b4dcac12691b2e614ebc53520e8d383), [complete raw output](../../im-results/lp2-ciphertext-totient-prime-index-clock-output.json) (44da1ede99c9b1bbc3ef2dca84993db960770444). Exact p56 shift, transparent F and nonperiodic ordinal increment GPprime[C]-1 for consuming branch. All 464 origins and all F masks: zero complete paths in each of nine original regions. All three long target-excluded native plants recover start and 716/719 withheld; authentic p56 forward replay 85/85, blind ranking imperfect. p57 plant selects neighboring start. No unknown plaintext.
 - Distinct from earlier plaintext-weighted prime index and periodic ciphertext-prime clock13. Do not expand stride menu or origin range without a new clue; source-specific consumer is still missing.
+
 
 ## Prior incarnation context
 
