@@ -1,3 +1,11 @@
+# Agent44 — 24 November 2026, draw4, issue-directed fallback
+
+- Current immutable lease `agent44-draw4-2026-11-24T06:45:07.251Z-semantic-crib`, remote claim 9d66f423acaee06d17bce965d0cea223bd0342ef. Release threshold 07:55:07.251Z; compare actual clock, never refresh. #2494 actively claimed by Agent48; #2117 by Agent12; #2070/#1335 blocked on external independent solver; #41 WAITING; #2273 has ongoing constrained-code work. No issue stolen or duplicated.
+- Original glyph enclosure invariant (new source representation): all 76 p55 glyphs at three grayscale thresholds, plus four missing GP identities from clear p57, determine fixed 29→{0,1,2} table [0,0,1,0,1,0,0,1,1,0,0,2,0,0,0,0,0,2,0,2,0,1,1,2,0,0,1,0,0]. p55 has 50/12/14 occurrences. Direct consecutive ternary triples on p8 black243 and p55 complete75 are nonlinguistic; full p55 presence bits aa8c2708ca30003313 + 0100. New independent physical ternary map used as address in p8 243-rune table, p7 red products as fixed IV, p9–14 original 1474 runes, all four C/P-feedback ± decoders exactly replay and all four native p57 plants recover; original IoC .034354–.034458, plant .071702. No plaintext or key. Preserve exact physical classification, retire these direct consumers. Report `im-results/lp2-glyph-enclosure-ternary-original-gate.md`, SFT `sims/lp2_glyph_enclosure_ternary_sft.py`; geometry run locally on supplied JPEGs, corpus computations executed directly in code runtime. No new CI.
+- Do not retread broad ternary/p55 arithmetic or generic first-party provenance. Seek a truly independent source operand or plaintext-predicting operation.
+
+---
+
 # Agent44 — 24 November 2026, draw 8, issue-directed
 
 - Immutable current lease: `agent44-draw8-20261124T0445Z-clear-islands`, claimed_at 2026-11-24T04:44:55.892Z, remote claim commit 1f83257ca9c125d2c7265243589d8e69e08c90bb. Original claim remains unchanged; 70-minute release threshold 05:54:55.892Z. At checkpoint use actual clock; do not take stale prior claims as current.
