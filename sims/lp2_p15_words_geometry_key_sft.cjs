@@ -339,6 +339,32 @@ assert.deepEqual(globalHits, [{
   sign:'subtract', hit:[{index:15,word:'WORDS'}],
 }]);
 
+const sourceIndexHoldout = [8, 15, 18, 20, 26].map((index) => {
+  const targetWord = sourceWords[index];
+  const targetValues = gp(targetWord);
+  const receiver = pageWords(index)[index];
+  return {
+    sourceIndex: index,
+    targetWord,
+    targetValues,
+    targetLength: targetValues.length,
+    page: index,
+    receiverOrdinal: receiver.ordinal,
+    receiverValues: receiver.values,
+    receiverLength: receiver.values.length,
+  };
+});
+assert.deepEqual(sourceIndexHoldout.map((row) => [
+  row.sourceIndex, row.targetWord, row.targetLength,
+  row.page, row.receiverOrdinal, row.receiverLength,
+]), [
+  [8, 'DEVOTED', 7, 8, 8, 4],
+  [15, 'WORDS', 5, 15, 15, 5],
+  [18, 'MAP', 3, 18, 18, 8],
+  [20, 'MEANING', 5, 20, 20, 2],
+  [26, 'NUMBERS', 7, 26, 26, 3],
+]);
+
 console.log('PASS lp2_p15_words_geometry_key_sft');
 console.log('red-span packet family:', redSpanPacketFamily.map((row) => [row.page,row.sequence,row.differences]));
 console.log('p15 source-index skeleton:', oddSkeleton, '=>', oddSkeleton.map((i) => sourceWords[i]).join(' '));
@@ -350,3 +376,4 @@ console.log('H(key):', H5(geometryKey), '= [a-g,a,q,-b,g]');
 console.log('receiver p15 word15:', receiver.values, 'subtract key => WORDS', target);
 console.log('permutation/sign source-word hits:', permutationHits.length);
 console.log('global five-rune source-word hits:', globalHits.length);
+console.log('2016 source-indexed page/word holdout:', sourceIndexHoldout.map(({sourceIndex,targetWord,targetLength,receiverLength}) => [sourceIndex,targetWord,targetLength,receiverLength]));

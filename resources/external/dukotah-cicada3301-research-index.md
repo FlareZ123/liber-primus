@@ -1,10 +1,10 @@
 # Independent Liber Primus external-research index
 
-**Snapshot inspected:** 2026-11-19T16:22:05Z. Dukotah HEAD: `6b945291ed298c14ccf8c73603f695a28f6a7e35` (2026-11-17T21:54:18Z; unchanged since the prior snapshot). Independent njloof HEAD: `0fa6134c2f9c92317e4ea3a6f1fa82a5c3952d9b` (2026-11-19T15:35:09Z).
+**Snapshot inspected:** 2026-11-24T19:51:10.958Z. Dukotah HEAD: `4aba42eeafc7434cec49041d5095bc843e23e964` (2026-11-24T04:58:48Z; Round45 kickoff/current measured-ceiling snapshot). Independent njloof HEAD: `0fa6134c2f9c92317e4ea3a6f1fa82a5c3952d9b` (2026-11-19T15:35:09Z).
 **Source:** https://github.com/Dukotah/cicada3301  
 **License:** MIT covers the repository's original code and documentation; the license explicitly does not purport to license the underlying Cicada artifacts reproduced for research. No code was copied here.
 
-This is a large, actively maintained research programme with a versioned falsification ledger, a planted-key decoder/benchmark, a measured-coverage ceiling, and a human-oracle rule. Its Round 44 closeout reports no LP2 solution. Treat its conclusions as independent research evidence, not as an authoritative replacement for this repository's own corpus or synthesis.
+This is a large, actively maintained research programme with a versioned falsification ledger, a planted-key decoder/benchmark, a measured-coverage ceiling, and a human-oracle rule. Its current Round45 kickoff and measured-ceiling snapshot report no LP2 solution. Treat its conclusions as independent research evidence, not as an authoritative replacement for this repository's own corpus or synthesis.
 
 ## Round 44 findings relevant here
 
@@ -15,6 +15,19 @@ This is a large, actively maintained research programme with a versioned falsifi
 - **JPEG DQT split.** The two page groups differ by grayscale (one SOF component) versus color/YCbCr (three components), while sharing an identical Annex-K luma table at Q=92. Ink-coverage complexity is indistinguishable (MW p=0.338). The authors classify this as a benign production-pipeline signal with zero ciphertext bearing.
 
 The Round 44 closeout also reports negative results for red-ink, p15 grid, punctuation/quote channels, onion-blob pads, 7-gram cipher readings, chained presentation, hash stride, cuneiform census, all-pairs page-XOR, delta composites (k\ge7), short-page language screens, homophonic screens, and audio reductions. Some overlap current work; check the live ledger before repeating any lane.
+
+## Current word/meaning/number clue ceiling — 24 November 2026
+
+Pinned upstream HEAD `4aba42eeafc7434cec49041d5095bc843e23e964` updates `liber-primus/MEASURED-CEILING.md`. For the signed 2016 instruction, keep these distinct campaigns separate:
+
+- **R9-DIRECTION:** 2,670 reads. The current measured ceiling classifies the post-R40 re-score as **inconclusive**, not a confirmed kill: the best 400-rune stream has pmax 4.733; global doublet-matched shuffle nulls give p=0.004–0.0066, but page-scale and region-scale block-permuted nulls give p=0.018 and 0.070, and the best of 923 trajectories is an ordinary extreme. No readable plaintext was recovered. `research/DEAD_ENDS.md` still retains an older Gate#2 **KILLED** label; this conflicts with the current ceiling and must not be repeated as the current classification without reconciliation.
+- **Round10 L3-ROAD:** its preregistered T1a/T1b and T2–T5 family tests ciphertext-word GP sums as reductions, selectors, orderings and keytext pointers over the 2,928-word / 12,956-rune / 55-segment corpus. The current combined R10/R11 ceiling reports 208 road streams and classifies the lane as measured negative, with its direct and beam plants recovered. This tests numbers derived from ciphertext words; it does **not** test semantic meanings of recovered plaintext.
+- **R37 C1-U3 composed map/road/direction:** 4,176 decodes on page heads 0–2; best score 4.484 against a 6.632 bar, classified measured negative.
+- **R38/R39 semantic-address and sense-position:** 28,224 and 14,112 readings are classified negative. The same current ceiling says 18 F5 semantic cells beyond one generic operationalization remain partial. The semantic-content reading of “meaning is the road” is therefore not falsified; it needs recovered plaintext or a source-specified semantic resource and indexing rule. Do not substitute arbitrary dictionary/WordNet sweeps.
+
+The external campaigns do not test this repository's separate p15 geometry-key candidate. Local p15 receiver and holdout evidence is in [the geometry-key report](../../im-results/lp2-p15-words-geometry-key.md).
+
+**Pinned external references:** [current measured ceiling](https://github.com/Dukotah/cicada3301/blob/4aba42eeafc7434cec49041d5095bc843e23e964/liber-primus/MEASURED-CEILING.md) · [R10 L3-ROAD preregistration](https://github.com/Dukotah/cicada3301/blob/4aba42eeafc7434cec49041d5095bc843e23e964/liber-primus/analysis/round10/L3-road/PREREG.md) · [R10 road results](https://github.com/Dukotah/cicada3301/blob/4aba42eeafc7434cec49041d5095bc843e23e964/liber-primus/analysis/round10/L3-road/road_results.json) · [older DEAD_ENDS ledger](https://github.com/Dukotah/cicada3301/blob/4aba42eeafc7434cec49041d5095bc843e23e964/research/DEAD_ENDS.md).
 
 ## Distinct primary-artifact cross-checks (15 November audit)
 

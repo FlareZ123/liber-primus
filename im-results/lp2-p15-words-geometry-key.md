@@ -249,7 +249,7 @@ Thus the exact key/target relationship is unique over the complete finite receiv
 
 ## 6. Evidence boundary
 
-Promote the following route as a **strong plaintext candidate**:
+Retain the following route as an **isolated source-matched candidate**:
 
 ```text
 p32 READ OUT -> DEVOTED8 -> p8
@@ -270,7 +270,11 @@ minus [3,10,4,4,2]
 -> WORDS [7,3,4,23,15].
 ```
 
-Do **not** yet promote WORDS to established plaintext. The receiver is independently selected and the key is fully source-visible, while the exact five-feature serialization was recognized retrospectively. The next decisive evidence should be a prospectively fixed transfer of this page-geometry grammar or an independent source instruction selecting the same key coordinates/order.
+Do **not** promote WORDS to established plaintext. The receiver is source-indexed, and the five-feature key is source-visible only under a retrospective serialization; the manuscript-wide five-rune scan makes the hit distinctive within the frozen family, but there is no second receiver confirming a reusable grammar.
+
+**Prospective transfer gate (24 November):** the signed 2016 register was tested under the same direct page/word diagonal: source index n selects physical project page n and local word n+1. The five source words and GP29 target lengths are `DEVOTED` (index 8, 7), `WORDS` (15, 5), `MAP` (18, 3), `MEANING` (20, 5; `EA` and `NG` are GP29 digraphs), and `NUMBERS` (26, 7). The selected ciphertext receiver lengths are respectively `4,5,8,2,3`. Only p15/`WORDS` matches. This rejects the simple five-word page/word transfer, without disproving the isolated p15 candidate. Do not reuse the period-5 key or tune page offsets to rescue the transfer.
+
+The next decisive evidence would have to be an independent source clue that selects a second page's key coordinates and receiver before seeing its plaintext.
 
 A simple unchanged period-5 running-key interpretation is not implied. The surrounding p15 words have incompatible lengths with the adjacent signed-source words, so do not force a continuous source-text crib across the page.
 
@@ -278,4 +282,4 @@ A simple unchanged period-5 running-key interpretation is not implied. The surro
 
 `sims/lp2_p15_words_geometry_key_sft.cjs`
 
-The SFT reconstructs the authenticated source indices, p15 red geometry, the K=2 skeleton and midpoints, charges the full 43-index same-page/local-word residual family and verifies the unique p8-p15 longest run, checks the state-key equality and H shell, reproduces the exact p15 word15 inverse, exhausts all60 key permutations under both signs, and performs the complete manuscript-wide five-rune receiver charge. The initial Windows Node22 version passed as run **44462102283**; a rerun of the strengthened residual-corridor version supersedes it.
+The SFT reconstructs the authenticated source indices, p15 red geometry, the K=2 skeleton and midpoints, charges the full 43-index same-page/local-word residual family and verifies the unique p8-p15 longest run, checks the state-key equality and H shell, reproduces the exact p15 word15 inverse, exhausts all60 key permutations under both signs, performs the complete manuscript-wide five-rune receiver charge, and now tests the five source-indexed page/word holdouts DEVOTED/WORDS/MAP/MEANING/NUMBERS. The initial Windows Node22 version passed as run **44462102283**; a rerun of the strengthened residual-corridor version supersedes it.
