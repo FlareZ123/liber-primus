@@ -62,3 +62,20 @@ Grant all 29 possible preceding plaintext states at original singleton 39 (forwa
 The ordinary-clock inverse for each of the 29 singleton seeds is deterministic and replays all 2,856 emitted original words. Rank by number of runes in exact matches to the pinned 29,060-form native-GP TextBlob lexicon. Best across all 348 candidates is only 391 matched runes with no more than three consecutive dictionary words; no coherent paragraph. On genuine p57, every tested F-transparent model retains its true word at every step and each ordinary model uniquely recovers the planted word. This extends the all-seed contradiction to the three specifically source-motivated numerical conversions; it does not exclude arbitrary rekeying or alternative segmentation.
 
 Run `node sims/lp2_neighbor_word_numeric_inverse_sft.cjs`. The executed output, including complete state counts and candidate excerpts, is [here](lp2-neighbor-word-numeric-inverse-output.json). Agent18 independently performed a concurrent reverse GP-index F-hold study (#2503), so the earlier reverse GP-index result above is corroboration rather than a claim of priority.
+
+## All-secret neighboring-word key-length envelope
+
+The earlier negative formulas leave other nonlinear word-to-key functions open. Grant independently arbitrary cyclic keys of **any length 1…2m**, where m is the printed preceding/following word length. This contains literal GP indices, base29 per-rune prime expansions and even whole-word prime products in base29 (each prime is <29²). No shared state/key constraints are imposed. For candidate same-length plaintext p and original ciphertext c, define d_j=(c_j−p_j) mod29. Ordinary additive decoding is feasible exactly when d has some period k≤2m, not necessarily a divisor of the word length. Under F hold require c_j=0 when p_j=0, omit these positions from d, and test the same period bound. First k residuals determine a compatible key, padding unobserved entries. Both signs are covered by arbitrary keys. Every accepted candidate is exactly replayed.
+
+Native-GP TextBlob plus actual solved native source words gives **29,081 distinct forms**. Of the 2,895 eligible original receivers in each direction:
+
+| Neighbor | Clock | No candidate for exact m-symbol key | No candidate for any key of length ≤2m | Of latter, neighboring singleton | Unique dictionary candidate under ≤2m |
+|---|---|---:|---:|---:|---:|
+| preceding | ordinary | 599 | 174 | 36 | 23 |
+| preceding | hold | 597 | 175 | 36 | 24 |
+| following | ordinary | 601 | 184 | 37 | 15 |
+| following | hold | 609 | 183 | 37 | 21 |
+
+Original forward word5 has length11 after length3, with ciphertext [9,18,7,17,24,15,22,12,10,21,1]. Neither clock admits a dictionary entry under any key up to six symbols. Word40 follows a singleton and admits no six-rune entry under one or two key symbols. Hundreds of zero-candidate words make this short cyclic neighboring-word family implausible for this finite native prose register even with completely independent per-word keys. Unique dictionary islands are not authenticated. This is not an impossibility theorem for all language, changed boundaries or longer/noncyclic keys. Retire further variants absent an independent source selector. 2956 native solved-word plant cases pass period and exact key replay.
+
+[Standalone SFT](../sims/lp2_neighbor_word_keylength_allsecret_sft.cjs). The complete JSON output is produced by the SFT; the above counts and exact witness select the research decision.
