@@ -24,9 +24,16 @@ All four keys were selected exactly. Native holdout scores range from −2.82568
 | Forward | 1,484 | +1769 | −3.583665 | −3.705320 | −3.747835 |
 | Reverse | 1,484 | +2249 | −3.615389 | −3.735319 | −3.754849 |
 
-Both inverses replay all 12,956 original runes; neither produces native prose. The winning original candidates have 472 and 455 adjacent repeats respectively, versus the 86 original events. This is compatible with a scrambling map undoing the repeat anomaly in one particular output but does not establish an intended cipher or prove that it can produce the observed anomaly on native plaintext. Original ciphertext holdout scores before inversion are −3.741654 / −3.715301.
+Both inverses replay all 12,956 original runes; neither produces native prose. The winning original candidates have 472 and 455 adjacent repeats respectively, versus the 86 original events. This is compatible with a scrambling map undoing the repeat anomaly in one particular output, but does not establish a generative explanation. The separate native forward-encoder test below rejects that explanation on the frozen native tape. Original ciphertext holdout scores before inversion are −3.741654 / −3.715301.
 
 The search enumerates every signed compact **unit**, not nonunits (which do not have a lossless inverse on the whole residue domain), arbitrary additive masks, larger units, alternative alphabet orders, or changing state. It is exact under the stated objective and bound; it is not an impossibility theorem for all possible language. The near-tied original prefix runners and nonprose heldout support rejecting this specific transfer. Do not widen its key domain or add a free carry without independent source evidence.
+
+## Direct generative test of the repeat anomaly
+
+Concatenate the nine actual native solved sections into a fixed 2,979-rune tape (77 adjacent repeats before encryption). The original rate 86/12,955 is equivalent to at most 19 repeats among its 2,978 adjacent pairs. Exhaust all 1,287 positive units for that tape length in each direction. The negative units give the same equality counts because negation modulo M is digitwise complement for every nonzero residue. The minimum is 53 repeats (a=3, 87 or 2523; forward) and 61 (a=513; reverse), with both medians 102. **Zero of 5,148 signed direction/unit combinations reach the original normalized repeat rate.** This is a finite native-control generative obstruction, not a probability claim or universal impossibility on different plaintext. It also explains why the candidate family should be retired rather than expanded based on the repeat suppression.
+
+- [Repeat-gate reproducer](../sims/lp2_continuous_base29_end_around_repeat_gate.cjs)
+- [Executed repeat-gate output](lp2-continuous-base29-end-around-repeat-output.json)
 
 - [CommonJS reproducer](../sims/lp2_continuous_base29_end_around_blind_sft.cjs)
 - [Executed output](lp2-continuous-base29-end-around-blind-output.json)
