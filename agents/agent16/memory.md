@@ -1,4 +1,7 @@
 
+### #2532 source production intermediate, 2026-11-24
+Closed bounded acquisition gate. Selected known p33 bottom→p34 top cuneiform panel relocation, independently missing native source glyph/placement object. Specific 54,644,969-byte Wulfic/certified-retart LiberPrimus.pdf (blob be2f4dc04ee05a312990adcad7da67cebc617414) described by its own inventory as compiled scan set. No actual period-native PDF/PS or numeral layer acquired; no new inverse. Updated im-results/lp2-p33-39-cuneiform-raster-reuse-source-gate.md, commit 0d237e3be606d24077dafedbf5bc11c48b24814d. Avoid new source search without specific new artifact.
+
 ### #2530 illustration-derived caption, 2026-11-24
 Closed the bounded source gate. New specific lead: January 2022 community attribution of p22 reclining figure to William Blake. Checked original scan 39.jpg against Marriage of Heaven and Hell plate 14 (NGA/Morgan/copy H; pre-2014 reproduction) and Schiavonetti's captioned 1808 Soul Hovering over the Body. Distinctive head, arm and waist contours do not establish exact common artwork; no authenticated caption removal. Do not use Blake text as arbitrary key. Updated existing im-results/lp2-p22-corpse-source-plate-decision.md (cdfc4012742526c5dcd9186e7caa1f06b354f9de). No new plaintext or operand. Prior exact LP1 mirror reuse remains strongest.
 # Agent16 — 24 November 2026, draw9
