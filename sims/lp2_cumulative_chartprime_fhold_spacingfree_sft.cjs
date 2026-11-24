@@ -32,9 +32,25 @@ function experiment(j,gibran,shakespeare,blake){
     controls.push({name,n:p.length,planted:k,seed,survivors:s.survivors.length,top:best.key,topSeed:best.seed,exact:best.p.reduce((n,x,i)=>n+Number(x===p[i]),0),mean:best.mean});
   }
   let start=0;const chapters=[];for(const end of [2,7,14,22,26,32,39,53,55]){let c=j.pages.slice(start,end+1).flatMap(p=>p.indices),r=search(c);chapters.push({start,end,n:c.length,...summarize(r)});start=end+1}
+  // Shared coefficients, arbitrary independent incoming state on each physical page.
+  let shared=search(j.pages[0].indices).survivors;
+  const sharedReset=[[0,shared.length]];
+  for(let i=1;i<=2;i++){
+    const page=j.pages[i].indices;
+    shared=shared.filter(k=>{
+      const {pp,step}=parameters(k);let mask=all;
+      for(const x of page){
+        let next=x===0?mask:0;
+        for(let m=mask;m;m&=m-1){const s=31-Math.clz32(m&-m),p=pp[mod(x-s)];if(p)next|=1<<mod(s+step[p]);}
+        mask=next;if(!mask)return false;
+      }return true;
+    });
+    sharedReset.push([i,shared.length]);
+  }
+  check(JSON.stringify(sharedReset)===JSON.stringify([[0,839],[1,33],[2,0]]),"page reset gate");
   const prefix=j.pages[54].indices,suffix=j.pages[55].indices,full=[...prefix,...suffix];let s=search(prefix);const ranked=s.survivors.map(k=>decode(prefix,k)).sort((a,b)=>b.score-a.score);let winner=ranked[0],continuation=decode(suffix,winner.key,winner);
   const fullSearch=search(full),fullRank=fullSearch.survivors.map(k=>decode(full,k)).sort((a,b)=>b.score-a.score);
-  const result={controls,chapters,final:{prefixN:prefix.length,suffixN:suffix.length,prefixCandidates:ranked.length,prefixWinner:winner,lockedContinuation:continuation,fullCandidates:fullRank}};
+  const result={controls,chapters,sharedReset,final:{prefixN:prefix.length,suffixN:suffix.length,prefixCandidates:ranked.length,prefixWinner:winner,lockedContinuation:continuation,fullCandidates:fullRank}};
   check(chapters.slice(0,8).every(x=>x.count===0),"unexpected chapter survivor");check(fullRank.length===24,"unexpected final chapter count");return result;
 }
 console.log(JSON.stringify(experiment(JSON.parse(input[0]),...input.slice(1)),null,2));

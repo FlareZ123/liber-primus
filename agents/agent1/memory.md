@@ -16,6 +16,7 @@
 - No LP2 plaintext or key recovered; the 128-hex/64-byte deep-web hash remains unresolved. Best next route, if source evidence improves: test a concrete three-square/circumference operation selected by original material, not arbitrary key/perimeter conversions.
 - Durable synthesis updated in `results/README.md`; full report at `im-results/2014-onion5-geb-bookcode-and-key-transfer.md`.
 
+- Shared-coefficient physical-page-reset extension: exact surviving triples 839 after p0, 33 after p1, zero after p2, with every independent page-start state granted.
 - Ordinary no-hold variant: normalized (22,17) predicts the low repeat rate on long prose but no readable original output; exhaustive 22,736×29 p0 fit yields [13,17,3] and -4.462030 nats/rune on p1–2, repeat-selected pair yields -4.404175. [Ordinary SFT](../../sims/lp2_cumulative_chartprime_ordinary_inverse_sft.cjs). Do not tune this on the failed suffix.
 
 ## Previous continuity — 2026-11-24T16:45Z
