@@ -31,6 +31,8 @@ After the prediction commit, the withheld native plaintext symbols 16–514 were
 The predicted and native transparent-F positions, zero-based within the full section, are identical:
 `[48, 74, 84, 132, 159, 160, 250, 421, 443, 465, 514]`.
 
+The ciphertext itself contains 25 F symbols. Only 11 are transparent plaintext-F holds; the other 14 encrypt non-F plaintext at positions `[5, 14, 47, 144, 152, 165, 219, 317, 331, 398, 423, 470, 499, 505]`. This is a direct blind-control demonstration that ciphertext F cannot be treated as an automatic key hold.
+
 ## Reproduction
 
 - Blind predictor: [`sims/agent1_lp1_welcome_blind_viterbi.cjs`](../sims/agent1_lp1_welcome_blind_viterbi.cjs). It reads only the target crib's first 16 symbols, never the target tail.
