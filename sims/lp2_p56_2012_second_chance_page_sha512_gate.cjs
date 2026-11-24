@@ -41,6 +41,12 @@ const inputs = [
     expectedGitBlobSha1: "e2dbbad61d8dfb1a9efa736a331f183745ac157e"
   },
   {
+    name: "2012 valid participant-specific RSA message (quaetrix0)",
+    authentication: "Cicada PGP signature; archive identifies this as the only valid signed participant version",
+    path: path.join(root, "resources/external/2012-sq6wmgv2zcsrix6t-valid-participant-rsa-message.asc"),
+    expectedGitBlobSha1: "30a45f2149bf46fd99d156d24b7132f8e0f207b3"
+  },
+  {
     name: "2012 countdown clear-signed message",
     authentication: "clear-signed; verified with Cicada 2012 key in workflow",
     path: path.join(root, "resources/historical/cicada2012-countdown-message.asc"),
