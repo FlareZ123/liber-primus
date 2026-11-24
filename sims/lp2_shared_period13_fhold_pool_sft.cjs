@@ -125,6 +125,98 @@ function assess(corpus,gold,ct,mode){
  return {mode,lengths:[A.length,B.length,H.length],pooled:{...pooled,plaintext:pooled.plaintext?.map(latin)},first:{...first,plaintext:first.plaintext?.map(latin)},second:{...second,plaintext:second.plaintext?.map(latin)},holdout:held&&{score:held.score,perRune:held.score/H.length,plain:latin(held.plain),exact:known?held.plain.filter((x,i)=>x===known[219+i]).length:null,replay:encrypt(held.plain,pooled.key,pooled.ends[1][0]).every((x,i)=>x===H[i])},secondHoldout:secondHeld&&{score:secondHeld.score,perRune:secondHeld.score/H.length,plain:latin(secondHeld.plain),exact:known?secondHeld.plain.filter((x,i)=>x===known[219+i]).length:null},poolTrainExact:known&&pooled.plaintext?pooled.plaintext.flat().filter((x,i)=>x===known[i]).length:null,independentTrainingScore:first.score!=null&&second.score!=null?first.score+second.score:null};
 }
 
+
+function phaseProfile(C,holdBits,model){
+ const hist=new Uint16Array(L*29);
+ let phase=0,zero=0,holds=0;
+ for(const c of C){
+  if(c===0&&holdBits[zero++]){holds++;continue;}
+  hist[phase*29+c]++;phase=(phase+1)%L;
+ }
+ const rows=[];
+ for(let j=0;j<L;j++){
+  const row=[];
+  for(let k=0;k<29;k++){
+   if(hist[j*29+k])continue;
+   let score=0;for(let c=0;c<29;c++)if(hist[j*29+c])score+=hist[j*29+c]*model.u[(c-k+29)%29];
+   row.push([k,score]);
+  }
+  if(!row.length)return null;
+  rows.push(row);
+ }
+ return {rows,holdScore:holds*model.u[0],holds};
+}
+function enumerateBits(n,limit,rng){
+ if(n<=16&&2**n<=limit)return Array.from({length:2**n},(_,i)=>Array.from({length:n},(_,j)=>(i>>>j)&1));
+ const seen=new Set(),out=[];
+ for(let i=0;i<limit;i++){
+  const prob=[.25,.5,.75,.1,.9][i%5],p=Array.from({length:n},()=>rng()/4294967296<prob?1:0);
+  const id=p.join("");if(!seen.has(id)){seen.add(id);out.push(p);}
+ }
+ return out;
+}
+function pathInitialize(units,model,seed,budget=4096){
+ const random=rng(seed),A=units[0],B=units[1],aZero=A.filter(x=>x===0).length,bZero=B?.filter(x=>x===0).length??0;
+ const aBits=enumerateBits(aZero,budget,random),bBits=B?enumerateBits(bZero,2**Math.min(bZero,16),random):[[]];
+ const bProfiles=[];
+ if(B)for(const bits of bBits){const p=phaseProfile(B,bits,model);if(!p)continue;for(let initial=0;initial<L;initial++){
+  const rows=Array.from({length:L},()=>new Float64Array(29).fill(-Infinity));
+  for(let j=0;j<L;j++)for(const [k,score] of p.rows[j])rows[(j+initial)%L][k]=score;
+  bProfiles.push({rows,score:p.holdScore-Math.log(L),holds:p.holds,initial});
+ }}
+ const candidates=new Map();let aFeasible=0,pairs=0;
+ for(const bits of aBits){
+  const a=phaseProfile(A,bits,model);if(!a)continue;aFeasible++;
+  for(const b of B?bProfiles:[null]){
+   let score=a.holdScore+(b?.score??0);const key=[];
+   for(let j=0;j<L;j++){
+    let best=-Infinity,kBest=-1;
+    for(const [k,value] of a.rows[j]){
+     const v=value+(b?b.rows[j][k]:0);
+     if(v>best){best=v;kBest=k;}
+    }
+    if(kBest<0)break;
+    score+=best;key.push(kBest);
+   }
+   if(key.length!==L)continue;pairs++;
+   const id=key.join(","),old=candidates.get(id);
+   if(!old||score>old.score)candidates.set(id,{key,score,basin:1,holds:[a.holds,b?.holds],phase:b?.initial});
+  }
+ }
+ // Exact per-path best key; re-evaluate latent states on training only.
+ const tab=likelihood(model.u,Infinity);
+ const ranked=[...candidates.values()].map(c=>{
+  const paths=units.map((C,i)=>viterbi(C,c.key,tab,model.u,i>0));
+  if(paths.some(x=>!x))throw Error("constructed path should be legal");
+  return {...c,score:paths.reduce((s,v)=>s+v.score,0)};
+ }).sort((a,b)=>b.score-a.score);
+ return {ranked,aSchedules:aBits.length,aFeasible,bProfiles:bProfiles.length,pairs,unique:candidates.size};
+}
+function assessPathInit(corpus,gold,ct,mode){
+ const ex=s=>Array.from(s).filter(x=>corpus.runes.includes(x)).map(x=>corpus.runes.indexOf(x)),sections=gold.sections.map(s=>ex(s.source_text)),idx=gold.sections.findIndex(s=>s.name==="jpg107-167"),P=sections[idx],C=ct.split("$").map(ex).find(s=>s.length===319);
+ const model=train(sections,mode==="original"?-1:idx),random=rng(0x2546a);
+ let A,B,H,known=null;
+ if(mode==="original"){A=corpus.pages.filter(p=>p.page>=23&&p.page<=26).flatMap(p=>p.indices);const U=corpus.pages.filter(p=>p.page>=54&&p.page<=55).flatMap(p=>p.indices);B=U.slice(0,208);H=U.slice(208);}
+ else if(mode==="matched"){A=C.slice(0,110);B=C.slice(110,219);H=C.slice(219);known=P;}
+ else{A=C.slice(0,110);const J=Array.from({length:L},()=>random()%29),U=encrypt(P.slice(110),J,7);B=U.slice(0,109);H=U.slice(109);known=P;}
+ const latin=p=>p.map(x=>corpus.translit[x]).join("");
+ function get(units,seed){
+  const result=pathInitialize(units,model,seed),ranked=rerank(units,model,result.ranked,80),t=ranked[0];
+  const {ranked:_,...counts}=result;
+  if(!t)return counts;
+  return {...counts,key:t.key,score:t.triScore,runner:ranked[1]?.triScore,starts:t.vs.map(v=>v.start),ends:t.vs.map(v=>v.end),native:t.vs.map(v=>v.plain),plain:t.vs.map(v=>latin(v.plain)),replay:t.vs.every((v,i)=>encrypt(v.plain,t.key,v.start).every((x,j)=>x===units[i][j]))};
+ }
+ const pooled=get([A,B],0x2546b),first=get([A],0x2547b),second=get([B],0x2548b);
+ const held=pooled.key?tri(H,pooled.key,model,false,pooled.ends[1]):null,secondHeld=second.key?tri(H,second.key,model,false,second.ends[0]):null;
+ const clean=x=>{const {native,...rest}=x;return rest;};
+ return {mode,lengths:[A.length,B.length,H.length],pooled:clean(pooled),first:clean(first),second:clean(second),poolTrainExact:known&&pooled.native?pooled.native.flat().filter((x,i)=>x===known[i]).length:null,
+ held:held&&{score:held.score,perRune:held.score/H.length,plain:latin(held.plain),exact:known?held.plain.filter((x,i)=>x===known[219+i]).length:null,replay:encrypt(held.plain,pooled.key,pooled.ends[1][0]).every((x,i)=>x===H[i])},
+ secondHeld:secondHeld&&{score:secondHeld.score,perRune:secondHeld.score/H.length,plain:latin(secondHeld.plain),exact:known?secondHeld.plain.filter((x,i)=>x===known[219+i]).length:null},
+ independentTrainingScore:first.score!=null&&second.score!=null?first.score+second.score:null};
+}
+
 console.log(JSON.stringify(control(JSON.parse(fs.readFileSync("resources/liber-primus/lp2-corpus.json","utf8")),JSON.parse(fs.readFileSync("resources/external/relikd-solved-gp29-native-v1.json","utf8")),fs.readFileSync("resources/transcriptions/lp1_wulfic_canonical.txt","utf8")),null,2));
 
 for(const mode of ["matched","mismatch","original"])console.log(JSON.stringify(assess(JSON.parse(fs.readFileSync("resources/liber-primus/lp2-corpus.json","utf8")),JSON.parse(fs.readFileSync("resources/external/relikd-solved-gp29-native-v1.json","utf8")),fs.readFileSync("resources/transcriptions/lp1_wulfic_canonical.txt","utf8"),mode),null,2));
+
+for(const mode of ["matched","mismatch","original"])console.log(JSON.stringify(assessPathInit(JSON.parse(fs.readFileSync("resources/liber-primus/lp2-corpus.json","utf8")),JSON.parse(fs.readFileSync("resources/external/relikd-solved-gp29-native-v1.json","utf8")),fs.readFileSync("resources/transcriptions/lp1_wulfic_canonical.txt","utf8"),mode),null,2));
