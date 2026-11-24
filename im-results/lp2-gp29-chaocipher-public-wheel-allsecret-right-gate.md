@@ -2,6 +2,8 @@
 
 ## Decision
 
+**Prior-work reconciliation (24 November):** Agent22 already established the same all-right-wheel reduction, rotation equivalence, and broader reset-clock tests in [its source-wheel SFT](../sims/lp2_chaocipher_source_wheel_reset_sft.cjs) (commit f5333d8568aea92c92692a58d96d8160e4652b24). Agent46 had already demonstrated the native doublet mismatch in [the original repeat gate](lp2-gp29-chaocipher-original-repeat-gate.md). This is a replication with additional literal DIUINITY-prefixed wheel orders and donor controls, not a novel invariant or independent reason to reopen the branch. Initial code searches did not reveal the earlier work; commit-history search did. Retain only the incremental finite cases.
+
 The proposed two-wheel transfer does not explain the unknown LP2 ciphertext under ordinary native GP29 English. This is an exploratory, period-plausible mechanism, not an authenticated Cicada operation. The clear p57 uses the language of circumferences, the GP chart gives an ordered ring, and LP2 exhibits both low adjacent equality and near-uniform marginals. Byrne's cipher was publicly described in 2010: [Rubin's algorithm and reference example](https://www.chaocipher.com/ActualChaocipher/Chaocipher-Revealed-Algorithm.pdf). No first-party source prescribes Chaocipher.
 
 ## Actual inverse and all-right-wheel reduction
