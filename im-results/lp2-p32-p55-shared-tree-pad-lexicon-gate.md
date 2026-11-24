@@ -1,8 +1,38 @@
-# Source-linked p32/p55 tree: all-clock shared-pad English obstruction
+# Source-linked p32/p55 tree: exact shared-pad affine inverse and lexical obstruction
 
-**Agent9, 16 November 2026. Original-input conditional negative, exact all-key and all-literal-F subset.** The same source photograph appears as a blurred tree on physical LP2 p32 and a pale outlined tree on p55. This source independently selects the pair for a plausible key-reuse question. A stronger cipher-original inverse now allows the **historically attested plaintext-F bypass** from solved p56, every legal bypass choice at all seven relevant ciphertext-F positions, every complete relative consumed-clock placement, an unrestricted common additive key and 29 possible relative page shifts. Of **128 literal-F mask combinations**, **64** are compatible with any complete English-GP dictionary words at the original printed locations; **all 5,952 resulting source-aligned placements have zero feasible shared-pad key-independent plaintext pairs**. The simpler 93 all-consuming letter-clock placements previously reported remain a verified special case.
+**Current decision, 24 November 2026 (Agents9 and45).** Original p32 and p55 reuse the same tree artwork, independently motivating the comparison. The strongest tested word-preserving native GP29 model allows **any nonzero affine multiplier on each page, any relative page shift, and an unrestricted common additive pad at every consumed position**. All **93** ordinary contiguous placements and **5,952** historical literal-F placements fail a complete joint lexical inverse. The earlier unit-multiplier additive exclusions below remain special cases. No unknown manuscript plaintext, genuine key or first-party shared-pad instruction was recovered.
 
-There is **no newly decrypted plaintext, authentic key, or author-selected reused-pad instruction**. The result retires one mathematically explicit source-linked family when its plaintext register is native GP English with preserved printed word breaks, not the full LP2 problem.
+## Complete affine shared-pad recovery (Agent45)
+
+The distinct extension of the earlier cancellation attack grants
+
+```
+C32[i] = a * P32[i] + K[t] + s32  (mod 29)
+C55[j] = b * P55[j] + K[t] + s55  (mod 29)
+D[t]   = C32[i] - C55[j] = a*P32[i] - b*P55[j] + s  (mod 29)
+s      = s32 - s55
+```
+
+for every nonzero a,b in GF(29), all 29 s, and an entirely unknown arbitrary shared pad K. This covers 28²×29 = 22,736 affine states per placement, including opposite-sign and distinct-slope page registers. Test the complete original 121/76-rune sources under an all-consuming rune clock and independently under every lexically possible historical plaintext-F bypass mask. Both p32 and p55 begin with a physically carried single-rune fragment; the final full solver grants any allowed GP29 value for these fragments. The p55 leading fragment is included or omitted from the shared clock; all full contiguous overlaps are tried without selecting offset19. Each fully printed word remains a word from the pinned 29,154-entry native-GP lexicon. The artwork selects the page pair, but no source authenticates this affine or shared-pad architecture.
+
+**Constructive inverse.** For each overlapping pair of printed words, take differences relative to the first overlapping rune. For every candidate A-word and nonzero a, normalize the vector a·ΔP32−ΔD by its first nonzero component. Index B-word vectors ΔP55 by the same projective representation; any match determines b from the ratio of those components. The all-zero case grants every nonzero b. The first overlap rune then fixes s. Intersect 29-bit masks for all (a,b) across overlapping word pairs of length ≥3. This exhausts the affine parameters without guessing pad symbols.
+
+Crucially, passing this necessary condition does not prove a common plaintext pair: individual overlaps may select incompatible versions of the same word. Construct the complete bipartite graph of both interval partitions of the shared clock, including overlaps of length one or two. It is a forest: moving along the common clock starts at least one previously unseen word at each new edge. The implementation asserts acyclicity for every tested candidate. For fixed a,b,s, an A-word and B-word are adjacent-compatible iff their overlap signatures a·P32+s−D and b·P55 agree. Exact leaf-to-root domain reduction followed by root-to-leaf assignments either rejects the state or constructs both dictionary passages and a common pad. Every produced witness must forward-replay all original aligned runes. This is complete for the declared finite dictionary/word-boundary model, with no stochastic beam, independent word-fit error or language-score threshold.
+
+| Clock | Placements | Placements passing individual overlaps | Affine state/placement pairs passing individual overlaps | Complete jointly consistent states |
+|---|---:|---:|---:|---:|
+| All-consuming (any GP29 plaintext glyph) | 93 | 8 | 156 | **0** |
+| Literal-F bypass, all 64 lexically possible mask pairs | 5,952 | 112 | 1,592 | **0** |
+
+The joint state space comprises **137,439,120** candidate state/placement pairs before necessary-condition pruning (6,045×22,736). The 1,748 locally admissible states all fail exact joint consistency. No original plaintext was reconstructed, including the earlier postselected offset19.
+
+**Positive controls.** Eight independently planted native-dictionary word-slot pairs use distinct non-unit affine multipliers, nonconstant quadratic common pads, arbitrary page shifts, different placements, and both clock models. Their exact true affine states survive the projective stage (seven unique, one has an extra candidate) and the complete forest solver uniquely identifies the true affine state **8/8**. The solver constructs full overlapping word assignments and replays both ciphertext tapes; arbitrary first-compatible dictionary assignments match 62–75 of 73–76 true pad positions per plant (not complete pad recovery, because short word overlaps can remain ambiguous). These are synthetic dictionary-slot controls, not coherent held-out prose, and they establish the exact constraint mechanism's functionality rather than historical cipher use.
+
+[Read-only Node/CommonJS reproducer](../sims/lp2_p32_p55_allaffine_sharedpad_recovery_sft.cjs), executed directly in the invocation's JavaScript runtime on the unchanged canonical corpus, transcript and dictionary. Pinned code commit [be6f04f0](https://github.com/FlareZ123/liber-primus/commit/be6f04f0d218fa0c3fca6a1f626c643875aa785b).
+
+**Scope and decision.** Retire the whole contiguous, equal-pad, fixed per-page affine-register family for word-preserving native-English plaintext in this finite vocabulary. An out-of-vocabulary word, independently chosen nonaffine page alphabets, changed segmentation, unequal key-consumption laws, noncontiguous pairing or a different encryption architecture can escape the exclusion. It is not a proof that the artwork is irrelevant or that two independent plaintexts cannot be recovered by some other means. Revisit only with a new source-selected operation, not another affine slope/shift or offset search.
+
+## Unit-multiplier additive special case (Agent9, 16 November 2026)
 
 ## Exact historically grounded model
 
