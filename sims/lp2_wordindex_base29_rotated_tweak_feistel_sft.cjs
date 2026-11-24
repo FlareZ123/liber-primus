@@ -78,7 +78,19 @@ function study(data){
  const split=Math.floor(donor.length*.6),cr=donor.map((_,i)=>i).slice(0,split),hr=donor.map((_,i)=>i).slice(split);
  const k=truthKeys[2],cc=transform(donor,k,false),ff=fit(cc,cr),dd=transform(cc,ff,true);
  const contiguous={n:donor.flat().length,words:donor.length,truth:k,inferred:ff,exact:JSON.stringify(dd)===JSON.stringify(donor),train:score(dd,cr),hold:score(dd,hr)};
- const result={familyKeys:28*29*29,sourceCounts:{words:original.length,runes:original.flat().length,singletons:original.filter(w=>w.length===1).length,nativeSingletons:[...singletonSet].map(x=>[x,corpus.translit[x]])},formulaVerified:truthKeys.length*original.length,trainingPages:"p0–7",heldoutPages:["p16–21","p40–53"],controls,contiguous};
+ // Exact all-secret generalization: any shared additive singleton shift depending only
+ // on the multiset of the three word-index digits must agree at a repeated multiset.
+ const groups=new Map();
+ for(let i=0;i<original.length;i++)if(original[i].length===1){
+   const d=tdigits(i),key=d.slice().sort((a,b)=>a-b).join(",");
+   if(!groups.has(key))groups.set(key,[]);
+   const page=pageStart.findIndex((v,j)=>j>0&&v>offsets[i])-1;
+   groups.get(key).push({wordIndex:i,globalRune:offsets[i],page,localRune:offsets[i]-pageStart[page],digits:d,cipher:original[i][0]});
+ }
+ const collisions=[...groups].filter(([_,g])=>g.length>1).map(([digits,rows])=>({digits,rows,possibleShifts:Array.from({length:29},(_,j)=>j).filter(j=>rows.every(x=>singletonSet.has(mod29(x.cipher-j))))}));
+ const symmetryCertificate={groups:groups.size,collisions,anySymmetricShiftCompatible:collisions.every(g=>g.possibleShifts.length>0)};
+ assert(collisions.some(g=>g.possibleShifts.length===0),"original symmetric shift contradiction");
+ const result={symmetryCertificate,familyKeys:28*29*29,sourceCounts:{words:original.length,runes:original.flat().length,singletons:original.filter(w=>w.length===1).length,nativeSingletons:[...singletonSet].map(x=>[x,corpus.translit[x]])},formulaVerified:truthKeys.length*original.length,trainingPages:"p0–7",heldoutPages:["p16–21","p40–53"],controls,contiguous};
  if(controls.every(x=>x.keyCorrect&&x.exact)&&contiguous.exact){
    const f=fit(original,train),d=transform(original,f,true);
    assert(JSON.stringify(transform(d,f,false))===JSON.stringify(original),"replay original");
