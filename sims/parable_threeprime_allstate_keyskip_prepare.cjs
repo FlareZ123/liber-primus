@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+"use strict";
+const fs=require("node:fs");
+const path=require("node:path");
+const {train}=require("./grid_keyskip_viterbi.cjs");
+const {pad}=require("./parable_bbs_keyskip_inverse.cjs");
+const root=path.resolve(__dirname,"..");
+const read=name=>fs.readFileSync(path.join(root,name),"utf8");
+const corpus=JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
+const lm=train(read("resources/control/shakespeare_first300k.txt").slice(0,200000));
+const arrays=[lm.unigram,lm.bigram,lm.trigram].map(a=>Float64Array.from(a));
+if(arrays[0].length!==29||arrays[1].length!==841||arrays[2].length!==24389)throw new Error("Unexpected LM dimensions");
+const lmBuffer=Buffer.concat(arrays.map(a=>Buffer.from(a.buffer,a.byteOffset,a.byteLength)));
+const cipher=Buffer.from(corpus.pages[0].indices.slice(0,28));
+if(cipher.length!==28)throw new Error("p0 head length mismatch");
+const N=BigInt(1259*1031*1229);
+const trueState=Number((3301n*3301n)%N);
+const trueKey=Buffer.from(pad(N,3301,"bits5-msb"));
+fs.mkdirSync(path.join(root,"run-artifacts"),{recursive:true});
+fs.writeFileSync(path.join(root,"run-artifacts/lm.bin"),lmBuffer);
+fs.writeFileSync(path.join(root,"run-artifacts/cipher.bin"),cipher);
+fs.writeFileSync(path.join(root,"run-artifacts/truekey.bin"),trueKey);
+fs.writeFileSync(path.join(root,"run-artifacts/true_state.txt"),String(trueState));
+const qrSizes=[1259,1031,1229].map(p=>{
+ const seen=new Uint8Array(p);
+ for(let x=0;x<p;x++)seen[(x*x)%p]=1;
+ return seen.reduce((a,b)=>a+b,0);
+});
+const manifest={modulus:N.toString(),primes:[1259,1031,1229],qrSizes,stateCount:qrSizes.reduce((a,b)=>a*b,1),headRunes:28,format:"fivebits-msb",signs:[-1,1],trueSeed:3301,trueState,languageModel:{unigram:29,bigram:841,trigram:24389}};
+if(manifest.stateCount!==199924200)throw new Error("Unexpected full three-prime state count");
+fs.writeFileSync(path.join(root,"run-artifacts/manifest.json"),JSON.stringify(manifest,null,2)+"\n");
+console.log(JSON.stringify(manifest,null,2));

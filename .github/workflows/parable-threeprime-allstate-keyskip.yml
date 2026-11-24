@@ -1,0 +1,34 @@
+name: Full three-prime Parable BBS all-state keyskip search
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  search:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Prepare exact p0 head and independent language model
+        run: node sims/parable_threeprime_allstate_keyskip_prepare.cjs
+      - name: Compile exhaustive CRT-state search
+        run: g++ -O3 -march=native -std=c++17 sims/parable_threeprime_allstate_keyskip.cpp -o run-artifacts/search
+      - name: Exhaust all three-prime states under the frozen keyskip receiver
+        run: run-artifacts/search run-artifacts
+      - name: Validate top candidates and planted positive control
+        run: node sims/parable_threeprime_allstate_keyskip_aggregate.cjs
+      - name: Commit reproducible full-state report
+        if: success()
+        run: |
+          set -euo pipefail
+          cp run-artifacts/parable-threeprime-allstate-keyskip-report.json im-results/parable-threeprime-allstate-keyskip.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git pull --rebase origin main
+          git add im-results/parable-threeprime-allstate-keyskip.json
+          git commit -m "Agent25: Preserve full three-prime BBS state search"
+          git push origin HEAD:main
