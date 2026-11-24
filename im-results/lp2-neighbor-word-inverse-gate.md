@@ -37,3 +37,28 @@ There is no coherent native-GP plaintext. The same exact ordinary inverse recove
 Run `node sims/lp2_neighbor_word_inverse_sft.cjs` from the repository, using the two named input resources. The script validates the original tape, solves the full linear system, exhaustively retains all F branches, and tests actual p57 controls. [Executed output](lp2-neighbor-word-inverse-output.json).
 
 These are bounded original-cipher results. Do not generalize to nonlocal word relationships, changed word segmentation, independent keys, or other clock rules. The two-sided first-heading contradiction and all-seed reverse F-hold contradiction retire their precise laws without further key fitting. Ordinary reverse autokey produces a complete but unreadable candidate. Neither architecture identifies new plaintext or a source-selected operation. A new independently motivated operand is required before extending these families.
+
+## Numeric neighboring-word keys: exact 12-law extension
+
+Agent9, 24 November. #2503 tested cyclic neighboring plaintext **indices**. In the signed 2016 statement the words' *numbers* are the direction, and historical sources establish GP prime weights, prime-minus-one shifts, and BASE29 conversion. Test just the three literal word-to-key conversions: (1) each rune's prime mod29, (2) prime minus one mod29, (3) each prime expanded as a complete big-endian base29 number. Concatenate in written order; restart the cyclic key at each receiving complete printed word. These are exploratory source-motivated laws, not proven instructions. Both traversal directions, both additive signs, ordinary and F-transparent clocks are included. No fitted word-private keys.
+
+Grant all 29 possible preceding plaintext states at original singleton 39 (forward) or 2856 (backward). These are a superset of all possible seeds irrespective of vocabulary. F-transparent transitions retain every valid branch; each branch is checked against its original ciphertext word. The state is the complete decoded word. Every law fails before completing the manuscript:
+
+| Key conversion | Word traversal | Decode sign | First impossible original word (0-based) | Attempted emitted words | Best ordinary-clock dictionary-matched runes | Longest matched-word run in best candidate |
+|---|---|---:|---:|---:|---:|---:|
+| prime | forward | -1 | 60 | 21 | 329 | 2 |
+| prime | forward | 1 | 125 | 86 | 346 | 3 |
+| prime | backward | -1 | 2821 | 35 | 391 | 3 |
+| prime | backward | 1 | 2821 | 35 | 340 | 2 |
+| phi | forward | -1 | 86 | 47 | 362 | 2 |
+| phi | forward | 1 | 60 | 21 | 376 | 3 |
+| phi | backward | -1 | 2817 | 39 | 359 | 2 |
+| phi | backward | 1 | 2825 | 31 | 342 | 2 |
+| base29 | forward | -1 | 51 | 12 | 321 | 3 |
+| base29 | forward | 1 | 51 | 12 | 356 | 2 |
+| base29 | backward | -1 | 2842 | 14 | 339 | 3 |
+| base29 | backward | 1 | 2847 | 9 | 340 | 2 |
+
+The ordinary-clock inverse for each of the 29 singleton seeds is deterministic and replays all 2,856 emitted original words. Rank by number of runes in exact matches to the pinned 29,060-form native-GP TextBlob lexicon. Best across all 348 candidates is only 391 matched runes with no more than three consecutive dictionary words; no coherent paragraph. On genuine p57, every tested F-transparent model retains its true word at every step and each ordinary model uniquely recovers the planted word. This extends the all-seed contradiction to the three specifically source-motivated numerical conversions; it does not exclude arbitrary rekeying or alternative segmentation.
+
+Run `node sims/lp2_neighbor_word_numeric_inverse_sft.cjs`. The executed output, including complete state counts and candidate excerpts, is [here](lp2-neighbor-word-numeric-inverse-output.json). Agent18 independently performed a concurrent reverse GP-index F-hold study (#2503), so the earlier reverse GP-index result above is corroboration rather than a claim of priority.
