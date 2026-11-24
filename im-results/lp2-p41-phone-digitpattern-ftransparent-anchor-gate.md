@@ -1,6 +1,6 @@
 # p41 historical telephone digit-pattern: exact full-page key-recovery decision
 
-**24 November 2026, Agent13.** The original p41 longest complete word supplies an exact eight-unknown-offset key-recovery anchor for a particular source-motivated cipher. Every dictionary-admitted key fails the rest of the original page. The literal telephone digits also fail as a common p41/p17 key under both signs. No unknown plaintext or author-selected key has been recovered.
+**24 November 2026, Agent13.** The original p41 longest complete word supplies an exact eight-unknown-offset key-recovery anchor for a particular source-motivated cipher. Every dictionary-admitted key fails the rest of the original page. The literal telephone digits also fail as a common p41/p17 key under both signs. The two five-dot clusters match the phone number's nonzero/zero halves only under right-first ordering, but no source-selected traversal or 75-position separator transport is established. No unknown plaintext or author-selected key has been recovered.
 
 ## Frozen hypothesis and receiver
 
@@ -35,6 +35,27 @@ The literal numerical offsets, with no requirement that the anchor be in the lex
 | C=P−digit mod29 | Every phase dead by rune offset137 | Complete; 7/68 words; IoC .03450226 |
 
 The p41 positive-sign mechanical candidate opens `IAGNGGYIBYWSOEWLDNWXCTMOTHCYJIAFEURNGSSHUNGTHPYJIAENGHIUNEOIAGXHAHFWEOMA`; this is not recovered language. Neither sign yields a complete common-key inverse even before linguistic criteria.
+
+## Two-cluster orientation and 75-token separator transport (Agent34, 24 November 2026)
+
+The original p41 scan (archive image `58.jpg`) has a right cluster of five filled dots and a left cluster of three filled plus two outlined dots. One plausible pentagonal traversal (clockwise from the topmost dot) reads the right cluster as `11111` and the left as `01101`. Concatenating **right first** gives `1111101101`, the nonzero/zero pattern of the recovered 2012 number `21439|09608`. This is a specific cross-round correspondence, but the page has no arrow or explicit traversal/order instruction. Normal left-to-right page order would read the left cluster first (`0110111111)); right-first is selected by matching the known phone number, not independently by the p41 artwork. The hollow-dot positions also require the chosen pentagonal start/orientation.
+
+The 2012 phrase is `CALL US AT US TELE PHONE NUMBER TWO ONE FOUR THREE NINE OH NINE SIX OH EIGHT`. Contracting `TH` in `THREE` to one GP29 rune gives 59 letter-runes plus 16 literal spaces, hence 75 mixed positions. The exact zero-based space positions are:
+
+`[4,7,10,13,18,24,31,35,39,44,49,54,57,62,66,69]`.
+
+Treating the two outlined p41 dots as zero bits and repeating the ten-bit pattern over the 75 positions does **not** recover those spaces:
+
+| Candidate | Predicted zero positions | Zero count | Actual spaces matched | False positives | Missed spaces |
+|---|---|---:|---:|---:|---:|
+| Left-first `0110111111`, phase0 | 0,3,10,13,20,23,30,33,40,43,50,53,60,63,70,73 | 16 | 2/16 | 14 | 14 |
+| Right-first `1111101101`, phase0 | 5,8,15,18,25,28,35,38,45,48,55,58,65,68 | 14 | 2/16 | 12 | 14 |
+| Right-first `1111101101`, phase5 | same as left-first phase0 | 16 | 2/16 | 14 | 14 |
+| Left-first `0110111111`, phase5 | same as right-first phase0 | 14 | 2/16 | 12 | 14 |
+
+The 16-zero count at the two half-boundary alignments is only a count match; the actual separator positions disagree almost completely. The two hollow dots do correspond to the two zero digits in the phone number, not to the 16 phrase spaces. The exact reproduction is `sims/lp2_p41_phone_mask_phrase_space_sft.cjs`.
+
+**Decision:** the dot motif is a plausible checksum of the historical phone number under a chosen right-first traversal, but neither the traversal nor a separator mask is source-selected. The 75-token count match does not provide a reversible p55 receiver. Do not search additional rotations or use the phone number as an arbitrary key.
 
 ## Positive controls and limits
 
