@@ -62,6 +62,65 @@ function removeP0RedKey(parts) {
   return [parts[0].slice(15), ...parts.slice(1)];
 }
 
+
+function source13DotResetSegments() {
+  const pageStarts = new Map();
+  let cumulativeRunes = 0;
+  for (const page of corpus.pages) {
+    pageStarts.set(page.page, cumulativeRunes);
+    cumulativeRunes += page.runic_count;
+  }
+  const dotOffsets = new Set();
+  for (const page of ink.pages) {
+    if (page.page > 55) continue;
+    for (const mark of page.large_punctuation || []) {
+      if (mark[1] === 13) dotOffsets.add(pageStarts.get(page.page) + mark[0]);
+    }
+  }
+
+  const segments = [[]];
+  const matched = [];
+  let runeOffset = 0;
+  for (const section of canonical.split("$").slice(0, 8)) {
+    for (const ch of section) {
+      const rune = GLYPHS.get(ch);
+      if (rune !== undefined) {
+        segments[segments.length - 1].push(rune);
+        runeOffset++;
+      } else if (ch === "-" || ch === ".") {
+        if (ch === "." && dotOffsets.has(runeOffset)) {
+          while (segments[segments.length - 1].at(-1) === SPACE) {
+            segments[segments.length - 1].pop();
+          }
+          segments.push([]);
+          matched.push(runeOffset);
+        } else if (segments[segments.length - 1].length &&
+                   segments[segments.length - 1].at(-1) !== SPACE) {
+          segments[segments.length - 1].push(SPACE);
+        }
+      }
+    }
+    while (segments[segments.length - 1].at(-1) === SPACE) {
+      segments[segments.length - 1].pop();
+    }
+  }
+
+  assert.equal(runeOffset, 12956, "the eight unsolved sections must contain 12,956 runes");
+  assert.equal(dotOffsets.size, 26, "expected 26 annotated 13-dot marks on p0-p55");
+  assert.deepEqual(matched.slice().sort((a, b) => a - b),
+    Array.from(dotOffsets).sort((a, b) => a - b),
+    "every annotated 13-dot mark must match a transcription delimiter");
+  assert.equal(segments[0].filter((x) => x !== SPACE).length, 13);
+  assert.equal(segments[0].filter((x) => x === SPACE).length, 1,
+    "the p0 red key is two words: 13 runes plus one internal separator");
+
+  return {
+    segments: segments.slice(1),
+    markerCount: dotOffsets.size,
+    redKeyTokens: segments[0].length
+  };
+}
+
 function nativeGP30(source) {
   const out = [];
   for (let word of source.toUpperCase().match(/[A-Z]+/g) || []) {
@@ -238,7 +297,7 @@ function xorshift(seed) {
   };
 }
 
-function positiveControl(source) {
+function positiveControl(source, dotResetLengths) {
   const rand = xorshift(0x3301b1f1);
   const key = Array.from({ length: N }, (_, i) => i);
   for (let i = N - 1; i > 0; i--) {
@@ -274,6 +333,19 @@ function positiveControl(source) {
   const reverseBound = pairCapacity([reverseCipher], "encrypt").cap;
   assert.ok(reverseBound >= largestSymbolFrequency(globalPlain));
 
+
+    const dotPlain = [];
+  offset = 0;
+  for (const length of dotResetLengths) {
+    dotPlain.push(source.slice(offset, offset + length));
+    offset += length;
+  }
+  const dotCipher = transformParts(dotPlain, key, "encrypt");
+  const dotRecovered = transformParts(dotCipher, key, "decrypt");
+  assert.deepEqual(dotRecovered, dotPlain);
+  const dotBound = pairCapacity(dotCipher, "decrypt").cap;
+  assert.ok(dotBound >= largestSymbolFrequency(dotPlain.flat()));
+
   return {
     keyPermutation: key,
     global: {
@@ -292,6 +364,12 @@ function positiveControl(source) {
       exactRoundTrip: true,
       boundAdmitsPlaintext: reverseBound,
       plaintextMaxFrequency: largestSymbolFrequency(globalPlain)
+    },
+    dotReset: {
+      lengths: dotResetLengths,
+      exactRoundTrip: true,
+      boundAdmitsPlaintext: dotBound,
+      plaintextMaxFrequency: largestSymbolFrequency(dotPlain.flat())
     }
   };
 }
@@ -301,6 +379,8 @@ function main() {
   const body = removeP0RedKey(sections);
   const full = { global: [sections.flat()], section: sections };
   const bodyOnly = { global: [body.flat()], section: body };
+  const dotResetData = source13DotResetSegments();
+  const dotReset = { "13-dot": dotResetData.segments };
   const references = {
     Shakespeare: nativeGP30(read("resources/control/shakespeare_first300k.txt")),
     Gibran: nativeGP30(read("resources/control/gibran_prophet_58585.txt")),
@@ -311,11 +391,14 @@ function main() {
     sourceSectionLengths: sections.map((x) => x.length),
     bodySectionLengthsAfterP0KeyAndDelimiter: body.map((x) => x.length),
     p0RedRuneCount: ink.pages[0].red_spans[0].runes.length,
+    p0RedKeyTokens: dotResetData.redKeyTokens,
+    annotated13DotResetCount: dotResetData.markerCount,
+    13DotResetSegmentLengths: dotResetData.segments.map((x) => x.length),
     period: PERIOD,
     cases: {}
   };
 
-  for (const [scope, configs] of Object.entries({ full, bodyOnly })) {
+  for (const [scope, configs] of Object.entries({ full, bodyOnly, dotReset })) {
     output.cases[scope] = {};
     for (const [clock, parts] of Object.entries(configs)) {
       output.cases[scope][clock] = {};
@@ -343,7 +426,9 @@ function main() {
     }
   }
 
-  output.positiveControl = positiveControl(references.Shakespeare);
+  const dotResetLengths = dotResetData.segments.map((part) =>
+    Math.floor(part.length / PERIOD) * PERIOD);
+  output.positiveControl = positiveControl(references.Shakespeare, dotResetLengths);
   process.stdout.write(JSON.stringify(output, null, 2) + "\n");
 }
 
