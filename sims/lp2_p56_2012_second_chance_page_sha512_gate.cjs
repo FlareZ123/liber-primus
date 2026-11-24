@@ -23,6 +23,18 @@ const midiPath = process.argv[2];
 assert(midiPath, "Pass the exact Cicada.mid extracted from the signed 2012 email");
 const inputs = [
   {
+    name: "2012 sq6wmgv2zcsrix6t.onion archived post/index.html",
+    authentication: "second independent archive copy; embedded message is the Cicada-signed enrollment text",
+    path: path.join(root, "resources/external/2012-sq6wmgv2zcsrix6t-post-index.html"),
+    expectedGitBlobSha1: "adc9279bb7894612d1bf584f8f150ace23d27d66"
+  },
+  {
+    name: "2012 Cicada-signed congratulations/enrollment message",
+    authentication: "clear-signed; verifies with Cicada 2012 key in workflow",
+    path: path.join(root, "resources/external/2012-sq6wmgv2zcsrix6t-congratulations.asc"),
+    expectedGitBlobSha1: "dcbe63880d74ed7299f4719468bd3adce84053e4"
+  },
+  {
     name: "2012 sq6wmgv2zcsrix6t.onion exact root HTML page",
     authentication: "archived HTML; embedded PGP message verifies with Cicada 2012 key",
     path: path.join(root, "resources/external/2012-sq6wmgv2zcsrix6t-onion-index.html"),
@@ -92,4 +104,32 @@ const results = inputs.map(input => {
   return result;
 });
 
-console.log(JSON.stringify({target_sha512: target, digest_convention: "SHA-512 only; 128-hex target; candidate-specific test, not proof of intended algorithm", results}, null, 2));
+const reportedResponseQuotes = [
+  {
+    name: "2012 /NUMBER response quote in R12.5 archive and 2019 reconstruction",
+    source: "The page reportedly returned \"Correct. We'll email you.\"",
+    text: "Correct. We'll email you."
+  },
+  {
+    name: "2012 /NUMBER response quote in neuroretransmit archive",
+    source: "The page is transcribed with a typographic apostrophe.",
+    text: "Correct. We’ll email you."
+  }
+].map(q => {
+  const bytes = Buffer.from(q.text, "utf8");
+  return {
+    name: q.name,
+    source: q.source,
+    authentication: "retrospective verbatim quote; not original HTTP response bytes",
+    bytes: bytes.length,
+    sha512: sha512(bytes),
+    matches_p56_sha512_target: sha512(bytes) === target
+  };
+});
+
+console.log(JSON.stringify({
+  target_sha512: target,
+  digest_convention: "SHA-512 only; 128-hex target; candidate-specific test, not proof of intended algorithm",
+  results,
+  reported_response_quotes: reportedResponseQuotes
+}, null, 2));
