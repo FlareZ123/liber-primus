@@ -1,0 +1,111 @@
+{
+  "maskCount": 512,
+  "rawStarts": 1536,
+  "profiledCandidates": 12,
+  "selectedByFitOnly": true,
+  "fitRanking": [
+    [
+      120,
+      162,
+      -1098.5329007403286
+    ],
+    [
+      125,
+      241,
+      -1100.6029641513705
+    ],
+    [
+      367,
+      482,
+      -1102.7032313471261
+    ],
+    [
+      205,
+      342,
+      -1106.0260521944253
+    ],
+    [
+      96,
+      15,
+      -1108.6509131421078
+    ],
+    [
+      19,
+      81,
+      -1110.1004290056749
+    ],
+    [
+      350,
+      289,
+      -1114.1865784250983
+    ],
+    [
+      349,
+      320,
+      -1114.633323066936
+    ],
+    [
+      400,
+      9,
+      -1116.0582957275728
+    ],
+    [
+      223,
+      499,
+      -1129.7990731624213
+    ],
+    [
+      460,
+      426,
+      -1130.3685896561733
+    ],
+    [
+      317,
+      185,
+      -1130.7415455727764
+    ]
+  ],
+  "fit": {
+    "mask": 120,
+    "key": [
+      0,
+      0,
+      12,
+      3,
+      10,
+      2,
+      0,
+      0,
+      6,
+      19,
+      8,
+      8,
+      2,
+      15,
+      16,
+      12,
+      13,
+      1,
+      21,
+      0,
+      0,
+      20,
+      19
+    ],
+    "plain": "AMBDTGOTBEAEGLNDAFAWASAANUFDETHCHORFTMOROFEGUTIASLJUOFSCLBRSTSNDHNEGREASOESXDQOTALRPOPIAOJOVEAWIWFBUDESISTYABODDIGSPECFJFRYATPGCRCACITEDULTICLURINAPEALRIONDSGREQNLIURFPJILSYYPGLFCHUTULHECKFREASINYELOCAFTELSITHMFEMEEIFEIMPDVRKWEOVYDYLADEYPTLPOORPREDIEWULOOSEEMEBTOWSYNSAKIREMRNOTHENCEALNQ",
+    "cipher": "AMNGDIOTHXIMIADPNGVWAMTANGINGTHIAWZHICAEPAEGOMIAEOTWOFYVTJTHJEAECNEAKEAEROUXDWHBINGFACJVOJIOEAILGHBUJXAQUIOMOPYDIALPEOITHRYGMXOEGSMPJOEDOETIOOETINGIMINGYAAENGRYJNLUXBHPJOEAGAEWXSDCUTOEHEONPTEAYBVGGAEONGOELMBTHYIOOEEOYMQOETHELREOPRDYXDNGYPZEXWQGFDREDEWOEOOEHOOEBZHEAACIMXJMEMLGOTTHXEEARGY",
+    "score": -1098.5329007403286,
+    "latinLength": 287,
+    "preRefineScore": -1119.5749004801357,
+    "preProfileScore": -1104.048109935485,
+    "rank": 162,
+    "scorePerRune": -4.735055606639348
+  },
+  "test": {
+    "plain": "ALRKSZHBSBDTSECDTRHAYMASYMAJJQGEALEIMINFFINASWGKDNWNOKBHKVCECBUYEIAEYKCDOCGGYHEFAHOSHUYIMEEVBSMOW",
+    "score": -495.8989023707678,
+    "scorePerRune": -6.524985557510103,
+    "runes": 76,
+    "end": 16
+  }
+}
