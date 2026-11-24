@@ -10,15 +10,18 @@ const tokenEntries = gp.map((token, index) => ({ token, index })).sort((a, b) =>
 const digraphs = ['TH', 'NG', 'EO', 'OE', 'AE', 'IA', 'EA'];
 
 function toGP(text) {
-  const input = text.toUpperCase().replace(/[^A-Z]/g, '');
   const out = [];
-  for (let i = 0; i < input.length;) {
-    const digraph = digraphs.find((token) => input.startsWith(token, i));
-    const token = digraph || input[i];
-    const entry = tokenEntries.find((item) => item.token === token);
-    if (!entry) throw new Error('No GP29 token for ' + token + ' at offset ' + i);
-    out.push(entry.index);
-    i += token.length;
+  // Word boundaries are not GP symbols: tokenize each word separately so
+  // digraphs such as EA cannot be formed across a printed space.
+  for (const word of text.toUpperCase().trim().split(/\\s+/u)) {
+    for (let i = 0; i < word.length;) {
+      const digraph = digraphs.find((token) => word.startsWith(token, i));
+      const token = digraph || word[i];
+      const entry = tokenEntries.find((item) => item.token === token);
+      if (!entry) throw new Error('No GP29 token for ' + token + ' at offset ' + i);
+      out.push(entry.index);
+      i += token.length;
+    }
   }
   return out;
 }
