@@ -76,3 +76,22 @@ For each original chapter select the adjacent complete pair with maximum guarant
 The p8,p15,p23 anchor pairs have no legal dictionary pair/triple even before adjacent decoding. p34 has seven anchor supports but none traverses both surrounding fit windows, regardless of F mask. This closes the stated finite intact-pair vocabulary model there, not all mixed-feedback laws. Other tested top-fit paths die on the disjoint holdout; this does not exclude lower-scoring paths. p0's support-only result is not a prediction failure. The additional donor controls were selected after observing the native-only calibration insufficiency and exact original support counts, but prior to original continuation scoring; they did not alter the original anchor selection, fit cap, model, LM or ranking.
 
 [Reproducer](../sims/lp2_mixed_autokey_q13_pair_anchor_join_sft.cjs) · [full output](lp2-mixed-autokey-q13-pair-anchor-join-output.json). Executed in connected JS on canonical repository inputs; no CI claim.
+
+## Exact complete-chapter exclusion with intact lexical anchors (15:10Z)
+The pair join is followed by exact concrete queue reachability on both sides of each anchor. A ciphertext zero branches into literal F hold and consuming nonzero plaintext if legal. Only failed states are memoized; no language ranking is used. Per-side cap 2,000,000 transitions; no cap hit in the original tests. All three calibrated high-information controls have full legal paths (not necessarily uniquely correct plaintext). Across p3, p27, p34, p40 and p54, all 1,617 supported word-pair/coefficient models die before completing the chapter (1170, 16, 7, 255, 169 respectively). p8, p15, p23 already had zero support.
+
+The primary opening p0–2 pair (offset 645, lengths 8+9) admits 750,605 local models. All are streamed through an exact ring queue implementation, cross-checked against the array implementation on six native positive/perturbed cases. Complete 729-rune paths exist for 8,817 models; every returned witness was re-encrypted exactly. A second complete disjoint pair, chosen by the same strongest-guaranteed-consuming/longest/earliest criterion to the left (offsets 568 length 7 and 575 length 10), is then required to belong to the same finite vocabulary on the **same path**. No candidate survives.
+
+| a | Primary support | Complete single-pair models | Both-pair models | Caps |
+|---|---:|---:|---:|---:|
+| 1–7 | 189716 | 2220 | 0 | 0 |
+| 8–14 | 182736 | 2231 | 0 | 0 |
+| 15–21 | 189474 | 2223 | 0 | 0 |
+| 22–28 | 188679 | 2143 | 0 | 0 |
+| Total | 750605 | 8817 | 0 | 0 |
+
+Positive secondary lexical check: native LOSS OF DIVINITY plant, late anchor j175 offset717, required two earlier groups at offsets18 and31 (lengths13,9). Exact reverse traversal 4,877 visits, recovered CIRCUMFERENCE PRACTICES, full witness re-encryption 755/755. This is a support control, not independent plaintext prediction. The secondary constraint was introduced after seeing that the single-pair p0 model admits arbitrary nonprose full paths; the source-only choice of the secondary pair precedes its testing.
+
+**Scope:** for each of the nine visual chapters, the continuous lag-13 recurrence with nonzero a,b, arbitrary d and arbitrary initial queue is incompatible with the indicated intact dictionary pair(s). This does not exclude altered segmentation, unknown words, discontinuous state or a different recurrence. Native controls demonstrate real out-of-vocabulary limitations. No original plaintext or source-selected key has been recovered.
+
+Reproducer: `node sims/lp2_mixed_autokey_q13_pair_anchor_join_sft.cjs` (eight chapter reachability results and calibration); `lex-control` for the secondary positive control; `p0full:1-7`, `p0full:8-14`, `p0full:15-21`, `p0full:22-28` for exhaustive opening partitions. First-partition secondary filtering also reproduced with `p0secondary` using stored primary witnesses. Outputs in im-results/lp2-mixed-autokey-q13-pair-anchor-join-output.json and lp2-mixed-autokey-q13-p0-{full,secondary}-a*.json. Direct connected JS execution, no CI.
