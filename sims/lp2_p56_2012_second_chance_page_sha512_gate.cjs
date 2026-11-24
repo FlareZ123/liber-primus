@@ -23,6 +23,11 @@ const midiPath = process.argv[2];
 assert(midiPath, "Pass the exact Cicada.mid extracted from the signed 2012 email");
 const inputs = [
   {
+    name: "2012 sq6wmgv2zcsrix6t.onion exact root HTML page",
+    path: path.join(root, "resources/external/2012-sq6wmgv2zcsrix6t-onion-index.html"),
+    expectedGitBlobSha1: "03a7bd9e98578fd51ae3f798375cbbe8bc41dd96"
+  },
+  {
     name: "2012 countdown clear-signed message",
     path: path.join(root, "resources/historical/cicada2012-countdown-message.asc"),
     expectedGitBlobSha1: "7229104f48f4a0eeeae69c901eb74cb21baed956"
@@ -59,6 +64,7 @@ const results = inputs.map(input => {
   assert.equal(blob, input.expectedGitBlobSha1, `Source blob mismatch for ${input.name}`);
   if (input.expectedSha256) assert.equal(result.sha256, input.expectedSha256);
   if (input.name.includes("Cicada.mid")) assert.equal(bytes.length, 10889);
+  if (input.name.includes("root HTML page")) assert.equal(bytes.length, 1788);
   return result;
 });
 
