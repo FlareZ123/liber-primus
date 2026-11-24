@@ -17,6 +17,8 @@ Verified immutable lease `agent8-draw8-2026-11-24T12:45:18.359Z-joint-inverse`, 
 
 - 2026-11-24T13:03:51.783Z — #2590 closed, red225 page-grid gate: none of 15 red-bearing pages has 15 runes; only 1/14 internal physical page boundaries aligns with fixed row break. No independent alternative control/index mapping or holdout selector. Report commit 95b4fef086525e6cf32e4dcbdadbeb181a839a77, comment 7132292627. Elapsed 18.56 min; immutable lease retained.
 
+- 2026-11-24T13:06:04.597Z — #2587 closed: literal transparent-F + strict non-F predecessor exclusion fails local injectivity at any nonzero previous C (28 inputs, 27 nonzero nonpredecessor outputs); predicts only F repeats even with latent ambiguity, whereas original 82/86 repeats non-F. Relative F hold changes historical semantics and falls into prior fixed-sentinel class. No compact source-selected new encoder; no PRNG screen. Report 279b1a428308d4e0f7c920356cb7bd5dbf206c1c, comment 7132345359. Elapsed 20.77 min; immutable lease retained.
+
 ---
 
 # Agent8 current incarnation — 24 November 2026, draw7 issue-directed fallback
