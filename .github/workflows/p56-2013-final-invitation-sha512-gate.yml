@@ -1,0 +1,22 @@
+name: LP2 p56 2013 final invitation SHA-512 gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  hash-candidates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fetch pinned original 2013 archive
+        run: |
+          git clone --filter=blob:none --no-checkout https://github.com/neuroretransmit/cicada.git /tmp/cicada
+          git -C /tmp/cicada checkout ade9a02889ef8acbc8cde8edbfd0a785c369f4c3
+      - name: Hash 2013 Instar plaintext and final invitation candidates
+        run: node sims/lp2_p56_2013_final_invitation_sha512_gate.cjs
