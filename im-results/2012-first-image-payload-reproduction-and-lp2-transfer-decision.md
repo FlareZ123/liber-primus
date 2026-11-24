@@ -1,6 +1,6 @@
 # 2012 opening-image payload: byte-exact extraction and LP2 transfer decision
 
-**Current status (23 November 2026):** the 2012 opening image and both payload channels have been recovered from two pinned community mirrors, and the historical OutGuess extraction has been independently reproduced with pinned OutGuess 0.4. The exact historical OutGuess read operation on source-selected LP2 p55 was also tested: it reports a false-looking header and terminates with SIGFPE before writing any payload bytes. Separately, the downstream book-code phrase yields a 75-symbol GP29 candidate matching the 75 non-carry runes on p55; direct substitution/Caesar tests fail, so a boundary-changing relation remains unproven. **The OutGuess transfer is rejected; the separate p55 crib candidate is handed to the existing boundary-reader investigation.**
+**Current status (24 November 2026):** the 2012 opening image and both payload channels were recovered from two pinned community mirrors, and the historical OutGuess extraction was reproduced with pinned OutGuess 0.4. Default-key extraction from original LP2 p55 fails with zero payload bytes. The downstream phrase has 59 GP29 letter-runes and 16 ASCII spaces, matching the 75 p55 body glyphs in total count only if a space-to-rune representation is assumed. Direct key consumers and five source-linked shared-pad receiver placements yield no unknown plaintext. Historical payload recovery stands; the mixed-token crib has no authenticated LP2 reader.
 
 ## Original image and source limits
 
@@ -49,15 +49,15 @@ The output is a **book-code instruction**, a Reddit destination (`r/a2e7j6ic78h0
 
 A tempting LP2 overlap is that this payload has 76 coordinate entries while unknown p55 has 76 runes. This is a count-level match, not a selected transfer: the 2012 syntax is line:character addressing into a separately identified book, whereas p55 is a 76-rune page, not a 76-line reference text. Neither the 2012 payload nor an LP2 instruction says to map these coordinates to p55 rune positions, turn them into a GP29 key, or use them as a permutation. No source-defined operation connects the two 76-element objects.
 
-## LP2 transfer candidate: 75-symbol p55 crib
+## LP2 transfer candidate: 59 letter-runes plus 16 hypothetical space slots
 
 The recovered OutGuess payload contains 76 line:character coordinates. The pinned 2012 walkthrough resolves the book code to the exact visible message:
 
 \`CALL US AT US TELE PHONE NUMBER TWO ONE FOUR THREE NINE OH NINE SIX OH EIGHT\`
 
-This is **76 characters including spaces**. In GP29 transliteration, the \`TH\` in \`THREE\` is one rune, so the phrase has **75 GP29 tokens** (59 letter-runes plus 16 spaces).
+This is **76 characters including spaces**. In GP29 transliteration, the \`TH\` in \`THREE\` is one rune, so the phrase contains **59 GP29 letter-runes and 16 ASCII spaces**, for 75 mixed tokens. The space is not a GP29 rune.
 
-The canonical LP2 transcription has **76 runes on p55**. Its first rune, \`ᛝ\`, completes a word carried over the p54/p55 page boundary. Removing that one carry-in leaves **75 p55 body runes**. Thus the book-code phrase and p55 body have an exact 75-token length alignment. This is stronger than the superficial “76 coordinates versus 76 runes” count match.
+The canonical LP2 transcription has **76 runes on p55**. Its first rune, \`ᛝ\`, completes a word carried over the p54/p55 page boundary. Removing that one carry-in leaves **75 p55 body runes**. Thus a one-glyph-per-space hypothesis would supply a 75-position alignment. No such representation is defined by the source, so this is a conditional mixed-register count match.
 
 The alignment is not yet a plaintext identification:
 
@@ -67,9 +67,32 @@ The alignment is not yet a plaintext identification:
 - No constant GP29 Caesar shift maps the phrase's letter-runes to the p55 body.
 - Bounded source-derived consumers were tested (Agent36, 23 Nov 2026): the 75-token GP29 phrase as a direct Vigenère/OTP pad with all 29 space-symbol mappings and both additive signs always produces first word LAMT (C−K) or UXUIA (C+K); the literal phone digits 2143909608 as a repeated GP29 key (forward/reversed, both signs) do not yield coherent text. The 76 book-code coordinate pairs were reduced through nine simple line/character maps (line, character, sum, difference, product, and four small linear combinations), both 0-/1-based origins, both signs, and all 29 space values. No exact coordinate-derived key matches the 75-rune body or 76-rune full page; best partial agreements were 9/75 and 7/76 after 1,044 comparisons per alignment, not evidence after selection. These bounded negatives reject only those explicit consumers; a general Vigenère/OTP search or arbitrary coordinate mapping remains unjustified without a source-selected schedule.
 
-The exact source selector is therefore **p55's 75-rune body length after its documented one-rune page carry**, and the candidate operand is the 75-token GP29 rendering of the 2012 book-code message. The remaining uncertainty is the reversible mechanism that could account for the changed word boundaries and symbol mapping. A source-constrained boundary-changing reader is the cheapest next discriminating test; Agent37, who is already investigating that problem under [#2278](https://github.com/FlareZ123/liber-primus/issues/2278), has been sent the exact crib and the falsification results.
+The source gives a natural p55 body boundary after its documented one-rune carry, but no independent link between that boundary and the 2012 message. A reversible space-to-rune representation is missing. Agent35's handoff and Agent43's correction distinguish 59 letter-runes from the 16 spaces; no fitted OTP can authenticate the alignment.
 
 This candidate should not be promoted to \`results/\` or described as plaintext unless a fixed, reversible mechanism decrypts the original p55 ciphertext and independently validates beyond this one phrase. The earlier no-transfer conclusion is superseded by this exact-length alignment, but the transfer remains **unproven**.
+
+## Conditional crib propagation into other original receivers (Agent37, 24 November)
+
+The mixed-token alignment allows a direct attack without assigning any of the 16 spaces a GP value. Under a common additive pad, at each of the 59 known letter positions the other receiver plaintext is forced by `P_B = (P_A + C_B - C_A) mod 29`. All 16 untyped slots remain unrestricted. Under a literal shared XOR pad the forced target is `P_B = P_A xor C_A xor C_B`; any value outside 0..28 is an exact GP29 contradiction.
+
+Freeze the previously documented [p27 cyclic seam](lp2-p27-p55-sixrepeat-boundaryfree-paired-plaintext-gate.md) (42 final plus 34 initial chapter runes, omit the p55 carry-aligned position), [p32 tree-art placement](lp2-tree-p32-p55-boundaryfree-twotimepad-plaintext-gate.md) (its earlier explicitly postselected offset19, omit first rune), and three distinct [p53 moth-art placements](lp2-p53-p55-moth-terminal-marker-reusedpad-original-wordgate.md) (p53 indices 1..75, 0..74, 104..178). No new phase or alignment is optimized.
+
+The [read-only CJS reproducer](../sims/lp2_2012_p55_crib_paired_receiver_sft.cjs) fixes all 59 propagated letter positions and uses exact dynamic programming over the preceding three GP symbols to maximize smoothed tetragram likelihood over all 29^16 wildcard assignments. It trains on the first 145,461 of 217,106 GP symbols from the pinned Shakespeare reference using the prior paired-decoder normalization. It imposes no word boundaries. Eight distinct held-out 75-rune native passages are encrypted under arbitrary pads agreeing with the p55-derived pad at all known slots. All 59 fixed letters are recovered, along with 8–14 of the 16 wildcard letters.
+
+| Frozen receiver | Best GP29 log score | Forced XOR values outside GP29 |
+| --- | ---: | ---: |
+| p27 cyclic seam | -448.133719 | 4 |
+| p32 prior art offset19 | -434.446055 | 3 |
+| p53 page start | -383.338475 | 4 |
+| p53 first complete p55 word | -447.361040 | 3 |
+| p53 terminal marker | -451.767207 | 3 |
+| Eight held-out native additive controls | -172.353872 to -115.938556 | not tested |
+
+The strongest original score is over 210 log units below the weakest genuine native control. The p27 terminal E I G H T is forced by the existing five matching ciphertext runes and the speculative crib, not independently recovered. Its initial known target symbols are NG Y H EO ? EA X ? AE Y ? I O. Changing spaces cannot alter those letters. No complete original output is coherent. Every XOR placement is an exact contradiction under the specified shared-pad/crib assumptions.
+
+A strict F policy requiring P=F iff C=F conflicts at p55 body offset14 (P=T, C=F). This does not exclude a plaintext-only F bypass that permits ordinary non-F encryption to F. The actual phrase F at body offset40 matches original F; the third original F at offset24 corresponds to an untyped space.
+
+**Decision:** retire these five shared-pad placements for the specific mixed-token crib and direct GP29 ordinary-native target, even with freely changed segmentation. The language comparison is finite-control evidence; XOR range contradictions are exact. No unknown plaintext or authentic key was found. The wider #2278 problem remains open; a new author-selected reversible space representation or independent alignment is required before further fitting. Direct execution of the committed experiment function produced the values above; no Windows CI result is claimed.
 
 ## Exact OutGuess transfer test on original p55
 
@@ -97,6 +120,6 @@ LP2 p55 is archive image 72. Its 39,842-byte output has SHA-256 6e8bd6218148d795
 
 Reproduction: [bounded source-transfer SFT](../sims/2012_bookcode_p55_transfer_sft.py). This rejects only the literal 2012 telephone number as an OutGuess 0.4 password on these original LP2 JPEGs; it does not prove that every steganographic method or key is absent.
 
-**Decision:** reject transfer of the historical OutGuess extraction operation to p55. Reject the literal 2012 telephone number as an OutGuess password for the original LP2 image set, and reject the bounded direct phrase-pad and coordinate-pad consumers above. Preserve the separate 75-token book-code phrase as an unresolved, source-derived crib candidate and hand it to the existing #2278 boundary-changing-reader investigation; it is not established plaintext. No generic OutGuess page sweep, password dictionary, arbitrary coordinate-to-rune mapping, or broad Vigenère/OTP key sweep is justified without a new first-party selector. No unknown LP2 plaintext, authentic LP2 key, complete inverse, or final Cicada destination has been recovered.
+**Decision:** reject transfer of the historical OutGuess extraction operation to p55. Reject the literal 2012 telephone number as an OutGuess password for the original LP2 image set, and reject the bounded direct phrase-pad and coordinate-pad consumers above. Preserve the mixed-token book-code phrase as a historical candidate with 59 letter-runes and 16 untyped spaces; its direct shared-pad propagation to five prior placements failed even with unconstrained segmentation. Further work requires an independent source-selected space representation. No generic OutGuess page sweep, password dictionary, arbitrary coordinate-to-rune mapping, or broad Vigenère/OTP key sweep is justified without a new first-party selector. No unknown LP2 plaintext, authentic LP2 key, complete inverse, or final Cicada destination has been recovered.
 
-**Research result class:** exact historical payload recovery; negative original-p55 default-key OutGuess transfer; negative 2012-phone-number OutGuess transfer across all 58 LP2 originals; bounded direct key-consumer exclusions; unresolved 75-token p55 crib candidate with direct substitution/Caesar/transposition exclusions.
+**Research result class:** exact historical payload recovery; negative original-p55 default-key OutGuess transfer; negative 2012-phone-number OutGuess transfer across all 58 LP2 originals; bounded direct key-consumer exclusions; conditional mixed-token p55 crib with direct substitution/Caesar/transposition exclusions and five original-receiver shared-pad negatives.
