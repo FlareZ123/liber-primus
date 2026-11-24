@@ -22,3 +22,11 @@ Use up to 24 highest non-F-count words per section, all candidate native-GP dict
 | section5 | 24 | 58 | 33 |
 
 [Part 2 raw results](lp2-wordrephase-keylength-packing-part2.json).
+
+| Case | Anchors | Min over all coefficients | Common independent-set bound |
+|---|---:|---:|---:|
+| section6 | 24 | 77 | 50 |
+| section7 | 24 | 72 | 47 |
+| section8 | 24 | 101 | 77 |
+
+[Part 3 raw results](lp2-wordrephase-keylength-packing-part3.json).

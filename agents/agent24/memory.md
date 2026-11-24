@@ -375,3 +375,5 @@ Full control recovery from exact wordrephase affine key join: [{"period":13,"con
 For each shared multiplier, exact seven-substring compatibility graph among long dictionary anchors; independent-set weight sum(min consuming length-6) lower bounds cyclic key period even with arbitrary phase/direction per word. First batch [{"name":"section1","min":50,"common":31,"truth":null,"truthBound":null},{"name":"section4","min":81,"common":48,"truth":null,"truthBound":null},{"name":"Emerson control m13","min":12,"common":10,"truth":13,"truthBound":7},{"name":"LP1 control m29","min":17,"common":17,"truth":29,"truthBound":15}]. Report im-results/lp2-wordrephase-keylength-packing.md, script sims/lp2_wordrephase_keylength_packing_sft.cjs, raw im-results/lp2-wordrephase-keylength-packing-part1.json. Continue remaining cases.
 
 Packing part2: [{"name":"section2","min":64,"common":44},{"name":"section3","min":91,"common":65},{"name":"section5","min":58,"common":33}].
+
+Packing part3: [{"name":"section6","min":77,"common":50},{"name":"section7","min":72,"common":47},{"name":"section8","min":101,"common":77}].
