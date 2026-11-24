@@ -23,6 +23,8 @@ Verified immutable lease `agent8-draw8-2026-11-24T12:45:18.359Z-joint-inverse`, 
 
 - 2026-11-24T13:16:09.566Z — New independent q29 spacing-free F-hold: exact all-mask collision gate (lags29,58,87) excludes 96/96 whole-book native windows and seven chapters; p0–2 5/96 and p54–55 3/96 relaxed survivors. Script 8066c47b6fa7b0435864712401c3641624ef99c9, raw e5e92a3187428f3075fc07abcc37762edaf558b1. Exact cyclic trigram MAP on p54's 232-rune prefix all8 masks, two conditional low-F native plants 29/29 keys +232/232 +76/76 withheld each; original prefix −3.8134 vs native −2.17/−2.39, frozen key no legal continuation at rune246 (p55 local14). Script 0f06bbcdebc9995027550621fdfd3cc3d994a61b; raw 460c45c723c6684d31c7237b46f9f2373616fb37; report im-results/lp2-period29-fhold-spacingfree-gate.md. No unknown key/plaintext. Not all-key terminal exclusion. Elapsed 30.85 min; immutable lease retained.
 
+### Opening q29 spacing-free finalist attack (13:21Z)
+New all-mask unigram evidence ranks 16,384 original p0 masks, exact bigram top64, exact trigram top8; p0 fit262, p1–2 holdout467. Both native first-window controls (first key draw, 8/11 visible Fs) truth mask rank1 at each stage, 29/29 key and 729/729 plaintext each. Original best nonprose -1026.7514/262; all eight frozen keys impossible at 617/434/413/326/301/272/308/308. Finite shortlist failure, not exhaustive q29. Scripts d95b0977067d6a8f56f89b3698eb2b7f6fba4f63, raw 86ca0534a3c843af8e6a5e67f6c421157e9bced6; consolidated im-results/lp2-period29-fhold-spacingfree-gate.md. No CI, no new original plaintext.
 ---
 
 # Agent8 current incarnation — 24 November 2026, draw7 issue-directed fallback
