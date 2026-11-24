@@ -34,7 +34,7 @@ function experiment(corpus,transcript,solved){
    if(!active.size)return {failure:i,seen,marks};
   }
   let masks=new Set();for(const set of active.values())for(const m of set)masks.add(m);
-  return {survivors:active.size,maskCount:masks.size,minimumTypes:Math.min(...[...masks].map(pop)),expectedSurvives:expected===null?null:active.get(expected.end)?.has(expected.mask)??false,seen,marks};
+  return {survivors:active.size,masks:[...masks],maskCount:masks.size,minimumTypes:Math.min(...[...masks].map(pop)),expectedSurvives:expected===null?null:active.get(expected.end)?.has(expected.mask)??false,seen,marks};
  }
  const donor=solved.sections.flatMap(s=>(s.source_text.match(/[\u16a0-\u16ff]+/gu)||[]).map(w=>[...w].map(c=>idx.get(c))));
  function plant(seed,start){
@@ -48,7 +48,25 @@ function experiment(corpus,transcript,solved){
  const controls=[plant(5301,0),plant(5302,173),plant(5303,463)];
  const original=bound(words,4);
  const page=corpus.pages.filter(p=>p.page<=55);let n=0,at=null;for(const p of page){if(original.failure>=n&&original.failure<n+p.indices.length)at={page:p.page,offset:original.failure-n};n+=p.indices.length;}
- return {controls,original,at};
+ const lengths=[729,1145,1729,9,1894,1021,1524,1589,3316];
+ const offsets=[];let offset=0;for(const w of words){offsets.push(offset);offset+=w.length;}
+ function supersets(masks,k){
+  const out=new Set();for(const m of masks){const need=k-pop(m);if(need<0)continue;
+   function add(b,start,left){if(left===0){out.add(b);return;}for(let i=start;i<=29-left;i++)if(!(b&(1<<i)))add(b|(1<<i),i+1,left-1);}
+   add(m,0,need);
+  }return out;
+ }
+ let start=0,common=null,sections=[];
+ for(const len of lengths){
+  const end=start+len,ws=words.filter((w,i)=>offsets[i]>=start&&offsets[i]+w.length<=end);
+  check(ws.flat().length===len,"chapter cut");
+  const a=bound(ws,4,0),b=bound(ws,4,start?tape[start-1]:0);
+  const allowed=supersets([...(a.masks||[]),...(b.masks||[])],4);
+  common=common===null?allowed:new Set([...common].filter(m=>allowed.has(m)));
+  sections.push({start,end,singletons:ws.filter(w=>w.length===1).length,resetFailure:a.failure??null,continuousPreviousFailure:b.failure??null,resetMasks:a.maskCount??0,continuousPreviousMasks:b.maskCount??0,allowed:allowed.size,common:common.size});
+  start=end;
+ }
+ return {controls,original,at,sections};
 }
 const paths=["resources/liber-primus/lp2-corpus.json","resources/liber-primus/lp2-transcription.txt","resources/external/relikd-solved-gp29-native-v1.json"];
 const read=p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8');
