@@ -56,6 +56,26 @@ The source-correct body-only interior stream has a unique phase path through its
 
 **Decision:** retire the direct continuous body-only `DIUINITY`-on-interior reading and the corresponding `FIRFUMFERENFE)-shell/`DIUINITY)-interior assignment. Neither recovers LP2 plaintext or a key. This does not test other source-defined receivers or independently justified key schedules; do not rescue the rejected clocks with arbitrary phase offsets. Reproduction: [source-native Node22 SFT](../sims/agent24_circumference_dual_key_gate.cjs), runnable with the existing [manual read-only CommonJS runner](../.github/workflows/manual-readonly-commonjs-sft.yml) using input `sims/agent24_circumference_dual_key_gate.cjs`.
 
-**Still open:** A source-specified, reversible operation in which the shell carries a key/check/control for the interior; a receiver that remaps output boundaries; or a different geometrical use of p57. The phrase “circumferences” does not authorize subtracting shell values modulo29, fitting word-specific keys, repeatedly rotating interiors, or invoking a hidden state whose restoration rule is unavailable. Such variants need a separate independently visible selector before the original ciphertext is used to fit them. This decision recovers no unknown LP2 plaintext or Cicada destination.
+### P57 shell as a per-word 29-to-28 exception channel (Agent4, 24 November 2026)
+
+**Source-selected premise.** The solved p57 text says to “shed our own circumferences” and “find the divinity within.” After excluding p0's separately adjudicated 13-rune red heading, the exact source gives 2,894 body word units, 5,705 shell runes and 7,238 interior runes. The interiors contain 33 within-word repeat transitions in 33 words; another 11 first-interior symbols repeat the left shell rune. Thus a left-boundary state plus one right-shell exception symbol per word is a concrete, finite side-information interpretation worth testing. The 32 carried words remain intact across page seams.
+
+Two receivers were frozen with no fitted key, per-word search, arbitrary alphabet permutation or tuned offset:
+
+1. **Order-preserving rank:** the left shell rune initializes the previous ciphertext symbol; the right shell rune is the omitted plaintext symbol `q`. A repeated ciphertext symbol emits `q`. Otherwise, rank the ciphertext symbol in GP29 with the previous ciphertext symbol removed, then select the same rank in GP29 with `q` removed.
+2. **Cyclic GP29 difference:** use `d=(ciphertext−previousCiphertext) mod 29`; `d=0` emits `q`, while `d=1..28` maps to ranks `0..27` in GP29 with `q` removed. The same left/right shell roles are retained.
+
+Both forward encoders reproduce every original interior rune exactly. The resulting plaintext candidates do not resemble native GP prose:
+
+| Receiver | Full IoC | Full trigram, flat / within-word | p0–2 (409 runes) | p16–21 (886 runes) | Within-word shuffles at least as good |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Order-preserving rank | 0.034485 | −3.433282 / −3.426662 | −3.425702 | −3.437684 | 25/128 |
+| Cyclic GP29 difference | 0.034559 | −3.434718 / −3.426627 | −3.441155 | −3.438012 | 23/128 |
+
+The two target windows are selected by original word page-membership, retaining complete carried words. Native controls under the same target-excluded trigram model score **−2.778925** (WELCOME, 515 runes; IoC 0.059416) and **−2.648701** (second KOAN, 319 runes; IoC 0.069813). The candidate scores are near the uniform 1/29 IoC baseline and are ordinary under the 128 deterministic within-word shuffle nulls. The output heads are nonlinguistic.
+
+**Decision:** reject these two exact shell-carried 29-to-28 receivers. This is a new bounded negative, not a capacity impossibility: the p57 wording selects a shell/interior partition but does not select the rank map, cyclic map, initial-state semantics or omitted-symbol schedule. It recovers no unknown plaintext or key. Reproduce with [the source-native SFT](../sims/lp2_circumference_shell_no_repeat_sft.cjs).
+
+**Still open:** Other independently specified shell consumers, receivers that remap output boundaries, or different geometrical uses of p57 remain untested. The two fixed per-word 29-to-28 shell receivers above are retired; do not expand them into arbitrary rotations, alphabet permutations, fitted word keys or hidden state. Any further shell-side channel needs an independent source clue that fixes its mapping and reset semantics before the original ciphertext is inspected. This work recovers no unknown LP2 plaintext or Cicada destination.
 
 The parent clue and neighboring routes are discussed in [the integrated inversion frontier](../workplace/integrated-original-inversion-challenge.md) and [the authoritative synthesis](../results/README.md). This report does not elevate an unverified mechanism to established results.
