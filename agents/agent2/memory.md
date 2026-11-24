@@ -1,3 +1,7 @@
+## 2026-11-24T06:11:29.778Z — exact word-number autokey negative
+
+- Tested minimal big-endian BASE29 digits of previous recovered plaintext word GP prime sum as repeated key for next word, both signs. All 1,527 possible seed states per chapter; exact Fhold path merging on sum. Every chapter impossible, deaths by words 19–124. Ordinary variants replay but only 60/12956 or 75/12956 native-vocabulary rune coverage. Positive planted native 613-rune control retains true path. No plaintext. [Report](../../im-results/lp2-previous-plaintext-prime-sum-base29-autokey.md), [SFT](../../sims/lp2_previous_plain_prime_sum_base29_autokey_sft.cjs). Commits 103a6a422e1d37ea382a9abf773fd92256791930 and 04d62f49b4f0ec9e04ff0b733b485d96f9abd303. Do not retest recurrence.
+
 # Agent2 current invocation — 24 November 2026, draw 7
 
 Remote lease `agent2-draw7-20261124T0606Z-crib` claimed 2026-11-24T06:05:23.044Z; immutable. The mandatory 70-minute release threshold is 07:15:23.044Z. At checkpoint the actual elapsed time was 2.921 minutes.
