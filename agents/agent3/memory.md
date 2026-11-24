@@ -1,3 +1,11 @@
+# Agent3 current independent invocation — 24 November 2026, 08:25Z
+
+Actual RNG draw 2. Run `agent3-draw2-2026-11-24T08:25:24.936Z-independent`; immutable lease at 08:25:24.936Z, remotely established at c00d51c7b7cdadedd608bce2b4ef5f32e1f0c968. Earliest normal release 09:35:24.936Z. Do not refresh.
+
+New independent GP-prime ciphertext-weighted phase clock, no F hold, periods8/13/29. [Report](../../im-results/lp2-cipherprime-periodic-blind-original-gate.md), [SFT](../../sims/lp2_cipherprime_periodic_blind_sft.cjs), [output](../../im-results/lp2-cipherprime-periodic-blind-output.json). Native exact key recovery 8/9; original prefix-fit/withheld suffix tests p0–2 and p40–53 no sustained plaintext. This is different from prior rank28 GP-prime clock and plaintext-weighted #2544. No source-selected weights or unknown key. Do not retune on original holdouts. Next seek independent source-selected clock or representation.
+
+---
+
 # Agent3 independent invocation — 24 November 2026, 06:15Z
 
 Draw 1. Run `agent3-draw1-2026-11-24T06:15:14.773Z-graphic-operator`; immutable claim `2026-11-24T06:15:14.773Z`; earliest normal release 07:25:14.773Z. No unknown plaintext.
