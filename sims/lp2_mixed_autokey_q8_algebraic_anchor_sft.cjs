@@ -1,6 +1,6 @@
 'use strict';
 /** Mixed lag-eight all-coefficient anchor inverse; original surrounding spacing ignored. */
-function experiment(corpus,trans,solved,lex,donors,lib){
+function experiment(corpus,trans,solved,lex,donors,lib,mode='strict'){
  const gp=JSON.parse(corpus),native=JSON.parse(solved),q=8,mod=x=>((x%29)+29)%29;
  const assert=(x,m)=>{if(!x)throw Error(m)};
  const same=(x,y)=>String(x)===String(y),rune=new Map(gp.runes.map((x,i)=>[x,i])),alpha=new Map(gp.translit.map((x,i)=>[x,i]));
@@ -42,10 +42,10 @@ function experiment(corpus,trans,solved,lex,donors,lib){
    else{const p=mod(c-queue[0]);if(p){plain.push(p);visit(i+1,queue.slice(1).concat(mod(a*p+b*c+d)));plain.pop();}}}
   visit(0,K);return {best,paths};
  }
- function attack(name,words,truth=null){
+ function attack(name,words,truth=null,partial=new Set()){
   const C=words.flat(),offsets=[0],anchors=[];for(const w of words)offsets.push(offsets.at(-1)+w.length);
   for(let j=0;j<words.length;j++){
-   const c=words[j];if(c.filter(Boolean).length<q+3)continue;
+   const c=words[j];if(partial.has(j)||c.filter(Boolean).length<q+3)continue;
    const at=offsets[j],end=offsets[j+1],L=Math.max(0,at-48),R=Math.min(C.length,end+48),rev=L>=C.length-R;
    if((rev?L:C.length-R)<76)continue;
    const fitLeft=C.slice(L,at),fitRight=C.slice(end,R),held=rev?C.slice(L-76,L):C.slice(R,R+76);
@@ -79,11 +79,13 @@ function experiment(corpus,trans,solved,lex,donors,lib){
  const controls=specs.map(([name,a,b,d,salt])=>{const s=src.find(x=>x.name===name),P=s.w.flat(),K=Array.from({length:q},(_,i)=>(i*i*7+i*11+salt)%29),C=encrypt(P,K,a,b,d).C;let j=0;return attack(name,s.w.map(w=>{const v=C.slice(j,j+w.length);j+=w.length;return v}),{P,K,a,b,d});});
  const calibration=controls.flatMap(c=>c.anchors).filter(a=>a.trueLex),exact=calibration.filter(a=>a.result?.correct.model&&a.result.correct.fit===a.result.correct.fitTotal&&a.result.correct.holdout===76).length;
  const pass=calibration.length>=2&&exact===calibration.length;
+ const supportPass=calibration.length>=2&&calibration.every(a=>a.trueModelCount===1);
+ assert(mode==='strict'||mode==='support','mode');
  const pages=[0,3,8,15,23,27,34,40,54,56],starts=pages.map(p=>gp.pages.slice(0,p).reduce((s,x)=>s+x.indices.length,0));
  let off=0;const ww=original.map(w=>{const x={w,off};off+=w.length;return x});
- const originalResults=pass?starts.slice(0,-1).map((s,i)=>attack("p"+pages[i],ww.filter(x=>x.off>=s&&x.off+x.w.length<=starts[i+1]).map(x=>x.w))):null;
- return {q,trainLengths:train.map(x=>x.length),lexicon:dict.reduce((s,d)=>s+d.size,0),calibration:{eligible:calibration.length,exact,passed:pass},controls,original:originalResults};
+ const originalResults=(mode==='strict'?pass:supportPass)?starts.slice(0,-1).map((s,i)=>{const e=starts[i+1],w=[],partial=new Set();for(const x of ww){const lo=Math.max(s,x.off),hi=Math.min(e,x.off+x.w.length);if(lo>=hi)continue;if(lo!==x.off||hi!==x.off+x.w.length)partial.add(w.length);w.push(x.w.slice(lo-x.off,hi-x.off));}assert(w.flat().length===e-s,"chapter group carry");assert(same(w.flat(),gp.pages.slice(pages[i],pages[i+1]).flatMap(x=>x.indices)),"chapter tape");return attack("p"+pages[i],w,null,partial);}):null;
+ return {q,trainLengths:train.map(x=>x.length),lexicon:dict.reduce((s,d)=>s+d.size,0),calibration:{eligible:calibration.length,exact,passed:pass,supportPassed:supportPass},mode,controls,original:originalResults};
 }
 if(typeof module!=="undefined")module.exports={experiment};
 
-if(require.main===module){const fs=require('node:fs'),path=require('node:path'),lib=require('./lp2_fhold_cyclic_ngram_map.cjs');const paths=["resources/liber-primus/lp2-corpus.json","resources/lp2-transcription.txt","resources/external/relikd-solved-gp29-native-v1.json","resources/control/english_wordfreq_textblob.txt","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt"];const a=paths.map(p=>fs.readFileSync(path.resolve(__dirname,'..',p),'utf8'));console.log(JSON.stringify(experiment(...a.slice(0,4),a.slice(4),lib),null,2));}
+if(require.main===module){const fs=require('node:fs'),path=require('node:path'),lib=require('./lp2_fhold_cyclic_ngram_map.cjs');const paths=["resources/liber-primus/lp2-corpus.json","resources/lp2-transcription.txt","resources/external/relikd-solved-gp29-native-v1.json","resources/control/english_wordfreq_textblob.txt","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt"];const a=paths.map(p=>fs.readFileSync(path.resolve(__dirname,'..',p),'utf8'));console.log(JSON.stringify(experiment(...a.slice(0,4),a.slice(4),lib,process.argv[2]||'strict'),null,2));}
