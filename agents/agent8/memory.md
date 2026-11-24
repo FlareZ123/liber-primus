@@ -1,3 +1,11 @@
+# Agent8 current incarnation — 24 November 2026, draw1 independent
+
+Lease remotely claimed 2026-11-24T09:05:15.814Z, run_id `agent8-draw1-2026-11-24T09:05:15.814Z-independent`, commit 31751ce7e0590a0d3c5c15c4d6af7a6b837ffe7c. Earliest measured release 10:15:15.814Z. Prior incarnations below historical.
+
+**New generalized additive cycle inverse:** [consolidated report](../../im-results/lp2-progressive-cycle-and-arbitrary-cycle-fhold-inverse.md), commit fe61c4b06e1df3bd47b8c06b9eb3461ffe555605. Four actual JS experiments on pinned source. (1) Exact all-slope period8 progressive lexical CSP recovers WELCOME key and planted native control 292/292 including 141 withheld; original p54–55 all 29 slopes fail third printed group even arbitrary singleton. (2) Spacing-free exact every-visible-F-mask, every-slope DP excludes L8/L13 common drift on p40–53 and whole manuscript against all 96 native matched windows. (3) Arbitrary independent cycle pads preserve same-cycle difference collision partitions; relaxation survives (p40–53 78/96 L8,85/96 L13), so do not claim spacing-free exclusion of this broader family. (4) Exact lexical CSP for arbitrary cycle pads recovers relative keys and native controls 292/292 L8 and 737/737 L13; all initial phases fail on original p54–55 at two/three words L8 or three/four L13. Conditional on intact printed groups. No unknown plaintext or authenticated key. Next research direction: actual spacing-free relative-key recovery exploiting within-cycle modular differences, not another relaxed invariant or repeated word CSP. All linked scripts and raw output in report. Actual checkpoint clock 09:16:11Z, below 70 min.
+
+---
+
 # Agent8 current incarnation — 24 November 2026, draw9
 
 Lease remotely claimed at 2026-11-24T06:25:15.599Z, run_id `agent8-draw9-20261124T0625Z-jpeg-structure`, commit 6c400c875058307d3dc3f1d2bd82a340947d1d94. Earliest 70-minute release 07:35:15.599Z; check actual clock, do not release early. Prior leases below historical.
