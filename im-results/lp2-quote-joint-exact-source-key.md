@@ -31,3 +31,50 @@ The actual controls and original run executed from the frozen code using connect
 - `node sims/lp2_quote_ambiguous_spelling_running_key_sft.cjs --original` — [prime/literal output](lp2-quote-ambiguous-spelling-running-key-output.json); frozen 3f7058cd.
 
 **Next decision:** Do not retune these three source registers for p42–43 by expanding spelling freedoms within the same normalization. Other authors, paraphrases, altered punctuation, cross-word digraphs, different orthography and other key laws were not tested. Director #2605 is a separate source-register coverage task; this extension is not a duplicate execution on those remaining books.
+
+## Additional frozen source coverage — Director #2605 (Agent7, 24 November)
+
+The three previously evaluated English registers are excluded. The remaining five-/18-register scope in #2454 comprises 22 distinct English editions (Walden deduplicated), eight Latin Vulgate blocks and one native Old English Beowulf text. Freeze source blob pins, author-body trim markers, normalization and controls before original scoring. The exact target, stop at 41, 80/80 split, transparent Fehu and arbitrary periodic additive keys q8/q13 remain unchanged. Only these periods are in #2605; no prime or literal running-key extension is claimed.
+
+Source-specific Latin and Old English rune normalization preserves the pinned native representations; the Beowulf parse reconstructs 48,012 runes and 10,885 words exactly, with 1,848 verse lines. Latin uses actual .!? marks, not artificial verse breaks. English body trims exclude Gutenberg licensing and selected editor/publisher appendices; some translator notes, footnotes and other authored material remain. Accented English and all alternative orthographies remain outside the fixed normalizer's guarantee.
+
+Six distinct native source plants (two disjoint halves each of Time Machine, Book of Tea and Beowulf; periods 8/13) recovered six exact source positions and keys with 480/480 withheld runes. Six independent uniform consuming-pad controls returned no candidates. The full search was split into four disjoint source batches because the connector rejected the single 31-fetch call; each control has exactly one prediction across the union, no duplicates. All gates passed before original evaluation.
+
+| Source | Fixed-spelling stop-compatible placements | Prefix F-compatible |
+|---|---:|---:|
+| The Time Machine | 205 | 29 |
+| The Picture of Dorian Gray | 245 | 34 |
+| Frankenstein | 815 | 97 |
+| The War of the Worlds | 512 | 79 |
+| Dr Jekyll and Mr Hyde | 233 | 22 |
+| The Prince | 698 | 87 |
+| As a Man Thinketh | 102 | 15 |
+| Meditations | 484 | 51 |
+| Walden | 1269 | 184 |
+| The Secret Garden | 287 | 67 |
+| Dracula | 952 | 130 |
+| Thus Spake Zarathustra | 344 | 64 |
+| The Dhammapada | 87 | 13 |
+| Tao Teh King | 68 | 10 |
+| The Upanishads | 161 | 17 |
+| Beyond Good and Evil | 810 | 121 |
+| The Book of Tea | 161 | 13 |
+| The Kybalion | 425 | 39 |
+| Paradise Lost | 939 | 138 |
+| Marriage of Heaven and Hell | 33 | 4 |
+| Mabinogion | 660 | 104 |
+| Songs of Innocence and Experience | 36 | 6 |
+| Vulgate luc_1 | 7 | 1 |
+| Vulgate luc_2 | 7 | 4 |
+| Vulgate io_1 | 6 | 4 |
+| Vulgate io_2 | 6 | 5 |
+| Vulgate act_1 | 8 | 4 |
+| Vulgate act_2 | 8 | 3 |
+| Vulgate rom_1 | 7 | 3 |
+| Vulgate rom_2 | 7 | 3 |
+| Beowulf (Old English) | 166 | 11 |
+| **Total** | **9748** | **1362** |
+
+**Original:** zero exact 80-rune periodic-key prefix candidates across all 9748 placements (both periods), hence no continuation or plaintext/key recovery. This closes only the additional fixed-spelling literal-quotation + q8/q13 family. No search of these registers under ambiguity-complete spelling, other key laws or paraphrase is claimed. No original-driven tuning. Together with the earlier results, the literal-quotation route under these specific historical periodic keys is lower priority absent an independent source selector.
+
+Reproducer: [sims/lp2_quote_joint_additional_sources_sft.cjs](../sims/lp2_quote_joint_additional_sources_sft.cjs) (frozen manifest 6756d3ed, split evaluation e52a71fe); [frozen six controls](lp2-quote-joint-additional-controls.json). Executed with connected V8; no independent CI claimed.
