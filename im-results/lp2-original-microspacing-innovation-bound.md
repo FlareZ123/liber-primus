@@ -41,3 +41,6 @@ This is **conditional evidence, not a steganographic impossibility theorem**. It
 ## Reproduce
 
 [Original-JPEG standalone reproducer](../sims/lp2_microspacing_innovation_sft.py) wraps the source-tested glyph extraction, fits all 62 measured bearings/visible-mark variables, measures the original lag-one covariance, plants independent per-gap bit shifts with fixed seed 3301, and bootstraps 2,000 original printed-line clusters. It reads only the checked-in JPEG and corpus files, asserts exact source counts and all three innovation estimates, and writes no files. [Windows 11-compatible GitHub Actions Python 3.12 source run 43681493354](https://github.com/FlareZ123/liber-primus/actions/runs/43681493354) passed on the original repository files with the native images and original glyph-control assertions, demonstrating the same exact estimates as the independent local original-ZIP measurement.
+
+
+**24 November complement:** [p55 absolute-trajectory sparse-pattern bound](lp2-p55-microgap-capacity.md) estimates an independently calibrated raster envelope in two position measures and enumerates all compatible positive gap patterns on p55. At most 10 full-pixel or 21 half-pixel marks; 617,334,144 and 1,850,564,783,117,568 respective patterns. No recovered bits/key, no change to the stronger population-wide innovation conclusion.
