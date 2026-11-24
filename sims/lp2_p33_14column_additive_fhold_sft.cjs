@@ -13,7 +13,7 @@ const files=[
  "resources/control/shakespeare_first300k.txt",
  "resources/control/emerson_essays_2944.txt"
 ];
-function study(inputs,lib,mode,q) {
+function study(inputs,lib,mode,q,{seed,controlNames=["0_koan_1","0_loss_of_divinity"]}={}) {
  const check=(x,m)=>{if(!x)throw Error(m)};
  check(["after","before"].includes(mode)&&[8,13].includes(q),"fixed branch");
  const gp=JSON.parse(inputs[0]),ink=JSON.parse(inputs[1]),native=JSON.parse(inputs[2]);
@@ -48,7 +48,7 @@ function study(inputs,lib,mode,q) {
  const plain=a=>mode==="after"?a:R(a);
  const render=a=>a.map(x=>gp.translit[x]).join("");
  const eq=(a,b)=>a.length===b.length&&a.every((x,i)=>x===b[i]);
- let rng=(0x259933^q^(mode==="after"?0:0x1433))>>>0;
+ let rng=(seed??(0x259933^q^(mode==="after"?0:0x1433)))>>>0;
  function rand(n){rng^=rng<<13;rng^=rng>>>17;rng^=rng<<5;return (rng>>>0)%n}
  function solve(label,raw,truth,key){
   const input=intermediate(raw),start=Date.now();
@@ -64,7 +64,7 @@ function study(inputs,lib,mode,q) {
   return {label,seconds:(Date.now()-start)/1000,zeros:a.zeros,totalMasks:a.totalMasks,legalMasks:a.legalMasks,trigramMasks:a.trigramMasks,exhaustiveTrigram:a.exhaustiveTrigram,key:top.key,mask:top.mask,prefixScore:top.score/split,naturalPrefixScore:lib.scorePlain(prefix,lmNatural)/split,prefix:render(prefix),prefixIndices:prefix,holdout:f.legal?{legal:true,score:f.conditionalLogEvidence/(N-split),suffix:render(full.slice(split)),indices:full.slice(split),naturalScore:(lib.scorePlain(full,lmNatural)-lib.scorePlain(full.slice(0,split),lmNatural))/(N-split),replay:true}:{legal:false,failedAt:f.failedAt},truth:truth?{key,keyCorrect:top.key.filter((v,i)=>v===key[i]).length,prefixCorrect:prefix.filter((v,i)=>v===truth[i]).length,heldCorrect:full?full.slice(split).filter((v,i)=>v===truth[i+split]).length:0,truePrefixNaturalScore:lib.scorePlain(truth.slice(0,split),lmNatural)/split}:null};
  }
  const controls=[];
- for(const name of ["0_koan_1","0_loss_of_divinity"]){
+ for(const name of controlNames){
   const a=seqs.get(name);let offset=0;
   while(offset+N<=a.length&&a.slice(offset,offset+split).filter(x=>x===0).length>2)offset++;
   check(offset+N<=a.length,"eligible native window");
