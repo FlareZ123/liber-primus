@@ -29,7 +29,7 @@ function experiment(corpus,tr,solved){
   return {seed,runes:plain.flat().length,actualTypes:singletonLabels.size,actualDegree:g.degree,actualLargest:g.big,admissibleSets:a.combined};
  }
  const original=bound(words),plants=[plant(5320),plant(5321),plant(5322)];
- return {original,plants};
+ return {original,plants,five:bound(words,5),six:bound(words,6)};
 }
 const paths=["resources/liber-primus/lp2-corpus.json","resources/liber-primus/lp2-transcription.txt","resources/external/relikd-solved-gp29-native-v1.json"];
 const read=p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8');
