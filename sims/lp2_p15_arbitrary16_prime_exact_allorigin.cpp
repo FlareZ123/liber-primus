@@ -10,7 +10,9 @@
 #include <string>
 #include <vector>
 using namespace std;
-#ifdef LP_P33_CHAPTER
+#if defined(LP_P8_SEVEN)
+constexpr int W=7,N=1729;
+#elif defined(LP_P33_CHAPTER)
 constexpr int W=14,N=1680;
 #else
 constexpr int W=16,N=1883;
@@ -57,7 +59,9 @@ struct Search{
  void dfs(int d,unsigned selected){if(stopped)return;if(nodes==limit){stopped=true;return;}nodes++;visits[d]++;if(!feasible(d,selected))return;if(d==W){solutions++;winner=a;if(first)stopped=true;return;}int slot=d%2?W-1-d/2:d/2;for(int j=0;j<W;j++)if(!(selected&(1u<<j))){a[slot]=j;dfs(d+1,selected|(1u<<j));if(stopped)return;}}
 };
 int main(int argc,char**argv){if(argc!=9){cerr<<"usage: input start-origin end-origin node-cap original|plant rare-budget(-1 full29) first|all plant-origin\n";return 2;}ifstream f(argv[1]);string x,y;f>>x>>y;Tape raw=decode(x),p=decode(y);auto k=primeclock();int start=stoi(argv[2]),end=stoi(argv[3]),b=stoi(argv[6]),plantOrigin=stoi(argv[8]);uint64_t cap=stoull(argv[4]);bool plant=string(argv[5])=="plant",first=string(argv[7])=="first";if(start<0||end>=ORIGINS||start>end||b< -1||plantOrigin<0||plantOrigin>=ORIGINS)throw runtime_error("parameters");
-#ifdef LP_P33_CHAPTER
+#if defined(LP_P8_SEVEN)
+const Order truth={3,1,6,0,5,2,4};
+#elif defined(LP_P33_CHAPTER)
 const Order truth={2,8,9,1,12,13,11,4,5,7,3,0,6,10};
 #else
 const Order truth={5,10,12,14,6,0,15,11,2,7,1,8,3,4,13,9};
