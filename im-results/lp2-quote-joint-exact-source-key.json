@@ -1,0 +1,398 @@
+{
+  "method": {
+    "target": "p42–43 quote [10279,10439), stop at 41",
+    "prefix": 80,
+    "suffix": 80,
+    "periods": [
+      8,
+      13
+    ],
+    "primeOrigins": [
+      0,
+      3300
+    ],
+    "keySources": [
+      "Shakespeare",
+      "Emerson",
+      "Gibran"
+    ],
+    "sourceCandidates": 1003,
+    "keyIndexEntries": 534835
+  },
+  "authentic": [
+    {
+      "name": "WELCOME",
+      "n": 515,
+      "plainF": 11,
+      "cipherF": 25
+    },
+    {
+      "name": "KOAN",
+      "n": 319,
+      "plainF": 2,
+      "cipherF": 5
+    },
+    {
+      "name": "LP2 p56",
+      "n": 85,
+      "plainF": 1,
+      "cipherF": 5
+    }
+  ],
+  "gate": {
+    "correct": 36,
+    "selected": 36,
+    "falsePrefix": 0,
+    "falseFull": 0,
+    "pass": true
+  },
+  "controls": [
+    {
+      "id": 0,
+      "kind": "period",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 129
+    },
+    {
+      "id": 0,
+      "kind": "prime",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 127
+    },
+    {
+      "id": 0,
+      "kind": "source",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 133
+    },
+    {
+      "id": 1,
+      "kind": "period",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 134
+    },
+    {
+      "id": 1,
+      "kind": "prime",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 143
+    },
+    {
+      "id": 1,
+      "kind": "source",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 134
+    },
+    {
+      "id": 2,
+      "kind": "period",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 155
+    },
+    {
+      "id": 2,
+      "kind": "prime",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 132
+    },
+    {
+      "id": 2,
+      "kind": "source",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 132
+    },
+    {
+      "id": 3,
+      "kind": "period",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 141
+    },
+    {
+      "id": 3,
+      "kind": "prime",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 136
+    },
+    {
+      "id": 3,
+      "kind": "source",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 129
+    },
+    {
+      "id": 4,
+      "kind": "period",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 140
+    },
+    {
+      "id": 4,
+      "kind": "prime",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 130
+    },
+    {
+      "id": 4,
+      "kind": "source",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 139
+    },
+    {
+      "id": 5,
+      "kind": "period",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 140
+    },
+    {
+      "id": 5,
+      "kind": "prime",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 137
+    },
+    {
+      "id": 5,
+      "kind": "source",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 135
+    },
+    {
+      "id": 6,
+      "kind": "period",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 139
+    },
+    {
+      "id": 6,
+      "kind": "prime",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 152
+    },
+    {
+      "id": 6,
+      "kind": "source",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 138
+    },
+    {
+      "id": 7,
+      "kind": "period",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 133
+    },
+    {
+      "id": 7,
+      "kind": "prime",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 134
+    },
+    {
+      "id": 7,
+      "kind": "source",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 131
+    },
+    {
+      "id": 8,
+      "kind": "period",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 137
+    },
+    {
+      "id": 8,
+      "kind": "prime",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 134
+    },
+    {
+      "id": 8,
+      "kind": "source",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 129
+    },
+    {
+      "id": 9,
+      "kind": "period",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 137
+    },
+    {
+      "id": 9,
+      "kind": "prime",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 157
+    },
+    {
+      "id": 9,
+      "kind": "source",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 153
+    },
+    {
+      "id": 10,
+      "kind": "period",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 152
+    },
+    {
+      "id": 10,
+      "kind": "prime",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 138
+    },
+    {
+      "id": 10,
+      "kind": "source",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 134
+    },
+    {
+      "id": 11,
+      "kind": "period",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 137
+    },
+    {
+      "id": 11,
+      "kind": "prime",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 131
+    },
+    {
+      "id": 11,
+      "kind": "source",
+      "correct": true,
+      "distinctPredictions": 1,
+      "prefixCandidates": 1,
+      "fCompatible": 141
+    }
+  ],
+  "nulls": [
+    {
+      "id": 0,
+      "prefixCandidates": 0
+    },
+    {
+      "id": 1,
+      "prefixCandidates": 0
+    },
+    {
+      "id": 2,
+      "prefixCandidates": 0
+    },
+    {
+      "id": 3,
+      "prefixCandidates": 0
+    },
+    {
+      "id": 4,
+      "prefixCandidates": 0
+    },
+    {
+      "id": 5,
+      "prefixCandidates": 0
+    },
+    {
+      "id": 6,
+      "prefixCandidates": 0
+    },
+    {
+      "id": 7,
+      "prefixCandidates": 0
+    },
+    {
+      "id": 8,
+      "prefixCandidates": 0
+    },
+    {
+      "id": 9,
+      "prefixCandidates": 0
+    },
+    {
+      "id": 10,
+      "prefixCandidates": 0
+    },
+    {
+      "id": 11,
+      "prefixCandidates": 0
+    }
+  ],
+  "original": {
+    "fCompatible": 144,
+    "prefixCandidates": 0,
+    "distinctPredictions": 0,
+    "selected": null,
+    "continuationMatches": false,
+    "correct": false,
+    "all": []
+  }
+}

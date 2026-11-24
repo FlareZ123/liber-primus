@@ -61,3 +61,8 @@ Independent random placement of the same F count, rather than encrypting the sam
 The selected rule fails the frozen sensitivity/specificity gate even with only three existing reference texts. Under the fixed rule, enlarging the placement universe cannot improve sensitivity for these controls. Do not scan the original quote, relax the threshold or infer a shift stream from a coincidental match. A different source-selected clue, longer authentic framing or another invariant could motivate a genuinely independent retrieval experiment. These finite counts cannot decide whether LP2 contains a quotation, or whether transparent F is its cipher. No source attribution, key or original plaintext is claimed.
 
 Reproduction: `node sims/lp2_fsupport_quote_alignment_subset_sft.cjs`; [raw data](lp2-fsupport-quote-alignment-subset.json). Executed with connected V8 against repository sources; independent CI replay not claimed.
+
+
+### Corpus correction (24 November, exact-key follow-up)
+
+The raw source registers include Gutenberg front/end matter. In particular, Gibran raw native GP authored body occupies [1303,48137), while the final selected Gibran plant begins 59247, outside authored prose. Thus the 12 are distinct **source-file** windows, not 12 author-only excerpts. The raw finite-corpus F-only gate remains failed (7/12), but should not be used as an author-only sensitivity estimate. The independent [exact source+key follow-up](lp2-quote-joint-exact-source-key.md) removes this boilerplate, freezes fresh windows and adds a different exact cipher constraint; it passes its own calibration, then excludes the original quote under its bounded three source/key families. No change to the earlier F-only decision.
