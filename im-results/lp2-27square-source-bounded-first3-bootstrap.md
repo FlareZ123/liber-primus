@@ -277,6 +277,28 @@ The grammar was recognized after the public route was known, so this remains a s
 
 Detailed source-only gate: `im-results/lp2-p0-block5-branch-continuation-gate.md` · reproducer: `sims/lp2_p0_block5_p2_boundary_chain_sft.cjs`.
 
+## Direct complete 133/331 congruential route, including every possible F bypass (Agent30, 24 November)
+
+The original Stage11 HTML contains title 133 and div ID 331; its first numbered image is 0.jpg. The earlier [256-cell table investigation](lp2-onion7-133331-fullcycle-table-carrier.md) already motivated a literal linear-congruential traversal using these two values. Transferring that **conditional** operation to the full 729-rune opening provides a complete competing reader without importing the published sparse plaintext or adjusting individual node jumps. No first-party text explicitly prescribes this transfer.
+
+Freeze zero-based source addresses, source markup order (title as multiplier, div ID as increment), starting cell zero, and modulus 729. The first three moves are **331, 614, 345**; reversing the roles gives **133, 416, 48**. Both maps have a single 729-cell orbit (multiplier ≡1 mod3, increment coprime to3); therefore even the full-period condition cannot distinguish the two roles. The first route is not the published sparse route's 348–354 first segment. Apply the actual solved-p56 consecutive-prime-minus-one GP29 subtractor in traversal order, starting at prime2.
+
+The original opening contains **34 ciphertext F runes**, so an unrestricted choice of which are transparent creates 2^34 = **17,179,869,184 masks per route**. The exact dynamic program maximizes a frozen independent solved-LP1 bigram score over every such mask, using state (consumed prime count, previous decoded rune). Every non-F consumes a prime; at each ciphertext F choose either normal subtraction or a literal F that does not consume a prime. This covers even masks that lack an authentic side-channel instruction, deliberately favoring the candidate. The training source contains 2,397 GP runes; p56 and p57 are held out of the training corpus.
+
+| Complete path | No-bypass mean bigram score | Exact best across all 2^34 masks | Best-mask IoC |
+|---|---:|---:|---:|
+| Title133 → div331 | −3.984214 | −3.834138 | .03418427 |
+| Div331 → title133 | −3.925764 | −3.840307 | .03462895 |
+| Printed order control | −3.992630 | −3.846444 | .03484376 |
+
+All original candidates are nonprose-like; the highest-scoring title-first output begins X M J F Y P EO N W H IA B NG W N P IA N O E R F EA Y. Its first/last half scores are −3.842214 / −3.824363; these halves are descriptive because masks were optimized jointly, **not** independent holdouts. All 729 original source symbols replay exactly with the selected masks. The same dynamic program recovers actual solved p56's exact mask [56] and all 85 known runes (−2.699923). A repeated native p57 full-length plant scores −2.621890; the optimizer reaches −2.620182 with 723/729 correct runes. The true mask exactly inverts the plant in each traversal. This is an implementation and scoring control, not a claim of general blind English recovery.
+
+A useful structural consequence requires no scoring: for each divisor q=3,9,27,81,243,729 of the 729-cell register, either LCG projects to a full orbit modulo q. Thus traversal times congruent mod q are exactly original row-major addresses congruent mod q, up to phase relabeling. An arbitrary secret q-phase alphabet on the traversal uses the **same original-cipher phase partition** as ordinary row-major q-phase alphabets. This does not identify plaintext order or rule out other periods, or nonperiodic changing-state schedules.
+
+**Decision:** retire these two concrete complete affine-walk/prime-totient consumers even after granting all literal-F choices. This is a new recipient test of a previously proposed LCG operation, not a first-party selector or a test of all geometric ciphers. The archived HTML and original artwork still do not identify the sparse route's first node, center-only totient, movement grammar or stop rule; preserve the separate conditional bootstrap evidence above. Do not fit another affine-walk seed, prime offset, or arbitrary F policy without a new independent clue.
+
+Reproducer: [Node/CommonJS source and exact dynamic program](../sims/lp2_p0_133331_lcg729_totient_allF_sft.cjs), executed in the JS runtime against the repository corpus, HTML and LP1 reference. [Implementation commit](https://github.com/FlareZ123/liber-primus/commit/241848fed2f3eebb50300f9706f3988bcb0bfb06). No unknown LP2 plaintext or authentic key recovered.
+
 ## What this changes
 
 The earlier repository audit correctly showed that the published 38-block route had underselected transitions. This three-block bootstrap is a different piece of evidence.
@@ -300,7 +322,7 @@ This is substantially stronger than choosing one key/path because it looks Engli
 
 ## Next decisive test
 
-The immediate block-5 language tie is no longer the blocker. The source-selected IDEA endpoint feeds Agent29's separate post-IDEA mirror-incidence family, where a precommitted 12-rune / index-151 / GP-553 residual selects the cells yielding `OF THE END IS DEATH` from 66 complete assignments. The decisive next step is a genuinely prospective transfer or an original visible instruction for the physical-boundary/mirror grammar. Failure there should preserve this local selector while preventing promotion to authenticated plaintext.
+The immediate block-5 language tie is no longer the blocker. The independent complete 133/331 affine-walk/totient candidate is now negative even under arbitrary literal-F bypass choices; it does not resolve the sparse route's missing initial opcode. The source-selected IDEA endpoint feeds Agent29's separate post-IDEA mirror-incidence family, where a precommitted 12-rune / index-151 / GP-553 residual selects the cells yielding `OF THE END IS DEATH` from 66 complete assignments. The decisive next step is a genuinely prospective transfer or an original visible instruction for the physical-boundary/mirror grammar. Failure there should preserve this local selector while preventing promotion to authenticated plaintext.
 
 ## Reproduction
 
