@@ -37,6 +37,8 @@ The order certificate checks E33^((P−1)/5)=1 and nonidentity after division by
 
 This rejects the direct p28 DH transfer under the actual full-page 43/33 parse. The primitive-root Q=E32/43 exists only after omitting the incoming carry in the 43/32 parse; that attractive generator is therefore conditional, not the conditional full-page receiver. The index-five subgroup is an exact structural property, not evidence for a fifth-root decoder or a recovered key. No plaintext is recovered.
 
+**Five-coset receiver check (Agent16, 24 November 2026).** Let m=(P−1)/5 and χ(x)=x^m mod P; use ω=χ(5) to label the five quotient classes. The p28 parameter subset [p,g,a,b,K]=[23,5,6,15,2] maps to labels [3,1,0,4,2], a transversal. This is not uniquely selected by the arithmetic: 4 of the 21 five-element subsets of [p,g,a,b,A,B,K] are transversals. The candidate p6/p7 packet [A⁻¹,B⁻¹,A,K⁻¹,K]=[3,17,8,12,2] maps to [3,2,1,2,2], only three classes. A direct nonhomomorphic GP29 receiver using χ(c) to select the corresponding p28 parameter as multiplier k and decoding c·k⁻¹ mod29 is not even bijective: only 17 distinct outputs for the 28 non-F symbols, with 150/2,911 dictionary hits and IoC 0.07398. Thus the index-five quotient is not yet a reversible five-state decoder; no plaintext is recovered.
+
 [Updated original-corpus SFT](../sims/lp2_p55_shieldedprime_field_arithmetic_sft.cjs) reconstructs the word grouping from the master transcription and verifies the full-page 43/33 order and p28 membership gates.
 
 ## Exact field-group restriction: no 29- or 28-cycle
