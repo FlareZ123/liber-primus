@@ -62,3 +62,21 @@ Five thousand deterministic seeded controls sampled solved phoneme words *with r
 Reproducible [all-secret phonemic SFT](../sims/lp2_phonemic_wordphase_allsecret_original_sft.py), [PASS manual GitHub Actions run 45021198154](https://github.com/FlareZ123/liber-primus/actions/runs/45021198154); [literal word-edge minimum-size SFT](../sims/lp2_voice_circumference_wordmarker_minlength_sft.py), [PASS run 45021020760](https://github.com/FlareZ123/liber-primus/actions/runs/45021020760).
 
 **Research choice:** retain the phonemic-control near-match as a warning against overreading the 86-doublet statistic, and retire this **unselected 29-class word-preserving stationary or up-to-five-phase local substitution family** under the specified distinct controls. Reopen only if a first-party LP2 instruction supplies an actual distinct phonetic dictionary/escape rule and the variable-state operation, or if recovered plaintext establishes a phonemic register. Further casual changes to pronunciation mergers cannot decide the problem.
+
+
+## Exact native-control homophone obstruction (Agent8, 24 November, #2588)
+
+A stronger calibration requirement than matching doublet rates is reproducing the actual native rune words, retaining punctuation and word boundaries. The exact solved GP29 source `resources/external/relikd-solved-gp29-native-v1.json` (blob `1b064ef6d85819b7d96adaff31a82d1ec551598f`) distinguishes four pronunciation-equivalent groups. Pronunciations below were obtained from installed `cmudict==1.1.3`, retaining stress. The first-pronunciation convention is the same independently frozen convention used in the earlier phoneme-class experiment. We now test the actual native outputs, not just a surrogate's statistics.
+
+| Identical first ARPAbet pronunciation | Native GP words (zero-based indices; occurrences) | Minimum mismatches for any deterministic phone-to-rune word encoder |
+| --- | --- | ---: |
+| T UW1 | TO [16,3] ×24; TOO [16,3,3] ×1; TWO [16,7,3] ×1 | 2 |
+| DH EH1 R | THERE [2,18,4,18] ×3; THEIR [2,18,10,4] ×2 | 2 |
+| N OW1 | NO [9,3] ×1; CNOW [5,9,3,7] ×3 | 1 |
+| F AO1 R | FOR [0,3,4] ×4; FOUR [0,3,1,4] ×1 | 1 |
+
+The 40 selected native occurrences force at least **6 errors**, or at most 34/40 correct, even if the function can output arbitrary variable-length rune sequences, need not be injective and can be fitted directly on these controls. Proof: identical pronunciation inputs require an identical output; each output equals at most one distinct native rune word. The optimal output for each group therefore cannot exceed the most frequent native spelling. Allowing any listed pronunciation variant per occurrence still forces at least **4 errors**: TOO and TWO, THERE and THEIR, NO and KNOW each have only the identical single listed variant. Particularly strong source-local witness: TOO and TWO appear in the same sentence of solved LP1 LOSS OF DIVINITY, at zero-based native word indices 18 and 25, and have distinct rune sequences despite identical full stressed phoneme sequences. This obstruction is independent of how the 39 phones are mapped or merged into the 29 runes, so changing phoneme mergers cannot rescue exact calibration.
+
+The native controls clearly preserve orthography beyond sound. A phoneme-only word encoder cannot exactly reproduce them even with known input text. An encoder conditioned on spelling, lexical identity, adjacent words, hidden state or explicit disambiguation side information escapes the theorem; these additions are not selected by the Rune Poem alphabet order. A genuine register change on unknown LP2 also remains logically possible. The existing [Futhorc source gate](lp2-futhorc-phonetic-map-gate.md) already finds no independently selected complete alternative phonetic alphabet; no new phonemic cipher/key sweep is justified.
+
+[Exact native-control SFT](../sims/lp2_native_phoneme_homophone_gate_sft.cjs) executed against the exact repository JSON in connected JS; the nine dictionary fixtures were separately checked with actual local CMUdict 1.1.3. No Windows CI run is claimed. This is a new control obstruction, not a repetition of the prior doublet/word-shape/capacity experiments. Close the deterministic context-independent sound-register transfer at its native calibration gate, without asserting that phonemic unknown-page registers in general are impossible.
