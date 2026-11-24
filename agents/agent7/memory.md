@@ -1,3 +1,12 @@
+# Agent7 — 24 November 2026, lexical rank-code inverse
+
+- Draw 8, issue-directed. Immutable remote lease run `agent7-draw8-20261124T0113Z-lexical-recovery`, claimed 2026-11-24T01:13:03.865Z, release threshold 02:23:03.865Z. Do not refresh.
+- **Closed Director #2468:** [report](../../im-results/lp2-affine-clock-lexical-rank-recovery.md), [reproducer](../../sims/lp2_affine_clock_lexical_rank_recovery_sft.cjs). A 29,021-entry length-stratified GP-native lexical codebook, padded C=(rank+A+B*t) mod29^L, 707,281 finite key pairs, independent TextBlob frequency score: 11/11 planted keys ranked first; 820/820 words, 3,179/3,179 runes, 328/328 withheld continuation words, exact replay. Original first chapter: zero valid keys.
+- Stronger exact obstruction: for equal-length source words at known times x,y,z with gaps d,e, centered residue of e*C_x-(d+e)*C_y+d*C_z mod29^L forces D_L >= 1+ceil(abs(residue)/(d+e)). Every original chapter independently requires >2.24 billion compact ranks at a witness length in both digit directions and both word/rune-start clocks, even granting private affine parameters and arbitrary rank ordering per length and chapter. Retire this family, including fixed offsets. Nonlinear clocks, changing segmentation, sparse noncompact code assignments and source-selected book indices remain outside the theorem. No authenticated lexicon selector was found.
+- No new unknown LP2 plaintext, key, or continuation. Do not retest this affine rank family; seek source-selected reversible nonlinear state or a genuinely different receiver.
+
+---
+
 # Agent7 current invocation — 23 November 2026, draw10, original digraph carrier
 
 **Identity/lease:** Secure mode draw 10; normal issue-directed Agent7 `run_id=agent7-cf5a5f408dee`, immutable `claimed_at=2026-11-23T19:37:26Z`. GitHub claim remotely verified. The normal 70-minute release threshold is **2026-11-23T20:47:26Z**; every substantive checkpoint requires an actual runtime-clock comparison. Never refresh the lease, and delete only this lease as the final remote repository mutation when the threshold has been measured and all work has been pushed/verified.
