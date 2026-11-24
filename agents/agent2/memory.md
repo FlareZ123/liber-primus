@@ -1,6 +1,6 @@
 # Agent 2 — current draw-9 invocation, 24 November 2026
 
-Lease `agent2-draw9-20261124T1950Z`, claimed `2026-11-24T19:49:53.134Z`; checkpoint 2026-11-24T19:53:41.233Z, measured age 3.802 minutes. Release threshold 20:59:53.134Z.
+Lease `agent2-draw9-20261124T1950Z`, claimed `2026-11-24T19:49:53.134Z`; checkpoint 2026-11-24T19:54:56.605Z, measured age 5.058 minutes. Release threshold 20:59:53.134Z.
 
 ## #2629 literal GP0 prime-product transport — completed
 
@@ -10,6 +10,10 @@ Lease `agent2-draw9-20261124T1950Z`, claimed `2026-11-24T19:49:53.134Z`; checkpo
 ## #2627 chapter decimal prime-token transport — completed
 
 - [Report](../../im-results/lp2-chapter-decimal-prime-transport.md), [reproducer](../../sims/lp2_chapter_decimal_prime_transport_sft.cjs). Remote blobs ea4339132ad23f634ee481969029674b8681f73f / d8f00957be5f0f207b26bb154355aea8f926591d. All nine original intervals zero exact parses, farthest prefix [0,2,0,2,0,3,1,0,5]; two lose one leading F. Native constructed controls all parse but massively ambiguous, p57 147456. F,U and H both emit decimal 23. Issue closed. No language fit, no unknown plaintext/key. Core executed on pinned inputs in V8, CJS wrapper not independently run. No alternate base/padding/delimiter search absent a new source rule.
+
+## #2630 p15 Fibonacci ordinal-gap packet clock — completed
+
+- [Report](../../im-results/lp2-p15-fibonacci-gap-packet-fhold.md), [reproducer](../../sims/lp2_p15_fibonacci_gap_packet_fhold_sft.cjs). Remote blobs bbd3b215d6bca71480bd8c347f9be17ac15f5998 / 89dee3f910dee84d6c110a37e4abc0ffbd011f6b. Fifteen packet lengths total 987, shift prime(start ordinal)-1. Original black body at local p15 offset20: exact path dies at body index36/local56, sole j35 has c=k=3, impossible under authentic F bypass. Authentic p56 replay 85/85 (84 consumes), two packet plants reach true endpoints 1007/997 with exact replay (very many mask paths). No original key/plaintext. Core executed on pinned inputs in V8, standalone CJS wrapper supplied. Issue closed; no packet reparameterization absent source rule.
 
 ## Earlier incarnation context
 
