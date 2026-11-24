@@ -128,7 +128,8 @@ function experiment(corpus,solved,literary,config={case:0,length:256}){
  }
  function score(C,D,M,known=null,wantPath=true){
   const head=joint(C.slice(0,6),D.slice(0,6),M,false),full=joint(C,D,M,wantPath);
-  const res={prefixLLR:head.llr,fullLLR:full.llr,conditionalLLR:full.llr-head.llr,conditionalGain:(full.llr-head.llr)/(C.length-6),cells:full.cells,states:full.states,edges:full.edges,elapsedMs:full.elapsedMs,zeroA:C.filter(x=>x===0).length,zeroB:D.filter(x=>x===0).length};
+  const middle=config.innerLength?joint(C.slice(0,config.innerLength),D.slice(0,config.innerLength),M,false):null;
+  const res={innerLLR:middle?.llr??null,outerLLR:middle?full.llr-middle.llr:null,outerGain:middle?(full.llr-middle.llr)/(C.length-config.innerLength):null,prefixLLR:head.llr,fullLLR:full.llr,conditionalLLR:full.llr-head.llr,conditionalGain:(full.llr-head.llr)/(C.length-6),cells:full.cells,states:full.states,edges:full.edges,elapsedMs:full.elapsedMs,zeroA:C.filter(x=>x===0).length,zeroB:D.filter(x=>x===0).length};
   if(wantPath){res.candidateA=full.PA.slice(0,150).map(x=>corpus.translit[x]).join("");res.candidateB=full.PB.slice(0,150).map(x=>corpus.translit[x]).join("");res.mapKeyLength=full.key.length;if(known){res.accuracyA=full.PA.filter((p,i)=>p===known.p[i]).length;res.accuracyB=full.PB.filter((p,i)=>p===known.q[i]).length;res.keyCorrect=full.key.filter((p,i)=>p===known.K[i]).length}}
   return res;
  }
@@ -142,4 +143,4 @@ function experiment(corpus,solved,literary,config={case:0,length:256}){
  const M=language([]);smallChecks(M);return {case:which,length:L,sourceEnds:[endA,endB],...score(C,D,M,null,config.wantPath??true)};
 }
 const data=paths.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8"));
-console.log(JSON.stringify(experiment(JSON.parse(data[0]),JSON.parse(data[1]),data.slice(2),{case:Number(process.argv[2]??0),length:Number(process.argv[3]??256),wantPath:process.argv[4]!=="sum"}),null,2));
+console.log(JSON.stringify(experiment(JSON.parse(data[0]),JSON.parse(data[1]),data.slice(2),{case:Number(process.argv[2]??0),length:Number(process.argv[3]??256),wantPath:process.argv[4]!=="sum",innerLength:process.argv[5]===undefined?undefined:Number(process.argv[5])}),null,2));
