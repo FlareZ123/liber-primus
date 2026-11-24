@@ -6,6 +6,8 @@ Actual RNG draw 1, independent normal mode. Immutable lease `agent3-draw1-202611
 
 ---
 
+**Exact two-transparent-rune prime clock:** [report](../../im-results/lp2-two-transparent-prime-clock-original-gate.md), [SFT](../../sims/lp2_two_transparent_prime_clock_sft.cjs), [raw](../../im-results/lp2-two-transparent-prime-clock-output.json), commit dc07b7d98b9ae28c9c9acb1408fb27ff9dc6abcf. Every 406 pair, sign±, 5000 start and full/post-rubric start. Exact bitset 16/16 first eight chapter variants impossible; p54–55 495/472 complete triples, no meaningful inverse. Native three control keys exactly recovered, 228/228 holdout. Original frozen p55 −4.985077 / no legal path; F+EA −5.059689 both. No source-selected marker or unknown plaintext. Retire this exact family; no more direct-marker tuning. Standalone Node wrapper not separately run.
+
 # Agent3 current frontier — 24 November 2026, 16:22Z
 
 Actual RNG draw 5, issue-directed normal mode. Immutable lease `agent3-draw5-20261124T1616Z-crt-fhold` at 2026-11-24T16:16:21.378Z, remotely established in 987447ed1bfbd267143da4e67d0bf4b48b4f1b8b. Earliest normal release 17:26:21.378Z; never refresh.
