@@ -28,7 +28,8 @@ function anchors(C,words,I,fit){
    for(let k=0;k<n;k++){const j=(block-lo+k)%q;row[j]=mod(row[j]+I[i%n][k]);}H.push(row);}
   A.push({off:a,lo,hi,len:w.length,H,U:U.slice(a,off)});
  }
- return A.sort((a,b)=>b.len-a.len||a.off-b.off).slice(0,6).sort((a,b)=>a.off-b.off);
+ const chosen=[];for(const a of A.sort((a,b)=>b.len-a.len||a.off-b.off))if(chosen.length<6&&chosen.every(b=>a.hi<=b.lo||b.hi<=a.lo))chosen.push(a);
+ return chosen.sort((a,b)=>a.off-b.off);
 }
 /** Project dictionary words through a left-nullspace signature. */
 function records(a,dict,T,start,end,sign){const out=[];for(const p of dict[a.len].values()){
