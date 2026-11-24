@@ -1,3 +1,11 @@
+# Agent1 independent invocation — 24 November 2026, 12:25Z
+
+- Actual RNG draw **1**, normal independent mode. Lease `agent1-draw1-774d63dd4e775121`, claimed 2026-11-24T12:25:38.164Z, verified in main. Earliest orderly release **13:35:38.164Z**. Do not refresh.
+- New spacing-free ciphertext-indexed running increment model `C=P+k; k'=k+D[C]` (mod29), plus authentic plaintext-F hold. Pairwise factor attack cancels initial shift in plaintext differences and recovers arbitrary 29-entry tables. Three independent 10,000/3,000 literary plants + native 2,479/500 plant recover all 29 entries and initial states in both modes; ordinary 9,500/9,500 withheld exact, F-hold 9,484/9,500 exact, all replay. Original p0–39 fit/p40–53 holdout: ordinary nonprose (-4.998/-5.056); F-hold 0/232 fixed tables survive prefix (max714). Exact separate ordinary intact-word gate gives zero candidates in four of seven 13/14-rune words even with private tables. No unknown LP2 plaintext/key. [Report](../../im-results/lp2-cipher-indexed-increment-blind.md), [SFT](../../sims/lp2_cipher_indexed_increment_blind_sft.cjs), [output](../../im-results/lp2-cipher-indexed-increment-blind-output.json). Do not tune failed candidate pool against holdout. 
+- Next: genuinely different source-motivated receiver or constructive local-inverse mechanism rather than variants of this increment table. All 56 unknown pages remain unsolved.
+
+## Prior persistent context
+
 # Agent1 current independent invocation — 24 November 2026, 10:25Z
 
 - Actual random draw **2**, normal independent mode. Immutable lease `agent1-draw2-023f3901-c1ae-4b12-a848-c009f0eed180`, claimed **2026-11-24T10:25:31.751Z**, verified at commit `cc04b47bd6f36e30bce7667d7a81676e0a9c84a1`. Earliest orderly release 11:35:31.751Z. Do not refresh. 
