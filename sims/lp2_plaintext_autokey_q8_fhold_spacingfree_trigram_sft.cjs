@@ -1,7 +1,7 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path');
 const read=p=>fs.readFileSync(path.resolve(__dirname,'..',p),'utf8');
-function experiment(corpus,nativeJson,shakespeare,gibran){
+function experiment(corpus,nativeJson,shakespeare,gibran,gridJson=null){
  const gp=JSON.parse(corpus),native=JSON.parse(nativeJson),q=8,A=29,mod=x=>(x+29)%29;
  const assert=(x,m)=>{if(!x)throw Error(m)},rune=new Map(gp.runes.map((x,i)=>[x,i]));
  const names=["0_welcome","0_koan_1","0_loss_of_divinity","jpg107-167"];
@@ -71,7 +71,7 @@ function experiment(corpus,nativeJson,shakespeare,gibran){
   return {fitMasks:masks(a).length,legalMasks:rank.length,fit,held:best,runnerMask:rank[1]?.score,heldMasks:masks(b).length};
  }
  const controls=[];
- for(let n=0;n<names.length;n++){
+ for(let n=0;n<(gridJson?0:names.length);n++){
   const source=solved.find(x=>x.name===names[n]).p;let p=source.slice(0,308);let seed=0x6a09e667+n*1009,chosen=null;
   function rng(){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return (seed>>>0)%29}
   for(let attempt=0;attempt<200;attempt++){const key=Array.from({length:q},rng),c=enc(p,key),z=c.slice(0,205).filter(x=>x===0).length,actual=p.slice(0,205).filter(x=>x===0).length;if(z<=8&&z>actual&&c.slice(205).filter(x=>x===0).length<=12){chosen={key,c,attempt};break}}
@@ -80,8 +80,23 @@ function experiment(corpus,nativeJson,shakespeare,gibran){
   const r=attack(chosen.c),match=(x,y)=>x?x.filter((v,i)=>v===y[i]).length:0;
   controls.push({name:names[n],plantAttempt:chosen.attempt,offset:chosen.offset||0,trueKey:chosen.key,fitMasks:r.fitMasks,legalMasks:r.legalMasks,fitScore:r.fit?.score/205,fitKey:r.fit?.key,fitMatches:match(r.fit?.p,p.slice(0,205)),heldScore:r.held?.score/103,heldMatches:match(r.held?.p,p.slice(205)),heldMasks:r.heldMasks,fitMaskMargin:r.fit&&r.runnerMask!==undefined?r.fit.score-r.runnerMask:null});
  }
- const target=gp.pages.slice(54,56).flatMap(x=>x.indices);assert(target.length===308,"original length");
+ let target=gp.pages.slice(54,56).flatMap(x=>x.indices);assert(target.length===308,"original length");
+ let wrapper=null;
+ if(gridJson){
+  const grid=JSON.parse(gridJson),tokens=grid.pages.flatMap(p=>p.tokens),special=[0,2,12,21,22,25,27,28],original=gp.pages.slice(0,56).flatMap(p=>p.indices);
+  assert(tokens.length===256,"grid length");
+  const marker=i=>tokens[i][0]==="0"?0:special[grid.bytes[i]&7],swap=(v,a,b)=>v===a?b:v===b?a:v;
+  const unwrap=c=>c.map((v,i)=>i===0?v:swap(v,c[i-1],marker((i-1)&255)));
+  const wrap=m=>{const c=[];for(let i=0;i<m.length;i++)c.push(i===0?m[i]:swap(m[i],c[i-1],marker((i-1)&255)));return c;};
+  const mid=unwrap(original),off=original.length-308;
+  assert(mid.filter((v,i)=>v!==original[i]).length===549,"frozen wrapper edit count");
+  assert(String(wrap(mid))===String(original),"outer whole-book replay");
+  target=mid.slice(off);wrapper={wholeEdits:549,targetEdits:target.filter((v,i)=>v!==original[off+i]).length};
+  assert(wrapper.targetEdits===11,"frozen target edit count");
+ }
  const r=attack(target);const global=[];for(const h of masks(target)){const s=optimize(target,h);if(s)global.push(s)}global.sort((a,b)=>b.score-a.score);const g=global[0];assert(g&&String(enc(g.p,g.key))===String(target),"global replay");const translit=p=>p?.map(x=>gp.translit[x]).join("");
- return {trainLengths:train.map(x=>x.length),controls,original:{globalMasks:masks(target).length,globalLegalMasks:global.length,globalScore:g.score/target.length,globalKey:g.key,globalHolds:g.holds,globalPlain:translit(g.p),globalReplay:target.length,fitMasks:r.fitMasks,legalMasks:r.legalMasks,fitKey:r.fit?.key,fitScore:r.fit?.score/205,fitHolds:r.fit?.holds,fitPlain:translit(r.fit?.p),fitMaskMargin:r.fit&&r.runnerMask!==undefined?r.fit.score-r.runnerMask:null,heldMasks:r.heldMasks,heldScore:r.held?.score/103,heldPlain:translit(r.held?.p),heldHolds:r.held?.holds,exactReplay:r.held?308:0}};
+ return {wrapper,trainLengths:train.map(x=>x.length),controls,original:{globalMasks:masks(target).length,globalLegalMasks:global.length,globalScore:g.score/target.length,globalKey:g.key,globalHolds:g.holds,globalPlain:translit(g.p),globalReplay:target.length,fitMasks:r.fitMasks,legalMasks:r.legalMasks,fitKey:r.fit?.key,fitScore:r.fit?.score/205,fitHolds:r.fit?.holds,fitPlain:translit(r.fit?.p),fitMaskMargin:r.fit&&r.runnerMask!==undefined?r.fit.score-r.runnerMask:null,heldMasks:r.heldMasks,heldScore:r.held?.score/103,heldPlain:translit(r.held?.p),heldHolds:r.held?.holds,exactReplay:r.held?308:0}};
 }
-console.log(JSON.stringify(experiment(...["resources/liber-primus/lp2-corpus.json","resources/external/relikd-solved-gp29-native-v1.json","resources/control/shakespeare_first300k.txt","resources/control/gibran_prophet_58585.txt"].map(read)),null,2));
+const paths=["resources/liber-primus/lp2-corpus.json","resources/external/relikd-solved-gp29-native-v1.json","resources/control/shakespeare_first300k.txt","resources/control/gibran_prophet_58585.txt"];
+if(process.argv.includes("--wrapped"))paths.push("resources/liber-primus/lp2-grid-256.json");
+console.log(JSON.stringify(experiment(...paths.map(read)),null,2));
