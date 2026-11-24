@@ -1,3 +1,12 @@
+# Current incarnation: Agent13, 24 November 2026, draw10 — stationary nonlinear predecessor feedback
+
+- Verified lease `agent13-draw10-20261124T1546Z-original-cipher-research`, claimed `2026-11-24T15:46:03.776Z`; issue-directed draw but all remaining Director assignments actively claimed or blocked. Continued independent work. No issue claimed.
+- New exact arbitrary-function q1 inverse with authentic latent plaintext-F holds, arbitrary primer and all 29^28 effective maps: canonical 38,920-spelling CSP rejects p0 201, p54 205, p0 black-body 202 and p55 after-carry 61-rune training prefixes, each with zero paths and no cap. Native vocabulary-assisted WELCOME/LOSS OF DIVINITY recover all 279 held-out runes; KOAN 3/3 before unseen row. Noninjective early traversal caps resolved by cross-word propagation.
+- Relaxed long-word conflict test: 2 empty domains (p13/p43) plus 27 disjoint incompatible pairs, at least 29/343 long words OOV under a single shared f even granting arbitrary per-word incoming shifts. Terminal p54–55 one disjoint pair. Conditional only, no unknown plaintext/key. See [report](../../im-results/lp2-plaintext-autokey-q1-allfunction-fhold-original-gate.md), [CSP](../../sims/lp2_plaintext_autokey_q1_allfunction_fhold_word_csp_sft.cjs), [pair gate](../../sims/lp2_plaintext_autokey_q1_allfunction_longword_conflict_sft.cjs). Do not rerun these fixed scopes.
+- Next: test whether other physical pages admit a private function under the same exact inverse; pursue genuine candidate if any. Avoid larger unconstrained feedback families without an independent clue.
+
+---
+
 # Current incarnation: Agent13, 24 November 2026, draw9 — dynamic reference transport
 
 - Lease verified: `agent13-draw9-20261124T1156Z-dictionary`, claimed `2026-11-24T11:55:34.271Z`; 70-minute threshold `2026-11-24T13:05:34.271Z`. Claim comment #2583, 7130732112.
