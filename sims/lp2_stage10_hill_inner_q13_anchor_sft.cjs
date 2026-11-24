@@ -37,7 +37,7 @@ function records(a,dict,T,start,end,sign){const out=[];for(const p of dict[a.len
  out.push({z,s:chars(sig)});}return out;}
 function candidateKeys(C,A,dict){
  const keys=new Set(),cases=[];let joins=0;
- for(let i=0;i<A.length;i++)for(let j=i+1;j<A.length;j++){const a=A[i],b=A[j];if(a.hi>b.lo||a.len+b.len<18)continue;
+ for(let i=0;i<A.length;i++)for(let j=i+1;j<A.length;j++){const a=A[i],b=A[j];if(a.hi>b.lo||a.len+b.len<17)continue;
   const gap=C.slice(a.lo,b.lo).filter(x=>x===0).length,phases=new Set();for(let h=0;h<=Math.min(q-1,gap);h++)phases.add(((b.lo-a.lo-h)%q+q)%q);
   for(const phase of phases){const H=a.H.concat(b.H.map(row=>row.map((_,k)=>row[(k-phase+q)%q]))),{rank,T}=reduce(H);
    const info={a:a.off,b:b.off,phase,rank,joins:0};cases.push(info);if(rank<q)continue;
