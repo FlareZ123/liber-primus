@@ -1,0 +1,30 @@
+{
+  "source": {
+    "corpus": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "transcription": "f7b534a33edeb212d427329798438325307463d7",
+    "packedFixtureFNV32": 3537298945
+  },
+  "sourceCodeFNV32": 2585321867,
+  "solver": "Z3 4.13.3.0",
+  "original": {
+    "result": "unsat",
+    "q": 13,
+    "anchor": 45,
+    "runes": 3008,
+    "variables": 4129,
+    "clauses": 112948,
+    "seconds": 62.9895915489999
+  },
+  "crossCheck": {
+    "result": "unsat",
+    "q": 7,
+    "runes": 800,
+    "anchor": 45,
+    "variables": 939,
+    "clauses": 23235,
+    "seconds": 0.491683371
+  },
+  "control": {
+    "status": "blind solve running"
+  }
+}
