@@ -72,4 +72,19 @@ function recover(C,q,lm,{maxZeros=13,trigramMasks=16,exactIfZeros=5}={}){
  for(const x of ranks.slice(0,z<=exactIfZeros?ranks.length:trigramMasks)){const state=fixedMask(C,q,x.mask),r=optimize(state,factors(C,q,state,lm,3),3),p=plainFor(C,state,r.key);if(Math.abs(r.score-scorePlain(p,lm,3))>1e-6)throw Error("factor score mismatch");best.push({mask:x.mask,key:r.key,score:r.score,bigramScore:x.score,endPhase:state.endPhase,p})}
  best.sort((a,b)=>b.score-a.score);return {zeros:z,totalMasks:2**z,legalMasks:ranks.length,trigramMasks:best.length,exhaustiveTrigram:best.length===ranks.length,ranked:best,bigramTop:ranks.slice(0,8)};
 }
-module.exports={fixedMask,factors,optimize,plainFor,scorePlain,train,recover,logadd};
+
+/** Fixed-key prefix marginal and posterior-predictive suffix; no refitting. */
+function continueFrozen(C,split,key,lm){
+ const q=key.length,enc=(j,a,b)=>j*900+a*30+b,decode=s=>[Math.floor(s/900),Math.floor(s%900/30),s%30];
+ function next(s,c){const [j,a,b]=decode(s),p=mod(c-key[j]),v=[];function emit(x,k){const score=b===29?lm.uni[x]:a===29?lm.bi[b*29+x]:lm.tri[(a*29+b)*29+x];v.push([enc(k,b,x),x,score]);}if(!c)emit(0,j);if(p!==0)emit(p,(j+1)%q);return v}
+ let states=new Map([[enc(0,29,29),{z:0,v:0,path:[]}]]); 
+ for(let i=0;i<split;i++){const dst=new Map();for(const [s,r] of states)for(const [t,p,w] of next(s,C[i])){let x=dst.get(t),v=r.v+w,z=r.z+w;if(!x)dst.set(t,{z,v,path:[...r.path,p]});else{x.z=logadd(x.z,z);if(v>x.v){x.v=v;x.path=[...r.path,p]}}}states=dst;if(!states.size)return {legal:false,failedAt:i};}
+ const prefix=states,prefixZ=[...prefix.values()].reduce((a,x)=>logadd(a,x.z),-Infinity);
+ states=new Map([...prefix].map(([s,x])=>[s,{z:x.z,v:x.z,path:[],origin:s}]));
+ for(let i=split;i<C.length;i++){const dst=new Map();for(const [s,r] of states)for(const [t,p,w] of next(s,C[i])){let x=dst.get(t),v=r.v+w,z=r.z+w;if(!x)dst.set(t,{z,v,path:[...r.path,p],origin:r.origin});else{x.z=logadd(x.z,z);if(v>x.v){x.v=v;x.path=[...r.path,p];x.origin=r.origin}}}states=dst;if(!states.size)return {legal:false,failedAt:i,prefixStates:prefix.size,prefixZ};}
+ const all=[...states.values()],best=all.reduce((a,b)=>a.v>b.v?a:b),z=all.reduce((a,x)=>logadd(a,x.z),-Infinity);
+ const prior=prefix.get(best.origin),P=prior.path.concat(best.path);let j=0;const replay=P.map(x=>x===0?0:mod(x+key[j++%q]));
+ return {legal:true,prefixStates:prefix.size,endStates:states.size,prefixZ,conditionalLogEvidence:z-prefixZ,suffixMap:best.v-prefixZ,chosenBoundaryLogPosterior:prior.z-prefixZ,prefix:prior.path,suffix:best.path,replay:replay.every((x,i)=>x===C[i])};
+}
+
+module.exports={fixedMask,factors,optimize,plainFor,scorePlain,train,recover,logadd,continueFrozen};
