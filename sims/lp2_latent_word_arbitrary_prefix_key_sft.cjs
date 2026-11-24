@@ -12,12 +12,14 @@ function run(gp,gold,dict){
  for(const ws of native.values())for(const p of ws)add(p,p.map(x=>gp.translit[x]).join(""),1);
  const root={kids:new Map(),term:null};let maxLength=0;
  for(const w of words.values()){let t=root;for(const x of w.p){if(!t.kids.has(x))t.kids.set(x,{kids:new Map(),term:null});t=t.kids.get(x)}t.term={...w,score:Math.log(w.f/total)};maxLength=Math.max(maxLength,w.p.length)}
- function encrypt(ws,key){return ws.flatMap(w=>{let i=0;return w.map(p=>p===0?0:mod(p+key[i++]))})}
+ function encrypt(ws,key,slope=1){return ws.flatMap(w=>{let i=0;return w.map(p=>p===0?0:mod(slope*p+key[i++]))})}
+ function inv(slope){for(let i=1;i<29;i++)if(mod(i*slope)===1)return i;throw Error('invalid slope')}
  // Prefix cylinder antichain: a shorter surviving prefix dominates all of its extensions.
  function node(){return {kids:new Map(),term:null}}
  function insert(t,key,witness){for(let i=0;i<key.length;i++){if(t.term)return false;const c=key.charCodeAt(i)-65;if(!t.kids.has(c))t.kids.set(c,node());t=t.kids.get(c)}if(t.term)return false;t.term=witness;t.kids.clear();return true}
  function* terms(t){if(t.term){yield t.term;return}for(const ch of t.kids.values())yield* terms(ch)}
- function recover(c,{limit=8000000,allowPartial=true}={}){
+ function recover(c,{limit=8000000,allowPartial=true,slope=1}={}){
+  const inverse=inv(slope);
   const states=Array.from({length:c.length+1},node);
   insert(states[0],"",{key:"",prev:null,word:null});
   let visits=0,inserts=1,processed=0,farthest=0;const stats=[];
@@ -35,8 +37,8 @@ function run(gp,gold,dict){
      if(j-i>=maxLength)return;
      const x=c[j];
      const f=t.kids.get(0);if(x===0&&f)walk(j+1,k,key,f);
-     if(k<key.length){const p=mod(x-(key.charCodeAt(k)-65));const child=t.kids.get(p);if(p&&child)walk(j+1,k+1,key,child)}
-     else for(const [p,ch] of t.kids)if(p)walk(j+1,k+1,key+String.fromCharCode(65+mod(x-p)),ch);
+     if(k<key.length){const p=mod(inverse*(x-(key.charCodeAt(k)-65)));const child=t.kids.get(p);if(p&&child)walk(j+1,k+1,key,child)}
+     else for(const [p,ch] of t.kids)if(p)walk(j+1,k+1,key+String.fromCharCode(65+mod(x-slope*p)),ch);
     }
     try{walk(i,0,s.key,root)}catch(e){if(e.message!=="visit-cap")throw e;return {complete:false,reason:e.message,visits,inserts,processed,farthest,stoppedAt:i,stats:stats.slice(-8)}}
    }
@@ -49,7 +51,8 @@ function run(gp,gold,dict){
  }
 
  /** Decode a held-out segment without learning any new key positions. */
- function predict(c,key){
+ function predict(c,key,slope=1){
+   const inverse=inv(slope);
    const n=c.length,best=new Float64Array(n+1).fill(-Infinity),back=Array(n+1);
    best[0]=0;
    for(let i=0;i<n;i++)if(Number.isFinite(best[i])){
@@ -59,7 +62,7 @@ function run(gp,gold,dict){
        const x=c[j],f=t.kids.get(0);
        if(x===0&&f)walk(j+1,k,f);
        if(k<key.length){
-         const p=mod(x-key[k]),child=t.kids.get(p);
+         const p=mod(inverse*(x-key[k])),child=t.kids.get(p);
          if(p&&child)walk(j+1,k+1,child)
        }
      }
@@ -73,25 +76,29 @@ function run(gp,gold,dict){
    const {survivors,...rest}=r;
    return {...rest,survivors:survivors?.length,keys:survivors?.slice(0,10).map(x=>Array.from(x.key,c=>c.charCodeAt(0)-65))}
  }
- function control(name,target,salt){
+ function control(name,target,salt,slope=1){
    const key=Array.from({length:maxLength},(_,i)=>(i*i*7+11*i+salt)%29);
    const w=native.get(name).filter(w=>w.length!==1||[10,24].includes(w[0]));
    let split=0,len=0;while(len<target){len+=w[split++].length}
-   const a=w.slice(0,split),b=w.slice(split,split+10),fit=encrypt(a,key),held=encrypt(b,key);
-   const pc=recover(fit,{allowPartial:false});
+   const a=w.slice(0,split),b=w.slice(split,split+10),fit=encrypt(a,key,slope),held=encrypt(b,key,slope);
+   const pc=recover(fit,{allowPartial:false,slope});
    const trueKey=key.map(x=>String.fromCharCode(65+x)).join("");
    const containsTrue=pc.survivors?.some(s=>trueKey.startsWith(s.key));
    const recovered=pc.survivors?.length===1?Array.from(pc.survivors[0].key,c=>c.charCodeAt(0)-65):null;
-   const pred=recovered?predict(held,recovered):null;
+   const pred=recovered?predict(held,recovered,slope):null;
    const plain=b.flat(),hits=pred?pred.filter((x,i)=>x===plain[i]).length:0;
    const requiredHeldoutKey=Math.max(...b.map(w=>w.filter(p=>p!==0).length));
-   return {name,fitRunes:fit.length,holdoutRunes:held.length,requiredHeldoutKey,containsTrue,recoveredPrefix:recovered,heldoutHits:hits,heldoutExact:!!pred&&hits===plain.length,...compact(pc)};
+   return {name,slope,fitRunes:fit.length,holdoutRunes:held.length,requiredHeldoutKey,containsTrue,recoveredPrefix:recovered,heldoutHits:hits,heldoutExact:!!pred&&hits===plain.length,...compact(pc)};
  }
- const controls=[control("0_welcome",80,19),control("0_koan_1",160,7)];
+ const controls=[control("0_welcome",80,19),control("0_koan_1",160,7),control("0_koan_1",160,11,28),control("0_koan_1",160,13,7)];
  const chapterPages=[0,3,8,15,23,28,33,40,54];
  const original=chapterPages.map(page=>{
    const c=gp.pages.find(p=>p.page===page).indices.slice(0,80);
-   return {page,fitRunes:c.length,...compact(recover(c))}
+   const slopes=[];for(let slope=1;slope<=28;slope++){
+       const row=compact(recover(c,{slope}));
+       slopes.push({slope,complete:row.complete,farthest:row.farthest,visits:row.visits,survivors:row.survivors,keys:row.keys});
+     }
+     return {page,fitRunes:c.length,completed:slopes.filter(s=>s.complete).length,totalVisits:slopes.reduce((a,s)=>a+s.visits,0),maxReach:Math.max(...slopes.map(s=>s.farthest)),slopeOne:slopes[0],eligible:slopes.filter(s=>!s.complete||s.survivors>0),slopes};
  });
  return {lexicon:words.size,maxLength,controls,original};
 
