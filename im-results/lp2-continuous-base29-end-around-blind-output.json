@@ -1,0 +1,165 @@
+{
+  "bound": 3301,
+  "fit": 144,
+  "holdout": 144,
+  "controls": [
+    {
+      "name": "0_welcome",
+      "rev": false,
+      "planted": [
+        1,
+        1033
+      ],
+      "count": 2826,
+      "key": [
+        1,
+        1033
+      ],
+      "runner": [
+        1,
+        1679,
+        -3.562713230813036
+      ],
+      "fit": -2.6071734074798614,
+      "hold": -2.570345166158249,
+      "rawHold": -3.793993233005735,
+      "full": -2.5615533269300856,
+      "replay": true,
+      "preview": "W E L C O M E W E L C O M E P I L G R I M T O TH E G R EA T J O U R N E Y T O W A R D TH E E N D O F A L L TH NG S I T I S N",
+      "holdPreview": "L L S T R U G G L E A N D S U F F E R NG Y O U R I N N O C E N C E Y O U R I L L U S IA N S Y O U R C E R T A I N T Y A N",
+      "exact": 515,
+      "total": 515,
+      "holdExact": 144
+    },
+    {
+      "name": "0_koan_1",
+      "rev": true,
+      "planted": [
+        -1,
+        3299
+      ],
+      "count": 1084,
+      "key": [
+        -1,
+        3299
+      ],
+      "runner": [
+        1,
+        1459,
+        -3.5663557279634928
+      ],
+      "fit": -2.5886680666277457,
+      "hold": -2.825687281276484,
+      "rawHold": -3.61543737091474,
+      "full": -2.4667520417216426,
+      "replay": true,
+      "preview": "Y A D H C EA S NG TH E L B A N O S EA R N U R U O F O D N IA T C U R T S N I N A Y D U T S E M O C O T E M O C L E W E R A U",
+      "holdPreview": "R A T S E H M A I D E T A T I R R I NG T T E G S A W N A M E TH E R E H Y D U T S O T S E H S I W O H W U O Y E R A O H W",
+      "exact": 780,
+      "total": 780,
+      "holdExact": 144
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "rev": false,
+      "planted": [
+        -1,
+        463
+      ],
+      "count": 2830,
+      "key": [
+        -1,
+        463
+      ],
+      "runner": [
+        1,
+        2659,
+        -3.498290691102831
+      ],
+      "fit": -2.9704665156008154,
+      "hold": -2.622819590829748,
+      "rawHold": -3.674408987741882,
+      "full": -2.708473412080924,
+      "replay": true,
+      "preview": "TH E L O S S O F D I U I N I T Y TH E C I R C U M F E R E N C E P R A C T I C E S TH R E E B E H A U IA R S W H I C H C A U",
+      "holdPreview": "E D E C E P T IA N W E D O N O T H A U E E N O U G H O R TH E R E I S N O T E N O U G H W E H A U E W H A T W E H A U E N",
+      "exact": 755,
+      "total": 755,
+      "holdExact": 144
+    },
+    {
+      "name": "jpg107-167",
+      "rev": true,
+      "planted": [
+        1,
+        3301
+      ],
+      "count": 2658,
+      "key": [
+        1,
+        3301
+      ],
+      "runner": [
+        1,
+        2661,
+        -3.577965985278327
+      ],
+      "fit": -2.337112519912597,
+      "hold": -2.530229193285434,
+      "rawHold": -3.694704514093123,
+      "full": -2.4447846420518693,
+      "replay": true,
+      "preview": "D E N E T H G I L N E E R E W S T N E D U T S E TH D N A I E TH S I D EA H R U O Y N I E C I O U O N E U A H U O Y D I A S",
+      "holdPreview": "E TH T H G U O TH D EA H Y M N I E C I O U A E U A H T N O D I D EA H R U O Y E D I S N I E C I O U A S I T I D I A S R E T",
+      "exact": 319,
+      "total": 319,
+      "holdExact": 144
+    }
+  ],
+  "original": [
+    {
+      "rev": false,
+      "count": 1484,
+      "key": [
+        1,
+        1769
+      ],
+      "runner": [
+        1,
+        61,
+        -3.583843332659903
+      ],
+      "fit": -3.583664966023974,
+      "hold": -3.705319855206276,
+      "rawHold": -3.741654164736433,
+      "full": -3.7478351311497207,
+      "replay": true,
+      "preview": "T D S A U IA M D NG J M P R R I X EO IA X NG B F U T M E A I NG D TH W D P M U O W L B E C EA M IA N N C EO S NG N J I L W X IA AE E",
+      "holdPreview": "O IA AE M C AE U S X X I X L R C E J EA A EO EO EO G J I NG O EA TH OE U OE IA Y B B I J E R EA S S D X S E TH F R B N I B IA J AE NG A E",
+      "total": 12956,
+      "adjacent": 472
+    },
+    {
+      "rev": true,
+      "count": 1484,
+      "key": [
+        1,
+        2249
+      ],
+      "runner": [
+        -1,
+        2491,
+        -3.616338276401964
+      ],
+      "fit": -3.6153887268540257,
+      "hold": -3.7353188144186658,
+      "rawHold": -3.7153012151474414,
+      "full": -3.7548492895046848,
+      "replay": true,
+      "preview": "D L TH TH D R NG Y X Y R X X J G NG J B T L OE EA EA P F O EO EA EO S L E F C I F IA O F EO S NG F U J X I W M NG E M O C G O L L E R",
+      "holdPreview": "IA M I Y F L N O L F D T D G P T C EO G G Y W NG EO D R J EA L AE F AE C A AE T N D P N EO L F E M U H H L C O M X J R NG Y B EA TH",
+      "total": 12956,
+      "adjacent": 455
+    }
+  ]
+}
