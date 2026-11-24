@@ -172,6 +172,64 @@ function measure(records, model) {
   };
 }
 
+
+function periodicVigenereBoundArrays(groups) {
+  const phases = Array.from({ length: DIVINITY.length }, () => new Uint32Array(29));
+  let n = 0;
+  for (const group of groups) {
+    for (let i = 0; i < group.length; i++) {
+      phases[i % DIVINITY.length][group[i]]++;
+      n++;
+    }
+  }
+  const phaseMax = phases.map((a) => Math.max(...a));
+  return { n, cap: phaseMax.reduce((a, b) => a + b, 0), phaseMax };
+}
+
+function periodicVigenereBound(groups) {
+  return periodicVigenereBoundArrays(groups.map((g) => g.runes.slice(1, -1)));
+}
+
+function minWindowMax(stream, length) {
+  assert.ok(stream.length >= length);
+  const counts = new Uint32Array(29);
+  for (let i = 0; i < length; i++) counts[stream[i]]++;
+  let min = Math.max(...counts);
+  for (let start = 1; start <= stream.length - length; start++) {
+    counts[stream[start - 1]]--;
+    counts[stream[start + length - 1]]++;
+    min = Math.min(min, Math.max(...counts));
+  }
+  return min;
+}
+
+function keyIndependentSummary(groups, referenceStreams) {
+  const bound = periodicVigenereBound(groups);
+  const controls = referenceStreams.map((stream) => minWindowMax(stream, bound.n));
+  const minimumReference = Math.min(...controls);
+  return { ...bound, controls, minimumReference, excluded: bound.cap < minimumReference };
+}
+
+function positiveControlPeriod8(groups, nativeSource) {
+  const lengths = groups.map((g) => g.runes.slice(1, -1).length);
+  let offset = 0;
+  const plaintext = lengths.map((length) => {
+    const part = nativeSource.slice(offset, offset + length);
+    offset += length;
+    assert.equal(part.length, length);
+    return part;
+  });
+  const plantedKey = [3, 7, 11, 19, 23, 2, 13, 17];
+  const ciphertext = plaintext.map((part) =>
+    part.map((v, i) => (v - plantedKey[i % plantedKey.length] + 29) % 29));
+  const bound = periodicVigenereBoundArrays(ciphertext);
+  const counts = new Uint32Array(29);
+  for (const part of plaintext) for (const v of part) counts[v]++;
+  const plaintextMaxFrequency = Math.max(...counts);
+  assert.ok(bound.cap >= plaintextMaxFrequency);
+  return { exactPlantLength: bound.n, boundCap: bound.cap, plaintextMaxFrequency, admitted: true };
+}
+
 function scoreGroupsInRange(records, lo, hi, model) {
   const selected = records.filter((r) => r.pages.every((p) => p >= lo && p <= hi));
   return measure(selected, model);
@@ -190,6 +248,11 @@ function main() {
   const shakespeare = read("resources/control/shakespeare_first300k.txt");
   const gibran = read("resources/control/gibran_prophet_58585.txt");
   const model = makeBigramModel(shakespeare);
+  const referenceStreams = [
+    englishWords(shakespeare).flat(),
+    englishWords(gibran).flat(),
+    englishWords(read("resources/control/emerson_essays_2944.txt")).flat()
+  ];
   const nativeGibran = englishWords(gibran).map((interior) => ({ interior }));
   const directWordResults = [];
   for (const direction of [-1, 1]) {
@@ -210,6 +273,7 @@ function main() {
     key: "DIUINITY",
     nativeGibran: measure(nativeGibran, model),
     directOriginalWordInterior: directWordResults,
+    keyIndependentPeriod8: "For any fixed 8-symbol GP29 Vigenere key reset per packet, max plaintext frequency <= sum over 8 phases of the maximum ciphertext-symbol count at that phase.",
     results: []
   };
 
@@ -219,6 +283,8 @@ function main() {
       for (const direction of [-1, 1]) {
         const transformed = groups.map((g) => transformGroup(g, direction, words));
         const exactRoundTrip = roundTripCheck(words, groups, direction, transformed);
+        const inRange = (lo, hi) => groups.filter((g) =>
+          Array.from(g.pages).every((p) => p >= lo && p <= hi));
         output.results.push({
           clock,
           polarity,
@@ -226,12 +292,24 @@ function main() {
           exactRoundTrip,
           all: measure(transformed, model),
           p16_21: scoreGroupsInRange(transformed, 16, 21, model),
-          p40_53: scoreGroupsInRange(transformed, 40, 53, model)
+          p40_53: scoreGroupsInRange(transformed, 40, 53, model),
+          keyIndependentPeriod8: {
+            all: keyIndependentSummary(groups, referenceStreams),
+            p16_21: keyIndependentSummary(inRange(16, 21), referenceStreams),
+            p40_53: keyIndependentSummary(inRange(40, 53), referenceStreams)
+          }
         });
       }
     }
   }
 
+  const globalAKeep = makeGroups(words, "global", "A-keep");
+  output.positiveControlPeriod8 = positiveControlPeriod8(globalAKeep, englishWords(shakespeare).flat());
+  for (const variant of output.results) {
+    for (const summary of Object.values(variant.keyIndependentPeriod8)) {
+      assert.equal(summary.excluded, true);
+    }
+  }
   process.stdout.write(JSON.stringify(output, null, 2) + "\n");
 }
 
