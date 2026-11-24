@@ -23,6 +23,22 @@ Solved LP2 PARABLE also has DIVINITY at offset73 and CIRCUMFERENCE as a prefix o
 
 Published corroboration: [Wulfic page14](https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/pages/page_14/README.md), [iBotPeaches page15](https://github.com/iBotPeaches/cicada_3301/blob/master/liber_primus/markdown/15.md), [JBO solver notes](https://github.com/cicada-solvers/JBO-cicada_tools) explicitly identify these thematic words and modified key spelling. These are community sources, not a first-party key-selection instruction.
 
+## Historical discovery, February 6, 2014 — #2486
+
+The original `#cicadasolvers.freenode.log` archive, pinned to neuroretransmit/cicada commit ade9a02889ef8acbc8cde8edbfd0a785c369f4c3, gives contemporaneous evidence of the actual discovery sequence. The targeted extractor `node sims/lp1_2014_koan_key_origin_sft.cjs` checks both source Git blob IDs and sizes before screening January–May 2014. [Successful run and original line references](https://github.com/FlareZ123/liber-primus/actions/runs/45325519523/job/138214066548).
+
+| Source line | 2014-02-06 | Observation |
+|---|---|---|
+| 106639 | 18:37 | mourn identifies the opening crib A KOAN: DURING A LESSON and indicates that it makes key recovery easy. |
+| 106660 | 18:42 | mourn reports CIRCUMFERENCE. |
+| 106694 | 18:47 | mlehmk asks why the key has the F-substituted spelling. No serious independent explanation appears in the surrounding dialogue. |
+| 106704–711 | 18:49–50 | IAmNotCicada3301 publishes the exact 13-rune key FIRFUMFERENFE and a partial decode that loses synchronization. |
+| 106742–755 | 18:57–59 | The same participant reports successful decode after recognizing two transparent plaintext Fs, specifically the F in OF and the F in CIRCUMFERENCE. |
+
+The May 23 discussion (lines 186629–634) explicitly corrects an incorrect second-rune-start interpretation: the first A is unchanged because the first key rune is zero-shift F. On May 13 (177053), Nem0 retrospectively describes the success as a good plaintext guess. The later [December 2024 reenactment](https://connortumbleson.com/2024/12/23/the-cicada-3301-mystery-puzzle-3-solve-part-4/) independently illustrates how a thematic CIRCUMFERENCE candidate is repaired using recognizable opening text. Neither source supplies a first-party C-to-F rule or a donor address that predicts an unknown-page key.
+
+**Decision:** the historical record supports crib-guided identification and transparent-F repair, not a documented author-provided key selector. The documented sequence is consistent with the previously recovered phase-zero period-13 key and F holds, and makes an arbitrary altered-key sweep less justified. No LP2 transfer is authorized by this evidence. Close #2486 as a bounded historical resolution; reopen only if an independent target-specific crib or selector emerges.
+
 ## Next decision
 
 The positive 26-rune crib control gives a concrete way to evaluate a genuinely source-selected LP2 crib in a bounded periodic family. It does not select that family for unknown pages, nor a new nonperiodic law. Stop this branch before arbitrary key words, spelling mutations, or expansion functions are introduced. Reopen only with an independent clue fixing the donor address, spelling rule, and target or with an authentic known crib. Reproducer: `node sims/lp1_self_revealing_key_control_sft.cjs`.
