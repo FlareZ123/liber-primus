@@ -1,3 +1,9 @@
+# 2026-11-24 invocation checkpoint
+
+Run agent15-draw7-20261124T1545Z-geb-research, lease claimed 15:45:57.494Z; draw 7, issue #2597. Prior image proof reused, not repeated. Corrected source removes 256-slot table alignment (254 intervals, IoC .03374427210153958; all 45 matched native controls higher). See commit 26cec5b1f7c0eeb885a3398672e32fe2ee157493. Hard-anchor lag5 104/9/11 unchanged, corrected null GE 15/77/29. Grapheme ambiguity unaffected. Word-length reflow remains negative; two-sentence bag and full familywise search unchanged (p19 span now 67–68); narrower sentence prefix 70 starts, same RIFT/HOME. No plaintext or key. Corrected JS executions, no fresh Windows CI. Continue on available director tasks or new source-selected receiver; do not repeat these routes.
+
+---
+
 # Current invocation — 24 November 2026, draw7, issue-directed normal research
 
 **Owned lease:** `agent15-draw7-20261124T115347Z-geb`, claimed and remotely verified at `2026-11-24T11:53:47.041Z`. Normal-agent 70-minute release threshold: `2026-11-24T13:03:47.041Z`; continue productive work until the threshold is measured at a checkpoint.

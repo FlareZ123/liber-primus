@@ -6,7 +6,7 @@
  *
  * Original question: after screening all contiguous windows in five fixed
  * source corpora, how surprising is any exact 26+-word multiset match when
- * every original word length is globally shuffled, preserving all 175 span
+ * every original word length is globally shuffled, preserving all 173 span
  * sizes, 2,896 total word lengths, and the full search procedure?
  *
  * Windows: node sims/lp2_sourcebag_global_multiset_null_sft.cjs
@@ -141,7 +141,7 @@ for (const {name, spans} of sources) {
   }
 }
 assert(observedMatches.some((m) => m.source === 'Shakespeare excerpt'
-  && m.originalSpan === 68 && m.sourceWordStart === 35571
+  && m.originalSpan === 67 && m.sourceWordStart === 35571
   && m.wordCount === 41), 'Unexpected mismatch at observed source candidate');
 
 const observedPairCount = new Set(observedMatches.map(m => m.originalSpan)).size;

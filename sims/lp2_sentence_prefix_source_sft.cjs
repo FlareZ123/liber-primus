@@ -14,7 +14,7 @@ function read(name) {
   return fs.readFileSync(path.join(root, name), 'utf8');
 }
 const corpus = JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
-const transcription = read('resources/liber-primus/lp2-transcription.txt');
+const transcription = read('resources/transcriptions/lp2-image-corrected.txt');
 const dictionary = read('resources/control/english_wordfreq_textblob.txt');
 const runeId = new Map(corpus.runes.map((r, i) => [r, i]));
 const gpId = new Map(corpus.translit.map((r, i) => [r, i]));
@@ -80,7 +80,7 @@ for (const { page, indices, starts } of pages) {
     hits.push({ page, offset: start, ...match });
   }
 }
-assert.equal(pages.reduce((n, p) => n + p.starts.length, 0), 71);
+assert.equal(pages.reduce((n, p) => n + p.starts.length, 0), 70);
 assert.equal(word4.size, 2123);
 assert.deepEqual(hits, [
   { page: 19, offset: 152, word: 'rift', frequency: 3 },
@@ -117,10 +117,10 @@ for (let t = 0; t < trials; t++) {
   if (score >= observedScore) nScoreGE++;
   totalMatches += count;
 }
-assert.equal(nCountGE, 957);
-assert.equal(nScoreGE, 607);
+assert.equal(nCountGE, 961);
+assert.equal(nScoreGE, 630);
 console.log(JSON.stringify({
-  candidateLexiconGP4: word4.size, sentenceStarts: 71, hits,
+  candidateLexiconGP4: word4.size, sentenceStarts: 70, hits,
   observedCount, observedScore, trials, nullMean: totalMatches / trials,
   countTail: (nCountGE + 1) / (trials + 1),
   scoreTail: (nScoreGE + 1) / (trials + 1),

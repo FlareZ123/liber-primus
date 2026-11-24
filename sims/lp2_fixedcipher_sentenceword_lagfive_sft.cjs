@@ -21,7 +21,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const root = path.join(__dirname, '..');
 const raw = fs.readFileSync(path.join(root,
-  'resources', 'lp2-transcription.txt'), 'utf8')
+  'resources', 'transcriptions', 'lp2-image-corrected.txt'), 'utf8')
   .split('%').slice(0, 55).join('%');
 const RUNIC = /[\u16A0-\u16FF]/u;
 const runes = [];
@@ -90,9 +90,9 @@ for (const w of words) {
 }
 close();
 assert.equal(carried.length, 32);
-assert.equal(words.filter(w => w.hardAfter).length, 176);
-assert.equal(blocks.length, 219);
-assert.equal(blocks.filter(x => x.length > 1).length, 213);
+assert.equal(words.filter(w => w.hardAfter).length, 174);
+assert.equal(blocks.length, 217);
+assert.equal(blocks.filter(x => x.length > 1).length, 211);
 for (const block of blocks) {
   for (let i = 1; i < block.length; i++) {
     assert.equal(block[i].start,
@@ -166,9 +166,9 @@ const conditional = sums.map((n, i) => ({
   exceedances: greaterOrEqual[i],
   plusOneTail: (greaterOrEqual[i] + 1) / (N + 1)
 }));
-assert.deepEqual(conditional.map(x => x.exceedances), [18, 81, 34]);
+assert.deepEqual(conditional.map(x => x.exceedances), [15, 77, 29]);
 assert.deepEqual(conditional.map(x => +x.mean.toFixed(4)),
-  [80.1372, 4.1835, 5.4555]);
+  [79.8651, 4.1648, 5.4653]);
 console.log(JSON.stringify({
   statisticOrder: ['fifth', 'paired fifth', 'fifth S'],
   sourceRunes: runes.length, sourceWords: words.length,

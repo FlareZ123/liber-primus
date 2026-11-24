@@ -15,7 +15,7 @@ These are finite, key-independent plaintext-source probes, not assumptions that 
 
 ## Fixed original registers and five sources
 
-The read-only code confirms every unchanged rune against \`resources/liber-primus/lp2-corpus.json\` before parsing \`resources/liber-primus/lp2-transcription.txt\`. Hyphens end words; \`.\`, \`&\`, \`$\`, \`§\` end punctuation spans; printed line/page wraps do not split words. Exactly **12,956 ciphertext runes, 2,896 complete printed words, and 175 original punctuation spans** are retained.
+The read-only code confirms every unchanged rune against \`resources/liber-primus/lp2-corpus.json\` before parsing \`resources/transcriptions/lp2-image-corrected.txt\`. Hyphens end words; \`.\`, \`&\`, \`$\`, \`§\` end punctuation spans; printed line/page wraps do not split words. Exactly **12,956 ciphertext runes, 2,896 complete printed words, and 173 original punctuation spans** are retained.
 
 Historical and first-party reference text files:
 
@@ -42,7 +42,7 @@ Across the first four frozen reference corpora in the earlier run, the **smalles
 
 The second test searches **40 eligible original adjacent-span pairs**, combining two printed spans with at least 13 words each, across **30 distinct total word counts**. A commutative double 32-bit rolling hash indexes **every source-word window** with the same number of GP-native word lengths. All candidate hash matches are independently compared as *complete sorted length multisets*, so a hash collision cannot produce a reported hit.
 
-The search evaluates **4,668,330 contiguous word windows** over all five sources. It reports zero exact matches in Gibran, Emerson, solved LP1 or Crowley, and exactly **two overlapping 41-word Shakespeare windows**, both matching the *same original LP2 p19 consecutive span pair*, original punctuation span indices **68–69**. The source-word offsets (zero-based in the flattened Shakespeare file) are **35,571** and **35,572**. One matching window starts: "law renowned Warwick Who cried aloud What scourge for perjury Can this dark monarchy afford false Clarence..." Both complete 41-word length bags match after disregarding all source word order. The separate intact-sentence model **does not** match.
+The search evaluates **4,668,330 contiguous word windows** over all five sources. It reports zero exact matches in Gibran, Emerson, solved LP1 or Crowley, and exactly **two overlapping 41-word Shakespeare windows**, both matching the *same original LP2 p19 consecutive span pair*, original punctuation span indices **67–68**. The source-word offsets (zero-based in the flattened Shakespeare file) are **35,571** and **35,572**. One matching window starts: "law renowned Warwick Who cried aloud What scourge for perjury Can this dark monarchy afford false Clarence..." Both complete 41-word length bags match after disregarding all source word order. The separate intact-sentence model **does not** match.
 
 This **is a genuine source-text wordlength multiset coincidence**, verified without changing a rune, although the source does not independently select Shakespeare, its passage, the p19 page, or a cross-sentence permutation. It does **not** identify which plaintext word maps to which ciphertext word; the original runes are unchanged, and no cipher maps them to Shakespeare's letters.
 
@@ -75,6 +75,8 @@ The global-shuffle null is a specified exploratory model; real word-length frequ
 
 - Script: [\`sims/lp2_sourcebag_global_multiset_null_sft.cjs\`](../sims/lp2_sourcebag_global_multiset_null_sft.cjs)
 - Successful independent Windows Node22 run: [43908386002](https://github.com/FlareZ123/liber-primus/actions/runs/43908386002).
+
+**Image-corrected follow-up (24 November):** All five exact source-bag scans, sliding-window search and 2,000-trial familywise null were executed on the 173-span register. The 40 eligible pairs retain the same absolute word boundaries, 30 window sizes, 4,668,330 source windows and identical null exceedances; the physical p19 hit is now spans 67–68. The earlier Windows runs are legacy input runs. The exact 41-word pattern discriminator uses the same unchanged original words.
 
 ## Cryptanalytic decision
 

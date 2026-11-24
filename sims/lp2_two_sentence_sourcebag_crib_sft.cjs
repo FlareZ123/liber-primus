@@ -17,7 +17,7 @@ const ROOT = path.resolve(__dirname, '..');
 /** @param {string} rel @returns {string} */
 const read = (rel) => fs.readFileSync(path.join(ROOT, rel), 'utf8');
 const corpus = JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
-const transcript = read('resources/liber-primus/lp2-transcription.txt');
+const transcript = read('resources/transcriptions/lp2-image-corrected.txt');
 const runeToIndex = new Map(corpus.runes.map((r, i) => [r, i]));
 
 /** @returns {number[][]} */
@@ -56,7 +56,7 @@ function originalSpans() {
   finishSpan();
 
   const lengths = spans.flat();
-  assert.equal(spans.length, 175);
+  assert.equal(spans.length, 173);
   assert.equal(lengths.length, 2896);
   assert.equal(lengths.reduce((n, v) => n + v, 0), 12956);
   return spans;

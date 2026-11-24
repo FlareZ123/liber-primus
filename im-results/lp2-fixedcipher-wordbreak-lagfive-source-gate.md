@@ -30,17 +30,17 @@ The surplus appears in both major halves of the manuscript. Using 0-based rune-b
 
 ## Hard-punctuation-anchor sensitivity: actual sentence/paragraph cuts retained
 
-An additional original-input challenge addresses the page-local shuffle's most obvious missing condition: the **literal positions of period and paragraph/section punctuation**. It treats the original period, ampersand, dollar, section, and any other nonhyphen explicit word-ending marks as **hard segmentation anchors**. Only hyphen-delimited whole-word lengths are shuffled within each contiguous original block between those anchors, physical page boundaries, and the 32 frozen page-crossing words. Every original rune, page, hard-marked word ending, and each **block's exact length multiset** remain unchanged. The 2,896 source words contain **176 hard-boundary-ending words**; the stronger conditioning produces **219 blocks**, **213** with more than one possible complete word. It changes no source symbol or hard punctuation offset and makes no grammatical reinterpretation.
+An additional original-input challenge addresses the page-local shuffle's most obvious missing condition: the **literal positions of period and paragraph/section punctuation**. It treats the original period, ampersand, dollar, section, and any other nonhyphen explicit word-ending marks as **hard segmentation anchors**. Only hyphen-delimited whole-word lengths are shuffled within each contiguous original block between those anchors, physical page boundaries, and the 32 frozen page-crossing words. Every original rune, page, hard-marked word ending, and each **block's exact length multiset** remain unchanged. The 2,896 source words contain **174 hard-boundary-ending words**; the stronger conditioning produces **217 blocks**, **211** with more than one possible complete word. It changes no source symbol or hard punctuation offset and makes no grammatical reinterpretation.
 
 | Word-enclosed fifth-back statistic | Original | Hard-anchor-fixed null mean ± SD | Draws ≥ source / 10,000 | Add-one upper tail |
 |---|---:|---:|---:|---:|
-| Total returns | **104** | **80.1372 ± 7.6545** | **18** | **0.00189981** |
-| Adjacent paired returns | **9** | **4.1835 ± 1.6292** | **81** | **0.00819918** |
-| S returns | **11** | **5.4555 ± 1.7535** | **34** | **0.00349965** |
+| Total returns | **104** | **79.8651 ± 7.6738** | **15** | **0.00159984** |
+| Adjacent paired returns | **9** | **4.1648 ± 1.6291** | **77** | **0.00779922** |
+| S returns | **11** | **5.4653 ± 1.7341** | **29** | **0.00299970** |
 
-The original word-break alignment survives **even when every nonhyphen punctuation/sentence/section anchor is held fixed**. The S return contrast becomes smaller (from original +7.30 above random to +5.54), an important restriction on any interpretation of S as an independently coded marker. Both controls are still exploratory because lag5/S were historically selected and the marks treated as hard were chosen by visible punctuation classes. Further post hoc conditioning is unlikely to yield a decoder without an original clue.
+The original word-break alignment survives **even when every nonhyphen punctuation/sentence/section anchor is held fixed**. The S return contrast becomes smaller (from original +7.30 above random to +5.53), an important restriction on any interpretation of S as an independently coded marker. Both controls are still exploratory because lag5/S were historically selected and the marks treated as hard were chosen by visible punctuation classes. Further post hoc conditioning is unlikely to yield a decoder without an original clue.
 
-The [hard-punctuation fixed-cipher SFT](../sims/lp2_fixedcipher_sentenceword_lagfive_sft.cjs) uses the exact original runes, all 176 preserved hard cuts and 10,000 deterministic shuffles, asserting the original and sampled counts; [Windows Node22 source CI #44211935660](https://github.com/FlareZ123/liber-primus/actions/runs/44211935660) passed with the exact expected means [80.1372, 4.1835, 5.4555].
+The [hard-punctuation fixed-cipher SFT](../sims/lp2_fixedcipher_sentenceword_lagfive_sft.cjs) uses the exact original runes, all 174 preserved hard cuts and 10,000 deterministic shuffles, asserting the original and sampled counts; [Windows Node22 source CI #44211935660](https://github.com/FlareZ123/liber-primus/actions/runs/44211935660) passed on the legacy 176-cut register. The 24 November image-corrected register was executed in JS with the same seed and algorithm and gives the table above; the page-only study is unchanged. No new Windows CI run is claimed.
 
 
 ## First-party unencrypted comparison

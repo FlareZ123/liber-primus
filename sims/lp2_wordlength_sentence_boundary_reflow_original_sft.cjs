@@ -15,7 +15,7 @@ const root = path.resolve(__dirname, "..");
 const read = name => fs.readFileSync(path.join(root, name), "utf8");
 const runes = /[\u16A0-\u16FF]+/gu;
 const getRunes = s => s.match(runes) || [];
-const raw = read("resources/liber-primus/lp2-transcription.txt").split("%");
+const raw = read("resources/transcriptions/lp2-image-corrected.txt").split("%");
 const unknown = raw.slice(0, 55).join("%"); // canonical text omits rune-free p50
 const sanitize = s => s.replace(/\/\r?\n/g, "").replace(/[%$&\s]/g, "");
 const scopes = text => sanitize(text).split(".")
@@ -25,7 +25,7 @@ const full = scopes(unknown);
 const words = full.flat();
 assert.equal(words.length, 2896);
 assert.equal(words.reduce((n, len) => n + len, 0), 12956);
-assert.equal(full.length, 175);
+assert.equal(full.length, 173);
 assert.equal(words.filter(x => x === 1).length, 83);
 assert.equal(words.filter(x => x === 2).length, 448);
 
@@ -217,7 +217,7 @@ const result = {
 assert.equal(result.original.global.observed, 94);
 assert.equal(result.original.punctuation.shortPair, 88);
 assert.ok(Math.abs(result.original.punctuation.conditionalExpected - 85.90505517407924) < 1e-8);
-assert.ok(Math.abs(result.original.punctuation.terminalZ + 0.68356206596369) < 1e-7);
+assert.ok(Math.abs(result.original.punctuation.terminalZ + 0.8037606848207044) < 1e-7);
 assert.equal(result.donorWindows.latin.atLeastOriginal, 0);
 assert.equal(result.donorWindows.beowulf_old_english.windows, 83);
 assert.equal(result.donorWindows.beowulf_old_english.atLeastOriginal, 83);

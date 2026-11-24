@@ -54,3 +54,6 @@ The all-word four-rune lexicon excess (68, p=0.0072) is an **independent explora
 - The specific exact-string HOME 0.0003 post-hoc number has **no** independent prior selection basis. The correct familywise maximum-over-prefix/position null is 0.9456. The 11×11 reflow, compass stop and unselected table bit packet are not validated by the original word-start occurrence.
 
 **Decision:** retire p32 HOME/HOMEX as an *authenticated* map-start/stop mechanism, pending an **independent authored instruction** selecting that exact byte sequence and a unique original-cipher operation. The original five printed runes remain factual, and no unknown page has been decrypted. Stop dependent HOMEX compass work without such a new independent selector.
+
+
+**Scope note (24 November #2597):** The CMUdict numbers above describe the historical legacy punctuation register. A separate, narrower `lp2_sentence_prefix_source_sft.cjs` diagnostic using its own fixed 2,123 GP4 dictionary was recomputed on image-corrected punctuation: 70 eligible contiguous post-period four-rune starts (formerly 71), the same RIFT and HOME hits, and 961 count / 630 weighted-score exceedances in 50,000 trials (add-one tails 0.0192396 / 0.0126197). This narrower exploratory statistic is not the CMUdict familywise maximum or a new author-selected clue.

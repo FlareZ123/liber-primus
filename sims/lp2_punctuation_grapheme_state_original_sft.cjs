@@ -15,7 +15,7 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const load = p => fs.readFileSync(path.join(root, p), 'utf8');
 const corpus = JSON.parse(load('resources/liber-primus/lp2-corpus.json'));
-const lp2 = load('resources/liber-primus/lp2-transcription.txt');
+const lp2 = load('resources/transcriptions/lp2-image-corrected.txt');
 const lp1 = load('resources/transcriptions/lp1_wulfic_canonical.txt');
 const runeOrdinal = new Map(corpus.runes.map((r, i) => [r, i]));
 const spelling = corpus.translit;

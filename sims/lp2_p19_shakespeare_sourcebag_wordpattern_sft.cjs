@@ -88,7 +88,7 @@ function matchPatterns(ciphertext, source) {
 }
 
 const alphaSet = new Set(corpus.runes);
-const transcript = read('resources/liber-primus/lp2-transcription.txt');
+const transcript = read('resources/transcriptions/lp2-image-corrected.txt');
 const pageBlocks = transcript.split('%').slice(0, 55);
 const sourceWords = read('resources/control/shakespeare_first300k.txt')
   .replace(/\r?\n/g, ' ').split(/[.!?;:]+/)
@@ -116,11 +116,11 @@ for (const page of pageBlocks) {
   }
 }
 endSpan();
-assert.equal(spans.length, 175);
-const cipher = spans[68].concat(spans[69]);
+assert.equal(spans.length, 173);
+const cipher = spans[67].concat(spans[68]);
 assert.equal(cipher.length, 41);
-assert.equal(spans[68].length,23);
-assert.equal(spans[69].length,18);
+assert.equal(spans[67].length,23);
+assert.equal(spans[68].length,18);
 const sortedLengths = cipher.map((word)=>word.length)
   .sort((a,b)=>a-b).join(',');
 const originalMatches = [];
@@ -153,7 +153,7 @@ for (const start of sourceWindows) {
 console.log(JSON.stringify({
   status:'PASS',
   originalPhysicalPage:19,
-  originalAdjacentPunctuationSpans:[68,69],
+  originalAdjacentPunctuationSpans:[67,68],
   originalWords:41,
   model:'arbitrary word permutation and arbitrary injective per-word GP29 substitution',
   matches:originalMatches,
