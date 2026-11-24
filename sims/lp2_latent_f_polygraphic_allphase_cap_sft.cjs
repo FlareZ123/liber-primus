@@ -26,7 +26,26 @@ const results=[];
 for(const [lo,hi] of ranges){const c=gp.pages.filter(p=>p.page>=lo&&p.page<=hi).flatMap(p=>p.indices);for(const b of [3,5]){const q=caps(c,b),r=[];for(const d of donors)for(let j=0;j<32;j++){const offset=Math.round(j*(d.length-c.length)/31),a=d.slice(offset,offset+c.length).filter(x=>x!==0),hs=Array.from({length:b},(_,phase)=>hist(a,b,phase)),minColl=Math.min(...hs.map(x=>x.coll)),minMax=Math.min(...hs.map(x=>x.max)),pass=hs.some(h=>h.coll<=q.coll&&h.max<=q.max);r.push({minColl,minMax,pass})}results.push({pages:[lo,hi],b,n:c.length,zero:c.filter(x=>x===0).length,...q,donorColl:[Math.min(...r.map(x=>x.minColl)),Math.max(...r.map(x=>x.minColl))],donorMax:[Math.min(...r.map(x=>x.minMax)),Math.max(...r.map(x=>x.minMax))],survive:r.filter(x=>x.pass).length})}}
 const whole=gp.pages.filter(p=>p.page<=55).flatMap(p=>p.indices),total=whole.length,chapters=ranges.map(([lo,hi])=>gp.pages.filter(p=>p.page>=lo&&p.page<=hi).reduce((n,p)=>n+p.indices.length,0)),book=[];
 for(const b of [3,5]){const q=caps(whole,b),independent=results.filter(x=>x.b===b).reduce((s,x)=>s+x.coll,0),r=[];for(const d of donors)for(let j=0;j<32;j++){const offset=Math.round(j*(d.length-total)/31),p=d.slice(offset,offset+total),a=p.filter(x=>x!==0),hs=Array.from({length:b},(_,phase)=>hist(a,b,phase));let k=0,ind=0;for(const n of chapters){const v=p.slice(k,k+n).filter(x=>x!==0);k+=n;ind+=Math.min(...Array.from({length:b},(_,phase)=>hist(v,b,phase).coll))}r.push({minColl:Math.min(...hs.map(h=>h.coll)),minMax:Math.min(...hs.map(h=>h.max)),ind,pass:hs.some(h=>h.coll<=q.coll&&h.max<=q.max)})}book.push({b,...q,independent,donorColl:[Math.min(...r.map(x=>x.minColl)),Math.max(...r.map(x=>x.minColl))],donorIndependent:[Math.min(...r.map(x=>x.ind)),Math.max(...r.map(x=>x.ind))],sharedSurvive:r.filter(x=>x.pass).length,independentSurvive:r.filter(x=>x.ind<=independent).length})}
-return {brute,donorLengths:donors.map(x=>x.length),results,book};
+
+const plants=[];
+for(const b of [3,5]){
+ const modulus=29**b;
+ // A fixed injective full-block permutation, not an assumed historic key.
+ for(let trial=0;trial<3;trial++){
+  const p=donors[trial].slice(10000+trial*123,10000+trial*123+1700),positions=p.map((x,i)=>x?i:-1).filter(i=>i>=0),phase=1+rand(b-1);
+  const a=p.filter(x=>x!==0),c=p.slice(),shift=rand(modulus),mult=1+29*rand(Math.floor((modulus-2)/29)+1);
+  let inv=1; // Extended Euclidean inverse over 29^b.
+  let v=mult,w=modulus,s=1,t=0;while(w){const q=Math.floor(v/w);[v,w]=[w,v-q*w];[s,t]=[t,s-q*t]}if(v!==1)throw Error("not unit");inv=((s%modulus)+modulus)%modulus;
+  for(let i=phase;i+b<=a.length;i+=b){const y=decode((mult*encode(a.slice(i,i+b))+shift)%modulus,b);for(let j=0;j<b;j++)c[positions[i+j]]=y[j]}
+  const rec=c.slice();for(let i=phase;i+b<=a.length;i+=b){const y=encode(positions.slice(i,i+b).map(k=>c[k])),x=decode((inv*((y-shift+modulus)%modulus))%modulus,b);for(let j=0;j<b;j++)rec[positions[i+j]]=x[j]}
+  if(rec.some((x,i)=>x!==p[i]))throw Error("plant roundtrip");
+  const ct=positions.map(i=>c[i]),h=hist(a,b,phase),h2=hist(ct,b,phase),q=caps(c,b);
+  if(h.coll!==h2.coll||h.max!==h2.max||h.coll>q.coll||h.max>q.max)throw Error("plant cap");
+  plants.push({b,phase,n:p.length,consumingF:ct.filter(x=>x===0).length,holds:p.length-a.length,coll:h.coll,bound:q.coll,recovered:p.length});
+ }
+}
+
+return {plants,brute,donorLengths:donors.map(x=>x.length),results,book};
 }
 const paths=["resources/liber-primus/lp2-corpus.json","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt","resources/control/gibran_prophet_58585.txt"];
 const contents=paths.map(p=>fs.readFileSync(p,'utf8'));
