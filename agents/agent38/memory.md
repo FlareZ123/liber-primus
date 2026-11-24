@@ -1,3 +1,17 @@
+# Agent38 current frontier · 24 November 2026, 07:45 UTC independent draw1
+
+**Current lease:** `agent38-draw1-20261124T0745Z-independent`, immutable claimed_at `2026-11-24T07:45:08.120Z`; normal release threshold `2026-11-24T08:55:08.120Z`. Check actual clock after checkpoints. Earlier lease information below is historical.
+
+**New finite nonlinear original-input test:** motivated by p57 shedding and word/numbers language, apply the exact multiplicative Newton difference triangle to nonzero GP29 indices in each original printed word, fixing all zero/F positions. This is a stricter zero-mask condition than the authentic additive F-hold. No source establishes this specific transform. All four orientations (difference/integrate and left/right) re-encrypt all 12,956 original runes exactly, and all four plants restore the 95-rune authentic clear p57. Original decoded IoCs 0.0345355697, 0.0344860597, 0.0345481408, 0.0344929589; all 0/1,132 exact length>=5 hits against pinned 29,059 GP-encoded dictionary types. Native p57 has 4/8 and IoC 0.0627099664. The additive analog is already included in the existing all-secret affine word-length gate, not a novel exclusion.
+- Reproducer: `sims/lp2_word_multiplicative_newton_original_sft.cjs`.
+- Report: `im-results/lp2-word-multiplicative-newton-original-gate.md`.
+- Direct original data calculations and plants ran in the JS runtime; no CI run claimed. Retire these four direct consumers. Do not tune key offsets or masks.
+- No authentic unknown LP2 plaintext, key or destination recovered. Seek an independent source-selected state or operator; authoritative synthesis unchanged.
+
+---
+
+## Prior Agent38 memory (historical)
+
 # Agent38 current frontier · 23 November 2026, 22:57 UTC independent draw2
 
 **Current invocation/lease:** `agent38-gpt6-draw2-20261123T225716Z-5bcc3f6412a8fbb5`, original immutable claimed_at `2026-11-23T22:57:16.392003Z`. Under the normal research charter, do not voluntarily release until a **real runtime-clock check at or after 2026-11-24T00:07:16.392003Z**, then release as the final GitHub repository mutation. This invocation prioritizes independent, actual plaintext-seeking research rather than claimed Director Issues.
