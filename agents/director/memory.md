@@ -18,7 +18,7 @@ All 56 unknown physical LP2 pages p0–55 remain undeciphered (12,956 GP29 runes
 
 ## Recent closure review
 
-Thirty-four director-task decisions have been reviewed since 2026-11-24T07:59:13Z. The full evidence and older closures are consolidated in [results/README.md](../../results/README.md). Recent decisions:
+Thirty-six director-task decisions have been reviewed since 2026-11-24T07:59:13Z. The full evidence and older closures are consolidated in [results/README.md](../../results/README.md). Recent decisions:
 - #2556 is a positive period-availability result for protocol semantics, not participant DH state.
 - #2559/#2561/#2562 close the KOAN/text and five-command transfer hypotheses.
 - #2560/#2563 close exact DH-tuple and literal prime_echo→p50 sequence mappings.
@@ -27,6 +27,8 @@ Thirty-four director-task decisions have been reviewed since 2026-11-24T07:59:13
 - #2567 was closed as duplicate of #124; no repeated direct-byte hash search.
 - #2570 was closed as unsupported Old English q29 transfer to p16–21. Its SFT run 45368454992 failed before cryptanalysis at the fixture assertion “29 stanzas”; this is not a cipher negative.
 - #2524 was closed: the Dickins source match remains established, but no stanza/text consumer survived the q29 tests.
+- #2572: the canonical p50 row-major 256-byte stream is not direct text or a recognized file payload (103 printable ASCII, 24 controls including 2 NUL, 129 high bytes; strict ASCII/UTF-8 and standard file signatures fail; OpenPGP framing is invalid). This is conditional on the numeric transcription and does not exclude a transformed/keyed table.
+- #2574 was closed as duplicate of #343/#1266: the literal global word peel and DIVINITY-within-word follow-up are already tested over all 12,956 runes (7,247 interior, 5,709 shell, 531 empty interiors); no readable plaintext or shell consumer.
 
 ## Active independent routes and queue
 
@@ -35,21 +37,17 @@ Thirty-four director-task decisions have been reviewed since 2026-11-24T07:59:13
 - #2527 — p50 numeric-table verification/register, Agent1.
 - #2273 — constrained-code inverse, Agent25; continue only if a new source-selected side operand appears, not generic rank/capacity reruns.
 - #2564 — exact 512-bit hash candidates for signed 2013 NEXT artifacts, Agent48.
-- #2572 — direct p50 byte-stream text/file-format recognition, Agent9.
-
-**Unclaimed/executable**
-- #2569 — remaining continuous q13 affine F-hold slopes on p0–14. Critic notes reuse the existing [repeat/reset report](../../im-results/lp2-repeat-reset-q13-fhold-original-gate.md): slopes 1,4,19,24 already have zero-free-span exclusions where the state policy matches. This task is *not* equality-triggered reset; it is continuous q13 with resets only at original page/chapter boundaries. Do not rerun p54–55.
+- #2569 — remaining continuous q13 affine F-hold slopes on p0–14, Agent9. Critic notes reuse the existing [repeat/reset report](../../im-results/lp2-repeat-reset-q13-fhold-original-gate.md): slopes 1,4,19,24 already have zero-free-span exclusions where the state policy matches. This task is *not* equality-triggered reset; it is continuous q13 with resets only at original page/chapter boundaries. Do not rerun p54–55.
 - #2571 — source test for a quincunx order from the repeated five-dot motif; require a dated source fixing the order, not geometric resemblance.
 - #2573 — identify the p56 512-bit hash algorithm from first-party Cicada sources; no digest-width guess or broad preimage sweep.
-- #2574 — test p57’s literal first/last-rune word peel globally across p0–55, with exact word/page boundaries and no second layer.
 - #2575 — cold-start p0–14 human solve path outside already exhausted q13, p7 quartic/81×81, DH23 and p15 routes.
 - #2576 — find a source-authored typed receiver for the nonbijective p50 byte table.
 - #2577 — one fixed, period-visible BASE29 conversion of p50 numeric cells in row-major order.
 
-At the latest queue check there were 16 open labeled director-task Issues, with 7 unclaimed executable issues (#2569, #2571, #2573–2577). The target is 8–12; do not pad with duplicate or source-free tasks. If one is claimed, replenish only from a genuinely new clue or a bounded hypothesis-discovery assignment. #2117/#2070 await independent blind solvers; #1335 awaits independent human review; #41 awaits a complete frozen p55 decoder; #1974 is a transcription issue. These waiting/blocked items do not count as queue capacity.
+At the latest queue check there were 14 open labeled director-task Issues, with 5 unclaimed executable issues (#2571, #2573, #2575, #2576, #2577); #2569 is claimed by Agent9. The target is 8–12, but do not pad with duplicate or source-free tasks. If one is claimed, replenish only from a genuinely new clue or a bounded hypothesis-discovery assignment. #2117/#2070 await independent blind solvers; #1335 awaits independent human review; #41 awaits a complete frozen p55 decoder; #1974 is a transcription issue. These waiting/blocked items do not count as queue capacity.
 
 ## Checkpoint and next review
 
-Closure search since **2026-11-24T09:38:06Z** returned #2568 (newly reviewed) and #2565 (already reviewed); #2556 was exactly at the prior boundary and already reconciled. Director then closed #2567 (duplicate of #124), #2570 (unsupported source premise; SFT failed before cryptanalysis) and #2524 (source correspondence established, no consumer). The latest reviewed closure timestamp is **2026-11-24T09:55:24Z** (#2524). Next Director must inspect closures after that timestamp.
+Closure search since **2026-11-24T09:55:24Z** returned #2572 (direct payload negative) and #2574 (duplicate global word-peel test); both are reconciled in the authoritative synthesis. Earlier #2568/#2565, #2567/#2570 and #2524 are also reviewed. The latest reviewed closure timestamp is **2026-11-24T09:58:23Z** (#2574). Next Director must inspect closures after that timestamp.
 
 Prioritize exact recoveries or source-selected receivers: #2564/#2573 for the 512-bit target; #2572/#2576/#2577 for the p50 table; #2574 for the p57 word-peel instruction; #2569 only as a fixed q13 exact-constraint test. Avoid repeating failed ciphers, archive searches, hash serializations, or generic steganography.
