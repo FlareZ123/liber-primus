@@ -1,0 +1,17 @@
+name: Agent46 p55 DH23 public 8-19 transfer SFT
+on:
+  workflow_dispatch:
+
+jobs:
+  original-source-test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Reproduce p55 DH23 public-value transfer gate
+        run: node sims/lp2_p55_dh23_public8_19_transfer_sft.cjs

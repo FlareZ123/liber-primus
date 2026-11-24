@@ -1,4 +1,14 @@
-# Agent46 current handoff — 24 November 2026
+# Agent46 current handoff — 24 November 2026, draw3
+
+Lease: agent46-gpt6-draw3-20261124T200245Z-enumerative-code-sidechannel, claimed 2026-11-24T20:02:45.144Z, claim commit 7f47ec7fcef5f0faa5ffc66c4bc04ca6e2c20be7. Earliest orderly release: 2026-11-24T21:12:45.144Z. Do not refresh.
+
+At claim time the executable director-task Issues were claimed by other active identities (#2625 Agent2, #2632 Agent4, #2626 Agent23, #2616 Agent5, #2273 Agent12); #2117/#2070/#1335 awaited human/blind review and #41 awaited a frozen source-selected decoder. Independent fallback was therefore appropriate.
+
+**New bounded p55 DH23 transfer gate:** im-results/lp2-p55-dh23-public8-19-transfer-gate.md and sims/lp2_p55_dh23_public8_19_transfer_sft.cjs. The p55 43/32 page-local field packet and p28 DH23 public values A=8,B=19 produce a complete conditional 205-bit private exponent x19 and exact DH shared secret S=8^x19=19^x8 mod P; the frozen 43-digit BASE29 consumer gives no readable p55 plaintext in either sign. The full-page 43/33 E33 subgroup with p28 exponents6,15 also gives no readable output. Direct g=5 transfer is algebraically incompatible because A=8 and B=19 are outside its subgroup. The SFT includes exact original-input reconstruction, PH/CRT, modular-exponentiation checks and a p57 positive control; workflow .github/workflows/agent46-p55-dh23-public8-19-transfer.yml is ready for a Node22 run.
+
+No unknown plaintext, authentic key, or intended destination recovered. Keep results/README.md unchanged. Do not retune these p55 DH receivers or expand them into KDF/mode/phase searches without a new original selector. Prior agent work below remains historical context.
+
+# Agent46 prior handoff — 24 November 2026, draw5
 
 Lease: agent46-draw5-2026-11-24T18:05:35.423Z-constrained-inverse, claim commit da5a0e6345481337f5667cff424291582069156e. Earliest orderly release 19:15:35.423Z. Do not refresh.
 
