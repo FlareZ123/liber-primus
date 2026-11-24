@@ -1,0 +1,605 @@
+{
+  "original": {
+    "words": 373,
+    "trainRunes": 1615,
+    "firstRune": 3762,
+    "firstPhysicalP16Rune": 3762,
+    "allRunes": 9194,
+    "heldoutWords": 669,
+    "heldoutRunes": 3008,
+    "sourceSeed": [
+      3299,
+      3298
+    ],
+    "trainLex": 22,
+    "trainIoc": 0.034594358189372405,
+    "heldoutLex": 18,
+    "heldoutIoc": 0.034339864783590066,
+    "first20": [
+      "EDAAETOEAEEAXTHUD",
+      "ODCEANURIA",
+      "OE",
+      "WSJEOI",
+      "AENGNXE",
+      "WNG",
+      "PGN",
+      "GXS",
+      "XIHCRN",
+      "MNGEAEAE",
+      "UTHTAESB",
+      "UOR",
+      "EOCS",
+      "AEXW",
+      "MIAE",
+      "SWEAEOSNG",
+      "EN",
+      "THH",
+      "EAUS",
+      "RLMY"
+    ],
+    "strict": {
+      "levels": [
+        {
+          "k": 1,
+          "modulus": 29,
+          "tested": 841,
+          "survivors": 0,
+          "bestMiss": 45,
+          "bestSeed": [
+            1,
+            28
+          ],
+          "minimumExact": true
+        }
+      ],
+      "capped": false,
+      "seeds": []
+    },
+    "sensitivity": {
+      "levels": [
+        {
+          "k": 1,
+          "modulus": 29,
+          "tested": 841,
+          "survivors": 0,
+          "bestMiss": 45,
+          "bestSeed": [
+            1,
+            28
+          ],
+          "minimumExact": true
+        }
+      ],
+      "capped": false,
+      "seeds": []
+    },
+    "candidates": []
+  },
+  "controls": [
+    {
+      "name": "0_koan_1",
+      "seed": [
+        432198765,
+        20261124
+      ],
+      "trainWords": 60,
+      "missingTrain": 0,
+      "strict": {
+        "budget": 3,
+        "levels": [
+          {
+            "k": 1,
+            "modulus": 29,
+            "tested": 841,
+            "survivors": 13,
+            "bestMiss": 0,
+            "bestSeed": [
+              20,
+              13
+            ],
+            "minimumExact": true
+          },
+          {
+            "k": 2,
+            "modulus": 841,
+            "tested": 10933,
+            "survivors": 1,
+            "bestMiss": 0,
+            "bestSeed": [
+              455,
+              593
+            ],
+            "minimumExact": true
+          },
+          {
+            "k": 3,
+            "modulus": 24389,
+            "tested": 841,
+            "survivors": 1,
+            "bestMiss": 0,
+            "bestSeed": [
+              1296,
+              18254
+            ],
+            "minimumExact": true
+          },
+          {
+            "k": 4,
+            "modulus": 707281,
+            "tested": 841,
+            "survivors": 1,
+            "bestMiss": 0,
+            "bestSeed": [
+              50074,
+              457256
+            ],
+            "minimumExact": true
+          },
+          {
+            "k": 5,
+            "modulus": 20511149,
+            "tested": 841,
+            "survivors": 1,
+            "bestMiss": 0,
+            "bestSeed": [
+              1464636,
+              20261124
+            ],
+            "minimumExact": true
+          },
+          {
+            "k": 6,
+            "modulus": 594823321,
+            "tested": 841,
+            "survivors": 1,
+            "bestMiss": 0,
+            "bestSeed": [
+              432198765,
+              20261124
+            ],
+            "minimumExact": true
+          }
+        ],
+        "capped": false,
+        "survivorCount": 1,
+        "correct": true,
+        "fullMatch": true,
+        "heldoutRunes": 574,
+        "trainingMaxScore": 60,
+        "trainingTopCount": 1,
+        "trainingTopCorrect": true
+      },
+      "sensitivity": {
+        "budget": 6,
+        "levels": [
+          {
+            "k": 1,
+            "modulus": 29,
+            "tested": 841,
+            "survivors": 118,
+            "bestMiss": 0,
+            "bestSeed": [
+              20,
+              13
+            ],
+            "minimumExact": true
+          },
+          {
+            "k": 2,
+            "modulus": 841,
+            "tested": 99238,
+            "survivors": 1,
+            "bestMiss": 0,
+            "bestSeed": [
+              455,
+              593
+            ],
+            "minimumExact": true
+          },
+          {
+            "k": 3,
+            "modulus": 24389,
+            "tested": 841,
+            "survivors": 1,
+            "bestMiss": 0,
+            "bestSeed": [
+              1296,
+              18254
+            ],
+            "minimumExact": true
+          },
+          {
+            "k": 4,
+            "modulus": 707281,
+            "tested": 841,
+            "survivors": 1,
+            "bestMiss": 0,
+            "bestSeed": [
+              50074,
+              457256
+            ],
+            "minimumExact": true
+          },
+          {
+            "k": 5,
+            "modulus": 20511149,
+            "tested": 841,
+            "survivors": 1,
+            "bestMiss": 0,
+            "bestSeed": [
+              1464636,
+              20261124
+            ],
+            "minimumExact": true
+          },
+          {
+            "k": 6,
+            "modulus": 594823321,
+            "tested": 841,
+            "survivors": 19,
+            "bestMiss": 0,
+            "bestSeed": [
+              432198765,
+              20261124
+            ],
+            "minimumExact": true
+          }
+        ],
+        "capped": false,
+        "survivorCount": 19,
+        "correct": true,
+        "fullMatch": true,
+        "heldoutRunes": 574,
+        "trainingMaxScore": 60,
+        "trainingTopCount": 1,
+        "trainingTopCorrect": true
+      }
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "seed": [
+        123456789,
+        345678901
+      ],
+      "trainWords": 60,
+      "missingTrain": 5,
+      "strict": {
+        "budget": 3,
+        "levels": [
+          {
+            "k": 1,
+            "modulus": 29,
+            "tested": 841,
+            "survivors": 3,
+            "bestMiss": 0,
+            "bestSeed": [
+              19,
+              3
+            ],
+            "minimumExact": true
+          },
+          {
+            "k": 2,
+            "modulus": 841,
+            "tested": 2523,
+            "survivors": 1,
+            "bestMiss": 0,
+            "bestSeed": [
+              512,
+              148
+            ],
+            "minimumExact": true
+          },
+          {
+            "k": 3,
+            "modulus": 24389,
+            "tested": 841,
+            "survivors": 1,
+            "bestMiss": 1,
+            "bestSeed": [
+              24060,
+              13604
+            ],
+            "minimumExact": true
+          },
+          {
+            "k": 4,
+            "modulus": 707281,
+            "tested": 841,
+            "survivors": 1,
+            "bestMiss": 2,
+            "bestSeed": [
+              389895,
+              525773
+            ],
+            "minimumExact": true
+          },
+          {
+            "k": 5,
+            "modulus": 20511149,
+            "tested": 841,
+            "survivors": 0,
+            "bestMiss": 4,
+            "bestSeed": [
+              389895,
+              525773
+            ],
+            "minimumExact": false
+          }
+        ],
+        "capped": false,
+        "survivorCount": 0,
+        "correct": false,
+        "fullMatch": false,
+        "heldoutRunes": 0,
+        "trainingMaxScore": null,
+        "trainingTopCount": 0,
+        "trainingTopCorrect": false
+      },
+      "sensitivity": {
+        "budget": 6,
+        "levels": [
+          {
+            "k": 1,
+            "modulus": 29,
+            "tested": 841,
+            "survivors": 63,
+            "bestMiss": 0,
+            "bestSeed": [
+              19,
+              3
+            ],
+            "minimumExact": true
+          },
+          {
+            "k": 2,
+            "modulus": 841,
+            "tested": 52983,
+            "survivors": 1,
+            "bestMiss": 0,
+            "bestSeed": [
+              512,
+              148
+            ],
+            "minimumExact": true
+          },
+          {
+            "k": 3,
+            "modulus": 24389,
+            "tested": 841,
+            "survivors": 1,
+            "bestMiss": 1,
+            "bestSeed": [
+              24060,
+              13604
+            ],
+            "minimumExact": true
+          },
+          {
+            "k": 4,
+            "modulus": 707281,
+            "tested": 841,
+            "survivors": 1,
+            "bestMiss": 2,
+            "bestSeed": [
+              389895,
+              525773
+            ],
+            "minimumExact": true
+          },
+          {
+            "k": 5,
+            "modulus": 20511149,
+            "tested": 841,
+            "survivors": 1,
+            "bestMiss": 4,
+            "bestSeed": [
+              389895,
+              17500517
+            ],
+            "minimumExact": true
+          },
+          {
+            "k": 6,
+            "modulus": 594823321,
+            "tested": 841,
+            "survivors": 1,
+            "bestMiss": 4,
+            "bestSeed": [
+              123456789,
+              345678901
+            ],
+            "minimumExact": true
+          }
+        ],
+        "capped": false,
+        "survivorCount": 1,
+        "correct": true,
+        "fullMatch": true,
+        "heldoutRunes": 499,
+        "trainingMaxScore": 55,
+        "trainingTopCount": 1,
+        "trainingTopCorrect": true
+      }
+    },
+    {
+      "name": "0_welcome",
+      "seed": [
+        99881234,
+        222333444
+      ],
+      "trainWords": 60,
+      "missingTrain": 3,
+      "strict": {
+        "budget": 3,
+        "levels": [
+          {
+            "k": 1,
+            "modulus": 29,
+            "tested": 841,
+            "survivors": 10,
+            "bestMiss": 0,
+            "bestSeed": [
+              14,
+              14
+            ],
+            "minimumExact": true
+          },
+          {
+            "k": 2,
+            "modulus": 841,
+            "tested": 8410,
+            "survivors": 1,
+            "bestMiss": 0,
+            "bestSeed": [
+              710,
+              797
+            ],
+            "minimumExact": true
+          },
+          {
+            "k": 3,
+            "modulus": 24389,
+            "tested": 841,
+            "survivors": 1,
+            "bestMiss": 1,
+            "bestSeed": [
+              8279,
+              3320
+            ],
+            "minimumExact": true
+          },
+          {
+            "k": 4,
+            "modulus": 707281,
+            "tested": 841,
+            "survivors": 1,
+            "bestMiss": 1,
+            "bestSeed": [
+              154613,
+              247210
+            ],
+            "minimumExact": true
+          },
+          {
+            "k": 5,
+            "modulus": 20511149,
+            "tested": 841,
+            "survivors": 1,
+            "bestMiss": 1,
+            "bestSeed": [
+              17836638,
+              17221954
+            ],
+            "minimumExact": true
+          },
+          {
+            "k": 6,
+            "modulus": 594823321,
+            "tested": 841,
+            "survivors": 1,
+            "bestMiss": 1,
+            "bestSeed": [
+              99881234,
+              222333444
+            ],
+            "minimumExact": true
+          }
+        ],
+        "capped": false,
+        "survivorCount": 1,
+        "correct": true,
+        "fullMatch": true,
+        "heldoutRunes": 270,
+        "trainingMaxScore": 57,
+        "trainingTopCount": 1,
+        "trainingTopCorrect": true
+      },
+      "sensitivity": {
+        "budget": 6,
+        "levels": [
+          {
+            "k": 1,
+            "modulus": 29,
+            "tested": 841,
+            "survivors": 89,
+            "bestMiss": 0,
+            "bestSeed": [
+              14,
+              14
+            ],
+            "minimumExact": true
+          },
+          {
+            "k": 2,
+            "modulus": 841,
+            "tested": 74849,
+            "survivors": 1,
+            "bestMiss": 0,
+            "bestSeed": [
+              710,
+              797
+            ],
+            "minimumExact": true
+          },
+          {
+            "k": 3,
+            "modulus": 24389,
+            "tested": 841,
+            "survivors": 1,
+            "bestMiss": 1,
+            "bestSeed": [
+              8279,
+              3320
+            ],
+            "minimumExact": true
+          },
+          {
+            "k": 4,
+            "modulus": 707281,
+            "tested": 841,
+            "survivors": 1,
+            "bestMiss": 1,
+            "bestSeed": [
+              154613,
+              247210
+            ],
+            "minimumExact": true
+          },
+          {
+            "k": 5,
+            "modulus": 20511149,
+            "tested": 841,
+            "survivors": 1,
+            "bestMiss": 1,
+            "bestSeed": [
+              17836638,
+              17221954
+            ],
+            "minimumExact": true
+          },
+          {
+            "k": 6,
+            "modulus": 594823321,
+            "tested": 841,
+            "survivors": 1,
+            "bestMiss": 1,
+            "bestSeed": [
+              99881234,
+              222333444
+            ],
+            "minimumExact": true
+          }
+        ],
+        "capped": false,
+        "survivorCount": 1,
+        "correct": true,
+        "fullMatch": true,
+        "heldoutRunes": 270,
+        "trainingMaxScore": 57,
+        "trainingTopCount": 1,
+        "trainingTopCorrect": true
+      }
+    }
+  ]
+}
