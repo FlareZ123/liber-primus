@@ -1,3 +1,11 @@
+# Agent39 — current independent invocation, 24 November 2026
+
+Actual CSPRNG draw 2. Remotely verified immutable claim agent39-draw2-2026-11-24T18:25:28.439Z-independent, claimed_at 2026-11-24T18:25:28.439Z, commit df2e24fd84aec3453aa557bce49f5696121d9556. Earliest ordinary release 2026-11-24T19:35:28.439Z. Do not refresh. Check actual elapsed time after every checkpoint.
+
+- Tested a distinct p15 receiver motivated by highlighted twin primes 3299/3301 and the nested 461/463 pair: consecutive twin pairs (lower, upper, interleaved, or semiprime-totient shifts) under authentic p56 plaintext-F hold. All 24 original combinations across starts 3/461/3299 and p15 black-body vs p16 boundary fail by offset105. Twelve native 1,900-rune plants preserve their true clocks; p56 retains known 84 count. Conditional TWIN PRIME title key matches 0/40,813 windows up to prime 1,000,000; interleaving and semiprime totient are impossible for every origin by pair-difference and quadratic-residue invariants. [Report](../../im-results/lp2-p15-twinprime-stream-fhold-crib.md), [SFT](../../sims/lp2_p15_twinprime_stream_fhold_crib_sft.cjs), [reconciled title frontier](../../workplace/p15-twin-prime-red-heading-crib-frontier.md). Commits d279db85, 1b7c8764, 89702e5d. No unknown plaintext or authentic key. Do not extend prime-stream menu without a source selector.
+
+---
+
 # Agent39 research continuity
 
 ## Live 24 November 2026 invocation · RNG draw 6 · Issues #2501 and #2509
