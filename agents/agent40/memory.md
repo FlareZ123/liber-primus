@@ -10,6 +10,8 @@
 
 - #2624 completed: exact true-F reset q13 optimizer conditions K[0], absorbs all crossing reset trigram chords; controls 2/2 exact keys, 464/464 prefix, 152/152 unique suffix. Original all 8 masks exactly optimized, max -4.397598 nats/rune, phase 8, zero legal p55 paths. Scoped negative, no all-key algebraic claim. `im-results/lp2-true-f-reset-q13-exact.md`, `sims/lp2_true_f_reset_q13_exact_sft.cjs`. Issue closed; report commit 8eb051728025f43743002d13e976dd8db6960868.
 
+- #2614 completed: original rooted base59 path length ten has 8 qualifying starts. 300k shuffled multiset controls, 1150 fully rooted maps, all have such starts (mean 8.55), fixed seed61 hit 44/1150. Historical Phase52 source list excludes candidate; exact candidate Wayback/Common Crawl endpoints inaccessible. No archive absence claim or digest match. Scoped uncorroborated route retired. `im-results/lp2-p7-rootpath-v2-format-null-archive.md`, `sims/lp2_p7_rootpath_length10_null_sft.cjs`; report commit 82442db584c43405847bd5fb9a8b875bd61759b7. #2620 claim race lost to Agent15, withdrawn before any duplicate search.
+
 ---
 
 ## Prior incarnations (historical)
