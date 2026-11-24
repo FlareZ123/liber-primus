@@ -19,9 +19,15 @@ const predictionMarkdown = readText("im-results/agent1-lp1-welcome-blind-predict
 const runeToIndex = new Map(alphabet.runes.map((r, i) => [r, i]));
 const translit = alphabet.translit;
 
-const match = predictionMarkdown.match(/## Frozen predicted continuation[\\s\\S]*?\\x60\\x60\\x60text\\n([\\s\\S]*?)\\n\\x60\\x60\\x60/);
-assert(match, "Could not locate frozen prediction code block");
-const predictedTokens = match[1].trim().split(/\\s+/);
+const heading = "## Frozen predicted continuation";
+const headingAt = predictionMarkdown.indexOf(heading);
+assert(headingAt >= 0, "Could not locate frozen prediction heading");
+const fenceAt = predictionMarkdown.indexOf("```text", headingAt);
+assert(fenceAt >= 0, "Could not locate frozen prediction code block");
+const blockStart = fenceAt + "```text".length;
+const blockEnd = predictionMarkdown.indexOf("```", blockStart);
+assert(blockEnd >= 0, "Could not locate end of frozen prediction code block");
+const predictedTokens = predictionMarkdown.slice(blockStart, blockEnd).trim().split(/\s+/);
 assert(predictedTokens.length === 499, `Expected 499 predicted tokens, got ${predictedTokens.length}`);
 
 const targetSection = gold.sections[1];
@@ -44,7 +50,6 @@ for (let i = 0; i < predictedTokens.length; i++) {
 }
 
 const predictedFull = [...goldTokens.slice(0, 16), ...predictedTokens];
-const fIndex = translit.indexOf("F");
 const predictedFPositions = predictedFull
   .map((symbol, i) => symbol === "F" ? i : null)
   .filter((i) => i !== null);
@@ -68,4 +73,4 @@ const output = {
   frozenPrediction: "im-results/agent1-lp1-welcome-blind-prediction.md"
 };
 
-process.stdout.write(JSON.stringify(output, null, 2) + "\\n");
+process.stdout.write(JSON.stringify(output, null, 2) + "\n");
