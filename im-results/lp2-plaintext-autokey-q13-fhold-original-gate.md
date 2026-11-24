@@ -32,8 +32,24 @@ Remove all printed word separators from scoring. Fit the actual first physical p
 
 The best *retrospectively selected* original predictive score among all legal fitted candidates is -6.597207 nats/rune, still far below both frozen native controls. Its existence does not validate the key. The exact original candidate strings and primers, mask ranks, complete replay outcomes and native-control keys are preserved in [spacing-free output](lp2-plaintext-autokey-q13-fhold-spacingfree-output.json). Reproduce using [q13 wrapper](../sims/lp2_plaintext_autokey_q13_fhold_spacingfree_sft.cjs), reusing the parameterized q29 implementation (default q29 behavior unchanged).
 
+## Exact extension to all invertible affine feedback maps
+
+The fixed feedback is generalized to f(P)=aP+b mod29, for all 28 nonzero a and all 29 b. The consuming step appends f(P) rather than P; the transparent-F hold rule is unchanged. For each fixed mask and (a,b), every consuming lane retains an affine dependency on its own initial primer digit k. If the queue head is H=u+vk, then P=(C-u)-vk and the new head is a(C-u)+b-avk. Because a≠0, the coefficient never vanishes. Thus each word still determines a unique required k at each consuming phase, and the exact relation algorithm covers all 29^13 primers without approximating the map family.
+
+The original input, 45-word/205-rune fitting boundary and 103 withheld runes are unchanged. The independent native affine-control training cuts are the first complete word reaching 120 runes, selected to make this much larger exact mask-map enumeration practical; the complete remainder is predicted without refitting.
+
+| Target | Actual feedback | Fit / withheld runes | All mask-map pairs | Surviving exact solutions | Exact withheld |
+|---|---|---:|---:|---:|---:|
+| Native KOAN plant | a=3,b=7 | 125 / 655 | 103,936 | 1 | 655/655 |
+| Native LOSS plant | a=28,b=5 | 120 / 635 | 103,936 | 1 | 635/635 |
+| Original p54–55 | all 812 functions | 205 / 103 | 6,496 | 0 | unavailable |
+
+Both controls recover the exact full primer and feedback pair. All 6,496 original combinations have nonempty lane domains before the word constraints; every one fails during exact relation construction. No cap is reached in any test. The previous identity solver's default mode retains the same exact results after replacing enumeration of each lane's 29 values with affine-domain arithmetic.
+
+The affine extension closes the fixed continuous q13 **intact-native-vocabulary** model even for all invertible affine feedback. It does not close arbitrary non-affine feedback, q13 affine feedback with unknown spacing or out-of-vocabulary words, other language registers, or multi-layer receivers. The spacing-free test above applies only to identity feedback. Reproducer: [affine wrapper](../sims/lp2_plaintext_autokey_q13_affine_fhold_word_relation_sft.cjs), [exact output](lp2-plaintext-autokey-q13-affine-fhold-word-relation-output.json). Actual connected JavaScript execution; no independent Windows CI claim.
+
 ## Consequence
 
-The new intact-group result is an all-primer, all-mask finite lexical exclusion for this original prefix, not a general theorem for every possible English register. The spacing-free result is an all-mask prefix-MAP predictive failure, not all-primer infeasibility; four selected wrong-looking keys replay the entire original target. Retire this identity-feedback q13 receiver under the stated direct-native model. An arbitrary affine or nonlinear feedback, an independently selected additional operation, alternate framing, or another plaintext register remains separate. Exact re-encryption alone is not identification.
+The new intact-group result is an all-primer, all-mask finite lexical exclusion for this original prefix, not a general theorem for every possible English register. The spacing-free result is an all-mask prefix-MAP predictive failure, not all-primer infeasibility; four selected wrong-looking keys replay the entire original target. Retire this identity-feedback q13 receiver under the stated direct-native model. Arbitrary affine feedback is also excluded under the exact intact-group vocabulary test above; spacing-free affine feedback, nonlinear feedback, an independently selected additional operation, alternate framing, or another plaintext register remains separate. Exact re-encryption alone is not identification.
 
 Both scripts were executed on actual repository-fetched inputs in connected JavaScript. No independent Windows CI execution claimed.

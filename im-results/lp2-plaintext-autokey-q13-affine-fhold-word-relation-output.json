@@ -1,0 +1,97 @@
+{
+  "q": 13,
+  "affine": true,
+  "maps": 812,
+  "lexicon": 38920,
+  "controls": [
+    {
+      "name": "0_koan_1",
+      "key": [
+        7,
+        20,
+        2,
+        1,
+        26,
+        5,
+        25,
+        4,
+        25,
+        14,
+        14,
+        13,
+        12
+      ],
+      "model": [
+        3,
+        7
+      ],
+      "fitRunes": 125,
+      "holdoutRunes": 655,
+      "fitWords": 36,
+      "zeros": 7,
+      "legalMasks": 103936,
+      "relationSurvivors": 1,
+      "consistentMasks": 1,
+      "searchNodes": 1,
+      "solutions": 1,
+      "cap": false,
+      "distinctTrainKeys": 1,
+      "testPaths": 1,
+      "correctTrain": 1,
+      "correctTest": 1
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "key": [
+        7,
+        26,
+        27,
+        7,
+        20,
+        17,
+        21,
+        25,
+        25,
+        6,
+        5,
+        9,
+        26
+      ],
+      "model": [
+        28,
+        5
+      ],
+      "fitRunes": 120,
+      "holdoutRunes": 635,
+      "fitWords": 23,
+      "zeros": 7,
+      "legalMasks": 103936,
+      "relationSurvivors": 1,
+      "consistentMasks": 1,
+      "searchNodes": 1,
+      "solutions": 1,
+      "cap": false,
+      "distinctTrainKeys": 1,
+      "testPaths": 1,
+      "correctTrain": 1,
+      "correctTest": 1
+    }
+  ],
+  "original": {
+    "fitRunes": 205,
+    "holdoutRunes": 103,
+    "fitWords": 45,
+    "zeros": 3,
+    "legalMasks": 6496,
+    "relationSurvivors": 0,
+    "consistentMasks": 0,
+    "searchNodes": 0,
+    "solutions": 0,
+    "cap": false,
+    "distinctTrainKeys": 0,
+    "testPaths": 0,
+    "correctTrain": null,
+    "correctTest": null,
+    "firstOriginalKeys": []
+  }
+}
