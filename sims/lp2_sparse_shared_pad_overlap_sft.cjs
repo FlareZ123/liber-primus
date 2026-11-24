@@ -49,7 +49,7 @@ function run(corpus,raw,native,donorTexts,stage="all"){
     for(let a=0;a<29;a++)for(let b=0;b<29;b++)assert(add(a,b,1)===(a+b)%29,"packed arithmetic");
     return {by,frag,project,add,pow,types:[...by.values()].reduce((a,m)=>a+m.size,0)};
   }
-  function tape(words){const c=Uint8Array.from(words.flat()),start=new Int32Array(c.length),end=new Int32Array(c.length);let i=0;for(const w of words){start.fill(i,i+w.length);end.fill(i+w.length,i,i+w.length);i+=w.length}return {c,start,end,words}}
+  function tape(words){const c=Uint8Array.from(words.flat()),start=new Int32Array(c.length),end=new Int32Array(c.length);let i=0;for(const w of words){start.fill(i,i,i+w.length);end.fill(i+w.length,i,i+w.length);i+=w.length}assert(i===c.length&&[...c].every((_,k)=>start[k]<=k&&end[k]>k),"word geometry");return {c,start,end,words}}
   function prefixZero(c){const z=new Uint32Array(c.length+1);for(let i=0;i<c.length;i++)z[i+1]=z[i]+Number(c[i]===0);return z}
   function view(t,i,L,model){
     const g=[];for(let x=i;x<i+L;){const n=t.end[x]-t.start[x],off=x-t.start[x],hi=Math.min(i+L,t.end[x]);g.push({lo:x-i,hi:hi-i,n,off,frag:model.frag(n,off,hi-x)});x=hi}
@@ -158,7 +158,7 @@ function run(corpus,raw,native,donorTexts,stage="all"){
     const enc=(t,k)=>({...t,c:Uint8Array.from(t.c,(x,z)=>x===0?0:(x+k[z])%29)});
     return {a:enc(t1,k1),b:enc(t2,k2),k1,k2};
   }
-  const controlPairs=[["0_koan_1","0_welcome"],["0_loss_of_divinity","jpg107-167"],["0_warning","0_koan_1"]];
+  const controlPairs=[["0_koan_1","0_welcome"],["0_loss_of_divinity","jpg107-167"],["jpg107-167","0_welcome"]];
   const controls=[];
   for(const names of controlPairs){
     const model=makeModel(names),t1=tape(solved.find(x=>x.name===names[0]).words),t2=tape(solved.find(x=>x.name===names[1]).words),a=pick(t1,model,cfg.plantL),b=pick(t2,model,cfg.plantL);
