@@ -1,5 +1,6 @@
 "use strict";
 // GP29 plaintext Latin-expansion clock, fixed q8, transparent F.
+/** @param {string[]} inputs repository corpus, transcript, lexicon, native controls */
 function experiment(inputs){
  const [gp,trans,lex,native]=[JSON.parse(inputs[0]),inputs[1],inputs[2],JSON.parse(inputs[3])];const assert=(x,m)=>{if(!x)throw Error(m)},mod=x=>(x%29+29)%29,q=8;
  const chart=gp.translit.map(x=>x.length),map=new Map(gp.runes.map((r,i)=>[r,i])),alpha=new Map(gp.translit.map((s,i)=>[s,i]));
@@ -50,7 +51,16 @@ function experiment(inputs){
  }
  const original=originalWords.slice(-66);assert(original.flat().length===308,"frozen p54-55 chapter");const os=freeze(original);const unknown=advance(start(),original.slice(0,os.i),chart,5000000);
  let origHold=null;if(unknown.exact&&unknown.states.size&&[...unknown.states.values()].every(s=>!s.k.includes(-1))&&new Set([...unknown.states.values()].map(s=>String(s.k))).size===1){const h=advance(unknown.states,original.slice(os.i),chart,5000000),best=[...h.states.values()][0];const p=best?trace(best):[];origHold={...summary(h),plaintext:p.map(w=>w.map(x=>gp.translit[x]).join("")).join(" "),replay:best?String(encode(p,best.k,chart).cipher.flat())===String(original.flat()):false}}
- return {chart,period:q,vocabulary:dict.reduce((a,b)=>a+b.size,0),plant:{key:plantKey,section:native.sections[3].name,controlStart,trainWords:ps.i,trainRunes:ps.n,totalRunes:control.flat().length,correct:summary(train),ordinary:summary(ordinary),hold},original:{chapter:"p54–55",trainWords:os.i,trainRunes:os.n,withheld:308-os.n,train:summary(unknown),hold:origHold}};
+ // Relax the single-rune opening word to the entire alphabet without
+ // modifying any other word, clock, phase, or key constraint.
+ const originalSingletonTrie=tries[1];
+ tries[1]={e:new Map(Array.from({length:29},(_,x)=>[x,{e:new Map()}]))};
+ const singletonRelaxed=advance(start(),original.slice(0,3),chart,5000000);
+ tries[1]=originalSingletonTrie;
+ assert(train.exact&&train.states.size===1&&String([...train.states.values()][0].k)===String(plantKey),"planted key recovery");
+ assert(hold?.uniquePath&&hold.exactMatches===292&&hold.replay,"withheld control");
+ assert(unknown.exact&&unknown.stop==="infeasible"&&unknown.used===3,"original prefix gate");
+ return {chart,period:q,vocabulary:dict.reduce((a,b)=>a+b.size,0),plant:{key:plantKey,section:native.sections[3].name,controlStart,trainWords:ps.i,trainRunes:ps.n,totalRunes:control.flat().length,correct:summary(train),ordinary:summary(ordinary),hold},original:{chapter:"p54–55",trainWords:os.i,trainRunes:os.n,withheld:308-os.n,train:summary(unknown),singletonRelaxed:summary(singletonRelaxed),hold:origHold}};
 }
 const fs=require("node:fs"),path=require("node:path");
 const paths=["resources/liber-primus/lp2-corpus.json","resources/liber-primus/lp2-transcription.txt","resources/control/english_wordfreq_textblob.txt","resources/external/relikd-solved-gp29-native-v1.json"];
