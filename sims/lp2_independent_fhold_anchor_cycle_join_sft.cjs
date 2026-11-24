@@ -18,8 +18,17 @@ const experiment=function experiment(inputs,selection=null){
  const words=parse(inputs[1].split("%").slice(53,55).join("%"));
  const full=words.flat();
  if(full.length!==308||full.some((x,i)=>x!==[...gp.pages[54].indices,...gp.pages[55].indices][i]))throw Error("source");
- const train=[];let count=0;for(const w of words){if(count+w.length>232)break;train.push(w);count+=w.length}
+ let train=[];let count=0;for(const w of words){if(count+w.length>232)break;train.push(w);count+=w.length}
  if(count!==222||train.length!==49)throw Error("cut "+count);
+ let target={name:"p54–55",start:0,end:222,words:49,zeros:3,holdout:86};
+ if(selection?.target==="p0"){
+  const chapter=parse(inputs[1].split("%").slice(0,3).join("%")),check=gp.pages.slice(0,3).flatMap(p=>p.indices);
+  if(chapter.flat().join(",")!==check.join(",")||chapter[0].length!==8||chapter[1].length!==5||check.length!==729)throw Error("opening source");
+  const body=chapter.slice(2),maxZeros=selection.maxZeros??3;
+  let best=null,offsets=[13];for(const w of body)offsets.push(offsets[offsets.length-1]+w.length);
+  for(let i=0;i<body.length;i++){let n=0,z=0;for(let j=i;j<body.length;j++){n+=body[j].length;z+=body[j].filter(x=>x===0).length;if(z>maxZeros)break;if(!best||n>best.n)best={i,j:j+1,n,z}}}
+  train=body.slice(best.i,best.j);target={name:"p0–2 black body",start:offsets[best.i],end:offsets[best.j],words:train.length,zeros:best.z,holdout:716-best.n,window:best};
+ }
  function schedule(ws,inner,outer,mask){let a=0,b=0,z=0;return ws.map(w=>w.map(c=>{const t=c===0?Math.floor(mask/3**(z++))%3:2;const e=t===0?{c,t}:t===1?{c,t,u:a,v:inner+outer}:{c,t,u:a,v:inner+b};if(t!==0)a=(a+1)%inner;if(t===2)b=(b+1)%outer;return e}))}
  function cycles(es,n){const adj=Array.from({length:n},()=>[]),out=[];for(let i=0;i<es.length;i++){const {u,v,t}=es[i];if(!t)continue;const seen=new Set([u]);function dfs(x){if(x===v)return [];for(const [y,j,sg]of adj[x])if(!seen.has(y)){seen.add(y);const p=dfs(y);if(p)return [[j,sg],...p]}return null}const p=dfs(u);if(p)out.push([[i,1],...p.map(([j,s])=>[j,-s])]);else{adj[u].push([v,i,1]);adj[v].push([u,i,-1])}}return out}
  function candidates(es){return (D[es.length]||[]).filter(w=>w.every((p,i)=>(p===0)===(es[i].t===0)))}
@@ -204,7 +213,7 @@ const experiment=function experiment(inputs,selection=null){
 
  const checks=[];
  for(const [di,inner,outer] of (selection?[]:[[1,8,13],[4,13,8]])){let ws=[],n=0;for(const w of donors[di]){if(n+w.length>222)break;ws.push(w);n+=w.length}if(!ws.length)throw Error("donor");let keys=[Array.from({length:inner},(_,i)=>mod(7*i*i+3*i+4)),Array.from({length:outer},(_,i)=>mod(11*i*i+5*i+3))];let e=encrypt(ws,keys),sch=schedule(e.ws,inner,outer,e.mask),p=pairInfo(sch)[0];if(!p)throw Error("no pair");let ca=candidates(sch[p.i]),cb=candidates(sch[p.j]),j=testPair(p,ca,cb,2000),trueA=signature(p.cy,p.es,ws[p.i],0,ws[p.i].length,1),trueB=signature(p.cy,p.es,ws[p.j],ws[p.i].length,p.es.length,-1);if(trueA!==trueB||!j.n)throw Error("positive");const recovery=recoverKnownMask(e.ws,inner,outer,e.mask);const found=recovery.solutions?.some(x=>JSON.stringify(x.key)===JSON.stringify(keys)&&JSON.stringify(x.plain)===JSON.stringify(ws))||false;let hold=[],hn=0;for(const w of donors[di].slice(ws.length)){if(hn+w.length>86)break;hold.push(w);hn+=w.length}const both=encrypt(ws.concat(hold),keys);let aa=0,bb=0;for(const e of sch.flat()){if(e.t)aa=(aa+1)%inner;if(e.t===2)bb=(bb+1)%outer}const pred=recovery.solutions?.length===1?heldout(both.ws.slice(ws.length),recovery.solutions[0].key,[aa,bb]):null;checks.push({donor:di,length:n,words:ws.length,inner,outer,zeros:e.z,mask:e.mask,pair:[p.i,p.j],cycles:p.cy.length,matches:j.n,trueSignature:true,recovery:{status:recovery.status,solutionCount:recovery.solutions?.length,found,trace:recovery.trace},withheld:{runes:hn,words:hold.length,status:pred?.status,solutionCount:pred?.states?.length,exact:pred?.states?.some(s=>JSON.stringify(s.plain)===JSON.stringify(hold)),peak:pred?.peak}})}
- const result=[];for(const [i,o]of [[8,13],[13,8]]){if(selection&&selection.inner!==i)continue;const ms=selection?selection.masks:Array.from({length:27},(_,m)=>m);let masks=[];for(const m of ms)masks.push(gate(train,i,o,m));const bounds=ms.map(m=>disjointGate(train,i,o,m));const covers=ms.map(m=>coverGate(train,i,o,m,5));const robust=ms.map((m,k)=>robustGate(train,i,o,m,selection?.budget??3,covers[k]));result.push({inner:i,outer:o,rejected:masks.filter(m=>m.zero||m.empty!==undefined).length,masks,bounds,minimumOOV:Math.min(...bounds.map(b=>b.lowerBound)),covers,minimumCover:Math.min(...covers.map(b=>b.minCover)),robust})}
- return {base,expanded:D.reduce((n,a)=>n+a.length,0),sizes:D.map(a=>a.length),checks,original:result};
+ const result=[];for(const [i,o]of (selection?.target==='p0'?[[8,5],[5,8]]:[[8,13],[13,8]])){if(selection&&selection.inner!==i)continue;const ms=selection?.masks??Array.from({length:3**target.zeros},(_,m)=>m);let masks=[];for(const m of ms)masks.push(gate(train,i,o,m));const bounds=ms.map(m=>disjointGate(train,i,o,m));const covers=ms.map(m=>coverGate(train,i,o,m,5));const robust=ms.map((m,k)=>robustGate(train,i,o,m,selection?.budget??3,covers[k]));result.push({inner:i,outer:o,rejected:masks.filter(m=>m.zero||m.empty!==undefined).length,masks,bounds,minimumOOV:Math.min(...bounds.map(b=>b.lowerBound)),covers,minimumCover:Math.min(...covers.map(b=>b.minCover)),robust})}
+ return {base,expanded:D.reduce((n,a)=>n+a.length,0),sizes:D.map(a=>a.length),checks,target,original:result};
 };
 console.log(JSON.stringify(experiment(files.map(p=>fs.readFileSync(path.join(root,p),'utf8')),process.argv[3]?JSON.parse(process.argv[3]):null),null,2));
