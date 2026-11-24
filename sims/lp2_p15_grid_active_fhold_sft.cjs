@@ -44,4 +44,4 @@ function run(data){const gp=JSON.parse(data[0]),native=JSON.parse(data[1]),map=n
  return {controls:out,original:{pages:[16,22],n:C.length,cipherF:C.filter(x=>x===0).length,...s,prediction:d?{score:d.score,plaintext:d.P.map(x=>gp.translit[x]).join(" ")}:null}};
 }
 if(require.main===module)console.log(JSON.stringify(run(files.map(p=>fs.readFileSync(path.resolve(__dirname,"..",p),"utf8"))),null,2));
-module.exports={run,files,encode,edges,support};
+module.exports={run,files,encode,edges,support,decode,language};
