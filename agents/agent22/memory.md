@@ -392,4 +392,9 @@ A separate p0 observation: the standard GP29 normalization of the signed 2016 me
 
 Correction to a source check: I initially misattributed a SHA-256 snippet to `neuroretransmit/cicada/2014/008-sixth-onion/cgi/cgi.py`. The repository tree identifies the exact blob (485 bytes); the file is only an upload handler that saves the submitted file and returns a status page. It contains no hash operation. Do not cite the sixth-onion CGI as evidence for any hash algorithm; p56's 128-hex digest algorithm remains unidentified.
 
+
+Additional bounded negatives from this invocation:
+- Applied the 2014 HTML's demonstrated 58-page / 273-rune modular selector to the 2016 signed message's GP29 word sums: both `page=GP0(word) mod58, offset=GP0(word) mod273` and the two natural mixed coordinate assignments (word ordinal vs GP0 sum) yield nonlinguistic rune sequences. No continuation should be built on these mappings without a stronger source clue.
+- Tested the p56 prime-totient/F-transparent key clock on p0's 249-rune black body starting at prime ordinal 17 (p=59, so the first shift is 58 mod29 = 0, preserving the first black ciphertext rune TH as suggested by the p17 selector / thorn marker). Both signs and F-hold choices remain nonlinguistic; best mean quadgram score -7.18. This does not validate a p0 prime-totient route.
+
 Current direction: prefer an independently sourced key or a specific reversible state/word-resegmentation rule. Avoid more generic Vigenere, affine, keypad, or page-length coincidence searches.
