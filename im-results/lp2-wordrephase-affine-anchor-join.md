@@ -28,3 +28,16 @@ This removes the continuous-phase restriction from the earlier dual-anchor attac
 | 16 | original | supplemental p54–55 | 19849920 | 0 |  | false |
 
 [Raw candidates](lp2-wordrephase-affine-anchor-join.json); run `node sims/lp2_wordrephase_affine_anchor_join_sft.cjs`.
+
+## Full independent control recovery
+
+The exact source join found no original partial keys at either period, so there is no original candidate to decode. Each positive control produced one compatible partial key. The third and fourth long anchors extend the partial key, then every residual <=2 shifts and every key rotation/reflection are tried. Inversion uses a full finite-state DP over previous word prime sums modulo 2m and all initial residues. The key and plaintext are validated by exact re-encryption. Results:
+
+| Period | Control | Anchor candidate counts | Full key/orientation trials | Legal full decodes | Correct runes | Exact original key + seed |
+|---:|---|---|---:|---:|---:|---|
+| 13 | Emerson heldout | 1→1→1 | 26 | 1 | 1101/1101 | true |
+| 13 | LP1 reference | 1→1→1 | 26 | 1 | 1500/1500 | false |
+| 16 | Emerson heldout | 1→1→1 | 32 | 1 | 1101/1101 | true |
+| 16 | LP1 reference | 1→1→1 | 26912 | 1 | 1500/1500 | true |
+
+[Control-recovery SFT](../sims/lp2_wordrephase_affine_control_recovery_sft.cjs) · [machine results](lp2-wordrephase-affine-control-recovery.json).
