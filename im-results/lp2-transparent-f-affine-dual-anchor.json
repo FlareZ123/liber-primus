@@ -1,0 +1,965 @@
+[
+  {
+    "period": 13,
+    "controls": [
+      {
+        "name": "Gibran heldout",
+        "n": 1100,
+        "anchors": [
+          {
+            "i": 24,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 27,
+            "len": 12,
+            "nonF": 12
+          }
+        ],
+        "phases": [
+          6
+        ],
+        "aList": 799,
+        "bList": 799,
+        "pairs": 638401,
+        "joins": 0,
+        "tries": 0,
+        "survivors": 0,
+        "deferred": 0,
+        "oracleSeen": false,
+        "oracleCovered": false,
+        "best": null
+      },
+      {
+        "name": "Emerson heldout",
+        "n": 1101,
+        "anchors": [
+          {
+            "i": 221,
+            "len": 12,
+            "nonF": 11
+          },
+          {
+            "i": 235,
+            "len": 12,
+            "nonF": 12
+          }
+        ],
+        "phases": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "aList": 800,
+        "bList": 799,
+        "pairs": 3196000,
+        "joins": 1,
+        "tries": 1,
+        "survivors": 1,
+        "deferred": 0,
+        "oracleSeen": true,
+        "oracleCovered": true,
+        "best": {
+          "coef": 7,
+          "key": [
+            7,
+            18,
+            0,
+            11,
+            22,
+            4,
+            15,
+            26,
+            8,
+            19,
+            1,
+            12,
+            23
+          ],
+          "score": -1.8015462875874675,
+          "margin": null,
+          "lex": 276,
+          "words": 280,
+          "output": "RELATED THE ETERNAL ONE AND THIS DEEP POWER IN WHICH WE EXIST AND WHOSE BEATITUDE IS ALL ACCESSIBLE TO US IS NOT ONLY SELF SUFFICNG AND PERFECT IN EUERY HOUR BUT THE ACT OF SEENG AND THE THNG SEEN THE SEER AND THE SPECTACLE THE SUBJECT AND THE OBJECT ARE ONE WE SEE THE WORLD PIECE BY PIECE AS THE SUN THE MOON THE ANIMAL THE TREE BUT THE WHOLE OF WHICH THESE ARE THE SHINNG PARTS IS THE SOUL ONLY BY THE UISION OF THAT WISDOM CAN THE HOROSCOPE OF THE AGES BE READ AND BY FALLNG BACC ON OUR BETTER THOUGHTS BY YIELDNG TO THE SPIRIT OF PROPHECY WHICH IS INNATE IN EUERY MAN WE CAN CNOW WHAT IT SAITH EUERY MAN S WORDS WHO SPEACS FROM THAT LIFE MUST SOUND UAIN TO THOSE WHO DO NOT DWELL IN THE SAME THOUGHT ON THEIR OWN PART I DARE NOT SPEAC FOR IT MY WORDS DO NOT CARRY ITS AUGUST SENSE THEY FALL SHORT AND COLD ONLY ITSELF CAN INSPIRE WHOM IT WILL AND BEHOLD THEIR SPEECH SHALL BE LYRICAL AND SWEET AND UNIUERSAL AS THE RISNG OF THE WIND YET I DESIRE EUEN BY PROFANE WORDS IF I MAY NOT USE SACRED TO INDICATE THE HEAUEN OF THIS DEITY AND TO REPORT WHAT HINTS I HAUE COLLECTED OF THE TRANSCENDENT SIMPLICITY AND ENERGY OF THE HIGHEST LAW IF WE CONSIDER WHAT HAPPENS IN CONUERSATION IN REUERIES IN REMORSE IN TIMES OF PASSION IN SURPRISES IN THE INSTRUCTIONS OF DREAMS WHEREIN OFTEN WE SEE OURSELUES IN MASCUERADE THE DROLL DISGUISES ONLY MAGNIFYNG AND ENHANCNG A REAL ELEMENT AND FORCNG IT ON OUR DISTINCT NOTICE WE SHALL CATCH MANY HINTS",
+          "correct": 1101,
+          "keyCorrect": true
+        }
+      },
+      {
+        "name": "LP1 reference",
+        "n": 1500,
+        "anchors": [
+          {
+            "i": 154,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 369,
+            "len": 13,
+            "nonF": 13
+          }
+        ],
+        "phases": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "aList": 799,
+        "bList": 429,
+        "pairs": 4456023,
+        "joins": 1,
+        "tries": 1,
+        "survivors": 1,
+        "deferred": 0,
+        "oracleSeen": true,
+        "oracleCovered": true,
+        "best": {
+          "coef": 28,
+          "key": [
+            13,
+            21,
+            6,
+            26,
+            23,
+            26,
+            6,
+            21,
+            13,
+            11,
+            15,
+            25,
+            12
+          ],
+          "score": -1.824053946071881,
+          "margin": null,
+          "lex": 357,
+          "words": 370,
+          "output": "A WARNNG BELIEUE NOTHNG FROM THIS BOOC EXCEPT WHAT YOU CNOW TO BE TRUE TEST THE CNOWLEDGE FIND YOUR TRUTH EXPERIENCE YOUR DEATH DO NOT EDIT OR CHANGE THIS BOOC OR THE MESSAGE CONTAINED WITHIN EITHER THE WORDS OR THEIR NUMBERS FOR ALL IS SACRED WELCOME WELCOME PILGRIM TO THE GREAT JOURNEY TOWARD THE END OF ALL THNGS IT IS NOT AN EASY TRIP BUT FOR THOSE WHO FIND THEIR WAY HERE IT IS A NECESSARY ONE ALONG THE WAY YOU WILL FIND AN END TO ALL STRUGGLE AND SUFFERNG YOUR INNOCENCE YOUR ILLUSIONS YOUR CERTAINTY AND YOUR REALITY ULTIMATELY YOU WILL DISCOUER AN END TO SELF IT IS THROUGH THIS PILGRIMAGE THAT WE SHAPE OURSELUES AND OUR REALITIES JOURNEY DEEP WITHIN AND YOU WILL ARRIUE OUTSIDE LICE THE INSTAR IT IS ONLY THROUGH GONG WITHIN THAT WE MAY EMERGE WISDOM YOU ARE A BENG UNTO YOURSELF YOU ARE A LAW UNTO YOURSELF EACH INTELLIGENCE IS HOLY FOR ALL THAT LIUES IS HOLY AN INSTRUCTION COMMAND YOUR OWN SELF WISDOM YOU ARE A BENG UNTO YOURSELF YOU ARE A LAW UNTO YOURSELF EACH INTELLIGENCE IS HOLY FOR ALL THAT LIUES IS HOLY AN INSTRUCTION COMMAND YOUR OWN SELF SOME WISDOM THE PRIMES ARE SACRED THE TOTIENT FUNCTION IS SACRED ALL THNGS SHOULD BE ENCRYPTED CNOW THIS SHADOWS AETHEREAL BUFFERS UOID CARNAL OBSCURA FORM MOBIUS ANALOG UOID MOURNFUL AETHEREAL CABAL A COAN A MAN DECIDED TO GO AND STUDY WITH A MASTER HE WENT TO THE DOOR OF THE MASTER WHO ARE YOU WHO WISHES TO STUDY HERE ASCED THE MASTER THE STUDENT TOLD THE MASTER HIS NAME THAT IS NOT WHO YOU ARE THAT IS ONLY WHAT YOU ARE CALLED WHO ARE YOU WHO WISHES TO STUDY HERE HE ASCED AGAIN THE MAN THOUGHT FOR A MOMENT AND REPLIED I AM A PROFESSOR THAT IS WHAT YOU DO NOT WHO YOU ARE REPLIED THE MASTER WHO ARE YOU WHO WISHES TO STUDY HERE CONFUSED THE MAN THOUGHT SOME MORE FINALLY HE ANSWERED I AM A HUMAN BENG THAT IS ONLY YOUR SPECIES NOT WHO YOU ARE WHO ARE YOU WHO WISHES TO STUDY HERE ASCED THE MASTER AGAIN AFTER A MOMENT OF THOUGHT THE PROFESSOR REPLIED I AM A CONSCIOUSNESS",
+          "correct": 1500,
+          "keyCorrect": true
+        }
+      }
+    ],
+    "originals": [
+      {
+        "name": "section1",
+        "n": 729,
+        "anchors": [
+          {
+            "i": 5,
+            "len": 11,
+            "nonF": 11
+          },
+          {
+            "i": 13,
+            "len": 11,
+            "nonF": 10
+          }
+        ],
+        "phases": [
+          11,
+          12,
+          0
+        ],
+        "aList": 1426,
+        "bList": 1449,
+        "pairs": 6198822,
+        "joins": 0,
+        "tries": 0,
+        "survivors": 0,
+        "deferred": 0,
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "best": null
+      },
+      {
+        "name": "section2",
+        "n": 1145,
+        "anchors": [
+          {
+            "i": 218,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 248,
+            "len": 12,
+            "nonF": 12
+          }
+        ],
+        "phases": [
+          11
+        ],
+        "aList": 799,
+        "bList": 799,
+        "pairs": 638401,
+        "joins": 0,
+        "tries": 0,
+        "survivors": 0,
+        "deferred": 0,
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "best": null
+      },
+      {
+        "name": "section3",
+        "n": 1738,
+        "anchors": [
+          {
+            "i": 218,
+            "len": 13,
+            "nonF": 12
+          },
+          {
+            "i": 341,
+            "len": 14,
+            "nonF": 14
+          }
+        ],
+        "phases": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          0
+        ],
+        "aList": 430,
+        "bList": 174,
+        "pairs": 972660,
+        "joins": 0,
+        "tries": 0,
+        "survivors": 0,
+        "deferred": 0,
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "best": null
+      },
+      {
+        "name": "section4",
+        "n": 1894,
+        "anchors": [
+          {
+            "i": 35,
+            "len": 13,
+            "nonF": 13
+          },
+          {
+            "i": 73,
+            "len": 12,
+            "nonF": 12
+          }
+        ],
+        "phases": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "aList": 429,
+        "bList": 799,
+        "pairs": 2056626,
+        "joins": 0,
+        "tries": 0,
+        "survivors": 0,
+        "deferred": 0,
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "best": null
+      },
+      {
+        "name": "section5",
+        "n": 1021,
+        "anchors": [
+          {
+            "i": 104,
+            "len": 10,
+            "nonF": 10
+          },
+          {
+            "i": 120,
+            "len": 14,
+            "nonF": 13
+          }
+        ],
+        "phases": [
+          5,
+          6
+        ],
+        "aList": 2262,
+        "bList": 174,
+        "pairs": 787176,
+        "joins": 0,
+        "tries": 0,
+        "survivors": 0,
+        "deferred": 0,
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "best": null
+      },
+      {
+        "name": "section6",
+        "n": 1433,
+        "anchors": [
+          {
+            "i": 1,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 19,
+            "len": 12,
+            "nonF": 12
+          }
+        ],
+        "phases": [
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "aList": 799,
+        "bList": 799,
+        "pairs": 3830406,
+        "joins": 0,
+        "tries": 0,
+        "survivors": 0,
+        "deferred": 0,
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "best": null
+      },
+      {
+        "name": "section7",
+        "n": 1680,
+        "anchors": [
+          {
+            "i": 108,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 306,
+            "len": 12,
+            "nonF": 12
+          }
+        ],
+        "phases": [
+          12,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "aList": 799,
+        "bList": 799,
+        "pairs": 8299213,
+        "joins": 0,
+        "tries": 0,
+        "survivors": 0,
+        "deferred": 0,
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "best": null
+      },
+      {
+        "name": "section8",
+        "n": 3316,
+        "anchors": [
+          {
+            "i": 180,
+            "len": 14,
+            "nonF": 12
+          },
+          {
+            "i": 591,
+            "len": 13,
+            "nonF": 13
+          }
+        ],
+        "phases": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          0,
+          1,
+          2
+        ],
+        "aList": 180,
+        "bList": 429,
+        "pairs": 1003860,
+        "joins": 0,
+        "tries": 0,
+        "survivors": 0,
+        "deferred": 0,
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "best": null
+      },
+      {
+        "name": "supplemental p54–55",
+        "n": 308,
+        "anchors": [
+          {
+            "i": 49,
+            "len": 11,
+            "nonF": 11
+          },
+          {
+            "i": 56,
+            "len": 13,
+            "nonF": 12
+          }
+        ],
+        "phases": [
+          6,
+          7
+        ],
+        "aList": 1426,
+        "bList": 435,
+        "pairs": 1240620,
+        "joins": 0,
+        "tries": 0,
+        "survivors": 0,
+        "deferred": 0,
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "best": null
+      }
+    ]
+  },
+  {
+    "period": 16,
+    "controls": [
+      {
+        "name": "Gibran heldout",
+        "n": 1100,
+        "anchors": [
+          {
+            "i": 24,
+            "len": 12,
+            "nonF": 11
+          },
+          {
+            "i": 27,
+            "len": 12,
+            "nonF": 12
+          }
+        ],
+        "phases": [
+          2,
+          3
+        ],
+        "aList": 812,
+        "bList": 799,
+        "pairs": 1297576,
+        "joins": 0,
+        "tries": 0,
+        "survivors": 0,
+        "deferred": 0,
+        "oracleSeen": false,
+        "oracleCovered": false,
+        "best": null
+      },
+      {
+        "name": "Emerson heldout",
+        "n": 1101,
+        "anchors": [
+          {
+            "i": 221,
+            "len": 12,
+            "nonF": 11
+          },
+          {
+            "i": 248,
+            "len": 12,
+            "nonF": 12
+          }
+        ],
+        "phases": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "aList": 799,
+        "bList": 799,
+        "pairs": 7022411,
+        "joins": 1,
+        "tries": 24389,
+        "survivors": 13007,
+        "deferred": 0,
+        "oracleSeen": true,
+        "oracleCovered": true,
+        "best": {
+          "coef": 7,
+          "key": [
+            7,
+            18,
+            0,
+            11,
+            22,
+            4,
+            15,
+            26,
+            8,
+            19,
+            1,
+            12,
+            23,
+            5,
+            16,
+            27
+          ],
+          "score": -1.8015462875874675,
+          "margin": 0.7847464548673615,
+          "lex": 276,
+          "words": 280,
+          "output": "RELATED THE ETERNAL ONE AND THIS DEEP POWER IN WHICH WE EXIST AND WHOSE BEATITUDE IS ALL ACCESSIBLE TO US IS NOT ONLY SELF SUFFICNG AND PERFECT IN EUERY HOUR BUT THE ACT OF SEENG AND THE THNG SEEN THE SEER AND THE SPECTACLE THE SUBJECT AND THE OBJECT ARE ONE WE SEE THE WORLD PIECE BY PIECE AS THE SUN THE MOON THE ANIMAL THE TREE BUT THE WHOLE OF WHICH THESE ARE THE SHINNG PARTS IS THE SOUL ONLY BY THE UISION OF THAT WISDOM CAN THE HOROSCOPE OF THE AGES BE READ AND BY FALLNG BACC ON OUR BETTER THOUGHTS BY YIELDNG TO THE SPIRIT OF PROPHECY WHICH IS INNATE IN EUERY MAN WE CAN CNOW WHAT IT SAITH EUERY MAN S WORDS WHO SPEACS FROM THAT LIFE MUST SOUND UAIN TO THOSE WHO DO NOT DWELL IN THE SAME THOUGHT ON THEIR OWN PART I DARE NOT SPEAC FOR IT MY WORDS DO NOT CARRY ITS AUGUST SENSE THEY FALL SHORT AND COLD ONLY ITSELF CAN INSPIRE WHOM IT WILL AND BEHOLD THEIR SPEECH SHALL BE LYRICAL AND SWEET AND UNIUERSAL AS THE RISNG OF THE WIND YET I DESIRE EUEN BY PROFANE WORDS IF I MAY NOT USE SACRED TO INDICATE THE HEAUEN OF THIS DEITY AND TO REPORT WHAT HINTS I HAUE COLLECTED OF THE TRANSCENDENT SIMPLICITY AND ENERGY OF THE HIGHEST LAW IF WE CONSIDER WHAT HAPPENS IN CONUERSATION IN REUERIES IN REMORSE IN TIMES OF PASSION IN SURPRISES IN THE INSTRUCTIONS OF DREAMS WHEREIN OFTEN WE SEE OURSELUES IN MASCUERADE THE DROLL DISGUISES ONLY MAGNIFYNG AND ENHANCNG A REAL ELEMENT AND FORCNG IT ON OUR DISTINCT NOTICE WE SHALL CATCH MANY HINTS",
+          "correct": 1101,
+          "keyCorrect": true
+        }
+      },
+      {
+        "name": "LP1 reference",
+        "n": 1500,
+        "anchors": [
+          {
+            "i": 154,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 369,
+            "len": 13,
+            "nonF": 13
+          }
+        ],
+        "phases": [
+          13,
+          14,
+          15,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "aList": 799,
+        "bList": 429,
+        "pairs": 5484336,
+        "joins": 1,
+        "tries": 1,
+        "survivors": 1,
+        "deferred": 0,
+        "oracleSeen": true,
+        "oracleCovered": true,
+        "best": {
+          "coef": 28,
+          "key": [
+            13,
+            21,
+            6,
+            26,
+            23,
+            26,
+            6,
+            21,
+            13,
+            11,
+            15,
+            25,
+            12,
+            5,
+            4,
+            9
+          ],
+          "score": -1.824053946071881,
+          "margin": null,
+          "lex": 357,
+          "words": 370,
+          "output": "A WARNNG BELIEUE NOTHNG FROM THIS BOOC EXCEPT WHAT YOU CNOW TO BE TRUE TEST THE CNOWLEDGE FIND YOUR TRUTH EXPERIENCE YOUR DEATH DO NOT EDIT OR CHANGE THIS BOOC OR THE MESSAGE CONTAINED WITHIN EITHER THE WORDS OR THEIR NUMBERS FOR ALL IS SACRED WELCOME WELCOME PILGRIM TO THE GREAT JOURNEY TOWARD THE END OF ALL THNGS IT IS NOT AN EASY TRIP BUT FOR THOSE WHO FIND THEIR WAY HERE IT IS A NECESSARY ONE ALONG THE WAY YOU WILL FIND AN END TO ALL STRUGGLE AND SUFFERNG YOUR INNOCENCE YOUR ILLUSIONS YOUR CERTAINTY AND YOUR REALITY ULTIMATELY YOU WILL DISCOUER AN END TO SELF IT IS THROUGH THIS PILGRIMAGE THAT WE SHAPE OURSELUES AND OUR REALITIES JOURNEY DEEP WITHIN AND YOU WILL ARRIUE OUTSIDE LICE THE INSTAR IT IS ONLY THROUGH GONG WITHIN THAT WE MAY EMERGE WISDOM YOU ARE A BENG UNTO YOURSELF YOU ARE A LAW UNTO YOURSELF EACH INTELLIGENCE IS HOLY FOR ALL THAT LIUES IS HOLY AN INSTRUCTION COMMAND YOUR OWN SELF WISDOM YOU ARE A BENG UNTO YOURSELF YOU ARE A LAW UNTO YOURSELF EACH INTELLIGENCE IS HOLY FOR ALL THAT LIUES IS HOLY AN INSTRUCTION COMMAND YOUR OWN SELF SOME WISDOM THE PRIMES ARE SACRED THE TOTIENT FUNCTION IS SACRED ALL THNGS SHOULD BE ENCRYPTED CNOW THIS SHADOWS AETHEREAL BUFFERS UOID CARNAL OBSCURA FORM MOBIUS ANALOG UOID MOURNFUL AETHEREAL CABAL A COAN A MAN DECIDED TO GO AND STUDY WITH A MASTER HE WENT TO THE DOOR OF THE MASTER WHO ARE YOU WHO WISHES TO STUDY HERE ASCED THE MASTER THE STUDENT TOLD THE MASTER HIS NAME THAT IS NOT WHO YOU ARE THAT IS ONLY WHAT YOU ARE CALLED WHO ARE YOU WHO WISHES TO STUDY HERE HE ASCED AGAIN THE MAN THOUGHT FOR A MOMENT AND REPLIED I AM A PROFESSOR THAT IS WHAT YOU DO NOT WHO YOU ARE REPLIED THE MASTER WHO ARE YOU WHO WISHES TO STUDY HERE CONFUSED THE MAN THOUGHT SOME MORE FINALLY HE ANSWERED I AM A HUMAN BENG THAT IS ONLY YOUR SPECIES NOT WHO YOU ARE WHO ARE YOU WHO WISHES TO STUDY HERE ASCED THE MASTER AGAIN AFTER A MOMENT OF THOUGHT THE PROFESSOR REPLIED I AM A CONSCIOUSNESS",
+          "correct": 1500,
+          "keyCorrect": true
+        }
+      }
+    ],
+    "originals": [
+      {
+        "name": "section1",
+        "n": 729,
+        "anchors": [
+          {
+            "i": 5,
+            "len": 11,
+            "nonF": 11
+          },
+          {
+            "i": 13,
+            "len": 11,
+            "nonF": 10
+          }
+        ],
+        "phases": [
+          5,
+          6,
+          7
+        ],
+        "aList": 1426,
+        "bList": 1449,
+        "pairs": 6198822,
+        "joins": 0,
+        "tries": 0,
+        "survivors": 0,
+        "deferred": 0,
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "best": null
+      },
+      {
+        "name": "section2",
+        "n": 1145,
+        "anchors": [
+          {
+            "i": 218,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 248,
+            "len": 12,
+            "nonF": 12
+          }
+        ],
+        "phases": [
+          0
+        ],
+        "aList": 799,
+        "bList": 799,
+        "pairs": 638401,
+        "joins": 0,
+        "tries": 0,
+        "survivors": 0,
+        "deferred": 0,
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "best": null
+      },
+      {
+        "name": "section3",
+        "n": 1738,
+        "anchors": [
+          {
+            "i": 218,
+            "len": 13,
+            "nonF": 12
+          },
+          {
+            "i": 341,
+            "len": 14,
+            "nonF": 14
+          }
+        ],
+        "phases": [
+          15,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "aList": 430,
+        "bList": 182,
+        "pairs": 1252160,
+        "joins": 0,
+        "tries": 0,
+        "survivors": 0,
+        "deferred": 0,
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "best": null
+      },
+      {
+        "name": "section4",
+        "n": 1894,
+        "anchors": [
+          {
+            "i": 35,
+            "len": 13,
+            "nonF": 13
+          },
+          {
+            "i": 73,
+            "len": 12,
+            "nonF": 12
+          }
+        ],
+        "phases": [
+          14,
+          15,
+          0,
+          1,
+          2,
+          3
+        ],
+        "aList": 429,
+        "bList": 799,
+        "pairs": 2056626,
+        "joins": 0,
+        "tries": 0,
+        "survivors": 0,
+        "deferred": 0,
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "best": null
+      },
+      {
+        "name": "section5",
+        "n": 1021,
+        "anchors": [
+          {
+            "i": 104,
+            "len": 10,
+            "nonF": 10
+          },
+          {
+            "i": 120,
+            "len": 14,
+            "nonF": 13
+          }
+        ],
+        "phases": [
+          6,
+          7
+        ],
+        "aList": 2262,
+        "bList": 182,
+        "pairs": 823368,
+        "joins": 0,
+        "tries": 0,
+        "survivors": 0,
+        "deferred": 0,
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "best": null
+      },
+      {
+        "name": "section6",
+        "n": 1433,
+        "anchors": [
+          {
+            "i": 1,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 19,
+            "len": 12,
+            "nonF": 12
+          }
+        ],
+        "phases": [
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "aList": 799,
+        "bList": 799,
+        "pairs": 3830406,
+        "joins": 0,
+        "tries": 0,
+        "survivors": 0,
+        "deferred": 0,
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "best": null
+      },
+      {
+        "name": "section7",
+        "n": 1680,
+        "anchors": [
+          {
+            "i": 108,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 306,
+            "len": 12,
+            "nonF": 12
+          }
+        ],
+        "phases": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          0,
+          1,
+          2
+        ],
+        "aList": 799,
+        "bList": 799,
+        "pairs": 10214416,
+        "joins": 0,
+        "tries": 0,
+        "survivors": 0,
+        "deferred": 0,
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "best": null
+      },
+      {
+        "name": "section8",
+        "n": 3316,
+        "anchors": [
+          {
+            "i": 180,
+            "len": 14,
+            "nonF": 12
+          },
+          {
+            "i": 591,
+            "len": 13,
+            "nonF": 13
+          }
+        ],
+        "phases": [
+          14,
+          15,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "aList": 188,
+        "bList": 429,
+        "pairs": 1290432,
+        "joins": 0,
+        "tries": 0,
+        "survivors": 0,
+        "deferred": 0,
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "best": null
+      },
+      {
+        "name": "supplemental p54–55",
+        "n": 308,
+        "anchors": [
+          {
+            "i": 49,
+            "len": 11,
+            "nonF": 11
+          },
+          {
+            "i": 56,
+            "len": 13,
+            "nonF": 12
+          }
+        ],
+        "phases": [
+          0,
+          1
+        ],
+        "aList": 1426,
+        "bList": 435,
+        "pairs": 1240620,
+        "joins": 0,
+        "tries": 0,
+        "survivors": 0,
+        "deferred": 0,
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "best": null
+      }
+    ]
+  }
+]
