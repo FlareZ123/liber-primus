@@ -79,3 +79,24 @@ Reproduction, using the [same SFT](../sims/lp2_independent_fhold_anchor_cycle_jo
 - Inner-only OOV: `{"target":"p0","mode":"innerHold","inner":8,"budget":2,"trainMax":515,"pairIndex":0,"controls":false}` (repeat pairIndex 0–2 and inner 8/5).
 
 Executed on repository inputs in JavaScript Code Mode. The opening extension is preserved through SFT commit 1b9d275140f99f13b2a424976ef26176f5b90a40; no independent CI is claimed.
+
+### All nonzero affine products: projective cycle-space recovery
+
+The inner-only hold family also admits two arbitrary nonzero affine slopes. If the inner consuming law is (m=aP+K_j) and the ordinary outer law is (C=bm+H_l), normalize to the single effective slope (s=ab\ne0), effective inner key (k=bK), and outer key (h=H). A held plaintext F still emits (C=h); all consuming positions obey (C=sP+k+h). Individual factors (a,b) are algebraically unidentifiable in this model; recover the effective slope and key pair.
+
+For each fixed pair profile and relative phase, let (C_i) and (P_i) be the oriented sums of ciphertext and plaintext on fundamental cycle (i). Potential consistency requires (C_i=sP_i) for every cycle. If (C_r\ne0), project both word signatures onto the quotient by the ciphertext vector using coordinates (C_rP_i-C_iP_r) for all (i\ne r). These coordinates are linear in each word's contribution, so a single exact hash join covers **all 28 nonzero slopes**, rather than enumerating 28 separate key spaces. On a match, require (P_r\ne0) and infer (s=C_r/P_r); if every ciphertext cycle sum is zero, require every plaintext cycle sum zero and grant all 28 slopes. Reconstruct exact graph potentials for every matched tuple, including all unresolved gauge values up to the declared cap; no cap was encountered on these experiments.
+
+The original two 11-rune anchors yield zero compatible tuples under any nonzero slope, both orders, over the same 4,608 and 2,880 profile/phase combinations. Two blind LOSS OF DIVINITY controls planted effective slopes 7 and 13. Each recovers the unique correct effective slope/key/path from 244 training runes, with no supplied hold masks, then predicts all 85 withheld runes uniquely. The fixed lexicon includes the donor words.
+
+For the same three disjoint anchor pairs and 512-rune/118-word training split, the all-slope candidate census is:
+
+| Pair | 8→5 slope/tuple matches | 8→5 complete effective keys | 5→8 slope/tuple matches | 5→8 complete effective keys |
+|---|---:|---:|---:|---:|
+| 3,93 | 3 | 3 | 1 | 29 |
+| 11,65 | 1 | 1 | 0 | 0 |
+| 53,88 | 72 | 436 | 38 | 150 |
+| Total | 76 | 440 | 39 | 179 |
+
+All **619 complete slope/key candidates, counted per anchor search**, fail exact training decoding with up to two OOV words and every incoming inner phase. No unresolved gauge, profile cap or decoder cap remains. This extends the inner-hold/ordinary-outer opening rejection from addition to **every nonzero stationary affine product**; it does not extend the other hold configurations to all slopes. The original 204-rune holdout remains unscored.
+
+Reproduce using the same SFT, mode `innerHoldAffine`; the donor command uses `{"target":"p0","mode":"innerHoldAffine","inner":8,"budget":2}` (repeat inner5). The OOV command additionally sets `"trainMax":515,"pairIndex":0,"controls":false` (repeat all three indices and both orders). Actual JavaScript original-input executions, SFT commit 2caad2bc07e467839a3da1683669b8c8ebe64248. No independent CI claimed. Retire this finite-register opening receiver absent a new independent clue, rather than extending the slope or anchor search.
