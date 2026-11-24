@@ -1,0 +1,121 @@
+{
+  "len": [
+    267,
+    271,
+    264
+  ],
+  "original": {
+    "counts": [
+      237,
+      8,
+      10,
+      9,
+      0
+    ],
+    "pairs": [
+      8,
+      10,
+      9
+    ],
+    "den": [
+      267,
+      264,
+      264
+    ],
+    "sites": [
+      [
+        58,
+        113,
+        141,
+        152,
+        180,
+        186,
+        194,
+        224
+      ],
+      [
+        73,
+        84,
+        94,
+        97,
+        103,
+        127,
+        165,
+        214,
+        242,
+        244
+      ],
+      [
+        5,
+        45,
+        46,
+        48,
+        49,
+        66,
+        139,
+        217,
+        238
+      ]
+    ],
+    "total": 27
+  },
+  "samples": 2000,
+  "nativeTotal": {
+    "min": 28,
+    "p05": 39,
+    "median": 50,
+    "p95": 65,
+    "max": 87,
+    "atMostOriginal": 0
+  },
+  "nativePair24_26": {
+    "min": 3,
+    "p05": 10,
+    "median": 16,
+    "p95": 24,
+    "max": 34,
+    "atMostOriginal": 125
+  },
+  "nativeTriple": {
+    "min": 0,
+    "p05": 0,
+    "median": 1,
+    "p95": 4,
+    "max": 7,
+    "atMostOriginal": 516
+  },
+  "independentTotal": {
+    "min": 13,
+    "p05": 19,
+    "median": 27,
+    "p95": 36,
+    "max": 48,
+    "atMostOriginal": 1050
+  },
+  "repeat": {
+    "n": 42,
+    "i": 62,
+    "j": 417,
+    "text": "WHOAREYOUWHOWISHESTOSTUDYHEREASCEDTHEMASTER",
+    "equal": 42
+  },
+  "witnesses": [
+    {
+      "step": 62,
+      "words": [
+        "this took white la army but hm vinesse house lungs known pre peas been amalgam industry gave endeavouring streak got shoulder du alma tumours he arch ve ugh it aet not that looking off long does against red diminish set or face head more they then most therefore followed macmillan it le re war midway go lord took particular ku c door complete",
+        "d above people morning with ne id may words house results redistribution general british inevitable syphilis final bone commander ad general does tumours seen pp ne just left laser journ long them think national are they hurrah three lymph vy roth becomes whom chief do pane coli ma exclaimed only cats necessary applied those yes g aside",
+        "sums meshkov just quite among et membrane xv already oo mediastinum basal both os war happiness roe lay continued dercum heir are might southern took new ali maniac added dave lap stood quite perhaps re thought ii long must declared foreign xx but skin hatched all vasili end opinion form two by looked approval gut any say garcon"
+      ]
+    },
+    {
+      "step": 378,
+      "words": [
+        "ran into about ii last hur eh usually woman felt mother aid both came imparts probably come emigration shall than chairman tea melk process je much foe are ho ah vow ami public for thing not implying for followed ran tea told you lise both isn time yourself resulting convinced me iv cf xxi cannot ix gave upon aboveboard st l these beginning",
+        "y either blest opened rid of an than asked winged distaff nonperformance raisins between authorities defender enemy time cartilage xx federal red foreign wise ha mt even ours nothing party yet who time daughter day are tissue maps asked ll vie country came taking ex very left ax emergence even heard disgusting surface their cup a after",
+        "into grandly look front know by employed xx wished ta conversion sunny son us due spinsters us not highroads gosling take foh lemon anatole tell end day house table well one nothing alone napoleon un crowds ve then being flourish present hm thing your inquiry how antics earl chapter also did ax wishes majority man man him family"
+      ]
+    }
+  ],
+  "diff": 752
+}
