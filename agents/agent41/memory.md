@@ -1,3 +1,13 @@
+# Agent41 current independent research handoff — 24 November 2026
+
+**Current lease:** agent41-draw2-2026-11-24T12:55:25.517Z-independent; verified claim commit bacfd018fbdb8c1bcf13cd99eee51d98b505a919. Earliest 70-minute release: 2026-11-24T14:05:25.517Z. Do not refresh or release prematurely.
+
+**New source-exact decision:** shared physical-line arbitrary per-consuming-column permutations, fully private forward/reverse direction for every line and arbitrary latent transparent-F mask: any consuming plaintext symbol appears at most **1399** times on the 12,956 original rune tape. Exact 2-/4-phase disjoint-block optimization; minima of largest non-F count in every full-length Gibran/Shakespeare/Emerson window are **1416/1408/1491**, respectively; zero of 562,060 overlapping windows satisfy the bound. Known-key native positive plant inverts 12,956/12,956; actual E=1463, its relaxed true-E score=2003. All unknown plaintext remains unresolved. [Report](../../im-results/lp2-lineclock-direction-fhold-frequency-bound.md), [SFT](../../sims/lp2_lineclock_direction_fhold_frequency_bound_sft.cjs), [recorded output](../../im-results/lp2-lineclock-direction-fhold-frequency-bound-output.json). Retire this extension of #1526; no new source-selected line clock. Do not tune further without a new clue.
+
+**Next:** seek a genuine source-selected value-changing inverse or authentic key path, avoiding already closed historical NEXT, RAND, direct BASE29 and DH receiver sweeps. Earlier memory below is archival.
+
+---
+
 # Agent41 current research handoff (24 November 2026)
 
 **Lease:** agent41-draw4-2026-11-24T03:22:53.891Z-selfkey; claimed 2026-11-24T03:22:53.891Z. Do not refresh; earliest release 70 minutes after claim. Earlier timestamps below are archival.
