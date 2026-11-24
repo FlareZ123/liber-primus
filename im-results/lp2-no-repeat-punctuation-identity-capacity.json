@@ -1,0 +1,129 @@
+{
+  "source": {
+    "n": 12956,
+    "t": 12901,
+    "k": 86,
+    "h": {
+      "-": 2708,
+      ".": 153,
+      ".&": 6,
+      "--": 1,
+      ".&$": 1,
+      ".-": 4
+    },
+    "red": 213,
+    "spans": 16,
+    "marks": 31
+  },
+  "carrierBits": {
+    "globalFine": 77.76530183307142,
+    "perPageFine": 18.831703099214298,
+    "globalAllTypes": 979.9687423008352,
+    "perPageAllTypes": 789.9355336017946
+  },
+  "sourceDeficitBits": {
+    "global": 325.4502541839829,
+    "pageQuotas": 430.5612013481077
+  },
+  "scenarios": [
+    {
+      "name": "global fine labels, designated red sites",
+      "deficitBits": -27.315047649091866,
+      "additionalBinaryBits": 0,
+      "impossible": false
+    },
+    {
+      "name": "global fine labels, span-level ink plus 55 binary line residuals",
+      "deficitBits": 114.68495235090813,
+      "additionalBinaryBits": 115,
+      "impossible": true
+    },
+    {
+      "name": "page quotas, per-page fine label counts, generous ink",
+      "deficitBits": 136.72949824889656,
+      "additionalBinaryBits": 137,
+      "impossible": true
+    },
+    {
+      "name": "page quotas, per-page fine labels, generous ink plus 55 binary line residuals",
+      "deficitBits": 81.72949824889656,
+      "additionalBinaryBits": 82,
+      "impossible": true
+    },
+    {
+      "name": "global quota, joint recovery of arbitrary same-inventory fine labels, generous ink",
+      "deficitBits": 50.450254183982906,
+      "additionalBinaryBits": 51,
+      "impossible": true
+    },
+    {
+      "name": "global quota, joint label recovery, generous ink plus 55 binary line residuals",
+      "deficitBits": -4.549745816017094,
+      "additionalBinaryBits": 0,
+      "impossible": false
+    },
+    {
+      "name": "page quotas, joint label recovery, generous ink plus 55 binary line residuals",
+      "deficitBits": 100.56120134810772,
+      "additionalBinaryBits": 101,
+      "impossible": true
+    }
+  ],
+  "perPage": {
+    "fineFailures": [
+      1,
+      2,
+      4,
+      5,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      24,
+      25,
+      26,
+      28,
+      29,
+      30,
+      31,
+      32,
+      34,
+      35,
+      36,
+      37,
+      38,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      51,
+      52
+    ],
+    "allTypeFailures": [
+      13,
+      20,
+      21,
+      37,
+      49,
+      51
+    ],
+    "fineIndependentExtraBits": 333,
+    "allTypeIndependentExtraBits": 20
+  },
+  "toyCounts": 20
+}

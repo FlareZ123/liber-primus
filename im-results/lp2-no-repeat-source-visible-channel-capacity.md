@@ -4,7 +4,7 @@
 
 ## Finding
 
-The observed 29-symbol ciphertext stream does not by itself rule out a 29-to-28 next-rune encoder. Red/special marks alone do not provide enough side information, even under an intentionally generous count. Printed word-boundary positions have ample *combinatorial* capacity, but no source-selected reversible mapping to those positions has been found; the joint rune-and-spacing inverse also fails on 29/55 original pages. A separate physical-line-framed enumerative rank has now been tested: its original candidate has 0/1,132 long dictionary words, while universal GP29 recovery under the fixed per-line repeat schedule requires 662 bits even with a free head on every line and 711 bits with continuous seams. The original-image compositor model leaves at most 55 bits in its deliberately generous binary residual-line-end channel. This rejects the tested line-framed family, not every possible source-selected or language-restricted encoder.
+The observed 29-symbol ciphertext stream does not by itself rule out a 29-to-28 next-rune encoder. Red/special marks alone do not provide enough side information, even under an intentionally generous count. Under the fixed page-quota/coarse-boundary model, fine punctuation labels plus generous ink and the optional binary line residuals are also insufficient. Printed word-boundary positions have ample *combinatorial* capacity, but no source-selected reversible mapping to those positions has been found; the joint rune-and-spacing inverse also fails on 29/55 original pages. A separate physical-line-framed enumerative rank has now been tested: its original candidate has 0/1,132 long dictionary words, while universal GP29 recovery under the fixed per-line repeat schedule requires 662 bits even with a free head on every line and 711 bits with continuous seams. The original-image compositor model leaves at most 55 bits in its deliberately generous binary residual-line-end channel. This rejects the tested line-framed family, not every possible source-selected or language-restricted encoder.
 
 This is a capacity and scoped-decoder result, **not** a cipher identification or decryption.
 
@@ -109,6 +109,34 @@ An intentionally overgenerous ceiling gives every red rune an independent red/bl
 Copied floral artwork is not counted as an independent event. Even the 275-bit estimate overcounts independence: contiguous red spans and repeated dot ornaments are not 244 separate freely selectable marks.
 
 **Result:** red/special colour and mark choices alone cannot supply the required information under this model. Word-boundary positions could supply it in principle.
+
+## Punctuation-identity carrier with fixed coarse boundaries (Agent6, 24 November 2026)
+
+**Decision:** punctuation variants cannot supply the missing bits of a universal page-quota GP29 constrained code if the coarse word/stop positions and per-page fine-label counts are retained. This removes a distinct type-only carrier, even when punctuation labels themselves need not be recovered. The unrestricted placement channel remains viable in cardinality; no source-selected inverse or unknown plaintext results.
+
+Let n be the total runes, H=55 free page heads, t=n−H eligible transitions, K=86 observed repeats. For arbitrary GP29 plaintexts the input cardinality is U=29^n. The relaxed output codebook has cardinality G=29^H Σ[j=0..K] C(t,j)28^(t−j); imposing each observed page quota gives the product P of pagewise counts. The integer comparisons below use these **at-most**, not fixed-mask, codebooks, thus giving the encoder the more permissive capacity.
+
+Fix the positions of the coarse separator classes “contains a period” and “does not contain a period”, while permitting all distinct assignments of each class's observed transcription-label multiset. The number of possibilities is the product of the two class multinomials. This is a transcription-level grouping, not an assertion that every rare label is a separate physical symbol or a linguistic punctuation type; permitting them all overcounts possible choices.
+
+- Across the whole corpus the fine-label carrier is 77.765302 bits; with per-page label counts fixed it is only **18.831703 bits**. For comparison the unrestricted reassignment of all six label types at fixed boundary positions has 979.968742 global or 789.935534 per-page bits.
+- The prior deliberately generous **designated-site** ink allowance is 213 red-rune binary choices plus 31 fixed large marks with four possible states, or 275 bits. The span-level version gives 78 bits. These are bounds only for those fixed-site models, not for freely moving ink positions.
+- The 55-bit optional line contribution is the previously tested binary residual-line-end compositor model; grant all these bits independently, even if the channels overlap.
+
+| Frozen carrier and quota | Remaining deficit (bits) | Minimum additional binary bits |
+|---|---:|---:|
+| Global quota; pooled fine labels; generous ink | −27.315 | 0 |
+| Global quota; pooled fine labels; span-level ink + 55 line bits | 114.685 | 115 |
+| Page quotas; page-local fine counts; generous ink | 136.729 | 137 |
+| Page quotas; page-local fine counts; generous ink + 55 line bits | 81.729 | 82 |
+| Global quota; jointly recover arbitrary same-inventory fine labels; generous ink | 50.450 | 51 |
+| Global quota; joint label recovery; generous ink + 55 line bits | −4.550 | 0 |
+| Page quotas; joint label recovery; generous ink + 55 line bits | 100.561 | 101 |
+
+A negative deficit means capacity survives; it is not positive cipher evidence. In the joint-label version, if plaintext labels range over the same fixed-inventory permutations as ciphertext labels, their cardinality multiplies both sides and cancels exactly, so their apparent capacity cannot be spent twice. This argument also applies to joint recovery of arbitrary same-count boundary positions if both domains use the same arrangements.
+
+With independently decoded pages and no other side channel, **42/55** pages fail even with their own generously counted ink choices. Their summed minimum binary deficits are 333 bits. Even if all six punctuation types are freely reassigned at the fixed boundary locations (without preserving coarse stop positions), **six pages (13, 20, 21, 37, 49, 51)** still fail; they need at least 20 additional binary bits in total across independent page channels. This local impossibility does not imply a pooled global all-type channel fails.
+
+Exact BigInt cardinality comparisons and 20 exhaustively counted ternary toy domains validate the formulas; all 12,956 source rune positions were cross-checked against the canonical corpus. [Standalone reproducer](../sims/lp2_no_repeat_punctuation_identity_capacity_sft.cjs) and [raw output](lp2-no-repeat-punctuation-identity-capacity.json). The test uses the existing annotation inventory including the corrected 13-rune p0 heading. No physical distinction is inferred from a rare transcription delimiter, and no decoder is authenticated. Retire only these fixed coarse-position, quota and carrier regimes; arbitrary moved boundaries, a compressed plaintext register, a pooled generous fixed-site ink carrier, and an authentic external side channel are outside the negative conclusion.
 
 ## Per-page measurements
 
