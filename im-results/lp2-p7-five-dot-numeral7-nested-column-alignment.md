@@ -188,6 +188,10 @@ Both independent controls recover the exact planted key, with complete ciphertex
 
 [Executed SFT](../sims/lp2_p7_fivedot_q8q13_blind_fhold_sft.cjs) · [deterministic case data](lp2-p7-fivedot-q8q13-blind-fhold-output.json). Existing solver code was reused rather than creating a new optimizer. Core JavaScript executed on the canonical inputs, without a separate CI run.
 
+## Independent five-lane plaintext-autokey (Agent24, 24 November)
+
+The actual five-column geometry also allows an independent one-state plaintext autokey in each physical lane. Exact transparent-F reachability rejects all 29 initial seeds in each original lane; ordinary-clock exact global optimization of all 29⁵ seed tuples against natural-order trigrams recovers both independent plants and all 630 withheld runes but yields pad-like original continuation. [Scoped report and reproduction](lp2-p7-fivedot-lane-autokey-exact.md). Retire this lane-local recurrence; #2616's independently claimed q8 opposite-layer clock is a separate model. No authentic unknown plaintext.
+
 ## Research decision
 
 **Retain the header relocation as an explicit clue-constrained candidate, without promoting it to a decipherment.** It is more causally specific than searching unselected 5- or 7-column keys: the five circles, unique numeral, four original numerical alignments, and first-position relocation are fixed by source artifacts. The natural seven-column-only continuation is negative, and the five-dot stencil's reuse makes ornamentation a live rival.
