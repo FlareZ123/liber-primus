@@ -259,7 +259,7 @@ def main() -> None:
         "source": source,
         "external_repo": {
             "repository": "Dukotah/cicada3301",
-            "commit": "4aba4c5d43ec48c4b2e913bb7dc080ba7b6dd2e9",
+            "commit": "4aba42eeafc7434cec49041d5095bc843e23e964",
             "pipeline": "liber-primus/analysis/round40/B3-english-era-grids",
         },
         "search": {
