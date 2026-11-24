@@ -1,0 +1,17 @@
+"use strict";
+const fs=require("node:fs"),path=require("node:path");
+const root=path.resolve(__dirname,".."),out=process.argv[2]||process.cwd();
+fs.mkdirSync(out,{recursive:true});
+const read=p=>JSON.parse(fs.readFileSync(path.join(root,p),"utf8"));
+const A=read("resources/liber-primus/lp2-corpus.json"),B=read("resources/external/relikd-solved-gp29-native-v1.json");
+const raw=A.pages.slice(33,40).flatMap(p=>p.indices),native=B.sections.flatMap(s=>[...s.source_text].map(x=>A.runes.indexOf(x)).filter(x=>x>=0));
+const black=raw.slice(10,91).concat(raw.slice(99,214));
+const cols=Array.from({length:1680},(_,i)=>raw[(i%14)*120+Math.floor(i/14)]);
+const check=(a,n,h)=>{if(a.length!==n||a.reduce((s,v,i)=>s+(i+1)*v,0)!==h)throw Error("source mismatch")};
+check(raw,1680,20074639);check(black,196,265747);check(native.slice(0,1680),1680,17843349);
+const pack=a=>a.map(v=>v.toString(29)).join("");
+const write=(name,a,b)=>fs.writeFileSync(path.join(out,name),pack(a)+"\n"+pack(b)+"\n");
+write("p33-chapter.txt",raw,native.slice(0,1680));
+write("p33-columns.txt",cols,native.slice(0,1680));
+write("p33-black.txt",black,native.slice(0,196));
+write("p33-native.txt",raw,native.slice(0,1729));
