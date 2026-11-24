@@ -1,7 +1,7 @@
 "use strict";
 const fs=require("node:fs"),path=require("node:path");
 function run(corpus,native,donorTexts,q=0,mode="oracle",raw="",lo=0,hi=100000000){
- const L=64,H=4,plantL=80,mod=x=>(x+29)%29;
+ const L=64,H=mode==="tree5"?128:4,plantL=80,mod=x=>(x+29)%29;
  const assert=(x,m)=>{if(!x)throw Error(m)};
  let seed=(912411^Math.imul(q+1,0x9e3779b9))>>>0;
  const rng=()=>{seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return seed>>>0},rand=n=>rng()%n;
@@ -14,10 +14,10 @@ function run(corpus,native,donorTexts,q=0,mode="oracle",raw="",lo=0,hi=100000000
  const by=new Map(),cache=new Map();
  for(const w of [...donorTexts.flatMap(latin),...solved.filter(s=>!names.includes(s.name)).flatMap(s=>s.words)]){let m=by.get(w.length);if(!m)by.set(w.length,m=new Map());let s=enc(w);m.set(s,(m.get(s)||0)+1)}
  const totals=new Map([...by].map(([n,m])=>[n,[...m.values()].reduce((a,b)=>a+b,0)]));
- function frag(n,pat){
-   let key=n+"/"+pat;if(cache.has(key))return cache.get(key);
+ function frag(n,pat,off=0){
+   let key=n+"/"+off+"/"+pat;if(cache.has(key))return cache.get(key);
    let map=new Map(),mass=0;
-   for(const [s,v] of by.get(n)||[]){let t="",ok=true;for(let i=0;i<pat.length;i++){if(pat[i]==="0"){if(s[i]!=="A"){ok=false;break}}else{if(s[i]==="A"){ok=false;break}t+=s[i]}}if(ok){map.set(t,(map.get(t)||0)+v);mass+=v}}
+   for(const [s,v] of by.get(n)||[]){let t="",ok=true;for(let i=0;i<pat.length;i++){if(pat[i]==="0"){if(s[i+off]!=="A"){ok=false;break}}else{if(s[i+off]==="A"){ok=false;break}t+=s[i+off]}}if(ok){map.set(t,(map.get(t)||0)+v);mass+=v}}
    const strings=[...map.keys()],f={proj:new Map(),strings,weights:Float64Array.from(strings,s=>map.get(s)/mass),logmass:mass?Math.log(mass/totals.get(n)):-Infinity};
    cache.set(key,f);return f;
  }
@@ -30,7 +30,7 @@ function run(corpus,native,donorTexts,q=0,mode="oracle",raw="",lo=0,hi=100000000
     let n=t.words[j].length,base=t.offsets[j];
     function word(z,cnt,nh,pat,ix,hx){
      if(z===n||k+cnt===L){
-      let f=frag(n,pat);if(!f.strings.length)return;
+      let f=frag(t.meta?.[j]?.n??n,pat,t.meta?.[j]?.off??0);if(!f.strings.length)return;
       extend(j+1,k+cnt,h+nh,cnt?[...g,{lo:k,hi:k+cnt,f}]:g,[...indices,...ix],[...held,...hx],mass+f.logmass);return;
      }
      word(z+1,cnt+1,nh,pat+"1",[...ix,base+z],hx);
@@ -130,6 +130,19 @@ function run(corpus,native,donorTexts,q=0,mode="oracle",raw="",lo=0,hi=100000000
   const all=[];let p=0,sp=0,w=[];const finish=()=>{if(w.length)all.push({p:sp>=50?sp+1:sp,w});w=[]};
   for(const c of raw.split("%").slice(0,55).join("%")){if(rm.has(c)){if(!w.length)sp=p;w.push(rm.get(c))}else if(c==="%")p++;else if(c!=="/"&&!/\s/.test(c))finish()}finish();
   assert(all.length===2896&&String(all.flatMap(x=>x.w))===String(corpus.pages.filter(p=>p.page<56).flatMap(p=>p.indices)),"original reconstruction");
+
+  if(mode==="tree5"){
+   const pageStarts=[];let total=0;for(const p of corpus.pages){pageStarts[p.page]=total;total+=p.indices.length}
+   const words=all.map(x=>x.w),offset=[];let off=0;for(const w of words){offset.push(off);off+=w.length}
+   function page(p){
+    let a=pageStarts[p],b=a+corpus.pages.find(x=>x.page===p).indices.length,ws=[],meta=[];
+    for(let i=0;i<words.length;i++){let x=offset[i],y=x+words[i].length,lo=Math.max(x,a),hi=Math.min(y,b);if(lo>=hi)continue;ws.push(words[i].slice(lo-x,hi-x));meta.push({n:y-x,off:lo-x})}
+    let t=tape(ws);t.meta=meta;assert(String([...t.c])===String(corpus.pages.find(x=>x.page===p).indices),"page extraction "+p);return t;
+   }
+   const pages=[9,10,11,12,13,14],t=pages.map(page),v=t.map(x=>views(x,0)),results=[];
+   for(let i=0;i<5;i++)for(let j=i+1;j<5;j++){let feasible=0,best=null,maskPairs=0;for(let a=0;a<v[i].length;a++)for(let b=0;b<v[j].length;b++){maskPairs++;let u=v[i][a],w=v[j][b];if(!screen(u,w,t[i].c,t[j].c))continue;let r=score(u,w,t[i].c,t[j].c);if(r){feasible++;if(!best||r.llr>best.llr)best={llr:r.llr,a,b}}}let recovered=null;if(best){let r=score(v[i][best.a],v[j][best.b],t[i].c,t[j].c,true);recovered={key:r.key,pa:r.pa,pb:r.pb,heldA:r.heldA,heldB:r.heldB}}results.push({pages:[pages[i],pages[j]],maskPairs,feasible,best:best?.llr??null,recovered});}
+   return {pages,views:v.map(x=>x.length),firstWordMeta:t.map(x=>x.meta[0]),visibleZeros:t.map(x=>[...x.c.slice(0,80)].filter(y=>!y).length),results};
+  }
   const [A,B]=[[15,22],[40,53]].map(([a,b])=>tape(all.filter(x=>x.p>=a&&x.p<=b).map(x=>x.w)));
   let V1=allViews(A),V2=allViews(B),geometry={views:[V1.length,V2.length],holds:[V1.filter(v=>v.h).length,V2.filter(v=>v.h).length],types:[...by.values()].reduce((a,m)=>a+m.size,0)};
   if(mode==="geometry")return geometry;
