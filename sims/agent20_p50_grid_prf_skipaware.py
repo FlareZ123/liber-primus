@@ -130,7 +130,7 @@ def positive_controls(sweep, skipdecode) -> dict:
     for generator in GENERATORS:
         key_bytes = expand_seed(b"CICADA3301", generator, 8000)
         key = prf.reduce_bytes(key_bytes, "mod29", 8000)
-        cipher, planted_skips = prf.encipher_keyskip(plain, key, 1, 3, 0.83)
+        cipher, planted_skips = prf.encipher_keyskip(plain, key, 3, 1, 0.83)
         decoded = sweep.beam(cipher, key, 1, 3, len(cipher), int(sweep.FULL_BEAM))
         exact = decoded is not None and np.array_equal(np.asarray(decoded, dtype=np.int64), plain)
         verified = (
