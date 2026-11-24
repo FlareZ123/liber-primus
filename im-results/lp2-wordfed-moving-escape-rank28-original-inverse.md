@@ -16,6 +16,10 @@ The best three ties, (log rank, a=12,b=14, seed=10/15/24), each match only **13/
 
 Two planted solved-native 150-word blocks use different hidden rank conventions and affine keys. The first 79 emitted words alone uniquely recover the correct convention, both coefficients and seed for each block. The untouched remaining blocks recover **304/304** and **81/81** actual planted runes respectively. This demonstrates recoverability within the tested family, not historical authenticity. Plant scoring uses the solved-source vocabulary, which includes the plant words.
 
+## Recovery without assuming plaintext word boundaries
+
+To distinguish wrong word segmentation from a wrong cipher, score all 48,778 trajectories again using a continuous GP trigram language model, with no lexical word constraint. Train the smoothed model on 62,492 GP runes of Gibran's *The Prophet* (blob df260a07d56bf5998d40a6360b6132c35c252d10). The score crosses all printed boundaries; the cipher still uses the source's groups for its cyclic key clock. Use 1,697 original training runes and 1,729 held-out runes. The best key is log rank, a=27,b=25, seed18. Mean log likelihood is −5.7353 nats/rune training and −5.9699 heldout. None of the 12 selected candidates approaches any of nine independent authentic solved-native sections (−3.0666 to −2.2708). Uniform iid GP expectation under the *same* model is −6.0188; original training ciphertext scores −6.0484. The best heldout score among the selected twelve is −5.7984. Thus ignoring the word boundaries for language scoring does not recover continuous native GP prose either.
+
 ## Decision
 
 Retire this exact cyclic-word-derived moving escape/rank rule as a direct word-aligned native GP inverse. Alternative dynamic state functions, changed segmentation, and nonlinguistic payloads remain possible; arbitrary variants are not supported by this negative result. The historical F-hold failure is a separate algebraic obstruction.

@@ -79,3 +79,58 @@ for(const [start,aa,bb,kk] of [[0,12,14,1],[150,8,17,0]]){
 }
 assert.deepEqual(controls.map(c=>c.heldoutRunes),[304,81]);
 console.log(JSON.stringify({keys:2*29**3,trainEligible:1299,heldoutEligible:1318,top,controls},null,2));
+
+// Independent spacing-free language recovery, not a word dictionary criterion.
+const ref=(read('resources/control/gibran_prophet_58585.txt').match(/[A-Za-z]+/g)||[]).flatMap(encode);
+const uni=new Float64Array(29),bi=new Float64Array(841),tri=new Float64Array(24389);
+for(let j=0;j<ref.length;j++){
+  const z=ref[j];uni[z]++;if(j)bi[ref[j-1]*29+z]++;
+  if(j>1)tri[(ref[j-2]*29+ref[j-1])*29+z]++;
+}
+const L=new Float64Array(24389);
+for(let x=0;x<29;x++)for(let y=0;y<29;y++){
+  let n=0,m=0;for(let z=0;z<29;z++){n+=tri[(x*29+y)*29+z];m+=bi[y*29+z];}
+  for(let z=0;z<29;z++){
+    const p2=(bi[y*29+z]+20*(uni[z]+.5)/(ref.length+14.5))/(m+20);
+    L[(x*29+y)*29+z]=Math.log((tri[(x*29+y)*29+z]+10*p2)/(n+10));
+  }
+}
+function table(a,b,kind){
+  const tab=new Int8Array(29*29);
+  for(let k=0;k<29;k++){const e=(a*k+b)%29;tab[k*29]=e;
+    for(let d=1;d<29;d++){const v=((kind?log[d]:d-1)+28-e%28)%28;tab[k*29+d]=v+ +(v>=e);}
+  }return tab;
+}
+function spacingScore(tab,seed,hi){
+  let p=new Int8Array(14),next=new Int8Array(14),pn=1,xy=seed,n=1,tr=0,te=0;p[0]=seed;
+  for(let j=40;j<hi;j++){
+    const w=deltas[j];for(let k=0;k<w.length;k++){
+      const z=tab[p[k%pn]*29+w[k]];next[k]=z;
+      if(n>1){const q=L[xy*29+z];if(j<413)tr+=q;else te+=q;}
+      xy=(xy%29)*29+z;n++;
+    }
+    pn=w.length;const tmp=p;p=next;next=tmp;
+  }return {tr,te};
+}
+let spacingTop=[];
+for(let kind=0;kind<2;kind++)for(let a=0;a<29;a++)for(let b=0;b<29;b++){
+  const t=table(a,b,kind);
+  for(let seed=0;seed<29;seed++){
+    const v=spacingScore(t,seed,413).tr;
+    if(spacingTop.length<12||v>spacingTop.at(-1).tr){
+      spacingTop.push({kind,a,b,seed,tr:v});spacingTop.sort((a,b)=>b.tr-a.tr);spacingTop.length=Math.min(spacingTop.length,12);
+    }
+  }
+}
+const trainN=words.slice(40,413).flat().length,testN=words.slice(413,796).flat().length;
+for(const o of spacingTop){const q=spacingScore(table(o.a,o.b,o.kind),o.seed,796);o.train=q.tr/(trainN-1);o.test=q.te/testN;}
+assert.equal(ref.length,62492);assert.deepEqual([trainN,testN],[1697,1729]);
+assert.deepEqual([spacingTop[0].kind,spacingTop[0].a,spacingTop[0].b,spacingTop[0].seed],[1,27,25,18]);
+assert(Math.abs(spacingTop[0].train+5.735327721760974)<1e-8);
+assert(Math.abs(spacingTop[0].test+5.969867244976675)<1e-8);
+function ll(p){let s=0;for(let i=2;i<p.length;i++)s+=L[(p[i-2]*29+p[i-1])*29+p[i]];return s/(p.length-2);}
+const nativeScores=JSON.parse(read('resources/external/relikd-solved-gp29-native-v1.json')).sections.map(s=>{
+  const p=[...s.source_text].filter(c=>idx.has(c)).map(c=>idx.get(c));return [p.length,ll(p)];
+});
+console.log(JSON.stringify({spacingTop,nativeScores,original:ll(words.slice(40,413).flat()),
+  uniformExpectation:L.reduce((s,x)=>s+x,0)/L.length},null,2));
