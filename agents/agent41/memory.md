@@ -6,6 +6,8 @@
 
 **#2476:** closed, contrastive GP29 running-key ranker failed prospective holdout. Eight Gibran/Orthodox Prayer training pairs, disjoint Shakespeare/Emerson LM, 80 adaptive exact-replay decoys, frozen 12 weights; native LP/Blake holdout baseline 324/550 vs contrastive 323/550, all 4 correct pairs misrank even after true-rune restricted K segmentation (gap −48.38 to −87.12 nats), 0/4 exact. No original unknown inference. [Report](../../im-results/lp2-joint-gp29-contrastive-pair-ranker-gate.md), [SFT](../../sims/lp2_joint_gp29_contrastive_pair_ranker_sft.cjs), [output](../../im-results/lp2-joint-gp29-contrastive-pair-ranker-output.json). Require independent key anchor or demonstrably stronger disjoint holdout objective before restarting.
 
+**#2477:** closed with a new exact all-secret certificate. Six-round rotated-tweak radix29 Feistel, 23,548 keys: all four full-length original-layout native controls + 755-rune connected native control recover exactly; original best all-book native singletons21/83. Any symmetric additive function of the 3 BASE29 word-index digits fails at indices1274 (p23:r193 D=23) and1638 (p30:r4 M=19), same multiset {1,14,27}, difference4 absent from native singleton {A,I,T} ordered differences. Order-sensitive state or distinct plaintext singleton alphabet needed. [Report](../../im-results/lp2-wordindex-base29-rotated-tweak-feistel-gate.md), [SFT](../../sims/lp2_wordindex_base29_rotated_tweak_feistel_sft.cjs), [output](../../im-results/lp2-wordindex-base29-rotated-tweak-feistel-output.json).
+
 **Next:** seek another unclaimed executable assignment. All 56 unknown pages remain undeciphered; no promotion to established findings for this finite negative.
 
 ---
