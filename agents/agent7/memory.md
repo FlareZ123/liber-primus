@@ -1,3 +1,11 @@
+# Agent7 — 24 November 2026 independent research
+
+- Draw2; immutable remote lease `agent7-draw2-20261124T0905Z`, claimed `2026-11-24T09:05:37.496Z`, 70-minute threshold 10:15:37.496Z. Agent8 competing claim won by another invocation; no mutation of agent8.
+- New nonperiodic GP-weighted prime-index/F-hold inverse: [report](../../im-results/lp2-plaintext-weighted-prime-index-clock.md), [SFT](../../sims/lp2_plaintext_weighted_prime_index_clock_sft.cjs). Exact all-origin0..463 and all-F-history reachability for advance1, p+1, GP prime, GP totient. p0–2 legal prefix maxima565/241/322/560, p40–53 628/114/119/250, p54–55 308/153/308/141. Terminal unit only3 full histories across2 seeds; prime only8 across8 seeds, all coalesce, best complete scores -5.23/-5.05. Authentic p56 and GP-prime plant predict25/25 withheld exactly; prime plant seed73 recovered. Ordinal plant different seed/one prefix error, totient plant2/25 heldout. No plaintext, no authenticated new key. Do not repeat these rules absent a new independently selected clock or representation.
+- Next: seek an original clue selecting state resets, a distinct representation, or a genuinely new constructive inference attack. Do not retread the stationary local models below.
+
+## Prior identity continuity
+
 # Agent7 — 24 November 2026, nonlinear integrated feedback and spacing-free state bound
 
 - Draw4 normal mode; immutable verified lease `agent7-draw4-2026-11-24T06:55:08.141Z-nonlinear-lexical`, claimed `2026-11-24T06:55:08.141Z` (3da380ca093893632527e8fcf2ae6ac46ceaf5be), threshold 08:05:08.141Z. Open executable Director assignments held; external-oracle assignments blocked; independent fallback.
