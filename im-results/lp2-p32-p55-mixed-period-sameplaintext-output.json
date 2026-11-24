@@ -1,0 +1,932 @@
+{
+  "source": [
+    121,
+    76
+  ],
+  "controls": [
+    {
+      "name": "0_welcome",
+      "qa": 8,
+      "qb": 8,
+      "mode": "permutation",
+      "off": 5,
+      "holds": 2,
+      "generatedDoubleZero": true,
+      "distinctOffsets": 1,
+      "trueInGauge": null,
+      "candidates": null
+    },
+    {
+      "name": "0_wisdom",
+      "qa": 8,
+      "qb": 8,
+      "mode": "permutation",
+      "off": 16,
+      "holds": 1,
+      "generatedDoubleZero": true,
+      "distinctOffsets": 1,
+      "trueInGauge": null,
+      "candidates": null
+    },
+    {
+      "name": "0_koan_1",
+      "qa": 8,
+      "qb": 8,
+      "mode": "permutation",
+      "off": 27,
+      "holds": 1,
+      "generatedDoubleZero": true,
+      "distinctOffsets": 1,
+      "trueInGauge": null,
+      "candidates": null
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "qa": 8,
+      "qb": 8,
+      "mode": "permutation",
+      "off": 38,
+      "holds": 1,
+      "generatedDoubleZero": true,
+      "distinctOffsets": 1,
+      "trueInGauge": null,
+      "candidates": null
+    },
+    {
+      "name": "0_welcome",
+      "qa": 8,
+      "qb": 13,
+      "mode": "additive",
+      "off": 5,
+      "holds": 2,
+      "generatedDoubleZero": true,
+      "distinctOffsets": 1,
+      "trueInGauge": true,
+      "candidates": "7"
+    },
+    {
+      "name": "0_wisdom",
+      "qa": 8,
+      "qb": 13,
+      "mode": "additive",
+      "off": 16,
+      "holds": 1,
+      "generatedDoubleZero": true,
+      "distinctOffsets": 1,
+      "trueInGauge": true,
+      "candidates": "8"
+    },
+    {
+      "name": "0_koan_1",
+      "qa": 8,
+      "qb": 13,
+      "mode": "additive",
+      "off": 27,
+      "holds": 1,
+      "generatedDoubleZero": true,
+      "distinctOffsets": 1,
+      "trueInGauge": true,
+      "candidates": "13"
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "qa": 8,
+      "qb": 13,
+      "mode": "additive",
+      "off": 38,
+      "holds": 1,
+      "generatedDoubleZero": true,
+      "distinctOffsets": 1,
+      "trueInGauge": true,
+      "candidates": "9"
+    },
+    {
+      "name": "0_welcome",
+      "qa": 8,
+      "qb": 13,
+      "mode": "permutation",
+      "off": 5,
+      "holds": 2,
+      "generatedDoubleZero": true,
+      "distinctOffsets": 44,
+      "trueInGauge": null,
+      "candidates": null
+    },
+    {
+      "name": "0_wisdom",
+      "qa": 8,
+      "qb": 13,
+      "mode": "permutation",
+      "off": 16,
+      "holds": 1,
+      "generatedDoubleZero": true,
+      "distinctOffsets": 39,
+      "trueInGauge": null,
+      "candidates": null
+    },
+    {
+      "name": "0_koan_1",
+      "qa": 8,
+      "qb": 13,
+      "mode": "permutation",
+      "off": 27,
+      "holds": 1,
+      "generatedDoubleZero": true,
+      "distinctOffsets": 27,
+      "trueInGauge": null,
+      "candidates": null
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "qa": 8,
+      "qb": 13,
+      "mode": "permutation",
+      "off": 38,
+      "holds": 1,
+      "generatedDoubleZero": true,
+      "distinctOffsets": 42,
+      "trueInGauge": null,
+      "candidates": null
+    },
+    {
+      "name": "0_welcome",
+      "qa": 13,
+      "qb": 8,
+      "mode": "additive",
+      "off": 5,
+      "holds": 2,
+      "generatedDoubleZero": true,
+      "distinctOffsets": 1,
+      "trueInGauge": true,
+      "candidates": "7"
+    },
+    {
+      "name": "0_wisdom",
+      "qa": 13,
+      "qb": 8,
+      "mode": "additive",
+      "off": 16,
+      "holds": 1,
+      "generatedDoubleZero": true,
+      "distinctOffsets": 1,
+      "trueInGauge": true,
+      "candidates": "8"
+    },
+    {
+      "name": "0_koan_1",
+      "qa": 13,
+      "qb": 8,
+      "mode": "additive",
+      "off": 27,
+      "holds": 1,
+      "generatedDoubleZero": true,
+      "distinctOffsets": 1,
+      "trueInGauge": true,
+      "candidates": "13"
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "qa": 13,
+      "qb": 8,
+      "mode": "additive",
+      "off": 38,
+      "holds": 1,
+      "generatedDoubleZero": true,
+      "distinctOffsets": 1,
+      "trueInGauge": true,
+      "candidates": "9"
+    },
+    {
+      "name": "0_welcome",
+      "qa": 13,
+      "qb": 8,
+      "mode": "permutation",
+      "off": 5,
+      "holds": 2,
+      "generatedDoubleZero": true,
+      "distinctOffsets": 46,
+      "trueInGauge": null,
+      "candidates": null
+    },
+    {
+      "name": "0_wisdom",
+      "qa": 13,
+      "qb": 8,
+      "mode": "permutation",
+      "off": 16,
+      "holds": 1,
+      "generatedDoubleZero": true,
+      "distinctOffsets": 40,
+      "trueInGauge": null,
+      "candidates": null
+    },
+    {
+      "name": "0_koan_1",
+      "qa": 13,
+      "qb": 8,
+      "mode": "permutation",
+      "off": 27,
+      "holds": 1,
+      "generatedDoubleZero": true,
+      "distinctOffsets": 25,
+      "trueInGauge": null,
+      "candidates": null
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "qa": 13,
+      "qb": 8,
+      "mode": "permutation",
+      "off": 38,
+      "holds": 1,
+      "generatedDoubleZero": true,
+      "distinctOffsets": 45,
+      "trueInGauge": null,
+      "candidates": null
+    },
+    {
+      "name": "0_welcome",
+      "qa": 13,
+      "qb": 13,
+      "mode": "permutation",
+      "off": 5,
+      "holds": 2,
+      "generatedDoubleZero": true,
+      "distinctOffsets": 1,
+      "trueInGauge": null,
+      "candidates": null
+    },
+    {
+      "name": "0_wisdom",
+      "qa": 13,
+      "qb": 13,
+      "mode": "permutation",
+      "off": 16,
+      "holds": 1,
+      "generatedDoubleZero": true,
+      "distinctOffsets": 1,
+      "trueInGauge": null,
+      "candidates": null
+    },
+    {
+      "name": "0_koan_1",
+      "qa": 13,
+      "qb": 13,
+      "mode": "permutation",
+      "off": 27,
+      "holds": 1,
+      "generatedDoubleZero": true,
+      "distinctOffsets": 1,
+      "trueInGauge": null,
+      "candidates": null
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "qa": 13,
+      "qb": 13,
+      "mode": "permutation",
+      "off": 38,
+      "holds": 1,
+      "generatedDoubleZero": true,
+      "distinctOffsets": 1,
+      "trueInGauge": null,
+      "candidates": null
+    }
+  ],
+  "original": [
+    {
+      "qa": 8,
+      "qb": 8,
+      "mode": "permutation",
+      "placements": 46,
+      "states": 53,
+      "paths": 0,
+      "distinctOffsets": 0,
+      "unresolved": 0,
+      "bestPrefix": 29,
+      "reasons": {
+        "bijection": 53
+      },
+      "survivingMasks": [],
+      "first": null
+    },
+    {
+      "qa": 8,
+      "qb": 13,
+      "mode": "additive",
+      "placements": 46,
+      "states": 53,
+      "paths": 0,
+      "distinctOffsets": 0,
+      "unresolved": 0,
+      "bestPrefix": 22,
+      "reasons": {
+        "cycle": 53
+      },
+      "survivingMasks": [],
+      "first": null
+    },
+    {
+      "qa": 8,
+      "qb": 13,
+      "mode": "permutation",
+      "placements": 46,
+      "states": 53,
+      "paths": 45,
+      "distinctOffsets": 39,
+      "unresolved": 0,
+      "bestPrefix": 76,
+      "reasons": {
+        "bijection": 8
+      },
+      "survivingMasks": [
+        {
+          "off": 0,
+          "holds": []
+        },
+        {
+          "off": 1,
+          "holds": []
+        },
+        {
+          "off": 1,
+          "holds": [
+            41
+          ]
+        },
+        {
+          "off": 2,
+          "holds": []
+        },
+        {
+          "off": 3,
+          "holds": []
+        },
+        {
+          "off": 4,
+          "holds": []
+        },
+        {
+          "off": 4,
+          "holds": [
+            25
+          ]
+        },
+        {
+          "off": 5,
+          "holds": []
+        },
+        {
+          "off": 5,
+          "holds": [
+            25
+          ]
+        },
+        {
+          "off": 6,
+          "holds": []
+        },
+        {
+          "off": 7,
+          "holds": []
+        },
+        {
+          "off": 8,
+          "holds": []
+        },
+        {
+          "off": 11,
+          "holds": []
+        },
+        {
+          "off": 12,
+          "holds": []
+        },
+        {
+          "off": 13,
+          "holds": []
+        },
+        {
+          "off": 14,
+          "holds": []
+        },
+        {
+          "off": 14,
+          "holds": [
+            15
+          ]
+        },
+        {
+          "off": 15,
+          "holds": []
+        },
+        {
+          "off": 15,
+          "holds": [
+            15
+          ]
+        },
+        {
+          "off": 16,
+          "holds": []
+        },
+        {
+          "off": 17,
+          "holds": []
+        },
+        {
+          "off": 17,
+          "holds": [
+            25
+          ]
+        },
+        {
+          "off": 19,
+          "holds": []
+        },
+        {
+          "off": 20,
+          "holds": []
+        },
+        {
+          "off": 21,
+          "holds": []
+        },
+        {
+          "off": 23,
+          "holds": []
+        },
+        {
+          "off": 24,
+          "holds": []
+        },
+        {
+          "off": 26,
+          "holds": []
+        },
+        {
+          "off": 27,
+          "holds": []
+        },
+        {
+          "off": 28,
+          "holds": []
+        },
+        {
+          "off": 29,
+          "holds": []
+        },
+        {
+          "off": 30,
+          "holds": []
+        },
+        {
+          "off": 31,
+          "holds": []
+        },
+        {
+          "off": 32,
+          "holds": []
+        },
+        {
+          "off": 33,
+          "holds": []
+        },
+        {
+          "off": 34,
+          "holds": []
+        },
+        {
+          "off": 35,
+          "holds": []
+        },
+        {
+          "off": 36,
+          "holds": []
+        },
+        {
+          "off": 37,
+          "holds": []
+        },
+        {
+          "off": 38,
+          "holds": []
+        },
+        {
+          "off": 39,
+          "holds": []
+        },
+        {
+          "off": 40,
+          "holds": []
+        },
+        {
+          "off": 41,
+          "holds": []
+        },
+        {
+          "off": 42,
+          "holds": []
+        },
+        {
+          "off": 43,
+          "holds": []
+        }
+      ],
+      "first": {
+        "off": 0,
+        "holds": [],
+        "ok": true,
+        "components": 56,
+        "colors": 10,
+        "plaintextRelabelLowerBound": "47621141568000",
+        "representative": [
+          2,
+          2,
+          2,
+          5,
+          6,
+          6,
+          7,
+          1,
+          7,
+          7,
+          4,
+          8,
+          1,
+          1,
+          2,
+          3,
+          6,
+          8,
+          8,
+          1,
+          5,
+          4,
+          6,
+          5,
+          3,
+          9,
+          3,
+          7,
+          2,
+          3,
+          4,
+          2,
+          4,
+          6,
+          9,
+          9,
+          7,
+          7,
+          1,
+          8,
+          9,
+          3,
+          1,
+          3,
+          4,
+          1,
+          8,
+          1,
+          2,
+          1,
+          6,
+          3,
+          3,
+          5,
+          5,
+          7,
+          1,
+          4,
+          10,
+          4,
+          1,
+          7,
+          3,
+          4,
+          8,
+          5,
+          7,
+          2,
+          8,
+          2,
+          5,
+          6,
+          5,
+          5,
+          5,
+          6
+        ]
+      }
+    },
+    {
+      "qa": 13,
+      "qb": 8,
+      "mode": "additive",
+      "placements": 46,
+      "states": 53,
+      "paths": 0,
+      "distinctOffsets": 0,
+      "unresolved": 0,
+      "bestPrefix": 22,
+      "reasons": {
+        "cycle": 53
+      },
+      "survivingMasks": [],
+      "first": null
+    },
+    {
+      "qa": 13,
+      "qb": 8,
+      "mode": "permutation",
+      "placements": 46,
+      "states": 53,
+      "paths": 41,
+      "distinctOffsets": 36,
+      "unresolved": 0,
+      "bestPrefix": 76,
+      "reasons": {
+        "bijection": 12
+      },
+      "survivingMasks": [
+        {
+          "off": 0,
+          "holds": []
+        },
+        {
+          "off": 1,
+          "holds": []
+        },
+        {
+          "off": 1,
+          "holds": [
+            41
+          ]
+        },
+        {
+          "off": 2,
+          "holds": []
+        },
+        {
+          "off": 3,
+          "holds": []
+        },
+        {
+          "off": 4,
+          "holds": []
+        },
+        {
+          "off": 4,
+          "holds": [
+            25
+          ]
+        },
+        {
+          "off": 6,
+          "holds": []
+        },
+        {
+          "off": 7,
+          "holds": []
+        },
+        {
+          "off": 8,
+          "holds": []
+        },
+        {
+          "off": 9,
+          "holds": []
+        },
+        {
+          "off": 10,
+          "holds": []
+        },
+        {
+          "off": 11,
+          "holds": []
+        },
+        {
+          "off": 12,
+          "holds": []
+        },
+        {
+          "off": 13,
+          "holds": []
+        },
+        {
+          "off": 14,
+          "holds": []
+        },
+        {
+          "off": 14,
+          "holds": [
+            15
+          ]
+        },
+        {
+          "off": 16,
+          "holds": []
+        },
+        {
+          "off": 17,
+          "holds": []
+        },
+        {
+          "off": 17,
+          "holds": [
+            25
+          ]
+        },
+        {
+          "off": 19,
+          "holds": []
+        },
+        {
+          "off": 20,
+          "holds": []
+        },
+        {
+          "off": 23,
+          "holds": []
+        },
+        {
+          "off": 24,
+          "holds": []
+        },
+        {
+          "off": 25,
+          "holds": []
+        },
+        {
+          "off": 26,
+          "holds": []
+        },
+        {
+          "off": 27,
+          "holds": []
+        },
+        {
+          "off": 27,
+          "holds": [
+            15
+          ]
+        },
+        {
+          "off": 28,
+          "holds": []
+        },
+        {
+          "off": 30,
+          "holds": []
+        },
+        {
+          "off": 31,
+          "holds": []
+        },
+        {
+          "off": 32,
+          "holds": []
+        },
+        {
+          "off": 33,
+          "holds": []
+        },
+        {
+          "off": 34,
+          "holds": []
+        },
+        {
+          "off": 36,
+          "holds": []
+        },
+        {
+          "off": 37,
+          "holds": []
+        },
+        {
+          "off": 38,
+          "holds": []
+        },
+        {
+          "off": 40,
+          "holds": []
+        },
+        {
+          "off": 42,
+          "holds": []
+        },
+        {
+          "off": 43,
+          "holds": []
+        },
+        {
+          "off": 44,
+          "holds": []
+        }
+      ],
+      "first": {
+        "off": 0,
+        "holds": [],
+        "ok": true,
+        "components": 58,
+        "colors": 9,
+        "plaintextRelabelLowerBound": "2506375872000",
+        "representative": [
+          7,
+          5,
+          6,
+          1,
+          6,
+          4,
+          4,
+          1,
+          9,
+          8,
+          7,
+          5,
+          1,
+          1,
+          9,
+          4,
+          6,
+          3,
+          3,
+          3,
+          7,
+          2,
+          6,
+          2,
+          3,
+          7,
+          5,
+          1,
+          3,
+          3,
+          2,
+          6,
+          8,
+          4,
+          4,
+          2,
+          3,
+          4,
+          1,
+          3,
+          2,
+          7,
+          3,
+          7,
+          5,
+          6,
+          3,
+          5,
+          3,
+          9,
+          2,
+          5,
+          8,
+          7,
+          5,
+          5,
+          4,
+          2,
+          1,
+          6,
+          2,
+          4,
+          8,
+          8,
+          1,
+          1,
+          2,
+          8,
+          4,
+          5,
+          1,
+          7,
+          5,
+          6,
+          9,
+          1
+        ]
+      }
+    },
+    {
+      "qa": 13,
+      "qb": 13,
+      "mode": "permutation",
+      "placements": 46,
+      "states": 53,
+      "paths": 0,
+      "distinctOffsets": 0,
+      "unresolved": 0,
+      "bestPrefix": 28,
+      "reasons": {
+        "bijection": 53
+      },
+      "survivingMasks": [],
+      "first": null
+    }
+  ]
+}

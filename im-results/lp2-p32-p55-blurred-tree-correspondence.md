@@ -147,11 +147,34 @@ The major skeleton lines nevertheless align coarsely: mean bidirectional skeleto
 
 Reproducer: [`sims/lp2_p32_p55_tree_topology_sft.py`](../sims/lp2_p32_p55_tree_topology_sft.py). It records the fixed crops, source model, trunk-only registration, skeleton thresholds, graph counts, pruning and tolerance metrics. Tested with Python 3.12, NumPy 2.3.5, OpenCV 4.13.0, SciPy 1.17.0 and scikit-image 0.26.0.
 
+## Independent mixed-period shared-text recovery and all-phase-alphabet relaxation (Agent14, 24 November 2026)
+
+The two authentic keyword periods are 8 (WELCOME) and 13 (second KOAN). The earlier same-period q13 additive inverse does not address the possibility that the related trees mark the same passage under different historical periods. Freeze the full original 76-rune p55 tape (including its incoming carry), each of 46 forward contiguous placements within p32's 121 runes, the two mixed period orders, and the shared native transparent plaintext-F clock. Printed cuts are deliberately ignored as in #2615. No source identifies these periods for these pages; this is a concrete repeated-content hypothesis, not an authenticated clue.
+
+For consuming position t, a=P+K[t mod qA] and b=P+J[t mod qB] modulo29. Thus a−b fixes a weighted bipartite phase edge K−J. Graph propagation gives relative offsets: a nonzero cycle sum is a contradiction; in a connected phase component only a common additive gauge remains, and each consuming observation forbids the gauge making P=F. Enumerate every common double-zero hold mask, including consuming double zeros. A surviving connected graph yields at most 29 candidate plaintext tapes, each replayable under its inferred keys.
+
+The all-secret bijection relaxation uses equality closure: equal ciphertext labels under the same side/phase force equal plaintext, and different labels under that side/phase force different plaintext. Union-find gives equality classes; a conflict is an exact impossibility. Otherwise a 28-color witness on the inequality graph constructs non-F plaintext and injective partial phase maps extendable to full 29-symbol bijections. Greedy coloring failure is reported unresolved, never as impossibility. The same-period q8/q13 relaxation includes the earlier additive cases; their additive search is not repeated.
+
+| qA/qB | Receiver | Alignment/mask pairs | Full compatible masks | Distinct placements | Longest compatible prefix |
+|---|---|---:|---:|---:|---:|
+| 8/8 | permutation | 53 | 0 | 0 | 29 |
+| 8/13 | additive | 53 | 0 | 0 | 22 |
+| 8/13 | permutation | 53 | 45 | 39 | 76 |
+| 13/8 | additive | 53 | 0 | 0 | 22 |
+| 13/8 | permutation | 53 | 41 | 36 | 76 |
+| 13/13 | permutation | 53 | 0 | 0 | 28 |
+
+**Every mixed-period additive key fails**, with max compatible prefix22 in either direction, and arbitrary independent same-period permutations also fail. No complete additive candidate exists to score. Conversely mixed-period arbitrary phase maps are genuinely satisfiable: both give constructive 76-rune witnesses at offset0 with no true F holds, using 10 and 9 nonzero plaintext colors respectively. Globally relabeling those colors alone gives at least 47621141568000 and 2506375872000 distinct feasible tapes, before other colorings, key completions or placements. These are arbitrary graph assignments, not recovered language. Mixed-period arbitrary permutations have no identifying value without a source constraint selecting the phase alphabets or a new plaintext relation.
+
+Controls: four distinct solved native sections (WELCOME, WISDOM, KOAN1, LOSS OF DIVINITY), 121-rune excerpts, embedded 76-rune repeats, independent hidden keys/phases and forced consuming double zeros. All eight mixed additive plants locate only the true placement and retain exact native plaintext among 7–13 gauge candidates. All sixteen phase-permutation plants retain the true placement, mask and native plaintext; the eight same-period plants locate uniquely, whereas mixed-period plants retain 25–46 placements. No original coloring branch is unresolved. The controls are synthetic encipherments of genuine native text, not historical keys. Source blobs: 054f2a0f780b7d46901acbe3d9bf4f0ac1801165, 1b064ef6d85819b7d96adaff31a82d1ec551598f. Connected JS execution; no CI claim.
+
+[Read-only SFT](../sims/lp2_p32_p55_mixed_period_sameplaintext_sft.cjs) · [executed summary, all surviving mask coordinates and first witnesses](../im-results/lp2-p32-p55-mixed-period-sameplaintext-output.json). No unknown LP2 plaintext, key or destination. Retire the fixed mixed additive and same-period phase-bijection repeated-message routes; do not tune arbitrary mixed phase maps to manufacture prose.
+
 ## Cryptanalytic decision
 
 The paired p32/p55 trees remain a **genuine silhouette-level visual correspondence**, but the source-locked branch-junction test does not preserve an identical or stable graph. The simplest claim that the p55 image is a topology-preserving copy of p32 is therefore unsupported; the relation may be a shared motif, a heavily transformed rendering, or a filtered/degraded variant with lost fine branches. Neither interpretation selects a rune order, key, page reset or reversible cipher operation.
 
-The earlier 121→81→76 stationary-bijective same-message family remains excluded, and the naive 29-tip count remains threshold-unstable. No authentic unknown plaintext, key, or destination follows from this visual relation.
+The earlier 121→81→76 stationary-bijective same-message family remains excluded, and the naive 29-tip count remains threshold-unstable. Independent mixed period-8/13 additive repeated-text keys and same-period arbitrary phase bijections are excluded for all 46 forward placements with all common latent-F masks. Mixed-period arbitrary phase alphabets admit numerous non-language witnesses, so their feasibility supplies no identifying evidence or authenticated key. No authentic unknown plaintext, key, or destination follows from this visual relation.
 
 **Disposition:** retain the visual correspondence as provisional context, but close branch-count and branch-junction mining. Reopen only if an author-era vector/source plate, caption, or independently authenticated clue specifies a unique branch traversal or tells the solver how the image consumes original rune material. Do not tune image thresholds, count branches until 29/43 appears, or attempt another ciphertext inverse without that selector.
 
