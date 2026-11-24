@@ -141,6 +141,29 @@ The exact source polynomial is **not** a permutation of the GP29 alphabet: it re
 
 A new separate [complete original-input gate](lp2-p7-quartic-nonlinear-feistel-p8-original-sft.md) puts the exact same source polynomial inside a standard nonlinear **GP29 two-rune Feistel permutation**, allowing ± signs and 1,2,3,4,5,8 rounds on both the untouched full p8+p9 incoming 256 runes and p8 black243+p9 first1=244 runes. Across **24 exact reversible original decodes**, all output IoCs are **0.032414–0.037286**, with no native language signal; all original and source-native plants reencrypt exactly. This excludes these frozen direct nonlinear recipients while retaining the independent p7 fixedpoint/derivative handoff as an unexplained source relationship. The same [consolidated original-input gate](lp2-p7-quartic-nonlinear-feistel-p8-original-sft.md) now independently tests the unkeyed **29-step GF29 polynomial evaluation key**, `K_t=P(t mod29)`, on both 244/256-rune receivers, each ± sign and t=0/1. All eight direct inverse outputs are nonprose (IoC0.032922–0.037037); with the real solved-p56 plaintext-F nonconsuming rule, every possible skip history is arithmetically forbidden (first contradiction at original positions 2–86, depending on fixed origin/sign/receiver). [Second read-only SFT](../sims/lp2_p7_quartic_29step_Ftransparent_original_sft.cjs). No authentic new key or plaintext follows.
 
+## Base29 fixed-point lifts: exact source-adjacent decoder and historical F-rule exclusion (Agent43, 24 November)
+
+The signed 2013 BASE29 operation supplies a period-authentic radix; the p7 red products and p8 title supply two actual finite-field fixed-point seeds. As a distinct prospective long-key construction, treat the five GP29 coefficient representatives as ordinary integers and lift the two roots of
+
+`Q(X)=P(X)-X=2X⁴+15X³+8X²+25X+11`
+
+from GF(29) to the 29-adic integers. Both roots are simple: Q'(4)=16 and Q'(3)=27 modulo29. Each therefore has exactly one compatible lift to each higher power of29. Compute it by modular Newton iteration `x' = x - Q(x)/Q'(x) mod M²` from a root modulo M. This uses a deterministic unbounded BASE29 key with no fitted digits. It is mathematically source-constrained **conditional on** choosing the ordinary nonnegative coefficient lifts and the 29-adic operation; neither is an authenticated Cicada instruction. This differs from the earlier p50-table/GF841 derivative experiment [Hensel derivative stream](lp2-hensel-derivative-stream.md).
+
+Read the lifted root digits least-significant first, beginning with the physically printed p8 word-product seeds. First16 digits for root4: `4 9 8 9 7 23 12 10 3 8 12 7 27 0 22 27`; for root3: `3 27 28 19 27 0 22 1 5 8 18 8 27 28 8 19`. Test each single stream and their 4,3 interleave, both additive directions, continuous from the first black p8 rune. The exact 11,070-rune receiver includes all subsequent physical p9–55 runes (including later rubrics; p50 has none). No resets or phases are chosen. Initial p8–14 body has1,717 runes and separate pp40–53 holdout has3,008.
+
+| Stream | Decode sign | pp8–14 IoC | pp40–53 IoC | First impossible F-rule offset (zero-based) |
+|---|---:|---:|---:|---:|
+| Root4 | − | .03439620 | .03441549 | 1 |
+| Root4 | + | .03439416 | .03445418 | 71 |
+| Root3 | − | .03458762 | .03448602 | 47 |
+| Root3 | + | .03442946 | .03455722 | 17 |
+| Interleave 4,3 | − | .03439077 | .03448978 | 95 |
+| Interleave 4,3 | + | .03429370 | .03447209 | 21 |
+
+No complete direct output shows a native-language signal (solved p57 IoC .06270997). All six direct decoders forward-replay the complete original tape. More decisively, the authentic solved-p56 plaintext-F nonconsuming grammar cannot decode even the first 96 body runes under **any** of the six specific streams. Maintain the exact reachable key-clock set: for C=0, allow literal F with unchanged clock; for every C, allow a consumed key iff the resulting plaintext is nonzero. Histories at equal clock are future-equivalent, so merging states is exhaustive, without heuristic pruning. Every stream reaches an empty set at the stated offset. Maximum frontier size on original is 1–2 clocks. The same six direct encoders recover a 1,717-rune native solved-p57 repeat plant exactly; for the F-rule plants every true clock stays reachable across all1,717 slots, including54 literal Fs. This is a strict contradiction of these F-transparent transfers, independent of a language scorer.
+
+[Read-only CommonJS SFT](../sims/lp2_p7_hensel_fixedpoints_original_sft.cjs) preserves the source-product extraction, exact lifts, roots and derivative checks, full original replay, independent holdout, and complete F-clock reachability. Calculations executed against canonical repository ciphertext in V8; no GitHub Actions run is claimed. **Decision:** retire the exact two lifted fixed-point digits and their printed-order interleave as direct continuous additive or historical F-transparent keys. Do not tune additional phases, coefficient lifts or radix conventions without an independent authored selector. The source-local p7/p8 relation remains a candidate clue, not a recovered unknown plaintext or key.
+
 ## Reproduction and decision
 
 - [Windows Node22 read-only original-source SFT](../sims/lp2_p7_p8_original_red_polynomial_fixedpoint_sft.cjs), **[CI PASS, 22 Nov 2026](https://github.com/FlareZ123/liber-primus/actions/runs/45047067228)**. Frozen output verifies all polynomial identities, p8 red runes, source-word inventory, feature and direction controls, the first/last p53 continuation, GF29² root order and all 255 p8 ciphertext runes.
