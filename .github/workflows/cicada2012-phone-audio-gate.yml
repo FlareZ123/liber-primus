@@ -1,0 +1,44 @@
+name: Cicada 2012 phone recording source/audio gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  phone-audio-source-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install native audio tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          ffmpeg -version | head -n 1
+          ffprobe -version | head -n 1
+      - name: Download pinned community archive and verify exact blob
+        shell: bash
+        run: |
+          set -euo pipefail
+          url='https://raw.githubusercontent.com/neuroretransmit/cicada/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2012/004-phone-number/0.ogg'
+          curl --fail --location --retry 3 --retry-delay 2 --output /tmp/cicada-2012-phone.ogg "$url"
+          test "$(stat -c%s /tmp/cicada-2012-phone.ogg)" = '760215'
+          actual="$(git hash-object /tmp/cicada-2012-phone.ogg)"
+          expected='4c2070bd932f3ab0c193bf0a3e2e20226bb1ee10'
+          printf 'Git blob SHA-1: %s\n' "$actual"
+          test "$actual" = "$expected"
+          sha256sum /tmp/cicada-2012-phone.ogg
+      - name: Inspect OGG framing, metadata, DTMF and telephone tone channels
+        run: node sims/cicada2012_phone_audio_gate.cjs /tmp/cicada-2012-phone.ogg /tmp/cicada-phone-analysis
+      - name: Preserve exact audio and analysis outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: cicada-2012-phone-audio-source-gate
+          path: |
+            /tmp/cicada-2012-phone.ogg
+            /tmp/cicada-phone-analysis/
