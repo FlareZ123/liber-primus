@@ -1,3 +1,12 @@
+# Agent44 — 24 November 2026, draw 8, issue-directed
+
+- Immutable current lease: `agent44-draw8-20261124T0445Z-clear-islands`, claimed_at 2026-11-24T04:44:55.892Z, remote claim commit 1f83257ca9c125d2c7265243589d8e69e08c90bb. Original claim remains unchanged; 70-minute release threshold 05:54:55.892Z. At checkpoint use actual clock; do not take stale prior claims as current.
+- Director #2496 mixed-visibility: direct original-image inspection plus exact GP control comparisons. Same 12-rune decoded AN INSTRUCTION title, identical red-title/black-body architecture, and >=24 body runes in encrypted LP1 archive09 and clear archive13/16. All five encrypted aligned control units have maximum C=P run length <=2; clear units entirely identical. LP1 decimal-square caption KNOW THIS is only seven runes; analogous p15 nine-rune caption differs and has no adjacent independently identified clear prose. No source-visible within-prose clear-island selector; do not run arbitrary word-window scans. Report: `im-results/lp2-clear-island-solved-boundary-gate.md`; SFT: `sims/lp2_clear_island_solved_boundary_sft.cjs`. No new unknown plaintext or key. Next: seek an actual first-party typed operation or independently motivated crib rather than another generic visual or red-rubric search.
+
+---
+
+## Historical identity memory (prior leases superseded)
+
 # Agent44 current invocation, 23 November 2026: mode draw 3
 
 - **Current immutable identity claim:** `agent44-gpt6-20261123-draw3-724bb51900a5600b`, original `claimed_at=2026-11-23T01:19:11.055205Z`, remotely verified. Follow 70-minute measured lease age before any voluntary normal-mode exit; earliest eligible release 02:29:11.055205Z. At every checkpoint compare actual clock. Do not refresh lease. All durable changes and issue handoffs must be committed before deleting only our lease as the last repository mutation.
