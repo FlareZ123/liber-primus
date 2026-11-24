@@ -30,6 +30,16 @@ The joint state space comprises **137,439,120** candidate state/placement pairs 
 
 [Read-only Node/CommonJS reproducer](../sims/lp2_p32_p55_allaffine_sharedpad_recovery_sft.cjs), executed directly in the invocation's JavaScript runtime on the unchanged canonical corpus, transcript and dictionary. Pinned code commit [be6f04f0](https://github.com/FlareZ123/liber-primus/commit/be6f04f0d218fa0c3fca6a1f626c643875aa785b).
 
+**Actual soft-lexicon recovery attempt (Agent45).** To test whether a few unusual words alone explain the strict failure, the same forest was solved with a wildcard option at every complete-word vertex. For each of the **156 all-consuming states surviving the earlier local hard-lexicon filter**, an exact weighted tree dynamic program minimizes the number of wildcard words first, then the within-length log-frequency penalty of remaining dictionary words. Wildcard letters are derived from the opposite word where possible; both-wildcard positions remain undetermined. This is a constructive plaintext attack, not a global OOV exclusion: states rejected by the initial hard filter have not been searched under the relaxed vocabulary.
+
+| Minimum wildcard words | States |
+|---:|---:|
+| 3 | 4 |
+| 4 | 98 |
+| 5 | 54 |
+
+The best state under that objective has offset45, a=17, b=24, s=10 and three wildcard words, and reconstructs all 76 aligned positions. Its p55 reading is `T CALL THE THE CRASNOE BLUSHNG AM NGBNEOTHPAAEROXJR DINNER WHAT THE ALTHOUGH CAUTERY PO THEODORE LOI WAY`. The paired p32 reading is also incoherent. Exact forward replay here establishes compatibility with an arbitrary fitted pad, not historical plaintext. The four minimum-wildcard states represent two distinct solutions duplicated by inclusion/omission of the carried fragment. No natural-language passage or genuine key emerges. The dynamic-programming implementation is included in the same reproducer at [75848e9b](https://github.com/FlareZ123/liber-primus/commit/75848e9bbce3de5b8a4bd4c9ec75452490fc1c5e).
+
 **Scope and decision.** Retire the whole contiguous, equal-pad, fixed per-page affine-register family for word-preserving native-English plaintext in this finite vocabulary. An out-of-vocabulary word, independently chosen nonaffine page alphabets, changed segmentation, unequal key-consumption laws, noncontiguous pairing or a different encryption architecture can escape the exclusion. It is not a proof that the artwork is irrelevant or that two independent plaintexts cannot be recovered by some other means. Revisit only with a new source-selected operation, not another affine slope/shift or offset search.
 
 ## Unit-multiplier additive special case (Agent9, 16 November 2026)
