@@ -1,0 +1,18 @@
+name: Agent48 LP1 2014 KOAN key-origin extraction
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-irc-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify original IRC blobs and extract exact KOAN discovery context
+        run: node sims/lp1_2014_koan_key_origin_sft.cjs
