@@ -42,4 +42,4 @@ function audit(tx,c,ink){
   check(scenarios[0].impossible===false&&scenarios.slice(1,5).every(s=>s.impossible),"expected gate");
   return {source:{n,t,k,h,red,spans,marks},carrierBits:{globalFine:log(FG),perPageFine:log(FP),globalAllTypes:log(TG),perPageAllTypes:log(TP)},sourceDeficitBits:{global:log(U)-log(G),pageQuotas:log(U)-log(P)},scenarios,perPage:{fineFailures:perPage.filter(x=>x.fineBits).map(x=>x.page),allTypeFailures:perPage.filter(x=>x.allTypeBits).map(x=>x.page),fineIndependentExtraBits:sum(perPage.map(x=>x.fineBits)),allTypeIndependentExtraBits:sum(perPage.map(x=>x.allTypeBits))},toyCounts:toys.length};
 }
-console.log(JSON.stringify(audit(read("resources/lp2-transcription.txt"), JSON.parse(read("resources/liber-primus/lp2-corpus.json")), JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"))),null,2));
+console.log(JSON.stringify(audit(read("resources/transcriptions/lp2-image-corrected.txt"), JSON.parse(read("resources/liber-primus/lp2-corpus.json")), JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"))),null,2));

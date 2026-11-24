@@ -118,14 +118,14 @@ Let n be the total runes, H=55 free page heads, t=n−H eligible transitions, K=
 
 Fix the positions of the coarse separator classes “contains a period” and “does not contain a period”, while permitting all distinct assignments of each class's observed transcription-label multiset. The number of possibilities is the product of the two class multinomials. This is a transcription-level grouping, not an assertion that every rare label is a separate physical symbol or a linguistic punctuation type; permitting them all overcounts possible choices.
 
-- Across the whole corpus the fine-label carrier is 77.765302 bits; with per-page label counts fixed it is only **18.831703 bits**. For comparison the unrestricted reassignment of all six label types at fixed boundary positions has 979.968742 global or 789.935534 per-page bits.
+- Across the whole corpus the fine-label carrier is 77.565402 bits; with per-page label counts fixed it is only **18.831703 bits**. For comparison the unrestricted reassignment of all six label types at fixed boundary positions has 971.666436 global or 783.351197 per-page bits.
 - The prior deliberately generous **designated-site** ink allowance is 213 red-rune binary choices plus 31 fixed large marks with four possible states, or 275 bits. The span-level version gives 78 bits. These are bounds only for those fixed-site models, not for freely moving ink positions.
 - The 55-bit optional line contribution is the previously tested binary residual-line-end compositor model; grant all these bits independently, even if the channels overlap.
 
 | Frozen carrier and quota | Remaining deficit (bits) | Minimum additional binary bits |
 |---|---:|---:|
-| Global quota; pooled fine labels; generous ink | −27.315 | 0 |
-| Global quota; pooled fine labels; span-level ink + 55 line bits | 114.685 | 115 |
+| Global quota; pooled fine labels; generous ink | −27.115 | 0 |
+| Global quota; pooled fine labels; span-level ink + 55 line bits | 114.885 | 115 |
 | Page quotas; page-local fine counts; generous ink | 136.729 | 137 |
 | Page quotas; page-local fine counts; generous ink + 55 line bits | 81.729 | 82 |
 | Global quota; jointly recover arbitrary same-inventory fine labels; generous ink | 50.450 | 51 |
@@ -136,7 +136,7 @@ A negative deficit means capacity survives; it is not positive cipher evidence. 
 
 With independently decoded pages and no other side channel, **42/55** pages fail even with their own generously counted ink choices. Their summed minimum binary deficits are 333 bits. Even if all six punctuation types are freely reassigned at the fixed boundary locations (without preserving coarse stop positions), **six pages (13, 20, 21, 37, 49, 51)** still fail; they need at least 20 additional binary bits in total across independent page channels. This local impossibility does not imply a pooled global all-type channel fails.
 
-Exact BigInt cardinality comparisons and 20 exhaustively counted ternary toy domains validate the formulas; all 12,956 source rune positions were cross-checked against the canonical corpus. [Standalone reproducer](../sims/lp2_no_repeat_punctuation_identity_capacity_sft.cjs) and [raw output](lp2-no-repeat-punctuation-identity-capacity.json). The test uses the existing annotation inventory including the corrected 13-rune p0 heading. No physical distinction is inferred from a rare transcription delimiter, and no decoder is authenticated. Retire only these fixed coarse-position, quota and carrier regimes; arbitrary moved boundaries, a compressed plaintext register, a pooled generous fixed-site ink carrier, and an authentic external side channel are outside the negative conclusion.
+Exact BigInt cardinality comparisons and 20 exhaustively counted ternary toy domains validate the formulas; all 12,956 source rune positions were cross-checked against the canonical corpus. [Standalone reproducer](../sims/lp2_no_repeat_punctuation_identity_capacity_sft.cjs) and [raw output](lp2-no-repeat-punctuation-identity-capacity.json). This new section uses the image-corrected transcription (p8/p40 false periods become ordinary dividers) and the existing annotation inventory including the corrected 13-rune p0 heading. The older sections retain their explicitly legacy transcription inventory. The page-local fine-label bound and every integer decision are unchanged by the two source corrections. No physical distinction is inferred from a rare transcription delimiter, and no decoder is authenticated. Retire only these fixed coarse-position, quota and carrier regimes; arbitrary moved boundaries, a compressed plaintext register, a pooled generous fixed-site ink carrier, and an authentic external side channel are outside the negative conclusion.
 
 ## Per-page measurements
 

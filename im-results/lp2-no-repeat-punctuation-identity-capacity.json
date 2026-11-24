@@ -4,8 +4,8 @@
     "t": 12901,
     "k": 86,
     "h": {
-      "-": 2708,
-      ".": 153,
+      "-": 2710,
+      ".": 151,
       ".&": 6,
       "--": 1,
       ".&$": 1,
@@ -16,10 +16,10 @@
     "marks": 31
   },
   "carrierBits": {
-    "globalFine": 77.76530183307142,
+    "globalFine": 77.5654017499942,
     "perPageFine": 18.831703099214298,
-    "globalAllTypes": 979.9687423008352,
-    "perPageAllTypes": 789.9355336017946
+    "globalAllTypes": 971.6664358425281,
+    "perPageAllTypes": 783.3511974067229
   },
   "sourceDeficitBits": {
     "global": 325.4502541839829,
@@ -28,13 +28,13 @@
   "scenarios": [
     {
       "name": "global fine labels, designated red sites",
-      "deficitBits": -27.315047649091866,
+      "deficitBits": -27.11514756600809,
       "additionalBinaryBits": 0,
       "impossible": false
     },
     {
       "name": "global fine labels, span-level ink plus 55 binary line residuals",
-      "deficitBits": 114.68495235090813,
+      "deficitBits": 114.88485243399191,
       "additionalBinaryBits": 115,
       "impossible": true
     },
