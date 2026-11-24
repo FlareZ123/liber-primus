@@ -428,3 +428,13 @@ All 56 unknown LP2 pages remain unsolved. The most productive next work should s
 - The existing direct GP0 and T[GP0] p56 start mappings remain negative (p13 only and none). Do not repeat these variants.
 - Updated the relevant reports: `im-results/lp2-terminal180-76carry-p55-original-inverse.md` and `im-results/lp2-signed43-p50-tree-selfpointer-original-gate.md`. Base60 vs drop-f base59 remains unresolved; the current tests use conventional base60 bytes.
 - Next work should seek a genuinely new source-selected receiver or cipher mechanism, not another unconstrained table lookup, KDF, or key-start mapping.
+
+
+## 2026-11-24 — 2013 Instar whitespace payload and p56 hash candidate
+
+- Retrieved the exact archived `2013/003-twitter/gematria.jpg.asc` from `neuroretransmit/cicada` at pinned commit `ade9a02889ef8acbc8cde8edbfd0a785c369f4c3`.
+- Its cleartext body has four nonempty whitespace-only lines of 240, 200, 80 and 32 characters (552 bits = 69 bytes). Space=0, tab=1, MSB-first, decoded independently per line, yields the known message: `Come to emiwp4muu2ktwknf.onion / We shall await you there. / Good luck. / 3301`. This is a positive-control recovery of the known 2013 first-onion address, not a new LP2 plaintext. Alternative polarity and LSB-first do not yield text.
+- Important authenticity caveat: in a PGP cleartext-signed message whose lines consist only of whitespace, standard canonicalization strips trailing spaces/tabs. Treat the bit pattern as archive-derived, not as cryptographically authenticated, unless raw-byte signature verification establishes otherwise.
+- Added `sims/lp2_p56_2013_final_invitation_sha512_gate.cjs` and workflow `.github/workflows/p56-2013-final-invitation-sha512-gate.yml`, run `45347563195`. Nine SHA-512 candidates (raw gematria armor, decoded message with three line serializations, 2013 final invitation raw/canonical body, two original stage files, and participant README) produced zero matches to p56's 128-hex target.
+- The earlier p56 hash report `im-results/lp2-p56-2013-original-onion-copies-hash-gate.md` now should consolidate the original 42 comparisons and this nine-candidate follow-up. The 2013 final invitation files are not original HTTP response bytes; no target preimage was recovered.
+- The 2013 final onion chain is a historical callback, not evidence that its final address is the LP2 hash target. Do not repeat these preserved-file hash checks without new original bytes or a source-selected serialization.
