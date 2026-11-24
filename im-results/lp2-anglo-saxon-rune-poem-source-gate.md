@@ -117,3 +117,5 @@ Run with Node.js 22 from the repository root:
 `node sims/lp2_anglo_saxon_rune_poem_wordcount_sft.cjs`
 
 The SFT asserts the exact 29-rune corpus/source match, first-29-prime assignment, original 55-page/12,956-rune parse, prime-Vigenere output statistics, and exact recovery of a 12,956-rune authentic solved-GP29 plant.
+
+The independent p0 twig-to-TH selector supplies one specific stanza extraction rather than an arbitrary stanza sweep: [direct Thorn-stanza key receiver](lp2-p0-thorn-transparent-prime-origin-gate.md#direct-thorn-stanza-key-receiver). The three fixed cyclic keys are negative on the opening black body; all nine literal-hold versions die within 34 runes. This does not identify the poem as an authentic cipher source.

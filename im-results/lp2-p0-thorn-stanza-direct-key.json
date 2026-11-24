@@ -1,0 +1,527 @@
+{
+  "stanza": "Ðorn byþ ðearle scearp; ðegna gehwylcum\nanfeng ys yfyl, ungemetum reþe\nmanna gehwelcum, ðe him mid resteð.",
+  "english": "The thorn is exceedingly sharp, an evil thing for any knight to touch, uncommonly severe on all who sit among them.",
+  "keys": [
+    {
+      "name": "Old English phonetic eth→TH",
+      "K": [
+        2,
+        3,
+        4,
+        9,
+        17,
+        26,
+        2,
+        2,
+        28,
+        4,
+        20,
+        18,
+        15,
+        5,
+        28,
+        4,
+        13,
+        2,
+        18,
+        6,
+        9,
+        24,
+        6,
+        18,
+        8,
+        7,
+        26,
+        20,
+        5,
+        1,
+        19,
+        24,
+        9,
+        0,
+        18,
+        21,
+        26,
+        15,
+        26,
+        0,
+        26,
+        20,
+        1,
+        21,
+        18,
+        19,
+        18,
+        16,
+        1,
+        19,
+        4,
+        18,
+        2,
+        18,
+        19,
+        24,
+        9,
+        9,
+        24,
+        6,
+        18,
+        8,
+        7,
+        18,
+        20,
+        5,
+        1,
+        19,
+        2,
+        18,
+        8,
+        10,
+        19,
+        19,
+        10,
+        23,
+        4,
+        18,
+        15,
+        16,
+        18,
+        2
+      ],
+      "period": 82
+    },
+    {
+      "name": "Old English eth→D",
+      "K": [
+        23,
+        3,
+        4,
+        9,
+        17,
+        26,
+        2,
+        23,
+        28,
+        4,
+        20,
+        18,
+        15,
+        5,
+        28,
+        4,
+        13,
+        23,
+        18,
+        6,
+        9,
+        24,
+        6,
+        18,
+        8,
+        7,
+        26,
+        20,
+        5,
+        1,
+        19,
+        24,
+        9,
+        0,
+        18,
+        21,
+        26,
+        15,
+        26,
+        0,
+        26,
+        20,
+        1,
+        21,
+        18,
+        19,
+        18,
+        16,
+        1,
+        19,
+        4,
+        18,
+        2,
+        18,
+        19,
+        24,
+        9,
+        9,
+        24,
+        6,
+        18,
+        8,
+        7,
+        18,
+        20,
+        5,
+        1,
+        19,
+        23,
+        18,
+        8,
+        10,
+        19,
+        19,
+        10,
+        23,
+        4,
+        18,
+        15,
+        16,
+        18,
+        23
+      ],
+      "period": 82
+    },
+    {
+      "name": "Dickins translation",
+      "K": [
+        2,
+        18,
+        2,
+        3,
+        4,
+        9,
+        10,
+        15,
+        18,
+        14,
+        5,
+        18,
+        18,
+        23,
+        21,
+        20,
+        26,
+        15,
+        8,
+        24,
+        4,
+        13,
+        24,
+        9,
+        18,
+        1,
+        10,
+        20,
+        2,
+        21,
+        0,
+        3,
+        4,
+        24,
+        9,
+        26,
+        5,
+        9,
+        10,
+        6,
+        8,
+        16,
+        16,
+        3,
+        16,
+        3,
+        1,
+        5,
+        8,
+        1,
+        9,
+        5,
+        3,
+        19,
+        19,
+        3,
+        9,
+        20,
+        26,
+        15,
+        18,
+        1,
+        18,
+        4,
+        18,
+        3,
+        9,
+        24,
+        20,
+        20,
+        7,
+        8,
+        3,
+        15,
+        10,
+        16,
+        24,
+        19,
+        3,
+        21,
+        2,
+        18,
+        19
+      ],
+      "period": 83
+    }
+  ],
+  "results": [
+    {
+      "name": "Old English phonetic eth→TH",
+      "period": 82,
+      "Q": [],
+      "fitLegal": 351,
+      "fitPeak": 1,
+      "fitScore": -3.5722943486188155,
+      "fitPreview": "FHTHTEOXLUIIAEFNGEOAEJNINGSNGXMBTHAJYRYDOEFEOOEIIAGFXLOEOYNIAEMEAAENIAIAAJYBEOMNGHFIEOSIAEOTHDP",
+      "holdLegal": 365,
+      "holdPeak": 1,
+      "holdScore": -3.561779421631109,
+      "holdPreview": "OCCGIAMCGOEOTHXNGIAWCRACRDEAOEHNGSAXTHTHBBTHTHLSONYMIMOETHEOTTBAAHENTTXBCMTIAMAEOTHPEOGTHW"
+    },
+    {
+      "name": "Old English phonetic eth→TH",
+      "period": 82,
+      "Q": [
+        0
+      ],
+      "fitLegal": 0,
+      "fitPeak": 1
+    },
+    {
+      "name": "Old English phonetic eth→TH",
+      "period": 82,
+      "Q": [
+        2
+      ],
+      "fitLegal": 34,
+      "fitPeak": 2
+    },
+    {
+      "name": "Old English phonetic eth→TH",
+      "period": 82,
+      "Q": [
+        0,
+        2
+      ],
+      "fitLegal": 28,
+      "fitPeak": 2
+    },
+    {
+      "name": "Old English eth→D",
+      "period": 82,
+      "Q": [],
+      "fitLegal": 351,
+      "fitPeak": 1,
+      "fitScore": -3.5777169454168187,
+      "fitPreview": "HHTHTEOXLNIIAEFNGEOAEJNENGSNGXMBTHAJYRYDOEFEOOEIIAGFXLOEOYNIAEMEAAENIAIAAJYBEOMNGHFIEOSIAEOTHTHP",
+      "holdLegal": 365,
+      "holdPeak": 1,
+      "holdScore": -3.5663645466922533,
+      "holdPreview": "OCCGIAMCGOEOTHXNGIAWCRACRDEAOEHNGSAXTHTHBBTHTHLSONYMIMOETHEOATBAAHENTTXBCIAAIAMAEOTHPLGTHW"
+    },
+    {
+      "name": "Old English eth→D",
+      "period": 82,
+      "Q": [
+        0
+      ],
+      "fitLegal": 21,
+      "fitPeak": 2
+    },
+    {
+      "name": "Old English eth→D",
+      "period": 82,
+      "Q": [
+        2
+      ],
+      "fitLegal": 34,
+      "fitPeak": 2
+    },
+    {
+      "name": "Old English eth→D",
+      "period": 82,
+      "Q": [
+        0,
+        2
+      ],
+      "fitLegal": 28,
+      "fitPeak": 2
+    },
+    {
+      "name": "Dickins translation",
+      "period": 83,
+      "Q": [],
+      "fitLegal": 351,
+      "fitPeak": 1,
+      "fitScore": -3.5064486489213182,
+      "fitPreview": "FOEROEAETHEOBLBRFEDOAAEYTHYYAEUYNGUIAYWGPXCBTHCMEOTHNWYSJYPUNGXRJYDJEBUBEOHWEAYBFRYCJ",
+      "holdLegal": 365,
+      "holdPeak": 1,
+      "holdScore": -3.5404577479258776,
+      "holdPreview": "YNEAHNGCSWMIOILIAOEWTTANNAEICFJBSAECIANGHILGEXFPNGYXIAFTHTIDWNGABMMBEATHSNNGTUYYEOTHTHE"
+    },
+    {
+      "name": "Dickins translation",
+      "period": 83,
+      "Q": [
+        0
+      ],
+      "fitLegal": 0,
+      "fitPeak": 1
+    },
+    {
+      "name": "Dickins translation",
+      "period": 83,
+      "Q": [
+        2
+      ],
+      "fitLegal": 16,
+      "fitPeak": 2
+    },
+    {
+      "name": "Dickins translation",
+      "period": 83,
+      "Q": [
+        0,
+        2
+      ],
+      "fitLegal": 16,
+      "fitPeak": 4
+    }
+  ],
+  "plants": [
+    {
+      "name": "Old English phonetic eth→TH",
+      "Q": [],
+      "sec": 5,
+      "n": 249,
+      "exact": 249,
+      "score": -2.578267415168223,
+      "peak": 1
+    },
+    {
+      "name": "Old English phonetic eth→TH",
+      "Q": [
+        0
+      ],
+      "sec": 6,
+      "n": 89,
+      "exact": 89,
+      "score": -2.3228488621139225,
+      "peak": 6
+    },
+    {
+      "name": "Old English phonetic eth→TH",
+      "Q": [
+        2
+      ],
+      "sec": 6,
+      "n": 89,
+      "exact": 89,
+      "score": -2.3228488621139225,
+      "peak": 13
+    },
+    {
+      "name": "Old English phonetic eth→TH",
+      "Q": [
+        0,
+        2
+      ],
+      "sec": 0,
+      "n": 184,
+      "exact": 175,
+      "score": -2.7332609132802053,
+      "peak": 22
+    },
+    {
+      "name": "Old English eth→D",
+      "Q": [],
+      "sec": 5,
+      "n": 249,
+      "exact": 249,
+      "score": -2.578267415168223,
+      "peak": 1
+    },
+    {
+      "name": "Old English eth→D",
+      "Q": [
+        0
+      ],
+      "sec": 6,
+      "n": 89,
+      "exact": 89,
+      "score": -2.3228488621139225,
+      "peak": 4
+    },
+    {
+      "name": "Old English eth→D",
+      "Q": [
+        2
+      ],
+      "sec": 6,
+      "n": 89,
+      "exact": 89,
+      "score": -2.3228488621139225,
+      "peak": 13
+    },
+    {
+      "name": "Old English eth→D",
+      "Q": [
+        0,
+        2
+      ],
+      "sec": 0,
+      "n": 184,
+      "exact": 175,
+      "score": -2.7332609132802053,
+      "peak": 22
+    },
+    {
+      "name": "Dickins translation",
+      "Q": [],
+      "sec": 6,
+      "n": 89,
+      "exact": 89,
+      "score": -2.3228488621139225,
+      "peak": 1
+    },
+    {
+      "name": "Dickins translation",
+      "Q": [
+        0
+      ],
+      "sec": 0,
+      "n": 184,
+      "exact": 184,
+      "score": -2.734543860799409,
+      "peak": 12
+    },
+    {
+      "name": "Dickins translation",
+      "Q": [
+        2
+      ],
+      "sec": 0,
+      "n": 184,
+      "exact": 175,
+      "score": -2.724281250727939,
+      "peak": 12
+    },
+    {
+      "name": "Dickins translation",
+      "Q": [
+        0,
+        2
+      ],
+      "sec": 1,
+      "n": 249,
+      "exact": 249,
+      "score": -2.8305443222592452,
+      "peak": 8
+    }
+  ]
+}

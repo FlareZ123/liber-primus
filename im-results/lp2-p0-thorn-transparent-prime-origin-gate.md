@@ -76,3 +76,17 @@ Freeze 96 matched 716-rune native literary windows (32 each Shakespeare, Emerson
 Where separate minima overlap the intervals (especially q8 dual hold and q13 TH only), the per-window joint gate still excludes all controls; do not infer separation solely from the two scalar minima. Maximum dynamic-program state count on original is 191, no cap. Original marker counts TH30, F33. Exact bounds depend on the frozen continuous consuming clock and fixed full-length native windows, not arbitrary language or changing phases.
 
 This strengthens the periodic TH/F+TH rejection beyond intact printed groups and additive maps, while remaining a **finite native-register necessary gate**. Retire these q8/q13 direct receivers unless independently sourced evidence changes the state law or plaintext register. [SFT](../sims/lp2_p0_thorn_periodic_spacingfree_collision_sft.cjs) · [raw output](lp2-p0-thorn-periodic-spacingfree-collision.json). No unknown plaintext recovered.
+
+## Direct Thorn-stanza key receiver
+
+The twig's historically conditional TH reading is a specific selector for the third stanza of the 29-rune Anglo-Saxon Rune Poem, not an arbitrary search over the poem. Use the preserved Dickins Old English third stanza and [his published English translation](https://en.wikisource.org/wiki/Rune_poems), with the name included, standard greedy GP conversion, and phase zero at the physical black-body start after the 13 red runes. Two eth conversions (TH and D) give 82-rune keys; the English translation gives 83. The historical additive direction is P=C−K. No phase, reversal, stanza subset, or sign sweep is performed.
+
+| Key | Ordinary prefix/withheld trigram log score | Legal prefix F hold | TH hold | F+TH hold |
+|---|---:|---:|---:|---:|
+| OE eth→TH | −3.572294 / −3.561779 | 0 | 34 | 28 |
+| OE eth→D | −3.577717 / −3.566365 | 21 | 34 | 28 |
+| Dickins English | −3.506449 / −3.540458 | 0 | 16 | 16 |
+
+The exact phase/previous-two-rune Viterbi inverse tests each possible literal hold path; a path that reaches no state cannot be rescued by a language score. Each of the nine literal-marker variants dies in at most 34 runes. In particular the natural OE phonetic and English F-hold keys die on the first TH: their first key symbol is TH, so consuming would decode F, which must emit F literally. The ordinary receivers survive but produce nonprose on both the 351-rune prefix and frozen-phase 365-rune continuation. Target-section-excluded native trigram scoring gives −2.323 to −2.831 for the twelve planted controls; exact ciphertext replay holds for all, with 1901/1928 plaintext symbols recovered (ambiguity in literal-marker paths accounts for the errors). This excludes the direct cyclic stanza receiver only, not every possible use of the poem or twig. No unknown plaintext.
+
+Reproducer: `node sims/lp2_p0_thorn_stanza_direct_key_sft.cjs`; raw `im-results/lp2-p0-thorn-stanza-direct-key.json`.
