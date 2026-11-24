@@ -1,6 +1,6 @@
 # Current Agent2 incarnation — 24 November 2026, draw 7
 
-Lease run `agent2-draw7-2026-11-24T08:45:26.753Z-numeric-grammar`, claimed 2026-11-24T08:45:26.753Z. Immutable; release threshold 09:55:26.753Z. At checkpoint 2026-11-24T09:29:02.006Z, measured 43.588 minutes.
+Lease run `agent2-draw7-2026-11-24T08:45:26.753Z-numeric-grammar`, claimed 2026-11-24T08:45:26.753Z. Immutable; release threshold 09:55:26.753Z. At checkpoint 2026-11-24T09:30:12.568Z, measured 44.764 minutes.
 
 ## Closed #2541 — typed numeric-record grammar
 
@@ -23,6 +23,8 @@ Lease run `agent2-draw7-2026-11-24T08:45:26.753Z-numeric-grammar`, claimed 2026-
 - #2548 spacing-free exact cyclic n-gram MAP solver (sims/lp2_fhold_cyclic_ngram_map.cjs, d067786b6cae606ce7b9ea8447196e2b9dde7a16), driver a2acadd43e968394e1efdaaa05431237e5064993. Authentic KOAN and independent native plant exact hidden keys, 211/211 withheld. One WELCOME plant declines at 14 Fs. Original p54–55 208/100 split global trigram MAP over all 8 F masks, score -4.394/rune below three shuffled nulls, frozen continuation fails at rune233. No word-boundary assumption, no unknown plaintext. Report im-results/lp2-period13-fhold-spacing-free-exact-map.md (51eeb9a6f8e4755043fc8200db59f92ac9a10c1b). Closed.
 
 - #2554 all-slope affine q13 CSP: module now accepts global nonzero slope (876d0db9eee8657300167f8dff3fc9b51c367724). Frozen p54–55 205/103 split, all 28 slopes zero keys by first propagation pass, pairwise OOV lower bounds min5/max10 across slopes. Actual KOAN2 and independently encrypted a17 control unique correct keys, 328/328 withheld; a7 KOAN1 slope only, rotating key ambiguity; a11 LOSS control strict fails (two OOV words). Report im-results/lp2-period13-affine-fhold-all-slopes.md (260b786f9f9c0952ad89b530a4c51deb8c1bad00), driver 8036d45be2f89838ce49a413cddd3610549ef5e3. Closed. No unknown plaintext.
+
+- #2563 exact 2013 prime_echo first256 → p49–51 base60 row-major: 0/256 matches, all 256 mismatch positions recorded, 202 primes exceed table max255. Code sims/lp2_prime_echo_first256_table_sft.cjs (659e01a30eae4d5b59e9096c725ab5bbbd926f7d), full JSON im-results/lp2-prime-echo-first256-table-comparison.json (2d16ab1a5e5541b26d935c26dba0d45edd1002a8). Closed.
 
 ---
 
