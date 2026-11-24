@@ -29,6 +29,40 @@ For the broad original, the 25 anchor indices in initial smallest-domain order a
 
 **Reproduction:** [shared exact CSP SFT](../sims/lp2_integrated_affine_row_lexical_recovery_sft.cjs) with argument `arbitrary` (default `affine`), Node22/CommonJS, checked-in corpus, read-only. All original and plant computations were run on actual fetched data in connected V8; no independent CI claim.
 
+
+## Removing the printed-word assumption
+
+The global CSP above is conditional on unchanged word lengths. Two complementary attacks now address continuous ciphertext without using any printed word boundaries.
+
+### Exact earlier-solved crib attack
+
+Under the same arbitrary Q law, any repeated source plaintext bigram must yield the identical ciphertext difference, and different successors of one predecessor must yield distinct differences. Use every earlier LP1 transcribed solved-source start that has at least 64 training and 100 following known runes. The seven pinned donor sections total 2,799 runes; 1,738 eligible starts. Scan the unchanged continuous 12,956-rune original LP2 tape at all 12,793 eligible positions, **22,234,234** alignments. Preselected repeated-bigram equalities shortlist four alignments, and exact partial row consistency rejects all four. **No compatible 64-rune source crib**, hence no 164-rune continuation. This rules out a literal contiguous copy of these earlier solved passages under the stationary arbitrary-row law at the tested alignments, without assuming known word separators. It does not rule out original new prose.
+
+Independent source-crib positive: a fixed 264-rune exact known KOAN excerpt (offset137) is encrypted with private arbitrary row permutations and inserted at offset5555 into a copy of the original tape. The all-source, all-location scanner is not given either coordinate. It recovers the true alignment as its longest compatible extension (266 runes, including two accidental extra compatible constraints). There are 205 compatible 64-rune starts and 103 compatible 164-rune starts, primarily overlapping the planted passage. The 64-rune true training prefix fixes 44 row entries; without further fitting, it blindly predicts only the first following rune, then reaches an unknown entry. In the following 100 runes, 36 transitions whose true predecessor is supplied are fully covered and all 36 are correct. The 266-rune consistency length is **not** 266 independently predicted runes, because the extension adds known-source constraints.
+
+[Exact word-free crib SFT](../sims/lp2_integrated_arbitrary_row_wordfree_source_crib_sft.cjs) (commit e1fd83a1dd78eeb17dca432abcc2bb1d16736142).
+
+### Continuous finite-state collision bound
+
+A stronger spacing-free necessary condition extends beyond this specific Q law. For a deterministic stationary length-preserving encoder with explicit plaintext memory m and S additional hidden starting states, each fixed plaintext block of n+m runes can yield at most S distinct n-rune output blocks. This is true for direct ciphertext outputs and for integrated ciphertext differences, provided the hidden state accounts for all remaining context that affects those outputs. If a plaintext block occurs v times, its minimum number of output collision pairs is the balanced occupancy expression
+`r*q*(q+1)/2 + (S-r)*q*(q-1)/2`, with `q=floor(v/S), r=v mod S`. Summing this quantity over distinct plaintext blocks gives a lower bound on observed output collisions, even when different plaintext blocks share ciphertext blocks. Binary search gives the minimum S not contradicted by the bound. It is a lower bound, not sufficient evidence that a compatible cipher exists.
+
+Use all uninterrupted original contiguous n-grams with n=1..6, and matched naturally contiguous source windows of length 12,956 (no original word-length conditioning). For m=1 the original difference tape has 3 repeated-five-gram pairs and **zero repeated-six-gram pairs**; there are 6 and 1 respectively in direct ciphertext. The following are the **minimum across the finite source windows** of the required additional hidden states for integrated output:
+
+| Native source | Windows | m=1 | m=2 | m=3 | m=4 |
+|---|---:|---:|---:|---:|---:|
+| Shakespeare | 32 | 22 | 22 | 18 | 8 |
+| Emerson | 32 | 7 | 5 | 4 | 3 |
+| Gibran | 9 | 14 | 9 | 7 | 5 |
+
+All 73 full-book source windows fail S=1 for m=1..4. The windows overlap and are descriptive controls, not independent significance trials. Under each of the first eight physical chapter lengths, all 32 windows per literary source fail S=1 at m=1. In the short final chapter p54–55 (308 runes), 2/32 Shakespeare and 1/32 Emerson windows pass; all 32 Gibran windows fail. All tested length-matched exact solved-source windows for that final chapter fail m=1,S=1. This gives genuine spacing-free evidence against a single stationary predecessor-row cipher even granting separate chapter keys, while the final short chapter is not universally excluded by these finite controls.
+
+Exact known-source positive controls encrypt/invert the same 780-rune KOAN donor with hidden state sizes 1,3,13 and private row permutations, using deterministic plaintext-driven state transitions. For m=1 the lower bounds are respectively 1,3,5, never exceeding the true sizes. All 780 runes recover exactly in each case. The theorem does not select an actual state update, key or plaintext. A high-state clock, varying segmentation length, nonstationary tables or non-native-language input remain viable.
+
+[Spacing-free state-bound SFT](../sims/lp2_wordfree_context_finitestate_collision_bound_sft.cjs) (commit f37fe2f4bfbc63e8e1b0644964de802550be2e82). Both computations ran on fetched repository inputs in connected V8. No independent CI claim.
+
+**Combined disposition:** retire the stationary integrated-row route unless a new source clue selects an additional changing state or non-native register. The word-preserving finite-lexicon result is exact, the literal-crib exclusion is exact for the named donors, and the continuous state requirement is conditional on the native source controls. No authentic new LP2 key or unknown plaintext has emerged.
+
 ## Affine-row restriction: shared arbitrary alphabet and private row slopes
 
 A physically motivated extension of the earlier two-table model allows the preceding plaintext rune to change both the offset and slope of each ciphertext step. This could suppress adjacent repeats when the zero step corresponds to a rare, predecessor-dependent plaintext transition. The law is a conjecture, not a first-party instruction:
