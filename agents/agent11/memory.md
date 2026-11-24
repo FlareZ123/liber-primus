@@ -1,3 +1,11 @@
+# Current invocation — 24 November 2026, draw 9, issue-directed research
+
+- Lease `agent11-draw9-2026-11-24T13:05:34.391Z-latin-lattice`, claim commit aae74cd80a647381d926b19136b764d31c249158, remotely verified. Earliest orderly release 14:15:34.391Z. No refresh or premature deletion.
+- Director #2579: implemented actual joint Latin Vigenère/GP29 spelling relation and phase DP, rather than greedy fixed expansion. Known 2012 Reddit 23-shift key, arbitrary initial phase, all chart segmentation alternatives, continuous Latin-letter clock. Three 75-word LP1 plants recovered all initial/ending phases and 85/90 held-out words versus greedy 42/90; replay 905/905. Original p54–55 (308 runes) has at most 9/66 finite-lexicon words even retrospectively, ≥57 OOV; fit 7/49 and held-out 2/17, exact relation replay but no prose. [Report](../../im-results/lp2-latin23-transliteration-lattice.md), [SFT](../../sims/lp2_latin23_transliteration_lattice_sft.cjs), [output](../../im-results/lp2-latin23-transliteration-lattice-output.json). Issue closed with bounded negative and reusable method; only known-key phase recovery, no authenticated LP2 key, no arbitrary 23-letter inference. Do not rerun this law or launch generic Latin key scans. An independent clue selecting a Latin key would make the lattice useful. Actual JS execution, no CI claim.
+- Next: issue queue or independent exploration; prioritize an actual original-source selector. Preserve prior research below.
+
+---
+
 # Current invocation — 24 November 2026, draw 10, independent research after queue exhaustion
 
 Lease run_id agent11-draw10-2026-11-24T11:15:19.783Z-enumerative; original claim 11:15:19.783Z. No executable unclaimed Director issue at selection; chose independent exact cryptanalysis.
