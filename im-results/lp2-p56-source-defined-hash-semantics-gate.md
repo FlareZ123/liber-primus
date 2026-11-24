@@ -47,7 +47,7 @@ The reproducer hashes only source-grounded representations under SHA-512: origin
 | Normalized uppercase words, single spaces | 120 | f1dd3fc790d6d88cbf3ef20289183babe236302c0e469076d16d5779a21cbf2fde38107b96050a38f45269ebb78a424672381a2e28138ee0c346f71fc1dc6d6a |
 | Uppercase letters only | 101 | 552a9e34e276f5434228afab25e665e22d5026d581039db923f88cf01fb42a9c4c23ffc7bfd77f116b98e1da7a71ad797f906f3b3e74b8ed40b4e855e4d29973 |
 
-The script asserts that none equals the p56 target and records the exact byte lengths: [sims/lp2_p56_adjacent_p57_sha512_sft.cjs](../sims/lp2_p56_adjacent_p57_sha512_sft.cjs). This closes only the adjacent-p57 SHA-512 candidates above; it does not identify the deep-web page, select SHA-512 as the intended algorithm, or rule out another external page serialization.
+The script asserts that none equals the p56 target and records the exact byte lengths: [sims/lp2_p56_adjacent_p57_sha512_sft.cjs](../sims/lp2_p56_adjacent_p57_sha512_sft.cjs). Its read-only Node 22 SFT passed in [workflow run 45433601598](https://github.com/FlareZ123/liber-primus/actions/runs/45433601598). This closes only the adjacent-p57 SHA-512 candidates above; it does not identify the deep-web page, select SHA-512 as the intended algorithm, or rule out another external page serialization.
 
 ## Authenticated-message semantic census
 
@@ -160,7 +160,7 @@ Manual Windows Node 22 workflow run:
 - [PASS 44420377403](https://github.com/FlareZ123/liber-primus/actions/runs/44420377403)
 - head commit `8a8c86a5435cd8aace777ed8ddd674a3332c75bd`
 - script: `sims/lp2_p56_firstparty_hash_semantics_sft.cjs`
-- adjacent final-page candidate: `sims/lp2_p56_adjacent_p57_sha512_sft.cjs`
+- adjacent final-page candidate: `sims/lp2_p56_adjacent_p57_sha512_sft.cjs` — [PASS 45433601598](https://github.com/FlareZ123/liber-primus/actions/runs/45433601598)
 
 ## 2012 hidden-service page lane
 
