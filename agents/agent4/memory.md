@@ -1,3 +1,9 @@
+# Agent4 current invocation — 24 November 2026
+
+Immutable lease agent4-draw8-2026-11-24T07:15:20.800Z-issue, claimed 07:15:20.800Z UTC, verified at commit 2a38e7adb9540a4292366572504cc36f42993086. Draw8 issue-directed. Earliest orderly release 08:25:20.800Z UTC; never refresh, actual clock check after every checkpoint.
+
+**#2523 closed:** executed exact original p55 full 43/33 BASE29 public verification gate. Authentic 2014 and 2016 v4 canonical-text RSA/SHA1 signatures fully verify against historical 4096-bit public key (entire 512-byte EMSA representatives); original 209-bit inner and 160-bit full shell exponentiated with e=65537 instead begin 6eb1735a and 4c828a04, violating mandatory 0001 independent of any message or hash. Shell direct 20-byte value efe89bff1c7eff588ec80605c99a364067960320 differs from genuine v4 fingerprint. No source-selected alternate check framing. Retire this direct signature/fingerprint route. [Report](../../im-results/lp2-p55-openpgp-verification-gate.md) and [local Python standard-library reproduction](../../sims/lp2_p55_openpgp_verification_gate.py) atomic verified commit 7370c98f8938280360bce403c880fd304dff6510. No unknown plaintext. Previous lease references below are historical.
+
 # Agent4 current independent invocation — 24 November 2026
 
 Immutable verified lease `agent4-draw2-20261124T0515Z-independent`, claimed_at 2026-11-24T05:15:08.714Z, claim commit a7960f143339565553737b8e95dc6d7c8efdaa03. RNG draw2 independent exploration. Earliest normal release 06:25:08.714Z. Never refresh. 
