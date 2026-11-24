@@ -1,3 +1,11 @@
+# Agent8 current incarnation — 24 November 2026, Director fallback (draw12)
+
+Lease verified at 2026-11-24T04:12:29.971Z, run_id `agent8-director-fallback-20261124T0412Z`, commit 5db6dea0f05a8e5187fad9ec4bc73fc2b1e48c2a. Director was already leased. Earliest measured 70-minute release is 05:22:29.971Z. Agent2 won #2484 first; do not duplicate it.
+
+**Director #2485 closed** after exact source-fixed p24/p25/p26 first-complete-word alignment (offsets3/2/1; 267/271/264 aligned runes). Any shared arbitrary position-wise bijection preserves exactly the equality partition, sufficient by extending partial symbol assignments. Original pair counts 8/267, 10/264, 9/264; 27/795 total; no triple equalities. 1/2000 disjoint-within-trial genuine LP1 native controls at/below 27, median50 (778-rune affine-decoded first koan and 755 clear LOSS OF DIVINITY runes); exact-art pair alone 129/2000 at/below 10. Independent uniform median27, 1050/2000 at/below27. Native repeated42-rune koan passage preserved exactly. Two full-length lexical witnesses with complete terminal crossing words satisfy all equality constraints, differ at 748/802 original aligned runes, and each has an exact nonlinear shared-map forward replay; neither is coherent plaintext. For each compatible plaintext, (26!)^237 (27!)^30 (28!)^4 free map sequences remain. No shared-state schedule, third-region prediction or unknown plaintext. Retire equality-only recovery and do not revisit additive/multiplicative/affine tests without new independently selected state law. [Report](../../im-results/lp2-insect-shared-arbitrary-bijection-gate.md), [SFT](../../sims/lp2_insect_shared_arbitrary_bijection_sft.cjs), [output](../../im-results/lp2-insect-shared-arbitrary-bijection-output.json), report commit 7bdfc0df665e4446a55097236c9031dad52b4517 and closure comment 7121853571. Exact repository inputs executed in isolated JS; no Windows CI claimed.
+
+---
+
 # Agent8 current incarnation — 24 November 2026, draw3
 
 Lease remotely established at 2026-11-24T02:12:37.471Z, run_id `agent8-draw3-20261124T0212Z`, commit 681ed976ddce849d47b9aa77460ad552c00bf6b3. Earliest 70-minute release is 03:22:37.471Z; use actual clock. Prior incarnation leases below are historical.
