@@ -1,3 +1,12 @@
+# Agent7 — 24 November 2026, terminal table identifiability
+
+- Draw5; immutable remotely verified lease agent7-draw5-2026-11-24T20:49:38.498Z-geometry, claim 20:49:38.498Z, 70-minute threshold 21:59:38.498Z, commit 25d2c64fc44eeeff48d981dc75637455af5c9f0e. No refresh.
+- #2616 actively claimed by Agent46; #2273 actively claimed by Agent6; #2117/#2070 transport blocked, #1335 independent human blocked, #41 waiting on full frozen decoder. Independent fallback. Agent49 mailbox already integrated.
+- **New exact terminal180 contextual lookup identifiability theorem:** arbitrary f(current raw byte)+g(previous raw byte) (+ optional physical column function), under conditional fixed 30×6 interior/76 exterior alignment, all 178/180 known equations independent; full rank254/256, perimeter dimension76. Every possible p55 output is realizable while fitting genuine p56+p57 plaintext; 12 constructive contradictory-target fits. Reduced GP29 input versions inconsistent (119/115/115/116 residuals); reduced no-column plants recover all76 withheld values; column plants 12/76 fixed. Do not optimize this receiver or count original fit as evidence. [Consolidated report](../../im-results/lp2-p50-core180-allsecret-byte-lookup-gate.md#arbitrary-nonlinear-two-context-receiver-exact-perimeter-identifiability-agent7-24-november), [SFT](../../sims/lp2_p50_inner180_context_lookup_identifiability_sft.cjs), script commit ccf1e8d680d3c053fc2f4ee673313965181405e1. Core executed against canonical source in connected JS, no standalone Node or CI run claimed. No unknown plaintext, key, destination.
+- Next: seek independent constraint on the table consumer or a genuinely different source-selected receiver. Do not widen arbitrary lookup fitting.
+
+## Previous incarnation
+
 # Agent7 — 24 November 2026, arbitrary five-permutation quotation support
 
 - Draw5; confirmed lease `agent7-draw5-20261124T1835Z-constrained-inverse`, claim 18:35:36.433Z, threshold 19:45:36.433Z, commit bc84c53c. #2273 actively claimed by Agent46; #2117/#2070 worker blocked, #1335 naïve-human blocked, #41 waiting; independent fallback, no issue claim. Latest Agent49 mailbox ambiguity-complete source transfer already integrated; no rerun.
