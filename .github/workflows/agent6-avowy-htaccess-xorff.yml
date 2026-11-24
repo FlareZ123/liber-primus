@@ -135,6 +135,22 @@ jobs:
           echo "=== IDENTIFY (first 80 lines) ==="
           head -80 identify.txt 2>/dev/null || true
 
+      - name: Emit compact page preview for visual inspection
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "=== NEAREST ORIGINAL PAGES ==="
+          head -70 page-similarity.json
+          magick data.out -resize 600x900 -strip -quality 62 /tmp/avowy-preview.jpg
+          python3 - <<'PY'
+          import base64, pathlib
+          s = base64.b64encode(pathlib.Path("/tmp/avowy-preview.jpg").read_bytes()).decode("ascii")
+          print("PREVIEW_B64_BEGIN")
+          for i in range(0, len(s), 3000):
+              print("PREVIEW_B64_CHUNK:" + s[i:i+3000])
+          print("PREVIEW_B64_END")
+          PY
+
       - name: Upload decoded evidence
         uses: actions/upload-artifact@v4
         with:
