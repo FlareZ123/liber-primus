@@ -1,0 +1,227 @@
+[
+  {
+    "mode": "original",
+    "period": 8,
+    "section": 0,
+    "blockSize": 5,
+    "length": 1145,
+    "fit": 500,
+    "holdout": 645,
+    "dictSize": 42468,
+    "anchors": [
+      {
+        "off": 2,
+        "len": 11,
+        "lo": 0,
+        "hi": 15,
+        "dict": 2551,
+        "actual": null
+      },
+      {
+        "off": 338,
+        "len": 9,
+        "lo": 335,
+        "hi": 350,
+        "dict": 5389,
+        "actual": null
+      },
+      {
+        "off": 368,
+        "len": 10,
+        "lo": 365,
+        "hi": 380,
+        "dict": 3919,
+        "actual": null
+      },
+      {
+        "off": 382,
+        "len": 9,
+        "lo": 380,
+        "hi": 395,
+        "dict": 5389,
+        "actual": null
+      },
+      {
+        "off": 405,
+        "len": 9,
+        "lo": 405,
+        "hi": 415,
+        "dict": 5389,
+        "actual": null
+      },
+      {
+        "off": 455,
+        "len": 10,
+        "lo": 455,
+        "hi": 465,
+        "dict": 3919,
+        "actual": null
+      }
+    ],
+    "phaseCases": 56,
+    "rankHistogram": {
+      "8": 56
+    },
+    "joins": 0,
+    "singleJoins": 13,
+    "keyClasses": 13,
+    "legalClasses": 0,
+    "oracleKeyInPool": null,
+    "selectedKey": null,
+    "expectedKey": null,
+    "prefix": null,
+    "prediction": null,
+    "prefixCorrect": null,
+    "holdoutCorrect": null
+  },
+  {
+    "mode": "original",
+    "period": 8,
+    "section": 1,
+    "blockSize": 7,
+    "length": 3612,
+    "fit": 497,
+    "holdout": 3115,
+    "dictSize": 42468,
+    "anchors": [
+      {
+        "off": 4,
+        "len": 8,
+        "lo": 0,
+        "hi": 14,
+        "dict": 6577,
+        "actual": null
+      },
+      {
+        "off": 70,
+        "len": 8,
+        "lo": 70,
+        "hi": 84,
+        "dict": 6577,
+        "actual": null
+      },
+      {
+        "off": 124,
+        "len": 10,
+        "lo": 119,
+        "hi": 140,
+        "dict": 3919,
+        "actual": null
+      },
+      {
+        "off": 140,
+        "len": 12,
+        "lo": 140,
+        "hi": 154,
+        "dict": 1457,
+        "actual": null
+      },
+      {
+        "off": 172,
+        "len": 10,
+        "lo": 168,
+        "hi": 182,
+        "dict": 3919,
+        "actual": null
+      },
+      {
+        "off": 233,
+        "len": 9,
+        "lo": 231,
+        "hi": 245,
+        "dict": 5389,
+        "actual": null
+      }
+    ],
+    "phaseCases": 53,
+    "rankHistogram": {
+      "8": 53
+    },
+    "joins": 0,
+    "singleJoins": 7,
+    "keyClasses": 7,
+    "legalClasses": 0,
+    "oracleKeyInPool": null,
+    "selectedKey": null,
+    "expectedKey": null,
+    "prefix": null,
+    "prediction": null,
+    "prefixCorrect": null,
+    "holdoutCorrect": null
+  },
+  {
+    "mode": "original",
+    "period": 8,
+    "section": 2,
+    "blockSize": 5,
+    "length": 1005,
+    "fit": 500,
+    "holdout": 505,
+    "dictSize": 42468,
+    "anchors": [
+      {
+        "off": 0,
+        "len": 8,
+        "lo": 0,
+        "hi": 10,
+        "dict": 6577,
+        "actual": null
+      },
+      {
+        "off": 62,
+        "len": 9,
+        "lo": 60,
+        "hi": 75,
+        "dict": 5389,
+        "actual": null
+      },
+      {
+        "off": 261,
+        "len": 8,
+        "lo": 260,
+        "hi": 270,
+        "dict": 6577,
+        "actual": null
+      },
+      {
+        "off": 408,
+        "len": 9,
+        "lo": 405,
+        "hi": 420,
+        "dict": 5389,
+        "actual": null
+      },
+      {
+        "off": 442,
+        "len": 10,
+        "lo": 440,
+        "hi": 455,
+        "dict": 3919,
+        "actual": null
+      },
+      {
+        "off": 459,
+        "len": 10,
+        "lo": 455,
+        "hi": 470,
+        "dict": 3919,
+        "actual": null
+      }
+    ],
+    "phaseCases": 95,
+    "rankHistogram": {
+      "8": 95
+    },
+    "joins": 0,
+    "singleJoins": 9,
+    "keyClasses": 9,
+    "legalClasses": 0,
+    "oracleKeyInPool": null,
+    "selectedKey": null,
+    "expectedKey": null,
+    "prefix": null,
+    "prediction": null,
+    "prefixCorrect": null,
+    "holdoutCorrect": null
+  }
+]
