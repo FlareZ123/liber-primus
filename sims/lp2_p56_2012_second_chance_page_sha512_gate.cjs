@@ -28,6 +28,16 @@ const inputs = [
     expectedGitBlobSha1: "03a7bd9e98578fd51ae3f798375cbbe8bc41dd96"
   },
   {
+    name: "2012 participant-specific one-time RSA page message",
+    path: path.join(root, "resources/external/2012-sq6wmgv2zcsrix6t-unknown.asc"),
+    expectedGitBlobSha1: "0e69b063b379a8ccdd8a96815de318bcf65a1247"
+  },
+  {
+    name: "2012 participant-specific second-chance RSA page message",
+    path: path.join(root, "resources/external/2012-sq6wmgv2zcsrix6t-another-unknown.asc"),
+    expectedGitBlobSha1: "e2dbbad61d8dfb1a9efa736a331f183745ac157e"
+  },
+  {
     name: "2012 countdown clear-signed message",
     path: path.join(root, "resources/historical/cicada2012-countdown-message.asc"),
     expectedGitBlobSha1: "7229104f48f4a0eeeae69c901eb74cb21baed956"
