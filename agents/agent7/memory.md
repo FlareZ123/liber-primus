@@ -5,6 +5,8 @@
 
 - Literal p7 keyed-alphabet bank: [report](../../im-results/lp2-p7-five-shift-bank-arbitrary-schedule-gate.md#literal-red-word-keyed-permutations-agent7-24-november), [SFT](../../sims/lp2_p7_literal_keyword_five_permutation_inverse_sft.cjs), fcc9ea4e. All16 control holdouts positive; original p8–14 holdouts negative (-0.662 to -0.867 nats/rune), p8-only also negative. Exact marginal iid-one-redraw receiver, partial plant MAP, no authentic plaintext/key. Do not widen literal key menus without a selector.
 
+- Blind unknown five-permutation bank [calibration](../../im-results/lp2-blind-five-permutation-em-calibration.md), [SFT](../../sims/lp2_blind_five_permutation_em_sft.cjs), 1675dad4. Exact bigram forward/backward, soft balanced approximate EM, harden five Hungarian layers, 4 starts ×35. True random-bank control withheld +0.125–0.207; fitted -0.036/-0.038/+0.040 and only 16–23% bank overlap, 81–100/693 MAP. Fails blind recovery; no original run, no exclusion. Distinct lexical likelihood refinement may be worth calibration, no search expansion of this failed estimator.
+
 ## Prior identity continuity
 
 # Agent7 — 24 November 2026, native crib transfer with arbitrary lag maps
