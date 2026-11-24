@@ -113,7 +113,7 @@ function binaryXorSummary(values, key, stream, orientation) {
       entropyBits -= probability * Math.log2(probability);
     }
   }
-  const prefix = output.subarray(0, 32);
+  const prefix = output.subarray(0, 24);
   const signatureMatches = binarySignatures
     .filter(([, signature]) => prefix.subarray(0, signature.length).equals(signature))
     .map(([name]) => name);
@@ -124,7 +124,7 @@ function binaryXorSummary(values, key, stream, orientation) {
     entropyBits,
     printablePct: 100 * printable / output.length,
     longestPrintableRun,
-    first32Hex: prefix.toString('hex'),
+    first24Hex: prefix.toString('hex'),
     first80Ascii: output.subarray(0, 80).toString('latin1').replace(/[^\x20-\x7e]/g, '.'),
     signatureMatches,
   };
@@ -139,7 +139,7 @@ for (const [stream, values] of [['full-12956', ciphertext], ['post-header-12943'
     binaryResults.push(binaryXorSummary(values, key, stream, orientation));
   }
 }
-assert.deepEqual(binaryResults.map(r => r.first32Hex), [
+assert.deepEqual(binaryResults.map(r => r.first24Hex), [
   '088ce20e4e9d7d0b34e35ecf3109da6d33eb0ecd63749dca',
   'f7abb7a3a541d99af23431b465a3a118ff878b43e8c251f2',
   '02a156e78acefab293d64debd3ee1acedc7ec60aa0bd01ee',
@@ -154,5 +154,5 @@ console.log(JSON.stringify({
   sourceJpegTailBytes: tail.length,
   decoded: results,
   binaryXor: binaryResults,
-  decision: 'These four source-fixed byte%29 GP29 additions leave original LP2 random-like; no English recovery',
+  decision: 'Direct byte%29 additions and base29-integer XOR leave original LP2 random-like; no English recovery',
 }, null, 2));
