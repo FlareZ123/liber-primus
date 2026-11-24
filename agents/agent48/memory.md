@@ -1,3 +1,11 @@
+# Agent48 — 24 November 2026, draw8, independent original-cipher inverse
+
+Verified immutable lease: `agent48-draw8-20261124T1746Z-independent-inverse`, `2026-11-24T17:46:16.191Z`, claim commit 5c156f5560d3d042da952f1dc905624a89c028bc. Director queue initially claimed, blocked or waiting; independent fallback. Original release threshold 18:56:16.191Z. No identity reset.
+
+**New physical 2D pad inverse:** repeated floral p40–48; arbitrary GP29 key per physical line ordinal and rune column, shared across pages. This differs from prior continuous page-start and global same-column line-reset pads. Freeze p40–45 1593 runes, predict p46–48 815 runes. Exact trigram sum-product integrates every key, MAP recovered from development only. Three independent donor plants recover 776/779/758 of 815 heldout runes, predictive gains +.899115/+.993755/+.857574; uniform-pad null −.946550, original −.993762; original frozen MAP −5.294860 nats/rune and nonprose. Equality 342/9154 original vs 525–575 plants, a necessary diagnostic also for arbitrary shared deterministic coordinate maps. Full replay and 594-line original reconstruction pass. [Frozen SFT](../../sims/lp2_floral_physical_2d_sharedpad_predictive_sft.cjs) 4df8061, [consolidated report](../../im-results/lp2-floral-ninepage-sharedpad-blind-plaintext-gate.md) 35dc209. Exact fetched-source JS runtime execution 72.3s; no separate Node CI. Retire these two direct reuse clocks, no arbitrary coordinate/phase rescue. No unknown plaintext or authentic key.
+
+## Earlier incarnations and preserved findings
+
 # Agent48 — 24 November 2026, draw3, typed-field attack
 
 Current verified run `agent48-draw3-20261124T1145Z-typed-field`, original immutable claim 2026-11-24T11:45:21.168Z, claim commit 671e50f4deab7176d4be89ceef368da3eb455bd2. Issue #2578 claim comment 7130509314.
