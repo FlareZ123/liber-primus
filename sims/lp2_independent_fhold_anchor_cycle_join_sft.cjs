@@ -219,9 +219,9 @@ const experiment=function experiment(inputs,selection=null){
  function profileEdges(w,offset,inner,outer,a,mask){
   return w.map((c,i)=>{let u;if(mask&(1<<i))u=inner+outer;else{u=a;a=(a+1)%inner}return {c,t:2,u,v:inner+(offset+i)%outer}})
  }
- function potentials(es,plain,inner,outer,maxFree=2){
+ function potentials(es,plain,inner,outer,maxFree=2,slope=1){
   const n=inner+outer,z=n,adj=Array.from({length:n+1},()=>[]);
-  for(let i=0;i<es.length;i++){const {u,v,c}=es[i],d=mod(c-plain[i]);adj[u].push([v,-d]);adj[v].push([u,d])}
+  for(let i=0;i<es.length;i++){const {u,v,c}=es[i],d=mod(c-slope*plain[i]);adj[u].push([v,-d]);adj[v].push([u,d])}
   const vals=Array(n+1).fill(null),free=[];
   for(const r of [z,...Array.from({length:n},(_,i)=>i)])if(vals[r]===null){const ids=[r];vals[r]=0;for(let q=0;q<ids.length;q++)for(const [v,d]of adj[ids[q]]){const t=mod(vals[ids[q]]+d);if(vals[v]===null){vals[v]=t;ids.push(v)}else if(vals[v]!==t)throw Error("bad cycle join")}if(r!==z)free.push(ids)}
   if(free.length>maxFree)return {free:free.length,keys:null};
@@ -249,18 +249,18 @@ const experiment=function experiment(inputs,selection=null){
   }
   return {pair:[A.i,B.i],lengths:[A.w.length,B.w.length],offsets:[A.offset,B.offset],profiles:[PA.length,PB.length],loops,cycleMin,cycleMax,joins,cap,unresolved,keys:[...keys.values()]}
  }
- function fcEncrypt(ws,keys){
-  const [k,h]=keys;let a=0,b=0;return ws.map(w=>w.map(p=>{let m=0;if(p){m=mod(p+k[a]);a=(a+1)%k.length}const c=mod(m+h[b]);b=(b+1)%h.length;return c}))
+ function fcEncrypt(ws,keys,slope=1){
+  const [k,h]=keys;let a=0,b=0;return ws.map(w=>w.map(p=>{let m=0;if(p){m=mod(slope*p+k[a]);a=(a+1)%k.length}const c=mod(m+h[b]);b=(b+1)%h.length;return c}))
  }
- function fcDecode(ws,keys,starts,outerStart=0,budget=0,cap=2000){
-  const [k,h]=keys;let b=outerStart,states=starts.map(a=>({a,plain:[],oov:0,start:a})),peak=states.length;
+ function fcDecode(ws,keys,starts,outerStart=0,budget=0,cap=2000,slope=1){
+  const [k,h]=keys,inv=Array.from({length:28},(_,i)=>i+1).find(x=>mod(x*slope)===1);let b=outerStart,states=starts.map(a=>({a,plain:[],oov:0,start:a})),peak=states.length;
   for(const w of ws){
    const out=[];for(const st of states){
     function walk(i,a,p){
      if(i===w.length){const hit=lex[p.length]?.has(p.join(",")),oov=st.oov+(hit?0:1);if(oov<=budget)out.push({a,plain:st.plain.concat([p]),oov,start:st.start});return}
      const m=mod(w[i]-h[(b+i)%h.length]);
      if(!m)walk(i+1,a,p.concat(0));
-     const v=mod(m-k[a]);if(v)walk(i+1,(a+1)%k.length,p.concat(v))
+     const v=mod(inv*(m-k[a]));if(v)walk(i+1,(a+1)%k.length,p.concat(v))
     }
     walk(0,st.a,[])
    }
@@ -298,6 +298,64 @@ const experiment=function experiment(inputs,selection=null){
   return {model:"inner plaintext-F hold, ordinary outer additive",inner,outer,target:{trainRunes:n,words:train.length,source:{...source,keys:source.keys.length},accepted:results},controls}
  }
 
+
+ function affinePairJoin(es,cy,ca,cb,limit=1000){
+  const l=ca[0]?.length??0;
+  const C=cy.map(c=>mod(c.reduce((n,[i,k])=>n+k*es[i].c,0))),pivot=C.findIndex(c=>c!==0),cp=C[pivot]||0;
+  function make(w,start,end,sign){
+   const P=cy.map(c=>mod(c.reduce((n,[i,k])=>n+(i>=start&&i<end?k*w[i-start]:0),0))),pp=P[pivot]||0;
+   const sig=pivot<0?P:P.flatMap((v,j)=>j===pivot?[]:[mod(cp*v-C[j]*pp)]);
+   return {key:String.fromCharCode(...sig.map(v=>65+mod(sign*v))),pp}
+  }
+  const map=new Map();for(const a of ca){const x=make(a,0,l,1);let v=map.get(x.key);if(!v)map.set(x.key,v=[]);v.push({w:a,pp:x.pp})}
+  const hits=[];let count=0;
+  for(const b of cb){const x=make(b,l,es.length,-1);for(const a of map.get(x.key)||[]){
+   if(pivot<0){count+=28;if(hits.length<limit)for(let s=1;s<29&&hits.length<limit;s++)hits.push({a:a.w,b,s})}
+   else{const p=mod(a.pp+x.pp);if(!p)continue;const s=mod(cp*Array.from({length:28},(_,i)=>i+1).find(v=>mod(v*p)===1));count++;if(hits.length<limit)hits.push({a:a.w,b,s})}
+  }}
+  return {count,hits,pivot}
+ }
+ function fcAffinePair(ws,inner,outer,ix=null){
+  let o=0;const all=ws.map((w,i)=>{const offset=o;o+=w.length;return {w,i,offset}}),ranked=all.slice().sort((a,b)=>b.w.length-a.w.length||a.i-b.i);
+  const [A,B]=(ix?ix.map(i=>all[i]):ranked.slice(0,2)).sort((a,b)=>a.i-b.i),PA=profiles(A.w.length),PB=profiles(B.w.length),keys=new Map();
+  let loops=0,joins=0,cap=false,unresolved=0,cycleMin=Infinity,cycleMax=0,unanchored=0;
+  for(const ap of PA){const ae=profileEdges(A.w,A.offset,inner,outer,0,ap.mask);
+   for(const bp of PB)for(let q=0;q<inner;q++){
+    const be=profileEdges(B.w,B.offset,inner,outer,q,bp.mask),es=ae.concat(be),cy=cycles(es,inner+outer+1);
+    cycleMin=Math.min(cycleMin,cy.length);cycleMax=Math.max(cycleMax,cy.length);loops++;
+    const h=affinePairJoin(es,cy,ap.words,bp.words);joins+=h.count;if(h.pivot<0)unanchored++;
+    if(h.count>1000){cap=true;continue}
+    for(const {a,b,s}of h.hits){const t=potentials(es,a.concat(b),inner,outer,2,s);if(!t.keys){unresolved++;continue}for(const key of t.keys){const str=s+":"+key.flat().join(",");if(!keys.has(str))keys.set(str,{key,slope:s})}}
+   }
+  }
+  return {pair:[A.i,B.i],lengths:[A.w.length,B.w.length],offsets:[A.offset,B.offset],profiles:[PA.length,PB.length],loops,cycleMin,cycleMax,joins,cap,unresolved,unanchored,keys:[...keys.values()]}
+ }
+ function innerHoldAffineExperiment(selection){
+  const [inner,outer]=selection.inner===5?[5,8]:[8,5],chapter=parse(inputs[1].split("%").slice(0,3).join("%")),body=chapter.slice(2);
+  let train=[],n=0;for(const w of body){if(n+w.length>(selection.trainMax??249))break;train.push(w);n+=w.length}
+  let ix=null;if(selection.pairIndex!==undefined){const top=train.map((w,i)=>({i,len:w.length})).sort((a,b)=>b.len-a.len||a.i-b.i).slice(0,6);ix=[top[selection.pairIndex].i,top[5-selection.pairIndex].i]}
+  const source=fcAffinePair(train,inner,outer,ix),accepted=[];
+  for(const {key,slope}of source.keys){const d=fcDecode(train,key,Array.from({length:inner},(_,i)=>i),0,selection.budget??2,2000,slope);
+   if(d.status==="ok")accepted.push({key,slope,paths:d.states.map(s=>({start:s.start,end:s.a,oov:s.oov,plain:s.plain.map(w=>w.map(i=>gp.translit[i]).join("")).join(" ")}))});
+   else if(d.status==="cap")accepted.push({key,slope,status:"cap"});
+  }
+  const controls=[];
+  if(selection.controls!==false){
+   const donor=donors[4],ws=[];let len=0;for(const w of donor){if(len+w.length>249)break;ws.push(w);len+=w.length}
+   const keys=[Array.from({length:inner},(_,i)=>mod(7*i*i+3*i+4)),Array.from({length:outer},(_,i)=>mod(11*i*i+5*i+3))],slope=inner===8?7:13;
+   const enc=fcEncrypt(ws,keys,slope),pair=fcAffinePair(enc,inner,outer);
+   let phase=0;for(const p of ws.slice(0,pair.pair[0]).flat())if(p)phase=(phase+1)%inner;
+   const rotated=[keys[0].slice(phase).concat(keys[0].slice(0,phase)),keys[1]],keyPresent=pair.keys.some(x=>x.slope===slope&&x.key.flat().join(",")===rotated.flat().join(","));
+   const results=[];for(const {key,slope:s}of pair.keys){const d=fcDecode(enc,key,Array.from({length:inner},(_,i)=>i),0,0,2000,s);if(d.status==="ok")for(const p of d.states)results.push({key,slope:s,p})}
+   let hold=[],hn=0;for(const w of donor.slice(ws.length)){if(hn+w.length>86)break;hold.push(w);hn+=w.length}
+   const full=fcEncrypt(ws.concat(hold),keys,slope);
+   const predictions=results.map(({key,slope:s,p})=>{const d=fcDecode(full.slice(ws.length),key,[p.a],len%outer,0,2000,s);return {slope:s,trainingExact:p.plain.flat().join(",")===ws.flat().join(","),holdStatus:d.status,holdCount:d.states?.length,holdExact:d.states?.some(t=>t.plain.flat().join(",")===hold.flat().join(","))}});
+   controls.push({source:"0_loss_of_divinity",slope,trainRunes:len,holdRunes:hn,pair:{...pair,keys:pair.keys.length},keyPresent,accepted:results.length,predictions});
+  }
+  return {model:"all nonzero affine products, inner F hold / ordinary outer",inner,outer,target:{trainRunes:n,words:train.length,source:{...source,keys:source.keys.length},accepted},controls}
+ }
+
+ if(selection?.mode==='innerHoldAffine')return innerHoldAffineExperiment(selection);
  if(selection?.mode==='innerHold')return innerHoldExperiment(selection);
  const checks=[];
  for(const [di,inner,outer] of (selection?.controls?[[1,8,5],[4,5,8]]:selection?[]:[[1,8,13],[4,13,8]])){let ws=[],n=0;for(const w of donors[di]){if(n+w.length>222)break;ws.push(w);n+=w.length}if(!ws.length)throw Error("donor");let keys=[Array.from({length:inner},(_,i)=>mod(7*i*i+3*i+4)),Array.from({length:outer},(_,i)=>mod(11*i*i+5*i+3))];let e=encrypt(ws,keys),sch=schedule(e.ws,inner,outer,e.mask),p=pairInfo(sch)[0];if(!p)throw Error("no pair");let ca=candidates(sch[p.i]),cb=candidates(sch[p.j]),j=testPair(p,ca,cb,2000),trueA=signature(p.cy,p.es,ws[p.i],0,ws[p.i].length,1),trueB=signature(p.cy,p.es,ws[p.j],ws[p.i].length,p.es.length,-1);if(trueA!==trueB||!j.n)throw Error("positive");const recovery=recoverKnownMask(e.ws,inner,outer,e.mask);const found=recovery.solutions?.some(x=>JSON.stringify(x.key)===JSON.stringify(keys)&&JSON.stringify(x.plain)===JSON.stringify(ws))||false;let hold=[],hn=0;for(const w of donors[di].slice(ws.length)){if(hn+w.length>86)break;hold.push(w);hn+=w.length}const both=encrypt(ws.concat(hold),keys);let aa=0,bb=0;for(const e of sch.flat()){if(e.t)aa=(aa+1)%inner;if(e.t===2)bb=(bb+1)%outer}const pred=recovery.solutions?.length===1?heldout(both.ws.slice(ws.length),recovery.solutions[0].key,[aa,bb]):null;checks.push({donor:di,length:n,words:ws.length,inner,outer,zeros:e.z,mask:e.mask,pair:[p.i,p.j],cycles:p.cy.length,matches:j.n,trueSignature:true,recovery:{status:recovery.status,solutionCount:recovery.solutions?.length,found,trace:recovery.trace},withheld:{runes:hn,words:hold.length,status:pred?.status,solutionCount:pred?.states?.length,exact:pred?.states?.some(s=>JSON.stringify(s.plain)===JSON.stringify(hold)),peak:pred?.peak}})}
