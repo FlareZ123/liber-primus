@@ -366,6 +366,225 @@ function decodeTrigram(C, key, languageModel) {
   };
 }
 
+function decodeTrigramContinuation(C, key, languageModel, startPhase, previousPrevious, previous) {
+  const period = key.length;
+  const contextCount = 29 * 29;
+  const stateCount = period * contextCount;
+  const transition = (cipher, phase, callback) => {
+    if (cipher === 0) callback(0, phase);
+    const plain = (cipher - key[phase] + 29) % 29;
+    if (plain !== 0) callback(plain, (phase + 1) % period);
+  };
+
+  let scores = new Float64Array(stateCount).fill(-Infinity);
+  let paths = new Uint8Array(stateCount);
+  const startState = startPhase * contextCount + previousPrevious * 29 + previous;
+  scores[startState] = 0;
+  paths[startState] = 1;
+  const backLayers = [];
+  const symbolLayers = [];
+
+  for (let i = 0; i < C.length; i++) {
+    const nextScores = new Float64Array(stateCount).fill(-Infinity);
+    const nextPaths = new Uint8Array(stateCount);
+    const predecessors = new Int32Array(stateCount).fill(-1);
+    const outputSymbols = new Int8Array(stateCount).fill(-1);
+
+    for (let state = 0; state < stateCount; state++) {
+      if (!paths[state]) continue;
+      const phase = Math.floor(state / contextCount);
+      const context = state % contextCount;
+      const previousPreviousSymbol = Math.floor(context / 29);
+      const previousSymbol = context % 29;
+
+      transition(C[i], phase, (plain, nextPhase) => {
+        const nextState = nextPhase * contextCount + previousSymbol * 29 + plain;
+        const candidate = scores[state] + languageModel.logTrigram[previousPreviousSymbol * 29 + previousSymbol][plain];
+        if (candidate > nextScores[nextState] + 1e-12) {
+          nextScores[nextState] = candidate;
+          nextPaths[nextState] = paths[state];
+          predecessors[nextState] = state;
+          outputSymbols[nextState] = plain;
+        } else if (Math.abs(candidate - nextScores[nextState]) <= 1e-12) {
+          nextPaths[nextState] = Math.min(2, nextPaths[nextState] + paths[state]);
+          predecessors[nextState] = -2;
+          outputSymbols[nextState] = -2;
+        }
+      });
+    }
+
+    scores = nextScores;
+    paths = nextPaths;
+    backLayers.push(predecessors);
+    symbolLayers.push(outputSymbols);
+  }
+
+  let bestScore = -Infinity;
+  let bestState = -1;
+  let bestPathCount = 0;
+  for (let state = 0; state < stateCount; state++) {
+    if (!paths[state]) continue;
+    if (scores[state] > bestScore + 1e-12) {
+      bestScore = scores[state];
+      bestState = state;
+      bestPathCount = paths[state];
+    } else if (Math.abs(scores[state] - bestScore) <= 1e-12) {
+      bestPathCount = Math.min(2, bestPathCount + paths[state]);
+    }
+  }
+  if (bestState < 0) return null;
+
+  const plaintext = new Array(C.length);
+  let state = bestState;
+  for (let i = C.length - 1; i >= 0; i--) {
+    const symbol = symbolLayers[i][state];
+    const predecessor = backLayers[i][state];
+    if (symbol < 0 || predecessor < 0) return { ambiguous: true, score: bestScore };
+    plaintext[i] = symbol;
+    state = predecessor;
+  }
+
+  let keyPosition = startPhase;
+  const reencryption = [];
+  for (const symbol of plaintext) {
+    if (symbol === 0) reencryption.push(0);
+    else {
+      reencryption.push((symbol + key[keyPosition]) % 29);
+      keyPosition = (keyPosition + 1) % period;
+    }
+  }
+  return {
+    plaintext,
+    score: bestScore,
+    unique: bestPathCount === 1,
+    reencryptionExact: reencryption.every((symbol, i) => symbol === C[i])
+  };
+}
+
+function scoreNativeHoldout(sequence, languageModel, start = 131, length = 131) {
+  let score = 0;
+  const end = Math.min(sequence.length, start + length);
+  for (let i = start; i < end; i++) {
+    const context = sequence[i - 2] * 29 + sequence[i - 1];
+    score += languageModel.logTrigram[context][sequence[i]];
+  }
+  return { score, length: end - start, scorePerSymbol: score / (end - start) };
+}
+
+function runP0PrefixHoldout() {
+  const page = alphabet.pages.find((candidate) => candidate.page === 0);
+  assert(page && page.indices.length === 262, "LP2 page 0 corpus mismatch");
+  const split = 131;
+  const prefix = page.indices.slice(0, split);
+  const holdout = page.indices.slice(split);
+  const languageModel = trainLanguageModel(-1);
+  const periods = [8, 13];
+
+  const nativeBaselines = [];
+  for (let section = 0; section < goldSections.length; section++) {
+    const sequence = extract(goldSections[section].source_text);
+    if (sequence.length < 262) continue;
+    const leaveOneOut = trainLanguageModel(section);
+    const scored = scoreNativeHoldout(sequence, leaveOneOut, split, holdout.length);
+    nativeBaselines.push({
+      section: goldSections[section].name,
+      length: scored.length,
+      leaveOneOutTrigramScorePerSymbol: scored.scorePerSymbol
+    });
+  }
+
+  const results = periods.map((period) => {
+    const recovered = recoverKey(prefix, period, -1, 0xAABB0000 + period, 1500);
+    assert(recovered.ranked.length > 0, "LP2 p0 prefix produced no feasible key candidates");
+    const evaluated = [];
+
+    for (let rank = 0; rank < recovered.ranked.length; rank++) {
+      const candidate = recovered.ranked[rank];
+      const prefixDecoded = decodeTrigram(prefix, candidate.key, languageModel);
+      if (!prefixDecoded || !prefixDecoded.unique) continue;
+      const phaseAtSplit = prefixDecoded.plaintext.filter((symbol) => symbol !== 0).length % period;
+      const continuation = decodeTrigramContinuation(
+        holdout,
+        candidate.key,
+        languageModel,
+        phaseAtSplit,
+        prefixDecoded.plaintext[prefixDecoded.plaintext.length - 2],
+        prefixDecoded.plaintext[prefixDecoded.plaintext.length - 1]
+      );
+      if (!continuation || continuation.ambiguous) continue;
+      evaluated.push({
+        rank: rank + 1,
+        keyIndices: candidate.key,
+        prefixUnigramScore: candidate.score,
+        basinCount: candidate.basin,
+        phaseAtSplit,
+        holdoutTrigramScore: continuation.score,
+        holdoutScorePerSymbol: continuation.score / holdout.length,
+        holdoutUnique: continuation.unique,
+        holdoutReencryptionExact: continuation.reencryptionExact,
+        holdoutPlaintext: tokenString(continuation.plaintext)
+      });
+    }
+
+    const top = recovered.ranked[0];
+    const topPrefix = decodeTrigram(prefix, top.key, languageModel);
+    let topContinuation = null;
+    if (topPrefix && topPrefix.unique) {
+      const phaseAtSplit = topPrefix.plaintext.filter((symbol) => symbol !== 0).length % period;
+      const continuation = decodeTrigramContinuation(
+        holdout,
+        top.key,
+        languageModel,
+        phaseAtSplit,
+        topPrefix.plaintext[topPrefix.plaintext.length - 2],
+        topPrefix.plaintext[topPrefix.plaintext.length - 1]
+      );
+      if (continuation && !continuation.ambiguous) {
+        topContinuation = {
+          scorePerSymbol: continuation.score / holdout.length,
+          plaintext: tokenString(continuation.plaintext),
+          unique: continuation.unique,
+          reencryptionExact: continuation.reencryptionExact
+        };
+      }
+    }
+
+    evaluated.sort((a, b) => b.holdoutTrigramScore - a.holdoutTrigramScore);
+    return {
+      period,
+      prefixLength: prefix.length,
+      holdoutLength: holdout.length,
+      restartBudget: 1500,
+      validStarts: recovered.validStarts,
+      distinctPrefixCandidates: recovered.distinctCandidates,
+      prefixTopVsRunnerUpGap: recovered.scoreGap,
+      topPrefixCandidate: {
+        keyIndices: top.key,
+        keyTokens: tokenString(top.key),
+        unigramScore: top.score,
+        basinCount: top.basin,
+        prefixPlaintext: topPrefix ? tokenString(topPrefix.plaintext) : null,
+        continuationLegal: topContinuation !== null,
+        continuation: topContinuation
+      },
+      candidatesWithLegalHoldout: evaluated.length,
+      bestLegalHoldoutCandidate: evaluated[0] || null,
+      bestLegalHoldoutIsPostSelectionDiagnostic: true
+    };
+  });
+
+  return {
+    page: 0,
+    originalImageFirst13RedRunes: page.indices.slice(0, 13),
+    first13RedRuneTokens: tokenString(page.indices.slice(0, 13)),
+    splitRule: "first 131 of the complete 262-rune page are the fitting prefix; final 131 are untouched holdout",
+    keyResetAssumption: "page-local key phase begins at page 0 rune 0",
+    languageModel: "all solved LP1 native sections; no LP2 plaintext",
+    nativeLeaveOneOutHoldoutBaselines: nativeBaselines,
+    periodTests: results
+  };
+}
+
 function encrypt(plaintext, key) {
   let keyPosition = 0;
   return plaintext.map((symbol) => {
@@ -477,6 +696,7 @@ const controlResults = targets.map((target) => {
 });
 
 const plants = randomPlantSuite();
+const p0PrefixHoldout = runP0PrefixHoldout();
 const output = {
   method: {
     cipher: "C=P+K[phase] mod 29 for P!=F; P=F is transparent and does not advance key",
@@ -488,6 +708,7 @@ const output = {
     randomPlantCount: plants.length
   },
   controls: controlResults,
+  lp2P0PrefixHoldout: p0PrefixHoldout,
   randomKeyPlants: plants,
   randomPlantSuccesses: plants.filter((x) => x.exactKeyRecovery).length
 };
