@@ -30,6 +30,49 @@ const p57=groups(q[56]).slice(1); // exclude the added PARABLE rubric
 assert.equal(words.length,19);
 assert.equal(p57.join('').length,88);
 assert.deepEqual(words.map(render),p57);
+
+/** @param {string} word @param {number} v @returns {number[][]} */
+function allParses(word,v){
+  const out=[];
+  function visit(i,path){
+    if(i===word.length){out.push(path);return;}
+    for(let j=0;j<29;j++){
+      const options=aliases[j].filter(x=>x!=='V').concat(j===v?['V']:[]);
+      for(const token of options) if(word.startsWith(token,i)) visit(i+token.length,[...path,j]);
+    }
+  }
+  visit(0,[]);
+  return out;
+}
+function clauseParses(clause,v){
+  let choices=[[]];
+  for(const word of clause) choices=choices.flatMap(x=>allParses(word,v).map(y=>[...x,...y]));
+  return choices.map(seq=>({seq,sum:seq.reduce((s,j)=>s+c.prime[j],0)}));
+}
+// Freeze the three literal metadata line breaks and printed product; no p57
+// rune data enter this enumeration. V is not printed in the original chart.
+const metadata=read('im-results/audio761-original-id3-frame-inventory.md');
+const target=Number(metadata.match(/Description: `Parable ([\d,]+)`/)[1].replace(/,/g,''));
+const clauses=witness.toUpperCase().split('\\N').map(s=>s.match(/[A-Z]+/g));
+assert.equal(clauses.length,3);
+const selected=[];
+let combinations=0;
+for(let v=0;v<29;v++){
+  const lists=clauses.map(ws=>clauseParses(ws,v));
+  assert.deepEqual(lists.map(x=>x.length),[12,1,4]);
+  for(const x of lists[0]) for(const y of lists[1]) for(const z of lists[2]){
+    combinations++;
+    if(x.sum*y.sum*z.sum===target) selected.push({v,sums:[x.sum,y.sum,z.sum],seq:[...x.seq,...y.seq,...z.seq]});
+  }
+}
+assert.equal(combinations,1392);
+assert.equal(selected.length,1);
+assert.equal(selected[0].v,1);
+assert.deepEqual(selected[0].sums,[1259,1031,1229]);
+// Only now compare the checksum-selected sequence to the 2014 rune record.
+assert.deepEqual(selected[0].seq,c.pages[57].indices.slice(7));
+assert.equal(selected[0].seq.map(j=>a[j]).join(''),p57.join(''));
+
 const warning=ref.split('### 1\n')[1].split('### 3\n')[0].match(/[A-Z]+/g);
 const sourceWarning=groups(p[0]).map(w=>[...w].map(x=>a[28-a.indexOf(x)]).join(''));
 assert.equal(warning.length,45);
@@ -98,4 +141,4 @@ for(const w of orig){
 const remaining=[...assigned].filter(([,d])=>d.size>1);
 assert.deepEqual(remaining.map(([s])=>s),forced.map(([s])=>s));
 assert.equal(remaining.reduce((n,[,d])=>n+loss(d),0),4);
-console.log(JSON.stringify({witness:{words:words.length,runes:p57.join('').length,alignment:words.map((w,i)=>[w,p57[i]])},warning:{words:warning.length,runes:sourceWarning.join('').length,errors:0,independentLatin:false},unknown:{groups:orig.length,greedyImpossible:impossible.length,distinctImpossible:new Set(impossible.map(x=>x.w)).size,impossible,forced:forced.map(([s,d])=>({s,variants:[...d],loss:loss(d)})),minimumStationaryErrors:4}},null,2));
+console.log(JSON.stringify({checksum:{target,combinations,selected},witness:{words:words.length,runes:p57.join('').length,alignment:words.map((w,i)=>[w,p57[i]])},warning:{words:warning.length,runes:sourceWarning.join('').length,errors:0,independentLatin:false},unknown:{groups:orig.length,greedyImpossible:impossible.length,distinctImpossible:new Set(impossible.map(x=>x.w)).size,impossible,forced:forced.map(([s,d])=>({s,variants:[...d],loss:loss(d)})),minimumStationaryErrors:4}},null,2));
