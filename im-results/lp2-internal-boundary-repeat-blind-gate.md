@@ -1,0 +1,27 @@
+# Internal repeated-formula skeleton gate
+
+## Decision
+The complete canonical original LP2 p0–55 contains **no pair of nonoverlapping identical eight-word rune-count sequences**, even when every word start is eligible and punctuation is ignored. This eliminates a long verbatim repeat with intact printed word lengths as a readily available paired crib; it does not rule out short repetitions, alternate rune spellings, changed segmentation, or paraphrases. The only five-word rhetorical-boundary maximum is the previously tested p40/p53 twin quotation. No ciphertext rune identities were used or revealed in the search; no new plaintext or key.
+
+## Frozen primary test
+Director #2462 proposed an internal exact repeat as a constraint independent of cipher values. Mask all original glyphs before ranking. The canonical text has 12,956 runes and 2,896 complete printed words (page and line wraps are not word boundaries; physical p50 is runeless). Use the source punctuation inventory after excluding the four explicitly editorial p15 numeric-row stops, and the seven source quote spans. At each word-start offset mark large section, sentence, comma, quote open/end or initial book start; combine coincident marks. Compare every pair of distinct eligible starts (all mark types allowed) without overlap; require equal word counts and all interior punctuation labels. Initial mark type itself is eligibility only. Discovery: ≥8 complete words, ≥24 runes; separate extension ≥2 more words and a matched new interior rhetorical mark. No candidate passes discovery, so the original glyph identities remain sealed. The strict extension gate has no positive control in the available solved text, so its sensitivity alone is not established; the discovery gate does recover authentic solved repeats. A separately reported six-word/18-rune sensitivity gate with two additional words and a matched new or terminal mark has two exact solved positives.
+
+## Results
+| Register | Words | Starts | Pairs | Max matched words | Count at max |
+|---|---:|---:|---:|---:|---:|
+| Original, rhetorical anchors | 2,896 | 179 | 15,931 | 5 | 1 |
+| Original, all starts with punctuation | 2,896 | 2,896 | 4,191,960 | 7 | 8 |
+| Original, all starts ignoring punctuation | 2,896 | 2,896 | 4,191,960 | 7 | 12 |
+| Solved native GP, rhetorical anchors | 740 | 145 | 10,440 | 12 | 1 |
+
+The sole original boundary pair is zero-based words 2201 and 2802, global rune starts 9811 and 12522 (p40/p53 quotes). Its lengths [5,7,2,3,4] (21 runes) fail the very next word, 6 versus 10. This is already examined in `lp2_twin_quote_prefix_crib_gate_sft.cjs` and `lp2_quoted_pair_sharedprefix_source_sft.cjs`; no reason to re-run their cipher searches. Original boundary-match histogram for lengths 0–5: [13688,1954,255,31,2,1]. All-word sensitivity finds 22 six-word-or-longer discovery matches under the relaxed threshold with exact interior punctuation, zero two-word extensions. Even without punctuation there are 36 such discovery matches, zero extensions. This is a deterministic bound on the actual printed length sequence, independent of any statistical model.
+
+The native solved-control file is the nine relikd plaintext sections (external source transcription, not newly authenticated Cicada bytes). Its longest true repetition spans 12 words/41 runes, including a sentence mark. Eight-word discovery gate yields 11 pairs, all exactly repeated native words. The six-word sensitivity gate yields 12 discovery pairs, of which two survive the new-boundary extension and both are exact native repetitions. The strict ten-word/new-interior-mark requirement is more restrictive than needed to establish the original maximum and has no surviving solved positive.
+
+For context, canonical Gibran and Shakespeare texts are greedily transliterated into GP tokens and partitioned into nonoverlapping 2,896-word windows (4 Gibran, 18 Shakespeare); Crowley Book of Law I is a separate shorter 1,896-word control. Their natural punctuation differs from the LP manuscript: full-anchor comparisons are not exchangeable with LP2. A deterministic evenly spaced downsample to 179 eligible anchors yields Gibran maxima [7,9,7,7], Shakespeare [5,4,4,5,4,4,5,8,5,5,6,4,4,8,4,5,5,6], Crowley 5. At the eight-word/24-rune threshold, these matched controls produce three discovery pairs, only one genuinely identical GP word sequence. Thus a long skeleton by itself would not automatically justify equal plaintext. No original candidate reaches even that discovery threshold.
+
+## Reproduce
+`node sims/lp2_internal_boundary_repeat_blind_sft.cjs` (CommonJS, no extra packages). Inputs: `resources/liber-primus/lp2-transcription.txt`, `lp2-punctuation-identity.json`, `lp2-quote-punctuation-spans.json`, `resources/external/relikd-solved-gp29-native-v1.json`, the repository Gibran/Shakespeare and Book of Law I controls. Outputs include exact pair counts, lengths, coordinates, maxima, and matched-control discovery/holdout counts. Experiment body executed against live repository inputs; no CI needed. Source commit 3815a411e8b0d38a178392a4f655575d8eaa58c0.
+
+## Next decision
+Close #2462's specific long, unchanged internal-repeat premise. An independently selected short crib or a demonstrated segmentation-changing mechanism could reopen the underlying idea, but another post-selected five-word length coincidence cannot. Do not use the 135 closed end-aligned shared-pad tests as a substitute. No changes to authoritative plaintext status.
