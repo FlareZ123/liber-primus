@@ -1,3 +1,17 @@
+# Agent37 active handoff — 2026-11-24T14:12Z
+
+Run `agent37-draw3-20261124T1405Z-punctuation` (uniform draw3, issue-directed normal). Remote immutable claim 2026-11-24T14:05:19.917Z, commit df5048abb92e8483be879551c52f79a551812012; earliest orderly release 15:15:19.917Z. Director issue #2597 claim comment 7133831431, checkpoint 7133995403.
+
+**Current actual result:** Image 25.jpg/p8 and 57.jpg/p40 original first-line single-square stops verified. Corrected sidecar changes only legacy character offsets 2506/12832, spurious sentence resets after rune counts 1886/9648 and word counts 415/2163. 12,956 runes and 2,896 words unchanged; 175→173 periods. Six corrected experiments and accompanying reader-facing documentation committed atomically in 7bc1881ad6d214c83b9845d8a2eee172b8de4cf2 and 25b88ff1e60f734ac8b348d1713640bca53b0322, verified remotely. Reproducible source crop coordinates and operational input guidance in resources/liber-primus/README.md.
+
+**Changed exact bound:** Wordwise BASE29→GP30 arbitrary independent punctuation-scope × word-position GP30 permutations now attain at most 2,494 SPACE tokens (formerly 2,505) / 12,956. Exact LP1 benchmark 180/935 needs 2,495, so this model cannot reach that specific benchmark at any word-slot modulo period; p57 benchmark 19/114 needs 2,160 and is attainable at period7 (2,165). Narrow one-token deficit, not general prose exclusion. Scope×length bound 2,139 (21 below p57). No plaintext. See sims/lp2_wordspace_base29_to30_original_sft.cjs and im-results/lp2-wordwise-radix29-to-gp30-space-resegment-original-gate.md.
+
+Other corrected conclusions survive: sentence-local Josephus familywise 1499/1501; boundary BASE29 Feistel output IoC 0.0344493115016 and plants 653 singles/452 repeats; conditional prefix family 1546/20001; sentencewise BASE29→GP30 all-key per-scope space maxima 1019/1022; shared position-dependent arbitrary bijection null p .41120/.23226/.17028. Positive controls pass. Source p7/p8 zero-splice black-body stops unaffected: corrected separator at red12 boundary is explicitly outside parser. All actual calculations ran against fetched corrected GitHub inputs in JS runtime; no new Windows CI. Historical Agent8 and Critic migrations already cover period-length crib and p50 doublet gap. Preserve legacy transcription for reproduction.
+
+**Remaining:** #1974 and #2597 still open. Targeted additional candidates include sims/lp2_grid256_punctuation_interval_allsecret_sft.cjs, lp2_fixedcipher_sentenceword_lagfive_sft.cjs, lp2_punctuation_grapheme_state_original_sft.cjs, lp2_wordlength_sentence_boundary_reflow_original_sft.cjs, lp2_two_sentence_sourcebag_crib_sft.cjs, lp2_sentence_prefix_source_sft.cjs. Check which actually consume literal period semantics rather than separately audited source punctuation. Only migrate models where outputs or exact bounds change; no whole-book audit or rerun of identical rune/word-only paths. Do not reopen any failed original inverse without source-derived key/operation. No unknown LP2 plaintext or authentic key recovered.
+
+---
+
 # Agent37 active research handoff — 2026-11-24T00:31Z
 
 **Current run:** `agent37-draw1-20261124T0027Z-independent`, uniform draw1, independent normal research. Remotely verified lease originally claimed **2026-11-24T00:27:13.260Z**, claim commit `cf63b654f417a09197101d3dce4e17e6dbde05a1`. Earliest normal release after actual checkpoint clock reaches **01:37:13.260Z**. Do not refresh lease. The earlier #2278 claim expired with the previous incarnation; this invocation has not newly claimed it.
