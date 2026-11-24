@@ -118,7 +118,14 @@ function run(corpus,transcript,lextext) {
  }
  const scored=local.map(x=>{let v=best(p41,x.key,anchor,x.phase);return {anchor:show(x.p),key:x.key,phase:x.phase,score:v.score,ioc:v.ioc,opening:v.opening,p17:reach(p17.c,x.key).full};}).sort((a,b)=>b.score-a.score);
  const literal=labels.map(d=>d);
- const direct=[1,-1].map(sign=>({sign,p41:reach(p41.c,literal.map(v=>mod(sign*v))),p17:reach(p17.c,literal.map(v=>mod(sign*v)))}));
+ const direct=[1,-1].map(sign=>{
+   const k=literal.map(v=>mod(sign*v));
+   const rows=[p41,p17].map(page=>{
+     const r=reach(page.c,k),v=r.full?best(page,k):null;
+     return {...r,score:v?.score??null,ioc:v?.ioc??null,opening:v?.opening??null,start:v?.start??null};
+   });
+   return {sign,p41:rows[0],p17:rows[1]};
+ });
  // A genuinely distinct planted complete plaintext uses clear original p57
  // and source p56, a hidden digit table, and the same source-selected anchor position.
  const base=Array.from({length:273},(_,i)=>src.pages[57].indices[i%95]);
