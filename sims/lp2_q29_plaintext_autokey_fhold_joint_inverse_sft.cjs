@@ -1,7 +1,7 @@
 'use strict';
 /** Plaintext-fed GP29 autokey, latent F holds, q29 primer. */
 const files=["resources/liber-primus/lp2-corpus.json","resources/external/relikd-solved-gp29-native-v1.json","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt"];
-function study(inputs,lib){
+function study(inputs,lib,which='both'){
  const gp=JSON.parse(inputs[0]),native=JSON.parse(inputs[1]),assert=(x,m)=>{if(!x)throw Error(m)};
  const alpha=new Map(gp.translit.map((x,i)=>[x,i]));alpha.set("ING",21);
  const rune=new Map(gp.runes.map((x,i)=>[x,i]));
@@ -72,7 +72,7 @@ function study(inputs,lib){
   }
   return {lo,hi,split,controls,target:solve("original",target,split)};
  }
- return {q,trainLengths:train.map(p=>p.length),terminal:region(54,56,232,3),opening:region(0,3,262,14)};
+ return {q,trainLengths:train.map(p=>p.length),terminal:which==='opening'?null:region(54,56,232,3),opening:which==='terminal'?null:region(0,3,262,14)};
 }
 if(require.main===module){const fs=require("node:fs"),path=require("node:path"),lib=require("./lp2_fhold_cyclic_ngram_map.cjs");console.log(JSON.stringify(study(files.map(p=>fs.readFileSync(path.resolve(__dirname,"..",p),"utf8")),lib),null,2));}
 module.exports={study,files};
