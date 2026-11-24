@@ -25,6 +25,32 @@
     "seconds": 0.491683371
   },
   "control": {
-    "status": "blind solve running"
+    "kind": "native-derived two nonzero delta GP transport; true rotated key supplied",
+    "result": "sat",
+    "q": 13,
+    "anchor": 45,
+    "runes": 3008,
+    "variables": 5683,
+    "clauses": 123648,
+    "seconds": 0.9295195499998954,
+    "key": [
+      15,
+      7,
+      5,
+      9,
+      19,
+      6,
+      7,
+      15,
+      0,
+      20,
+      17,
+      20,
+      0
+    ],
+    "phase": 9,
+    "replay": true,
+    "matchedIntermediate": 2432,
+    "blindKeyRecovery": "not completed"
   }
 }
