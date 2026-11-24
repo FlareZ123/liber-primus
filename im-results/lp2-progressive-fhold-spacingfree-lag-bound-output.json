@@ -1,0 +1,3747 @@
+{
+  "positive": [
+    {
+      "name": "WELCOME",
+      "d": 0,
+      "period": 8,
+      "actual": [
+        88,
+        9
+      ],
+      "bounds": {
+        "d": 0,
+        "rune": 102,
+        "bigram": 11
+      },
+      "peak": 24
+    },
+    {
+      "name": "WELCOME",
+      "d": 7,
+      "period": 8,
+      "actual": [
+        88,
+        9
+      ],
+      "bounds": {
+        "d": 7,
+        "rune": 96,
+        "bigram": 10
+      },
+      "peak": 21
+    },
+    {
+      "name": "KOAN",
+      "d": 0,
+      "period": 13,
+      "actual": [
+        65,
+        10
+      ],
+      "bounds": {
+        "d": 0,
+        "rune": 69,
+        "bigram": 11
+      },
+      "peak": 4
+    },
+    {
+      "name": "KOAN",
+      "d": 7,
+      "period": 13,
+      "actual": [
+        65,
+        10
+      ],
+      "bounds": {
+        "d": 7,
+        "rune": 73,
+        "bigram": 12
+      },
+      "peak": 20
+    }
+  ],
+  "toyBruteAll29": true,
+  "result": [
+    {
+      "pages": [
+        0,
+        2
+      ],
+      "n": 729,
+      "period": 8,
+      "maxRune": 109,
+      "maxBigram": 9,
+      "slopes": [
+        {
+          "d": 0,
+          "rune": 94,
+          "bigram": 3
+        },
+        {
+          "d": 1,
+          "rune": 100,
+          "bigram": 4
+        },
+        {
+          "d": 2,
+          "rune": 99,
+          "bigram": 8
+        },
+        {
+          "d": 3,
+          "rune": 88,
+          "bigram": 4
+        },
+        {
+          "d": 4,
+          "rune": 91,
+          "bigram": 3
+        },
+        {
+          "d": 5,
+          "rune": 85,
+          "bigram": 3
+        },
+        {
+          "d": 6,
+          "rune": 96,
+          "bigram": 5
+        },
+        {
+          "d": 7,
+          "rune": 86,
+          "bigram": 5
+        },
+        {
+          "d": 8,
+          "rune": 97,
+          "bigram": 5
+        },
+        {
+          "d": 9,
+          "rune": 99,
+          "bigram": 5
+        },
+        {
+          "d": 10,
+          "rune": 89,
+          "bigram": 0
+        },
+        {
+          "d": 11,
+          "rune": 95,
+          "bigram": 8
+        },
+        {
+          "d": 12,
+          "rune": 97,
+          "bigram": 9
+        },
+        {
+          "d": 13,
+          "rune": 84,
+          "bigram": 4
+        },
+        {
+          "d": 14,
+          "rune": 89,
+          "bigram": 5
+        },
+        {
+          "d": 15,
+          "rune": 98,
+          "bigram": 4
+        },
+        {
+          "d": 16,
+          "rune": 106,
+          "bigram": 6
+        },
+        {
+          "d": 17,
+          "rune": 90,
+          "bigram": 4
+        },
+        {
+          "d": 18,
+          "rune": 93,
+          "bigram": 3
+        },
+        {
+          "d": 19,
+          "rune": 99,
+          "bigram": 4
+        },
+        {
+          "d": 20,
+          "rune": 98,
+          "bigram": 4
+        },
+        {
+          "d": 21,
+          "rune": 80,
+          "bigram": 2
+        },
+        {
+          "d": 22,
+          "rune": 86,
+          "bigram": 3
+        },
+        {
+          "d": 23,
+          "rune": 99,
+          "bigram": 4
+        },
+        {
+          "d": 24,
+          "rune": 96,
+          "bigram": 4
+        },
+        {
+          "d": 25,
+          "rune": 97,
+          "bigram": 5
+        },
+        {
+          "d": 26,
+          "rune": 109,
+          "bigram": 6
+        },
+        {
+          "d": 27,
+          "rune": 91,
+          "bigram": 3
+        },
+        {
+          "d": 28,
+          "rune": 101,
+          "bigram": 7
+        }
+      ],
+      "peak": 16,
+      "controls": [
+        {
+          "name": "Shakespeare",
+          "minRune": 111,
+          "minBigram": 4,
+          "runePass": 0,
+          "bigramPass": 7,
+          "jointPass": 0
+        },
+        {
+          "name": "Emerson",
+          "minRune": 112,
+          "minBigram": 5,
+          "runePass": 0,
+          "bigramPass": 5,
+          "jointPass": 0
+        },
+        {
+          "name": "Gibran",
+          "minRune": 108,
+          "minBigram": 9,
+          "runePass": 1,
+          "bigramPass": 2,
+          "jointPass": 0
+        }
+      ]
+    },
+    {
+      "pages": [
+        0,
+        2
+      ],
+      "n": 729,
+      "period": 13,
+      "maxRune": 116,
+      "maxBigram": 10,
+      "slopes": [
+        {
+          "d": 0,
+          "rune": 101,
+          "bigram": 1
+        },
+        {
+          "d": 1,
+          "rune": 103,
+          "bigram": 8
+        },
+        {
+          "d": 2,
+          "rune": 95,
+          "bigram": 6
+        },
+        {
+          "d": 3,
+          "rune": 112,
+          "bigram": 4
+        },
+        {
+          "d": 4,
+          "rune": 104,
+          "bigram": 10
+        },
+        {
+          "d": 5,
+          "rune": 103,
+          "bigram": 7
+        },
+        {
+          "d": 6,
+          "rune": 104,
+          "bigram": 7
+        },
+        {
+          "d": 7,
+          "rune": 106,
+          "bigram": 4
+        },
+        {
+          "d": 8,
+          "rune": 94,
+          "bigram": 7
+        },
+        {
+          "d": 9,
+          "rune": 83,
+          "bigram": 4
+        },
+        {
+          "d": 10,
+          "rune": 91,
+          "bigram": 3
+        },
+        {
+          "d": 11,
+          "rune": 116,
+          "bigram": 7
+        },
+        {
+          "d": 12,
+          "rune": 97,
+          "bigram": 4
+        },
+        {
+          "d": 13,
+          "rune": 100,
+          "bigram": 5
+        },
+        {
+          "d": 14,
+          "rune": 94,
+          "bigram": 1
+        },
+        {
+          "d": 15,
+          "rune": 91,
+          "bigram": 8
+        },
+        {
+          "d": 16,
+          "rune": 101,
+          "bigram": 7
+        },
+        {
+          "d": 17,
+          "rune": 83,
+          "bigram": 2
+        },
+        {
+          "d": 18,
+          "rune": 109,
+          "bigram": 5
+        },
+        {
+          "d": 19,
+          "rune": 113,
+          "bigram": 5
+        },
+        {
+          "d": 20,
+          "rune": 107,
+          "bigram": 8
+        },
+        {
+          "d": 21,
+          "rune": 105,
+          "bigram": 9
+        },
+        {
+          "d": 22,
+          "rune": 83,
+          "bigram": 6
+        },
+        {
+          "d": 23,
+          "rune": 93,
+          "bigram": 1
+        },
+        {
+          "d": 24,
+          "rune": 94,
+          "bigram": 3
+        },
+        {
+          "d": 25,
+          "rune": 100,
+          "bigram": 8
+        },
+        {
+          "d": 26,
+          "rune": 95,
+          "bigram": 2
+        },
+        {
+          "d": 27,
+          "rune": 96,
+          "bigram": 1
+        },
+        {
+          "d": 28,
+          "rune": 92,
+          "bigram": 6
+        }
+      ],
+      "peak": 16,
+      "controls": [
+        {
+          "name": "Shakespeare",
+          "minRune": 108,
+          "minBigram": 4,
+          "runePass": 8,
+          "bigramPass": 10,
+          "jointPass": 4
+        },
+        {
+          "name": "Emerson",
+          "minRune": 102,
+          "minBigram": 5,
+          "runePass": 5,
+          "bigramPass": 5,
+          "jointPass": 3
+        },
+        {
+          "name": "Gibran",
+          "minRune": 94,
+          "minBigram": 8,
+          "runePass": 4,
+          "bigramPass": 3,
+          "jointPass": 1
+        }
+      ]
+    },
+    {
+      "pages": [
+        3,
+        7
+      ],
+      "n": 1145,
+      "period": 8,
+      "maxRune": 166,
+      "maxBigram": 10,
+      "slopes": [
+        {
+          "d": 0,
+          "rune": 139,
+          "bigram": 7
+        },
+        {
+          "d": 1,
+          "rune": 139,
+          "bigram": 7
+        },
+        {
+          "d": 2,
+          "rune": 130,
+          "bigram": 3
+        },
+        {
+          "d": 3,
+          "rune": 120,
+          "bigram": 4
+        },
+        {
+          "d": 4,
+          "rune": 126,
+          "bigram": 5
+        },
+        {
+          "d": 5,
+          "rune": 139,
+          "bigram": 9
+        },
+        {
+          "d": 6,
+          "rune": 113,
+          "bigram": 3
+        },
+        {
+          "d": 7,
+          "rune": 123,
+          "bigram": 3
+        },
+        {
+          "d": 8,
+          "rune": 166,
+          "bigram": 10
+        },
+        {
+          "d": 9,
+          "rune": 139,
+          "bigram": 4
+        },
+        {
+          "d": 10,
+          "rune": 134,
+          "bigram": 5
+        },
+        {
+          "d": 11,
+          "rune": 131,
+          "bigram": 7
+        },
+        {
+          "d": 12,
+          "rune": 122,
+          "bigram": 0
+        },
+        {
+          "d": 13,
+          "rune": 146,
+          "bigram": 6
+        },
+        {
+          "d": 14,
+          "rune": 131,
+          "bigram": 2
+        },
+        {
+          "d": 15,
+          "rune": 130,
+          "bigram": 9
+        },
+        {
+          "d": 16,
+          "rune": 141,
+          "bigram": 7
+        },
+        {
+          "d": 17,
+          "rune": 123,
+          "bigram": 2
+        },
+        {
+          "d": 18,
+          "rune": 132,
+          "bigram": 7
+        },
+        {
+          "d": 19,
+          "rune": 129,
+          "bigram": 6
+        },
+        {
+          "d": 20,
+          "rune": 132,
+          "bigram": 5
+        },
+        {
+          "d": 21,
+          "rune": 108,
+          "bigram": 1
+        },
+        {
+          "d": 22,
+          "rune": 150,
+          "bigram": 4
+        },
+        {
+          "d": 23,
+          "rune": 118,
+          "bigram": 3
+        },
+        {
+          "d": 24,
+          "rune": 147,
+          "bigram": 10
+        },
+        {
+          "d": 25,
+          "rune": 133,
+          "bigram": 9
+        },
+        {
+          "d": 26,
+          "rune": 133,
+          "bigram": 6
+        },
+        {
+          "d": 27,
+          "rune": 142,
+          "bigram": 7
+        },
+        {
+          "d": 28,
+          "rune": 152,
+          "bigram": 9
+        }
+      ],
+      "peak": 8,
+      "controls": [
+        {
+          "name": "Shakespeare",
+          "minRune": 180,
+          "minBigram": 8,
+          "runePass": 0,
+          "bigramPass": 2,
+          "jointPass": 0
+        },
+        {
+          "name": "Emerson",
+          "minRune": 192,
+          "minBigram": 13,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Gibran",
+          "minRune": 176,
+          "minBigram": 15,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        }
+      ]
+    },
+    {
+      "pages": [
+        3,
+        7
+      ],
+      "n": 1145,
+      "period": 13,
+      "maxRune": 169,
+      "maxBigram": 14,
+      "slopes": [
+        {
+          "d": 0,
+          "rune": 141,
+          "bigram": 9
+        },
+        {
+          "d": 1,
+          "rune": 132,
+          "bigram": 9
+        },
+        {
+          "d": 2,
+          "rune": 138,
+          "bigram": 5
+        },
+        {
+          "d": 3,
+          "rune": 119,
+          "bigram": 10
+        },
+        {
+          "d": 4,
+          "rune": 133,
+          "bigram": 9
+        },
+        {
+          "d": 5,
+          "rune": 140,
+          "bigram": 5
+        },
+        {
+          "d": 6,
+          "rune": 132,
+          "bigram": 7
+        },
+        {
+          "d": 7,
+          "rune": 166,
+          "bigram": 13
+        },
+        {
+          "d": 8,
+          "rune": 133,
+          "bigram": 6
+        },
+        {
+          "d": 9,
+          "rune": 134,
+          "bigram": 5
+        },
+        {
+          "d": 10,
+          "rune": 144,
+          "bigram": 12
+        },
+        {
+          "d": 11,
+          "rune": 130,
+          "bigram": 5
+        },
+        {
+          "d": 12,
+          "rune": 137,
+          "bigram": 5
+        },
+        {
+          "d": 13,
+          "rune": 145,
+          "bigram": 14
+        },
+        {
+          "d": 14,
+          "rune": 153,
+          "bigram": 8
+        },
+        {
+          "d": 15,
+          "rune": 134,
+          "bigram": 11
+        },
+        {
+          "d": 16,
+          "rune": 123,
+          "bigram": 7
+        },
+        {
+          "d": 17,
+          "rune": 147,
+          "bigram": 10
+        },
+        {
+          "d": 18,
+          "rune": 125,
+          "bigram": 4
+        },
+        {
+          "d": 19,
+          "rune": 147,
+          "bigram": 5
+        },
+        {
+          "d": 20,
+          "rune": 169,
+          "bigram": 9
+        },
+        {
+          "d": 21,
+          "rune": 132,
+          "bigram": 9
+        },
+        {
+          "d": 22,
+          "rune": 134,
+          "bigram": 7
+        },
+        {
+          "d": 23,
+          "rune": 131,
+          "bigram": 10
+        },
+        {
+          "d": 24,
+          "rune": 130,
+          "bigram": 3
+        },
+        {
+          "d": 25,
+          "rune": 134,
+          "bigram": 3
+        },
+        {
+          "d": 26,
+          "rune": 131,
+          "bigram": 9
+        },
+        {
+          "d": 27,
+          "rune": 122,
+          "bigram": 4
+        },
+        {
+          "d": 28,
+          "rune": 138,
+          "bigram": 4
+        }
+      ],
+      "peak": 8,
+      "controls": [
+        {
+          "name": "Shakespeare",
+          "minRune": 163,
+          "minBigram": 11,
+          "runePass": 1,
+          "bigramPass": 2,
+          "jointPass": 1
+        },
+        {
+          "name": "Emerson",
+          "minRune": 161,
+          "minBigram": 11,
+          "runePass": 1,
+          "bigramPass": 2,
+          "jointPass": 1
+        },
+        {
+          "name": "Gibran",
+          "minRune": 160,
+          "minBigram": 14,
+          "runePass": 2,
+          "bigramPass": 1,
+          "jointPass": 0
+        }
+      ]
+    },
+    {
+      "pages": [
+        8,
+        14
+      ],
+      "n": 1729,
+      "period": 8,
+      "maxRune": 248,
+      "maxBigram": 13,
+      "slopes": [
+        {
+          "d": 0,
+          "rune": 210,
+          "bigram": 10
+        },
+        {
+          "d": 1,
+          "rune": 230,
+          "bigram": 7
+        },
+        {
+          "d": 2,
+          "rune": 205,
+          "bigram": 6
+        },
+        {
+          "d": 3,
+          "rune": 209,
+          "bigram": 10
+        },
+        {
+          "d": 4,
+          "rune": 248,
+          "bigram": 12
+        },
+        {
+          "d": 5,
+          "rune": 234,
+          "bigram": 10
+        },
+        {
+          "d": 6,
+          "rune": 206,
+          "bigram": 8
+        },
+        {
+          "d": 7,
+          "rune": 205,
+          "bigram": 11
+        },
+        {
+          "d": 8,
+          "rune": 228,
+          "bigram": 9
+        },
+        {
+          "d": 9,
+          "rune": 221,
+          "bigram": 13
+        },
+        {
+          "d": 10,
+          "rune": 226,
+          "bigram": 7
+        },
+        {
+          "d": 11,
+          "rune": 227,
+          "bigram": 13
+        },
+        {
+          "d": 12,
+          "rune": 218,
+          "bigram": 7
+        },
+        {
+          "d": 13,
+          "rune": 206,
+          "bigram": 7
+        },
+        {
+          "d": 14,
+          "rune": 218,
+          "bigram": 10
+        },
+        {
+          "d": 15,
+          "rune": 213,
+          "bigram": 8
+        },
+        {
+          "d": 16,
+          "rune": 228,
+          "bigram": 11
+        },
+        {
+          "d": 17,
+          "rune": 187,
+          "bigram": 7
+        },
+        {
+          "d": 18,
+          "rune": 213,
+          "bigram": 7
+        },
+        {
+          "d": 19,
+          "rune": 210,
+          "bigram": 10
+        },
+        {
+          "d": 20,
+          "rune": 206,
+          "bigram": 7
+        },
+        {
+          "d": 21,
+          "rune": 214,
+          "bigram": 7
+        },
+        {
+          "d": 22,
+          "rune": 200,
+          "bigram": 13
+        },
+        {
+          "d": 23,
+          "rune": 212,
+          "bigram": 5
+        },
+        {
+          "d": 24,
+          "rune": 222,
+          "bigram": 10
+        },
+        {
+          "d": 25,
+          "rune": 230,
+          "bigram": 8
+        },
+        {
+          "d": 26,
+          "rune": 226,
+          "bigram": 12
+        },
+        {
+          "d": 27,
+          "rune": 222,
+          "bigram": 12
+        },
+        {
+          "d": 28,
+          "rune": 225,
+          "bigram": 12
+        }
+      ],
+      "peak": 32,
+      "controls": [
+        {
+          "name": "Shakespeare",
+          "minRune": 284,
+          "minBigram": 14,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Emerson",
+          "minRune": 288,
+          "minBigram": 19,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Gibran",
+          "minRune": 279,
+          "minBigram": 23,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        }
+      ]
+    },
+    {
+      "pages": [
+        8,
+        14
+      ],
+      "n": 1729,
+      "period": 13,
+      "maxRune": 256,
+      "maxBigram": 20,
+      "slopes": [
+        {
+          "d": 0,
+          "rune": 218,
+          "bigram": 14
+        },
+        {
+          "d": 1,
+          "rune": 227,
+          "bigram": 8
+        },
+        {
+          "d": 2,
+          "rune": 201,
+          "bigram": 14
+        },
+        {
+          "d": 3,
+          "rune": 221,
+          "bigram": 8
+        },
+        {
+          "d": 4,
+          "rune": 240,
+          "bigram": 20
+        },
+        {
+          "d": 5,
+          "rune": 222,
+          "bigram": 12
+        },
+        {
+          "d": 6,
+          "rune": 244,
+          "bigram": 17
+        },
+        {
+          "d": 7,
+          "rune": 222,
+          "bigram": 14
+        },
+        {
+          "d": 8,
+          "rune": 227,
+          "bigram": 9
+        },
+        {
+          "d": 9,
+          "rune": 200,
+          "bigram": 12
+        },
+        {
+          "d": 10,
+          "rune": 242,
+          "bigram": 15
+        },
+        {
+          "d": 11,
+          "rune": 211,
+          "bigram": 14
+        },
+        {
+          "d": 12,
+          "rune": 239,
+          "bigram": 14
+        },
+        {
+          "d": 13,
+          "rune": 236,
+          "bigram": 11
+        },
+        {
+          "d": 14,
+          "rune": 232,
+          "bigram": 13
+        },
+        {
+          "d": 15,
+          "rune": 220,
+          "bigram": 13
+        },
+        {
+          "d": 16,
+          "rune": 244,
+          "bigram": 18
+        },
+        {
+          "d": 17,
+          "rune": 242,
+          "bigram": 19
+        },
+        {
+          "d": 18,
+          "rune": 220,
+          "bigram": 13
+        },
+        {
+          "d": 19,
+          "rune": 201,
+          "bigram": 9
+        },
+        {
+          "d": 20,
+          "rune": 256,
+          "bigram": 12
+        },
+        {
+          "d": 21,
+          "rune": 220,
+          "bigram": 9
+        },
+        {
+          "d": 22,
+          "rune": 227,
+          "bigram": 9
+        },
+        {
+          "d": 23,
+          "rune": 254,
+          "bigram": 18
+        },
+        {
+          "d": 24,
+          "rune": 222,
+          "bigram": 15
+        },
+        {
+          "d": 25,
+          "rune": 225,
+          "bigram": 13
+        },
+        {
+          "d": 26,
+          "rune": 238,
+          "bigram": 10
+        },
+        {
+          "d": 27,
+          "rune": 218,
+          "bigram": 13
+        },
+        {
+          "d": 28,
+          "rune": 225,
+          "bigram": 12
+        }
+      ],
+      "peak": 48,
+      "controls": [
+        {
+          "name": "Shakespeare",
+          "minRune": 256,
+          "minBigram": 21,
+          "runePass": 1,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Emerson",
+          "minRune": 276,
+          "minBigram": 25,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Gibran",
+          "minRune": 276,
+          "minBigram": 22,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        }
+      ]
+    },
+    {
+      "pages": [
+        15,
+        22
+      ],
+      "n": 1903,
+      "period": 8,
+      "maxRune": 259,
+      "maxBigram": 19,
+      "slopes": [
+        {
+          "d": 0,
+          "rune": 254,
+          "bigram": 9
+        },
+        {
+          "d": 1,
+          "rune": 246,
+          "bigram": 14
+        },
+        {
+          "d": 2,
+          "rune": 237,
+          "bigram": 17
+        },
+        {
+          "d": 3,
+          "rune": 238,
+          "bigram": 12
+        },
+        {
+          "d": 4,
+          "rune": 255,
+          "bigram": 11
+        },
+        {
+          "d": 5,
+          "rune": 250,
+          "bigram": 10
+        },
+        {
+          "d": 6,
+          "rune": 218,
+          "bigram": 6
+        },
+        {
+          "d": 7,
+          "rune": 241,
+          "bigram": 11
+        },
+        {
+          "d": 8,
+          "rune": 242,
+          "bigram": 9
+        },
+        {
+          "d": 9,
+          "rune": 239,
+          "bigram": 8
+        },
+        {
+          "d": 10,
+          "rune": 229,
+          "bigram": 7
+        },
+        {
+          "d": 11,
+          "rune": 252,
+          "bigram": 5
+        },
+        {
+          "d": 12,
+          "rune": 221,
+          "bigram": 9
+        },
+        {
+          "d": 13,
+          "rune": 230,
+          "bigram": 9
+        },
+        {
+          "d": 14,
+          "rune": 246,
+          "bigram": 14
+        },
+        {
+          "d": 15,
+          "rune": 236,
+          "bigram": 10
+        },
+        {
+          "d": 16,
+          "rune": 234,
+          "bigram": 6
+        },
+        {
+          "d": 17,
+          "rune": 238,
+          "bigram": 14
+        },
+        {
+          "d": 18,
+          "rune": 221,
+          "bigram": 14
+        },
+        {
+          "d": 19,
+          "rune": 256,
+          "bigram": 10
+        },
+        {
+          "d": 20,
+          "rune": 259,
+          "bigram": 19
+        },
+        {
+          "d": 21,
+          "rune": 245,
+          "bigram": 15
+        },
+        {
+          "d": 22,
+          "rune": 228,
+          "bigram": 10
+        },
+        {
+          "d": 23,
+          "rune": 240,
+          "bigram": 14
+        },
+        {
+          "d": 24,
+          "rune": 234,
+          "bigram": 16
+        },
+        {
+          "d": 25,
+          "rune": 240,
+          "bigram": 9
+        },
+        {
+          "d": 26,
+          "rune": 243,
+          "bigram": 11
+        },
+        {
+          "d": 27,
+          "rune": 224,
+          "bigram": 14
+        },
+        {
+          "d": 28,
+          "rune": 238,
+          "bigram": 9
+        }
+      ],
+      "peak": 16,
+      "controls": [
+        {
+          "name": "Shakespeare",
+          "minRune": 310,
+          "minBigram": 22,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Emerson",
+          "minRune": 320,
+          "minBigram": 24,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Gibran",
+          "minRune": 304,
+          "minBigram": 28,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        }
+      ]
+    },
+    {
+      "pages": [
+        15,
+        22
+      ],
+      "n": 1903,
+      "period": 13,
+      "maxRune": 276,
+      "maxBigram": 23,
+      "slopes": [
+        {
+          "d": 0,
+          "rune": 256,
+          "bigram": 14
+        },
+        {
+          "d": 1,
+          "rune": 214,
+          "bigram": 7
+        },
+        {
+          "d": 2,
+          "rune": 237,
+          "bigram": 10
+        },
+        {
+          "d": 3,
+          "rune": 264,
+          "bigram": 12
+        },
+        {
+          "d": 4,
+          "rune": 251,
+          "bigram": 16
+        },
+        {
+          "d": 5,
+          "rune": 251,
+          "bigram": 16
+        },
+        {
+          "d": 6,
+          "rune": 246,
+          "bigram": 10
+        },
+        {
+          "d": 7,
+          "rune": 259,
+          "bigram": 23
+        },
+        {
+          "d": 8,
+          "rune": 257,
+          "bigram": 11
+        },
+        {
+          "d": 9,
+          "rune": 252,
+          "bigram": 11
+        },
+        {
+          "d": 10,
+          "rune": 267,
+          "bigram": 13
+        },
+        {
+          "d": 11,
+          "rune": 224,
+          "bigram": 14
+        },
+        {
+          "d": 12,
+          "rune": 238,
+          "bigram": 13
+        },
+        {
+          "d": 13,
+          "rune": 231,
+          "bigram": 10
+        },
+        {
+          "d": 14,
+          "rune": 246,
+          "bigram": 12
+        },
+        {
+          "d": 15,
+          "rune": 222,
+          "bigram": 14
+        },
+        {
+          "d": 16,
+          "rune": 243,
+          "bigram": 13
+        },
+        {
+          "d": 17,
+          "rune": 249,
+          "bigram": 11
+        },
+        {
+          "d": 18,
+          "rune": 245,
+          "bigram": 13
+        },
+        {
+          "d": 19,
+          "rune": 251,
+          "bigram": 14
+        },
+        {
+          "d": 20,
+          "rune": 231,
+          "bigram": 11
+        },
+        {
+          "d": 21,
+          "rune": 253,
+          "bigram": 11
+        },
+        {
+          "d": 22,
+          "rune": 276,
+          "bigram": 15
+        },
+        {
+          "d": 23,
+          "rune": 243,
+          "bigram": 15
+        },
+        {
+          "d": 24,
+          "rune": 251,
+          "bigram": 15
+        },
+        {
+          "d": 25,
+          "rune": 246,
+          "bigram": 13
+        },
+        {
+          "d": 26,
+          "rune": 266,
+          "bigram": 17
+        },
+        {
+          "d": 27,
+          "rune": 261,
+          "bigram": 13
+        },
+        {
+          "d": 28,
+          "rune": 251,
+          "bigram": 13
+        }
+      ],
+      "peak": 32,
+      "controls": [
+        {
+          "name": "Shakespeare",
+          "minRune": 277,
+          "minBigram": 25,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Emerson",
+          "minRune": 310,
+          "minBigram": 25,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Gibran",
+          "minRune": 313,
+          "minBigram": 24,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        }
+      ]
+    },
+    {
+      "pages": [
+        23,
+        26
+      ],
+      "n": 1021,
+      "period": 8,
+      "maxRune": 139,
+      "maxBigram": 11,
+      "slopes": [
+        {
+          "d": 0,
+          "rune": 128,
+          "bigram": 4
+        },
+        {
+          "d": 1,
+          "rune": 117,
+          "bigram": 4
+        },
+        {
+          "d": 2,
+          "rune": 137,
+          "bigram": 9
+        },
+        {
+          "d": 3,
+          "rune": 119,
+          "bigram": 3
+        },
+        {
+          "d": 4,
+          "rune": 126,
+          "bigram": 6
+        },
+        {
+          "d": 5,
+          "rune": 129,
+          "bigram": 7
+        },
+        {
+          "d": 6,
+          "rune": 136,
+          "bigram": 11
+        },
+        {
+          "d": 7,
+          "rune": 122,
+          "bigram": 4
+        },
+        {
+          "d": 8,
+          "rune": 114,
+          "bigram": 2
+        },
+        {
+          "d": 9,
+          "rune": 139,
+          "bigram": 8
+        },
+        {
+          "d": 10,
+          "rune": 114,
+          "bigram": 5
+        },
+        {
+          "d": 11,
+          "rune": 126,
+          "bigram": 6
+        },
+        {
+          "d": 12,
+          "rune": 128,
+          "bigram": 11
+        },
+        {
+          "d": 13,
+          "rune": 130,
+          "bigram": 7
+        },
+        {
+          "d": 14,
+          "rune": 129,
+          "bigram": 8
+        },
+        {
+          "d": 15,
+          "rune": 128,
+          "bigram": 6
+        },
+        {
+          "d": 16,
+          "rune": 137,
+          "bigram": 9
+        },
+        {
+          "d": 17,
+          "rune": 137,
+          "bigram": 5
+        },
+        {
+          "d": 18,
+          "rune": 128,
+          "bigram": 3
+        },
+        {
+          "d": 19,
+          "rune": 104,
+          "bigram": 7
+        },
+        {
+          "d": 20,
+          "rune": 132,
+          "bigram": 8
+        },
+        {
+          "d": 21,
+          "rune": 127,
+          "bigram": 6
+        },
+        {
+          "d": 22,
+          "rune": 137,
+          "bigram": 4
+        },
+        {
+          "d": 23,
+          "rune": 138,
+          "bigram": 8
+        },
+        {
+          "d": 24,
+          "rune": 128,
+          "bigram": 5
+        },
+        {
+          "d": 25,
+          "rune": 136,
+          "bigram": 7
+        },
+        {
+          "d": 26,
+          "rune": 132,
+          "bigram": 7
+        },
+        {
+          "d": 27,
+          "rune": 135,
+          "bigram": 7
+        },
+        {
+          "d": 28,
+          "rune": 125,
+          "bigram": 6
+        }
+      ],
+      "peak": 12,
+      "controls": [
+        {
+          "name": "Shakespeare",
+          "minRune": 161,
+          "minBigram": 8,
+          "runePass": 0,
+          "bigramPass": 5,
+          "jointPass": 0
+        },
+        {
+          "name": "Emerson",
+          "minRune": 171,
+          "minBigram": 10,
+          "runePass": 0,
+          "bigramPass": 1,
+          "jointPass": 0
+        },
+        {
+          "name": "Gibran",
+          "minRune": 155,
+          "minBigram": 15,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        }
+      ]
+    },
+    {
+      "pages": [
+        23,
+        26
+      ],
+      "n": 1021,
+      "period": 13,
+      "maxRune": 148,
+      "maxBigram": 11,
+      "slopes": [
+        {
+          "d": 0,
+          "rune": 145,
+          "bigram": 11
+        },
+        {
+          "d": 1,
+          "rune": 126,
+          "bigram": 8
+        },
+        {
+          "d": 2,
+          "rune": 132,
+          "bigram": 6
+        },
+        {
+          "d": 3,
+          "rune": 134,
+          "bigram": 7
+        },
+        {
+          "d": 4,
+          "rune": 133,
+          "bigram": 8
+        },
+        {
+          "d": 5,
+          "rune": 132,
+          "bigram": 7
+        },
+        {
+          "d": 6,
+          "rune": 147,
+          "bigram": 7
+        },
+        {
+          "d": 7,
+          "rune": 139,
+          "bigram": 7
+        },
+        {
+          "d": 8,
+          "rune": 136,
+          "bigram": 8
+        },
+        {
+          "d": 9,
+          "rune": 148,
+          "bigram": 9
+        },
+        {
+          "d": 10,
+          "rune": 121,
+          "bigram": 4
+        },
+        {
+          "d": 11,
+          "rune": 119,
+          "bigram": 7
+        },
+        {
+          "d": 12,
+          "rune": 116,
+          "bigram": 6
+        },
+        {
+          "d": 13,
+          "rune": 136,
+          "bigram": 8
+        },
+        {
+          "d": 14,
+          "rune": 126,
+          "bigram": 4
+        },
+        {
+          "d": 15,
+          "rune": 134,
+          "bigram": 6
+        },
+        {
+          "d": 16,
+          "rune": 122,
+          "bigram": 5
+        },
+        {
+          "d": 17,
+          "rune": 130,
+          "bigram": 6
+        },
+        {
+          "d": 18,
+          "rune": 121,
+          "bigram": 3
+        },
+        {
+          "d": 19,
+          "rune": 120,
+          "bigram": 5
+        },
+        {
+          "d": 20,
+          "rune": 122,
+          "bigram": 8
+        },
+        {
+          "d": 21,
+          "rune": 132,
+          "bigram": 7
+        },
+        {
+          "d": 22,
+          "rune": 135,
+          "bigram": 10
+        },
+        {
+          "d": 23,
+          "rune": 138,
+          "bigram": 11
+        },
+        {
+          "d": 24,
+          "rune": 131,
+          "bigram": 4
+        },
+        {
+          "d": 25,
+          "rune": 136,
+          "bigram": 5
+        },
+        {
+          "d": 26,
+          "rune": 138,
+          "bigram": 11
+        },
+        {
+          "d": 27,
+          "rune": 136,
+          "bigram": 7
+        },
+        {
+          "d": 28,
+          "rune": 135,
+          "bigram": 10
+        }
+      ],
+      "peak": 16,
+      "controls": [
+        {
+          "name": "Shakespeare",
+          "minRune": 148,
+          "minBigram": 9,
+          "runePass": 1,
+          "bigramPass": 1,
+          "jointPass": 1
+        },
+        {
+          "name": "Emerson",
+          "minRune": 141,
+          "minBigram": 11,
+          "runePass": 1,
+          "bigramPass": 2,
+          "jointPass": 1
+        },
+        {
+          "name": "Gibran",
+          "minRune": 141,
+          "minBigram": 9,
+          "runePass": 1,
+          "bigramPass": 1,
+          "jointPass": 0
+        }
+      ]
+    },
+    {
+      "pages": [
+        27,
+        32
+      ],
+      "n": 1433,
+      "period": 8,
+      "maxRune": 209,
+      "maxBigram": 16,
+      "slopes": [
+        {
+          "d": 0,
+          "rune": 176,
+          "bigram": 8
+        },
+        {
+          "d": 1,
+          "rune": 187,
+          "bigram": 8
+        },
+        {
+          "d": 2,
+          "rune": 168,
+          "bigram": 12
+        },
+        {
+          "d": 3,
+          "rune": 171,
+          "bigram": 8
+        },
+        {
+          "d": 4,
+          "rune": 183,
+          "bigram": 5
+        },
+        {
+          "d": 5,
+          "rune": 181,
+          "bigram": 9
+        },
+        {
+          "d": 6,
+          "rune": 179,
+          "bigram": 5
+        },
+        {
+          "d": 7,
+          "rune": 181,
+          "bigram": 7
+        },
+        {
+          "d": 8,
+          "rune": 190,
+          "bigram": 11
+        },
+        {
+          "d": 9,
+          "rune": 192,
+          "bigram": 5
+        },
+        {
+          "d": 10,
+          "rune": 195,
+          "bigram": 11
+        },
+        {
+          "d": 11,
+          "rune": 177,
+          "bigram": 9
+        },
+        {
+          "d": 12,
+          "rune": 179,
+          "bigram": 6
+        },
+        {
+          "d": 13,
+          "rune": 172,
+          "bigram": 9
+        },
+        {
+          "d": 14,
+          "rune": 168,
+          "bigram": 0
+        },
+        {
+          "d": 15,
+          "rune": 183,
+          "bigram": 7
+        },
+        {
+          "d": 16,
+          "rune": 182,
+          "bigram": 10
+        },
+        {
+          "d": 17,
+          "rune": 194,
+          "bigram": 8
+        },
+        {
+          "d": 18,
+          "rune": 170,
+          "bigram": 7
+        },
+        {
+          "d": 19,
+          "rune": 166,
+          "bigram": 9
+        },
+        {
+          "d": 20,
+          "rune": 154,
+          "bigram": 6
+        },
+        {
+          "d": 21,
+          "rune": 177,
+          "bigram": 12
+        },
+        {
+          "d": 22,
+          "rune": 209,
+          "bigram": 13
+        },
+        {
+          "d": 23,
+          "rune": 174,
+          "bigram": 12
+        },
+        {
+          "d": 24,
+          "rune": 193,
+          "bigram": 7
+        },
+        {
+          "d": 25,
+          "rune": 176,
+          "bigram": 11
+        },
+        {
+          "d": 26,
+          "rune": 151,
+          "bigram": 7
+        },
+        {
+          "d": 27,
+          "rune": 173,
+          "bigram": 7
+        },
+        {
+          "d": 28,
+          "rune": 193,
+          "bigram": 16
+        }
+      ],
+      "peak": 16,
+      "controls": [
+        {
+          "name": "Shakespeare",
+          "minRune": 229,
+          "minBigram": 12,
+          "runePass": 0,
+          "bigramPass": 2,
+          "jointPass": 0
+        },
+        {
+          "name": "Emerson",
+          "minRune": 244,
+          "minBigram": 16,
+          "runePass": 0,
+          "bigramPass": 1,
+          "jointPass": 0
+        },
+        {
+          "name": "Gibran",
+          "minRune": 227,
+          "minBigram": 21,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        }
+      ]
+    },
+    {
+      "pages": [
+        27,
+        32
+      ],
+      "n": 1433,
+      "period": 13,
+      "maxRune": 210,
+      "maxBigram": 15,
+      "slopes": [
+        {
+          "d": 0,
+          "rune": 210,
+          "bigram": 7
+        },
+        {
+          "d": 1,
+          "rune": 168,
+          "bigram": 11
+        },
+        {
+          "d": 2,
+          "rune": 192,
+          "bigram": 12
+        },
+        {
+          "d": 3,
+          "rune": 171,
+          "bigram": 9
+        },
+        {
+          "d": 4,
+          "rune": 178,
+          "bigram": 10
+        },
+        {
+          "d": 5,
+          "rune": 176,
+          "bigram": 11
+        },
+        {
+          "d": 6,
+          "rune": 183,
+          "bigram": 10
+        },
+        {
+          "d": 7,
+          "rune": 196,
+          "bigram": 14
+        },
+        {
+          "d": 8,
+          "rune": 186,
+          "bigram": 11
+        },
+        {
+          "d": 9,
+          "rune": 207,
+          "bigram": 11
+        },
+        {
+          "d": 10,
+          "rune": 178,
+          "bigram": 4
+        },
+        {
+          "d": 11,
+          "rune": 198,
+          "bigram": 10
+        },
+        {
+          "d": 12,
+          "rune": 189,
+          "bigram": 9
+        },
+        {
+          "d": 13,
+          "rune": 187,
+          "bigram": 10
+        },
+        {
+          "d": 14,
+          "rune": 172,
+          "bigram": 12
+        },
+        {
+          "d": 15,
+          "rune": 178,
+          "bigram": 13
+        },
+        {
+          "d": 16,
+          "rune": 169,
+          "bigram": 9
+        },
+        {
+          "d": 17,
+          "rune": 189,
+          "bigram": 10
+        },
+        {
+          "d": 18,
+          "rune": 201,
+          "bigram": 11
+        },
+        {
+          "d": 19,
+          "rune": 195,
+          "bigram": 13
+        },
+        {
+          "d": 20,
+          "rune": 169,
+          "bigram": 4
+        },
+        {
+          "d": 21,
+          "rune": 195,
+          "bigram": 14
+        },
+        {
+          "d": 22,
+          "rune": 192,
+          "bigram": 13
+        },
+        {
+          "d": 23,
+          "rune": 178,
+          "bigram": 8
+        },
+        {
+          "d": 24,
+          "rune": 195,
+          "bigram": 15
+        },
+        {
+          "d": 25,
+          "rune": 170,
+          "bigram": 7
+        },
+        {
+          "d": 26,
+          "rune": 179,
+          "bigram": 5
+        },
+        {
+          "d": 27,
+          "rune": 198,
+          "bigram": 10
+        },
+        {
+          "d": 28,
+          "rune": 187,
+          "bigram": 7
+        }
+      ],
+      "peak": 32,
+      "controls": [
+        {
+          "name": "Shakespeare",
+          "minRune": 219,
+          "minBigram": 18,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Emerson",
+          "minRune": 218,
+          "minBigram": 19,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Gibran",
+          "minRune": 216,
+          "minBigram": 18,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        }
+      ]
+    },
+    {
+      "pages": [
+        33,
+        39
+      ],
+      "n": 1680,
+      "period": 8,
+      "maxRune": 231,
+      "maxBigram": 13,
+      "slopes": [
+        {
+          "d": 0,
+          "rune": 208,
+          "bigram": 6
+        },
+        {
+          "d": 1,
+          "rune": 191,
+          "bigram": 6
+        },
+        {
+          "d": 2,
+          "rune": 195,
+          "bigram": 11
+        },
+        {
+          "d": 3,
+          "rune": 186,
+          "bigram": 7
+        },
+        {
+          "d": 4,
+          "rune": 193,
+          "bigram": 9
+        },
+        {
+          "d": 5,
+          "rune": 205,
+          "bigram": 7
+        },
+        {
+          "d": 6,
+          "rune": 210,
+          "bigram": 7
+        },
+        {
+          "d": 7,
+          "rune": 196,
+          "bigram": 8
+        },
+        {
+          "d": 8,
+          "rune": 206,
+          "bigram": 10
+        },
+        {
+          "d": 9,
+          "rune": 194,
+          "bigram": 11
+        },
+        {
+          "d": 10,
+          "rune": 205,
+          "bigram": 5
+        },
+        {
+          "d": 11,
+          "rune": 191,
+          "bigram": 7
+        },
+        {
+          "d": 12,
+          "rune": 181,
+          "bigram": 3
+        },
+        {
+          "d": 13,
+          "rune": 178,
+          "bigram": 10
+        },
+        {
+          "d": 14,
+          "rune": 207,
+          "bigram": 8
+        },
+        {
+          "d": 15,
+          "rune": 189,
+          "bigram": 10
+        },
+        {
+          "d": 16,
+          "rune": 196,
+          "bigram": 3
+        },
+        {
+          "d": 17,
+          "rune": 191,
+          "bigram": 5
+        },
+        {
+          "d": 18,
+          "rune": 197,
+          "bigram": 10
+        },
+        {
+          "d": 19,
+          "rune": 186,
+          "bigram": 6
+        },
+        {
+          "d": 20,
+          "rune": 196,
+          "bigram": 7
+        },
+        {
+          "d": 21,
+          "rune": 187,
+          "bigram": 9
+        },
+        {
+          "d": 22,
+          "rune": 209,
+          "bigram": 13
+        },
+        {
+          "d": 23,
+          "rune": 231,
+          "bigram": 10
+        },
+        {
+          "d": 24,
+          "rune": 204,
+          "bigram": 11
+        },
+        {
+          "d": 25,
+          "rune": 196,
+          "bigram": 11
+        },
+        {
+          "d": 26,
+          "rune": 187,
+          "bigram": 9
+        },
+        {
+          "d": 27,
+          "rune": 201,
+          "bigram": 3
+        },
+        {
+          "d": 28,
+          "rune": 193,
+          "bigram": 7
+        }
+      ],
+      "peak": 8,
+      "controls": [
+        {
+          "name": "Shakespeare",
+          "minRune": 272,
+          "minBigram": 14,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Emerson",
+          "minRune": 283,
+          "minBigram": 19,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Gibran",
+          "minRune": 273,
+          "minBigram": 23,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        }
+      ]
+    },
+    {
+      "pages": [
+        33,
+        39
+      ],
+      "n": 1680,
+      "period": 13,
+      "maxRune": 233,
+      "maxBigram": 18,
+      "slopes": [
+        {
+          "d": 0,
+          "rune": 186,
+          "bigram": 8
+        },
+        {
+          "d": 1,
+          "rune": 204,
+          "bigram": 10
+        },
+        {
+          "d": 2,
+          "rune": 186,
+          "bigram": 7
+        },
+        {
+          "d": 3,
+          "rune": 212,
+          "bigram": 12
+        },
+        {
+          "d": 4,
+          "rune": 204,
+          "bigram": 10
+        },
+        {
+          "d": 5,
+          "rune": 204,
+          "bigram": 10
+        },
+        {
+          "d": 6,
+          "rune": 191,
+          "bigram": 2
+        },
+        {
+          "d": 7,
+          "rune": 209,
+          "bigram": 8
+        },
+        {
+          "d": 8,
+          "rune": 202,
+          "bigram": 4
+        },
+        {
+          "d": 9,
+          "rune": 197,
+          "bigram": 6
+        },
+        {
+          "d": 10,
+          "rune": 196,
+          "bigram": 11
+        },
+        {
+          "d": 11,
+          "rune": 233,
+          "bigram": 14
+        },
+        {
+          "d": 12,
+          "rune": 200,
+          "bigram": 6
+        },
+        {
+          "d": 13,
+          "rune": 213,
+          "bigram": 5
+        },
+        {
+          "d": 14,
+          "rune": 197,
+          "bigram": 7
+        },
+        {
+          "d": 15,
+          "rune": 215,
+          "bigram": 10
+        },
+        {
+          "d": 16,
+          "rune": 196,
+          "bigram": 10
+        },
+        {
+          "d": 17,
+          "rune": 178,
+          "bigram": 7
+        },
+        {
+          "d": 18,
+          "rune": 197,
+          "bigram": 11
+        },
+        {
+          "d": 19,
+          "rune": 209,
+          "bigram": 13
+        },
+        {
+          "d": 20,
+          "rune": 218,
+          "bigram": 15
+        },
+        {
+          "d": 21,
+          "rune": 211,
+          "bigram": 10
+        },
+        {
+          "d": 22,
+          "rune": 220,
+          "bigram": 6
+        },
+        {
+          "d": 23,
+          "rune": 208,
+          "bigram": 9
+        },
+        {
+          "d": 24,
+          "rune": 209,
+          "bigram": 8
+        },
+        {
+          "d": 25,
+          "rune": 217,
+          "bigram": 13
+        },
+        {
+          "d": 26,
+          "rune": 194,
+          "bigram": 15
+        },
+        {
+          "d": 27,
+          "rune": 221,
+          "bigram": 18
+        },
+        {
+          "d": 28,
+          "rune": 213,
+          "bigram": 12
+        }
+      ],
+      "peak": 12,
+      "controls": [
+        {
+          "name": "Shakespeare",
+          "minRune": 250,
+          "minBigram": 21,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Emerson",
+          "minRune": 268,
+          "minBigram": 24,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Gibran",
+          "minRune": 268,
+          "minBigram": 21,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        }
+      ]
+    },
+    {
+      "pages": [
+        40,
+        53
+      ],
+      "n": 3008,
+      "period": 8,
+      "maxRune": 431,
+      "maxBigram": 28,
+      "slopes": [
+        {
+          "d": 0,
+          "rune": 391,
+          "bigram": 19
+        },
+        {
+          "d": 1,
+          "rune": 382,
+          "bigram": 17
+        },
+        {
+          "d": 2,
+          "rune": 404,
+          "bigram": 17
+        },
+        {
+          "d": 3,
+          "rune": 411,
+          "bigram": 21
+        },
+        {
+          "d": 4,
+          "rune": 385,
+          "bigram": 16
+        },
+        {
+          "d": 5,
+          "rune": 378,
+          "bigram": 21
+        },
+        {
+          "d": 6,
+          "rune": 341,
+          "bigram": 18
+        },
+        {
+          "d": 7,
+          "rune": 431,
+          "bigram": 28
+        },
+        {
+          "d": 8,
+          "rune": 388,
+          "bigram": 19
+        },
+        {
+          "d": 9,
+          "rune": 401,
+          "bigram": 17
+        },
+        {
+          "d": 10,
+          "rune": 356,
+          "bigram": 11
+        },
+        {
+          "d": 11,
+          "rune": 409,
+          "bigram": 19
+        },
+        {
+          "d": 12,
+          "rune": 408,
+          "bigram": 20
+        },
+        {
+          "d": 13,
+          "rune": 382,
+          "bigram": 26
+        },
+        {
+          "d": 14,
+          "rune": 382,
+          "bigram": 24
+        },
+        {
+          "d": 15,
+          "rune": 353,
+          "bigram": 13
+        },
+        {
+          "d": 16,
+          "rune": 398,
+          "bigram": 19
+        },
+        {
+          "d": 17,
+          "rune": 377,
+          "bigram": 15
+        },
+        {
+          "d": 18,
+          "rune": 412,
+          "bigram": 27
+        },
+        {
+          "d": 19,
+          "rune": 382,
+          "bigram": 9
+        },
+        {
+          "d": 20,
+          "rune": 364,
+          "bigram": 15
+        },
+        {
+          "d": 21,
+          "rune": 414,
+          "bigram": 18
+        },
+        {
+          "d": 22,
+          "rune": 392,
+          "bigram": 25
+        },
+        {
+          "d": 23,
+          "rune": 385,
+          "bigram": 18
+        },
+        {
+          "d": 24,
+          "rune": 392,
+          "bigram": 15
+        },
+        {
+          "d": 25,
+          "rune": 379,
+          "bigram": 13
+        },
+        {
+          "d": 26,
+          "rune": 394,
+          "bigram": 15
+        },
+        {
+          "d": 27,
+          "rune": 396,
+          "bigram": 17
+        },
+        {
+          "d": 28,
+          "rune": 395,
+          "bigram": 19
+        }
+      ],
+      "peak": 64,
+      "controls": [
+        {
+          "name": "Shakespeare",
+          "minRune": 493,
+          "minBigram": 44,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Emerson",
+          "minRune": 520,
+          "minBigram": 38,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Gibran",
+          "minRune": 500,
+          "minBigram": 46,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        }
+      ]
+    },
+    {
+      "pages": [
+        40,
+        53
+      ],
+      "n": 3008,
+      "period": 13,
+      "maxRune": 439,
+      "maxBigram": 35,
+      "slopes": [
+        {
+          "d": 0,
+          "rune": 425,
+          "bigram": 24
+        },
+        {
+          "d": 1,
+          "rune": 382,
+          "bigram": 23
+        },
+        {
+          "d": 2,
+          "rune": 402,
+          "bigram": 24
+        },
+        {
+          "d": 3,
+          "rune": 398,
+          "bigram": 19
+        },
+        {
+          "d": 4,
+          "rune": 426,
+          "bigram": 19
+        },
+        {
+          "d": 5,
+          "rune": 407,
+          "bigram": 27
+        },
+        {
+          "d": 6,
+          "rune": 390,
+          "bigram": 15
+        },
+        {
+          "d": 7,
+          "rune": 396,
+          "bigram": 21
+        },
+        {
+          "d": 8,
+          "rune": 383,
+          "bigram": 18
+        },
+        {
+          "d": 9,
+          "rune": 408,
+          "bigram": 20
+        },
+        {
+          "d": 10,
+          "rune": 419,
+          "bigram": 22
+        },
+        {
+          "d": 11,
+          "rune": 407,
+          "bigram": 23
+        },
+        {
+          "d": 12,
+          "rune": 434,
+          "bigram": 21
+        },
+        {
+          "d": 13,
+          "rune": 425,
+          "bigram": 30
+        },
+        {
+          "d": 14,
+          "rune": 387,
+          "bigram": 23
+        },
+        {
+          "d": 15,
+          "rune": 414,
+          "bigram": 25
+        },
+        {
+          "d": 16,
+          "rune": 421,
+          "bigram": 25
+        },
+        {
+          "d": 17,
+          "rune": 404,
+          "bigram": 21
+        },
+        {
+          "d": 18,
+          "rune": 428,
+          "bigram": 35
+        },
+        {
+          "d": 19,
+          "rune": 368,
+          "bigram": 23
+        },
+        {
+          "d": 20,
+          "rune": 422,
+          "bigram": 32
+        },
+        {
+          "d": 21,
+          "rune": 396,
+          "bigram": 22
+        },
+        {
+          "d": 22,
+          "rune": 424,
+          "bigram": 24
+        },
+        {
+          "d": 23,
+          "rune": 390,
+          "bigram": 20
+        },
+        {
+          "d": 24,
+          "rune": 439,
+          "bigram": 26
+        },
+        {
+          "d": 25,
+          "rune": 410,
+          "bigram": 22
+        },
+        {
+          "d": 26,
+          "rune": 378,
+          "bigram": 19
+        },
+        {
+          "d": 27,
+          "rune": 387,
+          "bigram": 21
+        },
+        {
+          "d": 28,
+          "rune": 404,
+          "bigram": 25
+        }
+      ],
+      "peak": 64,
+      "controls": [
+        {
+          "name": "Shakespeare",
+          "minRune": 464,
+          "minBigram": 34,
+          "runePass": 0,
+          "bigramPass": 1,
+          "jointPass": 0
+        },
+        {
+          "name": "Emerson",
+          "minRune": 497,
+          "minBigram": 41,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Gibran",
+          "minRune": 499,
+          "minBigram": 50,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        }
+      ]
+    },
+    {
+      "pages": [
+        54,
+        55
+      ],
+      "n": 308,
+      "period": 8,
+      "maxRune": 45,
+      "maxBigram": 4,
+      "slopes": [
+        {
+          "d": 0,
+          "rune": 42,
+          "bigram": 1
+        },
+        {
+          "d": 1,
+          "rune": 38,
+          "bigram": 2
+        },
+        {
+          "d": 2,
+          "rune": 40,
+          "bigram": 4
+        },
+        {
+          "d": 3,
+          "rune": 36,
+          "bigram": 2
+        },
+        {
+          "d": 4,
+          "rune": 29,
+          "bigram": 1
+        },
+        {
+          "d": 5,
+          "rune": 44,
+          "bigram": 4
+        },
+        {
+          "d": 6,
+          "rune": 25,
+          "bigram": 1
+        },
+        {
+          "d": 7,
+          "rune": 33,
+          "bigram": 2
+        },
+        {
+          "d": 8,
+          "rune": 40,
+          "bigram": 1
+        },
+        {
+          "d": 9,
+          "rune": 27,
+          "bigram": 1
+        },
+        {
+          "d": 10,
+          "rune": 29,
+          "bigram": 0
+        },
+        {
+          "d": 11,
+          "rune": 43,
+          "bigram": 3
+        },
+        {
+          "d": 12,
+          "rune": 30,
+          "bigram": 1
+        },
+        {
+          "d": 13,
+          "rune": 27,
+          "bigram": 0
+        },
+        {
+          "d": 14,
+          "rune": 36,
+          "bigram": 2
+        },
+        {
+          "d": 15,
+          "rune": 34,
+          "bigram": 2
+        },
+        {
+          "d": 16,
+          "rune": 34,
+          "bigram": 2
+        },
+        {
+          "d": 17,
+          "rune": 31,
+          "bigram": 0
+        },
+        {
+          "d": 18,
+          "rune": 33,
+          "bigram": 2
+        },
+        {
+          "d": 19,
+          "rune": 32,
+          "bigram": 1
+        },
+        {
+          "d": 20,
+          "rune": 27,
+          "bigram": 2
+        },
+        {
+          "d": 21,
+          "rune": 36,
+          "bigram": 1
+        },
+        {
+          "d": 22,
+          "rune": 38,
+          "bigram": 1
+        },
+        {
+          "d": 23,
+          "rune": 45,
+          "bigram": 3
+        },
+        {
+          "d": 24,
+          "rune": 31,
+          "bigram": 0
+        },
+        {
+          "d": 25,
+          "rune": 37,
+          "bigram": 0
+        },
+        {
+          "d": 26,
+          "rune": 32,
+          "bigram": 1
+        },
+        {
+          "d": 27,
+          "rune": 34,
+          "bigram": 1
+        },
+        {
+          "d": 28,
+          "rune": 32,
+          "bigram": 1
+        }
+      ],
+      "peak": 5,
+      "controls": [
+        {
+          "name": "Shakespeare",
+          "minRune": 35,
+          "minBigram": 0,
+          "runePass": 3,
+          "bigramPass": 12,
+          "jointPass": 3
+        },
+        {
+          "name": "Emerson",
+          "minRune": 44,
+          "minBigram": 1,
+          "runePass": 1,
+          "bigramPass": 11,
+          "jointPass": 1
+        },
+        {
+          "name": "Gibran",
+          "minRune": 36,
+          "minBigram": 0,
+          "runePass": 3,
+          "bigramPass": 10,
+          "jointPass": 2
+        }
+      ]
+    },
+    {
+      "pages": [
+        54,
+        55
+      ],
+      "n": 308,
+      "period": 13,
+      "maxRune": 50,
+      "maxBigram": 10,
+      "slopes": [
+        {
+          "d": 0,
+          "rune": 35,
+          "bigram": 4
+        },
+        {
+          "d": 1,
+          "rune": 34,
+          "bigram": 2
+        },
+        {
+          "d": 2,
+          "rune": 37,
+          "bigram": 2
+        },
+        {
+          "d": 3,
+          "rune": 40,
+          "bigram": 2
+        },
+        {
+          "d": 4,
+          "rune": 39,
+          "bigram": 10
+        },
+        {
+          "d": 5,
+          "rune": 25,
+          "bigram": 0
+        },
+        {
+          "d": 6,
+          "rune": 26,
+          "bigram": 2
+        },
+        {
+          "d": 7,
+          "rune": 39,
+          "bigram": 5
+        },
+        {
+          "d": 8,
+          "rune": 31,
+          "bigram": 1
+        },
+        {
+          "d": 9,
+          "rune": 39,
+          "bigram": 4
+        },
+        {
+          "d": 10,
+          "rune": 32,
+          "bigram": 1
+        },
+        {
+          "d": 11,
+          "rune": 31,
+          "bigram": 1
+        },
+        {
+          "d": 12,
+          "rune": 38,
+          "bigram": 5
+        },
+        {
+          "d": 13,
+          "rune": 34,
+          "bigram": 2
+        },
+        {
+          "d": 14,
+          "rune": 29,
+          "bigram": 0
+        },
+        {
+          "d": 15,
+          "rune": 23,
+          "bigram": 0
+        },
+        {
+          "d": 16,
+          "rune": 50,
+          "bigram": 5
+        },
+        {
+          "d": 17,
+          "rune": 34,
+          "bigram": 1
+        },
+        {
+          "d": 18,
+          "rune": 30,
+          "bigram": 1
+        },
+        {
+          "d": 19,
+          "rune": 37,
+          "bigram": 2
+        },
+        {
+          "d": 20,
+          "rune": 34,
+          "bigram": 4
+        },
+        {
+          "d": 21,
+          "rune": 35,
+          "bigram": 2
+        },
+        {
+          "d": 22,
+          "rune": 28,
+          "bigram": 4
+        },
+        {
+          "d": 23,
+          "rune": 29,
+          "bigram": 4
+        },
+        {
+          "d": 24,
+          "rune": 33,
+          "bigram": 1
+        },
+        {
+          "d": 25,
+          "rune": 42,
+          "bigram": 4
+        },
+        {
+          "d": 26,
+          "rune": 36,
+          "bigram": 2
+        },
+        {
+          "d": 27,
+          "rune": 40,
+          "bigram": 2
+        },
+        {
+          "d": 28,
+          "rune": 43,
+          "bigram": 3
+        }
+      ],
+      "peak": 8,
+      "controls": [
+        {
+          "name": "Shakespeare",
+          "minRune": 31,
+          "minBigram": 0,
+          "runePass": 16,
+          "bigramPass": 29,
+          "jointPass": 11
+        },
+        {
+          "name": "Emerson",
+          "minRune": 34,
+          "minBigram": 1,
+          "runePass": 14,
+          "bigramPass": 30,
+          "jointPass": 13
+        },
+        {
+          "name": "Gibran",
+          "minRune": 30,
+          "minBigram": 0,
+          "runePass": 15,
+          "bigramPass": 27,
+          "jointPass": 9
+        }
+      ]
+    },
+    {
+      "pages": [
+        0,
+        55
+      ],
+      "n": 12956,
+      "period": 8,
+      "maxRune": 1685,
+      "maxBigram": 88,
+      "slopes": [
+        {
+          "d": 0,
+          "rune": 1657,
+          "bigram": 68
+        },
+        {
+          "d": 1,
+          "rune": 1650,
+          "bigram": 73
+        },
+        {
+          "d": 2,
+          "rune": 1638,
+          "bigram": 88
+        },
+        {
+          "d": 3,
+          "rune": 1602,
+          "bigram": 73
+        },
+        {
+          "d": 4,
+          "rune": 1651,
+          "bigram": 68
+        },
+        {
+          "d": 5,
+          "rune": 1668,
+          "bigram": 81
+        },
+        {
+          "d": 6,
+          "rune": 1540,
+          "bigram": 64
+        },
+        {
+          "d": 7,
+          "rune": 1637,
+          "bigram": 80
+        },
+        {
+          "d": 8,
+          "rune": 1685,
+          "bigram": 76
+        },
+        {
+          "d": 9,
+          "rune": 1667,
+          "bigram": 73
+        },
+        {
+          "d": 10,
+          "rune": 1594,
+          "bigram": 51
+        },
+        {
+          "d": 11,
+          "rune": 1664,
+          "bigram": 78
+        },
+        {
+          "d": 12,
+          "rune": 1602,
+          "bigram": 67
+        },
+        {
+          "d": 13,
+          "rune": 1569,
+          "bigram": 78
+        },
+        {
+          "d": 14,
+          "rune": 1623,
+          "bigram": 74
+        },
+        {
+          "d": 15,
+          "rune": 1584,
+          "bigram": 69
+        },
+        {
+          "d": 16,
+          "rune": 1673,
+          "bigram": 74
+        },
+        {
+          "d": 17,
+          "rune": 1581,
+          "bigram": 61
+        },
+        {
+          "d": 18,
+          "rune": 1613,
+          "bigram": 81
+        },
+        {
+          "d": 19,
+          "rune": 1589,
+          "bigram": 65
+        },
+        {
+          "d": 20,
+          "rune": 1582,
+          "bigram": 73
+        },
+        {
+          "d": 21,
+          "rune": 1601,
+          "bigram": 71
+        },
+        {
+          "d": 22,
+          "rune": 1665,
+          "bigram": 86
+        },
+        {
+          "d": 23,
+          "rune": 1662,
+          "bigram": 78
+        },
+        {
+          "d": 24,
+          "rune": 1664,
+          "bigram": 80
+        },
+        {
+          "d": 25,
+          "rune": 1642,
+          "bigram": 76
+        },
+        {
+          "d": 26,
+          "rune": 1627,
+          "bigram": 75
+        },
+        {
+          "d": 27,
+          "rune": 1632,
+          "bigram": 72
+        },
+        {
+          "d": 28,
+          "rune": 1674,
+          "bigram": 87
+        }
+      ],
+      "peak": 64,
+      "controls": [
+        {
+          "name": "Shakespeare",
+          "minRune": 2252,
+          "minBigram": 204,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Emerson",
+          "minRune": 2362,
+          "minBigram": 238,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Gibran",
+          "minRune": 2399,
+          "minBigram": 235,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        }
+      ]
+    },
+    {
+      "pages": [
+        0,
+        55
+      ],
+      "n": 12956,
+      "period": 13,
+      "maxRune": 1759,
+      "maxBigram": 112,
+      "slopes": [
+        {
+          "d": 0,
+          "rune": 1749,
+          "bigram": 96
+        },
+        {
+          "d": 1,
+          "rune": 1614,
+          "bigram": 87
+        },
+        {
+          "d": 2,
+          "rune": 1645,
+          "bigram": 89
+        },
+        {
+          "d": 3,
+          "rune": 1702,
+          "bigram": 84
+        },
+        {
+          "d": 4,
+          "rune": 1737,
+          "bigram": 112
+        },
+        {
+          "d": 5,
+          "rune": 1694,
+          "bigram": 100
+        },
+        {
+          "d": 6,
+          "rune": 1697,
+          "bigram": 80
+        },
+        {
+          "d": 7,
+          "rune": 1759,
+          "bigram": 112
+        },
+        {
+          "d": 8,
+          "rune": 1669,
+          "bigram": 75
+        },
+        {
+          "d": 9,
+          "rune": 1694,
+          "bigram": 83
+        },
+        {
+          "d": 10,
+          "rune": 1710,
+          "bigram": 86
+        },
+        {
+          "d": 11,
+          "rune": 1698,
+          "bigram": 96
+        },
+        {
+          "d": 12,
+          "rune": 1714,
+          "bigram": 85
+        },
+        {
+          "d": 13,
+          "rune": 1740,
+          "bigram": 98
+        },
+        {
+          "d": 14,
+          "rune": 1664,
+          "bigram": 80
+        },
+        {
+          "d": 15,
+          "rune": 1654,
+          "bigram": 103
+        },
+        {
+          "d": 16,
+          "rune": 1697,
+          "bigram": 100
+        },
+        {
+          "d": 17,
+          "rune": 1695,
+          "bigram": 90
+        },
+        {
+          "d": 18,
+          "rune": 1705,
+          "bigram": 97
+        },
+        {
+          "d": 19,
+          "rune": 1667,
+          "bigram": 89
+        },
+        {
+          "d": 20,
+          "rune": 1753,
+          "bigram": 103
+        },
+        {
+          "d": 21,
+          "rune": 1701,
+          "bigram": 94
+        },
+        {
+          "d": 22,
+          "rune": 1748,
+          "bigram": 98
+        },
+        {
+          "d": 23,
+          "rune": 1689,
+          "bigram": 98
+        },
+        {
+          "d": 24,
+          "rune": 1735,
+          "bigram": 92
+        },
+        {
+          "d": 25,
+          "rune": 1708,
+          "bigram": 89
+        },
+        {
+          "d": 26,
+          "rune": 1683,
+          "bigram": 93
+        },
+        {
+          "d": 27,
+          "rune": 1704,
+          "bigram": 90
+        },
+        {
+          "d": 28,
+          "rune": 1715,
+          "bigram": 95
+        }
+      ],
+      "peak": 64,
+      "controls": [
+        {
+          "name": "Shakespeare",
+          "minRune": 2197,
+          "minBigram": 204,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Emerson",
+          "minRune": 2378,
+          "minBigram": 231,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Gibran",
+          "minRune": 2288,
+          "minBigram": 247,
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        }
+      ]
+    }
+  ]
+}
