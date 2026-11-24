@@ -39,6 +39,9 @@ function experiment(raw,gp,lexText,lp1) {
    }
    if(!next.size)throw Error("wildcard should preserve all paths");
    states=Array.from(next.values()).sort((x,y)=>y.s-x.s||y.covered-x.covered).slice(0,96);
+   // Preserve the all-escape state so finite beam pruning can never dead-end.
+   const fallback=next.get((a.end[i]?1:0)*(nodes.length+2)+(b.end[i]?1:0));
+   if(fallback&&!states.includes(fallback))states.push(fallback);
   }
   const best=states[0],p=Array.from(best.p,c=>c.charCodeAt(0)-65);
   return {p,q:p.map((x,j)=>mod(x-d[lo+j])),score:best.s,covered:best.covered};
