@@ -1,0 +1,572 @@
+{
+  "K": [
+    11,
+    26,
+    8,
+    15,
+    2
+  ],
+  "geometry": [
+    2,
+    4,
+    0,
+    3,
+    1
+  ],
+  "sourceLength": 1729,
+  "originalDoublets": 9,
+  "restoredDoublets": 56,
+  "trainRunes": 2369,
+  "reference": {
+    "p57": -2.7917520552366373,
+    "welcome": -2.7885360240148556,
+    "plant": -2.793506728454951,
+    "raw": -3.4444350003160142,
+    "restored": -3.4296008466427033
+  },
+  "cases": [
+    {
+      "keyOrder": "red-word order",
+      "sign": 1,
+      "phase": 0,
+      "layer": "ciphertext transpose last",
+      "score": -3.437516016093752,
+      "hold": {
+        "dead": 72,
+        "paths": "0"
+      },
+      "first32": "U B EA Y R H P S G E T B AE I N J OE O D T AE R T EO D IA B P P A NG OE"
+    },
+    {
+      "keyOrder": "red-word order",
+      "sign": 1,
+      "phase": 0,
+      "layer": "plaintext transpose first",
+      "score": -3.435895221033309,
+      "hold": {
+        "dead": 99,
+        "paths": "0"
+      },
+      "first32": "Y O EA S IA B P H P C T G TH I N AE R F W W EA EA IA T EA D O P TH E U OE"
+    },
+    {
+      "keyOrder": "red-word order",
+      "sign": 1,
+      "phase": 1,
+      "layer": "ciphertext transpose last",
+      "score": -3.4325769320633555,
+      "hold": {
+        "dead": 14,
+        "paths": "0"
+      },
+      "first32": "S G NG I A OE TH H M N U G E D F AE J AE W W I OE N AE X EO G G Y S G J"
+    },
+    {
+      "keyOrder": "red-word order",
+      "sign": 1,
+      "phase": 1,
+      "layer": "plaintext transpose first",
+      "score": -3.438372307457196,
+      "hold": {
+        "dead": 8,
+        "paths": "0"
+      },
+      "first32": "I B NG R L H TH NG G E U EA OE D F X B X IA NG NG M T U B W B G L J NG J"
+    },
+    {
+      "keyOrder": "red-word order",
+      "sign": 1,
+      "phase": 2,
+      "layer": "ciphertext transpose last",
+      "score": -3.4391688686155466,
+      "hold": {
+        "dead": 29,
+        "paths": "0"
+      },
+      "first32": "R EA C U N J A NG I D M EA TH X X X R N IA NG EA S OE T EA U EA M B F A R"
+    },
+    {
+      "keyOrder": "red-word order",
+      "sign": 1,
+      "phase": 2,
+      "layer": "plaintext transpose first",
+      "score": -3.435062881919316,
+      "hold": {
+        "dead": 19,
+        "paths": "0"
+      },
+      "first32": "U G C Y R OE A EO M N M EO W X X W H O EO I C R N M I IA G M P A G R"
+    },
+    {
+      "keyOrder": "red-word order",
+      "sign": 1,
+      "phase": 3,
+      "layer": "ciphertext transpose last",
+      "score": -3.431593422513081,
+      "hold": {
+        "dead": 17,
+        "paths": "0"
+      },
+      "first32": "Y EO AE S IA R H EO A EO EO EO OE EA O W B F EO I NG EA P U B D EO I TH E B B"
+    },
+    {
+      "keyOrder": "red-word order",
+      "sign": 1,
+      "phase": 3,
+      "layer": "plaintext transpose first",
+      "score": -3.4334181820134333,
+      "hold": {
+        "dead": 51,
+        "paths": "0"
+      },
+      "first32": "S EA AE I A J H Y I D EO O AE EA O L OE AE U O AE OE OE EO D EO EA I Y S A B"
+    },
+    {
+      "keyOrder": "red-word order",
+      "sign": 1,
+      "phase": 4,
+      "layer": "ciphertext transpose last",
+      "score": -3.443476187109739,
+      "hold": {
+        "dead": 60,
+        "paths": "0"
+      },
+      "first32": "I O I R L B EA Y P C AE O W B AE L H X U O C M IA M I W O A L J U H"
+    },
+    {
+      "keyOrder": "red-word order",
+      "sign": 1,
+      "phase": 4,
+      "layer": "plaintext transpose first",
+      "score": -3.426882539603761,
+      "hold": {
+        "dead": 99,
+        "paths": "0"
+      },
+      "first32": "R EO I U N R EA S A EO AE B E B AE J J N D T I S P AE X U EO A B F B H"
+    },
+    {
+      "keyOrder": "red-word order",
+      "sign": -1,
+      "phase": 0,
+      "layer": "ciphertext transpose last",
+      "score": -3.4506804812396497,
+      "hold": {
+        "dead": 27,
+        "paths": "0"
+      },
+      "first32": "D J S IA H U W TH W OE N J EO J P R T M A L E IA O P IA L J F X EA X T"
+    },
+    {
+      "keyOrder": "red-word order",
+      "sign": -1,
+      "phase": 0,
+      "layer": "plaintext transpose first",
+      "score": -3.4459142276031933,
+      "hold": {
+        "dead": 67,
+        "paths": "0"
+      },
+      "first32": "IA AE S N X NG W N F G N OE G J P M C OE J F S O NG N OE A AE F AE C C T"
+    },
+    {
+      "keyOrder": "red-word order",
+      "sign": -1,
+      "phase": 1,
+      "layer": "ciphertext transpose last",
+      "score": -3.427217464071739,
+      "hold": {
+        "dead": 19,
+        "paths": "0"
+      },
+      "first32": "N OE OE X B T E N D TH A OE M IA OE M IA Y J F R N I F W G OE W U H F IA"
+    },
+    {
+      "keyOrder": "red-word order",
+      "sign": -1,
+      "phase": 1,
+      "layer": "plaintext transpose first",
+      "score": -3.439663319753443,
+      "hold": {
+        "dead": 2,
+        "paths": "0"
+      },
+      "first32": "X J OE L NG U E AE W OE A F S IA OE U NG H L S OE EO O A R J J W W EO X IA"
+    },
+    {
+      "keyOrder": "red-word order",
+      "sign": -1,
+      "phase": 2,
+      "layer": "ciphertext transpose last",
+      "score": -3.439050746309348,
+      "hold": {
+        "dead": 1,
+        "paths": "0"
+      },
+      "first32": "L F N D O IA AE AE O B G F G W H U C P L S S T Y N OE B F D I D J C"
+    },
+    {
+      "keyOrder": "red-word order",
+      "sign": -1,
+      "phase": 2,
+      "layer": "plaintext transpose first",
+      "score": -3.4424454027881812,
+      "hold": {
+        "dead": 12,
+        "paths": "0"
+      },
+      "first32": "D OE N IA H T AE C D TH G T U W H H U M G Y N IA I G J L OE D X EA F C"
+    },
+    {
+      "keyOrder": "red-word order",
+      "sign": -1,
+      "phase": 3,
+      "layer": "ciphertext transpose last",
+      "score": -3.4295181589986132,
+      "hold": {
+        "dead": 61,
+        "paths": "0"
+      },
+      "first32": "IA T E N X C EO C E EA P T S OE M H NG OE G Y OE O G A R A T O AE C E NG"
+    },
+    {
+      "keyOrder": "red-word order",
+      "sign": -1,
+      "phase": 3,
+      "layer": "plaintext transpose first",
+      "score": -3.4372629088639206,
+      "hold": {
+        "dead": 0,
+        "paths": "0"
+      },
+      "first32": "N F E X B IA EO L O B P AE EO OE M A T Y B R E N Y P IA G F O U H J NG"
+    },
+    {
+      "keyOrder": "red-word order",
+      "sign": -1,
+      "phase": 4,
+      "layer": "ciphertext transpose last",
+      "score": -3.4349104445221696,
+      "hold": {
+        "dead": 8,
+        "paths": "0"
+      },
+      "first32": "X AE R L NG NG NG L F G F AE U R Y A U H B R N EO NG G J J AE E W EO C U"
+    },
+    {
+      "keyOrder": "red-word order",
+      "sign": -1,
+      "phase": 4,
+      "layer": "plaintext transpose first",
+      "score": -3.451876085795831,
+      "hold": {
+        "dead": 32,
+        "paths": "0"
+      },
+      "first32": "L T R D O C NG TH E EA F J M R Y R IA P A L R T G F W B T E I D E U"
+    },
+    {
+      "keyOrder": "dot order",
+      "sign": 1,
+      "phase": 0,
+      "layer": "ciphertext transpose last",
+      "score": -3.432510370304007,
+      "hold": {
+        "dead": 17,
+        "paths": "0"
+      },
+      "first32": "R EO AE Y N J H EO G D M EO OE I X X B F D NG EA EA P EO EA U EO I P F A B"
+    },
+    {
+      "keyOrder": "dot order",
+      "sign": 1,
+      "phase": 0,
+      "layer": "plaintext transpose first",
+      "score": -3.4131933510273305,
+      "hold": {
+        "dead": 19,
+        "paths": "0"
+      },
+      "first32": "Y G AE I A OE H H I C M O W I X L R O EO I AE R OE M D D G I Y S G B"
+    },
+    {
+      "keyOrder": "dot order",
+      "sign": 1,
+      "phase": 1,
+      "layer": "ciphertext transpose last",
+      "score": -3.443251942393305,
+      "hold": {
+        "dead": 49,
+        "paths": "0"
+      },
+      "first32": "I O NG S IA B EA H A EO AE O E EA O L H AE EO I C M N U B W O G TH E U H"
+    },
+    {
+      "keyOrder": "dot order",
+      "sign": 1,
+      "phase": 1,
+      "layer": "plaintext transpose first",
+      "score": -3.4465621084584135,
+      "hold": {
+        "dead": 52,
+        "paths": "0"
+      },
+      "first32": "S EO NG U L J EA Y G D AE EA AE EA O J OE N U T NG OE P AE X EO EO G B J A H"
+    },
+    {
+      "keyOrder": "dot order",
+      "sign": 1,
+      "phase": 2,
+      "layer": "ciphertext transpose last",
+      "score": -3.4345327397974708,
+      "hold": {
+        "dead": 166,
+        "paths": "0"
+      },
+      "first32": "U EA I R R H A Y P E T EA W B N J R X U T AE S IA M D IA EA A L A NG R"
+    },
+    {
+      "keyOrder": "dot order",
+      "sign": 1,
+      "phase": 2,
+      "layer": "plaintext transpose first",
+      "score": -3.4390125006239605,
+      "hold": {
+        "dead": 52,
+        "paths": "0"
+      },
+      "first32": "R O I Y N B A S A EO T B TH B N W J F W W I EA N T I U O A P F U R"
+    },
+    {
+      "keyOrder": "dot order",
+      "sign": 1,
+      "phase": 3,
+      "layer": "ciphertext transpose last",
+      "score": -3.445558490133203,
+      "hold": {
+        "dead": 14,
+        "paths": "0"
+      },
+      "first32": "Y B EA I A R P S M N EO B AE D F W OE O W W NG R T AE X D B P Y S B OE"
+    },
+    {
+      "keyOrder": "dot order",
+      "sign": 1,
+      "phase": 3,
+      "layer": "plaintext transpose first",
+      "score": -3.434927920777773,
+      "hold": {
+        "dead": 8,
+        "paths": "0"
+      },
+      "first32": "I EA EA S IA H P NG P E EO G OE D F AE B AE IA O EA M IA EO EA W EA P TH E NG OE"
+    },
+    {
+      "keyOrder": "dot order",
+      "sign": 1,
+      "phase": 4,
+      "layer": "ciphertext transpose last",
+      "score": -3.437274010664241,
+      "hold": {
+        "dead": 42,
+        "paths": "0"
+      },
+      "first32": "S G C U L OE TH NG I C U G TH X AE AE J N IA O I OE OE T I EO G M B J G J"
+    },
+    {
+      "keyOrder": "dot order",
+      "sign": 1,
+      "phase": 4,
+      "layer": "plaintext transpose first",
+      "score": -3.4381667805929497,
+      "hold": {
+        "dead": 33,
+        "paths": "0"
+      },
+      "first32": "U B C R R R TH EO M N U EO E X AE X H X D NG C S T U B IA B M L A B J"
+    },
+    {
+      "keyOrder": "dot order",
+      "sign": -1,
+      "phase": 0,
+      "layer": "ciphertext transpose last",
+      "score": -3.426092415391289,
+      "hold": {
+        "dead": 61,
+        "paths": "0"
+      },
+      "first32": "L T E IA O IA EO C W B G T S J H U NG OE A S S O G P OE B T O X D J NG"
+    },
+    {
+      "keyOrder": "dot order",
+      "sign": -1,
+      "phase": 0,
+      "layer": "plaintext transpose first",
+      "score": -3.4459380513526203,
+      "hold": {
+        "dead": 40,
+        "paths": "0"
+      },
+      "first32": "IA OE E X B T EO N O G G AE U J H A C M G Y E IA Y G IA A OE O U H F NG"
+    },
+    {
+      "keyOrder": "dot order",
+      "sign": -1,
+      "phase": 1,
+      "layer": "ciphertext transpose last",
+      "score": -3.4393252290315366,
+      "hold": {
+        "dead": 10,
+        "paths": "0"
+      },
+      "first32": "X AE OE N X NG NG N E EA F AE M OE M A U Y G Y N EO I A R J AE W AE C C U"
+    },
+    {
+      "keyOrder": "dot order",
+      "sign": -1,
+      "phase": 1,
+      "layer": "plaintext transpose first",
+      "score": -3.442208478271191,
+      "hold": {
+        "dead": 2,
+        "paths": "0"
+      },
+      "first32": "N T OE D NG IA NG L W B F F EO OE M R T P B L OE N G F W G T W I EO J U"
+    },
+    {
+      "keyOrder": "dot order",
+      "sign": -1,
+      "phase": 2,
+      "layer": "ciphertext transpose last",
+      "score": -3.4259590652247143,
+      "hold": {
+        "dead": 1,
+        "paths": "0"
+      },
+      "first32": "D F R L H U AE L F OE N F U R P R C H B L E T NG G IA L F E W EA X C"
+    },
+    {
+      "keyOrder": "dot order",
+      "sign": -1,
+      "phase": 2,
+      "layer": "plaintext transpose first",
+      "score": -3.442839648033482,
+      "hold": {
+        "dead": 16,
+        "paths": "0"
+      },
+      "first32": "L AE R IA O NG AE TH E EA N J G R P H IA OE J F R O I N J B AE E X D C C"
+    },
+    {
+      "keyOrder": "dot order",
+      "sign": -1,
+      "phase": 3,
+      "layer": "ciphertext transpose last",
+      "score": -3.4197771607161287,
+      "hold": {
+        "dead": 19,
+        "paths": "0"
+      },
+      "first32": "IA J S X B C W TH D TH P J EO IA OE H T M J F OE IA O F W A J F U H E T"
+    },
+    {
+      "keyOrder": "dot order",
+      "sign": -1,
+      "phase": 3,
+      "layer": "plaintext transpose first",
+      "score": -3.440193367790815,
+      "hold": {
+        "dead": 0,
+        "paths": "0"
+      },
+      "first32": "X F S N X U W AE F OE P OE S IA OE M NG Y L R S EO NG P OE J F F AE C X T"
+    },
+    {
+      "keyOrder": "dot order",
+      "sign": -1,
+      "phase": 4,
+      "layer": "ciphertext transpose last",
+      "score": -3.449164596705737,
+      "hold": {
+        "dead": 30,
+        "paths": "0"
+      },
+      "first32": "N OE N D NG T E AE O G A OE G W Y M IA P L R R N Y N J G OE D I EO F IA"
+    },
+    {
+      "keyOrder": "dot order",
+      "sign": -1,
+      "phase": 4,
+      "layer": "plaintext transpose first",
+      "score": -3.433947577914744,
+      "hold": {
+        "dead": 10,
+        "paths": "0"
+      },
+      "first32": "D J N L H C E C D TH A T M W Y U U H A S N T O A R L J D W EA E IA"
+    }
+  ],
+  "controls": [
+    {
+      "keyOrder": "red-word order",
+      "layer": "ciphertext transpose last",
+      "hold": false,
+      "dead": null,
+      "paths": "1"
+    },
+    {
+      "keyOrder": "red-word order",
+      "layer": "ciphertext transpose last",
+      "hold": true,
+      "dead": null,
+      "paths": "596840838048000"
+    },
+    {
+      "keyOrder": "red-word order",
+      "layer": "plaintext transpose first",
+      "hold": false,
+      "dead": null,
+      "paths": "1"
+    },
+    {
+      "keyOrder": "red-word order",
+      "layer": "plaintext transpose first",
+      "hold": true,
+      "dead": null,
+      "paths": "822555576460800"
+    },
+    {
+      "keyOrder": "dot order",
+      "layer": "ciphertext transpose last",
+      "hold": false,
+      "dead": null,
+      "paths": "1"
+    },
+    {
+      "keyOrder": "dot order",
+      "layer": "ciphertext transpose last",
+      "hold": true,
+      "dead": null,
+      "paths": "6005956939130880"
+    },
+    {
+      "keyOrder": "dot order",
+      "layer": "plaintext transpose first",
+      "hold": false,
+      "dead": null,
+      "paths": "1"
+    },
+    {
+      "keyOrder": "dot order",
+      "layer": "plaintext transpose first",
+      "hold": true,
+      "dead": null,
+      "paths": "324904919040000"
+    }
+  ],
+  "inputBlobs": {
+    "resources/liber-primus/lp2-corpus.json": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "resources/external/relikd-solved-gp29-native-v1.json": "1b064ef6d85819b7d96adaff31a82d1ec551598f",
+    "resources/liber-primus/lp2-transcription.txt": "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7"
+  }
+}
