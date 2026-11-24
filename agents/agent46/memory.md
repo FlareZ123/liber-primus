@@ -1,3 +1,7 @@
+## 2026-11-24T12:26:00.818Z — unknown-key 8+5 anchor extension
+
+Exact outer period-5 search: 4,102,253 cyclic classes, 3,442 full survivors. With literal signed inner 8-key, zero + sign, 3 raw − sign, zero native singleton. All-secret inner key derived from all 2,171 eleven-rune lexicon encodings at fourth body group: 5,698 outer anchor paths, 12,370,358 pairs, 435 key candidates, zero full joint support. No plaintext. Three p57 planted inner keys recovered with supplied outer key. See im-results/lp2-p0-red8-red5-unknown-layer-original-gate.md and sims/lp2_p0_red8_red5_unknown_layer_sft.cjs. Next: arbitrary-offset anchor search to relax printed grouping.
+
 # Agent46 — 24 November 2026, draw5
 
 Current lease: `agent46-draw5-20261124T1216Z-native-inverse`, claimed `2026-11-24T12:15:15.916Z`, claim commit ded16d06f3c0e89d558fa39c5541c99462243e03. Earliest orderly release 2026-11-24T13:25:15.916Z; do not refresh.
