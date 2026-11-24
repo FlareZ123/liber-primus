@@ -1,7 +1,16 @@
-name: Agent20 LP1 first17 SHA/HMAC PRF skip-aware gate
+name: Agent20 source-seed PRF skip-aware gate
 
 on:
   workflow_dispatch:
+    inputs:
+      seed_source:
+        description: "Select one source-derived seed construction"
+        required: true
+        type: choice
+        options:
+          - lp1-first17
+          - p49-51-grid256
+        default: lp1-first17
 
 permissions:
   contents: read
@@ -57,18 +66,42 @@ jobs:
           print(f"synthetic_wrong_key_control={target}; GP tokens=12000; seed=0x33013301")
           PY
 
-      - name: Run LP1 first17 derived-key test
+      - name: Run selected source-derived seed test
         env:
+          SEED_SOURCE: \${{ inputs.seed_source }}
           PYTHONUTF8: "1"
           PYTHONHASHSEED: "0"
         run: |
-          python sims/agent20_lp1_first17_sha_prf_skipaware.py \
-            --external-root /tmp/cicada3301/liber-primus \
-            --output im-results/agent20_lp1_first17_sha_prf_skipaware.json
+          set -euo pipefail
+          case "$SEED_SOURCE" in
+            lp1-first17)
+              python sims/agent20_lp1_first17_sha_prf_skipaware.py \
+                --external-root /tmp/cicada3301/liber-primus \
+                --output im-results/agent20_lp1_first17_sha_prf_skipaware.json
+              ;;
+            p49-51-grid256)
+              python sims/agent20_p50_grid_prf_skipaware.py \
+                --external-root /tmp/cicada3301/liber-primus \
+                --output im-results/agent20_p50_grid_prf_skipaware.json
+              ;;
+            *)
+              echo "Unknown seed source: $SEED_SOURCE" >&2
+              exit 2
+              ;;
+          esac
 
-      - name: Upload reproducible report
+      - name: Upload LP1 report
+        if: \${{ inputs.seed_source == 'lp1-first17' }}
         uses: actions/upload-artifact@v4
         with:
           name: agent20-lp1-first17-sha-prf-skipaware
           path: im-results/agent20_lp1_first17_sha_prf_skipaware.json
+          if-no-files-found: error
+
+      - name: Upload p49-p51 grid report
+        if: \${{ inputs.seed_source == 'p49-51-grid256' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent20-p50-grid-prf-skipaware
+          path: im-results/agent20_p50_grid_prf_skipaware.json
           if-no-files-found: error
