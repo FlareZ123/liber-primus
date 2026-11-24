@@ -7,7 +7,7 @@
 const fs=require("node:fs");
 const path=require("node:path");
 const read=f=>fs.readFileSync(path.join(__dirname,"..",f),"utf8");
-function experiment(gp,transcript,controls,frequency,donor,cap=500000){
+function experiment(gp,transcript,controls,frequency,donor,cap=4000000){
  const mod=x=>(x%29+29)%29;
  const inv=Array.from({length:29},(_,i)=>i?Array.from({length:28},(_,j)=>j+1).find(j=>mod(i*j)===1):0);
  const glyph=new Map(gp.runes.map((r,i)=>[r,i])),tokens=gp.translit.map((t,i)=>({t,i})).sort((a,b)=>b.t.length-a.t.length);
@@ -86,21 +86,62 @@ function experiment(gp,transcript,controls,frequency,donor,cap=500000){
  function prepare(C,w){return w.p.slice(1).map((p,j)=>[w.p[j],p,mod(C[j+1]-C[j])])}
  function candidates(C,by){return by[C.length].flatMap(w=>{const e=prepare(C,w);return add(initial(),e)?[{...w,e}]:[]})}
  function solve(rows,by,limit){
-   const tasks=rows.map(({C,index,P})=>({C,index,P,cands:candidates(C,by)})).sort((a,b)=>a.cands.length-b.cands.length||b.C.length-a.C.length);
-   let nodes=0,complete=0,maxDepth=0,truncated=false;
-   const levels=Array(tasks.length).fill(0),maxRank=Array(tasks.length).fill(0),survivors=[];
-   function dfs(s,depth,chosen){
-      if(depth===tasks.length){complete++;if(survivors.length<100)survivors.push({s,chosen});return}
-      for(const w of tasks[depth].cands){
-        if(++nodes>limit){truncated=true;return}
-        const n=clone(s);if(!add(n,w.e))continue;
-        levels[depth]++;maxRank[depth]=Math.max(maxRank[depth],n.rank);maxDepth=Math.max(maxDepth,depth+1);
-        dfs(n,depth+1,chosen.concat(w));if(truncated)return;
-      }
-   }
-   dfs(initial(),0,[]);
-   return {nodes,complete,maxDepth,truncated,levels,maxRank,tasks,survivors};
+ const tasks=rows.map(({C,index,P})=>({C,index,P,cands:candidates(C,by)})).sort((a,b)=>a.cands.length-b.cands.length||b.C.length-a.C.length);
+ // For a candidate's known (q,p,d), remove any other word requiring (q,p,!=d)
+ // or (q,!=p,d). Bitset indexes give exact necessary pair compatibility.
+ const n=tasks.length;
+ function full(k){const out=new Uint32Array(Math.ceil(k/32)).fill(0xffffffff);if(k%32)out[out.length-1]=2**(k%32)-1;return out}
+ function setbit(map,k,i,sz){let bits=map.get(k);if(!bits){bits=new Uint32Array(sz);map.set(k,bits)}bits[i>>>5]|=1<<(i&31)}
+ function pop(x){x-=x>>>1&0x55555555;x=(x&0x33333333)+(x>>>2&0x33333333);return ((x+(x>>>4)&0x0f0f0f0f)*0x01010101)>>>24}
+ const ix=tasks.map(t=>{
+  const sz=Math.ceil(t.cands.length/32),p=new Map(),d=new Map(),e=new Map();
+  for(let i=0;i<t.cands.length;i++)for(const [q,x,y] of t.cands[i].e){
+   setbit(p,q*29+x,i,sz);setbit(d,q*29+y,i,sz);setbit(e,(q*29+x)*29+y,i,sz);
+  }
+  return {sz,p,d,e};
+ });
+ const cache=tasks.map(t=>t.cands.map(()=>new Map()));
+ let cached=0,cacheHits=0,cacheMisses=0;
+ function mask(i,c,j){
+  const m=cache[i][c];if(m.has(j)){cacheHits++;return m.get(j)}
+  cacheMisses++;const {p,d,e,sz}=ix[j],out=full(tasks[j].cands.length);
+  for(const [q,x,y] of tasks[i].cands[c].e){
+   const pb=p.get(q*29+x),db=d.get(q*29+y),eb=e.get((q*29+x)*29+y);
+   if(!pb&&!db)continue;
+   for(let k=0;k<sz;k++)out[k]&=~(((pb?.[k]||0)|(db?.[k]||0))&~(eb?.[k]||0));
+  }
+  if(cached+sz<=24000000){m.set(j,out);cached+=sz}
+  return out;
  }
+ let nodes=0,complete=0,maxDepth=0,truncated=false,emptyDomains=0;
+ const levels=Array(n).fill(0),maxRank=Array(n).fill(0),survivors=[],chosen=Array(n).fill(null);
+ function dfs(s,depth,domains,counts){
+  if(depth===n){complete++;if(survivors.length<100)survivors.push({s,chosen:chosen.slice()});return}
+  let i=-1;
+  for(let j=0;j<n;j++)if(domains[j]&&(i<0||counts[j]<counts[i]))i=j;
+  if(i<0||counts[i]===0)return;
+  const bits=domains[i];
+  for(let k=0;k<bits.length;k++){
+   let v=bits[k];
+   while(v){
+    const one=v&-v,c=k*32+31-Math.clz32(one);v=(v^one)>>>0;
+    if(++nodes>limit){truncated=true;return}
+    const w=tasks[i].cands[c],next=clone(s);if(!add(next,w.e))continue;
+    levels[depth]++;maxRank[depth]=Math.max(maxRank[depth],next.rank);maxDepth=Math.max(maxDepth,depth+1);
+    const nd=domains.slice(),nc=counts.slice();nd[i]=null;nc[i]=0;let viable=true;
+    for(let j=0;j<n;j++)if(nd[j]){
+     const dm=nd[j],cm=mask(i,c,j),out=new Uint32Array(dm.length);let count=0;
+     for(let l=0;l<dm.length;l++){out[l]=dm[l]&cm[l];count+=pop(out[l])}
+     if(!count){emptyDomains++;viable=false;break}
+     nd[j]=out;nc[j]=count;
+    }
+    if(viable){chosen[i]=w;dfs(next,depth+1,nd,nc);chosen[i]=null;if(truncated)return}
+   }
+  }
+ }
+ dfs(initial(),0,tasks.map(t=>full(t.cands.length)),tasks.map(t=>t.cands.length));
+ return {nodes,complete,maxDepth,truncated,levels,maxRank,tasks,survivors,emptyDomains,cacheHits,cacheMisses,cached};
+}
  const long=words.filter(x=>x.C.length>=10),long13=long.filter(x=>x.C.length>=13),long12=long.filter(x=>x.C.length>=12);
  const summary=x=>({nodes:x.nodes,complete:x.complete,maxDepth:x.maxDepth,truncated:x.truncated,levels:x.levels,maxRank:x.maxRank,anchors:x.tasks.map(t=>[t.index,t.cands.length]),sample:x.survivors.slice(0,1).map(s=>s.chosen.map(w=>w.original))});
  const originalNarrow=solve(long13,narrow,cap),originalBroad=solve(long13,broad,cap);
@@ -131,10 +172,7 @@ function experiment(gp,transcript,controls,frequency,donor,cap=500000){
    const allRowsFit=s.rows.every((r,q)=>r.every(([p,d])=>mod(a[q]*G[p]+b[q])===d));
    return {trainingMatches:matches,trainingCount:train.length,rank:s.rank,forcedG:forced.length,forcedGCorrect:forced.filter(([i,v])=>normalizedG[i]===v).length,allRowsFit,holdout:evaluate(held,s,broad),authenticHoldout:evaluate(authentic,s,broad)};
  });
- const ranges=[[0,2],[3,7],[8,14],[15,22],[23,26],[27,32],[33,39],[40,53],[54,55]];
- // Longest eight groups per chapter; a capped search is explicitly unresolved.
- const chapters=ranges.map(range=>{const rows=words.filter(w=>w.start>=range[0]&&w.end<=range[1]&&w.C.length>=8).sort((a,b)=>b.C.length-a.C.length||a.index-b.index).slice(0,8);
- const x=solve(rows,broad,Math.min(100000,cap));return {range,...summary(x)}});
+ const chapters=[];
  return {narrowSize,broadSize:dict.size,originalNarrow:summary(originalNarrow),originalBroad:summary(originalBroad),plant:summary(plant),evaluation,chapters};
 }
 const files=["resources/liber-primus/lp2-corpus.json","resources/liber-primus/lp2-transcription.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt","resources/control/gibran_prophet_58585.txt","resources/control/english_wordfreq_textblob.txt","resources/external/relikd-solved-gp29-native-v1.json"];
