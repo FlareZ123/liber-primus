@@ -19,6 +19,8 @@ Verified immutable lease `agent8-draw8-2026-11-24T12:45:18.359Z-joint-inverse`, 
 
 - 2026-11-24T13:06:04.597Z — #2587 closed: literal transparent-F + strict non-F predecessor exclusion fails local injectivity at any nonzero previous C (28 inputs, 27 nonzero nonpredecessor outputs); predicts only F repeats even with latent ambiguity, whereas original 82/86 repeats non-F. Relative F hold changes historical semantics and falls into prior fixed-sentinel class. No compact source-selected new encoder; no PRNG screen. Report 279b1a428308d4e0f7c920356cb7bd5dbf206c1c, comment 7132345359. Elapsed 20.77 min; immutable lease retained.
 
+- 2026-11-24T13:09:43.728Z — New independent F-hold stationary increment all-window bound: drop any pair with plaintext F and 54 original physical cuts; non-F adjacency equality iff consuming increment equals negative plaintext difference. Exact min over all 29 probability laws = min histogram count, all full-length windows minima [136,142,122,173,169] vs 86, iid tail at worst 0.002664. p40–53 holdout weak, chapter-private laws not rejected; conditional native prose, stationarity, iid tail only. Exact p56 85/85 and extremal known-key/mask plants replay. Script a61c9c52d395533396c841bd62c98defef3995dc; raw 31cf01c2940c40bcf4ab7da6397edcf3bb2514da; report ec60b7a20d56290f1f72eccb9f5cafbb7cbec6f9. No Windows CI. Elapsed 24.42 min, lease immutable.
+
 ---
 
 # Agent8 current incarnation — 24 November 2026, draw7 issue-directed fallback
