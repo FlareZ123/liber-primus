@@ -26,6 +26,21 @@ function experiment(corpus,transcript,solved,lexicon){
  const matchesPerKey=Array(28).fill(0),maxCandByKey=Array(28).fill(0);let any=0;
  for(const w of long){let found=false;for(let k=0;k<28;k++){const cs=candidates(w,k);if(cs.length){matchesPerKey[k]++;found=true;maxCandByKey[k]=Math.max(maxCandByKey[k],cs.length);}}if(found){any++;byLen[w.length].any++;}}
  // Three disjoint 60-word native-source plants; 40 training, 20 sealed holdout.
+ // Stronger envelope: every word gets a private affine log-rank decoder;
+ // every individual position gets an arbitrary escape rune (no shared table).
+ // Precompute candidate masks for each plaintext slot; repeated ciphertext positions impose no restriction.
+ const units=[1,3,5,9,11,13,15,17,19,23,25,27], envelope={};
+ for(const w of long){const o=envelope[w.length]??={words:0,any:0};o.words++;let found=false;
+   const ds=w.slice(1).map((v,i)=>logs[mod(v-w[i],29)]);
+   for(const p of lex.get(w.length)||[]){if(found)break;
+    for(const a of units){if(found)break;
+     // First nonzero transition permits at most two intercepts for this a.
+     const j=ds.findIndex(v=>v>=0);
+     const bs=j<0?[0]:[mod(p[j+1]-a*ds[j],28),mod(p[j+1]-1-a*ds[j],28)];
+     for(const b of bs){if(ds.every((v,j)=>v<0||p[j+1]===mod(a*v+b,28)||p[j+1]===mod(a*v+b,28)+1)){found=true;break;}}
+    }
+   }if(found)o.any++;
+ }
  const donor=solved.sections.flatMap(s=>(s.source_text.match(/[\u16a0-\u16ff]+/gu)||[]).map(w=>[...w].map(c=>idx.get(c))));
  const donorLong=donor.filter(w=>w.length>=5&&known.has(code(w)));
  const plants=[];for(let j=0;j<3;j++){
@@ -40,7 +55,7 @@ function experiment(corpus,transcript,solved,lexicon){
   }
   const selected=affine[0];let fullExact=false,holdoutExact=false;if(selected){const ff=Array.from({length:29},(_,i)=>mod(selected.m*i+selected.b,29));const decoded=transform(c,ff,selected.k,false);fullExact=JSON.stringify(decoded)===JSON.stringify(p);holdoutExact=JSON.stringify(decoded.slice(40))===JSON.stringify(p.slice(40));assert(JSON.stringify(transform(decoded,ff,selected.k,true))===JSON.stringify(c),"blind replay");}plants.push({k,words:p.length,runic:p.flat().length,survivors,affine,fullExact,holdoutExact});
  }
- return {lexicon:known.size,original:{long:long.length,any,byLen,matchesPerKey,maxCandByKey},donorLong:donorLong.length,plants};
+ return {lexicon:known.size,original:{long:long.length,any,byLen,matchesPerKey,maxCandByKey,envelope},donorLong:donorLong.length,plants};
 }
 const read=p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8');const p=["resources/liber-primus/lp2-corpus.json","resources/lp2-transcription.txt","resources/external/relikd-solved-gp29-native-v1.json","resources/control/english_wordfreq_textblob.txt"];
 console.log(JSON.stringify(experiment(JSON.parse(read(p[0])),read(p[1]),JSON.parse(read(p[2])),read(p[3])),null,2));
