@@ -10,7 +10,7 @@ The composition remains **our hypothesis**: no signed source or original image e
 
 ## Full invertible cipher candidate
 
-Independently within each of **175 original punctuation spans**, let N be rune count and W printed words. The number of possible divider patterns is B = binomial(N−1,W−1). Assign the increasing printed divider positions their exact zero-based lexicographic rank r in 0..B−1. The exact inverse unranking recovers the positive word-length composition.
+Independently within each of **173 original-image-corrected punctuation spans**, let N be rune count and W printed words. The number of possible divider patterns is B = binomial(N−1,W−1). Assign the increasing printed divider positions their exact zero-based lexicographic rank r in 0..B−1. The exact inverse unranking recovers the positive word-length composition.
 
 For original GP indices C (0..28), define S(C) = sum(GPprime[C_i]) from the published prime table. Define T=(3301r+S(C)) mod B. Serialize T into a fixed number of MSB-first BASE29 digits, the length being the minimum to represent B−1 (at least one). Cycle these digits as the word-boundary keystream K over every rune in the span. Let phi_i be the successive prime-minus-one residues mod29 from the source-authenticated p56 numeric method, using the **global rune position** as the clock. Decode
 
@@ -24,16 +24,16 @@ Every source punctuation span has N at most **375**; all prime factors of binomi
 
 ## Original input and control outcomes
 
-The source register is resources/liber-primus/lp2-corpus.json plus original punctuation and word layout from resources/liber-primus/lp2-transcription.txt. The SFT asserts **12,956 GP runes, 2,896 words, 175 spans and 83 single-rune words**. Forward re-encryption of all original decoded spans recovers **every printed rune and every original word length**, exactly.
+The source register is resources/liber-primus/lp2-corpus.json plus original punctuation and word layout from resources/transcriptions/lp2-image-corrected.txt. The SFT asserts **12,956 GP runes, 2,896 words, 173 spans and 83 single-rune words**. Forward re-encryption of all original decoded spans recovers **every printed rune and every original word length**, exactly.
 
 | Unchanged source interval | Candidate GP29 IoC |
 | --- | ---: |
 | Full original ciphertext before decoding | **0.034478397865** |
-| Full candidate dual-register decoded output | **0.034448977860** |
+| Full candidate dual-register decoded output | **0.034449311502** |
 | Independent first chapter pp0–2 (729 runes) | **0.034063672953** |
-| Independent floral chapter pp40–53 (3,008 runes) | **0.034516314769** |
+| Independent floral chapter pp40–53 (3,008 runes) | **0.034486906438** |
 
-The actual first chapter begins **CYCBTIATHTHPE HCX SON REOJTH NOEEASP ...** under its newly computed word breaks. Independently selected pp40–53 begin **EO E I P X O X OE L EA AE J I ...**. Neither is coherent GP-English. All three tested source intervals remain around the random GP29 baseline **1/29 ≈ 0.03448276**. Subsequent pure transposition or fixed secret GP29 substitution would preserve these coincidence rates.
+The actual first chapter begins **CYCBTIATHTHPE HCX SON REOJTH NOEEASP ...** under its newly computed word breaks. Independently selected pp40–53 begin **O B F X C TH R D N F B I ...**. Neither is coherent GP-English. All three tested source intervals remain around the random GP29 baseline **1/29 ≈ 0.03448276**. Subsequent pure transposition or fixed secret GP29 substitution would preserve these coincidence rates.
 
 An **independent authentic solved-p57 PARABLE** source serves as the positive plant: the complete **95-rune / 20-word** native-GP text, including all four punctuation spans, is forward encoded under this rule and recovered **exactly, rune for rune and boundary for boundary**. Synthetic ciphertext changes word breaks in three of four punctuation spans; its source original remains untouched. Deliberately using boundary multiplier3310 instead of3301 fails this positive exact inversion. The positive verifies real two-register reversibility, and cannot establish a historical LP2 rule.
 
@@ -43,13 +43,13 @@ A stronger positive control retains **every original punctuation span's exact nu
 
 | Same-size original or planted cipher | Actual source LP2 | Native GP encrypted plant |
 | --- | ---: | ---: |
-| One-rune printed words | **83** | **652** |
-| Adjacent identical ciphertext runes | **86** | **457** |
-| GP29 cipher/output coincidence | **0.034478397865** | **0.034481996423** |
+| One-rune printed words | **83** | **653** |
+| Adjacent identical ciphertext runes | **86** | **452** |
+| GP29 cipher/output coincidence | **0.034478397865** | **0.034482115581** |
 
-The full-length planted *plaintext* has GP29 coincidence **0.060708672967**, while the candidate's encrypted output has **0.034481996423**, nearly uniform. Thus the construction washes out source-native symbol frequency, but its output is sharply inconsistent with the actual manuscript's original singleton scarcity and anti-doublet structure. The candidate's boundary register behaves like approximately unconstrained random packetization, and its additive rune register leaves a random number of repeats. The exact source contrast rejects the fixed recipe more decisively than a missing readable prefix alone.
+The full-length planted *plaintext* has GP29 coincidence **0.060708672967**, while the candidate's encrypted output has **0.034482115581**, nearly uniform. Thus the construction washes out source-native symbol frequency, but its output is sharply inconsistent with the actual manuscript's original singleton scarcity and anti-doublet structure. The candidate's boundary register behaves like approximately unconstrained random packetization, and its additive rune register leaves a random number of repeats. The exact source contrast rejects the fixed recipe more decisively than a missing readable prefix alone.
 
-[Successful full native-GP original-length Windows Node22 test 43836294352](https://github.com/FlareZ123/liber-primus/actions/runs/43836294352).
+[Historical 175-span full native-GP original-length Windows Node22 test 43836294352](https://github.com/FlareZ123/liber-primus/actions/runs/43836294352).
 
 ## Decision and reproducibility
 
@@ -57,4 +57,4 @@ The full-length planted *plaintext* has GP29 coincidence **0.060708672967**, whi
 
 For Director #1208 this is a complete original-input forward/inverse example with an actual native-GP positive and independent large heldout chapter. The missing source selection and failed original plaintext prevent promotion. Do not reopen the prior uniform random-break, direct rank-byte or static alphabet screens without an independent new clue.
 
-**Reproduce:** [Windows Node22 standalone SFT](../sims/lp2_wordboundary_base29_feistel_source_sft.cjs), run as the normal source read-only test. [Passing GitHub Actions run 43835693725](https://github.com/FlareZ123/liber-primus/actions/runs/43835693725), 16 November 2026. Reuses an existing on-demand generic workflow without new CI.
+**Reproduce:** [Windows Node22 standalone SFT](../sims/lp2_wordboundary_base29_feistel_source_sft.cjs), run as the normal source read-only test. [Historical 175-span passing GitHub Actions run 43835693725](https://github.com/FlareZ123/liber-primus/actions/runs/43835693725), 16 November 2026. Agent37 ran the unchanged encode/decode arithmetic with the corrected source and count assertion in the JavaScript tool runtime on 24 November 2026, including the full original and both positive round trips. The prior 175-span scores are superseded for the corrected source; the corrected version has not been run on Windows CI.

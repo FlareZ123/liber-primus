@@ -17,7 +17,7 @@ const ROOT = path.resolve(__dirname, "..");
 /** @param {string} name @returns {string} */
 const read = name => fs.readFileSync(path.join(ROOT, name), "utf8");
 const gp = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
-const source = read("resources/liber-primus/lp2-transcription.txt");
+const source = read("resources/transcriptions/lp2-image-corrected.txt");
 const index = new Map(gp.runes.map((r, i) => [r, i]));
 const mod29 = x => (x % 29 + 29) % 29;
 /**
@@ -229,7 +229,7 @@ const C = flatten(unknown);
 const original = gp.pages.filter(p => p.page <= 55).flatMap(p => p.indices);
 assert.deepEqual(C,original);
 assert.equal(C.length,12956);
-assert.equal(unknown.length,175);
+assert.equal(unknown.length,173);
 assert.equal(unknown.flat().length,2896);
 assert.equal(unknown.flat().filter(w => w.length === 1).length,83);
 const largest = Math.max(...unknown.map(s => s.flat().length));

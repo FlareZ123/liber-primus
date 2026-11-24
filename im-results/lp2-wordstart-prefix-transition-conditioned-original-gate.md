@@ -10,7 +10,7 @@ We froze a **different existing English word-frequency reference**, `resources/c
 
 ## Original source and exact directed-transition null
 
-Source files are the canonical unchanged [12,956-index corpus](../resources/liber-primus/lp2-corpus.json) and [full original page/word transcription](../resources/liber-primus/lp2-transcription.txt), checked rune for rune. The parser retains **2,896** typographic words, **175** literal full stops, **174** words following full stops, and physical page/line word continuations. Physical p50 has no runes.
+Source files are the canonical unchanged [12,956-index corpus](../resources/liber-primus/lp2-corpus.json) and [original-image-corrected page/word transcription](../resources/transcriptions/lp2-image-corrected.txt), checked rune for rune. The parser retains **2,896** typographic words, **173** literal full stops, **172** words following full stops, and physical page/line word continuations. Physical p50 has no runes.
 
 Across original printed-word starts: **252** lexicon three-rune prefixes, **27** four-rune prefixes, **one** five-rune prefix and **one** six-rune prefix. Four follow a full stop. The sole six-rune prefix is GP **PENTHOU** (physical p15 rune offset52), embedded in the nine-rune ciphertext word `PENTHOUIIAR`, whose first six runes resemble `PENTHOUSE`. This is source *ciphertext* and no plaintext assignment is inferred.
 
@@ -22,7 +22,7 @@ For an exact source-transition null, hold all 55 physical page starts/ends and t
 | ≥4-rune prefixes | 27 | 17.7800 | 4.0624 | **23** | **0.01998** |
 | ≥5-rune prefixes | 1 | 0.6767 | 0.7684 | 620 | 0.51707 |
 | ≥6-rune prefixes | 1 | 0.0158 | 0.1248 | 19 | 0.01665 |
-| ≥4-rune prefixes immediately after periods | 4 | 1.0492 | 1.0591 | 30 | 0.02581 |
+| ≥4-rune prefixes immediately after periods | 4 | 1.0383 | 1.0521 | 30 | 0.02581 |
 
 The original four-rune excess is consequently *not completely explained by* page-local first-order transition counts under this exact random-trail ensemble. This alone does not establish meaningful English content, since the family of inspected prefixes, lengths, dictionaries, word locations, and historical hypotheses was not fixed before seeing the source and Euler trails do not preserve longer-range dependencies.
 
@@ -49,4 +49,4 @@ The familywise result is specific to these eight frequency cutoffs, this lexicon
 
 Retain the image-backed PENTHOU and HOME occurrences as real ciphertext spellings, with no source-authenticated English plaintext status. The broad fourth-rune familywise result does not justify a new source-free decoder or adjusting key positions around apparent words. A genuinely new path would need a *separate, preselected original manuscript instruction* that chooses a target word, key, operation or withheld plaintext segment. Stop expanding dictionaries and lexical cutoff families without such a selector.
 
-**Reproduce:** [Node22 CommonJS single-file test](../sims/lp2_wordstart_prefix_markov_sft.cjs). It validates the complete original corpus, constructs exact Euler-trail controls, computes exact Poisson-binomial tails, and checks the seed-locked 20,000-draw threshold-family correction. This produces no unknown plaintext and makes no change to the [authoritative research state](../results/README.md).
+**Reproduce:** [Node22 CommonJS single-file test](../sims/lp2_wordstart_prefix_markov_sft.cjs). It validates the complete original corpus, constructs exact Euler-trail controls, computes exact Poisson-binomial tails, and checks the seed-locked 20,000-draw threshold-family correction. Agent37 reran the entire corrected-input algorithm on 24 November 2026 in the JavaScript tool runtime: every observed prefix count, tail exceedance, and the 20,000-draw familywise result is unchanged; only the post-period null mean/SD change. No corrected-version Windows CI run is claimed. This produces no unknown plaintext and makes no change to the [authoritative research state](../results/README.md).

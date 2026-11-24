@@ -11,7 +11,7 @@ const root=path.resolve(__dirname,"..");
 /** @param {string} p @returns {string} */
 const read=p=>fs.readFileSync(path.join(root,p),"utf8");
 const corpus=JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
-const source=read("resources/liber-primus/lp2-transcription.txt").split("%").slice(0,55).join("%");
+const source=read("resources/transcriptions/lp2-image-corrected.txt").split("%").slice(0,55).join("%");
 const runes=new Set(corpus.runes),sentences=[];
 let word="",sentence=[];
 function flushWord(){if(word)sentence.push([...word].length);word="";}
@@ -25,7 +25,7 @@ for(const glyph of source){
 }
 flushWord();flushSentence();
 const lengths=sentences.flat(),n=lengths.length;
-assert.equal(sentences.length,175);
+assert.equal(sentences.length,173);
 assert.equal(n,2896);
 assert.equal(lengths.reduce((a,b)=>a+b,0),12956);
 const spans=[];
@@ -113,8 +113,8 @@ const identity=Array.from({length:n},(_,i)=>i);
 const raw=score(lengths,identity);
 const best=cases.reduce((a,b)=>a.score>b.score?a:b);
 assert.equal(best.name,"GP29");assert(best.inverse);
-assert(Math.abs(raw+79.33628753192995)<1e-8);
-assert(Math.abs(best.score+69.72596118554925)<1e-8);
+assert(Math.abs(raw+79.42997725277272)<1e-8);
+assert(Math.abs(best.score+69.99957195605934)<1e-8);
 let seed=0x0f8311f2;
 /** @returns {number} */
 function next(){
@@ -137,9 +137,9 @@ for(let t=0;t<trials;t++){
   familyTotal+=maximum;
   if(maximum>=best.score)familyHits++;
 }
-assert.equal(familyHits,trials);
-assert(Math.abs(familyTotal/trials+56.52107122429006)<1e-7);
-assert.equal(hits[1],603);
+assert.equal(familyHits,1498);
+assert(Math.abs(familyTotal/trials+56.593978489343435)<1e-7);
+assert.equal(hits[1],590);
 const plants=[];
 for(let i=0;i<controls.length;i++){
   const native=controls[i].slice(4000,4000+n);
