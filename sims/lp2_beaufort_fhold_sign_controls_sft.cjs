@@ -130,7 +130,7 @@ function solveSlope(label, words, cut, dict, slope, truth = null, actualKey = nu
     out.exactKeyCandidateCount = result.keys.filter(v => String(v.key) === String(actualKey)).length;
     const exactCandidate = result.keys.find(v => String(v.key) === String(actualKey));
     if (exactCandidate) {
-      out.exactPrefixMatches = exactCandidate.p.flat().filter((v, i) => v === truth.slice(0, exactCandidate.p.flat().length).flat()[i]).length;
+      out.exactPrefixMatches = exactCandidate.p.flat().filter((v, i) => v === truth.slice(0, cut).flat()[i]).length;
     }
   }
   if (result.keys.length === 1 && !result.exhausted && result.keys[0].endPhases.length === 1) {
@@ -145,7 +145,7 @@ function solveSlope(label, words, cut, dict, slope, truth = null, actualKey = nu
         forwardReplay: String(replay.flat()) === String(words.flat())
       };
       if (truth) {
-        out.exactPrefixRunes = selected.p.flat().filter((v, i) => v === truth.slice(0, selected.p.flat().length).flat()[i]).length;
+        out.exactPrefixRunes = selected.p.flat().filter((v, i) => v === truth.slice(0, cut).flat()[i]).length;
         out.exactHoldoutRunes = continuation.p.flat().filter((v, i) => v === truth.slice(cut).flat()[i]).length;
       }
     }
