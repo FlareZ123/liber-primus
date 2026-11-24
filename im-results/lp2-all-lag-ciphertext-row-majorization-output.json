@@ -1484,7 +1484,7 @@
       "consumedZeros": 98,
       "realHolds": 0,
       "inferredHolds": 0,
-      "known": 12955,
+      "known": 2978,
       "top9": 1958,
       "boundTop9": 2145,
       "replay": true
@@ -1520,7 +1520,7 @@
       "consumedZeros": 104,
       "realHolds": 0,
       "inferredHolds": 0,
-      "known": 12948,
+      "known": 2971,
       "top9": 1958,
       "boundTop9": 2069,
       "replay": true
@@ -1556,7 +1556,7 @@
       "consumedZeros": 95,
       "realHolds": 0,
       "inferredHolds": 0,
-      "known": 12943,
+      "known": 2966,
       "top9": 1958,
       "boundTop9": 2094,
       "replay": true
@@ -1592,7 +1592,7 @@
       "consumedZeros": 125,
       "realHolds": 0,
       "inferredHolds": 0,
-      "known": 12927,
+      "known": 2950,
       "top9": 1958,
       "boundTop9": 2082,
       "replay": true
@@ -1628,7 +1628,7 @@
       "consumedZeros": 98,
       "realHolds": 0,
       "inferredHolds": 0,
-      "known": 12913,
+      "known": 2936,
       "top9": 1958,
       "boundTop9": 2110,
       "replay": true
@@ -1664,7 +1664,7 @@
       "consumedZeros": 113,
       "realHolds": 0,
       "inferredHolds": 0,
-      "known": 12897,
+      "known": 2920,
       "top9": 1958,
       "boundTop9": 2103,
       "replay": true
@@ -1700,7 +1700,7 @@
       "consumedZeros": 121,
       "realHolds": 0,
       "inferredHolds": 0,
-      "known": 12823,
+      "known": 2846,
       "top9": 1958,
       "boundTop9": 2110,
       "replay": true
@@ -1728,6 +1728,34 @@
       "top9": 1958,
       "boundTop9": 2979,
       "replay": true
+    }
+  ],
+  "propagationControls": [
+    {
+      "mode": "all-F-fixed",
+      "q": 13,
+      "n": 50000,
+      "consumedZeros": 0,
+      "realHolds": 1661,
+      "inferredHolds": 1660,
+      "forcedRows": 28,
+      "iterations": 4,
+      "actualTop9": 15959,
+      "boundTop9": 17662,
+      "noFalseInferences": true
+    },
+    {
+      "mode": "mixed-F-image",
+      "q": 13,
+      "n": 50000,
+      "consumedZeros": 55,
+      "realHolds": 1699,
+      "inferredHolds": 1633,
+      "forcedRows": 27,
+      "iterations": 4,
+      "actualTop9": 15878,
+      "boundTop9": 18816,
+      "noFalseInferences": true
     }
   ]
 }
