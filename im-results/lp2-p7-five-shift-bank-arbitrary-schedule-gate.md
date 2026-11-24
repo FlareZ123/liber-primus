@@ -86,3 +86,24 @@ Cipher family C=b+a(P-b) mod29 with five distinct nonzero multipliers; choose un
 All six planted keys rank first in their correct center's marginal screen, first in the conditional shortlist, and first in the trigram refinement. Planted MAP path recovers 1025–1130/1717 runes, 397–452/693 heldout, reflecting intrinsic state ambiguity. Source product center0 heldout -.18218 and reciprocal center0 -.16800 for both F variants (center0 already fixes F). Best original MAP strings are noncoherent. Complete marginal scan but shortlist conditional/trigram refinement: this is predictive rejection, not exhaustive all-parameter high-order likelihood exclusion. No authenticated new key/plaintext. No reason to tune direct five-state redraw further.
 
 Reproducer: [`sims/lp2_p8_five_multiplier_redraw_spacingfree_sft.cjs`](../sims/lp2_p8_five_multiplier_redraw_spacingfree_sft.cjs), commit bdb970d4. Executed in connected JS with repository original/native/control inputs, 8 fits of ~23 seconds each; no CI claim.
+
+## Spacing-free evolving 29-state additive random walk (18:10Z)
+
+Complement to Agent2's exact all-schedule intact-group increment gate ([report](lp2-p7-five-shift-bank-all-schedule-inverse.md)). Now K advances by one of five independently uniform increments on each consuming rune, then C=P+K mod29; if C equals previous physical C, redraw the increment from the same preceding K once. Transparent plaintext F emits 0 without advancing K. An unknown initial K is uniform. The exact GP29 trigram forward filter sums over every compatible (previous two plaintext runes, current key state), including both consuming and held interpretations of ciphertext F; the final MAP path is checked against the original sequence and increment bank. No word boundaries used. Unlike the absolute shift bank, all 29 effective key states may occur.
+
+The original p8–14 black interval is 1717 runes, with first1024 fitting and last693 untouched for prediction. Use the previous donor-excluded GP29 literature/native model and fixed anti-doublet null. Ordinary screen ranks all 118755 banks by one-difference composite likelihood, exact trigram refines top128 plus source and sign inverse. The first transparent-F control exposed screening failure (true rank3392); a second-order consecutive-difference composite screen conditional on nonzero ciphertext triples improved true rank to190, but top128 still missed. Freeze top256 for F-hold and recalibrate on two fresh donors before scoring original F-hold. The screen assumes approximately uniform previous key state for nonzero triples, not an exact F-hold likelihood; refinement is exact. The all-case connected-runtime invocation timed out; all final cases executed independently.
+
+| Model / source | True screen rank | Exact recovered bank | Heldout gain nats/rune | MAP withheld exact runes |
+|---|---:|---|---:|---:|
+| Gibran ordinary | 5 | [1,12,14,16,28] | +.086454 | 330/693 |
+| Shakespeare ordinary | 3 | [2,7,10,24,28] | +.030257 | 188/693 |
+| Emerson ordinary | 8 | [5,7,9,11,13] | +.050913 | 249/693 |
+| Gibran F hold | 190 | [2,8,14,19,28] | +.065640 | 346/693 |
+| Shakespeare F hold (fresh) | 2 | [2,22,23,24,28] | +.037461 | 216/693 |
+| Emerson F hold (fresh) | 1 | [3,13,14,22,27] | +.035722 | 220/693 |
+| Original ordinary | — | selected [3,7,14,16,23] | -.031785 | unknown |
+| Original F hold | — | selected [2,3,8,14,23] | -.049749 | unknown |
+
+Ordinary original fit gain +.000500; F-hold original fit -.006040. Both are far below planted control gains, and both holdouts negative. Fixed source ± increment banks give ordinary heldout -.015466/-.040671, F hold -.025771/-.050777. Original MAP strings are noncoherent. Even the true random-increment bank does not determine unique plaintext; control MAP accuracy is only 188–346/693 heldout. Exact hidden-state filter, finite composite screening and trigram shortlist, **not an all-increment-bank theorem**. Retire the independent-uniform one-redraw random-walk model as a predictive route on this chapter; other dependent schedules and nonadditive architectures remain outside scope. This completes the direct spacing-free absolute/increment/multiplicative family follow-up; no new authentic key or plaintext.
+
+Reproducer [`sims/lp2_p8_five_increment_redraw_spacingfree_sft.cjs`](../sims/lp2_p8_five_increment_redraw_spacingfree_sft.cjs). Default ordinary rank1/top128, F hold rank2/top256; run individually with positional case 0–7 (0–2 ordinary plants, 3–5 F-hold plants, 6–7 original). Optional rankOrder/topK reproduce failed preliminary screen. Executed function body on actual repository data in connected JS, no CI claim.
