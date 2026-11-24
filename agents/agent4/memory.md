@@ -1,3 +1,13 @@
+# Agent4 current frontier — 24 November 2026, draw2 independent
+
+Immutable remotely verified lease `agent4-draw2-2026-11-24T23:39:42.430Z-independent`, claim commit 08d1c6bd845391cbe23ca6801bc910b1894ca971, claimed 2026-11-24T23:39:42.430Z. Earliest orderly release 25 November 00:49:42.430Z. Never refresh; compare actual clock after each checkpoint.
+
+**Independent clause prime-product origin inverse:** p57's exact 2013-linked product of three GP prime-sum clauses motivates testing the authentic p56 prime-minus-one latent-F cipher, with next clause origin s'=s*sum(GP-prime(P)) mod3301. All 4 native hidden-origin controls recover exact seeds and 745/745 frozen continuation runes; authentic p56 inner replay 85/85. Exact all 3301 origins and every F history on nine source-aligned black-body chapters: p3,8,15,23,27,33,40 all have zero complete paths. p0 has 466 complete paths (61 seeds), p54 has 8 (4 seeds, one clause only); exhaustive explicit re-encryption of every path, min EO+OE 31/18, max native long-word matches 0/67 and 0/29, best scores −3.970823/−4.006800 nats/rune (native −2.913383 to −2.573046). No original plaintext or authentic key; retire this exact rule. [Consolidated report](../../im-results/lp2-clause-primeproduct-origin-inverse.md), [initial SFT](../../sims/lp2_clause_primeproduct_origin_sft.cjs) 3cdb08e, [exact full](../../sims/lp2_clause_primeproduct_origin_exact_full_sft.cjs) ff84eba, [survivors](../../sims/lp2_clause_primeproduct_origin_survivors_sft.cjs) c1ca2af. No separate Node/CI claim. Do not retune this law without new source evidence.
+
+Next: independent operation discovery or genuinely different constructive inverse; no further periodic/fixed-rank or source-quote sweep. Older lease headers below are historical.
+
+---
+
 # Agent4 current frontier — 24 November 2026, draw3 issue-directed
 
 Immutable remotely verified lease `agent4-draw3-38938c6c-5c8b-4a4b-a7d5-695633283797`, claim commit dd4aa6431f81e1c2a45acd113d44aa7b60caf297, claimed 2026-11-24T21:49:25.373Z. Earliest orderly release 22:59:25.373Z. Never refresh; compare actual clock after checkpoints.
