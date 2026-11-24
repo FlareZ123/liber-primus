@@ -10,7 +10,12 @@
 #include <string>
 #include <vector>
 using namespace std;
-constexpr int W=16,N=1883,H=N/W,T=N%W,ORIGINS=3302;
+#ifdef LP_P33_CHAPTER
+constexpr int W=14,N=1680;
+#else
+constexpr int W=16,N=1883;
+#endif
+constexpr int H=N/W,T=N%W,ORIGINS=3302;
 using Bits=bitset<128>;using Tape=array<int,N>;using Order=array<int,W>;
 vector<int> primeclock(){vector<int> k;for(int n=2;k.size()<ORIGINS+N;n++){bool p=true;for(int d=2;d*d<=n;d++)if(n%d==0){p=false;break;}if(p)k.push_back((n-1)%29);}return k;}
 Tape decode(const string&s){Tape a{};if(s.size()!=N)throw runtime_error("bad length");for(int i=0;i<N;i++){a[i]=s[i]>='a'?s[i]-'a'+10:s[i]-'0';if(a[i]<0||a[i]>=29)throw runtime_error("rune");}return a;}
@@ -51,5 +56,11 @@ struct Search{
  bool feasible(int d,unsigned selected)const{return budget?feasibleBudget(d,selected):feasible0(d,selected);}
  void dfs(int d,unsigned selected){if(stopped)return;if(nodes==limit){stopped=true;return;}nodes++;visits[d]++;if(!feasible(d,selected))return;if(d==W){solutions++;winner=a;if(first)stopped=true;return;}int slot=d%2?W-1-d/2:d/2;for(int j=0;j<W;j++)if(!(selected&(1u<<j))){a[slot]=j;dfs(d+1,selected|(1u<<j));if(stopped)return;}}
 };
-int main(int argc,char**argv){if(argc!=9){cerr<<"usage: input start-origin end-origin node-cap original|plant rare-budget(-1 full29) first|all plant-origin\n";return 2;}ifstream f(argv[1]);string x,y;f>>x>>y;Tape raw=decode(x),p=decode(y);auto k=primeclock();int start=stoi(argv[2]),end=stoi(argv[3]),b=stoi(argv[6]),plantOrigin=stoi(argv[8]);uint64_t cap=stoull(argv[4]);bool plant=string(argv[5])=="plant",first=string(argv[7])=="first";if(start<0||end>=ORIGINS||start>end||b< -1||plantOrigin<0||plantOrigin>=ORIGINS)throw runtime_error("parameters");const Order truth={5,10,12,14,6,0,15,11,2,7,1,8,3,4,13,9};if(plant)raw=encrypt(p,truth,k,plantOrigin);Tables table(k,b<0);auto t=chrono::steady_clock::now();uint64_t total=0,solutions=0,capped=0,maxNodes=0;int maxOrigin=-1;for(int o=start;o<=end;o++){Search s(raw,table,o,max(0,b),cap,first);if(plant&&o==plantOrigin){s.a=truth;if(!s.feasible(W,(1u<<W)-1))throw runtime_error("plant excluded");}s.dfs(0,0);total+=s.nodes;solutions+=s.solutions;capped+=s.stopped&&!s.solutions;if(s.nodes>maxNodes){maxNodes=s.nodes;maxOrigin=o;}if(s.solutions||s.stopped){cout<<"origin "<<o<<" nodes "<<s.nodes<<" solutions "<<s.solutions<<" stopped "<<s.stopped<<" order ";if(s.solutions)for(int v:s.winner)cout<<v<<' ';cout<<'\n';}}
+int main(int argc,char**argv){if(argc!=9){cerr<<"usage: input start-origin end-origin node-cap original|plant rare-budget(-1 full29) first|all plant-origin\n";return 2;}ifstream f(argv[1]);string x,y;f>>x>>y;Tape raw=decode(x),p=decode(y);auto k=primeclock();int start=stoi(argv[2]),end=stoi(argv[3]),b=stoi(argv[6]),plantOrigin=stoi(argv[8]);uint64_t cap=stoull(argv[4]);bool plant=string(argv[5])=="plant",first=string(argv[7])=="first";if(start<0||end>=ORIGINS||start>end||b< -1||plantOrigin<0||plantOrigin>=ORIGINS)throw runtime_error("parameters");
+#ifdef LP_P33_CHAPTER
+const Order truth={2,8,9,1,12,13,11,4,5,7,3,0,6,10};
+#else
+const Order truth={5,10,12,14,6,0,15,11,2,7,1,8,3,4,13,9};
+#endif
+if(plant)raw=encrypt(p,truth,k,plantOrigin);Tables table(k,b<0);auto t=chrono::steady_clock::now();uint64_t total=0,solutions=0,capped=0,maxNodes=0;int maxOrigin=-1;for(int o=start;o<=end;o++){Search s(raw,table,o,max(0,b),cap,first);if(plant&&o==plantOrigin){s.a=truth;if(!s.feasible(W,(1u<<W)-1))throw runtime_error("plant excluded");}s.dfs(0,0);total+=s.nodes;solutions+=s.solutions;capped+=s.stopped&&s.nodes==cap;if(s.nodes>maxNodes){maxNodes=s.nodes;maxOrigin=o;}if(s.solutions||s.stopped){cout<<"origin "<<o<<" nodes "<<s.nodes<<" solutions "<<s.solutions<<" stopped "<<s.stopped<<" order ";if(s.solutions)for(int v:s.winner)cout<<v<<' ';cout<<'\n';}}
 cout<<"origins "<<start<<".."<<end<<" total nodes "<<total<<" max nodes "<<maxNodes<<" at "<<maxOrigin<<" solutions "<<solutions<<" capped "<<capped<<" seconds "<<chrono::duration<double>(chrono::steady_clock::now()-t).count()<<'\n';}
