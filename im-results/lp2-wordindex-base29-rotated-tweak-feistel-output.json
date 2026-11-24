@@ -13322,5 +13322,41 @@
       3,
       10
     ]
+  },
+  "symmetryCertificate": {
+    "groups": 82,
+    "collisions": [
+      {
+        "digits": "1,14,27",
+        "rows": [
+          {
+            "wordIndex": 1274,
+            "globalRune": 5699,
+            "page": 23,
+            "localRune": 193,
+            "digits": [
+              27,
+              14,
+              1
+            ],
+            "cipher": 23
+          },
+          {
+            "wordIndex": 1638,
+            "globalRune": 7311,
+            "page": 30,
+            "localRune": 4,
+            "digits": [
+              14,
+              27,
+              1
+            ],
+            "cipher": 19
+          }
+        ],
+        "possibleShifts": []
+      }
+    ],
+    "anySymmetricShiftCompatible": false
   }
 }
