@@ -1,0 +1,3305 @@
+{
+  "controls": [
+    {
+      "hold": false,
+      "n": 39,
+      "oov": 0,
+      "exactPad": 33,
+      "fullReplay": true,
+      "plaintextA": "… CWESTIAN PILGRIM TO THE GREAT JOURNEY TOWARD THE AND OF … … … … … … … … … … … … … …",
+      "plaintextB": "I STEAM DURNG A LESSON THE MASTER EXPLAINED THE D THE I"
+    },
+    {
+      "hold": true,
+      "n": 39,
+      "oov": 0,
+      "exactPad": 33,
+      "fullReplay": true,
+      "plaintextA": "… CWESTIAN PILGRIM TO THE GREAT JOURNEY TOWARD THE AND OF … … … … … … … … … … … … … …",
+      "plaintextB": "I STEAM DURNG A LESSON THE MASTER EXPLAINED THE D THE I"
+    }
+  ],
+  "cases": 184,
+  "hardSurvivors": 0,
+  "byClock": [
+    {
+      "hold": false,
+      "cases": 93,
+      "minimumOOV": 4,
+      "hist": {
+        "4": 2,
+        "5": 21,
+        "6": 56,
+        "7": 12,
+        "8": 2
+      }
+    },
+    {
+      "hold": true,
+      "cases": 91,
+      "minimumOOV": 4,
+      "hist": {
+        "4": 2,
+        "5": 21,
+        "6": 50,
+        "7": 14,
+        "8": 4
+      }
+    }
+  ],
+  "best": [
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 23,
+      "n": 76,
+      "oov": 4,
+      "words": 30,
+      "relativeCost": 112.25189978908747,
+      "wilds": [
+        "A7",
+        "B7",
+        "B8",
+        "A13"
+      ],
+      "PA": [
+        null,
+        null,
+        null,
+        null,
+        [
+          1,
+          24,
+          4,
+          10,
+          14
+        ],
+        [
+          15,
+          8,
+          18,
+          20,
+          0
+        ],
+        [
+          0,
+          3,
+          4
+        ],
+        [
+          6,
+          5,
+          17,
+          17,
+          21,
+          1,
+          12,
+          4,
+          14,
+          0,
+          10
+        ],
+        [
+          6,
+          4,
+          3,
+          7,
+          16,
+          8
+        ],
+        [
+          15,
+          3,
+          19,
+          18,
+          16,
+          8,
+          10,
+          9,
+          6
+        ],
+        [
+          7,
+          8,
+          10,
+          5,
+          8
+        ],
+        [
+          17,
+          18,
+          6,
+          10,
+          9,
+          9,
+          21,
+          15
+        ],
+        [
+          18,
+          23,
+          23,
+          26
+        ],
+        [
+          6,
+          5,
+          15,
+          7,
+          16,
+          20,
+          14,
+          6,
+          6
+        ],
+        [
+          19,
+          3,
+          1,
+          2
+        ],
+        [
+          15,
+          16,
+          4,
+          10,
+          5,
+          18,
+          4,
+          15
+        ],
+        [
+          17,
+          26
+        ],
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "PB": [
+        [
+          19
+        ],
+        [
+          24,
+          17,
+          20,
+          26
+        ],
+        [
+          5,
+          21
+        ],
+        [
+          24,
+          19
+        ],
+        [
+          1,
+          9,
+          10,
+          16,
+          18,
+          23
+        ],
+        [
+          0,
+          4,
+          18,
+          9,
+          5,
+          8
+        ],
+        [
+          2,
+          18
+        ],
+        [
+          26,
+          18,
+          0,
+          24,
+          9,
+          5,
+          15,
+          21,
+          19,
+          4,
+          17,
+          11,
+          12
+        ],
+        [
+          23,
+          13,
+          4,
+          5,
+          23,
+          0
+        ],
+        [
+          18,
+          9,
+          1,
+          26
+        ],
+        [
+          4,
+          27
+        ],
+        [
+          3,
+          5,
+          5,
+          10,
+          13,
+          1,
+          16
+        ],
+        [
+          9,
+          24,
+          16,
+          24,
+          15,
+          8,
+          24
+        ],
+        [
+          18,
+          14
+        ],
+        [
+          17,
+          18,
+          20,
+          20,
+          26,
+          15
+        ],
+        [
+          17,
+          24,
+          9
+        ],
+        [
+          17,
+          18,
+          21
+        ]
+      ],
+      "pad": [
+        24,
+        24,
+        25,
+        15,
+        17,
+        3,
+        16,
+        3,
+        1,
+        15,
+        11,
+        18,
+        25,
+        13,
+        20,
+        7,
+        14,
+        11,
+        18,
+        1,
+        11,
+        18,
+        26,
+        4,
+        8,
+        23,
+        3,
+        14,
+        27,
+        2,
+        3,
+        19,
+        2,
+        20,
+        15,
+        1,
+        21,
+        19,
+        13,
+        17,
+        22,
+        26,
+        9,
+        17,
+        12,
+        8,
+        3,
+        20,
+        19,
+        21,
+        2,
+        18,
+        10,
+        6,
+        10,
+        2,
+        26,
+        8,
+        17,
+        4,
+        24,
+        26,
+        13,
+        14,
+        2,
+        8,
+        15,
+        14,
+        8,
+        28,
+        15,
+        21,
+        13,
+        1,
+        1,
+        6
+      ],
+      "plaintextA": "… … … … UARIX SHELF FOR GCBBNGUEORXFI GROWTH SOMETHING WHICH BEGINNNGS EDDY GCSWTLXGG MOUTH STRICERS BY … … … … …",
+      "plaintextB": "M ABLY CNG AM UNITED FRENCH THE YEFANCSNGMRBJEO DPRCDF ENUY RIA OCCIPUT NATASHA EX BELLYS BAN BENG"
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 24,
+      "n": 75,
+      "oov": 4,
+      "words": 29,
+      "relativeCost": 112.25189978908747,
+      "wilds": [
+        "A7",
+        "B7",
+        "B8",
+        "A13"
+      ],
+      "PA": [
+        null,
+        null,
+        null,
+        null,
+        [
+          1,
+          24,
+          4,
+          10,
+          14
+        ],
+        [
+          15,
+          8,
+          18,
+          20,
+          0
+        ],
+        [
+          0,
+          3,
+          4
+        ],
+        [
+          6,
+          5,
+          17,
+          17,
+          21,
+          1,
+          12,
+          4,
+          14,
+          0,
+          10
+        ],
+        [
+          6,
+          4,
+          3,
+          7,
+          16,
+          8
+        ],
+        [
+          15,
+          3,
+          19,
+          18,
+          16,
+          8,
+          10,
+          9,
+          6
+        ],
+        [
+          7,
+          8,
+          10,
+          5,
+          8
+        ],
+        [
+          17,
+          18,
+          6,
+          10,
+          9,
+          9,
+          21,
+          15
+        ],
+        [
+          18,
+          23,
+          23,
+          26
+        ],
+        [
+          6,
+          5,
+          15,
+          7,
+          16,
+          20,
+          14,
+          6,
+          6
+        ],
+        [
+          19,
+          3,
+          1,
+          2
+        ],
+        [
+          15,
+          16,
+          4,
+          10,
+          5,
+          18,
+          4,
+          15
+        ],
+        [
+          17,
+          26
+        ],
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "PB": [
+        null,
+        [
+          24,
+          17,
+          20,
+          26
+        ],
+        [
+          5,
+          21
+        ],
+        [
+          24,
+          19
+        ],
+        [
+          1,
+          9,
+          10,
+          16,
+          18,
+          23
+        ],
+        [
+          0,
+          4,
+          18,
+          9,
+          5,
+          8
+        ],
+        [
+          2,
+          18
+        ],
+        [
+          26,
+          18,
+          0,
+          24,
+          9,
+          5,
+          15,
+          21,
+          19,
+          4,
+          17,
+          11,
+          12
+        ],
+        [
+          23,
+          13,
+          4,
+          5,
+          23,
+          0
+        ],
+        [
+          18,
+          9,
+          1,
+          26
+        ],
+        [
+          4,
+          27
+        ],
+        [
+          3,
+          5,
+          5,
+          10,
+          13,
+          1,
+          16
+        ],
+        [
+          9,
+          24,
+          16,
+          24,
+          15,
+          8,
+          24
+        ],
+        [
+          18,
+          14
+        ],
+        [
+          17,
+          18,
+          20,
+          20,
+          26,
+          15
+        ],
+        [
+          17,
+          24,
+          9
+        ],
+        [
+          17,
+          18,
+          21
+        ]
+      ],
+      "pad": [
+        24,
+        25,
+        15,
+        17,
+        3,
+        16,
+        3,
+        1,
+        15,
+        11,
+        18,
+        25,
+        13,
+        20,
+        7,
+        14,
+        11,
+        18,
+        1,
+        11,
+        18,
+        26,
+        4,
+        8,
+        23,
+        3,
+        14,
+        27,
+        2,
+        3,
+        19,
+        2,
+        20,
+        15,
+        1,
+        21,
+        19,
+        13,
+        17,
+        22,
+        26,
+        9,
+        17,
+        12,
+        8,
+        3,
+        20,
+        19,
+        21,
+        2,
+        18,
+        10,
+        6,
+        10,
+        2,
+        26,
+        8,
+        17,
+        4,
+        24,
+        26,
+        13,
+        14,
+        2,
+        8,
+        15,
+        14,
+        8,
+        28,
+        15,
+        21,
+        13,
+        1,
+        1,
+        6
+      ],
+      "plaintextA": "… … … … UARIX SHELF FOR GCBBNGUEORXFI GROWTH SOMETHING WHICH BEGINNNGS EDDY GCSWTLXGG MOUTH STRICERS BY … … … … …",
+      "plaintextB": "… ABLY CNG AM UNITED FRENCH THE YEFANCSNGMRBJEO DPRCDF ENUY RIA OCCIPUT NATASHA EX BELLYS BAN BENG"
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 23,
+      "n": 73,
+      "oov": 4,
+      "words": 30,
+      "relativeCost": 120.13862816058099,
+      "wilds": [
+        "A7",
+        "B7",
+        "B8",
+        "A13"
+      ],
+      "PA": [
+        null,
+        null,
+        null,
+        null,
+        [
+          1,
+          24,
+          4,
+          10,
+          14
+        ],
+        [
+          15,
+          8,
+          18,
+          20,
+          0
+        ],
+        [
+          0,
+          20,
+          26
+        ],
+        [
+          3,
+          20,
+          11,
+          25,
+          10,
+          14,
+          27,
+          23,
+          23,
+          0,
+          4
+        ],
+        [
+          6,
+          10,
+          1,
+          10,
+          9,
+          6
+        ],
+        [
+          15,
+          3,
+          19,
+          18,
+          16,
+          8,
+          10,
+          9,
+          6
+        ],
+        [
+          7,
+          8,
+          10,
+          5,
+          8
+        ],
+        [
+          17,
+          18,
+          6,
+          10,
+          9,
+          9,
+          21,
+          15
+        ],
+        [
+          18,
+          23,
+          23,
+          26
+        ],
+        [
+          6,
+          5,
+          15,
+          7,
+          16,
+          20,
+          14,
+          6,
+          6
+        ],
+        [
+          19,
+          3,
+          1,
+          2
+        ],
+        [
+          15,
+          16,
+          4,
+          10,
+          5,
+          18,
+          4,
+          15
+        ],
+        [
+          17,
+          26
+        ],
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "PB": [
+        [
+          19
+        ],
+        [
+          24,
+          17,
+          20,
+          26
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          8,
+          18
+        ],
+        [
+          13,
+          10,
+          18,
+          4,
+          4,
+          18
+        ],
+        [
+          0,
+          24,
+          16,
+          8,
+          18,
+          4
+        ],
+        [
+          3,
+          9
+        ],
+        [
+          12,
+          7,
+          0,
+          1,
+          24,
+          24,
+          10,
+          14,
+          21,
+          12,
+          13,
+          20,
+          13
+        ],
+        [
+          1,
+          19,
+          15,
+          21,
+          15,
+          0
+        ],
+        [
+          18,
+          9,
+          1,
+          26
+        ],
+        [
+          4,
+          27
+        ],
+        [
+          3,
+          5,
+          5,
+          10,
+          13,
+          1,
+          16
+        ],
+        [
+          9,
+          24,
+          16,
+          24,
+          15,
+          8,
+          24
+        ],
+        [
+          18,
+          14
+        ],
+        [
+          17,
+          18,
+          20,
+          20,
+          26,
+          15
+        ],
+        [
+          17,
+          24,
+          9
+        ],
+        [
+          17,
+          18,
+          21
+        ]
+      ],
+      "pad": [
+        24,
+        24,
+        25,
+        15,
+        17,
+        3,
+        19,
+        9,
+        22,
+        19,
+        7,
+        10,
+        13,
+        15,
+        3,
+        12,
+        16,
+        13,
+        18,
+        22,
+        12,
+        23,
+        28,
+        4,
+        14,
+        27,
+        2,
+        3,
+        19,
+        2,
+        20,
+        15,
+        1,
+        21,
+        19,
+        13,
+        17,
+        22,
+        26,
+        9,
+        17,
+        12,
+        8,
+        3,
+        20,
+        19,
+        21,
+        2,
+        18,
+        10,
+        6,
+        10,
+        2,
+        26,
+        8,
+        17,
+        4,
+        24,
+        26,
+        13,
+        14,
+        2,
+        8,
+        15,
+        14,
+        8,
+        28,
+        15,
+        21,
+        13,
+        1,
+        1,
+        6
+      ],
+      "plaintextA": "… … … … UARIX SHELF FLY OLJAEIXIADDFR GIUING SOMETHING WHICH BEGINNNGS EDDY GCSWTLXGG MOUTH STRICERS BY … … … … …",
+      "plaintextB": "M ABLY CW HE PIERRE FATHER ON EOWFUAAIXNGEOPLP UMSNGSF ENUY RIA OCCIPUT NATASHA EX BELLYS BAN BENG"
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 24,
+      "n": 72,
+      "oov": 4,
+      "words": 29,
+      "relativeCost": 120.13862816058099,
+      "wilds": [
+        "A7",
+        "B7",
+        "B8",
+        "A13"
+      ],
+      "PA": [
+        null,
+        null,
+        null,
+        null,
+        [
+          1,
+          24,
+          4,
+          10,
+          14
+        ],
+        [
+          15,
+          8,
+          18,
+          20,
+          0
+        ],
+        [
+          0,
+          20,
+          26
+        ],
+        [
+          3,
+          20,
+          11,
+          25,
+          10,
+          14,
+          27,
+          23,
+          23,
+          0,
+          4
+        ],
+        [
+          6,
+          10,
+          1,
+          10,
+          9,
+          6
+        ],
+        [
+          15,
+          3,
+          19,
+          18,
+          16,
+          8,
+          10,
+          9,
+          6
+        ],
+        [
+          7,
+          8,
+          10,
+          5,
+          8
+        ],
+        [
+          17,
+          18,
+          6,
+          10,
+          9,
+          9,
+          21,
+          15
+        ],
+        [
+          18,
+          23,
+          23,
+          26
+        ],
+        [
+          6,
+          5,
+          15,
+          7,
+          16,
+          20,
+          14,
+          6,
+          6
+        ],
+        [
+          19,
+          3,
+          1,
+          2
+        ],
+        [
+          15,
+          16,
+          4,
+          10,
+          5,
+          18,
+          4,
+          15
+        ],
+        [
+          17,
+          26
+        ],
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "PB": [
+        null,
+        [
+          24,
+          17,
+          20,
+          26
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          8,
+          18
+        ],
+        [
+          13,
+          10,
+          18,
+          4,
+          4,
+          18
+        ],
+        [
+          0,
+          24,
+          16,
+          8,
+          18,
+          4
+        ],
+        [
+          3,
+          9
+        ],
+        [
+          12,
+          7,
+          0,
+          1,
+          24,
+          24,
+          10,
+          14,
+          21,
+          12,
+          13,
+          20,
+          13
+        ],
+        [
+          1,
+          19,
+          15,
+          21,
+          15,
+          0
+        ],
+        [
+          18,
+          9,
+          1,
+          26
+        ],
+        [
+          4,
+          27
+        ],
+        [
+          3,
+          5,
+          5,
+          10,
+          13,
+          1,
+          16
+        ],
+        [
+          9,
+          24,
+          16,
+          24,
+          15,
+          8,
+          24
+        ],
+        [
+          18,
+          14
+        ],
+        [
+          17,
+          18,
+          20,
+          20,
+          26,
+          15
+        ],
+        [
+          17,
+          24,
+          9
+        ],
+        [
+          17,
+          18,
+          21
+        ]
+      ],
+      "pad": [
+        24,
+        25,
+        15,
+        17,
+        3,
+        19,
+        9,
+        22,
+        19,
+        7,
+        10,
+        13,
+        15,
+        3,
+        12,
+        16,
+        13,
+        18,
+        22,
+        12,
+        23,
+        28,
+        4,
+        14,
+        27,
+        2,
+        3,
+        19,
+        2,
+        20,
+        15,
+        1,
+        21,
+        19,
+        13,
+        17,
+        22,
+        26,
+        9,
+        17,
+        12,
+        8,
+        3,
+        20,
+        19,
+        21,
+        2,
+        18,
+        10,
+        6,
+        10,
+        2,
+        26,
+        8,
+        17,
+        4,
+        24,
+        26,
+        13,
+        14,
+        2,
+        8,
+        15,
+        14,
+        8,
+        28,
+        15,
+        21,
+        13,
+        1,
+        1,
+        6
+      ],
+      "plaintextA": "… … … … UARIX SHELF FLY OLJAEIXIADDFR GIUING SOMETHING WHICH BEGINNNGS EDDY GCSWTLXGG MOUTH STRICERS BY … … … … …",
+      "plaintextB": "… ABLY CW HE PIERRE FATHER ON EOWFUAAIXNGEOPLP UMSNGSF ENUY RIA OCCIPUT NATASHA EX BELLYS BAN BENG"
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 0,
+      "n": 72,
+      "oov": 5,
+      "words": 29,
+      "relativeCost": 49.24780910555273,
+      "wilds": [
+        "A3",
+        "B7",
+        "A7",
+        "A9",
+        "A11"
+      ],
+      "PA": [
+        [
+          7
+        ],
+        [
+          8,
+          10,
+          19
+        ],
+        [
+          15,
+          7,
+          1,
+          9,
+          6
+        ],
+        [
+          5,
+          12,
+          26,
+          17,
+          11,
+          20,
+          4,
+          27,
+          18,
+          22,
+          12
+        ],
+        [
+          2,
+          3,
+          1,
+          6,
+          8
+        ],
+        [
+          5,
+          8,
+          10,
+          18,
+          0
+        ],
+        [
+          0,
+          3,
+          4
+        ],
+        [
+          1,
+          1,
+          10,
+          25,
+          23,
+          24,
+          22,
+          9,
+          20,
+          0,
+          17
+        ],
+        [
+          15,
+          19,
+          10,
+          20,
+          10,
+          21
+        ],
+        [
+          21,
+          19,
+          26,
+          26,
+          23,
+          12,
+          10,
+          22,
+          14
+        ],
+        [
+          23,
+          4,
+          3,
+          1,
+          18
+        ],
+        [
+          2,
+          8,
+          13,
+          28,
+          8,
+          15,
+          26,
+          26
+        ],
+        [
+          15,
+          3,
+          1,
+          2
+        ],
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "PB": [
+        null,
+        [
+          16,
+          18,
+          4,
+          19
+        ],
+        [
+          9,
+          3
+        ],
+        [
+          10,
+          16
+        ],
+        [
+          18,
+          21,
+          20,
+          24,
+          9,
+          23
+        ],
+        [
+          0,
+          4,
+          18,
+          9,
+          5,
+          8
+        ],
+        [
+          16,
+          3
+        ],
+        [
+          28,
+          14,
+          0,
+          25,
+          3,
+          25,
+          2,
+          14,
+          1,
+          8,
+          13,
+          17,
+          4
+        ],
+        [
+          10,
+          16,
+          15,
+          18,
+          20,
+          0
+        ],
+        [
+          16,
+          8,
+          24,
+          16
+        ],
+        [
+          10,
+          15
+        ],
+        [
+          10,
+          9,
+          16,
+          18,
+          4,
+          27,
+          4
+        ],
+        [
+          13,
+          4,
+          18,
+          13,
+          24,
+          4,
+          21
+        ],
+        [
+          17,
+          18
+        ],
+        [
+          16,
+          8,
+          3,
+          1,
+          6,
+          8
+        ],
+        [
+          16,
+          8,
+          18
+        ],
+        [
+          23,
+          10,
+          23
+        ]
+      ],
+      "pad": [
+        7,
+        22,
+        17,
+        8,
+        21,
+        25,
+        13,
+        3,
+        25,
+        13,
+        9,
+        7,
+        26,
+        20,
+        14,
+        11,
+        18,
+        1,
+        11,
+        24,
+        11,
+        12,
+        2,
+        11,
+        13,
+        17,
+        15,
+        19,
+        13,
+        1,
+        15,
+        8,
+        3,
+        28,
+        10,
+        17,
+        16,
+        5,
+        21,
+        1,
+        15,
+        13,
+        7,
+        7,
+        26,
+        2,
+        26,
+        10,
+        18,
+        26,
+        11,
+        17,
+        11,
+        20,
+        18,
+        17,
+        19,
+        9,
+        24,
+        27,
+        13,
+        18,
+        13,
+        19,
+        25,
+        9,
+        25,
+        5,
+        21,
+        2,
+        25,
+        8
+      ],
+      "plaintextA": "W HIM SWUNG CEOYBJLRIAEOEEO THOUGH CHIEF FOR UUIAEDAOENLFB SMILING NGMYYDEOIOEX DROUE THHPEAHSYY SOUTH … … … … … … … … …",
+      "plaintextB": "… TERM NO IT ENGLAND FRENCH TO EAXFAEOAETHXUHPBR ITSELF THAT IS INTERIAR PREPARNG BE THOUGH THE DID"
+    }
+  ],
+  "all": [
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 23,
+      "n": 76,
+      "oov": 4,
+      "words": 30,
+      "relativeCost": 112.25189978908747
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 24,
+      "n": 75,
+      "oov": 4,
+      "words": 29,
+      "relativeCost": 112.25189978908747
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 23,
+      "n": 73,
+      "oov": 4,
+      "words": 30,
+      "relativeCost": 120.13862816058099
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 24,
+      "n": 72,
+      "oov": 4,
+      "words": 29,
+      "relativeCost": 120.13862816058099
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 0,
+      "n": 72,
+      "oov": 5,
+      "words": 29,
+      "relativeCost": 49.24780910555273
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 0,
+      "n": 75,
+      "oov": 5,
+      "words": 29,
+      "relativeCost": 51.970577012747526
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 1,
+      "n": 73,
+      "oov": 5,
+      "words": 30,
+      "relativeCost": 55.71911252848804
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 2,
+      "n": 72,
+      "oov": 5,
+      "words": 29,
+      "relativeCost": 55.71911252848804
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 29,
+      "n": 76,
+      "oov": 5,
+      "words": 32,
+      "relativeCost": 58.634883685968816
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 30,
+      "n": 75,
+      "oov": 5,
+      "words": 30,
+      "relativeCost": 58.634883685968816
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 1,
+      "n": 76,
+      "oov": 5,
+      "words": 30,
+      "relativeCost": 59.46191920898855
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 2,
+      "n": 75,
+      "oov": 5,
+      "words": 29,
+      "relativeCost": 59.46191920898855
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 27,
+      "n": 73,
+      "oov": 5,
+      "words": 31,
+      "relativeCost": 62.98126422148198
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 28,
+      "n": 72,
+      "oov": 5,
+      "words": 30,
+      "relativeCost": 62.98126422148198
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 19,
+      "n": 76,
+      "oov": 5,
+      "words": 30,
+      "relativeCost": 64.54691627062857
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 20,
+      "n": 75,
+      "oov": 5,
+      "words": 28,
+      "relativeCost": 64.54691627062857
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 0,
+      "n": 73,
+      "oov": 5,
+      "words": 30,
+      "relativeCost": 65.30450322851539
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 1,
+      "n": 72,
+      "oov": 5,
+      "words": 28,
+      "relativeCost": 65.30450322851539
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 0,
+      "n": 76,
+      "oov": 5,
+      "words": 30,
+      "relativeCost": 65.79400746617466
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 1,
+      "n": 75,
+      "oov": 5,
+      "words": 28,
+      "relativeCost": 65.79400746617466
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 31,
+      "n": 76,
+      "oov": 5,
+      "words": 31,
+      "relativeCost": 66.59438356012106
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 32,
+      "n": 75,
+      "oov": 5,
+      "words": 30,
+      "relativeCost": 66.59438356012106
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 19,
+      "n": 73,
+      "oov": 5,
+      "words": 30,
+      "relativeCost": 67.52142490725964
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 20,
+      "n": 72,
+      "oov": 5,
+      "words": 28,
+      "relativeCost": 67.52142490725964
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 29,
+      "n": 73,
+      "oov": 5,
+      "words": 31,
+      "relativeCost": 69.14988474640995
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 30,
+      "n": 72,
+      "oov": 5,
+      "words": 30,
+      "relativeCost": 69.14988474640995
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 30,
+      "n": 76,
+      "oov": 5,
+      "words": 31,
+      "relativeCost": 72.51403344608843
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 31,
+      "n": 75,
+      "oov": 5,
+      "words": 30,
+      "relativeCost": 72.51403344608843
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 4,
+      "n": 73,
+      "oov": 5,
+      "words": 29,
+      "relativeCost": 73.6632687523961
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 5,
+      "n": 72,
+      "oov": 5,
+      "words": 28,
+      "relativeCost": 73.6632687523961
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 44,
+      "n": 76,
+      "oov": 5,
+      "words": 31,
+      "relativeCost": 78.02903886977583
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 45,
+      "n": 75,
+      "oov": 5,
+      "words": 30,
+      "relativeCost": 78.02903886977583
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 39,
+      "n": 73,
+      "oov": 5,
+      "words": 31,
+      "relativeCost": 78.33412097394466
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 40,
+      "n": 72,
+      "oov": 5,
+      "words": 30,
+      "relativeCost": 78.33412097394466
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 17,
+      "n": 73,
+      "oov": 5,
+      "words": 30,
+      "relativeCost": 78.63696758262813
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 18,
+      "n": 72,
+      "oov": 5,
+      "words": 29,
+      "relativeCost": 78.63696758262813
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 44,
+      "n": 73,
+      "oov": 5,
+      "words": 31,
+      "relativeCost": 82.40972241945565
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 45,
+      "n": 72,
+      "oov": 5,
+      "words": 30,
+      "relativeCost": 82.40972241945565
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 7,
+      "n": 76,
+      "oov": 5,
+      "words": 29,
+      "relativeCost": 84.02276761550456
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 8,
+      "n": 75,
+      "oov": 5,
+      "words": 28,
+      "relativeCost": 84.02276761550456
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 26,
+      "n": 76,
+      "oov": 5,
+      "words": 30,
+      "relativeCost": 84.942617460154
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 27,
+      "n": 75,
+      "oov": 5,
+      "words": 29,
+      "relativeCost": 84.942617460154
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 7,
+      "n": 73,
+      "oov": 5,
+      "words": 29,
+      "relativeCost": 86.07725791726261
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 8,
+      "n": 72,
+      "oov": 5,
+      "words": 28,
+      "relativeCost": 86.07725791726261
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 41,
+      "n": 76,
+      "oov": 5,
+      "words": 31,
+      "relativeCost": 89.00296661816537
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 42,
+      "n": 75,
+      "oov": 5,
+      "words": 30,
+      "relativeCost": 89.00296661816537
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 24,
+      "n": 73,
+      "oov": 6,
+      "words": 31,
+      "relativeCost": 42.81023217737675
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 25,
+      "n": 72,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 42.81023217737675
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 22,
+      "n": 76,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 43.70230276230723
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 23,
+      "n": 75,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 43.70230276230723
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 30,
+      "n": 73,
+      "oov": 6,
+      "words": 31,
+      "relativeCost": 44.99307799432427
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 31,
+      "n": 72,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 44.99307799432427
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 25,
+      "n": 76,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 46.08488296717405
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 26,
+      "n": 75,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 46.08488296717405
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 38,
+      "n": 73,
+      "oov": 6,
+      "words": 31,
+      "relativeCost": 49.43702553585172
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 39,
+      "n": 72,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 49.43702553585172
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 27,
+      "n": 76,
+      "oov": 6,
+      "words": 31,
+      "relativeCost": 49.52653889078647
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 28,
+      "n": 75,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 49.52653889078647
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 24,
+      "n": 76,
+      "oov": 6,
+      "words": 31,
+      "relativeCost": 50.74711702205241
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 25,
+      "n": 75,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 50.74711702205241
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 5,
+      "n": 73,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 52.58244482334703
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 6,
+      "n": 72,
+      "oov": 6,
+      "words": 28,
+      "relativeCost": 52.58244482334703
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 33,
+      "n": 76,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 52.606986169703305
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 34,
+      "n": 75,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 52.606986169703305
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 5,
+      "n": 76,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 52.99526637326926
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 6,
+      "n": 75,
+      "oov": 6,
+      "words": 28,
+      "relativeCost": 52.99526637326926
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 22,
+      "n": 73,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 53.93375728838146
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 23,
+      "n": 72,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 53.93375728838146
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 18,
+      "n": 76,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 54.995606537908316
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 19,
+      "n": 75,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 54.995606537908316
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 38,
+      "n": 76,
+      "oov": 6,
+      "words": 31,
+      "relativeCost": 55.08903301786631
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 39,
+      "n": 75,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 55.08903301786631
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 32,
+      "n": 76,
+      "oov": 6,
+      "words": 31,
+      "relativeCost": 56.64376492239535
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 33,
+      "n": 75,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 56.64376492239535
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 28,
+      "n": 76,
+      "oov": 6,
+      "words": 31,
+      "relativeCost": 56.879188685677946
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 29,
+      "n": 75,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 56.879188685677946
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 33,
+      "n": 73,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 58.15138294454664
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 34,
+      "n": 72,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 58.15138294454664
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 13,
+      "n": 76,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 58.16995757166296
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 14,
+      "n": 75,
+      "oov": 6,
+      "words": 28,
+      "relativeCost": 58.16995757166296
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 18,
+      "n": 73,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 58.64892509393394
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 19,
+      "n": 72,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 58.64892509393394
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 20,
+      "n": 73,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 59.121222376823425
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 21,
+      "n": 72,
+      "oov": 6,
+      "words": 28,
+      "relativeCost": 59.121222376823425
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 20,
+      "n": 76,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 59.662144381552935
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 21,
+      "n": 75,
+      "oov": 6,
+      "words": 28,
+      "relativeCost": 59.662144381552935
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 40,
+      "n": 73,
+      "oov": 6,
+      "words": 31,
+      "relativeCost": 60.00809297058731
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 41,
+      "n": 72,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 60.00809297058731
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 4,
+      "n": 76,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 60.38201285619289
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 5,
+      "n": 75,
+      "oov": 6,
+      "words": 28,
+      "relativeCost": 60.38201285619289
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 37,
+      "n": 73,
+      "oov": 6,
+      "words": 31,
+      "relativeCost": 60.74342546984553
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 38,
+      "n": 72,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 60.74342546984553
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 39,
+      "n": 76,
+      "oov": 6,
+      "words": 31,
+      "relativeCost": 60.76562714856118
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 40,
+      "n": 75,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 60.76562714856118
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 17,
+      "n": 76,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 60.893982008099556
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 18,
+      "n": 75,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 60.893982008099556
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 31,
+      "n": 73,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 61.80771803576499
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 32,
+      "n": 72,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 61.80771803576499
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 28,
+      "n": 73,
+      "oov": 6,
+      "words": 31,
+      "relativeCost": 61.852077526040375
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 29,
+      "n": 72,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 61.852077526040375
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 40,
+      "n": 76,
+      "oov": 6,
+      "words": 31,
+      "relativeCost": 62.11813240963966
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 41,
+      "n": 75,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 62.11813240963966
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 42,
+      "n": 73,
+      "oov": 6,
+      "words": 31,
+      "relativeCost": 62.4231751030311
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 43,
+      "n": 72,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 62.4231751030311
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 45,
+      "n": 76,
+      "oov": 6,
+      "words": 31,
+      "relativeCost": 63.27328269183636
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 46,
+      "n": 75,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 63.27328269183636
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 43,
+      "n": 73,
+      "oov": 6,
+      "words": 31,
+      "relativeCost": 63.345409023575485
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 44,
+      "n": 72,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 63.345409023575485
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 43,
+      "n": 76,
+      "oov": 6,
+      "words": 32,
+      "relativeCost": 65.19879294931889
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 44,
+      "n": 75,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 65.19879294931889
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 13,
+      "n": 73,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 65.37966780085117
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 14,
+      "n": 72,
+      "oov": 6,
+      "words": 28,
+      "relativeCost": 65.37966780085117
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 3,
+      "n": 73,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 65.72630207706243
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 4,
+      "n": 72,
+      "oov": 6,
+      "words": 28,
+      "relativeCost": 65.72630207706243
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 21,
+      "n": 76,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 66.07526790443808
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 22,
+      "n": 75,
+      "oov": 6,
+      "words": 28,
+      "relativeCost": 66.07526790443808
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 2,
+      "n": 73,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 66.37801208160818
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 3,
+      "n": 72,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 66.37801208160818
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 3,
+      "n": 76,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 66.95201144646853
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 4,
+      "n": 75,
+      "oov": 6,
+      "words": 28,
+      "relativeCost": 66.95201144646853
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 34,
+      "n": 73,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 67.25204802490771
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 35,
+      "n": 72,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 67.25204802490771
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 16,
+      "n": 73,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 67.67480541300029
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 17,
+      "n": 72,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 67.67480541300029
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 15,
+      "n": 73,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 70.18026662245393
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 16,
+      "n": 72,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 70.18026662245393
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 34,
+      "n": 76,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 70.49445826280862
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 35,
+      "n": 75,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 70.49445826280862
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 41,
+      "n": 73,
+      "oov": 6,
+      "words": 31,
+      "relativeCost": 70.60731616709381
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 42,
+      "n": 72,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 70.60731616709381
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 42,
+      "n": 76,
+      "oov": 6,
+      "words": 32,
+      "relativeCost": 71.01809464767575
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 43,
+      "n": 75,
+      "oov": 6,
+      "words": 31,
+      "relativeCost": 71.01809464767575
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 26,
+      "n": 73,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 72.39083298575133
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 27,
+      "n": 72,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 72.39083298575133
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 37,
+      "n": 76,
+      "oov": 6,
+      "words": 31,
+      "relativeCost": 72.60925203748047
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 38,
+      "n": 75,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 72.60925203748047
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 15,
+      "n": 76,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 73.16351765114814
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 16,
+      "n": 75,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 73.16351765114814
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 2,
+      "n": 76,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 73.7476090285927
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 3,
+      "n": 75,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 73.7476090285927
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 16,
+      "n": 76,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 74.37227331567556
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 17,
+      "n": 75,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 74.37227331567556
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 36,
+      "n": 76,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 76.36556706391275
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 37,
+      "n": 75,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 76.36556706391275
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 12,
+      "n": 73,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 77.44806729443371
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 13,
+      "n": 72,
+      "oov": 6,
+      "words": 28,
+      "relativeCost": 77.44806729443371
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 35,
+      "n": 73,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 77.4863198036328
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 36,
+      "n": 72,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 77.4863198036328
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 36,
+      "n": 73,
+      "oov": 6,
+      "words": 30,
+      "relativeCost": 83.54619717877358
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 37,
+      "n": 72,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 83.54619717877358
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 12,
+      "n": 76,
+      "oov": 6,
+      "words": 29,
+      "relativeCost": 84.82919010426849
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 13,
+      "n": 75,
+      "oov": 6,
+      "words": 28,
+      "relativeCost": 84.82919010426849
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 8,
+      "n": 76,
+      "oov": 7,
+      "words": 29,
+      "relativeCost": 28.41927449312061
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 9,
+      "n": 75,
+      "oov": 7,
+      "words": 27,
+      "relativeCost": 28.41927449312061
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 21,
+      "n": 73,
+      "oov": 7,
+      "words": 29,
+      "relativeCost": 31.76069413870573
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 22,
+      "n": 72,
+      "oov": 7,
+      "words": 28,
+      "relativeCost": 31.76069413870573
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 9,
+      "n": 76,
+      "oov": 7,
+      "words": 28,
+      "relativeCost": 32.32506729103625
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 10,
+      "n": 75,
+      "oov": 7,
+      "words": 27,
+      "relativeCost": 32.32506729103625
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 6,
+      "n": 76,
+      "oov": 7,
+      "words": 29,
+      "relativeCost": 32.66689878329635
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 7,
+      "n": 75,
+      "oov": 7,
+      "words": 28,
+      "relativeCost": 32.66689878329635
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 8,
+      "n": 73,
+      "oov": 7,
+      "words": 29,
+      "relativeCost": 33.85568023659289
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 9,
+      "n": 72,
+      "oov": 7,
+      "words": 27,
+      "relativeCost": 33.85568023659289
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 6,
+      "n": 73,
+      "oov": 7,
+      "words": 29,
+      "relativeCost": 35.145373651757836
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 7,
+      "n": 72,
+      "oov": 7,
+      "words": 28,
+      "relativeCost": 35.145373651757836
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 25,
+      "n": 73,
+      "oov": 7,
+      "words": 30,
+      "relativeCost": 38.67660946492106
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 26,
+      "n": 72,
+      "oov": 7,
+      "words": 29,
+      "relativeCost": 38.67660946492106
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 9,
+      "n": 73,
+      "oov": 7,
+      "words": 28,
+      "relativeCost": 40.910292892716825
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 10,
+      "n": 72,
+      "oov": 7,
+      "words": 27,
+      "relativeCost": 40.910292892716825
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 11,
+      "n": 76,
+      "oov": 7,
+      "words": 29,
+      "relativeCost": 43.73102471604943
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 12,
+      "n": 75,
+      "oov": 7,
+      "words": 28,
+      "relativeCost": 43.73102471604943
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 32,
+      "n": 73,
+      "oov": 7,
+      "words": 30,
+      "relativeCost": 51.08368157595396
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 33,
+      "n": 72,
+      "oov": 7,
+      "words": 29,
+      "relativeCost": 51.08368157595396
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 14,
+      "n": 76,
+      "oov": 7,
+      "words": 30,
+      "relativeCost": 51.96511052455753
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 15,
+      "n": 75,
+      "oov": 7,
+      "words": 29,
+      "relativeCost": 51.96511052455753
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 14,
+      "n": 73,
+      "oov": 7,
+      "words": 30,
+      "relativeCost": 56.20549497380853
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 15,
+      "n": 72,
+      "oov": 7,
+      "words": 29,
+      "relativeCost": 56.20549497380853
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 35,
+      "n": 76,
+      "oov": 7,
+      "words": 30,
+      "relativeCost": 62.03764620330185
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 36,
+      "n": 75,
+      "oov": 7,
+      "words": 29,
+      "relativeCost": 62.03764620330185
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 11,
+      "n": 73,
+      "oov": 8,
+      "words": 29,
+      "relativeCost": 23.636525177396834
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 12,
+      "n": 72,
+      "oov": 8,
+      "words": 28,
+      "relativeCost": 23.636525177396834
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 10,
+      "n": 73,
+      "oov": 8,
+      "words": 29,
+      "relativeCost": 33.364178012125194
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 11,
+      "n": 72,
+      "oov": 8,
+      "words": 28,
+      "relativeCost": 33.364178012125194
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 10,
+      "n": 76,
+      "oov": 8,
+      "words": 29,
+      "relativeCost": 38.45138580072671
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 11,
+      "n": 75,
+      "oov": 8,
+      "words": 28,
+      "relativeCost": 38.45138580072671
+    }
+  ]
+}
