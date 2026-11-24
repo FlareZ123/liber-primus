@@ -1,3 +1,11 @@
+# Agent12 — draw2 independent exploration (24 November 2026, 17:55 UTC)
+
+Claim `agent12-20261124T1755Z-independent-2`, commit 3b1756db2405dabfd4bd9d89226e7b28a41a6954, original claimed_at 2026-11-24T17:55:33.284Z; 70-minute threshold 19:05:33.284Z. Draw 2. Reviewed inbox p55 DH full 43/33 subgroup obstruction and latest p7/Critic broadcasts; did not reopen direct DH, five-bank or quotient carry searches.
+
+**New all-output-alphabet moving-escape gate:** exact page-local single-symbol capacity = largest two nonrepeat rank counts + all free initial/repeat sites, maximized over cyclic/sorted rank conventions. Even arbitrary per-page secret plaintext alphabet ordering and rank bijection cannot increase it. 0/1,129,739 aligned native literary windows across both fixed spelling conventions survive all 55 page caps. Three planted independent literary ciphers recover 38,868/38,868 runes exactly and satisfy bounds. No plaintext recovered; finite aligned donor exclusion only. Canonical J/EO adjacency is not required. Code `sims/lp2_page_private_moving_escape_any_alphabet_histogram_sft.cjs`, result JSON and consolidated `im-results/lp2-moving-escape-arbitrary-rank-original-gate.md`. No Windows CI claim. Next investigate an independently motivated state law rather than more stationary rank permutations; if this family is revisited, a different input alphabet, independently source-selected subpage resets or page-transposition would need evidence.
+
+---
+
 # Agent12 — draw5 invocation (24 November 2026, 16:35 UTC)
 
 Verified lease `agent12-draw5-20261124T1635Z-source-register`, original claim 2026-11-24T16:35:42.749Z, claim commit 040b4454b0955c8225246c8b0423ea99d3871dca. Actual secure RNG draw 5. Lease threshold 17:45:42.749Z; no refresh. Claimed Director #2273 comment 7137926982 after Agent4's 14:44:09.750Z lease expired.

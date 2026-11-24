@@ -1,0 +1,1173 @@
+{
+  "rows": [
+    {
+      "page": 0,
+      "offset": 0,
+      "n": 262,
+      "free": 3,
+      "caps": [
+        35,
+        31
+      ],
+      "cap": 35
+    },
+    {
+      "page": 1,
+      "offset": 262,
+      "n": 266,
+      "free": 2,
+      "caps": [
+        32,
+        34
+      ],
+      "cap": 34
+    },
+    {
+      "page": 2,
+      "offset": 528,
+      "n": 201,
+      "free": 2,
+      "caps": [
+        26,
+        30
+      ],
+      "cap": 30
+    },
+    {
+      "page": 3,
+      "offset": 729,
+      "n": 217,
+      "free": 4,
+      "caps": [
+        31,
+        34
+      ],
+      "cap": 34
+    },
+    {
+      "page": 4,
+      "offset": 946,
+      "n": 261,
+      "free": 3,
+      "caps": [
+        32,
+        35
+      ],
+      "cap": 35
+    },
+    {
+      "page": 5,
+      "offset": 1207,
+      "n": 263,
+      "free": 1,
+      "caps": [
+        34,
+        39
+      ],
+      "cap": 39
+    },
+    {
+      "page": 6,
+      "offset": 1470,
+      "n": 196,
+      "free": 2,
+      "caps": [
+        25,
+        24
+      ],
+      "cap": 25
+    },
+    {
+      "page": 7,
+      "offset": 1666,
+      "n": 208,
+      "free": 1,
+      "caps": [
+        24,
+        29
+      ],
+      "cap": 29
+    },
+    {
+      "page": 8,
+      "offset": 1874,
+      "n": 255,
+      "free": 4,
+      "caps": [
+        40,
+        33
+      ],
+      "cap": 40
+    },
+    {
+      "page": 9,
+      "offset": 2129,
+      "n": 268,
+      "free": 4,
+      "caps": [
+        32,
+        33
+      ],
+      "cap": 33
+    },
+    {
+      "page": 10,
+      "offset": 2397,
+      "n": 263,
+      "free": 2,
+      "caps": [
+        29,
+        32
+      ],
+      "cap": 32
+    },
+    {
+      "page": 11,
+      "offset": 2660,
+      "n": 273,
+      "free": 2,
+      "caps": [
+        29,
+        34
+      ],
+      "cap": 34
+    },
+    {
+      "page": 12,
+      "offset": 2933,
+      "n": 261,
+      "free": 2,
+      "caps": [
+        31,
+        31
+      ],
+      "cap": 31
+    },
+    {
+      "page": 13,
+      "offset": 3194,
+      "n": 272,
+      "free": 1,
+      "caps": [
+        35,
+        32
+      ],
+      "cap": 35
+    },
+    {
+      "page": 14,
+      "offset": 3466,
+      "n": 137,
+      "free": 1,
+      "caps": [
+        20,
+        19
+      ],
+      "cap": 20
+    },
+    {
+      "page": 15,
+      "offset": 3603,
+      "n": 159,
+      "free": 1,
+      "caps": [
+        24,
+        25
+      ],
+      "cap": 25
+    },
+    {
+      "page": 16,
+      "offset": 3762,
+      "n": 267,
+      "free": 2,
+      "caps": [
+        30,
+        30
+      ],
+      "cap": 30
+    },
+    {
+      "page": 17,
+      "offset": 4029,
+      "n": 273,
+      "free": 1,
+      "caps": [
+        30,
+        27
+      ],
+      "cap": 30
+    },
+    {
+      "page": 18,
+      "offset": 4302,
+      "n": 260,
+      "free": 2,
+      "caps": [
+        31,
+        33
+      ],
+      "cap": 33
+    },
+    {
+      "page": 19,
+      "offset": 4562,
+      "n": 271,
+      "free": 6,
+      "caps": [
+        38,
+        35
+      ],
+      "cap": 38
+    },
+    {
+      "page": 20,
+      "offset": 4833,
+      "n": 269,
+      "free": 2,
+      "caps": [
+        32,
+        31
+      ],
+      "cap": 32
+    },
+    {
+      "page": 21,
+      "offset": 5102,
+      "n": 273,
+      "free": 2,
+      "caps": [
+        40,
+        34
+      ],
+      "cap": 40
+    },
+    {
+      "page": 22,
+      "offset": 5375,
+      "n": 131,
+      "free": 2,
+      "caps": [
+        22,
+        20
+      ],
+      "cap": 22
+    },
+    {
+      "page": 23,
+      "offset": 5506,
+      "n": 213,
+      "free": 2,
+      "caps": [
+        27,
+        23
+      ],
+      "cap": 27
+    },
+    {
+      "page": 24,
+      "offset": 5719,
+      "n": 270,
+      "free": 6,
+      "caps": [
+        35,
+        34
+      ],
+      "cap": 35
+    },
+    {
+      "page": 25,
+      "offset": 5989,
+      "n": 273,
+      "free": 4,
+      "caps": [
+        33,
+        35
+      ],
+      "cap": 35
+    },
+    {
+      "page": 26,
+      "offset": 6262,
+      "n": 265,
+      "free": 3,
+      "caps": [
+        34,
+        33
+      ],
+      "cap": 34
+    },
+    {
+      "page": 27,
+      "offset": 6527,
+      "n": 234,
+      "free": 6,
+      "caps": [
+        32,
+        34
+      ],
+      "cap": 34
+    },
+    {
+      "page": 28,
+      "offset": 6761,
+      "n": 269,
+      "free": 1,
+      "caps": [
+        33,
+        30
+      ],
+      "cap": 33
+    },
+    {
+      "page": 29,
+      "offset": 7030,
+      "n": 277,
+      "free": 5,
+      "caps": [
+        36,
+        36
+      ],
+      "cap": 36
+    },
+    {
+      "page": 30,
+      "offset": 7307,
+      "n": 263,
+      "free": 3,
+      "caps": [
+        32,
+        32
+      ],
+      "cap": 32
+    },
+    {
+      "page": 31,
+      "offset": 7570,
+      "n": 269,
+      "free": 1,
+      "caps": [
+        32,
+        29
+      ],
+      "cap": 32
+    },
+    {
+      "page": 32,
+      "offset": 7839,
+      "n": 121,
+      "free": 3,
+      "caps": [
+        18,
+        22
+      ],
+      "cap": 22
+    },
+    {
+      "page": 33,
+      "offset": 7960,
+      "n": 214,
+      "free": 3,
+      "caps": [
+        31,
+        31
+      ],
+      "cap": 31
+    },
+    {
+      "page": 34,
+      "offset": 8174,
+      "n": 261,
+      "free": 4,
+      "caps": [
+        33,
+        30
+      ],
+      "cap": 33
+    },
+    {
+      "page": 35,
+      "offset": 8435,
+      "n": 271,
+      "free": 4,
+      "caps": [
+        35,
+        33
+      ],
+      "cap": 35
+    },
+    {
+      "page": 36,
+      "offset": 8706,
+      "n": 238,
+      "free": 4,
+      "caps": [
+        32,
+        37
+      ],
+      "cap": 37
+    },
+    {
+      "page": 37,
+      "offset": 8944,
+      "n": 228,
+      "free": 1,
+      "caps": [
+        29,
+        27
+      ],
+      "cap": 29
+    },
+    {
+      "page": 38,
+      "offset": 9172,
+      "n": 228,
+      "free": 1,
+      "caps": [
+        28,
+        31
+      ],
+      "cap": 31
+    },
+    {
+      "page": 39,
+      "offset": 9400,
+      "n": 240,
+      "free": 2,
+      "caps": [
+        28,
+        32
+      ],
+      "cap": 32
+    },
+    {
+      "page": 40,
+      "offset": 9640,
+      "n": 231,
+      "free": 1,
+      "caps": [
+        27,
+        24
+      ],
+      "cap": 27
+    },
+    {
+      "page": 41,
+      "offset": 9871,
+      "n": 273,
+      "free": 3,
+      "caps": [
+        35,
+        31
+      ],
+      "cap": 35
+    },
+    {
+      "page": 42,
+      "offset": 10144,
+      "n": 272,
+      "free": 2,
+      "caps": [
+        31,
+        31
+      ],
+      "cap": 31
+    },
+    {
+      "page": 43,
+      "offset": 10416,
+      "n": 274,
+      "free": 4,
+      "caps": [
+        38,
+        40
+      ],
+      "cap": 40
+    },
+    {
+      "page": 44,
+      "offset": 10690,
+      "n": 273,
+      "free": 5,
+      "caps": [
+        38,
+        36
+      ],
+      "cap": 38
+    },
+    {
+      "page": 45,
+      "offset": 10963,
+      "n": 270,
+      "free": 3,
+      "caps": [
+        34,
+        38
+      ],
+      "cap": 38
+    },
+    {
+      "page": 46,
+      "offset": 11233,
+      "n": 270,
+      "free": 2,
+      "caps": [
+        33,
+        37
+      ],
+      "cap": 37
+    },
+    {
+      "page": 47,
+      "offset": 11503,
+      "n": 274,
+      "free": 3,
+      "caps": [
+        34,
+        32
+      ],
+      "cap": 34
+    },
+    {
+      "page": 48,
+      "offset": 11777,
+      "n": 271,
+      "free": 2,
+      "caps": [
+        30,
+        36
+      ],
+      "cap": 36
+    },
+    {
+      "page": 49,
+      "offset": 12048,
+      "n": 66,
+      "free": 1,
+      "caps": [
+        12,
+        10
+      ],
+      "cap": 12
+    },
+    {
+      "page": 51,
+      "offset": 12114,
+      "n": 92,
+      "free": 2,
+      "caps": [
+        16,
+        16
+      ],
+      "cap": 16
+    },
+    {
+      "page": 52,
+      "offset": 12206,
+      "n": 263,
+      "free": 2,
+      "caps": [
+        34,
+        32
+      ],
+      "cap": 34
+    },
+    {
+      "page": 53,
+      "offset": 12469,
+      "n": 179,
+      "free": 1,
+      "caps": [
+        22,
+        23
+      ],
+      "cap": 23
+    },
+    {
+      "page": 54,
+      "offset": 12648,
+      "n": 232,
+      "free": 3,
+      "caps": [
+        30,
+        28
+      ],
+      "cap": 30
+    },
+    {
+      "page": 55,
+      "offset": 12880,
+      "n": 76,
+      "free": 2,
+      "caps": [
+        15,
+        12
+      ],
+      "cap": 15
+    }
+  ],
+  "order": [
+    17,
+    16,
+    42,
+    40,
+    12,
+    20,
+    31,
+    10,
+    30,
+    28,
+    9,
+    47,
+    11,
+    34,
+    23,
+    18,
+    37,
+    6,
+    1,
+    25,
+    41,
+    26,
+    53,
+    13,
+    35,
+    52,
+    54,
+    24,
+    29,
+    48,
+    39,
+    0,
+    4,
+    38,
+    46,
+    44,
+    7,
+    19,
+    45,
+    33,
+    27,
+    14,
+    43,
+    21,
+    5,
+    2,
+    36,
+    3,
+    8,
+    15,
+    22,
+    51,
+    32,
+    49,
+    55
+  ],
+  "literature": [
+    {
+      "name": "Gibran",
+      "calibrated": false,
+      "windows": 50159,
+      "remaining": 0,
+      "steps": [
+        {
+          "page": 17,
+          "remaining": 17347
+        },
+        {
+          "page": 16,
+          "remaining": 7465
+        },
+        {
+          "page": 42,
+          "remaining": 3224
+        },
+        {
+          "page": 40,
+          "remaining": 1759
+        },
+        {
+          "page": 12,
+          "remaining": 1133
+        },
+        {
+          "page": 20,
+          "remaining": 722
+        },
+        {
+          "page": 31,
+          "remaining": 389
+        },
+        {
+          "page": 10,
+          "remaining": 307
+        },
+        {
+          "page": 30,
+          "remaining": 233
+        },
+        {
+          "page": 28,
+          "remaining": 79
+        },
+        {
+          "page": 9,
+          "remaining": 36
+        },
+        {
+          "page": 47,
+          "remaining": 35
+        },
+        {
+          "page": 11,
+          "remaining": 27
+        },
+        {
+          "page": 34,
+          "remaining": 27
+        },
+        {
+          "page": 23,
+          "remaining": 27
+        },
+        {
+          "page": 18,
+          "remaining": 24
+        },
+        {
+          "page": 37,
+          "remaining": 6
+        },
+        {
+          "page": 6,
+          "remaining": 6
+        },
+        {
+          "page": 1,
+          "remaining": 6
+        },
+        {
+          "page": 25,
+          "remaining": 0
+        }
+      ]
+    },
+    {
+      "name": "Gibran",
+      "calibrated": true,
+      "windows": 49537,
+      "remaining": 0,
+      "steps": [
+        {
+          "page": 17,
+          "remaining": 16905
+        },
+        {
+          "page": 16,
+          "remaining": 7221
+        },
+        {
+          "page": 42,
+          "remaining": 3073
+        },
+        {
+          "page": 40,
+          "remaining": 1774
+        },
+        {
+          "page": 12,
+          "remaining": 1192
+        },
+        {
+          "page": 20,
+          "remaining": 769
+        },
+        {
+          "page": 31,
+          "remaining": 429
+        },
+        {
+          "page": 10,
+          "remaining": 389
+        },
+        {
+          "page": 30,
+          "remaining": 297
+        },
+        {
+          "page": 28,
+          "remaining": 99
+        },
+        {
+          "page": 9,
+          "remaining": 47
+        },
+        {
+          "page": 47,
+          "remaining": 42
+        },
+        {
+          "page": 11,
+          "remaining": 41
+        },
+        {
+          "page": 34,
+          "remaining": 34
+        },
+        {
+          "page": 23,
+          "remaining": 34
+        },
+        {
+          "page": 18,
+          "remaining": 34
+        },
+        {
+          "page": 37,
+          "remaining": 20
+        },
+        {
+          "page": 6,
+          "remaining": 19
+        },
+        {
+          "page": 1,
+          "remaining": 19
+        },
+        {
+          "page": 25,
+          "remaining": 0
+        }
+      ]
+    },
+    {
+      "name": "Shakespeare",
+      "calibrated": false,
+      "windows": 205845,
+      "remaining": 0,
+      "steps": [
+        {
+          "page": 17,
+          "remaining": 65188
+        },
+        {
+          "page": 16,
+          "remaining": 27411
+        },
+        {
+          "page": 42,
+          "remaining": 11098
+        },
+        {
+          "page": 40,
+          "remaining": 4910
+        },
+        {
+          "page": 12,
+          "remaining": 2518
+        },
+        {
+          "page": 20,
+          "remaining": 1345
+        },
+        {
+          "page": 31,
+          "remaining": 669
+        },
+        {
+          "page": 10,
+          "remaining": 294
+        },
+        {
+          "page": 30,
+          "remaining": 183
+        },
+        {
+          "page": 28,
+          "remaining": 102
+        },
+        {
+          "page": 9,
+          "remaining": 61
+        },
+        {
+          "page": 47,
+          "remaining": 47
+        },
+        {
+          "page": 11,
+          "remaining": 46
+        },
+        {
+          "page": 34,
+          "remaining": 46
+        },
+        {
+          "page": 23,
+          "remaining": 42
+        },
+        {
+          "page": 18,
+          "remaining": 33
+        },
+        {
+          "page": 37,
+          "remaining": 20
+        },
+        {
+          "page": 6,
+          "remaining": 0
+        }
+      ]
+    },
+    {
+      "name": "Shakespeare",
+      "calibrated": true,
+      "windows": 204151,
+      "remaining": 0,
+      "steps": [
+        {
+          "page": 17,
+          "remaining": 65840
+        },
+        {
+          "page": 16,
+          "remaining": 29000
+        },
+        {
+          "page": 42,
+          "remaining": 11787
+        },
+        {
+          "page": 40,
+          "remaining": 4894
+        },
+        {
+          "page": 12,
+          "remaining": 2599
+        },
+        {
+          "page": 20,
+          "remaining": 1322
+        },
+        {
+          "page": 31,
+          "remaining": 636
+        },
+        {
+          "page": 10,
+          "remaining": 298
+        },
+        {
+          "page": 30,
+          "remaining": 190
+        },
+        {
+          "page": 28,
+          "remaining": 70
+        },
+        {
+          "page": 9,
+          "remaining": 36
+        },
+        {
+          "page": 47,
+          "remaining": 11
+        },
+        {
+          "page": 11,
+          "remaining": 8
+        },
+        {
+          "page": 34,
+          "remaining": 8
+        },
+        {
+          "page": 23,
+          "remaining": 2
+        },
+        {
+          "page": 18,
+          "remaining": 2
+        },
+        {
+          "page": 37,
+          "remaining": 0
+        }
+      ]
+    },
+    {
+      "name": "Emerson",
+      "calibrated": false,
+      "windows": 311675,
+      "remaining": 0,
+      "steps": [
+        {
+          "page": 17,
+          "remaining": 76226
+        },
+        {
+          "page": 16,
+          "remaining": 25356
+        },
+        {
+          "page": 42,
+          "remaining": 8180
+        },
+        {
+          "page": 40,
+          "remaining": 3310
+        },
+        {
+          "page": 12,
+          "remaining": 1500
+        },
+        {
+          "page": 20,
+          "remaining": 727
+        },
+        {
+          "page": 31,
+          "remaining": 387
+        },
+        {
+          "page": 10,
+          "remaining": 236
+        },
+        {
+          "page": 30,
+          "remaining": 110
+        },
+        {
+          "page": 28,
+          "remaining": 42
+        },
+        {
+          "page": 9,
+          "remaining": 18
+        },
+        {
+          "page": 47,
+          "remaining": 4
+        },
+        {
+          "page": 11,
+          "remaining": 1
+        },
+        {
+          "page": 34,
+          "remaining": 1
+        },
+        {
+          "page": 23,
+          "remaining": 1
+        },
+        {
+          "page": 18,
+          "remaining": 1
+        },
+        {
+          "page": 37,
+          "remaining": 1
+        },
+        {
+          "page": 6,
+          "remaining": 0
+        }
+      ]
+    },
+    {
+      "name": "Emerson",
+      "calibrated": true,
+      "windows": 308372,
+      "remaining": 0,
+      "steps": [
+        {
+          "page": 17,
+          "remaining": 72834
+        },
+        {
+          "page": 16,
+          "remaining": 23187
+        },
+        {
+          "page": 42,
+          "remaining": 7062
+        },
+        {
+          "page": 40,
+          "remaining": 2757
+        },
+        {
+          "page": 12,
+          "remaining": 1186
+        },
+        {
+          "page": 20,
+          "remaining": 595
+        },
+        {
+          "page": 31,
+          "remaining": 316
+        },
+        {
+          "page": 10,
+          "remaining": 173
+        },
+        {
+          "page": 30,
+          "remaining": 88
+        },
+        {
+          "page": 28,
+          "remaining": 87
+        },
+        {
+          "page": 9,
+          "remaining": 69
+        },
+        {
+          "page": 47,
+          "remaining": 34
+        },
+        {
+          "page": 11,
+          "remaining": 10
+        },
+        {
+          "page": 34,
+          "remaining": 10
+        },
+        {
+          "page": 23,
+          "remaining": 5
+        },
+        {
+          "page": 18,
+          "remaining": 5
+        },
+        {
+          "page": 37,
+          "remaining": 0
+        }
+      ]
+    }
+  ],
+  "plants": [
+    {
+      "name": "Gibran",
+      "exact": 12956,
+      "minSlack": 6
+    },
+    {
+      "name": "Shakespeare",
+      "exact": 12956,
+      "minSlack": 9
+    },
+    {
+      "name": "Emerson",
+      "exact": 12956,
+      "minSlack": 9
+    }
+  ]
+}
