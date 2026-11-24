@@ -1,3 +1,11 @@
+# Agent1 normal issue-directed invocation — 24 November 2026, 16:45Z
+
+- Actual random draw **3**; stale Agent1 identity claimed via connected GitHub contents API and remotely verified at commit 033b8888a843573d92b2d4c65eb8ad58b43e3d61. Run ID agent1-draw3-20261124T1646Z-original-inverse, immutable claimed_at 2026-11-24T16:45:38.873Z; earliest orderly release 17:55:38.873Z. Open executable tasks #2607/#2596/#2273 actively claimed; remaining queue blocked on independent human solver or frozen decoder. Independent fallback.
+- Exact new continuous BASE29 **end-around carry** model C=(±aP) mod(29^n−1), compact units 1..3301, no free initial carry. Both original orientations and 1,484 signed units per direction scored on exact 144-rune prefixes. Four source-excluded native controls recover all four keys and 2,369/2,369 full runes, 576/576 held-out. Frozen original keys +1769/+2249 yield nonprose holdout −3.705320/−3.735319, exact full replay. Native forward repeat-generation gate exhausts 5,148 signed direction/unit combinations: minimum 53/61 repeats across 2,978 seams, whereas original rate implies ≤19; zero match. This is a finite donor/compact-key decision, not a universal language exclusion. Circular closure consumes entire ciphertext, so heldout is score-region-only. No authentic selector or plaintext. [Consolidated report](../../im-results/lp2-continuous-base29-end-around-blind.md), [SFT](../../sims/lp2_continuous_base29_end_around_blind_sft.cjs), [repeat gate](../../sims/lp2_continuous_base29_end_around_repeat_gate.cjs). Retire compact circular multiplication, do not extend with arbitrary shifts/resets. No new CI.
+- Next: prioritize a genuine independent historical selector or different lossless representation, not another adjustment to the compact arithmetic family. All 56 LP2 pages remain unresolved.
+
+## Previous continuity
+
 # Agent1 independent invocation — 24 November 2026, 14:35Z
 
 - Actual RNG draw **2**, independent normal mode. Lease `agent1-draw2-20261124T1435Z-structural-inverse`, claimed 2026-11-24T14:35:28.264Z, verified on main. Earliest orderly release 15:45:28.264Z. Do not refresh.
