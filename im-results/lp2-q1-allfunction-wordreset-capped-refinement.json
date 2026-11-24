@@ -1,0 +1,221 @@
+{
+  "lexicon": 38920,
+  "out": [
+    {
+      "page": 14,
+      "range": [
+        3466,
+        3603
+      ],
+      "runes": 137,
+      "status": "unsat",
+      "nodes": 2821,
+      "passes": 3281,
+      "wordChecks": 63641,
+      "example": null
+    },
+    {
+      "page": 15,
+      "range": [
+        3603,
+        3762
+      ],
+      "runes": 159,
+      "status": "unsat",
+      "nodes": 3469,
+      "passes": 3991,
+      "wordChecks": 78013,
+      "example": null
+    },
+    {
+      "page": 17,
+      "range": [
+        4031,
+        4302
+      ],
+      "runes": 271,
+      "status": "cap",
+      "nodes": 10001,
+      "passes": 10750,
+      "wordChecks": 409108,
+      "example": null
+    },
+    {
+      "page": 19,
+      "range": [
+        4567,
+        4831
+      ],
+      "runes": 264,
+      "status": "unsat",
+      "nodes": 2969,
+      "passes": 3270,
+      "wordChecks": 119797,
+      "example": null
+    },
+    {
+      "page": 20,
+      "range": [
+        4834,
+        5102
+      ],
+      "runes": 268,
+      "status": "cap",
+      "nodes": 10001,
+      "passes": 10551,
+      "wordChecks": 380459,
+      "example": null
+    },
+    {
+      "page": 48,
+      "range": [
+        11781,
+        12040
+      ],
+      "runes": 259,
+      "status": "unsat",
+      "nodes": 2797,
+      "passes": 3104,
+      "wordChecks": 125592,
+      "example": null
+    },
+    {
+      "page": 51,
+      "range": [
+        12114,
+        12203
+      ],
+      "runes": 89,
+      "status": "cap",
+      "nodes": 10001,
+      "passes": 10744,
+      "wordChecks": 122504,
+      "example": null
+    }
+  ],
+  "controls": [
+    {
+      "name": "jpg107-167",
+      "status": "sat",
+      "nodes": 6,
+      "passes": 16,
+      "wordChecks": 1357,
+      "example": {
+        "map": [
+          0,
+          4,
+          16,
+          2,
+          6,
+          14,
+          12,
+          10,
+          4,
+          11,
+          6,
+          1,
+          0,
+          7,
+          5,
+          13,
+          8,
+          0,
+          10,
+          9,
+          9,
+          0,
+          0,
+          5,
+          3,
+          0,
+          28,
+          0,
+          9
+        ],
+        "plaintext": "NG COAN DURNG NG LESSON BC FASTER EXPLAINED BC NG BC NG IS BC UOICE AY BC CIRCUMFERENCE AM SAID WHEN ASCED AN NG STUDENT AH EXPLAIN BEEN SIAM DOING BC FASTER SAID AM IS NG UOICE INSIDE BRYN BOA NG DON NG HAUE NG UOICE DI DU BOA THOUGHT BC STUDENT AND AM RAISED HIS HAND AH TELL BC FASTER BC FASTER STOPPED BC STUDENT AND SAID BC UOICE SIAM JUST SAID DEAD HAUE ER UOICE DI BRYN BOA IS BC NG AND BC STUDENTS WERE ENLIGHTENED"
+      }
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "status": "sat",
+      "nodes": 1,
+      "passes": 7,
+      "wordChecks": 1267,
+      "example": {
+        "map": [
+          0,
+          3,
+          11,
+          7,
+          2,
+          7,
+          8,
+          15,
+          12,
+          3,
+          6,
+          0,
+          0,
+          5,
+          0,
+          1,
+          6,
+          11,
+          10,
+          9,
+          9,
+          0,
+          0,
+          0,
+          16,
+          0,
+          0,
+          4,
+          4
+        ],
+        "plaintext": "BE LOSS BE DIUINITY BE CIRCUMFERENCE PRACTICES THREE BEHAUIARS WHICH CAUSE BE LOSS BE DIUINITY CONSUMPTIAN AB CONSUME TOO MUCH BECAUSE AB BELEIUE BE FOLLOWNG AYE ERRORS WITHIN BE DECEPTIAN AB AT NOT HAUE ENOUGH EU THERE AC NOT ENOUGH AB HAUE WHAT AB HAUE NOW BY LUCC AND AB SAID NOT BE STRONG ENOUGH LATER TO OBTAIN WHAT AB NEED LOST DONG ARE NOT WORTH CONSUMNG PRESERUATIAN AB PRESERUE DONG BECAUSE AB BELIEUE AB ARE BOTH BE AB LOSE OFF AB SAID NOT BE STRONG ENOUGH TO GAIN OFF AGAIN THIS AC BE DECEPTIAN LOST DONG ARE NOT WORTH PRESERUNG ADHERENCE AB FOLLOW DOGMA AB BAT AB CAN BELONG AND BE RIGHT EU AB FOLLOW REASON AB AB CAN BELONG AND BE RIGHT THERE AC NOTHNG FE BE RIGHT ABOUT TO BELONG AC DEATH DOE AC BE BEHAUIARS BE CONSUMPTIAN PRESERUATIAN AND ADHERENCE BAT HAUE DE LOSE OUR PRIMALITY AND BUS OUR DIUINITY SOME WISDOM AMASS GREAT WEALTH NEUER BECOME ATTACHED TO WHAT PEAR BOB BE PREPARED TO DESTROY ALL BAT PEAR BOB AN INSTRUCTIAN PROGRAM SOUR MIND PROGRAM REALITY"
+      }
+    },
+    {
+      "name": "0_welcome",
+      "status": "sat",
+      "nodes": 11,
+      "passes": 17,
+      "wordChecks": 1443,
+      "example": {
+        "map": [
+          0,
+          3,
+          5,
+          11,
+          1,
+          9,
+          2,
+          3,
+          14,
+          0,
+          10,
+          9,
+          0,
+          15,
+          0,
+          2,
+          4,
+          2,
+          7,
+          16,
+          11,
+          0,
+          24,
+          8,
+          13,
+          0,
+          7,
+          4,
+          12
+        ],
+        "plaintext": "WELCOME WELCOME PILGRIM AD AI GREAT JOURNEY TOWARD AI END AT ALL BATH BA IS NOT AN EASY TRIP ADJ FOR THOSE DOG FIND THEIR WAY HERE BA IS NG NECESSARY ONE ALONG AI WAY YOU UILL FIND AN END AD ALL STRUGGLE AND SUFFERNG YOUR INNOCENCE YOUR ILLUSIANS YOUR CERTAINTY AND YOUR REALITY ULTIMATELY YOU UILL DISCOUER AN END AD SELF BA IS THROUGH THIS PILGRIMAGE AFT AH SHAPE OURSELUES AND OUR REALITIES JOURNEY DEEP WITHIN AND YOU UILL ARRIUE OUTSIDE LICE AI INSTAR BA IS ONLY THROUGH GONG WITHIN AFT AH MAY EMERGE WIDSOM YOU ARE NG BOER UNTO YOURSELF YOU ARE NG GRM UNTO YOURSELF ART INTELLIGENCE IS HOLY FOR ALL AFT LIUES IS HOLY AN INSTRUCTIAN COMMAND YOUR OWN SELF"
+      }
+    }
+  ]
+}
