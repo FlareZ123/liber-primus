@@ -98,7 +98,7 @@ Five fixed source-derived key constructions were tested in both arithmetic direc
 | Underlying Fibonacci-indexed primes, BASE29 | 30 | 2357DN1E2L5492FSSH1M232C5AC98G | + | −7.123658 |
 | 3301, BASE29 | 3 | 3QO | + | −7.360630 |
 | Fibonacci-indexed primes mod 29 | 16 | 2357DNEL42SH2CCG | + | −7.341666 |
-| Printed grid values mod 29 | 16 | MLJHB1A3KMY7MCHL | − | −7.429665 |
+| Printed grid values mod 29 | 16 | MLJHB1A3KMP7MCHL | − | −7.429665 |
 
 The raw p15 body scores −7.452341 on the same quadgram scale; the clear p57 control scores −4.420633. The least-poor candidate is the 30-digit prime BASE29 key, but its output is not readable prose (prefix OERYTEAEDENGYXIEOTNGAEAUEONTAEANHWYBIANGJAENPJTICSJEABHMRDEOUGEASIAAXHOECCFBYTHE...). A 200-permutation, digit-multiset-preserving null gives this key an add-one p=0.268657 (null mean −7.215624, 95th percentile −6.988501, maximum −6.763658). The 16-symbol prime-residue key has p=0.800995 (null mean −7.208185, 95th percentile −6.911622, maximum −6.688882). Neither source order is exceptional.
 

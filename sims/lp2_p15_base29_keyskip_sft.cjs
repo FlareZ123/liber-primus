@@ -308,7 +308,7 @@ function main() {
   assert.equal(keyText(primeBase29), "2357DN1E2L5492FSSH1M232C5AC98G");
   assert.equal(keyText(seed3301), "3QO");
   assert.equal(keyText(primeResidues), "2357DNEL42SH2CCG");
-  assert.equal(keyText(gridResidues), "MLJHB1A3KMY7MCHL");
+  assert.equal(keyText(gridResidues), "MLJHB1A3KMP7MCHL");
 
   const model = loadQuadgrams();
   const keys = [

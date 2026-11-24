@@ -148,3 +148,5 @@ Source core IoC 0.02547065 / 0.04429679 respectively, no coherent GP29 plaintext
 - Reproducer: sims/lp2_p15_base29_keyskip_sft.cjs; consolidated report: im-results/lp2-p15-base29-repeating-key-gate.md. No update to results/README.md is warranted: the established state remains no unknown LP2 plaintext.
 - Next: inspect corrected run 45500425233; avoid repeating p49–51 PRF or p15 BASE29 direct/key-skip variants. Prioritize a source-authenticated opcode, receiver, or recoverable external key rather than expanding unconstrained PRF/skip searches.
 
+- Reproduction note: the first manual SFT run 45501296306 stopped at an incorrect hand-copied string assertion for the printed-grid residue key. The actual computed key is MLJHB1A3KMP7MCHL (not the transcribed MLJHB1A3KMY7MCHL); no cryptanalytic computation had run in that attempt. Script and report corrected in the next commit; rerun required.
+
