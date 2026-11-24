@@ -1,6 +1,6 @@
 "use strict";
 const fs=require("node:fs");
-function experiment(goldText,dictText,gpText,transcription) {
+function experiment(goldText,dictText,gpText,transcription,config={}) {
  const gold=JSON.parse(goldText),gp=JSON.parse(gpText),pr=gp.prime.map((p,i)=>i?p%13:0),rmap=new Map(gp.runes.map((x,i)=>[x,i]));
  const words=s=>(s.match(/[\u16a0-\u16ff]+/g)||[]).map(w=>Array.from(w,x=>rmap.get(x)));
  const sec=gold.sections.map(x=>words(x.source_text)),mod=x=>(x+29)%29;
@@ -31,13 +31,16 @@ function experiment(goldText,dictText,gpText,transcription) {
  function test(Cwords,M,P=null,key=null){let split=0,j=0,C=Cwords.flat();while(j<Cwords.length&&split+Cwords[j].length<=Math.floor(C.length/2)){split+=Cwords[j++].length}let res=recover(Cwords.slice(0,j),M),ranked=res.keys.filter(k=>feasible(C.slice(0,split),k)).map(k=>({k,d:decodeWords(Cwords.slice(0,j),k,M)})).filter(x=>x.d).sort((a,b)=>b.d.score-a.d.score),best=ranked[0],d=best&&decodeWords(Cwords.slice(j),best.k,M,best.d.end),oracle=P?decodeWords(Cwords,key,M,{q:0,a:29,b:29}):null;
  const match=(x,y)=>x.filter((v,i)=>v===y[i]).length;
  return {len:C.length,split,keys:res.keys.length,valid:ranked.length,windows:res.logs,rank:key?ranked.findIndex(x=>canon(x.k)===canon(key))+1:null,trueKey:key,top:best?.k,topStart:best?.d.initial,score:best?.d.score,runner:ranked[1]?.d.score,holdout:d?{match:P?match(d.P,P.slice(split)):null,total:d.P.length,score:d.score,preview:d.P.slice(0,100).map(i=>gp.translit[i]).join(""),replay:encode(d.P,best.k,best.d.end.q).every((v,i)=>v===C[split+i])}:null,prefixMatch:best&&P?match(best.d.P,P.slice(0,split)):null,prefixReplay:best?encode(best.d.P,best.k,best.d.initial).every((v,i)=>v===C[i]):null,knownKeyExact:oracle&&P?match(oracle.P,P):null,zero:C.filter(x=>x===0).length,trueF:P?P.filter(x=>x===0).length:null}}
- let controls=[];for(const ex of [1,3,5]){let M=train(ex),P=sec[ex].flat(),rand=rng(12345+ex*101),key=Array.from({length:13},()=>rand()%29),C=encode(P,key),offset=0,Cwords=sec[ex].map(w=>{let z=C.slice(offset,offset+w.length);offset+=w.length;return z});controls.push({ex,...test(Cwords,M,P,key)})}
+ let controls=[];for(const ex of (config.sections||[1,3,5])){let M=train(ex),P=sec[ex].flat(),rand=rng((config.seedBase||12345)+ex*101),key=Array.from({length:13},()=>rand()%29),C=encode(P,key),offset=0,Cwords=sec[ex].map(w=>{let z=C.slice(offset,offset+w.length);offset+=w.length;return z});controls.push({ex,...test(Cwords,M,P,key)})}
  // Preselected original chapter 2 in the transcription (p3–7; 1,145 runes).
  // Remove line/page wrap marks rather than converting them to word separators.
  const ch=transcription.split("$")[1].replace(/[/%\s]/g,"");
  const original=words(ch);
+ const canonical=gp.pages.slice(3,8).flatMap(p=>p.indices);
+ if(original.flat().join(",")!==canonical.join(","))throw new Error("Physical p3–7 source mismatch");
  const gate=controls.every(x=>x.rank===1&&x.holdout&&x.holdout.match/x.holdout.total>=.95);
- return {controls,gate,chapter:{runes:original.flat().length,first:original[0]},original:gate?test(original,train(-1)):null};
+ return {controls,gate,chapter:{runes:original.flat().length,first:original[0]},original:gate&&!config.controlsOnly?test(original,train(-1)):null};
 }
 const paths=["resources/external/relikd-solved-gp29-native-v1.json","resources/control/english_wordfreq_textblob.txt","resources/liber-primus/lp2-corpus.json","resources/liber-primus/lp2-transcription.txt"];
-console.log(JSON.stringify(experiment(...paths.map(p=>fs.readFileSync(p,"utf8"))),null,2));
+module.exports={experiment,paths};
+if(require.main===module)console.log(JSON.stringify(experiment(...paths.map(p=>fs.readFileSync(p,"utf8"))),null,2));
