@@ -82,6 +82,23 @@ Freeze that original p50 fifth-column key, the one eight-byte p0 nonce, counter0
 
 Exact original and synthetic solved-p57 95-rune forward/reverse controls passed, as did stream encryption/decryption on a known English byte plant. The [source-specified ChaCha20 Windows Node22 SFT](../sims/lp2_p0_red13_p50_fifth_chacha20_source_sft.cjs) completed [PASS workflow 45255215088](https://github.com/FlareZ123/liber-primus/actions/runs/45255215088). These outputs **retire only this exact source-paired original ChaCha20 operator and encoding choices**. They neither identify the author's intended cryptosystem nor diminish the separate original 331/fifth-column selection.
 
+## Distinct ECDH authenticated table receiver (Agent5, 24 November)
+
+The original p0 red word lengths 8 and5 already identify the table width and fifth-column operand. Conditional rival: read the pair as **eighth-column public x-coordinate, fifth-column private scalar**, motivated by the source's independent DH clue and the previously derived secp256k1 address. This is an additional exploratory interpretation, not an authenticated assignment of column roles. No new column selection is made after checking curve validity.
+
+The eighth-column x-coordinate is indeed a valid secp256k1 x-coordinate (as are four other columns; this is not a unique curve-membership selector). Both compressed parity choices yield the same ECDH shared x with the fifth-column scalar:
+
+`f8c3ab1cdada2863ce948d1dd348bb035d8b23d843fc6deac299a2786de86cca`.
+
+The remaining six complete columns, in original column order top-to-bottom, supply exactly 192 bytes. Freeze two natural authenticated message framings, and check actual authentication tags rather than English islands:
+
+- Explicit-IV ECIES-like receiver: SHA512(shared x) split into 32-byte AES and HMAC keys; 16-byte IV + 144-byte AES-256-CBC ciphertext + 32-byte HMAC-SHA256 of IV and ciphertext.
+- Electrum BIE1-style receiver: SHA512(compressed shared point) split 16-byte IV, 16-byte AES key, 32-byte HMAC key; 160-byte ciphertext + 32-byte HMAC-SHA256 of literal BIE1 header, compressed ephemeral point and ciphertext. Grant both omitted compressed-point parities independently (four comparisons, includes both true correlated cases). Algorithm specification: [Electrum crypto.py](https://github.com/spesmilo/electrum/blob/master/electrum/crypto.py). No evidence that the original table author used either package, header reconstruction, or these specific serialization choices.
+
+Both formats recover exact independent source-phrase-derived controls with sender scalar2/receiver scalar1; modified authenticated body fails. On the actual original 192-byte body, the explicit-IV tag and all four BIE1 tag predictions fail. The actual tag is the unchanged seventh column `7eb73b8d85c79c7ca92e6f38202023a348a099f9fad1a7aa697ffb337581c6bd`. No candidate passes authentication; no plaintext is asserted or released from an invalid packet. No other framing, KDF or partner column was tuned.
+
+[Standalone Node22 SFT](../sims/lp2_p0_p50_fifth_eighth_ecies_original_sft.cjs), commit 53bee2fae94fc3bc0799921f9156792865fb7187. Core executed locally on exact source-derived column bytes, with both planted authenticated formats and actual original failure. No CI claim. This retires only the two specified authenticated sixth-column-body receivers, not the fifth-column scalar arithmetic or arbitrary ECDH uses. Avoid an ECIES parameter sweep without independent first-party framing.
+
 ## Scope, decisive next test and reproducibility
 
 The main new evidence is an **original arithmetic source selector** for p50's fifth column: p0's red printed lengths8/5 plus GP-prime-sum difference32 correspond directly to the numeric table's 8 columns, selected fifth column and 32 rows. A separately computed p0 mean331 identifies the fifth of 32 genuine page-crossing words through its unique full-word sum331, and the existing table's missing-L/`4C` path nominates the same column. Each conversion is a source-inferred hypothesis without an authenticated instruction. This changes a next-step decision: prioritize a first-party instruction or creator-era practice that explains **why red-word mean and cross-page words should be combined**, and identifies a recipient for the extracted 32-byte key. A full source-independent receiver that produces substantial unknown-p0 or p55 plaintext would decisively advance the claim. Conversely, no extra phases, table rotations or newly invented secret keys should be used to preserve the relation if its direct decoding predictions fail.
