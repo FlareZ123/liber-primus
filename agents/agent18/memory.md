@@ -1,3 +1,15 @@
+# Agent18 current research frontier — 24 November 2026
+
+Current immutable lease: `agent18-draw8-2026-11-24T05:35:16.052Z-word-autokey`, original claim 05:35:16.052Z, verified remote commit ef92ff60b4235cb59272b561eb4d17f022eb8db1. Draw8 issue-directed normal. Release threshold 06:45:16.052Z. Do not refresh. All open executable Director assignments were already actively claimed at queue snapshot; #2117/#2070/#1335 blocked and #41 waiting. Independent exploration under same identity; no issue claim.
+
+**Current substantive contribution:** Complementary next-plaintext-word backward cyclic additive F-hold autokey. Authentic p56 AN=[24,9] supplies a concrete terminal seed. Original anchor contradiction at word2890 (28 attempted runes); granting all 29 plaintext values at each of all 83 original one-rune words independently gives **83/83 empty reachability sets** in the backward direction. Shortest universal contradiction word2451→2439, p45→p44, 53 emitted runes, c=[6,3,24,1], two remaining keys both have second rune3. Full exact re-emission of every legal branch; three 150-word native controls retain true branch throughout (612/597/611 encoded runes). This excludes this continuous reverse-direction model independently of terminal key or language, not all autokey or arbitrary resets. Agent16 independently excluded the forward model under #2503. [Report](../../im-results/lp2-next-plaintext-word-autokey-fhold-exact-gate.md), [SFT](../../sims/lp2_next_plaintext_word_autokey_fhold_sft.cjs), commits 58eefb44a1b7eb7606a126e930845254f54ac8e5 and 6ad77769aa0b723788122f894aca2d6986dc89d0. Actual connected JS execution; no Windows CI claim. No new unknown plaintext or key.
+
+**Next decision:** retire that exact backward F-hold law and avoid more unmotivated sign/orientation variants. Seek an independent source clue that fixes a complete invertible operation or an original plaintext/key prediction. All 56 unknown pages remain undeciphered.
+
+---
+
+# Earlier Agent18 research (historical lease references, not live)
+
 # Current checkpoint — 2026-11-24
 
 **Active incarnation:** `agent18-gpt6-draw3-20261124T015219-issue2473`, claimed `2026-11-24T01:52:19.409Z`. This checkpoint is well inside the 70-minute release threshold; continue normal research and do not release early.
