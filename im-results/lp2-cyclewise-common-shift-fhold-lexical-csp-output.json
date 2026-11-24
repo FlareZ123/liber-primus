@@ -24,7 +24,7 @@
       21,
       28
     ],
-    "initial": 0,
+    "initial": 3,
     "split": {
       "i": 37,
       "n": 151
@@ -32,29 +32,110 @@
     "runs": [
       {
         "s": 0,
+        "stop": "infeasible",
+        "used": 2,
+        "nodes": 35280,
+        "states": 0,
+        "history": [
+          4412,
+          0
+        ]
+      },
+      {
+        "s": 1,
+        "stop": "infeasible",
+        "used": 2,
+        "nodes": 154980,
+        "states": 0,
+        "history": [
+          6652,
+          0
+        ]
+      },
+      {
+        "s": 2,
+        "stop": "infeasible",
+        "used": 2,
+        "nodes": 259367,
+        "states": 0,
+        "history": [
+          6652,
+          0
+        ]
+      },
+      {
+        "s": 3,
         "stop": "complete",
         "used": 37,
-        "nodes": 34825,
+        "nodes": 356522,
         "states": 1,
         "history": [
-          4390,
+          6652,
           1,
           1,
-          5,
-          5,
           1,
           1,
-          14,
           1,
           1,
-          3,
-          2
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "s": 4,
+        "stop": "infeasible",
+        "used": 6,
+        "nodes": 442470,
+        "states": 0,
+        "history": [
+          6652,
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "s": 5,
+        "stop": "infeasible",
+        "used": 2,
+        "nodes": 513835,
+        "states": 0,
+        "history": [
+          6652,
+          0
+        ]
+      },
+      {
+        "s": 6,
+        "stop": "infeasible",
+        "used": 2,
+        "nodes": 585636,
+        "states": 0,
+        "history": [
+          6652,
+          0
+        ]
+      },
+      {
+        "s": 7,
+        "stop": "infeasible",
+        "used": 2,
+        "nodes": 715525,
+        "states": 0,
+        "history": [
+          6652,
+          0
         ]
       }
     ],
     "held": {
       "prefixScore": -187.0532604432487,
-      "initial": 0,
+      "initial": 3,
       "key": [
         13,
         7,
@@ -68,8 +149,8 @@
       "keyMatches": 8,
       "prefixKeyCount": 1,
       "holdStop": "complete",
-      "holdStates": 1,
-      "paths": 2,
+      "holdStates": 6,
+      "paths": 1,
       "fullScore": -379.53434553101613,
       "exactMatches": 292,
       "holdMatches": 141,
@@ -93,6 +174,84 @@
         "states": 0,
         "history": [
           5416,
+          0
+        ]
+      },
+      {
+        "s": 1,
+        "stop": "infeasible",
+        "used": 2,
+        "nodes": 521611,
+        "states": 0,
+        "history": [
+          157064,
+          0
+        ]
+      },
+      {
+        "s": 2,
+        "stop": "infeasible",
+        "used": 2,
+        "nodes": 662983,
+        "states": 0,
+        "history": [
+          157064,
+          0
+        ]
+      },
+      {
+        "s": 3,
+        "stop": "infeasible",
+        "used": 2,
+        "nodes": 785175,
+        "states": 0,
+        "history": [
+          157064,
+          0
+        ]
+      },
+      {
+        "s": 4,
+        "stop": "infeasible",
+        "used": 2,
+        "nodes": 895220,
+        "states": 0,
+        "history": [
+          157064,
+          0
+        ]
+      },
+      {
+        "s": 5,
+        "stop": "infeasible",
+        "used": 3,
+        "nodes": 993203,
+        "states": 0,
+        "history": [
+          157064,
+          1,
+          0
+        ]
+      },
+      {
+        "s": 6,
+        "stop": "infeasible",
+        "used": 2,
+        "nodes": 1269045,
+        "states": 0,
+        "history": [
+          157064,
+          0
+        ]
+      },
+      {
+        "s": 7,
+        "stop": "infeasible",
+        "used": 2,
+        "nodes": 2499621,
+        "states": 0,
+        "history": [
+          157064,
           0
         ]
       }
