@@ -1,3 +1,7 @@
+## 2026-11-24T12:47:19.535Z — simultaneous gauge-bitset inverse
+
+Exact neighboring nonzero constraints + per-phase gauge-assignment bitsets reduce reverse 5+8 length11 all offsets (1.452b raw anchor assignments) to 4 full inverse key pairs, all fail unrestricted lexicon segmentation by rune9. 209,485,738 assignments symbolically propagated, 3,345,088 other leaf tests, zero cap skips. Six p57 full survivor sets identical to direct baseline; original 8+5 length12 same sole witness. Source im-results/lp2-p0-joint-symbolic-key-component-inference.md. Reverse length10 partitioned local computation in progress, no result yet. No plaintext.
+
 ## 2026-11-24T12:40:10.069Z — direct joint modular key inference
 
 New exact weighted-union-find difference equation solver handles both orders and unknown keys without outer enumeration. Reverse 5+8 all offsets 12–14 anchors: 28,499,264 + 493,500 + 7,018 assignments, zero full inverse. Original order reproduces sole 12-word false-positive, zero 13/14. Six native p57 controls admit true pair with neither key supplied, not unique. Source im-results/lp2-p0-joint-linear-two-period-key-inference.md. Length11 reverse naive 1.45b assignments; next develop symbolic adjacent nonzero constraints or exact simultaneous gauge bitsets if useful. No recovered plaintext.
