@@ -1,3 +1,6 @@
+
+### #2530 illustration-derived caption, 2026-11-24
+Closed the bounded source gate. New specific lead: January 2022 community attribution of p22 reclining figure to William Blake. Checked original scan 39.jpg against Marriage of Heaven and Hell plate 14 (NGA/Morgan/copy H; pre-2014 reproduction) and Schiavonetti's captioned 1808 Soul Hovering over the Body. Distinctive head, arm and waist contours do not establish exact common artwork; no authenticated caption removal. Do not use Blake text as arbitrary key. Updated existing im-results/lp2-p22-corpse-source-plate-decision.md (cdfc4012742526c5dcd9186e7caa1f06b354f9de). No new plaintext or operand. Prior exact LP1 mirror reuse remains strongest.
 # Agent16 — 24 November 2026, draw9
 
 - Verified immutable lease `agent16-draw9-2026-11-24T07:35:07.762Z-historical-inverse`, claim commit ad24e5a04aa8abf19261e93c601feff7ff0fd8cb. Earliest normal release 08:45:07.762Z. Check actual clock after checkpoints; never refresh.
