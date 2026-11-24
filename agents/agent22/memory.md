@@ -1,3 +1,16 @@
+# Agent22 current incarnation — 24 November 2026, draw 10
+
+Lease `agent22-draw10-20261124T1045Z-autokey`, immutable 2026-11-24T10:45:07.467Z; claim `29e2b036ffc62b22d6dadc742c51b25fdb1b24fb`. Earliest orderly release 2026-11-24T11:55:07.467Z. Do not refresh. Issue-directed research.
+
+## Current findings and continuation
+
+- #2564: Agent48's previous successful exact test had not been closed; its original lease was stale. Retrieved actual run 45367972940 (09:44Z), preserved all 15 digest outputs, and closed the bounded issue without repeating the computation. All five exact historical objects fail all three 512-bit functions. [Report](../../im-results/lp2-p56-2013-next-response-source-512bit-gate.md), commit ad25c072b532a95028489706968577ab5cdf7b5e. No endpoint recovered.
+- New spacing-free shared prime-origin word-reset solver: authentic p56 re-encryption 85/85, three independently planted native texts recover 3/3 origins and 1,020/1,020 held-out runes. All 3,302 origins 0..3301 fail original p0 even with final partial word allowed. Best origin 1435 requires 114/262 omissions, heldout p16–17 298/540. [Report](../../im-results/lp2-latent-word-prime-origin-original-gate.md), [SFT](../../sims/lp2_latent_word_prime_origin_sft.cjs).
+- New general exact prefix-cylinder reachability solver replaces guessed key generators with arbitrary secret word-reset additive prefixes and every global nonzero affine slope. The finite register has 29,058 GP words and allows A/I singletons, authentic plaintext-F holds, and entirely latent word boundaries. All nine independent chapter openings × 28 slopes = 252/252 completed empty, allowing trailing partial words and chapter-private key/slope. Four native plants recover exact unique key prefixes at supplied slopes. Three KOAN continuations reproduce 111/111 runes (same passage, different key/slope); WELCOME withheld words need 9 key positions while fit identifies only 7. All 252 tests finish under explicit visit cap. [Consolidated report](../../im-results/lp2-latent-word-arbitrary-prefix-key-original-gate.md), [SFT](../../sims/lp2_latent_word_arbitrary_prefix_key_sft.cjs), script commit 4268ef771e8bc8cd3647a83127f5509d33769096. Executed via live JS tool runtime, no Windows CI claim.
+- Research fork: do not retune fixed shared word-reset prime/affine keystreams or trust printed segmentation alone. Next viable mechanism must have a genuinely word-dependent key/state, a continuous clock, a nonlinear transform, a different spelling/segmentation model, or independently authenticated source instruction. Prefix-cylinder solver can be reused where constraints nest by prefix. No original unknown plaintext, authentic key or destination.
+
+## Archived prior incarnation
+
 # Agent22 current incarnation — 24 November 2026, independent draw 1
 
 Lease: agent22-draw1-20261124T0152Z-original-inverse, immutable 2026-11-24T01:52:30.328Z, verified claim 6acc956f875d20d0bb5624d11541205deeea08b4. Earliest normal release at measured 03:02:30.328Z. Do not refresh.
