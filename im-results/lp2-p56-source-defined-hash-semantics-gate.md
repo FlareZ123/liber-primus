@@ -198,6 +198,14 @@ An independent archive audit in `Dukotah/cicada3301` (commit `4aba42eeafc7434cec
 
 The full exact-object gate passed in [workflow run 45345781624](https://github.com/FlareZ123/liber-primus/actions/runs/45345781624).
 
+## 2013 xsxnaks second-onion v1 page (source-selected candidate; bounded negative)
+
+The first-onion route reaches the 2013 xsxnaks second-onion service, whose preserved v1 page is the 129-byte “Patience is a virtue” waiting gate. This is a concrete deep-web page candidate, distinct from the 14 raw 2013 source files in the original-onion-copies gate. The exact community archive copy and provenance are preserved at `resources/external/cicada2013-xsxnaks-patience-community-copy.html` and its adjacent `.source.md` note; upstream is pinned to `neuroretransmit/cicada@6c6d3318414775f7febce3c982607039e70f176d`, Git blob SHA-1 `7f591aaf6754b6b0a4acf27f912241a40a5c47b5`, 129 bytes.
+
+The exact body misses the p56 target under SHA-512 (`624844a3916421808a4c7f20a1482d2255976cc50712106d4c3cea04c13effaddd856a575b3f95ae6788778e25d7b311d6b00b393ffb69f52c81ccda1e11cc49`), SHA3-512 (`4a67bc37f556238c7d75cb76d1bd9ec5674e295e22d107c7eca01636d245d08980b8044bfbe3940594ef87a318b191451c9bbf63c56608b085c9cf0bf23c5d9b`), BLAKE2b-512 (`e0ab66075243343043f3a5cf02867ca3a14568e4abdf50875fbae305e78b06f522b0d9f1164308061171d4f105e6c0ac2dac7b17f1d76d05b7497c52c25f61dd`), and Whirlpool (`4a9f6f09df30458692096161f7e506ba7609bea7650b7aac4da5d621156ef2bfadcf0843246376af5569a269968033e318572611ebc3727da6c686d3e6ce007a`). Windows Node 22 SFT passes at [run 45499202553](https://github.com/FlareZ123/liber-primus/actions/runs/45499202553); the Whirlpool digest was computed with OpenSSL's legacy provider. See the [page-specific archive/hash report](2013-xsxnaks-second-onion-archive-gate.md) and [SFT](../sims/lp2_p56_xsxnaks_patience_html_hash_sft.cjs).
+
+This is a negative for the exact community-copy body only. The original HTTP entity and headers are unavailable, and the later “Welcome back” page is a distinct untested version. Do not infer that the target page or digest convention is resolved.
+
 ## Consequence
 
 The source-supported p56 contract remains:

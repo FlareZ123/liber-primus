@@ -63,6 +63,23 @@ It records the same “Welcome back” state at 17:14 GMT+1. The hidden comment 
 
 The surrounding HTML and the v1/“Welcome back” pages are **not signed**. The signed message body is; the exact original HTTP headers and body bytes are not preserved.
 
+## P56 hash test of the v1 page body (bounded negative)
+
+The p56 instruction asks for a deep-web page whose digest equals the printed 128-hex target. The 2013 xsxnaks second-onion v1 page is a concrete candidate because the original first-onion route leads to this service and the preserved page is the literal “Patience is a virtue” waiting gate. The exact community-archive copy is pinned locally at [`cicada2013-xsxnaks-patience-community-copy.html`](../resources/external/cicada2013-xsxnaks-patience-community-copy.html), with its provenance note beside it.
+
+The 129-byte Git blob is verified by SHA-1 `7f591aaf6754b6b0a4acf27f912241a40a5c47b5`. Against the p56 target `36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4`, the exact page body yields:
+
+| Digest | Result |
+|---|---|
+| SHA-512 | `624844a3916421808a4c7f20a1482d2255976cc50712106d4c3cea04c13effaddd856a575b3f95ae6788778e25d7b311d6b00b393ffb69f52c81ccda1e11cc49` |
+| SHA3-512 | `4a67bc37f556238c7d75cb76d1bd9ec5674e295e22d107c7eca01636d245d08980b8044bfbe3940594ef87a318b191451c9bbf63c56608b085c9cf0bf23c5d9b` |
+| BLAKE2b-512 | `e0ab66075243343043f3a5cf02867ca3a14568e4abdf50875fbae305e78b06f522b0d9f1164308061171d4f105e6c0ac2dac7b17f1d76d05b7497c52c25f61dd` |
+| Whirlpool | `4a9f6f09df30458692096161f7e506ba7609bea7650b7aac4da5d621156ef2bfadcf0843246376af5569a269968033e318572611ebc3727da6c686d3e6ce007a` |
+
+None matches. The first three are reproduced by Windows Node 22 [SFT run 45499202553](https://github.com/FlareZ123/liber-primus/actions/runs/45499202553); Whirlpool was independently computed with `openssl dgst -provider legacy -whirlpool` over the same 129-byte Git blob. Reproducer: [`lp2_p56_xsxnaks_patience_html_hash_sft.cjs`](../sims/lp2_p56_xsxnaks_patience_html_hash_sft.cjs).
+
+**Scope:** this rejects only the exact 129-byte community-archive v1 body under these four digest families. It is not the original 2013 HTTP entity, WARC, or signed response. It does not reject the later “Welcome back” v2 page, a lost original server serialization, other page objects, or an unspecified digest algorithm.
+
 ## The two server disclosures are different
 
 The participant record preserves two distinct 501 responses for the same onion address:

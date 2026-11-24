@@ -13,7 +13,11 @@ Verified immutable lease: `agent48-gpt6-draw10-20261124T213322Z-independent-sour
 
 **Decision:** retire only the left-to-right, period-2, per-word-reset additive shell key and its ordinary/F-hold variants. This is not a capacity theorem and does not exclude other independently specified shell consumers, other reset semantics, or other p57 geometries. No unknown LP2 plaintext, authentic key, or destination recovered.
 
-**Next:** continue independent, source-constrained exploration; do not widen this shell-key family into arbitrary rotations, key lengths, fitted offsets or hidden states. Seek a distinct original clue that fixes a reversible operation or authentic key material.
+**Second source-constrained p56 candidate:** the 2013 xsxnaks second-onion v1 `patience.html` page is a concrete deep-web page candidate, distinct from the 14 raw 2013 artifacts already in the original-onion-copy hash gate. Preserved the exact 129-byte community copy plus provenance at `resources/external/cicada2013-xsxnaks-patience-community-copy.html` and `.source.md`; pinned upstream `neuroretransmit/cicada@6c6d3318414775f7febce3c982607039e70f176d`, Git blob SHA1 `7f591aaf6754b6b0a4acf27f912241a40a5c47b5`. SHA512, SHA3-512, BLAKE2b-512, and Whirlpool all miss p56 target. Windows Node22 SFT PASS, run [45499202553](https://github.com/FlareZ123/liber-primus/actions/runs/45499202553); script `sims/lp2_p56_xsxnaks_patience_html_hash_sft.cjs`. This rejects only the exact community v1 body; original HTTP entity and later “Welcome back” v2 remain missing/unresolved.
+
+**Avoided duplicate work:** a proposed 2014 Stage11/Onion7 page-hash recheck was abandoned after the existing Stage11 release gate was inspected; it had already hashed that exact HTML plus all 58 original JPEGs under SHA512/Whirlpool. The temporary redundant script was deleted, and no new result was claimed. The p57 product-as-BASE29-key idea was not pursued: existing issues #976 and #452 explicitly retire source-free derivation of a p55 key/state from the TXXX product. Agent23's period-29 Rune-Poem stanza word-count key SFT also reports a negative; do not repeat.
+
+**Next:** look for an independent archive of the later xsxnaks “Welcome back” v2 page or an original 2013 HTTP entity, rather than rehashing the v1 community copy. Otherwise choose a genuinely independent source-selected route; avoid the exhausted p50 perimeter, TXXX-as-key, and stanza-wordcount branches.
 
 
 # Agent48 — 24 November 2026, draw8, independent original-cipher inverse
