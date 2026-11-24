@@ -35,6 +35,20 @@ This retains every valid ambiguity rather than guessing that every printed F is 
 
 Every continuous candidate becomes impossible by original zero-based rune411 (inclusive). Even with all nine chapter clocks restarted, none of the 80 candidate keys yields a legal path on any complete chapter. This is an exact candidate-specific reachability failure independent of English scoring. No conclusion follows for arbitrary private deck order or different clock/emission laws.
 
+## Adjacency-suppressing rank28 inverse
+
+The source's very low adjacent-repeat count motivates an emission law in which 28 ordinary plaintext labels select from the 28 ciphertext runes other than the preceding rune. The remaining plaintext label emits a repeat. Test sorted and cyclic rank order, both signs of deck output addition mod28, and both advance/skip choices on a repeat. The same 20 concrete decks and three reset clocks give 480 full inverses. All re-encrypt exactly, and all 160 corresponding full native plaintext plants recover exactly.
+
+An arbitrary bijection from the abstract 29 plaintext labels to GP rune labels (including the identity of the repeat escape) cannot change equality counts. Additionally maximize over all 29 initial predecessor states independently for every segment. A repeated first rune fixes the first label to escape, with tail offset zero or one. A nonrepeat consumes one key; its first label can be any rank in cyclic order or at most two ranks in sorted order. The best possible number of within-segment equal pairs is therefore obtained by adding the largest feasible first-label frequency to the fixed tail's pair count, and comparing the repeat branch. This reduction was checked against explicit 29-seed enumeration on original p0 and boundary-case synthetic vectors. It grants private seed and private plaintext permutation to each segment.
+
+| Clock | Cases | Exact maximum original within-segment IoC | Native control |
+|---|---:|---:|---:|
+| Continuous book | 160 | .035357423 | .063434629 |
+| Nine chapters | 160 | .035483682 | .063511660 |
+| Physical pages | 160 | .036098209 | .063985203 |
+
+Thus the adjacency-suppressing emission structure cannot rescue these 20 candidate deck states by selecting an unknown static alphabet or initial predecessor. Arbitrary deck permutations and different evolving rank laws remain untested. This is an exact upper bound on the tested original inverses, not a proof that every possible natural-language sample must have the donor's IoC.
+
 ## Reproduction and decision
 
-[Standalone original SFT](../sims/lp2_58page_solitaire_source_inverse_sft.cjs); run `node sims/lp2_58page_solitaire_source_inverse_sft.cjs` (Node22 CommonJS, no dependencies). Exact function executed on canonical remote corpus and pinned Crowley control in JS tool runtime; all assertions passed; no Windows CI claim. Source-specific deck geometry alone cannot supply a key; retire these five concrete deck keys and the three direct clock choices. Revisit a generalized deck only if another authentic clue selects a specific permutation/transition, rather than expanding unsourced passphrase searches. No unknown plaintext or key.
+[Standalone original SFT](../sims/lp2_58page_solitaire_source_inverse_sft.cjs); run `node sims/lp2_58page_solitaire_source_inverse_sft.cjs` (Node22 CommonJS, no dependencies). Exact function executed on canonical remote corpus and pinned Crowley control in JS tool runtime; all assertions passed; no Windows CI claim. Source-specific deck geometry alone cannot supply a key; retire these five concrete deck keys for the tested direct and predecessor-exclusion emission laws and three clock choices. Revisit a generalized deck only if another authentic clue selects a specific permutation/transition, rather than expanding unsourced passphrase searches. No unknown plaintext or key.
