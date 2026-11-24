@@ -92,12 +92,39 @@ Three full-length genuine literary-GP plaintext plants (the first 12,956 calibra
 
 **Decision:** retire even fully private page/section stationary rank permutations with moving escape under the *fixed canonical GP29 output order* and direct native-GP prose. This does not exclude unknown reorderings of the plaintext alphabet separating J and EO, unknown source alphabet order, additional within-page key changes, altered representation, or alternative coding mechanisms. Changing only the escape schedule cannot help. No original plaintext/key recovered. [Executed read-only reproducer](../sims/lp2_page_private_moving_escape_rare_pair_sft.cjs) (connected V8; no Windows CI claim).
 
+
+## Physical large-mark rekeying and cumulative dot clock (Agent18, 24 November)
+
+The 31 original large punctuation events (28 thirteen-dot, three ten-dot; cumulative 394 dots) give an additional source-defined rekey schedule. Distinct nonempty rune intervals are 29 for large marks alone and 74 for the union with 55 physical rune-page starts. Grant each region its own unrestricted 28! rank permutation, allow either cyclic or ordinal-deletion input rank independently, and leave initials and repeats unconstrained.
+
+| Reset schedule | Regions | Cyclic lower J/EO | Sorted lower J/EO | Mixed lower J/EO |
+|---|---:|---:|---:|---:|
+| Large marks alone | 29 | 308 | 306 | 290 |
+| Pages plus large marks | 74 | 168 | 170 | 143 |
+
+Even the most permissive of these physical reset schedules exceeds the previously measured native-window maximum of 83. Additional unmarked key changes are outside this claim.
+
+A separate source-clock alternative uses cumulative printed dot count k, with one unrestricted shared permutation R and inverse rank R(q−sk) or R(q)−sk (mod 28), sign s=±1. All 74 interval initials and 86 repeats are granted arbitrary plaintext. For each input/output rank assignment, count positions forced to J/EO (output rank11) or capable of emitting E (rank17/18). Exact minimum/maximum weighted bijections give the bounds below, with free positions added to the E upper bound.
+
+| Input rank | Sign | Rotation | Minimum J/EO | Maximum E |
+|---|---:|---|---:|---:|
+| Cyclic | + | Before | 420 | 1143 |
+| Cyclic | + | After | 318 | 1307 |
+| Cyclic | − | Before | 416 | 1169 |
+| Cyclic | − | After | 318 | 1307 |
+| Sorted | + | Before | 407 | 1148 |
+| Sorted | + | After | 317 | 1304 |
+| Sorted | − | Before | 418 | 1151 |
+| Sorted | − | After | 317 | 1304 |
+
+All eight fail both the native J/EO ceiling of 83 and the independently recorded native E floor of 1397 ([E-capacity gate](lp2-rank28-period1-256-allsecret-native-e-capacity.md)). The dot-count clock is a hypothesis motivated by the artwork, not an authenticated instruction. [Read-only SFT](../sims/lp2_moving_escape_large_mark_clock_sft.cjs) executed in connected V8; an exhaustive 3×3 assignment oracle and eight deterministic random-key round trips of repeated solved p57 plaintext pass (103,648/103,648 rune recoveries). These are repeated-p57 implementation controls, not independent literary samples. No Windows CI run claimed. No plaintext/key recovered.
+
 ## Actual blind rank recovery, held-out control
 
 Use 93 genuine solved-Cicada >=7-rune words that are present in the pinned lexicon. Seed 0x33010624 generates an arbitrary 28-rank permutation and an arbitrary 29-entry causal escape lookup f. Encrypt the complete control word tape continuously. Train only on the first 73 ciphertext words: enumerate candidate domains, repeatedly intersect the union of surviving candidates for each word, and prune rank edges that cannot extend to a matching. The true rank key survives and 22/28 ranks are uniquely identified. All 20 untouched control words retain their exact genuine plaintext candidate under the frozen training domains. Known-full-key control replay is exact. This is partial blind rank recovery, **not** full blind escape-table recovery; six ranks remain ambiguous, and the true escape table was not inferred. No original plaintext is claimed.
 
 ## Decision
 
-Retire the continuous stationary-rank / arbitrary moving-escape family with global or chapter-private keys for direct ordinary native-GP prose; even independent page/section permutations fail when the output GP29 order is canonical. The E/singleton and rare-adjacent-pair constraints avoid any fixed escape identity. Do not expand the search by changing the escape schedule alone. A distinct source-selected within-page rank rekey, genuinely different output ordering or evolving alphabet, or changed plaintext register is required. No first-party rule currently supplies such a key.
+Retire the continuous stationary-rank / arbitrary moving-escape family with global or chapter-private keys for direct ordinary native-GP prose; even independent page/section permutations fail when the output GP29 order is canonical. The E/singleton and rare-adjacent-pair constraints avoid any fixed escape identity. Do not expand the search by changing the escape schedule alone. Even independent original large-mark resets and cumulative dot-count rotations fail; a distinct source-selected rekey beyond those schedules, genuinely different output ordering or evolving alphabet, or changed plaintext register is required. No first-party rule currently supplies such a key.
 
 [Executable read-only CommonJS SFT](../sims/lp2_moving_escape_arbitrary_rank_lexical_sft.cjs), run directly in connected V8 against the four pinned repository inputs. No CI run is claimed. The script includes exact matching, original parser agreement, all candidate counts, pair witnesses, native coverage, singleton/frequency bounds and the held-out plant. Source implementation commit 7ee66fdb829a266acf07e819cddac8c413859e76.
