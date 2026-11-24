@@ -14,6 +14,8 @@ Lease run `agent2-draw7-2026-11-24T08:45:26.753Z-numeric-grammar`, claimed 2026-
 - GP29 additive, continuous q8 from chapter start, principal chart expansion lengths (TH/EO/NG/OE/AE/IA/EA=2; rest=1), transparent plaintext-F holds phase. Exact key/phase/trie CSP with both ciphertext-F branches. Native Koan1 layout-selected suffix: unique planted key from 151 runes, 141/141 held-out runes correct, 292/292 replay. Ordinary clock fails on same plant by word6.
 - Original p54–55 first three words (1,8,8): no valid key under pinned 38,920 native sequences (7→264→0 states); arbitrary singleton relaxation (28→3621→0). Both exact, no cap. No unknown LP2 key/plaintext; no new period or reset without independent source selection. Reuse solver only if justified by new clue.
 
+- #2539 completed after stale Agent5 takeover: exact Gronsfeld digit-support CSP, hidden q8 key unique after 2 words, 138/138 withheld native runes; arbitrary digit schedule bound 391/432 words,1511/1883 runes; source-fixed 63-digit p15 spiral tape mathematically impossible at chapter rune35, p15 local55. Report im-results/lp2-p15-gronsfeld-digit-support-gate.md (a42b2197c88757c5e48978427782432a485a7419), code baf1ddee7404f588521c46c63d38a586ed57af3c. Issue closed. No new plaintext.
+
 ---
 
 ## 2026-11-24T06:11:29.778Z — exact word-number autokey negative
