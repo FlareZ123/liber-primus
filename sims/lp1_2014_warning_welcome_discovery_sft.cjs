@@ -14,34 +14,7 @@ function originalGate(){
  const read=p=>fs.readFileSync(path.join(root,p),'utf8');
  const lp2=JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
  const alphabet=lp2.runes;
- const lp1=read('resources/transcriptions/lp1_wulfic_canonical.txt').split('
- for(const [name,size,sha] of sources){
-  const response=await fetch('https://raw.githubusercontent.com/neuroretransmit/cicada/'+ref+'/irc-logs/'+encodeURIComponent(name));
-  assert.equal(response.status,200);
-  const raw=Buffer.from(await response.arrayBuffer());
-  assert.equal(raw.length,size);
-  assert.equal(crypto.createHash('sha1').update('blob '+size+'\0').update(raw).digest('hex'),sha);
-  const lines=raw.toString('latin1').split(/\r?\n/);
-  console.log('SOURCE',name);
-  // Print only conversational statements in the discovery windows, not host/IP join records.
-  const windows=name==='#cicadasolvers.freenode.log'
-    ? [[27900,28200],[28201,28450],[28451,28590],[28860,29065],[29210,29240]]
-    : [[56175,56300],[79720,79765],[79915,79955]];
-  for(const [start,end] of windows){
-    console.log('DISCOVERY WINDOW',start,end);
-    for(let i=start-1;i<end;i++){
-      const s=lines[i];
-      if(!/^2014 \w+ \d+ \d+:\d+ </.test(s))continue;
-      if(name==='#cicadasolvers.freenode.log' &&
-         !/\b(key|crib|welcome|pilgrim|divinity|cipher|vigen|shift|rune|8|eight|guess|decrypt|decode|plain|period|pattern|sequence|letter|frequenc|repeat|method|word|skip|offset|gematria|reverse|solv|formula)\w*/i.test(s))continue;
-      console.log('D L'+(i+1),s.slice(0,500));
-    }
-  }
- }
-}
-
-main().catch(e=>{console.error(e);process.exitCode=1});
-);
+ const lp1=read('resources/transcriptions/lp1_wulfic_canonical.txt').split('$');
  const ord=s=>[...s].filter(r=>alphabet.includes(r)).map(r=>alphabet.indexOf(r));
  const c=ord(lp1[1]).slice(0,8), crib=ord('ᚹᛖᛚᚳᚩᛗᛖᚹ');
  const shift=crib.map((v,i)=>(v-c[i]+29)%29);
