@@ -90,25 +90,31 @@ function run(corpus,native,donorTexts,q=0,mode="oracle",raw="",lo=0,hi=100000000
  function rankScan(V1,V2,A,B,lo=0,hi=V1.length){
   // A fast independent-position proposal score. Exact forest scores only
   // the top proposals; therefore a negative is not an exhaustive exclusion.
-  const profiles=[],profileCache=new Map(),K=512;
+  const profiles=[],profileCache=new Map(),uniqueProfiles=new Map(),K=512,PRE=8192;
   function prep(V,t){for(const v of V){v.pid=new Int32Array(L);v.cs=Uint8Array.from(v.indices,i=>t.c[i]);for(const g of v.g){
-    let ids=profileCache.get(g.f);if(!ids){ids=[];let n=g.hi-g.lo;for(let k=0;k<n;k++){let p=new Float64Array(29);for(let z=0;z<g.f.strings.length;z++)p[g.f.strings[z].charCodeAt(k)-65]+=g.f.weights[z];ids.push(profiles.length);profiles.push(p)}profileCache.set(g.f,ids)}
+    let ids=profileCache.get(g.f);if(!ids){ids=[];let n=g.hi-g.lo;for(let k=0;k<n;k++){let p=new Float64Array(29);for(let z=0;z<g.f.strings.length;z++)p[g.f.strings[z].charCodeAt(k)-65]+=g.f.weights[z];let sig=Array.from(p,x=>Math.round(x*10000)).join(",");let id=uniqueProfiles.get(sig);if(id===undefined){id=profiles.length;profiles.push(p);uniqueProfiles.set(sig,id)}ids.push(id)}profileCache.set(g.f,ids)}
     v.pid.set(ids,g.lo);
   }}}
   prep(V1,A);prep(V2,B);
   const P=profiles.length,table=new Float32Array(P*P*29);
-  for(let a=0;a<P;a++)for(let b=0;b<P;b++){let z=(a*P+b)*29,pa=profiles[a],pb=profiles[b],pr=new Float64Array(29);for(let x=1;x<29;x++)if(pa[x])for(let y=1;y<29;y++)if(pb[y])pr[mod(x-y)]+=pa[x]*pb[y];for(let d=0;d<29;d++)table[z+d]=Math.log(Math.max(1e-12,pr[d])*29);}
+  const top=profiles.map(p=>{let ids=Array.from({length:28},(_,i)=>i+1).sort((a,b)=>p[b]-p[a]).slice(0,8);return {ids,weights:ids.map(x=>p[x]),mass:ids.reduce((s,x)=>s+p[x],0)}});
+  for(let a=0;a<P;a++)for(let b=0;b<P;b++){let z=(a*P+b)*29,pa=top[a],pb=top[b];const base=(1-pa.mass*pb.mass)/29;
+    table.fill(base,z,z+29);for(let i=0;i<8;i++)for(let j=0;j<8;j++){let d=pa.ids[i]-pb.ids[j];if(d<0)d+=29;table[z+d]+=pa.weights[i]*pb.weights[j]}
+    for(let d=0;d<29;d++)table[z+d]=Math.log(Math.max(1e-12,table[z+d])*29);
+  }
   for(const v of V1)v.base=Int32Array.from(v.pid,p=>p*P*29);
   for(const v of V2)v.base=Int32Array.from(v.pid,p=>p*29);
   const heap=[];let pairs=0;
-  function push(v){if(heap.length<K){let j=heap.length;heap.push(v);while(j){let p=(j-1)>>1;if(heap[p].s<=v.s)break;heap[j]=heap[p];j=p;heap[j]=v;}return}
-    if(v.s<=heap[0].s)return;let j=0;heap[0]=v;while(true){let a=j*2+1;if(a>=K)break;let b=a+1;if(b<K&&heap[b].s<heap[a].s)a=b;if(heap[a].s>=v.s)break;heap[j]=heap[a];j=a;heap[j]=v;}
+  function push(v){if(heap.length<PRE){let j=heap.length;heap.push(v);while(j){let p=(j-1)>>1;if(heap[p].s<=v.s)break;heap[j]=heap[p];j=p;heap[j]=v;}return}
+    if(v.s<=heap[0].s)return;let j=0;heap[0]=v;while(true){let a=j*2+1;if(a>=PRE)break;let b=a+1;if(b<PRE&&heap[b].s<heap[a].s)a=b;if(heap[a].s>=v.s)break;heap[j]=heap[a];j=a;heap[j]=v;}
   }
   hi=Math.min(hi,V1.length);
   for(let i=lo;i<hi;i++){const u=V1[i],ua=u.base,uc=u.cs;for(let j=0;j<V2.length;j++){const v=V2[j];if(!u.h&&!v.h)continue;pairs++;let vb=v.base,vc=v.cs,s=u.mass+v.mass;
-    for(let k=0;k<L;k++){let d=uc[k]-vc[k];if(d<0)d+=29;s+=table[ua[k]+vb[k]+d];}
+    for(let k=1;k<L;k+=4){let d=uc[k]-vc[k];if(d<0)d+=29;s+=4*table[ua[k]+vb[k]+d];}
     if(heap.length<K||s>heap[0].s)push({i,j,s});
   }}
+  for(const h of heap){const u=V1[h.i],v=V2[h.j];let s=u.mass+v.mass;for(let k=0;k<L;k++){let d=u.cs[k]-v.cs[k];if(d<0)d+=29;s+=table[u.base[k]+v.base[k]+d]}h.s=s}
+  heap.sort((a,b)=>b.s-a.s);heap.length=Math.min(K,heap.length);
   let best=null,screened=0,feasible=0;
   for(const {i,j,s:proposal} of heap){const u=V1[i],v=V2[j];if(!screen(u,v,A.c,B.c))continue;screened++;let r=score(u,v,A.c,B.c);if(r){feasible++;if(!best||r.llr>best.llr)best={u,v,llr:r.llr,proposal}}}
   return {pairs,profiles:P,shortlist:heap.length,screened,feasible,best:best?{...score(best.u,best.v,A.c,B.c,true),starts:[best.u.start,best.v.start],proposal:best.proposal}:null};
