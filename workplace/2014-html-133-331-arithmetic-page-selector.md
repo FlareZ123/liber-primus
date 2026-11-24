@@ -1,0 +1,52 @@
+# 2014 Stage11 HTML numbers: a possible 8×58 / 16×29 selector
+
+**Status:** source-grounded hypothesis, not a decipherment. The arithmetic is exact; whether the numbers were deliberately chosen for this purpose remains unproven.
+
+## Source facts
+
+The pinned May 2014 Stage11 index is:
+
+- Repository: `micheloosterhof/cicada-2014`
+- Commit: `6c3421a4d245596e403c88e037509d162a2afd17`
+- File: `stage11/ky2khlqdf7qdznac.onion/index.html`
+- Raw source: https://raw.githubusercontent.com/micheloosterhof/cicada-2014/6c3421a4d245596e403c88e037509d162a2afd17/stage11/ky2khlqdf7qdznac.onion/index.html
+
+The HTML contains `<title>133</title>`, `<div id="331">`, and exactly 58 image references (`0.jpg` through `57.jpg`). The two numbers are reversals.
+
+The manuscript's GP29 alphabet has 29 symbols. The canonical transcription gives p55 76 runes; its first `ᛝ` completes a word carried across the p54/p55 boundary, leaving 75 body runes and 16 complete printed word groups. The original p41 image has an ornamental motif with eight filled black dots and two outlined circles.
+
+## Exact arithmetic
+
+```text
+133 + 331 = 464
+464 = 8 × 58
+464 = 16 × 29
+
+133 × 331 = 44023 = 58 × 759 + 1
+133 mod 58 = 17
+331 mod 58 = 41
+17 × 41 mod 58 = 1
+```
+
+Thus the HTML numbers are multiplicative inverses modulo the 58-page Stage11 sequence, and their sum is simultaneously eight times the page count and sixteen times the GP29 alphabet size.
+
+## Candidate interpretation
+
+The 2016 signed Cicada message says: “the words are the map, their meaning is the road, and their numbers are the direction.” A human solver inspecting the original HTML could notice the two reversed numbers, use the visible 58-page count as a modulus, and examine pages 17 and 41. The same numbers also yield `16 × 29`, which matches the 16 complete words on p55 and the 29-symbol alphabet; `8 × 58` matches the eight filled dots on p41 and the page count.
+
+This converges with a separate 2012→p55 candidate: the 2012 OutGuess book-code chain resolves to `CALL US AT US TELE PHONE NUMBER TWO ONE FOUR THREE NINE OH NINE SIX OH EIGHT` (76 characters); GP29 contraction of `TH` gives 75 tokens, matching p55's 75 non-carry runes. This phrase is not established plaintext. Direct monoalphabetic substitution, constant GP29 Caesar, and transposition-plus-monoalphabetic substitution have failed. The exact historical OutGuess read operation on original p55 also yielded no payload (false-looking header, SIGFPE, zero output bytes); see `im-results/2012-first-image-payload-reproduction-and-lp2-transfer-decision.md`.
+
+The p17 and p41 pages each have 273 runes. However, 273 occurs on six LP2 pages, not only this pair; their direct positionwise difference has near-uniform IC (about 0.0346) and no constant Caesar relation. Treat the page-pair equality as secondary evidence, not a solved relationship.
+
+## Strongest objections
+
+1. `133` and `331` may be incidental HTML metadata rather than puzzle instructions.
+2. The identities `464 = 8 × 58 = 16 × 29` are exact but may be numerological coincidence; the dot and word counts are interpretations of visual structure.
+3. The 273-rune equality of p17/p41 is not unique, and their simplest direct difference test is negative.
+4. No reversible operation currently maps the 2012 phrase to p55. The word boundaries differ (17 phrase words versus 16 p55 body groups), and simple substitution/transposition tests fail.
+
+## One bounded next decision
+
+Ask whether the eight filled dots on p41, the 16 complete words on p55, and the 17-word/75-token 2012 phrase specify a unique, source-determined ordering or boundary transformation. The test must predict a fixed mapping on original p55 before inspecting candidate plaintext. If the 8-dot motif does not uniquely select an 8-pair/16-word route, or if the 133/331 arithmetic does not produce a reversible p55 operation without tuned exceptions, retire this branch.
+
+Do not launch a generic grid, route, modular, or transposition search. The only justified receiver is original p55; the 2012 phrase remains a crib candidate, not a key or plaintext.
