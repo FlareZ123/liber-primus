@@ -83,6 +83,33 @@ The exact recovered native plaintexts score −2.243 to −2.513 on prefixes and
 
 **Decision:** retire this fixed row-permutation/additive composition search for ordinary native GP prose at the frozen q8/q13, with the finite mask/key budgets stated above. Neither a generic coupled-transposition theorem nor an all-key exclusion follows; the chosen serialization, continuous F clock and ordinary additive family remain assumptions. No source-selected receiver for a different geometry or value law follows from these negatives. Do not tune the permutation, phase, signs or inferred row size around this output. A genuinely different authenticated operation or externally constrained key would be a new decision.
 
+## Exact all-secret 14-column / authentic prime-clock inverse (Agent13, 24 November)
+
+A separate phase-zero p56-family consumer is tested rather than tuning the preceding q8/q13 keys. The physical black196 square nominates width14 and the historical operation supplies the row-wise family; the wider cuneiform chapter p33–39 is independently 1680=14×120 runes (including all red runes), so both complete chapter and black-only reset scopes are frozen. Neither dimension alone authenticates a key. Grant every shared column order, every legal transparent-F mask, and source-nominated consuming-prime origins. The authentic arithmetic is C=P+(prime[q]−1) mod29 except literal F outputs zero without advancing q. Use the exact prefix/suffix relaxation from the [p15 extension](lp2-p15-arbitrary16-prime-blind-inverse.md#exact-native-support-all-keyall-origin-extension-agent13-24-november). The solved 2,979-rune GP reference has no EO/OE (indices12,22); allow zero or a bounded number of these exceptions, rather than silently ruling out all GP29.
+
+**Chapter-wide all 3302 origins, all 14! keys** (native GP27 and budget5). Both historical row-wise permutation and classical whole-column readout tested on the untouched 1680-rune tape (source checksum 20074639). Classical source converted into its 120-row observed-column matrix without changing values.
+
+| Geometry | EO/OE budget | Prefix nodes | Legal keys |
+|---|---:|---:|---:|
+| Shared 14-slot within-row | 0 | 463510 | 0 |
+| Classical 14-column | 0 | 246068 | 0 |
+| Shared 14-slot within-row | 5 | 4084794 | 0 |
+| Classical 14-column | 5 | 2225065 | 0 |
+
+All exhaust, zero caps. A chapter-sized native plant at origin3301 using the historical hidden key recovers exactly that key at both origins3300/3301 (11610468 nodes); the one-step origin ambiguity is not hidden. These are conditional long-span exclusions, not all GP29 impossibility.
+
+**Short black196 constructive inverse.** All 14! row keys and origins 0,1033,3301 are tested by exact prefix search on the first 140 of 196 runes, then a trigram MAP over every legal key and latent F history. The native prior is hierarchical smoothed trigram (unigram .5, bigram and trigram 5-count backoff) on the first1729 of the solved tape, excluding the entire target 196-window for each plant. The DP state is hold count and the last two hold flags; the previous two plaintext symbols are determined by these flags and the key, giving an exact objective. Freeze the unique maximum key/origin and its MAP clock state before scoring the last56. Initial high-zero native controls at offsets0/196 exceeded the short-run tool time limit; the successful bounded calibration uses distinct offsets392 and980 with total ciphertext zero counts6/7 and prefix counts5/6 (original4/7). They are target-position excluded but the native book contains repeated phrases, so these are favorable short-control calibrations, not independent authorship or an unrestricted statistical guarantee.
+
+| Input | Origin0 legal prefix keys | Origin1033 | Origin3301 | Winning prefix nats/rune | Frozen suffix |
+|---|---:|---:|---:|---:|---|
+| Original | 114409 | 205704 | 166108 | −4.25169 (1033) | no legal path |
+| Native plant1, origin0 | 1453452 | 395875 | 191739 | −2.67845 | −2.75362, 56/56 exact |
+| Native plant2, origin3301 | 208968 | 330610 | 2433787 | −1.76225 | −1.46938, 56/56 exact |
+
+Both plants recover exact 14-slot key and origin, all 140 fit and 56 frozen suffix runes, full replay. Original winning prefix order [4,5,9,10,7,12,3,6,1,11,13,0,2,8] is nonprose. A separate **retrospective full 196-rune exact trigram MAP** eliminates concern that another legal prefix key might yield a strong full candidate: all 13686 legal full keys (1515/8047/4124 at the three origins) are scored. Global maximum −4.56372 at origin3301, key [0,11,5,12,8,13,10,9,3,2,1,6,4,7], nonprose with exact replay. Both controls retain true key/origin and 196/196 exact plaintext under the retrospective objective, −2.69992/−1.67857. The full-score result is not a frozen holdout. No unknown plaintext or key.
+
+[Input generator](../sims/lp2_p33_prime_permutation_prepare.cjs); [all-origin solver](../sims/lp2_p15_arbitrary16_prime_exact_allorigin.cpp), compile with LP_P33_CHAPTER; [short exact MAP solver](../sims/lp2_p33_black196_prime_permutation_map.cpp), compile with LP_FULL_FIT for retrospective 196, default140 for frozen suffix. Local GCC C++20 execution, no Windows CI claim. The source-selected direct 14-slot+prime architecture now lacks support in both full chapter and short black square; do not interpret these bounds as exclusion of all transpositions, alternative clocks or plaintext containing many EO/OE.
+
 ### Reproduction
 
 The direct permutation control and original output are reproduced by [historical-transfer SFT](../sims/lp2_p33_historic_14column_transfer_sft.cjs) (Windows CI [44978951007](https://github.com/FlareZ123/liber-primus/actions/runs/44978951007)). For the coupled experiments use [base driver](../sims/lp2_p33_14column_additive_fhold_sft.cjs) with after/before and 8/13, and [natural-order refinement driver](../sims/lp2_p33_14column_natural_refinement_sft.cjs). These reuse [cyclic n-gram library](../sims/lp2_fhold_cyclic_ngram_map.cjs). Actual source input and both drivers were executed in the connected JS runtime; no new Windows CI execution is claimed.
