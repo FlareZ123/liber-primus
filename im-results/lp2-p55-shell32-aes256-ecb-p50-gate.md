@@ -6,7 +6,7 @@
 
 The solved p57 instruction “SHED OUR OWN CIRCUMFERENCES” motivates a word-boundary extraction on p55. After excluding the one-rune carry from p54, p55 has 16 complete words and 32 boundary runes (first rune, last rune, repeated in original word order). The p50 numerical panel is a 32×8 object containing 256 bytes. A solver could notice the compact type/length fit: 32 bytes is the AES-256 key length, and 256 bytes is exactly 16 AES blocks.
 
-This is only a candidate, not a first-party instruction. The strongest rival is that “shed” means discard the boundary runes, not use them as a key. No authenticated Cicada stage in the repository's historical technique index selects AES; the public [technique catalog](https://github.com/Dukotah/cicada3301/blob/master/ciphers/README.md) lists OutGuess, book/running-key ciphers, Caesar/Vigenère/Atbash, Gematria Primus, primes/totient, PGP, Tor/QR and audio, but not AES. That catalog is not exhaustive, so its omission is caution rather than proof.
+This is only a candidate, not a first-party instruction. The existing 3301/base59 route independently selects the full 76-rune p55 page and its 43/33 interior/exterior partition; it treats the incoming carry as an exterior rune. The 32-byte shell tested here exists only after excluding that carry, so its AES key-length fit is not selected by the 43/33 source relation. The strongest rival is that “shed” means discard the boundary runes, not use them as a key. No authenticated Cicada stage in the repository's historical technique index selects AES; the public [technique catalog](https://github.com/Dukotah/cicada3301/blob/master/ciphers/README.md) lists OutGuess, book/running-key ciphers, Caesar/Vigenère/Atbash, Gematria Primus, primes/totient, PGP, Tor/QR and audio, but not AES. That catalog is not exhaustive, so its omission is caution rather than proof.
 
 ## Frozen source inputs
 
@@ -19,7 +19,7 @@ This is only a candidate, not a first-party instruction. The strongest rival is 
   This is a 32-byte AES-256 key container but carries at most 160 bits of rune-choice entropy.
 - P50: the current canonical base60 decoding of the original 32×8 table, 256 bytes in row-major order. SHA-256: `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`.
 
-The p50 radix is not uniquely settled by the printed tokens, and the p55 shell's key role is not independently selected. Both are explicit conditions on this test.
+The p50 radix is not uniquely settled by the printed tokens, and the p55 shell's key role is not independently selected. The 32-byte shell is also a different parse from the 3301-selected 33-exterior full-page partition. These are explicit conditions on this test.
 
 ## Fixed receiver
 
