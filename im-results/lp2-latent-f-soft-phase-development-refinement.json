@@ -1,0 +1,558 @@
+{
+  "gate": {
+    "authentic": 2,
+    "plants": 7,
+    "wrong": 1,
+    "pads": 0,
+    "pass": false
+  },
+  "hist": [
+    {
+      "name": "WELCOME",
+      "q": 8,
+      "accept": true,
+      "truth": [
+        23,
+        10,
+        1,
+        10,
+        9,
+        10,
+        16,
+        26
+      ],
+      "key": [
+        23,
+        10,
+        1,
+        10,
+        9,
+        10,
+        16,
+        26
+      ],
+      "exactKey": true,
+      "accuracy": 1,
+      "gain": 0.33035286119414575,
+      "changes": 0,
+      "softGain": 0.24175858468443367,
+      "split": [
+        334,
+        88,
+        93
+      ]
+    },
+    {
+      "name": "KOAN2",
+      "q": 13,
+      "accept": true,
+      "truth": [
+        0,
+        10,
+        4,
+        0,
+        1,
+        19,
+        0,
+        18,
+        4,
+        18,
+        9,
+        0,
+        18
+      ],
+      "key": [
+        0,
+        10,
+        4,
+        0,
+        1,
+        19,
+        0,
+        18,
+        4,
+        18,
+        9,
+        0,
+        18
+      ],
+      "exactKey": true,
+      "accuracy": 1,
+      "gain": 0.5074870262664564,
+      "changes": 1,
+      "softGain": 0.34886993725557636,
+      "split": [
+        207,
+        54,
+        58
+      ]
+    }
+  ],
+  "plants": [
+    {
+      "name": "fresh-0-18000",
+      "q": 4,
+      "accept": true,
+      "truth": [
+        27,
+        11,
+        27,
+        16
+      ],
+      "key": [
+        27,
+        11,
+        27,
+        16
+      ],
+      "exactKey": true,
+      "accuracy": 1,
+      "gain": 0.35148701482408473,
+      "changes": 0,
+      "softGain": 0.3454172843113188,
+      "split": [
+        546,
+        142,
+        152
+      ]
+    },
+    {
+      "name": "fresh-1-55000",
+      "q": 5,
+      "accept": true,
+      "truth": [
+        0,
+        7,
+        0,
+        1,
+        0
+      ],
+      "key": [
+        0,
+        7,
+        0,
+        1,
+        0
+      ],
+      "exactKey": true,
+      "accuracy": 1,
+      "gain": 0.3559651308605849,
+      "changes": 0,
+      "softGain": 0.35118745939233076,
+      "split": [
+        546,
+        142,
+        152
+      ]
+    },
+    {
+      "name": "fresh-2-22000",
+      "q": 6,
+      "accept": true,
+      "truth": [
+        27,
+        13,
+        27,
+        0,
+        27,
+        4
+      ],
+      "key": [
+        27,
+        13,
+        27,
+        0,
+        27,
+        4
+      ],
+      "exactKey": true,
+      "accuracy": 1,
+      "gain": 0.4231711359099797,
+      "changes": 0,
+      "softGain": 0.4090260252149367,
+      "split": [
+        546,
+        142,
+        152
+      ]
+    },
+    {
+      "name": "fresh-0-90000",
+      "q": 14,
+      "accept": true,
+      "truth": [
+        3,
+        10,
+        13,
+        24,
+        9,
+        13,
+        16
+      ],
+      "key": [
+        3,
+        10,
+        13,
+        24,
+        9,
+        13,
+        16,
+        3,
+        10,
+        13,
+        24,
+        9,
+        13,
+        16
+      ],
+      "exactKey": false,
+      "accuracy": 1,
+      "gain": 0.4442796705697174,
+      "changes": 0,
+      "softGain": 0.4349965948149963,
+      "split": [
+        546,
+        142,
+        152
+      ]
+    },
+    {
+      "name": "fresh-1-190000",
+      "q": 9,
+      "accept": true,
+      "truth": [
+        26,
+        2,
+        13,
+        12,
+        18,
+        26,
+        7,
+        27,
+        11
+      ],
+      "key": [
+        26,
+        2,
+        13,
+        12,
+        18,
+        26,
+        7,
+        27,
+        11
+      ],
+      "exactKey": true,
+      "accuracy": 1,
+      "gain": 0.4348117896938506,
+      "changes": 0,
+      "softGain": 0.40261384650302956,
+      "split": [
+        546,
+        142,
+        152
+      ]
+    },
+    {
+      "name": "fresh-2-35000",
+      "q": 12,
+      "accept": true,
+      "truth": [
+        4,
+        3,
+        24,
+        20,
+        19,
+        22,
+        16,
+        20,
+        1,
+        22,
+        2,
+        15
+      ],
+      "key": [
+        4,
+        3,
+        24,
+        20,
+        19,
+        22,
+        16,
+        20,
+        1,
+        22,
+        2,
+        15
+      ],
+      "exactKey": true,
+      "accuracy": 0.993421052631579,
+      "gain": 0.34847835169177,
+      "changes": 0,
+      "softGain": 0.2869524514960218,
+      "split": [
+        546,
+        142,
+        152
+      ]
+    },
+    {
+      "name": "fresh-0-185000",
+      "q": 13,
+      "accept": true,
+      "truth": [
+        4,
+        3,
+        24,
+        9,
+        6,
+        13,
+        13,
+        3,
+        16,
+        1,
+        23,
+        2,
+        7
+      ],
+      "key": [
+        4,
+        3,
+        24,
+        9,
+        6,
+        13,
+        13,
+        3,
+        16,
+        1,
+        23,
+        2,
+        7
+      ],
+      "exactKey": true,
+      "accuracy": 1,
+      "gain": 0.32371335611651286,
+      "changes": 0,
+      "softGain": 0.3166769561197853,
+      "split": [
+        546,
+        142,
+        152
+      ]
+    },
+    {
+      "name": "fresh-1-265000",
+      "q": 16,
+      "accept": true,
+      "truth": [
+        27,
+        7,
+        28,
+        6,
+        26,
+        28,
+        5,
+        8,
+        10,
+        19,
+        1,
+        6,
+        10,
+        27,
+        17,
+        16
+      ],
+      "key": [
+        27,
+        7,
+        28,
+        6,
+        26,
+        28,
+        5,
+        8,
+        10,
+        19,
+        1,
+        6,
+        10,
+        27,
+        17,
+        16
+      ],
+      "exactKey": true,
+      "accuracy": 1,
+      "gain": 0.4328348051553661,
+      "changes": 0,
+      "softGain": 0.3258295210464448,
+      "split": [
+        546,
+        142,
+        152
+      ]
+    }
+  ],
+  "pads": [
+    {
+      "name": "pad-0-18000",
+      "q": 2,
+      "accept": false,
+      "truth": null,
+      "gain": null,
+      "softGain": -0.00855800079066471,
+      "split": [
+        546,
+        142,
+        152
+      ]
+    },
+    {
+      "name": "pad-1-55000",
+      "q": 8,
+      "accept": false,
+      "truth": null,
+      "key": [
+        23,
+        19,
+        4,
+        15,
+        3,
+        23,
+        11,
+        2
+      ],
+      "exactKey": null,
+      "accuracy": null,
+      "gain": null,
+      "changes": 5,
+      "softGain": -0.07795248781735964,
+      "split": [
+        546,
+        142,
+        152
+      ]
+    },
+    {
+      "name": "pad-2-22000",
+      "q": 2,
+      "accept": false,
+      "truth": null,
+      "gain": null,
+      "softGain": -0.014804862869785662,
+      "split": [
+        546,
+        142,
+        152
+      ]
+    },
+    {
+      "name": "pad-0-90000",
+      "q": 14,
+      "accept": false,
+      "truth": null,
+      "key": [
+        6,
+        2,
+        7,
+        3,
+        4,
+        24,
+        6,
+        2,
+        2,
+        13,
+        27,
+        20,
+        28,
+        9
+      ],
+      "exactKey": null,
+      "accuracy": null,
+      "gain": -0.5403140280827943,
+      "changes": 14,
+      "softGain": -0.053481990109627287,
+      "split": [
+        546,
+        142,
+        152
+      ]
+    },
+    {
+      "name": "pad-1-190000",
+      "q": 7,
+      "accept": false,
+      "truth": null,
+      "key": [
+        21,
+        24,
+        16,
+        12,
+        22,
+        9,
+        10
+      ],
+      "exactKey": null,
+      "accuracy": null,
+      "gain": null,
+      "changes": 2,
+      "softGain": 0.0013501018842037027,
+      "split": [
+        546,
+        142,
+        152
+      ]
+    },
+    {
+      "name": "pad-2-35000",
+      "q": 2,
+      "accept": false,
+      "truth": null,
+      "gain": null,
+      "softGain": -0.010033671756897178,
+      "split": [
+        546,
+        142,
+        152
+      ]
+    },
+    {
+      "name": "pad-0-185000",
+      "q": 6,
+      "accept": false,
+      "truth": null,
+      "key": [
+        7,
+        21,
+        5,
+        20,
+        0,
+        8
+      ],
+      "exactKey": null,
+      "accuracy": null,
+      "gain": -0.8097066728569948,
+      "changes": 6,
+      "softGain": -0.02491073131331678,
+      "split": [
+        546,
+        142,
+        152
+      ]
+    },
+    {
+      "name": "pad-1-265000",
+      "q": 2,
+      "accept": false,
+      "truth": null,
+      "gain": null,
+      "softGain": -0.007814032295815565,
+      "split": [
+        546,
+        142,
+        152
+      ]
+    }
+  ],
+  "target": null
+}
