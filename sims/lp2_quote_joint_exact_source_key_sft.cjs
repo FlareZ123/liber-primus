@@ -23,7 +23,8 @@ function followup(gp,lp1,gold,raw,allowOriginal=false){
   }
   return {name,P,candidates,sentenceStops:b.length}
  }
- const names=["Shakespeare","Emerson","Gibran"],sources=raw.map((s,i)=>parse(s,names[i])),all=sources.flatMap(s=>s.candidates);
+ function body(s,start){const a=s.indexOf(start),b=s.search(/\*\*\*\s*END OF (?:THIS|THE) PROJECT GUTENBERG/i);assert(a>=0&&b>a,"authored body markers");return s.slice(a,b)}
+ const names=["Shakespeare","Emerson","Gibran"],sources=[raw[0],body(raw[1],"There is no great and no small"),body(raw[2],"Almustafa,")].map((s,i)=>parse(s,names[i])),all=sources.flatMap(s=>s.candidates);
 
  const split=80;
  const mod=x=>(x+29)%29;
@@ -36,6 +37,9 @@ function followup(gp,lp1,gold,raw,allowOriginal=false){
  for(let j=0;j<sources.length;j++)for(let i=0;i+N<=sources[j].P.length;i++)indexAdd(sources[j].P.slice(i,i+keyWindow),{kind:"source",j,i});
  const primes=[];for(let n=2;primes.length<3301+N;n++){let prime=true;for(const p of primes){if(p*p>n)break;if(n%p===0){prime=false;break}}if(prime)primes.push(n)}
  const pk=primes.map(p=>(p-1)%29);
+ const endPlain=extract(gold.sections.find(s=>s.name==="p56_an_end").source_text),endCipher=gp.pages.find(p=>p.page===56).indices;
+ assert(encrypt(endPlain,pk).join()===endCipher.join(),"p56 exact prime stream replay");
+ authentic.push({name:"LP2 p56",n:endPlain.length,plainF:endPlain.filter(v=>v===0).length,cipherF:endCipher.filter(v=>v===0).length});
  for(let i=0;i<=3300;i++)indexAdd(pk.slice(i,i+keyWindow),{kind:"prime",i});
  function exactPrefix(C){
   const out=[];let fCompatible=0;
@@ -69,7 +73,7 @@ function followup(gp,lp1,gold,raw,allowOriginal=false){
  const controls=[],nulls=[];
  for(let j=0;j<3;j++)for(let quartile=0;quartile<4;quartile++){
   const s=sources[j],lo=Math.floor(quartile*s.P.length/4)+N,hi=Math.floor((quartile+1)*s.P.length/4)-N,opts=s.candidates.filter(c=>c.start>=lo&&c.start<hi);assert(opts.length,"plant candidates");
-  const id=j*4+quartile,random=rng((0x7af53911^Math.imul(id+1,0x9e3779b9))>>>0),c=opts[Math.floor(random()*opts.length)],P=s.P.slice(c.start,c.start+N);
+  const id=j*4+quartile,random=rng((0x49b220ad^Math.imul(id+1,0x9e3779b9))>>>0),c=opts[Math.floor(random()*opts.length)],P=s.P.slice(c.start,c.start+N);
   const other=sources[(j+1)%3],keyStart=Math.floor(random()*(other.P.length-N)),primeStart=Math.floor(random()*3301),q=id%2?8:13;
   const K=Array.from({length:q},()=>Math.floor(random()*29));
   const scenarios=[["period",K],["prime",pk.slice(primeStart,primeStart+N)],["source",other.P.slice(keyStart,keyStart+N)]];
