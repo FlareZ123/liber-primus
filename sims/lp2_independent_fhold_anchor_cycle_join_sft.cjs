@@ -272,12 +272,14 @@ const experiment=function experiment(inputs,selection=null){
  }
  function innerHoldExperiment(selection){
   const [inner,outer]=selection.inner===5?[5,8]:[8,5],chapter=parse(inputs[1].split("%").slice(0,3).join("%")),body=chapter.slice(2);
-  let train=[],n=0;for(const w of body){if(n+w.length>249)break;train.push(w);n+=w.length}
-  const source=fcPair(train,inner,outer);
+  let train=[],n=0;for(const w of body){if(n+w.length>(selection.trainMax??249))break;train.push(w);n+=w.length}
+  let anchorPair=null;
+  if(selection.pairIndex!==undefined){const top=train.map((w,i)=>({i,len:w.length})).sort((a,b)=>b.len-a.len||a.i-b.i).slice(0,6);anchorPair=[top[selection.pairIndex].i,top[5-selection.pairIndex].i]}
+  const source=fcPair(train,inner,outer,anchorPair);
   const targetKeys=source.keys,results=[];
   for(const key of targetKeys){
    const d=fcDecode(train,key,Array.from({length:inner},(_,i)=>i),0,selection.budget??2);
-   if(d.status==="ok")results.push({key,paths:d.states.map(s=>({start:s.start,end:s.a,oov:s.oov,plain:s.plain.flat().map(i=>gp.translit[i]).join("")}))});
+   if(d.status==="ok")results.push({key,paths:d.states.map(s=>{const hold=fcDecode(body.slice(train.length),key,[s.a],n%outer,selection.holdBudget??2);return {start:s.start,end:s.a,oov:s.oov,plain:s.plain.flat().map(i=>gp.translit[i]).join(""),heldout:{status:hold.status,count:hold.states?.length,runecount:body.slice(train.length).flat().length,plain:hold.states?.slice(0,3).map(t=>t.plain.map(w=>w.map(i=>gp.translit[i]).join("")).join(" "))}}})});
    else if(d.status==="cap")results.push({key,status:"cap"});
   }
   const controls=[];
