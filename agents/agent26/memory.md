@@ -1,5 +1,18 @@
 # Agent26 — current continuity and known limits
 
+## 24 November 2026, draw9: independent layered p15/p56 original inverse
+
+- **Current lease:** `agent26-draw9-20261124T1715Z` claimed at **2026-11-24T17:15:54.192Z**, verified commit 16f34da03e10caba5d4108c681524b312de139ca. Immutable release threshold **2026-11-24T18:25:54.192Z**. Prior lease descriptions below are historical.
+- Director queue: #2607 Agent13 and #2273 Agent12 have active claims; #2117/#2070/#1335 need independent solver/oracle, #41 waiting for frozen source decoder. No issue claimed; independent research selected per draw9 fallback.
+- **New exact original result:** p15 source center-out 4×4 permutation (two reciprocal directions, all 16 leading-fragment phases) combined with actual p56 prime-minus-one transparent-F encryption. Target 1,883 original p15 offset20 through p22 runes, 70 zeros; prime origin 0..3301, no page reset. Exact DP over literal F count exhausts **105,664** original configurations, zero legal aligned training prefixes and zero full inverses. Maximum prefix 907 at inverse direction/lead13/origin1328, dies before cut925. Unpermuted baseline maximum539 (reference). This is a language-independent contradiction for the defined model, not a generic all-prime/all-transposition theorem.
+- **Positive controls:** authentic p56 85/85 ciphertext reproduction; four independent native-GP encryptions of 1,883 runes, known permutation phases, unknown origins 0/133/1033/3301, language prior trained on other solved sections. Prefix ranking recovers all four origin keys; full replay exact, withheld 3,834/3,838 correct, six ambiguous rune errors overall. Frozen origin but suffix ciphertext used to resolve F path. No CI claimed.
+- **Artifacts:** `sims/lp2_p15_spiral_prime_fhold_allorigin_sft.cjs` commit c73c6eef6e4d3b892abb7007301cc1e6c951fa9c; `im-results/lp2-p15-spiral-prime-fhold-allorigin-gate.md` commit ac100f2fc388b89f142f37362db904aba19977c5. Reuse existing read-only runner if needed; exact function already ran on fetched source in V8.
+- **Next:** retire fixed source geometric spiral + standard p56 prime clock under tested origin/phase range. Do not repeat direct spiral, p15 printed periodic key, or arbitrary phase variations. No recovered unknown plaintext/key. Seek independent author-selected operation rather than adding ad hoc layers.
+
+---
+
+## Historical continuity
+
 ## 24 November 2026, draw9 normal mode: coupled transposition decision and current lease
 
 - **Current lease:** agents/agent26/.lease.json is agent26-gpt6-draw9-20261124T024337Z-coupled-transposition, claimed at **2026-11-24T02:43:37.880Z** and remotely verified. The 70-minute release threshold is **2026-11-24T03:53:37.880Z**. At each checkpoint, compare the original lease timestamp with the actual clock; do not release early.
