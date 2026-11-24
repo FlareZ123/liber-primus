@@ -21,7 +21,7 @@ The candidate set was committed in [freeze JSON](lp2-p49-typed-field-template-fr
 
 Original p49 last word has six runes. All four frozen templates fail even this necessary condition; their full width vectors also fail. Native p56 and both LP1 source controls reproduce the frozen exact rune strings. The 7-rune LP1 template would also be insufficient by itself for the preselected 26-rune LP1 period recovery gate.
 
-The calibrated LP1 recovery in `sims/lp1_self_revealing_key_control_sft.cjs` uses 26 exact known runes to recover periods 8 and 13, with independent 489- and 293-rune continuation checks. Here there is no admissible aligned crib, so no key fit was performed and the 170-rune posttable holdout was not used. A different authored clause, a nonterminal placement, a change in word boundaries or a different cipher family is not excluded.
+The calibrated LP1 recovery in `sims/lp1_self_revealing_key_control_sft.cjs` uses 26 exact known runes to recover periods 8 and 13, with independent 489- and 293-rune continuation checks. Here there is no admissible aligned crib, so no key fit was performed and the 170-rune posttable holdout was not used. The final-word obstruction also holds under **every segmentation of the fixed source Latin spellings**: exact dynamic programming over GP chart tokens, including NG/ING and IA/IO, gives TO {2}, THIS {3,4}, CPAN {4}, BREAKABLE {8,9}. None includes six. This does not exclude arbitrary phonetic respelling, a different authored clause, a nonterminal placement, changed word boundaries or a different cipher family.
 
 ## Reproduction and next decision
 
