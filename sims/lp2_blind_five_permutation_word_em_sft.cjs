@@ -4,7 +4,7 @@
 // Prefix-only soft fit + hardening. Printed groups are hypothesized word cuts.
 const fs=require("node:fs"),path=require("node:path");
 const files=["resources/liber-primus/lp2-corpus.json","resources/external/relikd-solved-gp29-native-v1.json","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt","resources/control/english_wordfreq_textblob.txt","resources/liber-primus/lp2-transcription.txt"];
-function experiment(gp,solved,literary,wordfreq,transcript,which=0,config={starts:4,iters:35}){
+function experiment(gp,solved,literary,wordfreq,transcript,which=0,config={starts:4,iters:35,discrete:true}){
  const Q=29,K=5,D=Q*Q,check=(v,m)=>{if(!v)throw Error(m)},idx=new Map(gp.runes.map((c,i)=>[c,i])),T=gp.translit;
  const tok=T.map((s,i)=>({s,i})).sort((a,b)=>b.s.length-a.s.length);
  function encode(w){w=w.toUpperCase().replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S");let out=[];for(let i=0;i<w.length;){if(w.startsWith("ING",i)){out.push(21);i+=3}else if(w.startsWith("IO",i)){out.push(27);i+=2}else{const a=tok.find(t=>w.startsWith(t.s,i));check(a,"encode");out.push(a.i);i+=a.s.length}}return out}
@@ -62,10 +62,48 @@ function experiment(gp,solved,literary,wordfreq,transcript,which=0,config={start
  function assignment(cost){const u=new Float64Array(Q+1),v=new Float64Array(Q+1),p=new Int32Array(Q+1),way=new Int32Array(Q+1);for(let i=1;i<=Q;i++){p[0]=i;let j0=0,min=new Float64Array(Q+1).fill(Infinity),used=new Uint8Array(Q+1);do{used[j0]=1;let i0=p[j0],delta=Infinity,j1=0;for(let j=1;j<=Q;j++)if(!used[j]){let a=cost[(i0-1)*Q+j-1]-u[i0]-v[j];if(a<min[j]){min[j]=a;way[j]=j0}if(min[j]<delta){delta=min[j];j1=j}}for(let j=0;j<=Q;j++)if(used[j]){u[p[j]]+=delta;v[j]-=delta}else min[j]-=delta;j0=j1}while(p[j0]);do{let j1=way[j0];p[j0]=p[j1];j0=j1}while(j0)}let a=new Int32Array(Q);for(let j=1;j<=Q;j++)a[p[j]-1]=j-1;return a}
  function harden(M){let H=new Float64Array(D);for(let k=0;k<K;k++){let cost=Float64Array.from(M,(x,i)=>2*K*(H[i]-x)+1);let a=assignment(cost);for(let p=0;p<Q;p++)H[p*Q+a[p]]+=1/K}validate(H,true);return H}
 
+
+ // Exact integer M step for a smoothed bank. Min-cost flow of five units
+ // per row and column with convex separable costs -A*log(eps/Q+(1-eps)*h/5).
+ // Successive shortest augmenting paths include reverse marginal arcs.
+ function flow(A,eps){
+  const V=2*Q+2,S=2*Q,T=S+1,H=new Uint8Array(D),rs=new Uint8Array(Q),cs=new Uint8Array(Q),a=(1-eps)/K,b=eps/Q;
+  const cost=Array.from({length:K},(_,k)=>Float64Array.from(A,v=>-v*Math.log((b+a*(k+1))/(b+a*k))));
+  let obj=0;
+  for(let unit=0;unit<Q*K;unit++){
+   const d=new Float64Array(V).fill(Infinity),prev=new Int16Array(V).fill(-1),inq=new Uint8Array(V),queue=[S];d[S]=0;inq[S]=1;
+   function relax(u,v,w){let t=d[u]+w;if(t<d[v]-1e-10){d[v]=t;prev[v]=u;if(!inq[v]){inq[v]=1;queue.push(v)}}}
+   for(let j=0;j<queue.length;j++){check(j<100000,"negative cycle");let u=queue[j];inq[u]=0;
+    if(u===S){for(let p=0;p<Q;p++)if(rs[p]<K)relax(S,p,0)}
+    else if(u<Q){for(let c=0;c<Q;c++){let k=H[u*Q+c];if(k<K)relax(u,Q+c,cost[k][u*Q+c])}}
+    else if(u<S){let c=u-Q;if(cs[c]<K)relax(u,T,0);for(let p=0;p<Q;p++){let k=H[p*Q+c];if(k)relax(u,p,-cost[k-1][p*Q+c])}}
+   }
+   check(Number.isFinite(d[T]),"flow path");obj+=d[T];let v=T,steps=0;
+   while(v!==S){check(++steps<=V,"flow predecessor");let u=prev[v];check(u>=0,"predecessor");if(v===T)cs[u-Q]++;else if(u===S)rs[v]++;else if(u<Q&&v>=Q)H[u*Q+v-Q]++;else if(u>=Q&&v<Q)H[v*Q+u-Q]--;else throw Error("arc");v=u}
+  }
+  let direct=0;for(let j=0;j<D;j++)for(let k=0;k<H[j];k++)direct+=cost[k][j];check(Math.abs(direct-obj)<1e-5,"flow objective");
+  const M=Float64Array.from(H,v=>v/K);validate(M,true);return M;
+ }
+ function smooth(H,eps){return Float64Array.from(H,x=>(1-eps)*x+eps/Q)}
+ function discreteRefine(H,wn,steps=8){
+  let history=[],best=H,bestLL=filter(H,wn).ll;
+  for(const eps of [.10,.03,.01]){
+   let M=smooth(H,eps),old=penalized(M,filter(M,wn).ll);
+   for(let it=0;it<steps;it++){
+    let counts=filter(M,wn,true).A,N=flow(counts,eps),X=smooth(N,eps),ll=filter(X,wn).ll,val=penalized(X,ll);
+    check(val>=old-1e-6,"discrete EM decreases");
+    const exact=filter(N,wn).ll;if(exact>bestLL){bestLL=exact;best=N}
+    history.push({eps,it,smoothedTrainLLR:(ll+cut*Math.log(Q))/cut,exactTrainLLR:Number.isFinite(exact)?(exact+cut*Math.log(Q))/cut:null});
+    if(val<old+1e-8)break;H=N;M=X;old=val
+   }
+  }
+  return {H:best,history};
+ }
+
  function report(M){let f=filter(M,cw.length,false,true),a=filter(M,wn);return {prefixLLR:(a.ll+cut*Math.log(Q))/cut,heldoutLLR:Number.isFinite(f.ll)?(f.ll-f.prefix+(C.length-cut)*Math.log(Q))/(C.length-cut):null,firstImpossible:f.firstImpossible??null,map:f.path?f.path.map(p=>T[p]).join("").slice(0,300):null,mapCorrect:P&&f.path?f.path.reduce((s,p,i)=>s+(p===P[i]),0):null,heldoutCorrect:P&&f.path?f.path.slice(cut).reduce((s,p,i)=>s+(p===P[cut+i]),0):null,overlap:truth?M.reduce((s,a,i)=>s+(Math.floor(i/Q)>0?Math.min(a,truth[i]):0),0)/(Q-1):null,dictMAP:f.dictMAP}}
  const starts=[];let selected=null,best=-Infinity;for(let s=0;s<config.starts;s++){let r=rng(0x7a79401+11*which+s),M=Float64Array.from(bank(r),v=>.7*v+.3/Q),ll=filter(M,wn).ll,steps=0;
   for(let it=0;it<config.iters;it++){let old=penalized(M,ll),a=filter(M,wn,true),next=balance(a.A),accept=false;for(let k=0;k<12;k++){let t=2**(-k),X=Float64Array.from(M,(v,i)=>v+t*(next[i]-v)),f=filter(X,wn);if(penalized(X,f.ll)>old+1e-7){M=X;ll=f.ll;steps++;accept=true;break}}if(!accept)break}
-  validate(M);let H=harden(M),h=filter(H,wn);starts.push({s,steps,softTrainLLR:(ll+cut*Math.log(Q))/cut,hardTrainLLR:Number.isFinite(h.ll)?(h.ll+cut*Math.log(Q))/cut:null,firstImpossible:h.firstImpossible??null});
+  validate(M);let H=harden(M),h=filter(H,wn);const before=h.ll;let refinement=null;if(config.discrete){let rr=discreteRefine(H,wn);H=rr.H;refinement=rr.history;h=filter(H,wn)}starts.push({s,steps,beforeRefinement:Number.isFinite(before)?(before+cut*Math.log(Q))/cut:null,refinement,softTrainLLR:(ll+cut*Math.log(Q))/cut,hardTrainLLR:Number.isFinite(h.ll)?(h.ll+cut*Math.log(Q))/cut:null,firstImpossible:h.firstImpossible??null});
   if(h.ll>best){best=h.ll;selected=H}
  }
  return {case:which,source:donor?.name??"original",cut,n:C.length,words:cw.length,fitWords:wn,lexicon:lex.size,oovPlantWords:escapes,starts,truth:truth?report(truth):null,selected:selected?report(selected):null,selectedMatrix:selected?Array.from(selected,x=>Math.round(K*x)):null}
