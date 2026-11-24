@@ -13,6 +13,7 @@
   "lexicon": 38906,
   "joinTests": 3,
   "FIT_CAP": 2048,
+  "REACH_CAP": 2000000,
   "calibration": {
     "eligible": 6,
     "eligibleFit": 3,
@@ -44,6 +45,7 @@
           "maskPairs": 1,
           "fitStatus": "cap",
           "fitLegal": 0,
+          "fullReach": null,
           "trueLex": true,
           "trueModelCount": 1,
           "result": null
@@ -73,6 +75,14 @@
           "maskPairs": 1,
           "fitStatus": "complete",
           "fitLegal": 3,
+          "fullReach": {
+            "legal": 0,
+            "cap": 0,
+            "empty": 14,
+            "visits": 1088,
+            "bestWitness": null,
+            "trueFull": null
+          },
           "trueLex": false,
           "trueModelCount": 0,
           "result": {
@@ -118,6 +128,22 @@
           "maskPairs": 4,
           "fitStatus": "complete",
           "fitLegal": 1,
+          "fullReach": {
+            "legal": 1,
+            "cap": 0,
+            "empty": 0,
+            "visits": 1990,
+            "bestWitness": {
+              "a": 28,
+              "b": 5,
+              "d": 11,
+              "anchor": "CIRCUMFERENCEPRACTICES",
+              "score": -2.6847918528883308,
+              "first100": "THELOSSOFDIUINITYTHECIRCUMFERENCEPRACTICESTHREEBEHAUIARSWHICHCAUSETHELOSSOFDIUINITYCONSUMPTIANWECONSUMETOO",
+              "last100": "UERBECOMEATTACHEDTOWHATYOUOWNBEPREPAREDTODESTROYALLTHATYOUOWNANINSTRUCTIANPROGRAMYOURMINDPFAEAYSBXAEGUCC"
+            },
+            "trueFull": "legal"
+          },
           "trueLex": true,
           "trueModelCount": 1,
           "result": {
@@ -157,6 +183,7 @@
           "maskPairs": 1,
           "fitStatus": "cap",
           "fitLegal": 0,
+          "fullReach": null,
           "trueLex": false,
           "trueModelCount": 0,
           "result": null
@@ -180,6 +207,7 @@
           "maskPairs": 1,
           "fitStatus": "cap",
           "fitLegal": 0,
+          "fullReach": null,
           "trueLex": false,
           "trueModelCount": 0,
           "result": null
@@ -203,6 +231,7 @@
           "maskPairs": 2,
           "fitStatus": "cap",
           "fitLegal": 0,
+          "fullReach": null,
           "trueLex": true,
           "trueModelCount": 1,
           "result": null
@@ -226,6 +255,14 @@
           "maskPairs": 2,
           "fitStatus": "complete",
           "fitLegal": 0,
+          "fullReach": {
+            "legal": 0,
+            "cap": 0,
+            "empty": 0,
+            "visits": 0,
+            "bestWitness": null,
+            "trueFull": null
+          },
           "trueLex": false,
           "trueModelCount": 0,
           "result": null
@@ -249,6 +286,7 @@
           "maskPairs": 1,
           "fitStatus": "cap",
           "fitLegal": 0,
+          "fullReach": null,
           "trueLex": true,
           "trueModelCount": 1,
           "result": null
@@ -283,6 +321,22 @@
           "maskPairs": 2,
           "fitStatus": "complete",
           "fitLegal": 1,
+          "fullReach": {
+            "legal": 1,
+            "cap": 0,
+            "empty": 0,
+            "visits": 512,
+            "bestWitness": {
+              "a": 17,
+              "b": 8,
+              "d": 3,
+              "anchor": "PROSPEROUSAPPROBATION",
+              "score": -4.643562615119258,
+              "first100": "PEOYSBEEOFOEHEAEUHINGUFAEEICGJWAULHTHSEHFLIRAOEGDXAENHIJPEACIPYNGBWAEEGCCLTHOFOEAEEOARCMAEAOEEOOEAEAEOHHESMONHSMXIAUYFFUNOL",
+              "last100": "XNGTHAEROJDTHCXNGLCIDEJEDIAMEACEAMEAIADOEOMTXOIOEEELDRLPJDUXNUOAECNLFEAJFNJCTAMFEODFNWIAPEAGBHTHMIANGNOXEAFUTHIAIAOFLEONGWAEDJ"
+            },
+            "trueFull": "legal"
+          },
           "trueLex": true,
           "trueModelCount": 1,
           "result": {
@@ -333,6 +387,22 @@
           "maskPairs": 4,
           "fitStatus": "complete",
           "fitLegal": 1,
+          "fullReach": {
+            "legal": 1,
+            "cap": 0,
+            "empty": 6,
+            "visits": 351,
+            "bestWitness": {
+              "a": 7,
+              "b": 21,
+              "d": 19,
+              "anchor": "OBSCURECONSCIOUSNESS",
+              "score": -4.1133261144828275,
+              "first100": "IAEEAIAXOEGMFSBNGTFTHUIADEAFPIULCJAOEAYIAJTNNGIJMIOWMGJAEBAEEFHOLDSOFTHESOULCOUERSGREATSPIRITUALFACTSANDINSTINCTIUE",
+              "last100": "TEARFHFFTRFXIAAUEOAESFAEAEWNGEAXOETIANGFFFXNALCEOSWIARUEOCTHDGUGRFAETHTAPUAEHPCWYEABLJIPSSIANGIAMTHXMEAEFIAIAPGOOEFYAEFSIAXXSPL"
+            },
+            "trueFull": "legal"
+          },
           "trueLex": true,
           "trueModelCount": 1,
           "result": {
@@ -385,6 +455,7 @@
           "maskPairs": 1,
           "fitStatus": "cap",
           "fitLegal": 0,
+          "fullReach": null,
           "trueLex": null,
           "trueModelCount": 0,
           "result": null
@@ -414,6 +485,14 @@
           "maskPairs": 2,
           "fitStatus": "complete",
           "fitLegal": 52,
+          "fullReach": {
+            "legal": 0,
+            "cap": 0,
+            "empty": 1170,
+            "visits": 10753,
+            "bestWitness": null,
+            "trueFull": null
+          },
           "trueLex": null,
           "trueModelCount": 0,
           "result": {
@@ -454,6 +533,14 @@
           "maskPairs": 4,
           "fitStatus": "complete",
           "fitLegal": 0,
+          "fullReach": {
+            "legal": 0,
+            "cap": 0,
+            "empty": 0,
+            "visits": 0,
+            "bestWitness": null,
+            "trueFull": null
+          },
           "trueLex": null,
           "trueModelCount": 0,
           "result": null
@@ -483,6 +570,14 @@
           "maskPairs": 1,
           "fitStatus": "complete",
           "fitLegal": 0,
+          "fullReach": {
+            "legal": 0,
+            "cap": 0,
+            "empty": 0,
+            "visits": 0,
+            "bestWitness": null,
+            "trueFull": null
+          },
           "trueLex": null,
           "trueModelCount": 0,
           "result": null
@@ -512,6 +607,14 @@
           "maskPairs": 1,
           "fitStatus": "complete",
           "fitLegal": 0,
+          "fullReach": {
+            "legal": 0,
+            "cap": 0,
+            "empty": 0,
+            "visits": 0,
+            "bestWitness": null,
+            "trueFull": null
+          },
           "trueLex": null,
           "trueModelCount": 0,
           "result": null
@@ -541,6 +644,14 @@
           "maskPairs": 1,
           "fitStatus": "complete",
           "fitLegal": 3,
+          "fullReach": {
+            "legal": 0,
+            "cap": 0,
+            "empty": 16,
+            "visits": 832,
+            "bestWitness": null,
+            "trueFull": null
+          },
           "trueLex": null,
           "trueModelCount": 0,
           "result": {
@@ -581,6 +692,14 @@
           "maskPairs": 1,
           "fitStatus": "complete",
           "fitLegal": 0,
+          "fullReach": {
+            "legal": 0,
+            "cap": 0,
+            "empty": 7,
+            "visits": 0,
+            "bestWitness": null,
+            "trueFull": null
+          },
           "trueLex": null,
           "trueModelCount": 0,
           "result": null
@@ -610,6 +729,14 @@
           "maskPairs": 1,
           "fitStatus": "complete",
           "fitLegal": 42,
+          "fullReach": {
+            "legal": 0,
+            "cap": 0,
+            "empty": 255,
+            "visits": 11302,
+            "bestWitness": null,
+            "trueFull": null
+          },
           "trueLex": null,
           "trueModelCount": 0,
           "result": {
@@ -650,6 +777,14 @@
           "maskPairs": 4,
           "fitStatus": "complete",
           "fitLegal": 13,
+          "fullReach": {
+            "legal": 0,
+            "cap": 0,
+            "empty": 169,
+            "visits": 1330,
+            "bestWitness": null,
+            "trueFull": null
+          },
           "trueLex": null,
           "trueModelCount": 0,
           "result": {
