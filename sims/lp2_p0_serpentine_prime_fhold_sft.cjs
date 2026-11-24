@@ -21,7 +21,17 @@ const best=solve(fitRows,q,sign,prefix,model),cont=best?decode(rows.slice(12),q,
 original.push({trim,phase,holds:hs,sign,prefixOrigins:prefix.length,bestPrefix,bestOrigin,full,fit:scoreRec(best,n,fitRows,q,sign),frozenSuffix:cont?scoreRec({...cont,origin:best.k},N-n,rows.slice(12),q,sign):null,retrospective:scoreRec(retro,N,rows,q,sign)})}
 const controls=[];const p56=rune(native.sections.find(s=>s.name==="p56_an_end").source_text),actual56=corpus.pages[56].indices;const e56=enc(p56,[{data:p56,reverse:false}],new Set([0]),1,0)[0].data;if(e56.join()!==actual56.join())throw Error("p56 control");controls.push({name:"authentic p56",correct:85,consumed:p56.filter(x=>x!==0).length});
 for(const [name,phase,holds,sign,origin] of [["0_koan_1",0,[0],1,137],["0_loss_of_divinity",1,[0],-1,911]]){const P=rune(native.sections.find(s=>s.name===name).source_text).slice(0,729),q=new Set(holds),rows=orientedRows(pageLines,0,phase),C=enc(P,rows,q,sign,origin),m=makeModel(name),fit=solve(C.slice(0,12),q,sign,origins,m),suffix=fit?decode(C.slice(12),q,sign,[{...fit,p:[],score:0}],m)[0]:null;const fitR=scoreRec(fit,262,C.slice(0,12),q,sign),sufR=scoreRec(suffix?{...suffix,origin:fit.k}:null,467,C.slice(12),q,sign);controls.push({name,phase,holds,sign,origin,fit:fitR,suffix:sufR,fitCorrect:fit.p.filter((x,i)=>x===P[i]).length,suffixCorrect:suffix.p.filter((x,i)=>x===P[262+i]).length});}
-return {lengths:pageLines.map(p=>p.map(r=>r.length)),original,controls};
+function visitOrder(rows,full,shift,model){
+const C=rows.flatMap(r=>r.reverse?[...r.data].reverse():r.data);let best=null,total=0;
+for(const f of full){const memo=new Map();
+function count(i,k){if(i===C.length)return 1n;const id=i*5000+k;if(memo.has(id))return memo.get(id);let v=0n,c=C[i],p=(c+shift[k])%29;if(c===0)v+=count(i+1,k);if(p!==0)v+=count(i+1,k+1);memo.set(id,v);return v}
+if(count(0,f.origin).toString()!==f.paths)throw Error("count discrepancy");
+const tape=[];function walk(i,k){if(i===C.length){total++;let a=29,b=29,v=0;for(const p of tape){v+=model[a*30+b][p];a=b;b=p}v/=tape.length;if(!best||v>best.score)best={score:v,origin:f.origin,plaintextGP:tape.slice()};return}const c=C[i],p=(c+shift[k])%29;if(c===0&&count(i+1,k)>0n){tape.push(0);walk(i+1,k);tape.pop()}if(p!==0&&count(i+1,k+1)>0n){tape.push(p);walk(i+1,k+1);tape.pop()}}
+walk(0,f.origin)}
+return {total,...best};
+}
+const visitedReading=original.filter(m=>m.full.length).map(m=>({trim:m.trim,phase:m.phase,...visitOrder(orientedRows(pageLines,m.trim,m.phase),m.full,shift,model)}));
+return {lengths:pageLines.map(p=>p.map(r=>r.length)),original,controls,visitedReading};
 }
 const corpus = JSON.parse(fs.readFileSync('resources/liber-primus/lp2-corpus.json','utf8'));
 const source = fs.readFileSync('resources/liber-primus/lp2-transcription.txt','utf8');

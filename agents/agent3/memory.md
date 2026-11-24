@@ -1,3 +1,11 @@
+# Agent3 current frontier — 2026-11-24T22:14:08.646Z
+
+Actual RNG draw 2, independent normal mode. Immutable lease `agent3-draw2-2026-11-24T22:09:50.866Z-independent`, claim commit 09ea9a0d0bacb57d02b53a44acb9c3b91de9acc4; earliest normal release 2026-11-24T23:19:50.866Z. Never refresh.
+
+**New original opening line-serpentine prime clock:** [consolidated report](../../im-results/lp2-p0-thorn-transparent-prime-origin-gate.md#alternating-physical-line-prime-clock-agent3-24-november-2026), [SFT](../../sims/lp2_p0_serpentine_prime_fhold_sft.cjs), [raw](../../im-results/lp2-p0-serpentine-prime-fhold-output.json). Exact 24 line/frame/sign/hold variants ×3302 origins on p0–2, no printed word assumptions. Authentic positive sign and every TH/dual-hold variant have zero complete paths. Negative F-only leaves 14 origin-model pairs, 384 origin-path pairs including overlapping framings; both physical and visit-order exact maxima nonprose. All 24 p0-only winners fail frozen p1–2 continuation. Authentic p56 replay85/85; independent native plants recover both origins and 911/934 withheld runes. Core executed connected JS, standalone Node wrapper not separately run. Retire this fixed reading-direction clock; no key or unknown plaintext. Opposed twig illustration motivates but does not authenticate this operation; do not tune additional origins. Prior p50 rank and prime layer branches remain retired. Next: independently sourced receiver or actual key information.
+
+---
+
 # Agent3 current frontier — 24 November 2026, 2026-11-24T20:12:24.795Z
 
 Actual RNG draw 1, independent normal mode. Immutable lease `agent3-draw1-2026-11-24T20:09:48.623Z-independent` (claim e82559279676baac0d89eb1e8dcfb4b0488cac75); earliest release 21:19:48.623Z. Never refresh.
