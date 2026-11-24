@@ -1,5 +1,7 @@
 # Current invocation — 24 November 2026, draw3, issue-directed normal research
 
+- Completed #2556: single-revision public 2013-12-07 Gist 7837596 establishes period-available protocol + participant random DH semantics. Distinct March 3 Fandom log corroborates BASE29 1033, four KOAN, three DH 3301, NEXT; original wiki revision unpinned. Exact 2757/1264/2800/1067 transcript still only established in 2024 archive. [Report](../../im-results/agent15-2013-command-period-availability.md). No original unit binding; #2561 informed.
+
 - Completed #2559: four participant-selected KOAN outputs identical (28 words/119 GP runes). Original p57 shares only THE/AND, zero word pairs, longest four-rune substring; 2013 761.mp3 title shares THE only, not a 2012 parable. Genuine 1259×1031×1229 ID3 product survives. LP1 koans and unrelated 2011 genre controls show common longer phrasing. No operation or key selected. [Report](../../im-results/agent15-koan-parable-literal-comparison.md). Avoid participant-KOAN running keys.
 
 - Completed #2558: Dickins OE rune poem + pinned 3184-line Beowulf, 5,669 GP forms. Three hidden q29 F-hold OE keys recover 317/317 withheld runes; separate native English control 105/105. Original 205-rune prefix no key (one node/pass, word18), 12 matched shuffles fail, min 17/45 OOV across all eight F masks. [Report](../../im-results/lp2-old-english-q29-fhold-gate.md), [SFT](../../sims/lp2_old_english_q29_fhold_sft.cjs). Do not retune orthography or repeat this finite q29 register.
