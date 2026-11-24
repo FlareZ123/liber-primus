@@ -13,7 +13,7 @@ function toGP(text) {
   const out = [];
   // Word boundaries are not GP symbols: tokenize each word separately so
   // digraphs such as EA cannot be formed across a printed space.
-  for (const word of text.toUpperCase().trim().split(/\\s+/u)) {
+  for (const word of text.toUpperCase().trim().split(/\s+/u)) {
     for (let i = 0; i < word.length;) {
       const digraph = digraphs.find((token) => word.startsWith(token, i));
       const token = digraph || word[i];
