@@ -58,4 +58,32 @@ From repository root:
 
 Python requires NumPy (local execution used 2.3.5). Exact feasibility ran on connector-fetched canonical data in V8; the language experiments used an exact compact transfer of the 308 original rune indices and all 2,979 solved native runes into the local Python runtime, with original byte-index SHA256 `0c8d7017fd43b681a9e6400cfa863875e354600877775ef84f2e73fcc10a19a3`. The repository entry points read the canonical source directly. No CI run claimed.
 
-**Next decision:** q13 p0–2 is a genuinely feasible scope under native support. Its complete prefix/suffix key search is a higher-value target than broadening q8. Distinguish the q13 capped regions from the exact five infeasible ones. No authenticated LP2 affine row selector is available; a fit without independent continuation is not a solution.
+**Decision after q13 follow-through:** both surviving q13 regions fail prospective original prediction; full retrospective p0–2 maximization is also nonprose. See the following calibrated and exhaustive results.
+
+## q13: prospective inverse on both remaining feasible chapters
+
+Replace depth-first clock truncation by a 512-path beam ranked by independent row unigram maxima. At each zero, enumerate legal hold/consume branches; keep the exact row support mask, using float32 only for beam ordering. At the end retain 32 clocks, reconstruct every row domain exactly, use the cyclic trigram DP below 150 million estimated operations, otherwise use the previously calibrated coordinate optimizer. This is a **finite** clock/key ranking algorithm. On p54 there are only eight legal prefix clocks, so clock selection is exhaustive; row ranking there is heuristic.
+
+| Target-excluded plant | Fit/hold | Exact rows | Exact fitting runes | Exact withheld runes |
+|---|---:|---:|---:|---:|
+| First KOAN, opening-length | 528/201 | 13/13 | 526/528 | 201/201 |
+| LOSS OF DIVINITY, opening-length | 528/201 | 13/13 | 528/528 | 201/201 |
+| WELCOME, final-length | 232/76 | 13/13 | 232/232 | 76/76 |
+| First KOAN, final-length | 232/76 | 13/13 | 232/232 | 76/76 |
+| LOSS OF DIVINITY, final-length | 232/76 | 13/13 | 227/232 | 76/76 |
+
+Five distinct seeded q13 keys, all 65 rows exact, all 630 withheld runes exact. The controls' suffix nats/rune are −2.707090, −2.663965, −2.550517, −2.319554, −2.859049. All complete decoded paths replay. Original **p0–1→p2** (528/201) selects the 32-clock exact row maximum −4.3190667662 nats/rune; no legal frozen continuation exists. Original **p54→p55** (232/76) ranks all eight legal prefix clocks by finite coordinate optimization, best −3.7586082302; no legal frozen continuation. Both fitting outputs are nonprose and replay exactly. No selection on withheld data.
+
+## Exhaustive retrospective q13 opening chapter inverse
+
+A compiled 812-bitset DFS completed the full 729-rune chapter without a cap: **12,484,453 nodes, 536 legal clocks, 1,028,184 key-clock assignments** (sum of independent domain products; not necessarily unique keys). Every leaf's domain was reconstructed independently, and all 536 exact cyclic objective maxima were scored with forward replay. Max estimated DP operation count per leaf 580; small domains make exact ranking inexpensive. Best five clock maxima, nats/rune: −4.7237947060, −4.7261704150, −4.7264173289, −4.7282416824, −4.7296077390. Best row pairs: [(12,1),(13,7),(22,11),(4,27),(28,25),(21,0),(28,22),(27,20),(28,12),(24,23),(6,27),(22,27),(5,24)]. Its literal GP rendering begins `GNEADMDAFBSUEAEAPAELIASXMMLIYPWTXXSESUNGLTSTHTLJEGJHBI...` and does not form connected prose. This consumes all original p0–2 for retrospective inference; it is **not** a held-out prediction and does not prove every lower-scoring text is non-English.
+
+The prospective failures and full q13 opening objective maximum retire these fixed native-register affine inverses as practical routes absent a new independent clue. This is not a universal all-language exclusion. Two capped q13 long regions remain unknown at this checkpoint. No source-selected affine row key or unknown plaintext recovered.
+
+Additional reproducibility:
+- `python sims/lp2_chapter_private_affine_q13.py . --original` (opening)
+- `python sims/lp2_chapter_private_affine_q13.py . --final --original` (final)
+- `g++ -O3 -std=c++17 sims/lp2_chapter_private_affine_q13_enumerate.cpp -o affine_enumerate`
+- `python sims/lp2_chapter_private_affine_q13_full.py . ./affine_enumerate`
+
+The executed local compact opening fixture came from the exact canonical rune tape and singleton positions. Repository wrappers load the same data directly.

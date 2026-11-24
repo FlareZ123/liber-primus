@@ -48,4 +48,4 @@ This is stronger than additive Vigenere exclusion: no secret per-phase GP29 bije
 
 Reproduce from repository root: `node sims/lp2_periodic_permutation_fhold_spectral_sft.cjs`. Full raw certificate summaries are in `results.json` adjacent to this report. Source data: existing canonical LP2, nine solved GP29 sections and pinned control texts.
 
-**Subsequent chapter-private affine extension:** the separate [exact clock and inverse study](../lp2-chapter-private-affine-fhold.md) rejects eight q8 and five q13 chapters under GP27 plus intact A/I singletons; two q13 searches capped. The p54 q8 exact prefix-MAP inverse has no legal p55 continuation. This does not exclude all chapter-private arbitrary permutations.
+**Subsequent chapter-private affine extension:** the separate [exact clock and inverse study](../lp2-chapter-private-affine-fhold.md) rejects eight q8 and five q13 chapters under GP27 plus intact A/I singletons; two q13 searches capped. The p54 q8/q13 and opening q13 predictive inverses have no legal frozen continuation; exhaustive p0–2 q13 retrospective optimization is nonprose. This does not exclude all chapter-private arbitrary permutations.
