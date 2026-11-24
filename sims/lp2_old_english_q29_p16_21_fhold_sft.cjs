@@ -20,7 +20,7 @@ for(const w of [...P,...B]){const p=token(w);assert(p.length<32,'word too long')
 const flat=x=>x.flat(),n=x=>flat(x).length;
 const pages=trans.split('%').map(s=>(s.match(/[\u16a0-\u16ff]+/g)||[]).map(w=>Array.from(w,x=>map.get(x))));
 assert(pages.length===57,'page segment count');
-const orig=pages.slice(0,56);
+const orig=pages.slice(0,56).flat();
 assert(String(flat(orig))===String(gp.pages.flatMap(p=>p.indices)),'exact full original parse');
 const fit=pages.slice(16,20).flat(),hold=pages.slice(20,22).flat(),target=fit.concat(hold);
 assert(fit.length===290&&n(fit)===1071,'frozen p16-19 fit');
