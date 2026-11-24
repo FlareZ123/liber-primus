@@ -21,5 +21,5 @@ jobs:
             --output "$RUNNER_TEMP/tcp-server.asc"
       - name: Hash the five exact objects with the three 512-bit candidates
         env:
-          TCP_SOURCE_PATH: \${{ runner.temp }}/tcp-server.asc
+          TCP_SOURCE_PATH: ${{ runner.temp }}/tcp-server.asc
         run: node sims/lp2_p56_2013_next_response_source_512bit_gate.cjs
