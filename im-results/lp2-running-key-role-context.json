@@ -1,0 +1,104 @@
+{
+  "nativeTraining": [
+    "0_welcome",
+    "0_warning",
+    "0_wisdom",
+    "jpg107-167",
+    "jpg229"
+  ],
+  "genericTrainingWords": [
+    36014,
+    48655
+  ],
+  "holdoutGibranWords": 12383,
+  "results": [
+    {
+      "idx": 0,
+      "name": "KOAN1-A",
+      "n": 97,
+      "baselineCorrect": 56,
+      "newCorrect": 89,
+      "baselineTruthGap": -15.988781692841087,
+      "newTruthGapVsBaseline": 51.15322210578705,
+      "newTruthGapVsNew": -7.749678093960597,
+      "truthNormalized": -3.6156814811540756,
+      "uniformNormalized": -4.301551185112527,
+      "negativeCorrect": 16
+    },
+    {
+      "idx": 1,
+      "name": "KOAN1-B",
+      "n": 96,
+      "baselineCorrect": 59,
+      "newCorrect": 67,
+      "baselineTruthGap": -21.089655672587014,
+      "newTruthGapVsBaseline": 9.06016703871444,
+      "newTruthGapVsNew": -18.25633702249155,
+      "truthNormalized": -3.949208409038872,
+      "uniformNormalized": -4.224163541474244,
+      "negativeCorrect": 10
+    },
+    {
+      "idx": 2,
+      "name": "p56",
+      "n": 85,
+      "baselineCorrect": 45,
+      "newCorrect": 63,
+      "baselineTruthGap": -42.24898462910983,
+      "newTruthGapVsBaseline": -11.813088497883996,
+      "newTruthGapVsNew": -32.34971190017029,
+      "truthNormalized": -4.203369354869044,
+      "uniformNormalized": -4.290100210135442,
+      "negativeCorrect": 4
+    },
+    {
+      "idx": 3,
+      "name": "p57",
+      "n": 95,
+      "baselineCorrect": 56,
+      "newCorrect": 79,
+      "baselineTruthGap": -30.70685273161149,
+      "newTruthGapVsBaseline": 26.535429767385608,
+      "newTruthGapVsNew": -14.571136034710207,
+      "truthNormalized": -3.8232716577607713,
+      "uniformNormalized": -4.2302769070444315,
+      "negativeCorrect": 11
+    },
+    {
+      "idx": 4,
+      "name": "Gibran-A",
+      "n": 97,
+      "baselineCorrect": 83,
+      "newCorrect": 94,
+      "baselineTruthGap": -11.376132175731016,
+      "newTruthGapVsBaseline": 10.664301717474302,
+      "newTruthGapVsNew": -6.2369888819154085,
+      "truthNormalized": -3.649788783017463,
+      "uniformNormalized": -4.142162556916707,
+      "negativeCorrect": 8
+    },
+    {
+      "idx": 5,
+      "name": "Gibran-B",
+      "n": 96,
+      "baselineCorrect": 63,
+      "newCorrect": 75,
+      "baselineTruthGap": -49.715579269790055,
+      "newTruthGapVsBaseline": -22.53575843881032,
+      "newTruthGapVsNew": -49.33257164535132,
+      "truthNormalized": -4.108191390598532,
+      "uniformNormalized": -4.262236641310624,
+      "negativeCorrect": 5
+    }
+  ],
+  "total": 566,
+  "old": 362,
+  "neu": 467,
+  "gate": {
+    "truthOutranks": 4,
+    "exact": 0,
+    "improvement": 0.1855123674911661,
+    "falsePos": 1,
+    "pass": false
+  }
+}
