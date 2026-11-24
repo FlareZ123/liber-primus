@@ -236,6 +236,28 @@ A direct original-cipher two-chapter **shared additive pad cancellation** was ch
 
 Reproduction: [original p7-p8-p39 cross-root SFT](../sims/lp2_p7_p39_root24_crosschapter_original_sft.cjs), read-only Windows11 Node22; [Windows CI PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45079887123). The separate p39-only Fourier model was already tested in [prior p39 original-source SFT](../sims/lp2_red_root7_fourier_original_inverse.cjs), and is not counted as a new inverse.
 
+
+## All-secret 7×7 affine inverse: exact projective-matroid histogram bound (Agent46)
+
+The seven-channel source geometry can be tested without a circulant restriction, a known key, or intact word boundaries. Write the inverse on each complete group as `P[g,t]=b[t]+sum_j A[t,j] C[g,j] mod 29`, where A is any invertible 7×7 matrix, and b arbitrary. Use both adjacent groups of seven and seven contiguous lanes of 247; train on the first 160 complete groups and hold out 87. In the lane geometry this is a strided split. The physical numeral 7 is not a rune.
+
+For any nonzero projective row k, its training weight is the ordered collision count `w(k)=sum_a n_a(n_a-1)` of its projection across 160 groups. Scaling k or applying any fixed bijection to the projected symbols preserves w. Enumerate every normalized projective row, **616,067,011**, and find the maximum-weight linearly independent basis by matroid greedy. Streaming greedy on the union of the current basis and each new element is exact: a maximum basis preserves the rank of each weight-superlevel set, so merging local bases also preserves the optimum. Thus the sum of seven row weights is an exact upper bound, attained by an invertible matrix; this is not a heuristic random-key sample.
+
+| Test | Exact maximum mean row IoC | Selected fit IoC | Held native trigram LLR/rune |
+|---|---:|---:|---:|
+| Adjacent original | 0.0505952380952 (9010 pairs) | 0.0460017969452 | -1.83660744789 |
+| Lane original | 0.0512915543576 (9134 pairs) | 0.0462713387242 | -1.8149731755 |
+| Adjacent native plant | 0.0618019745537 | 0.0618019745537 | +0.601682153165 |
+| Lane native plant | 0.0617142857143 | 0.0605170068027 | +0.661961443168 |
+
+The native corpus's 1,860 matched adjacent windows have minimum mean conditional row IoC **0.0594676549865**; its 1,251 strided seven-lane windows have minimum **0.0594115004492**. They are overlapping finite reference windows with artificial section joins, not a theorem about all possible English. Both original maxima are below every corresponding reference window.
+
+The separate actual key-recovery procedure takes the top 4,096 collision directions, ranks all 812 affine choices with donor-excluded language models, selects seven independent directions by likelihood, and for adjacent groups optimizes the top16 row affines/order with a subset DP on bigram seams. For lanes, disconnected row segments leave a global row-order ambiguity; score-ranked order is frozen, and true-row matching is used only for reporting planted accuracy. Independent arbitrary-matrix plants (MT19937 seeds 460740/460741) recover all 49 coefficients and seven biases in each control, ordered exactly for adjacent groups (567/567 held runes), and up to row permutation for lanes (483/483 row-matched; 32/483 in the frozen raw order). Both recover all seven true directions, whereas maximum collision basis alone selects only four true lane rows. Original candidates are nonlinguistic and reencode exactly; reencoding alone is not evidence of decipherment.
+
+This rejects fixed invertible seven-channel affine mixing under the measured native-reference condition, even with arbitrary constant per-row output bijections. It also covers an ordinary physical period-seven additive layer on either side of an adjacent-group matrix; physical phase offsets varying within a lane are not covered by constant per-lane offsets. Changing matrix, nonlinear mixing, different register, and different grouping remain open. No authentic LP2 plaintext or key recovered.
+
+Reproduction: [C++17/OpenMP all-secret affine search](../sims/lp2_p7_affine7_matroid_ioc.cpp), same [exact source loader](../sims/lp2_p7_circulant7_ioc_input.cjs). Executed all four original/plant runs locally with GCC14.2, AVX2, four threads; source commit aaf3cb2febc6d681b64eb2c7f6e62e344824257c, source FNV117042715. No Windows Actions claim.
+
 ## Decision
 
 Retain the **seven-state source-derived cycle** as a serious *provisional operation/key-selection clue*, distinct from the older p7 GF3 242-cycle and the fitted p7 GF4/radix59 255-state pad. A plausible 2014 human path starts with five visibly marked red coefficient words, recognizes p8's red fixed-point outputs, iterates the resulting polynomial, and notices the subsequent seven-page tree section. The strongest weakness is the absence of a printed **iteration, seed, seven-state emission, or butterfly receiver instruction**. The 2|2|1 red sequence and the original printed7 phase yield concrete, discriminating secondary clues, with documented alternatives and direct inverse negatives. Do not promote the seven-cycle to actual encryption or run more unconstrained key phases until the original artwork or archived first-party text selects an operation. The real next decision is whether the manuscript supplies one previously unnoticed seven-element consumer capable of predicting untouched original data.
