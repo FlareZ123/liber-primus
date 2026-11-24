@@ -1,0 +1,73 @@
+{
+  "model": "GP chart prime-code XOR; independent trigram forward marginal, subtract log legal pair count; prefix48/suffix28; 46 offsets; original gated on >=3/4 true alignments and >=3/4 half-plaintext recoveries",
+  "trainRunes": 217106,
+  "gatePassed": false,
+  "original": null,
+  "controls": [
+    {
+      "off": 7,
+      "train": -6.515767593954237,
+      "heldout": -6.5086742839810325,
+      "bestScore": -2.1999703223186047,
+      "rankTrue": 1,
+      "margin": 4.276550455401662,
+      "A": "CAPILERENOFMYLOOSONDWALLTHLOFCIUNGMYETLESINTHECORLANNOTUSYOUALFTHEOFHIMSELFWHITHTH",
+      "B": "EDHEARDSAYSOFTHECONTHATERSCOUCESEEXCUTTHYCILLSANDIDERFEEDIDDSEARCOMTHEMWITHOUTSHAL",
+      "trueTrain": -6.515767593954237,
+      "trueHeldout": -6.5086742839810325,
+      "actualOffset": 7,
+      "matchedA": 22,
+      "matchedB": 22,
+      "correctAlignment": true
+    },
+    {
+      "off": 19,
+      "train": -6.603024104387995,
+      "heldout": -6.125620784917215,
+      "bestScore": -2.117620374261006,
+      "rankTrue": 1,
+      "margin": 4.687460089342096,
+      "A": "RYMOUREINTHECOMORSTISEOFMETHECTIANTHROMOTHERMURMURHISTOHEAUEWHICHTHEREISNOTSOMEWHAT",
+      "B": "THATIMTHERTODSDHILLTHATSTRIUNGBEEROMPAUEOFACTIANININTHISCEDNEANDTHENSHALLICOMETOYOU",
+      "trueTrain": -6.603024104387995,
+      "trueHeldout": -6.125620784917215,
+      "actualOffset": 19,
+      "matchedA": 16,
+      "matchedB": 16,
+      "correctAlignment": true
+    },
+    {
+      "off": 31,
+      "train": -6.50474625045609,
+      "heldout": -6.395668718196419,
+      "bestScore": -2.1121939442800124,
+      "rankTrue": 1,
+      "margin": 14.250333436853339,
+      "A": "STHEREISPROPEREDWOJESTORIALEDEMNELFNOTHEWERYMINDMUSTCNOWTHEWHENTLESTSTRATIANSELFM",
+      "B": "HISHEARTREMAINLYCNOBIDFOODNOTBEGRATHALLNOTSPEACHISDEEPERSECNGHEILLCONFORITANDWH",
+      "trueTrain": -6.50474625045609,
+      "trueHeldout": -6.395668718196419,
+      "actualOffset": 31,
+      "matchedA": 17,
+      "matchedB": 17,
+      "correctAlignment": true
+    },
+    {
+      "off": 43,
+      "train": -6.477934598505693,
+      "heldout": -6.326172732196549,
+      "bestScore": -2.0822234604836187,
+      "rankTrue": 1,
+      "margin": 11.368160643705437,
+      "A": "SHEMURDBYANDCALOUGHTSPARENSECOUGHTHEMALLWITHANDBEFACTIANANDTHEYLIUEAGAINTOTHEMINC",
+      "B": "DSPERGAIRFIRSTMACOMBANDUSHITHTHEDINHIMWHENHEENTISENBUTADAYINTHEIRCITYANDSHEHAIN",
+      "trueTrain": -6.477934598505693,
+      "trueHeldout": -6.326172732196549,
+      "actualOffset": 43,
+      "matchedA": 17,
+      "matchedB": 17,
+      "correctAlignment": true
+    }
+  ],
+  "nulls": []
+}
