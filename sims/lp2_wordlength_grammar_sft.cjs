@@ -14,7 +14,7 @@ const root = path.resolve(__dirname, "..");
 const read = (file) => fs.readFileSync(path.join(root, file), "utf8");
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const runes = new Set(corpus.runes);
-const originalText = read("resources/liber-primus/lp2-transcription.txt")
+const originalText = read("resources/transcriptions/lp2-image-corrected.txt")
   .split("%").slice(0, 55).join("%");
 const original = [];
 let indexPage = 0;
@@ -41,7 +41,7 @@ for (const letter of originalText) {
 finish();
 assert.equal(runeCount, 12956);
 assert.equal(original.length, 2896);
-assert.equal(original.filter((w) => w.punct).length, 175);
+assert.equal(original.filter((w) => w.punct).length, 173);
 assert.equal(indexPage, 54);
 const physical = (n) => n >= 50 ? n + 1 : n;
 const bounds = [0, 3, 8, 15, 23, 27, 33, 40, 54, 56];
@@ -235,7 +235,7 @@ const result = {
   sentenceControls: []
 };
 assert.ok(Math.abs(result.original.adjacency.observed - 0.012156) < 0.00001);
-assert.ok(Math.abs(result.original.sentence.observed - 0.001468) < 0.00001);
+assert.ok(Math.abs(result.original.sentence.observed - 0.00147962) < 0.00001);
 for (const [name, predicate] of [
   ["physical p0-39", (w) => physical(w.page) < 40],
   ["physical p40-55", (w) => physical(w.page) >= 40]

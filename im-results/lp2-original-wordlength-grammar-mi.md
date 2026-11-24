@@ -4,9 +4,9 @@
 
 ## Why this changes the next decipherment decision
 
-A classical one-rune-for-one-rune substitution or Vigenère of *ordinarily ordered natural-language prose*, preserving exactly the original word boundaries, necessarily preserves the plaintext's ordered **word lengths** and the relationship between lengths and sentence starts/ends. The original unsolved pages have 2,896 printed words, 12,956 runes, nine visual chapters, and 175 periods, yet all tested length-order and sentence-role grammar effects resemble length-preserving random permutations.
+A classical one-rune-for-one-rune substitution or Vigenère of *ordinarily ordered natural-language prose*, preserving exactly the original word boundaries, necessarily preserves the plaintext's ordered **word lengths** and the relationship between lengths and sentence starts/ends. The original unsolved pages have 2,896 printed words, 12,956 runes, nine visual chapters, and 173 image-corrected periods, yet all tested length-order and sentence-role grammar effects resemble length-preserving random permutations.
 
-The parser uses original `resources/liber-primus/lp2-transcription.txt` plus the 29-rune alphabet in `resources/liber-primus/lp2-corpus.json`. Physical page boundaries (`%`) and line wrapping (`/`) never end an ongoing rune word; punctuation and printed word separators do. Each page-spanning word is counted once. Original physical page 50 holds only a numerical grid.
+The parser uses `resources/transcriptions/lp2-image-corrected.txt` plus the 29-rune alphabet in `resources/liber-primus/lp2-corpus.json`. Physical page boundaries (`%`) and line wrapping (`/`) never end an ongoing rune word; punctuation and printed word separators do. Each page-spanning word is counted once. Original physical page 50 holds only a numerical grid.
 
 ## Language-independent adjacency MI
 
@@ -20,7 +20,7 @@ Clip word lengths to 1–8/9+, compute plug-in **I(length_previous ; length_curr
 
 The whole-book and two distinct original-page parts show **no detectable natural-language-like word-length dependence**.
 
-The identical method applied to **116 disjoint independent literary windows of 2,896 words**, each against its own 200 seed-fixed shuffles, *does* detect the grammar. Registers are Latin Vulgate GP-normalized 13 windows (minimum z +6.251, median +9.033), Old English Beowulf GP 3 windows (+2.829, +4.196), Gibran raw Latin 5 (+14.677, +18.626), Gibran GP 5 (+16.151, +20.791), Shakespeare raw 19 (+6.198, +8.849), Shakespeare GP 19 (+5.565, +8.529), Emerson raw 26 (+13.612, +21.850), Emerson GP 26 (+10.226, +15.914). Every source-native ordered window has **z > +2.8**. English GP length conversion uses the previously source-fixed maximal labels, including `ING` and the GP digraphs; raw Latin retains A–Z lengths. Latin and Old English reference sources were independently recorded in `resources/control/`.
+The identical method applied to **116 register-window evaluations of 2,896 words (66 distinct source passages)**, each against its own 200 seed-fixed shuffles, *does* detect the grammar. Registers are Latin Vulgate GP-normalized 13 windows (minimum z +6.251, median +9.033), Old English Beowulf GP 3 windows (+2.829, +4.196), Gibran raw Latin 5 (+14.677, +18.626), Gibran GP 5 (+16.151, +20.791), Shakespeare raw 19 (+6.198, +8.849), Shakespeare GP 19 (+5.565, +8.529), Emerson raw 26 (+13.612, +21.850), Emerson GP 26 (+10.226, +15.914). Every evaluated ordered window has **z > +2.8**. Raw and GP variants of the same passage are paired. Donor windows are shuffled as one segment, whereas LP2 is shuffled within nine chapters; this is a finite diagnostic, not a general proof of absent grammar. English GP length conversion uses the previously source-fixed maximal labels, including `ING` and the GP digraphs; raw Latin retains A–Z lengths. Latin and Old English reference sources were independently recorded in `resources/control/`.
 
 ## Punctuation-conditioned independent grammar
 
@@ -28,11 +28,13 @@ A second mutual-information test measures word length against one of three *sent
 
 | Original input | Observed role MI | Null mean | z | Upper-tail p |
 | --- | ---: | ---: | ---: | ---: |
-| **2,896 words, 175 stops** | **0.001468** | **0.002823** | **−1.371** | **0.939** |
-| pp0–39, 130 stops | 0.002470 | 0.003713 | −0.881 | 0.8192 |
-| pp40–55, 45 stops | 0.012526 | 0.011733 | +0.209 | 0.3996 |
+| **2,896 words, 173 stops** | **0.001480** | **0.002823** | **−1.365** | **0.938031** |
+| pp0–39, 129 stops | 0.002540 | 0.003725 | −0.835 | 0.800200 |
+| pp40–55, 44 stops | 0.011039 | 0.011783 | −0.195 | 0.544456 |
 
-In 100 separately tested 2,896-word windows from English controls, the punctuation/length association is strong even when using GP conversion: all window z scores exceed **+9.8** (Gibran raw/GP minimum +24.944/+25.393, Shakespeare +13.768/+12.267, Emerson +9.830/+13.385; 150 window-specific length shuffles). Controls contain 104–212 punctuation stops per window, overlapping the original's 175.
+The 24 November Critic recomputation uses the original SFT statistic, xorshift shuffles, seeds and trial counts (2,000 whole-book, 1,000 per part) on both pinned sources. Two punctuation flags change at zero-based groups 414 and 2162. The legacy whole-book MI 0.0014681943 (z −1.370600, p 0.939030) is historical; the corrected negative is unchanged. The adjacency statistic is identical because lengths and chapters are unchanged.
+
+In 100 register-window evaluations (50 underlying passages) from English controls, the punctuation/length association is strong even when using GP conversion: all window z scores exceed **+9.8** (Gibran raw/GP minimum +24.944/+25.393, Shakespeare +13.768/+12.267, Emerson +9.830/+13.385; 150 window-specific length shuffles). Controls contain 104–212 punctuation stops per window, overlapping the original's 173.
 
 ## Doubled-plaintext-rune escape: original word-order gate (14 November 2026)
 
@@ -136,6 +138,6 @@ The new exact word-checksum capacity limit excludes a direct word-local GP29 ind
 
 One source-motivated complete-word permutation has now been tested and retired: the six followers of the p28-selected THE positions in the signed 2016 message (PATH, DEVOTED, WAY, MAP, ROAD, DIRECTION) were mapped through the canonical GP29 prime table and used as an ascending six-column key. The global inverse does not restore adjacency or punctuation grammar; see [the six-word columnar gate](lp2-signed2016-sixword-primecolumnar-original-gate.md). This rejects that fixed global interpretation, not every possible word permutation.
 
-The next operation must be a **different independently selected reversible permutation of complete printed words** beyond the source-grid 8/32 fixed-lane family, or a **variable-length transport/register model** whose encoding deterministically accounts for *all* 2,896 boundaries, 175 stops and 12,956 rune symbols. Such a decoder must be chosen by visible original art, historical Cicada operations, or signed directions **before** scoring its output, and must predict held-out chapters. A postselected word shuffle, dictionary fit or language-based boundary repair is not a solution. For an original plaintext language or constrained literature unlike the five registered source corpora, supply an independent control first.
+The next operation must be a **different independently selected reversible permutation of complete printed words** beyond the source-grid 8/32 fixed-lane family, or a **variable-length transport/register model** whose encoding deterministically accounts for *all* 2,896 boundaries, 173 stops and 12,956 rune symbols. Such a decoder must be chosen by visible original art, historical Cicada operations, or signed directions **before** scoring its output, and must predict held-out chapters. A postselected word shuffle, dictionary fit or language-based boundary repair is not a solution. For an original plaintext language or constrained literature unlike the five registered source corpora, supply an independent control first.
 
 The test does not disprove deliberately length-balanced prose, other languages/genres, spellings or contractions, a cipher that changes displayed word lengths, or natural plaintext reordered before printing. It supplies no recovered key and no original-message inverse. It is a source-only, finite statistical architecture constraint that narrows rational next attacks.
