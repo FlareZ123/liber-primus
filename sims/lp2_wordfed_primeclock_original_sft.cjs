@@ -68,3 +68,21 @@ function localWordExperiment(j,s,reference){
  }return out;
 }
 console.log(JSON.stringify(localWordExperiment(JSON.parse(read("lp2-corpus.json")),read("lp2-transcription.txt"),read("lp1-plaintext-reference.txt")),null,2));
+
+function selfOffsetGate(j,s){
+ const words=(s.split("%").slice(0,55).join("").replace(/[\/\r\n]/g,"").match(new RegExp("["+j.runes.join("")+"]+","gu"))||[]).map(w=>[...w].map(r=>j.runes.indexOf(r)));
+ const single=new Set(words.filter(w=>w.length===1).map(w=>w[0]));
+ if(single.size!==28||words.length!==2896)throw Error("source mismatch");
+ const primes=[];for(let n=2;primes.length<13200;n++)if(primes.every(p=>p*p>n||n%p!==0))primes.push(n);
+ const mod=x=>(x%29+29)%29,out=[];
+ for(const weight of ["prime","ordinal"])for(const hold of [true,false]){
+ const wt=weight==="prime"?j.prime:j.prime.map((_,i)=>i),survivors=[],bestOffsets=[];let best=0;
+ for(let b=-1;b<=12956;b++){
+ const image=new Set(wt.map((w,i)=>hold&&i===0?0:mod(i+primes[Math.max(0,b+w)]-1)));
+ const count=[...single].filter(x=>image.has(x)).length;
+ if(count>best){best=count;bestOffsets.length=0;}if(count===best)bestOffsets.push(b);
+ if(count===single.size)survivors.push(b);
+ }out.push({weight,hold,best,bestOffsets,survivors});
+ }return out;
+}
+console.log(JSON.stringify(selfOffsetGate(JSON.parse(read("lp2-corpus.json")),read("lp2-transcription.txt")),null,2));

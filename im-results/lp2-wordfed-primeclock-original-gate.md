@@ -42,6 +42,19 @@ A simpler human-solvable alternative dispenses with prior plaintext state: the c
 
 No candidate from any self-keyed arm matches a >=4-rune word in the solved reference, despite allowing multiple alternatives. The exact self-keyed obstruction is independent of language, and independent of any book-level secret or restart. It assumes the published complete-word segmentation and the frozen sum/index/prime shift law. The adjacent visible-word variants omit the one book endpoint whose necessary neighbor is absent. These alternatives exhaust the immediate placement choices for the same numerical prime-clock mechanism, not every possible word-conditioned cipher.
 
+### Exact shared-offset recovery gate
+
+The 83 original singleton words use 28 distinct GP29 ciphertext runes (only index 5 is absent). For a self-keyed word prime clock with any **shared** additional prime-index offset b, a one-rune plaintext x must produce C=x+prime[max(0,b+weight(x))]−1 mod29 (or C=0 for transparent F). Consequently every one of the 28 observed values must occur among the 29 possible outputs, independently of plaintext language. Directly exhaust b from −1 through 12,956 inclusive, covering all offsets from the initial one-based convention through the full original rune count. The following maxima are exact, not estimated:
+
+| Weight | F mode | Maximum covered original singleton values | Best offsets | Complete survivors |
+|---|---|---:|---|---:|
+| prime | hold | 25/28 | 723 | 0 |
+| prime | ordinary | 24/28 | 723, 1747, 1945, 4674 | 0 |
+| ordinal | hold | 24/28 | 5164, 6925, 6926, 10986 | 0 |
+| ordinal | ordinary | 24/28 | 1016, 5709, 6925, 6926, 8441, 9479 | 0 |
+
+No shared offset in this bounded 12,958-state domain survives the actual original singleton set. This is an inexpensive key-recovery gate: only a complete survivor would justify testing longer words. It does not exclude offsets outside that domain, a changing offset, or a different self-keying mechanism. More generally, deterministic position-independent encryption of a complete one-rune word cannot generate 28 distinct outputs from fewer than 28 distinct plaintext one-rune words, regardless of the key, although that separate language-dependent constraint requires an assumed plaintext register.
+
 ## Reproduce
 
 `node sims/lp2_wordfed_primeclock_original_sft.cjs` from repository root. Executed in V8 on exact remotely fetched corpus, transcription and solved reference on 2026-11-24. Source paths: `resources/liber-primus/lp2-corpus.json`, `lp2-transcription.txt`, `lp1-plaintext-reference.txt`. All output metrics are computed from those files. No workflow or new dependencies required. No unknown plaintext, authentic new key, or destination recovered.
