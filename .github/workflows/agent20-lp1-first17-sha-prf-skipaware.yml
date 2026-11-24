@@ -17,7 +17,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.11"
 
       - name: Install bounded analysis dependencies
         run: |
@@ -28,6 +28,35 @@ jobs:
         run: |
           git clone --filter=blob:none --no-checkout https://github.com/Dukotah/cicada3301.git /tmp/cicada3301
           git -C /tmp/cicada3301 checkout f63501d8f2d835b80c30230eb89a1110fb9197d2
+
+      - name: Supply deterministic wrong-key control omitted from pinned decoder checkout
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f /tmp/cicada3301/liber-primus/analysis/campaign18_skip/sweep.py
+          test -f /tmp/cicada3301/liber-primus/analysis/campaign18_skip/skipdecode.py
+          test -f /tmp/cicada3301/liber-primus/data/english_quadgrams.txt
+          test -f /tmp/cicada3301/liber-primus/data/keys/self_reliance.txt
+          test -f /tmp/cicada3301/liber-primus/data/keys/solved_plaintext.txt
+          python - <<'PY'
+          from pathlib import Path
+          import random
+          tokens = [
+              "F", "U", "TH", "O", "R", "C", "G", "W", "H", "N", "I", "J",
+              "EO", "P", "X", "S", "T", "B", "E", "M", "L", "NG", "OE",
+              "D", "A", "AE", "Y", "IA", "EA",
+          ]
+          rng = random.Random(0x33013301)
+          target = Path("/tmp/cicada3301/liber-primus/data/keys/mabinogion.txt")
+          target.parent.mkdir(parents=True, exist_ok=True)
+          target.write_text(
+              "# synthetic wrong-key control only; not historical Mabinogion text\\n"
+              + " ".join(rng.choice(tokens) for _ in range(12000))
+              + "\\n",
+              encoding="ascii",
+          )
+          print(f"synthetic_wrong_key_control={target}; GP tokens=12000; seed=0x33013301")
+          PY
 
       - name: Run LP1 first17 derived-key test
         run: |
