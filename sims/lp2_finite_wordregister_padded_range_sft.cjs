@@ -45,8 +45,7 @@ const table=limits.map(N=>({N:String(N),
   canonical:vals.filter(x=>x.canonical<N).length,
   adaptiveBE:vals.filter(x=>x.minimum<N).length,
   adaptiveLE:vals.filter(x=>x.revminimum<N).length,
-  either:vals.filter(x=>min(x.minimum,x.revminimum)<N).length,
-  oneBasedEither:vals.filter(x=>min(x.minimum,x.revminimum)<=N && (x.minimum>0n||x.revminimum>0n)).length}));
+  either:vals.filter(x=>min(x.minimum,x.revminimum)<N).length}));
 assert.deepEqual(table.map(x=>x.either),[1258,1258,1258,1766,1766,2084,2340,2711,2896]);
 assert.equal(vals.filter(x=>x.canonical>=1n<<64n).length,3);
 console.table(table);
