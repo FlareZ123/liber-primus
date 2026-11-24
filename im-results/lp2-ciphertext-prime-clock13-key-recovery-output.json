@@ -1,0 +1,812 @@
+{
+  "whole": {
+    "lo": 0,
+    "hi": 12956,
+    "singletons": 83,
+    "bad": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "bad3": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ]
+  },
+  "gates": [
+    {
+      "pages": [
+        0,
+        2
+      ],
+      "lo": 0,
+      "hi": 729,
+      "singletons": 5,
+      "bad": [],
+      "bad3": [],
+      "frequency": {
+        "max": [
+          58,
+          104,
+          142
+        ],
+        "controls": 79,
+        "mins": [
+          92,
+          162,
+          217
+        ],
+        "survivors": []
+      }
+    },
+    {
+      "pages": [
+        3,
+        7
+      ],
+      "lo": 729,
+      "hi": 1874,
+      "singletons": 8,
+      "bad": [
+        10
+      ],
+      "bad3": [
+        10
+      ]
+    },
+    {
+      "pages": [
+        8,
+        14
+      ],
+      "lo": 1874,
+      "hi": 3603,
+      "singletons": 11,
+      "bad": [
+        5,
+        10,
+        11
+      ],
+      "bad3": [
+        5,
+        10,
+        11
+      ]
+    },
+    {
+      "pages": [
+        15,
+        22
+      ],
+      "lo": 3603,
+      "hi": 5506,
+      "singletons": 18,
+      "bad": [
+        1,
+        3,
+        8,
+        9,
+        11,
+        12
+      ],
+      "bad3": [
+        1,
+        3,
+        8,
+        9,
+        11,
+        12
+      ]
+    },
+    {
+      "pages": [
+        23,
+        27
+      ],
+      "lo": 5506,
+      "hi": 6761,
+      "singletons": 6,
+      "bad": [
+        12
+      ],
+      "bad3": [
+        12
+      ]
+    },
+    {
+      "pages": [
+        28,
+        32
+      ],
+      "lo": 6761,
+      "hi": 7960,
+      "singletons": 11,
+      "bad": [
+        0,
+        12
+      ],
+      "bad3": [
+        12
+      ]
+    },
+    {
+      "pages": [
+        33,
+        39
+      ],
+      "lo": 7960,
+      "hi": 9640,
+      "singletons": 9,
+      "bad": [
+        3,
+        8
+      ],
+      "bad3": [
+        3,
+        8
+      ]
+    },
+    {
+      "pages": [
+        40,
+        53
+      ],
+      "lo": 9640,
+      "hi": 12648,
+      "singletons": 13,
+      "bad": [
+        6,
+        9
+      ],
+      "bad3": [
+        6,
+        9
+      ]
+    },
+    {
+      "pages": [
+        54,
+        55
+      ],
+      "lo": 12648,
+      "hi": 12956,
+      "singletons": 2,
+      "bad": [],
+      "bad3": [],
+      "frequency": {
+        "max": [
+          38,
+          60,
+          80
+        ],
+        "controls": 1141,
+        "mins": [
+          30,
+          56,
+          80
+        ],
+        "survivors": [
+          {
+            "si": 1,
+            "i": 25,
+            "top": [
+              30,
+              56,
+              80
+            ]
+          },
+          {
+            "si": 1,
+            "i": 26,
+            "top": [
+              30,
+              56,
+              80
+            ]
+          },
+          {
+            "si": 1,
+            "i": 27,
+            "top": [
+              30,
+              56,
+              80
+            ]
+          },
+          {
+            "si": 1,
+            "i": 28,
+            "top": [
+              30,
+              56,
+              80
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "lexicon": 28673,
+  "controls": [
+    {
+      "section": 1,
+      "anchors": [
+        [
+          0,
+          6,
+          168
+        ],
+        [
+          29,
+          6,
+          38
+        ],
+        [
+          104,
+          7,
+          8
+        ],
+        [
+          146,
+          6,
+          2
+        ],
+        [
+          168,
+          7,
+          10
+        ],
+        [
+          181,
+          6,
+          14
+        ],
+        [
+          193,
+          8,
+          45
+        ],
+        [
+          209,
+          6,
+          408
+        ]
+      ],
+      "checks": 301,
+      "joins": 19,
+      "candidates": 345,
+      "top": [
+        {
+          "k": [
+            3,
+            21,
+            24,
+            12,
+            14,
+            1,
+            2,
+            18,
+            8,
+            16,
+            5,
+            27,
+            0
+          ],
+          "s": -271.4642425274783
+        }
+      ],
+      "train": {
+        "nats": -2.885621735032234,
+        "hits": 56,
+        "words": 57,
+        "long": 26,
+        "longRunes": 148
+      },
+      "hold": {
+        "nats": -2.6260827152775876,
+        "hits": 17,
+        "words": 17,
+        "long": 7,
+        "longRunes": 50,
+        "text": "DISCOUER AN END TO SELF IT IS THROUGH THIS PILGRIMAGE THAT WE SHAPE OURSELUES AND OUR REALITIES",
+        "raw": "DISCOUERANENDTOSELFITISTHROUGHTHISPILGRIMAGETHATWESHAPEOURSELUESANDOURREALITIESJ"
+      },
+      "expected": {
+        "k": [
+          3,
+          21,
+          24,
+          12,
+          14,
+          1,
+          2,
+          18,
+          8,
+          16,
+          5,
+          27,
+          0
+        ],
+        "keyExact": true,
+        "prefixExact": 232,
+        "holdExact": 76,
+        "truthHoldNats": -2.6260827152775876
+      },
+      "replay": true
+    },
+    {
+      "section": 3,
+      "anchors": [
+        [
+          32,
+          6,
+          67
+        ],
+        [
+          119,
+          6,
+          10
+        ],
+        [
+          221,
+          6,
+          29
+        ]
+      ],
+      "checks": 0,
+      "joins": 0,
+      "candidates": 65,
+      "top": [
+        {
+          "k": [
+            28,
+            0,
+            5,
+            12,
+            7,
+            19,
+            4,
+            1,
+            8,
+            23,
+            9,
+            14,
+            17
+          ],
+          "s": -172.63322665582768
+        },
+        {
+          "k": [
+            13,
+            0,
+            19,
+            12,
+            12,
+            6,
+            25,
+            18,
+            19,
+            8,
+            23,
+            9,
+            19
+          ],
+          "s": -730.6344836746865
+        }
+      ],
+      "train": {
+        "nats": -2.425143218344085,
+        "hits": 67,
+        "words": 67,
+        "long": 26,
+        "longRunes": 132
+      },
+      "hold": {
+        "nats": -2.5944342036164216,
+        "hits": 20,
+        "words": 20,
+        "long": 6,
+        "longRunes": 37,
+        "text": "AND REPLIED I AM A PROFESSOR THAT IS WHAT YOU DO NOT WHAT YOU ARE REPLIED THE MASTER WHO ARE",
+        "raw": "OMENTANDREPLIEDIAMAPROFESSORTHATISWHATYOUDONOTWHATYOUAREREPLIEDTHEMASTERWHOARE"
+      },
+      "expected": {
+        "k": [
+          28,
+          0,
+          5,
+          12,
+          7,
+          19,
+          4,
+          1,
+          8,
+          23,
+          9,
+          14,
+          17
+        ],
+        "keyExact": true,
+        "prefixExact": 232,
+        "holdExact": 76,
+        "truthHoldNats": -2.5944342036164216
+      },
+      "replay": true
+    },
+    {
+      "section": 4,
+      "anchors": [
+        [
+          8,
+          7,
+          180
+        ],
+        [
+          18,
+          8,
+          1
+        ],
+        [
+          31,
+          8,
+          93
+        ],
+        [
+          44,
+          6,
+          1
+        ],
+        [
+          78,
+          6,
+          1
+        ],
+        [
+          104,
+          7,
+          4715
+        ],
+        [
+          132,
+          6,
+          4616
+        ],
+        [
+          181,
+          6,
+          4616
+        ]
+      ],
+      "checks": 274,
+      "joins": 802,
+      "candidates": 12880,
+      "top": [
+        {
+          "k": [
+            1,
+            6,
+            21,
+            5,
+            27,
+            11,
+            9,
+            3,
+            20,
+            24,
+            4,
+            28,
+            16
+          ],
+          "s": -348.7054506139672
+        }
+      ],
+      "train": {
+        "nats": -3.0547648733360653,
+        "hits": 52,
+        "words": 54,
+        "long": 27,
+        "longRunes": 159
+      },
+      "hold": {
+        "nats": -3.225850749405326,
+        "hits": 16,
+        "words": 16,
+        "long": 9,
+        "longRunes": 53,
+        "text": "LATER TO OBTAIN WHAT WE NEED MOST THNGS ARE NOT WORTH CONSUMNG PRESERUATIAN WE PRESERUE THNGS",
+        "raw": "NOUGHLATERTOOBTAINWHATWENEEDMOSTTHNGSARENOTWORTHCONSUMNGPRESERUATIANWEPRESERUETHNGS"
+      },
+      "expected": {
+        "k": [
+          1,
+          6,
+          21,
+          5,
+          27,
+          11,
+          9,
+          3,
+          20,
+          24,
+          4,
+          28,
+          16
+        ],
+        "keyExact": true,
+        "prefixExact": 232,
+        "holdExact": 76,
+        "truthHoldNats": -3.225850749405326
+      },
+      "replay": true
+    },
+    {
+      "section": 5,
+      "anchors": [
+        [
+          18,
+          6,
+          13
+        ],
+        [
+          24,
+          7,
+          1
+        ],
+        [
+          52,
+          8,
+          1
+        ],
+        [
+          83,
+          6,
+          2
+        ],
+        [
+          222,
+          6,
+          2
+        ]
+      ],
+      "checks": 2,
+      "joins": 2,
+      "candidates": 74,
+      "top": [
+        {
+          "k": [
+            13,
+            2,
+            25,
+            0,
+            6,
+            19,
+            17,
+            23,
+            8,
+            4,
+            21,
+            15,
+            3
+          ],
+          "s": -247.64696844936327
+        }
+      ],
+      "train": {
+        "nats": -2.6277886571093245,
+        "hits": 64,
+        "words": 64,
+        "long": 30,
+        "longRunes": 166
+      },
+      "hold": {
+        "nats": -2.629421810817122,
+        "hits": 21,
+        "words": 21,
+        "long": 9,
+        "longRunes": 42,
+        "text": "AND SAID THE UOICE THAT JUST SAID YOU HAUE NO UOICE IN YOUR HEAD IS THE I AND THE STUDENTS WERE",
+        "raw": "TUDENTANDSAIDTHEUOICETHATJUSTSAIDYOUHAUENOUOICEINYOURHEADISTHEIANDTHESTUDENTSWERE"
+      },
+      "expected": {
+        "k": [
+          13,
+          2,
+          25,
+          0,
+          6,
+          19,
+          17,
+          23,
+          8,
+          4,
+          21,
+          15,
+          3
+        ],
+        "keyExact": true,
+        "prefixExact": 232,
+        "holdExact": 76,
+        "truthHoldNats": -2.629421810817122
+      },
+      "replay": true
+    }
+  ],
+  "original": {
+    "anchors": [
+      [
+        9,
+        8,
+        212
+      ],
+      [
+        20,
+        6,
+        4616
+      ],
+      [
+        60,
+        6,
+        0
+      ],
+      [
+        86,
+        6,
+        0
+      ],
+      [
+        145,
+        6,
+        200
+      ],
+      [
+        159,
+        6,
+        0
+      ],
+      [
+        176,
+        6,
+        1
+      ],
+      [
+        210,
+        8,
+        0
+      ]
+    ],
+    "checks": 837,
+    "joins": 0,
+    "candidates": 65,
+    "top": [
+      {
+        "k": [
+          0,
+          22,
+          4,
+          27,
+          9,
+          12,
+          14,
+          27,
+          26,
+          25,
+          2,
+          26,
+          26
+        ],
+        "s": -760.6273996646424
+      },
+      {
+        "k": [
+          0,
+          0,
+          0,
+          10,
+          4,
+          25,
+          16,
+          27,
+          15,
+          0,
+          11,
+          26,
+          10
+        ],
+        "s": -762.5549258703163
+      },
+      {
+        "k": [
+          0,
+          19,
+          9,
+          14,
+          21,
+          25,
+          28,
+          12,
+          0,
+          26,
+          4,
+          26,
+          26
+        ],
+        "s": -768.477093536007
+      },
+      {
+        "k": [
+          14,
+          22,
+          4,
+          7,
+          20,
+          16,
+          10,
+          0,
+          28,
+          4,
+          19,
+          26,
+          26
+        ],
+        "s": -768.913098028576
+      },
+      {
+        "k": [
+          14,
+          19,
+          28,
+          26,
+          20,
+          1,
+          28,
+          26,
+          9,
+          12,
+          18,
+          26,
+          17
+        ],
+        "s": -768.9815117950099
+      }
+    ],
+    "train": {
+      "nats": -3.4078767226924245,
+      "hits": 9,
+      "words": 49,
+      "long": 0,
+      "longRunes": 0
+    },
+    "hold": {
+      "nats": -3.673137179612192,
+      "hits": 1,
+      "words": 16,
+      "long": 0,
+      "longRunes": 0,
+      "text": "JNGXX BL COE OIANYFNG OCSSLT JF BOWTPNGCHTINGIAT OEGJFEAIA LJFW XOE THLIARNGIS AEBOBCLO BAE WUPMLF UXEA BOEP",
+      "raw": "NJNGXXBLCOEOIANYFNGOCSSLTJFBOWTPNGCHTINGIATOEGJFEAIALJFWXOETHLIARNGISAEBOBCLOBAEWUPMLFUXEABOEP"
+    },
+    "expected": null,
+    "replay": true
+  }
+}
