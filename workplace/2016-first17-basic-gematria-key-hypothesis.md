@@ -1,6 +1,6 @@
 # Original LP1 first17 → LP2 basic-gematria repeating-key test
 
-**Status: exact source-rune and numeric-stream candidates tested against the unchanged original LP2 ciphertext; neither yields recovered plaintext.** Historical first17→last57 was an independent 2016 solver hypothesis, *not* a signed Cicada decryption instruction. Its direct executable forms are now reproducible; key phase and decoder direction were not tuned to an English outcome.
+**Status: exact source-rune, numeric-stream and GP-prime-value candidates tested against the unchanged original LP2 ciphertext; none yields recovered plaintext.** Historical first17→last57 was an independent 2016 solver hypothesis, *not* a signed Cicada decryption instruction. Its direct executable forms are now reproducible; key phase and decoder direction were not tuned to an English outcome.
 
 ## Historical premise and source
 
@@ -17,6 +17,12 @@ The historical source transforms were applied independently to all seven origina
 
 A historical repeated-key `Shift.mutate` subtraction is the primary receiver. Its historically documented reverse shift (addition) is the sole competing direction. Both begin at key offset0 and run continuously across LP2 p0–56, including page boundaries, with **no tuned starting offset, rotations, alphabet, or page-specific exceptions**.
 
+## Prime-value reading of “basic gematria” (Agent20, 24 November 2026)
+
+A further fixed interpretation maps each recovered first17 rune to its actual Gematria Primus prime value modulo29, rather than to its zero-based rune index. The original 29 prime values (2 through109) are the natural “basic gematria” reading in this context. The continuous phase-zero key was tested in both shift directions over original LP2 p0–p56, with and without the 39 printed decimal tokens inserted modulo29. All four outputs remain at the random 29-symbol IoC baseline (0.034479554–0.034508354); p56 matches only 2–4 of 85 runes. Each of the four planted 85-rune inversions recovered exactly, confirming the implementation. See [the full report and reproduction](../im-results/lp1-first17-gp-prime-value-basic-gematria-gate.md) and [manual SFT run 45382150278](https://github.com/FlareZ123/liber-primus/actions/runs/45382150278).
+
+**Decision update:** direct repeating-key GP29 shifts from first17 now have negative results for both zero-based rune indices and actual GP prime values, with the printed-number variants also negative. The 2016 chat still does not select an alternative serialization or byte-to-GP operation; do not continue unconstrained phase/remapping searches. This does not test the full 560.17 byte stream as an XOR input or exclude every first17→last57 mechanism.
+
 ## Original-input decision
 
 | Frozen key | Shift | LP2 unknown p0–55 IOC | LP2 p16–21 IOC | Unseen LP2 p40–53 IOC |
@@ -30,6 +36,6 @@ For comparison, flat 29-way monograms have expected IOC near **1/29 ≈ 0.034483
 
 [One-command exact source reproducer](../sims/lp1_first17_native_and_numeric_gpkey_lp2_inverse_sft.cjs): `node sims/lp1_first17_native_and_numeric_gpkey_lp2_inverse_sft.cjs` (Node22, read-only, original inputs). It reports source-key SHA256, full/holdout IOC, positive inversion, and p56 exact-character agreement.
 
-**Decision:** retire the *direct repeating GP29 key made from every first17 printed rune or every rune-plus-integer-mod29*, both historical shift signs. This does **not** reject the broad first17→last57 premise: the 2016 chat never specifies that direct operation, an encoded numeric representation other than idkfa integer reduction, or whether the two original matrices should define a separate transformation. Future work must first obtain an independently source-selected such operation and an untouched full-page prediction, rather than adding arbitrary key phases, numeric interpretations or ciphers.
+**Decision:** retire the *direct repeating GP29 key* interpretations tested here: every first17 printed rune as a zero-based index, the same stream with printed integers reduced mod29, every rune as its GP prime value mod29, and that prime-valued stream with the printed integers inserted; both historical shift signs are negative. This does **not** reject the broad first17→last57 premise or bytewise XOR with the full 560.17 object. The 2016 chat does not specify a complete operation, serialization, clock or receiver. Future work must first obtain an independently source-selected operation and an untouched full-page prediction, rather than adding arbitrary key phases, numeric interpretations or ciphers.
 
 Earlier exploratory plaintext-only serializations from 14 partial sections (3,313/3,608 glyphs), paired-matrix Hill inverses, and matrix-element direct modulo29 keys also failed; those are narrower and must not be mistaken for this completed exact original-rune test.
