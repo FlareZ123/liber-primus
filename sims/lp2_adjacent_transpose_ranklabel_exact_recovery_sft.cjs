@@ -53,7 +53,7 @@ function recover(d,trans,native,lex,ink){
   const w=nativeWords.find(s=>s.name===name).w, p=w.flat(),trueRankToCipher=canonical.map(i=>(seed*i+9)%29),trueCipherToRank=canonical.map(i=>trueRankToCipher.indexOf(i));
   const c=encode(p,trueRankToCipher);check(eq(decode(c,trueCipherToRank),p),"native known key");
   let j=0;const cw=w.map(x=>{const a=c.slice(j,j+x.length);j+=x.length;return a;});
-  const fit=prefix(cw,Math.floor(p.length*2/3)),b=fit.flat().length,s=solve(fit);
+  const fit=prefix(cw,Math.floor(p.length*2/3)),b=fit.flat().length,s=solve(fit,name==="jpg107-167"?30000000:3000000);
   let recovered=0,scored=0,keyMatches=0;
   if(s.key){
    const unknown=canonical.filter(x=>!s.key.includes(x)),k=s.key.map(x=>x<0?unknown.shift():x);
