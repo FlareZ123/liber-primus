@@ -134,6 +134,18 @@ Older Agent36 invocations explored p7 Roman19, source red q4/e3, p6 red11 source
 
 Original 164,301-character append-only agent memory from through 21 November retained byte-for-byte in [historical archived memory](history-through-2026-11-21.md). That archive is important for nuanced past reports and continuity; this file is the compact current frontier and is overwritten/consolidated as evidence changes.
 
+## 2012 book-code to p55 transfer gate (23 November 2026)
+
+A bounded cross-round test used the exact 2012 first-image OutGuess book-code payload, its 76 line:character coordinates, and the phrase “CALL US AT US TELE PHONE NUMBER TWO ONE FOUR THREE NINE OH NINE SIX OH EIGHT.” The phrase is 75 GP29 tokens when TH is one rune (59 letter-runes + 16 spaces), while LP2 p55 has 76 page runes including one carry-in and a 75-rune body.
+
+- Phrase-as-75-symbol GP29 pad: all 29 constant space mappings and both additive signs leave the first decrypted word fixed at LAMT or UXUIA; reject this direct Vigenère/OTP consumer.
+- Literal phone digits 2143909608 as a repeating GP29 key, forward/reversed and both signs: no coherent word stream.
+- Coordinate-derived pad: nine elementary line/character transforms, 0-/1-based origins, both signs, and all 29 space mappings; no exact match to either 75-rune body or 76-rune full-page alignment. Best partial agreement 9/75 and 7/76 after 1,044 comparisons per alignment; not significant after selection.
+- The same phone number as OutGuess 0.4 password was tested on all 58 original LP2 JPEGs with the repository's source-faithful outguess_extract.py and outguess_bitmap_dump.c. Authentic LP1 image00/image08 default-key controls pass. All 58 LP2 headers are source-forced; the 54 completed outputs share decoded header 9566a29b (seed 26261, length 39842), are high-entropy/nonrecognizable, and share the same first 32 bytes; archive images 31,49,73,74 hit zero skip modulus. LP2 p55 is archive image72 and yields no payload.
+- Reproduction: SFT at sims/2012_bookcode_p55_transfer_sft.py; consolidated source note at im-results/2012-first-image-payload-reproduction-and-lp2-transfer-decision.md.
+
+These results close only the explicit direct consumers and the literal phone-number OutGuess password. Do not expand into numeric password dictionaries, arbitrary coordinate encodings, or broad key searches without new first-party evidence. The 75-token phrase remains an unresolved crib, not plaintext; #2278's boundary-changing-reader investigation is the only justified continuation of that candidate.
+
 ## Immediate priorities
 
 1. A new *authentic source-selected operation* enabling a genuine p8–p9 or p7→p8 cipher inverse and entire original word recovery. Any proposed solution must directly predict withheld source ciphertext/GP prose.
