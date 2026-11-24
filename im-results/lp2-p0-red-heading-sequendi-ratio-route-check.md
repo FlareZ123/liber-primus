@@ -317,6 +317,31 @@ Retire the direct use of these five fixed keys as continuous repeating additive 
 
 **Reproducer:** \`sims/lp2_p0_title_key_body_vigenere_sft.cjs\`.
 
+
+## 13-column transposition using the conditional title (Agent17, 24 November 2026)
+
+**Decision:** bounded negative for the direct 13-column columnar-transposition interpretation; no plaintext recovered.
+
+### Why this was a reasonable test
+
+The conditional title has 13 GP symbols and is followed by the original 13-dot marker. The source-selected p0–p2 body has 716 runes, exactly 13 × 55 + 1. A solver could therefore try the title as a 13-column transposition key without inventing a new key length. The 27 × 27 span and the 13-rune heading are the only inputs used to select this test.
+
+### Exact test
+
+The reproducer uses the unchanged 716-rune body after the 13-rune p0 heading. It ranks the 13 title symbols in two natural ways: ordinary Latin alphabetical order and the actual GP29 alphabet order. Duplicate symbols are kept stable left-to-right. For each ordering it tests the key-order column read and its inverse, plus the reversed readout direction: eight fixed variants total.
+
+The rectangle is 56 rows by 13 columns, with the first column containing 56 symbols and the remaining twelve containing 55. No extra phase, padding symbol, word-boundary manipulation, or fitted column order is introduced.
+
+Each candidate is scored with character-trigram models built from the repository's Latin Caesar Book I control and English Shakespeare control. A deterministic 5,000-permutation null is generated for each transposition direction; empirical tail probabilities measure whether the title-derived column order is more language-like than arbitrary column orders.
+
+### Result
+
+No candidate is enriched against its matching random-order null. The best English tail probability is **0.1146** (Latin-alphabet reversed column read); the best Latin tail probability is **0.3419** (GP29-order reversed column read). All eight outputs remain nonlinguistic. The best candidate is not a statistically discriminating result, and the direction/order choices do not identify plaintext.
+
+This rejects the simple 13-column transfer of the conditional title under the two natural alphabet orderings and both readout directions. It does not reject the title construction or every possible transposition; do not continue by fitting arbitrary column orders or padding conventions without a new independent clue.
+
+**Reproducer:** \`sims/lp2_p0_title_columnar_transposition_sft.cjs\`.
+
 ## Current decision
 
 The strongest current chain is:
@@ -331,7 +356,7 @@ The strongest current chain is:
 8. the older MAP route independently lands on the same geometry;
 9. source-English GP orthography yields 8+4=12 runes and sums 105+71=176, breaking the source counts and recurrence; the direct Latin-letter register yields exactly 8+5=13 and preserves the full numerical architecture.
 
-The raw 13-rune construction is now substantially more constrained and internally self-consistent, but it remains conditional on the equal-rune/equal-radius geometry rule. The direct repeating-key use of the candidate title and its two derived key nodes on the selected 716-rune body has now also failed: both additive signs leave all five fixed key interpretations at near-uniform GP29 IoC. This rejects that simple body-key transfer, not the title construction or every possible downstream operation. An external Latin control would strengthen the register interpretation, and a prospective untouched-cipher consequence is still required before calling the title established plaintext.
+The raw 13-rune construction is now substantially more constrained and internally self-consistent, but it remains conditional on the equal-rune/equal-radius geometry rule. Two simple body transfers have now failed on the selected 716-rune p0–p2 span: the candidate title and its two derived nodes as repeating additive GP29 keys, and the candidate title as a 13-column transposition key under Latin and GP29 orderings. The latter has no enrichment against 5,000 random column orders (best empirical tail p=0.1146). These negatives reject only the tested direct transfers, not the title construction or every possible downstream operation. An external Latin control would strengthen the register interpretation, and a prospective untouched-cipher consequence is still required before calling the title established plaintext.
 
 ## Reproduction
 

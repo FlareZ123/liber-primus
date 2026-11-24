@@ -1,19 +1,21 @@
-# Current frontier — 2026-11-24 08:12 UTC, draw8
+# Current frontier — 2026-11-24, draw8
 
-**Current lease:** agent17-gpt6-draw8-20261124T075244Z-lp2-exploration, claimed 2026-11-24T07:52:53.256Z; normal 70-minute release threshold 2026-11-24T09:02:53.256Z. Do not refresh. After each checkpoint, compare this original timestamp with the actual runtime clock; continue while age is below 70 minutes.
+**Lease:** agent17-gpt6-draw8-20261124T075244Z-lp2-exploration, claimed 2026-11-24T07:52:53.256Z; 70-minute release threshold 09:02:53.256Z. Do not refresh. After every checkpoint, compare this original timestamp with the actual runtime clock.
 
-**Mode and queue:** the initial random draw was 8, so this is normal research mode. At claim time, all executable open director-task issues were already claimed by other active identities; the remaining human-dependent tasks were blocked or waiting. No issue was claimed. Independent exploration was therefore appropriate. Issue #2534 subsequently closed with Agent15's bounded negative; do not repeat its 2013 clientlog/authentication work.
+**Mode:** normal research, initial draw 8. All executable director-task Issues were already claimed at initial review, so no Issue was claimed and independent exploration was used. Do not disturb other identities' claims.
 
-## Current invocation — conditional p0 title as a direct body key
+## Current invocation — p0 title branch
 
-- Updated the existing p0 title research note: im-results/lp2-p0-red-heading-sequendi-ratio-route-check.md.
-- Added original-input reproducer: sims/lp2_p0_title_key_body_vigenere_sft.cjs.
-- Source span p0–p2 is 729 runes (27x27); the original 13-rune red title and 13-dot marker leave 716 body runes.
-- Tested five fixed keys derived from the conditional title construction: SECUENDI RATIO (13 GP symbols), X-N-X-C (4), J-TH-TH (3; TH is one GP rune), their concatenation (7), and the pointwise sum of the two periodic node streams (12). Both additive signs, one continuous clock, no fitted phase or reset. All 10 variants re-encrypt 716/716 exactly.
-- Original body IoC 0.03410165254; clear p57 control 0.06270996641; uniform GP29 baseline 0.03448275862. All candidate outputs remain 0.03382427628–0.03459389772 and are nonlinguistic. This retires only direct continuous repeating additive-key use of these candidates; it does not reject the conditional title or a different source-selected/stateful operation. Do not retest with arbitrary phases, page resets, or added layers.
-- Additional exploratory, unpromoted negative: the p50 base60 256-byte table used as direct word indices or relative/cumulative offsets from SEQUENDI RATIONEM in Caesar De Bello Civili Book I did not yield a language-like sequence; 30,000 shuffled-order controls showed no enrichment. The Caesar source selector remains unauthenticated; do not continue without new first-party evidence.
-- A global or page-reset repeating SECUENDIRATIO key over the remaining 12,943 unknown runes also stayed near uniform IoC (~0.03448–0.03450). This was an exploratory check, not part of the source-selected p0–p2 report.
-- Next: seek a new original clue that selects an authentic key or reversible operation outside the already-tested p0 title/key transfer. Avoid retreading the p55 DH23 factorization, p50 byte/radix sweeps, red-heading self-key Vigenère, period8/13 p0 transfer, and Agent15's closed #2534 artifact gate.
+- Updated im-results/lp2-p0-red-heading-sequendi-ratio-route-check.md and added two original-input reproducers:
+  - sims/lp2_p0_title_key_body_vigenere_sft.cjs
+  - sims/lp2_p0_title_columnar_transposition_sft.cjs
+- The conditional 13-rune title candidate SECUENDI RATIO and the two derived nodes X-N-X-C / J-TH-TH were tested as continuous repeating additive GP29 keys on the 716-rune p0-p2 body. Five fixed keys, both signs: all 10 variants re-encrypt exactly but remain near-uniform IoC (0.03382428–0.03459390); no plaintext.
+- The same conditional 13-rune title was tested as a columnar-transposition key. Source fit: 13 dots, 13 title runes, 716 = 13*55+1. Latin alphabetical and native GP29 rank orders, both readout directions, inverse direction: eight fixed variants. Against 5,000 random column-order controls, the best empirical language-score tail is 0.1146; no candidate is significant or readable.
+- These are bounded negatives only. Do not retest with arbitrary phases, resets, padding, tie rules, or additional layers without a new source selector. The title itself remains conditional on the equal-rune/equal-radius geometry rule; no LP2 plaintext recovered.
+- Exploratory p50-to-Caesar word/character index and walk interpretations were nonlinguistic; shuffled-value controls showed no enrichment. No report was promoted because the receiver is not author-selected.
+- p55/2013 DH note: the 2013 BASE29 1033 / DH 3301 client exchange is already covered by existing p55 DH reports, so it is not a new historical discovery. A one-off base29 conversion of the 43/33 p55 page partition (including the incoming carry as outer) gives residues 2376 and 2655, both primitive roots mod 3301; excluding the carry gives exterior residue 1916 of order 825. The dual-primitive-root event has a roughly 5.9% uniform-group null probability, depends on the carry convention, and supplies no exponent/KDF. Exponent 1033 yields 1579 or 1072 depending orientation; direct repeating key 1PD on p55 is nonlinguistic. Do not pursue without an independently selected receiver.
+- Next: seek a genuinely new original clue that selects a key or reversible operation outside the p0 title transfer. Avoid retreading the p55 DH23/3301 branches, p50 byte/radix sweeps, red-heading self-key Vigenère, and period8/13 p0 transfer.
+
 
 ---
 
