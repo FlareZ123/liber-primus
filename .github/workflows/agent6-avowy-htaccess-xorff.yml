@@ -46,6 +46,7 @@ jobs:
               "gzip_header_hex": decoded[:32].hex(),
               "payload_bytes": len(payload),
               "payload_sha256": hashlib.sha256(payload).hexdigest(),
+              "payload_sha1": hashlib.sha1(payload).hexdigest(),
               "payload_header_hex": payload[:64].hex(),
               "payload_prefix_ascii": "".join(chr(b) if 32 <= b < 127 else "." for b in payload[:64]),
               "payload_byte_entropy": round(-sum((n/len(payload))*__import__("math").log2(n/len(payload)) for n in Counter(payload).values()), 6),
