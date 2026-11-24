@@ -48,10 +48,41 @@ const direct=[],pointer=[];for(let p=0;p<43;p++){
 if(possible(c.pages[p].indices,sum[p]))direct.push(p);
 if(possible(c.pages[p].indices,T[sum[p]]))pointer.push(p);}
 assert.deepEqual(direct,[13]);assert.deepEqual(pointer,[]);
+
+// Alternate literal reading of 2016 "their numbers": use each word's GP-prime
+// sum (not its GP0 ordinal sum) as a modulo-256 address into the p50 byte table,
+// then use the returned byte as the p56 zero-based prime-stream start for p0..42.
+const primeSum=keys.map(x=>x.reduce((a,i)=>a+c.prime[i],0));
+const primeAddress=primeSum.map(x=>x%256);
+const primeStart=primeAddress.map(x=>T[x]);
+/** @param {number[]} C @param {number} start @returns {string} */
+function pathCount(C,start){
+  let ways=new Map([[0,1n]]);
+  for(const v of C){
+    const next=new Map();
+    const add=(k,n)=>next.set(k,(next.get(k)||0n)+n);
+    for(const [k,n] of ways){
+      const shift=mod(primes[start+k]-1);
+      if(v===0)add(k,n); // plaintext F is transparent
+      if(mod(v-shift)!==0)add(k+1,n); // ordinary branch must not decode to F
+    }
+    ways=next;
+    if(!ways.size)return "0";
+  }
+  return [...ways.values()].reduce((a,b)=>a+b,0n).toString();
+}
+const primeSumTable=[];
+for(let p=0;p<43;p++){
+  const paths=pathCount(c.pages[p].indices,primeStart[p]);
+  if(paths!=="0")primeSumTable.push({
+    page:p,word:words[p],gpPrimeSum:primeSum[p],address:primeAddress[p],
+    p50ByteStart:primeStart[p],legalPaths:paths
+  });
+}
 const count=Array(256).fill(0);T.forEach(v=>count[v]++);
 console.log(JSON.stringify({sourceWords:words.length,sourceP50:[T[43],T[69],T[112]],
   onlySelfPointer:self,rootNode:73,rootPage:32,candidatePages:"0..42",
-  sourceNativePageKeyReadouts:outcomes,primeFclockSurvivors:{GP0:direct,tableGP0:pointer},
+  sourceNativePageKeyReadouts:outcomes,primeFclockSurvivors:{GP0:direct,tableGP0:pointer,GPPrimeSumMod256ThenTable:primeSumTable},
   clearP57SyntheticPlant:clear.length,
   originalByteMultisetTripleCollisionRate:count.reduce((s,n)=>s+n*(n-1)*(n-2),0)/(256*255*254)
 },null,2));

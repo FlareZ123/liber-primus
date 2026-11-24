@@ -1,0 +1,18 @@
+name: LP2 signed43 GP-prime-sum p50 prime-start gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reproduce signed-word GP-prime-sum table pointers and p56 F-clock gate
+        run: node sims/lp2_signed43_p50_tree_selfpointer_sft.cjs
