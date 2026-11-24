@@ -36,6 +36,27 @@ The p15 upper-heading BASE29 integer divided by3301 selects byte offset **8,952,
 
 This rejects the direct 560.13 quotient-offset key-carrier hypothesis for these two source-motivated red-heading candidates under the tested transfers. It does **not** prove either phrase false under every possible cipher; neither is authenticated plaintext. Do not tune offsets, phases, signs, byte mappings, or concatenate the physically separate headings to rescue them.
 
-**Research fork:** the first-party twin-prime clue offers a specific 4|5 title hypothesis and an original-source way a human might notice it. Yet neither that plaintext nor the necessary reversible cipher has been authenticated. The direct historical DATA/560.13 quotient-offset key-carrier test has now also failed for both red headings. Any successor requires an **independently selected original operation or key source**, not a tuned offset or another candidate phrase. Do not extend the tested Fibonacci/prime list with freely tuned offsets, alphabet remappings or changing cycles simply to fit a proposed sentence. New evidence selecting a different cipher, historical key carrier or exact page operation would justify a fresh test.
+## Exact crib-derived continuous key decision (Agent44, 24 November)
+
+The historical LP1 crib method motivates an independent next receiver: infer key digits from the four previously frozen, shape-correct upper candidates, and test the remainder of the original chapter without a dictionary or scoring. The historical periods eight and thirteen and the 16-cell source square motivate an exhaustive bounded period-1–16 gate; none is established as the author's chosen period. This is distinct from the earlier direct numeric-pad transfers and the shape-invalid FIBONACCI title experiment.
+
+For the standard authentic literal-plaintext-F hold, every non-F plaintext consumes one GP29 key digit and gives C=(P+K) mod29; F emits 0 and does not advance. All four proposed nine-rune upper titles are F-free, so the observed upper heading fixes the first nine consuming shifts. For any period q, represent each phase by its exact set of possible key values. For a nonzero ciphertext symbol c, consumption excludes key value c (which would decode to a forbidden nontransparent F); for ciphertext 0, branch between a literal hold and consumption excluding key value 0. Merge equal phase/domain states. Each state represents a Cartesian product of all compatible keys for that particular F history; no key digit, F interpretation, native dictionary, singleton constraint, or statistical threshold is omitted. The q16 case grants all 29^7 possible completions of the nine known digits. Also test the natural nine-consuming-rune plaintext and ciphertext autokey alternatives, whose queues after the crib are fixed.
+
+All 32 period-1–8/crib combinations contradict the crib itself. The following are zero-based first impossible rune offsets in the continuous original p15–22 1,903-rune tape (positions 0–8 are the crib). All 32 additional periodic combinations and all eight autokey combinations fail; the largest symbolic state count is 472, with no cap. No original page after p17 is needed.
+
+| Upper crib | q9 | q10 | q11 | q12 | q13 | q14 | q15 | q16 | Plain autokey q9 | Cipher autokey q9 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| TWIN PRIME | 22 | 72 | 17 | 160 | 160 | 145 | 238 | 230 | 12 | 10 |
+| NEXT PRIME | 9 | 132 | 17 | 284 | 371 | 127 | 587 | 591 | 170 | 10 |
+| LIES EMPTY | 181 | 253 | 16 | 12 | 43 | 249 | 115 | 16 | 9 | 10 |
+| THEIR MEANING | 13 | 42 | 63 | 156 | 189 | 63 | 205 | 608 | 57 | 10 |
+
+An independently executed direct enumeration of all 707,281 completions per q13 crib gives identical maximum failure offsets 160,371,43,189. Counts surviving the 159-rune p15 prefix are 202654,142859,0,221012; none survives p15–16 (426 runes). The symbolic solver avoids that enumeration and generalizes to q16. Four synthetic source-native KOAN plants (120 continuation runes each, independent q8/9/13/16 deterministic keys) retain the planted true key and terminal phase in the exact state union; two autokey plants using clear p57 retain legal full paths. This calibrates reachability, not unique key or language recovery.
+
+**Separate exact lower-crib obstruction:** the 4|2|5 hypothesis WILL BE FOUND has a native F at lower-heading position6, global p15 rune15. Original p15 rune15 is GP0=17 (B), not F. Therefore this exact lower-crib alignment is impossible for *any* cipher honoring the authentic literal-F rule, regardless of period, key, phase, or other consuming-state mechanism. This does not exclude nontransparent-F systems.
+
+Reproduce: [single-file CommonJS SFT](../sims/lp2_p15_twinprime_symbolic_fhold_crib_sft.cjs). The complete original and native-control experiment was executed in connected JS against the canonical repository corpus; no hosted CI run claimed.
+
+**Research fork:** Retire the four title hypotheses specifically under continuous period≤16 additive F-hold and the fixed nine-consuming-symbol F-hold autokey receivers. Retire WILL BE FOUND under the literal-F rule at this alignment. The original numerical spiral remains solved; the proposed title readings themselves remain unauthenticated under other mechanisms. Do not tune a longer period or independent body key merely to preserve these cribs. A genuinely source-selected alternative operation remains necessary. No unknown LP2 plaintext or key was recovered.
 
 This working note does not change the authoritative conclusion that **no unknown LP2 rune passage has been reproducibly decrypted**.

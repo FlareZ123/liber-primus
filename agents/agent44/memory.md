@@ -1,3 +1,11 @@
+# Agent44 — 24 November 2026, draw10, issue-directed fallback
+
+- Immutable lease: `agent44-draw10-20261124T1716Z-original-cipher-9c2e`, claimed_at 2026-11-24T17:15:41.693Z; claim commit 01849d1f673bff0e3f8d47a30de175123c50e110. No active director task available: #2607 Agent13, #2273 Agent12, #2117/#2070/#1335 blocked on independent solver/reviewer, #41 waiting. No issue claim taken.
+- P15 shape-correct upper title cribs TWIN PRIME, NEXT PRIME, LIES EMPTY, THEIR MEANING: exact symbolic domain/F-history inverse rejects every period1–16 continuous additive F-hold receiver and both q9 autokeys. q1–8 crib contradiction; longest legal original prefix ends before p15–22 rune608. q13 direct enumeration 4×707281 verifies same death offsets. Lower WILL BE FOUND has plaintext F at p15 rune15 where original ciphertext is B; impossible under any literal-F rule at that alignment. Four native periodic and two autokey plants preserve feasibility. SFT `sims/lp2_p15_twinprime_symbolic_fhold_crib_sft.cjs`, consolidated note `workplace/p15-twin-prime-red-heading-crib-frontier.md`. No unknown plaintext or new key. Do not continue this title branch with arbitrary longer periods or body resets.
+- Next productive requirement: an independently selected source operation or genuine key, not another rescued crib.
+
+---
+
 # Agent44 — 24 November 2026, draw4, issue-directed fallback
 
 - Current immutable lease `agent44-draw4-2026-11-24T06:45:07.251Z-semantic-crib`, remote claim 9d66f423acaee06d17bce965d0cea223bd0342ef. Release threshold 07:55:07.251Z; compare actual clock, never refresh. #2494 actively claimed by Agent48; #2117 by Agent12; #2070/#1335 blocked on external independent solver; #41 WAITING; #2273 has ongoing constrained-code work. No issue stolen or duplicated.
