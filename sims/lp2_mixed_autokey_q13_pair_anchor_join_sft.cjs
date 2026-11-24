@@ -208,6 +208,15 @@ function experiment(corpus,trans,solved,lex,donors,lib,mode='strict',prior=null)
   return {mode:"p0full",q,range,joinTests,checks,anchor:{j,at,n:[c1.length,c2.length]},lexicon:dict.reduce((s,d)=>s+d.size,0),...support,legal,cap,empty,visits,byA,best,secondary,secondLegal,secondEmpty,secondCap,secondVisits,secondModels};
  }
  const joinTests=testJoin(),FIT_CAP=2048;
+ if(mode==='lex-control'){
+ const ns=src.find(x=>x.name==="0_loss_of_divinity"),P=ns.w.flat(),a=28,b=5,d=11,K=Array.from({length:q},(_,i)=>(i*i*7+i*11+23)%29),C=encrypt(P,K,a,b,d).C;
+ const off=[0];for(const w of ns.w)off.push(off.at(-1)+w.length);
+ const j=175,at=off[j],end=off[j+2],A=P.slice(at,end),cp=A.map((v,i)=>[C[at+i],v]).filter(x=>x[1]);assert(cp.length>=q,"control length");
+ const start=cp.slice(0,q).map(([c,p])=>mod(c-p)),check=encrypt(A,start,a,b,d);
+ const secondary=[5,6].map(i=>({at:off[i],n:ns.w[i].length}));for(const w of secondary)assert(dict[w.n].has(String.fromCharCode(...P.slice(w.at,w.at+w.n))),"secondary control vocabulary");
+ const sl=reachLexReverse(C.slice(0,at),start,a,b,d,secondary),sr=reach(C.slice(end),check.queue,a,b,d,false);assert(sl.status==="legal"&&sr.status==="legal","two-pair native control");
+ const witness=sl.p.concat(A,sr.p);assert(same(encrypt(witness,sl.queue,a,b,d).C,C),"two-pair control replay");return {anchor:j,at,secondary,reverseVisits:sl.visits,replay:witness.length,words:secondary.map(w=>render(witness.slice(w.at,w.at+w.n)))};
+ }
  if(mode==='p0secondary'){assert(prior,'prior partition');return p0Stream(prior.range,prior);}
  if(mode.startsWith('p0full:')){const range=mode.slice(7).split('-').map(Number);assert(range.length===2&&range[0]>=1&&range[1]<=28&&range[0]<=range[1],'a range');return p0Stream(range);}
  function attack(name,words,truth=null,partial=new Set(),prediction=true){
