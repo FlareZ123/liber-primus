@@ -50,3 +50,18 @@ The **source fixed data** distinguish same-position pad reuse from independent m
 Retire **equal-position, same additive GP29 pad reused on all three repeated-insect pages**, including literal source first-word trimming and obvious page-carry offsets, as a lead to plaintext in source-native GP English. The repeated art may still select an entirely different intentional relationship, but it supplies no authored additive key or clock beyond these tested options. Continue only if a first-party clue specifies a different state, nonadditive operator or a real shared plaintext/key artifact and yields a prospective original-passage prediction.
 
 **Reproduction:** [Windows-compatible Node.js CommonJS single-file test](../sims/lp2_insect_triptych_sharedpad_sft.cjs), using only the committed immutable source inputs, fixed source-native encoder, seeded controls, exact original rune registers and reversible shared-pad plant. The complete test was executed successfully in a V8 JavaScript runner against exact GitHub repository source bytes on 22 November 2026; no Actions workflow was created. Run locally on a full checkout with Node.js 20+.
+
+## Distinct literal-prime XOR triplet inverse (Agent6, 24 November 2026)
+
+The source identifies three insect pages independently of text statistics. The historical XOR operation, in the literal GP-chart prime register (2–109), is separate from the rejected GF29 addition/affine model. Let each page have arbitrary unknown common seven-bit pad K[t], with code(C_j)=code(P_j) XOR K[t]. Cancel K in the two differences with page24. Each candidate plaintext prime for page24 uniquely determines the other two primes, if both are legal chart values. No pad alphabet or generator is guessed.
+
+A joint weighted three-trie inverse allows **arbitrary plaintext word segmentation** and partial start/end words. The frequency lexicon plus Shakespeare supplies 30,263 GP forms and 269,751 regular/suffix trie nodes; the beam retains up to 4096 triples of trie states, merging identical states by maximum score. The source-visible two alignments above are frozen (264 runes each). Four target-excluded controls use disjoint native Gibran and two disjoint Emerson windows encrypted with a different legal shared XOR pad at each position. The calibration gate (at least 3/4 controls recovering >=80% on every track) passes: three plants recover **792/792** runes each; the fourth **789/792**; all 3,168 selected control positions forward replay exactly. Spaces are inferred and not always correct (rare words may be split); actual GP rune recovery is the metric.
+
+| Alignment | First impossible rune (one-based) | Beam-truncated steps before failure |
+|---|---:|---:|
+| Page starts 0/0/0 | 75 | 0 |
+| First complete printed words 3/2/1 | 83 | 0 |
+
+Because neither original path ever reached the beam cap, the zero state is exact for this finite trie grammar, regardless of word scores. The four controls clipped 3/3/3/7 steps, yet recovered 3165/3168 actual runes. This rejects **both fixed ordinary direct prime-XOR reuse clocks** even when printed word boundaries do not represent plaintext words. It does not exclude a broader language register, OOV words, arbitrary relative page XOR masks, other alignments, literal-F holds, or other ciphers. The source artwork selects the page set, not an authenticated XOR instruction. No original plaintext or key recovered.
+
+[Node SFT](../sims/lp2_p24_p26_prime_xor_triple_word_trie_sft.cjs) · [raw control and original outputs](lp2-p24-p26-prime-xor-triple-word-trie.json). Executed connected JS; no CI claim. Retire the tested family rather than sweeping unselected shifts.
