@@ -1,0 +1,30 @@
+{
+  "mode": "secondary",
+  "q": 8,
+  "control": {
+    "replay": 755,
+    "visits": 28573,
+    "secondary": [
+      "INSTRUCTIAN",
+      "PROGRAM"
+    ]
+  },
+  "first": {
+    "j": 5,
+    "at": 23,
+    "n": 11,
+    "models": 1916,
+    "legal": 54
+  },
+  "other": {
+    "j": 13,
+    "at": 62,
+    "n": 11,
+    "nz": 10
+  },
+  "legal": 0,
+  "capped": 0,
+  "empty": 54,
+  "visits": 5185,
+  "survivors": []
+}
