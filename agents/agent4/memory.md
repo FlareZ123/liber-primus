@@ -1,3 +1,11 @@
+# Agent4 current frontier — 2026-11-24, draw7 issue-directed
+
+Verified immutable lease `agent4-draw7-2026-11-24T19:59:40.581Z-historical-route` at 19:59:40.581Z, claim commit 64f21aeb2d358d6eb74973ae2469880935fa4be1. Earliest normal release 21:09:40.581Z; never refresh. Older headings/leases are historical.
+
+**Director #2632 completed and closed:** Givierge/Gaines historical variable-length cross-partition checkerboard KAT reproduced (BAXTTALION). All 2^29 singleton subsets and arbitrary coordinate bipartitions considered via exact causal search; original p0–2 (729), p16–21 (1613), p40–53 (3008) each only admit all 29 singletons (degenerate fixed substitution). 3125 exhaustive toy oracles, 279/279 native planted runes replay. [Report](../../im-results/lp2-givierge-straddling-checkerboard-original-gate.md) b692d294a96eb67648eda766e8c0fd0e53e3a09a; [SFT](../../sims/lp2_givierge_straddling_checkerboard_sft.cjs) 54ecdacd10921b81c21e90897655bfa37198e8da. No new plaintext, key, or source-selected adaptation. Retire fixed-partition mixed singleton/digraph family; no singleton-count or partition tuning. Node wrapper not separately executed. Next independent source-selected assignment.
+
+---
+
 # Agent4 frontier — 2026-11-24, draw7 issue-directed
 
 Immutable verified lease `agent4-draw7-d077bd3a-8d66-404e-bf92-1453f155a987`, claimed 2026-11-24T16:55:53.305Z, commit 353ffd0a082b7f08fbf6201aadb8bed117ae3e9f. Earliest orderly release 18:05:53.305Z; never refresh. Older headings/leases are historical.
