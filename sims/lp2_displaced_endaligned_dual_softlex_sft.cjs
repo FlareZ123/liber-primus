@@ -1,7 +1,7 @@
 "use strict";
 // GP29 paired lexical beam (96 states), unknown-word escapes, source-fixed end-aligned marker intervals, issue #2451.
 
-function experiment(raw,gp,lexText,lp1) {
+function experiment(raw,gp,lexText,lp1,ink=null) {
  const mod=x=>(x+29)%29;
  const ids=new Map(gp.runes.map((r,i)=>[r,i]));
  const spell=gp.translit.map((s,i)=>({s,i})).sort((a,b)=>b.s.length-a.s.length);
@@ -80,17 +80,36 @@ function experiment(raw,gp,lexText,lp1) {
   for(let t=0;t<4;t++)neg.push(compare(a,b,Array.from({length:n},rand)).score/pos.n);
   controlResults.push({a:controls[i].id,b:controls[j].id,offset:a.v.length-b.v.length,positive:trim(pos),negativeMax:Math.max(...neg),negativeMean:neg.reduce((x,y)=>x+y,0)/neg.length,dictMissingA:controls[i].words.filter(w=>!dict.has(w.join(","))).length,dictMissingB:controls[j].words.filter(w=>!dict.has(w.join(","))).length});
  }
- const layouts=chunks.map(c=>({id:c.id,...layout(c.words)})).filter(c=>c.v.length>=91);
+ let cumulative=0;
+ const editorial=chunks.map(c=>{const v=layout(c.words);cumulative+=v.v.length;return {id:c.id,end:cumulative,...v};}).filter(c=>c.v.length>=91);
+ let layouts=editorial;
+ const signatures=new Set();
+ for(let i=0;i<editorial.length;i++)for(let j=i+1;j<editorial.length;j++){
+  const a=editorial[i],b=editorial[j];signatures.add([a.end,b.end,Math.min(180,a.v.length,b.v.length)].join(","));
+ }
+ if(ink){
+  let off=0;const marks=[0];for(const p of gp.pages.slice(0,56)){
+   const rec=ink.pages.find(x=>x.page===p.page);
+   for(const m of rec?.large_punctuation??[])if(m[1]===13)marks.push(off+m[0]);
+   off+=p.indices.length;
+  }
+  const bounds=[...new Set([...marks,off])].sort((a,b)=>a-b);
+  const whole=chunks.flatMap(c=>c.words),positions=new Map([[0,0]]);let pos=0;
+  for(let j=0;j<whole.length;j++){pos+=whole[j].length;positions.set(pos,j+1);}
+  if(bounds.some(x=>!positions.has(x)))throw Error("physical mark not at a word boundary");
+  layouts=bounds.slice(1).map((end,id)=>({id,end,...layout(whole.slice(positions.get(bounds[id]),positions.get(end)))})).filter(c=>c.v.length>=91);
+ }
  const original=[];
  for(let i=0;i<layouts.length;i++)for(let j=i+1;j<layouts.length;j++){
   const a=layouts[i],b=layouts[j];if(a.v.length===b.v.length)continue;
+  if(ink&&signatures.has([a.end,b.end,Math.min(180,a.v.length,b.v.length)].join(",")))continue;
   const d=difference(a,b),r=compare(a,b,d),neg=compare(a,b,Array.from({length:r.n},rand));
-  original.push({a:a.id,b:b.id,offset:a.v.length-b.v.length,...trim(r),fraction:r.covered/(2*r.n),negativeFraction:neg.covered/(2*neg.n),scorePerRune:r.score/r.n,negativeScorePerRune:neg.score/neg.n});
+  original.push({a:a.id,b:b.id,endA:a.end,endB:b.end,offset:a.v.length-b.v.length,...trim(r),fraction:r.covered/(2*r.n),negativeFraction:neg.covered/(2*neg.n),scorePerRune:r.score/r.n,negativeScorePerRune:neg.score/neg.n});
  }
  original.sort((a,b)=>b.scorePerRune-a.scorePerRune);
- return {lexicon:dict.size,chunkLengths:chunks.map(c=>[c.id,c.words.flat().length]),controlResults,original};
+ return {lexicon:dict.size,chunkLengths:layouts.map(c=>[c.id,c.v.length,c.end]),controlResults,original};
 }
 
 const fs=require("node:fs"),path=require("node:path");
 const read=p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8");
-console.log(JSON.stringify(experiment(read("resources/liber-primus/lp2-transcription.txt"),JSON.parse(read("resources/liber-primus/lp2-corpus.json")),read("resources/control/english_wordfreq_textblob.txt"),read("resources/liber-primus/lp1-plaintext-reference.txt")),null,2));
+console.log(JSON.stringify(experiment(read("resources/liber-primus/lp2-transcription.txt"),JSON.parse(read("resources/liber-primus/lp2-corpus.json")),read("resources/control/english_wordfreq_textblob.txt"),read("resources/liber-primus/lp1-plaintext-reference.txt"),process.argv.includes("--physical13")?JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json")):null),null,2));
