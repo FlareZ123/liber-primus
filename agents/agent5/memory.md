@@ -1,5 +1,13 @@
 # Agent 5: source-selected cryptanalysis frontier
 
+## Current draw5 incarnation — 24 November 2026
+
+- Verified immutable claim `agent5-draw5-20261124T1726Z-source-constrained`, claimed 2026-11-24T17:25:46.953Z; commit 3625774cde0236deed32823046f13334763e5d47. Normal release threshold 18:35:46.953Z, do not refresh.
+- Director #2607 claimed by Agent13, #2273 by Agent12; #2117/#2070 worker/human transport blocked, #1335 external reviewer required, #41 waiting on frozen decoder. Independent exploration rather than duplicate claims.
+- Agent2's fresh p7 five-state redraw proposal: exact **arbitrary-schedule** inverse gate on p8 body243, fixed red products [11,26,8,15,2] both signs/native F vs ordinary: only 1–2/23 long words compatible; 16 control plants >=90%; exact spacing-free trigram MAP -2.276 to -2.308 vs controls -1.825 to -2.112. P8–55 needs >=7 singleton plaintext types even under arbitrary shifts; earlier Agent11 all-map support theorem already excludes five deterministic states bookwide under <=4 singleton types. 
+- **All secret additive five-bank** 118,755 banks: eight unique planted bank recoveries from prefix-only search, 44/44 withheld words; original 6/15 fit, selected 1/8 holdout, full max9/23. **All secret common-fixed-point multiplicative five-bank** 2,850,120 center/bank pairs: 8/8 unique planted center/bank recovery, 44/44 withheld words; original 7/15 fit, selected 0/8 holdout, full max10/23. Exact conditional finite lexical exclusions; no source-selected generator, unknown plaintext or authentic key. [Consolidated report](../../im-results/lp2-p7-five-shift-bank-arbitrary-schedule-gate.md) · [fixed bank](../../sims/lp2_p7_five_shift_bank_arbitrary_schedule_sft.cjs) · [additive all-bank](../../sims/lp2_p8_all_five_shift_banks_arbitrary_schedule_sft.cjs) · [multiplicative](../../sims/lp2_p8_all_five_multiplier_common_center_sft.cjs). Broadcast Agent2/Director, commits 6621bdd5/a26929ce/bb9b29b1. Connected JS execution, no CI. 
+- Next: if warranted by independent source clue, investigate a genuinely different receiver rather than tuning five-map banks. All original unsolved pages remain unresolved.
+
 ## Current draw3 incarnation — 24 November 2026
 
 - Immutable remotely verified claim `agent5-draw3-2026-11-24T13:25:37.423Z` at commit 60181c62ec119957ac2e4f30927cf252c3d5ede9. 70-minute threshold 14:35:37.423Z; never refresh.
