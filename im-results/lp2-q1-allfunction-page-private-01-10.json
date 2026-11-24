@@ -1,0 +1,195 @@
+{
+  "lexicon": 38920,
+  "results": [
+    {
+      "page": 1,
+      "range": [
+        267,
+        525
+      ],
+      "runes": 258,
+      "status": "cap",
+      "fitRunes": 208,
+      "heldRunes": 50,
+      "checks": 5000001,
+      "nodes": 270,
+      "maxWords": 1,
+      "trainPaths": 0,
+      "heldPaths": 0,
+      "knownRows": [],
+      "predictedPrefix": 0,
+      "candidates": []
+    },
+    {
+      "page": 2,
+      "range": [
+        530,
+        729
+      ],
+      "runes": 199,
+      "status": "cap",
+      "fitRunes": 163,
+      "heldRunes": 36,
+      "checks": 5000001,
+      "nodes": 170,
+      "maxWords": 1,
+      "trainPaths": 0,
+      "heldPaths": 0,
+      "knownRows": [],
+      "predictedPrefix": 0,
+      "candidates": []
+    },
+    {
+      "page": 3,
+      "range": [
+        729,
+        943
+      ],
+      "runes": 214,
+      "status": "complete",
+      "fitRunes": 171,
+      "heldRunes": 43,
+      "checks": 60643,
+      "nodes": 25,
+      "maxWords": 1,
+      "trainPaths": 0,
+      "heldPaths": 0,
+      "knownRows": [],
+      "predictedPrefix": 0,
+      "candidates": []
+    },
+    {
+      "page": 4,
+      "range": [
+        948,
+        1206
+      ],
+      "runes": 258,
+      "status": "cap",
+      "fitRunes": 212,
+      "heldRunes": 46,
+      "checks": 5000001,
+      "nodes": 141,
+      "maxWords": 1,
+      "trainPaths": 0,
+      "heldPaths": 0,
+      "knownRows": [],
+      "predictedPrefix": 0,
+      "candidates": []
+    },
+    {
+      "page": 5,
+      "range": [
+        1209,
+        1469
+      ],
+      "runes": 260,
+      "status": "cap",
+      "fitRunes": 217,
+      "heldRunes": 43,
+      "checks": 5000001,
+      "nodes": 202,
+      "maxWords": 1,
+      "trainPaths": 0,
+      "heldPaths": 0,
+      "knownRows": [],
+      "predictedPrefix": 0,
+      "candidates": []
+    },
+    {
+      "page": 6,
+      "range": [
+        1476,
+        1665
+      ],
+      "runes": 189,
+      "status": "cap",
+      "fitRunes": 152,
+      "heldRunes": 37,
+      "checks": 5000001,
+      "nodes": 213,
+      "maxWords": 2,
+      "trainPaths": 0,
+      "heldPaths": 0,
+      "knownRows": [],
+      "predictedPrefix": 0,
+      "candidates": []
+    },
+    {
+      "page": 7,
+      "range": [
+        1668,
+        1874
+      ],
+      "runes": 206,
+      "status": "complete",
+      "fitRunes": 169,
+      "heldRunes": 37,
+      "checks": 728161,
+      "nodes": 22,
+      "maxWords": 1,
+      "trainPaths": 0,
+      "heldPaths": 0,
+      "knownRows": [],
+      "predictedPrefix": 0,
+      "candidates": []
+    },
+    {
+      "page": 8,
+      "range": [
+        1874,
+        2128
+      ],
+      "runes": 254,
+      "status": "complete",
+      "fitRunes": 206,
+      "heldRunes": 48,
+      "checks": 178865,
+      "nodes": 27,
+      "maxWords": 1,
+      "trainPaths": 0,
+      "heldPaths": 0,
+      "knownRows": [],
+      "predictedPrefix": 0,
+      "candidates": []
+    },
+    {
+      "page": 9,
+      "range": [
+        2134,
+        2387
+      ],
+      "runes": 253,
+      "status": "complete",
+      "fitRunes": 203,
+      "heldRunes": 50,
+      "checks": 3350746,
+      "nodes": 92,
+      "maxWords": 1,
+      "trainPaths": 0,
+      "heldPaths": 0,
+      "knownRows": [],
+      "predictedPrefix": 0,
+      "candidates": []
+    },
+    {
+      "page": 10,
+      "range": [
+        2398,
+        2660
+      ],
+      "runes": 262,
+      "status": "cap",
+      "fitRunes": 212,
+      "heldRunes": 50,
+      "checks": 5000001,
+      "nodes": 351,
+      "maxWords": 2,
+      "trainPaths": 0,
+      "heldPaths": 0,
+      "knownRows": [],
+      "predictedPrefix": 0,
+      "candidates": []
+    }
+  ]
+}
