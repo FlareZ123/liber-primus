@@ -66,3 +66,7 @@ A separate constructive route uses the same partial-bijection equivalence to tes
 - Positive plant: 123 F-free native runes from jpg107-167 offset59, primer [0..7], map f(x)=(11x+7) mod29. Recovered a full 123-rune match (all-consuming control permits ciphertext F).
 
 These are exact finite screens for a repeated native contiguous F-free crib under this cipher. They neither exclude unknown plaintext nor establish a selector. [Reproducer](../sims/lp2_q8_permutation_native_crib_scan.cjs), commit 943198855ccaaef249dbf275a1e8cd9c406eceb9; actual calculations executed in V8 on the canonical GitHub resource before persisting the script.
+
+## Canonical repository execution
+
+[Manual CI run 45388587042](https://github.com/FlareZ123/liber-primus/actions/runs/45388587042), completed successfully on 24 November, Python 3.12.16 / Z3 4.13.3.0. This executes the committed canonical parser rather than a copied fixture. Hidden-map control SAT in 7.26s: 254/254, 23/23 observed map entries, exact replay. Original restricted 1,394-type model UNSAT in 18.804s. Original unrestricted 35,078-type model (72,113 word-domain candidates, 6,552,796 SMT characters) returned UNKNOWN in 181.084s, reason canceled at timeout. No unrestricted exclusion. This supersedes the earlier lack of remote execution; it is still not an independent proof certificate or held-out validation.
