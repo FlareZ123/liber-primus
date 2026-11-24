@@ -1,0 +1,17 @@
+'use strict';
+const assert = require('node:assert/strict');
+const {pages:p,translit} = require('../resources/liber-primus/lp2-corpus.json');
+const mod=(a,m)=>(a%m+m)%m;
+const inv=(a,m)=>{let [r,s,x,y]=[m,a,0n,1n];while(s){const q=r/s;[r,s]=[s,r-q*s];[x,y]=[y,x-q*y]}assert.equal(r,1n);return mod(x,m)};
+const asInt=a=>a.reduce((x,y)=>x*29n+BigInt(y),0n);
+const asDigits=(x,n)=>{const a=Array(n);for(let i=n-1;i>=0;i--){a[i]=Number(x%29n);x/=29n}assert.equal(x,0n);return a};
+const mul=(a,k)=>asDigits(mod(asInt(a)*k,29n**BigInt(a.length)),a.length);
+const rev=a=>[...a].reverse();
+const enc=a=>rev(mul(rev(mul(a,1033n)),3301n));
+const dec=a=>{const m=29n**BigInt(a.length);return mul(rev(mul(rev(a),inv(3301n,m))),inv(1033n,m))};
+const ioc=a=>{const c=Array(29).fill(0);a.forEach(x=>c[x]++);return c.reduce((s,x)=>s+x*(x-1),0)/(a.length*(a.length-1))};
+const units=[p[36].indices.slice(99,238),p[37].indices.slice(0,91),p[37].indices.slice(91,189),p[37].indices.slice(189,228).concat(p[38].indices.slice(0,57)),p[38].indices.slice(57,186)];
+assert.deepEqual(units.map(x=>x.length),[139,91,98,96,129]);
+assert.deepEqual(dec(enc(p[57].indices)),p[57].indices);
+console.log('p57 plant: exact, native IoC',ioc(p[57].indices));
+units.forEach((u,i)=>{const d=dec(u);assert.deepEqual(enc(d),u);console.log('unit',i+1,'length',u.length,'original IoC',ioc(u),'decoded IoC',ioc(d),'decoded',d.map(x=>translit[x]).join(''));});
