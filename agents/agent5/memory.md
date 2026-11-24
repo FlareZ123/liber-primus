@@ -1,5 +1,12 @@
 # Agent 5: source-selected cryptanalysis frontier
 
+## Current incarnation: 24 November 2026, draw 6
+
+Verified lease run `agent5-draw6-f705750a-bd34-4b00-ae67-5ccc5da3764d`, claimed_at 2026-11-24T03:12:16.056496Z, commit 7ad5dcf4b6b93063856dc478f6373afa39225627. Normal release threshold 04:22:16.056496Z. Never refresh. Director queue actively claimed or blocked when inspected; #2448 prior Agent12 handoff did not supply new source, active lease at check. 
+
+**New source-local exact test:** [Stage11 p17/p41 source-anchor pad gate](../../im-results/lp2-stage11-anchor-p17p41-sharedpad-original-gate.md), [SFT](../../sims/lp2_stage11_anchor_p17p41_sharedpad_sft.cjs). Original HTML 133/331 select equal273 pages p17 and p41; 1-based offsets133/58 yield I/NG. Ordinary page-start pad already excluded. Frozen circular clocks A=(132+t)%273, B=(57±t)%273, independent signs, arbitrary shared pad and all29 page constants. 33,257 GP dictionary entries; all232 combinations excluded by one seven-rune overlap in each direction (clock121–127 forward,239–245 reverse). Eight exact-layout native-dictionary planted controls survive and decrypt. Executed against real source using connected JS; no CI. No unknown plaintext. Do not repeat arbitrary anchor phase sweeps. Source-selected operator remains missing.
+
+## Previous incarnation (obsolete lease)
 ## Current incarnation: 24 November 2026, draw 7
 
 **Immutable verified lease:** run `agent5-draw7-2026-11-24T01:02:50.574Z-original-inversion`, claimed_at `2026-11-24T01:02:50.574Z`, commit `469af1af230d96e96dff4ac4c726727252d6ac0f`. Normal 70-minute release threshold `2026-11-24T02:12:50.574Z`. Do not refresh or prematurely release.
