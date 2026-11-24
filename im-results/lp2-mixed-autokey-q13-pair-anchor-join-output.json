@@ -1,0 +1,527 @@
+{
+  "q": 13,
+  "trainLengths": [
+    184,
+    157,
+    89,
+    85,
+    95,
+    2000,
+    2000,
+    2000
+  ],
+  "lexicon": 38906,
+  "joinTests": 3,
+  "FIT_CAP": 2048,
+  "calibration": {
+    "eligible": 4,
+    "eligibleFit": 1,
+    "exact": 1,
+    "passed": false,
+    "supportPassed": true
+  },
+  "controls": [
+    {
+      "name": "0_welcome",
+      "n": 515,
+      "anchors": [
+        {
+          "j": 53,
+          "at": 209,
+          "n": [
+            6,
+            10
+          ],
+          "guaranteed": 16,
+          "L": 161,
+          "R": 273,
+          "holdoutSide": "right",
+          "dictWords": [
+            5933,
+            3480
+          ],
+          "models": 15598586,
+          "maskPairs": 1,
+          "fitStatus": "cap",
+          "fitLegal": 0,
+          "trueLex": true,
+          "trueModelCount": 1,
+          "result": null
+        }
+      ]
+    },
+    {
+      "name": "0_koan_1",
+      "n": 780,
+      "anchors": [
+        {
+          "j": 140,
+          "at": 508,
+          "n": [
+            12,
+            8
+          ],
+          "guaranteed": 20,
+          "L": 460,
+          "R": 576,
+          "holdoutSide": "left",
+          "dictWords": [
+            1267,
+            6036
+          ],
+          "models": 14,
+          "maskPairs": 1,
+          "fitStatus": "complete",
+          "fitLegal": 3,
+          "trueLex": false,
+          "trueModelCount": 0,
+          "result": {
+            "a": 1,
+            "b": 20,
+            "d": 13,
+            "word": "INCREASINGLY ORDERERS",
+            "fitScore": -4.5982462207710775,
+            "fit": "OHOBUCTTHRNGOEBETNDGWUSIONROECTMTHMEAESHEATHTIEHNGCTHEUNGLXINCREASINGLYORDERERSOESLIAGRCEMNGOMCAELAECAEGIENPUEOIAJPTAEEEAPIACNTUROEOSGELS",
+            "holdout": null,
+            "holdoutScore": null,
+            "holdoutPaths": 0,
+            "correct": {
+              "model": false,
+              "fit": 6,
+              "fitTotal": 116,
+              "holdout": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "n": 755,
+      "anchors": [
+        {
+          "j": 5,
+          "at": 18,
+          "n": [
+            13,
+            9
+          ],
+          "guaranteed": 19,
+          "L": 0,
+          "R": 88,
+          "holdoutSide": "right",
+          "dictWords": [
+            637,
+            4879
+          ],
+          "models": 1,
+          "maskPairs": 4,
+          "fitStatus": "complete",
+          "fitLegal": 1,
+          "trueLex": true,
+          "trueModelCount": 1,
+          "result": {
+            "a": 28,
+            "b": 5,
+            "d": 11,
+            "word": "CIRCUMFERENCE PRACTICES",
+            "fitScore": -2.793282435528901,
+            "fit": "THELOSSOFDIUINITYTHECIRCUMFERENCEPRACTICESTHREEBEHAUIARSWHICHCAUSETHELOSSOFDIUINITYCONSUMPTIAN",
+            "holdout": "WECONSUMETOOMUCHBECAUSEWEBELEIUETHEFOLLOWNGTWOERRORSWITHINTHEDECEPTIANWEDONOTHAUE",
+            "holdoutScore": -2.884378814966692,
+            "holdoutPaths": 4,
+            "correct": {
+              "model": true,
+              "fit": 88,
+              "fitTotal": 88,
+              "holdout": 76
+            }
+          }
+        },
+        {
+          "j": 14,
+          "at": 70,
+          "n": [
+            8,
+            10
+          ],
+          "guaranteed": 18,
+          "L": 22,
+          "R": 136,
+          "holdoutSide": "right",
+          "dictWords": [
+            6036,
+            3480
+          ],
+          "models": 18612,
+          "maskPairs": 1,
+          "fitStatus": "cap",
+          "fitLegal": 0,
+          "trueLex": false,
+          "trueModelCount": 0,
+          "result": null
+        },
+        {
+          "j": 66,
+          "at": 277,
+          "n": [
+            7,
+            11
+          ],
+          "guaranteed": 18,
+          "L": 229,
+          "R": 343,
+          "holdoutSide": "right",
+          "dictWords": [
+            6580,
+            2243
+          ],
+          "models": 13496,
+          "maskPairs": 1,
+          "fitStatus": "cap",
+          "fitLegal": 0,
+          "trueLex": false,
+          "trueModelCount": 0,
+          "result": null
+        },
+        {
+          "j": 100,
+          "at": 411,
+          "n": [
+            8,
+            9
+          ],
+          "guaranteed": 16,
+          "L": 363,
+          "R": 476,
+          "holdoutSide": "left",
+          "dictWords": [
+            6036,
+            4879
+          ],
+          "models": 784934,
+          "maskPairs": 2,
+          "fitStatus": "cap",
+          "fitLegal": 0,
+          "trueLex": true,
+          "trueModelCount": 1,
+          "result": null
+        },
+        {
+          "j": 140,
+          "at": 555,
+          "n": [
+            10,
+            11
+          ],
+          "guaranteed": 20,
+          "L": 507,
+          "R": 624,
+          "holdoutSide": "left",
+          "dictWords": [
+            3480,
+            2243
+          ],
+          "models": 0,
+          "maskPairs": 2,
+          "fitStatus": "complete",
+          "fitLegal": 0,
+          "trueLex": false,
+          "trueModelCount": 0,
+          "result": null
+        },
+        {
+          "j": 175,
+          "at": 717,
+          "n": [
+            10,
+            7
+          ],
+          "guaranteed": 17,
+          "L": 669,
+          "R": 755,
+          "holdoutSide": "left",
+          "dictWords": [
+            3480,
+            6580
+          ],
+          "models": 583368,
+          "maskPairs": 1,
+          "fitStatus": "cap",
+          "fitLegal": 0,
+          "trueLex": true,
+          "trueModelCount": 1,
+          "result": null
+        }
+      ]
+    },
+    {
+      "name": "jpg107-167",
+      "n": 319,
+      "anchors": []
+    }
+  ],
+  "original": [
+    {
+      "name": "p0",
+      "n": 729,
+      "anchors": [
+        {
+          "j": 144,
+          "at": 645,
+          "n": [
+            8,
+            9
+          ],
+          "guaranteed": 17,
+          "L": 597,
+          "R": 710,
+          "holdoutSide": "left",
+          "dictWords": [
+            6036,
+            4879
+          ],
+          "models": 750605,
+          "maskPairs": 1,
+          "fitStatus": "unqualified",
+          "fitLegal": 0,
+          "trueLex": null,
+          "trueModelCount": 0,
+          "result": null
+        }
+      ]
+    },
+    {
+      "name": "p3",
+      "n": 1145,
+      "anchors": [
+        {
+          "j": 148,
+          "at": 678,
+          "n": [
+            9,
+            10
+          ],
+          "guaranteed": 18,
+          "L": 630,
+          "R": 745,
+          "holdoutSide": "left",
+          "dictWords": [
+            4879,
+            3480
+          ],
+          "models": 1170,
+          "maskPairs": 2,
+          "fitStatus": "unqualified",
+          "fitLegal": 0,
+          "trueLex": null,
+          "trueModelCount": 0,
+          "result": null
+        }
+      ]
+    },
+    {
+      "name": "p8",
+      "n": 1729,
+      "anchors": [
+        {
+          "j": 217,
+          "at": 1001,
+          "n": [
+            11,
+            13
+          ],
+          "guaranteed": 22,
+          "L": 953,
+          "R": 1073,
+          "holdoutSide": "left",
+          "dictWords": [
+            2243,
+            637
+          ],
+          "models": 0,
+          "maskPairs": 4,
+          "fitStatus": "unqualified",
+          "fitLegal": 0,
+          "trueLex": null,
+          "trueModelCount": 0,
+          "result": null
+        }
+      ]
+    },
+    {
+      "name": "p15",
+      "n": 1903,
+      "anchors": [
+        {
+          "j": 37,
+          "at": 159,
+          "n": [
+            13,
+            8
+          ],
+          "guaranteed": 21,
+          "L": 111,
+          "R": 228,
+          "holdoutSide": "right",
+          "dictWords": [
+            637,
+            6036
+          ],
+          "models": 0,
+          "maskPairs": 1,
+          "fitStatus": "unqualified",
+          "fitLegal": 0,
+          "trueLex": null,
+          "trueModelCount": 0,
+          "result": null
+        }
+      ]
+    },
+    {
+      "name": "p23",
+      "n": 1021,
+      "anchors": [
+        {
+          "j": 120,
+          "at": 529,
+          "n": [
+            14,
+            7
+          ],
+          "guaranteed": 20,
+          "L": 481,
+          "R": 598,
+          "holdoutSide": "left",
+          "dictWords": [
+            272,
+            6580
+          ],
+          "models": 0,
+          "maskPairs": 1,
+          "fitStatus": "unqualified",
+          "fitLegal": 0,
+          "trueLex": null,
+          "trueModelCount": 0,
+          "result": null
+        }
+      ]
+    },
+    {
+      "name": "p27",
+      "n": 1647,
+      "anchors": [
+        {
+          "j": 43,
+          "at": 180,
+          "n": [
+            10,
+            10
+          ],
+          "guaranteed": 20,
+          "L": 132,
+          "R": 248,
+          "holdoutSide": "right",
+          "dictWords": [
+            3480,
+            3480
+          ],
+          "models": 16,
+          "maskPairs": 1,
+          "fitStatus": "unqualified",
+          "fitLegal": 0,
+          "trueLex": null,
+          "trueModelCount": 0,
+          "result": null
+        }
+      ]
+    },
+    {
+      "name": "p34",
+      "n": 1466,
+      "anchors": [
+        {
+          "j": 254,
+          "at": 1141,
+          "n": [
+            12,
+            8
+          ],
+          "guaranteed": 20,
+          "L": 1093,
+          "R": 1209,
+          "holdoutSide": "left",
+          "dictWords": [
+            1267,
+            6036
+          ],
+          "models": 7,
+          "maskPairs": 1,
+          "fitStatus": "unqualified",
+          "fitLegal": 0,
+          "trueLex": null,
+          "trueModelCount": 0,
+          "result": null
+        }
+      ]
+    },
+    {
+      "name": "p40",
+      "n": 3008,
+      "anchors": [
+        {
+          "j": 373,
+          "at": 1689,
+          "n": [
+            12,
+            7
+          ],
+          "guaranteed": 19,
+          "L": 1641,
+          "R": 1756,
+          "holdoutSide": "left",
+          "dictWords": [
+            1267,
+            6580
+          ],
+          "models": 255,
+          "maskPairs": 1,
+          "fitStatus": "unqualified",
+          "fitLegal": 0,
+          "trueLex": null,
+          "trueModelCount": 0,
+          "result": null
+        }
+      ]
+    },
+    {
+      "name": "p54",
+      "n": 308,
+      "anchors": [
+        {
+          "j": 56,
+          "at": 255,
+          "n": [
+            13,
+            6
+          ],
+          "guaranteed": 17,
+          "L": 207,
+          "R": 308,
+          "holdoutSide": "left",
+          "dictWords": [
+            637,
+            5933
+          ],
+          "models": 169,
+          "maskPairs": 4,
+          "fitStatus": "unqualified",
+          "fitLegal": 0,
+          "trueLex": null,
+          "trueModelCount": 0,
+          "result": null
+        }
+      ]
+    }
+  ]
+}
