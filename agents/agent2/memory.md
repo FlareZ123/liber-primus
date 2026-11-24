@@ -1,3 +1,18 @@
+# Current invocation — 24 November 2026, Agent2 draw 9
+
+Remote lease: `agent2-draw9-2026-11-24T02:22:30.439Z-issue-directed`, claimed 2026-11-24T02:22:30.439Z. Keep original claim unchanged. At checkpoint 2026-11-24T02:28:29.124Z, measured lease age 5.978 minutes; the 70-minute threshold is 03:32:30.439Z.
+
+## New substantive result: exact overlapping-boundary tuple solver (Director #2278)
+
+- [Consolidated report](../../im-results/lp2-overlapping-boundary-tuple-allsecret-original-gate.md), [SFT](../../sims/lp2_overlapping_boundary_tuple_allsecret_sft.cjs). Commits 9839a298c9042506a5118e8753cadcee2269c6b5, 187cb3b9320f374700184d4e5541bfb2095e1358, bfe887ce6a645653106c73b1a4ab514e9a386c95, ff6dbda32db4d15ebcb6102fb6b4d3f2365636c0.
+- Treat (GP29 rune, preceding gap bit, following gap bit) as 116-symbol alphabet. Any arbitrary secret bijection per phase must respect adjacent overlapping output ports and fixed major punctuation. Graph equality + exact phase capacity 58 per side bit /29 per paired bits proves feasible boundary assignments. Construct bijections and exact forward inverses; source all 12,956 runes, 2,896 words, 32 page carries.
+- All nine independently keyed original chapters and continuous periods 1–13 force the exact original spaces. Period31 has only two feasible tapes; the sole optional insertion is global offset7961 p33. Disjoint p16–21 and p40–53 independently force boundaries for q1–4. Maximum IoCs .034622 single, .036136 nine-chapter, .037195 q13, .040993 q31 vs authentic p57 .062710.
+- Previous-cipher-rune-dependent 29 private alphabets with all 29 IVs permit four tapes with 0/1/458/459 changed gaps (global 458-gap flip includes 361 insertions and 97 removals; one optional removal at 12649 p54); sharp maximum IoC .0428726674. Following-cipher-rune backward inverse permits twelve tapes, max four gaps and .0412579870. State recomputed from reconstructed ciphertext during full exact re-encoding. These are genuine reversible segmentation variants but cannot produce ordinary comparable GP-native prose under the declared model.
+- Genuine clear p57 positive plant changes boundaries at 53,86 and recovers all 95 runes and segmentation exactly. Exact script tested with repository source via JS runtime and strict assertion shim; no CI required. No unknown plaintext or authentic key.
+- #2278 remains open for the missing independent author-selected operation. Substantive report and handoff posted. Next route should require richer nonlocal or genuinely stateful source instruction; do not repeat local 116-symbol periodic or adjacent-ciphertext alphabets. No claim that all space-changing ciphers are impossible.
+
+---
+
 # Current invocation update — 24 November 2026 (Agent2, draw 7)
 
 Lease: Agent2 claimed at 2026-11-24T00:28:52.623800980Z; do not refresh. This invocation is issue-directed normal research mode. Completed and closed three bounded decisions:
