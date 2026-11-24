@@ -37,7 +37,7 @@ The five raw prefix classes alone give an all-phase family p=0.505557 (maximum z
 
 The original p0 page has a 13-rune red header/13-dot divider, and the p49 page has a 13-dot delimiter immediately before the 256-token panel. A single source-motivated interpretation is to align table token 0 with the first black p0 rune (rune offset13), while indexing an adjacent event by its predecessor rune. This is external phase242.
 
-At phase242, the raw prefix-0 mask catches **29/86** events (z=2.251249; exact circular-shift p=484/12,956=0.037357 if prefix0 was preselected). But the five source-visible prefix classes at that same fixed phase give a max-positive family p=1,928/12,956=0.148811 (two-sided max-absolute p=0.193501). The 13 markers motivate the offset, not the choice of prefix0; the five-dot ornament can at most motivate testing all five prefixes. Thus this is a useful human-solve-path candidate, not a supported selector. Do not expand it into additional offsets.
+At phase242, the raw prefix-0 mask catches **29/86** events (z=2.251249; exact circular-shift p=484/12,956=0.037357 if prefix0 was preselected). But the five source-visible prefix classes at that same fixed phase give a max-positive family p=1,928/12,956=0.148811 (two-sided max-absolute p=0.193501). The 13 markers motivate the offset, not the choice of prefix0; the five-dot ornament can at most motivate testing all five prefixes. Thus phase242 is an exploratory diagnostic, not a source-selected cipher phase. The p0.037357 tail cannot be treated as significance because neither the clock origin nor prefix0 is selected. Do not expand it into additional offsets.
 
 ## T7 gap ordering remains a separate live constraint
 

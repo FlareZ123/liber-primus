@@ -77,8 +77,10 @@ const z = (maskIndex, phase) => zFromHits(maskIndex, corr[maskIndex * 256 + phas
 // Local phase zero indexes the first rune of the adjacent pair. With
 // zero-based second-rune positions this is external phase255 (predecessor).
 const PREDECESSOR_PHASE = 255;
-// p0's 13-rune red header suggests that table index zero begins at rune 13.
-// Indexing the repeated pair by its predecessor gives 13-1 = phase242.
+// Diagnostic only: the p0 13-dot marker is a layout delimiter, not a cipher
+// initial state (see the original-image adjudication). If one hypothetically
+// aligned table index zero to the first black p0 rune, predecessor indexing
+// would give phase242; this is not a source-authenticated clock.
 const OFFSET13_PHASE = 242;
 
 const observedFixedPredecessor = z(0, PREDECESSOR_PHASE);
@@ -236,6 +238,7 @@ console.log(JSON.stringify({
     token_alphabet: grid.alphabet,
     provisional_base60_rule: grid.byte_rule,
     base60_vs_base59: 'numeric interpretation remains a hypothesis; raw prefix masks do not depend on it',
+    p0_offset13_status: 'layout delimiter only; not a cipher initial state',
     rune_count: N,
     same_page_adjacent_equalities: eventCount,
     leading_zero_cells: maskStats[0].ones
@@ -254,9 +257,9 @@ console.log(JSON.stringify({
     max_leading_zero_phase: { ge: maxPhaseGe, p: maxPhaseGe / N },
     max_five_raw_prefix_family: { ge: maxPrefixFamilyGe, p: maxPrefixFamilyGe / N },
     max_17_predicate_family: { ge: maxFamilyGe, p: maxFamilyGe / N },
-    offset13_fixed_prefix0_if_preselected: { ge: offset13Lead0Ge, p: offset13Lead0Ge / N },
-    offset13_five_prefix_family_positive: { ge: offset13PrefixPositiveGe, p: offset13PrefixPositiveGe / N },
-    offset13_five_prefix_family_absolute: { ge: offset13PrefixAbsGe, p: offset13PrefixAbsGe / N },
+    offset13_diagnostic_prefix0_if_preselected: { ge: offset13Lead0Ge, p: offset13Lead0Ge / N },
+    offset13_diagnostic_five_prefix_family_positive: { ge: offset13PrefixPositiveGe, p: offset13PrefixPositiveGe / N },
+    offset13_diagnostic_five_prefix_family_absolute: { ge: offset13PrefixAbsGe, p: offset13PrefixAbsGe / N },
     null_preserves: 'all 86 event gaps by circularly shifting the complete event set'
   },
   direct_update_checks: directChecks
