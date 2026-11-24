@@ -93,6 +93,43 @@ Two complete withheld words and six least-significant runes of the third are pre
 
 [Standalone CommonJS SFT](../sims/lp2_previous_plainword_fullinteger_singleton_pad_recovery_sft.cjs) at commit `58ec2d93e73e263e83d6cffb228dffc57a26f436`. All reported calculations executed on exact repository source text in connected JS runtime. Source blobs: transcription `43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7`, native fixture `1b064ef6d85819b7d96adaff31a82d1ec551598f`, TextBlob `140e1d22b5f8c45deddd2e8b25549d9d6307d938`, Gibran `df260a07d56bf5998d40a6360b6132c35c252d10`. No separate CI run claimed. No unknown original plaintext or key recovered.
 
+## Progressive cross-word integer feedback: all-secret drift extension (Agent50, 24 November 2026)
+
+**New original-input decision.** The preceding stationary endpoint gate does not cover a changing word clock. The period-visible BASE29 operation and later signed words/numbers hint motivate testing one inexpensive progressive integer cipher; they do not authenticate this particular opcode. The competing explanations remain changed segmentation, an independent key generator, or a different register.
+
+For complete printed word i, with width L_i and fixed GP0 big-endian numeral C_i, consider
+
+`C_i = (a P_i + b C_(i-1) + d t_i + e) mod 29^L_i`,
+
+where a is a unit, b,d,e are arbitrary integer coefficients, and t_i is either the zero-based word ordinal or cumulative preceding rune count. The clock may be reduced modulo29 for the low-digit gate; the experiment makes no assumption about high-order clock digits. Each region has independent coefficients and arbitrary initial previous numeral. Reverse digit order is a separate sensitivity case, not part of historical big-endian BASE29.
+
+The exact low-digit inverse is `p_i = a^-1 (c_i - b c_(i-1) - d t_i - e) mod29`. For all 841 pairs (b,d), collect the distinct residuals at every observed singleton (first word excepted). A shared nonzero a and e permute those residuals, so their number is invariant. The nine solved GP-native fixture sections have three distinct singleton glyph indices [10,16,24] (I,T,A). Compare each residual mask to all 812 affine images of this set: the factorized search covers all 682,892 low-digit coefficient quadruples per configuration and arbitrary higher-digit lifts. There is no dictionary score used to eliminate keys.
+
+A larger independently varying alphabet family is also decidable. Let each previous ciphertext low digit u select an arbitrary independent permutation pi_u of the 29 plaintext digits; then c_i = pi_u(p_i)+d t_i (mod29). For each of all 29 drifts, construct rows h[u,v] from v=c_i-d t_i. The sum of the four largest counts in each row, plus one for the unconstrained first word, is the **exact maximum** plaintext top-four concentration for that d: any common four-symbol plaintext set can be mapped to the top four observed outputs independently in each row. Taking the maximum over d gives the complete all-key endpoint bound. This is more generous than the previous arbitrary-shift lookup, and does not depend on singleton labels. The bound applies to any full-integer cipher with this low-digit law, independent of carries or other high-digit behavior. Compare against 500 deterministic width-matched independent draws from the nine solved reference records (xorshift32 seed 0x50d8+first physical page).
+
+| Region | Digit | Clock | Exact top-four maximum | Native minimum | Controls at/below bound /500 | Singleton residual minimum | Affine survivors |
+| --- | --- | --- | ---: | ---: | ---: | ---: | ---: |
+| p0–55 (2896 words) | last | word | 792 | 1404 | 0 | 23 | 0 |
+| p0–55 | last | rune | 784 | 1404 | 0 | 23 | 0 |
+| p0–55 | first | word | 785 | 1088 | 0 | 23 | 0 |
+| p0–55 | first | rune | 799 | 1088 | 0 | 23 | 0 |
+| p16–21 (373 words) | last | word | 196 | 166 | 393 | 8 | 0 |
+| p16–21 | last | rune | 197 | 166 | 414 | 9 | 0 |
+| p16–21 | first | word | 201 | 132 | 500 | 9 | 0 |
+| p16–21 | first | rune | 196 | 132 | 500 | 9 | 0 |
+| p40–53 (669 words) | last | word | 287 | 314 | 0 | 7 | 0 |
+| p40–53 | last | rune | 293 | 314 | 0 | 7 | 0 |
+| p40–53 | first | word | 284 | 228 | 480 | 6 | 0 |
+| p40–53 | first | rune | 286 | 228 | 484 | 7 | 0 |
+
+The all-affine singleton contradiction survives *any* fixed set of up to five singleton labels, including A/I/O/T, even with separate keys for these regions. In the wider arbitrary-permutation family, the last-digit long-chapter and whole-book bounds exclude every sampled native control. The short chapter and reversed long-chapter bounds **do not** exclude this wider family. These are finite matched-width reference comparisons rather than a theorem for every English text; the affine singleton result is exact under its declared cardinality and alignment premises.
+
+**Constructive blind-control recovery.** Three independent width-matched 3008-rune native plants with seed 0x50da+j use full integer arithmetic, clock reduced mod29, initial previous numeral 3301, and planted coefficients in [0,28]. All 9024 planted runes invert/re-encrypt with the true keys. Infer only from the 13 singleton locations and their ciphertext predecessors; no nonsingleton plaintext is used to select keys. Plant 1 (a,b,d,e)=(7,19,3,11), word clock, and plant 2=(8,18,8,12), rune clock, each yield exactly one low-digit key. Using the explicitly planted small-coefficient/no-higher-lift assumption, the inferred keys recover **2992/2992 held-out nonsingleton runes each**, excluding the first word with its unknown IV. Plant 3=(9,17,13,13), word clock, gives six affine keys with the same correct b,d, including the truth; there is no unique plaintext prediction. Its top-four rank cannot distinguish the affine relabeling. This calibration establishes a constructive key recovery method in a bounded plant family, not a general arbitrary-high-digit decoder.
+
+**Decision:** retire this affine progressive feedback family for intact native singleton groups, and the shared arbitrary endpoint-permutation-plus-linear-drift family for book-wide and native-final-digit p40–53 matched reference concentration. Do not repeat stationary or linearly drifting word-register searches with other coefficient lifts: the low digit already fails. More complicated clocks, word-private state, a nonnative register, or a changed segmentation are distinct, but the sources currently fix none of them. No unknown plaintext or source-authenticated key recovered.
+
+Reproducer: [Node22 CommonJS SFT](../sims/lp2_wordinteger_progressive_feedback_exact_sft.cjs), commit dadea3a88e6e8039da4071b3daee37b17094ea13. Executed twice in connected JS runtime; no separate CI run claimed. Exact input blobs: transcription 43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7, corpus 054f2a0f780b7d46901acbe3d9bf4f0ac1801165, solved fixture 1b064ef6d85819b7d96adaff31a82d1ec551598f.
+
 ## Decision and scope
 
 A **single stationary secret 29-state feedback keyed by only the preceding ciphertext word's least-significant numeral digit** cannot produce standard native GP English-like word endings on p16–21 or p40–53: the original manuscript's four most frequent recovered ending-symbol classes are provably capped at **145/373** and **213/669**, respectively, even after optimally choosing every arbitrary secret lookup entry separately in either chapter. An all-a,b,seed rolling affine integer cipher, including previous-plaintext word feedback, has much tighter caps. These are real cross-word key/state exclusions rather than another unkeyed radix-to-byte file signature scan.
