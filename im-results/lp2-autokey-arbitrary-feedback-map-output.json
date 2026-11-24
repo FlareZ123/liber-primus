@@ -1,0 +1,1099 @@
+{
+  "lexicon": 38920,
+  "original": {
+    "8": {
+      "pairs": 9020,
+      "domSizes": [
+        29,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "matching": 2,
+      "forced": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "lex": {
+        "forcedPositions": 9020,
+        "anchors": 621,
+        "anchorExamples": [
+          {
+            "wi": 6,
+            "start": 34,
+            "c": "NAEGITH"
+          },
+          {
+            "wi": 18,
+            "start": 83,
+            "c": "IAEHXTHPG"
+          },
+          {
+            "wi": 36,
+            "start": 158,
+            "c": "NGGMJROLEO"
+          }
+        ],
+        "scores": [
+          {
+            "a": 1,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 2,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 3,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 4,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 5,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 6,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 7,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 8,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 9,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 10,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 11,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 12,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 13,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 14,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 15,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 16,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 17,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 18,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 19,
+            "good": 1,
+            "words": [
+              {
+                "wi": 1717,
+                "p": "BROWS"
+              }
+            ]
+          },
+          {
+            "a": 20,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 21,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 22,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 23,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 24,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 25,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 26,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 27,
+            "good": 1,
+            "words": [
+              {
+                "wi": 1601,
+                "p": "UICAR"
+              }
+            ]
+          },
+          {
+            "a": 28,
+            "good": 0,
+            "words": []
+          }
+        ]
+      }
+    },
+    "13": {
+      "pairs": 7313,
+      "domSizes": [
+        29,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "matching": 2,
+      "forced": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "lex": {
+        "forcedPositions": 7313,
+        "anchors": 502,
+        "anchorExamples": [
+          {
+            "wi": 6,
+            "start": 34,
+            "c": "NAEGITH"
+          },
+          {
+            "wi": 18,
+            "start": 83,
+            "c": "IAEHXTHPG"
+          },
+          {
+            "wi": 36,
+            "start": 158,
+            "c": "NGGMJROLEO"
+          }
+        ],
+        "scores": [
+          {
+            "a": 1,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 2,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 3,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 4,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 5,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 6,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 7,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 8,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 9,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 10,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 11,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 12,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 13,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 14,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 15,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 16,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 17,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 18,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 19,
+            "good": 1,
+            "words": [
+              {
+                "wi": 1717,
+                "p": "BROWS"
+              }
+            ]
+          },
+          {
+            "a": 20,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 21,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 22,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 23,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 24,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 25,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 26,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 27,
+            "good": 1,
+            "words": [
+              {
+                "wi": 1601,
+                "p": "UICAR"
+              }
+            ]
+          },
+          {
+            "a": 28,
+            "good": 0,
+            "words": []
+          }
+        ]
+      }
+    }
+  },
+  "controls": [
+    {
+      "q": 8,
+      "perm": true,
+      "pairs": 2039,
+      "matching": 29,
+      "forced": [],
+      "lex": {
+        "forcedPositions": 0,
+        "anchors": 0,
+        "anchorExamples": [],
+        "scores": [
+          {
+            "a": 1,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 2,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 3,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 4,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 5,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 6,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 7,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 8,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 9,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 10,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 11,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 12,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 13,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 14,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 15,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 16,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 17,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 18,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 19,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 20,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 21,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 22,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 23,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 24,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 25,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 26,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 27,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 28,
+            "good": 0,
+            "words": []
+          }
+        ]
+      }
+    },
+    {
+      "q": 8,
+      "perm": false,
+      "pairs": 2579,
+      "matching": 28,
+      "forced": [],
+      "lex": {
+        "forcedPositions": 0,
+        "anchors": 0,
+        "anchorExamples": [],
+        "scores": [
+          {
+            "a": 1,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 2,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 3,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 4,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 5,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 6,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 7,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 8,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 9,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 10,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 11,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 12,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 13,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 14,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 15,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 16,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 17,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 18,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 19,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 20,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 21,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 22,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 23,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 24,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 25,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 26,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 27,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 28,
+            "good": 0,
+            "words": []
+          }
+        ]
+      }
+    },
+    {
+      "q": 13,
+      "perm": true,
+      "pairs": 1545,
+      "matching": 29,
+      "forced": [],
+      "lex": {
+        "forcedPositions": 0,
+        "anchors": 0,
+        "anchorExamples": [],
+        "scores": [
+          {
+            "a": 1,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 2,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 3,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 4,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 5,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 6,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 7,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 8,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 9,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 10,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 11,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 12,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 13,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 14,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 15,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 16,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 17,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 18,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 19,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 20,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 21,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 22,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 23,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 24,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 25,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 26,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 27,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 28,
+            "good": 0,
+            "words": []
+          }
+        ]
+      }
+    },
+    {
+      "q": 13,
+      "perm": false,
+      "pairs": 2377,
+      "matching": 29,
+      "forced": [],
+      "lex": {
+        "forcedPositions": 0,
+        "anchors": 0,
+        "anchorExamples": [],
+        "scores": [
+          {
+            "a": 1,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 2,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 3,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 4,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 5,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 6,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 7,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 8,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 9,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 10,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 11,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 12,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 13,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 14,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 15,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 16,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 17,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 18,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 19,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 20,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 21,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 22,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 23,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 24,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 25,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 26,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 27,
+            "good": 0,
+            "words": []
+          },
+          {
+            "a": 28,
+            "good": 0,
+            "words": []
+          }
+        ]
+      }
+    }
+  ]
+}
