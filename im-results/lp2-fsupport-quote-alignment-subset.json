@@ -1,0 +1,715 @@
+{
+  "method": {
+    "N": 160,
+    "B": 41,
+    "orthography": "native ING→NG, IO→IA, QU→CW, V→U, K/Q→C, Z→S, apostrophes internal",
+    "sourceSentenceMarks": ".!?",
+    "target": "p42–43 [10279,10439), relative full stop 41; no original rune values scored in subset calibration",
+    "nulls": 99
+  },
+  "authentic": [
+    {
+      "name": "WELCOME",
+      "n": 515,
+      "plainF": 11,
+      "cipherF": 25
+    },
+    {
+      "name": "KOAN",
+      "n": 319,
+      "plainF": 2,
+      "cipherF": 5
+    }
+  ],
+  "sourceCounts": [
+    {
+      "name": "Shakespeare",
+      "runes": 217075,
+      "sentenceStops": 3366,
+      "placements": 305,
+      "plainFHistogram": {
+        "0": 7,
+        "1": 30,
+        "2": 59,
+        "3": 70,
+        "4": 53,
+        "5": 46,
+        "6": 24,
+        "7": 11,
+        "8": 5
+      }
+    },
+    {
+      "name": "Emerson",
+      "runes": 321326,
+      "sentenceStops": 3805,
+      "placements": 664,
+      "plainFHistogram": {
+        "0": 4,
+        "1": 41,
+        "2": 79,
+        "3": 111,
+        "4": 132,
+        "5": 106,
+        "6": 95,
+        "7": 45,
+        "8": 22,
+        "9": 16,
+        "10": 10,
+        "11": 3
+      }
+    },
+    {
+      "name": "Gibran",
+      "runes": 62492,
+      "sentenceStops": 875,
+      "placements": 86,
+      "plainFHistogram": {
+        "1": 4,
+        "2": 15,
+        "3": 19,
+        "4": 13,
+        "5": 15,
+        "6": 7,
+        "7": 9,
+        "9": 2,
+        "10": 1,
+        "11": 1
+      }
+    }
+  ],
+  "totalCandidates": 1055,
+  "plants": [
+    {
+      "truth": {
+        "name": "Shakespeare",
+        "start": 23155,
+        "plainF": 3
+      },
+      "cipherF": 7,
+      "truthCompatible": true,
+      "compatible": 15,
+      "best": 3,
+      "bestTies": 1,
+      "top": [
+        {
+          "name": "Shakespeare",
+          "start": 23155,
+          "plainF": 3
+        }
+      ],
+      "maxNull": 3,
+      "pValue": 0.03,
+      "selected": null,
+      "correct": null,
+      "quartile": 0,
+      "authenticKey": "WELCOME"
+    },
+    {
+      "truth": {
+        "name": "Shakespeare",
+        "start": 94289,
+        "plainF": 6
+      },
+      "cipherF": 7,
+      "truthCompatible": true,
+      "compatible": 19,
+      "best": 6,
+      "bestTies": 1,
+      "top": [
+        {
+          "name": "Shakespeare",
+          "start": 94289,
+          "plainF": 6
+        }
+      ],
+      "maxNull": 2,
+      "pValue": 0.01,
+      "selected": {
+        "name": "Shakespeare",
+        "start": 94289,
+        "plainF": 6
+      },
+      "correct": true,
+      "quartile": 1,
+      "authenticKey": "KOAN"
+    },
+    {
+      "truth": {
+        "name": "Shakespeare",
+        "start": 155044,
+        "plainF": 5
+      },
+      "cipherF": 8,
+      "truthCompatible": true,
+      "compatible": 17,
+      "best": 5,
+      "bestTies": 1,
+      "top": [
+        {
+          "name": "Shakespeare",
+          "start": 155044,
+          "plainF": 5
+        }
+      ],
+      "maxNull": 3,
+      "pValue": 0.01,
+      "selected": {
+        "name": "Shakespeare",
+        "start": 155044,
+        "plainF": 5
+      },
+      "correct": true,
+      "quartile": 2,
+      "authenticKey": "WELCOME"
+    },
+    {
+      "truth": {
+        "name": "Shakespeare",
+        "start": 185066,
+        "plainF": 4
+      },
+      "cipherF": 5,
+      "truthCompatible": true,
+      "compatible": 15,
+      "best": 4,
+      "bestTies": 1,
+      "top": [
+        {
+          "name": "Shakespeare",
+          "start": 185066,
+          "plainF": 4
+        }
+      ],
+      "maxNull": 2,
+      "pValue": 0.01,
+      "selected": {
+        "name": "Shakespeare",
+        "start": 185066,
+        "plainF": 4
+      },
+      "correct": true,
+      "quartile": 3,
+      "authenticKey": "KOAN"
+    },
+    {
+      "truth": {
+        "name": "Emerson",
+        "start": 72152,
+        "plainF": 4
+      },
+      "cipherF": 5,
+      "truthCompatible": true,
+      "compatible": 16,
+      "best": 4,
+      "bestTies": 1,
+      "top": [
+        {
+          "name": "Emerson",
+          "start": 72152,
+          "plainF": 4
+        }
+      ],
+      "maxNull": 2,
+      "pValue": 0.01,
+      "selected": {
+        "name": "Emerson",
+        "start": 72152,
+        "plainF": 4
+      },
+      "correct": true,
+      "quartile": 0,
+      "authenticKey": "WELCOME"
+    },
+    {
+      "truth": {
+        "name": "Emerson",
+        "start": 149430,
+        "plainF": 1
+      },
+      "cipherF": 1,
+      "truthCompatible": true,
+      "compatible": 12,
+      "best": 1,
+      "bestTies": 1,
+      "top": [
+        {
+          "name": "Emerson",
+          "start": 149430,
+          "plainF": 1
+        }
+      ],
+      "maxNull": 1,
+      "pValue": 0.35,
+      "selected": null,
+      "correct": null,
+      "quartile": 1,
+      "authenticKey": "KOAN"
+    },
+    {
+      "truth": {
+        "name": "Emerson",
+        "start": 222467,
+        "plainF": 3
+      },
+      "cipherF": 8,
+      "truthCompatible": true,
+      "compatible": 16,
+      "best": 3,
+      "bestTies": 1,
+      "top": [
+        {
+          "name": "Emerson",
+          "start": 222467,
+          "plainF": 3
+        }
+      ],
+      "maxNull": 2,
+      "pValue": 0.01,
+      "selected": {
+        "name": "Emerson",
+        "start": 222467,
+        "plainF": 3
+      },
+      "correct": true,
+      "quartile": 2,
+      "authenticKey": "WELCOME"
+    },
+    {
+      "truth": {
+        "name": "Emerson",
+        "start": 296933,
+        "plainF": 3
+      },
+      "cipherF": 3,
+      "truthCompatible": true,
+      "compatible": 13,
+      "best": 3,
+      "bestTies": 1,
+      "top": [
+        {
+          "name": "Emerson",
+          "start": 296933,
+          "plainF": 3
+        }
+      ],
+      "maxNull": 2,
+      "pValue": 0.01,
+      "selected": {
+        "name": "Emerson",
+        "start": 296933,
+        "plainF": 3
+      },
+      "correct": true,
+      "quartile": 3,
+      "authenticKey": "KOAN"
+    },
+    {
+      "truth": {
+        "name": "Gibran",
+        "start": 2474,
+        "plainF": 4
+      },
+      "cipherF": 9,
+      "truthCompatible": true,
+      "compatible": 13,
+      "best": 4,
+      "bestTies": 1,
+      "top": [
+        {
+          "name": "Gibran",
+          "start": 2474,
+          "plainF": 4
+        }
+      ],
+      "maxNull": 4,
+      "pValue": 0.02,
+      "selected": null,
+      "correct": null,
+      "quartile": 0,
+      "authenticKey": "WELCOME"
+    },
+    {
+      "truth": {
+        "name": "Gibran",
+        "start": 24554,
+        "plainF": 4
+      },
+      "cipherF": 7,
+      "truthCompatible": true,
+      "compatible": 17,
+      "best": 4,
+      "bestTies": 1,
+      "top": [
+        {
+          "name": "Gibran",
+          "start": 24554,
+          "plainF": 4
+        }
+      ],
+      "maxNull": 3,
+      "pValue": 0.01,
+      "selected": {
+        "name": "Gibran",
+        "start": 24554,
+        "plainF": 4
+      },
+      "correct": true,
+      "quartile": 1,
+      "authenticKey": "KOAN"
+    },
+    {
+      "truth": {
+        "name": "Gibran",
+        "start": 43835,
+        "plainF": 2
+      },
+      "cipherF": 5,
+      "truthCompatible": true,
+      "compatible": 12,
+      "best": 2,
+      "bestTies": 1,
+      "top": [
+        {
+          "name": "Gibran",
+          "start": 43835,
+          "plainF": 2
+        }
+      ],
+      "maxNull": 2,
+      "pValue": 0.16,
+      "selected": null,
+      "correct": null,
+      "quartile": 2,
+      "authenticKey": "WELCOME"
+    },
+    {
+      "truth": {
+        "name": "Gibran",
+        "start": 59247,
+        "plainF": 6
+      },
+      "cipherF": 10,
+      "truthCompatible": true,
+      "compatible": 21,
+      "best": 6,
+      "bestTies": 2,
+      "top": [
+        {
+          "name": "Emerson",
+          "start": 318078,
+          "plainF": 6
+        },
+        {
+          "name": "Gibran",
+          "start": 59247,
+          "plainF": 6
+        }
+      ],
+      "maxNull": 4,
+      "pValue": 0.01,
+      "selected": null,
+      "correct": null,
+      "quartile": 3,
+      "authenticKey": "KOAN"
+    }
+  ],
+  "nulls": [
+    {
+      "truth": null,
+      "cipherF": 7,
+      "truthCompatible": null,
+      "compatible": 13,
+      "best": 1,
+      "bestTies": 2,
+      "top": [
+        {
+          "name": "Shakespeare",
+          "start": 9585,
+          "plainF": 1
+        },
+        {
+          "name": "Shakespeare",
+          "start": 84946,
+          "plainF": 1
+        }
+      ],
+      "maxNull": 3,
+      "pValue": 0.97,
+      "selected": null,
+      "correct": null,
+      "matchedTo": 0
+    },
+    {
+      "truth": null,
+      "cipherF": 7,
+      "truthCompatible": null,
+      "compatible": 17,
+      "best": 2,
+      "bestTies": 1,
+      "top": [
+        {
+          "name": "Shakespeare",
+          "start": 22425,
+          "plainF": 2
+        }
+      ],
+      "maxNull": 2,
+      "pValue": 0.24,
+      "selected": null,
+      "correct": null,
+      "matchedTo": 1
+    },
+    {
+      "truth": null,
+      "cipherF": 8,
+      "truthCompatible": null,
+      "compatible": 17,
+      "best": 2,
+      "bestTies": 1,
+      "top": [
+        {
+          "name": "Emerson",
+          "start": 99008,
+          "plainF": 2
+        }
+      ],
+      "maxNull": 3,
+      "pValue": 0.29,
+      "selected": null,
+      "correct": null,
+      "matchedTo": 2
+    },
+    {
+      "truth": null,
+      "cipherF": 5,
+      "truthCompatible": null,
+      "compatible": 15,
+      "best": 1,
+      "bestTies": 4,
+      "top": [
+        {
+          "name": "Shakespeare",
+          "start": 161951,
+          "plainF": 1
+        },
+        {
+          "name": "Shakespeare",
+          "start": 200071,
+          "plainF": 1
+        },
+        {
+          "name": "Emerson",
+          "start": 210031,
+          "plainF": 1
+        },
+        {
+          "name": "Emerson",
+          "start": 279105,
+          "plainF": 1
+        }
+      ],
+      "maxNull": 2,
+      "pValue": 0.91,
+      "selected": null,
+      "correct": null,
+      "matchedTo": 3
+    },
+    {
+      "truth": null,
+      "cipherF": 5,
+      "truthCompatible": null,
+      "compatible": 16,
+      "best": 2,
+      "bestTies": 2,
+      "top": [
+        {
+          "name": "Shakespeare",
+          "start": 170448,
+          "plainF": 2
+        },
+        {
+          "name": "Emerson",
+          "start": 145477,
+          "plainF": 2
+        }
+      ],
+      "maxNull": 2,
+      "pValue": 0.12,
+      "selected": null,
+      "correct": null,
+      "matchedTo": 4
+    },
+    {
+      "truth": null,
+      "cipherF": 1,
+      "truthCompatible": null,
+      "compatible": 12,
+      "best": 1,
+      "bestTies": 1,
+      "top": [
+        {
+          "name": "Shakespeare",
+          "start": 216043,
+          "plainF": 1
+        }
+      ],
+      "maxNull": 1,
+      "pValue": 0.31,
+      "selected": null,
+      "correct": null,
+      "matchedTo": 5
+    },
+    {
+      "truth": null,
+      "cipherF": 8,
+      "truthCompatible": null,
+      "compatible": 14,
+      "best": 1,
+      "bestTies": 3,
+      "top": [
+        {
+          "name": "Shakespeare",
+          "start": 112655,
+          "plainF": 1
+        },
+        {
+          "name": "Shakespeare",
+          "start": 137016,
+          "plainF": 1
+        },
+        {
+          "name": "Emerson",
+          "start": 90911,
+          "plainF": 1
+        }
+      ],
+      "maxNull": 3,
+      "pValue": 0.97,
+      "selected": null,
+      "correct": null,
+      "matchedTo": 6
+    },
+    {
+      "truth": null,
+      "cipherF": 3,
+      "truthCompatible": null,
+      "compatible": 12,
+      "best": 1,
+      "bestTies": 1,
+      "top": [
+        {
+          "name": "Shakespeare",
+          "start": 164053,
+          "plainF": 1
+        }
+      ],
+      "maxNull": 2,
+      "pValue": 0.74,
+      "selected": null,
+      "correct": null,
+      "matchedTo": 7
+    },
+    {
+      "truth": null,
+      "cipherF": 9,
+      "truthCompatible": null,
+      "compatible": 17,
+      "best": 2,
+      "bestTies": 1,
+      "top": [
+        {
+          "name": "Shakespeare",
+          "start": 6019,
+          "plainF": 2
+        }
+      ],
+      "maxNull": 3,
+      "pValue": 0.35,
+      "selected": null,
+      "correct": null,
+      "matchedTo": 8
+    },
+    {
+      "truth": null,
+      "cipherF": 7,
+      "truthCompatible": null,
+      "compatible": 16,
+      "best": 1,
+      "bestTies": 5,
+      "top": [
+        {
+          "name": "Shakespeare",
+          "start": 88244,
+          "plainF": 1
+        },
+        {
+          "name": "Emerson",
+          "start": 80337,
+          "plainF": 1
+        },
+        {
+          "name": "Emerson",
+          "start": 112518,
+          "plainF": 1
+        },
+        {
+          "name": "Emerson",
+          "start": 118483,
+          "plainF": 1
+        }
+      ],
+      "maxNull": 3,
+      "pValue": 0.96,
+      "selected": null,
+      "correct": null,
+      "matchedTo": 9
+    },
+    {
+      "truth": null,
+      "cipherF": 5,
+      "truthCompatible": null,
+      "compatible": 18,
+      "best": 2,
+      "bestTies": 1,
+      "top": [
+        {
+          "name": "Shakespeare",
+          "start": 90027,
+          "plainF": 2
+        }
+      ],
+      "maxNull": 2,
+      "pValue": 0.11,
+      "selected": null,
+      "correct": null,
+      "matchedTo": 10
+    },
+    {
+      "truth": null,
+      "cipherF": 10,
+      "truthCompatible": null,
+      "compatible": 19,
+      "best": 2,
+      "bestTies": 1,
+      "top": [
+        {
+          "name": "Emerson",
+          "start": 15540,
+          "plainF": 2
+        }
+      ],
+      "maxNull": 3,
+      "pValue": 0.31,
+      "selected": null,
+      "correct": null,
+      "matchedTo": 11
+    }
+  ],
+  "gate": {
+    "correct": 7,
+    "wrong": 0,
+    "falseSelections": 0,
+    "pass": false
+  }
+}
