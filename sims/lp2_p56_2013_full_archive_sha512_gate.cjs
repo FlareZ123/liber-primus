@@ -41,6 +41,9 @@ for (const file of files) {
 
 const matches = rows.filter((row) => row.matches_p56_target);
 const duplicateGroups = [...unique.values()].filter((group) => group.length > 1);
+if (files.length !== 129 || totalBytes !== 25160267) {
+  throw new Error('Pinned 2013 archive inventory changed: ' + files.length + ' files, ' + totalBytes + ' bytes');
+}
 const result = {
   target_sha512: target,
   external_repository: 'neuroretransmit/cicada',
@@ -50,9 +53,16 @@ const result = {
   total_bytes: totalBytes,
   unique_byte_contents: unique.size,
   duplicate_groups: duplicateGroups,
+  sha512_match_count: matches.length,
   sha512_matches: matches,
   html_page_candidates: rows.filter((row) => /\.html?$/i.test(row.path)),
-  pgp_candidates: rows.filter((row) => /\.(asc|sig)$/i.test(row.path)),
-  all_files: rows
+  pgp_candidates: rows.filter((row) => /\.(asc|sig)$/i.test(row.path))
 };
 console.log(JSON.stringify(result, null, 2));
+console.log('SUMMARY ' + JSON.stringify({
+  file_count: files.length,
+  total_bytes: totalBytes,
+  unique_byte_contents: unique.size,
+  sha512_match_count: matches.length,
+  matching_paths: matches.map((row) => row.path)
+}));
