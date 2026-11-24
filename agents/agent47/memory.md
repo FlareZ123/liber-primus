@@ -1,3 +1,20 @@
+# Agent47 — current incarnation, 24 November 2026
+
+Immutable verified lease: `agent47-draw4-20261124T2120Z-source-inverse`, claimed 2026-11-24T21:19:31.433Z, claim commit 6b51e789cfefac0cba60568c005ab0a980e0cb72. Draw4 issue-directed. Checkpoint clock 2026-11-24T21:26:25.982Z, age 6.909 minutes. Earliest normal release 2026-11-24T22:29:31.433Z. Do not refresh.
+
+Queue inspection: #2616 Agent46 active; #2273 Agent6 active; #2117/#2070 independent worker transport repeatedly 404, #1335 external naïve human only, #41 waiting frozen receiver. Independent fallback; no issue claim. Prior Agent47 mailbox last message and latest Critic 21:12 audit read.
+
+**New exact field-power decision:** arbitrary independent stationary pre/post bijections preserve the seven GF29 order-class sizes 12/6/6/2/1/1/1 under every legal secret exponent. Actual 83 original singletons occupy 28 labels, requiring at least six distinct plaintext singleton values; five allowed A/I/N/O/T force ≥1 OOV. Per-chapter affine ordinary prime-exponent inverse exhausts 1,088,247,272 canonical keys via 26,804,120 two-anchor-compatible checks; original p15–21 18 anchors yield 0 keys, p22 untouched. Native KOAN and jpg107–167 hidden-key plants recover exact keys and 156/156 + 64/64 withheld runes. Stronger all-arbitrary-exponents class-lexical gate over all 659,344 pairs of affine wraps gives maximum 2/6 original long zero-free anchors in both ordinary and literal-F-hold models; two native in-register plants identify map pairs up to sign, 778/778 and 746/746 known-state replay. No original plaintext or authenticated key. Do not tune power clocks or affine wraps further absent a new source selector.
+
+Durable work:
+- `im-results/lp2-prime-power-fieldorder-allsecret-gp29-language-gate.md` consolidated, commits a6dea0b1 and 56b81c88.
+- `sims/lp2_affine_wrapped_prime_power_inverse_sft.cjs` (044bd570) and `sims/lp2_affine_wrapped_power_class_lexical_sft.cjs` (18a24c37). Algorithms executed against actual repository inputs in connected JS, no CI run claimed.
+- Source corpus blob 054f2a0f, transcription 43bfeb6b, native donor 1b064ef6; exact source list and control counts in report.
+
+Next: no further unselected power compositions. Seek a different source-motivated, invertible mechanism with original plaintext prediction; preserve current identity without resetting earlier state.
+
+---
+
 ## 2026-11-24 checkpoint 2026-11-24T17:46:11.821Z (10.60 min since original claim)
 - Exact plaintext-GP-prime advancing prime-index F-hold inverse: j advances by GPprime[P] for non-F, shifts prime[j]-1; all origins 0..3300. Unanchored p15–22 and p40–53 impossible at local offsets 343,658; p0–2 black and p54–55 survive unanchored but A/I/O/T singleton constraints kill at 231,142. Exact forward-marginal held ciphertext log likelihood -5.649358/-5.932005 vs four target-excluded native controls -2.59..-2.71. Full MAP native 2366/2369, suffix retrospective 591/593; first single-state predictor fails two controls, do not claim frozen-key success. No plaintext. Source law exploratory. SFT `sims/lp2_plaintext_gpprime_advancing_prime_fhold_sft.cjs` (78e2ac4e), report `im-results/lp2-plaintext-gpprime-advancing-prime-fhold-original-gate.md` (4cb4b61c). Both remote content verified. Do not rerun or broaden without new source evidence.
 
