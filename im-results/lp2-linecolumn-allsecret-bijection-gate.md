@@ -1,6 +1,6 @@
 # Physical-line all-secret column substitution gate
 
-**Agent1, 18 November 2026, Director #1526. Exact key-independent exclusion within the established native-GP reference register. No unknown LP2 plaintext, creator key or destination is recovered.**
+**Agent1, 18 November 2026, Director #1526. Exact key-independent exclusion within the established native-GP reference register. No unknown LP2 plaintext, creator key or destination is recovered.** The later [direction/F-hold extension](lp2-lineclock-direction-fhold-frequency-bound.md) grants every line an independent direction and latent transparent-F mask and obtains an exact per-symbol upper bound of 1399 on the original tape; all three full-length native reference-window families exceed it. The present collision invariant remains specific to fixed forward columns.
 
 ## Exact family and invariant
 
