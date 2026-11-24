@@ -1,0 +1,728 @@
+{
+  "initialOrigins": 3301,
+  "rule": "all origins 0..3300, complete black-body full-stop clauses, cumulative sentence GP prime sum product modulo 3301, authentic prime-minus-one literal-F clock",
+  "results": [
+    {
+      "page": 0,
+      "start": 13,
+      "limit": 729,
+      "completeClauses": 8,
+      "testedRunes": 716,
+      "unclosedTail": 0,
+      "trace": [
+        {
+          "clause": 1,
+          "length": 141,
+          "origins": 1912,
+          "paths": "2969",
+          "longestPrefix": 141
+        },
+        {
+          "clause": 2,
+          "length": 121,
+          "origins": 1399,
+          "paths": "2990",
+          "longestPrefix": 262
+        },
+        {
+          "clause": 3,
+          "length": 22,
+          "origins": 1044,
+          "paths": "2748",
+          "longestPrefix": 284
+        },
+        {
+          "clause": 4,
+          "length": 53,
+          "origins": 1082,
+          "paths": "3664",
+          "longestPrefix": 337
+        },
+        {
+          "clause": 5,
+          "length": 44,
+          "origins": 421,
+          "paths": "1585",
+          "longestPrefix": 381
+        },
+        {
+          "clause": 6,
+          "length": 40,
+          "origins": 410,
+          "paths": "1795",
+          "longestPrefix": 421
+        },
+        {
+          "clause": 7,
+          "length": 97,
+          "origins": 752,
+          "paths": "3825",
+          "longestPrefix": 518
+        },
+        {
+          "clause": 8,
+          "length": 198,
+          "origins": 91,
+          "paths": "466",
+          "longestPrefix": 716
+        }
+      ],
+      "complete": true
+    },
+    {
+      "page": 3,
+      "start": 745,
+      "limit": 1874,
+      "completeClauses": 17,
+      "testedRunes": 1129,
+      "unclosedTail": 0,
+      "trace": [
+        {
+          "clause": 1,
+          "length": 103,
+          "origins": 1286,
+          "paths": "1669",
+          "longestPrefix": 103
+        },
+        {
+          "clause": 2,
+          "length": 3,
+          "origins": 993,
+          "paths": "1507",
+          "longestPrefix": 106
+        },
+        {
+          "clause": 3,
+          "length": 174,
+          "origins": 119,
+          "paths": "195",
+          "longestPrefix": 280
+        },
+        {
+          "clause": 4,
+          "length": 21,
+          "origins": 112,
+          "paths": "170",
+          "longestPrefix": 301
+        },
+        {
+          "clause": 5,
+          "length": 21,
+          "origins": 117,
+          "paths": "174",
+          "longestPrefix": 322
+        },
+        {
+          "clause": 6,
+          "length": 44,
+          "origins": 31,
+          "paths": "49",
+          "longestPrefix": 366
+        },
+        {
+          "clause": 7,
+          "length": 183,
+          "origins": 6,
+          "paths": "7",
+          "longestPrefix": 549
+        },
+        {
+          "clause": 8,
+          "length": 23,
+          "origins": 1,
+          "paths": "1",
+          "longestPrefix": 572
+        },
+        {
+          "clause": 9,
+          "length": 111,
+          "origins": 2,
+          "paths": "2",
+          "longestPrefix": 683
+        },
+        {
+          "clause": 10,
+          "length": 113,
+          "origins": 0,
+          "paths": "0",
+          "longestPrefix": 709
+        }
+      ],
+      "complete": false
+    },
+    {
+      "page": 8,
+      "start": 1886,
+      "limit": 3603,
+      "completeClauses": 27,
+      "testedRunes": 1717,
+      "unclosedTail": 0,
+      "trace": [
+        {
+          "clause": 1,
+          "length": 28,
+          "origins": 1846,
+          "paths": "2720",
+          "longestPrefix": 28
+        },
+        {
+          "clause": 2,
+          "length": 94,
+          "origins": 51,
+          "paths": "67",
+          "longestPrefix": 122
+        },
+        {
+          "clause": 3,
+          "length": 86,
+          "origins": 101,
+          "paths": "128",
+          "longestPrefix": 208
+        },
+        {
+          "clause": 4,
+          "length": 54,
+          "origins": 29,
+          "paths": "34",
+          "longestPrefix": 262
+        },
+        {
+          "clause": 5,
+          "length": 178,
+          "origins": 31,
+          "paths": "61",
+          "longestPrefix": 440
+        },
+        {
+          "clause": 6,
+          "length": 111,
+          "origins": 4,
+          "paths": "5",
+          "longestPrefix": 551
+        },
+        {
+          "clause": 7,
+          "length": 66,
+          "origins": 3,
+          "paths": "3",
+          "longestPrefix": 617
+        },
+        {
+          "clause": 8,
+          "length": 68,
+          "origins": 0,
+          "paths": "0",
+          "longestPrefix": 642
+        }
+      ],
+      "complete": false
+    },
+    {
+      "page": 15,
+      "start": 3623,
+      "limit": 5506,
+      "completeClauses": 19,
+      "testedRunes": 1883,
+      "unclosedTail": 0,
+      "trace": [
+        {
+          "clause": 1,
+          "length": 226,
+          "origins": 181,
+          "paths": "183",
+          "longestPrefix": 226
+        },
+        {
+          "clause": 2,
+          "length": 35,
+          "origins": 211,
+          "paths": "222",
+          "longestPrefix": 261
+        },
+        {
+          "clause": 3,
+          "length": 123,
+          "origins": 81,
+          "paths": "87",
+          "longestPrefix": 384
+        },
+        {
+          "clause": 4,
+          "length": 86,
+          "origins": 215,
+          "paths": "258",
+          "longestPrefix": 470
+        },
+        {
+          "clause": 5,
+          "length": 41,
+          "origins": 88,
+          "paths": "110",
+          "longestPrefix": 511
+        },
+        {
+          "clause": 6,
+          "length": 14,
+          "origins": 47,
+          "paths": "58",
+          "longestPrefix": 525
+        },
+        {
+          "clause": 7,
+          "length": 48,
+          "origins": 13,
+          "paths": "16",
+          "longestPrefix": 573
+        },
+        {
+          "clause": 8,
+          "length": 50,
+          "origins": 4,
+          "paths": "4",
+          "longestPrefix": 623
+        },
+        {
+          "clause": 9,
+          "length": 127,
+          "origins": 2,
+          "paths": "2",
+          "longestPrefix": 750
+        },
+        {
+          "clause": 10,
+          "length": 115,
+          "origins": 0,
+          "paths": "0",
+          "longestPrefix": 778
+        }
+      ],
+      "complete": false
+    },
+    {
+      "page": 23,
+      "start": 5522,
+      "limit": 6527,
+      "completeClauses": 8,
+      "testedRunes": 1005,
+      "unclosedTail": 0,
+      "trace": [
+        {
+          "clause": 1,
+          "length": 320,
+          "origins": 153,
+          "paths": "160",
+          "longestPrefix": 320
+        },
+        {
+          "clause": 2,
+          "length": 28,
+          "origins": 237,
+          "paths": "256",
+          "longestPrefix": 348
+        },
+        {
+          "clause": 3,
+          "length": 37,
+          "origins": 476,
+          "paths": "545",
+          "longestPrefix": 385
+        },
+        {
+          "clause": 4,
+          "length": 121,
+          "origins": 36,
+          "paths": "42",
+          "longestPrefix": 506
+        },
+        {
+          "clause": 5,
+          "length": 155,
+          "origins": 35,
+          "paths": "38",
+          "longestPrefix": 661
+        },
+        {
+          "clause": 6,
+          "length": 156,
+          "origins": 4,
+          "paths": "4",
+          "longestPrefix": 817
+        },
+        {
+          "clause": 7,
+          "length": 117,
+          "origins": 0,
+          "paths": "0",
+          "longestPrefix": 862
+        }
+      ],
+      "complete": false
+    },
+    {
+      "page": 27,
+      "start": 6546,
+      "limit": 7960,
+      "completeClauses": 22,
+      "testedRunes": 1414,
+      "unclosedTail": 0,
+      "trace": [
+        {
+          "clause": 1,
+          "length": 125,
+          "origins": 2750,
+          "paths": "6416",
+          "longestPrefix": 125
+        },
+        {
+          "clause": 2,
+          "length": 22,
+          "origins": 1095,
+          "paths": "3129",
+          "longestPrefix": 147
+        },
+        {
+          "clause": 3,
+          "length": 181,
+          "origins": 401,
+          "paths": "1326",
+          "longestPrefix": 328
+        },
+        {
+          "clause": 4,
+          "length": 116,
+          "origins": 1602,
+          "paths": "8292",
+          "longestPrefix": 444
+        },
+        {
+          "clause": 5,
+          "length": 7,
+          "origins": 1069,
+          "paths": "6666",
+          "longestPrefix": 451
+        },
+        {
+          "clause": 6,
+          "length": 91,
+          "origins": 87,
+          "paths": "513",
+          "longestPrefix": 542
+        },
+        {
+          "clause": 7,
+          "length": 18,
+          "origins": 54,
+          "paths": "346",
+          "longestPrefix": 560
+        },
+        {
+          "clause": 8,
+          "length": 36,
+          "origins": 80,
+          "paths": "822",
+          "longestPrefix": 596
+        },
+        {
+          "clause": 9,
+          "length": 11,
+          "origins": 49,
+          "paths": "551",
+          "longestPrefix": 607
+        },
+        {
+          "clause": 10,
+          "length": 294,
+          "origins": 0,
+          "paths": "0",
+          "longestPrefix": 753
+        }
+      ],
+      "complete": false
+    },
+    {
+      "page": 33,
+      "start": 7970,
+      "limit": 9640,
+      "completeClauses": 21,
+      "testedRunes": 1670,
+      "unclosedTail": 0,
+      "trace": [
+        {
+          "clause": 1,
+          "length": 81,
+          "origins": 711,
+          "paths": "793",
+          "longestPrefix": 81
+        },
+        {
+          "clause": 2,
+          "length": 8,
+          "origins": 942,
+          "paths": "1260",
+          "longestPrefix": 89
+        },
+        {
+          "clause": 3,
+          "length": 125,
+          "origins": 453,
+          "paths": "752",
+          "longestPrefix": 214
+        },
+        {
+          "clause": 4,
+          "length": 6,
+          "origins": 347,
+          "paths": "613",
+          "longestPrefix": 220
+        },
+        {
+          "clause": 5,
+          "length": 138,
+          "origins": 8,
+          "paths": "17",
+          "longestPrefix": 358
+        },
+        {
+          "clause": 6,
+          "length": 57,
+          "origins": 5,
+          "paths": "9",
+          "longestPrefix": 415
+        },
+        {
+          "clause": 7,
+          "length": 38,
+          "origins": 2,
+          "paths": "3",
+          "longestPrefix": 453
+        },
+        {
+          "clause": 8,
+          "length": 54,
+          "origins": 2,
+          "paths": "2",
+          "longestPrefix": 507
+        },
+        {
+          "clause": 9,
+          "length": 36,
+          "origins": 1,
+          "paths": "1",
+          "longestPrefix": 543
+        },
+        {
+          "clause": 10,
+          "length": 292,
+          "origins": 0,
+          "paths": "0",
+          "longestPrefix": 610
+        }
+      ],
+      "complete": false
+    },
+    {
+      "page": 40,
+      "start": 9648,
+      "limit": 12648,
+      "completeClauses": 42,
+      "testedRunes": 3000,
+      "unclosedTail": 0,
+      "trace": [
+        {
+          "clause": 1,
+          "length": 21,
+          "origins": 2091,
+          "paths": "3396",
+          "longestPrefix": 21
+        },
+        {
+          "clause": 2,
+          "length": 46,
+          "origins": 756,
+          "paths": "1369",
+          "longestPrefix": 67
+        },
+        {
+          "clause": 3,
+          "length": 21,
+          "origins": 354,
+          "paths": "703",
+          "longestPrefix": 88
+        },
+        {
+          "clause": 4,
+          "length": 69,
+          "origins": 61,
+          "paths": "123",
+          "longestPrefix": 157
+        },
+        {
+          "clause": 5,
+          "length": 64,
+          "origins": 349,
+          "paths": "763",
+          "longestPrefix": 221
+        },
+        {
+          "clause": 6,
+          "length": 15,
+          "origins": 198,
+          "paths": "441",
+          "longestPrefix": 236
+        },
+        {
+          "clause": 7,
+          "length": 71,
+          "origins": 243,
+          "paths": "568",
+          "longestPrefix": 307
+        },
+        {
+          "clause": 8,
+          "length": 114,
+          "origins": 136,
+          "paths": "270",
+          "longestPrefix": 421
+        },
+        {
+          "clause": 9,
+          "length": 142,
+          "origins": 62,
+          "paths": "141",
+          "longestPrefix": 563
+        },
+        {
+          "clause": 10,
+          "length": 68,
+          "origins": 36,
+          "paths": "95",
+          "longestPrefix": 631
+        },
+        {
+          "clause": 11,
+          "length": 41,
+          "origins": 32,
+          "paths": "85",
+          "longestPrefix": 672
+        },
+        {
+          "clause": 12,
+          "length": 129,
+          "origins": 208,
+          "paths": "466",
+          "longestPrefix": 801
+        },
+        {
+          "clause": 13,
+          "length": 24,
+          "origins": 620,
+          "paths": "1559",
+          "longestPrefix": 825
+        },
+        {
+          "clause": 14,
+          "length": 43,
+          "origins": 1013,
+          "paths": "3115",
+          "longestPrefix": 868
+        },
+        {
+          "clause": 15,
+          "length": 52,
+          "origins": 369,
+          "paths": "1241",
+          "longestPrefix": 920
+        },
+        {
+          "clause": 16,
+          "length": 31,
+          "origins": 445,
+          "paths": "1683",
+          "longestPrefix": 951
+        },
+        {
+          "clause": 17,
+          "length": 142,
+          "origins": 708,
+          "paths": "3158",
+          "longestPrefix": 1093
+        },
+        {
+          "clause": 18,
+          "length": 128,
+          "origins": 869,
+          "paths": "4585",
+          "longestPrefix": 1221
+        },
+        {
+          "clause": 19,
+          "length": 104,
+          "origins": 97,
+          "paths": "641",
+          "longestPrefix": 1325
+        },
+        {
+          "clause": 20,
+          "length": 90,
+          "origins": 13,
+          "paths": "71",
+          "longestPrefix": 1415
+        },
+        {
+          "clause": 21,
+          "length": 76,
+          "origins": 16,
+          "paths": "74",
+          "longestPrefix": 1491
+        },
+        {
+          "clause": 22,
+          "length": 137,
+          "origins": 1,
+          "paths": "6",
+          "longestPrefix": 1628
+        },
+        {
+          "clause": 23,
+          "length": 20,
+          "origins": 1,
+          "paths": "6",
+          "longestPrefix": 1648
+        },
+        {
+          "clause": 24,
+          "length": 33,
+          "origins": 1,
+          "paths": "6",
+          "longestPrefix": 1681
+        },
+        {
+          "clause": 25,
+          "length": 197,
+          "origins": 0,
+          "paths": "0",
+          "longestPrefix": 1686
+        }
+      ],
+      "complete": false
+    },
+    {
+      "page": 54,
+      "start": 12657,
+      "limit": 12956,
+      "completeClauses": 1,
+      "testedRunes": 299,
+      "unclosedTail": 0,
+      "trace": [
+        {
+          "clause": 1,
+          "length": 299,
+          "origins": 8,
+          "paths": "8",
+          "longestPrefix": 299
+        }
+      ],
+      "complete": true
+    }
+  ]
+}
