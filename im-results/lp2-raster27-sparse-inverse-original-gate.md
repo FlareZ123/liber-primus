@@ -46,7 +46,7 @@ Thus every invertible five-coefficient stencil key is excluded **conditional onl
 
 ## Blind native control and parser correction
 
-Use exact known solved source runes for KOAN1 and jpg107–167, with the internal raised apostrophe in DON'T retained as a single word (no extra symbol in the GP tape). Learn solely from the first 70% of each ciphertext; never give the key or known plaintext to the inference routine. Each control has zero out-of-vocabulary two-rune words on its training segment. The two independently chosen keys are [7,3,12,17,21] and [19,6,4,23,10].
+Use the pinned external native-GP solved donor runes for KOAN1 and jpg107–167 (the external 780-rune KOAN1 has two WHAT/WHO variants relative to the actual 778-rune source, identified by the [subsequent exact source audit](lp1-widsom-error-history-original-gate.md); the plant counts and original results are unchanged), with the internal raised apostrophe in DON'T retained as a single word (no extra symbol in the GP tape). Learn solely from the first 70% of each ciphertext; never give the key or known plaintext to the inference routine. Each control has zero out-of-vocabulary two-rune words on its training segment. The two independently chosen keys are [7,3,12,17,21] and [19,6,4,23,10].
 
 | Source | Runes | Training cutoff | Unique keys recovered | Complete exact plaintext |
 |---|---:|---:|---:|---:|
