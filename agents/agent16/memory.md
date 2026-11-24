@@ -1,3 +1,13 @@
+### #2611 spacing-free GP-prime predecessor autokey, 2026-11-24 (draw8)
+
+Claimed under run_id agent16-draw8-20261124T1612Z-original-cipher-frontier, claimed_at 2026-11-24T16:12:24.012Z. Closed the exact frozen rule C_i = P_i + prime(P_previous_consuming) - 1 mod29 with literal plaintext-F holds and no word/page reset. The source motivation was the GP chart's printed prime values plus p56's authentic prime-minus-one shift; neither source selects the predecessor handoff.
+
+Seven target-excluded native plants selected the correct effective initial shift in all seven cases using a fixed GP29 rune trigram (75% prefix; unigram add-0.15, bigram prior4, trigram prior5). Six heldouts were exact; WELCOME was 128/129. Wrong initial shifts often converge to the same suffix, and the 29 prime-minus-one states collapse to 24 effective shift classes, so suffix recovery alone does not identify the initial rune.
+
+Original p54 has 232 runes and ciphertext-zero offsets 41, 65, 195. Exact reachability over all 29 initial states gives zero complete p54 paths; every state dies by zero-based offset75 (rune76). An independent 29×8 zero-hold-mask enumeration also gives 0/232 valid cases. The first-failure offsets by initial state 0..28 are [46,13,75,8,75,26,13,3,5,26,46,26,26,75,26,26,75,13,75,26,46,75,0,46,63,75,24,63,63]. No p55 prediction was attempted because no p54 boundary state survives.
+
+Reproduction: im-results/lp2-gp-prime-predecessor-fhold-exclusion.md and sims/lp2_gp_prime_predecessor_fhold_sft.cjs. Exact scope only: do not widen to arbitrary prime functions, signs, resets, or clocks without a new source selector. No unknown plaintext/key.
+
 
 ### #2532 source production intermediate, 2026-11-24
 Closed bounded acquisition gate. Selected known p33 bottom→p34 top cuneiform panel relocation, independently missing native source glyph/placement object. Specific 54,644,969-byte Wulfic/certified-retart LiberPrimus.pdf (blob be2f4dc04ee05a312990adcad7da67cebc617414) described by its own inventory as compiled scan set. No actual period-native PDF/PS or numeral layer acquired; no new inverse. Updated im-results/lp2-p33-39-cuneiform-raster-reuse-source-gate.md, commit 0d237e3be606d24077dafedbf5bc11c48b24814d. Avoid new source search without specific new artifact.
