@@ -1,12 +1,14 @@
 "use strict";
 const fs=require("node:fs"),path=require("node:path");
 const read=p=>JSON.parse(fs.readFileSync(path.join(__dirname,"..",p),"utf8"));
-function experiment(co,src,q=8){
+function experiment(co,src,q=8,partial=false){
 const mod=x=>(x+29)%29,g=new Map(co.runes.map((r,i)=>[r,i])),native=src.sections.map(s=>({name:s.name,p:[...s.source_text].filter(x=>g.has(x)).map(x=>g.get(x))}));const str=a=>a.map(x=>co.runes[x]).join("");
 const canon=k=>{let s=k.join(","),a=[];for(let i=0;i<q;i++)a.push(k.slice(i).concat(k.slice(0,i)).join(","));return a.sort()[0]};
 const repeats=new Map;
 for(const {name,p} of native.filter(s=>!s.name.startsWith("p5")))for(let i=0;i<p.length;i++)for(let j=i+1;j<p.length;j++){if(i&&p[i-1]===p[j-1])continue;let n=0;while(j+n<p.length&&p[i+n]===p[j+n])n++;if(n>=20){let phrase=p.slice(i,i+n),k=str(phrase);if(!repeats.has(k))repeats.set(k,{name,p:phrase,first:i,second:j});}}
-const cribs=[...repeats.values()];
+const maximal=[...repeats.values()],fragments=new Map;
+if(partial)for(const crib of maximal)for(let z=0;z+2*q<=crib.p.length;z++){let p=crib.p.slice(z,z+2*q),k=str(p);if(!fragments.has(k))fragments.set(k,{...crib,p,first:crib.first+z,second:crib.second+z});}
+const cribs=partial?[...fragments.values()]:maximal;
 function scan(c,crib,limit=c.length){const p=crib.p,L=p.length,k=new Int16Array(q);let hits=[],nodes=0;
 for(let start=0;start+L<=limit;start++){k.fill(-1);const out=new Map;
 function go(i,j){nodes++;if(i===L){let key=Array.from(k);out.set(key.join(",")+":"+j,{start,end:start+L,key,endPhase:j});return}
@@ -25,11 +27,11 @@ for(let skip=0;skip<=1;skip++){let z=mod(c[i]-key[(j+skip)%q]);if(skip&&(z+key[j
 states=next;}
 let best=[...states.values()].sort((a,b)=>b.s-a.s)[0];let j=h.endPhase;for(let i=0;i<best.p.length;i++){let x=(best.p[i]+h.key[j])%29;j=(j+1)%q;if(best.redraw[i]){if(x!==c[start+i-1])throw Error("bad redraw");x=(best.p[i]+h.key[j])%29;j=(j+1)%q}if(x!==c[start+i])throw Error("bad replay")}return best}
 let controls=[];
-for(const [name,keys] of (q===8?[["0_koan_1",[[17,8,3,27,11,24,6,1],[9,23,14,2,12,6,28,17]]],["0_loss_of_divinity",[[3,8,12,4,15,22,19,0]]]]:[["0_koan_1",[[17,8,3,27,11,24,6,1,5,13,9,4,22],[9,23,14,2,12,6,28,17,8,16,3,25,11]]],["0_loss_of_divinity",[[3,8,12,4,15,22,19,0,7,14,23,5,26]]]])){let p=native.find(x=>x.name===name).p,crib=cribs.find(x=>x.name===name);for(const k of keys){let c=encrypt(p,k),r=scan(c,crib,crib.first+crib.p.length),matches=r.hits.filter(h=>h.start===crib.first&&canon(h.key)===canon(k));if(!matches.length)throw Error("failed planted key");let keysFound=new Set(r.hits.map(x=>canon(x.key)));let end=crib.first+crib.p.length,stop=Math.min(end+150,p.length);let choices=r.hits.map(h=>({h,d:decode(c,h.end,Math.min(h.end+150,p.length),h,crib,model(name))})).sort((a,b)=>b.d.s-a.d.s);let best=choices[0];controls.push({name,key:k,candidates:keysFound.size,paths:r.hits.length,start:best.h.start,trueStart:crib.first,keyCorrect:canon(best.h.key)===canon(k),n:best.d.p.length,correct:best.d.p.filter((v,i)=>v===p[best.h.end+i]).length,score:best.d.s/best.d.p.length,heldoutStart:best.h.end});}}
+for(const [name,keys] of (q===8?[["0_koan_1",[[17,8,3,27,11,24,6,1],[9,23,14,2,12,6,28,17]]],["0_loss_of_divinity",[[3,8,12,4,15,22,19,0]]]]:[["0_koan_1",[[17,8,3,27,11,24,6,1,5,13,9,4,22],[9,23,14,2,12,6,28,17,8,16,3,25,11]]],["0_loss_of_divinity",[[3,8,12,4,15,22,19,0,7,14,23,5,26]]]])){let p=native.find(x=>x.name===name).p,crib=cribs.find(x=>x.name===name);if(!crib)continue;for(const k of keys){let c=encrypt(p,k),r=scan(c,crib,crib.first+crib.p.length),matches=r.hits.filter(h=>h.start===crib.first&&canon(h.key)===canon(k));if(!matches.length)throw Error("failed planted key");let keysFound=new Set(r.hits.map(x=>canon(x.key)));let end=crib.first+crib.p.length,stop=Math.min(end+150,p.length);let choices=r.hits.map(h=>({h,d:decode(c,h.end,Math.min(h.end+150,p.length),h,crib,model(name))})).sort((a,b)=>b.d.s-a.d.s);let best=choices[0];controls.push({name,key:k,candidates:keysFound.size,paths:r.hits.length,start:best.h.start,trueStart:crib.first,keyCorrect:canon(best.h.key)===canon(k),n:best.d.p.length,correct:best.d.p.filter((v,i)=>v===p[best.h.end+i]).length,score:best.d.s/best.d.p.length,heldoutStart:best.h.end});}}
 let c=co.pages.slice(0,56).flatMap(p=>p.indices);if(c.length!==12956)throw Error("original length");
 let original=[];for(const crib of cribs){let r=scan(c,crib);original.push({name:crib.name,first:crib.first,second:crib.second,length:crib.p.length,crib:str(crib.p),nodes:r.nodes,starts:c.length-crib.p.length+1,hits:r.hits.map(h=>{let d=decode(c,h.end,Math.min(c.length,h.end+150),h,crib,model(null));return {...h,n:d.p.length,score:d.s/d.p.length,preview:str(d.p.slice(0,75))}})});}
-return {controls,original,originalRunes:c.length,scope:`LP1 maximal repeated substrings of at least 20 runes; q${q} optional collision-only one-redraw, all offsets, no printed spaces`};
+return {controls,original,originalRunes:c.length,scope:`LP1 ${partial?`${2*q}-rune fragments of `:""}maximal repeated substrings of at least 20 runes; q${q} optional collision-only one-redraw, all offsets, no printed spaces`};
 }
 const q=Number(process.argv[2]||8);
 if(![8,13].includes(q))throw Error("period must be 8 or 13");
-console.log(JSON.stringify(experiment(read("resources/liber-primus/lp2-corpus.json"),read("resources/external/relikd-solved-gp29-native-v1.json"),q),null,2));
+console.log(JSON.stringify(experiment(read("resources/liber-primus/lp2-corpus.json"),read("resources/external/relikd-solved-gp29-native-v1.json"),q,process.argv[3]==="partial"),null,2));
