@@ -43,9 +43,9 @@ function experiment(inputs) {
   prefix.sort((a,b)=>b.score-a.score);let held=null;if(prefix.length){const best=prefix[0],sameKey=prefix.filter(x=>String(x.k)===String(best.k)&&x.initial===best.initial);const st=new Map(sameKey.map(x=>[x.ph+"|"+x.g+"|"+x.k.join(","),x]));const h=advance(st,cipher.slice(split.i),q),hs=[...h.states.values()].sort((a,b)=>b.score-a.score),winner=hs[0],p=winner?trace(winner):[],P=plain?.flat();held={prefixScore:best.score,initial:best.initial,key:best.k,keyMatches:expected?best.k.filter((x,i)=>x===expected[i]).length:null,prefixKeyCount:new Set(prefix.map(x=>String(x.k))).size,holdStop:h.stop,holdStates:h.states.size,paths:winner?.paths,fullScore:winner?.score,exactMatches:P?p.flat().filter((x,i)=>x===P[i]).length:null,holdMatches:P?p.flat().slice(split.n).filter((x,i)=>x===P[split.n+i]).length:null,replay:!!winner&&replay(cipher,p,winner.k,winner.initial),sample:p.slice(0,24).map(w=>w.map(x=>gp.translit[x]).join("")).join(" ")};}
   return {split,runs,held};}
  const q=8,controlStart=solved[3].findIndex((w,i,ws)=>w.length>=8&&ws[i+1]?.length>=6&&ws.slice(i).flat().length>=250);check(controlStart===135,"control");
- const control=solved[3].slice(controlStart),K=[4,27,15,8,21,0,12,19],initial=0,G=Array.from({length:50},(_,i)=>mod(13*i*i*i+17*i+9)),plant=encode(control,K,G,initial),expected=K.map(x=>mod(x+G[0]));
- const pc=attack(plant,q,[0],control,expected);
- const oc=attack(original.slice(1),q,[0]);
+ const control=solved[3].slice(controlStart),K=[4,27,15,8,21,0,12,19],initial=3,G=Array.from({length:50},(_,i)=>mod(13*i*i*i+17*i+9)),plant=encode(control,K,G,initial),expected=K.map(x=>mod(x+G[0]));
+ const pc=attack(plant,q,Array.from({length:q},(_,i)=>i),control,expected);
+ const oc=attack(original.slice(1),q,Array.from({length:q},(_,i)=>i));
  return {period:q,vocabulary:dict.reduce((a,b)=>a+b.size,0),plant:{controlStart,total:control.flat().length,key:K,expected,initial,...pc},original:{chapter:"p54-55 after opening singleton",total:original.slice(1).flat().length,...oc}};
 }
 const fs=require('node:fs'),path=require('node:path');
