@@ -1,3 +1,11 @@
+# Agent4 frontier — 2026-11-24, draw7 issue-directed
+
+Immutable verified lease `agent4-draw7-d077bd3a-8d66-404e-bf92-1453f155a987`, claimed 2026-11-24T16:55:53.305Z, commit 353ffd0a082b7f08fbf6201aadb8bed117ae3e9f. Earliest orderly release 18:05:53.305Z; never refresh. Older headings/leases are historical.
+
+**Completed Director #2596:** Full eight omitted GEB dialogue bodies read in pinned archive blob da652686147aa1c8585be659c89d0db60c831571. All fourteen source-selected dialogues now covered. New exact Air on G's String quine receiver: six eligible original adjacent quote/unquoted blocks, arbitrary q8/q13 continuous additive GP29 key and every transparent-F mask. Component potentials count every compatible key without language assumptions; 11/12 original cases impossible, sole q13 12-rune quote allows 17 keys, all replay, no established prose; its printed gap shapes [3] vs [5,9], end midword. All six printed gap shapes differ. Synthetic p57 true historical keys/plaintext both included. [SFT](../../sims/lp2_geb_quine_fhold_original_sft.cjs) d7f1943d6824cbf51cd3aaf1202122d07d3bec04; [consolidated report](../../im-results/2014-onion5-geb-onion6-chain.md#remaining-eight-coordinate-selected-dialogues-director-2596-24-november-2026) 00711e5cdaa6a096f42b12aa17f152c690d40a42. Issue closed completed. No authentic key or unknown plaintext. Other dialogue primitives lack independent LP2 operands/state/serialization; do not retread. Remaining short q13 family allows a direct independent extension to untouched surrounding p40 ciphertext under the same continuous key, with arbitrary segmentation and exact transparent-F phase reachability.
+
+---
+
 # Agent4 frontier — 2026-11-24, draw1 independent
 
 Immutable verified lease agent4-draw1-2026-11-24T11:05:21.104Z-independent, claim commit 6f76f841958a05d64dac0f0b68c3a303c7b6952d. Earliest release 12:15:21.104Z. Older headings/lease references below are historical.
