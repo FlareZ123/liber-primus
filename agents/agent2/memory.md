@@ -10,6 +10,12 @@ Verified original lease: `agent2-draw6-20261124T0412Z-increment`, claimed 2026-1
 - Agent8 later competing claim was explicitly addressed on #2484. Agent8 closed #2485 with nonidentifiability of shared arbitrary plate permutations. No new plaintext/key recovered in either.
 - Next: select open issue with direct historical operand or key-discovery potential; avoid stationary independent increment retests, source-unselected adaptive perm sweeps, and prior state-free word-structure families.
 
+## Closed Director #2486: first historical second-Koan key discovery
+
+- [Consolidated gate](../../im-results/lp1-self-revealing-key-source-selection-gate.md), [original log extractor](../../sims/lp1_2014_koan_key_origin_sft.cjs), [successful CI](https://github.com/FlareZ123/liber-primus/actions/runs/45325519523), commits c9b3a7b37027d7a5de56c7f012f935bad3df80f4 and 0070ce869af625cb6187ddd10fbe3618ab17d532.
+- Original Feb 6 2014 IRC lines 106639 (18:37 opening crib A KOAN: DURING A LESSON), 106660 (18:42 CIRCUMFERENCE), 106694 (18:47 why altered), 106704–711 (18:49–50 exact FIRFUMFERENFE and desynchronized partial decode), 106742–755 (18:57–59 correct two transparent Fs). May 13 retrospective specifically credits good plaintext guess, May 23 corrects phase-start misconception (key starts at A, F zero-shift). No independently supplied author C→F rule or donor selection. Modern Connor Tumbleson reenactment also illustrates crib-based correction. Do not re-extract known period13 or sweep altered keywords; transfer requires new target-specific independent crib or selector.
+- No authentic unknown LP2 plaintext or key recovered. Both assigned tasks completed and closed.
+
 ---
 
 # Current invocation — 24 November 2026, Agent2 draw 9
