@@ -1,0 +1,1617 @@
+{
+  "inputBlobShas": {
+    "resources/liber-primus/lp2-corpus.json": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "resources/liber-primus/lp2-grid-256.json": "2550eae357442912220e05dc51147523a61dd75a",
+    "resources/external/relikd-solved-gp29-native-v1.json": "1b064ef6d85819b7d96adaff31a82d1ec551598f",
+    "resources/transcriptions/lp2-image-corrected.txt": "f7b534a33edeb212d427329798438325307463d7",
+    "resources/control/english_wordfreq_textblob.txt": "140e1d22b5f8c45deddd2e8b25549d9d6307d938",
+    "resources/control/gibran_prophet_58585.txt": "df260a07d56bf5998d40a6360b6132c35c252d10",
+    "resources/control/shakespeare_first300k.txt": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+  },
+  "dictionarySize": 224885,
+  "target": [
+    {
+      "label": "p51-53",
+      "inner": false,
+      "inv": false,
+      "anchors": [
+        {
+          "start": 170,
+          "len": 13,
+          "coverage": 8,
+          "relations": 0,
+          "masks": []
+        },
+        {
+          "start": 32,
+          "len": 8,
+          "coverage": 8,
+          "relations": 273204,
+          "masks": [
+            255
+          ]
+        },
+        {
+          "start": 43,
+          "len": 8,
+          "coverage": 8,
+          "relations": 273208,
+          "masks": [
+            255
+          ]
+        },
+        {
+          "start": 66,
+          "len": 8,
+          "coverage": 8,
+          "relations": 273208,
+          "masks": [
+            255
+          ]
+        },
+        {
+          "start": 77,
+          "len": 8,
+          "coverage": 8,
+          "relations": 273208,
+          "masks": [
+            255
+          ]
+        },
+        {
+          "start": 95,
+          "len": 8,
+          "coverage": 8,
+          "relations": 273208,
+          "masks": [
+            255
+          ]
+        }
+      ],
+      "pairs": [
+        {
+          "i": 0,
+          "j": 1,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 0,
+          "j": 2,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 0,
+          "j": 3,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 0,
+          "j": 4,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 0,
+          "j": 5,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 1,
+          "j": 2,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 1,
+          "j": 3,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 1,
+          "j": 4,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 1,
+          "j": 5,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 2,
+          "j": 3,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 2,
+          "j": 4,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 2,
+          "j": 5,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 3,
+          "j": 4,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 3,
+          "j": 5,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 4,
+          "j": 5,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        }
+      ],
+      "minimumOOV": 5,
+      "fullKeyCount": 0,
+      "partialPairs": 0,
+      "fullCap": false,
+      "expectedInFull": null,
+      "legalFullKeys": 0
+    },
+    {
+      "label": "p51-53",
+      "inner": false,
+      "inv": true,
+      "anchors": [
+        {
+          "start": 170,
+          "len": 13,
+          "coverage": 8,
+          "relations": 0,
+          "masks": []
+        },
+        {
+          "start": 32,
+          "len": 8,
+          "coverage": 8,
+          "relations": 273208,
+          "masks": [
+            255
+          ]
+        },
+        {
+          "start": 43,
+          "len": 8,
+          "coverage": 8,
+          "relations": 273208,
+          "masks": [
+            255
+          ]
+        },
+        {
+          "start": 66,
+          "len": 8,
+          "coverage": 8,
+          "relations": 273208,
+          "masks": [
+            255
+          ]
+        },
+        {
+          "start": 77,
+          "len": 8,
+          "coverage": 8,
+          "relations": 273208,
+          "masks": [
+            255
+          ]
+        },
+        {
+          "start": 95,
+          "len": 8,
+          "coverage": 8,
+          "relations": 273208,
+          "masks": [
+            255
+          ]
+        }
+      ],
+      "pairs": [
+        {
+          "i": 0,
+          "j": 1,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 0,
+          "j": 2,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 0,
+          "j": 3,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 0,
+          "j": 4,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 0,
+          "j": 5,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 1,
+          "j": 2,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 1,
+          "j": 3,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 1,
+          "j": 4,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 1,
+          "j": 5,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 2,
+          "j": 3,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 2,
+          "j": 4,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 2,
+          "j": 5,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 3,
+          "j": 4,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 3,
+          "j": 5,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 4,
+          "j": 5,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        }
+      ],
+      "minimumOOV": 5,
+      "fullKeyCount": 0,
+      "partialPairs": 0,
+      "fullCap": false,
+      "expectedInFull": null,
+      "legalFullKeys": 0
+    },
+    {
+      "label": "p51-53",
+      "inner": true,
+      "inv": false,
+      "anchors": [
+        {
+          "start": 170,
+          "len": 13,
+          "coverage": 8,
+          "relations": 0,
+          "masks": []
+        },
+        {
+          "start": 32,
+          "len": 8,
+          "coverage": 8,
+          "relations": 273208,
+          "masks": [
+            255
+          ]
+        },
+        {
+          "start": 77,
+          "len": 8,
+          "coverage": 7,
+          "relations": 8520,
+          "masks": [
+            247,
+            239,
+            223,
+            191,
+            127,
+            254,
+            253,
+            251
+          ]
+        },
+        {
+          "start": 243,
+          "len": 8,
+          "coverage": 7,
+          "relations": 7360,
+          "masks": [
+            253,
+            251,
+            247,
+            239,
+            223,
+            191,
+            127,
+            254
+          ]
+        },
+        {
+          "start": 43,
+          "len": 8,
+          "coverage": 6,
+          "relations": 624,
+          "masks": [
+            231,
+            207,
+            159,
+            63,
+            126,
+            252,
+            249,
+            243
+          ]
+        },
+        {
+          "start": 66,
+          "len": 8,
+          "coverage": 6,
+          "relations": 128,
+          "masks": [
+            119,
+            238,
+            221,
+            187
+          ]
+        }
+      ],
+      "pairs": [
+        {
+          "i": 0,
+          "j": 1,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 0,
+          "j": 2,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 0,
+          "j": 3,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 0,
+          "j": 4,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 0,
+          "j": 5,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 1,
+          "j": 2,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 1,
+          "j": 3,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 1,
+          "j": 4,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 1,
+          "j": 5,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 2,
+          "j": 3,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 2,
+          "j": 4,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 2,
+          "j": 5,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 3,
+          "j": 4,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 3,
+          "j": 5,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 4,
+          "j": 5,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        }
+      ],
+      "minimumOOV": 5,
+      "fullKeyCount": 0,
+      "partialPairs": 0,
+      "fullCap": false,
+      "expectedInFull": null,
+      "legalFullKeys": 0
+    },
+    {
+      "label": "p51-53",
+      "inner": true,
+      "inv": true,
+      "anchors": [
+        {
+          "start": 170,
+          "len": 13,
+          "coverage": 8,
+          "relations": 0,
+          "masks": []
+        },
+        {
+          "start": 32,
+          "len": 8,
+          "coverage": 8,
+          "relations": 273208,
+          "masks": [
+            255
+          ]
+        },
+        {
+          "start": 43,
+          "len": 8,
+          "coverage": 7,
+          "relations": 10264,
+          "masks": [
+            127,
+            254,
+            253,
+            251,
+            247,
+            239,
+            223,
+            191
+          ]
+        },
+        {
+          "start": 77,
+          "len": 8,
+          "coverage": 7,
+          "relations": 8776,
+          "masks": [
+            239,
+            223,
+            191,
+            127,
+            254,
+            253,
+            251,
+            247
+          ]
+        },
+        {
+          "start": 66,
+          "len": 8,
+          "coverage": 6,
+          "relations": 264,
+          "masks": [
+            219,
+            183,
+            111,
+            222,
+            189,
+            123,
+            246,
+            237
+          ]
+        },
+        {
+          "start": 243,
+          "len": 8,
+          "coverage": 6,
+          "relations": 368,
+          "masks": [
+            235,
+            215,
+            175,
+            95,
+            190,
+            125,
+            250,
+            245
+          ]
+        }
+      ],
+      "pairs": [
+        {
+          "i": 0,
+          "j": 1,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 0,
+          "j": 2,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 0,
+          "j": 3,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 0,
+          "j": 4,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 0,
+          "j": 5,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 1,
+          "j": 2,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 1,
+          "j": 3,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 1,
+          "j": 4,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 1,
+          "j": 5,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 2,
+          "j": 3,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 2,
+          "j": 4,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 2,
+          "j": 5,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 3,
+          "j": 4,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 3,
+          "j": 5,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 4,
+          "j": 5,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        }
+      ],
+      "minimumOOV": 5,
+      "fullKeyCount": 0,
+      "partialPairs": 0,
+      "fullCap": false,
+      "expectedInFull": null,
+      "legalFullKeys": 0
+    }
+  ],
+  "controls": [
+    {
+      "label": "0_welcome",
+      "inner": false,
+      "inv": false,
+      "anchors": [
+        {
+          "start": 104,
+          "len": 9,
+          "coverage": 8,
+          "relations": 8048,
+          "masks": [
+            255
+          ]
+        },
+        {
+          "start": 168,
+          "len": 9,
+          "coverage": 8,
+          "relations": 12208,
+          "masks": [
+            255
+          ]
+        },
+        {
+          "start": 193,
+          "len": 9,
+          "coverage": 8,
+          "relations": 8896,
+          "masks": [
+            255
+          ]
+        },
+        {
+          "start": 181,
+          "len": 8,
+          "coverage": 8,
+          "relations": 273168,
+          "masks": [
+            255
+          ]
+        },
+        {
+          "start": 232,
+          "len": 8,
+          "coverage": 8,
+          "relations": 273168,
+          "masks": [
+            255
+          ]
+        },
+        {
+          "start": 7,
+          "len": 7,
+          "coverage": 7,
+          "relations": 243384,
+          "masks": [
+            191,
+            127,
+            254,
+            253,
+            251,
+            247,
+            239,
+            223
+          ]
+        }
+      ],
+      "pairs": [
+        {
+          "i": 0,
+          "j": 1,
+          "matches": 8,
+          "partial": 0,
+          "complete": 8
+        },
+        {
+          "i": 0,
+          "j": 2,
+          "matches": 8,
+          "partial": 0,
+          "complete": 8
+        },
+        {
+          "i": 0,
+          "j": 3,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 0,
+          "j": 4,
+          "matches": 8,
+          "partial": 0,
+          "complete": 8
+        },
+        {
+          "i": 0,
+          "j": 5,
+          "matches": 8,
+          "partial": 0,
+          "complete": 8
+        },
+        {
+          "i": 1,
+          "j": 2,
+          "matches": 8,
+          "partial": 0,
+          "complete": 8
+        },
+        {
+          "i": 1,
+          "j": 3,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 1,
+          "j": 4,
+          "matches": 8,
+          "partial": 0,
+          "complete": 8
+        },
+        {
+          "i": 1,
+          "j": 5,
+          "matches": 8,
+          "partial": 0,
+          "complete": 8
+        },
+        {
+          "i": 2,
+          "j": 3,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 2,
+          "j": 4,
+          "matches": 8,
+          "partial": 0,
+          "complete": 8
+        },
+        {
+          "i": 2,
+          "j": 5,
+          "matches": 8,
+          "partial": 0,
+          "complete": 8
+        },
+        {
+          "i": 3,
+          "j": 4,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 3,
+          "j": 5,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 4,
+          "j": 5,
+          "matches": 16,
+          "partial": 0,
+          "complete": 16
+        }
+      ],
+      "minimumOOV": 1,
+      "fullKeyCount": 16,
+      "partialPairs": 0,
+      "fullCap": false,
+      "expectedInFull": true,
+      "expectedInAll": false,
+      "legalFullKeys": 2,
+      "selected": {
+        "key": [
+          23,
+          10,
+          1,
+          10,
+          9,
+          10,
+          16,
+          26
+        ],
+        "score": -2.7077107020843028,
+        "runner": -2.7480171688081514,
+        "preview": "WELCOMEWELCOMEPILGRIMTOTHEGREATJOURNEYTOWARDTHEENDOFALLTHNGSITISNOTANEASYTRIPBUTFORTHOSEWHOFINDTHEIRWAYHEREITISANECESSARYONEALONGTHEWAYYOUWILLFINDANENDTOALLSTRUGGLEANDSUFFERNGYOURINNOCENCEYOURILLUSIANSYOURCERTAINTYANDYOURREALITYULTIMATELYYOUWILLDISCOUERANENDTOSELFITISTH",
+        "correctKey": true,
+        "correctPrefix": 256,
+        "holdout": {
+          "score": -2.671213116958951,
+          "preview": "ROUGHTHISPILGRIMAGETHATWESHAPEOURSELUESANDOURREALITIESJOURNEYDEEPWITHINANDYOUWILLARRIUEOUTSIDELICETHEINSTARITISONLYTHROUGHGONGWITHINTHATWEMAYEMERGEWIDSOMYOUAREABENGUNTOYOURSELFYOUAREALAWUNTOYOURSELFEACHINTELLIGENCEISHOLYFORALLTHATLIUESISHOLYANINSTRUCTIANCOMMANDYOUROWNS",
+          "correct": 256,
+          "replay": true
+        }
+      }
+    },
+    {
+      "label": "0_welcome",
+      "inner": true,
+      "inv": false,
+      "anchors": [
+        {
+          "start": 104,
+          "len": 9,
+          "coverage": 8,
+          "relations": 6448,
+          "masks": [
+            255
+          ]
+        },
+        {
+          "start": 168,
+          "len": 9,
+          "coverage": 8,
+          "relations": 5384,
+          "masks": [
+            255
+          ]
+        },
+        {
+          "start": 193,
+          "len": 9,
+          "coverage": 7,
+          "relations": 240,
+          "masks": [
+            254,
+            253,
+            251,
+            247,
+            239,
+            223,
+            191,
+            127
+          ]
+        },
+        {
+          "start": 232,
+          "len": 8,
+          "coverage": 8,
+          "relations": 273168,
+          "masks": [
+            255
+          ]
+        },
+        {
+          "start": 146,
+          "len": 8,
+          "coverage": 7,
+          "relations": 7776,
+          "masks": [
+            191,
+            127,
+            254,
+            253,
+            251,
+            247,
+            239,
+            223
+          ]
+        },
+        {
+          "start": 181,
+          "len": 8,
+          "coverage": 6,
+          "relations": 376,
+          "masks": [
+            63,
+            126,
+            252,
+            249,
+            243,
+            231,
+            207,
+            159
+          ]
+        }
+      ],
+      "pairs": [
+        {
+          "i": 0,
+          "j": 1,
+          "matches": 8,
+          "partial": 0,
+          "complete": 8
+        },
+        {
+          "i": 0,
+          "j": 2,
+          "matches": 8,
+          "partial": 0,
+          "complete": 8
+        },
+        {
+          "i": 0,
+          "j": 3,
+          "matches": 8,
+          "partial": 0,
+          "complete": 8
+        },
+        {
+          "i": 0,
+          "j": 4,
+          "matches": 8,
+          "partial": 0,
+          "complete": 8
+        },
+        {
+          "i": 0,
+          "j": 5,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 1,
+          "j": 2,
+          "matches": 8,
+          "partial": 0,
+          "complete": 8
+        },
+        {
+          "i": 1,
+          "j": 3,
+          "matches": 8,
+          "partial": 0,
+          "complete": 8
+        },
+        {
+          "i": 1,
+          "j": 4,
+          "matches": 8,
+          "partial": 0,
+          "complete": 8
+        },
+        {
+          "i": 1,
+          "j": 5,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 2,
+          "j": 3,
+          "matches": 8,
+          "partial": 0,
+          "complete": 8
+        },
+        {
+          "i": 2,
+          "j": 4,
+          "matches": 8,
+          "partial": 8,
+          "complete": 0
+        },
+        {
+          "i": 2,
+          "j": 5,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 3,
+          "j": 4,
+          "matches": 8,
+          "partial": 0,
+          "complete": 8
+        },
+        {
+          "i": 3,
+          "j": 5,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 4,
+          "j": 5,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        }
+      ],
+      "minimumOOV": 1,
+      "fullKeyCount": 8,
+      "partialPairs": 1,
+      "fullCap": false,
+      "expectedInFull": true,
+      "expectedInAll": false,
+      "legalFullKeys": 3,
+      "selected": {
+        "key": [
+          23,
+          10,
+          1,
+          10,
+          9,
+          10,
+          16,
+          26
+        ],
+        "score": -2.7077107020843028,
+        "runner": -3.0468645740038647,
+        "preview": "WELCOMEWELCOMEPILGRIMTOTHEGREATJOURNEYTOWARDTHEENDOFALLTHNGSITISNOTANEASYTRIPBUTFORTHOSEWHOFINDTHEIRWAYHEREITISANECESSARYONEALONGTHEWAYYOUWILLFINDANENDTOALLSTRUGGLEANDSUFFERNGYOURINNOCENCEYOURILLUSIANSYOURCERTAINTYANDYOURREALITYULTIMATELYYOUWILLDISCOUERANENDTOSELFITISTH",
+        "correctKey": true,
+        "correctPrefix": 256,
+        "holdout": {
+          "score": -2.671213116958951,
+          "preview": "ROUGHTHISPILGRIMAGETHATWESHAPEOURSELUESANDOURREALITIESJOURNEYDEEPWITHINANDYOUWILLARRIUEOUTSIDELICETHEINSTARITISONLYTHROUGHGONGWITHINTHATWEMAYEMERGEWIDSOMYOUAREABENGUNTOYOURSELFYOUAREALAWUNTOYOURSELFEACHINTELLIGENCEISHOLYFORALLTHATLIUESISHOLYANINSTRUCTIANCOMMANDYOUROWNS",
+          "correct": 256,
+          "replay": true
+        }
+      }
+    },
+    {
+      "label": "0_loss_of_divinity",
+      "inner": false,
+      "inv": true,
+      "anchors": [
+        {
+          "start": 31,
+          "len": 9,
+          "coverage": 8,
+          "relations": 13624,
+          "masks": [
+            255
+          ]
+        },
+        {
+          "start": 8,
+          "len": 8,
+          "coverage": 8,
+          "relations": 273160,
+          "masks": [
+            255
+          ]
+        },
+        {
+          "start": 44,
+          "len": 8,
+          "coverage": 8,
+          "relations": 273160,
+          "masks": [
+            255
+          ]
+        },
+        {
+          "start": 70,
+          "len": 8,
+          "coverage": 8,
+          "relations": 273160,
+          "masks": [
+            255
+          ]
+        },
+        {
+          "start": 145,
+          "len": 8,
+          "coverage": 8,
+          "relations": 273160,
+          "masks": [
+            255
+          ]
+        },
+        {
+          "start": 90,
+          "len": 7,
+          "coverage": 7,
+          "relations": 243360,
+          "masks": [
+            253,
+            251,
+            247,
+            239,
+            223,
+            191,
+            127,
+            254
+          ]
+        }
+      ],
+      "pairs": [
+        {
+          "i": 0,
+          "j": 1,
+          "matches": 8,
+          "partial": 0,
+          "complete": 8
+        },
+        {
+          "i": 0,
+          "j": 2,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 0,
+          "j": 3,
+          "matches": 8,
+          "partial": 0,
+          "complete": 8
+        },
+        {
+          "i": 0,
+          "j": 4,
+          "matches": 8,
+          "partial": 0,
+          "complete": 8
+        },
+        {
+          "i": 0,
+          "j": 5,
+          "matches": 8,
+          "partial": 0,
+          "complete": 8
+        },
+        {
+          "i": 1,
+          "j": 2,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 1,
+          "j": 3,
+          "matches": 16,
+          "partial": 0,
+          "complete": 16
+        },
+        {
+          "i": 1,
+          "j": 4,
+          "matches": 8,
+          "partial": 0,
+          "complete": 8
+        },
+        {
+          "i": 1,
+          "j": 5,
+          "matches": 40,
+          "partial": 0,
+          "complete": 40
+        },
+        {
+          "i": 2,
+          "j": 3,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 2,
+          "j": 4,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 2,
+          "j": 5,
+          "matches": 16,
+          "partial": 0,
+          "complete": 16
+        },
+        {
+          "i": 3,
+          "j": 4,
+          "matches": 8,
+          "partial": 0,
+          "complete": 8
+        },
+        {
+          "i": 3,
+          "j": 5,
+          "matches": 16,
+          "partial": 0,
+          "complete": 16
+        },
+        {
+          "i": 4,
+          "j": 5,
+          "matches": 8,
+          "partial": 0,
+          "complete": 8
+        }
+      ],
+      "minimumOOV": 1,
+      "fullKeyCount": 72,
+      "partialPairs": 0,
+      "fullCap": false,
+      "expectedInFull": true,
+      "expectedInAll": false,
+      "legalFullKeys": 8,
+      "selected": {
+        "key": [
+          3,
+          17,
+          9,
+          22,
+          6,
+          1,
+          14,
+          10
+        ],
+        "score": -2.817121936239829,
+        "runner": -2.833485912026217,
+        "preview": "THELOSSOFDIUINITYTHECIRCUMFERENCEPRACTICESTHREEBEHAUIARSWHICHCAUSETHELOSSOFDIUINITYCONSUMPTIANWECONSUMETOOMUCHBECAUSEWEBELEIUETHEFOLLOWNGTWOERRORSWITHINTHEDECEPTIANWEDONOTHAUEENOUGHORTHEREISNOTENOUGHWEHAUEWHATWEHAUENOWBYLUCCANDWEWILLNOTBESTRONGENOUGHLATERTOOBTAINWHATWE",
+        "correctKey": true,
+        "correctPrefix": 256,
+        "holdout": {
+          "score": -2.7085885975760076,
+          "preview": "NEEDMOSTTHNGSARENOTWORTHCONSUMNGPRESERUATIANWEPRESERUETHNGSBECAUSEWEBELIEUEWEAREWEACIFWELOSETHEMWEWILLNOTBESTRONGENOUGHTOGAINTHEMAGAINTHISISTHEDECEPTIANMOSTTHNGSARENOTWORTHPRESERUNGADHERENCEWEFOLLOWDOGMASOTHATWECANBELONGANDBERIGHTORWEFOLLOWREASONSOWECANBELONGANDBERIGHTTHEREISNOTH",
+          "correct": 256,
+          "replay": true
+        }
+      }
+    },
+    {
+      "label": "0_loss_of_divinity",
+      "inner": true,
+      "inv": true,
+      "anchors": [
+        {
+          "start": 44,
+          "len": 8,
+          "coverage": 7,
+          "relations": 8040,
+          "masks": [
+            254,
+            253,
+            251,
+            247,
+            239,
+            223,
+            191,
+            127
+          ]
+        },
+        {
+          "start": 104,
+          "len": 7,
+          "coverage": 7,
+          "relations": 243360,
+          "masks": [
+            247,
+            239,
+            223,
+            191,
+            127,
+            254,
+            253,
+            251
+          ]
+        },
+        {
+          "start": 113,
+          "len": 7,
+          "coverage": 7,
+          "relations": 243360,
+          "masks": [
+            191,
+            127,
+            254,
+            253,
+            251,
+            247,
+            239,
+            223
+          ]
+        },
+        {
+          "start": 90,
+          "len": 7,
+          "coverage": 6,
+          "relations": 7224,
+          "masks": [
+            119,
+            238,
+            221,
+            187
+          ]
+        },
+        {
+          "start": 181,
+          "len": 6,
+          "coverage": 6,
+          "relations": 178672,
+          "masks": [
+            221,
+            187,
+            119,
+            238
+          ]
+        },
+        {
+          "start": 132,
+          "len": 6,
+          "coverage": 5,
+          "relations": 7504,
+          "masks": [
+            155,
+            55,
+            110,
+            220,
+            185,
+            115,
+            230,
+            205
+          ]
+        }
+      ],
+      "pairs": [
+        {
+          "i": 0,
+          "j": 1,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 0,
+          "j": 2,
+          "matches": 0,
+          "partial": 0,
+          "complete": 0
+        },
+        {
+          "i": 0,
+          "j": 3,
+          "matches": 8,
+          "partial": 0,
+          "complete": 8
+        },
+        {
+          "i": 0,
+          "j": 4,
+          "matches": 128,
+          "partial": 0,
+          "complete": 128
+        },
+        {
+          "i": 0,
+          "j": 5,
+          "matches": 16,
+          "partial": 0,
+          "complete": 16
+        },
+        {
+          "i": 1,
+          "j": 2,
+          "matches": 240,
+          "partial": 0,
+          "complete": 240
+        },
+        {
+          "i": 1,
+          "j": 3,
+          "matches": 56,
+          "partial": 16,
+          "complete": 40
+        },
+        {
+          "i": 1,
+          "j": 4,
+          "matches": 1712,
+          "partial": 0,
+          "complete": 1712
+        },
+        {
+          "i": 1,
+          "j": 5,
+          "matches": 1912,
+          "partial": 72,
+          "complete": 1840
+        },
+        {
+          "i": 2,
+          "j": 3,
+          "matches": 88,
+          "partial": 0,
+          "complete": 88
+        },
+        {
+          "i": 2,
+          "j": 4,
+          "matches": 1096,
+          "partial": 24,
+          "complete": 1072
+        },
+        {
+          "i": 2,
+          "j": 5,
+          "matches": 2552,
+          "partial": 0,
+          "complete": 2552
+        },
+        {
+          "i": 3,
+          "j": 4,
+          "matches": 1672,
+          "partial": 0,
+          "complete": 1672
+        },
+        {
+          "i": 3,
+          "j": 5,
+          "matches": 976,
+          "partial": 0,
+          "complete": 976
+        },
+        {
+          "i": 4,
+          "j": 5,
+          "matches": 27384,
+          "partial": 320,
+          "complete": 27064
+        }
+      ],
+      "minimumOOV": 1,
+      "fullKeyCount": 37336,
+      "partialPairs": 4,
+      "fullCap": false,
+      "expectedInFull": true,
+      "expectedInAll": false,
+      "legalFullKeys": 5286,
+      "selected": {
+        "key": [
+          3,
+          17,
+          9,
+          22,
+          6,
+          1,
+          14,
+          10
+        ],
+        "score": -2.817121936239829,
+        "runner": -2.8342791105439473,
+        "preview": "THELOSSOFDIUINITYTHECIRCUMFERENCEPRACTICESTHREEBEHAUIARSWHICHCAUSETHELOSSOFDIUINITYCONSUMPTIANWECONSUMETOOMUCHBECAUSEWEBELEIUETHEFOLLOWNGTWOERRORSWITHINTHEDECEPTIANWEDONOTHAUEENOUGHORTHEREISNOTENOUGHWEHAUEWHATWEHAUENOWBYLUCCANDWEWILLNOTBESTRONGENOUGHLATERTOOBTAINWHATWE",
+        "correctKey": true,
+        "correctPrefix": 256,
+        "holdout": {
+          "score": -2.7085885975760076,
+          "preview": "NEEDMOSTTHNGSARENOTWORTHCONSUMNGPRESERUATIANWEPRESERUETHNGSBECAUSEWEBELIEUEWEAREWEACIFWELOSETHEMWEWILLNOTBESTRONGENOUGHTOGAINTHEMAGAINTHISISTHEDECEPTIANMOSTTHNGSARENOTWORTHPRESERUNGADHERENCEWEFOLLOWDOGMASOTHATWECANBELONGANDBERIGHTORWEFOLLOWREASONSOWECANBELONGANDBERIGHTTHEREISNOTH",
+          "correct": 256,
+          "replay": true
+        }
+      }
+    }
+  ]
+}
