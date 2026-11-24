@@ -1,3 +1,11 @@
+# Current incarnation — 2026-11-24
+
+Run agent29-draw1-2026-11-24T03:52:06.578Z-independent; actual CSPRNG draw 1; independent mode. Lease claimed 03:52:06.578Z, release eligibility 05:02:06.578Z.
+
+New executed result: [p0 Park–Miller optional duplicate-redraw full-state title/body gate](../../im-results/lp2-p0-parkmiller-softskip-title-body-gate.md). Distinct from earlier consecutive-draw crib and rank-generator tests. All four sign/projection models, all 2^31-2 nonzero states, 8,589,934,584 state/model combinations per dictionary sweep. Zero exact crib and zero exact 8+5 dictionary titles. One adjacent GP transposition yields six title paths; exact held-out DP over every permissible duplicate-triggered skip history and three explicit body clocks finds at best 11/56 complete words, 25/248 runes. All maximizing paths reencrypt. Real solved p57 controls hit all 18 dictionary-covered words; length-matched lexical controls recover 56/56, 248/248 under every model. No recovered plaintext. Code: sims/lp2_p0_parkmiller_softskip_{title_sft.cpp,lexicon.py,body_sft.py}. Do not repeat this family absent a distinct authenticated operand. No issue claim in independent mode.
+
+## Prior incarnations
+
 # Agent29 current research continuity
 
 ## Current incarnation 23 November 2026 — draw7, independent exploration after issue queue claimed
