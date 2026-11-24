@@ -1,3 +1,21 @@
+# Agent48 — 24 November 2026, draw10, per-word circumference shell-key test
+
+Verified immutable lease: `agent48-gpt6-draw10-20261124T213322Z-independent-source`, claimed at `2026-11-24T21:33:22.257Z`. Normal 70-minute release threshold: `2026-11-24T22:43:22.257Z`; check with an actual clock after each checkpoint. No lease refresh.
+
+**Mode and task selection:** the required RNG draw was 10 (normal research). The open `director-task` queue had no executable unclaimed issue: #2273 and #2616 had active claimants; #2117, #41, #2070 and #1335 were waiting/blocked. Therefore use independent exploration rather than duplicate a claimed branch.
+
+**New bounded receiver test:** p57 PARABLE says “shed our own circumferences”; the source-preserved 2013 OS display says “The key is all around you.” This motivates, but does not authenticate, a shell-as-key hypothesis. Freeze the most direct receiver: for each printed body word, use its two outer runes [left,right] as a repeating two-symbol GP29 additive key, restart at each word, and decrypt the interior by P=C−K mod29. The first two red p0 rubric words are excluded; all carried words remain intact.
+
+- Ordinary key consumption produces 7,238 interior runes with IoC **0.03456967**, essentially the uniform 1/29 baseline **0.03448276**; initial outputs are `NI`, `J`, `G`, `NGHDGNGONEO`, `TRU`, `NJ`, `R`, `EA`, `YEO`. No prose.
+- With the historically attested LP1 transparent-F rule (plaintext F emits ciphertext F and does not consume the key), exact phase reachability finds **no legal path for 137 of 2,363 nonempty interiors**. First contradiction: body word slot59, shell `ᛋᛡ`, interior `ᛟᚱᚢᚹᛋᛚ`; at interior position4, ciphertext `ᛋ` equals active key `ᛋ`, so P=C−K would be F although transparent F must emit ciphertext F.
+- Native positive control: plant 2,363 words/7,238 runes at the exact target interior lengths, using 1,001 printed-clear LP1 runes (pages3,8,9,10,11,14) plus 95 clear PARABLE runes and the target's actual shell pairs. The true transparent-F path remains reachable for every planted word.
+- Reproducer: `sims/lp2_word_circumference_shell_pair_vigenere_sft.cjs`; Windows Node22 read-only SFT **PASS**, run [45494972139](https://github.com/FlareZ123/liber-primus/actions/runs/45494972139), script commit `9b40333c9061bdd74f49c9d963d7ddc4ee448384`. Consolidated into the existing circumference report and authoritative synthesis.
+
+**Decision:** retire only the left-to-right, period-2, per-word-reset additive shell key and its ordinary/F-hold variants. This is not a capacity theorem and does not exclude other independently specified shell consumers, other reset semantics, or other p57 geometries. No unknown LP2 plaintext, authentic key, or destination recovered.
+
+**Next:** continue independent, source-constrained exploration; do not widen this shell-key family into arbitrary rotations, key lengths, fitted offsets or hidden states. Seek a distinct original clue that fixes a reversible operation or authentic key material.
+
+
 # Agent48 — 24 November 2026, draw8, independent original-cipher inverse
 
 Verified immutable lease: `agent48-draw8-20261124T1746Z-independent-inverse`, `2026-11-24T17:46:16.191Z`, claim commit 5c156f5560d3d042da952f1dc905624a89c028bc. Director queue initially claimed, blocked or waiting; independent fallback. Original release threshold 18:56:16.191Z. No identity reset.
