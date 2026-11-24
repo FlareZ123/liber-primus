@@ -1,0 +1,712 @@
+{
+  "sources": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/liber-primus/lp2-transcription.txt",
+      "sha": "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/english_wordfreq_textblob.txt",
+      "sha": "140e1d22b5f8c45deddd2e8b25549d9d6307d938"
+    }
+  ],
+  "allowed": [
+    "A",
+    "I",
+    "O",
+    "S",
+    "T",
+    "D",
+    "M",
+    "N",
+    "L",
+    "R"
+  ],
+  "dict": 29226,
+  "twoRuneTypes": 189,
+  "original": [
+    {
+      "phase": 0,
+      "start": 0,
+      "stop": 5876,
+      "end": 9192,
+      "status": "no invertible compatible key",
+      "info": [
+        {
+          "indices": [
+            244,
+            380,
+            596,
+            712,
+            1032
+          ],
+          "singletons": 13,
+          "candidates": 21
+        },
+        {
+          "indices": [
+            21,
+            937,
+            989,
+            1557,
+            1873
+          ],
+          "singletons": 13,
+          "candidates": 21
+        },
+        {
+          "indices": [
+            386,
+            414,
+            1574,
+            2214,
+            2494
+          ],
+          "singletons": 9,
+          "candidates": 1388
+        },
+        {
+          "indices": [
+            119,
+            455,
+            471,
+            871,
+            1491
+          ],
+          "singletons": 8,
+          "candidates": 4215
+        }
+      ],
+      "pairInfo": [
+        {
+          "lane": 0,
+          "words": 53,
+          "possiblePairs": 441,
+          "compatiblePairs": 0
+        },
+        {
+          "lane": 1,
+          "words": 59,
+          "possiblePairs": 29148,
+          "compatiblePairs": 0
+        },
+        {
+          "lane": 2,
+          "words": 52,
+          "possiblePairs": 5850420,
+          "compatiblePairs": 0
+        },
+        {
+          "lane": 3,
+          "words": 51,
+          "possiblePairs": 88515,
+          "compatiblePairs": 0
+        }
+      ],
+      "count": 0
+    },
+    {
+      "phase": 1,
+      "start": 1,
+      "stop": 5877,
+      "end": 9193,
+      "status": "no invertible compatible key",
+      "info": [
+        {
+          "indices": [
+            21,
+            937,
+            989,
+            1557,
+            1873
+          ],
+          "singletons": 13,
+          "candidates": 30
+        },
+        {
+          "indices": [
+            386,
+            414,
+            1574,
+            2214,
+            2494
+          ],
+          "singletons": 9,
+          "candidates": 1439
+        },
+        {
+          "indices": [
+            119,
+            455,
+            471,
+            871,
+            1491
+          ],
+          "singletons": 8,
+          "candidates": 4099
+        },
+        {
+          "indices": [
+            244,
+            380,
+            596,
+            712,
+            1032
+          ],
+          "singletons": 13,
+          "candidates": 13
+        }
+      ],
+      "pairInfo": [
+        {
+          "lane": 0,
+          "words": 59,
+          "possiblePairs": 43170,
+          "compatiblePairs": 0
+        },
+        {
+          "lane": 1,
+          "words": 52,
+          "possiblePairs": 5898461,
+          "compatiblePairs": 0
+        },
+        {
+          "lane": 2,
+          "words": 51,
+          "possiblePairs": 53287,
+          "compatiblePairs": 0
+        },
+        {
+          "lane": 3,
+          "words": 53,
+          "possiblePairs": 390,
+          "compatiblePairs": 0
+        }
+      ],
+      "count": 0
+    },
+    {
+      "phase": 2,
+      "start": 2,
+      "stop": 5878,
+      "end": 9194,
+      "status": "no invertible compatible key",
+      "info": [
+        {
+          "indices": [
+            386,
+            414,
+            1574,
+            2214,
+            2494
+          ],
+          "singletons": 9,
+          "candidates": 1365
+        },
+        {
+          "indices": [
+            119,
+            455,
+            471,
+            871,
+            1491
+          ],
+          "singletons": 8,
+          "candidates": 4138
+        },
+        {
+          "indices": [
+            244,
+            380,
+            596,
+            712,
+            1032
+          ],
+          "singletons": 13,
+          "candidates": 19
+        },
+        {
+          "indices": [
+            21,
+            937,
+            989,
+            1557,
+            1873
+          ],
+          "singletons": 13,
+          "candidates": 21
+        }
+      ],
+      "pairInfo": [
+        {
+          "lane": 0,
+          "words": 52,
+          "possiblePairs": 5648370,
+          "compatiblePairs": 0
+        },
+        {
+          "lane": 1,
+          "words": 51,
+          "possiblePairs": 78622,
+          "compatiblePairs": 0
+        },
+        {
+          "lane": 2,
+          "words": 53,
+          "possiblePairs": 399,
+          "compatiblePairs": 0
+        },
+        {
+          "lane": 3,
+          "words": 59,
+          "possiblePairs": 28665,
+          "compatiblePairs": 0
+        }
+      ],
+      "count": 0
+    },
+    {
+      "phase": 3,
+      "start": 3,
+      "stop": 5875,
+      "end": 9191,
+      "status": "no invertible compatible key",
+      "info": [
+        {
+          "indices": [
+            119,
+            455,
+            471,
+            871,
+            1491
+          ],
+          "singletons": 8,
+          "candidates": 3987
+        },
+        {
+          "indices": [
+            244,
+            380,
+            596,
+            712,
+            1032
+          ],
+          "singletons": 13,
+          "candidates": 17
+        },
+        {
+          "indices": [
+            21,
+            937,
+            989,
+            1557,
+            1873
+          ],
+          "singletons": 13,
+          "candidates": 10
+        },
+        {
+          "indices": [
+            386,
+            414,
+            1574,
+            2214,
+            2494
+          ],
+          "singletons": 9,
+          "candidates": 1353
+        }
+      ],
+      "pairInfo": [
+        {
+          "lane": 0,
+          "words": 51,
+          "possiblePairs": 67779,
+          "compatiblePairs": 0
+        },
+        {
+          "lane": 1,
+          "words": 53,
+          "possiblePairs": 170,
+          "compatiblePairs": 0
+        },
+        {
+          "lane": 2,
+          "words": 59,
+          "possiblePairs": 13530,
+          "compatiblePairs": 0
+        },
+        {
+          "lane": 3,
+          "words": 52,
+          "possiblePairs": 5394411,
+          "compatiblePairs": 0
+        }
+      ],
+      "count": 0
+    }
+  ],
+  "plants": [
+    {
+      "name": "Gibran training, native solved tail 0",
+      "trueKey": {
+        "M": [
+          [
+            1,
+            2,
+            3,
+            4
+          ],
+          [
+            5,
+            6,
+            7,
+            9
+          ],
+          [
+            2,
+            7,
+            4,
+            1
+          ],
+          [
+            8,
+            3,
+            11,
+            5
+          ]
+        ],
+        "b": [
+          4,
+          17,
+          2,
+          28
+        ],
+        "iv": [
+          9,
+          11,
+          4,
+          16
+        ]
+      },
+      "trainN": 5877,
+      "exact": 8852,
+      "expected": 8852,
+      "hold": 2980,
+      "holdExpected": 2980,
+      "phase": 0,
+      "start": 0,
+      "stop": 5876,
+      "end": 8856,
+      "status": "candidate",
+      "info": [
+        {
+          "indices": [
+            696,
+            764,
+            1576,
+            1596,
+            1612
+          ],
+          "singletons": 11,
+          "candidates": 192
+        },
+        {
+          "indices": [
+            1797,
+            3729,
+            4285,
+            4377,
+            4473
+          ],
+          "singletons": 8,
+          "candidates": 4110
+        },
+        {
+          "indices": [
+            1322,
+            1558,
+            2502,
+            2590,
+            5258
+          ],
+          "singletons": 5,
+          "candidates": 100000
+        },
+        {
+          "indices": [
+            39,
+            619,
+            739,
+            1927,
+            1943
+          ],
+          "singletons": 10,
+          "candidates": 472
+        }
+      ],
+      "pairInfo": [
+        {
+          "lane": 0,
+          "words": 90,
+          "possiblePairs": 789120,
+          "compatiblePairs": 1
+        },
+        {
+          "lane": 1,
+          "words": 85,
+          "possiblePairs": 411000000,
+          "compatiblePairs": 1
+        },
+        {
+          "lane": 2,
+          "words": 81,
+          "possiblePairs": 47200000,
+          "compatiblePairs": 1
+        },
+        {
+          "lane": 3,
+          "words": 93,
+          "possiblePairs": 90624,
+          "compatiblePairs": 1
+        }
+      ],
+      "count": 1,
+      "best": {
+        "M": [
+          [
+            1,
+            2,
+            3,
+            4
+          ],
+          [
+            5,
+            6,
+            7,
+            9
+          ],
+          [
+            2,
+            7,
+            4,
+            1
+          ],
+          [
+            8,
+            3,
+            11,
+            5
+          ]
+        ],
+        "b": [
+          4,
+          17,
+          2,
+          28
+        ],
+        "train": {
+          "hit": 5679,
+          "total": 5866,
+          "coverage": 0.9681213774292533,
+          "singleBad": 0,
+          "twoBad": 0
+        }
+      },
+      "holdout": {
+        "hit": 2979,
+        "total": 2979,
+        "coverage": 1,
+        "singleBad": 0,
+        "twoBad": 0
+      },
+      "preview": "S A W A R N NG B E L I E U E N O TH NG F R O M TH I S B O O C E X C E P T W H A T Y O U C N O W T O B E T R U E T E S T TH E C N O W L E D G E F I N"
+    },
+    {
+      "name": "Gibran training, native solved tail 1",
+      "trueKey": {
+        "M": [
+          [
+            3,
+            8,
+            1,
+            6
+          ],
+          [
+            7,
+            2,
+            11,
+            5
+          ],
+          [
+            4,
+            1,
+            8,
+            2
+          ],
+          [
+            9,
+            5,
+            2,
+            13
+          ]
+        ],
+        "b": [
+          21,
+          3,
+          11,
+          9
+        ],
+        "iv": [
+          12,
+          19,
+          4,
+          8
+        ]
+      },
+      "trainN": 5878,
+      "exact": 8852,
+      "expected": 8852,
+      "hold": 2980,
+      "holdExpected": 2980,
+      "phase": 0,
+      "start": 0,
+      "stop": 5876,
+      "end": 8856,
+      "status": "candidate",
+      "info": [
+        {
+          "indices": [
+            164,
+            884,
+            960,
+            1224,
+            4628
+          ],
+          "singletons": 10,
+          "candidates": 479
+        },
+        {
+          "indices": [
+            765,
+            781,
+            973,
+            997,
+            1321
+          ],
+          "singletons": 15,
+          "candidates": 9
+        },
+        {
+          "indices": [
+            2254,
+            3538,
+            3550,
+            3558,
+            3746
+          ],
+          "singletons": 11,
+          "candidates": 186
+        },
+        {
+          "indices": [
+            7,
+            587,
+            695,
+            719,
+            947
+          ],
+          "singletons": 14,
+          "candidates": 8
+        }
+      ],
+      "pairInfo": [
+        {
+          "lane": 0,
+          "words": 87,
+          "possiblePairs": 4311,
+          "compatiblePairs": 1
+        },
+        {
+          "lane": 1,
+          "words": 96,
+          "possiblePairs": 1674,
+          "compatiblePairs": 1
+        },
+        {
+          "lane": 2,
+          "words": 86,
+          "possiblePairs": 1488,
+          "compatiblePairs": 1
+        },
+        {
+          "lane": 3,
+          "words": 88,
+          "possiblePairs": 3832,
+          "compatiblePairs": 1
+        }
+      ],
+      "count": 1,
+      "best": {
+        "M": [
+          [
+            3,
+            8,
+            1,
+            6
+          ],
+          [
+            7,
+            2,
+            11,
+            5
+          ],
+          [
+            4,
+            1,
+            8,
+            2
+          ],
+          [
+            9,
+            5,
+            2,
+            13
+          ]
+        ],
+        "b": [
+          21,
+          3,
+          11,
+          9
+        ],
+        "train": {
+          "hit": 5681,
+          "total": 5871,
+          "coverage": 0.9676375404530745,
+          "singleBad": 0,
+          "twoBad": 0
+        }
+      },
+      "holdout": {
+        "hit": 2975,
+        "total": 2975,
+        "coverage": 1,
+        "singleBad": 0,
+        "twoBad": 0
+      },
+      "preview": "TH E A W A R N NG B E L I E U E N O TH NG F R O M TH I S B O O C E X C E P T W H A T Y O U C N O W T O B E T R U E T E S T TH E C N O W L E D G E F I"
+    }
+  ]
+}
