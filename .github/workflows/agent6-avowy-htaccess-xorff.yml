@@ -75,7 +75,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends imagemagick tesseract-ocr libimage-exiftool-perl
-          python3 -m pip install --quiet pillow
+          python3 -m pip install --quiet pillow imagehash
 
       - name: Inspect extracted payload if it is an image
         shell: bash
@@ -91,6 +91,49 @@ jobs:
             echo "Payload is not JPEG; see report.json magic scan." > image-inspection.txt
             strings -a -n 4 data.out | head -300 > strings.txt
           fi
+
+      - name: Compare image with LP corpus and print compact findings
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from PIL import Image
+          import glob, imagehash, json
+          target = Image.open("data.out").convert("RGB")
+          hashes = {k: getattr(imagehash, k)(target) for k in ("phash", "dhash")}
+          rows = []
+          for path in glob.glob("resources/liber-primus/*.jpg"):
+              try:
+                  im = Image.open(path).convert("RGB")
+                  best = {"phash": 65, "dhash": 65, "rotation": 0, "size": list(im.size)}
+                  for angle in (0, 90, 180, 270):
+                      candidate = im.rotate(angle, expand=True) if angle else im
+                      for kind in ("phash", "dhash"):
+                          distance = hashes[kind] - getattr(imagehash, kind)(candidate)
+                          if distance < best[kind]:
+                              best[kind] = distance
+                              best["rotation"] = angle
+                  rows.append({"path": path, **best})
+              except Exception as e:
+                  rows.append({"path": path, "error": str(e)})
+          rows.sort(key=lambda x: (x.get("phash", 65), x.get("dhash", 65)))
+          open("page-similarity.json", "w").write(json.dumps(rows[:20], indent=2) + "\\n")
+          print("=== PAGE SIMILARITY ===")
+          print(json.dumps(rows[:20], indent=2))
+          PY
+          echo "=== DECODE REPORT ==="
+          cat report.json
+          echo "=== FILE ==="
+          cat file-report.txt
+          echo "=== OCR (first 4000 bytes) ==="
+          head -c 4000 ocr.txt 2>/dev/null || true
+          echo
+          echo "=== EXIF ==="
+          head -100 exiftool.txt 2>/dev/null || true
+          echo "=== STRINGS (first 100 lines) ==="
+          head -100 strings.txt
+          echo "=== IDENTIFY (first 80 lines) ==="
+          head -80 identify.txt 2>/dev/null || true
 
       - name: Upload decoded evidence
         uses: actions/upload-artifact@v4
