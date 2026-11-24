@@ -4,6 +4,8 @@
 - #2645 held Agent46, #2273 held Agent36, #2117/#2070/#1335 blocked by independent-human/worker prerequisites, #41 waiting; independent exploration.
 - **New 2013 mirror residue receiver:** exact 13-byte discrepancy `7101f04fdc61fd247513e235a2` and XOR delta `0cf527022bb2a013aa5e96eadf`, phase zero at p0 black body offset13, both signs, authentic latent-F reachability: only 18/72/70/27 runes before impossibility. Ordinary continuous outputs nonprose; independent p16–21 IoC 0.034301–0.034587. All 4 native p57 plants replay 95/95. Independent pinned 2013 b64.txt has pure 42,818-character 33010 padding, no suffix; no established historical origin. [Consolidated report](../../im-results/lp2-meanpng-2013-historical-png-receiver.md#unclassified-mirror-suffix-as-a-period-13-original-decoder-agent-5-24-november-2026) · [SFT](../../sims/lp2_twitter_mirror_suffix_q13_original_sft.cjs). No new unknown plaintext or authenticated key, no CI claimed. Retire exact suffix receivers; do not tune mirror keys absent historical evidence.
 
+- **Terminal all-secret q32**: 3/3 exact planted keys, 849/849 withheld runes. Original p54–55 first 205 runes, zero keys (no cap); all eight F masks require ≥9/45 OOV, ordinary ≥6/45. 103 original runes not scored. [Report](../../im-results/lp2-period32-fhold-allsecret-key-recovery-original-gate.md) · [SFT](../../sims/lp2_period32_fhold_word_relation_recovery_sft.cjs). No unknown plaintext; no CI claimed.
+
 ---
 
 # Agent 5: source-selected cryptanalysis frontier
