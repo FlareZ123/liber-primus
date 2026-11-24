@@ -49,8 +49,26 @@ function run(book,signed) {
  solve(domains.slice(),tables);
  const decode=(r,k)=>{const digits=r.c.map((x,i)=>mod(x-k[(r.start+i)%q]));if(digits.some(d=>d>9))return null;let i=0;return r.shape.map(n=>{const s=digits.slice(i,i+n).join("");i+=n;return s;}).join(":");};
  const predictions=solutions.map(k=>({key:k,held:enc.slice(13).map(r=>decode(r,k)),letters:enc.slice(13).map(r=>lookup(decode(r,k))??"?").join("")}));
- return {historical,lines,recordCount:lines.length,addresses:address.size,trainingDigits:train.reduce((a,r)=>a+r.c.length,0),initial,searchNodes:nodes,solutionCount:solutions.length,plantedIncluded:solutions.some(k=>String(k)===String(key)),predictions:predictions.slice(0,20),expectedHeld:lines.slice(13),encoded:enc,sourceShapeCounts:[...byShape].map(([shape,v])=>[shape,v.length])};
+ for(const k of solutions)for(const r of train){const decoded=decode(r,k);if(!address.has(decoded))throw Error("invalid candidate training address");const replay=decoded.replaceAll(":","").split("").map((d,i)=>mod(+d+k[(r.start+i)%q]));if(String(replay)!==String(r.c))throw Error("replay mismatch");}
+ const withheldConsensus=enc.slice(13).map((_,i)=>[...new Set(predictions.map(p=>p.held[i]))]);
+ if(solutions.length!==3||String(withheldConsensus[1])!=="13:2:5:4")throw Error("regression");
+ return {keySpace:(29n**BigInt(q)).toString(),withheldConsensus,historical,lines,recordCount:lines.length,addresses:address.size,trainingDigits:train.reduce((a,r)=>a+r.c.length,0),initial,searchNodes:nodes,solutionCount:solutions.length,plantedIncluded:solutions.some(k=>String(k)===String(key)),predictions:predictions.slice(0,20),expectedHeld:lines.slice(13),encoded:enc,sourceShapeCounts:[...byShape].map(([shape,v])=>[shape,v.length])};
 }
 const fs=require("node:fs");
 const [book,signed]=process.argv.slice(2).map(p=>fs.readFileSync(p,"utf8"));
-console.log(JSON.stringify(run(book,signed),null,2));
+const result=run(book,signed);
+if(process.argv[4]){
+ const pages=fs.readFileSync(process.argv[4],"utf8").split(/^\s*%\s*$/m);
+ const spans=[[[36,99,238]],[[37,0,91]],[[37,91,189]],[[37,189,228],[38,0,57]],[[38,57,186]]];
+ result.originalGeometry=spans.map(group=>{
+  const lengths=[];
+  for(const [page,a,b] of group){
+   const s=pages[page].replace(/[\/\r\n]/g,"");let offset=0,start=-1;
+   for(const ch of s){if(/[\u16a0-\u16ff]/u.test(ch)){if(start<0)start=offset;offset++;}else if(start>=0){if(start>=a&&offset<=b)lengths.push(offset-start);start=-1;}}
+   if(start>=0&&start>=a&&offset<=b)lengths.push(offset-start);
+  }
+  return {words:lengths.length,runes:lengths.reduce((a,b)=>a+b,0),longFields:lengths.filter(x=>x>3).length,max:Math.max(...lengths)};
+ });
+ if(String(result.originalGeometry.map(x=>x.longFields))!=="17,14,11,12,15")throw Error("original geometry regression");
+}
+console.log(JSON.stringify(result,null,2));
