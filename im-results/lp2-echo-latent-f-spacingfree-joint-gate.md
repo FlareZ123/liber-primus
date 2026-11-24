@@ -1,6 +1,6 @@
 # DJU BEI echo: exact spacing-free shared latent-F key inference
 
-**24 November 2026, Agent5. Preliminary 256-rune likelihood diagnostic; no recovered key or plaintext.** The authentic repeated six-rune phrase at zero-based offsets 6555–6560 and 12950–12955 selects one fixed backwards alignment, not an offset search. Earlier [fixed-clock equality and exact intact-group latent-F CSP](lp2-echo-reused-key-exact-gate.md) rejects its ordinary/native lexical models, while arbitrary latent F alignment survives a permissive equality bound. [Agent9's prior sparse overlap search](lp2-interrupted-shared-pad-overlap-agent9.md) also documents poor spacing-free key recovery. The present inference removes word boundaries and sums all legal F-mask alignments exactly at this fixed source-selected echo, instead of scanning offsets or a finite dictionary.
+**24 November 2026, Agent5. Completed 256/768-rune likelihood diagnostic; no recovered key or plaintext.** The authentic repeated six-rune phrase at zero-based offsets 6555–6560 and 12950–12955 selects one fixed backwards alignment, not an offset search. Earlier [fixed-clock equality and exact intact-group latent-F CSP](lp2-echo-reused-key-exact-gate.md) rejects its ordinary/native lexical models, while arbitrary latent F alignment survives a permissive equality bound. [Agent9's prior sparse overlap search](lp2-interrupted-shared-pad-overlap-agent9.md) also documents poor spacing-free key recovery. The present inference removes word boundaries and sums all legal F-mask alignments exactly at this fixed source-selected echo, instead of scanning offsets or a finite dictionary.
 
 ## Model
 
@@ -19,7 +19,7 @@ Three donor pairs have deliberately identical six non-F plaintext prefix runes, 
 | Shakespeare / Emerson | +4.020529 | −6.910819 | 8 |
 | Original fixed echo | −0.417459 | — | unknown |
 
-The three matched comparisons separate, but one true shared pad has negative likelihood gain and all MAP recoveries are poor (35–45/256 plaintext runes per tape, only 8–27 correct key digits). The original score lies within the three shared controls and above these three independent controls; this is **inconclusive**, not key recovery, proof of reuse, or a calibrated significance claim. The original maximum path is fragmented nonprose. The model has insufficient information to identify a two-time pad reliably. The next test is a frozen longer 768-rune interval, reporting incremental LLR over the first 256 separately, not selecting a new offset or using a word-boundary prior.
+The three matched comparisons separate, but one true shared pad has negative likelihood gain and all MAP recoveries are poor (35–45/256 plaintext runes per tape, only 8–27 correct key digits). The original score lies within the three shared controls and above these three independent controls; this is **inconclusive**, not key recovery, proof of reuse, or a calibrated significance claim. The original maximum path is fragmented nonprose. The model has insufficient information to identify a two-time pad reliably. The frozen 768-rune extension below reports incremental LLR over the first 256 separately, without choosing a new offset or using a word-boundary prior.
 
 [SFT](../sims/lp2_echo_latent_f_spacingfree_joint_sft.cjs), frozen commit a2b29fe6. Connected JS executed all seven 256-rune cases, including analytic checks and replay; no CI.
 
@@ -31,6 +31,8 @@ The first 256 original runes remain unchanged. Condition additionally on those 2
 |---|---:|---:|
 | Gibran/Shakespeare shared | −0.485027 | −1.175881 |
 | Gibran/Shakespeare independent | −9.275222 | −6.343521 |
+| Gibran/Emerson shared | +19.758207 | +13.650876 |
+| Gibran/Emerson independent | −9.999150 | −6.147309 |
 | Original fixed echo | **−14.194685** | **−13.777225** |
 
-Original full LLR −6.446978; six-rune prefix +7.747706; first256 +7.330247. Thus the initially ambiguous fixed echo does not predict a longer continuation under the modeled shared uniform additive pad. The shared control itself has slightly negative incremental LLR; the diagnostic remains limited, no all-key or all-language exclusion. Do not claim a significant p-value from these matched plants. Original exact filter evaluated 17,957 reachable cells and 14,046,995 history states. No coherent original plaintext or authentic key. `node sims/lp2_echo_latent_f_spacingfree_joint_sft.cjs 6 768 sum 256` (case0/1 for matched controls). Nested output commit ee9e246d, actual connected JS executions, no CI.
+Original full LLR −6.446978; six-rune prefix +7.747706; first256 +7.330247. Thus the initially ambiguous fixed echo does not predict a longer continuation under the modeled shared uniform additive pad. The two matched control pairs separate, although one true shared control itself has slightly negative incremental LLR; the diagnostic remains limited, no all-key or all-language exclusion. Do not claim a significant p-value from these matched plants. Original exact filter evaluated 17,957 reachable cells and 14,046,995 history states. No coherent original plaintext or authentic key. `node sims/lp2_echo_latent_f_spacingfree_joint_sft.cjs 6 768 sum 256` (cases0–3 for matched controls). Nested output commit ee9e246d, actual connected JS executions, no CI.
