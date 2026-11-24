@@ -101,3 +101,26 @@ console.log(`original cells with different decoded numerical values: ${changedVa
 console.log('first printed token 3N: base60=203; base59=200');
 console.log(`full observed tape likelihood ratio under iid uniform bytes: ${sampleLikelihoodRatio}`);
 console.log('256-value bijection extension and both full alphabet roundtrips: PASS');
+
+// Director #2568: exact lookup-table obstruction in both surviving byte grammars.
+// A GF(2)-affine map on a full 8-bit domain has 2^rank outputs, each with
+// the same fiber size 2^(8-rank). Any fixed standard CRC-8 byte table is
+// linear or affine, including reflection and constant offsets.
+for (const alphabet of [base60, base59]) {
+  const values = printed.map(token => decode(token, alphabet));
+  const counts = Array(256).fill(0);
+  for (const value of values) counts[value]++;
+  const histogram = Array(5).fill(0);
+  for (const count of counts) histogram[count]++;
+  const distinct = counts.filter(count => count > 0).length;
+  const missing = counts.flatMap((count, value) => count === 0 ? [value] : []);
+  const pairs = counts.reduce((sum, count) => sum + count*(count-1)/2, 0);
+  assert.deepEqual(histogram, [95, 92, 49, 14, 6]);
+  assert.equal(distinct, 161);
+  assert.equal(missing.length, 95);
+  assert.equal(pairs, 127);
+  assert((distinct & (distinct-1)) !== 0); // impossible affine image cardinality
+  assert.equal(values[7], values[14]); // repeated printed token 33
+  console.log(JSON.stringify({radix: alphabet.length, distinct, histogram, missing, pairs, range: [Math.min(...values), Math.max(...values)]}));
+}
+console.log('Both radices: no inverse byte permutation and no GF(2)-affine full-domain table.');
