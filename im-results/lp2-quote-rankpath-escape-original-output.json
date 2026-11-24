@@ -1,0 +1,114 @@
+{
+  "frozenCommit": "1cda81cb729ebcdc9c3d7aecfa065977257e0b6d",
+  "target": [
+    10279,
+    10439
+  ],
+  "stop": 41,
+  "prefixRunes": 80,
+  "prefixDifferences": 79,
+  "firstRuneFree": true,
+  "batches": [
+    {
+      "group": "primary",
+      "placements": 1003,
+      "degree": 1000,
+      "cycle": 3,
+      "controlFalseMatches": 0,
+      "prefixCandidates": 0
+    },
+    {
+      "group": [
+        0,
+        8
+      ],
+      "placements": 3294,
+      "degree": 3289,
+      "cycle": 5,
+      "controlFalseMatches": 0,
+      "prefixCandidates": 0
+    },
+    {
+      "group": [
+        8,
+        16
+      ],
+      "placements": 3978,
+      "degree": 3967,
+      "cycle": 11,
+      "controlFalseMatches": 0,
+      "prefixCandidates": 0
+    },
+    {
+      "group": [
+        16,
+        24
+      ],
+      "placements": 2268,
+      "degree": 2264,
+      "cycle": 4,
+      "controlFalseMatches": 0,
+      "prefixCandidates": 0
+    },
+    {
+      "group": [
+        24,
+        31
+      ],
+      "placements": 208,
+      "degree": 207,
+      "cycle": 1,
+      "controlFalseMatches": 0,
+      "prefixCandidates": 0
+    }
+  ],
+  "totals": {
+    "sources": 34,
+    "placements": 10751,
+    "degree": 10727,
+    "cycle": 24,
+    "otherRejections": 0,
+    "originalPrefixCandidates": 0,
+    "originalSuffixEvaluations": 0
+  },
+  "controls": {
+    "uniqueCorrectSourcePlacements": 12,
+    "uniformNullFalseMatches": 0,
+    "withheldDeltaMembership": 960,
+    "withheldDeltas": 960,
+    "fixedOrderUniqueDeltas": 350,
+    "arbitraryOrderUniqueDeltas": 7,
+    "perPlantFixedOrderUnique": [
+      58,
+      58,
+      60,
+      50,
+      66,
+      58
+    ],
+    "perPlantArbitraryOrderUnique": [
+      0,
+      0,
+      2,
+      2,
+      0,
+      3
+    ],
+    "fixedOrderMarginalProductLog2": [
+      37.61796604542842,
+      38.52932501298079,
+      34.434587507932704,
+      54.438444706980455,
+      24.20130044549297,
+      48.15139192054894
+    ],
+    "arbitraryOrderMarginalProductLog2": [
+      251.97660835489742,
+      252.92250759335693,
+      236.6659375594638,
+      247.36094350729988,
+      293.82712411286303,
+      264.9266824047517
+    ]
+  }
+}
