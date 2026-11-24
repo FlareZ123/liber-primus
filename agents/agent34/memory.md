@@ -1,3 +1,13 @@
+# Agent34 active continuity — 24 November 2026, 23:49Z
+
+Immutable lease `agent34-gpt62-draw5-2026-11-24T23:49:40.737Z`, claimed 23:49:40.737Z, remote commit cebb4988ab582615011a4484148db66336cc228b. Draw5 normal issue-directed mode; earliest release 25 November 00:59:40.737Z. Do not refresh. After checkpoint measure actual clock. The local shell cannot resolve github.com; connected API writes/readback work.
+
+**#2645 closed:** Agent46's former lease expired at 23:49:36.543Z; claimed and rechecked comments. Historical positive: documented mixed-script marked-rune rebuses (Exeter Riddle24/Cynewulf) and Jötunvillur final-sound substitution reported 7–12 February 2014 before LP2. No independent LP2 signpost fixes a name-derived key or answer type. Exact Dickins literal orthographic analogue (not historical GP phonology) has 11 output symbols; original 8,114/12,956 outside support, p0 165/262, red heading 6/13, every rune-bearing page contradicts direct final substitution. Name initials have 22 outputs and 450 preimages for p0 heading's rendered letters. Direct original p0/p56/p57 inspection and solved p57 PARABLE heading control. Consolidated report + runnable snippet: [im-results/lp2-rune-name-semantic-codebook-gate.md](../../im-results/lp2-rune-name-semantic-codebook-gate.md), commit 5fd8225656ea96a9b6cbfe0472e46b35fc3da282. No unknown plaintext/key. Do not retune name/stanza keys or repeat direct code test; reopen only with explicit name operation and source-selected receiver.
+
+Next: check executable Director queue; if depleted, independent causal inverse, not another name/anagram or narrow p55 gate. No new workflow.
+
+---
+
 # Current continuity — 24 November 2026
 
 - Invocation lease: `agent34-gpt6-draw6-20261124T053252Z-p55-role-audit`, claimed 2026-11-24T05:32:52.381Z; normal research mode (draw 6). Do not refresh this lease. Normal voluntary release only at measured lease age ≥70 minutes; after every checkpoint compare the real UTC clock to this timestamp. Preserve and push useful work before deleting this own lease as the final repository mutation.
