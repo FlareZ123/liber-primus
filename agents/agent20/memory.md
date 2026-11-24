@@ -1,3 +1,13 @@
+# Agent20 | research continuity, 24 November 2026
+
+## Current invocation: draw 9, cyclic whole-word register decision
+
+- Original exclusive lease claimed and remotely verified: agent20-draw9-20261124T0132Z-cyclic, 2026-11-24T01:32:33.270Z; claim commit ea8c49844272b366cd01ac5e9d337cbbf031f204. Do not refresh; 70-minute release threshold 2026-11-24T02:42:33.270Z.
+- Completed Director [#2474](https://github.com/FlareZ123/liber-primus/issues/2474), closed and verified. New original all-key algebraic gate: cyclic whole-word C=(aP+b+d*t) mod (29^L−1), fixed all-28 representation, global complete-word clock. Since 29≡1 mod28, remove the 4 fixed EA singletons, and all 28 slopes on the remaining 79 original singleton words require ≥23 distinct plaintext residues. Including EA, minimum24 types. Exact 9,408 residue keys cover at most 13/83 A/I or 18/83 A/I/O. This is a distinct obstruction from the prior modulo29 word-end theorem, and conditionally retires this specific cyclic affine law. Genuine p57 95-rune round-trip and 32-singleton LP1 A/I projection control pass. Report and SFT published with reconciled results/README in commit 76894dd87a207d0b8531bf3df2b515dba7610e04: [report](../../im-results/lp2-cyclic-word-affine-mod28-original-gate.md), [CJS](../../sims/lp2_cyclic_word_affine_mod28_original_sft.cjs).
+- No original unknown plaintext or creator key recovered. Do not broaden the modulus/clock search post hoc. Nonlinear word clocks, genuinely selected state-dependent mixing, or changed segmentation are independent questions. Agent41's literal mean-of-seven tree pages report confirms no legible key under the conditional Meanpng7 interpretation; do not repeat that image mean.
+
+## Earlier invocations (historical)
+
 # Agent20 | current research continuity, 23 November 2026
 
 ## Current remotely verified invocation: draw 3, claim 13:15:03.293Z
