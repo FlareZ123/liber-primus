@@ -167,6 +167,105 @@ function attack(corpus, transcript, lexicon) {
     return {plaintextA:render(pA),plaintextB:render(pB),recoveredPad};
   }
 
+
+  /** Exact minimum-OOV joint decoder for a fixed all-consuming affine state.
+   * A wildcard node permits any GP29 word of its printed length; distinct
+   * overlap edges occupy disjoint positions so its neighbors never conflict.
+   * Minimize OOV count first, then relative unigram word costs.
+   */
+  function minimumOOV(CA,CB,va,vb,drop,offset,state,frequencies) {
+    const [a,b,s]=state,sites=vb.sites.filter(i=>i>=drop);
+    const nodes=new Map(),edges=new Map(),PENALTY=1000000;
+    function node(page,variant,wi,prefix){
+      const k=prefix+wi;
+      if(!nodes.has(k)){
+        const opt=variant.opts[wi],isFragment=wi===0&&page.spans[0].len===1;
+        const ws=isFragment?Array.from({length:29},(_,j)=>[j]):opt.words;
+        const counts=ws.map(w=>frequencies.get(w.join(","))||1),mx=Math.max(1,...counts);
+        nodes.set(k,{k,ws,base:counts.map(n=>isFragment?0:Math.log(mx/n)),edges:[],cost:null,wild:!isFragment});
+      }
+      return nodes.get(k);
+    }
+    for(let k=0;k<sites.length;k++){
+      const i=va.sites[offset+k],j=sites[k],wa=A.where[i],wb=B.where[j],l=node(A,va,wa,"A"),r=node(B,vb,wb,"B"),key=l.k+":"+r.k;
+      if(!edges.has(key)){const e={l,r,g:[]};edges.set(key,e);l.edges.push(e);r.edges.push(e);}
+      edges.get(key).g.push({ai:i-A.spans[wa].start,bi:j-B.spans[wb].start,d:mod(CA[i]-CB[j])});
+    }
+    const signature=(w,e,isA)=>e.g.map(x=>isA?mod(a*w[x.ai]+s-x.d):mod(b*w[x.bi])).join(",");
+    const bestIndex=arr=>{let m=0;for(let i=1;i<arr.length;i++)if(arr[i]<arr[m])m=i;return m};
+    const visited=new Set();
+    function reduce(n,parent){
+      check(!visited.has(n.k),"soft graph cycle");visited.add(n.k);
+      n.cost=n.base.concat(n.wild?[PENALTY]:[]);
+      for(const e of n.edges){
+        const child=e.l===n?e.r:e.l;if(child===parent)continue;
+        reduce(child,n);
+        const map=new Map();
+        for(let j=0;j<child.ws.length;j++){
+          const sig=signature(child.ws[j],e,child===e.l),old=map.get(sig);
+          if(old===undefined||child.cost[j]<child.cost[old])map.set(sig,j);
+        }
+        const wildCost=child.wild?child.cost[child.ws.length]:Infinity;
+        const minChild=child.cost[bestIndex(child.cost)];
+        for(let i=0;i<n.ws.length;i++){
+          const j=map.get(signature(n.ws[i],e,n===e.l));
+          n.cost[i]+=Math.min(j===undefined?Infinity:child.cost[j],wildCost);
+        }
+        if(n.wild)n.cost[n.ws.length]+=minChild;
+      }
+    }
+    const chosen=new Map();
+    function select(n,parent,parentWord,edge){
+      let j=-1,best=Infinity;
+      const required=parentWord&&edge?signature(parentWord,edge,parent===edge.l):null;
+      for(let i=0;i<n.cost.length;i++){
+        const w=n.ws[i]||null;
+        if(required!==null&&w&&signature(w,edge,n===edge.l)!==required)continue;
+        if(n.cost[i]<best){best=n.cost[i];j=i;}
+      }
+      check(j>=0,"minimum OOV constructive selection");
+      const w=n.ws[j]||null;chosen.set(n.k,w);
+      for(const e of n.edges){const child=e.l===n?e.r:e.l;if(child!==parent)select(child,n,w,e);}
+    }
+    let total=0;
+    for(const n of nodes.values())if(!visited.has(n.k)){reduce(n,null);total+=n.cost[bestIndex(n.cost)];select(n,null,null,null);}
+    const wilds=[...chosen].filter(([,w])=>w===null).map(([k])=>k);
+    const pA=A.spans.map((x,i)=>wilds.includes("A"+i)?Array(x.len).fill(-1):chosen.get("A"+i)||null);
+    const pB=B.spans.map((x,i)=>wilds.includes("B"+i)?Array(x.len).fill(-1):chosen.get("B"+i)||null);
+    let replay=0;
+    for(let k=0;k<sites.length;k++){
+      const i=va.sites[offset+k],j=sites[k],wa=A.where[i],wb=B.where[j],ia=i-A.spans[wa].start,ib=j-B.spans[wb].start,D=mod(CA[i]-CB[j]);
+      if(pA[wa][ia]<0&&pB[wb][ib]>=0)pA[wa][ia]=mod((D+b*pB[wb][ib]-s)*inv[a]);
+      if(pB[wb][ib]<0&&pA[wa][ia]>=0)pB[wb][ib]=mod((a*pA[wa][ia]+s-D)*inv[b]);
+      if(pA[wa][ia]>=0&&pB[wb][ib]>=0){
+        const pad=mod(CA[i]-a*pA[wa][ia]-s);
+        check(mod(b*pB[wb][ib]+pad)===CB[j],"soft inverse forward replay");replay++;
+      }
+    }
+    const render=p=>p.map(w=>w?w.map(x=>x<0?"?":corpus.translit[x]).join(""):"?").join(" ");
+    check(Math.floor(total/PENALTY)===wilds.length,"wildcard DP cost");
+    return {oov:wilds.length,wilds,cost:total-wilds.length*PENALTY,A:render(pA),B:render(pB),replay};
+  }
+  function runSoft(){
+    // Deliberately restrict to the 156 hard-local surviving states. This
+    // does not claim exhaustive one-OOV coverage outside that subset.
+    const freq=new Map();
+    for(const line of lexicon.match(/^[a-z]+\s+\d+$/gm)||[]){
+      const [word,num]=line.split(/\s+/),w=word.toUpperCase().replace(/QU/g,"CW").replace(/V/g,"U").replace(/K/g,"C").replace(/Z/g,"S").replace(/ING/g,"NG").replace(/IO/g,"IA");
+      let a=[];for(let i=0;i<w.length;){const t=tokens.find(t=>w.startsWith(t[0],i));if(!t){a=null;break;}a.push(t[1]);i+=t[0].length;}
+      if(a)freq.set(a.join(","),(freq.get(a.join(","))||0)+Number(num));
+    }
+    const va=variants(A,false)[0],vb=variants(B,false)[0],out=[];
+    for(const drop of [0,1])for(let offset=0;offset<=va.sites.length-vb.sites.filter(i=>i>=drop).length;offset++){
+      const states=gate(A.C,B.C,va,vb,drop,offset).survivors;
+      for(const state of states)out.push({drop,offset,state,...minimumOOV(A.C,B.C,va,vb,drop,offset,state,freq)});
+    }
+    check(out.length===156,"soft source state count");
+    out.sort((a,b)=>a.oov-b.oov||a.cost-b.cost);
+    const counts={};for(const x of out)counts[x.oov]=(counts[x.oov]||0)+1;
+    return {stateCount:out.length,counts,best:out.slice(0,12)};
+  }
+
   const summaries=[];
   for(const mode of [false,true]){
     const aa=variants(A,mode),bb=variants(B,mode);
@@ -210,7 +309,7 @@ function attack(corpus, transcript, lexicon) {
       positive.push({mode,maskA:va.mask,maskB:vb.mask,drop,offset,truth,remaining:res.survivors.length,fullStates:full.length,padMatches,padLength:actual.length});
     }
   }
-  return {summaries,positive,cacheEntries:cache.size};
+  return {summaries,positive,cacheEntries:cache.size,soft:runSoft()};
 }
 const result=attack(JSON.parse(read("resources/liber-primus/lp2-corpus.json")),read("resources/liber-primus/lp2-transcription.txt"),read("resources/control/english_wordfreq_textblob.txt"));
 console.log(JSON.stringify(result,null,2));
