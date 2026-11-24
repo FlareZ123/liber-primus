@@ -1,6 +1,28 @@
 # Five numbered cuneiform passages: source-square tests and SHED navigation
 
-**Status (23 November 2026, consolidated):** All five originally numbered passages (139/91/98/96/129 runes, 553 total) remain undeciphered. The independent source-backed clue is that the authenticated 2014 **1033-sum** and **3301-sum** five-by-five squares have determinants **3** and **10** modulo29; their determinants multiply to **1 modulo29**, so both products (AB) and (BA) are invertible and have order **28** in GL(5,29). This gives an economical, source-derived *candidate* five-stream 28-clock machine for the first **91** runes of all five items. Exact original-input tests of (AB), (BA), their inverses, and both signs of a 28-step additive state keyed by original labels [1,2,3,4,5] produce **no coherent recovered plaintext**: eight aggregate GP29 indices of coincidence range **0.03352859–0.03608462** (as-printed 553-rune IoC **0.03423356**). Direct matrix inverses and 455-rune authentic-native planted inverses replay exactly. These are finite negative tests, not a source-selected cryptographic opcode; the arithmetic alone does not imply author intent. [Original source and Windows Node22 PASS](../sims/lp2_cuneiform_dual_square_sl5_direct_original_sft.cjs) · [CI 45179888879](https://github.com/FlareZ123/liber-primus/actions/runs/45179888879).
+**Status (24 November 2026, consolidated):** All five originally numbered passages (139/91/98/96/129 runes, 553 total) remain undeciphered. The independent source-backed clue remains that the authenticated 2014 1033-sum and 3301-sum five-by-five squares have determinants 3 and 10 modulo29; their products are invertible and have order 28 in GL(5,29), but the fixed 28-clock receivers remain negative. Agent2 has now tested one further exact, source-motivated candidate: apply the 2014 SOME WISDOM word-prime-sum operation to item3's 25 original ciphertext words and compare row-major with the third Stage10 5×5/1033 square. The 25 sums do not match either source 5×5 square, their row/column/diagonal sums do not equal 1033, and the cell multiset does not match. This rejects only the direct word-sum transfer to ciphertext words; no unknown plaintext, authentic key, or final destination is recovered.
+
+## Direct item3 word-prime-sum / 5×5-1033 source gate (Agent2, 24 November 2026)
+
+**Motivated by a specific human-visible shape, not a numeric coincidence search:** the third red-numbered unit on p37 contains exactly **25 complete words / 98 runes**. The original 2014 Stage10 form asks for a third square of **order 5, line sum 1033**, and the earlier LP1 SOME WISDOM source demonstrates the exact operation of summing the GP29 prime value of each printed word to reconstruct its 5×5/1033 square. This is a natural direct candidate for item3 as an independent block: preserve its 25 printed words in order, sum the prime values in each word, and compare the resulting 25 cells row-major with the historical 5×5/1033 square. No decryption, rotation, reordering, phase, modulo, offset, or second operation is permitted.
+
+The original item3 boundary is p37 offsets **91–188 inclusive** (zero-based, 98 runes). The original word lengths are:
+
+    [3,4,4,2,5,3,6,2,3,2,3,1,2,3,3,6,3,4,9,4,8,3,8,4,3]
+
+The exact 25 GP-prime word sums are:
+
+    [135,212,134,148,269,145,446,138,219,112,111,67,172,233,215,206,117,136,527,218,521,80,374,202,133]
+
+As five printed rows, these sum to:
+
+    row sums:     [898,1060,798,1204,1310]
+    column sums:  [1118,922,954,1329,947]
+    diagonals:    [1413,1298]
+
+They are **not** the row-major 5×5/1033 square, the row-major 5×5/3301 square, or either square's cell multiset. None of the five row, five column, or two diagonal sums is 1033. This rejects the exact direct operation on the ciphertext words; it does not reject a cipher that must first be inverted before applying the word-prime-sum operation, and it does not authenticate an alternate word boundary or square orientation.
+
+The complete fixed test is [lp2_cuneiform_item3_word_prime_sum_5x5_original_sft.cjs](../sims/lp2_cuneiform_item3_word_prime_sum_5x5_original_sft.cjs). It reads the canonical original GP29 transcription and prime table, asserts 25 words/98 runes, and compares only the two original 2014 order-five squares. The historical 2014 source operation and exact 5×5/1033 square are documented in [2014-magic-square-direction-map.md](2014-magic-square-direction-map.md). **Decision:** do not promote the item3 25-word/5×5 match to an opcode; retain it as a rejected direct-transfer hypothesis.
 
 The distinct **source-number/length hypothesis** uses all **99** original printed integers in the three 2014 magic squares (5×5, 7×7, 5×5) and maps adjacent π-count differences to **98 GP29 shifts**, exactly the **98 original runes of numbered item3**. Frozen historical-file order, direct mod29 subtraction and addition yield original IoCs **0.03618767 / 0.03282138** versus the original item3 **0.03155902**, without coherent prose. The historical square centers remain [809,331,91], with prime counts [140,67,24] and GP letter signature LP from consecutive differences [73,43], but this full-stream application yields no next decoder. The 98→98 agreement is a testable structural match, not an authentic author instruction. A strict complete source/native planted original inverse is saved as [one-file Windows Node22 SFT](../sims/lp2_cuneiform_item3_2014_square99_primecount_sft.cjs), [Windows PASS 45184972145](https://github.com/FlareZ123/liber-primus/actions/runs/45184972145). No traversal, sign phase or key optimizations were performed.
 
