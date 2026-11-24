@@ -36,3 +36,24 @@ On the original black p0 (249 runes), 1,618 origins have some legal 130-rune pre
 Retire the direct continuous prime-minus-one transfer with TH as replacement/additional literal hold, for the stated origin domain and both source starts. The twig-to-thorn correspondence remains a local source fact; it is not a plaintext receiver. This experiment does not exclude arbitrary private origins beyond 3301, other prime schedules, independent interior resets, or a different role for the twig illustration. Do not extend the same origin sweep without an independently selected state law.
 
 [Reproducer](../sims/lp2_p0_thorn_transparent_prime_origin_sft.cjs), executed against the pinned corpus blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165` and native-control blob `1b064ef6d85819b7d96adaff31a82d1ec551598f` in JavaScript Code Mode. The single-marker full experiment and the dual-marker extension were separately executed; their code was then consolidated. No Windows CI execution is claimed.
+
+## Distinct periodic-key inverse with TH or F+TH holds (Agent6, 24 November 2026)
+
+The original opening twig-to-TH correspondence and the authentic LP1 q8/q13 Vigenère mechanisms motivate testing the same two literal-marker sets with an **unknown arbitrary periodic additive key**, rather than another prime-origin sweep. This is a separate finite lexical model, with no claim that the twig authenticates either period or hold rule.
+
+For a complete printed group C and proposed native GP word P of the same length, every P in Q={TH} or {F,TH} must emit itself with no clock advance. All other positions require the shifts (C−P) mod29 in consuming order. If a word consumes more than q symbols, repeated phase shifts must agree. Construct all such word relations from the fixed 38,920-form register (TextBlob GP variants and unordered vocabulary of nine solved native sections, including the native plants). The relation has a start and end phase; propagate exact cyclic phase support and per-key-slot shift domains, then exhaustively branch on smallest domains. The solution stage counts up to two distinct keys or paths and checks forward replay. This tests all keys for an empty result if no node cap is hit.
+
+The native controls use independently generated keys, 250–251 complete-prefix runes and frozen key/terminal phase on the suffix. No ordered plaintext enters inference, but target native vocabulary **is included**; these are vocabulary-assisted plants.
+
+| Period / literal holds | Native fit | Native withheld exact | Original 351-rune prefix: exact nodes / surviving keys | Long anchor OOV lower bound |
+|---|---:|---:|---:|---:|
+| 8 / TH | 251 | 264/264 | 1 / 0 | 7/8 |
+| 13 / TH | 250 | 530/530 | 5 / 0 | 2/8 |
+| 8 / F+TH | 250 | 530/530 | 1 / 0 | 5/6 |
+| 13 / F+TH | 251 | 264/264 | 9 / 0 | 1/6 |
+
+All four plants uniquely recover the complete key and native continuation (1,588/1,588 withheld). Original target is the corrected p0–2 black-body start after 13 red heading runes, length716. Fit is the first 82 complete printed groups, 351 runes; 365 runes remain withheld and were not scored. Every original search completes before the 10,000-node cap.
+
+The independent anchor gate selects **all** original fit groups with length ≥8 and no visible hold symbol. A lexical candidate must consume every rune. Each gives a partial or complete periodic key assignment. Grant each anchor an arbitrary independent phase, ignore all intervening clock constraints, and join candidate key signatures for every relative rotation. An edge denotes an incompatible anchor pair for every key; an empty anchor is mandatory OOV. Exact minimum vertex covers yield the bounds in the table. For q8, every pair of individually feasible anchors conflicts (complete graphs), forcing at least seven of eight TH-only anchors or five of six dual-hold anchors outside the register. q13 bounds are much weaker; the whole-prefix exact result uses intact-group and no-OOV assumptions and should not be promoted into an all-register exclusion.
+
+**Disposition:** retire these four fixed intact-group periodic additive models on the opening black body. This does not exclude a different role for TH, altered segmentation, a nonperiodic key, additional independently selected operations, or plaintext outside the register. No unknown plaintext or authentic key. [Reproducer](../sims/lp2_p0_thorn_periodic_fhold_word_relation_sft.cjs) · [raw output](lp2-p0-thorn-periodic-fhold-word-relation.json). Executed in JavaScript Code Mode against the actual repository inputs, no CI execution claimed.
