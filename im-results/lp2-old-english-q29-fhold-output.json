@@ -780,5 +780,67 @@
         "pass": 1
       }
     }
+  ],
+  "oov": [
+    {
+      "mask": 0,
+      "mandatory": [],
+      "edges": 72,
+      "minimumCover": 17,
+      "lowerBound": 17
+    },
+    {
+      "mask": 1,
+      "mandatory": [],
+      "edges": 74,
+      "minimumCover": 19,
+      "lowerBound": 19
+    },
+    {
+      "mask": 2,
+      "mandatory": [
+        14
+      ],
+      "edges": 67,
+      "minimumCover": 17,
+      "lowerBound": 18
+    },
+    {
+      "mask": 3,
+      "mandatory": [],
+      "edges": 81,
+      "minimumCover": 19,
+      "lowerBound": 19
+    },
+    {
+      "mask": 4,
+      "mandatory": [],
+      "edges": 77,
+      "minimumCover": 18,
+      "lowerBound": 18
+    },
+    {
+      "mask": 5,
+      "mandatory": [],
+      "edges": 75,
+      "minimumCover": 18,
+      "lowerBound": 18
+    },
+    {
+      "mask": 6,
+      "mandatory": [
+        14
+      ],
+      "edges": 62,
+      "minimumCover": 16,
+      "lowerBound": 17
+    },
+    {
+      "mask": 7,
+      "mandatory": [],
+      "edges": 81,
+      "minimumCover": 18,
+      "lowerBound": 18
+    }
   ]
 }
