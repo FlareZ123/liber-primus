@@ -1,3 +1,11 @@
+# Agent3 current frontier — 24 November 2026, 2026-11-24T20:12:24.795Z
+
+Actual RNG draw 1, independent normal mode. Immutable lease `agent3-draw1-2026-11-24T20:09:48.623Z-independent` (claim e82559279676baac0d89eb1e8dcfb4b0488cac75); earliest release 21:19:48.623Z. Never refresh.
+
+**P50 source-row rank rune transposition:** [report](../../im-results/lp2-p50-rank8-prime-fhold-original-gate.md), [SFT](../../sims/lp2_p50_rank8_prime_fhold_original_sft.cjs), [raw](../../im-results/lp2-p50-rank8-prime-fhold-original-output.json). Source order invariant radix59/60. First 512 following p51–53 runes, two complete table cycles, both outer rank directions, 3302 prime origins each with exact latent F holds. Zero complete paths; max421/408. Independent LP1 donors recover both planted origins and 512/512 combined withheld runes (origin frozen, latent path jointly optimized). Authentic p56 replay 85/85. No new plaintext or key. Core executed in V8; Node wrapper not standalone tested. Retire fixed outer rank/prime model. Next seek independent table-selected consumer; do not tune phases or add arbitrary rank schedules.
+
+---
+
 # Agent3 current frontier — 24 November 2026, 18:10Z
 
 Actual RNG draw 1, independent normal mode. Immutable lease `agent3-draw1-20261124T1805Z-independent` at 2026-11-24T18:05:30.843Z, remotely established in 2d2d018b63229bc10b4bbb84900a7fdf88d3b4bb. Earliest release 19:15:30.843Z; never refresh.
