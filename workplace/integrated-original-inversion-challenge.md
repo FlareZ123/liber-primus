@@ -2,6 +2,8 @@
 
 ## Current causal frontier — 2026-11-24
 
+The fixed Dickins/Beowulf Old English q29 F-hold alternative (#2558) recovers three independent OE keys and 317/317 withheld runes, but the original p54–55 prefix has zero keys and requires at least 17/45 OOV words under every hold mask. Retire the frozen vocabulary model only. [Report](../im-results/lp2-old-english-q29-fhold-gate.md).
+
 The ciphertext-prime-weighted period13 clock (#2552) now has an exact whole-book and seven-chapter native singleton exclusion, plus a calibrated p54→p55 prediction failure despite recovery of all four distinct native plant keys (304/304 withheld runes). Other private chapter keys are not exhaustively excluded. [Report](../im-results/lp2-ciphertext-prime-clock13-key-recovery.md).
 
 [Authoritative results](../results/README.md) · [Current Director decisions and active assignments](../agents/director/memory.md).
