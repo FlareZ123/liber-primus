@@ -1,5 +1,5 @@
 "use strict";
-const {createSolver,encode}=require("./lp2_fhold_word_relation_csp.cjs");
+const {createSolver,encode,decodeFixed}=require("./lp2_fhold_word_relation_csp.cjs");
 /** @param {string[]} inputs */
 function experiment(inputs){
  const [gp,trans,lex,native]=[JSON.parse(inputs[0]),inputs[1],inputs[2],JSON.parse(inputs[3])];
@@ -23,13 +23,14 @@ function experiment(inputs){
  function summary(x){return {...x,keys:x.keys.map(v=>({key:v.key,paths:v.paths,endPhases:v.endPhases,runes:v.p.flat().length}))}}
  function authentic(section,period,trainLength,expectedKey){
   const dict=buildLexicon(section),engine=createSolver(period,dict),ws=cipherSections[section],{cut,n}=cutAt(ws,trainLength),prefix=ws.slice(0,cut);
-  const result=engine.solve(prefix);
-  const out={section:native.sections[section].name,period,vocabulary:dict.reduce((n,d)=>n+d.size,0),trainWords:cut,trainRunes:n,held:ws.flat().length-n,strict:summary(result)};
+  const strict=engine.solve(prefix);let result=strict,escape=null;
+  if(strict.exact&&!strict.keys.length&&strict.failure){escape=strict.failure.word;result=engine.solve(prefix,{wildcard:new Set([escape])})}
+  const out={section:native.sections[section].name,period,vocabulary:dict.reduce((n,d)=>n+d.size,0),trainWords:cut,trainRunes:n,held:ws.flat().length-n,strict:summary(strict),escape,result:summary(result)};
   // Comparator after the prefix-only key search.
   assert(String(ws.map(w=>w.length))===String(solved[section].map(w=>w.length)),"authentic source boundaries "+section);
   out.truthOOV=solved[section].slice(0,cut).flatMap((w,i)=>dict[w.length].has(String(w))?[]:[i]);
   out.correctKey=result.keys.length===1&&result.exact&&String(result.keys[0].key)===String(expectedKey);
-  if(out.correctKey){const full=engine.solve(ws,{fixed:result.keys[0].key});out.full=summary(full);out.correctFull=full.keys.length===1&&String(full.keys[0].p.flat())===String(solved[section].flat())}
+  if(out.correctKey&&result.keys[0].paths===1){const learned=result.keys[0],held=decodeFixed(ws.slice(cut),learned.key,dict,learned.endPhases[0]),full=learned.p.concat(held?.p||[]).flat();out.continuation=held?{runes:held.p.flat().length,score:held.score,paths:held.paths,exactMatches:held.p.flat().filter((v,i)=>v===solved[section].flat()[n+i]).length}:null;out.correctFull=String(full)===String(solved[section].flat());out.replay=String(encode(learned.p.concat(held?.p||[]),learned.key).flat())===String(ws.flat())}
   return out;
  }
  return {controls:[authentic(1,8,255,[23,10,1,10,9,10,16,26]),authentic(5,13,155,[0,10,4,0,1,19,0,18,4,18,9,0,18])]};
