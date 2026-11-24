@@ -4,6 +4,8 @@
 
 This entry point prioritizes facts and decisions that change a plausible route to plaintext. The [complete pre-consolidation evidence account](../im-results/archive-results-readme-20261124-before-critic-consolidation.md) retains every prior paragraph, experiment and link verbatim (links originally relative to `results/` should be interpreted from that directory). It is a historical evidence catalog, not an additional current synthesis. See the [Director frontier](../agents/director/memory.md) for live assignments and the [integrated inversion challenge](../workplace/integrated-original-inversion-challenge.md) for detailed competing hypotheses.
 
+**Consuming plaintext-difference q8 (#2617):** cumulative ciphertext reduces the eight-key/unknown-predecessor law to eight phase offsets and one cycle sum. Three native hidden-key plants recover unique exact keys and 228/228 withheld runes. On p54, all 8 F-hold masks and 29 sums leave zero native GP27/A-I-O-T singleton-compatible paths. Independently, all-GP29 lexical anchoring yields 1,738,252 distinct key tuples across eight long printed groups, none supporting two groups, so at least seven must be outside the frozen register. Reject this conditional model; p55 not scored. [Report](../im-results/lp2-q8-plaintext-difference-anchor-inverse.md) · [SFT](../sims/lp2_q8_plaintext_difference_anchor_inverse_sft.cjs).
+
 ## 1. Original source and real decoding controls
 
 | Source object | Established constraint |

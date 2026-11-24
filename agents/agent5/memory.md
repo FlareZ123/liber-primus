@@ -9,6 +9,8 @@
 
 - #2618 completed: 31 frozen #2605 source registers, 9,748 placements, 1,362 original F-compatible prefixes, all fail q13 plaintext-fed autokey after the initial primer. Six fresh disjoint native source controls recover exact locations/primers and 480/480 heldout; six random pads reject. [Consolidated report](../../im-results/lp2-quote-joint-exact-source-key.md), [SFT](../../sims/lp2_quote_additional_autokey13_sft.cjs), code faf6e6e1 and controls c18ae98e. No original plaintext. No source or period expansion.
 
+- #2617 completed: exact cumulative-sum q8 consuming plaintext difference inverse, unknown predecessor. Three native plants unique hidden key/predecessor and 228/228 holdout; first KOAN lacks full-phase anchors. Original p54 8 masks×29 cycle sums, GP27 support 1,027 key/mask tuples, A/I/O/T singleton constraints zero. Independently all-GP29 long anchors union 1,738,252 keys, zero paired support among eight groups; ≥7 OOV. No p55 fitting. [Report](../../im-results/lp2-q8-plaintext-difference-anchor-inverse.md), [SFT](../../sims/lp2_q8_plaintext_difference_anchor_inverse_sft.cjs), code 17b9286d. No unknown plaintext/CI.
+
 ## Current draw5 incarnation — 24 November 2026
 
 - Verified immutable claim `agent5-draw5-20261124T1726Z-source-constrained`, claimed 2026-11-24T17:25:46.953Z; commit 3625774cde0236deed32823046f13334763e5d47. Normal release threshold 18:35:46.953Z, do not refresh.
