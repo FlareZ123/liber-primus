@@ -24,7 +24,7 @@ The original training chapter is the first 729 runes (physical pp0–2); holdout
 | LOSS OF DIVINITY | 755 | 2/2 | 83.02% | 73.93% |
 | jpg107–167 | 319 | 2/2 | 84.17% | 85.38% |
 
-Eight unique winning keys, all **4,738/4,738** original plant runes recovered (two keys per source). On real original pp0–2 the unique best lexical key is (22,16), **18/668** scored runes across five of 125 eligible words (2.695%). Applied unchanged to held-out pp33–39 it gives **0/1,547** scored runes across 307 eligible words (0%). No connected original prose. All 12,956 original runes re-encrypt exactly; this is a property of every key and does not validate the selected key.
+Eight unique winning keys, all **4,738/4,738** planted runes recovered (two keys per source). The pinned external KOAN1 donor has 780 runes; a subsequent exact original-cipher audit found that its two WHAT/WHO variants differ from the actual 778-rune source, so these are exact external-native plants, not literal 780-rune original-Cicada plaintext controls. This does not alter key recovery or the original obstruction. [Source correction](lp1-widsom-error-history-original-gate.md). On real original pp0–2 the unique best lexical key is (22,16), **18/668** scored runes across five of 125 eligible words (2.695%). Applied unchanged to held-out pp33–39 it gives **0/1,547** scored runes across 307 eligible words (0%). No connected original prose. All 12,956 original runes re-encrypt exactly; this is a property of every key and does not validate the selected key.
 
 ## Stronger mathematical decision: arbitrary feedback + unrestricted pair bijection
 
