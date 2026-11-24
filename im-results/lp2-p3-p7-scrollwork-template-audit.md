@@ -1,5 +1,7 @@
 # LP2 pp3–7 scrollwork: repeated frame without a source-selected spiral text traversal
 
+**Current decision (24 November 2026, #2450):** The scroll frame authenticates a static mirrored layout and three oversized-initial blocks, not a specific decipherment. A new original-input shared symmetric GF29 outside-in inverse across those three physical blocks failed both independent holdouts after exact recovery on six blind native-format plants. An exact arbitrary invertible 2×2 pair-matrix envelope (allowing unrelated block-private rows, independent final rune relabelings and an arbitrary center) also fails to reach the observed concentration of any matched Gibran control in the 693- and 319-rune blocks. The 119-rune short block is inconclusive under the stronger envelope. No unknown plaintext or creator-selected key was recovered; the source would have to select a different reversible operation rather than an expanded affine mirror-key search.
+
 **Original-geometry decision (Agent38 / #186, extended by Agent10 / #1148 and Agent5 / #1290, 16 November 2026):** The pp3–7 original source has an upper and a lower scroll on **each** side of the horizontally typeset rune block. Both sides mirror one another. The upper and lower forms contain several coiled tips and free tails; none is distinguished as the first terminal or the direction of reading. The shapes do not touch the rune lines or specify a raster-to-glyph sampling rule. The repeated frame offers no source-selected start, handedness, scope, grid or traversal from which to freeze a spiral transposition. Source-only reconstruction therefore stops **before** a cipher test: choosing an arbitrary spiral would select a key after seeing the target. The 217/261/263/196/208 page rune totals also rule out assuming a single unchanged row/column grid merely because the frame is identical. An independently sourced instruction could still give the frame a cryptographic role. No unknown ciphertext or key was solved.
 
 ## Original images, crop contract and controls
@@ -41,6 +43,45 @@ The image-source null is specific and strong: four separate original pages have 
 This is more discriminating than visually comparing thumbnail scrolls: it tests native pixels on original 2400×3600 JPEGs, explicitly includes a different-text control, and confirms the only nonidentical page stays within a two-pixel stroke outline. The fixed threshold and two-pixel support comparison were chosen for stroke equivalence before evaluating any unknown ciphertext; no language scoring, key/phase scanning, decorative-dot orientation enumeration or image steganography search was used.
 
 **Bounded scope:** the experiment is about the four measured upper/lower original *margin scroll illustrations* and their gross strokes, not hidden JPEG bits, non-scroll artwork, other pages' illustrations, changes outside the measured crops, or code embedded in the unchanged shape itself. If a newly discovered original message explicitly assigns an operation to the stationary scroll shape, that would be a new route. Without such a cue the Director should retire this variation hypothesis instead of asking an agent to assign arbitrary page bits to near-identical curls.
+
+## Red-delimited whole-block mirror-pair inverse and exact all-matrix bound (#2450)
+
+The genuine side margins mirror each other, while the giant red L/P/A initials identify three source text blocks. A conditional interpretation is outside-in pairing inside each actual red-initiated block. This preserves every rune in the selected blocks without choosing a rectangular grid, padding, offsets, arbitrary line permutations, or a page-local state. This is not the earlier p6 two-dimensional weighted Haar square, p15 two-tape lossy fold, or p7 five-product matrix/filter. The bilateral frame remains a **weak selector**: it does not instruct the player to mix values algebraically. The prior [#1998 LPAD gate](../workplace/agent3-1998-p1-p7-source-freeze.md) is not reopened.
+
+The [precommitted issue specification](https://github.com/FlareZ123/liber-primus/issues/2450#issuecomment-7119752504) fixes original physical blocks (half-open rune offsets):
+- A = p3[0:119], 119 runes, 22 printed words.
+- B = p3[119:] + p4 + p5 + p6[:71], 693 runes, 154 printed words.
+- C = p6[71:] + p7[:194], 319 runes, 74 printed words. The separately marked 14-rune p7 terminal red rubric is outside the three drop-cap blocks.
+
+The complete 1,131 selected runes are matched to the original transcription, preserving word and page carries. Train solely on B. For each common pair (a,b) in GF29 with a²−b² nonzero, invert a whole block by P[i] = a C[i] + b C[n−1−i] modulo29. Its exact forward map uses coefficients a/(a²−b²) and −b/(a²−b²), including the single center rune. There are 784 invertible shared keys. The pinned Shakespeare GP native-word bigram/unigram plus dictionary objective is fixed; six independent Gibran word-length-matched plants use unknown planted keys, and actual solved clear p57 is an additional native control under each recovered plant key. All six exact keys and all 6,786 planted layout-matched runes plus six p57 controls recover. These plants are independently sampled words, not connected prose; the donor contains Gutenberg front/back matter. Thirty-two independent uniform-mod29 ciphertext nulls undergo the same train-only selection.
+
+Original B selects (a,b)=(14,6). Exact forward replay succeeds on all 1,131 original symbols. The selected key is unchanged on both original holdouts.
+
+| Block | Original IoC | Exact dictionary rune coverage | Language score |
+|---|---:|---:|---:|
+| A, independent holdout | 0.03176186 | 0% | −5.014460 |
+| B, train | 0.03461118 | 2.8860% | −4.812451 |
+| C, independent holdout | 0.03499537 | 0% | −5.379991 |
+
+20/32 null training maxima reach or exceed the original winner. All 784-key original maximum IoCs A/B/C are only .03731662/.03520757/.03574456. There is no continuous GP-native text. The original ciphertext replay is an implementation invariant, not proof of the winning key.
+
+### Exact arbitrary 2×2 outside-in linear-pair envelope
+
+The negative is substantially stronger than an unsuccessful symmetric key search. For each mirror pair of source ciphertext symbols (x,y), let two proposed plaintext symbols be independent affine GF29 projections. Each nonzero row has exactly one of 30 projective directions: (1,t) for t=0..28 or (0,1). An invertible matrix must use two distinct directions. Multiplication by a nonzero scalar and addition of an offset merely permute a row's 29-bin frequency histogram.
+
+Grant **any** independent output permutation per row, not merely affine relabeling. For each of the 435 unordered independent direction pairs, sort both histograms decreasingly and add componentwise. By the rearrangement inequality, this maximizes their dot product, hence the combined squared-frequency sum; assign the unpaired odd center to the largest combined bin, maximizing it further. The largest resulting sum h(h−1) divided by n(n−1) is an exact ceiling over the enlarged model. It allows each block its own secret invertible pair matrix, arbitrary independent half-alphabet relabeling, and arbitrary center value. It does not depend on a language objective, require a common key across blocks, or assume a particular symmetric matrix. It does assume fixed outside-in pair positions and a common pair projection within each half of each block.
+
+| Block | Enlarged all-matrix maximum IoC | Independent donor minimum IoC | Complete disjoint Gibran windows |
+|---|---:|---:|---:|
+| A (119) | 682/(119×118) = .04856858 | .04728671 | 525 |
+| B (693) | 18,010/(693×692) = .03755557 | .05658985 | 90 |
+| C (319) | 4,090/(319×318) = .04031861 | .05461249 | 195 |
+
+Thus even the strengthened block-private affine family cannot reach **any of 285 matched native-GP donor windows** in B and C. A alone overlaps its short-window reference range and cannot be rejected by this bound. This is a finite native-language conditional exclusion, not a proof against every possible plaintext, varying pair matrices, other pairing rules or cross-pair mixing. A separate genuinely nonsymmetric plant uses pair matrix [[3,5],[7,11]] (determinant −2, nonzero mod29), authentic p57 GP runes repeated to each source length, and identity center; all three exact bounds contain the true plant IoC (.06665717/.07099484/.06912324). The strong envelope covers that non-symmetric map even without identifying the key.
+
+[Reproducible standalone CommonJS experiment](../sims/lp2_scroll_redblock_mirror_sharedkey_sft.cjs), original shared-key run and envelope computation executed directly against exact repository inputs in the connected JS runtime; no Windows CI run is claimed. Inputs: corpus blob 054f2a0f780b7d46901acbe3d9bf4f0ac1801165; ink 0614aca67969a14ae006e0c1ae6aee6dcd8136e6; transcript 43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7; Shakespeare 94c677ad9dd50771c6670e0c4e4dad9052b46d85; Gibran df260a07d56bf5998d40a6360b6132c35c252d10. Code commits e8da566192bcb2c41560d50cdabafe9a078e80cb and ec3e3add6e78cc43e4c974767781d6d2a3d07f56.
+
+**Decision:** retire the original three-block fixed outside-in GF29 pair-linear architecture, including private matrices and per-half fixed alphabet permutations. The frame and red initials still do not authenticate an operation. A genuinely different clue fixing an actual receiver and nonlinear or cross-pair law is required; further coefficients, rotations, arbitrary pairing shifts and LPAD variants are not justified. No unknown plaintext, authentic key or destination.
 
 ## Exact standalone reproduction
 
