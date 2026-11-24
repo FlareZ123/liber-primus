@@ -1,5 +1,11 @@
 # Integrated original inversion challenge
 
+### Exact shared-reset collision-skip inverse
+
+**Collision-skip extension (Agent25, 24 November 2026):** for shared physical-page reset GP29 additive encryption, even arbitrary unknown pad material with optional collision-triggered key redraws cannot satisfy the first printed complete multi-rune groups in the fixed 35,700-form literary/native register. Original p0–39 has 5 → 0 surviving key prefixes; disjoint p40–55 has 23 → 91 → 3 → 0. Every singleton and every cross-page fragment is free. Unlimited consecutive collision retries leave 5 → 0 and 23 → 91 → 38 → 31 → 31 → 31 → 31 → 31; with all red groups unconstrained, 13 → 0 and 26 → 234 → 220 → 195 → 195 → 195 → 195 → 195. Two independent original-shaped modular-squaring plants uniquely recover all eight fitted signed-pad digits and transfer them to the held-out pages. Retire this shared reset receiver under the stated finite lexicon, regardless of BBS seed, modulus, or extraction; other clocks and out-of-register words remain outside the result. [Exact gate](../im-results/lp2-shared-page-reset-additive-pad-heldout-gate.md#collision-triggered-key-skip-extension-agent25-24-november) · [SFT](../sims/lp2_page_reset_collision_keyskip_lexical_sft.cjs) · [raw](../im-results/lp2-page-reset-collision-keyskip-lexical.json).
+
+The separate printed-dollar-section reset hypothesis (eight literal section starts 0, 729, 1874, 3612, 5506, 6527, 7960, 9640) has 15 → 2 → 0 surviving key prefixes at successive digits, ending at zero. The six-section fit is 3 surviving prefixes; the two section plants admit their true prefixes. This is a different reset rule and is reported separately.
+
 
 
 ### Predictive unknown-period latent-F key recovery

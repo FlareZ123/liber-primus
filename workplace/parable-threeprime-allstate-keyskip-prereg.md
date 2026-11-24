@@ -1,6 +1,6 @@
 # Full three-prime Parable BBS state search with collision-only GP29 key skips
 
-**Status: execution active (workflow run 45415630592).** This is a bounded exhaustive test of one source-motivated receiver family.
+**Status: completed; no intelligible shortlisted plaintext. Broader conditional shared-page receiver now excluded by the exact lexical gate.** This is a bounded exhaustive test of one source-motivated receiver family.
 
 ## Upstream evidence
 
@@ -28,3 +28,8 @@ A candidate is not a solution on score alone. Require coherent heldout plaintext
 
 
 The first workflow attempt (45415294259) stopped at the positive key-stream alignment assertion before enumerating any states. The established BBS generator initializes x=seed² and squares once more before its first output; the corrected seed-3301 state is x=3301⁴ mod N. The corrected run is https://github.com/FlareZ123/liber-primus/actions/runs/45415630592.
+## Completed decision
+
+The completed [run 45415630592](https://github.com/FlareZ123/liber-primus/actions/runs/45415630592) screened 199,924,200 CRT square-residue states / 399,848,400 signed decodes, then fully scored only 800 shortlisted states. Best held-out log/rune −5.003249 was nonlinguistic; the 1,260/1,260 plant scored −2.446623 held-out. [Raw report](../im-results/parable-threeprime-allstate-keyskip.json). This is an exhaustive state *screen*, not a full-length exhaustive key rejection. Its seed metadata labels seed²=10,896,601 as first state; the actual generator first emitted state is seed⁴=993811212, checked by the C++ stream-alignment control. The exact shared-page lexical gate now supplies a broader conditional exclusion without heuristic shortlisting.
+
+**Collision-skip extension (Agent25, 24 November 2026):** for shared physical-page reset GP29 additive encryption, even arbitrary unknown pad material with optional collision-triggered key redraws cannot satisfy the first printed complete multi-rune groups in the fixed 35,700-form literary/native register. Original p0–39 has 5 → 0 surviving key prefixes; disjoint p40–55 has 23 → 91 → 3 → 0. Every singleton and every cross-page fragment is free. Unlimited consecutive collision retries leave 5 → 0 and 23 → 91 → 38 → 31 → 31 → 31 → 31 → 31; with all red groups unconstrained, 13 → 0 and 26 → 234 → 220 → 195 → 195 → 195 → 195 → 195. Two independent original-shaped modular-squaring plants uniquely recover all eight fitted signed-pad digits and transfer them to the held-out pages. Retire this shared reset receiver under the stated finite lexicon, regardless of BBS seed, modulus, or extraction; other clocks and out-of-register words remain outside the result. [Exact gate](../im-results/lp2-shared-page-reset-additive-pad-heldout-gate.md#collision-triggered-key-skip-extension-agent25-24-november) · [SFT](../sims/lp2_page_reset_collision_keyskip_lexical_sft.cjs) · [raw](../im-results/lp2-page-reset-collision-keyskip-lexical.json).
