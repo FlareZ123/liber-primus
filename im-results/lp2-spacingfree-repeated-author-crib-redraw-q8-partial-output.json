@@ -1,0 +1,664 @@
+{
+  "controls": [
+    {
+      "name": "0_koan_1",
+      "key": [
+        17,
+        8,
+        3,
+        27,
+        11,
+        24,
+        6,
+        1
+      ],
+      "candidates": 1,
+      "paths": 1,
+      "start": 54,
+      "trueStart": 54,
+      "keyCorrect": true,
+      "n": 150,
+      "correct": 150,
+      "score": -2.3307225635533477,
+      "heldoutStart": 70
+    },
+    {
+      "name": "0_koan_1",
+      "key": [
+        9,
+        23,
+        14,
+        2,
+        12,
+        6,
+        28,
+        17
+      ],
+      "candidates": 1,
+      "paths": 1,
+      "start": 54,
+      "trueStart": 54,
+      "keyCorrect": true,
+      "n": 150,
+      "correct": 150,
+      "score": -2.3307225635533477,
+      "heldoutStart": 70
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "key": [
+        3,
+        8,
+        12,
+        4,
+        15,
+        22,
+        19,
+        0
+      ],
+      "candidates": 1,
+      "paths": 1,
+      "start": 215,
+      "trueStart": 215,
+      "keyCorrect": true,
+      "n": 150,
+      "correct": 150,
+      "score": -2.9239825906397803,
+      "heldoutStart": 231
+    }
+  ],
+  "original": [
+    {
+      "name": "0_koan_1",
+      "first": 54,
+      "second": 294,
+      "length": 16,
+      "crib": "ᚦᛖᛗᚪᛋᛏᛖᚱᚹᚻᚩᚪᚱᛖᚣᚩ",
+      "nodes": 1163934,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 55,
+      "second": 295,
+      "length": 16,
+      "crib": "ᛖᛗᚪᛋᛏᛖᚱᚹᚻᚩᚪᚱᛖᚣᚩᚢ",
+      "nodes": 1165341,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 56,
+      "second": 296,
+      "length": 16,
+      "crib": "ᛗᚪᛋᛏᛖᚱᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹ",
+      "nodes": 1164041,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 57,
+      "second": 297,
+      "length": 16,
+      "crib": "ᚪᛋᛏᛖᚱᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻ",
+      "nodes": 1164613,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 58,
+      "second": 298,
+      "length": 16,
+      "crib": "ᛋᛏᛖᚱᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩ",
+      "nodes": 1165142,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 59,
+      "second": 299,
+      "length": 16,
+      "crib": "ᛏᛖᚱᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹ",
+      "nodes": 1164739,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 60,
+      "second": 300,
+      "length": 16,
+      "crib": "ᛖᚱᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁ",
+      "nodes": 1165310,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 61,
+      "second": 301,
+      "length": 16,
+      "crib": "ᚱᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋ",
+      "nodes": 1164738,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 62,
+      "second": 302,
+      "length": 16,
+      "crib": "ᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻ",
+      "nodes": 1164827,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 63,
+      "second": 303,
+      "length": 16,
+      "crib": "ᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖ",
+      "nodes": 1164696,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 64,
+      "second": 304,
+      "length": 16,
+      "crib": "ᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋ",
+      "nodes": 1165023,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 65,
+      "second": 305,
+      "length": 16,
+      "crib": "ᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏ",
+      "nodes": 1164639,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 66,
+      "second": 306,
+      "length": 16,
+      "crib": "ᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩ",
+      "nodes": 1165531,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 67,
+      "second": 307,
+      "length": 16,
+      "crib": "ᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋ",
+      "nodes": 1163611,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 68,
+      "second": 308,
+      "length": 16,
+      "crib": "ᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏ",
+      "nodes": 1164370,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 69,
+      "second": 309,
+      "length": 16,
+      "crib": "ᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏᚢ",
+      "nodes": 1165227,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 70,
+      "second": 310,
+      "length": 16,
+      "crib": "ᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏᚢᛞ",
+      "nodes": 1164174,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 71,
+      "second": 311,
+      "length": 16,
+      "crib": "ᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏᚢᛞᚣ",
+      "nodes": 1164473,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 72,
+      "second": 312,
+      "length": 16,
+      "crib": "ᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏᚢᛞᚣᚻ",
+      "nodes": 1164922,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 73,
+      "second": 313,
+      "length": 16,
+      "crib": "ᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏᚢᛞᚣᚻᛖ",
+      "nodes": 1165178,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 74,
+      "second": 314,
+      "length": 16,
+      "crib": "ᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏᚢᛞᚣᚻᛖᚱ",
+      "nodes": 1164705,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 75,
+      "second": 315,
+      "length": 16,
+      "crib": "ᛁᛋᚻᛖᛋᛏᚩᛋᛏᚢᛞᚣᚻᛖᚱᛖ",
+      "nodes": 1164813,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 76,
+      "second": 433,
+      "length": 16,
+      "crib": "ᛋᚻᛖᛋᛏᚩᛋᛏᚢᛞᚣᚻᛖᚱᛖᚪ",
+      "nodes": 1164757,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 77,
+      "second": 434,
+      "length": 16,
+      "crib": "ᚻᛖᛋᛏᚩᛋᛏᚢᛞᚣᚻᛖᚱᛖᚪᛋ",
+      "nodes": 1164750,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 78,
+      "second": 435,
+      "length": 16,
+      "crib": "ᛖᛋᛏᚩᛋᛏᚢᛞᚣᚻᛖᚱᛖᚪᛋᚳ",
+      "nodes": 1164218,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 79,
+      "second": 436,
+      "length": 16,
+      "crib": "ᛋᛏᚩᛋᛏᚢᛞᚣᚻᛖᚱᛖᚪᛋᚳᛖ",
+      "nodes": 1165194,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 80,
+      "second": 437,
+      "length": 16,
+      "crib": "ᛏᚩᛋᛏᚢᛞᚣᚻᛖᚱᛖᚪᛋᚳᛖᛞ",
+      "nodes": 1164447,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 81,
+      "second": 438,
+      "length": 16,
+      "crib": "ᚩᛋᛏᚢᛞᚣᚻᛖᚱᛖᚪᛋᚳᛖᛞᚦ",
+      "nodes": 1165034,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 82,
+      "second": 439,
+      "length": 16,
+      "crib": "ᛋᛏᚢᛞᚣᚻᛖᚱᛖᚪᛋᚳᛖᛞᚦᛖ",
+      "nodes": 1164798,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 83,
+      "second": 440,
+      "length": 16,
+      "crib": "ᛏᚢᛞᚣᚻᛖᚱᛖᚪᛋᚳᛖᛞᚦᛖᛗ",
+      "nodes": 1164751,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 84,
+      "second": 441,
+      "length": 16,
+      "crib": "ᚢᛞᚣᚻᛖᚱᛖᚪᛋᚳᛖᛞᚦᛖᛗᚪ",
+      "nodes": 1164817,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 85,
+      "second": 442,
+      "length": 16,
+      "crib": "ᛞᚣᚻᛖᚱᛖᚪᛋᚳᛖᛞᚦᛖᛗᚪᛋ",
+      "nodes": 1164542,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 86,
+      "second": 443,
+      "length": 16,
+      "crib": "ᚣᚻᛖᚱᛖᚪᛋᚳᛖᛞᚦᛖᛗᚪᛋᛏ",
+      "nodes": 1164212,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 87,
+      "second": 444,
+      "length": 16,
+      "crib": "ᚻᛖᚱᛖᚪᛋᚳᛖᛞᚦᛖᛗᚪᛋᛏᛖ",
+      "nodes": 1164797,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 88,
+      "second": 445,
+      "length": 16,
+      "crib": "ᛖᚱᛖᚪᛋᚳᛖᛞᚦᛖᛗᚪᛋᛏᛖᚱ",
+      "nodes": 1164698,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 407,
+      "second": 564,
+      "length": 16,
+      "crib": "ᚾᚩᛏᚹᚻᚩᚣᚩᚢᚪᚱᛖᚹᚻᚩᚪ",
+      "nodes": 1164894,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 408,
+      "second": 565,
+      "length": 16,
+      "crib": "ᚩᛏᚹᚻᚩᚣᚩᚢᚪᚱᛖᚹᚻᚩᚪᚱ",
+      "nodes": 1165151,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 409,
+      "second": 566,
+      "length": 16,
+      "crib": "ᛏᚹᚻᚩᚣᚩᚢᚪᚱᛖᚹᚻᚩᚪᚱᛖ",
+      "nodes": 1163630,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 410,
+      "second": 567,
+      "length": 16,
+      "crib": "ᚹᚻᚩᚣᚩᚢᚪᚱᛖᚹᚻᚩᚪᚱᛖᚣ",
+      "nodes": 1164867,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 411,
+      "second": 568,
+      "length": 16,
+      "crib": "ᚻᚩᚣᚩᚢᚪᚱᛖᚹᚻᚩᚪᚱᛖᚣᚩ",
+      "nodes": 1164530,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 412,
+      "second": 569,
+      "length": 16,
+      "crib": "ᚩᚣᚩᚢᚪᚱᛖᚹᚻᚩᚪᚱᛖᚣᚩᚢ",
+      "nodes": 1165446,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 413,
+      "second": 570,
+      "length": 16,
+      "crib": "ᚣᚩᚢᚪᚱᛖᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹ",
+      "nodes": 1164431,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 414,
+      "second": 571,
+      "length": 16,
+      "crib": "ᚩᚢᚪᚱᛖᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻ",
+      "nodes": 1165378,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 415,
+      "second": 572,
+      "length": 16,
+      "crib": "ᚢᚪᚱᛖᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩ",
+      "nodes": 1164622,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 416,
+      "second": 573,
+      "length": 16,
+      "crib": "ᚪᚱᛖᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹ",
+      "nodes": 1164753,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 417,
+      "second": 574,
+      "length": 16,
+      "crib": "ᚱᛖᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁ",
+      "nodes": 1164987,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 418,
+      "second": 575,
+      "length": 16,
+      "crib": "ᛖᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋ",
+      "nodes": 1165176,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "first": 215,
+      "second": 343,
+      "length": 16,
+      "crib": "ᚹᛖᚹᛁᛚᛚᚾᚩᛏᛒᛖᛋᛏᚱᚩᛝ",
+      "nodes": 1164916,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "first": 216,
+      "second": 344,
+      "length": 16,
+      "crib": "ᛖᚹᛁᛚᛚᚾᚩᛏᛒᛖᛋᛏᚱᚩᛝᛖ",
+      "nodes": 1164148,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "first": 217,
+      "second": 345,
+      "length": 16,
+      "crib": "ᚹᛁᛚᛚᚾᚩᛏᛒᛖᛋᛏᚱᚩᛝᛖᚾ",
+      "nodes": 1164871,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "first": 218,
+      "second": 346,
+      "length": 16,
+      "crib": "ᛁᛚᛚᚾᚩᛏᛒᛖᛋᛏᚱᚩᛝᛖᚾᚩ",
+      "nodes": 1164769,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "first": 219,
+      "second": 347,
+      "length": 16,
+      "crib": "ᛚᛚᚾᚩᛏᛒᛖᛋᛏᚱᚩᛝᛖᚾᚩᚢ",
+      "nodes": 1163749,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "first": 220,
+      "second": 348,
+      "length": 16,
+      "crib": "ᛚᚾᚩᛏᛒᛖᛋᛏᚱᚩᛝᛖᚾᚩᚢᚷ",
+      "nodes": 1163943,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "first": 221,
+      "second": 349,
+      "length": 16,
+      "crib": "ᚾᚩᛏᛒᛖᛋᛏᚱᚩᛝᛖᚾᚩᚢᚷᚻ",
+      "nodes": 1164685,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "first": 446,
+      "second": 483,
+      "length": 16,
+      "crib": "ᚹᛖᚳᚪᚾᛒᛖᛚᚩᛝᚪᚾᛞᛒᛖᚱ",
+      "nodes": 1164101,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "first": 447,
+      "second": 484,
+      "length": 16,
+      "crib": "ᛖᚳᚪᚾᛒᛖᛚᚩᛝᚪᚾᛞᛒᛖᚱᛁ",
+      "nodes": 1165433,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "first": 448,
+      "second": 485,
+      "length": 16,
+      "crib": "ᚳᚪᚾᛒᛖᛚᚩᛝᚪᚾᛞᛒᛖᚱᛁᚷ",
+      "nodes": 1164699,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "first": 449,
+      "second": 486,
+      "length": 16,
+      "crib": "ᚪᚾᛒᛖᛚᚩᛝᚪᚾᛞᛒᛖᚱᛁᚷᚻ",
+      "nodes": 1164594,
+      "starts": 12941,
+      "hits": []
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "first": 450,
+      "second": 487,
+      "length": 16,
+      "crib": "ᚾᛒᛖᛚᚩᛝᚪᚾᛞᛒᛖᚱᛁᚷᚻᛏ",
+      "nodes": 1165464,
+      "starts": 12941,
+      "hits": []
+    }
+  ],
+  "originalRunes": 12956,
+  "scope": "LP1 16-rune fragments of maximal repeated substrings of at least 20 runes; q8 optional collision-only one-redraw, all offsets, no printed spaces"
+}
