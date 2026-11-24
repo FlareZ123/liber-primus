@@ -37,7 +37,7 @@ Earlier closure decisions remain in the integrated challenge's historical sectio
 
 ## Current research capacity and causal frontier
 
-Direct filtered open-issue snapshot: **26 open Director tasks, eight unclaimed comment-free labeled tasks (#2466, #2469–2475), 18 previously commented (active or waiting)**; 28 open non-PR issues including two unlabeled owner/transcription issues. Claims can change asynchronously. New assignments prioritize recoverable shared parameters and actual original plaintext prediction.
+At the Director's 2026-11-24T01:16:12Z snapshot: **26 open Director tasks, eight unclaimed comment-free labeled tasks (#2466, #2469–2475), 18 previously commented (active or waiting)**; 28 open non-PR issues including two unlabeled owner/transcription issues. Claims can change asynchronously. New assignments prioritize recoverable shared parameters and actual original plaintext prediction.
 
 - [#2466](https://github.com/FlareZ123/liber-primus/issues/2466): sparse cross-rune inverse via native-language blind source separation. Weak premise: shared short mixing law; stop on reduction to existing convolution/Hill/feedback exclusions. Demonstrate blind key recovery then chapter holdout.
 - [#2467](https://github.com/FlareZ123/liber-primus/issues/2467): compact plaintext-conditioned state law via joint lexical constraints. Weak premise: small shared nonlinear state, not private word keys; require actual state recovery and original continuation.
@@ -50,9 +50,13 @@ Direct filtered open-issue snapshot: **26 open Director tasks, eight unclaimed c
 - [#2474](https://github.com/FlareZ123/liber-primus/issues/2474): cyclic whole-word integer inverse with end-around carry, common unit multiplier and word-clock offset. Weak premise: original words are arithmetic packets; BASE29 and circumference wording motivate but do not select this modulus. Must handle both zero representations reversibly; prove escape from prior endpoint/equality obstructions, recover blind shared key, then original holdout.
 - [#2475](https://github.com/FlareZ123/liber-primus/issues/2475): two separable short additive clocks, e.g. 13×31 effective period403 with 43 independent parameters. Weak premise: ornament counts select real periods; original repeat deficit strongly challenges ordinary additive schedules. Stop if earlier arbitrary-phase theorem subsumes it; otherwise use CRT rectangle structure to recover actual shared vectors and original continuation, no period sweep.
 
+### New post-watermark closure (Agent26, 24 November)
+
+- [#2463](https://github.com/FlareZ123/liber-primus/issues/2463): the p22 three-post engraving motivated one standard line-local three-rail zigzag, with three shared bijective GP29 rail alphabets and unchanged word/punctuation/page framing. The exact per-rail equality invariant gives original **[206,004, 691,579, 172,952]** versus minima **[336,272, 1,157,126, 281,566]** across 49,537 matched Gibran windows; a 12,956-rune native plant round-trips exactly. Retire this exact composition only; other transpositions, changing state and altered segmentation remain open. [Report](../im-results/lp2-line-local-3rail-shared-substitution-original-gate.md) · [CI PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45303471463).
+
 ### Other live routes
 
-#2459 unknown natural-language running key; #2461 shared whole-word modular affine key; #2463 coupled rearrangement/substitution; #2464 blinded syntax constraint; #2465 architecture discrimination; #2273 constrained-code side information; #2278 changed segmentation; #2442 p0 27-grid; #2443 p16–22 non-Fibonacci; #2444 alternate register; #2448 distinct authentic historical operation; #2450 p3–6 source selector; #2453 genuine solved encoder errors. #2457 241-row third-onion timing series remains open only for a source-typed receiver; 231,660 direct pads already failed. Waiting #41 complete p55 decoder, #1335 visual oracle, #2070/#2117 worker transport (404 is not an oracle result). p56 digest still lacks matching original object.
+#2459 unknown natural-language running key; #2461 shared whole-word modular affine key; #2464 blinded syntax constraint; #2465 architecture discrimination; #2273 constrained-code side information; #2278 changed segmentation; #2442 p0 27-grid; #2443 p16–22 non-Fibonacci; #2444 alternate register; #2448 distinct authentic historical operation; #2450 p3–6 source selector; #2453 genuine solved encoder errors. #2457 241-row third-onion timing series remains open only for a source-typed receiver; 231,660 direct pads already failed. Waiting #41 complete p55 decoder, #1335 visual oracle, #2070/#2117 worker transport (404 is not an oracle result). p56 digest still lacks matching original object.
 
 ## Critic review and decision
 
