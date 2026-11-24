@@ -56,6 +56,14 @@ A separate retrospective full-308-rune optimum enumerates all 64 masks; all are 
 
 [Exact cyclic trigram SFT](../sims/lp2_plaintext_autokey_q8_fhold_spacingfree_trigram_sft.cjs), executed in connected JS; no independent CI run claimed.
 
+## Fixed reversible outer wrapper
+
+The previously frozen [zero-F moving-exception layer](lp2-zeroF-periodic-fhold-layer.md) has a distinct inner-periodic-key negative. Apply the exact same whole-book inverse at global phase zero, without selecting an offset, marker, or interpretation from the autokey results. The canonical 256-cell token rule selects marker zero when the token starts with zero, otherwise [0,2,12,21,22,25,27,28] indexed by the byte's low three bits. At each noninitial position undo the transposition of the previous emitted ciphertext rune and that marker. Exact whole-book forward replay and the published 549/12,956 edits are checked, including 11/308 on p54–55.
+
+Reuse the spacing-free exact q8 additive plaintext-feedback inner solver and fixed 205/103 split. Four prefix masks are legal; the exact best prefix score is **-5.160476654944627** nats/rune. The fitted primer [4,24,8,26,3,25,13,4] with literal holds 20 and 41 has **zero legal continuations** across both suffix masks. All eight full-unit masks are legal; the exact retrospective maximum is **-5.4790152751939205** nats/rune, primer [21,24,14,15,3,10,10,25], literal holds 20,41,257. The complete inner tape replays exactly, and the outer inverse was checked on the full original tape. Output is nonprose, worse than the raw model's maximum. This fixed composite does not provide a receiver or authenticate the outer transform. The inner solver's existing independent control recovery and the separately checked outer bijection are reused, not presented as new independent native controls.
+
+Run the same [SFT](../sims/lp2_plaintext_autokey_q8_fhold_spacingfree_trigram_sft.cjs) with `--wrapped`. Retire this frozen composite; do not tune its wrapper or primer to rescue it.
+
 ## Scope and next decision
 
 Retire the fixed q8 intact-group native lexical route on p0–2 and the fixed q8 spacing-free native-prose route on p54–55. Do not tune primer length, feedback sign or reset policy to rescue them. A different linguistic attack needs an independently selected crib or state constraint that distinguishes a candidate from the demonstrated legal nonprose witnesses. Earlier no-F autokey invariants and q13 F-hold anchor tests address distinct models.
