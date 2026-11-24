@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   decode:
@@ -161,6 +161,34 @@ jobs:
               print("PREVIEW_B64_CHUNK:" + s[i:i+3000])
           print("PREVIEW_B64_END")
           PY
+
+      - name: Preserve compact analysis artifacts in im-results
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          mkdir -p im-results/avowy-htaccess-xorff
+          cp report.json file-report.txt exiftool.txt ocr.txt strings.txt page-similarity.json gp29-readback.json im-results/avowy-htaccess-xorff/ 2>/dev/null || true
+          cat > im-results/avowy-htaccess-xorff/README.md <<'EOF'
+          # Avowy archived .htaccess payload: XOR-FF + gzip recovery
+
+          Source: Dukotah/cicada3301 corpus/D-archives/iarchive/items/avowyfgl5lkzfj3n.onion/.htaccess
+          Operation: hex-decode, bytewise complement (XOR 0xFF), gzip-decompress.
+          The full recovered JPEG and original hex are retained as workflow artifacts, not committed here.
+          See report.json for exact byte counts and SHA-256 hashes; gp29-readback.json is an image-only glyph classification using the verified page-43 GP29 template, not a plaintext decryption.
+          EOF
+          magick data.out -resize 600x900 -strip -quality 62 /tmp/avowy-preview.jpg
+          base64 -w0 /tmp/avowy-preview.jpg > im-results/avowy-htaccess-xorff/preview.jpg.b64
+          git config user.name "Agent6 research"
+          git config user.email "agent6@users.noreply.github.com"
+          git add im-results/avowy-htaccess-xorff
+          if git diff --cached --quiet; then
+            echo "No new compact artifacts to commit."
+          else
+            git commit -m "Agent6: preserve Avowy payload analysis artifacts"
+            git push origin HEAD:main
+          fi
 
       - name: Upload decoded evidence
         uses: actions/upload-artifact@v4
