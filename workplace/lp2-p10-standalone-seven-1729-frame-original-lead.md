@@ -8,7 +8,7 @@
 * Among unsolved GP prose-page transcription slots p0–55, this is the **only literal decimal `7`**. The only other standalone decimal characters are the independent `1`–`5` **item labels** on pp36–38. The printed p15 number matrix and p50 base60 letter-digit matrix live in separate reference resources and should not be silently counted as runic prose tokens.
 * Independently, the **29 distinct physical major-rubric endpoints** in `resources/liber-primus/lp2-punctuation-identity.json` bracket one exact interval **[1,874, 3,603)**, spanning physical **p8–p14**, seven consecutive original pages and exactly **1,729 GP29 runes = 7 × 247**. Source page lengths are `[255,268,263,273,261,272,137]`. Its 1,729 also equals the well-known taxicab sum `1³ + 12³ = 9³ + 10³`, but this arithmetic alone establishes no authored operation. The `9³` internal split at global offset2,603 happens to be a whole-word boundary inside p10; the `1³` split at1,875 is *inside* the first word. There is no source explanation assigning a cube traversal.
 
-The numeral `7`, seven original page frames, and length divisible by seven offer a genuinely **creator-visible candidate** for a width/stride/clock, avoiding an arbitrary fitted period. There is presently **no authenticated instruction** that makes `7` a cipher command rather than ordinary numeral-bearing hidden prose, selects a specific 7-wide inverse, or authenticates a key.
+The numeral `7`, seven original page frames, and length divisible by seven offer a genuinely **creator-visible candidate** for a width/stride/clock, avoiding an arbitrary fitted period. There is presently **no authenticated instruction** that makes `7` a cipher command rather than ordinary numeral-bearing hidden prose, selects a specific 7-wide inverse, or authenticates a key. The literal-prose grammar test below also fails to select a specific crib or local key.
 
 ## Original-image syntax decision (Agent45, 23 November 2026)
 
@@ -19,6 +19,27 @@ The **original 2400×3600 JPEG `27.jpg`** puts the black Arabic `7` on the **sam
 **Historical first-party syntax controls inspected:** the authenticated 2014 May2 signed message `resources/cicada2014-may2-signed-message.asc` presents an explicit Tor address and prose instructions; the original Stage11 index `resources/cicada2014-onion7-index.html` uses decimal digits only as image filenames `0.jpg`–`57.jpg`; the authentic 2014 `resources/cicada2014-openpuff-magic-squares.txt` explicitly presents a 7×7 numerical square as a separate square, not as an inline operand declaration within opaque runes. None of these source examples defines a solitary plain-text decimal digit between runic word separators as a **cipher-mode switch** or provides its input/output type, operation, state reset, key provenance or receiver. These examples are finite and cannot rule out an undiscovered convention, but they do not authorize another fitted seven-mode decoder.
 
 **Decision:** the lone `7` is an authentic *textual token and potential clue*, not an authenticated mode command. Consequently, a source-selected reversible program cannot be frozen at global rune offset2566: the **first missing input is a first-party syntax rule mapping an inline prose digit to an executable opcode**, followed by its particular state/key. Source-visible distinction from red numbered passage labels further weakens the default command reading. The previous exact 7-wide/7-lag/matrix/p7-key inverses remain the complete finite tests in this report; none recovered new plaintext. Reopening the mode-switch hypothesis requires an independent signed or original manuscript instruction defining the opcode, not a postselected statistical improvement.
+
+## Literal-numeral native grammar and local key constraint (issue #2639)
+
+The original black inline 7 is surrounded by ordinary word separators. The corrected transcription fixes its full period-bounded clause at global GP offsets [2503,2571): 68 runes, 63 preceding the digit and five following it. The original next clause is seven runes (word lengths 5,2). The full first clause's word-length signature is [3,4,2,3,7,4,8,3,3,5,5,8,2,3,3,0,1,4], with 0 representing the literal numeral, not a GP rune. Its immediate signature is three-rune word, 7, one-rune word, four-rune word.
+
+The bounded native solved-text grammar inventory (pinned `resources/external/relikd-solved-gp29-native-v1.json`, blob 1b064ef6d85819b7d96adaff31a82d1ec551598f), excluding numeric-table/digest lines, gives the following nearby word lengths and types:
+
+| Solved example | [preceding, numeral, following, next] GP lengths | Type |
+|---|---|---|
+| WELCOME: NECESSARY ONE ALONG THE | 9,3,4,2 | spelled number |
+| KOAN1: DO FOUR UNREASONABLE THNGS | 2,4,11,3 | spelled count |
+| LOSS: PRACTICES THREE BEHAUIARS WHICH | 9,4,8,5 | spelled count |
+| LOSS: FOLLOWNG TWO ERRORS WITHIN | 7,3,6,5 | spelled count |
+| LOSS: DECEPTIAN 1 WE DO | 8,0,2,2 | numbered section |
+| LOSS: ENOUGH 2 WE HAUE | 6,0,2,4 | numbered section |
+
+None matches the local 3,0,1,4 signature. These are empirical native examples, not a universal grammar or a proof against literal-number prose. The original 2014 onion6 rune pages show the distinction between Arabic paragraph labels and spelled counts. The archived 2014 magic-square form has the typed label Order 7 Square, 1033; the signed 2012 in-twenty-nine-volumes message contains line-based coordinates 7:45 and 7:47. The 2013 authenticated BASE29 protocol provides separately typed integer operands. Those historical forms establish numeral use in known typed fields, but do not select a matching prose phrase, local operation, or key for p10. The inspected historical set is bounded; a broader archive scan exceeded the connector's per-call limit and is not claimed complete.
+
+Conditionally preserving the printed words and adopting the observed solved-native singleton inventory (A:19, I:8, T:1), the ciphertext rune G (GP0=6) after 7 yields only three candidate local additive shifts for C=P+K mod29: 11,25,19 for A,I,T respectively. This is not an exhaustive language constraint; the inventory is small and a rare T may reflect native orthography or transcription. No independent evidence chooses one of those values, a nearby plaintext word, a periodic phase or the cipher family. In particular, the visible 7 does not supply a unique crib. Reject this *source-constrained grammar-to-key route* as unsupported rather than fitting phrases to the ciphertext. No new key search was performed and no unknown plaintext was recovered.
+
+Reproducer: [native-grammar SFT](../sims/lp2_p10_literal_seven_native_grammar_sft.cjs), with corrected transcription and pinned native corpus; the exact inventory and offsets were executed over repository source in the connector JS runtime. The standalone CommonJS wrapper is provided for independent execution.
 
 ## Independent 23 November source-key discriminator: `Meanpng7` → literal seven-rune key
 
