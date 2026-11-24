@@ -32,8 +32,8 @@ function scan(words,outer,len){
 try{
  run(process.env.CXX||"g++",["-O3","-std=c++17",path.join(__dirname,"lp2_p0_red8_red5_sliding_anchor.cpp"),"-o",exe]);
  const counts=[];
- for(const L of [11,12,13,14]){const res=scan(base.body,base.outer,L);counts.push(res.rows.length);for(const s of res.rows){const C=base.body.flat(),seg=segment(C,s),p=witness(C,s);assert(!seg.complete);assert(!s.native);console.log(JSON.stringify({...s,k:keystr(s.k),l:keystr(s.l),p:keystr(s.p),seg,witnessPrefix:keystr(p.slice(0,48))}))}}
- assert.deepEqual(counts,[14,1,0,0]);
+ for(const L of [10,11,12,13,14]){const res=scan(base.body,base.outer,L);counts.push(res.rows.length);for(const s of res.rows){const C=base.body.flat(),seg=segment(C,s),p=witness(C,s);assert(!seg.complete);assert(!s.native);console.log(JSON.stringify({...s,k:keystr(s.k),l:keystr(s.l),p:keystr(s.p),seg,witnessPrefix:keystr(p.slice(0,48))}))}}
+ assert.deepEqual(counts,[595,14,1,0,0]);
  for(const [k,l] of [[[15,8,18,3,6,19,27,0],[15,26,18,21,5]],[[4,19,2,0,28,13,8,1],[0,0,3,12,19]],[[23,4,11,7,17,22,0,9],[5,12,13,17,26]]]){
   let a=0,b=0,idx=0,expected,bb;const offset=base.ctrl.slice(0,13).flat().length;
   const enc=base.ctrl.map(w=>w.map(p=>{if(idx++===offset){expected=k.slice(a).concat(k.slice(0,a));bb=b}if(!p)return 0;const q=mod(p+k[a]);a=(a+1)%8;if(!q)return 0;const x=mod(q+l[b]);b=(b+1)%5;return x}));

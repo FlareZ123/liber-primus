@@ -29,6 +29,25 @@ int reach(const vector<Rune>& c,const K8& k,const K5& l,bool ai,int anchor,int p
  }
  return -1;
 }
+// The actual anchor path supplies both boundary phases. Test both halves from that path.
+bool prefix(const vector<Rune>& c,const K8& k,const K5& l,int start,int b0){
+ uint64_t s=1ULL<<b0;
+ for(int i=start-1;i>=0;i--){int x=c[i].c;uint64_t t=0;
+  while(s){int j=__builtin_ctzll(s);s&=s-1;int a=j/5,b=j%5,aa=(a+7)%8,bb=(b+4)%5;
+   if(x==0){t|=1ULL<<j;if(k[aa])t|=1ULL<<(5*aa+b);}
+   int q=mod(x-l[bb]);if(q&&q!=k[aa])t|=1ULL<<(5*aa+bb);
+  }s=t;if(!s)return false;
+ }return true;
+}
+bool suffix(const vector<Rune>& c,const K8& k,const K5& l,int start,int a0,int b0){
+ uint64_t s=1ULL<<(5*a0+b0);
+ for(int i=start;i<(int)c.size();i++){int x=c[i].c;uint64_t t=0;
+  while(s){int j=__builtin_ctzll(s);s&=s-1;int a=j/5,b=j%5,aa=(a+1)%8,bb=(b+1)%5;
+   if(x==0){t|=1ULL<<j;if(k[a])t|=1ULL<<(5*aa+b);}
+   int q=mod(x-l[b]);if(q&&q!=k[a])t|=1ULL<<(5*aa+bb);
+  }s=t;if(!s)return false;
+ }return true;
+}
 struct Group{vector<int> pos;unordered_map<int,vector<const vector<int>*>> table;};
 int signature(const vector<int>& q,const vector<int>& pos){int z=0;for(int j=8;j<(int)pos.size();j++)z=z*29+mod(q[pos[j]]-q[pos[j%8]]);return z;}
 struct Stats{long long paths=0,candidates=0,distinct=0,anchor=0,native=0;};
@@ -39,7 +58,7 @@ int main(int argc,char**argv){
  unordered_map<int,Group> groups;int wd=0,low=0;
  for(auto &p:dict)if((int)p.size()==len){
   int mask=0;vector<int>pos;for(int j=0;j<len;j++)if(!p[j])mask|=1<<j;else pos.push_back(j);
-  if(pos.size()<8){low++;continue;}auto &g=groups[mask];g.pos=pos;g.table[signature(p,pos)].push_back(&p);wd++;
+  if(pos.size()<8){low++;if(pos.size()<7)continue;}auto &g=groups[mask];g.pos=pos;g.table[signature(p,pos)].push_back(&p);wd++;
  }
  cerr<<"length="<<len<<" words="<<wd<<" masks="<<groups.size()<<" low="<<low<<'\n';
  ifstream f(argv[2]);K5 l;Stats st;int total=0;set<string> full;vector<int> q(len);
@@ -58,13 +77,16 @@ int main(int argc,char**argv){
        if(git!=groups.end()){
         auto&g=git->second;auto it=g.table.find(signature(q,g.pos));
         if(it!=g.table.end())for(auto p:it->second){
-         st.candidates++;K8 k;for(int j=0;j<8;j++)k[j]=mod(q[g.pos[j]]-(*p)[g.pos[j]]);
+         st.candidates++;K8 k{};for(int j=0;j<min(8,(int)g.pos.size());j++)k[j]=mod(q[g.pos[j]]-(*p)[g.pos[j]]);
+         for(int missing=0;missing<(g.pos.size()==7?29:1);missing++){if(g.pos.size()==7)k[7]=missing;
          if(tested.insert({initial,k}).second)st.distinct++;
-         if(reach(c,k,l,false,start,initial,p)<0){
+         if(prefix(c,k,l,start,initial)&&suffix(c,k,l,start+len,g.pos.size()%8,b)){
+          assert(reach(c,k,l,false,start,initial,p)<0);
           st.anchor++;string key;for(int x:k)key+=enc(x);string canon=key;
           for(int j=1;j<8;j++)canon=min(canon,key.substr(j)+key.substr(0,j));for(int x:l)canon+=enc(x);full.insert(canon);
           bool native=reach(c,k,l,true,start,initial,p)<0;if(native)st.native++;
           cout<<"SURVIVOR "<<start<<' '<<initial<<' ';for(int x:k)cout<<enc(x);cout<<' ';for(int x:l)cout<<enc(x);cout<<' ';for(int x:*p)cout<<enc(x);cout<<' '<<native<<'\n';
+         }
          }
         }
        }

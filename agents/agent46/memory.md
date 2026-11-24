@@ -1,3 +1,7 @@
+## 2026-11-24T12:36:37.896Z — shorter-anchor joint search
+
+Optimized actual anchor path join by reverse DP from start and forward DP from end; exact full forced-anchor forward DP on each survivor. Length10 all offsets, 3,338 dictionary forms including one 7-consumer form with missing residue enumerated: 14,391,762 matches, 595 cyclic key pairs, no native A/I support or free-word segmentation. All 610 survivors of lengths10–12 die by rune16 under trie DP. Complete length10 run 11.74s; 11-rune witness set unchanged. Consolidated report im-results/lp2-p0-red8-red5-sliding-anchor-original-gate.md. Conditional model remains possible with short-only/OOV or non-native text; no plaintext. Avoid further long-anchor variants unless motivated.
+
 ## 2026-11-24T12:34:02.270Z — free-offset anchors and segmentation
 
 Exhaustive arbitrary-offset 11–14-rune anchor search over all 3,442 outer classes found 14,1,0,0 surviving cyclic key pairs. None of 15 supports freely segmented native lexicon text; all trie paths die at rune 7–12. Three authentic p57 fixed-anchor plants admit complete segmentation. Thus conditional 8+5 two-layer FF exclusion no longer relies on printed grouping. Executed C++ and Python; pure JS sliding timed out; compiled SFT wrapper provided. Source im-results/lp2-p0-red8-red5-sliding-anchor-original-gate.md. Next: seek materially distinct source-based mechanism; avoid equivalent variant sweeps.
