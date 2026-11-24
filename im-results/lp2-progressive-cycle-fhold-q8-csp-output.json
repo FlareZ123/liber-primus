@@ -1,17 +1,17 @@
 {
   "period": 8,
-  "vocabulary": 38918,
+  "vocabulary": 38920,
   "model": "K[t mod 8]+d floor(t/8), t mod 232, plaintext F transparent",
   "plant": {
     "key": [
-      23,
-      10,
-      1,
-      10,
-      9,
-      10,
-      16,
-      26
+      4,
+      27,
+      15,
+      8,
+      21,
+      0,
+      12,
+      19
     ],
     "drift": 7,
     "controlStart": 135,
@@ -25,10 +25,10 @@
         "d": 0,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 18514,
+        "nodes": 18609,
         "states": 0,
         "history": [
-          168,
+          205,
           0
         ]
       },
@@ -36,10 +36,10 @@
         "d": 1,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 18529,
+        "nodes": 18763,
         "states": 0,
         "history": [
-          178,
+          245,
           0
         ]
       },
@@ -47,10 +47,10 @@
         "d": 2,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 18668,
+        "nodes": 18423,
         "states": 0,
         "history": [
-          215,
+          153,
           0
         ]
       },
@@ -58,10 +58,10 @@
         "d": 3,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 18849,
+        "nodes": 18623,
         "states": 0,
         "history": [
-          288,
+          214,
           0
         ]
       },
@@ -69,10 +69,10 @@
         "d": 4,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 18552,
+        "nodes": 18868,
         "states": 0,
         "history": [
-          176,
+          292,
           0
         ]
       },
@@ -80,10 +80,10 @@
         "d": 5,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 18759,
+        "nodes": 18549,
         "states": 0,
         "history": [
-          227,
+          175,
           0
         ]
       },
@@ -91,10 +91,10 @@
         "d": 6,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 18683,
+        "nodes": 18990,
         "states": 0,
         "history": [
-          200,
+          301,
           0
         ]
       },
@@ -102,10 +102,10 @@
         "d": 7,
         "stop": "complete",
         "used": 37,
-        "nodes": 18868,
+        "nodes": 18873,
         "states": 1,
         "history": [
-          212,
+          209,
           1,
           1,
           1,
@@ -119,10 +119,10 @@
         "d": 8,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 18532,
+        "nodes": 18656,
         "states": 0,
         "history": [
-          163,
+          218,
           0
         ]
       },
@@ -130,7 +130,139 @@
         "d": 9,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 18504,
+        "nodes": 18527,
+        "states": 0,
+        "history": [
+          177,
+          0
+        ]
+      },
+      {
+        "d": 10,
+        "stop": "infeasible",
+        "used": 2,
+        "nodes": 18590,
+        "states": 0,
+        "history": [
+          215,
+          0
+        ]
+      },
+      {
+        "d": 11,
+        "stop": "infeasible",
+        "used": 2,
+        "nodes": 18399,
+        "states": 0,
+        "history": [
+          147,
+          0
+        ]
+      },
+      {
+        "d": 12,
+        "stop": "infeasible",
+        "used": 2,
+        "nodes": 18526,
+        "states": 0,
+        "history": [
+          168,
+          0
+        ]
+      },
+      {
+        "d": 13,
+        "stop": "infeasible",
+        "used": 2,
+        "nodes": 18561,
+        "states": 0,
+        "history": [
+          178,
+          0
+        ]
+      },
+      {
+        "d": 14,
+        "stop": "infeasible",
+        "used": 2,
+        "nodes": 18679,
+        "states": 0,
+        "history": [
+          215,
+          0
+        ]
+      },
+      {
+        "d": 15,
+        "stop": "infeasible",
+        "used": 2,
+        "nodes": 18879,
+        "states": 0,
+        "history": [
+          288,
+          0
+        ]
+      },
+      {
+        "d": 16,
+        "stop": "infeasible",
+        "used": 2,
+        "nodes": 18595,
+        "states": 0,
+        "history": [
+          176,
+          0
+        ]
+      },
+      {
+        "d": 17,
+        "stop": "infeasible",
+        "used": 2,
+        "nodes": 18694,
+        "states": 0,
+        "history": [
+          227,
+          0
+        ]
+      },
+      {
+        "d": 18,
+        "stop": "infeasible",
+        "used": 2,
+        "nodes": 18606,
+        "states": 0,
+        "history": [
+          200,
+          0
+        ]
+      },
+      {
+        "d": 19,
+        "stop": "infeasible",
+        "used": 2,
+        "nodes": 18690,
+        "states": 0,
+        "history": [
+          212,
+          0
+        ]
+      },
+      {
+        "d": 20,
+        "stop": "infeasible",
+        "used": 2,
+        "nodes": 18499,
+        "states": 0,
+        "history": [
+          163,
+          0
+        ]
+      },
+      {
+        "d": 21,
+        "stop": "infeasible",
+        "used": 2,
+        "nodes": 18595,
         "states": 0,
         "history": [
           183,
@@ -138,7 +270,7 @@
         ]
       },
       {
-        "d": 10,
+        "d": 22,
         "stop": "infeasible",
         "used": 2,
         "nodes": 18673,
@@ -149,10 +281,10 @@
         ]
       },
       {
-        "d": 11,
+        "d": 23,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 18444,
+        "nodes": 18500,
         "states": 0,
         "history": [
           163,
@@ -160,10 +292,10 @@
         ]
       },
       {
-        "d": 12,
+        "d": 24,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 18817,
+        "nodes": 18805,
         "states": 0,
         "history": [
           263,
@@ -171,10 +303,10 @@
         ]
       },
       {
-        "d": 13,
+        "d": 25,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 18819,
+        "nodes": 18825,
         "states": 0,
         "history": [
           266,
@@ -182,10 +314,10 @@
         ]
       },
       {
-        "d": 14,
+        "d": 26,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 18392,
+        "nodes": 18405,
         "states": 0,
         "history": [
           124,
@@ -193,10 +325,10 @@
         ]
       },
       {
-        "d": 15,
+        "d": 27,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 18797,
+        "nodes": 18864,
         "states": 0,
         "history": [
           265,
@@ -204,145 +336,13 @@
         ]
       },
       {
-        "d": 16,
-        "stop": "infeasible",
-        "used": 2,
-        "nodes": 18472,
-        "states": 0,
-        "history": [
-          154,
-          0
-        ]
-      },
-      {
-        "d": 17,
-        "stop": "infeasible",
-        "used": 2,
-        "nodes": 18648,
-        "states": 0,
-        "history": [
-          205,
-          0
-        ]
-      },
-      {
-        "d": 18,
-        "stop": "infeasible",
-        "used": 2,
-        "nodes": 18748,
-        "states": 0,
-        "history": [
-          245,
-          0
-        ]
-      },
-      {
-        "d": 19,
-        "stop": "infeasible",
-        "used": 2,
-        "nodes": 18453,
-        "states": 0,
-        "history": [
-          153,
-          0
-        ]
-      },
-      {
-        "d": 20,
-        "stop": "infeasible",
-        "used": 2,
-        "nodes": 18653,
-        "states": 0,
-        "history": [
-          214,
-          0
-        ]
-      },
-      {
-        "d": 21,
-        "stop": "infeasible",
-        "used": 2,
-        "nodes": 18948,
-        "states": 0,
-        "history": [
-          292,
-          0
-        ]
-      },
-      {
-        "d": 22,
-        "stop": "infeasible",
-        "used": 2,
-        "nodes": 18535,
-        "states": 0,
-        "history": [
-          175,
-          0
-        ]
-      },
-      {
-        "d": 23,
-        "stop": "infeasible",
-        "used": 2,
-        "nodes": 18965,
-        "states": 0,
-        "history": [
-          301,
-          0
-        ]
-      },
-      {
-        "d": 24,
-        "stop": "infeasible",
-        "used": 2,
-        "nodes": 18621,
-        "states": 0,
-        "history": [
-          209,
-          0
-        ]
-      },
-      {
-        "d": 25,
-        "stop": "infeasible",
-        "used": 2,
-        "nodes": 18690,
-        "states": 0,
-        "history": [
-          218,
-          0
-        ]
-      },
-      {
-        "d": 26,
-        "stop": "infeasible",
-        "used": 2,
-        "nodes": 18570,
-        "states": 0,
-        "history": [
-          177,
-          0
-        ]
-      },
-      {
-        "d": 27,
-        "stop": "infeasible",
-        "used": 2,
-        "nodes": 18677,
-        "states": 0,
-        "history": [
-          215,
-          0
-        ]
-      },
-      {
         "d": 28,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 18439,
+        "nodes": 18460,
         "states": 0,
         "history": [
-          147,
+          154,
           0
         ]
       }
@@ -350,7 +350,7 @@
     "assessment": [
       {
         "d": 7,
-        "key": "23,10,1,10,9,10,16,26",
+        "key": "4,27,15,8,21,0,12,19",
         "hold": "complete",
         "holdStates": 1,
         "unique": true,
@@ -742,10 +742,10 @@
         "d": 0,
         "stop": "complete",
         "used": 43,
-        "nodes": 252103,
+        "nodes": 252134,
         "states": 1,
         "history": [
-          5954,
+          5955,
           2,
           1,
           1,
@@ -759,10 +759,10 @@
         "d": 1,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 236906,
+        "nodes": 236941,
         "states": 0,
         "history": [
-          5954,
+          5955,
           0
         ]
       },
@@ -770,10 +770,10 @@
         "d": 2,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 261381,
+        "nodes": 261415,
         "states": 0,
         "history": [
-          5954,
+          5955,
           0
         ]
       },
@@ -781,10 +781,10 @@
         "d": 3,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 240767,
+        "nodes": 240796,
         "states": 0,
         "history": [
-          5954,
+          5955,
           0
         ]
       },
@@ -792,10 +792,10 @@
         "d": 4,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 238138,
+        "nodes": 238197,
         "states": 0,
         "history": [
-          5954,
+          5955,
           0
         ]
       },
@@ -803,10 +803,10 @@
         "d": 5,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 239994,
+        "nodes": 240033,
         "states": 0,
         "history": [
-          5954,
+          5955,
           0
         ]
       },
@@ -814,10 +814,10 @@
         "d": 6,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 255549,
+        "nodes": 255585,
         "states": 0,
         "history": [
-          5954,
+          5955,
           0
         ]
       },
@@ -825,10 +825,10 @@
         "d": 7,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 238840,
+        "nodes": 238876,
         "states": 0,
         "history": [
-          5954,
+          5955,
           0
         ]
       },
@@ -836,10 +836,10 @@
         "d": 8,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 255150,
+        "nodes": 255181,
         "states": 0,
         "history": [
-          5954,
+          5955,
           0
         ]
       },
@@ -847,10 +847,10 @@
         "d": 9,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 243183,
+        "nodes": 243220,
         "states": 0,
         "history": [
-          5954,
+          5955,
           0
         ]
       },
@@ -858,10 +858,10 @@
         "d": 10,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 244165,
+        "nodes": 244210,
         "states": 0,
         "history": [
-          5954,
+          5955,
           0
         ]
       },
@@ -869,10 +869,10 @@
         "d": 11,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 256487,
+        "nodes": 256537,
         "states": 0,
         "history": [
-          5954,
+          5955,
           0
         ]
       },
@@ -880,10 +880,10 @@
         "d": 12,
         "stop": "infeasible",
         "used": 3,
-        "nodes": 241669,
+        "nodes": 241699,
         "states": 0,
         "history": [
-          5954,
+          5955,
           1,
           0
         ]
@@ -892,10 +892,10 @@
         "d": 13,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 241139,
+        "nodes": 241194,
         "states": 0,
         "history": [
-          5954,
+          5955,
           0
         ]
       },
@@ -903,10 +903,10 @@
         "d": 14,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 245249,
+        "nodes": 245277,
         "states": 0,
         "history": [
-          5954,
+          5955,
           0
         ]
       },
@@ -914,10 +914,10 @@
         "d": 15,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 246069,
+        "nodes": 246118,
         "states": 0,
         "history": [
-          5954,
+          5955,
           0
         ]
       },
@@ -925,10 +925,10 @@
         "d": 16,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 259092,
+        "nodes": 259122,
         "states": 0,
         "history": [
-          5954,
+          5955,
           0
         ]
       },
@@ -936,10 +936,10 @@
         "d": 17,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 260032,
+        "nodes": 260073,
         "states": 0,
         "history": [
-          5954,
+          5955,
           0
         ]
       },
@@ -947,10 +947,10 @@
         "d": 18,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 241031,
+        "nodes": 241061,
         "states": 0,
         "history": [
-          5954,
+          5955,
           0
         ]
       },
@@ -958,10 +958,10 @@
         "d": 19,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 245727,
+        "nodes": 245774,
         "states": 0,
         "history": [
-          5954,
+          5955,
           0
         ]
       },
@@ -969,10 +969,10 @@
         "d": 20,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 243181,
+        "nodes": 243212,
         "states": 0,
         "history": [
-          5954,
+          5955,
           0
         ]
       },
@@ -980,10 +980,10 @@
         "d": 21,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 255985,
+        "nodes": 256015,
         "states": 0,
         "history": [
-          5954,
+          5955,
           0
         ]
       },
@@ -991,10 +991,10 @@
         "d": 22,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 238921,
+        "nodes": 238955,
         "states": 0,
         "history": [
-          5954,
+          5955,
           0
         ]
       },
@@ -1002,10 +1002,10 @@
         "d": 23,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 256011,
+        "nodes": 256048,
         "states": 0,
         "history": [
-          5954,
+          5955,
           0
         ]
       },
@@ -1013,10 +1013,10 @@
         "d": 24,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 239268,
+        "nodes": 239307,
         "states": 0,
         "history": [
-          5954,
+          5955,
           0
         ]
       },
@@ -1024,10 +1024,10 @@
         "d": 25,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 272242,
+        "nodes": 272301,
         "states": 0,
         "history": [
-          5954,
+          5955,
           0
         ]
       },
@@ -1035,10 +1035,10 @@
         "d": 26,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 247926,
+        "nodes": 247958,
         "states": 0,
         "history": [
-          5954,
+          5955,
           0
         ]
       },
@@ -1046,10 +1046,10 @@
         "d": 27,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 259389,
+        "nodes": 259423,
         "states": 0,
         "history": [
-          5954,
+          5955,
           0
         ]
       },
@@ -1057,10 +1057,10 @@
         "d": 28,
         "stop": "infeasible",
         "used": 2,
-        "nodes": 230912,
+        "nodes": 230950,
         "states": 0,
         "history": [
-          5954,
+          5955,
           0
         ]
       }
