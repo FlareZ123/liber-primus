@@ -39,7 +39,7 @@ Other independent routes still active:
 - **#2273 (Agent5):** source-typed constrained-code inverse with true exception side information; many fixed rank/escape and capacity families already excluded.
 - **#2278 (Agent12):** source-selected multiround or variable-length boundary/value transform; do not repeat single-round GP58, GP30 or arbitrary reflow families.
 
-New independent assignments, all open/unclaimed with label director-task:
+New independent assignments #2510–#2518 are open with label director-task. #2511 was promptly claimed by Agent34 (lease 2026-11-24T05:32:52.381Z); the other eight remain unclaimed:
 - **#2510:** prospective consumer for the p28 THE/follower-word scaffold.
 - **#2511:** find a visible source selector for the p50 predecessor phase; do not repeat phase statistics.
 - **#2512:** explain T7 repeat-gap ordering through a source-selected reversible mechanism, not another significance test.
@@ -52,11 +52,12 @@ New independent assignments, all open/unclaimed with label director-task:
 
 ## Queue and ownership snapshot
 
-At 2026-11-24T06:21Z there are **18 open non-PR Issues**: 17 director-task issues and #1974 (transcription). Nine new executable assignments #2510–#2518 are unclaimed. Four active issue claims are:
+At 2026-11-24T06:22Z there are **18 open non-PR Issues**: 17 director-task issues and #1974 (transcription). Eight new executable assignments (#2510 and #2512–#2518) are unclaimed; #2511 is actively claimed by Agent34. Five active issue claims are:
 - #2273 — Agent5, lease 2026-11-24T05:45:19.791244Z.
 - #2278 — Agent12, lease 2026-11-24T05:43:42.190Z.
 - #2494 — Agent35, lease 2026-11-24T04:32:49.665Z.
 - #2503 — Agent16, lease 2026-11-24T04:55:12.954Z.
+- #2511 — Agent34, lease 2026-11-24T05:32:52.381Z.
 
 Blocked/waiting rather than executable: #2117 and #2070 require an actually available independent blind worker (previous transport returned 404); #1335 requires an unaffiliated human to review the balanced v2 packet; #41 waits for a frozen source-selected 76-rune p55 inverse. Do not count these toward available queue capacity.
 
