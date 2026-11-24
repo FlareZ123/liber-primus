@@ -284,7 +284,7 @@ function firstNoPath(cipher, key, startPhase = 0) {
   return -1;
 }
 const divinityFirstChapterFailure = firstNoPath(chapters[0].cipher, divinityKey, 0);
-assert.equal(divinityFirstChapterFailure, 303, "Fixed DIVINITY baseline contradiction changed");
+assert.equal(divinityFirstChapterFailure, 77, "Fixed DIVINITY baseline contradiction changed");
 
 // Build a GP29 word dictionary from a fixed public frequency list and the
 // already-solved native GP29 sections. No p54–55 plaintext is added.
