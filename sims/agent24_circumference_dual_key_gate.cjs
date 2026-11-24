@@ -103,6 +103,32 @@ assert.equal(unknownWords.length, 2896);
 assert.equal(unknownNative.length, 12956);
 assert.equal(shellRunes, 5709);
 assert.equal(interiorRunes, 7247);
+const originalWordStrings = tapes.shells.map((s, i) => {
+  const shell = Array.from(s);
+  const interior = Array.from(tapes.interiors[i]);
+  return [shell[0], ...interior, ...(shell.length === 2 ? [shell[1]] : [])].join("");
+});
+const redHeaderWords = originalWordStrings.slice(0, 2);
+const redHeaderRuneCounts = redHeaderWords.map((w) => Array.from(w).length);
+const redHeaderTranslit = redHeaderWords.map((w) =>
+  Array.from(w).map((r) => corpus.translit[runeIndex.get(r)]).join("")
+);
+assert.deepEqual(redHeaderRuneCounts, [8, 5]);
+assert.deepEqual(redHeaderTranslit, ["SHEOGMIAF", "SYENGC"]);
+const redHeaderRunes = redHeaderRuneCounts.reduce((a, b) => a + b, 0);
+assert.equal(redHeaderRunes, 13);
+
+// p0's source adjudication excludes the 13-rune red heading and marker from
+// the black-body ciphertext register. Begin all body key clocks at word 3.
+const bodyShells = tapes.shells.slice(2);
+const bodyInteriors = tapes.interiors.slice(2);
+const bodyShellRunes = bodyShells.reduce((n, s) => n + Array.from(s).length, 0);
+const bodyInteriorRunes = bodyInteriors.reduce((n, s) => n + Array.from(s).length, 0);
+assert.equal(bodyShells.length, 2894);
+assert.equal(bodyShellRunes, 5705);
+assert.equal(bodyInteriorRunes, 7238);
+assert.equal(bodyShellRunes + bodyInteriorRunes, 12943);
+
 
 // Reconstruct p55's physical split, including the word carried from p54.
 const p55Words = allWords.filter((w) => w.some((r) => r.page === 55));
@@ -195,6 +221,54 @@ function checkReachability(shells, interiors) {
   };
 }
 
+
+function checkInteriorStream(interiors, wordOffset) {
+  let phases = new Set([0]);
+  let streamIndex = 0;
+  for (let wordIndex = 0; wordIndex < interiors.length; wordIndex++) {
+    const symbols = Array.from(interiors[wordIndex]);
+    for (let interiorOffset = 0; interiorOffset < symbols.length; interiorOffset++) {
+      const c = runeIndex.get(symbols[interiorOffset]);
+      const next = new Set();
+      for (const phase of phases) {
+        if (c === 0) next.add(phase);
+        const plain = (c - keyInterior[phase] + 29) % 29;
+        if (plain !== 0) next.add((phase + 1) % 8);
+      }
+      if (next.size === 0) {
+        const absoluteWordIndex = wordIndex + wordOffset;
+        const shell = Array.from(tapes.shells[absoluteWordIndex] || "");
+        const interior = Array.from(tapes.interiors[absoluteWordIndex] || "");
+        const fullWord = shell.length
+          ? [shell[0], ...interior, ...(shell.length === 2 ? [shell[1]] : [])]
+          : [];
+        return {
+          ok: false,
+          failure: {
+            wordIndex,
+            originalWordIndex: absoluteWordIndex,
+            interiorOffset,
+            streamIndex,
+            wordTranslit: fullWord.map((r) => corpus.translit[runeIndex.get(r)]).join(""),
+            cipherRune: symbols[interiorOffset],
+            cipherTranslit: corpus.translit[c],
+            cipherIndex: c,
+            phases: Array.from(phases).sort((a, b) => a - b),
+            impossibleTransitions: Array.from(phases).sort((a, b) => a - b).map((phase) => ({
+              phase,
+              keyValue: keyInterior[phase],
+              requiredPlainValue: (c - keyInterior[phase] + 29) % 29
+            }))
+          }
+        };
+      }
+      phases = next;
+      streamIndex += 1;
+    }
+  }
+  return { ok: true, finalPhases: Array.from(phases).sort((a, b) => a - b) };
+}
+
 // Positive transducer control: re-encrypt the independently clear p57 words.
 function encryptWords(words) {
   let shellPhase = 0;
@@ -224,31 +298,44 @@ function encryptWords(words) {
   return { shells, interiors };
 }
 
-const positive = checkReachability(
-  encryptWords(p57PlainWords).shells,
-  encryptWords(p57PlainWords).interiors
-);
+const positiveCipher = encryptWords(p57PlainWords);
+const positive = checkReachability(positiveCipher.shells, positiveCipher.interiors);
+const positiveInterior = checkInteriorStream(positiveCipher.interiors, 0);
 assert.equal(positive.ok, true);
+assert.equal(positiveInterior.ok, true);
 
-const original = checkReachability(tapes.shells, tapes.interiors);
+const original = checkReachability(bodyShells, bodyInteriors);
+const originalInterior = checkInteriorStream(bodyInteriors, 2);
 assert.equal(original.ok, false);
-assert.equal(original.failure.wordIndex, 4);
-assert.equal(original.failure.opIndex, 1);
+assert.equal(original.failure.wordIndex, 3);
+assert.equal(original.failure.opIndex, 8);
 assert.equal(original.failure.channel, "interior");
-assert.equal(original.failure.wordTranslit, "ONTH");
-assert.equal(original.failure.cipherRune, "ᚾ");
-assert.equal(original.failure.cipherIndex, 9);
+assert.equal(original.failure.wordTranslit, "NEWBASOEEOINGU");
+assert.equal(original.failure.cipherRune, "ᛁ");
+assert.equal(original.failure.cipherIndex, 10);
 assert.deepEqual(original.failure.phasePairs, [
-  { shellPhase: 7, interiorPhase: 4 },
-  { shellPhase: 8, interiorPhase: 4 }
+  { shellPhase: 6, interiorPhase: 3 },
+  { shellPhase: 7, interiorPhase: 3 }
 ]);
 assert.deepEqual(
   original.failure.impossibleTransitions.map((x) => [x.keyValue, x.requiredPlainValue]),
-  [[9, 0], [9, 0]]
+  [[10, 0], [10, 0]]
+);
+assert.equal(originalInterior.ok, false);
+assert.equal(originalInterior.failure.originalWordIndex, 5);
+assert.equal(originalInterior.failure.interiorOffset, 7);
+assert.equal(originalInterior.failure.streamIndex, 11);
+assert.equal(originalInterior.failure.wordTranslit, "NEWBASOEEOINGU");
+assert.equal(originalInterior.failure.cipherRune, "ᛁ");
+assert.equal(originalInterior.failure.cipherIndex, 10);
+assert.deepEqual(originalInterior.failure.phases, [3]);
+assert.deepEqual(
+  originalInterior.failure.impossibleTransitions.map((x) => [x.keyValue, x.requiredPlainValue]),
+  [[10, 0]]
 );
 
 const output = {
-  hypothesis: "global phase-zero dual channel: FIRFUMFERENFE on word shells; DIUINITY on word interiors",
+  hypothesis: "body-only global phase-zero dual channel after excluding p0's red heading: FIRFUMFERENFE on word shells; DIUINITY on word interiors",
   cipher: "C=P+K mod29; plaintext F=0 is transparent and does not consume key",
   sourceChecks: {
     p57TransliterationExact: true,
@@ -257,6 +344,13 @@ const output = {
     unknownRunes: unknownNative.length,
     shellRunes,
     interiorRunes,
+    redHeaderWords: redHeaderWords.length,
+    redHeaderRuneCounts,
+    redHeaderRunes,
+    bodyWords: bodyShells.length,
+    bodyRunes: bodyShellRunes + bodyInteriorRunes,
+    bodyShellRunes,
+    bodyInteriorRunes,
     p55Words: p55Words.length,
     p55ShellRunes: p55Shell.length,
     p55InteriorRunes: p55Interior.length,
@@ -264,14 +358,20 @@ const output = {
   },
   positiveControl: {
     clearP57ReencryptedWithHypothesisKeys: true,
-    legalInversePathExists: positive.ok,
-    finalPhasePairs: positive.finalPhasePairs.length
+    legalDualChannelInversePathExists: positive.ok,
+    finalPhasePairs: positive.finalPhasePairs.length,
+    continuousInteriorOnlyLegalInversePathExists: positiveInterior.ok,
+    continuousInteriorOnlyFinalPhases: positiveInterior.finalPhases.length
   },
-  original: {
-    legalInversePathExists: original.ok,
-    firstFailure: original.failure,
-    conclusion: "No legal global phase-zero dual-key F-hold decryption exists for the original source."
+  originalBody: {
+    legalDualChannelInversePathExists: original.ok,
+    firstFailure: { ...original.failure, originalWordIndex: original.failure.wordIndex + 2 },
+    continuousInteriorOnly: {
+      legalInversePathExists: originalInterior.ok,
+      firstFailure: originalInterior.failure
+    },
+    conclusion: "No legal source-correct body-only global phase-zero DIUINITY interior decryption exists; adding FIRFUMFERENFE on shells does not rescue it."
   },
-  scope: "Rejects only this key-to-channel assignment and continuous phase-zero clock; no alternate offsets or reset schedules were searched."
+  scope: "Starts after the 13-rune p0 red heading/marker at the first black-body word; rejects only these continuous phase-zero key assignments, without sweeping alternate offsets or reset schedules."
 };
 process.stdout.write(JSON.stringify(output, null, 2) + "\n");
