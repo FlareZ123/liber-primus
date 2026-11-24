@@ -23,19 +23,36 @@ for(const p of dictionary.values()){const m=masks(p);if(!groups.has(p.length))gr
 const templates=new Map([...groups].map(([len,m])=>[len,[...m.values()]]));
 function equalityPattern(word){const map=new Map();return word.map(x=>{if(!map.has(x))map.set(x,map.size);return map.get(x)})}
 const cache=new Map();
-function domains(word){const pat=equalityPattern(word);const k=pat.join(",");if(cache.has(k))return cache.get(k);const n=Math.max(...pat)+1;const union=Array(n).fill(0);let surviving=0;for(const tpl of templates.get(word.length)||[]){const m=Array(n).fill(ALL);for(let j=0;j<pat.length;j++)m[pat[j]]&=tpl[j];if(m.some(x=>x===0))continue;
+function domains(word){const pat=equalityPattern(word);const k=pat.join(",");if(cache.has(k))return cache.get(k);const n=Math.max(...pat)+1;const union=Array(n).fill(0);let surviving=0;const feasible=[];for(const tpl of templates.get(word.length)||[]){const m=Array(n).fill(ALL);for(let j=0;j<pat.length;j++)m[pat[j]]&=tpl[j];if(m.some(x=>x===0))continue;
 const owner=Array(29).fill(-1);
 function aug(i,seen){let bits=m[i];while(bits){const bit=bits&-bits;bits^=bit;const rank=31-Math.clz32(bit);if(seen[rank])continue;seen[rank]=true;if(owner[rank]===-1||aug(owner[rank],seen)){owner[rank]=i;return true}}return false}
 if(!m.every((_,i)=>aug(i,Array(29).fill(false))))continue;
-surviving++;for(let i=0;i<n;i++)union[i]|=m[i];
+surviving++;feasible.push(m);for(let i=0;i<n;i++)union[i]|=m[i];
 }
-const v={union,surviving};cache.set(k,v);return v}
+const v={union,surviving,feasible,n};cache.set(k,v);return v}
 function evalWords(ws){const cost=Array.from({length:29},()=>Array(29).fill(0));let zero=0;let zeroRunes=0;for(const word of ws){const d=domains(word);if(!d.surviving){zero++;zeroRunes+=word.length}const seen=[];for(const x of word){if(!seen.includes(x))seen.push(x)}for(let i=0;i<seen.length;i++){const x=seen[i];for(let r=0;r<29;r++)if((d.union[i]&(1<<r))===0)cost[x][r]++}}
 return {impossibleWords:zero,impossibleRunes:zeroRunes,minByRank:Array.from({length:29},(_,r)=>Math.min(...cost.map(c=>c[r]))),zeroGlyphs:cost.map((c,x)=>({x,cost:c[0]})),domains:cost.map(c=>c.flatMap((v,r)=>v===0?[r]:[])),cost}}
+function lowTable(word){const d=domains(word);if(d.low)return d.low;
+const n=d.n,k=n+1,L=word.length;if(L>14)throw Error("length bound");
+const table=new Uint8Array(k*k*k);
+for(const m of d.feasible){
+const choices=[];
+for(let r=0;r<3;r++){const b=1<<r,forced=m.indexOf(b);choices.push(forced>=0?[forced]:[n,...m.flatMap((v,i)=>v&b?[i]:[])]);}
+for(const a of choices[0])for(const b of choices[1])for(const c of choices[2]){
+if((a<n&&(a===b||a===c))||(b<n&&b===c))continue;
+table[(a*k+b)*k+c]=1;
+}}
+return d.low={table,k,n};}
+function prep(ws){return ws.map(word=>{const t=lowTable(word),pos=new Uint8Array(29).fill(t.n);let j=0;for(const x of word)if(pos[x]===t.n)pos[x]=j++;return {...t,pos};})}
+function misses(rows,a,b,c){let n=0;for(const {table,k,pos} of rows)n+=1-table[(pos[a]*k+pos[b])*k+pos[c]];return n}
+const rows=prep(words.map(w=>w.p)), train=rows.slice(0,Math.floor(rows.length/3)),test=rows.slice(train.length);
+const ranked=[];for(let a=0;a<29;a++)for(let b=0;b<29;b++)if(a!==b)for(let c=0;c<29;c++)if(c!==a&&c!==b){const tr=misses(train,a,b,c),te=misses(test,a,b,c);ranked.push({key:[a,b,c],train:tr,test:te,total:tr+te})}
+ranked.sort((a,b)=>a.total-b.total);const byTrain=ranked.slice().sort((a,b)=>a.train-b.train||a.key[0]-b.key[0]||a.key[1]-b.key[1]||a.key[2]-b.key[2]);const joint={assignments:ranked.length,best:ranked.slice(0,10),trainOnly:byTrain.slice(0,5),minTest:Math.min(...ranked.map(x=>x.test)),median:ranked[Math.floor(ranked.length/2)].total,max:ranked.at(-1).total};
 const orig=evalWords(words.map(w=>w.p));
 let seed=3301;const rnd=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296};const perm=()=>{const a=Array.from({length:29},(_,i)=>i);for(let i=28;i>0;i--){const j=Math.floor(rnd()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 const key=perm(),initials=native.map(()=>perm()),plant=native.map((p,i)=>{const state=initials[i].slice();return p.map(x=>{const rank=state.indexOf(x);state.splice(rank,1);state.unshift(x);return key[rank]})});const recovered=plant.map((c,i)=>{const state=initials[i].slice();return c.map(x=>{const r=key.indexOf(x),p=state[r];state.splice(r,1);state.unshift(p);return p})});if(JSON.stringify(recovered)!==JSON.stringify(native))throw Error("plant inverse");const pos=evalWords(plant);if(pos.impossibleWords||key.some((x,r)=>pos.cost[x][r]!==0))throw Error("plant support fail");
-return {n:words.length,cross,dict:dictionary.size,templateCounts:[...templates].map(([n,t])=>[n,t.length]),cache:cache.size,original:{...orig,cost:undefined},positive:{words:plant.length,impossibleWords:pos.impossibleWords,key,keyRankCosts:key.map((x,r)=>pos.cost[x][r])}};
+const plantRows=prep(plant);const plantedJointMiss=misses(plantRows,...key.slice(0,3));if(plantedJointMiss)throw Error("joint plant support");
+return {joint,plantedJointMiss,n:words.length,cross,dict:dictionary.size,templateCounts:[...templates].map(([n,t])=>[n,t.length]),cache:cache.size,original:{...orig,cost:undefined},positive:{words:plant.length,impossibleWords:pos.impossibleWords,key,keyRankCosts:key.map((x,r)=>pos.cost[x][r])}};
 }
 const paths=["resources/liber-primus/lp2-corpus.json","resources/lp2-transcription.txt","resources/external/relikd-solved-gp29-native-v1.json","resources/control/english_wordfreq_textblob.txt"];
 const f=paths.map(p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8'));
