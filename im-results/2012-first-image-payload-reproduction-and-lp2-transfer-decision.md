@@ -141,4 +141,23 @@ For each d there is at least one consecutive d+1 known run (NUMBER supplies six)
 
 Exact original p55 indices from canonical corpus blob 054f2a0f780b7d46901acbe3d9bf4f0ac1801165 are embedded in the [NumPy reproducer](../sims/lp2_p55_masked_affine_recurrence.py). The local execution used 250,000-vector batches. Five deterministic planted masked streams (one per order, RNG seed 3100+d) include the correct full tape and recurrence among the solutions, with candidate counts 1,1,28,1,1 respectively. This is inclusion rather than unique parameter recovery for order three. The order-five original search took approximately 4.2 seconds locally; no Windows CI claim.
 
-**Decision:** no reversible affine additive keystream of order at most five can realize the frozen historical phrase alignment, even granting arbitrary independent gap values. This is a conditional rejection of a specific receiver and family, not a universal p55 impossibility. Higher order, noninvertible transients, alternative spellings/alignments, F-transparent consumption, nonlinear or ciphertext-conditioned state, and nonadditive models are outside scope. The underlying crib remains unverified; no reason to enlarge recurrence order merely to fit it.
+### Authentic F-transparent clock extension (Agent5, 24 November)
+
+The solved p56 convention emits plaintext F (index zero) unchanged without consuming a keystream element. The previous ordinary-clock test does not cover this. In the fixed 75-rune p55 body, ciphertext zeros are at offsets 14, 24, 40 (zero based). The crib fixes a non-F at 14 and F at 40, while 24 is an unknown gap. Hence the only possible skip masks are [40] and [24,40], consuming respectively 74 and 73 key terms, each with 58 known values. At every consumed position, even unknown gaps, the decoded plaintext must be nonzero. Enumerate all reversible affine recurrence coefficients as above on each compressed tape, enforcing the nonzero plaintext condition throughout propagation.
+
+| F skip offsets | Order | Known windows | Coefficient vectors | After known windows | Full solutions |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 40 | 1 | 41 | 28 | 0 | 0 |
+| 40 | 2 | 24 | 812 | 0 | 0 |
+| 40 | 3 | 12 | 23,548 | 0 | 0 |
+| 40 | 4 | 4 | 682,892 | 28 | 0 |
+| 40 | 5 | 1 | 19,803,868 | 19,803,868 | 0 |
+| 24,40 | 1 | 42 | 28 | 0 | 0 |
+| 24,40 | 2 | 26 | 812 | 0 | 0 |
+| 24,40 | 3 | 15 | 23,548 | 0 | 0 |
+| 24,40 | 4 | 8 | 682,892 | 0 | 0 |
+| 24,40 | 5 | 6 | 19,803,868 | 1 | 0 |
+
+All 41,022,296 coefficient/mask combinations were enumerated locally. Every forward survivor count was zero. Five deterministic positive controls (seeds 5101–5105) each recovered the exact recurrence and full tape uniquely under its true F mask; the mask enumerator included the true mask and encryption replay matched. The controls did not establish blind mask uniqueness. [Standalone NumPy reproducer](../sims/lp2_p55_ftransparent_masked_affine.py), commit aa3dac220456b80bcae5ecf63668eb11996238a4.
+
+**Combined decision:** no reversible affine additive keystream of order at most five realizes the frozen historical phrase alignment under either the ordinary or the authentic F-transparent clock, even with unconstrained unknown gap values. The historical crib remains unverified. Higher order, noninvertible transients, alternative alignments, nonlinear or ciphertext-conditioned state, and nonadditive models are outside scope. Do not enlarge recurrence order merely to fit this crib.
