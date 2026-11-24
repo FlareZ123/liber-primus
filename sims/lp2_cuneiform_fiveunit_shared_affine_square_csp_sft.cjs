@@ -55,11 +55,11 @@ const experiment=function experiment(inputs) {
   // is below 0.01; no ciphertext values are used for window selection.
   const cache=new Map();
   function size(n,a,b){const k=[n,a,b].join(',');if(!cache.has(k))cache.set(k,new Set(vocabulary[n].map(x=>x.w.slice(a,b).join(','))).size);return cache.get(k)}
-  function score(a,b){let z=(b-a)*Math.log(812/29**5);for(const t of original)for(const g of t.groups){const lo=Math.max(0,a-g.start),hi=Math.min(g.len,b-g.start);if(lo<hi)z+=Math.log(size(g.len,lo,hi))}return z}
+  function score(a,b,T=original){let z=(b-a)*Math.log(812/29**5);for(const t of T)for(const g of t.groups){const lo=Math.max(0,a-g.start),hi=Math.min(g.len,b-g.start);if(lo<hi)z+=Math.log(size(g.len,lo,hi))}return z}
   let window;
   for(let n=1;n<=W&&!window;n++){let z=[];for(let a=0;a<=W-n;a++)z.push([a,a+n,score(a,a+n)]);z.sort((a,b)=>a[2]-b[2]||a[0]-b[0]);if(z[0][2]<Math.log(.01))window=z[0]}
   assert(window&&window[0]===62&&window[1]===67,'layout-only selection');
-  function solve(T,a,b){
+  function solve(T,a,b,excluded=null){
     const lanes=T.map(track=>{
       const slots=[];
       for(const g of track.groups){
@@ -82,10 +82,10 @@ const experiment=function experiment(inputs) {
     });
     let calls=0,transitions=0;
     const dead=Array.from({length:b-a},()=>new Set());
-    function search(d,indices){
-      if(d===b-a)return [];
+    function search(d,indices,different=false){
+      if(d===b-a)return excluded&&!different?null:[];
       calls++;
-      const key=indices.join(',');if(dead[d].has(key))return null;
+      const key=indices.join(',')+','+Number(different);if(dead[d].has(key))return null;
       const {c,ratios}=steps[d],slots=lanes.map(x=>x[d]);
       const ns=slots.map((s,l)=>s.nodes[s.first?0:indices[l]]);
       let i=-1,j=-1,best=Infinity;
@@ -98,7 +98,8 @@ const experiment=function experiment(inputs) {
         const ix=ns.map((n,l)=>n.edge[p[l]]);
         if(ix.some(v=>v<0))return null;
         for(let l=0;l<5;l++)if(slots[l].last)ix[l]=0;
-        const rest=search(d+1,ix);return rest===null?null:[p,...rest];
+        const changed=different||!!(excluded&&p.some((v,l)=>v!==excluded[d][l]));
+        const rest=search(d+1,ix,changed);return rest===null?null:[p,...rest];
       }
       if(i===-1){for(const v of ns[0].active){const r=next([v,v,v,v,v]);if(r)return r}}
       else{
@@ -132,8 +133,11 @@ const experiment=function experiment(inputs) {
         assert(Array.from({length:28},(_,j)=>j+1).some(m=>v.every((p,l)=>mod(m*(p-v[0])+c[0])===c[l])),'forward replay');
         for(let l=0;l<5;l++)hits+=+(v[l]===P[l].tape[a+d]);
       }
-      return {...Q,hits,total:5*(b-a)};
+      const second=P===matched?solve(T,a,b,Q.witness):null;
+      return {...Q,hits,total:5*(b-a),unique:second?!second.witness:null,secondSearch:second?{calls:second.calls,transitions:second.transitions}:null};
     });
+    assert(!orig.witness,'original lexical candidate unexpectedly exists');
+    assert(controls[0].hits===5*(b-a),'matched planted witness differs');
     return {matrix:['identity','3301','1033'][k],original:orig,controls};
   });
   return {sourceWords:origWords.map(w=>w.length),vocabulary:vocabulary.reduce((s,d)=>s+d.length,0),singleton:vocabulary[1].map(x=>corpus.translit[x.w[0]]),window,results};
