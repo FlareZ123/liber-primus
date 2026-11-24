@@ -104,3 +104,22 @@ Workload-matched native controls: low8 (3 ciphertext zeros) and high8 (12) recov
 All 17 new original probes finished successfully locally (Node22), **321,759,872** coefficient/mask models; adding the prior q13 p54 baseline gives 321,941,760. All have at least one legal prefix seed assignment. None produces sustained language in the 76-rune holdout. The best original suffix is -4.859027942 (q13 p34), vs -2.740763680 worst exact matched control. Its rendering is XPEDSUUTHBNGYNEEATHOGMNLSPERGBNPANSDIADMCISAOEUTHAMDSRUTOEEOTHYTHAUUIONECTUIAEGOEWNGJRBOA. The maximum possible unigram mean across all original seed keys ranges from -3.430415248 to -3.215041252, below both distinct native passages' true means. Unigram bounds are statistical comparisons, not plaintext impossibility.
 
 [Per-chapter exact ranking and shortlist summary](lp2-mixed-autokey-chapter-scan-summary.json). [Generalized scanner](../sims/lp2_mixed_autokey_chapter_scan_sft.cjs); [shared exact baseline](../sims/lp2_mixed_autokey_q13_fhold_sft.cjs). Reproduce with `node sims/lp2_mixed_autokey_chapter_scan_sft.cjs` and the individual case arguments documented in the script. Source arrays were transferred from authenticated repository reads into the local runtime and their FNV values checked. The full 19-job scheduler returned exit status 0 for every job; low8 was an earlier separate job. No CI run claimed. No source-selected mixed-feedback law or recovered original plaintext.
+
+## Lag-eight whole-chapter exact reachability (15:14Z)
+The earlier single-group support and local-window results are extended to entire chapter tapes, without reranking or selecting favorable language scores. Choose the complete group with maximal guaranteed consuming count, then longest and earliest; all compatible dictionary entries and coefficient triples are exhaustively joined. Exact bidirectional reachability uses arbitrary initial queues and all latent hold masks. All four in-vocabulary native anchors retain their exact word/coefficient/queue and a full legal witness (although arbitrary witness plaintext can differ); no cap. This is a support calibration independent of the earlier strict local-window prediction failure.
+
+| Chapter | Anchor offset | Length | Local support | Full-chapter models |
+|---|---:|---:|---:|---:|
+| p0 | 23 | 11 | 1916 | 54 |
+| p3 | 988 | 12 | 33 | 0 |
+| p8 | 1531 | 14 | 0 | 0 |
+| p15 | 159 | 13 | 1 | 0 |
+| p23 | 529 | 14 | 0 | 0 |
+| p27 | 3 | 12 | 32 | 0 |
+| p34 | 237 | 12 | 40 | 0 |
+| p40 | 2644 | 13 | 1 | 0 |
+| p54 | 255 | 13 | 1 | 0 |
+
+The remaining 54 opening-chapter models are tested with the strongest complete disjoint group to the right (offset62, length11, ten guaranteed consuming). All 54 have empty exact forward lexical reachability (5,185 visits), no caps. The secondary check is positively controlled on native LOSS OF DIVINITY with earlier CIRCUMFERENCE anchor and later INSTRUCTIAN PROGRAM membership; 28,573 forward visits and exact 755/755 re-encryption. A second constraint is introduced after seeing primary feasibility, but its source-only selection rule is unchanged. Thus the conditional continuous mixed q8 architecture, like q13, has zero full-chapter paths satisfying the selected finite dictionary anchors, across all nine chapter tapes. OOV words, different segmentation, different recurrence or state resets remain outside the conclusion. No recovered plaintext.
+
+[Whole-anchor output](lp2-mixed-autokey-q8-whole-anchor-output.json), [secondary output](lp2-mixed-autokey-q8-secondary-output.json), [reproducer](../sims/lp2_mixed_autokey_q8_algebraic_anchor_sft.cjs) arguments `whole` and `secondary`. Direct connected JS execution.
