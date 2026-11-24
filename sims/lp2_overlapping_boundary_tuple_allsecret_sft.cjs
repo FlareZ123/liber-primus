@@ -36,9 +36,10 @@ function parse(corpus, transcription) {
 }
 
 /** One port per side of each observed (phase, rune, L, R) tuple. */
-function graph(rows, q) {
+function graph(rows, q, clock) {
   const sz = 116 * q;
-  const ids = rows.map((x, i) => (i % q) * 116 + 4 * x.c + 2 * x.l + x.r);
+  const phase = rows.map((x, i) => clock ? (rows[i + clock.dir]?.c ?? clock.iv) : i % q);
+  const ids = rows.map((x, i) => phase[i] * 116 + 4 * x.c + 2 * x.l + x.r);
   const par = Array.from({ length: 2 * sz }, (_, i) => i);
   function find(x) {
     while (par[x] !== x) {
@@ -59,14 +60,14 @@ function graph(rows, q) {
   }
   const observed = Array.from({ length: q }, () => new Set());
   for (const id of ids) observed[Math.floor(id / 116)].add(id);
-  return { sz, ids, find, val, observed };
+  return { sz, ids, find, val, observed, phase };
 }
 
 /** Propagate exact marginal capacity, then enumerate remaining port flags.
  * Each phase has 58 output tuples with L=1 (or R=1), 29 per (L,R).
  */
-function solve(rows, q) {
-  const { sz, ids, find, val, observed } = graph(rows, q);
+function solve(rows, q, clock) {
+  const { sz, ids, find, val, observed, phase } = graph(rows, q, clock);
   let changed = true;
   while (changed) {
     changed = false;
@@ -135,8 +136,18 @@ function solve(rows, q) {
       e.forEach((v, i) => d[v] = i);
       return d;
     });
-    const out = ids.map((id, i) => enc[i % q][id % 116]);
-    assert.deepEqual(out.map((id, i) => dec[i % q][id]), ids.map(id => id % 116));
+    const out = ids.map((id, i) => enc[phase[i]][id % 116]);
+    const restored = Array(ids.length);
+    // For feedback clocks, the inverse computes the next state from the
+    // recovered ciphertext, rather than borrowing its original phase tape.
+    const backward = clock?.dir === 1;
+    for (let k=0;k<out.length;k++) {
+      const i = backward ? out.length-1-k : k;
+      const p = clock ? (restored[i+clock.dir] === undefined
+        ? clock.iv : Math.floor(restored[i+clock.dir]/4)) : i%q;
+      restored[i] = dec[p][out[i]];
+    }
+    assert.deepEqual(restored, ids.map(id => id % 116));
     for (let i = 0; i < out.length; i++) {
       if (i + 1 < out.length) assert.equal(out[i] & 1, (out[i+1] >> 1) & 1);
       if (rows[i].ml) assert(out[i] & 2);
@@ -190,6 +201,21 @@ function positive(rows) {
   throw Error("No positive space-changing p57 plant found");
 }
 
+/** Adjacent-ciphertext state clock, all 29 endpoint IVs in each direction. */
+function feedback(rows, dir) {
+  const tapes = new Set(), details = [];
+  for(let iv=0;iv<29;iv++){
+    const x=solve(rows,29,{dir,iv});
+    assert(x.feasible !== null);
+    for(const s of x.solutions) tapes.add(JSON.stringify(s.gaps.map(g=>[g.offset,g.to])));
+    details.push({iv, feasible:x.feasible, unknown:x.unknown,
+      maxGaps: Math.max(...x.solutions.map(s=>s.gaps.length)),
+      maxIoc: Math.max(...x.solutions.map(s=>s.ioc))});
+  }
+  return {dir,tapes:[...tapes].map(JSON.parse),details,
+    maxIoc: Math.max(...details.map(x=>x.maxIoc))};
+}
+
 function run(corpus, transcription) {
   const rows = parse(corpus, transcription);
   const u = rows.filter(x=>x.p<56);
@@ -218,7 +244,12 @@ function run(corpus, transcription) {
   const n=u.length;
   const chapterPrivateIoc=profile.reduce((s,x)=>s+x*(x-1),0)/(n*(n-1));
   const pos=positive(rows.filter(x=>x.p===57));
-  return { book,train,hold,chapter,chapterPrivateIoc,positive:pos };
+  const prev=feedback(u,-1),next=feedback(u,1);
+  assert.equal(prev.tapes.length,4);
+  assert.equal(next.tapes.length,12);
+  assert.equal(Math.max(...prev.details.map(x=>x.maxGaps)),459);
+  assert.equal(Math.max(...next.details.map(x=>x.maxGaps)),4);
+  return { book,train,hold,chapter,chapterPrivateIoc,positive:pos,prev,next };
 }
 
 if (require.main === module) {
