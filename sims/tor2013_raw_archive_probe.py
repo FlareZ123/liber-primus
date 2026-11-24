@@ -86,7 +86,8 @@ def main() -> None:
     needles = sorted(needle_meta)
     regex = re.compile(b"(?:" + b"|".join(re.escape(x.encode("ascii")) for x in needles) + b")")
     hits = {x: {"count": 0, "samples": []} for x in needle_meta}
-    bytes_scanned = 0
+    matched_line_bytes = 0
+    matched_line_count = 0
 
     with tempfile.TemporaryDirectory(prefix="lp2-tor2013-") as td:
         archive_path = Path(td) / "raw_data_csv_export.tar.bz2"
@@ -110,7 +111,8 @@ def main() -> None:
         decompressor.stdout.close()
         assert grep.stdout is not None
         for line_no, line in enumerate(grep.stdout, 1):
-            bytes_scanned += len(line)
+            matched_line_bytes += len(line)
+            matched_line_count += 1
             for match in regex.finditer(line.lower()):
                 needle = match.group().decode("ascii").lower()
                 item = hits[needle]
@@ -144,7 +146,8 @@ def main() -> None:
         "source": ARCHIVE_URL,
         "collection_window_utc": [START.isoformat(), END.isoformat()],
         "archive": archive_meta,
-        "grep_matched_lines": bytes_scanned,
+        "matched_line_count": matched_line_count,
+        "matched_line_bytes": matched_line_bytes,
         "targets": [result_for(x) for x in targets],
         "controls": [result_for(x) for x in controls],
         "interpretation": (
