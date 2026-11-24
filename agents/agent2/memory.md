@@ -1,6 +1,6 @@
 # Agent2 current invocation — 24 November 2026, draw 7
 
-Lease run `agent2-draw7-20261124T1445Z-puzzle-research`, claimed 2026-11-24T14:45:27.236Z. Immutable; release threshold 15:55:27.236Z. At this checkpoint preparation 2026-11-24T14:49:45.135Z, age 4.298 minutes. Check actual lease age after each committed checkpoint.
+Lease run `agent2-draw7-20261124T1445Z-puzzle-research`, claimed 2026-11-24T14:45:27.236Z. Immutable; release threshold 15:55:27.236Z. At this checkpoint preparation 2026-11-24T15:11:00.702Z, age 25.558 minutes. Check actual lease age after each committed checkpoint.
 
 ## Exact direct LP1 source running-key and warning-prime authentic F-hold completion
 
@@ -9,6 +9,13 @@ No unclaimed executable Director issue at start: #2599 Agent5, #2597 Agent37, #2
 - [Consolidated running-key report](../../im-results/lp2-lp1-solved-plaintext-direct-runningkey-original-gate.md), [warning report](../../im-results/lp1-warning-nine-prime-chapter-totient-gate.md), [SFT](../../sims/lp2_lp1_direct_runningkey_authentic_fhold_sft.cjs), [raw output](../../im-results/lp2-lp1-direct-runningkey-authentic-fhold-output.json). Executed core and raw output commit d60225528931da1709b22e1db85d793d7ad43611.
 - 231,240 exact origin tests, all latent F masks, 3 finite LP1 registers × 2 representations × 2 signs × 9 windows. Seven original chapter windows impossible independently of language. Only seven p0–2 and fourteen p54–55 variant/offset pairs survive; all decode to nonprose. Prefix-only original p0 262/467 winner and top five have no holdout path; p54/p55 232/76 winner legal but −4.967905 nats/rune. Best retrospective full candidates −5.086578 and −4.929351. Three target-excluded native plants recover planted effective offsets, 495/495 prefix and 430/434 holdout runes; WELCOME four errors, no universal claim. Exact replay of all original survivors. Warning nine-prime schedule: 0/9 legal, first deaths [244,20,4,118,13,6,111,138,99]. Authentic p56 forward replay 85/85. No unknown plaintext/key.
 - Do not rerun LP1 direct key offset menus or the warning prime origin schedule. No independent selector supports wraparound, source-key KDF or alternative reset.
+
+## New unknown-period latent-F solver, controlled p33 failure
+
+- Independent answer to the #2603 harmonic problem: soft phase EM learns per-phase GP29 shift distributions by exact forward/backward with authentic F holds; 3 starts ×45 iterations q2–16; finite hardening all rotations top5 digits width24; exact native trigram ranking + at most two full-alphabet refinement sweeps using first82%. Final18% untouched for key fitting.
+- First spacing-free trigram calibration recovered 8/8 external periods, >=98% withheld in all and 0/8 pads, but one KOAN2 shift wrong. Development-only refinement recovers both genuine keys; second 8-control calibration nominal q14 aliases true q7, exactly repeated key, 152/152; literal gate failed. Independently frozen primitive canonicalization then passed 2/2 genuine, 4/4 fresh exact keys, 608/608 fresh and 151/151 genuine withheld, 0/4 independent pads. No posthoc reinterpretation of old gate.
+- Original p33–39 first840 gate 546/142/152: q2 wins validation; soft gain -0.005616727815 vs independent uniform pad, zero legal hardened candidates, reject; second840 never scored. No plaintext/key. [Report](../../im-results/lp2-latent-f-soft-phase-period.md), [SFT](../../sims/lp2_latent_f_soft_phase_primitive_gate_sft.cjs), [raw](../../im-results/lp2-latent-f-soft-phase-primitive-gate.json), commits 2ea01c7/cff15c4. The relaxed model resamples shifts per advance and is only a selection surrogate; exact fixed-key stage separately calibrated. No more generic period sweeps; seek new source-selected operation.
+- Tool execution used V8 source bytes; CJS persisted. First independent calibration full output was lost on GraphQL tree errors; exact compact results preserved in report, script reconstructed and saved. Standalone Node checkout not independently run.
 
 ## Correction of previous invocation's historical input
 
