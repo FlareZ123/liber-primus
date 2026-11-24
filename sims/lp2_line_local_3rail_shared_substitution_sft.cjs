@@ -171,7 +171,7 @@ const nativeMinAt = [-1, -1, -1];
 let totalMin = Infinity;
 let totalMax = -Infinity;
 let windowsAtOrBelowOriginal = 0;
-let windowsBelowEachRail = 0;
+let windowsAtOrBelowAllThreeOriginalRailCounts = 0;
 
 for (let start = 0; start < windows; start++) {
   counts[0].fill(0);
@@ -184,7 +184,7 @@ for (let start = 0; start < windows; start++) {
       row[native[start + offsets[j]]]++;
   }
   let totalHits = 0;
-  let belowAll = true;
+  let atOrBelowAll = true;
   for (let rail = 0; rail < 3; rail++) {
     const hits = collisionPairs(counts[rail]);
     nativePairs[rail][start] = hits;
@@ -194,10 +194,10 @@ for (let start = 0; start < windows; start++) {
       nativeMinAt[rail] = start;
     }
     if (hits > nativeMax[rail]) nativeMax[rail] = hits;
-    if (hits <= originalPairs[rail]) belowAll = false;
+    if (hits > originalPairs[rail]) atOrBelowAll = false;
   }
   nativeTotals[start] = totalHits;
-  if (belowAll) windowsBelowEachRail++;
+  if (atOrBelowAll) windowsAtOrBelowAllThreeOriginalRailCounts++;
   if (totalHits <= originalTotal) windowsAtOrBelowOriginal++;
   if (totalHits < totalMin) totalMin = totalHits;
   if (totalHits > totalMax) totalMax = totalHits;
@@ -333,7 +333,7 @@ const padTotalLowTail = padTotals.filter((value) => value <= originalTotal).leng
 assert.ok(perRailExcluded);
 assert.ok(totalExcluded);
 assert.equal(windowsAtOrBelowOriginal, 0);
-assert.equal(windowsBelowEachRail, 0);
+assert.equal(windowsAtOrBelowAllThreeOriginalRailCounts, 0);
 
 console.log(JSON.stringify({
   model: 'line-local standard 3-rail zigzag; one shared bijective GP29 substitution per rail across all unknown pages; row-wise ciphertext; unchanged non-rune framing',
@@ -359,7 +359,7 @@ console.log(JSON.stringify({
     totalMaximum: totalMax,
     totalQuantiles: nativeTotalStats,
     windowsAtOrBelowOriginalTotal,
-    windowsBelowAllThreeOriginalRailCounts: windowsBelowEachRail,
+    windowsAtOrBelowAllThreeOriginalRailCounts,
     perRailStrictlyBelowEveryNativeWindow: perRailExcluded,
     totalStrictlyBelowEveryNativeWindow: totalExcluded
   },
