@@ -2,17 +2,16 @@
 
 **Lease:** agent17-gpt6-draw8-20261124T075244Z-lp2-exploration, claimed 2026-11-24T07:52:53.256Z; release threshold 09:02:53.256Z. Do not refresh. After every checkpoint, compare this original timestamp with the actual runtime clock.
 
-**Mode:** normal research, initial draw 8. All executable director-task Issues were already claimed at initial review; no Issue was claimed and independent exploration was used.
+**Mode:** normal research, initial draw 8. Initially all executable issues were claimed; later #2542 became available and was claimed. Its source-attested textual-cover investigation is now complete.
 
 ## Current invocation — bounded source-selected tests
 
-- p0 title branch: updated im-results/lp2-p0-red-heading-sequendi-ratio-route-check.md and added sims/lp2_p0_title_columnar_transposition_sft.cjs. Candidate 13-rune title as a key and 13-column transposition on the 716-rune p0-p2 body: direct additive key, Latin/GP29 column orders, both directions. No plaintext; best random-order tail p=0.1146.
-- p0 23-rune receiver branch: updated im-results/lp2-readout-p0-23rune-receiver.md and added sims/lp2_readout_p0_23rune_key_transfer_sft.cjs. Raw p0 80–102 receiver and its source-supported p28 center-cube/outer-reciprocal output as repeating additive GP29 keys on untouched p1–p55, both signs, continuous/page-reset clocks. All 8 variants re-encrypt exactly; IoC 0.03445228–0.03449416 versus clear p57 0.06270997; no plaintext.
-- p29 root-24 branch: p29 polynomial has simple root3 and double root24 under high-degree-first convention; exact source-shared cubic Q=(x−3)(x−24)^2 divides. Direct quotient has274 coefficients but remains nonlinguistic (IoC0.03363546; Caesar/English trigram −11.55077/−11.54940). Report and reproducer are being checkpointed in this invocation; retain the root relation, retire direct factor removal.
-- p0 title remains conditional on the equal-rune/equal-radius geometry rule. p0 23-rune receiver remains structural, not plaintext or authenticated key.
-- p55/2013 DH note: BASE29 1033 / DH 3301 client exchange is already covered by existing p55 DH reports, not new. p55 43/33 base29 residues 2376 and2655 are both primitive roots only when the incoming carry is counted as outer; excluding carry gives exterior1916 of order825. Dual-generator event has ~5.9% uniform null probability, no exponent/KDF; exponent1033 gives1579/1072 and direct key1PD on p55 is nonlinguistic. Do not pursue without independent receiver.
-- p50 table as p29 direct index/cumulative walk and as a mod29 repeating key on p29 was nonlinguistic. Exact p56 deep hash web search returns known prior-art pages only; no preimage.
-- Next: seek a genuinely new original clue with a source-selected key or reversible operation. Avoid retreading p55 DH23/3301, p50 byte/radix sweeps, red-heading self-key Vigenère, tested p0 key/transposition transfers, and p29 root translations/factor removal.
+- p0 title: direct additive key and 13-column transposition on the 716-rune p0-p2 body; Latin/GP29 orders and both directions. No plaintext; best random-order tail p=0.1146.
+- p0 23-rune receiver: raw p0 80–102 receiver and p28 center-cube/outer-reciprocal output as repeating additive GP29 keys on untouched p1–p55, both signs, continuous/page-reset clocks. All 8 variants re-encrypt; IoC 0.03445228–0.03449416 vs clear p57 0.06270997; no plaintext.
+- p29 root-24: high-degree-first polynomial has simple root3 and double root24; Q=(x−3)(x−24)^2 divides. Direct quotient has274 coefficients but no prose (IoC0.03363546; Caesar/English trigram −11.55077/−11.54940).
+- Director #2542: authentic 2013 Gematria OutGuess signed payload reproduces four whitespace-only lines (240/200/80/32 bits) as ASCII: “Come to emiwp4muu2ktwknf.onion / We shall await you there. / Good luck. / 3301”. The single source-motivated LP2 analogue (line-final hyphen bit, fixed MSB-first ASCII) gives p0–27:310 bits/65 ones/38 bytes/6 residual; withheld p28–55:284 bits/42 ones/35 bytes/4 residual; neither block has a typed payload. Full LP2 594 bits/107 ones/74 bytes/2 residual, 14 printable bytes. Solved LP1 has same feature 34/152 (22.37%); solved LP2 p56–57 0/10. Updated the existing linewrap report and reproducer; close #2542 as no supported receiver.
+- p55/2013 DH3301, p50 table→p29 index/key, and p50-to-Caesar word/character walks were nonlinguistic or already covered; no retread.
+- Next: use remaining lease time only for useful handoff/checkpoint; do not start another broad branch.
 
 
 ---
