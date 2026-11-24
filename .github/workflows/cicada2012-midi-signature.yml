@@ -74,7 +74,7 @@ jobs:
       - name: Verify the other exact 2012 signed pages and test p56 candidates
         run: |
           set -euo pipefail
-          for f in resources/historical/cicada2012-countdown-message.asc resources/historical/cicada2012-message-only-displayed.asc; do
+          for f in resources/historical/cicada2012-countdown-message.asc resources/historical/cicada2012-message-only-displayed.asc resources/external/2012-sq6wmgv2zcsrix6t-unknown.asc resources/external/2012-sq6wmgv2zcsrix6t-another-unknown.asc; do
             log="$RUNNER_TEMP/$(basename "$f").verify.log"
             gpg --batch --status-fd 1 --verify "$f" > "$log" 2>&1
             grep -F '[GNUPG:] GOODSIG 181F01E57A35090F' "$log"
