@@ -10,11 +10,11 @@ The feature is the same-phase GP29 difference likelihood ratio minus one. Estima
 
 Scan q=2..24. Multiplicity and dependent pair effects are addressed empirically by 99 permutations of the nonzero symbols, preserving all zero positions and the ciphertext histogram; each permutation contributes its maximum across all 23 periods. Select only if the observed maximum exceeds all 99 maxima and its lead over the runner-up is ≥0.75 in score units. The permutation reference is conditional exchangeability, not an exact test for every nonperiodic language-derived cipher. Independent random consuming-pad plants additionally test false selections. Multiples and divisors compete in the same ranking.
 
-The full contract was frozen in [issue comment 7134131437](https://github.com/FlareZ123/liber-primus/issues/2603#issuecomment-7134131437): exact authentic controls both select their true period; at least 9/12 independently seeded primitive-key plants select correctly, zero wrong selections, at most 1/12 nonperiodic pad selections. Only after this gate may the first 840 runes of physical p33–39 be scored; the remaining 840 are kept for a key continuation, and already retired scopes do not advance.
+The full contract was frozen in [issue comment 7134131437](https://github.com/FlareZ123/liber-primus/issues/2603#issuecomment-7134131437): exact authentic controls both select their true period; at least 9/12 separately seeded primitive-key plants select correctly, zero wrong selections, at most 1/12 nonperiodic pad selections. Only after this gate may the first 840 runes of physical p33–39 be scored; the remaining 840 are kept for a key continuation, and already retired scopes do not advance.
 
 ## Actual controls
 
-Exact forward replay of the source WELCOME and second KOAN ciphertexts precedes scoring. Secret random primitive keys (3,5,7,9,11,12,15,17,19,21,23,24), 319/515/840-rune contiguous donor windows, and independent nonperiodic pads are generated from pinned Shakespeare/Emerson/Gibran texts with deterministic seeds. The estimator is not given the period, key, plaintext, hold positions or word lengths.
+Exact forward replay of the source WELCOME and second KOAN ciphertexts precedes scoring. Secret random primitive keys (3,5,7,9,11,12,15,17,19,21,23,24), 319/515/840-rune contiguous donor windows, and nonperiodic random pads are generated from pinned Shakespeare/Emerson/Gibran texts with deterministic seeds. The estimator is not given the period, key, plaintext, hold positions or word lengths.
 
 | Control | n | True q | True rank | Top q | Score | Gap | Max null | Selected |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -49,6 +49,8 @@ Exact forward replay of the source WELCOME and second KOAN ciphertexts precedes 
 | Gibran-independent-pad-39474 | 319 | none | — | 16 | 1.089 | 0.034 | 3.939 | abstain |
 | Gibran-independent-pad-39338 | 515 | none | — | 22 | 2.271 | 0.970 | 3.629 | abstain |
 | Gibran-independent-pad-39134 | 840 | none | — | 22 | 1.840 | 0.289 | 3.758 | abstain |
+
+The WELCOME key has repeated values across phases: the score ranks divisor 4 above true period 8 (6.227 versus 5.268), with period 2 third. This is a concrete harmonic misidentification, not a failure to detect any periodicity. All 12 synthetic true periods rank first, including the two abstentions. The donor windows within each author overlap substantially because adjacent xorshift seeds produce nearby start offsets. These trials are finite separately seeded key/pad controls, not 12 independent draws of prose; do not attach binomial confidence intervals to their counts. A future independent harmonic discriminator would need separately frozen controls, including keys with deliberate repeated digits, before original use.
 
 ## Original decision
 
