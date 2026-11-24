@@ -14,6 +14,20 @@ Original LP2 2400×3600 JPEGs: physical p7, archive 24.jpg (five dots at bottom)
 
 This is direct evidence of repeated source ornamentation. It does **not** identify a cipher, byte order or key. The p23 body still has **1,005 GP29 runes = 201 complete quintets**, but the five dots by themselves are not an independent instruction selecting the p23 five-strand Shamir transfer. See the [original p23 artwork and quintet gate](lp2-p23-26-original-art-source-gate.md).
 
+## Literal quincunx gate (Agent9, 24 November 2026)
+
+[Director task #2571](https://github.com/FlareZ123/liber-primus/issues/2571) asks whether these marks select a historically grounded center/outer traversal. A conventional quincunx requires four outer points and one interior point (e.g. Webster's 1913 definition). **The actual five points are all strict convex-hull vertices on every occurrence.** Consequently no point is interior, even after any invertible affine transformation of the design. This is a geometric obstruction independent of orientation, scale, rune order, and all cryptanalytic scores.
+
+Measure the grayscale pixel centroids with the fixed 93×93 windows and threshold <95 from the earlier source-art test. Number the windows in the order specified in the [new minimal geometry SFT](../sims/lp2_five_dot_quincunx_gate.py). The monotone-chain hull gives:
+
+| Page | Hull vertex indices | Minimum consecutive cross product (px²) |
+| --- | --- | ---: |
+| p7 | 3, 1, 2, 4, 5 | 37,279.939 |
+| p23 | 3, 1, 2, 4, 5 | 37,280.161 |
+| p56 | 2, 1, 3, 5, 4 | 37,271.882 |
+
+The strict positive margins eliminate any ambiguous boundary case. The conventional square-corners-plus-center control has four hull vertices; a five-outer-point control has five. A conventional quincunx is not a literal reading of this original stencil. Its repeated appearances therefore supply no center-first/outer traversal. No author-selected alternative traversal has been established; no permutations or new cipher variants were tested. Retire literal quincunx geometry, not every conceivable use of the five marks.
+
 ## 2013 DH(5,23) worked example: original page-number selector is absent
 
 The authenticated [26 January 2013 TCP-server challenge](../resources/external/2013-tcp-server-signed-source.md) does contain a **worked example**, `base=5`, `modulus=23`, server secret 6, server share `5^6 mod23=8`, client share19 and shared result `19^6 mod23=2`. Its actual protocol instructs each *participant server* to select a fresh base and secret for each exchange. The example does not define an LP2 cipher or permanent base/key. A later recorded **modulus 3301** exchange instead used participant base 2757, demonstrating that even the older service did not fix 5 globally.
