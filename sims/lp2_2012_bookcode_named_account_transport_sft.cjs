@@ -70,6 +70,7 @@ async function main() {
   console.log({all,named,guest,allStats:stats(all.text),namedStats:stats(named.text),serialization});
   testBannerKey();
   testColumnCodebook(posts,pairs,named.text);
+  await testGutenbergCarrier(posts,pairs);
 }
 
 /** @param {number} x */
@@ -204,4 +205,33 @@ function testColumnCodebook(posts,pairs,target) {
   const control=gate(pairs.map(x=>x[1]%29));
   assert.ok(control.every(x=>x.min<=3));
   console.log({columnCodebook:result,counts,control:control.map(x=>x.min)});
+}
+
+/** Recover the carrier independently from the historical Gutenberg edition.
+ * @param {Array<{author:string,url:string,title:string}>} posts
+ * @param {number[][]} pairs
+ */
+async function testGutenbergCarrier(posts,pairs) {
+  const url="https://raw.githubusercontent.com/GITenberg/The-Mabinogion_5160/86b1521ce54ddae3caaa235a6fb04a9ae67f2370/old/mbng10.txt";
+  const bytes=process.argv[3]?fs.readFileSync(process.argv[3]):Buffer.from(await(async()=>{const res=await fetch(url);assert.ok(res.ok);return res.arrayBuffer();})());
+  assert.equal(crypto.createHash("sha1").update("blob "+bytes.length+"\0").update(bytes).digest("hex"),"2a149950ed767f5c6f03d9710935f288b85d72d0");
+  assert.equal(bytes.length,599427);
+  const upper=bytes.toString("ascii").toUpperCase(),start=upper.indexOf("KING ARTHUR WAS AT CAERLLEON");
+  assert.equal(start,17345);
+  const raw=upper.slice(start).split(/\r?\n/).map(x=>x.trim()).filter(Boolean).slice(0,188);
+  const lines=[],merges=[];
+  for(let i=0;i<raw.length;i++){
+    const l=raw[i];
+    if(l.split(/\s+/).length<=3){merges.push(i+1);lines[lines.length-1]+=" "+l;}
+    else lines.push(l);
+  }
+  assert.deepEqual(merges,[10,51,138]);
+  assert.equal(lines.length,185);
+  assert.equal(lines.join(" ").length,12384);
+  assert.equal(lines.join(" ").match(/[A-Z]+(?:['-][A-Z]+)*/g).length,2414);
+  assert.equal(pairs.map(([l,c])=>lines[l-1][c-1]).join(""),EXPECTED);
+  const seen=new Set();
+  const archived=posts.filter(p=>["CageThrottleUs","ImagoOnNib"].includes(p.author)&&!/\.(?:jpg|png)$/i.test(p.url)&&!seen.has(p.title)&&seen.add(p.title)).map(p=>decipher(p.title));
+  assert.deepEqual(lines,archived);
+  console.log({gutenbergCarrier:{lines:185,sourceNonblankLines:188,merges,words:2414,exactTitleMatch:185,extracted:EXPECTED}});
 }

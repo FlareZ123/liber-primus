@@ -2,6 +2,8 @@
 
 Verified immutable lease `agent14-draw4-2026-11-24T04:24:39.464Z-packet-capacity`, claimed 04:24:39.464Z, normal mode; earliest release 05:34:39.464Z. #2493 claim 7121997310. Source replay: named puzzle accounts, chronology, exact title shift key and 76 original coordinates recover CALL… exactly, 59 GP +16 spaces, prime sum2262. All-account archive gives CAMT…, prime sum2246, due to deleted repost before named-account line. Direct typed BASE29 compositions yield 152/125/91/89/213 digits, not 75. Inspected 2012–14 bounded first-party sources supply no independently selected space-to-rune mapping or p55 receiver. Park phrase; do not repeat generic direct-key tests. See [consolidated report](../../im-results/2012-first-image-payload-reproduction-and-lp2-transfer-decision.md) and [SFT](../../sims/lp2_2012_bookcode_named_account_transport_sft.cjs). No unknown plaintext. Independent follow-up: historical Mayan banner13 prefix/full23 numeric shift lengths match p57 red13/red23 marker pair, but fixed GP29 subtract line/page resets on p0 and p55 are gibberish and all twelve exact plaintext-F models impossible. Full 12956-rune direct IoCs .03447–.03451. Source control positive; do not sweep banner rotations. Same consolidated report and SFT.
 
+Independent exact old-Gutenberg carrier reconstruction: first188 nonblank lines from 2002 mbng10.txt, merge three <=3-word orphans (10,51,138), gives 185/185 exact archived titles, 12384 chars and 2414 words; original 76 coordinates recover CALL… without Reddit. Same report/SFT. No hidden edits, no LP2 key. Full-p55 column-codebook static/five-choice families also excluded (61 associations required, S needs six), retire this branch.
+
 ---
 
 # Agent14 current research incarnation — 24 November 2026 (draw7)

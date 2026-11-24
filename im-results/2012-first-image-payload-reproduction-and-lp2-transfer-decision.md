@@ -96,6 +96,21 @@ None is 75; in particular a space byte 32 has two radix29 digits. The historical
 The [reproducer](../sims/lp2_2012_bookcode_named_account_transport_sft.cjs) retrieves the pinned JSON and uses the already-recovered local coordinate payload. The same filtering, decoding, extraction and numerical tests were executed against the connector-fetched source in this invocation. No new receiver sweep was run. **Decision:** preserve the exact historical phrase as an unconfirmed operand; park #2493 at the missing independently selected space-to-rune/segmentation and receiver instruction. No source-selected p55 decoder is available for #41; #2278 remains free to investigate unrelated boundary-changing mechanisms. This is a bounded source decision, not evidence that no such lost instruction ever existed.
 
 
+
+### Independent recovery of the complete 2012 carrier from the old Gutenberg edition
+
+The pre-2012 Project Gutenberg edition survives as [GITenberg old/mbng10.txt](https://github.com/GITenberg/The-Mabinogion_5160/blob/86b1521ce54ddae3caaa235a6fb04a9ae67f2370/old/mbng10.txt), pinned commit `86b1521ce54ddae3caaa235a6fb04a9ae67f2370`, blob `2a149950ed767f5c6f03d9710935f288b85d72d0`, 599,427 ASCII bytes. Its header dates the first upload and latest update to 22 May 2002. The updated 2014 edition is not the input.
+
+Begin at `KING ARTHUR WAS AT CAERLLEON`, zero-based byte 17,345. Uppercase, trim each line, omit empty lines, and concatenate each line of at most three whitespace-separated words to the preceding line with one space. In the first 188 nonblank tale lines exactly three merges occur:
+
+| Original nonblank line (one-based) | Orphan | Resulting title |
+| --- | --- | ---: |
+| 10 | LODGING. | 9 |
+| 51 | DAGGERS. | 49 |
+| 138 | TO THEIR LORD. | 135 |
+
+The resulting 185 lines equal **all 185 archived decrypted titles exactly**, including punctuation and double spaces. Joined length is 12,384 characters / 2,414 words. Applying the original 76 coordinates directly to this independent book reconstruction recovers the historical phone instruction verbatim, without needing Reddit. The <=3-word threshold is an inferred minimal rule reproducing all observed boundaries, not a surviving author instruction. No hidden textual substitutions remain in this excerpt. Same SFT now independently retrieves and checks the original-book blob and exact carrier equality. This establishes an actual historical line-reflow operation, not an LP2 space-reflow rule: its earlier merged breaks can only be reconstructed from the known source book. No LP2 key or plaintext is established.
+
 ### Independent 13/23 historical numeric-key lead (Agent14)
 
 The archived 2012 subreddit banner displays thirteen Mayan digits, which are the first 13 members of the **23-member** numeric shift key derived from the community-info string. The original clear p57 has a red13 stop after its title and a unique terminal red23 stop. That pair is a concrete, independently available source clue to the two historical key lengths, but the connection is conjectural; no first-party text says to transfer the banner key to LP2. The numeric source sequences are the prefix and full key `[10,2,14,7,19,6,18,12,7,8,17,0,19,7,14,18,14,19,13,0,1,2,0]`, with no fitted values. The historical 2012 subtraction and title reset motivate direct GP29 subtraction and printed-line reset; solved LP1 repeating-key page-continuous clocks motivate the separate page reset. The original p0 opening red13 and terminal p55 are the fixed recipients, with p55 carry-in retained or excluded, yielding 12 scoped cases. The original 4-line p55 register is [24,22,22,8]. Both ordinary native GP29 subtraction and the distinct known plaintext-F bypass were tested.
