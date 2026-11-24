@@ -1,0 +1,364 @@
+{
+  "question": "Does any unknown full-three-prime Parable BBS state yield the original p0 head under fivebits-msb and collision-only GP29 key skips?",
+  "status": "exhaustive state screen completed if this report exists",
+  "source": {
+    "primes": [
+      1259,
+      1031,
+      1229
+    ],
+    "modulus": 1595277641,
+    "modulus_decimal": "1595277641",
+    "origin": "2013 ID3 Parable product and p57 clause GP-prime sums"
+  },
+  "search": {
+    "state_domain": "all x^2 mod N over x in Z/NZ, enumerated by CRT over the three prime quadratic-residue sets",
+    "qr_set_sizes": [
+      630,
+      516,
+      615
+    ],
+    "states_enumerated": 199924200,
+    "candidate_decodes": 399848400,
+    "key_extraction": "five successive BBS LSBs packed MSB-first, reduced mod29",
+    "signs": [
+      -1,
+      1
+    ],
+    "cipher": "GP29 additive",
+    "clock": "page-reset",
+    "skip_model": "collision-only hidden key consumption",
+    "head_screen": {
+      "runes": 28,
+      "max_skips": 4,
+      "penalty": 3.5,
+      "keep": 800
+    },
+    "full_validation": {
+      "page": 0,
+      "train_runes": 130,
+      "heldout_runes": 80,
+      "shortlist": 800
+    }
+  },
+  "known_key_generation_check": {
+    "seed": 3301,
+    "first_state": 10896601,
+    "fivebitsMsbKeyMatchesExistingGenerator": true
+  },
+  "positiveControl": {
+    "source": {
+      "source": "Parable-threeprime",
+      "seed": 3301,
+      "format": "bits5-msb",
+      "sign": 1
+    },
+    "plantedKeySkips": 24,
+    "blindSelected": {
+      "source": "Parable-threeprime",
+      "seed": 3301,
+      "format": "bits5-msb",
+      "sign": 1,
+      "train": -2.3884634062034764,
+      "hold": -2.446622596397216,
+      "inferredSkips": 24,
+      "heldoutHeads": [
+        "UNGPRINCEBEFETCHDHITHE",
+        "SGREENANDYETUNGOUERND"
+      ]
+    },
+    "exactRecoveredPlainRunes": 1260,
+    "total": 1260,
+    "accuracy": 1,
+    "secondBest": {
+      "source": "Parable-Blum-twofactor",
+      "seed": 3299,
+      "format": "state-low5",
+      "sign": -1,
+      "train": -5.677961613041975,
+      "hold": -5.851947000779327,
+      "inferredSkips": 22,
+      "heldoutHeads": [
+        "OEAEBIGPGOEJNSIAWFSXFSAU",
+        "EOOEHGOEYAEIOEPFRNGGBGXHO"
+      ]
+    }
+  },
+  "bestByHead": [
+    {
+      "screenScore": -2.935529596820556,
+      "state": 502905276,
+      "sign": 1,
+      "train": -5.448001058908199,
+      "hold": -5.761034594340146,
+      "inferredSkips": 3,
+      "heldoutHead": "THYNOEGWEEOCLTHEONXTDMBS"
+    },
+    {
+      "screenScore": -2.9446817163277883,
+      "state": 1057015289,
+      "sign": -1,
+      "train": -5.263201940511657,
+      "hold": -6.483265729568399,
+      "inferredSkips": 2,
+      "heldoutHead": "GSSTBNGPIAAEAFEIAHNGHXJIP"
+    },
+    {
+      "screenScore": -2.978396533015718,
+      "state": 376926252,
+      "sign": 1,
+      "train": -5.223994819280174,
+      "hold": -5.9606179879715535,
+      "inferredSkips": 4,
+      "heldoutHead": "APTXJJXTIAHMGIOEGYELLA"
+    },
+    {
+      "screenScore": -2.978396533015718,
+      "state": 1303718958,
+      "sign": 1,
+      "train": -5.223994819280174,
+      "hold": -5.9606179879715535,
+      "inferredSkips": 4,
+      "heldoutHead": "APTXJJXTIAHMGIOEGYELLA"
+    },
+    {
+      "screenScore": -2.980023651416871,
+      "state": 1126372076,
+      "sign": -1,
+      "train": -5.3613368706873406,
+      "hold": -6.0428092690928255,
+      "inferredSkips": 6,
+      "heldoutHead": "LRRNGNGNGOLSRUUNBWXRGXT"
+    },
+    {
+      "screenScore": -3.0136008303702657,
+      "state": 1584802630,
+      "sign": 1,
+      "train": -5.522895774187059,
+      "hold": -6.108187325534056,
+      "inferredSkips": 1,
+      "heldoutHead": "IAEAGEALPUIADIHTHXGEOYNOEYY"
+    },
+    {
+      "screenScore": -3.028979315243731,
+      "state": 599598619,
+      "sign": 1,
+      "train": -5.526208063236728,
+      "hold": -6.108187325534056,
+      "inferredSkips": 1,
+      "heldoutHead": "IAEAGEALPUIADIHTHXGEOYNOEYY"
+    },
+    {
+      "screenScore": -3.0380193996351657,
+      "state": 79959220,
+      "sign": 1,
+      "train": -4.737695266313838,
+      "hold": -5.899954103560042,
+      "inferredSkips": 2,
+      "heldoutHead": "JNGMAEMNLINGBEONGSMAEATHONGX"
+    },
+    {
+      "screenScore": -3.0481534020506627,
+      "state": 312095013,
+      "sign": 1,
+      "train": -5.472258493880838,
+      "hold": -5.761034594340146,
+      "inferredSkips": 3,
+      "heldoutHead": "THYNOEGWEEOCLTHEONXTDMBS"
+    },
+    {
+      "screenScore": -3.053875367135675,
+      "state": 887530209,
+      "sign": 1,
+      "train": -5.349290528963508,
+      "hold": -5.167494048550747,
+      "inferredSkips": 2,
+      "heldoutHead": "OECGNPETOCTFIXWTHXFSLT"
+    }
+  ],
+  "bestByTrain": [
+    {
+      "screenScore": -3.0380193996351657,
+      "state": 79959220,
+      "sign": 1,
+      "train": -4.737695266313838,
+      "hold": -5.899954103560042,
+      "inferredSkips": 2,
+      "heldoutHead": "JNGMAEMNLINGBEONGSMAEATHONGX"
+    },
+    {
+      "screenScore": -3.271553256989807,
+      "state": 44998211,
+      "sign": -1,
+      "train": -4.800536477662894,
+      "hold": -5.814239911265016,
+      "inferredSkips": 2,
+      "heldoutHead": "SDSOEFFGTDOAOELIEYFGUW"
+    },
+    {
+      "screenScore": -3.353162729653024,
+      "state": 579700385,
+      "sign": 1,
+      "train": -4.805572291240761,
+      "hold": -5.899954103560042,
+      "inferredSkips": 2,
+      "heldoutHead": "JNGMAEMNLINGBEONGSMAEATHONGX"
+    },
+    {
+      "screenScore": -3.3270158219648365,
+      "state": 1411822748,
+      "sign": -1,
+      "train": -4.812482260888286,
+      "hold": -5.814239911265016,
+      "inferredSkips": 2,
+      "heldoutHead": "SDSOEFFGTDOAOELIEYFGUW"
+    },
+    {
+      "screenScore": -3.329227325123184,
+      "state": 106386841,
+      "sign": 1,
+      "train": -4.848839519219135,
+      "hold": -6.250415728290658,
+      "inferredSkips": 3,
+      "heldoutHead": "DNGPAEWTGMOEOEONGIDBWOJWD"
+    },
+    {
+      "screenScore": -3.3124971533025644,
+      "state": 71718952,
+      "sign": 1,
+      "train": -4.858645594635191,
+      "hold": -5.929388443339584,
+      "inferredSkips": 4,
+      "heldoutHead": "UHEOLJGBFWBYBMGITHYEABAE"
+    },
+    {
+      "screenScore": -3.322576329649958,
+      "state": 1005001803,
+      "sign": 1,
+      "train": -4.860816494156168,
+      "hold": -5.929388443339584,
+      "inferredSkips": 4,
+      "heldoutHead": "UHEOLJGBFWBYBMGITHYEABAE"
+    },
+    {
+      "screenScore": -3.3951011190721743,
+      "state": 1432520793,
+      "sign": 1,
+      "train": -4.871280787894738,
+      "hold": -6.161509891825481,
+      "inferredSkips": 5,
+      "heldoutHead": "CBSBYIARLTSOEOOEIAUDGCIAG"
+    },
+    {
+      "screenScore": -3.3951011190721743,
+      "state": 939269773,
+      "sign": 1,
+      "train": -4.871280787894738,
+      "hold": -6.161509891825481,
+      "inferredSkips": 5,
+      "heldoutHead": "CBSBYIARLTSOEOOEIAUDGCIAG"
+    },
+    {
+      "screenScore": -3.3779624925067653,
+      "state": 1465786823,
+      "sign": -1,
+      "train": -4.873382299568697,
+      "hold": -5.699109616904872,
+      "inferredSkips": 0,
+      "heldoutHead": "YNGNGHNEOGEOWWHOERJCDPJBU"
+    }
+  ],
+  "bestByHeldout": [
+    {
+      "screenScore": -3.411393430807855,
+      "state": 664693913,
+      "sign": 1,
+      "train": -5.595910903278182,
+      "hold": -5.003249005470731,
+      "inferredSkips": 4,
+      "heldoutHead": "AEDWACYECNGUGMPERAHESEA"
+    },
+    {
+      "screenScore": -3.3989337863788074,
+      "state": 422787985,
+      "sign": -1,
+      "train": -5.379507217166263,
+      "hold": -5.136554260513941,
+      "inferredSkips": 6,
+      "heldoutHead": "XCFTHFTCESBAEDIITWEAXRR"
+    },
+    {
+      "screenScore": -3.3344515063343407,
+      "state": 261038617,
+      "sign": 1,
+      "train": -5.339970507452196,
+      "hold": -5.138713164620408,
+      "inferredSkips": 5,
+      "heldoutHead": "MLUNGDOLLORBLSWEOCEFFM"
+    },
+    {
+      "screenScore": -3.358296226434356,
+      "state": 1215089932,
+      "sign": 1,
+      "train": -5.345106293319892,
+      "hold": -5.138713164620408,
+      "inferredSkips": 5,
+      "heldoutHead": "MLUNGDOLLORBLSWEOCEFFM"
+    },
+    {
+      "screenScore": -3.374286436190327,
+      "state": 372359778,
+      "sign": 1,
+      "train": -5.429328239193683,
+      "hold": -5.148533270453152,
+      "inferredSkips": 3,
+      "heldoutHead": "HSDSWFTHTECTWSDEORFRST"
+    },
+    {
+      "screenScore": -3.374286436190327,
+      "state": 47852528,
+      "sign": 1,
+      "train": -5.429328239193683,
+      "hold": -5.148533270453152,
+      "inferredSkips": 3,
+      "heldoutHead": "HSDSWFTHTECTWSDEORFRST"
+    },
+    {
+      "screenScore": -3.053875367135675,
+      "state": 887530209,
+      "sign": 1,
+      "train": -5.349290528963508,
+      "hold": -5.167494048550747,
+      "inferredSkips": 2,
+      "heldoutHead": "OECGNPETOCTFIXWTHXFSLT"
+    },
+    {
+      "screenScore": -3.1158285416233626,
+      "state": 1309389634,
+      "sign": 1,
+      "train": -5.362634289622395,
+      "hold": -5.167494048550747,
+      "inferredSkips": 2,
+      "heldoutHead": "OECGNPETOCTFIXWTHXFSLT"
+    },
+    {
+      "screenScore": -3.4412636147888707,
+      "state": 46269013,
+      "sign": 1,
+      "train": -5.599366291109162,
+      "hold": -5.255360390303469,
+      "inferredSkips": 4,
+      "heldoutHead": "NGHHTHTHLCWNGEORIAPATYMNCR"
+    },
+    {
+      "screenScore": -3.297612774478977,
+      "state": 1442974296,
+      "sign": 1,
+      "train": -5.306249875676573,
+      "hold": -5.261460669379637,
+      "inferredSkips": 0,
+      "heldoutHead": "GJLREMRSBBEAEMHINGGHTHH"
+    }
+  ],
+  "decision": "A positive requires coherent heldout plaintext and independent source support; a language score alone is not a decryption."
+}
