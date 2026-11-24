@@ -98,6 +98,10 @@ function plant(name,text,length,seed,restarts,logP){
  assert(P.length===length,name+" plant too short");
  const rng=xorshift32(seed),key=Array.from({length:29},()=>Math.floor(rng()*29)),initialPhase=Math.floor(rng()*29);
  const {C,holds}=encrypt(P,key,initialPhase);
+ const effectiveKey=key.slice(initialPhase).concat(key.slice(0,initialPhase));
+ const oracle=decodeUnigram(C,effectiveKey,logP);
+ const oracleMatches=oracle?oracle.plaintext.reduce((n,x,i)=>n+(x===P[i]),0):0;
+ const oracleHolds=oracle?oracle.holds.reduce((n,x,i)=>n+(x===holds[i]),0):0;
  const search=recoverKey(C,29,logP,seed^0x9e3779b9,restarts);
  const top=search.ranked[0]||null,runner=search.ranked[1]||null;
  const rotation=top?bestRotation(top.key,key):null;
@@ -108,6 +112,8 @@ function plant(name,text,length,seed,restarts,logP){
  const forwardExact=forward?forward.every((x,i)=>x===C[i]):false;
  return{
   name,length:P.length,Fholds:holds.filter(Boolean).length,period:29,initialPhase,
+  oraclePathAvailable:!!oracle,oraclePlaintextMatchFraction:oracleMatches/P.length,
+  oracleHoldMatchFraction:oracleHolds/P.length,oracleScore:oracle?.score??null,
   recoveredCandidates:search.distinctCandidates,validStarts:search.validStarts,
   topScore:top?.score??null,runnerUpScore:runner?.score??null,topRunnerGap:search.scoreGap,
   topBasin:top?.basin??0,topKey:top?.key??null,actualKey:key,
