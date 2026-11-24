@@ -79,7 +79,7 @@ def build_lp1_seeds() -> tuple[dict[str, bytes], dict]:
         raise RuntimeError("unexpected GP29 alphabet or prime map")
 
     raw = (ROOT / "resources/transcriptions/lp1_wulfic_canonical.txt").read_text(encoding="utf-8")
-    normal = re.sub(r"[\\r\\n/%]", "", raw)
+    normal = re.sub(r"[\r\n/%]", "", raw)
     parsed = parse_level(normal, ["§", "$", "&", ".", "-"], "")
     if not parsed or len(parsed[0]) < 7:
         raise RuntimeError("LP1 source did not parse into seven expected sections")
@@ -116,7 +116,7 @@ def build_lp1_seeds() -> tuple[dict[str, bytes], dict]:
     number_count = 0
     for section_id, source_section in enumerate(source_sections):
         rune_position = 0
-        tokens = re.findall(r"[\\u16a0-\\u16ff]|\\d+", source_section, flags=re.IGNORECASE)
+        tokens = re.findall(r"[\u16a0-\u16ff]|\d+", source_section, flags=re.IGNORECASE)
         for token in tokens:
             if token in RUNES:
                 index = decoded_sections[section_id][rune_position]
@@ -148,7 +148,7 @@ def build_lp1_seeds() -> tuple[dict[str, bytes], dict]:
             name: {
                 "length": len(seed),
                 "sha256": hashlib.sha256(seed).hexdigest(),
-                "git_blob_sha": hashlib.sha1(b"blob " + str(len(seed)).encode() + b"\\0" + seed).hexdigest(),
+                "git_blob_sha": hashlib.sha1(b"blob " + str(len(seed)).encode() + b"\0" + seed).hexdigest(),
             }
             for name, seed in seeds.items()
         },
@@ -321,7 +321,7 @@ def main() -> None:
         "continuous_clock": global_results,
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps(report, indent=2) + "\\n", encoding="utf-8")
+    args.output.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     print("REPORT " + json.dumps({
         "seed_meta": seed_meta,
         "candidate_count": len(candidates),
