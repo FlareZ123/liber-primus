@@ -1,0 +1,42 @@
+{
+  "source_sha256": "9cef6c003207870adedfb16e367a18129078a76b6d61d5990ed82fa7f7b96acf",
+  "source_blob": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+  "solver": "Z3 4.13.3.0 QF_BV (native C API)",
+  "source_order": "five-dot deinterleave; remove header 7; MSB first; phase zero",
+  "fixed_xor": [
+    {
+      "key": "spiral distances mod32",
+      "printable": 918,
+      "nonprintable": 317
+    },
+    {
+      "key": "selected primes minus one mod32",
+      "printable": 911,
+      "nonprintable": 324
+    }
+  ],
+  "status": {
+    "printable": "sat",
+    "mixed": "sat",
+    "upper": "unsat",
+    "lower": "unsat",
+    "known_phrase_upper_plant": "sat"
+  },
+  "witness_encoding": "base32 character per five-bit codeword, phase-major then rune ordinal",
+  "witnesses": {
+    "mixed": "j2el3gtp1onkm96f84srh7qdvcaibbou8ciled473ngar1s96qm5hkj2tpc2e96knofa3virdght47umpl5bjq8ej6v3auhp8qikfmc97dt1bl2orn5gf2lvdt6q8h7o35m1cngbi9jpa0rkedl6aq8su3obtj4rfn7vm21c0ek95gjmq5n74aui13st8o29fbkhdc6elprb7melhpu85o24jkaq6rsdgntic9vfs1j95nbv3cgpfilotke7rdm4a62qhrb8aujpt4om6hncqeklf59di732vs3j8f95g4sd1in6quatvmbhrc2p7lekbj7g960i4nfcvtarh53qoeud21lms2etd73foqn5jlvkr1uc6i4mhab9pjsft6aivqre38ckplmo7h54ud1bn9tdqmirskua68fclog9h72nb3jve5plqd3g486vifa9pc1rs5hbk2nj7tem",
+    "printable": "u1dqihvk08jecra72ft3m5bp4sn9l5mkgjthvd4oelqnraub2p61973iscc0afr8ukeqs42bmpt93dl7j6nvi5h6ksod7v98ph1lfntr2b0cem3g4j5i45tkauncpi687qv0frhm1ld9jseb34ivqduabegjh2stkrn6l50p3f7m9oluktq1p2n305sv78jrdhbac4mie69l23abvjq1n457kchu6feo8rti9pdmu59p60sd1ljakh78qbiorf4enc3tmnu7j3hmcdqlr42gket50a9pifv6bsrjk79580du2onbphciglfv1smq3teainjo7609chfkgdp2eu14vbmqr3l5sbcfm716okr2t4eqlhidpj5v3un9abienfv3gotl2hud6rpk9qc4sj1m78gedonuc7fp6vbsq93a1t05lji2mrhd963g2b4mjel8pkiu7qnfocsr5vta"
+  },
+  "witness_statistics": {
+    "mixed": {
+      "spaces": 17,
+      "upper": 462,
+      "lower": 369
+    },
+    "printable": {
+      "spaces": 8,
+      "upper": 339,
+      "lower": 304
+    }
+  }
+}

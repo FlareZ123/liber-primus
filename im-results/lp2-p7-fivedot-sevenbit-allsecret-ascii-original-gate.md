@@ -70,9 +70,26 @@ The globally most permissive case still forces **at least 102 actual ASCII contr
 
 These are **numbers of guaranteed nonprintable ASCII septets out of 1,235**, minimized over *all* secret injective five-bit codebooks separately at every specified phase. Thus four source-motivated periodic codebook families **P=5, 7, 14, 35** are also mathematically incompatible with direct all-printable ASCII7 on each of the six source-fixed readings, even if the entire alphabet can be replaced freely at every key phase. There is no reason to run an ASCII crib search under those families.
 
-The **P=16** rows instead have a zero interior-only lower bound. This is a strictly *necessary-condition survivor*, not evidence of successful ASCII plaintext: the omitted across-rune septet-top-bit constraints, the ASCII127 exception and actual English character statistics must still be met. The original p15 page has a source-authenticated **16-cell Fibonacci-prime spiral**, but its printed numbers do not themselves instruct `GP5bit XOR key -> ASCII7`, which page should receive it, or which key order/bit direction to use. A narrowly fixed actual 16-cell numeric consumer would be a justified separate test; unlimited new phase dictionaries would be unconstrained key hunting.
+The **P=16** rows instead have a zero interior-only lower bound; the full exact test below resolves the five-dot order. This is a strictly *necessary-condition survivor*, not evidence of successful ASCII plaintext: the omitted across-rune septet-top-bit constraints, the ASCII127 exception and actual English character statistics must still be met. The original p15 page has a source-authenticated **16-cell Fibonacci-prime spiral**, but its printed numbers do not themselves instruct `GP5bit XOR key -> ASCII7`, which page should receive it, or which key order/bit direction to use. A narrowly fixed actual 16-cell numeric consumer would be a justified separate test; unlimited new phase dictionaries would be unconstrained key hunting.
 
 [The source-independent period-table implementation](../sims/lp2_p7_fivedot_sevenbit_allsecret_ascii_sft.cjs) matches all six rows exactly and passed [Windows Node22 CI run 44152555563](https://github.com/FlareZ123/liber-primus/actions/runs/44152555563). No actual secret codebook, recovered LP2 plaintext or destination is claimed.
+
+## Full period-16 feasibility and actual spiral-key receiver (24 November)
+
+The previously zero interior-only bound for 16 phase dictionaries was genuinely unresolved. Fix the actual five-dot deinterleave, remove its leading literal 7, advance one phase per rune from phase zero, and emit MSB-first five-bit words. Test the p15 outward-spiral printed distances modulo 32 and the corresponding selected prime-minus-one values modulo 32 (the latter motivated by the solved p56 prime-minus-one operation) as two literal XOR keys. They emit respectively **918/1,235 and 911/1,235 printable characters** (317 and 324 control/DEL values); neither is readable. Both reverse all 1,729 rune identities exactly. The original does not explicitly select this numeric consumer.
+
+Now grant 16 independent arbitrary injective 29-to-32 dictionaries, 464 five-bit variables, with every dictionary constrained by all-different. Concatenate the precise source bit slices into each of the 1,235 seven-bit characters; include all cross-word bit constraints and exclude DEL. Solve the complete finite feasibility model with Z3 QF_BV, not a language-score search.
+
+| Original five-dot order, output alphabet | Exact feasibility |
+| --- | --- |
+| ASCII 32–126 | SAT, saved exact witness |
+| Mixed-case letters, decimal digits, space and punctuation ` .,;:'"!?()-` | SAT, saved exact witness |
+| Uppercase letters, same digits and punctuation | **UNSAT** |
+| Lowercase letters, same digits and punctuation | **UNSAT** |
+
+Both SAT witnesses are gibberish, with only 8 and 17 spaces respectively, and recover the source exactly under their constructed dictionaries. They establish that printable character constraints and exact roundtrip do **not** identify the unknown key. The narrower one-case output classes are mathematically impossible under this fixed original bit order; this is not a theorem about all ASCII English, since the mixed-case alphabet survives. A 1,235-character uppercase plant adapted from known p56/p57 phrases, encoded with an independently randomized phase dictionary and decoded exactly under its planted key, is SAT under the uppercase gate. Its unconstrained recovered SAT dictionary is also not a unique plaintext solution.
+
+Actual original runs used Z3 4.13.3 native C API; both saved witnesses were independently replayed against the canonical repository tape in JavaScript. [Portable Python z3-solver reproducer](../sims/lp2_p7_fivedot_period16_ascii_sat_sft.py) · [exact witnesses and results](lp2-p7-fivedot-period16-ascii-sat.json). The portable frontend is provided for replication; it is equivalent to the executed bitvector model, not a claimed CI run. Only this one source order and phase convention have been tested. The rational decision is to retire the two actual spiral-key receivers and the one-case arbitrary-dictionary models, and require a new independently sourced bit/key rule before searching the vast mixed-case survivor. No authentic unknown plaintext or key was recovered.
 
 ## Decision
 
