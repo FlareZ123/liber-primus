@@ -37,7 +37,7 @@ const experiment=function experiment(raw,mode,lo,hi){
    let pool=Array.from({length:X.length},(_,i)=>i),B=[];
    for(let i=pool.length-1;i>0;i--){let j=next()%(i+1);[pool[i],pool[j]]=[pool[j],pool[i]]}
    for(let g=0;g<5;g++){
-    let chosen=[];for(let i of pool){if(echelon(chosen.concat(i).map(j=>X[j]),p).rank>chosen.length){chosen.push(i);if(chosen.length===p)break}}
+    let chosen=[],rows=Array(p).fill(null);for(let i of pool){let v=X[i].slice();for(let j=0;j<p;j++){if(!v[j])continue;if(rows[j]){let a=v[j];for(let k=j;k<p;k++)v[k]=mod(v[k]-a*rows[j][k]);continue}let u=inv(v[j]);for(let k=j;k<p;k++)v[k]=v[k]*u%29;rows[j]=v;chosen.push(i);break}if(chosen.length===p)break}
     if(chosen.length!==p)break;B.push(chosen);let seen=new Set(chosen);pool=pool.filter(i=>!seen.has(i))
    }
    if(B.length===5)return B;
@@ -46,14 +46,15 @@ const experiment=function experiment(raw,mode,lo,hi){
  }
  function fitOne(c,ix,id){
   const A=den(id),ctx=context(c,A,ix.at(-1)+1),X=ix.map(i=>row(ctx,i)),D=X[0].length,full=echelon(X,D),p=full.rank,cols=full.cols;
-  let e0=[1,...Array(D-1).fill(0)],identifiable=echelon(X.concat([e0]),D).rank===p;
+  let e0=[1,...Array(D-1).fill(0)],identifiable=p===D||echelon(X.concat([e0]),D).rank===p;
   if(!identifiable)return{status:"unidentified b0",rank:p,D};
   const Z=X.map(x=>cols.map(j=>x[j])),B=cover(Z,p,id+3301);if(!B)return{status:"no disjoint basis cover",rank:p,D};
   assert(cols[0]===0,"b0 pivot");let candidates=new Map(),counts=[0,0],n=X.length;
   for(let S of B){let I=inverseN(S.map(i=>Z[i])),set=new Set(S),extra=Array.from({length:n},(_,i)=>i).filter(i=>!set.has(i));
-   let R=extra.map(i=>Array.from({length:p},(_,j)=>mod(Z[i].reduce((s,x,k)=>s+x*I[k][j],0)))),m=R.length,V=new Uint8Array((1<<p)*m);
-   for(let z=1;z<(1<<p);z++){let bit=z&-z,k=31-Math.clz32(bit),a=(z-bit)*m,b=z*m;for(let j=0;j<m;j++){let u=V[a+j]+R[j][k];V[b+j]=u>=29?u-29:u}}
-   for(let z=0;z<(1<<p);z+=2){counts[0]++;let bad=0;for(let j=0;j<m;j++)if(V[z*m+j]>1&&++bad>E)break;if(bad>E)continue;let v=Array.from({length:p},(_,j)=>(z>>j)&1),u=I.map(x=>dot(x,v));if(!u[0])continue;counts[1]++;let K=Array(D).fill(0);for(let j=0;j<p;j++)K[cols[j]]=u[j];
+   let R=extra.map(i=>Array.from({length:p},(_,j)=>mod(Z[i].reduce((s,x,k)=>s+x*I[k][j],0)))),m=R.length,hp=Math.floor(p/2),nl=1<<hp,nh=1<<(p-hp);
+   function half(n,offset){let V=new Uint8Array(n*m);for(let z=1;z<n;z++){let bit=z&-z,k=31-Math.clz32(bit)+offset,a=(z-bit)*m,b=z*m;for(let j=0;j<m;j++){let u=V[a+j]+R[j][k];V[b+j]=u>=29?u-29:u}}return V}
+   let L=half(nl,0),H=half(nh,hp);
+   for(let l=0;l<nl;l+=2)for(let h=0;h<nh;h++){let z=l+(h<<hp);counts[0]++;let bad=0;for(let j=0;j<m;j++){let x=L[l*m+j]+H[h*m+j];if(x>=29)x-=29;if(x>1&&++bad>E)break}if(bad>E)continue;let v=Array.from({length:p},(_,j)=>(z>>j)&1),u=I.map(x=>dot(x,v));if(!u[0])continue;counts[1]++;let K=Array(D).fill(0);for(let j=0;j<p;j++)K[cols[j]]=u[j];
     let sig=X.map(x=>dot(x,K)),key=sig.join(","),com=sig.map(x=>mod(1-x)).join(",");if(com<key)key=com;
     if(!candidates.has(key))candidates.set(key,{id,A,K,rank:p,D})
    }
