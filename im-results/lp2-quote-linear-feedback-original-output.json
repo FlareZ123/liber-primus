@@ -1,0 +1,65 @@
+{
+  "model": "affine mixed lag1..13, GF29, two clocks",
+  "frozen": "a8cf6ac449d77515b09d5664771c8989698f6856",
+  "controls": {
+    "uniqueExact": 12,
+    "withheldCorrect": 960,
+    "withheldTotal": 960,
+    "nullsRejected": 6,
+    "externalFalseMatches": 0
+  },
+  "historical": [
+    {
+      "section": "WELCOME",
+      "length": 515,
+      "rank": 22,
+      "predicted": 435,
+      "correct": 435
+    },
+    {
+      "section": "KOAN",
+      "length": 319,
+      "rank": 27,
+      "predicted": 239,
+      "correct": 239
+    }
+  ],
+  "batches": [
+    {
+      "start": -1,
+      "placements": 1003,
+      "inconsistent": 1349,
+      "F": 657
+    },
+    {
+      "start": 0,
+      "placements": 3294,
+      "inconsistent": 4288,
+      "F": 2300
+    },
+    {
+      "start": 8,
+      "placements": 3978,
+      "inconsistent": 5428,
+      "F": 2528
+    },
+    {
+      "start": 16,
+      "placements": 2268,
+      "inconsistent": 3023,
+      "F": 1513
+    },
+    {
+      "start": 24,
+      "placements": 208,
+      "inconsistent": 292,
+      "F": 124
+    }
+  ],
+  "total": {
+    "placements": 10751,
+    "inconsistent": 14380,
+    "F": 7122
+  },
+  "originalSurvivors": 0
+}
