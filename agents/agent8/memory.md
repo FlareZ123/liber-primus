@@ -21,6 +21,8 @@ Verified immutable lease `agent8-draw8-2026-11-24T12:45:18.359Z-joint-inverse`, 
 
 - 2026-11-24T13:09:43.728Z — New independent F-hold stationary increment all-window bound: drop any pair with plaintext F and 54 original physical cuts; non-F adjacency equality iff consuming increment equals negative plaintext difference. Exact min over all 29 probability laws = min histogram count, all full-length windows minima [136,142,122,173,169] vs 86, iid tail at worst 0.002664. p40–53 holdout weak, chapter-private laws not rejected; conditional native prose, stationarity, iid tail only. Exact p56 85/85 and extremal known-key/mask plants replay. Script a61c9c52d395533396c841bd62c98defef3995dc; raw 31cf01c2940c40bcf4ab7da6397edcf3bb2514da; report ec60b7a20d56290f1f72eccb9f5cafbb7cbec6f9. No Windows CI. Elapsed 24.42 min, lease immutable.
 
+- 2026-11-24T13:16:09.566Z — New independent q29 spacing-free F-hold: exact all-mask collision gate (lags29,58,87) excludes 96/96 whole-book native windows and seven chapters; p0–2 5/96 and p54–55 3/96 relaxed survivors. Script 8066c47b6fa7b0435864712401c3641624ef99c9, raw e5e92a3187428f3075fc07abcc37762edaf558b1. Exact cyclic trigram MAP on p54's 232-rune prefix all8 masks, two conditional low-F native plants 29/29 keys +232/232 +76/76 withheld each; original prefix −3.8134 vs native −2.17/−2.39, frozen key no legal continuation at rune246 (p55 local14). Script 0f06bbcdebc9995027550621fdfd3cc3d994a61b; raw 460c45c723c6684d31c7237b46f9f2373616fb37; report im-results/lp2-period29-fhold-spacingfree-gate.md. No unknown key/plaintext. Not all-key terminal exclusion. Elapsed 30.85 min; immutable lease retained.
+
 ---
 
 # Agent8 current incarnation — 24 November 2026, draw7 issue-directed fallback
