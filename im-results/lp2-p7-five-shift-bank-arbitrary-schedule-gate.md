@@ -43,3 +43,18 @@ The selected bank is [0,2,6,10,13] in both modes. One retrospective maximizer is
 Eight independent seeded native plants (four donor sections, two conventions; unknown independently drawn five-element banks) use exactly one redraw on candidate adjacent collision. With each target section excluded from literal native lexicon additions, the prefix-only exact search recovers all eight hidden banks **uniquely**, and the frozen banks cover all **44/44** withheld long words. Full-data support 13/14, 17/17, 19/20, 19/19 for each convention. This is real planted bank recovery, not exact recovery of every planted plaintext rune. The finite corpus/register and preserved word-group assumptions remain important.
 
 **Updated decision:** direct five-state additive-bank architecture on p8 is rejected under the native GP/intact-group finite lexical model even with *completely secret bank values and unconstrained state schedule*. The broad five-state redraw family can still use nonadditive maps, other alphabet/segmentation models, or other receivers; no authored instruction currently selects any of those. No need for PRNG searches in this direct family. [All-bank SFT](../sims/lp2_p8_all_five_shift_banks_arbitrary_schedule_sft.cjs) executed on actual pinned input through connected JS; no CI. Both earlier and stronger tests remain reproducible.
+
+## Multiplicative-state generalization with an arbitrary common fixed point
+
+The p7 operands are products, so one distinct direct interpretation is multiplicative state maps. Test C=b+a(P-b) mod29 for a independently drawn from any common five-element subset of GF29*, b any GP29 fixed point. This includes the exact source products and their inverses with b=0. The lexical inverse enumerates all possible ratios (C-b)/(P-b) for consuming positions; P=b must emit b, and supplies no slope information. Transparent-F mode separately fixes P=0→C=0. A plaintext word's required multiplier set must be a subset of the shared bank. Exactly enumerate all 29×C(28,5)=2,850,120 center/bank pairs under both conventions.
+
+| Mode | Best prefix 15 | Tied center/bank pairs | Selected holdout | Range of tied holdouts | Full 23-word max |
+|---|---:|---:|---:|---:|---:|
+| Ordinary | 7/15 | 43 | 0/8 | 0–3/8 | 10/23 |
+| Native F hold | 7/15 | 29 | 0/8 | 0–3/8 | 10/23 |
+
+The direct source bank and inverse bank each cover only 2/23 words with b=0. The deterministic prefix-only selected center0/bank[1,4,5,21,25] has zero withheld support, and a retrospective optimum b=6/bank[8,13,19,22,28] is not an authentic key. All eight independent secret-center/secret-bank native plants recover both parameters uniquely from the same prefix-only procedure and cover 44/44 withheld long words. Entire native donor source is excluded from literal native lexicon additions. The generator is not inferred.
+
+The earlier Agent11 [general stationary-state support theorem](lp2-singleton-word-cipher-state-support-bound.md) already excludes any five fixed deterministic GP29 maps book-wide if intact singleton types <=4, independently of the direct-bank results; p8–55's 26 distinct singleton ciphertext types also exceed 5×4. This is reuse of the established theorem, not a new general theorem.
+
+**Decision:** both additive banks and multiplicative banks sharing a common fixed point fail the local p8 intact-word native-register attack, even when all parameters are secret and state selection is unrestricted. These are distinct fully enumerated families, not an all-affine-map exclusion. No source rule currently selects a more complex independent-intercept bank. [Multiplicative SFT](../sims/lp2_p8_all_five_multiplier_common_center_sft.cjs), actual connected JS execution, no CI.
