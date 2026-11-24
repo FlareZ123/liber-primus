@@ -141,6 +141,23 @@ Every untouched-original output remains near uniform: **0.0345702665** GP IoC fo
 
 Reproduce with the read-only Windows 11 Node.js22 SFT [p7 root-seven Fourier, full original 1,729-rune receiver](../sims/lp2_p7_root7_fourier_botanical_sft.cjs). The 7-point NTT on the distinct p33–39 chapter has [a separately established root24](../sims/lp2_red_root7_fourier_original_inverse.cjs) and is not reused as evidence for this p7-derived root16/20 test.
 
+## Seven-channel all-secret affine circulant key inference (Agent46, 24 November)
+
+The direct seven-point NTT above fixes a basis, not a key. A materially different, fully reversible mixing law is to allow **all seven independent secret Fourier-mode multipliers** (each nonzero), together with a common additive GP29 offset. In the original coordinate basis this is exactly an invertible circulant matrix over GF29 plus a scalar bias. The two already-frozen 7×247 geometries (247 adjacent seven-rune groups and seven equal-width lanes) require no extra padding, and the literal p10 numeral 7 is retained as an unchanged non-rune. There is no first-party instruction selecting diagonal spectral encryption or intact plaintext word boundaries; this is a bounded attack on a plausible extension, not a claimed historical cipher.
+
+Write (P_i=b+\sum_{j=0}^6 k_j C_{g,(a+j)\bmod7}\pmod{29}), where (g,a) are the original group/lane coordinate of output (i). The seven circulant coefficients and scalar bias are eight unknowns. In a complete printed word with eight linearly independent ciphertext rows, any proposed GP spelling yields exactly one key via GF29 inversion. The script enumerates every spelling of each rank-eight word in the 38,920-form pinned TextBlob/native register, verifies the **whole** word, allows singletons A/I/O/T (O generously added to native A/I/T), and rejects singular matrices. It fits only the first **1,124** original runes, six singletons, and 37 long anchors; one long anchor in each geometry has rank seven and is not decided by this inversion. The remaining 605 output runes are reserved for frozen plaintext prediction, though lane-model ciphertext coordinates inherently cross the fit/holdout boundary.
+
+| Fixed geometry | Rank-eight training anchors | Key candidates satisfying any such anchor and all six training singletons | All-secret nonsingular keys satisfying all 11 singletons only |
+|---|---:|---:|---:|
+| Adjacent seven-rune groups | 36 | **0** | 121 |
+| Seven lanes of 247 | 36 | **0** | 144 |
+
+The singleton-only column uses an independent full-rank eight-row basis, enumerating all 4^8=65,536 label assignments, then checking the remaining three singletons and invertibility. Thus the grammar obstruction is conditional but exact: **each of those 36 long words in either model must be outside the fixed lexicon** if all six training singleton labels are valid. Singleton support alone is insufficient to exclude the family. No candidate key was frozen and no original suffix language was scored in the anchor attack.
+
+Four independent deterministic secret-key plants use disjoint native solved-source donor pools of 1,610 and 1,337 runes under both geometries. The same word-anchor search and training selection uniquely rank the true key first in each case, with candidate counts 1/4/1/2, recover every coefficient and bias, re-encrypt the full input and recover all **2,050/2,050 withheld plaintext runes**. The dictionary includes native donor vocabulary (vocabulary-assisted calibration; no supplied ordered crib or key), so this is not a source-author attribution test.
+
+Retire the exact affine circulant/constant-offset model with intact native word boundaries and this lexical register. The prior source-fixed NTT alone and this all-secret spectral-multiplier family are distinct; no unknown LP2 plaintext or author key is recovered. Different phase-specific bias, hidden F-clock, transformed word boundaries or non-circulant mixing are outside the exact decision. [Executed CommonJS SFT](../sims/lp2_p7_circulant7_affine_key_inference_sft.cjs) (connected V8 execution, no CI claim).
+
 ## Source-derived p39 root24 cross-chapter prediction
 
 The **physically last red p8 title rune is GP index17**, and 17²=-1 modulo29. This provides a printed choice of imaginary unit for the p7/p8 norm-one 3–4–5 rotation:

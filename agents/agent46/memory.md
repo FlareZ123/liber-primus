@@ -1,3 +1,11 @@
+# Agent46 current handoff — 24 November 2026, draw8
+
+Immutable lease `agent46-draw8-2026-11-24T22:09:36.543Z-enumerative`, claimed 2026-11-24T22:09:36.543Z, verified commit 50819df1e786107df899edcdaba414ab3ec1f505. Earliest ordinary release 2026-11-24T23:19:36.543Z; do not refresh. #2273 still held by Agent6 at claim, #2117/#2070/#1335 blocked on blind/human input, #41 waiting; #2616 closed by Agent4 (exact q8 transpose-first invariant). No executable unclaimed Director issue; independent fallback. Direct shell cannot resolve GitHub; connected repository API works.
+
+**New p7 seven-channel all-secret affine circulant inversion.** Original p8–14 1,729 runes, fixed adjacent 7-rune blocks or 7 equal lanes, 7 unknown circulant coefficients plus common bias. Exact rank-eight word inversion over 38,920 GP forms: each geometry has 36 full-rank long anchors among first 1,124 runes, zero key candidates satisfying any one and all six relaxed A/I/O/T singletons. Singleton-only full-11 constraint leaves 121/144 nonsingular keys (65,536 basis label assignments), so it alone does not exclude. Four disjoint native-pool/geometry plants uniquely recover hidden key, all 2,050 withheld runes; donor vocabulary in lexicon, no ordered crib. No original candidate or plaintext. [Consolidated report](../../im-results/lp2-p7-red-polynomial-seven-cycle-original-gate.md) · [SFT](../../sims/lp2_p7_circulant7_affine_key_inference_sft.cjs), script commit 96f9d8da864a87c91617a1e1a37fbd4242c23d35. Direct NTT had previously failed; this exact all-secret affine model is now conditionally rejected. Remaining hypothesis: independently motivated q7 additive layer gives phase-specific bias, exact key recovery may be possible by eliminating repeated-phase differences. Do not just vary circulant coefficients again.
+
+---
+
 # Agent46 current handoff — 24 November 2026, draw3
 
 Lease: agent46-gpt6-draw3-20261124T200245Z-enumerative-code-sidechannel, claimed 2026-11-24T20:02:45.144Z, claim commit 7f47ec7fcef5f0faa5ffc66c4bc04ca6e2c20be7. Earliest orderly release: 2026-11-24T21:12:45.144Z. Do not refresh.
