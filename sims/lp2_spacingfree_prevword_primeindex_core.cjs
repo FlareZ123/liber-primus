@@ -67,6 +67,8 @@ function experiment(gp,donor,dict,shakespeare,mode='controls'){
   return {n,end:furthest,legal:furthest===n,scorePerRune:best.value/furthest,initial:best.start,trueInitial:seed,initialRecovered:best.start===seed,maxKnownRunes:coverage.value,knownRunes:best.ws.reduce((a,w)=>a+(freqs.has(key(w))?w.length:0),0),edges,legalStates,maxStates,truthEdges,truthRunes:flat.filter((v,i)=>v===tr[i]).length,boundaryHits:hit,truthWords:truth?.length||0,plaintext:best.ws.map(w=>w.map(x=>gp.translit[x]).join("")).join(" "),numeric:best.ws,lexWitness:coverage.ws,lexSeed:coverage.start}
  }
  function control(i){const ws=sections[i].words;assert(ws.every(w=>w.length<=maxL),"control max L");let s=sumWord(ws[0]),seed=s;const C=ws.slice(1).flatMap(w=>{const v=enc(w,s);s=sumWord(w);return v});return {name:sections[i].name,...decode(C,ws.slice(1),seed)}}
+ if(typeof mode==="number")return control(mode);
+ if(Array.isArray(mode))return {scope:mode,...decode(gp.pages.filter(p=>p.page>=mode[0]&&p.page<=mode[1]).flatMap(p=>p.indices))};
  if(mode==="pilot")return {pilot:control(5)};
  const controls=[1,3,4,5].map(control);
  const gate=controls.every(c=>c.legal&&c.truthRunes/c.n>=.95&&c.boundaryHits/c.truthWords>=.90);

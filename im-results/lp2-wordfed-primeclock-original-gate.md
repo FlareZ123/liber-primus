@@ -62,3 +62,8 @@ No shared offset in this bounded 12,958-state domain survives the actual origina
 ## Next decision
 
 A different word-fed state law needs independent source selection. Do not generalize these exact negatives to arbitrary nonlinear state updates, arbitrary word segmentation, resets or other prime clocks. A source-specified operand that predicts an untouched word or a known solved passage remains higher value than another free numerical combination.
+
+
+## Spacing-free complement (24 November)
+
+The forward one-based previous-plaintext GP-prime sum/F-hold variant has also been inverted with arbitrary word lengths up to24 and all initial sums. Four native controls recover exact plaintext/boundaries/seed; original p0–2 and p16–21 remain nonprose with exact maximum lexical coverage 543/729 and 1194/1613. See [spacing-free report](lp2-spacingfree-prevword-primeindex-original-gate.md). This extends the ordinary native-language negative beyond printed grouping without asserting an exact no-path result.
