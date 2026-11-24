@@ -33,6 +33,25 @@ function repeat(P){
   if(n>best.n)best={a,b,n};
  }return best;
 }
+
+function fBranchControl(corpus,gold){
+ const P=Array.from(gold.sections.find(s=>s.name==="0_welcome").source_text).filter(x=>corpus.runes.includes(x)).map(x=>corpus.runes.indexOf(x)).slice(30,95);
+ const K=Array.from({length:L},(_,j)=>(j*7+3)%29),J=Array.from({length:L},(_,j)=>(j*11+5)%29);
+ // Force simultaneous generated ciphertext F at the first non-F rune, with phases 3 and 8.
+ const first=P.find(x=>x!==0);K[3]=J[8]=mod(-first);
+ const A=encrypt(P,K,3),B=encrypt(P,J,8),D=Array.from({length:L},(_,j)=>mod(K[(j+3)%L]-J[(j+8)%L]));
+ let n=0,hold=0,ordinaryZero=0;
+ for(let t=0;t<P.length;t++){
+  if(P[t]===0){if(A[t]!==0||B[t]!==0)throw Error("hold");hold++;continue;}
+  if(mod(A[t]-B[t])!==D[n%L])throw Error("difference");
+  if(A[t]===0&&B[t]===0)ordinaryZero++;
+  n++;
+ }
+ const result=scan(A,B,L,T);
+ if(result.max<n||hold===0||ordinaryZero===0)throw Error("latent F control");
+ return {length:P.length,active:n,hold,ordinaryZero,result,expectedDifference:D};
+}
+
 function run(corpus,gold){
  const R=rng(0x2545a006),extract=s=>Array.from(s).filter(c=>corpus.runes.includes(c)).map(c=>corpus.runes.indexOf(c));
  const controls=gold.sections.map(s=>{let P=extract(s.source_text);return {name:s.name,P,...repeat(P)};}).sort((a,b)=>b.n-a.n);
@@ -50,6 +69,6 @@ function run(corpus,gold){
  const A=corpus.pages.filter(p=>p.page>=23&&p.page<=26).flatMap(p=>p.indices),B=corpus.pages.filter(p=>p.page>=54&&p.page<=55).flatMap(p=>p.indices);
  const original=scan(A,B,L,T),nulls=[];
  for(let i=0;i<12;i++)nulls.push(scan(shuffle(A,R),shuffle(B,R),L,T).max);
- return {period:L,threshold:T,controls:controls.map(({name,a,b,n})=>({name,a,b,n})),plant:plants,scopes:[A.length,B.length],original,nulls};
+ return {period:L,threshold:T,fBranchControl:fBranchControl(corpus,gold),controls:controls.map(({name,a,b,n})=>({name,a,b,n})),plant:plants,scopes:[A.length,B.length],original,nulls};
 }
 console.log(JSON.stringify(run(JSON.parse(fs.readFileSync("resources/liber-primus/lp2-corpus.json","utf8")),JSON.parse(fs.readFileSync("resources/external/relikd-solved-gp29-native-v1.json","utf8"))),null,2));
