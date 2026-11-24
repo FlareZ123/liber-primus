@@ -57,3 +57,22 @@ All four plants uniquely recover the complete key and native continuation (1,588
 The independent anchor gate selects **all** original fit groups with length ≥8 and no visible hold symbol. A lexical candidate must consume every rune. Each gives a partial or complete periodic key assignment. Grant each anchor an arbitrary independent phase, ignore all intervening clock constraints, and join candidate key signatures for every relative rotation. An edge denotes an incompatible anchor pair for every key; an empty anchor is mandatory OOV. Exact minimum vertex covers yield the bounds in the table. For q8, every pair of individually feasible anchors conflicts (complete graphs), forcing at least seven of eight TH-only anchors or five of six dual-hold anchors outside the register. q13 bounds are much weaker; the whole-prefix exact result uses intact-group and no-OOV assumptions and should not be promoted into an all-register exclusion.
 
 **Disposition:** retire these four fixed intact-group periodic additive models on the opening black body. This does not exclude a different role for TH, altered segmentation, a nonperiodic key, additional independently selected operations, or plaintext outside the register. No unknown plaintext or authentic key. [Reproducer](../sims/lp2_p0_thorn_periodic_fhold_word_relation_sft.cjs) · [raw output](lp2-p0-thorn-periodic-fhold-word-relation.json). Executed in JavaScript Code Mode against the actual repository inputs, no CI execution claimed.
+
+### Spacing-free exact all-permutation gate
+
+The preceding lexical obstruction does not by itself survive arbitrary resegmentation. Use the whole 716-rune black body (including its earlier lexical holdout; this is a separate retrospective necessary test). After deleting the actual literal-Q holds, equality of two active GP29 symbols at lags q,2q,3q is preserved under **any independent phase bijections**. The same holds for an adjacent bigram pair at those lags. No assumption on plaintext word boundaries, additive rows or key vocabulary is needed.
+
+The dynamic program retains the last 3q+1 active ciphertext symbols and, for each state, exact min/max cumulative rune and bigram collision counts. On visible Q symbols branch both hold and consume, otherwise consume. This includes every actual hold interpretation, even granting illegal consuming paths as a relaxation. The individual bounds need not be jointly attained, which only makes the gate more permissive. Twenty-four exhaustive ternary/multisymbol toy masks validate both extrema; four independently random phase-permutation native prose plants preserve both active statistics and replay all 716 symbols with their known planted hold masks (2,864 total). No blind key recovery is claimed by this gate.
+
+Freeze 96 matched 716-rune native literary windows (32 each Shakespeare, Emerson, Gibran). The native hold-count vector cannot exceed the count of each visible marker. All four models admit 84/96 windows under that count alone; none passes both exact collision intervals.
+
+| Period / hold set | Original rune collision range | Original bigram range | Native minima among marker-count-eligible windows | Eligible / surviving |
+|---|---:|---:|---:|---:|
+| 8 / TH | 51–92 | 1–2 | 107 / 4 | 84 / 0 |
+| 13 / TH | 56–96 | 0–3 | 96 / 3 | 84 / 0 |
+| 8 / F+TH | 38–112 | 0–4 | 107 / 3 | 84 / 0 |
+| 13 / F+TH | 34–118 | 0–4 | 106 / 5 | 84 / 0 |
+
+Where separate minima overlap the intervals (especially q8 dual hold and q13 TH only), the per-window joint gate still excludes all controls; do not infer separation solely from the two scalar minima. Maximum dynamic-program state count on original is 191, no cap. Original marker counts TH30, F33. Exact bounds depend on the frozen continuous consuming clock and fixed full-length native windows, not arbitrary language or changing phases.
+
+This strengthens the periodic TH/F+TH rejection beyond intact printed groups and additive maps, while remaining a **finite native-register necessary gate**. Retire these q8/q13 direct receivers unless independently sourced evidence changes the state law or plaintext register. [SFT](../sims/lp2_p0_thorn_periodic_spacingfree_collision_sft.cjs) · [raw output](lp2-p0-thorn-periodic-spacingfree-collision.json). No unknown plaintext recovered.

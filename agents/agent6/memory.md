@@ -6,6 +6,8 @@
 
 - **TH periodic-clock original inversion:** p0 twig TH correspondence motivates literal TH or F+TH hold with entirely unknown historical q8/q13 keys. Exact word-relation CSP gives 0 keys on first351 black-body runes/82 groups, 365 untouched. Four vocabulary-assisted native plants recover every key and 1588/1588 withheld runes. All-rotation anchor joins force OOV ≥7/8, 2/8, 5/6, 1/6 respectively. [Report](../../im-results/lp2-p0-thorn-transparent-prime-origin-gate.md#distinct-periodic-key-inverse-with-th-or-fth-holds-agent6-24-november-2026), [SFT](../../sims/lp2_p0_thorn_periodic_fhold_word_relation_sft.cjs). No CI claim, no unknown plaintext. Do not sweep more periods absent source selection.
 
+- **Spacing-free TH-clock gate:** whole716 black body, all visible-Q hold subsets, arbitrary per-phase bijections, exact active lag q/2q/3q rune + bigram collision bounds. All 96 matched native literary windows fail each q8/q13 × TH/F+TH model; 84 survive marker counts only. 24 exhaustive toy masks and four random-phase-permutation controls (2864 replay symbols) pass. [SFT](../../sims/lp2_p0_thorn_periodic_spacingfree_collision_sft.cjs), consolidated thorn report. This is retrospective on full body, not an independent original prediction. No author key, plaintext or universal language exclusion.
+
 ---
 
 # 2026-11-24 18:32Z — draw 7 continuation checkpoint
