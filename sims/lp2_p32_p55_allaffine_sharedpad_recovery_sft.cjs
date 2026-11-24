@@ -58,7 +58,7 @@ function attack(corpus, transcript, lexicon) {
   }
   const FULL=(1<<29)-1;
   const cache=new Map();
-  function allowed(g, oa, ob, incoming) {
+  function allowed(g, oa, ob) {
     const posA=g.map(x=>x.ai), posB=g.map(x=>x.bi), D=g.map(x=>x.d);
     const cacheKey=oa.key+"/"+ob.key+"/"+posA.join()+"/"+posB.join()+"/"+D.join();
     const cached=cache.get(cacheKey);
@@ -92,7 +92,7 @@ function attack(corpus, transcript, lexicon) {
     let first=0, checked=0;
     const gs=[...groups.values()].filter(g=>g.length>=3).sort((a,b)=>b.length-a.length);
     for(const g of gs){
-      const t=allowed(g,va.opts[g[0].wa],vb.opts[g[0].wb],alive);
+      const t=allowed(g,va.opts[g[0].wa],vb.opts[g[0].wb]);
       let n=0;for(let i=0;i<784;i++){alive[i]&=t[i];if(alive[i])n++;}
       checked++;if(!n){first=g.length;break;}
     }
@@ -182,6 +182,8 @@ function attack(corpus, transcript, lexicon) {
     }
     summaries.push({transparent:mode,masks:[aa.length,bb.length],placements,pass,triples,fullPass,fullStates,hist,examples,fullExamples});
   }
+  check(summaries[0].placements===93&&summaries[0].triples===156&&summaries[0].fullStates===0,"all-consuming original result changed");
+  check(summaries[1].placements===5952&&summaries[1].triples===1592&&summaries[1].fullStates===0,"transparent original result changed");
   // Independent planted original word-slot pair with both non-unit coefficients.
   const positive=[];
   for(const mode of [false,true]){
@@ -200,8 +202,12 @@ function attack(corpus, transcript, lexicon) {
       vb.sites.filter(i=>i>=drop).forEach((j,i)=>check(mod((cb[j]-K[i+offset]-sB)*inv[b])===pb[j],"plant B replay"));
       const res=gate(ca,cb,va,vb,drop,offset),truth=[a,b,mod(sA-sB)];
       check(res.survivors.some(x=>x.join()===truth.join()),"planted affine state lost");
-      check(solveFull(ca,cb,va,vb,drop,offset,truth)!==null,"full planted CSP lost");
-      positive.push({mode,maskA:va.mask,maskB:vb.mask,drop,offset,truth,remaining:res.survivors.length});
+      const full=res.survivors.map(state=>({state,decoded:solveFull(ca,cb,va,vb,drop,offset,state)})).filter(x=>x.decoded);
+      const recovered=full.find(x=>x.state.join()===truth.join());
+      check(recovered!==undefined,"full planted CSP lost");
+      const actual=recovered.decoded.recoveredPad;
+      const padMatches=actual.filter((value,i)=>value===mod(K[offset+i]+sB)).length;
+      positive.push({mode,maskA:va.mask,maskB:vb.mask,drop,offset,truth,remaining:res.survivors.length,fullStates:full.length,padMatches,padLength:actual.length});
     }
   }
   return {summaries,positive,cacheEntries:cache.size};
