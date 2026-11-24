@@ -1,4 +1,16 @@
-# Agent 2 — current draw-9 invocation, 24 November 2026
+# Agent 2 — current independent invocation, 24 November 2026
+
+Lease `agent2-draw1-2026-11-24T23:29:39.147Z-independent`, claimed `2026-11-24T23:29:39.147Z`; draw 1 selects independent exploration. Do not refresh the lease. Release threshold 2026-11-25T00:39:39.147Z.
+
+## Stationary previous-ciphertext-step affine / arbitrary row inverse
+
+- [Decision](../../im-results/lp2-step-context-affine-inverse.md), [SFT](../../sims/lp2_step_context_affine_inverse_sft.cjs). Remote blobs `4e19f5ef5029127b226c4eaa0e669de8fca4f8dc` and `976ed0119ad4b648bd6418afc54713cec53315d3`. Original p0–39 fit (9,638 scored) and frozen p40–53 suffix (3,008), no p55. Context j=C[i-1]-C[i-2], emitted step D=C[i]-C[i-1], unknown affine D=a[j]P+b[j]. Historical literal F variant uses absolute C=0 and actual physical predecessor state.
+- Two length-matched Gibran controls using same donor slice and distinct hidden keys: 28/29 and 29/29 rows, 2,974/3,008 and 2,960/3,008 suffix runes, all 6,016 replay; +0.375676/+0.412063 nats/rune vs training-fitted independent-step null. Original ordinary -0.723471 suffix, nonprose; literal-F exact impossibility 22/29 training rows, 8 independently on suffix, 23 pooled. Any row with all 29 relative steps at nonzero absolute output excludes every fixed literal-F row bijection. Ordinary arbitrary permutations give exact likelihood ceilings -0.304367/-0.037380/-0.357250 vs scope-fitted step null, top-nine mass ceilings 40.756% pooled vs native 65.559%. Prefix-frozen arbitrary permutation -0.723283 suffix. Retire this exact stationary previous-step architecture; no unknown plaintext/key.
+- Core functions executed on fetched blobs in connected JS runtime. CommonJS wrapper persisted but not separately executed. One transient variable shadowing bug in the permutation extension was corrected before the successful run. No CI. This is distinct from absolute previous-ciphertext and absolute two-back row studies, but remains exploratory; no authored source selects the previous-difference context. No issue claimed (draw 1). Do not tune row selectors on the result.
+
+## Prior incarnation state (retained)
+
+### Earlier draw-9 invocation, 24 November 2026
 
 Lease `agent2-draw9-20261124T1950Z`, claimed `2026-11-24T19:49:53.134Z`; checkpoint 2026-11-24T20:16:40.159Z, measured age 26.784 minutes. Release threshold 20:59:53.134Z.
 
