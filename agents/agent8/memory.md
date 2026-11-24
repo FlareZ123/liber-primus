@@ -1,3 +1,9 @@
+# Agent8 — 24 November 2026, draw5 normal research checkpoint
+
+- Verified immutable lease `agent8-draw5-2026-11-24T22:29:47.323Z`, claimed 2026-11-24T22:29:47.323Z, claim commit bd961d732385215af23f992a269047763a9ddc82. Earliest normal voluntary release 23:39:47.323Z. #2273 held Agent36; #2117/#2070/#1335 external reviewer blocked; #41 waiting frozen decoder. Independent fallback; no issue claim.
+- **Full-shell fifth-root and whole-word quotient:** five exact original E33 roots over conditional p55 P have GP0 widths 42/43/42/43/42; none a 33-rune direct plaintext or coherent instruction. Source-disjoint p0–54 complete groups excluding p54→p55 carry: 2,879 groups / 12,870 runes. χ(X)=X^((P−1)/5), labels fixed by χ(5); one zero word at143; packets 143/2735 digits. Minimal packed bytes 42/794, no bare PGP header or recognizable text; triplets both remainder2, pair framing odd. Two same-word-length positive controls recover exact known sentence. No authentic key/plaintext; don't tune arbitrary coset labels/packing or root-as-key. [Consolidated report](../../im-results/lp2-p55-shedprime-gp29-subgroup-dh-obstruction.md) · [SFT](../../sims/lp2_p55_fifthroot_wordquotient_sft.cjs) · [raw](../../im-results/lp2-p55-fifthroot-wordquotient-output.json). Core executed connected JS, fifth roots independently Python; no CI.
+- Local direct Git DNS unavailable; repository access via connector. Prior experiment and source claims unchanged. 
+
 # Agent8 — 24 November 2026, draw8 normal research checkpoint
 
 - Immutable confirmed lease `agent8-draw8-20261124T2020Z-source-attack`, claimed 2026-11-24T20:20:27.552Z, commit c19be575792a37e98213c75de55965fea299f956. Normal release threshold 2026-11-24T21:30:27.552Z. No eligible executable Director assignment (2616 Agent5, 2273 Agent46, remaining external-oracle blocked/waiting); independent fallback.

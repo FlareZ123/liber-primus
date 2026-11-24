@@ -1,0 +1,102 @@
+{
+  "P": "63755441409934721069036418908763882578170591536653256311514221",
+  "E": "1369636156327157530854965033451154339299654501152",
+  "omega": "44151595383761519886782842471379466730208845554783336505906328",
+  "roots": [
+    {
+      "k": 0,
+      "integer": "9882115625879839087764073467343403747979575583293784612506187",
+      "width": 42,
+      "render": "I AE P U O Y F Y EO C J T L EO G G EO C F S U TH B W A F Y EA G NG M T TH AE S H N W P EO H NG"
+    },
+    {
+      "k": 1,
+      "integer": "36890626316800401139045894294289133884097999191449473609434437",
+      "width": 43,
+      "render": "U J B B W OE F N L N M B M F A J D B F EO TH G G O O R I EA OE R X EA C B TH G L IA F O M J G"
+    },
+    {
+      "k": 2,
+      "integer": "10899161653621084262465089508962475908101707203375075572107740",
+      "width": 42,
+      "render": "J EA Y S S EO O W X J EA EA X T D T OE E I X O S M C O J O X N A D A OE T NG O M F B F J M"
+    },
+    {
+      "k": 3,
+      "integer": "56237697424094699530519541204388740078321131829842154412019918",
+      "width": 43,
+      "render": "TH O Y C C U TH O C O EA B M E J M O D J R T F D N TH EA M EA S C W EA N D B A TH F AE X X P C"
+    },
+    {
+      "k": 4,
+      "integer": "13601281799473418118278239342544011537840769265346024416960160",
+      "width": 42,
+      "render": "X EA R IA U A I A M G E P EA R Y T F B EA S NG N U L X O E N E NG O C T B IA L T C G IA H Y"
+    }
+  ],
+  "wordCount": 2879,
+  "runeCount": 12870,
+  "zero": [
+    143
+  ],
+  "labels": [
+    561,
+    555,
+    583,
+    601,
+    578
+  ],
+  "packets": [
+    {
+      "digits": 143,
+      "firstDigits": "414004244122320314433302",
+      "base5ToBytes": {
+        "bytes": 42,
+        "headHex": "0e4e7a2102e597c619f205bc03e6dd65d6d34f7b958f6bd8155559c15372e120",
+        "printable": 15,
+        "openPGPHeaderHighBit": false,
+        "preview": ".Nz!...........e..O{..k..UY.Sr. ..f.Z...(.",
+        "fullHex": "0e4e7a2102e597c619f205bc03e6dd65d6d34f7b958f6bd8155559c15372e120be1a66aa5a92901228c9"
+      },
+      "pairRemainder": 1,
+      "tripletASCII": {
+        "count": 47,
+        "remainder": 2,
+        "printable": 35,
+        "preview": "m.J%UTvMk&.2ls9.m<vIk.t;U[js.C.A..vv.A.N.f?.tm.",
+        "fullPreview": "m.J%UTvMk&.2ls9.m<vIk.t;U[js.C.A..vv.A.N.f?.tm."
+      }
+    },
+    {
+      "digits": 2735,
+      "firstDigits": "300131441342434421013344",
+      "base5ToBytes": {
+        "bytes": 794,
+        "headHex": "358cd6e537b19be239cf49c92d3877c8eb93fca9fd755071925cc2324c11b3cd",
+        "printable": 314,
+        "openPGPHeaderHighBit": false,
+        "preview": "5...7...9.I.-8w......uPq.\\.2L....}..5..iY...:........6..h.of..:..8m.%..@S.@...q<...6.5uRP.:...x..-L.........<(.P.....k?U",
+        "fullHex": "358cd6e537b19be239cf49c92d3877c8eb93fca9fd755071925cc2324c11b3cdae7d01ab35f4cd69598ae88b3ac0fdab0cd9bfb0023604fc68856f66a7863adbee386df525f9d24053c340a9bfa1713c7ffec0368035755250033a19d2fd78e4cc2d4c90dee501c1ffabbc953c2810509490158caf6b3f55110ff8a7b5244e9599a0b42bcd5adc6a4df22ddbe5ebe0bdc7d69f8633da140da60b83d2dc2863298493b654c1ee0e7bfbee0d4255dc26df07e300f150742124d38efe9e9486491df89e356cd497653c01790ca00363151b6d668e31dab4f289b077c55d7338d2459f6c320c56427c9eb936a37d084f5b719df67ae254c658e1adcd6e9dc9836dfa33fb86e401eef91f2765ba5b9b96aea5a626600797c356f2a64ec26262b8fa9166d8e07e238d6abe499f13cd520b75bd5fa717f91f06b45ab9d62343040d99fa2260ab61ef3521170b022068c1bbf89648f56c1f12ed93bfb5dde57b600a4e0958773488023c7e61e0d778555e2d2b519557cee9b8205de51daa62fa72af87eb65f6282a258b4ee0faecbe8f65ef1b007d29105c0bfa9083b17c51e1e824b5858fa500f0b0fb4f35b12cbb17cc5daed7f6621b799d3cc8e197bcb87b1c2f91e81c115c6a442addbd47e60a32fa73fe64224c2b6686b184f7fe729194cdd38bf02ecb1d472e18f01b434a1744a7adbe4f73df1ec50e3f49208460caf36fd67e5d4714adbff38d4e206ea4615d6067af10513d5a3491889cfae74c5ae5c36b16322609e352301b0637249d3e8c2e24c1d79e35802ec3920e0ac6f1b4641d4ec439cd17172d57f3ed1e93a0d5454f71fa1a5b6e75567e39061ac739c241238b757b88aa60bec28438973583b5529e01410e7540e457367dff9854bb0f66476a89c900654094220f850e132b23675e4996be64610c0d2776589f2b8c479e8790fa59fa507cfa1cd386f595369c9a9a7f31d42bf0771cb260fd1d893d83069f5b3ca4f4f0544f0cc982bb4795906e0c9fe00f722c486c702806e76e9348fff08a538cdcd4800c648b26aaf5b11dea56b422f45462d33e09df03a52ed1892323e46e922777460f0491c7cf0de0a81b405ec0bf9c0e2d2e49e3d864311f"
+      },
+      "pairRemainder": 1,
+      "tripletASCII": {
+        "count": 911,
+        "remainder": 2,
+        "printable": 683,
+        "preview": "K)yawo.cMh...A.S-:r@.uf1..U+`4#.l/...#li.4{wn>3J`q..3^u\"L) .s..,e,A|.=_.y.Yh......;@t$.SvX?txG1bJm{.ED.B*L..1@k..e..ibXXf...]0&5f.6pl$.5.*6AhI?;RH\\k\"V.5/.t<-(/sjxXo6<#sb.:,>s+...D/",
+        "fullPreview": "K)yawo.cMh...A.S-:r@.uf1..U+`4#.l/...#li.4{wn>3J`q..3^u\"L) .s..,e,A|.=_.y.Yh......;@t$.SvX?txG1bJm{.ED.B*L..1@k..e..ibXXf...]0&5f.6pl$.5.*6AhI?;RH\\k\"V.5/.t<-(/sjxXo6<#sb.:,>s+...D/..TOTLF4. :fO.PLd....>.GZ3.*_f.z2T.A+?VU..x^DV.J8.D*XF.-w*. Z+U].J|l;.*g]B=\".M,;Q.O`.Z2x..c)((.OM+e&3\"4?zX!Y@h.h`ElKgP[(x..x.$Y..|....XUA..Te:z03917O.vv.?2SnDS.|3.r|r(u.LBoM]0\\Xo.^j.._..H\\w..Jy`6d&r1b.o#_bSG.=P.]U\"m.T:*.q.Z]....?e6.n4-.V@\\;l.UTu.y.(@nP..CE|*..%uI|U/d..4s{...pDDc..R.]<`h.]Qyt+xAkY.D.&..Vvp.qt<.OB#;?.]v.\\GH)XG'2fxh.lY.\").z.Dk..<.cfgcH4,LH@*.RL'WveV@%M!_S.jgTJ.E#..y..\\ NE4P^5Pu.B+k[fu.I.YQ7.3:Dj@..xPJ^5.<jXS3+!lksI.[mD&.@;.wx7l..:.!.NYDHC?.y?.i[ATv=...'8`\"#iJcVH.W.:.7...eo#?-.dP(O..|Z.fUR.[;./OBa.'*..51Px-q.%|&.q.O'+{.O.\"..j'..;\\O\".?s :vO.ggwF9.,..9.6Y3=.N7A.ehx.jaJ.+WX.R(d..`DKO|..NT\\..ok..VyqW.A<.uqt5Mv8C.&B.>6%\"#RcJ<ZX..^=pIE-\"v1.9.4NBm{-aR.4W.3e?t{P.h '.m.wL_.\"p:LV.$..[..^N..>?.#iJz.HQW..bYJ.*V.9&\\)B2E=."
+      }
+    }
+  ],
+  "control": {
+    "plaintext": "THE WORDS ARE THE MAP",
+    "tripletWords": 63,
+    "packedWords": 72,
+    "matchingWordLengths": true,
+    "native57": "44340334422141432302"
+  },
+  "inputs": {
+    "transcription": "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7",
+    "corpus": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+  }
+}
