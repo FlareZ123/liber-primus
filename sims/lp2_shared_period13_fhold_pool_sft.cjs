@@ -98,4 +98,33 @@ function control(corpus,gold,ct){
  }
  return {tests,controlName:gold.sections[target].name};
 }
+
+function assess(corpus,gold,ct,mode){
+ const ex=s=>Array.from(s).filter(x=>corpus.runes.includes(x)).map(x=>corpus.runes.indexOf(x));
+ const sections=gold.sections.map(s=>ex(s.source_text)),idx=gold.sections.findIndex(s=>s.name==="jpg107-167"),P=sections[idx];
+ const C=ct.split("$").map(ex).find(s=>s.length===319);
+ const model=train(sections,mode==="original"?-1:idx);
+ const K=[0,10,4,0,1,19,0,18,4,18,9,0,18],random=rng(0x2546a);
+ let A,B,H,known=null;
+ if(mode==="original"){
+  A=corpus.pages.filter(p=>p.page>=23&&p.page<=26).flatMap(p=>p.indices);
+  const U=corpus.pages.filter(p=>p.page>=54&&p.page<=55).flatMap(p=>p.indices);
+  B=U.slice(0,208);H=U.slice(208);
+ }else if(mode==="matched"){A=C.slice(0,110);B=C.slice(110,219);H=C.slice(219);known=P;}
+ else{A=C.slice(0,110);const J=Array.from({length:L},()=>random()%29),U=encrypt(P.slice(110),J,7);B=U.slice(0,109);H=U.slice(109);known=P;}
+ const top=(units,seed)=>{
+  const candidates=recover(units,model,seed,R),ranking=rerank(units,model,candidates);
+  const t=ranking[0];if(!t)return {count:candidates.length};
+  return {count:candidates.length,key:t.key,score:t.triScore,unigram:t.score,runner:ranking[1]?.triScore,starts:t.vs.map(x=>x.start),ends:t.vs.map(x=>x.end),plaintext:t.vs.map(x=>x.plain),
+  replay:t.vs.every((v,i)=>encrypt(v.plain,t.key,v.start).every((x,j)=>x===units[i][j]))};
+ };
+ const pooled=top([A,B],0x2546),first=top([A],0x2547),second=top([B],0x2548);
+ const held=pooled.key?tri(H,pooled.key,model,false,pooled.ends[1]):null;
+ const secondHeld=second.key?tri(H,second.key,model,false,second.ends[0]):null;
+ const latin=p=>p.map(x=>corpus.translit[x]).join("");
+ return {mode,lengths:[A.length,B.length,H.length],pooled:{...pooled,plaintext:pooled.plaintext?.map(latin)},first:{...first,plaintext:first.plaintext?.map(latin)},second:{...second,plaintext:second.plaintext?.map(latin)},holdout:held&&{score:held.score,perRune:held.score/H.length,plain:latin(held.plain),exact:known?held.plain.filter((x,i)=>x===known[219+i]).length:null,replay:encrypt(held.plain,pooled.key,pooled.ends[1][0]).every((x,i)=>x===H[i])},secondHoldout:secondHeld&&{score:secondHeld.score,perRune:secondHeld.score/H.length,plain:latin(secondHeld.plain),exact:known?secondHeld.plain.filter((x,i)=>x===known[219+i]).length:null},poolTrainExact:known&&pooled.plaintext?pooled.plaintext.flat().filter((x,i)=>x===known[i]).length:null,independentTrainingScore:first.score!=null&&second.score!=null?first.score+second.score:null};
+}
+
 console.log(JSON.stringify(control(JSON.parse(fs.readFileSync("resources/liber-primus/lp2-corpus.json","utf8")),JSON.parse(fs.readFileSync("resources/external/relikd-solved-gp29-native-v1.json","utf8")),fs.readFileSync("resources/transcriptions/lp1_wulfic_canonical.txt","utf8")),null,2));
+
+for(const mode of ["matched","mismatch","original"])console.log(JSON.stringify(assess(JSON.parse(fs.readFileSync("resources/liber-primus/lp2-corpus.json","utf8")),JSON.parse(fs.readFileSync("resources/external/relikd-solved-gp29-native-v1.json","utf8")),fs.readFileSync("resources/transcriptions/lp1_wulfic_canonical.txt","utf8"),mode),null,2));
