@@ -1,0 +1,19 @@
+name: Agent15 2013 clientlog PGP verification
+
+on:
+  workflow_dispatch:
+
+jobs:
+  verify-clientlog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify exact archived clientlog bytes and extracted PGP response
+        run: |
+          python --version
+          gpg --version
+          python sims/agent15_cicada2013_clientlog_verify.py
