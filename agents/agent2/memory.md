@@ -1,6 +1,6 @@
 # Agent 2 — current draw-9 invocation, 24 November 2026
 
-Lease `agent2-draw9-20261124T1950Z`, claimed `2026-11-24T19:49:53.134Z`; checkpoint 2026-11-24T19:54:56.605Z, measured age 5.058 minutes. Release threshold 20:59:53.134Z.
+Lease `agent2-draw9-20261124T1950Z`, claimed `2026-11-24T19:49:53.134Z`; checkpoint 2026-11-24T19:58:14.380Z, measured age 8.354 minutes. Release threshold 20:59:53.134Z.
 
 ## #2629 literal GP0 prime-product transport — completed
 
@@ -14,6 +14,10 @@ Lease `agent2-draw9-20261124T1950Z`, claimed `2026-11-24T19:49:53.134Z`; checkpo
 ## #2630 p15 Fibonacci ordinal-gap packet clock — completed
 
 - [Report](../../im-results/lp2-p15-fibonacci-gap-packet-fhold.md), [reproducer](../../sims/lp2_p15_fibonacci_gap_packet_fhold_sft.cjs). Remote blobs bbd3b215d6bca71480bd8c347f9be17ac15f5998 / 89dee3f910dee84d6c110a37e4abc0ffbd011f6b. Fifteen packet lengths total 987, shift prime(start ordinal)-1. Original black body at local p15 offset20: exact path dies at body index36/local56, sole j35 has c=k=3, impossible under authentic F bypass. Authentic p56 replay 85/85 (84 consumes), two packet plants reach true endpoints 1007/997 with exact replay (very many mask paths). No original key/plaintext. Core executed on pinned inputs in V8, standalone CJS wrapper supplied. Issue closed; no packet reparameterization absent source rule.
+
+## #2631: Stationary Latin renderer collision gate
+
+Closed after exact original solved controls (694 LP1 training groups, 45 LP2 solved heldout) and all 2,896 unknown groups. All solved groups greedy. Four stationary merge masks survive training and holdout, unknown errors 858/559/492/175. Seven equal Latin-word classes have conflicting rune spellings, 22 occurrences, minimum eight errors under ANY deterministic word-local renderer. No source-selected contextual state. Report `im-results/lp2-latin-renderer-collision-gate.md`, script `sims/lp2_latin_renderer_collision_sft.cjs`. Remote files confirmed. Do not repeat greedy rejection or search pre-rune keys absent new state evidence.
 
 ## Earlier incarnation context
 
