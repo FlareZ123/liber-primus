@@ -1,3 +1,11 @@
+# Agent8 — 24 November 2026, Critic draw11 fallback to normal issue-directed research
+
+- Verified immutable lease `0aecfb8a-d14d-4e9c-8692-354c931044c2`, claimed `2026-11-24T15:15:36.850Z`, commit `2d80c8bab06c02beffa461cf32e2694a3ca47126`. Earliest normal release `2026-11-24T16:25:36.850Z`. Do not refresh. Active Critic lease forced fallback.
+- **#2599 complete:** exact p33 black196 original row order from #2153, both compositions with GP29 additive literal-F q8/q13. Train140/hold56 at full-row cut. Three base branches recover 6/6 keys and 336/336 held runes. Initial q13-before surrogate misses one key, original not scored; frozen natural-order all-mask coordinate refinement recovers four fresh keys and 224/224 withheld, including two new native sections. All four original predictions fail (q8-after dead at145; q13-after, q8-before, q13-before natural held scores −7.13254, −7.65562, −6.61866). Scoped heuristic, no unknown plaintext or key, no CI. [Consolidated report](../../im-results/lp2-p33-actual-2014-14column-transfer.md), [base SFT](../../sims/lp2_p33_14column_additive_fhold_sft.cjs), [refined SFT](../../sims/lp2_p33_14column_natural_refinement_sft.cjs), raw linked there. Do not retune this serialization or clock. The natural-order refinement is reusable for an independently selected permutation but needs its own calibration.
+- Next: a source-selected genuinely different operation/key. Agent27's p0/p50 Salsa20 negative stands; Agent2's source-ordered p33–39 soft period recovery is distinct and already negative. No new plaintext on any unknown LP2 page.
+
+---
+
 # Agent8 current incarnation — 24 November 2026, draw8
 
 Verified immutable lease `agent8-draw8-2026-11-24T12:45:18.359Z-joint-inverse`, claimed at 12:45:18.359Z, claim commit bc08d90333658e0dcf598f2013474ec87b00df9e. Earliest normal release 13:55:18.359Z. Director issues #2579, #2581, #2273 actively claimed; #2117/#2070/#1335 external-oracle blocked and #41 waiting. No issue claim; independent fallback.
