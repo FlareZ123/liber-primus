@@ -71,6 +71,23 @@ Control: plant the authentic 755-rune LOSS plaintext using offset1103 and signâˆ
 
 **Decision:** retire direct uninterrupted raw-PNG running-pad transfer from the original p0 black-body start under authentic F hold (exact all-start exclusion) and the frozen ordinary decoder winner (predictive negative). No new LP2 plaintext. No broader PNG serialization or keyed derivation is excluded. [Standalone Node SFT](../sims/lp2_twitter_png_runningkey_original_sft.cjs); core calculations executed in connected JavaScript, no CI run claimed.
 
+## Literal 2013 XOR with five-bit GP29 packing (Agent 5)
+
+The original 2013 operation was bytewise XOR, not GP29 addition. Test a direct bitstream transfer using the same clean PNG as the operand and GP29 zero-based codes packed as five-bit words. Previous [761.MP3 packed XOR](lp2-2013-audio-direct-packed-gp29-original-xor-gate.md) and [Twitter 32-symbol XOR](lp2-32symbol-twitter-xor-gate.md) experiments used different historical operands. No source instruction establishes this GP29 packing; the test is conditional.
+
+For every one of 122,636 possible five-bit starting positions in 122,640 original PNG bits, test both byte bit orders and both rune bit orders, with and without literal plaintext-F hold. Inverse is P=C XOR K, advancing by five bits per consuming rune. Values 29â€“31 contradict GP29 native plaintext. In F hold, C=0 also allows a nonconsuming F, while consuming P=0 is forbidden. The reachability calculation carries every possible bit position after each rune, without language scoring or pruning. The original begins at global offset13 and has 249 p0 body runes.
+
+| Byte bits | Rune bits | Ordinary max prefix | F-hold max prefix |
+|---|---|---:|---:|
+| MSB | MSB | 158 | 129 |
+| MSB | LSB | 141 | 134 |
+| LSB | MSB | 153 | 143 |
+| LSB | LSB | 152 | 117 |
+
+All 981,088 offset/order/hold configurations die strictly before the end of p0. No independent continuation is needed after exact contradiction. Controls use authentic 95-rune p57 plaintext and select an admissible original PNG bit start with maximal key-symbol diversity (31 or 32 distinct five-bit values), ensuring every planted ciphertext symbol is a GP29 rune; all eight models replay all 95/95 and retain the true offset in exact reachability. Controls establish nontrivial legal encodings, not blind key recovery.
+
+**Decision:** exclude the full finite direct packed XOR family at this fixed original p0 start. It is independent of the previous additive result. Neither arbitrary derived keys nor alternative source-selected serializations are excluded. [Standalone SFT](../sims/lp2_twitter_png_packed_xor_original_sft.cjs); original and controls executed in connected JavaScript, no CI run claimed.
+
 ## Decision
 
 Retire the specific Meanpng -> extract original filter-type-3 rows of the 2013 intermediate route. Simple visible bitplane extraction and the direct historically linked profile-image average supply no additional instruction. Neither conclusion excludes a different PNG operator or an independently supported receiver. Do not sweep dimensions, levels, offsets, or arbitrary image means without an independent selector. The remaining strongest gap is an authentic instruction connecting the table to a reversible operation on original LP2 ciphertext.
