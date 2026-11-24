@@ -50,3 +50,29 @@ A separate exact-support follow-up admits original anchor tests only on the alge
 Thus every such continuous q8 model requires at least these three anchors to be outside this finite vocabulary (or the groups are not plaintext words). This is a local necessary condition independent of the all-primer rank search, not an all-language exclusion. Of four original anchors with unique word/triple support, two cannot continue through the local fit, the p54 offset255 candidate COUNTERACTION has no legal frozen continuation, and the p40 offset2644 candidate TRANSCRIPTION produces nonprose at −6.0170 nats/rune. Across all 43 fit-selected candidates, eight admit the 76-rune continuation; best −5.2138 compared to the four true native anchor controls' −2.3720, −2.7323, −3.0378 and −2.3914. These original scores are diagnostic only because the strict calibration failed. No authentic plaintext.
 
 [Reproducer](../sims/lp2_mixed_autokey_q8_algebraic_anchor_sft.cjs) (default strict mode; argument `support` for the separately defined support gate). [Per-anchor support output](lp2-mixed-autokey-q8-algebraic-anchor-support-output.json). Directly executed against GitHub-fetched canonical inputs in connected JS; no CI run claimed.
+
+## Lag-thirteen exact adjacent-word projection join (15:01Z)
+
+A single native group rarely has enough consuming symbols to identify three q13 feedback coefficients. Join two adjacent complete printed groups, allowing all 38,906 dictionary spellings, all compatible F masks, all nonzero a,b and all d. For consuming lag relations, write
+
+`a P_s + P_t + b C_s + d = C_t`, with t=s+13.
+
+Subtract the first relation to remove d. For fixed a, let V1 and V2 be the additive contributions of the two candidate words to the remaining difference vector, B the observed previous-C difference vector and D the observed current-C difference vector. Then V1+V2+bB=D. For nonzero B choose a nonzero pivot B_h and project every row via B_h V_i−B_i V_h, eliminating b. Hash exact projected word signatures; the other word's complementary signature locates all matching pairs. Recover b from the pivot and d from the first relation; when B=0, use the full signature and enumerate all 28 nonzero b. Word groups are separately partitioned by compatible literal-F masks. This is an exact join over all coefficient triples and dictionary pairs, not a sampled pair search. Three deterministic small Cartesian comparisons pass, including zero masks and degenerate B.
+
+For each original chapter select the adjacent complete pair with maximum guaranteed consuming count (both groups ≥5), then longest total physical length, then earliest. Selection does not use language scores or cipher values other than the nonzero count. Exact support counts are uncapped. Local fit and frozen 76-rune prediction use the previous ±48-rune window and are performed only when ≤2,048 supported models; this cap was fixed before original support. Six in-vocabulary native/donor control pairs retain their exact true word/triple, including three whose support exceeds the fitting cap. Native-only fit calibration initially had just one eligible pair (LOSS OF DIVINITY CIRCUMFERENCE PRACTICES, unique support, 76/76 holdout) and correctly stopped original fitting. Two subsequent independent workload-matched plants use the first qualifying in-vocabulary ≥20-consuming plaintext pair after GP rune2300 in Shakespeare and Emerson (donor training only first2000). Their windows are [28761,29109) and [2945,3297), both disjoint from training; fixed independent coefficients/keys, no original scoring used. They both recover the exact pair/triple and fit (117/117 and116/116), and both predict 76/76 withheld. The resulting pre-existing prediction gate passes **3/3, 228/228**, with native/donor suffix scores −2.8844/−2.6811/−2.5091.
+
+| Chapter | Pair offset | Word lengths | Guaranteed consuming | All supported word/triples | Local fit-legal models | Best fit path's frozen holdout |
+| --- | ---: | --- | ---: | ---: | ---: | --- |
+| p0 | 645 | 8+9 | 17 | 750605 | cap | untested |
+| p3 | 678 | 9+10 | 18 | 1170 | 52 | impossible |
+| p8 | 1001 | 11+13 | 22 | 0 | 0 | impossible |
+| p15 | 159 | 13+8 | 21 | 0 | 0 | impossible |
+| p23 | 529 | 14+7 | 20 | 0 | 0 | impossible |
+| p27 | 180 | 10+10 | 20 | 16 | 3 | impossible |
+| p34 | 1141 | 12+8 | 20 | 7 | 0 | impossible |
+| p40 | 1689 | 12+7 | 19 | 255 | 42 | impossible |
+| p54 | 255 | 13+6 | 17 | 169 | 13 | impossible |
+
+The p8,p15,p23 anchor pairs have no legal dictionary pair/triple even before adjacent decoding. p34 has seven anchor supports but none traverses both surrounding fit windows, regardless of F mask. This closes the stated finite intact-pair vocabulary model there, not all mixed-feedback laws. Other tested top-fit paths die on the disjoint holdout; this does not exclude lower-scoring paths. p0's support-only result is not a prediction failure. The additional donor controls were selected after observing the native-only calibration insufficiency and exact original support counts, but prior to original continuation scoring; they did not alter the original anchor selection, fit cap, model, LM or ranking.
+
+[Reproducer](../sims/lp2_mixed_autokey_q13_pair_anchor_join_sft.cjs) · [full output](lp2-mixed-autokey-q13-pair-anchor-join-output.json). Executed in connected JS on canonical repository inputs; no CI claim.
