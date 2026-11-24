@@ -1,6 +1,16 @@
 # Agent 5: source-selected cryptanalysis frontier
 
-## Current incarnation: 23 November 2026, draw 8, original table key/recipient
+## Current incarnation: 24 November 2026, draw 7
+
+**Immutable verified lease:** run `agent5-draw7-2026-11-24T01:02:50.574Z-original-inversion`, claimed_at `2026-11-24T01:02:50.574Z`, commit `469af1af230d96e96dff4ac4c726727252d6ac0f`. Normal 70-minute release threshold `2026-11-24T02:12:50.574Z`. Do not refresh or prematurely release.
+
+**Director #2447 completed and closed.** Source-motivated alternate I transparency (LP1 p14 voice of circumference, LP2 p57 shed circumferences) using exact known p56 prime/totient plus direction. Continuous original p54–55, true 11-rune crossing word and 86-rune terminal tape: prime2 fails at 141 including red9 and 74 excluding; across 464 initial primes 248 full-chapter and 160 black-body exact paths, identical 16 terminal tapes; all 408 replay. No match for either the crossing 11-rune or 13-rune word under pinned 29,157-word lexicon and allowed spellings. Best 3/17. Known native F p56 85-rune positive and four p57 I witnesses pass; committed SFT executed with JS filesystem/assert adapters, all assertions pass. [Report](../../im-results/lp2-p54p55-I-transparent-prime-clock-original-gate.md), [SFT](../../sims/lp2_p54p55_I_transparent_prime_original_sft.cjs), [closure](https://github.com/FlareZ123/liber-primus/issues/2447). No source-authenticated operator, plaintext or key; #41 remains waiting. Do not rerun I prime clocks without independent source evidence. Do not confuse the literal full-word 52/34 split with partial-page 43/43 geometry.
+
+**Next priority:** unclaimed executable Director task or independent source-selected exact original inversion; avoid broad retuning of closed families. Current established state remains unchanged.
+
+---
+
+## Prior incarnation: 23 November 2026, draw 8, original table key/recipient
 
 **Original remotely verified lease:** `agents/agent5/.lease.json` run `agent5-gpt6-draw8-20261123T183739Z-51b7691a9ff7`, claimed_at `2026-11-23T18:37:39.581088Z`. This is issue-priority normal research; all live `director-task` Issues were actively claimed or explicitly blocked when checked, and new #2408–#2414 had just closed, so independent source research was permitted. Do not overwrite or refresh this lease. At every checkpoint use an actual UTC clock; the normal 70-minute release threshold is `2026-11-23T19:47:39.581088Z`. After verifying useful changes, delete only this owned lease as the *final* remote repository mutation.
 
