@@ -69,6 +69,18 @@ function study(inputs,lib){
  // Orientation C=(P+K) or C=(K-P). Rotate alphabet to F=0; 
  // for reciprocal branch negate C, and use equivalent additive shift.
  const fixed=[],blind=[];
+ // Exact historical chart analogue: pRank=28-cRank+(keyRank+1) mod29.
+ // F is held literally; after rotating F to zero and negating C, the
+ // equivalent additive key is -keyRank+2*f.
+ const chartK=title.map(v=>mod(2*f-alphabet.indexOf(v)));
+ const chartC=target.map(v=>mod(-v));
+ const chart=lib.continueFrozen(chartC,split,chartK,lm);
+ const chartPlant=seqs.get('0_koan_1').slice(0,n);let clock=0;
+ const rawChart=chartPlant.map(p=>{if(!p)return 0;const pRank=mod(p+f),shift=alphabet.indexOf(title[clock++%q])+1,cRank=mod(28+shift-pRank);return mod(cRank-f)});
+ assert(String(rawChart.map(v=>mod(-v)))===String(encrypt(chartPlant,chartK)), 'exact historical chart coordinate equivalence');
+ const known=lib.continueFrozen(rawChart.map(v=>mod(-v)),split,chartK,lm);
+ assert(known.legal&&known.replay,'chart native replay');
+ fixed.push({orientation:-1,sign:'historical reverse chart, one-based shift',key:chartK,control:{suffixCorrect:chartPlant.slice(split).filter((v,i)=>v===known.suffix[i]).length,n:n-split},continuation:chart.legal?{legal:true,score:chart.conditionalLogEvidence/(n-split),suffix:render(chart.suffix),prefix:render(chart.prefix),replay:chart.replay}:chart});
  for(const a of [1,-1]){
   const C=target.map(v=>mod(a*v));
   for(const sign of [1,-1]){
