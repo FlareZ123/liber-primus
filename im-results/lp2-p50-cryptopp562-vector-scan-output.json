@@ -1,0 +1,245 @@
+{
+  "source": "https://github.com/weidai11/cryptopp/tree/789f81f048c9bc472c7e7596f49b02eadd6fc1fd/TestVectors",
+  "release": "2013-02-20",
+  "releaseReference": "https://cryptopp.com/release562.html",
+  "tagRebuilt": "2015-11-05",
+  "byteWindowsPerSerialization": 241,
+  "serializations": [
+    "base60",
+    "base59 minus f"
+  ],
+  "literalWindows": 249,
+  "rows": [
+    {
+      "name": "Readme.txt",
+      "chars": 3081,
+      "runs": 0,
+      "digits": 0,
+      "hits": []
+    },
+    {
+      "name": "aes.txt",
+      "chars": 19297,
+      "runs": 115,
+      "digits": 13557,
+      "hits": []
+    },
+    {
+      "name": "all.txt",
+      "chars": 863,
+      "runs": 0,
+      "digits": 0,
+      "hits": []
+    },
+    {
+      "name": "camellia.txt",
+      "chars": 338193,
+      "runs": 5184,
+      "digits": 195584,
+      "hits": []
+    },
+    {
+      "name": "ccm.txt",
+      "chars": 12377,
+      "runs": 123,
+      "digits": 7018,
+      "hits": []
+    },
+    {
+      "name": "cmac.txt",
+      "chars": 1435,
+      "runs": 15,
+      "digits": 716,
+      "hits": []
+    },
+    {
+      "name": "dlies.txt",
+      "chars": 48481,
+      "runs": 102,
+      "digits": 41924,
+      "hits": []
+    },
+    {
+      "name": "dsa.txt",
+      "chars": 50154,
+      "runs": 243,
+      "digits": 44088,
+      "hits": []
+    },
+    {
+      "name": "dsa_1363.txt",
+      "chars": 31495,
+      "runs": 88,
+      "digits": 24994,
+      "hits": []
+    },
+    {
+      "name": "eax.txt",
+      "chars": 2828,
+      "runs": 42,
+      "digits": 1676,
+      "hits": []
+    },
+    {
+      "name": "esign.txt",
+      "chars": 7300,
+      "runs": 30,
+      "digits": 5782,
+      "hits": []
+    },
+    {
+      "name": "gcm.txt",
+      "chars": 11273,
+      "runs": 93,
+      "digits": 8922,
+      "hits": []
+    },
+    {
+      "name": "hmac.txt",
+      "chars": 9585,
+      "runs": 77,
+      "digits": 4142,
+      "hits": []
+    },
+    {
+      "name": "mars.txt",
+      "chars": 2708,
+      "runs": 48,
+      "digits": 1744,
+      "hits": []
+    },
+    {
+      "name": "nr.txt",
+      "chars": 23873,
+      "runs": 121,
+      "digits": 16448,
+      "hits": []
+    },
+    {
+      "name": "panama.txt",
+      "chars": 2904,
+      "runs": 24,
+      "digits": 1536,
+      "hits": []
+    },
+    {
+      "name": "rsa_oaep.txt",
+      "chars": 67614,
+      "runs": 236,
+      "digits": 36936,
+      "hits": []
+    },
+    {
+      "name": "rsa_pkcs1_1_5.txt",
+      "chars": 4538,
+      "runs": 19,
+      "digits": 1754,
+      "hits": []
+    },
+    {
+      "name": "rsa_pss.txt",
+      "chars": 82554,
+      "runs": 247,
+      "digits": 48812,
+      "hits": []
+    },
+    {
+      "name": "rw.txt",
+      "chars": 14421,
+      "runs": 40,
+      "digits": 11988,
+      "hits": []
+    },
+    {
+      "name": "salsa.txt",
+      "chars": 53830,
+      "runs": 301,
+      "digits": 48358,
+      "hits": []
+    },
+    {
+      "name": "seal.txt",
+      "chars": 8736,
+      "runs": 2,
+      "digits": 8232,
+      "hits": []
+    },
+    {
+      "name": "seed.txt",
+      "chars": 858,
+      "runs": 12,
+      "digits": 384,
+      "hits": []
+    },
+    {
+      "name": "sha.txt",
+      "chars": 2641,
+      "runs": 20,
+      "digits": 1472,
+      "hits": []
+    },
+    {
+      "name": "sha3.txt",
+      "chars": 111917,
+      "runs": 527,
+      "digits": 100344,
+      "hits": []
+    },
+    {
+      "name": "shacal2.txt",
+      "chars": 346882,
+      "runs": 3072,
+      "digits": 262144,
+      "hits": []
+    },
+    {
+      "name": "sosemanuk.txt",
+      "chars": 1185,
+      "runs": 5,
+      "digits": 576,
+      "hits": []
+    },
+    {
+      "name": "tea.txt",
+      "chars": 17789,
+      "runs": 128,
+      "digits": 4096,
+      "hits": []
+    },
+    {
+      "name": "ttmac.txt",
+      "chars": 1204,
+      "runs": 11,
+      "digits": 464,
+      "hits": []
+    },
+    {
+      "name": "vmac.txt",
+      "chars": 1698,
+      "runs": 11,
+      "digits": 352,
+      "hits": []
+    },
+    {
+      "name": "wake.txt",
+      "chars": 863,
+      "runs": 3,
+      "digits": 672,
+      "hits": []
+    },
+    {
+      "name": "whrlpool.txt",
+      "chars": 1846,
+      "runs": 9,
+      "digits": 1152,
+      "hits": []
+    }
+  ],
+  "totals": {
+    "files": 32,
+    "chars": 1284423,
+    "runs": 10948,
+    "digits": 895867,
+    "hits": 0
+  }
+}
