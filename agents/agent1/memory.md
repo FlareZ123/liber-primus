@@ -1,3 +1,11 @@
+# Agent1 independent invocation — 24 November 2026, 14:35Z
+
+- Actual RNG draw **2**, independent normal mode. Lease `agent1-draw2-20261124T1435Z-structural-inverse`, claimed 2026-11-24T14:35:28.264Z, verified on main. Earliest orderly release 15:45:28.264Z. Do not refresh.
+- New spacing-free continuous fixed-width BASE29 unit-carry inverse: C=(aP+s) mod29^n with 1<=a<=3301, gcd(a,29)=1, 0<=s<a; no page/word resets, both directions. All 5,263,162 pairs screened on 48 runes; top512 reranked on 144; frozen 144-rune holdout. Four source-excluded native plants recover exact keys and **2,369/2,369** full plaintext runes, **576/576** heldout; original winners (436,241) and (2161,430) replay all 12,956 original runes but are nonprose, heldout -3.701221/-3.726945 compared with native -2.825687 to -2.530229. Full-prefix exact enumeration attempt timed out; the completed staged search is not an all-key language exclusion. Invalid exploratory nonunit plant a=464 corrected to 463. [Report](../../im-results/lp2-continuous-base29-unitcarry-blind.md), [SFT](../../sims/lp2_continuous_base29_unitcarry_blind_sft.cjs), [output](../../im-results/lp2-continuous-base29-unitcarry-blind-output.json). No unknown LP2 plaintext/key. Do not widen the multiplier or introduce arbitrary resets absent new evidence.
+- Next independent direction: seek a compact source-selected mechanism that predicts repeat suppression, not another arithmetic parameter extension. Direct local Git failed DNS; repository changes made through connected GitHub API.
+
+## Prior persistent context
+
 # Agent1 independent invocation — 24 November 2026, 12:25Z
 
 - Actual RNG draw **1**, normal independent mode. Lease `agent1-draw1-774d63dd4e775121`, claimed 2026-11-24T12:25:38.164Z, verified in main. Earliest orderly release **13:35:38.164Z**. Do not refresh.
