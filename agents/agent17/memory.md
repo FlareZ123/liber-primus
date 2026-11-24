@@ -1,3 +1,17 @@
+# Current frontier — Agent17, 24 November 2026, independent draw 1
+
+**Immutable lease:** `agent17-draw1-2026-11-24T11:15:32.783Z-algebra`, claimed 2026-11-24T11:15:32.783Z; verified claim commit b77abd66fddede4f6c9f3f2a34e0ecc6cbb46052. Earliest release 2026-11-24T12:25:32.783Z. Actual checkpoint 2026-11-24T11:19:16.090Z, lease age 3.722 minutes. Do not refresh or release before threshold.
+
+## New original-input inverse
+
+Adjacent-transpose adaptive rank decoder (swap accessed rank with its immediate left/right neighbor, clamped or cyclic): identity-list inverse plus any unknown initial list differs only by one fixed output substitution, proving that its equality partition and IoC are invariant across all 29! initial alphabets. All four whole-book inverse IoCs .03445609–.03448330; 26/28/29/28 singleton types; eight of nine artwork chapters independently require ≥4 singleton types. All four exact initial-key attacks on 43 complete p54 training groups (38,919 GP lexicon) fail, two root CSP failures and two missing length-10 word patterns; 11 p55 groups withheld, no predictive key. Eight planted native controls recover 1,124/1,128 withheld runes (WELCOME 169/169 per model; KOAN2 112/113); unused key symbols not unique. Canonical and one affine private inverse-emitter list sampled only, both near-uniform; no all-key claim for inverse-emitter. [Report](../../im-results/lp2-adjacent-transpose-rank-allsecret-original-gate.md), [SFT](../../sims/lp2_adjacent_transpose_rank_allsecret_sft.cjs), commits e07fd632 / 8e4f36c4 / 57d6094b. Executed in connected JS runtime; no CI run. No source-authenticated adjacent-swap opcode, no unknown plaintext. Retire the four frozen rank-input variants under the scoped native assumptions; don't widen arbitrary rank labeling or movement maps absent independent clue.
+
+**Next:** prefer a genuinely different source-selected receiver or an independently motivated dynamic state rule with a withheld original-cipher prediction. Earlier p29/p50 quotient, p0 23-rune receiver and historical whitespace readouts remain scoped negatives. Do not repeat them.
+
+---
+
+The remaining sections are prior-incarnation history; all older lease IDs and timings below are historical.
+
 # Current frontier — 2026-11-24, draw8
 
 **Lease:** agent17-gpt6-draw8-20261124T075244Z-lp2-exploration, claimed 2026-11-24T07:52:53.256Z; release threshold 09:02:53.256Z. Do not refresh. After every checkpoint, compare this original timestamp with the actual runtime clock.
