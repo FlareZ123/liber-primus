@@ -1,6 +1,6 @@
 # LP2 no-repeat escape-channel capacity: source-visible carrier audit
 
-**Status:** boundary capacity is sufficient for carrying arbitrary rune values *if plaintext spacing is not also arbitrary*. Two concrete natural rank codecs have now been tested against original runes and separators, including a joint rune-and-plaintext-spacing inverse. Its source readout is unreadable; a common five-repeat version is impossible on eight pages. No source-selected historical boundary decoder or recovered unknown plaintext.
+**Status:** boundary capacity is sufficient for carrying arbitrary rune values *if plaintext spacing is not also arbitrary*. Two concrete natural rank codecs have now been tested against original runes and separators, including a joint rune-and-plaintext-spacing inverse. Its source readout is unreadable; a common five-repeat version is impossible on eight pages. A variable-length repeat-delimited radix inverse eliminates the fixed-length side-channel requirement, but its independent original-language holdout fails. No source-selected historical boundary decoder or recovered unknown plaintext.
 
 ## Finding
 
@@ -172,9 +172,36 @@ Copied floral artwork is not counted as an independent event. Even the 275-bit e
 | 54 | 232 | 2 | 49 | 168.251 | 6.264 | 21.309 |
 | 55 | 76 | 1 | 16 | 52.925 | 1.918 | 8.604 |
 
+## Repeat-delimited variable-length radix inverse (24 November 2026, Agent25)
+
+The fixed-length capacity deficit is not a universal obstacle: a variable-length decoder can carry the repeat-delimited framing intrinsically, without quotient bits, hidden sidecar, or fixed page/line lengths. This tests an independent, executable **rune-tape bijection**, motivated by the unusually low equality rate and the authentic historical BASE29 positional conversion. No original instruction fixes adjacent equality as a delimiter, so this is an exploratory architecture, not an authenticated operation.
+
+Frozen in [#2273](https://github.com/FlareZ123/liber-primus/issues/2273) before inspecting the decoded text:
+
+- Use the full continuous GP0 ciphertext tape, retaining its first rune as a seed header. Each subsequent equality with its immediate predecessor ends a block, with the repeat itself a framing symbol.
+- For each nonrepeat successor x with previous rune p, form the base-28 digit d=x−1[x>p], i.e. rank in the ordinary GP chart with p omitted. Convert the complete digit block from base28 to base29 in ordinary big-endian positional order, preserving the count of leading zero digits (including an all-zero or empty block).
+- For encoding, reverse the base conversion, reconstruct each successor as x=d+1[d≥p], and insert an equal rune at each decoded block boundary. There is no fitted start, salt, quotient, page reset, or hidden key. The original printed layout is independent of this rune-only transform and is **not** claimed to be decoded; seed and block breaks are retained in the decoded message format.
+
+The complete original **12,956-rune tape** has seed GP0=15 and 86 delimiters (87 blocks). Its inverse contains **12,756 GP29 plaintext-candidate digits**, 200 fewer than the source (one header, 86 delimiter transitions, and 113 net radix-length reductions). The inverse replays all 12,956 original runes exactly. Two native solved sections held out of the language model (WELCOME 515 and second KOAN 319 runes) are encoded in fixed 128-rune blocks with different seeds, then recovered **834/834** exactly, including every block boundary. Their ciphertext lengths are 525 and 325, respectively.
+
+Train the smoothed GP29 trigram model on the other seven solved source sections only, add 0.5 to each conditional rune count, and compare complete original blocks wholly inside the predeclared physical p0–2 and p16–21 ranges. Shuffle the nonrepeat rank digits within each block 128 times per range, using deterministic xorshift32 seed 3301, preserving each block's digit multiset and length before conversion.
+
+| Evaluation | Decoded runes | IoC | Trigram nats/rune | Within-block shuffle scores ≥ observed |
+| --- | ---: | ---: | ---: | ---: |
+| Native WELCOME held-out positive | 515 | 0.059416 | −2.778925 | — |
+| Native second KOAN held-out positive | 319 | 0.069813 | −2.648701 | — |
+| Original p0–2, four complete blocks | 643 | 0.033817 | −3.432625 | 55/128 |
+| Original p16–21, eight complete blocks | 1,387 | 0.034475 | −3.434132 | 77/128 |
+| Full original rune tape, 87 blocks | 12,756 | 0.034496 | −3.434080 | — |
+
+Both original ranges have visibly nonlinguistic outputs and ordinary shuffle-range scores (p0–2 shuffle range −3.457645 to −3.401791; p16–21 −3.448871 to −3.412536). The fixed receiver's beginning reads OLEOUUJEAGEOUNGPTHAEHLOETHAEUTHGPTHNADBDOOEFONASEAOYAEWUAEPTRIIAIATH; the withheld region starts THLPBTHTHCTRGWOFEAAEOFBNPNPANGMJEOBMLYFCAOTJBEAETETRTUITHWIXY. Exact forward replay validates the bijection, not the choice of radix or framing.
+
+**Decision:** retire this specific variable-length repeated-transition framing plus canonical predecessor-excluded positional radix law. The low repeat rate alone does not select a source decoder even when same-length capacity obstructions are removed. This is not an exclusion of all variable-length, compressed, or source-selected constrained codes. No unknown plaintext recovered. The executable [SFT](../sims/lp2_repeat_delimited_radix_inverse_sft.cjs) was run directly in a JavaScript runtime against canonical corpus blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165` and native donor blob `1b064ef6d85819b7d96adaff31a82d1ec551598f`; script commit [937529f](https://github.com/FlareZ123/liber-primus/commit/937529fe979ba40d9d3738e64b83829ec8064671).
+
 ## Decision and next research gate
 
 - The tested physical-line-framed exact-repeat rank is **rejected** under both natural line-start conventions: it yields no long dictionary plaintext and needs 662–711 bits for universal GP29 recovery, versus at most 55 bits in the simple residual-line-end model.
+- The tested repeat-delimited variable-length predecessor-excluded radix inverse is **rejected** on both independent original regions, despite exact rune-tape replay and 834/834 solved-native plant recovery; length variation alone does not select a cipher.
 - A blanket claim that every 29-to-28 no-repeat encoder is impossible is still **not** supported. The printed word-boundary position space has enough combinatorial capacity to carry missing information in principle.
 - Red/special marks alone are insufficient, even under generous independence assumptions.
 - No explicit, historically motivated, reversible plaintext-to-word-boundary mapping has been found. The 9,638-bit figure is a ceiling on possible arrangements, not evidence of a hidden message.
