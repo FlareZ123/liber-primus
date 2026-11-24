@@ -16,6 +16,8 @@ function experiment(corpus,english){
   const chap=corpus.pages.slice(27,33).flatMap(p=>p.indices);
   const seam=chap.slice(-42).concat(chap.slice(0,34)).slice(1);
   const art=corpus.pages[32].indices.slice(20,95);
+  const moth=corpus.pages[53].indices;
+  if(moth.length!==179)throw Error("p53 source invariant");
   if(crib.length!==75||crib.filter(x=>x===null).length!==16||body.length!==75||chap.length!==1433||seam.length!==75||art.length!==75||crib.some(x=>x===undefined))throw Error("source invariant");
   function encode(t){
     const s=t.toUpperCase().replace(/QU/g,"CW").replace(/V/g,"U").replace(/K/g,"C").replace(/Z/g,"S").replace(/ING/g,"NG").replace(/IO/g,"IA");
@@ -45,9 +47,12 @@ function experiment(corpus,english){
     if(mask.some((v,i)=>v!==null&&best.seq[i]!==v))throw Error("mask violated");
     return best;
   }
-  const results=[["p27-cyclic-seam",seam],["p32-art-offset19",art]].map(([name,c])=>{
+  const receivers=[["p27-cyclic-seam",seam],["p32-art-offset19",art],["p53-page-start",moth.slice(1,76)],["p53-first-complete-word",moth.slice(0,75)],["p53-terminal-marker",moth.slice(104,179)]];
+  const results=receivers.map(([name,c])=>{
     const mask=transfer(c),best=solve(mask);
-    return {name,mask:render(mask),completion:render(best.seq),score:best.score};
+    const xorOutside=crib.flatMap((p,i)=>p!==null&&(p^body[i]^c[i])>=29?[i]:[]);
+    const xorBest=xorOutside.length?null:solve(crib.map((p,i)=>p===null?null:p^body[i]^c[i]));
+    return {name,mask:render(mask),completion:render(best.seq),score:best.score,xorOutside,xorScore:xorBest?.score??null,xorCompletion:xorBest?render(xorBest.seq):null};
   });
   const controls=[];
   for(let j=0;j<8;j++){
