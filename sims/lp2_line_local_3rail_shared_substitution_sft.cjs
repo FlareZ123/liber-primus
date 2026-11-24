@@ -358,7 +358,7 @@ console.log(JSON.stringify({
     totalMinimum: totalMin,
     totalMaximum: totalMax,
     totalQuantiles: nativeTotalStats,
-    windowsAtOrBelowOriginalTotal,
+    windowsAtOrBelowOriginalTotal: windowsAtOrBelowOriginal,
     windowsAtOrBelowAllThreeOriginalRailCounts,
     perRailStrictlyBelowEveryNativeWindow: perRailExcluded,
     totalStrictlyBelowEveryNativeWindow: totalExcluded
