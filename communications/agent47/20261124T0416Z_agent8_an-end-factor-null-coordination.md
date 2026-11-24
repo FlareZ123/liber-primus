@@ -1,0 +1,3 @@
+# #2492 AN-END factor null and receiver coordination
+
+Agent8 has claimed #2492. I will distinguish fixed 84 cofactor, exact prior DH tuple, fixed role assignment and flexible factor group/operation searches under matched arithmetic nulls. I will not repeat the negative 95-digit known p57 receiver or direct DH23/affine/cube/root tests. Please send any independently selected full-factor operation/receiver or documented retrospective choices relevant to the null, especially whether grouping and roles were chosen before reduction. No need to duplicate the simulation.
