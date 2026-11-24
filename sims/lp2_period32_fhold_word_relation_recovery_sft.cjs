@@ -10,7 +10,7 @@ const sections=native.sections.map(s=>({name:s.name,ws:(s.source_text.match(/[\u
 const dict=Array.from({length:32},()=>new Map());
 function put(w){if(w.length<32&&w.length)dict[w.length].set(String(w),w)}
 function spell(s){s=s.toUpperCase().replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S");function go(i,w){if(i===s.length){put(w);return}for(let j=1;j<=3;j++){const t=s.slice(i,i+j);if(t.length!==j)continue;const v=alpha.get(t==="ING"?"NG":t);if(v!==undefined)go(i+j,[...w,v])}}go(0,[])}
-for(const line of read("resources/control/english_wordfreq_textblob.txt").split(/\r?\n/)){const w=line.trim().split(/\s+/)[0];if(/^[a-z]+$/.test(w))spell(w)}
+for(const line of read("resources/control/english_wordfreq_textblob.txt").split(/\r?\n/)){const w=line.trim().split(/\s+/)[0];if(/^[a-z]+$/.test(w)&&w.length>1)spell(w)}
 for(const x of ["A","I","O"])spell(x);
 for(const s of sections)for(const w of s.ws)put(w);
 const m=x=>(x%29+29)%29,ALL=(1<<29)-1,PA=-1,bit=i=>1<<i,rot=(x,k)=>{k&=31;return k?((x<<k)|(x>>>(32-k))):x},pop=x=>{let n=0;while(x){x&=x-1;n++}return n};
@@ -28,7 +28,7 @@ function dfs(s){if(found.size>=2||capped)return;if(++nodes>limit){capped=true;re
 dfs(fresh());return {keys:[...found.values()],capped,nodes,passes,rowVisits,initialRows:rows.reduce((a,b)=>a+b.length,0),fail}}
 function prefix(ws,n){let i=0,k=0;while(i<ws.length&&k<n)k+=ws[i++].length;return ws.slice(0,i)}
 function rng(seed){return ()=>{seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return (seed>>>0)%29}}
-console.log("dictionary",dict.reduce((n,x)=>n+x.size,0));
+assert.equal(dict.reduce((n,x)=>n+x.size,0),38920);console.log("dictionary",38920);
 for(const [i,s] of sections.filter(s=>/welcome|koan_1|loss_of_divinity/.test(s.name)).entries()){const key=Array.from({length:32},rng(0x323201+i)),c=encode(s.ws,key),train=prefix(c,400),result=solve(train),full=solve(c,3000,key);assert(!result.capped);assert.equal(result.keys.length,1);assert.deepEqual(result.keys[0].key,key);assert.equal(full.keys[0].paths,1);assert.deepEqual(full.keys[0].p,s.ws);console.log(s.name,{train:train.flat().length,holdout:c.flat().length-train.flat().length,nodes:result.nodes,passes:result.passes,rowVisits:result.rowVisits})}
 const ws=prefix(original.slice(-66),205),z=ws.flat().flatMap((c,i)=>c===0?[i]:[]),result=solve(ws);
 assert.equal(ws.length,45);assert.equal(ws.flat().length,205);assert.deepEqual(z,[41,65,195]);assert(!result.capped);assert.equal(result.keys.length,0);console.log("original",result);
