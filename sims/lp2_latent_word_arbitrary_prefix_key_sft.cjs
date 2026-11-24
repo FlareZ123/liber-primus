@@ -47,16 +47,53 @@ function run(gp,gold,dict){
   const survivors=[...terms(states[c.length])];
   return {complete:true,visits,inserts,processed,farthest,stats:stats.slice(-8),survivors};
  }
- const key=Array.from({length:maxLength},(_,i)=>(i*i*7+11*i+19)%29);
- const getWords=name=>native.get(name).filter(w=>w.length!==1||[10,24].includes(w[0]));
- const w=getWords("0_welcome");let split=0,len=0;while(len<80){len+=w[split++].length}
- const a=w.slice(0,split),b=w.slice(split,split+10),fit=encrypt(a,key),held=encrypt(b,key);
- const pc=recover(fit,{allowPartial:false});
- function compact(r){const {survivors,...rest}=r;return {...rest,survivors:survivors?.length,keys:survivors?.slice(0,10).map(x=>Array.from(x.key,c=>c.charCodeAt(0)-65))}}
- const trueKey=key.map(x=>String.fromCharCode(65+x)).join("");
- const containsTrue=pc.survivors?.some(s=>trueKey.startsWith(s.key));
- const original=gp.pages.find(p=>p.page===0).indices;
- const unknown=recover(original.slice(0,80));
- return {lexicon:words.size,maxLength,control:{fitRunes:fit.length,holdoutRunes:held.length,containsTrue,...compact(pc)},original:{fitRunes:80,...compact(unknown)}};
+
+ /** Decode a held-out segment without learning any new key positions. */
+ function predict(c,key){
+   const n=c.length,best=new Float64Array(n+1).fill(-Infinity),back=Array(n+1);
+   best[0]=0;
+   for(let i=0;i<n;i++)if(Number.isFinite(best[i])){
+     function walk(j,k,t){
+       if(t.term&&best[i]+t.term.score>best[j]){best[j]=best[i]+t.term.score;back[j]={i,word:t.term}}
+       if(j===n)return;
+       const x=c[j],f=t.kids.get(0);
+       if(x===0&&f)walk(j+1,k,f);
+       if(k<key.length){
+         const p=mod(x-key[k]),child=t.kids.get(p);
+         if(p&&child)walk(j+1,k+1,child)
+       }
+     }
+     walk(i,0,root)
+   }
+   if(!Number.isFinite(best[n]))return null;
+   const out=[];for(let j=n;j>0;){const b=back[j];out.unshift(...b.word.p);j=b.i}
+   return out;
+ }
+ function compact(r){
+   const {survivors,...rest}=r;
+   return {...rest,survivors:survivors?.length,keys:survivors?.slice(0,10).map(x=>Array.from(x.key,c=>c.charCodeAt(0)-65))}
+ }
+ function control(name,target,salt){
+   const key=Array.from({length:maxLength},(_,i)=>(i*i*7+11*i+salt)%29);
+   const w=native.get(name).filter(w=>w.length!==1||[10,24].includes(w[0]));
+   let split=0,len=0;while(len<target){len+=w[split++].length}
+   const a=w.slice(0,split),b=w.slice(split,split+10),fit=encrypt(a,key),held=encrypt(b,key);
+   const pc=recover(fit,{allowPartial:false});
+   const trueKey=key.map(x=>String.fromCharCode(65+x)).join("");
+   const containsTrue=pc.survivors?.some(s=>trueKey.startsWith(s.key));
+   const recovered=pc.survivors?.length===1?Array.from(pc.survivors[0].key,c=>c.charCodeAt(0)-65):null;
+   const pred=recovered?predict(held,recovered):null;
+   const plain=b.flat(),hits=pred?pred.filter((x,i)=>x===plain[i]).length:0;
+   const requiredHeldoutKey=Math.max(...b.map(w=>w.filter(p=>p!==0).length));
+   return {name,fitRunes:fit.length,holdoutRunes:held.length,requiredHeldoutKey,containsTrue,recoveredPrefix:recovered,heldoutHits:hits,heldoutExact:!!pred&&hits===plain.length,...compact(pc)};
+ }
+ const controls=[control("0_welcome",80,19),control("0_koan_1",160,7)];
+ const chapterPages=[0,3,8,15,23,28,33,40,54];
+ const original=chapterPages.map(page=>{
+   const c=gp.pages.find(p=>p.page===page).indices.slice(0,80);
+   return {page,fitRunes:c.length,...compact(recover(c))}
+ });
+ return {lexicon:words.size,maxLength,controls,original};
+
 }
 console.log(JSON.stringify(run(JSON.parse(read('resources/liber-primus/lp2-corpus.json')),JSON.parse(read('resources/external/relikd-solved-gp29-native-v1.json')),read('resources/control/english_wordfreq_textblob.txt')),null,2));
