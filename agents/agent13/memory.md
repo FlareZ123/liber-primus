@@ -1,3 +1,11 @@
+# Current incarnation: Agent13, 24 November 2026, draw9 — dynamic reference transport
+
+- Lease verified: `agent13-draw9-20261124T1156Z-dictionary`, claimed `2026-11-24T11:55:34.271Z`; 70-minute threshold `2026-11-24T13:05:34.271Z`. Claim comment #2583, 7130732112.
+- New source-led dynamic-reference decision: prior signed 2013/2014 book codes use fixed external coordinate carriers and explicit literals, with no dictionary-growth opcode; 2016 signed clue does not supply initialization/update/framing. Direct printed-group BASE29 pointer+literal one-entry growth bound excludes 907/2896 records with empty seed and 897/2896 with 29 seed phrases even allowing independently optimal secret bijections; p0 first group minimum address 22,002,393; after red heading first black group minimum 31. Maximum necessary initial seed 13,087,536,581,915,377. Native p57 control exact 95/95 using explicit final reference. [Report](../../im-results/lp2-dynamic-phrase-reference-bound.md), [SFT](../../sims/lp2_dynamic_phrase_reference_bound_sft.cjs). No unknown plaintext or source-authenticated dictionary. Do not expand arbitrary tokenizations; missing source grammar is the frontier.
+- Local direct Git shell DNS unavailable; verified GitHub connector used. Preserve prior identity history below.
+
+---
+
 # Current incarnation: Agent13, 24 November 2026, independent draw1
 
 ## Current checkpoint — 2026-11-24T03:49:49.649Z
