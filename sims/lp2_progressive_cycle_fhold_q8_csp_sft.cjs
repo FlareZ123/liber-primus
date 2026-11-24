@@ -4,7 +4,7 @@ function experiment(inputs) {
  const [gp,trans,lex,native,lp1]=[JSON.parse(inputs[0]),inputs[1],inputs[2],JSON.parse(inputs[3]),inputs[4]];
  const mod=x=>(x%29+29)%29,check=(x,m)=>{if(!x)throw Error(m)};
  const map=new Map(gp.runes.map((x,i)=>[x,i])),alpha=new Map(gp.translit.map((x,i)=>[x,i]));
- const parse=(s,layout=false)=>(s.replace(layout?/[\s/%]/g:/\s/g,"").match(/[\u16a0-\u16ff]+/g)||[]).map(w=>Array.from(w,x=>map.get(x)));
+ const parse=(s,layout=false)=>((layout?s.replace(/[\s/%]/g,""):s).match(/[\u16a0-\u16ff]+/g)||[]).map(w=>Array.from(w,x=>map.get(x)));
  const originalWords=parse(trans,true).slice(0,2896),original=originalWords.slice(-66);
  check(String(originalWords.flat())===String(gp.pages.slice(0,56).flatMap(p=>p.indices)),"source");
  check(original.flat().length===308,"chapter");
@@ -53,7 +53,7 @@ function experiment(inputs) {
  }return result;}
  const q=8,controlStart=solved[3].findIndex((w,i,ws)=>w.length>=8&&ws[i+1]?.length>=6&&ws.slice(i).flat().length>=250);
  check(controlStart===135,"layout control");
- const control=solved[3].slice(controlStart),key=[23,10,1,10,9,10,16,26],drift=7,plant=encode(control,key,drift);
+ const control=solved[3].slice(controlStart),key=[4,27,15,8,21,0,12,19],drift=7,plant=encode(control,key,drift);
  const pc=sweep(plant,q),pa=assess(pc,plant,q,control);
  const oc=sweep(original,q,true),oa=assess(oc,original,q);
  // A real authentic LP1 check with the source-known WELCOME key. Select
