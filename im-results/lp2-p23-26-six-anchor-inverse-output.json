@@ -1,0 +1,627 @@
+{
+  "controls": [
+    {
+      "label": "0_welcome",
+      "trainRunes": 307,
+      "holdRunes": 208,
+      "anchors": [
+        {
+          "i": 30,
+          "len": 9,
+          "nonF": 9
+        },
+        {
+          "i": 46,
+          "len": 9,
+          "nonF": 9
+        },
+        {
+          "i": 50,
+          "len": 9,
+          "nonF": 9
+        },
+        {
+          "i": 54,
+          "len": 10,
+          "nonF": 9
+        },
+        {
+          "i": 66,
+          "len": 10,
+          "nonF": 9
+        },
+        {
+          "i": 70,
+          "len": 9,
+          "nonF": 9
+        }
+      ],
+      "keyClasses": 935,
+      "joins": 970,
+      "hashChecks": 1295431,
+      "phaseCases": 65,
+      "feasible": 411,
+      "scored": 1428,
+      "oracleGenerated": true,
+      "oracleSeen": true,
+      "selected": {
+        "key": [
+          8,
+          26,
+          0,
+          17,
+          19,
+          6,
+          7,
+          22,
+          22,
+          7,
+          6,
+          19,
+          17
+        ],
+        "score": 0.9739413680781759,
+        "runner": 0.9283387622149837,
+        "baseWords": 73,
+        "expandedWords": 73,
+        "prefix": "WELCOME WELCOME PILGRIM TO THE GREAT JOURNEY TOWARD THE END OF ALL THNGS IT IS NOT AN EASY TRIP BUT FOR THOSE WHO FIND THEIR WAY HERE IT IS A NECESSARY ONE ALONG THE WAY YOU WILL FIND AN END TO ALL STRUGGLE AND SUFFERNG YOUR INNOCENCE YOUR ILLUSIANS YOUR CERTAINTY AND YOUR REALITY ULTIMATELY YOU WILL DISCOUER AN END TO SELF IT IS THROUGH THIS PILGRIMAGE THAT WE SHAPE OURSELUES AND OUR REALITIES",
+        "end": [
+          1
+        ],
+        "ties": 1,
+        "correctKey": true,
+        "correctPrefix": 307,
+        "continuations": [
+          {
+            "phase": 1,
+            "legal": true,
+            "score": 0.9855769230769231,
+            "text": "JOURNEY DEEP WITHIN AND YOU WILL ARRIUE OUTSIDE LICE THE INSTAR IT IS ONLY THROUGH GONG WITHIN THAT WE MAY EMERGE WIDSOM YOU ARE A BENG UNTO YOURSELF YOU ARE A LAW UNTO YOURSELF EACH INTELLIGENCE IS HOLY FOR ALL THAT LIUES IS HOLY AN INSTRUCTIAN COMMAND YOUR OWN SELF",
+            "correct": 208,
+            "runes": 208,
+            "ties": 2
+          }
+        ]
+      }
+    },
+    {
+      "label": "0_koan_1",
+      "trainRunes": 502,
+      "holdRunes": 276,
+      "anchors": [
+        {
+          "i": 32,
+          "len": 7,
+          "nonF": 7
+        },
+        {
+          "i": 69,
+          "len": 7,
+          "nonF": 7
+        },
+        {
+          "i": 73,
+          "len": 9,
+          "nonF": 8
+        },
+        {
+          "i": 94,
+          "len": 8,
+          "nonF": 7
+        },
+        {
+          "i": 102,
+          "len": 8,
+          "nonF": 8
+        },
+        {
+          "i": 135,
+          "len": 9,
+          "nonF": 8
+        }
+      ],
+      "keyClasses": 518,
+      "joins": 518,
+      "hashChecks": 194946,
+      "phaseCases": 6,
+      "feasible": 37,
+      "scored": 151,
+      "oracleGenerated": false,
+      "oracleSeen": false,
+      "selected": {
+        "key": [
+          23,
+          7,
+          11,
+          6,
+          19,
+          6,
+          25,
+          22,
+          28,
+          1,
+          2,
+          13,
+          25
+        ],
+        "score": 0.09163346613545817,
+        "runner": 0.09063745019920319,
+        "baseWords": 23,
+        "expandedWords": 23,
+        "prefix": "S UIAEOS U WUN GEABHXXE RN EOL UNG AEEAEAXOE THIAH U WUSEAEAF EW TBNGG NI CA HXYX NGF JB THXHFJW IANGIA TCAE NMS PTHAE IUEAOIF GP SCTHUG UGDS BFGJNG RD NGBAFAR OR BLJDWSR NYYD OR NGEAAETWI AEON SALR REAY IR SLN UXO IAEO EAXE LUR ON NNNGEO NEOCT SNE BIAA CAEGOEOER WYN EOYEO OOTH OEIW BIRXGH IN SBTAEU EEOEA AEJ ENGCMN YICIIA HG EOES THRTHEOY FOOE U WAEPANB IJIA XETHYIAJB T AL I SHPRLLBAEP NJM CF NEOCT SNE TY SOB OEIW WOM UNGJ IAAPNGAELIA EOE HUONEOI WNE YHEA YNGW AUY PITDLM YO RFFSEA XANGW SITHFAXGEA DL AEUY LPHFOY SGAA LOEHY FBOEMSUY JD UICJYJTHE C CM IA PWLXP AEAEC YMY IE HSNGT UJHB IHEACPDNG IOEL SST NGIAJ AWD PNOE EAEOAE IIAAE BHG EOTTIAOEF PP TPEOCEO JHNO EOFEENG CTH THNGUFCF APTIP XFONR OE UTHMETH OF GOEBYHX PB PRIESTHOOD ETILYLI",
+        "end": [
+          2
+        ],
+        "ties": 2,
+        "correctKey": false,
+        "correctPrefix": 61,
+        "continuations": [
+          {
+            "phase": 2,
+            "legal": false
+          }
+        ]
+      }
+    },
+    {
+      "label": "0_loss_of_divinity",
+      "trainRunes": 401,
+      "holdRunes": 354,
+      "anchors": [
+        {
+          "i": 3,
+          "len": 8,
+          "nonF": 8
+        },
+        {
+          "i": 5,
+          "len": 13,
+          "nonF": 12
+        },
+        {
+          "i": 6,
+          "len": 9,
+          "nonF": 9
+        },
+        {
+          "i": 15,
+          "len": 10,
+          "nonF": 10
+        },
+        {
+          "i": 29,
+          "len": 8,
+          "nonF": 8
+        },
+        {
+          "i": 67,
+          "len": 11,
+          "nonF": 11
+        }
+      ],
+      "keyClasses": 529,
+      "joins": 539,
+      "hashChecks": 1402606,
+      "phaseCases": 57,
+      "feasible": 19,
+      "scored": 86,
+      "oracleGenerated": true,
+      "oracleSeen": true,
+      "selected": {
+        "key": [
+          17,
+          6,
+          9,
+          26,
+          28,
+          15,
+          16,
+          2,
+          2,
+          16,
+          15,
+          28,
+          26
+        ],
+        "score": 0.9713216957605985,
+        "runner": 0.956359102244389,
+        "baseWords": 95,
+        "expandedWords": 96,
+        "prefix": "THE LOSS OF DIUINITY THE CIRCUMFERENCE PRACTICES THREE BEHAUIARS WHICH CAUSE THE LOSS OF DIUINITY CONSUMPTIAN WE CONSUME TOO MUCH BECAUSE WE BELEIUE THE FOLLOWNG TWO ERRORS WITHIN THE DECEPTIAN WE DO NOT HAUE ENOUGH OR THERE IS NOT ENOUGH WE HAUE WHAT WE HAUE NOW BY LUCC AND WE WILL NOT BE STRONG ENOUGH LATER TO OBTAIN WHAT WE NEED MOST THNGS ARE NOT WORTH CONSUMNG PRESERUATIAN WE PRESERUE THNGS BECAUSE WE BELIEUE WE ARE WEAC IF WE LOSE THEM WE WILL NOT BE STRONG ENOUGH TO GAIN THEM AGAIN THIS IS THE DECEPTIAN MOST THNGS",
+        "end": [
+          6
+        ],
+        "ties": 1,
+        "correctKey": true,
+        "correctPrefix": 401,
+        "continuations": [
+          {
+            "phase": 6,
+            "legal": true,
+            "score": 0.9519774011299436,
+            "text": "ARE NOT WORTH PRESERUNG ADHERENCE WE FOLLOW DOGMA SO THAT WE CAN BELONG AND BE RIGHT OR WE FOLLOW REASON SO WE CAN BELONG AND BE RIGHT THERE IS NOTHNG TO BE RIGHT ABOUT TO BELONG IS DEATH IT IS THE BEHAUIARS OF CONSUMPTIAN PRESERUATIAN AND ADHERENCE THAT HAUE US LOSE OUR PRIMALITY AND THUS OUR DIUINITY SOME WISDOM AMASS GREAT WEALTH NEUER BECOME ATTACHED TO WHAT YOU OWN BE PREPARED TO DESTROY ALL THAT YOU OWN AN INSTRUCTIAN PROGRAM YOUR MIND PROGRAM REALITY",
+            "correct": 354,
+            "runes": 354,
+            "ties": 1
+          }
+        ]
+      }
+    },
+    {
+      "label": "authentic second KOAN",
+      "trainRunes": 222,
+      "holdRunes": 97,
+      "anchors": [
+        {
+          "i": 6,
+          "len": 6,
+          "nonF": 6
+        },
+        {
+          "i": 7,
+          "len": 9,
+          "nonF": 9
+        },
+        {
+          "i": 17,
+          "len": 13,
+          "nonF": 12
+        },
+        {
+          "i": 24,
+          "len": 7,
+          "nonF": 7
+        },
+        {
+          "i": 26,
+          "len": 7,
+          "nonF": 7
+        },
+        {
+          "i": 50,
+          "len": 7,
+          "nonF": 7
+        }
+      ],
+      "keyClasses": 3,
+      "joins": 3,
+      "hashChecks": 149124,
+      "phaseCases": 10,
+      "feasible": 2,
+      "scored": 6,
+      "oracleGenerated": true,
+      "oracleSeen": true,
+      "selected": {
+        "key": [
+          0,
+          10,
+          4,
+          0,
+          1,
+          19,
+          0,
+          18,
+          4,
+          18,
+          9,
+          0,
+          18
+        ],
+        "score": 1,
+        "runner": 0.9279279279279279,
+        "baseWords": 62,
+        "expandedWords": 62,
+        "prefix": "A COAN DURNG A LESSON THE MASTER EXPLAINED THE I THE I IS THE UOICE OF THE CIRCUMFERENCE HE SAID WHEN ASCED BY A STUDENT TO EXPLAIN WHAT THAT MEANT THE MASTER SAID IT IS A UOICE INSIDE YOUR HEAD I DONT HAUE A UOICE IN MY HEAD THOUGHT THE STUDENT AND HE RAISED HIS HAND TO TELL THE MASTER THE MASTER",
+        "end": [
+          12
+        ],
+        "ties": 1,
+        "correctKey": true,
+        "correctPrefix": 222,
+        "continuations": [
+          {
+            "phase": 12,
+            "legal": true,
+            "score": 1,
+            "text": "STOPPED THE STUDENT AND SAID THE UOICE THAT JUST SAID YOU HAUE NO UOICE IN YOUR HEAD IS THE I AND THE STUDENTS WERE ENLIGHTENED",
+            "correct": 97,
+            "runes": 97,
+            "ties": 1
+          }
+        ]
+      }
+    }
+  ],
+  "pass": 3,
+  "target": {
+    "label": "original p23-26",
+    "trainRunes": 502,
+    "holdRunes": 519,
+    "anchors": [
+      {
+        "i": 16,
+        "len": 9,
+        "nonF": 9
+      },
+      {
+        "i": 21,
+        "len": 10,
+        "nonF": 9
+      },
+      {
+        "i": 63,
+        "len": 10,
+        "nonF": 9
+      },
+      {
+        "i": 95,
+        "len": 9,
+        "nonF": 9
+      },
+      {
+        "i": 104,
+        "len": 10,
+        "nonF": 10
+      },
+      {
+        "i": 108,
+        "len": 10,
+        "nonF": 10
+      }
+    ],
+    "keyClasses": 163,
+    "joins": 163,
+    "hashChecks": 2887590,
+    "phaseCases": 108,
+    "feasible": 0,
+    "scored": 0,
+    "oracleGenerated": null,
+    "oracleSeen": false,
+    "selected": null,
+    "anchorConstraint": {
+      "hist": {
+        "0": 163,
+        "2": 2
+      },
+      "relaxed": {},
+      "partialWitnesses": [
+        {
+          "key": [
+            -1,
+            -1,
+            9,
+            28,
+            3,
+            4,
+            7,
+            22,
+            3,
+            10,
+            10,
+            15,
+            1
+          ],
+          "feasibleStartMask": 0
+        },
+        {
+          "key": [
+            -1,
+            -1,
+            9,
+            28,
+            3,
+            4,
+            7,
+            22,
+            3,
+            10,
+            10,
+            15,
+            7
+          ],
+          "feasibleStartMask": 0
+        }
+      ],
+      "phaseCases": 232,
+      "joins": 165,
+      "indices": [
+        16,
+        21,
+        63,
+        95,
+        104,
+        108
+      ],
+      "mandatoryOOVAmongSix": 5,
+      "edges": [
+        [
+          1,
+          16
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          4,
+          21
+        ],
+        [
+          11,
+          21
+        ],
+        [
+          16,
+          19
+        ],
+        [
+          16,
+          21
+        ],
+        [
+          16,
+          23
+        ],
+        [
+          16,
+          63
+        ],
+        [
+          16,
+          95
+        ],
+        [
+          16,
+          104
+        ],
+        [
+          16,
+          108
+        ],
+        [
+          19,
+          21
+        ],
+        [
+          21,
+          23
+        ],
+        [
+          21,
+          63
+        ],
+        [
+          21,
+          95
+        ],
+        [
+          21,
+          104
+        ],
+        [
+          21,
+          108
+        ],
+        [
+          53,
+          63
+        ],
+        [
+          61,
+          63
+        ],
+        [
+          63,
+          95
+        ],
+        [
+          63,
+          104
+        ],
+        [
+          63,
+          108
+        ],
+        [
+          93,
+          108
+        ],
+        [
+          95,
+          104
+        ],
+        [
+          95,
+          108
+        ],
+        [
+          104,
+          108
+        ]
+      ],
+      "runs": [
+        {
+          "c": [
+            4,
+            16,
+            21,
+            63,
+            95,
+            108
+          ],
+          "keys": 0,
+          "exact": true,
+          "exhausted": false,
+          "nodes": 3,
+          "passes": 5,
+          "failure": {
+            "word": 32,
+            "kind": "no relation",
+            "pass": 5
+          }
+        },
+        {
+          "c": [
+            4,
+            16,
+            21,
+            63,
+            104,
+            108
+          ],
+          "keys": 0,
+          "exact": true,
+          "exhausted": false,
+          "nodes": 3,
+          "passes": 5,
+          "failure": {
+            "word": 32,
+            "kind": "no relation",
+            "pass": 5
+          }
+        },
+        {
+          "c": [
+            7,
+            16,
+            21,
+            63,
+            95,
+            108
+          ],
+          "keys": 0,
+          "exact": true,
+          "exhausted": false,
+          "nodes": 3,
+          "passes": 6,
+          "failure": {
+            "word": 24,
+            "kind": "no relation",
+            "pass": 6
+          }
+        },
+        {
+          "c": [
+            7,
+            16,
+            21,
+            63,
+            104,
+            108
+          ],
+          "keys": 0,
+          "exact": true,
+          "exhausted": false,
+          "nodes": 3,
+          "passes": 6,
+          "failure": {
+            "word": 24,
+            "kind": "no relation",
+            "pass": 6
+          }
+        }
+      ],
+      "certifiedOOVLowerBound": 7
+    }
+  }
+}

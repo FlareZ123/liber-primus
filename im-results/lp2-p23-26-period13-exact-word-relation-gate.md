@@ -66,8 +66,36 @@ Go beyond the graph: strict expanded-lexicon CSP returns no key, exact after thr
 
 Reproducer: [SFT](../sims/lp2_p23_26_orthographic_escape_sft.cjs); [machine-readable full results, edges, covers and exact CSP outputs](../im-results/lp2-p23-26-orthographic-escape-output.json). Executed using the repository's exact input text in the JavaScript runtime, with the unchanged shared solver. This is a distinct finite sensitivity test of #2536, not a recovered LP2 key or plaintext.
 
+### Direct key recovery by all-pair long-anchor joins
+
+A distinct continuation of the orthographic gate attempts **key recovery**, rather than requiring every printed word to be lexical. Unlike the earlier dual-long-anchor affine search (which fixed two longest anchors, used an unexpanded lexicon and fitted full sections), this solver takes the six largest guaranteed consuming lengths in the frozen prefix, permits any pair and the already frozen author-swap lexicon, then withholds the original 519-rune suffix. Period13 additive/F-hold law and intact groups are unchanged.
+
+For each candidate plaintext of a chosen word, compute the contiguous consuming key residues. Group by consuming length, hash the shared residues for each possible relative phase (allow every intervening F-hold count), and join exactly. For complete key candidates, deduplicate cyclic rotations, compute all legal chapter-start phases by backwards reachability, then use wordwise Viterbi with base dictionary match reward 2 per rune, expanded-only match reward 1 per rune, OOV reward0. A key can survive with arbitrarily many OOV words. Freeze the best key and maximizing prefix boundary phase(s) before predicting the suffix.
+
+| Target-excluded native control | Prefix / suffix runes | Complete key classes | Legal classes | Exact key / suffix |
+|---|---:|---:|---:|---|
+| WELCOME (q13 plant) | 307 / 208 | 935 | 411 | Yes / 208 |
+| First KOAN (q13 plant) | 502 / 276 | 518 | 37 | No; no legal suffix |
+| LOSS OF DIVINITY (q13 plant) | 401 / 354 | 529 | 19 | Yes / 354 |
+| Authentic second KOAN | 222 / 97 | 3 | 2 | Yes / 97 |
+| Original p23–26 | 502 / 519 | 163 | **0** | None |
+
+Three of four controls recover the exact key and 659/659 selected continuation runes; WELCOME has a tied suffix path, so exact selected text is not uniqueness. First-KOAN true key is outside the complete two-anchor candidate set, illustrating the method's limited coverage. For the actual original six groups (zero-based indices 16,21,63,95,104,108; each has at least nine non-F ciphertext runes), all 15 unordered pairs necessarily have at least 18 consuming runes for any legal plaintext. The complete joins give 163 key rotation classes, none admitting even a nonlinguistic prefix under the authentic F-hold rule.
+
+Extend to **all partial-coverage joins**, so no pair can escape by leaving unobserved key digits. Over 232 consuming-length/relative-phase cases there are only 165 distinct partial/full key classes: 163 full, two with two unassigned slots. Allow the unassigned slots to choose different residues at every use, an optimistic superset of every fixed key completion; backward reachability still rejects all 165 classes at every start phase. Therefore any actual q13 key must leave at least **five of these six particular groups OOV** under the 224,885-spelling vocabulary. This is an all-key necessary condition for that vocabulary and framing, independent of language scoring. It does not say what those five words are.
+
+Adding the complete six-vertex conflict graph (15 pair edges, nine new) to the prior 17-edge graph yields 26 edges and minimum cover6. Exactly four sets of six words cover the graph:
+- [4,16,21,63,95,108]
+- [4,16,21,63,104,108]
+- [7,16,21,63,95,108]
+- [7,16,21,63,104,108]
+
+Full shared phase/key CSP rejects every one with all six words wildcarded, exact in three nodes each. The certified original lower bound improves to **≥7/113 total OOV**, including ≥5/6 longest groups; zero through six escapes are impossible. No authentic key, no unknown plaintext, no original suffix opened. The aggregate bound is still within specialized native register variation; the more targeted five-of-six long-word obstruction is the reason to retire this two-anchor receiver. Do not treat it as a general proof against q13 or a reason to fit arbitrary spelling edits.
+
+[Direct inverse SFT](../sims/lp2_p23_26_six_anchor_inverse_sft.cjs) · [full output, including failed control and all four exact covers](../im-results/lp2-p23-26-six-anchor-inverse-output.json). Both complete and partial joins executed in the connected JS runtime on unchanged original inputs; no CI claimed.
+
 ## Decision
 
-Retire the continuous period13 p23–26 intact-word model under the original lexicon and the frozen orthographic expansion allowing up to five additional arbitrary OOV words. Positive recovery of both historical keys and 424/424 heldout runes establishes solver viability. The larger-vocabulary OOV bound does not separate all solved native registers; a genuinely independent source selector is necessary to justify a broader model. No new authentic unknown plaintext/key. Do not retry arbitrary reset/phase schedules without a new independently source-selected clue.
+Retire the continuous period13 p23–26 intact-word model under the original lexicon and the frozen orthographic expansion allowing up to six additional arbitrary OOV words. Positive recovery of both historical keys and 424/424 heldout runes establishes solver viability. The larger-vocabulary OOV bound does not separate all solved native registers; a genuinely independent source selector is necessary to justify a broader model. No new authentic unknown plaintext/key. Do not retry arbitrary reset/phase schedules without a new independently source-selected clue.
 
 [Executable SFT](../sims/lp2_p23_26_period13_word_relation_sft.cjs), final driver a3ee8bf2e75ddc8ae9b735b817edd5306971f4ca, shared engine 00c8ef4f170aafca716be8a35acbd7b30a64936f; directly executed on original and historical control inputs via a read-only repository-file shim. No CI claim.
