@@ -278,6 +278,42 @@ const foldAnchor = {
     positiveRecoveredRunes: control.length}
 };
 
+
+// Director #2586: independently locked transfer of the p57 FIND table
+// pointer to the analogous solved-p56 imperative SEEK. No new address menu.
+const solvedNative=JSON.parse(read('resources/external/relikd-solved-gp29-native-v1.json'));
+const grid=JSON.parse(read('resources/liber-primus/lp2-grid-256.json'));
+const cells=grid.pages.flatMap(p=>p.tokens);
+assert.equal(cells.length,256);
+const knownWords=solvedNative.sections.slice(-2).map(s=>
+  (s.source_text.match(/[\u16a0-\u16ff]+/gu)||[]).map(w=>[...w].map(r=>corpus.runes.indexOf(r))));
+const readImperative=(i,word)=>{
+  const hits=knownWords[i].filter(w=>w.map(x=>corpus.translit[x]).join('')===word);
+  assert.equal(hits.length,1);
+  const address=sum(hits[0]),token=cells[address];
+  const decode=a=>a.length*a.indexOf(token[0])+a.indexOf(token[1]);
+  return {word,indices:hits[0],address,token,base59:decode(grid.alphabet.replace('f','')),base60:decode(grid.alphabet)};
+};
+const findPointer=readImperative(1,'FIND'),seekPointer=readImperative(0,'SEEC');
+assert.deepEqual(findPointer,{word:'FIND',indices:[0,10,9,23],address:42,token:'0S',base59:28,base60:28});
+assert.deepEqual(seekPointer,{word:'SEEC',indices:[15,18,18,5],address:56,token:'4E',base59:250,base60:254});
+const p27Echo=corpus.pages[27].indices.slice(28,35);
+const p55Echo=corpus.pages[55].indices.slice(-6);
+const p56First=corpus.pages[56].indices.slice(0,1);
+assert.deepEqual(p27Echo,[...p55Echo,...p56First]);
+assert.equal(pendingAtEnd(27)&&beginsWithRune(28),true);
+assert.equal(pendingAtEnd(28),false);
+assert.equal((annotations.get(28)?.large_punctuation||[]).length,0);
+assert.equal((annotations.get(29)?.red_spans||[]).length,0);
+assert.equal(grid.pages.find(x=>x.page===50).tokens.length,104);
+const independentImperativeGate={
+  originalConditionalFIND:findPointer,lockedSEEKPrediction:27,actualSEEK:seekPointer,
+  sourceEcho:{p27:p27Echo,p55:p55Echo,p56:p56First},
+  physicalMidpoints:{unknown28cycleCutsWord:true,full29cycleNoChapterMark:true},
+  numericOnlyP50MateUnder29:21,
+  conclusion:'Neither existing local anchor selects a full-book +29 operation; locked SEEK transfer fails in both radices.'
+};
+
 console.log(JSON.stringify({
   scope: 'original p0..p57, fixed p↔p+29 only',
   originalData: {runesUnsolved: cipherRunes, wordsUnsolved: 2896, knownSolved: [85, 95]},
@@ -292,5 +328,6 @@ console.log(JSON.stringify({
       last12: equalPositions(left[28].last12, right[28].last12)}
   ],
   statistics: summary,
-  foldAnchor
+  foldAnchor,
+  independentImperativeGate
 }, null, 2));
