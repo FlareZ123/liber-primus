@@ -1,0 +1,175 @@
+{
+  "model": "C_i=P_i+K[C_(i-1)] mod29",
+  "lexicon": 28673,
+  "control": {
+    "trueKey": [
+      3,
+      2,
+      27,
+      23,
+      10,
+      9,
+      0,
+      4,
+      25,
+      28,
+      23,
+      7,
+      26,
+      8,
+      6,
+      5,
+      2,
+      10,
+      5,
+      12,
+      1,
+      1,
+      28,
+      1,
+      4,
+      13,
+      22,
+      1,
+      18
+    ],
+    "recoveredKey": [
+      3,
+      2,
+      27,
+      23,
+      10,
+      9,
+      0,
+      4,
+      25,
+      28,
+      23,
+      7,
+      26,
+      8,
+      6,
+      5,
+      2,
+      10,
+      5,
+      12,
+      1,
+      1,
+      28,
+      1,
+      4,
+      13,
+      22,
+      1,
+      18
+    ],
+    "exactKeyEntries": 29,
+    "train": {
+      "n": 2956,
+      "hit": 2815,
+      "wn": 745,
+      "wh": 724,
+      "coverage": 0.9523004059539919,
+      "score": -0.7792010746037376,
+      "preview": "WARNNG BELIEUE NOTHNG FROM THIS BOOC EXCEPT WHAT YOU CNOW TO BE TRUE TEST THE CNOWLEDGE FIND YOUR"
+    },
+    "holdout": {
+      "n": 82,
+      "hit": 55,
+      "wn": 18,
+      "wh": 15,
+      "coverage": 0.6707317073170732,
+      "score": -1.1768111401304384,
+      "preview": "LICE THE INSTAR TUNNELNG TO THE SURFACE WE MUST SHED OUR OWN CIRCUMFERENCES FIND THE DIUINITY WITHIN AND"
+    },
+    "attempts": [
+      {
+        "score": -0.7792010746037376,
+        "coverage": 0.9523004059539919
+      },
+      {
+        "score": -0.7792010746037376,
+        "coverage": 0.9523004059539919
+      },
+      {
+        "score": -0.7792010746037376,
+        "coverage": 0.9523004059539919
+      },
+      {
+        "score": -0.7792010746037376,
+        "coverage": 0.9523004059539919
+      }
+    ]
+  },
+  "original": {
+    "key": [
+      2,
+      22,
+      22,
+      23,
+      20,
+      8,
+      25,
+      10,
+      8,
+      27,
+      1,
+      11,
+      20,
+      27,
+      5,
+      28,
+      17,
+      21,
+      21,
+      17,
+      23,
+      7,
+      11,
+      22,
+      22,
+      27,
+      11,
+      8,
+      9
+    ],
+    "train": {
+      "n": 9338,
+      "hit": 407,
+      "wn": 2101,
+      "wh": 216,
+      "coverage": 0.043585350182051834,
+      "score": -5.932450336268721,
+      "preview": "PIAWFIA DEAF THNJ NGSR TLSWOOEDUMLD TIAHXU SNBF CMB XLL THEAMO EOTHL LGNGEOUR PXEEOJOEAMIWOE EY NN PWM DER BAIGYLH"
+    },
+    "holdout": {
+      "n": 3205,
+      "hit": 88,
+      "wn": 717,
+      "wh": 49,
+      "coverage": 0.027457098283931357,
+      "score": -6.333252992070854,
+      "preview": "NAIAOI TLTNGY RHDA ARNG JTSXW BWEOI THEO HTTHAOFIAMNAEAEN NWL AMD EAEO AOIE SUGCHPG AMFFFEA EUR GAST NGROE FIYTPDEOJEO"
+    },
+    "attempts": [
+      {
+        "score": -5.96001826553884,
+        "coverage": 0.044977511244377814
+      },
+      {
+        "score": -5.932450336268721,
+        "coverage": 0.043585350182051834
+      },
+      {
+        "score": -5.971167502246284,
+        "coverage": 0.042086099807239236
+      },
+      {
+        "score": -5.954752639786285,
+        "coverage": 0.040693938744913255
+      }
+    ]
+  },
+  "originalReplay": true
+}
