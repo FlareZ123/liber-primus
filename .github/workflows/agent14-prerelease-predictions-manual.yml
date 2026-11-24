@@ -1,0 +1,13 @@
+name: Agent14 pre-release prediction extraction
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extract dated prospective LP2 clues
+        run: node sims/lp2_prerelease_irc_prediction_sft.cjs
