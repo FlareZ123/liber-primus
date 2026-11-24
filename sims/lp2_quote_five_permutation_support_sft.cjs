@@ -1,14 +1,14 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path');
-function attack(gp,raw,allowOriginal=true){
+function attack(gp,raw,allowOriginal=true,registers=null){
  const A=41,S=80,N=160,K=5,Q=29,T=gp.translit,idx=new Map(T.map((s,i)=>[s,i]));
  const check=(x,m)=>{if(!x)throw Error(m)};
  const norm=w=>w.toUpperCase().replace(/['’]/g,"").replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S").replace(/ING/g,"NG").replace(/IO/g,"IA");
  function body(s,start){const a=s.indexOf(start),b=s.search(/\*\*\*\s*END OF (?:THIS|THE) PROJECT GUTENBERG/i);check(a>=0&&b>a,"body");return s.slice(a,b)}
- const names=["Shakespeare","Emerson","Gibran"],texts=[raw[0],body(raw[1],"There is no great and no small"),body(raw[2],"Almustafa,")];
+ const names=registers?registers.map(x=>x.name):["Shakespeare","Emerson","Gibran"],texts=registers?registers.map(x=>x.text):[raw[0],body(raw[1],"There is no great and no small"),body(raw[2],"Almustafa,")];
  function chunks(s){const out=[];let words=[],prev=0;for(const m of s.matchAll(/[A-Za-z]+(?:['’][A-Za-z]+)*/g)){if(/[.!?]/.test(s.slice(prev,m.index))&&words.length){out.push(words.join(" "));words=[]}words.push(norm(m[0]));prev=m.index+m[0].length}if(words.length)out.push(words.join(" "));return out}
  function graph(s){const L=s.length,f=Array.from({length:L+1},()=>[]),b=Array.from({length:L+1},()=>[]);for(let i=0;i<L;i++){let p=i;while(s[p]===" ")p++;for(let d=1;d<=2&&p+d<=L;d++){const v=idx.get(s.slice(p,p+d));if(v!==undefined)f[i].push([v,p+d])}}for(let i=1;i<=L;i++){let p=i;while(s[p-1]===" ")p--;for(let d=1;d<=2&&p-d>=0;d++){const v=idx.get(s.slice(p-d,p));if(v!==undefined)b[i].push([v,p-d])}}const rem=Array(L+1).fill(0);for(let i=L-1;i>=0;i--)rem[i]=rem[i+1]+(s[i]!==" ");return{s,L,f,b,rem}}
- const pairs=[];for(let j=0;j<3;j++){const cs=chunks(texts[j]);for(let i=0;i+1<cs.length;i++){const l=cs[i],r=cs[i+1];if(l.replace(/ /g,"").length>=A&&r.replace(/ /g,"").length>=N-A)pairs.push({source:names[j],stop:i+1,left:graph(l),right:graph(r)})}}
+ const pairs=[];for(let j=0;j<names.length;j++){const cs=chunks(texts[j]);for(let i=0;i+1<cs.length;i++){const l=cs[i],r=cs[i+1];if(l.replace(/ /g,"").length>=A&&r.replace(/ /g,"").length>=N-A)pairs.push({source:names[j],stop:i+1,left:graph(l),right:graph(r)})}}
  function witness(P,C,k){
   const E=Array.from({length:Q},()=>Array(Q).fill(0)),rd=Array(Q).fill(k),cd=Array(Q).fill(k);
   for(let i=0;i<P.length;i++){const p=P[i],c=C[i];if(!p){check(!c,"F");continue}if(!E[p][c]){E[p][c]=1;rd[p]--;cd[c]--}}
@@ -45,20 +45,31 @@ function attack(gp,raw,allowOriginal=true){
  function shuffle(a,r){for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
  function spell(g,r){let p=0;const out=[],splits=[];while(g.rem[p]){const a=g.f[p];check(a.length,"spell");const [v,np]=a[Math.floor(r()*a.length)];if(a.length>1&&T[v].length===1)splits.push(out.length);out.push(v);p=np}return {out,splits}}
  const controls=[],nulls=[];
- for(let j=0;j<3;j++)for(let n=0;n<2;n++){
-  const r=rng((0x7a5b2c12^Math.imul(2*j+n+1,0x9e3779b9))>>>0),pool=pairs.filter(p=>p.source===names[j]);let pair,L,R;
+ for(let j=0;j<names.length;j++)for(let n=0;n<2;n++){
+  const r=rng((0x7a5b2c12^Math.imul(2*j+n+1,0x9e3779b9))>>>0),pool=pairs.filter(p=>p.source===names[j]);let pair,L,R;if(!pool.length)continue;
   for(let tries=0;tries<10000;tries++){pair=pool[Math.floor(r()*pool.length)];L=spell(pair.left,r);R=spell(pair.right,r);if(L.out.length>=A&&R.out.length>=N-A&&(L.splits.some(i=>i>=L.out.length-A)||R.splits.some(i=>i<N-A)))break}
-  check(L.out.length>=A&&R.out.length>=N-A,"control");
+  if(L.out.length<A||R.out.length<N-A)continue;
   const plain=L.out.slice(-A).concat(R.out.slice(0,N-A)),id=pair.source+":"+pair.stop;
   const bank=Array.from({length:K},()=>shuffle(Array.from({length:Q},(_,i)=>i),r));let prev=-1;
   const C=plain.map(p=>{let c=p?bank[Math.floor(r()*K)][p]:0;if(p&&c===prev)c=bank[Math.floor(r()*K)][p];prev=c;return c});
-  const result=scan(C,K,{id,plain});controls.push({id,...result,samples:result.samples.map(({id,render})=>({id,render}))});
-  const pad=plain.map(p=>p?Math.floor(r()*Q):0);const nr=scan(pad,K);nulls.push({id,...nr,samples:nr.samples.map(({id,render})=>({id,render}))});
+  const result=scan(C,K,{id,plain});controls.push({id,...result,samples:result.samples.map(({id})=>({id}))});
+  const pad=plain.map(p=>p?Math.floor(r()*Q):0);const nr=scan(pad,K);nulls.push({id,...nr,samples:nr.samples.map(({id})=>({id}))});
  }
- const gate={recovered:controls.filter(x=>x.recovered).length,uniqueSource:controls.filter(x=>x.fullSources===1).length,falseFull:nulls.filter(x=>x.fullPaths).length};gate.pass=gate.recovered===6&&gate.falseFull===0;
+ const gate={recovered:controls.filter(x=>x.recovered).length,uniqueSource:controls.filter(x=>x.fullSources===1).length,falseFull:nulls.filter(x=>x.fullPaths).length};gate.pass=controls.length>=6&&gate.recovered===controls.length&&gate.falseFull===0;
  let original=null;if(allowOriginal&&gate.pass){const U=gp.pages.filter(p=>p.page<=55).sort((a,b)=>a.page-b.page).flatMap(p=>p.indices);check(U.length===12956,"source size");const C=U.slice(10279,10439);original=scan(C,K)}
- return {method:{target:"p42–43 [10279,10439)",split:S,stop:A,length:N,k:K,sources:names,pairs:pairs.length},gate,controls,nulls,original};
+ return {method:{target:"p42–43 [10279,10439)",split:S,stop:A,length:N,k:K,sources:names,pairs:pairs.length,pairsBySource:Object.fromEntries(names.map(name=>[name,pairs.filter(p=>p.source===name).length]))},gate,controls,nulls,original};
 }
+module.exports={attack};
+if(require.main===module){
 const files=["resources/liber-primus/lp2-corpus.json","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt","resources/control/gibran_prophet_58585.txt"];
-const data=files.map(p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8'));
-console.log(JSON.stringify(attack(JSON.parse(data[0]),data.slice(1),process.argv.includes('--original')),null,2));
+const read=p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8');
+const data=files.map(read);let regs=null;
+if(process.argv.includes('--historical')){
+ const p=["resources/external/2013-book-of-law-I.txt","resources/external/2013-book-of-law-II.txt","resources/external/2013-book-of-law-III.txt","resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt","resources/external/cicada2012-blake-marriage-gutenberg45315.txt"];const raw=p.map(read);const agr=fs.readFileSync(process.argv[process.argv.indexOf('--historical')+1],'utf8');
+ const agrRaw=agr.match(/book\s*=\s*"""([\s\S]*?)"""/)[1];const bl=raw[4],a=bl.indexOf("Rintrah roars and shakes his fires"),b=bl.search(/\*\*\*\s*END OF (?:THIS|THE) PROJECT GUTENBERG/i);if(a<0||b<=a)throw Error("Blake body");
+ regs=[...raw.slice(0,3).map((x,i)=>({name:"Liber AL "+["I","II","III"][i],text:x.replace(/^\s*\d+\.\s*/gm,"")})),{name:"Self-Reliance historical witness",text:raw[3]},{name:"Marriage of Heaven and Hell",text:bl.slice(a,b)},{name:"Agrippa archived witness",text:agrRaw}];
+}
+const result=attack(JSON.parse(data[0]),data.slice(1),process.argv.includes('--original'),regs);
+if(regs&&result.original)result.original.samples=result.original.samples.map(({id})=>({id}));
+console.log(JSON.stringify(result,null,2));
+}
