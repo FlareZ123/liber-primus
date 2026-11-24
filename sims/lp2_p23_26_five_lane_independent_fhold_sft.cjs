@@ -422,10 +422,10 @@ function nativeGP(text) {
   return out;
 }
 
-function runPlant(name, plaintext, seed, lm, restarts = 1000) {
+function runPlant(name, plaintext, seed, lm, restarts = 1000, keyOverride = null) {
   assert.ok(plaintext.length >= 1005, name + " plant too short");
   const P = plaintext.slice(0, 1005);
-  const key = randomKey(seed);
+  const key = keyOverride || randomKey(seed);
   const C = encryptFiveLane(P, key);
   const lanes = splitLanes(C);
   const prefixLanes = lanes.map((lane) => lane.slice(0, TRAIN_ROWS));
@@ -462,13 +462,15 @@ function runPlant(name, plaintext, seed, lm, restarts = 1000) {
 // Positive controls: three independent, continuous native-English sources,
 // none of which is used to train the Cicada-native language model.
 const lm = trainLanguageModel();
+const authenticKoanKey = [0, 10, 4, 0, 1, 19, 0, 18, 4, 18, 9, 0, 18];
 const controlFiles = [
-  ["Gibran", "resources/control/gibran_prophet_58585.txt", 0xA11CE001],
-  ["Shakespeare", "resources/control/shakespeare_first300k.txt", 0xA11CE002],
-  ["Emerson", "resources/control/emerson_essays_2944.txt", 0xA11CE003]
+  ["Gibran with authentic KOAN key", "resources/control/gibran_prophet_58585.txt", 0xA11CE000, authenticKoanKey],
+  ["Gibran with random key", "resources/control/gibran_prophet_58585.txt", 0xA11CE001, null],
+  ["Shakespeare with random key", "resources/control/shakespeare_first300k.txt", 0xA11CE002, null],
+  ["Emerson with random key", "resources/control/emerson_essays_2944.txt", 0xA11CE003, null]
 ];
-const plants = controlFiles.map(([name, file, seed]) =>
-  runPlant(name, nativeGP(readText(file)), seed, lm, 1000));
+const plants = controlFiles.map(([name, file, seed, key]) =>
+  runPlant(name, nativeGP(readText(file)), seed, lm, 1000, key));
 
 const targetLanes = splitLanes(body);
 const trainingLanes = targetLanes.map((lane) => lane.slice(0, TRAIN_ROWS));
