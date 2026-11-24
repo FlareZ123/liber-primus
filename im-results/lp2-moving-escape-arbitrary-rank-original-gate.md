@@ -1,6 +1,6 @@
 # Moving plaintext escape with arbitrary rank permutation: original-input key recovery gate
 
-**Agent 6, 24 November 2026.** No unknown LP2 plaintext, key, or destination recovered. The fixed-order predecessor-exclusion architecture fails a new, much broader key envelope: even a different arbitrary 28! rank permutation per illuminated chapter, plus an independent unknown escape rune at every position, cannot fit the pinned ordinary native-GP singleton alphabet or all long-word dictionary constraints. A separate exact frequency capacity bound does not require printed plaintext word alignment.
+**Agent 6, 24 November 2026.** No unknown LP2 plaintext, key, or destination recovered. The fixed-order predecessor-exclusion architecture fails a new, much broader key envelope: even a different arbitrary 28! rank permutation per illuminated chapter, plus an independent unknown escape rune at every position, cannot fit the pinned ordinary native-GP singleton alphabet or all long-word dictionary constraints. Separate exact frequency bounds do not require printed plaintext word alignment; Agent18's rare-pair extension below also excludes page-private permutations under the fixed canonical GP29 output order.
 
 ## Explicit candidate and strongest premise
 
@@ -51,7 +51,7 @@ The independently published [native-E study](lp2-rank28-period1-256-allsecret-na
 
 ## Source-visible page-clock rekey extension
 
-The page-private stationary envelope survives, but two low-complexity shared-key page rotations are independently testable. Let k_i be either the physical page number (zero-based) or the totient of its corresponding prime (first page maps to prime 2). For nonzero difference d let q=d−1 or log_15(d) mod 28. Test both signs and both placements of the page rotation: rank R(q−k_i) or R(q)−k_i, modulo 28. These are sixteen frozen variants, with unrestricted shared 28! rank permutation and unrestricted moving escape.
+The E and singleton bounds alone leave the page-private stationary envelope open, but the following two low-complexity shared-key page rotations independently fail. The complementary rare-pair bound below closes the fixed-output-order page-private case. Let k_i be either the physical page number (zero-based) or the totient of its corresponding prime (first page maps to prime 2). For nonzero difference d let q=d−1 or log_15(d) mod 28. Test both signs and both placements of the page rotation: rank R(q−k_i) or R(q)−k_i, modulo 28. These are sixteen frozen variants, with unrestricted shared 28! rank permutation and unrestricted moving escape.
 
 For each plaintext category, construct a 28×28 matrix whose cell (q,r) counts sites compatible with assigning rank r to input q, accounting for the respective rotation. Maximum-weight perfect matching gives the exact attainable count across every shared permutation. Zero steps and the initial rune are granted free category membership. Singleton sites use the expanded A/I/O/T vocabulary.
 
@@ -64,12 +64,40 @@ For each plaintext category, construct a 28×28 matrix whose cell (q,r) counts s
 
 Maxima within a row may occur under different variants or permutations. Every variant independently fails both the intact-singleton constraint and the minimum native E control count 1,397. This excludes these specific shared-key rekeys; unrestricted private page keys and other schedules are not excluded. The exact calculation ran in connected V8 on original corpus and transcript. The same SFT now emits all sixteen rows; source revision 1c27b49c86d387ef95b3139ad213ae149f58e906.
 
+## Page-private arbitrary ranks: forced rare adjacent pair (Agent18, 24 November)
+
+The previous E/singleton bounds did not eliminate completely private physical-page rank permutations. With the **original canonical GP29 output order**, a complementary lower bound closes that loophole for direct native English. The GP output indices 11 and 12 are adjacent: **J, EO**. Whatever escape symbol E_i is chosen, a nonrepeat rank r=11 must decode to either J or EO, because P_i=r+[r>=E_i]. This holds even with arbitrary hidden escape state and no plaintext word alignment.
+
+Let h_{s,m}(r) count the 28 ordinary predecessor-exclusion input ranks in source region s, with m either cyclic difference or sorted GP ordinal deletion. Under any secret 28! bijection R_s, exactly one input rank maps to output rank 11. Thus every decoded region has at least min_r h_{s,m}(r) occurrences of J or EO. Grant all initial and repeated symbols arbitrary values, and even allow the decoder to choose its rank convention independently in every region. The minimum possible count over the entire book in this relaxed envelope is sum_s min_{m,r} h_{s,m}(r). It is a sharp histogram bound for the envelope with freely chosen per-occurrence escapes, regardless of the actual causal escape rule.
+
+| Independently keyed original regions | Cyclic only | Sorted only | Either independently per region |
+|---|---:|---:|---:|
+| 55 physical rune-bearing pages | 177 | 178 | **151** |
+| Pages plus the additional internal printed-section reset at global offset 3612 (56 regions) | 177 | 178 | **151** |
+
+No original rune is deleted from the decoder; the 55/56 initial symbols and 86 within-page repeat events are simply granted free output for this necessary bound. The pinned original transcription and canonical corpus agree for all 12,956 runes and 2,896 complete groups. The extra internal reset is the same generous section start used in the earlier period-256 analysis.
+
+Independently count J+EO in **every** 12,956-rune contiguous window from the same three literary sources and both GP spelling conventions pinned by the [native-E study](lp2-rank28-period1-256-allsecret-native-e-capacity.md). These overlapping windows are comparisons, not independent statistical trials.
+
+| Native GP source | Legacy windows / maximum J+EO | Calibrated windows / maximum J+EO |
+|---|---:|---:|
+| Gibran | 50,159 / 83 | 49,537 / 83 |
+| Shakespeare | 205,845 / 34 | 204,151 / 34 |
+| Emerson | 311,675 / 82 | 308,372 / 82 |
+| **All** | | **1,129,739 windows; 0 reach 151** |
+
+The nine actual solved-Cicada GP passages contain only 3 J+EO in 2,979 runes. The original lower bound is 68 above the maximum of the entire long native-control corpus. No language scoring or dictionary/word-boundary assumption is needed. The control sources are independent of the unknown ciphertext; J/EO was selected from the authentic output alphabet and solved-native rarity profile, not as an author-authenticated escape symbol. This is a deterministic incompatibility with those finite native distributions, not a statistical significance claim or a theorem about all English.
+
+Three full-length genuine literary-GP plaintext plants (the first 12,956 calibrated runes from each source), using independently randomized page/section 28! permutations, independently selected cyclic/sorted ranks, and causal independently randomized 29-entry escape tables, each recover and reencrypt 12,956/12,956 runes exactly. Their true J+EO counts are 20, 12, 14; actual forced-rank counts are 14, 8, 9; the relaxed all-key minima are 0, 1, 1 respectively. These positive controls validate the inverse and the necessary bound; they do not recover unknown keys.
+
+**Decision:** retire even fully private page/section stationary rank permutations with moving escape under the *fixed canonical GP29 output order* and direct native-GP prose. This does not exclude unknown reorderings of the plaintext alphabet separating J and EO, unknown source alphabet order, additional within-page key changes, altered representation, or alternative coding mechanisms. Changing only the escape schedule cannot help. No original plaintext/key recovered. [Executed read-only reproducer](../sims/lp2_page_private_moving_escape_rare_pair_sft.cjs) (connected V8; no Windows CI claim).
+
 ## Actual blind rank recovery, held-out control
 
 Use 93 genuine solved-Cicada >=7-rune words that are present in the pinned lexicon. Seed 0x33010624 generates an arbitrary 28-rank permutation and an arbitrary 29-entry causal escape lookup f. Encrypt the complete control word tape continuously. Train only on the first 73 ciphertext words: enumerate candidate domains, repeatedly intersect the union of surviving candidates for each word, and prune rank edges that cannot extend to a matching. The true rank key survives and 22/28 ranks are uniquely identified. All 20 untouched control words retain their exact genuine plaintext candidate under the frozen training domains. Known-full-key control replay is exact. This is partial blind rank recovery, **not** full blind escape-table recovery; six ranks remain ambiguous, and the true escape table was not inferred. No original plaintext is claimed.
 
 ## Decision
 
-Retire the continuous stationary-rank / arbitrary moving-escape family with global or chapter-private keys for direct ordinary native-GP prose; its two independent capacity obstructions avoid the assumption of a fixed rare sentinel. Do not expand the search by changing the escape schedule alone. A distinct source-selected within-chapter rank rekey, a genuinely evolving alphabet, or a changed plaintext register is required. No first-party rule currently supplies such a key.
+Retire the continuous stationary-rank / arbitrary moving-escape family with global or chapter-private keys for direct ordinary native-GP prose; even independent page/section permutations fail when the output GP29 order is canonical. The E/singleton and rare-adjacent-pair constraints avoid any fixed escape identity. Do not expand the search by changing the escape schedule alone. A distinct source-selected within-page rank rekey, genuinely different output ordering or evolving alphabet, or changed plaintext register is required. No first-party rule currently supplies such a key.
 
 [Executable read-only CommonJS SFT](../sims/lp2_moving_escape_arbitrary_rank_lexical_sft.cjs), run directly in connected V8 against the four pinned repository inputs. No CI run is claimed. The script includes exact matching, original parser agreement, all candidate counts, pair witnesses, native coverage, singleton/frequency bounds and the held-out plant. Source implementation commit 7ee66fdb829a266acf07e819cddac8c413859e76.
