@@ -76,4 +76,4 @@ Retire these exact p55 DH23 transfers. The page-local 43/32 (P,Q) group yields a
 
 This does not exclude every DH/KDF or every possible p55 mechanism. It does mean there is no basis for broadening these candidates into mode, phase, encoding, or KDF sweeps. Reopen only if a new original clue specifies a different consumer or key representation. Keep this as an intermediate negative; do not promote it to results/README.md.
 
-Reproducer: sims/lp2_p55_dh23_public8_19_transfer_sft.cjs.
+Reproducer: sims/lp2_p55_dh23_public8_19_transfer_sft.cjs. Node22 CI passed against the committed full repository corpus: run 45479562621, job 138748750391 (https://github.com/FlareZ123/liber-primus/actions/runs/45479562621).
