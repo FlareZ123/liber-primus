@@ -1,0 +1,1132 @@
+{
+  "source": [
+    11,
+    26,
+    8,
+    15,
+    2
+  ],
+  "reciprocal": [
+    8,
+    19,
+    11,
+    2,
+    15
+  ],
+  "banks": 98280,
+  "begin": 1886,
+  "end": 3603,
+  "split": 2910,
+  "lexical": {
+    "controls": [
+      {
+        "hold": false,
+        "trainN": 10,
+        "heldoutN": 4,
+        "trainingBest": 9,
+        "trainingTies": 1,
+        "selected": [
+          1,
+          3,
+          7,
+          19,
+          24
+        ],
+        "selectedHeldout": 4,
+        "trainingTiesHeldoutRange": [
+          4,
+          4
+        ],
+        "fullBest": 13,
+        "fullTies": 1,
+        "fullFirst": [
+          1,
+          3,
+          7,
+          19,
+          24
+        ],
+        "source": [
+          0,
+          0
+        ],
+        "reciprocal": [
+          0,
+          0
+        ],
+        "truth": [
+          1,
+          3,
+          7,
+          19,
+          24
+        ],
+        "truthTrain": 9,
+        "truthTest": 4,
+        "truthWinner": true,
+        "stats": [
+          {
+            "start": 104,
+            "length": 9,
+            "held": false,
+            "compatibleBanks": 278
+          },
+          {
+            "start": 146,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 2020
+          },
+          {
+            "start": 168,
+            "length": 9,
+            "held": false,
+            "compatibleBanks": 389
+          },
+          {
+            "start": 181,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 2624
+          },
+          {
+            "start": 193,
+            "length": 9,
+            "held": false,
+            "compatibleBanks": 194
+          },
+          {
+            "start": 215,
+            "length": 10,
+            "held": false,
+            "compatibleBanks": 16
+          },
+          {
+            "start": 232,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 2167
+          },
+          {
+            "start": 264,
+            "length": 10,
+            "held": false,
+            "compatibleBanks": 34
+          },
+          {
+            "start": 284,
+            "length": 9,
+            "held": false,
+            "compatibleBanks": 258
+          },
+          {
+            "start": 299,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 2019
+          },
+          {
+            "start": 414,
+            "length": 8,
+            "held": true,
+            "compatibleBanks": 1657
+          },
+          {
+            "start": 436,
+            "length": 8,
+            "held": true,
+            "compatibleBanks": 2229
+          },
+          {
+            "start": 447,
+            "length": 12,
+            "held": true,
+            "compatibleBanks": 24
+          },
+          {
+            "start": 487,
+            "length": 10,
+            "held": true,
+            "compatibleBanks": 38
+          }
+        ],
+        "name": "0_welcome",
+        "trueWordsAdmitted": 14,
+        "trueWithheldAdmitted": 4,
+        "nativeWordsInLexicon": 13
+      },
+      {
+        "hold": true,
+        "trainN": 12,
+        "heldoutN": 9,
+        "trainingBest": 11,
+        "trainingTies": 1,
+        "selected": [
+          2,
+          6,
+          12,
+          17,
+          28
+        ],
+        "selectedHeldout": 7,
+        "trainingTiesHeldoutRange": [
+          7,
+          7
+        ],
+        "fullBest": 18,
+        "fullTies": 1,
+        "fullFirst": [
+          2,
+          6,
+          12,
+          17,
+          28
+        ],
+        "source": [
+          1,
+          0
+        ],
+        "reciprocal": [
+          0,
+          0
+        ],
+        "truth": [
+          2,
+          6,
+          12,
+          17,
+          28
+        ],
+        "truthTrain": 11,
+        "truthTest": 7,
+        "truthWinner": true,
+        "stats": [
+          {
+            "start": 8,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 2405
+          },
+          {
+            "start": 18,
+            "length": 13,
+            "held": false,
+            "compatibleBanks": 1
+          },
+          {
+            "start": 31,
+            "length": 9,
+            "held": false,
+            "compatibleBanks": 236
+          },
+          {
+            "start": 44,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 1737
+          },
+          {
+            "start": 70,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 1849
+          },
+          {
+            "start": 78,
+            "length": 10,
+            "held": false,
+            "compatibleBanks": 33
+          },
+          {
+            "start": 145,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 1304
+          },
+          {
+            "start": 284,
+            "length": 11,
+            "held": false,
+            "compatibleBanks": 6
+          },
+          {
+            "start": 297,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 2258
+          },
+          {
+            "start": 386,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 1601
+          },
+          {
+            "start": 411,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 2429
+          },
+          {
+            "start": 419,
+            "length": 9,
+            "held": false,
+            "compatibleBanks": 341
+          },
+          {
+            "start": 545,
+            "length": 8,
+            "held": true,
+            "compatibleBanks": 1986
+          },
+          {
+            "start": 555,
+            "length": 10,
+            "held": true,
+            "compatibleBanks": 14
+          },
+          {
+            "start": 565,
+            "length": 11,
+            "held": true,
+            "compatibleBanks": 25
+          },
+          {
+            "start": 579,
+            "length": 9,
+            "held": true,
+            "compatibleBanks": 145
+          },
+          {
+            "start": 604,
+            "length": 9,
+            "held": true,
+            "compatibleBanks": 149
+          },
+          {
+            "start": 622,
+            "length": 8,
+            "held": true,
+            "compatibleBanks": 1352
+          },
+          {
+            "start": 664,
+            "length": 8,
+            "held": true,
+            "compatibleBanks": 1801
+          },
+          {
+            "start": 686,
+            "length": 8,
+            "held": true,
+            "compatibleBanks": 1742
+          },
+          {
+            "start": 717,
+            "length": 10,
+            "held": true,
+            "compatibleBanks": 30
+          }
+        ],
+        "name": "0_loss_of_divinity",
+        "trueWordsAdmitted": 21,
+        "trueWithheldAdmitted": 9,
+        "nativeWordsInLexicon": 18
+      }
+    ],
+    "original": [
+      {
+        "hold": false,
+        "trainN": 32,
+        "heldoutN": 13,
+        "trainingBest": 4,
+        "trainingTies": 9,
+        "selected": [
+          1,
+          4,
+          9,
+          27,
+          28
+        ],
+        "selectedHeldout": 0,
+        "trainingTiesHeldoutRange": [
+          0,
+          1
+        ],
+        "fullBest": 5,
+        "fullTies": 2,
+        "fullFirst": [
+          1,
+          7,
+          23,
+          25,
+          26
+        ],
+        "source": [
+          0,
+          0
+        ],
+        "reciprocal": [
+          0,
+          0
+        ],
+        "truth": null,
+        "truthTrain": null,
+        "truthTest": null,
+        "truthWinner": null,
+        "stats": [
+          {
+            "start": 1894,
+            "length": 9,
+            "held": false,
+            "compatibleBanks": 238
+          },
+          {
+            "start": 1944,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 1168
+          },
+          {
+            "start": 1998,
+            "length": 10,
+            "held": false,
+            "compatibleBanks": 95
+          },
+          {
+            "start": 2014,
+            "length": 12,
+            "held": false,
+            "compatibleBanks": 0
+          },
+          {
+            "start": 2046,
+            "length": 10,
+            "held": false,
+            "compatibleBanks": 59
+          },
+          {
+            "start": 2060,
+            "length": 9,
+            "held": false,
+            "compatibleBanks": 441
+          },
+          {
+            "start": 2086,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 1276
+          },
+          {
+            "start": 2094,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 1589
+          },
+          {
+            "start": 2107,
+            "length": 9,
+            "held": false,
+            "compatibleBanks": 129
+          },
+          {
+            "start": 2165,
+            "length": 11,
+            "held": false,
+            "compatibleBanks": 25
+          },
+          {
+            "start": 2236,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 2811
+          },
+          {
+            "start": 2256,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 1942
+          },
+          {
+            "start": 2299,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 1785
+          },
+          {
+            "start": 2315,
+            "length": 11,
+            "held": false,
+            "compatibleBanks": 1
+          },
+          {
+            "start": 2347,
+            "length": 12,
+            "held": false,
+            "compatibleBanks": 0
+          },
+          {
+            "start": 2359,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 1761
+          },
+          {
+            "start": 2379,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 1850
+          },
+          {
+            "start": 2387,
+            "length": 11,
+            "held": false,
+            "compatibleBanks": 6
+          },
+          {
+            "start": 2526,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 2462
+          },
+          {
+            "start": 2550,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 2227
+          },
+          {
+            "start": 2590,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 1340
+          },
+          {
+            "start": 2622,
+            "length": 11,
+            "held": false,
+            "compatibleBanks": 2
+          },
+          {
+            "start": 2637,
+            "length": 9,
+            "held": false,
+            "compatibleBanks": 250
+          },
+          {
+            "start": 2690,
+            "length": 9,
+            "held": false,
+            "compatibleBanks": 216
+          },
+          {
+            "start": 2718,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 1958
+          },
+          {
+            "start": 2744,
+            "length": 11,
+            "held": false,
+            "compatibleBanks": 3
+          },
+          {
+            "start": 2775,
+            "length": 9,
+            "held": false,
+            "compatibleBanks": 194
+          },
+          {
+            "start": 2784,
+            "length": 9,
+            "held": false,
+            "compatibleBanks": 187
+          },
+          {
+            "start": 2848,
+            "length": 11,
+            "held": false,
+            "compatibleBanks": 1
+          },
+          {
+            "start": 2866,
+            "length": 9,
+            "held": false,
+            "compatibleBanks": 168
+          },
+          {
+            "start": 2875,
+            "length": 11,
+            "held": false,
+            "compatibleBanks": 3
+          },
+          {
+            "start": 2886,
+            "length": 13,
+            "held": false,
+            "compatibleBanks": 0
+          },
+          {
+            "start": 2918,
+            "length": 12,
+            "held": true,
+            "compatibleBanks": 0
+          },
+          {
+            "start": 2959,
+            "length": 9,
+            "held": true,
+            "compatibleBanks": 164
+          },
+          {
+            "start": 2968,
+            "length": 9,
+            "held": true,
+            "compatibleBanks": 200
+          },
+          {
+            "start": 2983,
+            "length": 10,
+            "held": true,
+            "compatibleBanks": 14
+          },
+          {
+            "start": 3151,
+            "length": 9,
+            "held": true,
+            "compatibleBanks": 260
+          },
+          {
+            "start": 3173,
+            "length": 10,
+            "held": true,
+            "compatibleBanks": 33
+          },
+          {
+            "start": 3259,
+            "length": 9,
+            "held": true,
+            "compatibleBanks": 95
+          },
+          {
+            "start": 3286,
+            "length": 8,
+            "held": true,
+            "compatibleBanks": 2308
+          },
+          {
+            "start": 3369,
+            "length": 9,
+            "held": true,
+            "compatibleBanks": 139
+          },
+          {
+            "start": 3405,
+            "length": 14,
+            "held": true,
+            "compatibleBanks": 0
+          },
+          {
+            "start": 3546,
+            "length": 9,
+            "held": true,
+            "compatibleBanks": 507
+          },
+          {
+            "start": 3568,
+            "length": 8,
+            "held": true,
+            "compatibleBanks": 1202
+          },
+          {
+            "start": 3587,
+            "length": 8,
+            "held": true,
+            "compatibleBanks": 3335
+          }
+        ]
+      },
+      {
+        "hold": true,
+        "trainN": 32,
+        "heldoutN": 13,
+        "trainingBest": 4,
+        "trainingTies": 5,
+        "selected": [
+          1,
+          4,
+          9,
+          27,
+          28
+        ],
+        "selectedHeldout": 0,
+        "trainingTiesHeldoutRange": [
+          0,
+          1
+        ],
+        "fullBest": 5,
+        "fullTies": 1,
+        "fullFirst": [
+          2,
+          4,
+          17,
+          19,
+          22
+        ],
+        "source": [
+          0,
+          0
+        ],
+        "reciprocal": [
+          0,
+          0
+        ],
+        "truth": null,
+        "truthTrain": null,
+        "truthTest": null,
+        "truthWinner": null,
+        "stats": [
+          {
+            "start": 1894,
+            "length": 9,
+            "held": false,
+            "compatibleBanks": 204
+          },
+          {
+            "start": 1944,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 1111
+          },
+          {
+            "start": 1998,
+            "length": 10,
+            "held": false,
+            "compatibleBanks": 92
+          },
+          {
+            "start": 2014,
+            "length": 12,
+            "held": false,
+            "compatibleBanks": 0
+          },
+          {
+            "start": 2046,
+            "length": 10,
+            "held": false,
+            "compatibleBanks": 34
+          },
+          {
+            "start": 2060,
+            "length": 9,
+            "held": false,
+            "compatibleBanks": 462
+          },
+          {
+            "start": 2086,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 1143
+          },
+          {
+            "start": 2094,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 1452
+          },
+          {
+            "start": 2107,
+            "length": 9,
+            "held": false,
+            "compatibleBanks": 75
+          },
+          {
+            "start": 2165,
+            "length": 11,
+            "held": false,
+            "compatibleBanks": 26
+          },
+          {
+            "start": 2236,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 2565
+          },
+          {
+            "start": 2256,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 1809
+          },
+          {
+            "start": 2299,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 1387
+          },
+          {
+            "start": 2315,
+            "length": 11,
+            "held": false,
+            "compatibleBanks": 3
+          },
+          {
+            "start": 2347,
+            "length": 12,
+            "held": false,
+            "compatibleBanks": 0
+          },
+          {
+            "start": 2359,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 1383
+          },
+          {
+            "start": 2379,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 1773
+          },
+          {
+            "start": 2387,
+            "length": 11,
+            "held": false,
+            "compatibleBanks": 6
+          },
+          {
+            "start": 2526,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 2318
+          },
+          {
+            "start": 2550,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 2246
+          },
+          {
+            "start": 2590,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 849
+          },
+          {
+            "start": 2622,
+            "length": 11,
+            "held": false,
+            "compatibleBanks": 1
+          },
+          {
+            "start": 2637,
+            "length": 9,
+            "held": false,
+            "compatibleBanks": 251
+          },
+          {
+            "start": 2690,
+            "length": 9,
+            "held": false,
+            "compatibleBanks": 130
+          },
+          {
+            "start": 2718,
+            "length": 8,
+            "held": false,
+            "compatibleBanks": 1799
+          },
+          {
+            "start": 2744,
+            "length": 11,
+            "held": false,
+            "compatibleBanks": 1
+          },
+          {
+            "start": 2775,
+            "length": 9,
+            "held": false,
+            "compatibleBanks": 190
+          },
+          {
+            "start": 2784,
+            "length": 9,
+            "held": false,
+            "compatibleBanks": 172
+          },
+          {
+            "start": 2848,
+            "length": 11,
+            "held": false,
+            "compatibleBanks": 1
+          },
+          {
+            "start": 2866,
+            "length": 9,
+            "held": false,
+            "compatibleBanks": 133
+          },
+          {
+            "start": 2875,
+            "length": 11,
+            "held": false,
+            "compatibleBanks": 2
+          },
+          {
+            "start": 2886,
+            "length": 13,
+            "held": false,
+            "compatibleBanks": 0
+          },
+          {
+            "start": 2918,
+            "length": 12,
+            "held": true,
+            "compatibleBanks": 0
+          },
+          {
+            "start": 2959,
+            "length": 9,
+            "held": true,
+            "compatibleBanks": 160
+          },
+          {
+            "start": 2968,
+            "length": 9,
+            "held": true,
+            "compatibleBanks": 192
+          },
+          {
+            "start": 2983,
+            "length": 10,
+            "held": true,
+            "compatibleBanks": 13
+          },
+          {
+            "start": 3151,
+            "length": 9,
+            "held": true,
+            "compatibleBanks": 247
+          },
+          {
+            "start": 3173,
+            "length": 10,
+            "held": true,
+            "compatibleBanks": 32
+          },
+          {
+            "start": 3259,
+            "length": 9,
+            "held": true,
+            "compatibleBanks": 88
+          },
+          {
+            "start": 3286,
+            "length": 8,
+            "held": true,
+            "compatibleBanks": 2228
+          },
+          {
+            "start": 3369,
+            "length": 9,
+            "held": true,
+            "compatibleBanks": 135
+          },
+          {
+            "start": 3405,
+            "length": 14,
+            "held": true,
+            "compatibleBanks": 0
+          },
+          {
+            "start": 3546,
+            "length": 9,
+            "held": true,
+            "compatibleBanks": 449
+          },
+          {
+            "start": 3568,
+            "length": 8,
+            "held": true,
+            "compatibleBanks": 1065
+          },
+          {
+            "start": 3587,
+            "length": 8,
+            "held": true,
+            "compatibleBanks": 3145
+          }
+        ]
+      }
+    ]
+  },
+  "spacingFree": {
+    "controls": [
+      {
+        "bank": [
+          11,
+          26,
+          8,
+          15,
+          2
+        ],
+        "hold": false,
+        "fitN": 1024,
+        "heldoutN": 693,
+        "fitGain": 0.0810766173585973,
+        "heldoutGain": 0.07928479654340072,
+        "fitLogLik": -3347.7350950798855,
+        "heldoutLogLik": -2265.5957491497043,
+        "maxActive": 140,
+        "replay": 1717,
+        "mapPrefix": "M A C T IA N A N D W H O U R E E N T E R S E E N T O TH E C I T U A L L TH E P EO P L E C A L S TH E I N E S H I M A N D TH E C W E R E O F C H I S E R W H I M U S W",
+        "mapExact": 839,
+        "mapHeldoutExact": 340,
+        "donor": 1
+      },
+      {
+        "bank": [
+          8,
+          19,
+          11,
+          2,
+          15
+        ],
+        "hold": true,
+        "fitN": 1024,
+        "heldoutN": 693,
+        "fitGain": 0.04812185830237198,
+        "heldoutGain": 0.013636009627834398,
+        "fitLogLik": -3378.137128688725,
+        "heldoutLogLik": -2316.1058179793,
+        "maxActive": 223,
+        "replay": 1717,
+        "mapPrefix": "S O F H I S T O R Y I N TH E G R EA C S I R P R A P L E S S TH E G R EA C T O L O O M E N C E S TH E G R EA T N O N S TH A T W A L L S O F N O T TH E N I U S T TH E R E",
+        "mapExact": 668,
+        "mapHeldoutExact": 257,
+        "donor": 3
+      }
+    ],
+    "original": [
+      {
+        "bank": [
+          11,
+          26,
+          8,
+          15,
+          2
+        ],
+        "hold": false,
+        "fitN": 1024,
+        "heldoutN": 693,
+        "fitGain": -0.05803107580605836,
+        "heldoutGain": -0.05921104173508781,
+        "fitLogLik": -3491.853192712866,
+        "heldoutLogLik": -2356.557905579585,
+        "maxActive": 140,
+        "replay": 1717,
+        "mapPrefix": "O M I N M A N D T O G H T A N D W A Y A N D G A I D S P I N W H I C H A S B U I L I G H A T S O F S P EA C E W A S TH E C T U S E D E R E L I C N O T P A R E TH E",
+        "mapExact": null,
+        "mapHeldoutExact": null
+      },
+      {
+        "bank": [
+          8,
+          19,
+          11,
+          2,
+          15
+        ],
+        "hold": false,
+        "fitN": 1024,
+        "heldoutN": 693,
+        "fitGain": -0.056249941879646485,
+        "heldoutGain": -0.06242197472121467,
+        "fitLogLik": -3490.02931157222,
+        "heldoutLogLik": -2358.7830821389734,
+        "maxActive": 140,
+        "replay": 1717,
+        "mapPrefix": "O G I U S A N D T O G H T A N D W A Y A N D T R A C C L EA U E S EA S U R S B U I T S O U A R TH W H E H I C E B E G O D E S S IA N A T O O D I C H A T P A R E TH E",
+        "mapExact": null,
+        "mapHeldoutExact": null
+      },
+      {
+        "bank": [
+          11,
+          26,
+          8,
+          15,
+          2
+        ],
+        "hold": true,
+        "fitN": 1024,
+        "heldoutN": 693,
+        "fitGain": -0.05217973678156551,
+        "heldoutGain": -0.04319996281541462,
+        "fitLogLik": -3485.8614215517814,
+        "heldoutLogLik": -2345.4622278882516,
+        "maxActive": 223,
+        "replay": 1717,
+        "mapPrefix": "O M I N M A N D T O G H T A N D W A Y A N D G A I D S P I N W H I C H A S B U I L I G H A T S O M M O U S E W A S TH E C T U S E D E R E L I C N O T P A R E TH E",
+        "mapExact": null,
+        "mapHeldoutExact": null
+      },
+      {
+        "bank": [
+          8,
+          19,
+          11,
+          2,
+          15
+        ],
+        "hold": true,
+        "fitN": 1024,
+        "heldoutN": 693,
+        "fitGain": -0.05385656340056222,
+        "heldoutGain": -0.04578959692011309,
+        "fitLogLik": -3487.57849200964,
+        "heldoutLogLik": -2347.2568443228147,
+        "maxActive": 223,
+        "replay": 1717,
+        "mapPrefix": "O G I U S A N D T O G H T A N D W A Y A N D T R A C C L EA U E S EA S U R S B U I T S O U A R TH W H E H I C E B E G O D E S S IA N A T O O D I C H A T P A R E TH E",
+        "mapExact": null,
+        "mapHeldoutExact": null
+      }
+    ]
+  },
+  "inputs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/liber-primus/lp2-transcription.txt",
+      "sha": "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/control/english_wordfreq_textblob.txt",
+      "sha": "140e1d22b5f8c45deddd2e8b25549d9d6307d938"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    },
+    {
+      "path": "resources/control/blake_song_of_liberty_train.txt",
+      "sha": "c8d8afda002f2585ce64a959c26c20d24a5c990b"
+    }
+  ]
+}
