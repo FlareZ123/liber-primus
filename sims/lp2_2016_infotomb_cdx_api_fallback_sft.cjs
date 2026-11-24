@@ -99,6 +99,14 @@ function classifyCandidate(record) {
     urlkey:record.urlkey||null
   };
 }
+function isCompleteQuery(query) {
+  if(query.status===200) return !query.parse_error&&!query.truncated;
+  return query.status===404&&/No Captures found for:/.test(query.response_excerpt||'');
+}
+function hasPositiveControl(query) {
+  return !!query&&query.status===200&&!query.parse_error&&!query.truncated&&
+    (query.records||[]).some(r=>String(r.status||r.statuscode)==='200');
+}
 async function queryIndex(collection,query) {
   const params=new URLSearchParams({
     url:query.url,
@@ -119,6 +127,8 @@ async function queryIndex(collection,query) {
       out.truncated=parsed.records.length>=1000;
     } else {
       out.response_excerpt=r.body.toString('utf8').slice(0,1000);
+      out.no_captures=r.status===404&&/No Captures found for:/.test(out.response_excerpt);
+      if(out.no_captures) { out.records=[]; out.truncated=false; }
     }
   } else if(r.status===200) {
     out.records=[];
@@ -172,16 +182,15 @@ async function main() {
     const controls=[];
     for(const control of CONTROLS) controls.push(await queryIndex(collection,control));
     const candidateRecords=(prefix.records||[]).map(classifyCandidate).filter(Boolean);
-    const genericControlPass=controls.some(c=>
-      (c.records||[]).some(r=>String(r.status||r.statuscode)==='200'));
+    const commoncrawlControl=controls.find(c=>c.id==='commoncrawl-org');
+    const genericControlPass=hasPositiveControl(commoncrawlControl);
     collections.push({
       collection,
       prefix_query:prefix,
       candidate_records:candidateRecords,
       controls,
       generic_control_pass:genericControlPass,
-      complete:prefix.status===200&&!prefix.parse_error&&!prefix.truncated&&
-        controls.every(c=>c.status===200&&!c.parse_error&&!c.truncated)
+      complete:isCompleteQuery(prefix)&&genericControlPass
     });
     await wait(250);
   }
@@ -245,8 +254,13 @@ function selftest() {
   assert.equal(classifyCandidate({url:'http://infotomb.com/tmp/208771.thumb.jpg',status:'200'}).id,'thumbnail');
   assert.equal(classifyCandidate({url:'http://infotomb.com/tmp/208771_text?x=1',status:'200'}).exact_url,false);
   assert.equal(classifyCandidate({url:'http://infotomb.com/tmp/208772',status:'200'}),null);
+  assert.equal(isCompleteQuery({status:404,response_excerpt:'{"message":"No Captures found for: infotomb.com/tmp/208771"}'}),true);
+  assert.equal(isCompleteQuery({status:404,response_excerpt:'{"message":"Invalid query"}'}),false);
+  assert.equal(isCompleteQuery({status:503,response_excerpt:'upstream unavailable'}),false);
+  assert.equal(hasPositiveControl({status:200,records:[{status:'200'}]}),true);
+  assert.equal(hasPositiveControl({status:200,records:[{status:'301'}]}),false);
   assert.equal(COLLECTIONS.length,9);
-  console.log('PASS: Common Crawl CDXJ parsing, exact path classification and nine-collection inventory');
+  console.log('PASS: CDXJ parsing, exact path classification, no-capture 404 semantics and nine-collection inventory');
 }
 if(process.argv.includes('--selftest')) selftest();
 else main().catch(e=>{console.error(e&&e.stack||e);process.exitCode=1;});

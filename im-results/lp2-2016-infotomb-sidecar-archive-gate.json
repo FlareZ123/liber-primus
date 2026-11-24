@@ -1,0 +1,108 @@
+{
+  "task": "InfoTomb temporary-path sidecar archive gate",
+  "source": "resources/historical/cicada2016-4gq25.md",
+  "workflow_run": {
+    "id": 45512482240,
+    "artifact_id": 14976911199,
+    "run_commit": "2064186f39b2fd252f29213a053321468b3052d0"
+  },
+  "wayback": {
+    "candidate_urls": [
+      "http://infotomb.com/tmp/208771",
+      "https://infotomb.com/tmp/208771",
+      "http://infotomb.com/tmp/208771.thumb.jpg",
+      "https://infotomb.com/tmp/208771.thumb.jpg",
+      "http://infotomb.com/tmp/208771_text",
+      "https://infotomb.com/tmp/208771_text"
+    ],
+    "query_http_status": 200,
+    "capture_counts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "positive_control": [
+      {
+        "url": "http://infotomb.com/4gq25.jpg",
+        "query_http_status": 200,
+        "captures": 17
+      },
+      {
+        "url": "https://infotomb.com/4gq25.jpg",
+        "query_http_status": 200,
+        "captures": 17
+      }
+    ]
+  },
+  "commoncrawl_cdxj_api": {
+    "prefix_query": {
+      "url": "infotomb.com/tmp/208771",
+      "matchType": "prefix"
+    },
+    "collections": [
+      "CC-MAIN-2016-07",
+      "CC-MAIN-2016-18",
+      "CC-MAIN-2016-22",
+      "CC-MAIN-2016-26",
+      "CC-MAIN-2016-30",
+      "CC-MAIN-2016-36",
+      "CC-MAIN-2016-40",
+      "CC-MAIN-2016-44",
+      "CC-MAIN-2016-50"
+    ],
+    "prefix_response_status": 404,
+    "prefix_response": "No Captures found for: infotomb.com/tmp/208771",
+    "candidate_prefix_records": 0,
+    "positive_control": {
+      "url": "https://commoncrawl.org/",
+      "http_200_records_by_collection": [
+        3,
+        2,
+        2,
+        2,
+        4,
+        3,
+        2,
+        2,
+        1
+      ]
+    },
+    "same_host_carrier_query": {
+      "url": "infotomb.com/4gq25.jpg",
+      "response": "No Captures found",
+      "all_nine_collections": true
+    }
+  },
+  "raw_cluster_index_pass": {
+    "complete": false,
+    "certified_no_match": [
+      "CC-MAIN-2016-40",
+      "CC-MAIN-2016-50"
+    ],
+    "uncertified_block_gap": [
+      "CC-MAIN-2016-07",
+      "CC-MAIN-2016-18",
+      "CC-MAIN-2016-22",
+      "CC-MAIN-2016-26",
+      "CC-MAIN-2016-36"
+    ],
+    "http_503": [
+      "CC-MAIN-2016-30",
+      "CC-MAIN-2016-44"
+    ]
+  },
+  "outcome": {
+    "sidecar_recovered": false,
+    "candidate_http200_records": 0,
+    "warc_objects_retrieved": 0,
+    "sidecar_route_retired": true
+  },
+  "limitations": [
+    "Wayback queries were exact HTTP/HTTPS URL queries; Common Crawl prefix query covers the /tmp/208771 path prefix.",
+    "This is bounded to Wayback and the nine 2016 Common Crawl indexes, not every archive or every possible historical URL.",
+    "No claim that the filesystem paths were ever publicly served or that the files never existed."
+  ]
+}
