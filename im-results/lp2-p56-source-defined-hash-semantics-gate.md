@@ -4,7 +4,7 @@
 
 ## Decision
 
-The p56 destination value is fixed exactly, but the surviving first-party corpus does **not** fix the hash algorithm, page serialization, canonicalization, HTTP byte boundary, or URL/body choice. No preserved page object tested so far maps to the target under SHA-512, and no source-stated digest rule has been found.
+The p56 destination value is fixed exactly, but the surviving first-party corpus does **not** fix the hash algorithm, page serialization, canonicalization, HTTP byte boundary, or URL/body choice. No preserved page object tested so far—including the adjacent final p57 scan and its source-grounded text serializations below—maps to the target under SHA-512, and no source-stated digest rule has been found.
 
 A concrete 2012 hidden-service lane is now source-located: the archived `sq6wmgv2zcsrix6t.onion` root HTML contains a Cicada-signed message and the original `/NUMBER` workflow. Its exact bytes and the preserved 2012 signed messages/MIDI were tested; none matches p56. The participant-specific `/NUMBER` response and the second-chance onion page remain missing. The prior "no locator" closure is therefore superseded: the source lane is real, but the target response is not yet recovered.
 
@@ -29,6 +29,25 @@ Concatenated target, exactly 128 hex characters / 64 bytes:
 The solved instruction says that within the deep web there exists a page that “HASHES TO” this value. It does not print an algorithm name, media type, URL, request method, response/body distinction, text normalization rule, or canonicalization.
 
 This exact transcription agrees with the previously frozen image-level audit in [p56-exact-digest-public-occurrences.md](p56-exact-digest-public-occurrences.md).
+
+
+## Adjacent final page p57: exact source-object SHA-512 gate
+
+Because p57 is the final physical page immediately following the p56 hash page, test the narrow possibility that the target refers to the final book page itself or to its text. This does not assume p57 is the requested deep-web page; it is the most local adjacent-page candidate a solver could check before searching for an external page.
+
+The reproducer hashes only source-grounded representations under SHA-512: original scan resources/liber-primus/74.jpg, original rune glyphs, canonical GP transliteration, one-byte GP29 indices, the exact p57 reference text, normalized words, and letters-only text. None matches the 128-hex target.
+
+| p57 representation | Bytes | SHA-512 |
+|---|---:|---|
+| Original scan 74.jpg | 318,076 | 8efd1a0b4a52204387c1c61008c3df56405efbb5d39a6cfd3b6aec874ed7e91e33abcb55ba05dc921ba672f113332d18cbaea6f0b794b25c5193e250f9dc36c4 |
+| Original rune glyph sequence, UTF-8 | 285 | 6263b30a8e3edd6c57a3a23224a3c6e1b5b2ad721b482ce0a2c149cb45a2b4ab5c590bd999a05648af361d48f7fdb438a910351227235b1fb23240041d9c221e |
+| Canonical GP transliteration, no separators | 100 | 5648420362ad2344e5f10ffbcbbd73d307615426433c14f5566dce019b8eebdf588a80fc2cf8888b06709b4d75bd1b1f9e7a6bf390d10485a7d87d4b738cb42c |
+| GP29 rune indices, one byte per rune | 95 | 9887ee7773ec7e2f800327cb457d00be80fbfdc7735ebac0c44999a8892dbceefef4213f5dfbcbd7747dac5c33dc2d703d43681eddde170305469e616d9706e5 |
+| Exact p57 reference text, UTF-8 | 122 | e236a34de5a9ace3b55a3ccc2223c88d3a2ed23f3829f342d54a1bc718070c4a3e8452c36fa9d6b78e99594807182fa10ea3f315ad9dabd3a160a10bfa170d26 |
+| Normalized uppercase words, single spaces | 120 | f1dd3fc790d6d88cbf3ef20289183babe236302c0e469076d16d5779a21cbf2fde38107b96050a38f45269ebb78a424672381a2e28138ee0c346f71fc1dc6d6a |
+| Uppercase letters only | 101 | 552a9e34e276f5434228afab25e665e22d5026d581039db923f88cf01fb42a9c4c23ffc7bfd77f116b98e1da7a71ad797f906f3b3e74b8ed40b4e855e4d29973 |
+
+The script asserts that none equals the p56 target and records the exact byte lengths: [sims/lp2_p56_adjacent_p57_sha512_sft.cjs](../sims/lp2_p56_adjacent_p57_sha512_sft.cjs). This closes only the adjacent-p57 SHA-512 candidates above; it does not identify the deep-web page, select SHA-512 as the intended algorithm, or rule out another external page serialization.
 
 ## Authenticated-message semantic census
 
@@ -141,6 +160,7 @@ Manual Windows Node 22 workflow run:
 - [PASS 44420377403](https://github.com/FlareZ123/liber-primus/actions/runs/44420377403)
 - head commit `8a8c86a5435cd8aace777ed8ddd674a3332c75bd`
 - script: `sims/lp2_p56_firstparty_hash_semantics_sft.cjs`
+- adjacent final-page candidate: `sims/lp2_p56_adjacent_p57_sha512_sft.cjs`
 
 ## 2012 hidden-service page lane
 
@@ -184,6 +204,6 @@ The source-supported p56 contract remains:
 
 > find a deep-web page whose unspecified hash equals the fixed 64-byte value above.
 
-The 2012 route now supplies a concrete original hidden-service root page and a known `/NUMBER` interaction, but not the participant-specific response bytes. The 2016 InfoTomb clue carrier and the 2014 Stage11 index/images are also exact negative candidates under their tested SHA-512 semantics. No target preimage or authenticated digest convention has been recovered.
+The adjacent final p57 scan and its seven source-grounded SHA-512 serializations are also negative. The 2012 route supplies a concrete original hidden-service root page and a known `/NUMBER` interaction, but not the participant-specific response bytes. The 2016 InfoTomb clue carrier and the 2014 Stage11 index/images are also exact negative candidates under their tested SHA-512 semantics. No target preimage or authenticated digest convention has been recovered.
 
 Still unknown: the actual target page and path, digest family, whether the preimage is raw HTTP entity bytes or another representation, whether headers are included, content decoding, newline/character encoding, HTML/text normalization, and whether the URL itself participates. A future destination claim requires the original `/NUMBER`/second-chance response or another independently period-linked page object, plus source-authenticated digest semantics. Do not guess wrappers or launch hash-family sweeps.
