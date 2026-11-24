@@ -1,0 +1,29 @@
+# Wilkins's side-anchor and geometric mark convention: original LP2 applicability gate (#2646)
+
+## Historical positive
+John Wilkins, *Mercury, or the Secret and Swift Messenger* (London, 1641), pp. 44–46, gives an explicit spatial steganographic method. An agreed ordered alphabet is printed across the top of a tablet; teeth on opposite edges guide a single thread in consecutive returns, and knots at the letter positions carry the message. The first return starts at the side toward A. The worked example is independently quoted by Clive T. Probyn, "Swift and Linguistics: The context behind Lagado and around the fourth voyage" (1974), p. 429: the concealed sentence begins BEWARE OF THIS BEARER and warns of a spy. This is an actual authorial cipher specification, not an inference from the appearance of a cross or a leaf. The related Wilkins geometrical dot cipher requires a registered alphabet scale and successive vertical positions.
+
+Sources: [1641 edition catalogue](https://identity.wellcomecollection.org/works/rn5sjhdm), [1641 pp.44–46 transcription](https://www.alchemy-texts.com/book/mercvry-or-the-secret-and-svvift-messenger-communicate-his-thoughts-to-a-friend-at-any-distance/), [Probyn's 1974 quotation](https://www.academia.edu/9871523/Swift_and_linguistics_The_context_behind_Lagado_and_around_the_fourth_voyage), [University of Utah description of geometrical cipher and alphabet scale](https://blog.lib.utah.edu/book-week-mercury-secret-svvift-messenger/). The latter is a later description of the 1641 source, not a period Cicada hint. The text is historically available; direct digital facsimile fetch and later library photograph screenshot were blocked by the web cache, so I do not claim independent recovery of every printed dot in Wilkins's demonstration.
+
+## Frozen necessary features of direct transfer
+
+The historical procedure needs three distinguishable operands: (1) ordered spatial alphabet (one fixed registered pitch and origin); (2) edge returns with identifiable path order and connection to the mark carrier; (3) knots or discrete geometric marks on that carrier, at the alphabet positions. A direct analogy to LP2's side art must preserve these typed roles. If the paired staves actually guide returns across body text rows, every successive return must designate an available row, including the last lower return on the independently shorter final page p2. This is a logical necessary prediction of that particular transfer, not a psychologically blinded experiment; the researcher had previously seen the pages. No rune values or English scores enter the gate.
+
+## Original page examination
+All page indices are physical LP2, original archive JPEG index = p+17. Visually inspected the original scans from the supplied archive, preserving the left/right page orientation. Reused the existing exact 180-degree registration and p1/p2 image reuse from #758 and #617 instead of rerunning pixel tests.
+
+| Original image range | Observable | Missing typed operand |
+| --- | --- | --- |
+| p0–p2 (17–19.jpg) | Same opposing triple-bar crosses, upper-right and lower-left, around 12/12/9 body lines. No visible connecting thread, no alphabet scale or regular sequence of opposing return teeth. p2 has nine text rows ending at the red punctuation; the lowest left crossbar is below the text block, in the cicada-art/blank region. | For the direct text-row transfer, the final left return has no receiver row. Crossbar placement is unchanged between p1 and p2 despite the shortened body. |
+| p15 (32.jpg) | Red heading, separate 4x4 decimal panel with red 3299, infinity sign, then prose. | Panel is not an alphabet axis paired with successive knot marks and side returns. |
+| p28–p32 (45–49.jpg) | Body text; p32 tree below its text. | No ordered edge return anchors or mark scale. |
+| p33–p39 (50–56.jpg) | Repeated compact angular group above/below body; red paragraph/number rubrics. | Repetition identifies a possible section convention, but no ordered spatial alphabet or successive thread marks. |
+| p49–p51 (66–68.jpg) | Repeated botanical frames; 32x8 numeric table over three pages; p50 is table only. | No row-indexed return path or alphabet-mark legend. A row array alone does not instantiate Wilkins's marked thread. |
+| LP1 01, 16 and LP2 p56/p57 control examples | LP1 has rubric/border and a separate numeric square; p56 has scattered dots, p57 a tree and no spatial alphabet. | Known recovered plaintext mechanisms do not supply the Wilkins layout operands. Scattered dots without the registered key scale are not unique letter coordinates. |
+
+The Gematria Primus chart supplies the ordered symbols and primes, but not a registered geometric origin or pitch on the pages. Importing an arbitrary scale, inventing a string, choosing a subset of bars, or connecting text dots to it would be new adjustable assumptions. A 180-degree motif can suggest reversal but does not fix those operands. Do not promote the prior conditional 3|3→TH observation to a thread cipher.
+
+## Decision
+The source is a genuine worked historical layout and provides a specific falsifiable analogy, but the original LP2 layout does not instantiate its receiver. The p2 lower return prediction fails the direct row interpretation. No unique operation follows; no key scan or speculative decoder was run. Close #2646 as a bounded negative for the side-anchor/marked-carrier and registered geometric-mark analogues. Other historical layout conventions are not excluded. Prior negative coarse method selector #2640 remains separate; existing stave source-plate #758 and twig-rune #194 are reused rather than duplicated.
+
+Next: only reopen this analogy on a genuine first-party spatial register/mark-carrier instruction or an exact corresponding source layout. No unknown plaintext, key, or destination.
