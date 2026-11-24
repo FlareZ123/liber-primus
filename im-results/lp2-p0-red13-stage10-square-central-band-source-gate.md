@@ -149,11 +149,47 @@ This is a **different geometric cipher class** from the stationary/affine/quadra
 
 [Complete original-text lexical key-free SFT](../sims/lp2_p0_dot13_allsecret_english_wordpair_gate_sft.cjs) · [Windows Node22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44938621805).
 
+## Outside-in H after square-band extraction: exact no-key first-word obstruction (Agent49, 24 November)
+
+The earlier square-band tests applied source-derived shifts **directly** to the title. This distinct composition instead tests the already published outside-in marker transform (H(x,y)=(x-y,x+y)mod29) *after* a numerical assignment to the physical dots. Fix ordinary left/center/right column order, top-to-bottom within each column, and pair outside-in. The historical 2014 two 5×5 bands in this order are:
+
+```text
+first: 1311 934 620 204 | 434 812 809 812 434 | 204 620 934 1311
+third:  138 130 245 366 | 272 199  91 199 272 | 366 245 130  138
+```
+
+Grant every arbitrary source-value map (f) into GP29 and three independent constant offsets (h_L,h_C,h_R), then form the key as (K=H(R)), where (R_i=f(v_i)+h_{mathrm{column}(i)}). The four opposing flank pairs have identical historical numbers and opposite column offsets. Consequently **every** such key satisfies
+
+```text
+K[0] = K[2] = K[4] = K[6] = h_L-h_R (mod 29)
+K[8] = K[10] = 0.
+```
+
+These equalities are also sufficient for an arbitrary source-value lookup: each of the four opposing flank pairs has its own distinct source value and the center has three other distinct values; multiplication by two is invertible mod29. The four independent flank sums and three center values can therefore be assigned freely. The source ciphertext itself now determines the first-word compatibility rule without choosing a key or either historical title crib:
+
+```text
+C[0]-P[0] = C[2]-P[2] = C[4]-P[4] = C[6]-P[6] (mod 29).
+```
+
+In both the same 4,325-native and 4,472-letter eight-rune pinned dictionaries, **zero** first words satisfy that rule, even before opening the second word. The second-word constraints alone admit 47 native or 51 letter-normalized words (46/49 if plaintext F is only permitted where the original ciphertext is F). Allowing a fixed-position literal F at original offset7 does not alter the four flank-difference constraints, and still produces zero complete titles. This is a finite dictionary exclusion, not a proof about all languages or altered consuming clocks. The conditional EPIPHANY SEEKS residual needs flank differences `[26,8,27,18]`, all unequal: it specifically cannot arise through this same-square stationary-plus-column-offset H composition.
+
+A direct, separate **three-square consumer** uses the actual historical 5–7–5 order, taking the first square's left diagonal, one-ring-shedding the central 7×7 square (following solved p57's circumference instruction as a conjectural opcode), taking its remaining five-element main diagonal, and finally the last square's right diagonal. Its packet is
+
+```text
+1311 934 620 204 | 223 121 331 121 223 | 366 245 130 138
+```
+
+This does break flank symmetry. The exact raw-residue H key is `[13,28,21,20,27,24,12,19,0,11,0,10,12]`; the fixed subtractive decode is `THNYEOHASI / SSEJOE`. Raw/φ under both signs give no coherent title. For all three packets, the complete affine source-value family (R_i=a g(v_i)+b) (all 841 pairs, (g) raw or φ) and the stronger (R_i=a g(v_i)+h_{mathrm{column}(i)}) (all slopes, independent flank offsets, independently free center offset) produce **zero dictionary first words**, in both registers. The finite scan does not rule out an arbitrary source-value map on the asymmetric three-square packet.
+
+Controls: 12 source-native-word plants (two spelling registers × three packets × two maps) use separately selected attested GP words ANSWERED and ABOUT, hidden affine parameters 7 and 11, recover the exact 13-rune planted plaintext and both parameters uniquely in the global-affine family, and are found by the wider column-offset family. These are constructed word-pair controls, not an attested adjacent phrase; no independent random-language recovery rate is claimed. Every one of the 12 fixed raw/φ/sign inverses replays the original ciphertext exactly, which is an arithmetic invariant rather than authentication.
+
+**Decision:** retire the same-square stationary/column-offset H decoder and the fixed three-square raw/φ/affine H consumers in the stated finite registers. The distinct retrospective state-rise serializer is not ruled out; it does not assign equal historical cell values by a common static lookup. No unknown plaintext or authentic key recovered. [Reproducer](../sims/lp2_p0_square_band_h_inverse_sft.cjs), commit a3eaad8771e4e7587b84bff0666c4072728fcdd5. Executed in the V8 tool runtime on the four repository source files; no CI run claimed.
+
 ## What this changes
 
-The geometric match alone does not select a title decipherment. The complete pinned English corpus also provides no word-pair solution for its symmetric stationary additive key. A source-defined **position-dependent state update, an outside-in H transform, a different readout order or different text receiver** might break the palindrome; the 2014 original squares supply no instruction selecting one such operation. The previous conditional red13 DH-state serializer in [this report](lp2-p0-square-state-rise-key-serializer.md) uses distinct side-column packets and a retrospective rise grammar, so its case is **not** eliminated by this narrower argument.
+The geometric match alone does not select a title decipherment. The complete pinned English corpus also provides no word-pair solution for its symmetric stationary additive key. A source-defined **position-dependent state update, a different readout order or different text receiver** might break the palindrome. The natural outside-in H transform after a stationary cell lookup and column offsets has now been excluded by the first-word invariant above; the fixed asymmetric three-square raw/φ/affine H composition also fails. The 2014 original squares supply no instruction selecting a different operation. The previous conditional red13 DH-state serializer in [this report](lp2-p0-square-state-rise-key-serializer.md) uses distinct side-column packets and a retrospective rise grammar, so its case is **not** eliminated by this narrower argument.
 
-**Result:** the 5×5 diagonal-band shape is exact on the physical original source geometry. Both conditional title cribs and the full fixed 8|5 English word-pair census exclude stationary, affine and quadratic clock source-square keys in the pinned English registers. A distinct three-column-offset source-square codebook has precisely two native English algebraic survivors, both semantically weak and requiring source-unselected numeric codebooks. Neither class identifies an authored key or original title plaintext. Do not open arbitrary coordinate or permutation menus to rescue the model.
+**Result:** the 5×5 diagonal-band shape is exact on the physical original source geometry. Both conditional title cribs and the full fixed 8|5 English word-pair census exclude stationary, affine and quadratic clock source-square keys in the pinned English registers. A distinct three-column-offset source-square codebook has precisely two native English algebraic survivors, both semantically weak and requiring source-unselected numeric codebooks. Neither class, nor the new H-composition families above, identifies an authored key or original title plaintext. Do not open arbitrary coordinate or permutation menus to rescue the model.
 
 [Windows Node22 original SFT PASS, CI run 44937394995](https://github.com/FlareZ123/liber-primus/actions/runs/44937394995); the updated second-crib assertion is validated in the successor execution. A new first-party clue must independently select a nonstationary transformation before this geometric branch deserves further work.
 
