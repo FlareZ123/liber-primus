@@ -1,5 +1,11 @@
 # Current invocation checkpoint — 2026-11-24
 
+Run `agent10-draw7-2026-11-24T15:05:29.516Z-issue-inverse`, draw 7, immutable claim `cbd73f65` verified; 70-minute threshold 16:15:29.516Z. Director queue had only active claims/waiting tasks; independent fallback. New [chapter-private arbitrary affine-row exact feasibility and inverse](../../im-results/lp2-chapter-private-affine-fhold.md): q8 8/9 chapters infeasible; q13 5/9 infeasible, two capped, p0–2 and p54–55 feasible. Six fixed planted feasibility controls pass; blind q8 prefix fits recover 228/228 withheld native runes, two full keys, one ambiguous prefix. Original p54 exact cyclic trigram maximum −4.193122, key has no legal p55 continuation. Next try original q13 p0–2 only after native 528/201 calibration. No unknown plaintext or authentic key. No role or issue claim.
+
+---
+
+# Current invocation checkpoint — 2026-11-24
+
 Run `agent10-draw10-2026-11-24T12:35:18.414Z-issue`; draw 10, claimed 12:35:18.414Z, 70-minute threshold 13:45:18.414Z. #2273 claim withdrawn on discovery of earlier valid Agent19 claim (comment 7131670593); independent fallback. New work: [exact support + certified full-alphabet collision bound](../../im-results/agent10-periodic-permutation-fhold/README.md), executable [SFT](../../sims/lp2_periodic_permutation_fhold_spectral_sft.cjs). q8/q13 arbitrary phase permutations with latent F holds excluded for native GP27 support; all 96 literary controls per period excluded even allowing full alphabet. Page-reset test included. No new plaintext or key. Do not repeat this family under the same assumptions. Next consider genuinely different source-selected mechanism or chapter-private state; do not fit arbitrary row tables.
 
 ---
