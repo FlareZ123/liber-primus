@@ -4,7 +4,7 @@
 const fs=require("node:fs"),path=require("node:path");
 const cov=require("./lp2_p23_26_entomology_coverage_sft.cjs");
 const files=cov.files;
-function run(inputs){
+function run(inputs,randomCount=16){
  const {data,expanded,relevant,unrelated}=cov.run(inputs,true);
  if(!data.gate)return {coverageGate:false};
  const src=inputs[7],start=src.indexOf(" const [gp,trans,lex,native]"),end=src.indexOf(" function run(label,");
@@ -34,8 +34,8 @@ function run(inputs){
  return out;
  }
  const source=test(relevant),technicalControl=test(unrelated),random=[];
- for(let i=0;i<16;i++)random.push(test(randomDict(3301+i)));
- return {coverageGate:true,cut,trainRunes:flat.length,untouchedRunes:519,anchors:old.anchors,oldCounts,baselineClasses:old.keys.size,baselineLegal:oldLegal.length,source,technicalControl,random,randomDesign:"same added GP tuple count per length and F mask, xorshift32 seeds 3301..3316; fixed diagnostic, not calibrated significance",noSuffixScoring:true};
+ for(let i=0;i<randomCount;i++)random.push(test(randomDict(3301+i)));
+ return {coverageGate:true,cut,trainRunes:flat.length,untouchedRunes:519,anchors:old.anchors,oldCounts,baselineClasses:old.keys.size,baselineLegal:oldLegal.length,source,technicalControl,random,randomDesign:"same added GP tuple count per length and F mask, xorshift32 seeds 3301 through 3300+randomCount; fixed diagnostic, not calibrated significance",noSuffixScoring:true};
 }
 if(require.main===module)console.log(JSON.stringify(run(files.map(p=>fs.readFileSync(path.resolve(__dirname,"..",p),"utf8"))),null,2));
 module.exports={run,files};
