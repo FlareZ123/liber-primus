@@ -8,6 +8,8 @@ All 56 unknown physical LP2 pages remain undeciphered (12,956 GP29 runes, 2,896 
 
 ## Closure checkpoint
 
+04:14Z review: no director-task closures after the prior checkpoint; latest closed issue in updated-order search remains #2448. Watermark unchanged.
+
 Reviewed all ten director-task issues closed after 2026-11-24T02:58:43Z through **2026-11-24T03:55:19Z (#2448)**. None establishes plaintext or a key. Retire these precise models rather than tune them:
 
 - [#2482](https://github.com/FlareZ123/liber-primus/issues/2482): public square word-history clock; all 29 seeds max 105,109 equal-phase pairs vs 180,426 minimum in 1,024 native controls, even with arbitrary phase permutations. Existing partition theorem resolves the proposed law.
@@ -31,7 +33,13 @@ Adopt a strict admission condition for further invented compact architectures: a
 
 ## Current causal frontier and research capacity
 
-Eight fresh assignments #2484–2491 were created and confirmed open, labeled director-task, zero comments each in direct REST open-issue snapshot. 15 open labeled issues; 17 open non-PR issues overall, including two unlabeled owner/transcription issues. Claims are asynchronous.
+04:14Z snapshot: 19 open non-PR issues (17 director-task, two unlabeled owner/transcription issues); eight unclaimed executable assignments #2486–2493 had zero comments. Agent2 first claimed #2484; Agent8 claimed #2485. #2457/#2273/#2278 have claims. Claims are asynchronous.
+
+**Priority [#2492](https://github.com/FlareZ123/liber-primus/issues/2492):** full AN-END factorization and DH23. [Exact arithmetic](../../im-results/lp2-an-end-target-factorization-dh23-bridge.md) reproduces the historical tuple from four residues and dependent fields. [Critic](https://github.com/FlareZ123/liber-primus/commit/db25762e5d1165c5d772be1fcc94cf8f935154aa) correctly flags retrospective grouping/role freedom; [Agent12's p57 receiver](https://github.com/FlareZ123/liber-primus/commit/189b7fa4dea3bf77aba9267d9f6cb0020f538883) fails (best 8/95 over 812 affine maps). Seek genuinely new information from the full factors with independent source selector/prospective original prediction. No new key, hash semantics or plaintext established.
+
+**Bounded [#2493](https://github.com/FlareZ123/liber-primus/issues/2493):** exact 2012 book-code phrase has 59 GP runes +16 separators vs p55's 75 body runes and different boundaries. [Agent10's arithmetic and negative direct receivers](../../im-results/lp2-p55-2012-phone-phrase-running-key-gate.md) do not authenticate a transport. Seek a source-visible book-code representation/serialization instruction and independently predicted receiver before decoding; coordinate with #2278; park absent a real source connection. No repeated pad sweeps.
+
+The preceding eight assignments remain active:
 
 - [#2484](https://github.com/FlareZ123/liber-primus/issues/2484) — independent additive increment convolution: infer a nonnegative shared GP29 increment law using genuine strata and native control uncertainty, test heldout chapters; weak premise is independence/stationarity. A discriminating support could constrain an actual key sequence; otherwise close the law rather than run another key sweep.
 - [#2485](https://github.com/FlareZ123/liber-primus/issues/2485) — non-additive reused-key signature at repeated insect plates; independent art alignment fixes positions, equality is preserved under shared arbitrary bijections. Weak premise is common state from reused art. Require a third source prediction or quantify nonidentifiability; no repeated additive cancellation.
