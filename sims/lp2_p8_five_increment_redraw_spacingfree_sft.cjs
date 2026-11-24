@@ -127,8 +127,8 @@ function experiment(corpus,solved,literary,config={topK:128,controls:true,origin
   return {hold,rankMs,elapsedMs:Date.now()-started,truth,truthRank:tid===null?null:R.order.indexOf(tid)+1,truthTrigramRank:tid===null?null:(scores.findIndex(x=>x.id===tid)+1||null),bank:B,exact:tid===null?null:best.id===tid,gain:gain(f),runnerGap:best.score-scores[1].score,source:sourceIds.map(id=>({bank:banks[id],rank:R.order.indexOf(id)+1,...gain(filter(c,cut,banks[id],hold,M))})),accuracy:p===null?null:f.out.filter((x,i)=>x===p[i]).length,withheld:p===null?null:f.out.slice(cut).filter((x,i)=>x===p[cut+i]).length,candidate:p===null?f.out.slice(0,250).map(x=>corpus.translit[x]).join(""):null};
  }
  let result={config,controls:[],original:[]};
- if(config.controls)for(const hold of [false,true])for(const s of lit){const p=s.tape.slice(0,1717),z=plant(p,hold,803301+result.controls.length);result.controls.push({name:s.name,...fit(z.c,hold,language(s.name),z.B,p)})}
- if(config.original)for(const hold of [false,true])result.original.push(fit(target,hold,language(null)));
+ if(config.controls)for(const hold of [false,true])for(const s of lit){const i=3*Number(hold)+lit.indexOf(s);if(config.case!==undefined&&config.case!==i)continue;const p=s.tape.slice(0,1717),z=plant(p,hold,803301+i);result.controls.push({name:s.name,...fit(z.c,hold,language(s.name),z.B,p)})}
+ if(config.original)for(const hold of [false,true]){if(config.case!==undefined&&config.case!==6+Number(hold))continue;result.original.push(fit(target,hold,language(null)))}
  return result;
 }
 const data=paths.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8"));
