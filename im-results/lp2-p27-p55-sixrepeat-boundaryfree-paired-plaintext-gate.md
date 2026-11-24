@@ -37,6 +37,35 @@ Their shared `CINIUS` suffix is **forced** by the last six zeros in the source d
 
 **Reproduced and passed on original source files on [GitHub Actions Windows run 44300501406](https://github.com/FlareZ123/liber-primus/actions/runs/44300501406)**, Node22. The runnable workflow is [agent8-p27-p55-seam-viterbi.yml](../.github/workflows/agent8-p27-p55-seam-viterbi.yml). It independently asserts original 1433/76/12956 counts, the exact six copied symbols and zero differences, natural English-control suffix identities, and reversible common-key cancellation before scoring all 21 pairs.
 
+## Latent-word paired-language recovery (Agent45, 24 November)
+
+The preceding character-only Viterbi detector had limited genuine-plaintext recovery, so this distinct constructive decoder searches complete dictionary words and two independent latent boundary tapes. It retains the source-fixed 76-rune p27 cyclic window, original p55, shared six-rune suffix and unit shared-pad differential. No new placement or slope is fitted.
+
+A weighted GP29 word trie uses the pinned English frequency lexicon plus the first 67% of Shakespeare words. A separate weighted suffix trie permits an arbitrary initial midword. For each paired next rune, the decoder either continues the current word or closes a terminal and begins the next word; the opposite rune is fixed by the exact differential. It adds an interpolated previous-word conditional probability at word closure. End prefixes are permitted. The 1,024-state beam merges matching paired trie/previous-word states and keeps the highest-scoring paths; this is an approximate search, not global optimality. The full decoder jointly constructs both letter tapes and their predicted word boundaries without using any printed ciphertext space positions. A returned pair yields an exact common pad by subtraction and is forward-replayed against both original ciphertexts.
+
+The implementation contains 29,964 word types and 267,664 trie nodes (including suffixes); it trains on 37,122 Shakespeare words and leaves 71,344 runes held out. Four naturally occurring disjoint held-out pairs with identical six-rune suffixes were selected independently of the manuscript.
+
+| Pair | Joint score | Recovered exact rune positions per tape (of 76) |
+|---|---:|---:|
+| Plant 1 | -262.900010 | 23 |
+| Plant 2 | -255.493752 | 14 |
+| Plant 3 | -249.454830 | 57 |
+| Plant 4 | -230.622501 | 50 |
+| Original | -266.003715 | Unknown |
+
+The two strongest plants reconstruct long actual clauses, for example plant 3 recovers `AND NOW IN PEACE MY SOUL SHALL PART TO HEAUEN SINCE I HAUE SET MY` and `HARDLY BORNE BY ANY IN THIS PRESENCE I DESIRE TO RECONCILE ME TO HIS` concurrently. The incomplete results in the other two plants demonstrate remaining language/beam ambiguity. These independently selected controls and word-level scores are not directly comparable to the earlier character-only scoring scale.
+
+The original joint optimum found by this finite beam is:
+
+```
+p27: THE LATTER OF MEN WE LL FLOCCNG HER NATIAN FRAGRANCE MURDERER LET FLOOR ND THE COURT WHY LISTENED
+p55: S THE WALL CLEAN OF MY MANLY WHO WHAT EACH MISS IT OH RISE THERE S MAJESTY HORSES IN ALL HIS HASTENED
+```
+
+Neither complete passage is intelligible as recovered plaintext, and its score is below all four independent genuine-English pairs. Individual plausible phrases and forward replay under an arbitrary fitted pad are insufficient. This is a stronger constructive recovery attempt, not an all-key theorem or a proof that no language model can invert the pair. It gives no new key, historical instruction, or unknown-page solution. The source-selected seam remains a real ciphertext observation. Do not promote the output or resume the same pad model merely by tuning the beam.
+
+[Executable CJS decoder](../sims/lp2_p27_p55_jointword_beam_recovery_sft.cjs), original-source runtime execution at [d3f9d67e](https://github.com/FlareZ123/liber-primus/commit/d3f9d67eccf9788ae8ed9705b009220d47233020).
+
 ## Decision
 
 The source-authentic six-rune/one-rune page seam is a real and unusual **ciphertext** overlap. It does not imply a common unknown additive pad under a simple letter clock. This original-input full-two-message language recovery offers **no English support** for that model even after removing every printed-word preservation assumption. The same model cannot be advanced from its visibly shared final six symbols. A new historically sourced key clock, skip rule, nonadditive relation, or independent page-level plaintext must be identified before a further attack on this exact pair can claim progress.
