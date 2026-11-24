@@ -3,7 +3,7 @@
 const fs=require("node:fs");
 const path=require("node:path");
 const read=p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8");
-function attack(corpus, transcript, lexicon, nativeReference) {
+function attack(corpus, transcript, lexicon, nativeReference, augmentNative=false) {
   const assert=(x,m)=>{if(!x)throw Error(m)};
   const runeIndex=new Map(corpus.runes.map((x,i)=>[x,i]));
   const tokens=corpus.translit.map((x,i)=>[x,i]).sort((a,b)=>b[0].length-a[0].length);
@@ -20,6 +20,8 @@ function attack(corpus, transcript, lexicon, nativeReference) {
     dict.get(a.length).set(pack(a),a);freq.set(pack(a),(freq.get(pack(a))||0)+Number(f));
   }
   assert(forms===29154,"lexicon count");
+  const nativeAdded=[];
+  if(augmentNative)for(const w of readPage(57).words){if(!dict.has(w.length))dict.set(w.length,new Map());if(!dict.get(w.length).has(pack(w))){dict.get(w.length).set(pack(w),w);nativeAdded.push(w.map(x=>corpus.translit[x]).join(""));}}
   const dictionary=new Map([...dict].map(([n,m])=>[n,[...m.values()]]));
   function shape(words,C=words.flat(),carry=false) {
     let p=0;const spans=words.map(w=>{const s={start:p,len:w.length};p+=w.length;return s});
@@ -232,7 +234,7 @@ function attack(corpus, transcript, lexicon, nativeReference) {
   if(!nativeMissing.length)for(const mode of [false,true])positives.push({type:"WARNING reference + exact p57",...makePlant(warning,parable,mode,0,10)});
   softResults.sort((a,b)=>a.oov-b.oov||a.frequencyCost-b.frequencyCost);
   const softHistogram={};for(const r of softResults)softHistogram[r.oov]=(softHistogram[r.oov]||0)+1;
-  return {dictionaryForms:forms,uniqueForms:[...dictionary.values()].reduce((n,v)=>n+v.length,0),summaries,soft:{placements:softResults.length,histogram:softHistogram,best:softResults.slice(0,5)},positives,nativeMissing,cache:{projection:projectionCache.size,allowed:allowedCache.size}};
+  return {nativeAdded,dictionaryForms:forms,uniqueForms:[...dictionary.values()].reduce((n,v)=>n+v.length,0),summaries,soft:{placements:softResults.length,histogram:softHistogram,best:softResults.slice(0,5)},positives,nativeMissing,cache:{projection:projectionCache.size,allowed:allowedCache.size}};
 }
-const result=attack(JSON.parse(read("resources/liber-primus/lp2-corpus.json")),read("resources/liber-primus/lp2-transcription.txt"),read("resources/control/english_wordfreq_textblob.txt"),read("resources/liber-primus/lp1-plaintext-reference.txt"));
+const result=attack(JSON.parse(read("resources/liber-primus/lp2-corpus.json")),read("resources/liber-primus/lp2-transcription.txt"),read("resources/control/english_wordfreq_textblob.txt"),read("resources/liber-primus/lp1-plaintext-reference.txt"),process.argv.includes("--native"));
 console.log(JSON.stringify(result,null,2));
