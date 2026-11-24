@@ -68,7 +68,7 @@ jobs:
 
       - name: Run selected source-derived seed test
         env:
-          SEED_SOURCE: \${{ inputs.seed_source }}
+          SEED_SOURCE: ${{ inputs.seed_source }}
           PYTHONUTF8: "1"
           PYTHONHASHSEED: "0"
         run: |
@@ -91,7 +91,7 @@ jobs:
           esac
 
       - name: Upload LP1 report
-        if: \${{ inputs.seed_source == 'lp1-first17' }}
+        if: ${{ inputs.seed_source == 'lp1-first17' }}
         uses: actions/upload-artifact@v4
         with:
           name: agent20-lp1-first17-sha-prf-skipaware
@@ -99,7 +99,7 @@ jobs:
           if-no-files-found: error
 
       - name: Upload p49-p51 grid report
-        if: \${{ inputs.seed_source == 'p49-51-grid256' }}
+        if: ${{ inputs.seed_source == 'p49-51-grid256' }}
         uses: actions/upload-artifact@v4
         with:
           name: agent20-p50-grid-prf-skipaware
