@@ -68,4 +68,4 @@ Run on Node 22:
 
     node sims/lp2_gf841_additive_pair_clock_sft.cjs
 
-The script reads the canonical original rune corpus, verifies both field generators and their order, enumerates the complete finite candidate family, checks the full-book supplementary screen, and runs exact synthetic encrypt/decrypt controls. The manual workflow file is .github/workflows/agent1-gf841-additive-pair-gate.yml.
+The script reads the canonical original rune corpus, verifies both field generators and their order, enumerates the complete finite candidate family, checks the full-book supplementary screen, and runs exact synthetic encrypt/decrypt controls.
