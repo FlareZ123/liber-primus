@@ -56,7 +56,8 @@ def download_archive(path: Path) -> dict:
         shutil.copyfileobj(response, out)
     size = path.stat().st_size
     sha256 = hashlib.sha256()
-    git_sha1 = hashlib.sha1(f"blob {size}\0".encode("ascii"))
+    git_header = b"blob " + str(size).encode("ascii") + bytes([0])
+    git_sha1 = hashlib.sha1(git_header)
     with path.open("rb") as f:
         for chunk in iter(lambda: f.read(1024 * 1024), b""):
             sha256.update(chunk)
@@ -88,18 +89,69 @@ def main() -> None:
     hits = {x: {"count": 0, "samples": []} for x in needle_meta}
     matched_line_bytes = 0
     matched_line_count = 0
+    grep_rc = None
+    bz2_rc = None
+    archive_meta = None
 
     with tempfile.TemporaryDirectory(prefix="lp2-tor2013-") as td:
         archive_path = Path(td) / "raw_data_csv_export.tar.bz2"
         needle_path = Path(td) / "needles.txt"
         archive_meta = download_archive(archive_path)
         needle_path.write_text("\n".join(needles) + "\n", encoding="ascii")
-        report = {
+        print(json.dumps({"archive_downloaded": archive_meta, "needle_count": len(needles)}), flush=True)
+
+        decompressor = subprocess.Popen(
+            ["bzip2", "-dc", str(archive_path)],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL,
+        )
+        assert decompressor.stdout is not None
+        grep = subprocess.Popen(
+            ["grep", "-a", "-i", "-F", "-f", str(needle_path)],
+            stdin=decompressor.stdout,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL,
+        )
+        decompressor.stdout.close()
+        assert grep.stdout is not None
+        for line_no, line in enumerate(grep.stdout, 1):
+            matched_line_bytes += len(line)
+            matched_line_count += 1
+            for match in regex.finditer(line.lower()):
+                needle = match.group().decode("ascii").lower()
+                item = hits[needle]
+                item["count"] += 1
+                if len(item["samples"]) < 3:
+                    item["samples"].append({"matched_line": line_no, "match": needle})
+        grep_rc = grep.wait()
+        bz2_rc = decompressor.wait()
+        if bz2_rc != 0:
+            raise RuntimeError(f"bzip2 decompression failed with exit code {bz2_rc}")
+        if grep_rc not in (0, 1):
+            raise RuntimeError(f"grep failed with exit code {grep_rc}")
+
+    def result_for(service: str) -> dict:
+        desc = [
+            {"id": n, "count": hits[n]["count"], "samples": hits[n]["samples"]}
+            for n, meta in needle_meta.items()
+            if f"descriptor:{service}" in meta and hits[n]["count"]
+        ]
+        return {
+            "service_id": service,
+            "service_id_hits": hits[service],
+            "descriptor_hit_count": sum(x["count"] for x in desc),
+            "descriptor_hits": desc[:10],
+        }
+
+    report = {
         "source": ARCHIVE_URL,
         "collection_window_utc": [START.isoformat(), END.isoformat()],
         "archive": archive_meta,
+        "needle_count": len(needles),
         "matched_line_count": matched_line_count,
         "matched_line_bytes": matched_line_bytes,
+        "grep_exit_code": grep_rc,
+        "bzip2_exit_code": bz2_rc,
         "targets": [result_for(x) for x in targets],
         "controls": [result_for(x) for x in controls],
         "interpretation": (
