@@ -20,11 +20,12 @@ const follow=viterbi(c,best.s,best.k,prefix,c.length,best.v),plain=follow&&decod
 // Each chapter has independent origin and affine key. Freeze first floor(n/2) runes as train.
 const ranges=[[0,2],[3,7],[8,14],[15,22],[23,26],[27,32],[33,39],[40,53],[54,55]],out=[];
 for(const [p0,p1] of ranges){
-const c=gp.pages.filter(p=>p.page>=p0&&p.page<=p1).flatMap(p=>p.indices),cut=Math.floor(c.length/2);let best=null,legal=0,full=0,max=0,top=[];
+const c=gp.pages.filter(p=>p.page>=p0&&p.page<=p1).flatMap(p=>p.indices),cut=Math.floor(c.length/2);let best=null,legal=0,full=0,max=0,top=[],fullBest=[];
 for(const {a,b,k} of maps)for(let s=0;s<N;s++){if(reach(c,s,k,cut)<cut)continue;legal++;const v=viterbi(c,s,k,0,cut);if(!v)throw Error("reach mismatch");if(!best||v.l>best.v.l)best={a,b,k,s,v};}
 const tail=best&&viterbi(c,best.s,best.k,cut,c.length,best.v),trainPlain=best&&decode(best.v.seq),plain=tail&&decode(tail.seq);
-for(const {a,b,k} of maps)for(let s=0;s<N;s++){const d=reach(c,s,k);if(d===c.length)full++;if(d>max){max=d;top=[]}if(d===max&&top.length<10)top.push([s,a,b])}
-out.push({chapter:[p0,p1],n:c.length,cut,legal,full,max,top,best:best&&{s:best.s,a:best.a,b:best.b,train:best.v.l/cut,trainPreview:trainPlain.slice(0,60).map(x=>gp.translit[x]).join(""),heldoutLegal:!!tail,hold:tail?(tail.l-best.v.l)/(c.length-cut):null,holdPreview:tail?plain.slice(cut,cut+60).map(x=>gp.translit[x]).join(""):null,replay:tail?encode(plain,best.s,best.k).every((x,i)=>x===c[i]):false}})
+for(const {a,b,k} of maps)for(let s=0;s<N;s++){const d=reach(c,s,k);if(d===c.length){full++;const v=viterbi(c,s,k,0,c.length);fullBest.push({s,a,b,v});}if(d>max){max=d;top=[]}if(d===max&&top.length<10)top.push([s,a,b])}
+fullBest.sort((a,b)=>b.v.l-a.v.l);const wholeFit=fullBest.slice(0,3).map(x=>({s:x.s,a:x.a,b:x.b,mean:x.v.l/c.length,preview:decode(x.v.seq).slice(0,120).map(y=>gp.translit[y]).join('')}));
+out.push({wholeFit,chapter:[p0,p1],n:c.length,cut,legal,full,max,top,best:best&&{s:best.s,a:best.a,b:best.b,train:best.v.l/cut,trainPreview:trainPlain.slice(0,60).map(x=>gp.translit[x]).join(""),heldoutLegal:!!tail,hold:tail?(tail.l-best.v.l)/(c.length-cut):null,holdPreview:tail?plain.slice(cut,cut+60).map(x=>gp.translit[x]).join(""):null,replay:tail?encode(plain,best.s,best.k).every((x,i)=>x===c[i]):false}})
 }
 return out;
 };
