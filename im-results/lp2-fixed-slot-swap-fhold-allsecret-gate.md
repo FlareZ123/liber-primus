@@ -48,6 +48,35 @@ Granting an independent arbitrary alphabet, pivot, rank mapping, and F policy on
 
 Nine source-native solved sections each supply four independent seeded planted alphabets/modes: all-consuming, F slot initially 0, F slot initially nonzero, and F itself at the pivot. All 36 planted true inverses reproduce every native rune and their complete ciphertext exactly with known key and mask. Every true count is within the applicable DP bound; 15 literal-F plants include ordinary consuming zero outputs, exercising the hidden-zero ambiguity. For the all-consuming and zero-slot variants, a native prefix crib occupying the first two-thirds of the plant identifies the static relabeling; on the untouched suffix, **1,970/1,970 covered runes are recovered exactly** out of 1,994 total, with 24 uncovered by the prefix map. This is a cribbed constructive recovery of the effective relabeling, not a blind historical key search.
 
+## Moving pivot: source-table clock and synchronization attack
+
+The original [p49–51 base60 table](../resources/liber-primus/base60-grid.json) gives one non-fitted binary clock previously considered in [the bit0 MTF rotor decision](lp2-p50-bit0-mtf-rotor-allsecret-original-decision.md): at absolute physical rune index i, select pivot 0 or 1 by grid[(i+255) mod 256] & 1. This conditional association does not authenticate the swap opcode. Allow both pivot plaintext symbols and every initial alphabet and static plaintext permutation to be arbitrary.
+
+A consecutive equal nonzero ciphertext pair requires the pivot selected at the first rune to be consumable at the second. Both clock bits have such witnesses on the original (36 and 46 book-wide, respectively); both occur in every chapter. Consequently neither pivot can be literal F. The nonpivot F slot is invariant, and the observed full nonzero support forces that slot to contain glyph 0; therefore all zeros are literal holds under this model.
+
+Track the two current pivot glyphs (a,b). When a consuming glyph c is observed, updating pivot 0 sends the pair to (c, a if b=c else b); updating pivot 1 sends it to (b if a=c else a, c). A hold leaves the pair unchanged. Propagate **all** possible pairs without guessing the alphabet. Once the pair becomes unique, arbitrary orderings of the remaining glyphs differ only by a static relabeling of nonpivot slots, and all subsequent inverse ranks have the same equality partition. This makes the remaining problem an ordinary substitution CSP rather than a search over changing alphabets. The original pair synchronizes after two runes to (15,8) in both models. The following bounds include the most generous possible contribution of the unsynchronized prefix.
+
+| Region | Burn-in | Consuming-only upper | Literal-F upper |
+|---|---:|---:|---:|
+| Whole p0–55 | 2 | 514 | 521 |
+| p0–2 | 2 | 39 | 39 |
+| p3–7 | 2 | 52 | 51 |
+| p8–14 | 2 | 86 | 77 |
+| p15–22 | 3 | 87 | 86 |
+| p23–26 | 2 | 54 | 50 |
+| p27–32 | 5 | 68 | 79 |
+| p33–39 | 3 | 83 | 79 |
+| p40–53 | 7 | 135 | 134 |
+| p54–55 | 3 | 22 | 22 |
+
+All are below the corresponding native reference minima above. Moreover, the first 150 complete synchronized original words contain five impossible equality signatures in each mode under the frozen 38,919-spelling GP lexicon. Even without word boundaries, the frequency discrepancy remains.
+
+**Constructive key recovery:** For each of three solved source sections, generate independently randomized secret alphabets and plaintext permutations in both modes. Synchronize the pivots from ciphertext alone, infer the static substitution from the first two-thirds of complete words using an exact word-pattern CSP, and decode the untouched last third without further fitting. All six plants recover a consistent effective key; all 1,078 of 1,080 held-out runes whose effective rank occurred in training are correct, with the two other runes (one each in the two KOAN modes) unrepresented in training and incorrect. More precisely, this is **1,078/1,078 covered** and **1,078/1,080 total**. The dictionary contains native target vocabulary, but no ordered plaintext crib. This is a vocabulary-assisted synthetic calibration, not a historical solution. The synchronized suffix inverse is exactly replayed in both controls and original.
+
+Reproducer: [two-pivot synchronization SFT](../sims/lp2_p50_bit0_twopivot_swap_allsecret_sft.cjs), executed in connected V8 before committing; Node CommonJS runner provided, no CI claim. The clock is fixed to the earlier conditional bit0 association, not swept or optimized against the held-out source.
+
+An unrestricted binary pivot schedule is outside this exclusion: preliminary max-plus propagation allowing either pivot at every rune admits a target count of 2,720 under all-consuming operation. Hence the simple frequency gate cannot rule out unknown arbitrary switching. An exploratory trigram beam and finite lexicon beam/DFS did not reliably recover randomly switched native controls, so their original outputs were not interpreted as evidence. Without an independently supported clock, additional arbitrary schedule fitting is not justified.
+
 ## Decision
 
-No source-supported fixed-slot swap key could produce the native-frequency register on the original. Retire the stationary swap and its independently reset physical-page extension rather than fitting pivot names or unknown initial alphabets. A changed pivot within a page, extra value layer, changing plaintext alphabet, different plaintext register or segmentation that changes the rune count is outside the result. Pursue one only if an original clue independently fixes that extra operation. The exact small-state projection is reusable for other permutation-update mechanisms when their state can be tracked with a few glyph slots. No unknown plaintext/key/destination and no change to the authoritative solved-page count.
+No source-supported fixed-slot swap key could produce the native-frequency register on the original. Retire the stationary swap and its independently reset physical-page extension rather than fitting pivot names or unknown initial alphabets. The fixed p50 bit0 two-pivot clock is also excluded for the whole book and each independently initialized chapter, under the same reference-frequency condition. An unrestricted changing pivot, extra value layer, changing plaintext alphabet, different plaintext register or segmentation that changes the rune count is outside the result. Pursue one only if an original clue independently fixes that extra operation. The exact small-state projection is reusable for other permutation-update mechanisms when their state can be tracked with a few glyph slots. No unknown plaintext/key/destination and no change to the authoritative solved-page count.
