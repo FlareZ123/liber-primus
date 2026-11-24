@@ -52,3 +52,22 @@ Retire this fixed prime2-start predictive transfer on the two original targets. 
 - [Complete output](lp2-prime-residue-permutation-fhold-spacingfree-output.json).
 - Source: canonical [LP2 corpus](../resources/liber-primus/lp2-corpus.json) and [native solved corpus](../resources/external/relikd-solved-gp29-native-v1.json).
 - Implementation checkpoint: [bc3ef36](https://github.com/FlareZ123/liber-primus/commit/bc3ef3681b4eeb6384f3630fb134f2f6624b40e9).
+
+## Follow-up: exact support for long regions and source-linked title gate
+
+An exact SAT model avoids enumerating 2^z full F masks. Variables k[r,v] enforce a bijection over residues and shifts. For each successive ciphertext-zero event e, exactly one state (e,h) records the cumulative number h of literal holds. For each nonzero consuming position i between events, the state forbids k[(prime_(i-h)-1) mod29,C_i]. At the next zero it permits either h+1 (literal F) or h (consuming, requiring nonzero shift). There are O(z²) states. The formula has no dictionary, spacing, frequency or language assumptions. Every returned witness is independently inverted and forward-encrypted rune for rune. A known-key planted 44-rune support/replay test passes. The local canonical compact tapes were independently matched against repository FNV-1a64 fingerprints.
+
+| Complete region | Runes | Ciphertext F | States | Exact status (15 s limit) | Witness holds |
+| --- | ---: | ---: | ---: | --- | ---: |
+| p0–2 | 729 | 34 | 630 | SAT | 0 |
+| p15–22 | 1903 | 72 | 2701 | SAT | 1 |
+| p23–26 | 1021 | 37 | 741 | SAT | 0 |
+| p40–53 | 3008 | 125 | 8001 | UNKNOWN / timeout | — |
+| p0–2, p15–22, p23–26 jointly (one shared permutation; independent prime2 resets) | 3653 | 143 | 4072 | UNKNOWN / timeout | — |
+
+SAT witnesses are arbitrary mechanically legal inverse paths, not language recoveries. These findings explicitly prevent treating the earlier failed language-optimal continuations as all-key contradictions. Neither timeout is UNSAT.
+
+A separate exact conditional crib gate uses the two existing competing p0 headings EPIPHANY SEEKS and SECUENDI RATIO. Neither proposed title has F, so its 13 required shifts must have exactly the same equality partition as the 13 consecutive prime residues under a bijective K. For both fixed title vectors, **zero of the first 5000 prime starting ordinals** satisfies this condition. This is distinct from the earlier [outer-cipher-alphabet gate](lp2-p0-epiphany-phiF-outer29-exact-inverse-original-gate.md): the permutation here acts on shift residues. It closes this conditional title route within the finite origin range, not either proposed title for arbitrary ciphers. Do not extend the offset range without a first-party selector.
+
+- [Exact SAT and title reproducer](../sims/lp2_prime_residue_permutation_fhold_sat.py); Python with Z3 shared library, set Z3_LIBRARY explicitly if needed. Run from repository root.
+- [Recorded SAT results](lp2-prime-residue-permutation-fhold-sat-summary.json).
