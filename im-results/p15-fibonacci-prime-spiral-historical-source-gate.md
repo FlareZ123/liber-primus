@@ -2,7 +2,34 @@
 
 ## Decision
 
-**No exact pre-2014 external source or published puzzle matching the complete p15 construction was located.** A partial cross-round antecedent is now identified: a public extraction of the 2013 CicadaOS prime_echo script prints primes through 3301, with pauses at 1033 and 3301. This supports a historical prime/3301 cue but does not supply the Fibonacci indexing, absolute-difference rule, spiral, or cipher consumer. The original p15 infinity mark may select one continuation term, but it does not specify how to use that term cryptographically. A separate bounded test of the signed-BASE29-derived repeating-key interpretation below is also negative. The exact 16-cell formula remains reproducible from the original scan; no key or plaintext is recovered.
+**No exact pre-2014 external source or published puzzle matching the complete p15 construction was located.** The closest newly identified mathematical antecedent is Khovanova's 2007 paper (composition, Fibonacci+1 and deduplication for inversion); it does not state the complete p15 formula or select an LP2 receiver. A partial cross-round antecedent is also identified: a public extraction of the 2013 CicadaOS prime_echo script prints primes through 3301, with pauses at 1033 and 3301. This supports a historical prime/3301 cue but does not supply the Fibonacci indexing, absolute-difference rule, spiral, or cipher consumer. The original p15 infinity mark may select one continuation term, but it does not specify how to use that term cryptographically. A separate bounded test of the signed-BASE29-derived repeating-key interpretation below is also negative. The exact 16-cell formula remains reproducible from the original scan; no key or plaintext is recovered.
+
+## Closest period mathematical antecedent: composition and invertibility (24 November, Agent3, #2487)
+
+A stronger partial antecedent than generic prime-indexed-prime literature is Tanya Khovanova's [How to Create a New Integer Sequence](https://arxiv.org/abs/0712.2244), publicly deposited 13 December 2007. The same paper explicitly treats three relevant operations: §2 (printed p5), Fibonacci plus one (OEIS [A001611](https://oeis.org/A001611)); §4 (p10), prime composed with Fibonacci (OEIS [A030427](https://oeis.org/A030427)); and §5 (p12), prime-counting inversion and removing the duplicated initial Fibonacci 1 to permit a left inverse. The 2011 Mathematica/Magma entries of A030427 independently predate LP2. A001611 has the actual shifted ordinal values but retains duplicate 2; A030427 retains duplicate 1 and omits the index offset. Neither is the full p15 sequence. [A105554](https://oeis.org/A105554), dated 2005, instead composes primes with cumulative Fibonacci values (F−1), and [A093309](https://oeis.org/A093309), dated 2004, iterates the unshifted prime composition. Neither supplies the source p15 rule. [Project Euler #28](https://projecteuler.info/problem%3D28) (11 October 2002) supplies the exact right/down clockwise square-spiral geometry, but its diagonal-sum task has no Fibonacci-prime selector or LP2 receiver.
+
+**New exact inverse property, no ciphertext fitting:** use the established numeral transcription in arbitrary cell order. For each printed positive distance d, check both positive integers 3301±d for primality; for each prime q retain it iff pi(q)−1 is a distinct Fibonacci value, and return that value's zero-based distinct ordinal. This is the composition inverse suggested by the historical mathematical presentation, applied only to the actual known numerical domain. An executed local Python/SymPy test gives 17 prime candidates for 16 cells; 15 cells have only one prime candidate and 3298 has two, 3 and 6599. The latter has pi(6599)−1=852, not Fibonacci. Thus **16/16 cells invert individually and uniquely**, including both above-3301 values, without assuming monotonic prime order or the physical spiral. The returned ordinals reproduce the clockwise order 0…15. Reproducer:
+
+```python
+from sympy import isprime, primepi
+grid = [[3258,3222,3152,3038],[3278,3299,3298,2838],
+        [3288,3294,3296,2472],[4516,1206,708,1820]]
+fib = [0, 1, 1]
+while fib[-1] <= 3301 + max(map(max, grid)):
+    fib.append(sum(fib[-2:]))
+fib = list(dict.fromkeys(fib))
+def inverse(d):
+    candidates = [(q, int(primepi(q))-1) for q in (3301-d,3301+d)
+                  if isprime(q)]
+    return candidates, [fib.index(i) for q,i in candidates if i in fib]
+result = [[inverse(d) for d in row] for row in grid]
+assert sum(len(a) for row in result for a,b in row) == 17
+assert all(len(b)==1 for row in result for a,b in row)
+assert [[b[0] for a,b in row] for row in result] == [
+    [6,7,8,9],[5,0,1,10],[4,3,2,11],[15,14,13,12]]
+```
+
+This establishes a finite invertibility property of the known numeral plate; it does not prove author use of the paper. The paper's explicit duplicate-removal reason weakens the claim that the omission is intrinsically exotic. The same convention also follows automatically from selecting a zero-indexed prime list by Fibonacci **membership**, since one position cannot be selected twice. The paper does not combine these components into the complete p15 construction, specify the 3301 absolute offset, or identify an original LP2 rune receiver. The directed searches for exact shifted-composition formulae, prime prefix, historical zero-based indexing and spiral examples produced no matching complete source. OEIS exact-sequence search endpoint was inaccessible; indexed queries and the named entries above were examined. No external-source-selected cipher operation follows; the next historical research should require a primary instruction tying a specified integer register to an LP2 ciphertext interval. Do not launch another arbitrary p15 arithmetic consumer or repeat this attribution question absent new evidence.
 
 ## Arithmetic Möbius/Euler inverse as an alternative printed-clue consumer (23 November 2026)
 
