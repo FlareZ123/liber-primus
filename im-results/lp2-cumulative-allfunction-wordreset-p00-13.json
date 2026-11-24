@@ -1,0 +1,188 @@
+{
+  "lexicon": 38920,
+  "out": [
+    {
+      "page": 0,
+      "range": [
+        0,
+        261
+      ],
+      "runes": 261,
+      "status": "unsat",
+      "nodes": 94,
+      "passes": 94,
+      "wordChecks": 430,
+      "example": null
+    },
+    {
+      "page": 1,
+      "range": [
+        267,
+        525
+      ],
+      "runes": 258,
+      "status": "unsat",
+      "nodes": 317,
+      "passes": 318,
+      "wordChecks": 10617,
+      "example": null
+    },
+    {
+      "page": 2,
+      "range": [
+        530,
+        729
+      ],
+      "runes": 199,
+      "status": "unsat",
+      "nodes": 305,
+      "passes": 305,
+      "wordChecks": 3094,
+      "example": null
+    },
+    {
+      "page": 3,
+      "range": [
+        729,
+        943
+      ],
+      "runes": 214,
+      "status": "unsat",
+      "nodes": 20,
+      "passes": 20,
+      "wordChecks": 100,
+      "example": null
+    },
+    {
+      "page": 4,
+      "range": [
+        948,
+        1206
+      ],
+      "runes": 258,
+      "status": "unsat",
+      "nodes": 314,
+      "passes": 314,
+      "wordChecks": 4763,
+      "example": null
+    },
+    {
+      "page": 5,
+      "range": [
+        1209,
+        1469
+      ],
+      "runes": 260,
+      "status": "unsat",
+      "nodes": 309,
+      "passes": 310,
+      "wordChecks": 3176,
+      "example": null
+    },
+    {
+      "page": 6,
+      "range": [
+        1476,
+        1665
+      ],
+      "runes": 189,
+      "status": "unsat",
+      "nodes": 506,
+      "passes": 581,
+      "wordChecks": 14206,
+      "example": null
+    },
+    {
+      "page": 7,
+      "range": [
+        1668,
+        1874
+      ],
+      "runes": 206,
+      "status": "unsat",
+      "nodes": 23,
+      "passes": 23,
+      "wordChecks": 93,
+      "example": null
+    },
+    {
+      "page": 8,
+      "range": [
+        1874,
+        2128
+      ],
+      "runes": 254,
+      "status": "unsat",
+      "nodes": 23,
+      "passes": 23,
+      "wordChecks": 226,
+      "example": null
+    },
+    {
+      "page": 9,
+      "range": [
+        2134,
+        2387
+      ],
+      "runes": 253,
+      "status": "unsat",
+      "nodes": 22,
+      "passes": 22,
+      "wordChecks": 139,
+      "example": null
+    },
+    {
+      "page": 10,
+      "range": [
+        2398,
+        2660
+      ],
+      "runes": 262,
+      "status": "unsat",
+      "nodes": 98,
+      "passes": 98,
+      "wordChecks": 3374,
+      "example": null
+    },
+    {
+      "page": 11,
+      "range": [
+        2660,
+        2933
+      ],
+      "runes": 273,
+      "status": "unsat",
+      "nodes": 1,
+      "passes": 2,
+      "wordChecks": 57,
+      "example": null
+    },
+    {
+      "page": 12,
+      "range": [
+        2933,
+        3194
+      ],
+      "runes": 261,
+      "status": "unsat",
+      "nodes": 318,
+      "passes": 318,
+      "wordChecks": 5357,
+      "example": null
+    },
+    {
+      "page": 13,
+      "range": [
+        3194,
+        3466
+      ],
+      "runes": 272,
+      "status": "unsat",
+      "nodes": 1,
+      "passes": 1,
+      "wordChecks": 1,
+      "example": null
+    }
+  ],
+  "controls": []
+}
