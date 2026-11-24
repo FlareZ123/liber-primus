@@ -45,6 +45,18 @@ The global contradiction crosses the first artwork-chapter boundary for the last
 
 Seven of nine artwork-chapter intervals cannot support **any nonnull** affine key even with independently chosen key and arbitrary earlier state. The short opening and terminal intervals retain nonnull possibilities; those are legality survivors only and not recovered keys. This substantially narrows the separate chapter-reset alternative, but does not cover resets at arbitrary internal words or other marker clocks.
 
+### Decode every surviving nonnull chapter-local path
+
+The remaining three parameter pairs were not left as unexplored legality claims. Enumerate their exact state DAG from the free singleton, count every complete plaintext trajectory with integer arithmetic, and select the path maximizing native-dictionary-matched runes in words of length at least four. The independent fixed comparator is the 29,081-form union of the pinned published native-GP donor words and the existing TextBlob word-frequency lexicon under repository GP spelling (lexicon blob 140e1d22b5f8c45deddd2e8b25549d9d6307d938). A donor within-word bigram model (0.5 smoothing) only breaks ties. Because the next key depends solely on the current plaintext word, retaining the best path per state gives an exact global maximum of matched-rune coverage, not a beam heuristic.
+
+| Span and (a,b) | Exact complete trajectories | Runes decoded after seed | Eligible groups (>=4 runes) | Maximum dictionary-matched eligible groups/runes |
+|---|---:|---:|---:|---:|
+| p0–2 (27,26) | 124,928 | 552 | 67 | 0 / 0 |
+| p54–55 (2,3) | 8 | 307 | 39 | 0 / 0 |
+| p54–55 (8,14) | 4 | 307 | 39 | 0 / 0 |
+
+The best paths begin respectively `MRSOAER EOTHJNGJW IAPC EEORH`, `PSBNGAEHRP IAMCCGBPM BEOH PRHEABE`, and `EOXTLAWOEO RPTNGIAASAE EAOEA SSAUEAC` (canonical transliteration labels). These are exact legal candidate decodes, not language. The complete best paths are emitted by the SFT, which forward-checks each selected word. No path among the three surviving keys contains even one eligible dictionary word. This retires the remaining chapter-local legality survivors as candidates for ordinary word-aligned native English, subject to the finite lexicon and segmentation assumption.
+
 ## Positive controls and reproducibility
 
 Three disjoint 150-group sections of the pinned published solved-GP comparator, with planted (a,b)=(3,7),(17,21),(28,12), retain the true F-hold branch at every step after their first singleton. The respective surviving parameter counts (including the always-legal null law) are 2,5,2; true final-word state counts are 1,2,6. These are reachability controls, not claims of unique full-trajectory recovery. The ordinary emitter returns the exact planted plaintext using the true key and seed; the minimum singleton-type counts in exhaustive searches are 1,2,2, equal to the respective true native counts. The solved-GP comparator is a published donor transcription; these controls do not assert perfect agreement with every original LP1 glyph.

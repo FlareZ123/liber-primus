@@ -137,3 +137,53 @@ assert.deepEqual(chapterResults.map(x=>x.live),[
   [[0,0],[27,26]],[[0,0]],[[0,0]],[[0,0]],[[0,0]],[[0,0]],[[0,0]],[[0,0]],[[0,0],[2,3],[8,14]]
 ]);
 console.log(JSON.stringify({chapterResults},null,2));
+// Decode the three nonnull chapter-local survivors with an exact path-count / lexical DP.
+const tok=corpus.translit.map((s,i)=>({s,i})).sort((a,b)=>b.s.length-a.s.length);
+function encode(s){
+  s=s.toUpperCase().replace(/QU/g,'CW').replace(/V/g,'U').replace(/[KQ]/g,'C')
+    .replace(/Z/g,'S').replace(/ING/g,'NG').replace(/IO/g,'IA');
+  const p=[];
+  while(s.length){const m=tok.find(t=>s.startsWith(t.s));if(!m)return null;p.push(m.i);s=s.slice(m.s.length);}
+  return p;
+}
+const lex=new Set(donors.map(code));
+for(const l of read('resources/control/english_wordfreq_textblob.txt').split(/\r?\n/)){
+  const m=/^([a-z]+) (\d+)$/.exec(l);
+  if(m){const p=encode(m[1]);if(p)lex.add(code(p));}
+}
+assert.equal(lex.size,29081);
+const dec=s=>Array.from(s,c=>c.charCodeAt(0));
+const gp=s=>dec(s).map(x=>corpus.translit[x]).join('');
+const bi=Array.from({length:30},()=>Array(29).fill(.5));
+for(const w of donors){let last=29;for(const x of w){bi[last][x]++;last=x;}}
+for(const row of bi){const s=row.reduce((x,y)=>x+y);for(let i=0;i<29;i++)row[i]=Math.log(row[i]/s);}
+function score(p){let last=29,s=0;for(const x of dec(p)){s+=bi[last][x];last=x;}return s;}
+function best(ws,a,b){
+  let states=new Map(seeds.map(s=>[s,{path:[s],n:0,m:0,score:0,count:1n}]));
+  for(let j=1;j<ws.length;j++){
+    const dest=new Map();
+    for(const [k,x] of states)for(const p of step(ws[j],new Set([k]),a,b)){
+      const h=lex.has(p)&&p.length>=4,n=x.n+(h?p.length:0),m=x.m+(h?1:0),sc=x.score+score(p),prior=dest.get(p);
+      const total=(prior?.count??0n)+x.count;
+      if(!prior||n>prior.n||(n===prior.n&&sc>prior.score))
+        dest.set(p,{path:[...x.path,p],n,m,score:sc,count:total});
+      else prior.count=total;
+    }
+    states=dest;
+  }
+  const sorted=[...states.values()].sort((x,y)=>y.n-x.n||y.score-x.score);
+  const best=sorted[0];assert(best);
+  for(let i=1;i<best.path.length;i++)
+    assert.deepEqual(emit(dec(best.path[i]),dec(best.path[i-1]),a,b,true),ws[i]);
+  return {a,b,paths:[...states.values()].reduce((s,x)=>s+x.count,0n).toString(),
+    groups:ws.length-1,runes:ws.slice(1).flat().length,
+    eligible:ws.slice(1).filter(w=>w.length>=4).length,
+    eligibleRunes:ws.slice(1).filter(w=>w.length>=4).flat().length,
+    matchedRunes:best.n,matchedWords:best.m,avgNats:best.score/ws.slice(1).flat().length,
+    output:best.path.slice(1).map(gp).join(' ')};
+}
+const survivorDecodes=[[39,158,27,26],[2830,2896,2,3],[2830,2896,8,14]].map(
+  ([s,t,a,b])=>best(words.slice(s,t),a,b));
+assert.deepEqual(survivorDecodes.map(x=>x.paths),['124928','8','4']);
+assert.deepEqual(survivorDecodes.map(x=>x.matchedRunes),[0,0,0]);
+console.log(JSON.stringify({survivorDecodes},null,2));
