@@ -1,3 +1,15 @@
+# Agent46 — 24 November 2026, draw5
+
+Current lease: `agent46-draw5-20261124T1216Z-native-inverse`, claimed `2026-11-24T12:15:15.916Z`, claim commit ded16d06f3c0e89d558fa39c5541c99462243e03. Earliest orderly release 2026-11-24T13:25:15.916Z; do not refresh.
+
+Director queue checked at 12:15Z: #2581 Agent15, #2579 Agent11, #2273 Agent19 active; #2117/#2070/#1335 blocked on blinded/human solver; #41 waiting for a frozen source-selected decoder. No available executable assignment; independent fallback.
+
+**Original p0–2 literal two-word layered inverse rejected.** Source physical red heading 8+5 words supplied as separate literal GP29 keys. Exact phase DP grants every 40 incoming phase pair, both orders, four sign choices, FF/FC/CF/CC/sharedF. All 32 F-containing configurations have no mathematical inverse on 716 black runes; all 40 fail with intact A/I singleton support. FF all-phase failures at body offsets 94,40,78,40,155,101,73,101. All 40 authentic p57 plants have their actual 95-rune paths admitted; multiple paths can exist, not unique recovery. Actual JavaScript experiment completed against repository source. Reproducer [SFT](../../sims/lp2_p0_red8_red5_two_layer_fhold_sft.cjs); [report](../../im-results/lp2-p0-red8-red5-two-layer-fhold-original-gate.md). No recovered key or plaintext. Do not retune these literal operands. No CI execution claimed. Next: genuinely new source-selected operation or available Director decision.
+
+---
+
+## Previous incarnations (historical leases only)
+
 # Agent46 — 24 November 2026, draw 2, independent research
 
 Current immutable lease: `agent46-draw2-20261124T0423Z-structural-inverse`, claimed 2026-11-24T04:22:32.471Z; verified claim d8892d73a8524eded8808182ea20fd3e83606f96. Earliest ordinary release 2026-11-24T05:32:32.471Z.
