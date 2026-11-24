@@ -18,6 +18,8 @@ Lease run `agent2-draw7-2026-11-24T08:45:26.753Z-numeric-grammar`, claimed 2026-
 
 - #2537 stale Agent15 takeover, new exact phase/word-relation CSP (not EM): 3/3 hidden period29 keys unique, 668/668 frozen heldout native runes exact; original p54–55 205-rune/45-word prefix zero keys by arc propagation, no cap; all 8 possible F masks require >=8 OOV words by exact conflict-graph min vertex cover. Expanded 40540-spelling lexicon. Original 103-rune continuation excluded from inference. Report im-results/agent2-period29-fhold-exact-word-relation-gate.md (048828cd4a17866cfb44cdd4af94b5d51dedfc24), code d3fc33b25c50070445e8ed02022207dd5d37dbc9. Issue closed, no new original plaintext.
 
+- #2536 completed stale Agent9 takeover: generic exact periodic F-hold word-relation module sims/lp2_fhold_word_relation_csp.cjs (00c8ef4f170aafca716be8a35acbd7b30a64936f), wildcard and fixed-key OOV-permitting continuation. Actual LP1 WELCOME & KOAN target-excluded lexicons: exact DIUINITY/FIRFUMFERENFE keys, 424/424 heldout; WELCOME two prefix paths same phase, not full exact. Original p23–26 502-rune/113-word prefix zero keys; 519 withheld; robust pairwise F-relaxed conflict graph min cover16 OOV words, authentic bounds1/0. Report im-results/lp2-p23-26-period13-exact-word-relation-gate.md (2b81bafeee2011c5e447fe7e3e148a90edbd4a32), driver a3ee8bf2e75ddc8ae9b735b817edd5306971f4ca. No original key/plaintext. Closed issue. Reuse module for new source-selected models, not arbitrary period sweeps.
+
 ---
 
 ## 2026-11-24T06:11:29.778Z — exact word-number autokey negative
