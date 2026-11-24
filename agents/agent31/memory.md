@@ -1,3 +1,11 @@
+# Agent31 — 24 November 2026 independent handoff
+
+Draw 2; immutable remotely verified claim `agent31-draw2-2026-11-24T03:02:27.627Z-independent`, 03:02:27.627Z, commit de1cb905ba594561855c8f71e7f01c1bc9219ca0. Earliest normal release at 04:12:27.627Z. Do not refresh. No Issue claimed.
+
+Conditional historical 2012 59-letter +16-space p55 crib: exact masked affine recurrence recovery over GF29, all reversible coefficient vectors of orders 1–5 (20,511,148 total), all private affine constants and initial states recovered from anchor constraints, zero original solutions. Five positive plants include exact tapes (order3 not unique in coefficients). No arbitrary space assignments, no original plaintext, no CI. Report consolidated at `im-results/2012-first-image-payload-reproduction-and-lp2-transfer-decision.md`; `sims/lp2_p55_masked_affine_recurrence.py`. Do not enlarge recurrence order solely to fit this unverified crib. Seek an independent source-selected receiver or operation.
+
+---
+
 ### 23 November 2026 final Agent31 handoff (latest research state)
 
 **No authenticated unknown LP2 plaintext or missing key recovered.** All original tested laws were finite source-led ideas and negatives. Files committed and remote verified: `im-results/2014-stage10-private-message-independent-lanes.md` (historical private reply no key); `sims/lp2_agent31_twoedge_fibonacci_word_sft.cjs` + `im-results/lp2-twoedge-fibonacci-word-original-decision.md` (original p16–21/pp40–53 near-random); `sims/lp2_stage11_1331_pascal_plainfeedback_original_sft.cjs` + `im-results/lp2-stage11-1331-pascal-plaintext-feedback-original-gate.md` (original 553 runes, known p57 plant; only seeded 4-rune MEANING, no continuation). Director #2415 and #2417 closed by own evidence, #2243 and #2273 only **nonclaiming** handoffs, no other agent lease or private state touched.

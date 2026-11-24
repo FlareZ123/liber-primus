@@ -1,6 +1,6 @@
 # 2012 opening-image payload: byte-exact extraction and LP2 transfer decision
 
-**Current status (24 November 2026):** the 2012 opening image and both payload channels were recovered from two pinned community mirrors, and the historical OutGuess extraction was reproduced with pinned OutGuess 0.4. Default-key extraction from original LP2 p55 fails with zero payload bytes. The downstream phrase has 59 GP29 letter-runes and 16 ASCII spaces, matching the 75 p55 body glyphs in total count only if a space-to-rune representation is assumed. Direct key consumers and five source-linked shared-pad receiver placements yield no unknown plaintext. Historical payload recovery stands; the mixed-token crib has no authenticated LP2 reader.
+**Current status (24 November 2026):** the 2012 opening image and both payload channels were recovered from two pinned community mirrors, and the historical OutGuess extraction was reproduced with pinned OutGuess 0.4. Default-key extraction from original LP2 p55 fails with zero payload bytes. The downstream phrase has 59 GP29 letter-runes and 16 ASCII spaces, matching the 75 p55 body glyphs in total count only if a space-to-rune representation is assumed. Direct key consumers, five source-linked shared-pad receiver placements and exhaustive reversible affine additive key recurrences of orders one through five yield no unknown plaintext. Historical payload recovery stands; the mixed-token crib has no authenticated LP2 reader.
 
 ## Original image and source limits
 
@@ -123,3 +123,22 @@ Reproduction: [bounded source-transfer SFT](../sims/2012_bookcode_p55_transfer_s
 **Decision:** reject transfer of the historical OutGuess extraction operation to p55. Reject the literal 2012 telephone number as an OutGuess password for the original LP2 image set, and reject the bounded direct phrase-pad and coordinate-pad consumers above. Preserve the mixed-token book-code phrase as a historical candidate with 59 letter-runes and 16 untyped spaces; its direct shared-pad propagation to five prior placements failed even with unconstrained segmentation. Further work requires an independent source-selected space representation. No generic OutGuess page sweep, password dictionary, arbitrary coordinate-to-rune mapping, or broad Vigenère/OTP key sweep is justified without a new first-party selector. No unknown LP2 plaintext, authentic LP2 key, complete inverse, or final Cicada destination has been recovered.
 
 **Research result class:** exact historical payload recovery; negative original-p55 default-key OutGuess transfer; negative 2012-phone-number OutGuess transfer across all 58 LP2 originals; bounded direct key-consumer exclusions; conditional mixed-token p55 crib with direct substitution/Caesar/transposition exclusions and five original-receiver shared-pad negatives.
+
+
+## Masked crib affine-key recurrence recovery (Agent31, 24 November)
+
+The p55 mixed-token proposal also supports a direct key-recovery attack that does not choose a space symbol. On the same frozen 75-body-rune alignment, set known key values K_i=(C_i−P_i) mod29 at the 59 letter positions and leave all 16 remaining key values entirely unconstrained. Motivated only conditionally by the independently observed p15 Fibonacci arithmetic, test the more general reversible affine stream K_{i+d}=b+sum(a_j K_{i+j}) mod29, with a_0 nonzero, all coefficients, constant, and initial state secret, and order d=1..5. No ciphertext-dependent feedback or F bypass is included. The additive sign is immaterial since negating all K and b preserves this family.
+
+For each d there is at least one consecutive d+1 known run (NUMBER supplies six). Its first d terms fix an anchor state and its final term fixes b uniquely for every coefficient vector. Enumerate all 28×29^(d−1) vectors, filter every wholly known recurrence window, then propagate the complete state forward and backward, rejecting any known position mismatch. Since a_0 is nonzero, reverse propagation is unique. This is exhaustive within the stated family and no English scoring is used.
+
+| Order | Known windows | Coefficient vectors | After known windows | After forward propagation | Full original solutions |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| 1 | 42 | 28 | 0 | 0 | 0 |
+| 2 | 25 | 812 | 0 | 0 | 0 |
+| 3 | 13 | 23,548 | 0 | 0 | 0 |
+| 4 | 4 | 682,892 | 28 | 0 | 0 |
+| 5 | 1 | 19,803,868 | 19,803,868 | 0 | 0 |
+
+Exact original p55 indices from canonical corpus blob 054f2a0f780b7d46901acbe3d9bf4f0ac1801165 are embedded in the [NumPy reproducer](../sims/lp2_p55_masked_affine_recurrence.py). The local execution used 250,000-vector batches. Five deterministic planted masked streams (one per order, RNG seed 3100+d) include the correct full tape and recurrence among the solutions, with candidate counts 1,1,28,1,1 respectively. This is inclusion rather than unique parameter recovery for order three. The order-five original search took approximately 4.2 seconds locally; no Windows CI claim.
+
+**Decision:** no reversible affine additive keystream of order at most five can realize the frozen historical phrase alignment, even granting arbitrary independent gap values. This is a conditional rejection of a specific receiver and family, not a universal p55 impossibility. Higher order, noninvertible transients, alternative spellings/alignments, F-transparent consumption, nonlinear or ciphertext-conditioned state, and nonadditive models are outside scope. The underlying crib remains unverified; no reason to enlarge recurrence order merely to fit it.
