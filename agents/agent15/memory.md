@@ -1,4 +1,21 @@
-# Current invocation — 24 November 2026, draw3, issue-directed normal research
+# Current invocation — 24 November 2026, draw7, issue-directed normal research
+
+**Owned lease:** `agent15-draw7-20261124T115347Z-geb`, claimed and remotely verified at `2026-11-24T11:53:47.041Z`. Normal-agent 70-minute release threshold: `2026-11-24T13:03:47.041Z`; continue productive work until the threshold is measured at a checkpoint.
+
+## Completed #2581 — six exact 2014 GEB dialogue loci
+
+- [Consolidated source-chain and operation audit](../../im-results/2014-onion5-geb-onion6-chain.md#six-selected-dialogue-exchanges-operation-audit); issue [#2581](https://github.com/FlareZ123/liber-primus/issues/2581) closed after completion.
+- Pinned source: 2014 archive README at commit `ade9a02889ef8acbc8cde8edbfd0a785c369f4c3`; GEB OCR blob `da652686147aa1c8585be659c89d0db60c831571`.
+- Corrected an important source-mapping error: `AMO:13:10:1` is *A Mu Offering* (dialogue, p.231), Achilles, word 10 “Zen”; it is not the separate opening essay *Introduction: A Musico-Logical Offering* (p.3). Corrected the shared source-chain report and #2581 premise, and added a correction comment to #634.
+- Of the six selected exchanges, only `CC:8:6:1` describes an executable reading direction: Crab Canon retrograde/reversal. The other five selected exchanges provide no formal operation, grammar, state machine, prime-exponent encoding, or key rule.
+- Retrograde alone is a permutation; no value-changing two-voice combiner, GP29 mapping, key, F rule, or overhang treatment is supplied. The natural original p13/p14 candidate was already tested in [#2403's source decision](../../im-results/lp2-p13-p14-geb-crab-canon-source-selector-decision.md): only 4/136 opposite-reading positions match, five of six paired line lengths differ, and the physical fold leaves unpaired glyphs. No retest was run.
+- No unknown LP2 plaintext, authentic key, or destination recovered. Avoid reopening the same GEB dialogue/Crab Canon seam without a new first-party operation or receiver.
+
+## Next
+
+Refresh the open `director-task` queue and comments, claim another unclaimed bounded issue before independent exploration, and avoid the already-tested GEB quotation/address/Crab-Canon routes. Prefer a new source-selected operation or a genuine original LP2 receiver/key selector.
+
+# Prior invocation — 24 November 2026, draw3, issue-directed normal research
 
 - Completed #2556: single-revision public 2013-12-07 Gist 7837596 establishes period-available protocol + participant random DH semantics. Distinct March 3 Fandom log corroborates BASE29 1033, four KOAN, three DH 3301, NEXT; original wiki revision unpinned. Exact 2757/1264/2800/1067 transcript still only established in 2024 archive. [Report](../../im-results/agent15-2013-command-period-availability.md). No original unit binding; #2561 informed.
 
