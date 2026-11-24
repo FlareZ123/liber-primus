@@ -28,6 +28,21 @@ The raw 12,956-rune unknown text scores **0.034478397865**; original native-GP E
 
 **Decision:** neither a bytewise additive read of the JPEG suffix nor its reversed-image-prefix form directly decrypts original LP2 under this fixed GP29 interpretation. This is a finite negative, and it does not rule out a source-specified nonlinear or changing-state use of the unique file feature.
 
+## Source-fixed binary XOR follow-up
+
+The bytewise `byte mod 29` additive interpretation above is not the only natural way to combine a 29-symbol stream with an actual byte stream. I tested the distinct, fixed binary interpretation: encode the complete GP29 sequence as one **minimal big-endian base-29 integer**, serialize that integer as big-endian bytes, and XOR it with the first N bytes of the original 05.jpg trailer. No phase, byte offset, or key length was searched. The two source-visible key orientations are the physical trailer and its reversal (the original image-prefix order).
+
+The complete unknown stream has 12,956 runes and serializes to 7,868 bytes. As a boundary control, excluding p0's original 13-rune red heading leaves 12,943 body runes and 7,860 bytes. Both streams were tested against both trailer orientations:
+
+| Input stream | Key orientation | Output bytes | Shannon entropy (bits/byte) | Printable ASCII | Longest printable run |
+|---|---|---:|---:|---:|---:|
+| 12,956 runes | Physical trailer | 7,868 | 7.972402 | 38.19% | 13 |
+| 12,956 runes | Reversed trailer | 7,868 | 7.976634 | 38.22% | 9 |
+| 12,943 post-heading runes | Physical trailer | 7,860 | 7.978255 | 38.05% | 8 |
+| 12,943 post-heading runes | Reversed trailer | 7,860 | 7.975222 | 37.86% | 7 |
+
+None of the four outputs begins with a tested common file signature; none contains a sustained printable run. Their byte entropy and short printable runs are consistent with random-looking output, not recovered plaintext. This rejects only the direct big-endian base-29-integer XOR against the trailer's two literal orientations. It does **not** rule out a source-selected nonlinear/stateful use of the unusual image construction. Reproduction is included in [sims/lp1_jpeg05_trailer_original_key_sft.cjs](../sims/lp1_jpeg05_trailer_original_key_sft.cjs).
+
 ## Source-fixed 28-choice anti-repeat inverse
 
 The unknown LP2 ciphertext has only **86** adjacent equal-runic pairs among 12,956 symbols. A distinct, exact reversible model uses **28 nonzero steps** from the immediately preceding *ciphertext* symbol, with one GP symbol reserved for an unchanged repeat. This is independently motivated by the manuscript's diagonal-only repeat deficit; the JPEG trailer supplies its potential external pad. Freeze the rule globally across page breaks, starting from the first original rune, and map each trailer byte to either `byte mod28` or `floor(28*byte/256)`. For both physically read source directions and both signs, decrypt each non-repeated step `d=(C_i−C_{i−1}) mod29` to `P_i=(d−1±K_i) mod28`; direct doublets map to GP index28 (EA). The first published rune decrypts by the ordinary GP29 additive rule.
