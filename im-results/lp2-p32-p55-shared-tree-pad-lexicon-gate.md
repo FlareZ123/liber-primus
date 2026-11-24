@@ -1,6 +1,21 @@
 # Source-linked p32/p55 tree: exact shared-pad affine inverse and lexical obstruction
 
-**Current decision, 24 November 2026 (Agents9 and45).** Original p32 and p55 reuse the same tree artwork, independently motivating the comparison. The strongest tested word-preserving native GP29 model allows **any nonzero affine multiplier on each page, any relative page shift, and an unrestricted common additive pad at every consumed position**. All **93** ordinary contiguous placements and **5,952** historical literal-F placements fail a complete joint lexical inverse. The earlier unit-multiplier additive exclusions below remain special cases. No unknown manuscript plaintext, genuine key or first-party shared-pad instruction was recovered.
+**Current decision, 24 November 2026 (Agents9 and45).** Original p32 and p55 reuse the same tree artwork, independently motivating the comparison. The strongest tested word-preserving native GP29 model allows **any nonzero affine multiplier on each page, any relative page shift, and an unrestricted common additive pad at every consumed position**. All **93** ordinary contiguous placements and **5,952** historical literal-F placements fail a complete joint lexical inverse. The earlier unit-multiplier additive exclusions below remain special cases. A distinct bitwise-XOR common-pad family (all 32 relative masks, both clocks) also has zero complete lexical assignments; see Agent6 below. No unknown manuscript plaintext, genuine key or first-party shared-pad instruction was recovered.
+
+## Distinct bitwise XOR shared-pad inverse (Agent6, 24 November 2026)
+
+The historical XOR operation is a separate hypothesis from GF(29) addition and multiplication. Grant any position-dependent five-bit common pad K and any page-constant relative XOR mask s in 0..31: C_A=P_A XOR K, C_B=P_B XOR K XOR s. Both emitted plaintext and ciphertext symbols must be GP29 indices 0..28. Cancel K, so P_A XOR P_B=C_A XOR C_B XOR s. Exact relative-XOR word-overlap signatures provide a 32-bit candidate set; a complete forest CSP then requires shared word assignments across all overlaps, including one-rune overlaps. No key-stream family is assumed.
+
+| Clock | Placements | Relative mask/placement pairs | Locally surviving pairs | Fully consistent pairs |
+|---|---:|---:|---:|---:|
+| Ordinary | 93 | 2,976 | 0 | 0 |
+| Literal-F (64 feasible mask pairs) | 5,952 | 190,464 | 8 | 0 |
+
+For direct equal-pad s=0, an exact wildcard-word DP across **all 93 ordinary placements**, without the strict local prefilter, requires at least four dictionary exceptions. Histogram for minima 4/5/6/7/8 is 2/43/40/6/2. The two minimum placements represent the same overlap up to the carried rune; p55 reads `U FLAP THE THE PIERRE ASIATIC BE BRAOEFGPXGJEOTH GARLIC COOL THE BETWEEN DFHEAHNY SNG HOURRA EARN OUT`. This is an incoherent constructed assignment, not a decipherment, despite exact replay of 76 paired positions. The wildcard optimum is not asserted for latent-F or nonzero relative masks.
+
+Six dictionary-slot plants retain their true states and match 65–73 paired plaintext runes. Adding the four missing known p57 forms PARABLE, INSTAR, TUNNELNG, CIRCUMFERENCES leaves **all original counts and wildcard minima unchanged**. Two further coherent source plants (normalized LP1 WARNING reference and exact solved p57, with vocabulary supplied but no ordered crib, true alignment/mask supplied) replay all 95 ordinary and 92 consumed literal-F pairs; arbitrary compatible assignments match 63/95 and 56/92, with 57 and 48 positions forced respectively. This validates feasibility and illustrates limited identifiability, not blind alignment recovery. The finite dictionary assumption and source word boundaries remain important; the artwork identifies pages, not an authorial XOR instruction. No historical key or original plaintext recovered.
+
+Reproduce: `node sims/lp2_p32_p55_xor_sharedpad_exact_sft.cjs` and add `--native` for the known-vocabulary sensitivity. [Baseline raw](lp2-p32-p55-xor-sharedpad-exact.json), [native raw](lp2-p32-p55-xor-sharedpad-native.json). Both executed in connected JS against repository inputs; no CI execution asserted.
 
 ## Complete affine shared-pad recovery (Agent45)
 
