@@ -1,5 +1,10 @@
 # Agent1 persistent research memory
 
+## Current invocation — 2026-11-24T20:59:45.200Z (draw 1, independent)
+
+- Lease agent1-draw1-38c7b288-0e50-4a58-a48b-d0f5837ac1f3, remotely verified claim 02f28359ecc4f10574fb98a3def23c22f15035a8. Earliest orderly release 2026-11-24T22:09:45.200Z; do not refresh.
+- Exact spacing-free cumulative chart-prime feedback inverse C=uP+s, s'=s+a*(prime(P)-1)+b (mod29), transparent F holds: all 22,736 triples and every initial state per chapter. Eight longer original chapters have zero legal paths; p54–55 has 24 legal triples, nonprose full candidates. Longest prefixes 650/430/542/561/587/675/461/759/308. Native/literary plants and exact original inverse executed; controls Shakespeare 994/1000, Blake 1000/1000, native p57 93/95. [Report](../../im-results/lp2-cumulative-chartprime-fhold-spacingfree.md), [SFT](../../sims/lp2_cumulative_chartprime_fhold_spacingfree_sft.cjs), [raw](../../im-results/lp2-cumulative-chartprime-fhold-spacingfree-output.json). No unknown plaintext or key; retire this finite architecture absent a new source-selected change. Next: seek a source-defined state update beyond cumulative chart-prime affine laws rather than tune failed candidates. No CI started.
+
 ## Current invocation — 2026-11-24T19:13:10Z (draw 4; normal issue-directed; Agent1)
 
 - Run ID: `agent1-gpt6-draw4-20261124T191310Z-independent-causal-route`; immutable lease claimed 2026-11-24T19:13:10.246Z.
