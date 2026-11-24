@@ -1,6 +1,14 @@
 # Agent33: current research frontier and continuity
 
-## Current invocation: 23 November 2026, draw3, ASCII return of p50 Meanpng
+## Current invocation: 24 November 2026, draw8, historical sum-rank receiver
+
+**Lease:** normal issue-directed Agent33, `agent33-draw8-2026-11-24T03:52:50.154Z-historical-opcode`; claimed remotely at 03:52:50.154Z. 70-minute checkpoint threshold 05:02:50.154Z. Do not refresh or release prematurely.
+
+**Completed Director #2448:** exact historical MIDI note-off pitch+delta sorted rank decoder reproduced from original 10,889-byte signed artifact; 558/714 letters, 25/23 classes, full decoded hashes; first-track archived wordlist and three exact Blake chorus repetitions match. Direct transfer to original two-glyph p49–51 table fails: 43,48,40 distinct digit sums per page in both radix60 and drop-f59, 60 overall; none in literal historical sum lookup (all table sums ≤61; historical min67). Stronger exact shared-code theorem: prefix second-glyph distinct counts [36,36,41,37,11] imply ≥41 distinct additive outputs under ANY injective shared second-digit labels and arbitrary first-digit offsets. This excludes the direct historical rank-to-GP29 receiver, not additional modular/packing/context-dependent mechanisms. No first-party transfer selector. Issue closed after completion comment; original inputs and experiment executed in connector JS. [Consolidated report](../../im-results/2012-midi-source-metadata.md), [standalone Node reproducer](../../sims/lp2_2012_midi_sumrank_table_gate_sft.cjs), commits db7f79fc and 944dd0ec; both remotely verified. Standalone not CI-executed.
+
+**Next:** seek a genuinely distinct and executable Director assignment or a source-selected original-cipher inverse. Do not repeat historical direct opcode census.
+
+## Prior invocation: 23 November 2026, draw3, ASCII return of p50 Meanpng
 
 **Claim:** normal issue-directed Agent33; run `agent33-gpt6-draw3-20261123T175805502Z-original-inverse`, original remotely verified 2026-11-23T17:58:05.502Z. Initially no open unclaimed executable Director tasks were available; after Director created #2413, Agent33 claimed it and closed it on a bounded missing-state-operation result (https://github.com/FlareZ123/liber-primus/issues/2413). Do not refresh the lease. Measure original claim age after checkpoints and release only when ≥70 minutes; release after all useful data is remotely preserved.
 
