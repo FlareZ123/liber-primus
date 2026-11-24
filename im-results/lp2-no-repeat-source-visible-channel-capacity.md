@@ -1,10 +1,10 @@
 # LP2 no-repeat escape-channel capacity: source-visible carrier audit
 
-**Status:** boundary capacity is sufficient, and one complete natural rank codec is now tested against original runes and separators. Its source readout is unreadable; a common five-repeat version is impossible on eight pages. No source-selected historical boundary decoder or recovered unknown plaintext.
+**Status:** boundary capacity is sufficient for carrying arbitrary rune values *if plaintext spacing is not also arbitrary*. Two concrete natural rank codecs have now been tested against original runes and separators, including a joint rune-and-plaintext-spacing inverse. Its source readout is unreadable; a common five-repeat version is impossible on eight pages. No source-selected historical boundary decoder or recovered unknown plaintext.
 
 ## Finding
 
-The observed 29-symbol ciphertext stream does not by itself rule out a 29-to-28 next-rune encoder. Red/special marks alone do not provide enough side information, even under an intentionally generous count. The printed word-boundary positions have ample *combinatorial* capacity, however, so an information-theoretic impossibility claim would be too strong. No evidence currently selects a reversible mapping from plaintext symbols to those boundary positions.
+The observed 29-symbol ciphertext stream does not by itself rule out a 29-to-28 next-rune encoder. Red/special marks alone do not provide enough side information, even under an intentionally generous count. The printed word-boundary positions have ample *combinatorial* capacity, however, so an information-theoretic impossibility claim would be too strong. No evidence currently selects a reversible mapping from plaintext symbols to those boundary positions. The apparent free layout capacity also cancels if arbitrary same-count plaintext gaps must be recovered; the joint inverse below quantifies the exact cost and tests an original receiver.
 
 This is a capacity result, **not** a cipher identification or decryption.
 
@@ -173,3 +173,28 @@ Run:
 `node sims/lp2_no_repeat_escape_channel_capacity_sft.cjs`
 
 Inputs are the current transcription, rune corpus, and ink annotations. The script verifies page rune counts against the corpus and asserts the aggregate counts and channel ceilings.
+
+
+## Joint recovery of plaintext runes AND word breaks (24 November 2026, Agent 5)
+
+The earlier boundary-assisted codec recovers arbitrary runes plus a layout salt, **not arbitrary original plaintext spacing**. The 9,638-bit carrier ceiling cannot simultaneously be counted as free side information and spent on restoring an arbitrary same-count plaintext boundary mask. This motivates a different, fully joint source-framed enumerative inverse, with no external salt.
+
+For a physical page of n runes, k observed same-page repeats and b printed internal boundaries, let
+
+- U = 29^n, the unrestricted rune alphabet capacity.
+- M = 29 × C(n−1,k) × 28^(n−1−k), the exact-k-repeat ciphertext capacity.
+- G = C(n−1,b), the set of all output boundary masks of the observed size.
+
+The joint output space has MG members. **For arbitrary plaintext runes AND arbitrary plaintext spacing with b boundaries, the input has UG members.** Since M<U, the equal-size masks cancel in their capacity ratio: no injective encoder into this fixed output class exists. Across the 55 fixed physical pages the joint deficit is precisely **445.731557901 bits**, requiring at least 446 additional independent fixed-width bits for universal recovery. Moving the printed gaps cannot pay it while preserving every possible input gap mask. The same cancellation holds for arbitrary separator types if their input/output inventories agree. This is conditional on universal encoding of arbitrary messages and fixed per-page repeat/boundary counts; it is not a theorem about a restricted natural-language subset, nonuniform length, external context, or an individual observed LP2 manuscript. In particular it does not preclude a source-selected compression model.
+
+**Tight per-page count sacrifice.** Permit fewer plaintext breaks, and define b_in as the largest integer at most b for which U × C(n−1,b_in) ≤ MG. All original b are below half the available gaps, so this monotonic search gives an exact largest admissible input count. The 55 original pages require removing **268** plaintext boundaries (minimum 2, maximum 9 per page), leaving at most **2,605** total internal plaintext breaks in the independent-page model. Pooling code space across pages, variable counts, changing rune lengths or restricting the language are different models. The observed exact k is used as a self-describing output count; unlike an at-most-k code, a plant cannot silently emit fewer repeats and thereby change its decoder's inferred parameter.
+
+**One canonical joint rank map, frozen before reading output.** Enumerate exact-k-repeat ciphertexts by initial symbol followed by repeat-first cyclic successor choices, using f(0,0)=1, f(0,k>0)=0 and f(t,k)=28 f(t−1,k)+f(t−1,k−1). Rank each boundary mask by colex combinadic. If R is the ciphertext rune rank and H its gap rank, define J=R G+H. Decode a page only if J<U C(n−1,b_in); split J into a base29 rune integer and a colex plaintext gap rank by division by C(n−1,b_in). The forward encoder applies the exact reverse split and unranks R,H. This is a genuinely lossless joint code on the entire stated input domain, including native word breaks, with no layout salt, postselected glyph mapping, or hidden bits. The fixed page frames and maximal count-sacrifice convention are exploratory; the source does not authenticate them.
+
+**Actual original run:** 29/55 pages fall outside the joint input rank domain, including all three original opening pages p0–2 and physical p16. The 26 representable pages exactly re-encode both original runes and their printed boundary positions; their 6,280 recovered runes have IoC **0.0344982719671**, not native prose. Examples from p5: CI R AEAEAEOIIW OENEN JD IP INICIAX; p23: U AE A AEI FRCSFAEF HP WNEOIEEEUCEHIA YEAR HYEO. Isolated apparent words in these pseudo-rune streams are not a decode. No alternate rank order, larger or smaller inferred b_in, key, or padding was tuned against originals.
+
+**Independent native controls:** use the first 262 runes of the pinned solved-Cicada GP29 donor with its actual 66 internal breaks, and a disjoint 267-rune interval beginning at donor offset 1500 with its 59 internal breaks. With the respective original p0/p16 exact repeat counts 2 and 1, the minimum adequate output boundary counts are 72 and 65. Both plants have exactly the required output repeat count and decode all **529/529 native runes and 125/125 internal word breaks**; their native IoCs .0610687/.0591929 become ciphertext IoCs .0346290/.0355101. These controls demonstrate that the joint inverse is operational, not that the chosen grammar is the actual manuscript encoding.
+
+**Decision:** a universal same-rune-length, equal-boundary-count, exact-per-page-repeat encoder cannot store its missing information solely in freely rearranged separators while also restoring arbitrary plaintext separators. The specific maximum-input-boundary canonical joint rank code is independently excluded by original rank-domain failures and nonlinguistic representable outputs. Do not treat the earlier 9,638-bit layout ceiling as cost-free capacity for a complete native text, or extend this particular rank model through fitted salt/count/ordering menus. Seek an independently selected compression, boundary reconstruction, variable-length mapping, or actual external side information. The generic constrained architecture and restricted natural-language encoders remain logically possible; no authentic original plaintext or key.
+
+[Source-driven joint inverse SFT](../sims/lp2_joint_spacing_antirepeat_enumerative_sft.cjs), commit 11daf8d6426695b650b446b38dedd587f7b7c9d5. Executed against the exact fetched source corpus, master transcription and solved native donor in the connected JS runtime; no CI run claimed.
