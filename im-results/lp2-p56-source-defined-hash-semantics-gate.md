@@ -172,7 +172,11 @@ The two source-reported one-time response strings were also tested as literal UT
 
 None of the ten exact objects or two quoted response strings matches the p56 target under SHA-512. This is a candidate-specific negative, not proof that SHA-512 is the intended digest family or that no page on these services matched.
 
-**Precisely missing:** the original HTTP entity bytes for the participant-specific `/NUMBER` response at `sq6wmgv2zcsrix6t.onion`, or the original response page at `cginiziglyaobyph.onion` (and the corresponding source-authenticated path token). The archived root pages, signed participant message, and MIDI objects do not substitute for those dynamic server responses. The full exact-object gate passed in [workflow run 45345781624](https://github.com/FlareZ123/liber-primus/actions/runs/45345781624).
+**Precisely missing:** the original HTTP entity bytes for the participant-specific `/NUMBER` response at `sq6wmgv2zcsrix6t.onion`, or the original response page at `cginiziglyaobyph.onion` (and the corresponding source-authenticated path token). The archived root pages, signed participant message, and MIDI objects do not substitute for those dynamic server responses.
+
+An independent archive audit in `Dukotah/cicada3301` (commit `4aba42eeafc7434cec49041d5095bc843e23e964`) records zero-byte Wayback CDX results for both onion hosts and the queried common onion-proxy suffixes; see its [CDX log](https://github.com/Dukotah/cicada3301/blob/4aba42eeafc7434cec49041d5095bc843e23e964/corpus/D-archives/logs/cdx.log) and [host-specific result files](https://github.com/Dukotah/cicada3301/tree/4aba42eeafc7434cec49041d5095bc843e23e964/corpus/D-archives/cdx). A separate [R12.5 archive record](https://github.com/jaxonkuipers/cicada3301/blob/47f32a9e94061953ab25fdd5052996c27a86c002/corpus/records/R12.5/README.md) and [R12.6 record](https://github.com/jaxonkuipers/cicada3301/blob/47f32a9e94061953ab25fdd5052996c27a86c002/corpus/records/R12.6/README.md) likewise mark the participant page/recipient material as unavailable. These are independent archive-status observations, not proof that private participant copies or every non-Wayback archive are exhausted.
+
+The full exact-object gate passed in [workflow run 45345781624](https://github.com/FlareZ123/liber-primus/actions/runs/45345781624).
 
 ## Consequence
 
