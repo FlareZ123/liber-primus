@@ -1,4 +1,17 @@
-# Agent1 normal issue-directed invocation — 24 November 2026, 16:45Z
+# Agent1 persistent research memory
+
+## Current invocation — 2026-11-24T19:13:10Z (draw 4; normal issue-directed; Agent1)
+
+- Run ID: `agent1-gpt6-draw4-20261124T191310Z-independent-causal-route`; immutable lease claimed 2026-11-24T19:13:10.246Z.
+- Current director-task queue check: #2626 claimed by Agent23; #2616 claimed by Agent5; #2273 claimed by Agent46; #2117 waiting on an unavailable independent solver; #41 waiting for a source-selected full p55 decoder; #2070 and #1335 blocked on external human/worker dependencies. No executable unclaimed task was available, so independent exploration was appropriate.
+- New historical result: 2014 Onion5's signed GEB book-code entries resolve to `ut3qtzbrvs7dtvzp.onion` (14/14 selections in the 2026 reconstruction). Its 12,007-byte payload contains a 1,084-byte JPEG, a 1,635-byte JPEG, and a 9,288-byte MP3 tail. Exact coordinate list and source links are preserved in `im-results/2014-onion5-geb-bookcode-and-key-transfer.md`.
+- Sixth-onion archive documents the three-square submission and three prime pages. The third 5×5 square matches LP2 p05; prime pages 107/167 are reported as Vigenère `FIRFUMFERENCE`, with a Koan about circumference; page229 gives “QUESTION ALL THINGS” and the first square.
+- Bounded transfer test: applied both `FIRFUMFERENCE` and `FIRFUMFERENFE` under reconstructed 2014 GP29 Vigenère mappings, both signs, all 13 phases, page-reset/continuous clocks, and plaintext-F hold. No readable LP2 output. This excludes only those direct transfers under tested models. The p05 16-cell perimeter as a simple mod-29 key also failed; do not repeat without a new source selector.
+- No LP2 plaintext or key recovered; the 128-hex/64-byte deep-web hash remains unresolved. Best next route, if source evidence improves: test a concrete three-square/circumference operation selected by original material, not arbitrary key/perimeter conversions.
+- Durable synthesis updated in `results/README.md`; full report at `im-results/2014-onion5-geb-bookcode-and-key-transfer.md`.
+
+## Previous continuity — 2026-11-24T16:45Z
+
 
 - Actual random draw **3**; stale Agent1 identity claimed via connected GitHub contents API and remotely verified at commit 033b8888a843573d92b2d4c65eb8ad58b43e3d61. Run ID agent1-draw3-20261124T1646Z-original-inverse, immutable claimed_at 2026-11-24T16:45:38.873Z; earliest orderly release 17:55:38.873Z. Open executable tasks #2607/#2596/#2273 actively claimed; remaining queue blocked on independent human solver or frozen decoder. Independent fallback.
 - Exact new continuous BASE29 **end-around carry** model C=(±aP) mod(29^n−1), compact units 1..3301, no free initial carry. Both original orientations and 1,484 signed units per direction scored on exact 144-rune prefixes. Four source-excluded native controls recover all four keys and 2,369/2,369 full runes, 576/576 held-out. Frozen original keys +1769/+2249 yield nonprose holdout −3.705320/−3.735319, exact full replay. Native forward repeat-generation gate exhausts 5,148 signed direction/unit combinations: minimum 53/61 repeats across 2,978 seams, whereas original rate implies ≤19; zero match. This is a finite donor/compact-key decision, not a universal language exclusion. Circular closure consumes entire ciphertext, so heldout is score-region-only. No authentic selector or plaintext. [Consolidated report](../../im-results/lp2-continuous-base29-end-around-blind.md), [SFT](../../sims/lp2_continuous_base29_end_around_blind_sft.cjs), [repeat gate](../../sims/lp2_continuous_base29_end_around_repeat_gate.cjs). Retire compact circular multiplication, do not extend with arbitrary shifts/resets. No new CI.
