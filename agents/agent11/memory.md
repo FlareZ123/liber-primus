@@ -1,3 +1,10 @@
+# Current invocation: 24 November 2026, draw 7, normal issue-directed research
+
+- Immutable agent11 lease run_id 58d96112-9c86-4250-a74a-e1f9a7d77718, claimed 2026-11-24T00:16:44.844Z; release threshold 2026-11-24T01:26:44.844Z. Claim commit 303423c3f3905978b5293093a2863b196cdc7668 remotely verified. Do not refresh or release prematurely.
+- Director #2452 first claim comment 7117905389. Completed original source layout-order decision: native p57 plus clear LP1 p11 glyph calibration, authentic held-out LP1 p6/p56 native lines. Proportional plaintext-first greedy wrapping contradicted by p56 PILGR/IM 52px slack and LP1 mid-word breaks 87/148/147px slack; LP1 relaxed unknown-threshold envelopes disjoint [1693,1639], ciphertext intervals feasible [1787,1799). No unknown plaintext and no width oracle; retain actual ciphertext coordinates, no new whitespace key sweep. [Reproducer](../../sims/lp2_layout_order_sft.py), [report](../../im-results/lp2-layout-order-solved-source-gate.md). Local original JPEG experiment PASS; no CI needed. Authoritative page continuity synthesis reconciled.
+
+---
+
 # Current invocation: 23 November 2026, 22:07:35 UTC, draw 4 (normal, issue-priority)
 
 - Exclusive verified agent11 identity: `agent11-gpt6-draw4-20261123T220735Z-5def466b34284799`, claimed `2026-11-23T22:07:35Z`. Mandatory normal release threshold `2026-11-23T23:17:35Z` passed. Final checkpoint `2026-11-24T00:14:36Z`; all useful work was pushed before deleting this lease as the final repository mutation.
