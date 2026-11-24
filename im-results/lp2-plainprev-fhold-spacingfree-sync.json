@@ -1,0 +1,240 @@
+{
+  "theorem": "non-F first plaintext rune synchronizes previous-consuming state; equal subsequent plaintext produces equal ciphertext",
+  "targetLengths": [
+    1744,
+    3008
+  ],
+  "ns": [
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "capacity": [
+    [
+      1894,
+      70,
+      2,
+      0,
+      0
+    ],
+    [
+      5536,
+      201,
+      11,
+      0,
+      0
+    ]
+  ],
+  "comparisons": [
+    [
+      {
+        "author": "Shakespeare",
+        "windows": 247,
+        "minimum": [
+          1090,
+          245,
+          84,
+          29,
+          13
+        ],
+        "violations": [
+          70,
+          247,
+          247,
+          247,
+          247
+        ],
+        "anyViolations": 247
+      },
+      {
+        "author": "Gibran",
+        "windows": 70,
+        "minimum": [
+          1572,
+          487,
+          173,
+          77,
+          32
+        ],
+        "violations": [
+          68,
+          70,
+          70,
+          70,
+          70
+        ],
+        "anyViolations": 70
+      },
+      {
+        "author": "Emerson",
+        "windows": 367,
+        "minimum": [
+          1164,
+          230,
+          53,
+          15,
+          3
+        ],
+        "violations": [
+          19,
+          367,
+          367,
+          367,
+          367
+        ],
+        "anyViolations": 367
+      }
+    ],
+    [
+      {
+        "author": "Shakespeare",
+        "windows": 143,
+        "minimum": [
+          3588,
+          986,
+          390,
+          189,
+          108
+        ],
+        "violations": [
+          35,
+          143,
+          143,
+          143,
+          143
+        ],
+        "anyViolations": 143
+      },
+      {
+        "author": "Gibran",
+        "windows": 40,
+        "minimum": [
+          4805,
+          1293,
+          502,
+          212,
+          113
+        ],
+        "violations": [
+          38,
+          40,
+          40,
+          40,
+          40
+        ],
+        "anyViolations": 40
+      },
+      {
+        "author": "Emerson",
+        "windows": 212,
+        "minimum": [
+          3588,
+          737,
+          201,
+          82,
+          32
+        ],
+        "violations": [
+          9,
+          212,
+          212,
+          212,
+          212
+        ],
+        "anyViolations": 212
+      }
+    ]
+  ],
+  "bankSizes": [
+    684,
+    395
+  ],
+  "original": {
+    "trainingCut": 1024,
+    "bankSize": 684,
+    "collisionRejected": 684,
+    "exactFits": []
+  },
+  "controls": [
+    {
+      "author": "Shakespeare",
+      "start": 4360,
+      "unique": true,
+      "fitCount": 1,
+      "gateRejected": 277,
+      "observedRows": 25,
+      "correctObservedRows": 25,
+      "correctPrimer": true,
+      "frozenRowsCorrect": 25,
+      "withheld": {
+        "length": 720,
+        "count": "398196736",
+        "correct": 698,
+        "score": -2.7821067874726486
+      },
+      "independent": {
+        "author": "Gibran",
+        "length": 3008,
+        "count": "0",
+        "correct": null,
+        "score": null
+      },
+      "randomPadFits": 0,
+      "randomPadCollisionRejected": 684
+    },
+    {
+      "author": "Gibran",
+      "start": 5232,
+      "unique": true,
+      "fitCount": 1,
+      "gateRejected": 231,
+      "observedRows": 24,
+      "correctObservedRows": 24,
+      "correctPrimer": true,
+      "frozenRowsCorrect": 24,
+      "withheld": {
+        "length": 720,
+        "count": "3317760",
+        "correct": 716,
+        "score": -2.720825579370244
+      },
+      "independent": {
+        "author": "Emerson",
+        "length": 3008,
+        "count": "0",
+        "correct": null,
+        "score": null
+      },
+      "randomPadFits": 0,
+      "randomPadCollisionRejected": 684
+    },
+    {
+      "author": "Emerson",
+      "start": 6104,
+      "unique": true,
+      "fitCount": 1,
+      "gateRejected": 439,
+      "observedRows": 27,
+      "correctObservedRows": 27,
+      "correctPrimer": true,
+      "frozenRowsCorrect": 27,
+      "withheld": {
+        "length": 720,
+        "count": "853624750080",
+        "correct": 711,
+        "score": -2.7428739244263682
+      },
+      "independent": {
+        "author": "Shakespeare",
+        "length": 3008,
+        "count": "319192623589883904000",
+        "correct": 3002,
+        "score": -2.7471265183513256
+      },
+      "randomPadFits": 0,
+      "randomPadCollisionRejected": 684
+    }
+  ]
+}
