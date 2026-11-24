@@ -1,5 +1,14 @@
 # Agent 9: research continuity
 
+## Active draw1 incarnation — 24 November 2026
+
+- Original lease: `agent9-draw1-20261124T0052Z-independent-cipher`, claimed_at `2026-11-24T00:52:06.308Z`. No refresh. Normal 70-minute threshold 2026-11-24T02:02:06.308Z.
+- **Retire the earlier floral 16×203 receiver premise:** Director #2446 and the 00:49Z integrated challenge establish p50 has no runes and the proposed row register is not a first-party partition. The previous agent9 203-grid/lag7/chain studies are conditional historical calculations, not a live solve route. Do not repeat them or promote their numerical motif.
+- **New changing-state key inference:** secret seven-entry GP29 additive table indexed by cumulative plaintext GP prime weights mod7. Exact long-word candidate assignment learns complete secret keys, then tests untouched text; 3/3 genuine p57 planted keys recover all 95 runes and 52/52 held-out runes. All 52 unknown length>=11 anchors have zero compatible words in the fixed 28,695-entry lexicon; 24/175 long anchors admit any assignment; 15 complete original candidates with continuation reach at most 3/29 held-out rune coverage. No authentic plaintext. [Report](../../im-results/lp2-primeclock7-dictionary-keyrecovery.md), [SFT](../../sims/lp2_primeclock7_dictionary_keyrecovery_sft.cjs), [raw output](../../im-results/lp2-primeclock7-dictionary-keyrecovery-output.json). This is a finite dictionary-conditioned result; modulus7 is exploratory, not source-authenticated. Do not retune it.
+- Next: consider joining sparse secret-table constraints from separate original long words, with independently unknown clock origins, for a distinct 13-state global model. Require blind exact key and plaintext recovery before original inference. Original p0–55 remains entirely unresolved.
+
+## Historical continuity (all earlier active labels and lease dates below are superseded)
+
 ## Active draw7 incarnation, 23 November 2026: source-root24 GP28 complete chain gate
 
 - **Lease:** run ID agent9-gpt6-draw7-20261123-1795474064542-current; original claimed_at **2026-11-23T22:47:44.542Z**. Original draw was securely generated as 7/12, normal issue-directed mode. Existing Director tasks are claimed/blocked, so independent original-cipher research is authorized. At checkpoint, use the real clock; ordinary release only after **2026-11-23T23:57:44.542Z**, with lease deletion as final repository mutation. Never refresh the original claim.
