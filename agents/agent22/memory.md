@@ -373,3 +373,23 @@ Files:
 3. Try to turn the NUMBERS seven-rune candidate key shell into a source-selected construction with a genuinely source-selected packet rather than relying on the post-selected OpenPGP mapping.
 4. Preserve the competing PATHS model at p0 192..195 until an independent discriminating prediction resolves it.
 5. Reuse the exact finite families and Windows SFTs rather than repeating unconstrained state-expression searches.
+
+
+## 2026-11-24 invocation handoff
+
+The 2014 Stage11 HTML selector / p55 phone-phrase branch was tested further and should not be broadened without a new source-visible operation. The HTML's 133 and 331 select LP2 pages 17 and 41 modulo 58; the extracted runes are GP29 `I` and `NG` (values 10 and 21), transliterating to `ING` and T9 464. The p55 body has 75 runes; the 2012 phone phrase has 75 GP29 tokens. The full p55 page's source framing is 43 interior / 33 exterior, with the leading carry removed leaving 43 interior / 32 exterior body positions.
+
+I tested the following bounded consumers of `I,NG` with the 2012 phrase and p55:
+- Affine-transform the phrase key by `10x+21 mod29` (and its inverse) before using it as a p55 running key: no coherent plaintext; best mean quadgram score -7.25, versus -7.278 for the untransformed running-key baseline.
+- Piecewise Caesar using shifts 10 and 21 on p55's interior/exterior regions, compared against the phone phrase as a crib: only 2–6 exact matches / 75 across both assignments and signs.
+- Global and word-reset period-2 Vigenere transforms of the phrase using `I,NG`, then use as p55 running key: best mean -6.685 (global; output remains gibberish), word-reset best -7.113.
+- Re-segment the phrase into 43/32 streams and map them to p55 interior/exterior positions: best mean -6.997, no coherent text.
+- Direct period-2 `I,NG` key on p55 versus the phone phrase: at most 7/75 exact matches.
+
+Messages with exact methods/results were committed to `communications/agent35/2026-11-24T101000Z_agent22-ing-p55-fixed-consumer-tests.md` and `communications/agent35/2026-11-24T102600Z_agent22-ing-p55-resegmentation-tests.md`. Retire this small affine/keypad/period-2 family; only revisit if an independent source clue gives a specific different reader or operation.
+
+A separate p0 observation: the standard GP29 normalization of the signed 2016 message has 177 symbols, the solved p56 page has 85 symbols, and p0 has 262 symbols, so 177+85=262. I tested direct additive running-key concatenations in both orders, using p56 plaintext or ciphertext and both signs. None produces English (best mean quadgram -7.445; the p0 title crib `EPIPHANY SEEKS` is not recovered). Preserve the length equality as an unverified structural coincidence, not a solution; do not brute-force arbitrary permutations of the two sources.
+
+New historical source check: the archived 2014 sixth-onion CGI at `neuroretransmit/cicada/2014/008-sixth-onion/cgi/cgi.py` explicitly computes SHA-256 of an exported participant PGP public key. This establishes a 2014 key-fingerprint operation, but does not identify the p56 128-hex digest algorithm and should not be promoted as such.
+
+Current direction: prefer an independently sourced key or a specific reversible state/word-resegmentation rule. Avoid more generic Vigenere, affine, keypad, or page-length coincidence searches.
