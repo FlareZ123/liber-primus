@@ -35,6 +35,42 @@ def decode(a, h):
     v = [9*x+3*y+z for x,y,z in zip(t[::3],t[1::3],t[2::3])]
     return "".join(chr(65+x) if x < 26 else "?" for x in v), Counter(t), t[len(v)*3:]
 
+def table_receiver(src, table, sign, feedback, encode):
+    state = [11,26,8,15,2]
+    out = []
+    for x in src:
+        address = 0
+        for k in state:
+            address = 3*address + EXPECTED[k]
+        y = (x + (-sign if encode else sign)*table[address]) % 29
+        out.append(y)
+        state = state[1:] + [((x if encode else y) if feedback == "P" else (y if encode else x))]
+    return out
+
+def ioc(a):
+    return sum(x*(x-1) for x in Counter(a).values())/(len(a)*(len(a)-1))
+
+def check_table_receiver():
+    table = CORPUS["pages"][8]["indices"][12:]
+    source = [x for p in CORPUS["pages"][9:15] for x in p["indices"]]
+    control = CORPUS["pages"][57]["indices"]
+    plant = [control[i%len(control)] for i in range(len(source))]
+    assert len(table) == 243 and len(source) == 1474
+    expected = {
+        ("P",-1): .03440951141349354,
+        ("P", 1): .03438740384358526,
+        ("C",-1): .03435424248872283,
+        ("C", 1): .034458332297041,
+    }
+    for (feedback,sign), target in expected.items():
+        plain = table_receiver(source,table,sign,feedback,False)
+        assert table_receiver(plain,table,sign,feedback,True) == source
+        encrypted = table_receiver(plant,table,sign,feedback,True)
+        assert table_receiver(encrypted,table,sign,feedback,False) == plant
+        assert abs(ioc(plain)-target) < 1e-12
+        print("p9-14",feedback,sign,"IoC",ioc(plain),"prefix","".join(CORPUS["translit"][x] for x in plain[:60]))
+    print("raw IoC",ioc(source),"native plant IoC",ioc(plant))
+
 def main():
     p55, p57 = read_image("72.jpg"), read_image("74.jpg")
     assert [g["gp29_index"] for g in GEOM["glyphs"]] == CORPUS["pages"][55]["indices"]
@@ -67,6 +103,7 @@ def main():
     packed = bytes(int(bits[i:i+8],2) for i in range(0,len(bits)-7,8))
     assert packed.hex() == "aa8c2708ca30003313"
     print("p55 full binary",packed.hex(),"remaining bits",bits[72:])
+    check_table_receiver()
     print("PASS: exact original glyph classification and fixed projection; no plaintext claim")
 
 if __name__ == "__main__":
