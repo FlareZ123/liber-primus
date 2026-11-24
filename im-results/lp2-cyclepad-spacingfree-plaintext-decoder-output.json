@@ -1,0 +1,566 @@
+{
+  "holdPenalty": -0.5056887653626918,
+  "results": [
+    {
+      "source": 1,
+      "L": 8,
+      "K": [
+        0,
+        3,
+        27,
+        19,
+        23,
+        10,
+        2,
+        19
+      ],
+      "phase": 4,
+      "actualHolds": 78,
+      "peak": 9,
+      "oracleKey": [
+        0,
+        3,
+        27,
+        19,
+        23,
+        10,
+        2,
+        19
+      ],
+      "knownKeyAlignment": {
+        "K": [
+          0,
+          3,
+          27,
+          19,
+          23,
+          10,
+          2,
+          19
+        ],
+        "score": 58.37714386914941,
+        "phase": 2,
+        "holds": 75,
+        "holdMatches": 40,
+        "keyMatches": 8,
+        "bestRotGauge": 8
+      },
+      "runs": [
+        {
+          "K": [
+            0,
+            7,
+            10,
+            12,
+            4,
+            21,
+            25,
+            17
+          ],
+          "score": -12.896874532100501,
+          "phase": 0,
+          "holds": 39,
+          "holdMatches": 14,
+          "keyMatches": 1,
+          "bestRotGauge": 4
+        },
+        {
+          "K": [
+            0,
+            26,
+            3,
+            7,
+            24,
+            27,
+            10,
+            2
+          ],
+          "score": -15.598596256823603,
+          "phase": 6,
+          "holds": 44,
+          "holdMatches": 19,
+          "keyMatches": 1,
+          "bestRotGauge": 3
+        },
+        {
+          "K": [
+            0,
+            13,
+            23,
+            11,
+            4,
+            8,
+            9,
+            1
+          ],
+          "score": -18.48414556639763,
+          "phase": 6,
+          "holds": 38,
+          "holdMatches": 21,
+          "keyMatches": 1,
+          "bestRotGauge": 2
+        },
+        {
+          "K": [
+            0,
+            12,
+            12,
+            4,
+            8,
+            7,
+            18,
+            19
+          ],
+          "score": -20.31984815665007,
+          "phase": 0,
+          "holds": 37,
+          "holdMatches": 18,
+          "keyMatches": 2,
+          "bestRotGauge": 3
+        },
+        {
+          "K": [
+            0,
+            3,
+            20,
+            12,
+            15,
+            2,
+            18,
+            20
+          ],
+          "score": -20.38758155663623,
+          "phase": 5,
+          "holds": 40,
+          "holdMatches": 16,
+          "keyMatches": 2,
+          "bestRotGauge": 3
+        }
+      ],
+      "profile": [
+        {
+          "K": [
+            0,
+            3,
+            27,
+            19,
+            23,
+            10,
+            2,
+            19
+          ],
+          "score": 53.304514208439876,
+          "phase": 2,
+          "holds": 55,
+          "holdMatches": 40,
+          "keyMatches": 8,
+          "bestRotGauge": 8,
+          "moves": 1,
+          "history": [
+            53.304514208439876,
+            53.304514208439876
+          ]
+        },
+        {
+          "K": [
+            0,
+            21,
+            24,
+            19,
+            11,
+            15,
+            2,
+            23
+          ],
+          "score": 32.369521215037366,
+          "phase": 3,
+          "holds": 55,
+          "holdMatches": 41,
+          "keyMatches": 3,
+          "bestRotGauge": 7,
+          "moves": 8,
+          "history": [
+            15.188585393307758,
+            32.369521215037366,
+            32.369521215037366
+          ]
+        },
+        {
+          "K": [
+            0,
+            21,
+            24,
+            19,
+            11,
+            15,
+            2,
+            23
+          ],
+          "score": 32.369521215037366,
+          "phase": 3,
+          "holds": 55,
+          "holdMatches": 41,
+          "keyMatches": 3,
+          "bestRotGauge": 7,
+          "moves": 1,
+          "history": [
+            32.369521215037366,
+            32.369521215037366
+          ]
+        }
+      ],
+      "allScores": [
+        -12.896874532100501,
+        -15.598596256823603,
+        -18.48414556639763,
+        -20.31984815665007,
+        -20.38758155663623,
+        -21.185098071350374,
+        -21.277113714032406,
+        -22.97201857751159,
+        -24.386784385614597,
+        -24.583306312243064,
+        -26.122293415091814,
+        -26.466252929948556,
+        -28.19473669666804,
+        -31.770201300020883,
+        -33.57347959515844,
+        -41.4741075044581
+      ],
+      "decoded": {
+        "score": -8603.603310766588,
+        "phase": 4,
+        "exact": 2952,
+        "fitExact": 2352,
+        "withheldExact": 600,
+        "holds": 78,
+        "candidates": 109702,
+        "peak": 55,
+        "replay": true,
+        "preview": "OFTHESOULCOUERSGREATSPIRITUALFACTSANDINSTINCTIUELYWEATFIRSTHOLDTOITWITHSWORDSANDLAWSANDWIDEANDCOMPLEXCOMBINATIANSTHEOBSCURECO"
+      },
+      "oracleDecoded": {
+        "score": -8603.603310766588,
+        "phase": 4,
+        "exact": 2952,
+        "fitExact": 2352,
+        "withheldExact": 600,
+        "holds": 78,
+        "candidates": 109702,
+        "peak": 55,
+        "replay": true,
+        "preview": "OFTHESOULCOUERSGREATSPIRITUALFACTSANDINSTINCTIUELYWEATFIRSTHOLDTOITWITHSWORDSANDLAWSANDWIDEANDCOMPLEXCOMBINATIANSTHEOBSCURECO"
+      }
+    },
+    {
+      "source": 2,
+      "L": 13,
+      "K": [
+        0,
+        4,
+        15,
+        12,
+        14,
+        19,
+        25,
+        7,
+        1,
+        21,
+        5,
+        24,
+        4
+      ],
+      "phase": 8,
+      "actualHolds": 72,
+      "peak": 26,
+      "oracleKey": [
+        0,
+        4,
+        15,
+        12,
+        14,
+        19,
+        25,
+        7,
+        1,
+        21,
+        5,
+        24,
+        4
+      ],
+      "knownKeyAlignment": {
+        "K": [
+          0,
+          4,
+          15,
+          12,
+          14,
+          19,
+          25,
+          7,
+          1,
+          21,
+          5,
+          24,
+          4
+        ],
+        "score": 44.02151722463431,
+        "phase": 6,
+        "holds": 70,
+        "holdMatches": 45,
+        "keyMatches": 13,
+        "bestRotGauge": 13
+      },
+      "runs": [
+        {
+          "K": [
+            0,
+            16,
+            9,
+            6,
+            17,
+            5,
+            9,
+            22,
+            5,
+            0,
+            26,
+            3,
+            0
+          ],
+          "score": -18.658810329121692,
+          "phase": 3,
+          "holds": 17,
+          "holdMatches": 8,
+          "keyMatches": 1,
+          "bestRotGauge": 4
+        },
+        {
+          "K": [
+            0,
+            2,
+            0,
+            20,
+            10,
+            21,
+            9,
+            13,
+            18,
+            23,
+            25,
+            7,
+            12
+          ],
+          "score": -22.167654035429052,
+          "phase": 4,
+          "holds": 23,
+          "holdMatches": 9,
+          "keyMatches": 1,
+          "bestRotGauge": 3
+        },
+        {
+          "K": [
+            0,
+            6,
+            1,
+            18,
+            2,
+            22,
+            9,
+            16,
+            17,
+            17,
+            19,
+            15,
+            0
+          ],
+          "score": -22.444420104644017,
+          "phase": 7,
+          "holds": 29,
+          "holdMatches": 10,
+          "keyMatches": 1,
+          "bestRotGauge": 3
+        },
+        {
+          "K": [
+            0,
+            28,
+            16,
+            10,
+            23,
+            21,
+            5,
+            27,
+            13,
+            1,
+            14,
+            1,
+            25
+          ],
+          "score": -24.298058848805134,
+          "phase": 12,
+          "holds": 15,
+          "holdMatches": 7,
+          "keyMatches": 1,
+          "bestRotGauge": 5
+        },
+        {
+          "K": [
+            0,
+            23,
+            5,
+            14,
+            5,
+            7,
+            23,
+            2,
+            22,
+            0,
+            25,
+            12,
+            3
+          ],
+          "score": -25.560820585896455,
+          "phase": 1,
+          "holds": 33,
+          "holdMatches": 16,
+          "keyMatches": 1,
+          "bestRotGauge": 3
+        }
+      ],
+      "profile": [
+        {
+          "K": [
+            0,
+            4,
+            15,
+            12,
+            14,
+            19,
+            25,
+            7,
+            1,
+            21,
+            5,
+            24,
+            4
+          ],
+          "score": 40.910146415863764,
+          "phase": 6,
+          "holds": 50,
+          "holdMatches": 45,
+          "keyMatches": 13,
+          "bestRotGauge": 13,
+          "moves": 17,
+          "history": [
+            6.22149072386964,
+            28.323345777226415,
+            30.044962306223475,
+            34.39899611684173,
+            35.151088523410806,
+            40.910146415863764,
+            40.910146415863764
+          ]
+        },
+        {
+          "K": [
+            0,
+            11,
+            15,
+            26,
+            23,
+            25,
+            1,
+            7,
+            18,
+            12,
+            3,
+            16,
+            6
+          ],
+          "score": 30.350564526432674,
+          "phase": 7,
+          "holds": 50,
+          "holdMatches": 42,
+          "keyMatches": 3,
+          "bestRotGauge": 12,
+          "moves": 1,
+          "history": [
+            30.350564526432674,
+            30.350564526432674
+          ]
+        },
+        {
+          "K": [
+            0,
+            11,
+            8,
+            10,
+            15,
+            21,
+            3,
+            26,
+            17,
+            1,
+            20,
+            0,
+            10
+          ],
+          "score": 28.67482892463518,
+          "phase": 5,
+          "holds": 47,
+          "holdMatches": 44,
+          "keyMatches": 1,
+          "bestRotGauge": 12,
+          "moves": 1,
+          "history": [
+            28.67482892463518,
+            28.67482892463518
+          ]
+        }
+      ],
+      "allScores": [
+        -18.658810329121692,
+        -22.167654035429052,
+        -22.444420104644017,
+        -24.298058848805134,
+        -25.560820585896455,
+        -26.10556422783295,
+        -27.227091905138508,
+        -27.32992065784232,
+        -28.410810374631193,
+        -28.864384182017336,
+        -30.100054391866465,
+        -31.428003967419308,
+        -31.93816402868443,
+        -32.21374151661822,
+        -33.83573080355909,
+        -38.44753912766958
+      ],
+      "decoded": {
+        "score": -7848.261987864409,
+        "phase": 8,
+        "exact": 3008,
+        "fitExact": 2400,
+        "withheldExact": 608,
+        "holds": 72,
+        "candidates": 111283,
+        "peak": 54,
+        "replay": true,
+        "preview": "HATSHALLIGIUEUNTOHIMWHOHASLEFTHISPLOUGHINMIDFURROWORTOHIMWHOHASSTOPPEDTHEWHEELOFHISWINEPRESSSHALLMYHEARTBECOMEATREEHEAUYLAD"
+      },
+      "oracleDecoded": {
+        "score": -7848.261987864409,
+        "phase": 8,
+        "exact": 3008,
+        "fitExact": 2400,
+        "withheldExact": 608,
+        "holds": 72,
+        "candidates": 111283,
+        "peak": 54,
+        "replay": true,
+        "preview": "HATSHALLIGIUEUNTOHIMWHOHASLEFTHISPLOUGHINMIDFURROWORTOHIMWHOHASSTOPPEDTHEWHEELOFHISWINEPRESSSHALLMYHEARTBECOMEATREEHEAUYLAD"
+      }
+    }
+  ]
+}
