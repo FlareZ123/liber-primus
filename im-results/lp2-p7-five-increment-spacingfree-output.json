@@ -1,0 +1,927 @@
+{
+  "config": {
+    "shortlist": 48,
+    "trigrams": 8,
+    "controls": true,
+    "original": true
+  },
+  "controls": [
+    {
+      "name": "Gibran",
+      "attempts": 75,
+      "leaks": 18,
+      "hold": true,
+      "cut": 1024,
+      "length": 1717,
+      "elapsedMs": 10378,
+      "truth": [
+        2,
+        8,
+        11,
+        15,
+        26
+      ],
+      "truthMarginalRank": 5,
+      "truthBigramRank": 1,
+      "truthTrigramRank": 1,
+      "exactBank": true,
+      "chosen": {
+        "bank": [
+          2,
+          8,
+          11,
+          15,
+          26
+        ],
+        "trainGain": 0.05192605326700406,
+        "heldoutGain": 0.055274231757902394,
+        "trainLog": -3387.616191703918,
+        "totalLog": -5673.19490191473,
+        "accuracy": 859,
+        "withheldAccuracy": 377,
+        "replay": 1717,
+        "candidate": null
+      },
+      "source": [
+        {
+          "bank": [
+            2,
+            8,
+            11,
+            15,
+            26
+          ],
+          "trainGain": 0.05192605326700406,
+          "heldoutGain": 0.055274231757902394,
+          "trainLog": -3387.616191703918,
+          "totalLog": -5673.19490191473,
+          "accuracy": null,
+          "withheldAccuracy": null,
+          "replay": null,
+          "candidate": null,
+          "marginalRank": 5
+        },
+        {
+          "bank": [
+            3,
+            14,
+            18,
+            21,
+            27
+          ],
+          "trainGain": -0.043810761715675994,
+          "heldoutGain": -0.046441659610835816,
+          "trainLog": -3485.6506902461824,
+          "totalLog": -5841.71851317553,
+          "accuracy": null,
+          "withheldAccuracy": null,
+          "replay": null,
+          "candidate": null,
+          "marginalRank": 112735
+        }
+      ],
+      "oracle": {
+        "bank": [
+          2,
+          8,
+          11,
+          15,
+          26
+        ],
+        "trainGain": 0.05192605326700406,
+        "heldoutGain": 0.055274231757902394,
+        "trainLog": -3387.616191703918,
+        "totalLog": -5673.19490191473,
+        "accuracy": 859,
+        "withheldAccuracy": 377,
+        "replay": 1717,
+        "candidate": null
+      },
+      "ranked": [
+        {
+          "bank": [
+            2,
+            8,
+            11,
+            15,
+            26
+          ],
+          "score": -3387.616191703918
+        },
+        {
+          "bank": [
+            2,
+            11,
+            15,
+            24,
+            26
+          ],
+          "score": -3415.4477225524442
+        },
+        {
+          "bank": [
+            8,
+            11,
+            15,
+            24,
+            26
+          ],
+          "score": -3419.3157468433465
+        },
+        {
+          "bank": [
+            2,
+            8,
+            11,
+            24,
+            26
+          ],
+          "score": -3422.973920128357
+        },
+        {
+          "bank": [
+            2,
+            9,
+            11,
+            15,
+            26
+          ],
+          "score": -3426.7982636939137
+        },
+        {
+          "bank": [
+            8,
+            11,
+            15,
+            22,
+            26
+          ],
+          "score": -3426.885601920547
+        },
+        {
+          "bank": [
+            8,
+            10,
+            11,
+            15,
+            26
+          ],
+          "score": -3428.8628998135505
+        },
+        {
+          "bank": [
+            8,
+            11,
+            15,
+            25,
+            26
+          ],
+          "score": -3431.676046398952
+        },
+        {
+          "bank": [
+            3,
+            14,
+            18,
+            21,
+            27
+          ],
+          "score": -3485.6506902461824
+        }
+      ],
+      "repeatCount": 19
+    },
+    {
+      "name": "Shakespeare",
+      "attempts": 53,
+      "leaks": 8,
+      "hold": false,
+      "cut": 1024,
+      "length": 1717,
+      "elapsedMs": 10704,
+      "truth": [
+        1,
+        4,
+        10,
+        17,
+        23
+      ],
+      "truthMarginalRank": 5,
+      "truthBigramRank": 1,
+      "truthTrigramRank": 1,
+      "exactBank": true,
+      "chosen": {
+        "bank": [
+          1,
+          4,
+          10,
+          17,
+          23
+        ],
+        "trainGain": 0.03650826116016548,
+        "heldoutGain": 0.04330097761217082,
+        "trainLog": -3386.6858124976275,
+        "totalLog": -5678.890167999061,
+        "accuracy": 651,
+        "withheldAccuracy": 236,
+        "replay": 1717,
+        "candidate": null
+      },
+      "source": [
+        {
+          "bank": [
+            2,
+            8,
+            11,
+            15,
+            26
+          ],
+          "trainGain": -0.03764690080483346,
+          "heldoutGain": -0.037354250911189414,
+          "trainLog": -3462.6206983497864,
+          "totalLog": -5810.719127217909,
+          "accuracy": null,
+          "withheldAccuracy": null,
+          "replay": null,
+          "candidate": null,
+          "marginalRank": 98480
+        },
+        {
+          "bank": [
+            3,
+            14,
+            18,
+            21,
+            27
+          ],
+          "trainGain": -0.04612619071276969,
+          "heldoutGain": -0.056830540827382516,
+          "trainLog": -3471.303491215513,
+          "totalLog": -5832.898988995557,
+          "accuracy": null,
+          "withheldAccuracy": null,
+          "replay": null,
+          "candidate": null,
+          "marginalRank": 114101
+        }
+      ],
+      "oracle": {
+        "bank": [
+          1,
+          4,
+          10,
+          17,
+          23
+        ],
+        "trainGain": 0.03650826116016548,
+        "heldoutGain": 0.04330097761217082,
+        "trainLog": -3386.6858124976275,
+        "totalLog": -5678.890167999061,
+        "accuracy": 651,
+        "withheldAccuracy": 236,
+        "replay": 1717,
+        "candidate": null
+      },
+      "ranked": [
+        {
+          "bank": [
+            1,
+            4,
+            10,
+            17,
+            23
+          ],
+          "score": -3386.6858124976275
+        },
+        {
+          "bank": [
+            1,
+            10,
+            17,
+            19,
+            23
+          ],
+          "score": -3412.126300364958
+        },
+        {
+          "bank": [
+            1,
+            4,
+            9,
+            10,
+            17
+          ],
+          "score": -3412.245754800525
+        },
+        {
+          "bank": [
+            1,
+            10,
+            17,
+            18,
+            23
+          ],
+          "score": -3413.5958758333195
+        },
+        {
+          "bank": [
+            1,
+            4,
+            10,
+            18,
+            23
+          ],
+          "score": -3415.6308628936695
+        },
+        {
+          "bank": [
+            1,
+            9,
+            17,
+            18,
+            23
+          ],
+          "score": -3431.5410725592214
+        },
+        {
+          "bank": [
+            4,
+            9,
+            11,
+            17,
+            23
+          ],
+          "score": -3433.732253832992
+        },
+        {
+          "bank": [
+            4,
+            9,
+            17,
+            18,
+            23
+          ],
+          "score": -3436.8832547152547
+        },
+        {
+          "bank": [
+            2,
+            8,
+            11,
+            15,
+            26
+          ],
+          "score": -3462.6206983497864
+        },
+        {
+          "bank": [
+            3,
+            14,
+            18,
+            21,
+            27
+          ],
+          "score": -3471.303491215513
+        }
+      ],
+      "repeatCount": 8
+    },
+    {
+      "name": "Emerson",
+      "attempts": 62,
+      "leaks": 8,
+      "hold": true,
+      "cut": 1024,
+      "length": 1717,
+      "elapsedMs": 10916,
+      "truth": [
+        3,
+        7,
+        12,
+        18,
+        27
+      ],
+      "truthMarginalRank": 27,
+      "truthBigramRank": 1,
+      "truthTrigramRank": 1,
+      "exactBank": true,
+      "chosen": {
+        "bank": [
+          3,
+          7,
+          12,
+          18,
+          27
+        ],
+        "trainGain": 0.027946069180472044,
+        "heldoutGain": 0.03008855141074012,
+        "trainLog": -3398.797136749572,
+        "totalLog": -5698.485883776228,
+        "accuracy": 619,
+        "withheldAccuracy": 242,
+        "replay": 1717,
+        "candidate": null
+      },
+      "source": [
+        {
+          "bank": [
+            2,
+            8,
+            11,
+            15,
+            26
+          ],
+          "trainGain": -0.04234743160242438,
+          "heldoutGain": -0.05201650121850538,
+          "trainLog": -3470.777681551258,
+          "totalLog": -5827.365230049981,
+          "accuracy": null,
+          "withheldAccuracy": null,
+          "replay": null,
+          "candidate": null,
+          "marginalRank": 96356
+        },
+        {
+          "bank": [
+            3,
+            14,
+            18,
+            21,
+            27
+          ],
+          "trainGain": -0.03412478029577892,
+          "heldoutGain": -0.0033477455983497756,
+          "trainLog": -3462.357686613253,
+          "totalLog": -5785.217787467208,
+          "accuracy": null,
+          "withheldAccuracy": null,
+          "replay": null,
+          "candidate": null,
+          "marginalRank": 29605
+        }
+      ],
+      "oracle": {
+        "bank": [
+          3,
+          7,
+          12,
+          18,
+          27
+        ],
+        "trainGain": 0.027946069180472044,
+        "heldoutGain": 0.03008855141074012,
+        "trainLog": -3398.797136749572,
+        "totalLog": -5698.485883776228,
+        "accuracy": 619,
+        "withheldAccuracy": 242,
+        "replay": 1717,
+        "candidate": null
+      },
+      "ranked": [
+        {
+          "bank": [
+            3,
+            7,
+            12,
+            18,
+            27
+          ],
+          "score": -3398.797136749572
+        },
+        {
+          "bank": [
+            3,
+            7,
+            18,
+            23,
+            27
+          ],
+          "score": -3427.972783795449
+        },
+        {
+          "bank": [
+            11,
+            17,
+            18,
+            22,
+            23
+          ],
+          "score": -3436.568872312566
+        },
+        {
+          "bank": [
+            11,
+            17,
+            18,
+            23,
+            27
+          ],
+          "score": -3437.4329987371502
+        },
+        {
+          "bank": [
+            3,
+            11,
+            12,
+            18,
+            23
+          ],
+          "score": -3440.4104302098544
+        },
+        {
+          "bank": [
+            3,
+            8,
+            12,
+            17,
+            22
+          ],
+          "score": -3442.586314790716
+        },
+        {
+          "bank": [
+            3,
+            8,
+            12,
+            18,
+            22
+          ],
+          "score": -3446.5111719867687
+        },
+        {
+          "bank": [
+            8,
+            12,
+            17,
+            18,
+            22
+          ],
+          "score": -3448.8362301741304
+        },
+        {
+          "bank": [
+            3,
+            14,
+            18,
+            21,
+            27
+          ],
+          "score": -3462.357686613253
+        },
+        {
+          "bank": [
+            2,
+            8,
+            11,
+            15,
+            26
+          ],
+          "score": -3470.777681551258
+        }
+      ],
+      "repeatCount": 9
+    }
+  ],
+  "original": [
+    {
+      "hold": false,
+      "cut": 1024,
+      "length": 1717,
+      "elapsedMs": 9372,
+      "truth": null,
+      "truthMarginalRank": null,
+      "truthBigramRank": null,
+      "truthTrigramRank": null,
+      "exactBank": null,
+      "chosen": {
+        "bank": [
+          3,
+          7,
+          14,
+          16,
+          23
+        ],
+        "trainGain": 0.0005351662440498117,
+        "heldoutGain": -0.03196794988385357,
+        "trainLog": -3431.881360853577,
+        "totalLog": -5769.559803780277,
+        "accuracy": null,
+        "withheldAccuracy": null,
+        "replay": 1717,
+        "candidate": "ICEDGETHINHAUENOTHESURPERECTIANSAINDINSOFHILDISEISTASTOYOUREDYOUNDFORDOMENHERAGEDONOTWERISOFTHEOFINTHEYOUSNOTTOMTHESTEOFANDTORYHICHTHESTYINGOODWHICENESHESTEDTHEPRESTRUPONATYANDWISHORDERFORCOURFORNEWHESPEACSPENIUSTOBLETURSTHESSTHEHIMCOMEINTHEEPHYITISE"
+      },
+      "source": [
+        {
+          "bank": [
+            2,
+            8,
+            11,
+            15,
+            26
+          ],
+          "trainGain": -0.017647830665745712,
+          "heldoutGain": -0.015648449634481896,
+          "trainLog": -3450.5007496892076,
+          "totalLog": -5776.8697789430935,
+          "accuracy": null,
+          "withheldAccuracy": null,
+          "replay": null,
+          "candidate": null,
+          "marginalRank": 66857
+        },
+        {
+          "bank": [
+            3,
+            14,
+            18,
+            21,
+            27
+          ],
+          "trainGain": -0.026247119245336847,
+          "heldoutGain": -0.04085332351105128,
+          "trainLog": -3459.306421194709,
+          "totalLog": -5803.142428045057,
+          "accuracy": null,
+          "withheldAccuracy": null,
+          "replay": null,
+          "candidate": null,
+          "marginalRank": 31781
+        }
+      ],
+      "oracle": null,
+      "ranked": [
+        {
+          "bank": [
+            3,
+            7,
+            14,
+            16,
+            23
+          ],
+          "score": -3431.881360853577
+        },
+        {
+          "bank": [
+            3,
+            8,
+            14,
+            16,
+            23
+          ],
+          "score": -3438.572736027564
+        },
+        {
+          "bank": [
+            3,
+            7,
+            16,
+            23,
+            24
+          ],
+          "score": -3440.307177144072
+        },
+        {
+          "bank": [
+            7,
+            14,
+            16,
+            20,
+            23
+          ],
+          "score": -3440.9846270219223
+        },
+        {
+          "bank": [
+            3,
+            6,
+            8,
+            23,
+            28
+          ],
+          "score": -3444.5371698394865
+        },
+        {
+          "bank": [
+            3,
+            6,
+            7,
+            16,
+            23
+          ],
+          "score": -3445.1592066199373
+        },
+        {
+          "bank": [
+            3,
+            8,
+            20,
+            23,
+            28
+          ],
+          "score": -3447.348544781983
+        },
+        {
+          "bank": [
+            3,
+            16,
+            21,
+            23,
+            28
+          ],
+          "score": -3448.595559916513
+        },
+        {
+          "bank": [
+            2,
+            8,
+            11,
+            15,
+            26
+          ],
+          "score": -3450.5007496892076
+        },
+        {
+          "bank": [
+            3,
+            14,
+            18,
+            21,
+            27
+          ],
+          "score": -3459.306421194709
+        }
+      ],
+      "repeatCount": 9
+    },
+    {
+      "hold": true,
+      "cut": 1024,
+      "length": 1717,
+      "elapsedMs": 9104,
+      "truth": null,
+      "truthMarginalRank": null,
+      "truthBigramRank": null,
+      "truthTrigramRank": null,
+      "exactBank": null,
+      "chosen": {
+        "bank": [
+          3,
+          7,
+          14,
+          16,
+          23
+        ],
+        "trainGain": -0.009104873159871296,
+        "heldoutGain": -0.04025552689407832,
+        "trainLog": -3441.752761203192,
+        "totalLog": -5785.174494997978,
+        "accuracy": null,
+        "withheldAccuracy": null,
+        "replay": 1717,
+        "candidate": "ICEDGETHINHAUENOTHESURPERECTIANSAINDINACEMINTISEISTASTOYOUREDYOUNDNOROMINTHINTHEWISHURHEAUTTHEGONEWRINTHEYOUSNOTTOHALYCNOTANDTORYHICHTHESTYINGOODWHICENESHESTEDTHEPRESTRUPONSWHISLACNGFORDERFORCOURLDALLNOFPRITSPENIUSTOBLETURSTHESSTHEHIMENEINSALLHIMOTHE"
+      },
+      "source": [
+        {
+          "bank": [
+            2,
+            8,
+            11,
+            15,
+            26
+          ],
+          "trainGain": -0.02695705217825184,
+          "heldoutGain": -0.025953722914313727,
+          "trainLog": -3460.033392518014,
+          "totalLog": -5793.543976154823,
+          "accuracy": null,
+          "withheldAccuracy": null,
+          "replay": null,
+          "candidate": null,
+          "marginalRank": 52008
+        },
+        {
+          "bank": [
+            3,
+            14,
+            18,
+            21,
+            27
+          ],
+          "trainGain": -0.032304302947635755,
+          "heldoutGain": -0.050960049150425485,
+          "trainLog": -3465.508977305863,
+          "totalLog": -5816.348945024298,
+          "accuracy": null,
+          "withheldAccuracy": null,
+          "replay": null,
+          "candidate": null,
+          "marginalRank": 28074
+        }
+      ],
+      "oracle": null,
+      "ranked": [
+        {
+          "bank": [
+            3,
+            7,
+            14,
+            16,
+            23
+          ],
+          "score": -3441.752761203192
+        },
+        {
+          "bank": [
+            3,
+            7,
+            8,
+            14,
+            23
+          ],
+          "score": -3445.608851562247
+        },
+        {
+          "bank": [
+            7,
+            14,
+            16,
+            23,
+            26
+          ],
+          "score": -3448.0106233124525
+        },
+        {
+          "bank": [
+            3,
+            7,
+            14,
+            23,
+            26
+          ],
+          "score": -3448.2133572787657
+        },
+        {
+          "bank": [
+            3,
+            8,
+            20,
+            23,
+            28
+          ],
+          "score": -3448.5243967606066
+        },
+        {
+          "bank": [
+            3,
+            7,
+            16,
+            20,
+            23
+          ],
+          "score": -3449.760387216636
+        },
+        {
+          "bank": [
+            3,
+            6,
+            8,
+            23,
+            28
+          ],
+          "score": -3454.779738924567
+        },
+        {
+          "bank": [
+            2,
+            8,
+            11,
+            15,
+            26
+          ],
+          "score": -3460.033392518014
+        },
+        {
+          "bank": [
+            8,
+            16,
+            20,
+            25,
+            28
+          ],
+          "score": -3462.9758067995945
+        },
+        {
+          "bank": [
+            3,
+            14,
+            18,
+            21,
+            27
+          ],
+          "score": -3465.508977305863
+        }
+      ],
+      "repeatCount": 9
+    }
+  ]
+}
