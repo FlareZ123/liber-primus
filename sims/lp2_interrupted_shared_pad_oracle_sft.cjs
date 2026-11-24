@@ -86,6 +86,34 @@ function run(corpus,native,donorTexts,q=0,mode="oracle",raw="",lo=0,hi=100000000
     if(a.hi===hi)i++;if(b.hi===hi)j++;
   }return true;
  }
+
+ function rankScan(V1,V2,A,B,lo=0,hi=V1.length){
+  // A fast independent-position proposal score. Exact forest scores only
+  // the top proposals; therefore a negative is not an exhaustive exclusion.
+  const profiles=[],profileCache=new Map(),K=512;
+  function prep(V,t){for(const v of V){v.pid=new Int32Array(L);v.cs=Uint8Array.from(v.indices,i=>t.c[i]);for(const g of v.g){
+    let ids=profileCache.get(g.f);if(!ids){ids=[];let n=g.hi-g.lo;for(let k=0;k<n;k++){let p=new Float64Array(29);for(let z=0;z<g.f.strings.length;z++)p[g.f.strings[z].charCodeAt(k)-65]+=g.f.weights[z];ids.push(profiles.length);profiles.push(p)}profileCache.set(g.f,ids)}
+    v.pid.set(ids,g.lo);
+  }}}
+  prep(V1,A);prep(V2,B);
+  const P=profiles.length,table=new Float32Array(P*P*29);
+  for(let a=0;a<P;a++)for(let b=0;b<P;b++){let z=(a*P+b)*29,pa=profiles[a],pb=profiles[b],pr=new Float64Array(29);for(let x=1;x<29;x++)if(pa[x])for(let y=1;y<29;y++)if(pb[y])pr[mod(x-y)]+=pa[x]*pb[y];for(let d=0;d<29;d++)table[z+d]=Math.log(Math.max(1e-12,pr[d])*29);}
+  for(const v of V1)v.base=Int32Array.from(v.pid,p=>p*P*29);
+  for(const v of V2)v.base=Int32Array.from(v.pid,p=>p*29);
+  const heap=[];let pairs=0;
+  function push(v){if(heap.length<K){let j=heap.length;heap.push(v);while(j){let p=(j-1)>>1;if(heap[p].s<=v.s)break;heap[j]=heap[p];j=p;heap[j]=v;}return}
+    if(v.s<=heap[0].s)return;let j=0;heap[0]=v;while(true){let a=j*2+1;if(a>=K)break;let b=a+1;if(b<K&&heap[b].s<heap[a].s)a=b;if(heap[a].s>=v.s)break;heap[j]=heap[a];j=a;heap[j]=v;}
+  }
+  hi=Math.min(hi,V1.length);
+  for(let i=lo;i<hi;i++){const u=V1[i],ua=u.base,uc=u.cs;for(let j=0;j<V2.length;j++){const v=V2[j];if(!u.h&&!v.h)continue;pairs++;let vb=v.base,vc=v.cs,s=u.mass+v.mass;
+    for(let k=0;k<L;k++){let d=uc[k]-vc[k];if(d<0)d+=29;s+=table[ua[k]+vb[k]+d];}
+    if(heap.length<K||s>heap[0].s)push({i,j,s});
+  }}
+  let best=null,screened=0,feasible=0;
+  for(const {i,j,s:proposal} of heap){const u=V1[i],v=V2[j];if(!screen(u,v,A.c,B.c))continue;screened++;let r=score(u,v,A.c,B.c);if(r){feasible++;if(!best||r.llr>best.llr)best={u,v,llr:r.llr,proposal}}}
+  return {pairs,profiles:P,shortlist:heap.length,screened,feasible,best:best?{...score(best.u,best.v,A.c,B.c,true),starts:[best.u.start,best.v.start],proposal:best.proposal}:null};
+ }
+
  function allViews(t){let out=[];for(let j=0;j<t.words.length;j++){if(t.c.length-t.offsets[j]<L)break;for(const v of views(t,j))out.push(v)}return out}
  function scan(V1,V2,A,B,lo=0,hi=V1.length){let pairs=0,screened=0,feasible=0,best=null;
    hi=Math.min(hi,V1.length);
@@ -99,16 +127,16 @@ function run(corpus,native,donorTexts,q=0,mode="oracle",raw="",lo=0,hi=100000000
   const [A,B]=[[15,22],[40,53]].map(([a,b])=>tape(all.filter(x=>x.p>=a&&x.p<=b).map(x=>x.w)));
   let V1=allViews(A),V2=allViews(B),geometry={views:[V1.length,V2.length],holds:[V1.filter(v=>v.h).length,V2.filter(v=>v.h).length],types:[...by.values()].reduce((a,m)=>a+m.size,0)};
   if(mode==="geometry")return geometry;
-  return {...geometry,lo,hi:Math.min(hi,V1.length),...scan(V1,V2,A,B,lo,hi)};
+  return {...geometry,lo,hi:Math.min(hi,V1.length),...(mode==="rank"?rankScan:scan)(V1,V2,A,B,lo,hi)};
  }
 
  let t1=tape(solved.find(s=>s.name===names[0]).words),t2=tape(solved.find(s=>s.name===names[1]).words),a=pick(t1),b=pick(t2);
  if(!a.length||!b.length)return {q,names,eligible:[a.length,b.length]};
  let x=a[rand(a.length)],y=b[rand(b.length)],results=[];
- for(const shared of [true,false]){let {A,B}=plant(t1,t2,x,y,shared),v1=mode==="scan"?allViews(A):views(A,x.j),v2=mode==="scan"?allViews(B):views(B,y.j),s=scan(v1,v2,A,B,lo,hi),feasible=s.feasible;
+ for(const shared of [true,false]){let {A,B}=plant(t1,t2,x,y,shared),v1=mode==="scan"||mode==="rank"?allViews(A):views(A,x.j),v2=mode==="scan"||mode==="rank"?allViews(B):views(B,y.j),s=(mode==="rank"?rankScan:scan)(v1,v2,A,B,lo,hi),feasible=s.feasible;
   let r=s.best,alignment=0,key=0;
   if(r){let map=new Map(x.pos.map((v,i)=>[v,i]));for(let k=0;k<L;k++){let z=map.get(r.indicesA[k]);if(z!==undefined&&r.indicesB[k]===y.pos[z]){alignment++;if(r.key[k]===A.k[r.indicesA[k]]&&r.key[k]===B.k[r.indicesB[k]])key++}}}
-  results.push({shared,views:[v1.length,v2.length],pairs:s.pairs,screened:s.screened,feasible,best:r?{llr:r.llr,alignment,key,starts:r.starts,holds:[r.heldA.length,r.heldB.length],indicesA:r.indicesA,indicesB:r.indicesB}:null});
+  results.push({shared,views:[v1.length,v2.length],pairs:s.pairs,profiles:s.profiles,shortlist:s.shortlist,screened:s.screened,feasible,best:r?{llr:r.llr,alignment,key,starts:r.starts,proposal:r.proposal,holds:[r.heldA.length,r.heldB.length],indicesA:r.indicesA,indicesB:r.indicesB}:null});
  }
  return {q,names,eligible:[a.length,b.length],starts:[x.i,y.i],holds:[x.h,y.h],results};
 }
