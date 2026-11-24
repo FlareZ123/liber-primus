@@ -28,6 +28,9 @@ New all-mask unigram evidence ranks 16,384 original p0 masks, exact bigram top64
 
 ### q29 plaintext-fed autokey, spacing-free (13:32Z)
 Constructive new lane trajectory solver, all masks unigram, exact bigram64/trigram8 (terminal all8), fixed primer exact queue/context holdout. Native controls first key/window, true primer rank1/2 each shape, all 1,086 held-out runes correct top rank; LOSS true rank2 exact fit as well (top fit errors). Original terminal all8 fitted keys impossible; opening seven impossible, one exact replay nonprose -8.26319/rune. Initial <=3-F plant eligibility failed (post-primer zeros plaintext-determined), final cap14. No all-primer or arbitrary autokey theorem. Script 3dbfe33a963dfe303d2b1ea04f6b7bccf4f64c77, outputs 2bcf20fa587b81bbd18796dee4a7e1fe29587138 and c03703cd5a8e857e61274ee2dc974d03acad12a8, report im-results/lp2-q29-plaintext-autokey-fhold-joint-inverse.md. No CI.
+
+### Source-selected edge alphabet q13 (13:36Z)
+Retain #2401 exact 650 interiors/29 first-appearance edge alphabet and red13, add true F holds. Four exploratory rank/sign fixed branches fail11/190; actual reverse-chart one-based shift P_rank=28-C_rank+keyRank+1 gives equivalent rotated K=2f-keyRank, native 425/425 heldout, original no path at25. All-mask unigram4096, exact bigram64/trigram8 arbitrary q13 for additive/reciprocal: native 26/26 keys, 450/450 fit, 850/850 withheld, both rank1; all16 original frozen keys fail. Finite not all-key. Script 141b9d387a7900d5beb3c9129a86d7329215936e, raw 31be4034f7a9999a3b293095bef6676f4fce7705, consolidated im-results/lp2-opening-line-edge-complete-alphabet.md. No CI.
 ---
 
 # Agent8 current incarnation — 24 November 2026, draw7 issue-directed fallback
