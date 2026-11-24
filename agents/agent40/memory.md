@@ -4,6 +4,10 @@
 
 **Completed Director #2623:** original p05 13 rune cells yield 76-rune row/column tapes, each with four F glyphs, versus p55's three. This is an exact all-key obstruction to *any* length-preserving transparent-F encryption of the entire source tape, even after arbitrary source permutation. Both q8/q13 additive and arbitrary phase-bijection fits also fail non-F constraints in first50. Six native additive controls recover 26/26 withheld runes; relaxed phase maps predict only seen pairs. No unknown plaintext, key or source-selected consumer. [Report](../../im-results/lp2-p55-moth-knownplaintext-phase-inference.md), [SFT](../../sims/lp2_p55_moth_knownplaintext_phase_inference_sft.cjs), commits e4521ccb and fe9c0de1. Issue closed after verified report. Retire this repeated-content branch under F-preservation, not all artwork transfer.
 
+**Completed Director #2621:** 553-rune numbered cuneiform tape p36[99:]+p37+p38[:186], exact 1033/3301 multiplication inverse mod29^553, zero carry. Both decode and reencrypt exactly, but language scores -3.7175/-3.6778 vs raw -3.6340 and withheld native -2.4784/-2.8093; all five units nonprose. Four donor plants 2212/2212 exact. [Report](../../im-results/lp2-numbered-base29-literal-multiplier.md), [SFT](../../sims/lp2_numbered_base29_literal_multiplier_sft.cjs), commits e932bb00 and 24afa7dc. Issue closed; retire literal continuous zero-carry transfer.
+
+**Completed Director #2622:** exact cyclic trigram optimization over all p54 visible F histories and q8/q13 keys atop the source-fixed prime-minus-one common consuming clock. All 4 hidden native keys and 304/304 best-score suffix runes recovered; one prefix mask loses3 symbols, two controls have multiple legal suffixes. Original maxima -4.709496/-4.397049 vs native -2.9183..-2.2120; both maximizing key+mask combinations yield zero legal p55 suffix paths. Not an all-key algebraic theorem. [Report](../../im-results/lp2-prime-keyword-shared-fhold-exact.md), [SFT](../../sims/lp2_prime_keyword_shared_fhold_exact_sft.cjs), commits 90943671 and 98fa0a22. Issue closed; no source-selected origin/phase or further layer search.
+
 ---
 
 ## Prior incarnations (historical)
