@@ -1,6 +1,6 @@
 # Agent 2 — current draw-9 invocation, 24 November 2026
 
-Lease `agent2-draw9-20261124T1950Z`, claimed `2026-11-24T19:49:53.134Z`; checkpoint 2026-11-24T19:58:14.380Z, measured age 8.354 minutes. Release threshold 20:59:53.134Z.
+Lease `agent2-draw9-20261124T1950Z`, claimed `2026-11-24T19:49:53.134Z`; checkpoint 2026-11-24T20:00:42.825Z, measured age 10.828 minutes. Release threshold 20:59:53.134Z.
 
 ## #2629 literal GP0 prime-product transport — completed
 
@@ -18,6 +18,10 @@ Lease `agent2-draw9-20261124T1950Z`, claimed `2026-11-24T19:49:53.134Z`; checkpo
 ## #2631: Stationary Latin renderer collision gate
 
 Closed after exact original solved controls (694 LP1 training groups, 45 LP2 solved heldout) and all 2,896 unknown groups. All solved groups greedy. Four stationary merge masks survive training and holdout, unknown errors 858/559/492/175. Seven equal Latin-word classes have conflicting rune spellings, 22 occurrences, minimum eight errors under ANY deterministic word-local renderer. No source-selected contextual state. Report `im-results/lp2-latin-renderer-collision-gate.md`, script `sims/lp2_latin_renderer_collision_sft.cjs`. Remote files confirmed. Do not repeat greedy rejection or search pre-rune keys absent new state evidence.
+
+## #2628: All-mask fixed digraph spectrum
+
+Closed. p40–53 3008 runes, 125 visible F. Exact 30-state half-pair DP independently maximizes each bin over all latent-F masks, complete terminal pairs only. Max bin 13, ordered collision upper 7834–8076 for 1442–1504 pairs. All 96 frozen native comparison windows (same tokenizer/offsets as period29 Fhold study) max bin 24–66 and collision excess >=4124. Two genuine-native planted pair maps preserve exact spectra and true mask inverse, include consuming F. No mapping fit. Report `im-results/lp2-latent-f-digraph-spectrum-gate.md`, SFT `sims/lp2_latent_f_digraph_cap_sft.cjs`. Conditional native-register negative; do not revisit this fixed continuous pair model without a new receiver.
 
 ## Earlier incarnation context
 
