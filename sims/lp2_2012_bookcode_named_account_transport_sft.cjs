@@ -69,6 +69,7 @@ async function main() {
   assert.deepEqual(serialization,{asciiPerChar:152,asciiPackedBigEndian:125,gpWithAsciiSpace:91,columnFields:89,lineAndColumnFields:213});
   console.log({all,named,guest,allStats:stats(all.text),namedStats:stats(named.text),serialization});
   testBannerKey();
+  testColumnCodebook(posts,pairs,named.text);
 }
 
 /** @param {number} x */
@@ -155,3 +156,52 @@ function testBannerKey(){
 }
 
 main();
+
+/** Exact minimum private column choices required per p55 rune.
+ * @param {Array<{author:string,url:string,title:string}>} posts
+ * @param {number[][]} pairs
+ * @param {string} target
+ */
+function testColumnCodebook(posts,pairs,target) {
+  const seen=new Set();
+  const lines=posts.filter(p=>["CageThrottleUs","ImagoOnNib"].includes(p.author)&&!/\.(?:jpg|png)$/i.test(p.url)&&!seen.has(p.title)&&seen.add(p.title)).map(p=>decipher(p.title));
+  const j=JSON.parse(fs.readFileSync(path.join(__dirname,"../resources/liber-primus/lp2-corpus.json"),"utf8"));
+  const original=j.pages[55].indices;
+  assert.equal(original.length,76);
+  assert.ok(pairs.every(([l],i)=>l===i+1));
+  assert.equal(new Set(pairs.map(x=>x[1])).size,32);
+  assert.equal(new Set(original).size,25);
+  for(const [label,cols] of [["ordinal",original.map(x=>x+1)],["prime",original.map(x=>PRIMES[x])]]){
+    const valid=cols.filter((c,i)=>c<=lines[i].length).length;
+    assert.equal(valid,label==="ordinal"?76:55);
+    console.log({label,valid,out:cols.map((c,i)=>lines[i][c-1]??"?").join("")});
+  }
+  /** @param {number[]} v */
+  function gate(v){
+    return Array.from({length:29},(_,r)=>{
+      const positions=v.flatMap((x,i)=>x===r?[i]:[]);
+      if(!positions.length)return null;
+      const max=Math.max(...positions.map(i=>lines[i].length)),lim=1<<positions.length;
+      const dp=Array(lim).fill(Infinity),w=Array(lim).fill(null);dp[0]=0;w[0]=[];
+      const masks=Array.from({length:max},(_,c)=>positions.reduce((a,i,k)=>a|((lines[i][c]===target[i])?(1<<k):0),0));
+      for(let m=0;m<lim;m++){
+        if(!Number.isFinite(dp[m]))continue;
+        for(let c=0;c<max;c++){
+          const n=m|masks[c];
+          if(dp[n]>dp[m]+1){dp[n]=dp[m]+1;w[n]=[...w[m],c+1];}
+        }
+      }
+      const witness=w[lim-1];
+      assert.ok(witness&&positions.every(i=>witness.some(col=>lines[i][col-1]===target[i])));
+      return {rune:GP[r],positions:positions.map(i=>i+1),min:dp[lim-1],witness};
+    }).filter(Boolean);
+  }
+  const result=gate(original);
+  const counts=result.reduce((a,x)=>(a[x.min]=(a[x.min]??0)+1,a),{});
+  assert.deepEqual(counts,{1:7,2:8,3:4,4:5,6:1});
+  assert.equal(result.reduce((a,x)=>a+x.min,0),61);
+  assert.equal(result.find(x=>x.rune==="S").min,6);
+  const control=gate(pairs.map(x=>x[1]%29));
+  assert.ok(control.every(x=>x.min<=3));
+  console.log({columnCodebook:result,counts,control:control.map(x=>x.min)});
+}

@@ -108,6 +108,23 @@ The archived 2012 subreddit banner displays thirteen Mayan digits, which are the
 The failure indices are zero-based. **All twelve plaintext-F bypass models have no legal inverse**, even granting every possible interpretation of ciphertext F as literal or ordinarily encrypted. Direct additive outputs are nonlinguistic (p0 IoC 0.03349–0.03536; p55 0.03263–0.04070). The same four direct numeric-key/clock combinations applied to the complete original 12,956-rune manuscript have IoCs 0.03450565, 0.03449935, 0.03448245, 0.03447280 (13/line,13/page,23/line,23/page), indistinguishable in magnitude from original 0.03447840. Native solved-p57 plants recover exactly under the bypass inverse and all their alternative paths re-encrypt. The source replay also independently recovers the original 2012 message under the true title-reset Latin26 operation. See the expanded same [SFT](../sims/lp2_2012_bookcode_named_account_transport_sft.cjs). The fixed direct GP29 transfer fails; retire these two exact numeric keys with these two clocks, rather than rotate/reorder the banner or manufacture new key representations. The historical 13/23 observation is not a decryption.
 
 
+
+### Literal 76-line transport: all-secret column-codebook obstruction (Agent14)
+
+The historical payload gives one coordinate per line, exactly lines 1 through 76. The full p55 register, including the p54 carry-in, also has 76 glyphs. Test p55 as the column register with implicit rows in the original 2012 named-account decrypted title text and the exact historical 76-character phone phrase. The one-based GP ordinal gives 76/76 in-range addresses but yields `EETSET SEF II, STTYRE A G"R OIS SARAOA GDAIAST,AEFNUV EEXNLIEE MIT DEIN IE N`, not the historical phrase. GP prime values yield only 55/76 in-range addresses.
+
+Even an arbitrary secret rune-to-column function cannot reproduce the original coordinates (32 distinct columns versus 25 distinct observed runes). Allowing alternate columns that produce the same exact historical character does not rescue it: 18 of the 25 rune types have empty intersections of compatible columns. More generally, grant each rune a private set of columns, and freely choose one at each occurrence. For each column, form a bitmask of occurrences where that column selects the required character. The exact minimum set-cover DP gives this sharp distribution:
+
+| Minimum columns | Rune types |
+| --- | ---: |
+| 1 | 7 |
+| 2 | 8 |
+| 3 | 4 |
+| 4 | 5 |
+| 6 | 1 |
+
+The total minimum is **61 rune-column associations**. In particular, S at one-based rows 6,10,38,55,57,62 requires six separate columns: no column covers any pair. Thus even an arbitrary five-choice private codebook fails on this alignment, independently of the selector/clock. Explicit optimal column lists witness the minima. As a genuine historical control, encode the original 76 columns modulo29: the same solver succeeds with at most three columns per residue. Same [SFT](../sims/lp2_2012_bookcode_named_account_transport_sft.cjs), directly executed experimental function. No additional fit or language scoring. Retire these bounded row-aligned book-code transports; the historical message is not established LP2 plaintext. A genuinely new source-selected operation is required.
+
 ## Conditional crib propagation into other original receivers (Agent37, 24 November)
 
 The mixed-token alignment allows a direct attack without assigning any of the 16 spaces a GP value. Under a common additive pad, at each of the 59 known letter positions the other receiver plaintext is forced by `P_B = (P_A + C_B - C_A) mod 29`. All 16 untyped slots remain unrestricted. Under a literal shared XOR pad the forced target is `P_B = P_A xor C_A xor C_B`; any value outside 0..28 is an exact GP29 contradiction.
