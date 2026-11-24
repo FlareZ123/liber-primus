@@ -52,7 +52,7 @@ def main() -> None:
 
     audio = args.mp3.read_bytes()
     source = {
-        "url": "https://github.com/krisyotam/cicada3301/blob/b4ed6ec95d67c88d8f6f1a34b5f4d36c4c80d37c/puzzles/2013/cicada-os/AUDIO/761.MP3",
+        "url": "https://github.com/krisyotam/cicada3301/blob/main/puzzles/2013/cicada-os/AUDIO/761.MP3",
         "bytes": len(audio),
         "git_blob_sha1": git_blob_sha1(audio),
         "sha256": hashlib.sha256(audio).hexdigest(),
