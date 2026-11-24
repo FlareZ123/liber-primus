@@ -50,15 +50,17 @@ jobs:
           target = Path("/tmp/cicada3301/liber-primus/data/keys/mabinogion.txt")
           target.parent.mkdir(parents=True, exist_ok=True)
           target.write_text(
-              "# synthetic wrong-key control only; not historical Mabinogion text\\n"
-              + " ".join(rng.choice(tokens) for _ in range(12000))
-              + "\\n",
+              "# synthetic wrong-key control only; not historical Mabinogion text" + chr(10)
+              + " ".join(rng.choice(tokens) for _ in range(12000)) + chr(10),
               encoding="ascii",
           )
           print(f"synthetic_wrong_key_control={target}; GP tokens=12000; seed=0x33013301")
           PY
 
       - name: Run LP1 first17 derived-key test
+        env:
+          PYTHONUTF8: "1"
+          PYTHONHASHSEED: "0"
         run: |
           python sims/agent20_lp1_first17_sha_prf_skipaware.py \
             --external-root /tmp/cicada3301/liber-primus \
