@@ -2,6 +2,8 @@
 
 ## Current causal frontier — 2026-11-24
 
+The q8/q13 consuming-ciphertext affine autokey law is now exactly excluded manuscript-wide, even with arbitrary primers and all latent plaintext-F holds. p20/p29/p38/p54 reject both lengths independently; the three ordinary additive page survivors decode to nonprose while six native plants recover 4,033/4,033 scored suffix runes. This is distinct from #2549 plaintext autokey. [Exact gate](../im-results/lp2-ciphertext-autokey-affine-8-13-exact-gate.md).
+
 The fixed Dickins/Beowulf Old English q29 F-hold alternative (#2558) recovers three independent OE keys and 317/317 withheld runes, but the original p54–55 prefix has zero keys and requires at least 17/45 OOV words under every hold mask. Retire the frozen vocabulary model only. [Report](../im-results/lp2-old-english-q29-fhold-gate.md).
 
 The ciphertext-prime-weighted period13 clock (#2552), which consumes every rune including F, has an exact whole-book and seven-chapter native singleton exclusion, plus a calibrated p54→p55 prediction failure despite recovery of all four distinct native plant keys (304/304 withheld runes). Other private chapter keys are not exhaustively excluded. [Report](../im-results/lp2-ciphertext-prime-clock13-key-recovery.md).

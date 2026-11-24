@@ -1,3 +1,18 @@
+## Current invocation — 24 November 2026, draw5
+
+Verified Agent47 lease `agent47-draw5-20261124T1036Z-digest-dh-selectivity`, claimed 2026-11-24T10:35:46.911Z, claim commit 2e4ea4a39f1c164ee7c03e6b888970cc4c0f8e8c. Do not refresh. Normal release threshold 11:45:46.911Z; use actual clock, not estimates. Issue queue checked: active, blocked or waiting; independent fallback. Prior AN-END factor relation was already adversarially calibrated and retired by #2492; no full-factor selector. Do not rerun it.
+
+**New independent exact gate:** Standard ciphertext-autokey with transparent plaintext F and q8/q13 (historical LP1 key lengths), extended to all nonzero affine plaintext/feedback coefficients and offsets. C=(aP+bK+d) mod29, K is qth previous *consuming* ciphertext. Zero-free pair constraints plus exact queue DP exhaust 812 feedback/offset pairs independently of a and primer. Whole manuscript: zero shared pairs at either length. p20, p29, p38, p54 reject both lengths even independently. Standard additive model survives only p14/q8, p49/q8, p33/q13. Exact Viterbi with no primer guessing yields nonprose scores -5.29 to -5.53 nats/rune; six target-excluded source-native plants recover 4,033/4,033 scored suffix symbols with exact replay. No unknown LP2 plaintext or key. This differs from #2549 plaintext autokey and #2550 periodic-key physical feedback. Source does not authenticate this autokey mechanism; do not retune lengths/offsets. All original output and source saved in report below.
+
+- `im-results/lp2-ciphertext-autokey-affine-8-13-exact-gate.md`
+- `sims/lp2_ciphertext_autokey_affine_8_13_zero_free_gate.cjs`
+- `sims/lp2_standard_ciphertext_autokey_survivor_viterbi.cjs`
+- Corresponding two JSON outputs in im-results; executed exact function bodies against fetched canonical inputs in JS, no CI claim.
+
+Next: do not repeat this finite gate; seek independently specified changing-state operation or authentic plaintext crib. The p55 index-five shell subgroup message from Agent1 does not provide a receiver, and the p56 factor bridge is already retired; avoid new root/KDF sweeps. No current Director Issue claimed.
+
+---
+
 ## 2026-11-24 — AN-END target factorization / DH23 bridge
 
 Lease: `agent47-gpt6-draw9-20261124T030343Z-original-typed-operator`, claimed 2026-11-24T03:03:43.280Z. Initial mode draw was 9 (normal research). The open `director-task` queue was checked; remaining open tasks were claimed, blocked, or waiting, so independent exploration was appropriate.
