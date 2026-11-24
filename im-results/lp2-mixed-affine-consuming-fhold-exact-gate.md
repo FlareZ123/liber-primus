@@ -36,7 +36,7 @@ For cancellation b=-a,d=0 and a nonzero, delta=X-C evolves by nonzero multiplier
 | 2 | 4367 | 4366 | 4366 | 926 | 53 |
 | 3 | 19172 | 19171 | 19171 | 1975 | 228 |
 
-No cap reached. Thus stationary continuous consuming lag q=1,2,3 mixed affine laws all reduce to static substitution. This is not an exclusion of q>=4, irregular clock, multiple taps, or piecewise coefficients. The monolithic q=4 path run hit an execution timeout; no q=4 conclusion.
+No cap reached. Thus stationary continuous consuming lag q=1,2,3 mixed affine laws all reduce to static substitution. This is not an exclusion of q>=4, irregular clock, multiple taps, or piecewise coefficients. The earlier monolithic q=4 path run hit an execution timeout; the block-compressed extension below resolves it.
 
 Two separate native-text q=2,3 plants with the same keys and donors as the first-order plants survive both the lane gate and the exact anchored path test (actual output in the script); this checks preservation of a true path, not full blind key recovery.
 
@@ -45,3 +45,19 @@ Reproduce with `node sims/lp2_mixed_affine_consuming_queue_exact_gate_sft.cjs`. 
 ## Reproduction
 
 Run `node sims/lp2_mixed_affine_consuming_fhold_exact_gate_sft.cjs` from repository root. The same function was executed against the canonical inputs in connected JavaScript, with exact result assertions in the standalone script. No GitHub Actions run claimed. All original unknown pages remain unresolved.
+
+## Lag 4: complete block-compressed original inverse gate (Agent17, 24 November)
+
+The previously timed-out q=4 branch is now complete. Rather than advance one rectangle per individual nonzero ciphertext rune, batch each maximal forced-consuming nonzero run. For each incoming ciphertext queue, the four initial X coordinates evolve independently as affine expressions A_j x+B_j in GF(29). At each step remove its unique forbidden initial root (or kill the entire state when the expression is identically zero). At the end, intersect each original mask with its surviving roots, apply the final affine image, and rotate the lanes by the run length modulo q. This is exactly equivalent to sequential propagation: all forced nonzero transitions are deterministic, and an excluded root is never restored. At a ciphertext zero, branch into hold and legal consumption; antichain reduction discards a rectangle only when another contains it coordinatewise with the identical ciphertext queue. No score, beam, or fitted mask enters the gate.
+
+For a,b nonzero there is also an exact reverse recurrence with a'=a^-1, b'=b^-1, d'=-d/b and X'=-(a/b)X. This follows by solving C_i=X_i+aX_(i-q)+bC_(i-q)+d for C_(i-q). It preserves nonzero X and the literal F hold. Reverse testing is available for paths that survive or cap in the forward direction; none of the lag-4 original candidates required it.
+
+| q | All normalized triples | Lane-gate survivors | Nonstatic path tests | Excluded | Pending | Peak rectangle count | Latest rejection block end after anchor |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 4 | 24,389 | 23,271 | 23,270 | 23,270 | 0 | 751 | 2,824 |
+
+The original anchor is the 217-symbol run beginning at zero-based offset 1691. The path test gives its first four X values any nonzero value, a relaxation of all reachable primers. For the 28 nontrivial cancellation cases, it retains only paths with at least one nonzero delta X-C; cancellation preserves the count of nonzero deltas across consuming updates and holds. All such paths die. The remaining 29 cancelling parameter triples therefore admit only the static scaled permutation P=u^-1 C. This is an exact necessary exclusion of nonstatic **continuous stationary single-tap q=4** under the stated latent-F law. The 2,500-rectangle cap was never reached on original q=4. The listed rejection offset is a block endpoint, not necessarily the earliest individual contradiction.
+
+Two planted native q=4 paths pass every preliminary lane test. Plant 1 completes the forward anchor-to-end gate (246 symbols, peak1516); plant 2 completes the reverse gate (273 symbols, peak504); their opposite directions cap at 3648 and 3692 respectively and are explicitly inconclusive, not rejected. These establish preservation of a true path over those intervals, not blind key recovery. No unknown plaintext, key, or destination recovered. Lag 5 and higher remain unresolved.
+
+[Block SFT](../sims/agent17_mixed_affine_lag4_blockmask_sft.cjs) · [Actual shard outputs](lp2-mixed-affine-consuming-lag4-blockmask-output.json). Executed in the connected JS runtime; no CI run claimed.

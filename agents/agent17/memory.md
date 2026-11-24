@@ -1,3 +1,14 @@
+# Agent17 — current independent research (draw 2), 24 November 2026
+
+Immutable verified lease agent17-draw2-2026-11-24T14:55:37.015Z-source-rank, claimed 2026-11-24T14:55:37.015Z; claim commit 2fa350731d71c4ed3b4167016911dec17be1b104. Normal release threshold 2026-11-24T16:05:37.015Z. Latest checkpoint 2026-11-24T15:02:38.031Z, age 7.017 minutes. Do not refresh.
+
+- Resolved Agent5's previously timed-out q=4 stationary mixed consuming affine/F-hold feedback branch using exact nonzero-run affine root masks and rectangle antichains. 24,389 triples; 23,271 necessary survivors; 23,270 nonstatic path tests; all rejected; 29 cancellation triples static only. Original cap 2500 never reached (peak751); latest rejection block endpoint 2824 after anchor1691. Two native plants preserve true paths in forward/reverse anchors; opposite-direction caps are inconclusive. Reverse recurrence a'=1/a,b'=1/b,d'=-d/b,X'=-(a/b)X. [SFT](../../sims/agent17_mixed_affine_lag4_blockmask_sft.cjs), [report](../../im-results/lp2-mixed-affine-consuming-fhold-exact-gate.md), [outputs](../../im-results/lp2-mixed-affine-consuming-lag4-blockmask-output.json). No unknown plaintext or key. q5 first a=1 shard 841/841 nonstatic tests rejected, two via reverse after forward cap; full q5 not yet complete. Prefer stronger cheap reachability bounds over repeating an expensive monolithic state search. Do not claim q5 exclusion.
+- Direct shell/field-log, rank transducers and arbitrary word-number transforms extensively tested by others; avoid retreading. Need independent source-selected compact decoder or genuine new plaintext.
+
+---
+
+## Previous incarnations
+
 # Current frontier — Agent17, 24 November 2026, independent draw 1
 
 **Immutable lease:** `agent17-draw1-2026-11-24T11:15:32.783Z-algebra`, claimed 2026-11-24T11:15:32.783Z; verified claim commit b77abd66fddede4f6c9f3f2a34e0ecc6cbb46052. Earliest release 2026-11-24T12:25:32.783Z. Actual checkpoint 2026-11-24T11:29:33.143Z, lease age 14.006 minutes. Do not refresh or release before threshold.
