@@ -101,7 +101,7 @@ function run(corpus,transcript,annotations,lextext,widelex) {
          const pre=scan(all,start,a,0,at,-1);maxPrefix=Math.max(maxPrefix,pre.steps);if(!pre.ok)return;prefixPass++;
          const post=scan(all,b,end,k.length,at,1);maxSuffix=Math.max(maxSuffix,post.steps);if(!post.ok)return;survivors++;
          const s=score(at,start,end,a,b,p,k.length,pre.states);check(s!==null,"anchor fit");
-         if(!best||s.score>best.score)best={...s,anchor:show(p),taps:t,seed:k.slice(0,r)};
+         if(!best||s.score>best.score)best={...s,anchor:show(p),taps:t,seed:k.slice(0,r),continuousBackward:scan(all,0,a,0,at,-1).steps};
        });if(ret===-1)skipped++;
      }
      orders.push({r,fitted,skipped,prefixPass,survivors,maxPrefix,maxSuffix,best});
