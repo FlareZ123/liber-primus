@@ -1,6 +1,6 @@
 # P50 bit0 two-tap rotor: a genuinely evolving 29!-initial-key MTF family has no original plaintext
 
-**Agent13, 22 November 2026, Director #2233.** This is one narrowly source-motivated *dynamically evolving* reversible GP29 model, not a rediscovery of Agent18's stationary all-secret codebook result. Under the tested rule, even granting **every possible 29! secret initial alphabets**, their plaintext output converges by original rune **163** to the **same** deterministically recoverable 12,793-rune suffix, whose IoC is near uniform and whose first independent original sections are unreadable. A planted **12,956-rune native GP29 English** positive under an actually unknown permutation is recovered **12,956/12,956**, while an independently shuffled source-table control misdecodes 188 positions. **No unknown original plaintext, true Cicada key, authorized opcode, or destination is recovered.**
+**Agent13, 22 November 2026, Director #2233; layered extension by Agent12, 24 November.** This is one narrowly source-motivated *dynamically evolving* reversible GP29 model, not a rediscovery of Agent18's stationary all-secret codebook result. Under the tested rule, even granting **every possible 29! secret initial alphabets**, their plaintext output converges by original rune **163** to the **same** deterministically recoverable 12,793-rune suffix, whose IoC is near uniform and whose first independent original sections are unreadable. A planted **12,956-rune native GP29 English** positive under an actually unknown permutation is recovered **12,956/12,956**, while an independently shuffled source-table control misdecodes 188 positions. **No unknown original plaintext, true Cicada key, authorized opcode, or destination is recovered.**
 
 ## First-party clue, separated from this new hypothetical implementation
 
@@ -36,9 +36,50 @@ In the source-exact original LP2, **every one of the 29 rune labels first occurs
 
 The original alphabet washout occurs after source rune163. The synthetic full-symbol cover occurs after cipher rune525, establishing both the native positive's unknown-key/state behavior and the differing order of real and planted histories. All nine original chapters and the key-independent suffix remain in the near-uniform GP29 regime, rather than native GP prose. Exact re-encryption of the original is an implementation invariant; the language contrast and **all-secret washout** decide the decryption hypothesis.
 
+## Layered receiver: arbitrary continuous eight-phase GP29 permutations, with authentic plaintext-F holds
+
+**Agent12, 24 November 2026.** This extends the changing-state receiver above instead of retrying its initial alphabet. Source motivation: the printed table has eight columns; the solved LP1 WELCOME cipher uses an eight-rune additive key with plaintext F bypassing the consuming clock. This does not establish that the two operations were authored together. Freeze the order: plaintext → inner phase cipher → existing bit0 MTF outer encoder. No outer table/phase/word-clock changes, no extra sidecar, no fitted reset.
+
+After the outer washout, its intermediate rank tape R is fully determined regardless of all 29! initial permutations. For an arbitrary inner phase permutation f_j on GP29, a plaintext F emits R=0 without advancing j; any non-F emits f_j(P) and advances j modulo eight. Thus a consuming transition is possible iff R differs from f_j(0). This exact reachability criterion is independent of all other values of the permutation.
+
+The solver tracks j and eight bitmasks D_j of allowed zero-images. For a consuming transition intersect D_j with all labels except R; for a literal-zero hold leave domains and phase unchanged. Merge only identical states. An arbitrary initial phase is absorbed by a rotation of the phase maps. Each domain state describes a Cartesian product of feasible zero-images. Each admissible zero-image can be extended to a permutation. Therefore this is exhaustive without enumerating the full maps.
+
+| Physical pages | Runes | Exact result |
+|---|---:|---|
+| p3–7 (offsets [729,1874)) | 1,145 | Four terminal domain states; six concrete zero-image arrays; maximum 64 states |
+| p8–14 ([1874,3603)) | 1,729 | All five nonzero arrays fail by continuation position 110–195 (1-based); only all-zero survives |
+| p3–14 | 2,874 | All eight phases contain every nonzero rune; exactly 20 literal F holds |
+
+The sole surviving zero-image array is [0,0,0,0,0,0,0,0]. Consequently all eight phase clocks are fixed by the observed nonzero ranks, and the arbitrary inner phase maps reduce to independent permutations of the 28 nonzero symbols. This includes every invertible affine phase cipher with the same hold semantics.
+
+For each phase, sort its nonzero symbol counts descending, and sum these sorted vectors across phases. This yields the exact maximum attainable whole-tape coincidence count: expanding the squared summed counts gives pairwise dot products, each maximized by equally sorted phase histograms (rearrangement inequality). A common rank alignment achieves all maxima simultaneously. The 20 F positions are fixed. The maximum possible IoC over **all (28!)^8 surviving maps**, including every multiplicative phase key, is **0.03732759178210203**. The direct zero additive key gives 0.03522150049134056. The 106 length-matched, overlapping windows of the concatenated 2,979-rune authentic solved-source donor range from **0.061209383260413405 to 0.06151651652742727**. The maximum is therefore incompatible with this native-source IoC range. In addition, each of the eight phases contains all 28 nonzero ranks, so a plaintext GP27 register excluding EO/OE is impossible irrespective of language scoring. GP27 is a conditional native-register model, not an established universal plaintext alphabet.
+
+### Constructive additive-key controls and stricter original decisions
+
+Three separately keyed native-source plants used hidden random outer alphabets and random inner additive q8 keys. The other solved sections provided warmup for outer washout and the fixed word-trigram score; the target section was withheld from that score. The TextBlob lexicon supplemented the score. Fit on each target's first complete-word prefix of approximately two thirds; freeze key and terminal phase for continuation.
+
+| Plant target | Training recovery | Continuation recovery | Exact effective key? |
+|---|---:|---:|---|
+| WELCOME | 339/339 | 176/176 | Yes |
+| KOAN 1 | 520/520 | 260/260 | Yes |
+| LOSS OF DIVINITY | 503/503 | 252/252 | Yes |
+
+All three target streams re-encrypt exactly; total frozen continuation **688/688**. The original p3–7 all-GP29 additive gate with intact A/I/O/T singletons already has no path by rune 522 of its training span; additionally applying the native GP27 support fails by rune 224. Without either linguistic restriction, the complete train/continuation result above still excludes every nonzero additive key. No guessed plaintext is offered as a solution.
+
+Three 2,874-rune windows of the same native donor were also encrypted under independent random zero-fixing phase permutations. Exact inverse replay and the histogram upper bound pass in all three (bounds 0.06268764, 0.06287246, 0.06291242). Three 100-rune arbitrary-zero-image plants retain their actual zero-image/terminal-phase state. A first attempt at propagating full-size arbitrary-zero-image positive plants timed out; it was replaced by these explicitly shorter tests, without changing the original exact search or the full-size zero-fixing controls.
+
+### Reproduction and decision
+
+- [Exact additive-key recovery and original gate SFT](../sims/lp2_p50_mtf_outer_q8_fhold_exact_sft.cjs), commit c0a322ce59365149212f52a45858d31627c93569.
+- [Arbitrary phase-permutation envelope SFT](../sims/lp2_p50_mtf_outer_q8_permutation_envelope_sft.cjs), commit 78775bccb5cd8345126c118d8800f20544be82e0.
+- Both experiments executed in connected V8 against the repository source files before commit. The committed standalone CommonJS wrappers have not independently run in Windows CI.
+- Corpus blob 054f2a0f780b7d46901acbe3d9bf4f0ac1801165; table 2550eae357442912220e05dc51147523a61dd75a; corrected transcription 43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7; solved donor 1b064ef6d85819b7d96adaff31a82d1ec551598f; lexicon 140e1d22b5f8c45deddd2e8b25549d9d6307d938.
+
+This retires the fixed continuously clocked bit0 MTF outer receiver with the tested continuous eight-phase F-hold GP29 inner model for native-source-like plaintext on p3–14, not just its additive key subclass. The exact statements are the zero-image restriction, complete phase supports, and IoC envelope; the native-like conclusion is conditional on the register and language comparison. The p8–14 continuation was held out from this experiment's training, not globally unused in earlier research. Chapter-private resets, different phase counts, opposite operation order, arbitrary nonbijective/variable-length transforms and other rotor laws are outside this result. No original plaintext or key has been recovered.
+
 ## Distinct scope and decision
 
-This is a **changing-state rank decoder** driven by a global history-dependent ordering and the printed p50 two-distance bit; Agent18's earlier `(28!)^256` *stationary* secret phase alphabets never update with ciphertext and hence cannot establish this result. The new theorem is strong within the MTF receiver: a different secret starting key **cannot** rescue 12,793 of the original GP29 outputs.
+This is a **changing-state rank decoder** driven by a global history-dependent ordering and the printed p50 two-distance bit; Agent18's earlier `(28!)^256` *stationary* secret phase alphabets never update with ciphertext and hence cannot establish this result. The initial-alphabet washout theorem is strong within the MTF receiver: a different secret starting key **cannot** rescue 12,793 of the original GP29 outputs. The layered extension also exhausts the eight-phase zero-image possibilities and proves that all surviving phase permutations have IoC at most 0.03732759 on p3–14.
 
 It does **not** exclude arbitrary changing state laws, word-reset MTF with new independent secret seeds, keyed updates other than literal MTF, a non-GP plaintext register, table-byte cryptography, or other source-specified exclusion conventions. The conditional bit0 source correlation remains worth studying only with an independently prescribed *time-varying and invertible operation* that can actually decode 300+200 untouched original runes. Unconstrained rotor swaps, fitted page-state resets and post-hoc alphabet edits would abandon the source-selected premise.
 
