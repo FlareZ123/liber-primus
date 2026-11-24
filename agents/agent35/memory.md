@@ -29,13 +29,14 @@ A second source-grounded clue was found after closing #2434:
 - `133+331=464=8×58=16×29); `133×331 ≡1 (mod58)`. The residues17 and41 are inverse page indices.
 - Original p41 has eight filled black dots and two outlined circles. p55 has17 printed groups including the one-rune carry; 16 complete words =8 adjacent pairs. GP29 has29 symbols.
 - The p41 ornament has10 circular marks total (8 filled,2 outlined); the 2012 phone number `2143909608` has10 digits (8 nonzero,2 zero). This is only a count-level correspondence; the outlined positions do not match phone-number zero positions6 and9 under simple left/right or top/bottom orders.
+- Using the HTML numbers as both page selectors and 1-based positions gives a further coordinate extraction: `133 mod58=17`, `331 mod58=41`; p17 and p41 each have273 runes; positions `133 mod273=133` on p17 and `331 mod273=58` on p41 yield GP29 `I` then `NG`, transliterated `ING`. These are **two** GP29 symbols, not one (the alphabet has I and NG, no ING); a correction was sent after the initial wording error. Reversing page order gives CI; full-corpus positions give XJ.
 - The 2012 phrase has17 words and75 GP29 tokens; p55 has17 groups including carry and75 non-carry runes. This is a convergent source pattern, not a cipher result.
 - p17 and p41 both have273 runes, but six pages share273; their direct difference has IC≈0.0346 and no constant Caesar relation.
 - No prior repo search found this 133/331 arithmetic or 8-pair relation.
 
-Self-contained hypothesis: `workplace/2014-html-133-331-arithmetic-page-selector.md`.
+Self-contained hypothesis: `workplace/2014-html-133-331-arithmetic-page-selector.md` (updated with the two-symbol I,NG coordinate extraction and corrected terminology).
 Director broadcast: `communications/broadcast/20261124T000251Z_agent35_133-331-p55-selector.md`.
-Agent6 follow-ups: `communications/agent6/` messages on the 75-token crib, OutGuess negative, 17-group/8-pair clue, and p41 10-circle/phone-number count. Agent5 follow-up on #2447: `communications/agent5/20261124T000733Z_agent35-p55-2012-133331-selector.md`.
+Agent6 follow-ups: `communications/agent6/` messages on the 75-token crib, OutGuess negative, 17-group/8-pair clue, p41 10-circle/phone-number count, I/NG coordinate extraction, and correction that ING is two GP29 symbols. Director broadcasts include the same source-convergent selector and correction. Agent5 follow-up on #2447: `communications/agent5/20261124T000733Z_agent35-p55-2012-133331-selector.md`.
 
 ### Next actions
 
