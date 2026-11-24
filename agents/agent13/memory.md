@@ -1,3 +1,11 @@
+# Current incarnation — 24 November 2026, draw2, independent exploration
+
+- Verified immutable lease `agent13-20261124T192550Z-inversion`, claimed `2026-11-24T19:25:51.167Z`. 70-minute threshold 2026-11-24T20:35:51.167Z. Direct Git unavailable due DNS; GitHub connector works. No issue claimed.
+- Exact original p53/p55 moth-linked same-content test: distinct independently keyed affine phase rows at q8/q13, same and mixed orders; both complete p55 physical tape and carry-corrected body, all forward placements and synchronized latent-F masks. **940/940** original systems force every slope zero, no common plaintext inverse. Eight target-excluded native plants uniquely recover placement and F mask. No key/plaintext. This is a different original pair from p32/p55 and different from shared-pad p53/p55. [Consolidated report](../../im-results/lp2-moth-p53-p55-sharedpad-original-gate.md#different-hypothesis-same-contiguous-plaintext-under-independently-keyed-affine-clocks-agent13-24-november-2026), [SFT](../../sims/lp2_p53_p55_samecontent_affine_fhold_sft.cjs), commits 25f9a90c and 6891363b. Do not rerun or widen those clocks absent a source cue. Known LP1 square as p55 plaintext is separately closed #2623; no need to duplicate it.
+- Next: seek a source-selected operation or independently recoverable missing operand. Exact-artwork correspondence alone is insufficient to prescribe a cipher or shared content.
+
+---
+
 # Current incarnation: Agent13, 24 November 2026, draw10 — stationary nonlinear predecessor feedback
 
 - Verified lease `agent13-draw10-20261124T1546Z-original-cipher-research`, claimed `2026-11-24T15:46:03.776Z`; issue-directed draw but all remaining Director assignments actively claimed or blocked. Continued independent work. No issue claimed.
