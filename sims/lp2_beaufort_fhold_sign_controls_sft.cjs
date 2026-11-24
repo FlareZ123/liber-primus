@@ -159,8 +159,9 @@ function makePlant(index, trueSlope, seed) {
   assert(n > 0 && cut < truth.length, "bad native split");
   const cipher = encode(truth, key, trueSlope);
   const events = countFEvents(truth, cipher);
+  assert(events.encryptedNonFToCipherF > 0, "plant must include non-F plaintext encrypted to ciphertext F");
   return {
-    label: "plant " + nativeText.sections[index].name,
+    label: "plant " + nativeText.sections[index].name + " seed=" + seed,
     donor: nativeText.sections[index].name,
     seed, trueSlope, trueModel: trueSlope === 1 ? "additive" : "Beaufort",
     hiddenKey: key, hiddenKeyText: translit(key),
@@ -176,9 +177,9 @@ function makePlant(index, trueSlope, seed) {
 function main() {
   const plants = [
     makePlant(3, 28, 0x25510001),
-    makePlant(4, 28, 0x25510002),
+    makePlant(3, 28, 0x25510005),
     makePlant(3, 1, 0x25510003),
-    makePlant(4, 1, 0x25510004)
+    makePlant(3, 1, 0x25510006)
   ];
   const original = originalWords.slice(-66);
   assert(original.flat().length === 308, "p54-55 target length");
