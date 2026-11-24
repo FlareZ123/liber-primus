@@ -30,6 +30,16 @@ The manuscript's GP29 alphabet has 29 symbols. The canonical transcription gives
 
 Thus the HTML numbers are multiplicative inverses modulo the 58-page Stage11 sequence, and their sum is simultaneously eight times the page count and sixteen times the GP29 alphabet size.
 
+A second, source-typed coordinate extraction is available because both selected pages have 273 runes:
+
+- `133 mod 58 = 17` selects p17; `331 mod 58 = 41` selects p41.
+- Use the original HTML order (title133 then div id331) and the 2012 book-code convention of 1-based positions.
+- `133 mod 273 = 133`; the 133rd rune on p17 is `ᛁ` (I).
+- `331 mod 273 = 58`; the 58th rune on p41 is `ᛝ` (NG).
+- The selected sequence is `I + NG = ING`, exactly one symbol in the 29-symbol GP29 alphabet.
+
+This is a concrete, reproducible output from the original HTML numbers, page count, and page rune counts. Reversing the page order gives `CI`; taking positions133/331 in the whole LP2 concatenation gives `XJ`. The source order therefore matters. The output `ING` is a candidate key/operation selector, not yet a decryption; its role on p55 remains to be established.
+
 ## Candidate interpretation
 
 The 2016 signed Cicada message says: “the words are the map, their meaning is the road, and their numbers are the direction.” A human solver inspecting the original HTML could notice the two reversed numbers, use the visible 58-page count as a modulus, and examine pages 17 and 41. The same numbers also yield `16 × 29`, which matches the 16 complete words on p55 and the 29-symbol alphabet; `8 × 58` matches the eight filled dots on p41 and the page count. The 2012 phrase has 17 words, matching the 17 printed groups on p55 when the carried-in fragment is counted; its GP29 token count after removing the TH digraph is 75, matching the p55 body.
@@ -44,11 +54,11 @@ The p17 and p41 pages each have 273 runes. However, 273 occurs on six LP2 pages,
 
 1. `133` and `331` may be incidental HTML metadata rather than puzzle instructions.
 2. The identities `464 = 8 × 58 = 16 × 29` are exact but may be numerological coincidence; the dot and word counts are interpretations of visual structure.
-3. The 273-rune equality of p17/p41 is not unique, and their simplest direct difference test is negative.
+3. The 273-rune equality of p17/p41 is not unique (six pages have273), and their simplest direct difference test is negative; the new coordinate extraction does not depend on treating their direct difference as a key.
 4. No reversible operation currently maps the 2012 phrase to p55. The word boundaries differ (17 phrase words versus 16 p55 body groups), and simple substitution/transposition tests fail.
 
 ## One bounded next decision
 
-Ask whether the eight filled dots on p41, the 16 complete words on p55, and the 17-word/75-token 2012 phrase specify a unique, source-determined ordering or boundary transformation. The test must predict a fixed mapping on original p55 before inspecting candidate plaintext. If the 8-dot motif does not uniquely select an 8-pair/16-word route, or if the 133/331 arithmetic does not produce a reversible p55 operation without tuned exceptions, retire this branch.
+Determine whether the extracted GP29 `ING` symbol has a source-selected role in a reversible p55 reader, and whether the eight filled dots on p41 plus the 16 complete p55 words specify a unique 8-pair order for the 17-word/75-token 2012 phrase. The test must predict a fixed mapping on original p55 before inspecting candidate plaintext. If the 8-dot motif does not uniquely select an 8-pair/16-word route, or if the 133/331 arithmetic does not produce a reversible p55 operation without tuned exceptions, retire this branch.
 
 Do not launch a generic grid, route, modular, or transposition search. The only justified receiver is original p55; the 2012 phrase remains a crib candidate, not a key or plaintext.
