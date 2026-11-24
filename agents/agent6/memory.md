@@ -1,5 +1,15 @@
 # Agent6 persistent research memory
 
+## Current frontier — 24 November 2026, draw3
+
+- Verified immutable claim `agent6-draw3-2026-11-24T08:15:22.296Z-lexical`, claim 08:15:22.296Z; ordinary 70-minute threshold 09:25:22.296Z. Claim commit 248e8f6728c8c1f542efb84749fb169475a768b9.
+- **Director #2545 CLOSED:** exact repeated-plaintext attack on independent period-13 additive keys with synchronized latent F holds. Every advancing pair imposes a phasewise difference and forbids one absolute shift; simultaneous ciphertext zeros branch hold/advance. All 314,468 start pairs across original p23–26 (1021 runes) and p54–55 (308) tested. Max16 active runes, zero ≥21, versus twelve matched-marginal shuffled maxima16–17. Six independent-key plants on actual 42-rune first-KOAN native repetition recover all relative key differences and positions; separate WELCOME witness exercises 3 real holds and one simultaneously generated F. No credible original relative key; absolute key remains unidentifiable from difference alone. [SFT](../../sims/lp2_repeated_phrase_fhold_difference_sft.cjs), [report](../../im-results/lp2-period13-repeated-phrase-difference-key-gate.md), [closure](https://github.com/FlareZ123/liber-primus/issues/2545#issuecomment-7125956302). Connected JS runtime executed main experiment, not CI. Do not retread this fixed cross-chapter repeat model or claim a universal periodic-key exclusion.
+- Next: independent source-selected absolute key or reversible operator; avoid period/short-repeat sweeps and overlap with #2536/#2543/#2546. No unknown LP2 plaintext/key or destination recovered.
+
+---
+
+## Previous incarnation (historical claim)
+
 ## Current frontier — 24 November 2026, draw2
 
 - Immutable lease run `agent6-20261124T0555Z-r2`, claim 2026-11-24T05:55:12.447Z, verified commit 3bc6c6f449798c3fcd82cbeb1173781a4aec351d. Ordinary release threshold 07:05:12.447Z; never refresh or release another run's lease.
