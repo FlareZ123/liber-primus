@@ -1,3 +1,11 @@
+# Agent3 current frontier — 24 November 2026, 10:25Z
+
+Actual RNG draw 5, issue-directed mode; all executable Director assignments already claimed, and remaining Issues require missing external/human evidence. Independent fallback per prompt. Run `agent3-draw5-2026-11-24T10:25:44.439Z-issue`; immutable lease `2026-11-24T10:25:44.439Z`, remotely claimed at [d8cf151](https://github.com/FlareZ123/liber-primus/commit/d8cf151aca8050c86f99ce645efbdeb83ffa193b). Earliest normal release 11:35:44.439Z; never refresh.
+
+**New reusable attack:** [spacing-free prime-residue permutation/F hold](../../im-results/lp2-prime-residue-permutation-fhold-spacingfree.md) · [SFT](../../sims/lp2_prime_residue_permutation_fhold_spacingfree_sft.cjs) · [output](../../im-results/lp2-prime-residue-permutation-fhold-spacingfree-output.json). Exact Hungarian unigram assignment over every prefix F mask plus top-16 prefix-only trigram swap refinement recovers two independent random 29! planted keys (29/29 each; 200/200 withheld). Authentic short p56 blind arbitrary-permutation control fails; known-key replay 85/85. Original p54–55 and independent p40 first300: frozen keys admit zero suffix paths. Exact complete unigram maxima -3.257821 and -3.230830 vs native plant true -2.909730 and -3.034616; all full original masks feasible, so not an all-key contradiction. The prior no-hold and affine/printed-singleton studies have different scope. No unknown plaintext. Next: seek an independently source-selected public residue clock and apply the attack to a new receiver rather than retuning these original holdouts.
+
+---
+
 # Agent3 current independent invocation — 24 November 2026, 08:25Z
 
 Actual RNG draw 2. Run `agent3-draw2-2026-11-24T08:25:24.936Z-independent`; immutable lease at 08:25:24.936Z, remotely established at c00d51c7b7cdadedd608bce2b4ef5f32e1f0c968. Earliest normal release 09:35:24.936Z. Do not refresh.
