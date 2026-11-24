@@ -1,0 +1,449 @@
+{
+  "question": "Does SHA-512 of the solved p57 Parable supply a source-derived BBS seed?",
+  "status": "fixed bounded experiment; no hash, endian or representation search",
+  "source": {
+    "p57_page": 57,
+    "p57_runes": 95,
+    "body_clause_gp_prime_sums": [
+      1031,
+      1229,
+      1259
+    ],
+    "audio_parable_product": 1595277641,
+    "audio_title_gp_prime_sum": 761
+  },
+  "hash_rule": "SHA-512 bytes interpreted as one big-endian integer, reduced modulo N",
+  "encodings": [
+    {
+      "label": "p57-gp29-index-bytes",
+      "bytes": 95
+    },
+    {
+      "label": "p57-gp-prime-values-u16be",
+      "bytes": 190
+    }
+  ],
+  "derivedSeeds": [
+    {
+      "input": "p57-gp29-index-bytes",
+      "input_bytes": 95,
+      "sha512": "9887ee7773ec7e2f800327cb457d00be80fbfdc7735ebac0c44999a8892dbceefef4213f5dfbcbd7747dac5c33dc2d703d43681eddde170305469e616d9706e5",
+      "modulus": "threeprime",
+      "modulus_decimal": "1595277641",
+      "seed": 1277018081
+    },
+    {
+      "input": "p57-gp29-index-bytes",
+      "input_bytes": 95,
+      "sha512": "9887ee7773ec7e2f800327cb457d00be80fbfdc7735ebac0c44999a8892dbceefef4213f5dfbcbd7747dac5c33dc2d703d43681eddde170305469e616d9706e5",
+      "modulus": "blum-twofactor",
+      "modulus_decimal": "1298029",
+      "seed": 1055574
+    },
+    {
+      "input": "p57-gp-prime-values-u16be",
+      "input_bytes": 190,
+      "sha512": "53b38805a49de6b121c9d4f67cd19e08a03b737a97d82b6af62b5360209d186df7377e18ee3b34c53b4b5ebd98575f69f6223a28eab521d91de0abdd2308ec60",
+      "modulus": "threeprime",
+      "modulus_decimal": "1595277641",
+      "seed": 277338680
+    },
+    {
+      "input": "p57-gp-prime-values-u16be",
+      "input_bytes": 190,
+      "sha512": "53b38805a49de6b121c9d4f67cd19e08a03b737a97d82b6af62b5360209d186df7377e18ee3b34c53b4b5ebd98575f69f6223a28eab521d91de0abdd2308ec60",
+      "modulus": "blum-twofactor",
+      "modulus_decimal": "1298029",
+      "seed": 858503
+    }
+  ],
+  "receiver": {
+    "pages": [
+      0,
+      3,
+      8,
+      23,
+      27,
+      40
+    ],
+    "train_per_page": 130,
+    "heldout_per_page": 80,
+    "clock": "page-reset",
+    "cipher": "GP29 additive with collision-only hidden key skips",
+    "formats": [
+      "state-low8",
+      "state-low5",
+      "bits5-lsb",
+      "bits5-msb",
+      "bits8-msb"
+    ],
+    "signs": [
+      -1,
+      1
+    ],
+    "models": 40
+  },
+  "positiveControl": {
+    "source": {
+      "source": "Parable-threeprime",
+      "seed": 3301,
+      "format": "bits5-msb",
+      "sign": 1
+    },
+    "plantedKeySkips": 24,
+    "blindSelected": {
+      "source": "Parable-threeprime",
+      "seed": 3301,
+      "format": "bits5-msb",
+      "sign": 1,
+      "train": -2.3884634062034764,
+      "hold": -2.446622596397216,
+      "inferredSkips": 24,
+      "heldoutHeads": [
+        "UNGPRINCEBEFETCHDHITHE",
+        "SGREENANDYETUNGOUERND"
+      ]
+    },
+    "exactRecoveredPlainRunes": 1260,
+    "total": 1260,
+    "accuracy": 1,
+    "secondBest": {
+      "source": "Parable-Blum-twofactor",
+      "seed": 3299,
+      "format": "state-low5",
+      "sign": -1,
+      "train": -5.677961613041975,
+      "hold": -5.851947000779327,
+      "inferredSkips": 22,
+      "heldoutHeads": [
+        "OEAEBIGPGOEJNSIAWFSXFSAU",
+        "EOOEHGOEYAEIOEPFRNGGBGXHO"
+      ]
+    }
+  },
+  "bestTrain": [
+    {
+      "input": "p57-gp29-index-bytes",
+      "sha512": "9887ee7773ec7e2f800327cb457d00be80fbfdc7735ebac0c44999a8892dbceefef4213f5dfbcbd7747dac5c33dc2d703d43681eddde170305469e616d9706e5",
+      "modulus": "blum-twofactor",
+      "modulus_decimal": "1298029",
+      "seed": 1055574,
+      "format": "bits8-msb",
+      "sign": 1,
+      "train": -5.74364862686764,
+      "hold": -5.823453368014669,
+      "inferredSkips": 14,
+      "heldoutHeads": [
+        "PFSEAPAETUYIATHGPEOEOUEOWYA",
+        "CAPLRHNMOCXIHBANJYYEO"
+      ]
+    },
+    {
+      "input": "p57-gp-prime-values-u16be",
+      "sha512": "53b38805a49de6b121c9d4f67cd19e08a03b737a97d82b6af62b5360209d186df7377e18ee3b34c53b4b5ebd98575f69f6223a28eab521d91de0abdd2308ec60",
+      "modulus": "blum-twofactor",
+      "modulus_decimal": "1298029",
+      "seed": 858503,
+      "format": "state-low8",
+      "sign": -1,
+      "train": -5.774098621067382,
+      "hold": -6.01476182125194,
+      "inferredSkips": 15,
+      "heldoutHeads": [
+        "EACHNGUPEAOXNGYEOODAENNGJNN",
+        "UMUMLIAAYWGUUHCEAAEMIABN"
+      ]
+    },
+    {
+      "input": "p57-gp-prime-values-u16be",
+      "sha512": "53b38805a49de6b121c9d4f67cd19e08a03b737a97d82b6af62b5360209d186df7377e18ee3b34c53b4b5ebd98575f69f6223a28eab521d91de0abdd2308ec60",
+      "modulus": "threeprime",
+      "modulus_decimal": "1595277641",
+      "seed": 277338680,
+      "format": "state-low8",
+      "sign": -1,
+      "train": -5.779436978570797,
+      "hold": -5.849409273515104,
+      "inferredSkips": 10,
+      "heldoutHeads": [
+        "DCAEBNGNGAEFSFTHEOTHBEOTEOEJEA",
+        "BCEUOETCEATHDTIXGFNYYHY"
+      ]
+    },
+    {
+      "input": "p57-gp29-index-bytes",
+      "sha512": "9887ee7773ec7e2f800327cb457d00be80fbfdc7735ebac0c44999a8892dbceefef4213f5dfbcbd7747dac5c33dc2d703d43681eddde170305469e616d9706e5",
+      "modulus": "blum-twofactor",
+      "modulus_decimal": "1298029",
+      "seed": 1055574,
+      "format": "bits8-msb",
+      "sign": -1,
+      "train": -5.783467426500015,
+      "hold": -6.053631534817376,
+      "inferredSkips": 13,
+      "heldoutHeads": [
+        "LOEWSEAGEJPSPOEPSTIAPOTHC",
+        "EOTHGEOLDMNGPNGTHNGABIAPHIAOEB"
+      ]
+    },
+    {
+      "input": "p57-gp29-index-bytes",
+      "sha512": "9887ee7773ec7e2f800327cb457d00be80fbfdc7735ebac0c44999a8892dbceefef4213f5dfbcbd7747dac5c33dc2d703d43681eddde170305469e616d9706e5",
+      "modulus": "blum-twofactor",
+      "modulus_decimal": "1298029",
+      "seed": 1055574,
+      "format": "bits5-lsb",
+      "sign": 1,
+      "train": -5.785154734752807,
+      "hold": -5.6984829886906505,
+      "inferredSkips": 16,
+      "heldoutHeads": [
+        "MTHJWTFUAECIWEOBANGOEEOAHU",
+        "NGTRCGXYMIANYNWDSTAPDG"
+      ]
+    },
+    {
+      "input": "p57-gp29-index-bytes",
+      "sha512": "9887ee7773ec7e2f800327cb457d00be80fbfdc7735ebac0c44999a8892dbceefef4213f5dfbcbd7747dac5c33dc2d703d43681eddde170305469e616d9706e5",
+      "modulus": "threeprime",
+      "modulus_decimal": "1595277641",
+      "seed": 1277018081,
+      "format": "bits5-msb",
+      "sign": 1,
+      "train": -5.7882474543063305,
+      "hold": -5.932562632772439,
+      "inferredSkips": 19,
+      "heldoutHeads": [
+        "HTEAOEYEJPIIEAWYJUYNGSEI",
+        "IUNGLTOWWOAOAETHOERPMTHYI"
+      ]
+    },
+    {
+      "input": "p57-gp29-index-bytes",
+      "sha512": "9887ee7773ec7e2f800327cb457d00be80fbfdc7735ebac0c44999a8892dbceefef4213f5dfbcbd7747dac5c33dc2d703d43681eddde170305469e616d9706e5",
+      "modulus": "blum-twofactor",
+      "modulus_decimal": "1298029",
+      "seed": 1055574,
+      "format": "bits5-msb",
+      "sign": 1,
+      "train": -5.789786076679818,
+      "hold": -5.624591166916666,
+      "inferredSkips": 22,
+      "heldoutHeads": [
+        "CEAFTMPAECARUEOCYJXCEYO",
+        "XOMSBOETHABAMYNPWNETHAENG"
+      ]
+    },
+    {
+      "input": "p57-gp-prime-values-u16be",
+      "sha512": "53b38805a49de6b121c9d4f67cd19e08a03b737a97d82b6af62b5360209d186df7377e18ee3b34c53b4b5ebd98575f69f6223a28eab521d91de0abdd2308ec60",
+      "modulus": "threeprime",
+      "modulus_decimal": "1595277641",
+      "seed": 277338680,
+      "format": "bits5-msb",
+      "sign": 1,
+      "train": -5.794066789156228,
+      "hold": -5.680546127115406,
+      "inferredSkips": 27,
+      "heldoutHeads": [
+        "ENWMNGOEOEHNGNGNBFAHOJMWS",
+        "XUCRTHMAGLJTHNGWIAESMDSS"
+      ]
+    },
+    {
+      "input": "p57-gp29-index-bytes",
+      "sha512": "9887ee7773ec7e2f800327cb457d00be80fbfdc7735ebac0c44999a8892dbceefef4213f5dfbcbd7747dac5c33dc2d703d43681eddde170305469e616d9706e5",
+      "modulus": "threeprime",
+      "modulus_decimal": "1595277641",
+      "seed": 1277018081,
+      "format": "bits8-msb",
+      "sign": 1,
+      "train": -5.810153887267828,
+      "hold": -6.180977360411248,
+      "inferredSkips": 23,
+      "heldoutHeads": [
+        "WJXUWFEOFOERGWAENGTIATXLEO",
+        "THTMNNTWOHNGBRMYLSOWW"
+      ]
+    },
+    {
+      "input": "p57-gp-prime-values-u16be",
+      "sha512": "53b38805a49de6b121c9d4f67cd19e08a03b737a97d82b6af62b5360209d186df7377e18ee3b34c53b4b5ebd98575f69f6223a28eab521d91de0abdd2308ec60",
+      "modulus": "threeprime",
+      "modulus_decimal": "1595277641",
+      "seed": 277338680,
+      "format": "state-low8",
+      "sign": 1,
+      "train": -5.813216779446495,
+      "hold": -5.912084340308096,
+      "inferredSkips": 25,
+      "heldoutHeads": [
+        "HYOIJOUDHAEBBDDICDHJS",
+        "BEOOESGTNAEXNEFIAOLGEONGT"
+      ]
+    }
+  ],
+  "bestHeldout": [
+    {
+      "input": "p57-gp29-index-bytes",
+      "sha512": "9887ee7773ec7e2f800327cb457d00be80fbfdc7735ebac0c44999a8892dbceefef4213f5dfbcbd7747dac5c33dc2d703d43681eddde170305469e616d9706e5",
+      "modulus": "blum-twofactor",
+      "modulus_decimal": "1298029",
+      "seed": 1055574,
+      "format": "bits5-msb",
+      "sign": 1,
+      "train": -5.789786076679818,
+      "hold": -5.624591166916666,
+      "inferredSkips": 22,
+      "heldoutHeads": [
+        "CEAFTMPAECARUEOCYJXCEYO",
+        "XOMSBOETHABAMYNPWNETHAENG"
+      ]
+    },
+    {
+      "input": "p57-gp-prime-values-u16be",
+      "sha512": "53b38805a49de6b121c9d4f67cd19e08a03b737a97d82b6af62b5360209d186df7377e18ee3b34c53b4b5ebd98575f69f6223a28eab521d91de0abdd2308ec60",
+      "modulus": "threeprime",
+      "modulus_decimal": "1595277641",
+      "seed": 277338680,
+      "format": "bits5-msb",
+      "sign": 1,
+      "train": -5.794066789156228,
+      "hold": -5.680546127115406,
+      "inferredSkips": 27,
+      "heldoutHeads": [
+        "ENWMNGOEOEHNGNGNBFAHOJMWS",
+        "XUCRTHMAGLJTHNGWIAESMDSS"
+      ]
+    },
+    {
+      "input": "p57-gp29-index-bytes",
+      "sha512": "9887ee7773ec7e2f800327cb457d00be80fbfdc7735ebac0c44999a8892dbceefef4213f5dfbcbd7747dac5c33dc2d703d43681eddde170305469e616d9706e5",
+      "modulus": "blum-twofactor",
+      "modulus_decimal": "1298029",
+      "seed": 1055574,
+      "format": "bits5-lsb",
+      "sign": 1,
+      "train": -5.785154734752807,
+      "hold": -5.6984829886906505,
+      "inferredSkips": 16,
+      "heldoutHeads": [
+        "MTHJWTFUAECIWEOBANGOEEOAHU",
+        "NGTRCGXYMIANYNWDSTAPDG"
+      ]
+    },
+    {
+      "input": "p57-gp-prime-values-u16be",
+      "sha512": "53b38805a49de6b121c9d4f67cd19e08a03b737a97d82b6af62b5360209d186df7377e18ee3b34c53b4b5ebd98575f69f6223a28eab521d91de0abdd2308ec60",
+      "modulus": "threeprime",
+      "modulus_decimal": "1595277641",
+      "seed": 277338680,
+      "format": "bits5-lsb",
+      "sign": 1,
+      "train": -5.902374731822621,
+      "hold": -5.780312200769348,
+      "inferredSkips": 17,
+      "heldoutHeads": [
+        "ANSMGXEATHNGIAAJSAHEASUIAU",
+        "YDHBAEEAAAEXEOEAFLGJAENFLP"
+      ]
+    },
+    {
+      "input": "p57-gp29-index-bytes",
+      "sha512": "9887ee7773ec7e2f800327cb457d00be80fbfdc7735ebac0c44999a8892dbceefef4213f5dfbcbd7747dac5c33dc2d703d43681eddde170305469e616d9706e5",
+      "modulus": "blum-twofactor",
+      "modulus_decimal": "1298029",
+      "seed": 1055574,
+      "format": "state-low8",
+      "sign": 1,
+      "train": -6.026050858683866,
+      "hold": -5.789292371094512,
+      "inferredSkips": 18,
+      "heldoutHeads": [
+        "FGFOIAEATHTNMEWYOEAEBNLC",
+        "TEASWECPDIACJTHNPPCHTTI"
+      ]
+    },
+    {
+      "input": "p57-gp29-index-bytes",
+      "sha512": "9887ee7773ec7e2f800327cb457d00be80fbfdc7735ebac0c44999a8892dbceefef4213f5dfbcbd7747dac5c33dc2d703d43681eddde170305469e616d9706e5",
+      "modulus": "blum-twofactor",
+      "modulus_decimal": "1298029",
+      "seed": 1055574,
+      "format": "bits5-msb",
+      "sign": -1,
+      "train": -5.970456553861325,
+      "hold": -5.806467578944276,
+      "inferredSkips": 20,
+      "heldoutHeads": [
+        "EAOEGTNGOEOEEOYEAOSTOIDTCEO",
+        "OBTEIUHOEIAXJOEIAJSEDEYW"
+      ]
+    },
+    {
+      "input": "p57-gp-prime-values-u16be",
+      "sha512": "53b38805a49de6b121c9d4f67cd19e08a03b737a97d82b6af62b5360209d186df7377e18ee3b34c53b4b5ebd98575f69f6223a28eab521d91de0abdd2308ec60",
+      "modulus": "blum-twofactor",
+      "modulus_decimal": "1298029",
+      "seed": 858503,
+      "format": "bits8-msb",
+      "sign": 1,
+      "train": -6.078689738458493,
+      "hold": -5.816414343794171,
+      "inferredSkips": 21,
+      "heldoutHeads": [
+        "AIALBIASGGYOTBPEOEYHCEY",
+        "HGJAEOEOEEANHCMAMBASWOEAR"
+      ]
+    },
+    {
+      "input": "p57-gp-prime-values-u16be",
+      "sha512": "53b38805a49de6b121c9d4f67cd19e08a03b737a97d82b6af62b5360209d186df7377e18ee3b34c53b4b5ebd98575f69f6223a28eab521d91de0abdd2308ec60",
+      "modulus": "blum-twofactor",
+      "modulus_decimal": "1298029",
+      "seed": 858503,
+      "format": "bits5-lsb",
+      "sign": -1,
+      "train": -5.963696622589786,
+      "hold": -5.8170619486559945,
+      "inferredSkips": 28,
+      "heldoutHeads": [
+        "UMIANGTAETHEOTHHIAXAMDEATDMN",
+        "YEOOOYJNCXIAGTEATHLNUPC"
+      ]
+    },
+    {
+      "input": "p57-gp29-index-bytes",
+      "sha512": "9887ee7773ec7e2f800327cb457d00be80fbfdc7735ebac0c44999a8892dbceefef4213f5dfbcbd7747dac5c33dc2d703d43681eddde170305469e616d9706e5",
+      "modulus": "threeprime",
+      "modulus_decimal": "1595277641",
+      "seed": 1277018081,
+      "format": "bits5-msb",
+      "sign": -1,
+      "train": -6.023133571458396,
+      "hold": -5.818260963661545,
+      "inferredSkips": 11,
+      "heldoutHeads": [
+        "EAEONGWGIARHAUWLEAEATTPEAXH",
+        "GDGFAEAETHNGDOTIAMHDCOIAATH"
+      ]
+    },
+    {
+      "input": "p57-gp-prime-values-u16be",
+      "sha512": "53b38805a49de6b121c9d4f67cd19e08a03b737a97d82b6af62b5360209d186df7377e18ee3b34c53b4b5ebd98575f69f6223a28eab521d91de0abdd2308ec60",
+      "modulus": "threeprime",
+      "modulus_decimal": "1595277641",
+      "seed": 277338680,
+      "format": "bits8-msb",
+      "sign": 1,
+      "train": -5.9770974046575525,
+      "hold": -5.822514607333041,
+      "inferredSkips": 14,
+      "heldoutHeads": [
+        "IAXITNGGIAYSAEBUJJCEAECNGM",
+        "RNIASNGTMUEADEOAEOSDTHNOAW"
+      ]
+    }
+  ],
+  "decision": "No plaintext or authentic key is established by a score alone; inspect heldout text and require independent linguistic coherence."
+}
