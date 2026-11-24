@@ -28,8 +28,23 @@ Globally optimal R on original training region:
 
 Training score -3.909040039, exactly the sum of independent per-coordinate maxima. Frozen heldout -4.240309171. Margins .00842–.02941, unlike both solved-source positives. Original complete-word lexical results: training 29/317 known, **0/114** long (>=5 runes); heldout 5/82 known, **0/36** long. No coherent text. Exact full original reencryption, which is a consistency check not authenticating evidence. Original candidate first words IATEAIATHEIAC IA OEDGWH HEAOWW EOM; heldout AEMS POF NGNR XTHAYWOECD PY.
 
+## All-secret affine and alphabet extension, all continuous phases
+
+A unary language objective alone cannot exclude an alternative lower-scoring key. Use the exact per-coordinate collision count Q_j=sum_v choose(n_j(v),2) instead. For each fixed phase 0..3, omit the first block (arbitrary IV) and any incomplete fringe, and exhaust all 707,280 nonzero rows r. For each coordinate j, compute Q_j for the actual residue tape r·C_b−C_(b−1),j. Its maximum is an exact original-input bound; the sum of the four independently achieved maxima upper-bounds every invertible matrix even if the four maximizing rows are not independent. An arbitrary constant affine translation in any output coordinate, or even an arbitrary fixed bijective relabeling of its 29 symbols, preserves these collision counts. Thus the same bound applies to every such extended shared inverse.
+
+| Continuous phase | Blocks scored per lane | Max lane counts | Upper sum | Native minimum over all equal-length solved-source windows |
+|---:|---:|---|---:|---:|
+|0|435|3704,3638,3672,3681|14695|22749 (1240 windows)|
+|1|434|3664,3718,3595,3624|14601|22651 (1244 windows)|
+|2|434|3665,3618,3627,3621|14531|22651|
+|3|434|3644,3634,3599,3625|14502|22651|
+
+The exact upper bounds on the average of the four lane IoCs are .03891890, .03884856, .03866232, .03858516; the corresponding authentic GP29 source minima are .06024948 and .06026703. Native windows cover every starting offset in the full 2,979-rune solved donor. No word boundaries or particular symbol frequencies are assumed by this collision invariant. Phase zero was executed directly in connected JS; all four phases also executed locally in optimized C++ on the exact canonical 1,744-digit p16–22 tape (phase zero independently reproduces every lane maximum). The source-driven CJS independently reproduces all phases using exact integers, prints winning rows, and checks each winner. It requires no external program. [All-row collision SFT](../sims/lp2_unknown_hill4_cbc_allrow_collision_sft.cjs), code 4c4dabe3423d550942876c9be47abb87af15385c.
+
+This is an **all-key finite native-source conditional exclusion** for the shared four-coordinate CBC architecture, including arbitrary IV and independent fixed coordinate-wise alphabet relabelings, at all four continuous phases. It does not exclude page-private changing matrices, other nonlinear interblock transitions or a plaintext register outside the tested native collision range. No original plaintext. Do not pursue another fixed affine key, output-label or phase sweep on this exact receiver.
+
 ## Disposition
 
-No unknown original plaintext or authentic key. Retire this precise common Hill4-CBC phase-zero recovery hypothesis. The actual source does not select block size/clock or CBC. It remains logically possible that a different model or language yields a distinct solution. Reuse the row-recovery engine only when independent evidence warrants its architecture; do not sweep arbitrary p15 matrix/key variants.
+No unknown original plaintext or authentic key. Retire this precise common Hill4-CBC recovery hypothesis at every continuous phase, including fixed affine offsets and coordinate-wise alphabet relabelings under the tested native collision condition. The actual source does not select block size/clock or CBC. It remains logically possible that a different model or language yields a distinct solution. Reuse the row-recovery engine only when independent evidence warrants its architecture; do not sweep arbitrary p15 matrix/key variants.
 
 [Executable SFT](../sims/lp2_unknown_hill4_cbc_key_recovery_sft.cjs), code commit d8b30fb35bf30e64360bee2d461ae054a6f66617. Actual connected JavaScript execution on repository source data; no CI claim.
