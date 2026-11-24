@@ -55,7 +55,7 @@ function printGP(values) {
 
 function main() {
   // The previous version left bracketed editorial continuation notes in the
-  // key and language model. They contributed 272 non-source GP symbols to
+  // key and language model. They contributed 273 non-source GP symbols to
   // both historical key starts. Remove those notes and all section headings.
   const lp1OnlyRaw = source.split(/^### 56$/m)[0];
   const welcomeStart = lp1OnlyRaw.indexOf("### 3");
@@ -90,8 +90,8 @@ function main() {
     }
   ];
 
-  assert.equal(oldFullLength - keys[0].values.length, 272);
-  assert.equal(oldWelcomeLength - keys[2].values.length, 272);
+  assert.equal(oldFullLength - keys[0].values.length, 273);
+  assert.equal(oldWelcomeLength - keys[2].values.length, 273);
   assert.equal(keys[0].values.length, 3068);
   assert.equal(keys[1].values.length, 3028);
   assert.equal(keys[2].values.length, 2882);
@@ -171,7 +171,7 @@ function main() {
       oldLegacyWelcomeOnwardRunes: oldWelcomeLength,
       cleanLegacyWelcomeOnwardRunes: keys[2].values.length,
       cleanSourceNativeWelcomeOnwardRunes: keys[3].values.length,
-      editorialSymbolsRemovedFromEachOldKey: 272
+      editorialSymbolsRemovedFromEachOldKey: 273
     },
     corpus: {
       unknownRunes: unknown.length,
