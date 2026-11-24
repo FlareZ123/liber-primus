@@ -39,14 +39,18 @@ function experiment(inputs){
  const summary=r=>({stop:r.stop,exact:r.exact,nodes:r.nodes,used:r.used,states:r.states.size,keys:[...new Set([...r.states.values()].map(s=>String(s.k)))].slice(0,12),history:r.history});
  const trace=st=>{const a=[];for(let t=st.trace;t;t=t.prev)a.unshift(t.w);return a};
  const freeze=words=>{let n=0;let i=0;while(n<150&&i<words.length){n+=words[i++].length;}return {i,n};}
- const control=solved[3],plantKey=[23,10,1,10,9,10,16,26],plant=encode(control,plantKey,chart).cipher,ps=freeze(control);
+ // Layout-only choice: first solved-native suffix with consecutive long opening
+ // words and at least 250 runes. Avoids the uninformative short-word frontier.
+ const controlStart=solved[3].findIndex((w,i,ws)=>w.length>=8&&ws[i+1]?.length>=6&&ws.slice(i).flat().length>=250);
+ assert(controlStart===135,"layout-selected control");
+ const control=solved[3].slice(controlStart),plantKey=[23,10,1,10,9,10,16,26],plant=encode(control,plantKey,chart).cipher,ps=freeze(control);
  const train=advance(start(),plant.slice(0,ps.i),chart,5000000);const ordinary=advance(start(),plant.slice(0,ps.i),Array(29).fill(1),5000000);
  let hold=null;if(train.exact&&train.states.size>0&&[...train.states.values()].every(s=>!s.k.includes(-1))&&new Set([...train.states.values()].map(s=>String(s.k))).size===1){
   const h=advance(train.states,plant.slice(ps.i),chart,5000000);const best=[...h.states.values()][0];const pred=best?trace(best):[];hold={...summary(h),runes:pred.flat().length,exactMatches:pred.flat().filter((x,i)=>x===control.flat()[i]).length,uniquePath:best?.paths===1&&h.states.size===1,replay:best?String(encode(pred,best.k,chart).cipher.flat())===String(plant.flat()):false};
  }
  const original=originalWords.slice(-66);assert(original.flat().length===308,"frozen p54-55 chapter");const os=freeze(original);const unknown=advance(start(),original.slice(0,os.i),chart,5000000);
  let origHold=null;if(unknown.exact&&unknown.states.size&&[...unknown.states.values()].every(s=>!s.k.includes(-1))&&new Set([...unknown.states.values()].map(s=>String(s.k))).size===1){const h=advance(unknown.states,original.slice(os.i),chart,5000000),best=[...h.states.values()][0];const p=best?trace(best):[];origHold={...summary(h),plaintext:p.map(w=>w.map(x=>gp.translit[x]).join("")).join(" "),replay:best?String(encode(p,best.k,chart).cipher.flat())===String(original.flat()):false}}
- return {chart,period:q,vocabulary:dict.reduce((a,b)=>a+b.size,0),plant:{key:plantKey,section:native.sections[3].name,trainWords:ps.i,trainRunes:ps.n,totalRunes:control.flat().length,correct:summary(train),ordinary:summary(ordinary),hold},original:{chapter:"p54–55",trainWords:os.i,trainRunes:os.n,withheld:308-os.n,train:summary(unknown),hold:origHold}};
+ return {chart,period:q,vocabulary:dict.reduce((a,b)=>a+b.size,0),plant:{key:plantKey,section:native.sections[3].name,controlStart,trainWords:ps.i,trainRunes:ps.n,totalRunes:control.flat().length,correct:summary(train),ordinary:summary(ordinary),hold},original:{chapter:"p54–55",trainWords:os.i,trainRunes:os.n,withheld:308-os.n,train:summary(unknown),hold:origHold}};
 }
 const fs=require("node:fs"),path=require("node:path");
 const paths=["resources/liber-primus/lp2-corpus.json","resources/liber-primus/lp2-transcription.txt","resources/control/english_wordfreq_textblob.txt","resources/external/relikd-solved-gp29-native-v1.json"];
