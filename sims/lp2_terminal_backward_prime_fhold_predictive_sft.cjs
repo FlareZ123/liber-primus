@@ -44,6 +44,12 @@ function run(corpus, donor){
   const c=corpus.pages[54].indices.concat(corpus.pages[55].indices).reverse();
   const zero=best(advance(c,0,initial()));
   const r=attack(c,76);
-  return {authentic,controls,original:{...r,sourceOrigin0FullLegal:!!zero,sourceOrigin0PrefixLegal:reachable(c.slice(0,76),0),decodedNaturalOrder:r.decoded?.slice().reverse().map(x=>corpus.translit[x]).join(" "),prefixNaturalOrder:r.prefix?.slice().reverse().map(x=>corpus.translit[x]).join(" ")}};
+  const complete=[];
+  for(let o=0;o<=max;o++)if(reachable(c,o)){
+    const s=best(advance(c,o,initial())),p=path(s);
+    complete.push({origin:o,score:s.v/c.length,exactReplay:same(encrypt(p,o),c),naturalOrder:p.slice().reverse().map(x=>corpus.translit[x]).join(" ")});
+  }
+  complete.sort((a,b)=>b.score-a.score);
+  return {authentic,controls,original:{...r,sourceOrigin0FullLegal:!!zero,sourceOrigin0PrefixLegal:reachable(c.slice(0,76),0),decodedNaturalOrder:r.decoded?.slice().reverse().map(x=>corpus.translit[x]).join(" "),prefixNaturalOrder:r.prefix?.slice().reverse().map(x=>corpus.translit[x]).join(" "),retrospectiveFullLegal:complete}};
 }
 console.log(JSON.stringify(run(read('resources/liber-primus/lp2-corpus.json'),read('resources/external/relikd-solved-gp29-native-v1.json')),null,2));
