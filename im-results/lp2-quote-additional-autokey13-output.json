@@ -1,0 +1,93 @@
+{
+  "batches": [
+    {
+      "range": [
+        0,
+        8
+      ],
+      "placements": 3294,
+      "fCompatible": 414,
+      "exact": 0
+    },
+    {
+      "range": [
+        8,
+        16
+      ],
+      "placements": 3978,
+      "fCompatible": 606,
+      "exact": 0
+    },
+    {
+      "range": [
+        16,
+        24
+      ],
+      "placements": 2268,
+      "fCompatible": 309,
+      "exact": 0
+    },
+    {
+      "range": [
+        24,
+        31
+      ],
+      "placements": 208,
+      "fCompatible": 33,
+      "exact": 0
+    }
+  ],
+  "controls": [
+    {
+      "name": "The Time Machine",
+      "start": 48703,
+      "prefixCandidates": 1,
+      "correctPrimer": true,
+      "holdoutCorrect": 80,
+      "nullCandidates": 0
+    },
+    {
+      "name": "The Time Machine",
+      "start": 84909,
+      "prefixCandidates": 1,
+      "correctPrimer": true,
+      "holdoutCorrect": 80,
+      "nullCandidates": 0
+    },
+    {
+      "name": "The Book of Tea",
+      "start": 37053,
+      "prefixCandidates": 1,
+      "correctPrimer": true,
+      "holdoutCorrect": 80,
+      "nullCandidates": 0
+    },
+    {
+      "name": "The Book of Tea",
+      "start": 64428,
+      "prefixCandidates": 1,
+      "correctPrimer": true,
+      "holdoutCorrect": 80,
+      "nullCandidates": 0
+    },
+    {
+      "name": "Beowulf Old English",
+      "start": 2109,
+      "prefixCandidates": 1,
+      "correctPrimer": true,
+      "holdoutCorrect": 80,
+      "nullCandidates": 0
+    },
+    {
+      "name": "Beowulf Old English",
+      "start": 27329,
+      "prefixCandidates": 1,
+      "correctPrimer": true,
+      "holdoutCorrect": 80,
+      "nullCandidates": 0
+    }
+  ],
+  "total": 9748,
+  "originalFCompatible": 1362,
+  "exactPrefixes": 0
+}

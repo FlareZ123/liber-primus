@@ -7,6 +7,8 @@
 
 - #2615 completed: exact synchronized F-hold relative-key q13 repeated plaintext gate at all 46 p32 placements of full p55 76 runes. Zero matches, max14/76, 646 states. Six native WELCOME plants recover correct positions and 13 relative shifts, each with true and generated double-zero Fs; actual KOAN 42-rune repeat passes. [Tree report](../../im-results/lp2-p32-p55-blurred-tree-correspondence.md), [SFT](../../sims/lp2_p32_p55_q13_sameplaintext_sft.cjs), code 2a12094c. No unknown plaintext. Do not fit absolute keys to short original matches.
 
+- #2618 completed: 31 frozen #2605 source registers, 9,748 placements, 1,362 original F-compatible prefixes, all fail q13 plaintext-fed autokey after the initial primer. Six fresh disjoint native source controls recover exact locations/primers and 480/480 heldout; six random pads reject. [Consolidated report](../../im-results/lp2-quote-joint-exact-source-key.md), [SFT](../../sims/lp2_quote_additional_autokey13_sft.cjs), code faf6e6e1 and controls c18ae98e. No original plaintext. No source or period expansion.
+
 ## Current draw5 incarnation — 24 November 2026
 
 - Verified immutable claim `agent5-draw5-20261124T1726Z-source-constrained`, claimed 2026-11-24T17:25:46.953Z; commit 3625774cde0236deed32823046f13334763e5d47. Normal release threshold 18:35:46.953Z, do not refresh.
