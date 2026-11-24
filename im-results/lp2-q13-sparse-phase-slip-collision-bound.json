@@ -1,0 +1,10536 @@
+{
+  "sourceBlobShas": [
+    "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "1b064ef6d85819b7d96adaff31a82d1ec551598f",
+    "94c677ad9dd50771c6670e0c4e4dad9052b46d85",
+    "a92be8ba5b3511a003a22ba31523c14397aaa83a",
+    "df260a07d56bf5998d40a6360b6132c35c252d10"
+  ],
+  "toyCases": 32,
+  "toyMasks": 1024,
+  "plants": [
+    {
+      "name": "0_welcome",
+      "n": 515,
+      "cuts": [
+        [
+          112,
+          1
+        ],
+        [
+          311,
+          -1
+        ]
+      ],
+      "holds": 11,
+      "cipherFs": 28,
+      "plain": [
+        101,
+        18
+      ],
+      "cipher": [
+        101,
+        18
+      ],
+      "base": [
+        111,
+        19,
+        184
+      ]
+    },
+    {
+      "name": "jpg107-167",
+      "n": 319,
+      "cuts": [
+        [
+          105,
+          -1
+        ]
+      ],
+      "holds": 2,
+      "cipherFs": 12,
+      "plain": [
+        62,
+        10
+      ],
+      "cipher": [
+        62,
+        10
+      ],
+      "base": [
+        65,
+        11,
+        107
+      ]
+    },
+    {
+      "name": "jpg107-167",
+      "n": 319,
+      "cuts": [
+        [
+          140,
+          1
+        ],
+        [
+          140,
+          1
+        ]
+      ],
+      "holds": 2,
+      "cipherFs": 11,
+      "plain": [
+        66,
+        10
+      ],
+      "cipher": [
+        66,
+        10
+      ],
+      "base": [
+        66,
+        10,
+        106
+      ]
+    }
+  ],
+  "original": {
+    "n": 3008,
+    "visibleF": 125,
+    "weights": [
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        4
+      ]
+    ],
+    "base": [
+      425,
+      24,
+      507
+    ],
+    "events": 1924,
+    "upper1": [
+      447,
+      27,
+      534
+    ],
+    "upper2": [
+      464,
+      30,
+      558
+    ],
+    "coarseOnePass": 0,
+    "coarseTwoPass": [
+      {
+        "j": 0,
+        "i": 23,
+        "start": 158847,
+        "holds": 55,
+        "bounds": [
+          {
+            "total": 464,
+            "loss1": 13,
+            "loss2": 25,
+            "lower1": 451,
+            "lower2": 439
+          },
+          {
+            "total": 34,
+            "loss1": 4,
+            "loss2": 8,
+            "lower1": 30,
+            "lower2": 26
+          },
+          {
+            "total": 600,
+            "loss1": 28,
+            "loss2": 52,
+            "lower1": 572,
+            "lower2": 548
+          }
+        ]
+      }
+    ],
+    "threshold": 41,
+    "singleBound": 20,
+    "closeBound": 40,
+    "singleCandidates": 71,
+    "closeCandidates": 420,
+    "singleMasks": 7104,
+    "closeMasks": 226304,
+    "maxExactSingle": 17,
+    "maxExactClose": 28,
+    "finalUpper": 547,
+    "lower": 548,
+    "minimumSlips": 3
+  },
+  "controls": [
+    {
+      "j": 0,
+      "i": 0,
+      "start": 0,
+      "holds": 67,
+      "bounds": [
+        {
+          "total": 521,
+          "loss1": 13,
+          "loss2": 26,
+          "lower1": 508,
+          "lower2": 495
+        },
+        {
+          "total": 65,
+          "loss1": 7,
+          "loss2": 12,
+          "lower1": 58,
+          "lower2": 53
+        },
+        {
+          "total": 781,
+          "loss1": 41,
+          "loss2": 74,
+          "lower1": 740,
+          "lower2": 707
+        }
+      ]
+    },
+    {
+      "j": 0,
+      "i": 1,
+      "start": 6906,
+      "holds": 54,
+      "bounds": [
+        {
+          "total": 559,
+          "loss1": 13,
+          "loss2": 25,
+          "lower1": 546,
+          "lower2": 534
+        },
+        {
+          "total": 62,
+          "loss1": 4,
+          "loss2": 8,
+          "lower1": 58,
+          "lower2": 54
+        },
+        {
+          "total": 807,
+          "loss1": 28,
+          "loss2": 55,
+          "lower1": 779,
+          "lower2": 752
+        }
+      ]
+    },
+    {
+      "j": 0,
+      "i": 2,
+      "start": 13813,
+      "holds": 77,
+      "bounds": [
+        {
+          "total": 547,
+          "loss1": 15,
+          "loss2": 28,
+          "lower1": 532,
+          "lower2": 519
+        },
+        {
+          "total": 61,
+          "loss1": 6,
+          "loss2": 10,
+          "lower1": 55,
+          "lower2": 51
+        },
+        {
+          "total": 791,
+          "loss1": 39,
+          "loss2": 68,
+          "lower1": 752,
+          "lower2": 723
+        }
+      ]
+    },
+    {
+      "j": 0,
+      "i": 3,
+      "start": 20719,
+      "holds": 70,
+      "bounds": [
+        {
+          "total": 530,
+          "loss1": 13,
+          "loss2": 26,
+          "lower1": 517,
+          "lower2": 504
+        },
+        {
+          "total": 62,
+          "loss1": 9,
+          "loss2": 13,
+          "lower1": 53,
+          "lower2": 49
+        },
+        {
+          "total": 778,
+          "loss1": 48,
+          "loss2": 77,
+          "lower1": 730,
+          "lower2": 701
+        }
+      ]
+    },
+    {
+      "j": 0,
+      "i": 4,
+      "start": 27626,
+      "holds": 57,
+      "bounds": [
+        {
+          "total": 571,
+          "loss1": 13,
+          "loss2": 26,
+          "lower1": 558,
+          "lower2": 545
+        },
+        {
+          "total": 58,
+          "loss1": 7,
+          "loss2": 13,
+          "lower1": 51,
+          "lower2": 45
+        },
+        {
+          "total": 803,
+          "loss1": 41,
+          "loss2": 78,
+          "lower1": 762,
+          "lower2": 725
+        }
+      ]
+    },
+    {
+      "j": 0,
+      "i": 5,
+      "start": 34532,
+      "holds": 77,
+      "bounds": [
+        {
+          "total": 582,
+          "loss1": 15,
+          "loss2": 27,
+          "lower1": 567,
+          "lower2": 555
+        },
+        {
+          "total": 71,
+          "loss1": 5,
+          "loss2": 10,
+          "lower1": 66,
+          "lower2": 61
+        },
+        {
+          "total": 866,
+          "loss1": 35,
+          "loss2": 65,
+          "lower1": 831,
+          "lower2": 801
+        }
+      ]
+    },
+    {
+      "j": 0,
+      "i": 6,
+      "start": 41438,
+      "holds": 55,
+      "bounds": [
+        {
+          "total": 535,
+          "loss1": 17,
+          "loss2": 30,
+          "lower1": 518,
+          "lower2": 505
+        },
+        {
+          "total": 70,
+          "loss1": 10,
+          "loss2": 18,
+          "lower1": 60,
+          "lower2": 52
+        },
+        {
+          "total": 815,
+          "loss1": 57,
+          "loss2": 100,
+          "lower1": 758,
+          "lower2": 715
+        }
+      ]
+    },
+    {
+      "j": 0,
+      "i": 7,
+      "start": 48345,
+      "holds": 53,
+      "bounds": [
+        {
+          "total": 544,
+          "loss1": 16,
+          "loss2": 29,
+          "lower1": 528,
+          "lower2": 515
+        },
+        {
+          "total": 57,
+          "loss1": 8,
+          "loss2": 12,
+          "lower1": 49,
+          "lower2": 45
+        },
+        {
+          "total": 772,
+          "loss1": 48,
+          "loss2": 73,
+          "lower1": 724,
+          "lower2": 699
+        }
+      ]
+    },
+    {
+      "j": 0,
+      "i": 8,
+      "start": 55251,
+      "holds": 50,
+      "bounds": [
+        {
+          "total": 576,
+          "loss1": 15,
+          "loss2": 29,
+          "lower1": 561,
+          "lower2": 547
+        },
+        {
+          "total": 69,
+          "loss1": 11,
+          "loss2": 18,
+          "lower1": 58,
+          "lower2": 51
+        },
+        {
+          "total": 852,
+          "loss1": 59,
+          "loss2": 101,
+          "lower1": 793,
+          "lower2": 751
+        }
+      ]
+    },
+    {
+      "j": 0,
+      "i": 9,
+      "start": 62157,
+      "holds": 65,
+      "bounds": [
+        {
+          "total": 554,
+          "loss1": 13,
+          "loss2": 23,
+          "lower1": 541,
+          "lower2": 531
+        },
+        {
+          "total": 54,
+          "loss1": 6,
+          "loss2": 9,
+          "lower1": 48,
+          "lower2": 45
+        },
+        {
+          "total": 770,
+          "loss1": 33,
+          "loss2": 58,
+          "lower1": 737,
+          "lower2": 712
+        }
+      ]
+    },
+    {
+      "j": 0,
+      "i": 10,
+      "start": 69064,
+      "holds": 59,
+      "bounds": [
+        {
+          "total": 574,
+          "loss1": 16,
+          "loss2": 30,
+          "lower1": 558,
+          "lower2": 544
+        },
+        {
+          "total": 67,
+          "loss1": 6,
+          "loss2": 12,
+          "lower1": 61,
+          "lower2": 55
+        },
+        {
+          "total": 842,
+          "loss1": 39,
+          "loss2": 77,
+          "lower1": 803,
+          "lower2": 765
+        }
+      ]
+    },
+    {
+      "j": 0,
+      "i": 11,
+      "start": 75970,
+      "holds": 62,
+      "bounds": [
+        {
+          "total": 544,
+          "loss1": 12,
+          "loss2": 24,
+          "lower1": 532,
+          "lower2": 520
+        },
+        {
+          "total": 55,
+          "loss1": 4,
+          "loss2": 8,
+          "lower1": 51,
+          "lower2": 47
+        },
+        {
+          "total": 764,
+          "loss1": 28,
+          "loss2": 56,
+          "lower1": 736,
+          "lower2": 708
+        }
+      ]
+    },
+    {
+      "j": 0,
+      "i": 12,
+      "start": 82877,
+      "holds": 60,
+      "bounds": [
+        {
+          "total": 587,
+          "loss1": 13,
+          "loss2": 26,
+          "lower1": 574,
+          "lower2": 561
+        },
+        {
+          "total": 58,
+          "loss1": 6,
+          "loss2": 10,
+          "lower1": 52,
+          "lower2": 48
+        },
+        {
+          "total": 819,
+          "loss1": 36,
+          "loss2": 65,
+          "lower1": 783,
+          "lower2": 754
+        }
+      ]
+    },
+    {
+      "j": 0,
+      "i": 13,
+      "start": 89783,
+      "holds": 71,
+      "bounds": [
+        {
+          "total": 557,
+          "loss1": 16,
+          "loss2": 27,
+          "lower1": 541,
+          "lower2": 530
+        },
+        {
+          "total": 55,
+          "loss1": 6,
+          "loss2": 9,
+          "lower1": 49,
+          "lower2": 46
+        },
+        {
+          "total": 777,
+          "loss1": 40,
+          "loss2": 62,
+          "lower1": 737,
+          "lower2": 715
+        }
+      ]
+    },
+    {
+      "j": 0,
+      "i": 14,
+      "start": 96689,
+      "holds": 75,
+      "bounds": [
+        {
+          "total": 554,
+          "loss1": 15,
+          "loss2": 27,
+          "lower1": 539,
+          "lower2": 527
+        },
+        {
+          "total": 52,
+          "loss1": 4,
+          "loss2": 7,
+          "lower1": 48,
+          "lower2": 45
+        },
+        {
+          "total": 762,
+          "loss1": 28,
+          "loss2": 55,
+          "lower1": 734,
+          "lower2": 707
+        }
+      ]
+    },
+    {
+      "j": 0,
+      "i": 15,
+      "start": 103596,
+      "holds": 57,
+      "bounds": [
+        {
+          "total": 595,
+          "loss1": 14,
+          "loss2": 28,
+          "lower1": 581,
+          "lower2": 567
+        },
+        {
+          "total": 79,
+          "loss1": 8,
+          "loss2": 15,
+          "lower1": 71,
+          "lower2": 64
+        },
+        {
+          "total": 911,
+          "loss1": 46,
+          "loss2": 85,
+          "lower1": 865,
+          "lower2": 826
+        }
+      ]
+    },
+    {
+      "j": 0,
+      "i": 16,
+      "start": 110502,
+      "holds": 68,
+      "bounds": [
+        {
+          "total": 497,
+          "loss1": 15,
+          "loss2": 26,
+          "lower1": 482,
+          "lower2": 471
+        },
+        {
+          "total": 45,
+          "loss1": 6,
+          "loss2": 11,
+          "lower1": 39,
+          "lower2": 34
+        },
+        {
+          "total": 677,
+          "loss1": 39,
+          "loss2": 69,
+          "lower1": 638,
+          "lower2": 608
+        }
+      ]
+    },
+    {
+      "j": 0,
+      "i": 17,
+      "start": 117409,
+      "holds": 65,
+      "bounds": [
+        {
+          "total": 545,
+          "loss1": 13,
+          "loss2": 24,
+          "lower1": 532,
+          "lower2": 521
+        },
+        {
+          "total": 54,
+          "loss1": 5,
+          "loss2": 9,
+          "lower1": 49,
+          "lower2": 45
+        },
+        {
+          "total": 761,
+          "loss1": 30,
+          "loss2": 55,
+          "lower1": 731,
+          "lower2": 706
+        }
+      ]
+    },
+    {
+      "j": 0,
+      "i": 18,
+      "start": 124315,
+      "holds": 53,
+      "bounds": [
+        {
+          "total": 582,
+          "loss1": 14,
+          "loss2": 27,
+          "lower1": 568,
+          "lower2": 555
+        },
+        {
+          "total": 71,
+          "loss1": 6,
+          "loss2": 10,
+          "lower1": 65,
+          "lower2": 61
+        },
+        {
+          "total": 866,
+          "loss1": 37,
+          "loss2": 67,
+          "lower1": 829,
+          "lower2": 799
+        }
+      ]
+    },
+    {
+      "j": 0,
+      "i": 19,
+      "start": 131221,
+      "holds": 64,
+      "bounds": [
+        {
+          "total": 535,
+          "loss1": 13,
+          "loss2": 25,
+          "lower1": 522,
+          "lower2": 510
+        },
+        {
+          "total": 59,
+          "loss1": 7,
+          "loss2": 11,
+          "lower1": 52,
+          "lower2": 48
+        },
+        {
+          "total": 771,
+          "loss1": 40,
+          "loss2": 69,
+          "lower1": 731,
+          "lower2": 702
+        }
+      ]
+    },
+    {
+      "j": 0,
+      "i": 20,
+      "start": 138128,
+      "holds": 78,
+      "bounds": [
+        {
+          "total": 521,
+          "loss1": 11,
+          "loss2": 21,
+          "lower1": 510,
+          "lower2": 500
+        },
+        {
+          "total": 52,
+          "loss1": 3,
+          "loss2": 6,
+          "lower1": 49,
+          "lower2": 46
+        },
+        {
+          "total": 729,
+          "loss1": 21,
+          "loss2": 42,
+          "lower1": 708,
+          "lower2": 687
+        }
+      ]
+    },
+    {
+      "j": 0,
+      "i": 21,
+      "start": 145034,
+      "holds": 65,
+      "bounds": [
+        {
+          "total": 529,
+          "loss1": 11,
+          "loss2": 22,
+          "lower1": 518,
+          "lower2": 507
+        },
+        {
+          "total": 54,
+          "loss1": 5,
+          "loss2": 9,
+          "lower1": 49,
+          "lower2": 45
+        },
+        {
+          "total": 745,
+          "loss1": 31,
+          "loss2": 56,
+          "lower1": 714,
+          "lower2": 689
+        }
+      ]
+    },
+    {
+      "j": 0,
+      "i": 22,
+      "start": 151941,
+      "holds": 66,
+      "bounds": [
+        {
+          "total": 559,
+          "loss1": 17,
+          "loss2": 31,
+          "lower1": 542,
+          "lower2": 528
+        },
+        {
+          "total": 66,
+          "loss1": 11,
+          "loss2": 16,
+          "lower1": 55,
+          "lower2": 50
+        },
+        {
+          "total": 823,
+          "loss1": 61,
+          "loss2": 95,
+          "lower1": 762,
+          "lower2": 728
+        }
+      ]
+    },
+    {
+      "j": 0,
+      "i": 23,
+      "start": 158847,
+      "holds": 55,
+      "bounds": [
+        {
+          "total": 464,
+          "loss1": 13,
+          "loss2": 25,
+          "lower1": 451,
+          "lower2": 439
+        },
+        {
+          "total": 34,
+          "loss1": 4,
+          "loss2": 8,
+          "lower1": 30,
+          "lower2": 26
+        },
+        {
+          "total": 600,
+          "loss1": 28,
+          "loss2": 52,
+          "lower1": 572,
+          "lower2": 548
+        }
+      ]
+    },
+    {
+      "j": 0,
+      "i": 24,
+      "start": 165753,
+      "holds": 61,
+      "bounds": [
+        {
+          "total": 534,
+          "loss1": 17,
+          "loss2": 30,
+          "lower1": 517,
+          "lower2": 504
+        },
+        {
+          "total": 59,
+          "loss1": 12,
+          "loss2": 14,
+          "lower1": 47,
+          "lower2": 45
+        },
+        {
+          "total": 770,
+          "loss1": 65,
+          "loss2": 86,
+          "lower1": 705,
+          "lower2": 684
+        }
+      ]
+    },
+    {
+      "j": 0,
+      "i": 25,
+      "start": 172660,
+      "holds": 66,
+      "bounds": [
+        {
+          "total": 527,
+          "loss1": 13,
+          "loss2": 25,
+          "lower1": 514,
+          "lower2": 502
+        },
+        {
+          "total": 51,
+          "loss1": 6,
+          "loss2": 11,
+          "lower1": 45,
+          "lower2": 40
+        },
+        {
+          "total": 731,
+          "loss1": 37,
+          "loss2": 69,
+          "lower1": 694,
+          "lower2": 662
+        }
+      ]
+    },
+    {
+      "j": 0,
+      "i": 26,
+      "start": 179566,
+      "holds": 60,
+      "bounds": [
+        {
+          "total": 512,
+          "loss1": 12,
+          "loss2": 22,
+          "lower1": 500,
+          "lower2": 490
+        },
+        {
+          "total": 63,
+          "loss1": 5,
+          "loss2": 9,
+          "lower1": 58,
+          "lower2": 54
+        },
+        {
+          "total": 764,
+          "loss1": 30,
+          "loss2": 56,
+          "lower1": 734,
+          "lower2": 708
+        }
+      ]
+    },
+    {
+      "j": 0,
+      "i": 27,
+      "start": 186472,
+      "holds": 68,
+      "bounds": [
+        {
+          "total": 562,
+          "loss1": 14,
+          "loss2": 26,
+          "lower1": 548,
+          "lower2": 536
+        },
+        {
+          "total": 71,
+          "loss1": 6,
+          "loss2": 12,
+          "lower1": 65,
+          "lower2": 59
+        },
+        {
+          "total": 846,
+          "loss1": 38,
+          "loss2": 72,
+          "lower1": 808,
+          "lower2": 774
+        }
+      ]
+    },
+    {
+      "j": 0,
+      "i": 28,
+      "start": 193379,
+      "holds": 42,
+      "bounds": [
+        {
+          "total": 521,
+          "loss1": 12,
+          "loss2": 22,
+          "lower1": 509,
+          "lower2": 499
+        },
+        {
+          "total": 50,
+          "loss1": 7,
+          "loss2": 10,
+          "lower1": 43,
+          "lower2": 40
+        },
+        {
+          "total": 721,
+          "loss1": 38,
+          "loss2": 58,
+          "lower1": 683,
+          "lower2": 663
+        }
+      ]
+    },
+    {
+      "j": 0,
+      "i": 29,
+      "start": 200285,
+      "holds": 79,
+      "bounds": [
+        {
+          "total": 533,
+          "loss1": 13,
+          "loss2": 26,
+          "lower1": 520,
+          "lower2": 507
+        },
+        {
+          "total": 49,
+          "loss1": 6,
+          "loss2": 12,
+          "lower1": 43,
+          "lower2": 37
+        },
+        {
+          "total": 729,
+          "loss1": 37,
+          "loss2": 72,
+          "lower1": 692,
+          "lower2": 657
+        }
+      ]
+    },
+    {
+      "j": 0,
+      "i": 30,
+      "start": 207192,
+      "holds": 56,
+      "bounds": [
+        {
+          "total": 553,
+          "loss1": 13,
+          "loss2": 26,
+          "lower1": 540,
+          "lower2": 527
+        },
+        {
+          "total": 58,
+          "loss1": 5,
+          "loss2": 8,
+          "lower1": 53,
+          "lower2": 50
+        },
+        {
+          "total": 785,
+          "loss1": 33,
+          "loss2": 58,
+          "lower1": 752,
+          "lower2": 727
+        }
+      ]
+    },
+    {
+      "j": 0,
+      "i": 31,
+      "start": 214098,
+      "holds": 56,
+      "bounds": [
+        {
+          "total": 571,
+          "loss1": 14,
+          "loss2": 26,
+          "lower1": 557,
+          "lower2": 545
+        },
+        {
+          "total": 72,
+          "loss1": 5,
+          "loss2": 9,
+          "lower1": 67,
+          "lower2": 63
+        },
+        {
+          "total": 859,
+          "loss1": 34,
+          "loss2": 62,
+          "lower1": 825,
+          "lower2": 797
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 0,
+      "start": 0,
+      "holds": 75,
+      "bounds": [
+        {
+          "total": 576,
+          "loss1": 15,
+          "loss2": 27,
+          "lower1": 561,
+          "lower2": 549
+        },
+        {
+          "total": 64,
+          "loss1": 7,
+          "loss2": 13,
+          "lower1": 57,
+          "lower2": 51
+        },
+        {
+          "total": 832,
+          "loss1": 39,
+          "loss2": 75,
+          "lower1": 793,
+          "lower2": 757
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 1,
+      "start": 10268,
+      "holds": 91,
+      "bounds": [
+        {
+          "total": 584,
+          "loss1": 14,
+          "loss2": 27,
+          "lower1": 570,
+          "lower2": 557
+        },
+        {
+          "total": 60,
+          "loss1": 5,
+          "loss2": 10,
+          "lower1": 55,
+          "lower2": 50
+        },
+        {
+          "total": 824,
+          "loss1": 32,
+          "loss2": 64,
+          "lower1": 792,
+          "lower2": 760
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 2,
+      "start": 20537,
+      "holds": 73,
+      "bounds": [
+        {
+          "total": 586,
+          "loss1": 13,
+          "loss2": 25,
+          "lower1": 573,
+          "lower2": 561
+        },
+        {
+          "total": 67,
+          "loss1": 5,
+          "loss2": 10,
+          "lower1": 62,
+          "lower2": 57
+        },
+        {
+          "total": 854,
+          "loss1": 33,
+          "loss2": 64,
+          "lower1": 821,
+          "lower2": 790
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 3,
+      "start": 30805,
+      "holds": 99,
+      "bounds": [
+        {
+          "total": 551,
+          "loss1": 14,
+          "loss2": 26,
+          "lower1": 537,
+          "lower2": 525
+        },
+        {
+          "total": 65,
+          "loss1": 4,
+          "loss2": 7,
+          "lower1": 61,
+          "lower2": 58
+        },
+        {
+          "total": 811,
+          "loss1": 26,
+          "loss2": 50,
+          "lower1": 785,
+          "lower2": 761
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 4,
+      "start": 41073,
+      "holds": 75,
+      "bounds": [
+        {
+          "total": 594,
+          "loss1": 15,
+          "loss2": 29,
+          "lower1": 579,
+          "lower2": 565
+        },
+        {
+          "total": 74,
+          "loss1": 10,
+          "loss2": 15,
+          "lower1": 64,
+          "lower2": 59
+        },
+        {
+          "total": 890,
+          "loss1": 55,
+          "loss2": 88,
+          "lower1": 835,
+          "lower2": 802
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 5,
+      "start": 51342,
+      "holds": 81,
+      "bounds": [
+        {
+          "total": 526,
+          "loss1": 11,
+          "loss2": 22,
+          "lower1": 515,
+          "lower2": 504
+        },
+        {
+          "total": 41,
+          "loss1": 3,
+          "loss2": 6,
+          "lower1": 38,
+          "lower2": 35
+        },
+        {
+          "total": 690,
+          "loss1": 23,
+          "loss2": 45,
+          "lower1": 667,
+          "lower2": 645
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 6,
+      "start": 61610,
+      "holds": 91,
+      "bounds": [
+        {
+          "total": 529,
+          "loss1": 16,
+          "loss2": 28,
+          "lower1": 513,
+          "lower2": 501
+        },
+        {
+          "total": 43,
+          "loss1": 6,
+          "loss2": 11,
+          "lower1": 37,
+          "lower2": 32
+        },
+        {
+          "total": 701,
+          "loss1": 36,
+          "loss2": 71,
+          "lower1": 665,
+          "lower2": 630
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 7,
+      "start": 71878,
+      "holds": 60,
+      "bounds": [
+        {
+          "total": 551,
+          "loss1": 18,
+          "loss2": 31,
+          "lower1": 533,
+          "lower2": 520
+        },
+        {
+          "total": 48,
+          "loss1": 11,
+          "loss2": 14,
+          "lower1": 37,
+          "lower2": 34
+        },
+        {
+          "total": 743,
+          "loss1": 62,
+          "loss2": 87,
+          "lower1": 681,
+          "lower2": 656
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 8,
+      "start": 82147,
+      "holds": 91,
+      "bounds": [
+        {
+          "total": 624,
+          "loss1": 18,
+          "loss2": 33,
+          "lower1": 606,
+          "lower2": 591
+        },
+        {
+          "total": 83,
+          "loss1": 7,
+          "loss2": 14,
+          "lower1": 76,
+          "lower2": 69
+        },
+        {
+          "total": 956,
+          "loss1": 44,
+          "loss2": 87,
+          "lower1": 912,
+          "lower2": 869
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 9,
+      "start": 92415,
+      "holds": 89,
+      "bounds": [
+        {
+          "total": 534,
+          "loss1": 14,
+          "loss2": 25,
+          "lower1": 520,
+          "lower2": 509
+        },
+        {
+          "total": 50,
+          "loss1": 6,
+          "loss2": 12,
+          "lower1": 44,
+          "lower2": 38
+        },
+        {
+          "total": 734,
+          "loss1": 37,
+          "loss2": 71,
+          "lower1": 697,
+          "lower2": 663
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 10,
+      "start": 102684,
+      "holds": 79,
+      "bounds": [
+        {
+          "total": 571,
+          "loss1": 12,
+          "loss2": 24,
+          "lower1": 559,
+          "lower2": 547
+        },
+        {
+          "total": 55,
+          "loss1": 5,
+          "loss2": 8,
+          "lower1": 50,
+          "lower2": 47
+        },
+        {
+          "total": 791,
+          "loss1": 32,
+          "loss2": 56,
+          "lower1": 759,
+          "lower2": 735
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 11,
+      "start": 112952,
+      "holds": 71,
+      "bounds": [
+        {
+          "total": 580,
+          "loss1": 18,
+          "loss2": 33,
+          "lower1": 562,
+          "lower2": 547
+        },
+        {
+          "total": 89,
+          "loss1": 14,
+          "loss2": 25,
+          "lower1": 75,
+          "lower2": 64
+        },
+        {
+          "total": 936,
+          "loss1": 74,
+          "loss2": 133,
+          "lower1": 862,
+          "lower2": 803
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 12,
+      "start": 123220,
+      "holds": 66,
+      "bounds": [
+        {
+          "total": 576,
+          "loss1": 16,
+          "loss2": 32,
+          "lower1": 560,
+          "lower2": 544
+        },
+        {
+          "total": 68,
+          "loss1": 7,
+          "loss2": 13,
+          "lower1": 61,
+          "lower2": 55
+        },
+        {
+          "total": 848,
+          "loss1": 44,
+          "loss2": 84,
+          "lower1": 804,
+          "lower2": 764
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 13,
+      "start": 133489,
+      "holds": 81,
+      "bounds": [
+        {
+          "total": 565,
+          "loss1": 12,
+          "loss2": 24,
+          "lower1": 553,
+          "lower2": 541
+        },
+        {
+          "total": 54,
+          "loss1": 4,
+          "loss2": 8,
+          "lower1": 50,
+          "lower2": 46
+        },
+        {
+          "total": 781,
+          "loss1": 28,
+          "loss2": 55,
+          "lower1": 753,
+          "lower2": 726
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 14,
+      "start": 143757,
+      "holds": 70,
+      "bounds": [
+        {
+          "total": 497,
+          "loss1": 12,
+          "loss2": 23,
+          "lower1": 485,
+          "lower2": 474
+        },
+        {
+          "total": 46,
+          "loss1": 4,
+          "loss2": 7,
+          "lower1": 42,
+          "lower2": 39
+        },
+        {
+          "total": 681,
+          "loss1": 27,
+          "loss2": 50,
+          "lower1": 654,
+          "lower2": 631
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 15,
+      "start": 154025,
+      "holds": 80,
+      "bounds": [
+        {
+          "total": 527,
+          "loss1": 12,
+          "loss2": 23,
+          "lower1": 515,
+          "lower2": 504
+        },
+        {
+          "total": 58,
+          "loss1": 5,
+          "loss2": 9,
+          "lower1": 53,
+          "lower2": 49
+        },
+        {
+          "total": 759,
+          "loss1": 29,
+          "loss2": 53,
+          "lower1": 730,
+          "lower2": 706
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 16,
+      "start": 164294,
+      "holds": 98,
+      "bounds": [
+        {
+          "total": 556,
+          "loss1": 15,
+          "loss2": 28,
+          "lower1": 541,
+          "lower2": 528
+        },
+        {
+          "total": 67,
+          "loss1": 5,
+          "loss2": 9,
+          "lower1": 62,
+          "lower2": 58
+        },
+        {
+          "total": 824,
+          "loss1": 32,
+          "loss2": 63,
+          "lower1": 792,
+          "lower2": 761
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 17,
+      "start": 174562,
+      "holds": 73,
+      "bounds": [
+        {
+          "total": 570,
+          "loss1": 15,
+          "loss2": 29,
+          "lower1": 555,
+          "lower2": 541
+        },
+        {
+          "total": 61,
+          "loss1": 8,
+          "loss2": 13,
+          "lower1": 53,
+          "lower2": 48
+        },
+        {
+          "total": 814,
+          "loss1": 44,
+          "loss2": 75,
+          "lower1": 770,
+          "lower2": 739
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 18,
+      "start": 184830,
+      "holds": 88,
+      "bounds": [
+        {
+          "total": 574,
+          "loss1": 12,
+          "loss2": 24,
+          "lower1": 562,
+          "lower2": 550
+        },
+        {
+          "total": 67,
+          "loss1": 5,
+          "loss2": 10,
+          "lower1": 62,
+          "lower2": 57
+        },
+        {
+          "total": 842,
+          "loss1": 31,
+          "loss2": 61,
+          "lower1": 811,
+          "lower2": 781
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 19,
+      "start": 195099,
+      "holds": 86,
+      "bounds": [
+        {
+          "total": 581,
+          "loss1": 15,
+          "loss2": 28,
+          "lower1": 566,
+          "lower2": 553
+        },
+        {
+          "total": 58,
+          "loss1": 6,
+          "loss2": 10,
+          "lower1": 52,
+          "lower2": 48
+        },
+        {
+          "total": 813,
+          "loss1": 39,
+          "loss2": 66,
+          "lower1": 774,
+          "lower2": 747
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 20,
+      "start": 205367,
+      "holds": 87,
+      "bounds": [
+        {
+          "total": 619,
+          "loss1": 20,
+          "loss2": 38,
+          "lower1": 599,
+          "lower2": 581
+        },
+        {
+          "total": 78,
+          "loss1": 16,
+          "loss2": 26,
+          "lower1": 62,
+          "lower2": 52
+        },
+        {
+          "total": 931,
+          "loss1": 84,
+          "loss2": 142,
+          "lower1": 847,
+          "lower2": 789
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 21,
+      "start": 215635,
+      "holds": 75,
+      "bounds": [
+        {
+          "total": 574,
+          "loss1": 13,
+          "loss2": 25,
+          "lower1": 561,
+          "lower2": 549
+        },
+        {
+          "total": 57,
+          "loss1": 5,
+          "loss2": 9,
+          "lower1": 52,
+          "lower2": 48
+        },
+        {
+          "total": 802,
+          "loss1": 31,
+          "loss2": 56,
+          "lower1": 771,
+          "lower2": 746
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 22,
+      "start": 225904,
+      "holds": 81,
+      "bounds": [
+        {
+          "total": 580,
+          "loss1": 17,
+          "loss2": 30,
+          "lower1": 563,
+          "lower2": 550
+        },
+        {
+          "total": 70,
+          "loss1": 5,
+          "loss2": 9,
+          "lower1": 65,
+          "lower2": 61
+        },
+        {
+          "total": 860,
+          "loss1": 30,
+          "loss2": 59,
+          "lower1": 830,
+          "lower2": 801
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 23,
+      "start": 236172,
+      "holds": 96,
+      "bounds": [
+        {
+          "total": 611,
+          "loss1": 15,
+          "loss2": 28,
+          "lower1": 596,
+          "lower2": 583
+        },
+        {
+          "total": 99,
+          "loss1": 8,
+          "loss2": 14,
+          "lower1": 91,
+          "lower2": 85
+        },
+        {
+          "total": 1007,
+          "loss1": 47,
+          "loss2": 84,
+          "lower1": 960,
+          "lower2": 923
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 24,
+      "start": 246441,
+      "holds": 75,
+      "bounds": [
+        {
+          "total": 597,
+          "loss1": 18,
+          "loss2": 31,
+          "lower1": 579,
+          "lower2": 566
+        },
+        {
+          "total": 83,
+          "loss1": 11,
+          "loss2": 17,
+          "lower1": 72,
+          "lower2": 66
+        },
+        {
+          "total": 929,
+          "loss1": 62,
+          "loss2": 98,
+          "lower1": 867,
+          "lower2": 831
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 25,
+      "start": 256709,
+      "holds": 80,
+      "bounds": [
+        {
+          "total": 511,
+          "loss1": 13,
+          "loss2": 24,
+          "lower1": 498,
+          "lower2": 487
+        },
+        {
+          "total": 50,
+          "loss1": 4,
+          "loss2": 8,
+          "lower1": 46,
+          "lower2": 42
+        },
+        {
+          "total": 711,
+          "loss1": 29,
+          "loss2": 55,
+          "lower1": 682,
+          "lower2": 656
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 26,
+      "start": 266977,
+      "holds": 74,
+      "bounds": [
+        {
+          "total": 603,
+          "loss1": 17,
+          "loss2": 31,
+          "lower1": 586,
+          "lower2": 572
+        },
+        {
+          "total": 72,
+          "loss1": 9,
+          "loss2": 16,
+          "lower1": 63,
+          "lower2": 56
+        },
+        {
+          "total": 891,
+          "loss1": 50,
+          "loss2": 95,
+          "lower1": 841,
+          "lower2": 796
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 27,
+      "start": 277246,
+      "holds": 78,
+      "bounds": [
+        {
+          "total": 553,
+          "loss1": 11,
+          "loss2": 21,
+          "lower1": 542,
+          "lower2": 532
+        },
+        {
+          "total": 54,
+          "loss1": 4,
+          "loss2": 8,
+          "lower1": 50,
+          "lower2": 46
+        },
+        {
+          "total": 769,
+          "loss1": 26,
+          "loss2": 51,
+          "lower1": 743,
+          "lower2": 718
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 28,
+      "start": 287514,
+      "holds": 66,
+      "bounds": [
+        {
+          "total": 561,
+          "loss1": 14,
+          "loss2": 27,
+          "lower1": 547,
+          "lower2": 534
+        },
+        {
+          "total": 70,
+          "loss1": 8,
+          "loss2": 13,
+          "lower1": 62,
+          "lower2": 57
+        },
+        {
+          "total": 841,
+          "loss1": 46,
+          "loss2": 77,
+          "lower1": 795,
+          "lower2": 764
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 29,
+      "start": 297782,
+      "holds": 82,
+      "bounds": [
+        {
+          "total": 529,
+          "loss1": 12,
+          "loss2": 23,
+          "lower1": 517,
+          "lower2": 506
+        },
+        {
+          "total": 59,
+          "loss1": 5,
+          "loss2": 10,
+          "lower1": 54,
+          "lower2": 49
+        },
+        {
+          "total": 765,
+          "loss1": 32,
+          "loss2": 63,
+          "lower1": 733,
+          "lower2": 702
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 30,
+      "start": 308051,
+      "holds": 66,
+      "bounds": [
+        {
+          "total": 543,
+          "loss1": 13,
+          "loss2": 24,
+          "lower1": 530,
+          "lower2": 519
+        },
+        {
+          "total": 56,
+          "loss1": 4,
+          "loss2": 7,
+          "lower1": 52,
+          "lower2": 49
+        },
+        {
+          "total": 767,
+          "loss1": 26,
+          "loss2": 49,
+          "lower1": 741,
+          "lower2": 718
+        }
+      ]
+    },
+    {
+      "j": 1,
+      "i": 31,
+      "start": 318319,
+      "holds": 79,
+      "bounds": [
+        {
+          "total": 572,
+          "loss1": 20,
+          "loss2": 32,
+          "lower1": 552,
+          "lower2": 540
+        },
+        {
+          "total": 63,
+          "loss1": 15,
+          "loss2": 19,
+          "lower1": 48,
+          "lower2": 44
+        },
+        {
+          "total": 824,
+          "loss1": 80,
+          "loss2": 108,
+          "lower1": 744,
+          "lower2": 716
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 0,
+      "start": 0,
+      "holds": 65,
+      "bounds": [
+        {
+          "total": 543,
+          "loss1": 14,
+          "loss2": 25,
+          "lower1": 529,
+          "lower2": 518
+        },
+        {
+          "total": 63,
+          "loss1": 5,
+          "loss2": 9,
+          "lower1": 58,
+          "lower2": 54
+        },
+        {
+          "total": 795,
+          "loss1": 34,
+          "loss2": 61,
+          "lower1": 761,
+          "lower2": 734
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 1,
+      "start": 1919,
+      "holds": 66,
+      "bounds": [
+        {
+          "total": 573,
+          "loss1": 14,
+          "loss2": 27,
+          "lower1": 559,
+          "lower2": 546
+        },
+        {
+          "total": 64,
+          "loss1": 5,
+          "loss2": 10,
+          "lower1": 59,
+          "lower2": 54
+        },
+        {
+          "total": 829,
+          "loss1": 34,
+          "loss2": 62,
+          "lower1": 795,
+          "lower2": 767
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 2,
+      "start": 3838,
+      "holds": 64,
+      "bounds": [
+        {
+          "total": 546,
+          "loss1": 12,
+          "loss2": 23,
+          "lower1": 534,
+          "lower2": 523
+        },
+        {
+          "total": 71,
+          "loss1": 4,
+          "loss2": 7,
+          "lower1": 67,
+          "lower2": 64
+        },
+        {
+          "total": 830,
+          "loss1": 25,
+          "loss2": 49,
+          "lower1": 805,
+          "lower2": 781
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 3,
+      "start": 5757,
+      "holds": 79,
+      "bounds": [
+        {
+          "total": 592,
+          "loss1": 16,
+          "loss2": 29,
+          "lower1": 576,
+          "lower2": 563
+        },
+        {
+          "total": 101,
+          "loss1": 10,
+          "loss2": 15,
+          "lower1": 91,
+          "lower2": 86
+        },
+        {
+          "total": 996,
+          "loss1": 56,
+          "loss2": 87,
+          "lower1": 940,
+          "lower2": 909
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 4,
+      "start": 7675,
+      "holds": 79,
+      "bounds": [
+        {
+          "total": 569,
+          "loss1": 18,
+          "loss2": 34,
+          "lower1": 551,
+          "lower2": 535
+        },
+        {
+          "total": 84,
+          "loss1": 10,
+          "loss2": 18,
+          "lower1": 74,
+          "lower2": 66
+        },
+        {
+          "total": 905,
+          "loss1": 56,
+          "loss2": 106,
+          "lower1": 849,
+          "lower2": 799
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 5,
+      "start": 9594,
+      "holds": 78,
+      "bounds": [
+        {
+          "total": 571,
+          "loss1": 18,
+          "loss2": 29,
+          "lower1": 553,
+          "lower2": 542
+        },
+        {
+          "total": 81,
+          "loss1": 8,
+          "loss2": 14,
+          "lower1": 73,
+          "lower2": 67
+        },
+        {
+          "total": 895,
+          "loss1": 50,
+          "loss2": 85,
+          "lower1": 845,
+          "lower2": 810
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 6,
+      "start": 11513,
+      "holds": 82,
+      "bounds": [
+        {
+          "total": 555,
+          "loss1": 14,
+          "loss2": 25,
+          "lower1": 541,
+          "lower2": 530
+        },
+        {
+          "total": 72,
+          "loss1": 7,
+          "loss2": 12,
+          "lower1": 65,
+          "lower2": 60
+        },
+        {
+          "total": 843,
+          "loss1": 42,
+          "loss2": 71,
+          "lower1": 801,
+          "lower2": 772
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 7,
+      "start": 13432,
+      "holds": 67,
+      "bounds": [
+        {
+          "total": 575,
+          "loss1": 15,
+          "loss2": 28,
+          "lower1": 560,
+          "lower2": 547
+        },
+        {
+          "total": 81,
+          "loss1": 8,
+          "loss2": 15,
+          "lower1": 73,
+          "lower2": 66
+        },
+        {
+          "total": 899,
+          "loss1": 47,
+          "loss2": 88,
+          "lower1": 852,
+          "lower2": 811
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 8,
+      "start": 15351,
+      "holds": 81,
+      "bounds": [
+        {
+          "total": 531,
+          "loss1": 15,
+          "loss2": 28,
+          "lower1": 516,
+          "lower2": 503
+        },
+        {
+          "total": 82,
+          "loss1": 7,
+          "loss2": 13,
+          "lower1": 75,
+          "lower2": 69
+        },
+        {
+          "total": 859,
+          "loss1": 41,
+          "loss2": 74,
+          "lower1": 818,
+          "lower2": 785
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 9,
+      "start": 17270,
+      "holds": 105,
+      "bounds": [
+        {
+          "total": 551,
+          "loss1": 15,
+          "loss2": 27,
+          "lower1": 536,
+          "lower2": 524
+        },
+        {
+          "total": 93,
+          "loss1": 8,
+          "loss2": 14,
+          "lower1": 85,
+          "lower2": 79
+        },
+        {
+          "total": 923,
+          "loss1": 43,
+          "loss2": 78,
+          "lower1": 880,
+          "lower2": 845
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 10,
+      "start": 19188,
+      "holds": 87,
+      "bounds": [
+        {
+          "total": 545,
+          "loss1": 12,
+          "loss2": 24,
+          "lower1": 533,
+          "lower2": 521
+        },
+        {
+          "total": 72,
+          "loss1": 8,
+          "loss2": 14,
+          "lower1": 64,
+          "lower2": 58
+        },
+        {
+          "total": 833,
+          "loss1": 43,
+          "loss2": 78,
+          "lower1": 790,
+          "lower2": 755
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 11,
+      "start": 21107,
+      "holds": 76,
+      "bounds": [
+        {
+          "total": 512,
+          "loss1": 12,
+          "loss2": 24,
+          "lower1": 500,
+          "lower2": 488
+        },
+        {
+          "total": 68,
+          "loss1": 6,
+          "loss2": 12,
+          "lower1": 62,
+          "lower2": 56
+        },
+        {
+          "total": 784,
+          "loss1": 36,
+          "loss2": 71,
+          "lower1": 748,
+          "lower2": 713
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 12,
+      "start": 23026,
+      "holds": 88,
+      "bounds": [
+        {
+          "total": 516,
+          "loss1": 18,
+          "loss2": 34,
+          "lower1": 498,
+          "lower2": 482
+        },
+        {
+          "total": 81,
+          "loss1": 11,
+          "loss2": 19,
+          "lower1": 70,
+          "lower2": 62
+        },
+        {
+          "total": 840,
+          "loss1": 60,
+          "loss2": 108,
+          "lower1": 780,
+          "lower2": 732
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 13,
+      "start": 24945,
+      "holds": 78,
+      "bounds": [
+        {
+          "total": 569,
+          "loss1": 18,
+          "loss2": 34,
+          "lower1": 551,
+          "lower2": 535
+        },
+        {
+          "total": 113,
+          "loss1": 11,
+          "loss2": 19,
+          "lower1": 102,
+          "lower2": 94
+        },
+        {
+          "total": 1021,
+          "loss1": 60,
+          "loss2": 108,
+          "lower1": 961,
+          "lower2": 913
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 14,
+      "start": 26864,
+      "holds": 97,
+      "bounds": [
+        {
+          "total": 514,
+          "loss1": 12,
+          "loss2": 24,
+          "lower1": 502,
+          "lower2": 490
+        },
+        {
+          "total": 71,
+          "loss1": 5,
+          "loss2": 10,
+          "lower1": 66,
+          "lower2": 61
+        },
+        {
+          "total": 798,
+          "loss1": 31,
+          "loss2": 60,
+          "lower1": 767,
+          "lower2": 738
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 15,
+      "start": 28783,
+      "holds": 81,
+      "bounds": [
+        {
+          "total": 540,
+          "loss1": 19,
+          "loss2": 37,
+          "lower1": 521,
+          "lower2": 503
+        },
+        {
+          "total": 70,
+          "loss1": 11,
+          "loss2": 21,
+          "lower1": 59,
+          "lower2": 49
+        },
+        {
+          "total": 820,
+          "loss1": 63,
+          "loss2": 121,
+          "lower1": 757,
+          "lower2": 699
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 16,
+      "start": 30701,
+      "holds": 79,
+      "bounds": [
+        {
+          "total": 584,
+          "loss1": 19,
+          "loss2": 37,
+          "lower1": 565,
+          "lower2": 547
+        },
+        {
+          "total": 98,
+          "loss1": 11,
+          "loss2": 21,
+          "lower1": 87,
+          "lower2": 77
+        },
+        {
+          "total": 976,
+          "loss1": 63,
+          "loss2": 121,
+          "lower1": 913,
+          "lower2": 855
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 17,
+      "start": 32620,
+      "holds": 90,
+      "bounds": [
+        {
+          "total": 572,
+          "loss1": 18,
+          "loss2": 31,
+          "lower1": 554,
+          "lower2": 541
+        },
+        {
+          "total": 99,
+          "loss1": 13,
+          "loss2": 21,
+          "lower1": 86,
+          "lower2": 78
+        },
+        {
+          "total": 968,
+          "loss1": 70,
+          "loss2": 115,
+          "lower1": 898,
+          "lower2": 853
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 18,
+      "start": 34539,
+      "holds": 99,
+      "bounds": [
+        {
+          "total": 583,
+          "loss1": 14,
+          "loss2": 28,
+          "lower1": 569,
+          "lower2": 555
+        },
+        {
+          "total": 99,
+          "loss1": 9,
+          "loss2": 16,
+          "lower1": 90,
+          "lower2": 83
+        },
+        {
+          "total": 979,
+          "loss1": 50,
+          "loss2": 92,
+          "lower1": 929,
+          "lower2": 887
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 19,
+      "start": 36458,
+      "holds": 93,
+      "bounds": [
+        {
+          "total": 575,
+          "loss1": 14,
+          "loss2": 27,
+          "lower1": 561,
+          "lower2": 548
+        },
+        {
+          "total": 78,
+          "loss1": 6,
+          "loss2": 11,
+          "lower1": 72,
+          "lower2": 67
+        },
+        {
+          "total": 887,
+          "loss1": 38,
+          "loss2": 66,
+          "lower1": 849,
+          "lower2": 821
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 20,
+      "start": 38377,
+      "holds": 70,
+      "bounds": [
+        {
+          "total": 609,
+          "loss1": 16,
+          "loss2": 30,
+          "lower1": 593,
+          "lower2": 579
+        },
+        {
+          "total": 76,
+          "loss1": 10,
+          "loss2": 16,
+          "lower1": 66,
+          "lower2": 60
+        },
+        {
+          "total": 913,
+          "loss1": 56,
+          "loss2": 94,
+          "lower1": 857,
+          "lower2": 819
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 21,
+      "start": 40296,
+      "holds": 60,
+      "bounds": [
+        {
+          "total": 546,
+          "loss1": 16,
+          "loss2": 30,
+          "lower1": 530,
+          "lower2": 516
+        },
+        {
+          "total": 77,
+          "loss1": 10,
+          "loss2": 15,
+          "lower1": 67,
+          "lower2": 62
+        },
+        {
+          "total": 854,
+          "loss1": 56,
+          "loss2": 86,
+          "lower1": 798,
+          "lower2": 768
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 22,
+      "start": 42214,
+      "holds": 64,
+      "bounds": [
+        {
+          "total": 506,
+          "loss1": 14,
+          "loss2": 24,
+          "lower1": 492,
+          "lower2": 482
+        },
+        {
+          "total": 53,
+          "loss1": 4,
+          "loss2": 8,
+          "lower1": 49,
+          "lower2": 45
+        },
+        {
+          "total": 718,
+          "loss1": 30,
+          "loss2": 55,
+          "lower1": 688,
+          "lower2": 663
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 23,
+      "start": 44133,
+      "holds": 55,
+      "bounds": [
+        {
+          "total": 525,
+          "loss1": 15,
+          "loss2": 25,
+          "lower1": 510,
+          "lower2": 500
+        },
+        {
+          "total": 64,
+          "loss1": 7,
+          "loss2": 11,
+          "lower1": 57,
+          "lower2": 53
+        },
+        {
+          "total": 781,
+          "loss1": 43,
+          "loss2": 69,
+          "lower1": 738,
+          "lower2": 712
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 24,
+      "start": 46052,
+      "holds": 59,
+      "bounds": [
+        {
+          "total": 499,
+          "loss1": 15,
+          "loss2": 27,
+          "lower1": 484,
+          "lower2": 472
+        },
+        {
+          "total": 65,
+          "loss1": 7,
+          "loss2": 11,
+          "lower1": 58,
+          "lower2": 54
+        },
+        {
+          "total": 759,
+          "loss1": 43,
+          "loss2": 69,
+          "lower1": 716,
+          "lower2": 690
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 25,
+      "start": 47971,
+      "holds": 66,
+      "bounds": [
+        {
+          "total": 533,
+          "loss1": 12,
+          "loss2": 23,
+          "lower1": 521,
+          "lower2": 510
+        },
+        {
+          "total": 50,
+          "loss1": 3,
+          "loss2": 6,
+          "lower1": 47,
+          "lower2": 44
+        },
+        {
+          "total": 733,
+          "loss1": 23,
+          "loss2": 45,
+          "lower1": 710,
+          "lower2": 688
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 26,
+      "start": 49890,
+      "holds": 63,
+      "bounds": [
+        {
+          "total": 549,
+          "loss1": 13,
+          "loss2": 24,
+          "lower1": 536,
+          "lower2": 525
+        },
+        {
+          "total": 57,
+          "loss1": 4,
+          "loss2": 8,
+          "lower1": 53,
+          "lower2": 49
+        },
+        {
+          "total": 777,
+          "loss1": 26,
+          "loss2": 49,
+          "lower1": 751,
+          "lower2": 728
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 27,
+      "start": 51809,
+      "holds": 70,
+      "bounds": [
+        {
+          "total": 587,
+          "loss1": 20,
+          "loss2": 34,
+          "lower1": 567,
+          "lower2": 553
+        },
+        {
+          "total": 64,
+          "loss1": 12,
+          "loss2": 16,
+          "lower1": 52,
+          "lower2": 48
+        },
+        {
+          "total": 843,
+          "loss1": 68,
+          "loss2": 98,
+          "lower1": 775,
+          "lower2": 745
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 28,
+      "start": 53727,
+      "holds": 92,
+      "bounds": [
+        {
+          "total": 643,
+          "loss1": 20,
+          "loss2": 35,
+          "lower1": 623,
+          "lower2": 608
+        },
+        {
+          "total": 78,
+          "loss1": 12,
+          "loss2": 18,
+          "lower1": 66,
+          "lower2": 60
+        },
+        {
+          "total": 955,
+          "loss1": 68,
+          "loss2": 106,
+          "lower1": 887,
+          "lower2": 849
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 29,
+      "start": 55646,
+      "holds": 95,
+      "bounds": [
+        {
+          "total": 571,
+          "loss1": 15,
+          "loss2": 28,
+          "lower1": 556,
+          "lower2": 543
+        },
+        {
+          "total": 50,
+          "loss1": 6,
+          "loss2": 9,
+          "lower1": 44,
+          "lower2": 41
+        },
+        {
+          "total": 771,
+          "loss1": 38,
+          "loss2": 61,
+          "lower1": 733,
+          "lower2": 710
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 30,
+      "start": 57565,
+      "holds": 100,
+      "bounds": [
+        {
+          "total": 576,
+          "loss1": 20,
+          "loss2": 33,
+          "lower1": 556,
+          "lower2": 543
+        },
+        {
+          "total": 59,
+          "loss1": 15,
+          "loss2": 18,
+          "lower1": 44,
+          "lower2": 41
+        },
+        {
+          "total": 812,
+          "loss1": 80,
+          "loss2": 103,
+          "lower1": 732,
+          "lower2": 709
+        }
+      ]
+    },
+    {
+      "j": 2,
+      "i": 31,
+      "start": 59484,
+      "holds": 76,
+      "bounds": [
+        {
+          "total": 571,
+          "loss1": 20,
+          "loss2": 32,
+          "lower1": 551,
+          "lower2": 539
+        },
+        {
+          "total": 68,
+          "loss1": 15,
+          "loss2": 19,
+          "lower1": 53,
+          "lower2": 49
+        },
+        {
+          "total": 843,
+          "loss1": 80,
+          "loss2": 108,
+          "lower1": 763,
+          "lower2": 735
+        }
+      ]
+    }
+  ],
+  "single": [
+    {
+      "cuts": [
+        [
+          1020,
+          -1
+        ]
+      ],
+      "upper": 25,
+      "best": 11,
+      "zeros": 5,
+      "masks": 32
+    },
+    {
+      "cuts": [
+        [
+          1021,
+          -1
+        ]
+      ],
+      "upper": 25,
+      "best": 11,
+      "zeros": 5,
+      "masks": 32
+    },
+    {
+      "cuts": [
+        [
+          1022,
+          -1
+        ]
+      ],
+      "upper": 24,
+      "best": 10,
+      "zeros": 5,
+      "masks": 32
+    },
+    {
+      "cuts": [
+        [
+          1023,
+          -1
+        ]
+      ],
+      "upper": 24,
+      "best": 9,
+      "zeros": 5,
+      "masks": 32
+    },
+    {
+      "cuts": [
+        [
+          1024,
+          -1
+        ]
+      ],
+      "upper": 23,
+      "best": 9,
+      "zeros": 5,
+      "masks": 32
+    },
+    {
+      "cuts": [
+        [
+          1025,
+          -1
+        ]
+      ],
+      "upper": 23,
+      "best": 9,
+      "zeros": 5,
+      "masks": 32
+    },
+    {
+      "cuts": [
+        [
+          1026,
+          -1
+        ]
+      ],
+      "upper": 23,
+      "best": 9,
+      "zeros": 5,
+      "masks": 32
+    },
+    {
+      "cuts": [
+        [
+          1027,
+          -1
+        ]
+      ],
+      "upper": 23,
+      "best": 9,
+      "zeros": 4,
+      "masks": 16
+    },
+    {
+      "cuts": [
+        [
+          1028,
+          -1
+        ]
+      ],
+      "upper": 23,
+      "best": 9,
+      "zeros": 4,
+      "masks": 16
+    },
+    {
+      "cuts": [
+        [
+          1029,
+          -1
+        ]
+      ],
+      "upper": 24,
+      "best": 9,
+      "zeros": 4,
+      "masks": 16
+    },
+    {
+      "cuts": [
+        [
+          1030,
+          -1
+        ]
+      ],
+      "upper": 24,
+      "best": 9,
+      "zeros": 4,
+      "masks": 16
+    },
+    {
+      "cuts": [
+        [
+          1031,
+          -1
+        ]
+      ],
+      "upper": 24,
+      "best": 9,
+      "zeros": 4,
+      "masks": 16
+    },
+    {
+      "cuts": [
+        [
+          1032,
+          -1
+        ]
+      ],
+      "upper": 23,
+      "best": 8,
+      "zeros": 4,
+      "masks": 16
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          -1
+        ]
+      ],
+      "upper": 23,
+      "best": 8,
+      "zeros": 4,
+      "masks": 16
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          -1
+        ]
+      ],
+      "upper": 22,
+      "best": 7,
+      "zeros": 4,
+      "masks": 16
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          -1
+        ]
+      ],
+      "upper": 21,
+      "best": 8,
+      "zeros": 5,
+      "masks": 32
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          -1
+        ]
+      ],
+      "upper": 21,
+      "best": 8,
+      "zeros": 5,
+      "masks": 32
+    },
+    {
+      "cuts": [
+        [
+          1039,
+          -1
+        ]
+      ],
+      "upper": 25,
+      "best": 9,
+      "zeros": 5,
+      "masks": 32
+    },
+    {
+      "cuts": [
+        [
+          1040,
+          -1
+        ]
+      ],
+      "upper": 23,
+      "best": 9,
+      "zeros": 6,
+      "masks": 64
+    },
+    {
+      "cuts": [
+        [
+          1041,
+          -1
+        ]
+      ],
+      "upper": 22,
+      "best": 9,
+      "zeros": 6,
+      "masks": 64
+    },
+    {
+      "cuts": [
+        [
+          1042,
+          -1
+        ]
+      ],
+      "upper": 22,
+      "best": 9,
+      "zeros": 7,
+      "masks": 128
+    },
+    {
+      "cuts": [
+        [
+          1043,
+          -1
+        ]
+      ],
+      "upper": 22,
+      "best": 9,
+      "zeros": 7,
+      "masks": 128
+    },
+    {
+      "cuts": [
+        [
+          1044,
+          -1
+        ]
+      ],
+      "upper": 21,
+      "best": 9,
+      "zeros": 7,
+      "masks": 128
+    },
+    {
+      "cuts": [
+        [
+          1051,
+          -1
+        ]
+      ],
+      "upper": 21,
+      "best": 16,
+      "zeros": 7,
+      "masks": 128
+    },
+    {
+      "cuts": [
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 22,
+      "best": 16,
+      "zeros": 8,
+      "masks": 256
+    },
+    {
+      "cuts": [
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 22,
+      "best": 16,
+      "zeros": 8,
+      "masks": 256
+    },
+    {
+      "cuts": [
+        [
+          1070,
+          -1
+        ]
+      ],
+      "upper": 21,
+      "best": 15,
+      "zeros": 8,
+      "masks": 256
+    },
+    {
+      "cuts": [
+        [
+          1071,
+          -1
+        ]
+      ],
+      "upper": 22,
+      "best": 16,
+      "zeros": 7,
+      "masks": 128
+    },
+    {
+      "cuts": [
+        [
+          1072,
+          -1
+        ]
+      ],
+      "upper": 23,
+      "best": 16,
+      "zeros": 6,
+      "masks": 64
+    },
+    {
+      "cuts": [
+        [
+          1073,
+          -1
+        ]
+      ],
+      "upper": 24,
+      "best": 17,
+      "zeros": 6,
+      "masks": 64
+    },
+    {
+      "cuts": [
+        [
+          1074,
+          -1
+        ]
+      ],
+      "upper": 24,
+      "best": 12,
+      "zeros": 6,
+      "masks": 64
+    },
+    {
+      "cuts": [
+        [
+          2362,
+          -1
+        ]
+      ],
+      "upper": 21,
+      "best": 13,
+      "zeros": 7,
+      "masks": 128
+    },
+    {
+      "cuts": [
+        [
+          2363,
+          -1
+        ]
+      ],
+      "upper": 21,
+      "best": 13,
+      "zeros": 7,
+      "masks": 128
+    },
+    {
+      "cuts": [
+        [
+          2364,
+          -1
+        ]
+      ],
+      "upper": 21,
+      "best": 13,
+      "zeros": 8,
+      "masks": 256
+    },
+    {
+      "cuts": [
+        [
+          2365,
+          -1
+        ]
+      ],
+      "upper": 21,
+      "best": 13,
+      "zeros": 8,
+      "masks": 256
+    },
+    {
+      "cuts": [
+        [
+          2366,
+          -1
+        ]
+      ],
+      "upper": 21,
+      "best": 13,
+      "zeros": 8,
+      "masks": 256
+    },
+    {
+      "cuts": [
+        [
+          2367,
+          -1
+        ]
+      ],
+      "upper": 21,
+      "best": 12,
+      "zeros": 8,
+      "masks": 256
+    },
+    {
+      "cuts": [
+        [
+          2368,
+          -1
+        ]
+      ],
+      "upper": 21,
+      "best": 12,
+      "zeros": 8,
+      "masks": 256
+    },
+    {
+      "cuts": [
+        [
+          2369,
+          -1
+        ]
+      ],
+      "upper": 22,
+      "best": 12,
+      "zeros": 8,
+      "masks": 256
+    },
+    {
+      "cuts": [
+        [
+          2370,
+          -1
+        ]
+      ],
+      "upper": 22,
+      "best": 12,
+      "zeros": 8,
+      "masks": 256
+    },
+    {
+      "cuts": [
+        [
+          2371,
+          -1
+        ]
+      ],
+      "upper": 21,
+      "best": 11,
+      "zeros": 8,
+      "masks": 256
+    },
+    {
+      "cuts": [
+        [
+          2372,
+          -1
+        ]
+      ],
+      "upper": 21,
+      "best": 6,
+      "zeros": 8,
+      "masks": 256
+    },
+    {
+      "cuts": [
+        [
+          806,
+          1
+        ]
+      ],
+      "upper": 21,
+      "best": 6,
+      "zeros": 8,
+      "masks": 256
+    },
+    {
+      "cuts": [
+        [
+          808,
+          1
+        ]
+      ],
+      "upper": 21,
+      "best": 6,
+      "zeros": 8,
+      "masks": 256
+    },
+    {
+      "cuts": [
+        [
+          809,
+          1
+        ]
+      ],
+      "upper": 21,
+      "best": 6,
+      "zeros": 8,
+      "masks": 256
+    },
+    {
+      "cuts": [
+        [
+          810,
+          1
+        ]
+      ],
+      "upper": 21,
+      "best": 6,
+      "zeros": 8,
+      "masks": 256
+    },
+    {
+      "cuts": [
+        [
+          811,
+          1
+        ]
+      ],
+      "upper": 21,
+      "best": 6,
+      "zeros": 8,
+      "masks": 256
+    },
+    {
+      "cuts": [
+        [
+          812,
+          1
+        ]
+      ],
+      "upper": 22,
+      "best": 6,
+      "zeros": 8,
+      "masks": 256
+    },
+    {
+      "cuts": [
+        [
+          1023,
+          1
+        ]
+      ],
+      "upper": 21,
+      "best": 10,
+      "zeros": 5,
+      "masks": 32
+    },
+    {
+      "cuts": [
+        [
+          1024,
+          1
+        ]
+      ],
+      "upper": 21,
+      "best": 10,
+      "zeros": 5,
+      "masks": 32
+    },
+    {
+      "cuts": [
+        [
+          1025,
+          1
+        ]
+      ],
+      "upper": 22,
+      "best": 10,
+      "zeros": 5,
+      "masks": 32
+    },
+    {
+      "cuts": [
+        [
+          1026,
+          1
+        ]
+      ],
+      "upper": 27,
+      "best": 10,
+      "zeros": 5,
+      "masks": 32
+    },
+    {
+      "cuts": [
+        [
+          1027,
+          1
+        ]
+      ],
+      "upper": 27,
+      "best": 10,
+      "zeros": 4,
+      "masks": 16
+    },
+    {
+      "cuts": [
+        [
+          1028,
+          1
+        ]
+      ],
+      "upper": 27,
+      "best": 10,
+      "zeros": 4,
+      "masks": 16
+    },
+    {
+      "cuts": [
+        [
+          1029,
+          1
+        ]
+      ],
+      "upper": 27,
+      "best": 10,
+      "zeros": 4,
+      "masks": 16
+    },
+    {
+      "cuts": [
+        [
+          1030,
+          1
+        ]
+      ],
+      "upper": 27,
+      "best": 10,
+      "zeros": 4,
+      "masks": 16
+    },
+    {
+      "cuts": [
+        [
+          1031,
+          1
+        ]
+      ],
+      "upper": 27,
+      "best": 10,
+      "zeros": 4,
+      "masks": 16
+    },
+    {
+      "cuts": [
+        [
+          1032,
+          1
+        ]
+      ],
+      "upper": 26,
+      "best": 9,
+      "zeros": 4,
+      "masks": 16
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          1
+        ]
+      ],
+      "upper": 25,
+      "best": 9,
+      "zeros": 4,
+      "masks": 16
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          1
+        ]
+      ],
+      "upper": 24,
+      "best": 8,
+      "zeros": 4,
+      "masks": 16
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          1
+        ]
+      ],
+      "upper": 23,
+      "best": 8,
+      "zeros": 5,
+      "masks": 32
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          1
+        ]
+      ],
+      "upper": 23,
+      "best": 8,
+      "zeros": 5,
+      "masks": 32
+    },
+    {
+      "cuts": [
+        [
+          1037,
+          1
+        ]
+      ],
+      "upper": 23,
+      "best": 8,
+      "zeros": 5,
+      "masks": 32
+    },
+    {
+      "cuts": [
+        [
+          1079,
+          1
+        ]
+      ],
+      "upper": 21,
+      "best": 8,
+      "zeros": 6,
+      "masks": 64
+    },
+    {
+      "cuts": [
+        [
+          1080,
+          1
+        ]
+      ],
+      "upper": 21,
+      "best": 8,
+      "zeros": 6,
+      "masks": 64
+    },
+    {
+      "cuts": [
+        [
+          1087,
+          1
+        ]
+      ],
+      "upper": 21,
+      "best": 9,
+      "zeros": 5,
+      "masks": 32
+    },
+    {
+      "cuts": [
+        [
+          2156,
+          1
+        ]
+      ],
+      "upper": 21,
+      "best": 10,
+      "zeros": 6,
+      "masks": 64
+    },
+    {
+      "cuts": [
+        [
+          2157,
+          1
+        ]
+      ],
+      "upper": 21,
+      "best": 10,
+      "zeros": 6,
+      "masks": 64
+    },
+    {
+      "cuts": [
+        [
+          2158,
+          1
+        ]
+      ],
+      "upper": 21,
+      "best": 10,
+      "zeros": 6,
+      "masks": 64
+    },
+    {
+      "cuts": [
+        [
+          2159,
+          1
+        ]
+      ],
+      "upper": 21,
+      "best": 10,
+      "zeros": 6,
+      "masks": 64
+    },
+    {
+      "cuts": [
+        [
+          2160,
+          1
+        ]
+      ],
+      "upper": 21,
+      "best": 9,
+      "zeros": 6,
+      "masks": 64
+    }
+  ],
+  "close": [
+    {
+      "cuts": [
+        [
+          1023,
+          -1
+        ],
+        [
+          1067,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 18,
+      "zeros": 10,
+      "masks": 1024
+    },
+    {
+      "cuts": [
+        [
+          1022,
+          -1
+        ],
+        [
+          1067,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 19,
+      "zeros": 10,
+      "masks": 1024
+    },
+    {
+      "cuts": [
+        [
+          1040,
+          -1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 27,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1039,
+          -1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 27,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1038,
+          -1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1037,
+          -1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 42,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          -1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          -1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          -1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 22,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          -1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1032,
+          -1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1031,
+          -1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1030,
+          -1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1029,
+          -1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1028,
+          -1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1027,
+          -1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1026,
+          -1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 23,
+      "zeros": 10,
+      "masks": 1024
+    },
+    {
+      "cuts": [
+        [
+          1025,
+          -1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 23,
+      "zeros": 10,
+      "masks": 1024
+    },
+    {
+      "cuts": [
+        [
+          1024,
+          -1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 23,
+      "zeros": 10,
+      "masks": 1024
+    },
+    {
+      "cuts": [
+        [
+          1023,
+          -1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 46,
+      "best": 23,
+      "zeros": 10,
+      "masks": 1024
+    },
+    {
+      "cuts": [
+        [
+          1040,
+          -1
+        ],
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 27,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1039,
+          -1
+        ],
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 27,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1038,
+          -1
+        ],
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1037,
+          -1
+        ],
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 42,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          -1
+        ],
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          -1
+        ],
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          -1
+        ],
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 22,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          -1
+        ],
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1032,
+          -1
+        ],
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1031,
+          -1
+        ],
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1030,
+          -1
+        ],
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1029,
+          -1
+        ],
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1028,
+          -1
+        ],
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1027,
+          -1
+        ],
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1026,
+          -1
+        ],
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 23,
+      "zeros": 10,
+      "masks": 1024
+    },
+    {
+      "cuts": [
+        [
+          1025,
+          -1
+        ],
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 23,
+      "zeros": 10,
+      "masks": 1024
+    },
+    {
+      "cuts": [
+        [
+          1024,
+          -1
+        ],
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 23,
+      "zeros": 10,
+      "masks": 1024
+    },
+    {
+      "cuts": [
+        [
+          1040,
+          -1
+        ],
+        [
+          1070,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 26,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1039,
+          -1
+        ],
+        [
+          1070,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 26,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1038,
+          -1
+        ],
+        [
+          1070,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1037,
+          -1
+        ],
+        [
+          1070,
+          -1
+        ]
+      ],
+      "upper": 42,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          -1
+        ],
+        [
+          1070,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          -1
+        ],
+        [
+          1070,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          -1
+        ],
+        [
+          1070,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          -1
+        ],
+        [
+          1070,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 22,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1032,
+          -1
+        ],
+        [
+          1070,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 22,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1031,
+          -1
+        ],
+        [
+          1070,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1030,
+          -1
+        ],
+        [
+          1070,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1029,
+          -1
+        ],
+        [
+          1070,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1028,
+          -1
+        ],
+        [
+          1070,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1027,
+          -1
+        ],
+        [
+          1070,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1026,
+          -1
+        ],
+        [
+          1070,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 23,
+      "zeros": 10,
+      "masks": 1024
+    },
+    {
+      "cuts": [
+        [
+          1025,
+          -1
+        ],
+        [
+          1070,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 23,
+      "zeros": 10,
+      "masks": 1024
+    },
+    {
+      "cuts": [
+        [
+          1044,
+          -1
+        ],
+        [
+          1071,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 28,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1043,
+          -1
+        ],
+        [
+          1071,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 27,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1042,
+          -1
+        ],
+        [
+          1071,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 27,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1041,
+          -1
+        ],
+        [
+          1071,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 27,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1040,
+          -1
+        ],
+        [
+          1071,
+          -1
+        ]
+      ],
+      "upper": 42,
+      "best": 27,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1039,
+          -1
+        ],
+        [
+          1071,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 27,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1038,
+          -1
+        ],
+        [
+          1071,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 25,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1037,
+          -1
+        ],
+        [
+          1071,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 25,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          -1
+        ],
+        [
+          1071,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 25,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          -1
+        ],
+        [
+          1071,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 25,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          -1
+        ],
+        [
+          1071,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          -1
+        ],
+        [
+          1071,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1032,
+          -1
+        ],
+        [
+          1071,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1031,
+          -1
+        ],
+        [
+          1071,
+          -1
+        ]
+      ],
+      "upper": 46,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1030,
+          -1
+        ],
+        [
+          1071,
+          -1
+        ]
+      ],
+      "upper": 46,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1029,
+          -1
+        ],
+        [
+          1071,
+          -1
+        ]
+      ],
+      "upper": 46,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1028,
+          -1
+        ],
+        [
+          1071,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1027,
+          -1
+        ],
+        [
+          1071,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1044,
+          -1
+        ],
+        [
+          1072,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 27,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1043,
+          -1
+        ],
+        [
+          1072,
+          -1
+        ]
+      ],
+      "upper": 42,
+      "best": 27,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1042,
+          -1
+        ],
+        [
+          1072,
+          -1
+        ]
+      ],
+      "upper": 42,
+      "best": 27,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1041,
+          -1
+        ],
+        [
+          1072,
+          -1
+        ]
+      ],
+      "upper": 42,
+      "best": 27,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1040,
+          -1
+        ],
+        [
+          1072,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 27,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1039,
+          -1
+        ],
+        [
+          1072,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 27,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1038,
+          -1
+        ],
+        [
+          1072,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 25,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1037,
+          -1
+        ],
+        [
+          1072,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 25,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          -1
+        ],
+        [
+          1072,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 25,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          -1
+        ],
+        [
+          1072,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 25,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          -1
+        ],
+        [
+          1072,
+          -1
+        ]
+      ],
+      "upper": 46,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          -1
+        ],
+        [
+          1072,
+          -1
+        ]
+      ],
+      "upper": 46,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1032,
+          -1
+        ],
+        [
+          1072,
+          -1
+        ]
+      ],
+      "upper": 46,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1031,
+          -1
+        ],
+        [
+          1072,
+          -1
+        ]
+      ],
+      "upper": 47,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1030,
+          -1
+        ],
+        [
+          1072,
+          -1
+        ]
+      ],
+      "upper": 47,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1029,
+          -1
+        ],
+        [
+          1072,
+          -1
+        ]
+      ],
+      "upper": 47,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1044,
+          -1
+        ],
+        [
+          1073,
+          -1
+        ]
+      ],
+      "upper": 42,
+      "best": 28,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1043,
+          -1
+        ],
+        [
+          1073,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 28,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1042,
+          -1
+        ],
+        [
+          1073,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 28,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1041,
+          -1
+        ],
+        [
+          1073,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 28,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1040,
+          -1
+        ],
+        [
+          1073,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 28,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1039,
+          -1
+        ],
+        [
+          1073,
+          -1
+        ]
+      ],
+      "upper": 46,
+      "best": 28,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1038,
+          -1
+        ],
+        [
+          1073,
+          -1
+        ]
+      ],
+      "upper": 46,
+      "best": 26,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1037,
+          -1
+        ],
+        [
+          1073,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 26,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          -1
+        ],
+        [
+          1073,
+          -1
+        ]
+      ],
+      "upper": 46,
+      "best": 26,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          -1
+        ],
+        [
+          1073,
+          -1
+        ]
+      ],
+      "upper": 46,
+      "best": 26,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          -1
+        ],
+        [
+          1073,
+          -1
+        ]
+      ],
+      "upper": 47,
+      "best": 25,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          -1
+        ],
+        [
+          1073,
+          -1
+        ]
+      ],
+      "upper": 47,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1032,
+          -1
+        ],
+        [
+          1073,
+          -1
+        ]
+      ],
+      "upper": 47,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1031,
+          -1
+        ],
+        [
+          1073,
+          -1
+        ]
+      ],
+      "upper": 48,
+      "best": 25,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1030,
+          -1
+        ],
+        [
+          1073,
+          -1
+        ]
+      ],
+      "upper": 48,
+      "best": 25,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1044,
+          -1
+        ],
+        [
+          1074,
+          -1
+        ]
+      ],
+      "upper": 42,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1043,
+          -1
+        ],
+        [
+          1074,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1042,
+          -1
+        ],
+        [
+          1074,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1041,
+          -1
+        ],
+        [
+          1074,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1040,
+          -1
+        ],
+        [
+          1074,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1039,
+          -1
+        ],
+        [
+          1074,
+          -1
+        ]
+      ],
+      "upper": 46,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1038,
+          -1
+        ],
+        [
+          1074,
+          -1
+        ]
+      ],
+      "upper": 46,
+      "best": 21,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1037,
+          -1
+        ],
+        [
+          1074,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 21,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          -1
+        ],
+        [
+          1074,
+          -1
+        ]
+      ],
+      "upper": 46,
+      "best": 21,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          -1
+        ],
+        [
+          1074,
+          -1
+        ]
+      ],
+      "upper": 46,
+      "best": 21,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          -1
+        ],
+        [
+          1074,
+          -1
+        ]
+      ],
+      "upper": 47,
+      "best": 20,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          -1
+        ],
+        [
+          1074,
+          -1
+        ]
+      ],
+      "upper": 47,
+      "best": 19,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1032,
+          -1
+        ],
+        [
+          1074,
+          -1
+        ]
+      ],
+      "upper": 47,
+      "best": 19,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1031,
+          -1
+        ],
+        [
+          1074,
+          -1
+        ]
+      ],
+      "upper": 48,
+      "best": 20,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1039,
+          -1
+        ],
+        [
+          1075,
+          -1
+        ]
+      ],
+      "upper": 42,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1038,
+          -1
+        ],
+        [
+          1075,
+          -1
+        ]
+      ],
+      "upper": 42,
+      "best": 21,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1037,
+          -1
+        ],
+        [
+          1075,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 21,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          -1
+        ],
+        [
+          1075,
+          -1
+        ]
+      ],
+      "upper": 42,
+      "best": 21,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          -1
+        ],
+        [
+          1075,
+          -1
+        ]
+      ],
+      "upper": 42,
+      "best": 21,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          -1
+        ],
+        [
+          1075,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 20,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          -1
+        ],
+        [
+          1075,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 19,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1032,
+          -1
+        ],
+        [
+          1075,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 19,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1039,
+          -1
+        ],
+        [
+          1076,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1038,
+          -1
+        ],
+        [
+          1076,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 20,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          -1
+        ],
+        [
+          1076,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 20,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          -1
+        ],
+        [
+          1076,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 20,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          -1
+        ],
+        [
+          1076,
+          -1
+        ]
+      ],
+      "upper": 42,
+      "best": 19,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          -1
+        ],
+        [
+          1076,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 20,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          -1
+        ],
+        [
+          1077,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1039,
+          -1
+        ],
+        [
+          1078,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 21,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1038,
+          -1
+        ],
+        [
+          1078,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          -1
+        ],
+        [
+          1078,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          -1
+        ],
+        [
+          1078,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          -1
+        ],
+        [
+          1079,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          -1
+        ],
+        [
+          1079,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1039,
+          -1
+        ],
+        [
+          1080,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1039,
+          -1
+        ],
+        [
+          1081,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1039,
+          -1
+        ],
+        [
+          1082,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1031,
+          -1
+        ],
+        [
+          1071,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1030,
+          -1
+        ],
+        [
+          1071,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1029,
+          -1
+        ],
+        [
+          1071,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          -1
+        ],
+        [
+          1072,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 15,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1032,
+          -1
+        ],
+        [
+          1072,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 15,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1031,
+          -1
+        ],
+        [
+          1072,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1030,
+          -1
+        ],
+        [
+          1072,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1029,
+          -1
+        ],
+        [
+          1072,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          -1
+        ],
+        [
+          1073,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          -1
+        ],
+        [
+          1073,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1032,
+          -1
+        ],
+        [
+          1073,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1031,
+          -1
+        ],
+        [
+          1073,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1030,
+          -1
+        ],
+        [
+          1073,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          -1
+        ],
+        [
+          1074,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          -1
+        ],
+        [
+          1074,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          -1
+        ],
+        [
+          1074,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          -1
+        ],
+        [
+          1074,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 15,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1032,
+          -1
+        ],
+        [
+          1074,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 15,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1031,
+          -1
+        ],
+        [
+          1074,
+          1
+        ]
+      ],
+      "upper": 44,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          -1
+        ],
+        [
+          1075,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          -1
+        ],
+        [
+          1075,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          -1
+        ],
+        [
+          1075,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          -1
+        ],
+        [
+          1075,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 15,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1032,
+          -1
+        ],
+        [
+          1075,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 15,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          -1
+        ],
+        [
+          1076,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 15,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          -1
+        ],
+        [
+          1076,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          -1
+        ],
+        [
+          1077,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 15,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          -1
+        ],
+        [
+          1078,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          -1
+        ],
+        [
+          1078,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1039,
+          -1
+        ],
+        [
+          1079,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1038,
+          -1
+        ],
+        [
+          1079,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1037,
+          -1
+        ],
+        [
+          1079,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          -1
+        ],
+        [
+          1079,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          -1
+        ],
+        [
+          1079,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1050,
+          -1
+        ],
+        [
+          1080,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1049,
+          -1
+        ],
+        [
+          1080,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1048,
+          -1
+        ],
+        [
+          1080,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1044,
+          -1
+        ],
+        [
+          1080,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1043,
+          -1
+        ],
+        [
+          1080,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1042,
+          -1
+        ],
+        [
+          1080,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1041,
+          -1
+        ],
+        [
+          1080,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1040,
+          -1
+        ],
+        [
+          1080,
+          1
+        ]
+      ],
+      "upper": 44,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1039,
+          -1
+        ],
+        [
+          1080,
+          1
+        ]
+      ],
+      "upper": 46,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1038,
+          -1
+        ],
+        [
+          1080,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1037,
+          -1
+        ],
+        [
+          1080,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          -1
+        ],
+        [
+          1080,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1044,
+          -1
+        ],
+        [
+          1081,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1043,
+          -1
+        ],
+        [
+          1081,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1042,
+          -1
+        ],
+        [
+          1081,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1041,
+          -1
+        ],
+        [
+          1081,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1040,
+          -1
+        ],
+        [
+          1081,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1039,
+          -1
+        ],
+        [
+          1081,
+          1
+        ]
+      ],
+      "upper": 45,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1044,
+          -1
+        ],
+        [
+          1082,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1043,
+          -1
+        ],
+        [
+          1082,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1042,
+          -1
+        ],
+        [
+          1082,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1041,
+          -1
+        ],
+        [
+          1082,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1040,
+          -1
+        ],
+        [
+          1082,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1039,
+          -1
+        ],
+        [
+          1082,
+          1
+        ]
+      ],
+      "upper": 45,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1044,
+          -1
+        ],
+        [
+          1083,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1043,
+          -1
+        ],
+        [
+          1083,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1042,
+          -1
+        ],
+        [
+          1083,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1041,
+          -1
+        ],
+        [
+          1083,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1040,
+          -1
+        ],
+        [
+          1083,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1044,
+          -1
+        ],
+        [
+          1084,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1043,
+          -1
+        ],
+        [
+          1084,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1042,
+          -1
+        ],
+        [
+          1084,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1041,
+          -1
+        ],
+        [
+          1084,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1040,
+          -1
+        ],
+        [
+          1084,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1044,
+          -1
+        ],
+        [
+          1085,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1043,
+          -1
+        ],
+        [
+          1085,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1042,
+          -1
+        ],
+        [
+          1085,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1041,
+          -1
+        ],
+        [
+          1085,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1044,
+          -1
+        ],
+        [
+          1086,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1043,
+          -1
+        ],
+        [
+          1086,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1042,
+          -1
+        ],
+        [
+          1086,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1050,
+          -1
+        ],
+        [
+          1087,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1049,
+          -1
+        ],
+        [
+          1087,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1048,
+          -1
+        ],
+        [
+          1087,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1044,
+          -1
+        ],
+        [
+          1087,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1043,
+          -1
+        ],
+        [
+          1087,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1042,
+          -1
+        ],
+        [
+          1087,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1043,
+          -1
+        ],
+        [
+          1088,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1028,
+          1
+        ],
+        [
+          1063,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 18,
+      "zeros": 8,
+      "masks": 256
+    },
+    {
+      "cuts": [
+        [
+          1027,
+          1
+        ],
+        [
+          1063,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 18,
+      "zeros": 8,
+      "masks": 256
+    },
+    {
+      "cuts": [
+        [
+          1026,
+          1
+        ],
+        [
+          1063,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1028,
+          1
+        ],
+        [
+          1064,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 18,
+      "zeros": 8,
+      "masks": 256
+    },
+    {
+      "cuts": [
+        [
+          1027,
+          1
+        ],
+        [
+          1064,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 18,
+      "zeros": 8,
+      "masks": 256
+    },
+    {
+      "cuts": [
+        [
+          1026,
+          1
+        ],
+        [
+          1064,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1028,
+          1
+        ],
+        [
+          1065,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 18,
+      "zeros": 8,
+      "masks": 256
+    },
+    {
+      "cuts": [
+        [
+          1027,
+          1
+        ],
+        [
+          1065,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 18,
+      "zeros": 8,
+      "masks": 256
+    },
+    {
+      "cuts": [
+        [
+          1026,
+          1
+        ],
+        [
+          1065,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1031,
+          1
+        ],
+        [
+          1066,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1030,
+          1
+        ],
+        [
+          1066,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1029,
+          1
+        ],
+        [
+          1066,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1028,
+          1
+        ],
+        [
+          1066,
+          -1
+        ]
+      ],
+      "upper": 42,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1027,
+          1
+        ],
+        [
+          1066,
+          -1
+        ]
+      ],
+      "upper": 42,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1026,
+          1
+        ],
+        [
+          1066,
+          -1
+        ]
+      ],
+      "upper": 42,
+      "best": 17,
+      "zeros": 10,
+      "masks": 1024
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          1
+        ],
+        [
+          1067,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1032,
+          1
+        ],
+        [
+          1067,
+          -1
+        ]
+      ],
+      "upper": 42,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1031,
+          1
+        ],
+        [
+          1067,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 19,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1030,
+          1
+        ],
+        [
+          1067,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 19,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1029,
+          1
+        ],
+        [
+          1067,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 19,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1028,
+          1
+        ],
+        [
+          1067,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 19,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1027,
+          1
+        ],
+        [
+          1067,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 19,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1026,
+          1
+        ],
+        [
+          1067,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 19,
+      "zeros": 10,
+      "masks": 1024
+    },
+    {
+      "cuts": [
+        [
+          1037,
+          1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 22,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 22,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 46,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1032,
+          1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 47,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1031,
+          1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 48,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1030,
+          1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 48,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1029,
+          1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 48,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1028,
+          1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 49,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1027,
+          1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 49,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1026,
+          1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 49,
+      "best": 24,
+      "zeros": 10,
+      "masks": 1024
+    },
+    {
+      "cuts": [
+        [
+          1025,
+          1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 24,
+      "zeros": 10,
+      "masks": 1024
+    },
+    {
+      "cuts": [
+        [
+          1024,
+          1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 24,
+      "zeros": 10,
+      "masks": 1024
+    },
+    {
+      "cuts": [
+        [
+          1023,
+          1
+        ],
+        [
+          1068,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 24,
+      "zeros": 10,
+      "masks": 1024
+    },
+    {
+      "cuts": [
+        [
+          1037,
+          1
+        ],
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 22,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          1
+        ],
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          1
+        ],
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          1
+        ],
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 22,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          1
+        ],
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 46,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1032,
+          1
+        ],
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 47,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1031,
+          1
+        ],
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 48,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1030,
+          1
+        ],
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 48,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1029,
+          1
+        ],
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 48,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1028,
+          1
+        ],
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 49,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1027,
+          1
+        ],
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 49,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1026,
+          1
+        ],
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 49,
+      "best": 24,
+      "zeros": 10,
+      "masks": 1024
+    },
+    {
+      "cuts": [
+        [
+          1025,
+          1
+        ],
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 24,
+      "zeros": 10,
+      "masks": 1024
+    },
+    {
+      "cuts": [
+        [
+          1024,
+          1
+        ],
+        [
+          1069,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 24,
+      "zeros": 10,
+      "masks": 1024
+    },
+    {
+      "cuts": [
+        [
+          1037,
+          1
+        ],
+        [
+          1070,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 22,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          1
+        ],
+        [
+          1070,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          1
+        ],
+        [
+          1070,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          1
+        ],
+        [
+          1070,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 22,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          1
+        ],
+        [
+          1070,
+          -1
+        ]
+      ],
+      "upper": 46,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1032,
+          1
+        ],
+        [
+          1070,
+          -1
+        ]
+      ],
+      "upper": 47,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1031,
+          1
+        ],
+        [
+          1070,
+          -1
+        ]
+      ],
+      "upper": 48,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1030,
+          1
+        ],
+        [
+          1070,
+          -1
+        ]
+      ],
+      "upper": 48,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1029,
+          1
+        ],
+        [
+          1070,
+          -1
+        ]
+      ],
+      "upper": 48,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1028,
+          1
+        ],
+        [
+          1070,
+          -1
+        ]
+      ],
+      "upper": 48,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1027,
+          1
+        ],
+        [
+          1070,
+          -1
+        ]
+      ],
+      "upper": 48,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1026,
+          1
+        ],
+        [
+          1070,
+          -1
+        ]
+      ],
+      "upper": 48,
+      "best": 24,
+      "zeros": 10,
+      "masks": 1024
+    },
+    {
+      "cuts": [
+        [
+          1025,
+          1
+        ],
+        [
+          1070,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 24,
+      "zeros": 10,
+      "masks": 1024
+    },
+    {
+      "cuts": [
+        [
+          1037,
+          1
+        ],
+        [
+          1071,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          1
+        ],
+        [
+          1071,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          1
+        ],
+        [
+          1071,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          1
+        ],
+        [
+          1071,
+          -1
+        ]
+      ],
+      "upper": 46,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          1
+        ],
+        [
+          1071,
+          -1
+        ]
+      ],
+      "upper": 47,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1032,
+          1
+        ],
+        [
+          1071,
+          -1
+        ]
+      ],
+      "upper": 48,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1031,
+          1
+        ],
+        [
+          1071,
+          -1
+        ]
+      ],
+      "upper": 49,
+      "best": 25,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1030,
+          1
+        ],
+        [
+          1071,
+          -1
+        ]
+      ],
+      "upper": 49,
+      "best": 25,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1029,
+          1
+        ],
+        [
+          1071,
+          -1
+        ]
+      ],
+      "upper": 49,
+      "best": 25,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1028,
+          1
+        ],
+        [
+          1071,
+          -1
+        ]
+      ],
+      "upper": 49,
+      "best": 25,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1027,
+          1
+        ],
+        [
+          1071,
+          -1
+        ]
+      ],
+      "upper": 49,
+      "best": 25,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1037,
+          1
+        ],
+        [
+          1072,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          1
+        ],
+        [
+          1072,
+          -1
+        ]
+      ],
+      "upper": 46,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          1
+        ],
+        [
+          1072,
+          -1
+        ]
+      ],
+      "upper": 46,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          1
+        ],
+        [
+          1072,
+          -1
+        ]
+      ],
+      "upper": 47,
+      "best": 23,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          1
+        ],
+        [
+          1072,
+          -1
+        ]
+      ],
+      "upper": 48,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1032,
+          1
+        ],
+        [
+          1072,
+          -1
+        ]
+      ],
+      "upper": 49,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1031,
+          1
+        ],
+        [
+          1072,
+          -1
+        ]
+      ],
+      "upper": 50,
+      "best": 25,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1030,
+          1
+        ],
+        [
+          1072,
+          -1
+        ]
+      ],
+      "upper": 50,
+      "best": 25,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1029,
+          1
+        ],
+        [
+          1072,
+          -1
+        ]
+      ],
+      "upper": 50,
+      "best": 25,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1038,
+          1
+        ],
+        [
+          1073,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1037,
+          1
+        ],
+        [
+          1073,
+          -1
+        ]
+      ],
+      "upper": 46,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          1
+        ],
+        [
+          1073,
+          -1
+        ]
+      ],
+      "upper": 47,
+      "best": 25,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          1
+        ],
+        [
+          1073,
+          -1
+        ]
+      ],
+      "upper": 47,
+      "best": 25,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          1
+        ],
+        [
+          1073,
+          -1
+        ]
+      ],
+      "upper": 48,
+      "best": 24,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          1
+        ],
+        [
+          1073,
+          -1
+        ]
+      ],
+      "upper": 49,
+      "best": 25,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1032,
+          1
+        ],
+        [
+          1073,
+          -1
+        ]
+      ],
+      "upper": 50,
+      "best": 25,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1031,
+          1
+        ],
+        [
+          1073,
+          -1
+        ]
+      ],
+      "upper": 51,
+      "best": 26,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1030,
+          1
+        ],
+        [
+          1073,
+          -1
+        ]
+      ],
+      "upper": 51,
+      "best": 26,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1038,
+          1
+        ],
+        [
+          1074,
+          -1
+        ]
+      ],
+      "upper": 41,
+      "best": 19,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1037,
+          1
+        ],
+        [
+          1074,
+          -1
+        ]
+      ],
+      "upper": 46,
+      "best": 19,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          1
+        ],
+        [
+          1074,
+          -1
+        ]
+      ],
+      "upper": 47,
+      "best": 20,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          1
+        ],
+        [
+          1074,
+          -1
+        ]
+      ],
+      "upper": 47,
+      "best": 20,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          1
+        ],
+        [
+          1074,
+          -1
+        ]
+      ],
+      "upper": 48,
+      "best": 19,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          1
+        ],
+        [
+          1074,
+          -1
+        ]
+      ],
+      "upper": 49,
+      "best": 20,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1032,
+          1
+        ],
+        [
+          1074,
+          -1
+        ]
+      ],
+      "upper": 50,
+      "best": 20,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1031,
+          1
+        ],
+        [
+          1074,
+          -1
+        ]
+      ],
+      "upper": 51,
+      "best": 21,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1037,
+          1
+        ],
+        [
+          1075,
+          -1
+        ]
+      ],
+      "upper": 42,
+      "best": 19,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          1
+        ],
+        [
+          1075,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 20,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          1
+        ],
+        [
+          1075,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 20,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          1
+        ],
+        [
+          1075,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 19,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          1
+        ],
+        [
+          1075,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 20,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1032,
+          1
+        ],
+        [
+          1075,
+          -1
+        ]
+      ],
+      "upper": 46,
+      "best": 20,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1037,
+          1
+        ],
+        [
+          1076,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 20,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          1
+        ],
+        [
+          1076,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 20,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          1
+        ],
+        [
+          1076,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 20,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          1
+        ],
+        [
+          1076,
+          -1
+        ]
+      ],
+      "upper": 44,
+      "best": 20,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          1
+        ],
+        [
+          1076,
+          -1
+        ]
+      ],
+      "upper": 45,
+      "best": 21,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1037,
+          1
+        ],
+        [
+          1077,
+          -1
+        ]
+      ],
+      "upper": 42,
+      "best": 19,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          1
+        ],
+        [
+          1077,
+          -1
+        ]
+      ],
+      "upper": 42,
+      "best": 19,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          1
+        ],
+        [
+          1077,
+          -1
+        ]
+      ],
+      "upper": 42,
+      "best": 19,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          1
+        ],
+        [
+          1077,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 19,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1037,
+          1
+        ],
+        [
+          1078,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          1
+        ],
+        [
+          1078,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          1
+        ],
+        [
+          1078,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1037,
+          1
+        ],
+        [
+          1079,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          1
+        ],
+        [
+          1079,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          1
+        ],
+        [
+          1079,
+          -1
+        ]
+      ],
+      "upper": 43,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1031,
+          1
+        ],
+        [
+          1068,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1030,
+          1
+        ],
+        [
+          1068,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1029,
+          1
+        ],
+        [
+          1068,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1028,
+          1
+        ],
+        [
+          1068,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1027,
+          1
+        ],
+        [
+          1068,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1026,
+          1
+        ],
+        [
+          1068,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 16,
+      "zeros": 10,
+      "masks": 1024
+    },
+    {
+      "cuts": [
+        [
+          1032,
+          1
+        ],
+        [
+          1069,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 15,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1031,
+          1
+        ],
+        [
+          1069,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1030,
+          1
+        ],
+        [
+          1069,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1029,
+          1
+        ],
+        [
+          1069,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1028,
+          1
+        ],
+        [
+          1069,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1027,
+          1
+        ],
+        [
+          1069,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1026,
+          1
+        ],
+        [
+          1069,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 16,
+      "zeros": 10,
+      "masks": 1024
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          1
+        ],
+        [
+          1070,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 15,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1032,
+          1
+        ],
+        [
+          1070,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 15,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1031,
+          1
+        ],
+        [
+          1070,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1030,
+          1
+        ],
+        [
+          1070,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1029,
+          1
+        ],
+        [
+          1070,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1028,
+          1
+        ],
+        [
+          1070,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1027,
+          1
+        ],
+        [
+          1070,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1026,
+          1
+        ],
+        [
+          1070,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 16,
+      "zeros": 10,
+      "masks": 1024
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          1
+        ],
+        [
+          1071,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          1
+        ],
+        [
+          1071,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1032,
+          1
+        ],
+        [
+          1071,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1031,
+          1
+        ],
+        [
+          1071,
+          1
+        ]
+      ],
+      "upper": 44,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1030,
+          1
+        ],
+        [
+          1071,
+          1
+        ]
+      ],
+      "upper": 44,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1029,
+          1
+        ],
+        [
+          1071,
+          1
+        ]
+      ],
+      "upper": 44,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1028,
+          1
+        ],
+        [
+          1071,
+          1
+        ]
+      ],
+      "upper": 44,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1027,
+          1
+        ],
+        [
+          1071,
+          1
+        ]
+      ],
+      "upper": 44,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          1
+        ],
+        [
+          1072,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          1
+        ],
+        [
+          1072,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          1
+        ],
+        [
+          1072,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          1
+        ],
+        [
+          1072,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1032,
+          1
+        ],
+        [
+          1072,
+          1
+        ]
+      ],
+      "upper": 44,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1031,
+          1
+        ],
+        [
+          1072,
+          1
+        ]
+      ],
+      "upper": 45,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1030,
+          1
+        ],
+        [
+          1072,
+          1
+        ]
+      ],
+      "upper": 45,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1029,
+          1
+        ],
+        [
+          1072,
+          1
+        ]
+      ],
+      "upper": 45,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          1
+        ],
+        [
+          1073,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          1
+        ],
+        [
+          1073,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          1
+        ],
+        [
+          1073,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          1
+        ],
+        [
+          1073,
+          1
+        ]
+      ],
+      "upper": 44,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1032,
+          1
+        ],
+        [
+          1073,
+          1
+        ]
+      ],
+      "upper": 45,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1031,
+          1
+        ],
+        [
+          1073,
+          1
+        ]
+      ],
+      "upper": 46,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1030,
+          1
+        ],
+        [
+          1073,
+          1
+        ]
+      ],
+      "upper": 46,
+      "best": 18,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1037,
+          1
+        ],
+        [
+          1074,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 15,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          1
+        ],
+        [
+          1074,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          1
+        ],
+        [
+          1074,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          1
+        ],
+        [
+          1074,
+          1
+        ]
+      ],
+      "upper": 44,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          1
+        ],
+        [
+          1074,
+          1
+        ]
+      ],
+      "upper": 45,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1032,
+          1
+        ],
+        [
+          1074,
+          1
+        ]
+      ],
+      "upper": 46,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1031,
+          1
+        ],
+        [
+          1074,
+          1
+        ]
+      ],
+      "upper": 47,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1037,
+          1
+        ],
+        [
+          1075,
+          1
+        ]
+      ],
+      "upper": 41,
+      "best": 15,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          1
+        ],
+        [
+          1075,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          1
+        ],
+        [
+          1075,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          1
+        ],
+        [
+          1075,
+          1
+        ]
+      ],
+      "upper": 44,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          1
+        ],
+        [
+          1075,
+          1
+        ]
+      ],
+      "upper": 45,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1032,
+          1
+        ],
+        [
+          1075,
+          1
+        ]
+      ],
+      "upper": 46,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1037,
+          1
+        ],
+        [
+          1076,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          1
+        ],
+        [
+          1076,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          1
+        ],
+        [
+          1076,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          1
+        ],
+        [
+          1076,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1033,
+          1
+        ],
+        [
+          1076,
+          1
+        ]
+      ],
+      "upper": 44,
+      "best": 17,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1037,
+          1
+        ],
+        [
+          1077,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          1
+        ],
+        [
+          1077,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          1
+        ],
+        [
+          1077,
+          1
+        ]
+      ],
+      "upper": 42,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1034,
+          1
+        ],
+        [
+          1077,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1037,
+          1
+        ],
+        [
+          1078,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          1
+        ],
+        [
+          1078,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          1
+        ],
+        [
+          1078,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1037,
+          1
+        ],
+        [
+          1079,
+          1
+        ]
+      ],
+      "upper": 44,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          1
+        ],
+        [
+          1079,
+          1
+        ]
+      ],
+      "upper": 44,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1035,
+          1
+        ],
+        [
+          1079,
+          1
+        ]
+      ],
+      "upper": 44,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1037,
+          1
+        ],
+        [
+          1080,
+          1
+        ]
+      ],
+      "upper": 44,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1036,
+          1
+        ],
+        [
+          1080,
+          1
+        ]
+      ],
+      "upper": 44,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    },
+    {
+      "cuts": [
+        [
+          1037,
+          1
+        ],
+        [
+          1081,
+          1
+        ]
+      ],
+      "upper": 43,
+      "best": 16,
+      "zeros": 9,
+      "masks": 512
+    }
+  ]
+}

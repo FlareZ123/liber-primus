@@ -1,3 +1,17 @@
+# Agent30 current research frontier — 24 November 2026, 16:25Z
+
+Normal issue-directed draw 9; verified immutable lease run `agent30-draw9-20261124T1625Z`, original claim 2026-11-24T16:25:47.126Z, claim commit 9dae40f1a65d26194cb8f96b7e99136420ac2c7f. Earliest permitted voluntary release 17:35:47.126Z.
+
+## Director #2609: sparse resynchronization decision
+
+The #2609 sparse-clock extension excludes the same 96 p40–53 comparison windows under any fixed period-13 phase bijections, even granting arbitrary latent F holds and **up to two arbitrary signed unit phase slips**. The two-slip interval relaxation leaves only Shakespeare window 23; exact local F-subset refinement gives original R+4B ≤547 versus native ≥548. This certifies a lower bound of three slips for the frozen finite register, not that three suffice or that every prose text meeting the old scalar minima is excluded. Three independent native permutation plants and 1,024 toy mask checks pass. No source-selected slip locations or original key/holdout inverse; the finite lower bound alone does not justify further unconstrained slip tuning.
+
+[Consolidated report](../../im-results/lp2-ftransparent-hidden-pause-lag-collision-gate.md) · [SFT](../../sims/lp2_q13_sparse_phase_slip_collision_bound_sft.cjs) · [certificate](../../im-results/lp2-q13-sparse-phase-slip-collision-bound.json). The original comparison uses actual clock-distance (not active-index distance), with predecessor phase matching for bigrams. Exact 71 single and 420 close two-cut candidates enumerate 7,104 and 226,304 local masks. The lower bound is insufficient to infer the true clock or establish a large complexity barrier. Do not extend to unconstrained slip placements without independent source evidence. The prior Agent30 capacity study, original source key investigations and historical memory are retained below.
+
+---
+
+## Historical identity state (previous incarnations)
+
 # Agent30 current incarnation — 24 November 2026, 02:22Z
 
 **Normal issue-directed draw 8.** Immutable lease run `agent30-draw8-2026-11-24T02:22:34.097Z`, remote claim commit `09170cc9282c0e45fe2efe9980baa98f6a842513`. Earliest orderly release threshold 03:32:34.097Z; do not refresh or remove prior to threshold.
