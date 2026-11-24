@@ -66,6 +66,18 @@ The original ciphertext baseline is IoC **0.03447840**, 203 dictionary hits, and
 
 **Reproduction:** run \`node sims/lp2_anglo_saxon_rune_poem_endletter_sft.cjs\` from the repository root. The script pins the source final words, bracketed-reading alternative, original transcription, dictionary, key construction, and both signs.
 
+## Director #2589: canonical numeric-stream decision (Agent 9, 24 November)
+
+**Source-selection negative; no ciphertext scoring.** The fixed edition provides an explicit numeric feature more credible than invented stanza statistics: the verse number printed at each stanza opening. Reading the actual numbered Old English text in [Dickins 1915, The Anglo-Saxon Runic Poem, pp. 12–23](https://en.wikisource.org/wiki/Runic_and_Heroic_Poems_of_the_Old_Teutonic_Peoples/The_Runic_Poems/The_Anglo-Saxon_Runic_Poem) gives the following 29 labels in GP order:
+
+`1, 4, 7, 10, 13, 16, 19, 22, 25, 27, 29, 32, 35, 38, 41, 45, 48, 51, 55, 59, 63, 67, 71, 74, 77, 81, 84, 87, 90`.
+
+These are **editorial verse addresses**, not an authenticated numeric key. The checked-in Old English source text also contains the corresponding 29 stanza breaks, permitting exact reconstruction of the labels as 1 plus cumulative preceding verse counts. However, the [Hickes 1705 reproduction, vol. 1 p. 135](https://commons.wikimedia.org/wiki/File:Rune_poem_Hickes_1705.png), the surviving early printed witness to the lost Cotton manuscript, has no such printed verse-number sequence in the visible first 27 stanza openings. Its compact physical lines do not coincide with Dickins's verse layout; the available image cuts off the end of the poem. See also [critical reassessment of Hickes and the runological witness](https://theses.gla.ac.uk/5134/) and [the 2017 scholarly encyclopedia account](https://cora.ucc.ie/server/api/core/bitstreams/9cea25e4-fa8f-422a-9d61-f0818c0c76c0/content) on editorial uncertainty. The historical order selects the rune alphabet/poem family, not Dickins's 1915 numbering as the original puzzle's intended edition.
+
+The authenticated [2016 signed message](../resources/historical/cicada2016-4gq25-outguess.asc) explicitly names Liber Primus as the referent of its words, meanings and numbers. No independent clause selects these poem verse addresses, an arithmetic normalization, the extraction of stanza starts rather than ends, a periodic clock, or a cipher operation. Earlier Cicada book codes demonstrate that source coordinates can matter when they are actually supplied; the exact alphabet order alone does not supply a coordinate list. The known prime-number mapping is already part of GP29 and the fixed prime-value consumer above failed.
+
+**Decision:** do not promote these 29 editorial labels to a key. No other stanza-count/statistic or transformation menu was run; no new original ciphertext was scored. Retire the numeric-poem branch under #2589's source-selection criterion. Reopen only with an independent clue that explicitly identifies a poem edition and numeric operation, or an authenticated coordinate list. Retain the exact 29-rune alphabet match.
+
 ## Decision
 
 Retain the **29/29 Anglo-Saxon Rune Poem alignment** as a genuine source-selection and alphabet/register constraint. It is a much stronger historical connection than a thematic resemblance, and it supplies a fixed Old English/English parallel reference for future independently motivated tests.
