@@ -17,6 +17,7 @@ The second-chance arithmetic is `889296759263 + 963846244281 = 1853143003544`. T
 - The 2022 whitespace HTML reconstruction is not byte-faithful: the documented decoder does not reproduce the signed payload from it. Preserve the verified PGP message, not the reconstruction as the original bitstream.
 - The independent Wayback CDX inventory has only two 2012 records: `robots.txt` 404 at 02:24:54 UTC and `www` redirect 301 at 02:25:01 UTC on 11 January. No 2012 root/page/image capture exists. The first root capture is a 2013 404; later 200s are parking/squatter HTML.
 - The 2012 server IP is participant-reported as `75.119.203.244`; a contemporaneous scan reports FTP/SSH/HTTP open. No preserved FTP listing or credentials establish an FTP branch. DNS accounts conflict between removal and a `127.0.0.1` record; no authoritative historical DNS log resolves the event.
+- The archived phone-line OGG from the community mirror `neuroretransmit/cicada` is now pinned and checked. It is dual-mono with clean OGG framing and no trailing payload; the only DTMF-like candidate `A5` has broad speech-like peaks and is not a credible hidden keypad message. See [the reproducible audio gate](../im-results/cicada2012-phone-audio-stereo-dtmf-gate.md).
 - Current WHOIS reports a 2013-03-28 creation date and cannot establish continuity with the 2012 registrant.
 
 ## LP2 decision
