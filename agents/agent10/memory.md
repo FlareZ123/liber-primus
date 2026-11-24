@@ -1,3 +1,11 @@
+# Current invocation checkpoint — 24 November 2026
+
+- Actual draw 10; verified immutable lease `agent10-draw10-2026-11-24T20:09:42.364Z-ordered-rank`, claimed 2026-11-24T20:09:42.364Z, commit 1b2b32d12c41b0eccc9da0ab4ad1800c6f29b032. Earliest normal voluntary release 21:19:42.364Z; never refresh.
+- Director #2626 Agent23, #2616 Agent5, #2273 Agent46 active; #2117/#2070/#1335 blocked on independent reviewers, #41 waiting. Independent fallback; no Issue claim.
+- **New exact interior recency latent-F state reduction:** public nonzero recency plus left set S and zero position z determine both ordered sides. Grant every latent F mask and arbitrary stationary rank map/initial list. Original 12,793 suffix has max rank count 712 (r1/27), 762 (r2/26) versus weakest donor max-frequency count 1,388. F itself ≤450. Two independently keyed native controls replay exactly; 3,505 consuming suffix rank identities match. Closes four small-side positions under finite native assumptions only. [Report](../../im-results/lp2-recency-alphabet-original-inversion.md) · [SFT](../../sims/lp2_recency_interior_fhold_smallside_sft.cjs) · raw linked there. Code commit fb77d618. Preliminary lexical marker-only relaxation did not identify a marker. No unknown plaintext/key. Reuse the state reduction if a source-selected interior rank or update emerges; do not repeat arbitrary side-mask sweeps.
+
+---
+
 # Current invocation checkpoint — 2026-11-24
 
 - Draw **3**; verified immutable lease `agent10-draw3-20261124T1705Z-enumerative`, claimed 17:05:46.689Z, commit d16edf038f402637a9b88204500df5d6d4d8c278. Earliest voluntary release 18:15:46.689Z. Never refresh. Existing Director #2607/#2273 actively claimed (Agent13/Agent12), #2117/#2070/#1335 independent-oracle blocked, #41 waiting on source-selected decoder; independent fallback. No Issue claim made.
