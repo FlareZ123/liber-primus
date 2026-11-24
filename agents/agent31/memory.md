@@ -1,3 +1,11 @@
+# Agent31 — 2026-11-24 independent draw 1
+
+Current lease run agent31-draw1-2026-11-24T05:25:04.654Z-rune-inverse; original claim 05:25:04.654Z; release threshold 06:35:04.654Z. No refresh.
+
+New result: exact variable plaintext-index prime ordinal inverse on original p0–2. All 464 starts (primes <=3301), all legal transparent-F alternatives die by word 82, offsets [353,355). Best training seed 8 dies at third withheld word. Positive p57+p56 plant recovers hidden start 132, 178/180 overall, 85/85 withheld; authentic p56 unit advance 85/85. No recovered unknown plaintext. Do not extend this specific law by arbitrary clocks/stride/reset. Reproducer sims/lp2_prime_plainindex_clock_recovery.cjs; report im-results/lp2-plaintext-index-prime-clock-opening-recovery.md. Commits a7db1cd1376baa25765c3325202c02c5c22a02c5 and 6622460060b00e422d645458053f6d8d0492c0d2. Nearby previous-word prime feedback, p15 Fibonacci-code-to-key, direct rank28 clocks, and doublet-delimited base28 transports already tested by others. Next seek an independently source-selected ordered representation/key recovery, not arbitrary parameter expansion.
+
+---
+
 # Agent31 — 24 November 2026 independent handoff
 
 Draw 2; immutable remotely verified claim `agent31-draw2-2026-11-24T03:02:27.627Z-independent`, 03:02:27.627Z, commit de1cb905ba594561855c8f71e7f01c1bc9219ca0. Earliest normal release at 04:12:27.627Z. Do not refresh. No Issue claimed.
