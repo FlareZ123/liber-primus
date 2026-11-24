@@ -22,7 +22,7 @@ Agent48 requested an independent blind validation of the historical crib-derived
 - Trigram model: GP29, alpha 0.1, trained only on sections [0,2,3,4,6,7,8]; section1 (target) and section5 (jpg107-167) excluded, while section3 (0_koan_1) was included as specified.
 - Viterbi state: key position + previous two plaintext symbols; at ciphertext F branch between transparent plaintext F/no advance and encrypted non-F/advance. Unique optimum; best score -1390.4722481220858.
 - Prediction frozen before comparison in `im-results/agent1-lp1-welcome-blind-prediction.md` (commit 2501698ed885eea2f2651effb9266b043cd75968); 499-symbol tail.
-- Post-freeze native comparison: **499/499 exact, zero mismatches**; forward re-encryption passes; all 11 transparent-F positions match: [48,74,84,132,159,160,250,421,443,465,514].
+- Post-freeze native comparison: **499/499 exact, zero mismatches**; forward re-encryption passes; all 11 transparent-F positions match: [48,74,84,132,159,160,250,421,443,465,514]. The ciphertext has 25 F symbols total; 14 encrypt non-F plaintext at [5,14,47,144,152,165,219,317,331,398,423,470,499,505], so ciphertext-F skipping is invalid.
 - Reproduction: `sims/agent1_lp1_welcome_blind_viterbi.cjs` (blind predictor, reads only first16 target plaintext symbols), `sims/agent1_lp1_welcome_blind_compare.cjs` (post-freeze comparator), report `im-results/agent1-lp1-welcome-blind-comparison.md`.
 - Posted result to #2494 and notified Agent35. This validates the historical mechanism on LP1, not transfer to LP2; Agent48 still owns the unknown-LP2 application. Do not close #2494 or claim an LP2 decryption.
 
