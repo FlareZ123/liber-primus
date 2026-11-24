@@ -15,7 +15,7 @@ Hypothesis: one of these four source-derived values is a literal zero-based byte
 - Operation: p50[i] XOR MP3[offset+i].
 - Exact offsets: 761, 1031, 1229, 1259; zero-based from the beginning of the full file.
 - Preserve the historical Twitter-stream XOR positive control and the already tested offset-0, ID3-payload and p22-derived-809 comparisons.
-- Evaluate the four outputs for recognized file signatures/JPEG structure, printable text, byte uniqueness, entropy and exact bytes.
+- Evaluate the four outputs for recognized file signatures/JPEG structure, printable text, byte uniqueness, entropy and exact bytes. Also report whether any candidate begins with an all-zero 16-byte pad run and count such runs across the full MP3; this is a structural diagnostic only, not an extra key-selection rule.
 - No one-based variants, neighboring offsets, arbitrary phase search, additional reducers or fitted transformations.
 
 ## Decision rule

@@ -29,6 +29,11 @@ const summary = b => {
 const mp3=fs.readFileSync(process.argv[2]);
 if(mp3.length!==4010732 || sha(mp3)!=='83008217439110c3b824898af73b99cb2cf0657dda88cb363c3aa34a4ec0a460') throw new Error('Pinned 761.MP3 length/SHA-256 mismatch');
 if(mp3.toString('ascii',0,3)!=='ID3') throw new Error('Pinned 761.MP3 lacks ID3 header');
+let zeroRun=0,zeroWindows16=0; const firstZeroWindows16=[];
+for(let i=0;i<mp3.length;i++){
+  zeroRun=mp3[i]===0?zeroRun+1:0;
+  if(zeroRun>=16){zeroWindows16++;if(firstZeroWindows16.length<64)firstZeroWindows16.push(i-15);}
+}
 const tag=10+(mp3[6]&127)*0x200000+(mp3[7]&127)*0x4000+(mp3[8]&127)*0x80+(mp3[9]&127);
 const records=fs.readFileSync('resources/cicada2013-twitter-hex-stream.txt','utf8').trim().split(/\r?\n/).map((line,i)=>{
   const m=/^([0-9a-fA-F]+):\s*([0-9a-fA-F]+)\s*$/.exec(line);
@@ -79,6 +84,7 @@ console.log(JSON.stringify({stage:'p22-emerged-809-p50-xor-test',
  operation:'p50[i] XOR 761.MP3[809+i]',
  selected_offset:emergedOffset,
  pad_sha256:sha(emergedKey),
+ pad_first16:emergedKey.subarray(0,16).toString('hex'),
  candidate:summary(emergedCandidate)},null,2));
  
 // Fixed p57/2013 Parable-number follow-up. The 2013 ID3 TXXX value is
@@ -90,7 +96,7 @@ const parableXors=parableOffsets.map(offset=>{
   const pad=mp3.subarray(offset,offset+256);
   if(pad.length!==256)throw new Error('Short MP3 pad at Parable offset '+offset);
   const out=xor(p50,pad);
-  return {offset_zero_based:offset,pad_sha256:sha(pad),candidate:summary(out)};
+  return {offset_zero_based:offset,pad_sha256:sha(pad),pad_first16:pad.subarray(0,16).toString('hex'),first16_all_zero:pad.subarray(0,16).every(x=>x===0),candidate:summary(out)};
 });
 console.log(JSON.stringify({
   stage:'p57-parable-exact-raw-byte-offset-p50-xor',
@@ -98,6 +104,8 @@ console.log(JSON.stringify({
   operation:'p50[i] XOR complete-761.MP3[offset+i]',
   offset_convention:'zero-based bytes from the beginning of the complete file, including ID3',
   offsets:parableOffsets,
+  zero_run_16_windows_in_full_mp3:zeroWindows16,
+  first_zero_run_16_positions: firstZeroWindows16,
   candidates:parableXors
 },null,2));
 
