@@ -1,0 +1,172 @@
+{
+  "sourceBlobs": [
+    "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "2550eae357442912220e05dc51147523a61dd75a",
+    "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+  ],
+  "packedSourceFNV32": {
+    "cipher": "c5461606",
+    "grid": "54bc0a2c",
+    "native": [
+      "538c0b28",
+      "70f2f985",
+      "453b40cc",
+      "66422e2d",
+      "92acbe33",
+      "67a9eac5",
+      "7f1e5490",
+      "767a1a5d",
+      "fb59fff1"
+    ]
+  },
+  "controls": [
+    {
+      "label": "0_welcome",
+      "inv": false,
+      "score": -2.707710702084305,
+      "mask": 4345,
+      "phase": 1,
+      "key": [
+        23,
+        10,
+        1,
+        10,
+        9,
+        10,
+        16,
+        26
+      ],
+      "fitMasks": 8192,
+      "suffixMasks": 8192,
+      "suffixUnique": 4562,
+      "intersections": 37371904,
+      "nonempty": 37183301,
+      "optimized": 467049,
+      "pruned": 25988019,
+      "nodes": 6962851,
+      "leaves": 607,
+      "seconds": 51.359613858,
+      "correctKey": true,
+      "correctFit": 256,
+      "fitPacked": "HSUFDTSHSUFDTSNKUGEKTQDCSGE]QLDBEJS[QDHYEXCSSJXDAYUUCVPKQKPJDQYJ]P[QEKNRBQADECDPSHIDAKJXCSKEHY[ISESKQKPYJSFSPPYE[DJSYUDVCSHY[[DBHKUUAKJXYJSJXQDYUUPQEBGGUSYJXPBAASEV[DBEKJJDFSJFS[DBEKUUBP\\JP[DBEFSEQYKJQ[YJX[DBEE]UKQ[BUQKTYQSU[[DBHKUUXKPFDBSEYJSJXQDPSUAKQKPC",
+      "holdout": {
+        "score": -2.671213116958951,
+        "correct": 256,
+        "replay": true,
+        "packed": "EDBGICKPNKUGEKTYGSCYQHSPIYNSDBEPSUBSPYJXDBEE]UKQKSPLDBEJS[XSSNHKCKJYJX[DBHKUUYEEKBSDBQPKXSUKFSCSKJPQYEKQKPDJU[CEDBGIGDVHKCKJCYQHSTY[STSEGSHKXPDT[DBYESYRSVBJQD[DBEPSUA[DBYESYUYHBJQD[DBEPSUA]FIKJQSUUKGSJFSKPIDU[ADEYUUCYQUKBSPKPIDU[YJKJPQEBFQ\\JFDTTYJX[DBEDHJP"
+      }
+    },
+    {
+      "label": "0_loss_of_divinity",
+      "inv": true,
+      "score": -2.8171219362398303,
+      "mask": 338,
+      "phase": 4,
+      "key": [
+        3,
+        17,
+        9,
+        22,
+        6,
+        1,
+        14,
+        10
+      ],
+      "fitMasks": 4096,
+      "suffixMasks": 256,
+      "suffixUnique": 256,
+      "intersections": 1048576,
+      "nonempty": 1047991,
+      "optimized": 71314,
+      "pruned": 868299,
+      "nodes": 1992526,
+      "leaves": 275,
+      "seconds": 4.497554363,
+      "correctKey": true,
+      "correctFit": 256,
+      "fitPacked": "CSUDPPDAXKBKJKQ[CSFKEFBTASESJFSNEYFQKFSPCESSRSIYB\\EPHIKFIFYBPSCSUDPPDAXKBKJKQ[FDJPBTNQ\\JHSFDJPBTSQDDTBFIRSFYBPSHSRSUSKBSCSADUUDHVQHDSEEDEPHKCKJCSXSFSNQ\\JHSXDJDQIYBSSJDBGIDECSESKPJDQSJDBGIHSIYBSHIYQHSIYBSJDHR[UBFFYJXHSHKUUJDQRSPQEDVSJDBGIUYQSEQDDRQYKJHIYQHS",
+      "holdout": {
+        "score": -2.7085885975760076,
+        "correct": 256,
+        "replay": true,
+        "packed": "JSSXTDPQCVPYESJDQHDECFDJPBTVNESPSEBYQ\\JHSNESPSEBSCVPRSFYBPSHSRSUKSBSHSYESH]FKAHSUDPSCSTHSHKUUJDQRSPQEDVSJDBGIQDGYKJCSTYGYKJCKPKPCSXSFSNQ\\JTDPQCVPYESJDQHDECNESPSEBVYXISESJFSHSADUUDHXDGTYPDCYQHSFYJRSUDVYJXRSEKGIQDEHSADUUDHE]PDJPDHSFYJRSUDVYJXRSEKGIQCSESKPJDC"
+      }
+    }
+  ],
+  "target": [
+    {
+      "label": "p51-53",
+      "inv": false,
+      "score": -3.644328743769612,
+      "mask": 227,
+      "phase": 3,
+      "key": [
+        8,
+        4,
+        27,
+        28,
+        4,
+        3,
+        5,
+        26
+      ],
+      "fitMasks": 2048,
+      "suffixMasks": 128,
+      "suffixUnique": 128,
+      "intersections": 262144,
+      "nonempty": 211310,
+      "optimized": 165516,
+      "pruned": 13217,
+      "nodes": 916477,
+      "leaves": 54,
+      "seconds": 0.742355142,
+      "correctKey": null,
+      "correctFit": null,
+      "fitPacked": "QLP]]MDA[[PPFMLFVC]P]JHTUGHWJW]PTTTWFBQ\\RYTOPRDPPSPRQUHYTVZADRCZ]PVHBQTSUKXYLTLQGWIIIHQRBPPQSZMMKJBPSXTNSSRBUXPGICOZKGRMPXEEIXF\\VZRU\\JPAVH[MBQSPQYKX]EKBYBIYSLTHM\\FN]XJNRDBQ[QICWY[DBYKHADAYEYKQFIBSDOXPS[F\\J[QHVPZUKJFYVKUO[DHICE]QNB]PL]UV]GCSZXKBVSSGOQIGR]GR",
+      "holdout": {
+        "score": -4.0184486524246354,
+        "correct": null,
+        "replay": true,
+        "packed": "CJMVSWAXE]IJLWL\\CWCV[XSSFHIUB\\EDCRWKGMXYRTRSOOTVNIPXJTTGF\\CVCW[KZ\\MJOEFPG\\PFPXGNDFINNS\\VJO]BCGHHRUE\\JWKCELU]DBJFCURDK[YBOEOBZXMKOLS[ZIIFZDKWGNHVMDDYSPWE]PBJWLFGOEJ[PHAKYZDUUBSLDBBFRIFIAP[L\\SZ\\RT]BTMLWEIG]OKUOTS[URLXD[TONNVYOUPRSEPJHNBFOO]DF\\]XPZZFVWNYOYRTK"
+      }
+    },
+    {
+      "label": "p51-53",
+      "inv": true,
+      "score": -3.62646762504545,
+      "mask": 544,
+      "phase": 6,
+      "key": [
+        3,
+        18,
+        7,
+        27,
+        9,
+        10,
+        24,
+        19
+      ],
+      "fitMasks": 2048,
+      "suffixMasks": 128,
+      "suffixUnique": 128,
+      "intersections": 262144,
+      "nonempty": 211310,
+      "optimized": 161825,
+      "pruned": 16908,
+      "nodes": 890773,
+      "leaves": 31,
+      "seconds": 1.274350216,
+      "correctKey": null,
+      "correctFit": null,
+      "fitPacked": "STG\\CESKJGMNMLYQETRRSWPFPDQVPSRMFBJNMVYCMRBNELLOFOYBG]BMD\\UL[EOTTZ]XKFIYESHIJNRR[BVRJYWSCCYTNOYETYC\\XHVCYQDZOWHYXYTSBJJIWXKKQHHCOVPAQBZRFIHOKPYVSXNYTISK[DBZVUIZBGEHPHSCK\\VOGSPY]CJDDVCIU\\COKQECOGVYHQDNIY]PQDRLFFIXIIWJDBLBQA\\EXSFCKSEPBKSXQVZIPSQYZSNK\\XDCO\\BD",
+      "holdout": {
+        "score": -4.091095173059562,
+        "correct": null,
+        "replay": true,
+        "packed": "IT[RXWAV]KWVXLOI\\CY]]AKKQJJNJGOQ]ZTK]NYPBBUGHWUVEDTTLU\\[LL]KXLK]YREBPJHWGQVZOY]WVXOOHFLBITPRQZTBSWNWQ]]KHSCJFVMYS]N]JJLEQUOOXLKMMGVN\\UH[OQPLMLWXCVEIMYBRCEBWTRGOWWGYPZCLNFMSOIGFHEZOAN[DQIKUDQMP\\JPPTRS[ZOXUYBSZIHVRNLOFBOLRFBJQEKZIXXIVFJHRECITMNVSGFVDYE\\FKJGR"
+      }
+    }
+  ],
+  "encoding": "ASCII 65+GP0",
+  "executed": "local GCC14.2/Node22; packed fixture matches three remote source blobs"
+}
