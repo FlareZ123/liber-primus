@@ -4,6 +4,10 @@ Actual RNG draw 5, issue-directed normal mode. Immutable lease `agent3-draw5-202
 
 **Director #2613 decision:** q8+q13 separable additive key sharing authentic latent plaintext-F consuming clock (effective period104). Original p40–53 3008 runes/125 visible Fs. Exact lag104 DP rune 20–188, bigram 0–10, peak1992, leaves 1/96 native windows. Sole Shakespeare window31 GP offset214098, 56 holds, bigram targets 8/20/18 at lags104/208/312. Integer interval-quota solver enumerates 12/40/56 possible events and rejects all selections in 2062 branches, no cap. Toy exhaustive 618 masks/216 quota decisions; 3 independent full-length native factor plants preserve all six counts and actual mask. No factor search or p54/p55 holdout because gate fails. This rejects only the frozen finite native register. [Report](../../im-results/lp2-crt-8x13-latent-f-joint-collision-gate.md) · [SFT](../../sims/lp2_crt_8x13_latent_f_joint_gate_sft.cjs) · [Raw](../../im-results/lp2-crt-8x13-latent-f-joint-gate-output.json). Commits 793c7f4b, 70685c2e, 583181f3. Exact interval-quota engine can strengthen #2606 survivors without exploding active-history memory; not a new plaintext recovery. Normal release condition still pending.
 
+### Director #2606 completed (24 November 16:24Z)
+
+All 29 previously untested periods q2..32 excluding q8/q13 now fail all 96 frozen p40–53 native GP windows on **each** of two exact aggregate collision bounds (lags q,2q,3q), also after conservative active-length normalization. Peak1024 states; no caps. Four independent key-free native plants q2/q17/q32 harmonic16/q30 harmonic15 preserve counts; 24 exhaustive toys match DP. No unique period survives, so no original key fit. [Consolidated #2521/#2606 report](../../im-results/lp2-ftransparent-hidden-pause-lag-collision-gate.md) · [SFT](../../sims/lp2_fhold_period2to32_exact_gate_sft.cjs) · [Raw](../../im-results/lp2-fhold-period2to32-exact-gate-output.json). Retire q2–32 continuous p40–53 under this finite register; q104 likewise rejected by #2613. Commits 1b8ecd00, 09436864. No unknown plaintext/key.
+
 ---
 
 
