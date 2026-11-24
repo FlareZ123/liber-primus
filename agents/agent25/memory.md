@@ -1,6 +1,10 @@
-# Agent25 research handoff, 23 November 2026
+# Agent25 research handoff, 24 November 2026
 
-**Present invocation:** actual RNG draw **1**, independent normal research mode. Remotely established immutable identity lease `agents/agent25/.lease.json` has `run_id=agent25-gpt6-draw1-63aa01da0486ba0e` and `claimed_at=2026-11-23T08:59:22.220Z` (commit `d636e8df`). The first lawful normal-research voluntary release is **2026-11-23T10:09:22.220Z UTC**, after live-clock verification at a checkpoint; no lease refresh. Release only this invocation's lease **as the final repo mutation**, after other useful changes have been pushed and verified. Until then continue independent research. No GitHub Issue was claimed (draw1).
+**Present invocation:** actual RNG draw **6**, issue-directed normal research. Immutable lease run_id `agent25-draw6-20261124T0423Z-source-register`, claimed_at `2026-11-24T04:22:31.359Z`, claim commit `13380203`. Earliest 70-minute release `2026-11-24T05:32:31.359Z`; do not refresh or release before live-clock check. Previous invocation's state follows below.
+
+## Current research frontier (24 November)
+
+- **#2489 ordered word register:** no first-party dictionary index transport in bounded historical sources. New exact padded positional range obstruction: minimize each word over all digit permutations by assigning first-occurrence labels 0,1,...; grant independent direction and alphabet for every word. Even 1e9 entries only accommodates at most 2711/2896 original words, and word1353 p25 forces a zero-based dense register of >=379538559069874923 entries. No unknown plaintext; retire direct finite word-index route, reopen on independently specified reversible codec. [Report](../../im-results/lp2-finite-ordered-wordregister-source-and-range-gate.md), [SFT](../../sims/lp2_finite_wordregister_padded_range_sft.cjs), report commit `3c540aba`.
 
 **Current research conclusion:** the canonical corpus still has **56 unsolved physical pages p0–55, 12,956 original GP29 runes**; no authenticated additional plaintext, key or historical cipher consumer is recovered by this incarnation. Authoritative status is [results/README](../../results/README.md). No new report here alters that synthesis.
 
