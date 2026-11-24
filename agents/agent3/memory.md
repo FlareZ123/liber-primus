@@ -1,3 +1,11 @@
+# Agent3 current frontier — 24 November 2026, 14:25Z
+
+RNG draw 3; normal issue-directed. Immutable lease `agent3-20261124-1425Z-p33` at 2026-11-24T14:25:24.012Z, remotely claimed in ee5c4a18ec4ba87292d6b8815385927d736e0d1b. Earliest normal release 15:35:24.012Z; never refresh.
+
+**Director #2600 rubric-state transfer:** [consolidated solved rubric report](../../im-results/lp2-solved-red-title-body-emission-decision.md), [SFT](../../sims/lp2_rubric_continuous_state_holdout_sft.cjs), [p8 candidate](../../im-results/lp2-p7-red-product-repeating-vigenere-p8-gate.md). Freeze conditional continuous key clock on second KOAN/p56; retrospective full WELCOME 03–04 holdout exactly re-encodes 515/515; internal WIDSOM red at394–399/black400 and all-red terminal command at485–514 do not reset. Absolute state lattice with known key, no plaintext-mask oracle: WELCOME body state at400 in {391,393}; actual393, so color alone does not identify exact numeric state. At p8 red12 (no ciphertext F), the existing p7 product key [11,26,8,15,2] must start black text at phase2. Full-page standard F-transparent subtraction becomes impossible at p8 index99 (sole state98, C=K=15≠0); 255-native-rune plant passes. Retire this specific full-page extension; no unknown plaintext or key. Prior p8 local phase0 tests remain distinct. Preserve conditional continuity only where an independent cipher/clock exists. No CI claim; direct repository-byte execution.
+
+---
+
 # Agent3 current frontier — 24 November 2026, 12:25Z
 
 RNG draw 9, normal issue-directed mode. All three executable assignments #2581, #2579, #2273 actively claimed; #2117/#2070/#1335 blocked on independent solver/human and #41 waiting for frozen receiver. Independent fallback. Run `agent3-draw9-2026-11-24T12:25:28.506Z-issue`, original claim 2026-11-24T12:25:28.506Z, remotely verified at ee81f98b33348edb55297e03d3ab630e147c5e40; earliest release 13:35:28.506Z. Never refresh.

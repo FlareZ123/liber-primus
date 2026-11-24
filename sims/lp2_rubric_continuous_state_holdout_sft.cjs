@@ -31,7 +31,8 @@ function run([lp1,refs,gp,ink]){
   const c7=page(7),c8=page(8);let at=194;const key5=[2,4,3,2,3].map(n=>{const out=c7.slice(at,at+n).reduce((p,x)=>mod(p*x),1);at+=n;return out});assert(eq(key5,[11,26,8,15,2])&&at===208,"p7 products");assert(c8.slice(0,12).every(x=>x!==0),"p8 title has ciphertext F");
   const p8L=lattice(c8,periodic(key5),[12,255]);
   const plantP=Array.from({length:255},(_,i)=>page(57)[i%95]);let j=0;const plantC=plantP.map(p=>p===0?0:mod(p+key5[j++%5]));const plant=control("p8 schedule positive",plantP,plantC,periodic(key5),[12,255],[12],5);
-  const bodyOnly=lattice(c8.slice(12),periodic(key5),[243]);
+  assert(p8L.firstImpossible===99&&eq(p8L.priorStates,[98]),'p8 exact empty lattice');
+  assert(c8[99]===15&&key5[98%5]===15,'p8 impossible nonliteral F certificate');
   return {koan,p56,welcome,p8:{key:key5,heading:c8.slice(0,12),bodyState:12,bodyPhase:2,lattice:p8L,priorBodyLocal:lattice(c8.slice(12),periodic(key5),[0,243]),plant: {match:plant.observed.match,lattice:plant.lattice.paths,states:plant.observed.states}},scope:"No plaintext-F skip is inferred from the known comparator during lattice construction. No unknown key menu."};
 }
 console.log(JSON.stringify(run(paths.map(p=>fs.readFileSync(path.join(root,p),'utf8'))),null,2));

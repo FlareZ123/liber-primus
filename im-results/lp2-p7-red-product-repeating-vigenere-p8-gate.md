@@ -54,9 +54,25 @@ Under the exact p56 plaintext-F-transparent rule, **both signs have zero valid p
 
 **Scoring limitation:** the model is calibrated on solved LP1 native-GP English. The ordinary-clock scores reject these exact receivers as native-GP English candidates; the exact transparent-clock result is an algebraic impossibility for this receiver regardless of language.
 
+## Full-page continuous-clock alternatives
+
+### Five-value key, source-selected rubric continuation (Agent3, #2600)
+
+The [solved rubric continuity holdout](lp2-solved-red-title-body-emission-decision.md#section-holdout-internal-red-spans-and-exact-consuming-state-identifiability-2600) transfers the second KOAN/p56 same-mode rule to the already solved WELCOME internal red spans. For this specific existing p7 product key, a conditional full-page p8 inverse must consume the original 12-rune red heading before reaching the black text. Its heading contains no ciphertext F, so the consuming state is exactly j=12, phase2 modulo5. The previously tested black-only state0 is not reused.
+
+Standard historical subtraction and the exact plaintext-F-transparent rule are fixed. The absolute-state lattice first becomes empty at physical p8 index **99** (black-body index87). Its only incoming state is **j=98**: the original C[99]=15 equals K[98 mod5]=15 and would decode to F, which by this model must pass through as ciphertext zero. Hence this is a direct algebraic obstruction independent of any English score or lexicon. The 255-rune clear-p57-derived native plant re-encodes exactly and retains its true path.
+
+Reproducer: [rubric-state holdout SFT](../sims/lp2_rubric_continuous_state_holdout_sft.cjs), executed directly on the repository source bytes. This is one state selected by the solved rubric law, not an arbitrary key-phase sweep.
+
+### Full unreduced product digits (Agent9)
+
+Reducing each product modulo 29 discards all its upper digits. The unreduced GP0 products are `[69,17600,385,392,3192]`; writing each in base 29, most significant digit first, gives `[[2,11],[20,26,26],[13,8],[13,15],[3,23,2]]`. Their concatenation has **exactly 12 runes**, the adjacent p8 red-heading length. This selects a distinct literal 12-symbol key, not a fitted phase or permutation. It does not establish intentionality.
+
+Use that key from the first p8 rune through all 255 runes, without reset. Ordinary subtraction gives heading `EOEADOERUJNGTINS`, IoC 0.0337810715; addition gives `TNGCTIAIAIAEBTYM`, IoC 0.0325459318. Both re-encrypt exactly, but neither yields readable heading or body. Under the exact plaintext-F-transparent rule, the reachable phase set becomes empty at zero-based rune 17 (subtraction) and 12 (addition). Both clear-p57 planted controls retain their true plaintext path. Thus retaining upper product digits does not rescue this direct repeating-key receiver. The SFT now includes these independent checks; no claim is made about other consumers.
+
 ## Decision
 
-Retire the exact direct receiver **p7 red-word products [11,26,8,15,2] → period-5 GP29 additive/Vigenère key → p8 243-rune black body**, under the ordinary clock and exact p56 plaintext-F-transparent clock. Do not expand into arbitrary key phases, rotations, permutations, or state updates without a new first-party selector.
+Retire the exact direct receiver **p7 red-word products [11,26,8,15,2] → period-5 GP29 additive/Vigenère key → p8 243-rune black body**, under the ordinary clock and exact p56 plaintext-F-transparent clock. The source-selected full-page phase2 continuation of the five-value key is also algebraically impossible, and the 12-digit full-product key likewise fails. Do not expand into arbitrary key phases, rotations, permutations, or state updates without a new first-party selector.
 
 This does not refute other uses of the p7 five-point packet, its quartic structure, a nonperiodic key clock, or a different cipher on p8.
 
@@ -68,8 +84,3 @@ node sims/lp2_p7_red_product_repeating_vigenere_p8_gate.cjs
 
 Sources: **resources/liber-primus/lp2-corpus.json**; **resources/liber-primus/lp2-ink-annotations.json**; **resources/liber-primus/lp2-transcription.txt**; **resources/liber-primus/lp1-plaintext-reference.txt**; **sims/lp2_native_gp_source_orthography_sft.cjs**; the p7 source arithmetic is consolidated in **im-results/lp2-p7-p8-red-product-state-header-keyclock.md**.
 
-## Agent 9 extension, 24 November: retain the full product digits
-
-Reducing each product modulo 29 discards all its upper digits. The unreduced GP0 products are `[69,17600,385,392,3192]`; writing each in base 29, most significant digit first, gives `[[2,11],[20,26,26],[13,8],[13,15],[3,23,2]]`. Their concatenation has **exactly 12 runes**, the adjacent p8 red-heading length. This selects a distinct literal 12-symbol key, not a fitted phase or permutation. It does not establish intentionality.
-
-Use that key from the first p8 rune through all 255 runes, without reset. Ordinary subtraction gives heading `EOEADOERUJNGTINS`, IoC 0.0337810715; addition gives `TNGCTIAIAIAEBTYM`, IoC 0.0325459318. Both re-encrypt exactly, but neither yields readable heading or body. Under the exact plaintext-F-transparent rule, the reachable phase set becomes empty at zero-based rune 17 (subtraction) and 12 (addition). Both clear-p57 planted controls retain their true plaintext path. Thus retaining upper product digits does not rescue this direct repeating-key receiver. The SFT now includes these independent checks; no claim is made about other consumers.

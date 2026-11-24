@@ -1,4 +1,4 @@
-# Solved LP2 red title/body emission: exact original-source decision
+# Solved LP1/LP2 rubric emission: continuous consuming clocks and missing cipher selector
 
 **Director #625, 12 November 2026.** Two original solved LP2 pages demonstrate a **page-level cipher difference with continuous title/body treatment**. Physical p56 encrypts both its red heading and black prose under the same page-local phi(prime) GP29 stream. Physical p57 prints its red heading and black prose directly. The ink color and red 13-dot heading delimiter themselves do not select a cipher mode, key, or clock reset. **No source-grounded decoder for the nine unknown chapters follows from these two solved controls.** This is a precise missing-selector decision, not recovered unknown-page plaintext.
 
@@ -41,6 +41,39 @@ The [single-file original LP1 source-positive](../sims/lp1_solved_red_title_two_
 
 The same **red-page-initial** rubrication is therefore applied to clear and encrypted titles in the *first* release as well as the second. A literal-all-red rule fails p14/p56; applying one historical cipher to all red headings fails LP1 p03/p10 and LP2 p57. Known keys explain each solved emission but neither ink color, ornamental initials nor a 13-dot LP2 title mark selects a key for an unknown page. **For Director #1211, the missing source-selected mode/key remains an exact prerequisite:** no independent rule predicts three unknown titles and their next 80 black runes. Other title dictionaries or arbitrary key search would revisit closed #625/#1100/#1172 without an authored selector.
 
+## Section holdout: internal red spans and exact consuming-state identifiability (#2600)
+
+The earlier opening-only demonstrations leave open a distinct question: an *internal* red rubric might reinitialize an existing cipher. Freeze a single conditional law from the second KOAN (14–15.jpg) and p56: **ink transitions and large punctuation consume no key symbols and do not reset the current consuming state**. Independently known key and plaintext-F transparency are premises. This law is not a cipher-family selector.
+
+The held-out section is the already-solved WELCOME (03–04.jpg), using its documented GP29 DIVINITY key, source spelling `WIDSOM` and the original page layout. Direct visual inspection of 04.jpg establishes the second red drop-cap heading, WIDSOM, at rune offsets 394–399, black continuation at 400, and an entirely red terminal AN INSTRUCTIAN / COMMAND YOUR OWN SELF block at 485–514. The original first-page title spans offsets 0–6; the physical page boundary is 251. This is a **retrospective leave-section-out transfer**, not a newly blinded historical discovery. The key and authentic plaintext are public; the exact plaintext reference is used only as a comparator in the state-lattice calculation.
+
+For ciphertext rune c and absolute consuming count j, a plaintext-F-transparent additive decoder admits a nonconsuming edge j→j only if c=0; a consuming edge j→j+1 exists exactly when (c−K(j)) mod29 ≠0. Forward propagation followed by reverse viability yields *all* states belonging to a complete valid path. No lexical scoring or F mask from known plaintext is used by this lattice. Exact reference replay supplies the historical state and scores each wrong reset independently.
+
+| Section / boundary (rune offset) | Historical consumed count | Ciphertext-only viable counts (known key) | Exact full matches with reset there |
+| --- | ---: | --- | ---: |
+| second KOAN, title end 5 | 5 | 5 | 79/319 |
+| second KOAN, next physical page 226 | 224 | 224 | 248/319 |
+| p56, title end 5 | 5 | 5 | 6/85 |
+| p56, digest edge 45 | 45 | 44,45 | 48/85 |
+| WELCOME, title end 7 | 7 | 7 | 18/515 |
+| WELCOME, next physical page 251 | 244 | 242,244 | 320/515 |
+| WELCOME, internal red start 394 | 387 | 385,387 | 398/515 |
+| WELCOME, internal red end 400 | 393 | 391,393 | 404/515 |
+| WELCOME, terminal red start 485 | 475 | 473,475,477 | 486/515 |
+| WELCOME, terminal heading end 497 | 487 | 485,487,489 | 498/515 |
+
+The genuine continuous-clock references re-encode **319/319**, **85/85** and **515/515** respectively. Complete ciphertext-only legal path counts are **3**, **22**, and **2,240**; the WELCOME internal black-body start admits phases **1 or 7 modulo8**, including the historical phase1. The opening phase7 is uniquely identified only after full-ciphertext viability; its printed title itself contains a ciphertext F. Thus even with a known historical key, source ink does not uniquely determine the absolute consuming count at all internal red transitions. The continuity law predicts the right *transition*, but not necessarily the actual numerical state without independently resolving Fs. Red terminal command text also demonstrates that red ink is not limited to semantic labels.
+
+### One frozen unknown-page transfer
+
+For the independently proposed p7 five-red-word-product Vigenère key [11,26,8,15,2], earlier p8 experiments began at the 243-rune black receiver, phase0. The source p8 12-rune red heading contains no ciphertext F. Under the conditional solved continuity law, the full page must consume 12 symbols before its black body, entering at phase2 with no skip ambiguity. The exact phase is selected by the physical rubric, not by a phase sweep. Standard historical subtraction is fixed.
+
+The complete original p8 F-transparent state lattice becomes empty at **page rune index99**, black-body index87. Its sole predecessor state is j=98; the printed C[99]=15 equals K[98 mod5]=15, demanding a plaintext F whose ciphertext would have to be zero. Therefore no plaintext can satisfy this specific full-page inverse, irrespective of language or dictionary coverage. The independently clear p57-derived 255-rune plant retains its valid path and re-encodes all 255 runes. The earlier body-local phase0 negative remains separate. See the consolidated [p7 product-key report](lp2-p7-red-product-repeating-vigenere-p8-gate.md).
+
+**Decision:** retain same-mode continuous rubric treatment as a useful conditional clock constraint, including internal color changes. Do not infer an unknown section's actual key, cipher mode or ambiguous F state from rubrication. This closes the #2600 transfer without unknown plaintext and without generalizing a negative result to all red rubrics.
+
+Reproducer: [exact absolute-state CommonJS SFT](../sims/lp2_rubric_continuous_state_holdout_sft.cjs), executed against freshly fetched checked-in source bytes; the solved GP references are `resources/external/relikd-solved-gp29-native-v1.json`. No CI execution is claimed.
+
 ## Nine unknown physical chapter openings
 
 | Chapter | Red opening | Red heading rune structure | Red 13-dot at heading end? |
@@ -59,7 +92,7 @@ A heading-to-body cipher switch *at red13* fails as a universal source-defined i
 
 ## Decision and next step
 
-The smallest rule consistent with solved pages is: **one page can use a single emission mode for both its title and body; p56 uses its page-local prime-totient mode and p57 is literal**. This describes the observed pages without predicting an unknown page's mode. Incompatible extension rules fit both solved controls equally. Earlier [global red Atbash](lp2-all-red-original-atbash-gate.md), [red-heading self-key Vigenere](lp2-red-heading-self-key-vigenere-gate.md), and [shared additive pad after red headings](red-title-body-key-reuse.md) already fail original-input gates. No arbitrary heading cipher/key searches are justified by the solved samples.
+The solved evidence supports a single emission mode and a continuous consuming clock across both initial and internal rubric boundaries **conditional on the authentic cipher**. P56 uses its page-local prime-totient mode and p57 is literal. The independent WELCOME internal-rubric holdout supports continuity while showing that its numerical state can remain ambiguous even with the key. This does not predict an unknown page's mode. Incompatible extension rules fit both solved controls equally. Earlier [global red Atbash](lp2-all-red-original-atbash-gate.md), [red-heading self-key Vigenere](lp2-red-heading-self-key-vigenere-gate.md), and [shared additive pad after red headings](red-title-body-key-reuse.md) already fail original-input gates. No arbitrary heading cipher/key searches are justified by the solved samples.
 
 **Actionable prerequisite:** independently authentic source evidence that determines a cipher family and key for one unknown heading plus following black words, including literal-marker behavior and page clock. Freeze that rule before using the original unknown ciphertext to evaluate it.
 
