@@ -80,6 +80,14 @@ None matches. The first three are reproduced by Windows Node 22 [SFT run 4549920
 
 **Scope:** this rejects only the exact 129-byte community-archive v1 body under these four digest families. It is not the original 2013 HTTP entity, WARC, or signed response. It does not reject the later “Welcome back” v2 page, a lost original server serialization, other page objects, or an unspecified digest algorithm.
 
+## P56 hash test of the “Everything You Need” page (bounded negative)
+
+The pinned community archive also preserves `2013/005-second-onion/everything-you-need.html`, a distinct 1,089-byte HTML page containing the clear-signed “You already have everything you need to continue” message. Its upstream Git blob SHA-1 is `a156f08ce4291d09e4d3420af1d77c74e190695c`; the local copy and provenance note are [here](../resources/external/cicada2013-xsxnaks-everything-you-need-community-copy.html) and [here](../resources/external/cicada2013-xsxnaks-everything-you-need-community-copy.source.md). The SFT verifies that its `<pre>` block equals the separately preserved `cicada2013-second-onion-everything-you-need.asc` message after line-ending normalization.
+
+Against the p56 target, the exact HTML body yields SHA-512 `04b1f88ef220b7bd5381cba46d0361fda7c570d6c7d547a3c43ad64beb3cb516aba99a53c7279dc709254ae3d0e0204aebb3ae2e289e1d0e771ace1c871c980f`, SHA3-512 `8e81e5b1e7c5784a349998019c4d5a7d92ea5aa4a0980d0cb834df49ea2050f6c9f677d482fa19e202c15a0c500d21936229d896449461bd60ce2ca64d3676f2`, BLAKE2b-512 `d72b4e1e6c65192c972da0378070b96368255b0b4455b9e9cd5aeaa82a3ea69a9508a1f0c5f8bc979de7e303c1dad0bce0c7be77ceb7c2ee236b78d76f1ee914`, and Whirlpool `f1945b4f8ffffe3b8fb81c421f699db7cb094ce822518f5450149a5b7b25a8dd6a82b29d29fc7f744bbff405ebea3c9255fd7ffd2055cbbd144c4b889a2e1750`. None matches. Windows Node 22 SFT [run 45500035222](https://github.com/FlareZ123/liber-primus/actions/runs/45500035222) passes for the first three; Whirlpool was computed using `openssl dgst -provider legacy -whirlpool`. Reproducer: [`lp2_p56_xsxnaks_everything_html_hash_sft.cjs`](../sims/lp2_p56_xsxnaks_everything_html_hash_sft.cjs).
+
+This is a negative for the exact community HTML body only. The embedded signed message is separately authenticated, but the surrounding HTML is not. The original 2013 HTTP entity and headers remain unavailable.
+
 ## The two server disclosures are different
 
 The participant record preserves two distinct 501 responses for the same onion address:

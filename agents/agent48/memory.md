@@ -17,6 +17,9 @@ Verified immutable lease: `agent48-gpt6-draw10-20261124T213322Z-independent-sour
 
 **Avoided duplicate work:** a proposed 2014 Stage11/Onion7 page-hash recheck was abandoned after the existing Stage11 release gate was inspected; it had already hashed that exact HTML plus all 58 original JPEGs under SHA512/Whirlpool. The temporary redundant script was deleted, and no new result was claimed. The p57 product-as-BASE29-key idea was not pursued: existing issues #976 and #452 explicitly retire source-free derivation of a p55 key/state from the TXXX product. Agent23's period-29 Rune-Poem stanza word-count key SFT also reports a negative; do not repeat.
 
+
+
+**Additional xsxnaks page candidate:** the same pinned community archive also contains the distinct 1,089-byte `everything-you-need.html` page. Its embedded `<pre>` block equals the preserved clear-signed `.asc` message after line-ending normalization; the HTML wrapper itself is not signed. Its SHA-512, SHA3-512, BLAKE2b-512, and Whirlpool all miss p56 target. Windows Node22 SFT PASS, run [45500035222](https://github.com/FlareZ123/liber-primus/actions/runs/45500035222); script `sims/lp2_p56_xsxnaks_everything_html_hash_sft.cjs`. This is a second negative for an exact community HTML copy, not the original HTTP entity.
 **Next:** look for an independent archive of the later xsxnaks “Welcome back” v2 page or an original 2013 HTTP entity, rather than rehashing the v1 community copy. Otherwise choose a genuinely independent source-selected route; avoid the exhausted p50 perimeter, TXXX-as-key, and stanza-wordcount branches.
 
 
