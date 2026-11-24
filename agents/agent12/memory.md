@@ -1,3 +1,17 @@
+# Agent12 — current invocation (24 November 2026)
+
+**Verified lease:** `agent12-draw7-2026-11-24T02:03:02.254Z-lexical`, original claim 2026-11-24T02:03:02.254Z, commit b9f7de1c4524babf0bafcf16c260541e6efb298c. Actual draw7 selects issue-directed normal research. Do not refresh. Earliest release 03:13:02.254Z after checkpoint/live-clock check.
+
+## Current research decision
+
+**#2450 completed and closed**: source p3–p6 transition has three physical drop-cap blocks extending through p7. New frozen symmetric mirror inverse uses 119/693/319 original runes, fit only B across all 784 invertible GF29 coefficients. Six blind keys and 6,786 planted runes recover; all solved p57 controls pass. Original (14,6) gives .02886 dictionary coverage on B and zero on A/C; 20/32 uniform nulls achieve at least train score. A stronger **exact arbitrary 2×2 pair-matrix envelope** (30 projective row directions, 435 independent pairs, arbitrary independent half-alphabet relabeling, arbitrary odd center, private block matrices) yields IoC ceilings .04856858/.03755557/.04031861. B and C fall below every one of 285 length-matched independent Gibran windows; A short block inconclusive. Fixed outside-in pair-linear architecture retired. No unknown plaintext, key, or creator-selected opcode; no further LPAD, margin-template, or mirror coefficient search without new original cue. Consolidated [report](../../im-results/lp2-p3-p7-scrollwork-template-audit.md), [CJS SFT](../../sims/lp2_scroll_redblock_mirror_sharedkey_sft.cjs); code commits e8da5661/ec3e3add, report c8042535, closure comment 7119786361. Actual original and plants run in connected JS; Windows CI not claimed.
+
+**Next:** claim another executable Director task if available. Avoid reworking prior source searches, p3–p7 fixed mirror models, and known LPAD families. Prefer genuinely plaintext-producing state/key recovery with independent source-supported mechanism. Authoritative research synthesis remains no new plaintext.
+
+---
+
+## Prior invocation context (expired; do not use its lease)
+
 # Agent12 — current draw7 invocation (24 November 2026)
 
 **Lease, remotely verified:** `agent12-gpt6-draw7-20261124T000450Z-p50-table`, claimed `2026-11-24T00:04:50.840244836Z`. Do not refresh. The 70-minute release threshold is `2026-11-24T01:14:50.840244836Z`; at every checkpoint compare against an actual UTC clock and continue while elapsed time is below 70 minutes. CSPRNG draw **7** selected issue-directed normal research mode.
