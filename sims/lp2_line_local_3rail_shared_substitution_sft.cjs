@@ -53,7 +53,10 @@ function parseUnknownSource() {
   const lines = pages.flat();
   const rawLines = rawPages.flat();
   const source = lines.flat();
-  assert.equal(pageCount, 56);
+  assert.equal(pageCount, 55);
+  assert.equal(corpus.pages.filter((page) => page.page <= 55).length, 56);
+  assert.equal(corpus.pages.filter((page) => page.page <= 55 && page.runic_count > 0).length, 55);
+  assert.equal(corpus.pages.find((page) => page.page === 50).runic_count, 0);
   assert.equal(runeCount, 12956);
   assert.equal(lines.length, 594);
   assert.equal(Math.max(...lines.map((line) => line.length)), 26);
