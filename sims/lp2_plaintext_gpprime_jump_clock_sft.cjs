@@ -28,7 +28,21 @@ function experiment(corpus,trans,solved){
  const plants=[];for(const [name,start] of [["0_koan_1",73],["0_koan_1",167],["0_welcome",1033]]){const p=parse(solved.sections.find(s=>s.name===name).source_text),c=enc(p.tape,start).cipher,fit=Math.floor(c.length*.8),g=gate(c,p.sing,fit),model=lm(name);
  check(g.origins.includes(start),"true origin pruned");const cand=g.origins.map(origin=>({origin,...decode(c.slice(0,fit),p.sing,origin,model)})).sort((a,b)=>b.score-a.score);const best=cand[0],suffix=decode(c.slice(fit),[],best.origin,model,best);let exact=null,replay=false;if(suffix){const combined=suffix.plain;replay=enc(combined,best.origin).cipher.every((x,i)=>x===c[i]);check(replay,"plant replay failure");exact=suffix.plain.slice(fit).filter((x,i)=>x===p.tape[fit+i]).length;}
  plants.push({name,start,len:c.length,fit,origins:g.origins.length,selected:best.origin,truthRank:cand.findIndex(x=>x.origin===start)+1,scoreGap:cand.length>1?best.score-cand[1].score:null,holdout:c.length-fit,exact,replay});}
- check(tests.every(t=>t.survivors===0),"original gate changed");check(plants.every(p=>p.selected===p.start&&p.replay),"plant origin or replay changed");return {tests,plants};
+ check(tests.every(t=>t.survivors===0),"original gate changed");check(plants.every(p=>p.selected===p.start&&p.replay),"plant origin or replay changed");
+ function spacingFree(tape,fit,model,gold=null,hidden=null){
+  const g=gate(tape,[],fit),candidates=g.origins.map(origin=>({origin,...decode(tape.slice(0,fit),[],origin,model)})).sort((a,b)=>b.score-a.score);
+  if(!candidates.length)return {survivors:0,dead:g.dead};
+  const best=candidates[0],suffix=decode(tape.slice(fit),[],best.origin,model,best);
+  const replay=suffix?enc(suffix.plain,best.origin).cipher.every((x,i)=>x===tape[i]):false;
+  if(suffix)check(replay,"spacing-free replay failure");
+  return {survivors:candidates.length,selected:best.origin,hidden,truthRank:hidden===null?null:candidates.findIndex(x=>x.origin===hidden)+1,
+   fit,holdout:tape.length-fit,prefixNats:best.score/fit,fullNats:suffix?suffix.score/tape.length:null,replay,
+   prefix:best.plain.map(x=>corpus.translit[x]).join(""),readout:suffix?suffix.plain.map(x=>corpus.translit[x]).join(""):null,
+   exact:gold&&suffix?suffix.plain.slice(fit).filter((x,i)=>x===gold[i+fit]).length:null};
+ }
+ const terminal=unit(54,55),fit=246,donor=parse(solved.sections.find(s=>s.name==="0_koan_1").source_text).tape.slice(0,308);
+ const sf={plant:spacingFree(enc(donor,167).cipher,fit,lm("0_koan_1"),donor,167),original:spacingFree(terminal.tape,fit,lm(null))};
+ return {tests,plants,spacingFree:sf};
 }
 const result=experiment(JSON.parse(read("resources/liber-primus/lp2-corpus.json")),read("resources/lp2-transcription.txt"),JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json")));
 console.log(JSON.stringify(result,null,2));
