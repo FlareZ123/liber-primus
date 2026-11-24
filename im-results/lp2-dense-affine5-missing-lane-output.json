@@ -1,0 +1,1121 @@
+{
+  "sources": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/liber-primus/lp2-transcription.txt",
+      "sha": "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/english_wordfreq_textblob.txt",
+      "sha": "140e1d22b5f8c45deddd2e8b25549d9d6307d938"
+    },
+    {
+      "path": "im-results/lp2-dense-affine5-projective-output.json",
+      "sha": "8050d60ee855411f10114ccf1931e73166f2ce1f"
+    }
+  ],
+  "lexicon": 29226,
+  "original": {
+    "lane": 3,
+    "laneIoC": [
+      0.040031982942430704,
+      0.03935678749111585,
+      0.03985429992892679,
+      0.039250177683013504,
+      0.03967661691542289
+    ],
+    "constraints": 35,
+    "bases": [
+      {
+        "positions": [
+          28,
+          83,
+          113,
+          188,
+          213,
+          228
+        ],
+        "optionCounts": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "invertibleCandidates": 1
+      },
+      {
+        "positions": [
+          373,
+          408,
+          413,
+          553,
+          668,
+          868
+        ],
+        "optionCounts": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "invertibleCandidates": 1
+      },
+      {
+        "positions": [
+          1043,
+          1293,
+          1678,
+          78,
+          303,
+          473
+        ],
+        "optionCounts": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          2
+        ],
+        "invertibleCandidates": 8
+      },
+      {
+        "positions": [
+          498,
+          503,
+          913,
+          1378,
+          1543,
+          1653
+        ],
+        "optionCounts": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "invertibleCandidates": 63
+      },
+      {
+        "positions": [
+          93,
+          493,
+          593,
+          663,
+          758,
+          893
+        ],
+        "optionCounts": [
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "invertibleCandidates": 702
+      }
+    ],
+    "distinctKeys": 775,
+    "baseline": {
+      "key": {
+        "M": [
+          [
+            15,
+            3,
+            3,
+            19,
+            26
+          ],
+          [
+            5,
+            24,
+            11,
+            28,
+            4
+          ],
+          [
+            26,
+            4,
+            10,
+            20,
+            5
+          ],
+          [
+            9,
+            11,
+            17,
+            13,
+            10
+          ],
+          [
+            1,
+            2,
+            14,
+            19,
+            17
+          ]
+        ],
+        "b": [
+          7,
+          10,
+          13,
+          25,
+          4
+        ]
+      },
+      "train": {
+        "hit": 68,
+        "total": 1680,
+        "coverage": 0.04047619047619048,
+        "longHit": 15,
+        "long": 1547,
+        "mean": -4.204925318543623,
+        "ioc": 0.037311041152613515
+      },
+      "holdout": {
+        "hit": 14,
+        "total": 1145,
+        "coverage": 0.01222707423580786,
+        "longHit": 3,
+        "long": 1073,
+        "mean": -4.55254193866885,
+        "ioc": 0.034175649677833084
+      }
+    },
+    "refined": {
+      "key": {
+        "M": [
+          [
+            15,
+            3,
+            3,
+            19,
+            26
+          ],
+          [
+            5,
+            24,
+            11,
+            28,
+            4
+          ],
+          [
+            26,
+            4,
+            10,
+            20,
+            5
+          ],
+          [
+            8,
+            17,
+            15,
+            22,
+            13
+          ],
+          [
+            1,
+            2,
+            14,
+            19,
+            17
+          ]
+        ],
+        "b": [
+          7,
+          10,
+          13,
+          24,
+          4
+        ]
+      },
+      "train": {
+        "hit": 89,
+        "total": 1680,
+        "coverage": 0.052976190476190475,
+        "longHit": 30,
+        "long": 1547,
+        "mean": -4.2685296710438365,
+        "ioc": 0.03617728806829462
+      },
+      "holdout": {
+        "hit": 17,
+        "total": 1145,
+        "coverage": 0.014847161572052401,
+        "longHit": 3,
+        "long": 1073,
+        "mean": -4.571030443436286,
+        "ioc": 0.034401624576297064
+      },
+      "preview": "U TH C X IA IA B AE T F C N L C B S C S R I D A X E G TH M EO C O Y P J TH P IA E F AE D J L EO D M D Y S X EA P AE Y X L EA A T AE IA E A S W EA W F F P C"
+    }
+  },
+  "plants": [
+    {
+      "name": "native solved",
+      "trainExact": 1680,
+      "holdExact": 1145,
+      "trueK": {
+        "M": [
+          [
+            5,
+            19,
+            6,
+            21,
+            13
+          ],
+          [
+            21,
+            23,
+            5,
+            7,
+            26
+          ],
+          [
+            27,
+            20,
+            8,
+            11,
+            6
+          ],
+          [
+            3,
+            19,
+            28,
+            28,
+            15
+          ],
+          [
+            26,
+            4,
+            3,
+            8,
+            0
+          ]
+        ],
+        "b": [
+          0,
+          11,
+          6,
+          5,
+          24
+        ]
+      },
+      "lane": 3,
+      "laneIoC": [
+        0.05813788201847903,
+        0.059346126510305616,
+        0.07112651030561479,
+        0.056645344705046195,
+        0.059150675195451315
+      ],
+      "constraints": 118,
+      "bases": [
+        {
+          "positions": [
+            3,
+            13,
+            73,
+            78,
+            108,
+            118
+          ],
+          "optionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "invertibleCandidates": 1
+        },
+        {
+          "positions": [
+            143,
+            148,
+            238,
+            248,
+            263,
+            273
+          ],
+          "optionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "invertibleCandidates": 1
+        },
+        {
+          "positions": [
+            303,
+            318,
+            323,
+            363,
+            428,
+            463
+          ],
+          "optionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "invertibleCandidates": 1
+        },
+        {
+          "positions": [
+            503,
+            548,
+            563,
+            693,
+            833,
+            928
+          ],
+          "optionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "invertibleCandidates": 1
+        },
+        {
+          "positions": [
+            938,
+            948,
+            1013,
+            1018,
+            1038,
+            1058
+          ],
+          "optionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "invertibleCandidates": 1
+        },
+        {
+          "positions": [
+            1063,
+            1068,
+            1138,
+            1168,
+            1178,
+            1238
+          ],
+          "optionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "invertibleCandidates": 1
+        },
+        {
+          "positions": [
+            1248,
+            1253,
+            1298,
+            1308,
+            1318,
+            1398
+          ],
+          "optionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "invertibleCandidates": 1
+        },
+        {
+          "positions": [
+            1413,
+            1433,
+            1453,
+            1473,
+            1503,
+            1518
+          ],
+          "optionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "invertibleCandidates": 1
+        },
+        {
+          "positions": [
+            1593,
+            1613,
+            1678,
+            18,
+            23,
+            153
+          ],
+          "optionCounts": [
+            1,
+            1,
+            1,
+            2,
+            2,
+            2
+          ],
+          "invertibleCandidates": 7
+        },
+        {
+          "positions": [
+            43,
+            173,
+            233,
+            328,
+            608,
+            618
+          ],
+          "optionCounts": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "invertibleCandidates": 61
+        },
+        {
+          "positions": [
+            433,
+            628,
+            653,
+            698,
+            773,
+            853
+          ],
+          "optionCounts": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "invertibleCandidates": 62
+        },
+        {
+          "positions": [
+            883,
+            918,
+            1033,
+            1053,
+            1133,
+            1268
+          ],
+          "optionCounts": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "invertibleCandidates": 60
+        }
+      ],
+      "distinctKeys": 187,
+      "baseline": {
+        "key": {
+          "M": [
+            [
+              5,
+              19,
+              6,
+              21,
+              13
+            ],
+            [
+              21,
+              23,
+              5,
+              7,
+              26
+            ],
+            [
+              27,
+              20,
+              8,
+              11,
+              6
+            ],
+            [
+              3,
+              19,
+              28,
+              28,
+              15
+            ],
+            [
+              26,
+              4,
+              3,
+              8,
+              0
+            ]
+          ],
+          "b": [
+            0,
+            11,
+            6,
+            5,
+            24
+          ]
+        },
+        "train": {
+          "hit": 1680,
+          "total": 1680,
+          "coverage": 1,
+          "longHit": 1491,
+          "long": 1491,
+          "mean": -2.6098781333855423,
+          "ioc": 0.06086034771264075
+        },
+        "holdout": {
+          "hit": 1142,
+          "total": 1142,
+          "coverage": 1,
+          "longHit": 970,
+          "long": 970,
+          "mean": -2.673307633983838,
+          "ioc": 0.0621659999389257
+        }
+      },
+      "refined": {
+        "key": {
+          "M": [
+            [
+              5,
+              19,
+              6,
+              21,
+              13
+            ],
+            [
+              21,
+              23,
+              5,
+              7,
+              26
+            ],
+            [
+              27,
+              20,
+              8,
+              11,
+              6
+            ],
+            [
+              3,
+              19,
+              28,
+              28,
+              15
+            ],
+            [
+              26,
+              4,
+              3,
+              8,
+              0
+            ]
+          ],
+          "b": [
+            0,
+            11,
+            6,
+            5,
+            24
+          ]
+        },
+        "train": {
+          "hit": 1680,
+          "total": 1680,
+          "coverage": 1,
+          "longHit": 1491,
+          "long": 1491,
+          "mean": -2.6098781333855423,
+          "ioc": 0.06086034771264075
+        },
+        "holdout": {
+          "hit": 1142,
+          "total": 1142,
+          "coverage": 1,
+          "longHit": 970,
+          "long": 970,
+          "mean": -2.673307633983838,
+          "ioc": 0.0621659999389257
+        },
+        "preview": "B E H A U IA R S W H I C H C A U S E TH E L O S S O F D I U I N I T Y C O N S U M P T IA N W E C O N S U M E T O O M U C H B E C A U S E W E B"
+      }
+    },
+    {
+      "name": "independent Gibran",
+      "trainExact": 1680,
+      "holdExact": 1145,
+      "trueK": {
+        "M": [
+          [
+            17,
+            25,
+            11,
+            21,
+            4
+          ],
+          [
+            16,
+            22,
+            26,
+            12,
+            28
+          ],
+          [
+            1,
+            24,
+            28,
+            28,
+            3
+          ],
+          [
+            9,
+            17,
+            0,
+            22,
+            22
+          ],
+          [
+            11,
+            0,
+            20,
+            19,
+            0
+          ]
+        ],
+        "b": [
+          9,
+          23,
+          21,
+          4,
+          10
+        ]
+      },
+      "lane": 4,
+      "laneIoC": [
+        0.060909737029140015,
+        0.06179815209665956,
+        0.05963041933191187,
+        0.0660270078180526,
+        0.04301705756929638
+      ],
+      "constraints": 158,
+      "bases": [
+        {
+          "positions": [
+            9,
+            14,
+            34,
+            44,
+            54,
+            89
+          ],
+          "optionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "invertibleCandidates": 1
+        },
+        {
+          "positions": [
+            154,
+            169,
+            184,
+            204,
+            314,
+            344
+          ],
+          "optionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "invertibleCandidates": 1
+        },
+        {
+          "positions": [
+            349,
+            389,
+            394,
+            439,
+            474,
+            499
+          ],
+          "optionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "invertibleCandidates": 1
+        },
+        {
+          "positions": [
+            514,
+            544,
+            584,
+            599,
+            619,
+            624
+          ],
+          "optionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "invertibleCandidates": 1
+        },
+        {
+          "positions": [
+            664,
+            669,
+            674,
+            689,
+            719,
+            749
+          ],
+          "optionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "invertibleCandidates": 1
+        },
+        {
+          "positions": [
+            764,
+            769,
+            779,
+            794,
+            819,
+            824
+          ],
+          "optionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "invertibleCandidates": 1
+        },
+        {
+          "positions": [
+            834,
+            839,
+            884,
+            889,
+            979,
+            994
+          ],
+          "optionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "invertibleCandidates": 1
+        },
+        {
+          "positions": [
+            1084,
+            1089,
+            1099,
+            1114,
+            1119,
+            1144
+          ],
+          "optionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "invertibleCandidates": 1
+        },
+        {
+          "positions": [
+            1149,
+            1164,
+            1169,
+            1174,
+            1234,
+            1254
+          ],
+          "optionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "invertibleCandidates": 1
+        },
+        {
+          "positions": [
+            1259,
+            1279,
+            1324,
+            1329,
+            1379,
+            1389
+          ],
+          "optionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "invertibleCandidates": 1
+        },
+        {
+          "positions": [
+            1444,
+            1484,
+            1564,
+            1569,
+            1589,
+            1604
+          ],
+          "optionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "invertibleCandidates": 1
+        },
+        {
+          "positions": [
+            1624,
+            1659,
+            59,
+            64,
+            69,
+            79
+          ],
+          "optionCounts": [
+            1,
+            1,
+            2,
+            2,
+            2,
+            2
+          ],
+          "invertibleCandidates": 16
+        }
+      ],
+      "distinctKeys": 18,
+      "baseline": {
+        "key": {
+          "M": [
+            [
+              17,
+              25,
+              11,
+              21,
+              4
+            ],
+            [
+              16,
+              22,
+              26,
+              12,
+              28
+            ],
+            [
+              1,
+              24,
+              28,
+              28,
+              3
+            ],
+            [
+              9,
+              17,
+              0,
+              22,
+              22
+            ],
+            [
+              5,
+              13,
+              11,
+              19,
+              10
+            ]
+          ],
+          "b": [
+            9,
+            23,
+            21,
+            4,
+            1
+          ]
+        },
+        "train": {
+          "hit": 487,
+          "total": 1679,
+          "coverage": 0.29005360333531865,
+          "longHit": 354,
+          "long": 1492,
+          "mean": -3.0907583483539107,
+          "ioc": 0.0545179954054284
+        },
+        "holdout": {
+          "hit": 352,
+          "total": 1142,
+          "coverage": 0.30823117338003503,
+          "longHit": 242,
+          "long": 994,
+          "mean": -3.0775548701229205,
+          "ioc": 0.054392768803249156
+        }
+      },
+      "refined": {
+        "key": {
+          "M": [
+            [
+              17,
+              25,
+              11,
+              21,
+              4
+            ],
+            [
+              16,
+              22,
+              26,
+              12,
+              28
+            ],
+            [
+              1,
+              24,
+              28,
+              28,
+              3
+            ],
+            [
+              9,
+              17,
+              0,
+              22,
+              22
+            ],
+            [
+              11,
+              0,
+              20,
+              19,
+              0
+            ]
+          ],
+          "b": [
+            9,
+            23,
+            21,
+            4,
+            10
+          ]
+        },
+        "train": {
+          "hit": 1619,
+          "total": 1679,
+          "coverage": 0.9642644431209053,
+          "longHit": 1432,
+          "long": 1492,
+          "mean": -2.558922499498637,
+          "ioc": 0.06248262854873933
+        },
+        "holdout": {
+          "hit": 1122,
+          "total": 1142,
+          "coverage": 0.9824868651488616,
+          "longHit": 974,
+          "long": 994,
+          "mean": -2.506040966943538,
+          "ioc": 0.061778178153724
+        },
+        "preview": "O R Y O U R C O M F O R T T O P O U R Y O U R D A R C N E S S I N T O S P A C E I T I S A L S O F O R Y O U R D E L I G H T T O P O U R F O"
+      }
+    }
+  ]
+}
