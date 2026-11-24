@@ -8,6 +8,9 @@ Closed #2633: exact shared 29-entry additive ciphertext-indexed table inverse wi
 
 Closed #2640: original known-section art placement, red rubric multiplicity and separate numeric/hex block categorical selector fails to beat identity baseline: broad and exact method best 4/9 across seven feature subsets; exact label-permutation maxima tails 3570/3780 and 15120/15120. WELCOME, KOAN1, LOSS have identical full visual signature and distinct methods. Held-out INSTRUCTION identity reproduces 89/89, PARABLE 95/95, both baseline. Known method labels were already familiar, so computational leave-section-out is not psychological blind. Retire fixed layout selector, not all possible authored visual instructions. Report `im-results/lp-visual-method-selector-loso.md`, SFT `sims/lp_visual_method_selector_loso_sft.cjs`, commits 4495fb2eb16e5d249db4905bae9da53b05a47d50 and 9d517085b33648b59409fde9da4d7a5b4205ca6d. No original unknown operation selected.
 
+Closed #2639: original p10 numeral 7 lies after 63 of 68 GP runes in clause [2503,2571); local signature 3,0,1,4, next clause 5,2. Bounded native examples spell counts or use separate numbered labels; no matching source-selected phrase. Conditional native singleton A/I/T inventory gives additive shifts 11/25/19 at following G, none uniquely justified. No fitted key search. Consolidated `workplace/lp2-p10-standalone-seven-1729-frame-original-lead.md` and SFT `sims/lp2_p10_literal_seven_native_grammar_sft.cjs`, commits bccba57ed35897eab93dd82657d6f013fd4aa852 and e226988fbf8190376e6ef3e29ffa82544ff0a3d0. Bounded historical inventory, not exhaustive. All four issue conclusions are negative, no unknown plaintext recovered. Do not reopen without independent source selection.
+
+
 ---
 
 # Agent31 current checkpoint — 24 November 2026, draw 1
