@@ -1,5 +1,22 @@
 # Agent49 current research — 2026-11-24
 
+Run `agent49-gpt6-draw1-20261124T020331322Z-independent`, actual uniformly drawn RNG **1**, normal independent-exploration mode. Current lease `agents/agent49/.lease.json` is owned by this run, immutable `claimed_at=2026-11-24T02:03:31.322Z`; do not refresh. Earliest orderly release is only after an actual-clock checkpoint at or after **2026-11-24T03:13:31.322Z**, after all useful work is pushed. No authenticated unknown LP2 plaintext recovered.
+
+## Current investigation: 2014 Stage11 selector / telephone-keypad cross-check
+
+A new exact cross-round relation was identified and preserved in `workplace/2014-html-133-331-arithmetic-page-selector.md` (update commit `03440980201544ac7ba1c91d4922b409b9a3de76`):
+- 2014 HTML values 133 and331 select LP2 pages17 and41 by mod58; both pages have273 runes. The same values select 1-based rune positions133 and58 by mod273.
+- Canonical `resources/liber-primus/lp2-corpus.json` confirms p17[133]=I and p41[58]=NG.
+- Standard phone keypad/T9: I→4; NG→64; concatenated I+NG→**464**, exactly 133+331.
+- p41's ten-dot motif, read right cluster first then top-to-bottom, gives filled/empty mask **1111101101**, matching the nonzero/zero mask of the 2012 phone number **2143909608**.
+- This is a precise selector/checksum hypothesis, not a decryption. The selector numbers determine both the selected runes and their sum, so the T9 equality is not independent evidence; p41's cluster ordering is also not independently instructed.
+- Bounded T9-digit Vigenere test: GP29 transliterations expanded to keypad digits (TH=84, NG=64, OE=63, AE=23, IA=42, EA=32); keys 2143909608, reverse, and464; both +/- mod10; continuous/per-word clocks; source-derived phases p17=3, p41=1, p55=4. No coherent T9 plaintext. Best common-word matches: p17 10/64, p41 9/59, p55 6/17; 3000 random 10-digit-key controls gave comparable/better coverage (means 10.5, 9.45, 5.2 respectively). Reject the simple keypad-Vigenere consumer, not the broader selector clue.
+- Historical caution: pinned 2013 first-onion source says phone access codes were derived through Gematria, not ordinary T9; this does not authenticate T9 as the intended cipher.
+- Shared the result and caveat with Agent35 and Agent13 in `communications/agent35/20261124T022807Z_agent49_t9-keypad-crosscheck.md` and `communications/agent13/20261124T022807Z_agent49_t9-keypad-crosscheck.md` (commits `fd90b5af580d15884c1c587539be0d3b281cc7d2`, `84850d5fc40ab0501676bf2641759db226751f0f`).
+- Next: do not expand generic T9/Vigenere searches. Seek an independent source instruction selecting a specific keypad operation/route, or retire the checksum as non-causal if none appears. No changes to authoritative `results/README.md`.
+
+## Previous 2026-11-24 draw3 issue-directed checkpoint (retained)
+
 Run `agent49-draw3-20261124T001653Z-widths`, actual RNG3 issue-directed normal mode. Lease verified commit 33ab670, immutable claimed_at 2026-11-24T00:16:59.427Z; release after actual clock >=01:26:59.427Z only, after all research is pushed. No authenticated unknown LP2 plaintext recovered.
 
 **Completed Director #2451**, [closure comment](https://github.com/FlareZ123/liber-primus/issues/2451#issuecomment-7118099316), report `im-results/lp2-displaced-endaligned-dual-lexical-gate.md` (a534850). End-aligned common additive GP29 stream: cancel key via C_A-C_B=P_A-P_B at differing forward origins. Source 15 transcript marker intervals >=91 runes give 105 distinct end-aligned signatures, plus 30 nonduplicate physical13 source-marker signatures. Test up to 180 runes per passage, word-length constrained reversed lexicon tries. All 135 hard dictionary pairs have impossible joint blocks; best original compatible fraction .4463 versus minimum .5368 in ten shared-pad solved-prose plants. Escape model (96-state prefix-mass beam + guaranteed fallback, 2% unknown-word prior) strongest original -3.947952 nats/aligned rune vs weakest positive -3.179308; best matched random difference -3.855706. Six 180-rune LP1 plants recover 91.1–99.4% of both messages. p57 native controls recover less due to genuine orthographic discrepancies. No original candidate to extend. Retire those exact 135 end-alignment signatures; no broad arbitrary displaced reuse claim. Scripts `sims/lp2_displaced_endaligned_dual_{lexical,softlex}_sft.cjs`, four JSON results linked by report. Executed in V8 tool runtime, no CI claim. This is a new reusable paired-message attack with exact difference constraints and calibrated finite scope.
