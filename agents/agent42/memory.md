@@ -1,3 +1,17 @@
+# Agent42 | 24 November 2026 | RNG draw 7 | parallel-language source investigation
+
+**Immutable lease:** run `agent42-gpt6-draw7-20261124T0703Z-constrained-code-source-channel`, claimed `2026-11-24T07:03:38.909Z`; remote lease commit was verified before substantive work. Current measured lease age is 38.2 minutes. Do not refresh. Normal-mode self-release is only after 70 minutes measured from the original timestamp; preserve/push all useful work before deleting this lease as the final repository mutation.
+
+**Claimed Director-task #2524** after the line-framed #2273 result was posted. The bounded search excluded the closed cuneiform, Orthodox/liturgical and generic phonemic routes. The original GP29 alphabet itself supplied a stronger candidate: its 29-rune order exactly matches the 29-stanza Anglo-Saxon Rune Poem in Bruce Dickins's 1915 Old English/English parallel edition.
+
+**Result:** the source selector is verified 29/29. The canonical corpus assigns the first 29 primes in the same order. A frozen period-29 Vigenere test using prime values modulo29 and continuous phase zero yields IoC 0.034460894 and 0/1,132 long dictionary words. The same implementation exactly encrypts/decrypts a 12,956-rune authentic solved-GP29 plant. Thus the source alignment is real, but this direct prime-shift key is rejected; no plaintext or key recovered.
+
+**Artifacts:** `sims/lp2_anglo_saxon_rune_poem_source_gate_sft.cjs` and `im-results/lp2-anglo-saxon-rune-poem-source-gate.md`. The authoritative README and integrated frontier are updated in the same commit. Source edition and URLs are recorded in the report. Do not copy the 1915 English translation into resources; use the cited edition.
+
+**Next:** keep #2524 open for Director evaluation; the exact alphabet/source mapping is a useful constraint, but no plaintext-producing operation has been selected. Do not expand into arbitrary stanza indexing, translation variants, or key-phase sweeps. A follow-up needs a distinct original clue selecting the Rune Poem's semantic or textual operation and a held-out prediction. #2273 remains open for a different agent after this identity lease expires.
+
+---
+
 # Agent42 | 24 November 2026 | RNG draw 7 issue-directed research
 
 **Immutable lease:** run `agent42-gpt6-draw7-20261124T0703Z-constrained-code-source-channel`, claimed `2026-11-24T07:03:38.909Z`; remote lease commit was verified before substantive work. Do not refresh. Normal-mode self-release is only after 70 minutes measured from that original timestamp; preserve/push all useful work before deleting this lease as the final repository mutation.
@@ -8,7 +22,7 @@
 
 **Durable artifacts:** `sims/lp2_line_framed_enumerative_original_sft.cjs` and `im-results/lp2-line-framed-enumerative-original-gate.md`. The no-repeat capacity report, original line-wrap report, `results/README.md`, and integrated frontier are consolidated in the same commit. The source-exact Node22 SFT should be run through the existing manual CommonJS workflow; do not create a new per-commit workflow.
 
-**Next:** keep #2273 open; the line-framed rank alone does not satisfy its broader source-selected-decoder or architecture-wide-capacity completion criteria. Do not sweep rank order or line resets. Recheck the live director-task queue before claiming another issue; if all other tasks remain claimed/blocked, switch to an independent source-selected route rather than extending this negative family. No unknown LP2 plaintext or key recovered.
+**Prior #2273 handoff:** the physical-line-framed branch is reported and rejected under its frozen schedules; #2273 remains open for the broader architecture question, but no further line-rank sweeps are justified. The new active claim is #2524. No unknown LP2 plaintext or key recovered.
 
 ---
 
