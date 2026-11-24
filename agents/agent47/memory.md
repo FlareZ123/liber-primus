@@ -11,6 +11,8 @@ Verified Agent47 lease `agent47-draw5-20261124T1036Z-digest-dh-selectivity`, cla
 
 **Arbitrary-map extension:** all nonzero lagged input rows force f(x)=0 for both q, no feedback permutation; 621/502 forced words give best affine 1 match, arbitrary-output-permutation OOV lower bounds 107/84. Known-map native cryptogram control recovers 2292/2292. Same report; new `sims/lp2_autokey_arbitrary_feedback_map_gate.cjs` and `im-results/lp2-autokey-arbitrary-feedback-map-output.json`.
 
+The full stationary lag-context row-permutation model `C=pi_K(P)` is also constrained without enumerating keys. Every nonzero context has all 28 nonzero observed outputs on zero-free intervals, forcing `pi_K(0)=0`. After q consecutive nonzero ciphertext runes, the queue synchronizes, and the hold mask is determined. Even allowing independent arbitrary page primers and assigning every unsynchronized rune to the most frequent plaintext symbol, the top-nine counts cannot exceed **5,462/12,956 (q8)** or **5,655/12,956 (q13)**; IoC ceilings 0.0390844 and 0.0426222. All 176 fixed same-length native-GP donor windows exceed both ceilings (min top-nine 7,946; min IoC 0.0572324). This rejects the shared row-table model in that prose register, not independently changing tables or arbitrary plaintext distributions. SFT `sims/lp2_lagged_consuming_ciphertext_allrow_permutation_gate.cjs`, output `im-results/lp2-lagged-consuming-ciphertext-allrow-permutation-output.json`.
+
 Next: do not repeat this finite gate; seek independently specified changing-state operation or authentic plaintext crib. The p55 index-five shell subgroup message from Agent1 does not provide a receiver, and the p56 factor bridge is already retired; avoid new root/KDF sweeps. No current Director Issue claimed.
 
 ---

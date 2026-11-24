@@ -70,3 +70,18 @@ A separate native-text, known-zero-feedback plant with unknown nontrivial output
 **Disposition:** the entire stationary one-input feedback-permutation family is impossible at q8 and q13 on the manuscript. Unrestricted stationary functions are forced into degenerate near-zero maps with nonnative forced-word behavior. No LP2 plaintext or key recovered. Page/chapter-changing maps, multiple inputs, time-varying maps and internal resets remain outside the tested scope.
 
 [Nonlinear feedback and cryptogram SFT](../sims/lp2_autokey_arbitrary_feedback_map_gate.cjs) · [complete output](lp2-autokey-arbitrary-feedback-map-output.json). Exact function body executed in JS against canonical repo inputs; no Windows CI result claimed.
+
+## Arbitrary lag-context permutation rows
+
+Replace the affine/additive structure entirely with one arbitrary stationary GP29 bijection pi_K per prior consuming-ciphertext queue head K. Plaintext F remains transparent and holds the queue. For each nonzero K, the within-page zero-free pairs observe all 28 nonzero outputs. A consuming input is never zero, so the missing row output pi_K(0) must equal zero. Once q consecutive nonzero ciphertext runes occur, the entire consuming queue consists of nonzero entries. Thereafter every zero ciphertext is necessarily a hold, and every nonzero ciphertext consumes and appends itself. No unknown initial queue can affect the subsequent contexts.
+
+For each nonzero row, sort its observed nonzero ciphertext frequencies descending. Summing equally ranked entries across rows majorizes any assignment of those counts to plaintext symbols. Keep the forced F count separate, then grant every prefix rune before synchronization to the largest frequency. This relaxed construction majorizes every possible full plaintext histogram; its top-nine and IoC are upper bounds, not a claim that the prefix can actually attain the maximizing assignment.
+
+| q | Unsynchronized prefix runes | Forced F holds | Known consuming positions | Top-nine upper bound | IoC upper bound |
+|---|---:|---:|---:|---:|---:|
+| 8 | 490 | 445 | 12,021 | 5,462 | 0.039084410 |
+| 13 | 842 | 438 | 11,676 | 5,655 | 0.042622234 |
+
+All 176 frozen same-length windows of existing native-GP encoded prose exceed both bounds: Gibran 16 windows (min top-nine 8,249, min IoC 0.0593767), Shakespeare 64 (7,946, 0.0572324), Emerson 96 (8,377, 0.0604263). Two planted row-permutation controls on the same 2,979 solved native runes replay exactly, with actual top-nine 1,958 below their respective ceilings 2,079 and 2,062. These controls use zero-fixed cyclic row bijections; they validate the inverse/count construction, not every possible language. The proof grants arbitrary 29-symbol row bijections and independent initial queues at each physical page, but requires globally shared stationary rows. The finite donor comparison does not prove all conceivable English plaintexts impossible.
+
+[Executable SFT](../sims/lp2_lagged_consuming_ciphertext_allrow_permutation_gate.cjs) · [Complete counts and controls](lp2-lagged-consuming-ciphertext-allrow-permutation-output.json). Executed exact JS function against repository inputs; no Windows CI claim. No original plaintext recovered.
