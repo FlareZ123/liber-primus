@@ -49,7 +49,7 @@ const experiment=function experiment(inputs) {
   const sq=squareText.trim().split(/\r?\n\s*\r?\n/).map(s=>s.trim().split(/\r?\n/).map(l=>l.trim().split(/\s+/).map(Number)));
   const matrices=[I,sq[0],sq[2]];
   assert(matrices.slice(1).map(m=>m[0].reduce((a,b)=>a+b,0)).join(',')==='3301,1033','source squares');
-  function apply(T,M){return T.map((track,j)=>({...track,tape:track.tape.map((_,t)=>mod(M[j].reduce((s,m,k)=>s+m*T[k].tape[t],0)))}))}
+  function apply(T,M){const n=Math.min(...T.map(t=>t.tape.length));return T.map((track,j)=>({...track,tape:Array.from({length:n},(_,t)=>mod(M[j].reduce((s,m,k)=>s+m*T[k].tape[t],0)))}))}
 
   // Choose the shortest window whose layout-only heuristic expected count
   // is below 0.01; no ciphertext values are used for window selection.
@@ -138,6 +138,51 @@ const experiment=function experiment(inputs) {
     }
     return best;
   }
+
+  // Real F-hold positive control: pick exact-length dictionary words with
+  // F at a feasible subset of the source's early F sites, and no other F.
+  // Generate all consuming columns, then reinsert each held F at its raw slot.
+  let seed=20261124;const rnd=n=>{seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return(seed>>>0)%n};
+  const controlMasks=[],controlWords=[];
+  for(let l=0;l<5;l++){
+    const early=fpositions[l].filter(x=>x<51),options=[];
+    for(let mask=0;mask<2**early.length;mask++){
+      const held=early.filter((_,i)=>mask&(1<<i)),set=new Set(held);let t=0;
+      const choices=origWords[l].map(w=>{
+        const out=vocabulary[w.length].filter(({w})=>w.every((v,j)=>(v===0)===set.has(t+j)));
+        t+=w.length;return out;
+      });
+      if(choices.every(x=>x.length))options.push({held,choices});
+    }
+    options.sort((a,b)=>b.held.length-a.held.length);
+    assert(options.length,'plant F choices');
+    const pick=options[0];controlMasks.push(pick.held);
+    controlWords.push(pick.choices.map(x=>{const top=x.slice().sort((a,b)=>b.f-a.f).slice(0,30);return top[rnd(top.length)].w}));
+  }
+  const plain=tracks(controlWords),shifts=controlMasks.map(x=>x.length),clock=shifted(plain,shifts);
+  assert(shifts.some(x=>x>0),'genuine F positive');
+  const consumed=plain.map(x=>x.tape.filter(v=>v!==0));
+  const common=Math.min(...consumed.map(x=>x.length));
+  function control(M){
+    const Mi=invert(M), columns=Array.from({length:common},(_,t)=>{
+      const a=1+rnd(28),b=rnd(29),q=consumed.map(x=>mod(a*x[t]+b));
+      return M.map(row=>mod(row.reduce((s,m,i)=>s+m*q[i],0)));
+    });
+    const cipher=plain.map((track,l)=>{let t=0;return {...track,tape:track.tape.map(v=>v===0?0:t<common?columns[t++][l]:-1)}});
+    // Only the interval after the last held F is inspected. Its physical
+    // ciphertext need not itself be F-free, since encrypted non-F can be F.
+    const T=shifted(cipher,shifts),D=apply(T,Mi),w=select(T);
+    const q=solve(D,w[0],w[1],null,true);
+    assert(q.witness,'real F skip positive eliminated');
+    let hits=0;
+    for(let t=w[0];t<w[1];t++){
+      const v=q.witness[t-w[0]],c=D.map(x=>x.tape[t]);
+      assert(Array.from({length:28},(_,i)=>i+1).some(a=>v.every((p,l)=>mod(a*(p-v[0])+c[0])===c[l])),'positive replay');
+      for(let l=0;l<5;l++)hits+=+(v[l]===consumed[l][t]);
+    }
+    const second=solve(D,w[0],w[1],q.witness,true);
+    return {held:controlMasks,shifts,window:w,hits,total:5*(w[1]-w[0]),unique:!second.witness};
+  }
   const results=matrices.map((M,k)=>{
     const Mi=invert(M), trials=[];
     for(const shift of all){
@@ -147,7 +192,8 @@ const experiment=function experiment(inputs) {
       const q=solve(apply(T,Mi),w[0],w[1],null,true);
       trials.push({shift,window:w,feasible:!!q.witness,calls:q.calls,transitions:q.transitions,witness:q.witness});
     }
-    return {matrix:['identity','3301','1033'][k],survivors:trials.filter(x=>x.feasible),trials:trials.map(({witness,...x})=>x)};
+    assert(trials.every(x=>!x.feasible),'unexpected original survivor');
+    return {matrix:['identity','3301','1033'][k],survivors:trials.filter(x=>x.feasible),positive:control(M),trials:trials.map(({witness,...x})=>x)};
   });
   return {fpositions,alignments:all.length,results};
 };
