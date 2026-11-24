@@ -129,6 +129,10 @@ The historical player-decision reconstruction found a real 2014 WELCOME crib sug
 
 [Delivery source](../im-results/cicada2014-stage10-to-stage11-original-operator-gate.md) · [Stage10 CGI boundary](../im-results/2014-stage10-squares-cgi-source-boundary.md) · [2012 transfer](../im-results/lp2-p55-2012-phone-phrase-running-key-gate.md) · [RAND capacity](../im-results/lp2-rand-base29-boundary-capacity-gate.md).
 
+### F. p23–26 five-dot lane hypothesis
+
+The 1,005 post-red16 runes can be reshaped as 201×5, but the five-dot artwork repeats on p7, p23 and solved p56; it does not authenticate row-major ordering or independent lane clocks. The fixed period-13 shared-key model with five phase-zero plaintext-F clocks was calibrated on four native-GP plants: all four keys were recovered, and the frozen 255-rune continuation scored 254–255/255. On the original, the top training-only key ARBSDJXUBEONSM has a one-start basin and no legal continuation in lanes 0, 2 and 4 at body offsets 760, 777 and 859; its prefix output is not prose. Retire only this fixed row-major/period-13/phase-zero receiver, not all possible five-lane or stateful encodings. [Original-art decision and full controls](../im-results/lp2-p23-26-original-art-source-gate.md) · [SFT](../sims/lp2_p23_26_five_lane_independent_fhold_sft.cjs).
+
 ## 4. What changes the solution frontier
 
 A successful next contribution must supply independently selected key/state information, a meaningful original plaintext interval with a frozen independent continuation, a source-supported change of representation that opens an executable inverse, or original external bytes satisfying the target under justified digest semantics. Other tests earn priority when they decide between those routes.
