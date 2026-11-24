@@ -36,7 +36,7 @@ function reach(c,{reverse=false,consumeFirst=false,cap=2000000,nonzeroStart=fals
   const seed=domains.map(x=>31-Math.clz32(x&-x));if(seed.some(x=>x<0))throw Error("impossible seed");
   let queue=seed.slice(),plain=[];for(let i=0;i<c.length;i++){if(hold.has(i)){if(c[i])throw Error("nonzero hold");plain.push(0);continue}const p=mod(c[i]-queue[0]);if(!p)throw Error("consuming F");plain.push(p);queue=queue.slice(1).concat(p)}
   queue=seed.slice();const out=plain.map(p=>{if(!p)return 0;const x=mod(p+queue[0]);queue=queue.slice(1).concat(p);return x});if(String(out)!==String(c))throw Error("replay");
-  replay={primer:seed,holdCount:hold.size,firstPlain:plain.slice(0,30),possiblePrimers:domains.reduce((n,x)=>{let count=0;while(x){x&=x-1;count++}return n*count},1)};
+  replay={primer:seed,holds:result.holds,holdCount:hold.size,firstPlain:plain.slice(0,30),possiblePrimers:domains.reduce((n,x)=>{let count=0;while(x){x&=x-1;count++}return n*count},1)};
  }
  return {runes:c.length,zeros:c.filter(x=>!x).length,blocks:blocks.length,visits,max,deadCount,reverse,consumeFirst,nonzeroStart,status:result?"legal":capHit?"cap":"exact empty",replay};
 }
@@ -44,3 +44,24 @@ const cases=[["p0-2",0,3],["p40-53",40,54],["p54-55",54,56]];
 for(const [name,a,b] of cases){const c=gp.pages.slice(a,b).flatMap(p=>p.indices);console.log(JSON.stringify({name,...reach(c,{cap:1500000})}));}
 const c=gp.pages.slice(40,54).flatMap(p=>p.indices);let start=0,nz=0;while(nz<8)if(c[start++]!==0)nz++;
 console.log(JSON.stringify(reach(c.slice(start).reverse(),{reverse:true,cap:2000000,nonzeroStart:true})));console.log(JSON.stringify(reach(c,{consumeFirst:true,cap:2000000})));
+
+// Reverse search yields the old key at each consuming step. Reconstruct the
+// actual forward plaintext from the reverse queue head and restore the prefix.
+function reverseFull(c){
+ let start=0,nz=0;while(nz<8)if(c[start++]!==0)nz++;
+ const r=reach(c.slice(start).reverse(),{reverse:true,cap:2000000,nonzeroStart:true});
+ if(r.status!=="legal")return r;
+ const h=new Set(r.replay.holds.map(i=>c.length-1-i));for(let i=0;i<start;i++)if(c[i]===0)h.add(i);
+ const mod=x=>(x+29)%29;let queue=r.replay.primer.slice().reverse(),plain=Array(c.length),terminal=queue.slice();
+ for(let i=c.length-1;i>=0;i--){
+  if(h.has(i)){if(c[i])throw Error("nonzero hold");plain[i]=0;continue}
+  const p=queue.at(-1);if(!p)throw Error("illegal reverse tail");
+  plain[i]=p;queue=[mod(c[i]-p),...queue.slice(0,-1)];
+ }
+ const key=queue.slice();let k=key.slice();const out=plain.map(p=>{if(!p)return 0;const x=mod(p+k[0]);k=k.slice(1).concat(p);return x});
+ if(String(out)!==String(c)||String(k)!==String(terminal))throw Error("full forward replay");
+ const count=Array(29).fill(0);for(const p of plain)count[p]++;
+ const ioc=count.reduce((s,n)=>s+n*(n-1),0)/(plain.length*(plain.length-1));
+ return {status:"legal full original inverse",runes:c.length,holdCount:h.size,primer:key,terminal,firstPlain:plain.slice(0,40),ioc,reverseVisits:r.visits,reverseSuffix:r.runes,exactReplay:out.length};
+}
+console.log(JSON.stringify(reverseFull(c)));
