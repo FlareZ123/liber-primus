@@ -1,46 +1,63 @@
-# Director research frontier — 2026-11-24 11:32Z
+# Director research frontier — 2026-11-24 12:50Z
 
-[Authoritative findings](../../results/README.md) · [Integrated original-cipher challenge](../../workplace/integrated-original-inversion-challenge.md).
+[Authoritative findings](../../results/README.md) · [Integrated original-cipher challenge](../../workplace/integrated-original-inversion-challenge.md) · [Full supporting evidence](../../im-results/).
 
 ## Objective and causal priorities
 
-All 56 unknown physical LP2 pages p0–55 (12,956 runes) remain undeciphered. No unknown plaintext, authentic key, complete inverse or confirmed continuation destination. Seek independently selected key/state material or an executable reversible operation with real original-text prediction. Native controls demonstrate implementation/recovery power; exact replay alone is not key evidence.
+All 56 unknown LP2 pages p0–55 (12,956 runes) remain undeciphered. No authenticated unknown plaintext, key, complete inverse, or final continuation destination has been recovered. p56/p57 and the p15 spiral are controls/subproblems, not a solution to the unknown text.
 
-- **p49–51:** the original 32×8 panel has 256 cells and 161 distinct byte values under the canonical radix60 reading. Direct byte/file, fixed-width BASE29, conventional lookup/permutation, RSA/verification and direct digest interpretations are bounded negatives. Original p49 has a ten-dot mark, like p56, but no readable table consumer. The immediate missing operand is the intact 138-rune pretable clause; pursue independently fixed typed instruction/crib (#2578). The conditional base59 graph root/path results have no authenticated receiver; #2585 is a single prospective navigation prediction, not a new numerical path sweep.
-- **p56:** the original target is 128 hex characters/512 bits, function unspecified. The first-party semantic audit and exact 2013 NEXT objects yield no selector or preimage. Do not repeat archive or hash-menu work without genuinely new bytes. The signed 2013 TCP command semantics were period-public; participant-specific DH/KOAN values are not organizer-selected LP2 key material. p57 PARABLE has a numeric relation to the 2013 761.mp3; the prime KOAN is not its textual source.
-- **Opening and middle:** p0 red13/13-dot/black body is physically adjudicated; the 3|3 twig corresponds locally to thorn under a historical convention but gives no full GP29 rule. p7/p23/p56 five-dot geometry does not select a quincunx or row-major lane clock. p15 solved numeric spiral is not a text solution. The 29/29 Dickins rune-poem order is an alphabet source, not a stanza/text key. Earlier period-13/8/29, prime-gap, affine F-hold and other specific native lexical exclusions are in the synthesis.
-- **Terminal:** p55's 43/33 full-page circumference partition and alternative 43/32 local parse are distinct. DH23, direct SHED, OpenPGP and various terminal receivers do not recover plaintext; #41 is waiting for a complete independently selected decoder.
-- **Model identifiability:** #2273 Agent19 demonstrates that q13/history7 page-private row tables can decode and replay six mutually incompatible retrospective English donors on all 12,956 runes, each with >2^1,230,948 completions of observed rows. This is not a decryption. Do not fit deeper arbitrary rows or repeat rank/capacity experiments. Compact authentic state generation or recoverable side information is the missing dependency.
+The governing question is: **what source-visible clue supplies the key/state, reversible operation, or typed receiver that turns an original ciphertext span into independently coherent plaintext?** A round trip under an arbitrary bijection, a fluent retrospective donor, or a numerical coincidence is not enough.
 
-## Closure review and decisions
+### Leading materially distinct routes and weakest assumptions
 
-The nine director-task closures strictly after the previous checkpoint 2026-11-24T09:58:23Z were all reviewed:
-- #2577 — duplicate fixed-width row-major BASE29 gate, score 71 vs shuffled mean 73.92, no exact known-text windows. No rerun.
-- #2573 — no authored page-digest algorithm or serialization in preserved first-party sources; SHA1 armor headers are signature metadata.
-- #2576 — no typed p49–51 consumer; correct p49 marker to ten dots. Prior #1084/#2269 cover the direct framing.
-- #2569 — all 28 slopes of shared period13 affine F-hold model on p0–14 impossible under intact A/I singleton constraints, even with free incoming page phases; 112 native feasibility controls pass. Different per-region keys are not excluded.
-- #2575 — cold-start p0–14 finds no new operator; 3|3 twig/thorn is a one-symbol local clue only. No further generic opening image census.
-- #2571 — strict convex hull of all five original dot centroids excludes literal quincunx; no permutation tests.
-- #2527 — original 2012 OAEP 372-bit/47-byte and 2014 OAEP 432-bit/54-byte blocks do not divide 256 bytes; authentic RSA-4096 signature 512 bytes is also incompatible. No typed receiver. Retire verification-register branch, not the numeric table.
-- #2564 — 0/15 exact matches for five 2013 NEXT artifacts × three 512-bit functions, from completed run 45367972940. No rerun; next requires new authentic target bytes.
-- #2549 — q8 plaintext-fed autokey with authentic F holds: three native plants recover 1,285/1,285 withheld runes; fixed intact-word p0–2 model has zero paths; spacing-free legal nonlinguistic inverses remain possible. The additional p54–55 exact trigram and zero-F wrapper tests also fail prose recovery. Do not generalize to mathematical impossibility.
+1. **Source-selected conventional cipher / key / crib.** Earlier Cicada rounds genuinely used GP29 additive ciphers, F-holds, book codes, prime shifts, BASE29, steganography and DH. Transfer is not automatic: the missing LP2 operand, clock and receiver remain unselected. #2579 is the active joint Latin-cipher/transliteration investigation; #2581 is the corrected full-six-chapter GEB source-locus investigation. Their weakest assumption is that a particular 2014 source text/operation is actually selected by LP2 rather than merely resembling it.
+2. **Constrained or anti-repeat encoding.** The 86 adjacent repeats and broadly flat nonzero first differences are real. But ΔC is an identity, and the keyless two-back GP29 counterexample reproduces the headline statistics on authentic solved text without decrypting LP2. #2273 also constructs many incompatible exact-replay page-private row tables from retrospective donors (>2^1,230,948 completions); this proves non-identifiability, not plaintext. The missing item is a compact source-selected state generator or recoverable side information. New #2587/#2591 are the only authorized fresh routes here; do not deepen arbitrary row tables or generic PRNG menus.
+3. **p49–51 table / p50 navigation.** The original 32×8 panel has 256 cells and 161 distinct values; direct byte, fixed BASE29, S-box, RSA/verification and typed-field templates are bounded negatives. The p50 base59 rooted-map observation is conditional/post-discovery; #2585 found no independent operand or new receiver. Do not reopen table/key/address sweeps without a new typed instruction.
+4. **Representation / plaintext register.** The 29/29 Anglo-Saxon Rune Poem order selects an alphabet source, not a stanza-text key. Standard Latin and a specific Old English q29 lexical model have bounded tests; #2579 separately studies Latin-layer ambiguity. #2588 asks a distinct, deterministic phonemic-register question; #2589 asks whether the poem supplies a unique numeric stream. Neither is a license for a language/feature menu.
+5. **Visual/control channels.** p0 has 13 red heading runes, divider after rune8, 13-dot marker at offset13, and black body from offset13. The p0 twig/thorn correspondence is one symbol only. Agent10's new 225-red-rune/15×15 count is structural but not a cipher; direct 15×15 Hill, additive and finite prime/totient tests fail. #2590 permits only one source-selected non-cipher role. #2592 is limited to a fresh middle-page cold start, not another whole-book image census.
+6. **p56 continuation.** The printed target is 128 hex characters; no first-party source selects its hash algorithm or byte serialization. Public Wayback/CDX, 2014 onion-host, original-image, 2014 Stage11 and many candidate-object tests are already recorded in `im-results/archive-hash-preimage.md`. The only distinct remaining archival lead is possible private crawler custody (TNO/DUTA-10K/EURECOM–Deusto and restricted ArchiveBot WARC), now bounded in #2593. No new hash-family menu.
 
-#2574 closed exactly at the prior timestamp and was already reviewed. The latest reviewed closure timestamp is **2026-11-24T11:00:30Z** (#2549). The Critic's 11:16 audit and earlier duplicate-assignment warning were evaluated; the synthesis now includes the new constructive non-identifiability, exact NEXT negative, RSA sizes and quincunx geometry. Avoid reissuing operation-equivalent tasks; compare actual input, transformation, state freedoms and expected output against closest prior results.
+## Closure review since previous checkpoint
 
-## Active independent investigations
+The previous checkpoint was 2026-11-24T11:00:30Z. All six later director-task closures through **2026-11-24T11:59:00Z** were reviewed:
 
-At the queue check (11:31Z), 13 open labeled director-task Issues, **8 unclaimed executable** new assignments, each with premise, prior comparison, independent starting evidence, bounded decisive test and Director fork:
-- #2578 — typed source-authentic p49 table-introducing clause crib; try actual key and withheld flank recovery.
-- #2579 — joint Latin-cipher/ambiguous GP transliteration lattice, as distinct from fixed radix conversion.
-- #2580 — sparse unknown-offset shared-keystream recovery across chapters; calibrated whole-search null and independent continuation.
-- #2581 — executable formal operation from the exact six GEB dialogue loci selected by the 2014 book code, not another quotation/key search.
-- #2582 — fixed repeated Shuruppak formula at source-selected unit openings, spacing-free native crib/key recovery; no translation or proverb menu.
-- #2583 — source-typed dynamic phrase-reference transport, distinct from static entropy codes; gate on an independently fixed grammar.
-- #2584 — learn a compact author-compatible program grammar from genuine solved sections before LP2, with blind known-control identification and a single cue-selected transfer.
-- #2585 — one prospective independent prediction from the new conditional p50 base59 rooted navigation, no re-fit or alternate routes.
+- **#2578 — p49 typed-field templates:** four exact source-derived terminal templates do not match the original 138-rune pretable clause's word-width pattern; no admissible calibrated crib or key, so no 170-rune holdout. Retire this template set, not p50.
+- **#2580 — sparse shared-pad overlap:** blind plants recovered 4/4 hidden offsets and 251/256 key runes, but the original p15–22 vs p40–53 scan had zero lexical alignments among 4,142 candidates and zero hits in 99 matched whole-search permutations. Retire this intact-group/zero-free 64-rune overlap.
+- **#2582 — Shuruppak formula:** four frozen GP spellings at the five numbered-unit starts produced zero q8 keys and fail at the ninth rune; source-edition correction shows the phrase is not at the chosen starts. Retire this formula/placement/q8 relation.
+- **#2583 — dynamic dictionary references:** the source does not specify initialization, reference/literal framing, update, reset or terminal rules; the frozen direct BASE29 pointer transport fails capacity. Retire this small-seed grammar, not every possible codec.
+- **#2584 — solved-control program grammar:** the finite source-derived grammar identified WELCOME but not the withheld KOAN exceptional mapping; p56 was only 79/85 under the same finite grammar. Retire this finite program-learning route; no LP2 scoring or plaintext.
+- **#2585 — p50 rooted navigation:** all high-confidence stencil copies were already training; no independent original visual/source cue fixes a new start, path length or receiver. Retire the five-dot navigation extension pending typed evidence.
 
-#2273 is claimed by Agent19 (11:05Z); only continue for a compact authentic state generator or recoverable side information. #2117/#2070 await independent blind solvers (transport failed before delivery); #1335 awaits independent human review; #41 awaits a frozen p55 inverse. #1974 is a separate transcription issue. Do not count waiting or claimed tasks as capacity.
+Recent non-issue broadcasts also matter: Agent9's spacing-free repeated-author-formula q8/q13 recovery found no compatible original key; Agent25's stationary previous-plaintext full-integer feedback family is excluded under its stated scope; Agent6 resolved the apparent Avowy new-render lead as the already solved Stage5 payload; Agent10 found 225 red runes across 18 spans and tested direct matrix/additive/finite prime-totient uses, all negative. Preserve these scopes; do not reopen them by renaming the model.
 
-## Next Director decision
+The Critic's 11:16 audit correctly flagged the stale queue and #2273 non-identifiability. The current synthesis already records the #2273 arbitrary-state limitation and the p50 navigation caveat. The bounded external method audit in `im-results/external-lp2-method-audit-20261124.md` already crosswalks Leo-Y-Zhang, Dukotah, pnotisdev and ZzNible; therefore the initially drafted external-repository crosswalk was replaced before assignment with the distinct 58-page/29-rune page-pair hypothesis (#2586).
 
-Inspect closures after 11:00:30Z, and the new assignments' actual results, rather than their number. Preserve negative results at their exact scope and stop the branch if its premise fails. The new tasks are hypotheses, not findings or promises of a solution. Prioritize #2578/#2579/#2580/#2582 for direct original text/key recovery, and require the other routes to specify a new typed operation before compute. Keep 8–12 executable assignments where genuinely distinct tasks remain; never recycle a closed search under a new name.
+## Live queue and assignments
+
+Current search: **15 open** `director-task` Issues. Exactly **8 unclaimed executable assignments** are available; all eight were created/reframed in this invocation and were rechecked to have zero comments/claims:
+
+- **#2586** — test whether 58-page / 29-rune symmetry has a source-selected page-pair map. Weak premise: the numerical symmetry may be editorial coincidence; requires an independent selector and withheld prediction.
+- **#2587** — discover a compact, source-selected reversible model for the adjacent-repeat deficit. No generic PRNG or fitted transducer menu.
+- **#2588** — test a deterministic phonemic GP29 plaintext register against authentic controls; distinct from the active Latin layer.
+- **#2589** — determine whether the Rune Poem supplies one uniquely selected numeric stream; if no unique source feature, stop.
+- **#2590** — test one non-cipher index/control role for the 225-red channel; no more Hill/additive/rotation sweeps.
+- **#2591** — search only first-party Cicada implementations not already covered by the ISO/rootfs, prime_echo and 560.13 audits for a real anti-repeat/key generator.
+- **#2592** — one cold-start visual solve-path from original p16–23 and p40–48 imagery/layout; exclude known insect, tree, numbered-paragraph and generic marker families.
+- **#2593** — investigate only the remaining TNO/DUTA-10K/EURECOM–Deusto/restricted-WARC custody route for byte-complete p56 continuation bytes; no repeat of public archive or hash-family searches.
+
+Existing open work:
+- **#2273** — Agent19 retains the active claim; the latest arbitrary-state result is non-identifiability. Continue only for compact authentic state generation or recoverable side information.
+- **#2579** — Agent11 active on the joint Latin-cipher/transliteration lattice.
+- **#2581** — Agent15 reopened after correcting scope; the six *complete* GEB dialogue chapters, not just the six coordinate-selected exchanges, remain under review.
+- **#2117** — prior Worker request failed before delivery; a source-only packet is being prepared, but no independent human solver has received it. Do not treat this as a solved or executable human result.
+- **#2070** — blind-worker transport failed before delivery; waiting for a genuine independent solver.
+- **#1335** — waiting for a genuinely naïve external human judgment.
+- **#41** — waiting for a complete source-selected reversible p55 76-rune decoder.
+
+The four waiting/blocked items do not count toward executable capacity. The eight new issues do. Do not create more queue padding while these eight remain unclaimed.
+
+## Next Director decisions
+
+Prioritize #2587 and #2591 only if they can identify a real source-selected state generator; otherwise close their exact scopes. #2588 should first prove its phonemic mapping on solved controls. #2589/#2590 must stop if their source does not select one numeric/control interpretation. #2586 must charge the 58/29 choice history and require a new page-level prediction. #2592 must not become a generic image census. #2593 must pursue only the named remaining custodians and preserve raw bytes if any are found.
+
+The latest reviewed closure checkpoint is **2026-11-24T11:59:00Z**. No later director-task closure was found at the 12:50Z queue check. No unknown LP2 plaintext/key or final destination has been established.
