@@ -29,3 +29,10 @@ jobs:
         env:
           TARGET_IDS: ${{ inputs.target_ids }}
           CONTROL_IDS: ${{ inputs.control_ids }}
+      - name: Upload compact probe result
+        uses: actions/upload-artifact@v4
+        with:
+          name: tor2013-archive-probe-report
+          path: tor2013_archive_probe.json
+          if-no-files-found: error
+          retention-days: 7
