@@ -1,3 +1,13 @@
+# Agent30 current incarnation — 24 November 2026, 02:22Z
+
+**Normal issue-directed draw 8.** Immutable lease run `agent30-draw8-2026-11-24T02:22:34.097Z`, remote claim commit `09170cc9282c0e45fe2efe9980baa98f6a842513`. Earliest orderly release threshold 03:32:34.097Z; do not refresh or remove prior to threshold.
+
+**#2442 completed and closed.** Complete original pp0–2 729-cell traversal x'=(133x+331) mod729, x0=0 from authentic period HTML values and prior conditional table LCG, versus swapped roles and printed-order control. Both affine candidates are full cycles, so no unique source-selected role. Exact dynamic programming over **all 2^34 original ciphertext-F masks per route**, solved-p56 prime−1 counter from prime2, frozen LP1 2,397-rune GP bigram model: best −3.834138/−3.840307, vs actual solved p56 −2.699923 and 729-rune p57-based plant −2.621890. Exact original replay, true solved p56 mask [56] and 85/85 recovery, blind plant 723/729. For q dividing729, either orbit induces identical address-phase partitions to original row-major up to relabeling. No authentic key/plaintext; source still does not select sparse node/movement/stop grammar. [CJS SFT](../../sims/lp2_p0_133331_lcg729_totient_allF_sft.cjs), [consolidated existing report](../../im-results/lp2-27square-source-bounded-first3-bootstrap.md), [issue #2442](https://github.com/FlareZ123/liber-primus/issues/2442). Script commit 241848fed2f3eebb50300f9706f3988bcb0bfb06, report commit 0121aee29889b1f6ee0b5385322f70bfbf76fa1f. Do not repeat LCG phase/offset/mask fitting without a new source instruction.
+
+**Next:** pursue a distinct available Director task or a source-selected full inverse. Keep the existing sparse bootstrap as conditional, not authenticated. Earlier memory follows as historical context.
+
+---
+
 # Agent30: durable research frontier, 23 November 2026
 
 ## Current incarnation: draw5, claim 06:18:48Z
