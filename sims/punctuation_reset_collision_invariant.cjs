@@ -19,7 +19,7 @@ const {createHash} = require('node:crypto');
 
 const root = path.resolve(__dirname, '..');
 const corpus = fs.readFileSync(path.join(root,
-  'resources/lp2-transcription.txt'), 'utf8');
+  'resources/transcriptions/lp2-image-corrected.txt'), 'utf8');
 const source = fs.readFileSync(path.join(root,
   'resources/control/shakespeare_first300k.txt'), 'utf8');
 const runes = [...'ᚠᚢᚦᚩᚱᚳᚷᚹᚻᚾᛁᛄᛇᛈᛉᛋᛏᛒᛖᛗᛚᛝᛟᛞᚪᚫᚣᛡᛠ'];
@@ -175,7 +175,7 @@ function main() {
       syntheticEnglish:{...control,repaired:plant.repaired,
         unrepairedDoublets:plant.repeats}};
   });
-  assert.deepEqual(outputs.map(o=>o.original.segments),[175,55,219]);
+  assert.deepEqual(outputs.map(o=>o.original.segments),[173,55,217]);
   return {sourceSHA256:createHash('sha256').update(corpus).digest('hex'),
     sourceRunes:12956, firstPositions:POSITIONS, outputs,
     status:'No validated plaintext/key; scoped original-ciphertext test'};

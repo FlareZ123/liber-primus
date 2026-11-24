@@ -17,7 +17,7 @@ const ROOT = path.resolve(__dirname, '..');
 const txt = (file) => fs.readFileSync(path.join(ROOT, file), 'utf8');
 const json = (file) => JSON.parse(txt(file));
 const corpus = json('resources/liber-primus/lp2-corpus.json');
-const transcript = txt('resources/lp2-transcription.txt');
+const transcript = txt('resources/transcriptions/lp2-image-corrected.txt');
 const alphabet = new Map(corpus.runes.map((glyph, index) => [glyph, index]));
 const source = transcript.split('$').slice(0, 8).join('$');
 assert.equal(transcript.split('$').length, 10);
@@ -200,7 +200,7 @@ for (const ch of source) {
   else if (alphabet.has(ch)) punctuationAtRune.push(punctuationScope);
 }
 assert.equal(punctuationAtRune.length, 12956);
-assert.equal((source.match(/\./g) || []).length, 175);
+assert.equal((source.match(/\./g) || []).length, 173);
 assert.equal((source.match(/&/g) || []).length, 17);
 
 /**
@@ -275,7 +275,7 @@ assert.deepEqual(
     secretCapacities.perChapterLengthPosition.maximum,
     secretCapacities.perPageLengthPosition.maximum
   ],
-  [480, 767, 600, 890, 1028, 2142, 2505, 1595, 1729, 3893]
+  [480, 767, 600, 890, 1027, 2139, 2494, 1595, 1729, 3893]
 );
 const punctuationPositionPeriodFrontier = Array.from({ length: 14 }, (_, index) => {
   const period = index + 1;
@@ -283,19 +283,20 @@ const punctuationPositionPeriodFrontier = Array.from({ length: 14 }, (_, index) 
 });
 assert.deepEqual(
   punctuationPositionPeriodFrontier.map(x => x.maximum),
-  [1028,1331,1534,1722,1906,2051,2176,2281,2367,2431,2473,2496,2502,2505]
+  [1027,1326,1529,1716,1897,2042,2165,2270,2356,2420,2462,2485,2491,2494]
 );
 assert.deepEqual(
   punctuationPositionPeriodFrontier.map(x => x.classes),
-  [175,350,525,694,856,1005,1141,1259,1356,1426,1470,1493,1500,1503]
+  [173,346,519,686,846,994,1129,1246,1343,1413,1457,1480,1487,1490]
 );
 assert.equal(punctuationPositionPeriodFrontier.find(x => x.fraction >= 19 / 114).period, 7);
-assert.equal(punctuationPositionPeriodFrontier.find(x => x.fraction >= 180 / 935).period, 12);
+assert.equal(punctuationPositionPeriodFrontier.find(x => x.fraction >= 180 / 935), undefined);
+assert.ok(secretCapacities.perOriginalPunctuationScopePosition.maximum < Math.ceil(runes.length * 180 / 935));
 assert.equal(secretCapacities.global.classes, 1);
 assert.equal(secretCapacities.perPage.classes, 55);
-assert.equal(secretCapacities.perOriginalPunctuationScope.classes, 175);
-assert.equal(secretCapacities.perOriginalPunctuationScopeLength.classes, 1055);
-assert.equal(secretCapacities.perOriginalPunctuationScopePosition.classes, 1503);
+assert.equal(secretCapacities.perOriginalPunctuationScope.classes, 173);
+assert.equal(secretCapacities.perOriginalPunctuationScopeLength.classes, 1052);
+assert.equal(secretCapacities.perOriginalPunctuationScopePosition.classes, 1490);
 assert.equal(secretCapacities.perPageLength.classes, 529);
 assert.equal(secretCapacities.perChapterLengthPosition.classes, 740);
 assert.equal(secretCapacities.perPageLengthPosition.classes, 3023);

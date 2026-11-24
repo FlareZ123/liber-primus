@@ -15,7 +15,7 @@ const path = require("node:path");
 
 const root = path.resolve(__dirname, "..");
 const read = f => fs.readFileSync(path.join(root, f), "utf8");
-const master = read("resources/liber-primus/lp2-transcription.txt");
+const master = read("resources/transcriptions/lp2-image-corrected.txt");
 const pages = master.split("%").slice(0, 55); // p50 has no rune transcription
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const alphabet = corpus.runes;
@@ -25,7 +25,7 @@ const original = pages.join("%");
 const sourceTape = original.replace(/\/\r?\n/g, "").replace(/[%$&\s]/g, "");
 const scopes = sourceTape.split(".").map(text =>
   getRunes(text).map(rune => gpIndex.get(rune))).filter(word => word.length);
-assert.equal(scopes.length, 175);
+assert.equal(scopes.length, 173);
 const flatSource = scopes.flat();
 assert.equal(flatSource.length, 12956);
 assert.equal(pages.reduce((n, text) => n + getRunes(text).length, 0), 12956);
@@ -124,19 +124,19 @@ function assess(reverse) {
 const first = assess(false);
 const reverse = assess(true);
 assert.equal(first.decodedSpacePositions, 388);
-assert.equal(reverse.decodedSpacePositions, 441);
+assert.equal(reverse.decodedSpacePositions, 442);
 assert.equal(first.allSecretPerScopeSpaceMaximum, 1019);
-assert.equal(reverse.allSecretPerScopeSpaceMaximum, 1025);
+assert.equal(reverse.allSecretPerScopeSpaceMaximum, 1022);
 assert.ok(first.allSecretPerScopeMaxFraction < 0.08);
 assert.ok(reverse.allSecretPerScopeMaxFraction < 0.08);
 const p57SpaceFraction = 19 / (95 + 19);
 assert.ok(first.allSecretPerScopeMaxFraction < p57SpaceFraction);
 assert.ok(reverse.allSecretPerScopeMaxFraction < p57SpaceFraction);
 console.log(JSON.stringify({
-  source: "unchanged LP2 p0..p55 rune tape and 175 literal period scopes",
+  source: "unchanged LP2 p0..p55 rune tape and 173 literal period scopes",
   competingModel: "full-width BASE29 to GP30 numeral conversion, 29=SPACE",
   nativeP57SpaceFraction: p57SpaceFraction,
   printed: first,
   reverse
 }, null, 2));
-console.log("PASS: original GP29 full inverse, planted SPACEs, solved native source controls, heldout and 175-secret-symbol capacity.");
+console.log("PASS: original GP29 full inverse, planted SPACEs, solved native source controls, heldout and 173-secret-symbol capacity.");

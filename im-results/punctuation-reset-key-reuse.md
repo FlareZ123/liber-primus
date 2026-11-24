@@ -14,7 +14,7 @@ is twice the positional equal-rune-pair excess over a flat 29-rune baseline. The
 
 This extends earlier page-reset original-cipher negatives documented in [the shared-pad test](page-reset-pad-heldout.md) and [per-page Caesar-shift synchronization](page-shift-synchrony.md). **The period-only and combined period/page resets are the new boundary hypotheses here; the page-only result is a replication under the stronger arbitrary-position-bijection invariant.**
 
-Three independently source-defined segment boundaries were tested, always preserving the exact original 12,956 unsolved runes: full stops (175 segments), physical page boundaries (55), and the union (219). Printed line wraps and ordinary hyphen word boundaries are retained *inside* segments, with only runes contributing to offsets. The rune-free physical page 50 is absent, and both solved final pages are excluded.
+Three independently source-defined segment boundaries were tested, always preserving the exact original 12,956 unsolved runes: full stops (173 image-corrected segments), physical page boundaries (55), and the union (217). Printed line wraps and ordinary hyphen word boundaries are retained *inside* segments, with only runes contributing to offsets. The rune-free physical page 50 is absent, and both solved final pages are excluded.
 
 ## Executed original-source experiment
 
@@ -22,17 +22,17 @@ For each boundary type, generate 3,000 independent null transcriptions by rotati
 
 | Prespecified reset | Segments | Observed Q | Null mean ± SD | Original z | Nulls at least as high | Add-one upper-tail p |
 |---|---:|---:|---:|---:|---:|---:|
-| Period only | 175 | 93.0345 | 3.7551 ± 259.4390 | 0.3441 | 1087 / 3000 | **0.36255** |
+| Period only | 173 | 66.8966 | 4.2819 ± 257.7902 | 0.2429 | 1233 / 3000 | **0.41120** |
 | Physical page only | 55 | 83.5172 | −0.8248 ± 111.1416 | 0.7589 | 696 / 3000 | **0.23226** |
-| Period or physical page | 219 | 308.3448 | 7.3015 ± 306.5711 | 0.9820 | 505 / 3000 | **0.16861** |
+| Period or physical page | 217 | 291.6552 | 0.7392 ± 305.2865 | 0.9529 | 510 / 3000 | **0.17028** |
 
-None has a positive signal outside the matched null; even the most favorable of the three has upper-tail p ≈0.169 before correcting the choice of boundary type.
+None has a positive signal outside the matched null; even the most favorable of the three has upper-tail p ≈0.170 before correcting the choice of boundary type.
 
 ## Positive mechanism controls
 
 Independent Shakespeare GP-runic plaintext fills the **exact original length** of each segment, starting after 30,000 encoded reference runes. Encrypt using a **new random 29! bijection at every absolute offset**, fixed across all segments, and independently replace 81% of adjacent tentative repeated ciphertext symbols with a distinct random symbol. These substitutions retain no conventional letter-to-rune marginal relationship.
 
-Every control is vastly stronger than every original input. In the three row orders above the planted Q values are **25,511.0345**, **4,907.5172**, and **36,996.3448**, with z **97.23**, **42.94**, and **116.31** against independent 3,000-permutation nulls; all have 0/3000 exceeding the control. The original-page layout plant has **86** surviving adjacent ciphertext repeats, matching the total observed 86 in real LP2, despite the much greater positional collision score.
+Every control is vastly stronger than every original input. In the three row orders above the planted Q values are **25,528.8966**, **4,907.5172**, and **36,873.6552**, with z **95.52**, **42.94**, and **118.76** against independent 3,000-permutation nulls; all have 0/3000 exceeding the control. The original-page layout plant has **86** surviving adjacent ciphertext repeats, matching the total observed 86 in real LP2, despite the much greater positional collision score.
 
 These controls establish substantial power against *this precise reused positional bijection on ordinary GP-English* while incorporating aggressive immediate repeat suppression. They do not demonstrate power for all plaintext codebooks, all bijective block ciphers, concealed segment offsets, symbol insertion/deletion, nonidentical per-section keys, or arbitrary multistage rewrite channels.
 
@@ -40,4 +40,4 @@ These controls establish substantial power against *this precise reused position
 
 The unmodified LP2 input lacks the positional equality that a common substitution reused at every sentence or page reset generates on GP-English, even when independently permuting all 29 outputs at each absolute character position. A simple "the same substitution schedule restarts at every sentence/page" route is unsupported, and further fixed-key brute-force searches in that *same* model are low priority. The original-source negative does not establish a universal impossibility for sentence-local or page-local encryption.
 
-**Exact reproduction:** [CommonJS experiment](../sims/punctuation_reset_collision_invariant.cjs); [successful manually dispatched GitHub Actions run 42784132723](https://github.com/FlareZ123/liber-primus/actions/runs/42784132723). Canonical source SHA-256: `5e0003aa7f7dde3b238d17c5f964790dbf6bf9db5edacc4a5ec0bad81c6f4bce`. JS script asserts 12,956 original runes, exact segment counts, and positive-control empirical p under 0.01 for each tested boundary type.
+**Exact reproduction:** [CommonJS experiment](../sims/punctuation_reset_collision_invariant.cjs); [historical 175-span successful manually dispatched GitHub Actions run 42784132723](https://github.com/FlareZ123/liber-primus/actions/runs/42784132723). Current input is `resources/transcriptions/lp2-image-corrected.txt`; the script outputs its SHA-256 in Node. Agent37 reran the corrected model and seeded controls in the JS tool runtime on 24 November 2026 (hash reporting stubbed in that runtime). No corrected-version Windows CI result is claimed. The earlier uncorrected scores are superseded. JS script asserts 12,956 original runes, exact segment counts, and positive-control empirical p under 0.01 for each tested boundary type.
