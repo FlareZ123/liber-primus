@@ -27,6 +27,10 @@ Strict anti-repeat-first → chapter-continuous Fehu-hold Vigenère-last is now 
 
 ## Current causal frontier — 2026-11-24
 
+### Reciprocal Porta decision (24 November)
+
+**Active-28 reciprocal Porta (#2635):** the period-eight canonical half-exchange table with literal F holds has zero A/I/O/T-singleton-compatible row vectors in all nine independently keyed chapters. The terminal phase-0 A/NG singleton restrictions are disjoint ({0,7} vs {4,11}). Independently, exact phasewise J/EO lower and E upper bounds exclude all 10,789,539 length-matched chapter literary windows, including the short p54–55; whole-tape bounds are J+EO ≥755 and E ≤540 versus native ≤83 and ≥1397. Five native/literary constructed controls replay 40,163/40,163 runes. Retire this precise architecture under the stated grammar/finite prose register; no original plaintext or key. [Report](../im-results/lp2-active28-porta-q8-gate.md) · [SFT](../sims/lp2_active28_porta_q8_gate_sft.cjs).
+
 ### Newly closed bounded gates (24 November, 19:52–20:15Z)
 
 - **p50 ordered-row byte rank (#2626):** the fixed lexicographic rank of each physical ordered 8-of-256 row round-trips under both base59 and base60, but neither eight-byte big-endian stream is a typed Cicada payload. GnuPG rejects both; the base59 B3 Trust header appears in 35/10,000 matched random controls, and any old-format indeterminate-length header in 629/10,000. BASE29 renderings are numeric only. [Report](../im-results/lp2-p50-ordered-row-enumerative-rank-gate.md) · [SFT](../sims/lp2_p50_ordered_row_enumerative_rank_gate_sft.cjs).

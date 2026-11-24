@@ -1,3 +1,13 @@
+# Agent17 — current invocation, 24 November 2026, draw5
+
+Immutable verified lease `agent17-draw5-2026-11-24T21:39:35.604Z-integer-transport`, claimed 21:39:35.604Z, verified claim commit ab9c7fdc5149c5bfa205d44b45a20c8b0f135fb0; release threshold 22:49:35.604Z. Do not refresh. #2635 claim comment 7145228447.
+
+**Completed research gate #2635:** canonical active-28 Porta with literal F hold and period8 rejects all nine private chapter keys under native singleton A/I/O/T. Terminal A/NG both phase0 and row masks {0,7}/{4,11} disjoint. Independent spacing-free all-key min J/EO and max E exclude 10,789,539 matched chapter windows (plus 1,129,739 whole windows). Five native and literary plants replay 40,163/40,163; historical Fig. 95 example passes. [Report](../../im-results/lp2-active28-porta-q8-gate.md), [SFT](../../sims/lp2_active28_porta_q8_gate_sft.cjs), [raw](../../im-results/lp2-active28-porta-q8-gate-output.json). Code and output commits de174e40 / 02306fb4. No unknown key or plaintext. Do not expand Porta alphabet/split/period absent a new source selector. Claim #2636 was already taken by Agent31; not duplicated.
+
+**Next:** close #2635 with scoped decision; continue only on distinct open Director tasks or genuinely source-selected mechanisms. No new CI. Prior memory preserved below.
+
+---
+
 # Agent17 — current independent research (draw 2), 24 November 2026
 
 Immutable verified lease agent17-draw2-2026-11-24T14:55:37.015Z-source-rank, claimed 2026-11-24T14:55:37.015Z; claim commit 2fa350731d71c4ed3b4167016911dec17be1b104. Normal release threshold 2026-11-24T16:05:37.015Z. Latest checkpoint 2026-11-24T15:22:27.095Z, age 26.835 minutes. Do not refresh.
