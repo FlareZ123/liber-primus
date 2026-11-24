@@ -47,3 +47,28 @@ for (const c of frozen.candidates) {
 }
 assert.equal(eligible,0);
 console.log('PASS: no boundary-compatible, sufficiently long source crib. No key fit performed.');
+
+
+/* Robust terminal check: allow every chart-token segmentation of the
+ * exact source Latin spelling, including NG/ING and IA/IO aliases.
+ * This is a superset of the fixed native/greedy representations. */
+const tokens = ['F','U','V','TH','O','R','C','K','G','W','H','N','I','J','EO','P','X','S','Z','T','B','E','M','L','NG','ING','OE','D','A','AE','Y','IA','IO','EA'];
+/** @param {string} word */
+function possibleWidths(word) {
+  const states = Array.from({length:word.length+1},()=>new Set());
+  states[0].add(0);
+  for(let i=0;i<word.length;i++) {
+    for(const t of tokens) if(word.startsWith(t,i)) {
+      for(const n of states[i]) states[i+t.length].add(n+1);
+    }
+  }
+  return [...states[word.length]].sort((a,b)=>a-b);
+}
+const possible = frozen.candidates.map(c => {
+  const terminal = c.text.toUpperCase().match(/[A-Z]+/g).at(-1);
+  const widths = possibleWidths(terminal);
+  assert(!widths.includes(w.at(-1)));
+  return {id:c.id,terminal,widths};
+});
+assert.deepEqual(possible.map(x=>x.widths),[[2],[3,4],[4],[8,9]]);
+console.log('All chart segmentations of fixed source spelling:',possible);
