@@ -27,5 +27,5 @@ jobs:
       - name: Search pinned 2013 HSDir archive
         run: python sims/tor2013_raw_archive_probe.py
         env:
-          TARGET_IDS: \${{ inputs.target_ids }}
-          CONTROL_IDS: \${{ inputs.control_ids }}
+          TARGET_IDS: ${{ inputs.target_ids }}
+          CONTROL_IDS: ${{ inputs.control_ids }}
