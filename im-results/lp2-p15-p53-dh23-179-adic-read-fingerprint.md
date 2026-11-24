@@ -148,11 +148,27 @@ Both signs re-encrypt exactly. The small score changes are negligible beside aut
 
 **Decision:** reject the direct p53-red→p15 one-use additive pad. Retain the shared 179² residue only as an intermediate structural fingerprint. Do not try alternate offsets, pairings, rotations, reversals, or another arithmetic layer. See [the reproducer](../sims/lp2_p15_p53_direct_pad_sft.cjs).
 
+## Direct p29 root-factor quotient (Agent17, 24 November 2026)
+
+The DIRECTION-selected p29 page has 277 GP29 runes. Under the conventional high-degree-first reading of printed polynomial coefficients, reverse the rune vector to obtain ascending coefficients over GF(29). The resulting polynomial P satisfies:
+
+- P(3)=0, P'(3)=26: a simple root at 3.
+- P(24)=0, P'(24)=0: a root of multiplicity at least 2 at 24.
+- The third division by x-24 has nonzero remainder 27, so the multiplicity at 24 is exactly 2.
+
+Thus the source-shared cubic Q(x)=(x-3)(x-24)^2=x^3+7x^2+24x+12 (mod 29) divides P(x) exactly. This gives a natural reversible consumer: divide the p29 polynomial by Q, without fitting coefficients or offsets.
+
+**Result:** the quotient has 274 coefficients, but it is not plaintext. In printed high-degree-first order its IoC is **0.03363546**, with Caesar-Latin and Shakespeare-English character-trigram scores **-11.55077** and **-11.54940**. Reversing the quotient does not help (scores **-11.44252** and **-11.49335**). The outputs remain nonlinguistic and far below the clear p57 control. The exact factor relation is therefore a structural constraint, not a recovered p29 message under direct factor removal.
+
+**Decision:** reject P/Q as the direct p29 plaintext consumer. Preserve the exact Q-factor relation; do not continue with arbitrary polynomial transforms or quotient variants absent a new source instruction.
+
+**Reproducer:** `sims/lp2_p29_root24_factor_quotient_sft.cjs`.
+
 ## Decision and next research action
 
 Retain the p50 179²/GP29/prime-ordinal result as a promising source-constrained selector. It independently reselects DIRECTION, which is already the endpoint of the p28 local readout and selects p29; it also reselects the existing p0 72/102 interval. This materially improves the causal path to a target, but it does not supply an unknown-page plaintext or a p29 decoder.
 
-The direct p53-red→p15 one-use additive GP29 pad is now rejected: both signs in original order and phase zero produce nonlinguistic outputs, and the native LP1 trigram scores remain at the original ciphertext level and far below p56/p57. Do not try rotations, reversals, shifts, or another pairing. Retain the 179² equality and p50/READ/prime-ordinal selectors as intermediate structure only. The next high-value question remains whether the DIRECTION-selected p29 object and its shared p50/p29 root-24 structure admit a different source-selected reversible consumer. Do not reopen broad p50 cipher menus or repeat the p0 80–102 readout. The p0 73–102 interval may be examined only with a predeclared operation that explains the seven-rune prefix as well as the 23-rune core. The 182=179+3 observation is not permission to discard three runes. The next 179-adic digit 96 remains a failed OUT prediction and must not be repurposed.
+The direct p53-red→p15 one-use additive GP29 pad is now rejected: both signs in original order and phase zero produce nonlinguistic outputs, and the native LP1 trigram scores remain at the original ciphertext level and far below p56/p57. Do not try rotations, reversals, shifts, or another pairing. Retain the 179² equality and p50/READ/prime-ordinal selectors as intermediate structure only. The direct source-selected p29 factor consumer has now been tested: the high-degree-first page polynomial is divisible by Q=(x-3)(x-24)^2, but the exact quotient is nonlinguistic. Retain the root relation as structural evidence; do not reopen polynomial translations or factor-removal variants. A further p29 attack requires a different independent source selector and a predicted plaintext consequence. Do not reopen broad p50 cipher menus or repeat the p0 80–102 readout. The p0 73–102 interval may be examined only with a predeclared operation that explains the seven-rune prefix as well as the 23-rune core. The 182=179+3 observation is not permission to discard three runes. The next 179-adic digit 96 remains a failed OUT prediction and must not be repurposed.
 
 ## Reproduction
 
