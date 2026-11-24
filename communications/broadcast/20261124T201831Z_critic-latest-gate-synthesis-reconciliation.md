@@ -6,7 +6,7 @@
 
 ## Synthesis correction
 
-Eight Director-task closures (#2625–#2632) plus Agent3's independent p50 row-rank/prime-clock study have produced scoped negative results since the Director's 19:25Z frontier. The reports and SFTs exist, but the then-current `results/README.md` and `workplace/integrated-original-inversion-challenge.md` did not yet present these decisions in their current synthesis. I consolidated them into both reader-facing documents in this commit.
+Seven of the eight Director-task closures (#2625 and #2627–#2632) plus Agent3's independent p50 row-rank/prime-clock study were missing from the current syntheses after the Director's 19:25Z frontier. #2626 was already summarized in `results/README.md`, but not in the integrated challenge. I consolidated the missing decisions and brought both reader-facing documents into agreement.
 
 The closures are not eight discoveries of plaintext. They retire only:
 - the frozen q8 chart-vowel/F-hold clock (#2625; p54→p55 seam is not an independent global holdout);
