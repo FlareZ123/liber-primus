@@ -54,7 +54,7 @@ function experiment(corpus,trans,solved,lex,donors,lib,mode='strict'){
  /** Exact join over all dictionary pairs and all nonzero a,b, all d.
   * Difference rows remove d; quotient by the observed Cprev-difference vector removes b.
   * One word contributes additively to each equation, so a signature lookup replaces the pair product. */
- function join(c1,c2,list1,list2,emit){
+ function join(c1,c2,list1,list2,emit,aRange=[1,28]){
   let models=0,maskPairs=0;
   for(const g1 of group(c1,list1))for(const g2 of group(c2,list2)){
    const C=g1.C.concat(g2.C),n=g1.C.length,m=C.length-q;
@@ -66,7 +66,7 @@ function experiment(corpus,trans,solved,lex,donors,lib,mode='strict'){
    const key=(v,complement)=>String.fromCharCode(...project(v).map((x,i)=>complement?mod(target[i]-x):x));
    // Index the smaller side to limit memory; retain every collision exactly.
    const indexLeft=g1.words.length<=g2.words.length,I=indexLeft?g1.words:g2.words,J=indexLeft?g2.words:g1.words;
-   for(let a=1;a<29;a++){
+   for(let a=aRange[0];a<=aRange[1];a++){
     const map=new Map();for(const w of I){const v=vector(w.v,indexLeft,a),k=key(v,false);let arr=map.get(k);if(!arr){arr=[];map.set(k,arr);}arr.push({w,v});}
     for(const w of J){const v=vector(w.v,!indexLeft,a),arr=map.get(key(v,true));if(!arr)continue;
      for(const x of arr){
@@ -122,7 +122,53 @@ function experiment(corpus,trans,solved,lex,donors,lib,mode='strict'){
   const p=yes?Array.from(plain):null;if(p&&rev)p.reverse();
   return {status:yes?"legal":capped?"cap":"empty",visits,p,queue:final};
  }
+
+ // Streaming reachability for large anchor support; ring mutation avoids per-rune array allocation.
+ // Copies only at ambiguous zero branches; exact depth-first existence, no score pruning.
+ function reachFast(C,K,a,b,d,rev){
+  const n=C.length,ai=inv[a];let visits=0,capped=false;
+  const check=()=>{if(++visits>REACH_CAP)throw Error("reach cap");};
+  const xAt=i=>C[rev?n-1-i:i];
+  function consume(c,k,h){let p;if(rev){h=h===0?q-1:h-1;p=mod((k[h]-b*c-d)*ai);if(!p)return -1;k[h]=mod(c-p);return h;}
+   p=mod(c-k[h]);if(!p)return -1;k[h]=mod(a*p+b*c+d);return h===q-1?0:h+1;}
+  function go(i,k,h){while(i<n&&xAt(i)){check();h=consume(xAt(i++),k,h);if(h<0)return false;}if(i===n)return true;
+   check();if(go(i+1,k.slice(),h))return true;
+   const nh=consume(0,k,h);if(nh<0)return false;check();return go(i+1,k,nh);
+  }
+  let yes=false;try{yes=go(0,K.slice(),0);}catch(e){if(e.message!=="reach cap")throw e;capped=true;}
+  return {status:yes?"legal":capped?"cap":"empty",visits};
+ }
+ function p0Stream(range){
+  // Independently check the ring inverse against the earlier complete-queue implementation.
+  const ns=src.find(x=>x.name==="0_loss_of_divinity"),P=ns.w.flat(),a0=28,b0=5,d0=11,K0=Array.from({length:q},(_,i)=>(i*i*7+i*11+23)%29),C0=encrypt(P,K0,a0,b0,d0).C;
+  const i0=ns.w.slice(0,5).flat().length,j0=i0+ns.w[5].length+ns.w[6].length,cp0=P.slice(i0,j0).map((v,i)=>[C0[i0+i],v]).filter(x=>x[1]);
+  const k0=cp0.slice(0,q).map(([c,p])=>mod(c-p)),f0=encrypt(P.slice(i0,j0),k0,a0,b0,d0).queue;
+  let checks=0;for(const [C,K,rev] of [[C0.slice(0,i0),k0,true],[C0.slice(j0),f0,false]])for(const delta of [0,1,7]){const k=K.slice();k[0]=mod(k[0]+delta);const x=reach(C,k,a0,b0,d0,rev),y=reachFast(C,k,a0,b0,d0,rev);assert(x.status===y.status&&x.status!=="cap","fast reach agreement");checks++;if(!delta)assert(y.status==="legal","native true path");}
+  const words=original.slice(0,158),C=words.flat();assert(C.length===729&&same(C,gp.pages.slice(0,3).flatMap(x=>x.indices)),"p0 chapter tape");
+  const offset=[0];for(const w of words)offset.push(offset.at(-1)+w.length);
+  const pairs=words.slice(0,-1).map((w,j)=>({j,nz:w.concat(words[j+1]).filter(Boolean).length,n:w.length+words[j+1].length})).filter(x=>words[x.j].length>=5&&words[x.j+1].length>=5&&x.nz>=q+3).sort((a,b)=>b.nz-a.nz||b.n-a.n||a.j-b.j);
+  const j=pairs[0].j,at=offset[j],end=offset[j+2],c1=words[j],c2=words[j+1],LC=C.slice(0,at),RC=C.slice(end);
+  assert(j===144&&at===645&&c1.length===8&&c2.length===9,"frozen p0 anchor");
+  let legal=0,cap=0,empty=0,visits=0,best=null,legalModels=[],byA={};
+  const support=join(c1,c2,dict[c1.length],dict[c2.length],x=>{
+   const {a,b,d,p,P,C:CC}=x,start=P.slice(0,q).map((v,i)=>mod(CC[i]-v)),finish=P.slice(-q).map((v,i)=>mod(a*v+b*CC[CC.length-q+i]+d));
+   let stats=byA[a];if(!stats)stats=byA[a]={models:0,empty:0,legal:0,cap:0,visits:0};stats.models++;
+   // Short right side first: cheap necessary condition, then full backward side.
+   const rr=reachFast(RC,finish,a,b,d,false);let ll=null,status="empty";
+   if(rr.status!=="empty"){ll=reachFast(LC,start,a,b,d,true);status=ll.status==="empty"?"empty":ll.status==="cap"||rr.status==="cap"?"cap":"legal";}
+   const v=rr.visits+(ll?.visits||0);visits+=v;stats.visits+=v;stats[status]++;
+   if(status==="empty"){empty++;return;}if(status==="cap"){cap++;return;}legal++;
+   const left=reach(LC,start,a,b,d,true),right=reach(RC,finish,a,b,d,false);
+   assert(left.status==="legal"&&right.status==="legal","witness reach");
+   const pp=left.p.concat(p,right.p);assert(same(encrypt(pp,left.queue,a,b,d).C,C),"full p0 replay");
+   const avg=score(pp)/pp.length,row={a,b,d,anchor:render(p.slice(0,c1.length))+" "+render(p.slice(c1.length)),anchorIndices:p,incoming:start,score:avg,first100:render(pp.slice(0,100)),last100:render(pp.slice(-100))};
+   legalModels.push(row);if(!best||avg>best.score)best=row;
+  },range);
+  assert(support.models===legal+cap+empty,"p0 exhaustive accounting");
+  return {mode:"p0full",q,range,joinTests,checks,anchor:{j,at,n:[c1.length,c2.length]},lexicon:dict.reduce((s,d)=>s+d.size,0),...support,legal,cap,empty,visits,byA,best,legalModels};
+ }
  const joinTests=testJoin(),FIT_CAP=2048;
+ if(mode.startsWith('p0full:')){const range=mode.slice(7).split('-').map(Number);assert(range.length===2&&range[0]>=1&&range[1]<=28&&range[0]<=range[1],'a range');return p0Stream(range);}
  function attack(name,words,truth=null,partial=new Set(),prediction=true){
   const C=words.flat(),offsets=[0],anchors=[];for(const w of words)offsets.push(offsets.at(-1)+w.length);
   let pairs=[];
