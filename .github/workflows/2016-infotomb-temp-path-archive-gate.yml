@@ -1,0 +1,28 @@
+name: 2016 InfoTomb companion-path archive gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-path-archive-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Offline source and parser assertions
+        run: node sims/lp2_2016_infotomb_temp_path_archive_gate.cjs --selftest
+      - name: Query exact Wayback and Common Crawl paths
+        run: node sims/lp2_2016_infotomb_temp_path_archive_gate.cjs
+      - name: Preserve archive evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: infotomb-temp-path-archive-gate
+          path: infotomb-temp-path-recovery/
+          if-no-files-found: warn
