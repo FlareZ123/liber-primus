@@ -17,8 +17,8 @@ function experiment(inputs){
  const ALL=(1<<29)-1, bit=i=>1<<i,pop=x=>{let n=0;while(x){x&=x-1;n++}return n},rot=(x,k)=>{k=mod(k);return k?((x<<k)|(x>>>(29-k)))&ALL:x},bits=function*(x){while(x){const b=x&-x;yield 31-Math.clz32(b);x^=b}};
  function encode(ws,key){let phase=0;return ws.map(w=>w.map(p=>p===0?0:mod(p+key[phase++%29])))}
  function build(ws){let offset=0,zeros=0;const domains=[1],rows=[];for(const c of ws){assert(c.length<=29,"word > period");const candidates=[];let startMask=0;for(let h=0;h<=Math.min(zeros,28);h++)startMask|=bit(mod(offset-h));for(const p of (dict[c.length]||new Map()).values()){const d=[];let legal=true;for(let i=0;i<c.length;i++){if(p[i]===0){if(c[i]!==0){legal=false;break}}else d.push(mod(c[i]-p[i]))}if(legal)candidates.push({p,d,startMask})}rows.push(candidates);offset+=c.length;zeros+=c.filter(x=>x===0).length;let mask=0;for(let h=0;h<=Math.min(zeros,28);h++)mask|=bit(mod(offset-h));domains.push(mask)}return {rows,domains}}
- function solve(ws,limit=3000){const {rows,domains}=build(ws);const initialRows=rows.reduce((n,w)=>n+w.length,0);let nodes=0,passes=0,rowVisits=0,exhausted=false;const keysFound=new Map();
-  const fresh=()=>({keys:Array(29).fill(ALL),ph:domains.slice(),masks:rows.map(w=>Uint32Array.from(w,r=>r.startMask))});
+ function solve(ws,limit=3000,fixed=null){const {rows,domains}=build(ws);const initialRows=rows.reduce((n,w)=>n+w.length,0);let nodes=0,passes=0,rowVisits=0,exhausted=false;const keysFound=new Map();
+  const fresh=()=>({keys:fixed?fixed.map(bit):Array(29).fill(ALL),ph:domains.slice(),masks:rows.map(w=>Uint32Array.from(w,r=>r.startMask))});
   const clone=s=>({keys:s.keys.slice(),ph:s.ph.slice(),masks:s.masks.map(x=>x.slice())});
   function propagate(s){let changed=true;while(changed){changed=false;passes++;for(let dir=0;dir<2;dir++){for(let wi=0;wi<rows.length;wi++){const w=dir?rows.length-1-wi:wi,candidates=rows[w],masks=s.masks[w];const support=Array(29).fill(0),startByValue=Array(29).fill(0);for(let ph=0;ph<29;ph++)for(const d of bits(s.keys[ph]))startByValue[d]|=bit(ph);let ins=0,outs=0,free=0;
    for(let j=0;j<candidates.length;j++){if(!masks[j])continue;rowVisits++;const {d}=candidates[j],m=d.length;let mask=masks[j]&s.ph[w]&rot(s.ph[w+1],-m);
@@ -38,12 +38,20 @@ function experiment(inputs){
   dfs(fresh());return {keys:[...keysFound.values()],exhausted,nodes,passes,rowVisits,initialRows,exact:!exhausted&&keysFound.size<2}
  }
  function summarize(x){return {...x,keys:x.keys.map(v=>({key:v.key,paths:v.paths,runecount:v.p.flat().length}))}}
- const control=solved[3].slice(135);let x=0x2904;const rand=()=>{x^=x<<13;x^=x>>>17;x^=x<<5;return (x>>>0)%29};const key=Array.from({length:29},rand),plant=encode(control,key);let cut=0,total=0;while(total<220&&cut<plant.length)total+=plant[cut++].length;
- const res=solve(plant.slice(0,cut),3000);const plantResult={key,trainRunes:total,held:plant.slice(cut).flat().length,cipherF:plant.flat().filter(v=>v===0).length,result:summarize(res)};
- if(res.keys.length===1&&!res.exhausted&&String(res.keys[0].key)===String(key)){const full=solve(plant,3000);plantResult.full=summarize(full);plantResult.correct=full.keys.length===1&&String(full.keys[0].p.flat())===String(control.flat())}
- return {vocabulary:dict.reduce((n,d)=>n+d.size,0),plant:plantResult};
+
+ function plant(name,control,seed,trainLength){let x=seed;const rand=()=>{x^=x<<13;x^=x>>>17;x^=x<<5;return (x>>>0)%29};const rawKey=Array.from({length:29},rand),phase=rand(),key=rawKey.slice(phase).concat(rawKey.slice(0,phase)),cipher=encode(control,key);let cut=0,total=0;while(total<trainLength&&cut<cipher.length)total+=cipher[cut++].length;
+ const res=solve(cipher.slice(0,cut),3000),correctKey=res.keys.length===1&&!res.exhausted&&String(res.keys[0].key)===String(key);const result={name,key,phase,trainRunes:total,held:cipher.slice(cut).flat().length,cipherF:cipher.flat().filter(v=>v===0).length,plainF:control.flat().filter(v=>v===0).length,result:summarize(res),correctKey};
+ if(correctKey){const full=solve(cipher,3000,res.keys[0].key);const p=full.keys[0]?.p.flat()||[],truth=control.flat();result.full=summarize(full);result.correct=p.length===truth.length&&p.every((v,i)=>v===truth[i]);result.heldMatches=p.slice(total).filter((v,i)=>v===truth[total+i]).length}
+ return result}
+ function donor(s){const tokens=gp.translit.map((s,i)=>({s,i})).sort((a,b)=>b.s.length-a.s.length);const words=[];for(let w of s.toUpperCase().match(/[A-Z]+/g)||[]){const p=[];w=w.replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S").replace(/ING/g,"NG").replace(/IO/g,"IA");while(w.length){const t=tokens.find(t=>w.startsWith(t.s));if(!t)throw Error("donor token "+w);p.push(t.i);w=w.slice(t.s.length)}words.push(p)}return words}
+ function take(ws,length){let n=0,i=0;while(n<length&&i<ws.length)n+=ws[i++].length;assert(n>=length,"donor length");return ws.slice(0,i)}
+ const baseVocabulary=dict.reduce((n,d)=>n+d.size,0),g=donor(inputs[4].slice(inputs[4].toLowerCase().indexOf("almustafa"))),sh=donor(inputs[5]);
+ // Include full public donor vocabulary, without any ordered plaintext constraints.
+ for(const p of [...g,...sh])add(p);
+ const plants=[plant("Koan1 native suffix",solved[3].slice(135),0x2904,220),plant("Gibran continuous source opening",take(g,700),0x2905,400),plant("Shakespeare continuous source opening",take(sh,700),0x2906,400)];
+ return {baseVocabulary,vocabulary:dict.reduce((n,d)=>n+d.size,0),plants};
 }
 
 const fs=require("node:fs"),path=require("node:path");
-const paths=["resources/liber-primus/lp2-corpus.json","resources/liber-primus/lp2-transcription.txt","resources/control/english_wordfreq_textblob.txt","resources/external/relikd-solved-gp29-native-v1.json"];
+const paths=["resources/liber-primus/lp2-corpus.json","resources/liber-primus/lp2-transcription.txt","resources/control/english_wordfreq_textblob.txt","resources/external/relikd-solved-gp29-native-v1.json","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt"];
 console.log(JSON.stringify(experiment(paths.map(p=>fs.readFileSync(path.resolve(__dirname,"..",p),"utf8"))),null,2));
