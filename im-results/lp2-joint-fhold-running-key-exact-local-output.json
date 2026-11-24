@@ -1,0 +1,1486 @@
+{
+  "summary": {
+    "dict": 41950,
+    "prefix": 101028,
+    "suffix": 121291,
+    "substr": 266824,
+    "original": {
+      "n": 187,
+      "min": 5,
+      "median": 509,
+      "max": 1338,
+      "mean": 522.3850267379679
+    },
+    "zeros": 0,
+    "unique": 0,
+    "byLength": [
+      {
+        "L": 9,
+        "n": 78,
+        "min": 349,
+        "median": 796,
+        "max": 1338,
+        "mean": 805.9871794871794,
+        "zero": 0,
+        "unique": 0
+      },
+      {
+        "L": 10,
+        "n": 52,
+        "min": 184,
+        "median": 485,
+        "max": 938,
+        "mean": 490.9423076923077,
+        "zero": 0,
+        "unique": 0
+      },
+      {
+        "L": 11,
+        "n": 32,
+        "min": 71,
+        "median": 202,
+        "max": 427,
+        "mean": 231.1875,
+        "zero": 0,
+        "unique": 0
+      },
+      {
+        "L": 12,
+        "n": 18,
+        "min": 33,
+        "median": 82,
+        "max": 251,
+        "mean": 98.55555555555556,
+        "zero": 0,
+        "unique": 0
+      },
+      {
+        "L": 13,
+        "n": 4,
+        "min": 17,
+        "median": 24,
+        "max": 32,
+        "mean": 23.25,
+        "zero": 0,
+        "unique": 0
+      },
+      {
+        "L": 14,
+        "n": 3,
+        "min": 5,
+        "median": 6,
+        "max": 14,
+        "mean": 8.333333333333334,
+        "zero": 0,
+        "unique": 0
+      }
+    ],
+    "controls": [
+      {
+        "name": "Gibran plaintext / Shakespeare key",
+        "n": 187,
+        "true": 187,
+        "unique": 0,
+        "uniqueCorrect": 0,
+        "zero": 0,
+        "uniformZero": 0,
+        "counts": {
+          "n": 187,
+          "min": 14,
+          "median": 583,
+          "max": 1717,
+          "mean": 619.4491978609626
+        },
+        "uniformCounts": {
+          "n": 187,
+          "min": 10,
+          "median": 530,
+          "max": 1894,
+          "mean": 533.6684491978609
+        }
+      },
+      {
+        "name": "Emerson plaintext / Gibran key",
+        "n": 187,
+        "true": 187,
+        "unique": 0,
+        "uniqueCorrect": 0,
+        "zero": 0,
+        "uniformZero": 0,
+        "counts": {
+          "n": 187,
+          "min": 17,
+          "median": 625,
+          "max": 1919,
+          "mean": 656.6310160427807
+        },
+        "uniformCounts": {
+          "n": 187,
+          "min": 12,
+          "median": 456,
+          "max": 1804,
+          "mean": 515.2887700534759
+        }
+      }
+    ]
+  },
+  "anchors": [
+    {
+      "wi": 5,
+      "offset": 23,
+      "L": 11,
+      "c": "NEWBASOEEOINGU",
+      "n": 198
+    },
+    {
+      "wi": 13,
+      "offset": 62,
+      "L": 11,
+      "c": "SPTFPUNGYNGXIA",
+      "n": 143
+    },
+    {
+      "wi": 55,
+      "offset": 245,
+      "L": 9,
+      "c": "FOEWEAOELFAE",
+      "n": 807
+    },
+    {
+      "wi": 67,
+      "offset": 304,
+      "L": 9,
+      "c": "ROOEMHMGPH",
+      "n": 1242
+    },
+    {
+      "wi": 90,
+      "offset": 397,
+      "L": 10,
+      "c": "JFINIACYEAIIA",
+      "n": 742
+    },
+    {
+      "wi": 95,
+      "offset": 425,
+      "L": 9,
+      "c": "DCLEASXCGIA",
+      "n": 863
+    },
+    {
+      "wi": 131,
+      "offset": 575,
+      "L": 10,
+      "c": "NGEAFNIEDIANGR",
+      "n": 636
+    },
+    {
+      "wi": 140,
+      "offset": 630,
+      "L": 9,
+      "c": "PTFHRDEFT",
+      "n": 871
+    },
+    {
+      "wi": 145,
+      "offset": 653,
+      "L": 9,
+      "c": "JCLWEADUDEO",
+      "n": 751
+    },
+    {
+      "wi": 147,
+      "offset": 668,
+      "L": 10,
+      "c": "THIAAECLTWEIC",
+      "n": 544
+    },
+    {
+      "wi": 155,
+      "offset": 708,
+      "L": 10,
+      "c": "BJCUXTABJP",
+      "n": 281
+    },
+    {
+      "wi": 157,
+      "offset": 720,
+      "L": 9,
+      "c": "HDNIAUPSUW",
+      "n": 560
+    },
+    {
+      "wi": 159,
+      "offset": 731,
+      "L": 11,
+      "c": "EOHNGCTHTAEJTXH",
+      "n": 177
+    },
+    {
+      "wi": 167,
+      "offset": 780,
+      "L": 12,
+      "c": "RLLEBWNHMFOEB",
+      "n": 81
+    },
+    {
+      "wi": 169,
+      "offset": 793,
+      "L": 9,
+      "c": "RAIAGOEEOTMX",
+      "n": 754
+    },
+    {
+      "wi": 189,
+      "offset": 881,
+      "L": 11,
+      "c": "SXOHWDMEMAF",
+      "n": 402
+    },
+    {
+      "wi": 235,
+      "offset": 1067,
+      "L": 9,
+      "c": "EOYNGJNGMWCN",
+      "n": 1008
+    },
+    {
+      "wi": 241,
+      "offset": 1097,
+      "L": 10,
+      "c": "RLRBAPTXLT",
+      "n": 450
+    },
+    {
+      "wi": 243,
+      "offset": 1111,
+      "L": 9,
+      "c": "JSOEMNREBS",
+      "n": 789
+    },
+    {
+      "wi": 247,
+      "offset": 1134,
+      "L": 9,
+      "c": "RGTEOEAIJBOE",
+      "n": 793
+    },
+    {
+      "wi": 257,
+      "offset": 1184,
+      "L": 10,
+      "c": "PAEOGSCGDPY",
+      "n": 388
+    },
+    {
+      "wi": 277,
+      "offset": 1269,
+      "L": 9,
+      "c": "PNGEOPOILEF",
+      "n": 977
+    },
+    {
+      "wi": 295,
+      "offset": 1348,
+      "L": 10,
+      "c": "HEATYDYAEFHO",
+      "n": 430
+    },
+    {
+      "wi": 306,
+      "offset": 1407,
+      "L": 9,
+      "c": "FDLIEAPOEYO",
+      "n": 862
+    },
+    {
+      "wi": 307,
+      "offset": 1416,
+      "L": 10,
+      "c": "UBGNGOEUNGSUC",
+      "n": 228
+    },
+    {
+      "wi": 325,
+      "offset": 1490,
+      "L": 10,
+      "c": "WIIASPLTHASJ",
+      "n": 478
+    },
+    {
+      "wi": 376,
+      "offset": 1717,
+      "L": 12,
+      "c": "IAAETHWHPEOAGPHEA",
+      "n": 92
+    },
+    {
+      "wi": 406,
+      "offset": 1845,
+      "L": 12,
+      "c": "ICETSWENIAYJM",
+      "n": 79
+    },
+    {
+      "wi": 418,
+      "offset": 1894,
+      "L": 9,
+      "c": "OCEAMNGGXLU",
+      "n": 887
+    },
+    {
+      "wi": 442,
+      "offset": 1998,
+      "L": 10,
+      "c": "MIEOLEAHTHMEAY",
+      "n": 504
+    },
+    {
+      "wi": 444,
+      "offset": 2014,
+      "L": 12,
+      "c": "NOEOESGMPETLNJ",
+      "n": 107
+    },
+    {
+      "wi": 450,
+      "offset": 2046,
+      "L": 10,
+      "c": "HNGXPHPCPRU",
+      "n": 627
+    },
+    {
+      "wi": 452,
+      "offset": 2060,
+      "L": 9,
+      "c": "GABFIAEFUOE",
+      "n": 769
+    },
+    {
+      "wi": 460,
+      "offset": 2107,
+      "L": 9,
+      "c": "NDBONTHIAHOE",
+      "n": 785
+    },
+    {
+      "wi": 473,
+      "offset": 2165,
+      "L": 11,
+      "c": "OEHFTHXJOESTHYTH",
+      "n": 71
+    },
+    {
+      "wi": 506,
+      "offset": 2315,
+      "L": 11,
+      "c": "FIJUMAENCMEAI",
+      "n": 392
+    },
+    {
+      "wi": 512,
+      "offset": 2347,
+      "L": 12,
+      "c": "ASIATHSTHSFMGDEA",
+      "n": 33
+    },
+    {
+      "wi": 519,
+      "offset": 2387,
+      "L": 11,
+      "c": "WIAEARAEWIADATHC",
+      "n": 299
+    },
+    {
+      "wi": 578,
+      "offset": 2622,
+      "L": 11,
+      "c": "OCPCDAXUMNGOE",
+      "n": 313
+    },
+    {
+      "wi": 580,
+      "offset": 2637,
+      "L": 9,
+      "c": "FRCBUJRAENG",
+      "n": 920
+    },
+    {
+      "wi": 591,
+      "offset": 2690,
+      "L": 9,
+      "c": "NGYXSAOERXC",
+      "n": 701
+    },
+    {
+      "wi": 605,
+      "offset": 2744,
+      "L": 11,
+      "c": "AEEOFTHCLOXLOL",
+      "n": 222
+    },
+    {
+      "wi": 612,
+      "offset": 2775,
+      "L": 9,
+      "c": "DXEANGFRIACEO",
+      "n": 778
+    },
+    {
+      "wi": 613,
+      "offset": 2784,
+      "L": 9,
+      "c": "XOEPMDCTHWP",
+      "n": 1049
+    },
+    {
+      "wi": 626,
+      "offset": 2848,
+      "L": 11,
+      "c": "LARAEOETHONOEIE",
+      "n": 266
+    },
+    {
+      "wi": 629,
+      "offset": 2866,
+      "L": 9,
+      "c": "EAIAEAIUIAEONGD",
+      "n": 773
+    },
+    {
+      "wi": 630,
+      "offset": 2875,
+      "L": 11,
+      "c": "XTFBHUSCREOW",
+      "n": 184
+    },
+    {
+      "wi": 631,
+      "offset": 2886,
+      "L": 13,
+      "c": "EOPSULAPUCEFDX",
+      "n": 24
+    },
+    {
+      "wi": 637,
+      "offset": 2918,
+      "L": 12,
+      "c": "ITHTGUWCHEOAE",
+      "n": 105
+    },
+    {
+      "wi": 647,
+      "offset": 2959,
+      "L": 9,
+      "c": "WCENGREADTH",
+      "n": 659
+    },
+    {
+      "wi": 648,
+      "offset": 2968,
+      "L": 9,
+      "c": "JIPHFXNGPN",
+      "n": 654
+    },
+    {
+      "wi": 650,
+      "offset": 2983,
+      "L": 10,
+      "c": "XEAPAOGFCIAJ",
+      "n": 534
+    },
+    {
+      "wi": 696,
+      "offset": 3151,
+      "L": 9,
+      "c": "HLNSRIAAELAE",
+      "n": 972
+    },
+    {
+      "wi": 700,
+      "offset": 3173,
+      "L": 10,
+      "c": "BEORWTXNEAEI",
+      "n": 370
+    },
+    {
+      "wi": 720,
+      "offset": 3259,
+      "L": 9,
+      "c": "IAOEWNOUWEI",
+      "n": 721
+    },
+    {
+      "wi": 748,
+      "offset": 3369,
+      "L": 9,
+      "c": "OEEBJRJEIP",
+      "n": 1300
+    },
+    {
+      "wi": 754,
+      "offset": 3405,
+      "L": 14,
+      "c": "BGDXMBXCNGTHYDAEEA",
+      "n": 5,
+      "candidates": [
+        [
+          "ECCLESIASTICAL",
+          "EAUEDUTHRIGSTEUH"
+        ],
+        [
+          "INGRATIATINGLY",
+          "WYBIAURICNGBBCTH"
+        ],
+        [
+          "OUERSTRETCHING",
+          "XCCIRUITCYEPTOE"
+        ],
+        [
+          "REDISTRIBUTION",
+          "PBFRRUIARUIPOEM"
+        ],
+        [
+          "SCRUTINISINGLY",
+          "THUMPOWCAGNGBBCTH"
+        ]
+      ]
+    },
+    {
+      "wi": 785,
+      "offset": 3546,
+      "L": 9,
+      "c": "EADCBGXWNGU",
+      "n": 551
+    },
+    {
+      "wi": 808,
+      "offset": 3655,
+      "L": 9,
+      "c": "PENTHOUIIAR",
+      "n": 925
+    },
+    {
+      "wi": 833,
+      "offset": 3762,
+      "L": 13,
+      "c": "EDAAETOEAEEAXCEAT",
+      "n": 32
+    },
+    {
+      "wi": 871,
+      "offset": 3925,
+      "L": 12,
+      "c": "JTSMDOEINGAXEP",
+      "n": 58
+    },
+    {
+      "wi": 874,
+      "offset": 3944,
+      "L": 12,
+      "c": "CBUOECBLNOENGXO",
+      "n": 38
+    },
+    {
+      "wi": 978,
+      "offset": 4364,
+      "L": 9,
+      "c": "EADEOXCEAOOEE",
+      "n": 891
+    },
+    {
+      "wi": 994,
+      "offset": 4437,
+      "L": 10,
+      "c": "YAEGEOOEURWU",
+      "n": 435
+    },
+    {
+      "wi": 1007,
+      "offset": 4494,
+      "L": 9,
+      "c": "EOOEENGCFTDT",
+      "n": 855
+    },
+    {
+      "wi": 1019,
+      "offset": 4549,
+      "L": 9,
+      "c": "UENGEACDPOEA",
+      "n": 1204
+    },
+    {
+      "wi": 1078,
+      "offset": 4798,
+      "L": 9,
+      "c": "IAOTDNSECH",
+      "n": 651
+    },
+    {
+      "wi": 1157,
+      "offset": 5125,
+      "L": 11,
+      "c": "HUHNTAEBEOOIP",
+      "n": 170
+    },
+    {
+      "wi": 1161,
+      "offset": 5148,
+      "L": 10,
+      "c": "EOEOPLOGIOEEA",
+      "n": 485
+    },
+    {
+      "wi": 1166,
+      "offset": 5174,
+      "L": 11,
+      "c": "THEOJGSNGYMOEH",
+      "n": 234
+    },
+    {
+      "wi": 1167,
+      "offset": 5185,
+      "L": 11,
+      "c": "MFTHXTHAESPYOF",
+      "n": 154
+    },
+    {
+      "wi": 1168,
+      "offset": 5196,
+      "L": 10,
+      "c": "POESEAEEOMLPN",
+      "n": 747
+    },
+    {
+      "wi": 1181,
+      "offset": 5257,
+      "L": 10,
+      "c": "ENGTHJJFLNOB",
+      "n": 353
+    },
+    {
+      "wi": 1203,
+      "offset": 5351,
+      "L": 10,
+      "c": "YGXBANNGIAJIA",
+      "n": 616
+    },
+    {
+      "wi": 1205,
+      "offset": 5367,
+      "L": 10,
+      "c": "IPANGSDOEONGM",
+      "n": 372
+    },
+    {
+      "wi": 1215,
+      "offset": 5410,
+      "L": 12,
+      "c": "BAOEUIAJWTRWOE",
+      "n": 84
+    },
+    {
+      "wi": 1217,
+      "offset": 5429,
+      "L": 11,
+      "c": "IAFEAYATHLTBUNG",
+      "n": 92
+    },
+    {
+      "wi": 1220,
+      "offset": 5447,
+      "L": 12,
+      "c": "WBMRNMHMINAD",
+      "n": 232
+    },
+    {
+      "wi": 1249,
+      "offset": 5584,
+      "L": 9,
+      "c": "PBIASUDEYTH",
+      "n": 465
+    },
+    {
+      "wi": 1254,
+      "offset": 5610,
+      "L": 10,
+      "c": "FAOIANGBEATHCA",
+      "n": 417
+    },
+    {
+      "wi": 1296,
+      "offset": 5795,
+      "L": 10,
+      "c": "ONTEABOEBFIP",
+      "n": 243
+    },
+    {
+      "wi": 1328,
+      "offset": 5930,
+      "L": 9,
+      "c": "HWTNIAXAETHOE",
+      "n": 825
+    },
+    {
+      "wi": 1337,
+      "offset": 5964,
+      "L": 10,
+      "c": "HJSIAWNNIAWL",
+      "n": 571
+    },
+    {
+      "wi": 1341,
+      "offset": 5981,
+      "L": 10,
+      "c": "AXEONGSEEOIHN",
+      "n": 383
+    },
+    {
+      "wi": 1353,
+      "offset": 6035,
+      "L": 14,
+      "c": "EAIIATHNGNENFOMEYA",
+      "n": 14
+    },
+    {
+      "wi": 1356,
+      "offset": 6063,
+      "L": 10,
+      "c": "EALUNTHPSUPR",
+      "n": 267
+    },
+    {
+      "wi": 1360,
+      "offset": 6090,
+      "L": 9,
+      "c": "OSOEARMTHOEP",
+      "n": 1034
+    },
+    {
+      "wi": 1390,
+      "offset": 6216,
+      "L": 9,
+      "c": "BIAEHEUTLL",
+      "n": 822
+    },
+    {
+      "wi": 1393,
+      "offset": 6233,
+      "L": 9,
+      "c": "EAEJBNILEAR",
+      "n": 972
+    },
+    {
+      "wi": 1409,
+      "offset": 6307,
+      "L": 10,
+      "c": "NGIIALNGNDAPG",
+      "n": 536
+    },
+    {
+      "wi": 1414,
+      "offset": 6330,
+      "L": 9,
+      "c": "EXBGAEFOIX",
+      "n": 815
+    },
+    {
+      "wi": 1417,
+      "offset": 6344,
+      "L": 9,
+      "c": "OIDSLTHEBEO",
+      "n": 486
+    },
+    {
+      "wi": 1458,
+      "offset": 6530,
+      "L": 12,
+      "c": "LSOAAEHLEEOIML",
+      "n": 108
+    },
+    {
+      "wi": 1470,
+      "offset": 6580,
+      "L": 9,
+      "c": "MFIAEACBGAEF",
+      "n": 701
+    },
+    {
+      "wi": 1476,
+      "offset": 6606,
+      "L": 12,
+      "c": "EORNSOOCAEYEE",
+      "n": 160
+    },
+    {
+      "wi": 1498,
+      "offset": 6693,
+      "L": 12,
+      "c": "UIARFJEORIATHEUT",
+      "n": 65
+    },
+    {
+      "wi": 1500,
+      "offset": 6707,
+      "L": 10,
+      "c": "NAEAOANATHGO",
+      "n": 431
+    },
+    {
+      "wi": 1501,
+      "offset": 6717,
+      "L": 10,
+      "c": "AEXBTEEAMGRM",
+      "n": 332
+    },
+    {
+      "wi": 1504,
+      "offset": 6735,
+      "L": 10,
+      "c": "EARCIPDFMNGH",
+      "n": 842
+    },
+    {
+      "wi": 1527,
+      "offset": 6846,
+      "L": 10,
+      "c": "HRENCPIAPDJ",
+      "n": 839
+    },
+    {
+      "wi": 1533,
+      "offset": 6883,
+      "L": 9,
+      "c": "EORHNNGEAFNF",
+      "n": 958
+    },
+    {
+      "wi": 1545,
+      "offset": 6930,
+      "L": 10,
+      "c": "OEMBINGTAUITH",
+      "n": 485
+    },
+    {
+      "wi": 1554,
+      "offset": 6979,
+      "L": 11,
+      "c": "EAPJDNOEOUNWM",
+      "n": 202
+    },
+    {
+      "wi": 1580,
+      "offset": 7074,
+      "L": 11,
+      "c": "POEAOEDGOEYXGL",
+      "n": 202
+    },
+    {
+      "wi": 1633,
+      "offset": 7285,
+      "L": 9,
+      "c": "PHNGEDOEOHJ",
+      "n": 842
+    },
+    {
+      "wi": 1670,
+      "offset": 7447,
+      "L": 9,
+      "c": "IABRBFULUOE",
+      "n": 537
+    },
+    {
+      "wi": 1689,
+      "offset": 7523,
+      "L": 11,
+      "c": "YXNTAEXSTHAWM",
+      "n": 122
+    },
+    {
+      "wi": 1697,
+      "offset": 7561,
+      "L": 9,
+      "c": "UTHOEGEAOEEOEO",
+      "n": 702
+    },
+    {
+      "wi": 1731,
+      "offset": 7701,
+      "L": 9,
+      "c": "HOAEFYGRAJ",
+      "n": 1176
+    },
+    {
+      "wi": 1735,
+      "offset": 7720,
+      "L": 9,
+      "c": "AEJEPCBTHUNG",
+      "n": 570
+    },
+    {
+      "wi": 1758,
+      "offset": 7814,
+      "L": 10,
+      "c": "OEIAJIAOENGJXLJ",
+      "n": 463
+    },
+    {
+      "wi": 1764,
+      "offset": 7848,
+      "L": 11,
+      "c": "WNGHWBMSOEEIIA",
+      "n": 173
+    },
+    {
+      "wi": 1768,
+      "offset": 7872,
+      "L": 11,
+      "c": "HOMEXWDSLFD",
+      "n": 170
+    },
+    {
+      "wi": 1770,
+      "offset": 7889,
+      "L": 9,
+      "c": "WDNAEXTYMG",
+      "n": 944
+    },
+    {
+      "wi": 1774,
+      "offset": 7915,
+      "L": 9,
+      "c": "WNGUHEONGIAEAJ",
+      "n": 796
+    },
+    {
+      "wi": 1786,
+      "offset": 7972,
+      "L": 9,
+      "c": "FTEOEEAAIASG",
+      "n": 895
+    },
+    {
+      "wi": 1820,
+      "offset": 8099,
+      "L": 9,
+      "c": "EPJOWUEANGW",
+      "n": 783
+    },
+    {
+      "wi": 1824,
+      "offset": 8124,
+      "L": 9,
+      "c": "BOTLEOIBIAA",
+      "n": 753
+    },
+    {
+      "wi": 1846,
+      "offset": 8214,
+      "L": 9,
+      "c": "CTHSEAFUNGLH",
+      "n": 487
+    },
+    {
+      "wi": 1853,
+      "offset": 8246,
+      "L": 9,
+      "c": "NUXAEMTDTAE",
+      "n": 349
+    },
+    {
+      "wi": 1891,
+      "offset": 8411,
+      "L": 12,
+      "c": "HTHWLDEAODEAUOEE",
+      "n": 63
+    },
+    {
+      "wi": 1898,
+      "offset": 8442,
+      "L": 10,
+      "c": "CTHENUIAEIUIA",
+      "n": 434
+    },
+    {
+      "wi": 1916,
+      "offset": 8530,
+      "L": 11,
+      "c": "OEAEGJNGIANMYOEIA",
+      "n": 363
+    },
+    {
+      "wi": 1929,
+      "offset": 8587,
+      "L": 9,
+      "c": "RETHYTNGIAOB",
+      "n": 658
+    },
+    {
+      "wi": 1934,
+      "offset": 8609,
+      "L": 10,
+      "c": "IAEOIEOOEXCWAE",
+      "n": 595
+    },
+    {
+      "wi": 1947,
+      "offset": 8666,
+      "L": 9,
+      "c": "EOOEHOECSTNO",
+      "n": 659
+    },
+    {
+      "wi": 1967,
+      "offset": 8747,
+      "L": 10,
+      "c": "POEJANGPTHPANG",
+      "n": 648
+    },
+    {
+      "wi": 1969,
+      "offset": 8760,
+      "L": 9,
+      "c": "XBUTEOMPAEY",
+      "n": 639
+    },
+    {
+      "wi": 1970,
+      "offset": 8769,
+      "L": 10,
+      "c": "XAEYRAEYFFMIA",
+      "n": 654
+    },
+    {
+      "wi": 1997,
+      "offset": 8897,
+      "L": 11,
+      "c": "EONGBLIUYFOENOE",
+      "n": 178
+    },
+    {
+      "wi": 2010,
+      "offset": 8962,
+      "L": 10,
+      "c": "AIJSRATSNGT",
+      "n": 338
+    },
+    {
+      "wi": 2023,
+      "offset": 9021,
+      "L": 9,
+      "c": "NOTHCTHNMOE",
+      "n": 920
+    },
+    {
+      "wi": 2044,
+      "offset": 9094,
+      "L": 9,
+      "c": "HSGAIOEDAJ",
+      "n": 645
+    },
+    {
+      "wi": 2052,
+      "offset": 9140,
+      "L": 9,
+      "c": "NBSMXDHXI",
+      "n": 456
+    },
+    {
+      "wi": 2063,
+      "offset": 9190,
+      "L": 10,
+      "c": "ISNGMDAEUEAUA",
+      "n": 483
+    },
+    {
+      "wi": 2067,
+      "offset": 9210,
+      "L": 11,
+      "c": "NPCHRYWLXRB",
+      "n": 303
+    },
+    {
+      "wi": 2078,
+      "offset": 9264,
+      "L": 9,
+      "c": "HRODBIAPEAM",
+      "n": 986
+    },
+    {
+      "wi": 2085,
+      "offset": 9292,
+      "L": 9,
+      "c": "HTNGHAGONGAE",
+      "n": 710
+    },
+    {
+      "wi": 2089,
+      "offset": 9315,
+      "L": 12,
+      "c": "NGNCSNDEONSICIA",
+      "n": 82
+    },
+    {
+      "wi": 2102,
+      "offset": 9376,
+      "L": 10,
+      "c": "AJAEOEEALFEIAU",
+      "n": 534
+    },
+    {
+      "wi": 2148,
+      "offset": 9586,
+      "L": 10,
+      "c": "UPSTHICPSIW",
+      "n": 501
+    },
+    {
+      "wi": 2169,
+      "offset": 9671,
+      "L": 12,
+      "c": "TROEGEANAEBUEBU",
+      "n": 63
+    },
+    {
+      "wi": 2179,
+      "offset": 9718,
+      "L": 9,
+      "c": "DOLIXEANGER",
+      "n": 745
+    },
+    {
+      "wi": 2193,
+      "offset": 9777,
+      "L": 10,
+      "c": "EXOXICUMNU",
+      "n": 538
+    },
+    {
+      "wi": 2230,
+      "offset": 9929,
+      "L": 9,
+      "c": "AEAFOYIAANH",
+      "n": 1047
+    },
+    {
+      "wi": 2235,
+      "offset": 9955,
+      "L": 10,
+      "c": "XTOEUOOETHPSO",
+      "n": 184
+    },
+    {
+      "wi": 2279,
+      "offset": 10152,
+      "L": 9,
+      "c": "PXUAETHBFJTH",
+      "n": 564
+    },
+    {
+      "wi": 2285,
+      "offset": 10178,
+      "L": 10,
+      "c": "LNTLUBRNGAS",
+      "n": 328
+    },
+    {
+      "wi": 2291,
+      "offset": 10211,
+      "L": 9,
+      "c": "FCTHMJWRAL",
+      "n": 1338
+    },
+    {
+      "wi": 2297,
+      "offset": 10244,
+      "L": 10,
+      "c": "FIAAIAEAEDJUE",
+      "n": 661
+    },
+    {
+      "wi": 2314,
+      "offset": 10330,
+      "L": 9,
+      "c": "SRFDNGHEJD",
+      "n": 1024
+    },
+    {
+      "wi": 2333,
+      "offset": 10407,
+      "L": 11,
+      "c": "DEAUNNGFNEAEHJ",
+      "n": 255
+    },
+    {
+      "wi": 2341,
+      "offset": 10453,
+      "L": 14,
+      "c": "TFJRWFSNWJEBUTH",
+      "n": 6,
+      "candidates": [
+        [
+          "ADMINISTRATING",
+          "NGGNGDIAMFOEOTTHWNGAE"
+        ],
+        [
+          "CLEARHEADEDNESS",
+          "JNOENONGTSEBNEAST"
+        ],
+        [
+          "EPIPHYSIOLYSIS",
+          "IATULEAOFEARLNGTHLT"
+        ],
+        [
+          "EPITHELIOMATOUS",
+          "IATUTHENCGBTTHXFT"
+        ],
+        [
+          "PARAMANDIBULAR",
+          "OCWNBCGSYDBYGIA"
+        ],
+        [
+          "INTELLECTUALLY",
+          "GLASTNYRLIDYIC"
+        ]
+      ]
+    },
+    {
+      "wi": 2344,
+      "offset": 10473,
+      "L": 10,
+      "c": "UIOJOEOOEJDO",
+      "n": 394
+    },
+    {
+      "wi": 2354,
+      "offset": 10526,
+      "L": 10,
+      "c": "BIADEAAEBEACXF",
+      "n": 394
+    },
+    {
+      "wi": 2357,
+      "offset": 10547,
+      "L": 11,
+      "c": "BOPAEONGHEOEEOAE",
+      "n": 300
+    },
+    {
+      "wi": 2388,
+      "offset": 10672,
+      "L": 11,
+      "c": "MNGYANGFXIOEGL",
+      "n": 148
+    },
+    {
+      "wi": 2394,
+      "offset": 10702,
+      "L": 11,
+      "c": "ISEYTHAIANGOEEOL",
+      "n": 180
+    },
+    {
+      "wi": 2421,
+      "offset": 10833,
+      "L": 9,
+      "c": "PCIABGBPOE",
+      "n": 799
+    },
+    {
+      "wi": 2440,
+      "offset": 10923,
+      "L": 9,
+      "c": "YEASOEEOUAIA",
+      "n": 704
+    },
+    {
+      "wi": 2463,
+      "offset": 11027,
+      "L": 9,
+      "c": "AEJRAUHRTHR",
+      "n": 1071
+    },
+    {
+      "wi": 2475,
+      "offset": 11076,
+      "L": 10,
+      "c": "MLITHTEASNGL",
+      "n": 265
+    },
+    {
+      "wi": 2492,
+      "offset": 11152,
+      "L": 9,
+      "c": "ANGPWMJOEEAO",
+      "n": 931
+    },
+    {
+      "wi": 2509,
+      "offset": 11222,
+      "L": 9,
+      "c": "GUHYHIBXN",
+      "n": 591
+    },
+    {
+      "wi": 2510,
+      "offset": 11231,
+      "L": 9,
+      "c": "WNGHTXAEIJU",
+      "n": 900
+    },
+    {
+      "wi": 2528,
+      "offset": 11299,
+      "L": 9,
+      "c": "AXNGBDXJTHU",
+      "n": 787
+    },
+    {
+      "wi": 2534,
+      "offset": 11329,
+      "L": 12,
+      "c": "LMEITHAEAIAJIAR",
+      "n": 251
+    },
+    {
+      "wi": 2568,
+      "offset": 11482,
+      "L": 9,
+      "c": "EOAONJCLBX",
+      "n": 950
+    },
+    {
+      "wi": 2570,
+      "offset": 11495,
+      "L": 11,
+      "c": "NGLMCIAEOFAEEAITH",
+      "n": 427
+    },
+    {
+      "wi": 2572,
+      "offset": 11514,
+      "L": 10,
+      "c": "FUXSXITHAESM",
+      "n": 321
+    },
+    {
+      "wi": 2580,
+      "offset": 11553,
+      "L": 11,
+      "c": "IAYEOEIAGAEFNW",
+      "n": 283
+    },
+    {
+      "wi": 2603,
+      "offset": 11650,
+      "L": 9,
+      "c": "NGSRUWRYHW",
+      "n": 893
+    },
+    {
+      "wi": 2615,
+      "offset": 11700,
+      "L": 9,
+      "c": "BYXHUFTHDW",
+      "n": 668
+    },
+    {
+      "wi": 2623,
+      "offset": 11739,
+      "L": 10,
+      "c": "IALEGMNGWHRS",
+      "n": 497
+    },
+    {
+      "wi": 2626,
+      "offset": 11759,
+      "L": 11,
+      "c": "EAJEOINJOMRIAX",
+      "n": 391
+    },
+    {
+      "wi": 2662,
+      "offset": 11906,
+      "L": 9,
+      "c": "TAJCTHUTWTH",
+      "n": 600
+    },
+    {
+      "wi": 2694,
+      "offset": 12040,
+      "L": 9,
+      "c": "EOFUDYALFIA",
+      "n": 839
+    },
+    {
+      "wi": 2752,
+      "offset": 12284,
+      "L": 13,
+      "c": "PCEOUTCIAEONGNUHTH",
+      "n": 20
+    },
+    {
+      "wi": 2781,
+      "offset": 12412,
+      "L": 12,
+      "c": "AELAJIAEGXIANXT",
+      "n": 73
+    },
+    {
+      "wi": 2790,
+      "offset": 12464,
+      "L": 10,
+      "c": "OEGHYHEOAEEAAEY",
+      "n": 643
+    },
+    {
+      "wi": 2807,
+      "offset": 12543,
+      "L": 10,
+      "c": "UNGJEOGFNGRITH",
+      "n": 562
+    },
+    {
+      "wi": 2809,
+      "offset": 12556,
+      "L": 9,
+      "c": "YSFEUSAEYEA",
+      "n": 509
+    },
+    {
+      "wi": 2821,
+      "offset": 12610,
+      "L": 11,
+      "c": "RIADIATHAIEOAEXL",
+      "n": 274
+    },
+    {
+      "wi": 2844,
+      "offset": 12708,
+      "L": 10,
+      "c": "DWHBNGFACJU",
+      "n": 588
+    },
+    {
+      "wi": 2877,
+      "offset": 12858,
+      "L": 10,
+      "c": "HEAACIMXJME",
+      "n": 938
+    },
+    {
+      "wi": 2879,
+      "offset": 12870,
+      "L": 11,
+      "c": "GOTTHXEEARGYNG",
+      "n": 110
+    },
+    {
+      "wi": 2886,
+      "offset": 12903,
+      "L": 13,
+      "c": "BEAFXIMUCPHNGLEO",
+      "n": 17
+    }
+  ]
+}
