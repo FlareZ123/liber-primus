@@ -1,0 +1,15 @@
+'use strict';
+const fs=require('node:fs');
+const path=require('node:path');
+const root=path.resolve(__dirname,'..');
+const out=process.argv[2]??process.cwd();
+fs.mkdirSync(out,{recursive:true});
+const read=p=>JSON.parse(fs.readFileSync(path.join(root,p),'utf8'));
+const A=read('resources/liber-primus/lp2-corpus.json'),B=read('resources/external/relikd-solved-gp29-native-v1.json');
+const names=['0_koan_1','0_loss_of_divinity','jpg107-167','jpg229'];
+const gp=s=>[...s.source_text].map(x=>A.runes.indexOf(x)).filter(x=>x>=0);
+const raw=A.pages.slice(15,23).flatMap((p,i)=>i?p.indices:p.indices.slice(20)),donor=B.sections.filter(s=>names.includes(s.name)).flatMap(gp).slice(0,1883);
+const check=(a,n,h)=>{if(a.length!==n||a.reduce((s,v,i)=>s+(i+1)*v,0)!==h)throw Error('source mismatch')};
+check(raw,1883,24824223);check(donor,1883,22562127);
+const pack=a=>a.map(v=>v.toString(29)).join('');
+for(const [n,s] of [['raw',pack(raw)],['donor',pack(donor)],['prior',B.sections.filter(s=>!names.includes(s.name)).map(s=>pack(gp(s))).join('\n')]])fs.writeFileSync(path.join(out,n+'.txt'),s+'\n');
