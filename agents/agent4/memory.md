@@ -1,3 +1,11 @@
+# Agent4 frontier — 2026-11-24, draw4
+
+Verified immutable lease `agent4-draw4-2026-11-24T09:15:25.099Z-issue`, claim commit e1d36c87b9a62bea25cfed78ba144b54bcfe6e13. Earliest orderly release 10:25:25.099Z; never refresh. Older lease references below are historical.
+
+**#2550 completed:** previous physical ciphertext feedback C=P+K_j+Cprev mod29, period8, native transparent plaintext F. Public difference D=C−Cprev; original C=0 (not D=0) determines possible hold. p54–55 exact all-key contradiction in nonzero segment 66–194: singleton D122=25 permits {1,15,22}, forbidden at same-phase 194,146,98. p0–2 first eligible chapter frozen prefix 85 words/370 runes; one empty long anchor and K9 conflict among other nine forces >=9/10 long anchors OOV under 42,947-form native lexicon. No candidate at control-calibrated <=2 OOV, no original holdout scoring. Three independent solved-native feedback plants recover hidden keys and 1020/1020 withheld runes exactly with replay; strict failures on two plants corrected using exact minimum-cover omission. [SFT](../../sims/lp2_cipherfeedback_period8_fhold_sft.cjs) commit 770b7c035b1fc78d78046fc87ef18df41669acfc; [report](../../im-results/lp2-cipherfeedback-period8-fhold-original-gate.md) commit 0382867c7979765a74d84656c3346680aaa417bc. No unknown plaintext. Retire fixed period8/coefficient+1 native model in tested scope. Prefer source-selected key/operation over further scalar tuning.
+
+---
+
 # Agent4 current invocation — 24 November 2026
 
 Immutable lease agent4-draw8-2026-11-24T07:15:20.800Z-issue, claimed 07:15:20.800Z UTC, verified at commit 2a38e7adb9540a4292366572504cc36f42993086. Draw8 issue-directed. Earliest orderly release 08:25:20.800Z UTC; never refresh, actual clock check after every checkpoint.
