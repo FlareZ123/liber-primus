@@ -1,0 +1,204 @@
+{
+  "code": [
+    2,
+    3,
+    5,
+    7,
+    11,
+    13,
+    17,
+    19,
+    23,
+    29,
+    31,
+    37,
+    41,
+    43,
+    47,
+    53,
+    59,
+    61,
+    67,
+    71,
+    73,
+    79,
+    83,
+    89,
+    97,
+    101,
+    103,
+    107,
+    109
+  ],
+  "nativeAdded": [
+    "PARABLE",
+    "INSTAR",
+    "TUNNELNG",
+    "CIRCUMFERENCES"
+  ],
+  "dictionaryForms": 29154,
+  "uniqueForms": 29062,
+  "summaries": [
+    {
+      "mode": false,
+      "masks": [
+        1,
+        1
+      ],
+      "placements": 93,
+      "directLocal": 0,
+      "relativeLocal": 0,
+      "directFull": 0,
+      "relativeFull": 0,
+      "examples": []
+    },
+    {
+      "mode": true,
+      "masks": [
+        8,
+        8
+      ],
+      "placements": 5952,
+      "directLocal": 0,
+      "relativeLocal": 0,
+      "directFull": 0,
+      "relativeFull": 0,
+      "examples": []
+    }
+  ],
+  "positives": [
+    {
+      "type": "source-shaped dictionary",
+      "mode": false,
+      "relative": 0,
+      "offset": 5,
+      "actualHolds": [
+        6,
+        1
+      ],
+      "overlap": 76,
+      "forcedA": 64,
+      "forcedB": 64,
+      "matchedA": 68,
+      "matchedB": 68,
+      "padMatches": 68
+    },
+    {
+      "type": "source-shaped dictionary",
+      "mode": false,
+      "relative": 0,
+      "offset": 13,
+      "actualHolds": [
+        3,
+        1
+      ],
+      "overlap": 76,
+      "forcedA": 71,
+      "forcedB": 71,
+      "matchedA": 75,
+      "matchedB": 75,
+      "padMatches": 75
+    },
+    {
+      "type": "source-shaped dictionary",
+      "mode": false,
+      "relative": 0,
+      "offset": 21,
+      "actualHolds": [
+        3,
+        1
+      ],
+      "overlap": 76,
+      "forcedA": 71,
+      "forcedB": 71,
+      "matchedA": 72,
+      "matchedB": 72,
+      "padMatches": 72
+    },
+    {
+      "type": "source-shaped dictionary",
+      "mode": true,
+      "relative": 0,
+      "offset": 5,
+      "actualHolds": [
+        0,
+        0
+      ],
+      "overlap": 76,
+      "forcedA": 73,
+      "forcedB": 73,
+      "matchedA": 75,
+      "matchedB": 75,
+      "padMatches": 75
+    },
+    {
+      "type": "source-shaped dictionary",
+      "mode": true,
+      "relative": 14,
+      "offset": 13,
+      "actualHolds": [
+        2,
+        2
+      ],
+      "overlap": 74,
+      "forcedA": 70,
+      "forcedB": 70,
+      "matchedA": 70,
+      "matchedB": 70,
+      "padMatches": 70
+    },
+    {
+      "type": "source-shaped dictionary",
+      "mode": true,
+      "relative": 28,
+      "offset": 21,
+      "actualHolds": [
+        2,
+        1
+      ],
+      "overlap": 75,
+      "forcedA": 69,
+      "forcedB": 69,
+      "matchedA": 73,
+      "matchedB": 73,
+      "padMatches": 73
+    },
+    {
+      "type": "WARNING reference + exact p57",
+      "mode": false,
+      "relative": 0,
+      "offset": 10,
+      "actualHolds": [
+        3,
+        3
+      ],
+      "overlap": 95,
+      "forcedA": 74,
+      "forcedB": 74,
+      "matchedA": 82,
+      "matchedB": 82,
+      "padMatches": 82
+    },
+    {
+      "type": "WARNING reference + exact p57",
+      "mode": true,
+      "relative": 0,
+      "offset": 10,
+      "actualHolds": [
+        3,
+        3
+      ],
+      "overlap": 92,
+      "forcedA": 67,
+      "forcedB": 67,
+      "matchedA": 74,
+      "matchedB": 74,
+      "padMatches": 74
+    }
+  ],
+  "nativeMissing": [],
+  "cache": {
+    "projection": 173,
+    "allowed": 383
+  }
+}
