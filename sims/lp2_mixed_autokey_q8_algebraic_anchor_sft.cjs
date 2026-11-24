@@ -1,6 +1,6 @@
 'use strict';
 /** Mixed lag-eight all-coefficient anchor inverse; original surrounding spacing ignored. */
-function experiment(corpus,trans,solved,lex,donors,lib,mode='strict'){
+function experiment(corpus,trans,solved,lex,donors,lib,mode='strict',prior=null){
  const gp=JSON.parse(corpus),native=JSON.parse(solved),q=8,mod=x=>((x%29)+29)%29;
  const assert=(x,m)=>{if(!x)throw Error(m)};
  const same=(x,y)=>String(x)===String(y),rune=new Map(gp.runes.map((x,i)=>[x,i])),alpha=new Map(gp.translit.map((x,i)=>[x,i]));
@@ -65,6 +65,30 @@ function experiment(corpus,trans,solved,lex,donors,lib,mode='strict'){
  }
 
 
+ function reachLexForward(C,K,a,b,d,constraints){
+ const plain=new Uint8Array(C.length),ends=new Map(constraints.map(w=>[w.at+w.n,w]));let visits=0,capped=false,final=null;
+ const tick=()=>{if(++visits>REACH_CAP)throw Error("reach cap");};
+ const allowed=i=>{const w=ends.get(i);return !w||dict[w.n].has(String.fromCharCode(...plain.slice(w.at,i)));};
+ function consume(c,k){const p=mod(c-k[0]);return p?{p,k:k.slice(1).concat(mod(a*p+b*c+d))}:null;}
+ function go(i,k){
+ while(i<C.length&&C[i]){tick();const x=consume(C[i],k);if(!x)return false;plain[i++]=x.p;if(!allowed(i))return false;k=x.k;}
+ if(i===C.length){final=k.slice();return true;}
+ tick();plain[i]=0;if(allowed(i+1)&&go(i+1,k))return true;const x=consume(0,k);if(x){tick();plain[i]=x.p;if(allowed(i+1)&&go(i+1,x.k))return true;}return false;
+ }
+ let yes=false;try{yes=go(0,K);}catch(e){if(e.message!=="reach cap")throw e;capped=true;}return {status:yes?"legal":capped?"cap":"empty",visits,p:yes?Array.from(plain):null,queue:final};
+ }
+ if(mode==='secondary'){
+ assert(prior?.mode==="whole"&&prior.q===8,"whole output required");
+ const ns=src.find(x=>x.name==="0_loss_of_divinity"),P=ns.w.flat(),a=28,b=5,d=11,K=Array.from({length:q},(_,i)=>(i*i*7+i*11+23)%29),C=encrypt(P,K,a,b,d).C,off=[0];for(const w of ns.w)off.push(off.at(-1)+w.length);
+ const j=5,at=off[j],end=off[j+1],A=P.slice(at,end),start=A.map((v,i)=>[C[at+i],v]).filter(x=>x[1]).slice(0,q).map(([c,p])=>mod(c-p)),check=encrypt(A,start,a,b,d);
+ const constraints=[175,176].map(i=>({at:off[i]-end,n:ns.w[i].length}));for(const w of constraints)assert(dict[w.n].has(String.fromCharCode(...P.slice(w.at+end,w.at+end+w.n))),"native secondary vocabulary");
+ const right=reachLexForward(C.slice(end),check.queue,a,b,d,constraints),left=reach(C.slice(0,at),start,a,b,d,true);assert(right.status==="legal"&&left.status==="legal","native two-anchor support");const witness=left.p.concat(A,right.p);assert(same(encrypt(witness,left.queue,a,b,d).C,C),"native full replay");
+ const w=original.slice(0,158),c=w.flat(),offset=[0];for(const v of w)offset.push(offset.at(-1)+v.length);assert(same(c,gp.pages.slice(0,3).flatMap(x=>x.indices)),"opening tape");
+ const first=prior.original[0].anchors[0],stop=first.at+first.n;assert(first.capped===0&&first.legalModels.length===first.legal,"prior complete");const other=w.map((v,j)=>({j,at:offset[j],n:v.length,nz:v.filter(Boolean).length})).filter(x=>x.at>=stop).sort((a,b)=>b.nz-a.nz||b.n-a.n||a.j-b.j)[0],con=[{at:other.at-stop,n:other.n}];
+ let legal=0,capped=0,empty=0,visits=0;const survivors=[];
+ for(const model of first.legalModels){const {a,b,d,p,incoming}=model,check=encrypt(p,incoming,a,b,d);assert(same(check.C,c.slice(first.at,stop)),"prior anchor replay");const z=reachLexForward(c.slice(stop),check.queue,a,b,d,con);visits+=z.visits;if(z.status==="empty"){empty++;continue;}if(z.status==="cap"){capped++;continue;}const l=reach(c.slice(0,first.at),incoming,a,b,d,true);assert(l.status==="legal","prior reverse witness");const P=l.p.concat(p,z.p);assert(same(encrypt(P,l.queue,a,b,d).C,c),"opening replay");legal++;survivors.push({...model,secondary:render(P.slice(other.at,other.at+other.n)),score:score(P)/P.length});}
+ return {mode,q,control:{replay:witness.length,visits:right.visits,secondary:constraints.map(w=>render(witness.slice(w.at+end,w.at+end+w.n)))},first:{j:first.j,at:first.at,n:first.n,models:first.models,legal:first.legal},other,legal,capped,empty,visits,survivors};
+ }
  function whole(name,words,truth=null,partial=new Set()){
  const C=words.flat(),offsets=[0];for(const w of words)offsets.push(offsets.at(-1)+w.length);
  const candidates=words.map((w,j)=>({j,n:w.length,nz:w.filter(Boolean).length,at:offsets[j]})).filter(x=>!partial.has(x.j)&&x.nz>=q+3).sort((a,b)=>b.nz-a.nz||b.n-a.n||a.j-b.j);
@@ -143,4 +167,4 @@ function experiment(corpus,trans,solved,lex,donors,lib,mode='strict'){
 }
 if(typeof module!=="undefined")module.exports={experiment};
 
-if(require.main===module){const fs=require('node:fs'),path=require('node:path'),lib=require('./lp2_fhold_cyclic_ngram_map.cjs');const paths=["resources/liber-primus/lp2-corpus.json","resources/lp2-transcription.txt","resources/external/relikd-solved-gp29-native-v1.json","resources/control/english_wordfreq_textblob.txt","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt"];const a=paths.map(p=>fs.readFileSync(path.resolve(__dirname,'..',p),'utf8'));console.log(JSON.stringify(experiment(...a.slice(0,4),a.slice(4),lib,process.argv[2]||'strict'),null,2));}
+if(require.main===module){const fs=require('node:fs'),path=require('node:path'),lib=require('./lp2_fhold_cyclic_ngram_map.cjs');const paths=["resources/liber-primus/lp2-corpus.json","resources/lp2-transcription.txt","resources/external/relikd-solved-gp29-native-v1.json","resources/control/english_wordfreq_textblob.txt","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt"];const a=paths.map(p=>fs.readFileSync(path.resolve(__dirname,'..',p),'utf8'));const mode=process.argv[2]||'strict',prior=mode==='secondary'?JSON.parse(fs.readFileSync(path.resolve(__dirname,'..','im-results/lp2-mixed-autokey-q8-whole-anchor-output.json'),'utf8')):null;console.log(JSON.stringify(experiment(...a.slice(0,4),a.slice(4),lib,mode,prior),null,2));}
