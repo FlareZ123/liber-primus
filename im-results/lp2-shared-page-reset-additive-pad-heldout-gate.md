@@ -109,3 +109,47 @@ Two original-shaped plants use distinct full-modulus modular-squaring seeds 3301
 The completed [run 45415630592](https://github.com/FlareZ123/liber-primus/actions/runs/45415630592) screened 199,924,200 CRT square-residue states / 399,848,400 signed decodes, then fully scored only 800 shortlisted states. Best held-out log/rune −5.003249 was nonlinguistic; the 1,260/1,260 plant scored −2.446623 held-out. [Raw report](../im-results/parable-threeprime-allstate-keyskip.json). This is an exhaustive state *screen*, not a full-length exhaustive key rejection. Its seed metadata labels seed²=10,896,601 as first state; the actual generator first emitted state is seed⁴=993811212, checked by the C++ stream-alignment control. The exact shared-page lexical gate now supplies a broader conditional exclusion without heuristic shortlisting.
 
 **Decision:** do not rerun unknown-state BBS or other generator searches with the same shared physical-page reset collision-skip receiver. The rejection is conditional on the retained complete-group lexicon and shared initial state; it does not apply to page-private keys/IVs, a different plaintext rendering, or unrelated state/clock laws. The all-original sections and black-only results retain their explicit scopes. The run did not use GitHub Actions; the identical SFT function executed in the connected JavaScript runtime.
+
+
+## Collision-triggered key skip extension (Agent25, 24 November)
+
+**Shared reset with collision-triggered key skips (Agent25, 24 November):** the exact all-key lexical inverse over 35,700 length-2–12 GP forms rejects every shared signed additive pad on original p0–39 after just two consumed key digits (5 → 0 surviving prefixes), even with unlimited consecutive collision retries. All singleton and page-carry groups are unconstrained. Dropping every red-ink group still gives 13 → 0; seven black-body page openings p11/12/13/14/18/21/35 independently suffice. Disjoint p40–55 rejects the one-retry model by digit four (23 → 91 → 3 → 0); unlimited retries leave 31 prefixes at digit eight and are not independently excluded on those late pages. The eight literal dollar-delimited source sections, tested as a distinct shared-reset hypothesis, have 15 → 2 → 0 prefixes even with unlimited retries. Two original-shaped modular-squaring plants uniquely recover both eight-digit signed keys and admit all disjoint planted late pages. This is a conditional intact-group finite-lexicon exclusion, not a recovered key or plaintext. [Consolidated exact gate](../im-results/lp2-shared-page-reset-additive-pad-heldout-gate.md#collision-triggered-key-skip-extension-agent25-24-november) · [SFT](../sims/lp2_page_reset_collision_keyskip_lexical_sft.cjs) · [raw](../im-results/lp2-page-reset-collision-keyskip-lexical.json).
+
+### Exact receiver and inference
+
+Use one arbitrary signed GP29 pad K restarted at physical rune zero of every frame. The initial predecessor is absent. For a plaintext rune P, an ordinary draw emits C=(P+K[j]) mod29 and consumes one key digit. If the proposed value equals the preceding physical ciphertext rune, the encoder may reject that draw and consume another key digit for the same P. The first draw cannot be rejected. Equal output ciphertext runes are legal. The primary variant permits one retry, the relaxed variant arbitrarily many consecutive retries. No transparent F or other extra state is granted. Both additive signs are absorbed into K.
+
+The image-corrected source parses to 2,896 complete groups, reproducing all 12,956 original GP29 runes. Only complete multi-rune groups entirely within the first 12 physical runes of each reset frame are constrained. The fixed 35,700-form register comprises four repository-pinned dictionary/literary sources and the genuine solved GP register, with both standard digraph and calibrated ING/IO encoding. Singleton words, crossed page fragments and unconstrained positions are free. A prefix is rejected only when no continuation belongs to that finite register. The black-only relaxation removes the lexical constraint from all groups touching red ink; their cipher positions still consume the ordinary clock.
+
+For each successive key digit, enumerate all 29 possible values. Each frame tracks the next physical rune, the dictionary trie node, and any pending collision plaintext. The exact union of ordinary emission and legal retries is retained, independently in each frame. Shared key digits constrain the Cartesian product of frame states; an empty frame rejects that key prefix. There is no probabilistic scoring or beam pruning. At two key digits an independent direct test verifies every admissible pair: P0=C0−K0 and P1 is either C1−K1 (ordinary) or C0−K1 (a rejected collision draw). Both possibilities must match the local dictionary-prefix constraint.
+
+| Scope | One retry: live prefixes | Unlimited: live prefixes | Unlimited, black-only |
+|---|---|---|---|
+| p0–39 | 5 → 0 | 5 → 0 | 13 → 0 |
+| p40–55 | 23 → 91 → 3 → 0 | 23 → 91 → 38 → 31 → 31 → 31 → 31 → 31 | 26 → 234 → 220 → 195 → 195 → 195 → 195 → 195 |
+
+An inclusion-minimal black-only witness consists of seven pages:
+
+| Page | First two original GP indices | Length of first constrained word | Admissible local key pairs | Intersection if this page omitted |
+|---|---|---:|---:|---:|
+| 11 | 27,15 | 4 | 423 | 9 |
+| 12 | 5,10 | 2 | 335 | 6 |
+| 13 | 6,2 | 6 | 421 | 6 |
+| 14 | 16,11 | 2 | 335 | 5 |
+| 18 | 28,24 | 6 | 421 | 8 |
+| 21 | 5,25 | 3 | 411 | 2 |
+| 35 | 21,16 | 4 | 445 | 6 |
+
+All seven 841-element masks have empty intersection. This witness is minimal by deletion, not necessarily minimum cardinality. The independent late-page unlimited-prefix fixed-point check proved 0/31 complete-state traps (1/195 for black-only), so the late subset alone remains unresolved for unlimited retries. No finite-completion exclusion for those residual paths is claimed.
+
+The distinct literal-dollar reset frames start at original global rune offsets 0,729,1874,3612,5506,6527,7960,9640. All eight have 15 → 2 → 0 prefixes under unlimited retries. The first six independently leave three repeated-key prefixes at digit eight, two of which are fixed-point traps; the six-frame subset alone is not excluded. The complete eight-frame exact rejection uses all sections and is not an untouched holdout.
+
+### Controls
+
+Two original-shaped synthetic plants use full-modulus modular-squaring seeds 3301 and 1229, opposite signs, actual solved GP forms where available and pinned literary forms otherwise. The model admits every full planted frame. It uniquely recovers the signed eight-digit prefixes [11,9,20,5,2,21,4,18] and [3,2,7,19,4,5,28,20] from p0–39 shapes and admits each on all independent p40–55 shapes. Section-reset controls admit the true prefixes but the first six sections leave 38 and 6 candidate prefixes, respectively. The control geometry is constructed, not untouched contiguous prose. The identical SFT function executed against the repository sources in the connected JavaScript runtime; no independent Actions run is claimed.
+
+### Generator-specific prior
+
+The completed [full-three-prime run 45415630592](https://github.com/FlareZ123/liber-primus/actions/runs/45415630592) screened all 199,924,200 CRT square-residue states (399,848,400 signed candidates), then fully evaluated only 800 shortlisted states. The best held-out score was −5.003249 nats/rune, nonlinguistic, versus the 1,260/1,260 planted control's −2.446623. [Raw report](../im-results/parable-threeprime-allstate-keyskip.json). The raw seed metadata labels seed²=10,896,601 as first state, but the actual first emitted state is seed⁴=993,811,212, checked by the C++ stream-alignment assertion. This is an exhaustive state screen, not an exhaustive full-length decoder. The separate all-key lexical result now retires the shared-page collision-only additive receiver without relying on language-score shortlisting.
+
+**Decision:** retire shared physical-page-reset and literal-dollar-reset additive GP29 collision-only key redraws under the stated complete-group lexical premise, independent of generator. A different reset law, page-private IV, plaintext renderer, out-of-register words or unrelated state/encoding remains outside the proof. Do not rerun generator sweeps for this exact consumer. No unknown plaintext recovered.
