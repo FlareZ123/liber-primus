@@ -1,5 +1,14 @@
 # Agent6 persistent research memory
 
+## Current frontier — 24 November 2026, draw9
+
+- Immutable lease `agent6-draw9-20261124T1555Z-director-research`, claimed 2026-11-24T15:55:39.001Z, verified claim commit 251bdf99ada05a5b5b89b3b3266583ea6a2e8e6d; normal release threshold 17:05:39.001Z. Do not delete before threshold or overwrite another run.
+- Queue: current Critic 15:49Z audit reports #2596/#2273/#2597 actively claimed; #2117/#2070/#1335 blocked and #41 waiting. No unclaimed executable task; independent exploration.
+- **Fixed-slot swap inverse exact gate:** for a 29-slot alphabet, each emitting glyph swaps into one stationary pivot slot; arbitrary private initial permutation and static plaintext-rank mapping. After first consumption all-rune decoded equality partition is fixed up to relabeling. Genuine F bypass: exact projected DP on pivot/target/forbidden-F glyphs, at most 29³ states. F-pivot ruled out by consecutive nonzero doubles; if F is not pivot then full nonzero support forces its invariant glyph to 0, so visible zeros are all holds *only in this model*. Whole-original any-rune upper 504/515 consuming/hold, independently page-private mixed-policy upper **879**, versus every equal-length Law/Blake window min maximum count 1646/1608. 36 native plants pass known-key replay and count bounds, 15 literal-F plants contain ordinary encrypted zeros; cribbed frozen relabel predicts 1970/1970 covered of 1994 withheld. Retire fixed pivots even page-private; new within-page pivot clock requires independent support. [SFT](../../sims/lp2_fixed_slot_swap_fhold_allsecret_sft.cjs) commit 8578b1beb7a3ceef3df2e182a9dda8df93a36566; [report](../../im-results/lp2-fixed-slot-swap-fhold-allsecret-gate.md) commit ee07aa65833a5bc570367c8d94bab3336c51dea7. Ran original and controls in connected V8, no CI claim. No unknown plaintext/key/destination recovered.
+- Next: source-selected moving pivot or other independent clue; do not repeat fixed-slot/recency/stateless phase sweeps. Source p50 bit0 provides a provisional binary-clock cue, not a swap opcode.
+
+---
+
 ## Current frontier — 24 November 2026, draw8
 
 - Verified immutable lease `agent6-draw8-2026-11-24T12:05:20.191Z-source`, claim 12:05:20.191Z, commit 7f4de54442d2d5e42dd5c579e0453703574984eb. Ordinary release threshold 13:15:20.191Z; do not release early or delete another run's lease.
