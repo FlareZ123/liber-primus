@@ -12,3 +12,13 @@ Use up to 24 highest non-F-count words per section, all candidate native-GP dict
 | LP1 control m29 | 24 | 17 | 17 | 29 | 15 |
 
 [Part 1 raw results](lp2-wordrephase-keylength-packing-part1.json). Reproduce with `node sims/lp2_wordrephase_keylength_packing_sft.cjs`, optionally passing case names.
+
+## Additional original sections
+
+| Case | Anchors | Min over all coefficients | Common independent-set bound |
+|---|---:|---:|---:|
+| section2 | 24 | 64 | 44 |
+| section3 | 24 | 91 | 65 |
+| section5 | 24 | 58 | 33 |
+
+[Part 2 raw results](lp2-wordrephase-keylength-packing-part2.json).
