@@ -1,0 +1,671 @@
+{
+  "vocabulary": 40540,
+  "segments": 173,
+  "words": 2896,
+  "runes": 12956,
+  "single": [
+    {
+      "offset": 350,
+      "cipher": 9
+    },
+    {
+      "offset": 1025,
+      "cipher": 7
+    },
+    {
+      "offset": 2148,
+      "cipher": 10
+    },
+    {
+      "offset": 4148,
+      "cipher": 28
+    },
+    {
+      "offset": 6990,
+      "cipher": 11
+    },
+    {
+      "offset": 11526,
+      "cipher": 13
+    },
+    {
+      "offset": 12648,
+      "cipher": 24
+    }
+  ],
+  "global": {
+    "n": 173,
+    "best": 27,
+    "minOOVLowerBound": 146,
+    "terminalRepresentatives": 5,
+    "forcedPrefix": [
+      18,
+      27
+    ],
+    "samplePrefix": [
+      18,
+      27,
+      23,
+      4
+    ],
+    "uniqueTerminalPrefixes": 389665,
+    "matched": [
+      8,
+      13,
+      14,
+      31,
+      32,
+      39,
+      44,
+      50,
+      54,
+      62,
+      89,
+      108,
+      109,
+      115,
+      116,
+      117,
+      118,
+      120,
+      124,
+      129,
+      130,
+      145,
+      146,
+      154,
+      163,
+      168,
+      171
+    ]
+  },
+  "chapters": [
+    {
+      "start": 0,
+      "end": 729,
+      "n": 9,
+      "best": 5,
+      "minOOVLowerBound": 4,
+      "terminalRepresentatives": 60,
+      "forcedPrefix": [],
+      "samplePrefix": [
+        7,
+        21,
+        0,
+        26
+      ],
+      "uniqueTerminalPrefixes": 17516,
+      "matched": [
+        2,
+        4,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "start": 729,
+      "end": 1874,
+      "n": 18,
+      "best": 7,
+      "minOOVLowerBound": 11,
+      "terminalRepresentatives": 6,
+      "forcedPrefix": [
+        5,
+        24
+      ],
+      "samplePrefix": [
+        5,
+        24,
+        8,
+        17
+      ],
+      "uniqueTerminalPrefixes": 37429,
+      "matched": [
+        0,
+        2,
+        3,
+        4,
+        9,
+        10,
+        16
+      ]
+    },
+    {
+      "start": 1874,
+      "end": 3603,
+      "n": 27,
+      "best": 8,
+      "minOOVLowerBound": 19,
+      "terminalRepresentatives": 26,
+      "forcedPrefix": [],
+      "samplePrefix": [
+        24,
+        9,
+        9,
+        11
+      ],
+      "uniqueTerminalPrefixes": 71048,
+      "matched": [
+        0,
+        1,
+        4,
+        5,
+        9,
+        13,
+        19,
+        23
+      ]
+    },
+    {
+      "start": 3603,
+      "end": 5506,
+      "n": 21,
+      "best": 6,
+      "minOOVLowerBound": 15,
+      "terminalRepresentatives": 1,
+      "forcedPrefix": [
+        27,
+        26,
+        1,
+        1
+      ],
+      "samplePrefix": [
+        27,
+        26,
+        1,
+        1
+      ],
+      "uniqueTerminalPrefixes": 56912,
+      "matched": [
+        3,
+        6,
+        8,
+        10,
+        12,
+        15
+      ]
+    },
+    {
+      "start": 5506,
+      "end": 6761,
+      "n": 13,
+      "best": 6,
+      "minOOVLowerBound": 7,
+      "terminalRepresentatives": 22,
+      "forcedPrefix": [
+        14,
+        6
+      ],
+      "samplePrefix": [
+        14,
+        6,
+        16,
+        5,
+        11,
+        25,
+        11
+      ],
+      "uniqueTerminalPrefixes": 29745,
+      "matched": [
+        0,
+        2,
+        3,
+        6,
+        7,
+        9
+      ]
+    },
+    {
+      "start": 6761,
+      "end": 7960,
+      "n": 19,
+      "best": 7,
+      "minOOVLowerBound": 12,
+      "terminalRepresentatives": 8,
+      "forcedPrefix": [
+        1,
+        23,
+        24
+      ],
+      "samplePrefix": [
+        1,
+        23,
+        24,
+        28,
+        4,
+        18,
+        20
+      ],
+      "uniqueTerminalPrefixes": 45358,
+      "matched": [
+        1,
+        2,
+        3,
+        4,
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "start": 7960,
+      "end": 9640,
+      "n": 22,
+      "best": 9,
+      "minOOVLowerBound": 13,
+      "terminalRepresentatives": 1,
+      "forcedPrefix": [
+        5,
+        3,
+        8,
+        7,
+        13
+      ],
+      "samplePrefix": [
+        5,
+        3,
+        8,
+        7,
+        13
+      ],
+      "uniqueTerminalPrefixes": 45213,
+      "matched": [
+        0,
+        1,
+        2,
+        7,
+        8,
+        9,
+        11,
+        17,
+        19
+      ]
+    },
+    {
+      "start": 9640,
+      "end": 12648,
+      "n": 42,
+      "best": 11,
+      "minOOVLowerBound": 31,
+      "terminalRepresentatives": 14,
+      "forcedPrefix": [
+        21,
+        13,
+        14
+      ],
+      "samplePrefix": [
+        21,
+        13,
+        14,
+        23
+      ],
+      "uniqueTerminalPrefixes": 97821,
+      "matched": [
+        1,
+        16,
+        17,
+        18,
+        20,
+        25,
+        26,
+        30,
+        34,
+        38,
+        39
+      ]
+    },
+    {
+      "start": 12648,
+      "end": 12956,
+      "n": 2,
+      "best": 2,
+      "minOOVLowerBound": 0,
+      "terminalRepresentatives": 3238,
+      "forcedPrefix": [],
+      "samplePrefix": [
+        3,
+        6,
+        18,
+        12,
+        7,
+        4,
+        15,
+        27
+      ],
+      "uniqueTerminalPrefixes": 5652,
+      "matched": [
+        0,
+        1
+      ]
+    }
+  ],
+  "dropFirst": [
+    {
+      "n": 8,
+      "best": 5,
+      "minOOVLowerBound": 3
+    },
+    {
+      "n": 17,
+      "best": 6,
+      "minOOVLowerBound": 11
+    },
+    {
+      "n": 26,
+      "best": 8,
+      "minOOVLowerBound": 18
+    },
+    {
+      "n": 20,
+      "best": 6,
+      "minOOVLowerBound": 14
+    },
+    {
+      "n": 12,
+      "best": 5,
+      "minOOVLowerBound": 7
+    },
+    {
+      "n": 18,
+      "best": 7,
+      "minOOVLowerBound": 11
+    },
+    {
+      "n": 21,
+      "best": 8,
+      "minOOVLowerBound": 13
+    },
+    {
+      "n": 41,
+      "best": 11,
+      "minOOVLowerBound": 30
+    },
+    {
+      "n": 1,
+      "best": 1,
+      "minOOVLowerBound": 0
+    }
+  ],
+  "plants": [
+    {
+      "name": "Gibran/global",
+      "n": 173,
+      "keyPrefix": 13,
+      "terminalRepresentatives": 1,
+      "fullSupport": 173,
+      "heldoutEligible": 150,
+      "heldoutUnique": 148,
+      "heldoutExact": 148,
+      "heldoutRunes": 581,
+      "plaintextF": 22,
+      "ciphertextF": 51
+    },
+    {
+      "name": "Gibran/chapter1",
+      "n": 9,
+      "keyPrefix": 8,
+      "terminalRepresentatives": 1,
+      "fullSupport": 9,
+      "heldoutEligible": 6,
+      "heldoutUnique": 6,
+      "heldoutExact": 6,
+      "heldoutRunes": 18,
+      "plaintextF": 2,
+      "ciphertextF": 5
+    },
+    {
+      "name": "Gibran/chapter2",
+      "n": 18,
+      "keyPrefix": 9,
+      "terminalRepresentatives": 1,
+      "fullSupport": 18,
+      "heldoutEligible": 13,
+      "heldoutUnique": 13,
+      "heldoutExact": 13,
+      "heldoutRunes": 48,
+      "plaintextF": 3,
+      "ciphertextF": 10
+    },
+    {
+      "name": "Gibran/chapter3",
+      "n": 27,
+      "keyPrefix": 9,
+      "terminalRepresentatives": 1,
+      "fullSupport": 27,
+      "heldoutEligible": 17,
+      "heldoutUnique": 16,
+      "heldoutExact": 16,
+      "heldoutRunes": 53,
+      "plaintextF": 9,
+      "ciphertextF": 13
+    },
+    {
+      "name": "Gibran/chapter4",
+      "n": 21,
+      "keyPrefix": 11,
+      "terminalRepresentatives": 2,
+      "fullSupport": 21,
+      "heldoutEligible": 17,
+      "heldoutUnique": 17,
+      "heldoutExact": 17,
+      "heldoutRunes": 66,
+      "plaintextF": 7,
+      "ciphertextF": 13
+    },
+    {
+      "name": "Gibran/chapter5",
+      "n": 13,
+      "keyPrefix": 12,
+      "terminalRepresentatives": 1,
+      "fullSupport": 13,
+      "heldoutEligible": 10,
+      "heldoutUnique": 10,
+      "heldoutExact": 10,
+      "heldoutRunes": 51,
+      "plaintextF": 3,
+      "ciphertextF": 9
+    },
+    {
+      "name": "Gibran/chapter6",
+      "n": 19,
+      "keyPrefix": 11,
+      "terminalRepresentatives": 1,
+      "fullSupport": 19,
+      "heldoutEligible": 13,
+      "heldoutUnique": 13,
+      "heldoutExact": 13,
+      "heldoutRunes": 46,
+      "plaintextF": 2,
+      "ciphertextF": 8
+    },
+    {
+      "name": "Gibran/chapter7",
+      "n": 22,
+      "keyPrefix": 6,
+      "terminalRepresentatives": 2,
+      "fullSupport": 22,
+      "heldoutEligible": 7,
+      "heldoutUnique": 7,
+      "heldoutExact": 7,
+      "heldoutRunes": 17,
+      "plaintextF": 4,
+      "ciphertextF": 11
+    },
+    {
+      "name": "Gibran/chapter8",
+      "n": 42,
+      "keyPrefix": 13,
+      "terminalRepresentatives": 1,
+      "fullSupport": 42,
+      "heldoutEligible": 38,
+      "heldoutUnique": 36,
+      "heldoutExact": 36,
+      "heldoutRunes": 125,
+      "plaintextF": 6,
+      "ciphertextF": 13
+    },
+    {
+      "name": "Gibran/chapter9",
+      "n": 2,
+      "keyPrefix": 0,
+      "terminalRepresentatives": 3195,
+      "fullSupport": 2,
+      "heldoutEligible": 0,
+      "heldoutUnique": 0,
+      "heldoutExact": 0,
+      "heldoutRunes": 0,
+      "plaintextF": 0,
+      "ciphertextF": 0
+    },
+    {
+      "name": "Shakespeare/global",
+      "n": 173,
+      "keyPrefix": 13,
+      "terminalRepresentatives": 1,
+      "fullSupport": 173,
+      "heldoutEligible": 162,
+      "heldoutUnique": 159,
+      "heldoutExact": 159,
+      "heldoutRunes": 571,
+      "plaintextF": 33,
+      "ciphertextF": 79
+    },
+    {
+      "name": "Shakespeare/chapter1",
+      "n": 9,
+      "keyPrefix": 6,
+      "terminalRepresentatives": 2,
+      "fullSupport": 9,
+      "heldoutEligible": 4,
+      "heldoutUnique": 4,
+      "heldoutExact": 4,
+      "heldoutRunes": 11,
+      "plaintextF": 1,
+      "ciphertextF": 4
+    },
+    {
+      "name": "Shakespeare/chapter2",
+      "n": 18,
+      "keyPrefix": 8,
+      "terminalRepresentatives": 1,
+      "fullSupport": 18,
+      "heldoutEligible": 12,
+      "heldoutUnique": 11,
+      "heldoutExact": 11,
+      "heldoutRunes": 35,
+      "plaintextF": 4,
+      "ciphertextF": 12
+    },
+    {
+      "name": "Shakespeare/chapter3",
+      "n": 27,
+      "keyPrefix": 8,
+      "terminalRepresentatives": 2,
+      "fullSupport": 27,
+      "heldoutEligible": 16,
+      "heldoutUnique": 15,
+      "heldoutExact": 15,
+      "heldoutRunes": 49,
+      "plaintextF": 8,
+      "ciphertextF": 13
+    },
+    {
+      "name": "Shakespeare/chapter4",
+      "n": 21,
+      "keyPrefix": 10,
+      "terminalRepresentatives": 3,
+      "fullSupport": 21,
+      "heldoutEligible": 16,
+      "heldoutUnique": 16,
+      "heldoutExact": 16,
+      "heldoutRunes": 49,
+      "plaintextF": 2,
+      "ciphertextF": 6
+    },
+    {
+      "name": "Shakespeare/chapter5",
+      "n": 13,
+      "keyPrefix": 9,
+      "terminalRepresentatives": 2,
+      "fullSupport": 13,
+      "heldoutEligible": 9,
+      "heldoutUnique": 9,
+      "heldoutExact": 9,
+      "heldoutRunes": 27,
+      "plaintextF": 1,
+      "ciphertextF": 3
+    },
+    {
+      "name": "Shakespeare/chapter6",
+      "n": 19,
+      "keyPrefix": 11,
+      "terminalRepresentatives": 1,
+      "fullSupport": 19,
+      "heldoutEligible": 15,
+      "heldoutUnique": 15,
+      "heldoutExact": 15,
+      "heldoutRunes": 51,
+      "plaintextF": 3,
+      "ciphertextF": 8
+    },
+    {
+      "name": "Shakespeare/chapter7",
+      "n": 22,
+      "keyPrefix": 7,
+      "terminalRepresentatives": 1,
+      "fullSupport": 22,
+      "heldoutEligible": 15,
+      "heldoutUnique": 15,
+      "heldoutExact": 15,
+      "heldoutRunes": 32,
+      "plaintextF": 3,
+      "ciphertextF": 6
+    },
+    {
+      "name": "Shakespeare/chapter8",
+      "n": 42,
+      "keyPrefix": 12,
+      "terminalRepresentatives": 1,
+      "fullSupport": 42,
+      "heldoutEligible": 32,
+      "heldoutUnique": 32,
+      "heldoutExact": 32,
+      "heldoutRunes": 92,
+      "plaintextF": 7,
+      "ciphertextF": 15
+    },
+    {
+      "name": "Shakespeare/chapter9",
+      "n": 2,
+      "keyPrefix": 0,
+      "terminalRepresentatives": 3195,
+      "fullSupport": 2,
+      "heldoutEligible": 0,
+      "heldoutUnique": 0,
+      "heldoutExact": 0,
+      "heldoutRunes": 0,
+      "plaintextF": 0,
+      "ciphertextF": 0
+    }
+  ],
+  "terminalOverlap": {
+    "titleRunes": 9,
+    "bodyRunes": 299,
+    "titleKeys": 90176,
+    "survivingTitleKeys": 0,
+    "truthRetained": null
+  },
+  "terminalPlants": [
+    {
+      "titleKeys": 90176,
+      "survivingTitleKeys": 3,
+      "truthRetained": true
+    },
+    {
+      "titleKeys": 90176,
+      "survivingTitleKeys": 3,
+      "truthRetained": true
+    }
+  ]
+}
