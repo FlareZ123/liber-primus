@@ -41,8 +41,26 @@ The source-exact [CommonJS reproducer](../sims/lp1_warning_nine_chapter_prime_to
 - Reassigning those same nine sums in reverse printed order as a predeclared wrong-source control gives **0.034505065329**.
 - The separately solved, unencrypted p57 native-GP page has IoC **0.062709966405**. Its exact source-native rune sequence is also the planted positive-control source.
 
-Thus this **exact** prime-value-start, book-line-to-chapter correspondence does not produce a native-GP plaintext register. It does not exclude a different language, a different hidden symbol register, a chapter-dependent non-additive consumer, or an independently supplied F-interrupt mask. Those alternatives are not supported by a visible instruction here; do not rescue this failed schedule by searching line reorders, alternate prime indices or arbitrary interruptions.
+Thus this **exact** prime-value-start, book-line-to-chapter correspondence does not produce a native-GP plaintext register. The original all-consuming experiment did not exclude a different language, a different hidden symbol register, a chapter-dependent non-additive consumer, or an independently supplied F-interrupt mask. The authentic F-hold extension below now excludes every legal F mask for the same fixed additive schedule. Those alternatives are not supported by a visible instruction here; do not rescue this failed schedule by searching line reorders, alternate prime indices or arbitrary interruptions.
 
 **Research decision:** keep the nine-warning-line numerical correspondence as a weak possible clue, but retire this direct p56-style φ-prime additive key transfer. A new branch requires an independently sourced rule specifying how the nine LP1 primes affect LP2 state or output and a complete, held-out original plaintext prediction.
 
 **Source links:** [original LP1 source and community prime-sum transcription](https://github.com/cicada-solvers/documenting-cicada3301-scream314/blob/master/liber_primus.md); [current physical chapter atlas](lp2-global-original-visual-section-map.md); [source SFT](../sims/lp1_warning_nine_chapter_prime_totient_sft.cjs).
+
+## Authentic plaintext-F hold completion (Agent 2, 24 November 2026)
+
+The earlier calculation consumed every rune. The authentic p56 rule is now tested without assuming which ciphertext F glyphs hold the key clock. For each chapter's original fixed prime origin, the inverse retains **all** reachable consumed-key counts: hold on ciphertext F; consume if and only if the subtraction yields non-F plaintext. No language model or fitted state is used. The following are exact first impossible rune offsets (zero-based; also the number of runes in the longest legal prefix):
+
+| Chapter | Warning prime | First impossible rune |
+|---|---:|---:|
+| p0–2 | 757 | 244 |
+| p3–7 | 1009 | 20 |
+| p8–14 | 691 | 4 |
+| p15–22 | 353 | 118 |
+| p23–26 | 769 | 13 |
+| p27–32 | 911 | 6 |
+| p33–39 | 1051 | 111 |
+| p40–53 | 859 | 138 |
+| p54–55 | 677 | 99 |
+
+**0/9 chapter schedules are legally invertible** under these exact source starts, historical subtraction, and genuine F holds, even for arbitrary plaintext. The actual solved p56 control forward-replays 85/85 original runes and retains the authentic 84-consumption endpoint. This retires the exact proposed nine-warning-prime transfer under both all-consuming and authentic historical clocks; the warning-prime/chapter-count correspondence remains a hypothesis, not evidence of a key. No unknown plaintext. [Executed SFT](../sims/lp2_lp1_direct_runningkey_authentic_fhold_sft.cjs) · [Raw output](lp2-lp1-direct-runningkey-authentic-fhold-output.json) · [Related finite LP1 running-key test](lp2-lp1-solved-plaintext-direct-runningkey-original-gate.md).
