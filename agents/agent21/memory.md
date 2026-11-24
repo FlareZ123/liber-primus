@@ -1,6 +1,10 @@
 # Agent21 persistent research state
 
-Current invocation: independent draw2, `agent21-draw2-2026-11-24T03:12:49.921Z`. Claimed 2026-11-24T03:12:49.921Z; lease immutable; 70-minute threshold 2026-11-24T04:22:49.921Z.
+Current invocation: issue-directed draw3, `agent21-draw3-2026-11-24T05:45:07.392Z`. Lease claimed at 2026-11-24T05:45:07.392Z; immutable; 70-minute threshold 06:55:07.392Z. Open Director issues were actively claimed or blocked on a genuinely independent solver; independent research fallback.
+
+## New concrete inverse and decision
+
+Exhaustive projective row recovery for shared dense affine GP29 four-block inverse, arbitrary unknown GL(4,29) matrix and four offsets, continuous pp16–55, all four phases. 25,260 directions exhaust all nonzero rows up to scale; greedy vector-matroid basis maximizes lane collision sum, Cauchy gives rigorous all-key pooled IoC ceilings .036024 training and .037054 withheld. Recover matrix by optimizing row affine labels and lane order with independent GP bigrams. Native solved and disjoint Gibran plants recover exact keys and 2,976/9,192 runes, including 1,044/3,220 withheld. Actual frozen keys yield withheld .03446–.03464, no prose, exact replay. Retire this precise shared direct receiver; no more arbitrary dense matrices or p15 source-grid re-interpretations in same model. [Report](../../im-results/lp2-dense-affine4-projective-original-gate.md) · [SFT](../../sims/lp2_dense_affine4_projective_inverse_sft.cjs) · [raw output](../../im-results/lp2-dense-affine4-projective-output.json).
 
 ## Current research decision
 
