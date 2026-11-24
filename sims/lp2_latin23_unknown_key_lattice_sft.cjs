@@ -45,12 +45,39 @@ function experiment(input) {
   }
   let score=0;for(let i=0;i<n;i++)score+=at(p,i);return {mask:init.mask,key,plain:letters(p),cipher:letters(c),score,latinLength:n};
  }
+
+ function refine(init,result){
+  const {g,n}=init,key=result.key.slice(),c=Int16Array.from(nums(result.cipher)),p=Int16Array.from(nums(result.plain));
+  const positions=Array.from({length:q},(_,k)=>Array.from({length:Math.ceil(n/q)},(_,i)=>k+i*q).filter(i=>i<n));
+  const sum=inds=>{let s=0;for(const j of inds)s+=at(p,j);return s};
+  function block(ks){
+   const inds=[...new Set(ks.flatMap(k=>positions[k].flatMap(i=>[i,i+1,i+2,i+3])).filter(i=>i<n))];
+   let best=sum(inds),bestKey=ks.map(k=>key[k]);const chosen=[];
+   function search(j){if(j===ks.length){const s=sum(inds);if(s>best+1e-10){best=s;bestKey=chosen.slice()}return;}
+    const k=ks[j];for(let t=0;t<26;t++){chosen[j]=t;for(const i of positions[k])p[i]=(c[i]-t+26)%26;search(j+1)}
+   }
+   search(0);let changed=false;for(let j=0;j<ks.length;j++){const k=ks[j],t=bestKey[j];changed ||=t!==key[k];key[k]=t;for(const i of positions[k])p[i]=(c[i]-t+26)%26;}return changed;
+  }
+  function aliases(){
+   let changed=false;
+   for(const z of g){if(z.choices.length===1)continue;const pos=z.pos,len=z.choices[0].length,inds=Array.from({length:Math.min(len+3,n-pos)},(_,i)=>pos+i);let best=sum(inds),choice=Array.from(c.slice(pos,pos+len));for(const a of z.choices){for(let j=0;j<len;j++)p[pos+j]=(a[j]-key[(pos+j)%q]+26)%26;const score=sum(inds);if(score>best+1e-10){best=score;choice=a}}
+    changed ||=choice.some((v,j)=>v!==c[pos+j]);for(let j=0;j<len;j++){c[pos+j]=choice[j];p[pos+j]=(choice[j]-key[(pos+j)%q]+26)%26}
+   }return changed;
+  }
+  // Refine the single best fit without access to the withheld text.
+  for(let pass=0;pass<4;pass++){let change=false;for(let j=0;j<q;j++)change=block([j,(j+1)%q])||change;change=aliases()||change;if(!change)break}
+  // One exhaustive adjacent triple pass, then two pair/alias passes.
+  for(let j=0;j<q;j++)block([j,(j+1)%q,(j+2)%q]);aliases();
+  for(let pass=0;pass<2;pass++){for(let j=0;j<q;j++)block([j,(j+1)%q]);aliases()}
+  let score=0;for(let i=0;i<n;i++)score+=at(p,i);return {...result,key,plain:letters(p),cipher:letters(c),score};
+ }
  function fit(rs,trueMask=null){const n=rs.filter(v=>v===21).length;if(n>12)throw Error("length-mask cap");
   const all=Array.from({length:1<<n},(_,m)=>initialize(rs,m)).sort((a,b)=>b.score-a.score),selected=all.slice(0,24);
   let best=null;for(const z of selected)for(let j=0;j<3;j++){const a=optimize(z,0x2345+z.mask*137+j*719,j>0);if(!best||a.score>best.score)best=a}
+  const preRefineScore=best.score;best=refine(all.find(z=>z.mask===best.mask),best);if(best.score+1e-7<preRefineScore)throw Error("nonmonotone refinement");
   if(enc(best.plain,best.key)!==best.cipher)throw Error("fit replay failed");
   let p=0;for(const z of groups(rs,best.mask).g){const l=z.choices[0].length;if(!z.choices.some(a=>letters(a)===best.cipher.slice(p,p+l)))throw Error("fit relation replay");p+=l}
-  return {...best,scorePerRune:best.score/rs.length,maskCount:all.length,optimizedMasks:selected.length,trueMaskRank:trueMask===null?null:all.findIndex(x=>x.mask===trueMask)+1,runes:rs.length};
+  return {...best,preRefineScore,scorePerRune:best.score/rs.length,maskCount:all.length,optimizedMasks:selected.length,trueMaskRank:trueMask===null?null:all.findIndex(x=>x.mask===trueMask)+1,runes:rs.length};
  }
  // Exact Viterbi with the fitted key and last three fit letters; no key changes in heldout.
  function hold(rs,k,start,context){const dp=Array.from({length:rs.length+1},()=>new Map());dp[0].set(start+"|"+context,{score:0,phase:start,ctx:context,prev:null});
