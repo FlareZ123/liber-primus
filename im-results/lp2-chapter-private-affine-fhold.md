@@ -87,3 +87,17 @@ Additional reproducibility:
 - `python sims/lp2_chapter_private_affine_q13_full.py . ./affine_enumerate`
 
 The executed local compact opening fixture came from the exact canonical rune tape and singleton positions. Repository wrappers load the same data directly.
+
+## Exact terminal objective completion via cyclic closure bounds
+
+The earlier q13 terminal fit ranked all eight p54 schedules but used coordinate search on their large row domains. To remove this optimization limitation, fix the first cyclic row a and allow the second row b to range over a subset B. In the closing trigram factor involving the final row, a and b, replace the dependence on b by its maximum over B; all other factors keep the exact b choice. A single ordinary chain max-plus DP now yields an upper bound for that branch and a feasible row assignment when replayed under the true closing factor. Maintain the best feasible objective, split B into disjoint halves only when its upper bound can improve it, and process all competitive branches. At singleton B the bound is exact. This proves the finite-objective optimum to floating point tolerance (1e-9 total objective). Sixteen random factor controls agree with the original pair-conditioned exact solver; all 28 actual q8 terminal clocks also agree with it. All reconstructed candidates replay exactly.
+
+| Scope | q | All legal schedules | Exact maximum nats/rune | Result |
+|---|---:|---:|---:|---|
+| p54–55, retrospective | 8 | 28 | −4.4837975178 | nonprose |
+| p54–55, retrospective | 13 | 63 | −3.9176798120 | nonprose |
+| p54 only | 13 | 8 | −3.6933719705 | frozen optimum has zero legal p55 continuations |
+
+The exact q13 p54 key is [(8,6),(19,10),(15,9),(18,24),(9,0),(19,17),(14,15),(5,18),(27,21),(3,7),(27,24),(15,14),(21,7)], holds [41,65,195]. It improves the earlier coordinate score −3.758608 but still fails the untouched 76-rune continuation. The best retrospective q13 candidate begins IIAHLTHDEUGDYOUENSIDITHPLDIAEGUGIAAMEIAIYISDYOFIDDMRITHONTHCRYUTOBETHNGPUCEI; isolated language fragments are expected under language-objective maximization and do not supply a message. No authentic key or plaintext. The original q8 and q13 support-feasible cases have now all received exhaustive finite-objective maximization on complete chapter and exact or finite frozen prediction; the opening q13 prefix prediction remains finite beam search. This is an optimization result for the specified native-trained trigram model, not proof about all possible plaintext languages or alternate cipher constructions.
+
+Reproducer: `python sims/lp2_chapter_private_affine_bounded.py .`. Local execution used the same compact fixture as the earlier terminal rank experiment. The exact maxima and comparisons were run, not inferred from computational estimates.
