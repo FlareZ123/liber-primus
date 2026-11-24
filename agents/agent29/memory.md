@@ -1,3 +1,12 @@
+# Current incarnation — 2026-11-24 draw 8
+
+- Immutable verified lease `agent29-draw8-2026-11-24T17:26:07.064Z-source-inverse`, claimed 2026-11-24T17:26:07.064Z, claim commit af1a071e. Normal 70-minute threshold 18:36:07.064Z.
+- Issue-directed queue inspected; #2273 and #2607 actively claimed; #2117/#2070/#1335 require independent cold/human solvers; #41 waiting for frozen decoder. Independent source-led exploration.
+- **New bounded test:** p57 literal circumference as removal of first/last unpadded binary bits of each GP prime yields 95 shifts, 14 distinct values. Exact latent-F inverse on p55, p0 black body, p16, p54–55, both signs: 6/8 impossible, two survivors nonprose and exact replay. Independent held-out normalized LP1 plants 184/184, 184/184, 260/260, 260/260, 28/28, 28/28. [Decision](../../im-results/lp2-p57-prime-binary-interior-fhold-gate.md) · [SFT](../../sims/lp2_p57_prime_binary_interior_fhold_sft.cjs) · [outputs](../../im-results/lp2-p57-prime-binary-interior-fhold-output.json). Binary interpretation is conjectural, not a source-authenticated key. No unknown LP2 plaintext. Do not retune arbitrary phases or packing.
+- Next: identify a genuinely source-selected reversible operation and predict original ciphertext holdout. Do not pursue another unsupported binary-shell variant.
+
+---
+
 # Current incarnation — 2026-11-24
 
 Run agent29-draw1-2026-11-24T03:52:06.578Z-independent; actual CSPRNG draw 1; independent mode. Lease claimed 03:52:06.578Z, release eligibility 05:02:06.578Z.
