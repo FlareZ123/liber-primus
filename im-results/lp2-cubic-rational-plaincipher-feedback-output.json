@@ -1,0 +1,192 @@
+{
+  "original": {
+    "ranges": [
+      {
+        "range": [
+          0,
+          1000
+        ],
+        "seconds": 8.122,
+        "enumerated": 366160,
+        "rankCounts": {
+          "5/5": 1,
+          "6/6": 28,
+          "7/7": 812,
+          "8/8": 159
+        },
+        "nonconstant": 0,
+        "candidates": [],
+        "unresolved": []
+      },
+      {
+        "range": [
+          1000,
+          7000
+        ],
+        "seconds": 33.021,
+        "enumerated": 3840000,
+        "rankCounts": {
+          "8/8": 6000
+        },
+        "nonconstant": 0,
+        "candidates": [],
+        "unresolved": []
+      },
+      {
+        "range": [
+          7000,
+          13000
+        ],
+        "seconds": 32.845,
+        "enumerated": 3840000,
+        "rankCounts": {
+          "8/8": 6000
+        },
+        "nonconstant": 0,
+        "candidates": [],
+        "unresolved": []
+      },
+      {
+        "range": [
+          13000,
+          19000
+        ],
+        "seconds": 33.163,
+        "enumerated": 3840000,
+        "rankCounts": {
+          "8/8": 6000
+        },
+        "nonconstant": 0,
+        "candidates": [],
+        "unresolved": []
+      },
+      {
+        "range": [
+          19000,
+          24389
+        ],
+        "seconds": 29.614,
+        "enumerated": 3448960,
+        "rankCounts": {
+          "8/8": 5389
+        },
+        "nonconstant": 0,
+        "candidates": [],
+        "unresolved": []
+      }
+    ],
+    "denominators": 24389,
+    "enumerated": 15335120,
+    "candidateCount": 0,
+    "unresolved": 0
+  },
+  "plant": {
+    "ranges": [
+      {
+        "range": [
+          0,
+          7000
+        ],
+        "seconds": 41.855,
+        "enumerated": 4206160,
+        "nonconstant": 5,
+        "unresolved": []
+      },
+      {
+        "range": [
+          7000,
+          13000
+        ],
+        "seconds": 36.1,
+        "enumerated": 3840000,
+        "nonconstant": 0,
+        "unresolved": []
+      },
+      {
+        "range": [
+          13000,
+          19000
+        ],
+        "seconds": 36.374,
+        "enumerated": 3840000,
+        "nonconstant": 0,
+        "unresolved": []
+      },
+      {
+        "range": [
+          19000,
+          24389
+        ],
+        "seconds": 32.17,
+        "enumerated": 3448960,
+        "nonconstant": 0,
+        "unresolved": []
+      }
+    ],
+    "denominators": 24389,
+    "enumerated": 15335120,
+    "candidateCount": 1,
+    "trueA": [
+      5,
+      11,
+      7
+    ],
+    "trueK": [
+      13,
+      2,
+      17,
+      9,
+      18,
+      7,
+      22,
+      15
+    ],
+    "best": {
+      "id": 6211,
+      "A": [
+        5,
+        11,
+        7
+      ],
+      "K": [
+        13,
+        2,
+        17,
+        9,
+        18,
+        7,
+        22,
+        15
+      ],
+      "normalizedK": [
+        3,
+        25,
+        24,
+        11,
+        17,
+        11,
+        26,
+        23
+      ],
+      "rank": 8,
+      "D": 8,
+      "scale": 14,
+      "shift": 10,
+      "score": -27205.201624536425,
+      "train": {
+        "n": 10721,
+        "ioc": 0.06066601745493222,
+        "mean": -2.5375619461371817
+      },
+      "heldout": {
+        "n": 1906,
+        "ioc": 0.05964477420385411,
+        "mean": -2.5332029549049495
+      },
+      "exact": 12627,
+      "holdExact": 1906,
+      "expected": 12627,
+      "holdExpected": 1906
+    }
+  }
+}
