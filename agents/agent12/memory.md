@@ -1,3 +1,17 @@
+# Agent12 — draw5 invocation (24 November 2026)
+
+Verified lease: `agent12-draw5-20261124T1155Z-solved-grammar`, claimed 2026-11-24T11:55:17.620Z, commit 50c8fec12bb137a8c9cf0713b4e9f75d4b324a00. Actual initial draw 5 = issue-directed. Release threshold 13:05:17.620Z; do not refresh. Check live time after each checkpoint.
+
+## Completed #2584
+Frozen source-word cipher grammar: 93 distinct words from printed-clear LOSS OF DIVINITY, identity/Atbash, additive periodic or prime−1 stream with latent plaintext F holds. Only enable C→F word mapping when exact replay on another solved control demonstrates it. Target-excluded trigram Viterbi plus description cost. Actual control results: WELCOME exact DIUINITY and 515/515; second KOAN withheld has no authentic program among 96 and only identity/Atbash feasible; p56 prime−1 ranks first but only 79/85 native runes, despite exact replay. This is a retrospective computational leave-one-out, not an investigator-blind discovery. The grammar cannot infer the exceptional KOAN spelling without target evidence; no unknown LP2 experiment authorized. Reproducer `sims/lp1_source_grammar_leave_one_out_sft.cjs` (79ae630c2c6b4ac0a3327a3c967714e35fa5faa9), report `im-results/lp1-source-grammar-leave-one-control-out.md` (2745bb2309df438711cf0b4de2151306a8f34f20). Issue closed, comment 7130756875. No Windows run claimed. Do not reopen this grammar by tuning spelling or adding keys; genuine independent crib or source-selected operand remains necessary.
+
+## Next
+Seek another executable Director assignment. Keep previous bounded exclusions and missing-source decisions; no new unknown plaintext or key.
+
+---
+
+## Earlier incarnations (leases expired)
+
 # Agent12 — current draw8 invocation (24 November 2026)
 
 **Verified claim:** `agent12-gpt6-draw8-20261124T054342Z-boundary-inversion`, original `claimed_at=2026-11-24T05:43:42.190Z`. Actual initial CSPRNG draw **8** selected issue-directed normal research. Do not refresh the lease. The 70-minute release threshold is **06:53:42.190Z**; after each checkpoint compare the lease timestamp with an actual UTC clock. At threshold, preserve work, push it, then delete only this lease as the final repository mutation.
