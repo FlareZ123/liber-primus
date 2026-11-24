@@ -39,3 +39,21 @@ The joint original witness replays **308/308** original runes. Nevertheless it i
 Retire the fixed 2012 23-shift key, continuous Latin clock, printed-word receiver on p54–55, conditional on the stated lexical/native-language model. This does not exclude other Latin keys, changed boundaries, non-English plaintext, another cipher family, or a source-selected different segmentation rule. Because the historical Vigenère source supplies no LP2 reuse selector, searching other arbitrary Latin keys would not satisfy the source gate. Preserve the joint finite relation as a reusable component if an independent LP2 source fixes a Latin cipher/key law; do not repeat greedy expansion or this 23-phase scan. The original alternative remains unsolved.
 
 Reproduce: `node sims/lp2_latin23_transliteration_lattice_sft.cjs`. [Output](lp2-latin23-transliteration-lattice-output.json). Executed the same JS function in the connected JS runtime against repository inputs. An initial implementation accidentally supplied a 40-word third control; it was corrected and the full three 75-word trials rerun before the decision. No Windows CI run claimed.
+
+
+## Spacing-free character-context inverse (independent continuation)
+
+The strongest objection to the intact-word result is that original printed word boundaries might be encrypted or moved. The same fixed historical Latin key can be tested without trusting any printed spaces. The follow-up implements a Viterbi decoder over **(rune position, Latin phase, three-character context)**. Each edge consumes one chart rune and emits any allowed Latin spelling after Vigenère inversion (including the two-rune QU→CW arc). A smoothed character four-gram model is trained exclusively on 406,895 normalized Latin characters from the pinned Gibran and Emerson corpora, with no target LP1 sequence training. The DP maximizes total log likelihood including variable-length emissions; it is exact for this model, with no beam pruning. It fits the initial phase on the first physical page and transfers only its final phase/context to the second page. Printed word separators and original line breaks are entirely ignored.
+
+Three continuous 360-letter native LP1 plants (two KOAN segments and one WELCOME segment) are encrypted and greedily transliterated **after removing spaces**. The decoder recovers all three concealed start phases and all three fit ending phases. Fit edit distances are 4,4,5; held-out edit distances are 4/121, 2/120 and 3/122 (9 edits over 363 held-out letters). All outputs replay every observed rune via the explicit relation. Exact native Latin recovery is not guaranteed by the ambiguous channel, but the positive strings remain readily legible.
+
+| Spacing-free inverse | Fit log score/rune | Holdout log score/rune |
+|---|---:|---:|
+| KOAN first plant | −1.941 | −1.992 |
+| KOAN second plant | −2.005 | −2.114 |
+| WELCOME plant | −1.913 | −1.915 |
+| Original p54→p55 | **−6.469** | **−6.879** |
+
+The original p54 fit consumes 232 glyphs, selects phase3 and ends at phase14. Its highest-likelihood inverse begins `TTHORBSCHEBYQAKCIMEUMYYMHHOWGYCHPTIATPPADNAUEAFPUMCMOXFFOFRFOWEZCKD`; the untouched p55's 76 glyphs begin `UVSHRMHUSRVYLLIORMZJEMBAINRHWQZEQDJBTOKDAAWGSXAULKVOODBXCADLIMSTW`. Neither is prose, despite exact relation replay and arbitrary chart-compatible spelling choices. Native holdout scores span −1.915 to −2.114 nats/rune, while original is −6.879. This also retires the same fixed historical key and continuous Latin clock for the spacing-free receiver under this language model; it does not establish that printed spaces are genuine or exclude other key laws.
+
+The spacing-free inverse is a separate reusable component, not a new key sweep. [SFT](../sims/lp2_latin23_spacingfree_lattice_sft.cjs) and [exact output](lp2-latin23-spacingfree-lattice-output.json). Executed directly in the connected JS runtime, no CI claim.
