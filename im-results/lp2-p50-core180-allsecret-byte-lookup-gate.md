@@ -63,7 +63,21 @@ The entire secret-function family is a GF29 linear system in independent functio
 
 For source-shaped controls, arbitrary deterministic nonlinear GF29 function tables on the original geometry reproduce all known synthetic outputs; the reduced non-column model identifies all 76 withheld outer values exactly in both conventions. Allowing independent physical column offsets leaves only 12 individually fixed outer values in those positive plants (the two boundary columns remain unconstrained); the 64 other values need not be jointly independent. Raw-byte plants identify zero exterior values. The authentic p56 prime-minus-one decoder (84 consuming positions, transparent F at offset56) is asserted against the published GP orthography, and p57 is taken directly from the canonical original transcription. No plaintext language model is involved.
 
-**Decision:** reject the reduced-context family outright under the frozen alignment; reject the unrestricted full-byte two-context family as a means of inferring any p55 plaintext from the 180 known runes. An independently authenticated function-table constraint or different source-derived receiver would be required. No reason remains to optimize this flexible receiver against p55. No unknown plaintext, authentic key, or historical mechanism recovered.
+
+### Single shared codebook: all 29 affine feedback couplings fail
+
+The unrestricted two-table result suggests a specific remedy worth testing: use **one** byte→GP29 codebook f, consistent with a single printed numerical table, and constrain the context contribution to `g(b)=a*f(b)+d` for unknown a,d∈GF29. This includes the simple shared-codebook sum/difference, all scaled feedback coefficients, and the memoryless a=0 case. Preserve both frozen predecessor conventions and optional arbitrary physical-column offsets. For every a, the unknown f entries, intercept and column offsets are solved by exact GF29 elimination; no function table or p55 target is fitted.
+
+| Predecessor | Column offsets | Compatible slopes / 29 | Minimum nonzero residual equations |
+|---|---|---:|---:|
+| Cropped | no | 0/29 | 45 |
+| Cropped | yes | 0/29 | 41 |
+| Physical | no | 0/29 | 33 |
+| Physical | yes | 0/29 | 30 |
+
+All **116** original cases are inconsistent, whereas all 116 source-shaped synthetic shared-codebook controls are consistent. In particular, no linear coupling between the independently arbitrary input-function tables restores predictiveness while satisfying the known ending. This exhausts the stated coupling, not nonlinear relationships between the two tables. The entire committed SFT core, including both the independent-table and shared-table experiments, was retrieved and re-executed against the canonical sources with every assertion passing (connected JS; no separate Node wrapper or CI run). No authentic operation or unknown plaintext follows.
+
+**Decision:** reject the reduced-context family outright under the frozen alignment; reject the unrestricted full-byte two-context family as a means of inferring any p55 plaintext from the 180 known runes. The natural one-codebook affine-feedback restriction also fails in all 116 cases. An independently authenticated different constraint or source-derived receiver would be required. No reason remains to optimize this flexible receiver against p55. No unknown plaintext, authentic key, or historical mechanism recovered.
 
 [SFT](../sims/lp2_p50_inner180_context_lookup_identifiability_sft.cjs), core experiment executed on canonical source via connected JS before commit; standalone Node wrapper not independently run, no CI. Source corpus blob 054f2a0f780b7d46901acbe3d9bf4f0ac1801165; base60-grid blob 4698c0806e6bab06a39cfbc3c3283b862de58b35.
 
