@@ -138,6 +138,24 @@ function experiment(corpus,trans,solved,lex,donors,lib,mode='strict'){
   let yes=false;try{yes=go(0,K.slice(),0);}catch(e){if(e.message!=="reach cap")throw e;capped=true;}
   return {status:yes?"legal":capped?"cap":"empty",visits};
  }
+
+ // A second intact pair is a separate necessary lexical condition on the *same* full path.
+ // No memoization across partial words: every path is kept exact up to the explicit cap.
+ function reachLexReverse(C,K,a,b,d,constraints){
+  const seq=C.slice().reverse(),plain=new Uint8Array(seq.length),ai=inv[a],ends=new Map();let visits=0,capped=false,final=null;
+  for(const w of constraints)ends.set(C.length-w.at,w);
+  const check=()=>{if(++visits>REACH_CAP)throw Error("reach cap");};
+  const allowed=i=>{const w=ends.get(i);return !w||dict[w.n].has(String.fromCharCode(...Array.from(plain.slice(i-w.n,i)).reverse()));};
+  function consume(c,k){const p=mod((k.at(-1)-b*c-d)*ai);return p?{p,k:[mod(c-p),...k.slice(0,-1)]}:null;}
+  function go(i,k){
+   while(i<seq.length&&seq[i]){check();const x=consume(seq[i],k);if(!x)return false;plain[i++]=x.p;if(!allowed(i))return false;k=x.k;}
+   if(i===seq.length){final=k.slice();return true;}
+   check();plain[i]=0;if(allowed(i+1)&&go(i+1,k))return true;
+   const x=consume(0,k);if(x){check();plain[i]=x.p;if(allowed(i+1)&&go(i+1,x.k))return true;}return false;
+  }
+  let yes=false;try{yes=go(0,K);}catch(e){if(e.message!=="reach cap")throw e;capped=true;}
+  return {status:yes?"legal":capped?"cap":"empty",visits,p:yes?Array.from(plain).reverse():null,queue:final};
+ }
  function p0Stream(range){
   // Independently check the ring inverse against the earlier complete-queue implementation.
   const ns=src.find(x=>x.name==="0_loss_of_divinity"),P=ns.w.flat(),a0=28,b0=5,d0=11,K0=Array.from({length:q},(_,i)=>(i*i*7+i*11+23)%29),C0=encrypt(P,K0,a0,b0,d0).C;
@@ -149,7 +167,10 @@ function experiment(corpus,trans,solved,lex,donors,lib,mode='strict'){
   const pairs=words.slice(0,-1).map((w,j)=>({j,nz:w.concat(words[j+1]).filter(Boolean).length,n:w.length+words[j+1].length})).filter(x=>words[x.j].length>=5&&words[x.j+1].length>=5&&x.nz>=q+3).sort((a,b)=>b.nz-a.nz||b.n-a.n||a.j-b.j);
   const j=pairs[0].j,at=offset[j],end=offset[j+2],c1=words[j],c2=words[j+1],LC=C.slice(0,at),RC=C.slice(end);
   assert(j===144&&at===645&&c1.length===8&&c2.length===9,"frozen p0 anchor");
-  let legal=0,cap=0,empty=0,visits=0,best=null,legalModels=[],byA={};
+  // Same source-only pair ordering, take the strongest complete nonoverlapping pair left of the first.
+  const other=pairs.find(x=>x.j+2<=j);assert(other,"second pair");
+  const secondary=[{at:offset[other.j],n:words[other.j].length},{at:offset[other.j+1],n:words[other.j+1].length}];
+  let legal=0,cap=0,empty=0,visits=0,best=null,legalModels=[],byA={},secondLegal=0,secondEmpty=0,secondCap=0,secondVisits=0,secondModels=[];
   const support=join(c1,c2,dict[c1.length],dict[c2.length],x=>{
    const {a,b,d,p,P,C:CC}=x,start=P.slice(0,q).map((v,i)=>mod(CC[i]-v)),finish=P.slice(-q).map((v,i)=>mod(a*v+b*CC[CC.length-q+i]+d));
    let stats=byA[a];if(!stats)stats=byA[a]={models:0,empty:0,legal:0,cap:0,visits:0};stats.models++;
@@ -162,10 +183,15 @@ function experiment(corpus,trans,solved,lex,donors,lib,mode='strict'){
    assert(left.status==="legal"&&right.status==="legal","witness reach");
    const pp=left.p.concat(p,right.p);assert(same(encrypt(pp,left.queue,a,b,d).C,C),"full p0 replay");
    const avg=score(pp)/pp.length,row={a,b,d,anchor:render(p.slice(0,c1.length))+" "+render(p.slice(c1.length)),anchorIndices:p,incoming:start,score:avg,first100:render(pp.slice(0,100)),last100:render(pp.slice(-100))};
-   legalModels.push(row);if(!best||avg>best.score)best=row;
+   // Preserve the best arbitrary witness, not an unbounded list of ordinary legal models.
+   if(!best||avg>best.score)best=row;
+   const sl=reachLexReverse(LC,start,a,b,d,secondary);secondVisits+=sl.visits;
+   if(sl.status==="empty"){secondEmpty++;return;}if(sl.status==="cap"){secondCap++;return;}
+   secondLegal++;const sp=sl.p.concat(p,right.p);assert(same(encrypt(sp,sl.queue,a,b,d).C,C),"two-anchor full replay");
+   const secondWords=secondary.map(w=>render(sp.slice(w.at,w.at+w.n)));secondModels.push({...row,secondWords,score:score(sp)/sp.length,first100:render(sp.slice(0,100)),last100:render(sp.slice(-100))});
   },range);
-  assert(support.models===legal+cap+empty,"p0 exhaustive accounting");
-  return {mode:"p0full",q,range,joinTests,checks,anchor:{j,at,n:[c1.length,c2.length]},lexicon:dict.reduce((s,d)=>s+d.size,0),...support,legal,cap,empty,visits,byA,best,legalModels};
+  assert(support.models===legal+cap+empty&&legal===secondLegal+secondEmpty+secondCap,"p0 exhaustive accounting");
+  return {mode:"p0full",q,range,joinTests,checks,anchor:{j,at,n:[c1.length,c2.length]},lexicon:dict.reduce((s,d)=>s+d.size,0),...support,legal,cap,empty,visits,byA,best,secondary,secondLegal,secondEmpty,secondCap,secondVisits,secondModels};
  }
  const joinTests=testJoin(),FIT_CAP=2048;
  if(mode.startsWith('p0full:')){const range=mode.slice(7).split('-').map(Number);assert(range.length===2&&range[0]>=1&&range[1]<=28&&range[0]<=range[1],'a range');return p0Stream(range);}
