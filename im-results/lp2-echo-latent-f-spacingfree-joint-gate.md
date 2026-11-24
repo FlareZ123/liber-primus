@@ -22,3 +22,15 @@ Three donor pairs have deliberately identical six non-F plaintext prefix runes, 
 The three matched comparisons separate, but one true shared pad has negative likelihood gain and all MAP recoveries are poor (35–45/256 plaintext runes per tape, only 8–27 correct key digits). The original score lies within the three shared controls and above these three independent controls; this is **inconclusive**, not key recovery, proof of reuse, or a calibrated significance claim. The original maximum path is fragmented nonprose. The model has insufficient information to identify a two-time pad reliably. The next test is a frozen longer 768-rune interval, reporting incremental LLR over the first 256 separately, not selecting a new offset or using a word-boundary prior.
 
 [SFT](../sims/lp2_echo_latent_f_spacingfree_joint_sft.cjs), frozen commit a2b29fe6. Connected JS executed all seven 256-rune cases, including analytic checks and replay; no CI.
+
+## Frozen 768-rune continuation (sum-product only)
+
+The first 256 original runes remain unchanged. Condition additionally on those 256 and score the next 512 physical runes on both tapes. Larger donor windows are fixed by the same first-six-non-F rule; they are separate plant realizations from the 256-rune test. No further MAP claim (shorter controls failed key recovery).
+
+| Case | Conditional LLR after six-rune echo | Incremental LLR over positions 256–767 |
+|---|---:|---:|
+| Gibran/Shakespeare shared | −0.485027 | −1.175881 |
+| Gibran/Shakespeare independent | −9.275222 | −6.343521 |
+| Original fixed echo | **−14.194685** | **−13.777225** |
+
+Original full LLR −6.446978; six-rune prefix +7.747706; first256 +7.330247. Thus the initially ambiguous fixed echo does not predict a longer continuation under the modeled shared uniform additive pad. The shared control itself has slightly negative incremental LLR; the diagnostic remains limited, no all-key or all-language exclusion. Do not claim a significant p-value from these matched plants. Original exact filter evaluated 17,957 reachable cells and 14,046,995 history states. No coherent original plaintext or authentic key. `node sims/lp2_echo_latent_f_spacingfree_joint_sft.cjs 6 768 sum 256` (case0/1 for matched controls). Nested output commit ee9e246d, actual connected JS executions, no CI.
