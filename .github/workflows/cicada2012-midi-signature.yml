@@ -57,6 +57,20 @@ jobs:
           test "$(git hash-object "$RUNNER_TEMP/Cicada.mid")" = '11924e0e195208c2eea757655035e149fb8a190f'
           echo "Verified signed literal MIDI; embedded PGP block is compressed, not encrypted."
           cat "$RUNNER_TEMP/inner-packets.log"
+      - name: Verify embedded 2012 onion root-page signature
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import pathlib, re
+          source = pathlib.Path("resources/external/2012-sq6wmgv2zcsrix6t-onion-index.html").read_bytes()
+          match = re.search(rb"-----BEGIN PGP SIGNED MESSAGE-----\\r?\\n.*?-----END PGP SIGNATURE-----\\r?\\n", source, re.S)
+          if not match:
+              raise SystemExit("signed message block not found in exact archived HTML")
+          pathlib.Path("$RUNNER_TEMP/2012-onion-root-signed-message.asc").write_bytes(match.group(0))
+          PY
+          log="$RUNNER_TEMP/2012-onion-root-signature.verify.log"
+          gpg --batch --status-fd 1 --verify "$RUNNER_TEMP/2012-onion-root-signed-message.asc" > "$log" 2>&1
+          grep -F '[GNUPG:] GOODSIG 181F01E57A35090F' "$log"
       - name: Verify the other exact 2012 signed pages and test p56 candidates
         run: |
           set -euo pipefail
