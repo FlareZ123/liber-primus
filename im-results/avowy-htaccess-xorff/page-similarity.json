@@ -1,0 +1,202 @@
+[
+  {
+    "path": "resources/liber-primus/06.jpg",
+    "phash": 0,
+    "dhash": 0,
+    "rotation": 0,
+    "size": [
+      2400,
+      3600
+    ]
+  },
+  {
+    "path": "resources/liber-primus/08.jpg",
+    "phash": 4,
+    "dhash": 9,
+    "rotation": 0,
+    "size": [
+      2400,
+      3600
+    ]
+  },
+  {
+    "path": "resources/liber-primus/07.jpg",
+    "phash": 6,
+    "dhash": 5,
+    "rotation": 0,
+    "size": [
+      2400,
+      3600
+    ]
+  },
+  {
+    "path": "resources/liber-primus/09.jpg",
+    "phash": 12,
+    "dhash": 7,
+    "rotation": 0,
+    "size": [
+      2400,
+      3600
+    ]
+  },
+  {
+    "path": "resources/liber-primus/43.jpg",
+    "phash": 20,
+    "dhash": 17,
+    "rotation": 270,
+    "size": [
+      2400,
+      3600
+    ]
+  },
+  {
+    "path": "resources/liber-primus/10.jpg",
+    "phash": 20,
+    "dhash": 20,
+    "rotation": 180,
+    "size": [
+      2400,
+      3600
+    ]
+  },
+  {
+    "path": "resources/liber-primus/41.jpg",
+    "phash": 22,
+    "dhash": 17,
+    "rotation": 270,
+    "size": [
+      2400,
+      3600
+    ]
+  },
+  {
+    "path": "resources/liber-primus/37.jpg",
+    "phash": 22,
+    "dhash": 18,
+    "rotation": 90,
+    "size": [
+      2400,
+      3600
+    ]
+  },
+  {
+    "path": "resources/liber-primus/55.jpg",
+    "phash": 22,
+    "dhash": 19,
+    "rotation": 270,
+    "size": [
+      2400,
+      3600
+    ]
+  },
+  {
+    "path": "resources/liber-primus/44.jpg",
+    "phash": 22,
+    "dhash": 20,
+    "rotation": 90,
+    "size": [
+      2400,
+      3600
+    ]
+  },
+  {
+    "path": "resources/liber-primus/13.jpg",
+    "phash": 22,
+    "dhash": 23,
+    "rotation": 0,
+    "size": [
+      2400,
+      3600
+    ]
+  },
+  {
+    "path": "resources/liber-primus/66.jpg",
+    "phash": 24,
+    "dhash": 10,
+    "rotation": 270,
+    "size": [
+      2400,
+      3600
+    ]
+  },
+  {
+    "path": "resources/liber-primus/21.jpg",
+    "phash": 24,
+    "dhash": 10,
+    "rotation": 270,
+    "size": [
+      2400,
+      3600
+    ]
+  },
+  {
+    "path": "resources/liber-primus/62.jpg",
+    "phash": 24,
+    "dhash": 10,
+    "rotation": 270,
+    "size": [
+      2400,
+      3600
+    ]
+  },
+  {
+    "path": "resources/liber-primus/68.jpg",
+    "phash": 24,
+    "dhash": 12,
+    "rotation": 270,
+    "size": [
+      2400,
+      3600
+    ]
+  },
+  {
+    "path": "resources/liber-primus/22.jpg",
+    "phash": 24,
+    "dhash": 12,
+    "rotation": 90,
+    "size": [
+      2400,
+      3600
+    ]
+  },
+  {
+    "path": "resources/liber-primus/57.jpg",
+    "phash": 24,
+    "dhash": 13,
+    "rotation": 90,
+    "size": [
+      2400,
+      3600
+    ]
+  },
+  {
+    "path": "resources/liber-primus/17.jpg",
+    "phash": 24,
+    "dhash": 14,
+    "rotation": 270,
+    "size": [
+      2400,
+      3600
+    ]
+  },
+  {
+    "path": "resources/liber-primus/23.jpg",
+    "phash": 24,
+    "dhash": 15,
+    "rotation": 90,
+    "size": [
+      2400,
+      3600
+    ]
+  },
+  {
+    "path": "resources/liber-primus/18.jpg",
+    "phash": 24,
+    "dhash": 15,
+    "rotation": 90,
+    "size": [
+      2400,
+      3600
+    ]
+  }
+]\n

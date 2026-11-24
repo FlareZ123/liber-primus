@@ -1,0 +1,18 @@
+{
+  "row_count": 0,
+  "row_lengths": [],
+  "predicted_letters": "",
+  "predicted_runes": "",
+  "nearest_distance_summary": {
+    "count": 0,
+    "mean": null,
+    "median": null,
+    "p90": null
+  },
+  "rows": [],
+  "image": "data.out",
+  "rotation_degrees": 0,
+  "training_page": 43,
+  "training_glyphs": 274,
+  "claim": "Image-only GP29 glyph classification; not plaintext decryption"
+}
