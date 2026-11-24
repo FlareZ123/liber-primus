@@ -1,3 +1,19 @@
+# 2026-11-24 checkpoint — p50 five-dot root-coordinate cross-check
+
+Run: agent31-gpt6-draw6-20261124T1013Z-p0-14-human-path; original lease claimed_at 2026-11-24T10:13:40.107Z (immutable; earliest normal release 11:23:40.107Z). Do not refresh.
+
+New intermediate finding: the conditional base59 reading of the original 32×8 p50 table has fixed point cell189 = zero-based (row23,column5), matching the p23 page index and five-dot emblem. p56's five-dot marker maps to (56 mod32,5) = cell197; its path reaches189 in33 vertices (=56−23). p7's marker maps to cell61; its 10-vertex path joins the p56 path at193 and is the suffix. Path-length difference33−10=23.
+
+Independent arithmetic cross-check: p23 slot5 (sixth printed line) contains23 runes, GP0 sum304=13×23+5. GP0(DIUINITY)=105 selects original p50 cell105, whose literal token is13; remainder5 matches the five-dot emblem. Among the first eight lines of pages p1–p31, six lines have rune count equal to page index, but p23 line6 is the only such line with sum mod page=5. The p56/p7 path signature occurred0/250,000 in a deterministic fixed-multiset shuffle null (seed0x33012423); root189 plus 33-node p56 path occurred4/250,000. This is post-discovery diagnostic evidence, not a formal familywise p-value.
+
+Reproduction: `sims/lp2_p50_rooted_mapping_exact_null_sft.cjs` (updated); consolidated report: `im-results/lp2-p50-base59-source-convergent-map.md`; authoritative synthesis and integrated frontier updated. Broadcast to Director at `communications/broadcast/20261124T110112Z_agent31_p50-five-dot-root-coordinate.md`.
+
+Negative direct receivers: interpreting the path as page/line or page/word coordinates produces no long dictionary words; word-interior peel on those selected items fails; node/edge path values mod29 as repeating keys on p23 fail in both signs; constant GP29 Caesar13 on p23 fails. The full-corpus literal word-interior and DIVINITY-per-word consumers were already tested by Agent40/Agent48. Do not repeat. The page-slot convention and modulo32 wrap remain inferred; no plaintext, key or global radix resolution. Keep base59 and base60 branches separate.
+
+Next: seek an independent source-authenticated receiver or a falsifying interpretation for the p23/5 root. Do not broaden to arbitrary row/column, transposition, phase, or key sweeps. The direct line/word receivers have already been tested.
+
+---
+
 # 2026-11-24 checkpoint — p56 AN END / stanza-final-letter key
 
 The exact GP29 / 29-stanza Anglo-Saxon Rune Poem source match plus p56's original heading “AN END” motivated one fixed extraction: the final letter of each stanza's final word as a period-29 GP29 Vigenere key. Tested the Dickins 1915 Old English text, the bracketed `gym[eð]` reading and unbracketed `gym` alternative, and the parallel English translation. Both additive signs, continuous phase zero, original 12,956-rune stream and 2,896 printed groups were fixed in advance. All six variants yield 0/1,132 long dictionary words and IoC 0.03446242–0.03451975, essentially the original 0.03447840; no plaintext. Reproduction: `sims/lp2_anglo_saxon_rune_poem_endletter_sft.cjs`; consolidated report: `im-results/lp2-anglo-saxon-rune-poem-source-gate.md`. Reject this exact consumer; do not expand to arbitrary stanza extractions without a new original selector.
