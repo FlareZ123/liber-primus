@@ -1,13 +1,14 @@
 "use strict";
 /** Exact lexicon-conditioned shared affine-row integrated feedback recovery.
  * C_j=C_(j-1)+A(P_(j-1))*G(P_j)+B(P_(j-1)) mod29; G bijective, A nonzero.
+ * Mode 'arbitrary' instead allows a completely independent arbitrary permutation Q[q] in every row.
  * Independent first ciphertext rune per word. A finite dictionary is an assumption.
  * Node 22 / CommonJS. No genuine LP2 key or plaintext asserted.
  */
 const fs=require("node:fs");
 const path=require("node:path");
 const read=f=>fs.readFileSync(path.join(__dirname,"..",f),"utf8");
-function experiment(gp,transcript,controls,frequency,donor,cap=4000000){
+function experiment(gp,transcript,controls,frequency,donor,cap=4000000,model="affine"){
  const mod=x=>(x%29+29)%29;
  const inv=Array.from({length:29},(_,i)=>i?Array.from({length:28},(_,j)=>j+1).find(j=>mod(i*j)===1):0);
  const glyph=new Map(gp.runes.map((r,i)=>[r,i])),tokens=gp.translit.map((t,i)=>({t,i})).sort((a,b)=>b.t.length-a.t.length);
@@ -73,7 +74,7 @@ function experiment(gp,transcript,controls,frequency,donor,cap=4000000){
        if(y===d)return false;
      }
      if(exists)continue;
-     if(row.length>=2){
+     if(model==="affine"&&row.length>=2){
        const [[p0,d0],[p1,d1]]=row;
        const v=new Int8Array(30);v[p]=mod(d1-d0);v[p1]=mod(v[p1]-d+d0);v[p0]=mod(v[p0]+d-d1);
        if(!equation(s,v))return false;
@@ -144,14 +145,23 @@ function experiment(gp,transcript,controls,frequency,donor,cap=4000000){
 }
  const long=words.filter(x=>x.C.length>=10),long13=long.filter(x=>x.C.length>=13),long12=long.filter(x=>x.C.length>=12);
  const summary=x=>({nodes:x.nodes,complete:x.complete,maxDepth:x.maxDepth,truncated:x.truncated,levels:x.levels,maxRank:x.maxRank,anchors:x.tasks.map(t=>[t.index,t.cands.length]),sample:x.survivors.slice(0,1).map(s=>s.chosen.map(w=>w.original))});
- const originalNarrow=solve(long13,narrow,cap),originalBroad=solve(long13,broad,cap);
+ const anchorRows=model==="affine"?long13:long12;
+ const originalNarrow=solve(anchorRows,narrow,cap),originalBroad=solve(anchorRows,broad,cap);
  // Positive native-text control: secret nonlinear permutation and independent row slopes and offsets.
  let seed=330129;function rand(n){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return (seed>>>0)%n}
  const G=Array.from({length:29},(_,i)=>i);for(let j=28;j>0;j--){const k=rand(j+1);[G[j],G[k]]=[G[k],G[j]]}
  const a=Array.from({length:29},()=>rand(28)+1),b=Array.from({length:29},()=>rand(29));
+
  const Gi=Array(29);G.forEach((v,i)=>Gi[v]=i);
- function encode(P){const C=[rand(29)];for(let j=1;j<P.length;j++)C.push(mod(C[j-1]+a[P[j-1]]*G[P[j]]+b[P[j-1]]));
-   const Q=[P[0]];for(let j=1;j<C.length;j++)Q.push(Gi[mod((C[j]-C[j-1]-b[Q[j-1]])*inv[a[Q[j-1]]])]);if(Q.join(",")!==P.join(","))throw Error("plant inverse");return C}
+ // Arbitrary independent row permutations use a separate hidden key.
+ const Q=model==="arbitrary"?Array.from({length:29},()=>{
+   const row=Array.from({length:29},(_,i)=>i);for(let j=28;j>0;j--){const k=rand(j+1);[row[j],row[k]]=[row[k],row[j]]}return row
+ }):null;
+ const Qi=Q&&Q.map(row=>{const rev=Array(29);row.forEach((v,i)=>rev[v]=i);return rev});
+ function encode(P){const C=[rand(29)];for(let j=1;j<P.length;j++)C.push(mod(C[j-1]+(Q?Q[P[j-1]][P[j]]:a[P[j-1]]*G[P[j]]+b[P[j-1]])));
+   const R=[P[0]];for(let j=1;j<C.length;j++){const d=mod(C[j]-C[j-1]),q=R[j-1];R.push(Qi?Qi[q][d]:Gi[mod((d-b[q])*inv[a[q]])])}
+   if(R.join(",")!==P.join(","))throw Error("plant inverse");return C}
+
  const plants=long.map(({C,index})=>{const w=narrow[C.length][rand(narrow[C.length].length)];return {C:encode(w.p),P:w.p,index}});
  const train=plants.filter(x=>x.C.length>=12),held=plants.filter(x=>x.C.length<12);
  const plant=solve(train,broad,cap);
@@ -169,13 +179,16 @@ function experiment(gp,transcript,controls,frequency,donor,cap=4000000){
  const evaluation=plant.survivors.slice(0,10).map(({s,chosen})=>{
    const forced=s.basis.flatMap((row,i)=>row&&row.slice(0,29).filter(x=>x!==0).length===1?[[i,row[29]]]:[]);
    const matches=chosen.filter((w,i)=>w.p.join(",")===plant.tasks[i].P.join(",")).length;
-   const allRowsFit=s.rows.every((r,q)=>r.every(([p,d])=>mod(a[q]*G[p]+b[q])===d));
-   return {trainingMatches:matches,trainingCount:train.length,rank:s.rank,forcedG:forced.length,forcedGCorrect:forced.filter(([i,v])=>normalizedG[i]===v).length,allRowsFit,holdout:evaluate(held,s,broad),authenticHoldout:evaluate(authentic,s,broad)};
+   const allRowsFit=s.rows.every((r,q)=>r.every(([p,d])=>(Q?Q[q][p]:mod(a[q]*G[p]+b[q]))===d));
+   const rowEntries=s.rows.reduce((n,r)=>n+r.length,0),correctRowEntries=s.rows.reduce((n,r,q)=>n+r.filter(([p,d])=>(Q?Q[q][p]:mod(a[q]*G[p]+b[q]))===d).length,0);
+   return {trainingMatches:matches,trainingCount:train.length,rank:model==="affine"?s.rank:null,forcedG:model==="affine"?forced.length:null,forcedGCorrect:model==="affine"?forced.filter(([i,v])=>normalizedG[i]===v).length:null,rowEntries,correctRowEntries,allRowsFit,holdout:evaluate(held,s,broad),authenticHoldout:evaluate(authentic,s,broad)};
  });
  const chapters=[];
- return {narrowSize,broadSize:dict.size,originalNarrow:summary(originalNarrow),originalBroad:summary(originalBroad),plant:summary(plant),evaluation,chapters};
+ return {model,narrowSize,broadSize:dict.size,originalNarrow:summary(originalNarrow),originalBroad:summary(originalBroad),plant:summary(plant),evaluation,chapters};
 }
 const files=["resources/liber-primus/lp2-corpus.json","resources/liber-primus/lp2-transcription.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt","resources/control/gibran_prophet_58585.txt","resources/control/english_wordfreq_textblob.txt","resources/external/relikd-solved-gp29-native-v1.json"];
 const data=files.map(read);
-const result=experiment(JSON.parse(data[0]),data[1],data.slice(2,5),data[5],JSON.parse(data[6]));
+const model=process.argv[2]||"affine";
+if(!["affine","arbitrary"].includes(model))throw Error("expected affine or arbitrary");
+const result=experiment(JSON.parse(data[0]),data[1],data.slice(2,5),data[5],JSON.parse(data[6]),4000000,model);
 console.log(JSON.stringify(result,null,2));
