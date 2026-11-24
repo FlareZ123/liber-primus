@@ -249,7 +249,7 @@ def main() -> int:
             "commit": EXTERNAL_COMMIT,
             "engine": "R40-B3 engine.py + pads.py; R37-I2 frozen pf_v4_12 and beam_v3",
             "panel_registers": list(E.PAN.registers),
-            "panel_sha256": E.P12_SHA,
+            "panel_sha256": E.pf.PANEL_SHA,
             "null_model": "round36/B1-orbit-12reg/null12.json POT bars",
             "target": "original LP2 unknown stream U[:120] and U[:240] (p0 head), no page reset",
         },
