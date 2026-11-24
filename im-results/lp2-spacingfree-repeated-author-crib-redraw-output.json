@@ -1,0 +1,134 @@
+{
+  "controls": [
+    {
+      "name": "0_koan_1",
+      "key": [
+        17,
+        8,
+        3,
+        27,
+        11,
+        24,
+        6,
+        1
+      ],
+      "candidates": 1,
+      "paths": 1,
+      "start": 54,
+      "trueStart": 54,
+      "keyCorrect": true,
+      "n": 150,
+      "correct": 150,
+      "score": -2.3485446499356577,
+      "heldoutStart": 91
+    },
+    {
+      "name": "0_koan_1",
+      "key": [
+        9,
+        23,
+        14,
+        2,
+        12,
+        6,
+        28,
+        17
+      ],
+      "candidates": 1,
+      "paths": 1,
+      "start": 54,
+      "trueStart": 54,
+      "keyCorrect": true,
+      "n": 150,
+      "correct": 150,
+      "score": -2.3485446499356577,
+      "heldoutStart": 91
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "key": [
+        3,
+        8,
+        12,
+        4,
+        15,
+        22,
+        19,
+        0
+      ],
+      "candidates": 1,
+      "paths": 1,
+      "start": 215,
+      "trueStart": 215,
+      "keyCorrect": true,
+      "n": 150,
+      "correct": 150,
+      "score": -2.919078473432262,
+      "heldoutStart": 237
+    }
+  ],
+  "original": [
+    {
+      "name": "0_koan_1",
+      "first": 54,
+      "second": 294,
+      "length": 37,
+      "crib": "ᚦᛖᛗᚪᛋᛏᛖᚱᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏᚢᛞᚣᚻᛖᚱᛖ",
+      "nodes": 1162033,
+      "starts": 12920,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 62,
+      "second": 175,
+      "length": 29,
+      "crib": "ᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏᚢᛞᚣᚻᛖᚱᛖ",
+      "nodes": 1163664,
+      "starts": 12928,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 62,
+      "second": 419,
+      "length": 42,
+      "crib": "ᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏᚢᛞᚣᚻᛖᚱᛖᚪᛋᚳᛖᛞᚦᛖᛗᚪᛋᛏᛖᚱ",
+      "nodes": 1162509,
+      "starts": 12915,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 407,
+      "second": 564,
+      "length": 41,
+      "crib": "ᚾᚩᛏᚹᚻᚩᚣᚩᚢᚪᚱᛖᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏᚢᛞᚣᚻᛖᚱᛖ",
+      "nodes": 1162630,
+      "starts": 12916,
+      "hits": []
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "first": 215,
+      "second": 343,
+      "length": 22,
+      "crib": "ᚹᛖᚹᛁᛚᛚᚾᚩᛏᛒᛖᛋᛏᚱᚩᛝᛖᚾᚩᚢᚷᚻ",
+      "nodes": 1164387,
+      "starts": 12935,
+      "hits": []
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "first": 446,
+      "second": 483,
+      "length": 20,
+      "crib": "ᚹᛖᚳᚪᚾᛒᛖᛚᚩᛝᚪᚾᛞᛒᛖᚱᛁᚷᚻᛏ",
+      "nodes": 1163729,
+      "starts": 12937,
+      "hits": []
+    }
+  ],
+  "originalRunes": 12956,
+  "scope": "LP1 maximal repeated substrings of at least 20 runes; q8 optional collision-only one-redraw, all offsets, no printed spaces"
+}
