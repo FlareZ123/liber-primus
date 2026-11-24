@@ -86,6 +86,38 @@ function randomKey(seed) {
   const next = xorshift32(seed);
   return Array.from({ length: PERIOD }, () => next() % 29);
 }
+
+/*
+ * Construct feasible initial keys instead of wasting random starts. Choose
+ * one legal transparent-F/consume history per lane, intersect the resulting
+ * per-phase forbidden-value sets, then sample one shared key from the
+ * nonempty domains. This guarantees at least one legal path in every lane.
+ */
+function randomFeasibleKey(lanes, random) {
+  const all = (1 << 29) - 1;
+  for (let attempt = 0; attempt < 50; attempt++) {
+    const domains = Array(PERIOD).fill(all);
+    for (const lane of lanes) {
+      let phase = 0;
+      for (const c of lane) {
+        const skip = c === 0 && (random() & 1) === 0;
+        if (!skip) {
+          domains[phase] &= ~(1 << c);
+          phase = (phase + 1) % PERIOD;
+        }
+      }
+    }
+    if (domains.some((mask) => mask === 0)) continue;
+    return domains.map((mask) => {
+      const values = [];
+      for (let value = 0; value < 29; value++) {
+        if (mask & (1 << value)) values.push(value);
+      }
+      return values[random() % values.length];
+    });
+  }
+  return null;
+}
 function trainLanguageModel(excludedSections = [], alpha = 0.1) {
   const excluded = new Set(excludedSections);
   const unigramCounts = new Float64Array(29);
@@ -254,7 +286,8 @@ function recoverFiveKey(lanes, logProbability, seed, restarts) {
   const candidates = new Map();
   let validStarts = 0;
   for (let trial = 0; trial < restarts; trial++) {
-    const initialKey = Array.from({ length: PERIOD }, () => random() % 29);
+    const initialKey = randomFeasibleKey(lanes, random);
+    if (!initialKey) continue;
     const result = refineFiveKey(lanes, logProbability, initialKey);
     if (!result) continue;
     validStarts++;
