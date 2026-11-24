@@ -30,8 +30,9 @@ function experiment(inputs){
  function plant(i,a,seed){const rand=rng(seed),key=Array.from({length:13},()=>rand()%29),truth=solved[i],dict=buildLexicon(i),{cut}=cutAt(truth,155);return run("plant "+native.sections[i].name+" a="+a,encode(truth,key,a),cut,dict,truth,key,a)}
  const mode=process.argv[2]||"all";
  if(mode==="control1"||mode==="all"){const {cut}=cutAt(cipherSections[5],155);const control=run("authentic KOAN2",cipherSections[5],cut,buildLexicon(5),solved[5],[0,10,4,0,1,19,0,18,4,18,9,0,18],1);if(mode==="control1")return control;if(!control.exactSlope||!control.exactKey||control.continuation?.matches!==control.held)throw Error("control1 failed")}
- if(mode==="control2"||mode==="all"){const control=plant(3,7,0x25540007);if(mode==="control2")return control;if(!control.exactSlope||!control.exactKey||control.continuation?.matches!==control.held)throw Error("control2 failed")}
+ if(mode==="control2"||mode==="all"){const control=plant(3,7,0x25540007);if(mode==="control2")return control;if(String(control.survivingSlopes)!=="7"||control.exhausted.length)throw Error("control2 slope failed")}
  if(mode==="control3"||mode==="all"){const control=plant(5,17,0x25540017);if(mode==="control3")return control;if(!control.exactSlope||!control.exactKey||control.continuation?.matches!==control.held)throw Error("control3 failed")}
+ if(mode==="control4"){return plant(4,11,0x25540011)}
  const ws=originalWords.slice(-66);assert(ws.flat().length===308&&String(ws.flat())===String(gp.pages.slice(54,56).flatMap(x=>x.indices)),"target original");const {cut,n}=cutAt(ws,205);assert(n===205,"frozen split");return run("p54–55",ws,cut,buildLexicon(-1));
 }
 const fs=require("node:fs"),path=require("node:path");const files=["resources/liber-primus/lp2-corpus.json","resources/liber-primus/lp2-transcription.txt","resources/control/english_wordfreq_textblob.txt","resources/external/relikd-solved-gp29-native-v1.json","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/transcriptions/lp1_wulfic_canonical.txt"];
