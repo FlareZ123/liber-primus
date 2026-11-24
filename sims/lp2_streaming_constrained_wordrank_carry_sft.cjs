@@ -2,7 +2,7 @@
 /** Original LP2 streaming constrained-rank state bounds and full inverse. Agent1, 2026-11-24. No authenticated cipher claim. Node 22/CommonJS. */
 const fs=require('node:fs');
 const path=require('node:path');
-function analyze(corpus,raw,dict,native){
+function analyze(corpus,raw,dict,native,grid){
   "use strict";
   const check=(c,m)=>{if(!c)throw new Error(m)};
   const gp=new Map(corpus.runes.map((c,i)=>[c,i]));
@@ -130,6 +130,40 @@ function analyze(corpus,raw,dict,native){
     return sets;
   });
   function ioc(a,A){const f=Array(A).fill(0);for(const x of a)f[x]++;return f.reduce((s,n)=>s+n*(n-1),0)/(a.length*(a.length-1))}
+  /** Exact reachable carry interval, conditioned on the full original prefix. */
+  function stateInterval(rows,A,seed){
+    let lo=seed,hi=seed;
+    for(let i=0;i<rows.length;i++){
+      const {L,M,r}=rows[i],P=BigInt(A)**BigInt(L);
+      const a=lo*P-r,b=(hi+1n)*P-1n-r;
+      lo=a<=0n?0n:(a+M-1n)/M;hi=b<0n?-1n:b/M;
+      if(lo>hi)return {fail:i};
+    }
+    return {fail:-1,terminalCountBits:bitlen(hi-lo+1n),
+      terminalCount:hi-lo<100000000n?(hi-lo+1n).toString():null};
+  }
+  /** Exhaust every possible p0 two-word title for a fixed initial carry. */
+  function prefix(rows,A,seed,count=2){
+    let paths=[{state:seed,words:[]}];
+    for(let i=0;i<count;i++){
+      const {M,r,L}=rows[i],P=BigInt(A)**BigInt(L),next=[];
+      for(const p of paths){
+        const a=p.state*P-r,b=(p.state+1n)*P-1n-r;
+        const lo=a<=0n?0n:(a+M-1n)/M,hi=b<0n?-1n:b/M;
+        for(let q=lo;q<=hi;q++)next.push({state:q,words:p.words.concat([digits(q*M+r-p.state*P,BigInt(A),L)])});
+      }
+      paths=next;
+    }
+    return paths.map(p=>p.words);
+  }
+  check(grid.bytes.length===256,"original numeric table length");
+  const tokens=grid.pages.flatMap(p=>p.tokens),alpha59=grid.alphabet.replace("f","");
+  check(tokens.length===256&&tokens.every(t=>[...t].every(c=>alpha59.includes(c))),"base59 token domain");
+  const seeds=[
+    {name:"base60-row",value:num(grid.bytes,256n)},
+    {name:"base59-row",value:num(tokens.map(t=>59*alpha59.indexOf(t[0])+alpha59.indexOf(t[1])),256n)}
+  ];
+  const headings=new Set(),seedChecks=[];
   const variants=[],orders=["ABD","ADB","BAD","BDA","DAB","DBA"];
   const control=donor.filter(w=>w.length<=14&&!w.includes(12)&&!w.includes(22));
   check(control.length>100,"native control size");
@@ -146,6 +180,12 @@ function analyze(corpus,raw,dict,native){
     }
     const candidates=[];
     for(const A of [26,27,28,29]){
+      for(const seed of seeds){
+        seedChecks.push({mode,cyc,order,A,seed:seed.name,...stateInterval(rows,A,seed.value)});
+        if(A===29)for(const p of prefix(rows,A,seed.value)){
+          headings.add(p.map(w=>w.map(x=>corpus.translit[x]).join("")).join(" "));
+        }
+      }
       const d=decode(rows,A,0n),en=encode(d.out,A,d.state,schedules,mode,cyc,order);
       check(en.state===0n&&JSON.stringify(en.out)===JSON.stringify(words.map(x=>x.w)),"original carry replay");
       const omit=A===27?[12,22]:A===28?[12]:A===26?[12,22,25]:[];
@@ -189,9 +229,9 @@ function analyze(corpus,raw,dict,native){
   }
   return {words:words.length,runes:actual.length,dict:lex.reduce((s,m)=>s+m.size,0),
     longWords:words.filter(x=>x.w.length>=5).length,nativeWords:control.length,nativeRunes:control.flat().length,
-    bounds,variants};
+    bounds,variants,seedChecks,headings:[...headings]};
 }
 const root=path.join(__dirname,'..','resources');
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');
-const result=analyze(JSON.parse(read('liber-primus/lp2-corpus.json')),read('lp2-transcription.txt'),read('control/english_wordfreq_textblob.txt'),JSON.parse(read('external/relikd-solved-gp29-native-v1.json')));
+const result=analyze(JSON.parse(read('liber-primus/lp2-corpus.json')),read('lp2-transcription.txt'),read('control/english_wordfreq_textblob.txt'),JSON.parse(read('external/relikd-solved-gp29-native-v1.json')),JSON.parse(read('liber-primus/lp2-grid-256.json')));
 console.log(JSON.stringify(result,null,2));
