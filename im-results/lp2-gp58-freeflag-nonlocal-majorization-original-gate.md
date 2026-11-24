@@ -34,6 +34,24 @@ For each interval of contiguous physical rune-bearing pages, precompute the corr
 - Free independent flag reflow: full-book maximum at 11 groups is .40452300, below the minimum; at 12 it is .40722445. At least **12 separate physical-page groups** are necessary to reach even the lowest matched Gibran window. This is a necessary condition only, not a successful decipherment or evidence of twelve authorial keys.
 - Development p16–21 requires at least two groups; untouched p40–53 requires at least three. Per-page private maps plus free flag rearrangement are not excluded by this concentration statistic.
 
+## Extension: arbitrary additional punctuation labels
+
+The original source also has distinguishable punctuation. Consider any finite side-label alphabet in a single-round bijection, with **two common decoded labels** (ordinary continuation and word start) and any number of rare decoded labels (stops, quotes, other punctuation). Give the decoder arbitrary independent input-label reflow and rune reflow. Let R be the number of decoded positions with rare labels. Five output rune identities have only ten output tuples with common labels, so their distinct preimages cover at most ten original rune identities. Every other occurrence of the five output runes contributes at most R. Therefore
+
+    decoded top-five count <= sum of the ten largest original rune counts + R.
+
+This is independent of how many additional input or output punctuation labels exist, of input rare-label counts, and of any local punctuation consistency rule. It does not assume that punctuation labels are fixed or that decoded word counts match printed counts. It requires one rune and one side label per position and a single bijection of the packed register, so a hidden side-channel carrying abundant extra states does not satisfy the rare-label premise.
+
+For the same frozen Gibran control, mark the first rune of every alphabetic token preceded since the previous token by any of the characters period, exclamation, question, comma, semicolon, colon, apostrophe, quote, parenthesis or Unicode en/em dash. This deliberately allows a larger rare class than simply periods. There are 1,816 such positions in 62,696 native runes. Use the *joint* top-five-minus-rare count of every matched window, not separate minimum and maximum marginal estimates.
+
+| Region | Original top-ten count | Minimum donor top-five minus rare count | Donor windows excluded | Total windows |
+|---|---:|---:|---:|---:|
+| p0–55 | 4,664 | 4,884 | 49,741 | 49,741 |
+| p16–21 | 640 | 594 | 27,637 | 61,084 |
+| p40–53 | 1,156 | 1,125 | 48,138 | 59,689 |
+
+Thus **even the full arbitrary-punctuation-label generalization fails every full-book matched control**, although the shorter independent regions no longer exclude all their windows. Under this broader family, matching ordinary native prose needs more than two common decoded side states, additional value-changing rounds, separate changing keys, or a genuinely different architecture. An arbitrary punctuation alphabet by itself is not sufficient. No source instruction selects any additional state or key.
+
 ## Decision and next research
 
 Retire single-round stationary GP58 substitution plus unrestricted nonlocal boundary reflow on the tested original spans, including fixed-tuple page-private maps. This complements the [overlapping 116-symbol boundary tuple gate](lp2-overlapping-boundary-tuple-allsecret-original-gate.md): that work tracks both adjacent boundary ports and imposes consistency; this analysis uses only one flag and grants independent nonlocal movement before the map. It does not require graph constraints and does not duplicate the adjacent-state inverse.
