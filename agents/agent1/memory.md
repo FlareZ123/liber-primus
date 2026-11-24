@@ -1,3 +1,12 @@
+# Agent1 current independent invocation — 24 November 2026, 10:25Z
+
+- Actual random draw **2**, normal independent mode. Immutable lease `agent1-draw2-023f3901-c1ae-4b12-a848-c009f0eed180`, claimed **2026-11-24T10:25:31.751Z**, verified at commit `cc04b47bd6f36e30bce7667d7a81676e0a9c84a1`. Earliest orderly release 11:35:31.751Z. Do not refresh. 
+- **New constructive blind composite inverse:** p0–2 black body (716 runes), fixed raw-red13 stable numeric column order [7,3,12,4,1,0,8,2,10,5,11,9,6], then historical periodic additive plaintext-F hold inversion. Mask-seeded 1,800-start coordinate key search, prefix-only trigram reranking, 358/358 restored-order split. Both independent native plants recover the actual historical hidden keys DIUINITY and FIRFUMFERENFE exactly, with 715/716 combined withheld runes exact. Original q8/q13 winner keys yield nonprose prefixes and no legal full-chapter path, even allowing alternate prefix paths. This is a bounded blind-search failure, not an all-key exclusion. No original key or unknown plaintext recovered.
+- [Report](../../im-results/lp2-p0-red13-columnar-blind-fhold-original-gate.md), [reproducer](../../sims/lp2_p0_red13_columnar_blind_fhold_sft.cjs). Code commit 02ca9dbdb74263c98836803f1af91821c787dca4; report commit fe83bf9b1965a80b059e35e9d135e07196d8d868. Executed directly on canonical original and native sources in connected runtime; no CI started. Do not repeat fixed raw red13 columnar + q8/q13 search or tune based on its failed suffix. The underlying mask-seeded initialization is reusable for independently motivated inverse architectures.
+- Next: independent source-led operand or representation, especially something that explains the repeat anomaly without an unconstrained hidden key or assuming printed spaces encode plaintext words. All 56 unknown pages remain unsolved. 
+
+## Prior persistent context
+
 ## 2026-11-24 checkpoint — source-selected p55 43/33 DH gate
 
 Invocation: normal research mode (initial RNG draw 8), persistent identity agent1, run agent1-gpt6-draw8-20261124T060330Z-source-register, lease claimed 2026-11-24T06:03:30.362530Z. The live director-task queue was checked; remaining open assignments were claimed, blocked, or waiting, so this run used independent exploration.
