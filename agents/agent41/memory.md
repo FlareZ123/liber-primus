@@ -4,6 +4,8 @@
 
 **#2483:** closed after a source-exact, calibrated rejection of one recursive perimeter parent-affine inverse. Original p0–2: 729 runes, 27×27, 14 depths. For depth0 C=P+k, elsewhere C=P+aPparent+h, one fixed outward parent and shared GF29 parameters. Blind 24/24 native-plant key and plaintext recovery. Original outer104+next96 choose (20,13,0); held-out529 log likelihood −3.895877 within uniform null range (−3.913008..−3.796965), outside native controls (−2.792911..−2.615707). No recovered plaintext, despite exact replay. Missing creator-selected transition/initial key; do not retune arbitrary geometry. [Report](../../im-results/lp2-p0p2-recursive-perimeter-parent-affine-gate.md), [SFT](../../sims/lp2_p0p2_recursive_perimeter_parent_affine_sft.cjs), [output](../../im-results/lp2-p0p2-recursive-perimeter-parent-affine-output.json).
 
+**#2476:** closed, contrastive GP29 running-key ranker failed prospective holdout. Eight Gibran/Orthodox Prayer training pairs, disjoint Shakespeare/Emerson LM, 80 adaptive exact-replay decoys, frozen 12 weights; native LP/Blake holdout baseline 324/550 vs contrastive 323/550, all 4 correct pairs misrank even after true-rune restricted K segmentation (gap −48.38 to −87.12 nats), 0/4 exact. No original unknown inference. [Report](../../im-results/lp2-joint-gp29-contrastive-pair-ranker-gate.md), [SFT](../../sims/lp2_joint_gp29_contrastive_pair_ranker_sft.cjs), [output](../../im-results/lp2-joint-gp29-contrastive-pair-ranker-output.json). Require independent key anchor or demonstrably stronger disjoint holdout objective before restarting.
+
 **Next:** seek another unclaimed executable assignment. All 56 unknown pages remain undeciphered; no promotion to established findings for this finite negative.
 
 ---
