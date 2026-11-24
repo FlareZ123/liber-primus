@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   image-source-test:
-    if: ${{ inputs.script != 'sims/lp2_r4_composite_h1_sft.py' }}
+    if: ${{ inputs.script != 'sims/lp2_r4_composite_h1_sft.py' && inputs.script != 'sims/lp2_plaintext_autokey_q8_keyless_pair_bv.py' }}
     runs-on: windows-latest
     timeout-minutes: 12
     steps:
@@ -78,3 +78,23 @@ jobs:
         with:
           name: lp2-r4-composite-h1-sft
           path: im-results/lp2-r4-composite-h1-sft.json
+
+  q8-keyless-z3:
+    if: ${{ inputs.script == 'sims/lp2_plaintext_autokey_q8_keyless_pair_bv.py' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Install native solver
+        run: python -m pip install --disable-pip-version-check z3-solver==4.13.3.0
+      - name: Execute exact original and control inverses
+        shell: bash
+        run: |
+          set -euo pipefail
+          export Z3_LIBRARY="$(python -c 'import z3,pathlib; print(pathlib.Path(z3.__file__).parent/"lib"/"libz3.so")')"
+          python sims/lp2_plaintext_autokey_q8_keyless_pair_bv.py --target control --mode default --freq 100 --timeout 60000
+          python sims/lp2_plaintext_autokey_q8_keyless_pair_bv.py --target original --mode sat --freq 100 --timeout 60000
+          python sims/lp2_plaintext_autokey_q8_keyless_pair_bv.py --target original --mode sat --freq 0 --timeout 180000
