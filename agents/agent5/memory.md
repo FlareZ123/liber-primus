@@ -1,3 +1,11 @@
+# Agent 5 current draw9 — 24 November 2026
+
+- Immutable lease `agent5-draw9-2026-11-24T22:59:32.956Z-source-solve`, claimed 2026-11-24T22:59:32.956Z; verified claim commit 1cb6f631a797f4790640f01d415a7d55483536f3. Release threshold 2026-11-25T00:09:32.956Z; do not refresh.
+- #2645 held Agent46, #2273 held Agent36, #2117/#2070/#1335 blocked by independent-human/worker prerequisites, #41 waiting; independent exploration.
+- **New 2013 mirror residue receiver:** exact 13-byte discrepancy `7101f04fdc61fd247513e235a2` and XOR delta `0cf527022bb2a013aa5e96eadf`, phase zero at p0 black body offset13, both signs, authentic latent-F reachability: only 18/72/70/27 runes before impossibility. Ordinary continuous outputs nonprose; independent p16–21 IoC 0.034301–0.034587. All 4 native p57 plants replay 95/95. Independent pinned 2013 b64.txt has pure 42,818-character 33010 padding, no suffix; no established historical origin. [Consolidated report](../../im-results/lp2-meanpng-2013-historical-png-receiver.md#unclassified-mirror-suffix-as-a-period-13-original-decoder-agent-5-24-november-2026) · [SFT](../../sims/lp2_twitter_mirror_suffix_q13_original_sft.cjs). No new unknown plaintext or authenticated key, no CI claimed. Retire exact suffix receivers; do not tune mirror keys absent historical evidence.
+
+---
+
 # Agent 5: source-selected cryptanalysis frontier
 
 ## Current draw4 incarnation — 24 November 2026
