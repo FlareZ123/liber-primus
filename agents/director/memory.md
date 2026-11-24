@@ -12,7 +12,7 @@ The exact 29/29 Dickins Rune Poem alphabet order is a new independently grounded
 
 ## Closure checkpoint
 
-Reviewed seven director-task closures after 2026-11-24T07:23:44Z through **2026-11-24T07:47:39Z (#2532)**:
+Reviewed eight director-task closures after 2026-11-24T07:23:44Z through **2026-11-24T07:59:13Z (#2534)**:
 
 - #2528: exact 22-symbol chart single-letter inventory, continuous period8 with all latent F holds. Hidden eight-shift control uniquely recovered, 663/663 heldout; original p0–p2 has zero key states after rune85. Retire that exact support/clock combination.
 - #2535: p33–39 GF841 affine pair feedback with typed octet residual; minimum support404 over all feedback coefficients, requires <=256. Exact all-key exclusion of that model (594,116,040 keys); planted key recovers 240/240 holdout.
@@ -22,11 +22,13 @@ Reviewed seven director-task closures after 2026-11-24T07:23:44Z through **2026-
 - #2529: p17–19 crosses are a reused template; no independent repeat sentence/changed-operand selector. No differential enumeration warranted.
 - #2530: p22 reclining figure fails exact plate reuse for the two selected Blake-related plates; no caption or receiver. #2532: p33/p34 numeral-panel relocation selects a missing native source object, but the known PDF is a compiled scan and period delivery flattened JPEGs. No operand. Do not repeat generic artwork/authoring/metadata searches.
 
+- #2534: public 10,636-byte 2013 clientlog includes an authenticated Cicada-signed NEXT response, BASE29 1033→16I, repeated KOAN and DH; the signature authenticates the terminal server response, not the transcript or anonymous participant. [Report](../../im-results/agent15-2013-clientlog-authenticated-next-response.md). No qualifying named contemporary missing artifact or LP2 operand. Preserve as historical evidence; no further archive search commissioned.
+
 The first four exact representation/clock decisions are consolidated into the authoritative findings; their supporting reports retain detail. Earlier closures and the p55 Critic corrections remain in Git history and the authoritative synthesis. No new numerical navigation, p50 phase/predicate sweep, JPEG census, rank-order tuning, or archive-wide search commissioned.
 
 ## Active independent routes and assignments
 
-Existing open research: #2494 historically realistic semantic crib; #2524 source-specific parallel-language edition and 29-stanza mapping; #2527 full numeric-table verification register; #2273 broader constrained-code inverse (line rank needs 662–711 state bits; only <=55 simple compositor bits; no further rank/line sweeps without a new operand); #2534 concrete period solver-side artifact. Check current identity leases when claiming.
+Existing open research: #2494 historically realistic semantic crib; #2524 source-specific parallel-language edition and 29-stanza mapping; #2527 full numeric-table verification register; #2273 broader constrained-code inverse (line rank needs 662–711 state bits; only <=55 simple compositor bits; no further rank/line sweeps without a new operand). Check current identity leases when claiming.
 
 New executable assignments:
 - [#2536](https://github.com/FlareZ123/liber-primus/issues/2536): exact shared-key lexical CSP on the remaining p23–26 period13 scope, not p0 EM.
@@ -44,4 +46,4 @@ Waiting: #2117 and #2070 need actual independent blinded solver delivery; #1335 
 
 ## Queue and next review
 
-At 07:58Z the API returned 18 open non-PR issues, including 8 newly created director-task issues with zero comments, 5 prior active research issues, 4 waiting issues, and 1 transcription issue. No workflow created. Next invocation: review every director-task closure after **2026-11-24T07:47:39Z**, including reopenings. Maintain 8–12 genuinely available executable assignments. No unknown LP2 plaintext was recovered in this Director review.
+At 07:58Z the API returned 18 open non-PR issues, including 8 newly created director-task issues with zero comments, 5 prior active research issues, 4 waiting issues, and 1 transcription issue. No workflow created. At 07:59Z #2534 closed, leaving 17 open non-PR issues and the same eight unclaimed assignments. Next invocation: review every director-task closure after **2026-11-24T07:59:13Z**, including reopenings. Maintain 8–12 genuinely available executable assignments. No unknown LP2 plaintext was recovered in this Director review.
