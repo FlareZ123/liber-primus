@@ -59,6 +59,8 @@ The 2014 participant-inspired self-word GP-prime-index/F-hold proposal also fail
 
 The preceding-plaintext word-sum/prime-minus-one clock also fails with all printed cuts removed: exact DP over all 2615 initial sums, lengths≤24 and latent masks recovers all 2358/2358 native control runes, 597/597 boundaries and all four hidden starting states. Exact original max lexical coverage is 543/729 (p0–2), 1194/1613 (p16–21), leaving ≥186/419 OOV runes; MAP is nonprose. [Report](../im-results/lp2-spacingfree-prevword-primeindex-original-gate.md).
 
+The earlier literal cyclic preceding-plaintext-word Vigenere/F-hold (#2503) was also inverted without printed cuts, using all 34,895 lexical seeds, lengths≤24 and isolated arbitrary OOV successors. Native recovery 2356/2358 runes, 597/597 boundaries, 3/4 exact seeds; all true transitions retained. Original exact max lex512/729 and1140/1613 (≥217/473 OOV), MAP nonprose. Conditional finite graph, not no-path theorem. [Report](../im-results/lp2-spacingfree-prevword-cyclic-original-gate.md).
+
 ### Historical context and provisional navigation observations
 
 The account below preserves prior candidate paths, explicit source caveats and independent negative gates as historical working material. Any older "live" or "current" status inside it is superseded by the snapshot above and the maintained [authoritative synthesis](../results/README.md). The original image map is LP1 archive 00–16 and LP2 physical p0–p57 at archive images 17–74. Combined-archive adjacency across releases is not first-party evidence.

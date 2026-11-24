@@ -67,3 +67,8 @@ The source's 110 emitted runes after the first singleton have one adjacent equal
 Inputs: canonical `resources/liber-primus/lp2-corpus.json`, `resources/liber-primus/lp2-transcription.txt`, `resources/external/relikd-solved-gp29-native-v1.json`, and `resources/control/english_wordfreq_textblob.txt` (lexicon blob 140e1d22b5f8c45deddd2e8b25549d9d6307d938). Executed directly against fetched repository data; standalone reproducer commit aadbc3de020a0ff799d1c539bcc9ad71c0bd4265.
 
 Retire precisely this preceding-plaintext-word cyclic autokey with plus sign and transparent-F clock hold, continuous complete-word framing. A different law without the F hold, a different sign, an independently selected intervening reset or a different interpretation of printed word boundaries escapes this exact obstruction; none is licensed by the result. The universal singleton gate is reusable for any proposed word-local forward state whose entire next key is determined by a single preceding word: if its emission is not surjective, propagate all possible singleton states and check for an empty reachable set before any costly language search.
+
+
+## Boundary-free complement (24 November)
+
+The identical ordinal cyclic prior-word/F-hold law is also tested without printed boundaries, all 34,895 lexical starting keys and isolated arbitrary OOV words up to24. Native controls recover 2356/2358 runes and all boundaries, 3/4 exact seeds. Original p0–2 and p16–21 remain nonprose and require ≥217/473 OOV runes by exact maximum vocabulary coverage. [Report](lp2-spacingfree-prevword-cyclic-original-gate.md). Unlike the intact-word contradiction, this is a finite-register result.
