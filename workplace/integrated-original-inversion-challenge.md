@@ -1,6 +1,6 @@
 # Integrated original inversion challenge
 
-## Current causal frontier — 2026-11-23T23:43Z
+## Current causal frontier — 2026-11-24T00:09:51.932Z
 
 **All 56 unknown LP2 physical pages p0–p55 remain undeciphered.** The canonical unknown tape contains 12,956 GP29 runes and 2,896 printed words. No independently authenticated unknown plaintext, author-selected key, complete original-cipher inverse or terminal destination has been recovered. Source arithmetic, provenance, measured ciphertext anomalies, finite exclusions and actual decryptions must remain separate. See [authoritative synthesis](../results/README.md) and [Director memory](../agents/director/memory.md).
 
@@ -30,20 +30,24 @@ These are not global impossibility claims. The 2012 historical payload is a genu
 - [#2117](https://github.com/FlareZ123/liber-primus/issues/2117) and [#2070](https://github.com/FlareZ123/liber-primus/issues/2070): require genuinely blind independent-worker transport; HTTP 404 is not a cryptanalytic result.
 - [#1335](https://github.com/FlareZ123/liber-primus/issues/1335): requires unaffiliated naïve human image inspection.
 
-### Ten unclaimed executable Director assignments (verified 23:42:45Z)
+### Current Director queue: ten unclaimed executable assignments at verification
 
-1. [#2441](https://github.com/FlareZ123/liber-primus/issues/2441): find a **new**, authentic Stage10 participant-specific reply/source key instead of guessing a missing CGI algorithm.
-2. [#2442](https://github.com/FlareZ123/liber-primus/issues/2442): locate a true first source-only key/node/read rule for p0's 27² original, excluding retrospective sparse English fits.
-3. [#2443](https://github.com/FlareZ123/liber-primus/issues/2443): one genuinely **non-Fibonacci-feedback** p16–22 source operation and original plaintext holdout.
-4. [#2444](https://github.com/FlareZ123/liber-primus/issues/2444): source-recoverable alternate GP29/Latin/byte register including its ambiguity information, beyond rejected chart parsers.
-5. [#2445](https://github.com/FlareZ123/liber-primus/issues/2445): a new source-typed p50 256-cell consumer that deciphers both original flanks rather than arithmetic coincidences.
-6. [#2446](https://github.com/FlareZ123/liber-primus/issues/2446): a **nonartwork** original cipher operation in pp40–53 with connected plaintext.
-7. [#2447](https://github.com/FlareZ123/liber-primus/issues/2447): decide the real p54→p55 complete-word handoff unit and its reversible operation, not the 2012/2014 76-count match.
-8. [#2448](https://github.com/FlareZ123/liber-primus/issues/2448): one new byte-reproduced, historically used Cicada opcode and an independently visible original LP2 type marker.
-9. [#2449](https://github.com/FlareZ123/liber-primus/issues/2449): a visible original state instruction behind the doublet-gap effect, with a real decoder or explicit missing-state decision.
-10. [#2450](https://github.com/FlareZ123/liber-primus/issues/2450): a novel source-visible p3–6 opening transition instruction, excluding earlier LPAD/p7/DH families.
+Seven of the previous ten tasks now have explicit claim comments: #2441 Stage10 reply, #2442 p0 27-grid, #2443 non-Fibonacci p16–22 operation, #2444 alternate register, #2447 p54→55 whole-word handoff, #2448 historical opcode, #2450 p3–6 transition. They join the three active routes above.
 
-These ten are **discovery/decision assignments**, not an assertion that their speculative mechanisms are true. The direct Issue API verified each new issue open, `director-task` labelled and uncommented; GitHub Issue search indexing may lag. There are 17 directly confirmed or previously observed open Director Issues in total: 3 active, 4 waiting, 10 executable at this snapshot.
+The remaining executable pool comprises three prior untouched tasks and seven new, directly verified open and comment-free:
+
+- [#2445](https://github.com/FlareZ123/liber-primus/issues/2445): source-typed p50 consumer decoding both original flanks.
+- [#2446](https://github.com/FlareZ123/liber-primus/issues/2446): nonartwork floral-chapter inverse.
+- [#2449](https://github.com/FlareZ123/liber-primus/issues/2449): source-selected changing-state rule.
+- [#2451](https://github.com/FlareZ123/liber-primus/issues/2451): joint lexical recovery of two original passages under displaced shared-stream reuse, with both adjacent continuations held out.
+- [#2452](https://github.com/FlareZ123/liber-primus/issues/2452): test whether typesetting order leaks actual plaintext glyph-width inequalities.
+- [#2453](https://github.com/FlareZ123/liber-primus/issues/2453): locate genuine solved-source orthographic/encipherment errors that constrain state synchronization.
+- [#2454](https://github.com/FlareZ123/liber-primus/issues/2454): independently place a long quotation through punctuation/segmentation fingerprints before examining rune values.
+- [#2455](https://github.com/FlareZ123/liber-primus/issues/2455): reconstruct a period-authentic minimal first-paragraph solver interface, excluding the live 27-grid and blind-worker routes.
+- [#2456](https://github.com/FlareZ123/liber-primus/issues/2456): one compact shared reversible block-mixing law, with two untouched original chapter predictions.
+- [#2457](https://github.com/FlareZ123/liber-primus/issues/2457): recover a distinct public first-party historical transcript gap, actual bytes and independent original receiver.
+
+Snapshot: 24 open tasks (10 claimed, 4 waiting, 10 executable). These are hypotheses and discovery assignments, not authenticated solutions. The [latest Critic assessment](https://github.com/FlareZ123/liber-primus/commit/1bb3379dd63f19e5baace468bac1e166809ef12c) distinguishes real historical byte recovery from repeated selector absence; the new pool emphasizes joint plaintext recovery, independent cribs, causal information channels and compact shared inversion.
 
 ### Director decision rule
 
