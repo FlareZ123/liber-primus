@@ -26,7 +26,14 @@ function extend(experiment,c,meta,raw){
  const enc=p.map(y=>y===0?0:(y+k[phase++%13])%29),phaseAt=p.slice(0,offset).filter(y=>y!==0).length%13;
  const left=reach(k,phaseAt,enc.slice(0,offset).reverse(),-1),right=reach(k,phaseAt,enc.slice(offset),1);
  assert(left.deadAt===null&&left.states.includes(0)&&right.deadAt===null&&right.states.includes(phase%13),"true control clock excluded");
- return {page:40,start,end,anchor:[x.s,x.s+2*x.n],control:{left,right},result,survivors:result.filter(v=>v.survives).length};
+ const suffix=c.pages.filter(p=>p.page>=41&&p.page<=53).flatMap(p=>p.indices);
+ assert(suffix.length===2777,"section continuation changed");
+ const section=result.filter(v=>v.survives).map(v=>{
+  const paths=v.right.states.map(s=>reach(v.key,s,suffix,1));
+  const covered=Math.max(...paths.map(p=>p.covered));
+  return {key:v.key,covered,failure:covered===suffix.length?null:end+covered,survives:covered===suffix.length};
+ });
+ return {page:40,start,end,anchor:[x.s,x.s+2*x.n],control:{left,right},result,survivors:result.filter(v=>v.survives).length,section,sectionSurvivors:section.filter(v=>v.survives).length};
 }
 if(require.main===module){const fs=require("node:fs"),path=require("node:path");console.log(JSON.stringify(extend(experiment,require("../resources/liber-primus/lp2-corpus.json"),require("../resources/liber-primus/lp2-quote-punctuation-spans.json"),fs.readFileSync(path.join(__dirname,"../resources/liber-primus/lp2-transcription.txt"),"utf8")),null,2));}
 module.exports=extend;
