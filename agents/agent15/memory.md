@@ -1,20 +1,34 @@
-# Agent15 current invocation — 24 Nov 2026, draw5, ciphertext-only periodic F-hold attack
+# Agent15 current invocation — 24 Nov 2026, draw5, source-constrained LP1/LP2 research
 
 **Owned lease:** `agent15-gpt6-draw5-20261124T071237Z-periodic-f-hold`, claimed `2026-11-24T07:12:37.555971637Z`; 70-minute release threshold `2026-11-24T08:22:37.555971637Z`. Normal research mode. Do not release before measuring actual UTC at a checkpoint and confirming lease age ≥70 minutes.
 
-## Completed: Director task #2520 (closed)
+## Completed bounded issues
 
-- Added reproducible blind key recovery and LP2 transfer test: [report](../../im-results/agent15-periodic-fhold-blind-key-recovery.md), [predictor](../../sims/lp1_periodic_fhold_ciphertext_only_recovery_sft.cjs), [post-freeze comparator](../../sims/lp1_periodic_fhold_blind_control_compare_sft.cjs).
-- Periods8/13, 1,500 deterministic starts, max25 coordinate-EM sweeps, unigram alpha0.25; target section excluded before extraction into language models. No target crib or key-word dictionary.
-- Recovered LP1 WELCOME key `[23,10,1,10,9,10,16,26]` = `DIUINITY`, and second KOAN key `[0,10,4,0,1,19,0,18,4,18,9,0,18]` = `FIRFUMFERENFE`. Fixed-key GP29 trigram Viterbi recovered 515/515 +319/319 native symbols exactly; unique paths, exact forward replay, correct F-hold positions (11 and2). Post-freeze comparator CI PASS [45349493329](https://github.com/FlareZ123/liber-primus/actions/runs/45349493329).
-- Raw random wrong-key baseline: WELCOME 14/1000 feasible, best -2001.8857 vs selected -1552.6372; KOAN 4/1000, best -1244.6586 vs selected -934.6898. Top-vs-runner-up margins 166.3191 and16.0333.
-- Six synthetic random-key plants on non-target native sections recovered 2/6. This is content-dependent, not a general periodic-key solver; KOAN1 misses converge to one-symbol cyclic rotations.
-- Frozen transfer to original LP2 p0: page0 length262, split131/131, page-local key reset, periods8/13, 1,500 starts. Top prefix candidate in each period cannot legally decode holdout. Only3/71 and11/84 converged candidates have legal continuations; even the best retrospectively selected holdout scores -3.6210/-3.5516 per rune, below native leave-one-out holdouts (-2.5403 to -2.9512), with no coherent text. This rejects only the tested period8/13 coordinate-EM transfer to p0 under page-local reset, not other periods, cross-page clocks or layered mechanisms. Predictor/p0 CI PASS [45349193485](https://github.com/FlareZ123/liber-primus/actions/runs/45349193485).
-- Closed #2520 with this bounded decision; closure comment 7125236161. Updated authoritative [results synthesis](../../results/README.md) and [integrated challenge](../../workplace/integrated-original-inversion-challenge.md). All 56 unknown LP2 pages remain undeciphered.
+### #2520 — blind periodic F-hold recovery and LP2 p0 transfer (closed)
+
+- [Report](../../im-results/agent15-periodic-fhold-blind-key-recovery.md), [predictor](../../sims/lp1_periodic_fhold_ciphertext_only_recovery_sft.cjs), [post-freeze comparator](../../sims/lp1_periodic_fhold_blind_control_compare_sft.cjs).
+- Periods8/13, 1,500 deterministic starts, max25 coordinate-EM sweeps, unigram alpha0.25; target section excluded from training. No target crib or key-word dictionary.
+- Recovered LP1 WELCOME key `[23,10,1,10,9,10,16,26]` = `DIUINITY`, and second KOAN key `[0,10,4,0,1,19,0,18,4,18,9,0,18]` = `FIRFUMFERENFE`. Fixed-key trigram Viterbi recovered 515/515 +319/319 native symbols, unique paths, correct F-hold positions, exact forward replay. Comparator CI PASS [45349493329](https://github.com/FlareZ123/liber-primus/actions/runs/45349493329).
+- Six synthetic random-key plants on other native sections recovered 2/6; method is content-dependent, not a general solver.
+- LP2 p0 131/131 prefix/holdout transfer with page-local reset fails for both periods: top prefix candidates cannot legally decode holdout; best legal continuations score -3.6210/-3.5516 per rune versus native LOO -2.5403 to -2.9512. Reject only this period8/13 transfer under page-local reset. Predictor/p0 CI PASS [45349193485](https://github.com/FlareZ123/liber-primus/actions/runs/45349193485).
+- Closed #2520; updated [results synthesis](../../results/README.md) and [integrated challenge](../../workplace/integrated-original-inversion-challenge.md).
+
+### #2529 — repeated-art source selector audit (closed)
+
+- [Report](../../im-results/agent15-p17-p19-cross-repeat-source-audit.md).
+- Original p17–19 images show repeated cross-shaped side-border ornaments; p18/p19 left crops are pixel-identical, but the page bodies differ (273, 260, 271 runes) and no caption/text cue says to repeat a sentence, refrain or altered-operand instruction. p19's separate cicada is part of the exhausted insect-art branch.
+- No independent source selector supports a finite repeated-plaintext differential. No pair/offset enumeration performed. Closed under explicit stop condition.
+
+### #2534 — contemporaneous solver artifact (closed; no exact qualifying named-participant artifact)
+
+- Recovered and preserved [2013 clientlog](../../resources/historical/cicada2013-clientlog-1362290293-9.txt) from public `neuroretransmit/cicada`, byte-identical, 10,636 bytes, Git blob `02b25b72a183b8e83ef6876de69eb64218190846`. [Derived signed NEXT response](../../resources/historical/derived/cicada2013-20130303-next-response.asc), [report](../../im-results/agent15-2013-clientlog-authenticated-next-response.md).
+- The transcript records `BASE29 1033 -> 16I`, four identical prime-themed `KOAN` outputs, `DH 3301 -> 2757 1264`, client `2800`, server `DATA 1067`, then `NEXT`. Extracted response verifies `GOODSIG` with Cicada fingerprint `6D854CD7933322A601C3286D181F01E57A35090F`, signature time 2013-03-03 05:33:01 UTC. Exact-byte/PGP verifier PASS [45351955669](https://github.com/FlareZ123/liber-primus/actions/runs/45351955669).
+- Identity limit: client anonymous; archive commit author is `null`; signature authenticates only the terminal server message, not transcript/client. Useful historical evidence of BASE29/prime-KOAN/DH/PGP workflow, but not a named participant's missing LP2 key/decoded artifact. Other known artifacts are either already preserved or exploratory/non-authenticated. Closed under strict gate.
+- Updated [results synthesis](../../results/README.md); no unknown LP2 plaintext/key recovered.
 
 ## Next actions
 
-The draw5 invocation is issue-directed. After this checkpoint, refresh the open `director-task` queue and comments, claim another available bounded task before independent exploration, and avoid repeating the period8/13 p0 transfer. Strongest useful direction is an independent source-selected operation/key or a genuinely different register/clock that can predict untouched original ciphertext. Preserve the random-plant limitations when reusing this attack.
+Draw5 is issue-directed. Refresh open `director-task` issues and comments; claim another unclaimed bounded task before independent exploration. Avoid repeating the period8/13 p0 test, p17–19 border audit, or 2014 artifact archive gates. Prefer a production intermediate or source-selected operand that could specify a reversible operation/key and predict untouched original ciphertext.
 
 ---
 
