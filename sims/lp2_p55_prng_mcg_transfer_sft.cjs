@@ -34,12 +34,16 @@ const N=base29Integer(interior),E=base29Integer(shell),P=N/8n,Q=E/43n;
 assert.equal(N%8n,0n);assert.equal(E%43n,0n);
 assert.equal(P.toString(),'63755441409934721069036418908763882578170591536653256311514221');
 assert.equal(Q.toString(),'1268532719737981052966698570711268391040527137');
+// Borrow p28 exponents 6 and 15 as selectors only; this is not a validated DH exchange in the p55 group.
 const p28Seed=modPow(Q,90n,P);
 const readout='LCBPNGPARRTHBPC',tokens=[...corpus.translit].sort((a,b)=>b.length-a.length);
 let at=0,readoutRunes=[];while(at<readout.length){const token=tokens.find(t=>readout.startsWith(t,at));assert(token);readoutRunes.push(corpus.translit.indexOf(token));at+=token.length;}
 assert.equal(readoutRunes.length,13);
 const signed2016Seed=base29Integer(readoutRunes);
 assert.equal(signed2016Seed.toString(),'7144649572585460758');
+function base29Digits(n){const a=[];while(n>0n){a.push(Number(n%29n));n/=29n;}return a.reverse();}
+const borrowedExponentKeyDigits=base29Digits(p28Seed);
+assert.equal(borrowedExponentKeyDigits.length,43,'borrowed exponent product should serialize to 43 GP29 digits');
 const seeds=[{name:'p28-DH-Q90',value:p28Seed},{name:'signed-2016-13-rune-base29',value:signed2016Seed}];
 const freq=new Map();for(const line of dictionaryText.split(/\r?\n/)){const m=line.trim().match(/^([a-z]+)\s+(\d+)$/);if(m)freq.set(m[1],Number(m[2]));}
 const quad=new Map();for(const line of quadgramText.split(/\r?\n/)){const m=line.trim().match(/^([A-Z]{4})\s+(\d+)$/);if(m)quad.set(m[1],Number(m[2]));}
@@ -50,6 +54,37 @@ for(const seed of seeds){for(const map of ['one-plus-mod28','mod29-zero-to-ident
 const lcgK=2n,lcgResults=[],lcgAdditive=[];
 for(const map of ['one-plus-mod28','mod29-zero-to-identity'])for(const phase of ['seed','next']){const out=multDecode(ciphertext,signed2016Seed,map,phase,lcgK,Q,P);lcgResults.push({map,phase,ioc:ioc(out),wordScore:scoreWords(out,words,freq),preview:out.slice(0,120).map(v=>corpus.translit[v]).join('')});}
 for(const phase of ['seed','next'])lcgAdditive.push({phase,...additiveFHold(ciphertext,signed2016Seed,phase,lcgK,Q,P)});
+
+function borrowedExponentKeyDecode(direction,map){
+ const key=direction==='big-endian'?borrowedExponentKeyDigits:[...borrowedExponentKeyDigits].reverse();
+ let idx=0,out=[];
+ for(const cipherRune of ciphertext){
+  if(cipherRune===0){out.push(0);continue;}
+  const d=key[idx%key.length],k=map==='one-plus-mod28'?1+(d%28):(d===0?1:d);
+  out.push(cipherRune*inverse29(k)%29);idx++;
+ }
+ return out;
+}
+function borrowedExponentKeyAdditive(direction){
+ const key=direction==='big-endian'?borrowedExponentKeyDigits:[...borrowedExponentKeyDigits].reverse();
+ let idx=0,consumed=0;
+ for(let i=0;i<ciphertext.length;i++){
+  const cipherRune=ciphertext[i];if(cipherRune===0)continue;
+  const d=key[idx%key.length],plainRune=(cipherRune-d+29)%29;
+  if(plainRune===0)return {invalid:{runeIndex:i,ciphertext:cipherRune,keyDigit:d,consumed}};
+  idx++;consumed++;
+ }
+ return {invalid:null,consumed};
+}
+const borrowedExponentKeyResults=[],borrowedExponentKeyAdditive=[];
+for(const direction of ['big-endian','little-endian']){
+ for(const map of ['one-plus-mod28','mod29-zero-to-identity']){
+  const out=borrowedExponentKeyDecode(direction,map);
+  borrowedExponentKeyResults.push({direction,map,ioc:ioc(out),wordScore:scoreWords(out,words,freq),preview:out.slice(0,120).map(v=>corpus.translit[v]).join('')});
+ }
+ borrowedExponentKeyAdditive.push({direction,...borrowedExponentKeyAdditive(direction)});
+}
+
 const observedMax={total:Math.max(...lcgResults.map(r=>r.wordScore.matched)),long:Math.max(...lcgResults.map(r=>r.wordScore.matched3Plus))};
 const familyRng=makeRng(),family=[];
 for(let t=0;t<500;t++){let s=familyRng();if(s===0n)s=1n;const rs=[];for(const map of ['one-plus-mod28','mod29-zero-to-identity'])for(const phase of ['seed','next']){const out=multDecode(ciphertext,s,map,phase,lcgK,Q,P);rs.push(scoreWords(out,words,freq));}family.push({total:Math.max(...rs.map(x=>x.matched)),long:Math.max(...rs.map(x=>x.matched3Plus))});}
@@ -66,8 +101,9 @@ const qMean=quadNull.reduce((a,b)=>a+b,0)/quadNull.length,qSd=Math.sqrt(quadNull
 const quadNullSummary={trials:quadNull.length,mean:qMean,sd:qSd,p025:qSorted[Math.floor(.025*qSorted.length)],median:qSorted[Math.floor(.5*qSorted.length)],p975:qSorted[Math.floor(.975*qSorted.length)],upperTail:(quadNull.filter(x=>x>=candidateQuad.meanLog).length+1)/(quadNull.length+1)};
 console.log(JSON.stringify({
  input:{target:'p0-p54; p55 is key source and excluded',runes:ciphertext.length,wordGroups:words.length,p55CompleteWords:complete.length},
- sourceDerived:{P:P.toString(),Q:Q.toString(),p28DHSeed:p28Seed.toString(),p28SeedMod29:Number(p28Seed%29n),signed2016Readout:readout,signed2016Runes:readoutRunes,signed2016Seed:signed2016Seed.toString(),signed2016SeedMod29:Number(signed2016Seed%29n),p28DHSharedIncrement:lcgK.toString()},
+ sourceDerived:{P:P.toString(),Q:Q.toString(),p28BorrowedExponentProduct:p28Seed.toString(),p28SeedMod29:Number(p28Seed%29n),signed2016Readout:readout,signed2016Runes:readoutRunes,signed2016Seed:signed2016Seed.toString(),signed2016SeedMod29:Number(signed2016Seed%29n),p28BorrowedIncrement:lcgK.toString(),p28PublicValuesValidatedInP55Group:false},
  baseline:{ioc:ioc(ciphertext),wordScore:baselineWords,quadgram:baselineQuad},
  mCG:{results:mCGResults,additiveFHold:mCGAdditive},
  lCG_K2:{results:lcgResults,additiveFHold:lcgAdditive,familyWiseRandomSeedNull:familyNull,quadgram:{candidate:candidateQuad,randomSeedNull:quadNullSummary,knownP56:p56Quad,knownP57:p57Quad}},
+ borrowedExponentKey:{digits:borrowedExponentKeyDigits,latin:borrowedExponentKeyDigits.map(v=>corpus.translit[v]).join(''),results:borrowedExponentKeyResults,additiveFHold:borrowedExponentKeyAdditive},
 },null,2));

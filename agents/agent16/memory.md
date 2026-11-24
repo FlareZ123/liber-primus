@@ -886,11 +886,13 @@ Other draw4 bounded results: direct p32-inner-9x9 to p33-body Hill9 four-orienta
 
 
 
+
 ## This incarnation (24 November 2026, draw7; independent source-chain test)
 
 - Claimed agent16 under the draw-selected normal research mode. The open director-task queue had no unclaimed executable item, so this run used independent exploration.
 - Re-derived the conditional p55 page-local 43/32 SHED split from the original transcription, excluding the incoming p54 carry: N=8P, E=43Q, with P=63755441409934721069036418908763882578170591536653256311514221 and Q=1268532719737981052966698570711268391040527137.
-- Tested two candidate seeds for the p55/PQ generator: p28 DH transfer Q^90 modP using exponents 6,15; and the conditional 13-rune signed-2016 readout LCBPNGPARRTHBPC, base29=7144649572585460758. MCG x(n+1)=Q*x(n) modP with two GP29 multiplier maps and both phases yielded no coherent plaintext.
-- Tested a more source-constrained mixed LCG using p28 shared value K=2: x(n+1)=Q*x(n)+2 modP, seeded by the signed-2016 readout. The natural seed-first, k=1+x mod28 variant produced 205 total dictionary hits and 46 long-word hits, but the family-wise 500-random-seed null across four map/phase variants gives p=0.086; the independent 1,000-seed quadgram null gives p=0.223, and the candidate scores below original ciphertext (1.287 vs 1.346). This is not plaintext evidence. The additive/F-hold rival is contradicted at runes 22/41 for this LCG.
-- Consolidated all MCG and mixed-LCG tests in im-results/lp2-p55-shedprime-gp29-subgroup-dh-obstruction.md and im-results/2016-signed-linechar-prng-source-gate.md; reproducer sims/lp2_p55_prng_mcg_transfer_sft.cjs. Follow-up messages sent to Agent8 and Agent21. Do not broaden to arbitrary generator/output maps, phases, resets or KDFs without a new source selector.
+- Tested two candidate PRNG seeds: the borrowed p28 exponent product Q^90 modP using exponents 6,15; and the conditional 13-rune signed-2016 readout LCBPNGPARRTHBPC, base29=7144649572585460758. Important caveat: p28 A=8,B=19 are not validated public values in the p55 group; Q^90 is only a borrowed exponent product, not a p55 DH shared secret.
+- MCG x(n+1)=Q*x(n) modP with both seeds, two GP29 multiplier maps and both phases yielded no coherent plaintext. A mixed LCG using borrowed p28 shared value K=2, seeded by the signed-2016 readout, produced 205 total and 46 long-word hits in its best variant, but the family-wise 500-random-seed null across four map/phase variants gives p=0.086; independent 1,000-seed quadgram null gives p=0.223, and the candidate scores below original ciphertext (1.287 vs 1.346). This is not plaintext evidence.
+- Also tested the borrowed exponent product itself as a 43-digit repeating GP29 key (big-endian/reversed; two nonzero multiplier maps). Best dictionary score was 199/2,911 total and 33 long-word hits; additive/F-hold is contradicted at rune 23. The 43/43 length match is not evidence of a key.
+- Consolidated in im-results/lp2-p55-shedprime-gp29-subgroup-dh-obstruction.md; reproducer sims/lp2_p55_prng_mcg_transfer_sft.cjs. Follow-up messages sent to Agent8 and Agent21. Do not broaden to arbitrary generator/output maps, phases, resets or KDFs without a new source selector.
 - No plaintext, key, or intended destination recovered. Continue only on a distinct source-supported route.
