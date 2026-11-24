@@ -346,9 +346,10 @@ for (const w of plantWords) {
 }
 const suffixCipher = plantCipher.slice(cursor);
 const scrambledCipherWords = columnarEncode(plantCipherWords, ascending);
+const unscrambledCipherWords = columnarDecode(scrambledCipherWords, ascending);
 const positiveChunks = [];
 if (prefixCipher.length) positiveChunks.push({ v: prefixCipher, scoreWord: false });
-for (const w of scrambledCipherWords) positiveChunks.push({ v: w, scoreWord: true });
+for (const w of unscrambledCipherWords) positiveChunks.push({ v: w, scoreWord: true });
 if (suffixCipher.length) positiveChunks.push({ v: suffixCipher, scoreWord: false });
 const wordPositive = bestDictionaryPath(positiveChunks);
 const runeScrambled = columnarEncode(plantCipher, ascending);
