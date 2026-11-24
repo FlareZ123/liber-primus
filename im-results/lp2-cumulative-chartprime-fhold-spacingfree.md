@@ -32,6 +32,20 @@ The bigram prior uses a GP-encoded Gibran excerpt and clear native p57. All sour
 - native p57: 95 runes, 13487 feasible triples; planted [5,10,22], top [5,10,22], 93/95 plaintext symbols exact, score -2.557998.
 The p57 plant is not source-excluded from the language prior; it is a short feasibility check only. The longer independent literary controls have no target text in the prior. The finite reachability rejection is independent of these scores.
 
+## Ordinary consuming-F clock: a distinct plausible repeat generator, but no plaintext
+
+Removing the transparent-F exception gives a deterministic inverse:
+`P[i+1] = P[i] + (C[i+1]-C[i])/u - alpha*(prime(P[i])-1) - beta (mod 29)`, with `alpha=a/u`, `beta=b/u`. Consequently a repeated adjacent cipher rune occurs precisely when the next plaintext rune equals `P[i]-alpha*(prime(P[i])-1)-beta`. The initial state cancels. This explains why low doublet counts need not be engineered by collision rejection.
+
+The 812 normalized coefficient pairs were evaluated on 20 nonoverlapping 12956-rune literary windows (4 Gibran, 16 Shakespeare). 18/20 have at least one pair with no more than the actual manuscript's 86 repeats. The same pair (alpha,beta)=(22,17) produces 46–105 repeats, matching or undershooting the observed count in 17/20. This is a concrete compact repeat-generation mechanism, selected from these finite controls; not proof of a historical key, and the rate alone does not distinguish it from other filters.
+
+For a plaintext-bearing decision the exact backward dynamic program optimizes a fixed GP29 bigram log-likelihood over **all 22,736 coefficient triples and all 29 initial plaintext runes**, using only original p0's 262 runes. No beam or sampling. All 467 p1–2 runes are then decoded with that frozen state and coefficients. Two independent literary plants, both 729 runes, calibrate the inverse:
+- Shakespeare: planted [16,22,17], prefix-selected [16,22,17], 729/729 full and 467/467 withheld exact, held-out mean -2.797133.
+- Blake: planted [7,23,17], prefix-selected [7,23,17], 729/729 full and 467/467 withheld exact, held-out mean -2.713416.
+Original winner [13,17,3] yields -4.051293 training and -4.462030 held-out nats/rune. Restricting to the repeat-compatible normalized pair (22,17), winner [20,22,17] yields -4.272184 and -4.404175 respectively. Both replay all 729 symbols but are nonprose. The repeat property is not an independently authenticated key selector; the 467-rune suffix is an algorithmically frozen score region, not a manuscript-global untouched holdout. Retire this finite ordinary-clock bigram inverse on p0–2 as a predictive failure, **not** an all-language theorem.
+
+[Ordinary-clock SFT](../sims/lp2_cumulative_chartprime_ordinary_inverse_sft.cjs) · [Raw outputs](lp2-cumulative-chartprime-ordinary-output.json). Core JS was executed on the named source blobs; standalone Node wrapper was not separately run.
+
 ## Decision
 
 Retire the continuous nonzero-affine GP-chart-prime increment plus authentic F-hold architecture on the eight longer chapters. A general arbitrary function, page-internal resets, other state laws, or ordinary consuming F are outside this exact test. Do not treat the 24 final-chapter survivors as key material. No new CI or workflow was required.
