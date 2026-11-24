@@ -17,8 +17,12 @@ jobs:
           node-version: '22'
       - name: Offline source and parser assertions
         run: node sims/lp2_2016_infotomb_temp_path_archive_gate.cjs --selftest
-      - name: Query exact Wayback and Common Crawl paths
+      - name: Query exact Wayback and raw Common Crawl CDXJ paths
         run: node sims/lp2_2016_infotomb_temp_path_archive_gate.cjs
+      - name: Validate Common Crawl CDX API fallback parser
+        run: node sims/lp2_2016_infotomb_cdx_api_fallback_sft.cjs --selftest
+      - name: Query Common Crawl CDX API across all 2016 indexes
+        run: node sims/lp2_2016_infotomb_cdx_api_fallback_sft.cjs
       - name: Preserve archive evidence
         if: always()
         uses: actions/upload-artifact@v4
