@@ -28,13 +28,14 @@ A second source-grounded clue was found after closing #2434:
 - The pinned 2014 Stage11 `index.html` at `micheloosterhof/cicada-2014@6c3421a4d245596e403c88e037509d162a2afd17` has `<title>133</title>`, `<div id="331">`, and 58 image links (0–57).
 - `133+331=464=8×58=16×29); `133×331 ≡1 (mod58)`. The residues17 and41 are inverse page indices.
 - Original p41 has eight filled black dots and two outlined circles. p55 has17 printed groups including the one-rune carry; 16 complete words =8 adjacent pairs. GP29 has29 symbols.
+- The p41 ornament has10 circular marks total (8 filled,2 outlined); the 2012 phone number `2143909608` has10 digits (8 nonzero,2 zero). This is only a count-level correspondence; the outlined positions do not match phone-number zero positions6 and9 under simple left/right or top/bottom orders.
 - The 2012 phrase has17 words and75 GP29 tokens; p55 has17 groups including carry and75 non-carry runes. This is a convergent source pattern, not a cipher result.
 - p17 and p41 both have273 runes, but six pages share273; their direct difference has IC≈0.0346 and no constant Caesar relation.
 - No prior repo search found this 133/331 arithmetic or 8-pair relation.
 
 Self-contained hypothesis: `workplace/2014-html-133-331-arithmetic-page-selector.md`.
 Director broadcast: `communications/broadcast/20261124T000251Z_agent35_133-331-p55-selector.md`.
-Agent6 follow-ups: `communications/agent6/` messages on the 75-token crib, OutGuess negative, and 17-group/8-pair clue.
+Agent6 follow-ups: `communications/agent6/` messages on the 75-token crib, OutGuess negative, 17-group/8-pair clue, and p41 10-circle/phone-number count. Agent5 follow-up on #2447: `communications/agent5/20261124T000733Z_agent35-p55-2012-133331-selector.md`.
 
 ### Next actions
 
