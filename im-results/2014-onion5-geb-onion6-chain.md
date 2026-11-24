@@ -17,7 +17,7 @@ The decoded characters are:
 | `3` | literal digit | 3 |
 | `ETOATS:19:9:1` | Edifying Thoughts of a Tobacco Smoker | q |
 | `...AF:5:3:1` | ... Ant Fugue | t |
-| `AMO:13:10:1` | A Musico-Logical Offering | z |
+| `AMO:13:10:1` | **A Mu Offering** (dialogue, p. 231) | z |
 | `CC:8:6:1` | Crab Canon | b |
 | `CBIA:3:7:2` | Canon by Intervallic Augmentation | r |
 | `CFAF:5:23:6` | Chromatic Fantasy, And Feud | v |
@@ -28,6 +28,27 @@ The decoded characters are:
 | `C[2]:2:17:5` | Contrafactus | v |
 | `SC:3:17:1` | Sloth Canon | z |
 | `AOGS:2:8:1` | Air on G's String | p |
+
+### Six selected dialogue exchanges: operation audit (24 November 2026)
+
+The signed 2014 message supplies the coordinate tokens; the pinned community archive README supplies the book-code interpretation and identifies the six selected exchanges. I checked those exchanges against the pinned 2014 OCR blob (Git blob `da652686147aa1c8585be659c89d0db60c831571`, at archive commit `ade9a02889ef8acbc8cde8edbfd0a785c369f4c3`). The abbreviated phrases below identify the selected word without reproducing the passages.
+
+| Coordinate | Correct dialogue locus and selected word | What the selected exchange contributes |
+|---|---|---|
+| `3PI:6:1:3` | *Three-Part Invention*, Tortoise; “Your” → **u** | Agrees that Zeno's impossible flag can nevertheless be beautiful; no executable rule. |
+| `LML:1:1:1` | *Little Harmonic Labyrinth*, Tortoise; “This” → **t** | Describes the Ferris-wheel ride as apparent motion without progress; no state machine or grammar. |
+| `ETOATS:19:9:1` | *Edifying Thoughts of a Tobacco Smoker*, Achilles; “quite” → **q** | Praises Bach's phrasing (“quite pleasin'”); no encoding or transformation. |
+| `...AF:5:3:1` | *... Ant Fugue*, Anteater; “the” → **t** | Identifies the nested picture as “REDUCTIONISM”; semantic interpretation, not a reversible mapping. |
+| `AMO:13:10:1` | ** *A Mu Offering* **, Achilles; “Zen” → **z** | Announces that he is studying Zen Buddhism; no operation. |
+| `CC:8:6:1` | *Crab Canon*, Tortoise; “But” → **b** | Describes one theme going “backwards and forwards”; this is the only selected exchange that names a formal reading operation. |
+
+**Correction:** `AMO` means *A Mu Offering* (the dialogue beginning on p. 230/231), not *Introduction: A Musico-Logical Offering* (the separate opening essay, p. 3). The earlier table's title was wrong. The 2014 archive README explicitly maps `AMO:13:10:1` to the 13th exchange of *A Mu Offering*, Achilles, word 10 “Zen”.
+
+The only source-selected operation in these six exchanges is the Crab Canon's retrograde: for a finite sequence (x=(x_1,\ldots,x_n)), (R(x)=(x_n,\ldots,x_1)). This is a reversible permutation, not a value-changing cipher, key schedule, prime-exponent encoding, or rule for combining two voices. None of the other five selected exchanges describes such a mechanism. No prime-exponent encoding occurs at any of the six selected loci.
+
+The natural original-LP2 candidate for the Crab Canon is the paired p13 line structure together with the visible `FOLD` on p14. That candidate is already tested against the original images in [the p13–p14 Crab Canon source-selector decision](lp2-p13-p14-geb-crab-canon-source-selector-decision.md): the first and last six p13 lines each contain 136 runes, but literal forward/retrograde halves agree at only **4/136** positions; five of six corresponding line-pair lengths differ. The physical fold leaves four unpaired glyphs on each side, and the report records the failed p14/p15 continuation tests. Thus the only obvious source-motivated reverse prediction fails on the original unit. The GEB exchange supplies no second operator for combining the voices, no treatment of the overhangs, and no LP2-specific key/alphabet. The p14 word `FOLD` is suggestive but does not fix those missing choices.
+
+The selected dialogue loci therefore recover no executable LP2 decipherment. They establish a historically selected retrograde *reading direction* only; they do not establish a plaintext transform or recover any unknown LP2 plaintext/key.
 
 This gives the 16-character Tor v2 address **`ut3qtzbrvs7dtvzp.onion`**. The first-party message supplies the codes and media; the chapter mapping and extracted letters are documented in the community archive cited below. I have not independently checked every coordinate against a physical copy of GEB, and the PGP signature verification is inherited from the external signature corpus rather than recomputed in this run.
 
