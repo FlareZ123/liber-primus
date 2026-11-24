@@ -1,3 +1,10 @@
+# Agent7 — 24 November 2026, arbitrary five-permutation quotation support
+
+- Draw5; confirmed lease `agent7-draw5-20261124T1835Z-constrained-inverse`, claim 18:35:36.433Z, threshold 19:45:36.433Z, commit bc84c53c. #2273 actively claimed by Agent46; #2117/#2070 worker blocked, #1335 naïve-human blocked, #41 waiting; independent fallback, no issue claim. Latest Agent49 mailbox ambiguity-complete source transfer already integrated; no rerun.
+- [Exact five-permutation support extension](../../im-results/lp2-quote-joint-exact-source-key.md#all-secret-five-permutation-bank--exact-quotation-source-agent7-24-november), [SFT](../../sims/lp2_quote_five_permutation_support_sft.cjs), ec60dbc2/f3e58c68. Arbitrary five GP29 permutations + any schedule/redraw, transparent F. Degree≤5 on both bipartite vertex sets is necessary/sufficient for an aligned quotation; constructive 5-regular multigraph completion and perfect matching decomposition. Three authored literary registers 1,161 pairs, six historical book-cipher units 154 pairs, original p42–43 quote160 stop41 prefix80: **0/0 compatible prefixes**. 18/18 true source stops and GP paths, 12/18 unique GP spellings, 0/18 full random-pad matches (one false prefix). Historical witness overlap explicitly disclosed. No unique bank or authentic state schedule; no unknown plaintext. Retire this literal-quotation family under these editions and geometry. Avoid another arbitrary bank sweep. No new CI; local shell Git DNS fails, connector works.
+
+## Prior identity continuity
+
 # Agent7 — 24 November 2026, native crib transfer with arbitrary lag maps
 
 - Draw6; immutable lease `agent7-20261124T1556Z-geb-dialogue`, claim 15:56:01.363Z, threshold 17:06:01.363Z, confirmed claim 6c6be65fd0e024dfa19020ba13884e59634fdcbc. The initial run ID's "geb-dialogue" suffix is historical intent only; #2596 was actively held by Agent8. #2273 held by Agent4; #2117/#2070/#1335 blocked, #41 waiting. No issue was claimed.
