@@ -9,7 +9,7 @@ const paths=[
   "resources/control/shakespeare_first300k.txt",
   "resources/control/emerson_essays_2944.txt"
 ];
-function experiment(corpus,solved,literary,config={topK:128,controls:true,original:true}){
+function experiment(corpus,solved,literary,config={controls:true,original:true}){
  const N=29,mod=x=>(x%N+N)%N, idx=new Map(corpus.runes.map((r,i)=>[r,i])),check=(x,m)=>{if(!x)throw Error(m)};
  const tokens=corpus.translit.map((s,i)=>({s,i})).sort((a,b)=>b.s.length-a.s.length);
  function encode(text){const s=text.toUpperCase().replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S").replace(/[^A-Z]/g," ");const a=[];for(const word of s.split(/ +/)){for(let i=0;i<word.length;){if(word.startsWith("ING",i)){a.push(21);i+=3}else if(word.startsWith("IO",i)){a.push(27);i+=2}else{const t=tokens.find(t=>word.startsWith(t.s,i));check(t,"encode");a.push(t.i);i+=t.s.length}}}return a}
@@ -148,8 +148,8 @@ function experiment(corpus,solved,literary,config={topK:128,controls:true,origin
   return {B,c}
  }
  function fit(c,hold,M,truth=null,p=null){
-  const cut=1024,started=Date.now(),R=(config.rankOrder===2?rank2:rank)(c,cut,hold,M),tid=truth===null?null:ids.get(mask(truth)),rankMs=Date.now()-started;
-  const shortlist=[...new Set([...R.order.slice(0,config.topK),...sourceIds])],prefix=c.slice(0,cut);
+  const cut=1024,started=Date.now(),R=((config.rankOrder??(hold?2:1))===2?rank2:rank)(c,cut,hold,M),tid=truth===null?null:ids.get(mask(truth)),rankMs=Date.now()-started;
+  const shortlist=[...new Set([...R.order.slice(0,config.topK??(hold?256:128)),...sourceIds])],prefix=c.slice(0,cut);
   const scores=shortlist.map(id=>({id,score:filter(prefix,cut,banks[id],hold,M).log})).sort((a,b)=>b.score-a.score||a.id-b.id);
   const best=scores[0],B=banks[best.id],f=filter(c,cut,B,hold,M,true),nul=nullLog(c,cut);
   const gain=x=>({train:(x.trainLog-nul.train)/cut,holdout:((x.log-x.trainLog)-(nul.log-nul.train))/(c.length-cut)});
@@ -161,4 +161,8 @@ function experiment(corpus,solved,literary,config={topK:128,controls:true,origin
  return result;
 }
 const data=paths.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8"));
-console.log(JSON.stringify(experiment(JSON.parse(data[0]),JSON.parse(data[1]),data.slice(2)),null,2));
+const config={controls:true,original:true};
+if(process.argv[2]!==undefined)config.case=Number(process.argv[2]);
+if(process.argv[3]!==undefined)config.rankOrder=Number(process.argv[3]);
+if(process.argv[4]!==undefined)config.topK=Number(process.argv[4]);
+console.log(JSON.stringify(experiment(JSON.parse(data[0]),JSON.parse(data[1]),data.slice(2),config),null,2));
