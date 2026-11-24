@@ -59,6 +59,25 @@ The earlier Agent11 [general stationary-state support theorem](lp2-singleton-wor
 
 **Decision:** both additive banks and multiplicative banks sharing a common fixed point fail the local p8 intact-word native-register attack, even when all parameters are secret and state selection is unrestricted. These are distinct fully enumerated families, not an all-affine-map exclusion. No source rule currently selects a more complex independent-intercept bank. [Multiplicative SFT](../sims/lp2_p8_all_five_multiplier_common_center_sft.cjs), actual connected JS execution, no CI.
 
+## Independent affine intercepts at the five exact p7 slopes (Agent11, 24 November)
+
+The earlier common-fixed-point multiplier study does not cover five independent affine intercepts. Freeze the literal p7 product slopes (a=[11,26,8,15,2]) in printed order and allow **every** (b\in GF(29)^5) and every state sequence, including dependent and collision-triggered schedules. For every consuming rune use `C = a[state]*P + b[state] mod29`; in the genuine plaintext-F convention P=0 instead emits C=0 and does not select a consuming state. No common fixed point, known state clock, fitted permutation, or generator is assumed. This is a direct extension of the source-product receiver, not an authored instruction or evidence for the five-state premise.
+
+For each length-matched lexical plaintext P and original ciphertext C, each consuming position gives the clause `OR_{s=0..4} (b[s] == C[i]-a[s]*P[i] mod29)`. The exact recursive solver branches only on unassigned intercepts when the current clause is not already satisfied; at each leaf all still-unassigned intercepts are free. Thus the union of completions covers exactly every satisfying tuple. Count each distinct complete tuple at most once per word, including all 29^5 = **20,511,149** possible tuples. Original p8 black-body anchors are all eleven complete groups of at least seven runes, first seven fitting and last four withheld in printed order. The independent lexical register combines the existing four literary corpora, TextBlob frequency word list and literal solved-Cicada forms; exact input blob SHAs are in the output. Native donor sections are removed from the literal native additions when testing their plants.
+
+| Input / convention | Best prefix (7) | Tied prefix keys | Frozen holdout (4) | Retrospective maximum (11) |
+|---|---:|---:|---:|---:|
+| WELCOME native plant, ordinary | 7 | 1 | 3 | 10 |
+| LOSS OF DIVINITY native plant, F hold | 6 | 1 | 3 | 9 |
+| Original p8, ordinary | 3 | 7 | 0 | 3 |
+| Original p8, F hold | 3 | 5 | 0 | 3 |
+
+Both native controls uniquely recover the exact planted intercepts from prefix support alone: [1,1,27,24,2] and [24,27,18,2,24]. Their recovered keys admit the real plaintext at every one of the 22 tested native anchors (8/8 withheld), including one lexical-OOV withheld anchor per control and one fit OOV in LOSS. Dictionary candidates are sometimes ambiguous; this is exact key recovery on plants, not exact plaintext identification. All 900 direct membership checks against the forward affine predicate pass. The original deterministic prefix-only selection is [18,15,13,20,7] in both conventions, yields isolated candidate words TALCERS/CORDIALLY/MATHILDE, and has zero support on **every** withheld anchor for **all** prefix ties. All-data maxima are also only 3/11. No key generator could fix this finite lexical incompatibility within the fixed slopes and intact word-group model.
+
+**Decision:** retire five independently offset affine maps at these exact p7 product slopes under intact native GP word groups. This is not an exclusion of arbitrary unknown slopes, changed spacing, other source receivers or all plaintext languages; the earlier book-wide singleton support theorem separately constrains any shared five-map family. No original plaintext, authentic offset key, or source-selected state schedule. The reused p8 target is a within-experiment prefix/holdout rather than a globally untouched page.
+
+[Reproducer](../sims/lp2_p8_p7_fixed_slopes_all_intercepts_sft.cjs) · [Actual output and input blob SHAs](lp2-p8-p7-fixed-slopes-all-intercepts-output.json). Executed against connected repository inputs; no Windows CI claim.
+
 ## Spacing-free independent uniform-state redraw: exact marginal prediction
 
 The fixed printed groups are not authenticated plaintext boundaries. Therefore a separate generative attack removes all spaces and tests Agent2's exact proposed one-redraw rule, rather than a freely optimized MAP string. Let B be an unknown five-element additive bank; sample each state independently uniformly. If the initial ciphertext equals the preceding physical ciphertext, redraw exactly once. For ordinary consuming P, w(x)=1/5 for x in B and zero otherwise. Given previous C'=v, emission probability is w(c-P)(1+w(v-P)) for c!=v and w(c-P)^2 for c=v. The first emission has no prior; transparent plaintext F emits zero deterministically. Every conditional distribution is explicitly normalized in the SFT.
