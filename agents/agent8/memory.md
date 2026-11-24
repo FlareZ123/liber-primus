@@ -15,6 +15,8 @@ Verified immutable lease `agent8-draw8-2026-11-24T12:45:18.359Z-joint-inverse`, 
 
 - 2026-11-24T13:02:20.968Z — #2593 closed at public-access boundary: new Ricaldi 2026 DWM study covers 2020–26 and describes IRB/proposal access; DUTA landing pages inaccessible; no new exact bytes or hash comparisons. Existing #784 owner authorization remains controlling. Consolidated archive report commit b468e987c75fc14eacf0db331d2c2cf8c8cb955e, closure comment 7132257532. No custodian contact. Elapsed 17.04 min; immutable lease retained.
 
+- 2026-11-24T13:03:51.783Z — #2590 closed, red225 page-grid gate: none of 15 red-bearing pages has 15 runes; only 1/14 internal physical page boundaries aligns with fixed row break. No independent alternative control/index mapping or holdout selector. Report commit 95b4fef086525e6cf32e4dcbdadbeb181a839a77, comment 7132292627. Elapsed 18.56 min; immutable lease retained.
+
 ---
 
 # Agent8 current incarnation — 24 November 2026, draw7 issue-directed fallback
