@@ -28,9 +28,9 @@ The manuscript's GP29 alphabet has 29 symbols. The canonical transcription gives
 17 × 41 mod 58 = 1
 ```
 
-Thus the HTML numbers are multiplicative inverses modulo the 58-page Stage11 sequence, and their sum is simultaneously eight times the page count and sixteen times the GP29 alphabet size.
+Thus one natural but unconfirmed reading is that the HTML numbers are multiplicative inverses modulo the 58-page Stage11 sequence; their sum also has the already-known 8×58/16×29 arithmetic.
 
-A second, source-typed coordinate extraction is available because both selected pages have 273 runes:
+An exploratory coordinate reading is possible because both selected pages have 273 runes:
 
 - `133 mod 58 = 17` selects p17; `331 mod 58 = 41` selects p41.
 - Use the original HTML order (title133 then div id331) and the 2012 book-code convention of 1-based positions.
@@ -38,7 +38,13 @@ A second, source-typed coordinate extraction is available because both selected 
 - `331 mod 273 = 58`; the 58th rune on p41 is `ᛝ` (NG).
 - The selected sequence is `I + NG`, whose Latin transliteration reads `ING`. These are **two separate GP29 symbols** (I and NG), not one alphabet symbol; the 29-symbol inventory has `I` and `NG` but no `ING` entry.
 
-This is a concrete, reproducible output from the original HTML numbers, page count, and page rune counts. Reversing the page order gives `CI`; taking positions133/331 in the whole LP2 concatenation gives `XJ`. The source order therefore matters. The two-symbol output `I, NG` (transliterated `ING`) is a candidate key/operation selector, not yet a decryption; its role on p55 remains to be established.
+This is a concrete, reproducible output under this particular modular/indexing interpretation, but the interpretation itself is not yet selected by an explicit instruction. Reversing the page order gives `CI`; taking positions133/331 in the whole LP2 concatenation gives `XJ`. The source order therefore matters. The two-symbol output `I, NG` (transliterated `ING`) is a candidate key/operation selector, not yet a decryption; its role on p55 remains to be established.
+
+## Prior-work qualification
+
+The arithmetic `133+331=464=16×29=π(3301)` is **not new**. Agent6's earlier report `im-results/2014-stage11-133-331-prime464-original-gate.md` already documents it, the earlier Stage10 magic-square center 331, the p0 red-title relations `331±16`, and a bounded negative test of prime-rank starts133/331 through the solved p56 mechanism. That report correctly cautions that the arithmetic was noticed retrospectively and does not specify an LP2 opcode. Do not present the sum itself as new evidence or repeat its prime-rank tests.
+
+The distinct additions here are the possible modulo-58 page selectors (p17/p41), the 2012 phone-number/p41 ten-circle correspondence, the p55 17-group/16-complete-word/75-token structure, and the exploratory 1-based within-page extraction yielding two GP29 symbols I,NG. These are still hypotheses and require a source-selected reversible role; they do not supersede Agent6's negative result.
 
 ## Candidate interpretation
 
