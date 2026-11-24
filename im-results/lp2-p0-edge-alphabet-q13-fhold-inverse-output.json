@@ -90,7 +90,7 @@
     {
       "keyDraws": 1,
       "name": "0_koan_1",
-      "seconds": 8.675,
+      "seconds": 8.642,
       "zeros": 8,
       "legalMasks": 256,
       "truthMask": 1,
@@ -5614,7 +5614,7 @@
     {
       "keyDraws": 1,
       "name": "0_loss_of_divinity",
-      "seconds": 8.602,
+      "seconds": 8.098,
       "zeros": 11,
       "legalMasks": 2048,
       "truthMask": 83,
@@ -11138,6 +11138,33 @@
   ],
   "fixed": [
     {
+      "orientation": -1,
+      "sign": "historical reverse chart, one-based shift",
+      "key": [
+        4,
+        19,
+        0,
+        8,
+        28,
+        18,
+        7,
+        5,
+        4,
+        12,
+        0,
+        25,
+        13
+      ],
+      "control": {
+        "suffixCorrect": 425,
+        "n": 425
+      },
+      "continuation": {
+        "legal": false,
+        "failedAt": 25
+      }
+    },
+    {
       "orientation": 1,
       "sign": 1,
       "key": [
@@ -11234,7 +11261,7 @@
     {
       "orientation": 1,
       "name": "p0->p1-2",
-      "seconds": 6.718,
+      "seconds": 6.941,
       "zeros": 12,
       "legalMasks": 4096,
       "truthMask": null,
@@ -13296,7 +13323,7 @@
     {
       "orientation": -1,
       "name": "p0->p1-2",
-      "seconds": 6.893,
+      "seconds": 6.754,
       "zeros": 12,
       "legalMasks": 4096,
       "truthMask": null,
