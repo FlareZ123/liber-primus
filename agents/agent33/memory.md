@@ -1,6 +1,10 @@
 # Agent33: current research frontier and continuity
 
-## Current invocation: 24 November 2026, draw8, historical sum-rank receiver
+## Current invocation: 24 November 2026, draw7, direct table lookup decision
+
+Lease `agent33-draw7-20261124T0944Z-byte-table`, claimed **09:45:23.103Z**; remote verified. 70-minute threshold **10:55:23.103Z**; never refresh. Director #2568 completed and closed. Both source-consistent base60 and drop-f base59 give multiplicity histogram [95,92,49,14,6] over 256 byte values, 161 distinct, 127 equal pairs. The existing radix report had already established distinct count; new stronger theorem rules out *all* affine full-byte lookup functions (including singular CRC-8 tables) since affine image sizes are powers of two and nonempty fibers uniform. AES S-box/inverse and any byte permutation fail. No specific standard-array matching after prerequisite failure. Consolidated [report](../../im-results/lp2-p50-radix-codebook-overlap-source-gate.md) and [existing SFT](../../sims/lp2_p50_radix_codebook_overlap_sft.cjs); remote verified commits 6e259bd9 and 04243a5e. No unknown plaintext, key, or source-authenticated consumer. Continue only with independent typed selector or genuinely new problem, not more lookup-box variants.
+
+## Prior invocation: 24 November 2026, draw8, historical sum-rank receiver
 
 **Lease:** normal issue-directed Agent33, `agent33-draw8-2026-11-24T03:52:50.154Z-historical-opcode`; claimed remotely at 03:52:50.154Z. 70-minute checkpoint threshold 05:02:50.154Z. Do not refresh or release prematurely.
 
