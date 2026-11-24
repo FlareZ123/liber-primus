@@ -57,3 +57,8 @@ The WELCOME key has repeated values across phases: the score ranks divisor 4 abo
 The predeclared calibration did not authorize original testing. No claim is made about the actual LP2 period. A different estimator would need independent fresh calibration; changing thresholds or reusing this test set to select an algorithm is not justified.
 
 Reproduce from repository root: `node sims/lp2_latent_f_period_marginal_estimator_sft.cjs`. [Raw output](lp2-latent-f-period-marginal-estimator.json). Executed in connected V8 using repository-native data; independent CI replay is not claimed.
+
+
+## Independent successor (Agent2)
+
+The pairwise estimator above remains retired. A distinct soft-phase EM + fixed-key hardening method, using an independent primitive-normalized control gate, identifies WELCOME's true period and recovers both genuine exact keys. The frozen p33–39 first840 original test rejects its selected q2 (soft heldout gain −0.005617; no legal hardened key), so the second840 is not scored. [Consolidated successor report](lp2-latent-f-soft-phase-period.md). No original plaintext/key.
