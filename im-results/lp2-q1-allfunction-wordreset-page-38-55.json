@@ -1,0 +1,260 @@
+{
+  "lexicon": 38920,
+  "out": [
+    {
+      "page": 38,
+      "range": [
+        9172,
+        9400
+      ],
+      "runes": 228,
+      "status": "unsat",
+      "nodes": 23,
+      "passes": 23,
+      "wordChecks": 113,
+      "example": null
+    },
+    {
+      "page": 39,
+      "range": [
+        9400,
+        9640
+      ],
+      "runes": 240,
+      "status": "unsat",
+      "nodes": 675,
+      "passes": 805,
+      "wordChecks": 28956,
+      "example": null
+    },
+    {
+      "page": 40,
+      "range": [
+        9640,
+        9869
+      ],
+      "runes": 229,
+      "status": "unsat",
+      "nodes": 22,
+      "passes": 22,
+      "wordChecks": 264,
+      "example": null
+    },
+    {
+      "page": 41,
+      "range": [
+        9874,
+        10139
+      ],
+      "runes": 265,
+      "status": "unsat",
+      "nodes": 306,
+      "passes": 318,
+      "wordChecks": 8802,
+      "example": null
+    },
+    {
+      "page": 42,
+      "range": [
+        10145,
+        10407
+      ],
+      "runes": 262,
+      "status": "unsat",
+      "nodes": 309,
+      "passes": 309,
+      "wordChecks": 3584,
+      "example": null
+    },
+    {
+      "page": 43,
+      "range": [
+        10418,
+        10688
+      ],
+      "runes": 270,
+      "status": "unsat",
+      "nodes": 1,
+      "passes": 1,
+      "wordChecks": 1,
+      "example": null
+    },
+    {
+      "page": 44,
+      "range": [
+        10692,
+        10959
+      ],
+      "runes": 267,
+      "status": "unsat",
+      "nodes": 104,
+      "passes": 104,
+      "wordChecks": 2124,
+      "example": null
+    },
+    {
+      "page": 45,
+      "range": [
+        10964,
+        11231
+      ],
+      "runes": 267,
+      "status": "unsat",
+      "nodes": 315,
+      "passes": 316,
+      "wordChecks": 10255,
+      "example": null
+    },
+    {
+      "page": 46,
+      "range": [
+        11240,
+        11495
+      ],
+      "runes": 255,
+      "status": "unsat",
+      "nodes": 22,
+      "passes": 22,
+      "wordChecks": 647,
+      "example": null
+    },
+    {
+      "page": 47,
+      "range": [
+        11506,
+        11773
+      ],
+      "runes": 267,
+      "status": "unsat",
+      "nodes": 98,
+      "passes": 98,
+      "wordChecks": 445,
+      "example": null
+    },
+    {
+      "page": 48,
+      "range": [
+        11781,
+        12040
+      ],
+      "runes": 259,
+      "status": "cap",
+      "nodes": 1001,
+      "passes": 1126,
+      "wordChecks": 45981,
+      "example": null
+    },
+    {
+      "page": 49,
+      "range": [
+        12049,
+        12114
+      ],
+      "runes": 65,
+      "status": "sat",
+      "nodes": 117,
+      "passes": 206,
+      "wordChecks": 3048,
+      "example": {
+        "map": [
+          0,
+          23,
+          9,
+          4,
+          4,
+          4,
+          7,
+          22,
+          19,
+          26,
+          22,
+          0,
+          0,
+          8,
+          6,
+          24,
+          0,
+          19,
+          2,
+          1,
+          2,
+          19,
+          19,
+          6,
+          7,
+          14,
+          2,
+          18,
+          9
+        ],
+        "plaintext": "AR FAS CU SYRIA EAGERLY BL MYXO THIN WRNGNG THITHER NOEL BAN AERIAL ABDUCT JUICE AM PROWLNG"
+      }
+    },
+    {
+      "page": 51,
+      "range": [
+        12114,
+        12203
+      ],
+      "runes": 89,
+      "status": "cap",
+      "nodes": 1001,
+      "passes": 1076,
+      "wordChecks": 12390,
+      "example": null
+    },
+    {
+      "page": 52,
+      "range": [
+        12207,
+        12464
+      ],
+      "runes": 257,
+      "status": "unsat",
+      "nodes": 1,
+      "passes": 2,
+      "wordChecks": 62,
+      "example": null
+    },
+    {
+      "page": 53,
+      "range": [
+        12474,
+        12648
+      ],
+      "runes": 174,
+      "status": "unsat",
+      "nodes": 101,
+      "passes": 101,
+      "wordChecks": 950,
+      "example": null
+    },
+    {
+      "page": 54,
+      "range": [
+        12648,
+        12870
+      ],
+      "runes": 222,
+      "status": "unsat",
+      "nodes": 304,
+      "passes": 309,
+      "wordChecks": 3518,
+      "example": null
+    },
+    {
+      "page": 55,
+      "range": [
+        12881,
+        12956
+      ],
+      "runes": 75,
+      "status": "unsat",
+      "nodes": 5,
+      "passes": 7,
+      "wordChecks": 94,
+      "example": null
+    }
+  ],
+  "controls": []
+}
