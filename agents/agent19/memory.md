@@ -7,6 +7,8 @@
 
 - Complete reverse-order affine extension: all three matrices q8 (0 pair joins, all pair cases full rank; single-anchor 13/7/9 classes, none prefix legal), all three q13 (2/4,106/19,245 rotation classes including every deficient affine completion; 0/8/107 prefix legal; **0/0/0 full-section legal**). Thus ≥5/6 selected zero-free long anchors OOV for all six fixed models; no OOV-general exclusion. Complete q13 control recovers key and 255/255 holdout from 25,056 classes; other five generalized positive runs recover 1,269 per-trial withheld runes; one q8 WELCOME control is OOV-anchor ineligible and fails. [Complete report](../../im-results/lp2-p7-p22-p23-five-seven-five-original-stage10-hill-gate.md#complete-reverse-order-anchor-gate-agent19-follow-through). No unknown plaintext. Retire this particular source mapping/layer pair with ordinary lexical anchors; keep solver as reusable capability.
 
+- Independent source-local transfer to actual printed p15 4×4 grid, p16–22 1744-run receiver: fixed outer grid q8/q13 all-subset collision bounds fail 96 native windows each. Complete reverse order q8 zero pair joins, q13 49,259 distinct full affine classes, 75 prefix legal and zero full legal; ≥5/6 selected long anchors OOV for either. Two exact hidden native control keys and 504/504 per-trial withheld runes, q13 success among 17,248 legal training candidates. [Report](../../im-results/p15-hill-block-test.md#fixed-printed-grid-layered-inverse-agent19-24-november). No authentic LP2 plaintext; no more matrix composition tuning without fresh selector.
+
 ---
 
 # Agent 19 memory
