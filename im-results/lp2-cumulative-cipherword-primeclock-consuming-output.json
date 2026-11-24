@@ -1,0 +1,348 @@
+{
+  "sourceBlobShas": [
+    "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7",
+    "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+  ],
+  "model": "Cumulative previous ciphertext GP-prime word sums; p56 prime-minus-one within word, ordinary consuming F",
+  "maxSeed": 12956,
+  "needed": 184513,
+  "positive": [
+    {
+      "name": "0_welcome",
+      "words": 124,
+      "runes": 515,
+      "split": 74,
+      "curves": [
+        [
+          1,
+          12957
+        ],
+        [
+          74,
+          12957
+        ],
+        [
+          124,
+          12957
+        ]
+      ],
+      "deadAt": null,
+      "fullSurvivors": 12957,
+      "prefixSurvivors": 12957,
+      "seed": 73,
+      "devScore": -2.3646659834368515,
+      "holdoutScore": -2.422750814933485,
+      "stop": null,
+      "excerpt": "WELCOME WELCOME PILGRIM TO THE GREAT JOURNEY TOWARD THE END OF ALL THNGS IT",
+      "rankMargin": 707.9646842298997,
+      "trueSeed": 73,
+      "trueRank": 1,
+      "heldoutExact": 208,
+      "heldoutTotal": 208,
+      "fullExact": true
+    },
+    {
+      "name": "0_koan_1",
+      "words": 208,
+      "runes": 780,
+      "split": 124,
+      "curves": [
+        [
+          1,
+          12957
+        ],
+        [
+          124,
+          12957
+        ],
+        [
+          208,
+          12957
+        ]
+      ],
+      "deadAt": null,
+      "fullSurvivors": 12957,
+      "prefixSurvivors": 12957,
+      "seed": 168,
+      "devScore": -2.3811139915065125,
+      "holdoutScore": -2.6149341395374774,
+      "stop": null,
+      "excerpt": "A COAN A MAN DECIDED TO GO AND STUDY WITH A MASTER HE WENT",
+      "rankMargin": 1090.6275974009984,
+      "trueSeed": 168,
+      "trueRank": 1,
+      "heldoutExact": 336,
+      "heldoutTotal": 336,
+      "fullExact": true
+    },
+    {
+      "name": "jpg107-167",
+      "words": 88,
+      "runes": 319,
+      "split": 52,
+      "curves": [
+        [
+          1,
+          12957
+        ],
+        [
+          52,
+          12957
+        ],
+        [
+          88,
+          12957
+        ]
+      ],
+      "deadAt": null,
+      "fullSurvivors": 12957,
+      "prefixSurvivors": 12957,
+      "seed": 3301,
+      "devScore": -2.5235789382485954,
+      "holdoutScore": -2.5153871719326815,
+      "stop": null,
+      "excerpt": "A COAN DURNG A LESSON THE MASTER EXPLAINED THE I THE I IS THE",
+      "rankMargin": 361.6592994118614,
+      "trueSeed": 3301,
+      "trueRank": 1,
+      "heldoutExact": 137,
+      "heldoutTotal": 137,
+      "fullExact": true
+    }
+  ],
+  "original": [
+    {
+      "section": 1,
+      "words": 158,
+      "runes": 729,
+      "split": 94,
+      "curves": [
+        [
+          1,
+          12957
+        ],
+        [
+          94,
+          12957
+        ],
+        [
+          158,
+          12957
+        ]
+      ],
+      "deadAt": null,
+      "fullSurvivors": 12957,
+      "prefixSurvivors": 12957,
+      "seed": 11487,
+      "devScore": -4.782440443705762,
+      "holdoutScore": -5.39951052818495,
+      "stop": null,
+      "excerpt": "EYLOBARR SREAML WIYF IACTH FDB OFTLNGTHTHNTBA HETHJ URCW RTHE CND EOCNGU GFS EOREODS EAIIWEBTHYPEM",
+      "rankMargin": 6.38826625473439
+    },
+    {
+      "section": 2,
+      "words": 255,
+      "runes": 1145,
+      "split": 153,
+      "curves": [
+        [
+          1,
+          12957
+        ],
+        [
+          153,
+          12957
+        ],
+        [
+          255,
+          12957
+        ]
+      ],
+      "deadAt": null,
+      "fullSurvivors": 12957,
+      "prefixSurvivors": 12957,
+      "seed": 605,
+      "devScore": -4.866646240464838,
+      "holdoutScore": -5.470239451032096,
+      "stop": null,
+      "excerpt": "US BUHBEOLWTMPE EOHIA RMNGP FGWXDEAX PRYWJHO THNGOYSNT LBAEIA IAILPEL PMUOEURFLAETHRT H USTHUUEESH BD UTHFI",
+      "rankMargin": 31.168842729531207
+    },
+    {
+      "section": 3,
+      "words": 385,
+      "runes": 1738,
+      "split": 231,
+      "curves": [
+        [
+          1,
+          12957
+        ],
+        [
+          231,
+          12957
+        ],
+        [
+          385,
+          12957
+        ]
+      ],
+      "deadAt": null,
+      "fullSurvivors": 12957,
+      "prefixSurvivors": 12957,
+      "seed": 2686,
+      "devScore": -4.922851189027639,
+      "holdoutScore": -5.201465717336806,
+      "stop": null,
+      "excerpt": "ITHNGH IJXMXNGXA HWAE YTH IAGT BPECOPMPB LAYW OERNG INPNG NGIA XNG RBYFIX EJOE GATHOEBPC",
+      "rankMargin": 59.92531555993264
+    },
+    {
+      "section": 4,
+      "words": 435,
+      "runes": 1894,
+      "split": 261,
+      "curves": [
+        [
+          1,
+          12957
+        ],
+        [
+          261,
+          12957
+        ],
+        [
+          435,
+          12957
+        ]
+      ],
+      "deadAt": null,
+      "fullSurvivors": 12957,
+      "prefixSurvivors": 12957,
+      "seed": 12449,
+      "devScore": -4.959163096949966,
+      "holdoutScore": -5.2378360815961615,
+      "stop": null,
+      "excerpt": "UEACF YE SUAEHB HYAEH UFAWEA RXEIAIL FOEORNG HAEWOEAN EONGD STW OESROENGWRBN CDEAJBFIA WFR OREBO",
+      "rankMargin": 13.226966450359214
+    },
+    {
+      "section": 5,
+      "words": 224,
+      "runes": 1021,
+      "split": 134,
+      "curves": [
+        [
+          1,
+          12957
+        ],
+        [
+          134,
+          12957
+        ],
+        [
+          224,
+          12957
+        ]
+      ],
+      "deadAt": null,
+      "fullSurvivors": 12957,
+      "prefixSurvivors": 12957,
+      "seed": 11531,
+      "devScore": -4.906950218020665,
+      "holdoutScore": -5.200967690591445,
+      "stop": null,
+      "excerpt": "SEA OEOCEARH GLF EOIAOEOW EAFEALTHMFO THAB THEX EACOEOAEUW HSLBE THLIFE UJHPRRW PSIAOELJ CJOTH XEOEAO",
+      "rankMargin": 2.3341507604695835
+    },
+    {
+      "section": 6,
+      "words": 326,
+      "runes": 1433,
+      "split": 195,
+      "curves": [
+        [
+          1,
+          12957
+        ],
+        [
+          195,
+          12957
+        ],
+        [
+          326,
+          12957
+        ]
+      ],
+      "deadAt": null,
+      "fullSurvivors": 12957,
+      "prefixSurvivors": 12957,
+      "seed": 1026,
+      "devScore": -4.913485688080105,
+      "holdoutScore": -5.231307966632039,
+      "stop": null,
+      "excerpt": "MUAE OAEOTPMDBEAHCS LNHF THAIOEPSNG NC MAF BGNG THM B WTHX PYJA USROEAEBNG RT CPWMEAEAAEOEO",
+      "rankMargin": 9.141821634060761
+    },
+    {
+      "section": 7,
+      "words": 378,
+      "runes": 1680,
+      "split": 226,
+      "curves": [
+        [
+          1,
+          12957
+        ],
+        [
+          226,
+          12957
+        ],
+        [
+          378,
+          12957
+        ]
+      ],
+      "deadAt": null,
+      "fullSurvivors": 12957,
+      "prefixSurvivors": 12957,
+      "seed": 6247,
+      "devScore": -4.971556178394723,
+      "holdoutScore": -5.3025179903483135,
+      "stop": null,
+      "excerpt": "EAE AONBNGAEOETH EA YWOAAHURX BUOEYEX IALG WHJ FXNGXR AERL PF NGLBXSIAM DBAE WDE HFGDRA",
+      "rankMargin": 18.266246583050815
+    },
+    {
+      "section": 8,
+      "words": 735,
+      "runes": 3316,
+      "split": 441,
+      "curves": [
+        [
+          1,
+          12957
+        ],
+        [
+          441,
+          12957
+        ],
+        [
+          735,
+          12957
+        ]
+      ],
+      "deadAt": null,
+      "fullSurvivors": 12957,
+      "prefixSurvivors": 12957,
+      "seed": 2770,
+      "devScore": -5.018724855561771,
+      "holdoutScore": -5.238257553077669,
+      "stop": null,
+      "excerpt": "RWP SEONGPM TEAEANT NYEAH FUTH FLARP GUEAG JL NXYDTHBDOHOAEW ATC YOIA ME CLOEOE BOOHEADO",
+      "rankMargin": 68.4449883709367
+    }
+  ]
+}
