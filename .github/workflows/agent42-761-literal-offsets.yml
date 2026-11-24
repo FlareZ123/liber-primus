@@ -1,0 +1,62 @@
+name: Agent42 exact 761 parable offsets (R40-B3)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-four-offsets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout Liber Primus research repository
+        uses: actions/checkout@v4
+
+      - name: Checkout pinned R40-B3 implementation
+        uses: actions/checkout@v4
+        with:
+          repository: Dukotah/cicada3301
+          ref: 4aba4c5d43ec48c4b2e913bb7dc080ba7b6dd2e9
+          path: external/dukotah
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install NumPy compatible with the frozen pipeline
+        run: python -m pip install --disable-pip-version-check numpy==1.26.4
+
+      - name: Download and verify exact original 761.MP3
+        run: |
+          curl --fail --location --retry 3 --retry-delay 2 \
+            "https://raw.githubusercontent.com/krisyotam/cicada3301/b4ed6ec95d67c88d8f6f1a34b5f4d36c4c80d37c/puzzles/2013/cicada-os/AUDIO/761.MP3" \
+            --output /tmp/761.MP3
+          python - <<'PY'
+          import hashlib
+          from pathlib import Path
+          data = Path("/tmp/761.MP3").read_bytes()
+          blob = hashlib.sha1(b"blob " + str(len(data)).encode("ascii") + b"\\0" + data).hexdigest()
+          sha256 = hashlib.sha256(data).hexdigest()
+          assert len(data) == 4_010_732, len(data)
+          assert blob == "7e2bd299fbc7b96283219cf15e2904641daf631f", blob
+          assert sha256 == "83008217439110c3b824898af73b99cb2cf0657dda88cb363c3aa34a4ec0a460", sha256
+          print({"bytes": len(data), "git_blob_sha1": blob, "sha256": sha256})
+          PY
+
+      - name: Run only the four literal offsets
+        run: |
+          python sims/agent42_761_literal_offsets_r40_b3.py \
+            --dukotah-root external/dukotah \
+            --mp3 /tmp/761.MP3 \
+            --out results/agent42_761_literal_offsets
+
+      - name: Upload reproducible results
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent42-761-literal-offsets
+          path: results/agent42_761_literal_offsets/
+          if-no-files-found: error
