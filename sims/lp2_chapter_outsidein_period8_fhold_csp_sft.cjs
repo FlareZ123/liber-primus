@@ -349,26 +349,12 @@ function encodeFromPhase(words, key, startPhase) {
     return c;
   }));
 }
-if (!controlPrediction || controlSolve.keys.length !== 1 || !controlSolve.exact ||
-    !controlPrediction.holdoutExact || !controlPrediction.forwardReplay ||
-    JSON.stringify(controlKey.key) !== JSON.stringify(divinityKey)) {
-  process.stdout.write(JSON.stringify({
-    diagnostic: "disjoint native control did not pass",
-    controlSolve: {
-      exact: controlSolve.exact, exhausted: controlSolve.exhausted,
-      nodes: controlSolve.nodes, passes: controlSolve.passes,
-      rowVisits: controlSolve.rowVisits, initialRows: controlSolve.initialRows,
-      keys: controlSolve.keys.map((x) => ({
-        key: spaced(x.key), paths: x.paths, endPhases: x.endPhases
-      }))
-    },
-    controlPrediction,
-    dictionarySize,
-    controlWords: controlOrderedPlain.length,
-    split: controlSplit
-  }, null, 2) + "\\n");
-  process.exit(0);
-}
+assert(controlPrediction, "Disjoint native control produced no key/prediction");
+assert.deepEqual(controlKey.key, divinityKey, "Outside-in native control did not recover DIVINITY");
+assert(controlPrediction.holdoutExact && controlPrediction.forwardReplay,
+  "Disjoint native control failed its withheld continuation");
+assert(controlSolve.exact && controlSolve.keys.length === 1 && controlKey.paths === 1,
+  "Disjoint native control did not recover a unique key and path");
 
 // Target: the source-selected p54–55 chapter. Prefix = maximal whole-word
 // prefix not exceeding 2/3 of the chapter's rune count; remaining words are
@@ -386,6 +372,8 @@ const precedingOrderedWords = chapters.slice(0, targetIndex).flatMap((c) => c.or
 const targetPrefixInput = [...precedingOrderedWords, ...targetSplit.prefix];
 const wildcardWords = new Set(Array.from({ length: precedingOrderedWords.length }, (_, i) => i));
 const targetSolve = solver.solve(targetPrefixInput, { limit: 250000, wildcard: wildcardWords });
+assert(targetSolve.exact && !targetSolve.exhausted && targetSolve.keys.length === 0,
+  "The frozen p54–55 prefix unexpectedly admits a dictionary-consistent key");
 
 let targetPrediction = {
   status: targetSolve.exhausted ? "search-limit-reached" :
