@@ -36,3 +36,35 @@ function experiment(j,s,reference){
 }
 const result=experiment(JSON.parse(read("lp2-corpus.json")),read("lp2-transcription.txt"),read("lp1-plaintext-reference.txt"));
 console.log(JSON.stringify(result,null,2));
+
+function localWordExperiment(j,s,reference){
+ const parts=s.split("%"),parse=s=>(s.replace(/[\/\r\n]/g,"").match(new RegExp("["+j.runes.join("")+"]+","gu"))||[]).map(w=>[...w].map(r=>j.runes.indexOf(r)));
+ const words=parse(parts.slice(0,55).join("")),ctrl=parse(parts[56]);const mod=x=>(x%29+29)%29;
+ const assert=(ok,msg)=>{if(!ok)throw Error(msg)},eq=(a,b)=>a.join()===b.join();
+ assert(words.length===2896&&eq(words.flat(),j.pages.slice(0,56).flatMap(p=>p.indices))&&eq(ctrl.flat(),j.pages[57].indices),"canonical source mismatch");
+ const primes=[];for(let n=2;primes.length<2000;n++)if(primes.every(p=>p*p>n||n%p!==0))primes.push(n);
+ const render=w=>w.map(x=>j.translit[x]).join(""),dict=new Set(reference.match(/[A-Z]+/g));for(const w of ctrl)dict.add(render(w));
+ const out=[];
+ for(const type of ["prime","ordinal"])for(const offset of [0,1])for(const hold of [true,false]){
+ const wt=type==="prime"?j.prime:j.prime.map((_,i)=>i),sum=w=>w.reduce((a,x)=>a+wt[x],0);
+ const key=(seed,i)=>mod(primes[Math.max(0,seed-offset)+i]-1);
+ function encode(w,seed){let i=0;return w.map(x=>hold&&x===0?0:mod(x+key(seed,i++)));}
+ function decode(w,seed){let a=[{p:[],i:0}];for(const x of w){let b=[];for(const z of a){if(hold&&x===0)b.push({p:[...z.p,0],i:z.i});const y=mod(x-key(seed,z.i));if(!hold||y!==0)b.push({p:[...z.p,y],i:z.i+1});}a=b;if(!a.length)break;}return a.map(z=>z.p);}
+ const possible=[];let v=new Set([0]);for(let n=1;n<=14;n++){v=new Set([...v].flatMap(s=>wt.map(x=>s+x)));possible[n]=[...v];}
+ function solve(w){let a=[];for(const seed of possible[w.length])for(const p of decode(w,seed))if(sum(p)===seed)a.push(p);return a;}
+ const hist={};let empty=0,unique=0,withWord=0,long=0;const empties=[];
+ let test=0;for(const w of ctrl){const e=encode(w,sum(w)),a=solve(e);assert(a.some(z=>eq(z,w))&&a.every(z=>eq(encode(z,sum(z)),e)),"self-key positive or replay failed");test+=w.length;}
+ for(let i=0;i<words.length;i++){const w=words[i],a=solve(w);hist[a.length]=(hist[a.length]||0)+1;if(!a.length){empty++;if(empties.length<5)empties.push(i);}if(a.length===1)unique++;if(w.length>=4){long++;if(a.some(x=>dict.has(render(x))))withWord++;}}
+ let visible=[];for(const source of ["same","previous","next"]){const delta=source==="same"?0:source==="previous"?-1:1;
+ const seedAt=(w,i)=>sum(w[i+delta]);
+ // For the ciphertext-fed plant, process in dependency order. Same-word C seed is implicit; pick any exact encoding witness if it exists.
+ // Previous and next ciphertext word clocks can be generated explicitly using an external boundary seed.
+ let positiveWords=0;
+ if(delta!==0){let a=Array(ctrl.length),order=Array.from({length:ctrl.length},(_,i)=>delta===-1?i:ctrl.length-1-i);for(const i of order){const at=i+delta;const seed=at>=0&&at<ctrl.length?sum(a[at]):2;a[i]=encode(ctrl[i],seed);assert(decode(a[i],seed).some(z=>eq(z,ctrl[i])),"visible neighbor positive");positiveWords++;}}
+ let dead=0,longmatches=0,n=0,h=Array(29).fill(0);for(let i=0;i<words.length;i++){const at=i+delta;if(at<0||at>=words.length)continue;const a=decode(words[i],seedAt(words,i));if(!a.length)dead++;if(a.length===1)for(const x of a[0]){h[x]++;n++;}if(words[i].length>=4&&a.some(x=>dict.has(render(x))))longmatches++;}
+ visible.push({source,dead,longmatches,ic:h.reduce((s,x)=>s+x*(x-1),0)/(n*(n-1)),uniqueRunes:n,positiveWords});
+ }
+ out.push({type,offset,hold,positive:test,empty,unique,withWord,long,empties,hist,visible});
+ }return out;
+}
+console.log(JSON.stringify(localWordExperiment(JSON.parse(read("lp2-corpus.json")),read("lp2-transcription.txt"),read("lp1-plaintext-reference.txt")),null,2));

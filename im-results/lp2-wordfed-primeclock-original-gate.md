@@ -1,6 +1,6 @@
 # Original LP2 word-fed prime-clock inverse
 
-**Decision:** Retire the explicit previous-plaintext-word numerical sum → prime-minus-one within-word clock receiver under the eight frozen conventions below. All transparent-F variants are algebraically incompatible with the complete original tape even without a language model. Ordinary-F variants converge to mostly unique, near-uniform non-English output. This is a bounded complementary test to #2503; it does not test that issue's cyclic previous-plaintext-rune key and does not identify the historical cipher.
+**Decision:** Retire the explicit word numerical sum → prime-minus-one within-word clock receiver under the frozen previous-plaintext, same-plaintext and visible-ciphertext conventions below. All transparent-F variants are algebraically incompatible with the complete original tape even without a language model. Ordinary-F variants converge to mostly unique, near-uniform non-English output. This is a bounded complementary test to #2503; it does not test that issue's cyclic previous-plaintext-rune key and does not identify the historical cipher.
 
 ## Human clue and inverse
 
@@ -24,6 +24,23 @@ Read canonical physical p0–55 (exclude the runeless p50 from the transcription
 | ordinal | 1 | reverse | 81/83 | 58 | 2800 | 0/1590 | 0.034477 |
 
 All eight hold variants have at least one exact all-state contradiction; even granting arbitrary earlier key material cannot repair them in an unreset continuous run. Some terminal suffixes are too short to reach a contradiction; no universal assertion about independently restarted short chapters follows. The ordinary-F mechanism is bijective per word for a fixed seed; the observed convergence fixes most output independent of unknown seed. Every configuration has zero >=4-rune words matching the small LP1/p57 reference vocabulary and IoC near 1/29. This diagnostic is finite and does not prove incompatibility with every possible plaintext language. Example forced output (prime, offset0, forward): `EO WDTT UNAEJMJTRG ISL OXDS HINGNBA EOOHY MICR NGIAOIJAELEOXTH TOETO EAUTHAEOOCTHD IAUUY DLYCXEEOF BJ RBNGWBOENGNGT IBEY`.
+
+## Same-word plaintext sum and visible ciphertext sums
+
+A simpler human-solvable alternative dispenses with prior plaintext state: the current word's own GP sum selects its own prime clock. Enumerate **all realizable numerical sums for that exact word length**, invert with every corresponding state and retain only plaintext candidates whose sum equals the seed. This can be lossy or ambiguous; an empty candidate set is a language-independent contradiction. All eight cases retain the genuine planted p57 words, including all valid alternative inverses; every such positive candidate exactly replays. The original results below show 1,033–1,162 complete printed words with no inverse in each case. The same fixed prime-clock operation also fails when the solver directly computes the current, previous or next **ciphertext** word's number. Transparent-F visible-sum variants have hundreds of impossible original words; ordinary-F versions have near-uniform rune IoC (0.03444–0.03453), with no >=4-rune word matching the solved-reference vocabulary. Previous/next ciphertext-fed plants retain all p57 words under their true seed. The same-ciphertext-word seed is implicit in forward encryption; no whole-p57 forward plant is claimed for that circular rule.
+
+| Weight | Offset | F mode | Own-plaintext-sum words with zero candidates | Exactly one candidate | Visible-sum impossible words (same / previous / next) |
+|---|---:|---|---:|---:|---:|
+| prime | 0 | hold | 1116 | 982 | 323 / 365 / 373 |
+| prime | 0 | ordinary | 1057 | 1025 | 0 / 0 / 0 |
+| prime | 1 | hold | 1162 | 1008 | 340 / 385 / 375 |
+| prime | 1 | ordinary | 1095 | 1057 | 0 / 0 / 0 |
+| ordinal | 0 | hold | 1066 | 1042 | 354 / 391 / 317 |
+| ordinal | 0 | ordinary | 1033 | 1076 | 0 / 0 / 0 |
+| ordinal | 1 | hold | 1118 | 1036 | 374 / 371 / 392 |
+| ordinal | 1 | ordinary | 1049 | 1055 | 0 / 0 / 0 |
+
+No candidate from any self-keyed arm matches a >=4-rune word in the solved reference, despite allowing multiple alternatives. The exact self-keyed obstruction is independent of language, and independent of any book-level secret or restart. It assumes the published complete-word segmentation and the frozen sum/index/prime shift law. The adjacent visible-word variants omit the one book endpoint whose necessary neighbor is absent. These alternatives exhaust the immediate placement choices for the same numerical prime-clock mechanism, not every possible word-conditioned cipher.
 
 ## Reproduce
 
