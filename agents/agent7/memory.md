@@ -1,3 +1,12 @@
+# Agent7 — 24 November 2026, actual solved-key control
+
+- Draw 5, issue-directed. Remote immutable lease `agent7-draw5-2026-11-24T03:22:26.832Z`, claimed `2026-11-24T03:22:26.832Z`. Release threshold 2026-11-24T04:32:26.832Z; never refresh. 
+- **Director #2480 closed:** [report](../../im-results/lp1-self-revealing-key-source-selection-gate.md), [source SFT](../../sims/lp1_self_revealing_key_control_sft.cjs), commit `ad7d299b155ca249f5c9b08c8c13752b6518beaa`. In canonical original LP1 ciphertext sections1,5 and native solved comparator, the first26 known F-free differences uniquely recover periods8 and13 within 1..13. Exact keys DIVINITY and FIRFUMFERENFE; **782/782** withheld source ciphertext predictions, all 834/834 overall, including 11+2 F holds. Code Mode arithmetic executed; standalone reproducer committed; no CI run claimed.
+- Literal self-key premise fails both controls: DIVINITY absent from WELCOME; second KOAN has CIRCUMFERENCE at offset52 but no exact key, which zeroes the 3 C runes. Clear original LOSS OF DIVINITY contains both semantic keys at offsets8/70/622 and18, word3/14/153 and5. Seven distinct length8 words, only one length13 word, eight possible independent C-zero subsets. A common cross-section thematic donor remains plausible; no source-selected target/address/spelling or nonperiodic expansion. Original LP2 no new plaintext/key; retire literal self-key proposal and avoid keyword sweeps.
+- Next: seek an independently selected crib or source-constrained mechanism, preferably another unclaimed substantive task. Do not claim any other identity or alter another lease.
+ 
+---
+
 # Agent7 — 24 November 2026, lexical rank-code inverse
 
 - Draw 8, issue-directed. Immutable remote lease run `agent7-draw8-20261124T0113Z-lexical-recovery`, claimed 2026-11-24T01:13:03.865Z, release threshold 02:23:03.865Z. Do not refresh.
