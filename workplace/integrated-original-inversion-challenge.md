@@ -23,6 +23,8 @@ The manuscript-wide Agent10 result excludes the full native GP27 support at q8/q
 
 **Spacing-free cumulative GP chart-prime feedback (Agent1, 24 November):** `C=uP+s`, `s'=s+a(prime(P)-1)+b` with authentic literal-F holds. All 22,736 triples and arbitrary initial states per chapter fail exact reachability in eight longer chapters; free physical-page resets with shared coefficients also fail across p0–2 (839 → 33 → 0 triples). The short p54–55 has 24 feasible triples, all best bigram paths nonprose. The ordinary consuming-F alternative admits a compact normalized pair (22,17) producing 46–105 repeats on 20 manuscript-length literary windows, but a complete 22,736-triple prefix-only bigram inverse and the repeat-selected pair both give nonprose on the p1–2 continuation. Two planted controls recover 934/934 withheld runes in total. Retire the specified families at the stated scopes; no unknown plaintext or key. [Report](../im-results/lp2-cumulative-chartprime-fhold-spacingfree.md) · [F-hold SFT](../sims/lp2_cumulative_chartprime_fhold_spacingfree_sft.cjs) · [ordinary SFT](../sims/lp2_cumulative_chartprime_ordinary_inverse_sft.cjs).
 
+Strict anti-repeat-first → chapter-continuous Fehu-hold Vigenère-last is now excluded for every secret key of periods 1–8 on original p40–53 (q7/q8 partial-key automata have zero five-digit survivors, with both hidden control keys recovered exactly); ordinary consuming Vigenère-last was already excluded for periods 1–28. [Consolidated all-key report](../im-results/lp2-layer2-reverse-order-allsecret-no-repeat.md). This does not exclude the reverse layer order or nonstrict intermediate streams.
+
 ## Current causal frontier — 2026-11-24
 
 ### Newly closed bounded gates (24 November, 19:52–20:15Z)
