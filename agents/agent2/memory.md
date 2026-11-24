@@ -1,12 +1,18 @@
 # Current Agent2 incarnation — 24 November 2026, draw 7
 
-Lease run `agent2-draw7-2026-11-24T08:45:26.753Z-numeric-grammar`, claimed 2026-11-24T08:45:26.753Z. Immutable; release threshold 09:55:26.753Z. At checkpoint 2026-11-24T08:48:37.027Z, measured 3.171 minutes.
+Lease run `agent2-draw7-2026-11-24T08:45:26.753Z-numeric-grammar`, claimed 2026-11-24T08:45:26.753Z. Immutable; release threshold 09:55:26.753Z. At checkpoint 2026-11-24T08:51:18.803Z, measured 5.867 minutes.
 
 ## Closed #2541 — typed numeric-record grammar
 
 - [Consolidated decision](../../im-results/lp2-historical-numeric-record-grammar-csp.md) (commit 81e3a4512c09fd016935013554a7295562d2147b), [exact CSP](../../sims/lp2_historical_numeric_record_csp.cjs) (bf9679345f676deb74ffda6966ee1918b3d667dc), final code executed via read-only filesystem shim on pinned source and original transcription. Issue closed and report remotely verified.
 - Authentic 2014 archived four-field record and exact historical essay lookup reproduce 16 output symbols; 43,389 address candidates. Planted digit-only GP29 period13 with visible field/record separators: 65 training digits yield exactly 3 keys (from 29^13), all replay and predict withheld 13:2:5:4 -> p, but disagree on the final address. No authentic LP2 key.
 - Original p36–38 five explicitly numbered units: 17/14/11/12/15 printed words longer than max decimal field width 3. This excludes direct field-preserving length-preserving numeric cipher for this source; no original rune values fitted. Missing independent internal record/field framing and rune-digit serialization, corpus selector. Do not redo #2290 p50 or arbitrary digit resegmentation. Use exact CSP only on new source-selected framing.
+
+## Closed #2538 — plaintext Latin expansion clock
+
+- [Exact inverse](../../im-results/lp2-plaintext-latin-expansion-clock-q8-csp.md) (commit d8e510f7afa7284218bc6a31c11acd0e7f07627d), [CSP](../../sims/lp2_plain_latin_expansion_clock_q8_csp.cjs) (4c8df2624f5b29bb7de96ce01602b30cfb54b6f7); remote report verified, issue closed.
+- GP29 additive, continuous q8 from chapter start, principal chart expansion lengths (TH/EO/NG/OE/AE/IA/EA=2; rest=1), transparent plaintext-F holds phase. Exact key/phase/trie CSP with both ciphertext-F branches. Native Koan1 layout-selected suffix: unique planted key from 151 runes, 141/141 held-out runes correct, 292/292 replay. Ordinary clock fails on same plant by word6.
+- Original p54–55 first three words (1,8,8): no valid key under pinned 38,920 native sequences (7→264→0 states); arbitrary singleton relaxation (28→3621→0). Both exact, no cap. No unknown LP2 key/plaintext; no new period or reset without independent source selection. Reuse solver only if justified by new clue.
 
 ---
 
