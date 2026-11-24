@@ -42,3 +42,36 @@ The two simplest artist-selected orientations are **incompatible with a shared a
 Retire **only these two source-aligned reuse variants**. A different key offset, nonadditive mode, unusual plaintext register, altered word segmentation or separate page keys remain possible, but the duplicated moth alone does not select such exceptions. Do not launch a phase-optimized two-time-pad search without new original instructions.
 
 **Reproduce:** [single original-input Windows/Node22 CJS SFT](../sims/lp2_moth_p53_p55_sharedpad_native_gate_sft.cjs) · [passing original run 43710513621](https://github.com/FlareZ123/liber-primus/actions/runs/43710513621). The test prints every unsupported original overlap and its planted controls. This result belongs in `im-results/` and does not change the authoritative `results/README.md` claim that no unknown LP2 page has been authenticated.
+
+## Different hypothesis: same contiguous plaintext under independently keyed affine clocks (Agent13, 24 November 2026)
+
+The identical p53/p55 moth selects this pair more directly than the visually weaker p32/p55 tree resemblance. Shared *content* and shared *pad* are different propositions: here each passage may use an entirely different secret key, but both must encode the same plaintext interval. This transfers the historically authenticated q8/q13 consuming clocks and tests an all-affine relaxation, not a dictionary fit. The source artwork does not itself authenticate repeated content, and its reuse on LP1 is a rival explanation.
+
+Freeze p53 as the 179-rune forward tape and p55 as either the complete physical 76-rune tape or the 75-rune body after its incoming NG. Test all 104/105 contiguous forward placements, ignoring printed word cuts for this hypothesis. Grant arbitrary independent phase rotations (absorbed in the freely chosen row parameters), invertible affine GP29 inverse rows, and every possible synchronized transparent plaintext-F hold mask: a hold is possible only where both ciphertexts are F (index 0). No non-F deletion or direction reversal.
+
+For consuming position j, let x and y be the aligned ciphertext runes. The common-plaintext equation over GF(29) is
+
+```
+a[j mod q] x + b[j mod q] = c[j mod r] y + d[j mod r]
+```
+
+Every slope must be nonzero. A homogeneous linear system has 2(q+r) unknowns. Exact GF29 elimination and its nullspace basis identify whether every solution forces a slope to zero, regardless of plaintext language. A common constant plaintext per connected phase component always exists algebraically but is not a valid inverse.
+
+| q,r | Scope | Placements | All F-mask cases | Rank of every case | Valid inverses |
+|---|---|---:|---:|---:|---:|
+| 8,8 | 76 physical | 104 | 117 | 24 of 32 | 0 |
+| 8,8 | 75 body | 105 | 118 | 24 of 32 | 0 |
+| 13,13 | 76 physical | 104 | 117 | 39 of 52 | 0 |
+| 13,13 | 75 body | 105 | 118 | 39 of 52 | 0 |
+| 8,13 | 76 physical | 104 | 117 | 41 of 42 | 0 |
+| 8,13 | 75 body | 105 | 118 | 41 of 42 | 0 |
+| 13,8 | 76 physical | 104 | 117 | 41 of 42 | 0 |
+| 13,8 | 75 body | 105 | 118 | 41 of 42 | 0 |
+
+All **940** original mask/placement/period cases force **every** slope to zero. Equal periods leave q phase-specific constant freedoms; coprime mixed periods leave only the common constant. Therefore even independently keyed phase-affine ciphers cannot carry an identical contiguous p55 plaintext at any p53 placement under these clocks. No dictionary, trigram score or assumed plaintext word boundary enters the rejection.
+
+Eight native-text plants use WELCOME and first KOAN, two independently sampled affine keys, independent random phases, a 76-rune repeat at a hidden offset inside a 179-rune tape, and synchronized native plaintext-F holds. All 8 uniquely recover the planted offset and exact F mask. The mixed-period plants have rank40 (two-dimensional kernel); enumerating the whole kernel yields 196 or 364 legal coefficient vectors after requiring nonzero consuming plaintext, illustrating the residual common-affine ambiguity. The equal-period controls are compatibility controls, not absolute key recoveries. Source-specific tests ran successfully directly on the remote corpus and native gold text in the connected JavaScript runtime; no CI was created.
+
+[Standalone original-input SFT](../sims/lp2_p53_p55_samecontent_affine_fhold_sft.cjs).
+
+**Decision:** retain the verified artwork reuse, retire same contiguous p53/p55 plaintext under the four q8/q13 combinations with synchronized F holds. This is independent of the shared-pad hypothesis above but not a new cipher mechanism. It extends the [p32/p55 repeated-content work](lp2-p32-p55-blurred-tree-correspondence.md) to the stronger exact-image pair. Different underlying content, changed representations, arbitrary phase permutations or other clocks remain outside this proof; the artwork alone does not justify enlarging them. No unknown LP2 plaintext/key.
