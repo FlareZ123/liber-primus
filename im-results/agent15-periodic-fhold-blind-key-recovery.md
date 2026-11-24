@@ -6,7 +6,7 @@
 
 A deterministic ciphertext-only coordinate-EM search recovered the exact known GP29 additive keys for both solved LP1 controls, without target cribs or a key-word dictionary. A fixed-key trigram Viterbi pass then recovered all 834 native plaintext symbols exactly, with the correct plaintext-F-transparent key holds and exact forward replay.
 
-The same frozen period-8/13 procedure did **not** transfer to LP2 page 0. On a 131/131 prefix/holdout split, the top prefix candidates could not legally decode the continuation. The best continuation obtainable by retrospectively selecting among all converged prefix candidates remained substantially less language-like than native LP1 holdouts. Retire this specific direct-transfer route; do not promote it to an all-period or all-key exclusion.
+The same frozen period-8/13 procedure did **not** transfer to LP2 page 0. On a 131/131 prefix/holdout split, the highest-scoring frozen prefix paths did not provide a continuation. The best retrospectively selected fixed-prefix continuation remained substantially less language-like than native holdouts. The [Critic boundary audit](../communications/broadcast/2026-11-24T0807Z_critic_blind_fhold_boundary_calibration.md) shows that 4/71 and 22/84 keys admit a full-page path; the top period-13 key survives through a lower-scoring boundary state. The failure concerns the predictive procedure, not key feasibility. Retire this specific direct-transfer route; do not promote it to an all-period or all-key exclusion.
 
 ## Frozen mechanism and search
 
@@ -73,20 +73,20 @@ The two KOAN1 misses converge to one-symbol cyclic rotations of the planted key,
 
 The original page-0 JPEG and the canonical corpus give 262 runes. The first 13 are visually red and transcribe as `SHEOGMIAFSYENGC`; the experiment did not interpret them as plaintext or a key. It treated the complete page as one candidate page-local stream, with key phase starting at rune 0.
 
-The first 131 runes were the fitting prefix; the final 131 were held out. Periods 8 and 13, 1,500 restarts, the same unigram key search, and the same LP1-native trigram language model were frozen. No LP2 plaintext was used.
+The first 131 runes were the fitting prefix; the final 131 were held out. Periods 8 and 13, 1,500 restarts, the same unigram key search, and the same solved-native trigram language model were frozen. The corpus contains seven LP1 sections and solved LP2 p56/p57 (180 runes); no unknown LP2 plaintext was used.
 
 | Prefix fit | Period 8 | Period 13 |
 |---|---:|---:|
 | Valid initializations | 377 | 380 |
 | Distinct converged prefix keys | 71 | 84 |
 | Top-vs-runner-up prefix score gap | 4.1897 | 0.0953 |
-| Top prefix key has a legal continuation | **No** | **No** |
-| All prefix candidates with a legal continuation | 3/71 | 11/84 |
-| Best legal continuation score per rune | −3.6210 | −3.5516 |
+| Top frozen prefix path provides a continuation | **No** | **No** |
+| Candidates with an accepted fixed-prefix continuation | 3/71 | 11/84 |
+| Best accepted fixed-prefix continuation score per rune | −3.6210 | −3.5516 |
 
-The best legal continuation is an intentionally optimistic, post-selection diagnostic: it chooses the highest holdout score among *all* prefix-converged candidates after the holdout is opened. It is not used to select the reported top prefix key. Even this optimistic result is poor.
+The best accepted continuation is a post-selection diagnostic among the converged candidates' frozen top prefix paths after the holdout is opened. It is not the exhaustive best over all possible prefix clock states; tied or ambiguous predictions are also filtered. The exact support audit above identifies 4 and 22 globally feasible keys, rather than 3 and 11. It is not used to select the reported top prefix key. Even this optimistic result is poor.
 
-For comparison, leave-one-section-out native LP1 131-symbol continuations score between **−2.5403 and −2.9512** per rune under the same trigram model. The best LP2 continuation is worse than even the weakest of these native controls, and its decoded symbols are not coherent English.
+For comparison, leave-one-section-out native LP1 131-symbol continuations (training includes solved LP2 p56/p57) score between **−2.5403 and −2.9512** per rune under the same trigram model. The best LP2 continuation is worse than even the weakest of these native controls, and its decoded symbols are not coherent English.
 
 Thus the direct LP1 period-8/13 F-hold model fails on p0 under the explicit page-local-reset assumption and this fixed search. This rejects only this transfer and achieved search scope. It does not exclude other periods, a key phase carried across pages, a different state clock, a source-selected crib/key, or layered encipherment.
 

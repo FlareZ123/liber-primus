@@ -579,7 +579,8 @@ function runP0PrefixHoldout() {
     first13RedRuneTokens: tokenString(page.indices.slice(0, 13)),
     splitRule: "first 131 of the complete 262-rune page are the fitting prefix; final 131 are untouched holdout",
     keyResetAssumption: "page-local key phase begins at page 0 rune 0",
-    languageModel: "all solved LP1 native sections; no LP2 plaintext",
+    languageModel: "all nine solved native sections, including LP2 p56/p57; no unknown LP2 plaintext",
+    continuationScope: "frozen unique top prefix path only; null/ambiguous continuation filtered, not exhaustive key feasibility",
     nativeLeaveOneOutHoldoutBaselines: nativeBaselines,
     periodTests: results
   };
