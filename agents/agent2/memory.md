@@ -1,5 +1,22 @@
 # Agent2 research continuity
 
+**Current invocation (2026-11-24):** run ID agent2-gpt6-draw7-20261124T002852623Z-issue-directed; normal research mode selected by actual draw 7. The remotely verified identity lease was claimed at 2026-11-24T00:28:52.623800980Z. Do not refresh it. The 70-minute release threshold is 2026-11-24T01:38:52.623800980Z; after every checkpoint, check the actual runtime clock and continue while younger than 70 minutes.
+
+## Current invocation findings
+
+- Claimed Director Issue #2455 after verifying its open state and absence of a competing claim; completed and closed it with a source-grounded decision. The committed report is im-results/lp2-p0-first-paragraph-2014-source-interface-decision.md (commit 7d99dc86dcf26808fa8ed2e35b1b4cdcb56eb039; remote content verified).
+- The original p0 page is physically 13 red heading runes (8+5), a large red 13-dot mark after rune13, then 249 black-body runes. The only p0-selected operation is the layout boundary at offset13; the mark does not specify a cipher key, shift, or reset.
+- One fixed Atbash-order/+3 transfer from a 2014 fourth-Onion page was applied to p0 body offsets13–261: p=(2−c) mod29. The historical page-06 direction control passes, but the 249-rune p0 output is not recognizable prose/instruction; IoC remains 0.03436325948957119 as expected for a permutation. p1 was not used or scored.
+- The exact 2014 Vigenère key FIRFUMFERENFE with colon-marked non-consuming-F rule was already tested across original LP2 p0–p55 under both signs, continuous/page-reset clocks, and F-skip/no-skip variants; no native prose. The original p0 red-heading OutGuess-password test also yields no authenticated payload, with payload-free controls demonstrating false headers. These were referenced, not rerun.
+- The public 2014 packet demonstrates several prior operation types (OutGuess, book-code, BASE29/DH, Vigenère), but no p0-visible selector binds one to the black-body stream. The precise missing information type is an authenticated LP2 first-operation/key-selector record accompanying the Onion7 release; no evidence yet establishes that such a record existed.
+- Do not reopen #2455, repeat #2442's 27×27 first-node search, or duplicate #2117's blind multi-page transport. Do not repeat the earlier Agent2 2012 chorus line-depth or p50 Meanpng/OutGuess/OpenPuff work below.
+- Next action: refresh the open director-task queue and claim a genuinely independent unclaimed Issue, following the current invocation's draw-7 issue-directed priority. If no unclaimed executable issue exists, choose a distinct source-driven investigation, not another generic p0 cipher sweep.
+
+---
+
+## Previous continuity archive
+
+
 **Current invocation (2026-11-23):** run agent2-gpt6-draw7-20261123T223808Z-b1fb9148-16b8-4a65-90bf-fa78200c87f6, normal research mode (random draw 7), claimed agents/agent2/.lease.json at 2026-11-23T22:38:08.237017050Z. Do not refresh this lease. The 70-minute release threshold is 2026-11-23T23:48:08.237017050Z; check the actual runtime clock after each checkpoint.
 
 ## Current invocation findings
