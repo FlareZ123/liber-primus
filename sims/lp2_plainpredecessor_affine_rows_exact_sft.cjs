@@ -1,10 +1,10 @@
 "use strict";
 // Direct previous-plaintext affine-row inverse. All 812^29 globally shared row tables.
-// Ordinary symbols, arbitrary independent word-start IVs; no authored cipher claim.
+// Ordinary and literal plaintext-F hold, arbitrary independent word-start IVs; no authored cipher claim.
 // Run from the repository root: node sims/lp2_plainpredecessor_affine_rows_exact_sft.cjs
 const fs=require('node:fs'),assert=require('node:assert/strict');
 const paths=["resources/liber-primus/lp2-corpus.json","resources/liber-primus/lp2-transcription.txt","resources/external/relikd-solved-gp29-native-v1.json","resources/control/english_wordfreq_textblob.txt","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt","resources/control/blake_song_of_liberty_train.txt"];
-function experiment(data) {
+function experiment(data,holdF=false) {
  const j=JSON.parse(data[0]),idx=new Map(j.runes.map((x,i)=>[x,i]));
  const native=JSON.parse(data[2]).sections.map(s=>({name:s.name,words:s.source_text.split(/[^ᚠ-ᛠ]+/u).map(w=>[...w].filter(x=>idx.has(x)).map(x=>idx.get(x))).filter(w=>w.length)}));
  let words=[],w=[],at=0,start=0;
@@ -21,7 +21,7 @@ function experiment(data) {
  const M=1654,T=new Int16Array(M*M);
  for(let i=0;i<M;i++){T[i]=i;T[i*M]=i;for(let k=1;k<=i;k++){let z=-1;if(i<842){const x=(i-1)/29|0,y=(i-1)%29,u=(k-1)/29|0,v=(k-1)%29;if(x===u){if(y===v)z=i}else if(y!==v){const a=mod((y-v)*inv[mod(x-u)]);z=842+(a-1)*29+mod(y-a*x)}}else if(k>=842){if(i===k)z=i}else{const a=((i-842)/29|0)+1,b=(i-842)%29,x=(k-1)/29|0,y=(k-1)%29;if(mod(a*x+b)===y)z=i}T[i*M+k]=T[k*M+i]=z}}
  /** @param {number[]} C @param {number[]} P */
- function candidate(C,P){const row=new Int16Array(29);let m=0;for(let k=1;k<C.length;k++){const x=P[k-1],point=1+29*P[k]+C[k],v=T[row[x]*M+point];if(v<0)return null;row[x]=v;m|=1<<x}const fields=[];for(let x=0;x<29;x++)if(m&(1<<x))fields.push(x,row[x]);return {p:P,f:fields}}
+ function candidate(C,P){const row=new Int16Array(29);let m=0;let prev=-1;for(let k=0;k<C.length;k++){const p=P[k];if(holdF&&p===0){if(C[k]!==0)return null;continue}if(prev>=0){const x=prev,point=1+29*p+C[k],v=T[row[x]*M+point];if(v<0)return null;row[x]=v;m|=1<<x}prev=p}const fields=[];for(let x=0;x<29;x++)if(m&(1<<x))fields.push(x,row[x]);return {p:P,f:fields}}
  /** @param {{f:number[]}} c @param {Int16Array} s */
  function fit(c,s){for(let j=0;j<c.f.length;j+=2)if(T[s[c.f[j]]*M+c.f[j+1]]<0)return false;return true}
  /** @param {{f:number[]}} c @param {Int16Array} s */
@@ -40,7 +40,7 @@ function experiment(data) {
  const controls=[];
  let seed=0x4733a41;
  const rng=()=>{seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return seed>>>0};
- for(const ex of [1,2]){const L=lexicon(ex),source=corpora[ex],K=Array.from({length:29},()=>[1+rng()%28,rng()%29]);const encrypt=(p,start)=>{const C=[mod(p[0]+start)];for(let i=1;i<p.length;i++){const [a,b]=K[p[i-1]];C.push(mod(a*p[i]+b))}return C};
+ for(const ex of [1,2]){const L=lexicon(ex),source=corpora[ex],K=Array.from({length:29},()=>[1+rng()%28,rng()%29]);const encrypt=(p,start)=>{const C=[];let prev=-1;for(const v of p){if(holdF&&v===0){C.push(0);continue}if(prev<0)C.push(mod(v+start));else{const [a,b]=K[prev];C.push(mod(a*v+b))}prev=v}return C};
  const prep=source.slice(0,1600).map((p,i)=>({p,start:i,w:encrypt(p,rng()%29)})).filter(r=>r.p.length>=8&&L.has(r.p.join(','))).sort(sort).slice(0,30);
  const training=solve(listsFor(prep,L),200000,2);const a=training.answers[0];if(!a)throw Error('control failed');const keyRows=[...a.S].map((v,x)=>v>=842?{x,a:((v-842)/29|0)+1,b:(v-842)%29}:null).filter(Boolean);const knownCorrect=keyRows.filter(r=>r.a===K[r.x][0]&&r.b===K[r.x][1]).length;
  const trainCorrect=a.chosen.filter(r=>r.p.join(',')===r.r.p.join(',')).length;
@@ -50,6 +50,9 @@ function experiment(data) {
  controls.push({ex,lex:L.size,train:prep.length,trainCorrect,solutions:training.answers.length,capped:training.capped,nodes:training.nodes,checks:training.checks,keyRows:keyRows.length,knownCorrect,hold:hold.length,inLex,covered,unique,correct,totalRunes,correctRunes,rows:keyRows});}
  return {lex:L.size,originalParts:parts,originalOovLower:parts.reduce((a,p)=>a+6-p.max,0),controls};
 }
-const r=experiment(paths.map(p=>fs.readFileSync(p,'utf8')));
+const data=paths.map(p=>fs.readFileSync(p,'utf8'));
+const r=experiment(data);
 assert.equal(r.lex,32131);assert.deepEqual(r.originalParts.map(p=>p.max),[2,3,3,3]);assert.equal(r.originalOovLower,13);assert.deepEqual(r.controls.map(c=>[c.train,c.trainCorrect,c.solutions,c.capped,c.keyRows,c.knownCorrect,c.hold,c.inLex,c.unique,c.correct,c.correctRunes]),[[30,30,1,false,18,18,48,41,37,37,253],[30,30,1,false,19,19,67,46,45,45,329]]);
-console.log(JSON.stringify(r,null,2));
+const h=experiment(data,true);
+assert.equal(h.lex,32131);assert.deepEqual(h.originalParts.map(p=>p.max),[2,3,3,3]);assert.equal(h.originalOovLower,13);assert.deepEqual(h.controls.map(c=>[c.train,c.trainCorrect,c.solutions,c.capped,c.keyRows,c.knownCorrect,c.hold,c.inLex,c.unique,c.correct,c.correctRunes]),[[30,30,1,false,17,17,48,41,37,37,253],[30,30,1,false,18,18,67,46,45,45,329]]);
+console.log(JSON.stringify({ordinary:r,literalFHold:h},null,2));
