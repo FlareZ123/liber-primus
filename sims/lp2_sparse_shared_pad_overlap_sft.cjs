@@ -5,7 +5,7 @@ function run(corpus,raw,native,donorTexts,stage="all"){
   const mod=x=>(x+29)%29;
   const runeMap=new Map(corpus.runes.map((x,i)=>[x,i]));
   const ids=s=>[...s].map(x=>runeMap.get(x)).filter(x=>x!==undefined);
-  const cfg={L:64,plantL:80,screenEdges:4,nullReplicates:99,minimumLLR:Math.log(1e6),seed:258011,chapterPairs:[[15,22],[40,53]],startAtEitherBoundary:true};
+  const cfg={L:64,plantL:80,screenEdges:4,nullReplicates:99,minimumLLR:Math.log(1e6),refinementSweeps:3,seed:258011,chapterPairs:[[15,22],[40,53]],startAtEitherBoundary:true};
   let seed=cfg.seed>>>0;
   const rng=()=>{seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return seed>>>0};
   const random=n=>rng()%n;
@@ -33,7 +33,7 @@ function run(corpus,raw,native,donorTexts,stage="all"){
       const key=`${n}/${off}/${m}`;if(fcache.has(key))return fcache.get(key);
       const out=new Map();let tot=0;
       for(const [w,v] of by.get(n)||[]){const t=w.slice(off,off+m);if(t.includes("A"))continue;out.set(t,(out.get(t)||0)+v);tot+=v}
-      const s=[...out.keys()],weights=Float64Array.from(s,x=>out.get(x)/tot),q={s,weights};fcache.set(key,q);return q;
+      const s=[...out.keys()],weights=Float64Array.from(s,x=>out.get(x)/tot),q={s,weights,index:new Map(s.map((v,i)=>[v,i]))};fcache.set(key,q);return q;
     };
     const pow=[1,64,4096,262144,16777216];
     const three=Array.from({length:6},(_,n)=>pow.slice(0,n).reduce((a,v)=>a+3*v,0));
@@ -47,7 +47,14 @@ function run(corpus,raw,native,donorTexts,stage="all"){
     // sum+3 raises bit5 exactly when lane >=29; subtract 29 in those lanes.
     const add=(a,b,m)=>{const s=a+b;return s-(((s+three[m])&top[m])>>>5)*29};
     for(let a=0;a<29;a++)for(let b=0;b<29;b++)assert(add(a,b,1)===(a+b)%29,"packed arithmetic");
-    return {by,frag,project,add,pow,types:[...by.values()].reduce((a,m)=>a+m.size,0)};
+    const bg=new Uint32Array(30*30),tg=new Uint32Array(30*30*30),uni=new Uint32Array(30);
+    // Word-marked character model, trained on exactly the same target-excluded sources.
+    const docs=[...donorTexts.map(latin),...solved.filter(x=>!exclude.includes(x.name)).map(x=>x.words)];
+    for(const ws of docs){let a=29,b=29;for(const w of ws){for(const c of [...w,29]){uni[c]++;bg[b*30+c]++;tg[(a*30+b)*30+c]++;a=b;b=c}}}
+    const logs=new Float64Array(30*30*30),totalUni=uni.reduce((a,v)=>a+v,0);
+    for(let a=0;a<30;a++)for(let b=0;b<30;b++){let z3=0,z2=0;for(let c=0;c<30;c++){z3+=tg[(a*30+b)*30+c];z2+=bg[b*30+c]}
+      for(let c=0;c<30;c++){const p1=(uni[c]+1)/(totalUni+30),p2=(bg[b*30+c]+10*p1)/(z2+10),p3=(tg[(a*30+b)*30+c]+10*p2)/(z3+10);logs[(a*30+b)*30+c]=Math.log(p3)}}
+    return {by,frag,project,add,pow,logs,types:[...by.values()].reduce((a,m)=>a+m.size,0)};
   }
   function tape(words){const c=Uint8Array.from(words.flat()),start=new Int32Array(c.length),end=new Int32Array(c.length);let i=0;for(const w of words){start.fill(i,i,i+w.length);end.fill(i+w.length,i,i+w.length);i+=w.length}assert(i===c.length&&[...c].every((_,k)=>start[k]<=k&&end[k]>k),"word geometry");return {c,start,end,words}}
   function prefixZero(c){const z=new Uint32Array(c.length+1);for(let i=0;i<c.length;i++)z[i+1]=z[i]+Number(c[i]===0);return z}
@@ -122,6 +129,38 @@ function run(corpus,raw,native,donorTexts,stage="all"){
     for(let k=0;k<L;k++)assert((pb[k]+key[k])%29===c2[B.i+k]&&(pa[k]+key[k])%29===c1[A.i+k],"replay");
     return {llr,logMAP,logPosterior:logMAP-total,count,countCapped:count===cap,pa:[...pa],pb:[...pb],key};
   }
+  /** Post-detection coordinate ascent over shared-pad-equivalent lexical pairs.
+      This is a heuristic contextual reranker; the detection likelihood is unchanged. */
+  function refine(A,B,c1,c2,model,dec){
+    const L=cfg.L,pa=dec.pa.slice(),pb=dec.pb.slice();
+    const atA=new Array(L),atB=new Array(L);
+    for(const g of A.g)for(let k=g.lo;k<g.hi;k++)atA[k]=g;
+    for(const g of B.g)for(let k=g.lo;k<g.hi;k++)atB[k]=g;
+    function objective(v,V){
+      let log=0,a=29,b=29;
+      for(let i=0;i<V.g.length;i++){
+        const g=V.g[i],f=g.frag,k=f.index.get(encode(v.slice(g.lo,g.hi)));if(k===undefined)return -Infinity;
+        log+=Math.log(f.weights[k]);
+        for(const c of [...v.slice(g.lo,g.hi),...(i+1<V.g.length?[29]:[])]){log+=model.logs[(a*30+b)*30+c];a=b;b=c}
+      }
+      return log;
+    }
+    const baseline=objective(pa,A)+objective(pb,B);let best=baseline,changes=0;
+    for(let sweep=0;sweep<cfg.refinementSweeps;sweep++){
+      let improved=0;
+      for(let k=0;k<L;k++){
+        const a=pa[k],b=pb[k],d=mod(a-b),ga=atA[k],gb=atB[k];let va=a,vb=b,local=best;
+        for(let x=1;x<29;x++){const y=mod(x-d);if(y===0||x===a)continue;pa[k]=x;pb[k]=y;
+          if(!ga.frag.index.has(encode(pa.slice(ga.lo,ga.hi)))||!gb.frag.index.has(encode(pb.slice(gb.lo,gb.hi))))continue;
+          const s=objective(pa,A)+objective(pb,B);if(s>local+1e-10){local=s;va=x;vb=y}}
+        pa[k]=va;pb[k]=vb;if(local>best+1e-10){best=local;improved++;changes++}
+      }
+      if(!improved)break;
+    }
+    const key=pa.map((x,k)=>mod(c1[A.i+k]-x));
+    for(let k=0;k<L;k++)assert((pa[k]+key[k])%29===c1[A.i+k]&&(pb[k]+key[k])%29===c2[B.i+k],"refined replay");
+    return {pa,pb,key,changes,contextScore:best,baselineContextScore:baseline};
+  }
   /** Precompute all eligible windows and geometry, independent of nonzero values. */
   function prepare(t1,t2,model){
     const L=cfg.L;
@@ -158,7 +197,7 @@ function run(corpus,raw,native,donorTexts,stage="all"){
     const enc=(t,k)=>({...t,c:Uint8Array.from(t.c,(x,z)=>x===0?0:(x+k[z])%29)});
     return {a:enc(t1,k1),b:enc(t2,k2),k1,k2};
   }
-  const controlPairs=[["0_koan_1","0_welcome"],["0_loss_of_divinity","jpg107-167"],["jpg107-167","0_welcome"]];
+  const controlPairs=[["0_koan_1","0_welcome"],["0_loss_of_divinity","jpg107-167"],["jpg107-167","0_welcome"],["0_koan_1","0_loss_of_divinity"]];
   const controls=[];
   for(const names of controlPairs){
     const model=makeModel(names),t1=tape(solved.find(x=>x.name===names[0]).words),t2=tape(solved.find(x=>x.name===names[1]).words),a=pick(t1,model,cfg.plantL),b=pick(t2,model,cfg.plantL);
@@ -166,15 +205,16 @@ function run(corpus,raw,native,donorTexts,stage="all"){
     const i=a[random(a.length)],j=b[random(b.length)],plant=crypt(t1,t2,i,j,true),prep=prepare(plant.a,plant.b,model),s=scan(prep,plant.a.c,plant.b.c,model);
     let result=null;
     if(s.best){const {i:x,j:y}=s.best,dec=score(view(plant.a,x,cfg.L,model),view(plant.b,y,cfg.L,model),plant.a.c,plant.b.c,true);
-      result={aligned:x-i===y-j&&x>=i&&x+cfg.L<=i+cfg.plantL,matchA:dec.pa.filter((v,k)=>v===t1.c[x+k]).length,matchB:dec.pb.filter((v,k)=>v===t2.c[y+k]).length,keyMatch:dec.key.filter((v,k)=>v===plant.k1[x+k]&&v===plant.k2[y+k]).length,count:dec.count,logPosterior:dec.logPosterior};
+      const ref=refine(view(plant.a,x,cfg.L,model),view(plant.b,y,cfg.L,model),plant.a.c,plant.b.c,model,dec);
+      result={aligned:x-i===y-j&&x>=i&&x+cfg.L<=i+cfg.plantL,unigramKeyMatch:dec.key.filter((v,k)=>v===plant.k1[x+k]&&v===plant.k2[y+k]).length,matchA:ref.pa.filter((v,k)=>v===t1.c[x+k]).length,matchB:ref.pb.filter((v,k)=>v===t2.c[y+k]).length,keyMatch:ref.key.filter((v,k)=>v===plant.k1[x+k]&&v===plant.k2[y+k]).length,count:dec.count,logPosterior:dec.logPosterior,changes:ref.changes,contextScore:ref.contextScore,baselineContextScore:ref.baselineContextScore};
     }
     const independent=crypt(t1,t2,i,j,false),ip=prepare(independent.a,independent.b,model),ins=scan(ip,independent.a.c,independent.b.c,model);
     controls.push({names,eligible:[a.length,b.length],plant:{i,j,...s,...result},independent:ins});
   }
-  // Acceptance is frozen before any original values are scored: all three
+  // Acceptance is frozen before any original values are scored: all four
   // target-excluded plants must find the planted diagonal and exact key/text,
   // and all independent controls must stay below the fixed LLR threshold.
-  const pass=controls.length===3&&controls.every(x=>x.plant?.aligned&&x.plant.matchA===cfg.L&&x.plant.matchB===cfg.L&&x.plant.keyMatch===cfg.L&&x.plant.best.llr>=cfg.minimumLLR&&(!x.independent.best||x.independent.best.llr<cfg.minimumLLR));
+  const pass=controls.length===4&&controls.every(x=>x.plant?.aligned&&x.plant.matchA===cfg.L&&x.plant.matchB===cfg.L&&x.plant.keyMatch===cfg.L&&x.plant.best.llr>=cfg.minimumLLR&&(!x.independent.best||x.independent.best.llr<cfg.minimumLLR));
   const result={cfg,controls,pass};
   if(stage==="calibrate"||!pass)return result;
   const model=makeModel([]),[t1,t2]=cfg.chapterPairs.map(([a,b])=>tape(all.filter(x=>x.p>=a&&x.p<=b).map(x=>x.w))),prep=prepare(t1,t2,model);
@@ -185,7 +225,7 @@ function run(corpus,raw,native,donorTexts,stage="all"){
   for(let q=0;q<cfg.nullReplicates;q++){const s=scan(prep,permute(t1.c),permute(t2.c),model);nulls.push({feasible:s.feasible,max:s.best?.llr??null})}
   const s=scan(prep,t1.c,t2.c,model),mx=Math.max(-Infinity,...nulls.map(x=>x.max??-Infinity));
   result.original={lengths:[t1.c.length,t2.c.length],types:model.types,zeroFreeWindows:[prep.v1,prep.v2],...s,nulls,maxNull:Number.isFinite(mx)?mx:null,p:(1+nulls.filter(x=>(x.max??-Infinity)>=(s.best?.llr??-Infinity)).length)/(1+nulls.length),nominated:!!s.best&&s.best.llr>=cfg.minimumLLR&&s.best.llr>mx};
-  if(result.original.nominated){const {i,j}=s.best;result.original.candidate=score(view(t1,i,cfg.L,model),view(t2,j,cfg.L,model),t1.c,t2.c,true)}
+  if(result.original.nominated){const {i,j}=s.best;const A=view(t1,i,cfg.L,model),B=view(t2,j,cfg.L,model),dec=score(A,B,t1.c,t2.c,true);result.original.candidate={unigram:dec,refined:refine(A,B,t1.c,t2.c,model,dec)}}
   return result;
 }
 module.exports={run};
