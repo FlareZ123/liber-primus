@@ -31,10 +31,10 @@ function parseUnknownSource() {
   const rawLines = [];
   let runeCount = 0;
   let pageCount = 0;
-  for (const section of transcription.split(/^%$/m)) {
+  for (const section of transcription.split(/^%\r?$/m)) {
     const pageLines = [];
     let pageRunes = 0;
-    for (const raw of section.split('/\n')) {
+    for (const raw of section.split(/\/\r?\n/)) {
       const xs = [...raw].filter((ch) => runeIndex.has(ch))
         .map((ch) => runeIndex.get(ch));
       if (xs.length) {
