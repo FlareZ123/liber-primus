@@ -1,3 +1,5 @@
+// HISTORICAL LEGACY INPUT: image-corrected source has 254 intervals, not 256.
+// See im-results/lp2-original-punctuation-256-slot-grid-gate.md.
 "use strict";
 /**
  * Original LP2 punctuation/page-boundary 256-interval versus 256-byte table gate.

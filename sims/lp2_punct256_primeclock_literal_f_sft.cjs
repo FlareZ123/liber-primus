@@ -1,3 +1,5 @@
+// HISTORICAL LEGACY INPUT: image-corrected source has 254 intervals, not 256.
+// See im-results/lp2-original-punctuation-256-slot-grid-gate.md.
 "use strict";
 /**
  * Frozen original-source gate: p50 byte as a zero-based starting prime index
