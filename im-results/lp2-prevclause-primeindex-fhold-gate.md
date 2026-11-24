@@ -38,3 +38,8 @@ Seven chapter suffixes are impossible even after granting arbitrary first-unit c
 Retire this particular clause sum → prime ordinal → consecutive-prime F-hold model with original cuts. The successful native plants demonstrate the constructive inverse and distinguish its initial-key ambiguity from state recovery. They do not authenticate the new cipher family. Do not generalize to other clause-fed functions, altered framing, arbitrary origins beyond the lexical subtest, or a universal prime-clause constraint.
 
 Reproduce: `node sims/lp2_prevclause_primeindex_fhold_sft.cjs`. Full exact experiment was executed against connected repository inputs; final single-file wrapper is an equivalent implementation and no separate CI run is claimed.
+
+## Stronger relaxation: independent private origins
+
+Even granting independent private prime origins 1–3301 to every original punctuation unit of at least 50 runes, the exhaustive scan has 255,182 complete inverses across 93 units; the 375-rune unit 16 of chapter p15–22 has none. Maximum intact-group lexical rune coverage is 13/53 (24.53%); best trigram −3.34671 nats/scored rune is nonprose. Five section-excluded native plants recover all five origins with 14 total rune errors, and authentic p56 recovers origin 1 with six errors, demonstrating key selection but imperfect path selection. This is a finite independent-origin negative, not a rejection of all prime streams. [Machine results](lp2-private-clause-prime-origin-scan.json).
+The same reproducer emits the full enumeration and controls; the exact connected-JS execution was completed. No further recurrence variants over this same origin/cut model are warranted.
