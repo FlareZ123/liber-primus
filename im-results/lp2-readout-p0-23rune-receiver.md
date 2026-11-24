@@ -54,7 +54,7 @@ Established computationally from the canonical corpus and table:
 - These receiver facts depend on interpreting the p50 base-60 values as LP2 rune offsets; that output type is not creator-authenticated (see `im-results/lp2-p50-rune-offset-output-type-gate.md`, #1725).
 - Agent8's separate p15/p53 179-adic cross-artifact fingerprint reselects p0 offset80 as the unique 23-rune window with residue157 and center F. This strengthens the candidate receiver geometry, but the coordinate and p50 integer-output interpretations remain intermediate hypotheses; see `im-results/lp2-p15-p53-dh23-179-adic-read-fingerprint.md`.
 
-The upstream READ OUT plaintext remains a candidate from the p28 investigation, not an independently established manuscript plaintext. The receiver selection does not decrypt the 23 runes. Initial tests of uniform ±K shifts, simple cube powers, H on the whole span and on wordwise nested shells, and a repeating-key Vigenere interpretation did not yield readable plaintext. A later direct transfer of the source-supported p28 power roles also fails: the receiver's sole F is its center, so cube3 can be applied to that singleton and exponent27 is a genuine multiplicative reciprocal on all 22 outer runes; the fixed output is `EWSOWJIASNCMFEGHSDYOEOXM`, or `EWS / OWJIASNC / MFEGH / SDYOEOXM` at the preserved word boundaries. These negative tests do not exclude a different DH-derived reversible operation or the possibility that the block is key material rather than plaintext.
+The upstream READ OUT plaintext remains a candidate from the p28 investigation, not an independently established manuscript plaintext. The receiver selection does not decrypt the 23 runes. Initial tests of uniform ±K shifts, simple cube powers, H on the whole span and on wordwise nested shells, and a repeating-key Vigenere interpretation did not yield readable plaintext. A later direct transfer of the source-supported p28 power roles also fails: the receiver's sole F is its center, so cube3 can be applied to that singleton and exponent27 is a genuine multiplicative reciprocal on all 22 outer runes; the fixed output is `EWSOWJIASNCMFEGHSDYOEOXM`, or `EWS / OWJIASNC / MFEGH / SDYOEOXM` at the preserved word boundaries. These negative tests do not exclude a different DH-derived reversible operation or the possibility that the block is key material rather than plaintext; however, direct repeating-key use of both the raw receiver and its p28-transformed output on untouched p1–p55 has now also failed under continuous and page-reset clocks (see the Agent17 key-transfer gate below).
 
 See `lp2-readout-p0-center-reciprocal-transfer-gate.md` for the exact transfer and standalone reproducer.
 
@@ -104,9 +104,27 @@ This is not a plaintext recovery. The 23-rune output is `LIARINDAJXOEFLTHTAIAAER
 
 Retain the unique `LIAR` prefix as an unresolved marker: it could be a deliberate warning/decoy or a partial clue, but the present evidence does not distinguish those interpretations. Do not add a rail-fence, Vigenere or other second layer without an independent source selector. Agent8's 179-adic result remains an intermediate structural selection, not a decryption or an authenticated p50 opcode.
 
+
+## Direct key transfer to untouched p1–p55 pages (Agent17, 24 November 2026)
+
+The report leaves open that the selected 23-rune block might be key material rather than plaintext. A bounded test therefore uses it only as a key and applies it to the untouched pages p1–p55.
+
+Two 23-symbol candidates are source-derived:
+
+1. The raw p0 receiver at offsets 80–102.
+2. The output of the already documented p28 center-cube / outer-reciprocal transfer on that receiver.
+
+Each is tested as a repeating additive GP29 key, with both signs, under two plausible clocks: one continuous across p1–p55, or reset at each page. No phase fitting, F-hold, extra layer, or alternate alphabet is introduced. All eight variants re-encrypt the original **12,694/12,694** target runes exactly.
+
+The untouched p1–p55 stream has IoC **0.03448065787**; clear p57 has IoC **0.06270996641**; the uniform GP29 baseline is **0.03448275862**. The eight outputs range only from **0.03445228238 to 0.03449416292**. Character-trigram scores against both the Latin Caesar Book I and English Shakespeare controls remain near the ciphertext scores; the best English score is only −11.29694, compared with −7.85722 for clear p57. The decoded prefixes are nonlinguistic.
+
+**Decision:** retire direct repeating additive-key transfer of these two fixed 23-rune candidates to p1–p55 under continuous and page-reset clocks. This does not exclude a different KDF, one-time-pad construction, or other independently selected cipher; it supplies no plaintext or key. Do not add F-hold or fitted phases without a new source selector.
+
+**Reproducer:** \`sims/lp2_readout_p0_23rune_key_transfer_sft.cjs\`.
+
 ## Next decisive question
 
-Do not widen direct K/g permutations or the tested 179-derived scalar family on this receiver. The unique `LIAR` prefix is unresolved and crosses a printed word boundary; a second layer needs an independent first-party selector. The next productive direction is a blind consumer of the frozen 179-adic/base60 operation on an untouched, independently selected original object, without reusing p0 80–102.
+Do not widen direct K/g permutations, the tested 179-derived scalar family, or the direct repeating-key transfers of p0 80–102 on this receiver. The unique `LIAR` prefix is unresolved and crosses a printed word boundary; a second layer needs an independent first-party selector. The next productive direction remains a blind consumer of the frozen 179-adic/base60 operation on an untouched, independently selected original object.
 
 ## Reproduction
 
