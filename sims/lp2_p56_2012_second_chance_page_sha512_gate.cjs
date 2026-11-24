@@ -24,36 +24,43 @@ assert(midiPath, "Pass the exact Cicada.mid extracted from the signed 2012 email
 const inputs = [
   {
     name: "2012 sq6wmgv2zcsrix6t.onion exact root HTML page",
+    authentication: "archived HTML; embedded PGP message verifies with Cicada 2012 key",
     path: path.join(root, "resources/external/2012-sq6wmgv2zcsrix6t-onion-index.html"),
     expectedGitBlobSha1: "03a7bd9e98578fd51ae3f798375cbbe8bc41dd96"
   },
   {
-    name: "2012 participant-specific one-time RSA page message",
+    name: "2012 participant-mirrored one-time RSA page message",
+    authentication: "provenance-qualified mirror; PGP signature does not verify",
     path: path.join(root, "resources/external/2012-sq6wmgv2zcsrix6t-unknown.asc"),
     expectedGitBlobSha1: "0e69b063b379a8ccdd8a96815de318bcf65a1247"
   },
   {
-    name: "2012 participant-specific second-chance RSA page message",
+    name: "2012 participant-mirrored second-chance RSA page message",
+    authentication: "provenance-qualified mirror; PGP signature does not verify",
     path: path.join(root, "resources/external/2012-sq6wmgv2zcsrix6t-another-unknown.asc"),
     expectedGitBlobSha1: "e2dbbad61d8dfb1a9efa736a331f183745ac157e"
   },
   {
     name: "2012 countdown clear-signed message",
+    authentication: "clear-signed; verified with Cicada 2012 key in workflow",
     path: path.join(root, "resources/historical/cicada2012-countdown-message.asc"),
     expectedGitBlobSha1: "7229104f48f4a0eeeae69c901eb74cb21baed956"
   },
   {
     name: "2012 one-time RSA page clear-signed message",
+    authentication: "clear-signed; verified with Cicada 2012 key in workflow",
     path: path.join(root, "resources/historical/cicada2012-message-only-displayed.asc"),
     expectedGitBlobSha1: "672184615cf25d19e5eb177875be83b4d83c1128"
   },
   {
     name: "2012 second-chance MIDI follow-up clear-signed email",
+    authentication: "clear-signed; verified with Cicada 2012 key in workflow",
     path: path.join(root, "resources/historical/cicada2012-midi-email.asc"),
     expectedGitBlobSha1: "cbdb9899a5c77f364456f55e39bd25b73467d809"
   },
   {
     name: "2012 signed literal MIDI attachment Cicada.mid",
+    authentication: "embedded PGP signature verifies with Cicada 2012 key",
     path: midiPath,
     expectedGitBlobSha1: "11924e0e195208c2eea757655035e149fb8a190f",
     expectedSha256: "e6c5b86bb1a95f1a2239237eaf9d060ba708f07d46ffe8c4bce4fca06a5c529c"
@@ -65,6 +72,7 @@ const results = inputs.map(input => {
   const blob = gitBlobSha1(bytes);
   const result = {
     name: input.name,
+    authentication: input.authentication,
     bytes: bytes.length,
     git_blob_sha1: blob,
     sha256: sha256(bytes),
