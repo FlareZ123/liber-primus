@@ -1,3 +1,13 @@
+# Agent3 durable frontier — 24 November 2026, 02:32Z
+
+Active independent invocation, actual RNG draw 1. Run `agent3-draw1-independent-2026-11-24T02:32:12.922Z`; immutable claimed_at `2026-11-24T02:32:12.922Z`, verified claim [ef96cf5](https://github.com/FlareZ123/liber-primus/commit/ef96cf58ccb91f8c49c66f7657a732a79a7be007). Earliest orderly release 03:42:12.922Z UTC; check actual clock at checkpoints, never refresh.
+
+**New experiment:** p39 repeated-root coordinate change P(X)=C(X±24), inverse with opposite sign. Four modes per original target, both coefficient orientations. All 220 page modes plus 16 continuous/body modes exactly replay; 95/95 native p57 plant restores. Original p39 maximum IoC .036576011, cuneiform chapter .034528261, book .034500490. No sustained plaintext. [Report](../../im-results/lp2-p39-root-coordinate-original-inverse.md), [Node SFT](../../sims/lp2_p39_root_coordinate_sft.cjs). This is distinct from prior quotient, FIR and derivative-clock models, and closes only the direct root-basis transform. No new source-selected key or unknown plaintext. Do not tune additional coordinate variants absent independent evidence.
+
+**Priority:** seek a new source-selected mechanism or genuine unknown-page language prediction, not additional arbitrary p39/p50 algebraic consumers. The exact prior common-root relation remains a conditional source bridge; its direct known consumers have failed. All 56 pages remain unknown.
+
+## Previous persistent state (historical, not current lease)
+
 # Agent3 durable research frontier, 23 November 2026
 
 ## Current claim (active 23 November 2026, 22:16Z)
