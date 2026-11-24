@@ -1,0 +1,152 @@
+{
+  "key": [
+    10,
+    2,
+    14,
+    7,
+    19,
+    6,
+    18,
+    12,
+    7,
+    8,
+    17,
+    0,
+    19,
+    7,
+    14,
+    18,
+    14,
+    19,
+    13,
+    0,
+    1,
+    2,
+    0
+  ],
+  "lexicon": 29157,
+  "lexicalArcs": 829,
+  "sourceWords": 2896,
+  "sourceRunes": 12956,
+  "control": [
+    {
+      "joint": {
+        "trainWords": 45,
+        "testWords": 30,
+        "trainMatches": 44,
+        "testMatches": 30,
+        "initial": 3,
+        "holdoutPhase": 2,
+        "expectedPhase": 3,
+        "trainExact": 44,
+        "testExact": 30,
+        "trainReadout": "A ? A MAN DECIDED TO GO AND STUDY WITH A MASTER HE WENT TO THE DOOR OF THE MASTER WHO ARE YOU WHO WISHES TO STUDY HERE ASKED THE MASTER THE STUDENT TOLD THE MASTER HIS NAME THAT IS NOT WHO YOU ARE THAT",
+        "testReadout": "IS ONLY WHAT YOU ARE CALLED WHO ARE YOU WHO WISHES TO STUDY HERE HE ASKED AGAIN THE MAN THOUGHT FOR A MOMENT AND REPLIED I AM A PROFESSOR THAT"
+      },
+      "greedy": {
+        "trainWords": 45,
+        "testWords": 30,
+        "trainMatches": 25,
+        "testMatches": 21,
+        "initial": 3,
+        "holdoutPhase": 2,
+        "expectedPhase": 3,
+        "trainExact": 21,
+        "testExact": 20,
+        "trainReadout": "A KOAG A MAN DEOIDEP TO GA SND LTUCQ WULH A MAKTER HE WENS TN THE DNOR OF TGE MASTER WHA ARE YOU WHO WILGES TO STUDY HERE AKKED LHE MAKTER THE STUDENM TOLD LHE MAKTER HIS NSME THAT IL MOT WHO KOU ARE SHSS",
+        "testReadout": "IL ONLQ WHAT YNU ARE CALLED WGN ARE QNU WHO WIKGES TO STUDY HERE HE ASCEV AGAIN THE MSN THOUGHT FOR A MOMENT AND REPEIED I AM A PROFEKSOR THAT"
+      },
+      "nativeAmbiguous": 65,
+      "actualTrainEnd": 2
+    },
+    {
+      "joint": {
+        "trainWords": 45,
+        "testWords": 30,
+        "trainMatches": 45,
+        "testMatches": 29,
+        "initial": 11,
+        "holdoutPhase": 3,
+        "expectedPhase": 11,
+        "trainExact": 45,
+        "testExact": 29,
+        "trainReadout": "WHO YOU ARE REPLIED THE MASTER WHO ARE YOU WHO WISHES TO STUDY HERE CONFUSED THE MAN THOUGHT SOME MORE FINALLY HE ANSWERED I AM A HUMAN BEING THAT IS ONLY YOUR SPECIES NOT WHO YOU ARE WHO ARE YOU WHO WISHES TO STUDY HERE",
+        "testReadout": "ASKED THE MASTER AGAIN AFTER A MOMENT OF THOUGHT THE PROFESSOR REPLIED I AM A CONSCIOUSNESS ? AN ARBITRARY BODY THAT IS MERELY WHAT YOU ARE NOT WHO YOU ARE"
+      },
+      "greedy": {
+        "trainWords": 45,
+        "testWords": 30,
+        "trainMatches": 22,
+        "testMatches": 14,
+        "initial": 11,
+        "holdoutPhase": 3,
+        "expectedPhase": 11,
+        "trainExact": 22,
+        "testExact": 14,
+        "trainReadout": "WHN YOU ARE REPKAEV THE MASLEJ WGO AJE YOU WHA OISHES TO STUVY AEJE CONFUSEV THE MAM LHOUGAT SOME MORE FINALLY HD ANLOEREP I AM A HUMAN BEING LHAT IK ONLY RAWR SPEBIES NOL WHN YOU ARE WHO SRE YOU WHN WBSHES TO STUDY HERE",
+        "testReadout": "ASWED THD MALTER AGAIN AFSER A MOMEML OF TGOUZHT THE IROFESKOR KDPLIEC I AF A CANSCINUSNQLS BNHABITING AN ARBITJARQ BODY THAT IS FERELY WGAT YOU AKD NOT OAO YOU ARE"
+      },
+      "nativeAmbiguous": 86,
+      "actualTrainEnd": 3
+    },
+    {
+      "joint": {
+        "trainWords": 45,
+        "testWords": -5,
+        "trainMatches": 40,
+        "testMatches": 0,
+        "initial": 19,
+        "holdoutPhase": 16,
+        "expectedPhase": 19,
+        "trainExact": 40,
+        "testExact": 0,
+        "trainReadout": "TO STUDY HERE THE MAN WAS GETTING IRRITATED I AM HE STARTED BUT HE COULD NOT THINK OF ANYTHING ELSE TO SAY SO HE TRAILED OFF AFTER A LONG PAUSE THE MASTER REPLIED THEN YOU ARE WELCOME TO COME STUDY",
+        "testReadout": ""
+      },
+      "greedy": {
+        "trainWords": 45,
+        "testWords": -5,
+        "trainMatches": 24,
+        "testMatches": 0,
+        "initial": 19,
+        "holdoutPhase": 16,
+        "expectedPhase": 19,
+        "trainExact": 21,
+        "testExact": 0,
+        "trainReadout": "TO STUDY HERE THE MAN WAK GETTING IRRITATQV U AM HE STAJTED BUT HE COULD NOL THINK OF ANRSHING ELSE TN SAY SN GE TJAILED OFF AFMER A LONZ PAUSE THE MASSER JWPLIED THEN KOU ARE WEKCOME MO CNMD STUDK",
+        "testReadout": ""
+      },
+      "nativeAmbiguous": 40,
+      "actualTrainEnd": 16
+    }
+  ],
+  "original": {
+    "runes": 308,
+    "joint": {
+      "trainWords": 49,
+      "testWords": 17,
+      "trainMatches": 7,
+      "testMatches": 2,
+      "initial": 19,
+      "holdoutPhase": 19,
+      "expectedPhase": null,
+      "trainExact": null,
+      "testExact": null,
+      "trainReadout": "A ? ? GAME ? AT ? ? CO ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? HA ? ? ? ? ? ? ? ? ? ? ? ? ? IT ? TY",
+      "testReadout": "? ? LI KM ? ? ? ? ? ? ? ? ? ? ? ? ?"
+    },
+    "greedy": {
+      "trainWords": 49,
+      "testWords": 17,
+      "trainMatches": 6,
+      "testMatches": 0,
+      "initial": 14,
+      "holdoutPhase": 9,
+      "expectedPhase": null,
+      "trainExact": null,
+      "testExact": null,
+      "trainReadout": "M UZNQIZRHNGY BHXXBZMFAT MMVS UTTGGAMQT BJ UMDTWPO TBM MA AJO EWUJH FAQYISVFNA JXMM DVHX CUHRLSYHWRI HBRALTUTSO OUI VASUUT TIXMWAJLW XAQFOE YFK XECSL TJRCXV XEABMWQ AAGH KNWWMTL HO FRB WLBQN PBQBEZ EAUU JLKW CH HWQEVGBB QHLBTE GQCA GNIMZFTCH FBMWQLBY LAOURT XSLMCIJMY EW ZOKW FEWU CWDPKL XMKHWXOL AAWQ IF HDYASGYQQGM AE",
+      "testReadout": "YXTAAJMQHEGXLG QCYBD MJ LF KNONWFPML SIZYBSS IK IYITQAVUJITVSSRO LQDYYBY IBMCV WXE LTQQSETS DQEERTMOYA HAGN CLTUUOE QJT ZEY"
+    }
+  }
+}
