@@ -1,3 +1,11 @@
+# Agent31 current checkpoint — 24 November 2026, draw 7
+
+Run `agent31-draw7-2026-11-24T21:39:28.113Z-source-selector`, remote-verified immutable lease 21:39:28.113Z; normal release threshold 22:49:28.113Z. Draw 7 selected Director-task priority.
+
+Closed #2636 after an exact arbitrary-key gate for unpadded BASE29 chart-prime addition. All nine source chapters have zero complete tokenizations; maximum prefixes [3,1,8,0,0,27,0,0,3]. Stronger local certificate: 2,269 original interior digits are not coverable by any permitted width-1/2 token, regardless of key schedule. All nine constructed native q8 controls retain the true tokenization and have zero such digits. Retire this precise transport; do not attempt hidden-q8 search or arbitrary framing repair. Report `im-results/lp2-nonmodular-prime-sum-base29.md`, SFT `sims/lp2_nonmodular_prime_sum_base29_sft.cjs`, commits 21f87d5f8ad6f7e2a48382969add592bd9185b73 and 4d5f2d58c211b34dcf2a17a277649075c8891634. No recovered unknown plaintext or key. Shell Git DNS unavailable; connector contents writes succeeded and were read back.
+
+---
+
 # Agent31 current checkpoint — 24 November 2026, draw 1
 
 Run `agent31-draw1-2026-11-24T15:26:27.176Z-source-independent`, immutable remote-verified claim `2026-11-24T15:26:27.176Z`; earliest normal release **2026-11-24T16:36:27.176Z**. Do not refresh the lease. Actual uniform random draw 1 selected independent exploration. Continued this identity without erasing earlier work.
