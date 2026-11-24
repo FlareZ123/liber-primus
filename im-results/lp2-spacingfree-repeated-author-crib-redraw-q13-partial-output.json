@@ -1,0 +1,432 @@
+{
+  "controls": [
+    {
+      "name": "0_koan_1",
+      "key": [
+        17,
+        8,
+        3,
+        27,
+        11,
+        24,
+        6,
+        1,
+        5,
+        13,
+        9,
+        4,
+        22
+      ],
+      "candidates": 1,
+      "paths": 1,
+      "start": 54,
+      "trueStart": 54,
+      "keyCorrect": true,
+      "n": 150,
+      "correct": 150,
+      "score": -2.3186336815862965,
+      "heldoutStart": 80
+    },
+    {
+      "name": "0_koan_1",
+      "key": [
+        9,
+        23,
+        14,
+        2,
+        12,
+        6,
+        28,
+        17,
+        8,
+        16,
+        3,
+        25,
+        11
+      ],
+      "candidates": 1,
+      "paths": 1,
+      "start": 54,
+      "trueStart": 54,
+      "keyCorrect": true,
+      "n": 150,
+      "correct": 150,
+      "score": -2.3186336815862965,
+      "heldoutStart": 80
+    }
+  ],
+  "original": [
+    {
+      "name": "0_koan_1",
+      "first": 54,
+      "second": 294,
+      "length": 26,
+      "crib": "ᚦᛖᛗᚪᛋᛏᛖᚱᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋ",
+      "nodes": 13040717,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 55,
+      "second": 295,
+      "length": 26,
+      "crib": "ᛖᛗᚪᛋᛏᛖᚱᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏ",
+      "nodes": 13042670,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 56,
+      "second": 296,
+      "length": 26,
+      "crib": "ᛗᚪᛋᛏᛖᚱᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩ",
+      "nodes": 13040274,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 57,
+      "second": 297,
+      "length": 26,
+      "crib": "ᚪᛋᛏᛖᚱᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋ",
+      "nodes": 13035880,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 58,
+      "second": 298,
+      "length": 26,
+      "crib": "ᛋᛏᛖᚱᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏ",
+      "nodes": 13033015,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 59,
+      "second": 299,
+      "length": 26,
+      "crib": "ᛏᛖᚱᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏᚢ",
+      "nodes": 13028111,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 60,
+      "second": 300,
+      "length": 26,
+      "crib": "ᛖᚱᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏᚢᛞ",
+      "nodes": 13041754,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 61,
+      "second": 301,
+      "length": 26,
+      "crib": "ᚱᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏᚢᛞᚣ",
+      "nodes": 13033938,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 62,
+      "second": 302,
+      "length": 26,
+      "crib": "ᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏᚢᛞᚣᚻ",
+      "nodes": 13040805,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 63,
+      "second": 303,
+      "length": 26,
+      "crib": "ᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏᚢᛞᚣᚻᛖ",
+      "nodes": 13040411,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 64,
+      "second": 304,
+      "length": 26,
+      "crib": "ᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏᚢᛞᚣᚻᛖᚱ",
+      "nodes": 13040641,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 65,
+      "second": 305,
+      "length": 26,
+      "crib": "ᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏᚢᛞᚣᚻᛖᚱᛖ",
+      "nodes": 13042653,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 66,
+      "second": 423,
+      "length": 26,
+      "crib": "ᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏᚢᛞᚣᚻᛖᚱᛖᚪ",
+      "nodes": 13030699,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 67,
+      "second": 424,
+      "length": 26,
+      "crib": "ᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏᚢᛞᚣᚻᛖᚱᛖᚪᛋ",
+      "nodes": 13025028,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 68,
+      "second": 425,
+      "length": 26,
+      "crib": "ᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏᚢᛞᚣᚻᛖᚱᛖᚪᛋᚳ",
+      "nodes": 13038684,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 69,
+      "second": 426,
+      "length": 26,
+      "crib": "ᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏᚢᛞᚣᚻᛖᚱᛖᚪᛋᚳᛖ",
+      "nodes": 13051252,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 70,
+      "second": 427,
+      "length": 26,
+      "crib": "ᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏᚢᛞᚣᚻᛖᚱᛖᚪᛋᚳᛖᛞ",
+      "nodes": 13037497,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 71,
+      "second": 428,
+      "length": 26,
+      "crib": "ᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏᚢᛞᚣᚻᛖᚱᛖᚪᛋᚳᛖᛞᚦ",
+      "nodes": 13036133,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 72,
+      "second": 429,
+      "length": 26,
+      "crib": "ᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏᚢᛞᚣᚻᛖᚱᛖᚪᛋᚳᛖᛞᚦᛖ",
+      "nodes": 13041332,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 73,
+      "second": 430,
+      "length": 26,
+      "crib": "ᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏᚢᛞᚣᚻᛖᚱᛖᚪᛋᚳᛖᛞᚦᛖᛗ",
+      "nodes": 13042535,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 74,
+      "second": 431,
+      "length": 26,
+      "crib": "ᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏᚢᛞᚣᚻᛖᚱᛖᚪᛋᚳᛖᛞᚦᛖᛗᚪ",
+      "nodes": 13036701,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 75,
+      "second": 432,
+      "length": 26,
+      "crib": "ᛁᛋᚻᛖᛋᛏᚩᛋᛏᚢᛞᚣᚻᛖᚱᛖᚪᛋᚳᛖᛞᚦᛖᛗᚪᛋ",
+      "nodes": 13042628,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 76,
+      "second": 433,
+      "length": 26,
+      "crib": "ᛋᚻᛖᛋᛏᚩᛋᛏᚢᛞᚣᚻᛖᚱᛖᚪᛋᚳᛖᛞᚦᛖᛗᚪᛋᛏ",
+      "nodes": 13036569,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 77,
+      "second": 434,
+      "length": 26,
+      "crib": "ᚻᛖᛋᛏᚩᛋᛏᚢᛞᚣᚻᛖᚱᛖᚪᛋᚳᛖᛞᚦᛖᛗᚪᛋᛏᛖ",
+      "nodes": 13037407,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 78,
+      "second": 435,
+      "length": 26,
+      "crib": "ᛖᛋᛏᚩᛋᛏᚢᛞᚣᚻᛖᚱᛖᚪᛋᚳᛖᛞᚦᛖᛗᚪᛋᛏᛖᚱ",
+      "nodes": 13034299,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 407,
+      "second": 564,
+      "length": 26,
+      "crib": "ᚾᚩᛏᚹᚻᚩᚣᚩᚢᚪᚱᛖᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁ",
+      "nodes": 13047076,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 408,
+      "second": 565,
+      "length": 26,
+      "crib": "ᚩᛏᚹᚻᚩᚣᚩᚢᚪᚱᛖᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋ",
+      "nodes": 13044127,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 409,
+      "second": 566,
+      "length": 26,
+      "crib": "ᛏᚹᚻᚩᚣᚩᚢᚪᚱᛖᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻ",
+      "nodes": 13035098,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 410,
+      "second": 567,
+      "length": 26,
+      "crib": "ᚹᚻᚩᚣᚩᚢᚪᚱᛖᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖ",
+      "nodes": 13038458,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 411,
+      "second": 568,
+      "length": 26,
+      "crib": "ᚻᚩᚣᚩᚢᚪᚱᛖᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋ",
+      "nodes": 13041663,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 412,
+      "second": 569,
+      "length": 26,
+      "crib": "ᚩᚣᚩᚢᚪᚱᛖᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏ",
+      "nodes": 13043985,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 413,
+      "second": 570,
+      "length": 26,
+      "crib": "ᚣᚩᚢᚪᚱᛖᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩ",
+      "nodes": 13030024,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 414,
+      "second": 571,
+      "length": 26,
+      "crib": "ᚩᚢᚪᚱᛖᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋ",
+      "nodes": 13042955,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 415,
+      "second": 572,
+      "length": 26,
+      "crib": "ᚢᚪᚱᛖᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏ",
+      "nodes": 13031755,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 416,
+      "second": 573,
+      "length": 26,
+      "crib": "ᚪᚱᛖᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏᚢ",
+      "nodes": 13041918,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 417,
+      "second": 574,
+      "length": 26,
+      "crib": "ᚱᛖᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏᚢᛞ",
+      "nodes": 13037154,
+      "starts": 12931,
+      "hits": []
+    },
+    {
+      "name": "0_koan_1",
+      "first": 418,
+      "second": 575,
+      "length": 26,
+      "crib": "ᛖᚹᚻᚩᚪᚱᛖᚣᚩᚢᚹᚻᚩᚹᛁᛋᚻᛖᛋᛏᚩᛋᛏᚢᛞᚣ",
+      "nodes": 13034444,
+      "starts": 12931,
+      "hits": []
+    }
+  ],
+  "originalRunes": 12956,
+  "scope": "LP1 26-rune fragments of maximal repeated substrings of at least 20 runes; q13 optional collision-only one-redraw, all offsets, no printed spaces"
+}
