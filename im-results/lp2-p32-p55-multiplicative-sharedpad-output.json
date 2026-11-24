@@ -2,21 +2,21 @@
   "controls": [
     {
       "hold": false,
-      "n": 39,
+      "n": 95,
       "oov": 0,
-      "exactPad": 33,
+      "exactPad": 95,
       "fullReplay": true,
-      "plaintextA": "… CWESTIAN PILGRIM TO THE GREAT JOURNEY TOWARD THE AND OF … … … … … … … … … … … … … …",
-      "plaintextB": "I STEAM DURNG A LESSON THE MASTER EXPLAINED THE D THE I"
+      "plaintextA": "… WELCOME PILGRIM TO THE GREAT JOURNEY TOWARD THE END OF ALL THNGS IT IS NOT AN EASY TRIP BUT FOR THOSE WHO FIND THEIR WAY HERE IT IS A … … … … …",
+      "plaintextB": "PARABLE LICE THE INSTAR TUNNELNG TO THE SURFACE WE MUST SHED OUR OWN CIRCUMFERENCES FIND THE DIUINITY WITHIN AND EMERGE"
     },
     {
       "hold": true,
-      "n": 39,
+      "n": 92,
       "oov": 0,
-      "exactPad": 33,
+      "exactPad": 92,
       "fullReplay": true,
-      "plaintextA": "… CWESTIAN PILGRIM TO THE GREAT JOURNEY TOWARD THE AND OF … … … … … … … … … … … … … …",
-      "plaintextB": "I STEAM DURNG A LESSON THE MASTER EXPLAINED THE D THE I"
+      "plaintextA": "… WELCOME PILGRIM TO THE GREAT JOURNEY TOWARD THE END OF ALL THNGS IT IS NOT AN EASY TRIP BUT FOR THOSE WHO FIND THEIR WAY HERE IT IS A … … … … …",
+      "plaintextB": "PARABLE LICE THE INSTAR TUNNELNG TO THE SURFACE WE MUST SHED OUR OWN CIRCUMFERENCES FIND THE DIUINITY WITHIN AND EMERGE"
     }
   ],
   "cases": 184,

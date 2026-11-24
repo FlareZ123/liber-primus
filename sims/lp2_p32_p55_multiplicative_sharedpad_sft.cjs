@@ -95,8 +95,9 @@ function run(data){
  out.sort((a,b)=>a.oov-b.oov||a.relativeCost-b.relativeCost);
  const controls=[];
  for(const hold of [false,true]){
-  const PA=solved[1].slice(0,25),PB=solved[5].slice(0,12),tA=tape(PA,false),tB=tape(PB,false);
+  const PA=solved[1].slice(0,35),PB=solved[8],tA=tape(PA,false),tB=tape(PB,false);
   ok(PA.concat(PB).every(w=>dict[w.length].has(String(w))),"control lexicon");
+  ok(tA.sites.filter(x=>!x.v).length>=3&&tB.sites.filter(x=>!x.v).length>=3,"both controls exercise native F holds");
   const off=9,key=Array.from({length:active(tA,hold).length},(_,j)=>1+(7*j*j+11*j+3)%28);
   function enc(T,k){let j=0;return T.words.map(w=>w.map(v=>hold&&v===0?0:v*k[j++]%29));}
   const CA=tape(enc(tA,key),false),CB=tape(enc(tB,key.slice(off)),false);
