@@ -1,0 +1,1387 @@
+{
+  "vocabulary": 38920,
+  "results": [
+    {
+      "q": 8,
+      "controls": [
+        {
+          "j": 0,
+          "key": [
+            25,
+            24,
+            5,
+            11,
+            17,
+            16,
+            26,
+            23
+          ],
+          "train": 203,
+          "good": true,
+          "continuation": {
+            "matched": 89,
+            "total": 89,
+            "paths": 1,
+            "replay": true
+          },
+          "result": {
+            "keys": [
+              {
+                "key": [
+                  25,
+                  24,
+                  5,
+                  11,
+                  17,
+                  16,
+                  26,
+                  23
+                ],
+                "paths": 1,
+                "endPhases": [
+                  6
+                ],
+                "p": "PROFESSOR REPLIED I AM A CONSCIAUSNESS INHABITNG AN ARBITRARY BODY THAT IS MERELY WHAT YOU ARE NOT WHO YOU ARE WHO ARE YOU WHO WISHES TO STUDY HERE THE MAN WAS GETTNG IRRITATED I AM HE STARTED BUT HE COULD NOT THINC OF ANYTHNG ELSE TO SAY SO HE TRAILED OFF AFTER"
+              }
+            ],
+            "exhausted": false,
+            "nodes": 1,
+            "passes": 3,
+            "rowVisits": 84248,
+            "initialRows": 79872,
+            "exact": true,
+            "failure": null
+          }
+        },
+        {
+          "j": 1,
+          "key": [
+            23,
+            25,
+            27,
+            7,
+            4,
+            5,
+            12,
+            21
+          ],
+          "train": 201,
+          "good": true,
+          "continuation": {
+            "matched": 331,
+            "total": 331,
+            "paths": 1,
+            "replay": true
+          },
+          "result": {
+            "keys": [
+              {
+                "key": [
+                  23,
+                  25,
+                  27,
+                  7,
+                  4,
+                  5,
+                  12,
+                  21
+                ],
+                "paths": 1,
+                "endPhases": [
+                  7
+                ],
+                "p": "WHO ARE YOU WHO WISHES TO STUDY HERE ASCED THE MASTER THE STUDENT TOLD THE MASTER HIS NAME THAT IS NOT WHAT YOU ARE THAT IS ONLY WHAT YOU ARE CALLED WHO ARE YOU WHO WISHES TO STUDY HERE HE ASCED AGAIN THE MAN THOUGHT FOR A MOMENT AND REPLIED I AM A PROFESSOR THAT"
+              }
+            ],
+            "exhausted": false,
+            "nodes": 1,
+            "passes": 4,
+            "rowVisits": 246840,
+            "initialRows": 101544,
+            "exact": true,
+            "failure": null
+          }
+        },
+        {
+          "j": 2,
+          "key": [
+            13,
+            11,
+            24,
+            17,
+            27,
+            0,
+            27,
+            19
+          ],
+          "train": 201,
+          "good": true,
+          "continuation": {
+            "matched": 283,
+            "total": 283,
+            "paths": 1,
+            "replay": true
+          },
+          "result": {
+            "keys": [
+              {
+                "key": [
+                  13,
+                  11,
+                  24,
+                  17,
+                  27,
+                  0,
+                  27,
+                  19
+                ],
+                "paths": 1,
+                "endPhases": [
+                  4
+                ],
+                "p": "MASTER WHO ARE YOU WHO WISHES TO STUDY HERE CONFUSED THE MAN THOUGHT SOME MORE FINALLY HE ANSWERED I AM A HUMAN BENG THAT IS ONLY YOUR SPECIES NOT WHO YOU ARE WHO ARE YOU WHO WISHES TO STUDY HERE ASCED THE MASTER AGAIN AFTER A MOMENT OF THOUGHT THE PROFESSOR"
+              }
+            ],
+            "exhausted": false,
+            "nodes": 1,
+            "passes": 3,
+            "rowVisits": 154958,
+            "initialRows": 110210,
+            "exact": true,
+            "failure": null
+          }
+        }
+      ],
+      "target": {
+        "train": 205,
+        "held": 103,
+        "changed": 11,
+        "zeros": 2,
+        "result": {
+          "keys": [],
+          "exhausted": false,
+          "nodes": 1,
+          "passes": 1,
+          "rowVisits": 32976,
+          "initialRows": 118837,
+          "exact": true,
+          "failure": {
+            "word": 11,
+            "kind": "no relation",
+            "pass": 1
+          }
+        },
+        "continuation": null,
+        "wildcardResults": [
+          {
+            "wi": 0,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 1,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 2,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 3,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 4,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 5,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 6,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 13,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 7,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 8,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 9,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 12,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 10,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 13,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 11,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 12,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 13,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 14,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 15,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 16,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 17,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 18,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 19,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 20,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 21,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 22,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 23,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 24,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 25,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 26,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 27,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 28,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 29,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 30,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 31,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 32,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 33,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 34,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 35,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 36,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 37,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 38,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 39,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 40,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 41,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 42,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 43,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          },
+          {
+            "wi": 44,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 11,
+              "kind": "no relation",
+              "pass": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "q": 13,
+      "controls": [
+        {
+          "j": 0,
+          "key": [
+            16,
+            1,
+            0,
+            6,
+            14,
+            10,
+            22,
+            2,
+            9,
+            19,
+            1,
+            9,
+            19
+          ],
+          "train": 203,
+          "good": true,
+          "continuation": {
+            "matched": 89,
+            "total": 89,
+            "paths": 1,
+            "replay": true
+          },
+          "result": {
+            "keys": [
+              {
+                "key": [
+                  16,
+                  1,
+                  0,
+                  6,
+                  14,
+                  10,
+                  22,
+                  2,
+                  9,
+                  19,
+                  1,
+                  9,
+                  19
+                ],
+                "paths": 1,
+                "endPhases": [
+                  3
+                ],
+                "p": "PROFESSOR REPLIED I AM A CONSCIAUSNESS INHABITNG AN ARBITRARY BODY THAT IS MERELY WHAT YOU ARE NOT WHO YOU ARE WHO ARE YOU WHO WISHES TO STUDY HERE THE MAN WAS GETTNG IRRITATED I AM HE STARTED BUT HE COULD NOT THINC OF ANYTHNG ELSE TO SAY SO HE TRAILED OFF AFTER"
+              }
+            ],
+            "exhausted": false,
+            "nodes": 7,
+            "passes": 12,
+            "rowVisits": 1227758,
+            "initialRows": 93362,
+            "exact": true,
+            "failure": {
+              "word": 8,
+              "kind": "no relation",
+              "pass": 12
+            }
+          }
+        },
+        {
+          "j": 1,
+          "key": [
+            16,
+            15,
+            3,
+            4,
+            22,
+            24,
+            11,
+            21,
+            2,
+            4,
+            3,
+            1,
+            7
+          ],
+          "train": 201,
+          "good": true,
+          "continuation": {
+            "matched": 331,
+            "total": 331,
+            "paths": 1,
+            "replay": true
+          },
+          "result": {
+            "keys": [
+              {
+                "key": [
+                  16,
+                  15,
+                  3,
+                  4,
+                  22,
+                  24,
+                  11,
+                  21,
+                  2,
+                  4,
+                  3,
+                  1,
+                  7
+                ],
+                "paths": 1,
+                "endPhases": [
+                  4
+                ],
+                "p": "WHO ARE YOU WHO WISHES TO STUDY HERE ASCED THE MASTER THE STUDENT TOLD THE MASTER HIS NAME THAT IS NOT WHAT YOU ARE THAT IS ONLY WHAT YOU ARE CALLED WHO ARE YOU WHO WISHES TO STUDY HERE HE ASCED AGAIN THE MAN THOUGHT FOR A MOMENT AND REPLIED I AM A PROFESSOR THAT"
+              }
+            ],
+            "exhausted": false,
+            "nodes": 4,
+            "passes": 7,
+            "rowVisits": 490755,
+            "initialRows": 104942,
+            "exact": true,
+            "failure": {
+              "word": 15,
+              "kind": "no relation",
+              "pass": 5
+            }
+          }
+        },
+        {
+          "j": 2,
+          "key": [
+            6,
+            2,
+            19,
+            13,
+            27,
+            13,
+            25,
+            6,
+            12,
+            26,
+            1,
+            15,
+            17
+          ],
+          "train": 201,
+          "good": true,
+          "continuation": {
+            "matched": 283,
+            "total": 283,
+            "paths": 1,
+            "replay": true
+          },
+          "result": {
+            "keys": [
+              {
+                "key": [
+                  6,
+                  2,
+                  19,
+                  13,
+                  27,
+                  13,
+                  25,
+                  6,
+                  12,
+                  26,
+                  1,
+                  15,
+                  17
+                ],
+                "paths": 1,
+                "endPhases": [
+                  1
+                ],
+                "p": "MASTER WHO ARE YOU WHO WISHES TO STUDY HERE CONFUSED THE MAN THOUGHT SOME MORE FINALLY HE ANSWERED I AM A HUMAN BENG THAT IS ONLY YOUR SPECIES NOT WHO YOU ARE WHO ARE YOU WHO WISHES TO STUDY HERE ASCED THE MASTER AGAIN AFTER A MOMENT OF THOUGHT THE PROFESSOR"
+              }
+            ],
+            "exhausted": false,
+            "nodes": 3,
+            "passes": 6,
+            "rowVisits": 674972,
+            "initialRows": 114029,
+            "exact": true,
+            "failure": {
+              "word": 17,
+              "kind": "no relation",
+              "pass": 3
+            }
+          }
+        }
+      ],
+      "target": {
+        "train": 205,
+        "held": 103,
+        "changed": 11,
+        "zeros": 2,
+        "result": {
+          "keys": [],
+          "exhausted": false,
+          "nodes": 1,
+          "passes": 2,
+          "rowVisits": 177961,
+          "initialRows": 121927,
+          "exact": true,
+          "failure": {
+            "word": 14,
+            "kind": "no relation",
+            "pass": 2
+          }
+        },
+        "continuation": null,
+        "wildcardResults": [
+          {
+            "wi": 0,
+            "count": 0,
+            "exact": true,
+            "nodes": 3,
+            "failure": {
+              "word": 15,
+              "kind": "no relation",
+              "pass": 6
+            }
+          },
+          {
+            "wi": 1,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 37,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 2,
+            "count": 0,
+            "exact": true,
+            "nodes": 3,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 7
+            }
+          },
+          {
+            "wi": 3,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 15,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 4,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 18,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 5,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 6,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 7,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 8,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 9,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 15,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 10,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 15,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 11,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 12,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 13,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 14,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 24,
+              "kind": "no relation",
+              "pass": 3
+            }
+          },
+          {
+            "wi": 15,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 16,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 17,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 18,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 15,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 19,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 20,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 21,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 22,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 15,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 23,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 24,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 25,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 26,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 27,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 28,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 15,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 29,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 30,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 31,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 32,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 33,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 34,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 35,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 36,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 37,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 38,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 39,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 40,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 41,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 42,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 43,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          },
+          {
+            "wi": 44,
+            "count": 0,
+            "exact": true,
+            "nodes": 1,
+            "failure": {
+              "word": 14,
+              "kind": "no relation",
+              "pass": 2
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
