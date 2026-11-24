@@ -32,3 +32,24 @@ function analyze(gp,raw){
 }
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 console.log(JSON.stringify(analyze(JSON.parse(read('resources/liber-primus/lp2-corpus.json')),read('resources/liber-primus/lp2-transcription.txt')),null,2));
+
+function pairGate(gp,raw,crowley,blake){
+ const lut=new Map(gp.runes.map((g,i)=>[g,i])),c=[],wi=[];
+ let w=0,inWord=false;
+ for(const ch of raw){const v=lut.get(ch);if(v!==undefined){c.push(v);wi.push(w);inWord=true}else if((ch==="-"||ch===".")&&inWord){w++;inWord=false}}
+ if(JSON.stringify(c)!==JSON.stringify(gp.pages.flatMap(p=>p.indices)))throw Error("transcription mismatch");
+ const tok=gp.translit.map((s,i)=>[s,i]).sort((a,b)=>b[0].length-a[0].length);
+ function enc(s){s=s.toUpperCase().replace(/V/g,"U").replace(/K/g,"C");let out=[];for(let k=0;k<s.length;){let z=tok.find(t=>s.startsWith(t[0],k));if(z){out.push(z[1]);k+=z[0].length}else k++}return out}
+ const n=12956,source=c.slice(0,n),crow=enc(crowley),bl=enc(blake.slice(blake.indexOf("THE ARGUMENT"),blake.indexOf("*** END OF THIS PROJECT GUTENBERG EBOOK")));
+ if(crow.length!==21611||bl.length!==18631)throw Error("donor count");
+ const d=[source,...[0,4327,8655].map(s=>crow.slice(s,s+n)),...[0,5675].map(s=>bl.slice(s,s+n))];
+ function calc(x,a,b){let h=new Uint32Array(a*b*29),cnt=new Uint32Array(a*b),m=0,e=0;for(let i=0;i<n;i++){const p=(i%a)*b+wi[i]%b;m+=h[p*29+x[i]]++;e+=cnt[p]++}return [m,e]}
+ return [[13,31],[31,13]].map(([a,b])=>{
+   const shift=i=>((7*(i%a)+11*(wi[i]%b)+9)%29),p=d[1],plant=p.map((v,i)=>(v+shift(i))%29);
+   if(plant.some((v,i)=>(v-shift(i)+29)%29!==p[i])||JSON.stringify(calc(plant,a,b))!==JSON.stringify(calc(p,a,b)))throw Error("positive invariant");
+   const counts=d.map(x=>calc(x,a,b));
+   if(!counts.slice(1).every(x=>x[0]>counts[0][0]))throw Error("original gate");
+   return {runePeriod:a,wordPeriod:b,counts,plant:"PASS"};
+ });
+}
+console.log(JSON.stringify(pairGate(JSON.parse(read('resources/liber-primus/lp2-corpus.json')),read('resources/liber-primus/lp2-transcription.txt'),['I','II','III'].map(x=>read('resources/external/2013-book-of-law-'+x+'.txt')).join('\n'),read('resources/external/cicada2012-blake-marriage-gutenberg45315.txt')),null,2));
