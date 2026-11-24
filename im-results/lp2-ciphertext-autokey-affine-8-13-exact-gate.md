@@ -1,6 +1,6 @@
-# Exact ciphertext-autokey GP29 inverse gate (q8 and q13)
+# Exact ciphertext-autokey GP29 inverse gates: affine q8/q13 and arbitrary all-lag rows
 
-**Decision:** no unknown LP2 plaintext or key. The fixed-length ciphertext-fed affine autokey family below has no whole-book shared feedback parameters. Four original pages individually reject both historical primer lengths even when given entirely independent coefficients and arbitrary primers. The ordinary additive member survives feasibility on just three page/length pairs; an exact language-scored inverse on those pairs produces nonprose despite native-plant success.
+**Decision:** no unknown LP2 plaintext or key. The all-lag row-permutation extension at the end excludes all 3,301 tested continuous ordinary lags against the frozen native register, and short transparent-F lags without guessing a hold mask. The fixed-length ciphertext-fed affine autokey family below has no whole-book shared feedback parameters. Four original pages individually reject both historical primer lengths even when given entirely independent coefficients and arbitrary primers. The ordinary additive member survives feasibility on just three page/length pairs; an exact language-scored inverse on those pairs produces nonprose despite native-plant success.
 
 ## Model and distinction from prior work
 
@@ -85,3 +85,36 @@ For each nonzero row, sort its observed nonzero ciphertext frequencies descendin
 All 176 frozen same-length windows of existing native-GP encoded prose exceed both bounds: Gibran 16 windows (min top-nine 8,249, min IoC 0.0593767), Shakespeare 64 (7,946, 0.0572324), Emerson 96 (8,377, 0.0604263). Two planted row-permutation controls on the same 2,979 solved native runes replay exactly, with actual top-nine 1,958 below their respective ceilings 2,079 and 2,062. These controls use zero-fixed cyclic row bijections; they validate the inverse/count construction, not every possible language. The proof grants arbitrary 29-symbol row bijections and independent initial queues at each physical page, but requires globally shared stationary rows. The finite donor comparison does not prove all conceivable English plaintexts impossible.
 
 [Executable SFT](../sims/lp2_lagged_consuming_ciphertext_allrow_permutation_gate.cjs) · [Complete counts and controls](lp2-lagged-consuming-ciphertext-allrow-permutation-output.json). Executed exact JS function against repository inputs; no Windows CI claim. No original plaintext recovered.
+
+## All-lag majorization and latent F propagation
+
+Agent 11, 24 November 2026. This extends the preceding q8/q13 row bound rather than re-running the affine search. The family is (C_i=\pi_{K_i}(P_i)), with 29 independently arbitrary stationary GP29 bijections and a q-entry ciphertext-fed queue, q=1…3301. Ordinary mode consumes every rune. Transparent-F mode emits literal zero for plaintext zero without consuming; nonzero plaintext may emit ciphertext zero and consume. The arbitrary row tables are shared across all frames; each initial queue is unrestricted. Tested frames are continuous 12,956 unknown original runes, the eight canonical transcription sections delimited by "$", and 55 nonempty physical pages. Neither framing nor lag is claimed as author-authenticated.
+
+### Key-independent proof
+
+For ordinary mode after the first q runes in each frame, (K_i=C_{i-q}) is known, regardless of the private primer. In row k, let (n_{k,c}) be the original output count for c. Any inverse row is a permutation of that histogram. For every k-rank cutoff m, its largest possible contribution to a fixed set of m plaintext symbols is the sum of its m greatest counts. Thus summing sorted row histograms entrywise gives a vector majorizing every possible decoded histogram. Grant the unobserved primer-dependent positions entirely to its largest component. This is a relaxation (it need not be simultaneously attainable by the real queue), so exclusion by any cumulative rank is sound.
+
+The transparent-F case requires determining which zero ciphertext symbols definitely hold. Let H be the set already proved held; all nonzero ciphertext symbols must consume, and all other zeros are independently allowed to consume or hold. At physical position i, if at least q preceding nonzero symbols exist, the actual predecessor is between the qth previous nonzero position and qth previous position not in H, inclusive. Its candidate context set is the OR of symbols in this interval excluding H. This is the exact context set in the relaxed independent-zero model. Before q mandatory consumptions, grant all 29 primer possibilities. The sliding interval endpoints advance monotonically, so a count-and-bitmask implementation is linear per propagation pass.
+
+A nonzero ciphertext in a singleton context must occupy a nonzero plaintext input in that row. When all 28 nonzero outputs are witnessed in such a row, its unused zero-input image is forced to zero. A ciphertext zero whose possible contexts all have zero-input image zero must be a transparent hold. Add it to H, recompute the intervals, and repeat until no change. Every inference is monotone and sound for the full model. The remaining unknown context positions and unresolved zeros are granted arbitrarily to the largest frequency. For known nonzero outputs, row histograms permute into 28 nonzero plaintext slots; the separately proved holds occupy plaintext zero. Sort and majorize as above.
+
+### Original results and controls
+
+All 176 quarter-window-stride native-GP donor windows are exactly the earlier frozen Gibran (16), Shakespeare (64), Emerson (96) controls. Their smallest top-nine count is 7,946. The windows overlap, so this is a finite-register comparison, not 176 statistically independent trials. A donor is incompatible when any one of its 29 cumulative frequency ranks exceeds the corresponding key-independent upper bound. A lag is excluded against the register only when no donor survives.
+
+| Clock and reset scope | Tested lags | All-rank excluded | Top-nine-only excluded |
+|---|---:|---:|---:|
+| Ordinary, continuous | 3,301 | 3,301 | 3,301 |
+| Ordinary, eight sections | 3,301 | 1,675 | 538 |
+| Ordinary, physical pages | 3,301 | 214 | 78 |
+| Transparent F, continuous | 3,301 | 51 (1–49, 51–52) | 49 |
+| Transparent F, eight sections | 3,301 | 50 (1–49, 51) | 48 |
+| Transparent F, physical pages | 3,301 | 44 (1–44) | 43 |
+
+Continuous ordinary maximum top-nine upper bound is 7,358 (q3299), below every donor even after granting the full initial prefix. Section/page ordinary complete exclusion ranges are in the output JSON; their first unexcluded lags are 1643 and 214. In continuous F-hold mode q13 propagates 457 holds, fixes 28 rows, and leaves 21 unconstrained positions; q52 fixes 28 rows, proves 454 holds, leaves 165 unconstrained positions, and yields top-nine bound 5,224. Some q46/q51 exclusions instead arise from cumulative ranks beyond nine. q50 is not excluded by this relaxation (73 donor vectors remain); q53 leaves three. Do not conflate a surviving frequency vector with an actual feasible plaintext or key.
+
+Twenty-one independently keyed known-native controls (2,979 solved runes, seven lengths, ordinary/zero-fixed/mixed-row modes) replay exactly and their actual cumulative frequency vectors never exceed the bounds. Their known masks are used only for control replay and assertions, not for context inference. Mixed rows generate 39–96 genuine consumed ciphertext zeros per control. Two additional 50,000-rune uniform propagation plants at q13 exercise actual inferred holds: all-F-fixed case proves 1,660/1,661 true holds, fixes 28 rows; mixed case proves 1,633/1,699 true holds, fixes 27 rows, with 55 genuine consumed zeros. No false context or hold inference in either plant. These two are mechanistic controls, not language-recovery claims.
+
+**Decision:** retire continuous ordinary stationary single-lag row-table receivers over q1–3301 for this native register, plus the precisely excluded short F-hold/reset variants. Do not tune another affine/single-lag receiver inside these scopes. This leaves other lag/reset scopes, multi-input or time-varying state, per-section changing row keys, nonnative encoding, and clue-selected operations open. No original plaintext/key, independent source-selected lag, or original hold-mask identity is claimed.
+
+[All-lag SFT](../sims/lp2_all_lag_ciphertext_row_majorization_sft.cjs) · [complete summarized output and controls](lp2-all-lag-ciphertext-row-majorization-output.json). Exact code body executed on repository input files in JS; native Node CI has not been claimed. Source and output commits: 4af72c109c069cad76fed435505c20912552ae01 and 3bf4d993f4209dc18897f26536bb1dfe4a410a8d.

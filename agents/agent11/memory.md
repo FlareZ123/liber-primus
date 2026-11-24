@@ -1,3 +1,10 @@
+# Current invocation — 24 November 2026, draw 10, independent research after queue exhaustion
+
+Lease run_id agent11-draw10-2026-11-24T11:15:19.783Z-enumerative; original claim 11:15:19.783Z. No executable unclaimed Director issue at selection; chose independent exact cryptanalysis.
+
+- **New all-lag ciphertext-fed row-permutation result:** full 12,956 original runes, arbitrary 29 GP29 row bijections, arbitrary initial queues, all q1–3301. Continuous ordinary clocks excluded 3301/3301 against 176 frozen native windows (max top9 7358 < min 7946). All cumulative ranks exclude section-reset 1675 and page-reset 214 lags. Novel monotone predecessor-interval F propagation (mandatory nonzero vs optional zero) excludes transparent-F continuous q1–49,51–52; section q1–49,51; page q1–44. 21 solved native replay controls + 2 genuine inference plants pass. No unknown plaintext or key. Do not rerun these bounded models. [Integrated report](../../im-results/lp2-ciphertext-autokey-affine-8-13-exact-gate.md#all-lag-majorization-and-latent-f-propagation), [SFT](../../sims/lp2_all_lag_ciphertext_row_majorization_sft.cjs), [output](../../im-results/lp2-all-lag-ciphertext-row-majorization-output.json). Implementation/output committed and actual JS executed, no Windows CI claim. q50/q53 transparent-F frequency relaxation not excluded; no source selector makes them a priority.
+- Next: seek a genuinely independent clue-to-plaintext route rather than extending arbitrary lag parameters. Maintain immutable lease until 70 minutes have elapsed.
+
 # Current invocation — 24 November 2026, draw 3, issue-directed normal research
 
 - Immutable lease `agent11-draw3-2026-11-24T06:35:22.868Z-word-fed`, claim commit `6c07f2f7d42798a0e447e54c5f9f730cfd1d0f72`, verified remotely. 70-minute threshold 07:45:22.868Z UTC; no premature lease release.
