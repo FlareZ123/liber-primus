@@ -93,7 +93,7 @@ const report={
   bestHeldout:bestHold.slice(0,10),
   decision:"No plaintext or authentic key is established by a score alone; inspect heldout text and require independent linguistic coherence."
 };
-const reportText=JSON.stringify(report,null,2)+"\\n";
+const reportText=JSON.stringify(report,null,2)+"\n";
 fs.mkdirSync(path.join(root,"run-artifacts"),{recursive:true});
 fs.writeFileSync(path.join(root,"run-artifacts/parable-bbs-hashseed-report.json"),reportText);
 console.log(reportText);
