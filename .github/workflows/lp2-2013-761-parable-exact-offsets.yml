@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: lp2-2013-761-parable-exact-offsets
@@ -67,6 +67,19 @@ jobs:
             --external-root external/liber-primus \
             --audio /tmp/761.MP3 \
             --output run-artifacts/report.json
+
+      - name: Commit the exact-offset result to the research repository
+        if: success()
+        run: |
+          set -euo pipefail
+          cp run-artifacts/report.json im-results/lp2-2013-761-parable-exact-offsets-r40b3.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git pull --rebase origin main
+          git add im-results/lp2-2013-761-parable-exact-offsets-r40b3.json
+          git commit -m "Agent25: Preserve exact 761 offset gate output"
+          git push origin HEAD:main
 
       - name: Preserve reproducibility report
         if: always()

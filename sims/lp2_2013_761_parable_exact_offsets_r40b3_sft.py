@@ -233,7 +233,7 @@ def main() -> int:
             "offsets_zero_based_full_file": list(OFFSETS),
             "interpretation": (
                 "761 is the original 2013 audio filename/title GP-prime sum; "
-                "1031, 1229 and 1259 are the three prime factors of the original Parable value 1,595,277,641 preserved in the 2013 audio ID3 field"
+                "1031, 1229 and 1259 are the three GP-prime sums of the p57 Parable body clauses and the prime factors of the original Parable value 1,595,277,641 preserved in the 2013 audio ID3 field"
             ),
             "offset_convention": "zero-based byte positions in the complete MP3, including ID3",
             "one_based_variants": "not tested; not added to avoid post-hoc expansion",
