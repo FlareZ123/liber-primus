@@ -472,8 +472,7 @@ const controlResults = targets.map((target) => {
     plaintextFHoldPositions: decoded.holdPositions,
     exactForwardReplay: decoded.reencryptionExact,
     rawRandomWrongKeyBaseline: randomWrongKeyBaseline(ciphertext, target.period, target.section, target.seed ^ 0xBAD5EED, 1000),
-    predictedPlaintextIndices: decoded.plaintext,
-    predictedPlaintextTokens: decoded.plaintext.map((x) => translit[x])
+    predictedPlaintext: tokenString(decoded.plaintext)
   };
 });
 
@@ -492,4 +491,4 @@ const output = {
   randomKeyPlants: plants,
   randomPlantSuccesses: plants.filter((x) => x.exactKeyRecovery).length
 };
-process.stdout.write(JSON.stringify(output, null, 2) + "\n");
+process.stdout.write(JSON.stringify(output) + "\n");
