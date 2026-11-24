@@ -1,0 +1,43 @@
+{
+  "lexicon": 38920,
+  "results": [
+    {
+      "page": 49,
+      "range": [
+        12049,
+        12114
+      ],
+      "runes": 65,
+      "status": "cap",
+      "fitRunes": 52,
+      "heldRunes": 13,
+      "checks": 30000001,
+      "nodes": 34334,
+      "maxWords": 8,
+      "trainPaths": 0,
+      "heldPaths": 0,
+      "knownRows": [],
+      "predictedPrefix": 0,
+      "candidates": []
+    },
+    {
+      "page": 51,
+      "range": [
+        12114,
+        12203
+      ],
+      "runes": 89,
+      "status": "cap",
+      "fitRunes": 74,
+      "heldRunes": 15,
+      "checks": 30000001,
+      "nodes": 4992,
+      "maxWords": 3,
+      "trainPaths": 0,
+      "heldPaths": 0,
+      "knownRows": [],
+      "predictedPrefix": 0,
+      "candidates": []
+    }
+  ]
+}
