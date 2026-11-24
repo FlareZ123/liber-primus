@@ -1,0 +1,796 @@
+{
+  "gate": {
+    "authentic": 2,
+    "plants": 4,
+    "wrong": 0,
+    "pads": 0,
+    "pass": true
+  },
+  "hist": [
+    {
+      "name": "WELCOME",
+      "q": 8,
+      "accept": true,
+      "truth": [
+        23,
+        10,
+        1,
+        10,
+        9,
+        10,
+        16,
+        26
+      ],
+      "key": [
+        23,
+        10,
+        1,
+        10,
+        9,
+        10,
+        16,
+        26
+      ],
+      "effectiveKey": [
+        23,
+        10,
+        1,
+        10,
+        9,
+        10,
+        16,
+        26
+      ],
+      "exactKey": true,
+      "accuracy": 1,
+      "gain": 0.33035286119414575,
+      "changes": 0,
+      "softGain": 0.24175858468443367,
+      "split": [
+        334,
+        88,
+        93
+      ]
+    },
+    {
+      "name": "KOAN2",
+      "q": 13,
+      "accept": true,
+      "truth": [
+        0,
+        10,
+        4,
+        0,
+        1,
+        19,
+        0,
+        18,
+        4,
+        18,
+        9,
+        0,
+        18
+      ],
+      "key": [
+        0,
+        10,
+        4,
+        0,
+        1,
+        19,
+        0,
+        18,
+        4,
+        18,
+        9,
+        0,
+        18
+      ],
+      "effectiveKey": [
+        0,
+        10,
+        4,
+        0,
+        1,
+        19,
+        0,
+        18,
+        4,
+        18,
+        9,
+        0,
+        18
+      ],
+      "exactKey": true,
+      "accuracy": 1,
+      "gain": 0.5074870262664564,
+      "changes": 1,
+      "softGain": 0.34886993725557636,
+      "split": [
+        207,
+        54,
+        58
+      ]
+    }
+  ],
+  "plants": [
+    {
+      "name": "fresh-0-115000",
+      "q": 6,
+      "accept": true,
+      "truth": [
+        11,
+        19,
+        11,
+        20,
+        11,
+        25
+      ],
+      "key": [
+        11,
+        19,
+        11,
+        20,
+        11,
+        25
+      ],
+      "effectiveKey": [
+        11,
+        19,
+        11,
+        20,
+        11,
+        25
+      ],
+      "exactKey": true,
+      "accuracy": 1,
+      "gain": 0.33622307368669047,
+      "changes": 0,
+      "softGain": 0.33550508759162634,
+      "split": [
+        546,
+        142,
+        152
+      ]
+    },
+    {
+      "name": "fresh-1-125000",
+      "q": 8,
+      "accept": true,
+      "truth": [
+        21,
+        14,
+        21,
+        23,
+        21,
+        25,
+        21,
+        10
+      ],
+      "key": [
+        21,
+        14,
+        21,
+        23,
+        21,
+        25,
+        21,
+        10
+      ],
+      "effectiveKey": [
+        21,
+        14,
+        21,
+        23,
+        21,
+        25,
+        21,
+        10
+      ],
+      "exactKey": true,
+      "accuracy": 1,
+      "gain": 0.452483200106788,
+      "changes": 0,
+      "softGain": 0.4251604073424109,
+      "split": [
+        546,
+        142,
+        152
+      ]
+    },
+    {
+      "name": "fresh-2-26000",
+      "q": 11,
+      "accept": true,
+      "truth": [
+        1,
+        10,
+        6,
+        0,
+        0,
+        28,
+        18,
+        17,
+        19,
+        22,
+        7
+      ],
+      "key": [
+        1,
+        10,
+        6,
+        0,
+        0,
+        28,
+        18,
+        17,
+        19,
+        22,
+        7
+      ],
+      "effectiveKey": [
+        1,
+        10,
+        6,
+        0,
+        0,
+        28,
+        18,
+        17,
+        19,
+        22,
+        7
+      ],
+      "exactKey": true,
+      "accuracy": 1,
+      "gain": 0.34929372860105934,
+      "changes": 0,
+      "softGain": 0.31125581279396153,
+      "split": [
+        546,
+        142,
+        152
+      ]
+    },
+    {
+      "name": "fresh-0-200000",
+      "q": 15,
+      "accept": true,
+      "truth": [
+        19,
+        7,
+        6,
+        11,
+        20,
+        5,
+        22,
+        23,
+        28,
+        16,
+        23,
+        1,
+        4,
+        2,
+        28
+      ],
+      "key": [
+        19,
+        7,
+        6,
+        11,
+        20,
+        5,
+        22,
+        23,
+        28,
+        16,
+        23,
+        1,
+        4,
+        2,
+        28
+      ],
+      "effectiveKey": [
+        19,
+        7,
+        6,
+        11,
+        20,
+        5,
+        22,
+        23,
+        28,
+        16,
+        23,
+        1,
+        4,
+        2,
+        28
+      ],
+      "exactKey": true,
+      "accuracy": 1,
+      "gain": 0.3033768692454166,
+      "changes": 0,
+      "softGain": 0.28348480913798957,
+      "split": [
+        546,
+        142,
+        152
+      ]
+    }
+  ],
+  "pads": [
+    {
+      "name": "pad-0-115000",
+      "q": 3,
+      "accept": false,
+      "truth": null,
+      "gain": null,
+      "softGain": -0.005935215105885128,
+      "split": [
+        546,
+        142,
+        152
+      ]
+    },
+    {
+      "name": "pad-1-125000",
+      "q": 5,
+      "accept": false,
+      "truth": null,
+      "key": [
+        26,
+        0,
+        3,
+        6,
+        18
+      ],
+      "effectiveKey": [
+        26,
+        0,
+        3,
+        6,
+        18
+      ],
+      "exactKey": null,
+      "accuracy": null,
+      "gain": null,
+      "changes": 0,
+      "softGain": -0.016366715772023976,
+      "split": [
+        546,
+        142,
+        152
+      ]
+    },
+    {
+      "name": "pad-2-26000",
+      "q": 5,
+      "accept": false,
+      "truth": null,
+      "key": [
+        1,
+        26,
+        20,
+        25,
+        11
+      ],
+      "effectiveKey": [
+        1,
+        26,
+        20,
+        25,
+        11
+      ],
+      "exactKey": null,
+      "accuracy": null,
+      "gain": null,
+      "changes": 3,
+      "softGain": -0.009823484968896512,
+      "split": [
+        546,
+        142,
+        152
+      ]
+    },
+    {
+      "name": "pad-0-200000",
+      "q": 6,
+      "accept": false,
+      "truth": null,
+      "key": [
+        23,
+        0,
+        7,
+        11,
+        4,
+        12
+      ],
+      "effectiveKey": [
+        23,
+        0,
+        7,
+        11,
+        4,
+        12
+      ],
+      "exactKey": null,
+      "accuracy": null,
+      "gain": -1.0746272804075794,
+      "changes": 0,
+      "softGain": -0.029327107086813076,
+      "split": [
+        546,
+        142,
+        152
+      ]
+    }
+  ],
+  "target": {
+    "fit": {
+      "name": "physical p33-39 first 840",
+      "n": 840,
+      "split": [
+        546,
+        142,
+        152
+      ],
+      "truth": null,
+      "baseline": -3.370787790971984,
+      "accept": false,
+      "winner": {
+        "q": 2,
+        "primitive": 2,
+        "key": [
+          3,
+          21
+        ],
+        "conf": 0.12366106586628355,
+        "train": -3.3512813792881806,
+        "validation": -3.38886079792128,
+        "hold": -3.376404518786995,
+        "hardTrain": null,
+        "hardValidation": null,
+        "hardHold": null
+      },
+      "hardening": {
+        "expanded": 10,
+        "rotationsWithLegalKeys": 0,
+        "fixed": null
+      },
+      "rows": [
+        {
+          "q": 2,
+          "primitive": 2,
+          "key": [
+            3,
+            21
+          ],
+          "conf": 0.12366106586628355,
+          "train": -3.3512813792881806,
+          "validation": -3.38886079792128,
+          "hold": -3.376404518786995,
+          "hardTrain": null,
+          "hardValidation": null,
+          "hardHold": null
+        },
+        {
+          "q": 3,
+          "primitive": 3,
+          "key": [
+            21,
+            10,
+            15
+          ],
+          "conf": 0.21073539461518745,
+          "train": -3.3291122819925367,
+          "validation": -3.430298574896131,
+          "hold": -3.3918873745290496,
+          "hardTrain": null,
+          "hardValidation": null,
+          "hardHold": null
+        },
+        {
+          "q": 4,
+          "primitive": 4,
+          "key": [
+            27,
+            0,
+            17,
+            21
+          ],
+          "conf": 0.1929601413931277,
+          "train": -3.3235146580523303,
+          "validation": -3.409553190059599,
+          "hold": -3.3666884632710543,
+          "hardTrain": null,
+          "hardValidation": null,
+          "hardHold": null
+        },
+        {
+          "q": 5,
+          "primitive": 5,
+          "key": [
+            4,
+            21,
+            26,
+            3,
+            4
+          ],
+          "conf": 0.21592614907302932,
+          "train": -3.3129395842678555,
+          "validation": -3.457525831336648,
+          "hold": -3.399004878235645,
+          "hardTrain": null,
+          "hardValidation": null,
+          "hardHold": null
+        },
+        {
+          "q": 6,
+          "primitive": 6,
+          "key": [
+            10,
+            20,
+            19,
+            16,
+            16,
+            20
+          ],
+          "conf": 0.24840065118012533,
+          "train": -3.3004741683564793,
+          "validation": -3.4378650624365443,
+          "hold": -3.4246598122208276,
+          "hardTrain": null,
+          "hardValidation": null,
+          "hardHold": null
+        },
+        {
+          "q": 7,
+          "primitive": 7,
+          "key": [
+            0,
+            27,
+            4,
+            2,
+            22,
+            24,
+            10
+          ],
+          "conf": 0.25499325544641155,
+          "train": -3.2946022863575957,
+          "validation": -3.400769847045801,
+          "hold": -3.3998904559184466,
+          "hardTrain": null,
+          "hardValidation": null,
+          "hardHold": null
+        },
+        {
+          "q": 8,
+          "primitive": 8,
+          "key": [
+            10,
+            21,
+            11,
+            12,
+            3,
+            2,
+            1,
+            13
+          ],
+          "conf": 0.2556153510610256,
+          "train": -3.271945594700611,
+          "validation": -3.4395353137147793,
+          "hold": -3.3872462969898662,
+          "hardTrain": null,
+          "hardValidation": null,
+          "hardHold": null
+        },
+        {
+          "q": 9,
+          "primitive": 9,
+          "key": [
+            14,
+            18,
+            9,
+            23,
+            5,
+            28,
+            15,
+            21,
+            0
+          ],
+          "conf": 0.27168718042501433,
+          "train": -3.2757319281587693,
+          "validation": -3.4125486906779496,
+          "hold": -3.414301741079873,
+          "hardTrain": null,
+          "hardValidation": null,
+          "hardHold": null
+        },
+        {
+          "q": 10,
+          "primitive": 10,
+          "key": [
+            5,
+            16,
+            0,
+            23,
+            20,
+            6,
+            5,
+            8,
+            3,
+            4
+          ],
+          "conf": 0.28684937253145604,
+          "train": -3.2484368040257987,
+          "validation": -3.444652056319915,
+          "hold": -3.419018812208548,
+          "hardTrain": null,
+          "hardValidation": null,
+          "hardHold": null
+        },
+        {
+          "q": 11,
+          "primitive": 11,
+          "key": [
+            8,
+            8,
+            5,
+            16,
+            24,
+            0,
+            6,
+            7,
+            0,
+            4,
+            6
+          ],
+          "conf": 0.2829817841419108,
+          "train": -3.262089079874134,
+          "validation": -3.411202404732537,
+          "hold": -3.4167688114094252,
+          "hardTrain": null,
+          "hardValidation": null,
+          "hardHold": null
+        },
+        {
+          "q": 12,
+          "primitive": 12,
+          "key": [
+            24,
+            15,
+            28,
+            16,
+            4,
+            3,
+            4,
+            8,
+            12,
+            10,
+            5,
+            20
+          ],
+          "conf": 0.3412714063244882,
+          "train": -3.252231405816049,
+          "validation": -3.43814209450865,
+          "hold": -3.4277392050438626,
+          "hardTrain": null,
+          "hardValidation": null,
+          "hardHold": null
+        },
+        {
+          "q": 13,
+          "primitive": 13,
+          "key": [
+            4,
+            8,
+            15,
+            16,
+            14,
+            20,
+            8,
+            18,
+            5,
+            4,
+            8,
+            0,
+            6
+          ],
+          "conf": 0.2927399898809129,
+          "train": -3.2563537037892005,
+          "validation": -3.438646251628367,
+          "hold": -3.4260998830293614,
+          "hardTrain": null,
+          "hardValidation": null,
+          "hardHold": null
+        },
+        {
+          "q": 14,
+          "primitive": 14,
+          "key": [
+            28,
+            18,
+            4,
+            8,
+            11,
+            3,
+            8,
+            18,
+            27,
+            0,
+            9,
+            18,
+            17,
+            21
+          ],
+          "conf": 0.294720956983615,
+          "train": -3.232542590840202,
+          "validation": -3.43471564161607,
+          "hold": -3.4440413752873202,
+          "hardTrain": null,
+          "hardValidation": null,
+          "hardHold": null
+        },
+        {
+          "q": 15,
+          "primitive": 15,
+          "key": [
+            14,
+            21,
+            13,
+            21,
+            26,
+            8,
+            14,
+            3,
+            24,
+            19,
+            27,
+            4,
+            20,
+            2,
+            28
+          ],
+          "conf": 0.29886851313300017,
+          "train": -3.237678381742141,
+          "validation": -3.4654867987891684,
+          "hold": -3.4318495555888795,
+          "hardTrain": null,
+          "hardValidation": null,
+          "hardHold": null
+        },
+        {
+          "q": 16,
+          "primitive": 16,
+          "key": [
+            10,
+            14,
+            4,
+            18,
+            14,
+            8,
+            6,
+            6,
+            22,
+            22,
+            15,
+            4,
+            24,
+            0,
+            4,
+            12
+          ],
+          "conf": 0.301777539358908,
+          "train": -3.221288880661106,
+          "validation": -3.4517007435206564,
+          "hold": -3.3848538260438015,
+          "hardTrain": null,
+          "hardValidation": null,
+          "hardHold": null
+        }
+      ]
+    },
+    "continuation": null
+  }
+}
