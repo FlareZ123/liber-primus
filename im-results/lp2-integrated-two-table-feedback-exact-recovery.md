@@ -1,7 +1,47 @@
-# Exact two-table integrated-feedback dictionary recovery
+# Exact integrated-feedback dictionary recovery: shared offset and affine rows
 
-**Agent 7, 24 November 2026.** New conditional all-key exclusion; successful withheld dictionary decoding in an independent plant. No authentic LP2 plaintext or creator key recovered.
+**Agent 7, 24 November 2026.** Two nested, exact lexicon-conditioned key-recovery attacks on the original LP2 ciphertext. The more general affine-row architecture has now been excluded under one globally shared key and the expanded finite lexicon. Blinded native-GP controls yield exact withheld words. No authentic unknown LP2 plaintext or creator key recovered.
 
+## Current strongest result: shared arbitrary alphabet and private affine predecessor rows
+
+A physically motivated extension of the earlier two-table model allows the preceding plaintext rune to change both the offset and slope of each ciphertext step. This could suppress adjacent repeats when the zero step corresponds to a rare, predecessor-dependent plaintext transition. The law is a conjecture, not a first-party instruction:
+
+```
+d_j = C_j - C_(j-1) = A[P_(j-1)] * G[P_j] + B[P_(j-1)] mod 29
+P_j = G_inverse((d_j - B[P_(j-1)]) / A[P_(j-1)]) mod 29
+```
+
+Here G is an arbitrary 29-element permutation, A is an arbitrary 29-entry nonzero field-valued table, B is any 29-entry field-valued table. Each printed word's first ciphertext symbol and first plaintext symbol have no shared constraint. The original physical segmentation is preserved. For any predecessor q, inverse row parameters give G[p] = a_q d + b_q. Two observed distinct (p,d) pairs in that row eliminate both row parameters; every further point yields a homogeneous linear equation on the shared G values. Repeated pairs must agree, and different p values in the same row must have different d values. Set G[0]=0,G[1]=1 without loss of generality by a common affine normalization. Incremental reduced row echelon form over GF(29) rejects inconsistent equations and forced equality of distinct G values. Unknown permutations and row parameters are never brute-forced. A partial state need not be fully extendible; accepting conservative supersets cannot produce a false zero.
+
+The search is a complete finite CSP over the candidate words. Indexed bitsets enforce the exact pair consistency constraints across all remaining domains; dynamic minimum-domain branching plus algebraic propagation exhausts surviving assignments. No language-score threshold or beam pruning. A node cap reports unresolved, never excluded.
+
+### Original and independent control results
+
+All 12,956 original ciphertext runes and 2,896 printed groups, including 32 cross-page carries, are checked against the canonical source. Narrow lexicon = 12,231 GP spellings from the existing three literary corpora. Broad = 36,712 distinct GP rune spellings, adding the checked-in 29,157-entry TextBlob vocabulary, alternate greedy/source-native ING and IO spellings, and exact 740-word solved-GP donor transcriptions. The seven original groups of length ≥13 are used as joint anchors:
+
+| Original group index (zero-based) | Length | Narrow candidates | Broad candidates |
+|---:|---:|---:|---:|
+| 754 | 14 | 30 | 160 |
+| 2341 | 14 | 31 | 165 |
+| 1353 | 14 | 34 | 167 |
+| 2752 | 13 | 60 | 356 |
+| 833 | 13 | 73 | 362 |
+| 2886 | 13 | 81 | 404 |
+| 631 | 13 | 86 | 406 |
+
+| Search | Candidate-state visits | Deepest feasible assignment | Complete assignments | Cap |
+|---|---:|---:|---:|---|
+| Original, narrow | 162 | 3 of 7 | 0 | not reached |
+| Original, broad | 34,416 | 4 of 7 | 0 | not reached |
+| Blinded control, broad | 10,521 | 25 of 25 | 1 | not reached |
+
+The blind control uses a deterministic secret nonlinear permutation (not a simple affine alphabet), 29 separately sampled nonzero slopes and 29 offsets, independent word starts, and 109 native literary words on the original long-word length pattern. The solver sees only 25 training ciphertext words of length ≥12 and the broad lexicon. It recovers all 25 training words, 22/22 individually forced normalized G entries exactly, with all inferred row observations agreeing with the hidden key. Without fitting any additional state, all 84 independent remaining words (872 runes) are uniquely decoded correctly. A separate heldout test encrypts all 228 exact transcribed solved-source words of length ≥5 under the same hidden law; 164/228 words (1,209 runes) are uniquely recovered, and the true word remains compatible in all 228 cases. First-word runes are chosen through lexical constraints; this is not unconditional recovery of the entire 87-parameter key or arbitrary word starts.
+
+**Decision:** retire the stationary book-global affine-row architecture if all seven listed original printed groups are same-length words in this finite lexicon. It strictly contains the earlier globally shared two-table model. It does not exclude chapter-private affine rows, independently changing state, an unknown alphabet register, or artificial spacing. A preliminary expanded-lexicon chapter-local run capped at 500,000 candidate visits each for p8–14, p15–22, p40–53 and p54–55; none completed, so these are unresolved and not additional negative evidence. Do not report the global result as chapter-local.
+
+**Reproducer:** [exact affine-row CSP SFT](../sims/lp2_integrated_affine_row_lexical_recovery_sft.cjs), Node 22/CommonJS, read-only. Computations were actually executed on checked-in data in connected V8; no independent CI claim. The code's original and positive-control searches completed without truncation after bitset propagation. The earlier two-table results below remain independently applicable to chapter-private keys.
+
+## Nested two-table model and chapter-local evidence
 ## Reversible model
 
 Allow a completely unknown permutation G on GP29 and an independently unknown 29-entry function H. For each original printed word allow any initial ciphertext shift (no shared starting-state assumption):
