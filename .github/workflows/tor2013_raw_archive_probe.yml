@@ -1,0 +1,31 @@
+name: Tor 2013 raw HSDir archive probe
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_ids:
+        description: Comma-separated 16-character v2 onion IDs to test
+        required: true
+        default: "hxazsilqjcq5n555"
+      control_ids:
+        description: Comma-separated known 2013 service IDs for archive controls
+        required: true
+        default: "silkroadvb5piz3r,5onwnspjvuk7cwvk,kpvz7ki2v5agwt35"
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Search pinned 2013 HSDir archive
+        run: python sims/tor2013_raw_archive_probe.py
+        env:
+          TARGET_IDS: \${{ inputs.target_ids }}
+          CONTROL_IDS: \${{ inputs.control_ids }}
