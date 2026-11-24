@@ -1,4 +1,4 @@
-# Director research frontier — 2026-11-24 09:43Z
+# Director research frontier — 2026-11-24 09:48Z
 
 [Authoritative findings](../../results/README.md) · [Integrated original-cipher challenge](../../workplace/integrated-original-inversion-challenge.md).
 
@@ -10,7 +10,7 @@ The most useful computational capability is constructive blind shared-key recove
 
 ## Closure checkpoint
 
-Twenty-eight newly reviewed director-task closures after 2026-11-24T07:59:13Z, through **2026-11-24T09:32:51Z (#2556)**:
+Thirty newly reviewed director-task closures after 2026-11-24T07:59:13Z, through **2026-11-24T09:38:06Z (#2565)**:
 
 - #2545: exact cross-chapter repeated plaintext difference-key test, all 1021×308 starts, maximum16 active runes; shuffled controls16–17. Six native plants recover all relative shifts. No repeat or absolute key.
 - #2546: pooled native period13 F-hold key, authentic KOAN holdout100/100 vs92/100 independent; mismatch36/100. Original p23–26 + p54–55 yields 21,020 finite candidates; frozen phase9 cannot complete second unit, retrospective phase6 is nonprose. Do not refit.
@@ -39,6 +39,8 @@ Twenty-eight newly reviewed director-task closures after 2026-11-24T07:59:13Z, t
 - #2561: the fixed five-unit p36–38→BASE29/KOAN/DH/DATA/NEXT mapping has no typed handoffs; KOAN is an argumentless participant-selected response, DH lacks the private state, DATA is a response, NEXT is a sink. Retire only this five-command program.
 - #2560: the fixed DH output sexagesimal tuple has zero matches among 249 contiguous starts and 32 complete p50 rows; values 45 and 17 are absent. No table receiver.
 - #2563: the first 256 prime_echo outputs (range 2–1619) mismatch all 256 p50 cells; 202 expected primes exceed the table's maximum token 255. Retire only this literal prime_echo→p50 sequence.
+- #2565: the one-bit-per-cell p50 parity stream is 256 bits, while original p56 scan73 is 128 hex characters/512 bits; equality is impossible. The correctly sized two-bit-per-cell alternatives were already tested #868 (0/24 exact matches, best 272/512). No bit-plane successor.
+- #2566: signed 2013 NEXT vs exact p56/p57 text has only generic p56 bigrams AN END and IT IS, zero p57 bigrams, zero trigrams, and 0/12 value terms. Original p57 scan74 heading is PARABLE, not FREEDOM. No terminal text transfer.
 - #2552: ciphertext-prime-weighted public q13 clock j_(i+1)=j_i+GPprime(C_i) mod13 recovers four native plants and 304/304 holdout, but all 13 full-book shift domains are empty under A/I and A/I/O, 7/9 chapters fail, and only four p54–55 reference windows survive. Retire only this exact public-clock/no-F-hold model; no LP2 key or plaintext.
 
 These results are consolidated in the [authoritative synthesis](../../results/README.md) with evidence links. Earlier closures remain recorded there and in Git history. No further generic archive, JPEG census, rank/line enumeration, p50 phase, or numerical navigation sweeps commissioned.
@@ -56,7 +58,7 @@ These results are consolidated in the [authoritative synthesis](../../results/RE
 - **2013 command transcript / p33 numerals:** the anonymous archived session has exact `BASE29 1033 → 16I` and `DH 3301 → 2757 1264` outputs, matching p33's visible operands. #2557 now rejects the direct typed receiver because the participant-selected DH secret is not supplied by p33. #2556 still checks period availability; #2560 tests the exact DH output tuple in p50's base60 tape; #2561 tests a single five-unit/command-order mapping. Treat as a hypothesis, not a first-party instruction.
 - **Old English register / repeated KOAN:** the exact Dickins 29-stanza source makes Old English a single motivated alternative to the failed English lexicon, but it does not prove LP2 plaintext is Old English. #2558 tests one frozen q29/Old-English register on p54–55 with a source-built corpus and planted controls. #2559 compares the anonymous 2013 prime-KOAN text with p57 and 2012 761.mp3. #2562 tests whether the KOAN's explicit prime question selects a new p15 spiral operation; all three are bounded source-led hypotheses, not arbitrary crib/key searches.
 
-Existing open work: #2524 has the exact Dickins source match but no usable plaintext constraint (Agent42 claim stale; continue only for a specific text/stanza constraint); #2527 full numeric-table verification register (Agent1 active); #2273 constrained-code inverse is claimed by Agent25 and remains open only for a new source-selected side operand, not generic rank/capacity reruns. #2540, #2548, #2494, #2536, #2537, #2550, #2551, #2552, #2553, #2554, #2555, #2556, #2557, #2558, #2559, #2560, #2561, #2562 and #2563 are closed. #2549 plaintext autokey is claimed by Agent18; #2564 signed-NEXT/p56 hash is claimed by Agent48. #2565 p50 parity/p56 digest, #2566 signed-NEXT/p57 text comparison, #2567 direct p50-byte SHA-256, #2568 p50 S-box/permutation, #2569 p0–14 affine q13, #2570 p16–21 Old English q29, and #2571 five-dot quincunx order are unclaimed. Consult leases before claim.
+Existing open work: #2524 has the exact Dickins source match but no usable plaintext constraint (Agent42 claim stale; continue only for a specific text/stanza constraint); #2527 full numeric-table verification register (Agent1 active); #2273 constrained-code inverse is claimed by Agent25 and remains open only for a new source-selected side operand, not generic rank/capacity reruns. #2540, #2548, #2494, #2536, #2537, #2550, #2551, #2552, #2553, #2554, #2555, #2556, #2557, #2558, #2559, #2560, #2561, #2562, #2563, #2565 and #2566 are closed. #2549 plaintext autokey is claimed by Agent18; #2564 signed-NEXT/p56 512-bit hash candidates are claimed by Agent48. #2567 direct p50-byte 512-bit hash candidates, #2568 p50 S-box/permutation, #2569 p0–14 affine q13, #2570 p16–21 Old English q29, and #2571 five-dot quincunx order are unclaimed. Consult leases before claim.
 
 New assignments, each requiring actual constructive recovery or a bounded failure:
 - [#2548](https://github.com/FlareZ123/liber-primus/issues/2548): spacing-free native key inference, latent segmentation, displaced-boundary plants. Strongest independent alternative to failed printed-word pools.
