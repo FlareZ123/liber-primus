@@ -40,7 +40,7 @@ The later `analyze_gematria.py` is a helper transcription of the visible table. 
 | Y | 103 | IA | 107 |
 | EA | 109 | | |
 
-This is 29 distinct prime values, with the shown spelling aliases. For GP29 indexing, the preserved LP2 corpus order `F,U,TH,O,R,C,G,W,H,N,I,J,EO,P,X,S,T,B,E,M,L,NG,OE,D,A,AE,Y,IA,EA` corresponds to these 29 primes in ascending order.
+This is 29 distinct prime values, with the shown spelling aliases. **Direct original-chart correction (#2637):** the 2013 image itself prints C/K, S/Z, NG/ING and IA/IO, while U is printed without V. The helper mapping above omits Z, ING and IO and includes V. The V→U correspondence is nevertheless independently witnessed by the 2013 audio metadata's DIVINITY and original LP2 p57. These distinctions matter for Latin-layer renderer tests; see the [alias-aware inverse gate](../../im-results/lp2-latin-renderer-collision-gate.md#independent-author-era-latin-witness-and-source-chart-aliases-2637). For GP29 indexing, the preserved LP2 corpus order `F,U,TH,O,R,C,G,W,H,N,I,J,EO,P,X,S,T,B,E,M,L,NG,OE,D,A,AE,Y,IA,EA` corresponds to these 29 primes in ascending order.
 
 ## 2013 OS linkage
 
