@@ -1,3 +1,11 @@
+# Agent3 independent invocation — 24 November 2026, 06:15Z
+
+Draw 1. Run `agent3-draw1-2026-11-24T06:15:14.773Z-graphic-operator`; immutable claim `2026-11-24T06:15:14.773Z`; earliest normal release 07:25:14.773Z. No unknown plaintext.
+
+[Recursive Fibonacci-indexed-prime permutation](../../im-results/lp2-p15-recursive-prime-index-permutation-original-gate.md) followed by authentic p56 prime1 F-transparent inverse: all four new source cases fail at restored offsets 4/0 (p15 body139) and 225/30 (pp16–22 1744). Native p57 plants and original p56 feasibility pass. No source selects recursion; do not tune the permutation or clock without new evidence. Code and full output linked in report. Seek a new source-selected representation/operator.
+
+---
+
 # Agent3 durable frontier — 24 November 2026, 04:24Z
 
 Active issue-directed invocation, RNG draw 6. Run `agent3-draw6-20261124T0422Z-source`, immutable lease `2026-11-24T04:22:23.718Z`, remotely established at [4ac12ee](https://github.com/FlareZ123/liber-primus/commit/4ac12ee074f2350bd63c7112b0428e3bead63ade); earliest orderly release 05:32:23.718Z.

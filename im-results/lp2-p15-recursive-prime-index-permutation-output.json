@@ -1,0 +1,287 @@
+{
+  "sourceGrid": [
+    3299,
+    3298,
+    3296,
+    3294,
+    3288,
+    3278,
+    3258,
+    3222,
+    3152,
+    3038,
+    2838,
+    2472,
+    1820,
+    708,
+    1206,
+    4516
+  ],
+  "primeRanks": [
+    2,
+    3,
+    5,
+    7,
+    13,
+    23,
+    43,
+    79,
+    149,
+    263,
+    463,
+    829,
+    1481,
+    2593,
+    4507,
+    7817
+  ],
+  "authenticP56": {
+    "firstContradiction": null,
+    "states": 5,
+    "clockMin": 81,
+    "clockMax": 85
+  },
+  "clearP57IoC": 0.06270996640537514,
+  "results": [
+    {
+      "name": "p15-body",
+      "n": 139,
+      "mode": "identity",
+      "encoding": "gather",
+      "feasibility": {
+        "firstContradiction": 21,
+        "states": 0
+      },
+      "rawClockIoC": 0.03180064643937024,
+      "rawPrefix": "N EA G A EO P A J O TH C W U F Y O EA E T TH H D O U EA S D C P C AE A OE AE G Y NG P E F F I D EA M I OE T",
+      "plantClock": {
+        "firstContradiction": null,
+        "states": 5,
+        "clockMin": 132,
+        "clockMax": 136
+      },
+      "permPrefix": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ]
+    },
+    {
+      "name": "p15-body",
+      "n": 139,
+      "mode": "prime-at-Fibonacci-rank",
+      "encoding": "gather",
+      "feasibility": {
+        "firstContradiction": 4,
+        "states": 0
+      },
+      "rawClockIoC": 0.03513710770514024,
+      "rawPrefix": "EO H Y M F E X I P NG P U J J J L P I U G I P U NG F O T P NG N F B Y X J IA P AE E EA Y G A M A N O J",
+      "plantClock": {
+        "firstContradiction": null,
+        "states": 5,
+        "clockMin": 132,
+        "clockMax": 136
+      },
+      "permPrefix": [
+        1,
+        2,
+        4,
+        6,
+        12,
+        22,
+        42,
+        78,
+        3,
+        5,
+        8,
+        10,
+        17,
+        28,
+        49,
+        86,
+        7,
+        9,
+        13,
+        15
+      ]
+    },
+    {
+      "name": "p15-body",
+      "n": 139,
+      "mode": "prime-at-Fibonacci-rank",
+      "encoding": "scatter",
+      "feasibility": {
+        "firstContradiction": 0,
+        "states": 0
+      },
+      "rawClockIoC": 0.03586695860702742,
+      "rawPrefix": "F H E C TH S D O H Y A EA N NG X Y F EA C X B E EO X C U N O N H L N H NG C R L E IA E I OE M A D O A A",
+      "plantClock": {
+        "firstContradiction": null,
+        "states": 5,
+        "clockMin": 132,
+        "clockMax": 136
+      },
+      "permPrefix": [
+        1,
+        2,
+        4,
+        6,
+        12,
+        22,
+        42,
+        78,
+        3,
+        5,
+        8,
+        10,
+        17,
+        28,
+        49,
+        86,
+        7,
+        9,
+        13,
+        15
+      ]
+    },
+    {
+      "name": "p16-22",
+      "n": 1744,
+      "mode": "identity",
+      "encoding": "gather",
+      "feasibility": {
+        "firstContradiction": 7,
+        "states": 0
+      },
+      "rawClockIoC": 0.034381299773142374,
+      "rawPrefix": "B NG L M G L EO F G S R NG C M G J EA W Y M C O J N AE D W C N NG A J J J EO NG P EA I M B U EA S B Y I L",
+      "plantClock": {
+        "firstContradiction": null,
+        "states": 2,
+        "clockMin": 1689,
+        "clockMax": 1690
+      },
+      "permPrefix": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ]
+    },
+    {
+      "name": "p16-22",
+      "n": 1744,
+      "mode": "prime-at-Fibonacci-rank",
+      "encoding": "gather",
+      "feasibility": {
+        "firstContradiction": 225,
+        "states": 0
+      },
+      "rawClockIoC": 0.034479332796454494,
+      "rawPrefix": "P T M Y X J N R EO AE IA I C B R D R W EA S U B H R T L X E P H W NG M Y OE E N C U H G B EO G EO X EO TH",
+      "plantClock": {
+        "firstContradiction": null,
+        "states": 2,
+        "clockMin": 1689,
+        "clockMax": 1690
+      },
+      "permPrefix": [
+        1,
+        2,
+        4,
+        6,
+        12,
+        22,
+        42,
+        78,
+        148,
+        262,
+        462,
+        828,
+        1480,
+        3,
+        5,
+        8,
+        10,
+        17,
+        28,
+        49
+      ]
+    },
+    {
+      "name": "p16-22",
+      "n": 1744,
+      "mode": "prime-at-Fibonacci-rank",
+      "encoding": "scatter",
+      "feasibility": {
+        "firstContradiction": 30,
+        "states": 0
+      },
+      "rawClockIoC": 0.03448525425423845,
+      "rawPrefix": "OE OE EO OE G D EA M OE D E T TH EO S C C W OE P U EA B N N NG O A J N F U O T T P C B X U M EA O EA EA F NG U",
+      "plantClock": {
+        "firstContradiction": null,
+        "states": 2,
+        "clockMin": 1689,
+        "clockMax": 1690
+      },
+      "permPrefix": [
+        1,
+        2,
+        4,
+        6,
+        12,
+        22,
+        42,
+        78,
+        148,
+        262,
+        462,
+        828,
+        1480,
+        3,
+        5,
+        8,
+        10,
+        17,
+        28,
+        49
+      ]
+    }
+  ]
+}
