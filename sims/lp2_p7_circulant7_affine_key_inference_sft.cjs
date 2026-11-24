@@ -1,6 +1,6 @@
 "use strict";
 /** Agent46: source-fixed seven-channel all-secret affine circulant inverse. Run with Node 22. */
-function experiment(inputs) {
+function experiment(inputs, mode='scalar') {
   const [gp,trans,lex,native]=[JSON.parse(inputs[0]),inputs[1],inputs[2],JSON.parse(inputs[3])];
   const mod=x=>(x%29+29)%29, check=(x,m)=>{if(!x)throw Error(m)}, m=new Map(gp.runes.map((x,i)=>[x,i])), alpha=new Map(gp.translit.map((x,i)=>[x,i]));
   const parse=s=>(s.match(/[\u16a0-\u16ff]+/gu)||[]).map(w=>[...w].map(c=>m.get(c)));
@@ -49,9 +49,82 @@ function experiment(inputs) {
     else singletonOnly={rank:sb.length,enumerated:null};
     return {layout,trainRunes:fitEnd,heldRunes:c.length-fitEnd,trainSingletons:si.length,allSingletons:allsi.length,anchorStats,uniqueCandidateKeys:keys.size,maxCompatibleAnchors:Math.max(0,...[...keys.values()].map(k=>k.anchors)),singletonOnly,predictions};
   }
+
+  /** Period-seven ordinary additive layer in either order with the circulant mixer. */
+  function encodePhase(p,key,layout){
+    const g=geometry(p.length,layout),A=inverse(matrix(key));check(A,"singular phase key");
+    const c=Array(p.length);
+    for(let i=0;i<g.h;i++){
+      const v=Array.from({length:7},(_,j)=>{const q=g.index(i,j);return mod(p[q]-key[7+q%7])});
+      for(let j=0;j<7;j++)c[g.index(i,j)]=dot(A[j],v);
+    }return c;
+  }
+  function fitPhase(c,words,layout){
+    const g=geometry(c.length,layout);
+    check(layout==="groups"||g.h%7!==0,"lane phase degeneracy");
+    const rows=rowsOf(c,layout).map(x=>x.slice(0,7)),wr=wordRows(words);
+    const cut=wr.findIndex(w=>w.off>=Math.floor(c.length*.65)),fw=wr.slice(0,cut),hw=wr.slice(cut),fitEnd=hw[0].off;
+    const si=fw.filter(w=>w.len===1).map(w=>w.off),keys=new Map(),anchorStats=[];
+    const diff=(a,b)=>a.map((x,i)=>mod(x-b[i]));
+    const val=(i,k)=>mod(dot(rows[i],k)+k[7+i%7]);
+    function coverage(k,ws){let wordsHit=0,runesHit=0,runesTotal=0;for(const w of ws){if(w.len<3)continue;runesTotal+=w.len;const p=Array.from({length:w.len},(_,i)=>val(w.off+i,k));if(w.len<32&&dict[w.len].has(p.join(","))){wordsHit++;runesHit+=w.len}}return{wordsHit,runesHit,runesTotal}}
+    // All complete length >=11 training words. Choose this before scoring the original.
+    for(const w of fw.filter(x=>x.len>=11&&x.len<32)){
+      const piv=Array(7).fill(-1),eq=[];
+      for(let i=0;i<w.len;i++){const j=(w.off+i)%7;if(piv[j]<0)piv[j]=i;else eq.push({row:diff(rows[w.off+i],rows[w.off+piv[j]]),a:i,b:piv[j],singleton:false})}
+      for(const i of si){const b=piv[i%7];eq.push({row:diff(rows[i],rows[w.off+b]),a:i,b,singleton:true})}
+      const bi=rankBasis(eq.map(x=>x.row));
+      if(bi.length!==7){anchorStats.push({offset:w.off,len:w.len,rank:bi.length,forms:dict[w.len].size,candidates:null});continue}
+      const es=bi.map(i=>eq[i]),B=inverse(es.map(x=>x.row));check(B,"rank mismatch");
+      const basisSet=new Set(bi),other=eq.filter((_,i)=>!basisSet.has(i));
+      const rhs=Array(7).fill(0),deltas=[];
+      function walk(j){if(j===7){const k=B.map(row=>dot(row,rhs));deltas.push({k,proj:other.map(e=>dot(e.row,k))});return}if(es[j].singleton){for(const x of allowed){rhs[j]=x;walk(j+1)}}else{rhs[j]=0;walk(j+1)}}walk(0);
+      const cand=new Set();let visits=0,linear=0;
+      for(const p of dict[w.len].values()){
+        const b=es.map(e=>mod((e.singleton?0:p[e.a])-p[e.b])),k0=B.map(r=>dot(r,b));
+        const bases=other.map(e=>dot(e.row,k0)),wordTargets=other.map(e=>e.singleton?null:mod(p[e.a]-p[e.b]));
+        for(const d of deltas){
+          visits++;let ok=true;
+          for(let j=0;j<other.length;j++){
+            const e=other[j],x=mod(bases[j]+d.proj[j]);
+            if(e.singleton?!allowedSet.has(mod(x+p[e.b])):x!==wordTargets[j]){ok=false;break}
+          }
+          if(!ok)continue;
+          linear++;
+          const k=k0.map((x,i)=>mod(x+d.k[i]));
+          if(!inverse(matrix(k)))continue;
+          const full=[...k,...piv.map(x=>mod(p[x]-dot(rows[w.off+x],k)))];
+          check(Array.from({length:w.len},(_,i)=>val(w.off+i,full)).join(",")===p.join(","),"anchor");
+          check(si.every(i=>allowedSet.has(val(i,full))),"singleton");
+          const id=full.join(",");cand.add(id);if(!keys.has(id))keys.set(id,{key:full,anchors:0});
+        }
+      }
+      for(const id of cand)keys.get(id).anchors++;
+      anchorStats.push({offset:w.off,len:w.len,rank:7,forms:dict[w.len].size,selectedSingletons:es.filter(x=>x.singleton).length,enumerated:visits,linear,candidates:cand.size});
+    }
+    const maxCompatibleAnchors=[...keys.values()].reduce((m,k)=>Math.max(m,k.anchors),0);
+    const ranked=[...keys.values()].filter(k=>k.anchors===maxCompatibleAnchors).map(k=>({...k,score:coverage(k.key,fw)})).sort((a,b)=>b.score.runesHit-a.score.runesHit||a.key.join(",").localeCompare(b.key.join(",")));
+    const winners=ranked.length?ranked.filter(k=>k.score.runesHit===ranked[0].score.runesHit):[];
+    const predictions=winners.map(k=>{const p=rows.map((_,i)=>val(i,k.key));check(encodePhase(p,k.key,layout).join(",")===c.join(","),"phase replay");return{...k,holdout:coverage(k.key,hw),heldSingletons:hw.filter(w=>w.len===1).map(w=>p[w.off]),p}});
+    return{layout,trainRunes:fitEnd,heldRunes:c.length-fitEnd,trainSingletons:si.length,anchorStats,uniqueCandidateKeys:keys.size,maxCompatibleAnchors,predictions};
+  }
+
   let rng=0x46a713;const rand=()=>{rng^=rng<<13;rng^=rng>>>17;rng^=rng<<5;return rng>>>0};
   function trim(words){let n=0,last=0;for(let i=0;i<words.length;i++){n+=words[i].length;if(n%7===0)last=i+1}return words.slice(0,last)}
   const controls=[trim(solved.slice(0,4).flat()),trim(solved.slice(4).flat())], plants=[];
+
+  if(mode.startsWith("phase")){
+    const phasePlants=[],phaseResults=[],layouts=mode==="phase-groups"?["groups"]:mode==="phase-lanes"?["lanes"]:["groups","lanes"];
+    for(const layout of layouts)for(const [id,words] of controls.entries()){
+      let key;do{key=Array.from({length:14},()=>rand()%29)}while(!inverse(matrix(key)));
+      const plain=words.flat(),c=encodePhase(plain,key,layout),result=fitPhase(c,words,layout);
+      const exact=result.predictions.find(k=>k.key.join(",")===key.join(","));
+      phasePlants.push({layout,id,n:plain.length,key,train:result.trainRunes,held:result.heldRunes,keys:result.uniqueCandidateKeys,winners:result.predictions.length,correct:!!exact,heldCorrect:exact?exact.p.slice(result.trainRunes).filter((x,i)=>x===plain[result.trainRunes+i]).length:0,anchorStats:result.anchorStats});
+    }
+    for(const layout of layouts){const x=fitPhase(orig.flat(),orig,layout);x.predictions=x.predictions.map((k,i)=>({...k,readout:i<3?wordRows(orig).map(w=>k.p.slice(w.off,w.off+w.len).map(x=>gp.translit[x]).join("")).join(" "):undefined,p:undefined}));phaseResults.push(x)}
+    return {dictionary:dict.reduce((s,d)=>s+d.size,0),singletonInventory:allowed,phasePlants,phaseResults};
+  }
+
   for(const layout of ["groups","lanes"])for(const [id,words] of controls.entries()){
     let key;do{key=Array.from({length:8},()=>rand()%29)}while(!inverse(matrix(key)));
     const plain=words.flat(),c=encode(plain,key,layout),result=fit(c,words,layout);
@@ -64,4 +137,4 @@ function experiment(inputs) {
 }
 const fs=require("node:fs"),path=require("node:path");
 const paths=["resources/liber-primus/lp2-corpus.json","resources/transcriptions/lp2-image-corrected.txt","resources/control/english_wordfreq_textblob.txt","resources/external/relikd-solved-gp29-native-v1.json"];
-console.log(JSON.stringify(experiment(paths.map(p=>fs.readFileSync(path.resolve(__dirname,"..",p),"utf8"))),null,2));
+console.log(JSON.stringify(experiment(paths.map(p=>fs.readFileSync(path.resolve(__dirname,"..",p),"utf8")),process.argv[2]??"scalar"),null,2));
