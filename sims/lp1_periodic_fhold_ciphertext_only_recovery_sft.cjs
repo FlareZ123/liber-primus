@@ -175,12 +175,12 @@ function recoverKey(C, period, excludedSection, seed, restarts) {
   }
 
   const ranked = Array.from(candidates.values()).sort((a, b) => b.score - a.score);
-  assert(ranked.length >= 2, "Too few distinct feasible key candidates");
+  assert(ranked.length >= 1, "No feasible key candidate");
   return {
     validStarts,
     distinctCandidates: ranked.length,
     ranked,
-    scoreGap: ranked[0].score - ranked[1].score
+    scoreGap: ranked.length > 1 ? ranked[0].score - ranked[1].score : null
   };
 }
 
