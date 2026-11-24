@@ -46,5 +46,6 @@ def main():
         rows.sort(key=lambda x:-x['fitScore']);print(json.dumps(dict(label=label,allKeyResults=rows)),flush=True)
     if a.control:
         p=[x for s in ns for x in s];p=(p+p)[:3000];k=[23,10,1,10,9,10,16,26];ct=encrypt(p,k);stats,keys=enumerate_keys(exe,ct,a.cap)
-        j=stats['anchor'];q=sum(x!=0 for x in p[:j])%8;truth=rotate(k,q);print(json.dumps(dict(label='full-native-control',stats=stats,truthAnchoredKey=truth,truePresent=truth in keys)),flush=True)
+        j=stats['anchor'];q=sum(x!=0 for x in p[:j])%8;truth=rotate(k,q);known=best_path(ct,truth,j,m);assert known and encrypt(known['plain'],rotate(truth,known['start']))==ct
+        print(json.dumps(dict(label='full-native-control',stats=stats,truthAnchoredKey=truth,truePresentInStoredFirst100000=truth in keys,trueKeyReachable=True,knownKeyPlaintextExact=sum(x==y for x,y in zip(p,known['plain'])),knownKeyReplay=True)),flush=True)
 if __name__=='__main__':main()
