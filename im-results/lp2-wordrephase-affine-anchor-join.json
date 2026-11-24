@@ -1,0 +1,1241 @@
+[
+  {
+    "period": 13,
+    "controls": [
+      {
+        "name": "Emerson heldout",
+        "n": 1101,
+        "anchors": [
+          {
+            "i": 235,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 248,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 221,
+            "len": 12,
+            "nonF": 11
+          },
+          {
+            "i": 17,
+            "len": 10,
+            "nonF": 10
+          }
+        ],
+        "aList": 799,
+        "bList": 799,
+        "pairs": 16598426,
+        "joins": 1,
+        "missingHistogram": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "oracleSeen": true,
+        "oracleCovered": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "stored": [
+          {
+            "coef": 7,
+            "key": [
+              8,
+              26,
+              15,
+              4,
+              22,
+              11,
+              0,
+              18,
+              7,
+              23,
+              12,
+              1,
+              19
+            ]
+          }
+        ],
+        "truncated": false
+      },
+      {
+        "name": "LP1 reference",
+        "n": 1500,
+        "anchors": [
+          {
+            "i": 369,
+            "len": 13,
+            "nonF": 13
+          },
+          {
+            "i": 154,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 183,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 164,
+            "len": 11,
+            "nonF": 11
+          }
+        ],
+        "aList": 429,
+        "bList": 799,
+        "pairs": 8912046,
+        "joins": 1,
+        "missingHistogram": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "oracleSeen": true,
+        "oracleCovered": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "stored": [
+          {
+            "coef": 28,
+            "key": [
+              6,
+              21,
+              13,
+              11,
+              15,
+              25,
+              12,
+              13,
+              21,
+              6,
+              26,
+              23,
+              26
+            ]
+          }
+        ],
+        "truncated": false
+      }
+    ],
+    "originals": [
+      {
+        "name": "section1",
+        "n": 729,
+        "anchors": [
+          {
+            "i": 5,
+            "len": 11,
+            "nonF": 11
+          },
+          {
+            "i": 13,
+            "len": 11,
+            "nonF": 10
+          },
+          {
+            "i": 147,
+            "len": 10,
+            "nonF": 10
+          },
+          {
+            "i": 155,
+            "len": 10,
+            "nonF": 10
+          }
+        ],
+        "aList": 1426,
+        "bList": 1449,
+        "pairs": 53723124,
+        "joins": 0,
+        "missingHistogram": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "stored": [],
+        "truncated": false
+      },
+      {
+        "name": "section2",
+        "n": 1145,
+        "anchors": [
+          {
+            "i": 218,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 248,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 9,
+            "len": 12,
+            "nonF": 11
+          },
+          {
+            "i": 1,
+            "len": 11,
+            "nonF": 11
+          }
+        ],
+        "aList": 799,
+        "bList": 799,
+        "pairs": 16598426,
+        "joins": 0,
+        "missingHistogram": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "stored": [],
+        "truncated": false
+      },
+      {
+        "name": "section3",
+        "n": 1738,
+        "anchors": [
+          {
+            "i": 341,
+            "len": 14,
+            "nonF": 14
+          },
+          {
+            "i": 218,
+            "len": 13,
+            "nonF": 12
+          },
+          {
+            "i": 31,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 224,
+            "len": 12,
+            "nonF": 12
+          }
+        ],
+        "aList": 174,
+        "bList": 430,
+        "pairs": 1945320,
+        "joins": 0,
+        "missingHistogram": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "stored": [],
+        "truncated": false
+      },
+      {
+        "name": "section4",
+        "n": 1894,
+        "anchors": [
+          {
+            "i": 35,
+            "len": 13,
+            "nonF": 13
+          },
+          {
+            "i": 73,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 76,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 417,
+            "len": 12,
+            "nonF": 12
+          }
+        ],
+        "aList": 429,
+        "bList": 799,
+        "pairs": 8912046,
+        "joins": 0,
+        "missingHistogram": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "stored": [],
+        "truncated": false
+      },
+      {
+        "name": "section5",
+        "n": 1021,
+        "anchors": [
+          {
+            "i": 120,
+            "len": 14,
+            "nonF": 13
+          },
+          {
+            "i": 104,
+            "len": 10,
+            "nonF": 10
+          },
+          {
+            "i": 108,
+            "len": 10,
+            "nonF": 10
+          },
+          {
+            "i": 123,
+            "len": 10,
+            "nonF": 10
+          }
+        ],
+        "aList": 174,
+        "bList": 2262,
+        "pairs": 10233288,
+        "joins": 0,
+        "missingHistogram": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "stored": [],
+        "truncated": false
+      },
+      {
+        "name": "section6",
+        "n": 1433,
+        "anchors": [
+          {
+            "i": 1,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 19,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 41,
+            "len": 12,
+            "nonF": 11
+          },
+          {
+            "i": 97,
+            "len": 11,
+            "nonF": 11
+          }
+        ],
+        "aList": 799,
+        "bList": 799,
+        "pairs": 16598426,
+        "joins": 0,
+        "missingHistogram": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "stored": [],
+        "truncated": false
+      },
+      {
+        "name": "section7",
+        "n": 1680,
+        "anchors": [
+          {
+            "i": 108,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 306,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 133,
+            "len": 11,
+            "nonF": 11
+          },
+          {
+            "i": 284,
+            "len": 11,
+            "nonF": 11
+          }
+        ],
+        "aList": 799,
+        "bList": 799,
+        "pairs": 16598426,
+        "joins": 0,
+        "missingHistogram": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "stored": [],
+        "truncated": false
+      },
+      {
+        "name": "section8",
+        "n": 3316,
+        "anchors": [
+          {
+            "i": 591,
+            "len": 13,
+            "nonF": 13
+          },
+          {
+            "i": 180,
+            "len": 14,
+            "nonF": 12
+          },
+          {
+            "i": 725,
+            "len": 13,
+            "nonF": 12
+          },
+          {
+            "i": 8,
+            "len": 12,
+            "nonF": 12
+          }
+        ],
+        "aList": 429,
+        "bList": 180,
+        "pairs": 2007720,
+        "joins": 0,
+        "missingHistogram": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "stored": [],
+        "truncated": false
+      },
+      {
+        "name": "supplemental p54–55",
+        "n": 308,
+        "anchors": [
+          {
+            "i": 56,
+            "len": 13,
+            "nonF": 12
+          },
+          {
+            "i": 49,
+            "len": 11,
+            "nonF": 11
+          },
+          {
+            "i": 47,
+            "len": 10,
+            "nonF": 10
+          }
+        ],
+        "aList": 435,
+        "bList": 1426,
+        "pairs": 16128060,
+        "joins": 0,
+        "missingHistogram": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "stored": [],
+        "truncated": false
+      }
+    ]
+  },
+  {
+    "period": 16,
+    "controls": [
+      {
+        "name": "Emerson heldout",
+        "n": 1101,
+        "anchors": [
+          {
+            "i": 221,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 235,
+            "len": 12,
+            "nonF": 11
+          },
+          {
+            "i": 248,
+            "len": 12,
+            "nonF": 11
+          },
+          {
+            "i": 17,
+            "len": 10,
+            "nonF": 10
+          }
+        ],
+        "aList": 799,
+        "bList": 812,
+        "pairs": 20761216,
+        "joins": 1,
+        "missingHistogram": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "oracleSeen": true,
+        "oracleCovered": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "stored": [
+          {
+            "coef": 7,
+            "key": [
+              8,
+              26,
+              15,
+              4,
+              22,
+              11,
+              0,
+              18,
+              7,
+              27,
+              16,
+              5,
+              23,
+              12,
+              1,
+              19
+            ]
+          }
+        ],
+        "truncated": false
+      },
+      {
+        "name": "LP1 reference",
+        "n": 1500,
+        "anchors": [
+          {
+            "i": 369,
+            "len": 13,
+            "nonF": 13
+          },
+          {
+            "i": 154,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 183,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 164,
+            "len": 11,
+            "nonF": 11
+          }
+        ],
+        "aList": 429,
+        "bList": 799,
+        "pairs": 10968672,
+        "joins": 1,
+        "missingHistogram": [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "oracleSeen": true,
+        "oracleCovered": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "stored": [
+          {
+            "coef": 28,
+            "key": [
+              21,
+              6,
+              26,
+              23,
+              26,
+              6,
+              21,
+              13,
+              11,
+              15,
+              25,
+              12,
+              5,
+              -1,
+              -1,
+              -1
+            ]
+          }
+        ],
+        "truncated": false
+      }
+    ],
+    "originals": [
+      {
+        "name": "section1",
+        "n": 729,
+        "anchors": [
+          {
+            "i": 5,
+            "len": 11,
+            "nonF": 11
+          },
+          {
+            "i": 13,
+            "len": 11,
+            "nonF": 10
+          },
+          {
+            "i": 147,
+            "len": 10,
+            "nonF": 10
+          },
+          {
+            "i": 155,
+            "len": 10,
+            "nonF": 10
+          }
+        ],
+        "aList": 1426,
+        "bList": 1449,
+        "pairs": 66120768,
+        "joins": 0,
+        "missingHistogram": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "stored": [],
+        "truncated": false
+      },
+      {
+        "name": "section2",
+        "n": 1145,
+        "anchors": [
+          {
+            "i": 218,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 248,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 9,
+            "len": 12,
+            "nonF": 11
+          },
+          {
+            "i": 1,
+            "len": 11,
+            "nonF": 11
+          }
+        ],
+        "aList": 799,
+        "bList": 799,
+        "pairs": 20428832,
+        "joins": 0,
+        "missingHistogram": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "stored": [],
+        "truncated": false
+      },
+      {
+        "name": "section3",
+        "n": 1738,
+        "anchors": [
+          {
+            "i": 341,
+            "len": 14,
+            "nonF": 14
+          },
+          {
+            "i": 218,
+            "len": 13,
+            "nonF": 12
+          },
+          {
+            "i": 31,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 224,
+            "len": 12,
+            "nonF": 12
+          }
+        ],
+        "aList": 182,
+        "bList": 430,
+        "pairs": 2504320,
+        "joins": 0,
+        "missingHistogram": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "stored": [],
+        "truncated": false
+      },
+      {
+        "name": "section4",
+        "n": 1894,
+        "anchors": [
+          {
+            "i": 35,
+            "len": 13,
+            "nonF": 13
+          },
+          {
+            "i": 73,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 76,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 417,
+            "len": 12,
+            "nonF": 12
+          }
+        ],
+        "aList": 429,
+        "bList": 799,
+        "pairs": 10968672,
+        "joins": 0,
+        "missingHistogram": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "stored": [],
+        "truncated": false
+      },
+      {
+        "name": "section5",
+        "n": 1021,
+        "anchors": [
+          {
+            "i": 120,
+            "len": 14,
+            "nonF": 13
+          },
+          {
+            "i": 104,
+            "len": 10,
+            "nonF": 10
+          },
+          {
+            "i": 108,
+            "len": 10,
+            "nonF": 10
+          },
+          {
+            "i": 123,
+            "len": 10,
+            "nonF": 10
+          }
+        ],
+        "aList": 182,
+        "bList": 2262,
+        "pairs": 13173888,
+        "joins": 0,
+        "missingHistogram": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "stored": [],
+        "truncated": false
+      },
+      {
+        "name": "section6",
+        "n": 1433,
+        "anchors": [
+          {
+            "i": 1,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 19,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 41,
+            "len": 12,
+            "nonF": 11
+          },
+          {
+            "i": 97,
+            "len": 11,
+            "nonF": 11
+          }
+        ],
+        "aList": 799,
+        "bList": 799,
+        "pairs": 20428832,
+        "joins": 0,
+        "missingHistogram": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "stored": [],
+        "truncated": false
+      },
+      {
+        "name": "section7",
+        "n": 1680,
+        "anchors": [
+          {
+            "i": 108,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 306,
+            "len": 12,
+            "nonF": 12
+          },
+          {
+            "i": 133,
+            "len": 11,
+            "nonF": 11
+          },
+          {
+            "i": 284,
+            "len": 11,
+            "nonF": 11
+          }
+        ],
+        "aList": 799,
+        "bList": 799,
+        "pairs": 20428832,
+        "joins": 0,
+        "missingHistogram": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "stored": [],
+        "truncated": false
+      },
+      {
+        "name": "section8",
+        "n": 3316,
+        "anchors": [
+          {
+            "i": 591,
+            "len": 13,
+            "nonF": 13
+          },
+          {
+            "i": 180,
+            "len": 14,
+            "nonF": 12
+          },
+          {
+            "i": 725,
+            "len": 13,
+            "nonF": 12
+          },
+          {
+            "i": 8,
+            "len": 12,
+            "nonF": 12
+          }
+        ],
+        "aList": 429,
+        "bList": 188,
+        "pairs": 2580864,
+        "joins": 0,
+        "missingHistogram": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "stored": [],
+        "truncated": false
+      },
+      {
+        "name": "supplemental p54–55",
+        "n": 308,
+        "anchors": [
+          {
+            "i": 56,
+            "len": 13,
+            "nonF": 12
+          },
+          {
+            "i": 49,
+            "len": 11,
+            "nonF": 11
+          },
+          {
+            "i": 47,
+            "len": 10,
+            "nonF": 10
+          }
+        ],
+        "aList": 435,
+        "bList": 1426,
+        "pairs": 19849920,
+        "joins": 0,
+        "missingHistogram": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "oracleSeen": false,
+        "oracleCovered": null,
+        "stored": [],
+        "truncated": false
+      }
+    ]
+  }
+]
