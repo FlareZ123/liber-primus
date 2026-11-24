@@ -1,0 +1,92 @@
+{
+  "status": "completed",
+  "classification": "bounded negative for direct raw-XOR of the p50 256-byte table at four source-motivated offsets",
+  "source": {
+    "audio": "rtkd/iddqd@f2267b0c2f1e1d2662806b90b9c3a2953b3a7023:2013/02/761.MP3",
+    "audio_bytes": 4010732,
+    "audio_sha256": "83008217439110c3b824898af73b99cb2cf0657dda88cb363c3aa34a4ec0a460",
+    "p50_table": "resources/liber-primus/lp2-grid-256.json"
+  },
+  "selector": {
+    "parable_value": 1595277641,
+    "prime_factors": [
+      1031,
+      1229,
+      1259
+    ],
+    "p57_body_clause_gp_prime_sums": [
+      1031,
+      1229,
+      1259
+    ],
+    "audio_title": "THE INSTAR EMERGENCE",
+    "audio_title_gp_prime_sum": 761,
+    "offsets_zero_based": [
+      761,
+      1031,
+      1229,
+      1259
+    ]
+  },
+  "operation": "p50[i] XOR complete_761_MP3[offset+i]",
+  "controls": {
+    "historical_twitter_stream_xor_positive_control": "preserved and passed in same workflow",
+    "wrong_source_control": "retained"
+  },
+  "zero_byte_diagnostic": {
+    "overlapping_16_zero_windows_full_mp3": 436,
+    "offset761_pad_first16": "00000000000000000000000000000000",
+    "offset809_pad_first16": "00000000000000000000000000000000",
+    "explanation": "identical p50 XOR first16 at 761 and 809 is caused by both pad slices beginning with 16 zero bytes; not a payload signal",
+    "frame_context": "both offsets lie within first MPEG audio Info/LAME frame, bytes 206–831"
+  },
+  "candidates": [
+    {
+      "offset": 761,
+      "pad_sha256": "dbe9627c48f57c5b1bba73d7bfb7c6a2a13911038f0ff3ed1d68d50f0db85b6b",
+      "pad_first16": "00000000000000000000000000000000",
+      "sha256": "9989f9adc48158e898b64149a8baf66db420d34b8c12473967c0a9d0547d6a82",
+      "printable_ratio": 0.3828,
+      "unique_bytes": 160,
+      "entropy_bits_per_byte": 7.1673,
+      "leading_magic": null,
+      "jpeg_structure": false
+    },
+    {
+      "offset": 1031,
+      "pad_sha256": "8e31fcbc8324255e8777d1a5d8aa3efd274b64eb5b20574b04256fbc4bbde412",
+      "pad_first16": "7bf7c1040004e6fb9d16540c0cf34c9c",
+      "sha256": "ecb465a346cf4a906f7f8af8c6fe6f842df05c6067685de8084a28d23b5701c1",
+      "printable_ratio": 0.3398,
+      "unique_bytes": 164,
+      "entropy_bits_per_byte": 7.182,
+      "leading_magic": null,
+      "jpeg_structure": false
+    },
+    {
+      "offset": 1229,
+      "pad_sha256": "dcc128154e40dc93a21807e00caa22331f1c6c149b726e6cd85ad66fdef602f0",
+      "pad_first16": "88a669d8442c0611a71d61ecd2374e99",
+      "sha256": "0c377c55dca3ed75b34581d97a66dc6e09298e4c38205b5493d22c1ee7dd5d99",
+      "printable_ratio": 0.4297,
+      "unique_bytes": 162,
+      "entropy_bits_per_byte": 7.156,
+      "leading_magic": null,
+      "jpeg_structure": false
+    },
+    {
+      "offset": 1259,
+      "pad_sha256": "40756a13367802a6911fb4740915b1dba57f34566b5a72c2e2f8dd9d7c38573b",
+      "pad_first16": "94324d2ee596349fddc631b8a769d313",
+      "sha256": "1ddfe9161f613021f0a70bec9eaa94be9ec3cb0c3bbaab2450502efaee1295ab",
+      "printable_ratio": 0.4023,
+      "unique_bytes": 168,
+      "entropy_bits_per_byte": 7.2389,
+      "leading_magic": null,
+      "jpeg_structure": false
+    }
+  ],
+  "workflow_run": "https://github.com/FlareZ123/liber-primus/actions/runs/45411648349",
+  "script": "sims/761_mp3_xor_p50_gate.cjs",
+  "prereg": "workplace/lp2-2013-761-parable-offset-p50-xor-prereg.md"
+}
