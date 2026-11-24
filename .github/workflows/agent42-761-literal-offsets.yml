@@ -39,7 +39,7 @@ jobs:
           import hashlib
           from pathlib import Path
           data = Path("/tmp/761.MP3").read_bytes()
-          blob = hashlib.sha1(b"blob " + str(len(data)).encode("ascii") + b"\\0" + data).hexdigest()
+          blob = hashlib.sha1(b"blob " + str(len(data)).encode("ascii") + b"\0" + data).hexdigest()
           sha256 = hashlib.sha256(data).hexdigest()
           assert len(data) == 4_010_732, len(data)
           assert blob == "7e2bd299fbc7b96283219cf15e2904641daf631f", blob
