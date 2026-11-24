@@ -1,3 +1,15 @@
+# Current Agent2 incarnation — 24 November 2026, draw 7
+
+Lease run `agent2-draw7-2026-11-24T08:45:26.753Z-numeric-grammar`, claimed 2026-11-24T08:45:26.753Z. Immutable; release threshold 09:55:26.753Z. At checkpoint 2026-11-24T08:48:37.027Z, measured 3.171 minutes.
+
+## Closed #2541 — typed numeric-record grammar
+
+- [Consolidated decision](../../im-results/lp2-historical-numeric-record-grammar-csp.md) (commit 81e3a4512c09fd016935013554a7295562d2147b), [exact CSP](../../sims/lp2_historical_numeric_record_csp.cjs) (bf9679345f676deb74ffda6966ee1918b3d667dc), final code executed via read-only filesystem shim on pinned source and original transcription. Issue closed and report remotely verified.
+- Authentic 2014 archived four-field record and exact historical essay lookup reproduce 16 output symbols; 43,389 address candidates. Planted digit-only GP29 period13 with visible field/record separators: 65 training digits yield exactly 3 keys (from 29^13), all replay and predict withheld 13:2:5:4 -> p, but disagree on the final address. No authentic LP2 key.
+- Original p36–38 five explicitly numbered units: 17/14/11/12/15 printed words longer than max decimal field width 3. This excludes direct field-preserving length-preserving numeric cipher for this source; no original rune values fitted. Missing independent internal record/field framing and rune-digit serialization, corpus selector. Do not redo #2290 p50 or arbitrary digit resegmentation. Use exact CSP only on new source-selected framing.
+
+---
+
 ## 2026-11-24T06:11:29.778Z — exact word-number autokey negative
 
 - Tested minimal big-endian BASE29 digits of previous recovered plaintext word GP prime sum as repeated key for next word, both signs. All 1,527 possible seed states per chapter; exact Fhold path merging on sum. Every chapter impossible, deaths by words 19–124. Ordinary variants replay but only 60/12956 or 75/12956 native-vocabulary rune coverage. Positive planted native 613-rune control retains true path. No plaintext. [Report](../../im-results/lp2-previous-plaintext-prime-sum-base29-autokey.md), [SFT](../../sims/lp2_previous_plain_prime_sum_base29_autokey_sft.cjs). Commits 103a6a422e1d37ea382a9abf773fd92256791930 and 04d62f49b4f0ec9e04ff0b733b485d96f9abd303. Do not retest recurrence.
