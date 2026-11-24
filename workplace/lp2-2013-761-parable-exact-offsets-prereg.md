@@ -19,7 +19,7 @@ The hypothesis is that these values are literal zero-based byte offsets into the
 - Decode both signs and both fixed collision models (keyskip1, keyskip2): 80 candidates per relation.
 - No atbash, no fitted phase, no extra offsets, no arbitrary key expansion. The full MP3 bytes are used; no PCM or spectral conversion.
 
-The four offsets were absent from R40-B3's earlier 250,000-per-cell stride sample for 761.mp3. The existing R40-B3 COSPAD controls licensed EN_MODERN (20/20), EN_NOVOWEL (19/20) and LATIN (19/20) under each relation, pooled over its source grid. The new script also performs eight source-positive controls using the exact 761-offset mod29 forward key streams (one keyskip1 and one keyskip2 plant per offset).
+The four offsets were absent from R40-B3's earlier 250,000-per-cell stride sample for 761.mp3. The existing R40-B3 COSPAD controls licensed all three registers across both relations: EN_MODERN 20/20, EN_NOVOWEL 19/20 and LATIN 19/20. In the skip split, EN_MODERN passed 11/11 skip-free and 9/9 with-skip; EN_NOVOWEL 10/10 and 9/10; LATIN 11/11 and 8/9. The new script also performs eight source-positive controls using the exact 761-offset mod29 forward key streams (one keyskip1 and one keyskip2 plant per offset).
 
 ## Decision rule
 
