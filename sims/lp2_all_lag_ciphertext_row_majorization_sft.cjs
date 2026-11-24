@@ -20,7 +20,7 @@ function run(corpus,native,trans,donors) {
     const ranked=Array(29).fill(0);
     for(const row of rows){row.sort((a,b)=>b-a);for(let j=0;j<29;j++)ranked[j]+=row[j]}
     ranked[0]+=unknown;
-    return {ranked,unknown,known:N-unknown,holds:0,forced:0,iterations:1};
+    return {ranked,unknown,known:arrays.reduce((s,c)=>s+c.length,0)-unknown,holds:0,forced:0,iterations:1};
   }
   // Relax every unresolved ciphertext zero independently to consume OR hold.
   // The q-th preceding consumed position is between the q-th mandatory
@@ -156,6 +156,24 @@ function run(corpus,native,trans,donors) {
       if(trueRank.some((v,i)=>v>upper[i]))throw Error("majorization false negative");
       result.controls.push({q,mode,n:p.length,consumedZeros,realHolds:actualHolds.filter(Boolean).length,inferredHolds:b.holds,known:b.known,top9:trueRank[8],boundTop9:upper[8],replay:true});
     }
+  }
+
+  result.propagationControls=[];
+  for(const mode of ["all-F-fixed","mixed-F-image"]){
+    const q=13,rows=range(0,28).map(k=>mode==="all-F-fixed"||k!==7?[0,...shuffle(range(1,28))]:[28,...shuffle(range(0,27))]);
+    const primer=range(1,q).map(()=>rand()%29),queue=primer.slice(),p=[],c=[],actualContexts=[],actualHolds=[];
+    let consumedZeros=0;
+    for(let i=0;i<50000;i++){
+      const x=rand()%29,k=queue[0];p.push(x);actualContexts.push(k);actualHolds.push(x===0);
+      if(!x)c.push(0);
+      else{const y=rows[k][x];c.push(y);if(!y)consumedZeros++;queue.shift();queue.push(y)}
+    }
+    const b=hold([c],q,[{contexts:actualContexts,holds:actualHolds}]);
+    const v=prefix(topVector(p)),u=prefix(b.ranked);
+    if(v.some((x,i)=>x>u[i]))throw Error("propagation plant majorization");
+    if(b.holds<100||b.forced<20)throw Error("propagation plant failed to exercise inference");
+    if(mode==="mixed-F-image"&&!consumedZeros)throw Error("missing consuming-zero plant");
+    result.propagationControls.push({mode,q,n:p.length,consumedZeros,realHolds:actualHolds.filter(Boolean).length,inferredHolds:b.holds,forcedRows:b.forced,iterations:b.iterations,actualTop9:v[8],boundTop9:u[8],noFalseInferences:true});
   }
   return result;
 }
