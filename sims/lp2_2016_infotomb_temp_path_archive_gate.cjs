@@ -3,7 +3,7 @@
  * Exact-path archive gate for the three filesystem names exposed by the
  * 2016-01-09 InfoTomb response. Tests only literal /tmp/ URL forms under
  * HTTP and HTTPS; it does not assume these server paths were public URLs.
- * Queries Wayback CDX and four 2016 Common Crawl collections. Node 22.
+ * Queries Wayback CDX and nine 2016 Common Crawl collections. Node 22.
  */
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -25,7 +25,6 @@ const TARGETS = [
   {id:'known-carrier-control',surt:'com,infotomb)/4gq25.jpg',urls:['http://infotomb.com/4gq25.jpg','https://infotomb.com/4gq25.jpg'],control:true}
 ];
 
-const COLLECTIONS = ['CC-MAIN-2016-07','CC-MAIN-2016-18','CC-MAIN-2016-22','CC-MAIN-2016-26'];
 const CANDIDATES = [
   {id:'object-http',url:'http://infotomb.com/tmp/208771'},
   {id:'object-https',url:'https://infotomb.com/tmp/208771'},
