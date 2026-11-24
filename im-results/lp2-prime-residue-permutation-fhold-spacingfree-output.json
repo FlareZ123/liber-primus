@@ -1,5 +1,5 @@
 {
-  "method": "prime-minus-one residue permutation; latent F; exact per-mask unigram assignment, then prefix trigram ranking; frozen key/cursor suffix",
+  "method": "prime-minus-one residue permutation; latent F; exact per-mask unigram assignment, then top-16 prefix trigram local-swap refinement; frozen key/cursor suffix",
   "training": [
     "0_warning",
     "0_wisdom",
@@ -21,48 +21,57 @@
         "masks": 16,
         "distinctKeys": 16,
         "bestUni": -2.6003541000547177,
+        "beforeRefine": -3.084269738464283,
+        "refinedStarts": 16,
         "bestTri": {
           "key": [
-            0,
-            9,
-            2,
-            1,
-            4,
-            11,
-            6,
-            7,
-            16,
-            21,
             28,
+            9,
+            10,
+            7,
+            4,
+            20,
+            8,
+            22,
+            2,
+            21,
+            15,
             3,
-            25,
+            12,
             13,
             14,
-            15,
-            8,
+            0,
+            16,
             5,
             18,
-            26,
-            23,
-            27,
-            22,
-            20,
-            24,
+            25,
             17,
-            12,
-            10,
+            27,
+            23,
+            1,
+            24,
+            26,
+            11,
+            6,
             19
           ],
           "mask": 4,
-          "t": -185.05618430785697,
+          "t": -149.01730305506828,
           "j": 59,
-          "readout": "T N E N C D E TH I E D E TH E U T W E N E E U E I TH I S N N O A A O E R E A L E O H E D T O I T O E I E F O E O N L E E E",
-          "avgTri": -3.084269738464283
+          "iterations": 15,
+          "readout": "T U E W E W I TH N E D O TH E U G H I D TH E W E I TH I U I N D H A N B IA N A L E W H T S T TH I U R H U M F U O O N L O E R",
+          "avgTri": -2.4836217175844713
         }
       },
       "holdout": {
-        "legal": 0,
-        "best": null
+        "legal": 2,
+        "best": {
+          "j": 84,
+          "s": -99.87887406279218,
+          "mask": 0,
+          "readout": "IA L C I D C M E TH H R S P E C A S A AE O W P A G R",
+          "avgTri": -3.995154962511687
+        }
       },
       "full": {
         "z": 5,
@@ -71,7 +80,7 @@
         "bestUni": -2.6976041115818283,
         "distinctKeys": 32
       },
-      "replay": null,
+      "replay": true,
       "truth": {
         "knownKey": [
           0,
@@ -104,9 +113,9 @@
           27,
           28
         ],
-        "matchedKey": 11,
-        "prefixMatched": 24,
-        "holdoutMatched": null,
+        "matchedKey": 7,
+        "prefixMatched": 15,
+        "holdoutMatched": 7,
         "avgNativeUni": -2.9469128801041298,
         "avgNativeTri": -2.7660729978582697
       }
@@ -122,54 +131,63 @@
         "masks": 16384,
         "distinctKeys": 6879,
         "bestUni": -3.0025887097947837,
+        "beforeRefine": -3.2299746608223616,
+        "refinedStarts": 16,
         "bestTri": {
           "key": [
-            7,
+            18,
             22,
             10,
             17,
-            23,
-            28,
+            7,
+            20,
             3,
             12,
-            24,
+            21,
             25,
             4,
             19,
-            0,
+            23,
             6,
             2,
             11,
-            27,
+            28,
             8,
             15,
             26,
-            16,
+            27,
             13,
             5,
-            18,
+            24,
             9,
-            1,
+            16,
             14,
-            21,
-            20
+            0,
+            1
           ],
-          "mask": 7364,
-          "t": -671.8347294510512,
+          "mask": 6856,
+          "t": -592.5608637841603,
           "j": 202,
-          "readout": "W E R C O P M W E U C O M E P T TH G U R M IA O TH E G R EA T Y O U S N E E T O W O B D O E E N D F O U G TH TH E S I T I S N O T A I I S Y T R E A U U T F O R D O S A W TH O F I N D TH E I M S A Y H E AE E I A NG S A U E C E U S E R H O N E A L O C EA E E A E Y O W L R L L F I N D I N E N D T O I EA B S T C U G G L E A N B T U F F E R O D Y U R I N N E E E N C E E O U I D L NG U S IA N S O X U R T E R T A I L T Y A S TH I O A",
-          "avgTri": -3.2299746608223616
+          "iterations": 10,
+          "readout": "W E L C O M E W E L C O M E P I L G R I M T O TH E G R EA T J O U R N E Y T O W A R D TH E E N D O F A L L TH NG S I T I S N O T A N EA S Y T R I P B U T F O R TH O S E W H O F I N D TH E I R W A Y H E R E I T I S A N E C E S S A R Y O N E A L O NG TH E W F EO TH E X M Y TH H W I N D A N E N D T O A L L S T R U G G L E A N D S U F F E R NG Y O U R I N N O C E N C E Y O U R I L L U S IA N S Y O U R C E R T A I N T Y A N D Y O U",
+          "avgTri": -2.848850306654617
         }
       },
       "holdout": {
-        "legal": 0,
-        "best": null
+        "legal": 2,
+        "best": {
+          "j": 301,
+          "s": -275.8294079953149,
+          "mask": 1,
+          "readout": "R R EA L I T Y U L T I M A T E L Y Y O U W I L L D I S C O U E R A N E N D T O S E L F I T I S TH R O U G H TH I S P I L G R I M A G E TH A T W E S H A P E O U R S E L U E S A N D O U R R EA L I T I E S J",
+          "avgTri": -2.7582940799531492
+        }
       },
       "full": {
         "z": 18,
         "skipped": true
       },
-      "replay": null,
+      "replay": true,
       "truth": {
         "knownKey": [
           18,
@@ -202,9 +220,9 @@
           0,
           1
         ],
-        "matchedKey": 18,
-        "prefixMatched": 139,
-        "holdoutMatched": null,
+        "matchedKey": 29,
+        "prefixMatched": 198,
+        "holdoutMatched": 100,
         "avgNativeUni": -3.0346160030948406,
         "avgNativeTri": -2.790761721885591
       }
@@ -220,10 +238,12 @@
         "masks": 16,
         "distinctKeys": 16,
         "bestUni": -2.892407591900784,
+        "beforeRefine": -2.564714770965907,
+        "refinedStarts": 16,
         "bestTri": {
           "key": [
             4,
-            13,
+            8,
             9,
             2,
             14,
@@ -245,28 +265,29 @@
             17,
             26,
             25,
-            8,
+            3,
             21,
             0,
             1,
             28,
-            3
+            13
           ],
           "mask": 1,
-          "t": -533.4606723609087,
+          "t": -485.0007612123602,
           "j": 207,
-          "readout": "M C O A N A M A N R P C I D E E T O G O A N D I T U D Y W I TH A M A S T E R H E W E N T T O TH E E O O R O F TH E X A S T E R W H O A R E Y O U W H O W C S H E I T O S T U D Y H E R E A S C E D TH E M A S T E R TH E S T U D E N T T O L D TH E M A S T E R O I S N M M E TH A T I S N O T W H A T Y O U A R E TH A T I S O N L Y W H A T Y O U A R E C A L L E D TH H O A R E Y O U TH H O W I S H E S T O S T U E Y H E R E O E A S",
-          "avgTri": -2.564714770965907
+          "iterations": 2,
+          "readout": "A C O A N A M A N D E C I D E D T O G O A N D S T U D Y W I TH A M A S T E R H E W E N T T O TH E D O O R O F TH E M A S T E R W H O A R E Y O U W H O W I S H E S T O S T U D Y H E R E A S C E D TH E M A S T E R TH E S T U D E N T T O L D TH E M A S T E R H I S N A M E TH A T I S N O T W H A T Y O U A R E TH A T I S O N L Y W H A T Y O U A R E C A L L E D W H O A R E Y O U W H O W I S H E S T O S T U D Y H E R E H E A S",
+          "avgTri": -2.3317344289055777
         }
       },
       "holdout": {
         "legal": 1,
         "best": {
           "j": 305,
-          "s": -261.7396503705724,
+          "s": -225.51422794645228,
           "mask": 3,
-          "readout": "C E D A G A C N TH E M A N TH O U U H T F O R A M O M E R T A N D R E P L I E D I A M A P EA O F E S S IA R TH A T I S W H A T Y O U D O N O T W H A T Y O U A R E R E P L I E D TH E M A S T E R W H O A EA E",
-          "avgTri": -2.617396503705724
+          "readout": "C E D A G A I N TH E M A N TH O U G H T F O R A M O M E N T A N D R E P L I E D I A M A P R O F E S S O R TH A T I S W H A T Y O U D O N O T W H A T Y O U A R E R E P L I E D TH E M A S T E R W H O A R E",
+          "avgTri": -2.255142279464523
         }
       },
       "full": {
@@ -309,9 +330,9 @@
           28,
           13
         ],
-        "matchedKey": 26,
-        "prefixMatched": 193,
-        "holdoutMatched": 94,
+        "matchedKey": 29,
+        "prefixMatched": 208,
+        "holdoutMatched": 100,
         "avgNativeUni": -2.9097303808870034,
         "avgNativeTri": -2.306866847918222
       }
@@ -327,43 +348,46 @@
         "masks": 8,
         "distinctKeys": 8,
         "bestUni": -3.112466996811006,
+        "beforeRefine": -3.696079322249754,
+        "refinedStarts": 8,
         "bestTri": {
           "key": [
-            25,
-            20,
-            6,
+            11,
             21,
-            1,
-            23,
+            6,
+            20,
+            22,
+            15,
             14,
             24,
             18,
-            13,
+            5,
             10,
-            17,
-            22,
-            4,
-            12,
-            15,
-            7,
-            2,
             3,
+            8,
+            4,
+            26,
+            7,
+            13,
+            2,
+            17,
             28,
             16,
-            0,
-            11,
-            8,
-            9,
             27,
+            1,
+            23,
+            25,
+            9,
             19,
-            5,
-            26
+            0,
+            12
           ],
-          "mask": 4,
-          "t": -768.7844990279489,
-          "j": 207,
-          "readout": "R P L N B N W W H U O E R Y C T D I G EA N S E T TH R A G AE S S D T H E U U U T TH TH S M IA C TH W EO L L N A I TH M IA N M S S D U U U I I W O G C TH U A M M Y E N N A E TH S S S O S O S NG B S N D E Y T EA U O I L C R T NG EA E M W O A O N T S N U N I P TH H E E I T N I M P G S C E T O R O T I C A E N O L Y W P TH E R I G E W EA D T O D C T L M U T T O L O R O X U R P U O N TH A E E N N I D T E H Y E T F TH T I E B Y I N TH L W T",
-          "avgTri": -3.696079322249754
+          "mask": 0,
+          "t": -755.8460967037746,
+          "j": 208,
+          "iterations": 8,
+          "readout": "O P EA N B D U OE E S TH E E Y C U H I G P A S TH S I R O G IA R S N T E M N S U E W I S P P S S W EO C N D A I B O Y N IA D S AE U A U L I NG O J M I U I O E C O N D A O B EA S T O S C R Y B U M D Y C A R S E D EA M R T I EA O C W O AE O B E S B U A I D I T Y O E U M N M P G R C E TH E C O C S C A R O O C C W S TH E E R G O W P D U E W P T L H N T Y O NG J EO O EA N R W T T N TH A O O N A I D T L H Y E T N L I E U H EA S L M Y Y H",
+          "avgTri": -3.633875464921993
         }
       },
       "holdout": {
@@ -391,17 +415,19 @@
         "masks": 128,
         "distinctKeys": 117,
         "bestUni": -3.1293862014318936,
+        "beforeRefine": -3.6785363156447004,
+        "refinedStarts": 16,
         "bestTri": {
           "key": [
             1,
             18,
             6,
-            2,
-            20,
-            10,
-            25,
+            17,
             5,
-            11,
+            10,
+            4,
+            7,
+            13,
             22,
             9,
             14,
@@ -412,22 +438,23 @@
             28,
             0,
             27,
-            13,
-            17,
+            25,
+            2,
             3,
             19,
             16,
             12,
             21,
             8,
-            7,
-            4
+            11,
+            20
           ],
           "mask": 43,
-          "t": -735.7072631289401,
+          "t": -700.1643154085748,
           "j": 196,
-          "readout": "F L P G I X I N Y D I H O IA R O TH S S B C T EA M F U TH I NG I TH A A EA E N W S O U S I I G U A T O B Y Y U P M G N EA EA NG Y R S U R TH C NG TH C E E O A C D T A I N M R R EA C N I TH R E S S L O B Y E C I E N L O Y TH I E O O S M EA C N E I A L C M I O U S U S D I S I U C S U L I H A A T U M E IA M I S TH A A S H A A O B Y M E N TH S E L F E B P N EA E W I S TH E N P T NG W L U C T IA TH O F S R TH S X NG B B E O A O",
-          "avgTri": -3.6785363156447004
+          "iterations": 7,
+          "readout": "F L P NG TH X I N Y D D H U IA R O TH S S S C T X M F U TH I NG IA TH A A EA R N NG S O U S G AE IA U A T O S X Y U P J R N EA EA M Y R O U R TH L NG TH C E X O I C D T A I N W R R EA C N I T TH E S S T O B Y E C I E C L O Y TH I E L O W M EA L N O H A L C C H O T S U S D I U I U C P U L I H T A T S M E D B I S TH A A S H A T O B Y B E Y TH P E L F E B P Y EA R W I S T E N P T W EA L U C T IA M O F S AE TH U X N B B E E A B",
+          "avgTri": -3.500821577042874
         }
       },
       "holdout": {
