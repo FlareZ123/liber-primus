@@ -49,7 +49,14 @@ function experiment(inputs){
  // Include full public donor vocabulary, without any ordered plaintext constraints.
  for(const p of [...g,...sh])add(p);
  const plants=[plant("Koan1 native suffix",solved[3].slice(135),0x2904,220),plant("Gibran continuous source opening",take(g,700),0x2905,400),plant("Shakespeare continuous source opening",take(sh,700),0x2906,400)];
- return {baseVocabulary,vocabulary:dict.reduce((n,d)=>n+d.size,0),plants};
+
+ assert(plants.every(p=>p.correctKey&&p.correct&&p.heldMatches===p.held&&p.full.keys[0].paths===1),"blind positive controls");
+ const original=originalWords.slice(-66);assert(original.flat().length===308,"frozen p54-55 source");
+ let cut=0,trainRunes=0;while(trainRunes<200)trainRunes+=original[cut++].length;
+ const res=solve(original.slice(0,cut),3000);
+ const target={chapter:"p54-55",trainRunes,held:308-trainRunes,trainWords:cut,result:summarize(res)};
+ if(res.exact&&res.keys.length===1){const full=solve(original,3000,res.keys[0].key);target.full=summarize(full);if(full.keys.length===1)target.plaintext=full.keys[0].p.map(w=>w.map(x=>gp.translit[x]).join("")).join(" ")}
+ return {baseVocabulary,vocabulary:dict.reduce((n,d)=>n+d.size,0),plants,target};
 }
 
 const fs=require("node:fs"),path=require("node:path");
