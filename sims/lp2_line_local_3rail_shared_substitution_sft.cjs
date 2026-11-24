@@ -27,31 +27,29 @@ const runeIndex = new Map(corpus.runes.map((rune, i) => [rune, i]));
 
 function parseUnknownSource() {
   const pages = [];
-  const rawPages = [];
+  const lines = [];
+  const rawLines = [];
   let runeCount = 0;
   let pageCount = 0;
   for (const section of transcription.split(/^%$/m)) {
     const pageLines = [];
-    const rawLines = [];
     let pageRunes = 0;
     for (const raw of section.split('/\n')) {
       const xs = [...raw].filter((ch) => runeIndex.has(ch))
         .map((ch) => runeIndex.get(ch));
       if (xs.length) {
         pageLines.push(xs);
+        lines.push(xs);
         rawLines.push(raw);
         pageRunes += xs.length;
       }
     }
     if (runeCount + pageRunes > 12956) break;
     pages.push(pageLines);
-    rawPages.push(rawLines);
     runeCount += pageRunes;
     pageCount++;
     if (runeCount === 12956) break;
   }
-  const lines = pages.flat();
-  const rawLines = rawPages.flat();
   const source = lines.flat();
   assert.equal(pageCount, 55);
   assert.equal(corpus.pages.filter((page) => page.page <= 55).length, 56);
