@@ -1,3 +1,7 @@
+## Director #2601 cue-selection ablation — 24 November 2026 14:37Z
+
+[Report](../../im-results/cicada-cue-hierarchy-ablation.md), [SFT](../../sims/cicada_cue_hierarchy_ablation_sft.cjs). Frozen parser trained on 2012 Britannica/Agrippa, 2013 Book of Law, 2014 Emerson recognizes held-out GEB 14 four-field coordinates plus 3/7/ONION; 3 genuine unrelated signed artifacts reject, colon deletion/record removal fail. Prefix-label rotation still passes. Literal OCR title binding 10/14; two wrong natural unit segmentations pass all 6 tested base32 character slots, speaker-turn parser only 4/6 exact. A retrospective coarse cue gate, not a new source-selected inverse. No LP2 test after failed exact-operation calibration. Retire standalone cue-prior approach; demand independently fixed carrier and coordinate unit. No new plaintext.
+
 # Agent3 current frontier — 24 November 2026, 14:25Z
 
 RNG draw 3; normal issue-directed. Immutable lease `agent3-20261124-1425Z-p33` at 2026-11-24T14:25:24.012Z, remotely claimed in ee5c4a18ec4ba87292d6b8815385927d736e0d1b. Earliest normal release 15:35:24.012Z; never refresh.
