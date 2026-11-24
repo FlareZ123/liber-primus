@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Search a pinned 2013 Tor HSDir archive for v2 onion IDs and descriptor IDs.
+"""Search a pinned 2013 Tor HSDir raw archive for v2 onion IDs and descriptor IDs.
 
-No onion service is contacted. The archive is read locally in CI and discarded.
+No onion service is contacted. The archive is streamed through bzip2 and GNU grep
+so the multi-pattern scan runs in compiled code rather than Python per-record loops.
 The two-month collection window is inferred from the operator's 2013-05-15 post.
 """
 from __future__ import annotations
@@ -13,7 +14,7 @@ import json
 import os
 import re
 import shutil
-import tarfile
+import subprocess
 import tempfile
 import urllib.request
 from pathlib import Path
@@ -51,7 +52,7 @@ def download_archive(path: Path) -> dict:
         ARCHIVE_URL,
         headers={"User-Agent": "LiberPrimusResearch/1.0 targeted historical metadata probe"},
     )
-    with urllib.request.urlopen(request, timeout=120) as response, path.open("wb") as out:
+    with urllib.request.urlopen(request, timeout=180) as response, path.open("wb") as out:
         shutil.copyfileobj(response, out)
     size = path.stat().st_size
     sha256 = hashlib.sha256()
@@ -82,34 +83,49 @@ def main() -> None:
         for desc in descriptor_ids(service):
             needle_meta.setdefault(desc, set()).add(f"descriptor:{service}")
 
-    needles = sorted((x.encode("ascii") for x in needle_meta), key=len, reverse=True)
-    pattern = re.compile(b"(?:" + b"|".join(re.escape(x) for x in needles) + b")", re.IGNORECASE)
+    needles = sorted(needle_meta)
+    regex = re.compile(b"(?:" + b"|".join(re.escape(x.encode("ascii")) for x in needles) + b")")
     hits = {x: {"count": 0, "samples": []} for x in needle_meta}
-    members_scanned = bytes_scanned = 0
+    bytes_scanned = 0
 
     with tempfile.TemporaryDirectory(prefix="lp2-tor2013-") as td:
         archive_path = Path(td) / "raw_data_csv_export.tar.bz2"
+        needle_path = Path(td) / "needles.txt"
         archive_meta = download_archive(archive_path)
-        with tarfile.open(archive_path, mode="r:bz2") as archive:
-            for member in archive:
-                if not member.isfile():
-                    continue
-                source = archive.extractfile(member)
-                if source is None:
-                    continue
-                members_scanned += 1
-                for line_no, line in enumerate(source, 1):
-                    bytes_scanned += len(line)
-                    for match in pattern.finditer(line.lower()):
-                        needle = match.group().decode("ascii").lower()
-                        item = hits[needle]
-                        item["count"] += 1
-                        if len(item["samples"]) < 3:
-                            item["samples"].append({
-                                "member": member.name,
-                                "line": line_no,
-                                "context": line[max(0, match.start()-80):match.end()+120].decode("utf-8", "replace").strip(),
-                            })
+        needle_path.write_text("\n".join(needles) + "\n", encoding="ascii")
+        print(json.dumps({"archive_downloaded": archive_meta, "needle_count": len(needles)}), flush=True)
+
+        decompressor = subprocess.Popen(
+            ["bzip2", "-dc", str(archive_path)],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL,
+        )
+        assert decompressor.stdout is not None
+        grep = subprocess.Popen(
+            ["grep", "-a", "-i", "-F", "-f", str(needle_path)],
+            stdin=decompressor.stdout,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL,
+        )
+        decompressor.stdout.close()
+        assert grep.stdout is not None
+        for line_no, line in enumerate(grep.stdout, 1):
+            bytes_scanned += len(line)
+            for match in regex.finditer(line.lower()):
+                needle = match.group().decode("ascii").lower()
+                item = hits[needle]
+                item["count"] += 1
+                if len(item["samples"]) < 3:
+                    item["samples"].append({
+                        "matched_line": line_no,
+                        "context": line[max(0, match.start()-80):match.end()+120].decode("utf-8", "replace").strip(),
+                    })
+        grep_rc = grep.wait()
+        bz2_rc = decompressor.wait()
+        if bz2_rc != 0:
+            raise RuntimeError(f"bzip2 decompression failed with exit code {bz2_rc}")
+        if grep_rc not in (0, 1):
+            raise RuntimeError(f"grep failed with exit code {grep_rc}")
 
     def result_for(service: str) -> dict:
         desc = [
@@ -128,8 +144,7 @@ def main() -> None:
         "source": ARCHIVE_URL,
         "collection_window_utc": [START.isoformat(), END.isoformat()],
         "archive": archive_meta,
-        "members_scanned": members_scanned,
-        "bytes_scanned": bytes_scanned,
+        "grep_matched_lines": bytes_scanned,
         "targets": [result_for(x) for x in targets],
         "controls": [result_for(x) for x in controls],
         "interpretation": (
