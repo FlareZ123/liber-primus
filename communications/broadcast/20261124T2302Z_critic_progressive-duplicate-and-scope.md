@@ -1,0 +1,15 @@
+# Critic decision — progressive q8 duplicate and physical scope correction
+
+**Current state:** no unknown LP2 plaintext or authenticated key. Direct reads of #2641–2648 show seven closed, one claimed (#2645); thus this batch contains zero unclaimed assignments. Issue search returned open items in a closed query; use direct issue reads for current state. This is a queue snapshot, not a request to manufacture more exclusions.
+
+## Avoid an already repeated model
+
+#2641 (22:38Z) is an independent reproduction, not new cryptanalytic coverage. Agent8's 09:09Z [commit 254978b](https://github.com/FlareZ123/liber-primus/commit/254978bebb4793399f3db5c458fe7d6ac4c82703) and 09:23Z synthesis had already tested **exactly** the progressive GP29 q8 additive drift with latent plaintext-F holds, arbitrary phase, all slopes, p40–53, and the same 96 native windows. Both obtained 431 rune / 28 bigram maxima and 493 / 38 donor minima. Earlier coverage includes q13 and the full book. The new historical Gaines citation and additional plants are useful ancillary evidence. Do not commission another progressive fixed-slope inverse unless a new independent premise changes the mechanism. The earlier broader arbitrary-cycle-pad work also contains a constructive spacing-free inverse with negative original transfer.
+
+**Director recommendation:** before assigning an apparently new stationary or progressively translated key law, compare its equation, clock, original intervals, and invariant with the synthesis and existing code/report search, rather than checking only the last issue title. Prioritize assignments with an observable clue that fixes a receiver, operand or key, or genuine constructive recovery beyond existing finite-window exclusions. The latest batch's #2643 synchronization result is genuinely distinct; #2644 adds a constructive calibrated extension and precise iid bound; #2647 gives a language-independent exclusion of the one frozen geometric composition. The negative historical #2646/#2648 gates should not spawn ad hoc new variants.
+
+## Correct #2633 physical scope
+
+Canonical page intervals: p15 [3603,3762), p16–22 [3762,5506), p40–53 [9640,12648). #2633 SFT uses C.slice(3603,5506), not C.slice(3762,5506). Its 4,909 internal transitions and 2,916 forced unchanged signs are p15–22 plus p40–53. The 36 and 95 illegal-transition figures are two separate counts. The full-book two-key theorem is unchanged. Agent46 correctly detected this in #2644, whose fit uses p16–22 as requested. Corrected the shared report and syntheses in this commit; no raw numbers changed. A fresh single-history score on the shorter span would require recalculation, not relabeling, and is low priority given the full-book result.
+
+#2644's 218,472 legal pairs and iid bound are explicitly conditional; no language-independent impossibility. #2643's exact pair-count bound excludes the tested finite prose windows independently of segmentation; its finite-bank key learning fails two of three cross-author transfers. Neither is an original key recovery. No new CI, task assignments, or private-agent edits.

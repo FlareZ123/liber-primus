@@ -1,6 +1,6 @@
 # Exact ciphertext-indexed additive table inverse (#2633)
 
-**Decision:** retire the proposed shared 29-entry feedback architecture under the calibrated native language model. The exact legal-key space collapses to 6,144 tables on the two assigned original chapters and to two tables if shared across all nine chapters. The best original table is nonlinguistic; frozen-prefix prediction fails before language scoring. No recovered unknown plaintext or key.
+**Decision:** retire the proposed shared 29-entry feedback architecture under the calibrated native language model. The exact legal-key space collapses to 6,144 tables on the two tested original spans (first includes p15) and to two tables if shared across all nine chapters. The best original table is nonlinguistic; frozen-prefix prediction fails before language scoring. No recovered unknown plaintext or key.
 
 ## Frozen mechanism and exact inverse
 
@@ -23,12 +23,12 @@ Both hidden keys recovered exactly; nine residual plaintext errors arise from am
 
 ## Original assigned scopes: exact all-table result
 
-Pinned corpus blob 054f2a0f780b7d46901acbe3d9bf4f0ac1801165 and native reference 1b064ef6d85819b7d96adaff31a82d1ec551598f. The assigned scopes p16–22 and p40–53 are source rune intervals [3603,5506) and [9640,12648). Together they contain 4,909 internal physical transitions.
+Pinned corpus blob 054f2a0f780b7d46901acbe3d9bf4f0ac1801165 and native reference 1b064ef6d85819b7d96adaff31a82d1ec551598f. The actually executed scopes **p15–22** and p40–53 are source rune intervals [3603,5506) and [9640,12648). The issue requested p16–22, whose correct interval is [3762,5506); the 159 extra p15 runes are included in all first-span and joint statistics below. This scope correction does not change the separate all-nine-chapter result. Together they contain 4,909 internal physical transitions.
 
-- Independent row-optimized unigram maxima: p16–22 -818.699239 nats; p40–53 -1710.951939 nats. A shared table's exact maximum is -3248.801240 nats.
+- Independent row-optimized unigram maxima: p15–22 -818.699239 nats; p40–53 -1710.951939 nats. A shared table's exact maximum is -3248.801240 nats.
 - Joint legal domain contains exactly 6,144 tables. Seventeen rows must be zero; hence 2,916/4,909 plaintext signs are fixed equal to ciphertext under every legal table.
 - Enumerating every table and marginalizing all zero branches gives best native bigram LLR **-2267.735259 nats (-0.461955/rune)**; second -2273.205749. The stationary F-transparent independent-pad baseline is -7.066596 nats. The best shared table has 57 ambiguous zero positions, and the Viterbi candidates replay exactly; this is a necessary invariant, not evidence of a true key.
-- A separate prospective fit on the first 1,000 runes of p16–22 (same calibration algorithm) yields -187.907834 training nats. Its frozen table has 36 illegal transitions in the remaining p16–22 suffix and 95 in p40–53. No legal complete prediction or plaintext exists for that frozen key. No continuation-driven table changes were used.
+- A separate prospective fit on the first 1,000 runes of p15–22 (same calibration algorithm) yields -187.907834 training nats. Its frozen table has 36 illegal transitions in the remaining p15–22 suffix and 95 in p40–53. No legal complete prediction or plaintext exists for that frozen key. No continuation-driven table changes were used.
 - The original has a radically tighter legal domain than the independently keyed native plants. This reflects the near-full observed transition alphabet, not hidden key recovery.
 
 ## Conditional all-book consequence
@@ -38,7 +38,7 @@ If this identical table is further assumed shared across all nine source-defined
 1. all-zero T (identity);
 2. all-zero except T[17]=17.
 
-No other table can decode even arbitrary nonlinguistic plaintext under the frozen law. Across 12,947 internal transitions, **12,502 (96.56%)** must be unchanged under both possibilities. The second table changes only symbols immediately after GP0=17 and has 19 ambiguous zero positions. The all-zero and nonzero alternatives have native bigram LLR -6262.935284 and -6213.719435 nats respectively. The near-identity collapse is a direct source constraint and strongly contradicts the proposed manuscript-wide cryptographic role. This extension does not exclude chapter-private tables outside the two assigned shared scopes, a different plaintext convention, or additional state.
+No other table can decode even arbitrary nonlinguistic plaintext under the frozen law. Across 12,947 internal transitions, **12,502 (96.56%)** must be unchanged under both possibilities. The second table changes only symbols immediately after GP0=17 and has 19 ambiguous zero positions. The all-zero and nonzero alternatives have native bigram LLR -6262.935284 and -6213.719435 nats respectively. The near-identity collapse is a direct source constraint and strongly contradicts the proposed manuscript-wide cryptographic role. This extension does not exclude chapter-private tables outside the two tested shared scopes, a different plaintext convention, or additional state.
 
 ## Reproduction and next decision
 

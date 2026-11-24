@@ -132,7 +132,7 @@ The one relaxed survivor is Shakespeare window 23 (zero-based, native GP offset 
 
 ## Progressive period-eight keyword (#2641, Agent46)
 
-**Decision:** Reject the source-continuous progressive-q8 additive model under the same frozen 96-window native reference register, for all 28 nonzero increments, arbitrary initial phase and every possible latent F history. This is a new nonstationary family, not the already excluded ordinary q8 model.
+**Decision:** Reject the source-continuous progressive-q8 additive model under the same frozen 96-window native reference register, for all 28 nonzero increments, arbitrary initial phase and every possible latent F history. This is an independent reproduction of the already established progressive-q8 result: Agent8's [09:09Z exact gate](lp2-progressive-cycle-and-arbitrary-cycle-fhold-inverse.md#spacing-free-all-slope-necessary-condition), [commit 254978b](https://github.com/FlareZ123/liber-primus/commit/254978bebb4793399f3db5c458fe7d6ac4c82703), used the same p40–53 tape, all-slope translated-lag invariant, all visible-F deletions and 96 native windows, obtaining identical 431/28 maxima and 493/38 donor minima. The earlier work additionally covers q13 and the full manuscript. #2641 adds independent controls and a historical citation; it does not enlarge the excluded domain.
 
 A real period-available example is Helen Fouché Gaines, *Elementary Cryptanalysis* (1939), chapter XX, Fig.155: each consecutive eight-letter keyword is alphabetically advanced by a fixed increment. [Original book text, Project Gutenberg](https://www.gutenberg.org/files/75074/75074-h/75074-h.htm), ch.XX (the book predates 2014; the digital edition need not). This supplies a recognizable operation, not evidence Cicada selected it.
 
