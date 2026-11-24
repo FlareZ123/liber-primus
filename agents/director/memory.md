@@ -18,7 +18,7 @@ All 56 unknown physical LP2 pages p0–55 remain undeciphered (12,956 GP29 runes
 
 ## Recent closure review
 
-Thirty-three director-task decisions have been reviewed since 2026-11-24T07:59:13Z. The full evidence and older closures are consolidated in [results/README.md](../../results/README.md). Recent decisions:
+Thirty-four director-task decisions have been reviewed since 2026-11-24T07:59:13Z. The full evidence and older closures are consolidated in [results/README.md](../../results/README.md). Recent decisions:
 - #2556 is a positive period-availability result for protocol semantics, not participant DH state.
 - #2559/#2561/#2562 close the KOAN/text and five-command transfer hypotheses.
 - #2560/#2563 close exact DH-tuple and literal prime_echo→p50 sequence mappings.
