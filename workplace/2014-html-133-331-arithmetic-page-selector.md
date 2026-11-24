@@ -1,6 +1,6 @@
-# 2014 Stage11 HTML numbers: a possible 8×58 / 16×29 selector
+# 2014 Stage11 HTML numbers: page selector and base60-table coordinate hypothesis
 
-**Status:** source-grounded hypothesis, not a decipherment. The arithmetic is exact; whether the numbers were deliberately chosen for this purpose remains unproven.
+**Status:** source-grounded hypotheses, not a decipherment. The page/rune selector arithmetic is exact; a newly derived base60-table coordinate extraction yields a plausible IPv4 address, but its Cicada role is unverified.
 
 ## Source facts
 
@@ -60,6 +60,41 @@ This converges with a separate 2012→p55 candidate: the 2012 OutGuess book-code
 
 The p17 and p41 pages each have 273 runes. However, 273 occurs on six LP2 pages, not only this pair; their direct positionwise difference has near-uniform IC (about 0.0346) and no constant Caesar relation. Treat the page-pair equality as secondary evidence, not a solved relationship.
 
+## Base60-table coordinate extraction: provisional IPv4 candidate
+
+A second interpretation of the same HTML numbers is more directly tied to an LP2 source artifact than the earlier page/rune selector alone.
+
+The LP2 numeric table in `resources/liber-primus/base60-grid.json` is a 32-row × 8-column grid transcribed from original scans 66.jpg–68.jpg (LP2 pp.49–51; the page images are `resources/liber-primus/67.jpg` and `68.jpg`). The HTML numbers can be decomposed as base60 coordinates:
+
+```text
+133 = 2 × 60 + 13  -> column 2, row 13
+331 = 5 × 60 + 31  -> column 5, row 31
+```
+
+This coordinate orientation is constrained by the table shape: 2 and 5 fit its eight columns, while 13 and 31 fit its 32 rows. It also has two source-derived checks:
+
+- The p41 five-dot clusters read left-to-right as 01101₂ = 13 and 11111₂ = 31 (filled=1, outlined=0; top-to-bottom within each cluster). The same ornament is printed on the table pages.
+- The previously extracted p17[133] = I and p41[58] = NG have zero-based GP29 indices 10 and 21; modulo the table width 8, these give columns 2 and 5.
+
+The selected rows and columns define a 2×2 block, not an arbitrary four-byte search:
+
+| | column 2 | column 5 |
+|---|---:|---:|
+| row 13 | 31 | 184 |
+| row 31 | 172 | 36 |
+
+The values are directly visible in the original scans. On p50, zero-based row 13 is the fourth printed row, `22 13 0V 3c 0E 34 0W 1t`; columns 2 and 5 are `0V` = 31 and `34` = 184. On p51, zero-based row 31 is the last printed row, `1r 2c 2q 3o 30 0a 39 1K`; columns 2 and 5 are `2q` = 172 and `0a` = 36. Thus the row-major 2×2 block is the four bytes:
+
+```text
+31, 184, 172, 36  ->  31.184.172.36
+```
+
+That is a syntactically valid, publicly routable IPv4 address. The natural row-major order follows the table's printed row order; column-major would instead give 31.172.184.36 and is retained as an orientation control. Current public registry searches place 31.184.172.0/24 in Iran (AS35766 / Mizbani Dadehaye Mabna PJSC), but no Cicada association has been found. Current allocation/ownership does not establish who used the address in 2014.
+
+This is an exact source-selected extraction candidate, not a verified endpoint or recovered plaintext. Any four bytes can be written as an IPv4 address, so the external/historical association is the decisive test. The simple Hill-cipher follow-on was also tested: `[[31,36],[10,21]] mod 29 = [[2,7],[10,21]]` has determinant 1, but applying the matrix, inverse, and transposes to paired p17/p41 streams left both output ICs near random (about 0.034); no plaintext emerged. Do not treat the block as a validated Hill key.
+
+A passive Common Crawl gate is running from `sims/cicada2014_ip_archive_gate.cjs`; it compares the row-major candidate against the column-major address and historical controls. The first uncalibrated run returned no records for any target, so that absence is not informative. A second run adds `example.com` as a positive control; record its result before drawing any archive conclusion. No direct host scan has been performed.
+
 ## Strongest objections
 
 1. `133` and `331` may be incidental HTML metadata rather than puzzle instructions.
@@ -71,6 +106,6 @@ The p17 and p41 pages each have 273 runes. However, 273 occurs on six LP2 pages,
 
 ## One bounded next decision
 
-The `I,NG` extraction now has a keypad checksum, but that checksum supplies no reversible cipher operation, ordered traversal, or boundary rule. The bounded T9-digit Vigenere test is negative; do not expand it into a generic keypad-key search. The remaining actionable prerequisite is an independent source instruction that selects a specific telephone-keypad consumer or route, plus a typed two-symbol consumer and full cross-page conservation rule. Under [#2447](https://github.com/FlareZ123/liber-primus/issues/2447), a complete candidate must conserve all 86 original p54→p55 receiver runes, including the ten p54 runes and one p55 rune belonging to the same carried word. Only a frozen full 76-rune p55 inverse satisfying [#41](https://github.com/FlareZ123/liber-primus/issues/41) warrants an independent original-cipher test. Absent that input, park the branch at its missing instruction.
+The simplest T9-digit Vigenere consumer remains negative; do not expand it into a generic keypad-key search. The new base60 extraction has one bounded next decision: finish the passive archive and historical-network check for 31.184.172.36, using 31.172.184.36 as the orientation control and a working positive control. If an independently dated Cicada-related page, DNS record, Tor record, or archived service is found, trace that exact endpoint. If not, retain the four-byte extraction as an unverified candidate and park it; do not brute-force other 2×2 blocks or actively scan unrelated addresses.
 
-Do not launch a generic grid, route, modular, or transposition search. Original p55 is a nominated receiver, not an authenticated target of the historical phrase. The phrase remains a speculative crib, not a key or recovered plaintext.
+The p55 phone-phrase branch remains separate and unresolved. Under [#2447](https://github.com/FlareZ123/liber-primus/issues/2447), a complete candidate must conserve all 86 original p54→p55 receiver runes, including the ten p54 runes and one p55 rune belonging to the same carried word. Only a frozen full 76-rune p55 inverse satisfying [#41](https://github.com/FlareZ123/liber-primus/issues/41) warrants an independent original-cipher test. Original p55 is still a nominated receiver, not an authenticated target of the historical phrase; the phrase remains a speculative crib, not a key or recovered plaintext.
