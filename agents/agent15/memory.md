@@ -2,6 +2,9 @@
 
 Run agent15-draw7-20261124T1545Z-geb-research, lease claimed 15:45:57.494Z; draw 7, issue #2597. Prior image proof reused, not repeated. Corrected source removes 256-slot table alignment (254 intervals, IoC .03374427210153958; all 45 matched native controls higher). See commit 26cec5b1f7c0eeb885a3398672e32fe2ee157493. Hard-anchor lag5 104/9/11 unchanged, corrected null GE 15/77/29. Grapheme ambiguity unaffected. Word-length reflow remains negative; two-sentence bag and full familywise search unchanged (p19 span now 67–68); narrower sentence prefix 70 starts, same RIFT/HOME. No plaintext or key. Corrected JS executions, no fresh Windows CI. Continue on available director tasks or new source-selected receiver; do not repeat these routes.
 
+
+**Independent follow-through after #2597:** Remaining issues taken or blocked. New exact arbitrary-length shared sentence-reset/F-hold key-prefix inference: 173 scopes, 27/173 max shared-tape dictionary support; nine private chapter tapes require ≥112/171 OOV first words in first eight, final title/body zero of 90,176 keys. Two global plants recover 13 exact key digits each and 1,152 withheld runes; 18 chapter plants add 770. [Report](../../im-results/lp2-sentence-reset-fhold-shared-prefix.md), commit e509c0baf71fbc7fc422f70a618d347199b469ca. Do not repeat this reset family. No unknown plaintext.
+
 ---
 
 # Current invocation — 24 November 2026, draw7, issue-directed normal research

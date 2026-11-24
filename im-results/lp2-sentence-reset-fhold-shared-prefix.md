@@ -24,7 +24,7 @@ All retained predictions are exact; ambiguous predictions are withheld. The two 
 
 ## Original key-independent exclusion
 
-A quick obstruction needs no dictionary except the normal native singleton set A/I/O: seven corrected sentence-start singleton ciphertexts are distinct nonzero signs at offsets 350, 1025, 2148, 4148, 6990, 11526, 12648. They must all consume shift zero of the shared key. Three distinct possible plaintext symbols cannot yield seven distinct outputs under any single deterministic first-phase mapping, even granting latent F elsewhere. At least four of the seven must be outside A/I/O, or the common initial mapping/segmentation must fail.
+A quick obstruction needs no dictionary except the normal native singleton set A/I/O: seven corrected sentence-start singleton ciphertexts are distinct nonzero signs at offsets 350, 1025, 2148, 4148, 6990, 11526, 12648. They must all consume the first shift (phase zero) of the shared key. Three distinct possible plaintext symbols cannot yield seven distinct outputs under any single deterministic first-phase mapping, even granting latent F elsewhere. At least four of the seven must be outside A/I/O, or the common initial mapping/segmentation must fail.
 
 The exact prefix-cylinder solver enumerates 389,665 distinct terminal prefixes on all 173 real opening words. A single unbounded common tape supports at most **27/173**; at least **146** opening words must be outside the fixed vocabulary. Five maximizing terminal representatives do not identify an authentic key; the original best-fit prefix is a conditional optimization under an invalid full-lexicon premise.
 
