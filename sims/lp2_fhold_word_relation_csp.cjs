@@ -70,4 +70,21 @@ function createSolver(period,dict){
  }
  return {solve};
 }
-module.exports={createSolver,encode};
+/**
+ * Exact fixed-key continuation, maximizing dictionary-supported rune count.
+ * Unknown words allowed; ties reported, not silently resolved as unique.
+ * @param {number[][]} ws @param {number[]} key @param {Map<string,number[]>[]} dict @param {number} initialPhase
+ */
+function decodeFixed(ws,key,dict,initialPhase=0){
+ const period=key.length;let states=new Map([[initialPhase,{score:0,n:1,prev:null,p:null}]]);
+ for(const c of ws){const next=new Map();
+  for(const [phase,head] of states){const p=[];function walk(i,ph){if(i===c.length){const known=!!dict[p.length]?.has(String(p)),score=head.score+(known?p.length:0),old=next.get(ph);if(!old||score>old.score)next.set(ph,{score,n:head.n,prev:head,p:p.slice()});else if(score===old.score)old.n=Math.min(2,old.n+head.n);return}
+    if(c[i]===0){p.push(0);walk(i+1,ph);p.pop()}
+    const v=mod29(c[i]-key[ph]);if(v!==0){p.push(v);walk(i+1,(ph+1)%period);p.pop()}
+   }walk(0,phase)}
+  if(!next.size)return null;states=next;
+ }
+ const score=Math.max(...[...states.values()].map(v=>v.score)),best=[...states].filter(([,v])=>v.score===score);let h=best[0][1];const p=[];while(h.p){p.unshift(h.p);h=h.prev}
+ const paths=Math.min(2,best.reduce((a,[,v])=>a+v.n,0));return {p,score,paths,endPhases:best.map(([ph])=>ph)};
+}
+module.exports={createSolver,encode,decodeFixed};
