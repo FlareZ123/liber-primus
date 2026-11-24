@@ -1,0 +1,943 @@
+{
+  "clock": [
+    4,
+    6,
+    2,
+    7,
+    3,
+    0,
+    1,
+    5,
+    5,
+    0,
+    2,
+    6,
+    7,
+    3,
+    4,
+    1,
+    2,
+    3,
+    6,
+    7,
+    4,
+    0,
+    5,
+    1,
+    3,
+    5,
+    0,
+    7,
+    6,
+    4,
+    2,
+    1,
+    7,
+    3,
+    4,
+    5,
+    1,
+    0,
+    6,
+    2,
+    2,
+    3,
+    7,
+    0,
+    1,
+    5,
+    6,
+    4,
+    1,
+    2,
+    3,
+    7,
+    4,
+    6,
+    5,
+    0,
+    7,
+    3,
+    4,
+    1,
+    6,
+    2,
+    5,
+    0,
+    2,
+    5,
+    7,
+    0,
+    6,
+    3,
+    4,
+    1,
+    6,
+    1,
+    7,
+    4,
+    5,
+    0,
+    3,
+    2,
+    5,
+    1,
+    7,
+    6,
+    0,
+    4,
+    3,
+    2,
+    7,
+    3,
+    6,
+    5,
+    2,
+    0,
+    1,
+    4,
+    6,
+    3,
+    2,
+    4,
+    1,
+    7,
+    0,
+    5,
+    4,
+    2,
+    6,
+    1,
+    7,
+    0,
+    5,
+    3,
+    6,
+    4,
+    0,
+    1,
+    5,
+    7,
+    2,
+    3,
+    4,
+    5,
+    0,
+    3,
+    2,
+    6,
+    7,
+    1,
+    6,
+    2,
+    3,
+    5,
+    4,
+    7,
+    1,
+    0,
+    0,
+    3,
+    5,
+    1,
+    7,
+    6,
+    2,
+    4,
+    2,
+    0,
+    6,
+    3,
+    5,
+    7,
+    1,
+    4,
+    2,
+    1,
+    4,
+    3,
+    0,
+    7,
+    6,
+    5,
+    5,
+    3,
+    4,
+    2,
+    1,
+    0,
+    7,
+    6,
+    7,
+    3,
+    5,
+    4,
+    6,
+    1,
+    0,
+    2,
+    5,
+    7,
+    1,
+    4,
+    2,
+    6,
+    3,
+    0,
+    2,
+    7,
+    4,
+    3,
+    0,
+    1,
+    6,
+    5,
+    0,
+    7,
+    3,
+    6,
+    5,
+    1,
+    2,
+    4,
+    7,
+    3,
+    1,
+    5,
+    0,
+    6,
+    4,
+    2,
+    2,
+    0,
+    3,
+    4,
+    7,
+    5,
+    1,
+    6,
+    6,
+    5,
+    4,
+    3,
+    0,
+    2,
+    7,
+    1,
+    5,
+    1,
+    0,
+    2,
+    6,
+    4,
+    7,
+    3,
+    5,
+    0,
+    3,
+    6,
+    7,
+    2,
+    1,
+    4,
+    4,
+    2,
+    5,
+    1,
+    0,
+    7,
+    6,
+    3,
+    5,
+    7,
+    0,
+    1,
+    2,
+    4,
+    6,
+    3
+  ],
+  "controls": [
+    {
+      "label": "0_welcome",
+      "n": 515,
+      "fit": 350,
+      "holdout": 165,
+      "lexicon": 40730,
+      "anchors": [
+        {
+          "offset": 264,
+          "length": 10,
+          "nonzero": 10,
+          "possibleStarts": 18,
+          "tuples": 52,
+          "keys": 52
+        },
+        {
+          "offset": 215,
+          "length": 10,
+          "nonzero": 9,
+          "possibleStarts": 15,
+          "tuples": 37,
+          "keys": 37
+        },
+        {
+          "offset": 104,
+          "length": 9,
+          "nonzero": 9,
+          "possibleStarts": 8,
+          "tuples": 429,
+          "keys": 429
+        },
+        {
+          "offset": 193,
+          "length": 9,
+          "nonzero": 9,
+          "possibleStarts": 14,
+          "tuples": 629,
+          "keys": 629
+        },
+        {
+          "offset": 168,
+          "length": 9,
+          "nonzero": 8,
+          "possibleStarts": 13,
+          "tuples": 1414,
+          "keys": 1414
+        },
+        {
+          "offset": 284,
+          "length": 9,
+          "nonzero": 8,
+          "possibleStarts": 19,
+          "tuples": 1240,
+          "keys": 1240
+        }
+      ],
+      "joins": 15,
+      "unique": 3,
+      "hist": {
+        "0": 1,
+        "1": 2
+      },
+      "pairs": [
+        {
+          "a": 0,
+          "b": 1,
+          "joins": 1
+        },
+        {
+          "a": 0,
+          "b": 2,
+          "joins": 1
+        },
+        {
+          "a": 0,
+          "b": 3,
+          "joins": 1
+        },
+        {
+          "a": 0,
+          "b": 4,
+          "joins": 1
+        },
+        {
+          "a": 0,
+          "b": 5,
+          "joins": 1
+        },
+        {
+          "a": 1,
+          "b": 2,
+          "joins": 1
+        },
+        {
+          "a": 1,
+          "b": 3,
+          "joins": 1
+        },
+        {
+          "a": 1,
+          "b": 4,
+          "joins": 1
+        },
+        {
+          "a": 1,
+          "b": 5,
+          "joins": 1
+        },
+        {
+          "a": 2,
+          "b": 3,
+          "joins": 1
+        },
+        {
+          "a": 2,
+          "b": 4,
+          "joins": 1
+        },
+        {
+          "a": 2,
+          "b": 5,
+          "joins": 1
+        },
+        {
+          "a": 3,
+          "b": 4,
+          "joins": 1
+        },
+        {
+          "a": 3,
+          "b": 5,
+          "joins": 1
+        },
+        {
+          "a": 4,
+          "b": 5,
+          "joins": 1
+        }
+      ],
+      "capped": false,
+      "legal": 3,
+      "full": 1,
+      "partial": 2,
+      "truthKey": [
+        2,
+        7,
+        13,
+        19,
+        23,
+        3,
+        11,
+        5
+      ],
+      "truthInCandidates": true,
+      "winner": {
+        "key": [
+          2,
+          7,
+          13,
+          19,
+          23,
+          3,
+          11,
+          5
+        ],
+        "fitLex": 342,
+        "fitScore": -2.713407732178103,
+        "holdLex": 159,
+        "holdScore": -2.6496145333601833,
+        "preview": "W E L C O M E W E L C O M E P I L G R I M T O TH E G R EA T J O U R N E Y T O W A R D TH E E N D O F A L L TH NG S I T I S N O T A N EA S Y T R I P B U T F O R TH O S E W H O F I N D TH E I R W A Y H E R E I T I S A N E C E S S A R Y O N E A L O NG",
+        "heldExact": 165,
+        "fullReplay": true
+      },
+      "runnerUp": null
+    },
+    {
+      "label": "0_loss_of_divinity",
+      "n": 534,
+      "fit": 352,
+      "holdout": 182,
+      "lexicon": 40729,
+      "anchors": [
+        {
+          "offset": 18,
+          "length": 13,
+          "nonzero": 12,
+          "possibleStarts": 2,
+          "tuples": 1,
+          "keys": 1
+        },
+        {
+          "offset": 284,
+          "length": 11,
+          "nonzero": 11,
+          "possibleStarts": 11,
+          "tuples": 7,
+          "keys": 7
+        },
+        {
+          "offset": 78,
+          "length": 10,
+          "nonzero": 10,
+          "possibleStarts": 7,
+          "tuples": 32,
+          "keys": 32
+        },
+        {
+          "offset": 31,
+          "length": 9,
+          "nonzero": 9,
+          "possibleStarts": 3,
+          "tuples": 250,
+          "keys": 250
+        },
+        {
+          "offset": 8,
+          "length": 8,
+          "nonzero": 8,
+          "possibleStarts": 2,
+          "tuples": 5959,
+          "keys": 5959
+        },
+        {
+          "offset": 70,
+          "length": 8,
+          "nonzero": 8,
+          "possibleStarts": 7,
+          "tuples": 5826,
+          "keys": 5826
+        }
+      ],
+      "joins": 15,
+      "unique": 2,
+      "hist": {
+        "0": 1,
+        "1": 1
+      },
+      "pairs": [
+        {
+          "a": 0,
+          "b": 1,
+          "joins": 1
+        },
+        {
+          "a": 0,
+          "b": 2,
+          "joins": 1
+        },
+        {
+          "a": 0,
+          "b": 3,
+          "joins": 1
+        },
+        {
+          "a": 0,
+          "b": 4,
+          "joins": 1
+        },
+        {
+          "a": 0,
+          "b": 5,
+          "joins": 1
+        },
+        {
+          "a": 1,
+          "b": 2,
+          "joins": 1
+        },
+        {
+          "a": 1,
+          "b": 3,
+          "joins": 1
+        },
+        {
+          "a": 1,
+          "b": 4,
+          "joins": 1
+        },
+        {
+          "a": 1,
+          "b": 5,
+          "joins": 1
+        },
+        {
+          "a": 2,
+          "b": 3,
+          "joins": 1
+        },
+        {
+          "a": 2,
+          "b": 4,
+          "joins": 1
+        },
+        {
+          "a": 2,
+          "b": 5,
+          "joins": 1
+        },
+        {
+          "a": 3,
+          "b": 4,
+          "joins": 1
+        },
+        {
+          "a": 3,
+          "b": 5,
+          "joins": 1
+        },
+        {
+          "a": 4,
+          "b": 5,
+          "joins": 1
+        }
+      ],
+      "capped": false,
+      "legal": 2,
+      "full": 1,
+      "partial": 1,
+      "truthKey": [
+        24,
+        3,
+        14,
+        9,
+        22,
+        2,
+        17,
+        4
+      ],
+      "truthInCandidates": true,
+      "winner": {
+        "key": [
+          24,
+          3,
+          14,
+          9,
+          22,
+          2,
+          17,
+          4
+        ],
+        "fitLex": 337,
+        "fitScore": -2.814649679967324,
+        "holdLex": 182,
+        "holdScore": -2.6628783021624693,
+        "preview": "TH E L O S S O F D I U I N I T Y TH E C I R C U M F E R E N C E P R A C T I C E S TH R E E B E H A U IA R S W H I C H C A U S E TH E L O S S O F D I U I N I T Y C O N S U M P T IA N W E C O N S U M E T O O M U C H B E C A U S E W E B E L E I U E",
+        "heldExact": 182,
+        "fullReplay": true
+      },
+      "runnerUp": null
+    },
+    {
+      "label": "0_koan_1",
+      "n": 530,
+      "fit": 350,
+      "holdout": 180,
+      "lexicon": 40731,
+      "anchors": [
+        {
+          "offset": 251,
+          "length": 9,
+          "nonzero": 8,
+          "possibleStarts": 20,
+          "tuples": 1516,
+          "keys": 1516
+        },
+        {
+          "offset": 331,
+          "length": 8,
+          "nonzero": 7,
+          "possibleStarts": 22,
+          "tuples": 30177,
+          "keys": 30177
+        },
+        {
+          "offset": 106,
+          "length": 7,
+          "nonzero": 7,
+          "possibleStarts": 8,
+          "tuples": 36732,
+          "keys": 36732
+        },
+        {
+          "offset": 240,
+          "length": 7,
+          "nonzero": 7,
+          "possibleStarts": 20,
+          "tuples": 44054,
+          "keys": 44054
+        },
+        {
+          "offset": 287,
+          "length": 7,
+          "nonzero": 7,
+          "possibleStarts": 22,
+          "tuples": 46325,
+          "keys": 46325
+        },
+        {
+          "offset": 9,
+          "length": 7,
+          "nonzero": 6,
+          "possibleStarts": 1,
+          "tuples": 6077,
+          "keys": 6077
+        }
+      ],
+      "joins": 77,
+      "unique": 62,
+      "hist": {
+        "0": 60,
+        "1": 2
+      },
+      "pairs": [
+        {
+          "a": 0,
+          "b": 1,
+          "joins": 2
+        },
+        {
+          "a": 0,
+          "b": 2,
+          "joins": 2
+        },
+        {
+          "a": 0,
+          "b": 3,
+          "joins": 1
+        },
+        {
+          "a": 0,
+          "b": 4,
+          "joins": 1
+        },
+        {
+          "a": 0,
+          "b": 5,
+          "joins": 1
+        },
+        {
+          "a": 1,
+          "b": 2,
+          "joins": 1
+        },
+        {
+          "a": 1,
+          "b": 3,
+          "joins": 5
+        },
+        {
+          "a": 1,
+          "b": 4,
+          "joins": 3
+        },
+        {
+          "a": 1,
+          "b": 5,
+          "joins": 2
+        },
+        {
+          "a": 2,
+          "b": 3,
+          "joins": 9
+        },
+        {
+          "a": 2,
+          "b": 4,
+          "joins": 4
+        },
+        {
+          "a": 2,
+          "b": 5,
+          "joins": 1
+        },
+        {
+          "a": 3,
+          "b": 4,
+          "joins": 13
+        },
+        {
+          "a": 3,
+          "b": 5,
+          "joins": 29
+        },
+        {
+          "a": 4,
+          "b": 5,
+          "joins": 3
+        }
+      ],
+      "capped": false,
+      "legal": 15,
+      "full": 14,
+      "partial": 1,
+      "truthKey": [
+        15,
+        6,
+        25,
+        2,
+        8,
+        21,
+        11,
+        18
+      ],
+      "truthInCandidates": true,
+      "winner": {
+        "key": [
+          15,
+          6,
+          25,
+          2,
+          8,
+          21,
+          11,
+          18
+        ],
+        "fitLex": 350,
+        "fitScore": -2.4788083638442466,
+        "holdLex": 172,
+        "holdScore": -2.664128619733092,
+        "preview": "A C O A N A M A N D E C I D E D T O G O A N D S T U D Y W I TH A M A S T E R H E W E N T T O TH E D O O R O F TH E M A S T E R W H O A R E Y O U W H O W I S H E S T O S T U D Y H E R E A S C E D TH E M A S T E R TH E S T U D E N T T O L D TH E M",
+        "heldExact": 180,
+        "fullReplay": true
+      },
+      "runnerUp": {
+        "lex": 226,
+        "score": -2.7465255354880984
+      }
+    }
+  ],
+  "pass": true,
+  "target": {
+    "label": "original p51–53",
+    "n": 534,
+    "fit": 350,
+    "holdout": 184,
+    "lexicon": 40732,
+    "anchors": [
+      {
+        "offset": 170,
+        "length": 13,
+        "nonzero": 13,
+        "possibleStarts": 7,
+        "tuples": 0,
+        "keys": 0
+      },
+      {
+        "offset": 298,
+        "length": 12,
+        "nonzero": 12,
+        "possibleStarts": 14,
+        "tuples": 0,
+        "keys": 0
+      },
+      {
+        "offset": 32,
+        "length": 8,
+        "nonzero": 8,
+        "possibleStarts": 2,
+        "tuples": 5828,
+        "keys": 5828
+      },
+      {
+        "offset": 43,
+        "length": 8,
+        "nonzero": 8,
+        "possibleStarts": 2,
+        "tuples": 514,
+        "keys": 514
+      },
+      {
+        "offset": 66,
+        "length": 8,
+        "nonzero": 8,
+        "possibleStarts": 4,
+        "tuples": 5976,
+        "keys": 5976
+      },
+      {
+        "offset": 77,
+        "length": 8,
+        "nonzero": 8,
+        "possibleStarts": 4,
+        "tuples": 948,
+        "keys": 948
+      }
+    ],
+    "joins": 0,
+    "unique": 0,
+    "hist": {},
+    "pairs": [
+      {
+        "a": 0,
+        "b": 1,
+        "joins": 0
+      },
+      {
+        "a": 0,
+        "b": 2,
+        "joins": 0
+      },
+      {
+        "a": 0,
+        "b": 3,
+        "joins": 0
+      },
+      {
+        "a": 0,
+        "b": 4,
+        "joins": 0
+      },
+      {
+        "a": 0,
+        "b": 5,
+        "joins": 0
+      },
+      {
+        "a": 1,
+        "b": 2,
+        "joins": 0
+      },
+      {
+        "a": 1,
+        "b": 3,
+        "joins": 0
+      },
+      {
+        "a": 1,
+        "b": 4,
+        "joins": 0
+      },
+      {
+        "a": 1,
+        "b": 5,
+        "joins": 0
+      },
+      {
+        "a": 2,
+        "b": 3,
+        "joins": 0
+      },
+      {
+        "a": 2,
+        "b": 4,
+        "joins": 0
+      },
+      {
+        "a": 2,
+        "b": 5,
+        "joins": 0
+      },
+      {
+        "a": 3,
+        "b": 4,
+        "joins": 0
+      },
+      {
+        "a": 3,
+        "b": 5,
+        "joins": 0
+      },
+      {
+        "a": 4,
+        "b": 5,
+        "joins": 0
+      }
+    ],
+    "capped": false,
+    "legal": 0,
+    "full": 0,
+    "partial": 0,
+    "truthKey": null,
+    "truthInCandidates": null,
+    "winner": null,
+    "runnerUp": null
+  },
+  "inputBlobShas": [
+    "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7",
+    "1b064ef6d85819b7d96adaff31a82d1ec551598f",
+    "2550eae357442912220e05dc51147523a61dd75a",
+    "140e1d22b5f8c45deddd2e8b25549d9d6307d938"
+  ]
+}
