@@ -83,13 +83,36 @@ Several minimal consumers were checked to avoid mistaking the arithmetic closure
 
 These negative consumers are deliberately small. They show that the new bridge should not be promoted into a six-period manuscript cipher by default.
 
+
+## p32 source-loop receiver gate (24 November 2026; bounded negative)
+
+The p32 full-branch audit supplies a new, independently selected receiver after the earlier p27 DIVINITY and p55 43-interior cube tests: the 121-rune p32 page reached by the p57/p50 navigation route, together with its uniquely retained physical fragment15. The p32 source-to-source audit fixes the following objects before any GP29 output is scored:
+
+- fragment7 at offsets 33–43 contains HOMEXWDSLFD; HOME is offsets 33–36 and X is 37;
+- the unique physical translation (+5,+5) maps HOME to BUDS at offsets 93–96 and X to offset 97;
+- enclosing fragment15 is offsets 89–96, eight runes, transliteration OENGOMBUDS;
+- its frozen outer-pair H readout is [7,8], which the upstream source-register interpretation maps to THE DEVOTED.
+
+The p28 literal-DH reconstruction independently fixes the state (p,g,a,b,A,B,K,e,q)=(23,5,6,15,8,19,2,3,4), with GP29 cube x^3 and inverse x^19 as the compact reversible value-changing candidate. I tested these two direct receivers, with no phase, direction, or segmentation search:
+
+1. Apply x^3 and x^19 modulo29 to the whole p32 page and the fixed fragment15/HOME/HOMEX/BUDS/X spans.
+2. Use the labeled nine-value DH state [p,g,a,b,A,B,K,e,q] as a repeating additive GP29 key on the whole p32 page, both signs, phase zero, no word/page resets.
+
+The p32 page's raw quadgram score is −7.443212; cube gives −6.990692 and inverse cube −7.299068. The p57 clear reference is −4.420633. The cube output begins AEHDADUOENGNAIMAEOSJCOXNGCAHMEONGGWHFFIAHMIASOEATJAEFTIEOBNGAELATR...; it is not readable plaintext. The inverse is likewise nonlinguistic. The labeled DH-state additive key scores −7.711341 / −7.444177 for the two signs, also without readable output.
+
+The fixed fragment15 transforms to CIIASEOUTJ (cube) and PIAEHEOUAEM (inverse); BUDS transforms to EOUTJ / EOUAEM; HOME to MIASO / THEHX. These are diagnostics on short selected spans, not language-score evidence. The structural H readout THE DEVOTED remains intact; cube does not turn the fragment into plaintext.
+
+**Decision:** reject direct cube/inverse and direct labeled-state repeating-additive use on this specific p32 receiver. This does not invalidate the p32 source-to-source navigation loop, the p28 DH23 reconstruction, or other uses of the state as a key/seed. Do not expand to arbitrary layer compositions or phase searches without a new source selector.
+
+**Reproduction:** node sims/lp2_p28_dh23_p32_receiver_gate_sft.cjs. The script asserts the frozen p32 physical offsets and DH equations, checks the cube inverse over all29 residues, verifies the additive round-trip, and reproduces the whole-page and selected-span outputs.
+
 ## Cryptanalytic consequence
 
 The p28/DH23 route previously reached a point where it selected Diffie-Hellman state but lacked a GP29 value-changing operation. The internal identities supply the compact candidate exponent3, while the later p27 red19+13 check independently reproduces `[a,e]=[6,3]` on a source-frozen object. This supports the candidate without prospectively authenticating its application:
 
 `x -> x^3 mod29`, inverse `x -> x^19 mod29`.
 
-The two most obvious source-selected receivers now tested are the p27 DIVINITY core and p55's 43-rune strict interior. Direct x³ and inverse x¹⁹ fail on both; neither yields plaintext. The cube remains a reversible arithmetic candidate without a plaintext-producing LP2 receiver. The red19+13 object corroborates the operation parameter after discovery but does not prospectively validate its use. Future work should require a new independent receiver or an untouched ciphertext prediction. Broad cube-key phase searches would recreate the same underselection the repository is trying to avoid.
+The three direct receivers now tested are the p27 DIVINITY core, p55's 43-rune strict interior, and the independently selected p32 physical receiver. Direct x³ and inverse x¹⁹ fail on all three; the labeled nine-value DH state also fails as a repeating additive key on p32. The cube remains a reversible arithmetic candidate without a plaintext-producing LP2 receiver. The red19+13 object corroborates the operation parameter after discovery but does not prospectively validate its use. Future work should require a new independent receiver or an untouched ciphertext prediction; the p32 direct receiver is now closed under the fixed cube/inverse and labeled-state additive tests. Broad cube-key phase searches would recreate the same underselection the repository is trying to avoid.
 
 ## Reproduction
 

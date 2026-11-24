@@ -150,3 +150,10 @@ Source core IoC 0.02547065 / 0.04429679 respectively, no coherent GP29 plaintext
 
 - Reproduction note: the first manual SFT run 45501296306 stopped at an incorrect hand-copied string assertion for the printed-grid residue key. The actual computed key is MLJHB1A3KMP7MCHL (not the transcribed MLJHB1A3KMY7MCHL); no cryptanalytic computation had run in that attempt. Script and report corrected in the next commit; rerun required.
 
+## 24 November 2026: p32 DH-cube receiver gate
+
+- The p32 full-branch audit (#1780) fixes a unique physical source-to-source loop: p50 base60 path enters p32; fragment7/X at offsets33–37 translates (+5,+5) to BUDS at93–96 and X at97; enclosing fragment15 is offsets89–96 and its outer H readout is [7,8], mapped by the upstream source-register interpretation to THE DEVOTED; frozen p50 HOME cell48=4D -> 77 selects the signed-source MEANING/FALSE collision and H(20,39)=[K*g,a-g]=[10,1]. This is a navigation/structural result, not plaintext.
+- I used that independently selected p32 receiver to test the p28 DH23 cube candidate x^3 mod29 and inverse x^19 on the whole 121-rune page, fragment15, HOME/HOMEX, BUDS, and translated X. Also tested the labeled DH state [p,g,a,b,A,B,K,e,q] as a nine-symbol repeating additive key, both signs, phase0. No plaintext: p32 raw score −7.443212, cube −6.990692, inverse −7.299068, state-key signs −7.711341/−7.444177; p57 clear reference −4.420633. Fragment15 cube/inverse outputs CIIASEOUTJ / PIAEHEOUAEM. This closes only these direct consumers on this fixed receiver.
+- Reproducer: sims/lp2_p28_dh23_p32_receiver_gate_sft.cjs; consolidated p28 cube report: im-results/lp2-p28-dh23-gp29-cube-bridge.md. No update to results/README.md: no unknown plaintext recovered.
+- Continue to monitor LP1-first17 PRF run 45500425233 and corrected p15 SFT run 45501709838; avoid reopening the p32 physical branch, p15 BASE29 direct/key-skip variants, or p49–51 payload-PRF family without a new source selector.
+
