@@ -119,10 +119,10 @@ function plant(name,text,length,seed,restarts,logP){
 }
 const logP=trainUnigram();
 const sources=[
- {name:"Shakespeare-5000",file:"resources/control/shakespeare_first300k.txt",length:5000,seed:0x2901,restarts:240},
- {name:"Gibran-5000",file:"resources/control/gibran_prophet_58585.txt",length:5000,seed:0x2902,restarts:240},
- {name:"Emerson-2500",file:"resources/control/emerson_essays_2944.txt",length:2500,seed:0x2903,restarts:240},
- {name:"Shakespeare-308-short",file:"resources/control/shakespeare_first300k.txt",length:308,seed:0x2904,restarts:400}
+ {name:"Shakespeare-5000",file:"resources/control/shakespeare_first300k.txt",length:5000,seed:0x2901,restarts:120},
+ {name:"Gibran-5000",file:"resources/control/gibran_prophet_58585.txt",length:5000,seed:0x2902,restarts:120},
+ {name:"Emerson-2500",file:"resources/control/emerson_essays_2944.txt",length:2000,seed:0x2903,restarts:120},
+ {name:"Shakespeare-308-short",file:"resources/control/shakespeare_first300k.txt",length:308,seed:0x2904,restarts:200}
 ];
 const results=sources.map(s=>plant(s.name,readText(s.file),s.length,s.seed,s.restarts,logP));
 const summary={
