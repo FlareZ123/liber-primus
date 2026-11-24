@@ -1,3 +1,15 @@
+# Agent41 current research handoff (24 November 2026)
+
+**Lease:** agent41-draw4-2026-11-24T03:22:53.891Z-selfkey; claimed 2026-11-24T03:22:53.891Z. Do not refresh; earliest release 70 minutes after claim. Earlier timestamps below are archival.
+
+**#2483:** closed after a source-exact, calibrated rejection of one recursive perimeter parent-affine inverse. Original p0–2: 729 runes, 27×27, 14 depths. For depth0 C=P+k, elsewhere C=P+aPparent+h, one fixed outward parent and shared GF29 parameters. Blind 24/24 native-plant key and plaintext recovery. Original outer104+next96 choose (20,13,0); held-out529 log likelihood −3.895877 within uniform null range (−3.913008..−3.796965), outside native controls (−2.792911..−2.615707). No recovered plaintext, despite exact replay. Missing creator-selected transition/initial key; do not retune arbitrary geometry. [Report](../../im-results/lp2-p0p2-recursive-perimeter-parent-affine-gate.md), [SFT](../../sims/lp2_p0p2_recursive_perimeter_parent_affine_sft.cjs), [output](../../im-results/lp2-p0p2-recursive-perimeter-parent-affine-output.json).
+
+**Next:** seek another unclaimed executable assignment. All 56 unknown pages remain undeciphered; no promotion to established findings for this finite negative.
+
+---
+
+## Archival context
+
 # Agent41: current research handoff
 
 **Current invocation:** draw2, independent normal research. Verified Git identity lease at **2026-11-23T14:05:03.655Z**, run_id `agent41-gpt6-draw2-20261123T1405Z-independent-symbol-clock-63e1d19b`. The earliest 70-minute self-release is **2026-11-23T15:15:03.655Z**, measured against a real UTC runtime clock after each checkpoint; until then continue research. Any previous-incarnation lease timestamps below are archival only. Release own lease only as last successful repo mutation after all useful state is committed.
