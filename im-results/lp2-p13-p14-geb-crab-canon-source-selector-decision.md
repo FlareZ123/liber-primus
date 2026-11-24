@@ -20,4 +20,31 @@ The source-original physical-paper fold is additionally distinct from literal fl
 
 A first-party *Crab Canon* tells a player **which way to read an existing voice**, and that instruction alone is a permutation of the source symbols. Since the original p13/p14 GP29 ciphertext has near-uniform symbol frequencies, this permutation cannot expose ordinary native plaintext. To turn the two voices into a new `136`-rune key requires a second **value-changing binary operator**, plus a specific order for four physical overhang pairs, treatment of p14's F and independent original p14→p15 continuation. The period GEB dialogue and source Onion5 book code name **none** of those, and the already-tested obvious numeric operators produced no plaintext.
 
-The necessary new historical instruction or actual pre-2014 musical note-to-GP29 alphabet is absent. Per the task's upfront no-selector completion criterion, **retire this GEB-specific Crab Canon route now**. Its authentic contribution is a reversal/reading direction already included by prior fold tests. This conclusion does **not** exclude nonstationary two-voice ciphers generally and does not explain why FOLD appears in p14. No additional arbitrary operations have been fitted or claimed as a decipherment.
+The necessary new historical instruction or actual pre-2014 musical note-to-GP29 alphabet is absent. The full-dialogue complement extension below also fails. Per the task's upfront no-selector completion criterion, **retire these GEB-specific Crab Canon routes now**. Its authentic contribution is a reversal/reading direction already included by prior fold tests. This conclusion does **not** exclude nonstationary two-voice ciphers generally and does not explain why FOLD appears in p14. No additional arbitrary operations have been fitted or claimed as a decipherment.
+
+## Full-dialogue complement graph
+
+**24 November 2026 · Agent32 · [#2581](https://github.com/FlareZ123/liber-primus/issues/2581).** The full Crab Canon dialogue, pp.199–203 (pinned historical OCR lines11016–11257), includes Fig.43's DNA strands and exchanged conversational roles. This is more specific than flat repetition. Its natural stationary complement hypothesis is a fixed involution (J) on labels, potentially after an arbitrary secret rune-to-label map (f). Such a map is more generous than a secret permutation: it permits all possible GP29 coarsenings, including a four-base interpretation. It requires (f(y)=J(f(x))) for each source-fixed paired position ((x,y)).
+
+Build the undirected graph on the 29 original rune values, adding an edge for each pair. Along a path of length (k), the final label must be (J^k) of the initial label. An odd cycle (including a self-loop) forces its label to be fixed by (J); every connected neighbor then has the same label. Consequently a connected non-bipartite graph spanning all 29 runes permits **only a constant (f)**, which carries no alphabet distinction. This proof makes no assumption about language, the number of output labels, or the value of a secret key. In particular a complement with no fixed points is infeasible even for a constant (f).
+
+Separately let (N_{xy}) count directed pairs. Every stationary function (y=h(x)) satisfies at most (sum_x max_y N_{xy}) original pairs; this is the exact optimum over arbitrary functions and an upper bound on any involutive/bijective complement.
+
+| Original pairing | Pairs | Self-pairs | Max arbitrary-function matches | Graph components |
+|---|---:|---:|---:|---|
+| p13 flat reverse halves | 136 | 4 | 36 | One non-bipartite component, all 29 |
+| p13 first 68 flat pairs | 68 | 3 | 30 | One non-bipartite component, all 29 |
+| p13 disjoint final 68 flat pairs | 68 | 1 | 29 | One non-bipartite component, all 29 |
+| p13 actual physical fold (overhangs excluded) | 132 | 2 | 37 | One non-bipartite component, all 29 |
+| p24 flat reverse halves | 135 | 6 | 37 | One non-bipartite component, all 29 |
+| p24 physical fold | 132 | 4 | 35 | One non-bipartite component, all 29 |
+| p42 flat reverse halves | 136 | 3 | 35 | One non-bipartite component, all 29 |
+| p42 physical fold | 130 | 6 | 37 | One non-bipartite component, all 29 |
+
+The original source line parser is the previously used canonical slash-delimited transcription, cross-checked against all corresponding GP29 corpus arrays. p13 is the prespecified receiver; p24 and p42 are geometry-matched comparators (not independent author-selected keys or plaintext predictions). No placement, offset, or complement alphabet was fitted. Even the first and second p13 pair sets individually force collapse, so withholding half cannot rescue the hypothesis.
+
+Positive controls use all 95 native p57 GP runes: a planted reverse-complement (J(x)=28-x) reconstructs 95/95 symbols exactly, with only bipartite pair components and row bound 95. A distinct four-label plant uses (f(x)=xmod4) and (J(v)=v\mathbin{\mathrm{xor}}1), choosing varying representatives of the complementary class. All 95 class relations hold, the graph remains bipartite, and the direct-function bound is only 83/95, confirming that the graph gate genuinely permits many-to-one mappings rather than requiring a rune-to-rune function.
+
+Reproducer: [`sims/lp2_geb_crab_complement_graph_sft.cjs`](../sims/lp2_geb_crab_complement_graph_sft.cjs). Input corpus blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`. Core experiment executed against the live canonical corpus and transcription; no new CI required. The complete six-dialogue source audit is consolidated in [the 2014 source chain](2014-onion5-geb-onion6-chain.md#complete-selected-dialogue-review-director-2581-24-november-2026).
+
+**Scope:** this rules out literal stationary reverse-complement *label* consistency, even after arbitrary coarsening. It does not establish that LP2 should be a DNA code; applying the GEB role/base analogy to GP29 is the hypothesis tested. A source-defined position-dependent complement, changing voices, hidden state, different registration, or an independent value-changing binary operation is not excluded. No unknown plaintext was produced. No further complement fit or arbitrary alphabet sweep is warranted on this receiver.
