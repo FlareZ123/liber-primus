@@ -104,11 +104,40 @@ For completeness, the exact two originally sourced exponent choices `3301` and `
 
 **Reproduce:** [single-file Windows Node22/CommonJS original-power source test](../sims/lp2_word_base29_exponent_original_sft.cjs). The program reads original 2,896 words and solved p57 directly from the canonical corpus, asserts both valuation-one counts, checks 3301/1033 unit inverses by exact forward exponentiation, and round-trips genuine p57 GP-runic unit-word controls. The original unit-multiplication program below remains the primary reproduction of the independently sourced English endpoint-rate controls.
 
+## Valuation-preserving unit-power repair (#2619, Agent 5, 24 November 2026)
+
+The earlier missing-root proof does not reject a repaired map which preserves the valuation: write any nonzero word integer as (x=29^v u) with 29 not dividing (u), define (E(x)=29^v(u^e\bmod29^{L-v})), and fix zero. Choose a common exponent e coprime to 28·29^(L−1) for all lengths; its inverse on each valuation stratum uses the inverse exponent modulo 28·29^(L−v−1). Thus every integer, including nonunits, has exactly one preimage.
+
+However, if v>0, the lowest digit remains zero. If v=0, the lowest digit is (x^e\bmod29). As gcd(e,28)=1, the complete reduction modulo 29 is one fixed permutation, including zero. The repaired map is a strict subset of the earlier compatible-bijection endpoint theorem in both digit orientations. Unlike the direct power obstruction, this negative is conditional on direct native GP English and intact printed words.
+
+A new exact, cheaper singleton gate uses the canonical carry-joined source (2,896 words; 12,956 runes; 83 singleton words spanning 28 distinct GP identities). For each of the twelve legal e residues mod 28, count ciphertext singleton positions in the image of A/I/O (24,10,3), with a deliberately liberal extra T (16). Results:
+
+| e mod 28 | A/I/O, of 83 | A/I/O/T, of 83 |
+| ---: | ---: | ---: |
+| 1 | 10 | 15 |
+| 3 | 4 | 8 |
+| 5 | 11 | 14 |
+| 9 | 5 | 7 |
+| 11 | 10 | 11 |
+| 13 | 13 | 15 |
+| 15 | 12 | 17 |
+| 17 | 7 | 11 |
+| 19 | 8 | 11 |
+| 23 | 8 | 10 |
+| 25 | 7 | 8 |
+| 27 | 11 | 13 |
+
+The global optimum necessarily leaves at least 70 strict or 66 liberal OOV singleton words, before considering any longer words. On p0–2 alone (5 singleton words), the best liberal coverage is 1/5, tied at residues 11 and 17. Frozen lowest-residue tie-break selects 11, which covers 10/78 remaining singletons; even the retrospective global optimum cannot rescue the model. All higher exponent lifts share exactly this low-digit reduction. Neither an exponent discrete logarithm nor a chapter-specific spelling search can improve this global shared-exponent bound.
+
+Positive control: encrypt all 95 source-native clear p57 runes under 3301, 1033, 15 and 17, both digit orders; exact stratum inverse recovers all 760/760 runes, including one nonunit word per reversed-order control. Every protected endpoint matches the predicted residue. This validates arithmetic rather than blind key identification; the pre-lifting impossibility obviates a hidden-key lexical recovery experiment as permitted by #2619. Executed the exact experiment with connected JS against the fetched canonical transcription. [Runnable Node/CommonJS SFT](../sims/lp2_word_base29_valuation_power_gate_sft.cjs); no CI run claimed.
+
+**Decision:** retire the shared valuation-preserving power law under declared native-word assumptions. An operation coupling the low digit to higher digits, altered segmentation, or a different output register is outside this gate. No authentic key or unknown plaintext recovered.
+
 ## Decision and reproducibility
 
 The source-rooted wordwise unit-multiplication model is a **conditional negative** under direct GP-English, original plaintext word boundaries and an independently chosen constant multiplier globally, per start page, per word length, or per start-page/length group. The model's invertibility, positive plant and frozen original-input outputs are independently implemented and executed in [the standalone CJS SFT](../sims/lp2_word_base29_unit_invariant_sft.cjs), through the existing manual-only [word-length workflow](../.github/workflows/manual-word-length-probe.yml) (scan_mode=base29-unit), **[successful expanded run 43067212117](https://github.com/FlareZ123/liber-primus/actions/runs/43067212117)** (initial four-group control also [passed](https://github.com/FlareZ123/liber-primus/actions/runs/43065874794)). No new auto-triggering workflow was created.
 
-The new integer-power obstruction above is unconditional for the stated full-ring `e≥2` original-word cipher, without assuming ordinary English plaintext. These two numeric gates share the source's BASE29 word interpretation while addressing materially different algebraic mechanisms.
+The new integer-power obstruction above is unconditional for the stated full-ring `e≥2` original-word cipher, without assuming ordinary English plaintext. These three numeric gates share the source's BASE29 word interpretation while addressing materially different algebraic mechanisms.
 
 This is distinct from the [noninjective original word-to-byte/p50 lookup](lp2-wordwise-base29-p50-byte-gate.md), the [word-as-address grammar test](lp2-base29-original-word-address-gate.md), and the [per-word substitution equality-pattern gate](lp2-wordwise-bijection-pattern-gate.md). Those do not test the arithmetic carries and protected least-significant digit of this reversible 29-adic multiplication.
 
