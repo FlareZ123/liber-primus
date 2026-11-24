@@ -1,0 +1,28 @@
+#!/usr/bin/env node
+"use strict";
+const fs=require("fs");
+const paths=["resources/liber-primus/lp2-corpus.json","resources/external/relikd-solved-gp29-native-v1.json","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt","resources/control/gibran_prophet_58585.txt"];
+function experiment(d,mode="baseline"){
+const g=JSON.parse(d[0]),glyph=new Map(g.runes.map((r,i)=>[r,i])),tok=g.translit.map((t,i)=>({t,i})).sort((a,b)=>b.t.length-a.t.length);
+function native(raw,variant){let w=raw.toUpperCase().replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S");if(variant)w=w.replace(/ING/g,"NG").replace(/IO/g,"IA");const a=[];for(let i=0;i<w.length;){const t=tok.find(t=>w.startsWith(t.t,i));if(t){a.push(t.i);i+=t.t.length}else i++}return a}
+const sol=JSON.parse(d[1]).sections.map(s=>({name:s.name,p:[...s.source_text].filter(c=>glyph.has(c)).map(c=>glyph.get(c))}));
+const N=29,U=N**4,counts=[new Float64Array(N),new Float64Array(N*N),new Float64Array(N**3),new Float64Array(U),new Map()],sums=[0,new Float64Array(N),new Float64Array(N*N),new Float64Array(N**3),new Float64Array(U)];
+const testNames=["0_koan_1","0_loss_of_divinity","0_welcome"];
+function train(a,w){const s=a.slice().reverse();let context=0;for(let i=0;i<s.length;i++){const p=s[i];for(let k=0;k<=Math.min(4,i);k++){const c=context%N**k,index=c*N+p;if(k===4)counts[4].set(index,(counts[4].get(index)||0)+w);else counts[k][index]+=w;if(k)sums[k][c]+=w;else sums[0]+=w}context=(context*N+p)%U}}
+for(const x of d.slice(2))for(const v of [false,true])train(native(x,v),.5);for(const s of sol)if(!testNames.includes(s.name))train(s.p,15);
+const cache=new Map();function ll(c,p,n){n=Math.min(4,n);const ix=(c*N+p)*5+n;if(cache.has(ix))return cache.get(ix);let q=(counts[0][p]+.5)/(sums[0]+N*.5);for(let k=1;k<=n;k++){let u=c%N**k,alpha=[0,8,10,8,3][k],v=k===4?(counts[4].get(u*N+p)||0):counts[k][u*N+p];q=(v+alpha*q)/(sums[k][u]+alpha)}const l=Math.log(q*N);cache.set(ix,l);return l}
+const next=(ctx,p)=>(ctx*N+p)%U;
+function beam(A,B,C,ends,steps,width,init=null){let states=init||ends.map(e=>({a:0,b:0,c:e,ctx:[0,0,0],s:0,key:"",out:["","",""],end:e}));const opts=(arr,pos,ctx,dir,n)=>{let out=[],s=0,holds="";while(pos>=0&&pos<arr.length){out.push({pos,ctx,s,holds,v:arr[pos],n});if(arr[pos]!==0)break;s+=ll(ctx,0,n);ctx=next(ctx,0);holds+="A";pos+=dir;n++}return out};for(let step=0;step<steps;step++){const cand=[];for(const q of states){const oa=opts(A,q.a,q.ctx[0],1,q.a),ob=opts(B,q.b,q.ctx[1],1,q.b),oc=opts(C,q.c,q.ctx[2],-1,q.end-q.c);for(const x of oa)for(const y of ob)for(const z of oc){const dy=(y.v-x.v+N)%N,dz=(z.v-x.v+N)%N,base=q.s+x.s+y.s+z.s;for(let p=1;p<N;p++){const v=(p+dy)%N,w=(p+dz)%N;if(!v||!w)continue;const s=base+ll(x.ctx,p,x.n)+ll(y.ctx,v,y.n)+ll(z.ctx,w,z.n);cand.push({q,x,y,z,p,v,w,s})}}}cand.sort((a,b)=>b.s-a.s);const ns=[],seen=new Set();for(const h of cand){const {q,x,y,z,p,v,w,s}=h;const ctx=[next(x.ctx,p),next(y.ctx,v),next(z.ctx,w)],a=x.pos+1,b=y.pos+1,c=z.pos-1,id=[a,b,c,...ctx,q.end].join(",");if(seen.has(id))continue;seen.add(id);ns.push({a,b,c,ctx,s,end:q.end,key:q.key+String.fromCharCode(65+(x.v-p+N)%N),out:[q.out[0]+x.holds+String.fromCharCode(65+p),q.out[1]+y.holds+String.fromCharCode(65+v),q.out[2]+z.holds+String.fromCharCode(65+w)]});if(ns.length===width)break}states=ns;if(!ns.length)break}return states}
+const ends=Array.from({length:269},(_,i)=>i+119);
+function view(q,truth=null,key=null){return {end:q.end,score:q.s,positions:[q.a,q.b,q.c],correct:truth?q.out.map((x,i)=>[...x].filter((v,j)=>v.charCodeAt(0)-65===truth[i][j]).length):undefined,keyCorrect:key?[...q.key].filter((v,i)=>v.charCodeAt(0)-65===key[i]).length:undefined,plain:q.out.map(x=>[...x].map(c=>g.translit[c.charCodeAt(0)-65]).reverse().join(""))}}
+function rng(seed){return ()=>{seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return (seed>>>0)%N}}
+const sections=testNames.map(n=>sol.find(x=>x.name===n).p);
+const results=[];
+function plant(cfg){const [seed,n,echo,offset]=cfg,rnd=rng(seed),key=Array.from({length:350},rnd),a=sections[offset].slice(-220).reverse(),b=sections[(offset+1)%3].slice(-220).reverse(),c=sections[(offset+2)%3].slice(0,n).reverse();if(echo){for(let i=0;i<6;i++)b[i]=a[i]}function enc(s){let j=0;return s.map(p=>p===0?0:(p+key[j++])%N)}return {A:enc(a),B:enc(b),C:enc(c).reverse().concat(Array.from({length:388-n},rnd)),truth:[a,b,c],key,end:n-1}}
+function search(A,B,C,E,truth=null,key=null){
+const p=beam(A,B,C,E,60,1600),win=p[0],follow=beam(A,B,C,[],60,1000,[win])[0];return {train:view(win,truth,key),follow:view(follow,truth,key),retainedEnds:[...new Set(p.map(q=>q.end))]}}
+if(mode==="known"){for(const cfg of [[87231,180,true,1],[19277,271,true,2]]){const p=plant(cfg);results.push({cfg,...search(p.A,p.B,p.C,[p.end],p.truth,p.key)})}return results}
+for(const cfg of [[57329,220,false,0],[87231,180,true,1],[19277,271,true,2]]){const p=plant(cfg);results.push({cfg,...search(p.A,p.B,p.C,ends,p.truth,p.key)})}
+const source=g.pages.slice(0,56).flatMap(x=>x.indices),X=source.slice(0,6561).reverse(),Y=source.slice(6561).reverse(),Z=source.slice(0,388);results.push({original:true,...search(X,Y,Z,ends)});
+const rnd=rng(44177),A=Array.from({length:220},rnd),B=Array.from({length:220},rnd),C=Array.from({length:388},rnd);for(let i=0;i<6;i++)B[i]=A[i];results.push({null:true,...search(A,B,C,ends)});return results}
+console.log(JSON.stringify(experiment(paths.map(p=>fs.readFileSync(p,"utf8")),process.argv[2]||"baseline"),null,2));
