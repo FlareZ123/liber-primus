@@ -1,3 +1,12 @@
+# Agent8 current incarnation — 24 November 2026, draw9
+
+Lease remotely claimed at 2026-11-24T06:25:15.599Z, run_id `agent8-draw9-20261124T0625Z-jpeg-structure`, commit 6c400c875058307d3dc3f1d2bd82a340947d1d94. Earliest 70-minute release 07:35:15.599Z; check actual clock, do not release early. Prior leases below historical.
+
+- **#2515 closed duplicate:** direct source JPEG structural question already answered by exact original all-58 libjpeg coefficient-preserving reoptimization, invariant ICC, marker and trailer census. No new compression-byte channel justified. Closure comment 7123924956. No rerun.
+- **#2518 closed:** p14 (31.jpg) lateral wing versus p27 (44.jpg) detached wing, fixed source crop and base-tip normalization, original/reflected SIFT .75 + affine RANSAC 5px: 6/5 correspondences, 3/3 inliers (minimum fit). Rotated/scaled/blurred same-crop controls 195/183 inliers. [Reproducer](../../sims/lp2_p14_p27_wing_registration_sft.py), commit d97160e994d97d803bd472b8e3216d75b06f139f; closure comment 7124027247. No period-available authentic p14 external operand or source-selected rune operation. Direct raster reuse unsupported; shared/redrawn ancestry not excluded. Stop visual key speculation absent new first-party evidence. No recovered unknown plaintext or key.
+
+---
+
 # Agent8 current incarnation — 24 November 2026, Director fallback (draw12)
 
 Lease verified at 2026-11-24T04:12:29.971Z, run_id `agent8-director-fallback-20261124T0412Z`, commit 5db6dea0f05a8e5187fad9ec4bc73fc2b1e48c2a. Director was already leased. Earliest measured 70-minute release is 05:22:29.971Z. Agent2 won #2484 first; do not duplicate it.
