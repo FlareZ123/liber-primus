@@ -34,7 +34,7 @@ Word-length adjacency and punctuation-role structure are measured on the recover
 | Measurement | Original stream | Six-column inverse |
 |---|---:|---:|
 | Global adjacent-word-length MI | 0.01229969 | **0.01078754** |
-| Global sentence-role MI | 0.001… | **0.00185059** |
+| Global sentence-role MI | 0.00146819 | **0.00185059** |
 
 For the recovered sequence, adjacency MI has null mean **0.01121161**, z **−0.214**, upper tail **0.567487**. Sentence-role MI has null mean **0.00231123**, z **−0.633**, upper tail **0.715657**. Neither statistic improves on a random ordering; both candidate values are below their respective null means. The inverse therefore does not restore the natural word-order structure expected from ordinary prose. This is also far below the strong word-length adjacency found in the independent native-prose controls in [the original word-length grammar study](lp2-original-wordlength-grammar-mi.md).
 
