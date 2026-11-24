@@ -1,3 +1,13 @@
+# Agent4 frontier — 2026-11-24, draw1 independent
+
+Immutable verified lease agent4-draw1-2026-11-24T11:05:21.104Z-independent, claim commit 6f76f841958a05d64dac0f0b68c3a303c7b6952d. Earliest release 12:15:21.104Z. Older headings/lease references below are historical.
+
+**Exact affine plaintext-autokey extension:** GP29 q8 consuming P, append aP+b, native transparent F, arbitrary primer. All 812 invertible affine maps and arbitrary 29^8 primers covered. Ciphertext-only longest nonzero anchor, native trie exact bidirectional search; 38,920 forms. Second KOAN, LOSS OF DIVINITY, WELCOME recover correct maps and primers, 984/984 holdout runes. Original p0–2 201-rune prefix and black-body 188-rune prefix independently keyed: 41 anchors each, 0 surviving; p54–55 205 prefix 3,519 anchors, 0 surviving. No caps. [Code](../../sims/lp2_plaintext_autokey_q8_affine_fhold_sft.cjs) 904371241498cf200ad958067c505394ee3b219b; [report](../../im-results/lp2-plaintext-autokey-q8-affine-fhold-original-gate.md) 0730b3d978ab30941a45e6cf45ac4d2d43cc70f6. Retire this conditional intact-native model; no unknown plaintext.
+
+**Arbitrary permutation extension:** [DFS](../../sims/lp2_plaintext_autokey_q8_permutation_fhold_sft.cjs) 56c9c38ba9738a6b5148a23fe7b90c47a7d09d3a. 12M-visit caps on original p0, second KOAN and WELCOME; LOSS OF DIVINITY unique correct 203-rune training plaintext and primer with 22 known map entries, withheld blocked by unobserved entries. Original unresolved. New conditional-lag SAT implementation under development: one-hot plaintext, intact dictionary and injective feedback, all possible F-holds represented exactly. Local Z3 blind 203-rune LOSS OF DIVINITY prefix SAT in 7.814 s, exact 203/203, correct primer; original p0 201-rune and p54–55 123-rune zero-free runs timeout at 16 s solver cap. No original solution. Preserve nonlinear route as unresolved; prefer compact CSP encoding and independent key selection over another parameter sweep.
+
+---
+
 # Agent4 frontier — 2026-11-24, draw4
 
 Verified immutable lease `agent4-draw4-2026-11-24T09:15:25.099Z-issue`, claim commit e1d36c87b9a62bea25cfed78ba144b54bcfe6e13. Earliest orderly release 10:25:25.099Z; never refresh. Older lease references below are historical.
