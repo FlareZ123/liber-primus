@@ -1,0 +1,2172 @@
+{
+  "lexicon": 29060,
+  "chunkLengths": [
+    [
+      0,
+      729
+    ],
+    [
+      1,
+      119
+    ],
+    [
+      2,
+      693
+    ],
+    [
+      3,
+      319
+    ],
+    [
+      4,
+      14
+    ],
+    [
+      5,
+      1729
+    ],
+    [
+      6,
+      9
+    ],
+    [
+      7,
+      1894
+    ],
+    [
+      8,
+      1021
+    ],
+    [
+      9,
+      1433
+    ],
+    [
+      10,
+      91
+    ],
+    [
+      11,
+      1307
+    ],
+    [
+      12,
+      161
+    ],
+    [
+      13,
+      121
+    ],
+    [
+      14,
+      2474
+    ],
+    [
+      15,
+      534
+    ],
+    [
+      16,
+      308
+    ]
+  ],
+  "controlResults": [
+    {
+      "a": "LP1-3-welcome",
+      "b": "LP1-6-koan",
+      "offset": -346,
+      "positive": {
+        "n": 180,
+        "good": 180,
+        "score": -449.5731045719796,
+        "blocks": 13,
+        "validBlocks": 13,
+        "firstFail": null,
+        "firstFailureRange": null,
+        "matched": 346
+      },
+      "negativeMax": 88,
+      "negativeMean": 52.75,
+      "dictMissingA": 2,
+      "dictMissingB": 2
+    },
+    {
+      "a": "LP1-3-welcome",
+      "b": "LP1-10-consumption",
+      "offset": 110,
+      "positive": {
+        "n": 180,
+        "good": 162,
+        "score": -430.61907320979634,
+        "blocks": 14,
+        "validBlocks": 13,
+        "firstFail": 162,
+        "firstFailureRange": [
+          162,
+          180
+        ],
+        "matched": 296
+      },
+      "negativeMax": 80,
+      "negativeMean": 56.916666666666664,
+      "dictMissingA": 2,
+      "dictMissingB": 2
+    },
+    {
+      "a": "LP1-3-welcome",
+      "b": "LP1-14-koan",
+      "offset": 75,
+      "positive": {
+        "n": 180,
+        "good": 180,
+        "score": -413.6896277532398,
+        "blocks": 8,
+        "validBlocks": 8,
+        "firstFail": null,
+        "firstFailureRange": null,
+        "matched": 340
+      },
+      "negativeMax": 48,
+      "negativeMean": 35.083333333333336,
+      "dictMissingA": 2,
+      "dictMissingB": 1
+    },
+    {
+      "a": "LP1-3-welcome",
+      "b": "LP2-57-native",
+      "offset": 299,
+      "positive": {
+        "n": 95,
+        "good": 51,
+        "score": -121.15716127027096,
+        "blocks": 10,
+        "validBlocks": 7,
+        "firstFail": 28,
+        "firstFailureRange": [
+          28,
+          42
+        ],
+        "matched": 96
+      },
+      "negativeMax": 37,
+      "negativeMean": 21.833333333333332,
+      "dictMissingA": 2,
+      "dictMissingB": 4
+    },
+    {
+      "a": "LP1-6-koan",
+      "b": "LP1-10-consumption",
+      "offset": 456,
+      "positive": {
+        "n": 180,
+        "good": 180,
+        "score": -472.9890209898695,
+        "blocks": 14,
+        "validBlocks": 14,
+        "firstFail": null,
+        "firstFailureRange": null,
+        "matched": 336
+      },
+      "negativeMax": 159,
+      "negativeMean": 128.83333333333334,
+      "dictMissingA": 2,
+      "dictMissingB": 2
+    },
+    {
+      "a": "LP1-6-koan",
+      "b": "LP1-14-koan",
+      "offset": 421,
+      "positive": {
+        "n": 180,
+        "good": 180,
+        "score": -424.5605483041505,
+        "blocks": 13,
+        "validBlocks": 13,
+        "firstFail": null,
+        "firstFailureRange": null,
+        "matched": 356
+      },
+      "negativeMax": 98,
+      "negativeMean": 82.16666666666667,
+      "dictMissingA": 2,
+      "dictMissingB": 1
+    },
+    {
+      "a": "LP1-6-koan",
+      "b": "LP2-57-native",
+      "offset": 645,
+      "positive": {
+        "n": 95,
+        "good": 77,
+        "score": -221.33683125115056,
+        "blocks": 6,
+        "validBlocks": 5,
+        "firstFail": 24,
+        "firstFailureRange": [
+          24,
+          42
+        ],
+        "matched": 130
+      },
+      "negativeMax": 62,
+      "negativeMean": 33.083333333333336,
+      "dictMissingA": 2,
+      "dictMissingB": 4
+    },
+    {
+      "a": "LP1-10-consumption",
+      "b": "LP1-14-koan",
+      "offset": -35,
+      "positive": {
+        "n": 180,
+        "good": 180,
+        "score": -443.5322475281459,
+        "blocks": 19,
+        "validBlocks": 19,
+        "firstFail": null,
+        "firstFailureRange": null,
+        "matched": 348
+      },
+      "negativeMax": 113,
+      "negativeMean": 95.08333333333333,
+      "dictMissingA": 2,
+      "dictMissingB": 1
+    },
+    {
+      "a": "LP1-10-consumption",
+      "b": "LP2-57-native",
+      "offset": 189,
+      "positive": {
+        "n": 95,
+        "good": 81,
+        "score": -246.37727703465592,
+        "blocks": 9,
+        "validBlocks": 8,
+        "firstFail": 28,
+        "firstFailureRange": [
+          28,
+          42
+        ],
+        "matched": 124
+      },
+      "negativeMax": 60,
+      "negativeMean": 39.75,
+      "dictMissingA": 2,
+      "dictMissingB": 4
+    },
+    {
+      "a": "LP1-14-koan",
+      "b": "LP2-57-native",
+      "offset": 224,
+      "positive": {
+        "n": 95,
+        "good": 81,
+        "score": -218.6548446093829,
+        "blocks": 6,
+        "validBlocks": 5,
+        "firstFail": 28,
+        "firstFailureRange": [
+          28,
+          42
+        ],
+        "matched": 130
+      },
+      "negativeMax": 46,
+      "negativeMean": 26,
+      "dictMissingA": 1,
+      "dictMissingB": 4
+    }
+  ],
+  "original": [
+    {
+      "a": 13,
+      "b": 14,
+      "offset": -2353,
+      "n": 121,
+      "good": 54,
+      "score": -229.06092844528106,
+      "blocks": 13,
+      "validBlocks": 8,
+      "firstFail": 39,
+      "firstFailureRange": [
+        39,
+        54
+      ],
+      "matched": 6,
+      "fraction": 0.4462809917355372,
+      "negativeFraction": 0.5619834710743802
+    },
+    {
+      "a": 5,
+      "b": 10,
+      "offset": 1638,
+      "n": 91,
+      "good": 40,
+      "score": -186.3195397622673,
+      "blocks": 8,
+      "validBlocks": 4,
+      "firstFail": 16,
+      "firstFailureRange": [
+        16,
+        35
+      ],
+      "matched": 4,
+      "fraction": 0.43956043956043955,
+      "negativeFraction": 0.43956043956043955
+    },
+    {
+      "a": 12,
+      "b": 13,
+      "offset": 40,
+      "n": 121,
+      "good": 52,
+      "score": -211.3311678889558,
+      "blocks": 4,
+      "validBlocks": 3,
+      "firstFail": 39,
+      "firstFailureRange": [
+        39,
+        108
+      ],
+      "matched": 2,
+      "fraction": 0.4297520661157025,
+      "negativeFraction": 0.3140495867768595
+    },
+    {
+      "a": 8,
+      "b": 10,
+      "offset": 930,
+      "n": 91,
+      "good": 34,
+      "score": -158.51373276769357,
+      "blocks": 6,
+      "validBlocks": 3,
+      "firstFail": 9,
+      "firstFailureRange": [
+        9,
+        29
+      ],
+      "matched": 4,
+      "fraction": 0.37362637362637363,
+      "negativeFraction": 0.1978021978021978
+    },
+    {
+      "a": 7,
+      "b": 13,
+      "offset": 1773,
+      "n": 121,
+      "good": 44,
+      "score": -173.90313173718673,
+      "blocks": 9,
+      "validBlocks": 4,
+      "firstFail": 44,
+      "firstFailureRange": [
+        44,
+        59
+      ],
+      "matched": 2,
+      "fraction": 0.36363636363636365,
+      "negativeFraction": 0.21487603305785125
+    },
+    {
+      "a": 7,
+      "b": 10,
+      "offset": 1803,
+      "n": 91,
+      "good": 31,
+      "score": -134.751462752733,
+      "blocks": 5,
+      "validBlocks": 3,
+      "firstFail": 14,
+      "firstFailureRange": [
+        14,
+        24
+      ],
+      "matched": 4,
+      "fraction": 0.34065934065934067,
+      "negativeFraction": 0.15384615384615385
+    },
+    {
+      "a": 1,
+      "b": 13,
+      "offset": -2,
+      "n": 119,
+      "good": 33,
+      "score": -132.6679745860838,
+      "blocks": 9,
+      "validBlocks": 4,
+      "firstFail": 29,
+      "firstFailureRange": [
+        29,
+        44
+      ],
+      "matched": 6,
+      "fraction": 0.2773109243697479,
+      "negativeFraction": 0.40336134453781514
+    },
+    {
+      "a": 3,
+      "b": 14,
+      "offset": -2155,
+      "n": 180,
+      "good": 49,
+      "score": -217.67294566288956,
+      "blocks": 14,
+      "validBlocks": 8,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        23
+      ],
+      "matched": 6,
+      "fraction": 0.2722222222222222,
+      "negativeFraction": 0.2388888888888889
+    },
+    {
+      "a": 9,
+      "b": 10,
+      "offset": 1342,
+      "n": 91,
+      "good": 24,
+      "score": -106.69834503960686,
+      "blocks": 3,
+      "validBlocks": 2,
+      "firstFail": 24,
+      "firstFailureRange": [
+        24,
+        91
+      ],
+      "matched": 0,
+      "fraction": 0.26373626373626374,
+      "negativeFraction": 0.0989010989010989
+    },
+    {
+      "a": 10,
+      "b": 13,
+      "offset": -30,
+      "n": 91,
+      "good": 23,
+      "score": -92.11394930731717,
+      "blocks": 7,
+      "validBlocks": 4,
+      "firstFail": 14,
+      "firstFailureRange": [
+        14,
+        29
+      ],
+      "matched": 6,
+      "fraction": 0.25274725274725274,
+      "negativeFraction": 0.4175824175824176
+    },
+    {
+      "a": 10,
+      "b": 14,
+      "offset": -2383,
+      "n": 91,
+      "good": 23,
+      "score": -90.64420669479992,
+      "blocks": 6,
+      "validBlocks": 2,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        29
+      ],
+      "matched": 0,
+      "fraction": 0.25274725274725274,
+      "negativeFraction": 0.21978021978021978
+    },
+    {
+      "a": 10,
+      "b": 16,
+      "offset": -217,
+      "n": 91,
+      "good": 22,
+      "score": -88.82890379936649,
+      "blocks": 4,
+      "validBlocks": 2,
+      "firstFail": 14,
+      "firstFailureRange": [
+        14,
+        53
+      ],
+      "matched": 0,
+      "fraction": 0.24175824175824176,
+      "negativeFraction": 0.24175824175824176
+    },
+    {
+      "a": 13,
+      "b": 15,
+      "offset": -413,
+      "n": 121,
+      "good": 26,
+      "score": -117.58288755293316,
+      "blocks": 6,
+      "validBlocks": 3,
+      "firstFail": 14,
+      "firstFailureRange": [
+        14,
+        20
+      ],
+      "matched": 0,
+      "fraction": 0.21487603305785125,
+      "negativeFraction": 0.2066115702479339
+    },
+    {
+      "a": 3,
+      "b": 13,
+      "offset": 198,
+      "n": 121,
+      "good": 25,
+      "score": -103.22762344937092,
+      "blocks": 11,
+      "validBlocks": 6,
+      "firstFail": 3,
+      "firstFailureRange": [
+        3,
+        29
+      ],
+      "matched": 2,
+      "fraction": 0.2066115702479339,
+      "negativeFraction": 0.2066115702479339
+    },
+    {
+      "a": 3,
+      "b": 12,
+      "offset": 158,
+      "n": 161,
+      "good": 32,
+      "score": -134.88106516738338,
+      "blocks": 12,
+      "validBlocks": 6,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        39
+      ],
+      "matched": 6,
+      "fraction": 0.19875776397515527,
+      "negativeFraction": 0.13664596273291926
+    },
+    {
+      "a": 12,
+      "b": 14,
+      "offset": -2313,
+      "n": 161,
+      "good": 32,
+      "score": -137.25719712480304,
+      "blocks": 11,
+      "validBlocks": 3,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        6
+      ],
+      "matched": 0,
+      "fraction": 0.19875776397515527,
+      "negativeFraction": 0.06832298136645963
+    },
+    {
+      "a": 3,
+      "b": 10,
+      "offset": 228,
+      "n": 91,
+      "good": 18,
+      "score": -81.22890330760094,
+      "blocks": 6,
+      "validBlocks": 2,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        29
+      ],
+      "matched": 2,
+      "fraction": 0.1978021978021978,
+      "negativeFraction": 0.26373626373626374
+    },
+    {
+      "a": 10,
+      "b": 12,
+      "offset": -70,
+      "n": 91,
+      "good": 18,
+      "score": -62.177967073786455,
+      "blocks": 6,
+      "validBlocks": 4,
+      "firstFail": 16,
+      "firstFailureRange": [
+        16,
+        81
+      ],
+      "matched": 0,
+      "fraction": 0.1978021978021978,
+      "negativeFraction": 0.1978021978021978
+    },
+    {
+      "a": 7,
+      "b": 8,
+      "offset": 873,
+      "n": 180,
+      "good": 35,
+      "score": -134.7375104705176,
+      "blocks": 9,
+      "validBlocks": 5,
+      "firstFail": 9,
+      "firstFailureRange": [
+        9,
+        117
+      ],
+      "matched": 2,
+      "fraction": 0.19444444444444445,
+      "negativeFraction": 0.07222222222222222
+    },
+    {
+      "a": 1,
+      "b": 7,
+      "offset": -1775,
+      "n": 119,
+      "good": 23,
+      "score": -99.94557032030848,
+      "blocks": 6,
+      "validBlocks": 4,
+      "firstFail": 14,
+      "firstFailureRange": [
+        14,
+        37
+      ],
+      "matched": 0,
+      "fraction": 0.19327731092436976,
+      "negativeFraction": 0.19327731092436976
+    },
+    {
+      "a": 2,
+      "b": 13,
+      "offset": 572,
+      "n": 121,
+      "good": 23,
+      "score": -109.10590010742546,
+      "blocks": 7,
+      "validBlocks": 2,
+      "firstFail": 20,
+      "firstFailureRange": [
+        20,
+        35
+      ],
+      "matched": 0,
+      "fraction": 0.19008264462809918,
+      "negativeFraction": 0.19008264462809918
+    },
+    {
+      "a": 2,
+      "b": 3,
+      "offset": 374,
+      "n": 180,
+      "good": 32,
+      "score": -132.1528778041611,
+      "blocks": 8,
+      "validBlocks": 2,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        17
+      ],
+      "matched": 2,
+      "fraction": 0.17777777777777778,
+      "negativeFraction": 0.03888888888888889
+    },
+    {
+      "a": 5,
+      "b": 15,
+      "offset": 1195,
+      "n": 180,
+      "good": 31,
+      "score": -113.96892550787427,
+      "blocks": 11,
+      "validBlocks": 5,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        22
+      ],
+      "matched": 2,
+      "fraction": 0.17222222222222222,
+      "negativeFraction": 0.08333333333333333
+    },
+    {
+      "a": 3,
+      "b": 5,
+      "offset": -1410,
+      "n": 180,
+      "good": 29,
+      "score": -104.6121992173266,
+      "blocks": 9,
+      "validBlocks": 2,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        35
+      ],
+      "matched": 0,
+      "fraction": 0.16111111111111112,
+      "negativeFraction": 0.2
+    },
+    {
+      "a": 12,
+      "b": 15,
+      "offset": -373,
+      "n": 161,
+      "good": 25,
+      "score": -115.88072877448502,
+      "blocks": 8,
+      "validBlocks": 4,
+      "firstFail": 9,
+      "firstFailureRange": [
+        9,
+        14
+      ],
+      "matched": 0,
+      "fraction": 0.15527950310559005,
+      "negativeFraction": 0.18633540372670807
+    },
+    {
+      "a": 1,
+      "b": 10,
+      "offset": 28,
+      "n": 91,
+      "good": 14,
+      "score": -64.92891681096494,
+      "blocks": 3,
+      "validBlocks": 1,
+      "firstFail": 14,
+      "firstFailureRange": [
+        14,
+        29
+      ],
+      "matched": 0,
+      "fraction": 0.15384615384615385,
+      "negativeFraction": 0.15384615384615385
+    },
+    {
+      "a": 10,
+      "b": 15,
+      "offset": -443,
+      "n": 91,
+      "good": 14,
+      "score": -72.79221826426159,
+      "blocks": 5,
+      "validBlocks": 3,
+      "firstFail": 14,
+      "firstFailureRange": [
+        14,
+        38
+      ],
+      "matched": 0,
+      "fraction": 0.15384615384615385,
+      "negativeFraction": 0.15384615384615385
+    },
+    {
+      "a": 2,
+      "b": 11,
+      "offset": -614,
+      "n": 180,
+      "good": 27,
+      "score": -103.86890793237028,
+      "blocks": 11,
+      "validBlocks": 5,
+      "firstFail": 10,
+      "firstFailureRange": [
+        10,
+        17
+      ],
+      "matched": 2,
+      "fraction": 0.15,
+      "negativeFraction": 0.15
+    },
+    {
+      "a": 7,
+      "b": 16,
+      "offset": 1586,
+      "n": 180,
+      "good": 27,
+      "score": -102.03557532906322,
+      "blocks": 12,
+      "validBlocks": 6,
+      "firstFail": 14,
+      "firstFailureRange": [
+        14,
+        21
+      ],
+      "matched": 0,
+      "fraction": 0.15,
+      "negativeFraction": 0.14444444444444443
+    },
+    {
+      "a": 11,
+      "b": 15,
+      "offset": 773,
+      "n": 180,
+      "good": 27,
+      "score": -124.0310846347333,
+      "blocks": 10,
+      "validBlocks": 3,
+      "firstFail": 20,
+      "firstFailureRange": [
+        20,
+        66
+      ],
+      "matched": 2,
+      "fraction": 0.15,
+      "negativeFraction": 0.05
+    },
+    {
+      "a": 8,
+      "b": 14,
+      "offset": -1453,
+      "n": 180,
+      "good": 25,
+      "score": -110.90977568142164,
+      "blocks": 8,
+      "validBlocks": 2,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        6
+      ],
+      "matched": 4,
+      "fraction": 0.1388888888888889,
+      "negativeFraction": 0.1388888888888889
+    },
+    {
+      "a": 3,
+      "b": 11,
+      "offset": -988,
+      "n": 180,
+      "good": 23,
+      "score": -97.54290593433008,
+      "blocks": 12,
+      "validBlocks": 5,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        15
+      ],
+      "matched": 0,
+      "fraction": 0.12777777777777777,
+      "negativeFraction": 0.12777777777777777
+    },
+    {
+      "a": 8,
+      "b": 11,
+      "offset": -286,
+      "n": 180,
+      "good": 23,
+      "score": -109.8977381272829,
+      "blocks": 12,
+      "validBlocks": 2,
+      "firstFail": 23,
+      "firstFailureRange": [
+        23,
+        31
+      ],
+      "matched": 0,
+      "fraction": 0.12777777777777777,
+      "negativeFraction": 0.16111111111111112
+    },
+    {
+      "a": 11,
+      "b": 14,
+      "offset": -1167,
+      "n": 180,
+      "good": 23,
+      "score": -108.18167322014507,
+      "blocks": 4,
+      "validBlocks": 1,
+      "firstFail": 23,
+      "firstFailureRange": [
+        23,
+        77
+      ],
+      "matched": 0,
+      "fraction": 0.12777777777777777,
+      "negativeFraction": 0.12777777777777777
+    },
+    {
+      "a": 14,
+      "b": 16,
+      "offset": 2166,
+      "n": 180,
+      "good": 23,
+      "score": -97.01668009827671,
+      "blocks": 5,
+      "validBlocks": 2,
+      "firstFail": 6,
+      "firstFailureRange": [
+        6,
+        124
+      ],
+      "matched": 0,
+      "fraction": 0.12777777777777777,
+      "negativeFraction": 0.12777777777777777
+    },
+    {
+      "a": 0,
+      "b": 16,
+      "offset": 421,
+      "n": 180,
+      "good": 22,
+      "score": -74.15600354024741,
+      "blocks": 6,
+      "validBlocks": 2,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        21
+      ],
+      "matched": 0,
+      "fraction": 0.12222222222222222,
+      "negativeFraction": 0.12222222222222222
+    },
+    {
+      "a": 2,
+      "b": 15,
+      "offset": 159,
+      "n": 180,
+      "good": 22,
+      "score": -98.564233926159,
+      "blocks": 11,
+      "validBlocks": 5,
+      "firstFail": 4,
+      "firstFailureRange": [
+        4,
+        20
+      ],
+      "matched": 2,
+      "fraction": 0.12222222222222222,
+      "negativeFraction": 0.12222222222222222
+    },
+    {
+      "a": 8,
+      "b": 15,
+      "offset": 487,
+      "n": 180,
+      "good": 22,
+      "score": -98.63974526527105,
+      "blocks": 12,
+      "validBlocks": 4,
+      "firstFail": 9,
+      "firstFailureRange": [
+        9,
+        38
+      ],
+      "matched": 2,
+      "fraction": 0.12222222222222222,
+      "negativeFraction": 0.17222222222222222
+    },
+    {
+      "a": 5,
+      "b": 12,
+      "offset": 1568,
+      "n": 161,
+      "good": 19,
+      "score": -79.964038580654,
+      "blocks": 12,
+      "validBlocks": 3,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        6
+      ],
+      "matched": 0,
+      "fraction": 0.11801242236024845,
+      "negativeFraction": 0.08074534161490683
+    },
+    {
+      "a": 12,
+      "b": 16,
+      "offset": -147,
+      "n": 161,
+      "good": 19,
+      "score": -88.7278423696115,
+      "blocks": 6,
+      "validBlocks": 3,
+      "firstFail": 14,
+      "firstFailureRange": [
+        14,
+        67
+      ],
+      "matched": 0,
+      "fraction": 0.11801242236024845,
+      "negativeFraction": 0.11801242236024845
+    },
+    {
+      "a": 1,
+      "b": 15,
+      "offset": -415,
+      "n": 119,
+      "good": 14,
+      "score": -59.75447290718904,
+      "blocks": 6,
+      "validBlocks": 1,
+      "firstFail": 14,
+      "firstFailureRange": [
+        14,
+        20
+      ],
+      "matched": 2,
+      "fraction": 0.11764705882352941,
+      "negativeFraction": 0.11764705882352941
+    },
+    {
+      "a": 1,
+      "b": 16,
+      "offset": -189,
+      "n": 119,
+      "good": 14,
+      "score": -61.71365038630925,
+      "blocks": 6,
+      "validBlocks": 2,
+      "firstFail": 14,
+      "firstFailureRange": [
+        14,
+        40
+      ],
+      "matched": 2,
+      "fraction": 0.11764705882352941,
+      "negativeFraction": 0.11764705882352941
+    },
+    {
+      "a": 13,
+      "b": 16,
+      "offset": -187,
+      "n": 121,
+      "good": 14,
+      "score": -60.01779162854365,
+      "blocks": 6,
+      "validBlocks": 2,
+      "firstFail": 14,
+      "firstFailureRange": [
+        14,
+        61
+      ],
+      "matched": 2,
+      "fraction": 0.11570247933884298,
+      "negativeFraction": 0.11570247933884298
+    },
+    {
+      "a": 3,
+      "b": 16,
+      "offset": 11,
+      "n": 180,
+      "good": 20,
+      "score": -75.24577726681923,
+      "blocks": 7,
+      "validBlocks": 2,
+      "firstFail": 3,
+      "firstFailureRange": [
+        3,
+        71
+      ],
+      "matched": 0,
+      "fraction": 0.1111111111111111,
+      "negativeFraction": 0.1111111111111111
+    },
+    {
+      "a": 10,
+      "b": 11,
+      "offset": -1216,
+      "n": 91,
+      "good": 10,
+      "score": -39.48158451912676,
+      "blocks": 6,
+      "validBlocks": 3,
+      "firstFail": 7,
+      "firstFailureRange": [
+        7,
+        50
+      ],
+      "matched": 2,
+      "fraction": 0.10989010989010989,
+      "negativeFraction": 0.10989010989010989
+    },
+    {
+      "a": 1,
+      "b": 11,
+      "offset": -1188,
+      "n": 119,
+      "good": 13,
+      "score": -59.26178319739198,
+      "blocks": 5,
+      "validBlocks": 2,
+      "firstFail": 10,
+      "firstFailureRange": [
+        10,
+        20
+      ],
+      "matched": 2,
+      "fraction": 0.1092436974789916,
+      "negativeFraction": 0.19327731092436976
+    },
+    {
+      "a": 5,
+      "b": 13,
+      "offset": 1608,
+      "n": 121,
+      "good": 13,
+      "score": -47.71317992775023,
+      "blocks": 7,
+      "validBlocks": 2,
+      "firstFail": 8,
+      "firstFailureRange": [
+        8,
+        35
+      ],
+      "matched": 2,
+      "fraction": 0.10743801652892562,
+      "negativeFraction": 0.1652892561983471
+    },
+    {
+      "a": 7,
+      "b": 12,
+      "offset": 1733,
+      "n": 161,
+      "good": 17,
+      "score": -64.92994005472588,
+      "blocks": 10,
+      "validBlocks": 4,
+      "firstFail": 9,
+      "firstFailureRange": [
+        9,
+        14
+      ],
+      "matched": 0,
+      "fraction": 0.10559006211180125,
+      "negativeFraction": 0.10559006211180125
+    },
+    {
+      "a": 3,
+      "b": 8,
+      "offset": -702,
+      "n": 180,
+      "good": 19,
+      "score": -78.01070810965392,
+      "blocks": 11,
+      "validBlocks": 1,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        15
+      ],
+      "matched": 0,
+      "fraction": 0.10555555555555556,
+      "negativeFraction": 0.2388888888888889
+    },
+    {
+      "a": 15,
+      "b": 16,
+      "offset": 226,
+      "n": 180,
+      "good": 18,
+      "score": -84.92131436034691,
+      "blocks": 5,
+      "validBlocks": 2,
+      "firstFail": 14,
+      "firstFailureRange": [
+        14,
+        109
+      ],
+      "matched": 0,
+      "fraction": 0.1,
+      "negativeFraction": 0.022222222222222223
+    },
+    {
+      "a": 7,
+      "b": 9,
+      "offset": 461,
+      "n": 180,
+      "good": 17,
+      "score": -60.38518138336892,
+      "blocks": 11,
+      "validBlocks": 3,
+      "firstFail": 9,
+      "firstFailureRange": [
+        9,
+        24
+      ],
+      "matched": 0,
+      "fraction": 0.09444444444444444,
+      "negativeFraction": 0.09444444444444444
+    },
+    {
+      "a": 8,
+      "b": 9,
+      "offset": -412,
+      "n": 180,
+      "good": 17,
+      "score": -53.99826167998029,
+      "blocks": 11,
+      "validBlocks": 2,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        9
+      ],
+      "matched": 0,
+      "fraction": 0.09444444444444444,
+      "negativeFraction": 0.14444444444444443
+    },
+    {
+      "a": 2,
+      "b": 16,
+      "offset": 385,
+      "n": 180,
+      "good": 16,
+      "score": -56.81535555886062,
+      "blocks": 9,
+      "validBlocks": 4,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        30
+      ],
+      "matched": 0,
+      "fraction": 0.08888888888888889,
+      "negativeFraction": 0.08888888888888889
+    },
+    {
+      "a": 5,
+      "b": 7,
+      "offset": -165,
+      "n": 180,
+      "good": 16,
+      "score": -57.114121172865225,
+      "blocks": 9,
+      "validBlocks": 3,
+      "firstFail": 6,
+      "firstFailureRange": [
+        6,
+        41
+      ],
+      "matched": 2,
+      "fraction": 0.08888888888888889,
+      "negativeFraction": 0.08888888888888889
+    },
+    {
+      "a": 7,
+      "b": 15,
+      "offset": 1360,
+      "n": 180,
+      "good": 16,
+      "score": -66.17467158490535,
+      "blocks": 7,
+      "validBlocks": 3,
+      "firstFail": 9,
+      "firstFailureRange": [
+        9,
+        14
+      ],
+      "matched": 0,
+      "fraction": 0.08888888888888889,
+      "negativeFraction": 0.08888888888888889
+    },
+    {
+      "a": 11,
+      "b": 12,
+      "offset": 1146,
+      "n": 161,
+      "good": 14,
+      "score": -52.832963485897864,
+      "blocks": 8,
+      "validBlocks": 2,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        31
+      ],
+      "matched": 0,
+      "fraction": 0.08695652173913043,
+      "negativeFraction": 0.11801242236024845
+    },
+    {
+      "a": 1,
+      "b": 2,
+      "offset": -574,
+      "n": 119,
+      "good": 10,
+      "score": -34.85711833236162,
+      "blocks": 5,
+      "validBlocks": 1,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        10
+      ],
+      "matched": 0,
+      "fraction": 0.08403361344537816,
+      "negativeFraction": 0
+    },
+    {
+      "a": 1,
+      "b": 12,
+      "offset": -42,
+      "n": 119,
+      "good": 10,
+      "score": -46.31534814875804,
+      "blocks": 6,
+      "validBlocks": 2,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        6
+      ],
+      "matched": 0,
+      "fraction": 0.08403361344537816,
+      "negativeFraction": 0.08403361344537816
+    },
+    {
+      "a": 0,
+      "b": 2,
+      "offset": 36,
+      "n": 180,
+      "good": 15,
+      "score": -49.54307739313599,
+      "blocks": 4,
+      "validBlocks": 1,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        51
+      ],
+      "matched": 0,
+      "fraction": 0.08333333333333333,
+      "negativeFraction": 0.08333333333333333
+    },
+    {
+      "a": 0,
+      "b": 14,
+      "offset": -1745,
+      "n": 180,
+      "good": 15,
+      "score": -64.78016602551587,
+      "blocks": 8,
+      "validBlocks": 3,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        23
+      ],
+      "matched": 2,
+      "fraction": 0.08333333333333333,
+      "negativeFraction": 0.08333333333333333
+    },
+    {
+      "a": 5,
+      "b": 8,
+      "offset": 708,
+      "n": 180,
+      "good": 15,
+      "score": -83.84959845501356,
+      "blocks": 11,
+      "validBlocks": 3,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        6
+      ],
+      "matched": 0,
+      "fraction": 0.08333333333333333,
+      "negativeFraction": 0.11666666666666667
+    },
+    {
+      "a": 5,
+      "b": 14,
+      "offset": -745,
+      "n": 180,
+      "good": 15,
+      "score": -68.19517061196379,
+      "blocks": 8,
+      "validBlocks": 2,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        6
+      ],
+      "matched": 2,
+      "fraction": 0.08333333333333333,
+      "negativeFraction": 0.08333333333333333
+    },
+    {
+      "a": 8,
+      "b": 13,
+      "offset": 900,
+      "n": 121,
+      "good": 10,
+      "score": -52.82355034392491,
+      "blocks": 6,
+      "validBlocks": 1,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        29
+      ],
+      "matched": 0,
+      "fraction": 0.08264462809917356,
+      "negativeFraction": 0.08264462809917356
+    },
+    {
+      "a": 9,
+      "b": 12,
+      "offset": 1272,
+      "n": 161,
+      "good": 13,
+      "score": -63.75227118527991,
+      "blocks": 7,
+      "validBlocks": 2,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        9
+      ],
+      "matched": 0,
+      "fraction": 0.08074534161490683,
+      "negativeFraction": 0.13664596273291926
+    },
+    {
+      "a": 2,
+      "b": 7,
+      "offset": -1201,
+      "n": 180,
+      "good": 14,
+      "score": -45.73970928679998,
+      "blocks": 10,
+      "validBlocks": 3,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        41
+      ],
+      "matched": 0,
+      "fraction": 0.07777777777777778,
+      "negativeFraction": 0.03333333333333333
+    },
+    {
+      "a": 3,
+      "b": 15,
+      "offset": -215,
+      "n": 180,
+      "good": 14,
+      "score": -55.73738187222098,
+      "blocks": 6,
+      "validBlocks": 2,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        46
+      ],
+      "matched": 4,
+      "fraction": 0.07777777777777778,
+      "negativeFraction": 0.07777777777777778
+    },
+    {
+      "a": 2,
+      "b": 14,
+      "offset": -1781,
+      "n": 180,
+      "good": 13,
+      "score": -53.35177554445841,
+      "blocks": 9,
+      "validBlocks": 2,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        35
+      ],
+      "matched": 0,
+      "fraction": 0.07222222222222222,
+      "negativeFraction": 0.07222222222222222
+    },
+    {
+      "a": 14,
+      "b": 15,
+      "offset": 1940,
+      "n": 180,
+      "good": 13,
+      "score": -42.229472615819724,
+      "blocks": 7,
+      "validBlocks": 2,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        42
+      ],
+      "matched": 0,
+      "fraction": 0.07222222222222222,
+      "negativeFraction": 0.11666666666666667
+    },
+    {
+      "a": 0,
+      "b": 5,
+      "offset": -1000,
+      "n": 180,
+      "good": 12,
+      "score": -53.27806988965968,
+      "blocks": 9,
+      "validBlocks": 2,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        25
+      ],
+      "matched": 0,
+      "fraction": 0.06666666666666667,
+      "negativeFraction": 0.10555555555555556
+    },
+    {
+      "a": 2,
+      "b": 9,
+      "offset": -740,
+      "n": 180,
+      "good": 12,
+      "score": -44.99523019316946,
+      "blocks": 7,
+      "validBlocks": 2,
+      "firstFail": 4,
+      "firstFailureRange": [
+        4,
+        17
+      ],
+      "matched": 0,
+      "fraction": 0.06666666666666667,
+      "negativeFraction": 0.06666666666666667
+    },
+    {
+      "a": 3,
+      "b": 9,
+      "offset": -1114,
+      "n": 180,
+      "good": 12,
+      "score": -53.413688575590704,
+      "blocks": 10,
+      "validBlocks": 3,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        17
+      ],
+      "matched": 2,
+      "fraction": 0.06666666666666667,
+      "negativeFraction": 0.06666666666666667
+    },
+    {
+      "a": 8,
+      "b": 16,
+      "offset": 713,
+      "n": 180,
+      "good": 12,
+      "score": -59.47345270932408,
+      "blocks": 9,
+      "validBlocks": 2,
+      "firstFail": 12,
+      "firstFailureRange": [
+        12,
+        34
+      ],
+      "matched": 0,
+      "fraction": 0.06666666666666667,
+      "negativeFraction": 0.06666666666666667
+    },
+    {
+      "a": 9,
+      "b": 11,
+      "offset": 126,
+      "n": 180,
+      "good": 12,
+      "score": -45.35614841299088,
+      "blocks": 9,
+      "validBlocks": 2,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        17
+      ],
+      "matched": 0,
+      "fraction": 0.06666666666666667,
+      "negativeFraction": 0.06666666666666667
+    },
+    {
+      "a": 9,
+      "b": 16,
+      "offset": 1125,
+      "n": 180,
+      "good": 12,
+      "score": -41.80022635477778,
+      "blocks": 8,
+      "validBlocks": 2,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        71
+      ],
+      "matched": 0,
+      "fraction": 0.06666666666666667,
+      "negativeFraction": 0.06666666666666667
+    },
+    {
+      "a": 11,
+      "b": 13,
+      "offset": 1186,
+      "n": 121,
+      "good": 8,
+      "score": -40.67938203942766,
+      "blocks": 4,
+      "validBlocks": 1,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        20
+      ],
+      "matched": 0,
+      "fraction": 0.06611570247933884,
+      "negativeFraction": 0.23140495867768596
+    },
+    {
+      "a": 2,
+      "b": 10,
+      "offset": 602,
+      "n": 91,
+      "good": 6,
+      "score": -23.762174462633883,
+      "blocks": 4,
+      "validBlocks": 1,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        35
+      ],
+      "matched": 0,
+      "fraction": 0.06593406593406594,
+      "negativeFraction": 0.06593406593406594
+    },
+    {
+      "a": 2,
+      "b": 8,
+      "offset": -328,
+      "n": 180,
+      "good": 11,
+      "score": -46.206595549202746,
+      "blocks": 5,
+      "validBlocks": 1,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        80
+      ],
+      "matched": 2,
+      "fraction": 0.06111111111111111,
+      "negativeFraction": 0.06111111111111111
+    },
+    {
+      "a": 3,
+      "b": 7,
+      "offset": -1575,
+      "n": 180,
+      "good": 11,
+      "score": -48.28797080202061,
+      "blocks": 7,
+      "validBlocks": 2,
+      "firstFail": 3,
+      "firstFailureRange": [
+        3,
+        32
+      ],
+      "matched": 2,
+      "fraction": 0.06111111111111111,
+      "negativeFraction": 0.06111111111111111
+    },
+    {
+      "a": 5,
+      "b": 11,
+      "offset": 422,
+      "n": 180,
+      "good": 11,
+      "score": -39.348020674129216,
+      "blocks": 8,
+      "validBlocks": 2,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        57
+      ],
+      "matched": 0,
+      "fraction": 0.06111111111111111,
+      "negativeFraction": 0.06111111111111111
+    },
+    {
+      "a": 0,
+      "b": 7,
+      "offset": -1165,
+      "n": 180,
+      "good": 10,
+      "score": -42.19441851309902,
+      "blocks": 8,
+      "validBlocks": 2,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        9
+      ],
+      "matched": 2,
+      "fraction": 0.05555555555555555,
+      "negativeFraction": 0.05555555555555555
+    },
+    {
+      "a": 1,
+      "b": 14,
+      "offset": -2355,
+      "n": 119,
+      "good": 6,
+      "score": -21.169597221971188,
+      "blocks": 8,
+      "validBlocks": 1,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        6
+      ],
+      "matched": 0,
+      "fraction": 0.05042016806722689,
+      "negativeFraction": 0.10084033613445378
+    },
+    {
+      "a": 9,
+      "b": 13,
+      "offset": 1312,
+      "n": 121,
+      "good": 6,
+      "score": -26.728061740499086,
+      "blocks": 6,
+      "validBlocks": 1,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        32
+      ],
+      "matched": 0,
+      "fraction": 0.049586776859504134,
+      "negativeFraction": 0.09090909090909091
+    },
+    {
+      "a": 7,
+      "b": 11,
+      "offset": 587,
+      "n": 180,
+      "good": 8,
+      "score": -27.776841926698985,
+      "blocks": 8,
+      "validBlocks": 1,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        66
+      ],
+      "matched": 2,
+      "fraction": 0.044444444444444446,
+      "negativeFraction": 0.044444444444444446
+    },
+    {
+      "a": 9,
+      "b": 15,
+      "offset": 899,
+      "n": 180,
+      "good": 8,
+      "score": -36.08721695731278,
+      "blocks": 10,
+      "validBlocks": 2,
+      "firstFail": 4,
+      "firstFailureRange": [
+        4,
+        9
+      ],
+      "matched": 0,
+      "fraction": 0.044444444444444446,
+      "negativeFraction": 0.07222222222222222
+    },
+    {
+      "a": 11,
+      "b": 16,
+      "offset": 999,
+      "n": 180,
+      "good": 8,
+      "score": -21.565974386729245,
+      "blocks": 6,
+      "validBlocks": 1,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        53
+      ],
+      "matched": 2,
+      "fraction": 0.044444444444444446,
+      "negativeFraction": 0.044444444444444446
+    },
+    {
+      "a": 0,
+      "b": 15,
+      "offset": 195,
+      "n": 180,
+      "good": 7,
+      "score": -20.873620273431747,
+      "blocks": 11,
+      "validBlocks": 1,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        9
+      ],
+      "matched": 2,
+      "fraction": 0.03888888888888889,
+      "negativeFraction": 0
+    },
+    {
+      "a": 5,
+      "b": 16,
+      "offset": 1421,
+      "n": 180,
+      "good": 6,
+      "score": -28.33138342591575,
+      "blocks": 7,
+      "validBlocks": 1,
+      "firstFail": 6,
+      "firstFailureRange": [
+        6,
+        75
+      ],
+      "matched": 0,
+      "fraction": 0.03333333333333333,
+      "negativeFraction": 0.03333333333333333
+    },
+    {
+      "a": 7,
+      "b": 14,
+      "offset": -580,
+      "n": 180,
+      "good": 6,
+      "score": -28.708296632095472,
+      "blocks": 6,
+      "validBlocks": 1,
+      "firstFail": 6,
+      "firstFailureRange": [
+        6,
+        77
+      ],
+      "matched": 0,
+      "fraction": 0.03333333333333333,
+      "negativeFraction": 0.03333333333333333
+    },
+    {
+      "a": 0,
+      "b": 10,
+      "offset": 638,
+      "n": 91,
+      "good": 2,
+      "score": -7.679453115888219,
+      "blocks": 4,
+      "validBlocks": 1,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        9
+      ],
+      "matched": 0,
+      "fraction": 0.02197802197802198,
+      "negativeFraction": 0.02197802197802198
+    },
+    {
+      "a": 8,
+      "b": 12,
+      "offset": 860,
+      "n": 161,
+      "good": 3,
+      "score": -13.062574893094324,
+      "blocks": 9,
+      "validBlocks": 1,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        6
+      ],
+      "matched": 0,
+      "fraction": 0.018633540372670808,
+      "negativeFraction": 0.018633540372670808
+    },
+    {
+      "a": 1,
+      "b": 8,
+      "offset": -902,
+      "n": 119,
+      "good": 2,
+      "score": -1.2230401428778754,
+      "blocks": 8,
+      "validBlocks": 1,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        6
+      ],
+      "matched": 0,
+      "fraction": 0.01680672268907563,
+      "negativeFraction": 0.01680672268907563
+    },
+    {
+      "a": 1,
+      "b": 9,
+      "offset": -1314,
+      "n": 119,
+      "good": 2,
+      "score": -2.512129105363975,
+      "blocks": 2,
+      "validBlocks": 1,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        117
+      ],
+      "matched": 0,
+      "fraction": 0.01680672268907563,
+      "negativeFraction": 0.01680672268907563
+    },
+    {
+      "a": 5,
+      "b": 9,
+      "offset": 296,
+      "n": 180,
+      "good": 2,
+      "score": -0.5809617790582807,
+      "blocks": 6,
+      "validBlocks": 1,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        22
+      ],
+      "matched": 0,
+      "fraction": 0.011111111111111112,
+      "negativeFraction": 0.011111111111111112
+    },
+    {
+      "a": 0,
+      "b": 13,
+      "offset": 608,
+      "n": 121,
+      "good": 1,
+      "score": -3.9376844062082768,
+      "blocks": 7,
+      "validBlocks": 1,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        11
+      ],
+      "matched": 0,
+      "fraction": 0.008264462809917356,
+      "negativeFraction": 0.008264462809917356
+    },
+    {
+      "a": 9,
+      "b": 14,
+      "offset": -1041,
+      "n": 180,
+      "good": 1,
+      "score": 0,
+      "blocks": 5,
+      "validBlocks": 1,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        19
+      ],
+      "matched": 0,
+      "fraction": 0.005555555555555556,
+      "negativeFraction": 0.005555555555555556
+    },
+    {
+      "a": 0,
+      "b": 1,
+      "offset": 610,
+      "n": 119,
+      "good": 0,
+      "score": 0,
+      "blocks": 5,
+      "validBlocks": 0,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        23
+      ],
+      "matched": 0,
+      "fraction": 0,
+      "negativeFraction": 0
+    },
+    {
+      "a": 0,
+      "b": 3,
+      "offset": 410,
+      "n": 180,
+      "good": 0,
+      "score": 0,
+      "blocks": 5,
+      "validBlocks": 0,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        23
+      ],
+      "matched": 0,
+      "fraction": 0,
+      "negativeFraction": 0
+    },
+    {
+      "a": 0,
+      "b": 8,
+      "offset": -292,
+      "n": 180,
+      "good": 0,
+      "score": 0,
+      "blocks": 6,
+      "validBlocks": 0,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        9
+      ],
+      "matched": 0,
+      "fraction": 0,
+      "negativeFraction": 0
+    },
+    {
+      "a": 0,
+      "b": 9,
+      "offset": -704,
+      "n": 180,
+      "good": 0,
+      "score": 0,
+      "blocks": 5,
+      "validBlocks": 0,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        9
+      ],
+      "matched": 0,
+      "fraction": 0,
+      "negativeFraction": 0.10555555555555556
+    },
+    {
+      "a": 0,
+      "b": 11,
+      "offset": -578,
+      "n": 180,
+      "good": 0,
+      "score": 0,
+      "blocks": 6,
+      "validBlocks": 0,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        23
+      ],
+      "matched": 0,
+      "fraction": 0,
+      "negativeFraction": 0
+    },
+    {
+      "a": 0,
+      "b": 12,
+      "offset": 568,
+      "n": 161,
+      "good": 0,
+      "score": 0,
+      "blocks": 5,
+      "validBlocks": 0,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        9
+      ],
+      "matched": 0,
+      "fraction": 0,
+      "negativeFraction": 0
+    },
+    {
+      "a": 1,
+      "b": 3,
+      "offset": -200,
+      "n": 119,
+      "good": 0,
+      "score": 0,
+      "blocks": 6,
+      "validBlocks": 0,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        23
+      ],
+      "matched": 0,
+      "fraction": 0,
+      "negativeFraction": 0.08403361344537816
+    },
+    {
+      "a": 1,
+      "b": 5,
+      "offset": -1610,
+      "n": 119,
+      "good": 0,
+      "score": 0,
+      "blocks": 4,
+      "validBlocks": 0,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        6
+      ],
+      "matched": 0,
+      "fraction": 0,
+      "negativeFraction": 0
+    },
+    {
+      "a": 2,
+      "b": 5,
+      "offset": -1036,
+      "n": 180,
+      "good": 0,
+      "score": 0,
+      "blocks": 10,
+      "validBlocks": 0,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        27
+      ],
+      "matched": 0,
+      "fraction": 0,
+      "negativeFraction": 0.12222222222222222
+    },
+    {
+      "a": 2,
+      "b": 12,
+      "offset": 532,
+      "n": 161,
+      "good": 0,
+      "score": 0,
+      "blocks": 6,
+      "validBlocks": 0,
+      "firstFail": 0,
+      "firstFailureRange": [
+        0,
+        27
+      ],
+      "matched": 0,
+      "fraction": 0,
+      "negativeFraction": 0
+    }
+  ]
+}
