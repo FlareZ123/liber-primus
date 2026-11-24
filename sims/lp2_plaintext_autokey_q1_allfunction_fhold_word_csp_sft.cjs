@@ -1,6 +1,6 @@
 'use strict';
 const fs=require('node:fs');
-function experiment(corpus,trans,solved,lex,injective=true){
+function experiment(corpus,trans,solved,lex,injective=true,options={}){
  const gp=JSON.parse(corpus),mod=x=>(x+29)%29,assert=(x,m)=>{if(!x)throw Error(m)};
  const rune=new Map(gp.runes.map((x,i)=>[x,i])),alpha=new Map(gp.translit.map((x,i)=>[x,i]));
  const parse=s=>(s.match(/[\u16a0-\u16ff]+/gu)||[]).map(w=>Array.from(w,c=>rune.get(c)));
@@ -130,6 +130,20 @@ function experiment(corpus,trans,solved,lex,injective=true){
  return {status,stats,train,held};
 }
  const summarize=r=>({status:r.status,...r.stats,examples:r.held.slice(0,2).map(t=>t.all.map(i=>gp.translit[i]).join(""))});
+ if(options.pages){
+  const offsets=[0];for(const w of original)offsets.push(offsets.at(-1)+w.length);
+  const po=[0];for(const p of gp.pages.slice(0,56))po.push(po.at(-1)+p.indices.length);
+  const results=[];
+  for(const page of options.pages){
+   if(page===50)continue;
+   const a=offsets.findIndex(o=>o>=po[page]),b=offsets.findLastIndex(o=>o<=po[page+1]);
+   const w=original.slice(a,b),n=offsets[b]-offsets[a];
+   const r=attack(w,Math.floor(n*.8),options.cap||5000000);
+   const {initialDomains,...stats}=r.stats;
+   results.push({page,range:[offsets[a],offsets[b]],runes:n,status:r.status,...stats,candidates:r.held.slice(0,4).map(t=>({primer:t.primer,map:t.map,plaintext:t.all.map(x=>gp.translit[x]).join("")}))});
+  }
+  return {lexicon:dict.reduce((a,d)=>a+d.size,0),results};
+ }
  const controls=[];
  for(const [name,seed] of [["jpg107-167",23],["0_loss_of_divinity",11],["0_welcome",2]]){
   const s=source.find(x=>x.name===name),f=injective?perm(seed):perm(seed).map(x=>x%17),p=seed%29,ct=encrypt(s.w,p,f),r=attack(ct,Math.floor(ct.flat().length*.78)),truth=s.w.flat();
@@ -151,4 +165,5 @@ function experiment(corpus,trans,solved,lex,injective=true){
  return {injective,lexicon:dict.reduce((a,d)=>a+d.size,0),controls,results};
 }
 const args=["resources/liber-primus/lp2-corpus.json","resources/lp2-transcription.txt","resources/external/relikd-solved-gp29-native-v1.json","resources/control/english_wordfreq_textblob.txt"].map(p=>fs.readFileSync(p,'utf8'));
-console.log(JSON.stringify(experiment(...args,false),null,2));
+const pages=process.argv.slice(2).map(Number);
+console.log(JSON.stringify(experiment(...args,false,pages.length?{pages}:{}),null,2));
