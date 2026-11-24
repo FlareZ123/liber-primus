@@ -183,6 +183,16 @@ def main() -> None:
         }
         for rel in E.RELS
     }
+    control_data = json.loads(
+        (b3dir / "control_COSPAD.json").read_text(encoding="utf-8")
+    )
+    for rel in E.RELS:
+        for length in ("L120", "L240"):
+            assert abs(
+                float(control_data["bars_declared_N1e6"][rel][length]) - bars[rel][length]
+            ) < 1e-12
+    assert all(control_data["register_licensed"].values()), control_data["register_licensed"]
+    assert all(control_data["gate_cells_ge3"].values()), control_data["gate_cells_ge3"]
     decoder_rows = []
     for item in survivor_map.values():
         if not item["union_pass"]:
@@ -267,6 +277,17 @@ def main() -> None:
             "batches": batches,
         },
         "target": target,
+        "existing_control_COSPAD": {
+            "date": control_data["date"],
+            "grid": control_data["grid"],
+            "plants_per_register_rel": control_data["plants_per_register_rel"],
+            "pooled_by_register_skip": control_data["pooled_by_register_skip"],
+            "per_rel": control_data["per_rel"],
+            "gate_cells_ge3": control_data["gate_cells_ge3"],
+            "register_licensed": control_data["register_licensed"],
+            "decoy_fpr": control_data["decoy_fpr"],
+            "bars_declared_N1e6": control_data["bars_declared_N1e6"],
+        },
         "maxima_by_builder_direction_sign_relation": maxima,
         "score_rows": score_rows,
         "decoder_rows_for_prefilter_survivors": decoder_rows,
