@@ -55,7 +55,7 @@ def download_archive(path: Path) -> dict:
         shutil.copyfileobj(response, out)
     size = path.stat().st_size
     sha256 = hashlib.sha256()
-    git_sha1 = hashlib.sha1(f"blob {size}\\0".encode("ascii"))
+    git_sha1 = hashlib.sha1(f"blob {size}\0".encode("ascii"))
     with path.open("rb") as f:
         for chunk in iter(lambda: f.read(1024 * 1024), b""):
             sha256.update(chunk)
