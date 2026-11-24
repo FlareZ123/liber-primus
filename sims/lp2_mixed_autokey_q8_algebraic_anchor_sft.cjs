@@ -42,6 +42,54 @@ function experiment(corpus,trans,solved,lex,donors,lib,mode='strict'){
    else{const p=mod(c-queue[0]);if(p){plain.push(p);visit(i+1,queue.slice(1).concat(mod(a*p+b*c+d)));plain.pop();}}}
   visit(0,K);return {best,paths};
  }
+ const REACH_CAP=2000000;
+ function reach(C,K,a,b,d,rev){
+  const seq=rev?C.slice().reverse():C,plain=new Uint8Array(seq.length),dead=new Map(),ai=inv[a];let visits=0,final=null,capped=false;
+  const check=()=>{if(++visits>REACH_CAP)throw Error("reach cap");};
+  function consume(c,queue){
+   if(rev){const p=mod((queue.at(-1)-b*c-d)*ai);return p?{p,k:[mod(c-p),...queue.slice(0,-1)]}:null;}
+   const p=mod(c-queue[0]);return p?{p,k:queue.slice(1).concat(mod(a*p+b*c+d))}:null;
+  }
+  function go(i,k){
+   while(i<seq.length&&seq[i]){check();const x=consume(seq[i],k);if(!x)return false;plain[i++]=x.p;k=x.k;}
+   if(i===seq.length){final=k.slice();return true;}
+   let cache=dead.get(i);if(!cache){cache=new Set();dead.set(i,cache);}
+   const id=String.fromCharCode(...k);if(cache.has(id))return false;
+   check();plain[i]=0;if(go(i+1,k))return true;
+   const x=consume(0,k);if(x){check();plain[i]=x.p;if(go(i+1,x.k))return true;}
+   cache.add(id);return false;
+  }
+  let yes=false;try{yes=go(0,K);}catch(e){if(e.message!=="reach cap")throw e;capped=true;}
+  const p=yes?Array.from(plain):null;if(p&&rev)p.reverse();
+  return {status:yes?"legal":capped?"cap":"empty",visits,p,queue:final};
+ }
+
+
+ function whole(name,words,truth=null,partial=new Set()){
+ const C=words.flat(),offsets=[0];for(const w of words)offsets.push(offsets.at(-1)+w.length);
+ const candidates=words.map((w,j)=>({j,n:w.length,nz:w.filter(Boolean).length,at:offsets[j]})).filter(x=>!partial.has(x.j)&&x.nz>=q+3).sort((a,b)=>b.nz-a.nz||b.n-a.n||a.j-b.j);
+ // Use the strongest complete original group, all eligible in-vocabulary native controls.
+ const anchors=truth?candidates.filter(x=>dict[x.n].has(String.fromCharCode(...truth.P.slice(x.at,x.at+x.n)))):candidates.slice(0,1);
+ const results=[];
+ for(const anchor of anchors){const {j,at,n}=anchor,end=at+n,c=words[j],LC=C.slice(0,at),RC=C.slice(end);
+ let models=0,legal=0,capped=0,visits=0,trueLegal=0,trueModels=0,best=null,legalModels=[];
+ for(const str of dict[n]){
+ const p=Array.from(str,x=>x.charCodeAt(0)),cp=[];let valid=true;
+ for(let i=0;i<n;i++){if(!p[i]){if(c[i]){valid=false;break;}}else cp.push([c[i],p[i]]);}
+ if(!valid||cp.length<q+3)continue;
+ const start=cp.slice(0,q).map(([x,y])=>mod(x-y));
+ for(const [a,b,d] of triples(cp)){models++;const isTrue=truth&&a===truth.a&&b===truth.b&&d===truth.d&&same(p,truth.P.slice(at,end));if(isTrue)trueModels++;
+ const check=encrypt(p,start,a,b,d);assert(same(check.C,c),"anchor replay");
+ const left=reach(LC,start,a,b,d,true);visits+=left.visits;if(left.status==="empty")continue;
+ const right=reach(RC,check.queue,a,b,d,false);visits+=right.visits;if(right.status==="empty")continue;
+ if(left.status==="cap"||right.status==="cap"){capped++;continue;}
+ const witness=left.p.concat(p,right.p);assert(same(encrypt(witness,left.queue,a,b,d).C,C),"full replay");legal++;if(isTrue)trueLegal++;
+ const value=score(witness)/C.length,entry={a,b,d,p,incoming:start};if(!truth)legalModels.push(entry);
+ if(!best||value>best.score)best={...entry,score:value,anchor:render(p),sample:render(witness.slice(0,100))};
+ }}
+ results.push({...anchor,models,legal,capped,visits,trueModels,trueLegal,best,legalModels});}
+ return {name,n:C.length,anchors:results};
+ }
  function attack(name,words,truth=null,partial=new Set()){
   const C=words.flat(),offsets=[0],anchors=[];for(const w of words)offsets.push(offsets.at(-1)+w.length);
   for(let j=0;j<words.length;j++){
@@ -76,7 +124,14 @@ function experiment(corpus,trans,solved,lex,donors,lib,mode='strict'){
   }
   return {name,n:C.length,anchors};
  }
- const controls=specs.map(([name,a,b,d,salt])=>{const s=src.find(x=>x.name===name),P=s.w.flat(),K=Array.from({length:q},(_,i)=>(i*i*7+i*11+salt)%29),C=encrypt(P,K,a,b,d).C;let j=0;return attack(name,s.w.map(w=>{const v=C.slice(j,j+w.length);j+=w.length;return v}),{P,K,a,b,d});});
+ const controls=specs.map(([name,a,b,d,salt])=>{const s=src.find(x=>x.name===name),P=s.w.flat(),K=Array.from({length:q},(_,i)=>(i*i*7+i*11+salt)%29),C=encrypt(P,K,a,b,d).C;let j=0;return (mode==='whole'?whole:attack)(name,s.w.map(w=>{const v=C.slice(j,j+w.length);j+=w.length;return v}),{P,K,a,b,d});});
+ if(mode==='whole'){
+ const cal=controls.flatMap(c=>c.anchors);assert(cal.length>=2&&cal.every(x=>x.trueModels===1&&x.trueLegal===1),"whole positive gate");
+ const pages=[0,3,8,15,23,27,34,40,54,56],starts=pages.map(p=>gp.pages.slice(0,p).reduce((s,x)=>s+x.indices.length,0));
+ let off=0;const ww=original.map(w=>{const x={w,off};off+=w.length;return x});
+ const result=starts.slice(0,-1).map((s,i)=>{const e=starts[i+1],w=[],partial=new Set();for(const x of ww){const lo=Math.max(s,x.off),hi=Math.min(e,x.off+x.w.length);if(lo>=hi)continue;if(lo!==x.off||hi!==x.off+x.w.length)partial.add(w.length);w.push(x.w.slice(lo-x.off,hi-x.off));}assert(same(w.flat(),gp.pages.slice(pages[i],pages[i+1]).flatMap(x=>x.indices)),"chapter tape");return whole("p"+pages[i],w,null,partial);});
+ return {q,mode,lexicon:dict.reduce((s,d)=>s+d.size,0),controls,original:result};
+ }
  const calibration=controls.flatMap(c=>c.anchors).filter(a=>a.trueLex),exact=calibration.filter(a=>a.result?.correct.model&&a.result.correct.fit===a.result.correct.fitTotal&&a.result.correct.holdout===76).length;
  const pass=calibration.length>=2&&exact===calibration.length;
  const supportPass=calibration.length>=2&&calibration.every(a=>a.trueModelCount===1);
