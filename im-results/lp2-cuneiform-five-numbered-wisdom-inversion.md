@@ -1,6 +1,6 @@
 # Five numbered cuneiform passages: source-square tests and SHED navigation
 
-**Status (24 November 2026, consolidated):** All five originally numbered passages (139/91/98/96/129 runes, 553 total) remain undeciphered. Exact joint lexical inversion now excludes arbitrary shared per-column affine GP29 keys, including optional mixing by either literal historical 5×5 square, on a layout-selected five-column original window. The independent source-backed clue remains that the authenticated 2014 1033-sum and 3301-sum five-by-five squares have determinants 3 and 10 modulo29; their products are invertible and have order 28 in GL(5,29), but the fixed 28-clock receivers remain negative. Agent2 has now tested one further exact, source-motivated candidate: apply the 2014 SOME WISDOM word-prime-sum operation to item3's 25 original ciphertext words and compare row-major with the third Stage10 5×5/1033 square. The 25 sums do not match either source 5×5 square, their row/column/diagonal sums do not equal 1033, and the cell multiset does not match. This rejects only the direct word-sum transfer to ciphertext words; no unknown plaintext, authentic key, or final destination is recovered.
+**Status (24 November 2026, consolidated):** All five originally numbered passages (139/91/98/96/129 runes, 553 total) remain undeciphered. Exact joint lexical inversion now excludes arbitrary shared per-column affine GP29 keys, including optional mixing by either literal historical 5×5 square. The follow-up covers all 24 possible early historical Fehu-transparent key-clock alignments as well. The independent source-backed clue remains that the authenticated 2014 1033-sum and 3301-sum five-by-five squares have determinants 3 and 10 modulo29; their products are invertible and have order 28 in GL(5,29), but the fixed 28-clock receivers remain negative. Agent2 has now tested one further exact, source-motivated candidate: apply the 2014 SOME WISDOM word-prime-sum operation to item3's 25 original ciphertext words and compare row-major with the third Stage10 5×5/1033 square. The 25 sums do not match either source 5×5 square, their row/column/diagonal sums do not equal 1033, and the cell multiset does not match. This rejects only the direct word-sum transfer to ciphertext words; no unknown plaintext, authentic key, or final destination is recovered.
 
 ## Exact shared-affine five-track inverse, including fixed historical square mixing (24 November 2026)
 
@@ -21,6 +21,24 @@ The shortest interval meeting a layout-only heuristic expected-count threshold 0
 The matched-layout control independently draws frequent dictionary words matching every original word length and encrypts with independently random affine column states. A second exhaustive search excluding the first witness establishes uniqueness. Each found tuple replays its ciphertext. The additional genuine solved-native control with different word layout survives feasibility, but its first witness at the same absolute offsets matches only 2/25 planted runes; short-window identification is layout-dependent. The original zeros are exact within the stated dictionary and preserved word framing. This does not exclude changed segmentation, other registers, independent lane keys or genuinely different cross-lane mixing. No original plaintext or key recovered.
 
 [Executable CommonJS SFT](../sims/lp2_cuneiform_fiveunit_shared_affine_square_csp_sft.cjs), code commit `ce325bf30286f096d1cd0d00f7fd1d1b5e7745a0`. Executed against the current repository source files in the invocation's JavaScript runtime; no CI run is claimed. Do not repeat key/multiplier/shift schedule searches inside this exact model.
+
+### Authentic Fehu-transparent clock extension — all legal prior alignments
+
+The solved LP1/p56 convention allows a plaintext Fehu (GP0=0) to appear unchanged without advancing the cipher key; a ciphertext Fehu may also be an encrypted non-Fehu. Therefore the fixed raw-position affine rejection alone does not cover shared key clocks when individual lanes have held Fehu symbols.
+
+The exact full five source units have literal ciphertext-F positions (zero-based) `[[32,91,99,113],[67,89],[14,17,76,82],[50],[13]]`. On the common *consuming-key* interval [51,67), every possible preceding hold history reduces to a raw-index shift vector (h1,0,h3,h4,h5) with h1∈{0,1}, h3∈{0,1,2}, h4,h5∈{0,1}. This gives **24** distinct alignments, covering all 32 early binary Fehu decisions (the two lane3 choices of one hold induce the same alignment). In every alignment there is no physical ciphertext Fehu inside the interval; each compared plaintext rune must be non-F. The next literal F in lane2 is raw67, strictly outside the interval. Earlier lexical constraints are deliberately relaxed: any full valid decode would still have to satisfy at least one of these local alignments.
+
+For each alignment the same layout-only selection algorithm picks one 5- or 6-column subinterval inside [51,67), using no rune-value scoring. The joint trie solver rejects every compatible tuple path for all three fixed mixing matrices, allowing arbitrary affine coefficients per consuming column:
+
+| Fixed M | Surviving F alignments | Exact explored tuple transitions |
+| --- | ---: | ---: |
+| Identity | 0/24 | 1,460,068 |
+| Historical 3301 square | 0/24 | 1,731,204 |
+| Historical 1033 square | 0/24 | 1,637,887 |
+
+An independent matched-layout planted control uses genuine held plaintext Fs at raw slots `[[32],[],[14],[50],[13]]`, then encrypts the consuming five-lane columns with random shared affine keys, applies the respective fixed matrix, and reinserts transparent F symbols. All three controls recover the unique **25/25** actual non-F plaintext runes in their selected window [62,67), confirmed by excluding the first witness and searching again; the inverse tuple replay is exact. This is a full finite all-mask obstruction for the described historical F-hold variant, not an assertion that the author used such a variant. It leaves changing segmentation, other plaintext registers, independent lane clocks and other reversible architectures open.
+
+[CommonJS F-hold SFT](../sims/lp2_cuneiform_fiveunit_shared_affine_fskip_sft.cjs), commit `e46603899eafb36425933e03cf422ba3aa829e07`. Both original results and positive controls were executed against the repository files in the JavaScript runtime. No CI run is claimed. No unknown plaintext or authentic key recovered.
 
 ## Historical text/edition selection gate (Agent17, Director #2481, 24 November 2026)
 
