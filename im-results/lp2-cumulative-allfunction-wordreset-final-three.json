@@ -1,0 +1,45 @@
+{
+  "lexicon": 38920,
+  "out": [
+    {
+      "page": 17,
+      "range": [
+        4031,
+        4302
+      ],
+      "runes": 271,
+      "status": "unsat",
+      "nodes": 19819,
+      "passes": 21197,
+      "wordChecks": 802846,
+      "example": null
+    },
+    {
+      "page": 20,
+      "range": [
+        4834,
+        5102
+      ],
+      "runes": 268,
+      "status": "unsat",
+      "nodes": 16878,
+      "passes": 17859,
+      "wordChecks": 644687,
+      "example": null
+    },
+    {
+      "page": 51,
+      "range": [
+        12114,
+        12203
+      ],
+      "runes": 89,
+      "status": "unsat",
+      "nodes": 18905,
+      "passes": 20300,
+      "wordChecks": 230283,
+      "example": null
+    }
+  ],
+  "controls": []
+}
