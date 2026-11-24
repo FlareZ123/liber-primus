@@ -1,0 +1,955 @@
+{
+  "weights": [
+    2,
+    3,
+    5,
+    0,
+    4,
+    6,
+    3,
+    5,
+    2,
+    1,
+    3,
+    2,
+    6,
+    1,
+    5,
+    4,
+    3,
+    5,
+    4,
+    1,
+    3,
+    2,
+    6,
+    5,
+    6,
+    3,
+    5,
+    2,
+    4
+  ],
+  "lexicon": 28695,
+  "controls": [
+    {
+      "key": [
+        3,
+        21,
+        24,
+        12,
+        14,
+        1,
+        2
+      ],
+      "anchor": 0,
+      "history": [
+        {
+          "word": 0,
+          "partial": 33,
+          "complete": 41
+        },
+        {
+          "word": 1,
+          "partial": 4,
+          "complete": 45
+        },
+        {
+          "word": 2,
+          "partial": 8,
+          "complete": 85
+        },
+        {
+          "word": 3,
+          "partial": 0,
+          "complete": 86
+        }
+      ],
+      "candidates": 86,
+      "expectedPresent": true,
+      "best": {
+        "k": [
+          3,
+          21,
+          24,
+          12,
+          14,
+          1,
+          2
+        ],
+        "train": {
+          "known": 10,
+          "total": 10,
+          "hit": 43,
+          "runes": 43,
+          "rate": 1
+        },
+        "holdout": {
+          "known": 10,
+          "total": 10,
+          "hit": 52,
+          "runes": 52,
+          "rate": 1
+        },
+        "preview": "parable like the instar tunnelng to the surface we must shed our own circumferences find the divinity within",
+        "replay": true,
+        "exact": true
+      }
+    },
+    {
+      "key": [
+        28,
+        0,
+        5,
+        12,
+        7,
+        19,
+        4
+      ],
+      "anchor": 0,
+      "history": [
+        {
+          "word": 0,
+          "partial": 25,
+          "complete": 41
+        },
+        {
+          "word": 1,
+          "partial": 3,
+          "complete": 47
+        },
+        {
+          "word": 2,
+          "partial": 5,
+          "complete": 79
+        },
+        {
+          "word": 3,
+          "partial": 0,
+          "complete": 80
+        }
+      ],
+      "candidates": 80,
+      "expectedPresent": true,
+      "best": {
+        "k": [
+          28,
+          0,
+          5,
+          12,
+          7,
+          19,
+          4
+        ],
+        "train": {
+          "known": 10,
+          "total": 10,
+          "hit": 43,
+          "runes": 43,
+          "rate": 1
+        },
+        "holdout": {
+          "known": 10,
+          "total": 10,
+          "hit": 52,
+          "runes": 52,
+          "rate": 1
+        },
+        "preview": "parable like the instar tunnelng to the surface we must shed our own circumferences find the divinity within",
+        "replay": true,
+        "exact": true
+      }
+    },
+    {
+      "key": [
+        1,
+        6,
+        21,
+        5,
+        27,
+        11,
+        9
+      ],
+      "anchor": 0,
+      "history": [
+        {
+          "word": 0,
+          "partial": 42,
+          "complete": 41
+        },
+        {
+          "word": 1,
+          "partial": 3,
+          "complete": 43
+        },
+        {
+          "word": 2,
+          "partial": 8,
+          "complete": 75
+        },
+        {
+          "word": 3,
+          "partial": 0,
+          "complete": 76
+        }
+      ],
+      "candidates": 76,
+      "expectedPresent": true,
+      "best": {
+        "k": [
+          1,
+          6,
+          21,
+          5,
+          27,
+          11,
+          9
+        ],
+        "train": {
+          "known": 10,
+          "total": 10,
+          "hit": 43,
+          "runes": 43,
+          "rate": 1
+        },
+        "holdout": {
+          "known": 10,
+          "total": 10,
+          "hit": 52,
+          "runes": 52,
+          "rate": 1
+        },
+        "preview": "parable like the instar tunnelng to the surface we must shed our own circumferences find the divinity within",
+        "replay": true,
+        "exact": true
+      }
+    }
+  ],
+  "longCount": 175,
+  "compatibleCount": 24,
+  "hist": {
+    "9": {
+      "words": 74,
+      "compatible": 21
+    },
+    "10": {
+      "words": 49,
+      "compatible": 3
+    },
+    "11": {
+      "words": 28,
+      "compatible": 0
+    },
+    "12": {
+      "words": 18,
+      "compatible": 0
+    },
+    "13": {
+      "words": 3,
+      "compatible": 0
+    },
+    "14": {
+      "words": 3,
+      "compatible": 0
+    }
+  },
+  "originals": [
+    {
+      "page": 2,
+      "length": 9,
+      "first": 1,
+      "anchor": 25,
+      "history": [
+        {
+          "word": 0,
+          "partial": 0,
+          "complete": 1
+        }
+      ],
+      "candidates": 1,
+      "expectedPresent": null,
+      "best": {
+        "k": [
+          22,
+          7,
+          2,
+          23,
+          20,
+          27,
+          2
+        ],
+        "train": {
+          "known": 1,
+          "total": 8,
+          "hit": 9,
+          "runes": 51,
+          "rate": 0.17647058823529413
+        },
+        "holdout": {
+          "known": 1,
+          "total": 5,
+          "hit": 2,
+          "runes": 25,
+          "rate": 0.08
+        },
+        "preview": "executive GLNGFXNG HFOEOEOECJTO JSAEIA SSR YHEARYAEOER FUEORXIAEIA MGF CC ve DRWWWXRILL GY BNGELILNGON",
+        "replay": true,
+        "exact": null
+      }
+    },
+    {
+      "page": 4,
+      "length": 9,
+      "first": 1,
+      "anchor": 46,
+      "history": [
+        {
+          "word": 0,
+          "partial": 0,
+          "complete": 1
+        }
+      ],
+      "candidates": 1,
+      "expectedPresent": null,
+      "best": {
+        "k": [
+          9,
+          12,
+          2,
+          2,
+          22,
+          12,
+          12
+        ],
+        "train": {
+          "known": 1,
+          "total": 8,
+          "hit": 9,
+          "runes": 41,
+          "rate": 0.21951219512195122
+        },
+        "holdout": {
+          "known": 0,
+          "total": 7,
+          "hit": 0,
+          "runes": 32,
+          "rate": 0
+        },
+        "preview": "additional THPEAM YM THEOC YEASEACROEY UXUAEG OMDWPPI LJY TTHAECA HGHU RTHIDPEORXUX SEOENG OENGIAMM THAEJ EA",
+        "replay": true,
+        "exact": null
+      }
+    },
+    {
+      "page": 5,
+      "length": 9,
+      "first": 2,
+      "anchor": 16,
+      "history": [
+        {
+          "word": 0,
+          "partial": 1,
+          "complete": 1
+        },
+        {
+          "word": 1,
+          "partial": 0,
+          "complete": 1
+        }
+      ],
+      "candidates": 1,
+      "expectedPresent": null,
+      "best": {
+        "k": [
+          0,
+          3,
+          27,
+          16,
+          6,
+          8,
+          19
+        ],
+        "train": {
+          "known": 3,
+          "total": 12,
+          "hit": 12,
+          "runes": 53,
+          "rate": 0.22641509433962265
+        },
+        "holdout": {
+          "known": 1,
+          "total": 31,
+          "hit": 1,
+          "runes": 148,
+          "rate": 0.006756756756756757
+        },
+        "preview": "perspired XAEH EDFEA IAEUB AHNOES RFEU INNPHEANG IAMOE DAEANGBOEAR y king EALO OEUNG NGSXS AEYRRNGEAAEIA EEAE IAAFW EAGXS",
+        "replay": true,
+        "exact": null
+      }
+    },
+    {
+      "page": 6,
+      "length": 10,
+      "first": 1,
+      "anchor": 6,
+      "history": [
+        {
+          "word": 0,
+          "partial": 0,
+          "complete": 1
+        }
+      ],
+      "candidates": 1,
+      "expectedPresent": null,
+      "best": {
+        "k": [
+          23,
+          15,
+          11,
+          7,
+          20,
+          25,
+          16
+        ],
+        "train": {
+          "known": 2,
+          "total": 12,
+          "hit": 11,
+          "runes": 60,
+          "rate": 0.18333333333333332
+        },
+        "holdout": {
+          "known": 3,
+          "total": 27,
+          "hit": 5,
+          "runes": 116,
+          "rate": 0.04310344827586207
+        },
+        "preview": "paragraphs TIAOITG LHLSP JTF LFJOEPRH IAEE YIMNGEOYG FPYNOJ INAC HUDG d EARAI IAY MSHNEOCIA LJLBMR UXL MEAI FAE",
+        "replay": true,
+        "exact": null
+      }
+    },
+    {
+      "page": 11,
+      "length": 9,
+      "first": 1,
+      "anchor": 28,
+      "history": [
+        {
+          "word": 0,
+          "partial": 0,
+          "complete": 1
+        }
+      ],
+      "candidates": 1,
+      "expectedPresent": null,
+      "best": {
+        "k": [
+          23,
+          11,
+          13,
+          26,
+          13,
+          22,
+          16
+        ],
+        "train": {
+          "known": 1,
+          "total": 12,
+          "hit": 9,
+          "runes": 65,
+          "rate": 0.13846153846153847
+        },
+        "holdout": {
+          "known": 1,
+          "total": 15,
+          "hit": 3,
+          "runes": 93,
+          "rate": 0.03225806451612903
+        },
+        "preview": "fugitives LAEYGFNGEAEF JY OENAEODAX EOSH HNDHPUS HDUJMXEA LR THAEG EACWI JYEHNG XBYCSFP RLP MIANGLEO DPLOFHMEONPC UPEO EAOCO SJBDBXEHW",
+        "replay": true,
+        "exact": null
+      }
+    },
+    {
+      "page": 12,
+      "length": 9,
+      "first": 1,
+      "anchor": 8,
+      "history": [
+        {
+          "word": 0,
+          "partial": 1,
+          "complete": 0
+        },
+        {
+          "word": 1,
+          "partial": 0,
+          "complete": 0
+        }
+      ],
+      "candidates": 0,
+      "expectedPresent": null,
+      "best": null
+    },
+    {
+      "page": 24,
+      "length": 10,
+      "first": 1,
+      "anchor": 18,
+      "history": [
+        {
+          "word": 0,
+          "partial": 0,
+          "complete": 1
+        }
+      ],
+      "candidates": 1,
+      "expectedPresent": null,
+      "best": {
+        "k": [
+          19,
+          5,
+          21,
+          12,
+          23,
+          4,
+          19
+        ],
+        "train": {
+          "known": 2,
+          "total": 12,
+          "hit": 12,
+          "runes": 52,
+          "rate": 0.23076923076923078
+        },
+        "holdout": {
+          "known": 2,
+          "total": 34,
+          "hit": 3,
+          "runes": 142,
+          "rate": 0.02112676056338028
+        },
+        "preview": "preoccupied YDTHNGS THUEO WJLMOEAEBP OEEA SJNNG IEEOEAJCO ri NGXYU YAE JRN LT XTH YRW HII NGGTHNGTHJ ONGS NIAC",
+        "replay": true,
+        "exact": null
+      }
+    },
+    {
+      "page": 26,
+      "length": 9,
+      "first": 2,
+      "anchor": 16,
+      "history": [
+        {
+          "word": 0,
+          "partial": 1,
+          "complete": 1
+        },
+        {
+          "word": 1,
+          "partial": 0,
+          "complete": 1
+        }
+      ],
+      "candidates": 1,
+      "expectedPresent": null,
+      "best": {
+        "k": [
+          2,
+          22,
+          8,
+          19,
+          24,
+          9,
+          1
+        ],
+        "train": {
+          "known": 2,
+          "total": 12,
+          "hit": 11,
+          "runes": 58,
+          "rate": 0.1896551724137931
+        },
+        "holdout": {
+          "known": 3,
+          "total": 31,
+          "hit": 7,
+          "runes": 139,
+          "rate": 0.050359712230215826
+        },
+        "preview": "tantalizing id RJOE ABOEGIAEOIHI OTAEIAXIA WNGIB DEAT PCIAEAP SHOTFUC CSAA XYNG NIAT SNOEFIA NGEAAERF AEEOTS XHTH HLSXB EADTHUH",
+        "replay": true,
+        "exact": null
+      }
+    },
+    {
+      "page": 26,
+      "length": 9,
+      "first": 1,
+      "anchor": 19,
+      "history": [
+        {
+          "word": 0,
+          "partial": 0,
+          "complete": 1
+        }
+      ],
+      "candidates": 1,
+      "expectedPresent": null,
+      "best": {
+        "k": [
+          26,
+          1,
+          13,
+          15,
+          27,
+          6,
+          20
+        ],
+        "train": {
+          "known": 1,
+          "total": 12,
+          "hit": 9,
+          "runes": 58,
+          "rate": 0.15517241379310345
+        },
+        "holdout": {
+          "known": 0,
+          "total": 28,
+          "hit": 0,
+          "runes": 125,
+          "rate": 0
+        },
+        "preview": "gainfully NGLGOEHL JEAEAG YOO BEAJJH WYXEAEYN SWPOE POETH RCX JWAEDH PCYOJ OLPJ EOAEP UAJEOC ALPTHW PGFTFREO OEA RITELOE",
+        "replay": true,
+        "exact": null
+      }
+    },
+    {
+      "page": 28,
+      "length": 9,
+      "first": 1,
+      "anchor": 25,
+      "history": [
+        {
+          "word": 0,
+          "partial": 0,
+          "complete": 1
+        }
+      ],
+      "candidates": 1,
+      "expectedPresent": null,
+      "best": {
+        "k": [
+          22,
+          3,
+          28,
+          11,
+          17,
+          15,
+          12
+        ],
+        "train": {
+          "known": 2,
+          "total": 12,
+          "hit": 10,
+          "runes": 47,
+          "rate": 0.2127659574468085
+        },
+        "holdout": {
+          "known": 2,
+          "total": 22,
+          "hit": 3,
+          "runes": 100,
+          "rate": 0.03
+        },
+        "preview": "multitude IHFT BNGEAHNG WY EYEAB OEWIJAE UYNGNG GFYEAGX HG o BUP EOB WHTHEAEAEANGMOEL LOETEO AEIEIEA BNGFB THHIT UFBIEA",
+        "replay": true,
+        "exact": null
+      }
+    },
+    {
+      "page": 33,
+      "length": 9,
+      "first": 1,
+      "anchor": 37,
+      "history": [
+        {
+          "word": 0,
+          "partial": 0,
+          "complete": 1
+        }
+      ],
+      "candidates": 1,
+      "expectedPresent": null,
+      "best": {
+        "k": [
+          1,
+          13,
+          8,
+          19,
+          3,
+          9,
+          12
+        ],
+        "train": {
+          "known": 2,
+          "total": 8,
+          "hit": 11,
+          "runes": 46,
+          "rate": 0.2391304347826087
+        },
+        "holdout": {
+          "known": 2,
+          "total": 8,
+          "hit": 3,
+          "runes": 29,
+          "rate": 0.10344827586206896
+        },
+        "preview": "broadened WTHAOOTIAEA RIAGD ADCJ RDYWFYCET NBAEFI RWGROE os BEXAE ni UDIAS MJB UDBFLEEA AESAE TJTIS c",
+        "replay": true,
+        "exact": null
+      }
+    },
+    {
+      "page": 34,
+      "length": 9,
+      "first": 1,
+      "anchor": 18,
+      "history": [
+        {
+          "word": 0,
+          "partial": 0,
+          "complete": 1
+        }
+      ],
+      "candidates": 1,
+      "expectedPresent": null,
+      "best": {
+        "k": [
+          18,
+          15,
+          16,
+          20,
+          7,
+          21,
+          26
+        ],
+        "train": {
+          "known": 3,
+          "total": 12,
+          "hit": 12,
+          "runes": 51,
+          "rate": 0.23529411764705882
+        },
+        "holdout": {
+          "known": 1,
+          "total": 31,
+          "hit": 1,
+          "runes": 138,
+          "rate": 0.007246376811594203
+        },
+        "preview": "liberation THRDD UMOE CHX BTHEOXNGNAE ATWT br c GY IFDAE LMMDGYM RTJJNG LEALEOTEAS UOD NYBNGIADSJ SIAG OUTHB NDODI",
+        "replay": true,
+        "exact": null
+      }
+    },
+    {
+      "page": 37,
+      "length": 9,
+      "first": 1,
+      "anchor": 38,
+      "history": [
+        {
+          "word": 0,
+          "partial": 0,
+          "complete": 1
+        }
+      ],
+      "candidates": 1,
+      "expectedPresent": null,
+      "best": {
+        "k": [
+          7,
+          23,
+          0,
+          23,
+          4,
+          2,
+          20
+        ],
+        "train": {
+          "known": 1,
+          "total": 8,
+          "hit": 9,
+          "runes": 46,
+          "rate": 0.1956521739130435
+        },
+        "holdout": {
+          "known": 1,
+          "total": 7,
+          "hit": 2,
+          "runes": 32,
+          "rate": 0.0625
+        },
+        "preview": "ungrateful ICDB EOUIAMIAINGX DEOOE SEADODOEIT ITHMO USP BJJLMIEA SINGBLOBIO MRGOCWG FA WJTH do EOSUOEC WELIA",
+        "replay": true,
+        "exact": null
+      }
+    },
+    {
+      "page": 42,
+      "length": 9,
+      "first": 1,
+      "anchor": 15,
+      "history": [
+        {
+          "word": 0,
+          "partial": 0,
+          "complete": 1
+        }
+      ],
+      "candidates": 1,
+      "expectedPresent": null,
+      "best": {
+        "k": [
+          18,
+          5,
+          4,
+          13,
+          24,
+          8,
+          21
+        ],
+        "train": {
+          "known": 3,
+          "total": 12,
+          "hit": 13,
+          "runes": 64,
+          "rate": 0.203125
+        },
+        "holdout": {
+          "known": 2,
+          "total": 31,
+          "hit": 4,
+          "runes": 141,
+          "rate": 0.028368794326241134
+        },
+        "preview": "judgments AYFGAEOXX FUEO REOYB NRNGEABT PAEC NGNMDFNGEAGGF ion ABFO THGGWTEAW UMOEOIE lp XAETHH HMTHR rd MTIN THYFTPO MTHHGNGB",
+        "replay": true,
+        "exact": null
+      }
+    },
+    {
+      "page": 42,
+      "length": 9,
+      "first": 3,
+      "anchor": 38,
+      "history": [
+        {
+          "word": 0,
+          "partial": 0,
+          "complete": 3
+        }
+      ],
+      "candidates": 3,
+      "expectedPresent": null,
+      "best": {
+        "k": [
+          14,
+          10,
+          13,
+          13,
+          4,
+          2,
+          13
+        ],
+        "train": {
+          "known": 1,
+          "total": 10,
+          "hit": 9,
+          "runes": 44,
+          "rate": 0.20454545454545456
+        },
+        "holdout": {
+          "known": 1,
+          "total": 10,
+          "hit": 2,
+          "runes": 42,
+          "rate": 0.047619047619047616
+        },
+        "preview": "ultimatum NX FD THHLO YJY XTU JW YSITMOEAE AWYW XEBTHNAI XEASW AEWBA ERM si EAEPES IATHF TBR JTHIAAEAEEA",
+        "replay": true,
+        "exact": null
+      }
+    },
+    {
+      "page": 45,
+      "length": 9,
+      "first": 1,
+      "anchor": 45,
+      "history": [
+        {
+          "word": 0,
+          "partial": 0,
+          "complete": 1
+        }
+      ],
+      "candidates": 1,
+      "expectedPresent": null,
+      "best": {
+        "k": [
+          9,
+          27,
+          4,
+          17,
+          8,
+          3,
+          24
+        ],
+        "train": {
+          "known": 1,
+          "total": 9,
+          "hit": 9,
+          "runes": 42,
+          "rate": 0.21428571428571427
+        },
+        "holdout": {
+          "known": 0,
+          "total": 10,
+          "hit": 0,
+          "runes": 39,
+          "rate": 0
+        },
+        "preview": "spinsters JOI UNG SWRWIAC HBU OYYA IAXIAJLUI DOS DAYRT JENG DEOJUS IADUTHNGIAA AENGIA OEO NXW BM BP THNGRTHFSFJF",
+        "replay": true,
+        "exact": null
+      }
+    },
+    {
+      "page": 53,
+      "length": 9,
+      "first": 2,
+      "anchor": 19,
+      "history": [
+        {
+          "word": 0,
+          "partial": 2,
+          "complete": 0
+        },
+        {
+          "word": 1,
+          "partial": 0,
+          "complete": 0
+        }
+      ],
+      "candidates": 0,
+      "expectedPresent": null,
+      "best": null
+    }
+  ]
+}
