@@ -96,8 +96,8 @@ function experiment(corpus,transcript,solved,lexicon){
  // Exact maximum of long dictionary hits over all histories and 464 origins.
  // Only the outgoing cursor is sufficient state for future input. No English
  // word is required for reachability; a nonlexical word simply scores zero.
- function bound(ws,F){
-  let cur=new Int32Array(K.length).fill(-1),next=new Int32Array(K.length).fill(-1),active=origins.slice(),prev=0,maxStates=active.length,marks=[];
+ function bound(ws,F,previous=0){
+  let cur=new Int32Array(K.length).fill(-1),next=new Int32Array(K.length).fill(-1),active=origins.slice(),prev=previous,maxStates=active.length,marks=[];
   for(const t of active)cur[t]=0;
   for(let wi=0;wi<ws.length;wi++){
    const c=ws[wi],long=c.length>=5,dest=[];
@@ -135,7 +135,29 @@ function experiment(corpus,transcript,solved,lexicon){
   const region=(lo,hi)=>out.filter((w,i)=>pageAt(offsets[i])>=lo&&pageAt(offsets[i])<=hi);
   orig.push({F,training:{start:a.start,end:a.end,maxStates:a.maxStates,stats:stats(a.words),score:a.score,words:a.words.slice(0,30).map(render).join(" ")},continuation:{fail,end,score,skip,holds,full:stats(out),p16:stats(region(16,21)),p40:stats(region(40,53)),p40Words:region(40,53).slice(0,25).map(render).join(" ")},bound:bound(words,F)});
  }
- return {lexicon:freq.size,plants,original:orig};
+ const tape=words.flat();
+ function reach(a,F,prev=0){
+  let active=new Set(origins);
+  for(let i=0;i<a.length;i++){
+   const next=new Set();for(const t of active)eachChoice(a[i],prev,t,F,(_p,end)=>next.add(end));
+   if(!next.size)return {failure:i,c:a[i],prev,priorCount:active.size,priorCursors:[...active]};
+   active=next;prev=a[i];
+  }
+  return {survivors:active.size};
+ }
+ const lengths=[729,1145,1729,9,1894,1021,1524,1589,3316];check(lengths.reduce((a,b)=>a+b,0)===tape.length,"chapter tape");
+ const chapter=[];let start=0;
+ for(const len of lengths){
+  const end=start+len,complete=words.filter((w,i)=>offsets[i]>=start&&offsets[i]+w.length<=end);
+  const fragments=words.map((w,i)=>w.slice(Math.max(0,start-offsets[i]),Math.max(0,end-offsets[i]))).filter(w=>w.length);
+  check(same(fragments.flat(),tape.slice(start,end)),"chapter slice");
+  const crossing=fragments.length-complete.length;
+  chapter.push({start,end,crossing,completeLong:complete.filter(w=>w.length>=5).length,
+   reset:bound(fragments,false),FReset:reach(tape.slice(start,end),true),
+   continuousPrevious:bound(fragments,false,start?tape[start-1]:0),FContinuousPrevious:reach(tape.slice(start,end),true,start?tape[start-1]:0)});
+  start=end;
+ }
+ return {lexicon:freq.size,plants,original:orig,firstFDeath:reach(tape,true),chapter};
 }
 const paths=["resources/liber-primus/lp2-corpus.json","resources/liber-primus/lp2-transcription.txt","resources/external/relikd-solved-gp29-native-v1.json","resources/control/english_wordfreq_textblob.txt"];
 const r=p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8');
