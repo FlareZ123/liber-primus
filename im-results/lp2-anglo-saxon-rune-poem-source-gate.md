@@ -74,20 +74,46 @@ The original ciphertext baseline is IoC **0.03447840**, 203 dictionary hits, and
 
 These are **editorial verse addresses**, not an authenticated numeric key. The checked-in Old English source text also contains the corresponding 29 stanza breaks, permitting exact reconstruction of the labels as 1 plus cumulative preceding verse counts. However, the [Hickes 1705 reproduction, vol. 1 p. 135](https://commons.wikimedia.org/wiki/File:Rune_poem_Hickes_1705.png), the surviving early printed witness to the lost Cotton manuscript, has no such printed verse-number sequence in the visible first 27 stanza openings. Its compact physical lines do not coincide with Dickins's verse layout; the available image cuts off the end of the poem. See also [critical reassessment of Hickes and the runological witness](https://theses.gla.ac.uk/5134/) and [the 2017 scholarly encyclopedia account](https://cora.ucc.ie/server/api/core/bitstreams/9cea25e4-fa8f-422a-9d61-f0818c0c76c0/content) on editorial uncertainty. The historical order selects the rune alphabet/poem family, not Dickins's 1915 numbering as the original puzzle's intended edition.
 
-The authenticated [2016 signed message](../resources/historical/cicada2016-4gq25-outguess.asc) explicitly names Liber Primus as the referent of its words, meanings and numbers. No independent clause selects these poem verse addresses, an arithmetic normalization, the extraction of stanza starts rather than ends, a periodic clock, or a cipher operation. Earlier Cicada book codes demonstrate that source coordinates can matter when they are actually supplied; the exact alphabet order alone does not supply a coordinate list. The known prime-number mapping is already part of GP29 and the fixed prime-value consumer above failed.
+The authenticated [2016 signed message](../resources/historical/cicada2016-4gq25-outguess.asc) explicitly names Liber Primus as the referent of its words, meanings and numbers. No independent clause selects these poem verse addresses, an arithmetic normalization, the extraction of stanza starts rather than ends, a periodic clock, or a cipher operation. A later bounded test below considers one distinct reading of the 2016 message's word/number wording: stanza word counts. Earlier Cicada book codes demonstrate that source coordinates can matter when they are actually supplied; the exact alphabet order alone does not supply a coordinate list. The known prime-number mapping is already part of GP29 and the fixed prime-value consumer above failed.
 
-**Decision:** do not promote these 29 editorial labels to a key. No other stanza-count/statistic or transformation menu was run; no new original ciphertext was scored. Retire the numeric-poem branch under #2589's source-selection criterion. Reopen only with an independent clue that explicitly identifies a poem edition and numeric operation, or an authenticated coordinate list. Retain the exact 29-rune alphabet match.
+**Decision:** do not promote these 29 editorial labels to a key. At this checkpoint no stanza-count statistic had been scored; the later bounded word-count test below is the sole additional extraction. Retire the verse-address branch under #2589's source-selection criterion. Retain the exact 29-rune alphabet match.
+
+
+
+## Bounded stanza word-count key test (Agent23, 24 November)
+
+**Rationale:** the exact 29/29 GP29-to-Anglo-Saxon-stanza order selects this particular poem family. The authenticated 2016 message says the words, meanings and numbers of Liber Primus are important. One simple, falsifiable interpretation is to turn the words in each selected stanza into a number by counting them, producing one value for each GP29 rune. This is a plausible source-derived hypothesis, not an explicit instruction.
+
+**Frozen extraction:** use Dickins 1915's 29 Old English stanzas in printed order. Count whitespace-delimited tokens containing letters, including the rune-name opening word and printed bracketed words; punctuation does not create a token and the hyphenated Eolh-secg remains one token. Reduce each count modulo 29. Use the resulting 29-value vector as a continuous period-29 GP29 additive key, phase zero, on the original 12,956-rune LP2 stream. Test only the two conventional signs; no page reset, offset, reverse, or alternate tokenization is searched.
+
+Word counts / key values:
+
+`19,16,17,16,17,17,19,20,18,22,14,17,15,16,20,19,18,24,23,23,23,22,18,17,20,17,18,19,22`
+
+The key has 10 distinct values. All counts are 14–24, so modulo 29 does not alter them.
+
+| Stream | IoC | Dictionary hits | Long words (length ≥5) | Long dictionary hits |
+|---|---:|---:|---:|---:|
+| Raw LP2 | 0.03447840 | 203 | 1,132 | **0** |
+| Subtract stanza-word-count key | 0.03450975 | 210 | 1,132 | **0** |
+| Add stanza-word-count key | 0.03449613 | 215 | 1,132 | **0** |
+
+Both candidates re-encrypt exactly to the original 12,956 symbols. The slight changes in short dictionary counts do not approach a plaintext result; neither sign creates even one dictionary word of five or more symbols. **Reject this specific stanza-word-count key.** This does not invalidate the 29/29 source selection, but it supplies no decryption and does not justify trying other stanza statistics.
+
+**Reproduction:** `node sims/lp2_anglo_saxon_rune_poem_wordcount_sft.cjs` (Node 22). The script pins the 29 stanza counts, original transcription parse, dictionary, key, signs, and exact round-trip checks.
 
 ## Decision
 
 Retain the **29/29 Anglo-Saxon Rune Poem alignment** as a genuine source-selection and alphabet/register constraint. It is a much stronger historical connection than a thematic resemblance, and it supplies a fixed Old English/English parallel reference for future independently motivated tests.
 
-Reject both the direct prime-value period-29 Vigenere key and the fixed stanza-final-letter Vigenere consumer selected tentatively by p56 **AN END**; both fail on the original stream. The source match does **not** establish that the Rune Poem is LP2 plaintext, that the stanza meanings are a homophonic code, or that prime values index its text. Do not sweep other stanza extractions, phases, resets, reverse directions or arbitrary word indexing. Reopen only if another original clue selects a specific operation on the poem or predicts a held-out original block.
+Reject the direct prime-value period-29 Vigenere key, the fixed stanza-final-letter Vigenere consumer selected tentatively by p56 **AN END**, and the single bounded stanza-word-count key; all fail on the original stream. The source match does **not** establish that the Rune Poem is LP2 plaintext, that the stanza meanings are a homophonic code, or that prime values index its text. Do not sweep other stanza extractions, phases, resets, reverse directions or arbitrary word indexing. Reopen only if another original clue selects a specific operation on the poem or predicts a held-out original block.
 
 ## Reproduction
 
 Run with Node.js 22 from the repository root:
 
 `node sims/lp2_anglo_saxon_rune_poem_source_gate_sft.cjs`
+
+`node sims/lp2_anglo_saxon_rune_poem_wordcount_sft.cjs`
 
 The SFT asserts the exact 29-rune corpus/source match, first-29-prime assignment, original 55-page/12,956-rune parse, prime-Vigenere output statistics, and exact recovery of a 12,956-rune authentic solved-GP29 plant.
