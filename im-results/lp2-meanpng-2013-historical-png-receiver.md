@@ -52,6 +52,25 @@ All ordinary outputs across the remaining 12,943 original runes have IoC 0.03444
 
 **Decision:** retire the exact two direct period-13 suffix-derived registers under the above framing. Do not interpret the 13-byte mirror discrepancy as authentic key material absent independently recovered author-era evidence. This is a new finite original-cipher inverse, not a re-run of the PNG filter or bitplane tests, and recovers no unknown plaintext. [Standalone Node22 SFT](../sims/lp2_twitter_mirror_suffix_q13_original_sft.cjs). Core source calculations executed in connected JavaScript; the Node wrapper is provided for reproduction, not claimed as a CI run.
 
+## Clean historical PNG as a continuous original-cipher running pad (Agent 5)
+
+A different direct inverse uses the clean 15,330-byte PNG itself, because the 2013 stage used that exact historical object as an XOR operand. Test raw file bytes reduced mod29, with both additive signs and all 15,330 byte starts, no wrap, no transformations and no key resets. Original start is the first black rune of p0 (global offset13). The p0 body has 249 runes, p0–2 body 716; continuation begins p3. This is a conditional GP29 transfer, not proof that the 2013 byte operand was intended to be reused in LP2.
+
+Exact latent plaintext-F reachability allows literal F with no advance and non-F consuming encryption, including consuming paths yielding ciphertext F. Every offset and both signs are searched. Results:
+
+| Sign | Offsets legal through 249 | Offsets legal through 716 | Best legal prefix |
+|---|---:|---:|---:|
+| + | 1100 | 3 | 716 (opening gate) |
+| − | 1149 | 0 | 698 (263,264,265) |
+
+The three positive survivors (8004,11799,14434) are frozen without any language ranking and extended across p3. They die at **761,732,824** runes respectively, i.e. 45,16,108 into p3. Thus no candidate even reaches 825 body runes, regardless of language score or hidden F mask. Exact trigram Viterbi on their 716-rune prefixes yields -3.58053,-3.59640,-3.60110 nats/rune (conditional native trigram, seven native sections, smoothing .1, excluding LOSS and p57). Openings are nonprose. The exact rejection does not depend on these scores.
+
+Ordinary continuous additive inverse has no structural F constraint. Rank every eligible offset and both signs using only the p0 249-rune prefix, then freeze the winner. The winner (2806,+) scores -3.47937 on prefix and -3.60010 on the independent 467-rune p1–2 continuation; output is nonprose. Native excluded LOSS and p57 score -3.03231 and -2.86176. This is a predictive negative for the selected ordinary candidate, not a theorem excluding all possible ordinary plaintexts.
+
+Control: plant the authentic 755-rune LOSS plaintext using offset1103 and sign−. Ordinary blind prefix ranking identifies the true offset and sign, recovering 506/506 withheld runes. Under latent F, 9076 offset/sign pairs pass the 249-rune control gate. Blind exact Viterbi prefix ranking selects adjacent offset1104 with true sign, recovering 729/755 overall and 506/506 withheld; this is not exact origin recovery, nor perfect whole-plant recovery. The true offset1103 has legal full reachability. Control scores are conditional on this small donor-excluded model.
+
+**Decision:** retire direct uninterrupted raw-PNG running-pad transfer from the original p0 black-body start under authentic F hold (exact all-start exclusion) and the frozen ordinary decoder winner (predictive negative). No new LP2 plaintext. No broader PNG serialization or keyed derivation is excluded. [Standalone Node SFT](../sims/lp2_twitter_png_runningkey_original_sft.cjs); core calculations executed in connected JavaScript, no CI run claimed.
+
 ## Decision
 
 Retire the specific Meanpng -> extract original filter-type-3 rows of the 2013 intermediate route. Simple visible bitplane extraction and the direct historically linked profile-image average supply no additional instruction. Neither conclusion excludes a different PNG operator or an independently supported receiver. Do not sweep dimensions, levels, offsets, or arbitrary image means without an independent selector. The remaining strongest gap is an authentic instruction connecting the table to a reversible operation on original LP2 ciphertext.
