@@ -1,0 +1,29 @@
+'use strict';
+// Run from repository root: node sims/lp2_p0_serpentine_prime_fhold_sft.cjs
+const fs = require('node:fs');
+function main(corpus, source, native){
+const ids=new Map(corpus.runes.map((r,i)=>[r,i])), rune=s=>Array.from(s).filter(x=>ids.has(x)).map(x=>ids.get(x));
+const pageLines=source.split("%").slice(0,3).map(p=>p.split("/").map(rune).filter(x=>x.length));for(let p=0;p<3;p++)if(pageLines[p].flat().join()!==corpus.pages[p].indices.join())throw Error("page mismatch "+p);
+const prime=[];for(let n=2;prime.length<4200;n++){let ok=true;for(const p of prime){if(p*p>n)break;if(n%p===0){ok=false;break}}if(ok)prime.push(n)}
+const shift=prime.map(p=>(p-1)%29), mod=x=>(x+29)%29;
+const origins=Array.from({length:3302},(_,i)=>i);
+function makeModel(exclude){const a=Array.from({length:900},()=>new Float64Array(29).fill(.2));for(const s of native.sections){if(s.name===exclude)continue;let x=29,y=29;for(const p of rune(s.source_text)){a[x*30+y][p]++;x=y;y=p}}for(const row of a){const sum=row.reduce((s,x)=>s+x,0);for(let i=0;i<29;i++)row[i]=Math.log(row[i]/sum)}return a}
+function orientedRows(pages,trim,phase){let i=0;return pages.flat().map((row,j)=>{const data=row.slice(Math.max(0,trim-i));i+=row.length;return {data,reverse:!!((j+phase)%2)}})}
+function gate(rows,Q,sign,origin){let st=new Map([[origin,1n]]),reached=0;for(const row of rows){for(const c of row.reverse?[...row.data].reverse():row.data){const next=new Map();for(const [k,count] of st){if(Q.has(c))next.set(k,(next.get(k)||0n)+count);if(!Q.has(mod(c-sign*shift[k])))next.set(k+1,(next.get(k+1)||0n)+count)}st=next;if(!st.size)return {reached,terminal:[],paths:"0"};reached++}}return {reached,terminal:[...st.keys()],paths:[...st.values()].reduce((a,b)=>a+b,0n).toString()}}
+function rowPaths(row,k,Q,sign){let states=[{k,p:[]}],c=row.reverse?[...row.data].reverse():row.data;for(const v of c){const n=[];for(const s of states){if(Q.has(v))n.push({k:s.k,p:[...s.p,v]});let p=mod(v-sign*shift[s.k]);if(!Q.has(p))n.push({k:s.k+1,p:[...s.p,p]})}states=n;if(!states.length)break}if(row.reverse)for(const s of states)s.p.reverse();return states}
+function decode(rows,Q,sign,initial,model){let states=initial;for(const row of rows){const next=new Map(),cache=new Map();for(const s of states){if(!cache.has(s.k))cache.set(s.k,rowPaths(row,s.k,Q,sign));for(const path of cache.get(s.k)){let a=s.a,b=s.b,score=s.score;for(const p of path.p){score+=model[a*30+b][p];a=b;b=p}const id=path.k*900+a*30+b,old=next.get(id);if(!old||score>old.score)next.set(id,{k:path.k,a,b,score,p:s.p.concat(path.p),origin:s.origin})}}states=[...next.values()];if(!states.length)break}return states.sort((a,b)=>b.score-a.score)}
+function start(o){return {k:o,a:29,b:29,score:0,p:[],origin:o}}
+function enc(P,rows,Q,sign,origin){let pos=0,k=origin;return rows.map(row=>{let r=P.slice(pos,pos+row.data.length);pos+=row.data.length;const z=row.reverse?r.reverse():r;let c=z.map(p=>Q.has(p)?p:mod(p+sign*shift[k++]));if(row.reverse)c.reverse();return {data:c,reverse:row.reverse}})}
+function solve(rows,Q,sign,os,model){let best=null,n=rows.reduce((a,r)=>a+r.data.length,0);for(const o of os){let s=decode(rows,Q,sign,[start(o)],model)[0];if(s&&s.p.length===n&&(!best||s.score>best.score))best=s}return best}
+function scoreRec(s,n,rows,Q,sign){if(!s)return null;const replay=enc(s.p,rows,Q,sign,s.origin).flatMap(r=>r.data).join()===rows.flatMap(r=>r.data).join();if(!replay)throw Error("replay failed");return {origin:s.origin,k:s.k,n,score:s.score/n,plaintextGP:s.p,replay}}
+const model=makeModel(""), original=[];for(const trim of [0,13])for(const phase of [0,1])for(const hs of [[0],[2],[0,2]])for(const sign of [1,-1]){const q=new Set(hs),rows=orientedRows(pageLines,trim,phase),fitRows=rows.slice(0,12),n=262-trim,N=729-trim;let bestPrefix=0,bestOrigin=-1,prefix=[],full=[];for(const o of origins){const g=gate(rows,q,sign,o);if(g.reached>=n)prefix.push(o);if(g.reached===N)full.push({origin:o,terminal:g.terminal,paths:g.paths});if(g.reached>bestPrefix){bestPrefix=g.reached;bestOrigin=o}}
+const best=solve(fitRows,q,sign,prefix,model),cont=best?decode(rows.slice(12),q,sign,[{...best,p:[],score:0}],model)[0]:null,retro=solve(rows,q,sign,full.map(x=>x.origin),model);
+original.push({trim,phase,holds:hs,sign,prefixOrigins:prefix.length,bestPrefix,bestOrigin,full,fit:scoreRec(best,n,fitRows,q,sign),frozenSuffix:cont?scoreRec({...cont,origin:best.k},N-n,rows.slice(12),q,sign):null,retrospective:scoreRec(retro,N,rows,q,sign)})}
+const controls=[];const p56=rune(native.sections.find(s=>s.name==="p56_an_end").source_text),actual56=corpus.pages[56].indices;const e56=enc(p56,[{data:p56,reverse:false}],new Set([0]),1,0)[0].data;if(e56.join()!==actual56.join())throw Error("p56 control");controls.push({name:"authentic p56",correct:85,consumed:p56.filter(x=>x!==0).length});
+for(const [name,phase,holds,sign,origin] of [["0_koan_1",0,[0],1,137],["0_loss_of_divinity",1,[0],-1,911]]){const P=rune(native.sections.find(s=>s.name===name).source_text).slice(0,729),q=new Set(holds),rows=orientedRows(pageLines,0,phase),C=enc(P,rows,q,sign,origin),m=makeModel(name),fit=solve(C.slice(0,12),q,sign,origins,m),suffix=fit?decode(C.slice(12),q,sign,[{...fit,p:[],score:0}],m)[0]:null;const fitR=scoreRec(fit,262,C.slice(0,12),q,sign),sufR=scoreRec(suffix?{...suffix,origin:fit.k}:null,467,C.slice(12),q,sign);controls.push({name,phase,holds,sign,origin,fit:fitR,suffix:sufR,fitCorrect:fit.p.filter((x,i)=>x===P[i]).length,suffixCorrect:suffix.p.filter((x,i)=>x===P[262+i]).length});}
+return {lengths:pageLines.map(p=>p.map(r=>r.length)),original,controls};
+}
+const corpus = JSON.parse(fs.readFileSync('resources/liber-primus/lp2-corpus.json','utf8'));
+const source = fs.readFileSync('resources/liber-primus/lp2-transcription.txt','utf8');
+const native = JSON.parse(fs.readFileSync('resources/external/relikd-solved-gp29-native-v1.json','utf8'));
+console.log(JSON.stringify(main(corpus,source,native),null,2));
