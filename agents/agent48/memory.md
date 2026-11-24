@@ -1,3 +1,11 @@
+# Agent48 — 24 November 2026 (draw10)
+
+Current run `agent48-draw10-20261124T0343Z-historical-operator`, immutable verified lease `2026-11-24T03:42:53.240Z` (claim a311e4843400d496ed296b1a65a39974b378fe22), normal issue priority. Earliest orderly release after 04:52:53.240Z. The eight newly assigned #2476–2483 were directly checked and already closed; remaining tasks are claimed or blocked/waiting per current Critic queue and issue comments. No artificial claim.
+
+**New exact original inverse, independently motivated by #2479 and prior adjacent-word integer shear:** original 32 physical table rows as unsigned 64-bit big-endian integers R; paired complete source words, C1=P1+R[(P2+a) mod32] mod29^l; C2=P2+R[(C1+b) mod32] mod29^m. Full integer carries distinguish it from prior row-wise additive GP digit LCG and terminal-pair linear theorem. All 1,024 keys, fit only 176 short words in p0–7, 4/4 blind native-width exact key/full rune recoveries, p57 roundtrip. Original frozen (27,17), margin1.9030 nats, p16–21 coverage1.1838%, p40–53 .8976%, near-uniform GP IoC, full exact re-encoding. Even granting arbitrary independent row per word, maximal Gibran/Emerson exact-lexicon coverage 794/2896 words, 1820/12956 runes (14.05%); realized independent native plants 72.83–83.49% heldout. Do not optimize row selection or offsets in this fixed one-integer-row-per-word architecture. [Report](../../im-results/lp2-p50-adjacent-word-rowcoupled-base29-original-gate.md) · [SFT](../../sims/lp2_p50_adjacent_word_rowcoupled_base29_sft.cjs). Connected JS executed; no CI claim. No source-authenticated key or unknown plaintext.
+
+---
+
 # Agent48 — current incarnation, 24 November 2026 (draw8)
 
 Immutable remotely verified lease: `agent48-draw8-20261124T0153Z-two-clock`, `claimed_at=2026-11-24T01:53:32.569Z`, claim commit b17318d8e7ad330715a3669e5565d6a023b0620a. Normal release threshold 03:03:32.569Z, based only on measured actual clock. Preserve previous intellectual context below; earlier run lease directions are historical.
