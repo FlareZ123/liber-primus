@@ -1,6 +1,6 @@
 # Prime-totient / move-to-front composed cipher: exact initial-alphabet recovery
 
-**Agent19, 24 November 2026. Original-input cryptanalytic attack; no unknown plaintext or authentic key recovered.** Three full-size native positive plants recover an unrestricted nonlinear initial alphabet exactly, then all 12,956 plaintext runes. The corresponding best-fit LP2 inverses remain near-uniform. A key-independent assignment bound rejects the shared-alphabet architecture and the independently chapter-private variant against the declared native controls. This is not an authenticated Cicada cipher.
+**Agent19, 24 November 2026. Original-input cryptanalytic attack; no unknown plaintext or authentic key recovered.** Full-size native positives recover an unrestricted nonlinear initial alphabet exactly. The original shared- and private-page inverses fail on held-out printed words. A separate all-secret rank-repeat bound rejects both all-consuming and authentic clear-F versions of A under every tested reset clock against nine native controls. No first-party source selects this composition. Retire this specific architecture.
 
 ## Why this concrete model
 
@@ -30,8 +30,47 @@ The held-out A ceilings with even a separately optimized common alphabet are 218
 
 All original fitted inverses and literal B inverse outputs replay every original rune. No grammatical unknown prose appears. For the common-key A attack, independently plant the 12,956-rune Gibran offset-10000 native window under the nonlinear initial permutation (7i+3 mod29, entries 0 and 9 swapped). In all three reset regimes, fitting on p0–39 alone recovers **29/29 key entries and 12,956/12,956 plaintext runes**, including the untouched holdout. B's abstract-label permutation equivalence is likewise verified on the native plant in all three regimes. A 3x3 exhaustive assignment control also passes. All computation ran on exact repository input in the JavaScript tool runtime; no Windows CI run is claimed.
 
-**Scope:** common-alphabet A and chapter-private A fail the necessary maximum-frequency condition for these particular ordinary native English controls; private-page A is not excluded by this bound. B is similarly incompatible even with private page alphabets. No universal English theorem or authentic MTF selector is claimed. The actual p56 clear-F clock is not included in these composed original inversions. Do not tune new prime phases or F masks absent an independent source clue.
+**Scope:** common-alphabet A and chapter-private A fail the necessary maximum-frequency condition for these particular ordinary native English controls; private-page A is not excluded by this frequency bound alone; the two independent follow-up tests below close the declared private-page branch against the specified native controls. B is similarly incompatible even with private page alphabets. No universal English theorem or authentic MTF selector is claimed. The actual p56 clear-F clock is not included in these composed original inversions. Do not tune new prime phases or F masks absent an independent source clue.
+
+## Independent private-page key recovery
+
+For A, a word candidate of the correct printed length determines the partial assignment pi(a_i)=P_i+k_i. Reject it if any abstract label has two required images or any two labels share an image. A fixed 256-state beam combines compatible word constraints in order of discriminating power; an OOV/skip branch is allowed. Complete remaining assignments by maximum-weight native-unigram assignment. The frozen 29,198-entry native GP lexicon uses TextBlob counts plus the first 60% of the Gibran word stream; no p57, LP1 or test-window text is used to train the language model. Fit on the first complete words ending at or before 70% of each page, then freeze the key. All output re-encrypts exactly. The source segmentation uses the 57 nonempty transcription records with physical p50 inserted and checks each physical page's full rune stream; split-word fragments remain at page boundaries rather than being treated as new complete source words.
+
+| Blind plant | Runes | Key recovered | True held-out runes |
+|---|---:|---:|---:|
+| Authentic p57 | 95 | 7/29 | 10/42 |
+| Gibran short | 78 | 12/29 | 10/26 |
+| Gibran long | 266 | 29/29 | 84/84 |
+| Shakespeare long | 264 | 29/29 | 80/80 |
+| Emerson long | 233 | 29/29 | 70/70 |
+| LP1 Koan reference | 319 | 29/29 | 97/97 |
+
+The short-page solver is not reliably identifiable. All four long plants recover the exact nonlinear private key and all plaintext, clearing the prespecified >=90% held-out accuracy gate for long pages. Apply the frozen solver only to original long p0, p16, p40 (separated across the manuscript).
+
+| Original page | Training lexical rune coverage | Untouched holdout lexical rune coverage |
+|---|---:|---:|
+| p0 | 45/183 | 3/79 |
+| p16 | 46/182 | 3/85 |
+| p40 | 47/160 | 0/71 |
+
+Training can overfit recognizable words, but the independent holdouts are nonlinguistic and no original continuous prose emerges. This is a finite direct attack failure, not an exhaustive proof for all private keys or a proof against short pages. See [lexical recovery SFT](../sims/lp2_prime_totient_mtf_privatepage_lexical_sft.cjs).
+
+## All-secret repeat gate, including authentic p56 F policy
+
+For A, after the first access to a shifted intermediate symbol S in a reset interval, the MTF rank is exactly the count of distinct symbols since its previous occurrence. This quantity is independent of every initial alphabet. Count adjacent equal ranks only where both accesses are non-first; this is a lower bound on the original cipher's adjacent repeats under any secret initial list, even separate lists per physical page.
+
+Test both the earlier all-consuming clock and the **actual** source-p56 rule: if P=F, S=F and do not consume a prime, otherwise S=P+k mod29 and consume a prime. Nine fixed 12,956-rune windows (beginning, midpoint, end of each repository-native Gibran, Shakespeare and Emerson stream) are overlaid on the actual source reset spans. The source's p56 authentic encryption and p57 native spelling are rechecked; for both canonical and nonlinear initial lists every non-first rank agrees exactly with the derived invariant.
+
+| Clock | Original within-reset repeats | All-consuming native lower bounds | Authentic clear-F native lower bounds |
+|---|---:|---:|---:|
+| Book | 86 | 405–480 | 396–486 |
+| Nine chapters | 86 | 408–453 | 392–482 |
+| Physical pages | 86 | 367–415 | 368–425 |
+
+The original has only 86 equal adjacent ciphertext symbols, all within the tested reset spans. Even granting completely independent initial alphabets, every native control produces at least 367 forced equal adjacent ranks (368 with actual clear-F). First-access ranks cannot remove these equalities. This exact invariant defeats the declared A mechanism for these finite ordinary native-prose samples, including the formerly surviving page-private variant and the source-authentic F-clock extension. A downstream value-changing anti-repeat layer or different source register is outside the model and would require its own source selection. [Repeat-bound SFT](../sims/lp2_prime_totient_mtf_repeat_allsecret_sft.cjs).
+
+**Decision:** do not spend compute on F-mask enumeration, short-page lexical rescue or private-list optimization for this architecture without a new source-selected downstream operation that explains the repeat deficit. No unknown plaintext or authentic key recovered.
 
 ## Reproduction
 
-`node sims/lp2_prime_totient_mtf_assignment_original_sft.cjs` — Node22 CommonJS, no dependencies. Outputs all fitted alphabets, native controls, complete original/plant replay checks and per-segment private-key bounds. [Source](../sims/lp2_prime_totient_mtf_assignment_original_sft.cjs).
+`node sims/lp2_prime_totient_mtf_assignment_original_sft.cjs` — Node22 CommonJS, no dependencies. Outputs all fitted alphabets, native controls, complete original/plant replay checks and per-segment private-key bounds. The two follow-up scripts are also standalone read-only Node22 CJS tests, run on exact repository data in the JavaScript runtime. No Windows CI execution is claimed. [Source](../sims/lp2_prime_totient_mtf_assignment_original_sft.cjs).
