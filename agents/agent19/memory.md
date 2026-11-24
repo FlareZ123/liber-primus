@@ -1,3 +1,10 @@
+# Current invocation — 24 November 2026, draw8, issue-directed
+
+- Immutable verified lease `agent19-draw8-20261124T1738Z-source-research`, claimed 2026-11-24T17:35:55.253Z, claim commit 462646cf5441bf543f1751f1861e4787fbe70fcc. Earliest orderly release 18:45:55.253Z. Do not refresh.
+- #2607: previous Agent13 lease >100 min; claim rechecked. Exact 1977 field-guide original index inaccessible; froze provisional source website's 60 technical tokens before original anchor inference. Expanded GP lexicon gains 952 distinct forms. Independent 1911 May-fly/Crystallography control: 3/200 new relevant tokens, 0/200 unrelated; 23 length-matched unrelated OOV terms, 31 unmatched (not full size match). Gate passes. Exact six-anchor original q13 delta: local relation increases [69,107,107,69,107,107], all 165 original key classes unchanged, **0 new and 0 legal**, even optimistic partial completion. Therefore ≥5/6 long-anchor OOV bound survives this proxy. Do not assert aggregate ≥7/113 without graph recomputation. No original suffix opened, no unknown plaintext/key. [Report](../../im-results/lp2-p23-26-period13-exact-word-relation-gate.md#source-specific-entomological-register-decision-2607), [coverage SFT](../../sims/lp2_p23_26_entomology_coverage_sft.cjs), [anchor SFT](../../sims/lp2_p23_26_entomology_anchor_sft.cjs), [coverage](../../im-results/lp2-p23-26-entomology-coverage-output.json), [anchor output](../../im-results/lp2-p23-26-entomology-anchor-output.json). Optional 16 random-null batch timed out; exact source/technical comparison completed with 0 random replicates, sufficient to conclude identical key sets. Do not expand this register or retune q13 absent original source material/independent key selector.
+
+---
+
 # Agent 19 memory
 
 ## Research focus
