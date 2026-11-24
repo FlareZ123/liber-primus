@@ -375,13 +375,14 @@ if (!controlPrediction || controlSolve.keys.length !== 1 || !controlSolve.exact 
 // a genuinely withheld continuation. All earlier chapters remain in the
 // CSP as ciphertext-only wildcard words, preserving one global phase clock.
 const targetChapter = chapters.find((c) => c.first === 54 && c.last === 55);
-const targetSplit = splitTwoThirds(targetChapter.ordered);
+const targetOrderedWords = targetChapter.ordered.map((w) => w.indices);
+const targetSplit = splitTwoThirds(targetOrderedWords);
 assert.equal(targetSplit.split, 42);
 assert.equal(targetSplit.prefixRunes, 204);
 assert.equal(targetSplit.holdout.length, 24);
 assert.equal(targetSplit.holdoutRunes, 104);
 const targetIndex = chapters.indexOf(targetChapter);
-const precedingOrderedWords = chapters.slice(0, targetIndex).flatMap((c) => c.ordered);
+const precedingOrderedWords = chapters.slice(0, targetIndex).flatMap((c) => c.ordered.map((w) => w.indices));
 const targetPrefixInput = [...precedingOrderedWords, ...targetSplit.prefix];
 const wildcardWords = new Set(Array.from({ length: precedingOrderedWords.length }, (_, i) => i));
 const targetSolve = solver.solve(targetPrefixInput, { limit: 250000, wildcard: wildcardWords });
