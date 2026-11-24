@@ -8,7 +8,7 @@
 - Only target plaintext consulted before prediction: the first 16 symbols, `WELCOME WELCOME PI`.
 - Crib difference stream: `DIUINITYDIUINITY`; period search 1–13 has exactly one solution, period 8.
 - Derived key: `DIUINITY`, the source-described `DIVINITY` with V→U.
-- Training plaintext: only native LP1 sections [0, 2, 3, 4, 6, 7, 8]. Sections 1 (target) and 5 (KOAN source section) were excluded from trigram training.
+- Training plaintext: only native LP1 sections [0, 2, 3, 4, 6, 7, 8]. Section 1 (target) and section 5 (`jpg107-167`) were excluded; section 3 (`0_koan_1`) was included, as the frozen assignment explicitly specifies training sections [0, 2, 3, 4, 6, 7, 8].
 - Language model: GP29 trigram counts, additive smoothing alpha=0.1, no cross-section trigrams.
 - Decoder state: (key position, previous two plaintext symbols). At ciphertext F, branch between transparent plaintext F/no key advance and encrypted non-F/advance; reject ordinary transitions that would produce plaintext F.
 - Viterbi optimum: unique, score `-1390.4722481220858`.
