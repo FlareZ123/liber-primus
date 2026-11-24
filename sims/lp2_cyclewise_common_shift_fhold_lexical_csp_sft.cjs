@@ -37,7 +37,7 @@ function experiment(inputs) {
   }return {states,history,nodes,used,stop:"complete",exact:true};
  }
  function trace(st){const out=[];for(let t=st.trace;t;t=t.prev)out.unshift(t.w);return out;}
- function freeze(words){let n=0,i=0;while(n<150&&i<words.length)n+=words[i++].length;return {i,n};}
+ function freeze(words){let n=0,i=0;const target=Math.min(150,Math.floor(words.flat().length*0.60));while(n<target&&i<words.length)n+=words[i++].length;return {i,n};}
  function replay(cipher,pred,key,initial){let t=initial;const G=[];const C=cipher.flat(),P=pred.flat();if(C.length!==P.length)return false;for(let i=0;i<C.length;i++){if(P[i]===0){if(C[i]!==0)return false;continue;}const g=mod(C[i]-P[i]-key[t%key.length]),j=Math.floor(t/key.length);if(G[j]!==undefined&&G[j]!==g)return false;G[j]=g;t++;}return String(encode(pred,key,G,initial).flat())===String(C);}
  function attack(cipher,q,phases,plain=null,expected=null){const split=freeze(cipher),runs=[],prefix=[];for(const s of phases){const a=advance(start(q,s),cipher.slice(0,split.i),q);runs.push({s,stop:a.stop,used:a.used,nodes:a.nodes,states:a.states.size,history:a.history.slice(0,12)});if(a.exact&&a.states.size)prefix.push(...a.states.values());}
   prefix.sort((a,b)=>b.score-a.score);let held=null;if(prefix.length){const best=prefix[0],sameKey=prefix.filter(x=>String(x.k)===String(best.k)&&x.initial===best.initial);const st=new Map(sameKey.map(x=>[x.ph+"|"+x.g+"|"+x.k.join(","),x]));const h=advance(st,cipher.slice(split.i),q),hs=[...h.states.values()].sort((a,b)=>b.score-a.score),winner=hs[0],p=winner?trace(winner):[],P=plain?.flat();held={prefixScore:best.score,initial:best.initial,key:best.k,keyMatches:expected?best.k.filter((x,i)=>x===expected[i]).length:null,prefixKeyCount:new Set(prefix.map(x=>String(x.k))).size,holdStop:h.stop,holdStates:h.states.size,paths:winner?.paths,fullScore:winner?.score,exactMatches:P?p.flat().filter((x,i)=>x===P[i]).length:null,holdMatches:P?p.flat().slice(split.n).filter((x,i)=>x===P[split.n+i]).length:null,replay:!!winner&&replay(cipher,p,winner.k,winner.initial),sample:p.slice(0,24).map(w=>w.map(x=>gp.translit[x]).join("")).join(" ")};}
@@ -46,7 +46,12 @@ function experiment(inputs) {
  const control=solved[3].slice(controlStart),K=[4,27,15,8,21,0,12,19],initial=3,G=Array.from({length:50},(_,i)=>mod(13*i*i*i+17*i+9)),plant=encode(control,K,G,initial),expected=K.map(x=>mod(x+G[0]));
  const pc=attack(plant,q,Array.from({length:q},(_,i)=>i),control,expected);
  const oc=attack(original.slice(1),q,Array.from({length:q},(_,i)=>i));
- return {period:q,vocabulary:dict.reduce((a,b)=>a+b.size,0),plant:{controlStart,total:control.flat().length,key:K,expected,initial,...pc},original:{chapter:"p54-55 after opening singleton",total:original.slice(1).flat().length,...oc}};
+ const q13=13,cs13=solved[4].findIndex((w,i,ws)=>w.length>=13&&ws[i+1]?.length>=6&&ws.slice(i).flat().length>=250);check(cs13===5,"L13 layout control");
+ const control13=solved[4].slice(cs13),K13=[17,4,26,11,2,8,21,0,15,5,19,7,27],initial13=5,G13=Array.from({length:100},(_,i)=>mod(7*i*i*i+11*i+16)),plant13=encode(control13,K13,G13,initial13),expected13=K13.map(x=>mod(x+G13[0]));
+ const pc13=attack(plant13,q13,Array.from({length:q13},(_,i)=>i),control13,expected13);
+ const anchor13=original.findIndex(w=>w.length===Math.max(...original.map(x=>x.length)));check(anchor13===56,"unique original longest word");
+ const oc13=attack(original.slice(anchor13),q13,Array.from({length:q13},(_,i)=>i));
+ return {vocabulary:dict.reduce((a,b)=>a+b.size,0),q8:{period:q,plant:{controlStart,total:control.flat().length,key:K,expected,initial,...pc},original:{chapter:"p54-55 after opening singleton",total:original.slice(1).flat().length,...oc}},q13:{period:q13,plant:{controlStart:cs13,total:control13.flat().length,key:K13,expected:expected13,initial:initial13,...pc13},original:{chapter:"p54-55 unique longest word suffix",anchor:anchor13,total:original.slice(anchor13).flat().length,...oc13}}};
 }
 const fs=require('node:fs'),path=require('node:path');
 const paths=["resources/liber-primus/lp2-corpus.json","resources/liber-primus/lp2-transcription.txt","resources/control/english_wordfreq_textblob.txt","resources/external/relikd-solved-gp29-native-v1.json"];
