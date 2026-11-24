@@ -15,6 +15,24 @@ assert.equal(data.runes.length, 29);
 assert.equal(p55.length, 76);
 assert.equal(lengths.reduce((a,b)=>a+b,0), 76);
 
+// Reconstruct the source-selected full-page word grouping from the master
+// transcription. Line-wrap markers are not word boundaries: remove them
+// before splitting on the original hyphen word delimiter.
+const master = fs.readFileSync(path.join(__dirname, '..', 'resources', 'transcriptions', 'liber_primus_master.txt'), 'utf8');
+const runeToIndex = new Map(data.runes.map((r,i)=>[r,i]));
+const runeIndices = text => Array.from(text).filter(ch=>runeToIndex.has(ch)).map(ch=>runeToIndex.get(ch));
+const p55Section = master.split('%').find(section => {
+  const ids = runeIndices(section);
+  return ids.length===p55.length && ids.every((v,i)=>v===p55[i]);
+});
+assert.ok(p55Section, 'canonical p55 transcription section must match the original corpus');
+const sourceGroups = p55Section.replaceAll('/', '').replace(/\s/g, '').split('-')
+  .map(piece=>runeIndices(piece)).filter(group=>group.length);
+assert.deepEqual(sourceGroups.map(group=>group.length), lengths);
+assert.equal(sourceGroups.length, 17);
+assert.equal(data.translit[sourceGroups[0][0]], 'NG');
+
+
 /** @param {bigint} a @param {bigint} b @returns {bigint} */
 function gcd(a,b) { while (b !== 0n) [a,b]=[b,a%b]; return a; }
 /** @param {bigint} a @param {bigint} b @param {bigint} m @returns {bigint} */
@@ -55,12 +73,39 @@ assert.equal(N%8n,0n);
 assert.equal(E%43n,0n);
 const P=N/8n,Q=E/43n;
 
+// The source-selected 43/33 partition retains the incoming NG carry as
+// exterior material. It leaves the 43 interior runes unchanged but adds
+// that one rune to the 32-rune shell.
+const sourceInterior=sourceGroups.slice(1).flatMap(group=>group.slice(1,-1));
+const sourceShell=[sourceGroups[0][0],...sourceGroups.slice(1).flatMap(group=>[group[0],group[group.length-1]])];
+assert.deepEqual(sourceInterior,inner);
+assert.deepEqual(sourceShell,[p55[0],...outer]);
+assert.equal(sourceInterior.length,43);
+assert.equal(sourceShell.length,33);
+const E33=base29(sourceShell);
+assert.equal(E33,1369636156327157530854965033451154339299654501152n);
+assert.equal(E33,21n*29n**32n+E);
+assert.equal(E33%43n,38n);
+
+
 // P primality and the factor primality below are separately certified in
 // sims/lp2_p55_shed_prime_shell_sft.cjs; this is the exact source-derived field.
 const M=4n*5n*41n*49477n*15535963n;
 const L=101149063843788281988908603592862658065019147521n;
 assert.equal(M,630311729907820n);
 assert.equal(P-1n,M*L);
+
+// Exact source-selected full-page shell order. P-1 = 4*5*41*49477*15535963*L.
+// E33 has order (P-1)/5, not P-1; the 5 is the only missing prime factor.
+const sourceOrder=(P-1n)/5n;
+assert.equal(powMod(E33,sourceOrder,P),1n);
+for(const q of [2n,41n,49477n,15535963n,L])
+  assert.notEqual(powMod(E33,sourceOrder/q,P),1n);
+for(const value of [2n,5n,8n,19n])
+  assert.notEqual(powMod(value,sourceOrder,P),1n);
+console.log('source_selected_43_33_shell_order=(P-1)/5');
+console.log('p28_DH_values_2_5_8_19_all_outside_source_selected_subgroup');
+
 for(const q of [2n,5n,41n,49477n,15535963n,L])
   assert.notEqual(powMod(Q,(P-1n)/q,P),1n);
 
@@ -186,4 +231,4 @@ const output=gpDigits(root43);
 assert.equal(output.length,42);
 assert.equal(root43,15234406656757422027455490330089151796805602605736279814014578n);
 console.log('source_43rd_root_gp='+output.map(i=>data.translit[i]).join(' '));
-console.log('PASS: original p55/LP2 p55 conditional GF(P) field restrictions');
+console.log('PASS: original p55 conditional 43/32 and source-selected 43/33 GF(P) field restrictions');
