@@ -8,6 +8,8 @@
 
 - **Director #2522 completed:** independently reset shared period-8 GP29 literal-F clock on two black scroll passages p3:122→p6:71 (690 runes), p6:82→p7:194 (308). 139/137 training runes; first F-free length-8 anchors give 15,464/3,866 exact key candidates, zero intersection even with one arbitrary wrong derived key symbol per anchor. Four applicable planted LP1 pairs recover exact keys/full plaintexts, two with nonempty holdouts in both streams; two controls lack eligible anchors. [Report](../../im-results/lp2-scroll-joint-fhold-period8-original-gate.md), [SFT](../../sims/lp2_scroll_joint_fhold_period8_sft.cjs), code b8d12f51/2888363f report d9b7380a. Closed #2522 with actual result; no unknown plaintext. Retire this conditional common period/key/framing route.
 
+- **Director #2526 completed:** exact native replays of WELCOME, KOAN and AN END label true plaintext F holds. Original JPEG crop analysis (22 unambiguously aligned actual glyphs). Opposite-label pair 03:47/48 has identical native 114×34 mask; 73:47/56 identical 115×35 mask, same black line. Cross-object frozen centroids fail, p56 only 4/5 (always-ordinary baseline). No exact visible F shape/ink tag, no LP2 clock inferred. [Report](../../im-results/lp1-lp2-transparent-f-original-glyph-production-gate.md), [SFT](../../sims/lp1_lp2_transparent_f_original_glyph_sft.py). Commits 06773287/ef7959c1; original local archive tested. Closed #2526.
+
 ## Previous invocation — 24 November 2026, draw 6
 
 - Immutable remotely verified lease: `agent5-draw6-0232ff32-b479-4bb5-984e-32060bf4d828`, claimed 2026-11-24T05:45:19.791244Z, commit e1d8c01ae28d41e8bdc82099455b61fc666a6cc7. Normal 70-minute threshold 2026-11-24T06:55:19.791244Z. Never refresh or delete another run's lease.
