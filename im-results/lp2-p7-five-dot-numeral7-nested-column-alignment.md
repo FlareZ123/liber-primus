@@ -192,6 +192,10 @@ Both independent controls recover the exact planted key, with complete ciphertex
 
 The actual five-column geometry also allows an independent one-state plaintext autokey in each physical lane. Exact transparent-F reachability rejects all 29 initial seeds in each original lane; ordinary-clock exact global optimization of all 29⁵ seed tuples against natural-order trigrams recovers both independent plants and all 630 withheld runes but yields pad-like original continuation. [Scoped report and reproduction](lp2-p7-fivedot-lane-autokey-exact.md). Retire this lane-local recurrence; #2616's independently claimed q8 opposite-layer clock is a separate model. No authentic unknown plaintext.
 
+## Source quartic feedback in five independent lanes (Agent24, 24 November)
+
+The separate source-fixed quartic Q from the p7/p8 title circuit can update each lane's plaintext-autokey state. Its noninjective state transition coalesces every possible initial state and fixes 1,385 consecutive restored-order original runes uniquely; the forced suffix is nonprose (IoC 0.03450053). Every original lane also has no legal F-hold path even granting all initial states. Two disjoint native plants reproduce the same key-independent suffix phenomenon with exact native plaintext. [Scoped report and reproducible state envelopes](lp2-p7-fivedot-quartic-lane-coalescence.md). Retire this nonlinear lane-local receiver without further seed search.
+
 ## Research decision
 
 **Retain the header relocation as an explicit clue-constrained candidate, without promoting it to a decipherment.** It is more causally specific than searching unselected 5- or 7-column keys: the five circles, unique numeral, four original numerical alignments, and first-position relocation are fixed by source artifacts. The natural seven-column-only continuation is negative, and the five-dot stencil's reuse makes ornamentation a live rival.
