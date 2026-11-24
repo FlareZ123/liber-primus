@@ -18,13 +18,13 @@ const enc=(w,j)=>w.map(v=>v===0?0:(v+K[j++])%29);
 const perm=[5,10,8,12,13,0,4,9,11,15,1,7,2,14,3,6],plant=enc(plain,0);
 const cipher=plant.slice();for(let k=0;k+16<=plant.length;k+=16)for(let j=0;j<16;j++)cipher[k+perm[j]]=plant[k+j];
 function anchors(ws,offset){let i=-offset;return ws.map(w=>{const q={i,w};i+=w.length;return q}).filter(x=>x.i>=0&&x.i+x.w.length<=928).sort((a,b)=>b.w.length-a.w.length).slice(0,12)}
-function scan(c,aa,truth){return aa.map(({i,w})=>{let hmax=c.slice(0,Math.min(c.length,Math.ceil((i+1)/16)*16)).filter(v=>v===0).length;hmax=Math.min(i,hmax);let count=0,sol=new Set(),correct=false,wordCount=0;for(const {w:p,name} of dict[w.length].values()){let found=false;for(let h=0;h<=hmax;h++){const e=enc(p,i-h),m=e.map((v,j)=>{const b=Math.floor((i+j)/16)*16;let mask=0;for(let z=0;z<16;z++)if(c[b+z]===v)mask|=1<<z;return [((i+j)%16),mask]});if(m.some(x=>!x[1]))continue;m.sort((a,b)=>a[1].toString(2).replace(/0/g,"").length-b[1].toString(2).replace(/0/g,"").length);const map=Array(16).fill(-1);function dfs(j,used){if(j===m.length){count++;found=true;if(truth&&map.every((v,k)=>v<0||v===perm[k])&&p.every((v,k)=>v===w[k]))correct=true;sol.add(map.join(","));return}let bits=m[j][1]&~used;while(bits){const bit=bits&-bits;bits^=bit;map[m[j][0]]=31-Math.clz32(bit);dfs(j+1,used|bit);map[m[j][0]]=-1}}dfs(0,0)}if(found)wordCount++}return {i,len:w.length,hmax,dict:dict[w.length].size,wordCount,assignments:sol.size,paths:count,truthInDict:truth?dict[w.length].has(w.join(",")):null,correct:truth?correct:null}})}
+function scan(c,aa,truth){return aa.map(({i,w})=>{let hmax=c.slice(0,Math.min(c.length,lead+Math.ceil((i+1-lead)/16)*16)).filter(v=>v===0).length;hmax=Math.min(i,hmax);let count=0,sol=new Set(),correct=false,wordCount=0;for(const {w:p,name} of dict[w.length].values()){let found=false;for(let h=0;h<=hmax;h++){const e=enc(p,i-h),m=e.map((v,j)=>{const b=Math.floor((i+j)/16)*16;let mask=0;for(let z=0;z<16;z++)if(c[b+z]===v)mask|=1<<z;return [((i+j)%16),mask]});if(m.some(x=>!x[1]))continue;m.sort((a,b)=>a[1].toString(2).replace(/0/g,"").length-b[1].toString(2).replace(/0/g,"").length);const map=Array(16).fill(-1);function dfs(j,used){if(j===m.length){count++;found=true;if(truth&&map.every((v,k)=>v<0||v===perm[k])&&p.every((v,k)=>v===w[k]))correct=true;sol.add(map.join(","));return}let bits=m[j][1]&~used;while(bits){const bit=bits&-bits;bits^=bit;map[m[j][0]]=31-Math.clz32(bit);dfs(j+1,used|bit);map[m[j][0]]=-1}}dfs(0,0)}if(found)wordCount++}return {i,len:w.length,hmax,dict:dict[w.length].size,wordCount,assignments:sol.size,paths:count,truthInDict:truth?dict[w.length].has(w.join(",")):null,correct:truth?correct:null}})}
 
-function sweep(c,aa,truth){
+function sweep(c,aa,truth,lead=0){
  let live=new Uint8Array(3302).fill(1);const rows=[];
  for(const {i,w} of aa){
   let hmax=Math.min(i,c.slice(0,Math.min(c.length,Math.ceil((i+1)/16)*16)).filter(v=>v===0).length);
-  const tab=w.map((_,j)=>{let b=Math.floor((i+j)/16)*16, m=new Uint16Array(29);for(let z=0;z<16;z++)m[c[b+z]]|=1<<z;return m});
+  const tab=w.map((_,j)=>{let b=lead+Math.floor((i+j-lead)/16)*16, m=new Uint16Array(29);if(i+j<lead||b+16>c.length){m[c[i+j]]=1<<((i+j-lead+16)%16);return m}for(let z=0;z<16;z++)m[c[b+z]]|=1<<z;return m});
   let next=new Uint8Array(3302), starts=0, nwords=dict[w.length].size, checks=0;
   const hasMatching=m=>{const a=m.slice().sort((a,b)=>pop[a]-pop[b]);function dfs(j,used){if(j===a.length)return true;let bits=a[j]&~used;while(bits){const v=bits&-bits;bits^=v;if(dfs(j+1,used|v))return true}return false}return dfs(0,0)};
   const pop=new Uint8Array(65536);for(let j=1;j<pop.length;j++)pop[j]=pop[j>>1]+(j&1);
@@ -40,7 +40,7 @@ function sweep(c,aa,truth){
 }
 const origin=133;
 const p2=enc(plain,origin), c2=p2.slice();for(let k=0;k+16<=p2.length;k+=16)for(let j=0;j<16;j++)c2[k+perm[j]]=p2[k+j];
-const orig=sweep(raw,anchors(original,start),null), control=sweep(c2,anchors(donorWords,0),{origin});
+const orig=Array.from({length:16},(_,lead)=>({lead,...sweep(raw,anchors(original,start),null,lead)})), control=sweep(c2,anchors(donorWords,0),{origin});
 return {orig,control,dict:dict.map(x=>x.size)};
 
 }
