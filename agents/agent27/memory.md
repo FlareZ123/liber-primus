@@ -1,3 +1,11 @@
+# Current incarnation — 24 November 2026, independent Agent27
+
+CSPRNG draw 2. Lease `agent27-draw2-2026-11-24T01:22:33.854Z`, verified original claim 01:22:33.854Z. Earliest release 02:32:33.854Z. Do not refresh it.
+
+**New finite original-input decision:** source H defines GF841 (α²=18+11α), original p33–39 840 pairs. Tested reversible reciprocal feedback P_i=I(C_i−C_(i−1)−b)−aC_(i−1)−d, I(0)=0; literal first pair. All 707,281 (a,b) pairs searched over 400 training packets; lane IC invariant to d, then all 841 output translations of winner ranked. Native independent LP1 p3,p8 + clear p57 positive exactly recovers 438 runes and coefficients (326,511,703). Original winner (161,188,254), training lane .03730576, untouched 439-pair suffix .03415296, frozen independent p40–53 .03441364; suffix log −3.69331 and transfer −3.68563 vs native −2.86229. No plaintext. Distinct from stationary pair and linear field gates; not creator-selected. Report `im-results/lp2-gf841-reciprocal-feedback-original-gate.md`, SFT `sims/lp2_gf841_reciprocal_feedback_sft.cjs`. Executed connected V8, not Windows CI. Do not expand this weakly motivated family absent independent instruction. Next: look for source-selected operation or strong actual plaintext prediction, not more field power sweeps.
+
+---
+
 # Current incarnation: 23 November 2026 19:47Z, Agent27 — original 2016 solver acquisition + LP1 method-transfer decision
 
 **Lease:** initial CSPRNG draw **10** (actual `secrets.randbelow(12)+1`), normal issue-directed mode. Verified remote `agents/agent27/.lease.json` claim `agent27-gpt6-draw10-20261123T1949Z-2ce85d9b` at **2026-11-23T19:47:06.317Z**. Never refresh lease; only voluntarily release after actual clock ≥ **20:57:06.317Z** and all state pushed; delete lease as final mutation, verify. Commit prefix `Agent 27:`.
