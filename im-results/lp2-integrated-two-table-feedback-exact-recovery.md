@@ -1,8 +1,35 @@
-# Exact integrated-feedback dictionary recovery: shared offset and affine rows
+# Exact integrated-feedback dictionary recovery: arbitrary predecessor permutations, affine and offset rows
 
-**Agent 7, 24 November 2026.** Two nested, exact lexicon-conditioned key-recovery attacks on the original LP2 ciphertext. The more general affine-row architecture has now been excluded under one globally shared key and the expanded finite lexicon. Blinded native-GP controls yield exact withheld words. No authentic unknown LP2 plaintext or creator key recovered.
+**Agent 7, 24 November 2026.** Three nested exact key-recovery attacks on original LP2. The strongest book-global conditional exclusion now grants independently arbitrary 29! permutations for every plaintext predecessor. Blinded controls recover held-out native-GP words. No authentic unknown LP2 plaintext or creator key recovered.
 
-## Current strongest result: shared arbitrary alphabet and private affine predecessor rows
+## Strongest global result: independently arbitrary predecessor permutations
+
+Grant every previous plaintext rune q its own completely arbitrary 29-entry permutation Q[q] of GP29:
+
+```
+d_j = C_j - C_(j-1) = Q[P_(j-1)][P_j] mod 29
+P_j = inverse_Q[P_(j-1)][d_j]
+```
+
+Every word's first plaintext and ciphertext rune is free. The original printed groups are taken as complete same-length plaintext words. Rare original equal ciphertext neighbors could arise naturally if the row's zero step corresponds to a rare transition; no fixed reserved plaintext rune or common alphabet, linear slope, or affine row relation is imposed. No authenticated first-party selector for this model exists.
+
+A candidate word fixes directed pairs (q,p)→d. For each q, duplicate p must produce the same d and distinct p must produce distinct d. These are exact necessary **and sufficient** constraints for a partial row map to extend to a permutation. Any pairwise-compatible set of complete candidate words therefore extends to one real reversible global key, with no additional untested mathematical assumptions. The affine-row solver below becomes this larger exact CSP by removing its cross-row linear equations. Exact bitset propagation and dynamic smallest-domain branching enumerate assignments without a language-score threshold.
+
+All 25 original groups of length ≥12 are the training anchors. The two finite lexicons are those defined below (12,231 and 36,712 distinct GP spellings). Results:
+
+| Search | Candidate-state visits | Deepest feasible assignment | Complete assignments | Cap |
+|---|---:|---:|---:|---|
+| Original, narrow | 164 | 3 of 25 | 0 | not reached |
+| Original, broad | 60,704 | 7 of 25 | 0 | not reached |
+| Blind arbitrary-row control, broad | 33,704 | 25 of 25 | 2 | not reached |
+
+For the broad original, the 25 anchor indices in initial smallest-domain order are `754,2341,1353,2752,833,2886,631,2534,874,871,2169,1458,1891,512,1476,637,2781,1220,406,167,1215,444,376,2089,1498`. Initial candidate counts are printed by the SFT. One of the two blind control states has all 25 training words and all 117 assigned row entries correct; the rival differs in one training word and one row entry. Without any subsequent fit, the true state uniquely predicts 68/84 independent long words (709 runes), all 84 true compatible; it also uniquely predicts 26/228 independently encrypted exact solved-source words (270 runes), all 228 true compatible. The rival also uniquely recovers 68 long words, but excludes four known authentic donor words. Thus the finite training corpus did not identify every table entry or even uniquely distinguish both training states. This is an honest partial key recovery with out-of-training predictions.
+
+**Decision:** within this finite same-length lexicon, no single stationary integrated predecessor-row permutation can decode all 25 original long groups. This strictly subsumes the global affine/offset row restrictions. It grants `(29!)^29` independently selectable keys. It does not exclude within-chapter or word-dependent changes, alternate segmentation, or non-dictionary words. In particular, this result says nothing about the actual ciphertext if printed spacing is artificial. Chapter-local results below remain specific to their respective smaller families.
+
+**Reproduction:** [shared exact CSP SFT](../sims/lp2_integrated_affine_row_lexical_recovery_sft.cjs) with argument `arbitrary` (default `affine`), Node22/CommonJS, checked-in corpus, read-only. All original and plant computations were run on actual fetched data in connected V8; no independent CI claim.
+
+## Affine-row restriction: shared arbitrary alphabet and private row slopes
 
 A physically motivated extension of the earlier two-table model allows the preceding plaintext rune to change both the offset and slope of each ciphertext step. This could suppress adjacent repeats when the zero step corresponds to a rare, predecessor-dependent plaintext transition. The law is a conjecture, not a first-party instruction:
 
