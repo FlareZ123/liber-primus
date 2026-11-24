@@ -27,10 +27,28 @@ Without F hold, for each fixed multiplier a every plaintext rune after the singl
 
 Thus every ordinary inverse has at least 24 distinct one-rune plaintext groups. This strongly conflicts with native GP prose **if printed groups are words**. It is not an algebraic contradiction for a changed segmentation or nonlinguistic payload. It is independent of global alphabet relabeling as a *count* but the key law itself is fixed in canonical GP0 coordinates.
 
+## Independent artwork-chapter rekeying
+
+The global contradiction crosses the first artwork-chapter boundary for the last surviving nonnull key. To distinguish that from an invalid transfer of the continuous-clock conclusion, independently grant each of the nine established physical artwork-chapter spans its own affine parameters and free plaintext state at its first complete singleton. Only complete groups wholly inside the interval after that singleton are tested, so no assumed cross-chapter carry is required.
+
+| Physical span | First singleton word | Exclusive last word | Surviving (a,b), including null |
+|---|---:|---:|---|
+| p0–2 | 39 | 158 | (0,0), (27,26) |
+| p3–7 | 168 | 413 | (0,0) only |
+| p8–14 | 467 | 796 | (0,0) only |
+| p15–22 | 827 | 1233 | (0,0) only |
+| p23–26 | 1258 | 1457 | (0,0) only |
+| p27–32 | 1465 | 1783 | (0,0) only |
+| p33–39 | 1819 | 2161 | (0,0) only |
+| p40–53 | 2192 | 2830 | (0,0) only |
+| p54–55 | 2830 | 2896 | (0,0), (2,3), (8,14) |
+
+Seven of nine artwork-chapter intervals cannot support **any nonnull** affine key even with independently chosen key and arbitrary earlier state. The short opening and terminal intervals retain nonnull possibilities; those are legality survivors only and not recovered keys. This substantially narrows the separate chapter-reset alternative, but does not cover resets at arbitrary internal words or other marker clocks.
+
 ## Positive controls and reproducibility
 
 Three disjoint 150-group sections of the pinned published solved-GP comparator, with planted (a,b)=(3,7),(17,21),(28,12), retain the true F-hold branch at every step after their first singleton. The respective surviving parameter counts (including the always-legal null law) are 2,5,2; true final-word state counts are 1,2,6. These are reachability controls, not claims of unique full-trajectory recovery. The ordinary emitter returns the exact planted plaintext using the true key and seed; the minimum singleton-type counts in exhaustive searches are 1,2,2, equal to the respective true native counts. The solved-GP comparator is a published donor transcription; these controls do not assert perfect agreement with every original LP1 glyph.
 
 Reproducer: [read-only CommonJS SFT](../sims/lp2_affine_wordfed_autokey_allkey_sft.cjs). The central algorithms were executed directly on the fetched original corpus and published donor; no Windows CI run is claimed. Source input blobs: transcript 43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7, corpus 054f2a0f780b7d46901acbe3d9bf4f0ac1801165, donor 1b064ef6d85819b7d96adaff31a82d1ec551598f.
 
-**Disposition:** retire the whole shared affine previous-plaintext-word cyclic key family under the given continuous group framing and historical F-hold emission; do not rescue the rejected identity by changing only sign, scaling or adding an offset. The ordinary model remains algebraically invertible but fails its native-word prerequisite. Other state laws, separately source-selected resets, changed segmentation and external keys remain outside this result.
+**Disposition:** retire the whole shared affine previous-plaintext-word cyclic key family under the given continuous group framing and historical F-hold emission; seven individual artwork chapters also reject every nonnull key; do not rescue the rejected identity by changing only sign, scaling or adding an offset. The ordinary model remains algebraically invertible but fails its native-word prerequisite. Other state laws, separately source-selected resets, changed segmentation and external keys remain outside this result.

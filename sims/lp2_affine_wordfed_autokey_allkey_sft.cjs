@@ -116,3 +116,24 @@ assert.deepEqual(controls.map(c=>c.ordinary.best),[1,2,2]);
 console.log(JSON.stringify({first,live,dead:dead.length,longest:dead.slice(0,12),
   maxStates:Math.max(...results.map(x=>x.max)),ordinary:o,controls},null,2));
 console.log('PASS: every nonidentity affine F-hold law dies; ordinary family requires >=24 singleton types.');
+// Independent chapter keys and free restart state at the first full singleton.
+const chapters=[[0,2],[3,7],[8,14],[15,22],[23,26],[27,32],[33,39],[40,53],[54,55]];
+const offsets=[];let pos=0;for(const word of words){offsets.push(pos);pos+=word.length;}
+const chapterResults=chapters.map(([p,q])=>{
+  const lo=corpus.pages.filter(x=>x.page<p).reduce((s,x)=>s+x.indices.length,0);
+  const hi=lo+corpus.pages.filter(x=>x.page>=p&&x.page<=q).reduce((s,x)=>s+x.indices.length,0);
+  const start=words.findIndex((w,i)=>offsets[i]>=lo&&w.length===1);
+  const end=words.findIndex((w,i)=>offsets[i]+w.length>hi);
+  const stop=end<0?words.length:end;
+  const ws=words.slice(start,stop);assert(ws.length&&offsets[start]<hi);
+  const live=[];let last=0;
+  for(let a=0;a<29;a++)for(let b=0;b<29;b++){
+    const t=trace(ws,0,a,b);
+    if(t.death===null)live.push([a,b]);else last=Math.max(last,t.death);
+  }
+  return {p,q,start,stop,singletons:ws.filter(w=>w.length===1).length,live,lastDeath:start+last};
+});
+assert.deepEqual(chapterResults.map(x=>x.live),[
+  [[0,0],[27,26]],[[0,0]],[[0,0]],[[0,0]],[[0,0]],[[0,0]],[[0,0]],[[0,0]],[[0,0],[2,3],[8,14]]
+]);
+console.log(JSON.stringify({chapterResults},null,2));
