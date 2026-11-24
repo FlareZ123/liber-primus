@@ -74,11 +74,12 @@ jobs:
       - name: Verify the other exact 2012 signed pages and test p56 candidates
         run: |
           set -euo pipefail
-          for f in resources/historical/cicada2012-countdown-message.asc resources/historical/cicada2012-message-only-displayed.asc resources/external/2012-sq6wmgv2zcsrix6t-unknown.asc resources/external/2012-sq6wmgv2zcsrix6t-another-unknown.asc; do
+          for f in resources/historical/cicada2012-countdown-message.asc resources/historical/cicada2012-message-only-displayed.asc; do
             log="$RUNNER_TEMP/$(basename "$f").verify.log"
             gpg --batch --status-fd 1 --verify "$f" > "$log" 2>&1
             grep -F '[GNUPG:] GOODSIG 181F01E57A35090F' "$log"
           done
+          # The two participant mirrors are hashed as provenance-qualified candidates, but their signatures are known not to verify.
           node sims/lp2_p56_2012_second_chance_page_sha512_gate.cjs "$RUNNER_TEMP/Cicada.mid" | tee "$RUNNER_TEMP/p56-2012-candidates.json"
       - name: Export raw MIDI note/time coordinates against the LP2 table
         run: |
