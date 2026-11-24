@@ -1,0 +1,23 @@
+{
+  "avowy": {
+    "error": "Command '['/usr/bin/cc', '-O2', '-o', '/tmp/outguess-bitmap-qod9rznq/outguess_bitmap_dump', '/home/runner/work/liber-primus/liber-primus/sims/outguess_bitmap_dump.c', '-ljpeg']' returned non-zero exit status 1.",
+    "error_type": "CalledProcessError",
+    "image": "data.out",
+    "image_sha256": "8ebf4c48304145d86b65c4e9802c752a93e31cfb0583d0ec32d0105c893dab5a",
+    "label": "Avowy XOR-FF/gzip recovered page",
+    "status": "failed"
+  },
+  "interpretation_guard": "A nonempty or accepted header alone is not evidence of embedding; require a recognizable/authenticated payload or independent source confirmation.",
+  "original_page06_control": {
+    "error": "Command '['/usr/bin/cc', '-O2', '-o', '/tmp/outguess-bitmap-so_jj0l1/outguess_bitmap_dump', '/home/runner/work/liber-primus/liber-primus/sims/outguess_bitmap_dump.c', '-ljpeg']' returned non-zero exit status 1.",
+    "error_type": "CalledProcessError",
+    "image": "resources/liber-primus/06.jpg",
+    "image_sha256": "913e26462e51942f49ca3ce2e94ef56c5fb65110814442dccc02b0d88af2c5ca",
+    "label": "Original LP1 page 06",
+    "status": "failed"
+  },
+  "password": "Default key",
+  "question": "Does the Avowy render contain a distinct, recognizable default-key OutGuess payload relative to original LP1 page 06?",
+  "same_recovered_payload": false,
+  "selection_basis": "same literal key used in verified original LP1 OutGuess message carriers"
+}

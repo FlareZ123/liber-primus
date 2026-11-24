@@ -4,9 +4,9 @@ ExifTool Version Number         : 13.50
 File Name                       : data.out
 Directory                       : .
 File Size                       : 3.0 MB
-File Modification Date/Time     : 2026:11:24 10:47:01+00:00
-File Access Date/Time           : 2026:11:24 10:47:17+00:00
-File Inode Change Date/Time     : 2026:11:24 10:47:01+00:00
+File Modification Date/Time     : 2026:11:24 10:55:08+00:00
+File Access Date/Time           : 2026:11:24 10:55:30+00:00
+File Inode Change Date/Time     : 2026:11:24 10:55:08+00:00
 File Permissions                : -rw-r--r--
 ---- File ----
 File Type                       : JPEG

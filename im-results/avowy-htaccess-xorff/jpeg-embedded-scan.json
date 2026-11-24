@@ -1,0 +1,252 @@
+{
+  "source": "data.out",
+  "source_bytes": 3010703,
+  "source_sha256": "8ebf4c48304145d86b65c4e9802c752a93e31cfb0583d0ec32d0105c893dab5a",
+  "soi_offsets": [
+    0,
+    823807,
+    2371895,
+    3010700
+  ],
+  "eoi_offsets": [
+    823805,
+    1647319,
+    1672115,
+    1723295,
+    1808400,
+    1932105,
+    1939493,
+    1985640,
+    2141656,
+    2371897,
+    2391332,
+    2407773,
+    2424544,
+    2438199,
+    2452249,
+    2467273,
+    2569703,
+    2595229,
+    2660709,
+    2672482,
+    2676848,
+    2707124,
+    2716186,
+    2757570,
+    2763312,
+    2794772,
+    2805516,
+    2809675,
+    2817026,
+    2818948,
+    2824027,
+    2837771,
+    2839666,
+    2840711,
+    2843069,
+    2857427,
+    2905123,
+    2905126,
+    2922818,
+    2934768,
+    3005199
+  ],
+  "candidate_count": 4,
+  "candidates": [
+    {
+      "index": 0,
+      "offset": 0,
+      "remaining_bytes": 3010703,
+      "next_soi_offset": 823807,
+      "eoi_offsets_before_next_soi": [
+        823805
+      ],
+      "valid_image": true,
+      "format": "JPEG",
+      "dimensions": [
+        2400,
+        3600
+      ],
+      "mode": "RGB",
+      "stream_position_after_load": 851968,
+      "sha256_segment_to_first_eoi": "913e26462e51942f49ca3ce2e94ef56c5fb65110814442dccc02b0d88af2c5ca",
+      "segment_bytes": 823807,
+      "nearest_lp_pages": [
+        {
+          "path": "resources/liber-primus/06.jpg",
+          "phash": 0,
+          "dhash": 0,
+          "size": [
+            2400,
+            3600
+          ]
+        },
+        {
+          "path": "resources/liber-primus/08.jpg",
+          "phash": 4,
+          "dhash": 9,
+          "size": [
+            2400,
+            3600
+          ]
+        },
+        {
+          "path": "resources/liber-primus/07.jpg",
+          "phash": 6,
+          "dhash": 5,
+          "size": [
+            2400,
+            3600
+          ]
+        },
+        {
+          "path": "resources/liber-primus/09.jpg",
+          "phash": 12,
+          "dhash": 7,
+          "size": [
+            2400,
+            3600
+          ]
+        },
+        {
+          "path": "resources/liber-primus/10.jpg",
+          "phash": 20,
+          "dhash": 21,
+          "size": [
+            2400,
+            3600
+          ]
+        }
+      ],
+      "saved_segment": "jpeg-subimages/jpeg-0-offset-0.jpg"
+    },
+    {
+      "index": 1,
+      "offset": 823807,
+      "remaining_bytes": 2186896,
+      "next_soi_offset": 2371895,
+      "eoi_offsets_before_next_soi": [
+        1647319,
+        1672115,
+        1723295,
+        1808400,
+        1932105,
+        1939493,
+        1985640,
+        2141656
+      ],
+      "valid_image": true,
+      "format": "JPEG",
+      "dimensions": [
+        2400,
+        3600
+      ],
+      "mode": "RGB",
+      "stream_position_after_load": 851968,
+      "sha256_segment_to_first_eoi": "b50c1536ea1f30847e7875835991d52951bafb599fb1ab04eb78c5c6e6c2b468",
+      "segment_bytes": 823514,
+      "nearest_lp_pages": [
+        {
+          "path": "resources/liber-primus/07.jpg",
+          "phash": 0,
+          "dhash": 0,
+          "size": [
+            2400,
+            3600
+          ]
+        },
+        {
+          "path": "resources/liber-primus/08.jpg",
+          "phash": 4,
+          "dhash": 6,
+          "size": [
+            2400,
+            3600
+          ]
+        },
+        {
+          "path": "resources/liber-primus/06.jpg",
+          "phash": 6,
+          "dhash": 5,
+          "size": [
+            2400,
+            3600
+          ]
+        },
+        {
+          "path": "resources/liber-primus/09.jpg",
+          "phash": 8,
+          "dhash": 6,
+          "size": [
+            2400,
+            3600
+          ]
+        },
+        {
+          "path": "resources/liber-primus/13.jpg",
+          "phash": 20,
+          "dhash": 24,
+          "size": [
+            2400,
+            3600
+          ]
+        }
+      ],
+      "saved_segment": "jpeg-subimages/jpeg-1-offset-823807.jpg"
+    },
+    {
+      "index": 2,
+      "offset": 2371895,
+      "remaining_bytes": 638808,
+      "next_soi_offset": 3010700,
+      "eoi_offsets_before_next_soi": [
+        2371897,
+        2391332,
+        2407773,
+        2424544,
+        2438199,
+        2452249,
+        2467273,
+        2569703,
+        2595229,
+        2660709,
+        2672482,
+        2676848,
+        2707124,
+        2716186,
+        2757570,
+        2763312,
+        2794772,
+        2805516,
+        2809675,
+        2817026,
+        2818948,
+        2824027,
+        2837771,
+        2839666,
+        2840711,
+        2843069,
+        2857427,
+        2905123,
+        2905126,
+        2922818,
+        2934768,
+        3005199
+      ],
+      "valid_image": false,
+      "error_type": "UnidentifiedImageError",
+      "error": "cannot identify image file <_io.BytesIO object at 0x7711cc766700>"
+    },
+    {
+      "index": 3,
+      "offset": 3010700,
+      "remaining_bytes": 3,
+      "next_soi_offset": 3010703,
+      "eoi_offsets_before_next_soi": [],
+      "valid_image": false,
+      "error_type": "UnidentifiedImageError",
+      "error": "cannot identify image file <_io.BytesIO object at 0x7711dedd8bd0>"
+    }
+  ],
+  "warning": "SOI/EOI byte patterns alone are not proof of embedded images; require successful independent decode and inspect whether the stream is inside metadata or after the primary EOI."
+}

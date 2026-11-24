@@ -8,6 +8,7 @@
   "gzip_header_hex": "1f8b0808a4c8e2520003646174612e6f757400ecfd65545c5db72e8a169ae0c1",
   "payload_bytes": 3010703,
   "payload_sha256": "8ebf4c48304145d86b65c4e9802c752a93e31cfb0583d0ec32d0105c893dab5a",
+  "payload_sha1": "7e5296ad04bd6c197fd7da929773238073b1b9e8",
   "payload_header_hex": "ffd8ffe000104a46494600010101019001900000ffdb004300030202020202030202020303030304060404040404080606050609080a0a090809090a0c0f0c0a",
   "payload_prefix_ascii": "......JFIF.............C........................................",
   "payload_byte_entropy": 7.784111,
