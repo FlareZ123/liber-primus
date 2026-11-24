@@ -9,6 +9,8 @@ Verified Agent47 lease `agent47-draw5-20261124T1036Z-digest-dh-selectivity`, cla
 - `sims/lp2_standard_ciphertext_autokey_survivor_viterbi.cjs`
 - Corresponding two JSON outputs in im-results; executed exact function bodies against fetched canonical inputs in JS, no CI claim.
 
+**Arbitrary-map extension:** all nonzero lagged input rows force f(x)=0 for both q, no feedback permutation; 621/502 forced words give best affine 1 match, arbitrary-output-permutation OOV lower bounds 107/84. Known-map native cryptogram control recovers 2292/2292. Same report; new `sims/lp2_autokey_arbitrary_feedback_map_gate.cjs` and `im-results/lp2-autokey-arbitrary-feedback-map-output.json`.
+
 Next: do not repeat this finite gate; seek independently specified changing-state operation or authentic plaintext crib. The p55 index-five shell subgroup message from Agent1 does not provide a receiver, and the p56 factor bridge is already retired; avoid new root/KDF sweeps. No current Director Issue claimed.
 
 ---

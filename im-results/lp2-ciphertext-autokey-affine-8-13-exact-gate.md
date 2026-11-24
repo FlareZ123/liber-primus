@@ -44,3 +44,29 @@ The original suffixes are not connected readable native prose. For comparison, s
 Both exact function bodies were executed on the fetched repository JSON in a JavaScript runtime; no Windows Node CI result is claimed. Run either SFT from the repository using Node. The complete outputs preserve per-page constraints, native-plant outcomes, exact candidate suffixes and replay status.
 
 **Research decision:** retire the whole-book q8/q13 ciphertext-fed affine model under the stated queue and F-hold law. Retire standard additive page-local q8/q13 as an ordinary native-prose decoder on these pages. Do not retune arbitrary feedback lengths or offsets without an independent selector. #2549's plaintext-fed model is not excluded by this result.
+
+## Generalization: arbitrary stationary feedback and output permutation
+
+Consider `C=pi(P)+f(K) mod29`, where pi is any GP29 permutation with pi(0)=0 and f is **any** GP29→GP29 function. Preserve transparent plaintext F and the qth-consuming-ciphertext queue. Every zero-free q+1 interval implies f(C_(i-q)) != C_i independently of pi.
+
+| q | Usable pairs | Rows forced f(x)=0 | Maximum injective matching | Fully forced original words length ≥5 |
+|---|---:|---:|---:|---:|
+| 8 | 9,020 | 28/28 nonzero inputs | 2/29 | 621 |
+| 13 | 7,313 | 28/28 nonzero inputs | 2/29 | 502 |
+
+Each nonzero row sees all 28 nonzero successors. Hence all 28 nonzero inputs force f(x)=0; only f(0) remains unrestricted. This reduces the full 29^29 map space to at most 29 degenerate functions, **without assuming affine structure or language**. No feedback permutation survives; a planted genuine feedback permutation on native text admits 29/29 matching at both lengths.
+
+The surviving maps imply P=pi-inverse(C) at every forced position. Against a frozen 38,920-spelling GP29 lexicon (TextBlob wordfreq, historical rune transliteration variants and solved native words), the exact fully constrained words give:
+
+| q | Best matches over 28 affine output slopes | Pattern-impossible words under any zero-fixed pi | Additional disjoint incompatible word groups | OOV lower bound under any shared pi |
+|---|---:|---:|---:|---:|
+| 8 | 1/621 | 25 | 82 | 107/621 (17.23%) |
+| 13 | 1/502 | 19 | 65 | 84/502 (16.73%) |
+
+All words with no equality-pattern match are necessarily OOV. Remaining words are sorted by decreasing length, ties in source order. Exact word-candidate arc propagation, singleton injectivity and bipartite matching certify the disjoint incompatible groups. At least one word from each group must be OOV; groups are disjoint from the pattern-impossible words. This is a rigorous lower bound relative to the frozen vocabulary, not a global optimum or language-independent English theorem.
+
+A separate native-text, known-zero-feedback plant with unknown nontrivial output permutation recovers **1,192/1,192** and **1,100/1,100** q8/q13 anchor runes, with no OOV. Two mappings not occurring in the anchors remain unresolved. The control's own vocabulary is included, so this validates the constraint engine rather than blind vocabulary generalization.
+
+**Disposition:** the entire stationary one-input feedback-permutation family is impossible at q8 and q13 on the manuscript. Unrestricted stationary functions are forced into degenerate near-zero maps with nonnative forced-word behavior. No LP2 plaintext or key recovered. Page/chapter-changing maps, multiple inputs, time-varying maps and internal resets remain outside the tested scope.
+
+[Nonlinear feedback and cryptogram SFT](../sims/lp2_autokey_arbitrary_feedback_map_gate.cjs) · [complete output](lp2-autokey-arbitrary-feedback-map-output.json). Exact function body executed in JS against canonical repo inputs; no Windows CI result claimed.
