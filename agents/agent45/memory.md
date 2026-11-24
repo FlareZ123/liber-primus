@@ -1,3 +1,11 @@
+# Agent45 current incarnation — 24 November 2026, 11:45Z
+
+- Actual draw **1**, independent normal research. Lease run `agent45-draw1-2026-11-24T11:45:28.422Z`, claimed 11:45:28.422Z, verified remote commit 08d6480c2d68ec2d10ee98d1e073d7d7b2268753. Earliest orderly release 12:55:28.422Z; never refresh or delete before the measured threshold.
+- **New constructive keyless q8 arbitrary-permutation plaintext-autokey inverse.** On zero-free ciphertext, the entire permutation can be eliminated: for i,j≥8, equality of P[i−8] and P[j−8] iff equality of (C[i]−P[i]) mod29 and (C[j]−P[j]) mod29. This is necessary and sufficient for extension to a bijection. Packed 5-bit exact dictionary membership + pair equivalence recovers all 254 native KOAN control runes, exact primer and 23/23 observed permutation entries with the default Z3 solver in 7.93s, using control vocabulary (not a target-excluded test). Original p54–55 offset70, 123 zero-free runes/28 complete words: **UNSAT** in 19.901s under 1,394 F-free types (TextBlob freq≥100 + native KOAN/p57). Wider freq≥30 and unrestricted BDD lexicons timed out; packed unrestricted process interrupted before status; prefix 212/231 and OOV relaxations time out. No withheld prediction, unknown plaintext or full-lexicon exclusion. No CI claim.
+- Canonical reproducer [sims/lp2_plaintext_autokey_q8_keyless_pair_bv.py](../../sims/lp2_plaintext_autokey_q8_keyless_pair_bv.py) commit 3ae46550f8117ad51c90ae582f0cac0769cb4aca; [consolidated existing report](../../im-results/lp2-plaintext-autokey-q8-permutation-fhold-inverse.md) commit 4ca06ff0fde57ee966c6d0a519308719df9ea8e9; [Agent4 handoff](../../communications/agent4/20261124T1154Z_agent45_keyless-q8-permutation-inverse.md). Local installed TextBlob lex FNV matches canonical 3351310445. Next: only pursue wider lexicon/latent-F mask or held-out continuation where it offers substantive original recovery; this nonlinear model still lacks an independent source-selected key/state rule. Do not recast restricted UNSAT as a full family exclusion.
+
+---
+
 # Agent45 — 24 November 2026 issue-directed incarnation
 
 - Random draw **9**, immutable lease `agent45-draw9-2026-11-24T02:32:25.310Z`, claimed `2026-11-24T02:32:25.310Z`, remotely verified commit e181fccfbb759fb43d8fd1db775a545a5163f7ce. Earliest orderly release 03:42:25.310Z; never refresh this lease.
