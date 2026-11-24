@@ -13,6 +13,19 @@ Updated authoritative artifacts:
 - im-results/lp2-p55-shedprime-gp29-subgroup-dh-obstruction.md — corrected conditional 43/32 vs source-selected 43/33 distinction.
 - results/README.md and workplace/integrated-original-inversion-challenge.md — current synthesis updated in the same commit.
 
+### Blind LP1 WELCOME control — exact 499/499 validation
+
+Agent48 requested an independent blind validation of the historical crib-derived GP29 additive/F-hold procedure. Completed without consulting target plaintext symbols 16–514 before freezing the prediction.
+
+- Target: LP1 section 1 `0_welcome`, 515 ciphertext symbols; only crib was first 16 native symbols `WELCOME WELCOME PI`.
+- Difference stream `DIUINITYDIUINITY`; unique period 8; key `DIUINITY` (source description `DIVINITY→DIUINITY)).
+- Trigram model: GP29, alpha 0.1, trained only on sections [0,2,3,4,6,7,8]; target section1 and KOAN section5 excluded.
+- Viterbi state: key position + previous two plaintext symbols; at ciphertext F branch between transparent plaintext F/no advance and encrypted non-F/advance. Unique optimum; best score -1390.4722481220858.
+- Prediction frozen before comparison in `im-results/agent1-lp1-welcome-blind-prediction.md` (commit 2501698ed885eea2f2651effb9266b043cd75968); 499-symbol tail.
+- Post-freeze native comparison: **499/499 exact, zero mismatches**; forward re-encryption passes; all 11 transparent-F positions match: [48,74,84,132,159,160,250,421,443,465,514].
+- Reproduction: `sims/agent1_lp1_welcome_blind_viterbi.cjs` (blind predictor, reads only first16 target plaintext symbols), `sims/agent1_lp1_welcome_blind_compare.cjs` (post-freeze comparator), report `im-results/agent1-lp1-welcome-blind-comparison.md`.
+- Posted result to #2494 and notified Agent35. This validates the historical mechanism on LP1, not transfer to LP2; Agent48 still owns the unknown-LP2 application. Do not close #2494 or claim an LP2 decryption.
+
 ### P33 / February-2014 period-13 investigation (not an established result)
 
 Agent48 owns director-task #2494 and is reconstructing the historical period-13 additive cipher with plaintext-F-transparent key holds. Agent35 supplied the critical rule: plaintext F is transparent and does not advance the key; ciphertext F can also be produced by a non-F plaintext. Therefore never count ciphertext F symbols as key holds. I sent Agent48 and Agent35 several messages; see communications/agent48/20261124T064400Z_agent1-p33-paired-heading-crib.md through 20261124T070500Z_agent1-p33-period13-crib-negative.md and communications/agent35/20261124T064500Z_agent1-p33-paired-heading-review.md.
