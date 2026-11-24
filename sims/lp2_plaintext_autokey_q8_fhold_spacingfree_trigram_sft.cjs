@@ -65,21 +65,23 @@ function experiment(corpus,nativeJson,shakespeare,gibran){
  function attack(c){
   const a=c.slice(0,205),b=c.slice(205),rank=[];for(const h of masks(a)){const r=optimize(a,h);if(r)rank.push(r)}
   rank.sort((x,y)=>y.score-x.score);const fit=rank[0];if(!fit)return {fitMasks:masks(a).length,legalMasks:0};
+  assert(String(enc(fit.p,fit.key))===String(a),"exact prefix replay");
   let best=null;for(const h of masks(b)){const r=decode(b,fit.end,h);if(!r)continue;const s=score(r.p,fit.p.slice(-2));if(!best||s>best.score)best={...r,score:s,holds:[...h]}}
   if(best)assert(String(enc(fit.p.concat(best.p),fit.key))===String(c),"exact full replay");
   return {fitMasks:masks(a).length,legalMasks:rank.length,fit,held:best,runnerMask:rank[1]?.score,heldMasks:masks(b).length};
  }
  const controls=[];
  for(let n=0;n<names.length;n++){
-  const p=solved.find(x=>x.name===names[n]).p.slice(0,308);let seed=0x6a09e667+n*1009,chosen=null;
+  const source=solved.find(x=>x.name===names[n]).p;let p=source.slice(0,308);let seed=0x6a09e667+n*1009,chosen=null;
   function rng(){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return (seed>>>0)%29}
   for(let attempt=0;attempt<200;attempt++){const key=Array.from({length:q},rng),c=enc(p,key),z=c.slice(0,205).filter(x=>x===0).length,actual=p.slice(0,205).filter(x=>x===0).length;if(z<=8&&z>actual&&c.slice(205).filter(x=>x===0).length<=12){chosen={key,c,attempt};break}}
+  if(!chosen){for(let offset=16;offset+308<=source.length;offset+=16){const candidate=source.slice(offset,offset+308),key=Array.from({length:q},rng),c=enc(candidate,key),z=c.slice(0,205).filter(x=>x===0).length,actual=candidate.slice(0,205).filter(x=>x===0).length;if(z<=8&&z>actual&&c.slice(205).filter(x=>x===0).length<=12){p=candidate;chosen={key,c,attempt:null,offset};break}}}
   if(!chosen){controls.push({name:names[n],status:"no bounded plant"});continue}
   const r=attack(chosen.c),match=(x,y)=>x?x.filter((v,i)=>v===y[i]).length:0;
-  controls.push({name:names[n],plantAttempt:chosen.attempt,trueKey:chosen.key,fitMasks:r.fitMasks,legalMasks:r.legalMasks,fitScore:r.fit?.score/205,fitKey:r.fit?.key,fitMatches:match(r.fit?.p,p.slice(0,205)),heldScore:r.held?.score/103,heldMatches:match(r.held?.p,p.slice(205)),heldMasks:r.heldMasks,fitMaskMargin:r.fit&&r.runnerMask!==undefined?r.fit.score-r.runnerMask:null});
+  controls.push({name:names[n],plantAttempt:chosen.attempt,offset:chosen.offset||0,trueKey:chosen.key,fitMasks:r.fitMasks,legalMasks:r.legalMasks,fitScore:r.fit?.score/205,fitKey:r.fit?.key,fitMatches:match(r.fit?.p,p.slice(0,205)),heldScore:r.held?.score/103,heldMatches:match(r.held?.p,p.slice(205)),heldMasks:r.heldMasks,fitMaskMargin:r.fit&&r.runnerMask!==undefined?r.fit.score-r.runnerMask:null});
  }
  const target=gp.pages.slice(54,56).flatMap(x=>x.indices);assert(target.length===308,"original length");
- const r=attack(target);const translit=p=>p?.map(x=>gp.translit[x]).join("");
- return {trainLengths:train.map(x=>x.length),controls,original:{fitMasks:r.fitMasks,legalMasks:r.legalMasks,fitKey:r.fit?.key,fitScore:r.fit?.score/205,fitHolds:r.fit?.holds,fitPlain:translit(r.fit?.p),fitMaskMargin:r.fit&&r.runnerMask!==undefined?r.fit.score-r.runnerMask:null,heldMasks:r.heldMasks,heldScore:r.held?.score/103,heldPlain:translit(r.held?.p),heldHolds:r.held?.holds,exactReplay:r.held?308:0}};
+ const r=attack(target);const global=[];for(const h of masks(target)){const s=optimize(target,h);if(s)global.push(s)}global.sort((a,b)=>b.score-a.score);const g=global[0];assert(g&&String(enc(g.p,g.key))===String(target),"global replay");const translit=p=>p?.map(x=>gp.translit[x]).join("");
+ return {trainLengths:train.map(x=>x.length),controls,original:{globalMasks:masks(target).length,globalLegalMasks:global.length,globalScore:g.score/target.length,globalKey:g.key,globalHolds:g.holds,globalPlain:translit(g.p),globalReplay:target.length,fitMasks:r.fitMasks,legalMasks:r.legalMasks,fitKey:r.fit?.key,fitScore:r.fit?.score/205,fitHolds:r.fit?.holds,fitPlain:translit(r.fit?.p),fitMaskMargin:r.fit&&r.runnerMask!==undefined?r.fit.score-r.runnerMask:null,heldMasks:r.heldMasks,heldScore:r.held?.score/103,heldPlain:translit(r.held?.p),heldHolds:r.held?.holds,exactReplay:r.held?308:0}};
 }
 console.log(JSON.stringify(experiment(...["resources/liber-primus/lp2-corpus.json","resources/external/relikd-solved-gp29-native-v1.json","resources/control/shakespeare_first300k.txt","resources/control/gibran_prophet_58585.txt"].map(read)),null,2));
