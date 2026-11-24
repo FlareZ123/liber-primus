@@ -33,7 +33,7 @@ jobs:
       - name: Download and verify exact original 761.MP3
         run: |
           curl --fail --location --retry 3 --retry-delay 2 \
-            "https://raw.githubusercontent.com/krisyotam/cicada3301/b4ed6ec95d67c88d8f6f1a34b5f4d36c4c80d37c/puzzles/2013/cicada-os/AUDIO/761.MP3" \
+            "https://raw.githubusercontent.com/krisyotam/cicada3301/main/puzzles/2013/cicada-os/AUDIO/761.MP3" \
             --output /tmp/761.MP3
           python - <<'PY'
           import hashlib
