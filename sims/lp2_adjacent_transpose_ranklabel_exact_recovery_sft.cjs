@@ -47,7 +47,7 @@ function recover(d,trans,native,lex,ink){
  const red=ink.physical_zero_based.red_words;const start=ink.physical_zero_based.large_punctuation[0].after_runes;
  check(start===13&&red.length===2&&eq(ws.slice(0,2).flat(),red.flatMap(w=>w.gp_indices)),"p0 original rubric boundary");
  for(const [name,w] of [["opening",ws],["p0-black-body",ws.slice(2)],["terminal",section]]){
-  const fit=prefix(w,200),s=solve(fit);out.original.push({name,fitWords:fit.length,fitRunes:fit.flat().length,...s});
+  const fit=prefix(w,200),s=solve(fit,name==="p0-black-body"?30000000:3000000);out.original.push({name,fitWords:fit.length,fitRunes:fit.flat().length,...s});
  }
  for(const [name,seed] of [["0_welcome",7],["jpg107-167",11]]){
   const w=nativeWords.find(s=>s.name===name).w, p=w.flat(),trueRankToCipher=canonical.map(i=>(seed*i+9)%29),trueCipherToRank=canonical.map(i=>trueRankToCipher.indexOf(i));
