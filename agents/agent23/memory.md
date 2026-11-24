@@ -25,17 +25,21 @@ The exact LP1 p5 moth-key correction is **81 GP runes**, not 82: the IO in FUNCT
 - \`im-results/lp1p5-moth-2014-source81-textguide.md\` and \`sims/lp2_lp1p5_moth_source81_corrected_sft.cjs\` — exact 81-rune p5 key.
 - Inputs: \`resources/liber-primus/lp1-plaintext-reference.txt\`, \`lp2-corpus.json\`, \`lp2-p0-physical-ink-override.json\`, and \`results/lp1-source-orthography.md\`.
 
+- `sims/lp2_p56_adjacent_p57_sha512_sft.cjs` — adjacent final-page SHA-512 gate. The original p57 scan 74.jpg, rune glyphs, GP transliteration, one-byte GP29 indices, exact reference text, normalized words, and letters-only text all fail to match the p56 target. The user-uploaded zip's 74.jpg is byte-identical to the repository blob. Node22 SFT PASS run 45433601598.
+- `im-results/external-pnotisdev-cicada3301-status-2026-10-21.md` — pinned independent external research index. It records broad negative key screens and three 2012 line:character book-code reproductions; use as a prior, not first-party evidence.
+- `communications/broadcast/20261124T1611Z_agent23_textguide-p57-external-index.md` — concise handoff of this run's corrections and results.
+
 Windows Node22 manual SFT verification: historical/p0/p55 script PASS (run 45431393517); clean prior-LP1 key script PASS after correcting the exact editorial count to 273 (run 45431978890). The first prior-LP1 dispatch failed only because the assertion expected 272; the corrected assertion and script passed.
 
 **Research decision:** retain the 2014 message as a real solve-path clue, but do not repeat arbitrary key phases, offsets, or longer key extensions. These exact source-constrained transfers recover no unknown LP2 plaintext, authentic new key, or final destination.
 
 ## Communication and next work
 
-Read the new Agent20 mailbox note on the distinct first17/560.17 branch; it confirms the p0–p16 low/high 5-bit XOR is already bounded and should not be repeated. Agent15's older coordination question concerns reconstructing the complete first17 LP1 stream; this invocation is not doing that. Avoid overlap and check current issue comments before taking that route.
+Read the new Agent20 mailbox note on the distinct first17/560.17 branch; it confirms the p0–p16 low/high 5-bit XOR is already bounded and should not be repeated. Agent15's older coordination question concerned reconstructing the complete first17 LP1 stream; issue #2398 is now closed, and this invocation is not doing that. Avoid overlap.
 
-Continue independent exploration only on a genuinely new first-party clue or source-derived operation with a causal path to plaintext. Do not reopen the 2013 RAND/DH/KOAN branch, the 560.17 p0–p16 XOR, or the text-guide transfers just completed.
+Continue independent exploration only on a genuinely new first-party clue or source-derived operation with a causal path to plaintext. Do not reopen the 2013 RAND/DH/KOAN branch, the 560.17 p0–p16 XOR, the text-guide transfers, or the adjacent-p57 SHA-512 candidates just completed. The external pnotisdev status is a useful independent negative index; its 2012 line:character precedent matters only if an LP2 clue supplies a source and coordinates.
 
-**Measured checkpoint:** runtime UTC at 2026-11-24T16:00:32.835Z; lease age 29m44s, below the 70-minute threshold. Continue work and recheck after the next checkpoint.
+**Measured checkpoint:** runtime UTC at 2026-11-24T16:15:57.147Z; lease age 45m08s, below the 70-minute threshold. Continue work and recheck after the next checkpoint.
 
 ---
 # Archived prior handoff — 24 November 2026, draw5
