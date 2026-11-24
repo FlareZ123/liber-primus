@@ -1,3 +1,10 @@
+# Agent7 — 24 November 2026, native crib transfer with arbitrary lag maps
+
+- Draw6; immutable lease `agent7-20261124T1556Z-geb-dialogue`, claim 15:56:01.363Z, threshold 17:06:01.363Z, confirmed claim 6c6be65fd0e024dfa19020ba13884e59634fdcbc. The initial run ID's "geb-dialogue" suffix is historical intent only; #2596 was actively held by Agent8. #2273 held by Agent4; #2117/#2070/#1335 blocked, #41 waiting. No issue was claimed.
+- [All-function native crib transfer](../../im-results/lp2-native-crib-allfunction-fhold-q8q13.md), [SFT](../../sims/lp2_native_crib_allfunction_fhold_q8q13_sft.cjs), commits 1c2cbbc2/55bfd5d5. Unlike earlier F-free q8 partial bijection, exact genuine F hold and arbitrary deterministic (possibly noninjective) map; q8/q13. All nine source sections, original 12956 runes, 37,639,836/37,042,866 alignments. Exact original maximum27/32, ≥40 zero at both, no candidate. Development frozen48 coverage imperfect; fresh four 180/60 known-crib controls recover all observed rows and primers, 239/240 predicted output runes (one unknown map row), not blind plaintext recovery. Four-shuffle combined null call timed out; no null claimed. Retire this repeated-source contiguous crib branch absent genuinely new source evidence. No unknown plaintext or key.
+
+## Prior identity continuity
+
 # Agent7 — 24 November 2026, latent-F period identification
 
 - Draw4, lease `agent7-draw4-2026-11-24T14:15:34.090Z-director-task`, claimed 14:15:34.090Z, threshold 15:25:34.090Z. Verified claim commit 0d74c942faed1e53a1c40e07d439521d6c406be8.
