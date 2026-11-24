@@ -1,0 +1,1338 @@
+{
+  "inputHashes": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    },
+    {
+      "path": "resources/external/2013-book-of-law-I.txt",
+      "sha": "64876892683fab1467481fe87d85743a8ea17982"
+    },
+    {
+      "path": "resources/external/2013-book-of-law-II.txt",
+      "sha": "cb4353b080d7584441f85502aeccb60796e6fe0f"
+    },
+    {
+      "path": "resources/external/2013-book-of-law-III.txt",
+      "sha": "36e716252a271d31f5c4ba25b3cb78199ccc1114"
+    },
+    {
+      "path": "resources/external/cicada2012-blake-marriage-gutenberg45315.txt",
+      "sha": "44149cc32fa8a46501a95059283526a8a3429705"
+    }
+  ],
+  "regions": [
+    {
+      "lo": 0,
+      "hi": 56,
+      "n": 12956,
+      "breaks": [
+        262,
+        528,
+        729,
+        946,
+        1207,
+        1470,
+        1666,
+        1874,
+        2129,
+        2397,
+        2660,
+        2933,
+        3194,
+        3466,
+        3603,
+        3762,
+        4029,
+        4302,
+        4562,
+        4833,
+        5102,
+        5375,
+        5506,
+        5719,
+        5989,
+        6262,
+        6527,
+        6761,
+        7030,
+        7307,
+        7570,
+        7839,
+        7960,
+        8174,
+        8435,
+        8706,
+        8944,
+        9172,
+        9400,
+        9640,
+        9871,
+        10144,
+        10416,
+        10690,
+        10963,
+        11233,
+        11503,
+        11777,
+        12048,
+        12114,
+        12206,
+        12469,
+        12648,
+        12880
+      ],
+      "within": 86,
+      "continuous": 86
+    },
+    {
+      "lo": 0,
+      "hi": 40,
+      "n": 9640,
+      "breaks": [
+        262,
+        528,
+        729,
+        946,
+        1207,
+        1470,
+        1666,
+        1874,
+        2129,
+        2397,
+        2660,
+        2933,
+        3194,
+        3466,
+        3603,
+        3762,
+        4029,
+        4302,
+        4562,
+        4833,
+        5102,
+        5375,
+        5506,
+        5719,
+        5989,
+        6262,
+        6527,
+        6761,
+        7030,
+        7307,
+        7570,
+        7839,
+        7960,
+        8174,
+        8435,
+        8706,
+        8944,
+        9172,
+        9400
+      ],
+      "within": 65,
+      "continuous": 65
+    },
+    {
+      "lo": 40,
+      "hi": 54,
+      "n": 3008,
+      "breaks": [
+        231,
+        504,
+        776,
+        1050,
+        1323,
+        1593,
+        1863,
+        2137,
+        2408,
+        2474,
+        2566,
+        2829
+      ],
+      "within": 18,
+      "continuous": 18
+    },
+    {
+      "lo": 54,
+      "hi": 56,
+      "n": 308,
+      "breaks": [
+        232
+      ],
+      "within": 3,
+      "continuous": 3
+    },
+    {
+      "lo": 0,
+      "hi": 3,
+      "n": 729,
+      "breaks": [
+        262,
+        528
+      ],
+      "within": 4,
+      "continuous": 4
+    },
+    {
+      "lo": 3,
+      "hi": 8,
+      "n": 1145,
+      "breaks": [
+        217,
+        478,
+        741,
+        937
+      ],
+      "within": 6,
+      "continuous": 6
+    },
+    {
+      "lo": 8,
+      "hi": 15,
+      "n": 1729,
+      "breaks": [
+        255,
+        523,
+        786,
+        1059,
+        1320,
+        1592
+      ],
+      "within": 9,
+      "continuous": 9
+    },
+    {
+      "lo": 15,
+      "hi": 23,
+      "n": 1903,
+      "breaks": [
+        159,
+        426,
+        699,
+        959,
+        1230,
+        1499,
+        1772
+      ],
+      "within": 10,
+      "continuous": 10
+    },
+    {
+      "lo": 23,
+      "hi": 27,
+      "n": 1021,
+      "breaks": [
+        213,
+        483,
+        756
+      ],
+      "within": 11,
+      "continuous": 11
+    },
+    {
+      "lo": 27,
+      "hi": 33,
+      "n": 1433,
+      "breaks": [
+        234,
+        503,
+        780,
+        1043,
+        1312
+      ],
+      "within": 13,
+      "continuous": 13
+    },
+    {
+      "lo": 33,
+      "hi": 40,
+      "n": 1680,
+      "breaks": [
+        214,
+        475,
+        746,
+        984,
+        1212,
+        1440
+      ],
+      "within": 12,
+      "continuous": 12
+    }
+  ],
+  "results": [
+    {
+      "name": "Gibran",
+      "length": 47703,
+      "parts": [
+        {
+          "lo": 0,
+          "hi": 56,
+          "windows": 34748,
+          "continuous": {
+            "min": 140,
+            "start": 24580,
+            "increment": 22
+          },
+          "pageLocal": {
+            "min": 136,
+            "start": 24811,
+            "increment": 22
+          },
+          "minNonFPairs": 12135,
+          "conditionalIidTail": 0.00002527872804818205
+        },
+        {
+          "lo": 0,
+          "hi": 40,
+          "windows": 38064,
+          "continuous": {
+            "min": 97,
+            "start": 21951,
+            "increment": 22
+          },
+          "pageLocal": {
+            "min": 94,
+            "start": 21988,
+            "increment": 22
+          },
+          "minNonFPairs": 9031,
+          "conditionalIidTail": 0.006597848317085815
+        },
+        {
+          "lo": 40,
+          "hi": 54,
+          "windows": 44696,
+          "continuous": {
+            "min": 20,
+            "start": 28628,
+            "increment": 22
+          },
+          "pageLocal": {
+            "min": 19,
+            "start": 28629,
+            "increment": 22
+          },
+          "minNonFPairs": 2782,
+          "conditionalIidTail": 0.9735656521670923
+        },
+        {
+          "lo": 54,
+          "hi": 56,
+          "windows": 47396,
+          "continuous": {
+            "min": 0,
+            "start": 464,
+            "increment": 11
+          },
+          "pageLocal": {
+            "min": 0,
+            "start": 464,
+            "increment": 11
+          },
+          "minNonFPairs": 269,
+          "conditionalIidTail": 1
+        },
+        {
+          "lo": 0,
+          "hi": 3,
+          "windows": 46975,
+          "continuous": {
+            "min": 1,
+            "start": 12401,
+            "increment": 22
+          },
+          "pageLocal": {
+            "min": 1,
+            "start": 6193,
+            "increment": 11
+          },
+          "minNonFPairs": 659,
+          "conditionalIidTail": 1
+        },
+        {
+          "lo": 3,
+          "hi": 8,
+          "windows": 46559,
+          "continuous": {
+            "min": 4,
+            "start": 30430,
+            "increment": 22
+          },
+          "pageLocal": {
+            "min": 3,
+            "start": 30645,
+            "increment": 22
+          },
+          "minNonFPairs": 1047,
+          "conditionalIidTail": 1
+        },
+        {
+          "lo": 8,
+          "hi": 15,
+          "windows": 45975,
+          "continuous": {
+            "min": 9,
+            "start": 15499,
+            "increment": 22
+          },
+          "pageLocal": {
+            "min": 8,
+            "start": 15530,
+            "increment": 22
+          },
+          "minNonFPairs": 1588,
+          "conditionalIidTail": 1
+        },
+        {
+          "lo": 15,
+          "hi": 23,
+          "windows": 45801,
+          "continuous": {
+            "min": 11,
+            "start": 15411,
+            "increment": 22
+          },
+          "pageLocal": {
+            "min": 10,
+            "start": 15581,
+            "increment": 22
+          },
+          "minNonFPairs": 1750,
+          "conditionalIidTail": 1
+        },
+        {
+          "lo": 23,
+          "hi": 27,
+          "windows": 46683,
+          "continuous": {
+            "min": 2,
+            "start": 30602,
+            "increment": 22
+          },
+          "pageLocal": {
+            "min": 2,
+            "start": 30602,
+            "increment": 22
+          },
+          "minNonFPairs": 930,
+          "conditionalIidTail": 1
+        },
+        {
+          "lo": 27,
+          "hi": 33,
+          "windows": 46271,
+          "continuous": {
+            "min": 6,
+            "start": 15824,
+            "increment": 22
+          },
+          "pageLocal": {
+            "min": 5,
+            "start": 24623,
+            "increment": 11
+          },
+          "minNonFPairs": 1319,
+          "conditionalIidTail": 1
+        },
+        {
+          "lo": 33,
+          "hi": 40,
+          "windows": 46024,
+          "continuous": {
+            "min": 9,
+            "start": 15499,
+            "increment": 22
+          },
+          "pageLocal": {
+            "min": 8,
+            "start": 15512,
+            "increment": 22
+          },
+          "minNonFPairs": 1541,
+          "conditionalIidTail": 1
+        }
+      ]
+    },
+    {
+      "name": "Shakespeare",
+      "length": 217644,
+      "parts": [
+        {
+          "lo": 0,
+          "hi": 56,
+          "windows": 204689,
+          "continuous": {
+            "min": 147,
+            "start": 162533,
+            "increment": 11
+          },
+          "pageLocal": {
+            "min": 142,
+            "start": 162710,
+            "increment": 11
+          },
+          "minNonFPairs": 12277,
+          "conditionalIidTail": 0.000002567082484123059
+        },
+        {
+          "lo": 0,
+          "hi": 40,
+          "windows": 208005,
+          "continuous": {
+            "min": 103,
+            "start": 162533,
+            "increment": 11
+          },
+          "pageLocal": {
+            "min": 100,
+            "start": 162693,
+            "increment": 11
+          },
+          "minNonFPairs": 9113,
+          "conditionalIidTail": 0.0009126934874076397
+        },
+        {
+          "lo": 40,
+          "hi": 54,
+          "windows": 214637,
+          "continuous": {
+            "min": 22,
+            "start": 54961,
+            "increment": 11
+          },
+          "pageLocal": {
+            "min": 20,
+            "start": 54965,
+            "increment": 11
+          },
+          "minNonFPairs": 2809,
+          "conditionalIidTail": 0.9016663584865554
+        },
+        {
+          "lo": 54,
+          "hi": 56,
+          "windows": 217337,
+          "continuous": {
+            "min": 0,
+            "start": 279,
+            "increment": 25
+          },
+          "pageLocal": {
+            "min": 0,
+            "start": 144,
+            "increment": 7
+          },
+          "minNonFPairs": 269,
+          "conditionalIidTail": 1
+        },
+        {
+          "lo": 0,
+          "hi": 3,
+          "windows": 216916,
+          "continuous": {
+            "min": 1,
+            "start": 90564,
+            "increment": 25
+          },
+          "pageLocal": {
+            "min": 0,
+            "start": 90607,
+            "increment": 25
+          },
+          "minNonFPairs": 665,
+          "conditionalIidTail": 1
+        },
+        {
+          "lo": 3,
+          "hi": 8,
+          "windows": 216500,
+          "continuous": {
+            "min": 5,
+            "start": 68165,
+            "increment": 11
+          },
+          "pageLocal": {
+            "min": 4,
+            "start": 68267,
+            "increment": 11
+          },
+          "minNonFPairs": 1055,
+          "conditionalIidTail": 1
+        },
+        {
+          "lo": 8,
+          "hi": 15,
+          "windows": 215916,
+          "continuous": {
+            "min": 10,
+            "start": 34072,
+            "increment": 4
+          },
+          "pageLocal": {
+            "min": 9,
+            "start": 34075,
+            "increment": 4
+          },
+          "minNonFPairs": 1608,
+          "conditionalIidTail": 1
+        },
+        {
+          "lo": 15,
+          "hi": 23,
+          "windows": 215742,
+          "continuous": {
+            "min": 11,
+            "start": 54757,
+            "increment": 11
+          },
+          "pageLocal": {
+            "min": 10,
+            "start": 54770,
+            "increment": 11
+          },
+          "minNonFPairs": 1773,
+          "conditionalIidTail": 1
+        },
+        {
+          "lo": 23,
+          "hi": 27,
+          "windows": 216624,
+          "continuous": {
+            "min": 3,
+            "start": 68284,
+            "increment": 11
+          },
+          "pageLocal": {
+            "min": 2,
+            "start": 68285,
+            "increment": 11
+          },
+          "minNonFPairs": 938,
+          "conditionalIidTail": 1
+        },
+        {
+          "lo": 27,
+          "hi": 33,
+          "windows": 216212,
+          "continuous": {
+            "min": 8,
+            "start": 54713,
+            "increment": 11
+          },
+          "pageLocal": {
+            "min": 7,
+            "start": 54723,
+            "increment": 11
+          },
+          "minNonFPairs": 1327,
+          "conditionalIidTail": 1
+        },
+        {
+          "lo": 33,
+          "hi": 40,
+          "windows": 215965,
+          "continuous": {
+            "min": 10,
+            "start": 34072,
+            "increment": 4
+          },
+          "pageLocal": {
+            "min": 9,
+            "start": 34116,
+            "increment": 4
+          },
+          "minNonFPairs": 1561,
+          "conditionalIidTail": 1
+        }
+      ]
+    },
+    {
+      "name": "Emerson",
+      "length": 308478,
+      "parts": [
+        {
+          "lo": 0,
+          "hi": 56,
+          "windows": 295523,
+          "continuous": {
+            "min": 124,
+            "start": 227877,
+            "increment": 11
+          },
+          "pageLocal": {
+            "min": 122,
+            "start": 227449,
+            "increment": 11
+          },
+          "minNonFPairs": 12053,
+          "conditionalIidTail": 0.002663650760672136
+        },
+        {
+          "lo": 0,
+          "hi": 40,
+          "windows": 298839,
+          "continuous": {
+            "min": 81,
+            "start": 230608,
+            "increment": 11
+          },
+          "pageLocal": {
+            "min": 79,
+            "start": 230618,
+            "increment": 11
+          },
+          "minNonFPairs": 8937,
+          "conditionalIidTail": 0.2668517194113958
+        },
+        {
+          "lo": 40,
+          "hi": 54,
+          "windows": 305471,
+          "continuous": {
+            "min": 21,
+            "start": 230880,
+            "increment": 11
+          },
+          "pageLocal": {
+            "min": 20,
+            "start": 230899,
+            "increment": 11
+          },
+          "minNonFPairs": 2764,
+          "conditionalIidTail": 0.9016663584865554
+        },
+        {
+          "lo": 54,
+          "hi": 56,
+          "windows": 308171,
+          "continuous": {
+            "min": 0,
+            "start": 224,
+            "increment": 26
+          },
+          "pageLocal": {
+            "min": 0,
+            "start": 224,
+            "increment": 26
+          },
+          "minNonFPairs": 266,
+          "conditionalIidTail": 1
+        },
+        {
+          "lo": 0,
+          "hi": 3,
+          "windows": 307750,
+          "continuous": {
+            "min": 0,
+            "start": 101106,
+            "increment": 25
+          },
+          "pageLocal": {
+            "min": 0,
+            "start": 101106,
+            "increment": 25
+          },
+          "minNonFPairs": 647,
+          "conditionalIidTail": 1
+        },
+        {
+          "lo": 3,
+          "hi": 8,
+          "windows": 307334,
+          "continuous": {
+            "min": 1,
+            "start": 101106,
+            "increment": 25
+          },
+          "pageLocal": {
+            "min": 1,
+            "start": 101106,
+            "increment": 25
+          },
+          "minNonFPairs": 1025,
+          "conditionalIidTail": 1
+        },
+        {
+          "lo": 8,
+          "hi": 15,
+          "windows": 306750,
+          "continuous": {
+            "min": 5,
+            "start": 101040,
+            "increment": 25
+          },
+          "pageLocal": {
+            "min": 4,
+            "start": 101111,
+            "increment": 25
+          },
+          "minNonFPairs": 1577,
+          "conditionalIidTail": 1
+        },
+        {
+          "lo": 15,
+          "hi": 23,
+          "windows": 306576,
+          "continuous": {
+            "min": 7,
+            "start": 101040,
+            "increment": 25
+          },
+          "pageLocal": {
+            "min": 6,
+            "start": 101048,
+            "increment": 25
+          },
+          "minNonFPairs": 1736,
+          "conditionalIidTail": 1
+        },
+        {
+          "lo": 23,
+          "hi": 27,
+          "windows": 307458,
+          "continuous": {
+            "min": 1,
+            "start": 101106,
+            "increment": 25
+          },
+          "pageLocal": {
+            "min": 0,
+            "start": 101204,
+            "increment": 25
+          },
+          "minNonFPairs": 914,
+          "conditionalIidTail": 1
+        },
+        {
+          "lo": 27,
+          "hi": 33,
+          "windows": 307046,
+          "continuous": {
+            "min": 4,
+            "start": 101106,
+            "increment": 25
+          },
+          "pageLocal": {
+            "min": 3,
+            "start": 101119,
+            "increment": 25
+          },
+          "minNonFPairs": 1298,
+          "conditionalIidTail": 1
+        },
+        {
+          "lo": 33,
+          "hi": 40,
+          "windows": 306799,
+          "continuous": {
+            "min": 4,
+            "start": 101106,
+            "increment": 25
+          },
+          "pageLocal": {
+            "min": 4,
+            "start": 101072,
+            "increment": 25
+          },
+          "minNonFPairs": 1532,
+          "conditionalIidTail": 1
+        }
+      ]
+    },
+    {
+      "name": "Crowley",
+      "length": 21538,
+      "parts": [
+        {
+          "lo": 0,
+          "hi": 56,
+          "windows": 8583,
+          "continuous": {
+            "min": 178,
+            "start": 7130,
+            "increment": 22
+          },
+          "pageLocal": {
+            "min": 173,
+            "start": 7138,
+            "increment": 22
+          },
+          "minNonFPairs": 12122,
+          "conditionalIidTail": 2.096419238730098e-12
+        },
+        {
+          "lo": 0,
+          "hi": 40,
+          "windows": 11899,
+          "continuous": {
+            "min": 124,
+            "start": 7057,
+            "increment": 22
+          },
+          "pageLocal": {
+            "min": 121,
+            "start": 7138,
+            "increment": 22
+          },
+          "minNonFPairs": 8982,
+          "conditionalIidTail": 1.664140163176918e-7
+        },
+        {
+          "lo": 40,
+          "hi": 54,
+          "windows": 18531,
+          "continuous": {
+            "min": 31,
+            "start": 8610,
+            "increment": 11
+          },
+          "pageLocal": {
+            "min": 29,
+            "start": 8722,
+            "increment": 11
+          },
+          "minNonFPairs": 2756,
+          "conditionalIidTail": 0.08933457371428084
+        },
+        {
+          "lo": 54,
+          "hi": 56,
+          "windows": 21231,
+          "continuous": {
+            "min": 0,
+            "start": 856,
+            "increment": 18
+          },
+          "pageLocal": {
+            "min": 0,
+            "start": 856,
+            "increment": 18
+          },
+          "minNonFPairs": 242,
+          "conditionalIidTail": 1
+        },
+        {
+          "lo": 0,
+          "hi": 3,
+          "windows": 20810,
+          "continuous": {
+            "min": 2,
+            "start": 6397,
+            "increment": 25
+          },
+          "pageLocal": {
+            "min": 2,
+            "start": 6218,
+            "increment": 25
+          },
+          "minNonFPairs": 630,
+          "conditionalIidTail": 1
+        },
+        {
+          "lo": 3,
+          "hi": 8,
+          "windows": 20394,
+          "continuous": {
+            "min": 6,
+            "start": 14698,
+            "increment": 22
+          },
+          "pageLocal": {
+            "min": 5,
+            "start": 14698,
+            "increment": 22
+          },
+          "minNonFPairs": 1022,
+          "conditionalIidTail": 1
+        },
+        {
+          "lo": 8,
+          "hi": 15,
+          "windows": 19810,
+          "continuous": {
+            "min": 12,
+            "start": 7130,
+            "increment": 22
+          },
+          "pageLocal": {
+            "min": 11,
+            "start": 7141,
+            "increment": 22
+          },
+          "minNonFPairs": 1567,
+          "conditionalIidTail": 0.8236877699532359
+        },
+        {
+          "lo": 15,
+          "hi": 23,
+          "windows": 19636,
+          "continuous": {
+            "min": 14,
+            "start": 7130,
+            "increment": 22
+          },
+          "pageLocal": {
+            "min": 12,
+            "start": 7135,
+            "increment": 22
+          },
+          "minNonFPairs": 1730,
+          "conditionalIidTail": 0.8379604024519546
+        },
+        {
+          "lo": 23,
+          "hi": 27,
+          "windows": 20518,
+          "continuous": {
+            "min": 5,
+            "start": 6129,
+            "increment": 25
+          },
+          "pageLocal": {
+            "min": 5,
+            "start": 6125,
+            "increment": 25
+          },
+          "minNonFPairs": 905,
+          "conditionalIidTail": 1
+        },
+        {
+          "lo": 27,
+          "hi": 33,
+          "windows": 20106,
+          "continuous": {
+            "min": 9,
+            "start": 7130,
+            "increment": 22
+          },
+          "pageLocal": {
+            "min": 8,
+            "start": 7147,
+            "increment": 22
+          },
+          "minNonFPairs": 1294,
+          "conditionalIidTail": 1
+        },
+        {
+          "lo": 33,
+          "hi": 40,
+          "windows": 19859,
+          "continuous": {
+            "min": 12,
+            "start": 5460,
+            "increment": 25
+          },
+          "pageLocal": {
+            "min": 11,
+            "start": 7097,
+            "increment": 22
+          },
+          "minNonFPairs": 1522,
+          "conditionalIidTail": 1
+        }
+      ]
+    },
+    {
+      "name": "Blake",
+      "length": 18751,
+      "parts": [
+        {
+          "lo": 0,
+          "hi": 56,
+          "windows": 5796,
+          "continuous": {
+            "min": 173,
+            "start": 628,
+            "increment": 22
+          },
+          "pageLocal": {
+            "min": 169,
+            "start": 766,
+            "increment": 22
+          },
+          "minNonFPairs": 12217,
+          "conditionalIidTail": 1.530903415076214e-11
+        },
+        {
+          "lo": 0,
+          "hi": 40,
+          "windows": 9112,
+          "continuous": {
+            "min": 117,
+            "start": 965,
+            "increment": 22
+          },
+          "pageLocal": {
+            "min": 114,
+            "start": 1016,
+            "increment": 22
+          },
+          "minNonFPairs": 9067,
+          "conditionalIidTail": 0.0000037933030640196565
+        },
+        {
+          "lo": 40,
+          "hi": 54,
+          "windows": 15744,
+          "continuous": {
+            "min": 24,
+            "start": 1442,
+            "increment": 22
+          },
+          "pageLocal": {
+            "min": 23,
+            "start": 1008,
+            "increment": 22
+          },
+          "minNonFPairs": 2778,
+          "conditionalIidTail": 0.5555505052984255
+        },
+        {
+          "lo": 54,
+          "hi": 56,
+          "windows": 18444,
+          "continuous": {
+            "min": 0,
+            "start": 377,
+            "increment": 8
+          },
+          "pageLocal": {
+            "min": 0,
+            "start": 377,
+            "increment": 8
+          },
+          "minNonFPairs": 266,
+          "conditionalIidTail": 1
+        },
+        {
+          "lo": 0,
+          "hi": 3,
+          "windows": 18023,
+          "continuous": {
+            "min": 1,
+            "start": 1492,
+            "increment": 22
+          },
+          "pageLocal": {
+            "min": 1,
+            "start": 1492,
+            "increment": 22
+          },
+          "minNonFPairs": 650,
+          "conditionalIidTail": 1
+        },
+        {
+          "lo": 3,
+          "hi": 8,
+          "windows": 17607,
+          "continuous": {
+            "min": 7,
+            "start": 1008,
+            "increment": 22
+          },
+          "pageLocal": {
+            "min": 6,
+            "start": 1014,
+            "increment": 22
+          },
+          "minNonFPairs": 1039,
+          "conditionalIidTail": 1
+        },
+        {
+          "lo": 8,
+          "hi": 15,
+          "windows": 17023,
+          "continuous": {
+            "min": 13,
+            "start": 1492,
+            "increment": 22
+          },
+          "pageLocal": {
+            "min": 12,
+            "start": 1542,
+            "increment": 22
+          },
+          "minNonFPairs": 1584,
+          "conditionalIidTail": 0.6630788624815991
+        },
+        {
+          "lo": 15,
+          "hi": 23,
+          "windows": 16849,
+          "continuous": {
+            "min": 15,
+            "start": 1333,
+            "increment": 22
+          },
+          "pageLocal": {
+            "min": 13,
+            "start": 1537,
+            "increment": 22
+          },
+          "minNonFPairs": 1748,
+          "conditionalIidTail": 0.6863570158776777
+        },
+        {
+          "lo": 23,
+          "hi": 27,
+          "windows": 17731,
+          "continuous": {
+            "min": 5,
+            "start": 1256,
+            "increment": 22
+          },
+          "pageLocal": {
+            "min": 4,
+            "start": 1279,
+            "increment": 22
+          },
+          "minNonFPairs": 923,
+          "conditionalIidTail": 1
+        },
+        {
+          "lo": 27,
+          "hi": 33,
+          "windows": 17319,
+          "continuous": {
+            "min": 10,
+            "start": 1492,
+            "increment": 22
+          },
+          "pageLocal": {
+            "min": 9,
+            "start": 7784,
+            "increment": 25
+          },
+          "minNonFPairs": 1309,
+          "conditionalIidTail": 1
+        },
+        {
+          "lo": 33,
+          "hi": 40,
+          "windows": 17072,
+          "continuous": {
+            "min": 13,
+            "start": 1256,
+            "increment": 22
+          },
+          "pageLocal": {
+            "min": 12,
+            "start": 1258,
+            "increment": 22
+          },
+          "minNonFPairs": 1539,
+          "conditionalIidTail": 1
+        }
+      ]
+    }
+  ],
+  "nativeControls": [
+    {
+      "name": "0_warning",
+      "n": 184,
+      "increment": 7,
+      "forced": 0,
+      "observed": 0,
+      "exactReplay": 184
+    },
+    {
+      "name": "0_welcome",
+      "n": 515,
+      "increment": 22,
+      "forced": 5,
+      "observed": 7,
+      "exactReplay": 515
+    },
+    {
+      "name": "0_wisdom",
+      "n": 157,
+      "increment": 11,
+      "forced": 1,
+      "observed": 2,
+      "exactReplay": 157
+    },
+    {
+      "name": "0_koan_1",
+      "n": 780,
+      "increment": 4,
+      "forced": 4,
+      "observed": 5,
+      "exactReplay": 780
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "n": 755,
+      "increment": 22,
+      "forced": 2,
+      "observed": 2,
+      "exactReplay": 755
+    },
+    {
+      "name": "jpg107-167",
+      "n": 319,
+      "increment": 11,
+      "forced": 1,
+      "observed": 1,
+      "exactReplay": 319
+    },
+    {
+      "name": "p57_parable",
+      "n": 95,
+      "increment": 12,
+      "forced": 0,
+      "observed": 1,
+      "exactReplay": 95
+    }
+  ],
+  "extremal": [
+    {
+      "name": "Gibran",
+      "forced": 136,
+      "observed": 164,
+      "exactReplay": 12956
+    },
+    {
+      "name": "Shakespeare",
+      "forced": 142,
+      "observed": 167,
+      "exactReplay": 12956
+    },
+    {
+      "name": "Emerson",
+      "forced": 122,
+      "observed": 170,
+      "exactReplay": 12956
+    },
+    {
+      "name": "Crowley",
+      "forced": 173,
+      "observed": 192,
+      "exactReplay": 12956
+    },
+    {
+      "name": "Blake",
+      "forced": 169,
+      "observed": 193,
+      "exactReplay": 12956
+    }
+  ],
+  "authenticP56": "85/85"
+}
