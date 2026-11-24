@@ -7,7 +7,10 @@ const gp = JSON.parse(fs.readFileSync(path.join(__dirname,"../resources/liber-pr
 const source=gp.pages.filter(p=>p.page<=55).flatMap(p=>p.indices);
 const singleton=[];
 let cursor=0;
-for(const w of parseSharedCorpus().words){
+const parsed=parseSharedCorpus();
+const byRune=new Map(gp.runes.map((r,i)=>[r,i]));
+assert.deepEqual(parsed.words.flatMap(w=>[...w.runes].map(x=>byRune.get(x))),source);
+for(const w of parsed.words){
   if(w.length===1)singleton.push(cursor);
   cursor+=w.length;
 }
