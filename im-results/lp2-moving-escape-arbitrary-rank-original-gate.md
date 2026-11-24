@@ -49,6 +49,21 @@ A separate frequency-only bound grants arbitrary plaintext E at every zero step 
 
 The independently published [native-E study](lp2-rank28-period1-256-allsecret-native-e-capacity.md) reports a minimum 1,397 E among its 1,129,739 full-length independent Gibran/Shakespeare/Emerson GP control windows. Thus the global/chapter stationary rank envelope cannot reach even that weakest control, regardless of word boundaries, escape placement, or hidden fixed plaintext alphabet order. This is distinct from the earlier one-rank fixed-sentinel E bound. The source-native solved sample has 380 E in 2,979 runes. The page-private two-rank bound does not independently exclude English.
 
+## Source-visible page-clock rekey extension
+
+The page-private stationary envelope survives, but two low-complexity shared-key page rotations are independently testable. Let k_i be either the physical page number (zero-based) or the totient of its corresponding prime (first page maps to prime 2). For nonzero difference d let q=d−1 or log_15(d) mod 28. Test both signs and both placements of the page rotation: rank R(q−k_i) or R(q)−k_i, modulo 28. These are sixteen frozen variants, with unrestricted shared 28! rank permutation and unrestricted moving escape.
+
+For each plaintext category, construct a 28×28 matrix whose cell (q,r) counts sites compatible with assigning rank r to input q, accounting for the respective rotation. Maximum-weight perfect matching gives the exact attainable count across every shared permutation. Zero steps and the initial rune are granted free category membership. Singleton sites use the expanded A/I/O/T vocabulary.
+
+| Page clock | Rotation placement | Maximum singleton sites (of 83) | Maximum E (of 12,956) |
+|---|---|---:|---:|
+| Physical label | Before R | 46 | 1,108 |
+| Physical label | After R | 60 | 1,305 |
+| Prime totient | Before R | 40 | 1,091 |
+| Prime totient | After R | 55 | 1,275 |
+
+Maxima within a row may occur under different variants or permutations. Every variant independently fails both the intact-singleton constraint and the minimum native E control count 1,397. This excludes these specific shared-key rekeys; unrestricted private page keys and other schedules are not excluded. The exact calculation ran in connected V8 on original corpus and transcript. The same SFT now emits all sixteen rows; source revision 1c27b49c86d387ef95b3139ad213ae149f58e906.
+
 ## Actual blind rank recovery, held-out control
 
 Use 93 genuine solved-Cicada >=7-rune words that are present in the pinned lexicon. Seed 0x33010624 generates an arbitrary 28-rank permutation and an arbitrary 29-entry causal escape lookup f. Encrypt the complete control word tape continuously. Train only on the first 73 ciphertext words: enumerate candidate domains, repeatedly intersect the union of surviving candidates for each word, and prune rank edges that cannot extend to a matching. The true rank key survives and 22/28 ranks are uniquely identified. All 20 untouched control words retain their exact genuine plaintext candidate under the frozen training domains. Known-full-key control replay is exact. This is partial blind rank recovery, **not** full blind escape-table recovery; six ranks remain ambiguous, and the true escape table was not inferred. No original plaintext is claimed.
