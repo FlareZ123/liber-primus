@@ -187,3 +187,37 @@ const survivorDecodes=[[39,158,27,26],[2830,2896,2,3],[2830,2896,8,14]].map(
 assert.deepEqual(survivorDecodes.map(x=>x.paths),['124928','8','4']);
 assert.deepEqual(survivorDecodes.map(x=>x.matchedRunes),[0,0,0]);
 console.log(JSON.stringify({survivorDecodes},null,2));
+
+// Extend to every shared linear combination of GP0 and prime-minus-one coordinates.
+function stepMap(c,states,f){
+  const out=new Set();
+  for(const k of states){
+    const n=k.length;
+    function dfs(i,t,p){
+      if(i===c.length){out.add(p);return;}
+      const v=(c[i]+29-f[k.charCodeAt(t%n)])%29;
+      if(c[i]===0)dfs(i+1,t,p+'\0');
+      if(v!==0)dfs(i+1,t+1,p+seeds[v]);
+    }
+    dfs(0,0,'');
+  }
+  return out;
+}
+const combined=[];
+for(let b=1;b<29;b++)for(let a=0;a<29;a++)for(let c=0;c<29;c++){
+  const f=corpus.prime.map((p,i)=>mod(a*i+b*(p-1)+c));
+  let states=new Set(seeds),max=29,death=null;
+  for(let j=first+1;j<words.length;j++){
+    states=stepMap(words[j],states,f);
+    max=Math.max(max,states.size);
+    if(!states.size){death=j;break;}
+  }
+  combined.push({a,b,c,death,max});
+}
+assert.equal(combined.length,23548);
+assert(combined.every(x=>x.death!==null));
+combined.sort((x,y)=>y.death-x.death);
+assert.equal(combined[0].death,171);
+assert.equal(Math.max(...combined.map(x=>x.max)),210);
+console.log(JSON.stringify({combinedKeys:combined.length,longest:combined.slice(0,10),
+  maxStates:Math.max(...combined.map(x=>x.max))},null,2));
