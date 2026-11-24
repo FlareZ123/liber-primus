@@ -7,6 +7,19 @@ function experiment(inputs){
  const parse=s=>(s.replace(/[\s/%]/g,"").match(/[\u16a0-\u16ff]+/g)||[]).map(w=>Array.from(w,x=>runeMap.get(x)).join(""));
  const original=parse(trans).slice(0,2896);
  assert(original.join("")===gp.pages.slice(0,56).flatMap(p=>p.indices).map(ch).join(""),"original source");
+ let wrapped=null,wrapperEdits=null,wrap=null,unwrap=null;
+ if(inputs[7]){
+  const grid=JSON.parse(inputs[7]),tokens=grid.pages.flatMap(p=>p.tokens),special=[0,2,12,21,22,25,27,28];
+  assert(tokens.length===256,"grid");
+  const marker=i=>tokens[i][0]==="0"?0:special[grid.bytes[i]&7],swap=(v,a,b)=>v===a?b:v===b?a:v;
+  unwrap=(c,off=0,prev=0)=>c.map((v,i)=>i+off===0?v:swap(v,i?c[i-1]:prev,marker((i+off-1)&255)));
+  wrap=(m,off=0,prev=0)=>{const c=[];for(let i=0;i<m.length;i++)c.push(i+off===0?m[i]:swap(m[i],i?c[i-1]:prev,marker((i+off-1)&255)));return c};
+  const c=Array.from(original.join(""),num),m=unwrap(c);
+  wrapperEdits=m.filter((v,i)=>v!==c[i]).length;
+  assert(wrapperEdits===549,"frozen outer edits");
+  assert(String(wrap(m))===String(c),"outer original replay");
+  let off=0;wrapped=original.map(w=>{const a=m.slice(off,off+w.length).map(ch).join("");off+=w.length;return a});
+ }
  const dict=Array.from({length:40},()=>new Set()),lexCounts=new Map(),trainCounts=new Map();
  const add=w=>{if(w.length&&w.length<40)dict[w.length].add(w)};
  const incr=(m,k,v)=>m.set(k,(m.get(k)||0)+v);
@@ -16,7 +29,7 @@ function experiment(inputs){
  for(const w of native.sections.flatMap(s=>parse(s.source_text)))add(w);
  function body(s){const a=/\*\*\* START OF (?:THIS|THE) PROJECT GUTENBERG EBOOK[^\r\n]*\*\*\*/i.exec(s);if(a)s=s.slice(a.index+a[0].length);const b=/\*\*\* END OF (?:THIS|THE) PROJECT GUTENBERG EBOOK/i.exec(s);return b?s.slice(0,b.index):s}
  function donor(s){const w=[];for(let t of body(s).match(/[A-Za-z]+/g)||[]){t=norm(t);let p="";while(t.length){let c=null;for(let n=Math.min(t.length,3);n>=1;n--){const x=alpha.get(t.slice(0,n));if(x!==undefined){c=x;t=t.slice(n);break}}if(c===null)throw Error("token");p+=c}w.push(p)}return w}
- const donors=inputs.slice(4).map(donor),cuts=donors.map(d=>Math.floor(d.length*.7));for(let t=0;t<donors.length;t++){const d=donors[t];for(const w of d)add(w);for(const w of d.slice(0,cuts[t]))if(w.length<40)incr(trainCounts,w,1)}
+ const donors=inputs.slice(4,7).map(donor),cuts=donors.map(d=>Math.floor(d.length*.7));for(let t=0;t<donors.length;t++){const d=donors[t];for(const w of d)add(w);for(const w of d.slice(0,cuts[t]))if(w.length<40)incr(trainCounts,w,1)}
  const vocab=dict.flatMap(s=>[...s]),sum=m=>[...m.values()].reduce((a,b)=>a+b,0),lt=sum(lexCounts),tt=sum(trainCounts);
  const weight=new Map(),prefix=new Map(),suffix=new Map(),within=new Map(),lengthWeight=new Float64Array(40);let meanLen=0;
  for(const w of vocab){const a=.49*(lexCounts.get(w)||0)/lt+.49*(trainCounts.get(w)||0)/tt+.02/vocab.length;weight.set(w,a);meanLen+=a*w.length;lengthWeight[w.length]+=a;
@@ -38,16 +51,20 @@ function experiment(inputs){
  let seed=0x33010825;function rand(n){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return (seed>>>0)%n}
  const bylen=donors.map((d,t)=>{let a=Array.from({length:40},()=>[]);for(const w of d.slice(cuts[t]))if(w.length<40)a[w.length].push(w);return a});
  const keyStreams=donors.map((d,t)=>d.slice(cuts[t]).join(""));
- const out=[],controls=[[],[]];
+ const out=[],wrappedAnchors=[],controls=[[],[]];let wrapperControlReplays=0;
  let offset=0;for(let wi=0;wi<original.length;wi++){const c=original[wi],L=c.length;if(L>=9){const ca=analyze(c);out.push({wi,offset,L,c:render(c),n:ca.n,logBF:ca.logBF,confidence:ca.confidence,top5:ca.top5.map(x=>({p:render(x.p),k:render(x.k),posterior:x.post}))});
+  if(wrapped){const w=wrapped[wi],r=analyze(w);wrappedAnchors.push({wi,offset,L,changed:Array.from(w).filter((v,i)=>v!==c[i]).length,logBF:r.logBF,rawLogBF:ca.logBF,confidence:r.confidence,top5:r.top5.map(x=>({p:render(x.p),k:render(x.k),posterior:x.post}))})}
   for(let t=0;t<2;t++){const source=t===0?0:2,keysource=t===0?1:0,arr=bylen[source][L];if(!arr.length)continue;const p=arr[rand(arr.length)],ks=keyStreams[keysource],k=ks.slice(rand(ks.length-L)).slice(0,L),cp=encode(p,k),r=analyze(cp,p);assert(r.rank>0,"native truth support");
+   if(wrapped){const prev=offset?num(original.join("")[offset-1]):0,inner=Array.from(cp,num),outer=wrap(inner,offset,prev),decoded=unwrap(outer,offset,prev);assert(String(decoded)===String(inner),"outer control");wrapperControlReplays++}
    const u=Array.from({length:L},()=>ch(rand(29))).join(""),ru=analyze(encode(p,u),p);controls[t].push({wi,L,rank:r.rank,n:r.n,logBF:r.logBF,confidence:r.confidence,uniformBF:ru.logBF,uniformConfidence:ru.confidence,uniformRank:ru.rank});
   }
  }offset+=L}
  const stats=a=>{const s=[...a].sort((a,b)=>a-b);return {n:s.length,min:s[0],median:s[Math.floor(s.length/2)],max:s.at(-1),mean:s.reduce((a,b)=>a+b,0)/s.length}};
  const summary={vocab:vocab.length,meanLen,trainWords:cuts,donorWords:donors.map(x=>x.length),original:{BF:stats(out.map(x=>x.logBF)),confidence:stats(out.map(x=>x.confidence)),positiveBF:out.filter(x=>x.logBF>0).length,highConfidence:out.filter(x=>x.confidence>=.9).length},controls:controls.map((a,i)=>({name:["Gibran/Shakespeare","Emerson/Gibran"][i],n:a.length,rank1:a.filter(x=>x.rank===1).length,rank5:a.filter(x=>x.rank<=5).length,confidence:stats(a.map(x=>x.confidence)),BF:stats(a.map(x=>x.logBF)),uniformBF:stats(a.map(x=>x.uniformBF)),nativePositiveBF:a.filter(x=>x.logBF>0).length,uniformPositiveBF:a.filter(x=>x.uniformBF>0).length,highConfidence:a.filter(x=>x.confidence>=.9).length,highConfidenceCorrect:a.filter(x=>x.confidence>=.9&&x.rank===1).length})),byLength:Array.from({length:6},(_,i)=>{const a=out.filter(x=>x.L===i+9);return {L:i+9,original:stats(a.map(x=>x.logBF)),controls:controls.map(z=>{const s=z.filter(x=>x.L===i+9);return {native:stats(s.map(x=>x.logBF)),uniform:stats(s.map(x=>x.uniformBF)),rank1:s.filter(x=>x.rank===1).length,rank5:s.filter(x=>x.rank<=5).length}})}})};
- return {summary,anchors:out,controls};
+ if(wrapped){const changed=wrappedAnchors.filter(x=>x.changed);summary.wrapper={edits:wrapperEdits,controlReplays:wrapperControlReplays,changedAnchors:changed.length,allBF:stats(wrappedAnchors.map(x=>x.logBF)),changedRawBF:stats(changed.map(x=>x.rawLogBF)),changedWrappedBF:stats(changed.map(x=>x.logBF)),positiveBF:wrappedAnchors.filter(x=>x.logBF>0).length,highConfidence:wrappedAnchors.filter(x=>x.confidence>=.9).length,deltaBF:stats(changed.map(x=>x.logBF-x.rawLogBF))};}
+ return {summary,anchors:out,controls,...(wrapped?{wrappedAnchors}:{})};
 }
 const fs=require('node:fs'),path=require('node:path');
 const files=["resources/liber-primus/lp2-corpus.json","resources/liber-primus/lp2-transcription.txt","resources/control/english_wordfreq_textblob.txt","resources/external/relikd-solved-gp29-native-v1.json","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt"];
-console.log(JSON.stringify(experiment(files.map(p=>fs.readFileSync(path.resolve(__dirname,'..',p),'utf8'))),null,2));
+if(require.main===module)console.log(JSON.stringify(experiment(files.map(p=>fs.readFileSync(path.resolve(__dirname,'..',p),'utf8'))),null,2));
+module.exports={experiment,files};
