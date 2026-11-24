@@ -394,3 +394,6 @@ Artifact: `sims/lp2_p50_low60_hold_transition_consequence_sft.cjs`; authoritativ
 ## Current global state
 
 All 56 unknown LP2 pages remain unsolved. The most productive next work should select an authentic key, reversible value operation, or concrete state/reset rule from source evidence, then demand held-out original plaintext. Avoid proliferating guessed layers around the lag5/lag6 anomalies or p50 table merely because those objects are statistically interesting.
+
+### 2026-11-24: F-transparent recurrence anchor attack
+- [Report](../../im-results/lp2-long-anchor-ftransparent-recurrence-gate.md); [reproducer](../../sims/lp2_long_anchor_ftransparent_recurrence_sft.cjs). Seven original long words, arbitrary invertible homogeneous GF29 recurrences orders 1–6 with authentic F clock and independent marker-interval state. 2,414 inferred candidates; one mechanical terminal survivor, 4/63 held-out lexical hits, IoC .03542, fails adjacent continuous holdout. No credible plaintext. Planted control passes. Do not retread generic recurrence expansion.
