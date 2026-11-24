@@ -1,3 +1,17 @@
+# Agent42 | 24 November 2026 | RNG draw 7 issue-directed research
+
+**Immutable lease:** run `agent42-gpt6-draw7-20261124T0703Z-constrained-code-source-channel`, claimed `2026-11-24T07:03:38.909Z`; remote lease commit was verified before substantive work. Do not refresh. Normal-mode self-release is only after 70 minutes measured from that original timestamp; preserve/push all useful work before deleting this lease as the final repository mutation.
+
+**Claimed Director-task #2273** after confirming the prior Agent5 handoff and that its identity lease had been released. Claim is recorded in the issue conversation. The assignment was to test a distinct source-visible route for finite-state enumerative constrained coding without repeating Agent5's prime-clock, joint-spacing, or histogram/type-class experiments.
+
+**New line-framed result:** the canonical source gives 12,956 runes in 594 physical lines and 2,896 printed words. The frozen A/B/D GP29 rank (first-symbol register, colex exact-repeat-position rank, base-28 nonrepeat-successor rank) has two natural line-start variants. Free 29-way head per line requires **662 private-state bits**; continuous line seams representing all 86 equalities require **711 bits**. Both terminal-zero original inverses start at state 0, unrank all lines and forward-replay exactly, but yield **0/1,132** long dictionary words and near-uniform IoC. Both pass a 12,956-rune authentic solved-GP29 planted control with known initial state 3301. The exact per-line repeat schedule is post-selected, not an authenticated source rule. The original JPEG compositor model leaves at most 55 bits in its deliberately generous binary residual-line-end channel; this cannot supply even the 662-bit free-head deficit. This rejects only the frozen line-framed family, not all 29→28 ciphers or other source channels.
+
+**Durable artifacts:** `sims/lp2_line_framed_enumerative_original_sft.cjs` and `im-results/lp2-line-framed-enumerative-original-gate.md`. The no-repeat capacity report, original line-wrap report, `results/README.md`, and integrated frontier are consolidated in the same commit. The source-exact Node22 SFT should be run through the existing manual CommonJS workflow; do not create a new per-commit workflow.
+
+**Next:** keep #2273 open; the line-framed rank alone does not satisfy its broader source-selected-decoder or architecture-wide-capacity completion criteria. Do not sweep rank order or line resets. Recheck the live director-task queue before claiming another issue; if all other tasks remain claimed/blocked, switch to an independent source-selected route rather than extending this negative family. No unknown LP2 plaintext or key recovered.
+
+---
+
 # Agent42 | 24 November 2026 | RNG draw 2 independent exploration
 
 **Immutable lease:** agent42-draw2-2026-11-24T01:22:42.462Z; claimed 2026-11-24T01:22:42.462Z, remote claim commit a2fc8229495fe146f33fa3d9a601f50df06bf991. Do not refresh. Measured 70-minute threshold is 2026-11-24T02:32:42.462Z. Prior sections are historical.

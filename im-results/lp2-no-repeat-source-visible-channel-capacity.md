@@ -4,9 +4,9 @@
 
 ## Finding
 
-The observed 29-symbol ciphertext stream does not by itself rule out a 29-to-28 next-rune encoder. Red/special marks alone do not provide enough side information, even under an intentionally generous count. The printed word-boundary positions have ample *combinatorial* capacity, however, so an information-theoretic impossibility claim would be too strong. No evidence currently selects a reversible mapping from plaintext symbols to those boundary positions. The apparent free layout capacity also cancels if arbitrary same-count plaintext gaps must be recovered; the joint inverse below quantifies the exact cost and tests an original receiver.
+The observed 29-symbol ciphertext stream does not by itself rule out a 29-to-28 next-rune encoder. Red/special marks alone do not provide enough side information, even under an intentionally generous count. Printed word-boundary positions have ample *combinatorial* capacity, but no source-selected reversible mapping to those positions has been found; the joint rune-and-spacing inverse also fails on 29/55 original pages. A separate physical-line-framed enumerative rank has now been tested: its original candidate has 0/1,132 long dictionary words, while universal GP29 recovery under the fixed per-line repeat schedule requires 662 bits even with a free head on every line and 711 bits with continuous seams. The original-image compositor model leaves at most 55 bits in its deliberately generous binary residual-line-end channel. This rejects the tested line-framed family, not every possible source-selected or language-restricted encoder.
 
-This is a capacity result, **not** a cipher identification or decryption.
+This is a capacity and scoped-decoder result, **not** a cipher identification or decryption.
 
 ## Conditional no-repeat deficits
 
@@ -58,6 +58,19 @@ The exact original p54 \(k=5\) bound has \(Q=6\) and \(q=5\), overshooting \(T=2
 The manuscript's visible separators have more than enough combinatorial possibilities for a lossless codec, which is why no general absence-of-channel theorem follows. Any stronger candidate must supply an **independent original-source instruction** for a specific boundary-order rule, a recipient and page/reset clock, and the encoder's repeat allowance and layout salt. Arbitrarily changing combinadic direction or tuning \(k\) after seeing plaintext would merely replace one unselected codec with another.
 
 [Exact standalone CommonJS/JSDoc reproducer](../sims/lp2_no_repeat_boundary_enumerative_sft.cjs) checks the canonical original rune corpus against printed separator positions, all 55 original inverses and forward reconstructions, 55 full-length p57-native positive plants, and the eight fixed-five impossibilities. The SFT does not claim cryptographic authenticity from synthetic recoveries.
+
+## Physical-line-framed enumerative rank (24 November 2026, Agent42)
+
+A separate source-visible block hypothesis uses the exact 594 original printed rune lines. The frozen A/B/D rank consists of a first-symbol register, colex rank of the exact internal-repeat positions, and base-28 ranks of nonrepeating successors in GP29 chart order. A mixed-radix quotient carry connects line ranks; terminal state zero is the no-key diagnostic. The per-line repeat quotas and line-start seam schedule are read from the original ciphertext and are therefore post-selected, not authenticated encoder instructions.
+
+| Mode | Repeat events | log2(product M / product P) | Minimum private-state bits | Original IoC | Long dictionary hits |
+|---|---:|---:|---:|---:|---:|
+| Free 29-way head at every line | 82 internal | −661.019827 | **662** | 0.034551775 | **0/1,132** |
+| Continuous seam across lines | 82 internal + 4 line-start | −710.270509 | **711** | 0.034577978 | **0/1,132** |
+
+Both original inverses start at state zero under terminal state zero, unrank every original line exactly, and forward-replay the full ciphertext. Both also pass a planted 12,956-rune authentic solved-GP29 positive control with known initial state 3301. Nevertheless, all 594 original line ranks fall below their 29-way plaintext line spaces, and the fixed-schedule product codebook covers only a fraction of unrestricted GP29 inputs. The line-framed output has no long dictionary words under the unchanged original word lengths. See the complete [line-framed rank report](lp2-line-framed-enumerative-original-gate.md) and [source-exact SFT](../sims/lp2_line_framed_enumerative_original_sft.cjs).
+
+The independent original-JPEG compositor model explains 484/539 within-page line joins and leaves at most 55 non-forced joins under its deliberately generous binary exceptional-line-only model. Those 55 bits cannot supply even the 662-bit free-head state requirement. This is conditional on the fixed per-line repeat schedule and binary residual-line-end carrier; it is not a universal impossibility theorem for other source channels or a restricted natural-language encoder.
 
 ## Source-visible channel capacity
 
@@ -161,10 +174,11 @@ Copied floral artwork is not counted as an independent event. Even the 275-bit e
 
 ## Decision and next research gate
 
-- A blanket claim that a 29-to-28 no-repeat encoder is impossible is **not** supported. The word-boundary position space is large enough to carry the missing information in principle.
+- The tested physical-line-framed exact-repeat rank is **rejected** under both natural line-start conventions: it yields no long dictionary plaintext and needs 662–711 bits for universal GP29 recovery, versus at most 55 bits in the simple residual-line-end model.
+- A blanket claim that every 29-to-28 no-repeat encoder is impossible is still **not** supported. The printed word-boundary position space has enough combinatorial capacity to carry missing information in principle.
 - Red/special marks alone are insufficient, even under generous independence assumptions.
-- No explicit, historically motivated, reversible plaintext-to-boundary mapping has been found. The 9,638-bit figure is a ceiling on possible arrangements, not evidence of a hidden message.
-- Do not proceed to arbitrary boundary-bit subsets, fitted lookup tables, or unconstrained per-page masks. The next useful step is to identify an original clue that selects a specific boundary operation and predicts a reproducible output on untouched pages. Without that, keep the no-repeat family provisional and prioritize mechanisms with a source-derived key or operation.
+- No explicit, historically motivated, reversible plaintext-to-word-boundary mapping has been found. The 9,638-bit figure is a ceiling on possible arrangements, not evidence of a hidden message.
+- Do not proceed to arbitrary boundary-bit subsets, fitted lookup tables, unconstrained per-page masks, or further line-rank sweeps. The next useful step is an original clue that selects a specific boundary operation or authentic key and predicts a reproducible output on untouched pages. Without that, keep the broader no-repeat family provisional and prioritize mechanisms with a source-derived key or operation.
 
 ## Reproduction
 
@@ -172,7 +186,9 @@ Run:
 
 `node sims/lp2_no_repeat_escape_channel_capacity_sft.cjs`
 
-Inputs are the current transcription, rune corpus, and ink annotations. The script verifies page rune counts against the corpus and asserts the aggregate counts and channel ceilings.
+`node sims/lp2_line_framed_enumerative_original_sft.cjs`
+
+Inputs are the current transcription, rune corpus, ink annotations, solved-GP29 donor, and TextBlob word-frequency control. The line-framed SFT verifies exact original unrank/replay, both capacity bounds, dictionary scoring, and source-native planted-key controls.
 
 
 ## Joint recovery of plaintext runes AND word breaks (24 November 2026, Agent 5)
