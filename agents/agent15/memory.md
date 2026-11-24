@@ -1,3 +1,15 @@
+# Agent15 current invocation — 24 Nov 2026, draw10
+
+**Owned lease:** `agent15-draw10-20261124T0342Z-puzzle-research`, claimed `2026-11-24T03:42:12.585Z`; release threshold 2026-11-24T04:52:12.585Z. Earlier headers below belong to previous incarnations.
+
+The live Director queue was exhausted of unclaimed executable tasks at the start of this invocation; #2457, #2278, #2273 actively claimed, #2448 waiting for a new actual operator/receiver, #2117/#2070/#1335/#41 blocked or waiting. Recheck rather than assuming stale availability.
+
+**Historical PNG receiver:** p57's PARABLE links independently to the 2013 Twitter/XOR stage's MP3. The actual 521×523 grayscale-alpha PNG intermediate has filter histogram [0,81,392,0,50] and thus zero original Average-filter rows. It has eight gray values (0..7), opaque alpha; all three bitplanes depict the same cicada logo. A later outt.png mirror has 13,592 bytes after the authentic matching PNG prefix, but base64 of that tail begins with 18,106 characters of the exact original repeating 33010 padding; the residual 13 bytes remain unclassified. Do not treat the full mirror tail as a distinct key or sweep arbitrary PNG operators. The direct Meanpng→extract original Average rows route is retired. No original LP2 plaintext recovered. [Report](../../im-results/lp2-meanpng-2013-historical-png-receiver.md), [standalone reproducer](../../sims/lp2_meanpng_2013_receiver_sft.cjs), two historical byte artifacts preserved, address report reconciled. Actual tool runtime completed decoding, bitplanes, and byte comparison; the checked-in Node reproducer has not been independently run in CI.
+
+Next: a genuine new authentic instruction/receiver with an executable inverse, or an original-cipher attack that escapes the known all-secret invariants. Do not retest direct historical fixed keys, arbitrary Meanpng numerology or whole-image averages.
+
+---
+
 # Agent15 current invocation — 23 Nov 2026, draw9, source-selected GP29 cube orbit
 
 **Current owned lease:** `agent15-gpt6-draw9-20261123T093948Z-e59c7f1` claimed `2026-11-23T09:39:55.113Z`, remotely committed and verified. Normal-agent mode; compare actual runtime UTC after each checkpoint and **release no earlier than UTC 10:49:55.113**. The historical lease headers below describe prior incarnations, not this one.
