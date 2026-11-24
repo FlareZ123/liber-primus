@@ -1,0 +1,40 @@
+'use strict';
+const assert = require('node:assert/strict');
+const { createHash } = require('node:crypto');
+const { TextDecoder } = require('node:util');
+const g = require('../resources/liber-primus/lp2-grid-256.json');
+const tokens = g.pages.flatMap(p => p.tokens);
+assert.deepEqual(g.pages.map(p => p.rows), [10,13,9]);
+assert.equal(tokens.length,256);
+assert(tokens.every(t => t.length===2 && [...t].every(c => g.alphabet.includes(c))));
+const numbers = tokens.map(t => 60*g.alphabet.indexOf(t[0])+g.alphabet.indexOf(t[1]));
+assert(numbers.every(n=>n>=0&&n<=255));
+assert.deepEqual(numbers,g.bytes);
+const b = Buffer.from(numbers);
+const sha256 = createHash('sha256').update(b).digest('hex');
+assert.equal(sha256,'3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290');
+const signatures={PNG:'89504e470d0a1a0a',JPEG:'ffd8ff',GIF87a:'474946383761',GIF89a:'474946383961',PDF:'255044462d',ZIP_local:'504b0304',ZIP_empty:'504b0506',ZIP_spanned:'504b0708',GZIP:'1f8b08',SQLite:'53514c69746520666f726d6174203300',ELF:'7f454c46',OpenPGP_armor:'2d2d2d2d2d424547494e20504750'};
+const magic=Object.fromEntries(Object.entries(signatures).map(([name,hex])=>[name,b.subarray(0,hex.length/2).equals(Buffer.from(hex,'hex'))]));
+const zlib={method:b[0]&15,window:b[0]>>>4,check:(b[0]*256+b[1])%31};
+zlib.valid=zlib.method===8&&zlib.window<=7&&zlib.check===0;
+// RFC 4880 sections 4.2.2 and 5.9. This source starts with a new-format
+// literal packet and a partial-body length; inspect without repairing it.
+assert.equal(b[0],0xcb);
+assert(b[1]>=224&&b[1]<255);
+const pgp={tag:b[0]&63,firstPartialLength:2**(b[1]&31),literalFormat:b[2],validLiteralFormat:[0x62,0x74,0x75].includes(b[2])};
+pgp.validFirstPartial=pgp.firstPartialLength>=512;
+pgp.nextLengthOffset=2+pgp.firstPartialLength;
+pgp.nextLengthOctet=b[pgp.nextLengthOffset];
+assert(pgp.nextLengthOctet<192);
+pgp.firstPacketEndExclusive=pgp.nextLengthOffset+1+pgp.nextLengthOctet;
+pgp.trailingTag=b[pgp.firstPacketEndExclusive]&63;
+pgp.trailingLength=b[pgp.firstPacketEndExclusive+1];
+pgp.trailingAvailable=b.length-pgp.firstPacketEndExclusive-2;
+const stats={length:b.length,ascii7:numbers.every(n=>n<128),printable:numbers.filter(n=>n>=32&&n<=126).length,asciiControls:numbers.filter(n=>n<32||n===127).length,c1Range:numbers.filter(n=>n>=128&&n<=159).length,nulls:numbers.filter(n=>n===0).length,highBytes:numbers.filter(n=>n>=128).length};
+stats.printableRatio=stats.printable/b.length;
+let strictUtf8=true;
+try { new TextDecoder('utf-8',{fatal:true}).decode(b); } catch { strictUtf8=false; }
+assert.equal(strictUtf8,false);assert.equal(stats.ascii7,false);
+assert(!Object.values(magic).some(Boolean));assert(!zlib.valid);
+assert(!pgp.validFirstPartial&&!pgp.validLiteralFormat&&pgp.trailingLength>pgp.trailingAvailable);
+console.log(JSON.stringify({stats,strictUtf8,prefix:b.subarray(0,16).toString('hex'),sha256,magic,zlib,pgp},null,2));
