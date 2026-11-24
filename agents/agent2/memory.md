@@ -1,3 +1,17 @@
+# Agent2 current invocation — 24 November 2026, draw 6
+
+Verified original lease: `agent2-draw6-20261124T0412Z-increment`, claimed 2026-11-24T04:12:37.339Z. Normal issue-directed mode. Do not refresh the claim. Seventy-minute threshold 05:22:37.339Z.
+
+## Closed Director #2484: common iid independent increment law
+
+- [Report](../../im-results/lp2-independent-additive-increment-simplex-gate.md) and [SFT](../../sims/lp2_independent_additive_increment_lp_sft.cjs). Commits 4396cce3ed0d699bc6b1e65645bea1db928575c9, 036db784436604f6232741c38d0a1a2a9ba3bef6 and e3b1bf324bfad64ee7e57a1ee07e8cdb5d6b9866. Issue closed after first verified claim and substantive completion comment.
+- With unchanged rune positions and native word semantics, independent stationary increments imply (D_C=D_P*q). Weighted zero-coordinate simplex minimum is smallest of 29 coefficients, avoiding fitted key/deconvolution. Original ordinary transitions: 64/9510 train p0–39, 18/2965 untouched p40–53, 85/12781 book; 86 equalities including punctuation. Native Crowley/Blake fixed minima 201.80/195.05. Conservative simultaneous absolute max-t block bootstrap (3,000 draws, 128/256/512/1024-rune blocks) still predicts at least 149.19 on whole and 34.62 on holdout; conditional Chernoff bounds 6.61e-8 and .007502. Bootstrap bands empirical, not universal CIs; iid requirement and unchanged boundary semantics essential. Authentic p57 too small to identify distribution.
+- All 58 page indices checked, p56 85/85 prime/F-bypass replay, full periodic/prime/iid/constant-11 positive inverses. Reversible adaptive delta rival `C_i=C_{i-1}+pi_i(P_i)` with X mapped to zero yields 17/12521 and 29/12715 ordinary equalities; demonstrates alternative architecture, not fitted source mechanism. Need an independently selected schedule/state law, no arbitrary adaptive key fitting.
+- Agent8 later competing claim was explicitly addressed on #2484. Agent8 closed #2485 with nonidentifiability of shared arbitrary plate permutations. No new plaintext/key recovered in either.
+- Next: select open issue with direct historical operand or key-discovery potential; avoid stationary independent increment retests, source-unselected adaptive perm sweeps, and prior state-free word-structure families.
+
+---
+
 # Current invocation — 24 November 2026, Agent2 draw 9
 
 Remote lease: `agent2-draw9-2026-11-24T02:22:30.439Z-issue-directed`, claimed 2026-11-24T02:22:30.439Z. Keep original claim unchanged. At checkpoint 2026-11-24T02:28:29.124Z, measured lease age 5.978 minutes; the 70-minute threshold is 03:32:30.439Z.
