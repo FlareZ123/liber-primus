@@ -1,0 +1,796 @@
+{
+  "inputHashes": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/transcriptions/lp1_wulfic_canonical.txt",
+      "sha": "37c96b816495c5f93ca658a01c9918bf92598316"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    }
+  ],
+  "positive": [
+    {
+      "name": "WELCOME",
+      "n": 515,
+      "period": 8,
+      "pauses": 11,
+      "cipherFs": 25,
+      "actual": [
+        88,
+        9
+      ],
+      "bounds": {
+        "rune": [
+          68,
+          102
+        ],
+        "bigram": [
+          6,
+          11
+        ],
+        "peak": 24
+      }
+    },
+    {
+      "name": "KOAN",
+      "n": 319,
+      "period": 13,
+      "pauses": 2,
+      "cipherFs": 5,
+      "actual": [
+        65,
+        10
+      ],
+      "bounds": {
+        "rune": [
+          57,
+          69
+        ],
+        "bigram": [
+          8,
+          11
+        ],
+        "peak": 4
+      }
+    }
+  ],
+  "plants": [
+    {
+      "name": "0_koan_1",
+      "n": 780,
+      "actual": [
+        147,
+        19
+      ],
+      "bounds": {
+        "rune": [
+          69,
+          160
+        ],
+        "bigram": [
+          3,
+          23
+        ],
+        "peak": 96
+      }
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "n": 755,
+      "actual": [
+        153,
+        19
+      ],
+      "bounds": {
+        "rune": [
+          53,
+          166
+        ],
+        "bigram": [
+          0,
+          21
+        ],
+        "peak": 127
+      }
+    },
+    {
+      "name": "0_welcome",
+      "n": 515,
+      "actual": [
+        75,
+        7
+      ],
+      "bounds": {
+        "rune": [
+          31,
+          82
+        ],
+        "bigram": [
+          0,
+          10
+        ],
+        "peak": 64
+      }
+    }
+  ],
+  "bruteToy": {
+    "rune": [
+      3,
+      7
+    ],
+    "bigram": [
+      0,
+      2
+    ],
+    "peak": 12
+  },
+  "result": [
+    {
+      "pages": [
+        0,
+        2
+      ],
+      "n": 729,
+      "period": 29,
+      "cipherFs": 34,
+      "rune": [
+        34,
+        105
+      ],
+      "bigram": [
+        0,
+        8
+      ],
+      "peak": 86,
+      "controls": [
+        {
+          "name": "Shakespeare",
+          "windows": 32,
+          "rune": [
+            92,
+            149
+          ],
+          "bigram": [
+            3,
+            25
+          ],
+          "runePass": 3,
+          "bigramPass": 7,
+          "jointPass": 2
+        },
+        {
+          "name": "Emerson",
+          "windows": 32,
+          "rune": [
+            97,
+            149
+          ],
+          "bigram": [
+            2,
+            32
+          ],
+          "runePass": 1,
+          "bigramPass": 8,
+          "jointPass": 1
+        },
+        {
+          "name": "Gibran",
+          "windows": 32,
+          "rune": [
+            96,
+            146
+          ],
+          "bigram": [
+            2,
+            29
+          ],
+          "runePass": 4,
+          "bigramPass": 4,
+          "jointPass": 2
+        }
+      ]
+    },
+    {
+      "pages": [
+        3,
+        7
+      ],
+      "n": 1145,
+      "period": 29,
+      "cipherFs": 26,
+      "rune": [
+        85,
+        147
+      ],
+      "bigram": [
+        0,
+        9
+      ],
+      "peak": 64,
+      "controls": [
+        {
+          "name": "Shakespeare",
+          "windows": 32,
+          "rune": [
+            164,
+            226
+          ],
+          "bigram": [
+            11,
+            34
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Emerson",
+          "windows": 32,
+          "rune": [
+            175,
+            236
+          ],
+          "bigram": [
+            11,
+            45
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Gibran",
+          "windows": 32,
+          "rune": [
+            170,
+            229
+          ],
+          "bigram": [
+            8,
+            43
+          ],
+          "runePass": 0,
+          "bigramPass": 1,
+          "jointPass": 0
+        }
+      ]
+    },
+    {
+      "pages": [
+        8,
+        14
+      ],
+      "n": 1729,
+      "period": 29,
+      "cipherFs": 66,
+      "rune": [
+        109,
+        251
+      ],
+      "bigram": [
+        2,
+        22
+      ],
+      "peak": 256,
+      "controls": [
+        {
+          "name": "Shakespeare",
+          "windows": 32,
+          "rune": [
+            258,
+            361
+          ],
+          "bigram": [
+            16,
+            48
+          ],
+          "runePass": 0,
+          "bigramPass": 4,
+          "jointPass": 0
+        },
+        {
+          "name": "Emerson",
+          "windows": 32,
+          "rune": [
+            287,
+            346
+          ],
+          "bigram": [
+            22,
+            57
+          ],
+          "runePass": 0,
+          "bigramPass": 2,
+          "jointPass": 0
+        },
+        {
+          "name": "Gibran",
+          "windows": 32,
+          "rune": [
+            278,
+            362
+          ],
+          "bigram": [
+            23,
+            73
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        }
+      ]
+    },
+    {
+      "pages": [
+        15,
+        22
+      ],
+      "n": 1903,
+      "period": 29,
+      "cipherFs": 72,
+      "rune": [
+        113,
+        247
+      ],
+      "bigram": [
+        1,
+        19
+      ],
+      "peak": 128,
+      "controls": [
+        {
+          "name": "Shakespeare",
+          "windows": 32,
+          "rune": [
+            286,
+            393
+          ],
+          "bigram": [
+            20,
+            54
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Emerson",
+          "windows": 32,
+          "rune": [
+            316,
+            383
+          ],
+          "bigram": [
+            24,
+            59
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Gibran",
+          "windows": 32,
+          "rune": [
+            303,
+            398
+          ],
+          "bigram": [
+            24,
+            78
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        }
+      ]
+    },
+    {
+      "pages": [
+        23,
+        26
+      ],
+      "n": 1021,
+      "period": 29,
+      "cipherFs": 37,
+      "rune": [
+        63,
+        136
+      ],
+      "bigram": [
+        0,
+        8
+      ],
+      "peak": 128,
+      "controls": [
+        {
+          "name": "Shakespeare",
+          "windows": 32,
+          "rune": [
+            151,
+            210
+          ],
+          "bigram": [
+            9,
+            33
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Emerson",
+          "windows": 32,
+          "rune": [
+            149,
+            210
+          ],
+          "bigram": [
+            7,
+            42
+          ],
+          "runePass": 0,
+          "bigramPass": 1,
+          "jointPass": 0
+        },
+        {
+          "name": "Gibran",
+          "windows": 32,
+          "rune": [
+            154,
+            199
+          ],
+          "bigram": [
+            7,
+            41
+          ],
+          "runePass": 0,
+          "bigramPass": 1,
+          "jointPass": 0
+        }
+      ]
+    },
+    {
+      "pages": [
+        27,
+        32
+      ],
+      "n": 1433,
+      "period": 29,
+      "cipherFs": 52,
+      "rune": [
+        93,
+        201
+      ],
+      "bigram": [
+        1,
+        15
+      ],
+      "peak": 256,
+      "controls": [
+        {
+          "name": "Shakespeare",
+          "windows": 32,
+          "rune": [
+            221,
+            289
+          ],
+          "bigram": [
+            13,
+            42
+          ],
+          "runePass": 0,
+          "bigramPass": 2,
+          "jointPass": 0
+        },
+        {
+          "name": "Emerson",
+          "windows": 32,
+          "rune": [
+            236,
+            288
+          ],
+          "bigram": [
+            16,
+            52
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Gibran",
+          "windows": 32,
+          "rune": [
+            225,
+            290
+          ],
+          "bigram": [
+            12,
+            52
+          ],
+          "runePass": 0,
+          "bigramPass": 2,
+          "jointPass": 0
+        }
+      ]
+    },
+    {
+      "pages": [
+        33,
+        39
+      ],
+      "n": 1680,
+      "period": 29,
+      "cipherFs": 40,
+      "rune": [
+        136,
+        232
+      ],
+      "bigram": [
+        1,
+        14
+      ],
+      "peak": 32,
+      "controls": [
+        {
+          "name": "Shakespeare",
+          "windows": 32,
+          "rune": [
+            252,
+            351
+          ],
+          "bigram": [
+            16,
+            47
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Emerson",
+          "windows": 32,
+          "rune": [
+            279,
+            341
+          ],
+          "bigram": [
+            22,
+            56
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Gibran",
+          "windows": 32,
+          "rune": [
+            271,
+            352
+          ],
+          "bigram": [
+            22,
+            70
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        }
+      ]
+    },
+    {
+      "pages": [
+        40,
+        53
+      ],
+      "n": 3008,
+      "period": 29,
+      "cipherFs": 125,
+      "rune": [
+        169,
+        430
+      ],
+      "bigram": [
+        0,
+        33
+      ],
+      "peak": 512,
+      "controls": [
+        {
+          "name": "Shakespeare",
+          "windows": 32,
+          "rune": [
+            502,
+            616
+          ],
+          "bigram": [
+            40,
+            81
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Emerson",
+          "windows": 32,
+          "rune": [
+            520,
+            622
+          ],
+          "bigram": [
+            45,
+            85
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Gibran",
+          "windows": 32,
+          "rune": [
+            494,
+            600
+          ],
+          "bigram": [
+            35,
+            98
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        }
+      ]
+    },
+    {
+      "pages": [
+        54,
+        55
+      ],
+      "n": 308,
+      "period": 29,
+      "cipherFs": 6,
+      "rune": [
+        21,
+        31
+      ],
+      "bigram": [
+        0,
+        2
+      ],
+      "peak": 16,
+      "controls": [
+        {
+          "name": "Shakespeare",
+          "windows": 32,
+          "rune": [
+            32,
+            67
+          ],
+          "bigram": [
+            1,
+            16
+          ],
+          "runePass": 0,
+          "bigramPass": 4,
+          "jointPass": 0
+        },
+        {
+          "name": "Emerson",
+          "windows": 32,
+          "rune": [
+            27,
+            60
+          ],
+          "bigram": [
+            0,
+            14
+          ],
+          "runePass": 1,
+          "bigramPass": 8,
+          "jointPass": 1
+        },
+        {
+          "name": "Gibran",
+          "windows": 32,
+          "rune": [
+            30,
+            57
+          ],
+          "bigram": [
+            0,
+            17
+          ],
+          "runePass": 2,
+          "bigramPass": 7,
+          "jointPass": 2
+        }
+      ]
+    },
+    {
+      "pages": [
+        0,
+        55
+      ],
+      "n": 12956,
+      "period": 29,
+      "cipherFs": 458,
+      "rune": [
+        860,
+        1845
+      ],
+      "bigram": [
+        6,
+        133
+      ],
+      "peak": 512,
+      "controls": [
+        {
+          "name": "Shakespeare",
+          "windows": 32,
+          "rune": [
+            2244,
+            2522
+          ],
+          "bigram": [
+            213,
+            300
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Emerson",
+          "windows": 32,
+          "rune": [
+            2344,
+            2583
+          ],
+          "bigram": [
+            219,
+            352
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        },
+        {
+          "name": "Gibran",
+          "windows": 32,
+          "rune": [
+            2357,
+            2459
+          ],
+          "bigram": [
+            240,
+            381
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0
+        }
+      ]
+    }
+  ]
+}
