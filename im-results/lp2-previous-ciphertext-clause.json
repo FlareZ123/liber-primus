@@ -517,7 +517,7 @@
       "exact": 64,
       "runes": 2610,
       "runesCorrect": 2608,
-      "wrongReachable": 268,
+      "wrongReachable": 259,
       "wrongTotal": 528,
       "scoreMin": -3.3615747060031986,
       "scoreMax": -2.201201099017311
@@ -3553,8 +3553,8 @@
           "score": -2.688924426018584,
           "exact": true,
           "runesCorrect": 25,
-          "wrongReachable": 8,
-          "wrongBest": -3.8115449543165716
+          "wrongReachable": 6,
+          "wrongBest": -3.566218170839077
         },
         {
           "i": 2,
@@ -3564,8 +3564,8 @@
           "score": -2.847017458448925,
           "exact": true,
           "runesCorrect": 15,
-          "wrongReachable": 8,
-          "wrongBest": -3.672799414739212
+          "wrongReachable": 6,
+          "wrongBest": -3.4572807948080855
         },
         {
           "i": 3,
@@ -3575,8 +3575,8 @@
           "score": -2.337852428894577,
           "exact": true,
           "runesCorrect": 12,
-          "wrongReachable": 7,
-          "wrongBest": -3.50358950257081
+          "wrongReachable": 8,
+          "wrongBest": -3.6241868914106408
         },
         {
           "i": 4,
@@ -3586,8 +3586,8 @@
           "score": -2.777566155194439,
           "exact": true,
           "runesCorrect": 17,
-          "wrongReachable": 3,
-          "wrongBest": -3.623358683784275
+          "wrongReachable": 4,
+          "wrongBest": -3.658809175989345
         },
         {
           "i": 5,
@@ -3597,8 +3597,8 @@
           "score": -2.9165076905157044,
           "exact": true,
           "runesCorrect": 23,
-          "wrongReachable": 4,
-          "wrongBest": -3.7921583294841446
+          "wrongReachable": 7,
+          "wrongBest": -3.7945971479161384
         },
         {
           "i": 6,
@@ -3608,8 +3608,8 @@
           "score": -2.543266044682413,
           "exact": true,
           "runesCorrect": 25,
-          "wrongReachable": 2,
-          "wrongBest": -3.9992410605193034
+          "wrongReachable": 5,
+          "wrongBest": -3.4908392242039468
         },
         {
           "i": 7,
@@ -3619,8 +3619,8 @@
           "score": -3.008747894875262,
           "exact": true,
           "runesCorrect": 25,
-          "wrongReachable": 3,
-          "wrongBest": -3.9313365987138678
+          "wrongReachable": 4,
+          "wrongBest": -3.679343615148641
         },
         {
           "i": 8,
@@ -3630,8 +3630,8 @@
           "score": -2.4135376551339074,
           "exact": true,
           "runesCorrect": 14,
-          "wrongReachable": 7,
-          "wrongBest": -3.438520371696697
+          "wrongReachable": 8,
+          "wrongBest": -3.445125338010295
         }
       ]
     },
@@ -3646,8 +3646,8 @@
           "score": -2.781909584537675,
           "exact": true,
           "runesCorrect": 61,
-          "wrongReachable": 2,
-          "wrongBest": -3.5851766312959543
+          "wrongReachable": 3,
+          "wrongBest": -3.8027121932722805
         },
         {
           "i": 2,
@@ -3657,8 +3657,8 @@
           "score": -2.634589555865443,
           "exact": true,
           "runesCorrect": 99,
-          "wrongReachable": 5,
-          "wrongBest": -3.8108000868515455
+          "wrongReachable": 3,
+          "wrongBest": -3.7214159585703133
         },
         {
           "i": 3,
@@ -3668,8 +3668,8 @@
           "score": -2.5668554132104338,
           "exact": false,
           "runesCorrect": 35,
-          "wrongReachable": 8,
-          "wrongBest": -3.987675391143952
+          "wrongReachable": 3,
+          "wrongBest": -3.7585342552963064
         },
         {
           "i": 4,
@@ -3679,8 +3679,8 @@
           "score": -2.6433122286569466,
           "exact": true,
           "runesCorrect": 56,
-          "wrongReachable": 5,
-          "wrongBest": -3.7440567532674485
+          "wrongReachable": 2,
+          "wrongBest": -3.9631880639891066
         },
         {
           "i": 5,
@@ -3690,8 +3690,8 @@
           "score": -2.803624544136984,
           "exact": true,
           "runesCorrect": 39,
-          "wrongReachable": 1,
-          "wrongBest": -4.010711758665695
+          "wrongReachable": 2,
+          "wrongBest": -3.814804827523914
         },
         {
           "i": 6,
@@ -3712,8 +3712,8 @@
           "score": -2.871144787131091,
           "exact": true,
           "runesCorrect": 22,
-          "wrongReachable": 8,
-          "wrongBest": -3.410345648197241
+          "wrongReachable": 6,
+          "wrongBest": -3.6056109947243242
         },
         {
           "i": 8,
@@ -3723,8 +3723,8 @@
           "score": -2.5889614910273955,
           "exact": true,
           "runesCorrect": 21,
-          "wrongReachable": 5,
-          "wrongBest": -3.5642498076132534
+          "wrongReachable": 6,
+          "wrongBest": -3.530154037430018
         },
         {
           "i": 9,
@@ -3734,8 +3734,8 @@
           "score": -2.4608032239286093,
           "exact": false,
           "runesCorrect": 49,
-          "wrongReachable": 3,
-          "wrongBest": -3.723990939858607
+          "wrongReachable": 2,
+          "wrongBest": -3.7096958449053417
         }
       ]
     },
@@ -3750,8 +3750,8 @@
           "score": -2.684347509869348,
           "exact": true,
           "runesCorrect": 24,
-          "wrongReachable": 3,
-          "wrongBest": -3.8153168374716215
+          "wrongReachable": 4,
+          "wrongBest": -3.6318941712390953
         },
         {
           "i": 2,
@@ -3761,8 +3761,8 @@
           "score": -2.836032951597843,
           "exact": true,
           "runesCorrect": 37,
-          "wrongReachable": 2,
-          "wrongBest": -3.851554865369212
+          "wrongReachable": 3,
+          "wrongBest": -3.8460113548472448
         },
         {
           "i": 3,
@@ -3772,8 +3772,8 @@
           "score": -3.1129697883922156,
           "exact": true,
           "runesCorrect": 23,
-          "wrongReachable": 5,
-          "wrongBest": -3.613508998422082
+          "wrongReachable": 6,
+          "wrongBest": -3.8982113119370467
         },
         {
           "i": 4,
@@ -3784,7 +3784,7 @@
           "exact": true,
           "runesCorrect": 17,
           "wrongReachable": 7,
-          "wrongBest": -3.470902212004633
+          "wrongBest": -3.6043944615389005
         },
         {
           "i": 5,
@@ -3795,7 +3795,7 @@
           "exact": true,
           "runesCorrect": 24,
           "wrongReachable": 6,
-          "wrongBest": -3.7362717750044734
+          "wrongBest": -3.624217083200056
         },
         {
           "i": 6,
@@ -3805,8 +3805,8 @@
           "score": -3.3615747060031986,
           "exact": true,
           "runesCorrect": 5,
-          "wrongReachable": 6,
-          "wrongBest": -2.864576755419013
+          "wrongReachable": 8,
+          "wrongBest": -3.5584723144970845
         }
       ]
     },
@@ -3821,8 +3821,8 @@
           "score": -2.520874404089695,
           "exact": true,
           "runesCorrect": 24,
-          "wrongReachable": 5,
-          "wrongBest": -3.661524748324862
+          "wrongReachable": 4,
+          "wrongBest": -3.70369602263367
         },
         {
           "i": 2,
@@ -3832,8 +3832,8 @@
           "score": -2.378203097611936,
           "exact": true,
           "runesCorrect": 42,
-          "wrongReachable": 2,
-          "wrongBest": -3.75367885492969
+          "wrongReachable": 4,
+          "wrongBest": -3.6137511010904566
         },
         {
           "i": 3,
@@ -3843,8 +3843,8 @@
           "score": -2.530526393911533,
           "exact": true,
           "runesCorrect": 28,
-          "wrongReachable": 4,
-          "wrongBest": -3.6322761818994667
+          "wrongReachable": 3,
+          "wrongBest": -3.8422982990972643
         },
         {
           "i": 4,
@@ -3855,7 +3855,7 @@
           "exact": true,
           "runesCorrect": 43,
           "wrongReachable": 6,
-          "wrongBest": -3.7182544069424637
+          "wrongBest": -3.680061451785877
         },
         {
           "i": 5,
@@ -3865,8 +3865,8 @@
           "score": -2.5130427056892954,
           "exact": true,
           "runesCorrect": 41,
-          "wrongReachable": 0,
-          "wrongBest": null
+          "wrongReachable": 1,
+          "wrongBest": -3.858104576683659
         },
         {
           "i": 6,
@@ -3877,7 +3877,7 @@
           "exact": true,
           "runesCorrect": 44,
           "wrongReachable": 4,
-          "wrongBest": -3.8514303565376324
+          "wrongBest": -3.886435525564721
         },
         {
           "i": 7,
@@ -3887,8 +3887,8 @@
           "score": -2.201201099017311,
           "exact": true,
           "runesCorrect": 42,
-          "wrongReachable": 1,
-          "wrongBest": -3.957753097665722
+          "wrongReachable": 6,
+          "wrongBest": -3.6866082879136406
         },
         {
           "i": 8,
@@ -3898,8 +3898,8 @@
           "score": -2.4066850092012397,
           "exact": true,
           "runesCorrect": 29,
-          "wrongReachable": 2,
-          "wrongBest": -3.8700228186904426
+          "wrongReachable": 4,
+          "wrongBest": -3.891648485526187
         },
         {
           "i": 9,
@@ -3909,8 +3909,8 @@
           "score": -2.5035177282046144,
           "exact": true,
           "runesCorrect": 27,
-          "wrongReachable": 8,
-          "wrongBest": -3.601013459625377
+          "wrongReachable": 5,
+          "wrongBest": -3.814819213209879
         },
         {
           "i": 10,
@@ -3920,8 +3920,8 @@
           "score": -2.7797802234060787,
           "exact": true,
           "runesCorrect": 29,
-          "wrongReachable": 4,
-          "wrongBest": -3.9234720325473598
+          "wrongReachable": 3,
+          "wrongBest": -3.6575628030135516
         },
         {
           "i": 11,
@@ -3931,8 +3931,8 @@
           "score": -2.5197987698748516,
           "exact": true,
           "runesCorrect": 32,
-          "wrongReachable": 6,
-          "wrongBest": -3.749024254962048
+          "wrongReachable": 3,
+          "wrongBest": -3.7437121730677654
         },
         {
           "i": 12,
@@ -3942,8 +3942,8 @@
           "score": -2.405859759133452,
           "exact": true,
           "runesCorrect": 47,
-          "wrongReachable": 4,
-          "wrongBest": -3.7590627242442674
+          "wrongReachable": 5,
+          "wrongBest": -3.7294350333518365
         },
         {
           "i": 13,
@@ -3954,7 +3954,7 @@
           "exact": true,
           "runesCorrect": 77,
           "wrongReachable": 5,
-          "wrongBest": -3.8143329359638107
+          "wrongBest": -3.813145207140815
         },
         {
           "i": 14,
@@ -3964,8 +3964,8 @@
           "score": -2.341213051050822,
           "exact": true,
           "runesCorrect": 33,
-          "wrongReachable": 5,
-          "wrongBest": -3.563931227868927
+          "wrongReachable": 1,
+          "wrongBest": -3.8829272384132283
         },
         {
           "i": 15,
@@ -3975,8 +3975,8 @@
           "score": -2.4066850092012397,
           "exact": true,
           "runesCorrect": 29,
-          "wrongReachable": 1,
-          "wrongBest": -4.111892617511336
+          "wrongReachable": 4,
+          "wrongBest": -3.757264760313434
         },
         {
           "i": 16,
@@ -3986,8 +3986,8 @@
           "score": -2.8931135442156766,
           "exact": true,
           "runesCorrect": 22,
-          "wrongReachable": 2,
-          "wrongBest": -3.9701056445829015
+          "wrongReachable": 1,
+          "wrongBest": -3.9769519222439573
         },
         {
           "i": 17,
@@ -3998,7 +3998,7 @@
           "exact": true,
           "runesCorrect": 59,
           "wrongReachable": 2,
-          "wrongBest": -3.8206728658935467
+          "wrongBest": -3.8393882626457345
         },
         {
           "i": 18,
@@ -4008,8 +4008,8 @@
           "score": -2.6751672731943774,
           "exact": true,
           "runesCorrect": 94,
-          "wrongReachable": 2,
-          "wrongBest": -3.933312601736894
+          "wrongReachable": 5,
+          "wrongBest": -3.713948784741204
         }
       ]
     },
@@ -4024,8 +4024,8 @@
           "score": -2.9097409104462226,
           "exact": true,
           "runesCorrect": 75,
-          "wrongReachable": 4,
-          "wrongBest": -3.758169196793289
+          "wrongReachable": 2,
+          "wrongBest": -3.8936710506037677
         },
         {
           "i": 2,
@@ -4035,8 +4035,8 @@
           "score": -2.3109307518474123,
           "exact": true,
           "runesCorrect": 34,
-          "wrongReachable": 3,
-          "wrongBest": -3.5874069472906154
+          "wrongReachable": 2,
+          "wrongBest": -3.8643634591991534
         },
         {
           "i": 3,
@@ -4046,8 +4046,8 @@
           "score": -2.8014167934333756,
           "exact": true,
           "runesCorrect": 73,
-          "wrongReachable": 2,
-          "wrongBest": -3.9728155606641127
+          "wrongReachable": 0,
+          "wrongBest": null
         },
         {
           "i": 4,
@@ -4057,8 +4057,8 @@
           "score": -2.7808162406905854,
           "exact": true,
           "runesCorrect": 72,
-          "wrongReachable": 2,
-          "wrongBest": -3.8417137730875845
+          "wrongReachable": 0,
+          "wrongBest": null
         },
         {
           "i": 5,
@@ -4068,8 +4068,8 @@
           "score": -2.710170286402513,
           "exact": true,
           "runesCorrect": 47,
-          "wrongReachable": 5,
-          "wrongBest": -3.850804827439725
+          "wrongReachable": 4,
+          "wrongBest": -3.8097807896845444
         },
         {
           "i": 6,
@@ -4079,8 +4079,8 @@
           "score": -2.2830781524432946,
           "exact": true,
           "runesCorrect": 15,
-          "wrongReachable": 2,
-          "wrongBest": -3.853455831180282
+          "wrongReachable": 5,
+          "wrongBest": -3.881588658309251
         },
         {
           "i": 7,
@@ -4090,8 +4090,8 @@
           "score": -2.773018863798643,
           "exact": true,
           "runesCorrect": 72,
-          "wrongReachable": 3,
-          "wrongBest": -3.8965847637456354
+          "wrongReachable": 1,
+          "wrongBest": -3.9661673710513687
         },
         {
           "i": 8,
@@ -4101,8 +4101,8 @@
           "score": -2.8683224677670065,
           "exact": true,
           "runesCorrect": 37,
-          "wrongReachable": 7,
-          "wrongBest": -3.8567928023538167
+          "wrongReachable": 6,
+          "wrongBest": -3.6663055894820595
         },
         {
           "i": 9,
@@ -4113,7 +4113,7 @@
           "exact": true,
           "runesCorrect": 24,
           "wrongReachable": 1,
-          "wrongBest": -3.5456468204810103
+          "wrongBest": -3.795264160705003
         },
         {
           "i": 10,
@@ -4123,8 +4123,8 @@
           "score": -2.826580600233434,
           "exact": true,
           "runesCorrect": 126,
-          "wrongReachable": 2,
-          "wrongBest": -3.950035299323867
+          "wrongReachable": 1,
+          "wrongBest": -3.9672629774611052
         },
         {
           "i": 11,
@@ -4134,8 +4134,8 @@
           "score": -2.5835262521571,
           "exact": true,
           "runesCorrect": 31,
-          "wrongReachable": 2,
-          "wrongBest": -3.932425760103579
+          "wrongReachable": 3,
+          "wrongBest": -3.896872028251454
         },
         {
           "i": 12,
@@ -4145,8 +4145,8 @@
           "score": -2.4604322276871193,
           "exact": true,
           "runesCorrect": 31,
-          "wrongReachable": 3,
-          "wrongBest": -3.9006659512980084
+          "wrongReachable": 5,
+          "wrongBest": -3.88313441847454
         },
         {
           "i": 13,
@@ -4156,8 +4156,8 @@
           "score": -2.7113617513340293,
           "exact": true,
           "runesCorrect": 27,
-          "wrongReachable": 4,
-          "wrongBest": -3.860554567900561
+          "wrongReachable": 5,
+          "wrongBest": -3.5471358123369776
         },
         {
           "i": 14,
@@ -4167,8 +4167,8 @@
           "score": -3.025192802524119,
           "exact": true,
           "runesCorrect": 13,
-          "wrongReachable": 8,
-          "wrongBest": -3.303221894765455
+          "wrongReachable": 6,
+          "wrongBest": -3.377690958710476
         }
       ]
     },
@@ -4183,8 +4183,8 @@
           "score": -2.7918731029464707,
           "exact": true,
           "runesCorrect": 35,
-          "wrongReachable": 6,
-          "wrongBest": -3.811881162329025
+          "wrongReachable": 4,
+          "wrongBest": -3.6724816288017768
         },
         {
           "i": 2,
@@ -4194,8 +4194,8 @@
           "score": -2.7232503067498626,
           "exact": true,
           "runesCorrect": 74,
-          "wrongReachable": 0,
-          "wrongBest": null
+          "wrongReachable": 1,
+          "wrongBest": -4.192968525865338
         },
         {
           "i": 3,
@@ -4205,8 +4205,8 @@
           "score": -2.541476415667701,
           "exact": true,
           "runesCorrect": 69,
-          "wrongReachable": 3,
-          "wrongBest": -4.043172331914483
+          "wrongReachable": 1,
+          "wrongBest": -3.896348779336713
         },
         {
           "i": 4,
@@ -4217,7 +4217,7 @@
           "exact": true,
           "runesCorrect": 77,
           "wrongReachable": 4,
-          "wrongBest": -3.875307141423266
+          "wrongBest": -3.9140248734870786
         },
         {
           "i": 5,
@@ -4227,8 +4227,8 @@
           "score": -2.3945214812383475,
           "exact": true,
           "runesCorrect": 28,
-          "wrongReachable": 6,
-          "wrongBest": -3.741671601499943
+          "wrongReachable": 5,
+          "wrongBest": -3.8339982381781508
         }
       ]
     },
@@ -4244,7 +4244,7 @@
           "exact": true,
           "runesCorrect": 26,
           "wrongReachable": 5,
-          "wrongBest": -3.984205598397882
+          "wrongBest": -3.764605888264408
         },
         {
           "i": 2,
@@ -4254,8 +4254,8 @@
           "score": -2.703735596224417,
           "exact": true,
           "runesCorrect": 14,
-          "wrongReachable": 6,
-          "wrongBest": -3.500394435158109
+          "wrongReachable": 7,
+          "wrongBest": -3.3514021387109834
         },
         {
           "i": 3,
@@ -4265,8 +4265,8 @@
           "score": -2.7783657879863064,
           "exact": true,
           "runesCorrect": 24,
-          "wrongReachable": 2,
-          "wrongBest": -3.8923887458733475
+          "wrongReachable": 5,
+          "wrongBest": -3.8505697185181114
         }
       ]
     },
@@ -4282,7 +4282,7 @@
           "exact": true,
           "runesCorrect": 40,
           "wrongReachable": 5,
-          "wrongBest": -3.6574475702266716
+          "wrongBest": -3.6250877239426167
         }
       ]
     },
@@ -4297,8 +4297,8 @@
           "score": -2.507438448575841,
           "exact": true,
           "runesCorrect": 30,
-          "wrongReachable": 5,
-          "wrongBest": -3.7251397095822534
+          "wrongReachable": 2,
+          "wrongBest": -4.0993974024864865
         },
         {
           "i": 2,
@@ -4308,8 +4308,8 @@
           "score": -2.407253581508361,
           "exact": true,
           "runesCorrect": 28,
-          "wrongReachable": 7,
-          "wrongBest": -3.747172655563371
+          "wrongReachable": 4,
+          "wrongBest": -3.8959762860233167
         }
       ]
     }
