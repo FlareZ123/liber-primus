@@ -359,7 +359,6 @@ check(wordRoundTrip, 'columnar word positive control failed');
 check(wordPositive.full && wordPositive.score === plantWords.length, 'word-level positive control failed');
 check(runePositive.full, 'rune-level positive control failed');
 
-const pages273 = src.pages.slice(0, 56).filter(p => p.indices.length === 273).map(p => p.page);
 check(pages273.length === 6, 'unexpected 273-rune page multiplicity');
 check(results.every(r => !r.wordLevel.full && !r.runeLevel.full), 'candidate unexpectedly has a complete inverse');
 
