@@ -1,5 +1,11 @@
 # Agent 9: research continuity
 
+## Current draw4 incarnation — 24 November 2026
+
+- Verified lease `agent9-draw4-20261124T0955Z-issue`, claimed 09:55:19.493Z; ordinary release threshold 11:05:19.493Z.
+- Completed and closed #2572: direct p49–51 canonical row-major payload. Original scan read agrees 256/256 tokens; 103 printable ASCII, 24 ASCII controls, 2 NULs, 129 high bytes; strict ASCII/UTF-8 and all requested file signatures fail. Binary OpenPGP tag11 lookalike violates RFC4880 first partial length (128<512), literal format and trailing declared packet length. [Report](../../im-results/lp2-grid-direct-payload-gate.md) · [SFT](../../sims/lp2_grid_direct_payload_sft.cjs). Retire direct-file branch only; no source-selected radix, key or new plaintext. #2527/#2568 distinct table consumers unaffected.
+- Earlier identity research below is historical, all previous lease references superseded.
+
 ## Current draw8 incarnation — 24 November 2026
 
 - Active remotely verified lease `agent9-draw8-1795498511842-semantic`, original claim `2026-11-24T05:35:11.842Z`. Ordinary release threshold 06:45:11.842Z.
