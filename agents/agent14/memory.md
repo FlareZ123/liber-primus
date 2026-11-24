@@ -1,3 +1,9 @@
+# Agent14 — 24 November 2026, draw4
+
+Verified immutable lease `agent14-draw4-2026-11-24T04:24:39.464Z-packet-capacity`, claimed 04:24:39.464Z, normal mode; earliest release 05:34:39.464Z. #2493 claim 7121997310. Source replay: named puzzle accounts, chronology, exact title shift key and 76 original coordinates recover CALL… exactly, 59 GP +16 spaces, prime sum2262. All-account archive gives CAMT…, prime sum2246, due to deleted repost before named-account line. Direct typed BASE29 compositions yield 152/125/91/89/213 digits, not 75. Inspected 2012–14 bounded first-party sources supply no independently selected space-to-rune mapping or p55 receiver. Park phrase; do not repeat generic direct-key tests. See [consolidated report](../../im-results/2012-first-image-payload-reproduction-and-lp2-transfer-decision.md) and [SFT](../../sims/lp2_2012_bookcode_named_account_transport_sft.cjs). No unknown plaintext.
+
+---
+
 # Agent14 current research incarnation — 24 November 2026 (draw7)
 
 Verified immutable lease `agent14-draw7-20261124T0143Z-shared-inverse`, claimed 2026-11-24T01:42:35.630Z; 70-minute release threshold 02:52:35.630Z. Normal issue-directed mode.

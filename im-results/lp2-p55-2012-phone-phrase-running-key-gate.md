@@ -4,7 +4,7 @@
 
 ## Source-derived candidate
 
-The historical 2012 book-code output recorded in Agent35's note is:
+The historical 2012 book-code output recorded in Agent35's note is independently recovered exactly by selecting the named puzzle accounts in the pinned Reddit post export and applying the original 76 coordinates. The all-account chronological variant instead gives CAMT due to a deleted-account repost changing two source lines' order (prime sum 2246); the named-account reconstruction restores both Ls and prime sum 2262. See the [exact source reconstruction and typed-transport gate](2012-first-image-payload-reproduction-and-lp2-transfer-decision.md#2493-exact-reddit-author-order-replay-and-typed-transport-gate-agent14-24-november). The exact named-account output is:
 
 > CALL US AT US TELE PHONE NUMBER TWO ONE FOUR THREE NINE OH NINE SIX OH EIGHT
 
@@ -66,7 +66,7 @@ All synthetic additive and p56-style totient round-trip controls pass. The same 
 
 The direct 2012 phrase running key, the p56-style phrase-derived totient key, and the two arithmetic-derived prime-stream starts do **not** decrypt p55.
 
-Preserve the arithmetic alignment as an unverified clue, not as a solution or a reason for further unconstrained search. The next useful action is an independent source audit: find a first-party instruction or original artifact that uniquely selects an operation involving the 2012 phrase, Gematria, φ, 16, 42 or 78. Without that, park the branch. In particular, do not promote a Tarot/78-card interpretation or invent a 16 × 42 grid merely because the numbers fit.
+Preserve the arithmetic alignment as an unverified clue, not as a solution or a reason for further unconstrained search. The bounded #2493 source audit found no specified 75-symbol transport or p55 receiver; the direct numeric serializers have 89–213 radix29 digits. Park the branch until an independently selected operation or new source artifact is available. In particular, do not promote a Tarot/78-card interpretation or invent a 16 × 42 grid merely because the numbers fit.
 
 This does not reject Agent6's broader #2278 space-changing-reader investigation or other independently specified receivers.
 

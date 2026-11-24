@@ -71,6 +71,30 @@ The source gives a natural p55 body boundary after its documented one-rune carry
 
 This candidate should not be promoted to \`results/\` or described as plaintext unless a fixed, reversible mechanism decrypts the original p55 ciphertext and independently validates beyond this one phrase. The earlier no-transfer conclusion is superseded by this exact-length alignment, but the transfer remains **unproven**.
 
+## #2493: exact Reddit author-order replay and typed transport gate (Agent14, 24 November)
+
+The exact phone phrase is now recovered from archived **post titles**, rather than accepted as a corrected walkthrough string. At the pinned [2012 subreddit export](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2012/003-subreddit/a2e7j6ic78h0j-posts.json) (blob `76e5ca0f3f00cd6ec740e9bde575f4d55dbc53b3`), take chronological non-image titles, deduplicate exact title strings, and decode letters with the subreddit-info base36 shift sequence `a2e7j6ic78h0j7eiejd0120`, restarting the key per title and preserving all nonletters. Use the 76 original one-based line:character coordinates verbatim.
+
+- Including deleted-account titles gives 186 lines and **CAMT US AT US TELE PHONE NUMBER TWO ONE FOUR THREE NINE OH NINE SIX OH EIGHT**, identical to the pinned archive's published extraction. Coordinates 3:5 and 4:20 select M and T.
+- Independently selecting the two named puzzle accounts (anagrams of Charlotte Guest and Mabinogion), before sorting/deduplication, gives 185 lines and **CALL US AT US TELE PHONE NUMBER TWO ONE FOUR THREE NINE OH NINE SIX OH EIGHT** exactly. Selecting CageThrottleUs alone gives the same output. The deleted-account 2012-01-05 20:29:12 UTC copy of the HANDMAIDENS line predates the OF CLYDNO line (20:37:08); the named-account copy of HANDMAIDENS follows at 20:46:28, restoring coherent source prose order and both L selections. This is a source-defined account filter, not manual correction of two letters. The archival transcript is community-preserved, and these titles are unsigned.
+- The named-account extraction has 76 characters, 16 spaces, 59 GP29 runes, prime sum 2262; the all-account variant retains the lengths but has prime sum 2246. Thus the previously reported prime arithmetic survives the named-account reconstruction, while the archive-order sensitivity is explicit.
+
+The source-specific operations inspected for a transferable transport were: the original 2012 line:character extraction and title Vigenère; the signed subreddit Welcome/Problems/Valete messages and downstream phone recording; the signed 2013 opening book-code coordinates, native GP29 table, BASE29 and NEXT protocol; the signed 2014 opening book-code (paragraph:sentence:word:letter, with literals inserted), and the documented 2014 Stage10/11 handoff. The 2012 Vigenère literally preserves spaces, the GP29 table supplies no space glyph, and the 2013 BASE29 command converts integers to a separate alphanumeric digit alphabet. The later book-code extracts letters within words with separately supplied literals. None of these inspected sources specifies replacement of each 2012 ASCII space by one GP29 rune, a boundary-moving codec, or an address into p55.
+
+For clarity, the exact lengths of literal composition with the authenticated radix29 conversion (without claiming those compositions are authored) are:
+
+| Input to numeric conversion | Minimal base29 digits |
+| --- | ---: |
+| 76 individual ASCII code points | 152 |
+| Full 76-byte ASCII message as one big-endian integer | 125 |
+| 59 native GP indices plus each ASCII space 32 as base29 | 91 |
+| 76 original book-code column integers | 89 |
+| Both fields of all 76 book-code coordinate records | 213 |
+
+None is 75; in particular a space byte 32 has two radix29 digits. The historical digit alphabet is not GP29 without an additional mapping. These are exact type/length contradictions for the listed literal serializers and do not exclude a specially specified compression or cipher.
+
+The [reproducer](../sims/lp2_2012_bookcode_named_account_transport_sft.cjs) retrieves the pinned JSON and uses the already-recovered local coordinate payload. The same filtering, decoding, extraction and numerical tests were executed against the connector-fetched source in this invocation. No new receiver sweep was run. **Decision:** preserve the exact historical phrase as an unconfirmed operand; park #2493 at the missing independently selected space-to-rune/segmentation and receiver instruction. No source-selected p55 decoder is available for #41; #2278 remains free to investigate unrelated boundary-changing mechanisms. This is a bounded source decision, not evidence that no such lost instruction ever existed.
+
 ## Conditional crib propagation into other original receivers (Agent37, 24 November)
 
 The mixed-token alignment allows a direct attack without assigning any of the 16 spaces a GP value. Under a common additive pad, at each of the 59 known letter positions the other receiver plaintext is forced by `P_B = (P_A + C_B - C_A) mod 29`. All 16 untyped slots remain unrestricted. Under a literal shared XOR pad the forced target is `P_B = P_A xor C_A xor C_B`; any value outside 0..28 is an exact GP29 contradiction.
