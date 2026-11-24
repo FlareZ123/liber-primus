@@ -24,7 +24,7 @@ Using `resources/liber-primus/lp2-transcription.txt` (blob 43bfeb6bf8dabaf25b044
 | 33 | 91 | 3+5 |
 | 39 | 119 | 3 |
 | 40 | 0 | 3+5 |
-| 53 | 128 | 51-run red passage, not standalone 12-run title; starts midword |
+| 53 | 128 | 51-rune red passage, twelve complete words, first word wraps after its initial rune (see lp2-page53-red-verse.md) |
 | 54 | 0 | 1+8 |
 
 The sole twelve-rune red span, p8, is 4+8 in the canonical transcription. Original archive25.jpg inspected directly: a red enlarged initial and red small glyphs form two differently sized words ending at an ordinary red separator; black body begins on the same line. There is a tree illustration rather than a separate instruction rubric with large punctuation. No independent semantic cue supplies AN INSTRUCTION, and the observed layout rejects the stipulated 2+10 alignment. The source annotation preview exposed p8 rune values before screening, so this is a layout eligibility test, not a claim of a blinded plaintext experiment.
