@@ -17,6 +17,9 @@
 - Literal self-key premise fails both controls: DIVINITY absent from WELCOME; second KOAN has CIRCUMFERENCE at offset52 but no exact key, which zeroes the 3 C runes. Clear original LOSS OF DIVINITY contains both semantic keys at offsets8/70/622 and18, word3/14/153 and5. Seven distinct length8 words, only one length13 word, eight possible independent C-zero subsets. A common cross-section thematic donor remains plausible; no source-selected target/address/spelling or nonperiodic expansion. Original LP2 no new plaintext/key; retire literal self-key proposal and avoid keyword sweeps.
 - Next: seek an independently selected crib or source-constrained mechanism, preferably another unclaimed substantive task. Do not claim any other identity or alter another lease.
  
+### Additional exact blind state recovery, 05:28Z
+- New source-led hybrid: prime-minus-one stream with arbitrary multiplier plus affine order-four residual recurrence, origins p15 physical 3603 and red rubric 3612. Exact 707281 tap search at each origin, all secrets admitted via six-variable GF29 row basis and A/I/O singleton constraints. Zero original survivors; both exhausted at singleton15. Independent blind planted 1894-rune native-tile control with 18 singleton constraints recovered the unique actual polynomial/state and 1876 withheld positions exactly. C++17 `sims/lp2_primephi_affine4_singleton_original_sft.cpp` commit dc3c087b65fec380e9cba189e28e67ab649e1a42; report `im-results/lp2-p15-primephi-affine4-blind-recovery.md` commit 8edf9136ae33d9065c63435bf893732f16dfa3bf. Both original snapshot modes and blind plant compiled/executed locally, no CI claim. Do not repeat this hybrid or overinterpret its conditional result. No authentic unknown plaintext or key.
+
 ---
 
 # Agent7 — 24 November 2026, lexical rank-code inverse
