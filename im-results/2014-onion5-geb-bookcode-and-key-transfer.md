@@ -49,7 +49,7 @@ The community archive's [sixth-onion README](https://github.com/cicada-solvers/n
 1. The sixth-onion page carried the LP2 image/hex dump and four OutGuess messages.
 2. Those messages indicated that three magic squares from earlier stages were required; the challenge then asked solvers to submit the squares and a Tor CGI hidden-service URL.
 3. Successful submission returned three additional “prime pages” (107, 167, 229).
-4. Pages 107 and 167 are reported as Vigenère-encrypted with key `FIRFUMFERENCE`; their decrypted text is a Koan containing “The I is the voice of the circumference.”
+4. Pages 107 and 167 are reported as Vigenère-encrypted with key `FIRFUMFERENCE`; however, applying `FIRFUMFERENFE` to the archived original rune transcriptions under the published GP29 mapping produces a much cleaner, near-complete Koan. The archive's `FIRFUMFERENCE` spelling differs at position 12 (C instead of F) and produces numerous additional errors; it is best treated as a one-symbol transcription error. The recovered text contains “The I is the voice of the circumference.”
 5. Page 229 is unencrypted and begins with an instruction to “QUESTION ALL THINGS” and “DISCOVER TRUTH INSIDE YOURSELF,” followed by the first square.
 
 The archived [three-square transcription](https://github.com/cicada-solvers/neuroretransmit-cicada/blob/main/2014/007-fifth-onion/magicsquares.txt) contains 5×5, 7×7, and 5×5 squares. The third is the 5×5 square also present on LP2 p05; the first appears on prime page 229. These are real historical relationships, but they do not by themselves specify a decipherment of other LP2 pages.
@@ -58,11 +58,9 @@ The archived [original sixth-onion form](https://github.com/cicada-solvers/neuro
 
 ## Bounded direct-key transfer test
 
-I reconstructed the 2014 `gematriaprimus.py` key mapping and applied the reported `FIRFUMFERENCE` key to the LP2 transcription. The historical script uses GP29 rune order with key shifts derived from the reversed lookup values; for this key the modulo-29 shifts are:
+I reconstructed the 2014 `gematriaprimus.py` key mapping and first used the original 107/167 rune transcriptions as a control. Under the published GP29 mapping, `FIRFUMFERENFE` gives a coherent near-complete Koan, while the README's `FIRFUMFERENCE` variant (C rather than F at position 12) produces substantially more errors. The corrected key's modulo-29 shifts are `[0,19,25,0,28,10,0,11,25,11,20,0,11]`.
 
-`[0,19,25,0,28,10,0,11,25,11,20,24,11]`.
-
-I tested both `FIRFUMFERENCE` and the repository's independently recovered LP1 KOAN control key `FIRFUMFERENFE` (one symbol differs: position 12 is C versus F). The fixed-key tests covered direct and Atbash-complement key mappings, both additive directions, all 13 starting phases, page-local and continuous key phase, and plaintext-F hold. No readable output appeared on LP2 p0, p15, p55, or across p0–55.
+I then tested both spellings against LP2. The fixed-key tests covered direct and Atbash-complement key mappings, both additive directions, all 13 starting phases, page-local and continuous key phase, and plaintext-F hold. No readable output appeared on LP2 p0, p15, p55, or across p0–55, even with the corrected `FIRFUMFERENFE` key.
 
 This is a **narrow negative**: direct transfer of these exact 13-symbol keys under the tested GP29 Vigenère/F-hold models is unsupported. It does not rule out a different key schedule, a square-derived operation, or another use of the circumference clue. A separate exploratory use of the p05 square's 16-cell perimeter as a modulo-29 repeating key also produced no readable LP2 text; no further phase or ordering search is justified without a new selector. The 5×5/3301 square's clockwise 16-cell perimeter was also reduced mod29 and aligned at phase zero to the p15 16-prime grid residues in spiral order. Direct and Atbash-complement key maps with both signs produced only `OYEOMRAFELALWHYLG` or `UNIAAOEOEEAABNWIAAEIARY`; no phase or orientation search was performed. This rejects only that literal 16-to-16 alignment.
 
