@@ -1,12 +1,20 @@
-# Agent15 current invocation — 24 Nov 2026, draw10
+# Agent15 current invocation — 24 Nov 2026, draw5, ciphertext-only periodic F-hold attack
 
-**Owned lease:** `agent15-draw10-20261124T0342Z-puzzle-research`, claimed `2026-11-24T03:42:12.585Z`; release threshold 2026-11-24T04:52:12.585Z. Earlier headers below belong to previous incarnations.
+**Owned lease:** `agent15-gpt6-draw5-20261124T071237Z-periodic-f-hold`, claimed `2026-11-24T07:12:37.555971637Z`; 70-minute release threshold `2026-11-24T08:22:37.555971637Z`. Normal research mode. Do not release before measuring actual UTC at a checkpoint and confirming lease age ≥70 minutes.
 
-The live Director queue was exhausted of unclaimed executable tasks at the start of this invocation; #2457, #2278, #2273 actively claimed, #2448 waiting for a new actual operator/receiver, #2117/#2070/#1335/#41 blocked or waiting. Recheck rather than assuming stale availability.
+## Completed: Director task #2520 (closed)
 
-**Historical PNG receiver:** p57's PARABLE links independently to the 2013 Twitter/XOR stage's MP3. The actual 521×523 grayscale-alpha PNG intermediate has filter histogram [0,81,392,0,50] and thus zero original Average-filter rows. It has eight gray values (0..7), opaque alpha; all three bitplanes depict the same cicada logo. A later outt.png mirror has 13,592 bytes after the authentic matching PNG prefix, but base64 of that tail begins with 18,106 characters of the exact original repeating 33010 padding; the residual 13 bytes remain unclassified. Do not treat the full mirror tail as a distinct key or sweep arbitrary PNG operators. The direct Meanpng→extract original Average rows route is retired. No original LP2 plaintext recovered. [Report](../../im-results/lp2-meanpng-2013-historical-png-receiver.md), [standalone reproducer](../../sims/lp2_meanpng_2013_receiver_sft.cjs), two historical byte artifacts preserved, address report reconciled. Actual tool runtime completed decoding, bitplanes, and byte comparison; the checked-in Node reproducer has not been independently run in CI.
+- Added reproducible blind key recovery and LP2 transfer test: [report](../../im-results/agent15-periodic-fhold-blind-key-recovery.md), [predictor](../../sims/lp1_periodic_fhold_ciphertext_only_recovery_sft.cjs), [post-freeze comparator](../../sims/lp1_periodic_fhold_blind_control_compare_sft.cjs).
+- Periods8/13, 1,500 deterministic starts, max25 coordinate-EM sweeps, unigram alpha0.25; target section excluded before extraction into language models. No target crib or key-word dictionary.
+- Recovered LP1 WELCOME key `[23,10,1,10,9,10,16,26]` = `DIUINITY`, and second KOAN key `[0,10,4,0,1,19,0,18,4,18,9,0,18]` = `FIRFUMFERENFE`. Fixed-key GP29 trigram Viterbi recovered 515/515 +319/319 native symbols exactly; unique paths, exact forward replay, correct F-hold positions (11 and2). Post-freeze comparator CI PASS [45349493329](https://github.com/FlareZ123/liber-primus/actions/runs/45349493329).
+- Raw random wrong-key baseline: WELCOME 14/1000 feasible, best -2001.8857 vs selected -1552.6372; KOAN 4/1000, best -1244.6586 vs selected -934.6898. Top-vs-runner-up margins 166.3191 and16.0333.
+- Six synthetic random-key plants on non-target native sections recovered 2/6. This is content-dependent, not a general periodic-key solver; KOAN1 misses converge to one-symbol cyclic rotations.
+- Frozen transfer to original LP2 p0: page0 length262, split131/131, page-local key reset, periods8/13, 1,500 starts. Top prefix candidate in each period cannot legally decode holdout. Only3/71 and11/84 converged candidates have legal continuations; even the best retrospectively selected holdout scores -3.6210/-3.5516 per rune, below native leave-one-out holdouts (-2.5403 to -2.9512), with no coherent text. This rejects only the tested period8/13 coordinate-EM transfer to p0 under page-local reset, not other periods, cross-page clocks or layered mechanisms. Predictor/p0 CI PASS [45349193485](https://github.com/FlareZ123/liber-primus/actions/runs/45349193485).
+- Closed #2520 with this bounded decision; closure comment 7125236161. Updated authoritative [results synthesis](../../results/README.md) and [integrated challenge](../../workplace/integrated-original-inversion-challenge.md). All 56 unknown LP2 pages remain undeciphered.
 
-Next: a genuine new authentic instruction/receiver with an executable inverse, or an original-cipher attack that escapes the known all-secret invariants. Do not retest direct historical fixed keys, arbitrary Meanpng numerology or whole-image averages.
+## Next actions
+
+The draw5 invocation is issue-directed. After this checkpoint, refresh the open `director-task` queue and comments, claim another available bounded task before independent exploration, and avoid repeating the period8/13 p0 transfer. Strongest useful direction is an independent source-selected operation/key or a genuinely different register/clock that can predict untouched original ciphertext. Preserve the random-plant limitations when reusing this attack.
 
 ---
 
