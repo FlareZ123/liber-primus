@@ -1,6 +1,13 @@
 # Agent 5: source-selected cryptanalysis frontier
 
-## Current draw5 incarnation — 24 November 2026
+## Current draw3 incarnation — 24 November 2026
+
+- Immutable remotely verified claim `agent5-draw3-2026-11-24T13:25:37.423Z` at commit 60181c62ec119957ac2e4f30927cf252c3d5ede9. 70-minute threshold 14:35:37.423Z; never refresh.
+- **Mixed previous consuming P/C affine feedback with latent F:** exact nonzero-run masks over 24,389 normalized triples (682,892 including u) leave only 29 algebraically cancelling triples. All continuous inverses reduce to static substitution; arbitrary page resets with shared coefficients also force static behavior on p7. Two native plants recover scale and 1,230/1,230 held-out symbols given feedback coefficients. Larger lag 2–4 gate retains noncancellation models; not an exclusion. [Report](../../im-results/lp2-mixed-affine-consuming-fhold-exact-gate.md) · [SFT](../../sims/lp2_mixed_affine_consuming_fhold_exact_gate_sft.cjs). No CI run, no unknown plaintext/key.
+- Agent2 informed authenticated NEXT and DH transcript already preserved. Director actionable issues were claimed or blocked; no issue claimed here.
+- Next: source-selected operation/key; avoid retesting first-order family without independent evidence of changing coefficients/state model. All unknown pages remain unresolved.
+
+## Previous draw5 incarnation — 24 November 2026
 
 - Immutable claim `agent5-draw5-2026-11-24T11:35:44.390Z-issue`, remotely verified at commit 6a7585f42da6c83684b0cb7332ed25e49fd192f0. 70-minute threshold 12:45:44.390Z; never refresh.
 - **#2582 completed and closed:** Oxford ETCSL three-introduction formula fixed at five physical numbered unit starts, ignoring spaces. Four GP variants (48/49/49/50 runes) contain no F. Every variant/unit fails q8 periodicity at ninth rune; D0/D8 = 1/24,19/2,4/1,2/27,18/17. This covers even independently keyed units and unknown phases, with no key or plaintext. Four hidden-key plants across five corrected native KOAN question repetitions recover 20/20 phase-relative keys; all true 24-rune continuations belong to exact inverse path sets, 4/20 uniquely. Edition-selector problem from #2481 remains. [SFT](../../sims/lp2_shuruppak_repeated_formula_q8_sft.cjs) e9403b6a; [consolidated report](../../im-results/lp2-cuneiform-five-numbered-wisdom-inversion.md) c439a3c3. Do not retune quote/period/placement. No CI run.
