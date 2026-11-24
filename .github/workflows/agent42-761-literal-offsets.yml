@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: Dukotah/cicada3301
-          ref: 4aba4c5d43ec48c4b2e913bb7dc080ba7b6dd2e9
+          ref: 4aba42eeafc7434cec49041d5095bc843e23e964
           path: external/dukotah
           fetch-depth: 1
 
