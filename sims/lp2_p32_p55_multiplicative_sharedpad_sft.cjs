@@ -108,4 +108,4 @@ function run(data){
  return {controls,cases:out.length,hardSurvivors:out.filter(x=>x.oov===0).length,byClock:[false,true].map(hold=>{const a=out.filter(x=>x.hold===hold);return {hold,cases:a.length,minimumOOV:a[0].oov,hist:a.reduce((h,x)=>(h[x.oov]=(h[x.oov]||0)+1,h),{})};}),best:out.slice(0,5).map(details),all:out.map(({hold,drop,offset,n,oov,words,relativeCost})=>({hold,drop,offset,n,oov,words,relativeCost}))};
 }
 if(require.main===module)console.log(JSON.stringify(run(files.map(p=>fs.readFileSync(path.resolve(__dirname,"..",p),"utf8"))),null,2));
-module.exports={run,files};
+module.exports={run,files,build,tape,active,makeDomains};
