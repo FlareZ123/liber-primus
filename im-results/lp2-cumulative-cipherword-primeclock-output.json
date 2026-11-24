@@ -1,0 +1,268 @@
+{
+  "sourceBlobShas": [
+    "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7",
+    "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+  ],
+  "model": "Cumulative previous ciphertext GP-prime word sums; p56 prime-minus-one within word, transparent plaintext F",
+  "maxSeed": 12956,
+  "needed": 184513,
+  "positive": [
+    {
+      "name": "0_welcome",
+      "words": 124,
+      "runes": 515,
+      "split": 74,
+      "curves": [
+        [
+          1,
+          10079
+        ],
+        [
+          74,
+          2
+        ],
+        [
+          124,
+          1
+        ]
+      ],
+      "deadAt": null,
+      "fullSurvivors": 1,
+      "prefixSurvivors": 2,
+      "seed": 73,
+      "devScore": -2.3557396871806824,
+      "holdoutScore": -2.422750814933485,
+      "stop": null,
+      "excerpt": "WELCOME WELCOME PILGRIM TO THE GREAT JOURNEY TOWARD THE END OF ALL THNGS IT",
+      "rankMargin": 869.5946080538472,
+      "trueSeed": 73,
+      "trueRank": 1,
+      "heldoutExact": 208,
+      "heldoutTotal": 208,
+      "fullExact": false
+    },
+    {
+      "name": "0_koan_1",
+      "words": 208,
+      "runes": 780,
+      "split": 124,
+      "curves": [
+        [
+          1,
+          12489
+        ],
+        [
+          124,
+          1
+        ],
+        [
+          208,
+          1
+        ]
+      ],
+      "deadAt": null,
+      "fullSurvivors": 1,
+      "prefixSurvivors": 1,
+      "seed": 168,
+      "devScore": -2.3811139915065125,
+      "holdoutScore": -2.6027615957323635,
+      "stop": null,
+      "excerpt": "A COAN A MAN DECIDED TO GO AND STUDY WITH A MASTER HE WENT",
+      "rankMargin": null,
+      "trueSeed": 168,
+      "trueRank": 1,
+      "heldoutExact": 335,
+      "heldoutTotal": 336,
+      "fullExact": false
+    },
+    {
+      "name": "jpg107-167",
+      "words": 88,
+      "runes": 319,
+      "split": 52,
+      "curves": [
+        [
+          1,
+          12489
+        ],
+        [
+          52,
+          45
+        ],
+        [
+          88,
+          1
+        ]
+      ],
+      "deadAt": null,
+      "fullSurvivors": 1,
+      "prefixSurvivors": 45,
+      "seed": 3301,
+      "devScore": -2.5235789382485954,
+      "holdoutScore": -2.5153871719326815,
+      "stop": null,
+      "excerpt": "A COAN DURNG A LESSON THE MASTER EXPLAINED THE I THE I IS THE",
+      "rankMargin": 398.16465579596434,
+      "trueSeed": 3301,
+      "trueRank": 1,
+      "heldoutExact": 137,
+      "heldoutTotal": 137,
+      "fullExact": true
+    }
+  ],
+  "original": [
+    {
+      "section": 1,
+      "words": 158,
+      "runes": 729,
+      "split": 94,
+      "curves": [
+        [
+          1,
+          10104
+        ],
+        [
+          75,
+          0
+        ]
+      ],
+      "deadAt": 75,
+      "fullSurvivors": 0,
+      "prefixSurvivors": 0
+    },
+    {
+      "section": 2,
+      "words": 255,
+      "runes": 1145,
+      "split": 153,
+      "curves": [
+        [
+          1,
+          12048
+        ],
+        [
+          80,
+          0
+        ]
+      ],
+      "deadAt": 80,
+      "fullSurvivors": 0,
+      "prefixSurvivors": 0
+    },
+    {
+      "section": 3,
+      "words": 385,
+      "runes": 1738,
+      "split": 231,
+      "curves": [
+        [
+          1,
+          11183
+        ],
+        [
+          88,
+          0
+        ]
+      ],
+      "deadAt": 88,
+      "fullSurvivors": 0,
+      "prefixSurvivors": 0
+    },
+    {
+      "section": 4,
+      "words": 435,
+      "runes": 1894,
+      "split": 261,
+      "curves": [
+        [
+          1,
+          11256
+        ],
+        [
+          74,
+          0
+        ]
+      ],
+      "deadAt": 74,
+      "fullSurvivors": 0,
+      "prefixSurvivors": 0
+    },
+    {
+      "section": 5,
+      "words": 224,
+      "runes": 1021,
+      "split": 134,
+      "curves": [
+        [
+          1,
+          12048
+        ],
+        [
+          71,
+          0
+        ]
+      ],
+      "deadAt": 71,
+      "fullSurvivors": 0,
+      "prefixSurvivors": 0
+    },
+    {
+      "section": 6,
+      "words": 326,
+      "runes": 1433,
+      "split": 195,
+      "curves": [
+        [
+          1,
+          11569
+        ],
+        [
+          77,
+          0
+        ]
+      ],
+      "deadAt": 77,
+      "fullSurvivors": 0,
+      "prefixSurvivors": 0
+    },
+    {
+      "section": 7,
+      "words": 378,
+      "runes": 1680,
+      "split": 226,
+      "curves": [
+        [
+          1,
+          12059
+        ],
+        [
+          65,
+          0
+        ]
+      ],
+      "deadAt": 65,
+      "fullSurvivors": 0,
+      "prefixSurvivors": 0
+    },
+    {
+      "section": 8,
+      "words": 735,
+      "runes": 3316,
+      "split": 441,
+      "curves": [
+        [
+          1,
+          12921
+        ],
+        [
+          72,
+          0
+        ]
+      ],
+      "deadAt": 72,
+      "fullSurvivors": 0,
+      "prefixSurvivors": 0
+    }
+  ]
+}
