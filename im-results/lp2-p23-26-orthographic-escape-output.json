@@ -1,0 +1,1123 @@
+{
+  "folds": [
+    {
+      "i": 0,
+      "name": "0_warning",
+      "words": 45,
+      "longWords": 27,
+      "longOOVBefore": 0,
+      "longOOVAfter": 0,
+      "runes": 184,
+      "before": [],
+      "after": [],
+      "nullBefore": 3.099832540948591,
+      "nullAfter": 3.101879379000548,
+      "base": 42468,
+      "expanded": 224885
+    },
+    {
+      "i": 1,
+      "name": "0_welcome",
+      "words": 124,
+      "longWords": 59,
+      "longOOVBefore": 2,
+      "longOOVAfter": 1,
+      "runes": 515,
+      "before": [
+        "ILLUSIANS",
+        "WIDSOM"
+      ],
+      "after": [
+        "ILLUSIANS"
+      ],
+      "nullBefore": 8.441037227072526,
+      "nullAfter": 8.442873071252132,
+      "base": 42466,
+      "expanded": 224878
+    },
+    {
+      "i": 2,
+      "name": "0_wisdom",
+      "words": 31,
+      "longWords": 23,
+      "longOOVBefore": 9,
+      "longOOVAfter": 9,
+      "runes": 157,
+      "before": [
+        "PRIMES",
+        "TOTIENT",
+        "ENCRYPTED",
+        "AETHEREAL",
+        "BUFFERS",
+        "OBSCURA",
+        "MOBIUS",
+        "ANALOG",
+        "AETHEREAL"
+      ],
+      "after": [
+        "PRIMES",
+        "TOTIENT",
+        "ENCRYPTED",
+        "AETHEREAL",
+        "BUFFERS",
+        "OBSCURA",
+        "MOBIUS",
+        "ANALOG",
+        "AETHEREAL"
+      ],
+      "nullBefore": 1.0717451084883467,
+      "nullAfter": 1.0724453170336308,
+      "base": 42460,
+      "expanded": 224850
+    },
+    {
+      "i": 3,
+      "name": "0_koan_1",
+      "words": 208,
+      "longWords": 82,
+      "longOOVBefore": 1,
+      "longOOVAfter": 1,
+      "runes": 778,
+      "before": [
+        "INHABITNG"
+      ],
+      "after": [
+        "INHABITNG"
+      ],
+      "nullBefore": 19.451423818210717,
+      "nullAfter": 19.45953903083924,
+      "base": 42467,
+      "expanded": 224879
+    },
+    {
+      "i": 4,
+      "name": "0_loss_of_divinity",
+      "words": 181,
+      "longWords": 90,
+      "longOOVBefore": 4,
+      "longOOVAfter": 3,
+      "runes": 755,
+      "before": [
+        "BEHAUIARS",
+        "BELEIUE",
+        "BEHAUIARS",
+        "PRIMALITY"
+      ],
+      "after": [
+        "BEHAUIARS",
+        "BEHAUIARS",
+        "PRIMALITY"
+      ],
+      "nullBefore": 13.56474857163923,
+      "nullAfter": 13.572229200618054,
+      "base": 42465,
+      "expanded": 224869
+    },
+    {
+      "i": 5,
+      "name": "jpg107-167",
+      "words": 87,
+      "longWords": 41,
+      "longOOVBefore": 0,
+      "longOOVAfter": 0,
+      "runes": 319,
+      "before": [],
+      "after": [],
+      "nullBefore": 11.255310662599184,
+      "nullAfter": 11.257934905580427,
+      "base": 42468,
+      "expanded": 224885
+    },
+    {
+      "i": 6,
+      "name": "jpg229",
+      "words": 18,
+      "longWords": 13,
+      "longOOVBefore": 0,
+      "longOOVAfter": 0,
+      "runes": 89,
+      "before": [],
+      "after": [],
+      "nullBefore": 0.5786181636293432,
+      "nullAfter": 0.5791052661661511,
+      "base": 42468,
+      "expanded": 224885
+    },
+    {
+      "i": 7,
+      "name": "p56_an_end",
+      "words": 25,
+      "longWords": 11,
+      "longOOVBefore": 1,
+      "longOOVAfter": 1,
+      "runes": 85,
+      "before": [
+        "HASHES"
+      ],
+      "after": [
+        "HASHES"
+      ],
+      "nullBefore": 2.5445792079737286,
+      "nullAfter": 2.5454331721840298,
+      "base": 42467,
+      "expanded": 224881
+    },
+    {
+      "i": 8,
+      "name": "p57_parable",
+      "words": 20,
+      "longWords": 12,
+      "longOOVBefore": 3,
+      "longOOVAfter": 3,
+      "runes": 95,
+      "before": [
+        "PARABLE",
+        "TUNNELNG",
+        "CIRCUMFERENCES"
+      ],
+      "after": [
+        "PARABLE",
+        "TUNNELNG",
+        "CIRCUMFERENCES"
+      ],
+      "nullBefore": 1.2636400510547627,
+      "nullAfter": 1.2641004908041187,
+      "base": 42465,
+      "expanded": 224866
+    }
+  ],
+  "controls": [
+    {
+      "section": "0_welcome",
+      "period": 8,
+      "vocabulary": 224878,
+      "trainWords": 64,
+      "trainRunes": 255,
+      "held": 260,
+      "strict": {
+        "keys": [],
+        "exhausted": false,
+        "nodes": 5,
+        "passes": 11,
+        "rowVisits": 4567014,
+        "initialRows": 356143,
+        "exact": true,
+        "failure": {
+          "word": 48,
+          "kind": "no relation",
+          "pass": 11
+        }
+      },
+      "escape": 48,
+      "result": {
+        "keys": [
+          {
+            "key": [
+              23,
+              10,
+              1,
+              10,
+              9,
+              10,
+              16,
+              26
+            ],
+            "paths": 2,
+            "endPhases": [
+              0
+            ],
+            "runes": 255
+          }
+        ],
+        "exhausted": false,
+        "nodes": 5,
+        "passes": 13,
+        "rowVisits": 4173060,
+        "initialRows": 321998,
+        "exact": true,
+        "failure": {
+          "word": 30,
+          "kind": "no relation",
+          "pass": 10
+        }
+      },
+      "truthOOV": [
+        48
+      ],
+      "correctKey": true,
+      "continuation": {
+        "runes": 260,
+        "score": 260,
+        "paths": 1,
+        "exactMatches": 260
+      },
+      "correctFull": false,
+      "replay": true,
+      "conflict": {
+        "eligible": 29,
+        "minLength": 4,
+        "mandatory": [],
+        "edges": [
+          [
+            1,
+            48
+          ],
+          [
+            6,
+            48
+          ],
+          [
+            30,
+            48
+          ],
+          [
+            42,
+            48
+          ],
+          [
+            46,
+            48
+          ],
+          [
+            48,
+            50
+          ],
+          [
+            48,
+            54
+          ],
+          [
+            48,
+            57
+          ]
+        ],
+        "minimumOOVLowerBound": 1,
+        "cover": [
+          48
+        ],
+        "nodes": 3
+      }
+    },
+    {
+      "section": "jpg107-167",
+      "period": 13,
+      "vocabulary": 224885,
+      "trainWords": 44,
+      "trainRunes": 155,
+      "held": 164,
+      "strict": {
+        "keys": [
+          {
+            "key": [
+              0,
+              10,
+              4,
+              0,
+              1,
+              19,
+              0,
+              18,
+              4,
+              18,
+              9,
+              0,
+              18
+            ],
+            "paths": 1,
+            "endPhases": [
+              10
+            ],
+            "runes": 155
+          }
+        ],
+        "exhausted": false,
+        "nodes": 3,
+        "passes": 6,
+        "rowVisits": 1057698,
+        "initialRows": 252364,
+        "exact": true,
+        "failure": {
+          "word": 21,
+          "kind": "no relation",
+          "pass": 3
+        }
+      },
+      "escape": null,
+      "result": {
+        "keys": [
+          {
+            "key": [
+              0,
+              10,
+              4,
+              0,
+              1,
+              19,
+              0,
+              18,
+              4,
+              18,
+              9,
+              0,
+              18
+            ],
+            "paths": 1,
+            "endPhases": [
+              10
+            ],
+            "runes": 155
+          }
+        ],
+        "exhausted": false,
+        "nodes": 3,
+        "passes": 6,
+        "rowVisits": 1057698,
+        "initialRows": 252364,
+        "exact": true,
+        "failure": {
+          "word": 21,
+          "kind": "no relation",
+          "pass": 3
+        }
+      },
+      "truthOOV": [],
+      "correctKey": true,
+      "continuation": {
+        "runes": 164,
+        "score": 164,
+        "paths": 1,
+        "exactMatches": 164
+      },
+      "correctFull": true,
+      "replay": true,
+      "conflict": {
+        "eligible": 21,
+        "minLength": 4,
+        "mandatory": [],
+        "edges": [],
+        "minimumOOVLowerBound": 0,
+        "cover": [],
+        "nodes": 1
+      }
+    }
+  ],
+  "vocabByLength": [
+    [
+      1,
+      15,
+      15
+    ],
+    [
+      2,
+      193,
+      193
+    ],
+    [
+      3,
+      831,
+      831
+    ],
+    [
+      4,
+      2429,
+      2429
+    ],
+    [
+      5,
+      4481,
+      12616
+    ],
+    [
+      6,
+      6394,
+      24012
+    ],
+    [
+      7,
+      7048,
+      33085
+    ],
+    [
+      8,
+      6577,
+      37309
+    ],
+    [
+      9,
+      5389,
+      35732
+    ],
+    [
+      10,
+      3919,
+      29807
+    ],
+    [
+      11,
+      2551,
+      21903
+    ],
+    [
+      12,
+      1457,
+      13861
+    ],
+    [
+      13,
+      723,
+      7596
+    ],
+    [
+      14,
+      307,
+      3520
+    ],
+    [
+      15,
+      108,
+      1338
+    ],
+    [
+      16,
+      32,
+      430
+    ],
+    [
+      17,
+      11,
+      161
+    ],
+    [
+      18,
+      3,
+      47
+    ]
+  ],
+  "target": {
+    "cut": 113,
+    "n": 502,
+    "before": {
+      "eligible": 64,
+      "minLength": 4,
+      "mandatory": [],
+      "edges": [
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          11
+        ],
+        [
+          1,
+          16
+        ],
+        [
+          1,
+          19
+        ],
+        [
+          1,
+          21
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          4,
+          16
+        ],
+        [
+          4,
+          19
+        ],
+        [
+          4,
+          21
+        ],
+        [
+          4,
+          104
+        ],
+        [
+          7,
+          19
+        ],
+        [
+          7,
+          21
+        ],
+        [
+          11,
+          16
+        ],
+        [
+          11,
+          21
+        ],
+        [
+          11,
+          23
+        ],
+        [
+          16,
+          19
+        ],
+        [
+          16,
+          21
+        ],
+        [
+          16,
+          23
+        ],
+        [
+          16,
+          34
+        ],
+        [
+          16,
+          39
+        ],
+        [
+          16,
+          63
+        ],
+        [
+          16,
+          95
+        ],
+        [
+          16,
+          104
+        ],
+        [
+          16,
+          108
+        ],
+        [
+          19,
+          21
+        ],
+        [
+          21,
+          23
+        ],
+        [
+          21,
+          26
+        ],
+        [
+          21,
+          34
+        ],
+        [
+          21,
+          39
+        ],
+        [
+          21,
+          53
+        ],
+        [
+          21,
+          61
+        ],
+        [
+          21,
+          63
+        ],
+        [
+          21,
+          95
+        ],
+        [
+          21,
+          104
+        ],
+        [
+          21,
+          108
+        ],
+        [
+          23,
+          26
+        ],
+        [
+          26,
+          36
+        ],
+        [
+          39,
+          63
+        ],
+        [
+          45,
+          63
+        ],
+        [
+          53,
+          61
+        ],
+        [
+          53,
+          63
+        ],
+        [
+          54,
+          60
+        ],
+        [
+          61,
+          63
+        ],
+        [
+          63,
+          66
+        ],
+        [
+          63,
+          84
+        ],
+        [
+          63,
+          95
+        ],
+        [
+          63,
+          104
+        ],
+        [
+          63,
+          108
+        ],
+        [
+          66,
+          69
+        ],
+        [
+          66,
+          84
+        ],
+        [
+          69,
+          78
+        ],
+        [
+          69,
+          84
+        ],
+        [
+          78,
+          84
+        ],
+        [
+          82,
+          94
+        ],
+        [
+          84,
+          95
+        ],
+        [
+          93,
+          95
+        ],
+        [
+          93,
+          104
+        ],
+        [
+          93,
+          108
+        ],
+        [
+          94,
+          112
+        ],
+        [
+          95,
+          104
+        ],
+        [
+          95,
+          108
+        ],
+        [
+          104,
+          108
+        ],
+        [
+          104,
+          110
+        ],
+        [
+          108,
+          111
+        ]
+      ],
+      "minimumOOVLowerBound": 16,
+      "cover": [
+        21,
+        16,
+        63,
+        104,
+        84,
+        1,
+        108,
+        4,
+        23,
+        69,
+        94,
+        7,
+        26,
+        53,
+        54,
+        95
+      ],
+      "nodes": 65
+    },
+    "after": {
+      "eligible": 64,
+      "minLength": 4,
+      "mandatory": [],
+      "edges": [
+        [
+          1,
+          16
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          4,
+          21
+        ],
+        [
+          11,
+          21
+        ],
+        [
+          16,
+          19
+        ],
+        [
+          16,
+          21
+        ],
+        [
+          16,
+          23
+        ],
+        [
+          19,
+          21
+        ],
+        [
+          21,
+          23
+        ],
+        [
+          21,
+          108
+        ],
+        [
+          53,
+          63
+        ],
+        [
+          61,
+          63
+        ],
+        [
+          63,
+          104
+        ],
+        [
+          63,
+          108
+        ],
+        [
+          93,
+          108
+        ],
+        [
+          95,
+          108
+        ],
+        [
+          104,
+          108
+        ]
+      ],
+      "minimumOOVLowerBound": 5,
+      "cover": [
+        21,
+        63,
+        16,
+        108,
+        7
+      ],
+      "nodes": 11
+    },
+    "removed": [
+      [
+        1,
+        9
+      ],
+      [
+        1,
+        11
+      ],
+      [
+        1,
+        19
+      ],
+      [
+        1,
+        21
+      ],
+      [
+        4,
+        16
+      ],
+      [
+        4,
+        19
+      ],
+      [
+        4,
+        104
+      ],
+      [
+        7,
+        19
+      ],
+      [
+        7,
+        21
+      ],
+      [
+        11,
+        16
+      ],
+      [
+        11,
+        23
+      ],
+      [
+        16,
+        34
+      ],
+      [
+        16,
+        39
+      ],
+      [
+        16,
+        63
+      ],
+      [
+        16,
+        95
+      ],
+      [
+        16,
+        104
+      ],
+      [
+        16,
+        108
+      ],
+      [
+        21,
+        26
+      ],
+      [
+        21,
+        34
+      ],
+      [
+        21,
+        39
+      ],
+      [
+        21,
+        53
+      ],
+      [
+        21,
+        61
+      ],
+      [
+        21,
+        63
+      ],
+      [
+        21,
+        95
+      ],
+      [
+        21,
+        104
+      ],
+      [
+        23,
+        26
+      ],
+      [
+        26,
+        36
+      ],
+      [
+        39,
+        63
+      ],
+      [
+        45,
+        63
+      ],
+      [
+        53,
+        61
+      ],
+      [
+        54,
+        60
+      ],
+      [
+        63,
+        66
+      ],
+      [
+        63,
+        84
+      ],
+      [
+        63,
+        95
+      ],
+      [
+        66,
+        69
+      ],
+      [
+        66,
+        84
+      ],
+      [
+        69,
+        78
+      ],
+      [
+        69,
+        84
+      ],
+      [
+        78,
+        84
+      ],
+      [
+        82,
+        94
+      ],
+      [
+        84,
+        95
+      ],
+      [
+        93,
+        95
+      ],
+      [
+        93,
+        104
+      ],
+      [
+        94,
+        112
+      ],
+      [
+        95,
+        104
+      ],
+      [
+        104,
+        110
+      ],
+      [
+        108,
+        111
+      ]
+    ],
+    "added": [],
+    "strict": {
+      "keys": [],
+      "exhausted": false,
+      "nodes": 3,
+      "passes": 7,
+      "rowVisits": 5666406,
+      "initialRows": 1148399,
+      "exact": true,
+      "failure": {
+        "word": 18,
+        "kind": "no relation",
+        "pass": 7
+      }
+    },
+    "coverCount": 2,
+    "runs": [
+      {
+        "c": [
+          4,
+          16,
+          21,
+          63,
+          108
+        ],
+        "result": {
+          "keys": [],
+          "exhausted": false,
+          "nodes": 3,
+          "passes": 5,
+          "rowVisits": 4833040,
+          "initialRows": 999635,
+          "exact": true,
+          "failure": {
+            "word": 32,
+            "kind": "no relation",
+            "pass": 5
+          }
+        }
+      },
+      {
+        "c": [
+          7,
+          16,
+          21,
+          63,
+          108
+        ],
+        "result": {
+          "keys": [],
+          "exhausted": false,
+          "nodes": 3,
+          "passes": 6,
+          "rowVisits": 5729899,
+          "initialRows": 1003363,
+          "exact": true,
+          "failure": {
+            "word": 24,
+            "kind": "no relation",
+            "pass": 6
+          }
+        }
+      }
+    ],
+    "allFiveCoverTestsComplete": true,
+    "certifiedOOVLowerBound": 6
+  }
+}

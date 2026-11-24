@@ -38,8 +38,36 @@ Build the incompatibility graph and solve exact minimum vertex cover (branch inc
 
 This is a constructive and genuinely all-key negative under the declared period, plaintext-F rule, native lexicon and intact word boundaries; it is not an information-theoretic rejection of arbitrary language or other mechanisms. The robust conflict graph can be reused where a full F-mask enumeration would be exponential.
 
+## Author-specific orthographic sensitivity (Director #2602)
+
+The original 16-word lower bound is **lexicon-dependent**. A single authentic input error, WIDSOM rather than WISDOM, motivates a finite native spelling expansion. Freeze the rule before original scoring: for a dictionary spelling with at least five GP runes, allow at most one exchange of unequal adjacent interior non-F runes; neither first nor final rune may move; no chaining, insertion/deletion or F changes. See the [frozen plan](https://github.com/FlareZ123/liber-primus/issues/2602#issuecomment-7134382260). The exact same baseline word list and donor normalization above are reused, with the two erroneous external first-KOAN WHAT forms replaced by the source-exact WHO forms (778 original rather than 780 donor runes). The all-section baseline still has 42,468 spellings.
+
+Whole-section leave-one-out controls (all other solved sections and the same external lexicon/donors retained; WELCOME is the rule-training section, not independent validation):
+
+| Native section | Words / GP runes | OOV before → after | Words ≥4 runes |
+|---|---:|---:|---:|
+| WARNING | 45 / 184 | 0 → 0 | 27 |
+| WELCOME (training) | 124 / 515 | 2 → 1 | 59 |
+| WISDOM | 31 / 157 | 9 → 9 | 23 |
+| First KOAN (source-corrected) | 208 / 778 | 1 → 1 | 82 |
+| LOSS OF DIVINITY | 181 / 755 | 4 → 3 | 90 |
+| Second KOAN | 87 / 319 | 0 → 0 | 41 |
+| INSTRUCTION | 18 / 89 | 0 → 0 | 13 |
+| p56 AN END | 25 / 85 | 1 → 1 | 11 |
+| p57 PARABLE | 20 / 95 | 3 → 3 | 12 |
+
+Independent holdouts total 615 words, including 299 long words. The rule rescues only the authentic BELEIUE spelling (BELIEUE with an interior swap); OOV falls from 18/615 to 17/615 (all these OOVs are ≥4 runes). The original WIDSOM training example is also rescued. Remaining uncovered forms include technical vocabulary (PRIMES, TOTIENT, MOBIUS, AETHEREAL), author forms such as ILLUSIANS, BEHAUIARS and INHABITNG, and TUNNELNG. These are baseline-normalizer OOVs, not all author errors. No second rule was derived from these heldouts. Across the nine folded native word-length distributions, exact uniform GP29 whole-word expected acceptances increase only from 61.270935 to 61.295540 of 739 words; this is a uniform-string diagnostic, not a cipher-key null or a model of natural language. Vocabulary nevertheless expands more than fivefold to 224,885 distinct GP spellings; partial-key compatibility is much more sensitive than whole-word uniform acceptance.
+
+Re-run the exact frozen original p23–26 502-rune prefix, same 113 groups, continuous q13 and F-hold semantics, unchanged 519-rune holdout. The 64 eligible long groups' conflict graph falls from **64 edges / minimum cover 16** to **17 edges / minimum cover 5** (47 removed, none added). Both genuine cipher controls still recover their exact keys and 424/424 withheld runes; WELCOME still requires one wildcard at word48, second KOAN requires none. Their graph cover bounds remain 1/0.
+
+Go beyond the graph: strict expanded-lexicon CSP returns no key, exact after three search nodes. Every hypothetical solution with at most five arbitrary OOV words must contain a vertex cover of the 17-edge graph. There are exactly two such covers, in zero-based original prefix word indices: [4,16,21,63,108] and [7,16,21,63,108]. Both are size five and exhaust the escape budget. Running the full phase/key CSP with each entire cover wildcarded (any legal plaintext under the same cipher) returns no key, exact in three search nodes each. Thus **at least six of all 113 original words must be outside even the expanded lexicon**. The exact feasible key set for zero through five OOV words is empty. This does not establish that six suffice or that any larger escape budget contains a natural-language solution.
+
+**Interpretation:** the unexpanded 16/113 result remains exact for its original finite dictionary, but its magnitude is not orthography-robust. The new ≥6/113 bound is within the observed variability of solved specialized sections (e.g. WISDOM 9/31 and PARABLE 3/20); it cannot be promoted to a language-independent exclusion. The fixed author-swap-only model and models permitting ≤5 additional arbitrary unknown words are retired. No positive key exists at this calibrated bounded gate, so do not reopen an unconstrained typo/phase search. A future independent selector of technical vocabulary or a concrete state/key hypothesis could motivate a larger exact lexical inverse; the original 519-rune continuation remains frozen.
+
+Reproducer: [SFT](../sims/lp2_p23_26_orthographic_escape_sft.cjs); [machine-readable full results, edges, covers and exact CSP outputs](../im-results/lp2-p23-26-orthographic-escape-output.json). Executed using the repository's exact input text in the JavaScript runtime, with the unchanged shared solver. This is a distinct finite sensitivity test of #2536, not a recovered LP2 key or plaintext.
+
 ## Decision
 
-Retire this continuous period13 p23–26 intact-word/native-register model at the frozen prefix. Positive recovery of both historical keys and 424/424 heldout runes establishes solver viability; original failure is not random-start optimizer failure or one OOV spelling. No new authentic unknown plaintext/key. Do not retry arbitrary reset/phase schedules without a new independently source-selected clue.
+Retire the continuous period13 p23–26 intact-word model under the original lexicon and the frozen orthographic expansion allowing up to five additional arbitrary OOV words. Positive recovery of both historical keys and 424/424 heldout runes establishes solver viability. The larger-vocabulary OOV bound does not separate all solved native registers; a genuinely independent source selector is necessary to justify a broader model. No new authentic unknown plaintext/key. Do not retry arbitrary reset/phase schedules without a new independently source-selected clue.
 
 [Executable SFT](../sims/lp2_p23_26_period13_word_relation_sft.cjs), final driver a3ee8bf2e75ddc8ae9b735b817edd5306971f4ca, shared engine 00c8ef4f170aafca716be8a35acbd7b30a64936f; directly executed on original and historical control inputs via a read-only repository-file shim. No CI claim.
