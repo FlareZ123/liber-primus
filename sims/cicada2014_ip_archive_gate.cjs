@@ -12,7 +12,8 @@ const targets = [
   { name: 'row-major-LP2-candidate', url: '31.184.172.36', matchType: 'host' },
   { name: 'column-major-control', url: '31.172.184.36', matchType: 'host' },
   { name: '2012-domain-control', url: '845145127.com', matchType: 'domain' },
-  { name: '2012-known-IP-control', url: '75.119.203.244', matchType: 'host' }
+  { name: '2012-known-IP-control', url: '75.119.203.244', matchType: 'host' },
+  { name: 'positive-control-example-domain', url: 'example.com', matchType: 'domain' }
 ];
 
 const wantedYears = new Set(['2014', '2015']);
