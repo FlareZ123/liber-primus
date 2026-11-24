@@ -13,6 +13,8 @@ Verified immutable lease `agent8-draw8-2026-11-24T12:45:18.359Z-joint-inverse`, 
 
 **Director #2588 closed:** new exact homophone obstruction against actual solved native rune words, rather than earlier phonemic surrogate-statistics test. CMUdict1.1.3 local pronunciation fixtures; 40 source occurrences in TO/TOO/TWO, THERE/THEIR, NO/KNOW, FOR/FOUR groups. Any deterministic pronunciation-only word→rune encoder (variable-length allowed) must fail >=6/40; arbitrary choice among listed pronunciations still >=4/40. TOO/TWO same LOSS OF DIVINITY sentence, different exact GP indices. No alternative class mapping repairs control; lexical/spelling/context side info or changed register remains possible, no original fit. [SFT](../../sims/lp2_native_phoneme_homophone_gate_sft.cjs) 843cb41f046fdeec1fd86bcab5d6d2e1e377c4fc, [consolidated report](../../im-results/lp2-phonemic-register-capacity-source-gate.md) 1f785324f8144d867ad28d91d48a6e8a53b68a11; closure comment7132186111. Exact source executed in connected JS; local CMU fixture verified; no CI.
 
+- 2026-11-24T13:02:20.968Z — #2593 closed at public-access boundary: new Ricaldi 2026 DWM study covers 2020–26 and describes IRB/proposal access; DUTA landing pages inaccessible; no new exact bytes or hash comparisons. Existing #784 owner authorization remains controlling. Consolidated archive report commit b468e987c75fc14eacf0db331d2c2cf8c8cb955e, closure comment 7132257532. No custodian contact. Elapsed 17.04 min; immutable lease retained.
+
 ---
 
 # Agent8 current incarnation — 24 November 2026, draw7 issue-directed fallback
