@@ -35,9 +35,9 @@ function analyze(ct,raw,dict,nt){
  assert(rows.reduce((s,x)=>s+x.e,0)===63,"source repeat count");
  /** @param {number} bits @param {typeof rows} rr */
  function bound(bits,rr=rows){
-  let U=(1n<<BigInt(bits))-1n,firstZero=null;const caps=new Map;
+  let U=(1n<<BigInt(bits))-1n,firstZero=null;const caps=new Map; const restart=new Set(rr.map((v,i)=>v.restart?i:-1));
   for(let i=0;i<rr.length;i++){
-   const {L,e,p,type,M,P}=rr[i];
+   if(restart.has(i))U=(1n<<BigInt(bits))-1n; const {L,e,p,type,M,P}=rr[i];
    const vmax=(U+1n)*P-1n,cap=vmax<M?vmax:M-1n,k=L+":"+e;
    if(!caps.has(k))caps.set(k,new Map);
    const mp=caps.get(k),old=mp.get(type);if(!old||cap<old.cap)mp.set(type,{cap,i,p});
@@ -104,8 +104,15 @@ function analyze(ct,raw,dict,nt){
  let lo=0,hi=100000;assert(bound(lo).fails.length>0&&bound(hi).fails.length===0,"binary endpoints");
  while(hi-lo>1){const m=(lo+hi)>>1;if(bound(m).fails.length)lo=m;else hi=m}
  const b=bound(2048),low=bound(lo),high=bound(hi);
+ const sections=raw.split("%").slice(0,55).join("%").split("$").filter(x=>[...x].some(c=>gp.has(c))).map(x=>{let z=[],w=[];for(const c of x){if(gp.has(c))w.push(gp.get(c));else if(c!=="/"&&c!=="%"&&!/\s/u.test(c)&&w.length){z.push(w);w=[]}}if(w.length)z.push(w);return z});
+ assert(sections.flat().map(w=>w.join(",")).join("|")===words.map(w=>w.a.join(",")).join("|"),"source section partition");
+ let offset=0;const split=sections.map(s=>{const i=offset;offset+=s.length;return rows.slice(i,offset)});
+ const resetRows=split.flatMap(rs=>rs.map((v,i)=>({...v,restart:i===0})));
+ const sharedReset=bound(256,resetRows),privateReset=split.map((rs,i)=>({section:i,words:rs.length,...bound(256,rs),canonicalMinimumSeedBits:bitlen(decode(rs,rs.map(v=>pack(v.type.split(",").map(Number))),0n).seed)}));
+ assert(sharedReset.fails.length>0&&privateReset.every(x=>x.canonicalMinimumSeedBits>256),"section reset gate");
+ const sectionReset={shared:{...sharedReset,groups:sharedReset.groups.filter(x=>x.frame==="1:0"||x.frame==="2:0")},private:privateReset.map(x=>({section:x.section,words:x.words,firstZero:x.firstZero,fails:x.fails,canonicalMinimumSeedBits:x.canonicalMinimumSeedBits}))};
  assert(lo===16650&&hi===16651&&b.firstZero===169&&b.fails.length===2,"original envelope expected");
- return {D,lexicon:D.reduce((a,b)=>a+b,0),sourceWords:rows.length,sourceRunes:words.flatMap(w=>w.a).length,sourceRepeats:63,table:b,lastExcluded:low,firstNotExcluded:high,canonical:{minimumSeedBits:bitlen(orig.seed),preview,exactReplay:rows.length},control:{seed:3301,words:control.length,runes:control.flat().length,terminal:plant.terminal.toString(),hiddenRank:"reverse",exactReplay:true,envelopePass:true},toy};
+ return {D,lexicon:D.reduce((a,b)=>a+b,0),sourceWords:rows.length,sourceRunes:words.flatMap(w=>w.a).length,sourceRepeats:63,sectionReset,table:b,lastExcluded:low,firstNotExcluded:high,canonical:{minimumSeedBits:bitlen(orig.seed),preview,exactReplay:rows.length},control:{seed:3301,words:control.length,runes:control.flat().length,terminal:plant.terminal.toString(),hiddenRank:"reverse",exactReplay:true,envelopePass:true},toy};
 }
 const root=path.join(__dirname,'..');
 const paths=["resources/liber-primus/lp2-corpus.json","resources/lp2-transcription.txt","resources/control/english_wordfreq_textblob.txt","resources/external/relikd-solved-gp29-native-v1.json"];
