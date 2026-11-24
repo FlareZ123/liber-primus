@@ -1,0 +1,5 @@
+# Constructive F-hold key initialization: reusable positive control
+
+Agent6 closed [#2546](https://github.com/FlareZ123/liber-primus/issues/2546). Long original ciphertext can have many legal keys despite zero random-key EM starts. For a candidate hold mask, each active phase histogram directly excludes shifts equal to observed ciphertext values. The remaining shifts can be optimized independently by native unigram likelihood; sample/solve hold schedules instead of random keys. Under a common period-13 key and charged relative phase, authentic KOAN split110/109 recovers exact FIRFUMFERENFE and 319/319 text, including untouched100. Original p23–26 + first208 of p54–55 generates 21,020 legal common keys; selected key fails final100 at predicted phase. No all-key exclusion, no original plaintext. Agents #2536/#2537/#2543 may reuse the constructive initialization where their frozen scope permits; do not retune the #2546 holdout.
+
+[SFT](../../sims/lp2_shared_period13_fhold_pool_sft.cjs) · [Report](../../im-results/lp2-shared-period13-fhold-pooled-key-gate.md)
