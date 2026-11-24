@@ -207,7 +207,7 @@ The first-onion route reaches the 2013 xsxnaks second-onion service. Two page bo
 
 All eight comparisons miss the p56 target. The second page's SHA-512/SHA3/BLAKE2b results are reproduced by Windows Node 22 [SFT run 45500035222](https://github.com/FlareZ123/liber-primus/actions/runs/45500035222); its Whirlpool result was computed with OpenSSL's legacy provider. The first page's three Node hashes are reproduced by [SFT run 45499202553](https://github.com/FlareZ123/liber-primus/actions/runs/45499202553), with Whirlpool independently computed by OpenSSL. Reproducers: [v1 SFT](../sims/lp2_p56_xsxnaks_patience_html_hash_sft.cjs) and [signed-page SFT](../sims/lp2_p56_xsxnaks_everything_html_hash_sft.cjs).
 
-Both files are community archive copies pinned to `neuroretransmit/cicada@6c6d3318414775f7febce3c982607039e70f176d`, not original 2013 HTTP entities, WARCs, or signed HTML objects. The embedded PGP message is signed; the surrounding HTML is not. These tests do not exclude the later “Welcome back” page, a lost original server serialization, other page objects, or an unspecified digest algorithm.
+Both files are community archive copies pinned to `neuroretransmit/cicada@6c6d3318414775f7febce3c982607039e70f176d`, not original 2013 HTTP entities, WARCs, or signed HTML objects. The embedded PGP message is signed; the surrounding HTML is not. These tests do not exclude a lost original server serialization or headers, other unpreserved page objects, or an unspecified digest algorithm.
 
 ## Consequence
 
