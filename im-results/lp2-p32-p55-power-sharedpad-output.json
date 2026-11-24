@@ -1,0 +1,1719 @@
+{
+  "controls": [
+    {
+      "hold": false,
+      "n": 95,
+      "local": 1,
+      "survivors": 1,
+      "trueRegister": [
+        3,
+        5,
+        7
+      ],
+      "bestRegister": [
+        3,
+        5,
+        7
+      ],
+      "exactPad": 95,
+      "plaintextA": "… WELCOME PILGRIM TO THE GREAT JOURNEY TOWARD THE END OF ALL THNGS IT IS NOT AN EASY TRIP BUT FOR THOSE WHO FIND THEIR WAY HERE IT IS A … … … … …",
+      "plaintextB": "PARABLE LICE THE INSTAR TUNNELNG TO THE SURFACE WE MUST SHED OUR OWN CIRCUMFERENCES FIND THE DIUINITY WITHIN AND EMERGE"
+    },
+    {
+      "hold": true,
+      "n": 92,
+      "local": 1,
+      "survivors": 1,
+      "trueRegister": [
+        3,
+        5,
+        7
+      ],
+      "bestRegister": [
+        3,
+        5,
+        7
+      ],
+      "exactPad": 92,
+      "plaintextA": "… WELCOME PILGRIM TO THE GREAT JOURNEY TOWARD THE END OF ALL THNGS IT IS NOT AN EASY TRIP BUT FOR THOSE WHO FIND THEIR WAY HERE IT IS A … … … … …",
+      "plaintextB": "PARABLE LICE THE INSTAR TUNNELNG TO THE SURFACE WE MUST SHED OUR OWN CIRCUMFERENCES FIND THE DIUINITY WITHIN AND EMERGE"
+    }
+  ],
+  "placements": 184,
+  "registersPerPlacement": 4032,
+  "local": 0,
+  "hardSurvivors": 0,
+  "byClock": [
+    {
+      "hold": false,
+      "placements": 93,
+      "local": 0,
+      "survivors": 0
+    },
+    {
+      "hold": true,
+      "placements": 91,
+      "local": 0,
+      "survivors": 0
+    }
+  ],
+  "best": [],
+  "all": [
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 0,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 1,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 2,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 3,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 4,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 5,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 6,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 7,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 8,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 9,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 10,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 11,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 12,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 13,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 14,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 15,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 16,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 17,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 18,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 19,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 20,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 21,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 22,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 23,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 24,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 25,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 26,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 27,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 28,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 29,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 30,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 31,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 32,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 33,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 34,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 35,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 36,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 37,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 38,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 39,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 40,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 41,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 42,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 43,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 44,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    },
+    {
+      "hold": false,
+      "drop": 0,
+      "offset": 45,
+      "n": 76,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 0,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 1,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 2,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 3,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 4,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 5,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 6,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 7,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 8,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 9,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 10,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 11,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 12,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 13,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 14,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 15,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 16,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 17,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 18,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 19,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 20,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 21,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 22,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 23,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 24,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 25,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 26,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 27,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 28,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 29,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 30,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 31,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 32,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 33,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 34,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 35,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 36,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 37,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 38,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 39,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 40,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 41,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 42,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 43,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 44,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 45,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    },
+    {
+      "hold": false,
+      "drop": 1,
+      "offset": 46,
+      "n": 75,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 0,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 1,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 2,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 3,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 4,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 5,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 6,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 7,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 8,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 9,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 10,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 11,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 12,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 13,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 14,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 15,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 16,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 17,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 18,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 19,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 20,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 21,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 22,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 23,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 24,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 25,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 26,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 27,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 28,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 29,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 30,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 31,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 32,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 33,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 34,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 35,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 36,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 37,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 38,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 39,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 40,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 41,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 42,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 43,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    },
+    {
+      "hold": true,
+      "drop": 0,
+      "offset": 44,
+      "n": 73,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 0,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 1,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 2,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 3,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 4,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 5,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 6,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 7,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 8,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 9,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 10,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 11,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 12,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 13,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 14,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 15,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 16,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 17,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 18,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 19,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 20,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 21,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 22,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 23,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 24,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 25,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 26,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 27,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 28,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 29,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 30,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 31,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 32,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 33,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 34,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 35,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 36,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 37,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 38,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 39,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 40,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 41,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 42,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 1
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 43,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 44,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    },
+    {
+      "hold": true,
+      "drop": 1,
+      "offset": 45,
+      "n": 72,
+      "local": 0,
+      "survivors": 0,
+      "tested": 2
+    }
+  ]
+}
