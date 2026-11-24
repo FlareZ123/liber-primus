@@ -137,7 +137,16 @@ function experiment(corpus,trans,solved,lex,injective=true){
   controls.push({name,...summarize(r),trueTrain:r.train.filter(t=>key(t)&&String(t.pt)===String(truth.slice(0,r.stats.fitRunes))).length,trueHeld:r.held.filter(t=>key(t)&&String(t.all)===String(truth)).length,truePrefix:r.train.filter(t=>key(t)&&String(t.pt)===String(truth.slice(0,r.stats.fitRunes))).map(t=>({predicted:t.best?.length||0,exact:(t.best||[]).filter((v,i)=>v===truth[r.stats.fitRunes+i]).length}))});
  }
  let i=original.length,n=0;while(n<308)n+=original[--i].length;assert(n===308,"terminal groups");
- const targets=[{name:"p54-p55",w:original.slice(i),fit:205},{name:"p0-p2",w:original.slice(0,158),fit:200}];
+ const offsets=[0];for(const w of original)offsets.push(offsets.at(-1)+w.length);
+ const p55=original.flat().length-gp.pages[55].indices.length;
+ const start55=offsets.findIndex(o=>o>=p55);
+ assert(offsets[2]===13,"red heading");
+ const targets=[
+ {name:"p54-p55",w:original.slice(i),fit:205},
+ {name:"p0-p2",w:original.slice(0,158),fit:200},
+ {name:"p0 black-body reset",w:original.slice(2,158),fit:200},
+ {name:"p55 complete groups, reset after carry",w:original.slice(start55),fit:Math.floor((offsets.at(-1)-offsets[start55])*.75)}
+ ];
  const results=targets.map(t=>({name:t.name,...summarize(attack(t.w,t.fit))}));
  return {injective,lexicon:dict.reduce((a,d)=>a+d.size,0),controls,results};
 }
