@@ -1,6 +1,6 @@
 # SHA-512 of solved p57 as a source-derived Parable-BBS seed
 
-**Status: preregistered, pending execution.** This is a bounded key-derivation test, not a general hash search.
+**Status: completed — bounded negative.** This is a bounded key-derivation test, not a general hash search.
 
 ## Motivation
 
@@ -26,6 +26,21 @@ This produces exactly four seeds. No SHA-256, little-endian digest, salts, alter
 For each of the four derived seeds, test the five existing BBS output encodings (state-low8, state-low5, bits5-lsb, bits5-msb, bits8-msb), both signs, and the existing collision-only GP29-additive Viterbi. Use page-reset key generation and the six fixed pages [0, 3, 8, 23, 27, 40], with 130 training and 80 held-out runes per page. Total: 40 models.
 
 The script runs the established planted-positive control exported by parable_bbs_keyskip_inverse.cjs before evaluating the hash-derived seeds. It must pass before the original-cipher experiment is reported.
+
+## Result
+
+The positive control passed: the established full-three-prime seed-3301 / bits5-msb model ranked first and recovered 1260/1260 planted runes with 24 skips. The 40 hash-derived original-cipher models did not yield intelligible held-out plaintext.
+
+| Input | Modulus | Seed | Best relevant heldout result |
+| --- | --- | ---: | --- |
+| GP29 index bytes | N3 | 1277018081 | no coherent heldout text |
+| GP29 index bytes | N2 | 1055574 | best heldout score −5.6246, gibberish |
+| GP-prime u16BE | N3 | 277338680 | no coherent heldout text |
+| GP-prime u16BE | N2 | 858503 | no coherent heldout text |
+
+The best heldout candidate was GP29-index bytes modulo N2, bits5-msb, positive sign: train −5.7898, heldout −5.6246, with heldout heads CEAFTMPAECARUEOCYJXCEYO and XOMSBOETHABAMYNPWNETHAENG. The best training score was −5.7436 and also had gibberish heldout text.
+
+**Decision:** retire the two frozen SHA-512 inputs and N3/N2 reductions under the declared five-format, page-reset GP29-additive keyskip receiver. [Raw 40-model result](../im-results/parable-bbs-hashseed-inverse.json) · [SFT](../sims/parable_bbs_hashseed_inverse.cjs) · [workflow run 45414129975](https://github.com/FlareZ123/liber-primus/actions/runs/45414129975).
 
 ## Decision rule
 
