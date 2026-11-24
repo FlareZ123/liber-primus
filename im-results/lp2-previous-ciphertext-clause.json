@@ -1,0 +1,4317 @@
+{
+  "rule": "previous full physical ciphertext clause incl zeros, phase 0, + encryption, literal F hold",
+  "summary": {
+    "global": {
+      "clauses": 172,
+      "runes": 12943,
+      "reachable": 65,
+      "reachableRunes": 2809,
+      "firstContradictions": [
+        [
+          13,
+          37
+        ],
+        [
+          275,
+          16
+        ],
+        [
+          297,
+          0
+        ],
+        [
+          434,
+          7
+        ],
+        [
+          531,
+          8
+        ],
+        [
+          745,
+          64
+        ]
+      ],
+      "best": [
+        {
+          "start": 7760,
+          "end": 7801,
+          "length": 41,
+          "keyLength": 61,
+          "count": "1",
+          "score": -3.6860419135149893,
+          "text": "FDEAOMEOLUPXJJDPAERCELYFEOMILGRTAESDYOMUEAEAGUAY"
+        },
+        {
+          "start": 1046,
+          "end": 1067,
+          "length": 21,
+          "keyLength": 21,
+          "count": "1",
+          "score": -3.757530776880732,
+          "text": "AOEDOEOBGTLBEMFEAOENOSYWP"
+        },
+        {
+          "start": 9669,
+          "end": 9715,
+          "length": 46,
+          "keyLength": 29,
+          "count": "2",
+          "score": -3.8060785641531933,
+          "text": "DAEYWTEOOUURTNGNEOFMBEAUJOEEOIAPBBTEOHMNGNWRWYOSGREAAEOSE"
+        }
+      ]
+    },
+    "chapters": [
+      {
+        "page": 0,
+        "clauses": 7,
+        "runes": 575,
+        "reachable": 3,
+        "reachableRunes": 205,
+        "firstContradictions": [
+          [
+            275,
+            16
+          ],
+          [
+            297,
+            0
+          ],
+          [
+            434,
+            7
+          ],
+          [
+            531,
+            8
+          ]
+        ],
+        "best": [
+          {
+            "start": 154,
+            "end": 275,
+            "length": 121,
+            "keyLength": 141,
+            "count": "5",
+            "score": -3.9188983676837332,
+            "text": "AEABEANGAYHAUJDMEAEANJUUWJODRDCECTHWMORXIAJBOEIAOSHUTHRPESPGCXUJTHLUNNGGLAWBEOEUAEELHUTHDTHLRHEOJYOLOGUJOWWFLTHEAOAGOWEEOTDSWTHAEXHBTHEODDWNGEEYP"
+          },
+          {
+            "start": 350,
+            "end": 394,
+            "length": 44,
+            "keyLength": 53,
+            "count": "1",
+            "score": -4.007668836389224,
+            "text": "TNGPIJOESTHIWAERGTHCTANNGIAEACGJDWEAAENEARCDDYMUYBWMEU"
+          },
+          {
+            "start": 394,
+            "end": 434,
+            "length": 40,
+            "keyLength": 44,
+            "count": "2",
+            "score": -4.03324539976596,
+            "text": "YCPISBANGNGYPIATHIICOEOETMNGOCEAOYLEAEATYTHNSPIATHHIAJ"
+          }
+        ]
+      },
+      {
+        "page": 3,
+        "clauses": 16,
+        "runes": 1026,
+        "reachable": 6,
+        "reachableRunes": 70,
+        "firstContradictions": [
+          [
+            851,
+            1
+          ],
+          [
+            1067,
+            5
+          ],
+          [
+            1111,
+            50
+          ],
+          [
+            1294,
+            9
+          ],
+          [
+            1317,
+            6
+          ],
+          [
+            1428,
+            14
+          ]
+        ],
+        "best": [
+          {
+            "start": 1046,
+            "end": 1067,
+            "length": 21,
+            "keyLength": 21,
+            "count": "1",
+            "score": -3.757530776880732,
+            "text": "AOEDOEOBGTLBEMFEAOENOSYWP"
+          },
+          {
+            "start": 1025,
+            "end": 1046,
+            "length": 21,
+            "keyLength": 174,
+            "count": "1",
+            "score": -4.115018392517091,
+            "text": "AEOHYSYXBOLOAENRAELJJDBEA"
+          }
+        ]
+      },
+      {
+        "page": 8,
+        "clauses": 26,
+        "runes": 1689,
+        "reachable": 14,
+        "reachableRunes": 876,
+        "firstContradictions": [
+          [
+            1914,
+            43
+          ],
+          [
+            2148,
+            165
+          ],
+          [
+            2503,
+            4
+          ],
+          [
+            2666,
+            6
+          ],
+          [
+            2833,
+            10
+          ],
+          [
+            2910,
+            10
+          ]
+        ],
+        "best": [
+          {
+            "start": 3187,
+            "end": 3211,
+            "length": 24,
+            "keyLength": 43,
+            "count": "1",
+            "score": -3.9782804425625056,
+            "text": "TBYEAIAMAEIAJFTHLUMXEAADOEEASTEAW"
+          },
+          {
+            "start": 3211,
+            "end": 3232,
+            "length": 21,
+            "keyLength": 24,
+            "count": "2",
+            "score": -3.9918553169055593,
+            "text": "BSBOOMRSXIAIAIAFNNJYRUG"
+          },
+          {
+            "start": 2578,
+            "end": 2666,
+            "length": 88,
+            "keyLength": 7,
+            "count": "1",
+            "score": -4.00867672784445,
+            "text": "PREUSWEOEACAEPPOETJNWSNGBDCNUTTHOESDEAEENGUEACEOGJTHTHWIACNWIARCEOPYEAEOEOEOEAENURUHEPNGEAAEETHBEOLGEOSYBTHTHEAHHJI"
+          }
+        ]
+      },
+      {
+        "page": 15,
+        "clauses": 18,
+        "runes": 1657,
+        "reachable": 4,
+        "reachableRunes": 131,
+        "firstContradictions": [
+          [
+            3884,
+            3
+          ],
+          [
+            4007,
+            24
+          ],
+          [
+            4093,
+            7
+          ],
+          [
+            4134,
+            10
+          ],
+          [
+            4148,
+            26
+          ],
+          [
+            4196,
+            34
+          ]
+        ],
+        "best": [
+          {
+            "start": 5342,
+            "end": 5410,
+            "length": 68,
+            "keyLength": 375,
+            "count": "3",
+            "score": -3.927407216917137,
+            "text": "JEOEAEGIJRDTHUSJNOEHAAEJFTNCFTAEOPUDOEOELLLDILYIABWEAJSFTHAXBAEXHWOIDEGEOWOJTAEXIA"
+          },
+          {
+            "start": 3849,
+            "end": 3884,
+            "length": 35,
+            "keyLength": 226,
+            "count": "1",
+            "score": -4.304238149272271,
+            "text": "OGAECYYPNHTHTNDNFXUWXMXFIAOIAJAEORTXIAOCJ"
+          }
+        ]
+      },
+      {
+        "page": 23,
+        "clauses": 7,
+        "runes": 685,
+        "reachable": 2,
+        "reachableRunes": 99,
+        "firstContradictions": [
+          [
+            5870,
+            8
+          ],
+          [
+            5907,
+            29
+          ],
+          [
+            6028,
+            21
+          ],
+          [
+            6183,
+            38
+          ],
+          [
+            6339,
+            61
+          ]
+        ],
+        "best": [
+          {
+            "start": 6456,
+            "end": 6527,
+            "length": 71,
+            "keyLength": 117,
+            "count": "1",
+            "score": -3.8701851013919284,
+            "text": "ADBXONGEOJOEMPJOEYLTAGOELXAENEAMIACALUCAMGFOEXSAENSYCEOIAMPRYNJCHSOEXDWGBUCOFTHMMCAER"
+          },
+          {
+            "start": 5842,
+            "end": 5870,
+            "length": 28,
+            "keyLength": 320,
+            "count": "4",
+            "score": -4.266130814866595,
+            "text": "THOIAXAJAOJHUSFCFJMOEIANGXEATHAEMNGOH"
+          }
+        ]
+      },
+      {
+        "page": 27,
+        "clauses": 21,
+        "runes": 1289,
+        "reachable": 3,
+        "reachableRunes": 56,
+        "firstContradictions": [
+          [
+            6671,
+            7
+          ],
+          [
+            6693,
+            11
+          ],
+          [
+            6874,
+            107
+          ],
+          [
+            6997,
+            10
+          ],
+          [
+            7088,
+            4
+          ],
+          [
+            7106,
+            27
+          ]
+        ],
+        "best": [
+          {
+            "start": 7760,
+            "end": 7801,
+            "length": 41,
+            "keyLength": 61,
+            "count": "1",
+            "score": -3.6860419135149893,
+            "text": "FDEAOMEOLUPXJJDPAERCELYFEOMILGRTAESDYOMUEAEAGUAY"
+          }
+        ]
+      },
+      {
+        "page": 33,
+        "clauses": 20,
+        "runes": 1589,
+        "reachable": 8,
+        "reachableRunes": 327,
+        "firstContradictions": [
+          [
+            8184,
+            5
+          ],
+          [
+            8190,
+            56
+          ],
+          [
+            8385,
+            37
+          ],
+          [
+            8513,
+            22
+          ],
+          [
+            8805,
+            8
+          ],
+          [
+            8944,
+            53
+          ]
+        ],
+        "best": [
+          {
+            "start": 8423,
+            "end": 8477,
+            "length": 54,
+            "keyLength": 38,
+            "count": "1",
+            "score": -3.8408551934445274,
+            "text": "RWATUTHUBOEDEDOPIADGOLUCADAEEOJTHEALTYGCMAIEOUOEMCMGMUOGIANFEAHMO"
+          },
+          {
+            "start": 8328,
+            "end": 8385,
+            "length": 57,
+            "keyLength": 138,
+            "count": "1",
+            "score": -3.924035138230577,
+            "text": "CNGYIAEOYMUFNRNGEOEAIEAIATTHPJUEASGHUAOFGHNGOPNSEOTTHOEUTHIGLEDMBRCMEAJNGS"
+          },
+          {
+            "start": 8477,
+            "end": 8513,
+            "length": 36,
+            "keyLength": 54,
+            "count": "1",
+            "score": -3.9385410137105197,
+            "text": "PSAECEAPUOSTYTHYUTUDEABPNGHEIAXOENGMIAIAAMAOEPN"
+          }
+        ]
+      },
+      {
+        "page": 40,
+        "clauses": 41,
+        "runes": 2979,
+        "reachable": 17,
+        "reachableRunes": 785,
+        "firstContradictions": [
+          [
+            9669,
+            6
+          ],
+          [
+            9955,
+            49
+          ],
+          [
+            10069,
+            136
+          ],
+          [
+            10320,
+            49
+          ],
+          [
+            10516,
+            12
+          ],
+          [
+            10568,
+            1
+          ]
+        ],
+        "best": [
+          {
+            "start": 10473,
+            "end": 10516,
+            "length": 43,
+            "keyLength": 24,
+            "count": "8",
+            "score": -3.843538725247896,
+            "text": "OEAUJTEOJWTOIAIATASFCJRHITEOBOETHXDGEAYDYEAPCHELNOF"
+          },
+          {
+            "start": 11793,
+            "end": 11817,
+            "length": 24,
+            "keyLength": 10,
+            "count": "5",
+            "score": -3.854269488263288,
+            "text": "FOAOEGUJMEOTHFAENGFEANGRDERAEOAEP"
+          },
+          {
+            "start": 9715,
+            "end": 9736,
+            "length": 21,
+            "keyLength": 46,
+            "count": "1",
+            "score": -3.867677607134572,
+            "text": "CHRMIXJCORBSNGEOTWCOAEDT"
+          }
+        ]
+      },
+      {
+        "page": 54,
+        "clauses": 0,
+        "runes": 0,
+        "reachable": 0,
+        "reachableRunes": 0,
+        "firstContradictions": [],
+        "best": []
+      }
+    ],
+    "controls": {
+      "clauses": 66,
+      "exact": 64,
+      "runes": 2610,
+      "runesCorrect": 2608,
+      "wrongReachable": 268,
+      "wrongTotal": 528,
+      "scoreMin": -3.3615747060031986,
+      "scoreMax": -2.201201099017311
+    }
+  },
+  "global": [
+    {
+      "start": 13,
+      "end": 154,
+      "length": 141,
+      "keyLength": 13,
+      "count": "0",
+      "failure": 37,
+      "reachableBefore": 1
+    },
+    {
+      "start": 154,
+      "end": 275,
+      "length": 121,
+      "keyLength": 141,
+      "count": "5",
+      "score": -3.9188983676837332,
+      "text": "AEABEANGAYHAUJDMEAEANJUUWJODRDCECTHWMORXIAJBOEIAOSHUTHRPESPGCXUJTHLUNNGGLAWBEOEUAEELHUTHDTHLRHEOJYOLOGUJOWWFLTHEAOAGOWEEOTDSWTHAEXHBTHEODDWNGEEYP"
+    },
+    {
+      "start": 275,
+      "end": 297,
+      "length": 22,
+      "keyLength": 121,
+      "count": "0",
+      "failure": 16,
+      "reachableBefore": 1
+    },
+    {
+      "start": 297,
+      "end": 350,
+      "length": 53,
+      "keyLength": 22,
+      "count": "0",
+      "failure": 0,
+      "reachableBefore": 1
+    },
+    {
+      "start": 350,
+      "end": 394,
+      "length": 44,
+      "keyLength": 53,
+      "count": "1",
+      "score": -4.007668836389224,
+      "text": "TNGPIJOESTHIWAERGTHCTANNGIAEACGJDWEAAENEARCDDYMUYBWMEU"
+    },
+    {
+      "start": 394,
+      "end": 434,
+      "length": 40,
+      "keyLength": 44,
+      "count": "2",
+      "score": -4.03324539976596,
+      "text": "YCPISBANGNGYPIATHIICOEOETMNGOCEAOYLEAEATYTHNSPIATHHIAJ"
+    },
+    {
+      "start": 434,
+      "end": 531,
+      "length": 97,
+      "keyLength": 40,
+      "count": "0",
+      "failure": 7,
+      "reachableBefore": 1
+    },
+    {
+      "start": 531,
+      "end": 729,
+      "length": 198,
+      "keyLength": 97,
+      "count": "0",
+      "failure": 8,
+      "reachableBefore": 1
+    },
+    {
+      "start": 729,
+      "end": 745,
+      "length": 16,
+      "keyLength": 198,
+      "count": "1",
+      "score": -4.3316907749670115,
+      "text": "EOAAAEUJDEAGEOEOYEAHPR"
+    },
+    {
+      "start": 745,
+      "end": 848,
+      "length": 103,
+      "keyLength": 16,
+      "count": "0",
+      "failure": 64,
+      "reachableBefore": 1
+    },
+    {
+      "start": 848,
+      "end": 851,
+      "length": 3,
+      "keyLength": 103,
+      "count": "1",
+      "score": -5.070986079642373,
+      "text": "IAIIA"
+    },
+    {
+      "start": 851,
+      "end": 1025,
+      "length": 174,
+      "keyLength": 3,
+      "count": "0",
+      "failure": 1,
+      "reachableBefore": 1
+    },
+    {
+      "start": 1025,
+      "end": 1046,
+      "length": 21,
+      "keyLength": 174,
+      "count": "1",
+      "score": -4.115018392517091,
+      "text": "AEOHYSYXBOLOAENRAELJJDBEA"
+    },
+    {
+      "start": 1046,
+      "end": 1067,
+      "length": 21,
+      "keyLength": 21,
+      "count": "1",
+      "score": -3.757530776880732,
+      "text": "AOEDOEOBGTLBEMFEAOENOSYWP"
+    },
+    {
+      "start": 1067,
+      "end": 1111,
+      "length": 44,
+      "keyLength": 21,
+      "count": "0",
+      "failure": 5,
+      "reachableBefore": 1
+    },
+    {
+      "start": 1111,
+      "end": 1294,
+      "length": 183,
+      "keyLength": 44,
+      "count": "0",
+      "failure": 50,
+      "reachableBefore": 1
+    },
+    {
+      "start": 1294,
+      "end": 1317,
+      "length": 23,
+      "keyLength": 183,
+      "count": "0",
+      "failure": 9,
+      "reachableBefore": 1
+    },
+    {
+      "start": 1317,
+      "end": 1428,
+      "length": 111,
+      "keyLength": 23,
+      "count": "0",
+      "failure": 6,
+      "reachableBefore": 1
+    },
+    {
+      "start": 1428,
+      "end": 1541,
+      "length": 113,
+      "keyLength": 111,
+      "count": "0",
+      "failure": 14,
+      "reachableBefore": 1
+    },
+    {
+      "start": 1541,
+      "end": 1552,
+      "length": 11,
+      "keyLength": 113,
+      "count": "1",
+      "score": -4.428897652812725,
+      "text": "EAOJGTHIADCJGU"
+    },
+    {
+      "start": 1552,
+      "end": 1659,
+      "length": 107,
+      "keyLength": 11,
+      "count": "0",
+      "failure": 28,
+      "reachableBefore": 1
+    },
+    {
+      "start": 1659,
+      "end": 1685,
+      "length": 26,
+      "keyLength": 107,
+      "count": "0",
+      "failure": 4,
+      "reachableBefore": 1
+    },
+    {
+      "start": 1685,
+      "end": 1828,
+      "length": 143,
+      "keyLength": 26,
+      "count": "0",
+      "failure": 45,
+      "reachableBefore": 1
+    },
+    {
+      "start": 1828,
+      "end": 1860,
+      "length": 32,
+      "keyLength": 143,
+      "count": "0",
+      "failure": 8,
+      "reachableBefore": 1
+    },
+    {
+      "start": 1860,
+      "end": 1866,
+      "length": 6,
+      "keyLength": 32,
+      "count": "1",
+      "score": -4.359009986135184,
+      "text": "GOEGBYOE"
+    },
+    {
+      "start": 1866,
+      "end": 1874,
+      "length": 8,
+      "keyLength": 6,
+      "count": "1",
+      "score": -3.8411771889318755,
+      "text": "JREIAYICT"
+    },
+    {
+      "start": 1874,
+      "end": 1914,
+      "length": 40,
+      "keyLength": 8,
+      "count": "0",
+      "failure": 22,
+      "reachableBefore": 1
+    },
+    {
+      "start": 1914,
+      "end": 2008,
+      "length": 94,
+      "keyLength": 40,
+      "count": "0",
+      "failure": 24,
+      "reachableBefore": 1
+    },
+    {
+      "start": 2008,
+      "end": 2094,
+      "length": 86,
+      "keyLength": 94,
+      "count": "9",
+      "score": -4.024421131742052,
+      "text": "OIAOEBIJTHGJPNBIAOEMTHDYEBOEEAIADEAIARFNGTTHYULAJSPRADEABSXNLDHFNDJLOFEEAXOENGEAFJACAEWRRJTSGYYHIAXCDAHYOEX"
+    },
+    {
+      "start": 2094,
+      "end": 2148,
+      "length": 54,
+      "keyLength": 86,
+      "count": "1",
+      "score": -4.298464565148221,
+      "text": "JNGIWWGPTYCJOOLWYDIALOETMDGEUAEDLXDWBAEPDLDIAMWGTDHJYHOEIAUAEBIA"
+    },
+    {
+      "start": 2148,
+      "end": 2326,
+      "length": 178,
+      "keyLength": 54,
+      "count": "0",
+      "failure": 165,
+      "reachableBefore": 1
+    },
+    {
+      "start": 2326,
+      "end": 2437,
+      "length": 111,
+      "keyLength": 178,
+      "count": "1",
+      "score": -4.12209549773035,
+      "text": "OEIAMUDAERIAADUNGWEPYNGDIAGCIRCTPCPFOIAHTHPXYRUBYXWTIAEJHHLAECEAYXIABFETYIJOAETHTHEONAHOAAEUAMNGLWABOEUAEWSUONITHBHLEOOMAETHNOENGCTHXNSTHPG"
+    },
+    {
+      "start": 2437,
+      "end": 2503,
+      "length": 66,
+      "keyLength": 111,
+      "count": "1",
+      "score": -4.016898677010444,
+      "text": "FEOTHGIAEOOENGNGGERAEBJMNUOEWSAEAIANBNGOEIATFLAEJXUCEOEODGLGBHNOEJPLNOEAGNAERUOWLEAOMG"
+    },
+    {
+      "start": 2503,
+      "end": 2571,
+      "length": 68,
+      "keyLength": 66,
+      "count": "0",
+      "failure": 4,
+      "reachableBefore": 1
+    },
+    {
+      "start": 2571,
+      "end": 2578,
+      "length": 7,
+      "keyLength": 68,
+      "count": "1",
+      "score": -4.114474520786495,
+      "text": "IADTHTMIC"
+    },
+    {
+      "start": 2578,
+      "end": 2666,
+      "length": 88,
+      "keyLength": 7,
+      "count": "1",
+      "score": -4.00867672784445,
+      "text": "PREUSWEOEACAEPPOETJNWSNGBDCNUTTHOESDEAEENGUEACEOGJTHTHWIACNWIARCEOPYEAEOEOEOEAENURUHEPNGEAAEETHBEOLGEOSYBTHTHEAHHJI"
+    },
+    {
+      "start": 2666,
+      "end": 2690,
+      "length": 24,
+      "keyLength": 88,
+      "count": "0",
+      "failure": 6,
+      "reachableBefore": 1
+    },
+    {
+      "start": 2690,
+      "end": 2793,
+      "length": 103,
+      "keyLength": 24,
+      "count": "8",
+      "score": -4.119746701502362,
+      "text": "EOGOEPSEOCYWPAEFEOXJSWUHCCYJNSJEYXEONGAESOSYJJBEAIAOEYXWEANGCUNGIYOHSPFXWTOAEIAEJFCNDDPXNRUNGYEOWOOESOEWEDAEEXLRHRGCJOEXMAEJSJ"
+    },
+    {
+      "start": 2793,
+      "end": 2824,
+      "length": 31,
+      "keyLength": 103,
+      "count": "1",
+      "score": -4.076343424281963,
+      "text": "GJATBDORAEHTTHLIAIAIEAYMPLNOEEBCCEONYS"
+    },
+    {
+      "start": 2824,
+      "end": 2833,
+      "length": 9,
+      "keyLength": 31,
+      "count": "2",
+      "score": -4.280824245368463,
+      "text": "XHNGUIWFDY"
+    },
+    {
+      "start": 2833,
+      "end": 2910,
+      "length": 77,
+      "keyLength": 9,
+      "count": "0",
+      "failure": 10,
+      "reachableBefore": 1
+    },
+    {
+      "start": 2910,
+      "end": 2945,
+      "length": 35,
+      "keyLength": 77,
+      "count": "0",
+      "failure": 10,
+      "reachableBefore": 1
+    },
+    {
+      "start": 2945,
+      "end": 3003,
+      "length": 58,
+      "keyLength": 35,
+      "count": "0",
+      "failure": 1,
+      "reachableBefore": 1
+    },
+    {
+      "start": 3003,
+      "end": 3017,
+      "length": 14,
+      "keyLength": 58,
+      "count": "1",
+      "score": -4.0099636806541925,
+      "text": "GMTRTWGTHIAAEIAIAET"
+    },
+    {
+      "start": 3017,
+      "end": 3038,
+      "length": 21,
+      "keyLength": 14,
+      "count": "0",
+      "failure": 4,
+      "reachableBefore": 1
+    },
+    {
+      "start": 3038,
+      "end": 3144,
+      "length": 106,
+      "keyLength": 21,
+      "count": "0",
+      "failure": 75,
+      "reachableBefore": 1
+    },
+    {
+      "start": 3144,
+      "end": 3187,
+      "length": 43,
+      "keyLength": 106,
+      "count": "0",
+      "failure": 13,
+      "reachableBefore": 1
+    },
+    {
+      "start": 3187,
+      "end": 3211,
+      "length": 24,
+      "keyLength": 43,
+      "count": "1",
+      "score": -3.9782804425625056,
+      "text": "TBYEAIAMAEIAJFTHLUMXEAADOEEASTEAW"
+    },
+    {
+      "start": 3211,
+      "end": 3232,
+      "length": 21,
+      "keyLength": 24,
+      "count": "2",
+      "score": -3.9918553169055593,
+      "text": "BSBOOMRSXIAIAIAFNNJYRUG"
+    },
+    {
+      "start": 3232,
+      "end": 3487,
+      "length": 255,
+      "keyLength": 21,
+      "count": "1",
+      "score": -4.023945601385515,
+      "text": "UAMTEOGNGATTCEFJEGGCNROEAFEOBBOEJIBTOSBWNCGIAWEOLDAAGSIIDOFCOEFEARXUAAAEIHGDMTPLNGWTHXDYAITTNGLAEISNTEAAENGSYEWJTOAFDDTHOEFAEAOCXOAEGWTHRULTOEUUUAELUUUHTHGBDMHAJNGAEAGMBWPIAEAIAFDXDDEAEMMDDULOAEPSCLCTHBTHBBOELGAUCDAIIAERIAEOTOEYWMAECJLLGUCTPGRHDULFUGNMIAITTHNGSULTHEOENGEAPOBWEOLOSDFTLIGIAIRYHTHIXATHMYU"
+    },
+    {
+      "start": 3487,
+      "end": 3494,
+      "length": 7,
+      "keyLength": 255,
+      "count": "1",
+      "score": -4.181784521112858,
+      "text": "HCEONGNGNGY"
+    },
+    {
+      "start": 3494,
+      "end": 3558,
+      "length": 64,
+      "keyLength": 7,
+      "count": "0",
+      "failure": 12,
+      "reachableBefore": 1
+    },
+    {
+      "start": 3558,
+      "end": 3603,
+      "length": 45,
+      "keyLength": 64,
+      "count": "0",
+      "failure": 15,
+      "reachableBefore": 1
+    },
+    {
+      "start": 3603,
+      "end": 3612,
+      "length": 9,
+      "keyLength": 45,
+      "count": "2",
+      "score": -3.74283440846044,
+      "text": "SOWYSUYAD"
+    },
+    {
+      "start": 3612,
+      "end": 3623,
+      "length": 11,
+      "keyLength": 9,
+      "count": "0",
+      "failure": 1,
+      "reachableBefore": 1
+    },
+    {
+      "start": 3623,
+      "end": 3849,
+      "length": 226,
+      "keyLength": 11,
+      "count": "0",
+      "failure": 1,
+      "reachableBefore": 1
+    },
+    {
+      "start": 3849,
+      "end": 3884,
+      "length": 35,
+      "keyLength": 226,
+      "count": "1",
+      "score": -4.304238149272271,
+      "text": "OGAECYYPNHTHTNDNFXUWXMXFIAOIAJAEORTXIAOCJ"
+    },
+    {
+      "start": 3884,
+      "end": 4007,
+      "length": 123,
+      "keyLength": 35,
+      "count": "0",
+      "failure": 3,
+      "reachableBefore": 1
+    },
+    {
+      "start": 4007,
+      "end": 4093,
+      "length": 86,
+      "keyLength": 123,
+      "count": "0",
+      "failure": 24,
+      "reachableBefore": 1
+    },
+    {
+      "start": 4093,
+      "end": 4134,
+      "length": 41,
+      "keyLength": 86,
+      "count": "0",
+      "failure": 7,
+      "reachableBefore": 1
+    },
+    {
+      "start": 4134,
+      "end": 4148,
+      "length": 14,
+      "keyLength": 41,
+      "count": "0",
+      "failure": 10,
+      "reachableBefore": 1
+    },
+    {
+      "start": 4148,
+      "end": 4196,
+      "length": 48,
+      "keyLength": 14,
+      "count": "0",
+      "failure": 26,
+      "reachableBefore": 1
+    },
+    {
+      "start": 4196,
+      "end": 4246,
+      "length": 50,
+      "keyLength": 48,
+      "count": "0",
+      "failure": 34,
+      "reachableBefore": 1
+    },
+    {
+      "start": 4246,
+      "end": 4373,
+      "length": 127,
+      "keyLength": 50,
+      "count": "0",
+      "failure": 113,
+      "reachableBefore": 1
+    },
+    {
+      "start": 4373,
+      "end": 4488,
+      "length": 115,
+      "keyLength": 127,
+      "count": "0",
+      "failure": 3,
+      "reachableBefore": 1
+    },
+    {
+      "start": 4488,
+      "end": 4609,
+      "length": 121,
+      "keyLength": 115,
+      "count": "0",
+      "failure": 20,
+      "reachableBefore": 1
+    },
+    {
+      "start": 4609,
+      "end": 4714,
+      "length": 105,
+      "keyLength": 121,
+      "count": "0",
+      "failure": 2,
+      "reachableBefore": 1
+    },
+    {
+      "start": 4714,
+      "end": 4783,
+      "length": 69,
+      "keyLength": 105,
+      "count": "0",
+      "failure": 49,
+      "reachableBefore": 1
+    },
+    {
+      "start": 4783,
+      "end": 4967,
+      "length": 184,
+      "keyLength": 69,
+      "count": "0",
+      "failure": 8,
+      "reachableBefore": 1
+    },
+    {
+      "start": 4967,
+      "end": 5342,
+      "length": 375,
+      "keyLength": 184,
+      "count": "0",
+      "failure": 16,
+      "reachableBefore": 1
+    },
+    {
+      "start": 5342,
+      "end": 5410,
+      "length": 68,
+      "keyLength": 375,
+      "count": "3",
+      "score": -3.927407216917137,
+      "text": "JEOEAEGIJRDTHUSJNOEHAAEJFTNCFTAEOPUDOEOELLLDILYIABWEAJSFTHAXBAEXHWOIDEGEOWOJTAEXIA"
+    },
+    {
+      "start": 5410,
+      "end": 5478,
+      "length": 68,
+      "keyLength": 68,
+      "count": "0",
+      "failure": 29,
+      "reachableBefore": 1
+    },
+    {
+      "start": 5478,
+      "end": 5492,
+      "length": 14,
+      "keyLength": 68,
+      "count": "1",
+      "score": -4.175854122379701,
+      "text": "AMDGCENGJLPGPMEO"
+    },
+    {
+      "start": 5492,
+      "end": 5506,
+      "length": 14,
+      "keyLength": 14,
+      "count": "8",
+      "score": -3.47945744329116,
+      "text": "SBOLOUEAJCRSDBY"
+    },
+    {
+      "start": 5506,
+      "end": 5522,
+      "length": 16,
+      "keyLength": 14,
+      "count": "1",
+      "score": -4.236859284008726,
+      "text": "OOEWGYYNGGIAAEJEOWOEOA"
+    },
+    {
+      "start": 5522,
+      "end": 5842,
+      "length": 320,
+      "keyLength": 16,
+      "count": "0",
+      "failure": 83,
+      "reachableBefore": 1
+    },
+    {
+      "start": 5842,
+      "end": 5870,
+      "length": 28,
+      "keyLength": 320,
+      "count": "4",
+      "score": -4.266130814866595,
+      "text": "THOIAXAJAOJHUSFCFJMOEIANGXEATHAEMNGOH"
+    },
+    {
+      "start": 5870,
+      "end": 5907,
+      "length": 37,
+      "keyLength": 28,
+      "count": "0",
+      "failure": 8,
+      "reachableBefore": 1
+    },
+    {
+      "start": 5907,
+      "end": 6028,
+      "length": 121,
+      "keyLength": 37,
+      "count": "0",
+      "failure": 29,
+      "reachableBefore": 1
+    },
+    {
+      "start": 6028,
+      "end": 6183,
+      "length": 155,
+      "keyLength": 121,
+      "count": "0",
+      "failure": 21,
+      "reachableBefore": 1
+    },
+    {
+      "start": 6183,
+      "end": 6339,
+      "length": 156,
+      "keyLength": 155,
+      "count": "0",
+      "failure": 38,
+      "reachableBefore": 1
+    },
+    {
+      "start": 6339,
+      "end": 6456,
+      "length": 117,
+      "keyLength": 156,
+      "count": "0",
+      "failure": 61,
+      "reachableBefore": 1
+    },
+    {
+      "start": 6456,
+      "end": 6527,
+      "length": 71,
+      "keyLength": 117,
+      "count": "1",
+      "score": -3.8701851013919284,
+      "text": "ADBXONGEOJOEMPJOEYLTAGOELXAENEAMIACALUCAMGFOEXSAENSYCEOIAMPRYNJCHSOEXDWGBUCOFTHMMCAER"
+    },
+    {
+      "start": 6527,
+      "end": 6546,
+      "length": 19,
+      "keyLength": 71,
+      "count": "0",
+      "failure": 4,
+      "reachableBefore": 1
+    },
+    {
+      "start": 6546,
+      "end": 6671,
+      "length": 125,
+      "keyLength": 19,
+      "count": "1",
+      "score": -4.160007594191453,
+      "text": "MANIEOCGNGNGOOEEWEAMCXHEODEWEACTHOEIEEAICSMJEAXOESSRNCXSTHAOEEABWPNGPPEASTCDNGEGLWAXGGTEAIAAEEAEPOIABHLETHLPEGRCTHRLFCIBBSTMUWXHAEUUXNFLCMNAENIADOEMOEDEOIAEO"
+    },
+    {
+      "start": 6671,
+      "end": 6693,
+      "length": 22,
+      "keyLength": 125,
+      "count": "0",
+      "failure": 7,
+      "reachableBefore": 1
+    },
+    {
+      "start": 6693,
+      "end": 6874,
+      "length": 181,
+      "keyLength": 22,
+      "count": "0",
+      "failure": 11,
+      "reachableBefore": 1
+    },
+    {
+      "start": 6874,
+      "end": 6990,
+      "length": 116,
+      "keyLength": 181,
+      "count": "0",
+      "failure": 107,
+      "reachableBefore": 1
+    },
+    {
+      "start": 6990,
+      "end": 6997,
+      "length": 7,
+      "keyLength": 116,
+      "count": "1",
+      "score": -3.8391068720680046,
+      "text": "BHJJAERS"
+    },
+    {
+      "start": 6997,
+      "end": 7088,
+      "length": 91,
+      "keyLength": 7,
+      "count": "0",
+      "failure": 10,
+      "reachableBefore": 1
+    },
+    {
+      "start": 7088,
+      "end": 7106,
+      "length": 18,
+      "keyLength": 91,
+      "count": "0",
+      "failure": 4,
+      "reachableBefore": 1
+    },
+    {
+      "start": 7106,
+      "end": 7142,
+      "length": 36,
+      "keyLength": 18,
+      "count": "0",
+      "failure": 27,
+      "reachableBefore": 1
+    },
+    {
+      "start": 7142,
+      "end": 7153,
+      "length": 11,
+      "keyLength": 36,
+      "count": "0",
+      "failure": 1,
+      "reachableBefore": 1
+    },
+    {
+      "start": 7153,
+      "end": 7447,
+      "length": 294,
+      "keyLength": 11,
+      "count": "0",
+      "failure": 19,
+      "reachableBefore": 1
+    },
+    {
+      "start": 7447,
+      "end": 7484,
+      "length": 37,
+      "keyLength": 294,
+      "count": "0",
+      "failure": 2,
+      "reachableBefore": 1
+    },
+    {
+      "start": 7484,
+      "end": 7509,
+      "length": 25,
+      "keyLength": 37,
+      "count": "0",
+      "failure": 19,
+      "reachableBefore": 1
+    },
+    {
+      "start": 7509,
+      "end": 7523,
+      "length": 14,
+      "keyLength": 25,
+      "count": "0",
+      "failure": 7,
+      "reachableBefore": 1
+    },
+    {
+      "start": 7523,
+      "end": 7539,
+      "length": 16,
+      "keyLength": 14,
+      "count": "0",
+      "failure": 1,
+      "reachableBefore": 1
+    },
+    {
+      "start": 7539,
+      "end": 7582,
+      "length": 43,
+      "keyLength": 16,
+      "count": "0",
+      "failure": 12,
+      "reachableBefore": 1
+    },
+    {
+      "start": 7582,
+      "end": 7608,
+      "length": 26,
+      "keyLength": 43,
+      "count": "0",
+      "failure": 1,
+      "reachableBefore": 1
+    },
+    {
+      "start": 7608,
+      "end": 7691,
+      "length": 83,
+      "keyLength": 26,
+      "count": "0",
+      "failure": 15,
+      "reachableBefore": 1
+    },
+    {
+      "start": 7691,
+      "end": 7699,
+      "length": 8,
+      "keyLength": 83,
+      "count": "1",
+      "score": -3.868779035663577,
+      "text": "OUEAHBAEOO"
+    },
+    {
+      "start": 7699,
+      "end": 7760,
+      "length": 61,
+      "keyLength": 8,
+      "count": "0",
+      "failure": 50,
+      "reachableBefore": 1
+    },
+    {
+      "start": 7760,
+      "end": 7801,
+      "length": 41,
+      "keyLength": 61,
+      "count": "1",
+      "score": -3.6860419135149893,
+      "text": "FDEAOMEOLUPXJJDPAERCELYFEOMILGRTAESDYOMUEAEAGUAY"
+    },
+    {
+      "start": 7801,
+      "end": 7872,
+      "length": 71,
+      "keyLength": 41,
+      "count": "0",
+      "failure": 22,
+      "reachableBefore": 1
+    },
+    {
+      "start": 7872,
+      "end": 7960,
+      "length": 88,
+      "keyLength": 71,
+      "count": "0",
+      "failure": 3,
+      "reachableBefore": 1
+    },
+    {
+      "start": 7960,
+      "end": 7970,
+      "length": 10,
+      "keyLength": 88,
+      "count": "2",
+      "score": -3.427587271506643,
+      "text": "SNATSOUNGBG"
+    },
+    {
+      "start": 7970,
+      "end": 8051,
+      "length": 81,
+      "keyLength": 10,
+      "count": "0",
+      "failure": 75,
+      "reachableBefore": 1
+    },
+    {
+      "start": 8051,
+      "end": 8059,
+      "length": 8,
+      "keyLength": 81,
+      "count": "1",
+      "score": -4.132871487404009,
+      "text": "NNEODJEODB"
+    },
+    {
+      "start": 8059,
+      "end": 8184,
+      "length": 125,
+      "keyLength": 8,
+      "count": "3",
+      "score": -4.053283381588088,
+      "text": "THSXBYAERYITHGNIWUNGSEOCIACGCEOBCYNFEOCMEOJPCEOTGLGNGNLYUDEAAIAOLGTAHEATHYTHOEXYPJAEURIEOCASOTBEUPLOSNGJCIATHNJDMEAIGAECYOEFTHEOTMFYSNGOTHPXGBUCIASYIAEOESWEAH"
+    },
+    {
+      "start": 8184,
+      "end": 8190,
+      "length": 6,
+      "keyLength": 125,
+      "count": "0",
+      "failure": 5,
+      "reachableBefore": 1
+    },
+    {
+      "start": 8190,
+      "end": 8328,
+      "length": 138,
+      "keyLength": 6,
+      "count": "0",
+      "failure": 56,
+      "reachableBefore": 1
+    },
+    {
+      "start": 8328,
+      "end": 8385,
+      "length": 57,
+      "keyLength": 138,
+      "count": "1",
+      "score": -3.924035138230577,
+      "text": "CNGYIAEOYMUFNRNGEOEAIEAIATTHPJUEASGHUAOFGHNGOPNSEOTTHOEUTHIGLEDMBRCMEAJNGS"
+    },
+    {
+      "start": 8385,
+      "end": 8423,
+      "length": 38,
+      "keyLength": 57,
+      "count": "0",
+      "failure": 37,
+      "reachableBefore": 1
+    },
+    {
+      "start": 8423,
+      "end": 8477,
+      "length": 54,
+      "keyLength": 38,
+      "count": "1",
+      "score": -3.8408551934445274,
+      "text": "RWATUTHUBOEDEDOPIADGOLUCADAEEOJTHEALTYGCMAIEOUOEMCMGMUOGIANFEAHMO"
+    },
+    {
+      "start": 8477,
+      "end": 8513,
+      "length": 36,
+      "keyLength": 54,
+      "count": "1",
+      "score": -3.9385410137105197,
+      "text": "PSAECEAPUOSTYTHYUTUDEABPNGHEIAXOENGMIAIAAMAOEPN"
+    },
+    {
+      "start": 8513,
+      "end": 8805,
+      "length": 292,
+      "keyLength": 36,
+      "count": "0",
+      "failure": 22,
+      "reachableBefore": 1
+    },
+    {
+      "start": 8805,
+      "end": 8944,
+      "length": 139,
+      "keyLength": 292,
+      "count": "0",
+      "failure": 8,
+      "reachableBefore": 1
+    },
+    {
+      "start": 8944,
+      "end": 9035,
+      "length": 91,
+      "keyLength": 139,
+      "count": "0",
+      "failure": 53,
+      "reachableBefore": 1
+    },
+    {
+      "start": 9035,
+      "end": 9133,
+      "length": 98,
+      "keyLength": 91,
+      "count": "0",
+      "failure": 4,
+      "reachableBefore": 1
+    },
+    {
+      "start": 9133,
+      "end": 9200,
+      "length": 67,
+      "keyLength": 98,
+      "count": "0",
+      "failure": 40,
+      "reachableBefore": 1
+    },
+    {
+      "start": 9200,
+      "end": 9229,
+      "length": 29,
+      "keyLength": 67,
+      "count": "0",
+      "failure": 13,
+      "reachableBefore": 1
+    },
+    {
+      "start": 9229,
+      "end": 9341,
+      "length": 112,
+      "keyLength": 29,
+      "count": "0",
+      "failure": 41,
+      "reachableBefore": 1
+    },
+    {
+      "start": 9341,
+      "end": 9358,
+      "length": 17,
+      "keyLength": 112,
+      "count": "1",
+      "score": -3.843832968526784,
+      "text": "PSDNOGGENAAETHULOEA"
+    },
+    {
+      "start": 9358,
+      "end": 9492,
+      "length": 134,
+      "keyLength": 17,
+      "count": "0",
+      "failure": 6,
+      "reachableBefore": 1
+    },
+    {
+      "start": 9492,
+      "end": 9519,
+      "length": 27,
+      "keyLength": 134,
+      "count": "1",
+      "score": -4.117946049347708,
+      "text": "PHMNGEOTAETIAEONBHJCWEAYEANGXLAWRI"
+    },
+    {
+      "start": 9519,
+      "end": 9522,
+      "length": 3,
+      "keyLength": 27,
+      "count": "1",
+      "score": -3.8437199070022032,
+      "text": "EOO"
+    },
+    {
+      "start": 9522,
+      "end": 9640,
+      "length": 118,
+      "keyLength": 3,
+      "count": "0",
+      "failure": 2,
+      "reachableBefore": 1
+    },
+    {
+      "start": 9640,
+      "end": 9669,
+      "length": 29,
+      "keyLength": 118,
+      "count": "4",
+      "score": -3.9920852789078793,
+      "text": "FAEAEJHEAENGMGNGWUTHJNEORLHGALNFJROU"
+    },
+    {
+      "start": 9669,
+      "end": 9715,
+      "length": 46,
+      "keyLength": 29,
+      "count": "2",
+      "score": -3.8060785641531933,
+      "text": "DAEYWTEOOUURTNGNEOFMBEAUJOEEOIAPBBTEOHMNGNWRWYOSGREAAEOSE"
+    },
+    {
+      "start": 9715,
+      "end": 9736,
+      "length": 21,
+      "keyLength": 46,
+      "count": "1",
+      "score": -3.867677607134572,
+      "text": "CHRMIXJCORBSNGEOTWCOAEDT"
+    },
+    {
+      "start": 9736,
+      "end": 9805,
+      "length": 69,
+      "keyLength": 21,
+      "count": "2",
+      "score": -3.98509213344913,
+      "text": "TMAOEEIEAIAAEYIALTHNGHSMJRUYEOYUOSXUDNGCBNGJITHEOEOEORNGSMDTTHINATHJLHEAXTHCCTPTAERPPAYI"
+    },
+    {
+      "start": 9805,
+      "end": 9869,
+      "length": 64,
+      "keyLength": 69,
+      "count": "16",
+      "score": -4.111214236552172,
+      "text": "ACWRBSLJNIMENGWGYJYAEINGHFGHEAXBDEOOUXWXIAIBTXNGXYTMNGNGAPFYAEXJPDNGTEJXLRA"
+    },
+    {
+      "start": 9869,
+      "end": 9884,
+      "length": 15,
+      "keyLength": 64,
+      "count": "1",
+      "score": -4.121386593748956,
+      "text": "OMGMSEAYAEMIANRLEAL"
+    },
+    {
+      "start": 9884,
+      "end": 9955,
+      "length": 71,
+      "keyLength": 15,
+      "count": "4",
+      "score": -3.8939902504567603,
+      "text": "MJBIINAXEOJLDPFPWEAAEBNTAAGLTMAECJUREOJCBLJAEEUTHEOPITHJTHRTONEOEDCWAOJTRARCEOHHFCT"
+    },
+    {
+      "start": 9955,
+      "end": 10069,
+      "length": 114,
+      "keyLength": 71,
+      "count": "0",
+      "failure": 49,
+      "reachableBefore": 1
+    },
+    {
+      "start": 10069,
+      "end": 10211,
+      "length": 142,
+      "keyLength": 114,
+      "count": "0",
+      "failure": 136,
+      "reachableBefore": 1
+    },
+    {
+      "start": 10211,
+      "end": 10279,
+      "length": 68,
+      "keyLength": 142,
+      "count": "2",
+      "score": -4.068405708903752,
+      "text": "AEXIADOEEAJEODCEMGIAWEOGLDOEWIACHEOIPMDIANGWYFCEEAHEOHDJULRDWSMUWOIAYEOSUIACXANGCALFAEY"
+    },
+    {
+      "start": 10279,
+      "end": 10320,
+      "length": 41,
+      "keyLength": 68,
+      "count": "4",
+      "score": -4.173757133730477,
+      "text": "TOCGGCDPDXTHBOIAIASYUEOGFDDXXACRNLRIPIRJHEYJW"
+    },
+    {
+      "start": 10320,
+      "end": 10449,
+      "length": 129,
+      "keyLength": 41,
+      "count": "0",
+      "failure": 49,
+      "reachableBefore": 1
+    },
+    {
+      "start": 10449,
+      "end": 10473,
+      "length": 24,
+      "keyLength": 129,
+      "count": "4",
+      "score": -4.025161809978662,
+      "text": "MBPFEFNMEOFNAEIAAEXBWIADXMTA"
+    },
+    {
+      "start": 10473,
+      "end": 10516,
+      "length": 43,
+      "keyLength": 24,
+      "count": "8",
+      "score": -3.843538725247896,
+      "text": "OEAUJTEOJWTOIAIATASFCJRHITEOBOETHXDGEAYDYEAPCHELNOF"
+    },
+    {
+      "start": 10516,
+      "end": 10568,
+      "length": 52,
+      "keyLength": 43,
+      "count": "0",
+      "failure": 12,
+      "reachableBefore": 1
+    },
+    {
+      "start": 10568,
+      "end": 10599,
+      "length": 31,
+      "keyLength": 52,
+      "count": "0",
+      "failure": 1,
+      "reachableBefore": 1
+    },
+    {
+      "start": 10599,
+      "end": 10741,
+      "length": 142,
+      "keyLength": 31,
+      "count": "0",
+      "failure": 12,
+      "reachableBefore": 1
+    },
+    {
+      "start": 10741,
+      "end": 10869,
+      "length": 128,
+      "keyLength": 142,
+      "count": "0",
+      "failure": 1,
+      "reachableBefore": 1
+    },
+    {
+      "start": 10869,
+      "end": 10973,
+      "length": 104,
+      "keyLength": 128,
+      "count": "0",
+      "failure": 14,
+      "reachableBefore": 1
+    },
+    {
+      "start": 10973,
+      "end": 11063,
+      "length": 90,
+      "keyLength": 104,
+      "count": "1",
+      "score": -4.007481639370692,
+      "text": "OGXINGFPUNNAROYTNAEOAEHRIAPIJUFCTHWNGLHECOYNGWIRCCEAIAEAEUTIYUEOIUIWGGOEJMOIAPOSEOBTHOEOENLEOEAEAEMUTEOYIANEOAEIANG"
+    },
+    {
+      "start": 11063,
+      "end": 11139,
+      "length": 76,
+      "keyLength": 90,
+      "count": "0",
+      "failure": 7,
+      "reachableBefore": 1
+    },
+    {
+      "start": 11139,
+      "end": 11276,
+      "length": 137,
+      "keyLength": 76,
+      "count": "0",
+      "failure": 22,
+      "reachableBefore": 1
+    },
+    {
+      "start": 11276,
+      "end": 11296,
+      "length": 20,
+      "keyLength": 137,
+      "count": "1",
+      "score": -3.8964230080651445,
+      "text": "TEAAEAEYOHPINHBAOEOGNCAA"
+    },
+    {
+      "start": 11296,
+      "end": 11329,
+      "length": 33,
+      "keyLength": 20,
+      "count": "2",
+      "score": -4.11958547678991,
+      "text": "SGWMRMJWBREANIAADWHIOEXNAEAIAANGJGGNGGHG"
+    },
+    {
+      "start": 11329,
+      "end": 11526,
+      "length": 197,
+      "keyLength": 33,
+      "count": "0",
+      "failure": 14,
+      "reachableBefore": 1
+    },
+    {
+      "start": 11526,
+      "end": 11571,
+      "length": 45,
+      "keyLength": 197,
+      "count": "0",
+      "failure": 11,
+      "reachableBefore": 1
+    },
+    {
+      "start": 11571,
+      "end": 11588,
+      "length": 17,
+      "keyLength": 45,
+      "count": "0",
+      "failure": 5,
+      "reachableBefore": 1
+    },
+    {
+      "start": 11588,
+      "end": 11675,
+      "length": 87,
+      "keyLength": 17,
+      "count": "0",
+      "failure": 7,
+      "reachableBefore": 1
+    },
+    {
+      "start": 11675,
+      "end": 11783,
+      "length": 108,
+      "keyLength": 87,
+      "count": "0",
+      "failure": 21,
+      "reachableBefore": 1
+    },
+    {
+      "start": 11783,
+      "end": 11793,
+      "length": 10,
+      "keyLength": 108,
+      "count": "0",
+      "failure": 0,
+      "reachableBefore": 1
+    },
+    {
+      "start": 11793,
+      "end": 11817,
+      "length": 24,
+      "keyLength": 10,
+      "count": "5",
+      "score": -3.854269488263288,
+      "text": "FOAOEGUJMEOTHFAENGFEANGRDERAEOAEP"
+    },
+    {
+      "start": 11817,
+      "end": 11829,
+      "length": 12,
+      "keyLength": 24,
+      "count": "2",
+      "score": -3.800276720791583,
+      "text": "THIAAMXOREOXPIAEO"
+    },
+    {
+      "start": 11829,
+      "end": 11885,
+      "length": 56,
+      "keyLength": 12,
+      "count": "0",
+      "failure": 50,
+      "reachableBefore": 1
+    },
+    {
+      "start": 11885,
+      "end": 11941,
+      "length": 56,
+      "keyLength": 56,
+      "count": "0",
+      "failure": 23,
+      "reachableBefore": 1
+    },
+    {
+      "start": 11941,
+      "end": 11976,
+      "length": 35,
+      "keyLength": 56,
+      "count": "0",
+      "failure": 18,
+      "reachableBefore": 1
+    },
+    {
+      "start": 11976,
+      "end": 12114,
+      "length": 138,
+      "keyLength": 35,
+      "count": "0",
+      "failure": 10,
+      "reachableBefore": 1
+    },
+    {
+      "start": 12114,
+      "end": 12284,
+      "length": 170,
+      "keyLength": 138,
+      "count": "0",
+      "failure": 51,
+      "reachableBefore": 1
+    },
+    {
+      "start": 12284,
+      "end": 12370,
+      "length": 86,
+      "keyLength": 170,
+      "count": "2",
+      "score": -3.8798819547646706,
+      "text": "GIAEAUEXPAEORJEAIAWNGBPIAEDTYNGEOTHIATOWBAELFWXSXXUGEAEAEAIARNXUNRAWMOEFYJPONGHECLOXESGDOHTIGWIAPITHEAOEGXP"
+    },
+    {
+      "start": 12370,
+      "end": 12399,
+      "length": 29,
+      "keyLength": 86,
+      "count": "3",
+      "score": -3.9990171243306727,
+      "text": "RARAEIDMXEADJGUNMPFJUNGLXNOEEACIAOE"
+    },
+    {
+      "start": 12399,
+      "end": 12522,
+      "length": 123,
+      "keyLength": 29,
+      "count": "0",
+      "failure": 111,
+      "reachableBefore": 1
+    },
+    {
+      "start": 12522,
+      "end": 12597,
+      "length": 75,
+      "keyLength": 123,
+      "count": "4",
+      "score": -3.9873069111683836,
+      "text": "UIASMAOEIAOEGDOEYNGSIACRLFGSTDTHIAMTHRAEMAEIEAYAEGFHIAAEYTOEBXEWEARROAEEWSWRSHAANDNDNGCMANOEHJDM"
+    },
+    {
+      "start": 12597,
+      "end": 12648,
+      "length": 51,
+      "keyLength": 75,
+      "count": "0",
+      "failure": 3,
+      "reachableBefore": 1
+    },
+    {
+      "start": 12648,
+      "end": 12657,
+      "length": 9,
+      "keyLength": 51,
+      "count": "1",
+      "score": -4.0585485530283165,
+      "text": "HGXJEOAYIAB"
+    },
+    {
+      "start": 12657,
+      "end": 12956,
+      "length": 299,
+      "keyLength": 9,
+      "count": "0",
+      "failure": 9,
+      "reachableBefore": 1
+    }
+  ],
+  "chapters": [
+    {
+      "page": 0,
+      "start": 13,
+      "limit": 729,
+      "rows": [
+        {
+          "start": 154,
+          "end": 275,
+          "length": 121,
+          "keyLength": 141,
+          "count": "5",
+          "score": -3.9188983676837332,
+          "text": "AEABEANGAYHAUJDMEAEANJUUWJODRDCECTHWMORXIAJBOEIAOSHUTHRPESPGCXUJTHLUNNGGLAWBEOEUAEELHUTHDTHLRHEOJYOLOGUJOWWFLTHEAOAGOWEEOTDSWTHAEXHBTHEODDWNGEEYP"
+        },
+        {
+          "start": 275,
+          "end": 297,
+          "length": 22,
+          "keyLength": 121,
+          "count": "0",
+          "failure": 16,
+          "reachableBefore": 1
+        },
+        {
+          "start": 297,
+          "end": 350,
+          "length": 53,
+          "keyLength": 22,
+          "count": "0",
+          "failure": 0,
+          "reachableBefore": 1
+        },
+        {
+          "start": 350,
+          "end": 394,
+          "length": 44,
+          "keyLength": 53,
+          "count": "1",
+          "score": -4.007668836389224,
+          "text": "TNGPIJOESTHIWAERGTHCTANNGIAEACGJDWEAAENEARCDDYMUYBWMEU"
+        },
+        {
+          "start": 394,
+          "end": 434,
+          "length": 40,
+          "keyLength": 44,
+          "count": "2",
+          "score": -4.03324539976596,
+          "text": "YCPISBANGNGYPIATHIICOEOETMNGOCEAOYLEAEATYTHNSPIATHHIAJ"
+        },
+        {
+          "start": 434,
+          "end": 531,
+          "length": 97,
+          "keyLength": 40,
+          "count": "0",
+          "failure": 7,
+          "reachableBefore": 1
+        },
+        {
+          "start": 531,
+          "end": 729,
+          "length": 198,
+          "keyLength": 97,
+          "count": "0",
+          "failure": 8,
+          "reachableBefore": 1
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "start": 745,
+      "limit": 1874,
+      "rows": [
+        {
+          "start": 848,
+          "end": 851,
+          "length": 3,
+          "keyLength": 103,
+          "count": "1",
+          "score": -5.070986079642373,
+          "text": "IAIIA"
+        },
+        {
+          "start": 851,
+          "end": 1025,
+          "length": 174,
+          "keyLength": 3,
+          "count": "0",
+          "failure": 1,
+          "reachableBefore": 1
+        },
+        {
+          "start": 1025,
+          "end": 1046,
+          "length": 21,
+          "keyLength": 174,
+          "count": "1",
+          "score": -4.115018392517091,
+          "text": "AEOHYSYXBOLOAENRAELJJDBEA"
+        },
+        {
+          "start": 1046,
+          "end": 1067,
+          "length": 21,
+          "keyLength": 21,
+          "count": "1",
+          "score": -3.757530776880732,
+          "text": "AOEDOEOBGTLBEMFEAOENOSYWP"
+        },
+        {
+          "start": 1067,
+          "end": 1111,
+          "length": 44,
+          "keyLength": 21,
+          "count": "0",
+          "failure": 5,
+          "reachableBefore": 1
+        },
+        {
+          "start": 1111,
+          "end": 1294,
+          "length": 183,
+          "keyLength": 44,
+          "count": "0",
+          "failure": 50,
+          "reachableBefore": 1
+        },
+        {
+          "start": 1294,
+          "end": 1317,
+          "length": 23,
+          "keyLength": 183,
+          "count": "0",
+          "failure": 9,
+          "reachableBefore": 1
+        },
+        {
+          "start": 1317,
+          "end": 1428,
+          "length": 111,
+          "keyLength": 23,
+          "count": "0",
+          "failure": 6,
+          "reachableBefore": 1
+        },
+        {
+          "start": 1428,
+          "end": 1541,
+          "length": 113,
+          "keyLength": 111,
+          "count": "0",
+          "failure": 14,
+          "reachableBefore": 1
+        },
+        {
+          "start": 1541,
+          "end": 1552,
+          "length": 11,
+          "keyLength": 113,
+          "count": "1",
+          "score": -4.428897652812725,
+          "text": "EAOJGTHIADCJGU"
+        },
+        {
+          "start": 1552,
+          "end": 1659,
+          "length": 107,
+          "keyLength": 11,
+          "count": "0",
+          "failure": 28,
+          "reachableBefore": 1
+        },
+        {
+          "start": 1659,
+          "end": 1685,
+          "length": 26,
+          "keyLength": 107,
+          "count": "0",
+          "failure": 4,
+          "reachableBefore": 1
+        },
+        {
+          "start": 1685,
+          "end": 1828,
+          "length": 143,
+          "keyLength": 26,
+          "count": "0",
+          "failure": 45,
+          "reachableBefore": 1
+        },
+        {
+          "start": 1828,
+          "end": 1860,
+          "length": 32,
+          "keyLength": 143,
+          "count": "0",
+          "failure": 8,
+          "reachableBefore": 1
+        },
+        {
+          "start": 1860,
+          "end": 1866,
+          "length": 6,
+          "keyLength": 32,
+          "count": "1",
+          "score": -4.359009986135184,
+          "text": "GOEGBYOE"
+        },
+        {
+          "start": 1866,
+          "end": 1874,
+          "length": 8,
+          "keyLength": 6,
+          "count": "1",
+          "score": -3.8411771889318755,
+          "text": "JREIAYICT"
+        }
+      ]
+    },
+    {
+      "page": 8,
+      "start": 1886,
+      "limit": 3603,
+      "rows": [
+        {
+          "start": 1914,
+          "end": 2008,
+          "length": 94,
+          "keyLength": 28,
+          "count": "0",
+          "failure": 43,
+          "reachableBefore": 1
+        },
+        {
+          "start": 2008,
+          "end": 2094,
+          "length": 86,
+          "keyLength": 94,
+          "count": "9",
+          "score": -4.024421131742052,
+          "text": "OIAOEBIJTHGJPNBIAOEMTHDYEBOEEAIADEAIARFNGTTHYULAJSPRADEABSXNLDHFNDJLOFEEAXOENGEAFJACAEWRRJTSGYYHIAXCDAHYOEX"
+        },
+        {
+          "start": 2094,
+          "end": 2148,
+          "length": 54,
+          "keyLength": 86,
+          "count": "1",
+          "score": -4.298464565148221,
+          "text": "JNGIWWGPTYCJOOLWYDIALOETMDGEUAEDLXDWBAEPDLDIAMWGTDHJYHOEIAUAEBIA"
+        },
+        {
+          "start": 2148,
+          "end": 2326,
+          "length": 178,
+          "keyLength": 54,
+          "count": "0",
+          "failure": 165,
+          "reachableBefore": 1
+        },
+        {
+          "start": 2326,
+          "end": 2437,
+          "length": 111,
+          "keyLength": 178,
+          "count": "1",
+          "score": -4.12209549773035,
+          "text": "OEIAMUDAERIAADUNGWEPYNGDIAGCIRCTPCPFOIAHTHPXYRUBYXWTIAEJHHLAECEAYXIABFETYIJOAETHTHEONAHOAAEUAMNGLWABOEUAEWSUONITHBHLEOOMAETHNOENGCTHXNSTHPG"
+        },
+        {
+          "start": 2437,
+          "end": 2503,
+          "length": 66,
+          "keyLength": 111,
+          "count": "1",
+          "score": -4.016898677010444,
+          "text": "FEOTHGIAEOOENGNGGERAEBJMNUOEWSAEAIANBNGOEIATFLAEJXUCEOEODGLGBHNOEJPLNOEAGNAERUOWLEAOMG"
+        },
+        {
+          "start": 2503,
+          "end": 2571,
+          "length": 68,
+          "keyLength": 66,
+          "count": "0",
+          "failure": 4,
+          "reachableBefore": 1
+        },
+        {
+          "start": 2571,
+          "end": 2578,
+          "length": 7,
+          "keyLength": 68,
+          "count": "1",
+          "score": -4.114474520786495,
+          "text": "IADTHTMIC"
+        },
+        {
+          "start": 2578,
+          "end": 2666,
+          "length": 88,
+          "keyLength": 7,
+          "count": "1",
+          "score": -4.00867672784445,
+          "text": "PREUSWEOEACAEPPOETJNWSNGBDCNUTTHOESDEAEENGUEACEOGJTHTHWIACNWIARCEOPYEAEOEOEOEAENURUHEPNGEAAEETHBEOLGEOSYBTHTHEAHHJI"
+        },
+        {
+          "start": 2666,
+          "end": 2690,
+          "length": 24,
+          "keyLength": 88,
+          "count": "0",
+          "failure": 6,
+          "reachableBefore": 1
+        },
+        {
+          "start": 2690,
+          "end": 2793,
+          "length": 103,
+          "keyLength": 24,
+          "count": "8",
+          "score": -4.119746701502362,
+          "text": "EOGOEPSEOCYWPAEFEOXJSWUHCCYJNSJEYXEONGAESOSYJJBEAIAOEYXWEANGCUNGIYOHSPFXWTOAEIAEJFCNDDPXNRUNGYEOWOOESOEWEDAEEXLRHRGCJOEXMAEJSJ"
+        },
+        {
+          "start": 2793,
+          "end": 2824,
+          "length": 31,
+          "keyLength": 103,
+          "count": "1",
+          "score": -4.076343424281963,
+          "text": "GJATBDORAEHTTHLIAIAIEAYMPLNOEEBCCEONYS"
+        },
+        {
+          "start": 2824,
+          "end": 2833,
+          "length": 9,
+          "keyLength": 31,
+          "count": "2",
+          "score": -4.280824245368463,
+          "text": "XHNGUIWFDY"
+        },
+        {
+          "start": 2833,
+          "end": 2910,
+          "length": 77,
+          "keyLength": 9,
+          "count": "0",
+          "failure": 10,
+          "reachableBefore": 1
+        },
+        {
+          "start": 2910,
+          "end": 2945,
+          "length": 35,
+          "keyLength": 77,
+          "count": "0",
+          "failure": 10,
+          "reachableBefore": 1
+        },
+        {
+          "start": 2945,
+          "end": 3003,
+          "length": 58,
+          "keyLength": 35,
+          "count": "0",
+          "failure": 1,
+          "reachableBefore": 1
+        },
+        {
+          "start": 3003,
+          "end": 3017,
+          "length": 14,
+          "keyLength": 58,
+          "count": "1",
+          "score": -4.0099636806541925,
+          "text": "GMTRTWGTHIAAEIAIAET"
+        },
+        {
+          "start": 3017,
+          "end": 3038,
+          "length": 21,
+          "keyLength": 14,
+          "count": "0",
+          "failure": 4,
+          "reachableBefore": 1
+        },
+        {
+          "start": 3038,
+          "end": 3144,
+          "length": 106,
+          "keyLength": 21,
+          "count": "0",
+          "failure": 75,
+          "reachableBefore": 1
+        },
+        {
+          "start": 3144,
+          "end": 3187,
+          "length": 43,
+          "keyLength": 106,
+          "count": "0",
+          "failure": 13,
+          "reachableBefore": 1
+        },
+        {
+          "start": 3187,
+          "end": 3211,
+          "length": 24,
+          "keyLength": 43,
+          "count": "1",
+          "score": -3.9782804425625056,
+          "text": "TBYEAIAMAEIAJFTHLUMXEAADOEEASTEAW"
+        },
+        {
+          "start": 3211,
+          "end": 3232,
+          "length": 21,
+          "keyLength": 24,
+          "count": "2",
+          "score": -3.9918553169055593,
+          "text": "BSBOOMRSXIAIAIAFNNJYRUG"
+        },
+        {
+          "start": 3232,
+          "end": 3487,
+          "length": 255,
+          "keyLength": 21,
+          "count": "1",
+          "score": -4.023945601385515,
+          "text": "UAMTEOGNGATTCEFJEGGCNROEAFEOBBOEJIBTOSBWNCGIAWEOLDAAGSIIDOFCOEFEARXUAAAEIHGDMTPLNGWTHXDYAITTNGLAEISNTEAAENGSYEWJTOAFDDTHOEFAEAOCXOAEGWTHRULTOEUUUAELUUUHTHGBDMHAJNGAEAGMBWPIAEAIAFDXDDEAEMMDDULOAEPSCLCTHBTHBBOELGAUCDAIIAERIAEOTOEYWMAECJLLGUCTPGRHDULFUGNMIAITTHNGSULTHEOENGEAPOBWEOLOSDFTLIGIAIRYHTHIXATHMYU"
+        },
+        {
+          "start": 3487,
+          "end": 3494,
+          "length": 7,
+          "keyLength": 255,
+          "count": "1",
+          "score": -4.181784521112858,
+          "text": "HCEONGNGNGY"
+        },
+        {
+          "start": 3494,
+          "end": 3558,
+          "length": 64,
+          "keyLength": 7,
+          "count": "0",
+          "failure": 12,
+          "reachableBefore": 1
+        },
+        {
+          "start": 3558,
+          "end": 3603,
+          "length": 45,
+          "keyLength": 64,
+          "count": "0",
+          "failure": 15,
+          "reachableBefore": 1
+        }
+      ]
+    },
+    {
+      "page": 15,
+      "start": 3623,
+      "limit": 5506,
+      "rows": [
+        {
+          "start": 3849,
+          "end": 3884,
+          "length": 35,
+          "keyLength": 226,
+          "count": "1",
+          "score": -4.304238149272271,
+          "text": "OGAECYYPNHTHTNDNFXUWXMXFIAOIAJAEORTXIAOCJ"
+        },
+        {
+          "start": 3884,
+          "end": 4007,
+          "length": 123,
+          "keyLength": 35,
+          "count": "0",
+          "failure": 3,
+          "reachableBefore": 1
+        },
+        {
+          "start": 4007,
+          "end": 4093,
+          "length": 86,
+          "keyLength": 123,
+          "count": "0",
+          "failure": 24,
+          "reachableBefore": 1
+        },
+        {
+          "start": 4093,
+          "end": 4134,
+          "length": 41,
+          "keyLength": 86,
+          "count": "0",
+          "failure": 7,
+          "reachableBefore": 1
+        },
+        {
+          "start": 4134,
+          "end": 4148,
+          "length": 14,
+          "keyLength": 41,
+          "count": "0",
+          "failure": 10,
+          "reachableBefore": 1
+        },
+        {
+          "start": 4148,
+          "end": 4196,
+          "length": 48,
+          "keyLength": 14,
+          "count": "0",
+          "failure": 26,
+          "reachableBefore": 1
+        },
+        {
+          "start": 4196,
+          "end": 4246,
+          "length": 50,
+          "keyLength": 48,
+          "count": "0",
+          "failure": 34,
+          "reachableBefore": 1
+        },
+        {
+          "start": 4246,
+          "end": 4373,
+          "length": 127,
+          "keyLength": 50,
+          "count": "0",
+          "failure": 113,
+          "reachableBefore": 1
+        },
+        {
+          "start": 4373,
+          "end": 4488,
+          "length": 115,
+          "keyLength": 127,
+          "count": "0",
+          "failure": 3,
+          "reachableBefore": 1
+        },
+        {
+          "start": 4488,
+          "end": 4609,
+          "length": 121,
+          "keyLength": 115,
+          "count": "0",
+          "failure": 20,
+          "reachableBefore": 1
+        },
+        {
+          "start": 4609,
+          "end": 4714,
+          "length": 105,
+          "keyLength": 121,
+          "count": "0",
+          "failure": 2,
+          "reachableBefore": 1
+        },
+        {
+          "start": 4714,
+          "end": 4783,
+          "length": 69,
+          "keyLength": 105,
+          "count": "0",
+          "failure": 49,
+          "reachableBefore": 1
+        },
+        {
+          "start": 4783,
+          "end": 4967,
+          "length": 184,
+          "keyLength": 69,
+          "count": "0",
+          "failure": 8,
+          "reachableBefore": 1
+        },
+        {
+          "start": 4967,
+          "end": 5342,
+          "length": 375,
+          "keyLength": 184,
+          "count": "0",
+          "failure": 16,
+          "reachableBefore": 1
+        },
+        {
+          "start": 5342,
+          "end": 5410,
+          "length": 68,
+          "keyLength": 375,
+          "count": "3",
+          "score": -3.927407216917137,
+          "text": "JEOEAEGIJRDTHUSJNOEHAAEJFTNCFTAEOPUDOEOELLLDILYIABWEAJSFTHAXBAEXHWOIDEGEOWOJTAEXIA"
+        },
+        {
+          "start": 5410,
+          "end": 5478,
+          "length": 68,
+          "keyLength": 68,
+          "count": "0",
+          "failure": 29,
+          "reachableBefore": 1
+        },
+        {
+          "start": 5478,
+          "end": 5492,
+          "length": 14,
+          "keyLength": 68,
+          "count": "1",
+          "score": -4.175854122379701,
+          "text": "AMDGCENGJLPGPMEO"
+        },
+        {
+          "start": 5492,
+          "end": 5506,
+          "length": 14,
+          "keyLength": 14,
+          "count": "8",
+          "score": -3.47945744329116,
+          "text": "SBOLOUEAJCRSDBY"
+        }
+      ]
+    },
+    {
+      "page": 23,
+      "start": 5522,
+      "limit": 6527,
+      "rows": [
+        {
+          "start": 5842,
+          "end": 5870,
+          "length": 28,
+          "keyLength": 320,
+          "count": "4",
+          "score": -4.266130814866595,
+          "text": "THOIAXAJAOJHUSFCFJMOEIANGXEATHAEMNGOH"
+        },
+        {
+          "start": 5870,
+          "end": 5907,
+          "length": 37,
+          "keyLength": 28,
+          "count": "0",
+          "failure": 8,
+          "reachableBefore": 1
+        },
+        {
+          "start": 5907,
+          "end": 6028,
+          "length": 121,
+          "keyLength": 37,
+          "count": "0",
+          "failure": 29,
+          "reachableBefore": 1
+        },
+        {
+          "start": 6028,
+          "end": 6183,
+          "length": 155,
+          "keyLength": 121,
+          "count": "0",
+          "failure": 21,
+          "reachableBefore": 1
+        },
+        {
+          "start": 6183,
+          "end": 6339,
+          "length": 156,
+          "keyLength": 155,
+          "count": "0",
+          "failure": 38,
+          "reachableBefore": 1
+        },
+        {
+          "start": 6339,
+          "end": 6456,
+          "length": 117,
+          "keyLength": 156,
+          "count": "0",
+          "failure": 61,
+          "reachableBefore": 1
+        },
+        {
+          "start": 6456,
+          "end": 6527,
+          "length": 71,
+          "keyLength": 117,
+          "count": "1",
+          "score": -3.8701851013919284,
+          "text": "ADBXONGEOJOEMPJOEYLTAGOELXAENEAMIACALUCAMGFOEXSAENSYCEOIAMPRYNJCHSOEXDWGBUCOFTHMMCAER"
+        }
+      ]
+    },
+    {
+      "page": 27,
+      "start": 6546,
+      "limit": 7960,
+      "rows": [
+        {
+          "start": 6671,
+          "end": 6693,
+          "length": 22,
+          "keyLength": 125,
+          "count": "0",
+          "failure": 7,
+          "reachableBefore": 1
+        },
+        {
+          "start": 6693,
+          "end": 6874,
+          "length": 181,
+          "keyLength": 22,
+          "count": "0",
+          "failure": 11,
+          "reachableBefore": 1
+        },
+        {
+          "start": 6874,
+          "end": 6990,
+          "length": 116,
+          "keyLength": 181,
+          "count": "0",
+          "failure": 107,
+          "reachableBefore": 1
+        },
+        {
+          "start": 6990,
+          "end": 6997,
+          "length": 7,
+          "keyLength": 116,
+          "count": "1",
+          "score": -3.8391068720680046,
+          "text": "BHJJAERS"
+        },
+        {
+          "start": 6997,
+          "end": 7088,
+          "length": 91,
+          "keyLength": 7,
+          "count": "0",
+          "failure": 10,
+          "reachableBefore": 1
+        },
+        {
+          "start": 7088,
+          "end": 7106,
+          "length": 18,
+          "keyLength": 91,
+          "count": "0",
+          "failure": 4,
+          "reachableBefore": 1
+        },
+        {
+          "start": 7106,
+          "end": 7142,
+          "length": 36,
+          "keyLength": 18,
+          "count": "0",
+          "failure": 27,
+          "reachableBefore": 1
+        },
+        {
+          "start": 7142,
+          "end": 7153,
+          "length": 11,
+          "keyLength": 36,
+          "count": "0",
+          "failure": 1,
+          "reachableBefore": 1
+        },
+        {
+          "start": 7153,
+          "end": 7447,
+          "length": 294,
+          "keyLength": 11,
+          "count": "0",
+          "failure": 19,
+          "reachableBefore": 1
+        },
+        {
+          "start": 7447,
+          "end": 7484,
+          "length": 37,
+          "keyLength": 294,
+          "count": "0",
+          "failure": 2,
+          "reachableBefore": 1
+        },
+        {
+          "start": 7484,
+          "end": 7509,
+          "length": 25,
+          "keyLength": 37,
+          "count": "0",
+          "failure": 19,
+          "reachableBefore": 1
+        },
+        {
+          "start": 7509,
+          "end": 7523,
+          "length": 14,
+          "keyLength": 25,
+          "count": "0",
+          "failure": 7,
+          "reachableBefore": 1
+        },
+        {
+          "start": 7523,
+          "end": 7539,
+          "length": 16,
+          "keyLength": 14,
+          "count": "0",
+          "failure": 1,
+          "reachableBefore": 1
+        },
+        {
+          "start": 7539,
+          "end": 7582,
+          "length": 43,
+          "keyLength": 16,
+          "count": "0",
+          "failure": 12,
+          "reachableBefore": 1
+        },
+        {
+          "start": 7582,
+          "end": 7608,
+          "length": 26,
+          "keyLength": 43,
+          "count": "0",
+          "failure": 1,
+          "reachableBefore": 1
+        },
+        {
+          "start": 7608,
+          "end": 7691,
+          "length": 83,
+          "keyLength": 26,
+          "count": "0",
+          "failure": 15,
+          "reachableBefore": 1
+        },
+        {
+          "start": 7691,
+          "end": 7699,
+          "length": 8,
+          "keyLength": 83,
+          "count": "1",
+          "score": -3.868779035663577,
+          "text": "OUEAHBAEOO"
+        },
+        {
+          "start": 7699,
+          "end": 7760,
+          "length": 61,
+          "keyLength": 8,
+          "count": "0",
+          "failure": 50,
+          "reachableBefore": 1
+        },
+        {
+          "start": 7760,
+          "end": 7801,
+          "length": 41,
+          "keyLength": 61,
+          "count": "1",
+          "score": -3.6860419135149893,
+          "text": "FDEAOMEOLUPXJJDPAERCELYFEOMILGRTAESDYOMUEAEAGUAY"
+        },
+        {
+          "start": 7801,
+          "end": 7872,
+          "length": 71,
+          "keyLength": 41,
+          "count": "0",
+          "failure": 22,
+          "reachableBefore": 1
+        },
+        {
+          "start": 7872,
+          "end": 7960,
+          "length": 88,
+          "keyLength": 71,
+          "count": "0",
+          "failure": 3,
+          "reachableBefore": 1
+        }
+      ]
+    },
+    {
+      "page": 33,
+      "start": 7970,
+      "limit": 9640,
+      "rows": [
+        {
+          "start": 8051,
+          "end": 8059,
+          "length": 8,
+          "keyLength": 81,
+          "count": "1",
+          "score": -4.132871487404009,
+          "text": "NNEODJEODB"
+        },
+        {
+          "start": 8059,
+          "end": 8184,
+          "length": 125,
+          "keyLength": 8,
+          "count": "3",
+          "score": -4.053283381588088,
+          "text": "THSXBYAERYITHGNIWUNGSEOCIACGCEOBCYNFEOCMEOJPCEOTGLGNGNLYUDEAAIAOLGTAHEATHYTHOEXYPJAEURIEOCASOTBEUPLOSNGJCIATHNJDMEAIGAECYOEFTHEOTMFYSNGOTHPXGBUCIASYIAEOESWEAH"
+        },
+        {
+          "start": 8184,
+          "end": 8190,
+          "length": 6,
+          "keyLength": 125,
+          "count": "0",
+          "failure": 5,
+          "reachableBefore": 1
+        },
+        {
+          "start": 8190,
+          "end": 8328,
+          "length": 138,
+          "keyLength": 6,
+          "count": "0",
+          "failure": 56,
+          "reachableBefore": 1
+        },
+        {
+          "start": 8328,
+          "end": 8385,
+          "length": 57,
+          "keyLength": 138,
+          "count": "1",
+          "score": -3.924035138230577,
+          "text": "CNGYIAEOYMUFNRNGEOEAIEAIATTHPJUEASGHUAOFGHNGOPNSEOTTHOEUTHIGLEDMBRCMEAJNGS"
+        },
+        {
+          "start": 8385,
+          "end": 8423,
+          "length": 38,
+          "keyLength": 57,
+          "count": "0",
+          "failure": 37,
+          "reachableBefore": 1
+        },
+        {
+          "start": 8423,
+          "end": 8477,
+          "length": 54,
+          "keyLength": 38,
+          "count": "1",
+          "score": -3.8408551934445274,
+          "text": "RWATUTHUBOEDEDOPIADGOLUCADAEEOJTHEALTYGCMAIEOUOEMCMGMUOGIANFEAHMO"
+        },
+        {
+          "start": 8477,
+          "end": 8513,
+          "length": 36,
+          "keyLength": 54,
+          "count": "1",
+          "score": -3.9385410137105197,
+          "text": "PSAECEAPUOSTYTHYUTUDEABPNGHEIAXOENGMIAIAAMAOEPN"
+        },
+        {
+          "start": 8513,
+          "end": 8805,
+          "length": 292,
+          "keyLength": 36,
+          "count": "0",
+          "failure": 22,
+          "reachableBefore": 1
+        },
+        {
+          "start": 8805,
+          "end": 8944,
+          "length": 139,
+          "keyLength": 292,
+          "count": "0",
+          "failure": 8,
+          "reachableBefore": 1
+        },
+        {
+          "start": 8944,
+          "end": 9035,
+          "length": 91,
+          "keyLength": 139,
+          "count": "0",
+          "failure": 53,
+          "reachableBefore": 1
+        },
+        {
+          "start": 9035,
+          "end": 9133,
+          "length": 98,
+          "keyLength": 91,
+          "count": "0",
+          "failure": 4,
+          "reachableBefore": 1
+        },
+        {
+          "start": 9133,
+          "end": 9200,
+          "length": 67,
+          "keyLength": 98,
+          "count": "0",
+          "failure": 40,
+          "reachableBefore": 1
+        },
+        {
+          "start": 9200,
+          "end": 9229,
+          "length": 29,
+          "keyLength": 67,
+          "count": "0",
+          "failure": 13,
+          "reachableBefore": 1
+        },
+        {
+          "start": 9229,
+          "end": 9341,
+          "length": 112,
+          "keyLength": 29,
+          "count": "0",
+          "failure": 41,
+          "reachableBefore": 1
+        },
+        {
+          "start": 9341,
+          "end": 9358,
+          "length": 17,
+          "keyLength": 112,
+          "count": "1",
+          "score": -3.843832968526784,
+          "text": "PSDNOGGENAAETHULOEA"
+        },
+        {
+          "start": 9358,
+          "end": 9492,
+          "length": 134,
+          "keyLength": 17,
+          "count": "0",
+          "failure": 6,
+          "reachableBefore": 1
+        },
+        {
+          "start": 9492,
+          "end": 9519,
+          "length": 27,
+          "keyLength": 134,
+          "count": "1",
+          "score": -4.117946049347708,
+          "text": "PHMNGEOTAETIAEONBHJCWEAYEANGXLAWRI"
+        },
+        {
+          "start": 9519,
+          "end": 9522,
+          "length": 3,
+          "keyLength": 27,
+          "count": "1",
+          "score": -3.8437199070022032,
+          "text": "EOO"
+        },
+        {
+          "start": 9522,
+          "end": 9640,
+          "length": 118,
+          "keyLength": 3,
+          "count": "0",
+          "failure": 2,
+          "reachableBefore": 1
+        }
+      ]
+    },
+    {
+      "page": 40,
+      "start": 9648,
+      "limit": 12648,
+      "rows": [
+        {
+          "start": 9669,
+          "end": 9715,
+          "length": 46,
+          "keyLength": 21,
+          "count": "0",
+          "failure": 6,
+          "reachableBefore": 1
+        },
+        {
+          "start": 9715,
+          "end": 9736,
+          "length": 21,
+          "keyLength": 46,
+          "count": "1",
+          "score": -3.867677607134572,
+          "text": "CHRMIXJCORBSNGEOTWCOAEDT"
+        },
+        {
+          "start": 9736,
+          "end": 9805,
+          "length": 69,
+          "keyLength": 21,
+          "count": "2",
+          "score": -3.98509213344913,
+          "text": "TMAOEEIEAIAAEYIALTHNGHSMJRUYEOYUOSXUDNGCBNGJITHEOEOEORNGSMDTTHINATHJLHEAXTHCCTPTAERPPAYI"
+        },
+        {
+          "start": 9805,
+          "end": 9869,
+          "length": 64,
+          "keyLength": 69,
+          "count": "16",
+          "score": -4.111214236552172,
+          "text": "ACWRBSLJNIMENGWGYJYAEINGHFGHEAXBDEOOUXWXIAIBTXNGXYTMNGNGAPFYAEXJPDNGTEJXLRA"
+        },
+        {
+          "start": 9869,
+          "end": 9884,
+          "length": 15,
+          "keyLength": 64,
+          "count": "1",
+          "score": -4.121386593748956,
+          "text": "OMGMSEAYAEMIANRLEAL"
+        },
+        {
+          "start": 9884,
+          "end": 9955,
+          "length": 71,
+          "keyLength": 15,
+          "count": "4",
+          "score": -3.8939902504567603,
+          "text": "MJBIINAXEOJLDPFPWEAAEBNTAAGLTMAECJUREOJCBLJAEEUTHEOPITHJTHRTONEOEDCWAOJTRARCEOHHFCT"
+        },
+        {
+          "start": 9955,
+          "end": 10069,
+          "length": 114,
+          "keyLength": 71,
+          "count": "0",
+          "failure": 49,
+          "reachableBefore": 1
+        },
+        {
+          "start": 10069,
+          "end": 10211,
+          "length": 142,
+          "keyLength": 114,
+          "count": "0",
+          "failure": 136,
+          "reachableBefore": 1
+        },
+        {
+          "start": 10211,
+          "end": 10279,
+          "length": 68,
+          "keyLength": 142,
+          "count": "2",
+          "score": -4.068405708903752,
+          "text": "AEXIADOEEAJEODCEMGIAWEOGLDOEWIACHEOIPMDIANGWYFCEEAHEOHDJULRDWSMUWOIAYEOSUIACXANGCALFAEY"
+        },
+        {
+          "start": 10279,
+          "end": 10320,
+          "length": 41,
+          "keyLength": 68,
+          "count": "4",
+          "score": -4.173757133730477,
+          "text": "TOCGGCDPDXTHBOIAIASYUEOGFDDXXACRNLRIPIRJHEYJW"
+        },
+        {
+          "start": 10320,
+          "end": 10449,
+          "length": 129,
+          "keyLength": 41,
+          "count": "0",
+          "failure": 49,
+          "reachableBefore": 1
+        },
+        {
+          "start": 10449,
+          "end": 10473,
+          "length": 24,
+          "keyLength": 129,
+          "count": "4",
+          "score": -4.025161809978662,
+          "text": "MBPFEFNMEOFNAEIAAEXBWIADXMTA"
+        },
+        {
+          "start": 10473,
+          "end": 10516,
+          "length": 43,
+          "keyLength": 24,
+          "count": "8",
+          "score": -3.843538725247896,
+          "text": "OEAUJTEOJWTOIAIATASFCJRHITEOBOETHXDGEAYDYEAPCHELNOF"
+        },
+        {
+          "start": 10516,
+          "end": 10568,
+          "length": 52,
+          "keyLength": 43,
+          "count": "0",
+          "failure": 12,
+          "reachableBefore": 1
+        },
+        {
+          "start": 10568,
+          "end": 10599,
+          "length": 31,
+          "keyLength": 52,
+          "count": "0",
+          "failure": 1,
+          "reachableBefore": 1
+        },
+        {
+          "start": 10599,
+          "end": 10741,
+          "length": 142,
+          "keyLength": 31,
+          "count": "0",
+          "failure": 12,
+          "reachableBefore": 1
+        },
+        {
+          "start": 10741,
+          "end": 10869,
+          "length": 128,
+          "keyLength": 142,
+          "count": "0",
+          "failure": 1,
+          "reachableBefore": 1
+        },
+        {
+          "start": 10869,
+          "end": 10973,
+          "length": 104,
+          "keyLength": 128,
+          "count": "0",
+          "failure": 14,
+          "reachableBefore": 1
+        },
+        {
+          "start": 10973,
+          "end": 11063,
+          "length": 90,
+          "keyLength": 104,
+          "count": "1",
+          "score": -4.007481639370692,
+          "text": "OGXINGFPUNNAROYTNAEOAEHRIAPIJUFCTHWNGLHECOYNGWIRCCEAIAEAEUTIYUEOIUIWGGOEJMOIAPOSEOBTHOEOENLEOEAEAEMUTEOYIANEOAEIANG"
+        },
+        {
+          "start": 11063,
+          "end": 11139,
+          "length": 76,
+          "keyLength": 90,
+          "count": "0",
+          "failure": 7,
+          "reachableBefore": 1
+        },
+        {
+          "start": 11139,
+          "end": 11276,
+          "length": 137,
+          "keyLength": 76,
+          "count": "0",
+          "failure": 22,
+          "reachableBefore": 1
+        },
+        {
+          "start": 11276,
+          "end": 11296,
+          "length": 20,
+          "keyLength": 137,
+          "count": "1",
+          "score": -3.8964230080651445,
+          "text": "TEAAEAEYOHPINHBAOEOGNCAA"
+        },
+        {
+          "start": 11296,
+          "end": 11329,
+          "length": 33,
+          "keyLength": 20,
+          "count": "2",
+          "score": -4.11958547678991,
+          "text": "SGWMRMJWBREANIAADWHIOEXNAEAIAANGJGGNGGHG"
+        },
+        {
+          "start": 11329,
+          "end": 11526,
+          "length": 197,
+          "keyLength": 33,
+          "count": "0",
+          "failure": 14,
+          "reachableBefore": 1
+        },
+        {
+          "start": 11526,
+          "end": 11571,
+          "length": 45,
+          "keyLength": 197,
+          "count": "0",
+          "failure": 11,
+          "reachableBefore": 1
+        },
+        {
+          "start": 11571,
+          "end": 11588,
+          "length": 17,
+          "keyLength": 45,
+          "count": "0",
+          "failure": 5,
+          "reachableBefore": 1
+        },
+        {
+          "start": 11588,
+          "end": 11675,
+          "length": 87,
+          "keyLength": 17,
+          "count": "0",
+          "failure": 7,
+          "reachableBefore": 1
+        },
+        {
+          "start": 11675,
+          "end": 11783,
+          "length": 108,
+          "keyLength": 87,
+          "count": "0",
+          "failure": 21,
+          "reachableBefore": 1
+        },
+        {
+          "start": 11783,
+          "end": 11793,
+          "length": 10,
+          "keyLength": 108,
+          "count": "0",
+          "failure": 0,
+          "reachableBefore": 1
+        },
+        {
+          "start": 11793,
+          "end": 11817,
+          "length": 24,
+          "keyLength": 10,
+          "count": "5",
+          "score": -3.854269488263288,
+          "text": "FOAOEGUJMEOTHFAENGFEANGRDERAEOAEP"
+        },
+        {
+          "start": 11817,
+          "end": 11829,
+          "length": 12,
+          "keyLength": 24,
+          "count": "2",
+          "score": -3.800276720791583,
+          "text": "THIAAMXOREOXPIAEO"
+        },
+        {
+          "start": 11829,
+          "end": 11885,
+          "length": 56,
+          "keyLength": 12,
+          "count": "0",
+          "failure": 50,
+          "reachableBefore": 1
+        },
+        {
+          "start": 11885,
+          "end": 11941,
+          "length": 56,
+          "keyLength": 56,
+          "count": "0",
+          "failure": 23,
+          "reachableBefore": 1
+        },
+        {
+          "start": 11941,
+          "end": 11976,
+          "length": 35,
+          "keyLength": 56,
+          "count": "0",
+          "failure": 18,
+          "reachableBefore": 1
+        },
+        {
+          "start": 11976,
+          "end": 12114,
+          "length": 138,
+          "keyLength": 35,
+          "count": "0",
+          "failure": 10,
+          "reachableBefore": 1
+        },
+        {
+          "start": 12114,
+          "end": 12284,
+          "length": 170,
+          "keyLength": 138,
+          "count": "0",
+          "failure": 51,
+          "reachableBefore": 1
+        },
+        {
+          "start": 12284,
+          "end": 12370,
+          "length": 86,
+          "keyLength": 170,
+          "count": "2",
+          "score": -3.8798819547646706,
+          "text": "GIAEAUEXPAEORJEAIAWNGBPIAEDTYNGEOTHIATOWBAELFWXSXXUGEAEAEAIARNXUNRAWMOEFYJPONGHECLOXESGDOHTIGWIAPITHEAOEGXP"
+        },
+        {
+          "start": 12370,
+          "end": 12399,
+          "length": 29,
+          "keyLength": 86,
+          "count": "3",
+          "score": -3.9990171243306727,
+          "text": "RARAEIDMXEADJGUNMPFJUNGLXNOEEACIAOE"
+        },
+        {
+          "start": 12399,
+          "end": 12522,
+          "length": 123,
+          "keyLength": 29,
+          "count": "0",
+          "failure": 111,
+          "reachableBefore": 1
+        },
+        {
+          "start": 12522,
+          "end": 12597,
+          "length": 75,
+          "keyLength": 123,
+          "count": "4",
+          "score": -3.9873069111683836,
+          "text": "UIASMAOEIAOEGDOEYNGSIACRLFGSTDTHIAMTHRAEMAEIEAYAEGFHIAAEYTOEBXEWEARROAEEWSWRSHAANDNDNGCMANOEHJDM"
+        },
+        {
+          "start": 12597,
+          "end": 12648,
+          "length": 51,
+          "keyLength": 75,
+          "count": "0",
+          "failure": 3,
+          "reachableBefore": 1
+        }
+      ]
+    },
+    {
+      "page": 54,
+      "start": 12657,
+      "limit": 12956,
+      "rows": []
+    }
+  ],
+  "controls": [
+    {
+      "name": "0_warning",
+      "rows": [
+        {
+          "i": 1,
+          "length": 25,
+          "keyLength": 22,
+          "count": "4",
+          "score": -2.688924426018584,
+          "exact": true,
+          "runesCorrect": 25,
+          "wrongReachable": 8,
+          "wrongBest": -3.8115449543165716
+        },
+        {
+          "i": 2,
+          "length": 15,
+          "keyLength": 25,
+          "count": "1",
+          "score": -2.847017458448925,
+          "exact": true,
+          "runesCorrect": 15,
+          "wrongReachable": 8,
+          "wrongBest": -3.672799414739212
+        },
+        {
+          "i": 3,
+          "length": 12,
+          "keyLength": 15,
+          "count": "1",
+          "score": -2.337852428894577,
+          "exact": true,
+          "runesCorrect": 12,
+          "wrongReachable": 7,
+          "wrongBest": -3.50358950257081
+        },
+        {
+          "i": 4,
+          "length": 17,
+          "keyLength": 12,
+          "count": "1",
+          "score": -2.777566155194439,
+          "exact": true,
+          "runesCorrect": 17,
+          "wrongReachable": 3,
+          "wrongBest": -3.623358683784275
+        },
+        {
+          "i": 5,
+          "length": 23,
+          "keyLength": 17,
+          "count": "4",
+          "score": -2.9165076905157044,
+          "exact": true,
+          "runesCorrect": 23,
+          "wrongReachable": 4,
+          "wrongBest": -3.7921583294841446
+        },
+        {
+          "i": 6,
+          "length": 25,
+          "keyLength": 23,
+          "count": "2",
+          "score": -2.543266044682413,
+          "exact": true,
+          "runesCorrect": 25,
+          "wrongReachable": 2,
+          "wrongBest": -3.9992410605193034
+        },
+        {
+          "i": 7,
+          "length": 25,
+          "keyLength": 25,
+          "count": "1",
+          "score": -3.008747894875262,
+          "exact": true,
+          "runesCorrect": 25,
+          "wrongReachable": 3,
+          "wrongBest": -3.9313365987138678
+        },
+        {
+          "i": 8,
+          "length": 14,
+          "keyLength": 25,
+          "count": "1",
+          "score": -2.4135376551339074,
+          "exact": true,
+          "runesCorrect": 14,
+          "wrongReachable": 7,
+          "wrongBest": -3.438520371696697
+        }
+      ]
+    },
+    {
+      "name": "0_welcome",
+      "rows": [
+        {
+          "i": 1,
+          "length": 61,
+          "keyLength": 48,
+          "count": "8",
+          "score": -2.781909584537675,
+          "exact": true,
+          "runesCorrect": 61,
+          "wrongReachable": 2,
+          "wrongBest": -3.5851766312959543
+        },
+        {
+          "i": 2,
+          "length": 99,
+          "keyLength": 61,
+          "count": "9",
+          "score": -2.634589555865443,
+          "exact": true,
+          "runesCorrect": 99,
+          "wrongReachable": 5,
+          "wrongBest": -3.8108000868515455
+        },
+        {
+          "i": 3,
+          "length": 36,
+          "keyLength": 99,
+          "count": "2",
+          "score": -2.5668554132104338,
+          "exact": false,
+          "runesCorrect": 35,
+          "wrongReachable": 8,
+          "wrongBest": -3.987675391143952
+        },
+        {
+          "i": 4,
+          "length": 56,
+          "keyLength": 36,
+          "count": "1",
+          "score": -2.6433122286569466,
+          "exact": true,
+          "runesCorrect": 56,
+          "wrongReachable": 5,
+          "wrongBest": -3.7440567532674485
+        },
+        {
+          "i": 5,
+          "length": 39,
+          "keyLength": 56,
+          "count": "1",
+          "score": -2.803624544136984,
+          "exact": true,
+          "runesCorrect": 39,
+          "wrongReachable": 1,
+          "wrongBest": -4.010711758665695
+        },
+        {
+          "i": 6,
+          "length": 76,
+          "keyLength": 39,
+          "count": "2",
+          "score": -2.677973174649682,
+          "exact": true,
+          "runesCorrect": 76,
+          "wrongReachable": 0,
+          "wrongBest": null
+        },
+        {
+          "i": 7,
+          "length": 22,
+          "keyLength": 76,
+          "count": "6",
+          "score": -2.871144787131091,
+          "exact": true,
+          "runesCorrect": 22,
+          "wrongReachable": 8,
+          "wrongBest": -3.410345648197241
+        },
+        {
+          "i": 8,
+          "length": 21,
+          "keyLength": 22,
+          "count": "1",
+          "score": -2.5889614910273955,
+          "exact": true,
+          "runesCorrect": 21,
+          "wrongReachable": 5,
+          "wrongBest": -3.5642498076132534
+        },
+        {
+          "i": 9,
+          "length": 50,
+          "keyLength": 21,
+          "count": "2",
+          "score": -2.4608032239286093,
+          "exact": false,
+          "runesCorrect": 49,
+          "wrongReachable": 3,
+          "wrongBest": -3.723990939858607
+        }
+      ]
+    },
+    {
+      "name": "0_wisdom",
+      "rows": [
+        {
+          "i": 1,
+          "length": 24,
+          "keyLength": 17,
+          "count": "2",
+          "score": -2.684347509869348,
+          "exact": true,
+          "runesCorrect": 24,
+          "wrongReachable": 3,
+          "wrongBest": -3.8153168374716215
+        },
+        {
+          "i": 2,
+          "length": 37,
+          "keyLength": 24,
+          "count": "2",
+          "score": -2.836032951597843,
+          "exact": true,
+          "runesCorrect": 37,
+          "wrongReachable": 2,
+          "wrongBest": -3.851554865369212
+        },
+        {
+          "i": 3,
+          "length": 23,
+          "keyLength": 37,
+          "count": "1",
+          "score": -3.1129697883922156,
+          "exact": true,
+          "runesCorrect": 23,
+          "wrongReachable": 5,
+          "wrongBest": -3.613508998422082
+        },
+        {
+          "i": 4,
+          "length": 17,
+          "keyLength": 23,
+          "count": "4",
+          "score": -3.3034188947962138,
+          "exact": true,
+          "runesCorrect": 17,
+          "wrongReachable": 7,
+          "wrongBest": -3.470902212004633
+        },
+        {
+          "i": 5,
+          "length": 24,
+          "keyLength": 17,
+          "count": "4",
+          "score": -3.1150864289144766,
+          "exact": true,
+          "runesCorrect": 24,
+          "wrongReachable": 6,
+          "wrongBest": -3.7362717750044734
+        },
+        {
+          "i": 6,
+          "length": 5,
+          "keyLength": 24,
+          "count": "1",
+          "score": -3.3615747060031986,
+          "exact": true,
+          "runesCorrect": 5,
+          "wrongReachable": 6,
+          "wrongBest": -2.864576755419013
+        }
+      ]
+    },
+    {
+      "name": "0_koan_1",
+      "rows": [
+        {
+          "i": 1,
+          "length": 24,
+          "keyLength": 33,
+          "count": "1",
+          "score": -2.520874404089695,
+          "exact": true,
+          "runesCorrect": 24,
+          "wrongReachable": 5,
+          "wrongBest": -3.661524748324862
+        },
+        {
+          "i": 2,
+          "length": 42,
+          "keyLength": 24,
+          "count": "1",
+          "score": -2.378203097611936,
+          "exact": true,
+          "runesCorrect": 42,
+          "wrongReachable": 2,
+          "wrongBest": -3.75367885492969
+        },
+        {
+          "i": 3,
+          "length": 28,
+          "keyLength": 42,
+          "count": "2",
+          "score": -2.530526393911533,
+          "exact": true,
+          "runesCorrect": 28,
+          "wrongReachable": 4,
+          "wrongBest": -3.6322761818994667
+        },
+        {
+          "i": 4,
+          "length": 43,
+          "keyLength": 28,
+          "count": "3",
+          "score": -2.323614113194692,
+          "exact": true,
+          "runesCorrect": 43,
+          "wrongReachable": 6,
+          "wrongBest": -3.7182544069424637
+        },
+        {
+          "i": 5,
+          "length": 41,
+          "keyLength": 43,
+          "count": "1",
+          "score": -2.5130427056892954,
+          "exact": true,
+          "runesCorrect": 41,
+          "wrongReachable": 0,
+          "wrongBest": null
+        },
+        {
+          "i": 6,
+          "length": 44,
+          "keyLength": 41,
+          "count": "16",
+          "score": -2.632963940286811,
+          "exact": true,
+          "runesCorrect": 44,
+          "wrongReachable": 4,
+          "wrongBest": -3.8514303565376324
+        },
+        {
+          "i": 7,
+          "length": 42,
+          "keyLength": 44,
+          "count": "1",
+          "score": -2.201201099017311,
+          "exact": true,
+          "runesCorrect": 42,
+          "wrongReachable": 1,
+          "wrongBest": -3.957753097665722
+        },
+        {
+          "i": 8,
+          "length": 29,
+          "keyLength": 42,
+          "count": "1",
+          "score": -2.4066850092012397,
+          "exact": true,
+          "runesCorrect": 29,
+          "wrongReachable": 2,
+          "wrongBest": -3.8700228186904426
+        },
+        {
+          "i": 9,
+          "length": 27,
+          "keyLength": 29,
+          "count": "2",
+          "score": -2.5035177282046144,
+          "exact": true,
+          "runesCorrect": 27,
+          "wrongReachable": 8,
+          "wrongBest": -3.601013459625377
+        },
+        {
+          "i": 10,
+          "length": 29,
+          "keyLength": 27,
+          "count": "2",
+          "score": -2.7797802234060787,
+          "exact": true,
+          "runesCorrect": 29,
+          "wrongReachable": 4,
+          "wrongBest": -3.9234720325473598
+        },
+        {
+          "i": 11,
+          "length": 32,
+          "keyLength": 29,
+          "count": "2",
+          "score": -2.5197987698748516,
+          "exact": true,
+          "runesCorrect": 32,
+          "wrongReachable": 6,
+          "wrongBest": -3.749024254962048
+        },
+        {
+          "i": 12,
+          "length": 47,
+          "keyLength": 32,
+          "count": "4",
+          "score": -2.405859759133452,
+          "exact": true,
+          "runesCorrect": 47,
+          "wrongReachable": 4,
+          "wrongBest": -3.7590627242442674
+        },
+        {
+          "i": 13,
+          "length": 77,
+          "keyLength": 47,
+          "count": "5",
+          "score": -2.9067711810090455,
+          "exact": true,
+          "runesCorrect": 77,
+          "wrongReachable": 5,
+          "wrongBest": -3.8143329359638107
+        },
+        {
+          "i": 14,
+          "length": 33,
+          "keyLength": 77,
+          "count": "1",
+          "score": -2.341213051050822,
+          "exact": true,
+          "runesCorrect": 33,
+          "wrongReachable": 5,
+          "wrongBest": -3.563931227868927
+        },
+        {
+          "i": 15,
+          "length": 29,
+          "keyLength": 33,
+          "count": "1",
+          "score": -2.4066850092012397,
+          "exact": true,
+          "runesCorrect": 29,
+          "wrongReachable": 1,
+          "wrongBest": -4.111892617511336
+        },
+        {
+          "i": 16,
+          "length": 22,
+          "keyLength": 29,
+          "count": "1",
+          "score": -2.8931135442156766,
+          "exact": true,
+          "runesCorrect": 22,
+          "wrongReachable": 2,
+          "wrongBest": -3.9701056445829015
+        },
+        {
+          "i": 17,
+          "length": 59,
+          "keyLength": 22,
+          "count": "16",
+          "score": -2.9286744957963817,
+          "exact": true,
+          "runesCorrect": 59,
+          "wrongReachable": 2,
+          "wrongBest": -3.8206728658935467
+        },
+        {
+          "i": 18,
+          "length": 94,
+          "keyLength": 59,
+          "count": "21",
+          "score": -2.6751672731943774,
+          "exact": true,
+          "runesCorrect": 94,
+          "wrongReachable": 2,
+          "wrongBest": -3.933312601736894
+        }
+      ]
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "rows": [
+        {
+          "i": 1,
+          "length": 75,
+          "keyLength": 62,
+          "count": "9",
+          "score": -2.9097409104462226,
+          "exact": true,
+          "runesCorrect": 75,
+          "wrongReachable": 4,
+          "wrongBest": -3.758169196793289
+        },
+        {
+          "i": 2,
+          "length": 34,
+          "keyLength": 75,
+          "count": "1",
+          "score": -2.3109307518474123,
+          "exact": true,
+          "runesCorrect": 34,
+          "wrongReachable": 3,
+          "wrongBest": -3.5874069472906154
+        },
+        {
+          "i": 3,
+          "length": 73,
+          "keyLength": 34,
+          "count": "8",
+          "score": -2.8014167934333756,
+          "exact": true,
+          "runesCorrect": 73,
+          "wrongReachable": 2,
+          "wrongBest": -3.9728155606641127
+        },
+        {
+          "i": 4,
+          "length": 72,
+          "keyLength": 73,
+          "count": "4",
+          "score": -2.7808162406905854,
+          "exact": true,
+          "runesCorrect": 72,
+          "wrongReachable": 2,
+          "wrongBest": -3.8417137730875845
+        },
+        {
+          "i": 5,
+          "length": 47,
+          "keyLength": 72,
+          "count": "2",
+          "score": -2.710170286402513,
+          "exact": true,
+          "runesCorrect": 47,
+          "wrongReachable": 5,
+          "wrongBest": -3.850804827439725
+        },
+        {
+          "i": 6,
+          "length": 15,
+          "keyLength": 47,
+          "count": "1",
+          "score": -2.2830781524432946,
+          "exact": true,
+          "runesCorrect": 15,
+          "wrongReachable": 2,
+          "wrongBest": -3.853455831180282
+        },
+        {
+          "i": 7,
+          "length": 72,
+          "keyLength": 15,
+          "count": "4",
+          "score": -2.773018863798643,
+          "exact": true,
+          "runesCorrect": 72,
+          "wrongReachable": 3,
+          "wrongBest": -3.8965847637456354
+        },
+        {
+          "i": 8,
+          "length": 37,
+          "keyLength": 72,
+          "count": "11",
+          "score": -2.8683224677670065,
+          "exact": true,
+          "runesCorrect": 37,
+          "wrongReachable": 7,
+          "wrongBest": -3.8567928023538167
+        },
+        {
+          "i": 9,
+          "length": 24,
+          "keyLength": 37,
+          "count": "1",
+          "score": -2.436812267513515,
+          "exact": true,
+          "runesCorrect": 24,
+          "wrongReachable": 1,
+          "wrongBest": -3.5456468204810103
+        },
+        {
+          "i": 10,
+          "length": 126,
+          "keyLength": 24,
+          "count": "24",
+          "score": -2.826580600233434,
+          "exact": true,
+          "runesCorrect": 126,
+          "wrongReachable": 2,
+          "wrongBest": -3.950035299323867
+        },
+        {
+          "i": 11,
+          "length": 31,
+          "keyLength": 126,
+          "count": "1",
+          "score": -2.5835262521571,
+          "exact": true,
+          "runesCorrect": 31,
+          "wrongReachable": 2,
+          "wrongBest": -3.932425760103579
+        },
+        {
+          "i": 12,
+          "length": 31,
+          "keyLength": 31,
+          "count": "1",
+          "score": -2.4604322276871193,
+          "exact": true,
+          "runesCorrect": 31,
+          "wrongReachable": 3,
+          "wrongBest": -3.9006659512980084
+        },
+        {
+          "i": 13,
+          "length": 27,
+          "keyLength": 31,
+          "count": "2",
+          "score": -2.7113617513340293,
+          "exact": true,
+          "runesCorrect": 27,
+          "wrongReachable": 4,
+          "wrongBest": -3.860554567900561
+        },
+        {
+          "i": 14,
+          "length": 13,
+          "keyLength": 27,
+          "count": "1",
+          "score": -3.025192802524119,
+          "exact": true,
+          "runesCorrect": 13,
+          "wrongReachable": 8,
+          "wrongBest": -3.303221894765455
+        }
+      ]
+    },
+    {
+      "name": "jpg107-167",
+      "rows": [
+        {
+          "i": 1,
+          "length": 35,
+          "keyLength": 31,
+          "count": "2",
+          "score": -2.7918731029464707,
+          "exact": true,
+          "runesCorrect": 35,
+          "wrongReachable": 6,
+          "wrongBest": -3.811881162329025
+        },
+        {
+          "i": 2,
+          "length": 74,
+          "keyLength": 35,
+          "count": "1",
+          "score": -2.7232503067498626,
+          "exact": true,
+          "runesCorrect": 74,
+          "wrongReachable": 0,
+          "wrongBest": null
+        },
+        {
+          "i": 3,
+          "length": 69,
+          "keyLength": 74,
+          "count": "7",
+          "score": -2.541476415667701,
+          "exact": true,
+          "runesCorrect": 69,
+          "wrongReachable": 3,
+          "wrongBest": -4.043172331914483
+        },
+        {
+          "i": 4,
+          "length": 77,
+          "keyLength": 69,
+          "count": "31",
+          "score": -2.633462264345335,
+          "exact": true,
+          "runesCorrect": 77,
+          "wrongReachable": 4,
+          "wrongBest": -3.875307141423266
+        },
+        {
+          "i": 5,
+          "length": 28,
+          "keyLength": 77,
+          "count": "1",
+          "score": -2.3945214812383475,
+          "exact": true,
+          "runesCorrect": 28,
+          "wrongReachable": 6,
+          "wrongBest": -3.741671601499943
+        }
+      ]
+    },
+    {
+      "name": "jpg229",
+      "rows": [
+        {
+          "i": 1,
+          "length": 26,
+          "keyLength": 13,
+          "count": "2",
+          "score": -2.4974855732647985,
+          "exact": true,
+          "runesCorrect": 26,
+          "wrongReachable": 5,
+          "wrongBest": -3.984205598397882
+        },
+        {
+          "i": 2,
+          "length": 14,
+          "keyLength": 26,
+          "count": "2",
+          "score": -2.703735596224417,
+          "exact": true,
+          "runesCorrect": 14,
+          "wrongReachable": 6,
+          "wrongBest": -3.500394435158109
+        },
+        {
+          "i": 3,
+          "length": 24,
+          "keyLength": 14,
+          "count": "2",
+          "score": -2.7783657879863064,
+          "exact": true,
+          "runesCorrect": 24,
+          "wrongReachable": 2,
+          "wrongBest": -3.8923887458733475
+        }
+      ]
+    },
+    {
+      "name": "p56_an_end",
+      "rows": [
+        {
+          "i": 1,
+          "length": 40,
+          "keyLength": 40,
+          "count": "6",
+          "score": -2.7561219657162432,
+          "exact": true,
+          "runesCorrect": 40,
+          "wrongReachable": 5,
+          "wrongBest": -3.6574475702266716
+        }
+      ]
+    },
+    {
+      "name": "p57_parable",
+      "rows": [
+        {
+          "i": 1,
+          "length": 30,
+          "keyLength": 30,
+          "count": "2",
+          "score": -2.507438448575841,
+          "exact": true,
+          "runesCorrect": 30,
+          "wrongReachable": 5,
+          "wrongBest": -3.7251397095822534
+        },
+        {
+          "i": 2,
+          "length": 28,
+          "keyLength": 30,
+          "count": "4",
+          "score": -2.407253581508361,
+          "exact": true,
+          "runesCorrect": 28,
+          "wrongReachable": 7,
+          "wrongBest": -3.747172655563371
+        }
+      ]
+    }
+  ]
+}
