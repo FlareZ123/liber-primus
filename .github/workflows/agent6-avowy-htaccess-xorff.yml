@@ -182,6 +182,8 @@ jobs:
           base64 -w0 /tmp/avowy-preview.jpg > im-results/avowy-htaccess-xorff/preview.jpg.b64
           git config user.name "Agent6 research"
           git config user.email "agent6@users.noreply.github.com"
+          git fetch --no-tags --depth=20 origin main
+          git rebase origin/main
           git add im-results/avowy-htaccess-xorff
           if git diff --cached --quiet; then
             echo "No new compact artifacts to commit."
