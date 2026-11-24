@@ -25,7 +25,7 @@ The p16–p21 and p40–p53 scores are computed only from packets whose source w
 
 Bigram scores use a Shakespeare GP29 within-word model with the same normalization for all candidates. Native controls score approximately `-2.28` (Shakespeare) and `-2.31` (Gibran). Applying DIVINITY to the original printed-word interiors, without resegmentation, scores `-5.112` and `-5.074` for the two directions.
 
-Across the 16 combinations (2 clocks × 2 polarities × 2 key directions × full/p16–21/p40–53 evaluations):
+Across eight transform variants (2 clocks × 2 polarities × 2 key directions), each scored on the full book, p16–p21, and p40–p53 (24 measurements):
 
 - Full-book packet interiors: bigram log score `-5.203` to `-5.226`.
 - p16–p21: `-5.116` to `-5.383`.
