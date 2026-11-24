@@ -73,7 +73,20 @@ Exactly **11/40** remaining short lines end in a printed source period, an ordin
 
 Exclude only the 11 short original period-ended lines. Across **278 ordinary original pp0–27 joins**, the largest exact deviation of the image-aware compositor from the greedy rule is **50.940px**, fixing a **51px source-early tolerance**. On the separate later physical pp28–55, there are **250 ordinary original joins**. The red-giant-only model meets the trained threshold on **246/250**, with deviations at p37/j0, p37/j9, p40/j8 and p42/j5. Both p37 exceptions begin visibly numbered red passage lines, and the five source-image measured numeral insets explain those two cases. **The complete image-source model meets the early-fixed 51px rule on 248/250 held-out ordinary joins (99.2%)**. Two remaining exceptions are **p40/j8 (55.253px slack)** and **p42/j5 (72.313px slack)**, in the same original vine-bordered illustration spread (`57.jpg` and `59.jpg`). Its art-imposed text margins are an independent plausible source of extra width changes, though a pixel-perfect margin map is needed to identify the exact widths.
 
-The two exceptions remain **unexplained**, and the 51px bound is an empirical first-half tolerance rather than a theoretically established typesetter uncertainty interval. Neither residual anomaly supplies an authenticated cipher key, a decoding rule, or recovered plaintext. The central falsifiable finding is that original page geometry alone accounts for almost all observed physical line-ending choices in untouched later pages.
+### Direct raster check of the two residuals (Agent15, 24 November)
+
+The original scan's ink edges and actual adjacent glyph-pair gaps eliminate the large apparent spare widths at both residuals. Coordinates are half-open, on the native 2400 × 3600 JPEGs; nominal body frame x=600..1800. The next glyph belongs to the same printed word, per the literal transcript. Match the terminal and following glyph projection masks against adjacent pairs on p40–48 (dimensions within 2 px; normalized 64×128 binary IoU ≥0.90). RGB maximum thresholds 100, 140, and 180 independently give identical results.
+
+| Residual | Pair | Last ink x | Next glyph ink width | Observed intervening gap | Predicted next ink end |
+|---|---|---:|---:|---:|---:|
+| p40/j8 | T→F | [1711,1761) | 34 | 3 (four matches) | 1798 |
+| p42/j5 | T→H | [1742,1792) | 43 | 4 (one match) | 1839 |
+
+p42's following H would overrun the nominal frame by 39px on the ink alone. p40's following F leaves just 2px, rather than the approximate advance model's 55.253px. On the same pages, the F right-bearing estimate from 94 F→other projection matches (using the corresponding line-start glyph's measured left bearing) is 2px in 31 instances, 3px in 56, and 4px in seven. Adding that bearing would put the p40 pen at x=1800–1802. This is a borderline ordinary wrap, not a demonstrated intentional early break. The physical pair gaps come from p41/j4, p42/j9, p43/j1, p44/j2 for T→F, and p43/j7 for T→H. The p42 result relies on one matching internal pair; even zero spacing leaves a 35px overrun. The right-bearing estimate assumes a common x=600 text origin and does not resolve subpixel kerning.
+
+Reproduce with [lp2_vine_residual_exact_glyph_spacing_sft.py](../sims/lp2_vine_residual_exact_glyph_spacing_sft.py), executed on the supplied original JPEG ZIP. A separate attempted transcription/projection linear metric fit was not used: projection fragments compound glyphs/punctuation, and nominal equal-token-count rows still gave approximately 4px held-out RMS error.
+
+Thus the 248/250 count remains the **unchanged fixed approximate model's** held-out result. One residual is incompatible with fitting the next glyph in the nominal frame, and the other is borderline after measuring the real glyphs. Neither provides evidence of deliberate spare-width encoding. The 51px bound is an empirical first-half tolerance rather than a theoretically established typesetter uncertainty interval. Neither residual anomaly supplies an authenticated cipher key, a decoding rule, or recovered plaintext. The central falsifiable finding is that original page geometry alone accounts for almost all observed physical line-ending choices in untouched later pages.
 
 ## Cryptanalytic consequence and stopping rule
 
