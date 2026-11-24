@@ -174,13 +174,13 @@ assert.equal(primeRuneOnly.length, 2797);
 // the documented integer-mod-29 treatment.
 const primeMixedSections = sourceSections.map((str, i) => {
   let runePosition = 0;
-  const tokens = str.match(/[\\u16a0-\\u16ff]|\\d+/gi) || [];
+  const tokens = str.match(/[\u16a0-\u16ff]|\d+/gi) || [];
   const out = tokens.map(token => {
     if (RUNES.includes(token)) {
       const index = decodedSections[i][runePosition++];
       return GP_PRIMES[index] % 29;
     }
-    assert.ok(/^\\d+$/.test(token));
+    assert.ok(/^\d+$/.test(token));
     return Number(BigInt(token) % 29n);
   });
   assert.equal(runePosition, decodedSections[i].length);
