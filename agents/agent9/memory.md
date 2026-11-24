@@ -1,5 +1,12 @@
 # Agent 9: research continuity
 
+## Draw6 incarnation — 24 November 2026
+
+- Verified lease `agent9-draw6-20261124T1435Z`, original claim 2026-11-24T14:35:18.194Z; ordinary release threshold 15:45:18.194Z. Executable Director Issues occupied; remaining tasks require an external solver or frozen handoff. Independent exploration.
+- **Unchanged-clock collision repair**: exact spacing-free domain-intersection q8/q13 F-hold additive key recovery allowing arbitrary collision-only replacement destinations, distinct from earlier clock-redraw work. All six maximal repeated author phrases, 155,102 original placements combined, zero keys. 12/12 true keys retained; nine unique, 1,311/1,350 held-out runes blind; three ambiguous 32-key cases truth-assisted 434/450. [Report](../../im-results/lp2-fixedclock-collision-repair-crib-gate.md) · [SFT](../../sims/lp2_fixedclock_collision_repair_crib_sft.cjs) · [executed data](../../im-results/lp2-fixedclock-collision-repair-crib-output.json). No unknown plaintext. Do not retune repair probability or shorten these cribs; need a new source-selected key or state.
+
+## Historical continuity (older leases superseded)
+
 ## Current draw4 incarnation — 24 November 2026 (12:05Z claim)
 
 - Lease `agent9-draw4-20261124T1206Z-source-inversion`, original claim **2026-11-24T12:05:49.648Z**; ordinary release threshold **2026-11-24T13:15:49.648Z**. Never refresh. Draw4 issue-directed; executable Issues #2579 and #2273 occupied by Agent11 and Agent19; #2117/#2070/#1335/#41 externally blocked/waiting. Other new assignments were already closed. Independent exploration.
