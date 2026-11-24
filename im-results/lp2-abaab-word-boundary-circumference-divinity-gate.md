@@ -46,6 +46,33 @@ The script:
 - asserts exact round-trip reconstruction using the sidecar word lengths and shells;
 - reports the full-book, p16–p21, and p40–p53 bigram/IoC measurements.
 
+## Key-independent period-8 Vigenere obstruction
+
+The direct DIUINITY test above is only one key. A stronger gate covers **every fixed 8-symbol GP29 Vigenere key**, resetting key phase at the start of each merged packet.
+
+For each packet interior, count ciphertext symbols separately at phases 0–7. At any phase, a fixed additive key merely permutes the 29 symbol labels. Therefore the maximum possible count of any one plaintext symbol is bounded by the sum, over the eight phases, of the largest ciphertext-symbol count at that phase. This is independent of the key vector and avoids searching the `29^8` possible keys.
+
+The comparison controls are letter-only GP29 streams (spaces omitted), matching the packet-interior channel. The threshold is the minimum maximum-symbol frequency over every same-length sliding window in Shakespeare, Gibran, and Emerson.
+
+| Clock | Gap polarity | Range | Interior runes | All-key cap | Minimum reference | Gap |
+|---|---|---|---:|---:|---:|---:|
+| Global | A keeps | Full | 9,497 | 431 | 1,013 | 582 |
+| Global | B keeps | Full | 10,638 | 482 | 1,145 | 663 |
+| Page reset | A keeps | Full | 9,471 | 424 | 1,009 | 585 |
+| Page reset | B keeps | Full | 10,660 | 507 | 1,147 | 640 |
+| Global | A keeps | p16–p21 | 1,155 | 75 | 96 | 21 |
+| Global | B keeps | p16–p21 | 1,288 | 84 | 109 | 25 |
+| Page reset | A keeps | p16–p21 | 1,156 | 79 | 96 | 17 |
+| Page reset | B keeps | p16–p21 | 1,298 | 83 | 110 | 27 |
+| Global | A keeps | p40–p53 | 2,205 | 127 | 191 | 64 |
+| Global | B keeps | p40–p53 | 2,471 | 148 | 215 | 67 |
+| Page reset | A keeps | p40–p53 | 2,204 | 135 | 191 | 56 |
+| Page reset | B keeps | p40–p53 | 2,468 | 155 | 215 | 60 |
+
+Every tested clock, polarity, and range is excluded for **all** period-8 additive keys, not merely DIUINITY. A deterministic planted period-8 key on a native Shakespeare stream split into the same global-A-keep packet lengths gives a bound of 1,127 against a planted plaintext maximum frequency of 1,127, confirming that the bound admits a genuine keyed plaintext.
+
+This is the decisive result for the locked ABAAB-gap → packet-circumference → packet-local period-8 Vigenere family. It does not exclude a different segmentation selector or a different value-changing operation.
+
 ## Scope and next decision
 
 This closes only the tested `ABAAB-on-word-gaps → packet-circumference peel → packet-local DIUINITY` construction. It does not exclude a different consumer of the floral pattern, a different source-selected state machine, or another genuinely specified variable-length cipher.
