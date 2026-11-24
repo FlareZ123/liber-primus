@@ -1,0 +1,142 @@
+{
+  "controls": [
+    {
+      "qa": 8,
+      "qb": 13,
+      "name": "0_welcome",
+      "off": 5,
+      "rank": 40,
+      "nullity": 2,
+      "count": 196,
+      "acceptedOffsets": [
+        5
+      ],
+      "unresolved": 0,
+      "trueInOrbit": true
+    },
+    {
+      "qa": 8,
+      "qb": 13,
+      "name": "0_wisdom",
+      "off": 16,
+      "rank": 40,
+      "nullity": 2,
+      "count": 224,
+      "acceptedOffsets": [
+        16
+      ],
+      "unresolved": 0,
+      "trueInOrbit": true
+    },
+    {
+      "qa": 8,
+      "qb": 13,
+      "name": "0_koan_1",
+      "off": 27,
+      "rank": 40,
+      "nullity": 2,
+      "count": 364,
+      "acceptedOffsets": [
+        27
+      ],
+      "unresolved": 0,
+      "trueInOrbit": true
+    },
+    {
+      "qa": 8,
+      "qb": 13,
+      "name": "0_loss_of_divinity",
+      "off": 38,
+      "rank": 40,
+      "nullity": 2,
+      "count": 252,
+      "acceptedOffsets": [
+        38
+      ],
+      "unresolved": 0,
+      "trueInOrbit": true
+    },
+    {
+      "qa": 13,
+      "qb": 8,
+      "name": "0_welcome",
+      "off": 5,
+      "rank": 40,
+      "nullity": 2,
+      "count": 196,
+      "acceptedOffsets": [
+        5
+      ],
+      "unresolved": 0,
+      "trueInOrbit": true
+    },
+    {
+      "qa": 13,
+      "qb": 8,
+      "name": "0_wisdom",
+      "off": 16,
+      "rank": 40,
+      "nullity": 2,
+      "count": 224,
+      "acceptedOffsets": [
+        16
+      ],
+      "unresolved": 0,
+      "trueInOrbit": true
+    },
+    {
+      "qa": 13,
+      "qb": 8,
+      "name": "0_koan_1",
+      "off": 27,
+      "rank": 40,
+      "nullity": 2,
+      "count": 364,
+      "acceptedOffsets": [
+        27
+      ],
+      "unresolved": 0,
+      "trueInOrbit": true
+    },
+    {
+      "qa": 13,
+      "qb": 8,
+      "name": "0_loss_of_divinity",
+      "off": 38,
+      "rank": 40,
+      "nullity": 2,
+      "count": 252,
+      "acceptedOffsets": [
+        38
+      ],
+      "unresolved": 0,
+      "trueInOrbit": true
+    }
+  ],
+  "original": [
+    {
+      "qa": 8,
+      "qb": 13,
+      "tested": 53,
+      "counts": {
+        "zero slope forced": 53
+      },
+      "ranks": {
+        "41": 53
+      },
+      "survivors": []
+    },
+    {
+      "qa": 13,
+      "qb": 8,
+      "tested": 53,
+      "counts": {
+        "zero slope forced": 53
+      },
+      "ranks": {
+        "41": 53
+      },
+      "survivors": []
+    }
+  ]
+}

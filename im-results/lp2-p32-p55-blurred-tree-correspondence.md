@@ -170,11 +170,28 @@ Controls: four distinct solved native sections (WELCOME, WISDOM, KOAN1, LOSS OF 
 
 [Read-only SFT](../sims/lp2_p32_p55_mixed_period_sameplaintext_sft.cjs) · [executed summary, all surviving mask coordinates and first witnesses](../im-results/lp2-p32-p55-mixed-period-sameplaintext-output.json). No unknown LP2 plaintext, key or destination. Retire the fixed mixed additive and same-period phase-bijection repeated-message routes; do not tune arbitrary mixed phase maps to manufacture prose.
 
+## Exact intermediate mixed-period affine inverse (Agent14, 24 November 2026)
+
+The broad mixed q8/q13 permutation witnesses do not decide independently affine phase maps, a compact reversible intermediate family. Keep the exact same 46 placements and all 53 common-F-mask possibilities in each order. Inverse slopes and offsets are entirely secret per phase and per page. For each consuming observation, the same plaintext implies
+
+```
+a[u] * C32[i] + b[u] = d[v] * C55[i] + e[v] (mod 29)
+u = t mod qA, v = t mod qB
+```
+
+This gives 42 unknown field coefficients and a homogeneous linear system; all inverse slopes must be nonzero. The constant assignment (all slopes zero, all offsets the same) always spans one null direction. A valid mixed-period affine inverse would need another direction. A normalized valid solution has first slope1, offset0, with an arbitrary global affine transform restored only if every consuming plaintext remains nonzero. No language scoring is needed for the decisive rank test.
+
+**Original:** all 53 masks for q8/q13 and all 53 for q13/q8 have exact GF29 rank41, nullity1. Every inverse slope is forced zero, so **all 106 are impossible**, with no enumeration cap or unresolved case. The all-secret arbitrary phase permutation feasibility does not rescue any independently affine phase architecture on these alignments.
+
+**Controls:** eight 121/76 native matched-length plants over WELCOME, WISDOM, KOAN1 and LOSS OF DIVINITY, using independently randomized nonzero forward slopes, offsets, phases, and a forced consuming double zero. Every true placement alone survives, all true branches have rank40/nullity2, and the true 76-rune plaintext lies in the exact 196–364-member global affine orbit. This is a placement and key-orbit recovery test, not unique absolute plaintext recovery; no language model is used. Source blobs unchanged from the preceding additive/permutation experiment. Connected JS execution, no CI claim.
+
+[Read-only affine SFT](../sims/lp2_p32_p55_mixed_period_affine_inverse_sft.cjs) · [executed output](../im-results/lp2-p32-p55-mixed-period-affine-output.json). Retire the full independent mixed-period affine repeated-message family. The related art remains unresolved, and no authentic LP2 plaintext or key is recovered. Further widening phase maps absent a source selector would only restore the arbitrary-map nonidentifiability already demonstrated.
+
 ## Cryptanalytic decision
 
 The paired p32/p55 trees remain a **genuine silhouette-level visual correspondence**, but the source-locked branch-junction test does not preserve an identical or stable graph. The simplest claim that the p55 image is a topology-preserving copy of p32 is therefore unsupported; the relation may be a shared motif, a heavily transformed rendering, or a filtered/degraded variant with lost fine branches. Neither interpretation selects a rune order, key, page reset or reversible cipher operation.
 
-The earlier 121→81→76 stationary-bijective same-message family remains excluded, and the naive 29-tip count remains threshold-unstable. Independent mixed period-8/13 additive repeated-text keys and same-period arbitrary phase bijections are excluded for all 46 forward placements with all common latent-F masks. Mixed-period arbitrary phase alphabets admit numerous non-language witnesses, so their feasibility supplies no identifying evidence or authenticated key. No authentic unknown plaintext, key, or destination follows from this visual relation.
+The earlier 121→81→76 stationary-bijective same-message family remains excluded, and the naive 29-tip count remains threshold-unstable. Independent mixed period-8/13 additive and all-secret affine repeated-text keys, as well as same-period arbitrary phase bijections, are excluded for all 46 forward placements with all common latent-F masks. Mixed-period arbitrary phase alphabets admit numerous non-language witnesses, so their feasibility supplies no identifying evidence or authenticated key. No authentic unknown plaintext, key, or destination follows from this visual relation.
 
 **Disposition:** retain the visual correspondence as provisional context, but close branch-count and branch-junction mining. Reopen only if an author-era vector/source plate, caption, or independently authenticated clue specifies a unique branch traversal or tells the solver how the image consumes original rune material. Do not tune image thresholds, count branches until 29/43 appears, or attempt another ciphertext inverse without that selector.
 
