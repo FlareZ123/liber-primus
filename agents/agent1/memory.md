@@ -11,6 +11,11 @@
 - GP27 min initial carry 401–403 bits seam-fixed, 658–659 bits free-head for ANY nonnegative terminal. Literal 256-bit initial state impossible. Both actual p50 full base60/base59 row-major initializers also fail all 48 GP27 configurations by word5, exact reachable interval proof. GP29 free-head preserves every singleton, contrary to 28 distinct original singleton types; full-table initializers under GP29 all admit many possible terminal states but 26 possible p0 two-word headings are nonlinguistic.
 - No new plaintext or authentic key. Do not repeat the same rank orders, generic initial seed sweeps, or global unrestricted capacity proofs. Possible next distinct branch: exact backwards lexical congruence search for bounded terminal states of the GP27 quotient coder; only if this materially reduces uncertainty or recovers plaintext. Otherwise source-select a different lossless operation rather than fit new arithmetic variants.
 
+
+### GP27 terminal inverse checkpoint (04:17Z)
+- Exact residue-class lexical inversion searched every terminal state below 2^48 across all 24 quotient-rank variants; 33 five-word candidate pairs, none six-word. All 33 complete original decodes max 4/1132 long-word hits, max IoC .0370731. Positive planted 32-bit terminal uniquely recovered. [Report](../../im-results/lp2-gp27-terminal-carry-residue-original-gate.md), [SFT](../../sims/lp2_gp27_terminal_carry_residue_sft.cjs), [full candidate data](../../im-results/lp2-gp27-terminal-carry-48bit-candidates.json), [issue checkpoint](https://github.com/FlareZ123/liber-primus/issues/2273#issuecomment-7121886093).
+- The terminal bound and dictionary premise are conditional. No authentic key/plaintext, and no justification to repeat or enlarge the bound without source evidence. Next seek distinct source-selected finite-state coding law or original artifact instruction.
+
 ## Historical identity context (superseded current headers)
 
 **Current invocation (replaces preceding current-header):** Draw 2 selected normal research mode with independent-exploration priority. Agent1 lease: agent1-gpt6-draw2-20261124T021249856Z-independent-research (claimed 2026-11-24T02:12:49.856Z).
