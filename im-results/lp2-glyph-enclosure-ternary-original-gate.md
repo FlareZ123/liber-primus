@@ -8,13 +8,13 @@ Solved p57 says to shed one's own circumferences. In addition to whole-word circ
 
 ## Source geometry
 
-On exact original 72.jpg, use all 76 inclusive pixel rectangles in the existing p55 source-coordinate JSON. Threshold grayscale at 64, 128 and 192 independently; pad the white background by one pixel, label its four-connected components, discard the outside component and any enclosed region smaller than 20 pixels. Every repeated glyph agrees across occurrences and thresholds. Four identities absent from p55 (O,N,T,Y) are read directly at the fixed original p57 crop coordinates in the SFT. Y has one enclosed white region, the other three have none.
+On exact original 72.jpg, use all 76 inclusive pixel rectangles in the existing p55 source-coordinate JSON. Threshold grayscale at 64, 128 and 192 independently; pad the white background by one pixel, label its four-connected components, discard the outside component and any enclosed region smaller than 20 pixels. Every repeated glyph agrees across occurrences and thresholds. Four identities absent from p55 (O,N,T,Y) are read directly at the fixed original p57 crop coordinates in the SFT. All four have no enclosed regions. The Y crop is at (932,1725)–(983,1839), ending the clear DIUINITY word; the initial (1058,1725)–(1091,1839) crop was the TH of WITHIN and has been corrected. The p55 observations do not involve Y and remain unchanged.
 
 The GP0-indexed class table is:
 
-    0 0 1 0 1 0 0 1 1 0 0 2 0 0 0 0 0 2 0 2 0 1 1 2 0 0 1 0 0
+    0 0 1 0 1 0 0 1 1 0 0 2 0 0 0 0 0 2 0 2 0 1 1 2 0 0 0 0 0
 
-Class sizes are 18,7,4. These are properties of the actual original typeface, not Unicode font assumptions or learned symbol assignments. The 76 p55 glyphs have 50 zero-enclosure, 12 single-enclosure and 14 double-enclosure occurrences, giving 40 total enclosed regions.
+Class sizes are 19,6,4. These are properties of the actual original typeface, not Unicode font assumptions or learned symbol assignments. The 76 p55 glyphs have 50 zero-enclosure, 12 single-enclosure and 14 double-enclosure occurrences, giving 40 total enclosed regions.
 
 ## Direct original-input receivers
 
@@ -22,10 +22,10 @@ Take consecutive triples of enclosure counts in printed order, big-endian, using
 
 | Original receiver | Trit counts (0,1,2) | Output |
 |---|---|---|
-| p8 black body, 243 runes | 156,59,28 | AAMCJBATAUBVWJJFDDBBNBJAKADMJDAAASSBBYAODSAMGAIDDGAJANBAJBCABTPJAJACKGBVUJYDNAGAJ |
+| p8 black body, 243 runes | 165,50,28 | AAJCJBATAUBVVJAFDDBBNBAAKADJJAAAASSBBYAOASAMGAIDDGAJANBAJBCABSPJAJACKGBVUJYDNAGAA |
 | p55 16 complete groups, 75 runes | 50,11,14 | GLGCJCBPASECGCJAAAAMEASYS |
-| p56 full encrypted control, 85 runes | 53,20,12 | HFJJDMACYDTSAAJGAAMBSPECDJOA (1 trit remains) |
-| p57 full clear control, 95 runes | 70,17,8 | BGABAAJADDBADSBGDJDGDAAHGABKAGT (2 trits remain) |
+| p56 full encrypted control, 85 runes | 56,17,12 | HFAJDMACYDSSAAJGAAMBSGECDJOA (1 trit remains) |
+| p57 full clear control, 95 runes | 71,16,8 | BGABAAJADDBADSBGDJDGDAAHGAAKAGT (2 trits remain) |
 
 The p55 full 76-rune direct binary enclosure-presence projection, MSB first, yields aa8c2708ca30003313 with four remaining bits 0100. No ASCII message or natural exact framing appears.
 
@@ -39,10 +39,10 @@ Use the established five p7 red-word GP0 products [11,26,8,15,2] as the initial 
 
 | Feedback | Sign | Original decoded IoC |
 |---|---:|---:|
-| P | − | 0.03440951141349354 |
-| P | + | 0.03438740384358526 |
-| C | − | 0.03435424248872283 |
-| C | + | 0.03445833229704100 |
+| P | − | 0.03448228216444163 |
+| P | + | 0.034405826818508824 |
+| C | − | 0.03452281270927348 |
+| C | + | 0.03447951871820309500 |
 
 All four replay **1,474/1,474** original ciphertext runes. All four also encrypt and recover **1,474/1,474** p57-native repeated known-source runes, with plant IoC 0.07170221840252543. Raw original IoC is 0.034440830470863604. No original output is coherent prose, and the strongest IoC is essentially unchanged from ciphertext. Exact replay is a correctness invariant only. Retire this precise topology-addressed direct receiver, while preserving the independently determined class map.
 

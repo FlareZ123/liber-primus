@@ -10,14 +10,14 @@ from scipy.ndimage import label
 ROOT = Path(__file__).resolve().parents[1] / "resources" / "liber-primus"
 CORPUS = json.loads((ROOT / "lp2-corpus.json").read_text(encoding="utf-8"))
 GEOM = json.loads((ROOT / "lp2-p55-source-glyph-coordinates.json").read_text(encoding="utf-8"))
-EXPECTED = [0,0,1,0,1,0,0,1,1,0,0,2,0,0,0,0,0,2,0,2,0,1,1,2,0,0,1,0,0]
+EXPECTED = [0,0,1,0,1,0,0,1,1,0,0,2,0,0,0,0,0,2,0,2,0,1,1,2,0,0,0,0,0]
 # Four GP identities absent in p55, from the unambiguous clear p57 words
 # TUNNELNG, TO, DIUINITY (inclusive original pixel bounds).
 MISSING = [
     (9, (947,1105,980,1219)),
     (16,(1192,1105,1241,1219)),
     (3, (1246,1105,1280,1219)),
-    (26,(1058,1725,1091,1839)),
+    (26,(932,1725,983,1839)),
 ]
 
 def holes(img, rect, threshold):
@@ -57,10 +57,10 @@ def check_table_receiver():
     plant = [control[i%len(control)] for i in range(len(source))]
     assert len(table) == 243 and len(source) == 1474
     expected = {
-        ("P",-1): .03440951141349354,
-        ("P", 1): .03438740384358526,
-        ("C",-1): .03435424248872283,
-        ("C", 1): .034458332297041,
+        ("P",-1): .03448228216444163,
+        ("P", 1): .034405826818508824,
+        ("C",-1): .03452281270927348,
+        ("C", 1): .034479518718203095,
     }
     for (feedback,sign), target in expected.items():
         plain = table_receiver(source,table,sign,feedback,False)
@@ -86,10 +86,10 @@ def main():
         assert [obs[k] for k in range(29)] == EXPECTED
         print("threshold",threshold,"class counts",Counter(obs.values()))
     targets = [
-        (8,12,243,"AAMCJBATAUBVWJJFDDBBNBJAKADMJDAAASSBBYAODSAMGAIDDGAJANBAJBCABTPJAJACKGBVUJYDNAGAJ"),
+        (8,12,243,"AAJCJBATAUBVVJAFDDBBNBAAKADJJAAAASSBBYAOASAMGAIDDGAJANBAJBCABSPJAJACKGBVUJYDNAGAA"),
         (55,1,75,"GLGCJCBPASECGCJAAAAMEASYS"),
-        (56,0,85,"HFJJDMACYDTSAAJGAAMBSPECDJOA"),
-        (57,0,95,"BGABAAJADDBADSBGDJDGDAAHGABKAGT"),
+        (56,0,85,"HFAJDMACYDSSAAJGAAMBSGECDJOA"),
+        (57,0,95,"BGABAAJADDBADSBGDJDGDAAHGAAKAGT"),
     ]
     for page,start,size,expected in targets:
         a = CORPUS["pages"][page]["indices"][start:]
