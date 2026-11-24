@@ -31,4 +31,19 @@ The p55 full 76-rune direct binary enclosure-presence projection, MSB first, yie
 
 These projections are many-to-one; even a readable secondary message would not constitute an inverse of the original cipher. The source-fixed map is strongly unbalanced, and the direct outputs reflect that bias. Retire these precise direct projections. Do not fit alternate color/threshold, bit assignment, or ternary permutation to these outputs absent an independent instruction. A potential future use of the stable geometry map would require a concrete typed receiver or a frozen independent prediction, not another palette sweep.
 
+## Reversible receiver with the new physical trit map
+
+The direct projection is lossy, but the same independent map can address the actual 243-rune p8 black-body table in an invertible cipher. This tests the missing physically motivated address class of the earlier [p8 nonlinear lookup study](lp2-p7-p8-243-trit-nonlinear-original-consumer.md), which used GP index or prime residues rather than actual font topology. No keys are optimized.
+
+Use the established five p7 red-word GP0 products [11,26,8,15,2] as the initial register, and p8 body in printed order as T. At each rune of the complete p9–14 continuation, convert the five register symbols to enclosure counts, read the big-endian base-three address, and apply P = C ± T[address] mod29. Shift in either C or recovered P and carry state continuously across physical pages. This defines four fixed, genuinely invertible source candidates.
+
+| Feedback | Sign | Original decoded IoC |
+|---|---:|---:|
+| P | − | 0.03440951141349354 |
+| P | + | 0.03438740384358526 |
+| C | − | 0.03435424248872283 |
+| C | + | 0.03445833229704100 |
+
+All four replay **1,474/1,474** original ciphertext runes. All four also encrypt and recover **1,474/1,474** p57-native repeated known-source runes, with plant IoC 0.07170221840252543. Raw original IoC is 0.034440830470863604. No original output is coherent prose, and the strongest IoC is essentially unchanged from ciphertext. Exact replay is a correctness invariant only. Retire this precise topology-addressed direct receiver, while preserving the independently determined class map.
+
 **Reproducer:** [sims/lp2_glyph_enclosure_ternary_sft.py](../sims/lp2_glyph_enclosure_ternary_sft.py), with Pillow, NumPy and SciPy. Source: [p55 original coordinates](../resources/liber-primus/lp2-p55-source-glyph-coordinates.json), original 72.jpg and 74.jpg, and [canonical corpus](../resources/liber-primus/lp2-corpus.json). The geometry was executed locally on the supplied original JPEGs; the original corpus projections were executed on the repository canonical indices. No new CI workflow is needed.
