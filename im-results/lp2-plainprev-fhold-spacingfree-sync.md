@@ -36,7 +36,7 @@ Three hidden-table plants use independently selected contiguous donor windows fr
 | Gibran | 1 | 24/24 | 716/720 | no path/3008 | 0 |
 | Emerson | 1 | 27/27 | 711/720 | 3002/3008 | 0 |
 
-All latent path counts and observed-row/primer identifiability are in the raw JSON. The prefix candidate source is included in the finite bank, missing rows are arbitrary frozen choices, and some ambiguous literal-F paths cannot be uniquely identified. No claims of general hidden-table recovery from arbitrary unknown prose. The all-key collision result does not depend on this source-bank calibration.
+Two of three independent cross-author transfers have no legal path because unobserved rows were frozen to zero; the third recovers 3,002/3,008 runes. The three within-source suffixes recover 2,125/2,160 runes. Thus the finite-source controls do not establish transferable full-table recovery. All latent path counts and observed-row/primer identifiability are in the raw JSON. The prefix candidate source is included in the finite bank, missing rows are arbitrary frozen choices, and some ambiguous literal-F paths cannot be uniquely identified. No claims of general hidden-table recovery from arbitrary unknown prose. The all-key collision result does not depend on this source-bank calibration.
 
 Decision: retire the stationary one-consuming-predecessor model as a direct ordinary native-GP prose explanation for these two original chapters within the tested register. A genuinely different, independently source-selected state/clock/transport is required. No new unknown LP2 plaintext or authentic key recovered.
 
