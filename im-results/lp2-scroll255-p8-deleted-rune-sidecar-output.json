@@ -760,7 +760,21 @@
           11
         ]
       ],
-      "minOOV": 15
+      "minOOV": 15,
+      "independentSet": {
+        "maximum": 7,
+        "witness": [
+          188,
+          40,
+          44,
+          93,
+          107,
+          187,
+          15
+        ],
+        "states": 33,
+        "minOOV": 20
+      }
     },
     {
       "supported": 253,
@@ -1444,7 +1458,28 @@
           119
         ]
       ],
-      "minOOV": 8
+      "minOOV": 8,
+      "independentSet": {
+        "maximum": 14,
+        "witness": [
+          133,
+          188,
+          167,
+          85,
+          40,
+          44,
+          107,
+          226,
+          15,
+          11,
+          148,
+          87,
+          93,
+          187
+        ],
+        "states": 20,
+        "minOOV": 13
+      }
     }
   ],
   "controls": [
@@ -1471,6 +1506,106 @@
       "separate": 255,
       "repeatShared": 255,
       "repeatSeparate": 255
+    }
+  ],
+  "historical": [
+    {
+      "name": "DIUINITY",
+      "sign": 1,
+      "held": false,
+      "independent": 33,
+      "legalGroups": 255,
+      "continuous": 9
+    },
+    {
+      "name": "DIUINITY",
+      "sign": 1,
+      "held": true,
+      "independent": 32,
+      "legalGroups": 255,
+      "continuous": 14
+    },
+    {
+      "name": "DIUINITY",
+      "sign": -1,
+      "held": false,
+      "independent": 34,
+      "legalGroups": 255,
+      "continuous": 13
+    },
+    {
+      "name": "DIUINITY",
+      "sign": -1,
+      "held": true,
+      "independent": 34,
+      "legalGroups": 255,
+      "continuous": 19
+    },
+    {
+      "name": "FIRFUMFERENFE",
+      "sign": 1,
+      "held": false,
+      "independent": 42,
+      "legalGroups": 255,
+      "continuous": 14
+    },
+    {
+      "name": "FIRFUMFERENFE",
+      "sign": 1,
+      "held": true,
+      "independent": 41,
+      "legalGroups": 255,
+      "continuous": 21
+    },
+    {
+      "name": "FIRFUMFERENFE",
+      "sign": -1,
+      "held": false,
+      "independent": 44,
+      "legalGroups": 255,
+      "continuous": 11
+    },
+    {
+      "name": "FIRFUMFERENFE",
+      "sign": -1,
+      "held": true,
+      "independent": 43,
+      "legalGroups": 255,
+      "continuous": 16
+    }
+  ],
+  "additiveControls": [
+    {
+      "name": "DIUINITY",
+      "held": false,
+      "n": 255,
+      "independent": 255,
+      "legalGroups": 255,
+      "continuous": 255
+    },
+    {
+      "name": "DIUINITY",
+      "held": true,
+      "n": 255,
+      "independent": 255,
+      "legalGroups": 255,
+      "continuous": 255
+    },
+    {
+      "name": "FIRFUMFERENFE",
+      "held": false,
+      "n": 255,
+      "independent": 255,
+      "legalGroups": 255,
+      "continuous": 255
+    },
+    {
+      "name": "FIRFUMFERENFE",
+      "held": true,
+      "n": 255,
+      "independent": 255,
+      "legalGroups": 255,
+      "continuous": 255
     }
   ],
   "inputs": [
