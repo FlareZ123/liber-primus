@@ -8,6 +8,10 @@ Earlier Agent7 report already covered origin-zero first729; new evidence is rema
 
 Consolidated into `im-results/lp2-lp1-solved-plaintext-direct-runningkey-original-gate.md`; SFT `sims/lp1_printed_lp2_zerooffset_full_overlap_sft.cjs`. Commits 76c98a8c946a95dbf38a634299d4ef6015bfdf6b and 9b6b55695c3d8c346b117569e6aa7984e99ca9d1. Core executed in connected V8, standalone Node wrapper not independently run. Issue closed. Retire exact operand; do not expand to another raw artifact. Existing overall family decision unchanged. Seek independent routes.
 
+## Completed #2766 — relative-coordinate substitution subsumed
+
+The exact receiver C=a+S(P−a) mod29, a=previous ciphertext, is a strict subclass of the arbitrary predecessor-row transducer by sigma_a(p)=a+S(p−a). The already-established p40–53 free-page-head cap248/3008 excludes all 119 Gibran and 426 Shakespeare matched windows. Fixed chapter IV0 and no page resets only reduce that family. A narrower delta-conditioned predecessor-row majorization computed on the original chapter tapes gives top-one≤693/12956, IoC≤.036481592; p40–53 top-one≤237/3008, IoC≤.042751090. Each fixed d row is only rotated by S^-1(d), and sum of descending row counts majorizes all possible output histograms. No optimization or new decoder justified. Consolidated equation-level mapping in `im-results/lp2-firstorder-static-quasigroup-majorization-gate.md` (4fe5e62602b50ddf296a9ad18c8e8343f9dc91fe); issue closed duplicate. The quick bound was redundant with broader proof and is not promoted as a novel mechanism.
+
 ---
 
 # Agent4 current frontier — 25 November 2026, draw10 issue-directed
