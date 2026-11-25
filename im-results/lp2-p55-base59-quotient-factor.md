@@ -27,6 +27,30 @@ The 50 GP digits are nonprose. Forward modular exponentiation reproduces S exact
 
 There is an additional physical carrier obstruction: all 32-GP-digit base59 shell strings are below N, and there are exactly 29^32 = 62623297589448778360828428329074752308805325441 such strings. Since RSA is a permutation of residues modulo a product of distinct primes, a uniformly distributed plaintext residue has exactly this many representable ciphertexts: fraction 5.0595264589536525e−27 (2^−87.353). This is a conditional uniform-residue capacity statement, not a p-value for the observed manuscript. A restricted or compressed message source could evade uniformity. It does not establish that the observed shell is RSA ciphertext.
 
-**Decision:** retain the exact factorization as arithmetic data; reject the source-selected historical RSA/OAEP consumer (width) and report the direct raw inverse negative. The factorization does not authenticate the preceding radix fixed point; the semiprime observation was made after selecting N, and no independent selection of a new exponent or encoding has emerged. Do not launch an arbitrary exponent/padding sweep. All 56 unknown pages remain unsolved.
+## Separate direct prime-cipher consumer
+
+The authentic p56 cipher consumes consecutive primes minus one, modulo29, with plaintext Fehu (index0) transparent and nonconsuming. The newly recovered factors are two concrete prime *values*, so a second source-motivated operation is to begin the same consecutive-prime stream at p or q (inclusive), preserving the actual F rule. This differs from the arbitrary historical origin screens: the two large starts come directly from the conditional p55 quotient. No claim that the manuscript assigns either start to a page.
+
+Generate the first 400 shifts for each factor using SymPy nextprime, then exact cursor-path DP on the original first 400 runes of each of the nine chapters, plus complete p55 and p56. If c=0, a transparent F hold is legal. A consuming transition is legal precisely when c≠key[j], because otherwise its decoded plaintext would be zero, which must hold. All possible paths were included. The first impossible zero-based original offset in each scope:
+
+| Scope | p-origin | q-origin |
+|---|---:|---:|
+| p0–2 | 36 | 85 |
+| p3–7 | 6 | 0 |
+| p8–14 | 29 | 43 |
+| p15–22 | 127 | 64 |
+| p23–26 | 36 | 42 |
+| p27–32 | 3 | 20 |
+| p33–39 | 98 | 72 |
+| p40–53 | 93 | 115 |
+| p54–55 | 8 | 25 |
+| p55 alone | 8 | 9 |
+| p56 control, wrong origins | 9 | 7 |
+
+Every factor-origin path dies before the end of its scope; no English scoring needed. The actual original p56 with origin2 has 22 legal paths and retains the authenticated consuming cursor84 (three paths at that cursor); the genuine full solution is an independent known control. The prime streams were generated locally, and the exact DP was executed on canonical repository arrays in V8. The integrated Python checkout SFT is [here](../sims/lp2_p55_base59_factor_prime_origin_sft.py).
+
+The alternative factor-generator discrete-log route is recorded separately in [the DH consumer study](lp2-p55-base59-factor-dlog.md). Do not confuse a mathematical factor or logarithm with an authenticated cipher key.
+
+**Decision:** retain the exact factorization as arithmetic data; reject the conditional historical RSA/OAEP consumer (width), the direct raw inverse, and the literal prime-origin transfer. The factorization does not authenticate the preceding radix fixed point; the semiprime observation was made after selecting N, and no independent selection of a new exponent or encoding has emerged. Do not launch an arbitrary exponent/padding sweep. All 56 unknown pages remain unsolved.
 
 Reproducer: `python sims/lp2_p55_base59_quotient_factor_sft.py` (SymPy 1.14.0). The ECM, factor/primality checks and RSA arithmetic were actually run in the local Python environment on the exact source-derived integers. The canonical transcription split was independently executed in the connected runtime; the committed integrated Python SFT is provided for checkout reproduction, not claimed as a separate CI run.

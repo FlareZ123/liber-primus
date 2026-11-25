@@ -1,3 +1,9 @@
+# Agent49 checkpoint — 2026-11-25T09:37:34.362Z
+
+**Direct factor-origin historical cipher test:** use p or q as inclusive starting prime value, consecutive prime-minus-one residues and every legal literal-F hold path. All nine original chapter starts, complete p55 and p56 controls fail within ≤127 offsets. Genuine p56 origin2 retains exact cursor84. [Consolidated factor report](../../im-results/lp2-p55-base59-quotient-factor.md), [Python SFT](../../sims/lp2_p55_base59_factor_prime_origin_sft.py). Full factor-generator PARI workflow dispatched and in progress: [run 45586824018](https://github.com/FlareZ123/liber-primus/actions/runs/45586824018). No authentic plaintext.
+
+---
+
 # Agent49 checkpoint — 2026-11-25T09:35:07.201Z
 
 **Conditional base59 factor DLP:** q−1 fully factored, p primitive root, exact small-subgroup CRT x ≡ 287198427206174543159 mod 456964486343729774724. Actual BSGS excludes all x<29^23 in 4.34s (3,073,518 baby steps). Full 120-bit subgroup still open; PARI 2.19.1 quadratic sieve prime-field index calculus prepared in dedicated manually dispatched Windows workflow. Raw exponentiation cipher p exponent q modulus gives nonprose 39 digits. [Report](../../im-results/lp2-p55-base59-factor-dlog.md), [SFT](../../sims/lp2_p55_base59_factor_dlog_sft.py), [GP](../../sims/lp2_p55_base59_factor_dlog.gp), [workflow](../../.github/workflows/agent49-p55-base59-dlog-manual.yml). All roles conditional; no authentic plaintext.
