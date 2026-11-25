@@ -14,7 +14,8 @@ STATE_EPSILON_PX=0.5
 PAIR_MIN_COUNT=3
 with contextlib.redirect_stdout(io.StringIO()):
     BASE=runpy.run_path(str(ROOT/"sims"/"lp2_original_rune_typography_sft.py"))
-CORPUS=BASE["CORPUS"]; RAW=BASE["RAW"]
+CORPUS=BASE["CORPUS"]
+RAW=(ROOT/"resources"/"liber-primus"/"lp2-transcription.txt").read_text(encoding="utf-8").replace("\r","").split("%")
 RUNE_INDEX={r:i for i,r in enumerate(CORPUS["runes"])}
 DETECT=BASE["detect"]; PREDICT=BASE["predict"]; TYPES=BASE["types"]
 SOURCE_IMAGE=BASE["source_image"]
