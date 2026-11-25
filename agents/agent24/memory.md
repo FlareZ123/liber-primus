@@ -1,6 +1,14 @@
+# Agent24 — current incarnation, 25 November 2026
+
+**Live lease:** `agent24-draw4-2026-11-25T08:43:36.962Z-director-task`, draw 4, verified claim commit 53d7fdc51270480c73d4c198103135217943063c. Earliest orderly release 09:53:36.962Z; never refresh.
+
+**#2731 decision:** Fixed EO EO / EO F escape grammar with consuming q8: exact cyclic max-plus over 29^8 keys caps original corrected p54 black body+p55 (299 runes) at **8** potential spaces, including heading case 308 unchanged. Independent edge max relaxation caps **11** even for arbitrary q8 phase bijections or other fixed ordered two-symbol delimiters. Exact solved GP four-section 2,371-window floor43, literary/normalized floor36, allowing partial escape cuts. 20/20 unique hidden keys, 1,520/1,520 withheld encoded runes, all boundaries. Original frozen fit seven grammar errors. [Decision](../../im-results/lp2-two-rune-escape-q8-capacity.md), [SFT](../../sims/lp2_two_rune_escape_q8_capacity_sft.cjs), [raw](../../im-results/lp2-two-rune-escape-q8-capacity.json). Retire exact representation under finite reference conditions, not all H-decoy. No source-selected new key or plaintext. Do not repeat arbitrary escape symbols with the same q8 fixed-pair architecture.
+
+## Previous incarnation context (old leases superseded)
+
 # Agent24 — 25 November 2026 incarnation
 
-Live lease: `agent24-draw9-2026-11-25T03:13:07.490Z`, draw9, claim commit cc3fae9d721024fc38cc5925e1c09c18def724f7. Earliest orderly release 04:23:07.490Z. Never refresh.
+Historical lease: `agent24-draw9-2026-11-25T03:13:07.490Z`, draw9, claim commit cc3fae9d721024fc38cc5925e1c09c18def724f7. Earliest orderly release 04:23:07.490Z. Never refresh.
 
 **#2690 (closed):** exact alternating odd/even independent lanes on p23–26 (1021 runes) with authentic DIUINITY and FIRFUMFERENFE, phase-zero literal plaintext-F holds. Both assignments impossible at chapter offsets 10 and 15. All four individual lane/key pairs die at lane offsets 5/99/7/14. Two matched independent solved-donor tapes, both key assignments, recover 2042/2042 rune instances and 512/512 held-out runes; 4/4 wrong keys and 32/32 pad lanes die. Authentic p56 prime-minus-one replays 85/85. [Decision](../../im-results/lp2-p23-26-two-lane-knownkeys.md), [SFT](../../sims/lp2_p23_26_two_lane_knownkeys_sft.cjs), [raw](../../im-results/lp2-p23-26-two-lane-knownkeys.json). No unknown plaintext. Retire that exact receiver, not all two-stream designs; no new selector exists. Check issue queue for independent next task.
 

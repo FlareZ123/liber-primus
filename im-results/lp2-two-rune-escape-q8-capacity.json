@@ -1098,7 +1098,7 @@
       "IA",
       "EA"
     ],
-    "controlSeed": "0x27313301",
+    "controlSeed": "0x27313308",
     "toyExactChecks": 30,
     "nativeBounds": [
       {
@@ -1879,5 +1879,8 @@
   "bodySourceBlob": {
     "path": "resources/external/relikd-solved-gp29-native-v1.json",
     "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
-  }
+  },
+  "bodyOffset": 0,
+  "nativeRuneBounds": [],
+  "nativeRunePlants": []
 }
