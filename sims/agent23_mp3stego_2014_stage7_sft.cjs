@@ -22,6 +22,10 @@ const STAGE7_BLOB = "09fe068192b76a3697c47ec1d604b527703db798";
 const STAGE7_SIGNED_URL =
   "https://raw.githubusercontent.com/cijhho123/cicada3301/d360ad97d39c4719e42dc88b0cbbb81ed54aa02c/assets/2014/stage07/q4utgdi2n4m4uim5.onion/index.html";
 const STAGE7_SIGNED_BLOB = "afb1ae7b8ffe2def6d1cd7a2f7ce961e550331b9";
+const INSTAR_URL =
+  "https://raw.githubusercontent.com/rtkd/iddqd/f2267b0c2f1e1d2662806b90b9c3a2953b3a7023/2013/02/761.MP3";
+const INSTAR_BLOB = "7e2bd299fbc7b96283219cf15e2904641daf631f";
+const INSTAR_SHA256 = "83008217439110c3b824898af73b99cb2cf0657dda88cb363c3aa34a4ec0a460";
 const MP3STEGO_REPO = "https://github.com/Charleswyt/MP3Stego.git";
 const MP3STEGO_COMMIT = "9818638a1203853efdfa631006b96acca43efc58";
 const PASSWORD = "33011033";
@@ -89,7 +93,11 @@ function inspectMp3(buf) {
     };
     break;
   }
-  return { id3Bytes: start, id3TextFrames: frames, firstMpegFrame: first };
+  const ascii = buf.toString("latin1");
+  const markers = ["LAME", "8hz", "MP3Stego", "Xing", "Info"]
+    .map(marker => ({ marker, offset: ascii.indexOf(marker) }))
+    .filter(x => x.offset >= 0);
+  return { id3Bytes: start, id3TextFrames: frames, firstMpegFrame: first, encoderMarkers: markers };
 }
 function locateExe(root, basename) {
   const found = [];
@@ -220,18 +228,40 @@ function summarizeOutput(dir, inputName) {
   assert.equal(fs.readFileSync(path.join(controlDir, positive.filename)).toString("ascii"), payload,
     "MP3Stego positive control must recover exact payload");
 
-  const targetDir = path.join(root, "stage7-target");
-  fs.mkdirSync(targetDir);
-  fs.writeFileSync(path.join(targetDir, "stage7.mp3"), stage7);
-  const targetRun = run(decoder, ["-X", "-P", PASSWORD, "stage7.mp3"], targetDir);
-  const target = summarizeOutput(targetDir, "stage7.mp3");
+  const instar = await download(INSTAR_URL);
+  assert.equal(instar.length, 4010732, "2013 761.MP3 original byte length");
+  assert.equal(gitBlobSha1(instar), INSTAR_BLOB, "2013 761.MP3 original Git blob identity");
+  assert.equal(sha256(instar), INSTAR_SHA256, "2013 761.MP3 original SHA-256 identity");
+
+  function decodeCandidate(label, bytes, password, index) {
+    const dir = path.join(root, label + "-candidate-" + index);
+    fs.mkdirSync(dir);
+    const filename = label + ".mp3";
+    fs.writeFileSync(path.join(dir, filename), bytes);
+    const result = run(decoder, ["-X", "-P", password, filename], dir);
+    return {
+      label, password, status: result.status, error: result.error,
+      stdout: result.stdout.slice(-2500), stderr: result.stderr.slice(-2500),
+      output: summarizeOutput(dir, filename)
+    };
+  }
+  const stage7Candidates = ["33011033", "3301", "Interconnectedness"]
+    .map((password, i) => decodeCandidate("stage7", stage7, password, i));
+  const instarCandidates = ["3301", "The Instar Emergence", "Parable 1,595,277,641"]
+    .map((password, i) => decodeCandidate("761", instar, password, i));
+  const allCandidates = stage7Candidates.concat(instarCandidates);
 
   console.log(JSON.stringify({
-    source: {
-      url: STAGE7_URL, gitBlobSha1: gitBlobSha1(stage7), bytes: stage7.length,
-      sha256: sha256(stage7), signedHexBlobSha1: gitBlobSha1(signed),
-      signedHexBytes: signed.length, signedHexRoundTrip: true,
-      mp3: inspectMp3(stage7)
+    sources: {
+      stage7: {
+        url: STAGE7_URL, gitBlobSha1: gitBlobSha1(stage7), bytes: stage7.length,
+        sha256: sha256(stage7), signedHexBlobSha1: gitBlobSha1(signed),
+        signedHexBytes: signed.length, signedHexRoundTrip: true, mp3: inspectMp3(stage7)
+      },
+      instar761: {
+        url: INSTAR_URL, gitBlobSha1: gitBlobSha1(instar), bytes: instar.length,
+        sha256: sha256(instar), mp3: inspectMp3(instar)
+      }
     },
     decoder: {
       repository: MP3STEGO_REPO, commit: checkedOut, msbuild,
@@ -240,14 +270,13 @@ function summarizeOutput(dir, inputName) {
         output: positive, exactRecovery: true
       }
     },
-    originalStage7: {
-      password: PASSWORD, decodeStatus: targetRun.status,
-      stdout: targetRun.stdout.slice(-4000), stderr: targetRun.stderr.slice(-4000),
-      output: target
+    sourceSelectedPasswordTests: {
+      stage7: stage7Candidates,
+      instar761: instarCandidates
     },
-    interpretation: target.exists
-      ? "Decoder produced an output under the fixed historical password; inspect bytes and plaintext before classifying it as an additional payload."
-      : "No MP3Stego output file was recovered from the original Stage7 MP3 under the fixed historical OpenPuff password. This does not exclude other passwords or other steganography."
+    interpretation: allCandidates.some(x => x.output.exists)
+      ? "At least one source-selected password produced a decoder output. Inspect the output bytes and text before classifying it as a payload."
+      : "No MP3Stego output file was recovered from either original audio under the six source-selected passwords. This does not exclude an unlocated password or other steganography."
   }, null, 2));
 })().catch(err => {
   console.error(err && err.stack ? err.stack : String(err));
