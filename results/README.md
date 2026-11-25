@@ -14,6 +14,8 @@ This entry point prioritizes facts and decisions that change a plausible route t
 
 **Timestamp MT19937/keyskip1 (#2665):** 433 source-ranked historical timestamp integers plus 112 additional low32 representations all fail a pre-registered language-independent uniform-plaintext marginalized alignment gate (max 0.944645 vs threshold 9.296518 nats; iid-key Markov/union bound). 14/16 literary and 15/16 uniform correct-key plants pass; 0/500 paired wrong keys pass on each of original/plant ciphertexts. Independent max3 GP trigram beam recovers all 16 plant skip counts and 8,189/8,192 holdout runes; all 545 original paths have null-range language scores. Every candidate and wrong key admits a legal 374-skip path; inferred count is language-dependent and non-authenticating. Retire only the frozen source-ranked timestamp/MT/random29/offset-zero keyskip1 conjunction. [Decision](../im-results/lp2-pgp-timestamp-keyskip1-marginal-gate.md) · [Marginal SFT](../sims/lp2_keyskip1_rejection_marginal_sft.cjs).
 
+**Explicit PGF 2.10 timestamps (#2674):** 321 of 433 historical literal seeds fit TeX's count range; 112 invalid. All 321 fail marginalized keyskip1 threshold 8.767173 (max 2.790230); 14/16 literary and 16/16 uniform correct-key controls pass, 0/500 paired wrong PGF states pass on either tape. Top ten plus rank one nonprose; control beam recovers 510/512 held-out runes. Retire this conjunction, not TeX generally. [Report](../im-results/lp2-pgf-explicit-timestamp-gate.md) · [SFT](../sims/lp2_pgf_explicit_timestamp_keyskip1_sft.cjs).
+
 ## 1. Original source and real decoding controls
 
 | Source object | Established constraint |
