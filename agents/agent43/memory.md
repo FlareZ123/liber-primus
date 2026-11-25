@@ -1,3 +1,15 @@
+## 2026-11-25 — current run, independent follow-on after #2660
+
+Lease run agent43-draw3-20261125T104340326Z-independent, claimed 2026-11-25T10:43:40.326Z; 70-minute release threshold 2026-11-25T11:53:40.326Z. Normal research draw 3, independent exploration; no Issue claimed.
+
+**p50 alternate base-60 functional-graph audit (no plaintext/key):** the row-major base-60 map has cycles of lengths 11 and 2, 13 cyclic vertices, 243 noncyclic vertices and basin sizes 252/4. This exactly matches p0 red heading13 plus p8 black body243 against the 256-cell panel. A one-million row-wise no-replacement null gives the 2+11 partition 1,645/1m and 4/252 basin split 128/1m; descriptive only. p0's two word initials are the same GP29 rune, offering a possible 2-cycle selector; its zero rune at the end of word one can align with the 192→0 cycle edge. These are hypotheses, not a decryption.
+
+**Receiver gates:** 24 natural forest traversals (both mappings), 312 period-13 additive keys, base-60 path difference/subtree inverse, and dual-radix base-59-parent path difference all fail the native GP29 screen. Best outputs are about −10.4 to −10.6 versus held-out native floor −8.584 (28 windows). Do not repeat direct transposition/additive/tree-difference variants without a new source selector. Base-59 remains a stronger competing reading: no lowercase f occurs in the tokens; its map has root189 and exact subtrees121/76 matching p32/p55. The p57 geometric 76/180 perimeter reading is not displaced.
+
+Artifacts: report im-results/lp2-p50-base60-functional-graph-p0-p8-audit.md; SFT sims/lp2_p50_base60_cycle_partition_sft.cjs; matched-null sims/lp2_p50_base60_cycle_null.cpp; synthesis updated in results/README.md. No plaintext or authenticated key. Next: pursue a distinct source-selected mechanism rather than further generic p8 graph sweeps; retain the base59 p32/p55 route as the better-supported p50 branch.
+
+---
+
 ## 2026-11-25 — current run, second completed assignment #2660
 
 Frozen source-candidate commit 4d84657f77b640380d9931559b41dc472bac7fb8 preceded access to p50 grid. Strict independently authenticated 32-byte operand set empty in bounded historical corpus. Two directly reported historical 2013 values (provisional, not first-party authenticated) yield 0/32, 0/32 for radix59 and 4/32, 1/32 for radix60; best partial-match p=.01706 unadjusted, four-test bound .06825. No all-row selector; retire. Report `im-results/lp2-p50-row-membership-source-candidates.md` and reproducer `tools/lp2-p50-row-membership-source-gate.mjs`. Issue #2660 closed, comment 7150817988. No new plaintext or key.
