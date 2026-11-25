@@ -1,0 +1,630 @@
+{
+  "counts": {
+    "fit": 57,
+    "test": 156,
+    "fitSpans": 5,
+    "testSpans": 10,
+    "trainRunes": 600925
+  },
+  "models": [
+    {
+      "radix": 59,
+      "roots": [
+        189
+      ],
+      "original": {
+        "feasiblePairs": 784,
+        "states": 659344,
+        "fitBest": -4.0051178879370335,
+        "ties": 1,
+        "winners": [
+          {
+            "a": 21,
+            "b": 12,
+            "v": [
+              9,
+              7,
+              7
+            ],
+            "fit": -4.0051178879370335,
+            "holdout": -6.526740180557612,
+            "exact": false,
+            "spans": [
+              {
+                "page": 0,
+                "start": 0,
+                "text": "OEWDEASATOIXDCL"
+              },
+              {
+                "page": 3,
+                "start": 0,
+                "text": "RANAWISIXBIARSANY"
+              },
+              {
+                "page": 3,
+                "start": 119,
+                "text": "UGR"
+              },
+              {
+                "page": 6,
+                "start": 71,
+                "text": "NANEOLNGRBNAI"
+              },
+              {
+                "page": 7,
+                "start": 194,
+                "text": "EXHTORCPILWIFL"
+              },
+              {
+                "page": 8,
+                "start": 0,
+                "text": "GEALUNGYAOMUXB"
+              },
+              {
+                "page": 15,
+                "start": 0,
+                "text": "AEJRWDGDFLBOYTHEAOEPAYNGT"
+              },
+              {
+                "page": 23,
+                "start": 0,
+                "text": "WEOEATHIPYRGCRUNCTHY"
+              },
+              {
+                "page": 27,
+                "start": 0,
+                "text": "RPOEBTBMHNCEOLPEOOEPIANGEA"
+              },
+              {
+                "page": 33,
+                "start": 0,
+                "text": "RHLRPAFROEF"
+              },
+              {
+                "page": 33,
+                "start": 91,
+                "text": "UAETHTENGUEA"
+              },
+              {
+                "page": 39,
+                "start": 119,
+                "text": "MNGIA"
+              },
+              {
+                "page": 40,
+                "start": 0,
+                "text": "AEEAMICCTHU"
+              },
+              {
+                "page": 53,
+                "start": 128,
+                "text": "TGEATHIAEAUTHOEGBWJLTYSYTHETHRAENYIPUAEYDJTPSIAXBOOEMSAYXBTHWXEOG"
+              },
+              {
+                "page": 54,
+                "start": 0,
+                "text": "OIATBOEWXAA"
+              }
+            ]
+          }
+        ],
+        "actualTruthScore": null
+      },
+      "controls": [
+        {
+          "a": 7,
+          "b": 13,
+          "M": 21,
+          "d": 17,
+          "exactWinners": 1,
+          "feasiblePairs": 784,
+          "states": 659344,
+          "fitBest": -2.4245806987704355,
+          "ties": 1,
+          "winners": [
+            {
+              "a": 7,
+              "b": 13,
+              "v": [
+                21,
+                17,
+                9
+              ],
+              "fit": -2.4245806987704355,
+              "holdout": -2.2583687401562917,
+              "exact": true,
+              "spans": [
+                {
+                  "page": 0,
+                  "start": 0,
+                  "text": "PARABLELICETHE"
+                },
+                {
+                  "page": 3,
+                  "start": 0,
+                  "text": "ARTUNNELNGTOTHESUR"
+                },
+                {
+                  "page": 3,
+                  "start": 119,
+                  "text": "ACE"
+                },
+                {
+                  "page": 6,
+                  "start": 71,
+                  "text": "WNCIRCUMFER"
+                },
+                {
+                  "page": 7,
+                  "start": 194,
+                  "text": "INDTHEDIUINITYW"
+                },
+                {
+                  "page": 8,
+                  "start": 0,
+                  "text": "ARABLELICETHE"
+                },
+                {
+                  "page": 15,
+                  "start": 0,
+                  "text": "TOTHESURFACEWEMUSTSHE"
+                },
+                {
+                  "page": 23,
+                  "start": 0,
+                  "text": "MUSTSHEDOUROWNCI"
+                },
+                {
+                  "page": 27,
+                  "start": 0,
+                  "text": "FERENCESFINDTHEDIUIN"
+                },
+                {
+                  "page": 33,
+                  "start": 0,
+                  "text": "FINDTHEDIUI"
+                },
+                {
+                  "page": 33,
+                  "start": 91,
+                  "text": "ITHINANDE"
+                },
+                {
+                  "page": 39,
+                  "start": 119,
+                  "text": "ARA"
+                },
+                {
+                  "page": 40,
+                  "start": 0,
+                  "text": "THESURFAC"
+                },
+                {
+                  "page": 53,
+                  "start": 128,
+                  "text": "STSHEDOUROWNCIRCUMFERENCESFINDTHEDIUINITYWITHINANDEME"
+                },
+                {
+                  "page": 54,
+                  "start": 0,
+                  "text": "CESFINDTHE"
+                }
+              ]
+            }
+          ],
+          "actualTruthScore": -2.4245806987704355
+        },
+        {
+          "a": 19,
+          "b": 28,
+          "M": 4,
+          "d": 5,
+          "exactWinners": 1,
+          "feasiblePairs": 784,
+          "states": 659344,
+          "fitBest": -2.4337339805125664,
+          "ties": 1,
+          "winners": [
+            {
+              "a": 19,
+              "b": 28,
+              "v": [
+                4,
+                5,
+                15
+              ],
+              "fit": -2.4337339805125664,
+              "holdout": -2.4296671385881714,
+              "exact": true,
+              "spans": [
+                {
+                  "page": 0,
+                  "start": 0,
+                  "text": "ELNGTOTHESURFAC"
+                },
+                {
+                  "page": 3,
+                  "start": 0,
+                  "text": "USTSHEDOUROWNCIR"
+                },
+                {
+                  "page": 3,
+                  "start": 119,
+                  "text": "UMF"
+                },
+                {
+                  "page": 6,
+                  "start": 71,
+                  "text": "IUINITYWITHI"
+                },
+                {
+                  "page": 7,
+                  "start": 194,
+                  "text": "CETHEINSTARTUNN"
+                },
+                {
+                  "page": 8,
+                  "start": 0,
+                  "text": "LNGTOTHESURFAC"
+                },
+                {
+                  "page": 15,
+                  "start": 0,
+                  "text": "ROWNCIRCUMFERENCESFI"
+                },
+                {
+                  "page": 23,
+                  "start": 0,
+                  "text": "ENCESFINDTHEDIUIN"
+                },
+                {
+                  "page": 27,
+                  "start": 0,
+                  "text": "LELICETHEINSTARTUNNE"
+                },
+                {
+                  "page": 33,
+                  "start": 0,
+                  "text": "BLELICETHEI"
+                },
+                {
+                  "page": 33,
+                  "start": 91,
+                  "text": "ARTUNNEL"
+                },
+                {
+                  "page": 39,
+                  "start": 119,
+                  "text": "LNGT"
+                },
+                {
+                  "page": 40,
+                  "start": 0,
+                  "text": "WNCIRCUM"
+                },
+                {
+                  "page": 53,
+                  "start": 128,
+                  "text": "TUNNELNGTOTHESURFACEWEMUSTSHEDOUROWNCIRCUMFERENCESFIN"
+                },
+                {
+                  "page": 54,
+                  "start": 0,
+                  "text": "PARABLELI"
+                }
+              ]
+            }
+          ],
+          "actualTruthScore": -2.4337339805125664
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "roots": [],
+      "original": {
+        "feasiblePairs": 784,
+        "states": 659344,
+        "fitBest": -4.119832607993862,
+        "ties": 1,
+        "winners": [
+          {
+            "a": 24,
+            "b": 20,
+            "v": [
+              20,
+              3
+            ],
+            "fit": -4.119832607993862,
+            "holdout": -6.656035637355478,
+            "exact": false,
+            "spans": [
+              {
+                "page": 0,
+                "start": 0,
+                "text": "ARRNLIARBEATMNI"
+              },
+              {
+                "page": 3,
+                "start": 0,
+                "text": "UOMOMISHBIACOEMUCA"
+              },
+              {
+                "page": 3,
+                "start": 119,
+                "text": "IEOI"
+              },
+              {
+                "page": 6,
+                "start": 71,
+                "text": "WUXFACNGSTOY"
+              },
+              {
+                "page": 7,
+                "start": 194,
+                "text": "EHATHLCNGWTHNAREP"
+              },
+              {
+                "page": 8,
+                "start": 0,
+                "text": "OFSPEAXPNGIAIIN"
+              },
+              {
+                "page": 15,
+                "start": 0,
+                "text": "SIAEONGDLUXOWAECSEAPALEAHU"
+              },
+              {
+                "page": 23,
+                "start": 0,
+                "text": "GGIAFRYEEAIJOYEJIAEO"
+              },
+              {
+                "page": 27,
+                "start": 0,
+                "text": "PWFAEHIACBNGWMYXEAOAYIO"
+              },
+              {
+                "page": 33,
+                "start": 0,
+                "text": "THBMUMNRIAFT"
+              },
+              {
+                "page": 33,
+                "start": 91,
+                "text": "MLPAEEOEAPS"
+              },
+              {
+                "page": 39,
+                "start": 119,
+                "text": "PRN"
+              },
+              {
+                "page": 40,
+                "start": 0,
+                "text": "OTHIAOEEHNIA"
+              },
+              {
+                "page": 53,
+                "start": 128,
+                "text": "AEUSTHOEWDYAAIAOEOECIXLEYREAAEGJJADUTHUXNXORFNHJIIATAEIOENBYBWO"
+              },
+              {
+                "page": 54,
+                "start": 0,
+                "text": "CDFIEEAAENU"
+              }
+            ]
+          }
+        ],
+        "actualTruthScore": null
+      },
+      "controls": [
+        {
+          "a": 7,
+          "b": 13,
+          "M": 21,
+          "d": 17,
+          "exactWinners": 1,
+          "feasiblePairs": 784,
+          "states": 659344,
+          "fitBest": -2.4245806987704355,
+          "ties": 1,
+          "winners": [
+            {
+              "a": 7,
+              "b": 13,
+              "v": [
+                21,
+                17
+              ],
+              "fit": -2.4245806987704355,
+              "holdout": -2.2583687401562917,
+              "exact": true,
+              "spans": [
+                {
+                  "page": 0,
+                  "start": 0,
+                  "text": "PARABLELICETHE"
+                },
+                {
+                  "page": 3,
+                  "start": 0,
+                  "text": "ARTUNNELNGTOTHESUR"
+                },
+                {
+                  "page": 3,
+                  "start": 119,
+                  "text": "ACE"
+                },
+                {
+                  "page": 6,
+                  "start": 71,
+                  "text": "WNCIRCUMFER"
+                },
+                {
+                  "page": 7,
+                  "start": 194,
+                  "text": "INDTHEDIUINITYW"
+                },
+                {
+                  "page": 8,
+                  "start": 0,
+                  "text": "ARABLELICETHE"
+                },
+                {
+                  "page": 15,
+                  "start": 0,
+                  "text": "TOTHESURFACEWEMUSTSHE"
+                },
+                {
+                  "page": 23,
+                  "start": 0,
+                  "text": "MUSTSHEDOUROWNCI"
+                },
+                {
+                  "page": 27,
+                  "start": 0,
+                  "text": "FERENCESFINDTHEDIUIN"
+                },
+                {
+                  "page": 33,
+                  "start": 0,
+                  "text": "FINDTHEDIUI"
+                },
+                {
+                  "page": 33,
+                  "start": 91,
+                  "text": "ITHINANDE"
+                },
+                {
+                  "page": 39,
+                  "start": 119,
+                  "text": "ARA"
+                },
+                {
+                  "page": 40,
+                  "start": 0,
+                  "text": "THESURFAC"
+                },
+                {
+                  "page": 53,
+                  "start": 128,
+                  "text": "STSHEDOUROWNCIRCUMFERENCESFINDTHEDIUINITYWITHINANDEME"
+                },
+                {
+                  "page": 54,
+                  "start": 0,
+                  "text": "CESFINDTHE"
+                }
+              ]
+            }
+          ],
+          "actualTruthScore": -2.4245806987704355
+        },
+        {
+          "a": 19,
+          "b": 28,
+          "M": 4,
+          "d": 5,
+          "exactWinners": 1,
+          "feasiblePairs": 784,
+          "states": 659344,
+          "fitBest": -2.4337339805125664,
+          "ties": 1,
+          "winners": [
+            {
+              "a": 19,
+              "b": 28,
+              "v": [
+                4,
+                5
+              ],
+              "fit": -2.4337339805125664,
+              "holdout": -2.4296671385881714,
+              "exact": true,
+              "spans": [
+                {
+                  "page": 0,
+                  "start": 0,
+                  "text": "ELNGTOTHESURFAC"
+                },
+                {
+                  "page": 3,
+                  "start": 0,
+                  "text": "USTSHEDOUROWNCIR"
+                },
+                {
+                  "page": 3,
+                  "start": 119,
+                  "text": "UMF"
+                },
+                {
+                  "page": 6,
+                  "start": 71,
+                  "text": "IUINITYWITHI"
+                },
+                {
+                  "page": 7,
+                  "start": 194,
+                  "text": "CETHEINSTARTUNN"
+                },
+                {
+                  "page": 8,
+                  "start": 0,
+                  "text": "LNGTOTHESURFAC"
+                },
+                {
+                  "page": 15,
+                  "start": 0,
+                  "text": "ROWNCIRCUMFERENCESFI"
+                },
+                {
+                  "page": 23,
+                  "start": 0,
+                  "text": "ENCESFINDTHEDIUIN"
+                },
+                {
+                  "page": 27,
+                  "start": 0,
+                  "text": "LELICETHEINSTARTUNNE"
+                },
+                {
+                  "page": 33,
+                  "start": 0,
+                  "text": "BLELICETHEI"
+                },
+                {
+                  "page": 33,
+                  "start": 91,
+                  "text": "ARTUNNEL"
+                },
+                {
+                  "page": 39,
+                  "start": 119,
+                  "text": "LNGT"
+                },
+                {
+                  "page": 40,
+                  "start": 0,
+                  "text": "WNCIRCUM"
+                },
+                {
+                  "page": 53,
+                  "start": 128,
+                  "text": "TUNNELNGTOTHESURFACEWEMUSTSHEDOUROWNCIRCUMFERENCESFIN"
+                },
+                {
+                  "page": 54,
+                  "start": 0,
+                  "text": "PARABLELI"
+                }
+              ]
+            }
+          ],
+          "actualTruthScore": -2.4337339805125664
+        }
+      ]
+    }
+  ]
+}
