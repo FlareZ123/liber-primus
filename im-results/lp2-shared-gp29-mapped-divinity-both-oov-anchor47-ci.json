@@ -1,0 +1,432 @@
+{
+  "run": 45644161578,
+  "shards": [
+    {
+      "job_id": 139310509296,
+      "anchor": 47,
+      "omitted": [
+        49,
+        56
+      ],
+      "budget": 1,
+      "anchorOptions": 4370,
+      "range": [
+        0,
+        546
+      ],
+      "completedThrough": 546,
+      "complete": true,
+      "cap": null,
+      "nodes": 43450,
+      "joins": 164887,
+      "filters": 161969344,
+      "featureTests": 51585680,
+      "saturated": 3544,
+      "dimensionNodes": {
+        "2": 46,
+        "3": 242,
+        "4": 211,
+        "5": 73,
+        "6": 2822,
+        "7": 2437,
+        "8": 14912,
+        "9": 18909,
+        "10": 2537,
+        "11": 167,
+        "12": 2,
+        "16": 1082,
+        "17": 10
+      },
+      "enumNodes": 1768,
+      "enumerated": 0,
+      "leaves": 288,
+      "maxLong": 0,
+      "maxAll": 0,
+      "accepted": 0,
+      "best": [],
+      "domains": {
+        "1": 11181,
+        "2": 20619,
+        "14": 6994,
+        "15": 17244,
+        "18": 17415,
+        "36": 21200,
+        "39": 12002,
+        "47": 4370
+      }
+    },
+    {
+      "job_id": 139310509941,
+      "anchor": 47,
+      "omitted": [
+        49,
+        56
+      ],
+      "budget": 1,
+      "anchorOptions": 4370,
+      "range": [
+        546,
+        1092
+      ],
+      "completedThrough": 1092,
+      "complete": true,
+      "cap": null,
+      "nodes": 40776,
+      "joins": 166509,
+      "filters": 158902555,
+      "featureTests": 49231324,
+      "saturated": 3267,
+      "dimensionNodes": {
+        "2": 28,
+        "3": 343,
+        "4": 319,
+        "5": 87,
+        "6": 1996,
+        "7": 2273,
+        "8": 13771,
+        "9": 17166,
+        "10": 3517,
+        "11": 184,
+        "16": 1084,
+        "17": 8
+      },
+      "enumNodes": 3551,
+      "enumerated": 0,
+      "leaves": 371,
+      "maxLong": 0,
+      "maxAll": 0,
+      "accepted": 0,
+      "best": [],
+      "domains": {
+        "1": 11181,
+        "2": 20619,
+        "14": 6994,
+        "15": 17244,
+        "18": 17415,
+        "36": 21200,
+        "39": 12002,
+        "47": 4370
+      }
+    },
+    {
+      "job_id": 139310509370,
+      "anchor": 47,
+      "omitted": [
+        49,
+        56
+      ],
+      "budget": 1,
+      "anchorOptions": 4370,
+      "range": [
+        1092,
+        1638
+      ],
+      "completedThrough": 1638,
+      "complete": true,
+      "cap": null,
+      "nodes": 37635,
+      "joins": 134424,
+      "filters": 132477120,
+      "featureTests": 42009146,
+      "saturated": 3504,
+      "dimensionNodes": {
+        "2": 27,
+        "3": 191,
+        "4": 268,
+        "5": 54,
+        "6": 2364,
+        "7": 2777,
+        "8": 13801,
+        "9": 14884,
+        "10": 2022,
+        "11": 155,
+        "16": 1090,
+        "17": 2
+      },
+      "enumNodes": 1261,
+      "enumerated": 0,
+      "leaves": 218,
+      "maxLong": 0,
+      "maxAll": 0,
+      "accepted": 0,
+      "best": [],
+      "domains": {
+        "1": 11181,
+        "2": 20619,
+        "14": 6994,
+        "15": 17244,
+        "18": 17415,
+        "36": 21200,
+        "39": 12002,
+        "47": 4370
+      }
+    },
+    {
+      "job_id": 139310509022,
+      "anchor": 47,
+      "omitted": [
+        49,
+        56
+      ],
+      "budget": 1,
+      "anchorOptions": 4370,
+      "range": [
+        1638,
+        2185
+      ],
+      "completedThrough": 2185,
+      "complete": true,
+      "cap": null,
+      "nodes": 31551,
+      "joins": 114138,
+      "filters": 117237237,
+      "featureTests": 37169909,
+      "saturated": 2784,
+      "dimensionNodes": {
+        "2": 22,
+        "3": 181,
+        "4": 147,
+        "5": 59,
+        "6": 1968,
+        "7": 2687,
+        "8": 8678,
+        "9": 14170,
+        "10": 2398,
+        "11": 147,
+        "16": 1094
+      },
+      "enumNodes": 1080,
+      "enumerated": 12,
+      "leaves": 203,
+      "maxLong": 3,
+      "maxAll": 0,
+      "accepted": 0,
+      "best": [],
+      "domains": {
+        "1": 11181,
+        "2": 20619,
+        "14": 6994,
+        "15": 17244,
+        "18": 17415,
+        "36": 21200,
+        "39": 12002,
+        "47": 4370
+      }
+    },
+    {
+      "job_id": 139310509323,
+      "anchor": 47,
+      "omitted": [
+        49,
+        56
+      ],
+      "budget": 1,
+      "anchorOptions": 4370,
+      "range": [
+        2185,
+        2731
+      ],
+      "completedThrough": 2731,
+      "complete": true,
+      "cap": null,
+      "nodes": 40132,
+      "joins": 145651,
+      "filters": 137758874,
+      "featureTests": 45476428,
+      "saturated": 3790,
+      "dimensionNodes": {
+        "2": 18,
+        "3": 213,
+        "4": 201,
+        "5": 68,
+        "6": 2946,
+        "7": 3151,
+        "8": 12464,
+        "9": 17023,
+        "10": 2738,
+        "11": 218,
+        "16": 1080,
+        "17": 12
+      },
+      "enumNodes": 2039,
+      "enumerated": 2,
+      "leaves": 231,
+      "maxLong": 3,
+      "maxAll": 0,
+      "accepted": 0,
+      "best": [],
+      "domains": {
+        "1": 11181,
+        "2": 20619,
+        "14": 6994,
+        "15": 17244,
+        "18": 17415,
+        "36": 21200,
+        "39": 12002,
+        "47": 4370
+      }
+    },
+    {
+      "job_id": 139310509757,
+      "anchor": 47,
+      "omitted": [
+        49,
+        56
+      ],
+      "budget": 1,
+      "anchorOptions": 4370,
+      "range": [
+        2731,
+        3277
+      ],
+      "completedThrough": 3277,
+      "complete": true,
+      "cap": null,
+      "nodes": 48552,
+      "joins": 169559,
+      "filters": 184959830,
+      "featureTests": 56854353,
+      "saturated": 4170,
+      "dimensionNodes": {
+        "2": 23,
+        "3": 290,
+        "4": 457,
+        "5": 105,
+        "6": 4307,
+        "7": 4718,
+        "8": 15278,
+        "9": 19022,
+        "10": 3015,
+        "11": 241,
+        "12": 4,
+        "16": 1086,
+        "17": 6
+      },
+      "enumNodes": 2706,
+      "enumerated": 0,
+      "leaves": 313,
+      "maxLong": 0,
+      "maxAll": 0,
+      "accepted": 0,
+      "best": [],
+      "domains": {
+        "1": 11181,
+        "2": 20619,
+        "14": 6994,
+        "15": 17244,
+        "18": 17415,
+        "36": 21200,
+        "39": 12002,
+        "47": 4370
+      }
+    },
+    {
+      "job_id": 139310509377,
+      "anchor": 47,
+      "omitted": [
+        49,
+        56
+      ],
+      "budget": 1,
+      "anchorOptions": 4370,
+      "range": [
+        3277,
+        3823
+      ],
+      "completedThrough": 3823,
+      "complete": true,
+      "cap": null,
+      "nodes": 48069,
+      "joins": 191244,
+      "filters": 188200549,
+      "featureTests": 60059198,
+      "saturated": 4176,
+      "dimensionNodes": {
+        "2": 39,
+        "3": 396,
+        "4": 372,
+        "5": 174,
+        "6": 3753,
+        "7": 3213,
+        "8": 13806,
+        "9": 20994,
+        "10": 4074,
+        "11": 136,
+        "12": 20,
+        "16": 1084,
+        "17": 8
+      },
+      "enumNodes": 4348,
+      "enumerated": 24,
+      "leaves": 435,
+      "maxLong": 3,
+      "maxAll": 0,
+      "accepted": 0,
+      "best": [],
+      "domains": {
+        "1": 11181,
+        "2": 20619,
+        "14": 6994,
+        "15": 17244,
+        "18": 17415,
+        "36": 21200,
+        "39": 12002,
+        "47": 4370
+      }
+    },
+    {
+      "job_id": 139310509387,
+      "anchor": 47,
+      "omitted": [
+        49,
+        56
+      ],
+      "budget": 1,
+      "anchorOptions": 4370,
+      "range": [
+        3823,
+        4370
+      ],
+      "completedThrough": 4370,
+      "complete": true,
+      "cap": null,
+      "nodes": 40642,
+      "joins": 159576,
+      "filters": 153796075,
+      "featureTests": 51320291,
+      "saturated": 3408,
+      "dimensionNodes": {
+        "2": 25,
+        "3": 258,
+        "4": 257,
+        "5": 46,
+        "6": 2632,
+        "7": 2329,
+        "8": 10031,
+        "9": 20342,
+        "10": 3465,
+        "11": 159,
+        "12": 4,
+        "16": 1084,
+        "17": 10
+      },
+      "enumNodes": 2991,
+      "enumerated": 24,
+      "leaves": 283,
+      "maxLong": 3,
+      "maxAll": 0,
+      "accepted": 0,
+      "best": [],
+      "domains": {
+        "1": 11181,
+        "2": 20619,
+        "14": 6994,
+        "15": 17244,
+        "18": 17415,
+        "36": 21200,
+        "39": 12002,
+        "47": 4370
+      }
+    }
+  ]
+}
