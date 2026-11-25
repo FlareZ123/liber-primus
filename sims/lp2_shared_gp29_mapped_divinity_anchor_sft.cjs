@@ -66,7 +66,7 @@ function experiment(raw,config={}) {
  /** Affine hyperplane filtering: a single proposed edge cannot force two coordinates equal. */
  function filterState(s){
   const {a,d}=s,forbidden=new Set(),cache=new Int32Array(29*29).fill(-1);
-  function signature(row){let j=0;while(j<d&&!row[j])j++;if(j===d)return row[d]?null:"";const z=inv[row[j]],out=[];for(let k=0;k<=d;k++)out.push(row[k]*z%29);return String.fromCharCode(...out)}
+  function signature(row){let j=0;while(j<d&&!row[j])j++;if(j===d)return row[d]?null:"";const z=inv[row[j]];if(d<=9){let n=1;for(let k=0;k<=d;k++)n=n*29+row[k]*z%29;return n}const out=[];for(let k=0;k<=d;k++)out.push(row[k]*z%29);return String.fromCharCode(...out)}
   const row=new Uint8Array(d+1);
   for(let x=0;x<29;x++)for(let y=x+1;y<29;y++){let u=x*W,v=y*W;for(let j=0;j<d;j++)row[j]=mod(a[u+j]-a[v+j]);row[d]=mod(a[u+L]-a[v+L]);const sig=signature(row);if(sig)forbidden.add(sig)}
   function mask(c,k){const ci=c*29+k;if(cache[ci]>=0)return cache[ci];let bits=0;for(let p=1;p<29;p++){if(c===p||c===k)continue;let u=c*W,v=p*W,w=k*W;for(let j=0;j<d;j++)row[j]=mod(a[u+j]-a[v+j]-a[w+j]);row[d]=mod(a[u+L]-a[v+L]-a[w+L]);const sig=signature(row);if(sig!==null&&!forbidden.has(sig))bits|=1<<p}return cache[ci]=bits}
@@ -74,7 +74,7 @@ function experiment(raw,config={}) {
  }
  /** Search each anchored affine space, grant two additional arbitrary OOV long groups. */
  function robustSearch(cipher,anchor,config){
-  const other=anchor===56?49:56, allLong=cipher.map((c,i)=>({i,l:c.length})).filter(x=>x.l>=8).sort((a,b)=>b.l-a.l||a.i-b.i).map(x=>x.i);
+  const other=anchor===56?49:56, allLong=cipher.map((c,i)=>({i,l:c.length})).filter(x=>x.l>=(config.minLength??8)).sort((a,b)=>b.l-a.l||a.i-b.i).map(x=>x.i);
   const rest=allLong.filter(i=>i!==anchor&&i!==other);
   const cache=new Map(),index=new Map();
   function get(i){if(!cache.has(i)){const m=new Map();for(const o of options(cipher[i])){const k=[...new Set(o.e.map(x=>x.join(",")))].sort().join(";");if(!m.has(k))m.set(k,o)}
@@ -89,7 +89,7 @@ function experiment(raw,config={}) {
   const seenMaps=new Set();
   function score(q){const id=q.join();if(seenMaps.has(id))return;seenMaps.add(id);enumerated++;
    const long=allLong.filter(i=>decode(cipher[i],q).length).length;maxLong=Math.max(maxLong,long);
-   if(long<7)return;
+   if(long<allLong.length-3)return;
    const decoded=cipher.map(c=>decode(c,q)),coverage=decoded.filter(x=>x.length).length;
    if(coverage>maxAll){maxAll=coverage;best=[]}
    if(coverage===maxAll&&best.length<5)best.push({pi:q,coverage,long,words:decoded.map((v,i)=>({i,words:v.slice(0,5).map(show),total:v.length})).filter(x=>x.total)});
@@ -168,5 +168,5 @@ function experiment(raw,config={}) {
  return {dict:dict.size,native:pool.length,model:"pi(DIVINITY), pi(F)=0, pi(D)=1, independent group starts, literal F hold",original,plants,long,pairs,disjointContradictions:used.size/2};
 }
 const raw=inputs.map(x=>{const b=fs.readFileSync(path.resolve(__dirname,'..',x.path));const sha=crypto.createHash('sha1').update(`blob ${b.length}\0`).update(b).digest('hex');if(sha!==x.sha)throw Error('input changed: '+x.path);return b.toString('utf8')});
-const config=process.argv[2]==="--robust"?{robust:Number(process.argv[3]),start:Number(process.argv[4]||0),end:process.argv[5]===undefined?undefined:Number(process.argv[5])}:{};
+const config=process.argv[2]==="--robust"?{robust:Number(process.argv[3]),start:Number(process.argv[4]||0),end:process.argv[5]===undefined?undefined:Number(process.argv[5]),minLength:process.argv[6]===undefined?8:Number(process.argv[6])}:{};
 console.log(JSON.stringify(experiment(raw,config),null,2));
