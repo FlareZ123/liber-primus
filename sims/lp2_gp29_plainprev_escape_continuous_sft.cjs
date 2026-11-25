@@ -13,9 +13,9 @@ function experiment(raw,{width=64,count=3,startPlant=0,originalTest=false,refine
  const rows=Array.from({length:812},(_,k)=>{const E=Math.floor(k/28),s=k%28;return Uint8Array.from({length:29},(_,d)=>{if(!d)return E;const r=mod(log[d]-s,28);return r+(r>=E)})});
  const inv=rows.map(row=>{const a=new Uint8Array(29);row.forEach((p,d)=>a[p]=d);assert(new Set(a).size===29,"row permutation");return a});
  const sections=[[0,2],[3,7],[8,14],[15,22],[23,26],[27,32],[33,39],[40,53],[54,55]];
- const original=sections.map(([a,b])=>{const pages=gp.pages.filter(p=>p.page>=a&&p.page<=b&&p.indices.length),C=pages.flatMap(p=>p.indices);return {page:a,iv:C[0],d:C.slice(1).map((c,j)=>mod(c-C[j])),parts:pages.map(p=>({page:p.page,n:p.indices.length}))}});
+ const original=(scope==='book'?[[0,55]]:sections).map(([a,b])=>{const pages=gp.pages.filter(p=>p.page>=a&&p.page<=b&&p.indices.length),C=pages.flatMap(p=>p.indices);return {page:a,iv:C[0],d:C.slice(1).map((c,j)=>mod(c-C[j])),parts:pages.map(p=>({page:p.page,n:p.indices.length}))}});
  const isTrain=f=>f.page!==0&&f.page!==15;
- assert(original.length===9&&sum(original.map(f=>f.d.length))===12947,"chapter geometry");
+ assert(original.length===(scope==="book"?1:9)&&sum(original.map(f=>f.d.length))===(scope==="book"?12955:12947),"frame geometry");
  for(const f of original){const c=[f.iv];for(const d of f.d)c.push(mod(c.at(-1)+d));assert(c.join()===f.parts.flatMap(p=>gp.pages[p.page].indices).join(),"source replay");}
  function chunks(frames){return frames.flatMap(f=>{let off=0;return f.parts.map(({page,n})=>{const v={page,d:f.d.slice(off,off+n-1)};off+=n;return v})})}
  function decode(d,K){let q=0;const P=[];for(const v of d){q=rows[K[q]][v];P.push(q);}return P}
@@ -159,7 +159,8 @@ function experiment(raw,{width=64,count=3,startPlant=0,originalTest=false,refine
  function key(){return Array.from({length:A},(_,q)=>{const c=Array.from({length:A},(_,p)=>p).sort((a,b)=>Math.abs(B[q*A+a]-.00664)-Math.abs(B[q*A+b]-.00664));return 28*c[rng()%5]+rng()%28})}
  function plant(donor,K){let pos=donor.length-16000;return original.map(f=>{const P=donor.slice(pos,pos+f.d.length);pos+=P.length;assert(P.length===f.d.length,"donor length");return {page:f.page,iv:f.iv,parts:f.parts,P,d:encode(P,K)}})}
  function evaluate(frames,truth){
-  const tr=frames.filter(isTrain),r=mixture?{K:null,trace:[]}:solve(chapterBeam?tr:chunks(tr),width,truth);
+  const book=scope==='book',cut=book?frames[0].d.length-2630:0;
+  const tr=book?[{...frames[0],d:frames[0].d.slice(0,cut),P:frames[0].P?.slice(0,cut)}]:frames.filter(isTrain),r=mixture?{K:null,trace:[]}:solve(chapterBeam?tr:chunks(tr),width,truth);
   const mix=mixture?Array.from({length:mixtureStarts},()=>mixtureFit(tr,truth,mixtureIterations)):[];
   const starts=mixture?mix.map((m,i)=>({name:'mixture-'+i,K:m.K})): [{name:chapterBeam?"chapter-F-initializer":"page-F-initializer",K:r.K.slice()},...Array.from({length:randomStarts},(_,i)=>({name:"random-"+i,K:Array.from({length:A},()=>rng()%812)}))];
   let pair=[];for(let i=0;i<(mixture?0:pairStarts);i++){const x=pairFit(tr,Array.from({length:A},()=>rng()%812),pairSweeps);pair.push({name:"pair-"+i,K:x.K,score:x.score,history:x.history,truthScore:truth?x.evalKey(truth):null});}pair.sort((a,b)=>b.score-a.score);
@@ -168,10 +169,14 @@ function experiment(raw,{width=64,count=3,startPlant=0,originalTest=false,refine
   if(pairOnly)return {truth,pair:pair.map(x=>({...x,keyRows:truth?x.K.filter((k,i)=>k===truth[i]).length:null}))};
   let opt=null,initial=null,details=[];for(const st of starts){const em=useEM&&!mixture?softEM(tr,st.K,emSchedule,emSteps):{K:st.K,history:[]};const t=refine(tr,em.K,{sweeps:refineSweeps,wide});details.push({name:st.name,score:t.score,em:em.history,history:t.history});if(!opt||t.score>opt.score){opt=t;initial=st.K;}}r.K=opt.K;
   function evalpart(F){let n=0,s=0,correct=0,repeats=0,used=new Set();for(const f of F){const P=decode(f.d,r.K);assert(encode(P,r.K).join()===f.d.join(),"replay");n+=P.length;s+=score(P);repeats+=f.d.filter(x=>!x).length;if(f.P){correct+=P.filter((p,i)=>p===f.P[i]).length;used.add(0);for(let i=0;i<f.P.length-1;i++)used.add(f.P[i]);}}return {n,repeats,gain:s/n,correct:F[0].P?correct:null,usedRows:truth?used.size:null,keyRows:truth?[...used].filter(q=>truth[q]===r.K[q]).length:null,preview:F.slice(0,2).map(f=>decode(f.d,r.K).slice(0,80).map(p=>alphabet[p]).join(""))}}
+  if(book){
+   const f=frames[0],P=decode(f.d,r.K);assert(encode(P,r.K).join()===f.d.join(),"whole-book replay");const metrics=(a,b)=>{let s=0,correct=0,repeats=0,used=new Set();for(let j=a;j<b;j++){s+=j===0?L1[P[j]]:j===1?L2[P[j-1]*A+P[j]]:L3[(P[j-2]*A+P[j-1])*A+P[j]];if(f.P&&P[j]===f.P[j])correct++;if(f.d[j]===0)repeats++;if(f.P)used.add(j===0?0:f.P[j-1])}return {n:b-a,repeats,gain:s/(b-a),correct:f.P?correct:null,usedRows:truth?used.size:null,keyRows:truth?[...used].filter(q=>truth[q]===r.K[q]).length:null,preview:P.slice(a,80+a).map(x=>alphabet[x]).join("")}};
+   return {key:r.K,initial,refinement:opt.history,details,pair,mix,truth,train:metrics(0,cut),held:metrics(cut,P.length),trace:r.trace};
+  }
   return {key:r.K,initial,refinement:opt.history,details,pair,mix,truth,train:evalpart(frames.filter(isTrain)),held:evalpart(frames.filter(f=>!isTrain(f))),trace:r.trace}
  }
  const pilots=[];for(let i=0;i<count;i++){const K=key();if(i>=startPlant)pilots.push(evaluate(plant(donors[i%3],K),K))}
  return {width,donorLengths:donors.map(d=>d.length),pilots,original:originalTest?evaluate(original,null):null};
 }
-if(require.main===module)console.log(JSON.stringify(experiment(INPUTS.map(p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8')),process.argv.includes('--mixture')?{width:64,count:process.argv.includes('--original')?0:Number(process.argv.find(x=>x.startsWith('--plant='))?.slice(8)??0)+1,startPlant:Number(process.argv.find(x=>x.startsWith('--plant='))?.slice(8)??0),mixture:true,originalTest:process.argv.includes('--original')}:process.argv.includes('--chapter-beam')?{width:256,count:1,chapterBeam:true,pairStarts:0,annealStarts:0,randomStarts:0,useEM:false,refineSweeps:12}:process.argv.includes('--pair-only')?{width:64,count:1,pairOnly:true,pairStarts:6,annealStarts:2,annealSteps:180000,annealT0:20,annealT1:.2}:{width:64,count:1,originalTest:false,pairStarts:0,annealStarts:0,randomStarts:1,useEM:false}),null,2));
+if(require.main===module)console.log(JSON.stringify(experiment(INPUTS.map(p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8')),process.argv.includes('--mixture')?{width:64,count:process.argv.includes('--original')?0:Number(process.argv.find(x=>x.startsWith('--plant='))?.slice(8)??0)+1,startPlant:Number(process.argv.find(x=>x.startsWith('--plant='))?.slice(8)??0),mixture:true,scope:process.argv.includes('--book')?'book':'chapter',originalTest:process.argv.includes('--original')}:process.argv.includes('--chapter-beam')?{width:256,count:1,chapterBeam:true,pairStarts:0,annealStarts:0,randomStarts:0,useEM:false,refineSweeps:12}:process.argv.includes('--pair-only')?{width:64,count:1,pairOnly:true,pairStarts:6,annealStarts:2,annealSteps:180000,annealT0:20,annealT1:.2}:{width:64,count:1,originalTest:false,pairStarts:0,annealStarts:0,randomStarts:1,useEM:false}),null,2));
 module.exports={experiment,INPUTS};
