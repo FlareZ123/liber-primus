@@ -1,0 +1,318 @@
+{
+  "plants": [
+    {
+      "forcedEdges": 64,
+      "forcedNext": 2,
+      "nextCount": "578448",
+      "withheldIncluded": true
+    },
+    {
+      "forcedEdges": 84,
+      "forcedNext": 3,
+      "nextCount": "3024",
+      "withheldIncluded": true
+    },
+    {
+      "forcedEdges": 57,
+      "forcedNext": 3,
+      "nextCount": "136104",
+      "withheldIncluded": true
+    },
+    {
+      "forcedEdges": 33,
+      "forcedNext": 3,
+      "nextCount": "4316400",
+      "withheldIncluded": true
+    },
+    {
+      "forcedEdges": 67,
+      "forcedNext": 2,
+      "nextCount": "3857760",
+      "withheldIncluded": true
+    },
+    {
+      "forcedEdges": 51,
+      "forcedNext": 0,
+      "nextCount": "11346000",
+      "withheldIncluded": true
+    },
+    {
+      "forcedEdges": 55,
+      "forcedNext": 2,
+      "nextCount": "877800",
+      "withheldIncluded": true
+    },
+    {
+      "forcedEdges": 56,
+      "forcedNext": 3,
+      "nextCount": "9888",
+      "withheldIncluded": true
+    },
+    {
+      "forcedEdges": 63,
+      "forcedNext": 1,
+      "nextCount": "27302400",
+      "withheldIncluded": true
+    },
+    {
+      "forcedEdges": 30,
+      "forcedNext": 1,
+      "nextCount": "3882060",
+      "withheldIncluded": true
+    },
+    {
+      "forcedEdges": 71,
+      "forcedNext": 1,
+      "nextCount": "32864000",
+      "withheldIncluded": true
+    },
+    {
+      "forcedEdges": 71,
+      "forcedNext": 2,
+      "nextCount": "59400",
+      "withheldIncluded": true
+    },
+    {
+      "forcedEdges": 48,
+      "forcedNext": 1,
+      "nextCount": "78278250",
+      "withheldIncluded": true
+    },
+    {
+      "forcedEdges": 82,
+      "forcedNext": 2,
+      "nextCount": "2999700",
+      "withheldIncluded": true
+    },
+    {
+      "forcedEdges": 71,
+      "forcedNext": 3,
+      "nextCount": "1316832",
+      "withheldIncluded": true
+    },
+    {
+      "forcedEdges": 73,
+      "forcedNext": 1,
+      "nextCount": "16381440",
+      "withheldIncluded": true
+    }
+  ],
+  "toy": {
+    "trials": 80,
+    "feasible": 41
+  },
+  "originals": {
+    "59": {
+      "firstThreeRows": [
+        [
+          200,
+          227,
+          164,
+          183,
+          96,
+          233,
+          124,
+          180
+        ],
+        [
+          91,
+          245,
+          154,
+          218,
+          243,
+          4,
+          180,
+          209
+        ],
+        [
+          119,
+          199,
+          15,
+          33,
+          100,
+          135,
+          58,
+          86
+        ]
+      ],
+      "firstContradiction": {
+        "rows": 3,
+        "result": {
+          "feasible": false,
+          "sourceClasses": 4,
+          "targetClasses": 3,
+          "differences": [
+            {
+              "signature": "00",
+              "source": 241,
+              "target": 240
+            },
+            {
+              "signature": "01",
+              "source": 7,
+              "target": 8
+            },
+            {
+              "signature": "10",
+              "source": 7,
+              "target": 8
+            },
+            {
+              "signature": "11",
+              "source": 1,
+              "target": 0
+            }
+          ]
+        }
+      },
+      "fullMismatchCount": 142,
+      "sourceClasses": 96,
+      "targetClasses": 94,
+      "twoRowNextCount": "84085428563136",
+      "pageFeasible": [
+        false,
+        false,
+        false
+      ],
+      "adjacentIntersections": [
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    "60": {
+      "firstThreeRows": [
+        [
+          203,
+          231,
+          167,
+          186,
+          97,
+          237,
+          126,
+          183
+        ],
+        [
+          92,
+          249,
+          156,
+          222,
+          247,
+          4,
+          183,
+          212
+        ],
+        [
+          121,
+          202,
+          15,
+          33,
+          102,
+          137,
+          59,
+          87
+        ]
+      ],
+      "firstContradiction": {
+        "rows": 3,
+        "result": {
+          "feasible": false,
+          "sourceClasses": 4,
+          "targetClasses": 3,
+          "differences": [
+            {
+              "signature": "00",
+              "source": 241,
+              "target": 240
+            },
+            {
+              "signature": "01",
+              "source": 7,
+              "target": 8
+            },
+            {
+              "signature": "10",
+              "source": 7,
+              "target": 8
+            },
+            {
+              "signature": "11",
+              "source": 1,
+              "target": 0
+            }
+          ]
+        }
+      },
+      "fullMismatchCount": 142,
+      "sourceClasses": 96,
+      "targetClasses": 94,
+      "twoRowNextCount": "84085428563136",
+      "pageFeasible": [
+        false,
+        false,
+        false
+      ],
+      "adjacentIntersections": [
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ]
+    }
+  }
+}
