@@ -58,6 +58,14 @@ The exact mayfly plate is not yet confirmed in these collections, but two Czech 
 
 The official NZM exhibition page also identifies Zirovnice Castle as a permanent Severa display. Treat Zirovnice and the Hunt Institute as referral routes, not confirmed holdings of this specific mayfly plate. No institution has yet confirmed possession of the exact drawing or caption.
 
+
+
+#### Hunt Institute lead downgraded; 1977 bibliographic confirmation retained
+
+The 1977 Hunt Institute *Fourth International Exhibition of Botanical Art and Illustration* catalogue (Severa entry, printed p.106) is useful bibliographic evidence, but **not evidence that Hunt holds the mayfly original**. It records Severa's exhibited items 255–262 as botanical watercolors (Pink Hawksbeard, Tulip, Blue Lace Flower, Obedience, Crown Anemone, Spanish Bluebell, English Yew, Black Nightshade). Under “Works Published in” it independently lists: “Zahradník, J. *A field guide to insects*. Prague, Artia, 1976 (German). 1977 (English).” This confirms Severa's scientific/natural-history illustration career and the German/English editions, but does not list an insect original among his Hunt exhibition pieces. Keep Hunt as a **bibliographic/referral lead only**, below Metánov, Zirovnice, NZM Ohrada, and the exact Dutch IVN holding.
+
+Catalogue: https://www.huntbotanical.org/admin/uploads/hibd-4th-int-cat-02.pdf (Severa entry, printed p.106; PDF text lines 3204–3229).
+
 #### Ready-to-send Czech request to Metánov (draft only; not sent)
 
 **Předmět:** Dotaz na ilustraci jepice Františka Severy (Zahradník, 1977)
