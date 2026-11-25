@@ -10,6 +10,9 @@
       "budget": 7,
       "need": 24,
       "upper": 26,
+      "overlapUpper": 19,
+      "multiSupported": 26,
+      "overlapEdges": 0,
       "top": [
         2,
         2,
@@ -27,7 +30,7 @@
       ],
       "distinct": 1044539,
       "events": 1044565,
-      "excluded": false
+      "excluded": true
     },
     {
       "chapter": 1,
@@ -36,6 +39,9 @@
       "budget": 12,
       "need": 21,
       "upper": 26,
+      "overlapUpper": 19,
+      "multiSupported": 16,
+      "overlapEdges": 0,
       "top": [
         2,
         2,
@@ -53,7 +59,7 @@
       ],
       "distinct": 1032884,
       "events": 1032900,
-      "excluded": false
+      "excluded": true
     },
     {
       "chapter": 2,
@@ -62,6 +68,9 @@
       "budget": 19,
       "need": 33,
       "upper": 26,
+      "overlapUpper": 19,
+      "multiSupported": 94,
+      "overlapEdges": 0,
       "top": [
         2,
         2,
@@ -88,6 +97,9 @@
       "budget": 21,
       "need": 45,
       "upper": 26,
+      "overlapUpper": 19,
+      "multiSupported": 124,
+      "overlapEdges": 0,
       "top": [
         2,
         2,
@@ -114,6 +126,9 @@
       "budget": 11,
       "need": 22,
       "upper": 26,
+      "overlapUpper": 19,
+      "multiSupported": 36,
+      "overlapEdges": 0,
       "top": [
         2,
         2,
@@ -131,7 +146,7 @@
       ],
       "distinct": 1093109,
       "events": 1093145,
-      "excluded": false
+      "excluded": true
     },
     {
       "chapter": 5,
@@ -140,6 +155,9 @@
       "budget": 16,
       "need": 31,
       "upper": 26,
+      "overlapUpper": 19,
+      "multiSupported": 66,
+      "overlapEdges": 0,
       "top": [
         2,
         2,
@@ -166,6 +184,9 @@
       "budget": 18,
       "need": 38,
       "upper": 26,
+      "overlapUpper": 19,
+      "multiSupported": 78,
+      "overlapEdges": 0,
       "top": [
         2,
         2,
@@ -192,6 +213,9 @@
       "budget": 33,
       "need": 60,
       "upper": 26,
+      "overlapUpper": 19,
+      "multiSupported": 269,
+      "overlapEdges": 0,
       "top": [
         2,
         2,
@@ -218,6 +242,9 @@
       "budget": 3,
       "need": 8,
       "upper": 18,
+      "overlapUpper": 18,
+      "multiSupported": 5,
+      "overlapEdges": 0,
       "top": [
         2,
         2,
@@ -262,6 +289,9 @@
       "budget": 33,
       "need": 60,
       "upper": 97,
+      "overlapUpper": 97,
+      "multiSupported": 37211,
+      "overlapEdges": 413,
       "top": [
         15,
         13,
@@ -304,6 +334,9 @@
       "budget": 33,
       "need": 60,
       "upper": 93,
+      "overlapUpper": 93,
+      "multiSupported": 267,
+      "overlapEdges": 13,
       "top": [
         12,
         9,
@@ -346,6 +379,9 @@
       "budget": 33,
       "need": 60,
       "upper": 94,
+      "overlapUpper": 94,
+      "multiSupported": 70575,
+      "overlapEdges": 1039,
       "top": [
         12,
         11,
