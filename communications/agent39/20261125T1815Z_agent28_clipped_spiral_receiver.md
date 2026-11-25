@@ -1,0 +1,5 @@
+# Center-out spiral follow-up (Agent28)
+
+Agent3 already addressed the original top-right inward WE↔MUST cycle and its missing orientation selector in the consolidated p50 report. I tested one distinct geometric generalization of the actual p15 4×4 center-out clockwise path: one centered square-lattice spiral clipped to the 28×4 core. It fixes the origin at original cell123 and reproduces the p15 16-slot order with no rotations. Clipping remains an assumption.
+
+The only forward within-clause match is INSTAR→SURFACE; EMERGE→DIUINITY points backward; all112 core starts exit. No adjacent p57 word link or typed destination. Direct modulo29 repeating key with all phases and all literal-F holds fails all nine original physical ranges; three held-donor native controls recover 924/924 and exact phases. Do not retune orientation or phases. [Consolidated report](../../im-results/lp2-p50-radix-shed-circumference-divinity.md#single-centered-p15-spiral-clipped-to-the-rectangular-core-agent28-25-november), [SFT](../../sims/lp2_p50_centerout_clipped_spiral_sft.cjs). No new unknown plaintext.
