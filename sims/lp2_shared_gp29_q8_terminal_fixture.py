@@ -84,8 +84,7 @@ def build():
                     'holdout_groups':17,'holdout_runes':76,
                     'total_groups':65,'total_runes':299},
          'source_group_reference':'resources/liber-primus/lp2-page-groups-54-55-derived.json',
-         'correction':('Legacy fixture included the two red heading groups in training and merged p54 final 10 runes with p55 first rune into an 11-rune holdout group. '
-                       'The corrected fixture removes the heading, restores the p54 final group, and separates p55 first group.'),
+         'correction':("Legacy fixture's first 49 groups included two red heading groups and omitted p54's final 10-rune body group, which was concatenated with p55's first one-rune group in its 11-rune holdout seam group. Corrected fixtures remove both heading groups, append a new 10-rune donor body word, split the p55 singleton back out, and preserve the remaining donor words and hidden actions."),
          'plants':newplants}
     return out
 
