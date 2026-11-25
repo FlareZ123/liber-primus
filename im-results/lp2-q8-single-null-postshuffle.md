@@ -61,9 +61,29 @@ To avoid treating observed R,F thresholds as preselected, use the mixture likeli
 
 Run `node sims/lp2_q8_single_null_repair_capacity_sft.cjs` and again with `--either-f`, then `node sims/lp2_q8_single_null_repair_rate_sft.cjs` with and without `--either-f`. All four runs executed in connected V8. Raw [native capacity](lp2-q8-single-null-repair-capacity-output.json), [either-F capacity](lp2-q8-single-null-repair-capacity-either-f-output.json), [native rate](lp2-q8-single-null-repair-rate-output.json), [either-F rate](lp2-q8-single-null-repair-rate-either-f-output.json).
 
+## Period-independent capacity extension
+
+Remove all periodic consistency checks from lexical inverse enumeration, retaining only the first k=3..7 consuming digits. For every period q, a cyclic key has at most q distinct k-windows, so the sum of the q greatest distinct tuple-support counts is a necessary upper bound. Apply both cumulative and disjoint eligibility strata as above, for q=1..128. This single enumeration covers all periods; it does not nominate a secret key or prove the existence of any surviving period. Allow either consuming or holding F at each occurrence.
+
+| Physical pages | Minimum period not excluded | Extra repaired groups necessary at q13 |
+| --- | ---: | ---: |
+| 0–2 | 15 | 3 |
+| 3–7 | 16 | 9 |
+| 8–14 | 22 | 21 |
+| 15–22 | 21 | 24 |
+| 23–26 | 15 | 3 |
+| 27–32 | 17 | 9 |
+| 33–39 | 21 | 25 |
+| 40–53 | 29 | 72 |
+| 54–55 | 5 | 0 |
+
+Thus the insertion-only q13 receiver fails eight chapters even with unrestricted independent group phases, arbitrary shuffle and either-F handling. A shared period across chapters must be at least 29 under this necessary condition. Surviving the bound is not evidence of a viable key. At q13 the aggregate lower bound is 166 extra repaired groups, allowing independent keys by chapter. Three separate 100-word held donor plants with true periods 8,13,29 have respective minimum bounds 7,12,14 and all pass their true period. The q8 consistency-aware bounds above are at least as strong.
+
+Executed in connected V8: `node sims/lp2_single_null_all_period_capacity_sft.cjs` ([raw output](lp2-single-null-all-period-capacity-output.json)); no standalone CI. A separate overlap-graph tightening attempt timed out before an output was obtained; no claim from it.
+
 ## Disposition and reproducibility
 
-Retire the exact one-null insertion-only q8 shared additive receiver under this finite vocabulary and intact group membership, including arbitrary post-encryption group shuffle and independent group phases. The repair-capacity extension additionally rejects the narrowly specified probabilistic repair receiver at q=.81, but does not rule out T6 substitution repairs in general, more nulls, consuming inserted key steps, other periods, H-decoy, or different spelling/register. Do not interpret the 113 unique control words as unique reconstruction of the remaining groups or use this result to infer the historical model. No source-selected mechanism or original language candidate passed.
+Retire the exact one-null insertion-only q8 shared additive receiver under this finite vocabulary and intact group membership, including arbitrary post-encryption group shuffle and independent group phases. The repair-capacity extension additionally rejects the narrowly specified probabilistic repair receiver at q=.81, but does not rule out T6 substitution repairs in general, more nulls, consuming inserted key steps, periods surviving the new necessary bound, H-decoy, or different spelling/register. Do not interpret the 113 unique control words as unique reconstruction of the remaining groups or use this result to infer the historical model. No source-selected mechanism or original language candidate passed.
 
 Run from repository root:
 - `node sims/lp2_q8_single_null_postshuffle_sft.cjs` ([raw output](lp2-q8-single-null-postshuffle-output.json)).
