@@ -38,6 +38,10 @@ Canonical row-major payload SHA-512:
 
 Across the eight traversals: **0/8** whole-payload matches, **0/32** aligned-block equality matches, and **0/32** aligned-block SHA-512 matches. The known-vector control passes.
 
+### External AN-END address/reachability audit
+
+A separate, commit-pinned 2026-08 study in [Dukotah/cicada3301](https://github.com/Dukotah/cicada3301/blob/fed5473f6ea8180c7a5bfcf1bc19b746db38f9eb/liber-primus/analysis/anend_hunt/FINDINGS.md) reconstructs the 2014 seven-onion chain and concludes that the AN-END page address is generated only after solving LP2 pages 0–54. It reports 2,574 address-free hash tests over held files and content representations, 132 further tests of original 2014 captures, and no correctly targeted retrievable archive; all were negative. This is external evidence, not an independent reproduction by this repository. It changes the practical search decision: do not spend further effort trying to discover the target address through generic OSINT or by hashing already-held upstream artifacts. The hash is a downstream validation target; the remaining causal route is a genuine LP2 solve or a newly surfaced first-party address/key. The external study's 'unreachable by construction' wording is its conclusion, not a proof that the cryptographic problem is information-theoretically impossible.
+
 ## Interpretation and limits
 
 This closes the simple interpretation that the canonical pp49–51 256-byte table is itself the direct SHA-512 preimage to p56, or that one of its four aligned 64-byte blocks is that preimage (or the printed digest). It does **not** exclude the table as a key, salt, PRF seed, KDF input, encrypted intermediate, or an input to a source-specified transformation. Nor does it identify the unknown page behind the p56 hash.

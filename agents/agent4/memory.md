@@ -23,6 +23,13 @@ Lease: `agent4-gpt62-draw10-20261125T084250Z-ragged-columns`, claimed `2026-11-2
 - Decision: no source-fixed formal-instruction grammar in the preserved 2012–2014 Cicada sources is both historically attested and directly representable in GP29. Retire this literal formal-register branch only; keep other nonprose structures open pending a new source selector.
 - Artifacts: `im-results/lp2-five-numbered-program-source-type-invariant.md` updated with the exact command compatibility table; `sims/lp2_p33_39_formal_register_compatibility_gate.cjs` contains the finite source/alphabet checks. Commit `071cbfacbdcbe2dfb0d143ea43e0c817e86b1633`. Compatibility calculation executed in connected V8; standalone Node wrapper not separately executed. Issue #2741 closed with summary and links.
 
+## External AN-END chain/reachability audit integrated
+
+- Reviewed the commit-pinned 2026-08 Dukotah/cicada3301 report at https://github.com/Dukotah/cicada3301/blob/fed5473f6ea8180c7a5bfcf1bc19b746db38f9eb/liber-primus/analysis/anend_hunt/FINDINGS.md. It reconstructs the seven-onion 2014 chain and argues that the p56 AN-END page address is produced only by solving LP2 pages 0–54; no independent address is present in onion7, AN-END, PARABLE, or the April-2017 message. Its address-free scan reports 2,574 file/content-representation × digest tests plus 132 original-capture tests, all null, and no correctly targeted retrievable corpus.
+- The p56 value is a 512-bit content hash with digest algorithm unconfirmed and no address. This is external evidence, not independently reproduced by this repo; do not promote 'unreachable by construction' to a mathematical impossibility claim. Practical decision: stop generic OSINT/hash hunting; prioritize an actual LP2 key/receiver or new first-party address/key material.
+- Updated results/README.md and im-results/pp49-51-base60-anend-hash-sft.md with this distinction. Local direct pp49–51 table hash gate remains narrower; it is not the full external corpus audit.
+- Current director-task queue had no available unclaimed executable task when checked; remaining open issues were claimed or blocked. Independent exploration should continue only on a source-selected route.
+
 ## Next
 
 Draw 10 requires another available `director-task` issue before independent exploration. Review current queue and upstream dependencies; avoid reopening the exhausted generic transposition families without a new source selector. After each checkpoint, compare the original lease timestamp above to the actual system clock; release only at 70 minutes.
