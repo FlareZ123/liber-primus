@@ -1,0 +1,672 @@
+{
+  "transports": {
+    "exponential": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28
+    ],
+    "square": [
+      0,
+      10,
+      7,
+      20,
+      2,
+      17,
+      6,
+      1,
+      14,
+      12,
+      18,
+      27,
+      15,
+      16,
+      9,
+      11,
+      23,
+      24,
+      3,
+      22,
+      13,
+      28,
+      5,
+      8,
+      4,
+      25,
+      21,
+      26,
+      19
+    ],
+    "signed": [
+      0,
+      5,
+      18,
+      10,
+      1,
+      23,
+      3,
+      15,
+      7,
+      6,
+      9,
+      28,
+      22,
+      8,
+      19,
+      20,
+      26,
+      12,
+      16,
+      11,
+      21,
+      14,
+      17,
+      4,
+      2,
+      27,
+      25,
+      13,
+      24
+    ]
+  },
+  "training": [
+    [
+      "0_welcome",
+      515
+    ],
+    [
+      "0_koan_1",
+      780
+    ],
+    [
+      "0_loss_of_divinity",
+      755
+    ],
+    [
+      "jpg107-167",
+      319
+    ],
+    [
+      "jpg229",
+      89
+    ]
+  ],
+  "sourceSizes": [
+    232,
+    76
+  ],
+  "original": {
+    "all": {
+      "tested": 5046,
+      "best": {
+        "kind": "exponential",
+        "mode": "previous",
+        "a": 26,
+        "iv": 9,
+        "fit": -4.564280095444346,
+        "hold": -5.2835759719307065,
+        "holdIoC": 0.031228070175438598,
+        "fitText": "OERLEANAELDLYBATHGITRSXGYWRUWACGJUGDNGEANAEOEAAEYANYNGMUGBOSUAYTHXSFSIBWEFEOXCAMYCGLTHOEWNGHYEODXEHMOEMPTHOEWXNXSOEBOINYHPGXRGEONGYTHRABTAJSLLTHSINNNTHPEOBUUHNGWHOXAGEAITTMEOTWTJYEDHDNAPYTRNGIATNGTAOETLRIRHIATGALXGHCWOTHRAECILYNGEDSUMFOANGFTIATHAEHADNGMAELPADBSMHNGAENGLTHAUES",
+        "holdText": "EOUWNHWRWOXEAPEOPTHBIAETHIATIAEFNGYXDLFHEAETAEXYXINWIBUWEOIAAEASGWOMRCJEANHAJEEAPXWLRFWOECLJG",
+        "exactReplay": true
+      },
+      "topFitTies": 14
+    },
+    "sourceExponent": {
+      "tested": 174,
+      "best": {
+        "kind": "exponential",
+        "mode": "product",
+        "a": 6,
+        "iv": 18,
+        "fit": -4.649631628398038,
+        "hold": -5.443619118217227,
+        "holdIoC": 0.0343859649122807,
+        "fitText": "OEAOAGOEOENGEANBXTHUUCUFEAYTTFNGTGEJUPCIFIALOIALSYNBXWTTHXJLTJXHLPNOWTDGYXROELSYTHPNEAWLHTIAOEEOIXNOERCEOTTHDTTHPEWSEAEHGRIWESBEXNGANSOEATHNCPLAMGHEAUEATHNGWPLYTHBAHSEAJBJSLNRPINDGXYFRPJIOXOSTGOPHHWMNTMMUECIATHEONGCNGNGTYOSLSLTHTHGTHTTOYXRBMTEAMSXMLEAJUTHRSMYDDDARWEHONNTCTDW",
+        "holdText": "LXOAELSXAERTHAECSUEOJNEEOXNNOEJWXEAIACETDIANGIIALEDCOEATNGGXLEOUYYLNGTEEDBOEIXMOJWFBAEOLOIANMCC",
+        "exactReplay": true
+      },
+      "topFitTies": 1
+    },
+    "sourceIndices": {
+      "tested": 12,
+      "best": {
+        "kind": "square",
+        "mode": "product",
+        "a": 6,
+        "iv": 19,
+        "fit": -4.68708826501205,
+        "hold": -5.220551157970763,
+        "holdIoC": 0.030877192982456142,
+        "fitText": "CSWPEOHEPNGPPOEDAEHSOEEATHTHLJAIAWAEEUEIITWNGDRGOEAIRTHNGTHIFYNGEIHTPPEINGOEOCOTWHEAIAWEAHXCORLHCEAOAOGFNGCEOOEEAWMIBTNGSWWJXPOFFFFJWDUFRXIATHAYAFNRWEFJTHHUTHTFIAPTHNHEAHEEOEOCTNRXOXCYEOOEEGUEEALGIALTHPTRTNJSNTHALPTHEOCIWMOYEAAEEALOTBTDTTHBOWAONGEYDLMGIALYWSFCNOTHAESTTPTCIMBRWYUDGONO",
+        "holdText": "CONYNPYTHBIAMUOEHEAIEOSTHWDIAYRJUEAEEOPYOETSRLCEADTHEOEAHOEXDOOEEIEOSTHDGEAXOETUMNFHAENLAEAULLDOFIA",
+        "exactReplay": true
+      },
+      "topFitTies": 2
+    },
+    "squareSigned": {
+      "tested": 3364,
+      "best": {
+        "kind": "square",
+        "mode": "product",
+        "a": 6,
+        "iv": 19,
+        "fit": -4.68708826501205,
+        "hold": -5.220551157970763,
+        "holdIoC": 0.030877192982456142,
+        "fitText": "CSWPEOHEPNGPPOEDAEHSOEEATHTHLJAIAWAEEUEIITWNGDRGOEAIRTHNGTHIFYNGEIHTPPEINGOEOCOTWHEAIAWEAHXCORLHCEAOAOGFNGCEOOEEAWMIBTNGSWWJXPOFFFFJWDUFRXIATHAYAFNRWEFJTHHUTHTFIAPTHNHEAHEEOEOCTNRXOXCYEOOEEGUEEALGIALTHPTRTNJSNTHALPTHEOCIWMOYEAAEEALOTBTDTTHBOWAONGEYDLMGIALYWSFCNOTHAESTTPTCIMBRWYUDGONO",
+        "holdText": "CONYNPYTHBIAMUOEHEAIEOSTHWDIAYRJUEAEEOPYOETSRLCEADTHEOEAHOEXDOOEEIEOSTHDGEAXOETUMNFHAENLAEAULLDOFIA",
+        "exactReplay": true
+      },
+      "topFitTies": 2
+    }
+  },
+  "replayedOriginalSymbols": 1554168,
+  "controls": [
+    {
+      "donor": "0_warning",
+      "kind": "exponential",
+      "mode": "previous",
+      "a": 6,
+      "iv": 8,
+      "split": 138,
+      "expectedHold": -2.7744153493767825,
+      "fit": -2.686884270328352,
+      "hold": -2.7744153493767825,
+      "selected": {
+        "kind": "exponential",
+        "mode": "previous",
+        "a": 6,
+        "iv": 21
+      },
+      "correctHold": 46,
+      "holdLength": 46,
+      "exactReplay": true
+    },
+    {
+      "donor": "0_warning",
+      "kind": "exponential",
+      "mode": "product",
+      "a": 6,
+      "iv": 8,
+      "split": 138,
+      "expectedHold": -2.7744153493767825,
+      "fit": -2.691802653542025,
+      "hold": -2.7744153493767825,
+      "selected": {
+        "kind": "exponential",
+        "mode": "product",
+        "a": 6,
+        "iv": 8
+      },
+      "correctHold": 46,
+      "holdLength": 46,
+      "exactReplay": true
+    },
+    {
+      "donor": "0_warning",
+      "kind": "square",
+      "mode": "previous",
+      "a": 6,
+      "iv": 8,
+      "split": 138,
+      "expectedHold": -2.7744153493767825,
+      "fit": -2.686884270328352,
+      "hold": -2.7744153493767825,
+      "selected": {
+        "kind": "square",
+        "mode": "previous",
+        "a": 6,
+        "iv": 17
+      },
+      "correctHold": 46,
+      "holdLength": 46,
+      "exactReplay": true
+    },
+    {
+      "donor": "0_warning",
+      "kind": "square",
+      "mode": "product",
+      "a": 6,
+      "iv": 8,
+      "split": 138,
+      "expectedHold": -2.7744153493767825,
+      "fit": -2.691802653542025,
+      "hold": -2.7744153493767825,
+      "selected": {
+        "kind": "square",
+        "mode": "product",
+        "a": 6,
+        "iv": 8
+      },
+      "correctHold": 46,
+      "holdLength": 46,
+      "exactReplay": true
+    },
+    {
+      "donor": "0_warning",
+      "kind": "signed",
+      "mode": "previous",
+      "a": 6,
+      "iv": 8,
+      "split": 138,
+      "expectedHold": -2.7744153493767825,
+      "fit": -2.686884270328352,
+      "hold": -2.7744153493767825,
+      "selected": {
+        "kind": "square",
+        "mode": "previous",
+        "a": 6,
+        "iv": 17
+      },
+      "correctHold": 46,
+      "holdLength": 46,
+      "exactReplay": true
+    },
+    {
+      "donor": "0_warning",
+      "kind": "signed",
+      "mode": "product",
+      "a": 6,
+      "iv": 8,
+      "split": 138,
+      "expectedHold": -2.7744153493767825,
+      "fit": -2.691802653542025,
+      "hold": -2.7744153493767825,
+      "selected": {
+        "kind": "square",
+        "mode": "product",
+        "a": 6,
+        "iv": 8
+      },
+      "correctHold": 46,
+      "holdLength": 46,
+      "exactReplay": true
+    },
+    {
+      "donor": "0_wisdom",
+      "kind": "exponential",
+      "mode": "previous",
+      "a": 17,
+      "iv": 19,
+      "split": 117,
+      "expectedHold": -3.272516270476983,
+      "fit": -2.9261464561556427,
+      "hold": -3.272516270476983,
+      "selected": {
+        "kind": "exponential",
+        "mode": "previous",
+        "a": 17,
+        "iv": 23
+      },
+      "correctHold": 40,
+      "holdLength": 40,
+      "exactReplay": true
+    },
+    {
+      "donor": "0_wisdom",
+      "kind": "exponential",
+      "mode": "product",
+      "a": 17,
+      "iv": 19,
+      "split": 117,
+      "expectedHold": -3.272516270476983,
+      "fit": -2.9311273016789383,
+      "hold": -3.272516270476983,
+      "selected": {
+        "kind": "exponential",
+        "mode": "product",
+        "a": 17,
+        "iv": 19
+      },
+      "correctHold": 40,
+      "holdLength": 40,
+      "exactReplay": true
+    },
+    {
+      "donor": "0_wisdom",
+      "kind": "square",
+      "mode": "previous",
+      "a": 17,
+      "iv": 19,
+      "split": 117,
+      "expectedHold": -3.272516270476983,
+      "fit": -2.9261464561556427,
+      "hold": -3.272516270476983,
+      "selected": {
+        "kind": "square",
+        "mode": "previous",
+        "a": 17,
+        "iv": 23
+      },
+      "correctHold": 40,
+      "holdLength": 40,
+      "exactReplay": true
+    },
+    {
+      "donor": "0_wisdom",
+      "kind": "square",
+      "mode": "product",
+      "a": 17,
+      "iv": 19,
+      "split": 117,
+      "expectedHold": -3.272516270476983,
+      "fit": -2.9311273016789383,
+      "hold": -3.272516270476983,
+      "selected": {
+        "kind": "square",
+        "mode": "product",
+        "a": 17,
+        "iv": 19
+      },
+      "correctHold": 40,
+      "holdLength": 40,
+      "exactReplay": true
+    },
+    {
+      "donor": "0_wisdom",
+      "kind": "signed",
+      "mode": "previous",
+      "a": 17,
+      "iv": 19,
+      "split": 117,
+      "expectedHold": -3.272516270476983,
+      "fit": -2.9261464561556427,
+      "hold": -3.272516270476983,
+      "selected": {
+        "kind": "square",
+        "mode": "previous",
+        "a": 17,
+        "iv": 23
+      },
+      "correctHold": 40,
+      "holdLength": 40,
+      "exactReplay": true
+    },
+    {
+      "donor": "0_wisdom",
+      "kind": "signed",
+      "mode": "product",
+      "a": 17,
+      "iv": 19,
+      "split": 117,
+      "expectedHold": -3.272516270476983,
+      "fit": -2.9311273016789383,
+      "hold": -3.272516270476983,
+      "selected": {
+        "kind": "square",
+        "mode": "product",
+        "a": 17,
+        "iv": 19
+      },
+      "correctHold": 40,
+      "holdLength": 40,
+      "exactReplay": true
+    },
+    {
+      "donor": "p56_an_end",
+      "kind": "exponential",
+      "mode": "previous",
+      "a": 11,
+      "iv": 13,
+      "split": 63,
+      "expectedHold": -2.417887493828483,
+      "fit": -2.542442225284749,
+      "hold": -2.417887493828483,
+      "selected": {
+        "kind": "exponential",
+        "mode": "previous",
+        "a": 11,
+        "iv": 28
+      },
+      "correctHold": 22,
+      "holdLength": 22,
+      "exactReplay": true
+    },
+    {
+      "donor": "p56_an_end",
+      "kind": "exponential",
+      "mode": "product",
+      "a": 11,
+      "iv": 13,
+      "split": 63,
+      "expectedHold": -2.417887493828483,
+      "fit": -2.5559302662472465,
+      "hold": -2.417887493828483,
+      "selected": {
+        "kind": "exponential",
+        "mode": "product",
+        "a": 11,
+        "iv": 13
+      },
+      "correctHold": 22,
+      "holdLength": 22,
+      "exactReplay": true
+    },
+    {
+      "donor": "p56_an_end",
+      "kind": "square",
+      "mode": "previous",
+      "a": 11,
+      "iv": 13,
+      "split": 63,
+      "expectedHold": -2.417887493828483,
+      "fit": -2.542442225284749,
+      "hold": -2.417887493828483,
+      "selected": {
+        "kind": "square",
+        "mode": "previous",
+        "a": 11,
+        "iv": 18
+      },
+      "correctHold": 22,
+      "holdLength": 22,
+      "exactReplay": true
+    },
+    {
+      "donor": "p56_an_end",
+      "kind": "square",
+      "mode": "product",
+      "a": 11,
+      "iv": 13,
+      "split": 63,
+      "expectedHold": -2.417887493828483,
+      "fit": -2.5559302662472465,
+      "hold": -2.417887493828483,
+      "selected": {
+        "kind": "square",
+        "mode": "product",
+        "a": 11,
+        "iv": 13
+      },
+      "correctHold": 22,
+      "holdLength": 22,
+      "exactReplay": true
+    },
+    {
+      "donor": "p56_an_end",
+      "kind": "signed",
+      "mode": "previous",
+      "a": 11,
+      "iv": 13,
+      "split": 63,
+      "expectedHold": -2.417887493828483,
+      "fit": -2.542442225284749,
+      "hold": -2.417887493828483,
+      "selected": {
+        "kind": "square",
+        "mode": "previous",
+        "a": 11,
+        "iv": 18
+      },
+      "correctHold": 22,
+      "holdLength": 22,
+      "exactReplay": true
+    },
+    {
+      "donor": "p56_an_end",
+      "kind": "signed",
+      "mode": "product",
+      "a": 11,
+      "iv": 13,
+      "split": 63,
+      "expectedHold": -2.417887493828483,
+      "fit": -2.5559302662472465,
+      "hold": -2.417887493828483,
+      "selected": {
+        "kind": "square",
+        "mode": "product",
+        "a": 11,
+        "iv": 13
+      },
+      "correctHold": 22,
+      "holdLength": 22,
+      "exactReplay": true
+    },
+    {
+      "donor": "p57_parable",
+      "kind": "exponential",
+      "mode": "previous",
+      "a": 23,
+      "iv": 2,
+      "split": 71,
+      "expectedHold": -2.0071025682032873,
+      "fit": -2.5859627130008325,
+      "hold": -2.0071025682032873,
+      "selected": {
+        "kind": "exponential",
+        "mode": "previous",
+        "a": 23,
+        "iv": 0
+      },
+      "correctHold": 24,
+      "holdLength": 24,
+      "exactReplay": true
+    },
+    {
+      "donor": "p57_parable",
+      "kind": "exponential",
+      "mode": "product",
+      "a": 23,
+      "iv": 2,
+      "split": 71,
+      "expectedHold": -2.0071025682032873,
+      "fit": -2.5987730284390818,
+      "hold": -2.0071025682032873,
+      "selected": {
+        "kind": "exponential",
+        "mode": "product",
+        "a": 23,
+        "iv": 2
+      },
+      "correctHold": 24,
+      "holdLength": 24,
+      "exactReplay": true
+    },
+    {
+      "donor": "p57_parable",
+      "kind": "square",
+      "mode": "previous",
+      "a": 23,
+      "iv": 2,
+      "split": 71,
+      "expectedHold": -2.0071025682032873,
+      "fit": -2.5859627130008325,
+      "hold": -2.0071025682032873,
+      "selected": {
+        "kind": "square",
+        "mode": "previous",
+        "a": 23,
+        "iv": 6
+      },
+      "correctHold": 24,
+      "holdLength": 24,
+      "exactReplay": true
+    },
+    {
+      "donor": "p57_parable",
+      "kind": "square",
+      "mode": "product",
+      "a": 23,
+      "iv": 2,
+      "split": 71,
+      "expectedHold": -2.0071025682032873,
+      "fit": -2.5987730284390818,
+      "hold": -2.0071025682032873,
+      "selected": {
+        "kind": "square",
+        "mode": "product",
+        "a": 23,
+        "iv": 2
+      },
+      "correctHold": 24,
+      "holdLength": 24,
+      "exactReplay": true
+    },
+    {
+      "donor": "p57_parable",
+      "kind": "signed",
+      "mode": "previous",
+      "a": 23,
+      "iv": 2,
+      "split": 71,
+      "expectedHold": -2.0071025682032873,
+      "fit": -2.5859627130008325,
+      "hold": -2.0071025682032873,
+      "selected": {
+        "kind": "square",
+        "mode": "previous",
+        "a": 23,
+        "iv": 6
+      },
+      "correctHold": 24,
+      "holdLength": 24,
+      "exactReplay": true
+    },
+    {
+      "donor": "p57_parable",
+      "kind": "signed",
+      "mode": "product",
+      "a": 23,
+      "iv": 2,
+      "split": 71,
+      "expectedHold": -2.0071025682032873,
+      "fit": -2.5987730284390818,
+      "hold": -2.0071025682032873,
+      "selected": {
+        "kind": "square",
+        "mode": "product",
+        "a": 23,
+        "iv": 2
+      },
+      "correctHold": 24,
+      "holdLength": 24,
+      "exactReplay": true
+    }
+  ]
+}
