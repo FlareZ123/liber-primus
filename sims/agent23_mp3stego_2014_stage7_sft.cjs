@@ -248,9 +248,9 @@ function summarizeOutput(dir, inputName) {
       stage7: stage7Candidates,
       instar761: instarCandidates
     },
-    interpretation: allCandidates.some(x => x.output.exists)
-      ? "At least one source-selected password produced a decoder output. Inspect the output bytes and text before classifying it as a payload."
-      : "No MP3Stego output file was recovered from either original audio under the six source-selected passwords. This does not exclude an unlocated password or other steganography."
+    interpretation: allCandidates.some(x => x.output.exists && x.output.bytes > 0)
+      ? "At least one source-selected password produced non-empty decoder output. Inspect its bytes and plaintext before classifying it as a payload."
+      : "No non-empty MP3Stego output was recovered from either original audio under the six source-selected passwords. This does not exclude an unlocated password or other steganography."
   }, null, 2));
 })().catch(err => {
   console.error(err && err.stack ? err.stack : String(err));
