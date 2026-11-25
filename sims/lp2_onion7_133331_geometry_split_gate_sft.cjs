@@ -121,6 +121,7 @@ function run() {
   const lcgPerimeter = lcgPerimeterCells.map(i => grid.bytes[i]);
   const lcgInterior = lcgInteriorCells.map(i => grid.bytes[i]);
   const rowPerimeter29 = rowPerimeter.map(v => v%29);
+  const rowPerimeter32 = rowPerimeter.map(v => v%32);
   const rowInterior29 = rowInterior.map(v => v%29);
   const lcgPerimeter29 = lcgPerimeter.map(v => v%29);
   const lcgInterior29 = lcgInterior.map(v => v%29);
