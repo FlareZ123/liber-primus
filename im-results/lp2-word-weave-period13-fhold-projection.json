@@ -1,0 +1,523 @@
+{
+  "lexiconSize": 29079,
+  "controls": [
+    {
+      "name": "0_welcome",
+      "mode": "before",
+      "cut": 99,
+      "anchors": [
+        {
+          "word": 66,
+          "length": 10,
+          "L": 10,
+          "partials": 2121
+        }
+      ],
+      "pairs": 0,
+      "complete": 0,
+      "candidates": 0,
+      "supported": 0,
+      "keyRecovered": false,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "name": "0_welcome",
+      "mode": "after",
+      "cut": 99,
+      "anchors": [
+        {
+          "word": 54,
+          "length": 10,
+          "L": 10,
+          "partials": 2121
+        },
+        {
+          "word": 66,
+          "length": 10,
+          "L": 10,
+          "partials": 2121
+        }
+      ],
+      "pairs": 1,
+      "complete": 1,
+      "candidates": 1,
+      "supported": 1,
+      "keyRecovered": true,
+      "fit": {
+        "runes": 407,
+        "scorePerRune": -0.650852243346293,
+        "lexical": 97,
+        "words": 99,
+        "correct": 407,
+        "preview": "WELCOME WELCOME PILGRIM TO THE GREAT JOURNEY TOWARD THE END OF ALL THNGS IT IS NOT"
+      },
+      "hold": {
+        "runes": 108,
+        "scorePerRune": -0.6288052462776406,
+        "lexical": 25,
+        "words": 25,
+        "correct": 108,
+        "preview": "BENG UNTO YOURSELF YOU ARE A LAW UNTO YOURSELF EACH INTELLIGENCE IS HOLY FOR ALL THAT"
+      }
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "mode": "before",
+      "cut": 144,
+      "anchors": [
+        {
+          "word": 15,
+          "length": 10,
+          "L": 10,
+          "partials": 2121
+        },
+        {
+          "word": 67,
+          "length": 11,
+          "L": 11,
+          "partials": 1262
+        },
+        {
+          "word": 140,
+          "length": 10,
+          "L": 10,
+          "partials": 2121
+        },
+        {
+          "word": 141,
+          "length": 11,
+          "L": 11,
+          "partials": 1262
+        }
+      ],
+      "pairs": 6,
+      "complete": 5,
+      "candidates": 1,
+      "supported": 1,
+      "keyRecovered": true,
+      "fit": {
+        "runes": 588,
+        "scorePerRune": -0.8958283839961437,
+        "lexical": 141,
+        "words": 144,
+        "correct": 588,
+        "preview": "THE LOSS OF DIUINITY THE CIRCUMFERENCE PRACTICES THREE BEHAUIARS WHICH CAUSE THE LOSS OF DIUINITY CONSUMPTIAN"
+      },
+      "hold": {
+        "runes": 167,
+        "scorePerRune": -0.7173513212550467,
+        "lexical": 36,
+        "words": 37,
+        "correct": 167,
+        "preview": "THAT HAUE US LOSE OUR PRIMALITY AND THUS OUR DIUINITY SOME WISDOM AMASS GREAT WEALTH NEUER"
+      }
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "mode": "after",
+      "cut": 144,
+      "anchors": [
+        {
+          "word": 15,
+          "length": 10,
+          "L": 10,
+          "partials": 2121
+        },
+        {
+          "word": 140,
+          "length": 10,
+          "L": 10,
+          "partials": 2121
+        },
+        {
+          "word": 141,
+          "length": 11,
+          "L": 11,
+          "partials": 1262
+        }
+      ],
+      "pairs": 3,
+      "complete": 3,
+      "candidates": 2,
+      "supported": 2,
+      "keyRecovered": true,
+      "fit": {
+        "runes": 588,
+        "scorePerRune": -0.8958283839961437,
+        "lexical": 141,
+        "words": 144,
+        "correct": 588,
+        "preview": "THE LOSS OF DIUINITY THE CIRCUMFERENCE PRACTICES THREE BEHAUIARS WHICH CAUSE THE LOSS OF DIUINITY CONSUMPTIAN"
+      },
+      "hold": {
+        "runes": 167,
+        "scorePerRune": -0.7173513212550467,
+        "lexical": 36,
+        "words": 37,
+        "correct": 167,
+        "preview": "THAT HAUE US LOSE OUR PRIMALITY AND THUS OUR DIUINITY SOME WISDOM AMASS GREAT WEALTH NEUER"
+      }
+    }
+  ],
+  "original": [
+    {
+      "pages": [
+        0,
+        2
+      ],
+      "mode": "before",
+      "anchors": 3,
+      "pairs": 0,
+      "joins": 0,
+      "complete": 0,
+      "clique": 1,
+      "forcedOOV": 2,
+      "fullKeyClasses": 0,
+      "fitCandidates": 0,
+      "fitCandidateKeys": [],
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        0,
+        2
+      ],
+      "mode": "after",
+      "anchors": 3,
+      "pairs": 0,
+      "joins": 0,
+      "complete": 0,
+      "clique": 1,
+      "forcedOOV": 2,
+      "fullKeyClasses": 0,
+      "fitCandidates": 0,
+      "fitCandidateKeys": [],
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        3,
+        7
+      ],
+      "mode": "before",
+      "anchors": 7,
+      "pairs": 0,
+      "joins": 0,
+      "complete": 0,
+      "clique": 1,
+      "forcedOOV": 6,
+      "fullKeyClasses": 0,
+      "fitCandidates": 0,
+      "fitCandidateKeys": [],
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        3,
+        7
+      ],
+      "mode": "after",
+      "anchors": 7,
+      "pairs": 0,
+      "joins": 0,
+      "complete": 0,
+      "clique": 1,
+      "forcedOOV": 6,
+      "fullKeyClasses": 0,
+      "fitCandidates": 0,
+      "fitCandidateKeys": [],
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        8,
+        14
+      ],
+      "mode": "before",
+      "anchors": 9,
+      "pairs": 0,
+      "joins": 0,
+      "complete": 0,
+      "clique": 1,
+      "forcedOOV": 8,
+      "fullKeyClasses": 4,
+      "fitCandidates": 0,
+      "fitCandidateKeys": [],
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        8,
+        14
+      ],
+      "mode": "after",
+      "anchors": 9,
+      "pairs": 0,
+      "joins": 0,
+      "complete": 0,
+      "clique": 1,
+      "forcedOOV": 8,
+      "fullKeyClasses": 3,
+      "fitCandidates": 0,
+      "fitCandidateKeys": [],
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        15,
+        22
+      ],
+      "mode": "before",
+      "anchors": 12,
+      "pairs": 0,
+      "joins": 0,
+      "complete": 0,
+      "clique": 1,
+      "forcedOOV": 11,
+      "fullKeyClasses": 335,
+      "fitCandidates": 0,
+      "fitCandidateKeys": [],
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        15,
+        22
+      ],
+      "mode": "after",
+      "anchors": 12,
+      "pairs": 0,
+      "joins": 0,
+      "complete": 0,
+      "clique": 1,
+      "forcedOOV": 11,
+      "fullKeyClasses": 335,
+      "fitCandidates": 0,
+      "fitCandidateKeys": [],
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        23,
+        26
+      ],
+      "mode": "before",
+      "anchors": 4,
+      "pairs": 0,
+      "joins": 0,
+      "complete": 0,
+      "clique": 1,
+      "forcedOOV": 3,
+      "fullKeyClasses": 0,
+      "fitCandidates": 0,
+      "fitCandidateKeys": [],
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        23,
+        26
+      ],
+      "mode": "after",
+      "anchors": 4,
+      "pairs": 0,
+      "joins": 0,
+      "complete": 0,
+      "clique": 1,
+      "forcedOOV": 3,
+      "fullKeyClasses": 0,
+      "fitCandidates": 0,
+      "fitCandidateKeys": [],
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        27,
+        32
+      ],
+      "mode": "before",
+      "anchors": 11,
+      "pairs": 0,
+      "joins": 0,
+      "complete": 0,
+      "clique": 1,
+      "forcedOOV": 10,
+      "fullKeyClasses": 0,
+      "fitCandidates": 0,
+      "fitCandidateKeys": [],
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        27,
+        32
+      ],
+      "mode": "after",
+      "anchors": 11,
+      "pairs": 1,
+      "joins": 2,
+      "complete": 0,
+      "clique": 2,
+      "forcedOOV": 9,
+      "fullKeyClasses": 0,
+      "fitCandidates": 0,
+      "fitCandidateKeys": [],
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        33,
+        39
+      ],
+      "mode": "before",
+      "anchors": 10,
+      "pairs": 0,
+      "joins": 0,
+      "complete": 0,
+      "clique": 1,
+      "forcedOOV": 9,
+      "fullKeyClasses": 0,
+      "fitCandidates": 0,
+      "fitCandidateKeys": [],
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        33,
+        39
+      ],
+      "mode": "after",
+      "anchors": 10,
+      "pairs": 1,
+      "joins": 1,
+      "complete": 1,
+      "clique": 2,
+      "forcedOOV": 8,
+      "fullKeyClasses": 1,
+      "fitCandidates": 1,
+      "fitCandidateKeys": [
+        [
+          0,
+          4,
+          19,
+          20,
+          11,
+          8,
+          26,
+          12,
+          11,
+          0,
+          9,
+          1,
+          21
+        ]
+      ],
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        40,
+        53
+      ],
+      "mode": "before",
+      "anchors": 15,
+      "pairs": 0,
+      "joins": 0,
+      "complete": 0,
+      "clique": 1,
+      "forcedOOV": 14,
+      "fullKeyClasses": 335,
+      "fitCandidates": 0,
+      "fitCandidateKeys": [],
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        40,
+        53
+      ],
+      "mode": "after",
+      "anchors": 15,
+      "pairs": 0,
+      "joins": 0,
+      "complete": 0,
+      "clique": 1,
+      "forcedOOV": 14,
+      "fullKeyClasses": 335,
+      "fitCandidates": 0,
+      "fitCandidateKeys": [],
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        54,
+        55
+      ],
+      "mode": "before",
+      "anchors": 2,
+      "pairs": 0,
+      "joins": 0,
+      "complete": 0,
+      "clique": 1,
+      "forcedOOV": 1,
+      "fullKeyClasses": 0,
+      "fitCandidates": 0,
+      "fitCandidateKeys": [],
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        54,
+        55
+      ],
+      "mode": "after",
+      "anchors": 2,
+      "pairs": 0,
+      "joins": 0,
+      "complete": 0,
+      "clique": 1,
+      "forcedOOV": 1,
+      "fullKeyClasses": 0,
+      "fitCandidates": 0,
+      "fitCandidateKeys": [],
+      "key": null,
+      "fit": null,
+      "hold": null
+    }
+  ]
+}
