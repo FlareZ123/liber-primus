@@ -84,7 +84,7 @@ blake_full = gutenberg_body(
 )
 blake_hold = words_to_ids(blake_full[:int(len(blake_full) * 0.50)])
 gibran = gutenberg_body(
-    (ROOT / "resources/control/gibran_prophet_58585.txt").read_text(encoding="utf8-sig")
+    (ROOT / "resources/control/gibran_prophet_58585.txt").read_text(encoding="utf-8-sig")
 )
 shakespeare = (ROOT / "resources/control/shakespeare_first300k.txt").read_text(encoding="utf8")
 gibran_train_text, gibran_hold_text = split_at_word_boundary(gibran, 0.75)
