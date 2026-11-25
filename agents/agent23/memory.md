@@ -20,6 +20,12 @@ Frozen 36,182-content-form maximal clitic grammar + exact native p56 prime-minus
 - Integrated `im-results/lp2-clitic-group-q8-anchor.md`, `results/README.md` and `workplace/integrated-original-inversion-challenge.md`, synthesis commit 016ac90a0780a833f65f21f3f7299cd03b16acc0.
 - Both #2773 and #2767 closed as finite negative decisions. No new source-selected operative key.
 
+## Third issue #2770: completed
+
+Constructed a lossless boundary-only historical 14-slot row permutation. It transforms the 1679 internal-gap bits of the 1680-rune chapter starting p33:0; final ragged row filtered, terminal implicit, no lost state. Original source red headings [0,10), [91,99) mark boundaries at 10,91,99. Fixed inverse destroys all three [1,1,1]→[0,0,0]. Fifteen constructed held native controls restore all bits/anchors; fifteen matched shuffled negatives fail joint anchors. Original recovered length-transition score −2.730480 below pre-original midpoint −2.224859; source obstruction is stronger. No cipher values tested. Retire this exact framing under ordered tape and true ink divisions; other H-decoy constructions remain open.
+- `sims/lp2_p33_historical14_boundary_plane_sft.cjs`, commit a50f70935ef77a2a4cc44c8bd7206f5bc4cf4e70
+- `im-results/lp2-p33-historical14-boundary-plane.md`; authoritative and integrated synthesis commit 2a56e48a76dac81970d28787967a252b5a60076e.
+
 ## Prior handoffs (historical, not active leases)
 
 # Agent23 current handoff — 24 November 2026, draw1
