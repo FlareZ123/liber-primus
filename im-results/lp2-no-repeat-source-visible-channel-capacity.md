@@ -1,10 +1,10 @@
 # LP2 no-repeat escape-channel capacity: source-visible carrier audit
 
-**Status:** boundary capacity is sufficient for carrying arbitrary rune values *if plaintext spacing is not also arbitrary*. Two concrete natural rank codecs have now been tested against original runes and separators, including a joint rune-and-plaintext-spacing inverse. Its source readout is unreadable; a common five-repeat version is impossible on eight pages. A variable-length repeat-delimited radix inverse eliminates the fixed-length side-channel requirement, but its independent original-language holdout fails. No source-selected historical boundary decoder or recovered unknown plaintext.
+**Status:** the page-reset, physical-line, joint-spacing, histogram, variable-length and fixed global-boundary compression receivers have been tested; their exact frozen readouts fail. A distinct conditional H-shuffle printed-group-reset enumerative receiver (2,896 groups; 63 within-group repeats) has a 264.489-bit deficit and a 323.144-bit red/mark/apostrophe carrier, but its fixed mixed-radix original inverse is non-English. Printed groups are not authenticated plaintext words; no source-selected historical decoder or recovered unknown plaintext.
 
 ## Finding
 
-The observed 29-symbol ciphertext stream does not by itself rule out a 29-to-28 next-rune encoder. Red/special marks alone do not provide enough side information, even under an intentionally generous count. Under the fixed page-quota/coarse-boundary model, fine punctuation labels plus generous ink and the optional binary line residuals are also insufficient. Printed word-boundary positions have ample *combinatorial* capacity, but no source-selected reversible mapping to those positions has been found; the joint rune-and-spacing inverse also fails on 29/55 original pages. A separate physical-line-framed enumerative rank has now been tested: its original candidate has 0/1,132 long dictionary words, while universal GP29 recovery under the fixed per-line repeat schedule requires 662 bits even with a free head on every line and 711 bits with continuous seams. The original-image compositor model leaves at most 55 bits in its deliberately generous binary residual-line-end channel. This rejects the tested line-framed family, not every possible source-selected or language-restricted encoder.
+The observed 29-symbol ciphertext stream does not by itself rule out a 29-to-28 next-rune encoder. Under the page-reset/global-86-repeat model, red/special marks alone are short of the required side information; fine punctuation plus generous ink and the optional binary line residuals are also insufficient under the fixed page-quota/coarse-boundary assumptions. A separate conditional H-shuffle group-reset model uses the 2,896 complete printed groups as resets, leaving 10,060 within-group transitions and 63 internal repeats. Its count-first codebook has a 264.489-bit deficit, so the red-run/large-mark/apostrophe carrier (323.144-bit state space) is cardinality-sufficient; however, one frozen physical-order mixed-radix inverse is non-English under the fixed quadgram control. Printed groups are not authenticated plaintext words, and this rejects only that exact rank/sidecar mapping. Printed boundary positions still have ample *combinatorial* capacity but no source-selected reversible mapping. A separate physical-line-framed enumerative rank also fails: its original candidate has 0/1,132 long dictionary words, while universal GP29 recovery under the fixed per-line repeat schedule requires 662 bits even with a free head on every line and 711 bits with continuous seams. The original-image compositor model leaves at most 55 bits in its deliberately generous binary residual-line-end channel. These are scoped negative results, not a general impossibility theorem.
 
 This is a capacity and scoped-decoder result, **not** a cipher identification or decryption.
 
@@ -16,6 +16,7 @@ For a hypothetical encoder whose output is restricted to 28 choices at ordinary 
 
 | Model | Minimum additional information |
 |---|---:|
+| Printed-group reset (2,896 groups; at most 63 within-group repeats) | **264.489 bits** |
 | Global output has at most 86 repeats, repeat positions free | **325.450 bits** |
 | Exactly 86 repeat positions are free and the repeated outputs are forced | **325.750 bits** |
 | 86 exception positions are fixed in advance and allow all 29 outputs | **648.770 bits** (649-bit side channel) |
@@ -23,7 +24,7 @@ For a hypothetical encoder whose output is restricted to 28 choices at ordinary 
 | Per-page repeat counts fixed exactly | **445.732 bits** |
 | All 86 repeat positions fixed in advance | **1,066.559 bits** |
 
-These are conditional bounds for the proposed 29-to-28 family, not evidence that this family is the actual LP2 cipher. The 86 observed repeats are corpus observations, not an author-authenticated rule. Derivations and earlier tests are in [lp2-anti-repeat-lossless-capacity.md](lp2-anti-repeat-lossless-capacity.md).
+These are conditional bounds for the proposed 29-to-28 family, not evidence that this family is the actual LP2 cipher. The 86/63 observed repeats are corpus observations, not author-authenticated rules. The printed-group row assumes H-shuffle: groups act as reset blocks even though the source does not establish them as plaintext words. Derivations and earlier tests are in [lp2-anti-repeat-lossless-capacity.md](lp2-anti-repeat-lossless-capacity.md).
 
 ## Tight invertible planted construction
 
@@ -253,10 +254,11 @@ Both original ranges have visibly nonlinguistic outputs and ordinary shuffle-ran
 - The tested physical-line-framed exact-repeat rank is **rejected** under both natural line-start conventions: it yields no long dictionary plaintext and needs 662–711 bits for universal GP29 recovery, versus at most 55 bits in the simple residual-line-end model.
 - The tested repeat-delimited variable-length predecessor-excluded radix inverse is **rejected** on both independent original regions, despite exact rune-tape replay and 834/834 solved-native plant recovery; length variation alone does not select a cipher.
 - A blanket claim that every 29-to-28 no-repeat encoder is impossible is still **not** supported. The printed word-boundary position space has enough combinatorial capacity to carry missing information in principle.
-- Red/special marks alone are insufficient. Geometry-aware ink plus pooled fine punctuation labels remains 38.89–51.40 bits short of the global deficit; only granting all 55 residual-line bits independently barely crosses, and no source-selected line readout exists.
-- No explicit, historically motivated, reversible plaintext-to-word-boundary mapping has been found. The 9,638-bit figure is a ceiling on possible arrangements, not evidence of a hidden message.
-- One fixed global count-first enumerative rank, combined with page-concatenated word-boundary combinadic ranks and interpreted as a big-endian zlib/DEFLATE stream, is rejected. This retires that specific standard-compressor mapping, not every native-language compression model.
-- Do not proceed to arbitrary boundary-bit subsets, fitted lookup tables, unconstrained per-page masks, or further line-rank sweeps. The remaining capacity hinge is whether any of the 55 compositor residuals are independently selectable and have a source-selected readout; the current image evidence does not establish that. Otherwise the only high-capacity channel is unrestricted word-boundary placement, for which no historically motivated reversible mapping has been found. Require an original clue that selects the operation and predicts a reproducible output on untouched pages.
+- Under the page-reset/global-86 model, red/special marks alone remain insufficient; geometry-aware ink plus pooled fine punctuation labels remains 38.89–51.40 bits short, while granting all 55 residual-line bits independently only barely crosses. This is separate from the group-reset model below.
+- A conditional H-shuffle group-reset enumerative receiver (2,896 groups, 63 within-group repeats, F ordinary) has a 264.489-bit deficit and a 323.144-bit red-run/large-mark/apostrophe carrier. Its exact physical-order mixed-radix inverse and forward replay pass, but the recovered tape is non-English; retire only that rank/sidecar mapping.
+- No explicit, historically motivated, reversible plaintext-to-word-boundary or red/mark sidecar mapping has been found. The 9,638-bit boundary-position figure is a ceiling on possible arrangements, not evidence of a hidden message.
+- One fixed global count-first enumerative rank, combined with page-concatenated word-boundary combinadic ranks and interpreted as a big-endian zlib/DEFLATE stream, is rejected under both zlib and raw DEFLATE. This retires that specific standard-compressor mapping, not every native-language compression model.
+- Do not proceed to arbitrary boundary-bit subsets, fitted lookup tables, unconstrained per-page masks, further line-rank sweeps, or arbitrary compressor/rank-order sweeps. The remaining work needs an original clue that selects a distinct reset clock, sidecar readout, or genuinely moved-boundary encoding; the 55 compositor residuals remain an unverified possible channel, not an authenticated key. Require a locked prediction on untouched material.
 
 ## Reproduction
 
@@ -266,7 +268,9 @@ Run:
 
 `node sims/lp2_line_framed_enumerative_original_sft.cjs`
 
-Inputs are the current transcription, rune corpus, ink annotations, solved-GP29 donor, and TextBlob word-frequency control. The line-framed SFT verifies exact original unrank/replay, both capacity bounds, dictionary scoring, and source-native planted-key controls.
+`node sims/lp2_group_reset_redmark_quotient_original_sft.cjs` (Windows Node 22 CI run [45528313580](https://github.com/FlareZ123/liber-primus/actions/runs/45528313580)).
+
+Inputs are the current transcription, rune corpus, ink annotations, solved-GP29 donor, and TextBlob word-frequency control. The line-framed SFT verifies exact original unrank/replay, both capacity bounds, dictionary scoring, and source-native planted-key controls. The group-reset SFT verifies the exact original inverse/replay, the red/mark/apostrophe sidecar rank, fixed quadgram comparison, and p56/p57 source-native plants.
 
 
 ## Joint recovery of plaintext runes AND word breaks (24 November 2026, Agent 5)
@@ -326,3 +330,28 @@ A single fixed compressed-text hypothesis was tested rather than sweeping rank o
 This retires only the tested fixed rank/quotient serialization with these two standard wrappers. No other compressor, boundary order, source-selected code, or authentic key was tested; no plaintext is recovered.
 
 Reproduction: [SFT](../sims/lp2_no_repeat_global_boundary_zlib_sft.cjs) · [zlib-wrapper negative gate](https://github.com/FlareZ123/liber-primus/actions/runs/45518898048) · [raw-DEFLATE negative gate, Windows Node 22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45525467222) · [initial source commit](https://github.com/FlareZ123/liber-primus/commit/e644a8cfac57f7c17108f9024141738c64f7b8eb) · [raw-DEFLATE extension](https://github.com/FlareZ123/liber-primus/commit/4390f90ddd26a2bc4a1d5355f2df3039a8416d1d).
+
+## Printed-group-reset enumerative inverse with red/mark sidecar (Agent7, 25 November 2026)
+
+**Scope and clock.** This is a conditional H-shuffle hypothesis, not an established plaintext segmentation. Treat every explicit printed separator in the corrected source as a reset, but do not reset merely because a physical page ends. The source yields 2,895 delimiter gaps and 2,896 complete printed groups; 22 delimiter gaps lie at page joins, while 32 page transitions carry a group across the page. Across 12,956 runes this leaves 10,060 within-group transitions. There are 63 equal transitions inside groups and 23 equal transitions across delimiters (86 total). The 2,896 groups are not authenticated plaintext words.
+
+**Frozen codebook.** Treat all 29 GP symbols, including F, as ordinary symbols; do not import p56's separate transparent-F rule. Let \(W=2,896\), \(T=10,060\), and \(K=63\), where K is the observed within-group repeat count (a post-selected parameter, not an author-authenticated quota). The count-first constrained codebook has
+
+\[
+M=29^W\sum_{k=0}^{K}\binom{T}{k}28^{T-k},
+\qquad U=29^{12,956},
+\qquad Q=\lceil U/M\rceil.
+\]
+
+Its information deficit is **264.488872 bits**. Rank the ciphertext by the base-29 group-head tuple, ascending repeat-count class, colex rank of the within-group repeat-position mask, and base-28 ranks of the nonzero cyclic GP29 deltas.
+
+**Source-visible sidecar.** Construct H in physical page order from: (1) ordered fixed-length red-span placements; (2) large-mark positions as multisets of visible boundary slots; (3) the four source-visible apostrophe positions on p4, p21, p35 and p41; and (4) the three ten-dot mark slots plus the black-mark slot among the 31 large marks. The carrier state space is **323.143652 bits**; the observed mixed-radix rank is **310.846835 bits**. Set \(q=H\bmod Q\) and \(s=\lfloor H/Q\rfloor\), leaving **46.357963 visible salt bits**. Thus this carrier has enough cardinality for the group-reset deficit, unlike the page-reset/global-86 comparison. The source does not independently select this exact concatenation or explain the leftover salt.
+
+**Original-input result.** The exact inverse is \(P=\operatorname{base29}(qM+R)\), and the corresponding constrained-code unranker forward-replays all 12,956 original ciphertext runes under the observed printed-group schedule. Under the fixed Dukotah Round27 English quadgram table with 0.01 pseudocount, the candidate scores **−17.32 nats/quadgram**, versus **−10.27** for known p56 plaintext, **−10.18** for clear p57, and **−17.13** for the original ciphertext transliteration. About **60.1%** of candidate quadgrams are absent from the table, compared with 2/88 for p56 and 4/97 for p57. The recovered tape is therefore non-English under this unchanged diagnostic.
+
+**Positive controls.** Source-native p56 plaintext (including its literal F as an ordinary symbol in this candidate code) and clear p57 plaintext were each planted through the same quotient/codebook construction with source-derived group counts and moved boundary masks. Both decode exactly and forward-replay exactly. These synthetic controls validate the implementation; they do not establish historical use.
+
+**Decision.** Reject this exact group-reset count-first rank and red-run/large-mark/apostrophe quotient mapping. This is not an exclusion of H-shuffle, every group-reset encoder, other source-selected sidecars, or language-restricted encoders. No unknown plaintext, key, or destination is recovered.
+
+Reproduction: [read-only SFT](../sims/lp2_group_reset_redmark_quotient_original_sft.cjs) · [Windows Node 22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45528313580) · [script commit](https://github.com/FlareZ123/liber-primus/commit/b6701955ed1bb9d27685822ecb6bca886c55ff8f).
+
