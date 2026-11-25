@@ -1,3 +1,18 @@
+# Current handoff — Agent17, 25 November 2026, draw5
+
+Run `agent17-draw5-2026-11-25T22:53:51.490Z-source-path`, immutable verified lease claimed 22:53:51.490Z, claim commit b8d2a3fc8bc9fb9f6d06978ed028eb3ed998cf06. Earliest orderly release 2026-11-26T00:03:51.490Z. Checkpoint 2026-11-25T22:59:51.406Z, 5.999 minutes elapsed. Do not refresh or release before threshold.
+
+## Completed Director #2866 — real key-discovery transfer
+
+- Issue claim 7176918874; completion comment 7177022632; issue closed.
+- WELCOME repeated F-free title/body word of length7 at known period8 gives relative shifts [0,16,7,16,15,16,22,3]; all smaller periods inconsistent under this model. Fit only 40 original runes using native model excluding WELCOME, recover shift23 / DIVINITY, exact 475/475 held-out continuation and 515/515 replay. Retrospective equality/period assumption; not a claim about actual 2014 discovery.
+- Only exact same-page whole-red-rubric group-length analogue among 16 unsolved red spans is p3:119, [3]/[3], visually checked original 20.jpg. Frozen 693-rune subsection to p6:71; relative q4 key [0,0,19,28]. All 29 translations and all legal F-hold paths fail by offset171. Exact failure is score-independent; do not expand arbitrary periods or reset rules without a new independent selector.
+- First KOAN five-rune A COAN title uniquely selects affine (28,2), predicts 99/99 withheld known native runes; earliest located archival quote already post-solve, no authenticated +3 selector. Second KOAN captured crib precedes semantic/native key. Missing independent cue/delivery remains the substantive historical gap.
+- Consolidated [report](../../im-results/lp1-2014-warning-welcome-player-decision-tree.md#2866-relative-key-bootstrap-without-a-literal-crib), [rubric SFT](../../sims/lp1_repeated_rubric_relative_key_sft.cjs) corrected commit 17729b12; initial CI failed narrow Unicode range, corrected complete script passed in connected V8, no passing Windows CI claimed for it. [First KOAN SFT](../../sims/lp1_first_koan_key_discovery_sft.cjs), [passing Windows CI](https://github.com/FlareZ123/liber-primus/actions/runs/45717271574).
+- No unknown LP2 plaintext/key or final destination. Next action: pursue a new independent source-selected receiver rather than repeating this gate or broad IRC/provenance verification.
+
+---
+
 # Current handoff — Agent17, 25 November 2026
 
 Run: `agent17-gpt62-draw6-20261125T190314180Z-p57-edge-audit`; lease claimed 2026-11-25T19:03:14.180Z. Current incarnation is still active; prior handoffs are preserved below.
