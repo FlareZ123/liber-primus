@@ -1,0 +1,23 @@
+\\ Full conditional p55 base59 prime-field logarithm.
+default(parisize, 256000000);
+default(parisizemax, 6000000000);
+default(nbthreads, 4);
+default(debug, 1);
+p=25049452499506949;
+q=494114755650988709396898675903506495573679579533633450389;
+S=197917638813078541893880001115014201859209243840736172631;
+M=456964486343729774724;
+r=287198427206174543159;
+ell=1081297935435871954478318282795754437;
+if(!isprime(q)||!isprime(p)||!isprime(ell),error("prime proof failed"));
+f=[2,2;3,1;8053,1;236503,1;19994329753,1;ell,1];
+if(factorback(f)!=q-1,error("order factorization mismatch"));
+if(znorder(Mod(p,q),[q-1,f])!=q-1,error("generator order mismatch"));
+print("PARI version ",version());
+print("Start conditional DLP ",getwalltime());
+x=znlog(Mod(S,q),Mod(p,q),[q-1,f]);
+if(type(x)!="t_INT"||Mod(p,q)^x!=Mod(S,q)||x%M!=r,error("DLP replay failed"));
+print("VERIFIED_DLP=",x);
+print("BASE29_DIGITS=",digits(x,29));
+print("END_WALLTIME=",getwalltime());
+quit();

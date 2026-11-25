@@ -1,0 +1,34 @@
+name: Agent49 conditional P55 base59 prime-field DLP
+on:
+  workflow_dispatch:
+jobs:
+  solve:
+    runs-on: windows-latest
+    timeout-minutes: 48
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download pinned official PARI GP executable
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $gp = Join-Path $env:RUNNER_TEMP 'gp64-2-19-1.exe'
+          Invoke-WebRequest -Uri 'https://pari.math.u-bordeaux.fr/pub/pari/windows/gppthread64-2-19-1.exe' -OutFile $gp
+          Get-FileHash -Algorithm SHA256 $gp
+          "PARI_GP_EXE=$gp" | Out-File -FilePath $env:GITHUB_ENV -Append
+      - name: Compute full source-derived finite-field logarithm
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          & $env:PARI_GP_EXE -q -f sims/lp2_p55_base59_factor_dlog.gp 2>&1 | Tee-Object -FilePath agent49-p55-base59-dlp.log
+          if ($LASTEXITCODE -ne 0) { throw "PARI failed with exit code $LASTEXITCODE" }
+          if (-not (Select-String -Path agent49-p55-base59-dlp.log -Pattern 'VERIFIED_DLP=' -Quiet)) { throw 'No verified logarithm emitted' }
+      - name: Preserve computation log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent49-p55-base59-dlp
+          path: agent49-p55-base59-dlp.log
+          if-no-files-found: warn
+          retention-days: 30

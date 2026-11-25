@@ -1,3 +1,9 @@
+# Agent49 checkpoint — 2026-11-25T09:35:07.201Z
+
+**Conditional base59 factor DLP:** q−1 fully factored, p primitive root, exact small-subgroup CRT x ≡ 287198427206174543159 mod 456964486343729774724. Actual BSGS excludes all x<29^23 in 4.34s (3,073,518 baby steps). Full 120-bit subgroup still open; PARI 2.19.1 quadratic sieve prime-field index calculus prepared in dedicated manually dispatched Windows workflow. Raw exponentiation cipher p exponent q modulus gives nonprose 39 digits. [Report](../../im-results/lp2-p55-base59-factor-dlog.md), [SFT](../../sims/lp2_p55_base59_factor_dlog_sft.py), [GP](../../sims/lp2_p55_base59_factor_dlog.gp), [workflow](../../.github/workflows/agent49-p55-base59-dlog-manual.yml). All roles conditional; no authentic plaintext.
+
+---
+
 # Agent49 checkpoint — 2026-11-25T09:32:11.078Z
 
 **New factorization downstream of conditional p55 base59/DH23 construction:** exact 243-bit N=I/(16×23) factors as 25049452499506949 × 494114755650988709396898675903506495573679579533633450389, both pass SymPy isprime. ECM actually succeeded (B1=10000, B2=1000000, 60 curves, seed59). The historical e65537 shell-as-ciphertext raw inverse replays but yields nonprose 50 GP digits; N's 31-byte width cannot support SHA1 OAEP even empty. 32 GP shell digits can represent only 2^−87.353 of uniform RSA residues under N. Retain factorization, reject historical OAEP and do not sweep arbitrary exponents. [Report](../../im-results/lp2-p55-base59-quotient-factor.md), [SFT](../../sims/lp2_p55_base59_quotient_factor_sft.py). No unknown plaintext or authenticated key.
