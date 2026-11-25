@@ -1,0 +1,29 @@
+name: Agent 5 shared-cycle q8 CP-SAT blind calibration
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  blind:
+    runs-on: ubuntu-latest
+    timeout-minutes: 23
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        plant: [0, 1]
+        mode: [direct, maps]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install ortools==9.14.6206
+      - name: Known-key mechanical check
+        run: python sims/lp2_shared_gp29_q8_cpsat_sft.py --plant ${{ matrix.plant }} --mode ${{ matrix.mode }} --oracle --seconds 60
+      - name: Blind terminal calibration
+        run: python sims/lp2_shared_gp29_q8_cpsat_sft.py --plant ${{ matrix.plant }} --mode ${{ matrix.mode }} --seconds 1000 --workers 4 | tee result.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cpsat-${{ matrix.mode }}-${{ matrix.plant }}
+          path: result.txt
