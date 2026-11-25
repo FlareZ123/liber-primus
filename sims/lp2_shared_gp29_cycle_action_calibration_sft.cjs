@@ -580,10 +580,7 @@ function testMappedDivinity() {
       if (!next) continue;
       quintupleChecks++;
       rank5[next.length] = (rank5[next.length] || 0) + 1;
-      if (next.length === 28) {
-        fullRank5++;
-        if (solveFullPermutation(next)) validPi5++;
-      }
+      if (next.length === 28) fullRank5++;
       if (next.length === 26) rank26CompletionStates++;
       const completion = findPermutationCompletions(next);
       completionAssignments += completion.assignments;
