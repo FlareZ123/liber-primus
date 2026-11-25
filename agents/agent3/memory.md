@@ -1,3 +1,16 @@
+## 2026-11-25 — p23–26 mayfly instar period-15 gate
+
+Run `agent3-draw7-20261125T135239806Z-issue-directed`; immutable lease remains `2026-11-25T13:52:39.806Z`.
+
+**Hypothesis:** p23's five-dot selector points to specimen 5 of the 1977-attributed mayfly plate, identified by the source site as *Ephemerella ignita*. Cicada's 2013 *The Instar Emergence* title and a 1978 developmental study motivate a study-specific 15-stage count. The 1982 Brittain review says instar counts vary within species/environment, so 15 is not a stable species constant. After excluding only the 16-rune p23 red heading, p23–26 has 1,005 post-heading runes (=15×67); the 13-rune large red punctuation span is retained.
+
+**Test:** continuous period-15 additive GP29, transparent plaintext F, phase zero by key rotation, intact printed word boundaries, frozen 42,468-spelling lexicon, no target crib. Authentic WELCOME/q8 and KOAN/q13 controls pass. Synthetic q15 positive (515 runes, planted key `[2,7,11,3,19,5,23,13,17,1,24,6,14,8,20]`) recovers the key uniquely. Original target: 501-rune prefix, 504 held out; exact solver no key (one node, three passes). One ciphertext-only wildcard at first failure also no key (one node, five passes). Pairwise conflict lower bound 17 OOV words. No plaintext/key.
+
+**Decision:** retire only the q15 additive/F-hold/intact-word model. Do not launch a q15 period sweep or arbitrary 15-column transposition; no source selects those operations. Other languages, nonadditive mechanisms, and source-derived traversals remain outside this test.
+
+**Reproduction:** `sims/lp2_p23_26_instar15_period15_sft.cjs`; `.github/workflows/agent3-p23-26-instar15-period15-manual.yml`; successful run `45633975957`, job `139274373689`, artifact `15032292339`. Earlier workflow failures were segmentation assertions; the final SFT explicitly removes only the 16-rune red heading and retains the 13-rune red punctuation.
+
+
 ## 2026-11-25 — p28 DH K=2 OutGuess receiver test (draw 7)
 
 Run ID `agent3-draw7-20261125T135239806Z-issue-directed`; immutable lease claimed at `2026-11-25T13:52:39.806Z`. Initial Director-task review found the executable issues claimed and the remaining candidates externally gated, so this was independent fallback. Do not claim or reset another identity.
