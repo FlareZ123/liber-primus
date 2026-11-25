@@ -1,0 +1,161 @@
+{
+  "dictionary": {
+    "count": 38938,
+    "sortedCompactFNV64": "b39eeb2d0de511c4"
+  },
+  "longAnchorOOV": {
+    "pageRange": "40–53",
+    "groups": 24,
+    "chapterGroups": 669,
+    "runicCount": 261,
+    "budget": 3,
+    "found": false,
+    "timed": false,
+    "nodes": 326552,
+    "extends": 3028059,
+    "enum": 69803,
+    "residual": 0,
+    "finished": 1012,
+    "total": 1012,
+    "seconds": 177.245
+  },
+  "chapterLongZeroOOV": [
+    {
+      "pages": "0–2",
+      "groups": 6,
+      "finished": 88,
+      "total": 197,
+      "timed": true
+    },
+    {
+      "pages": "3–7",
+      "groups": 10,
+      "finished": 136,
+      "total": 136,
+      "seconds": 20.1
+    },
+    {
+      "pages": "8–14",
+      "groups": 16,
+      "finished": 148,
+      "total": 148,
+      "seconds": 1.33
+    },
+    {
+      "pages": "15–22",
+      "groups": 15,
+      "finished": 11,
+      "total": 11,
+      "seconds": 0.235
+    },
+    {
+      "pages": "23–26",
+      "groups": 7,
+      "finished": 117,
+      "total": 117,
+      "seconds": 0.87
+    },
+    {
+      "pages": "27–32",
+      "groups": 14,
+      "finished": 510,
+      "total": 510,
+      "seconds": 0.731
+    },
+    {
+      "pages": "33–39",
+      "groups": 13,
+      "finished": 34,
+      "total": 34,
+      "seconds": 8.15
+    }
+  ],
+  "arbitraryTerminalBlind": [
+    {
+      "plant": 0,
+      "seconds": 600,
+      "finished": 4,
+      "total": 2433,
+      "nodes": 4165747,
+      "extensions": 31244242,
+      "filters": 180488726000,
+      "enumerations": 78590,
+      "timed": true
+    },
+    {
+      "plant": 1,
+      "seconds": 600,
+      "finished": 2,
+      "total": 2537,
+      "nodes": 3387950,
+      "extensions": 171915266,
+      "filters": 145041137904,
+      "enumerations": 11821067,
+      "timed": true
+    }
+  ],
+  "sourceWordPool": {
+    "numeric": {
+      "keys": 17,
+      "blind": [
+        {
+          "plant": 0,
+          "key": "01kj3149",
+          "exact": true,
+          "holdout": 17,
+          "unique": 13,
+          "seconds": 0.92058
+        },
+        {
+          "plant": 1,
+          "key": "1a9agqna",
+          "exact": true,
+          "holdout": 17,
+          "unique": 12,
+          "seconds": 7.31266
+        }
+      ],
+      "originalZeroOOV": {
+        "found": false,
+        "timed": false,
+        "finished": 17,
+        "total": 17,
+        "nodes": 1926613,
+        "extensions": 40963019,
+        "enumerations": 0,
+        "residual": 0,
+        "seconds": 68.2823
+      },
+      "corruptedPlant0": {
+        "budget": 3,
+        "found": true,
+        "seconds": 157.788,
+        "nodes": 1312795,
+        "extensions": 9386653,
+        "enumerations": 1
+      }
+    },
+    "mapped": {
+      "keys": 16,
+      "blind": [
+        {
+          "plant": 0,
+          "key": "01kj3149",
+          "exact": true,
+          "holdout": 17,
+          "unique": 12,
+          "seconds": 0.116684
+        },
+        {
+          "plant": 1,
+          "key": "1fr9fakk",
+          "exact": true,
+          "holdout": 17,
+          "unique": 12,
+          "seconds": 148.039
+        }
+      ]
+    }
+  },
+  "scope": "Chapter long-anchor negatives require all selected words in register except explicit omissions. Source-pool restriction not independently established. Timeout is not exclusion."
+}
