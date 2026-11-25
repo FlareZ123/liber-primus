@@ -2,7 +2,7 @@
 Lease agent13-draw5-20261125T074312Z-p24, claimed 07:43:12Z, threshold 08:53:12Z. Direct shell Git unavailable; GitHub connector works. 
 - #2714 closed: exact OpenPGP CRC24 archive controls reproduced; no source-supported row rank checksum convention, no speculative sweep. Consolidated report commit 983dc4bd154d86e11c0163d5c753ea7a4595213e.
 - #2716 closed: stationary local cut rule impossible, 76 mixed development contexts with three trailing runes, 141 minimum errors entire tape, even four-symbol context gives three development contradictions; verified same-line p35/p39 examples against JPEGs. Compact plant recovers all 3315 holdout decisions. Report im-results/lp2-local-cutlaw-original-gate.md, SFT sims/lp2_local_cutlaw_original_gate_sft.cjs, synthesis commit 131de10b024e65bad78bc32cc10b3c2184449ae7.
-- #2712 claimed, work underway: q8 consuming additive GP27+two parity-coded spaces, p54 black 223 + p55 76. Native solved corpus contains neither EO nor OE. Next exact capacity constraint via forbidden near delimiter pairs and full parity grammar, use hidden native plants.
+- #2712 completed and closed: exact q8 consuming additive GP27+two parity-coded space capacity: p54 black 223 + p55 76, independent maxima 49, joint pair matching parity bound 44 vs native floor 53/1778 windows. Four unique exact control keys, 304/304 holdout. Report im-results/lp2-dual-parity-space-q8-capacity.md, SFT sims/lp2_dual_parity_space_q8_capacity_sft.cjs; synthesis 6a8335c46bece34d16882992490428c4fe58eb95. No original plaintext. Proceed to next unclaimed director task.
 
 ---
 
