@@ -102,6 +102,8 @@ Because GP29 runes are indexed 0–28, a byte-table interpretation could also su
 
 This rejects the direct 5-bit XOR-pad consumer under the same 76/180 split.
 
+**Reproduction:** `sims/lp2_onion7_133331_geometry_split_gate_sft.cjs` reconstructs the seed from the 13-token GP29 payload, reads the committed grid/corpus/known-plaintext resources, and asserts the counts and exact outputs above. Run with `node sims/lp2_onion7_133331_geometry_split_gate_sft.cjs`, or through `.github/workflows/manual-node22-sft-runner.yml` using that script path.
+
 **Interpretation:** reject the exact composite `2016 seed 22 → 2014 133/331 LCG → original-cell perimeter/interior filter → byte mod29` as (a) direct p56+p57 plaintext, (b) their additive key, or (c) a p55 perimeter additive key; the cell-index transposition alternatives also fail the known-plaintext and p55 language gates. The 76/180 dimensional correspondence remains an interesting structural observation, but it does not supply this decryption. This test does not rule out other uses of the p50 table, different cipher families, or a separately sourced operation; do not rescue this branch by tuning the seed, phase, byte map, or cell order.
 
 **Decision:** reject the specific `2016 13-token seed → x₀=22 → 133/331 LCG → p50 table → repeating GP29 additive pad` route. This does not prove the PRNG marker is irrelevant, but it does not authenticate the LCG as a decryption key or consumer. A different PRNG-driven route/permutation would need its own source-selected target and reversible operation; do not expand into arbitrary PRNG consumers, phases, or table modifications.
