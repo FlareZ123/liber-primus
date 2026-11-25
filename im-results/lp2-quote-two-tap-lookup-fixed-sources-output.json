@@ -343,5 +343,116 @@
         "full": []
       }
     ]
+  },
+  {
+    "start": 24,
+    "sources": [
+      {
+        "name": "Latin Vulgate corpus/io_1.txt",
+        "candidates": 6
+      },
+      {
+        "name": "Latin Vulgate corpus/io_2.txt",
+        "candidates": 6
+      },
+      {
+        "name": "Latin Vulgate corpus/act_1.txt",
+        "candidates": 8
+      },
+      {
+        "name": "Latin Vulgate corpus/act_2.txt",
+        "candidates": 8
+      },
+      {
+        "name": "Latin Vulgate corpus/rom_1.txt",
+        "candidates": 7
+      },
+      {
+        "name": "Latin Vulgate corpus/rom_2.txt",
+        "candidates": 7
+      },
+      {
+        "name": "Beowulf Old English",
+        "candidates": 166
+      }
+    ],
+    "total": 208,
+    "gate": true,
+    "controls": [
+      {
+        "hold": false,
+        "name": "Latin Vulgate corpus/io_1.txt",
+        "start": 8270,
+        "prefix": 1,
+        "full": 1,
+        "trueRetained": true,
+        "forced": 74,
+        "allTrueSource": true
+      },
+      {
+        "hold": true,
+        "name": "Latin Vulgate corpus/io_1.txt",
+        "start": 5537,
+        "prefix": 1,
+        "full": 1,
+        "trueRetained": true,
+        "forced": 74,
+        "allTrueSource": true
+      },
+      {
+        "hold": false,
+        "name": "Beowulf Old English",
+        "start": 4110,
+        "prefix": 1,
+        "full": 1,
+        "trueRetained": true,
+        "forced": 77,
+        "allTrueSource": true
+      },
+      {
+        "hold": true,
+        "name": "Beowulf Old English",
+        "start": 22230,
+        "prefix": 1,
+        "full": 1,
+        "trueRetained": true,
+        "forced": 66,
+        "allTrueSource": true
+      }
+    ],
+    "nulls": [
+      {
+        "hold": false,
+        "prefix": 0,
+        "full": 0
+      },
+      {
+        "hold": true,
+        "prefix": 0,
+        "full": 0
+      },
+      {
+        "hold": false,
+        "prefix": 0,
+        "full": 0
+      },
+      {
+        "hold": true,
+        "prefix": 0,
+        "full": 0
+      }
+    ],
+    "original": [
+      {
+        "hold": false,
+        "prefix": [],
+        "full": []
+      },
+      {
+        "hold": true,
+        "prefix": [],
+        "full": []
+      }
+    ]
   }
 ]
