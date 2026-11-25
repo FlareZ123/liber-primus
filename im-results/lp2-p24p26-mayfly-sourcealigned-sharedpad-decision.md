@@ -1,6 +1,6 @@
 # LP2 p24–p26 mayfly triptych: no source-aligned shared additive GP29 pad
 
-**Decision, 22 November 2026:** the original three-page insect-artwork triptych does not support the simple 2014-executable hypothesis that its three different GP29 texts were encrypted under one repeated additive rune keystream at a common position clock. The literal page-start and the source-visible first-complete-word clocks both yield differences substantially less native-English-like than all sampled genuine GP29 source controls. Even selecting two unrestricted pagewise Caesar offsets after observing the ciphertext does not improve the result beyond the weakest 200 disjoint original-English controls. **No original unknown-page plaintext, authentic key or new complete cipher has been recovered.** The later spacing-free literal-prime XOR and ordinary-F collision-skip experiments below also fail their original tests, with distinct scope and calibration. This opening decision closes only the specifically stated fixed-position additive reuse architecture.
+**Decision, 22 November 2026:** the original three-page insect-artwork triptych does not support the simple 2014-executable hypothesis that its three different GP29 texts were encrypted under one repeated additive rune keystream at a common position clock. The literal page-start and the source-visible first-complete-word clocks both yield differences substantially less native-English-like than all sampled genuine GP29 source controls. Even selecting two unrestricted pagewise Caesar offsets after observing the ciphertext does not improve the result beyond the weakest 200 disjoint original-English controls. **No original unknown-page plaintext, authentic key or new complete cipher has been recovered.** The later spacing-free literal-prime XOR and ordinary-F and literal-F collision-skip experiments below also fail their original tests, with distinct scope and calibration. This opening decision closes only the specifically stated fixed-position additive reuse architecture.
 
 ## Human-visible premise and exact source register
 
@@ -102,6 +102,23 @@ The complete 128-rune control recovery counts are [116,117,115], [122,120,121], 
 | 0/0/0 physical starts | -83.971310 | 8/5/2 |
 | 3/2/1 complete-word starts | -78.047011 | 6/8/3 |
 
-Both original scores sit in or below the four matched independent-pad controls' range; their highest-scored rune sequences contain wordlike fragments but no coherent three-track prose. The complete-length calibration failed, so no claim is made about the full 264-rune original under this model. This is a bounded heuristic original-prefix failure, **not** an exhaustive all-key rejection or a proof that the pages use independent pads. Exact F-bypass plus retry is a distinct historical clock and is not covered by these ordinary-F results. No authenticated key or unknown plaintext.
+Both original scores sit in or below the four matched independent-pad controls' range; their highest-scored rune sequences contain wordlike fragments but no coherent three-track prose. The complete-length calibration failed, so no claim is made about the full 264-rune original under this model. This is a bounded heuristic original-prefix failure, **not** an exhaustive all-key rejection or a proof that the pages use independent pads. The distinct historical F-bypass plus retry clock is examined separately below. No authenticated key or unknown plaintext.
 
 [SFT](../sims/lp2_mayfly_shared_keyskip1_joint_inverse_sft.cjs) · [128-rune raw original and controls](lp2-mayfly-shared-keyskip1-joint-inverse.json) · [264-rune calibration](lp2-mayfly-shared-keyskip1-full-length.json). Run `node sims/lp2_mayfly_shared_keyskip1_joint_inverse_sft.cjs` or add `--full`. Executed in connected JavaScript against the repository's pinned source bytes; no CI run or Windows execution is claimed.
+
+### Authentic latent plaintext-F bypass plus collision retry
+
+The historically demonstrated transparent plaintext F rule changes both inter-page alignment and physical predecessor state. The distinct inverse extends the ordinary-F state with exact per-track rejection counts, independently enumerates zero or more leading visible ciphertext F runes as literal plaintext F (no common-key consumption), and requires all consuming plaintext runes nonzero. A pending collision retry forbids intervening F holds because its plaintext is already fixed. The physical predecessor includes literal F; the consuming-predecessor rival is not tested. All literal-F masks are latent, rather than treating every ciphertext zero as a hold. Replays check the literal holds, rejected collision attempts, all accepted outputs and complete cursor termination.
+
+With the same frozen donor split, score, beam width, per-track cap and source clocks, the 128-rune gate again passes 3/4. Plant rune recoveries are [119,115,116], [122,122,124], [42,41,46], [118,114,119]; shared-pad scores range -8.875 to 146.906. Four independent-pad null scores range -97.854 to -66.860. Both fixed original prefixes are in that null band:
+
+| Alignment | Score | Rejected keys | Inferred literal F holds |
+|---|---:|---|---|
+| 0/0/0 | -89.310949 | 3/8/6 | 2/1/1 |
+| 3/2/1 | -82.694166 | 5/7/4 | 0/2/2 |
+
+Both candidate outputs remain nonprose. The disjoint full 264-rune calibration passes only 1/4 (recoveries [78,79,79], [93,86,94], [260,257,260], [162,160,165]); shared scores -40.137 to 249.865, nulls -178.564 to -153.593. Consequently full-length originals remain unscored. The severe gap to the true trace scores in the failed plants is concrete evidence of beam-search limitations, not impossibility of the model.
+
+This removes the direct original-prefix motivation to continue the source-aligned shared additive pad route under both consuming-F and literal-F one-retry clocks. Retire those fixed prefix searches absent an independently selected additional constraint; do not tune beam or threshold against these same originals. No plaintext, key, or authenticated collision mechanism follows.
+
+[Latent-F SFT](../sims/lp2_mayfly_shared_keyskip1_fhold_joint_inverse_sft.cjs) · [128-rune controls and original traces](lp2-mayfly-shared-keyskip1-fhold-joint-inverse.json) · [264-rune controls](lp2-mayfly-shared-keyskip1-fhold-full-length.json). Both modes executed in connected V8, not CI.
