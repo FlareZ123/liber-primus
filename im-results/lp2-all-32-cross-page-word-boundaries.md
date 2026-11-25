@@ -80,3 +80,26 @@ The authenticated 2016 wording “words are the map” is too general to select 
 The independent p50 low60 clock-selection test remains unchanged: among its four frozen within-page clocks, continuous global phase zero is the only one with positive held-out support (**+4.584893 nats, 9/9 chapters**); physical-page reset is negative (**−1.038412 nats, 6/9**). This is empirical support for that association, not an author-authenticated cipher clock. See [the clock-selection report](lp2-p50-low60-clock-selection.md). No cipher search or phase sweep was run for this issue.
 
 **Disposition:** close #1909 on the negative source-selector result. Page boundaries carry words; they do not supply a cipher-clock reset instruction.
+
+
+## Complete physical transition record and direct endpoint address (Agent49, #2849)
+
+The [57-boundary JSON inventory](lp2-all-57-physical-page-transitions.json) extends the existing 32-carry inventory to **every** p0→p1 through p56→p57 physical transition. It retains the corrected outgoing and incoming rune-line strings, adjacent rune indices, complete intersecting word(s), actual carry fragments, first complete incoming group, line count and full native large-marker coordinate lists. P50 is explicitly rune-free; both of its physical transitions have null addresses, rather than artificially treating it as a second word boundary. All rune sequences exactly match the canonical corpus and all 32 carry words/positions match the audited CSV. This is a derived transition record, not a new image reinspection.
+
+One fixed BASE29 endpoint rule was tested, motivated by the historical BASE29 operation, the signed numbers-as-direction phrase and the physical 58-page extent. Given the whole word that crosses a page boundary, take its first and last zero-based GP29 indices a,b, and predict the next physical page as (29a+b) mod58. On an ordinary noncarry seam, use the first rune of the outgoing intersecting word and the last rune of the incoming intersecting word. The page ordinal is never used in constructing the prediction. This is a concrete candidate, not a first-party-authenticated modulus or digit selection.
+
+**Result:** 0/32 carry transitions predict the actual successor (including 0/12 from p40 onward). The 23 evaluable ordinary physical transitions have one accidental hit, p15→p16. The p55→p56 and p56→p57 controls predict 40 and 47 rather than 56 and 57. Thus the fixed rule fails both source carry and solved-edge controls. No cipher scoring or page-order permutations were used.
+
+There is also a map-independent collision obstruction for any direct deterministic next-page lookup based only on the two runes immediately adjacent across a carry seam. Three pairs repeat on different next pages:
+
+| Adjacent GP29 indices | Distinct actual next pages |
+|---|---|
+| 12,26 | p9, p36 |
+| 0,13 | p28, p52 |
+| 25,8 | p43, p48 |
+
+Consequently no fixed function of those two indices can recover all 32 actual successor ordinals. The 32 whole-word endpoint pairs are distinct, so this latter obstruction does **not** apply to an arbitrary whole-endpoint lookup or a rule incorporating a changing state/page ordinal. Such a lookup has no independently selected receiver.
+
+The fixed address rule fails, while the previously published chapter-aware layout null and matched within-line split-coordinate results already explain the count/length premise. Retire this transition-code interpretation unless new source evidence selects a state update. The known plaintext controls are noncarry physical boundaries and do not test an arbitrary cipher law on unknown-page carries. No unknown plaintext or key recovered.
+
+Reproducer: `node sims/lp2_all_physical_page_transitions_sft.cjs > im-results/lp2-all-57-physical-page-transitions.json` from repository root.

@@ -1,0 +1,1507 @@
+{
+  "wordCount": 2941,
+  "carryCount": 32,
+  "carryHits": 0,
+  "noncarryHits": [
+    [
+      15,
+      16
+    ]
+  ],
+  "fullEndpointUnique": 32,
+  "seamEndpointDuplicates": [
+    [
+      "12,26",
+      [
+        9,
+        36
+      ]
+    ],
+    [
+      "0,13",
+      [
+        28,
+        52
+      ]
+    ],
+    [
+      "25,8",
+      [
+        43,
+        48
+      ]
+    ]
+  ],
+  "records": [
+    {
+      "from": 0,
+      "to": 1,
+      "carry": true,
+      "leftRune": 7,
+      "rightRune": 24,
+      "leftWord": "ᚹᚪᛁᛗᛋᚾ",
+      "rightWord": "ᚹᚪᛁᛗᛋᚾ",
+      "leftFragment": "ᚹ",
+      "rightFragment": "ᚪᛁᛗᛋᚾ",
+      "firstCompleteGroup": "ᛋᛟᚱᚢᚹᛋᛚᛡ",
+      "fromLastRuneLine": "ᛏᛟᛝᚢᚱ-ᛋ-ᚠᚩᛖᚹᛠᛟᛚᚠᚫ-ᛗᚱᛝ-ᛞᚪᛗᚱ-ᚹ",
+      "toFirstRuneLine": "ᚪᛁᛗᛋᚾ-ᛋᛟᚱᚢᚹᛋᛚᛡ.ᛟᚪᚫᛝᛋᛞᛈᛏ-ᚳᚱᚦ",
+      "fromRuneLineCount": 12,
+      "fromMarks": [
+        [
+          13,
+          13,
+          "red"
+        ]
+      ],
+      "toMarks": [],
+      "address": 38,
+      "hit": false
+    },
+    {
+      "from": 1,
+      "to": 2,
+      "carry": true,
+      "leftRune": 10,
+      "rightRune": 22,
+      "leftWord": "ᛚᛉᛁᛟᛗ",
+      "rightWord": "ᛚᛉᛁᛟᛗ",
+      "leftFragment": "ᛚᛉᛁ",
+      "rightFragment": "ᛟᛗ",
+      "firstCompleteGroup": "ᚢ",
+      "fromLastRuneLine": "ᛋᛏ-ᛗᚠᛚᚠᛏ-ᚷᛁᚦ-ᚢᛚᚷ-ᛉᛠᛏᛋᛚᛄᛈ-ᛚᛉᛁ",
+      "toFirstRuneLine": "ᛟᛗ-ᚢ.ᚻᛏ-ᛒᛇᛚᛞᚻᛒᛗ-ᛠᚱᛒ-ᚾᚻᛒᛖᚷᛇ-",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [
+        [
+          201,
+          13,
+          "red"
+        ]
+      ],
+      "address": 19,
+      "hit": false
+    },
+    {
+      "from": 2,
+      "to": 3,
+      "carry": false,
+      "leftRune": 7,
+      "rightRune": 20,
+      "leftWord": "ᚻᛞᚾᛡᚢᛈᛋᚢᚹ",
+      "rightWord": "ᛚᛄ",
+      "leftFragment": null,
+      "rightFragment": null,
+      "firstCompleteGroup": "ᛚᛄ",
+      "fromLastRuneLine": "ᚳᚢᛉᛏᚪᛒᛄᛈ-ᚠᛠ-ᚻᛞᚾᛡᚢᛈᛋᚢᚹ.",
+      "toFirstRuneLine": "ᛚᛄ-ᛇᚻᛝᚳᚦᛏᚫᛄᛏᛉᚻ-ᛏᚢᛟ.ᛋᛈᚱᚷ",
+      "fromRuneLineCount": 9,
+      "fromMarks": [
+        [
+          201,
+          13,
+          "red"
+        ]
+      ],
+      "toMarks": [
+        [
+          16,
+          13,
+          "red"
+        ],
+        [
+          119,
+          13,
+          "red"
+        ],
+        [
+          122,
+          13,
+          "red"
+        ]
+      ],
+      "address": 11,
+      "hit": false
+    },
+    {
+      "from": 3,
+      "to": 4,
+      "carry": true,
+      "leftRune": 8,
+      "rightRune": 20,
+      "leftWord": "ᚻᛠᚻᛚᛡ",
+      "rightWord": "ᚻᛠᚻᛚᛡ",
+      "leftFragment": "ᚻᛠᚻ",
+      "rightFragment": "ᛚᛡ",
+      "firstCompleteGroup": "ᚣᛈᛉᛁᚹᛗᚳᛁ",
+      "fromLastRuneLine": "ᛉᛠᛒᚩ-ᛉᛁᚣᚷᛋᛋᛒᛠ-ᚩᛁᛈ-ᛁᛄᛁᚩᛖ-ᚻᛠᚻ",
+      "toFirstRuneLine": "ᛚᛡ-ᚣᛈᛉᛁᚹᛗᚳᛁ-ᛚᚷᚠᚾᛡᚳᛉ-ᛈᚩᚱᛡ-ᚻ-ᛄ",
+      "fromRuneLineCount": 11,
+      "fromMarks": [
+        [
+          16,
+          13,
+          "red"
+        ],
+        [
+          119,
+          13,
+          "red"
+        ],
+        [
+          122,
+          13,
+          "red"
+        ]
+      ],
+      "toMarks": [],
+      "address": 27,
+      "hit": false
+    },
+    {
+      "from": 4,
+      "to": 5,
+      "carry": true,
+      "leftRune": 1,
+      "rightRune": 4,
+      "leftWord": "ᚢᚱᚫ",
+      "rightWord": "ᚢᚱᚫ",
+      "leftFragment": "ᚢ",
+      "rightFragment": "ᚱᚫ",
+      "firstCompleteGroup": "ᛉᚻᛄᚫᛗᛚᚠ",
+      "fromLastRuneLine": "ᛈᚪᛇᚷᛋᚳᚷᛞᛈᚣ-ᛡᛚᚦᚱ-ᚳᚢᚠᛇᚦ-ᛉᛖᛚ-ᚢ",
+      "toFirstRuneLine": "ᚱᚫ-ᛉᚻᛄᚫᛗᛚᚠ-ᚳᛝᛞ-ᛁᛝᚩ-ᚳᛋᛟᛖᚣᛟᚻᚢ-",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [],
+      "address": 54,
+      "hit": false
+    },
+    {
+      "from": 5,
+      "to": 6,
+      "carry": true,
+      "leftRune": 16,
+      "rightRune": 14,
+      "leftWord": "ᛏᛉᚳᛏᚻᛞᛇ",
+      "rightWord": "ᛏᛉᚳᛏᚻᛞᛇ",
+      "leftFragment": "ᛏ",
+      "rightFragment": "ᛉᚳᛏᚻᛞᛇ",
+      "firstCompleteGroup": "ᛉᛒᛠ",
+      "fromLastRuneLine": "ᛝᚳᛖᛠ-ᛉᚪᚱᚣ-ᚪᚢᛏ-ᚳᛈᚳ-ᚩᛇᛟ-ᚫᛈ-ᛏ",
+      "toFirstRuneLine": "ᛉᚳᛏᚻᛞᛇ-ᛉᛒᛠ-ᚫᚾᛄ-ᛠᚪᛒ-ᛖᛠᚹ-ᛡᛚ-",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [
+        [
+          71,
+          13,
+          "red"
+        ],
+        [
+          82,
+          13,
+          "red"
+        ]
+      ],
+      "address": 12,
+      "hit": false
+    },
+    {
+      "from": 6,
+      "to": 7,
+      "carry": true,
+      "leftRune": 15,
+      "rightRune": 8,
+      "leftWord": "ᛋᚻᛝ",
+      "rightWord": "ᛋᚻᛝ",
+      "leftFragment": "ᛋ",
+      "rightFragment": "ᚻᛝ",
+      "firstCompleteGroup": "ᛚᚦᛒ",
+      "fromLastRuneLine": "ᚢᚻ-ᛈᚹᛄᛚᚷᛒ-ᛗᚢᛄᛗ-ᛇᚾᛇ.ᚫᛚᚪᛚᚷᚪ-ᛋ",
+      "toFirstRuneLine": "ᚻᛝ-ᛚᚦᛒ-ᛋᚳᚢᚳᚩᛡ-ᛚᚳᛄ-ᛉᚪᚾᛇᛉ.ᛠ",
+      "fromRuneLineCount": 10,
+      "fromMarks": [
+        [
+          71,
+          13,
+          "red"
+        ],
+        [
+          82,
+          13,
+          "red"
+        ]
+      ],
+      "toMarks": [
+        [
+          194,
+          13,
+          "black"
+        ],
+        [
+          194,
+          13,
+          "red"
+        ],
+        [
+          208,
+          13,
+          "red"
+        ]
+      ],
+      "address": 50,
+      "hit": false
+    },
+    {
+      "from": 7,
+      "to": 8,
+      "carry": false,
+      "leftRune": 19,
+      "rightRune": 14,
+      "leftWord": "ᚷᛠᛗ",
+      "rightWord": "ᛉᛁᛉᛗ",
+      "leftFragment": null,
+      "rightFragment": null,
+      "firstCompleteGroup": "ᛉᛁᛉᛗ",
+      "fromLastRuneLine": "&\nᛞᚩ-ᛟᛏᚦᚫ.ᚳᚹᛄ-ᛉᛠ-ᚷᛠᛗ.",
+      "toFirstRuneLine": "ᛉᛁᛉᛗ-ᚢᛉᛗᚳᚦᛈᚩᛒ-ᛡᚾᛏ-ᛠᛉ",
+      "fromRuneLineCount": 10,
+      "fromMarks": [
+        [
+          194,
+          13,
+          "black"
+        ],
+        [
+          194,
+          13,
+          "red"
+        ],
+        [
+          208,
+          13,
+          "red"
+        ]
+      ],
+      "toMarks": [],
+      "address": 19,
+      "hit": false
+    },
+    {
+      "from": 8,
+      "to": 9,
+      "carry": true,
+      "leftRune": 12,
+      "rightRune": 26,
+      "leftWord": "ᛇᚣᚹᚫᚷᛄ",
+      "rightWord": "ᛇᚣᚹᚫᚷᛄ",
+      "leftFragment": "ᛇ",
+      "rightFragment": "ᚣᚹᚫᚷᛄ",
+      "firstCompleteGroup": "ᛝᛗᚪᚹᛈ",
+      "fromLastRuneLine": "ᛟᛏ-ᚾᛞᛒᚩᚾᚦᛡᚻᛟ-ᚱᛈᚾᚠᛈᛞ-ᛋᚩᛁᛠᚣᚾ-ᛇ",
+      "toFirstRuneLine": "ᚣᚹᚫᚷᛄ-ᛝᛗᚪᚹᛈ-ᚪᚢᚾ-ᛈᛡᛗᛖᛞᛟ.ᛁ-ᛉ",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [],
+      "address": 11,
+      "hit": false
+    },
+    {
+      "from": 9,
+      "to": 10,
+      "carry": true,
+      "leftRune": 2,
+      "rightRune": 5,
+      "leftWord": "ᚹᛡᛠᚱᚫᚹᛡᛞᚪᚦᚳ",
+      "rightWord": "ᚹᛡᛠᚱᚫᚹᛡᛞᚪᚦᚳ",
+      "leftFragment": "ᚹᛡᛠᚱᚫᚹᛡᛞᚪᚦ",
+      "rightFragment": "ᚳ",
+      "firstCompleteGroup": "ᛉᚢ",
+      "fromLastRuneLine": "ᚷ-ᚩ-ᚢᚦᛏ-ᛒᚷᚣᛝᚠᚣᛁᚻ-ᚹᛡᛠᚱᚫᚹᛡᛞᚪᚦ",
+      "toFirstRuneLine": "ᚳ-ᛉᚢ-ᛈᛏᛋᚢᛖ-ᚷᚦᛡᛚ-ᛖᛋᛠᛝᛉᛈᛉ-ᚾ",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [],
+      "address": 34,
+      "hit": false
+    },
+    {
+      "from": 10,
+      "to": 11,
+      "carry": false,
+      "leftRune": 10,
+      "rightRune": 27,
+      "leftWord": "ᛁ",
+      "rightWord": "ᛡᛋᚳᛖ",
+      "leftFragment": null,
+      "rightFragment": null,
+      "firstCompleteGroup": "ᛡᛋᚳᛖ",
+      "fromLastRuneLine": "ᛉ-ᚠᚱᚳᛒᚢᛄᚱᚫᛝ-ᛒᛋᛟᛠᛡᚪᛚ-ᛏᛟᚾᚫᛟᚪ-ᛁ-",
+      "toFirstRuneLine": "ᛡᛋᚳᛖ-ᚹᛒ.ᚾᛚᛝ-ᚦᚾᛁᛠ-ᛒᛡᚱᚠᛖᛁᚹ-ᚾᚠᛗᚢ",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [],
+      "address": 18,
+      "hit": false
+    },
+    {
+      "from": 11,
+      "to": 12,
+      "carry": false,
+      "leftRune": 1,
+      "rightRune": 5,
+      "leftWord": "ᛉᚪᚢ",
+      "rightWord": "ᚳᛁ",
+      "leftFragment": null,
+      "rightFragment": null,
+      "firstCompleteGroup": "ᚳᛁ",
+      "fromLastRuneLine": "ᛈᚹᛞᚱᛄ-ᚪᛝᛞ-ᛁᚦᛏᚷᚢᚹᚳᚻᛖᚩᚪᛖ-ᛉᚪᚢ-",
+      "toFirstRuneLine": "ᚳᛁ-ᚱᚳᚹ-ᛠᛇᛏ-ᚦᚳᚻᚢ.ᛡᚹᛟ-ᚷᛇᛈ-ᚢᛈᚦ-",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [],
+      "address": 10,
+      "hit": false
+    },
+    {
+      "from": 12,
+      "to": 13,
+      "carry": false,
+      "leftRune": 22,
+      "rightRune": 6,
+      "leftWord": "ᛈᚷᛝᛟ",
+      "rightWord": "ᚷᚦᚠᛄᚷᚳ",
+      "leftFragment": null,
+      "rightFragment": null,
+      "firstCompleteGroup": "ᚷᚦᚠᛄᚷᚳ",
+      "fromLastRuneLine": "ᛄ-ᛒᛇᚱᚹᛏᛉᚾᛠᛖᛁ-ᚠᚾᛡᚳ.ᛋᛟᚹ-ᛈᚷᛝᛟ-",
+      "toFirstRuneLine": "ᚷᚦᚠᛄᚷᚳ-ᛒᛁᛗᛚᛇᛠᚹ-ᚾᚫᚹᚷ.ᚩᚻᚪᛏᚾᛄ-ᚣ",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [],
+      "address": 34,
+      "hit": false
+    },
+    {
+      "from": 13,
+      "to": 14,
+      "carry": false,
+      "leftRune": 22,
+      "rightRune": 16,
+      "leftWord": "ᚪᛖᛁᛇᛒᛟ",
+      "rightWord": "ᛏᛄ",
+      "leftFragment": null,
+      "rightFragment": null,
+      "firstCompleteGroup": "ᛏᛄ",
+      "fromLastRuneLine": "ᚢᚩᛠ-ᛚᛋᚣᛏ-ᛋᚪᛞᚫᚹᛄᛞ-ᛋᛈᛋᛄ-ᚪᛖᛁᛇᛒᛟ",
+      "toFirstRuneLine": "-ᛏᛄ-ᚠᚩᛚᛞ-ᚾᚷᚳ-ᛚᚷᛗ-ᛠᚦᚢ-ᛟᚻᚾᛟᚣᛡ.",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [
+        [
+          137,
+          13,
+          "red"
+        ]
+      ],
+      "address": 11,
+      "hit": false
+    },
+    {
+      "from": 14,
+      "to": 15,
+      "carry": false,
+      "leftRune": 8,
+      "rightRune": 0,
+      "leftWord": "ᛋᚪᚢᚪᛈᚻ",
+      "rightWord": "ᚠᚢᛚᛗ",
+      "leftFragment": null,
+      "rightFragment": null,
+      "firstCompleteGroup": "ᚠᚢᛚᛗ",
+      "fromLastRuneLine": "-ᛟᛚ-ᛋᚪᚢᚪᛈᚻ.",
+      "toFirstRuneLine": "ᚠᚢᛚᛗ-ᚪᛠᚣᛟᚪ.",
+      "fromRuneLineCount": 7,
+      "fromMarks": [
+        [
+          137,
+          13,
+          "red"
+        ]
+      ],
+      "toMarks": [
+        [
+          0,
+          13,
+          "red"
+        ],
+        [
+          9,
+          13,
+          "red"
+        ],
+        [
+          20,
+          13,
+          "red"
+        ]
+      ],
+      "address": 48,
+      "hit": false
+    },
+    {
+      "from": 15,
+      "to": 16,
+      "carry": false,
+      "leftRune": 13,
+      "rightRune": 18,
+      "leftWord": "ᛉᛗᛒᚩᛠᛈ",
+      "rightWord": "ᛖᛞᚪᚫᛏᚩᛠᛖᛠᛉᚳᛠᛏ",
+      "leftFragment": null,
+      "rightFragment": null,
+      "firstCompleteGroup": "ᛖᛞᚪᚫᛏᚩᛠᛖᛠᛉᚳᛠᛏ",
+      "fromLastRuneLine": "ᛡᛉᚣ-ᛒᚻᚫᛄᛡᛁ-ᚱᚦᛚᚠ-ᛠᚾᛝ-ᛉᛗᛒᚩᛠᛈ-",
+      "toFirstRuneLine": "ᛖᛞᚪᚫᛏᚩᛠᛖᛠᛉᚳᛠᛏ-ᚩᛞᚳᛠᚾᚳᚦ",
+      "fromRuneLineCount": 8,
+      "fromMarks": [
+        [
+          0,
+          13,
+          "red"
+        ],
+        [
+          9,
+          13,
+          "red"
+        ],
+        [
+          20,
+          13,
+          "red"
+        ]
+      ],
+      "toMarks": [],
+      "address": 16,
+      "hit": true
+    },
+    {
+      "from": 16,
+      "to": 17,
+      "carry": true,
+      "leftRune": 6,
+      "rightRune": 20,
+      "leftWord": "ᛟᚷᛚᚦ",
+      "rightWord": "ᛟᚷᛚᚦ",
+      "leftFragment": "ᛟᚷ",
+      "rightFragment": "ᛚᚦ",
+      "firstCompleteGroup": "ᛈᛞ",
+      "fromLastRuneLine": ".ᚣᚷᚠᛝᛡᛈᚷᛒ-ᛡᚩᚷᛡ-ᛟᚾᚹᛡᛈᛟ-ᚦᛈ-ᛟᚷ",
+      "toFirstRuneLine": "ᛚᚦ-ᛈᛞ-ᚦᛇᛒ-ᛡᚪᛒᚪ-ᚾᛗ-ᚳᚾᛖᛡᚹᛝᛏᚱ-ᛝᚫ",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [],
+      "address": 2,
+      "hit": false
+    },
+    {
+      "from": 17,
+      "to": 18,
+      "carry": false,
+      "leftRune": 0,
+      "rightRune": 28,
+      "leftWord": "ᛠᛚᛒᚠ",
+      "rightWord": "ᛠᚪᛄᛇᛠᛚ",
+      "leftFragment": null,
+      "rightFragment": null,
+      "firstCompleteGroup": "ᛠᚪᛄᛇᛠᛚ",
+      "fromLastRuneLine": "ᚣᚢᛁᚹ-ᛟᚪᚣᛁᛠᛄᚪ-ᛟᛝᚦ-ᛟᚠᚦᚾ-ᛇᚷ-ᛠᛚᛒᚠ",
+      "toFirstRuneLine": "-ᛠᚪᛄᛇᛠᛚ-ᚱᚷᛋ-ᚹᚩᛒᛁ-ᛠᚳ-ᛁᛞᛄ-ᛖᛗᚱ-ᚷ",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [],
+      "address": 20,
+      "hit": false
+    },
+    {
+      "from": 18,
+      "to": 19,
+      "carry": true,
+      "leftRune": 6,
+      "rightRune": 9,
+      "leftWord": "ᚷᚾᚩᛟᚾᚠ",
+      "rightWord": "ᚷᚾᚩᛟᚾᚠ",
+      "leftFragment": "ᚷ",
+      "rightFragment": "ᚾᚩᛟᚾᚠ",
+      "firstCompleteGroup": "ᚩᛁᚠᚢᛋᚾ",
+      "fromLastRuneLine": "ᚱᛄᚣ-ᛞᛗᛖᚣ-ᚢᛖᛝᛠᚳᛞᛈᚩᛠ-ᛏᛒᚳ-ᚷ",
+      "toFirstRuneLine": "ᚾᚩᛟᚾᚠ-ᚩᛁᚠᚢᛋᚾ-ᛞᚹᛠᛇᛈ-ᚱᚩᚩᛄ-ᚪᛟ-ᛇᛠ",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [],
+      "address": 0,
+      "hit": false
+    },
+    {
+      "from": 19,
+      "to": 20,
+      "carry": true,
+      "leftRune": 12,
+      "rightRune": 13,
+      "leftWord": "ᛗᛇᛈ",
+      "rightWord": "ᛗᛇᛈ",
+      "leftFragment": "ᛗᛇ",
+      "rightFragment": "ᛈ",
+      "firstCompleteGroup": "ᛄᚢᛒ",
+      "fromLastRuneLine": "ᚪᛖᛗᛝ-ᛠᚫ-ᛈᚩᚪᛞ-ᚠᚫᚻ-ᚠᛏᚦᛄᛚᛄᛒ-ᛗᛇ",
+      "toFirstRuneLine": "ᛈ-ᛄᚢᛒ-ᚷᛁᛇ-ᛈᛉᚣ-ᛈᛟᚦᛞᚱᛠᚪᛡ-ᛝᛡᛒᛚ",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [],
+      "address": 42,
+      "hit": false
+    },
+    {
+      "from": 20,
+      "to": 21,
+      "carry": false,
+      "leftRune": 18,
+      "rightRune": 5,
+      "leftWord": "ᛉᛗᚫᛋᚳᛖ",
+      "rightWord": "ᚳᚫᛠ",
+      "leftFragment": null,
+      "rightFragment": null,
+      "firstCompleteGroup": "ᚳᚫᛠ",
+      "fromLastRuneLine": "-ᛖᛗᚹ-ᛖᛉᚦᛗᚪᛋᛉ-ᛞᚦ-ᛡᚢ-ᛉᛗᚫᛋᚳᛖ-",
+      "toFirstRuneLine": "ᚳᚫᛠ-ᛞᚳᚷ-ᚩᛁᛇ-ᚾᛟᚷᚣᚳᚦᚳᚦ-ᛗᚣ-ᛈᚪᛒ",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [],
+      "address": 28,
+      "hit": false
+    },
+    {
+      "from": 21,
+      "to": 22,
+      "carry": true,
+      "leftRune": 3,
+      "rightRune": 21,
+      "leftWord": "ᛁᛈᚪᛝᛋᛞᛟᚩᛝᛗ",
+      "rightWord": "ᛁᛈᚪᛝᛋᛞᛟᚩᛝᛗ",
+      "leftFragment": "ᛁᛈᚪᛝᛋᛞᛟᚩ",
+      "rightFragment": "ᛝᛗ",
+      "firstCompleteGroup": "ᛁᚷ",
+      "fromLastRuneLine": "ᚣᚷᛉᛒᚪᚾᛝᛡᛄᛡ-ᚠᚷᛈᚦᚠᚦ-ᛁᛈᚪᛝᛋᛞᛟᚩ",
+      "toFirstRuneLine": "ᛝᛗ-ᛁᚷ-ᛄᚷ-ᚳᚩᚦᛖᚦᛄ-ᚣᚠ-ᚦᚳᛄᛡᛖᚢ-ᛉᛄ",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [
+        [
+          131,
+          13,
+          "red"
+        ]
+      ],
+      "address": 19,
+      "hit": false
+    },
+    {
+      "from": 22,
+      "to": 23,
+      "carry": false,
+      "leftRune": 14,
+      "rightRune": 1,
+      "leftWord": "ᚠᚾᛉ",
+      "rightWord": "ᚢᚪ",
+      "leftFragment": null,
+      "rightFragment": null,
+      "firstCompleteGroup": "ᚢᚪ",
+      "fromLastRuneLine": "ᚹᛒᛈᚷᛝᛒ.ᛡᚦᚠᛋᚾ-ᛒᚦᚠ-ᛇᛝᛠ-ᚠᚾᛉ.",
+      "toFirstRuneLine": "ᚢᚪ-ᚹᛝᚷᛉᛞᚷ-ᛁᛒᛁ-ᛇᛏᛒᛁᚣ.ᛠᚷᛋᚫ",
+      "fromRuneLineCount": 6,
+      "fromMarks": [
+        [
+          131,
+          13,
+          "red"
+        ]
+      ],
+      "toMarks": [
+        [
+          16,
+          13,
+          "red"
+        ]
+      ],
+      "address": 24,
+      "hit": false
+    },
+    {
+      "from": 23,
+      "to": 24,
+      "carry": true,
+      "leftRune": 2,
+      "rightRune": 23,
+      "leftWord": "ᚪᚻᛠᚦᛞᚱᚠ",
+      "rightWord": "ᚪᚻᛠᚦᛞᚱᚠ",
+      "leftFragment": "ᚪᚻᛠᚦ",
+      "rightFragment": "ᛞᚱᚠ",
+      "firstCompleteGroup": "ᛖᛄᚫ",
+      "fromLastRuneLine": "ᚢ-ᛞ-ᚳᚦᚢᚱᚢᛟ-ᛞᚻᚱ-ᚷᚹᛏᛈᛖᚠ-ᚪᚻᛠᚦ",
+      "toFirstRuneLine": "ᛞᚱᚠ-ᛖᛄᚫ-ᚾᚳᚻᚹ-ᛇᛡᛈᛠᚹ-ᛗᛚ-ᚹᛟᚹᛠ-ᚪ",
+      "fromRuneLineCount": 10,
+      "fromMarks": [
+        [
+          16,
+          13,
+          "red"
+        ]
+      ],
+      "toMarks": [],
+      "address": 0,
+      "hit": false
+    },
+    {
+      "from": 24,
+      "to": 25,
+      "carry": true,
+      "leftRune": 10,
+      "rightRune": 8,
+      "leftWord": "ᚪᛉᛇᛝᛋᛖᛇᛁᚻᚾ",
+      "rightWord": "ᚪᛉᛇᛝᛋᛖᛇᛁᚻᚾ",
+      "leftFragment": "ᚪᛉᛇᛝᛋᛖᛇᛁ",
+      "rightFragment": "ᚻᚾ",
+      "firstCompleteGroup": "ᚷ",
+      "fromLastRuneLine": "ᛋᛡᚹᚾᚾᛡᚹᛚ-ᚢᛖ-ᛏ-ᚱᛝᚳᚣ-ᚪᛉᛇᛝᛋᛖᛇᛁ",
+      "toFirstRuneLine": "ᚻᚾ-ᚷ-ᚹᛉᚳᛉᚣ-ᛋᛈᚳᛟᚱ-ᛒᚣᛄᛝᛖᛁ-ᚾᚷᚪ-",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [],
+      "address": 9,
+      "hit": false
+    },
+    {
+      "from": 25,
+      "to": 26,
+      "carry": true,
+      "leftRune": 1,
+      "rightRune": 27,
+      "leftWord": "ᛡᛖᛏᛠᚢᛡ",
+      "rightWord": "ᛡᛖᛏᛠᚢᛡ",
+      "leftFragment": "ᛡᛖᛏᛠᚢ",
+      "rightFragment": "ᛡ",
+      "firstCompleteGroup": "ᚩᚾᛠᚩ",
+      "fromLastRuneLine": "ᚱ-ᛄᚠᚳᛋᛝᚳᛈ-ᚷᚻᛋᛗ-ᛇᛞᛇ-ᚣ-ᛡᛖᛏᛠᚢ",
+      "toFirstRuneLine": "ᛡ-ᚩᚾᛠᚩ-ᛄᚣᛇᛉᛠᚪᛡ-ᚾᛞᛝᚻ-ᛈᛠᚻᛡ",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [
+        [
+          265,
+          13,
+          "red"
+        ]
+      ],
+      "address": 56,
+      "hit": false
+    },
+    {
+      "from": 26,
+      "to": 27,
+      "carry": false,
+      "leftRune": 21,
+      "rightRune": 19,
+      "leftWord": "ᛄᚷᛏᛝᛄᛝ",
+      "rightWord": "ᛗᛈᚣ",
+      "leftFragment": null,
+      "rightFragment": null,
+      "firstCompleteGroup": "ᛗᛈᚣ",
+      "fromLastRuneLine": "ᛋᚹᚩᛉᚹ-ᚩᛝᚢ-ᚻᛝᛟ-ᛏᛚᚠ-ᛄᚷᛏᛝᛄᛝ.",
+      "toFirstRuneLine": "ᛗᛈᚣ-ᛚᛋᚩᚪᚫᚻᛚᛖᛇᛁᛗᛚ-ᛚᛋᚳᛈ.ᚾ",
+      "fromRuneLineCount": 12,
+      "fromMarks": [
+        [
+          265,
+          13,
+          "red"
+        ]
+      ],
+      "toMarks": [
+        [
+          19,
+          13,
+          "red"
+        ]
+      ],
+      "address": 55,
+      "hit": false
+    },
+    {
+      "from": 27,
+      "to": 28,
+      "carry": true,
+      "leftRune": 0,
+      "rightRune": 13,
+      "leftWord": "ᚾᛈᚠᛈᚳ",
+      "rightWord": "ᚾᛈᚠᛈᚳ",
+      "leftFragment": "ᚾᛈᚠ",
+      "rightFragment": "ᛈᚳ",
+      "firstCompleteGroup": "ᛄᚦᛒᛁᚹ",
+      "fromLastRuneLine": "ᛈᛞᚠᛗᛝᚻ-ᛋᚩ-ᛞᛈᛉᚾ-ᛟᚱᛡᚾᚳᚳᛏ-ᚾᛈᚠ",
+      "toFirstRuneLine": "ᛈᚳ-ᛄᚦᛒᛁᚹ-ᛞᚹᛝᛠᛡᚹᛚ-ᚹᛄᚾᚪᛟ-ᛏᛞᛉᚣ",
+      "fromRuneLineCount": 11,
+      "fromMarks": [
+        [
+          19,
+          13,
+          "red"
+        ]
+      ],
+      "toMarks": [],
+      "address": 34,
+      "hit": false
+    },
+    {
+      "from": 28,
+      "to": 29,
+      "carry": false,
+      "leftRune": 16,
+      "rightRune": 2,
+      "leftWord": "ᛋᛗᚪᛡᛠᛇᛝᛏ",
+      "rightWord": "ᚦᛞᚷ",
+      "leftFragment": null,
+      "rightFragment": null,
+      "firstCompleteGroup": "ᚦᛞᚷ",
+      "fromLastRuneLine": "ᛉ-ᛟᚣ-ᛒᚦᛁᛄᛚᛡᛝᛡ-ᚹᛄᚫ-ᛋᛗᚪᛡᛠᛇᛝᛏ-",
+      "toFirstRuneLine": "ᚦᛞᚷ-ᚢᛏᛚᛏᚣ-ᚢᛝ-ᚷᛟᚪᛏ-ᛄᚦᚣ-ᚫᚻᚪ-ᛒᛝ-",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [],
+      "address": 35,
+      "hit": false
+    },
+    {
+      "from": 29,
+      "to": 30,
+      "carry": true,
+      "leftRune": 19,
+      "rightRune": 23,
+      "leftWord": "ᚷᚻᛗᛞᚪᛈᛖ",
+      "rightWord": "ᚷᚻᛗᛞᚪᛈᛖ",
+      "leftFragment": "ᚷᚻᛗ",
+      "rightFragment": "ᛞᚪᛈᛖ",
+      "firstCompleteGroup": "ᛗ",
+      "fromLastRuneLine": "ᛈᚻᛝᛖᛞᛟᚩᚻᛄ-ᚹᚩᚾᛄᛈᛗ-ᛖᚳ-ᛖᛇ-ᚷᚻᛗ",
+      "toFirstRuneLine": "ᛞᚪᛈᛖ-ᛗ-ᛉᚫᛒᛇᚱ-ᛖᚣᛟᚣ-ᚱᛠᛈᚢᛠ-ᚣ",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [],
+      "address": 18,
+      "hit": false
+    },
+    {
+      "from": 30,
+      "to": 31,
+      "carry": false,
+      "leftRune": 12,
+      "rightRune": 2,
+      "leftWord": "ᚢᚦᛟᚷᛖᚪᛟᛇᛇ",
+      "rightWord": "ᚦᚳᛒᛝᛏᛉᛡᛞ",
+      "leftFragment": null,
+      "rightFragment": null,
+      "firstCompleteGroup": "ᚦᚳᛒᛝᛏᛉᛡᛞ",
+      "fromLastRuneLine": "-ᛒᛟᚾᚳᚩᚱᛉ-ᛋᚹᚫ-ᚻᛖ-ᛋᚠᚾ-ᚢᚦᛟᚷᛖᚪᛟᛇᛇ-",
+      "toFirstRuneLine": "ᚦᚳᛒᛝᛏᛉᛡᛞ-ᛋᛡ-ᚩᚠ.ᛈᛖᛞᛋᛁ-ᛚᛁᚻᚾᛝᚱ-",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [],
+      "address": 52,
+      "hit": false
+    },
+    {
+      "from": 31,
+      "to": 32,
+      "carry": true,
+      "leftRune": 3,
+      "rightRune": 20,
+      "leftWord": "ᛠᛗᚩᛚ",
+      "rightWord": "ᛠᛗᚩᛚ",
+      "leftFragment": "ᛠᛗᚩ",
+      "rightFragment": "ᛚ",
+      "firstCompleteGroup": "ᚦᚫᚹ",
+      "fromLastRuneLine": "ᛡᛟᛝᛄᛉᛚᛄ-ᛞᛉᛟᛈ-ᚱᚪᛁᛏᚷᛉᛝᛇ-ᛠᛗᚩ",
+      "toFirstRuneLine": "ᛚ-ᚦᚫᚹ-ᚫᚢᛈᛡᚳ-ᚹᛝᚻᚹᛒᛗᛋᛟᛖᛁᛡ-ᛟᚹᚦᚻᛒ",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [
+        [
+          121,
+          13,
+          "red"
+        ]
+      ],
+      "address": 20,
+      "hit": false
+    },
+    {
+      "from": 32,
+      "to": 33,
+      "carry": false,
+      "leftRune": 12,
+      "rightRune": 23,
+      "leftWord": "ᚪᚷᛒᛇ",
+      "rightWord": "ᛞᛇ",
+      "leftFragment": null,
+      "rightFragment": null,
+      "firstCompleteGroup": "ᛞᛇ",
+      "fromLastRuneLine": "ᚠᛄᛏ-ᚪᚷᛒᛇ.",
+      "toFirstRuneLine": "ᛞᛇ-ᛉᚳᚠᛁᚪᚹᚻᚷ.ᛇᛟ-ᚠᛏᛖᛟᛠᚪ",
+      "fromRuneLineCount": 6,
+      "fromMarks": [
+        [
+          121,
+          13,
+          "red"
+        ]
+      ],
+      "toMarks": [
+        [
+          10,
+          13,
+          "red"
+        ],
+        [
+          91,
+          13,
+          "red"
+        ],
+        [
+          99,
+          13,
+          "red"
+        ]
+      ],
+      "address": 12,
+      "hit": false
+    },
+    {
+      "from": 33,
+      "to": 34,
+      "carry": true,
+      "leftRune": 17,
+      "rightRune": 19,
+      "leftWord": "ᛒᛗᛒ",
+      "rightWord": "ᛒᛗᛒ",
+      "leftFragment": "ᛒ",
+      "rightFragment": "ᛗᛒ",
+      "firstCompleteGroup": "ᚾᚻ",
+      "fromLastRuneLine": "ᛄ-ᛚᚷᚢᛡ-ᚾᛉᚠ-ᚱᚪᚣᛗᚠᚦᚻ-ᚱᚪᚱ-ᚫᚪᚷᛟᛞ-ᛒ",
+      "toFirstRuneLine": "ᛗᛒ-ᚾᚻ-ᛇᛞ-ᚻᛗᛚᛁ.ᛠᚾᛁ-ᚫᛖᚢ.ᛏᚦᛇᛋᛈᚻ",
+      "fromRuneLineCount": 11,
+      "fromMarks": [
+        [
+          10,
+          13,
+          "red"
+        ],
+        [
+          91,
+          13,
+          "red"
+        ],
+        [
+          99,
+          13,
+          "red"
+        ]
+      ],
+      "toMarks": [],
+      "address": 46,
+      "hit": false
+    },
+    {
+      "from": 34,
+      "to": 35,
+      "carry": false,
+      "leftRune": 13,
+      "rightRune": 21,
+      "leftWord": "ᚠᚦᛈ",
+      "rightWord": "ᛝᛏᚳᚪ",
+      "leftFragment": null,
+      "rightFragment": null,
+      "firstCompleteGroup": "ᛝᛏᚳᚪ",
+      "fromLastRuneLine": "ᛠᚩᛞᛠᚢᛟᛖ.ᛠᚹ-ᛉᚻᛡᚹᛞ-ᚪᛗ-ᚠᚦᛈ-",
+      "toFirstRuneLine": "ᛝᛏᚳᚪ-ᛠᚣᚷ-ᚳᚦᛖᚾᚢᛁᚫᛁᚢᛡ-ᚹᛚᚳ-ᚻᛈ-ᛞ",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [],
+      "address": 24,
+      "hit": false
+    },
+    {
+      "from": 35,
+      "to": 36,
+      "carry": true,
+      "leftRune": 12,
+      "rightRune": 26,
+      "leftWord": "ᚫᛠᛇᚣᚾ",
+      "rightWord": "ᚫᛠᛇᚣᚾ",
+      "leftFragment": "ᚫᛠᛇ",
+      "rightFragment": "ᚣᚾ",
+      "firstCompleteGroup": "ᚢᚹᛝᚻ",
+      "fromLastRuneLine": "ᛗᛒᚢ-ᛚᚱ-ᛏᛁᚢ-ᚷᚳᚠᛇ-ᛚᛇᚣᛏ-ᛏᚫᚢ-ᚫᛠᛇ",
+      "toFirstRuneLine": "ᚣᚾ-ᚢᚹᛝᚻ-ᚷᚣᚱ-ᚩᛁ-ᛚᚾᛉ-ᚾᚩᛈ-ᚠᛠᚫᚫᚩ-ᛉ",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [
+        [
+          99,
+          10,
+          "red"
+        ]
+      ],
+      "address": 38,
+      "hit": false
+    },
+    {
+      "from": 36,
+      "to": 37,
+      "carry": false,
+      "leftRune": 24,
+      "rightRune": 9,
+      "leftWord": "ᛞᚣᛒᚾᚪ",
+      "rightWord": "ᚾᚣᛖᛉ",
+      "leftFragment": null,
+      "rightFragment": null,
+      "firstCompleteGroup": "ᚾᚣᛖᛉ",
+      "fromLastRuneLine": "ᚾᛁᚱᚷ-ᛄᛇᚫ-ᚻᚪ-ᚱᛉᛉ-ᚩᛚᚾᚫ-ᛞᚣᛒᚾᚪ.",
+      "toFirstRuneLine": "2-ᚾᚣᛖᛉ-ᚾᚢᛉᛁ-ᛝᛏᛈᚹᛋᚣ-ᛏᛠᛈᛉ-ᚪᛁ",
+      "fromRuneLineCount": 11,
+      "fromMarks": [
+        [
+          99,
+          10,
+          "red"
+        ]
+      ],
+      "toMarks": [],
+      "address": 43,
+      "hit": false
+    },
+    {
+      "from": 37,
+      "to": 38,
+      "carry": false,
+      "leftRune": 5,
+      "rightRune": 1,
+      "leftWord": "ᚹᚫᚪᚳ",
+      "rightWord": "ᚢᚫᚳᛇᚳᚣ",
+      "leftFragment": null,
+      "rightFragment": null,
+      "firstCompleteGroup": "ᚢᚫᚳᛇᚳᚣ",
+      "fromLastRuneLine": "ᛠᛉᚻ-ᛞᛖ-ᚹᛖᚦ-ᚢᚳ-ᛉᛗᚪᚣᛠ-ᚹᚫᚪᚳ-",
+      "toFirstRuneLine": "ᚢᚫᚳᛇᚳᚣ-ᛡᚫᛏᛖᚳᚠ-ᛋᚻ-ᛋᚱᚢᚦ-ᛁᛋᛝᛗᛞ",
+      "fromRuneLineCount": 11,
+      "fromMarks": [],
+      "toMarks": [
+        [
+          186,
+          10,
+          "red"
+        ]
+      ],
+      "address": 55,
+      "hit": false
+    },
+    {
+      "from": 38,
+      "to": 39,
+      "carry": false,
+      "leftRune": 23,
+      "rightRune": 15,
+      "leftWord": "ᚻᛏᛠᚪᛞ",
+      "rightWord": "ᛋᚹ",
+      "leftFragment": null,
+      "rightFragment": null,
+      "firstCompleteGroup": "ᛋᚹ",
+      "fromLastRuneLine": "ᛠᛚᚠᛖᛡᚢ-ᛉᚻ-ᚪᚩᛡᛒᛠᚢᚷ-ᚻᛏᛠᚪᛞ-",
+      "toFirstRuneLine": "ᛋᚹ-ᚦ-ᚾᛋᛁᚻᛒ-ᛉᛠᛝ-ᛒᚢᛚᛟᚢᚾ-ᚢᚦᚩᛗᚪ-ᚾ",
+      "fromRuneLineCount": 11,
+      "fromMarks": [
+        [
+          186,
+          10,
+          "red"
+        ]
+      ],
+      "toMarks": [
+        [
+          119,
+          13,
+          "red"
+        ],
+        [
+          122,
+          13,
+          "red"
+        ],
+        [
+          240,
+          13,
+          "red"
+        ]
+      ],
+      "address": 7,
+      "hit": false
+    },
+    {
+      "from": 39,
+      "to": 40,
+      "carry": false,
+      "leftRune": 11,
+      "rightRune": 0,
+      "leftWord": "ᛒᛋᛄ",
+      "rightWord": "ᚠᚾᛗ",
+      "leftFragment": null,
+      "rightFragment": null,
+      "firstCompleteGroup": "ᚠᚾᛗ",
+      "fromLastRuneLine": "ᛗᛄᛠ-ᚦᛟᛄ-ᚪᚦᚹ-ᛡᚾᛖᛠᛈ-ᛒᛋᛄ.",
+      "toFirstRuneLine": "ᚠᚾᛗ-ᚣᚷᛞᚫᚻ-ᚪᛈᛉᚣᚻ-ᛇᛠᚩᛖ-ᛏᛝ",
+      "fromRuneLineCount": 12,
+      "fromMarks": [
+        [
+          119,
+          13,
+          "red"
+        ],
+        [
+          122,
+          13,
+          "red"
+        ],
+        [
+          240,
+          13,
+          "red"
+        ]
+      ],
+      "toMarks": [],
+      "address": 48,
+      "hit": false
+    },
+    {
+      "from": 40,
+      "to": 41,
+      "carry": true,
+      "leftRune": 27,
+      "rightRune": 28,
+      "leftWord": "ᛈᛡᛠᛁᚪ",
+      "rightWord": "ᛈᛡᛠᛁᚪ",
+      "leftFragment": "ᛈᛡ",
+      "rightFragment": "ᛠᛁᚪ",
+      "firstCompleteGroup": "ᛋᚣᛗᛞᚣᛋ",
+      "fromLastRuneLine": "ᚠᛉᚠᛏ-ᚳᛋᛉᛟ-ᚷᚠᛉᚾᛞ-ᛒᛏᛠᛡ.ᛈᛡ",
+      "toFirstRuneLine": "ᛠᛁᚪ-ᛋᚣᛗᛞᚣᛋ-ᛒᛞᛄᛞ.ᚩᚾᛏᛚ-ᚳᚪᛝ-ᚱᚷ",
+      "fromRuneLineCount": 11,
+      "fromMarks": [],
+      "toMarks": [],
+      "address": 53,
+      "hit": false
+    },
+    {
+      "from": 41,
+      "to": 42,
+      "carry": true,
+      "leftRune": 11,
+      "rightRune": 23,
+      "leftWord": "ᛟᛟᚳᛏᛄᛞ",
+      "rightWord": "ᛟᛟᚳᛏᛄᛞ",
+      "leftFragment": "ᛟᛟᚳᛏᛄ",
+      "rightFragment": "ᛞ",
+      "firstCompleteGroup": "ᛉᚾᛗᚦ",
+      "fromLastRuneLine": "ᛉᛄᛚᛈᚪᛁ-ᛟᚹᚱᛁᚱᚦᛖᛉ-ᚪᚾ-ᛞᛄᚷ-ᛟᛟᚳᛏᛄ",
+      "toFirstRuneLine": "ᛞ-ᛉᚾᛗᚦ-ᛁᛄᚱ-ᛈᛉᚢᚫᚦᛒᚠᛄᚦ-ᚠᚪᛝᛖ-ᚹᚹᚣ",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [],
+      "address": 23,
+      "hit": false
+    },
+    {
+      "from": 42,
+      "to": 43,
+      "carry": true,
+      "leftRune": 25,
+      "rightRune": 8,
+      "leftWord": "ᛞᛠᚢᚾᛝᚠᚾᛖᚫᚻᛄ",
+      "rightWord": "ᛞᛠᚢᚾᛝᚠᚾᛖᚫᚻᛄ",
+      "leftFragment": "ᛞᛠᚢᚾᛝᚠᚾᛖᚫ",
+      "rightFragment": "ᚻᛄ",
+      "firstCompleteGroup": "ᛁᛖᛏᛡ",
+      "fromLastRuneLine": "ᛋᛉ-ᚠᛗᛒ-ᚫᛋᛇᚾᛡᚾ-ᚢᚫᚹ-ᛞᛠᚢᚾᛝᚠᚾᛖᚫ",
+      "toFirstRuneLine": "ᚻᛄ-ᛁᛖᛏᛡ-ᚷᛁᚩᚾ-ᚳᚢᚫᛗᛈᛋᚪᛡ-ᚷᛚᚣᚹᛟ-",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [],
+      "address": 40,
+      "hit": false
+    },
+    {
+      "from": 43,
+      "to": 44,
+      "carry": true,
+      "leftRune": 16,
+      "rightRune": 28,
+      "leftWord": "ᛄᛏᛠᚢ",
+      "rightWord": "ᛄᛏᛠᚢ",
+      "leftFragment": "ᛄᛏ",
+      "rightFragment": "ᛠᚢ",
+      "firstCompleteGroup": "ᚷᚦᚣ",
+      "fromLastRuneLine": "ᛝᛉᛞᛁ-ᛗᛝᚣᚪᛝᚠᛉᛁᛟᚷᛚ-ᛇᚩ-ᚫᛡᛏ-ᛄᛏ",
+      "toFirstRuneLine": "ᛠᚢ-ᚷᚦᚣ-ᚦᚾᛟᚣᚩᛖᚻ-ᛁᛋᛖᚣᚦᚪᛡᛝᛟᛇᛚ-",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [],
+      "address": 30,
+      "hit": false
+    },
+    {
+      "from": 44,
+      "to": 45,
+      "carry": true,
+      "leftRune": 15,
+      "rightRune": 5,
+      "leftWord": "ᚱᛗᛞᛋᚳ",
+      "rightWord": "ᚱᛗᛞᛋᚳ",
+      "leftFragment": "ᚱᛗᛞᛋ",
+      "rightFragment": "ᚳ",
+      "firstCompleteGroup": "ᚦᛚᛟ",
+      "fromLastRuneLine": "ᛠᛄᚫ-ᛉᚪᚷᚻᚣᛏᛖᛝ-ᛉᛉᛗᚾᚫᛋ-ᚱᛗᛞᛋ",
+      "toFirstRuneLine": "ᚳ-ᚦᛚᛟ-ᛝᛇᚢ-ᚻᚩ-ᛏ.ᚢᛁᚦᛄᚾᚠᚱᚦ-ᛋᛟᚷᛠ",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [],
+      "address": 5,
+      "hit": false
+    },
+    {
+      "from": 45,
+      "to": 46,
+      "carry": true,
+      "leftRune": 21,
+      "rightRune": 8,
+      "leftWord": "ᚹᛝᚻᛏᛉᚫᛁᛄᚢ",
+      "rightWord": "ᚹᛝᚻᛏᛉᚫᛁᛄᚢ",
+      "leftFragment": "ᚹᛝ",
+      "rightFragment": "ᚻᛏᛉᚫᛁᛄᚢ",
+      "firstCompleteGroup": "ᛞᚠᛡᚫ",
+      "fromLastRuneLine": "ᛞᚠᛟ-ᚢᛁ-ᛖᛇᚦ-ᚫᛞ-ᚳᛄ-ᚷᚢᚻᚣᚻᛁᛒᛉᚾ-ᚹᛝ",
+      "toFirstRuneLine": "ᚻᛏᛉᚫᛁᛄᚢ-ᛞᚠᛡᚫ-ᛋᛁᚹᛝᛈ-ᛗᛉᛄᛈ-ᛞᛗ",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [],
+      "address": 30,
+      "hit": false
+    },
+    {
+      "from": 46,
+      "to": 47,
+      "carry": true,
+      "leftRune": 25,
+      "rightRune": 28,
+      "leftWord": "ᛝᛚᛗᚳᛡᛇᚠᚫᛠᛁᚦ",
+      "rightWord": "ᛝᛚᛗᚳᛡᛇᚠᚫᛠᛁᚦ",
+      "leftFragment": "ᛝᛚᛗᚳᛡᛇᚠᚫ",
+      "rightFragment": "ᛠᛁᚦ",
+      "firstCompleteGroup": "ᛒᛠᛚᚦᚳᛞᛁᛇ",
+      "fromLastRuneLine": "ᛗᚹ-ᛇᚪᚩᚾᛄᚳᛚᛒᛉ-ᚣᛠᚦᚹ-ᛝᛚᛗᚳᛡᛇᚠᚫ",
+      "toFirstRuneLine": "ᛠᛁᚦ-ᛒᛠᛚᚦᚳᛞᛁᛇ-ᚠᚢᛉᛋᛉᛁᚦᚫᛋᛗ-ᚦᚹ.",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [],
+      "address": 31,
+      "hit": false
+    },
+    {
+      "from": 47,
+      "to": 48,
+      "carry": true,
+      "leftRune": 25,
+      "rightRune": 8,
+      "leftWord": "ᚪᚩᚪᚫᚻᚳᛁᚦ",
+      "rightWord": "ᚪᚩᚪᚫᚻᚳᛁᚦ",
+      "leftFragment": "ᚪᚩᚪᚫ",
+      "rightFragment": "ᚻᚳᛁᚦ",
+      "firstCompleteGroup": "ᛄᚷ",
+      "fromLastRuneLine": "ᚷᚩᚷ-ᛇᛁᛖ-ᛠᛄᛇᛁᚾᛄᚩᛗᚱᛡᛉ-ᚠᚻᚳ-ᚪᚩᚪᚫ",
+      "toFirstRuneLine": "ᚻᚳᛁᚦ-ᛄᚷ.ᛝᛖᚢ-ᛡᛏᛁ-ᛚᚩᚱᛈ.ᚠᚪ-ᛈᛞᚱᛒ-",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [],
+      "address": 2,
+      "hit": false
+    },
+    {
+      "from": 48,
+      "to": 49,
+      "carry": true,
+      "leftRune": 0,
+      "rightRune": 27,
+      "leftWord": "ᛇᚠᚢᛞᚣᚪᛚᚠᛡ",
+      "rightWord": "ᛇᚠᚢᛞᚣᚪᛚᚠᛡ",
+      "leftFragment": "ᛇᚠᚢᛞᚣᚪᛚᚠ",
+      "rightFragment": "ᛡ",
+      "firstCompleteGroup": "ᛖᛄ",
+      "fromLastRuneLine": "ᚫᛏᛟ-ᚻᛖᚾ-ᚳᛇᚩ-ᛋᚻᚫᛇ-ᛝᛁᛟ-ᛇᚠᚢᛞᚣᚪᛚᚠ",
+      "toFirstRuneLine": "ᛡ-ᛖᛄ-ᚠᛚᛟ-ᛁᚳ-ᛁᛝᚷᚦ-ᛗᛋᚫᚷᚪᛠ-ᛗᛁ-ᛒᛡᛏ",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [
+        [
+          66,
+          10,
+          "red"
+        ]
+      ],
+      "address": 27,
+      "hit": false
+    },
+    {
+      "from": 49,
+      "to": 50,
+      "carry": false,
+      "leftRune": 23,
+      "rightRune": null,
+      "leftWord": "ᛟᛇᚹᛄᛈᛞ",
+      "rightWord": null,
+      "leftFragment": null,
+      "rightFragment": null,
+      "firstCompleteGroup": null,
+      "fromLastRuneLine": "ᚦᚾ-ᛖᚪᛈᚹᛠᛚ-ᛒᚢᚱᛡᛟ-ᚪᚣ-ᛟᛇᚹᛄᛈᛞ.",
+      "toFirstRuneLine": null,
+      "fromRuneLineCount": 3,
+      "fromMarks": [
+        [
+          66,
+          10,
+          "red"
+        ]
+      ],
+      "toMarks": [],
+      "address": null,
+      "hit": false
+    },
+    {
+      "from": 50,
+      "to": 51,
+      "carry": false,
+      "leftRune": null,
+      "rightRune": 7,
+      "leftWord": null,
+      "rightWord": "ᚹᚹᛈ",
+      "leftFragment": null,
+      "rightFragment": null,
+      "firstCompleteGroup": "ᚹᚹᛈ",
+      "fromLastRuneLine": null,
+      "toFirstRuneLine": "ᚹᚹᛈ-ᚠᛡᛚᛉᛒᚾ-ᚳᛗᚾᚱᛗ-ᚻᚦᚫᛞᛄ-ᛒᛡᚫ-ᛇᚹ",
+      "fromRuneLineCount": 0,
+      "fromMarks": [],
+      "toMarks": [],
+      "address": null,
+      "hit": false
+    },
+    {
+      "from": 51,
+      "to": 52,
+      "carry": true,
+      "leftRune": 0,
+      "rightRune": 13,
+      "leftWord": "ᛈᛚᚠᛈ",
+      "rightWord": "ᛈᛚᚠᛈ",
+      "leftFragment": "ᛈᛚᚠ",
+      "rightFragment": "ᛈ",
+      "firstCompleteGroup": "ᚠᛗ",
+      "fromLastRuneLine": "ᛒᚷᚳᛖᛏᚹ-ᚪᛋᛒ-ᛗᛠᚣᛇᛗᚫᛚᚱ-ᚹᛇᛄᛒ-ᛈᛚᚠ",
+      "toFirstRuneLine": "ᛈ-ᚠᛗ-ᛝᚪᛇᚾᛟᚹᛇᛉ-ᚣᚫᛉᛞᛟᚱᛒ-ᛡᚱᛟ-ᚹᛏ",
+      "fromRuneLineCount": 4,
+      "fromMarks": [],
+      "toMarks": [],
+      "address": 42,
+      "hit": false
+    },
+    {
+      "from": 52,
+      "to": 53,
+      "carry": true,
+      "leftRune": 8,
+      "rightRune": 12,
+      "leftWord": "ᛟᚷᚻᚣᚻᛇᚫᛠᚫᚣ",
+      "rightWord": "ᛟᚷᚻᚣᚻᛇᚫᛠᚫᚣ",
+      "leftFragment": "ᛟᚷᚻᚣᚻ",
+      "rightFragment": "ᛇᚫᛠᚫᚣ",
+      "firstCompleteGroup": "ᚢᛗᛈ",
+      "fromLastRuneLine": "ᛠᚩᛈ-ᛗᛏᚱᚫᚢᚻᛁᛝ-ᛇᚳᚠ-ᛄᚾᚱᚷ-ᛟᚷᚻᚣᚻ",
+      "toFirstRuneLine": "ᛇᚫᛠᚫᚣ-ᚢᛗᛈ-ᛉᛁᚢᚾᚩᛟᚾ-ᚷᛞᚦ-ᛡᚫᚹ-ᛞ",
+      "fromRuneLineCount": 12,
+      "fromMarks": [],
+      "toMarks": [
+        [
+          179,
+          13,
+          "red"
+        ]
+      ],
+      "address": 26,
+      "hit": false
+    },
+    {
+      "from": 53,
+      "to": 54,
+      "carry": false,
+      "leftRune": 9,
+      "rightRune": 24,
+      "leftWord": "ᛈᚾ",
+      "rightWord": "ᚪ",
+      "leftFragment": null,
+      "rightFragment": null,
+      "firstCompleteGroup": "ᚪ",
+      "fromLastRuneLine": "-ᚢᚱ-ᛈᚾ.",
+      "toFirstRuneLine": "ᚪ-ᛗᛝᛞᛡᚦᛉᛁᛗ.ᛡᛞᛈᛝᚢᚹᚪᛗ-ᛏᚪ",
+      "fromRuneLineCount": 9,
+      "fromMarks": [
+        [
+          179,
+          13,
+          "red"
+        ]
+      ],
+      "toMarks": [
+        [
+          9,
+          13,
+          "red"
+        ]
+      ],
+      "address": 53,
+      "hit": false
+    },
+    {
+      "from": 54,
+      "to": 55,
+      "carry": true,
+      "leftRune": 26,
+      "rightRune": 21,
+      "leftWord": "ᚷᚩᛏᚦᛉᛖᛠᚱᚷᚣᛝ",
+      "rightWord": "ᚷᚩᛏᚦᛉᛖᛠᚱᚷᚣᛝ",
+      "leftFragment": "ᚷᚩᛏᚦᛉᛖᛠᚱᚷᚣ",
+      "rightFragment": "ᛝ",
+      "firstCompleteGroup": "ᚫᛗᛁᚹ",
+      "fromLastRuneLine": "ᛠᚪᚳᛁᛗᛉᛄᛗᛖ-ᛗᛚ-ᚷᚩᛏᚦᛉᛖᛠᚱᚷᚣ",
+      "toFirstRuneLine": "ᛝ-ᚫᛗᛁᚹ-ᛋᛒ-ᛉᛗ-ᛋᛇᚷᛞᚦᚫ-ᚠᛡᚪᛒᚳᚢ-ᚹᚱ-ᛒ",
+      "fromRuneLineCount": 11,
+      "fromMarks": [
+        [
+          9,
+          13,
+          "red"
+        ]
+      ],
+      "toMarks": [
+        [
+          76,
+          13,
+          "red"
+        ]
+      ],
+      "address": 21,
+      "hit": false
+    },
+    {
+      "from": 55,
+      "to": 56,
+      "carry": false,
+      "leftRune": 10,
+      "rightRune": 25,
+      "leftWord": "ᛒᛖᛁ",
+      "rightWord": "ᚫᛄ",
+      "leftFragment": null,
+      "rightFragment": null,
+      "firstCompleteGroup": "ᚫᛄ",
+      "fromLastRuneLine": "ᚳᛉ-ᛞᛄᚢ-ᛒᛖᛁ.",
+      "toFirstRuneLine": "ᚫᛄ-ᛟᛋᚱ.ᛗᚣᛚᚩᚻ-ᚩᚫ-ᚳᚦᚷᚹ-ᚹᛚᚫ.ᛉ",
+      "fromRuneLineCount": 4,
+      "fromMarks": [
+        [
+          76,
+          13,
+          "red"
+        ]
+      ],
+      "toMarks": [
+        [
+          5,
+          13,
+          "red"
+        ],
+        [
+          45,
+          10,
+          "red"
+        ],
+        [
+          85,
+          13,
+          "red"
+        ]
+      ],
+      "address": 40,
+      "hit": false
+    },
+    {
+      "from": 56,
+      "to": 57,
+      "carry": false,
+      "leftRune": 15,
+      "rightRune": 13,
+      "leftWord": "ᚫᚾᚢᛋ",
+      "rightWord": "ᛈᚪᚱᚪᛒᛚᛖ",
+      "leftFragment": null,
+      "rightFragment": null,
+      "firstCompleteGroup": "ᛈᚪᚱᚪᛒᛚᛖ",
+      "fromLastRuneLine": "ᛝᚹ-ᛉᚩ-ᛗᛠᚹᚠ-ᚱᚷᛡ-ᛝᚱᛒ-ᚫᚾᚢᛋ.",
+      "toFirstRuneLine": "ᛈᚪᚱᚪᛒᛚᛖ.ᛚᛁᚳᛖ-ᚦᛖ-ᛁᚾᛋᛏᚪᚱ-ᛏ",
+      "fromRuneLineCount": 5,
+      "fromMarks": [
+        [
+          5,
+          13,
+          "red"
+        ],
+        [
+          45,
+          10,
+          "red"
+        ],
+        [
+          85,
+          13,
+          "red"
+        ]
+      ],
+      "toMarks": [
+        [
+          7,
+          13,
+          "red"
+        ],
+        [
+          95,
+          23,
+          "red"
+        ]
+      ],
+      "address": 47,
+      "hit": false
+    }
+  ]
+}
