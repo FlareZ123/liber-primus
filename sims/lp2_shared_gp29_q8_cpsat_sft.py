@@ -75,11 +75,88 @@ def model(C,D,mode,gauge='rank1'):
         m.add_allowed_assignments(ps,words)
     return m,rank,k
 
+
+def model_commute(C,D):
+    """Exact map-space model: eight decryption permutations are powers of one 29-cycle."""
+    m=cp_model.CpModel()
+    maps=[[m.new_int_var(0,28,f'f{j}_{c}') for c in range(29)] for j in range(8)]
+    for row in maps:
+        m.add_all_different(row)
+
+    # A 29-cycle generator g = maps[0], anchored only at the symbol F=0.
+    orbit=[m.new_int_var(0,28,f'orbit{i}') for i in range(29)]
+    m.add(orbit[0]==0)
+    for i in range(28):
+        m.add_element(orbit[i],maps[0],orbit[i+1])
+    m.add_element(orbit[28],maps[0],orbit[0])
+    m.add_all_different(orbit)
+
+    # The centralizer of a full 29-cycle is its cyclic group:
+    # every other phase map commuting with g is exactly g**t for some t in GF(29).
+    for j in range(1,8):
+        for c in range(29):
+            left=m.new_int_var(0,28,f'left{j}_{c}')
+            right=m.new_int_var(0,28,f'right{j}_{c}')
+            m.add_element(maps[0][c],maps[j],left)
+            m.add_element(maps[j][c],maps[0],right)
+            m.add(left==right)
+
+    # Primitive period eight: not all four opposite phase pairs are equal.
+    differences=[]
+    for j in range(4):
+        for c in range(29):
+            d=m.new_bool_var(f'diff{j}_{c}')
+            m.add(maps[j][c]!=maps[j+4][c]).only_enforce_if(d)
+            m.add(maps[j][c]==maps[j+4][c]).only_enforce_if(d.Not())
+            differences.append(d)
+    m.add_bool_or(differences)
+
+    by=collections.defaultdict(list)
+    for w in sorted(D): by[len(w)].append(w)
+    domains=[]
+    for g,c in enumerate(C):
+        phase=m.new_int_var(0,7,f'phase{g}_0')
+        ps=[]
+        for i,x in enumerate(c):
+            p=m.new_int_var(0 if x==0 else 1,28,f'p{g}_{i}')
+            ps.append(p)
+            dec=m.new_int_var(0,28,f'dec{g}_{i}')
+            m.add_element(phase,[maps[j][x] for j in range(8)],dec)
+            m.add(p==dec)
+            if i+1<len(c):
+                nxt=m.new_int_var(0,7,f'phase{g}_{i+1}')
+                if x==0:
+                    hold=m.new_bool_var(f'hold{g}_{i}')
+                    m.add(p==0).only_enforce_if(hold)
+                    m.add(p!=0).only_enforce_if(hold.Not())
+                    m.add(nxt==phase).only_enforce_if(hold)
+                    m.add_allowed_assignments([phase,nxt],[(j,(j+1)%8) for j in range(8)]).only_enforce_if(hold.Not())
+                else:
+                    m.add_allowed_assignments([phase,nxt],[(j,(j+1)%8) for j in range(8)])
+                phase=nxt
+        words=[w for w in by[len(c)] if s.candidate(w,c)]
+        domains.append(len(words))
+        m.add_allowed_assignments(ps,words)
+    return m,maps,domains
+
+def recover_action_from_maps(maps):
+    g=maps[0]
+    orbit=[0]
+    for _ in range(28): orbit.append(g[orbit[-1]])
+    assert len(set(orbit))==29 and g[orbit[-1]]==0
+    pi=[None]*29
+    for n,c in enumerate(orbit): pi[c]=(-n)%29
+    k=[orbit.index(maps[j][0]) for j in range(8)]
+    inv=[pi.index(x) for x in range(29)]
+    for j in range(8):
+        assert [inv[(pi[c]-k[j])%29] for c in range(29)]==maps[j]
+    return pi,k
+
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument('--plant',type=int,choices=[0,1],default=0)
     ap.add_argument('--profile',choices=['terminal','long'],default='terminal')
-    ap.add_argument('--mode',choices=['direct','maps'],default='maps')
+    ap.add_argument('--mode',choices=['direct','maps','centralizer'],default='maps')
     ap.add_argument('--gauge',choices=['rank1','k0'],default='rank1')
     ap.add_argument('--seconds',type=int,default=900)
     ap.add_argument('--workers',type=int,default=2)
@@ -92,8 +169,18 @@ def main():
     pl=f['plants'][args.plant]
     T=s.words(pl['truth']); C=s.words(pl['cipher'])
     assert all(t in s.decode(c,pl['pi'],pl['k'],D) for t,c in zip(T,C))
-    m,rank,k=model(C[:n],D,args.mode,args.gauge)
-    if args.oracle:
+    if args.mode=='centralizer':
+        m,maps,domains=model_commute(C[:n],D)
+        rank=k=None
+    else:
+        m,rank,k=model(C[:n],D,args.mode,args.gauge)
+    if args.oracle and args.mode=='centralizer':
+        r=next(j for j,x in enumerate(pl['k']) if x%29)
+        inv=[pl['pi'].index(x) for x in range(29)]
+        oracle_maps=[[inv[(pl['pi'][c]-pl['k'][(j+r)%8])%29] for c in range(29)] for j in range(8)]
+        for j in range(8):
+            for c in range(29): m.add(maps[j][c]==oracle_maps[j][c])
+    elif args.oracle:
         if args.gauge=='rank1':
             scale=pow(pl['pi'][1],-1,29)
             pp=[scale*x%29 for x in pl['pi']]
@@ -115,12 +202,17 @@ def main():
     solver.parameters.num_search_workers=args.workers
     solver.parameters.random_seed=2722+args.plant
     print(m.model_stats(),flush=True)
+    if args.mode=='centralizer': print('candidate_domains',domains,'total',sum(domains),flush=True)
     status=solver.solve(m)
     out={'status':solver.status_name(status),'wall_time':solver.wall_time,
          'branches':solver.num_branches,'conflicts':solver.num_conflicts,
          'mode':args.mode,'gauge':args.gauge,'plant':args.plant,'profile':args.profile,'oracle':args.oracle}
     if status in (cp_model.OPTIMAL,cp_model.FEASIBLE):
-        pi=[solver.value(x) for x in rank]; shifts=[solver.value(x) for x in k]
+        if args.mode=='centralizer':
+            map_values=[[solver.value(maps[j][c]) for c in range(29)] for j in range(8)]
+            pi,shifts=recover_action_from_maps(map_values)
+        else:
+            pi=[solver.value(x) for x in rank]; shifts=[solver.value(x) for x in k]
         decoded=[s.decode(c,pi,shifts,D) for c in C]
         assert all(decoded[:n])
         out.update(pi=pi,k=shifts,exact=s.same_action(pi,shifts,pl['pi'],pl['k']),
