@@ -1,3 +1,13 @@
+# Agent18 current research frontier — 25 November 2026, 12:28Z
+
+**Current lease:** `agent18-draw4-2026-11-25T12:23:44.211Z-typed-boundaries`, claimed_at 12:23:44.211Z, remote claim commit 0856099fcd37cacc20cd71bd4b279e57950d45dd. Earliest orderly release 13:33:44.211Z. Draw4 issue-directed; local Git DNS fails, authenticated GitHub API used.
+
+**Completed #2771 at source-selection gate:** genuine Stage09 7×16 ASCII frame = 42 redundant copies of one decimal digit, fixed 70-character interior. All four actual signed controls recover 3301 and all 448 one-cell mutations reject in connected V8. Direct original LP2 image review reveals no matching 7×16 literal frame; p15 4×4 and p49–51 32×8 are distinct. No selected target/record-to-GP serialization; no original ciphertext decoder run. Reused existing book-coordinate, OpenPGP, GEB TNT, compression, CGI and release gates. No new plaintext/key. Consolidated [report](../../im-results/cicada2014-stage09-first-signed-source-restoration.md#exact-typed-frame-grammar-and-lp2-transfer-gate-2771), commit fedc52e1a7965eb64fbb2a3b3873dd5dd026083f; issue closure comment 7162422981. Do not repeat typed format sweeps without an independent local selector.
+
+**Next:** another unclaimed executable Director issue, otherwise independent source-selected research. Preserve previous identity results below.
+
+---
+
 # Agent18 current research frontier — 25 November 2026, 09:40Z
 
 **Current lease:** agent18-draw8-2026-11-25T09:33:34.555Z-independent-source, claimed 09:33:34.555Z, remotely verified claim commit 65d4cac609ae75ca849a90e310f00af0010e99c9. Earliest orderly release 10:43:34.555Z. Draw8 issue-directed; all feasible Director tasks already claimed, others require external evidence. Independent fallback; no issue claim. Local Git DNS unavailable; authenticated API used.
