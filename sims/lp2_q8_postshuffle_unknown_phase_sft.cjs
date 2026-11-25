@@ -274,7 +274,12 @@ function experiment(raw) {
     }
     ranked.sort((a, b) => b.covered - a.covered || a.edgeCount - b.edgeCount || a.id.localeCompare(b.id));
     const passing = ranked.filter(x => x.covered >= coverageThreshold);
-    return { candidates, ranked, passing };
+    const supportHistogram = {};
+    for (const rec of candidates.values()) { const n = rec.groups.size; supportHistogram[n] = (supportHistogram[n] || 0) + 1; }
+    const supportValues = [...candidates.values()].map(rec => rec.groups.size);
+    const support = { keys: candidates.size, keysWithMultipleGroups: supportValues.filter(n => n >= 2).length,
+      maxGroupsPerKey: Math.max(0, ...supportValues), histogram: supportHistogram };
+    return { candidates, ranked, passing, support };
   }
   function inspectTrueControl(dataset, search) {
     const trueId = dataset.key.id;
@@ -295,6 +300,7 @@ function experiment(raw) {
     const passIds = search.passing.map(x => x.id);
     return {
       candidateKeys: search.ranked.length,
+      anchorSupport: search.support,
       trueKeyInPool: !!trueCandidate,
       trueKeyCoverage: trueCandidate ? trueCandidate.covered : 0,
       passingKeys: passIds.length,
@@ -308,6 +314,7 @@ function experiment(raw) {
   function summarizeNull(search) {
     return {
       candidateKeys: search.ranked.length,
+      anchorSupport: search.support,
       passingKeys: search.passing.length,
       best: search.ranked[0] ? {
         key: search.ranked[0].id, covered: search.ranked[0].covered, missing: search.ranked[0].missing,
@@ -356,7 +363,7 @@ function experiment(raw) {
     nullControls.push({ name: "independent-per-group-pad-" + (i + 1), ...summarizeNull(nullSearch) });
   }
   const nativeGate = nativeControls.every(x => x.trueKeyInPool && x.trueKeyCoverage >= coverageThreshold &&
-    x.onlyTrueKeyPasses && x.trueWordsPresent === inventory.length && x.trueEdgesPresent === inventory.length);
+    x.onlyTrueKeyPasses && x.trueWordsPresent === inventory.length && x.trueEdgesPresent === inventory.length && x.truePhaseTrail);
   const nullGate = nullControls.every(x => x.passingKeys === 0);
   const gate = nativeGate && nullGate;
   const output = {
@@ -381,6 +388,7 @@ function experiment(raw) {
   const originalSearch = runSearch(originalGroups);
   output.original = {
     candidateKeys: originalSearch.ranked.length,
+    anchorSupport: originalSearch.support,
     passingKeys: originalSearch.passing.map(x => ({
       key: x.id, covered: x.covered, missing: x.missing, anchorGroups: x.anchorGroups,
       edgeCount: x.edgeCount, uniqueWordGroups: x.uniqueWordGroups, uniqueEdgeGroups: x.uniqueEdgeGroups
