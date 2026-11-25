@@ -28,6 +28,7 @@ jobs:
             sims/lp2_shared_gp29_q8_red8_sft.py
       - name: Run blind red-heading control
         run: |
+          set -o pipefail
           python sims/lp2_shared_gp29_q8_red8_sft.py \
             --variant ${{ matrix.variant }} \
             --plant ${{ matrix.plant }} \
