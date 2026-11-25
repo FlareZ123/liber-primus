@@ -853,5 +853,124 @@
       ],
       "reachable": 11
     }
+  ],
+  "groupBBControls": [
+    {
+      "name": "0_warning",
+      "groups": 45,
+      "runes": 184
+    },
+    {
+      "name": "0_welcome",
+      "groups": 124,
+      "runes": 515
+    },
+    {
+      "name": "0_wisdom",
+      "groups": 31,
+      "runes": 157
+    },
+    {
+      "name": "0_koan_1",
+      "groups": 208,
+      "runes": 780
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "groups": 181,
+      "runes": 755
+    },
+    {
+      "name": "jpg107-167",
+      "groups": 88,
+      "runes": 319
+    },
+    {
+      "name": "jpg229",
+      "groups": 18,
+      "runes": 89
+    },
+    {
+      "name": "p56_an_end",
+      "groups": 25,
+      "runes": 85
+    },
+    {
+      "name": "p57_parable",
+      "groups": 20,
+      "runes": 95
+    }
+  ],
+  "groupBBOriginal": [
+    {
+      "lo": 0,
+      "hi": 2,
+      "groups": 158,
+      "runes": 729,
+      "reachable": 20
+    },
+    {
+      "lo": 3,
+      "hi": 7,
+      "groups": 255,
+      "runes": 1145,
+      "reachable": 24
+    },
+    {
+      "lo": 8,
+      "hi": 14,
+      "groups": 383,
+      "runes": 1729,
+      "reachable": 29
+    },
+    {
+      "lo": 15,
+      "hi": 22,
+      "groups": 437,
+      "runes": 1903,
+      "reachable": 0
+    },
+    {
+      "lo": 23,
+      "hi": 26,
+      "groups": 224,
+      "runes": 1021,
+      "reachable": 40
+    },
+    {
+      "lo": 27,
+      "hi": 32,
+      "groups": 326,
+      "runes": 1433,
+      "reachable": 51
+    },
+    {
+      "lo": 33,
+      "hi": 39,
+      "groups": 378,
+      "runes": 1680,
+      "reachable": 137
+    },
+    {
+      "lo": 40,
+      "hi": 53,
+      "groups": 669,
+      "runes": 3008,
+      "reachable": 195
+    },
+    {
+      "lo": 54,
+      "hi": 55,
+      "groups": 66,
+      "runes": 308,
+      "reachable": 39
+    },
+    {
+      "lo": 0,
+      "hi": 55,
+      "groups": 2896,
+      "runes": 12956,
+      "reachable": 180
+    }
   ]
 }

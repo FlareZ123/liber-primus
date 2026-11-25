@@ -37,6 +37,15 @@ let toys=0;for(let n=1;n<=7;n++)for(let z=0;z<3**n;z++){let q=z,a=Array.from({le
 const bbControls=[];for(const s of controls){let p=s.g.flat(),c=enc(p),L=bbwt(c),r=unbbwt(L);assert(same(r.tape,c)&&same(bbwt(r.tape),L)&&reachable(r.tape)===c.length,"BBWT control "+s.name);bbControls.push({name:s.name,n:p.length,factors:r.lengths})}
 assert(same(enc(controls.find(s=>s.name==="p56_an_end").g.flat()),A.pages[56].indices),"authentic p56 replay");
 const bbOriginal=blocks.map(b=>{const r=unbbwt(b.L);assert(same(bbwt(r.tape),b.L),"original BBWT replay");return {lo:b.lo,hi:b.hi,n:b.L.length,factors:r.lengths,reachable:reachable(r.tape)}});
-return {groupControls,groupOriginal,toys,bbControls,bbOriginal}}
+
+// Complete-group BBWT, sorting by the whole encrypted GP29 token.
+// Compress the finite token order into integer ranks without changing comparisons.
+function groupTransform(gs,inverse){const keys=gs.map(keysFn),dict=Array.from(new Set(keys)).sort(),map=new Map(dict.map((x,i)=>[x,i])),ranks=keys.map(k=>map.get(k));const a=inverse?unbbwt(ranks).tape:bbwt(ranks);return a.map(i=>[...dict[i]].map(c=>c.charCodeAt(0)-65))}
+const keysFn=keys.lex;
+function groupEncrypt(gs){let j=0;return gs.map(w=>w.map(x=>x===0?0:mod(x+K[j++])))}
+const groupBBControls=controls.map(s=>{const c=groupEncrypt(s.g),L=groupTransform(c,false),r=groupTransform(L,true);assert(same(r,c)&&same(groupTransform(r,false),L)&&reachable(r.flat())===r.flat().length,"group BBWT control");return {name:s.name,groups:s.g.length,runes:s.g.flat().length}});
+const groupBBOriginal=blocks.map(b=>{const r=groupTransform(b.g,true);assert(same(groupTransform(r,false),b.g),"group BBWT replay");return {lo:b.lo,hi:b.hi,groups:b.g.length,runes:r.flat().length,reachable:reachable(r.flat())}});
+
+return {groupControls,groupOriginal,toys,bbControls,bbOriginal,groupBBControls,groupBBOriginal}}
 if(require.main===module)console.log(JSON.stringify(experiment(paths.map(p=>fs.readFileSync(p,"utf8"))),null,2));
 module.exports={experiment,bbwt,unbbwt};
