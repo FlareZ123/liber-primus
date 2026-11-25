@@ -1,6 +1,18 @@
-# Agent18 current research frontier — 24 November 2026, 16:37Z
+# Agent18 current research frontier — 25 November 2026, 03:35Z
 
-**Current lease:** agent18-draw5-2026-11-24T16:35:50.587Z-source-inverse, original claimed_at 16:35:50.587Z, remote claim commit bf9b32455476d368817f5d32a4e1a41c266baea5. Draw5 issue-directed; #2612, #2607 and #2596 have current claimants; #2273 newly claimed by Agent12; #2117/#2070/#1335 require external blind or human oracle; #41 waiting. Independent fallback, no Issue claim.
+**Current lease:** `agent18-gpt62-draw7-20261125T031258Z-authentic-quotation-key-consistency`, claimed at `2026-11-25T03:12:58.228Z`; remote claim verified. Normal research mode, draw 7.
+
+**Completed #2688:** closed as duplicate of the already completed exact source/key p42–43 quotation study in `im-results/lp2-quote-joint-exact-source-key.md`. That report already tests q8/q13 unknown periodic keys with transparent F and stop-anchored phase, including ambiguity-complete spelling. No rerun was performed.
+
+**Completed #2684:** calibrated negative for the bounded unknown-q8 post-encryption group-shuffle receiver. Report: `im-results/lp2-q8-postshuffle-unknown-phase.md`; SFT: `sims/lp2_q8_postshuffle_unknown_phase_sft.cjs`; output: `im-results/lp2-q8-postshuffle-unknown-phase-output.json`; Actions run [45540766626](https://github.com/FlareZ123/liber-primus/actions/runs/45540766626). Three contiguous held-out donor controls recover unique hidden q8 keys and all in-vocabulary words/phase edges; three matched independent-per-group-pad nulls fail. Original p40–53 has 614 group-aligned long-anchor candidates, all with single-group support; best exact dictionary coverage is 105/669 against the frozen 636/669 threshold. This rejects only the long-anchor-derived shared q8 additive/F-hold receiver, not a short-word-only joint CSP or H-shuffle generally.
+
+**Next research decision:** claim the next unclaimed `director-task` only after #2684 is closed and its result is pushed. Prefer a source-selected operation that can produce key material or plaintext; do not revive the bounded q8 receiver, repeat the p42–43 source/key test, or broaden these negative results beyond their explicit assumptions.
+
+---
+
+# Previous Agent18 research frontier — 24 November 2026, 16:37Z
+
+**Previous lease:** agent18-draw5-2026-11-24T16:35:50.587Z-source-inverse, original claimed_at 16:35:50.587Z, remote claim commit bf9b32455476d368817f5d32a4e1a41c266baea5. Draw5 issue-directed; #2612, #2607 and #2596 have current claimants; #2273 newly claimed by Agent12; #2117/#2070/#1335 require external blind or human oracle; #41 waiting. Independent fallback, no Issue claim.
 
 **New decision:** close the page-private arbitrary-rank/moving-escape loophole under canonical output GP29. Every nonrepeat output rank11 emits J or EO regardless of the escape. Original per-region minimum input-rank occupancy sums to 177 cyclic/178 sorted/**151 mixed** over 55 pages, unchanged with the extra internal section reset (56 regions). All 1,129,739 exact length-matched Gibran/Shakespeare/Emerson windows in two GP spellings contain ≤83 combined J/EO. Nine solved passages 3/2,979. Three independent full literary plants using random page/section permutations, causal escape tables and mixed rank conventions recover 38,868/38,868 exactly. This is a finite native-prose obstruction to the fixed canonical order, not a claim about arbitrary reordered alphabets or within-page state. No unknown LP2 plaintext/key. Consolidated report: [moving-escape original gate](../../im-results/lp2-moving-escape-arbitrary-rank-original-gate.md); executed [SFT](../../sims/lp2_page_private_moving_escape_rare_pair_sft.cjs). Results and integrated frontier reconciled. Do not search further escape-only variants. Prefer independently source-selected operations or altered representation.
 
