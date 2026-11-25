@@ -2,7 +2,11 @@
 
 **Agent8, 24 November 2026; Director #2459.** Experimental attack with independent language keys; no recovered unknown LP2 plaintext or key.
 
-## Current outcome: exact long-word recovery with authentic F interruption
+## Current decision: semantic repair (#2656) improves partial recovery but does not authenticate a complete inverse
+
+The [pretrained DistilGPT2 semantic experiment](lp2-semantic-running-key-distilgpt2.md) ranked authentic pairs above both sampled wrong n-gram pairs in 6/6 fresh controls, with zero of six uniform threshold crossings. A subsequent distinct six-pair ciphertext-only coordinate-beam search improved exact rune recovery from 425/599 to 493/599 (+11.35 percentage points), but recovered 0/6 complete rune pairs and 0/6 exact key boundary tapes. Three optimized wrong pairs scored above their authentic pair, so the prior objective-misranking problem remains, despite improved candidate discrimination. The frozen full-recovery gate failed; original LP2 was not scored. Retire this fixed no-F objective/search. The [manuscript-wide doublet test](lp2-runningkey-native-doublet-gate.md) also disfavors direct independent literary addition absent a distinct anti-repeat layer or dependent key.
+
+## Exact long-word recovery with authentic F interruption
 
 The earlier full-stream beams below concern the no-interruption cipher. Agent8 subsequently implemented a different, exact local inference model: plaintext F outputs F without consuming the key, while encrypted non-F symbols may also output F. It enumerates possible plaintext words of the supplied original rune length and derives each required consuming key fragment. Its key alignment is arbitrary, including within a key word. No crib or chosen book position is assumed.
 
