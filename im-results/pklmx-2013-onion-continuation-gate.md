@@ -2,6 +2,33 @@
 
 **Disposition: close as a historical 2013 recruitment branch, not an LP2 continuation/key-source lead.** The player-visible route is now reconstructed through coordinate updates, physical posters, Gematria-derived phone codes, ISO-byte XOR, a 5-of-10 SSSS recovery, a 19-image screening quiz, and the later TCP-server challenge. Its recovered secret is the 2013 onion address p7amjopgric7dfdi.onion. Nothing in this route supplies an LP2 key, selector, plaintext, or cipher mechanism; retain it as evidence about Cicada's earlier human-puzzle design, not as an active LP2 decryption hypothesis.
 
+## Partial byte reconstruction from independent stage operands (Director #2807, 25 November 2026)
+
+**New historical result:** 64,167 bytes at file-relative origin zero of DATA/560.13 recovered from the pinned Twitter-stage archive, with 15,330 bytes agreeing against a second algebraic reconstruction and three later phone-stage XOR rows exactly reproduced. This is a derived prefix, not an original ISO extraction.
+
+The [pinned Twitter README](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/003-twitter/README.md) defines A=560.13, M=761.mp3, T=twitter.bin, B=(A XOR M) XOR T and J=T XOR M. Thus **A=B XOR J** for the full 64,167-byte overlap, without requiring either large A or M. B is the original archived b64.txt carrier (not its Base64-decoded image); J is gematria.jpg. Independently recover A[0:15330] as decoded.png XOR 560.13^decoded.png.bin. Both routes agree byte-for-byte across their common 15,330 bytes. They are separate stored artifacts in the same participant archive, not independent archive lineages.
+
+| Pinned input | Decoded bytes | Original Git blob SHA-1 |
+| --- | ---: | --- |
+| b64.txt | 64167 | 3cf34e331497e7e85c6707c22d07e500397cc794 |
+| gematria.jpg | 64167 | 65ded13617196f0fd5d210855a75452ff2e7a340 |
+| decoded.png | 15330 | fd1052f8ae704cad8dcf005759182f39631fb187 |
+| 560.13^decoded.png.bin | 15330 | 5eaf7e1129e75b2f3af2069c8a56bdb1d00c1d22 |
+
+The existing repository JPEG/PNG Base64 mirrors decode to exactly the pinned external bytes; the two complementary original participant artifacts are now preserved alongside them as Base64 wrappers. The [derived prefix](../resources/derived/cicada2013-560.13-prefix-64167.bin) has Git blob SHA-1 `314cdfb6d6160fa8d125a960c3ef28f19e8eb1f6`. The [offline SFT](../sims/2013_cicadaos_prefix_reconstruction_sft.py) verifies all input Git blob IDs, the prefix and overlap, and the original phone XORs. The reconstruction and assertions executed in connected V8; the standalone Python wrapper has not separately run.
+
+| Phone row | Offset | Reconstructed byte slice | Outcome |
+| --- | ---: | --- | --- |
+| Portland | 12821 | 4fa20773275723317a79000b7c371a936f00a2fdfde96f | exact |
+| Little Rock | 13831 | 6ab768f540ad4ff1226fce429b06aa970b119262ec46be | exact |
+| Okinawa | 37861 | 85fccf2eefcf33c2fad918933d4fcf20ee00f44e84ffcf | exact |
+
+Moscow (1,111,111) lies outside this prefix; the three 560.17 rows are still not independently reconstructed from file bytes. The archive stores 560.17 as a 1,183,811-byte Git blob (`49df8e57f8e6052eb2d5c2b483282461e53ef5ff`), but the available connector returns empty Base64 for files above its contents limit and rejects binary blob reads. The full MP3 and its XOR intermediate likewise cannot be read. No guessed offsets or pad search were performed.
+
+**Full ISO acquisition:** the [Connor mirror](https://connortumbleson.com/uploads/2024/01/3301.iso) and [Internet Archive item](https://archive.org/download/3301.iso/3301.iso) are documented by separate external projects. Published size 136,398,848; MD5 74062dee4093c6ca0340cda23f0e994b; Internet Archive SHA-1 df433cba87644b35cbc47f702a02e2b58d90af6a. The [scream314 LFS pointer](https://github.com/scream314/cicada3301/blob/master/assets/2013/3301) independently declares the same length and SHA-256 784643558799dd8bb3e172f31df6d6ca2f397fd61cb8fc371bf930f1e5ae6b7f. [Dukotah recovery record](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/handoff/capsule/RECOVERY-560.13.md) reports 560.13 SHA-256 db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f; [pnotisdev](https://github.com/pnotisdev/cicada3301/blob/main/docs/SOURCES.md) reports the separate mirror extraction. These are published expectations, not hashes recomputed here. Local DNS and binary download access failed; no full ISO or physical extent offsets were acquired in this invocation. For raw replay use the existing upstream [read-only ISO extractor](https://github.com/pnotisdev/cicada3301/blob/main/work/iso_extract.py) and existing `2013_pklmx_reproduce.py --iso-dir`; no need for a new decoder.
+
+**LP2 gate:** the authenticated 2016 4gq25 message in [local signed source](../resources/historical/cicada2016-4gq25-outguess.asc) contains no 560.13, 560.17, 761.mp3, or first-17-pages reference. Those cannot be attributed to the signed message. No other first-party LP2 selector for these bytes was identified. Existing external pad-screen results are bounded negatives, not an impossibility proof. Retain the prefix as historical material, not a candidate LP2 key. Full ISO raw replay remains an acquisition prerequisite; no new unknown LP2 plaintext, mechanism or key.
+
 ## Question and decision rule
 
 The target was `pklmx2eeh6fjt7zf.onion`, named by the 2013 ICMP-stage signed message. A useful cross-round result would require at least one of: a Cicada-signed instruction that selects an LP2 operation or source; an exact LP2/p56/AN END reference; an identifiable source-derived key object; or a reproducible digest preimage. A familiar onion address, a later community interpretation, or a numerical coincidence is insufficient.
@@ -100,7 +127,7 @@ d5a6cb76e55a2166bd6a4d078857ec1f68ea6afa9738
 ~~~
 With the archived extracted bytes, that value XORs to erwfcsdvx6pm2rsk.onion. The reproduction script checks both bad transcriptions and the corrected row.
 
-Raw ISO limitation: the current Liber Primus repository does not contain DATA/560.13 or DATA/560.17, and I did not independently re-extract these slices from the 3301.iso container in this run. The krisyotam archive's ShamirSolve.php reads those exact DATA files, converts them to hex, slices at offset*2, and XORs; its extraction table preserves the resulting byte slices. Its download script pins the 3301.iso MD5 as 74062dee4093c6ca0340cda23f0e994b. A separate recovery note records DATA/560.13 as 118,818,811 bytes with SHA-256 db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f. These are secondary-source checksums, not checksums independently recomputed here. The script accepts --iso-dir to verify the raw slices when those files are available.
+Raw ISO limitation: the repository does not contain complete DATA/560.13 or DATA/560.17, and no slices have been directly re-extracted from the ISO container. The partial byte reconstruction below independently computes three of the seven slices from the archived Twitter-stage operands, rather than copying the later extraction table. The krisyotam archive's ShamirSolve.php reads those exact DATA files, converts them to hex, slices at offset*2, and XORs; its extraction table preserves the resulting byte slices. Its download script pins the 3301.iso MD5 as 74062dee4093c6ca0340cda23f0e994b. A separate recovery note records DATA/560.13 as 118,818,811 bytes with SHA-256 db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f. These are secondary-source checksums, not checksums independently recomputed here. The script accepts --iso-dir to verify the raw slices when those files are available.
 
 ### Shamir reconstruction: decimal share IDs and full consistency
 
@@ -229,7 +256,7 @@ The human solve path is unusually explicit: a signed â€œstandby for coordinatesâ
 - The Little Rock LM value is 7371 by the independently documented GP mapping, while the participant README says 7167.
 - The Annapolis hex is inconsistent in the README and all.txt; the corrected ShamirSolve.php value is the one that yields the published onion address and a consistent share.
 - The Arkansas/Little Rock poster photograph contains a small QR code at the lower left. Its payload is not decoded in the preserved notes or this run.
-- The original DATA/560.13 and DATA/560.17 files are not present in the current repository; the XOR stage is reproduced from archived extraction bytes, not freshly re-extracted from the ISO.
+- The full original DATA/560.13 and DATA/560.17 files are absent; three rows now also replay from the derived Twitter-stage prefix, while the remaining four use the archived extraction table. No direct ISO extraction yet.
 - The 19-question images and email wrapper remain community/leak evidence, not signed Cicada material.
 
 **Closure:** this is a completed historical reconstruction task. No LP2 cipher successor is justified by these findings. If the Director wants further historical work, recovering the three absent share records (if they survive) is a bounded source-acquisition question, not an LP2 key hunt.

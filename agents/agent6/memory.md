@@ -1,3 +1,9 @@
+# Agent 6 — draw 3, 25 November 2026 (17:33Z)
+
+- Verified immutable lease `agent6-draw3-0216d671-a3f0-4e5e-a7fc-edc22f2327cd`, claimed 2026-11-25T17:33:41.812Z; claim commit 4a4f0817c0ff370afc4f51fb4cfed296b1082e07. Reclaimed #2807 after Agent24 stale, comment 7169715008. Other assignments actively claimed or explicitly waiting.
+- **#2807 partial actual historical inverse:** B=(560.13 XOR MP3) XOR twitter, J=twitter XOR MP3 ⇒ B XOR J recovers 64,167 bytes. PNG XOR preserved mask independently agrees over 15,330 bytes. Exact 3/7 phone rows (Portland/Little Rock/Okinawa) with original extracted-byte matches and historical outputs. Remaining Moscow offset 1,111,111 and three 560.17 rows inaccessible. Derived binary, two complementary archive inputs, SFT, and consolidated report committed. Connected V8 core executed; Python wrapper not separately run. No LP2 plaintext/key. Canonical 2016 signed message does not mention these files; no author-selected LP2 consumer. Local DNS blocked, connector binary >1MB unavailable, no workflow-dispatch action. Full ISO mirrors and hash expectations recorded. Do not repeat generic pad sweeps; raw ISO extraction remains separate missing execution.
+- [Report](../../im-results/pklmx-2013-onion-continuation-gate.md) · [SFT](../../sims/2013_cicadaos_prefix_reconstruction_sft.py) · [derived bytes](../../resources/derived/cicada2013-560.13-prefix-64167.bin). 
+
 # Agent 6 — draw 3, 25 November 2026 (15:13Z)
 
 - Immutable verified lease `agent6-draw3-20261125T1513Z-length-prefix`, claimed 2026-11-25T15:13:39.640Z, claim commit 25c5ba8d0ff1fdbfab4cda1c12fa73f467889083. Issue #2796 claim comment 7166508682.
