@@ -1,0 +1,288 @@
+{
+  "method": "two independent GP29 permutations bracketing p56 prime shift; literal F hold, physical-page zero-origin reset, seven longest intact groups; relaxed earlier hold counts, sign symmetry",
+  "dictionaryCounts": {
+    "13": 422,
+    "14": 173
+  },
+  "sets": [
+    {
+      "i": 833,
+      "p": 16,
+      "local": 0,
+      "len": 13,
+      "prefixF": 0,
+      "C": [
+        18,
+        23,
+        24,
+        25,
+        16,
+        3,
+        28,
+        18,
+        28,
+        14,
+        5,
+        28,
+        16
+      ],
+      "localTraces": 228
+    },
+    {
+      "i": 1353,
+      "p": 25,
+      "local": 46,
+      "len": 14,
+      "prefixF": 1,
+      "C": [
+        28,
+        10,
+        27,
+        2,
+        21,
+        9,
+        18,
+        9,
+        0,
+        3,
+        19,
+        18,
+        26,
+        24
+      ],
+      "localTraces": 254
+    },
+    {
+      "i": 2341,
+      "p": 43,
+      "local": 37,
+      "len": 14,
+      "prefixF": 4,
+      "C": [
+        16,
+        0,
+        11,
+        4,
+        7,
+        0,
+        15,
+        9,
+        7,
+        11,
+        18,
+        17,
+        1,
+        2
+      ],
+      "localTraces": 532
+    },
+    {
+      "i": 2886,
+      "p": 55,
+      "local": 23,
+      "len": 13,
+      "prefixF": 1,
+      "C": [
+        17,
+        28,
+        0,
+        14,
+        10,
+        19,
+        1,
+        5,
+        13,
+        8,
+        21,
+        20,
+        12
+      ],
+      "localTraces": 744
+    },
+    {
+      "i": 2752,
+      "p": 52,
+      "local": 78,
+      "len": 13,
+      "prefixF": 2,
+      "C": [
+        13,
+        5,
+        12,
+        1,
+        16,
+        5,
+        27,
+        12,
+        21,
+        9,
+        1,
+        8,
+        2
+      ],
+      "localTraces": 815
+    },
+    {
+      "i": 754,
+      "p": 13,
+      "local": 211,
+      "len": 14,
+      "prefixF": 11,
+      "C": [
+        17,
+        6,
+        23,
+        14,
+        19,
+        17,
+        14,
+        5,
+        21,
+        2,
+        26,
+        23,
+        25,
+        28
+      ],
+      "localTraces": 1363
+    },
+    {
+      "i": 631,
+      "p": 11,
+      "local": 226,
+      "len": 13,
+      "prefixF": 13,
+      "C": [
+        12,
+        13,
+        15,
+        1,
+        20,
+        24,
+        13,
+        1,
+        5,
+        18,
+        0,
+        23,
+        14
+      ],
+      "localTraces": 4176
+    }
+  ],
+  "nodes": [
+    228,
+    57912,
+    295260,
+    0,
+    0,
+    0,
+    0
+  ],
+  "counts": [
+    228,
+    555,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "visits": 353400,
+  "limited": false,
+  "witness": null,
+  "control": {
+    "knownGraphFeasible": true,
+    "completeAssignedKey": [
+      0,
+      1,
+      2,
+      15,
+      3,
+      26,
+      4,
+      5,
+      9,
+      28,
+      11,
+      14,
+      16,
+      17,
+      19,
+      20,
+      10,
+      13,
+      27,
+      6,
+      8,
+      21,
+      22,
+      25,
+      18,
+      23,
+      7,
+      12,
+      24,
+      11,
+      4,
+      2,
+      20,
+      22,
+      8,
+      3,
+      16,
+      6,
+      24,
+      14,
+      28,
+      15,
+      19,
+      10,
+      13,
+      18,
+      1,
+      0,
+      23,
+      27,
+      7,
+      9,
+      21,
+      12,
+      17,
+      5,
+      26,
+      25
+    ],
+    "anchors": 7
+  },
+  "inputBlobs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/liber-primus/lp2-transcription.txt",
+      "sha": "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7"
+    },
+    {
+      "path": "resources/control/english_wordfreq_textblob.txt",
+      "sha": "140e1d22b5f8c45deddd2e8b25549d9d6307d938"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    }
+  ]
+}
