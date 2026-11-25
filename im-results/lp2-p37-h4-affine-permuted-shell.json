@@ -1,0 +1,323 @@
+{
+  "method": "H4 shell S_(t+1)[j] = a*S_t[perm[j]]+b mod29; all 28*29*24 transitions, exact forward paths and frozen backward holdout",
+  "controls": [
+    {
+      "donor": "0_warning",
+      "start": 17,
+      "hold": false,
+      "truth": {
+        "a": 7,
+        "b": 13,
+        "perm": [
+          2,
+          0,
+          3,
+          1
+        ]
+      },
+      "seed": [
+        13,
+        3,
+        17,
+        9
+      ],
+      "models": 19488,
+      "legalModels": 19488,
+      "legalPaths": 19488,
+      "ties": 1,
+      "selected": {
+        "a": 7,
+        "b": 13,
+        "perm": [
+          2,
+          0,
+          3,
+          1
+        ]
+      },
+      "fitScore": -2.628940255594382,
+      "holdoutScore": -2.8111340148354564,
+      "holdoutPaths": 1,
+      "decoded": "FROMTHISBOOCEXCEPTWHATYOUCNOWTOBETRUETESTTHECNOWLEDGEFINDYOURTRUTHEXPERIENCEYOURDEATHDONOTEDITORCHANGETHI",
+      "fit": "TRUTHEXPERIENCEYOURDEATHDONOTEDITORCHANGETHI",
+      "held": "FROMTHISBOOCEXCEPTWHATYOUCNOWTOBETRUETESTTHECNOWLEDGEFIND",
+      "fitCorrect": 39,
+      "heldCorrect": 55
+    },
+    {
+      "donor": "0_warning",
+      "start": 17,
+      "hold": true,
+      "truth": {
+        "a": 7,
+        "b": 13,
+        "perm": [
+          2,
+          0,
+          3,
+          1
+        ]
+      },
+      "seed": [
+        13,
+        3,
+        17,
+        9
+      ],
+      "models": 19488,
+      "legalModels": 11715,
+      "legalPaths": 23525,
+      "ties": 1,
+      "selected": {
+        "a": 7,
+        "b": 13,
+        "perm": [
+          2,
+          0,
+          3,
+          1
+        ]
+      },
+      "fitScore": -2.628940255594382,
+      "holdoutScore": -2.8111340148354564,
+      "holdoutPaths": 8,
+      "decoded": "FROMTHISBOOCEXCEPTWHATYOUCNOWTOBETRUETESTTHECNOWLEDGEFINDYOURTRUTHEXPERIENCEYOURDEATHDONOTEDITORCHANGETHI",
+      "fit": "TRUTHEXPERIENCEYOURDEATHDONOTEDITORCHANGETHI",
+      "held": "FROMTHISBOOCEXCEPTWHATYOUCNOWTOBETRUETESTTHECNOWLEDGEFIND",
+      "fitCorrect": 39,
+      "heldCorrect": 55
+    },
+    {
+      "donor": "0_welcome",
+      "start": 30,
+      "hold": false,
+      "truth": {
+        "a": 19,
+        "b": 3,
+        "perm": [
+          1,
+          3,
+          0,
+          2
+        ]
+      },
+      "seed": [
+        14,
+        4,
+        16,
+        10
+      ],
+      "models": 19488,
+      "legalModels": 19488,
+      "legalPaths": 19488,
+      "ties": 1,
+      "selected": {
+        "a": 19,
+        "b": 3,
+        "perm": [
+          1,
+          3,
+          0,
+          2
+        ]
+      },
+      "fitScore": -2.5649697859457308,
+      "holdoutScore": -2.85584681558323,
+      "holdoutPaths": 1,
+      "decoded": "OURNEYTOWARDTHEENDOFALLTHNGSITISNOTANEASYTRIPBUTFORTHOSEWHOFINDTHEIRWAYHEREITISANECESSARYONEALONGTHEWAYYOU",
+      "fit": "EIRWAYHEREITISANECESSARYONEALONGTHEWAYYOU",
+      "held": "OURNEYTOWARDTHEENDOFALLTHNGSITISNOTANEASYTRIPBUTFORTHOSEWHOF",
+      "fitCorrect": 39,
+      "heldCorrect": 55
+    },
+    {
+      "donor": "0_welcome",
+      "start": 30,
+      "hold": true,
+      "truth": {
+        "a": 19,
+        "b": 3,
+        "perm": [
+          1,
+          3,
+          0,
+          2
+        ]
+      },
+      "seed": [
+        14,
+        4,
+        16,
+        10
+      ],
+      "models": 19488,
+      "legalModels": 5139,
+      "legalPaths": 5139,
+      "ties": 1,
+      "selected": {
+        "a": 19,
+        "b": 3,
+        "perm": [
+          1,
+          3,
+          0,
+          2
+        ]
+      },
+      "fitScore": -2.5649697859457308,
+      "holdoutScore": -2.85584681558323,
+      "holdoutPaths": 20,
+      "decoded": "OURNEYTOWARDTHEENDOFALLTHNGSITISNOTANEASYTRIPBUTFORTHOSEWHOFINDTHEIRWAYHEREITISANECESSARYONEALONGTHEWAYYOU",
+      "fit": "EIRWAYHEREITISANECESSARYONEALONGTHEWAYYOU",
+      "held": "OURNEYTOWARDTHEENDOFALLTHNGSITISNOTANEASYTRIPBUTFORTHOSEWHOF",
+      "fitCorrect": 39,
+      "heldCorrect": 55
+    },
+    {
+      "donor": "0_koan_1",
+      "start": 39,
+      "hold": false,
+      "truth": {
+        "a": 11,
+        "b": 17,
+        "perm": [
+          3,
+          1,
+          0,
+          2
+        ]
+      },
+      "seed": [
+        15,
+        5,
+        15,
+        11
+      ],
+      "models": 19488,
+      "legalModels": 19488,
+      "legalPaths": 19488,
+      "ties": 1,
+      "selected": {
+        "a": 11,
+        "b": 17,
+        "perm": [
+          3,
+          1,
+          0,
+          2
+        ]
+      },
+      "fitScore": -2.0685568732649573,
+      "holdoutScore": -2.278523972660498,
+      "holdoutPaths": 1,
+      "decoded": "EWENTTOTHEDOOROFTHEMASTERWHOAREYOUWHOWISHESTOSTUDYHEREASCEDTHEMASTERTHESTUDENTTOLDTHEMASTERHISNAMETHATIS",
+      "fit": "MASTERTHESTUDENTTOLDTHEMASTERHISNAMETHATIS",
+      "held": "EWENTTOTHEDOOROFTHEMASTERWHOAREYOUWHOWISHESTOSTUDYHEREASC",
+      "fitCorrect": 39,
+      "heldCorrect": 55
+    },
+    {
+      "donor": "0_koan_1",
+      "start": 39,
+      "hold": true,
+      "truth": {
+        "a": 11,
+        "b": 17,
+        "perm": [
+          3,
+          1,
+          0,
+          2
+        ]
+      },
+      "seed": [
+        15,
+        5,
+        15,
+        11
+      ],
+      "models": 19488,
+      "legalModels": 10400,
+      "legalPaths": 21064,
+      "ties": 1,
+      "selected": {
+        "a": 11,
+        "b": 17,
+        "perm": [
+          3,
+          1,
+          0,
+          2
+        ]
+      },
+      "fitScore": -2.0685568732649573,
+      "holdoutScore": -2.278523972660498,
+      "holdoutPaths": 5,
+      "decoded": "EWENTTOTHEDOOROFTHEMASTERWHOAREYOUWHOWISHESTOSTUDYHEREASCEDTHEMASTERTHESTUDENTTOLDTHEMASTERHISNAMETHATIS",
+      "fit": "MASTERTHESTUDENTTOLDTHEMASTERHISNAMETHATIS",
+      "held": "EWENTTOTHEDOOROFTHEMASTERWHOAREYOUWHOWISHESTOSTUDYHEREASC",
+      "fitCorrect": 39,
+      "heldCorrect": 55
+    }
+  ],
+  "original": [
+    {
+      "hold": false,
+      "seed": [
+        19,
+        0,
+        2,
+        5
+      ],
+      "models": 19488,
+      "legalModels": 19488,
+      "legalPaths": 19488,
+      "ties": 1,
+      "selected": {
+        "a": 4,
+        "b": 15,
+        "perm": [
+          2,
+          1,
+          0,
+          3
+        ]
+      },
+      "fitScore": -3.6135877525836086,
+      "holdoutScore": -4.129508488153651,
+      "holdoutPaths": 1,
+      "decoded": "OEFLWXNEIATDOHMOELYUCJEOMIEODECSATTFIUOPEONAELIHCATUEGLGLYFOYYLUCCHLYEREWLDSHELAEYNGACRTENEALCIAAENGJTXMFJYNGSEP",
+      "fit": "HLYEREWLDSHELAEYNGACRTENEALCIAAENGJTXMFJYNGSEP",
+      "held": "OEFLWXNEIATDOHMOELYUCJEOMIEODECSATTFIUOPEONAELIHCATUEGLGLYFOYY"
+    },
+    {
+      "hold": true,
+      "seed": [
+        19,
+        0,
+        2,
+        5
+      ],
+      "models": 19488,
+      "legalModels": 9000,
+      "legalPaths": 18935,
+      "ties": 1,
+      "selected": {
+        "a": 14,
+        "b": 3,
+        "perm": [
+          3,
+          1,
+          2,
+          0
+        ]
+      },
+      "fitScore": -3.6287689764074664,
+      "holdoutScore": null,
+      "holdoutPaths": 0,
+      "decoded": null,
+      "fit": "JIANGPLPUROYEBEHUOECFCAEEADNAEOTJOEEATTHALOLDOME",
+      "held": null
+    }
+  ]
+}
