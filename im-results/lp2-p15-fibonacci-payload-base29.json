@@ -579,5 +579,185 @@
         "witness": []
       }
     }
-  ]
+  ],
+  "directBase29": {
+    "originalRunes": 1883,
+    "ordinaryDistinct": 29,
+    "ordinaryBigrams": 735,
+    "minimumOrdinaryPredecessors": 21,
+    "nonzeroDistinct": 28,
+    "nonzeroBigrams": 682,
+    "minimumNonzeroPredecessors": 20,
+    "minimumNonzeroSuccessors": 22,
+    "results": [
+      {
+        "name": "ordinal",
+        "hold": false,
+        "grammar": {
+          "digits": 29,
+          "allowedBigrams": 813
+        },
+        "fixed": {
+          "edges": 7,
+          "maxPrefix": 7,
+          "completePaths": "0"
+        },
+        "controlFixed": {
+          "edges": 95,
+          "maxPrefix": 95,
+          "completePaths": "1"
+        },
+        "permutedNativeControls": 3,
+        "allPermutationsExcluded": true,
+        "reason": "forced predecessor/successor"
+      },
+      {
+        "name": "ordinal",
+        "hold": true,
+        "grammar": {
+          "digits": 29,
+          "allowedBigrams": 785
+        },
+        "fixed": {
+          "edges": 1,
+          "maxPrefix": 1,
+          "completePaths": "0"
+        },
+        "controlFixed": {
+          "edges": 95,
+          "maxPrefix": 95,
+          "completePaths": "1"
+        },
+        "permutedNativeControls": 3,
+        "allPermutationsExcluded": true,
+        "reason": "forced predecessor/successor"
+      },
+      {
+        "name": "gematria-prime",
+        "hold": false,
+        "grammar": {
+          "digits": 24,
+          "allowedBigrams": 255
+        },
+        "fixed": {
+          "edges": 0,
+          "maxPrefix": 0,
+          "completePaths": "0"
+        },
+        "controlFixed": {
+          "edges": 150,
+          "maxPrefix": 157,
+          "completePaths": "1536"
+        },
+        "permutedNativeControls": 3,
+        "allPermutationsExcluded": true,
+        "reason": "digit capacity and bigram capacity"
+      },
+      {
+        "name": "gematria-prime",
+        "hold": true,
+        "grammar": {
+          "digits": 24,
+          "allowedBigrams": 255
+        },
+        "fixed": {
+          "edges": 0,
+          "maxPrefix": 0,
+          "completePaths": "0"
+        },
+        "controlFixed": {
+          "edges": 109,
+          "maxPrefix": 157,
+          "completePaths": "4"
+        },
+        "permutedNativeControls": 3,
+        "allPermutationsExcluded": true,
+        "reason": "digit capacity and bigram capacity"
+      },
+      {
+        "name": "p15-fibonacci-prime",
+        "hold": false,
+        "grammar": {
+          "digits": 27,
+          "allowedBigrams": 332
+        },
+        "fixed": {
+          "edges": 0,
+          "maxPrefix": 0,
+          "completePaths": "0"
+        },
+        "controlFixed": {
+          "edges": 114,
+          "maxPrefix": 244,
+          "completePaths": "1"
+        },
+        "permutedNativeControls": 3,
+        "allPermutationsExcluded": true,
+        "reason": "digit capacity and bigram capacity"
+      },
+      {
+        "name": "p15-fibonacci-prime",
+        "hold": true,
+        "grammar": {
+          "digits": 27,
+          "allowedBigrams": 332
+        },
+        "fixed": {
+          "edges": 0,
+          "maxPrefix": 0,
+          "completePaths": "0"
+        },
+        "controlFixed": {
+          "edges": 107,
+          "maxPrefix": 244,
+          "completePaths": "1"
+        },
+        "permutedNativeControls": 3,
+        "allPermutationsExcluded": true,
+        "reason": "digit capacity and bigram capacity"
+      },
+      {
+        "name": "p15-absolute-difference",
+        "hold": false,
+        "grammar": {
+          "digits": 28,
+          "allowedBigrams": 260
+        },
+        "fixed": {
+          "edges": 0,
+          "maxPrefix": 0,
+          "completePaths": "0"
+        },
+        "controlFixed": {
+          "edges": 95,
+          "maxPrefix": 322,
+          "completePaths": "1"
+        },
+        "permutedNativeControls": 3,
+        "allPermutationsExcluded": true,
+        "reason": "digit capacity and bigram capacity"
+      },
+      {
+        "name": "p15-absolute-difference",
+        "hold": true,
+        "grammar": {
+          "digits": 28,
+          "allowedBigrams": 260
+        },
+        "fixed": {
+          "edges": 0,
+          "maxPrefix": 0,
+          "completePaths": "0"
+        },
+        "controlFixed": {
+          "edges": 95,
+          "maxPrefix": 316,
+          "completePaths": "1"
+        },
+        "permutedNativeControls": 3,
+        "allPermutationsExcluded": true,
+        "reason": "bigram capacity"
+      }
+    ]
+  }
 }

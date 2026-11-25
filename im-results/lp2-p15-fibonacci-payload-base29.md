@@ -1,4 +1,4 @@
-# p15 Fibonacci-code payload transported as a historical BASE29 integer
+# p15 source-number payload encodings transported as historical BASE29 integers
 
 **Agent13, 25 November 2026 — exact finite receiver decision. No unknown plaintext or key.**
 
@@ -39,8 +39,31 @@ Decode the same source integers into unrestricted positive Fibonacci values, bef
 
 This stronger arbitrary-codebook exclusion applies only to these fixed whole-chapter and page frames. It does not rule out an arbitrary private codebook combined with arbitrary cuts, a different binary packing, explicit escape symbols, noncanonical leading zero padding, or other cipher layers.
 
+## Distinct simpler receiver: direct variable-length BASE29 codewords, all output-alphabet permutations
+
+Remove the entire binary Fibonacci-code layer. Each plaintext rune now emits the historical minimal-width BASE29 integer digits of its codebook value; the ordered codewords concatenate without separators. This is a more literal source-number transport. The fixed codebook and its digit strings are known, but grant an **arbitrary global secret permutation of the 29 printed digit symbols** and arbitrary codeword boundaries. Also test the authentic mandatory plaintext-F bypass convention separately: F emits literal GP0 and the remaining 28 plaintext runes emit their permuted codeword digits. A visible GP0 may be either a bypass or encoded digit; the proof does not identify or constrain its hidden role. This receiver is distinct from the binary packing above.
+
+A tape made by concatenating codewords has at most the union of within-codeword adjacent pairs and all last-digit→first-digit pairs across word boundaries. A secret alphabet permutation preserves the count. In the F-bypass model, count only physical **nonzero→nonzero** adjacent pairs; every such observed pair is necessarily adjacent in the encoded digit tape (any intervening literal F would occupy a printed GP0 position), so it obeys the same upper bound even under arbitrary latent GP0 bypass assignments. This is a necessary bound independent of lexical plausibility and framing.
+
+The original 1,883-rune tape contains all 29 digits and 735 distinct adjacent pairs. Its nonzero restriction contains all 28 symbols and 682 distinct physical nonzero adjacent pairs. Results:
+
+| Codebook | Mandatory F bypass | Max distinct emitted digits | Max distinct emitted adjacent pairs | Fixed alphabet max prefix | All secret bijections |
+|---|---|---:|---:|---:|---|
+| ordinal | no | 29 | 813 | 7 | excluded |
+| ordinal | yes | 29 | 785 | 1 | excluded |
+| gematria-prime | no | 24 | 255 | 0 | excluded |
+| gematria-prime | yes | 24 | 255 | 0 | excluded |
+| p15-fibonacci-prime | no | 27 | 332 | 0 | excluded |
+| p15-fibonacci-prime | yes | 27 | 332 | 0 | excluded |
+| p15-absolute-difference | no | 28 | 260 | 0 | excluded |
+| p15-absolute-difference | yes | 28 | 260 | 0 | excluded |
+
+The ordinal codebook requires a separate exact structural argument. Ordinary codewords are 1 through 28 as single digits, plus [1,0] for value29. Every occurrence of digit0 must immediately follow digit1. Under any global permutation, every possible printed digit-zero has at least 21 distinct predecessors in the original, violating this requirement. With mandatory plaintext-F bypass, remove the one-digit codeword for F (value1); digit1 is now used only in [1,0]. If permuted digit0 is nonzero, its original nonzero immediate predecessors must all equal permuted digit1, yet each nonzero symbol has at least 20 distinct nonzero predecessors. If permuted digit0 is GP0, permuted digit1 is nonzero and cannot have a physically adjacent nonzero successor; each nonzero symbol actually has at least 22 such successors. Both cases contradict the original, even if GP0 holds are assigned arbitrarily. This closes all 29! alphabet permutations in both modes, without key enumeration.
+
+The other three codebooks fail the original adjacent-pair bound even under mandatory F bypass (upper bounds 255/332/260 versus 682), and some also lack digit capacity. Each codebook's native p57 fixed-alphabet direct decoder retains a complete path in both modes. Three distinct fixed bijections per mode, including identity, a permutation mapping digit0 to nonzero, and one mapping digit1 to GP0, satisfy all structural invariants on the native controls (24 checks). The controls establish the necessary conditions; they do not imply unique framing. Thus all eight direct codeword models fail before linguistic scoring, including every unknown global digit bijection. This excludes neither time-varying digit substitutions nor a separately selected additional layer.
+
 ## Calibration and disposition
 
-The independent unrestricted binary-string parser agrees with the early-reject finite decoder on all 8,191 positive toy integers for each codebook. Each of 29 single-symbol encodings round-trips in each map; authentic p57 PARABLE (95 runes) round-trips as one frame and as three planted frames (31,32,32 runes), with the exact unknown-cut solver retaining a complete path. The native test establishes codec correctness, not historical usage or uniqueness of hidden framing. No unknown LP2 text recovered. Retire this direct p15 Fibonacci-payload + BASE29 route; do not widen the bit packing or add arbitrary keys absent an independent selector. The graphic's exact Fibonacci construction remains established.
+The independent unrestricted binary-string parser agrees with the early-reject finite decoder on all 8,191 positive toy integers for each codebook. Each of 29 single-symbol encodings round-trips in each map; authentic p57 PARABLE (95 runes) round-trips as one frame and as three planted frames (31,32,32 runes), with the exact unknown-cut solver retaining a complete path. The native test establishes codec correctness, not historical usage or uniqueness of hidden framing. No unknown LP2 text recovered. Retire these fixed p15 Fibonacci-payload and direct number-codeword BASE29 routes; do not widen the bit packing or add arbitrary keys absent an independent selector. The graphic's exact Fibonacci construction remains established.
 
 Reproduce: `node sims/lp2_p15_fibonacci_payload_base29_sft.cjs`. [Raw output](lp2-p15-fibonacci-payload-base29.json). [Source graphic](../results/lp2-p15-fibonacci-prime-spiral.md) · [Earlier distinct grid-code pad](lp2-p15-zeckendorf-reader-gate.md) · [Original corpus](../resources/liber-primus/lp2-corpus.json).

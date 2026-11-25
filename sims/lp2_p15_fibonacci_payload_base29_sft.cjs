@@ -145,4 +145,73 @@ const run = function run(corpus) {
   return {source:{fib:f,prime:fp,difference:diff},control:{nativeRunes:clear.length,independentIntegersPerCodebook:8191,singleSymbolsPerCodebook:29,plantedPlainFrameLengths:[31,32,32]},rawFrames,results};
 };
 const corpus = JSON.parse(fs.readFileSync(path.join(__dirname,"../resources/liber-primus/lp2-corpus.json"),"utf8"));
-console.log(JSON.stringify(run(corpus),null,2));
+const directBase29 = function directBase29(corpus, previous) {
+  const check=(ok,msg)=>{if(!ok)throw Error(msg)};
+  const a=corpus.pages.slice(15,23).flatMap((p,i)=>i===0?p.indices.slice(20):p.indices);
+  const clear=corpus.pages[57].indices;
+  const to29=(n)=>{const d=[];while(n){d.unshift(n%29);n=Math.floor(n/29)}return d};
+  const pairs=(a)=>new Set(a.slice(1).map((v,i)=>29*a[i]+v));
+  function stats(a,hold){
+    const d=new Set(a.filter(v=>!hold||v!==0));
+    const b=new Set([...pairs(a)].filter(v=>!hold||(Math.floor(v/29)!==0&&v%29!==0)));
+    const pred=Array.from({length:29},()=>new Set()),succ=Array.from({length:29},()=>new Set());
+    for(const p of b){const u=Math.floor(p/29),v=p%29;pred[v].add(u);succ[u].add(v)}
+    return {digits:d.size,bigrams:b.size,pred:pred.map(s=>[...s].sort((a,b)=>a-b)),succ:succ.map(s=>[...s].sort((a,b)=>a-b))};
+  }
+  function grammar(codes,hold){
+    const c=hold?codes.slice(1):codes;
+    const digits=new Set(c.flat()),start=new Set(c.map(w=>w[0])),end=new Set(c.map(w=>w.at(-1)));
+    const b=new Set();
+    for(const w of c)for(let j=1;j<w.length;j++)b.add(29*w[j-1]+w[j]);
+    for(const u of end)for(const v of start)b.add(29*u+v);
+    return {digits:digits.size,allowedBigrams:b.size};
+  }
+  function encode(a,codes,hold,pi){
+    return a.flatMap(v=>hold&&v===0?[0]:codes[v].map(d=>pi[d]));
+  }
+  function reach(a,codes,hold){
+    const c=hold?[[0],...codes.slice(1)]:codes;
+    const dp=Array(a.length+1).fill(0n);dp[0]=1n;
+    let edges=0;
+    for(let i=0;i<a.length;i++){
+      if(!dp[i])continue;
+      for(const w of c){
+        if(i+w.length<=a.length&&w.every((v,k)=>a[i+k]===v)){dp[i+w.length]+=dp[i];edges++}
+      }
+    }
+    return {edges,maxPrefix:dp.findLastIndex(v=>v>0n),completePaths:dp.at(-1).toString()};
+  }
+  function ordinalObstruction(s,hold){
+    const all=Array.from({length:29},(_,i)=>i);
+    // A putative printed digit-zero must have only one possible immediate encoded predecessor.
+    // In mandatory-F mode, digit-one exists only in codeword [1,0].
+    if(!hold)return !all.some(z=>s.pred[z].length<=1);
+    return !all.slice(1).some(z=>s.pred[z].length<=1)&&!all.slice(1).some(o=>s.succ[o].length===0);
+  }
+  const originalStats={ordinary:stats(a,false),mandatoryF:stats(a,true)};
+  const perms=[Array.from({length:29},(_,i)=>i),Array.from({length:29},(_,i)=>(7*i+11)%29),Array.from({length:29},(_,i)=>(5*i+24)%29)];
+  const results=[];
+  for(const {name,map} of previous.results){
+    const codes=map.map(to29);
+    check(new Set(codes.map(w=>w.join(","))).size===29,"direct codebook injectivity");
+    for(const hold of [false,true]){
+      const g=grammar(codes,hold),s=originalStats[hold?"mandatoryF":"ordinary"];
+      const fixed=reach(a,codes,hold);
+      const controlFixed=reach(encode(clear,codes,hold,perms[0]),codes,hold);
+      check(BigInt(controlFixed.completePaths)>0n,"fixed native direct inverse");
+      for(const pi of perms){
+        const plant=stats(encode(clear,codes,hold,pi),hold);
+        check(plant.digits<=g.digits&&plant.bigrams<=g.allowedBigrams,"all-permutation adjacency bound on plant");
+        if(name==="ordinal")check(!ordinalObstruction(plant,hold),"ordinal structural plant");
+      }
+      const reason=name==="ordinal"?"forced predecessor/successor":s.digits>g.digits?"digit capacity and bigram capacity":"bigram capacity";
+      const excluded=name==="ordinal"?ordinalObstruction(s,hold):s.digits>g.digits||s.bigrams>g.allowedBigrams;
+      check(excluded&&fixed.completePaths==="0","original direct decoder "+name+" "+hold);
+      results.push({name,hold,grammar:g,fixed,controlFixed,permutedNativeControls:perms.length,allPermutationsExcluded:excluded,reason});
+    }
+  }
+  return {originalRunes:a.length,ordinaryDistinct:originalStats.ordinary.digits,ordinaryBigrams:originalStats.ordinary.bigrams,minimumOrdinaryPredecessors:Math.min(...originalStats.ordinary.pred.map(s=>s.length)),nonzeroDistinct:originalStats.mandatoryF.digits,nonzeroBigrams:originalStats.mandatoryF.bigrams,minimumNonzeroPredecessors:Math.min(...originalStats.mandatoryF.pred.slice(1).map(s=>s.length)),minimumNonzeroSuccessors:Math.min(...originalStats.mandatoryF.succ.slice(1).map(s=>s.length)),results};
+};
+const output = run(corpus);
+output.directBase29 = directBase29(corpus,output);
+console.log(JSON.stringify(output,null,2));
