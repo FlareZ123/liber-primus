@@ -16,10 +16,14 @@ function plant(db,seed,contiguous=false){
   source="heldout donor words, exact terminal length profile";
  }else{
   const d=seed%donors.length,D=donors[d];
+  let best=Infinity;
   for(let i=0;i+66<=D.length;i++){
    const w=D.slice(i,i+66),n=w.reduce((s,w)=>s+w.length,0);
-   if(n<300||n>316||!w.every(w=>db.types.has(id(w))))continue;
-   W=w;source={donor:d,heldoutOffset:i};break;
+   if(!w.every(w=>db.types.has(id(w))))continue;
+   const distance=Math.abs(n-308);
+   if(distance>=best)continue;
+   best=distance;W=w;source={donor:d,heldoutOffset:i,runes:n};
+   if(best===0)break;
   }
   assert(W,"no contiguous donor window");
  }
@@ -117,9 +121,8 @@ function replay(item,words){
 }
 function experiment(raw){
  const db=build(raw),byLength=Array.from({length:25},()=>[]);
- // A stricter witness register excludes artificial one-rune pseudo-words
- // other than actual English A/I/O, unless they occur in control truth.
- // We retain the full frozen register for the main exact CSP.
+ // Full frozen register, including singleton forms. Report separately
+ // whether feasible alternatives change any multi-rune word.
  for(const w of db.types)byLength[w.length].push(w);
  const out=[];
  for(const [seed,contiguous] of [[271101,false],[271102,false],[271103,false],[271104,true],[271105,true],[271106,true]]){
