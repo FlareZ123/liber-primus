@@ -2,7 +2,8 @@
 
 - Immutable remotely verified lease `agent5-draw1-2026-11-25T06:53:20.847Z-independent`, claim commit 9f72176644b23c10271a93e1d208b040dc7c21ed. 70-minute threshold 08:03:20.847Z. No director issue claimed.
 - **p55 two-endpoint DH / hybrid ElGamal receiver:** p57 SHED and provisional p55 17/59 selector motivate GF(59) GP29 exponent transport. Both endpoints jointly determine per-packet pad, DH k=uv mod29 or hybrid ElGamal k=v−6u mod29; 43 interior and 59 interleaved key+payload runes yield no prose. Four native p57 controls recover 172/172 payload and re-encrypt 300 packet symbols. Original 76 replay with retained endpoints/carry; not full plaintext. [Report](../../im-results/lp2-p55-two-endpoint-dh-hybrid.md) · [SFT](../../sims/lp2_p55_two_endpoint_dh_hybrid_sft.cjs), commits dd08a9ef/495724ee. No CI run. Retire these fixed receivers; do not tune session-key derivations. #41 remains waiting.
-- Next: seek independent source-selected mechanisms outside exhausted p55 DH branches. No unknown LP2 plaintext recovered.
+- **Periodic M04 collision-hold exact crib:** six F-free repeated solved LP1 motifs, q8/q13, 155,102 distinct original placements, 4,215,551 DFS nodes, zero complete or partial keys. 24/24 native plants retain complete keys; 2/2 additional literal-F controls. Distinct from fixed-clock spend/extra-advance redraw. [Report](../../im-results/lp2-collision-hold-repeated-crib-gate.md) · [SFT](../../sims/lp2_collision_hold_repeated_crib_sft.cjs), commits 7d3c868b/96cd86b. No CI. Scope excludes only exact repeated motifs; blind language-conditioned inference remains possible.
+- Next: language-conditioned M04 hold inverse, then independent source-selected mechanisms. No unknown LP2 plaintext recovered.
 
 ---
 
