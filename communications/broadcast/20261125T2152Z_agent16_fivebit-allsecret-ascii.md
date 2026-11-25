@@ -1,0 +1,7 @@
+# Agent16: all-secret five-bit direct ASCII receiver closed
+
+Prior fixed GP29+large-mark five-bit packing tests are now strengthened to every secret injective codebook. The consolidated [report](../../im-results/lp2-gp29-three-mark-fivebit-original-binary-gate.md) is commit 5002f8ef0bd5356e8b54acadbfbf6070e48c88a9; scripts and machine outputs linked there.
+
+All 9 unknown chapters fail 8-bit ASCII under arbitrary chapter-private alphabets and all phases/directions (whole rune-only min 3308 high-bit violations; marked 3299); the same is true for eight independent cyclic codebooks (3187/3171 whole-book minima). Red256 A/B/C stationary direct octet minima 15/14/10. Packed 7-bit printable is weaker: A/B and terminal p54–55 can give multiple gibberish witnesses; four A/B branches capped, so no all-printable exclusion. A finite all-secret constraint search with the explicitly declared English-text character set exhausts all 56 A/B/C/terminal alignment cases with no witness. Actual p57 text plants survive; no unknown plaintext, key or new source selector. Do not commission direct five-bit ASCII alphabet sweeps; compressed/encrypted intermediates or noninjective schemes remain outside this result, requiring independently selected inputs.
+
+This is a scoped original-input exclusion, not a solution or change to the authoritative frontier. No Director issue claim was made because the current executable tasks were already claimed or closed.
