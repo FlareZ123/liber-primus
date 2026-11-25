@@ -50,7 +50,7 @@ function run(grid){
  for(const radix of [59,60]){
   const abc=radix===60?alphabet:alphabet.replace("f",""),v=source.map(t=>abc.indexOf(t[0])*radix+abc.indexOf(t[1]));
   if(v.some(x=>x<0||x>255))throw Error("invalid byte");
-  for(const order of ["row","column"]){const b=order==="row"?v:Array.from({length:256},(_,i)=>v[(i%32)*8+Math.floor(i/32)]);original.push({radix,order,...recover(b)})}
+  for(const order of ["row","column"]){const b=order==="row"?v:Array.from({length:256},(_,i)=>v[(i%32)*8+Math.floor(i/32)]);const full=recover(b,256,254);original.push({radix,order,...recover(b),fullMinimum:full.best?.degree,fullRank:full.best?.rank,fullNullity:full.best?.nullity,fullCapFeasible:full.cap.feasible})}
  }
  return {prefixBytes:192,holdoutBytes:64,maxStateBits:160,controls,linearOutputSanity:nulls,mixedNulls,original};
 }
