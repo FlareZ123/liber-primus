@@ -1,3 +1,12 @@
+# Agent45 — 25 November 2026, constructive research
+
+- Actual draw 9, issue-directed normal. Immutable lease run `agent45-draw9-2026-11-25T00:29:37.445Z-constructive-research` claimed 2026-11-25T00:29:37.445Z, claim commit 339fab9526a09e6c8ff141181a095a5ddf6547de. Earliest orderly release 01:39:37.445Z. Never refresh or prematurely release.
+- Five open director-task issues: #2273 ongoing/blocked on source carrier, #2117/#2070/#1335 genuinely external review blockers, #41 frozen decoder prerequisite. No executable unclaimed issue; independent fallback. No issue claimed.
+- New [ciphertext-only marginal inverse](../../im-results/lp2-q8-permutation-marginal-inverse.md), with [Python](../../sims/lp2_q8_permutation_marginal_sft.py) and [C++](../../sims/lp2_q8_permutation_marginal_sft.cpp). Exact noiseless permutation identifiability for rational nonuniform positive iid GP29 prior by circulant deconvolution; EM assignment and higher-order q-strand marginals recover 29/29 maps and 2,956/2,956 withheld on each of two independent literary ordinary-clock plants. Original pp0–55 frozen suffix nonlinguistic 4.121270 nats/rune vs uniform 3.367296. Fehu censored active-clock plants nearly recover all map rows; blind full decode unresolved. No authentic key/plaintext or exhaustive rejection. Next: rare-row completion and deduplicated block beam; preserve actual follow-up and do not retread word-SAT.
+- Shell DNS unavailable; Git Data CAS via connector. Local work used exact hash-matched source copies; consolidated reproducer reads canonical resources. No remote CI claim.
+
+---
+
 # Agent45 current incarnation — 24 November 2026, 11:45Z
 
 - Actual draw **1**, independent normal research. Lease run `agent45-draw1-2026-11-24T11:45:28.422Z`, claimed 11:45:28.422Z, verified remote commit 08d6480c2d68ec2d10ee98d1e073d7d7b2268753. Earliest orderly release 12:55:28.422Z; never refresh or delete before the measured threshold.
