@@ -172,7 +172,7 @@ The terminal arbitrary-shift affine search did not recover either blind action i
 
 **Fixed-source shifts, unknown alphabet.** Form the pool of all distinct maximal eight-rune words in the nine solved plaintext source records, canonicalized under cyclic rotation. There are 17 words; mapped k_j=pi(K_j) tests 16 new words because Agent22 already excluded mapped DIVINITY. Numeric k_j=K_j tests all 17. Each numeric word/phase imposes weighted difference edges between rune coordinates. Merge components with exact GF29 translated occupied-coordinate bitsets; reject collisions, and exactly pack remaining components once at most four remain. The mapped version imposes eight additional linear constraints in the affine-space receiver. Both use dynamic minimum-domain branching and a dictionary OOV budget.
 
-On the same independent literary terminal-profile donors, both numeric and both mapped controls recover the exact effective action from 49 groups without supplying the planted words, keys or starts. All four recover 17/17 withheld words; unique counts numeric 13/12, mapped 12/12. Original numeric all-in-register p54 exhausts all 17 keys, 1,926,613 nodes, 40,963,019 extensions, no complete map or unresolved leaves, 68.28 s. This does not yet exclude arbitrary three-OOV groups. One adversarial numeric control replacing the three longest training groups with genuine OOV sequences also recovers the exact hidden action. Full OOV numeric and mapped searches remain in progress. No p55 data enters candidate fitting. The native word pool is exploratory; no original clue selects any word as a keyword.
+On the same independent literary terminal-profile donors, both numeric and both mapped controls recover the exact effective action from 49 groups without supplying the planted words, keys or starts. All four recover 17/17 withheld words; unique counts numeric 13/12, mapped 12/12. Original numeric all-in-register p54 exhausts all 17 keys, 1,926,613 nodes, 40,963,019 extensions, no complete map or unresolved leaves, 68.28 s. This does not yet exclude arbitrary three-OOV groups. One adversarial numeric control replacing the three longest training groups with genuine OOV sequences also recovers the exact hidden action. The numeric original three-OOV search and mapped original zero-OOV search each timed out after 900 s; the final branch was interrupted, so neither is an exclusion. The numeric three-OOV second blind control likewise timed out. The source-specific p54 eight small red runes are also being tested as numeric and mapped shifts with an unknown alphabet on the heading-excluded body. No p55 data enters candidate fitting. The native word pool is exploratory; no original clue selects any word as a keyword.
 
 **Fixed-source keyed alphabet, arbitrary shifts.** A complementary exact finite family prepends the first occurrences of a source word to the canonical GP29 alphabet and appends the remaining runes in published order. Translate the resulting rank vector so pi(F)=0. All 272 distinct maximal rune runs from the solved native source corpus produce 267 distinct permutations. For a fixed permutation, any zero-free ciphertext group of length at least eight forces every shift once a plaintext dictionary word is chosen: k_j=pi(c_j)-pi(p_j), with no F hold possible. Longer groups must agree at repeated phases. At most three OOV groups implies at least one of four such anchors is in register. Enumerate their candidate words, deduplicate cyclic rotations of primitive q8 keys, and then test all training groups under every start and literal-F branch. This is complete for the stated finite alphabet family and OOV bound.
 
@@ -189,6 +189,28 @@ The blind hidden keywords are jiffo6i and i93168 in compact GP29 notation, with 
 
 [OOV-aware affine C++](../sims/lp2_shared_gp29_q8_affine_oov.cpp) · [numeric source-pool C++](../sims/lp2_shared_gp29_q8_numeric_pool.cpp) · [source-pool reproducer](../sims/lp2_shared_gp29_q8_source_pool_sft.py) · [keyed-alphabet C++](../sims/lp2_shared_gp29_q8_keyed_alphabet.cpp) · [keyed-alphabet reproducer](../sims/lp2_shared_gp29_q8_keyed_alphabet_sft.py) · [extended raw results](lp2-shared-gp29-q8-affine-extended-output.json). Local native runs used equivalent generated inputs; repository wrappers not independently executed here.
 
+## Complete visual-chapter omission bounds for fixed keyed alphabets (Agent5)
+
+An exact faster necessary gate counts how many zero-free groups of length at least eight can share any one primitive q8 shift vector under a fixed alphabet. For every eligible group and each legal register word, calculate its eight implied shifts and reject later inconsistent repeated-phase differences. Canonicalize shift vectors by cyclic rotation, reject period dividing four, and count each group at most once per vector. If there are A eligible groups and B allowed omissions anywhere, any solution needs support at least A−B. No short-group assumption is required. This is an exclusion gate; a survivor still needs full decoding. On the two adversarial terminal controls it retains the true action (one and three surviving vectors, respectively); the preceding full solver identifies the unique true action on both.
+
+Using the frozen 267 solved-word keyed alphabets, allow each visual chapter its own alphabet and q8 key, and floor(0.05 × chapter groups) omissions, arbitrarily concentrated on the anchors. The terminal p54-only subset retains its three-omission allowance and does not consume p55.
+
+| Visual chapter | Groups | Zero-free ≥8 groups | Allowed omissions | Required anchor support | Maximum actual support |
+|---|---:|---:|---:|---:|---:|
+| p0–2 | 158 | 15 | 7 | 8 | 2 |
+| p3–7 | 255 | 19 | 12 | 7 | 2 |
+| p8–14 | 383 | 30 | 19 | 11 | 2 |
+| p15–22 | 437 | 40 | 21 | 19 | 2 |
+| p23–26 | 224 | 18 | 11 | 7 | 2 |
+| p27–32 | 326 | 28 | 16 | 12 | 2 |
+| p33–39 | 378 | 34 | 18 | 16 | 2 |
+| p40–53 | 669 | 55 | 33 | 22 | 2 |
+| p54 (complete training groups only) | 49 | 7 | 3 | 4 | 2 |
+
+All nine gates reject this finite alphabet family even with the full omission allowance. Independently test each original red opening as a keyed alphabet, using either the concatenated red title or any of its actual printed words. Remove the entire red heading before counting body groups and set B=floor(body groups/20), or 3 on p54. Every title-seeded family also fails: for the earlier chapters the required support is 8,6,10,19,7,11,16,22, while the maxima are 1,1,1,2,1,1,1,1. The p54 heading-only family needs 3 but reaches 1. All thresholds exceed the maxima. This rules out the stated first-occurrence keyed-alphabet construction with primitive q8 and the native register, even when long groups are adversarially OOV. It does not constrain arbitrary alphabet permutations or authenticate a red-heading cipher instruction.
+
+[Exact support counter](../sims/lp2_shared_gp29_q8_alphabet_support.cpp) · [source-driven runner](../sims/lp2_shared_gp29_q8_alphabet_support_sft.py) · [raw results](lp2-shared-gp29-q8-affine-extended-output.json). Core executed locally using exact transcription-derived anchors and the verified dictionary digest. Original-source runner has not yet been separately run in a full checkout.
+
 ## Current conclusion
 
 **Established**
@@ -199,7 +221,7 @@ The blind hidden keywords are jiffo6i and i93168 in compact GP29 notation, with 
 **Not established**
 - No plaintext or key has been recovered for original p54–55.
 - The corrected mapped `pi(DIVINITY)` subcase is fully excluded with up to three arbitrary OOV groups: four exhaustive branches with 285, 174, 4,370 and 6,994 anchor options all fail. Two blind literary controls recover the exact planted map and 98/98 withheld truth words. This excludes only the fixed mapped historical keyword, not the general unknown q8 action.
-- The unknown-q8 affine receiver recovers both long-anchor blind effective actions and 80/80 withheld words; original p40–53 24-long-anchor subcase is excluded even with three omissions, but the chapter-wide 5% OOV model and unrestricted terminal profile remain open. All 267 fixed native-word-keyed alphabets and two p54-heading alphabets fail the exact three-OOV terminal training test, despite both adversarial blind controls recovering their exact actions.
+- The unknown-q8 affine receiver recovers both long-anchor blind effective actions and 80/80 withheld words; original p40–53 24-long-anchor subcase is excluded even with three omissions, but the chapter-wide 5% OOV model and unrestricted terminal profile remain open. All 267 fixed native-word-keyed alphabets and all chapter-specific red-title alphabets fail the exact chapter OOV bounds (p54 only, three omissions; earlier chapters, full floor(5%) allowance), despite both adversarial blind terminal controls recovering their exact actions.
 - Two blind unknown-q8 annealing pilots (ordinary and dictionary-conditioned neighbourhood) recover neither planted action nor any withheld true word. This is a search failure, not a finite original-model exclusion.
 
 ## Next discriminating work
