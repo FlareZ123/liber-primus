@@ -50,6 +50,18 @@
         "min": 44,
         "max": 57,
         "minStart": 1117
+      },
+      "fitAnyBoundary": {
+        "windows": 4561,
+        "min": 31,
+        "max": 44,
+        "minStart": 2700
+      },
+      "fullAnyBoundary": {
+        "windows": 4485,
+        "min": 43,
+        "max": 57,
+        "minStart": 2700
       }
     },
     {
@@ -66,6 +78,18 @@
         "min": 38,
         "max": 62,
         "minStart": 471323
+      },
+      "fitAnyBoundary": {
+        "windows": 480371,
+        "min": 27,
+        "max": 47,
+        "minStart": 477506
+      },
+      "fullAnyBoundary": {
+        "windows": 480295,
+        "min": 37,
+        "max": 62,
+        "minStart": 477511
       }
     },
     {
@@ -82,6 +106,18 @@
         "min": 38,
         "max": 61,
         "minStart": 88761
+      },
+      "fitAnyBoundary": {
+        "windows": 94368,
+        "min": 27,
+        "max": 46,
+        "minStart": 90422
+      },
+      "fullAnyBoundary": {
+        "windows": 94292,
+        "min": 37,
+        "max": 61,
+        "minStart": 91454
       }
     },
     {
@@ -98,6 +134,18 @@
         "min": 43,
         "max": 62,
         "minStart": 175099
+      },
+      "fitAnyBoundary": {
+        "windows": 329502,
+        "min": 31,
+        "max": 48,
+        "minStart": 83148
+      },
+      "fullAnyBoundary": {
+        "windows": 329426,
+        "min": 42,
+        "max": 62,
+        "minStart": 291049
       }
     }
   ],
@@ -785,5 +833,11 @@
       "path": "resources/control/shakespeare_first300k.txt",
       "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
     }
-  ]
+  ],
+  "relaxedArbitraryPhaseBijections": {
+    "fit": 10,
+    "full": 11,
+    "wholeBook": 65
+  },
+  "keyspace": 500246412961
 }
