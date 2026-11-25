@@ -169,7 +169,6 @@ function experiment(raw) {
     let phase = 0;
     const items = words.map((P, originalIndex) => {
       const startPhase = phase, C = encode(P, K, phase);
-      phase = C.reduce((h, c, i) => h, phase); // phase updated explicitly below
       let active = 0;
       for (const p of P) if (p !== 0) active++;
       const endPhase = (startPhase + active) % T;
@@ -249,6 +248,10 @@ function experiment(raw) {
   function evaluateKey(cipherGroups, K, collect) {
     let covered = 0, edgeCount = 0, uniqueWordGroups = 0, uniqueEdgeGroups = 0, totalWordOptions = 0;
     const optionsByGroup = collect ? Array(cipherGroups.length) : null;
+    const groupOrder = Array.from({ length: cipherGroups.length }, (_, i) => i).sort((a, b) =>
+      cipherGroups[b].length - cipherGroups[a].length ||
+      cipherGroups[a].filter(x => x === 0).length - cipherGroups[b].filter(x => x === 0).length
+    );
     for (const gi of groupOrder) {
       const C = cipherGroups[gi], dict = dictByLen.get(C.length) || new Set(), options = [];
       for (let s = 0; s < T; s++) {
