@@ -1,0 +1,186 @@
+{
+  "stats": {
+    "prefixSkips": {
+      "n": 433,
+      "mean": 267.0554272517321,
+      "sd": 29.91301702227484,
+      "min": 199,
+      "max": 351
+    },
+    "skips": {
+      "n": 433,
+      "mean": 277.75057736720555,
+      "sd": 30.595140861610712,
+      "min": 209,
+      "max": 371
+    },
+    "prefixScore": {
+      "n": 433,
+      "mean": -5.809225629920972,
+      "sd": 0.01242680199567473,
+      "min": -5.842176297432609,
+      "max": -5.777271725751753
+    },
+    "holdScore": {
+      "n": 433,
+      "mean": -5.889997921713808,
+      "sd": 0.11033258800824183,
+      "min": -6.217172725651665,
+      "max": -5.601039897769141
+    },
+    "score": {
+      "n": 433,
+      "mean": -5.812417619223068,
+      "sd": 0.012385070334647603,
+      "min": -5.846846323560454,
+      "max": -5.780684826773454
+    }
+  },
+  "top": {
+    "prefixSkips": [
+      {
+        "rank": 91,
+        "seed": 1357457898,
+        "tier": "B",
+        "score": -5.797153779012005,
+        "skips": 371,
+        "prefixScore": -5.79769210347816,
+        "prefixSkips": 351,
+        "holdScore": -5.784069971088513
+      },
+      {
+        "rank": 197,
+        "seed": 1334707200,
+        "tier": "C",
+        "score": -5.807649971391146,
+        "skips": 352,
+        "prefixScore": -5.805950557765545,
+        "prefixSkips": 337,
+        "holdScore": -5.848953688494618
+      },
+      {
+        "rank": 10,
+        "seed": 1326266538,
+        "tier": "A",
+        "score": -5.799819535444352,
+        "skips": 342,
+        "prefixScore": -5.800468616831505,
+        "prefixSkips": 333,
+        "holdScore": -5.784043815167536
+      }
+    ],
+    "skips": [
+      {
+        "rank": 91,
+        "seed": 1357457898,
+        "tier": "B",
+        "score": -5.797153779012005,
+        "skips": 371,
+        "prefixScore": -5.79769210347816,
+        "prefixSkips": 351,
+        "holdScore": -5.784069971088513
+      },
+      {
+        "rank": 197,
+        "seed": 1334707200,
+        "tier": "C",
+        "score": -5.807649971391146,
+        "skips": 352,
+        "prefixScore": -5.805950557765545,
+        "prefixSkips": 337,
+        "holdScore": -5.848953688494618
+      },
+      {
+        "rank": 342,
+        "seed": 1358454523000,
+        "tier": "C",
+        "score": -5.8147075694084505,
+        "skips": 345,
+        "prefixScore": -5.813626490088631,
+        "prefixSkips": 332,
+        "holdScore": -5.840982864439383
+      }
+    ],
+    "prefixScore": [
+      {
+        "rank": 181,
+        "seed": 1326240000,
+        "tier": "C",
+        "score": -5.791483971304584,
+        "skips": 267,
+        "prefixScore": -5.777271725751753,
+        "prefixSkips": 258,
+        "holdScore": -6.13690815813942
+      },
+      {
+        "rank": 106,
+        "seed": 1358141468,
+        "tier": "B",
+        "score": -5.78479034194055,
+        "skips": 272,
+        "prefixScore": -5.778693715897147,
+        "prefixSkips": 264,
+        "holdScore": -5.932966932729812
+      },
+      {
+        "rank": 45,
+        "seed": 1390007037,
+        "tier": "A",
+        "score": -5.780684826773454,
+        "skips": 238,
+        "prefixScore": -5.781263287387627,
+        "prefixSkips": 232,
+        "holdScore": -5.766625522314939
+      }
+    ],
+    "holdScore": [
+      {
+        "rank": 17,
+        "seed": 1357187609,
+        "tier": "A",
+        "score": -5.784037556697556,
+        "skips": 263,
+        "prefixScore": -5.791566872140448,
+        "prefixSkips": 252,
+        "holdScore": -5.601039897769141
+      },
+      {
+        "rank": 38,
+        "seed": 1388984366,
+        "tier": "A",
+        "score": -5.8104408823435865,
+        "skips": 305,
+        "prefixScore": -5.818937638754736,
+        "prefixSkips": 293,
+        "holdScore": -5.603929873006962
+      },
+      {
+        "rank": 250,
+        "seed": 1388984340,
+        "tier": "C",
+        "score": -5.792100676925742,
+        "skips": 286,
+        "prefixScore": -5.798832966534155,
+        "prefixSkips": 271,
+        "holdScore": -5.628474481833763
+      }
+    ]
+  },
+  "rank1": {
+    "rank": 1,
+    "seed": 1325734783,
+    "tier": "A",
+    "score": -5.794107195558225,
+    "skips": 216,
+    "prefixScore": -5.790666690360923,
+    "prefixSkips": 207,
+    "holdScore": -5.877727599220776
+  },
+  "uniqueSeeds": 433,
+  "abovePrefixSkip": 0,
+  "aboveFullSkip": 0,
+  "abovePrefixNull": 0,
+  "aboveHoldNull": 0,
+  "joint": 0,
+  "now": "2026-11-25T02:04:53.856Z"
+}
