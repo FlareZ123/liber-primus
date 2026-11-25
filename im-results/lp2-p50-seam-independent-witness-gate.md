@@ -45,6 +45,24 @@ I used the exact [verse III:47](https://nofaithinthehumanrace.com/legis/?chapter
 
 Thus the direct, word-separator-preserving quotation of this independently suggested verse across the actual LP2 sentence stop fails before any plaintext differences are computed. In particular the source's line-key instruction follows ALL (three runes), not DIVINE (six); this alone breaks the intended immediate alignment. This does not exclude altered prose, transposition, alternate separator semantics, or other verses. Those alternatives cannot supply a *known* difference without an independent alignment rule.
 
+## Two-sided typed-field source witness (#2772, Agent5, 25 November 2026)
+
+The original 66.jpg and 68.jpg were directly inspected from the maintainer's supplied image archive. The numeric table separates distinct prose groups: p49 ends in a complete six-rune group, p51 starts a three-rune group and then a six-rune group. The four frozen left members are the final four runes of that six-rune group; the right members are the whole first group plus the first rune of the next. A word physically spanning the field is not indicated: the red ten-dot mark follows the complete left group. Neither the shared vine border nor the field itself supplies a known plaintext rune.
+
+Rather than repeating the Liber AL verse search or selecting phrases by the five residues, examine the exact **post-field** prose of the already source-attested analogues from #2578. The earlier gate tested their pre-field clauses; this extension asks whether an independently identified field is a genuine two-sided textual template. The p56 solved hash field is the nearest internal typed-data analogue. The 2012 signed RSA challenge has two distinct, explicit typed fields (ciphertext armor and serialized public key). The two LP1 KNOW THIS tables terminate their native text records and supply no immediate post-field prose witness.
+
+| Source field | First four post-field GP group widths | Original p51 widths [3,6,5,5] compatible? |
+|---|---|---|
+| Solved p56 hash | 2,2,2,4 (native GP) | No |
+| Signed 2012 RSA ciphertext | 4,2,(2/3),6 | No |
+| Signed 2012 RSA serialized public key | (2/3),9,7,2 | No |
+
+The Latin source widths grant all single Latin letters and all merged chart digraphs TH, NG, ING, EO, OE, AE, IA, IO, EA, so these necessary failures do not depend on a single greedy tokenization. The RSA field boundaries were read directly from the archived signed-message text (not selected by LP2 differences). The p56 reference is the exact native GP record. The target rune values and group lengths were checked against the original corpus and matching transcription. This new post-field condition is only a scope extension: pre-field literals already failed #2578; it is not an additional independent historical source and it does not exclude hidden plaintext boundaries. No signed difference was computed from these rejected templates.
+
+**Decision:** no first-party source fixes both members of any seam pair. Retire the restricted five-way branch pending an independently obtained exact witness. Do not reinterpret an arbitrary familiar source sentence as a known difference if boundaries are allowed to change: an explicit source-selected alignment is still required. No new key, plaintext, or table operation. The external Session 219/220 pages were inaccessible during this invocation; the frozen predictions are inherited from #2750, not newly verified.
+
+Inputs: `resources/liber-primus/lp2-corpus.json` (054f2a0f780b7d46901acbe3d9bf4f0ac1801165), `resources/liber-primus/lp2-transcription.txt` (43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7), `resources/external/relikd-solved-gp29-native-v1.json` (1b064ef6d85819b7d96adaff31a82d1ec551598f), `resources/external/2012-sq6wmgv2zcsrix6t-unknown.asc` (0e69b063b379a8ccdd8a96815de318bcf65a1247). The post-field width enumeration was executed in the connected JS runtime, no CI. Earlier template scope: [#2578 report](lp2-p49-typed-field-template-original-gate.md).
+
 ## Remaining missing input
 
 The prior [complete flanking sentence study](lp2-p49-table-complete-flanking-sentences.md) already tested intact word-length matching of four first-party Cicada texts and nine solved passages; no match. The 2014 release announcement and 2013 signed TCP protocol identify no plaintext at these seam offsets. The actual 761/Parable source-to-text witness is anchored at p57, not at this table. No source-independent known rune on both sides of any frozen pair was located. Accordingly report the missing witness and stop, rather than select a row by language plausibility or invent a crib.
