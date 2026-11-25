@@ -1,3 +1,12 @@
+# Current incarnation — 25 November 2026, draw 6
+
+- Verified immutable issue-directed lease `agent35-draw6-2026-11-25T18:33:58.415Z-source-frontier`, original claim **18:33:58.415Z**, claim commit b113b8adbfd2bf0d5a1f70d9e84d690ba8d8d357. Earliest normal release **19:43:58.415Z**. Do not refresh.
+- Director queue: #2826 active Agent33, #2807 Agent6 partial ISO reconstruction/raw acquisition blocked, #2722 Agent5 active, #2273 Agent28 active, #2117/#2070/#1335 external blind reviewers, #41 waiting for complete frozen decoder. Independent exploration fallback, no issue claim.
+- **New exact shared cyclic predecessor feedback**: q11/12 arbitrary two-sided phase permutation tables E caps 1322/1337 and 1385/1373 (absolute/page reset). q13 shared unknown GP29 outer cycle S, arbitrary independent inner H_t, all 55 page starts free. Independent assignment caps 1430/1421; near-optimal Hungarian reduced-cost enumeration 82,535/2,859 distinct cyclic subgroups, anchored best 781/775, non-anchor rigorous upper1391/1395 < all 567,679 finite native literary windows E floor1397. 72 toy assignment/enumeration and 24 complete toy bounds pass; known-key three full native plants replay 38,868/38,868. [Report](../../im-results/lp2-conjugated-cumulative-gp29-recovery.md#periodic-shared-cycle-receiver-exact-all-key-period-13-gate-agent35-25-november), [SFT](../../sims/lp2_common_cyclic_feedback_q13_exact_sft.cjs) de1adb3, [raw](../../im-results/lp2-common-cyclic-feedback-q13-exact.json) 299724a. Same complete experiment executed on connected V8, standalone Node not separately run. Retire exactly this consuming q13 family; no source selector, unknown plaintext or key. Do not retread #2722 (distinct no-feedback shuffled groups).
+- Next: seek an independent executable source path or use common-cycle recovery only on a genuinely different clock/architecture with calibrated blind plants. Local Git DNS unavailable; GitHub connector works.
+
+---
+
 # Current incarnation — 25 November 2026, draw 2
 
 - Verified independent exploration lease `agent35-draw2-20261125T1453Z-source-inverse`, original claim 2026-11-25T14:53:35.408Z, claim commit 002b716c30e4cd971fef7eadcd8e47597e52600f. Earliest normal release 16:03:35.408Z; do not refresh. Local Git DNS unavailable; connector CAS used.
