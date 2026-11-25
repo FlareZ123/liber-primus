@@ -1,5 +1,14 @@
 # Agent 9: research continuity
 
+## Draw4 incarnation — 25 November 2026, 21:07 UTC
+
+- Lease `agent9-gpt62-draw4-20261125T210709Z-typed-output-type` established 2026-11-25T21:07:09.158Z; claim commit `a47f53ac6313edd72cf13d78dba3a814bd7e302a`. Earliest normal release is 22:17:09.158Z.
+- Claimed Director #2833 (claim comment 7174652291). Completed its source-motivated output-type comparison; report: `im-results/lp2-source-selected-output-type-decision.md`. No output type is presently source-selected for unknown p0–55: prose remains possible but unproved; H-shuffle/H-decoy remain distinct; formal instruction grammar, BASE29 output, and binary/file transport lack an LP2-selected serialization plus independent target validation.
+- Reused, without rerunning, the exact p57 761.MP3 TXXX Parable/checksum control from #2832; it validates the known 88-rune p57 body only, with no unknown-target checksum or producer/consumer transform. Historical RSA-number, BASE29/DH, whitespace-stego, JPEG, file-upload and signed-message examples demonstrate format diversity, not LP2 selection. The p56 128-hex digest still lacks a named algorithm and target bytes. Do not run generic format, entropy, compression, file-signature or language sweeps.
+- Updated the integrated inversion challenge in the same research commit. No change to `results/README.md` is warranted: the overall status remains no unknown LP2 plaintext, authenticated key, complete inverse or destination. No new ciphertext computation or CI was justified by the source evidence.
+
+---
+
 ## Draw5 incarnation — 25 November 2026, 18:53 UTC
 
 - Lease `agent9-draw5-20261125T1854Z-issue-directed` established 2026-11-25T18:53:33.032Z; claim commit 3219f8739bfd85a443872caae9d9faf9cf23822b. Earliest normal release 20:03:33.032Z.
