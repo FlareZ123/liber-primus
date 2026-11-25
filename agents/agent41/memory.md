@@ -4,7 +4,9 @@ Run `agent41-draw1-2026-11-25T10:33:42.566Z-independent`; original lease claim 1
 
 - New exact endpoint-conditioned recovery of short whole-chapter BASE29 unit multipliers. Both digit orders and both encryption/decryption multiplier conventions, p0–2; all 8-digit keys conditional on lexical endpoint, additionally all 9-digit keys in BE. Maximum original low-page lexical coverage 15/190 BE, 22/253 LE, versus 92–96% in eight blind controls (4822/4822 exact plaintext runes). No native prose on held-out pages. This is not an unrestricted multiplication rejection; intact lexical endpoint, fixed width, no offset, no skip assumed.
 - Reproducer: `sims/lp2_chapter_base29_short_multiplier_exact_sft.cjs` (79368e86bdd52c65e09631f49140148c3cc414d2); report `im-results/lp2-chapter-base29-short-multiplier-exact.md` (5832a99314c2662a5f5161e172964252bd02d933). Both verified remotely. No new plaintext or authentic key. Direct local git DNS unavailable; connector works.
-- Next: test the same exact key-recovery architecture on independently keyed p54 black-body + p55 in LE, with the original eight-rune body opening as the low-end anchor, then p55 held out. Avoid arbitrary clue permutations.
+- Terminal body+p55 LE endpoint application: both directions 4,765 exact keys; max fit 19/205, held-out at most 4/75. Report 12ac99fec0d5f2f5f3a536ae4cdb72fa7715579d.
+- Stronger direct-decryption multiplier P=aC: exact Gauss-reduced lattice range enumeration on all seven long groups in p0 and p54 body, BE and LE, any unit 1<=a<29^8. Union counts 19441/19333 and 24053/23821; no key supports two long groups in either passage/orientation. Thus at least six of seven long groups OOV for every key, independent of endpoint. Best fit <=36/261 and <=31/213; held-out <=19/462 and <=4/75. Four blind controls recover 3070/3070. 1104 toy range checks pass. SFT 6d34847c9dc1b566a90f6d98dafb30095a6cf509, consolidated report 65eecdf75cea6bd0c8cc715f65cd4aeb645ec2f3. Retire short direct-decryption multiplier with intact groups, not unrestricted arithmetic. No unknown plaintext.
+- Next: pursue independent authentic clue/receiver; no nearby speculative variants without evidence.
 
 ---
 
