@@ -1,0 +1,265 @@
+{
+  "scope": "8",
+  "dict": 35944,
+  "longWords": 16920,
+  "nodes": 61741,
+  "originalChapters": [
+    {
+      "ch": 0,
+      "n": 729,
+      "groups": 158,
+      "long": 21
+    },
+    {
+      "ch": 1,
+      "n": 1145,
+      "groups": 255,
+      "long": 27
+    },
+    {
+      "ch": 2,
+      "n": 1729,
+      "groups": 383,
+      "long": 46
+    },
+    {
+      "ch": 3,
+      "n": 1903,
+      "groups": 437,
+      "long": 48
+    },
+    {
+      "ch": 4,
+      "n": 1021,
+      "groups": 224,
+      "long": 26
+    },
+    {
+      "ch": 5,
+      "n": 1433,
+      "groups": 326,
+      "long": 36
+    },
+    {
+      "ch": 6,
+      "n": 1680,
+      "groups": 378,
+      "long": 45
+    },
+    {
+      "ch": 7,
+      "n": 3008,
+      "groups": 669,
+      "long": 84
+    },
+    {
+      "ch": 8,
+      "n": 308,
+      "groups": 66,
+      "long": 10
+    }
+  ],
+  "plants": [],
+  "originals": [
+    {
+      "ch": 8,
+      "name": "corrected",
+      "encoding": "index",
+      "sign": 1,
+      "bound": {
+        "n": 66,
+        "need": 10,
+        "byLen": {
+          "8": 6,
+          "10": 2,
+          "11": 1,
+          "13": 1
+        },
+        "cap": {},
+        "byLength": 0,
+        "interval": 0,
+        "upper": 0,
+        "minOOV": 10,
+        "budget": 3,
+        "excluded": true
+      },
+      "matches": [],
+      "visits": 2043700
+    },
+    {
+      "ch": 8,
+      "name": "corrected",
+      "encoding": "index",
+      "sign": -1,
+      "bound": {
+        "n": 66,
+        "need": 10,
+        "byLen": {
+          "8": 6,
+          "10": 2,
+          "11": 1,
+          "13": 1
+        },
+        "cap": {},
+        "byLength": 0,
+        "interval": 0,
+        "upper": 0,
+        "minOOV": 10,
+        "budget": 3,
+        "excluded": true
+      },
+      "matches": [],
+      "visits": 2030884
+    },
+    {
+      "ch": 8,
+      "name": "corrected",
+      "encoding": "prime",
+      "sign": 1,
+      "bound": {
+        "n": 66,
+        "need": 10,
+        "byLen": {
+          "8": 6,
+          "10": 2,
+          "11": 1,
+          "13": 1
+        },
+        "cap": {},
+        "byLength": 0,
+        "interval": 0,
+        "upper": 0,
+        "minOOV": 10,
+        "budget": 3,
+        "excluded": true
+      },
+      "matches": [],
+      "visits": 2042854
+    },
+    {
+      "ch": 8,
+      "name": "corrected",
+      "encoding": "prime",
+      "sign": -1,
+      "bound": {
+        "n": 66,
+        "need": 10,
+        "byLen": {
+          "8": 6,
+          "10": 2,
+          "11": 1,
+          "13": 1
+        },
+        "cap": {},
+        "byLength": 0,
+        "interval": 0,
+        "upper": 0,
+        "minOOV": 10,
+        "budget": 3,
+        "excluded": true
+      },
+      "matches": [],
+      "visits": 2032286
+    },
+    {
+      "ch": 8,
+      "name": "printed",
+      "encoding": "index",
+      "sign": 1,
+      "bound": {
+        "n": 66,
+        "need": 10,
+        "byLen": {
+          "8": 6,
+          "10": 2,
+          "11": 1,
+          "13": 1
+        },
+        "cap": {},
+        "byLength": 0,
+        "interval": 0,
+        "upper": 0,
+        "minOOV": 10,
+        "budget": 3,
+        "excluded": true
+      },
+      "matches": [],
+      "visits": 2037313
+    },
+    {
+      "ch": 8,
+      "name": "printed",
+      "encoding": "index",
+      "sign": -1,
+      "bound": {
+        "n": 66,
+        "need": 10,
+        "byLen": {
+          "8": 6,
+          "10": 2,
+          "11": 1,
+          "13": 1
+        },
+        "cap": {},
+        "byLength": 0,
+        "interval": 0,
+        "upper": 0,
+        "minOOV": 10,
+        "budget": 3,
+        "excluded": true
+      },
+      "matches": [],
+      "visits": 2036022
+    },
+    {
+      "ch": 8,
+      "name": "printed",
+      "encoding": "prime",
+      "sign": 1,
+      "bound": {
+        "n": 66,
+        "need": 10,
+        "byLen": {
+          "8": 6,
+          "10": 2,
+          "11": 1,
+          "13": 1
+        },
+        "cap": {},
+        "byLength": 0,
+        "interval": 0,
+        "upper": 0,
+        "minOOV": 10,
+        "budget": 3,
+        "excluded": true
+      },
+      "matches": [],
+      "visits": 2037518
+    },
+    {
+      "ch": 8,
+      "name": "printed",
+      "encoding": "prime",
+      "sign": -1,
+      "bound": {
+        "n": 66,
+        "need": 10,
+        "byLen": {
+          "8": 6,
+          "10": 2,
+          "11": 1,
+          "13": 1
+        },
+        "cap": {},
+        "byLength": 0,
+        "interval": 0,
+        "upper": 0,
+        "minOOV": 10,
+        "budget": 3,
+        "excluded": true
+      },
+      "matches": [],
+      "visits": 2033102
+    }
+  ]
+}
