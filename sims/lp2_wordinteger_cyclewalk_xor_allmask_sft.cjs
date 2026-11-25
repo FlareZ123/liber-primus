@@ -100,7 +100,99 @@ function run(gp,tr,lex,sol){
   }
   controls.push({feedback,detail,train:detail.reduce((s,x)=>s+x.train,0),trainExact:detail.reduce((s,x)=>s+x.trainExact,0),held:detail.reduce((s,x)=>s+x.held,0),heldExact:detail.reduce((s,x)=>s+x.heldExact,0),identifiable:detail.filter(x=>x.fit.k===x.plant&&x.fit.tiesEnumerated===1&&!x.fit.identityTiePossible).map(x=>x.L)});
  }
- return {dictionary:dictionary.map(s=>s.size),native:native.length,chapterGroups:groups.map(g=>g.length),models,controls};
+
+ // A changing XOR mask driven by the previous unknown plaintext word is
+ // relaxed to ANY value in that previous word's binary width. This makes
+ // the high mask prefix a necessary condition, and an exact interval sweep
+ // optimizes even this stronger relaxation over every secret key.
+ const width=L=>BigInt((B[L]-1n).toString(2).length);
+ function prefixBound(rows,L){
+  let baseline=0,restricted=0;
+  const events=new Map();
+  const add=(p,d)=>events.set(p,(events.get(p)||0)+d);
+  for(const {c,prevL} of rows){
+   const s=prevL===0?0n:width(prevL);
+   if(dictionary[L].has(c)||s>=width(L)){baseline++;continue}
+   restricted++;
+   const prefixes=new Set();
+   for(const p of dictionary[L])prefixes.add((c^p)>>s);
+   for(const pre of prefixes){const start=pre<<s;add(start,1);add(start+(1n<<s),-1)}
+  }
+  let current=baseline,best=baseline,key=0n;
+  for(const [p,d] of [...events].sort((a,b)=>a[0]<b[0]?-1:a[0]>b[0]?1:0)){
+   if(p>=bits[L])break;
+   current+=d;if(current>best){best=current;key=p}
+  }
+  // Independent check of the interval witness.
+  const check=rows.reduce((n,{c,prevL})=>{
+   const s=prevL===0?0n:width(prevL);
+   if(dictionary[L].has(c)||s>=width(L))return n+1;
+   for(const p of dictionary[L])if(((c^p)>>s)===(key>>s))return n+1;
+   return n;
+  },0);
+  assert(check===best,"prefix witness");
+  return {n:rows.length,baseline,restricted,best,key:key.toString()};
+ }
+ let prevL=0;
+ const lengthRows=original.map(g=>g.map(({L,c,t})=>{const row={L,c,t,prevL};prevL=L;return row}));
+ const prefixStrata=[],shortStrata=[];
+ for(let j=0;j<lengthRows.length;j++)for(let L=6;L<=14;L++){
+  const rows=lengthRows[j].filter(x=>x.L===L);
+  if(!rows.length)continue;
+  prefixStrata.push({chapter:j,L,...prefixBound(rows,L)});
+  const short=rows.filter(x=>x.prevL<=2);
+  if(short.length)shortStrata.push({chapter:j,L,...prefixBound(short,L)});
+ }
+ const direct=[];
+ for(const K of [0n,3301n]){
+  let prevP=0n,allHits=0,longHits=0;
+  for(const row of original.flat()){
+   const {L,c}=row,t=prevP&(bits[L]-1n),p=transform(c,K^t,B[L]);
+   assert(transform(p,K^t,B[L])===c,"plaintext state replay");prevP=p;
+   if(dictionary[L].has(p)){allHits++;if(L>=6)longHits++}
+  }
+  direct.push({key:K.toString(),allHits,longHits});
+ }
+ const plainMasks=B.map((b,l)=>((BigInt(rng())<<32n)|BigInt(rng()))&(bits[l]-1n));
+ let pprev=0n,decodedPrev=0n,plen=0;
+ const plainPlant=native.map(w=>{
+  const L=w.length,p=val(w),t=pprev&(bits[L]-1n),c=transform(p,plainMasks[L]^t,B[L]);
+  const recovered=transform(c,plainMasks[L]^(decodedPrev&(bits[L]-1n)),B[L]);
+  assert(recovered===p,"causal plaintext feedback plant");const row={L,c,prevL:plen};
+  pprev=p;decodedPrev=recovered;plen=L;return row;
+ });
+ const plainControl=[];
+ for(let L=6;L<=14;L++){
+  const rows=plainPlant.filter(x=>x.L===L);if(!rows.length)continue;
+  const v=prefixBound(rows,L);assert(v.best===v.n,"prefix plant upper bound");plainControl.push({L,...v});
+ }
+ // Oracle mask bank: give independent arbitrary banks to each width across
+ // the entire book, and even allow arbitrary per-word choice. Sum the B
+ // largest exact per-key support counts, ignoring overlap, as an upper bound.
+ const budgets=[16,32,64,128,256];
+ const bank=[];
+ for(const feedback of [false,true]){
+  const detail=[];
+  for(let L=6;L<=14;L++){
+   const rows=original.flat().filter(x=>x.L===L);
+   const D=dictionary[L],counts=new Map();
+   assert(rows.every(x=>!D.has(x.c)),"bank nonlexical premise");
+   for(const {c,t} of rows)for(const p of D){
+    const k=c^p^(feedback?t:0n);counts.set(k,(counts.get(k)||0)+1);
+   }
+   const hist=[];
+   for(const n of counts.values())hist[n]=(hist[n]||0)+1;
+   const bound=budgets.map(b=>{
+    let left=b,total=0;
+    for(let n=hist.length-1;n>0&&left;n--){const take=Math.min(left,hist[n]||0);total+=n*take;left-=take}
+    return Math.min(rows.length,total);
+   });
+   detail.push({L,n:rows.length,keySupportHistogram:hist.map(x=>x||0),bound});
+  }
+  bank.push({feedback,budgets,bounds:budgets.map((_,i)=>detail.reduce((s,v)=>s+v.bound[i],0)),detail});
+ }
+ const additional={plaintextFeedback:{source:sums(prefixStrata),shortPredecessor:sums(shortStrata),strata:prefixStrata,shortStrata,direct,control:sums(plainControl),controlDetail:plainControl},bank};
+ return {dictionary:dictionary.map(s=>s.size),native:native.length,chapterGroups:groups.map(g=>g.length),models,controls,additional};
 }
 const paths=["resources/liber-primus/lp2-corpus.json","resources/liber-primus/lp2-transcription.txt","resources/control/english_wordfreq_textblob.txt","resources/external/relikd-solved-gp29-native-v1.json"];
 const result=run(JSON.parse(read(paths[0])),read(paths[1]),read(paths[2]),JSON.parse(read(paths[3])));
