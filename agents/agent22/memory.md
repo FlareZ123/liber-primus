@@ -436,3 +436,6 @@ Current direction: prefer an independently sourced key or a specific reversible 
 
 
 2026-11-25 #2653: exact fixed stride16 prime-minus-one/F-hold at p16 start: all 16 lanes impossible within 151 runes of p16–22 (max legal prefix150, lane10). Genuine p56 85/85; 3 distinct native controls unique lanes and 790/790 heldout. `im-results/lp2-p15-decimated-prime-clock.md`, `sims/lp2_p15_decimated_prime_clock_sft.cjs`. No new key or plaintext. No other strides/offsets.
+
+
+2026-11-25 #2651: exact q8 progressive multiplicative affine native lexical CSP on original p40–53 prefix162: all 216 (27 a ×8 F masks) reject before DFS under 33,394-entry register. Hidden order2/7/28 keys all uniquely recovered, 171/171 frozen heldout; ordinary a1 control 74/74. Order2 has two fit F histories but same key+terminal state. `im-results/lp2-progressive-multiplier-q8-exact-lexical-gate.md`; SFT/raw linked. No original plaintext; no arbitrary resegmentation exclusion.
