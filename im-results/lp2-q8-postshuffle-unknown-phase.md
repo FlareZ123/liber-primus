@@ -200,6 +200,20 @@ This is a new exact optimization of the relaxed joint support, not an additional
 - [Raw q29 results](lp2-postshuffle-allkey-joint-q29-output.json)
 - [SFT](../sims/lp2_postshuffle_allkey_segment_cover_sft.cjs): `node sims/lp2_postshuffle_allkey_segment_cover_sft.cjs --q29`
 
+## Constructive shared q76 key recovery across chapters (Agent 23)
+
+This is a stronger sharing assumption than the chapter-local bounds above: one cyclic additive key for all original pages, with independent latent start phase per intact printed group, literal F holds, and the same 35,944-form broad vocabulary. The 76-cell outer ring of the p50 table provides a concrete length to test, but does not establish that ring length is a cipher period. Fit on p0–39 (2,161 groups), withholding p40–55 (735 groups). For each training group enumerate all contiguous nonzero six-rune windows and compatible dictionary words of its length; count each implied six-rune key tuple at most once per group. A tuple supported by at least three groups is a directed edge from its first five symbols to its last five. Enumerate cyclic 76-edge walks, allowing repetitions; the 1,000,000-call safeguard was never reached. Verify candidate rotations by independently inverting all withheld groups, all starting phases and both legal interpretations of ciphertext F.
+
+Three random period-76 planted keys were recovered uniquely up to rotation. Controls sampled matched original word lengths from each donor's final 20%, with 7/3/0 rare missing-length samples taken from the pooled held-out donors. They are deliberately length-matched synthetic word sequences, not coherent native prose. Dictionary OOV counts were 79/88/65 across all 2,896 groups. The true cycle's minimum support was 6/3/8 groups per tuple; each of the 717/714/721 in-vocabulary withheld true plaintext words is retained (382/378/388 uniquely); the others may have alternative dictionary inverses. Key recovery is exact but plaintext ordering and ambiguous words are not identified by this receiver.
+
+On original p0–39, 522 groups have an eligible nonzero six-window. Of 4,383,040 distinct candidate tuples, 4,366,806 have support one, 16,196 support two, 38 support three, and none higher. No two support-three edges join (maximum walk length one); there is no candidate cycle to test on the holdout. This is not a general graph attack on arbitrary longer keys.
+
+**Exact coverage consequence independent of the support-three graph:** At most floor(2161×.05)=108 words can be OOV. At least 414 of the 522 eligible groups must therefore admit an actual key tuple. The q distinct cyclic length-six windows can cover at most the sum of the q largest distinct tuple supports; overcounting groups only relaxes the bound. For q76 this upper bound is 190; for q180 it is 398. For q187 it is 412; q188 first reaches 414. Thus a single common key across p0–39 needs q≥188 under this model and budget. This does not supersede the weaker chapter-private bounds: different independent chapter keys are outside the sharing assumption. A necessary period lower bound is not evidence that any period at or above it works. No authentic LP2 key or plaintext recovered.
+
+- [SFT](../sims/lp2_postshuffle_q76_longanchor_cycle_sft.cjs)
+- [Raw results](lp2-postshuffle-q76-longanchor-cycle.json)
+- Executed in connected V8; no separate CI claim.
+
 ## Original #2684 reproduction
 
 - SFT: [sims/lp2_q8_postshuffle_unknown_phase_sft.cjs](../sims/lp2_q8_postshuffle_unknown_phase_sft.cjs)
