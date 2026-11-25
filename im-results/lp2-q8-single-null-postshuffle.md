@@ -79,7 +79,15 @@ Remove all periodic consistency checks from lexical inverse enumeration, retaini
 
 Thus the insertion-only q13 receiver fails eight chapters even with unrestricted independent group phases, arbitrary shuffle and either-F handling. A shared period across chapters must be at least 29 under this necessary condition. Surviving the bound is not evidence of a viable key. At q13 the aggregate lower bound is 166 extra repaired groups, allowing independent keys by chapter. Three separate 100-word held donor plants with true periods 8,13,29 have respective minimum bounds 7,12,14 and all pass their true period. The q8 consistency-aware bounds above are at least as strong.
 
-Executed in connected V8: `node sims/lp2_single_null_all_period_capacity_sft.cjs` ([raw output](lp2-single-null-all-period-capacity-output.json)); no standalone CI. A separate overlap-graph tightening attempt timed out before an output was obtained; no claim from it.
+Executed in connected V8: `node sims/lp2_single_null_all_period_capacity_sft.cjs` ([raw output](lp2-single-null-all-period-capacity-output.json)); no standalone CI. An overlap-constrained tightening is given below.
+
+### Overlap-constrained period capacity for p40–53
+
+A tighter bound exploits the overlapping windows of a single cyclic key, rather than treating its q windows as independent choices. For tuple-support threshold t, select each distinct high-support tuple present in a real key once. If h selected positions are active in a q-cycle, their intersection with a d-step cyclic shift contains at least 2h−q positions. For d not divisible by q, each such edge joins distinct selected tuples whose suffix and prefix of length k−d agree. The number of active edges cannot exceed the minimum of the numbers of threshold tuples with any distinct compatible successor or predecessor. Thus h≤floor((q+edgeCap)/2), also h≤q and h≤number of threshold tuples. Use the minimum bound over d=1..k−1, and sum over integer support thresholds (layer-cake sum). The t=1 layer is intentionally left unrestricted. This gives a valid upper bound on distinct tuple coverage for every q, including repeated windows. Apply to the same cumulative and disjoint strata.
+
+The first full-book attempt timed out, with no result. A sparse high-support implementation restricted the original scope to p40–53 (three same donor controls). The minimum surviving period increases from 29 to **39**. At q29, at least 53 groups must be affected beyond the zero/one-null receiver, exceeding the 33-group OOV budget and forcing at least 20 additional repaired groups. At q13 the additional-repair lower bound becomes 84 (previously 72); at q8 it becomes 103 (previously 97 under the period-independent relaxation). All control true periods still pass; respective minimum bounds improve from 7/12/14 to 8/13/18. This is still a necessary condition, not key nomination. The original shared-period insertion-only receiver now requires q≥39, and a chapter-independent q29 receiver fails at least p40–53. No outcome for other chapters from this tighter overlap test.
+
+Executed in connected V8: `node sims/lp2_single_null_overlap_period_capacity_sft.cjs` ([raw output](lp2-single-null-overlap-period-capacity-output.json)); no standalone CI.
 
 ## Disposition and reproducibility
 
