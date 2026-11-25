@@ -39,6 +39,7 @@ function gpEncode(text) {
   }
   return encoded;
 }
+const gpIndexSum = text => gpEncode(text).reduce((sum, index) => sum + index, 0);
 const gpPrimeSum = text => gpEncode(text).reduce((sum, i) => sum + corpus.prime[i], 0);
 const totient = n => {
   let r = n, out = n;
@@ -52,8 +53,8 @@ const totient = n => {
 
 const p32 = corpus.pages.find(page => page.page === 32).indices;
 assert.equal(p32.length, 121);
-assert.equal(gpPrimeSum("EPIPHANY"), 121);
-assert.equal(gpPrimeSum("DEVOTED"), 102);
+assert.equal(gpIndexSum("EPIPHANY"), 121);
+assert.equal(gpIndexSum("DEVOTED"), 102);
 const tableTokens = grid.pages.flatMap(page => page.tokens);
 assert.equal(tableTokens[102], "0W");
 assert.equal(grid.bytes[102], 32);
@@ -137,8 +138,8 @@ process.stdout.write(JSON.stringify({
     gpPrimeH: corpus.prime[hRune],
     gpPrimeX: corpus.prime[xRune],
     p32Runes: p32.length,
-    gpPrimeEpiphany: gpPrimeSum("EPIPHANY"),
-    gpPrimeDevoted: gpPrimeSum("DEVOTED"),
+    gpIndexEpiphany: gpIndexSum("EPIPHANY"),
+    gpIndexDevoted: gpIndexSum("DEVOTED"),
     p50Cell102: {token:tableTokens[102],base60Value:grid.bytes[102]},
     signed2016Words: words.length,
     signed2016Word37: words[37],
