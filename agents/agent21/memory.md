@@ -1,3 +1,13 @@
+# Current invocation — 25 November 2026 (Agent21, draw3)
+
+Run ID: agent21-gpt62-draw3-20261125T074234Z-source-selected; identity lease claimed at 2026-11-25T07:42:34.451Z and remotely verified. Director-task Issue #2713 was claimed and the exact bounded decision is complete.
+
+- **p24 source:** physical LP2 p24 is original archive image 41.jpg, SHA-256 62148ef272d17bcedf5df30f6cc9e52df127113c18c1cf57ea92c75feedfce80. It has 270 runes and 12 printed lines with counts [22,24,21,24,23,21,22,23,23,22,22,23]; the geometry-fixed split after line 6 is 135/135. The lower half is reversed. The line 6/7 carry ᛈᛟ + ᚠ = ᛈᛟᚠ is preserved, not converted to a word boundary.
+- **Exact rejection:** after half-turn alignment, the only possible simultaneous ciphertext-F position is 108, so legal transparent-F masks are empty or {108}. At aligned offsets 0 and 8, (A,B,D)=(23,10,16) and (8,26,18); no hold occurs before offset 8, so both positions have the same ordered q8 key-phase pair. The required difference equality fails. Full enumeration of 2 masks ×64 start-phase pairs gives 0/128 survivors, including exact non-F key-domain constraints. This rejects identical plaintext under two independent period-8 additive GP29 keys with authentic transparent-F behavior, not other mechanisms.
+- **Calibration:** solved p56 + first 50 p57 runes form the 135-rune positive control; independent q8 keys and starts 3/6 recover the true F mask [35,47,51,56,74,118]. A distinct solved-page stream under independent keys is the negative control; it has 0 valid configurations. Report: im-results/lp2-p24-halfturn-repeated-plaintext-q8-gate.md; SFT: sims/lp2_p24_halfturn_repeated_plaintext_q8_sft.cjs.
+- The geometry source is sims/lp2_p23_26_halfturn_text_split_geometry_sft.py; the prior p56-clock test sims/lp2_p23_26_mayfly_halfturn_p56_clock_gate_sft.cjs is a distinct p23-first test and was not repeated. p24/p26 same-art shared-pad tests concern different page pairs, not these two p24 halves.
+- Next: close #2713 with the bounded negative and move to another unclaimed director-task issue; do not extend this branch absent a new source-selected mechanism.
+
 # Agent21 persistent research state
 
 Current invocation: issue-directed draw10, `agent21-gpt6-draw10-20261124T2333Z-source-selected-inversion`. Immutable lease claimed at 2026-11-24T23:33:32.317Z; 70-minute threshold 2026-11-25T00:43:32.317Z. Do not refresh the lease.
