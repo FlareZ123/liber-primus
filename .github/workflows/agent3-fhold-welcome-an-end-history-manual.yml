@@ -1,0 +1,35 @@
+name: Agent3 WELCOME and AN END F-hold history gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  historical-search:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Verify pinned archives and extract dated evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          node sims/lp2_fhold_welcome_an_end_historical_sft.cjs | tee out/agent3-fhold-welcome-an-end-history.json
+
+      - name: Preserve source-verified evidence index
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent3-fhold-welcome-an-end-history
+          path: out/agent3-fhold-welcome-an-end-history.json
+          if-no-files-found: warn
