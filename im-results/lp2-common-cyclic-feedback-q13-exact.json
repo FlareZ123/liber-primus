@@ -1,0 +1,366 @@
+{
+  "inputBlobs": {
+    "resources/liber-primus/lp2-corpus.json": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "resources/control/gibran_prophet_58585.txt": "df260a07d56bf5998d40a6360b6132c35c252d10",
+    "resources/control/emerson_essays_2944.txt": "a92be8ba5b3511a003a22ba31523c14397aaa83a",
+    "resources/control/shakespeare_first300k.txt": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+  },
+  "n": 12956,
+  "free": 55,
+  "minimum": [
+    {
+      "nativeRunes": 63114,
+      "windows": 50159,
+      "minimumE": 1407,
+      "offset": 16958
+    },
+    {
+      "nativeRunes": 324630,
+      "windows": 311675,
+      "minimumE": 1482,
+      "offset": 39008
+    },
+    {
+      "nativeRunes": 218800,
+      "windows": 205845,
+      "minimumE": 1397,
+      "offset": 100474
+    }
+  ],
+  "floor": 1397,
+  "twoSided": [
+    {
+      "q": 11,
+      "local": false,
+      "upper": 1322
+    },
+    {
+      "q": 11,
+      "local": true,
+      "upper": 1337
+    },
+    {
+      "q": 12,
+      "local": false,
+      "upper": 1385
+    },
+    {
+      "q": 12,
+      "local": true,
+      "upper": 1373
+    }
+  ],
+  "original": [
+    {
+      "local": false,
+      "diag": [
+        8,
+        6,
+        4,
+        10,
+        9,
+        10,
+        5,
+        7,
+        5,
+        4,
+        5,
+        5,
+        8
+      ],
+      "M": [
+        104,
+        102,
+        109,
+        108,
+        102,
+        109,
+        107,
+        102,
+        102,
+        104,
+        111,
+        104,
+        111
+      ],
+      "relaxed": 1430,
+      "D": 33,
+      "threshold": 2,
+      "counts": [
+        {
+          "nodes": 1302920,
+          "leaves": 44950
+        },
+        {
+          "nodes": 8377,
+          "leaves": 74
+        },
+        {
+          "nodes": 104435,
+          "leaves": 3693
+        },
+        {
+          "nodes": 193502,
+          "leaves": 5484
+        },
+        {
+          "nodes": 130901,
+          "leaves": 3293
+        },
+        {
+          "nodes": 127426,
+          "leaves": 2642
+        },
+        {
+          "nodes": 82181,
+          "leaves": 5432
+        },
+        {
+          "nodes": 651932,
+          "leaves": 9488
+        },
+        {
+          "nodes": 49317,
+          "leaves": 2372
+        },
+        {
+          "nodes": 119849,
+          "leaves": 2476
+        },
+        {
+          "nodes": 1193,
+          "leaves": 21
+        },
+        {
+          "nodes": 75439,
+          "leaves": 1868
+        },
+        {
+          "nodes": 16096,
+          "leaves": 742
+        }
+      ],
+      "uniqueSubgroups": 82535,
+      "anchorMax": 781,
+      "nonAnchor": 1391,
+      "upper": 1391,
+      "bestOrder": [
+        0,
+        1,
+        24,
+        10,
+        23,
+        14,
+        7,
+        25,
+        6,
+        8,
+        28,
+        9,
+        3,
+        27,
+        5,
+        22,
+        12,
+        20,
+        18,
+        11,
+        21,
+        2,
+        16,
+        4,
+        13,
+        26,
+        17,
+        19,
+        15
+      ],
+      "bestShifts": [
+        4,
+        11,
+        24,
+        16,
+        18,
+        24,
+        15,
+        27,
+        14,
+        16,
+        9,
+        27,
+        22
+      ]
+    },
+    {
+      "local": true,
+      "diag": [
+        6,
+        10,
+        4,
+        4,
+        5,
+        8,
+        5,
+        9,
+        9,
+        9,
+        6,
+        3,
+        8
+      ],
+      "M": [
+        106,
+        107,
+        106,
+        105,
+        114,
+        106,
+        106,
+        102,
+        100,
+        103,
+        100,
+        106,
+        105
+      ],
+      "relaxed": 1421,
+      "D": 24,
+      "threshold": 1,
+      "counts": [
+        {
+          "nodes": 4302,
+          "leaves": 44
+        },
+        {
+          "nodes": 219,
+          "leaves": 0
+        },
+        {
+          "nodes": 1664,
+          "leaves": 22
+        },
+        {
+          "nodes": 11287,
+          "leaves": 481
+        },
+        {
+          "nodes": 79,
+          "leaves": 0
+        },
+        {
+          "nodes": 1281,
+          "leaves": 70
+        },
+        {
+          "nodes": 1354,
+          "leaves": 13
+        },
+        {
+          "nodes": 840,
+          "leaves": 15
+        },
+        {
+          "nodes": 79788,
+          "leaves": 1345
+        },
+        {
+          "nodes": 10425,
+          "leaves": 90
+        },
+        {
+          "nodes": 14608,
+          "leaves": 611
+        },
+        {
+          "nodes": 3774,
+          "leaves": 109
+        },
+        {
+          "nodes": 2494,
+          "leaves": 59
+        }
+      ],
+      "uniqueSubgroups": 2859,
+      "anchorMax": 775,
+      "nonAnchor": 1395,
+      "upper": 1395,
+      "bestOrder": [
+        0,
+        1,
+        20,
+        10,
+        13,
+        16,
+        24,
+        5,
+        25,
+        4,
+        17,
+        15,
+        21,
+        7,
+        23,
+        18,
+        28,
+        26,
+        14,
+        6,
+        22,
+        12,
+        19,
+        11,
+        27,
+        3,
+        2,
+        8,
+        9
+      ],
+      "bestShifts": [
+        17,
+        1,
+        19,
+        9,
+        9,
+        17,
+        3,
+        14,
+        21,
+        25,
+        12,
+        3,
+        28
+      ]
+    }
+  ],
+  "toy": {
+    "assignmentAndEnumerationCases": 72,
+    "enumeratedCycles": 161,
+    "fullBoundCases": 24
+  },
+  "plants": [
+    {
+      "source": 0,
+      "local": false,
+      "recovered": 12956,
+      "trueE": 1473,
+      "trueGroupMax": 1520,
+      "relaxed": 1889
+    },
+    {
+      "source": 1,
+      "local": true,
+      "recovered": 12956,
+      "trueE": 1644,
+      "trueGroupMax": 1689,
+      "relaxed": 1953
+    },
+    {
+      "source": 2,
+      "local": false,
+      "recovered": 12956,
+      "trueE": 1502,
+      "trueGroupMax": 1547,
+      "relaxed": 1902
+    }
+  ]
+}
