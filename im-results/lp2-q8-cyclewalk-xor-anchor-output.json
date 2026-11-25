@@ -1,0 +1,242 @@
+{
+  "inputBlobs": [
+    [
+      "resources/transcriptions/lp2-image-corrected.txt",
+      "f7b534a33edeb212d427329798438325307463d7"
+    ],
+    [
+      "resources/external/relikd-solved-gp29-native-v1.json",
+      "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    ],
+    [
+      "resources/control/gibran_prophet_58585.txt",
+      "df260a07d56bf5998d40a6360b6132c35c252d10"
+    ],
+    [
+      "resources/control/shakespeare_first300k.txt",
+      "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    ],
+    [
+      "resources/control/emerson_essays_2944.txt",
+      "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    ]
+  ],
+  "dictionary": 10842,
+  "controls": [
+    {
+      "d": 0,
+      "start": 10770,
+      "K": [
+        20,
+        29,
+        15,
+        2,
+        18,
+        22,
+        30,
+        12
+      ],
+      "fitOOV": 3,
+      "heldOOV": 1,
+      "heldRunes": 66,
+      "heldUniqueRunes": 59,
+      "heldRetained": 16,
+      "heldUnique": 15,
+      "fit": {
+        "status": "complete",
+        "eligible": 4,
+        "anchors": [
+          [
+            4,
+            46
+          ],
+          [
+            27,
+            17
+          ],
+          [
+            18,
+            3978
+          ],
+          [
+            20,
+            2091
+          ]
+        ],
+        "candidates": 6127,
+        "evaluated": 6127,
+        "largestPartial": 46,
+        "accepted": [
+          {
+            "K": [
+              2,
+              18,
+              22,
+              30,
+              12,
+              20,
+              29,
+              15
+            ],
+            "covered": 46
+          }
+        ]
+      },
+      "null": {
+        "status": "insufficient anchors",
+        "eligible": 3
+      }
+    },
+    {
+      "d": 1,
+      "start": 44325,
+      "K": [
+        21,
+        28,
+        10,
+        13,
+        3,
+        6,
+        4,
+        30
+      ],
+      "fitOOV": 1,
+      "heldOOV": 1,
+      "heldRunes": 69,
+      "heldUniqueRunes": 58,
+      "heldRetained": 16,
+      "heldUnique": 13,
+      "fit": {
+        "status": "complete",
+        "eligible": 4,
+        "anchors": [
+          [
+            22,
+            4
+          ],
+          [
+            46,
+            133
+          ],
+          [
+            2,
+            3690
+          ],
+          [
+            12,
+            2436
+          ]
+        ],
+        "candidates": 6260,
+        "evaluated": 6260,
+        "largestPartial": 48,
+        "accepted": [
+          {
+            "K": [
+              3,
+              6,
+              4,
+              30,
+              21,
+              28,
+              10,
+              13
+            ],
+            "covered": 48
+          }
+        ]
+      },
+      "null": {
+        "status": "insufficient anchors",
+        "eligible": 3
+      }
+    },
+    {
+      "d": 2,
+      "start": 60027,
+      "K": [
+        26,
+        19,
+        0,
+        18,
+        16,
+        30,
+        2,
+        30
+      ],
+      "fitOOV": 2,
+      "heldOOV": 1,
+      "heldRunes": 80,
+      "heldUniqueRunes": 65,
+      "heldRetained": 16,
+      "heldUnique": 16,
+      "fit": {
+        "status": "complete",
+        "eligible": 4,
+        "anchors": [
+          [
+            29,
+            1
+          ],
+          [
+            15,
+            4098
+          ],
+          [
+            38,
+            3684
+          ],
+          [
+            46,
+            136
+          ]
+        ],
+        "candidates": 7917,
+        "evaluated": 7917,
+        "largestPartial": 47,
+        "accepted": [
+          {
+            "K": [
+              0,
+              18,
+              16,
+              30,
+              2,
+              30,
+              26,
+              19
+            ],
+            "covered": 47
+          }
+        ]
+      },
+      "null": {
+        "status": "complete",
+        "eligible": 4,
+        "anchors": [
+          [
+            29,
+            1
+          ],
+          [
+            15,
+            3390
+          ],
+          [
+            38,
+            3033
+          ],
+          [
+            46,
+            112
+          ]
+        ],
+        "candidates": 6536,
+        "evaluated": 6536,
+        "largestPartial": 5,
+        "accepted": []
+      }
+    }
+  ],
+  "calibrated": false
+}
