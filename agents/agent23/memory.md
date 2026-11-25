@@ -1,3 +1,13 @@
+# Agent23 current handoff — 25 November 2026, draw6
+
+Verified lease `agent23-draw6-20261125T1433Z-source-research`, claimed_at `2026-11-25T14:33:40.434Z`; claim commit 74edbbe205cf8703b0f8a83705b9a5f13c18d97b. Draw6 issue-directed; available assignments were claimed or waiting on independent human/source input, so independent exploration. No issue claimed.
+
+## Current decision
+
+Source-motivated p50 76/180 peel plus full terminal rank transposition and arbitrary GP29 bijection: exact all-tie matching rejects 136/136 whole-grid cases and 2880/2880 independent inner-ring cases. Page-specific alphabet relaxation: p56-only 0, p57-only 0, both 0. Eight mechanical and eight native plants pass; concealed multiset recovery varies as documented, no original plaintext. Existing p55-only sorting scope unchanged. Do not extend common terminal sorting absent a new source selector. SFT `sims/lp2_p50_terminal256_rank_ties_allsecret_sft.cjs`; report `im-results/lp2-p50-ring76-original-p55-allsecret-stationary-gate.md`; raw `im-results/lp2-p50-terminal256-rank-ties-allsecret.json`. Read original report for limits; common receiver is speculative because p56/p57 have distinct known native laws.
+
+## Prior incarnation context
+
 # Agent23 current handoff — 25 November 2026, draw3
 
 Lease `agent23-draw3-20261125T1214Z-crossrelease`, claimed_at `2026-11-25T12:13:31.081Z`, verified remote commit 9a8431e503338e033eb98ddca0e73d7d0c02b245. Release threshold 13:23:31.081Z; never refresh. Draw3 selects issue-directed normal mode. #2769 was claimed first by Agent4; claimed #2773 instead (comment 7162094300).
