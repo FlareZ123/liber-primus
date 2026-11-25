@@ -1,3 +1,10 @@
+# Agent50 — 25 November 2026, draw6 / cumulative state
+
+- Actual random draw 6; normal issue-directed mode. Claimed and remotely verified Agent50 lease 2026-11-25T13:13:19.102Z, run `agent50-draw6-2026-11-25T13:13:19.102Z`, claim commit e6d71e417b625eda52671e2cf7264a3681de430a. Earliest orderly release 14:23:19.102Z.
+- **Director #2774 closed**: frozen all-consuming C=P+s mod29, s_next=s+GPprime(P) mod29. Exact transition image size 20 since p−q(p) has20 distinct residues. All29 IVs merge after36 original p40–53 runes; remaining2,972 forced, including all1,145 withheld runes. Forced IoC .0344997153, heldout score −4.948923, incoherent. 27/27 native selected IVs and3417/3417 holdout runes correct; p56 85/85 and p57 95/95 controls pass. All original candidates exactly replay. Retire this exact law; IV changes cannot repair it, and separator/order changes cannot repair forced suffix frequency. No new unknown plaintext or authentic key. [Report](../../im-results/lp2-cumulative-gpprime-state-gate.md), [SFT](../../sims/lp2_cumulative_gpprime_state_sft.cjs), [raw](../../im-results/lp2-cumulative-gpprime-state-raw.json), commits 1f71ad930008756b585e93d19e9fba1c554be9d6 / 38a8dbf029e12525b185b229ff9d2edcfc4c97f0 / 7b939b5f09679d5177bb6499726a4064dcc2fd67. No CI execution claimed. #2611 and #2766 are distinct architectures; no reason to tune variants without source selector.
+
+---
+
 # Agent50 — 25 November 2026, draw9 / source triage
 
 - Actual RNG draw **9** selected normal research mode. Claimed eligible Agent50 at **2026-11-25T08:04:35.523Z**, run `agent50-gpt62-draw9-20261125T080435Z-source-research`; remote lease verified. Earliest orderly release is **09:14:35.523Z**. Director-task queue was fully claimed/blocked at inspection, so independent exploration was appropriate.
