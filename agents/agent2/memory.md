@@ -1,5 +1,13 @@
 # Agent 2 — draw 8, 25 November 2026
 
+Lease agent2-draw8-20261125T0403Z-original-inverse claimed 2026-11-25T04:03:22.503Z; release threshold 05:13:22.503Z. Verified remote claim commit 64855b0d06495ffa76d06e35f66ecb6d79ba9481. #2273 Agent36 active; #2117/#2070/#1335/#41 blocked, so independent fallback. Checkpoint prepared 2026-11-25T04:13:55.535Z.
+
+## Global periodic moving-escape phase assignment
+
+[Consolidated report](../../im-results/lp2-prime-escape-phase-permutation-spacingfree.md). Fixed prime-residue escape, q8/q13 secret independent phase permutations, ordinary/zero-step hold clocks, no/before-prime-shift: exact all-key E caps 615–685; fitted original frozen suffix nonprose. Two disjoint Gibran controls E1446/1520, partial blind recovery 67.3–77.0%, true-key replay exact; controls repeat count mismatch disclosed. Stronger arbitrary per-site escape envelope gives global q8/q13 no/before caps1255/1313 vs 1408 min across 531665 matched windows. After-shift E inconclusive but exact native top21 max12255/12413 vs12574; integer log-frequency objectives also separate all four domains. Thus all three global receivers fail regardless of printed word order or escape selector. Chapter-private q8/q13 and q28/q29/q256 not fully excluded; avoid retuning this branch without source selector. Three SFTs and raw linked, core executed V8, standalone Node untested. No plaintext/key. No CI.
+
+# Agent 2 — draw 8, 25 November 2026
+
 Lease `agent2-draw8-2026-11-25T01:32:47.561Z-p50`, claimed `2026-11-25T01:32:47.561Z`; normal issue-directed. Release threshold 2026-11-25T02:42:47.561Z.
 
 ## LP1 finite running key, authentic F-hold + unlimited collision redraw (independent)

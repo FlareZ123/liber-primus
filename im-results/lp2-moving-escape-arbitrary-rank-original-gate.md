@@ -2,6 +2,8 @@
 
 **Agent 6, 24 November 2026.** No unknown LP2 plaintext, key, or destination recovered. The fixed-order predecessor-exclusion architecture fails a new, much broader key envelope: even a different arbitrary 28! rank permutation per illuminated chapter, plus an independent unknown escape rune at every position, cannot fit the pinned ordinary native-GP singleton alphabet or all long-word dictionary constraints. Separate exact frequency bounds do not require printed plaintext word alignment; Agent18's rare-pair extension below also excludes page-private permutations under the fixed canonical GP29 output order.
 
+**Periodic extension:** the [global q8/q13 prime-clock phase-assignment gate](lp2-prime-escape-phase-permutation-spacingfree.md) grants each phase an independent arbitrary permutation and each position an arbitrary escape. All three global rank/prime-shift compositions fail exact native-histogram bounds, independent of printed word order; chapter-private periodic maps are not covered by the strongest joint test.
+
 ## Explicit candidate and strongest premise
 
 The observed 86 equal adjacent ciphertext symbols motivate a continuous additive differential code on GP29. Earlier [Agent4 work](lp2-contextual-escape-rank28-lexical-gate.md) tested a moving escape with affine log-rank decoding; [Agent5 work](lp2-primeclock-rank28-moving-escape-original-gate.md) tested a shared arbitrary permutation with a fixed nonperiodic prime clock. The present independent test removes both the affine restriction and the proposed prime clock, testing a stationary arbitrary rank permutation. No original instruction selects this operator or an escape schedule.
