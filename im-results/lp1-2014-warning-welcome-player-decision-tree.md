@@ -30,6 +30,37 @@ The source is the dated 2014 IRC archive, not a signed organizer instruction. Th
 
 This resolves a practical distinction: identifying a period and four numeric phases plus a seven-rune crib is sufficient; an eight-letter thematic-key dictionary is not necessary. It does not prove the author intended this shortcut.
 
+## #2866: relative-key bootstrap without a literal crib
+
+The actual January key-discovery history above leaves the source of the partial numeric shifts unresolved. A separate, executable alternative uses the repeated rubric geometry, rather than supplying WELCOME as a guessed word. This is a retrospective known-artifact control, **not** an assertion about the private algorithm used in January 2014.
+
+If two consecutive length-L native plaintext blocks are equal and consume every phase (no plaintext F), then for an additive period-q key
+`C[i+L]−C[i] = K[(i+L) mod q]−K[i mod q] (mod 29)`.
+For q=L+1 the L edges form a spanning path; setting K[0]=0 fixes all relative shifts, leaving only 29 global translations. The known WELCOME double rubric has L=7, q=8. Its original prefix [1,28,21,15,12,0,5,4,12,1,6,13,28,28] fixes relative key [0,16,7,16,15,16,22,3]. Every smaller period 1–7 is inconsistent with the repeated-block constraint. The assumption that the two words are equal and the period is eight is retrospective; literal word content is not supplied to the solver.
+
+Train a smoothed native GP29 trigram model (alpha=.1) on the eight other solved source records, excluding the entire WELCOME section. Evaluate all 29 translations on only the first 40 original runes with exact F-hold Viterbi states; disallow F holds in the doubled prefix. Sixteen shifts admit that prefix. Freeze the unique best key and terminal state: shift23, [23,10,1,10,9,10,16,26]. Continue across the remaining original 475 runes without refitting. The continuation is 475/475 exact, with full 515-rune replay. This recovers the known key without a literal WELCOME crib.
+
+### Actual LP2 transfer: p3 internal red rubric
+
+Select only complete same-page red rubrics whose entire printed group-length sequence equals that of the immediately following groups. Join physical line wraps; preserve separators. The canonical transcription agrees with all 57 rune-bearing corpus pages. Among 16 annotated unsolved red spans there is exactly one match: p3 offset119, lengths [3] and [3]. Original scan 20.jpg visibly confirms the large red P-D-TH rubric, 13-dot punctuation and following black EO-D-EO group. The equality of their *plaintext* is a hypothesis; the analogue period q=4 is a research choice, not an organizer instruction.
+
+Freeze the section p3[119:] + p4 + p5 + p6[:71], 693 runes up to the next red rubric. Prefix [13,23,2,12,23,12] contains no F. The relative key is [0,0,19,28]. Fit first40 only: six translations survive; shift3 [3,3,22,2] wins. Its frozen continuation has no legal path. Stronger exact certificate: enumerate all 29 translations and every reachable phase under the native plaintext-F hold rule (hold only when C=0; consuming transition only when C differs from the current key value). All 29 die, without any language score or word constraints beyond the assumed initial equality. Zero-based first impossible offsets, indexed by shift 0..28:
+
+`11,17,16,87,21,8,6,13,12,171,27,53,2,0,115,33,30,19,18,41,24,7,10,1,34,26,45,9,29`
+
+Longest survivor shift9 [9,9,28,8] dies at 171 (p4:73), with reachable phases 0 and 1, both K=9 and C=9; a consuming transition would emit forbidden plaintext F, and a hold cannot emit nonzero C. Thus no such continuous four-phase key can decrypt the selected original subsection. This does not exclude other clocks, resets, periods, or non-identical plaintext rubrics. No unknown plaintext/key recovered.
+
+Executable: [relative-key SFT](../sims/lp1_repeated_rubric_relative_key_sft.cjs). [Manual Windows run](https://github.com/FlareZ123/liber-primus/actions/runs/45717634915). Core calculation executed on fetched original corpus bytes. 
+
+### Remaining LP1 key-discovery branches
+
+- First KOAN: the original opening [7,26,28,7,22] and five-rune title hypothesis A COAN [24,5,3,24,9] uniquely identify affine (a,b)=(28,2) among all 812 invertible affine maps, independently matching all 99 withheld runes of the 104-rune known native prefix and replaying the 778-rune section. The archival SFT locates Jan29 12:32 L85568 already referring to the solved final instruction and Jan29 22:16 L88289 quoting narrative plaintext. It does **not** locate a pre-success statement selecting +3. The known first KOAN inverse is therefore executable from a semantic title guess, but its actual discovery sequence remains unestablished. [SFT](../sims/lp1_first_koan_key_discovery_sft.cjs), [passing Windows run](https://github.com/FlareZ123/liber-primus/actions/runs/45717271574).
+- Second KOAN: the Feb6 contemporary chat records A KOAN DURING A LESSON at 18:37 L106639, CIRCUMFERENCE at L106660, exact FIRFUMFERENFE native key at L106704–711 and F holds later at L106742–755. The subtractive key [0,10,4,0,1,19,0,18,4,18,9,0,18] is not an authenticated separately issued keyword; the title/narrative crib is earlier in the captured sequence. See #2480 and #2494 for the independently bounded donor and crib work.
+- SOME WISDOM, LOSS OF DIVINITY and AN INSTRUCTION are clear native GP; no key-discovery prerequisite. The thematic terms present in the clear text alone do not specify a target, spelling or key schedule. Earlier #2422 tested the seven-method transfer, #2506 found no source-selected period-specific tool and #646 tested the visible illustration transfers.
+- The p56 AN END prime-stream solve is documented separately in the archive index above. Its actual prime clue and guessed opening are not supplied by an independently identified unknown-page analogue.
+
+**Decision:** a repeated rubric offers a concrete ciphertext-only relative-key recovery primitive, but the unique direct source-layout analogue fails exactly. Do not reopen this same receiver by sweeping arbitrary periods or section boundaries. A different source cue must independently select a new equality, recurrence or key material.
+
 ## Original LP2 transfer decision
 
 Fix the nine original illustrated chapter openings using the already established offsets 0,729,1874,3603,5506,6761,7960,9640,12648. Join physical line wraps but retain printed words. The two opening word lengths are:
