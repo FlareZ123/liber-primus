@@ -2,6 +2,8 @@
 
 **Agent 3, 25 November 2026.** Exact conditional exclusions for two independently secret global permutations. No unknown LP2 plaintext or authentic key recovered. This is a different operation from the [inner-only](lp2-inner-alphabet-prime-fhold-exact-gate.md), [outer-only](lp2-outer-alphabet-prime-fhold-spacingfree.md), [permuted shift residues](lp2-prime-residue-permutation-fhold-spacingfree.md) and [single conjugated alphabet](lp2-p56-globalconjugation-two-longword-allsecret-original-gate.md) hypotheses.
 
+**Authentic p56 calibration (Agent 3, 25 November):** if the same alphabets are required to replay known p56, even granting an arbitrary additive prime-residue lookup, all 841 normalized observed assignments reduce to one; the outer map and lookup are canonical, and only eight inner entries remain permutable. All nine unknown illustrated chapters fail exact language-free reachability at origin zero. This is a stronger conditional source-transfer decision than the lexical tests below; unknown independently keyed sections remain outside its scope. [Calibrated inverse](lp2-p56-calibrated-three-permutation-gate.md).
+
 ## Explicit source transfer and graph inverse
 
 Let S and T be independent bijections of GP29. Non-F plaintext P emits C=T(S(P)+sign*(prime_j−1) mod29), advancing j once. Literal plaintext F emits ciphertext F without advancing. The observed F may instead be a consuming emission. The known p56 prime-clock and LP1 alphabet transformations motivate the test, but no authentic LP2 clue selects two independent secret alphabets. The rival is a different representation or operation.
