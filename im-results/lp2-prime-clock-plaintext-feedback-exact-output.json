@@ -1,0 +1,193 @@
+{
+  "sourceBlob": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+  "pages": [
+    16,
+    21
+  ],
+  "n": 1613,
+  "zeros": 59,
+  "order2": {
+    "total": 682892,
+    "fullParams": 19120976,
+    "initialStatesPerKey": 1,
+    "checkpoints": [
+      [
+        0,
+        682892
+      ],
+      [
+        20,
+        337802
+      ],
+      [
+        40,
+        167345
+      ],
+      [
+        80,
+        66071
+      ],
+      [
+        160,
+        28038
+      ],
+      [
+        320,
+        6920
+      ],
+      [
+        600,
+        1225
+      ],
+      [
+        800,
+        501
+      ],
+      [
+        1000,
+        139
+      ],
+      [
+        1200,
+        81
+      ],
+      [
+        1400,
+        0
+      ],
+      [
+        1600,
+        0
+      ],
+      [
+        1613,
+        0
+      ]
+    ],
+    "furthest": 1376,
+    "survivors": [],
+    "maxStates": 121,
+    "visited": 45384301,
+    "transitions": 26151049,
+    "elapsedMs": 12852
+  },
+  "order1": {
+    "total": 23548,
+    "fullParams": 19120976,
+    "initialStatesPerKey": 29,
+    "checkpoints": [
+      [
+        0,
+        23548
+      ],
+      [
+        20,
+        23135
+      ],
+      [
+        40,
+        22919
+      ],
+      [
+        80,
+        22065
+      ],
+      [
+        160,
+        16247
+      ],
+      [
+        320,
+        5438
+      ],
+      [
+        600,
+        871
+      ],
+      [
+        800,
+        325
+      ],
+      [
+        1000,
+        74
+      ],
+      [
+        1200,
+        38
+      ],
+      [
+        1400,
+        0
+      ],
+      [
+        1600,
+        0
+      ],
+      [
+        1613,
+        0
+      ]
+    ],
+    "furthest": 1369,
+    "survivors": [],
+    "maxStates": 93,
+    "visited": 39973664,
+    "transitions": 5803923,
+    "elapsedMs": 5767
+  },
+  "control56": {
+    "n": 85,
+    "consumed": 84,
+    "holds": 1,
+    "generatedZeros": 4,
+    "exact": true,
+    "reachable": true
+  },
+  "controls": [
+    {
+      "coeff": [
+        5,
+        11
+      ],
+      "seed": [
+        0,
+        0
+      ],
+      "m": 17,
+      "k": 13,
+      "a": 7,
+      "n": 800,
+      "holds": 17,
+      "generatedZeros": 22,
+      "consumed": 783,
+      "final": [
+        20,
+        12
+      ],
+      "reachable": true,
+      "states": 44
+    },
+    {
+      "coeff": [
+        12
+      ],
+      "seed": [
+        19
+      ],
+      "m": 9,
+      "k": 7,
+      "a": 11,
+      "n": 800,
+      "holds": 18,
+      "generatedZeros": 32,
+      "consumed": 782,
+      "final": [
+        12
+      ],
+      "reachable": true,
+      "states": 133
+    }
+  ],
+  "bruteAgreements": 64
+}
