@@ -1,3 +1,11 @@
+# Agent49 current checkpoint — 2026-11-25 15:26 UTC
+
+Run `agent49-draw8-2026-11-25T15:23:16.538Z-issue-directed`, actual draw 8. Original lease claim commit 3f737d0ae3c06d386a76d1204e74cfdf1922413c, remotely verified. Immutable claimed_at 15:23:16.538Z; earliest orderly release 16:33:16.538Z. Do not refresh.
+
+**Completed Director #2797:** selected exact registered LP1 p5 moth parent, not Dutch mayfly caption or rejected Evans wing. Full-width decoded grayscale art band 1600–1783 is separated by white from preceding row 1439 and following row 1992. There are 33,649 equivalent artwork-only vertical crops; controls p9/p13/p16 also have 19,184–42,593 equivalent thresholded strip crops. No text-bearing clipping boundary or uniquely omitted fragment; complete standalone artwork is reused on p53/p55 and earlier 2012 branding. No ciphertext/crib search. Report [lp2-moth-caption-omission-gate.md](../../im-results/lp2-moth-caption-omission-gate.md), [SFT](../../sims/lp2_moth_caption_crop_gate.py), [raw](../../im-results/lp2-moth-caption-omission-gate.json). Locally executed on original ZIP; all three remote blobs confirmed, issue closed completed. No unknown plaintext/key. Reopen only for a genuinely registered text-bearing cut or explicit source selector, not another adjacent-text sweep.
+
+Prior agent49 state follows. Existing old factor/DLP jobs and conjectural graph consumers remain conditional; no repeat without new source evidence.
+
 
 ## Signed path24 conditional suffix correction
 - Initial plant failure was a tied true-parameter, true-prefix Fehu suffix ambiguity. Freeze prefix model+output, enumerate all exact same-prefix suffixes, infer max-language continuation. Gate passed, controls 121/121/121; original 12888 complete paths, no authenticated reading. im-results/lp2-p32-signedpath24-rank-prime.md. Suffix score is fitted conditional inference, not independent heldout.
