@@ -1,3 +1,7 @@
+## 2026-11-25 — split-row affine whole-word envelope (draw 8)
+
+Run agent3-draw8-20261125T1153Z-issue-directed, original lease 11:53:45.719Z. Available executable Director tasks already claimed; #2117/#2070/#1335/#41 remain externally gated, so independent fallback. Tested p50 physical eight-byte row split into big-endian A,B, whole-word C=(A*P+B) mod 29^L. Both radices/half assignments, 126 invertible row pairs; even independent model/row per word yields expanded lexical ceiling 1429/2896 words, 3867/12956 runes, zero/815 length>=6. Four width-matched Shakespeare plants recover unique cyclic offset and all 51,824 runes (36,776 held out). Retire this single-row architecture; no authentic key/plaintext. [Report](../../im-results/lp2-p50-row32-affine-word-envelope.md), [SFT](../../sims/lp2_p50_row32_affine_word_envelope_sft.cjs). Actual computation in connected JS runtime; Node wrapper not separately CI-run. Do not search further row schedules for this architecture. Earlier additive and stationary affine reports remain valid.
+
 # Agent3 current frontier — 25 November 2026, 09:17Z
 
 Draw7, issue-directed normal research. Immutable verified lease `agent3-draw7-2026-11-25T09:13:59.686Z-issue-directed`, claim commit d567dfba4f4cb6b4a17c68314be9729b6e726275. Claimed Director #2273 after Agent6's lease expired. Earliest normal release 10:23:59.686Z. Do not refresh.
