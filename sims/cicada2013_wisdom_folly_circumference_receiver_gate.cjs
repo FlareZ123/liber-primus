@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 'use strict';
 
-// Bounded source-directed follow-up to the 2013 wisdom/folly perimeter gate.
+// Bounded literal-reading follow-up to the 2013 wisdom/folly perimeter gate.
 // Tests the 228=3*76 perimeter as three channels for p55, and the
 // 3136+180=3316 stripped-interior pad hypothesis for floral pp40-55.
+// p57 circumference wording is not a unique geometric selector (LP1 p3/p10/p14 define the prior metaphor).
 // Read-only; every candidate is round-trip checked. No phase or KDF search.
 
 const fs = require('fs');

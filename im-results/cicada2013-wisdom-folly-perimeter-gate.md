@@ -20,7 +20,7 @@ The 58×58 payload is taken either after the first four bytes (prefix framing) o
 - left edge: 56 additional bytes;
 - total: **228 bytes**.
 
-The 228-byte perimeter equals `3×76`, while physical p55 contains 76 runes. The first test treats the perimeter as one continuous period-228 key over the complete unknown book. A separate bounded receiver test uses the source-visible 3×76 alignment as three byte channels feeding p55; it does not infer that this binary is an authored key.
+The 228-byte perimeter equals `3×76`, while physical p55 contains 76 runes. The first test treats the perimeter as one continuous period-228 key over the complete unknown book. A separate bounded receiver test uses the numerical 3×76 alignment as three byte channels feeding p55; it does not infer that this binary is an authored key.
 
 The direct GP29 additive inverse uses the two natural byte mappings already used in the source-key work:
 
@@ -50,7 +50,7 @@ The raw LP2 score is **-3.895913** nats/rune (IoC **0.03447840**). The native Sh
 This is slightly worse than raw ciphertext. All other candidates are also noise-like; none produces coherent text or improves the language score. No plaintext or reusable key is recovered.
 
 
-## Follow-up source-selected receiver tests
+## Follow-up bounded structural tests
 
 ### The 228 = 3×76 perimeter as a p55 three-channel receiver
 
@@ -60,11 +60,11 @@ The raw p55 score is **-3.792772** nats/rune (IoC **0.03789474**). The best cand
 
 ### Strip both circumferences: 3,136 + 180 = 3,316
 
-The 2013 58×58 matrix interior is 56×56 = **3,136 bytes**. The 2014 p49–51 base60 grid is 32×8; removing its outer row and column leaves 30×6 = **180 values**. Concatenating the 2013 interior followed by the 2014 interior gives **3,316 values**, exactly the length of the floral ciphertext register on p40–55 excluding numeric-only p50. This is the most literal direct-pad reading of p57's instruction to “shed our own circumferences” and “find the divinity within.”
+The 2013 58×58 matrix interior is 56×56 = **3,136 bytes**. The 2014 p49–51 base60 grid is 32×8; removing its outer row and column leaves 30×6 = **180 values**. Concatenating the 2013 interior followed by the 2014 interior gives **3,316 values**, exactly the length of the floral ciphertext register on p40–55 excluding numeric-only p50. This is a literal optional dual-reading test of p57's “shed our own circumferences” wording. The LP1 p3/p10/p14 controls above mean that wording does not independently select these two matrices or a direct-pad operation.
 
 The bounded inverse tests row-major extraction, clockwise/counterclockwise spiral extraction and their reversals; each key is mapped by `byte mod 29` or `floor(byte×29/256)`, with both additive signs and continuous or plaintext-F-transparent clocks. Every continuous and F-transparent candidate is re-encrypted exactly. The raw floral score is **-3.899445** (IoC **0.03446283**); the best candidate is clockwise spiral + scaled-byte mapping + positive continuous addition, score **-3.879795** (IoC **0.03433656**). It remains random-looking and far below the native Shakespeare holdout. The original-byte XOR diagnostic yields only **393/3,316** valid GP prime values; the 5-bit GP-index XOR leaves **318/3,316** outputs outside the 29-symbol alphabet. Neither gives a valid plaintext stream.
 
-The exact length equality is therefore a useful, now-tested clue—not evidence of a key. No further KDF, phase, segmentation, or stream-cipher search is justified without an independently source-selected transformation.
+The exact length equality is therefore a numerical alignment that motivated a bounded test—not evidence of authorial intent or a key. No further KDF, phase, segmentation, or stream-cipher search is justified without an independently source-selected transformation.
 
 ## Decision
 
