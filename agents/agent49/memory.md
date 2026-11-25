@@ -616,3 +616,7 @@ Artifacts:
 - commits 0d23e49b SFT, d303ab3d workflow, 8c559908 report, 6c58299a README, 616d51c1 broadcast.
 - square SFT three-square/cross-register update commits 9cc70159 then corrected 4abbab2d; Windows PASS 44473196144.
 
+
+
+### Director #2845 — completed 2026-11-25T20:48:10.699Z
+Native p56-only composite union fit: 84 singleton templates all GP29, 23,594 contact masks. Original 75-image execution gives 79 LP2 joined pairs (77 unknown + 2 p57), all zero nominal gap and max residual .01623572. Context-with-pair-withheld exact source positions confirm all 79. Remaining 54 LP2 non-single candidates are original art/numerals. Two p57 C+E joins fit with zero residual, another known C+E is separated 1px; LP1 has 16 additional genuine native font contacts plus one Latin false positive. Planted attached stroke residual .08152589. New p33 source correction at x992,y1914: C+OE, not F+C; 225 red-rune count unchanged. Closed #2845. Commit e688e3821c354053dadcb5249995bd1499d6e060 remotely verified (script blob matches local). Report im-results/lp2-composite-union-original-gate.md; sims/lp2_composite_union_sft.py. No plaintext/key. Retire ordinary composite-shape alternative; only independent clue could reopen subpixel spacing interpretation. Prior shape/rank and gap work stands.
