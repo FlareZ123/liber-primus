@@ -1,6 +1,6 @@
 # p50 plaintext-addressed word pointer inverse
 
-**Agent1, 25 November 2026.** Two finite original-input negatives. No recovered unknown LP2 plaintext or key.
+**Agent1, 25 November 2026.** Two plaintext-dependent receiver families with three finite original-input decisions. No recovered unknown LP2 plaintext or key.
 
 ## Decision
 
@@ -45,13 +45,36 @@ All 4,368 native planted word/configuration instances contain their exact plaint
 
 The original zero-preimage counts apply only if printed groups are genuine plaintext units with their within-group rune order preserved (H-shuffle remains allowed). They do not reject H-decoy or arbitrary alternative word-state functions.
 
+## 3. Previous-word receiver with arbitrary intact-group reordering
+
+The ordinary previous-word test used source group order. To address H-shuffle, remove that order entirely and grant each group every possible starting byte independently. For each original group enumerate the exact 256 starting states and all F-hold histories, retaining the plaintext only if it belongs to the previously frozen broad 35,944-form GP29 register (all 29 singleton runes are granted). The possible next state is its GP0 or prime sum mod256. The selected sum weighting changes the endpoint of a candidate edge but cannot affect its existence. Thus lexical feasibility need only be computed once for each of eight radix/sign/F settings; any true feedback trail must first have enough nonempty per-group domains. This is a relaxation even of arbitrary whole-word order, not a test of grammar or the printed sequence.
+
+| Chapter | Fewest empty lexical domains | Allowed OOV (5%) | Groups of length ≥8 with no domain |
+|---|---:|---:|---:|
+| p0–2 | 76 | 7 | 21/21 |
+| p3–7 | 114 | 12 | 27/27 |
+| p8–14 | 174 | 19 | 46/46 |
+| p15–22 | 185 | 21 | 48/48 |
+| p23–26 | 108 | 11 | 26/26 |
+| p27–32 | 142 | 16 | 36/36 |
+| p33–39 | 174 | 18 | 45/45 |
+| p40–53 | 302 | 33 | 84/84 |
+| p54–55 | 33 | 3 | 10/10 |
+
+Every one of the 72 chapter/settings exceeds its OOV budget. All **343/343** original groups of length at least eight have empty domains under each setting. Whole-book missing group counts span 1,339–1,372. Exact forward replay succeeds for every retained original candidate. There is no reason to run the more expensive edge-selection or Euler-trail solver when this necessary condition already fails.
+
+For calibration, independently encrypt 100 held-out groups from each of three literary donors under each radix/sign/F/sum combination, preserving the true previous-word state, then shuffle the groups deterministically. The 48 controls retain every one of 4,768 in-register plaintext/start/end edges among 4,800 groups; only 16 groups lack any lexical edge. This is a positive control for domain enumeration, not proof of unique word ordering. The held-out control windows were selected for at least 95% lexical coverage; the 5% OOV threshold is a finite register hypothesis, not a universal claim about all languages or novel words.
+
+**Decision:** neither intact source group order nor arbitrary group reordering rescues the specified previous-word receiver under this lexical model. H-decoy, other word/address functions, and alternative p50 operations remain open. [Post-shuffle SFT](../sims/lp2_p50_plainword_pointer_postshuffle_sft.cjs) · [raw results](lp2-p50-plainword-pointer-postshuffle-output.json).
+
 ## Reproduction
 
 From the repository root:
 
     node sims/lp2_p50_previous_plainword_pointer_sft.cjs
     node sims/lp2_p50_self_plainword_pointer_sft.cjs
+    node sims/lp2_p50_plainword_pointer_postshuffle_sft.cjs
 
-Both experiment cores were executed in the connected V8 runtime on the exact repository input blobs. Standalone Node wrappers were not separately executed; no CI was launched. Exact raw outputs and source blob IDs: [previous-word](lp2-p50-previous-plainword-pointer-output.json), [self-address](lp2-p50-self-plainword-pointer-output.json).
+All three experiment cores were executed in the connected V8 runtime on the exact repository input blobs. Standalone Node wrappers were not separately executed; no CI was launched. Exact raw outputs and source blob IDs: [previous-word](lp2-p50-previous-plainword-pointer-output.json), [self-address](lp2-p50-self-plainword-pointer-output.json), [post-shuffle](lp2-p50-plainword-pointer-postshuffle-output.json).
 
 **Research disposition:** retire these direct plaintext-sum pointer receivers; do not tune them via alternative signs, starts, or an arbitrary score-driven address function. A genuinely source-selected address rule or a different inverse mechanism would be needed. The signed source's graph-navigation hypothesis is not itself excluded. No unknown page is solved.
