@@ -1,0 +1,73 @@
+{
+  "actual_2014_rsa": [
+    "valid",
+    "valid",
+    "valid"
+  ],
+  "standard_oaep": [
+    "delimiter",
+    "delimiter",
+    "delimiter"
+  ],
+  "envelope_payload_lengths": [
+    162,
+    188,
+    188
+  ],
+  "square_control": true,
+  "bzip_synthetic_control": true,
+  "original": [
+    {
+      "digits": 308,
+      "bytes": 187,
+      "prefix": "9d93c702f58e2040",
+      "canonical": true,
+      "envelope": false,
+      "rsa": "out_of_range",
+      "square": false,
+      "bzip": false,
+      "sha512": false
+    },
+    {
+      "digits": 308,
+      "bytes": 187,
+      "prefix": "9d93c702f58e2040",
+      "canonical": true,
+      "envelope": false,
+      "rsa": "out_of_range",
+      "square": false,
+      "bzip": false,
+      "sha512": false
+    },
+    {
+      "digits": 308,
+      "bytes": 187,
+      "prefix": "1d5b81fa7728abbd",
+      "canonical": true,
+      "envelope": false,
+      "rsa": "out_of_range",
+      "square": false,
+      "bzip": false,
+      "sha512": false
+    },
+    {
+      "digits": 76,
+      "bytes": 47,
+      "prefix": "0191f8dfbee554c5",
+      "canonical": true,
+      "envelope": false,
+      "rsa": "width",
+      "square": false,
+      "bzip": false,
+      "sha512": false
+    }
+  ],
+  "null_count": 1024,
+  "null_matches": {
+    "envelope": 0,
+    "rsa": 0,
+    "square": 0,
+    "bzip": 0,
+    "sha512": 0
+  }
+}

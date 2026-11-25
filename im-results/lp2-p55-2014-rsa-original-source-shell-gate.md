@@ -2,6 +2,8 @@
 
 **Agent5 · 23 November 2026 · isolated, source-fixed cryptanalytic gate.** This tests one historically concrete signed Cipher mechanism plus one genuine visual/textual instruction. It recovers no unknown-page plaintext, secret-key material or final Cicada destination.
 
+**25 November historical implementation correction (#2739):** Crypt::RSA 1.99 uses MGF counters 0,20,40,… rather than standard OAEP's 0,1,2,…; actual archived 2014 ciphertext decodes 3/3 only with the historical rule. The Node synthetic control below validates standard OAEP, not the original challenge's specific padding implementation. All three original raw representatives nevertheless exceed the mandatory k−1 byte width, so the negative decision is unchanged before MGF. [Actual source control and correction](lp2-prime-f-typed-payload.md).
+
 ## Upstream human solve-path premise
 
 In January 2014 the first Cicada onion `auqgnxjtvdbll3pv.onion` actually distributed a [PGP-signed RSA envelope](https://github.com/neuroretransmit/cicada/blob/main/2014/002-first-onion/README.md) that stated `e=65537`, a 130-decimal-digit **432-bit modulus N**, and `Crypt::RSA::ES::OAEP`. Contemporary solvers factored it into two 65-decimal-digit primes and decoded the next Onion address `cu343l33nqaekrnw.onion`. The full numeric factors are fixed by that archived solving work; the original first-party *public* key and padding algorithm were stated before Liber Primus appeared.
@@ -18,7 +20,7 @@ Read physical p55 rune order through `lp2-transcription.txt`, asserting all **76
 - The complete printed-word interior, 43 runes, dropping the first and last rune of each complete local word.
 - The 32 original complete-word exteriors plus the 1-rune carried p54 suffix, 33 runes (source-defined complementary control).
 
-Decrypt each as exactly **one numeric RSA block**, using historical private `d = e^(-1) mod ((p−1)(q−1))`. The public modulus has byte size 54; left-pad the decrypted raw representative to exactly 54 bytes and try precisely the **historical SHA1 OAEP** unpadding under Node's standard crypto implementation. All three original ciphertext integers are valid representatives below N, but their RSA outputs fail the mandatory leading zero-byte OAEP format.
+Decrypt each as exactly **one numeric RSA block**, using historical private `d = e^(-1) mod ((p−1)(q−1))`. The public modulus has byte size 54; left-pad the decrypted raw representative to exactly 54 bytes and try precisely **standard SHA1 OAEP** unpadding under Node's crypto implementation (diagnostic only; see historical correction above). All three original ciphertext integers are valid representatives below N, but their RSA outputs fail the mandatory leading zero-byte OAEP format.
 
 | Original p55 channel | GP runes | Cipher integer bits | First decrypted raw bytes | OAEP SHA1 valid |
 |---|---:|---:|---|---|
@@ -32,6 +34,6 @@ The raw 54-byte results also contain only 24, 27 and 20 strict printable ASCII b
 
 ## Reproduction and next decision
 
-[Read-only Node22 CommonJS original-source SFT](../sims/lp2_p55_2014_rsa_native_original_sft.cjs) includes the 2014 signed modulus, preserved contemporary private factors, fixed 2014 OAEP-SHA1 syntax, original p55 word source parsing, an **exact corpus-vs-transcription assertion**, and the native positive. It was executed and passed on **Windows 11 Node22**: [GitHub Actions 45191223186](https://github.com/FlareZ123/liber-primus/actions/runs/45191223186).
+[Read-only Node22 CommonJS original-source SFT](../sims/lp2_p55_2014_rsa_native_original_sft.cjs) includes the 2014 signed modulus, preserved contemporary private factors, standard OAEP-SHA1 syntax, original p55 word source parsing, an **exact corpus-vs-transcription assertion**, and the native positive. It was executed and passed on **Windows 11 Node22**: [GitHub Actions 45191223186](https://github.com/FlareZ123/liber-primus/actions/runs/45191223186).
 
 **Decision:** no authentic unknown p55 plaintext under the direct 2014 private RSA inverse. The ordinary source p55 76rune ciphertext fits N, so the failed OAEP padding and nonprose raw output are substantive, unlike a trivial length mismatch. A new p55 RSA route needs an *independent* manuscript instruction naming a different input serialization, an additional operation, or a source-supplied key, plus a recoverable plaintext/holdout. With no such input, avoid further RSA block/orientation scans.
