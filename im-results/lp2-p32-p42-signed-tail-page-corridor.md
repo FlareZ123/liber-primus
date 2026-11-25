@@ -1,6 +1,6 @@
 # P32-p42 authenticated signed-tail corridor and section-number continuation
 
-**Agent11 original tail synthesis; Agent43 count-ingress/local-candidate extension; Agent12 p32 local-candidate closure, 19 November 2026. Classification: source-constrained intended-route synthesis. A separate p57/p50 ring-compass route now reaches the same final p32 cell indices [36,37] = GOOD/LUCK, converging with the DIRECTION fold; it remains conditional on its φ and compass assumptions. Local inverses now supply strong p32 `YOU`, p35 `FOUND`, and p37 `LUCK` candidates, while the route itself remains a navigation program rather than a universal body cipher.** The authenticated 2016 source words 32 through 42 form one contiguous instruction tail. Independently established manuscript routes now traverse the matching physical pages p32 through p42 in the same numerical domain. The new contribution is that the visible Arabic section markers `1,2,3,4,5` printed across p36-p38 act literally on the already selected source index37 `LUCK`, enumerating indices38-42 exactly as `BEWARE FALSE PATHS VERIFY OPENPGP`.
+**Agent11 original tail synthesis; Agent43 count-ingress/local-candidate extension; Agent12 p32 local-candidate closure, 19 November 2026. Classification: source-constrained intended-route synthesis. A separate p57/p50 ring-compass route reaches p32 cell37 = LUCK under its φ and compass assumptions; its penultimate cell36 = GOOD is forced by the final W10 move on the assumed torus, so the pair adds no independent endpoint discriminator beyond that conditional convergence. Local inverses now supply strong p32 `YOU`, p35 `FOUND`, and p37 `LUCK` candidates, while the route itself remains a navigation program rather than a universal body cipher.** The authenticated 2016 source words 32 through 42 form one contiguous instruction tail. Independently established manuscript routes now traverse the matching physical pages p32 through p42 in the same numerical domain. The new contribution is that the visible Arabic section markers `1,2,3,4,5` printed across p36-p38 act literally on the already selected source index37 `LUCK`, enumerating indices38-42 exactly as `BEWARE FALSE PATHS VERIFY OPENPGP`.
 
 ## Authenticated tail
 
@@ -152,7 +152,7 @@ p36 = GOOD
 p37 = LUCK
 ```
 
-### Independent p57/p50 compass route converges on the same GOOD LUCK indices
+### Conditional p57/p50 compass route converges on the developed LUCK endpoint
 
 A separate route reaches the same terminal indices without using the p32 DIRECTION fold:
 
@@ -161,7 +161,7 @@ A separate route reaches the same terminal indices without using the p32 DIRECTI
 - Of p32's five X cells [37,54,61,68,70], only X37 indexes the authenticated 43-word message (indices 0–42). The route visits [35,47,36,37]; its final two cells [36,37] select GOOD/LUCK, exactly matching the DIRECTION fold above.
 - Controls: the drop-f base59 interpretation yields [98,99,120,29,34] and no X. Reversing the bit allocation (high three bits for direction, low five for distance) reaches X70 from H23, but 70 is not a valid signed-message word index.
 
-This is a second navigation path into the same signed tail, not a new decryption. It shares the p50 table and authenticated 2016 message with the DIRECTION fold, so the convergence is not fully independent; the compass route's φ selection, bit order and wrap remain conditional. Reproduction: [p57/p50 unique H→X handoff SFT](../sims/lp2_phi_ring_2016_compass_unique_hx_handoff_sft.cjs) and [bridge report](lp2-p57-ring-totient-2016-wordmap-compass-bridge.md).
+This is a second conditional navigation path into the same signed tail. The routes share the p50 table and signed message. Given endpoint37, W10 ≡ E1 (mod11) forces predecessor36; the DIRECTION fold likewise preserves adjacency. The two-word convergence is therefore not independent confirmation of the local LUCK key, and no new operand or prospective holdout was identified in #2795. The first E24 move requires toroidal wrap, for which no source selector is known. See the [conditional endpoint audit](lp2-p57-ring-totient-2016-wordmap-compass-bridge.md#conditional-endpoint-dependency-and-receiver-state-audit-agent10-25-november-2026-2795). Reproduction: [p57/p50 unique H→X handoff SFT](../sims/lp2_phi_ring_2016_compass_unique_hx_handoff_sft.cjs) and [bridge report](lp2-p57-ring-totient-2016-wordmap-compass-bridge.md).
 
 The earlier claimed p36 local `GOOD` inverse at offsets87..90 is retired. Canonical parsing joins the line-wrap slash, so offsets87..91 form one five-rune word `[11,0,13,11,23]`; p36 has no canonical four-rune length/GP0 receiver for `GOOD`. This correction does not affect the upstream p32 DIRECTION readout that selects authenticated indices36-37 = `GOOD LUCK`.
 

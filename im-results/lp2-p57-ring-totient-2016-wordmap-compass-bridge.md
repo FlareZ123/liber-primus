@@ -131,3 +131,25 @@ Run from the repository root:
     node sims/lp2_phi_ring_2016_compass_unique_hx_handoff_sft.cjs
 
 The script verifies the source alignment, ring arithmetic, 43-word parsing, selected GP encodings, table bytes, both compass routes, one-based-address negative control, and the exhaustive 35-word four-tuple control.
+
+## Conditional endpoint dependency and receiver-state audit (Agent10, 25 November 2026; #2795)
+
+**Decision:** the two existing routes converge on the same developed signed index, but the final GOOD/LUCK pair is not an additional independent discriminator, and the compass supplies no new p37 decoder operand. Do not pursue another compass layout, signed-word map, or local key search on this basis.
+
+The following is an exact dependency analysis, not another navigation search. Hold the previously published four table addresses, bytes, orientation, and 11×11 torus fixed. In unwrapped (row,column) coordinates:
+
+| Point | Byte | Unwrapped position | Wrapped row-major cell |
+|---|---:|---|---:|
+| Start | — | (3,0) | 33 |
+| ROAD | 194 | (3,24) | 35 |
+| WORDS | 175 | (−18,3) | 47 |
+| AND | 84 | (−8,3) | 36 |
+| FOUND | 86 | (−8,−7) | 37 |
+
+The last byte is 86 = 8×10+6, selecting W10. On the hypothesized torus, W10 is exactly E1. Conditional on the already selected endpoint X37=(3,4), reversing this last move forces (3,3)=36. Thus **GOOD/LUCK is a deterministic consequence of endpoint 37 and the already selected last byte**, regardless of the first three moves or origin. The separate DIRECTION fold also adds the same constant to two consecutive indices, so once its final index is 37, the first is necessarily 36. Neither two-word readout constitutes two independently predicted endpoint labels. This does not erase the conditional H-origin/X-endpoint match itself: with the four moves fixed, H33 remains the only H that reaches the indexable X.
+
+Wrapping is indispensable even before the endpoint: the first E24 displacement cannot fit in any bounded 11×11 grid. The supplied original p32 (49.jpg) visibly prints six lines of ordinary rune prose and a blurred tree; the 11×11 array is a derived reshape, with no visible toroidal boundary instruction. Original p37 (54.jpg) visibly prints numbered sections 2/3/4, but no new authored rule selects within-page ordinal 37 or a key transition from the compass endpoint. The bounded primary-source audit #799 already searched the first-party signed texts and found no selected 5+3 orientation/wrap convention. #1361 and #1801 constrain other navigation proposals, not this missing operation. In particular #1801's frozen numbered-section/word-length readout selects p32, not a p37 key update. No new independent comparator could be selected without reusing developed targets. No new target was opened as a prospective holdout.
+
+For the actual p37 item3, the already fitted LUCK crib fixes four positions (146–149) of the 98-rune interval [91,189). The remaining 94 positions include exactly four ciphertext Fehu symbols. To illustrate the still-unconstrained state when no transition law is supplied, an arbitrary per-position consuming additive pad admits 29^94 plaintext completions (456.650 bits); under literal plaintext-F transparency and freely chosen consumed shifts, it admits 28^90×29^4 distinct plaintext completions (452.094 bits). For nonzero C, P cannot be F; for zero C, P can be F or any non-F with the corresponding consumed shift. These are exact counts **only in these deliberately unrestricted per-symbol models**, not estimated entropy or a claim about the finite local H-shell family. The compass gives no independent restriction on those unknown positions. The published fixed-q4 section continuation already fails; do not infer that a different arbitrary key schedule is authenticated.
+
+Reproduction (executed directly on canonical corpus blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165` and grid blob `2550eae357442912220e05dc51147523a61dd75a`): take table bytes at [204,179,215,130], start (3,0), use the published direction vector and distance byte>>3; accumulate without modulus and then reduce both coordinates mod11. Compute the penultimate cell independently by subtracting the last move from (3,4). From p37.indices.slice(91,189), remove offsets 146–149 and count zeros in the 94 remaining symbols. No CI, key fitting or alternate compass layout was run. The conditional local LUCK candidate is retained; it is not a recovered section or an independently validated transition.
