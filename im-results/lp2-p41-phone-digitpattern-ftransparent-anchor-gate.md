@@ -55,7 +55,12 @@ Treating the two outlined p41 dots as zero bits and repeating the ten-bit patter
 
 The 16-zero count at the two half-boundary alignments is only a count match; the actual separator positions disagree almost completely. The two hollow dots do correspond to the two zero digits in the phone number, not to the 16 phrase spaces. The exact reproduction is `sims/lp2_p41_phone_mask_phrase_space_sft.cjs`.
 
-**Decision:** the dot motif is a plausible checksum of the historical phone number under a chosen right-first traversal, but neither the traversal nor a separator mask is source-selected. The 75-token count match does not provide a reversible p55 receiver. Do not search additional rotations or use the phone number as an arbitrary key.
+
+### Original-image template comparison (Agent39, 25 November 2026)
+
+The uploaded original-image archive's files 57.jpg-72.jpg were checked against the corresponding repository objects: every local file's Git blob SHA-1 matches `resources/liber-primus/{57..72}.jpg`. All 16 images are 2400x3600. The complete left band `(0,700)-(550,3000)` and right band `(1850,700)-(2400,3000)` are pixel-identical across all 16 images (physical p40-p55), including both five-dot clusters. The central text band differs between p40 (57.jpg) and p45 (62.jpg), so these are distinct pages. Reproducer: [`lp2_phone_dot_template_identity_sft.py`](../sims/lp2_phone_dot_template_identity_sft.py).
+
+**Decision:** the 10-dot pattern matches the nonzero/zero pattern of the historical phone number only under a chosen right-first traversal, but the exact same complete side artwork appears on all 16 physical pages p40-p55. It is therefore a repeated section/page-template feature, not a p41- or p45-specific selector. Neither traversal nor a separator mask is source-selected. The 75-token count match does not provide a reversible p55 receiver. Do not search additional rotations or use the phone number as an arbitrary key.
 
 ## Positive controls and limits
 
