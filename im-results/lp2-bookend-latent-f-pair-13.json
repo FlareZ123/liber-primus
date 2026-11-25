@@ -1,0 +1,57 @@
+{
+  "name": "original-selected-seven-anchor-only-known-A",
+  "n": [
+    7,
+    7
+  ],
+  "zero": [
+    0,
+    0
+  ],
+  "known": 24,
+  "logBF": 8.475608860605625,
+  "logBFPerPair": 1.2108012658008036,
+  "bestLog": -45.097933566687324,
+  "peak": 784,
+  "states": 3166,
+  "edges": 88621,
+  "plainA": "YOUGHTA",
+  "plainB": "YOUGHTA",
+  "p": [
+    26,
+    3,
+    1,
+    6,
+    8,
+    16,
+    24
+  ],
+  "r": [
+    26,
+    3,
+    1,
+    6,
+    8,
+    16,
+    24
+  ],
+  "keyA": [
+    26,
+    8,
+    0,
+    11,
+    10,
+    23,
+    1
+  ],
+  "keyB": [
+    26,
+    8,
+    0,
+    11,
+    10,
+    23,
+    1
+  ],
+  "correct": null
+}
