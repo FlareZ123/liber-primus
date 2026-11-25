@@ -1,6 +1,6 @@
 # Local collision-repair transposition: native-key inverse and all-key capacity
 
-**Decision (25 November 2026, Agent19):** no unknown plaintext or authenticated key. Retire the precise greedy adjacent-swap postprocessor, and the optional form with the two fixed historical keywords or the direct historical prime-minus-one clock. For ordinary consuming periodic substitutions with optional swaps, the exact E-count upper bound excludes periods 8, 13 and 29 on the stated finite literary register, even with nine private chapter keys. Unknown F-holding keys and other collision mechanisms remain open.
+**Decision (25 November 2026, Agent19):** no unknown plaintext or authenticated key. Retire the precise greedy adjacent-swap postprocessor, and the optional form with the two fixed historical keywords or the direct historical prime-minus-one clock. For ordinary consuming periodic substitutions with optional swaps, the exact E-count upper bound excludes periods 8, 13 and 29 on the stated finite literary register, even with nine private chapter keys. The exact q8/q13/q29 unknown-key F-holding combination is now excluded on the p40–53 finite native register (see final section); other periods and collision mechanisms remain open.
 
 ## Why this operation was considered
 
@@ -63,3 +63,25 @@ All first eight original physical ranges have **zero** complete origins for both
 ## Next decision and limitations
 
 Do not repeat literal native keywords, direct prime clocks or ordinary-consuming q8/q13/q29 under this local swap receiver. A novel variant would require an independently selected mechanism for the rare remaining repeats or a genuine key-state selector. The optional greedy rule is noninjective and has no authenticated sidecar; the tests did not discover one. Unknown F-holding substitution keys are not covered by the all-key ordinary bound. The physical ranges are explicit (p0–2, p3–7, p8–14, p15–22, p23–26, p27–32, p33–39, p40–53, p54–55), rather than section-boundary-adjusted ranges. Experiment functions were executed in the connected V8 runtime against the canonical repository inputs; the generated Node CommonJS wrappers were not separately executed in CI. No new source provenance work was repeated.
+
+
+## Exact all-secret phase bijections with latent Fehu and optional collision swaps (Agent19, 25 November)
+
+This closes the previously open combination of literal plaintext-F holds, arbitrary phase-wise GP29 bijections on the active stream and the optional greedy collision swap. It requires no dictionary or printed boundary assumptions. The forward swap at output i is available only in a visible ABA pattern (swap the final BA into AB); the broader relaxation permits either adjacent edge of a visible ABA, with disjoint pairs. This includes pure reverse-direction greedy repair, but does not claim to include every possible sequential mixed-direction repair whose earlier swaps destroy visible motifs.
+
+Enumerate all legal disjoint inverse swaps, then remove any subset of raw zero glyphs. For every fixed period q, active plaintext and raw ciphertext preserve all equality tests at active lags q, 2q, 3q (including equality of adjacent pairs). A DAG over original output offsets retains the last 3q+1 active runes. For each history retain componentwise maxima of the rune and bigram counts; the maxima may correspond to different paths, making the joint rectangle conservative. A single edge emits one rune or an eligible swapped pair, each zero either held or consumed. No mask/beam limit, unknown key restriction, or lexical assumption. The peak below includes both pending output-offset maps. The 1926 exhaustive toy comparisons independently enumerate disjoint swaps and every zero mask and match both exact maxima. Four transformed authentic LP1 controls (WELCOME/KOAN, forward and reverse, underlying exact source replay) plus six separately keyed literary plants all retain the true counts and exact swap replay.
+
+Primary target physical p40–53 (3,008 runes, 125 zeros); same three reference corpora, native encoder and 32 evenly spaced visible-length windows each as the [prior no-swap lag bound](lp2-ftransparent-hidden-pause-lag-collision-gate.md). The rate bound divides the original maxima by the smallest possible opportunity count, 3(3008−125)−6q (minus three for bigrams); each reference uses its actual active length.
+
+| Period | Inverse | Rune upper / reference min | Bigram upper / reference min | Joint count passes | Joint rate passes | Peak states |
+|---:|---|---:|---:|---:|---:|---:|
+| 8 | forward | 408 / 493 | 22 / 38 | 0/96 | 0/96 | 80 |
+| 8 | both visible ABA edges | 421 / 493 | 23 / 38 | 0/96 | 0/96 | 168 |
+| 13 | forward | 455 / 464 | 28 / 34 | 0/96 | 0/96 | 256 |
+| 13 | both visible ABA edges | 476 / 464 | 30 / 34 | 0/96 | 0/96 | 1863 |
+| 29 | forward | 454 / 494 | 37 / 35 | 0/96 | 0/96 | 10432 |
+| 29 | both visible ABA edges | 474 / 494 | 44 / 35 | 0/96 | 0/96 | 150903 |
+
+All three tested periods are incompatible with all 96 fixed native literary windows under the visible-length matching rule even in the broader inverse relaxation. The results are conditional on this finite register and the single chapter-continuous key clock. They neither identify a key nor establish historical collision swaps, and they do not reject other state changes or every English plaintext. Do not repeat q8/q13/q29 key search in this exact receiver without a new independent premise.
+
+[Reproducer](../sims/lp2_greedy_collision_swap_fhold_allkey_sft.cjs) · [raw output](./lp2-greedy-collision-swap-fhold-allkey-output.json). Actual algorithm and pinned source data executed in connected V8; standalone Node wrapper not independently run.
