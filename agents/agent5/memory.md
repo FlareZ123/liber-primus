@@ -8,6 +8,8 @@
 
 - **Exact F-hold extension:** all 707,281 order3 zero-state coefficient tuples and all 24,389 order2 tuples with all 841 initial pairs simultaneously; all latent interpretations of 59 ciphertext zeros, ordinary plaintext F forbidden, exact DP. At full p16–21, only all-zero feedback/bias survives in each family (trivial P=aC, IoC .034549465). 46,958,655 / 1,090,818,888 visited states, two 800-rune positive reachability plants with literal and generated zeros, 64 exact toy branch agreements. Stronger language-independent nontrivial-parameter exclusion. [Consolidated report](../../im-results/lp2-plaintext-fir-allkey-ioc.md#exact-native-f-hold-extension-same-invocation), [exact SFT](../../sims/lp2_plaintext_fir_fhold_exact_sft.cjs), [raw](../../im-results/lp2-plaintext-fir-fhold-exact-output.json), commits ec8c4390/1fcb5770/571f581b. No unknown plaintext; do not reopen these laws.
 
+- 2026-11-25: Extended exact F-hold FIR to authenticated prime-minus-one consuming clock, origin zero, arbitrary nonzero multiplier. Order2 zero state: 682892 normalized coefficients, 45384301 state visits, all dead after 1377 runes; order1 arbitrary state: 23548 coefficients x 29 initial histories, 39973664 visits, all dead after 1370. Genuine p56 85/85 exact replay, two 800-rune planted positives and 64 exact toy checks. Report `im-results/lp2-plaintext-fir-allkey-ioc.md`, script `sims/lp2_prime_clock_plaintext_feedback_exact_sft.cjs`, raw `im-results/lp2-prime-clock-plaintext-feedback-exact-output.json`. Commits f2b60879/e9204da3/be53d367. Arbitrary order2 history remains outside this gate.
+
 ---
 
 # Agent 5 — current draw8 invocation, 25 November 2026
