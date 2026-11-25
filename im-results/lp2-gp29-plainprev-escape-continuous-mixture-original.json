@@ -1,0 +1,335 @@
+{
+  "width": 64,
+  "donorLengths": [
+    47629,
+    217106,
+    306851
+  ],
+  "pilots": [],
+  "original": {
+    "key": [
+      702,
+      751,
+      392,
+      149,
+      613,
+      77,
+      709,
+      637,
+      427,
+      341,
+      305,
+      661,
+      297,
+      604,
+      482,
+      758,
+      173,
+      476,
+      392,
+      408,
+      83,
+      597,
+      645,
+      726,
+      634,
+      622,
+      803,
+      105,
+      267
+    ],
+    "initial": [
+      646,
+      220,
+      532,
+      177,
+      613,
+      77,
+      737,
+      665,
+      427,
+      369,
+      249,
+      408,
+      297,
+      632,
+      650,
+      758,
+      173,
+      476,
+      392,
+      576,
+      195,
+      597,
+      673,
+      642,
+      606,
+      483,
+      803,
+      105,
+      16
+    ],
+    "refinement": [
+      {
+        "sweep": 1,
+        "score": -2.972125131752866,
+        "improved": 14,
+        "evals": 3221
+      },
+      {
+        "sweep": 2,
+        "score": -2.9510698738856576,
+        "improved": 5,
+        "evals": 6441
+      },
+      {
+        "sweep": 3,
+        "score": -2.9220052154234826,
+        "improved": 5,
+        "evals": 9661
+      },
+      {
+        "sweep": 4,
+        "score": -2.9089120574025102,
+        "improved": 4,
+        "evals": 12881
+      },
+      {
+        "sweep": 5,
+        "score": -2.907920492123554,
+        "improved": 2,
+        "evals": 16101
+      },
+      {
+        "sweep": 6,
+        "score": -2.906552730418964,
+        "improved": 1,
+        "evals": 19321
+      },
+      {
+        "sweep": 7,
+        "score": -2.906245255687929,
+        "improved": 2,
+        "evals": 22541
+      },
+      {
+        "sweep": 8,
+        "score": -2.906245255687929,
+        "improved": 0,
+        "evals": 25761
+      }
+    ],
+    "details": [
+      {
+        "name": "mixture-0",
+        "score": -2.906245255687929,
+        "em": [],
+        "history": [
+          {
+            "sweep": 1,
+            "score": -2.972125131752866,
+            "improved": 14,
+            "evals": 3221
+          },
+          {
+            "sweep": 2,
+            "score": -2.9510698738856576,
+            "improved": 5,
+            "evals": 6441
+          },
+          {
+            "sweep": 3,
+            "score": -2.9220052154234826,
+            "improved": 5,
+            "evals": 9661
+          },
+          {
+            "sweep": 4,
+            "score": -2.9089120574025102,
+            "improved": 4,
+            "evals": 12881
+          },
+          {
+            "sweep": 5,
+            "score": -2.907920492123554,
+            "improved": 2,
+            "evals": 16101
+          },
+          {
+            "sweep": 6,
+            "score": -2.906552730418964,
+            "improved": 1,
+            "evals": 19321
+          },
+          {
+            "sweep": 7,
+            "score": -2.906245255687929,
+            "improved": 2,
+            "evals": 22541
+          },
+          {
+            "sweep": 8,
+            "score": -2.906245255687929,
+            "improved": 0,
+            "evals": 25761
+          }
+        ]
+      }
+    ],
+    "pair": [],
+    "mix": [
+      {
+        "K": [
+          646,
+          220,
+          532,
+          177,
+          613,
+          77,
+          737,
+          665,
+          427,
+          369,
+          249,
+          408,
+          297,
+          632,
+          650,
+          758,
+          173,
+          476,
+          392,
+          576,
+          195,
+          597,
+          673,
+          642,
+          606,
+          483,
+          803,
+          105,
+          16
+        ],
+        "history": [
+          {
+            "iteration": 1,
+            "ll": -3.3504597174924795,
+            "rows": null,
+            "maxMass": 0.005457591829060203,
+            "truthMass": null
+          },
+          {
+            "iteration": 6,
+            "ll": -3.3495068349509753,
+            "rows": null,
+            "maxMass": 0.005957911559099703,
+            "truthMass": null
+          },
+          {
+            "iteration": 11,
+            "ll": -3.3490350048305886,
+            "rows": null,
+            "maxMass": 0.00643890979248438,
+            "truthMass": null
+          },
+          {
+            "iteration": 16,
+            "ll": -3.348781896548059,
+            "rows": null,
+            "maxMass": 0.006848576953622808,
+            "truthMass": null
+          },
+          {
+            "iteration": 21,
+            "ll": -3.348632768206664,
+            "rows": null,
+            "maxMass": 0.007209660720594336,
+            "truthMass": null
+          },
+          {
+            "iteration": 26,
+            "ll": -3.3485353328819163,
+            "rows": null,
+            "maxMass": 0.007555121993754512,
+            "truthMass": null
+          },
+          {
+            "iteration": 31,
+            "ll": -3.3484645974934666,
+            "rows": null,
+            "maxMass": 0.009522168528765917,
+            "truthMass": null
+          },
+          {
+            "iteration": 36,
+            "ll": -3.3488773344368004,
+            "rows": null,
+            "maxMass": 0.03058530445734363,
+            "truthMass": null
+          },
+          {
+            "iteration": 41,
+            "ll": -3.3518397872437085,
+            "rows": null,
+            "maxMass": 0.11118184799236008,
+            "truthMass": null
+          },
+          {
+            "iteration": 46,
+            "ll": -3.3597348157050195,
+            "rows": null,
+            "maxMass": 0.3323025601792033,
+            "truthMass": null
+          },
+          {
+            "iteration": 51,
+            "ll": -3.379990883789607,
+            "rows": null,
+            "maxMass": 0.6035649288247862,
+            "truthMass": null
+          },
+          {
+            "iteration": 56,
+            "ll": -3.393864768075921,
+            "rows": null,
+            "maxMass": 0.6787475146916038,
+            "truthMass": null
+          },
+          {
+            "iteration": 60,
+            "ll": -3.3922027093815807,
+            "rows": null,
+            "maxMass": 0.6837660920803422,
+            "truthMass": null
+          }
+        ]
+      }
+    ],
+    "truth": null,
+    "train": {
+      "n": 10317,
+      "repeats": 72,
+      "gain": -2.9062452556879164,
+      "correct": null,
+      "usedRows": null,
+      "keyRows": null,
+      "preview": [
+        "THFIXREOIAYINHUTHTWNHYHYTHUHTXUETHNBYEOYITTHPTOEEOBFEORCDIAXYGYCTHPIAIAWNGDWNTOELGXLYFACEAONJEABRGA",
+        "IUJXRNAEODNGGAPFMPIAEOXTDIWGGTECEOFLYGHRJBETXMSHMOUDOEOEOEIHOEIPIACEABGTAWYTHLTBCETIASTTHUWSG"
+      ]
+    },
+    "held": {
+      "n": 2630,
+      "repeats": 14,
+      "gain": -3.2468842079212386,
+      "correct": null,
+      "usedRows": null,
+      "keyRows": null,
+      "preview": [
+        "FOWTHIFYIGTHALJUAEPIGOERYJEAONFXIAAUEOIFOERUTEMAEASANGXHYJLHFNGPOYIAWDPLORIAEIJSRAEOOEPSTCXOAEM",
+        "IAIAOECGRSAEGAXUBEOWEBISSTHMBJGLMAEFRFJJJRTHJNSDPDFLGAJTHEAHLHYJJAEEOMGEOLENGOEMGFEOXACEARDNGPRSB"
+      ]
+    },
+    "trace": []
+  }
+}
