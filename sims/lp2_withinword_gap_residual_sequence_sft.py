@@ -17,7 +17,7 @@ with contextlib.redirect_stdout(io.StringIO()):
 CORPUS=BASE["CORPUS"]
 RAW=(ROOT/"resources"/"liber-primus"/"lp2-transcription.txt").read_text(encoding="utf-8").replace("\r","").split("%")
 RUNE_INDEX={r:i for i,r in enumerate(CORPUS["runes"])}
-DETECT=BASE["detect"]; PREDICT=BASE["predict"]; TYPES=BASE["types"]
+DETECT=BASE["detect"]; PREDICT=BASE["predict"]; TEMPLATES=BASE["templates"]; TYPES=BASE["types"]
 SOURCE_IMAGE=BASE["source_image"]
 
 def raw_page_index(page): return page if page<=49 else page-1
@@ -64,7 +64,7 @@ def extract_page(page,threshold=155):
         nonempty+=1; boxes=DETECT(gray,row)
         if len(boxes)!=len(flat): continue
         aligned+=1
-        predicted,confidence=PREDICT(boxes,TYPES)
+        predicted,confidence=PREDICT(boxes,TEMPLATES,TYPES)
         accuracy=float(np.mean(np.asarray(predicted)==np.asarray(flat)))
         accuracies.append(accuracy)
         geoms=[glyph_geometry(gray,rgb,row,b) for b in boxes]
