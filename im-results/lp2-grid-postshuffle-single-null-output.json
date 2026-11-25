@@ -1,0 +1,538 @@
+{
+  "groups": 2896,
+  "runes": 12956,
+  "lexicon": 35944,
+  "chapters": [
+    158,
+    255,
+    383,
+    437,
+    224,
+    326,
+    378,
+    669,
+    66
+  ],
+  "longTotal": 187,
+  "results": [
+    {
+      "radix": 59,
+      "order": "row",
+      "reverse": false,
+      "sign": 1,
+      "allCounts": [
+        105,
+        189,
+        284,
+        323,
+        164,
+        251,
+        280,
+        495,
+        48
+      ],
+      "covered": 2139,
+      "longCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "longCovered": 0,
+      "anchors": []
+    },
+    {
+      "radix": 59,
+      "order": "row",
+      "reverse": false,
+      "sign": -1,
+      "allCounts": [
+        111,
+        189,
+        284,
+        330,
+        161,
+        250,
+        286,
+        503,
+        48
+      ],
+      "covered": 2162,
+      "longCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "longCovered": 0,
+      "anchors": []
+    },
+    {
+      "radix": 59,
+      "order": "row",
+      "reverse": true,
+      "sign": 1,
+      "allCounts": [
+        106,
+        190,
+        288,
+        328,
+        161,
+        245,
+        282,
+        499,
+        49
+      ],
+      "covered": 2148,
+      "longCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "longCovered": 0,
+      "anchors": []
+    },
+    {
+      "radix": 59,
+      "order": "row",
+      "reverse": true,
+      "sign": -1,
+      "allCounts": [
+        106,
+        186,
+        284,
+        332,
+        163,
+        248,
+        282,
+        502,
+        46
+      ],
+      "covered": 2149,
+      "longCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "longCovered": 0,
+      "anchors": []
+    },
+    {
+      "radix": 59,
+      "order": "column",
+      "reverse": false,
+      "sign": 1,
+      "allCounts": [
+        106,
+        186,
+        285,
+        332,
+        161,
+        247,
+        286,
+        496,
+        47
+      ],
+      "covered": 2146,
+      "longCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "longCovered": 0,
+      "anchors": []
+    },
+    {
+      "radix": 59,
+      "order": "column",
+      "reverse": false,
+      "sign": -1,
+      "allCounts": [
+        108,
+        187,
+        288,
+        332,
+        161,
+        246,
+        283,
+        500,
+        48
+      ],
+      "covered": 2153,
+      "longCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "longCovered": 0,
+      "anchors": []
+    },
+    {
+      "radix": 59,
+      "order": "column",
+      "reverse": true,
+      "sign": 1,
+      "allCounts": [
+        107,
+        185,
+        281,
+        328,
+        162,
+        248,
+        286,
+        493,
+        48
+      ],
+      "covered": 2138,
+      "longCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "longCovered": 0,
+      "anchors": []
+    },
+    {
+      "radix": 59,
+      "order": "column",
+      "reverse": true,
+      "sign": -1,
+      "allCounts": [
+        109,
+        186,
+        289,
+        330,
+        161,
+        251,
+        285,
+        498,
+        47
+      ],
+      "covered": 2156,
+      "longCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "longCovered": 0,
+      "anchors": []
+    },
+    {
+      "radix": 60,
+      "order": "row",
+      "reverse": false,
+      "sign": 1,
+      "allCounts": [
+        107,
+        185,
+        284,
+        332,
+        160,
+        253,
+        283,
+        493,
+        47
+      ],
+      "covered": 2144,
+      "longCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "longCovered": 0,
+      "anchors": []
+    },
+    {
+      "radix": 60,
+      "order": "row",
+      "reverse": false,
+      "sign": -1,
+      "allCounts": [
+        108,
+        188,
+        288,
+        328,
+        161,
+        246,
+        287,
+        504,
+        49
+      ],
+      "covered": 2159,
+      "longCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "longCovered": 0,
+      "anchors": []
+    },
+    {
+      "radix": 60,
+      "order": "row",
+      "reverse": true,
+      "sign": 1,
+      "allCounts": [
+        106,
+        185,
+        290,
+        331,
+        159,
+        250,
+        280,
+        496,
+        45
+      ],
+      "covered": 2142,
+      "longCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "longCovered": 0,
+      "anchors": []
+    },
+    {
+      "radix": 60,
+      "order": "row",
+      "reverse": true,
+      "sign": -1,
+      "allCounts": [
+        105,
+        188,
+        292,
+        338,
+        158,
+        249,
+        283,
+        497,
+        45
+      ],
+      "covered": 2155,
+      "longCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "longCovered": 0,
+      "anchors": []
+    },
+    {
+      "radix": 60,
+      "order": "column",
+      "reverse": false,
+      "sign": 1,
+      "allCounts": [
+        108,
+        186,
+        287,
+        330,
+        158,
+        249,
+        287,
+        499,
+        46
+      ],
+      "covered": 2150,
+      "longCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "longCovered": 0,
+      "anchors": []
+    },
+    {
+      "radix": 60,
+      "order": "column",
+      "reverse": false,
+      "sign": -1,
+      "allCounts": [
+        106,
+        184,
+        287,
+        339,
+        161,
+        247,
+        287,
+        492,
+        46
+      ],
+      "covered": 2149,
+      "longCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "longCovered": 0,
+      "anchors": []
+    },
+    {
+      "radix": 60,
+      "order": "column",
+      "reverse": true,
+      "sign": 1,
+      "allCounts": [
+        107,
+        186,
+        281,
+        329,
+        160,
+        247,
+        283,
+        490,
+        49
+      ],
+      "covered": 2132,
+      "longCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "longCovered": 0,
+      "anchors": []
+    },
+    {
+      "radix": 60,
+      "order": "column",
+      "reverse": true,
+      "sign": -1,
+      "allCounts": [
+        106,
+        186,
+        287,
+        335,
+        161,
+        248,
+        284,
+        494,
+        47
+      ],
+      "covered": 2148,
+      "longCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "longCovered": 0,
+      "anchors": []
+    }
+  ],
+  "controls": [
+    {
+      "donor": 0,
+      "eligible": 16,
+      "inVocab": 13,
+      "retained": 13,
+      "unique": 11
+    },
+    {
+      "donor": 1,
+      "eligible": 40,
+      "inVocab": 36,
+      "retained": 36,
+      "unique": 32
+    },
+    {
+      "donor": 2,
+      "eligible": 44,
+      "inVocab": 41,
+      "retained": 41,
+      "unique": 35
+    }
+  ]
+}
