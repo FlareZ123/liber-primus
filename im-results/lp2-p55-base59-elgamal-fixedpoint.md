@@ -1,6 +1,6 @@
 # p55 base59 / DH23 ElGamal radix fixed point
 
-**Agent1, 25 November 2026. Classification: source-constrained one-symbol selector candidate; no unknown-page plaintext recovered.**
+**Agent1, 25 November 2026; updated after #2800. Classification: conditional arithmetic fixed point; original-artifact source gate negative; no source-selected selector or unknown-page plaintext recovered.**
 
 ## Hypothesis and human-visible path
 
@@ -142,10 +142,10 @@ Packet-header and worked-DH reproduction: [single-file SFT](../sims/lp2_p55_elga
 
 The previously observed full-set null frequencies and already failed downstream receivers remain unchanged. This is an identifiability/source-selection failure, not a claim that the arithmetic fixed point is false or that all circumference interpretations are exhausted. No held-out original prediction follows, and no dependent receiver sweep is justified. Keep #41 waiting for a genuinely independent full p55 decoder. Reopen this branch only if a first-party rule fixes the missing span/normalization/operand/ordinal decisions before seeing target output.
 
-## Interpretation and next decision
+## Interpretation and current decision
 
-This is the first source-constrained reversible **one-symbol selector** found for the p55 SHED split: it recovers M=17, which reselects base59. It supports the page-local 43/32 interpretation over the 52/34 cross-page alternative and gives a plausible human path from the solved p57 instruction, through p55’s word circumferences, to the literal p28 DH operation.
+The conditional arithmetic is reproducible: if one chooses the 16 complete local words, 43/32 split, base59, 16×23 interior divisor and ElGamal roles, the pair decrypts to M=17 and prime(17)=59. The uniform complete-local-word census and matched nulls constrain this numerical candidate, but none supplies an original instruction selecting the full chain.
 
-It does **not** decrypt the 43 interior runes, the 32 circumference runes, or any other unknown LP2 rune. The ElGamal operation is not explicitly named in the manuscript; it is a natural DH-derived receiver hypothesis. Most importantly, the division by the 16-word count is source-motivated but not explicitly stated. The exact arithmetic and uniform complete-local-word census survive audit, but the matched null must use the full acceptance set, and the normalization remains unselected. Require an independently supplied downstream consumer or untouched prediction before allocating further dependent searches.
+The #2800 original-artifact source gate inspected the original p28, p49–51, p54–55 and p57 images, canonical transcription, table and annotations. It found no source rule selecting (1) exclusion of the incoming 11-rune seam fragment, (2) a word-local 43/32 split rather than the literal table circumference, (3) division by 16×23 on the interior only, (4) ElGamal rather than DH and the shell/interior operand roles, or (5) a prime-ordinal interpretation of M=17. The p57 13/23 marker bridge motivates radix59 conditionally; it does not select the complete receiver.
 
-The direct packed base23 whole-quotient consumer above fails. The next decisive step is a genuinely independently selected downstream consumer of the 17/59 selector, or a second independently selected ciphertext pair that predicts untouched original runes under the same frozen DH23 mechanism. Do not broaden this into generic radix, key, discrete-log or P/Q searches. Issue #41 still requires a reversible map for all 76 original p55 glyphs and remains waiting; this one-symbol result does not satisfy that acceptance criterion.
+The candidate is therefore **not a source-selected one-symbol selector** and must not guide downstream decryption work. Keep the arithmetic, exact replay and null as intermediate evidence; close the branch unless a new first-party clue fixes all missing choices before target output. Issue #41 remains waiting for an independent full p55 inverse. The duplicate `count13` declaration in `sims/lp2_p57_terminal23_p28_dh_modulus_sft.cjs` is removed in this commit; the source gate's connected-V8 PASS is preserved, but no standalone Node or CI run is claimed.

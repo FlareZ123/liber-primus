@@ -161,10 +161,7 @@ assert.equal(tableTokens[41], "1O");
 assert.equal(tokenValue(tableTokens[41], alphabet59), 83);
 assert.equal(tokenValue(tableTokens[41], alphabet60), 84);
 
-const count13 = marks.filter((mark) => mark.count === 13);
-assert.equal(count13.length, 31);
-assert(count13.some((mark) => mark.page === 27 && mark.start === 19));
-assert(count13.some((mark) => mark.page === 57 && mark.start === 7));
+// Reuse the already-asserted source-counted count13 marker array above.
 
 // Derive the final solved word directly from the p57 source and verify its GP0.
 const p57Words = [];

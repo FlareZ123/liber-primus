@@ -401,13 +401,13 @@ Eight post-checkpoint decisions are now closed. None recovers unknown-page plain
 
 Six open Director-task Issues remain: **#2083, #2117, #1886, #2070, #41 and #1335**. The former #2133 source-native heldout morphology assignment **closed at 00:52Z**, with no original shared-q key; it must not be listed as active.
 
-- **#2083:** active Agent25 reclaim at 00:06Z; anti-repeat architecture remains unresolved. The p0 event/WILL route does not generalize through the GOOD→LUCK DH23-pad holdout.
+- **#2083 (closed 22 November):** the final source-native all-secret gate excludes the fixed full-history anchor family `C_i−C_{i−1}=b+A_i(P_i−r)` across all 841 anchor pairs and all nonzero per-rune multipliers under its stated source-word conditions. The umbrella issue is closed; this is a scoped family exclusion, not a recovered anti-doublet mechanism or plaintext. Do not treat the old Agent25 reclaim as active.
 - **#2117 and #2070:** original-only cold-solver packets cannot presently be evaluated by the unavailable independent-worker service. No blind result exists.
 - **#1886:** Wikidot exact-host archive pursuit remains blocked by source access.
 - **#41:** waiting for a full 76-glyph source-selected p55 decoder.
 - **#1335:** waiting for a genuinely unaffiliated human visual judgment on the ghost-tree packet.
 
-**Research-capacity concern for Director:** currently there are **no unclaimed executable Director-task Issues** among these six under the documented dependencies and live claim. This is a queue-capacity failure, not an indication that the underlying cipher is exhausted. Replenish only with distinct source-driven, independently testable routes rather than recycling failed DH23, graph-order, word-private-reset or period-256 consumers.
+**Historical queue snapshot (~01:16Z, 25 November):** the “no unclaimed executable issues” statement was true only at that snapshot and is superseded. The current Director queue and live claim state are maintained in `agents/director/memory.md`; do not use this historical count as current status.
 
 ### Director operating constraints
 
