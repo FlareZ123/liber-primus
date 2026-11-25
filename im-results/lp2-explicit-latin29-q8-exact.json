@@ -1,0 +1,2200 @@
+{
+  "alphabet": "ABCDEFGHIJKLMNOPQRSTUVWXYZ .'",
+  "fit": 232,
+  "hold": 76,
+  "trainChars": [
+    421826,
+    83025
+  ],
+  "donorChars": [
+    287011,
+    4217
+  ],
+  "powered": true,
+  "plants": [
+    {
+      "name": "latin0",
+      "kind": "Latin29",
+      "key": [
+        4,
+        20,
+        13,
+        13,
+        24,
+        3,
+        9,
+        28
+      ],
+      "ll": -446.13431548593144,
+      "per": -1.9229927391634976,
+      "optimalKeys": 1,
+      "allowedPairs": [
+        327,
+        289,
+        438,
+        365,
+        314,
+        352,
+        267,
+        321
+      ],
+      "starts": 289,
+      "ops": 3148814,
+      "trainText": "YS LOVED THE PEOPLE. FIRST CITIZEN HE'S ONE HONEST ENOUGH WOULD ALL THE REST WERE SO MENENIUS WHAT WORK'S MY COUNTRYMEN IN HAND WHERE GO YOU WITH BATS AND CLUBS THE MATTER SPEAK I PRAY YOU. FIRST CITIZEN OUR BUSINESS IS NOT UNKNOWN ",
+      "trueKey": [
+        4,
+        20,
+        13,
+        13,
+        24,
+        3,
+        9,
+        28
+      ],
+      "exactKey": true,
+      "heldoutCorrect": 76,
+      "holdout": {
+        "ll": -124.49106039451414,
+        "per": -1.6380402683488702,
+        "grammar": true,
+        "violations": 0
+      },
+      "invalidPositions": [],
+      "delimiters": [
+        {
+          "offset": 2,
+          "char": " "
+        },
+        {
+          "offset": 8,
+          "char": " "
+        },
+        {
+          "offset": 12,
+          "char": " "
+        },
+        {
+          "offset": 19,
+          "char": "."
+        },
+        {
+          "offset": 20,
+          "char": " "
+        },
+        {
+          "offset": 26,
+          "char": " "
+        },
+        {
+          "offset": 34,
+          "char": " "
+        },
+        {
+          "offset": 37,
+          "char": "'"
+        },
+        {
+          "offset": 39,
+          "char": " "
+        },
+        {
+          "offset": 43,
+          "char": " "
+        },
+        {
+          "offset": 50,
+          "char": " "
+        },
+        {
+          "offset": 57,
+          "char": " "
+        },
+        {
+          "offset": 63,
+          "char": " "
+        },
+        {
+          "offset": 67,
+          "char": " "
+        },
+        {
+          "offset": 71,
+          "char": " "
+        },
+        {
+          "offset": 76,
+          "char": " "
+        },
+        {
+          "offset": 81,
+          "char": " "
+        },
+        {
+          "offset": 84,
+          "char": " "
+        },
+        {
+          "offset": 93,
+          "char": " "
+        },
+        {
+          "offset": 98,
+          "char": " "
+        },
+        {
+          "offset": 103,
+          "char": "'"
+        },
+        {
+          "offset": 105,
+          "char": " "
+        },
+        {
+          "offset": 108,
+          "char": " "
+        },
+        {
+          "offset": 119,
+          "char": " "
+        },
+        {
+          "offset": 122,
+          "char": " "
+        },
+        {
+          "offset": 127,
+          "char": " "
+        },
+        {
+          "offset": 133,
+          "char": " "
+        },
+        {
+          "offset": 136,
+          "char": " "
+        },
+        {
+          "offset": 140,
+          "char": " "
+        },
+        {
+          "offset": 145,
+          "char": " "
+        },
+        {
+          "offset": 150,
+          "char": " "
+        },
+        {
+          "offset": 154,
+          "char": " "
+        },
+        {
+          "offset": 160,
+          "char": " "
+        },
+        {
+          "offset": 164,
+          "char": " "
+        },
+        {
+          "offset": 171,
+          "char": " "
+        },
+        {
+          "offset": 177,
+          "char": " "
+        },
+        {
+          "offset": 179,
+          "char": " "
+        },
+        {
+          "offset": 184,
+          "char": " "
+        },
+        {
+          "offset": 188,
+          "char": "."
+        },
+        {
+          "offset": 189,
+          "char": " "
+        },
+        {
+          "offset": 195,
+          "char": " "
+        },
+        {
+          "offset": 203,
+          "char": " "
+        },
+        {
+          "offset": 207,
+          "char": " "
+        },
+        {
+          "offset": 216,
+          "char": " "
+        },
+        {
+          "offset": 219,
+          "char": " "
+        },
+        {
+          "offset": 223,
+          "char": " "
+        },
+        {
+          "offset": 231,
+          "char": " "
+        },
+        {
+          "offset": 234,
+          "char": " "
+        },
+        {
+          "offset": 238,
+          "char": " "
+        },
+        {
+          "offset": 245,
+          "char": " "
+        },
+        {
+          "offset": 250,
+          "char": " "
+        },
+        {
+          "offset": 255,
+          "char": " "
+        },
+        {
+          "offset": 259,
+          "char": " "
+        },
+        {
+          "offset": 267,
+          "char": " "
+        },
+        {
+          "offset": 272,
+          "char": " "
+        },
+        {
+          "offset": 282,
+          "char": " "
+        },
+        {
+          "offset": 287,
+          "char": " "
+        },
+        {
+          "offset": 290,
+          "char": " "
+        },
+        {
+          "offset": 297,
+          "char": " "
+        },
+        {
+          "offset": 300,
+          "char": " "
+        },
+        {
+          "offset": 303,
+          "char": " "
+        }
+      ],
+      "heldoutText": "TO THE SENATE THEY HAVE HAD INKLING THIS FORTNIGHT WHAT WE INTEND TO DO WHIC",
+      "heldoutReplay": true
+    },
+    {
+      "name": "latin1",
+      "kind": "Latin29",
+      "key": [
+        4,
+        26,
+        9,
+        0,
+        27,
+        9,
+        13,
+        1
+      ],
+      "ll": -405.0303884352195,
+      "per": -1.7458206398069807,
+      "optimalKeys": 1,
+      "allowedPairs": [
+        386,
+        303,
+        439,
+        399,
+        357,
+        450,
+        406,
+        416
+      ],
+      "starts": 303,
+      "ops": 5426286,
+      "trainText": "E THIS BOOK OR THE MESSAGE CONTAINED WITHIN EITHER THE WORDS OR THEIR NUMBERS FOR ALL IS SACRED WELCOME WELCOME PILGRIM TO THE GREAT JOURNEY TOWARD THE END OF ALL THINGS IT IS NOT AN EASY TRIP BUT FOR THOSE WHO FIND THEIR WAY HERE I",
+      "trueKey": [
+        4,
+        26,
+        9,
+        0,
+        27,
+        9,
+        13,
+        1
+      ],
+      "exactKey": true,
+      "heldoutCorrect": 76,
+      "holdout": {
+        "ll": -129.57557079299224,
+        "per": -1.7049417209604243,
+        "grammar": true,
+        "violations": 0
+      },
+      "invalidPositions": [],
+      "delimiters": [
+        {
+          "offset": 1,
+          "char": " "
+        },
+        {
+          "offset": 6,
+          "char": " "
+        },
+        {
+          "offset": 11,
+          "char": " "
+        },
+        {
+          "offset": 14,
+          "char": " "
+        },
+        {
+          "offset": 18,
+          "char": " "
+        },
+        {
+          "offset": 26,
+          "char": " "
+        },
+        {
+          "offset": 36,
+          "char": " "
+        },
+        {
+          "offset": 43,
+          "char": " "
+        },
+        {
+          "offset": 50,
+          "char": " "
+        },
+        {
+          "offset": 54,
+          "char": " "
+        },
+        {
+          "offset": 60,
+          "char": " "
+        },
+        {
+          "offset": 63,
+          "char": " "
+        },
+        {
+          "offset": 69,
+          "char": " "
+        },
+        {
+          "offset": 77,
+          "char": " "
+        },
+        {
+          "offset": 81,
+          "char": " "
+        },
+        {
+          "offset": 85,
+          "char": " "
+        },
+        {
+          "offset": 88,
+          "char": " "
+        },
+        {
+          "offset": 95,
+          "char": " "
+        },
+        {
+          "offset": 103,
+          "char": " "
+        },
+        {
+          "offset": 111,
+          "char": " "
+        },
+        {
+          "offset": 119,
+          "char": " "
+        },
+        {
+          "offset": 122,
+          "char": " "
+        },
+        {
+          "offset": 126,
+          "char": " "
+        },
+        {
+          "offset": 132,
+          "char": " "
+        },
+        {
+          "offset": 140,
+          "char": " "
+        },
+        {
+          "offset": 147,
+          "char": " "
+        },
+        {
+          "offset": 151,
+          "char": " "
+        },
+        {
+          "offset": 155,
+          "char": " "
+        },
+        {
+          "offset": 158,
+          "char": " "
+        },
+        {
+          "offset": 162,
+          "char": " "
+        },
+        {
+          "offset": 169,
+          "char": " "
+        },
+        {
+          "offset": 172,
+          "char": " "
+        },
+        {
+          "offset": 175,
+          "char": " "
+        },
+        {
+          "offset": 179,
+          "char": " "
+        },
+        {
+          "offset": 182,
+          "char": " "
+        },
+        {
+          "offset": 187,
+          "char": " "
+        },
+        {
+          "offset": 192,
+          "char": " "
+        },
+        {
+          "offset": 196,
+          "char": " "
+        },
+        {
+          "offset": 200,
+          "char": " "
+        },
+        {
+          "offset": 206,
+          "char": " "
+        },
+        {
+          "offset": 210,
+          "char": " "
+        },
+        {
+          "offset": 215,
+          "char": " "
+        },
+        {
+          "offset": 221,
+          "char": " "
+        },
+        {
+          "offset": 225,
+          "char": " "
+        },
+        {
+          "offset": 230,
+          "char": " "
+        },
+        {
+          "offset": 233,
+          "char": " "
+        },
+        {
+          "offset": 236,
+          "char": " "
+        },
+        {
+          "offset": 238,
+          "char": " "
+        },
+        {
+          "offset": 248,
+          "char": " "
+        },
+        {
+          "offset": 252,
+          "char": " "
+        },
+        {
+          "offset": 258,
+          "char": " "
+        },
+        {
+          "offset": 262,
+          "char": " "
+        },
+        {
+          "offset": 266,
+          "char": " "
+        },
+        {
+          "offset": 270,
+          "char": " "
+        },
+        {
+          "offset": 275,
+          "char": " "
+        },
+        {
+          "offset": 280,
+          "char": " "
+        },
+        {
+          "offset": 283,
+          "char": " "
+        },
+        {
+          "offset": 287,
+          "char": " "
+        },
+        {
+          "offset": 290,
+          "char": " "
+        },
+        {
+          "offset": 294,
+          "char": " "
+        },
+        {
+          "offset": 303,
+          "char": " "
+        },
+        {
+          "offset": 307,
+          "char": " "
+        }
+      ],
+      "heldoutText": "T IS A NECESSARY ONE ALONG THE WAY YOU WILL FIND AN END TO ALL STRUGGLE AND ",
+      "heldoutReplay": true
+    },
+    {
+      "name": "latin2",
+      "kind": "Latin29",
+      "key": [
+        24,
+        0,
+        12,
+        24,
+        20,
+        21,
+        23,
+        16
+      ],
+      "ll": -441.1719295068385,
+      "per": -1.9016031444260282,
+      "optimalKeys": 1,
+      "allowedPairs": [
+        367,
+        329,
+        325,
+        303,
+        342,
+        335,
+        336,
+        425
+      ],
+      "starts": 329,
+      "ops": 3835846,
+      "trainText": " VOLSCES ARE IN ARMS. MARCIUS THEY HAVE A LEADER TULLUS AUFIDIUS THAT WILL PUT YOU TO T. I SIN IN ENVYING HIS NOBILITY AND WERE I ANY THING BUT WHAT I AM I WOULD WISH ME ONLY HE. COMINIUS YOU HAVE FOUGHT TOGETHER. MARCIUS WERE HALF ",
+      "trueKey": [
+        24,
+        0,
+        12,
+        24,
+        20,
+        21,
+        23,
+        16
+      ],
+      "exactKey": true,
+      "heldoutCorrect": 76,
+      "holdout": {
+        "ll": -142.9901927224086,
+        "per": -1.8814499042422186,
+        "grammar": true,
+        "violations": 0
+      },
+      "invalidPositions": [],
+      "delimiters": [
+        {
+          "offset": 0,
+          "char": " "
+        },
+        {
+          "offset": 8,
+          "char": " "
+        },
+        {
+          "offset": 12,
+          "char": " "
+        },
+        {
+          "offset": 15,
+          "char": " "
+        },
+        {
+          "offset": 20,
+          "char": "."
+        },
+        {
+          "offset": 21,
+          "char": " "
+        },
+        {
+          "offset": 29,
+          "char": " "
+        },
+        {
+          "offset": 34,
+          "char": " "
+        },
+        {
+          "offset": 39,
+          "char": " "
+        },
+        {
+          "offset": 41,
+          "char": " "
+        },
+        {
+          "offset": 48,
+          "char": " "
+        },
+        {
+          "offset": 55,
+          "char": " "
+        },
+        {
+          "offset": 64,
+          "char": " "
+        },
+        {
+          "offset": 69,
+          "char": " "
+        },
+        {
+          "offset": 74,
+          "char": " "
+        },
+        {
+          "offset": 78,
+          "char": " "
+        },
+        {
+          "offset": 82,
+          "char": " "
+        },
+        {
+          "offset": 85,
+          "char": " "
+        },
+        {
+          "offset": 87,
+          "char": "."
+        },
+        {
+          "offset": 88,
+          "char": " "
+        },
+        {
+          "offset": 90,
+          "char": " "
+        },
+        {
+          "offset": 94,
+          "char": " "
+        },
+        {
+          "offset": 97,
+          "char": " "
+        },
+        {
+          "offset": 105,
+          "char": " "
+        },
+        {
+          "offset": 109,
+          "char": " "
+        },
+        {
+          "offset": 118,
+          "char": " "
+        },
+        {
+          "offset": 122,
+          "char": " "
+        },
+        {
+          "offset": 127,
+          "char": " "
+        },
+        {
+          "offset": 129,
+          "char": " "
+        },
+        {
+          "offset": 133,
+          "char": " "
+        },
+        {
+          "offset": 139,
+          "char": " "
+        },
+        {
+          "offset": 143,
+          "char": " "
+        },
+        {
+          "offset": 148,
+          "char": " "
+        },
+        {
+          "offset": 150,
+          "char": " "
+        },
+        {
+          "offset": 153,
+          "char": " "
+        },
+        {
+          "offset": 155,
+          "char": " "
+        },
+        {
+          "offset": 161,
+          "char": " "
+        },
+        {
+          "offset": 166,
+          "char": " "
+        },
+        {
+          "offset": 169,
+          "char": " "
+        },
+        {
+          "offset": 174,
+          "char": " "
+        },
+        {
+          "offset": 177,
+          "char": "."
+        },
+        {
+          "offset": 178,
+          "char": " "
+        },
+        {
+          "offset": 187,
+          "char": " "
+        },
+        {
+          "offset": 191,
+          "char": " "
+        },
+        {
+          "offset": 196,
+          "char": " "
+        },
+        {
+          "offset": 203,
+          "char": " "
+        },
+        {
+          "offset": 212,
+          "char": "."
+        },
+        {
+          "offset": 213,
+          "char": " "
+        },
+        {
+          "offset": 221,
+          "char": " "
+        },
+        {
+          "offset": 226,
+          "char": " "
+        },
+        {
+          "offset": 231,
+          "char": " "
+        },
+        {
+          "offset": 234,
+          "char": " "
+        },
+        {
+          "offset": 239,
+          "char": " "
+        },
+        {
+          "offset": 243,
+          "char": " "
+        },
+        {
+          "offset": 249,
+          "char": " "
+        },
+        {
+          "offset": 252,
+          "char": " "
+        },
+        {
+          "offset": 256,
+          "char": " "
+        },
+        {
+          "offset": 261,
+          "char": " "
+        },
+        {
+          "offset": 265,
+          "char": " "
+        },
+        {
+          "offset": 268,
+          "char": "."
+        },
+        {
+          "offset": 269,
+          "char": " "
+        },
+        {
+          "offset": 274,
+          "char": " "
+        },
+        {
+          "offset": 277,
+          "char": " "
+        },
+        {
+          "offset": 283,
+          "char": " "
+        },
+        {
+          "offset": 285,
+          "char": "'"
+        },
+        {
+          "offset": 288,
+          "char": " "
+        },
+        {
+          "offset": 295,
+          "char": " "
+        },
+        {
+          "offset": 298,
+          "char": " "
+        },
+        {
+          "offset": 303,
+          "char": " "
+        }
+      ],
+      "heldoutText": "TO HALF THE WORLD BY THE EARS AND HE. UPON MY PARTY I'LD REVOLT TO MAKE ONLY",
+      "heldoutReplay": true
+    },
+    {
+      "name": "latin3",
+      "kind": "Latin29",
+      "key": [
+        1,
+        5,
+        3,
+        22,
+        0,
+        23,
+        4,
+        15
+      ],
+      "ll": -396.6081841896478,
+      "per": -1.709518035300206,
+      "optimalKeys": 1,
+      "allowedPairs": [
+        341,
+        314,
+        414,
+        358,
+        366,
+        339,
+        335,
+        349
+      ],
+      "starts": 314,
+      "ops": 3746680,
+      "trainText": "HE INSTAR IT IS ONLY THROUGH GOING WITHIN THAT WE MAY EMERGE WISDOM YOU ARE A BEING UNTO YOURSELF YOU ARE A LAW UNTO YOURSELF EACH INTELLIGENCE IS HOLY FOR ALL THAT LIVES IS HOLY AN INSTRUCTION COMMAND YOUR OWN SELF WISDOM CONTINUED",
+      "trueKey": [
+        1,
+        5,
+        3,
+        22,
+        0,
+        23,
+        4,
+        15
+      ],
+      "exactKey": true,
+      "heldoutCorrect": 76,
+      "holdout": {
+        "ll": -126.90821400898247,
+        "per": -1.669844921170822,
+        "grammar": true,
+        "violations": 0
+      },
+      "invalidPositions": [],
+      "delimiters": [
+        {
+          "offset": 2,
+          "char": " "
+        },
+        {
+          "offset": 9,
+          "char": " "
+        },
+        {
+          "offset": 12,
+          "char": " "
+        },
+        {
+          "offset": 15,
+          "char": " "
+        },
+        {
+          "offset": 20,
+          "char": " "
+        },
+        {
+          "offset": 28,
+          "char": " "
+        },
+        {
+          "offset": 34,
+          "char": " "
+        },
+        {
+          "offset": 41,
+          "char": " "
+        },
+        {
+          "offset": 46,
+          "char": " "
+        },
+        {
+          "offset": 49,
+          "char": " "
+        },
+        {
+          "offset": 53,
+          "char": " "
+        },
+        {
+          "offset": 60,
+          "char": " "
+        },
+        {
+          "offset": 67,
+          "char": " "
+        },
+        {
+          "offset": 71,
+          "char": " "
+        },
+        {
+          "offset": 75,
+          "char": " "
+        },
+        {
+          "offset": 77,
+          "char": " "
+        },
+        {
+          "offset": 83,
+          "char": " "
+        },
+        {
+          "offset": 88,
+          "char": " "
+        },
+        {
+          "offset": 97,
+          "char": " "
+        },
+        {
+          "offset": 101,
+          "char": " "
+        },
+        {
+          "offset": 105,
+          "char": " "
+        },
+        {
+          "offset": 107,
+          "char": " "
+        },
+        {
+          "offset": 111,
+          "char": " "
+        },
+        {
+          "offset": 116,
+          "char": " "
+        },
+        {
+          "offset": 125,
+          "char": " "
+        },
+        {
+          "offset": 130,
+          "char": " "
+        },
+        {
+          "offset": 143,
+          "char": " "
+        },
+        {
+          "offset": 146,
+          "char": " "
+        },
+        {
+          "offset": 151,
+          "char": " "
+        },
+        {
+          "offset": 155,
+          "char": " "
+        },
+        {
+          "offset": 159,
+          "char": " "
+        },
+        {
+          "offset": 164,
+          "char": " "
+        },
+        {
+          "offset": 170,
+          "char": " "
+        },
+        {
+          "offset": 173,
+          "char": " "
+        },
+        {
+          "offset": 178,
+          "char": " "
+        },
+        {
+          "offset": 181,
+          "char": " "
+        },
+        {
+          "offset": 193,
+          "char": " "
+        },
+        {
+          "offset": 201,
+          "char": " "
+        },
+        {
+          "offset": 206,
+          "char": " "
+        },
+        {
+          "offset": 210,
+          "char": " "
+        },
+        {
+          "offset": 215,
+          "char": " "
+        },
+        {
+          "offset": 222,
+          "char": " "
+        },
+        {
+          "offset": 232,
+          "char": " "
+        },
+        {
+          "offset": 236,
+          "char": " "
+        },
+        {
+          "offset": 240,
+          "char": " "
+        },
+        {
+          "offset": 242,
+          "char": " "
+        },
+        {
+          "offset": 248,
+          "char": " "
+        },
+        {
+          "offset": 253,
+          "char": " "
+        },
+        {
+          "offset": 262,
+          "char": " "
+        },
+        {
+          "offset": 266,
+          "char": " "
+        },
+        {
+          "offset": 270,
+          "char": " "
+        },
+        {
+          "offset": 272,
+          "char": " "
+        },
+        {
+          "offset": 276,
+          "char": " "
+        },
+        {
+          "offset": 281,
+          "char": " "
+        },
+        {
+          "offset": 290,
+          "char": " "
+        },
+        {
+          "offset": 295,
+          "char": " "
+        }
+      ],
+      "heldoutText": " YOU ARE A BEING UNTO YOURSELF YOU ARE A LAW UNTO YOURSELF EACH INTELLIGENCE",
+      "heldoutReplay": true
+    }
+  ],
+  "nulls": [
+    {
+      "name": "pad0",
+      "kind": "iid pad",
+      "key": [
+        2,
+        24,
+        15,
+        7,
+        14,
+        20,
+        12,
+        8
+      ],
+      "ll": -752.8597717671615,
+      "per": -3.245085223134317,
+      "optimalKeys": 1,
+      "allowedPairs": [
+        313,
+        226,
+        242,
+        250,
+        280,
+        314,
+        265,
+        274
+      ],
+      "starts": 226,
+      "ops": 1409990,
+      "trainText": "FRXVIETYWPSXKYLIWKBBTN BRAINTPBRTALVQUUU'WYVELERXF'PIDGBSXKKHEXJDOLSTLNEUNQRRRIPKMMUR ORCHLZ'UWOPHSEHKMJTTDOXOMNWZU J'SGM'IXAMTWM NQVZRNAVYTWXJUEWG'KKMAVAUZY'ENVALQRBBSIOPWQKOWYXCSH M ZSVTWAMSDJVNWZ BMSZZGOCRFLSL GC BWCTEXPPWLK Y IP",
+      "trueKey": null,
+      "exactKey": null,
+      "heldoutCorrect": null,
+      "holdout": {
+        "ll": -302.826032071328,
+        "per": -3.984553053570105,
+        "grammar": false,
+        "violations": 2
+      },
+      "invalidPositions": [
+        255,
+        303
+      ],
+      "delimiters": [
+        {
+          "offset": 22,
+          "char": " "
+        },
+        {
+          "offset": 40,
+          "char": "'"
+        },
+        {
+          "offset": 50,
+          "char": "'"
+        },
+        {
+          "offset": 85,
+          "char": " "
+        },
+        {
+          "offset": 92,
+          "char": "'"
+        },
+        {
+          "offset": 115,
+          "char": " "
+        },
+        {
+          "offset": 117,
+          "char": "'"
+        },
+        {
+          "offset": 121,
+          "char": "'"
+        },
+        {
+          "offset": 129,
+          "char": " "
+        },
+        {
+          "offset": 147,
+          "char": "'"
+        },
+        {
+          "offset": 157,
+          "char": "'"
+        },
+        {
+          "offset": 181,
+          "char": " "
+        },
+        {
+          "offset": 183,
+          "char": " "
+        },
+        {
+          "offset": 198,
+          "char": " "
+        },
+        {
+          "offset": 212,
+          "char": " "
+        },
+        {
+          "offset": 215,
+          "char": " "
+        },
+        {
+          "offset": 227,
+          "char": " "
+        },
+        {
+          "offset": 229,
+          "char": " "
+        },
+        {
+          "offset": 235,
+          "char": "'"
+        },
+        {
+          "offset": 242,
+          "char": "'"
+        },
+        {
+          "offset": 246,
+          "char": "'"
+        },
+        {
+          "offset": 254,
+          "char": "."
+        },
+        {
+          "offset": 275,
+          "char": " "
+        },
+        {
+          "offset": 281,
+          "char": " "
+        },
+        {
+          "offset": 302,
+          "char": "."
+        }
+      ],
+      "heldoutText": "PQV'EOFZPS'SVR'JMTQGAS.SJEIXJRUDFLHQNQZSHAE RLMPM KWNCTEPGTSAXUCBRMSOV.FIAWH",
+      "heldoutReplay": true
+    },
+    {
+      "name": "pad1",
+      "kind": "iid pad",
+      "key": [
+        0,
+        6,
+        6,
+        17,
+        17,
+        25,
+        13,
+        19
+      ],
+      "ll": -763.0027832176522,
+      "per": -3.288805100076087,
+      "optimalKeys": 1,
+      "allowedPairs": [
+        359,
+        293,
+        226,
+        328,
+        314,
+        241,
+        223,
+        299
+      ],
+      "starts": 293,
+      "ops": 1295857,
+      "trainText": "SST YYIXPHT HUZSIXHETADLJVOOYREGRL'T'LWMCFGZDSBYGOUXLOHET PTCTBRPOGNIQP YMINFEIEEUKDAZIMPMPXNT'ZI RPBARX'HAZ KSHRSSEKKAXMYJSATYZN'RSOOXX'ESFANQUNHLXM ZLCKZACCSGHVSUJJSMWX'DEOVH'EXEZ'VE'ZIISDACKKPKERA HAZUTGAKGBHXBXRXSJTEARIKTCRJYDNI",
+      "trueKey": null,
+      "exactKey": null,
+      "heldoutCorrect": null,
+      "holdout": {
+        "ll": -273.7332861944131,
+        "per": -3.6017537657159617,
+        "grammar": false,
+        "violations": 7
+      },
+      "invalidPositions": [
+        236,
+        252,
+        262,
+        266,
+        269,
+        282,
+        285
+      ],
+      "delimiters": [
+        {
+          "offset": 3,
+          "char": " "
+        },
+        {
+          "offset": 11,
+          "char": " "
+        },
+        {
+          "offset": 34,
+          "char": "'"
+        },
+        {
+          "offset": 36,
+          "char": "'"
+        },
+        {
+          "offset": 57,
+          "char": " "
+        },
+        {
+          "offset": 71,
+          "char": " "
+        },
+        {
+          "offset": 94,
+          "char": "'"
+        },
+        {
+          "offset": 97,
+          "char": " "
+        },
+        {
+          "offset": 104,
+          "char": "'"
+        },
+        {
+          "offset": 108,
+          "char": " "
+        },
+        {
+          "offset": 129,
+          "char": "'"
+        },
+        {
+          "offset": 136,
+          "char": "'"
+        },
+        {
+          "offset": 149,
+          "char": " "
+        },
+        {
+          "offset": 170,
+          "char": "'"
+        },
+        {
+          "offset": 176,
+          "char": "'"
+        },
+        {
+          "offset": 181,
+          "char": "'"
+        },
+        {
+          "offset": 184,
+          "char": "'"
+        },
+        {
+          "offset": 199,
+          "char": " "
+        },
+        {
+          "offset": 235,
+          "char": "."
+        },
+        {
+          "offset": 241,
+          "char": " "
+        },
+        {
+          "offset": 251,
+          "char": "."
+        },
+        {
+          "offset": 261,
+          "char": "."
+        },
+        {
+          "offset": 262,
+          "char": "'"
+        },
+        {
+          "offset": 265,
+          "char": "'"
+        },
+        {
+          "offset": 266,
+          "char": "'"
+        },
+        {
+          "offset": 268,
+          "char": "'"
+        },
+        {
+          "offset": 269,
+          "char": "'"
+        },
+        {
+          "offset": 275,
+          "char": " "
+        },
+        {
+          "offset": 281,
+          "char": "."
+        },
+        {
+          "offset": 284,
+          "char": "."
+        }
+      ],
+      "heldoutText": "FGP.POMJX RIDARSPEP.SWFWJKOFS.'NR''I''YIKAJ TFKQE.ZC.TFSLRJECHBOXAWTEDDFQTVM",
+      "heldoutReplay": true
+    },
+    {
+      "name": "pad2",
+      "kind": "iid pad",
+      "key": [
+        1,
+        2,
+        0,
+        9,
+        11,
+        24,
+        14,
+        4
+      ],
+      "ll": -759.7454789404442,
+      "per": -3.274764995432949,
+      "optimalKeys": 1,
+      "allowedPairs": [
+        240,
+        124,
+        195,
+        247,
+        255,
+        309,
+        235,
+        309
+      ],
+      "starts": 124,
+      "ops": 510874,
+      "trainText": "S ZHAT VIUDEOHEBFGPZ'AGDKTDVQVXLOZGOVCWXABBPGBSAIRJHGWG MGXORQSV'WAVOQ XPKKUEZ HTZTXZEXPUHWNOMIDESPD'YLAXPBEGJDARAABIPGOICLJOUTCHJNJYW'RVDOLOQINLYDRZ HONCCYGLGKUYJTN'ALDSXYHHXE OEAUEIRCCZGEQRVQOUROIMMYQXATIBIINRYELXUBMQGTCSFKJQZJBXF",
+      "trueKey": null,
+      "exactKey": null,
+      "heldoutCorrect": null,
+      "holdout": {
+        "ll": -303.17039319273846,
+        "per": -3.989084120957085,
+        "grammar": false,
+        "violations": 3
+      },
+      "invalidPositions": [
+        247,
+        252,
+        299
+      ],
+      "delimiters": [
+        {
+          "offset": 1,
+          "char": " "
+        },
+        {
+          "offset": 6,
+          "char": " "
+        },
+        {
+          "offset": 20,
+          "char": "'"
+        },
+        {
+          "offset": 55,
+          "char": " "
+        },
+        {
+          "offset": 64,
+          "char": "'"
+        },
+        {
+          "offset": 70,
+          "char": " "
+        },
+        {
+          "offset": 78,
+          "char": " "
+        },
+        {
+          "offset": 100,
+          "char": "'"
+        },
+        {
+          "offset": 134,
+          "char": "'"
+        },
+        {
+          "offset": 149,
+          "char": " "
+        },
+        {
+          "offset": 165,
+          "char": "'"
+        },
+        {
+          "offset": 176,
+          "char": " "
+        },
+        {
+          "offset": 237,
+          "char": "'"
+        },
+        {
+          "offset": 239,
+          "char": " "
+        },
+        {
+          "offset": 241,
+          "char": "'"
+        },
+        {
+          "offset": 246,
+          "char": "."
+        },
+        {
+          "offset": 251,
+          "char": "."
+        },
+        {
+          "offset": 258,
+          "char": "'"
+        },
+        {
+          "offset": 268,
+          "char": " "
+        },
+        {
+          "offset": 272,
+          "char": "'"
+        },
+        {
+          "offset": 298,
+          "char": "."
+        }
+      ],
+      "heldoutText": "LREVX'W I'PKVO.XSDV.IZRLCJ'YZJNFWWGA CAI'ILJSWFKMFMMDMJBYGUFSZBMJT.RHBVXOANT",
+      "heldoutReplay": true
+    },
+    {
+      "name": "pad3",
+      "kind": "iid pad",
+      "key": [
+        9,
+        12,
+        28,
+        11,
+        17,
+        19,
+        3,
+        8
+      ],
+      "ll": -757.7655988330956,
+      "per": -3.2662310294529986,
+      "optimalKeys": 1,
+      "allowedPairs": [
+        252,
+        283,
+        225,
+        225,
+        256,
+        319,
+        235,
+        317
+      ],
+      "starts": 283,
+      "ops": 1639596,
+      "trainText": "PFLMCQHSJGYXOKLNLYYGLXNNCCMCGUGOEQUYFBBLSZIBTLXULPRDAFKWKRCCDXBGCFMHLSRR'I RKYJELDEEOXKNNPU TMRCCVJWNEMKMWICKUBNNHTJBFFPCDFFYYSDTXO AWAPPVJLAIHTBMIXFLSVFNODAVKOOK LL ATPHVXUUWW FQV'AXZKAH CSGGWBDOOP'IV LZGSEMTBLS'NK UNAMQYIGMABXRDJO",
+      "trueKey": null,
+      "exactKey": null,
+      "heldoutCorrect": null,
+      "holdout": {
+        "ll": -325.7665494802665,
+        "per": -4.286401966845612,
+        "grammar": false,
+        "violations": 2
+      },
+      "invalidPositions": [
+        265,
+        292
+      ],
+      "delimiters": [
+        {
+          "offset": 72,
+          "char": "'"
+        },
+        {
+          "offset": 74,
+          "char": " "
+        },
+        {
+          "offset": 91,
+          "char": " "
+        },
+        {
+          "offset": 131,
+          "char": " "
+        },
+        {
+          "offset": 162,
+          "char": " "
+        },
+        {
+          "offset": 165,
+          "char": " "
+        },
+        {
+          "offset": 176,
+          "char": " "
+        },
+        {
+          "offset": 180,
+          "char": "'"
+        },
+        {
+          "offset": 187,
+          "char": " "
+        },
+        {
+          "offset": 198,
+          "char": "'"
+        },
+        {
+          "offset": 201,
+          "char": " "
+        },
+        {
+          "offset": 212,
+          "char": "'"
+        },
+        {
+          "offset": 215,
+          "char": " "
+        },
+        {
+          "offset": 243,
+          "char": "'"
+        },
+        {
+          "offset": 253,
+          "char": "'"
+        },
+        {
+          "offset": 264,
+          "char": "."
+        },
+        {
+          "offset": 270,
+          "char": " "
+        },
+        {
+          "offset": 284,
+          "char": "'"
+        },
+        {
+          "offset": 291,
+          "char": "."
+        },
+        {
+          "offset": 300,
+          "char": " "
+        },
+        {
+          "offset": 304,
+          "char": " "
+        }
+      ],
+      "heldoutText": "UNYNKMRQPEV'CZYXHXTWV'GXWUPYEJPU.NTNUD NBJAYLBKQATCK'ROEOBS.NNHFYVMS GVX ZLD",
+      "heldoutReplay": true
+    },
+    {
+      "name": "native0",
+      "kind": "GP29 q8",
+      "key": [
+        22,
+        12,
+        17,
+        28,
+        19,
+        15,
+        0,
+        8
+      ],
+      "ll": -712.6579276246055,
+      "per": -3.0718014121750237,
+      "optimalKeys": 1,
+      "allowedPairs": [
+        401,
+        404,
+        400,
+        329,
+        328,
+        463,
+        405,
+        344
+      ],
+      "starts": 404,
+      "ops": 6065283,
+      "trainText": "HPDDQVDUHNRRZGYGHNBUKOFHUYKFYQAGHZKUFFSFGYNWYOUL'PISDICFJ TECFJVXHIUYABSNWZLVQF XYRICKO FADZFIEL'PDETJYKEWZETHRKPQQWTOXKTPRHRAPFEWDWVYPAGJRGYAGSHHULY'DRHKKBFAGH'LLWZHRRWNDEDISFEWAKTXDSHJYUFAXCFKXVT'BCMQQRTIJZMOVGYIP EYDLQGSRXWA VYOF",
+      "trueKey": null,
+      "exactKey": null,
+      "heldoutCorrect": null,
+      "holdout": {
+        "ll": -288.9497009247397,
+        "per": -3.801969749009733,
+        "grammar": false,
+        "violations": 2
+      },
+      "invalidPositions": [
+        245,
+        251
+      ],
+      "delimiters": [
+        {
+          "offset": 48,
+          "char": "'"
+        },
+        {
+          "offset": 57,
+          "char": " "
+        },
+        {
+          "offset": 79,
+          "char": " "
+        },
+        {
+          "offset": 87,
+          "char": " "
+        },
+        {
+          "offset": 96,
+          "char": "'"
+        },
+        {
+          "offset": 149,
+          "char": "'"
+        },
+        {
+          "offset": 160,
+          "char": "'"
+        },
+        {
+          "offset": 197,
+          "char": "'"
+        },
+        {
+          "offset": 215,
+          "char": " "
+        },
+        {
+          "offset": 227,
+          "char": " "
+        },
+        {
+          "offset": 233,
+          "char": " "
+        },
+        {
+          "offset": 244,
+          "char": "."
+        },
+        {
+          "offset": 250,
+          "char": "."
+        },
+        {
+          "offset": 261,
+          "char": "'"
+        },
+        {
+          "offset": 266,
+          "char": " "
+        },
+        {
+          "offset": 304,
+          "char": " "
+        }
+      ],
+      "heldoutText": "H RLYJPDTBNW.DJUFQ.MOOBFMQQVL'YCFY DKGRSHBGPTGYDHBCZZTOFXWDFKYRGIJCFBVDX JNU",
+      "heldoutReplay": true
+    },
+    {
+      "name": "native1",
+      "kind": "GP29 q8",
+      "key": [
+        12,
+        8,
+        23,
+        6,
+        4,
+        20,
+        3,
+        28
+      ],
+      "ll": -746.2344159965529,
+      "per": -3.2165276551575555,
+      "optimalKeys": 1,
+      "allowedPairs": [
+        343,
+        299,
+        403,
+        314,
+        372,
+        311,
+        353,
+        367
+      ],
+      "starts": 299,
+      "ops": 3595631,
+      "trainText": "TAVKXJUSKCCENSZCYYOACZORLYWHSS DIBOXZLNIFYCHYRIJLQIDIJKRHMVWYLODVKQJY ZJXQUIARQYYITQUYORRAIIXZONTI JFQ'TFJGNN TAMKFQ'XLTJMAOXN RIMOJKCTRUMOHX'UDIXGPN PBHZ GIM'WDPSOXRUBTFVWFLOQVMOJ'D UIKQEOXRRIPQJOY'ENCDWX'BP'MAKDP'JIKLQVYNCOPTYJP'F",
+      "trueKey": null,
+      "exactKey": null,
+      "heldoutCorrect": null,
+      "holdout": {
+        "ll": -279.28789140000805,
+        "per": -3.6748406763158954,
+        "grammar": false,
+        "violations": 1
+      },
+      "invalidPositions": [
+        273
+      ],
+      "delimiters": [
+        {
+          "offset": 30,
+          "char": " "
+        },
+        {
+          "offset": 69,
+          "char": " "
+        },
+        {
+          "offset": 98,
+          "char": " "
+        },
+        {
+          "offset": 102,
+          "char": "'"
+        },
+        {
+          "offset": 109,
+          "char": " "
+        },
+        {
+          "offset": 116,
+          "char": "'"
+        },
+        {
+          "offset": 126,
+          "char": " "
+        },
+        {
+          "offset": 141,
+          "char": "'"
+        },
+        {
+          "offset": 149,
+          "char": " "
+        },
+        {
+          "offset": 154,
+          "char": " "
+        },
+        {
+          "offset": 158,
+          "char": "'"
+        },
+        {
+          "offset": 180,
+          "char": "'"
+        },
+        {
+          "offset": 182,
+          "char": " "
+        },
+        {
+          "offset": 198,
+          "char": "'"
+        },
+        {
+          "offset": 205,
+          "char": "'"
+        },
+        {
+          "offset": 208,
+          "char": "'"
+        },
+        {
+          "offset": 214,
+          "char": "'"
+        },
+        {
+          "offset": 230,
+          "char": "'"
+        },
+        {
+          "offset": 246,
+          "char": "'"
+        },
+        {
+          "offset": 267,
+          "char": " "
+        },
+        {
+          "offset": 272,
+          "char": "."
+        },
+        {
+          "offset": 285,
+          "char": "'"
+        },
+        {
+          "offset": 300,
+          "char": "'"
+        },
+        {
+          "offset": 302,
+          "char": "'"
+        },
+        {
+          "offset": 305,
+          "char": "'"
+        }
+      ],
+      "heldoutText": "JYBYGSOUOMJOEJ'XTJCYUXALYYPAFMNEEKC AJKY.CMVGLBPXBJOX'BCDIGHFSEYFHTF'Z'FH'TQ",
+      "heldoutReplay": true
+    }
+  ],
+  "original": {
+    "name": "p54–55",
+    "kind": "original",
+    "key": [
+      27,
+      14,
+      4,
+      5,
+      19,
+      20,
+      15,
+      23
+    ],
+    "ll": -756.9706231816532,
+    "per": -3.2628044102657467,
+    "optimalKeys": 1,
+    "allowedPairs": [
+      223,
+      251,
+      198,
+      212,
+      240,
+      251,
+      280,
+      215
+    ],
+    "starts": 251,
+    "ops": 1268718,
+    "trainText": " FRSIL'QVNTICKVBVCUQCLMNRXGAGWKMFFGT'MBNFPWZ UQRBEBEJONYGS JEQWXXPUAVKRRAOGPQRCHNAUARHEJPMTWBW QETWBAXHMRFJGDDHWAIMQU'GD LR'HUX DANDXURFILDJZDTHSIEHTWBF'D BQE PISOPA QDAIIVAOHIUGAHXNIDQJRVXYDUJUCYENDAUW'HDRR'TBEXFOYZQ PNAAUJSRKNJNUD",
+    "trueKey": null,
+    "exactKey": null,
+    "heldoutCorrect": null,
+    "holdout": {
+      "ll": -315.8390370265852,
+      "per": -4.155776802981384,
+      "grammar": false,
+      "violations": 2
+    },
+    "invalidPositions": [
+      290,
+      292
+    ],
+    "delimiters": [
+      {
+        "offset": 0,
+        "char": " "
+      },
+      {
+        "offset": 6,
+        "char": "'"
+      },
+      {
+        "offset": 36,
+        "char": "'"
+      },
+      {
+        "offset": 44,
+        "char": " "
+      },
+      {
+        "offset": 58,
+        "char": " "
+      },
+      {
+        "offset": 94,
+        "char": " "
+      },
+      {
+        "offset": 117,
+        "char": "'"
+      },
+      {
+        "offset": 120,
+        "char": " "
+      },
+      {
+        "offset": 123,
+        "char": "'"
+      },
+      {
+        "offset": 127,
+        "char": " "
+      },
+      {
+        "offset": 152,
+        "char": "'"
+      },
+      {
+        "offset": 154,
+        "char": " "
+      },
+      {
+        "offset": 158,
+        "char": " "
+      },
+      {
+        "offset": 165,
+        "char": " "
+      },
+      {
+        "offset": 202,
+        "char": "'"
+      },
+      {
+        "offset": 207,
+        "char": "'"
+      },
+      {
+        "offset": 217,
+        "char": " "
+      },
+      {
+        "offset": 278,
+        "char": " "
+      },
+      {
+        "offset": 289,
+        "char": "."
+      },
+      {
+        "offset": 290,
+        "char": "."
+      },
+      {
+        "offset": 291,
+        "char": " "
+      },
+      {
+        "offset": 292,
+        "char": "'"
+      },
+      {
+        "offset": 295,
+        "char": "'"
+      }
+    ],
+    "heldoutText": "XLPFRYCUVBIBELKGAKNALQSXBPKFAKTTKHQHAYIEPPNDWO YBEGBYPAYR.. 'YQ'HOGOPXIRDDOF",
+    "heldoutReplay": true
+  }
+}
