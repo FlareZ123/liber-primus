@@ -88,11 +88,34 @@ function experiment(corpus,source,native){
       const plantRank=walk(lens,k,order,plantedCipher).rank;
       assert(equal(digits(q*enc.M+plantRank,plant.length),plant),"native plant replay");
       assert((enc.rank+q*enc.M)%base===enc.rank%base,"quotient invariant");
-      rec.orders.push({order,ioc:ioc(tail),preview:tail.slice(0,25).map(i=>corpus.translit[i]).join(" "),plantRunes:plant.length});
+      const Pspace=29n**BigInt(flat.length),L=(Pspace+enc.M-1n)/enc.M;
+      const lo=enc.rank*L,hi=lo+L-1n<Pspace?lo+L-1n:Pspace-1n;
+      let low={valid:false};
+      if(lo<Pspace){
+        const a=digits(lo,flat.length),b=digits(hi,flat.length);
+        let common=0;while(common<a.length&&a[common]===b[common])common++;
+        const prefix=a.slice(0,common);
+        const plantR=P/L,plantQ=P%L;
+        assert(plantR<enc.M,"low-sidecar rank fits");
+        const lowPlant=walk(lens,k,order,plantR).decoded;
+        assert(equal(digits(walk(lens,k,order,lowPlant).rank*L+plantQ,plant.length),plant),"low-sidecar plant replay");
+        low={valid:true,prefixLength:common,ioc:ioc(prefix),j:prefix.filter(x=>x===11).length,eo:prefix.filter(x=>x===12).length,preview:prefix.slice(0,25).map(i=>corpus.translit[i]).join(" "),plantRunes:plant.length};
+      }
+      rec.orders.push({order,ioc:ioc(tail),j:tail.filter(x=>x===11).length,eo:tail.filter(x=>x===12).length,low,preview:tail.slice(0,25).map(i=>corpus.translit[i]).join(" "),plantRunes:plant.length});
     }
     results.push(rec);
   }
   return results;
 }
+function countGate(result,prior){
+  const wholeControl=prior.original.find(x=>x.name==="whole");
+  if(wholeControl.n!==12956||wholeControl.literary.maxRare!==83||wholeControl.literary.windows!==1129739)throw Error("control register drift");
+  const minima=result.map(x=>({label:x.label,high:Math.min(...x.orders.map(o=>o.j+o.eo)),low:Math.min(...x.orders.map(o=>o.low.valid?o.low.j+o.low.eo:Infinity)),mixed:Math.min(...x.orders.flatMap(o=>[o.j+o.eo,o.low.valid?o.low.j+o.low.eo:Infinity]))}));
+  const sum=(k)=>minima.slice(1).reduce((s,x)=>s+x[k],0);
+  const bound={controlMax:wholeControl.literary.maxRare,controlWindows:wholeControl.literary.windows,wholeMin:minima[0],independentSections:{high:sum("high"),low:sum("low"),mixed:sum("mixed")},minima};
+  if(bound.wholeMin.mixed<=bound.controlMax||bound.independentSections.mixed<=bound.controlMax)throw Error("rare-count obstruction does not hold");
+  return bound;
+}
 const result=experiment(JSON.parse(read('resources/liber-primus/lp2-corpus.json')),read('resources/transcriptions/lp2-image-corrected.txt'),JSON.parse(read('resources/external/relikd-solved-gp29-native-v1.json')));
-console.log(JSON.stringify(result,null,2));
+const gate=countGate(result,JSON.parse(read('im-results/lp2-active28-porta-q8-gate-output.json')));
+console.log(JSON.stringify({result,gate},null,2));

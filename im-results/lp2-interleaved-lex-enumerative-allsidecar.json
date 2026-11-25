@@ -1,200 +1,471 @@
-[
-  {
-    "label": "whole",
-    "n": 12956,
-    "h": 2896,
-    "k": 63,
-    "nativeMin": 0.0612794492313858,
-    "nativeMax": 0.06154519604194696,
-    "orders": [
+{
+  "result": [
+    {
+      "label": "whole",
+      "n": 12956,
+      "h": 2896,
+      "k": 63,
+      "nativeMin": 0.0612794492313858,
+      "nativeMax": 0.06154519604194696,
+      "orders": [
+        {
+          "order": "absolute",
+          "ioc": 0.03443949846849684,
+          "j": 87,
+          "eo": 88,
+          "low": {
+            "valid": true,
+            "prefixLength": 12901,
+            "ioc": 0.03448145657839156,
+            "j": 424,
+            "eo": 439,
+            "preview": "S H AE TH D I B T N X X H EO IA I N TH X A X OE AE P D O",
+            "plantRunes": 12956
+          },
+          "preview": "B C E W M I EO D H P G IA H C L EO IA U H R EA T T D W",
+          "plantRunes": 12956
+        },
+        {
+          "order": "delta",
+          "ioc": 0.034506292998979,
+          "j": 96,
+          "eo": 94,
+          "low": {
+            "valid": true,
+            "prefixLength": 12900,
+            "ioc": 0.034451898500634924,
+            "j": 445,
+            "eo": 463,
+            "preview": "S OE R H H NG AE AE L EA U X W B D EA N Y G R R J Y EA P",
+            "plantRunes": 12956
+          },
+          "preview": "AE L OE M EO TH B TH P AE R W O R OE B M EO J A TH AE OE L J",
+          "plantRunes": 12956
+        }
+      ]
+    },
+    {
+      "label": "section0",
+      "n": 729,
+      "h": 158,
+      "k": 2,
+      "nativeMin": 0.052084173183907116,
+      "nativeMax": 0.0740949770216883,
+      "orders": [
+        {
+          "order": "absolute",
+          "ioc": 0.03466903168588245,
+          "j": 8,
+          "eo": 5,
+          "low": {
+            "valid": true,
+            "prefixLength": 724,
+            "ioc": 0.03376813919900965,
+            "j": 19,
+            "eo": 34,
+            "preview": "S H AE OE E OE D X R F C EA N Y NG R J Y N OE W NG T F AE",
+            "plantRunes": 729
+          },
+          "preview": "U G EA D EA J M F A P NG L L N H C A I NG NG U NG E NG R",
+          "plantRunes": 729
+        },
+        {
+          "order": "delta",
+          "ioc": 0.03241151334354592,
+          "j": 8,
+          "eo": 7,
+          "low": {
+            "valid": true,
+            "prefixLength": 724,
+            "ioc": 0.03401649052826238,
+            "j": 24,
+            "eo": 26,
+            "preview": "S OE O M NG TH AE W T F W TH L E S AE W T G X R M P S O",
+            "plantRunes": 729
+          },
+          "preview": "D L L AE C U Y E L F OE S EA D U E E M S EO O R U NG R",
+          "plantRunes": 729
+        }
+      ]
+    },
+    {
+      "label": "section1",
+      "n": 1145,
+      "h": 255,
+      "k": 4,
+      "nativeMin": 0.05369769955226185,
+      "nativeMax": 0.0757140651536205,
+      "orders": [
+        {
+          "order": "absolute",
+          "ioc": 0.03779527559055118,
+          "j": 4,
+          "eo": 5,
+          "low": {
+            "valid": true,
+            "prefixLength": 1138,
+            "ioc": 0.034665578488700104,
+            "j": 33,
+            "eo": 52,
+            "preview": "L J OE B J Y AE W EO C M EO IA P EA S O AE NG X S D M EO L",
+            "plantRunes": 1145
+          },
+          "preview": "Y W I AE NG N H Y G O AE M E F P NG EO EO O U F E R F AE",
+          "plantRunes": 1145
+        },
+        {
+          "order": "delta",
+          "ioc": 0.03480006175698626,
+          "j": 11,
+          "eo": 6,
+          "low": {
+            "valid": true,
+            "prefixLength": 1138,
+            "ioc": 0.03420032057970208,
+            "j": 36,
+            "eo": 41,
+            "preview": "L L C R A X R EO IA F W F E AE U P TH AE L M L X F L I",
+            "plantRunes": 1145
+          },
+          "preview": "NG U S NG OE D C AE A I M G U IA EO TH X L H OE U D O S I",
+          "plantRunes": 1145
+        }
+      ]
+    },
+    {
+      "label": "section2",
+      "n": 1738,
+      "h": 385,
+      "k": 7,
+      "nativeMin": 0.05569534632034632,
+      "nativeMax": 0.07037337662337663,
+      "orders": [
+        {
+          "order": "absolute",
+          "ioc": 0.03444264069264069,
+          "j": 11,
+          "eo": 13,
+          "low": {
+            "valid": true,
+            "prefixLength": 1729,
+            "ioc": 0.03458298524087998,
+            "j": 68,
+            "eo": 62,
+            "preview": "X I D EO Y E TH L N NG A U NG B Y D F B J EO O M F R TH",
+            "plantRunes": 1738
+          },
+          "preview": "C P OE B TH S R S A B M T AE N AE W P A D S G M U T F",
+          "plantRunes": 1738
+        },
+        {
+          "order": "delta",
+          "ioc": 0.03428030303030303,
+          "j": 15,
+          "eo": 10,
+          "low": {
+            "valid": true,
+            "prefixLength": 1729,
+            "ioc": 0.03450064798749009,
+            "j": 55,
+            "eo": 50,
+            "preview": "X A EA EA N H J B H I B OE B H U U EO EO G IA I M O TH IA",
+            "plantRunes": 1738
+          },
+          "preview": "TH T O T L R X C E F D U P G H B Y OE Y S M EO C X B",
+          "plantRunes": 1738
+        }
+      ]
+    },
+    {
+      "label": "section3",
+      "n": 1894,
+      "h": 435,
+      "k": 10,
+      "nativeMin": 0.05654960538164098,
+      "nativeMax": 0.06931511202923883,
+      "orders": [
+        {
+          "order": "absolute",
+          "ioc": 0.034450977276338786,
+          "j": 9,
+          "eo": 11,
+          "low": {
+            "valid": true,
+            "prefixLength": 1885,
+            "ioc": 0.03436111439625606,
+            "j": 55,
+            "eo": 45,
+            "preview": "L U OE S E A R NG EA EA AE T C E AE J R E I Y F H G N AE",
+            "plantRunes": 1894
+          },
+          "preview": "T N IA X EA P EO AE L AE S Y S U J NG D E A TH A T F L H",
+          "plantRunes": 1894
+        },
+        {
+          "order": "delta",
+          "ioc": 0.03452513374649081,
+          "j": 23,
+          "eo": 21,
+          "low": {
+            "valid": true,
+            "prefixLength": 1885,
+            "ioc": 0.0344647372541069,
+            "j": 66,
+            "eo": 63,
+            "preview": "L I C R X AE E J H R N A A D OE J EA N L S P Y W TH EO",
+            "plantRunes": 1894
+          },
+          "preview": "X O F F EO C I X F N IA IA EO G E W O NG H J AE R EA D N",
+          "plantRunes": 1894
+        }
+      ]
+    },
+    {
+      "label": "section4",
+      "n": 1021,
+      "h": 224,
+      "k": 9,
+      "nativeMin": 0.053251121076233185,
+      "nativeMax": 0.07575272261370916,
+      "orders": [
+        {
+          "order": "absolute",
+          "ioc": 0.035233824471492634,
+          "j": 7,
+          "eo": 13,
+          "low": {
+            "valid": true,
+            "prefixLength": 1017,
+            "ioc": 0.03406653814290913,
+            "j": 33,
+            "eo": 31,
+            "preview": "U A R P H T U I M R N OE EA Y B T T H P P O P C Y U",
+            "plantRunes": 1021
+          },
+          "preview": "E TH T H J EO L C T D E AE A R M A A U A F I P IA A M",
+          "plantRunes": 1021
+        },
+        {
+          "order": "delta",
+          "ioc": 0.033311979500320305,
+          "j": 5,
+          "eo": 14,
+          "low": {
+            "valid": true,
+            "prefixLength": 1017,
+            "ioc": 0.03474012651073483,
+            "j": 35,
+            "eo": 31,
+            "preview": "U D O S F F E S S C B S T IA E M E O H AE M TH OE M E",
+            "plantRunes": 1021
+          },
+          "preview": "N N TH E R G L J E OE N O IA U O L IA N S NG U EA EO AE L",
+          "plantRunes": 1021
+        }
+      ]
+    },
+    {
+      "label": "section5",
+      "n": 1433,
+      "h": 326,
+      "k": 8,
+      "nativeMin": 0.05449740443605474,
+      "nativeMax": 0.07248702218027371,
+      "orders": [
+        {
+          "order": "absolute",
+          "ioc": 0.033902784332232185,
+          "j": 8,
+          "eo": 14,
+          "low": {
+            "valid": true,
+            "prefixLength": 1426,
+            "ioc": 0.034617258433601535,
+            "j": 44,
+            "eo": 45,
+            "preview": "M X N U O TH W P Y A E W IA M J H G EA O D P M X NG TH",
+            "plantRunes": 1433
+          },
+          "preview": "S IA IA N EO B EO P OE S IA EA O NG G H B J TH Y J U X M I",
+          "plantRunes": 1433
+        },
+        {
+          "order": "delta",
+          "ioc": 0.03411042944785276,
+          "j": 13,
+          "eo": 18,
+          "low": {
+            "valid": true,
+            "prefixLength": 1426,
+            "ioc": 0.034447971260549694,
+            "j": 56,
+            "eo": 41,
+            "preview": "M D H NG OE N P X N H I G R H B J T X A O EA J C H EA",
+            "plantRunes": 1433
+          },
+          "preview": "H R U IA Y P AE EO N EO TH M U M S P D N EO G T S NG O P",
+          "plantRunes": 1433
+        }
+      ]
+    },
+    {
+      "label": "section6",
+      "n": 1680,
+      "h": 378,
+      "k": 8,
+      "nativeMin": 0.05560467629433147,
+      "nativeMax": 0.07014441497200118,
+      "orders": [
+        {
+          "order": "absolute",
+          "ioc": 0.034258206671999775,
+          "j": 12,
+          "eo": 16,
+          "low": {
+            "valid": true,
+            "prefixLength": 1672,
+            "ioc": 0.034560143626570915,
+            "j": 48,
+            "eo": 56,
+            "preview": "D EO A D EO S P R H OE EO L E P OE R F B X T NG X M B A",
+            "plantRunes": 1680
+          },
+          "preview": "S D N O C C D M AE J J C O AE NG W Y NG J G X E Y EA AE",
+          "plantRunes": 1680
+        },
+        {
+          "order": "delta",
+          "ioc": 0.034552931104655245,
+          "j": 8,
+          "eo": 18,
+          "low": {
+            "valid": true,
+            "prefixLength": 1671,
+            "ioc": 0.03420018132496228,
+            "j": 57,
+            "eo": 59,
+            "preview": "D E C OE B W W C P G W NG IA C OE R R R L EO R G O R EA",
+            "plantRunes": 1680
+          },
+          "preview": "B N IA F X W A F E EA J U T E X L X G EO F N G T L G",
+          "plantRunes": 1680
+        }
+      ]
+    },
+    {
+      "label": "section7",
+      "n": 3316,
+      "h": 735,
+      "k": 15,
+      "nativeMin": 0.05779903241950731,
+      "nativeMax": 0.06740440045227901,
+      "orders": [
+        {
+          "order": "absolute",
+          "ioc": 0.033950582957978835,
+          "j": 20,
+          "eo": 21,
+          "low": {
+            "valid": true,
+            "prefixLength": 3300,
+            "ioc": 0.03464796494805589,
+            "j": 144,
+            "eo": 115,
+            "preview": "F N TH EA A B D U EO R W R U EA EO Y H T W A EO X NG D D",
+            "plantRunes": 3316
+          },
+          "preview": "R TH OE AE D G EA TH IA H I EO X E EA W X IA L T C IA E B IA",
+          "plantRunes": 3316
+        },
+        {
+          "order": "delta",
+          "ioc": 0.0342619881740162,
+          "j": 23,
+          "eo": 23,
+          "low": {
+            "valid": true,
+            "prefixLength": 3300,
+            "ioc": 0.03454122920627922,
+            "j": 98,
+            "eo": 97,
+            "preview": "F H OE P C S EO D N IA EO X T J Y C R M EO Y X W O I OE",
+            "plantRunes": 3316
+          },
+          "preview": "AE R C EA R IA NG AE IA C M R OE F I B P T TH F IA G P U B",
+          "plantRunes": 3316
+        }
+      ]
+    }
+  ],
+  "gate": {
+    "controlMax": 83,
+    "controlWindows": 1129739,
+    "wholeMin": {
+      "label": "whole",
+      "high": 175,
+      "low": 863,
+      "mixed": 175
+    },
+    "independentSections": {
+      "high": 174,
+      "low": 784,
+      "mixed": 174
+    },
+    "minima": [
       {
-        "order": "absolute",
-        "ioc": 0.03443949846849684,
-        "preview": "B C E W M I EO D H P G IA H C L EO IA U H R EA T T D W",
-        "plantRunes": 12956
+        "label": "whole",
+        "high": 175,
+        "low": 863,
+        "mixed": 175
       },
       {
-        "order": "delta",
-        "ioc": 0.034506292998979,
-        "preview": "AE L OE M EO TH B TH P AE R W O R OE B M EO J A TH AE OE L J",
-        "plantRunes": 12956
-      }
-    ]
-  },
-  {
-    "label": "section0",
-    "n": 729,
-    "h": 158,
-    "k": 2,
-    "nativeMin": 0.052084173183907116,
-    "nativeMax": 0.0740949770216883,
-    "orders": [
-      {
-        "order": "absolute",
-        "ioc": 0.03466903168588245,
-        "preview": "U G EA D EA J M F A P NG L L N H C A I NG NG U NG E NG R",
-        "plantRunes": 729
+        "label": "section0",
+        "high": 13,
+        "low": 50,
+        "mixed": 13
       },
       {
-        "order": "delta",
-        "ioc": 0.03241151334354592,
-        "preview": "D L L AE C U Y E L F OE S EA D U E E M S EO O R U NG R",
-        "plantRunes": 729
-      }
-    ]
-  },
-  {
-    "label": "section1",
-    "n": 1145,
-    "h": 255,
-    "k": 4,
-    "nativeMin": 0.05369769955226185,
-    "nativeMax": 0.0757140651536205,
-    "orders": [
-      {
-        "order": "absolute",
-        "ioc": 0.03779527559055118,
-        "preview": "Y W I AE NG N H Y G O AE M E F P NG EO EO O U F E R F AE",
-        "plantRunes": 1145
+        "label": "section1",
+        "high": 9,
+        "low": 77,
+        "mixed": 9
       },
       {
-        "order": "delta",
-        "ioc": 0.03480006175698626,
-        "preview": "NG U S NG OE D C AE A I M G U IA EO TH X L H OE U D O S I",
-        "plantRunes": 1145
-      }
-    ]
-  },
-  {
-    "label": "section2",
-    "n": 1738,
-    "h": 385,
-    "k": 7,
-    "nativeMin": 0.05569534632034632,
-    "nativeMax": 0.07037337662337663,
-    "orders": [
-      {
-        "order": "absolute",
-        "ioc": 0.03444264069264069,
-        "preview": "C P OE B TH S R S A B M T AE N AE W P A D S G M U T F",
-        "plantRunes": 1738
+        "label": "section2",
+        "high": 24,
+        "low": 105,
+        "mixed": 24
       },
       {
-        "order": "delta",
-        "ioc": 0.03428030303030303,
-        "preview": "TH T O T L R X C E F D U P G H B Y OE Y S M EO C X B",
-        "plantRunes": 1738
-      }
-    ]
-  },
-  {
-    "label": "section3",
-    "n": 1894,
-    "h": 435,
-    "k": 10,
-    "nativeMin": 0.05654960538164098,
-    "nativeMax": 0.06931511202923883,
-    "orders": [
-      {
-        "order": "absolute",
-        "ioc": 0.034450977276338786,
-        "preview": "T N IA X EA P EO AE L AE S Y S U J NG D E A TH A T F L H",
-        "plantRunes": 1894
+        "label": "section3",
+        "high": 20,
+        "low": 100,
+        "mixed": 20
       },
       {
-        "order": "delta",
-        "ioc": 0.03452513374649081,
-        "preview": "X O F F EO C I X F N IA IA EO G E W O NG H J AE R EA D N",
-        "plantRunes": 1894
-      }
-    ]
-  },
-  {
-    "label": "section4",
-    "n": 1021,
-    "h": 224,
-    "k": 9,
-    "nativeMin": 0.053251121076233185,
-    "nativeMax": 0.07575272261370916,
-    "orders": [
-      {
-        "order": "absolute",
-        "ioc": 0.035233824471492634,
-        "preview": "E TH T H J EO L C T D E AE A R M A A U A F I P IA A M",
-        "plantRunes": 1021
+        "label": "section4",
+        "high": 19,
+        "low": 64,
+        "mixed": 19
       },
       {
-        "order": "delta",
-        "ioc": 0.033311979500320305,
-        "preview": "N N TH E R G L J E OE N O IA U O L IA N S NG U EA EO AE L",
-        "plantRunes": 1021
-      }
-    ]
-  },
-  {
-    "label": "section5",
-    "n": 1433,
-    "h": 326,
-    "k": 8,
-    "nativeMin": 0.05449740443605474,
-    "nativeMax": 0.07248702218027371,
-    "orders": [
-      {
-        "order": "absolute",
-        "ioc": 0.033902784332232185,
-        "preview": "S IA IA N EO B EO P OE S IA EA O NG G H B J TH Y J U X M I",
-        "plantRunes": 1433
+        "label": "section5",
+        "high": 22,
+        "low": 89,
+        "mixed": 22
       },
       {
-        "order": "delta",
-        "ioc": 0.03411042944785276,
-        "preview": "H R U IA Y P AE EO N EO TH M U M S P D N EO G T S NG O P",
-        "plantRunes": 1433
-      }
-    ]
-  },
-  {
-    "label": "section6",
-    "n": 1680,
-    "h": 378,
-    "k": 8,
-    "nativeMin": 0.05560467629433147,
-    "nativeMax": 0.07014441497200118,
-    "orders": [
-      {
-        "order": "absolute",
-        "ioc": 0.034258206671999775,
-        "preview": "S D N O C C D M AE J J C O AE NG W Y NG J G X E Y EA AE",
-        "plantRunes": 1680
+        "label": "section6",
+        "high": 26,
+        "low": 104,
+        "mixed": 26
       },
       {
-        "order": "delta",
-        "ioc": 0.034552931104655245,
-        "preview": "B N IA F X W A F E EA J U T E X L X G EO F N G T L G",
-        "plantRunes": 1680
-      }
-    ]
-  },
-  {
-    "label": "section7",
-    "n": 3316,
-    "h": 735,
-    "k": 15,
-    "nativeMin": 0.05779903241950731,
-    "nativeMax": 0.06740440045227901,
-    "orders": [
-      {
-        "order": "absolute",
-        "ioc": 0.033950582957978835,
-        "preview": "R TH OE AE D G EA TH IA H I EO X E EA W X IA L T C IA E B IA",
-        "plantRunes": 3316
-      },
-      {
-        "order": "delta",
-        "ioc": 0.0342619881740162,
-        "preview": "AE R C EA R IA NG AE IA C M R OE F I B P T TH F IA G P U B",
-        "plantRunes": 3316
+        "label": "section7",
+        "high": 41,
+        "low": 195,
+        "mixed": 41
       }
     ]
   }
-]
+}
