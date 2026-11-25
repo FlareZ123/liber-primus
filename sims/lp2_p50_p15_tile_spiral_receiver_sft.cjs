@@ -101,3 +101,17 @@ const wordEdges=[];for(let i=0;i<w.length;i++)for(let j=i+1;j<w.length;j++)if(f[
 return {orderLength:order.length,boundaries:[order[111],order[112],order[179],order[180],order[255]],runs,basins:[...basins],wordEdges};
 }
 console.log(JSON.stringify(emergence(read('resources/liber-primus/lp2-grid-256.json'),read('resources/liber-primus/lp2-corpus.json'),read('resources/external/relikd-solved-gp29-native-v1.json')),null,2));
+
+function emergenceNull(grid,corpus,solved){
+ const tokens=grid.pages.flatMap(p=>p.tokens),alpha=grid.alphabet.replace('f',''),tile=[5,6,10,9,8,4,0,1,2,3,7,11,15,14,13,12];
+ const order=Array.from({length:7},(_,b)=>tile.map(i=>(2+4*b+(i>>2))*8+2+i%4)).flat();
+ for(const d of [1,0]){let l=d,r=7-d,t=d,b=31-d;for(let i=b-1;i>=t;i--)order.push(i*8+l);for(let j=l+1;j<=r;j++)order.push(t*8+j);for(let i=t+1;i<=b;i++)order.push(i*8+r);for(let j=r-1;j>=l;j--)order.push(b*8+j)}
+ const f=order.map(i=>alpha.indexOf(tokens[i][0])*59+alpha.indexOf(tokens[i][1]));
+ const starts=[...new Set(solved.sections.find(x=>x.name==='p57_parable').source_text.match(/[\u16a0-\u16ff]+/gu).map(w=>[...w].reduce((a,x)=>a+corpus.runes.indexOf(x),0)))];
+ function basinStats(f){const root=new Int16Array(256).fill(-1),mark=new Int16Array(256).fill(-1),cycleSize=new Int16Array(256);for(let i=0;i<256;i++){if(root[i]>=0)continue;let x=i;const path=[];while(root[x]<0&&mark[x]!==i){mark[x]=i;path.push(x);x=f[x]}let id=root[x];if(id<0){const cyc=path.slice(path.indexOf(x));id=Math.min(...cyc);cycleSize[id]=cyc.length}for(const v of path)root[v]=id}const n=new Int16Array(256);for(const x of root)n[x]++;const same=starts.every(x=>root[x]===root[starts[0]]);return {same,basin:n[root[starts[0]]],cycle:cycleSize[root[starts[0]]],max:Math.max(...n)}}
+ const orig=basinStats(f);let seed=3301;function rng(n){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return (seed>>>0)%n}
+ const N=30000;const out={same:0,sameLarge:0,sameLarge4:0,maxLarge:0};
+ for(let i=0;i<N;i++){const v=f.slice();for(const [lo,hi] of [[112,180],[180,256]])for(let j=hi-1;j>lo;j--){const k=lo+rng(j-lo+1);[v[j],v[k]]=[v[k],v[j]]}const z=basinStats(v);if(z.same)out.same++;if(z.same&&z.basin>=orig.basin)out.sameLarge++;if(z.same&&z.basin>=orig.basin&&z.cycle===4)out.sameLarge4++;if(z.max>=orig.max)out.maxLarge++}
+ return {uniqueWordAddresses:starts.length,orig,N,out}
+}
+console.log(JSON.stringify(emergenceNull(read('resources/liber-primus/lp2-grid-256.json'),read('resources/liber-primus/lp2-corpus.json'),read('resources/external/relikd-solved-gp29-native-v1.json')),null,2));
