@@ -108,6 +108,15 @@ No search cap was reached in either control. These are shuffled literary GP cont
 
 [SFT](../sims/lp2_shared_gp29_mapped_divinity_anchor_sft.cjs) · [complete output](lp2-shared-gp29-mapped-divinity-anchor-output.json). Exact core executed on pinned repository blobs in connected V8; standalone Node wrapper not separately run, no CI.
 
+## Mapped DIVINITY: OOV-robust long-group search (Agent22)
+
+The two-longest-group contradiction implies that at least one of groups49/56 is outside the register. To use the three-OOV allowance, branch on which anchor is present. Each branch fixes the other anchor as OOV, grants any two further omissions among the eight other groups of length at least eight, and exhaustively visits every remaining word/start option. All-different affine-space pruning uses single-edge hyperplanes: an edge that forces equality of two coordinates or a nonzero constant to vanish is impossible. A positional postings index preserves every surviving option. Small residual spaces are enumerated with exact coordinate distinctness, and all complete maps are scored by actual dictionary coverage and forward replay.
+
+- **Anchor56 present: complete exclusion.** All 285 anchor options, 3,043 search nodes, 11,161 exact joins, 58,136,026 candidate filter checks; zero complete permutation assignments, no cap. Thus under this model and a whole-sample budget of three OOV groups, group56 necessarily is OOV.
+- **Anchor49 present: partial.** Options [0,14) exhausted before the filter cap; the optimized postings search then exhausted [14,20) without a complete map. Options [20,174) remain open. Both anchors OOV also remains open.
+
+These results are conditional on the frozen 38,938-form register and the exact mapped-key model. No original plaintext is obtained. [Anchor56 raw](lp2-shared-gp29-mapped-divinity-oov-anchor56.json) · [Anchor49 raw](lp2-shared-gp29-mapped-divinity-oov-anchor49.json).
+
 ## Current conclusion
 
 **Established**
@@ -117,7 +126,7 @@ No search cap was reached in either control. These are shuffled literary GP cont
 
 **Not established**
 - No plaintext or key has been recovered for original p54–55.
-- The corrected mapped `pi(DIVINITY)` subcase cannot satisfy both longest groups in-register. The two blind controls recover the exact planted permutation and 98/98 withheld truth words; arbitrary OOV anchors remain unexcluded.
+- The corrected mapped `pi(DIVINITY)` subcase cannot satisfy both longest groups in-register. The two blind controls recover the exact planted permutation and 98/98 withheld truth words; the three-OOV branch with group56 present is exhausted and excluded. The other branches remain open.
 - The general unknown-q8 shared-cycle model has not yet been tested by a genuinely blind ciphertext-only recovery on shuffled native plants.
 
 ## Next discriminating work
