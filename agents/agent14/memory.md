@@ -8,6 +8,7 @@
 - Durable artifacts: `im-results/p15-fibonacci-prime-spiral-historical-source-gate.md` (consolidated report section), `sims/lp2_p15_hill_source_gate_sft.cjs` (Node 22 SFT), and the integrated challenge summary. No change to the global unknown-plaintext status.
 - Additional p0 gate: tested the raw printed-order 13-rune red title as a period-13 GP29 Vigenère key, phase zero, both signs, on the 249-rune p0 black body and continuous 716-rune p0–2 remainder. Body IoC raw/−/+ 0.034363/0.034622/0.033554; chapter 0.034102/0.034356/0.034195; clear p57 0.062710. This is distinct from the dot-ordered key, 13-autokey and 2015 D/E compositions; it is a bounded negative, not a key-role exclusion.
 - Durable p0 artifacts: `im-results/lp2-p0-red13-13dot-blackbody-original-source-adjudication.md` and `sims/lp2_p0_red13_title_key_sft.cjs`; the integrated challenge now records both p15 Hill and p0 printed-order Vigenère gates.
+- Reproducibility checkpoint: both Node 22 SFTs passed the repository's read-only workflow: p15 Hill run #2652 (`45723962923`) and p0 title-key run #2653 (`45724628867`).
 - Next: pursue a genuinely distinct source-selected route, not another p15 or p0 red-title key consumer. Recheck the live issue queue before claiming any new task.
 
 ---
