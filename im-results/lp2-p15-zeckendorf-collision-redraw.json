@@ -1,0 +1,226 @@
+{
+  "K": [
+    1,
+    1,
+    3,
+    5,
+    11,
+    21,
+    12,
+    19,
+    2,
+    0,
+    26,
+    15,
+    0,
+    10,
+    10,
+    14,
+    19,
+    23,
+    1,
+    13
+  ],
+  "F": [
+    1,
+    2,
+    3,
+    5,
+    8,
+    13,
+    21,
+    34,
+    55,
+    89,
+    144,
+    233,
+    377,
+    610,
+    987,
+    1597,
+    2584,
+    4181,
+    6765
+  ],
+  "N": 1883,
+  "cut": 1752,
+  "maxRun": 1,
+  "results": [
+    {
+      "prob": 1,
+      "limit": 1,
+      "controls": [
+        {
+          "trueHolds": 53,
+          "trueSkips": 55,
+          "fitCorrect": 1752,
+          "holdCorrect": 131,
+          "fit": 0.9750984583597228,
+          "hold": 0.9180854606221972,
+          "decodedSkips": 55
+        },
+        {
+          "trueHolds": 58,
+          "trueSkips": 65,
+          "fitCorrect": 1752,
+          "holdCorrect": 130,
+          "fit": 0.9725449343472906,
+          "hold": 1.2557341052031756,
+          "decodedSkips": 64
+        },
+        {
+          "trueHolds": 42,
+          "trueSkips": 74,
+          "fitCorrect": 1749,
+          "holdCorrect": 131,
+          "fit": 1.0109743674602845,
+          "hold": 1.0770744568469686,
+          "decodedSkips": 73
+        }
+      ],
+      "original": {
+        "dead": 155,
+        "max": 8,
+        "counts": [
+          [
+            99,
+            3,
+            -133.34029117085362
+          ]
+        ]
+      }
+    },
+    {
+      "prob": 0.8,
+      "limit": 1,
+      "controls": [
+        {
+          "trueHolds": 53,
+          "trueSkips": 41,
+          "fitCorrect": 1747,
+          "holdCorrect": 131,
+          "fit": 0.9627766400536365,
+          "hold": 0.8693044026336334,
+          "decodedSkips": 40
+        },
+        {
+          "trueHolds": 58,
+          "trueSkips": 49,
+          "fitCorrect": 1749,
+          "holdCorrect": 131,
+          "fit": 0.9538146499760182,
+          "hold": 1.2360950751915476,
+          "decodedSkips": 48
+        },
+        {
+          "trueHolds": 42,
+          "trueSkips": 57,
+          "fitCorrect": 1751,
+          "holdCorrect": 131,
+          "fit": 0.9885076464066223,
+          "hold": 1.0736676850711802,
+          "decodedSkips": 56
+        }
+      ],
+      "original": {
+        "dead": 155,
+        "max": 8,
+        "counts": [
+          [
+            99,
+            3,
+            -134.23286537611045
+          ]
+        ]
+      }
+    },
+    {
+      "prob": 1,
+      "limit": 1,
+      "controls": [
+        {
+          "trueHolds": 53,
+          "trueSkips": 55,
+          "fitCorrect": 1752,
+          "holdCorrect": 131,
+          "fit": 0.9750984583597228,
+          "hold": 0.9180854606221972,
+          "decodedSkips": 55
+        },
+        {
+          "trueHolds": 58,
+          "trueSkips": 65,
+          "fitCorrect": 1752,
+          "holdCorrect": 130,
+          "fit": 0.9725449343472906,
+          "hold": 1.2557341052031756,
+          "decodedSkips": 64
+        },
+        {
+          "trueHolds": 42,
+          "trueSkips": 74,
+          "fitCorrect": 1749,
+          "holdCorrect": 131,
+          "fit": 1.0109743674602845,
+          "hold": 1.0770744568469686,
+          "decodedSkips": 73
+        }
+      ],
+      "original": {
+        "dead": 155,
+        "max": 8,
+        "counts": [
+          [
+            99,
+            3,
+            -133.34029117085362
+          ]
+        ]
+      }
+    },
+    {
+      "prob": 0.8,
+      "limit": 1,
+      "controls": [
+        {
+          "trueHolds": 53,
+          "trueSkips": 41,
+          "fitCorrect": 1747,
+          "holdCorrect": 131,
+          "fit": 0.9627766400536365,
+          "hold": 0.8693044026336334,
+          "decodedSkips": 40
+        },
+        {
+          "trueHolds": 58,
+          "trueSkips": 49,
+          "fitCorrect": 1749,
+          "holdCorrect": 131,
+          "fit": 0.9538146499760182,
+          "hold": 1.2360950751915476,
+          "decodedSkips": 48
+        },
+        {
+          "trueHolds": 42,
+          "trueSkips": 57,
+          "fitCorrect": 1751,
+          "holdCorrect": 131,
+          "fit": 0.9885076464066223,
+          "hold": 1.0736676850711802,
+          "decodedSkips": 56
+        }
+      ],
+      "original": {
+        "dead": 155,
+        "max": 8,
+        "counts": [
+          [
+            99,
+            3,
+            -134.23286537611045
+          ]
+        ]
+      }
+    }
+  ]
+}
