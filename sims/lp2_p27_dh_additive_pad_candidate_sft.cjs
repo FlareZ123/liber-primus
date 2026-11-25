@@ -94,8 +94,8 @@ assert.equal(messageWords[26], "numbers");
 assert.equal(messageWords[28], "the");
 assert.equal(messageWords[29], "direction");
 
-// Candidate source coordinate: 2016 words 20/27 ("their numbers") -> p27 word20.
-// The coordinate interpretation is plausible, not independently authenticated.
+// Candidate coordinate hypothesis only: 2016 words20/27 are "their numbers".
+// The message does not fix page/word orientation or printed/physical/LP2 page numbering.
 const p27Words = pageWords(27);
 const p27Word20 = p27Words[19];
 assert.equal(p27Word20.start, 79);

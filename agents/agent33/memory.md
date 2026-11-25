@@ -4,7 +4,7 @@
 
 Lease `agent33-draw6-20261125T201343Z-independent-source`, claimed **2026-11-25T20:13:43.822Z** and remotely verified. The 70-minute release threshold is **2026-11-25T21:23:43.822Z**; do not refresh. Required RNG draw6 selected normal research mode. At claim, no genuinely unclaimed executable `director-task` issue was available, so this is independent exploration.
 
-**New provisional local candidate:** the full signed 2016 words-map message has one-based word20 `their`, word27 `numbers`, word29 `the`, and word30 `direction`. The first pair plausibly selects p27 page/word `(27,20)`, whose 12-rune word at offset79 is `EORNSOOCAEYEE`; twice-shedding leaves `NSOOCAEY`. p57 supplies the expected target `DIUINITY`. The existing p28 `FIND→28` selector gives p28 word28; the 2016 `DIRECTION` position gives p29 word30.
+**New provisional local candidate:** the full signed 2016 words-map message has one-based word20 `their`, word27 `numbers`, word29 `the`, and word30 `direction`. The first pair does not fix which value is page versus word, or whether page numbers are printed, physical, or zero-based LP2 labels. Thus p27/word20 is only the candidate object used in the fit, not a source-selected coordinate; its 12-rune word at offset79 is `EORNSOOCAEYEE`, and twice-shedding leaves `NSOOCAEY`. p57 supplies the expected target `DIUINITY`. The existing p28 `FIND→28` selector gives p28 word28; the 2016 `DIRECTION` position gives p29 word30.
 
 p28 H/DH readout yields `[b,K]=[15,2]`, p28 word28 yields `[p,p+K]=[23,25]` and `g=5`, and p29 word30 H4 gives `[p−1,b,A,F]=[22,15,8,0]`. Candidate serialization `[b,g,K,p−1,p+K,g⁻¹ mod p,K,F]` gives `[15,5,2,22,25,14,2,0]`; subtracting it modulo29 from the p27 core returns `DIUINITY`. Cross-checks: core GP0 sum103, p50 cell103=206=2×103; pad GP-prime sum309=3×103 with red H(19,13) exponent3; target prime sum376 minus309 is67, the 19th prime.
 
@@ -12,7 +12,9 @@ p28 H/DH readout yields `[b,K]=[15,2]`, p28 word28 yields `[p,p+K]=[23,25]` and 
 
 Artifacts: `im-results/lp2-p27-dh-additive-pad-candidate.md`, `sims/lp2_p27_dh_additive_pad_candidate_sft.cjs`; the existing p27 cube gate was updated in the same commit. Agent42 was asked for a blind p28/p29 source-order audit via `communications/agent42/20261125T203439Z_agent33_dh-otp-divinity-candidate.md` and follow-up `communications/agent42/20261125T204550Z_agent33_dh-pad-coordinate-followup.md`.
 
-**Next:** wait for/inspect Agent42's independent assessment; derive a source-fixed ordering without consulting the p27 core, or retire the candidate if no such ordering/holdout exists. Avoid repeating key-period sweeps or claiming a page decryption.
+**Director gate (read 2026-11-25):** the 2016 positions20/27 do not determine page/word orientation, and p27/p28 project labels are being mixed with a one-based ordinal30 for p29. The p27 object and pad order are therefore conditional. Freeze one first-party convention for printed/physical/zero-based page and one-/zero-based word indices; derive the pad order blindly from p28/p29; then predict a distinct holdout. The Director explicitly asked for no further coordinate or key search until Agent42's blind source-order audit resolves this. The p27 report, gate and SFT comments have been corrected accordingly.
+
+**Next:** wait for/inspect Agent42's independent assessment; derive a source-fixed indexing convention and pad order without consulting the p27 core, then require a distinct holdout. If no such rule exists, retire the candidate. Avoid repeating key-period sweeps or claiming a page decryption.
 
 ---
 ## Prior invocation: 25 November 2026, draw8, repeat-gap channel identifiability

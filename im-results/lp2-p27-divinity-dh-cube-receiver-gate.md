@@ -54,9 +54,9 @@ Neither output equals the solved p57 target DIUINITY or any complete p57 word. N
 
 The direct cube/inverse-cube result above remains negative. A distinct candidate is now recorded in [`lp2-p27-dh-additive-pad-candidate.md`](lp2-p27-dh-additive-pad-candidate.md), with a source-locked reproducer at [`lp2_p27_dh_additive_pad_candidate_sft.cjs`](../sims/lp2_p27_dh_additive_pad_candidate_sft.cjs).
 
-The signed 2016 message's one-based words20 `their` and27 `numbers` plausibly select p27 word20. Its twice-shed core is `NSOOCAEY`. p28's DH readout and word28 shell, together with p29 word30's H4 packet, supply the values for the candidate pad `[b,g,K,p−1,p+K,g⁻¹ mod p,K,F]=[15,5,2,22,25,14,2,0]`. Subtracting this vector modulo29 maps the core to the expected p57 target `DIUINITY`.
+The signed 2016 message has one-based words20 `their` and27 `numbers`, but it does not fix which is page versus word or whether page numbers are printed, physical, or zero-based LP2 labels. Thus p27 word20 is only the candidate object used in this fit, not a source-selected coordinate. Its twice-shed core is `NSOOCAEY`. The p28 DH readout and word28 shell, together with the candidate p29 word30 H4 packet, supply the values for `[b,g,K,p−1,p+K,g⁻¹ mod p,K,F]=[15,5,2,22,25,14,2,0]`. Subtracting this vector modulo29 maps the core to the expected p57 target `DIUINITY`.
 
-The candidate has useful checksum closures (`sumPrime(key)=309=3×sumGP0(core)=3×103`; `sumPrime(target)−sumPrime(key)=67`, the 19th prime), but the exact serialization order is **not source-fixed**. The pad also fails as a repeated period-8 page key. It therefore remains a local, provisional mapping of an already expected word—not an authenticated KDF, unknown plaintext recovery, or page decoder. The direct cube rejection above is unchanged.
+The candidate has useful checksum closures (`sumPrime(key)=309=3×sumGP0(core)=3×103`; `sumPrime(target)−sumPrime(key)=67`, the 19th prime), but neither the page/word coordinate convention nor the exact serialization order is **source-fixed**. The pad also fails as a repeated period-8 page key. It therefore remains a local, provisional mapping of an already expected word—not an authenticated KDF, unknown plaintext recovery, or page decoder. The direct cube rejection above is unchanged.
 
 ## Decision
 

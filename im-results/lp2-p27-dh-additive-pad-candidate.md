@@ -4,13 +4,13 @@
 
 This note records a reproducible alternative to the already-rejected direct DH-derived cube on the p27 core. The additive operation maps one source-selected 8-rune core to the expected p57 word, but the exact key serialization order is not fixed by an explicit source instruction. Treat it as a live, falsifiable candidate—not an established decryption.
 
-## Source-selected objects
+## Candidate objects and unresolved coordinate convention
 
-- The full signed 2016 words-map message, including its opening `Hello`, has one-based word20 `their` and word27 `numbers`. The phrase **their numbers are the direction** plausibly supplies the coordinate **p27 / word20**. This coordinate interpretation is a hypothesis, but it selects the 12-rune word at p27 rune offset79: `EORNSOOCAEYEE`.
+- The full signed 2016 words-map message, including its opening `Hello`, has one-based word20 `their` and word27 `numbers`. Assigning `numbers` to page27 and `their` to word20 is only one possible orientation: the message does not say which value is the page and which is the word, nor whether the page number is printed/physical or zero-based LP2 indexing. Therefore **p27 / word20 is not source-selected**; it is the candidate object used in this fit. It is the 12-rune word at p27 rune offset79: `EORNSOOCAEYEE`.
 - Removing two outer runes at each end, as directed by p57's **WE MUST SHED OUR OWN CIRCUMFERENCES**, leaves the 8-rune core `NSOOCAEY`, GP29 indices `[9,15,3,3,5,24,18,26]`.
 - The p57 clear target is `DIUINITY` (GP29 transliteration of DIVINITY), indices `[23,10,1,10,9,10,16,26]`, with GP-prime sum376.
-- The existing p28 report independently selects p28 word28 from the p57 `FIND→28` route. Its line6 is the visible DH line.
-- The signed 2016 message has word29 `the` and word30 `direction`; the existing p29 self-index report selects p29 word30 `JYJE` and gives its H4 packet.
+- The existing p28 report proposes p28 word28 from the p57 `FIND→28` route. That selector has not yet been reconciled with one common page/word indexing convention.
+- The signed 2016 message has one-based word29 `the` and word30 `direction`; using word30 to select p29 word30 likewise mixes a one-based word ordinal with a project-page label. The p29 word30 `JYJE` packet is a candidate input, not an independently authenticated coordinate.
 
 ## Source values and candidate pad
 
@@ -45,14 +45,15 @@ These are source-linked arithmetic consistencies. Because the pad was recognized
 
 ## Critical limitations
 
-1. The **values** in the pad are traceable to p28/p29 source objects, but the exact concatenation order `[b,g,K,p−1,p+K,g⁻¹,K,F]` is not yet explicitly selected by a first-party instruction. This is the weakest premise.
-2. The output `DIUINITY` is already suggested by the clear p57 instruction; this is not recovery of unknown plaintext.
-3. Repeating the eight-symbol vector with period8 over p27 or p29 does not produce prose. The candidate is local to the eight-rune core, not a page decoder.
-4. The signed 2013 DH protocol supplies no documented KDF or payload cipher. Do not infer that the shared secret2 is a GP29 additive key merely because it participates in this candidate.
+1. The **coordinate convention is unresolved**: words20/27 do not fix which is page versus word, and the p27/p28/p29 labels have not been reconciled as printed, physical, or zero-based LP2 page numbers. The p27 core is not independently source-selected.
+2. The **values** in the pad are traceable to proposed p28/p29 source objects, but the exact concatenation order `[b,g,K,p−1,p+K,g⁻¹,K,F]` is not explicitly selected by a first-party instruction. This is the weakest premise.
+3. The output `DIUINITY` is already suggested by the clear p57 instruction; this is not recovery of unknown plaintext.
+4. Repeating the eight-symbol vector with period8 over p27 or p29 does not produce prose. The candidate is local to the eight-rune core, not a page decoder.
+5. The signed 2013 DH protocol supplies no documented KDF or payload cipher. Do not infer that the shared secret2 is a GP29 additive key merely because it participates in this candidate.
 
 ## Decisive next test
 
-Derive the key serialization **blindly from p28/p29 only**, without looking at the p27 core or target, and determine whether a source-ordered readout uniquely gives the same eight values in the same order. Then seek one independent source-selected holdout. If the order cannot be fixed before consulting the core, or no independent consequence follows, retire the pad as a retrospective numerical fit.
+First freeze one first-party indexing convention: printed versus physical versus zero-based LP2 page, one-based versus zero-based word, and which of the 2016 positions20/27 supplies page versus word. Then derive the eight pad entries **blindly from p28/p29 only**, without looking at the p27 core or target. Finally apply that same rule to a genuinely distinct target/holdout not already suggested by p57. If any of those rules cannot be fixed before consulting the fitted core, retire the pad as a retrospective numerical fit.
 
 Reproduce from the original canonical transcription and corpus with:
 
