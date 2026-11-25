@@ -1,5 +1,12 @@
 # Integrated original inversion challenge
 
+## Structural guardrail — printed separators do not establish plaintext word order (25 November 2026)
+
+Independent Round45 W1 analysis of the rune-identical LP2 transcription finds no natural-language word-length order at global, sentence, line, paragraph, page or section scale (12 order tests null; intact English controls at 100% power). Its Q4 test finds the rune stream remains continuous across printed separators: the anti-repeat filter operated in printed rune order, with about 80% of group boundaries inside unbroken filter runs. This is evidence against treating the printed groups as an ordered plaintext sentence, not proof that the separators are fake.
+
+Keep two models separate. **H-shuffle:** the printed groups are genuine word units but the plaintext word order is permuted; per-group lexical constraints may still apply, while sequential word-position, grammar and semantic-adjacency claims do not. **H-decoy:** the printed groups are a decoy segmentation or carry lengths from another text; intact-group lexical constraints and word-local reset claims lose power. The external evidence does not decide between them. Accordingly, every exact result below that says "intact groups" is conditional on H-shuffle; spacing-free and rune-stream results are not. Do not use word-salad order alone to reject a candidate, and do not reopen generic word-length MI or unconstrained word-permutation searches. The pinned external evidence is consolidated in [the external research index](../resources/external/dukotah-cicada3301-research-index.md).
+
+
 ### Exact shared-reset collision-skip inverse
 
 **Shared reset with collision-triggered key skips (Agent25, 24 November):** the exact all-key lexical inverse over 35,700 length-2–12 GP forms rejects every shared signed additive pad on original p0–39 after just two consumed key digits (5 → 0 surviving prefixes), even with unlimited consecutive collision retries. All singleton and page-carry groups are unconstrained. Dropping every red-ink group still gives 13 → 0; seven black-body page openings p11/12/13/14/18/21/35 independently suffice. Disjoint p40–55 rejects the one-retry model by digit four (23 → 91 → 3 → 0); unlimited retries leave 31 prefixes at digit eight and are not independently excluded on those late pages. The eight literal dollar-delimited source sections, tested as a distinct shared-reset hypothesis, have 15 → 2 → 0 prefixes even with unlimited retries. Two original-shaped modular-squaring plants uniquely recover both eight-digit signed keys and admit all disjoint planted late pages. This is a conditional intact-group finite-lexicon exclusion, not a recovered key or plaintext. [Consolidated exact gate](../im-results/lp2-shared-page-reset-additive-pad-heldout-gate.md#collision-triggered-key-skip-extension-agent25-24-november) · [SFT](../sims/lp2_page_reset_collision_keyskip_lexical_sft.cjs) · [raw](../im-results/lp2-page-reset-collision-keyskip-lexical.json).
@@ -27,7 +34,7 @@ The manuscript-wide Agent10 result excludes the full native GP27 support at q8/q
 
 Strict anti-repeat-first → chapter-continuous Fehu-hold Vigenère-last is now excluded for every secret key of periods 1–8 **and 13** on original p40–53 (q7/q8 partial-key automata have zero five-digit survivors, with both hidden control keys recovered exactly; q13 compressed-phase SAT is UNSAT in 62.99 s, with a known-key native-derived feasibility/replay control). Ordinary consuming Vigenère-last was already excluded for periods 1–28. [Consolidated all-key report](../im-results/lp2-layer2-reverse-order-allsecret-no-repeat.md). This does not exclude the reverse layer order or nonstrict intermediate streams.
 
-## Current causal frontier — 2026-11-24
+## Current causal frontier — 2026-11-25
 
 ### Clause-fed autokey decision (24 November)
 

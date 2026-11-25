@@ -1,6 +1,6 @@
 # Independent Liber Primus external-research index
 
-**Snapshot inspected:** 2026-11-24T19:51:10.958Z. Dukotah HEAD: `4aba42eeafc7434cec49041d5095bc843e23e964` (2026-11-24T04:58:48Z; Round45 kickoff/current measured-ceiling snapshot). Independent njloof HEAD: `0fa6134c2f9c92317e4ea3a6f1fa82a5c3952d9b` (2026-11-19T15:35:09Z).
+**Snapshot inspected:** 2026-11-25T01:32:03Z. Dukotah HEAD: `0335ecf3f0d47c0dc6ecd953bcc729bce6ccad46` (2026-11-24T21:34:23Z; Round45 closeout). Independent njloof HEAD: `0fa6134c2f9c92317e4ea3a6f1fa82a5c3952d9b` (2026-11-19T15:35:09Z).
 **Source:** https://github.com/Dukotah/cicada3301  
 **License:** MIT covers the repository's original code and documentation; the license explicitly does not purport to license the underlying Cicada artifacts reproduced for research. No code was copied here.
 
@@ -15,6 +15,20 @@ This is a large, actively maintained research programme with a versioned falsifi
 - **JPEG DQT split.** The two page groups differ by grayscale (one SOF component) versus color/YCbCr (three components), while sharing an identical Annex-K luma table at Q=92. Ink-coverage complexity is indistinguishable (MW p=0.338). The authors classify this as a benign production-pipeline signal with zero ciphertext bearing.
 
 The Round 44 closeout also reports negative results for red-ink, p15 grid, punctuation/quote channels, onion-blob pads, 7-gram cipher readings, chained presentation, hash stride, cuneiform census, all-pairs page-XOR, delta composites (k\ge7), short-page language screens, homophonic screens, and audio reductions. Some overlap current work; check the live ledger before repeating any lane.
+
+## Round 45 closeout — printed separators, order and transcription (24 November 2026)
+
+Pinned upstream HEAD `0335ecf3f0d47c0dc6ecd953bcc729bce6ccad46` adds a material structural result beyond the earlier Round45 kickoff snapshot.
+
+- **W1 — no plaintext word-length order at any tested scope.** On the rune-identical 12,956-rune / 2,896-group LP2 stream, 12 order tests across global, sentence, line, paragraph, page and section scopes are null (all empirical (p\geq0.38)); intact English controls have 100% power. The LP2 length multiset is English-shaped rather than geometric spacing (the cross-corpus multiset test reports (p=0.060)), but the scope of any permutation is not identifiable. Do not turn this into the stronger claim that the spaces are definitely fake or globally shuffled.
+- **Q4 — the rune stream is continuous across the printed groups.** The adjacent-equality filter ran on runes in printed order; about 80% of printed word boundaries fall inside runs the filter saw contiguously. The separators therefore do not mark cipher/filter resets. Q3 finds no detectable boundary leakage at the tested ≥10% keyed-rewiring level, but is blind under an OTP-class key.
+- **I1 — keep two distinct space hypotheses.** Under **H-shuffle**, printed groups are genuine word units whose order is permuted; per-group lexical constraints may remain informative, while sequential word-position/grammar claims do not. Under **H-decoy**, groups are not the plaintext's word segmentation; intact-group lexical constraints, word-indexed clocks and word-local resets lose their claimed power. W1 does not distinguish H-shuffle from H-decoy. The ten upstream rows specifically marked conditional on in-order spaces are C-01; R37-C1-U2 (U2b only); R37-C1-U3; R38-C1-SEMANTIC-WORDNET; R38-C1-SEMANTIC-FREQRANK; R39-C1-SENSE-SIMILARITY; R38-C2-G3-LAGGED-POINTERS; R41-C1-R14-WORDSUM-SELFKEY (W1–W4); R44-W2A2-7GRAM-DIFFPLAIN; and R40-C1-INCONCLUSIVE-R31. This is not a blanket invalidation of spacing-free or rune-stream attacks.
+- **Human-oracle correction.** Upstream amended `HUMAN-ORACLE.md` §3: word-salad order alone is not grounds to reject a candidate as NOISE-CROSSER; assess word-bag fluency separately from word order.
+- **Transcription control.** S1 reports zero canon errors among 398 adjudicated glyphs, including all 86 adjacent-equality sites. The 149 RAT positions previously discussed are unaligned positions, not 149 canon disagreements; no correction to the local canon is proposed.
+
+**Decision:** this is an external, independently reproducible structural constraint, not a plaintext or key. For local work, retain every result's declared segmentation assumption: group-based negatives are conditional on H-shuffle; under H-decoy they must not be promoted to all-segmentation exclusions. Do not repeat generic word-length MI or infer a source-selected word permutation from the length multiset alone.
+
+**Pinned references:** [Round45 synthesis](https://github.com/Dukotah/cicada3301/blob/0335ecf3f0d47c0dc6ecd953bcc729bce6ccad46/liber-primus/analysis/round45/SYNTHESIS.md) · [W1 spaces results](https://github.com/Dukotah/cicada3301/blob/0335ecf3f0d47c0dc6ecd953bcc729bce6ccad46/liber-primus/analysis/round45/W1-spaces/RESULTS.md) · [I1 decoy-space results](https://github.com/Dukotah/cicada3301/blob/0335ecf3f0d47c0dc6ecd953bcc729bce6ccad46/liber-primus/analysis/round45/I1-decoy-space/RESULTS.md) · [S1 transcription audit](https://github.com/Dukotah/cicada3301/blob/0335ecf3f0d47c0dc6ecd953bcc729bce6ccad46/liber-primus/analysis/round45/S1-transcription/RESULTS.md) · [Round45 handoff](https://github.com/Dukotah/cicada3301/blob/0335ecf3f0d47c0dc6ecd953bcc729bce6ccad46/liber-primus/PICKUP-HERE.md).
 
 ## Current word/meaning/number clue ceiling — 24 November 2026
 
