@@ -180,6 +180,7 @@ def main() -> None:
             "printable_ascii_fraction": r["printable_ascii_fraction"],
             "pgp_signed_message": r["pgp_signed_message"],
             "sha256": r["sha256"], "prefix_1417_sha256": r["prefix_1417_sha256"],
+            "stderr_tail": r["stderr"][-800:], "stdout_tail": r["stdout"][-800:],
         } for r in rows]
 
     prefix_groups: dict[str, list[str]] = {}
@@ -200,6 +201,9 @@ def main() -> None:
         "lp2_default_pgp_signed_count": sum(r["pgp_signed_message"] for r in lp2),
         "lp2_default_capacity_58152_count": sum(r["length"] == 58152 for r in lp2),
         "lp2_default_crash_or_timeout_count": sum(r["timeout"] or (r["returncode"] is not None and r["returncode"] < 0) for r in lp2),
+        "lp2_default_crashes": compact([r for r in lp2 if r["timeout"] or (r["returncode"] is not None and r["returncode"] < 0)]),
+        "lp2_default_empty": compact([r for r in lp2 if r["length"] == 0 and not (r["timeout"] or (r["returncode"] is not None and r["returncode"] < 0))]),
+        "lp1_pgp_pages": [r["archive_index"] for r in lp1 if r["pgp_signed_message"]],
         "lp2_default_nonempty": compact(nonempty(lp2)),
         "lp2_default_1417_prefix_groups": prefix_groups,
         "lp2_solved_controls": compact(solved),
