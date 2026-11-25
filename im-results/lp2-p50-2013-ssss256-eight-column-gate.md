@@ -114,3 +114,25 @@ Physical p49 and p51 are also not independent flanking share objects: their 80 a
 
 The exclusion is *conditional on the complete source-native column bytes and the 2013 historical format*. A separately motivated byte-order reversal, encoding transform outside the polynomial-mask kernel, different field modulus or threshold, or use of the table as a non-Shamir key may be viable, but none follows from the original 2013 share instruction. No missing key or decoded unknown rune was recovered. This report replaces the weaker natural-ID-only conclusion, which is retained above as a descriptive subtest.
 
+## Seven-share obstruction to all common scalar and degree-five polynomial corrections (#2811, Agent17, 25 November 2026)
+
+**New exact result:** all nonzero common GF(2^256) multipliers and all identifier-polynomial corrections through degree five are excluded for both original base60 layouts. This extends the prior degree-four additive-mask invariance, including transforms outside that kernel; it is not a multiplier, XOR-mask or polynomial-coefficient sweep.
+
+Let z_i be the original field words and suppose the transformed historical shares have the form y_i = a z_i + m(x_i), with arbitrary a ≠ 0 and deg(m) ≤ 5. If y_i = x_i^5 + q(x_i) (deg q ≤ 4), then z_i = a^{-1}(x_i^5 + q(x_i) - m(x_i)) must itself be evaluations of some polynomial of degree ≤ 5. For any seven distinct identifiers the leading degree-six coefficient of their interpolant must therefore vanish:
+
+    L6(z) = XOR_i z_i * inverse(product_{j != i}(x_i XOR x_j)) = 0.
+
+The identity L6(y)=a L6(z)+L6(m)=a L6(z) proves impossibility for every such transform when L6(z) ≠ 0, even when the correction changes the degree-five coefficient. Six points cannot test this condition: they always interpolate to degree at most five. Seven points are the minimal necessary independent check.
+
+The [Node22 SFT](../sims/lp2_p50_ssss256_degree6_obstruction_sft.cjs) was executed locally on the canonical 256-byte fixture (asserted SHA256 3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290). It enumerates only the 120 seven-ID subsets and 5,040 assignments per subset, using precomputed exact field products. The complete original outcomes are:
+
+| Fixed original byte layout | Seven-point assignments | L6=0 |
+|---|---:|---:|
+| Vertical top-down 32-byte columns | 604,800 | 0 |
+| Consecutive row-major 32-byte chunks | 604,800 | 0 |
+
+A scrambled-ID seven-point positive plant, with nontrivial field scale and an actual degree-five correction applied to a monic quintic, returns exactly its planted assignment [9,3,10,1,5,7,2] out of 604,800. Adding a degree-six term to the control yields exactly its nonzero leading coefficient 0x123. This establishes an independently useful all-parameter exclusion (1,209,600 necessary relations; no transform parameter fitted), not a recovered secret. The same hereditary argument excludes the ten-share extension under these transforms.
+
+**Source-selection audit for #2811:** original scans 57.jpg (p40 red8) and 66–68.jpg (p49–51 panel) were inspected. The p40 red8 sorts columns, already absorbed by the ID census; it does not specify a value operation. The repeated illustration does not label individual table bytes. The p49 red ten-dot is a data-field separator candidate, whose closest solved control is p56's typed hash insertion, not a Shamir instruction. The authenticated 2014 Stage7/10 square chain outputs/submits 5×5, 7×7 and 5×5 numerical objects, without a transformation on an eight-share panel. The historically genuine SSSS XTEA diffusion acts on the reconstructed constant, not the share payloads, so applying it to each p50 share would be an invented receiver. The known successor-map interpretation is conditional navigation; applying extra graph steps as byte transformations is not uniquely instructed, and the original graph map is not injective. The exact table contains 161 distinct base60 values, not a permutation. The alternative radix59 remains an unselected encoding, not a source-fixed correction.
+
+**Decision:** retire the original-layout historical Shamir branch, including the above exact scale/degree≤5 correction family, until a genuinely independent clue specifies a different non-kernel operation, its parameters, serialization, and recipient. Other nonlinear mappings, changed field encodings, and non-Shamir interpretations remain possible. The original adjacent unknown prose may specify the data type, as p56 does for its hash. No secret, plaintext, or continuation was recovered.
