@@ -3865,5 +3865,360 @@
       "resources/control/shakespeare_first300k.txt",
       "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
     ]
-  ]
+  ],
+  "allKeyPairBound": {
+    "trainingRunes": 66147,
+    "allowedMultipliers": 3300,
+    "whole": {
+      "max": {
+        "pairMean": -7.691579476209001,
+        "phases": [
+          {
+            "r": 0,
+            "score": -420.85268312251253,
+            "decoderMultiplier": 2917,
+            "pairs": 55
+          },
+          {
+            "r": 1,
+            "score": -427.11710140900607,
+            "decoderMultiplier": 1847,
+            "pairs": 55
+          },
+          {
+            "r": 2,
+            "score": -418.6031264680579,
+            "decoderMultiplier": 2900,
+            "pairs": 55
+          },
+          {
+            "r": 3,
+            "score": -417.7236439522008,
+            "decoderMultiplier": 1087,
+            "pairs": 55
+          },
+          {
+            "r": 4,
+            "score": -431.4567783430589,
+            "decoderMultiplier": 1374,
+            "pairs": 55
+          },
+          {
+            "r": 5,
+            "score": -425.045298033103,
+            "decoderMultiplier": 2911,
+            "pairs": 55
+          },
+          {
+            "r": 6,
+            "score": -427.5539733041331,
+            "decoderMultiplier": 2657,
+            "pairs": 55
+          },
+          {
+            "r": 7,
+            "score": -424.14963473129984,
+            "decoderMultiplier": 1715,
+            "pairs": 55
+          },
+          {
+            "r": 8,
+            "score": -414.2642071372911,
+            "decoderMultiplier": 572,
+            "pairs": 54
+          },
+          {
+            "r": 9,
+            "score": -422.2069420324843,
+            "decoderMultiplier": 571,
+            "pairs": 54
+          },
+          {
+            "r": 10,
+            "score": -412.79093602146776,
+            "decoderMultiplier": 1552,
+            "pairs": 54
+          },
+          {
+            "r": 11,
+            "score": -409.75475238118094,
+            "decoderMultiplier": 2876,
+            "pairs": 54
+          },
+          {
+            "r": 12,
+            "score": -423.07695089410765,
+            "decoderMultiplier": 1097,
+            "pairs": 54
+          },
+          {
+            "r": 13,
+            "score": -418.08488623441656,
+            "decoderMultiplier": 1920,
+            "pairs": 54
+          },
+          {
+            "r": 14,
+            "score": -399.38771491052955,
+            "decoderMultiplier": 2365,
+            "pairs": 54
+          },
+          {
+            "r": 15,
+            "score": -414.9886742793987,
+            "decoderMultiplier": 2365,
+            "pairs": 54
+          }
+        ]
+      },
+      "emerson": {
+        "n": 322887,
+        "min": -5.742439247453225,
+        "max": -5.441103189692719,
+        "mean": -5.566673687000682,
+        "minOffset": 221389
+      },
+      "shakespeare": {
+        "n": 217057,
+        "min": -5.917363081470816,
+        "max": -5.470426541243745,
+        "mean": -5.645496922207874,
+        "minOffset": 11698
+      }
+    },
+    "fit": {
+      "max": {
+        "pairMean": -7.533710096636339,
+        "phases": [
+          {
+            "r": 0,
+            "score": -311.71367066267754,
+            "decoderMultiplier": 1240,
+            "pairs": 42
+          },
+          {
+            "r": 1,
+            "score": -306.4050913449529,
+            "decoderMultiplier": 1524,
+            "pairs": 42
+          },
+          {
+            "r": 2,
+            "score": -320.6189166408794,
+            "decoderMultiplier": 2900,
+            "pairs": 42
+          },
+          {
+            "r": 3,
+            "score": -319.90969161482974,
+            "decoderMultiplier": 3231,
+            "pairs": 42
+          },
+          {
+            "r": 4,
+            "score": -319.2378632642063,
+            "decoderMultiplier": 2148,
+            "pairs": 42
+          },
+          {
+            "r": 5,
+            "score": -320.3304706094458,
+            "decoderMultiplier": 426,
+            "pairs": 42
+          },
+          {
+            "r": 6,
+            "score": -323.01423351097293,
+            "decoderMultiplier": 847,
+            "pairs": 42
+          },
+          {
+            "r": 7,
+            "score": -317.1456664521739,
+            "decoderMultiplier": 954,
+            "pairs": 42
+          },
+          {
+            "r": 8,
+            "score": -315.9678908733236,
+            "decoderMultiplier": 572,
+            "pairs": 42
+          },
+          {
+            "r": 9,
+            "score": -321.9981213224018,
+            "decoderMultiplier": 2182,
+            "pairs": 42
+          },
+          {
+            "r": 10,
+            "score": -319.9130146682879,
+            "decoderMultiplier": 1552,
+            "pairs": 42
+          },
+          {
+            "r": 11,
+            "score": -317.3994852287996,
+            "decoderMultiplier": 2876,
+            "pairs": 42
+          },
+          {
+            "r": 12,
+            "score": -320.26697475410157,
+            "decoderMultiplier": 1097,
+            "pairs": 42
+          },
+          {
+            "r": 13,
+            "score": -311.00006289409754,
+            "decoderMultiplier": 2338,
+            "pairs": 42
+          },
+          {
+            "r": 14,
+            "score": -292.92851946079156,
+            "decoderMultiplier": 2365,
+            "pairs": 41
+          },
+          {
+            "r": 15,
+            "score": -309.73609144440434,
+            "decoderMultiplier": 175,
+            "pairs": 41
+          }
+        ]
+      },
+      "emerson": {
+        "n": 323291,
+        "min": -5.777819673792869,
+        "max": -5.422838801930043,
+        "mean": -5.566713758310472,
+        "minOffset": 221393
+      },
+      "shakespeare": {
+        "n": 217461,
+        "min": -5.945754633018493,
+        "max": -5.452726885853745,
+        "mean": -5.645509082838958,
+        "minOffset": 211764
+      }
+    },
+    "held": {
+      "max": {
+        "pairMean": -6.557528940277595,
+        "phases": [
+          {
+            "r": 0,
+            "score": -87.5247159382726,
+            "decoderMultiplier": 1765,
+            "pairs": 13
+          },
+          {
+            "r": 1,
+            "score": -85.45992880396648,
+            "decoderMultiplier": 1492,
+            "pairs": 13
+          },
+          {
+            "r": 2,
+            "score": -86.84339034216303,
+            "decoderMultiplier": 319,
+            "pairs": 13
+          },
+          {
+            "r": 3,
+            "score": -86.60437628279234,
+            "decoderMultiplier": 1391,
+            "pairs": 13
+          },
+          {
+            "r": 4,
+            "score": -86.8849481159088,
+            "decoderMultiplier": 2357,
+            "pairs": 13
+          },
+          {
+            "r": 5,
+            "score": -86.43013631509838,
+            "decoderMultiplier": 2825,
+            "pairs": 13
+          },
+          {
+            "r": 6,
+            "score": -86.25898887937382,
+            "decoderMultiplier": 1106,
+            "pairs": 13
+          },
+          {
+            "r": 7,
+            "score": -82.10390842607171,
+            "decoderMultiplier": 1044,
+            "pairs": 13
+          },
+          {
+            "r": 8,
+            "score": -72.81491428631254,
+            "decoderMultiplier": 918,
+            "pairs": 12
+          },
+          {
+            "r": 9,
+            "score": -77.06134455244526,
+            "decoderMultiplier": 1230,
+            "pairs": 12
+          },
+          {
+            "r": 10,
+            "score": -81.85216070850508,
+            "decoderMultiplier": 3194,
+            "pairs": 12
+          },
+          {
+            "r": 11,
+            "score": -79.841779408612,
+            "decoderMultiplier": 46,
+            "pairs": 12
+          },
+          {
+            "r": 12,
+            "score": -79.43159300544372,
+            "decoderMultiplier": 363,
+            "pairs": 12
+          },
+          {
+            "r": 13,
+            "score": -74.99601357215148,
+            "decoderMultiplier": 219,
+            "pairs": 12
+          },
+          {
+            "r": 14,
+            "score": -85.92742580476951,
+            "decoderMultiplier": 1469,
+            "pairs": 13
+          },
+          {
+            "r": 15,
+            "score": -84.58522149418735,
+            "decoderMultiplier": 972,
+            "pairs": 13
+          }
+        ]
+      },
+      "emerson": {
+        "n": 324227,
+        "min": -5.930178255285245,
+        "max": -5.259722058523423,
+        "mean": -5.566818087029672,
+        "minOffset": 221917
+      },
+      "shakespeare": {
+        "n": 218397,
+        "min": -6.189762804716471,
+        "max": -5.333736044987062,
+        "mean": -5.645669664201893,
+        "minOffset": 12014
+      }
+    }
+  }
 }
