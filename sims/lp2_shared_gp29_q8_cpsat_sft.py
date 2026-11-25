@@ -1,8 +1,10 @@
-"""Independent CP-SAT receiver for the exact primitive q8 common-cycle model.
+"""CP-SAT receivers for the exact primitive q8 common-cycle model.
 
 Requires ortools==9.14.6206. The solver sees 49 encrypted training groups
-and the frozen lexicon; the hidden action and 17 held-out groups are used
-only to score a returned solution. No original fit in this calibration.
+and the frozen lexicon; hidden actions and 17 held-out groups are used only
+to calibrate a returned solution. No original fit in these calibrations.
+The centralizer model uses the exact equivalence: commuting permutations
+with a common 29-cycle generator are precisely its powers.
 """
 import argparse, collections, json, pathlib, time
 from ortools.sat.python import cp_model
@@ -136,7 +138,8 @@ def model_commute(C,D):
                 phase=nxt
         words=[w for w in by[len(c)] if s.candidate(w,c)]
         domains.append(len(words))
-        m.add_allowed_assignments(ps,words)
+        if words: m.add_allowed_assignments(ps,words)
+        else: m.add(False)
     return m,maps,domains
 
 def recover_action_from_maps(maps):
@@ -206,7 +209,7 @@ def main():
     status=solver.solve(m)
     out={'status':solver.status_name(status),'wall_time':solver.wall_time,
          'branches':solver.num_branches,'conflicts':solver.num_conflicts,
-         'mode':args.mode,'gauge':args.gauge,'plant':args.plant,'profile':args.profile,'oracle':args.oracle}
+         'mode':args.mode,'gauge':('centralizer' if args.mode=='centralizer' else args.gauge),'plant':args.plant,'profile':args.profile,'oracle':args.oracle}
     if status in (cp_model.OPTIMAL,cp_model.FEASIBLE):
         if args.mode=='centralizer':
             map_values=[[solver.value(maps[j][c]) for c in range(29)] for j in range(8)]
