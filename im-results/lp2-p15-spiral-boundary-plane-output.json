@@ -1,0 +1,825 @@
+{
+  "inputs": [
+    {
+      "path": "resources/transcriptions/lp2-image-corrected.txt",
+      "sha": "f7b534a33edeb212d427329798438325307463d7"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    }
+  ],
+  "n": 1883,
+  "baseline": {
+    "groups": 432,
+    "ones": 18,
+    "long": 15,
+    "max": 13,
+    "unigram": -2.1444280072131368,
+    "bigram": -2.1533482235083867
+  },
+  "route": [
+    5,
+    6,
+    10,
+    9,
+    8,
+    4,
+    0,
+    1,
+    2,
+    3,
+    7,
+    11,
+    15,
+    14,
+    13,
+    12
+  ],
+  "controls": [
+    {
+      "donor": 1,
+      "start": 44925,
+      "groups": 453,
+      "ones": 26,
+      "long": 15,
+      "max": 11,
+      "unigram": -2.1110952985163203,
+      "bigram": -2.0911433132018775,
+      "dirs": [
+        {
+          "scrambled": {
+            "groups": 453,
+            "ones": 63,
+            "long": 25,
+            "max": 18,
+            "unigram": -2.389460249956768,
+            "bigram": -2.427012717446639
+          },
+          "restored": {
+            "groups": 453,
+            "ones": 26,
+            "long": 15,
+            "max": 11,
+            "unigram": -2.1110952985163203,
+            "bigram": -2.0911433132018775
+          }
+        },
+        {
+          "scrambled": {
+            "groups": 453,
+            "ones": 55,
+            "long": 25,
+            "max": 19,
+            "unigram": -2.3307858037520712,
+            "bigram": -2.346246604629808
+          },
+          "restored": {
+            "groups": 453,
+            "ones": 26,
+            "long": 15,
+            "max": 11,
+            "unigram": -2.1110952985163203,
+            "bigram": -2.0911433132018775
+          }
+        }
+      ]
+    },
+    {
+      "donor": 1,
+      "start": 45125,
+      "groups": 447,
+      "ones": 17,
+      "long": 18,
+      "max": 11,
+      "unigram": -2.0838870966405385,
+      "bigram": -2.0709573604214793,
+      "dirs": [
+        {
+          "scrambled": {
+            "groups": 447,
+            "ones": 63,
+            "long": 34,
+            "max": 17,
+            "unigram": -2.397397670792419,
+            "bigram": -2.4396336081866226
+          },
+          "restored": {
+            "groups": 447,
+            "ones": 17,
+            "long": 18,
+            "max": 11,
+            "unigram": -2.0838870966405385,
+            "bigram": -2.0709573604214793
+          }
+        },
+        {
+          "scrambled": {
+            "groups": 447,
+            "ones": 57,
+            "long": 28,
+            "max": 16,
+            "unigram": -2.3652343221192016,
+            "bigram": -2.4025631290428486
+          },
+          "restored": {
+            "groups": 447,
+            "ones": 17,
+            "long": 18,
+            "max": 11,
+            "unigram": -2.0838870966405385,
+            "bigram": -2.0709573604214793
+          }
+        }
+      ]
+    },
+    {
+      "donor": 1,
+      "start": 46825,
+      "groups": 442,
+      "ones": 20,
+      "long": 17,
+      "max": 13,
+      "unigram": -2.1310124354860873,
+      "bigram": -2.1116009507461277,
+      "dirs": [
+        {
+          "scrambled": {
+            "groups": 442,
+            "ones": 51,
+            "long": 20,
+            "max": 21,
+            "unigram": -2.3486330431162963,
+            "bigram": -2.361092004194905
+          },
+          "restored": {
+            "groups": 442,
+            "ones": 20,
+            "long": 17,
+            "max": 13,
+            "unigram": -2.1310124354860873,
+            "bigram": -2.1116009507461277
+          }
+        },
+        {
+          "scrambled": {
+            "groups": 442,
+            "ones": 52,
+            "long": 18,
+            "max": 20,
+            "unigram": -2.336019252329516,
+            "bigram": -2.363398246698378
+          },
+          "restored": {
+            "groups": 442,
+            "ones": 20,
+            "long": 17,
+            "max": 13,
+            "unigram": -2.1310124354860873,
+            "bigram": -2.1116009507461277
+          }
+        }
+      ]
+    },
+    {
+      "donor": 2,
+      "start": 59992,
+      "groups": 453,
+      "ones": 8,
+      "long": 12,
+      "max": 15,
+      "unigram": -2.0418314714623196,
+      "bigram": -2.012453709659277,
+      "dirs": [
+        {
+          "scrambled": {
+            "groups": 453,
+            "ones": 53,
+            "long": 27,
+            "max": 17,
+            "unigram": -2.3274487253369953,
+            "bigram": -2.3634224267206707
+          },
+          "restored": {
+            "groups": 453,
+            "ones": 8,
+            "long": 12,
+            "max": 15,
+            "unigram": -2.0418314714623196,
+            "bigram": -2.012453709659277
+          }
+        },
+        {
+          "scrambled": {
+            "groups": 453,
+            "ones": 52,
+            "long": 31,
+            "max": 19,
+            "unigram": -2.367237750751541,
+            "bigram": -2.380009455329299
+          },
+          "restored": {
+            "groups": 453,
+            "ones": 8,
+            "long": 12,
+            "max": 15,
+            "unigram": -2.0418314714623196,
+            "bigram": -2.012453709659277
+          }
+        }
+      ]
+    },
+    {
+      "donor": 2,
+      "start": 60592,
+      "groups": 453,
+      "ones": 13,
+      "long": 16,
+      "max": 14,
+      "unigram": -2.0815583183623123,
+      "bigram": -2.0520183794404874,
+      "dirs": [
+        {
+          "scrambled": {
+            "groups": 453,
+            "ones": 50,
+            "long": 26,
+            "max": 16,
+            "unigram": -2.290471612640408,
+            "bigram": -2.334182187742632
+          },
+          "restored": {
+            "groups": 453,
+            "ones": 13,
+            "long": 16,
+            "max": 14,
+            "unigram": -2.0815583183623123,
+            "bigram": -2.0520183794404874
+          }
+        },
+        {
+          "scrambled": {
+            "groups": 453,
+            "ones": 57,
+            "long": 20,
+            "max": 17,
+            "unigram": -2.3203375405891333,
+            "bigram": -2.3473253863518373
+          },
+          "restored": {
+            "groups": 453,
+            "ones": 13,
+            "long": 16,
+            "max": 14,
+            "unigram": -2.0815583183623123,
+            "bigram": -2.0520183794404874
+          }
+        }
+      ]
+    },
+    {
+      "donor": 2,
+      "start": 60692,
+      "groups": 452,
+      "ones": 13,
+      "long": 16,
+      "max": 14,
+      "unigram": -2.087068550254749,
+      "bigram": -2.058277274017816,
+      "dirs": [
+        {
+          "scrambled": {
+            "groups": 452,
+            "ones": 47,
+            "long": 27,
+            "max": 19,
+            "unigram": -2.316799539059374,
+            "bigram": -2.3506806130478637
+          },
+          "restored": {
+            "groups": 452,
+            "ones": 13,
+            "long": 16,
+            "max": 14,
+            "unigram": -2.087068550254749,
+            "bigram": -2.058277274017816
+          }
+        },
+        {
+          "scrambled": {
+            "groups": 452,
+            "ones": 53,
+            "long": 22,
+            "max": 20,
+            "unigram": -2.3416841315744272,
+            "bigram": -2.3371916469137863
+          },
+          "restored": {
+            "groups": 452,
+            "ones": 13,
+            "long": 16,
+            "max": 14,
+            "unigram": -2.087068550254749,
+            "bigram": -2.058277274017816
+          }
+        }
+      ]
+    },
+    {
+      "donor": 2,
+      "start": 60792,
+      "groups": 440,
+      "ones": 10,
+      "long": 21,
+      "max": 14,
+      "unigram": -2.1251284028237842,
+      "bigram": -2.0932275596938092,
+      "dirs": [
+        {
+          "scrambled": {
+            "groups": 440,
+            "ones": 35,
+            "long": 22,
+            "max": 20,
+            "unigram": -2.281830284470196,
+            "bigram": -2.290449741035027
+          },
+          "restored": {
+            "groups": 440,
+            "ones": 10,
+            "long": 21,
+            "max": 14,
+            "unigram": -2.1251284028237842,
+            "bigram": -2.0932275596938092
+          }
+        },
+        {
+          "scrambled": {
+            "groups": 440,
+            "ones": 45,
+            "long": 26,
+            "max": 24,
+            "unigram": -2.3389216758539204,
+            "bigram": -2.3654641793834843
+          },
+          "restored": {
+            "groups": 440,
+            "ones": 10,
+            "long": 21,
+            "max": 14,
+            "unigram": -2.1251284028237842,
+            "bigram": -2.0932275596938092
+          }
+        }
+      ]
+    },
+    {
+      "donor": 2,
+      "start": 60892,
+      "groups": 447,
+      "ones": 13,
+      "long": 18,
+      "max": 14,
+      "unigram": -2.103789984954476,
+      "bigram": -2.0699637659526244,
+      "dirs": [
+        {
+          "scrambled": {
+            "groups": 447,
+            "ones": 37,
+            "long": 22,
+            "max": 14,
+            "unigram": -2.2393075441557535,
+            "bigram": -2.2724331966150144
+          },
+          "restored": {
+            "groups": 447,
+            "ones": 13,
+            "long": 18,
+            "max": 14,
+            "unigram": -2.103789984954476,
+            "bigram": -2.0699637659526244
+          }
+        },
+        {
+          "scrambled": {
+            "groups": 447,
+            "ones": 37,
+            "long": 21,
+            "max": 18,
+            "unigram": -2.259057229769712,
+            "bigram": -2.2643768211647712
+          },
+          "restored": {
+            "groups": 447,
+            "ones": 13,
+            "long": 18,
+            "max": 14,
+            "unigram": -2.103789984954476,
+            "bigram": -2.0699637659526244
+          }
+        }
+      ]
+    },
+    {
+      "donor": 2,
+      "start": 60992,
+      "groups": 449,
+      "ones": 19,
+      "long": 18,
+      "max": 13,
+      "unigram": -2.1185907596512648,
+      "bigram": -2.0894678605590875,
+      "dirs": [
+        {
+          "scrambled": {
+            "groups": 449,
+            "ones": 45,
+            "long": 27,
+            "max": 18,
+            "unigram": -2.3031052785783324,
+            "bigram": -2.3290453228313988
+          },
+          "restored": {
+            "groups": 449,
+            "ones": 19,
+            "long": 18,
+            "max": 13,
+            "unigram": -2.1185907596512648,
+            "bigram": -2.0894678605590875
+          }
+        },
+        {
+          "scrambled": {
+            "groups": 449,
+            "ones": 50,
+            "long": 26,
+            "max": 16,
+            "unigram": -2.3181256980987857,
+            "bigram": -2.331483743258971
+          },
+          "restored": {
+            "groups": 449,
+            "ones": 19,
+            "long": 18,
+            "max": 13,
+            "unigram": -2.1185907596512648,
+            "bigram": -2.0894678605590875
+          }
+        }
+      ]
+    },
+    {
+      "donor": 2,
+      "start": 62792,
+      "groups": 443,
+      "ones": 8,
+      "long": 16,
+      "max": 13,
+      "unigram": -2.0887088241438905,
+      "bigram": -2.077944466335777,
+      "dirs": [
+        {
+          "scrambled": {
+            "groups": 443,
+            "ones": 43,
+            "long": 28,
+            "max": 18,
+            "unigram": -2.3345579191205132,
+            "bigram": -2.3744434000416126
+          },
+          "restored": {
+            "groups": 443,
+            "ones": 8,
+            "long": 16,
+            "max": 13,
+            "unigram": -2.0887088241438905,
+            "bigram": -2.077944466335777
+          }
+        },
+        {
+          "scrambled": {
+            "groups": 443,
+            "ones": 39,
+            "long": 28,
+            "max": 18,
+            "unigram": -2.2904514474082056,
+            "bigram": -2.314854086385561
+          },
+          "restored": {
+            "groups": 443,
+            "ones": 8,
+            "long": 16,
+            "max": 13,
+            "unigram": -2.0887088241438905,
+            "bigram": -2.077944466335777
+          }
+        }
+      ]
+    },
+    {
+      "donor": 2,
+      "start": 62892,
+      "groups": 438,
+      "ones": 12,
+      "long": 18,
+      "max": 13,
+      "unigram": -2.1339658384979985,
+      "bigram": -2.1138192808805156,
+      "dirs": [
+        {
+          "scrambled": {
+            "groups": 438,
+            "ones": 43,
+            "long": 34,
+            "max": 17,
+            "unigram": -2.347413997173998,
+            "bigram": -2.4060195911049163
+          },
+          "restored": {
+            "groups": 438,
+            "ones": 12,
+            "long": 18,
+            "max": 13,
+            "unigram": -2.1339658384979985,
+            "bigram": -2.1138192808805156
+          }
+        },
+        {
+          "scrambled": {
+            "groups": 438,
+            "ones": 56,
+            "long": 33,
+            "max": 20,
+            "unigram": -2.4374292307430325,
+            "bigram": -2.4654333935256187
+          },
+          "restored": {
+            "groups": 438,
+            "ones": 12,
+            "long": 18,
+            "max": 13,
+            "unigram": -2.1339658384979985,
+            "bigram": -2.1138192808805156
+          }
+        }
+      ]
+    },
+    {
+      "donor": 2,
+      "start": 62992,
+      "groups": 445,
+      "ones": 12,
+      "long": 16,
+      "max": 13,
+      "unigram": -2.0966760255379815,
+      "bigram": -2.074398848749865,
+      "dirs": [
+        {
+          "scrambled": {
+            "groups": 445,
+            "ones": 41,
+            "long": 27,
+            "max": 20,
+            "unigram": -2.2978663471727616,
+            "bigram": -2.325880913500735
+          },
+          "restored": {
+            "groups": 445,
+            "ones": 12,
+            "long": 16,
+            "max": 13,
+            "unigram": -2.0966760255379815,
+            "bigram": -2.074398848749865
+          }
+        },
+        {
+          "scrambled": {
+            "groups": 445,
+            "ones": 54,
+            "long": 24,
+            "max": 16,
+            "unigram": -2.356378182956248,
+            "bigram": -2.3571371159246097
+          },
+          "restored": {
+            "groups": 445,
+            "ones": 12,
+            "long": 16,
+            "max": 13,
+            "unigram": -2.0966760255379815,
+            "bigram": -2.074398848749865
+          }
+        }
+      ]
+    },
+    {
+      "donor": 2,
+      "start": 63492,
+      "groups": 450,
+      "ones": 14,
+      "long": 17,
+      "max": 13,
+      "unigram": -2.0827579470349322,
+      "bigram": -2.0532678879042887,
+      "dirs": [
+        {
+          "scrambled": {
+            "groups": 450,
+            "ones": 46,
+            "long": 28,
+            "max": 18,
+            "unigram": -2.3122755146013367,
+            "bigram": -2.3300741668306575
+          },
+          "restored": {
+            "groups": 450,
+            "ones": 14,
+            "long": 17,
+            "max": 13,
+            "unigram": -2.0827579470349322,
+            "bigram": -2.0532678879042887
+          }
+        },
+        {
+          "scrambled": {
+            "groups": 450,
+            "ones": 43,
+            "long": 24,
+            "max": 18,
+            "unigram": -2.2920415466475945,
+            "bigram": -2.32250085783939
+          },
+          "restored": {
+            "groups": 450,
+            "ones": 14,
+            "long": 17,
+            "max": 13,
+            "unigram": -2.0827579470349322,
+            "bigram": -2.0532678879042887
+          }
+        }
+      ]
+    },
+    {
+      "donor": 2,
+      "start": 63592,
+      "groups": 447,
+      "ones": 11,
+      "long": 16,
+      "max": 12,
+      "unigram": -2.0691454262844755,
+      "bigram": -2.0462910742877107,
+      "dirs": [
+        {
+          "scrambled": {
+            "groups": 447,
+            "ones": 44,
+            "long": 24,
+            "max": 14,
+            "unigram": -2.281556312703009,
+            "bigram": -2.3037117494703767
+          },
+          "restored": {
+            "groups": 447,
+            "ones": 11,
+            "long": 16,
+            "max": 12,
+            "unigram": -2.0691454262844755,
+            "bigram": -2.0462910742877107
+          }
+        },
+        {
+          "scrambled": {
+            "groups": 447,
+            "ones": 47,
+            "long": 23,
+            "max": 22,
+            "unigram": -2.300784688583141,
+            "bigram": -2.3314750678533267
+          },
+          "restored": {
+            "groups": 447,
+            "ones": 11,
+            "long": 16,
+            "max": 12,
+            "unigram": -2.0691454262844755,
+            "bigram": -2.0462910742877107
+          }
+        }
+      ]
+    },
+    {
+      "donor": 2,
+      "start": 63692,
+      "groups": 448,
+      "ones": 9,
+      "long": 15,
+      "max": 12,
+      "unigram": -2.058801649492924,
+      "bigram": -2.0297796475467464,
+      "dirs": [
+        {
+          "scrambled": {
+            "groups": 448,
+            "ones": 49,
+            "long": 23,
+            "max": 14,
+            "unigram": -2.3062801461219355,
+            "bigram": -2.329908770168522
+          },
+          "restored": {
+            "groups": 448,
+            "ones": 9,
+            "long": 15,
+            "max": 12,
+            "unigram": -2.058801649492924,
+            "bigram": -2.0297796475467464
+          }
+        },
+        {
+          "scrambled": {
+            "groups": 448,
+            "ones": 43,
+            "long": 24,
+            "max": 22,
+            "unigram": -2.2853132132830596,
+            "bigram": -2.3179183338231995
+          },
+          "restored": {
+            "groups": 448,
+            "ones": 9,
+            "long": 15,
+            "max": 12,
+            "unigram": -2.058801649492924,
+            "bigram": -2.0297796475467464
+          }
+        }
+      ]
+    }
+  ],
+  "floors": {
+    "unigram": -2.1339658384979985,
+    "bigram": -2.1138192808805156
+  },
+  "results": [
+    {
+      "inv": false,
+      "groups": 432,
+      "ones": 53,
+      "long": 26,
+      "max": 19,
+      "unigram": -2.4120730572948665,
+      "bigram": -2.415531265574574,
+      "unigramGain": -0.2676450500817298,
+      "bigramGain": -0.26218304206618726,
+      "nullP": 0.002997002997002997,
+      "pass": false
+    },
+    {
+      "inv": true,
+      "groups": 432,
+      "ones": 49,
+      "long": 23,
+      "max": 21,
+      "unigram": -2.369757500030561,
+      "bigram": -2.374633474997923,
+      "unigramGain": -0.2253294928174241,
+      "bigramGain": -0.22128525148953626,
+      "nullP": 0.000999000999000999,
+      "pass": false
+    }
+  ],
+  "nullQuantiles": [
+    {
+      "q": 0.05,
+      "unigram": -2.7424943577011223,
+      "bigram": -2.8244107554603746
+    },
+    {
+      "q": 0.5,
+      "unigram": -2.630971498138538,
+      "bigram": -2.687326696853444
+    },
+    {
+      "q": 0.95,
+      "unigram": -2.5162396005664083,
+      "bigram": -2.554095294463696
+    },
+    {
+      "q": 0.975,
+      "unigram": -2.4938156781428824,
+      "bigram": -2.518647288993863
+    }
+  ],
+  "gate": "both native 5th percentile floors, positive bigram gain, direction-adjusted one-sided p<=.025",
+  "roundTrips": 30
+}
