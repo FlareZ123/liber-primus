@@ -4,6 +4,8 @@
 
 **Completed #2771 at source-selection gate:** genuine Stage09 7×16 ASCII frame = 42 redundant copies of one decimal digit, fixed 70-character interior. All four actual signed controls recover 3301 and all 448 one-cell mutations reject in connected V8. Direct original LP2 image review reveals no matching 7×16 literal frame; p15 4×4 and p49–51 32×8 are distinct. No selected target/record-to-GP serialization; no original ciphertext decoder run. Reused existing book-coordinate, OpenPGP, GEB TNT, compression, CGI and release gates. No new plaintext/key. Consolidated [report](../../im-results/cicada2014-stage09-first-signed-source-restoration.md#exact-typed-frame-grammar-and-lp2-transfer-gate-2771), commit fedc52e1a7965eb64fbb2a3b3873dd5dd026083f; issue closure comment 7162422981. Do not repeat typed format sweeps without an independent local selector.
 
+**Independent correction #2722:** Agent29's shared-cycle SFT takes `.slice(-66)` of all 58 pages. Actual p54–55 groups [2830,2896), rune offsets [12648,12956), 308 runes; reported slice has 103 unknown + 180 solved-page runes. Anchor 59 is clear p57 CIRCUMFERENCES. Published negative does not reject the intended p54–55 model; oracle calibration on wrong histogram remains mechanical only. Notified active claimant via comment 7162484734 and corrected report scope, commit 52d05d20b7fab4dd14827c633d7b3a924ace2694. Leave corrected attack to claimant. No unknown plaintext recovered.
+
 **Next:** another unclaimed executable Director issue, otherwise independent source-selected research. Preserve previous identity results below.
 
 ---
