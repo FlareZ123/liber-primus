@@ -1,0 +1,968 @@
+{
+  "field": "GF256 AES 0x11b",
+  "shape": [
+    10,
+    13,
+    9
+  ],
+  "originals": [
+    {
+      "radix": 59,
+      "homogeneous": {
+        "fitRank": 8,
+        "pivots": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "relations": [],
+        "page50Pass": 13,
+        "page51Pass": 9,
+        "checks": [
+          {
+            "row": 10,
+            "syndrome": []
+          },
+          {
+            "row": 11,
+            "syndrome": []
+          },
+          {
+            "row": 12,
+            "syndrome": []
+          },
+          {
+            "row": 13,
+            "syndrome": []
+          },
+          {
+            "row": 14,
+            "syndrome": []
+          },
+          {
+            "row": 15,
+            "syndrome": []
+          },
+          {
+            "row": 16,
+            "syndrome": []
+          },
+          {
+            "row": 17,
+            "syndrome": []
+          },
+          {
+            "row": 18,
+            "syndrome": []
+          },
+          {
+            "row": 19,
+            "syndrome": []
+          },
+          {
+            "row": 20,
+            "syndrome": []
+          },
+          {
+            "row": 21,
+            "syndrome": []
+          },
+          {
+            "row": 22,
+            "syndrome": []
+          },
+          {
+            "row": 23,
+            "syndrome": []
+          },
+          {
+            "row": 24,
+            "syndrome": []
+          },
+          {
+            "row": 25,
+            "syndrome": []
+          },
+          {
+            "row": 26,
+            "syndrome": []
+          },
+          {
+            "row": 27,
+            "syndrome": []
+          },
+          {
+            "row": 28,
+            "syndrome": []
+          },
+          {
+            "row": 29,
+            "syndrome": []
+          },
+          {
+            "row": 30,
+            "syndrome": []
+          },
+          {
+            "row": 31,
+            "syndrome": []
+          }
+        ],
+        "fullRank": 8,
+        "rankByPrefix": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      "affine": {
+        "fitRank": 8,
+        "pivots": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "relations": [],
+        "page50Pass": 13,
+        "page51Pass": 9,
+        "checks": [
+          {
+            "row": 10,
+            "syndrome": []
+          },
+          {
+            "row": 11,
+            "syndrome": []
+          },
+          {
+            "row": 12,
+            "syndrome": []
+          },
+          {
+            "row": 13,
+            "syndrome": []
+          },
+          {
+            "row": 14,
+            "syndrome": []
+          },
+          {
+            "row": 15,
+            "syndrome": []
+          },
+          {
+            "row": 16,
+            "syndrome": []
+          },
+          {
+            "row": 17,
+            "syndrome": []
+          },
+          {
+            "row": 18,
+            "syndrome": []
+          },
+          {
+            "row": 19,
+            "syndrome": []
+          },
+          {
+            "row": 20,
+            "syndrome": []
+          },
+          {
+            "row": 21,
+            "syndrome": []
+          },
+          {
+            "row": 22,
+            "syndrome": []
+          },
+          {
+            "row": 23,
+            "syndrome": []
+          },
+          {
+            "row": 24,
+            "syndrome": []
+          },
+          {
+            "row": 25,
+            "syndrome": []
+          },
+          {
+            "row": 26,
+            "syndrome": []
+          },
+          {
+            "row": 27,
+            "syndrome": []
+          },
+          {
+            "row": 28,
+            "syndrome": []
+          },
+          {
+            "row": 29,
+            "syndrome": []
+          },
+          {
+            "row": 30,
+            "syndrome": []
+          },
+          {
+            "row": 31,
+            "syndrome": []
+          }
+        ],
+        "fullRank": 8,
+        "rankByPrefix": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "radix": 60,
+      "homogeneous": {
+        "fitRank": 8,
+        "pivots": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "relations": [],
+        "page50Pass": 13,
+        "page51Pass": 9,
+        "checks": [
+          {
+            "row": 10,
+            "syndrome": []
+          },
+          {
+            "row": 11,
+            "syndrome": []
+          },
+          {
+            "row": 12,
+            "syndrome": []
+          },
+          {
+            "row": 13,
+            "syndrome": []
+          },
+          {
+            "row": 14,
+            "syndrome": []
+          },
+          {
+            "row": 15,
+            "syndrome": []
+          },
+          {
+            "row": 16,
+            "syndrome": []
+          },
+          {
+            "row": 17,
+            "syndrome": []
+          },
+          {
+            "row": 18,
+            "syndrome": []
+          },
+          {
+            "row": 19,
+            "syndrome": []
+          },
+          {
+            "row": 20,
+            "syndrome": []
+          },
+          {
+            "row": 21,
+            "syndrome": []
+          },
+          {
+            "row": 22,
+            "syndrome": []
+          },
+          {
+            "row": 23,
+            "syndrome": []
+          },
+          {
+            "row": 24,
+            "syndrome": []
+          },
+          {
+            "row": 25,
+            "syndrome": []
+          },
+          {
+            "row": 26,
+            "syndrome": []
+          },
+          {
+            "row": 27,
+            "syndrome": []
+          },
+          {
+            "row": 28,
+            "syndrome": []
+          },
+          {
+            "row": 29,
+            "syndrome": []
+          },
+          {
+            "row": 30,
+            "syndrome": []
+          },
+          {
+            "row": 31,
+            "syndrome": []
+          }
+        ],
+        "fullRank": 8,
+        "rankByPrefix": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      "affine": {
+        "fitRank": 8,
+        "pivots": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "relations": [],
+        "page50Pass": 13,
+        "page51Pass": 9,
+        "checks": [
+          {
+            "row": 10,
+            "syndrome": []
+          },
+          {
+            "row": 11,
+            "syndrome": []
+          },
+          {
+            "row": 12,
+            "syndrome": []
+          },
+          {
+            "row": 13,
+            "syndrome": []
+          },
+          {
+            "row": 14,
+            "syndrome": []
+          },
+          {
+            "row": 15,
+            "syndrome": []
+          },
+          {
+            "row": 16,
+            "syndrome": []
+          },
+          {
+            "row": 17,
+            "syndrome": []
+          },
+          {
+            "row": 18,
+            "syndrome": []
+          },
+          {
+            "row": 19,
+            "syndrome": []
+          },
+          {
+            "row": 20,
+            "syndrome": []
+          },
+          {
+            "row": 21,
+            "syndrome": []
+          },
+          {
+            "row": 22,
+            "syndrome": []
+          },
+          {
+            "row": 23,
+            "syndrome": []
+          },
+          {
+            "row": 24,
+            "syndrome": []
+          },
+          {
+            "row": 25,
+            "syndrome": []
+          },
+          {
+            "row": 26,
+            "syndrome": []
+          },
+          {
+            "row": 27,
+            "syndrome": []
+          },
+          {
+            "row": 28,
+            "syndrome": []
+          },
+          {
+            "row": 29,
+            "syndrome": []
+          },
+          {
+            "row": 30,
+            "syndrome": []
+          },
+          {
+            "row": 31,
+            "syndrome": []
+          }
+        ],
+        "fullRank": 8,
+        "rankByPrefix": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      }
+    }
+  ],
+  "controls": [
+    {
+      "affine": false,
+      "k": 3,
+      "trial": 0,
+      "relations": 5,
+      "heldoutRows": 22,
+      "correctErasedOctets": 110
+    },
+    {
+      "affine": false,
+      "k": 3,
+      "trial": 1,
+      "relations": 5,
+      "heldoutRows": 22,
+      "correctErasedOctets": 110
+    },
+    {
+      "affine": false,
+      "k": 3,
+      "trial": 2,
+      "relations": 5,
+      "heldoutRows": 22,
+      "correctErasedOctets": 110
+    },
+    {
+      "affine": false,
+      "k": 3,
+      "trial": 3,
+      "relations": 5,
+      "heldoutRows": 22,
+      "correctErasedOctets": 110
+    },
+    {
+      "affine": false,
+      "k": 5,
+      "trial": 0,
+      "relations": 3,
+      "heldoutRows": 22,
+      "correctErasedOctets": 66
+    },
+    {
+      "affine": false,
+      "k": 5,
+      "trial": 1,
+      "relations": 3,
+      "heldoutRows": 22,
+      "correctErasedOctets": 66
+    },
+    {
+      "affine": false,
+      "k": 5,
+      "trial": 2,
+      "relations": 3,
+      "heldoutRows": 22,
+      "correctErasedOctets": 66
+    },
+    {
+      "affine": false,
+      "k": 5,
+      "trial": 3,
+      "relations": 3,
+      "heldoutRows": 22,
+      "correctErasedOctets": 66
+    },
+    {
+      "affine": false,
+      "k": 7,
+      "trial": 0,
+      "relations": 1,
+      "heldoutRows": 22,
+      "correctErasedOctets": 22
+    },
+    {
+      "affine": false,
+      "k": 7,
+      "trial": 1,
+      "relations": 1,
+      "heldoutRows": 22,
+      "correctErasedOctets": 22
+    },
+    {
+      "affine": false,
+      "k": 7,
+      "trial": 2,
+      "relations": 1,
+      "heldoutRows": 22,
+      "correctErasedOctets": 22
+    },
+    {
+      "affine": false,
+      "k": 7,
+      "trial": 3,
+      "relations": 1,
+      "heldoutRows": 22,
+      "correctErasedOctets": 22
+    },
+    {
+      "affine": true,
+      "k": 3,
+      "trial": 0,
+      "relations": 5,
+      "heldoutRows": 22,
+      "correctErasedOctets": 110
+    },
+    {
+      "affine": true,
+      "k": 3,
+      "trial": 1,
+      "relations": 5,
+      "heldoutRows": 22,
+      "correctErasedOctets": 110
+    },
+    {
+      "affine": true,
+      "k": 3,
+      "trial": 2,
+      "relations": 5,
+      "heldoutRows": 22,
+      "correctErasedOctets": 110
+    },
+    {
+      "affine": true,
+      "k": 3,
+      "trial": 3,
+      "relations": 5,
+      "heldoutRows": 22,
+      "correctErasedOctets": 110
+    },
+    {
+      "affine": true,
+      "k": 5,
+      "trial": 0,
+      "relations": 3,
+      "heldoutRows": 22,
+      "correctErasedOctets": 66
+    },
+    {
+      "affine": true,
+      "k": 5,
+      "trial": 1,
+      "relations": 3,
+      "heldoutRows": 22,
+      "correctErasedOctets": 66
+    },
+    {
+      "affine": true,
+      "k": 5,
+      "trial": 2,
+      "relations": 3,
+      "heldoutRows": 22,
+      "correctErasedOctets": 66
+    },
+    {
+      "affine": true,
+      "k": 5,
+      "trial": 3,
+      "relations": 3,
+      "heldoutRows": 22,
+      "correctErasedOctets": 66
+    },
+    {
+      "affine": true,
+      "k": 7,
+      "trial": 0,
+      "relations": 1,
+      "heldoutRows": 22,
+      "correctErasedOctets": 22
+    },
+    {
+      "affine": true,
+      "k": 7,
+      "trial": 1,
+      "relations": 1,
+      "heldoutRows": 22,
+      "correctErasedOctets": 22
+    },
+    {
+      "affine": true,
+      "k": 7,
+      "trial": 2,
+      "relations": 1,
+      "heldoutRows": 22,
+      "correctErasedOctets": 22
+    },
+    {
+      "affine": true,
+      "k": 7,
+      "trial": 3,
+      "relations": 1,
+      "heldoutRows": 22,
+      "correctErasedOctets": 22
+    }
+  ],
+  "nulls": [
+    {
+      "affine": false,
+      "k": 3,
+      "trial": 0,
+      "fitRank": 8,
+      "fullRank": 8,
+      "relations": 0
+    },
+    {
+      "affine": false,
+      "k": 3,
+      "trial": 1,
+      "fitRank": 8,
+      "fullRank": 8,
+      "relations": 0
+    },
+    {
+      "affine": false,
+      "k": 3,
+      "trial": 2,
+      "fitRank": 8,
+      "fullRank": 8,
+      "relations": 0
+    },
+    {
+      "affine": false,
+      "k": 3,
+      "trial": 3,
+      "fitRank": 8,
+      "fullRank": 8,
+      "relations": 0
+    },
+    {
+      "affine": false,
+      "k": 5,
+      "trial": 0,
+      "fitRank": 8,
+      "fullRank": 8,
+      "relations": 0
+    },
+    {
+      "affine": false,
+      "k": 5,
+      "trial": 1,
+      "fitRank": 8,
+      "fullRank": 8,
+      "relations": 0
+    },
+    {
+      "affine": false,
+      "k": 5,
+      "trial": 2,
+      "fitRank": 8,
+      "fullRank": 8,
+      "relations": 0
+    },
+    {
+      "affine": false,
+      "k": 5,
+      "trial": 3,
+      "fitRank": 8,
+      "fullRank": 8,
+      "relations": 0
+    },
+    {
+      "affine": false,
+      "k": 7,
+      "trial": 0,
+      "fitRank": 8,
+      "fullRank": 8,
+      "relations": 0
+    },
+    {
+      "affine": false,
+      "k": 7,
+      "trial": 1,
+      "fitRank": 8,
+      "fullRank": 8,
+      "relations": 0
+    },
+    {
+      "affine": false,
+      "k": 7,
+      "trial": 2,
+      "fitRank": 8,
+      "fullRank": 8,
+      "relations": 0
+    },
+    {
+      "affine": false,
+      "k": 7,
+      "trial": 3,
+      "fitRank": 8,
+      "fullRank": 8,
+      "relations": 0
+    },
+    {
+      "affine": true,
+      "k": 3,
+      "trial": 0,
+      "fitRank": 8,
+      "fullRank": 8,
+      "relations": 0
+    },
+    {
+      "affine": true,
+      "k": 3,
+      "trial": 1,
+      "fitRank": 8,
+      "fullRank": 8,
+      "relations": 0
+    },
+    {
+      "affine": true,
+      "k": 3,
+      "trial": 2,
+      "fitRank": 8,
+      "fullRank": 8,
+      "relations": 0
+    },
+    {
+      "affine": true,
+      "k": 3,
+      "trial": 3,
+      "fitRank": 8,
+      "fullRank": 8,
+      "relations": 0
+    },
+    {
+      "affine": true,
+      "k": 5,
+      "trial": 0,
+      "fitRank": 8,
+      "fullRank": 8,
+      "relations": 0
+    },
+    {
+      "affine": true,
+      "k": 5,
+      "trial": 1,
+      "fitRank": 8,
+      "fullRank": 8,
+      "relations": 0
+    },
+    {
+      "affine": true,
+      "k": 5,
+      "trial": 2,
+      "fitRank": 8,
+      "fullRank": 8,
+      "relations": 0
+    },
+    {
+      "affine": true,
+      "k": 5,
+      "trial": 3,
+      "fitRank": 8,
+      "fullRank": 8,
+      "relations": 0
+    },
+    {
+      "affine": true,
+      "k": 7,
+      "trial": 0,
+      "fitRank": 8,
+      "fullRank": 8,
+      "relations": 0
+    },
+    {
+      "affine": true,
+      "k": 7,
+      "trial": 1,
+      "fitRank": 8,
+      "fullRank": 8,
+      "relations": 0
+    },
+    {
+      "affine": true,
+      "k": 7,
+      "trial": 2,
+      "fitRank": 8,
+      "fullRank": 8,
+      "relations": 0
+    },
+    {
+      "affine": true,
+      "k": 7,
+      "trial": 3,
+      "fitRank": 8,
+      "fullRank": 8,
+      "relations": 0
+    }
+  ]
+}
