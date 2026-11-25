@@ -24,6 +24,31 @@ Under the separately **hypothetical** drop-unused-`f` base59 zero-address gramma
 
 The red punctuation values **are reused elsewhere**: the original annotation registry has 31 large marks of size13, four of size10, and one of size23. Their correspondence to printing capacity and to a retrospectively selected graph fixed point is therefore a **conditional structural observation**, not a calibrated evidence probability. Likewise, the p50 13-row fill may simply reflect page typography.
 
+## Typed length-prefix stop gate (Director #2796, 25 November 2026)
+
+The period-authentic counterexample to an untyped length analogy is the actual [2013 ICMP recovered signed message](../resources/historical/cicada2013-second-onion-icmp-echo.asc), blob `b8dcf1674603399d364c43ba86241f3147660fd2`. Decode only its signature armor. The header `89 02 1c` is old-format tag 2, length type 1: body length 540 octets, and the remaining body is exactly 540 octets. Its v4 signature body starts `04 01 01 02 00 06 05 02 50 ee f5 43 00 0a`: the hashed-subpacket area has length 6; the following 16-bit field declares a 10-octet unhashed area. This is a genuine contemporaneous length mechanism with independently known field type, unit, start and endpoint. See [RFC 4880 §§4.2.1, 4.2.2.1, 5.2.3](https://www.rfc-editor.org/rfc/rfc4880.html#section-4.2.1); a new-format one-octet length below 192 also denotes exactly that many octets, not rows, symbols or words.
+
+The strongest original comparison is between the only two 10-dot marks immediately introducing an explicitly non-runic numeric object. Inspected the supplied original JPEGs 66 and 73 (2400×3600) directly, including a native-resolution crop of the latter's five hex lines.
+
+| Original mark | Following typed object | Physically visible rows | Actual object length |
+| --- | --- | ---: | --- |
+| p49:66, 10 red dots | Numeric table begins | 10 on p49; 32 in whole table | 80 two-character cells on first page; 256 total |
+| p56:45, 10 red dots | Explicit SHA-512 hex digest (known preceding plaintext ends HASHES TO) | 5 | 128 hex digits = 64 octets |
+
+The actual p56 rows transcribe as:
+
+```
+36367763ab73783c7af284446c
+59466b4cd653239a311cb7116
+d4618dee09a8425893dc7500b
+464fdaf1672d7bef5e891c6e227
+4568926a49fb4f45132c2a8b4
+```
+
+Executed `[len(x) for x in lines]` and `len(bytes.fromhex(''.join(lines)))` locally: [26,25,25,27,25], 64. The complete following literal object is demonstrably not a ten-octet OpenPGP-style body; a ten-row interpretation motivated solely by the p49 match does not transfer to the identical p56 stencil either. This is a direct cross-object counterexample, not a search over rune spans or alternative encodings. The two other 10-dot marks bracket the numbered p36–38 units (#2355); the book-terminal 23-dot mark has no subsequent runic payload. The historical signature's packet tag and positional field grammar have no independently visible equivalent in the LP2 dot morphology. A locally chosen scale or unit, or treating an arbitrary first ten bytes as a different hidden operand, would introduce the missing rule.
+
+**Decision:** #2796 fails its source-selection gate. Do not infer a general typed length prefix from p49's ten-row match. The marks can distinguish printed sections and data transitions; the known p56 receiver proves that one such transition introduces an independently typed 64-byte digest. It does not supply an unknown-page length field or reversible cipher operand. No offsets, units, keys, or cipher parameters were swept. This leaves genuinely local table navigation or a future independently specified framing instruction open. No unknown plaintext or key recovered.
+
 ## In-band solve gate and the missing source input
 
 A genuine p49→table→p51 algorithm would need all of these source-defined quantities: an unambiguous **state initializer from the unknown original p49 paragraph**, a choice of numeral grammar and byte serialization (original printed base60 or inferred base59), an actual **state-update and rune-symbol transform**, a defined **paragraph reset or carry at the table**, and a p51/p52 whole-word plaintext check under the same untouched rule. The printed cells and red markers fix geometry, offsets and select some coordinates; they do **not** supply the state-update and inverse operator. Earlier [TEA/XTEA/AES bounds](../im-results/lp2-p50-selfcontained-key-schedule-and-64bit-roundtrace-original-gate.md), stationary table transforms and repeating direct-key tests do not fill this missing input, and their negatives are local to those tested operators.

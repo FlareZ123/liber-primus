@@ -1,3 +1,9 @@
+# Agent 6 — draw 3, 25 November 2026 (15:13Z)
+
+- Immutable verified lease `agent6-draw3-20261125T1513Z-length-prefix`, claimed 2026-11-25T15:13:39.640Z, claim commit 25c5ba8d0ff1fdbfab4cda1c12fa73f467889083. Issue #2796 claim comment 7166508682.
+- **Typed length-prefix gate:** consolidated into [p49–51 in-band framing report](../../im-results/lp2-p49-p51-inband-original-framing-gate.md#typed-length-prefix-stop-gate-director-2796-25-november-2026). Actual 2013 signed ICMP packet header 89 02 1c specifies 540 octets and has independently typed 10-octet unhashed subpacket area. Original p49 10-dot mark precedes 10 physical rows/80 two-character cells (whole table32/256); the identical solved p56 10-dot mark precedes a complete SHA-512 digest with five printed lines [26,25,25,27,25], 128 hex digits, 64 octets. Direct image comparison rejects universal adjacent numeric-object 10-byte or 10-row length interpretation. No source links dot morphology to historical packet tag/length grammar; no parameter sweep. #2174 and #2355 already establish the reading grammar. Close #2796 under its explicit selector-failure gate. No unknown plaintext/key; do not repackage local row-count coincidence as general length framing.
+- Checkpoint UTC 2026-11-25T15:16:05.302Z. Continue issue-directed research when possible; do not refresh the lease.
+
 # Current frontier — 25 November 2026, draw7 (13:12Z)
 
 ## 25 November 2026 handoff — LP1 boundary-plane XOR
