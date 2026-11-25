@@ -1,12 +1,12 @@
-# Original LP2 horizontal subpixel-position and word-space gate
+# Original LP2 horizontal/vertical subpixel-position and word-space gates
 
-**Agent50 · 25 November 2026.** This is an intermediate image-channel test, not recovered plaintext.
+**Agents 50 and 10 · 25 November 2026.** This is an intermediate image-channel test, not recovered plaintext.
 
 ## Question and scope
 
 The existing glyph-morphology audit measured integer glyph starts and found no intra-word residual above 2 px, but explicitly left fractional horizontal placement unresolved. This test asks whether the original LP2 JPEGs preserve a simple secondary channel in fractional horizontal glyph positions or word-space widths.
 
-It covers the black-body rune glyphs on all 58 LP2 pages (image indices 17–74). It does not test vertical displacement, colour/chroma, DCT coefficients, punctuation-specific placement, or ink outside the established body bands.
+It covers the black-body rune glyphs on all 58 LP2 pages (image indices 17–74). The horizontal experiment itself does not test vertical displacement; the separate vertical test below uses the same segmentation. Neither tests colour/chroma, DCT coefficients, punctuation-specific placement, or ink outside the established body bands.
 
 ## Method
 
@@ -34,6 +34,27 @@ The full procedure is reproducible with [the SFT script](../sims/lp2_original_gl
 
 No structured simple horizontal subpixel-position channel is visible under this source-derived per-rune advance model. The fractional registration materially improves the held-out fit, but the remaining residuals do not track rune values, page/line position, or the candidate q8/q13/q29 periods. Printed word spaces have a stable additional width.
 
-Retire the hypothesis that a simple per-glyph horizontal displacement of at least roughly 0.1 px carries a coherent second message in the black-body rune stream. This is not an all-image steganography exclusion. Vertical phase, colour/chroma, punctuation, DCT-domain data, and ink outside the body bands remain distinct untested channels; do not claim they are excluded by this result.
+Retire the hypothesis that a simple per-glyph horizontal displacement of at least roughly 0.1 px carries a coherent second message in the black-body rune stream. This is not an all-image steganography exclusion. Vertical displacement is addressed only by the following within-line two-state test. Colour/chroma, punctuation, DCT-domain data, and ink outside the body bands remain distinct untested channels.
 
 The existing integer-origin analysis remains at [the morphology/kerning gate](lp2-original-glyph-morphology-kerning-source-gate.md). The next worthwhile image-channel work needs an independent visual/source clue selecting a different coordinate or carrier, rather than another unconstrained threshold sweep.
+
+## Vertical per-glyph two-state channel (Agent10)
+
+**Decision:** no support for an independent balanced two-state vertical displacement of the tested resolvable scale in retained body glyphs. This is a distinct measured coordinate, not an exclusion of all image steganography.
+
+The exact owner-supplied JPEG archive is the input. Reuse the prior p0 29-class glyph template labels, fixed band/segment detector, and 0.02 classification threshold; this produces the identical 13,056 high-confidence candidates. Sum grayscale darkness down each vertical row (threshold 210 with eight extra pixels above and below the 118px band), normalize, fit one per-rune median vertical template on p0–39. Register shifts on −4..4 px in .05 increments by normalized correlation and parabolic interpolation. Retain correlation >.995 and non-boundary fits; require at least ten retained glyphs per line, subtract each glyph's leave-one-out line median. This removes common line vertical motion by construction. 11,384 glyphs remain: 8,362 training p0–39, 2,882 untouched unknown p40–55, and 140 solved-page p56–57 comparator glyphs.
+
+Fit on p0–39 only: compare one normal density to equal-weight symmetric two-normal mixture with common noise, fixed amplitude grid .05–1.0 px and 40 geometric noise values .025–1.5 px. Freeze the chosen density and evaluate unknown p40–55. Original SD is .176974 px train and .175451 px heldout, versus .211952 px on the solved comparator. The alternative picks the smallest permitted amplitude .05, with training gain −.001966 and frozen holdout gain −.001357 nats/glyph relative to one Gaussian. The underlying residuals are not claimed to be Gaussian; the comparison is a finite channel screen.
+
+Profile-injection controls use independent fixed-seed balanced-probability bits and the same frozen template/eligible glyph inventory. Interpolate the original 1-D profiles at the specified signed shifts; these are not new JPEG raster encodings or evidence of author intent.
+
+| Planted signed shift | Heldout shift-error RMSE (px) | Heldout sign-bit accuracy | Mixture gain (nats/glyph) |
+|---:|---:|---:|---:|
+| ±0.10 | .03098 | .7564 | −.000750 |
+| ±0.25 | .05222 | .8508 | +.002994 |
+| ±0.50 | .07032 | .9146 | +.021230 |
+| ±1.00 | ~0 | .9271 | +.025182 |
+
+Thus the mixture gate is not sensitive at ±.10 px and should not exclude it. The ±.25–1.00 profile controls do show positive frozen gains, unlike original; no independent bitstream is established. Whole-line offsets, rare marks, asymmetric/sparse or much smaller signals, omitted glyphs, untested color/DCT carriers and different channel codings remain unresolved. Do not decode sign noise as a plaintext bitstream.
+
+[Vertical SFT](../sims/lp2_original_vertical_glyph_phase_sft.py) · [Measured summary](lp2-original-vertical-glyph-phase-summary.json). Run locally on the original owner ZIP using Python, numpy, scipy, OpenCV and Pillow; the actual local run completed successfully. The repository copy cleans a redundant literal transcription correction and imports, leaving the tested algorithm unchanged. The local output includes per-page stats; the repository summary records key metrics, and the script emits the full JSON. No CI run claimed. No unknown plaintext/key or hidden payload recovered.
