@@ -69,6 +69,14 @@ function experiment(raw){
  const C=encrypt(P,K),z=assess(C.slice(0,train.length),C.slice(train.length),K,P);if(z.exact){const c=z.candidates.find(v=>canonical(v.K)===canonical(K));if(!c||c.holdout.trueIncluded!==c.holdout.inVocab)throw Error("control inverse failure")}
  controls.push({d,K,fallback,oov:P.filter(w=>!vocab.has(id(w))).length,...z});
  }
- return {Q,M,MIN,vocab:vocab.size,train:train.length,test:test.length,controls,original:assess(train,test)};
+ const original=assess(train,test), required=original.eligible-Math.floor(train.length*.05);
+ // Distinct cyclic tuples, counted once each, can cover at most the sum
+ // of their per-group supports. Every eligible in-vocabulary group
+ // requires at least one such tuple. This bound is independent of MIN.
+ const upper=q=>{let left=q,total=0;for(const [s,n] of Object.entries(original.hist).sort((a,b)=>Number(b[0])-Number(a[0]))){const k=Math.min(left,n);total+=Number(s)*k;left-=k;if(!left)break}return Math.min(original.eligible,total)};
+ let minimum=0;while(upper(minimum)<required)minimum++;
+ const coverageBound={required,upper76:upper(76),upper180:upper(180),minimum};
+ if(JSON.stringify(coverageBound)!==JSON.stringify({required:414,upper76:190,upper180:398,minimum:188}))throw Error("original coverage bound changed");
+ return {Q,M,MIN,vocab:vocab.size,train:train.length,test:test.length,controls,original,coverageBound};
 }
 console.log(JSON.stringify(experiment(INPUTS.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8"))),null,2));
