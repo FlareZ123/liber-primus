@@ -1,0 +1,83 @@
+{
+  "scope": {
+    "pages": 55,
+    "runes": 12956,
+    "repeats": 86,
+    "inkSideCapacityBits": 465.0932626473363,
+    "originalFieldsReplayed": 55
+  },
+  "outputs": [
+    {
+      "alphabet": 27,
+      "originalMinimumInitialBits": 1356,
+      "nativeControl": {
+        "runes": 2979,
+        "ioc": 0.06138672520944124,
+        "unigram": -2.956977390699843,
+        "plantRecovered": 12956
+      },
+      "original": {
+        "ioc": 0.03702567690734629,
+        "unigram": -3.813053751539147,
+        "opening300": {
+          "ioc": 0.03605351170568562,
+          "unigram": -3.7526246542188306,
+          "prefix": "G IA B P U B D R S U M I NG F N AE F TH C N O B G I F U U D R TH TH G M P R IA NG T EA EA"
+        },
+        "p16_200": {
+          "ioc": 0.03798994974874372,
+          "unigram": -3.7739988430607796,
+          "prefix": "TH I H EA J N G N EA H NG L W H J M L A X F C M R J R P X D W TH I P G M EA X Y J G EA"
+        }
+      },
+      "literalGrid": [
+        {
+          "radix": 60,
+          "seedBits": 2048,
+          "firstContradiction": 0
+        },
+        {
+          "radix": 59,
+          "seedBits": 2048,
+          "firstContradiction": 0
+        }
+      ]
+    },
+    {
+      "alphabet": 29,
+      "originalMinimumInitialBits": 78,
+      "nativeControl": {
+        "runes": 2979,
+        "ioc": 0.06138672520944124,
+        "unigram": -2.9576425054567173,
+        "plantRecovered": 12956
+      },
+      "original": {
+        "ioc": 0.0344575452897072,
+        "unigram": -4.080335790214798,
+        "opening300": {
+          "ioc": 0.03353400222965441,
+          "unigram": -4.22898732439455,
+          "prefix": "G EA OE A EA H TH W D EO TH E I A X I X OE D B Y AE A D OE R EO E H W EO X L J S EO A W P L"
+        },
+        "p16_200": {
+          "ioc": 0.037336683417085424,
+          "unigram": -3.8921352936691367,
+          "prefix": "F R L TH M E TH NG X P NG R M IA G D X B S T AE C TH N J L B M T IA L S A G O OE EA X U EA"
+        }
+      },
+      "literalGrid": [
+        {
+          "radix": 60,
+          "seedBits": 2048,
+          "firstContradiction": 0
+        },
+        {
+          "radix": 59,
+          "seedBits": 2048,
+          "firstContradiction": 0
+        }
+      ]
+    }
+  ]
+}
