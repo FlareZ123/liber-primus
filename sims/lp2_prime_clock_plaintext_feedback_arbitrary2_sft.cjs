@@ -7,8 +7,11 @@
 const fs=require('node:fs'),os=require('node:os'),path=require('node:path'),assert=require('node:assert/strict'),{execFileSync}=require('node:child_process');
 const root=path.join(__dirname,'..','resources','liber-primus');
 const c=JSON.parse(fs.readFileSync(path.join(root,'lp2-corpus.json'),'utf8'));
-const t=c.pages.filter(p=>p.page>=16&&p.page<=39).flatMap(p=>p.indices),L=c.pages.filter(p=>p.page>=16&&p.page<=21).flatMap(p=>p.indices).length,M=841;
-assert.equal(L,1613);
+const chapter=process.argv[2]==='chapter',off=chapter?Number(process.argv[3]||0):0;
+assert(!chapter||[0,9,20].includes(off));
+const first=chapter?15:16,last=chapter?22:21;
+const t=c.pages.filter(p=>p.page>=first&&p.page<=39).flatMap(p=>p.indices).slice(off),L=c.pages.filter(p=>p.page>=first&&p.page<=last).flatMap(p=>p.indices).length-off,M=841;
+assert.equal(L,chapter?1903-off:1613);
 const dir=fs.mkdtempSync(path.join(os.tmpdir(),'lp2-fir-'));
 try{
 const tape=path.join(dir,'tape.txt'),exe=path.join(dir,process.platform==='win32'?'exact.exe':'exact');
@@ -37,6 +40,7 @@ for(const key of keys){const [b,d,m,k,nend]=key;
  function visit(i,v){if(i===L){enumerated++;const x=Array.from(out),ic=score(x)[0];maxIoc=Math.max(ic,maxIoc);for(let a=1;a<29;a++){const pp=x.map(z=>z*a%29),ll=score(pp)[1];if(top.length<10||ll>top[9].ll){top.push({key:key.slice(0,4),scale:a,ioc:ic,ll,text:pp.slice(0,100).map(z=>c.translit[z]).join('')});top.sort((a,b)=>b.ll-a.ll);top.length=Math.min(10,top.length)}}return}let [h,q,z]=step(v,i);if(viable[i+1].has(h)){out[i]=0;visit(i+1,h)}if(viable[i+1].has(q)){out[i]=z;visit(i+1,q)}}
  for(const v of viable[0].keys())visit(0,v);assert.equal(enumerated,n);
 }
-assert.equal(keys.length,77);assert.equal(pathsTotal,314n);assert.equal(maxIoc,0.03538249243506928);assert(survival.every(x=>x[2]===0));assert.equal(Math.max(...survival.map(x=>x[1])),421);
+const expected=chapter?({0:[8,145,.035045113891232674,470],9:[5,54,.03486529318541997,91],20:[4,46,.03501828260350595,131]})[off]:[77,314,.03538249243506928,421];
+assert.equal(keys.length,expected[0]);assert.equal(pathsTotal,BigInt(expected[1]));assert.equal(maxIoc,expected[2]);assert(survival.every(x=>x[2]===0));assert.equal(Math.max(...survival.map(x=>x[1])),expected[3]);
 console.log(JSON.stringify({native,keys:keys.length,terminalStates:keys.reduce((s,k)=>s+k[4],0),pathsTotal:pathsTotal.toString(),counts,continued:survival.sort((a,b)=>b[1]-a[1]),maxIoc,refScores:[score(ref),score(ref.slice(1613))],top},null,2));
 }finally{fs.rmSync(dir,{recursive:true,force:true})}
