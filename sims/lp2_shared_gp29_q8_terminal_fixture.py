@@ -37,7 +37,8 @@ def load_dictionary(added):
     for line in LEX.read_text(encoding='utf-8').splitlines():
         m=re.match(r'^([a-z]+)\s+(\d+)$',line)
         if m: d.update(variants(m.group(1)))
-    d.update(parse_compact(w) for w in added)
+    extra=added.split() if isinstance(added,str) else added
+    d.update(parse_compact(w) for w in extra)
     return d
 
 def encrypt(word,pi,k,start):
