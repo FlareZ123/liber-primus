@@ -85,6 +85,29 @@ function attack(gp,raw,allowOriginal=false) {
     }
     return dfs(0,used);
   }
+  /** Construct one admissible complete alphabet; uniqueness is assessed separately. */
+  function witness(s){
+    const groups=new Map();
+    for(let i=0;i<29;i++){if(!groups.has(s.c[i]))groups.set(s.c[i],[]);groups.get(s.c[i]).push(i)}
+    const anchor=groups.get(s.c[0]), others=[...groups.values()].filter(g=>g!==anchor).sort((a,b)=>b.length-a.length);
+    const a=Array(29).fill(-1);
+    const install=(g,z)=>{let m=0;for(const i of g){a[i]=mod(s.v[i]+z,29);m|=1<<a[i]}return m};
+    const initial=install(anchor,mod(-s.v[0],29));
+    function rec(i,m){
+      if(i===others.length)return true;
+      const g=others[i];
+      for(let z=0;z<29;z++){const b=install(g,z);if(!(m&b)&&rec(i+1,m|b))return true}
+      return false;
+    }
+    check(rec(0,initial)&&belongs(s,a),"invalid completion witness");
+    return a;
+  }
+  function countPaths(g,p,n,memo=new Map()){
+    if(!n)return 1n;if(g.rem[p]<n)return 0n;
+    const k=p+":"+n;if(memo.has(k))return memo.get(k);
+    let sum=0n;for(const [,np] of g.f[p])sum+=countPaths(g,np,n-1,memo);
+    memo.set(k,sum);return sum;
+  }
   function belongs(s,a){
     return a[0]===0&&new Set(a).size===29&&range(29).every(i=>mod(a[i]-a[s.c[i]],29)===s.v[i]);
   }
@@ -152,10 +175,17 @@ function attack(gp,raw,allowOriginal=false) {
     }):[];
     for(const o of out)forward(o.pair.right,C,S,N,o.pos,o.j,o.s,(pos,j,t,P)=>{
       const count=completions(t);
-      if(count)full.push({source:o.source,stop:o.stop,plain:o.plain.concat(P),prefixCount:o.count,fullCount:String(count),trueAlphabet:truth?belongs(t,truth.alpha):null});
+      if(count){
+        const plain=o.plain.concat(P),alpha=witness(t);
+        check(enc(plain,alpha).join()===C.join(),"full exact re-encryption");
+        full.push({source:o.source,stop:o.stop,plain,alpha,prefixCount:o.count,fullCount:String(count),trueAlphabet:truth?belongs(t,truth.alpha):null});
+      }
     });
+    const exactUniquePrediction=truth?truePrefixes.some(o=>o.count==="1"&&enc(truth.plain,witness(o.s)).slice(S).join()===C.slice(S).join()):null;
+    let predictionPathUpper=0n;
+    for(const o of out)predictionPathUpper+=BigInt(o.count)*countPaths(o.pair.right,o.pos,N-S);
     const recovered=truth?full.some(o=>o.source===truth.source&&o.stop===truth.stop&&o.plain.join()===truth.plain.join()&&o.trueAlphabet):null;
-    return {leftGraphPass,prefixPaths:out.length,prefixSourceStops:sourceStops.size,prefixClasses:out.slice(0,20).map(o=>({source:o.source,stop:o.stop,count:o.count,components:new Set(o.s.c).size})),truePrefixClasses:truePrefixes.length,forcedWithheldLowerBound:forced.length?Math.min(...forced):null,fullPaths:full.length,recovered,full:full.slice(0,10)};
+    return {leftGraphPass,prefixPaths:out.length,prefixSourceStops:sourceStops.size,prefixClasses:out.slice(0,20).map(o=>({source:o.source,stop:o.stop,count:o.count,components:new Set(o.s.c).size,graph:o.s,uniqueAlphabet:o.count==='1'?witness(o.s):null})),truePrefixClasses:truePrefixes.length,forcedWithheldLowerBound:forced.length?Math.min(...forced):null,fullPaths:full.length,exactUniquePrediction,predictionPathUpper:String(predictionPathUpper),recovered,full:full.slice(0,10)};
   }
   const controls=[],nulls=[];
   for(let j=0;j<3;j++)for(let k=0;k<2;k++){
