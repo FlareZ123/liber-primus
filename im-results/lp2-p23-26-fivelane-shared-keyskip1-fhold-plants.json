@@ -1,0 +1,234 @@
+{
+  "config": {
+    "N": 201,
+    "B": 512,
+    "T": 5,
+    "s": 0.81288,
+    "skipCap": 13,
+    "clock": "literal F transparent, physical predecessor",
+    "training": "first 80% of native donors, 5-gram Dirichlet alpha8"
+  },
+  "sourceRepeats": {
+    "blocks": [
+      1,
+      4,
+      3,
+      2,
+      1
+    ],
+    "quintets": [
+      7,
+      11,
+      3,
+      9,
+      8
+    ]
+  },
+  "cases": [
+    {
+      "item": "shared0",
+      "repeats": [
+        1,
+        1,
+        5,
+        2,
+        3
+      ],
+      "score": 714.5836822362999,
+      "trueScore": 696.7119124824683,
+      "skip": [
+        3,
+        9,
+        5,
+        8,
+        5
+      ],
+      "trueSkip": [
+        4,
+        8,
+        5,
+        10,
+        5
+      ],
+      "holdCount": [
+        3,
+        5,
+        11,
+        1,
+        11
+      ],
+      "trueHold": [
+        4,
+        6,
+        11,
+        1,
+        11
+      ],
+      "match": [
+        193,
+        193,
+        201,
+        190,
+        201
+      ],
+      "pass": true,
+      "explored": 305330,
+      "pruned": 301338,
+      "retained": 107595
+    },
+    {
+      "item": "shared1",
+      "repeats": [
+        1,
+        3,
+        4,
+        1,
+        1
+      ],
+      "score": 860.5420460030393,
+      "trueScore": 860.0787468273013,
+      "skip": [
+        8,
+        4,
+        8,
+        6,
+        3
+      ],
+      "trueSkip": [
+        8,
+        5,
+        8,
+        6,
+        3
+      ],
+      "holdCount": [
+        5,
+        4,
+        5,
+        10,
+        3
+      ],
+      "trueHold": [
+        4,
+        4,
+        5,
+        10,
+        4
+      ],
+      "match": [
+        196,
+        199,
+        197,
+        200,
+        199
+      ],
+      "pass": true,
+      "explored": 288839,
+      "pruned": 256840,
+      "retained": 104985
+    },
+    {
+      "item": "shared2",
+      "repeats": [
+        2,
+        1,
+        2,
+        1,
+        1
+      ],
+      "score": 841.8814728160207,
+      "trueScore": 841.8814728160207,
+      "skip": [
+        4,
+        4,
+        5,
+        2,
+        5
+      ],
+      "trueSkip": [
+        4,
+        4,
+        5,
+        2,
+        5
+      ],
+      "holdCount": [
+        2,
+        2,
+        4,
+        6,
+        6
+      ],
+      "trueHold": [
+        2,
+        2,
+        4,
+        6,
+        6
+      ],
+      "match": [
+        201,
+        201,
+        201,
+        201,
+        201
+      ],
+      "pass": true,
+      "explored": 277367,
+      "pruned": 241512,
+      "retained": 104226
+    },
+    {
+      "item": "shared3",
+      "repeats": [
+        0,
+        4,
+        2,
+        1,
+        2
+      ],
+      "score": 827.5014187120428,
+      "trueScore": 826.7315166464931,
+      "skip": [
+        8,
+        4,
+        7,
+        3,
+        5
+      ],
+      "trueSkip": [
+        8,
+        4,
+        7,
+        3,
+        5
+      ],
+      "holdCount": [
+        2,
+        3,
+        3,
+        6,
+        6
+      ],
+      "trueHold": [
+        2,
+        3,
+        3,
+        6,
+        6
+      ],
+      "match": [
+        195,
+        200,
+        197,
+        200,
+        200
+      ],
+      "pass": true,
+      "explored": 298956,
+      "pruned": 282401,
+      "retained": 106568
+    }
+  ],
+  "cache": 80151
+}
