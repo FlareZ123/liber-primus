@@ -1,0 +1,266 @@
+{
+  "definition": "P* then one finite content word; no bound on particle count except exact eight-rune anchor length; literal F holds, arbitrary group starting phase; no original holdout accessed for inference",
+  "vocab": 36193,
+  "content": 36182,
+  "phrase8": 832657,
+  "particlePrefixes": [
+    1,
+    1,
+    10,
+    19,
+    109,
+    280,
+    1261,
+    3781
+  ],
+  "controls": [
+    {
+      "d": 0,
+      "K": [
+        23,
+        0,
+        16,
+        17,
+        14,
+        27,
+        0,
+        14
+      ],
+      "rank": 1,
+      "topSupport": 6,
+      "domains": [
+        832656,
+        832657,
+        832656,
+        832657,
+        832656,
+        832655
+      ],
+      "hist": [
+        0,
+        4995491,
+        220,
+        0,
+        0,
+        0,
+        1
+      ],
+      "candidateCount": 1,
+      "holdout": {
+        "n": 16,
+        "eligible": 16,
+        "pIn": 16,
+        "pUnique": 13,
+        "cutIn": 16,
+        "cutUnique": 12,
+        "ambiguous": 4
+      }
+    },
+    {
+      "d": 1,
+      "K": [
+        25,
+        13,
+        6,
+        8,
+        7,
+        27,
+        8,
+        20
+      ],
+      "rank": 1,
+      "topSupport": 6,
+      "domains": [
+        832643,
+        832648,
+        832650,
+        832601,
+        832586,
+        832657
+      ],
+      "hist": [
+        0,
+        4995515,
+        132,
+        0,
+        0,
+        0,
+        1
+      ],
+      "candidateCount": 1,
+      "holdout": {
+        "n": 16,
+        "eligible": 16,
+        "pIn": 16,
+        "pUnique": 11,
+        "cutIn": 16,
+        "cutUnique": 9,
+        "ambiguous": 7
+      }
+    },
+    {
+      "d": 2,
+      "K": [
+        11,
+        7,
+        11,
+        16,
+        2,
+        27,
+        20,
+        14
+      ],
+      "rank": 1,
+      "topSupport": 6,
+      "domains": [
+        832654,
+        832657,
+        832657,
+        832655,
+        832656,
+        832656
+      ],
+      "hist": [
+        0,
+        4995457,
+        236,
+        0,
+        0,
+        0,
+        1
+      ],
+      "candidateCount": 1,
+      "holdout": {
+        "n": 16,
+        "eligible": 16,
+        "pIn": 16,
+        "pUnique": 12,
+        "cutIn": 16,
+        "cutUnique": 12,
+        "ambiguous": 4
+      }
+    }
+  ],
+  "original": {
+    "groups": 49,
+    "budget": 2,
+    "anchors": [
+      {
+        "start": 1,
+        "end": 9,
+        "c": [
+          19,
+          21,
+          23,
+          27,
+          2,
+          14,
+          10,
+          19
+        ]
+      },
+      {
+        "start": 9,
+        "end": 17,
+        "c": [
+          27,
+          23,
+          13,
+          21,
+          1,
+          7,
+          24,
+          19
+        ]
+      },
+      {
+        "start": 70,
+        "end": 78,
+        "c": [
+          3,
+          11,
+          27,
+          28,
+          10,
+          20,
+          6,
+          8
+        ]
+      },
+      {
+        "start": 86,
+        "end": 94,
+        "c": [
+          19,
+          3,
+          13,
+          26,
+          23,
+          27,
+          20,
+          13
+        ]
+      },
+      {
+        "start": 159,
+        "end": 167,
+        "c": [
+          9,
+          6,
+          3,
+          18,
+          20,
+          19,
+          17,
+          2
+        ]
+      },
+      {
+        "start": 176,
+        "end": 184,
+        "c": [
+          18,
+          20,
+          4,
+          12,
+          13,
+          4,
+          23,
+          26
+        ]
+      }
+    ],
+    "domainSizes": [
+      832657,
+      832652,
+      832651,
+      832656,
+      832657,
+      832653
+    ],
+    "hist": [
+      0,
+      4995662,
+      132,
+      0,
+      0,
+      0,
+      0
+    ],
+    "maxSupport": 2,
+    "top": [
+      0,
+      4,
+      16,
+      2,
+      3,
+      28,
+      26,
+      1
+    ],
+    "required": 4,
+    "candidateCount": 0,
+    "candidates": [],
+    "allKeyOOVLowerBound": 4
+  }
+}
