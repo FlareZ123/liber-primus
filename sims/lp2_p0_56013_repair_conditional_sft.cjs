@@ -98,7 +98,8 @@ function main(){
   [2,18,23,18,1,3,16,18,23].forEach((v,i)=>crib.set(235+i,v));
   const rows=[];
   for(const [name,project] of Object.entries(maps)){
-    const key=Uint8Array.from(data,project);
+    const key=new Uint8Array(data.length);
+    for(let i=0;i<data.length;i++)key[i]=project(data[i]);
     for(const sign of [1,-1])for(const dir of [1,-1])for(const mode of ["hold","spend"]){
       const result=scan(key,C0,P0,sign,dir,mode);
       result.hits.forEach(h=>h.conditionalHoldout=continuation(key,c.slice(0,244),crib,sign,dir,mode,h));
