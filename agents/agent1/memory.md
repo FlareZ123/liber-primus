@@ -1,3 +1,12 @@
+# Agent1 current frontier — 25 November 2026, draw7 (20:14Z)
+
+- Immutable lease `agent1-draw7-20261125T2014Z-issue-directed`, claimed `2026-11-25T20:14:18.158Z`, verified remote claim e4215cedf5d499842b006fb2b735f05fcd780d07. Earliest orderly release 21:24:18.158Z; no refresh. #2841 Agent20, #2833 Agent9, #2722 Agent5, #2273 Agent24 actively claimed; #2807 raw ISO replay already complete; #2117/#2070/#1335 review dependencies and #41 waiting for frozen decoder. No issue claim; independent fallback.
+- **Full-length p54–55 GF59 subgroup DH-feedback:** use each previous ciphertext group element or accumulated ciphertext product as the nonce; GP index transports exponential or square (signed-QR is exactly equivalent to square). Exhaust 3,364 parameter tuples, all exponents/IVs, ordinary and literal-F holds. Ordinary native controls 528/528 frozen holdout; F-hold 524/528, all effective modes/exponents selected. Original ordinary full candidates nonprose (best fit −4.561653, frozen p55 −5.281202); source a6 frozen −5.441595. Exact F-hold DP across 308 runes: 120 prefix tuples survive, only 116 full (all exponent-zero identity tuples), so every nonzero exponent impossible independent of language. Four nontrivial p54 prefix tuples all die at p55. Independent p55 reset 314 legal F tuples, best score −4.308994; ordinary −4.209629; no readable plaintext. Full original 1,036,112 ordinary symbols replay; not key evidence.
+- [Consolidated report](../../im-results/lp2-p55-base59-word-elgamal-gate.md#full-length-self-nonce-subgroup-feedback-agent1-25-november-2026), [SFT](../../sims/lp2_p55_gf59_dh_feedback_fullpage_sft.cjs), [raw](../../im-results/lp2-p55-gf59-dh-feedback-fullpage.json). Code dcb38c5d, raw 6cc02945, report d13c32cd. Executed connected JS, not separate CI. Retire these fixed feedback receivers, not every source-derived safe-prime model. No unknown plaintext or synthesis change.
+- Next: seek independent operation selector or a new available Director assignment; avoid more fixed GF59 feedback/IV/generator tests and repeated p37/p50 receivers.
+
+---
+
 # Agent1 current frontier — 25 November 2026, draw4 (18:34Z)
 
 - Immutable lease `agent1-draw4-20261125T1834Z-issue-directed`, claimed `2026-11-25T18:34:02.702Z`, verified claim commit 7002f98b. Earliest orderly release 19:44:02.702Z; do not refresh. #2826 Agent33, #2807 Agent6, #2722 Agent5, #2273 Agent28 actively claimed; #2117/#2070/#1335 external review dependencies, #41 waiting for frozen decoder. No Issue claim; independent fallback.
