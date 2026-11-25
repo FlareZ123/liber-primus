@@ -15,6 +15,7 @@ function experiment(raw,{width=64,count=3,startPlant=0,originalTest=false,refine
  const original=gp.pages.filter(p=>p.page<=55&&p.indices.length).map(p=>({page:p.page,iv:p.indices[0],d:p.indices.slice(1).map((c,j)=>mod(c-p.indices[j]))}));
  const isTrain=f=>!(f.page<=2||f.page>=15&&f.page<=22);
  assert(original.length===55&&sum(original.map(f=>f.d.length))===12901,"frame geometry");
+ for(const f of original){const c=[f.iv];for(const d of f.d)c.push(mod(c.at(-1)+d));assert(c.join()===gp.pages[f.page].indices.join(),"source increment replay");}
  function decode(d,K){let q=0;const P=[];for(const v of d){q=rows[K[q]][v];P.push(q);}return P}
  function encode(P,K){let q=0;return P.map(p=>{const d=inv[K[q]][p];q=p;return d})}
  function score(P){let s=0;for(let j=0;j<P.length;j++)s+=j===0?L1[P[j]]:j===1?L2[P[j-1]*A+P[j]]:L3[(P[j-2]*A+P[j-1])*A+P[j]];return s}
@@ -58,7 +59,7 @@ function experiment(raw,{width=64,count=3,startPlant=0,originalTest=false,refine
  function key(){return Array.from({length:A},(_,q)=>{const c=Array.from({length:A},(_,p)=>p).sort((a,b)=>Math.abs(B[q*A+a]-.00664)-Math.abs(B[q*A+b]-.00664));return 28*c[rng()%5]+rng()%28})}
  function plant(donor,K){let pos=donor.length-16000;return original.map(f=>{const P=donor.slice(pos,pos+f.d.length);pos+=P.length;assert(P.length===f.d.length,"donor length");return {page:f.page,iv:f.iv,P,d:encode(P,K)}})}
  function evaluate(frames,truth){const r=solve(frames.filter(isTrain),width,truth),initial=r.K.slice(),opt=refine(frames.filter(isTrain),r.K,{sweeps:refineSweeps,wide});r.K=opt.K;
-  function evalpart(F){let n=0,s=0,correct=0,repeats=0,used=new Set();for(const f of F){const P=decode(f.d,r.K);assert(encode(P,r.K).join()===f.d.join(),"replay");n+=P.length;s+=score(P);repeats+=f.d.filter(x=>!x).length;if(f.P){correct+=P.filter((p,i)=>p===f.P[i]).length;used.add(0);for(let i=0;i<f.P.length-1;i++)used.add(f.P[i]);}}return {n,repeats,gain:s/n,correct:F[0].P?correct:null,usedRows:used.size,keyRows:truth?[...used].filter(q=>truth[q]===r.K[q]).length:null,preview:F.slice(0,2).map(f=>decode(f.d,r.K).slice(0,80).map(p=>alphabet[p]).join(""))}}
+  function evalpart(F){let n=0,s=0,correct=0,repeats=0,used=new Set();for(const f of F){const P=decode(f.d,r.K);assert(encode(P,r.K).join()===f.d.join(),"replay");n+=P.length;s+=score(P);repeats+=f.d.filter(x=>!x).length;if(f.P){correct+=P.filter((p,i)=>p===f.P[i]).length;used.add(0);for(let i=0;i<f.P.length-1;i++)used.add(f.P[i]);}}return {n,repeats,gain:s/n,correct:F[0].P?correct:null,usedRows:truth?used.size:null,keyRows:truth?[...used].filter(q=>truth[q]===r.K[q]).length:null,preview:F.slice(0,2).map(f=>decode(f.d,r.K).slice(0,80).map(p=>alphabet[p]).join(""))}}
   return {key:r.K,initial,refinement:opt.history,truth,train:evalpart(frames.filter(isTrain)),held:evalpart(frames.filter(f=>!isTrain(f))),trace:r.trace}
  }
  const pilots=[];for(let i=0;i<count;i++){const K=key();if(i>=startPlant)pilots.push(evaluate(plant(donors[i%3],K),K))}
