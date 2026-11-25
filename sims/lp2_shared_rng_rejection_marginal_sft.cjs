@@ -124,14 +124,61 @@ function reach(C,seed,s=S){
 }
 function reachScore(C,R){return R.map(x=>({...x,...reach(C,x.seed)}))}
 
+
+/** Exact inverse for an unknown globally constant suppression threshold.
+ * r(s)=q(1-s)/(1-qs), q=1/29, for iid uniform draws and arbitrary fixed P.
+ * 86/12955 repeats give a 99.99% Clopper-Pearson interval for r
+ * [0.004213815073124439,0.009870860915824786], hence s in
+ * [0.7208605476466061,0.8815138994360033]. Freeze an outward-rounded
+ * (0.72,0.882] interval before scoring. This confidence interval is a
+ * modeling choice based on the iid-draw law, not an unconditional property
+ * of every possible MT seed. All thresholds inside it are tested exactly.
+ * Each cursor carries a finite union of (lower-exclusive, upper-inclusive]
+ * intervals. Reject iff coin < s; accept iff coin >= s.
+ */
+function mergeIntervals(a){
+ if(!a.length)return a;a.sort((x,y)=>x[0]-y[0]||x[1]-y[1]);const out=[a[0].slice()];
+ for(let i=1;i<a.length;i++){const last=out[out.length-1],x=a[i];if(x[0]<=last[1])last[1]=Math.max(last[1],x[1]);else out.push(x.slice())}return out;
+}
+function reachInterval(C,seed,lo=.72,hi=.882){
+ let U=mtFloats(seed,C.length+64),extensions=0,maxStates=1,maxIntervals=1,maxDrift=0;
+ function draw(j){if(j>=U.length){U=mtFloats(seed,Math.max(j+1,2*U.length));extensions++}return U[j]}
+ let states=new Map([[1,[[lo,hi]]]]);
+ for(let i=1;i<C.length;i++){
+   const c=C[i],prev=C[i-1],next=new Map();
+   function add(j,R,a,b){
+     let T=next.get(j);
+     for(const x of R){const l=Math.max(x[0],a),h=Math.min(x[1],b);if(l<h){if(!T){T=[];next.set(j,T)}T.push([l,h])}}
+   }
+   for(const [j,R] of states){
+     if(c!==prev)add(j+1,R,lo,hi);
+     const p=(prev+29-Math.floor(29*draw(j)))%29;
+     let k=j+1,floor=lo;
+     while(floor<hi){
+       const coin=draw(k++);
+       if(c===prev&&coin>floor)add(k,R,floor,Math.min(hi,coin));
+       floor=Math.max(floor,coin);
+       if(floor>=hi)break;
+       const emit=(p+Math.floor(29*draw(k++)))%29;
+       if(emit!==prev){if(emit===c)add(k,R,floor,hi);break}
+     }
+   }
+   if(!next.size)return {complete:false,firstDead:i,maxStates,maxIntervals,maxDrift,extensions};
+   let count=0;for(const [j,R] of next){const a=mergeIntervals(R);next.set(j,a);count+=a.length;maxDrift=Math.max(maxDrift,j-i-1)}
+   maxStates=Math.max(maxStates,next.size);maxIntervals=Math.max(maxIntervals,count);states=next;
+ }
+ return {complete:true,firstDead:null,intervals:mergeIntervals([...states.values()].flat()),finalStates:states.size,maxStates,maxIntervals,maxDrift,extensions};
+}
+function intervalScore(C,R){return R.map(x=>({...x,...reachInterval(C,x.seed)}))}
+
 function rows(prior){return prior.rows.flatMap(x=>[{rank:x.rank,seed:x.seed,variant:"literal"},...(x.seed>4294967295?[{rank:x.rank,seed:x.seed>>>0,variant:"low32"}]:[])])}
 function score(C,R){return R.map(x=>({...x,...marginal(C,mtFloats(x.seed,C.length+CAP+2))}))}
-module.exports={mtFloats,marginal,plant,oracle,controls,rows,score,reach,reachScore,S,CAP};
+module.exports={mtFloats,marginal,plant,oracle,controls,rows,score,reach,reachScore,reachInterval,intervalScore,S,CAP};
 if(require.main===module){
  const fs=require("node:fs"),read=p=>fs.readFileSync(p,"utf8");
  const corpus=JSON.parse(read("resources/liber-primus/lp2-corpus.json")),prior=JSON.parse(read("im-results/lp2-r18-skipcount-feasibility-output.json")),C=corpus.pages.filter(p=>p.page<=55).flatMap(p=>p.indices);
  const {convert}=require("./lp2_perl_pgp_keyskip1_sft.cjs");
  const [group="control",start="0",end="545"]=process.argv.slice(2);
- const result=group==="control"?controls(C,convert(read("resources/control/shakespeare_first300k.txt"),corpus.translit)):(group.startsWith("reach")?reachScore:score)(C,(group.endsWith("candidate")?rows(prior):prior.nulls.map(({seed})=>({seed}))).slice(+start,+end));
+ const result=group==="control"?controls(C,convert(read("resources/control/shakespeare_first300k.txt"),corpus.translit)):(group.startsWith("interval")?intervalScore:group.startsWith("reach")?reachScore:score)(C,(group.endsWith("candidate")?rows(prior):prior.nulls.map(({seed})=>({seed}))).slice(+start,+end));
  console.log(JSON.stringify(result,null,2));
 }
