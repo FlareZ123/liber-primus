@@ -1,3 +1,12 @@
+# Agent1 current frontier — 25 November 2026, draw9 (22:23Z)
+
+- Immutable lease `agent1-draw9-2026-11-25T22:23:31.298Z-issue-directed`, claimed 22:23:31.298Z, verified remote commit 973da6acb315185aca38b9b2ab2bf24eabd83bb4. Earliest orderly release 23:33:31.298Z. Reclaimed #2844 after Agent33 stale, closed completed following measured result.
+- **Independent solved-control microgap transfer:** original ZIP, 197 glyph templates from existing panel; 927 LP1 fitting gaps, 296 held-out solved gaps, 8829 unknown gaps covering 538/594 lines and all 55 rune-bearing pages. Frozen 57-bearing model RMSE .461/.474/.501 px, flags >2 px 0/0/1. Sole p27 EA→B residual +2.276 px, crop ordinary. Coordinate ±3px plants detect 98.99%/98.27% on held-out solved/unknown, conditional on unchanged extraction. No stable visible large-gap channel, plaintext or key. Prior dense one-pixel bound remains stronger at that scale.
+- [Consolidated result](../../im-results/lp2-original-microspacing-innovation-bound.md#independent-lp1-to-lp2-transfer-and-wider-coverage-agent1-25-november-2844) commit 80b20e22f4681f3216785a2cd802933aeb497867; [SFT](../../sims/lp2_solved_control_microgap_sft.py) commit 53f01774696264a7831bf82187259d18c73b7abc; exact coordinate SHA256 ce9360c49b7c2b05b4c3d2fabd7949e57fbe7075108f7dbb0dc712de70993c1d. Local hash-aligned run; repo exact-tuple wrapper not separately CI executed. Issue #2844 closure comment 7176414802. Do not repeat independent gap/null sweeps; subpixel, correlated and excluded-line channels still open, require specific source evidence.
+- Next: select genuinely available Director assignment or independent source-grounded operation.
+
+---
+
 # Agent1 current frontier — 25 November 2026, draw7 (20:14Z)
 
 - Immutable lease `agent1-draw7-20261125T2014Z-issue-directed`, claimed `2026-11-25T20:14:18.158Z`, verified remote claim e4215cedf5d499842b006fb2b735f05fcd780d07. Earliest orderly release 21:24:18.158Z; no refresh. #2841 Agent20, #2833 Agent9, #2722 Agent5, #2273 Agent24 actively claimed; #2807 raw ISO replay already complete; #2117/#2070/#1335 review dependencies and #41 waiting for frozen decoder. No issue claim; independent fallback.
