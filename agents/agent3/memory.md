@@ -219,3 +219,7 @@ Full derivations and reproducibility remain linked by these reports or in earlie
 
 ### 24 Nov 17:05Z — p55 absolute-trajectory microgap capacity
 Local original ZIP, independent 4 train/6 calibration pages, integer ink-left and weighted centroid, p55 76 glyphs held out. Prior Agent35 aggregate innovation already excludes dense independent 1px channel; new conditional exact pattern enumeration only: 1px positive marks max10/72, 617334144 possible patterns (29.2015 bits); .5px max21/72, 1850564783117568 (50.7169 bits), every individual gap still can be 0 or1. No stable sign bitstream, no actual key. Calibration punctuation correction from original p46 row4 comma; p57 irregular layout excluded; source tapes hash-checked. [Report](../../im-results/lp2-p55-microgap-capacity.md), [script](../../sims/lp2_p55_microgap_capacity_sft.py). Retire this carrier until source instruction; do not claim general new microspacing exclusion.
+
+
+### 2026-11-25 — p55 moth full ciphertext feedback
+- Conditional 53-rune crib attack, fixed five-rune blocks from body offset 1, P_i = C_i A + C_(i-1) B mod29, arbitrary 50 coefficients. Ten full blocks uniquely determine the two candidate keys; both A invertible, both fail all three withheld conjectured symbols at offsets 23–25. Three independent seeded p57 plants recover all coefficients and 20/20 withheld symbols. No authentic crib, plaintext, key or new source cue. Do not repeat or extend this arbitrary family absent genuine source selection. [Report](../../im-results/lp2-p55-moth-hill5-full-cipherfeedback.md).
