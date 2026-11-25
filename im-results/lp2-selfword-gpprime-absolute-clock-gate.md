@@ -24,7 +24,7 @@ The first three printed groups already have no inverse. All returned preimages r
 
 ### Removing printed word boundaries
 
-Build the exact forward word-image trie from the pinned TextBlob lexicon plus native GP29 forms, using the repository's existing normalization (including NG/ING variants). The 38,938 forms reduce to 38,916 after limiting singleton words to A/I/O (the observed native control singleton forms). No source word boundaries enter the decoder. An exhaustive DAG computes exact tiling and the minimum number of individually uncovered ciphertext runes; ties minimize unigram negative log cost.
+Build the exact forward word-image trie from the pinned TextBlob lexicon plus native GP29 forms, using the repository's existing normalization (including NG/ING variants). The 38,938 forms reduce to 38,916 after limiting singleton words to I/T/A (indices 10/16/24, encoded as A/G/O in the internal digit alphabet; the observed native control singleton forms). No source word boundaries enter the decoder. An exhaustive DAG computes exact tiling and the minimum number of individually uncovered ciphertext runes; ties minimize unigram negative log cost.
 
 - Whole original tape: no exact tiling, no nonempty exact prefix; minimum 6,976 uncovered runes out of 12,956. The nine chapter-local decodes also fail.
 - Eight deterministic length-matched uniform ciphertexts: 6,906–7,130 uncovered runes; original falls in their range. This is a simple reference diagnostic, not a calibrated cryptographic p-value.
