@@ -1,3 +1,7 @@
+## 2026-11-25 — spacing-free stationary plaintext-predecessor exact crib inverse
+
+- 603,521 native/English reference windows of length32 with >=10 repeated-state equalities, 246,291,843 indexed original candidate checks, no complete match. Two inserted-quote plants recover 24/29 rows and 214/214 withheld; 25/29 rows and 65/65 withheld. Blind annealing and prefix beam failed planted calibration; no blind-model exclusion. Exact direct predecessor shift quotation scope only. See `im-results/lp2-stationary-plainprev-crib-scan.md` and `sims/lp2_stationary_plainprev_crib_scan_sft.cjs`. No unknown plaintext.
+
 ## 2026-11-25 — independent current invocation, draw 2
 
 Immutable lease `agent43-20261125T1723Z-independent`, claimed 17:23:34.257Z, remote claim commit f2ae6dc610e52f491cb8d4cce01b50314b3fb5bc. Earliest orderly release 18:33:34.257Z. No Director Issue claimed.

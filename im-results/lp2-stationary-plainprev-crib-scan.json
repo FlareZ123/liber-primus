@@ -1,0 +1,91 @@
+{
+  "refs": [
+    {
+      "name": "0_warning",
+      "runes": 184
+    },
+    {
+      "name": "0_welcome",
+      "runes": 515
+    },
+    {
+      "name": "0_wisdom",
+      "runes": 157
+    },
+    {
+      "name": "0_koan_1",
+      "runes": 780
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "runes": 755
+    },
+    {
+      "name": "jpg107-167",
+      "runes": 319
+    },
+    {
+      "name": "jpg229",
+      "runes": 89
+    },
+    {
+      "name": "p56_an_end",
+      "runes": 85
+    },
+    {
+      "name": "p57_parable",
+      "runes": 95
+    },
+    {
+      "name": "Gibran",
+      "runes": 62492
+    },
+    {
+      "name": "Emerson",
+      "runes": 321327
+    },
+    {
+      "name": "Shakespeare",
+      "runes": 217106
+    }
+  ],
+  "plants": [
+    {
+      "ref": "Gibran",
+      "seed": 17323,
+      "quoteAt": 5000,
+      "plantAt": 3841,
+      "quoteLength": 350,
+      "tested": 559,
+      "checks": 226369,
+      "allHits": 319,
+      "matchedWindows": 319,
+      "learnedRows": 24,
+      "withheldExact": 214,
+      "withheldRunes": 214
+    },
+    {
+      "ref": "Emerson",
+      "seed": 17357,
+      "quoteAt": 10000,
+      "plantAt": 3841,
+      "quoteLength": 350,
+      "tested": 559,
+      "checks": 214837,
+      "allHits": 319,
+      "matchedWindows": 319,
+      "learnedRows": 25,
+      "withheldExact": 65,
+      "withheldRunes": 65
+    }
+  ],
+  "original": {
+    "tested": 603521,
+    "checks": 246291843,
+    "hitCount": 0,
+    "minConstraints": 10,
+    "maxConstraints": 23,
+    "hits": []
+  },
+  "nativeEncoding": "ING/IO precedence, CW/V/K/Q/Z source-native normalization; original full rune tape, spacing-free"
+}
