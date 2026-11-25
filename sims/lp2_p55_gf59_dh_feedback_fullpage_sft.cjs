@@ -142,6 +142,69 @@ function experiment(corpus, reference) {
     if(!fBest||f.s>fBest.s)fBest={...f,k};
   }
   output.pageLocalF={tested:candidates.length,legal,selected:fBest?.k,score:fBest?fBest.s/(p55.length-2):null,text:fBest?decipher(asRunes(fBest.path)):null,exactReplay:fBest?same(encF(asRunes(fBest.path),fBest.k),p55):null};
+  // Source-fixed DIUINITY (native WELCOME keyword explicitly echoed by p57).
+  // No unknown exponent digits or other keywords are searched.
+  const keyword=[...'DIUINITY'].map(x=>corpus.translit.indexOf(x));
+  if(keyword.length!==8||keyword.some(x=>x<0))throw Error('native key alphabet');
+  const schedule=[];
+  for(const kind of Object.keys(maps))for(const mode of ['previous','product'])for(let phase=0;phase<8;phase++)for(let iv=0;iv<29;iv++)schedule.push({kind,mode,phase,iv});
+  const ksRun=(data,k,hold,encode)=>{
+    const m=maps[k.kind],b=inv[k.kind];let state=m[k.iv],phase=k.phase,output=[];
+    for(const v of data){
+      if(hold&&encode&&v===0){output.push(0);continue}
+      const x=b[mod(m[v]+(encode?1:-1)*keyword[phase]*state)];
+      output.push(x);const c=encode?x:v;
+      state=k.mode==='previous'?m[c]:mod(state+m[c]);phase=(phase+1)%8;
+    }return output;
+  };
+  const ksWalk=(data,k,hold,states)=>{
+    const m=maps[k.kind],b=inv[k.kind];
+    if(!states)states=new Map([[0,{state:m[k.iv],phase:k.phase,x:29,y:29,s:0,path:''}]]);
+    for(const c of data){
+      const next=new Map();
+      for(const v of states.values()){
+        const put=(p,state,phase)=>{
+          const s=v.s+(v.x===29?0:table[(v.x*29+v.y)*29+p]);
+          const id=((state*8+phase)*30+v.y)*30+p;
+          const old=next.get(id);
+          if(!old||s>old.s)next.set(id,{state,phase,x:v.y,y:p,s,path:v.path+String.fromCharCode(65+p)});
+        };
+        if(hold&&c===0)put(0,v.state,v.phase);
+        const p=b[mod(m[c]-keyword[v.phase]*v.state)];
+        if(!hold||p!==0)put(p,k.mode==='previous'?m[c]:mod(v.state+m[c]),(v.phase+1)%8);
+      }
+      states=next;if(!states.size)break;
+    }return states;
+  };
+  const ksRank=(c,split,hold)=>{
+    let best=null,prefixFeasible=0,fullFeasible=0;
+    for(const k of schedule){
+      const states=ksWalk(c.slice(0,split),k,hold),b=bestOf(states);
+      if(!b)continue;prefixFeasible++;
+      if(ksWalk(c.slice(split),k,hold,states).size)fullFeasible++;
+      if(!best||b.s>best.s)best={k,s:b.s,states};
+    }
+    if(!best)return {tested:schedule.length,prefixFeasible,fullFeasible};
+    const f=bestOf(ksWalk(c.slice(split),best.k,hold,best.states));
+    const out={tested:schedule.length,prefixFeasible,fullFeasible,selected:best.k,fit:best.s/(split-2)};
+    if(!f)return {...out,hold:null,reason:'prefix winner has no legal suffix'};
+    const p=asRunes(f.path);
+    if(!same(ksRun(p,best.k,hold,true),c))throw Error('keyword replay');
+    return {...out,hold:split===c.length?null:score(p,split),readout:decipher(p),p,exactReplay:true};
+  };
+  output.keyword={literal:'DIUINITY',indices:keyword,original:{},pageLocal:{},controls:[]};
+  for(const hold of [false,true]){
+    const mode=hold?'fhold':'ordinary';
+    const t=ksRank(original,232,hold);delete t.p;output.keyword.original[mode]=t;
+    const v=ksRank(p55,p55.length,hold);delete v.p;output.keyword.pageLocal[mode]=v;
+    for(let i=0;i<donors.length;i++)for(const kind of Object.keys(maps))for(const update of ['previous','product']){
+      const d=donors[i],split=Math.floor(d.x.length*.75),k={kind,mode:update,phase:[2,5,3,7][i],iv:[8,19,13,2][i]};
+      const c=ksRun(d.x,k,hold,true),z=ksRank(c,split,hold),p=z.p;
+      const correctHold=p?p.slice(split).filter((v,j)=>v===d.x[split+j]).length:0;
+      delete z.p;delete z.readout;
+      output.keyword.controls.push({hold,donor:d.name,planted:k,correctHold,holdLength:d.x.length-split,...z});
+    }
+  }
   return output;
 }
 module.exports={experiment};
