@@ -53,6 +53,7 @@ function experiment(d){
  const ew=words(em.slice(start<0?0:start,end<0?em.length:end)),ep=ew.flat(),eligible=[];let off=0;for(const w of ew){for(const {offset,a} of fragments(w))if(D.has(chars(a)))eligible.push({start:off+offset,width:a.length});off+=w.length}
  for(let base=0,ct=0;base+900<=ep.length&&ct<4;base+=900){let anchors=eligible.filter(x=>x.start>=base+1&&x.start+x.width<=base+600);if(anchors.length<2)continue;let K=Array.from({length:q},()=>rand()%29);if(ct%2===0)K[3]=K[2];let P=ep.slice(base,base+900),f=forward(P,K,rand()%q);tapes.push({name:"Emerson-"+ct,kind:"control",C:f.C,cut:600,P,K,expected:anchors.map(x=>x.start-base),skips:f.skips,holds:f.holds});ct++}
  assert(tapes.length===4,"four donor controls");
+ for(const name of ["0_loss_of_divinity","p57_parable"]){const sec=native.sections.find(x=>x.name===name),nw=(sec.source_text.match(/[\u16a0-\u16ff]+/gu)||[]).map(w=>[...w].map(x=>gp.get(x))),P=nw.flat(),cut=Math.floor(P.length*3/4);let off=0,F=[];for(const w of nw){for(const {offset,a} of fragments(w))if(a.includes(0)&&off+offset>0&&off+offset+a.length<=cut&&D.has(chars(a)))F.push({start:off+offset,width:a.length});off+=w.length}assert(F.length,"native F anchors");let K,f;for(let j=0;j<10000;j++){K=Array.from({length:q},()=>rand()%29);f=forward(P,K,rand()%q);if(F.some(x=>f.counts.slice(x.start,x.start+x.width).includes(2)))break}assert(F.some(x=>f.counts.slice(x.start,x.start+x.width).includes(2)),"native F redraw anchor");tapes.push({name,kind:"native-control",C:f.C,cut,P,K,expected:F.map(x=>x.start),skips:f.skips,holds:f.holds})}
  const C=co.pages.filter(p=>p.page<=55).flatMap(p=>p.indices),cuts=[0,729,1874,3612,5506,6527,7960,9640,12648,12956];assert(C.length===12956,"canonical");
  for(let k=0;k<9;k++){let A=C.slice(cuts[k],cuts[k+1]),cut=Math.floor(A.length*2/3);tapes.push({name:"chapter-"+k,kind:"original",C:A,cut,offset:cuts[k]})}
  for(const t of tapes)t.hits=new Map;
@@ -66,20 +67,20 @@ function experiment(d){
    for(const {t,starts} of scans){const C=t.C;for(const s of starts){if(s===0&&(mask&1))continue;let sig=0;for(const j of sel)sig=sig*29+mod(C[s+O[j]]-C[s+O[j-q]]);tests++;const z=index.get(sig);if(!z)continue;
     for(const h of z){collisions++;let w=g.dict[h],K=[];for(let j=0;j<q;j++)K.push(mod(C[s+O[j]]-w[P[j]]));let ok=true;for(let j=q;j<O.length;j++)if(mod(C[s+O[j]]-w[P[j]])!==K[j%q]){ok=false;break}if(!ok)continue;
      const cons=w.map(x=>x?1:0);for(let j=0;j<L;j++)if(mask&(1<<j))cons[g.active[j]]=2;
-     const f=forward(w,K,0,s?C[s-1]:-1,cons);assert(f.C.every((x,i)=>x===C[s+i]),"anchor replay");full++;const key=canon(K);let v=t.hits.get(key);if(!v)t.hits.set(key,v={starts:new Map(),example:{s,w:chars(w),mask,width:g.width}});v.starts.set(s,Math.min(v.starts.get(s)??Infinity,g.width));
+     const f=forward(w,K,0,s?C[s-1]:-1,cons);assert(f.C.every((x,i)=>x===C[s+i]),"anchor replay");full++;const key=canon(K);let v=t.hits.get(key);if(!v)t.hits.set(key,v={starts:new Map(),example:{s,w:chars(w),mask,width:g.width},fAnchor:false,fRedrawAnchor:false});if(g.holds.length){v.fAnchor=true;if(mask)v.fRedrawAnchor=true}v.starts.set(s,Math.min(v.starts.get(s)??Infinity,g.width));
     }
    }}
   }
  }
  function nonoverlap(starts){let n=0,last=0;for(const [s,w] of [...starts].sort((a,b)=>(a[0]+a[1])-(b[0]+b[1])))if(s>=last){n++;last=s+w}return n}
  function select(t){
-  const candidates=[...t.hits].map(([key,v])=>({key,support:nonoverlap(v.starts),starts:v.starts.size,example:v.example}));let best=null,legal=0;
-  for(const x of candidates){const K=arr(x.key),p=decode(t.C,K,0,t.cut);if(!p)continue;legal++;if(!best||p.score>best.score)best={...x,score:p.score,end:p.end}}
-  let out={name:t.name,kind:t.kind,n:t.C.length,cut:t.cut,keys:candidates.length,support2:candidates.filter(x=>x.support>=2).length,maxSupport:Math.max(0,...candidates.map(x=>x.support)),legal,truth:t.K?canon(t.K):null,trueAnchor:t.K?t.hits.has(canon(t.K)):null,expected:t.expected??null};
+  const candidates=[...t.hits].map(([key,v])=>({key,support:nonoverlap(v.starts),starts:v.starts.size,example:v.example}));let best=null,legal=0,fullLegal=0,fullBest=null;
+  for(const x of candidates){const K=arr(x.key),p=decode(t.C,K,0,t.cut);if(!p)continue;legal++;const f=decode(t.C,K,0,t.C.length);if(f){fullLegal++;if(!fullBest||f.score>fullBest.score)fullBest={key:x.key,score:f.score}}if(!best||p.score>best.score)best={...x,score:p.score,end:p.end}}
+  let out={name:t.name,kind:t.kind,n:t.C.length,cut:t.cut,keys:candidates.length,support2:candidates.filter(x=>x.support>=2).length,maxSupport:Math.max(0,...candidates.map(x=>x.support)),legal,fullLegal,retrospective:fullBest?{key:arr(fullBest.key),score:fullBest.score/t.C.length}:null,truth:t.K?canon(t.K):null,trueAnchor:t.K?t.hits.has(canon(t.K)):null,trueFAnchor:t.K?t.hits.get(canon(t.K))?.fAnchor??false:null,trueFRedrawAnchor:t.K?t.hits.get(canon(t.K))?.fRedrawAnchor??false:null,expected:t.expected??null};
   if(best){const K=arr(best.key),p=decode(t.C,K,0,t.cut,null,true),h=decode(t.C,K,t.cut,t.C.length,p.end,true);out={...out,key:K,support:best.support,anchor:best.example,fit:p.score/t.cut,hold:h?h.score/(t.C.length-t.cut):null,preview:h?h.P.slice(0,180).map(v=>co.translit[v]).join(""):null,matchedKey:t.K?best.key===canon(t.K):null,trainCorrect:t.P?p.P.filter((x,i)=>x===t.P[i]).length:null,holdCorrect:t.P&&h?h.P.filter((x,i)=>x===t.P[t.cut+i]).length:null,holds:p.holds+(h?.holds??0),skips:p.skips+(h?.skips??0),allHoldRunes:h?h.P.length:0}}
   return out
  }
- const controls=tapes.filter(t=>t.kind==="control").map(select),original=tapes.filter(t=>t.kind==="original").map(select);
+ const controls=tapes.filter(t=>t.kind!=="original").map(select),original=tapes.filter(t=>t.kind==="original").map(select);
  const common=new Map();for(const t of tapes.filter(t=>t.kind==="original"))for(const [key,v] of t.hits){let a=common.get(key)||[];a.push(t.name);common.set(key,a)}
  const cross=[...common].filter(x=>x[1].length>=2).sort((a,b)=>b[1].length-a[1].length).slice(0,100);
  return {config:{q,L,masks:1<<L,dict:dict.length,sourceLM:U,model:"optional one redraw with probability .8 on collision, mandatory plaintext F hold; all word fragments spanning exactly 11 non-F runes, all positions in first 2/3 of each visual chapter, no printed spacing",redrawProb,patternGroups,anchorSignatures:signatures,indexTests:tests,signatureHits:collisions,verifiedAnchorPaths:full},controls,original,crossChapterKeys:cross};
