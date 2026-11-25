@@ -54,3 +54,21 @@ This proves at least six of the seven long original groups must be outside the l
 Four additional blind controls encrypt complete native koan (780 runes) and loss-of-divinity (755 runes) sections using two planted short keys, both digit orders. The solver recovers the exact key and all 3,070 runes, with 3/3 and 8/9 long-anchor support respectively, despite allowing arbitrary nonlexical endpoints. Held-out trigram scores -2.611 to -2.697. Controls exclude those native sections from training and native lexical augmentation.
 
 Retire this P=aC architecture with eight-digit unit a and intact printed groups unless a new independently supported representation permits at least six of seven long groups to be out-of-register. This stronger result does not cover short **encryption** multipliers with arbitrary endpoints, offsets, hidden boundaries, long multipliers, or alternative arithmetic. No authentic plaintext or key recovered. 
+
+
+## Spacing-free long-fragment inverse
+
+The direct multiplier lattice also enables a printed-separator-independent receiver. Freeze the union of all 11-rune contiguous fragments within the lexical forms and all 11-rune contiguous fragments of the seven training native sections: 7,270 distinct fragments. Scan every 11-rune physical position in the development span, without using group boundaries or assuming any endpoint. Enumerate every unit short multiplier producing at least one fragment there; rank by spacing-free trigram, then freeze and decode the other pages. The control sections are excluded from the fragment-generating native sections and native lexicon augmentation.
+
+For speed, let D=29^d, R=29^min(d,8), T=D/R and u=floor((C mod D*B)/T). Because a<29^8, the omitted low-digit term changes floor(a*u/R) by at most one (zero when T=1). The necessary rectangle is (p-1)R <= y < (p+1)R, allowing the signed wrap at p=0. Every candidate is checked against the complete original congruence floor(a*C/D) mod B = p. Thus the wider truncated-carry rectangle is merely an exact-recall filter, not a lossy approximation. The optimized interval enumerator passes 1,104 exhaustive toy comparisons.
+
+| Original fit / continuation | Order | Exact fragment-position witnesses | Distinct keys | Max fragment-position support | Winner fit / holdout trigram |
+|---|---|---:|---:|---:|---:|
+| p0 / p1–2 | BE | 73 | 72 | 2 | -4.51221 / -4.91992 |
+| p0 / p1–2 | LE | 80 | 79 | 2 | -4.56702 / -5.04322 |
+| p54 black body / p55 | BE | 59 | 58 | 2 | -4.50966 / -4.86749 |
+| p54 black body / p55 | LE | 52 | 51 | 2 | -4.55942 / -4.76996 |
+
+Four blind controls on the same native sections, choosing source spans with at least one eligible fragment (koan latter390; loss-of-divinity first377), recover both short keys in both orientations, all 3,070/3,070 runes, six matching positions each. Frozen holdout scores -2.32953 and -2.69725. The controls are conditional on fragment coverage; overlapping positions are not independent cribs. On original, even the most supported key has only two matching positions, and all four frozen winners are nonprose. In particular, the p54 LE winner containing a master-related fragment is forced by the searched fragment bank, not a discovery.
+
+This tests H-decoy **without printed segmentation** but still assumes that at least one frozen 11-rune fragment occurs in the development plaintext, in its physical order. It is not an all-language impossibility and does not constrain plaintext outside that bank or alternative arithmetic. Retire this receiver rather than perform more nearby parameter sweeps. [Spacing-free SFT](../sims/lp2_short_multiplier_spacingfree_sft.cjs), revision `2a909724da7f7b68a5c03c713b5dfe429785e879`.
