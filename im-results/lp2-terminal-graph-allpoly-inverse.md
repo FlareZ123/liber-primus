@@ -22,6 +22,25 @@ The SFT checks the authentic p56 prime-minus-one/F bypass (85/85 runes, 84 prime
 
 **Decision:** retire unconstrained common graph-filter fitting even with a shared relabeling. A source-selected compact operator or genuinely independent constraint is necessary before further work on this family.
 
+## Compact graph operators with independent alphabet permutations (Agent17, draw6)
+
+To seek a low-description-length operation rather than fit hundreds of terms, grant arbitrary independent input and output bijections, P=rho^-1(D pi(C)+h), global intercept h, and every coefficient in GF29. The earlier sibling-leaf equality screen excludes a=0 in all 32 radix/layout cases; nonzero a leaves eight cases. Since pi is arbitrary, absorb a into pi and normalize a=1 (all other coefficients rescale).
+
+**Complete degree≤2 exclusion.** Here D=I+bF+cR+dFF+eFR+fRF+gRR, where words are applied left-to-right (FR=R after F). At every leaf R,FR,RR vanish, so the score is pi(C_i)+b(F pi(C))_i+d(FF pi(C))_i+f(RF pi(C))_i+h. For any two known leaf positions with identical plaintext, their scores must agree. These equalities are homogeneous linear equations in 29 input-alphabet values; row reduction followed by exact nullspace coordinate signatures detects forced equality of two alphabet symbols. Every such equality contradicts a bijection. Each of the eight remaining layouts has 64 or 68 known leaves and 43–47 same-plaintext differences. Exhaust **29^3=24,389** normalized triples b,d,f per layout. All 195,112 force an input collision, irrespective of c,e,g,h or the output bijection. Combined with the original sibling gate this excludes every degree-two-or-less mixed graph polynomial across all 32 layouts (including every coefficient, independent alphabets, and intercept). This uses the original p55 ciphertext values at their fixed clockwise perimeter positions but no p55 plaintext. No vocabulary assumption or floating-point tolerance.
+
+**Sparse higher-degree extension.** Relax each coefficient-times-input-permutation product to its own arbitrary 29-entry symbol function, including the identity term. For a specified word set, let X_w be the feature matrix obtained by applying graph word w to the 256×29 ciphertext-symbol indicator matrix. Concatenate the selected X_w. For each pair of known positions with equal plaintext, take a difference row; these rows annihilate every legal function vector. If a difference of two distinct known plaintext symbols lies in that row span, their scores are forced equal, contradicting any bijective output alphabet. This relaxation is exact as an exclusion, even though it grants independent functions that need not share an input bijection. Across all eight sibling-surviving layouts, it excludes every tested dictionary:
+
+| Nonidentity word count | Maximum individual degree | Dictionaries per layout | Total across eight | Survivors |
+|---:|---:|---:|---:|---:|
+| 1 | 7 | 254 | 2,032 | 0 |
+| 2 | 4 | 435 | 3,480 | 0 |
+| 3 | 3 | 364 | 2,912 | 0 |
+| 4 | 2 | 15 | 120 | 0 |
+
+The other 24 layouts are already impossible for the original bijective-alphabet model, not necessarily for the independent-function relaxation. Four invertible synthetic controls use authentic solved suffix + WARNING donor, distinct affine input/output bijections, one/two/three terms and a full six-term degree-two polynomial. Each replays 256/256 planted runes and retains its true normalized leaf triple; all three sparse controls retain the planted dictionary. These controls validate necessary gates, not blind key recovery. The actual original gate was executed on pinned source blobs in connected V8 and independently the degree-two leaf search in local C++ from copied fixture. [Standalone SFT](../sims/lp2_terminal_graph_compact_allsecret_sft.cjs) · [raw](lp2-terminal-graph-compact-allsecret.json). The standalone Node file was not separately run. No authentic unknown plaintext/key.
+
+**Decision:** retire the complete degree-two family and these bounded sparse higher-degree families, even with independent secret alphabets. Together with the demonstrated dense-model ambiguity above, there is no reason to optimize this graph receiver further without an independently selected different operator. Higher-degree dense filters, other p55 placements and separate page-specific receivers remain outside the compact exclusion.
+
 ## Arbitrary mixed graph words: exact sibling-leaf theorem (25 November, draw 5)
 
 The strongest result now closes **all stationary affine linear combinations of arbitrary mixed words in the forward and reverse graph operators**, not just separate powers. This applies to every ordering of the interior obtained by row/column scans from any corner, straight or boustrophedon (16 layouts per radix), irrespective of the placement or content of the 76 perimeter runes. The hypothesis still requires one common graph decoder for the historically distinct solved pages p56 and p57 and the unknown p55. This is a conditional obstruction, not a rejection of the graph as navigation or of a p55-specific receiver.
