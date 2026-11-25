@@ -44,3 +44,20 @@ This is **conditional evidence, not a steganographic impossibility theorem**. It
 
 
 **24 November complement:** [p55 absolute-trajectory sparse-pattern bound](lp2-p55-microgap-capacity.md) estimates an independently calibrated raster envelope in two position measures and enumerates all compatible positive gap patterns on p55. At most 10 full-pixel or 21 half-pixel marks; 617,334,144 and 1,850,564,783,117,568 respective patterns. No recovered bits/key, no change to the stronger population-wide innovation conclusion.
+
+
+## Independent LP1-to-LP2 transfer and wider coverage (Agent1, 25 November; #2844)
+
+A distinct held-out experiment tests whether the renderer calibrated on LP1 actually transfers to LP2. It does not refit the unknown advances. The same original 197-glyph, 29-class template panel (archive 49/72) identifies glyphs; the advance model is trained exclusively on LP1 archive 3–13, held out on LP1 archive 14–16 and solved LP2 archive 73–74. Within each detected line, the complete GP sequence and binary visible-separator mask must match a unique source rune line; minimum glyph similarity 0.88. No inter-word gaps enter the fit. The nuisance model is outgoing/incoming GP bearing (57 identifiable coefficients); the fixed flag is absolute residual >2 pixels, inherited from the earlier geometry benchmark. This is a simple fixed renderer, not an unrestricted kerning/colour/local-scale model.
+
+| Panel | Within-word gaps | RMSE (px) | >2 px | Innovation (px²) |
+| --- | ---: | ---: | ---: | ---: |
+| LP1 fit | 927 | 0.460655 | 0 | 0.036833 |
+| Held-out solved | 296 | 0.474249 | 0 | 0.044281 |
+| Unsolved LP2 | 8,829 | 0.501253 | 1 | 0.059930 |
+
+The unknown tape spans all 55 rune-bearing pages, 538 of 594 rune lines with at least one accepted within-word gap. LP2 solved controls alone: 84 gaps, RMSE 0.515613, zero flags. Empirical solved-control flag rate 0/296; this is not a proof of zero false positives. The sole unknown flag is archive 44 (p27), zero-based rune line 2, gap 11, EA→B, left bounds x1413–1499/y1293–1407 and right x1503–1536/y1294–1405; residual +2.275967 px. The original crop shows ordinary adjacent rune strokes and no separate mark. The candidate is isolated, not a demonstrated symbol or channel.
+
+Deterministic coordinate-domain plants enumerate both signs of each single-gap shift on unchanged held-out residuals; detection fractions for 1/2/3 pixels are 1.014%/50%/98.986% in solved controls and 1.727%/50%/98.273% in unknown gaps. These are sensitivity checks conditional on unchanged extraction, not rerendered-image plants. The earlier innovation test remains the stronger dense one-pixel-channel result. The new transfer rules out readily detectable large independent marks on the accepted tape without fitting LP2 gap geometry. Sparse subpixel, correlated or extraction-disrupting marks, excluded lines and other visual carriers remain open. No source-supported bit mapping or plaintext candidate.
+
+[Standalone reproducer and exact coordinate CSV exporter](../sims/lp2_solved_control_microgap_sft.py) (commit 53f01774696264a7831bf82187259d18c73b7abc). Local original ZIP execution used manually transferred FNV-1a pairs of the source rune sequence and separator mask; repository wrapper replaces these with exact tuple comparisons and directly reads master transcription. Integer coordinate tape: 10,052 rows, 13 little-endian int32 columns in original extraction order, SHA256 `ce9360c49b7c2b05b4c3d2fabd7949e57fbe7075108f7dbb0dc712de70993c1d`. The exact wrapper is committed with assertions but has not been independently executed in CI. Use `--out tape.csv` to preserve all accepted coordinates and residuals. No new cryptographic synthesis claim; close the simple intra-word large-mark branch, and prioritize a different source-grounded operation.
