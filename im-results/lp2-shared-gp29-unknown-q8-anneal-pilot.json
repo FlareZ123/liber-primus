@@ -1,0 +1,125 @@
+{
+  "dictionary": 38938,
+  "training": 49,
+  "steps": 50000,
+  "restarts": 1,
+  "bonus": 4,
+  "plants": [
+    {
+      "truthScore": -330.1849995040187,
+      "best": -812.4928121067896,
+      "pi": [
+        0,
+        15,
+        18,
+        2,
+        8,
+        25,
+        10,
+        19,
+        4,
+        20,
+        23,
+        24,
+        14,
+        6,
+        5,
+        26,
+        13,
+        21,
+        22,
+        27,
+        12,
+        9,
+        3,
+        28,
+        17,
+        11,
+        1,
+        7,
+        16
+      ],
+      "k": [
+        1,
+        13,
+        21,
+        6,
+        25,
+        28,
+        15,
+        24
+      ],
+      "actionExact": false,
+      "trainSupported": 19,
+      "trainTruth": 1,
+      "holdoutSupported": 4,
+      "holdoutTruth": 0,
+      "plantedSupported": 66,
+      "runs": [
+        {
+          "initial": -1034.1273512461935,
+          "best": -812.4928121067896,
+          "accepted": 2107
+        }
+      ]
+    },
+    {
+      "truthScore": -338.3848967369525,
+      "best": -806.6773066021175,
+      "pi": [
+        0,
+        27,
+        16,
+        19,
+        23,
+        13,
+        14,
+        24,
+        15,
+        26,
+        17,
+        25,
+        9,
+        11,
+        12,
+        1,
+        28,
+        7,
+        8,
+        10,
+        22,
+        6,
+        18,
+        2,
+        3,
+        20,
+        4,
+        21,
+        5
+      ],
+      "k": [
+        1,
+        26,
+        6,
+        18,
+        23,
+        12,
+        2,
+        22
+      ],
+      "actionExact": false,
+      "trainSupported": 17,
+      "trainTruth": 1,
+      "holdoutSupported": 6,
+      "holdoutTruth": 0,
+      "plantedSupported": 66,
+      "runs": [
+        {
+          "initial": -1062.9062326285841,
+          "best": -806.6773066021175,
+          "accepted": 2070
+        }
+      ]
+    }
+  ]
+}
