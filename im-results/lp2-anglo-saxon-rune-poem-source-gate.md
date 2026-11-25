@@ -1,6 +1,6 @@
 # GP29 alphabet order and the Anglo-Saxon Rune Poem: source selector and prime-key gate
 
-**Agent42, 24 November 2026. Classification: source-selector positive; proposed cipher key negative.** This is a fixed-edition historical alignment and one bounded key test, not a recovered LP2 plaintext.
+**Agent42, 24 November 2026. Classification: alphabet-family alignment positive; specific edition/operation selector absent; proposed cipher key negative.** This is a fixed-edition historical alignment and one bounded key test, not a recovered LP2 plaintext.
 
 ## Fixed source and independent selector
 
@@ -8,11 +8,19 @@ The fixed edition is Bruce Dickins, *Runic and Heroic Poems of the Old Teutonic 
 
 `ᚠ ᚢ ᚦ ᚩ ᚱ ᚳ ᚷ ᚹ ᚻ ᚾ ᛁ ᛄ ᛇ ᛈ ᛉ ᛋ ᛏ ᛒ ᛖ ᛗ ᛚ ᛝ ᛟ ᛞ ᚪ ᚫ ᚣ ᛡ ᛠ`
 
-This is an **exact 29/29 ordered match** to the canonical LP2 GP29 alphabet. The 29-stanza Anglo-Saxon poem is likewise ordered one stanza per rune. The Norwegian and Icelandic rune poems in the same source have 16-rune sequences; they do not match the 29-symbol GP29 chart. Thus the selection is not merely "runes are old": the exact alphabet order independently selects this particular parallel-language source.
+This is an **exact 29/29 ordered match** to the canonical LP2 GP29 alphabet. The 29-stanza Anglo-Saxon poem is likewise ordered one stanza per rune. The Norwegian and Icelandic rune poems in the same source have 16-rune sequences; they do not match the 29-symbol GP29 chart. Thus the selection is not merely "runes are old": the exact order is consistent with the Anglo-Saxon Rune Poem tradition, and distinguishes it from the two 16-rune poems in this edition. It does not independently select Dickins's text or its coordinate system.
 
 The source's stanza names are Feoh, Ur, Thorn, Os, Rad, Cen, Gyfu, Wenne, Haegl, Nyd, Is, Ger, Eoh, Peorth, Eolh-secg, Sigel, Tir, Beorc, Eh, Mann, Lagu, Ing, Ethel, Daeg, Ac, Aesc, Yr, Iar and Ear. These names should not be confused with the modern GP29 transliteration tokens (for example, the chart's X/NG/OE/IA/EA are not the traditional rune names).
 
 **Source references:** [Dickins 1915, transcribed edition and the Anglo-Saxon Rune Poem](https://en.wikisource.org/wiki/Rune_poems#The_Anglo-Saxon_Rune_Poem); [Dickins 1915, Runic Alphabet table](https://en.wikisource.org/wiki/Runic_and_Heroic_Poems_of_the_Old_Teutonic_Peoples).
+
+## Edition ambiguity and non-running-key selector decision (#2802, Agent17, 25 November 2026)
+
+A period-available alternative is the dated [22 June 2010 Futhorc table](https://thebooksofwords.wordpress.com/2010/06/22/futhorc-anglo-saxon-runes/), a reproduction of Wikipedia's alphabet table. Its complete Unicode column, in printed order, is `ᚠᚢᚦᚩᚱᚳᚷᚹᚻᚾᛁᛄᛇᛈᛉᛋᛏᛒᛖᛗᛚᛝᛟᛞᚪᚫᚣᛡᛠ`. Exact indexed comparison with the canonical corpus gives 29/29, including the OE-before-D pair and the IA-before-EA ending. The table is explicitly attributed to the Anglo-Saxon Rune Poem tradition but contains no stanza body or line/word addresses. It is therefore a counterexample to an inference from alphabet equality to a uniquely selected textual edition: a solver or creator could obtain the complete rune order without consulting Dickins's poem text. The table is not an independent manuscript witness, nor evidence that Cicada actually consulted this particular page.
+
+The earlier [#704 codebook gate](https://github.com/FlareZ123/liber-primus/issues/704) already established that the historically fixed rune-to-stanza mapping is the identity. The [#697 p14 gate](https://github.com/FlareZ123/liber-primus/issues/697) identifies the apparent sedge as reused tree raster; the day-fly association with Dæg does not fix a stanza order or receiver. The p0 thorn and p56 AN END leads already have specific negative receivers below. The manuscript's known GP prime assignments distinguish the alphabet register, but do not tell us whether a hypothetical book coordinate refers to a stanza, line, word, or letter, nor which edition, tokenization, or index base to use. Dickins's editorial line numbers are not supplied by the 2010 alphabet table. No newly identified LP2 cue resolves these missing choices. In particular the source's 29/29 alignment is not 29 independent plaintext constraints: it is one shared alphabet ordering.
+
+Decision: close #2802 on its no-selector fork, without re-running #704, #697, #1196 or the q29 Old English plaintext-register test #2558. Retain the poem tradition as a plausible historical alphabet reference. A new authored coordinate or extraction instruction and an edition-discriminating operand are required before reopening; no plaintext, key, or holdout is claimed.
 
 ## Frozen key hypothesis
 
@@ -104,7 +112,7 @@ Both candidates re-encrypt exactly to the original 12,956 symbols. The slight ch
 
 ## Decision
 
-Retain the **29/29 Anglo-Saxon Rune Poem alignment** as a genuine source-selection and alphabet/register constraint. It is a much stronger historical connection than a thematic resemblance, and it supplies a fixed Old English/English parallel reference for future independently motivated tests.
+Retain the **29/29 Anglo-Saxon Rune Poem alignment** as a genuine alphabet/register constraint and source-family clue, not a selection of a specific textual edition. It is a much stronger historical connection than a thematic resemblance, and it supplies a fixed Old English/English parallel reference for future independently motivated tests.
 
 Reject the direct prime-value period-29 Vigenere key, the fixed stanza-final-letter Vigenere consumer selected tentatively by p56 **AN END**, and the single bounded stanza-word-count key; all fail on the original stream. The source match does **not** establish that the Rune Poem is LP2 plaintext, that the stanza meanings are a homophonic code, or that prime values index its text. Do not sweep other stanza extractions, phases, resets, reverse directions or arbitrary word indexing. Reopen only if another original clue selects a specific operation on the poem or predicts a held-out original block.
 
