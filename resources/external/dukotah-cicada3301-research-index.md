@@ -139,3 +139,7 @@ Use the latest handoff and live ledger for any newer work. The upstream scope is
 - Primary PGP signature timeline (including the 2015-07-28 and 2016-01-01 signed statements): https://github.com/Dukotah/cicada3301/blob/master/corpus/A-primary-artifacts/SIGNATURE-TIMELINE.json
 - Original 2015 signed statement: https://github.com/Dukotah/cicada3301/blob/master/corpus/A-primary-artifacts/pgp/messages/2015-07-planned-parenthood-denial.asc
 - Original 2016 Liber Primus statement: https://github.com/Dukotah/cicada3301/blob/master/corpus/A-primary-artifacts/pgp/messages/2016-01-liber-primus.asc
+
+## Round47 — backward rejection and decoy arrangements (25 November)
+
+[Round47 synthesis](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round47/SYNTHESIS.md) (observed blob 9e4b3c0e9d6c5d705b12a45877e994f521adda02) identifies a gap in monotone rejection decoders: a rejected repeat can move the key cursor backward rather than forward. It also revisits bounded key recovery when printed group lengths are decoys. These are proposed architectures, not first-party evidence. Local [periodic and prime-stream V-BACK experiments](../../im-results/lp2-vback-periodic-ring-recovery.md) cover q8/q13 by a calibrated bounded nomination/beam, and signed prime-minus-one with origins 0–3301 by exact cursor DP (including literal-F holds). No authentic original key recovered.
