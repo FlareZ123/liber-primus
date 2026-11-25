@@ -1,0 +1,424 @@
+{
+  "source": {
+    "runeCount": 12956,
+    "groups": 2896,
+    "periods": 173,
+    "completeClauses": 164,
+    "chapters": [
+      8,
+      17,
+      26,
+      20,
+      8,
+      22,
+      21,
+      41,
+      1
+    ]
+  },
+  "categories": [
+    "singleton",
+    "short <=2",
+    "medium 3–4",
+    "long >=7"
+  ],
+  "features": "mean signed standardized conditional count residual and mean squared residual for each category, clipped +/-5; moments exact iid chapter inventory conditioned on clause group count and rune sum",
+  "weights": [
+    0.11507455081304664,
+    0.11738385984884835,
+    -0.08305418034825401,
+    0.11667331824928989,
+    0.3089073720304814,
+    0.581067171059993,
+    0.7155347533391768,
+    0.08611278722084857
+  ],
+  "trainingMeans": [
+    0.02295745516638479,
+    0.020936647881709042,
+    -0.012429669444913877,
+    0.023840502085636258,
+    1.0835406863918493,
+    1.142435595406229,
+    1.1873515142334665,
+    1.0008860104315709
+  ],
+  "nullTrainingMeans": [
+    -0.0010258263158847295,
+    -0.0036952631630415437,
+    0.005225146553617341,
+    -0.0005789840554752537,
+    0.9659329583160406,
+    0.9801224171410498,
+    0.9801881584043916,
+    0.9764947980463412
+  ],
+  "training": [
+    {
+      "source": "Gibran",
+      "start": 0,
+      "words": 2450,
+      "runes": 9250,
+      "clauses": 164
+    },
+    {
+      "source": "Gibran",
+      "start": 164,
+      "words": 3443,
+      "runes": 13011,
+      "clauses": 164
+    },
+    {
+      "source": "Shakespeare",
+      "start": 0,
+      "words": 2772,
+      "runes": 11079,
+      "clauses": 164
+    },
+    {
+      "source": "Shakespeare",
+      "start": 164,
+      "words": 2105,
+      "runes": 8162,
+      "clauses": 164
+    },
+    {
+      "source": "Shakespeare",
+      "start": 328,
+      "words": 2844,
+      "runes": 11043,
+      "clauses": 164
+    },
+    {
+      "source": "Emerson",
+      "start": 0,
+      "words": 3701,
+      "runes": 15427,
+      "clauses": 164
+    },
+    {
+      "source": "Emerson",
+      "start": 164,
+      "words": 4026,
+      "runes": 16940,
+      "clauses": 164
+    },
+    {
+      "source": "Emerson",
+      "start": 328,
+      "words": 3301,
+      "runes": 13393,
+      "clauses": 164
+    }
+  ],
+  "controls": [
+    {
+      "source": "Gibran",
+      "start": 445,
+      "observed": 2.1390203587457295,
+      "pShuffle": 0.01,
+      "pDecoy": 0.02,
+      "pass": true,
+      "words": 2884,
+      "runes": 10825,
+      "clauses": 164,
+      "features": [
+        0.04338619091242998,
+        0.027422233511888532,
+        -0.02004480326961522,
+        0.03959346124654981,
+        1.2109749296569243,
+        1.3629646216094835,
+        1.1972650110202971,
+        1.182015800250494
+      ],
+      "shuffleMean": 1.5981983297835345,
+      "decoyMean": 1.6995981119526236,
+      "wrongShufflePass": false,
+      "wrongDecoyPass": false
+    },
+    {
+      "source": "Shakespeare",
+      "start": 2187,
+      "observed": 1.7147655378186892,
+      "pShuffle": 0.25,
+      "pDecoy": 0.39,
+      "pass": false,
+      "words": 2679,
+      "runes": 10495,
+      "clauses": 164,
+      "features": [
+        0.0022470902829522525,
+        -0.009685161452905494,
+        0.015611979483414215,
+        -0.01944462171373517,
+        1.0716381492335747,
+        0.9545622871940531,
+        1.080981452444879,
+        0.6970813275886364
+      ],
+      "shuffleMean": 1.6167150568873627,
+      "decoyMean": 1.7074348321247026,
+      "wrongShufflePass": false,
+      "wrongDecoyPass": false
+    },
+    {
+      "source": "Shakespeare",
+      "start": 2351,
+      "observed": 1.7327077533150586,
+      "pShuffle": 0.15,
+      "pDecoy": 0.3,
+      "pass": false,
+      "words": 3024,
+      "runes": 11564,
+      "clauses": 164,
+      "features": [
+        0.03276547188706373,
+        0.013124044979592584,
+        0.011507431598975607,
+        0.02120961180221244,
+        0.9011574511389686,
+        1.0921855955751638,
+        1.051865530855106,
+        0.6993636982085178
+      ],
+      "shuffleMean": 1.6015604971124102,
+      "decoyMean": 1.6802059568437964,
+      "wrongShufflePass": false,
+      "wrongDecoyPass": false
+    },
+    {
+      "source": "Shakespeare",
+      "start": 2515,
+      "observed": 1.5151592109162566,
+      "pShuffle": 0.78,
+      "pDecoy": 0.89,
+      "pass": false,
+      "words": 2545,
+      "runes": 10052,
+      "clauses": 164,
+      "features": [
+        0.026951831569999852,
+        0.01952575051890794,
+        -0.0024807487282878563,
+        -0.013781683236140065,
+        0.9984114650687106,
+        0.8431357524646986,
+        0.8826590172316934,
+        0.9436377948698602
+      ],
+      "shuffleMean": 1.6351771098961112,
+      "decoyMean": 1.6794560706635369,
+      "wrongShufflePass": false,
+      "wrongDecoyPass": false
+    },
+    {
+      "source": "Shakespeare",
+      "start": 2679,
+      "observed": 1.619366086538876,
+      "pShuffle": 0.38,
+      "pDecoy": 0.73,
+      "pass": false,
+      "words": 2988,
+      "runes": 11642,
+      "clauses": 164,
+      "features": [
+        0.07258037921404108,
+        0.04157171092309507,
+        -0.008664935889556982,
+        -0.03603553376950098,
+        1.3238323131318614,
+        0.8198498728641974,
+        0.9207986573902348,
+        0.7597705870296478
+      ],
+      "shuffleMean": 1.5992769203549724,
+      "decoyMean": 1.7134495433374954,
+      "wrongShufflePass": false,
+      "wrongDecoyPass": false
+    },
+    {
+      "source": "Emerson",
+      "start": 2356,
+      "observed": 1.8602196058854052,
+      "pShuffle": 0.03,
+      "pDecoy": 0.1,
+      "pass": false,
+      "words": 3315,
+      "runes": 13615,
+      "clauses": 164,
+      "features": [
+        0.02560332663508803,
+        0.05767044850907229,
+        -0.04451312606811834,
+        -0.002272925387951413,
+        1.1215320542814406,
+        1.1479722533255101,
+        1.033797664407872,
+        1.0899108049830866
+      ],
+      "shuffleMean": 1.5878365620014436,
+      "decoyMean": 1.6661661952894486,
+      "wrongShufflePass": false,
+      "wrongDecoyPass": false
+    },
+    {
+      "source": "Emerson",
+      "start": 2520,
+      "observed": 2.0474873451022617,
+      "pShuffle": 0.01,
+      "pDecoy": 0.01,
+      "pass": true,
+      "words": 3841,
+      "runes": 15625,
+      "clauses": 164,
+      "features": [
+        0.011747693570960576,
+        0.01687131872473191,
+        0.012432920826596432,
+        -0.00016927665111203215,
+        1.2585613065929229,
+        1.2478218074131544,
+        1.161662717815098,
+        1.1630121813921668
+      ],
+      "shuffleMean": 1.6168811389377058,
+      "decoyMean": 1.6715680050301442,
+      "wrongShufflePass": false,
+      "wrongDecoyPass": false
+    },
+    {
+      "source": "Emerson",
+      "start": 2684,
+      "observed": 2.0421643382017245,
+      "pShuffle": 0.01,
+      "pDecoy": 0.02,
+      "pass": true,
+      "words": 3398,
+      "runes": 14168,
+      "clauses": 164,
+      "features": [
+        0.027193978625408163,
+        0.020169211510120782,
+        0.012404246306330535,
+        -0.01800282515049585,
+        1.0469677780598283,
+        1.3128135185335932,
+        1.1851075658287906,
+        1.2258758383500807
+      ],
+      "shuffleMean": 1.6052511646015226,
+      "decoyMean": 1.6592142810014647,
+      "wrongShufflePass": false,
+      "wrongDecoyPass": false
+    },
+    {
+      "source": "Emerson",
+      "start": 2848,
+      "observed": 1.9748112837386795,
+      "pShuffle": 0.02,
+      "pDecoy": 0.02,
+      "pass": true,
+      "words": 3176,
+      "runes": 12966,
+      "clauses": 164,
+      "features": [
+        -0.03074366667949972,
+        0.026982124090282313,
+        0.0009505687243825732,
+        0.019110630471899974,
+        0.8359031999635539,
+        1.257580924153578,
+        1.2565752130117673,
+        0.9865224019853568
+      ],
+      "shuffleMean": 1.6230730669116766,
+      "decoyMean": 1.6869365403068317,
+      "wrongShufflePass": false,
+      "wrongDecoyPass": false
+    }
+  ],
+  "power": {
+    "passed": 4,
+    "total": 9,
+    "falsePositive": 0,
+    "nullControls": 18,
+    "requiredFraction": 0.8,
+    "maximumFalsePositive": 0.1,
+    "powered": false
+  },
+  "nativeCheck": {
+    "observed": 2.0990834540293357,
+    "pShuffle": 0.02,
+    "pDecoy": 0.06,
+    "pass": false,
+    "words": 588,
+    "runes": 2343,
+    "clauses": 59,
+    "features": [
+      0.061401193298078166,
+      0.08145107979956555,
+      -0.0316937985644052,
+      0.016911631765661347,
+      1.83759552867408,
+      1.1603676657916997,
+      1.045187194510333,
+      1.0229042324060178
+    ],
+    "shuffleMean": 1.519701929839219,
+    "decoyMean": 1.6628054358715565,
+    "wrongShufflePass": false,
+    "wrongDecoyPass": false
+  },
+  "original": {
+    "observed": 1.4499196842607942,
+    "pShuffle": 0.895,
+    "pDecoy": 0.92,
+    "pass": false,
+    "words": 2862,
+    "runes": 12795,
+    "clauses": 164,
+    "features": [
+      -0.012876624921777859,
+      -0.009010446657302069,
+      0.0160861878810485,
+      -0.03855701483719269,
+      0.7146686947648875,
+      0.8132375981649648,
+      0.9540832026908583,
+      0.9557459667208035
+    ],
+    "shuffleMean": 1.6022281842888795,
+    "decoyMean": 1.683482342259057,
+    "wrongShufflePass": false,
+    "wrongDecoyPass": true
+  },
+  "gate": "80% held-out panels pass both nulls p<=.05 with <=10% false positives. Original only inferential if powered. Complete clauses between two printed full stops within same chapter; no heading/tail fragments.",
+  "notes": "Chapter shuffle preserves inventory and per-clause group count but may alter per-clause rune sum; every scored residual conditions on realized sum. Conditional iid decoy preserves each clause's group count and total exactly, not chapter multiset. Both use empirical chapter length probabilities. Literary panels are nonoverlapping across train/heldout, not matched exactly to original clause length distribution.",
+  "sourceBlobs": [
+    {
+      "path": "resources/transcriptions/lp2-image-corrected.txt",
+      "sha": "f7b534a33edeb212d427329798438325307463d7"
+    },
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    }
+  ]
+}
