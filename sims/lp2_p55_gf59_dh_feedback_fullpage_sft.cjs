@@ -12,6 +12,8 @@ function experiment(corpus, reference) {
     square:seq(29).map(i=>log[(i+1)**2%59]),
     signed:seq(29).map(i=>{let x=i+1;return log[x]>=0?log[x]:log[59-x]})
   };
+  if(!maps.square.every((v,i)=>v===mod(2*maps.signed[i])))throw Error('square/signed equivalence');
+  delete maps.signed;
   const inv=Object.fromEntries(Object.entries(maps).map(([k,m])=>{let a=Array(29);m.forEach((v,i)=>a[v]=i);if(new Set(m).size!==29||m.some(v=>v<0))throw Error('invalid transport');return [k,a]}));
   const run=(input,kind,a,iv,mode,encode=false)=>{
     const m=maps[kind],b=inv[kind];let state=m[iv];const output=[];
@@ -28,9 +30,11 @@ function experiment(corpus, reference) {
   for(const {x} of train)for(let i=0;i<x.length;i++){uni[x[i]]++;if(i)bi[x[i-1]*29+x[i]]++;if(i>1)tri[(x[i-2]*29+x[i-1])*29+x[i]]++}
   const uTotal=uni.reduce((a,b)=>a+b,0);
   const table=new Float64Array(29**3);
+  const rowBi=seq(29).map(y=>bi.slice(y*29,(y+1)*29).reduce((a,b)=>a+b,0));
+  const rowTri=seq(29*29).map(x=>tri.slice(x*29,(x+1)*29).reduce((a,b)=>a+b,0));
   for(let x=0;x<29;x++)for(let y=0;y<29;y++)for(let z=0;z<29;z++){
-    const p0=(uni[z]+.5)/(uTotal+14.5),p1=(bi[y*29+z]+10*p0)/(uni[y]+10);
-    table[(x*29+y)*29+z]=Math.log((tri[(x*29+y)*29+z]+15*p1)/(bi[x*29+y]+15));
+    const p0=(uni[z]+.5)/(uTotal+14.5),p1=(bi[y*29+z]+10*p0)/(rowBi[y]+10);
+    table[(x*29+y)*29+z]=Math.log((tri[(x*29+y)*29+z]+15*p1)/(rowTri[x*29+y]+15));
   }
   const score=(x,start=0,end=x.length)=>{let s=0,n=0;for(let i=Math.max(2,start);i<end;i++){s+=table[(x[i-2]*29+x[i-1])*29+x[i]];n++}return s/n};
   const ioc=x=>{const f=Array(29).fill(0);x.forEach(v=>f[v]++);return f.reduce((s,v)=>s+v*(v-1),0)/(x.length*(x.length-1))};
@@ -50,7 +54,7 @@ function experiment(corpus, reference) {
   };
   const original=p54.concat(p55);
   let output={transports:maps, training:train.map(s=>[s.name,s.x.length]),sourceSizes:[p54.length,p55.length], original:{}};
-  for(const [key,filter] of Object.entries({all:k=>true,sourceExponent:k=>k.a===6,sourceIndices:k=>k.a===6&&[8,19].includes(k.iv),squareSigned:k=>k.kind!=='exponential'})){
+  for(const [key,filter] of Object.entries({all:k=>true,sourceExponent:k=>k.a===6,sourceIndices:k=>k.a===6&&[8,19].includes(k.iv),square:k=>k.kind==='square'})){
     const r=rank(original,232,filter);delete r.p;output.original[key]=r
   }
   // Full original replay for EVERY candidate; no candidate accepted merely because it round-trips.
@@ -66,6 +70,78 @@ function experiment(corpus, reference) {
     if(!same(truePlain,d.x))throw Error('native replay failed');
     output.controls.push({donor:d.name,kind,mode,a,iv,split,expectedHold:score(d.x,split),fit:r.best.fit,hold:r.best.hold, selected:{kind:r.best.kind,mode:r.best.mode,a:r.best.a,iv:r.best.iv},correctHold:r.p.slice(split).filter((v,j)=>v===d.x[split+j]).length,holdLength:d.x.length-split,exactReplay:r.best.exactReplay});
   }
+  // Exact latent plaintext-F holds. Retain every distinct state/context, then
+  // rank on the prefix only. Carry all feasible prefix states for the chosen key.
+  const initial=(kind,iv)=>new Map([[maps[kind][iv]*900+29*30+29,{state:maps[kind][iv],x:29,y:29,s:0,path:''}]]);
+  const advance=(states,c,kind,a,mode)=>{
+    const m=maps[kind],b=inv[kind],next=new Map();
+    for(const v of states.values()){
+      const put=(p,state)=>{
+        const ss=v.s+(v.x===29?0:table[(v.x*29+v.y)*29+p]);
+        const k=state*900+v.y*30+p;
+        const old=next.get(k);
+        if(!old||ss>old.s)next.set(k,{state,x:v.y,y:p,s:ss,path:v.path+String.fromCharCode(65+p)});
+      };
+      if(c===0)put(0,v.state);
+      const p=b[mod(m[c]-a*v.state)];
+      if(p!==0)put(p,mode==='previous'?m[c]:mod(v.state+m[c]));
+    }return next;
+  };
+  const walk=(c,k,states=initial(k.kind,k.iv))=>{
+    for(const x of c){states=advance(states,x,k.kind,k.a,k.mode);if(!states.size)break}
+    return states;
+  };
+  const bestOf=states=>{let best=null;for(const x of states.values())if(!best||x.s>best.s)best=x;return best};
+  const asRunes=p=>[...p].map(c=>c.charCodeAt(0)-65);
+  const encF=(p,k)=>{
+    const m=maps[k.kind],b=inv[k.kind];let state=m[k.iv],c=[];
+    for(const x of p){
+      if(x===0){c.push(0);continue}
+      const y=b[mod(m[x]+k.a*state)];c.push(y);state=k.mode==='previous'?m[y]:mod(state+m[y]);
+    }return c;
+  };
+  const rankF=(c,split,allow=()=>true)=>{
+    let eligible=0,prefixFeasible=0,fullFeasible=0,winner=null,maxDirectHold=-Infinity;
+    for(const k of candidates)if(allow(k)){
+      eligible++;
+      const states=walk(c.slice(0,split),k),b=bestOf(states);
+      if(!b)continue;
+      prefixFeasible++;
+      const full=walk(c.slice(split),k,states);
+      const f=bestOf(full);
+      if(f){fullFeasible++;const p=asRunes(f.path);maxDirectHold=Math.max(maxDirectHold,score(p,split));}
+      if(!winner||b.s>winner.fitSum)winner={k,fitSum:b.s,states};
+    }
+    if(!winner)return {eligible,prefixFeasible,fullFeasible};
+    const f=bestOf(walk(c.slice(split),winner.k,winner.states));
+    const base={eligible,prefixFeasible,fullFeasible,selected:winner.k,fit:winner.fitSum/(split-2),directHoldDiagnostic:Number.isFinite(maxDirectHold)?maxDirectHold:null};
+    if(!f)return {...base,hold:null,reason:'prefix winner has no full path'};
+    const p=asRunes(f.path);
+    if(!same(encF(p,winner.k),c))throw Error('latent F replay');
+    return {...base,hold:score(p,split),holdText:decipher(p.slice(split)),fitText:decipher(p.slice(0,split)),exactReplay:true,p};
+  };
+  output.fhold={original:{},controls:[]};
+  for(const [key,filter] of Object.entries({all:k=>true,sourceExponent:k=>k.a===6,sourceIndices:k=>k.a===6&&[8,19].includes(k.iv)})){
+    const r=rankF(original,232,filter);delete r.p;output.fhold.original[key]=r;
+  }
+  for(let i=0;i<donors.length;i++)for(const kind of Object.keys(maps))for(const mode of ['previous','product']){
+    const d=donors[i],split=Math.floor(d.x.length*.75),k={kind,mode,a:[6,17,11,23][i],iv:[8,19,13,2][i]};
+    const c=encF(d.x,k),r=rankF(c,split),p=r.p;
+    const correctHold=p?p.slice(split).filter((v,j)=>v===d.x[split+j]).length:0;
+    delete r.p;delete r.fitText;delete r.holdText;
+    output.fhold.controls.push({donor:d.name,planted:k,holdLength:d.x.length-split,correctHold,expectedHold:score(d.x,split),...r});
+  }
+  // Page-local p55 independent reset: no fitting claim; enumerate every key and
+  // every legal F path for this direct diagnostic. The terminal winner is postselected.
+  const single=rank(p55,p55.length);
+  delete single.p;delete single.best.hold;delete single.best.holdIoC;delete single.best.holdText;
+  output.pageLocalOrdinary=single;
+  let fBest=null,legal=0;
+  for(const k of candidates){
+    const f=bestOf(walk(p55,k));if(!f)continue;legal++;
+    if(!fBest||f.s>fBest.s)fBest={...f,k};
+  }
+  output.pageLocalF={tested:candidates.length,legal,selected:fBest?.k,score:fBest?fBest.s/(p55.length-2):null,text:fBest?decipher(asRunes(fBest.path)):null,exactReplay:fBest?same(encF(asRunes(fBest.path),fBest.k),p55):null};
   return output;
 }
 module.exports={experiment};
