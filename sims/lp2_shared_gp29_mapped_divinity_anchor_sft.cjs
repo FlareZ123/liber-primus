@@ -50,11 +50,19 @@ function experiment(raw,config={}) {
   for(let x=0;x<29;x++){let off=x*W,f=a[off+p]*reciprocal%29;if(f){for(let j=0;j<d;j++)if(j!==p)a[off+j]=mod(a[off+j]-f*eq[j]);a[off+L]=mod(a[off+L]-f*eq[L]);}if(p!==d-1)a[off+p]=a[off+d-1];a[off+d-1]=0;}
   s.vars[p]=s.vars[d-1];s.vars.pop();s.d--;return true;
  }
- function valid(s){const set=new Set(),a=s.a,d=s.d;for(let x=0;x<29;x++){let o=x*W,k=String.fromCharCode(...a.subarray(o,o+d),a[o+L]);if(set.has(k))return false;set.add(k)}return true}
+ function valid(s){const set=new Set(),a=s.a,d=s.d;for(let x=0;x<29;x++){let o=x*W,k;if(d<=9){k=1;for(let j=0;j<d;j++)k=k*29+a[o+j];k=k*29+a[o+L]}else k=String.fromCharCode(...a.subarray(o,o+d),a[o+L]);if(set.has(k))return false;set.add(k)}return true}
  function base(){let s={a:new Uint8Array(W*W),d:0,vars:[]};for(let x=1;x<29;x++)if(x!==23){s.a[x*W+s.d++]=1;s.vars.push(x)}s.a[23*W+L]=1;check(constrain(s,Array.from({length:29},(_,i)=>[i,1]))&&s.d===26,"sum gauge");return s}
  function clone(s){return {a:s.a.slice(),d:s.d,vars:s.vars.slice()}}
- function apply(s,edges){const v=clone(s);for(const [c,p,k] of edges)if(!constrain(v,[[c,1],[p,-1],[k,-1]]))return null;return valid(v)?v:null}
- function edges(c,w,start){let j=start,e=[];for(let i=0;i<c.length;i++){if(w[i]===0){if(c[i]!==0)return null;continue}let k=K[j];if(c[i]===w[i]||c[i]===k)return null;e.push([c[i],w[i],k]);j=(j+1)%8}return e}
+ function constrainEdge(s,c,p,k){
+  const a=s.a,d=s.d,eq=new Uint8Array(29),u=c*W,v=p*W,w=k*W;let pivot=-1;
+  for(let j=0;j<d;j++){eq[j]=mod(a[u+j]-a[v+j]-a[w+j]);if(eq[j])pivot=j}
+  eq[L]=mod(a[u+L]-a[v+L]-a[w+L]);if(pivot<0)return eq[L]===0;
+  const reciprocal=inv[eq[pivot]],last=d-1;
+  for(let x=0;x<29;x++){const off=x*W,f=a[off+pivot]*reciprocal%29;if(f){for(let j=0;j<d;j++)if(j!==pivot)a[off+j]=mod(a[off+j]-f*eq[j]);a[off+L]=mod(a[off+L]-f*eq[L]);}if(pivot!==last)a[off+pivot]=a[off+last];a[off+last]=0;}
+  s.vars[pivot]=s.vars[last];s.vars.pop();s.d--;return true
+ }
+ function apply(s,edges){const v=clone(s);for(const [c,p,k] of edges)if(!constrainEdge(v,c,p,k))return null;return valid(v)?v:null}
+ function edges(c,w,start){let j=start,e=[];for(let i=0;i<c.length;i++){if(w[i]===0){if(c[i]!==0)return null;continue}let k=K[j];if(c[i]===w[i]||c[i]===k)return null;const a=c[i],b=w[i];for(const [x,y,z] of e){if((x===a&&((y===b&&z!==k)||(z===k&&y!==b)||(y===k&&z!==b)||(z===b&&y!==k)))||((y===b&&z===k)||(y===k&&z===b))&&x!==a)return null}e.push([a,b,k]);j=(j+1)%8}return e}
  const b=base(),show=w=>w.map(x=>G.translit[x]).join("");
  function options(c){let ret=[];for(const {w,f} of by[c.length])for(let j=0;j<8;j++){let e=edges(c,w,j);if(!e)continue;let s=apply(b,e);if(s)ret.push({e,s,w,j,f})}return ret}
  function evaluate(s,params){return Array.from({length:29},(_,x)=>{let o=x*W,z=s.a[o+L];for(let j=0;j<s.d;j++)z+=params[j]*s.a[o+j];return z%29})}
