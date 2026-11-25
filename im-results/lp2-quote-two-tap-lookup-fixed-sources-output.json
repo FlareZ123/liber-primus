@@ -113,5 +113,120 @@
         "full": []
       }
     ]
+  },
+  {
+    "start": 8,
+    "sources": [
+      {
+        "name": "Walden",
+        "candidates": 1269
+      },
+      {
+        "name": "The Secret Garden",
+        "candidates": 287
+      },
+      {
+        "name": "Dracula",
+        "candidates": 952
+      },
+      {
+        "name": "Thus Spake Zarathustra",
+        "candidates": 344
+      },
+      {
+        "name": "The Dhammapada",
+        "candidates": 87
+      },
+      {
+        "name": "Tao Teh King",
+        "candidates": 68
+      },
+      {
+        "name": "The Upanishads",
+        "candidates": 161
+      },
+      {
+        "name": "Beyond Good and Evil",
+        "candidates": 810
+      }
+    ],
+    "total": 3978,
+    "gate": true,
+    "controls": [
+      {
+        "hold": false,
+        "name": "Walden",
+        "start": 227931,
+        "prefix": 1,
+        "full": 1,
+        "trueRetained": true,
+        "forced": 68,
+        "allTrueSource": true
+      },
+      {
+        "hold": true,
+        "name": "Walden",
+        "start": 87827,
+        "prefix": 1,
+        "full": 1,
+        "trueRetained": true,
+        "forced": 74,
+        "allTrueSource": true
+      },
+      {
+        "hold": false,
+        "name": "Beyond Good and Evil",
+        "start": 83549,
+        "prefix": 1,
+        "full": 1,
+        "trueRetained": true,
+        "forced": 72,
+        "allTrueSource": true
+      },
+      {
+        "hold": true,
+        "name": "Beyond Good and Evil",
+        "start": 45596,
+        "prefix": 1,
+        "full": 1,
+        "trueRetained": true,
+        "forced": 72,
+        "allTrueSource": true
+      }
+    ],
+    "nulls": [
+      {
+        "hold": false,
+        "prefix": 0,
+        "full": 0
+      },
+      {
+        "hold": true,
+        "prefix": 0,
+        "full": 0
+      },
+      {
+        "hold": false,
+        "prefix": 0,
+        "full": 0
+      },
+      {
+        "hold": true,
+        "prefix": 0,
+        "full": 0
+      }
+    ],
+    "original": [
+      {
+        "hold": false,
+        "prefix": [],
+        "full": []
+      },
+      {
+        "hold": true,
+        "prefix": [],
+        "full": []
+      }
+    ]
   }
 ]
