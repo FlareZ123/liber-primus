@@ -416,6 +416,7 @@
   "controls": [
     {
       "name": "0_welcome",
+      "fitTarget": 130,
       "fitRunes": 131,
       "zeros": 6,
       "trueF": 4,
@@ -431,15 +432,17 @@
       "capped": false,
       "nodes": 1,
       "held": {
-        "paths": 0,
-        "hits": 0,
+        "paths": "23",
+        "hits": 64,
         "runes": 64,
         "unseen": [],
-        "tableExact": true
+        "tableExact": true,
+        "replay": true
       }
     },
     {
       "name": "0_koan_1",
+      "fitTarget": 130,
       "fitRunes": 130,
       "zeros": 2,
       "trueF": 1,
@@ -453,6 +456,30 @@
       "capped": false,
       "nodes": 3,
       "held": null
+    },
+    {
+      "name": "0_koan_1",
+      "fitTarget": 175,
+      "fitRunes": 176,
+      "zeros": 3,
+      "trueF": 1,
+      "consumingZeros": 2,
+      "tableDistinct": 15,
+      "OOV": [],
+      "fitMasks": 8,
+      "gateMasks": 1,
+      "solutions": 1,
+      "correct": 1,
+      "capped": false,
+      "nodes": 1,
+      "held": {
+        "paths": "1",
+        "hits": 46,
+        "runes": 46,
+        "unseen": [],
+        "tableExact": true,
+        "replay": true
+      }
     }
   ]
 }
