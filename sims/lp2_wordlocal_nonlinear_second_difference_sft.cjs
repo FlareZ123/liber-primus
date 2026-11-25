@@ -58,9 +58,33 @@ function experiment(gp,transcript,donors,frequency,solved){
     const sorted=[...states.values()].sort((a,b)=>a.oov-b.oov||b.assigned-a.assigned||a.f.join(",").localeCompare(b.f.join(",")));
     return {nodes,leaves,truncated,maxDepth,best:Number.isFinite(best)?best:null,anchorDomains:anchors.map(t=>[t.index,t.C.length,t.cands.length]),states:sorted,individualOOV:all.filter(t=>!t.cands.length).map(t=>t.index)}
   }
+
+  // Complete an anchor state using fit groups only. A full table may still
+  // be nonidentifiable because the initial two plaintext runes are free.
+  function complete(train,states,budget,truth,cap=250000){
+    const ts=tasks(train),seen=new Set();let nodes=0,truncated=false,truthRetained=false,first=null,bestOov=Infinity,count=0;
+    const agreement=Array(29).fill(-2),order=Array.from({length:29},(_,i)=>i);
+    const weights=order.map(i=>ts.reduce((n,t)=>n+t.v.includes(i),0));
+    function visit(f,g){
+      if(truncated)return;
+      if(++nodes>cap){truncated=true;return}
+      if(ts.filter(t=>!t.cands.some(c=>ok(c,f,g))).length>budget)return;
+      let k=-1;for(const i of order)if(f[i]<0&&(k<0||weights[i]>weights[k]))k=i;
+      if(k<0){const id=f.join(",");if(seen.has(id))return;seen.add(id);const oov=ts.filter(t=>!t.cands.some(c=>ok(c,f,g))).length;count++;
+        if(oov<bestOov||oov===bestOov&&id<first.f.join(",")){bestOov=oov;first={f:f.slice(),g:g.slice(),oov,assigned:29}}
+        if(truth&&f.every((v,i)=>v===truth[i]))truthRetained=true;
+        for(const i of order)agreement[i]=agreement[i]===-2?f[i]:agreement[i]===f[i]?f[i]:-1;
+        return
+      }
+      for(const p of order)if(g[p]<0){f[k]=p;g[p]=k;visit(f,g);f[k]=-1;g[p]=-1;if(truncated)return}
+    }
+    for(const s of states){visit(s.f.slice(),s.g.slice());if(truncated)break}
+    return {nodes,truncated,count,truthRetained,forcedEntries:agreement.filter(v=>v>=0).length,first,bestOov:Number.isFinite(bestOov)?bestOov:null}
+  }
   function evaluate(rows,s){const ts=tasks(rows);let compatible=0,unique=0,truthPresent=0,uniqueTruth=0,runes=0;const outputs=[];
     for(const t of ts){const ps=t.cands.filter(c=>ok(c,s.f,s.g)).flatMap(c=>c.ps);
-      compatible+=ps.length>0;unique+=ps.length===1;const truth=t.P&&ps.some(p=>p.join(",")===t.P.join(","));truthPresent+=!!truth;if(truth&&ps.length===1){uniqueTruth++;runes+=t.P.length}
+      compatible+=ps.length>0;unique+=ps.length===1;if(s.assigned===29)for(const P of ps){const C=t.C.slice(0,2),ds=delta(P);for(let i=2;i<P.length;i++)C.push(mod(2*C[i-1]-C[i-2]+s.g[ds[i-2]]));if(C.join(",")!==t.C.join(","))throw Error("candidate replay");}
+      const truth=t.P&&ps.some(p=>p.join(",")===t.P.join(","));truthPresent+=!!truth;if(truth&&ps.length===1){uniqueTruth++;runes+=t.P.length}
       outputs.push({index:t.index,length:t.C.length,options:ps.length,examples:ps.slice(0,3).map(p=>p.map(i=>gp.translit[i]).join(""))})
     }
     return {groups:rows.length,compatible,unique,truthPresent,uniqueTruth,runes,outputs}
@@ -70,19 +94,20 @@ function experiment(gp,transcript,donors,frequency,solved){
   const budget=Math.floor(train.length*.05);
   const summary=s=>({...s,states:s.states.slice(0,10),stateCount:s.states.length});
   function rng(seed){let x=seed>>>0;return n=>{x^=x<<13;x^=x>>>17;x^=x<<5;return (x>>>0)%n}}
-  function makeControl(seed,pool){const rand=rng(seed),key=Array.from({length:29},(_,i)=>i);for(let i=28;i>0;i--){const j=rand(i+1);[key[i],key[j]]=[key[j],key[i]]}
+  function makeControl(seed,pool,corrupt=0){const rand=rng(seed),key=Array.from({length:29},(_,i)=>i);for(let i=28;i>0;i--){const j=rand(i+1);[key[i],key[j]]=[key[j],key[i]]}
     const inverse=empty();key.forEach((v,i)=>inverse[v]=i);
-    function make(t){const ps=pool[t.C.length].length?pool[t.C.length]:byLen[t.C.length],P=ps[rand(ps.length)];const C=[rand(29)];if(P.length>1)C.push(rand(29));const q=delta(P);for(let j=2;j<P.length;j++)C.push(mod(2*C[j-1]-C[j-2]+key[q[j-2]]));
+    const bad=new Set(train.filter(t=>t.C.length>=7).sort((a,b)=>b.C.length-a.C.length||a.index-b.index).slice(0,corrupt).map(t=>t.index));
+    function make(t){const ps=pool[t.C.length].length?pool[t.C.length]:byLen[t.C.length];let P=ps[rand(ps.length)];if(bad.has(t.index)){do{P=Array.from({length:t.C.length},()=>rand(29))}while(dict.has(P.join(',')))}const C=[rand(29)];if(P.length>1)C.push(rand(29));const q=delta(P);for(let j=2;j<P.length;j++)C.push(mod(2*C[j-1]-C[j-2]+key[q[j-2]]));
       const R=P.slice(0,2);for(let j=2;j<P.length;j++)R.push(mod(2*R[j-1]-R[j-2]+inverse[delta(C)[j-2]]));if(R.join(",")!==P.join(","))throw Error("roundtrip");
       return {...t,C,P}}
-    const a=train.map(make),b=held.map(make),s=solve(a,7,0);
+    const a=train.map(make),b=held.map(make),s=solve(a,7,corrupt);
     const compatible=s.states.filter(x=>x.f.every((v,i)=>v<0||v===inverse[i]));
     const best=compatible[0],frozen=s.states[0];
-    return {seed,truthInverse:inverse,train:s.states.length?summary(s):summary(s),trueCompatible:compatible.length,bestTrue:best?evaluate(b,best):null,firstFrozen:frozen?evaluate(b,frozen):null,firstFrozenCorrect:frozen?frozen.f.every((v,i)=>v<0||v===inverse[i]):false}
+    const full=complete(a,s.states,corrupt,inverse);return {seed,corrupt,corruptedGroups:[...bad],truthInverse:inverse,train:summary(s),trueCompatible:compatible.length,bestTrue:best?evaluate(b,best):null,firstFrozen:frozen?evaluate(b,frozen):null,firstFrozenCorrect:frozen?frozen.f.every((v,i)=>v<0||v===inverse[i]):false,full,fullFrozen:full.first?evaluate(b,full.first):null,fullFrozenCorrect:full.first?full.first.f.every((v,i)=>v===inverse[i]):false}
   }
-  const plants=[makeControl(3301,pools[0]),makeControl(1033,pools[1]),makeControl(729,pools[2])];
+  const plants=[makeControl(3301,pools[0]),makeControl(1033,pools[1]),makeControl(729,pools[2]),makeControl(20261125,pools[0],2)];
   const original=solve(train,7,budget);
   const opening=solve(open,8,Math.floor(open.length*.05),250000);
-  return {dictSize:dict.size,sourceWords:words.length,sourceRunes:words.flatMap(w=>w.C).length,train:{words:train.length,runes:train.flatMap(w=>w.C).length,budget},hold:{words:held.length,runes:held.flatMap(w=>w.C).length},plants,original:summary(original),originalHold:original.states.length?evaluate(held,original.states[0]):null,opening:summary(opening)}
+  return {dictSize:dict.size,sourceWords:words.length,sourceRunes:words.flatMap(w=>w.C).length,train:{words:train.length,runes:train.flatMap(w=>w.C).length,budget},hold:{words:held.length,runes:held.flatMap(w=>w.C).length},plants,original:summary(original),originalHold:original.states.length?evaluate(held,original.states[0]):null,opening:{words:open.length,runes:open.flatMap(w=>w.C).length,budget:Math.floor(open.length*.05),...summary(opening)}}
 }
 console.log(JSON.stringify(experiment(JSON.parse(data[0]),data[1],data.slice(2,5),data[5],JSON.parse(data[6])),null,2));
