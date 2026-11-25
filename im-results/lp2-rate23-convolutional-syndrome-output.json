@@ -1,0 +1,795 @@
+{
+  "inputBlobs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    }
+  ],
+  "capacity": {
+    "developmentData": 486,
+    "developmentChecks": 243,
+    "holdoutData": 1120,
+    "holdoutChecks": 560
+  },
+  "controls": [
+    {
+      "donor": 0,
+      "key": [
+        14,
+        28,
+        1,
+        10
+      ],
+      "fit": [
+        14,
+        28,
+        1,
+        10
+      ],
+      "correctFit": 486,
+      "correctHoldout": 1120,
+      "heldoutChecks": 560,
+      "fitRanks": [
+        {
+          "rank": 5,
+          "chosen": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "nullspace": [
+            [
+              0,
+              25,
+              25,
+              7,
+              21,
+              1
+            ]
+          ],
+          "rows": 242,
+          "firstFullRankBlock": null,
+          "determinant": null
+        },
+        {
+          "rank": 7,
+          "chosen": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "nullspace": [
+            [
+              0,
+              25,
+              25,
+              7,
+              21,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              13,
+              13,
+              28,
+              22,
+              0,
+              7,
+              21,
+              1
+            ]
+          ],
+          "rows": 241,
+          "firstFullRankBlock": null,
+          "determinant": null
+        }
+      ],
+      "holdRanks": [
+        {
+          "rank": 5,
+          "chosen": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "nullspace": [
+            [
+              0,
+              25,
+              25,
+              7,
+              21,
+              1
+            ]
+          ],
+          "rows": 559,
+          "firstFullRankBlock": null,
+          "determinant": null
+        },
+        {
+          "rank": 7,
+          "chosen": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "nullspace": [
+            [
+              0,
+              25,
+              25,
+              7,
+              21,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              13,
+              13,
+              28,
+              22,
+              0,
+              7,
+              21,
+              1
+            ]
+          ],
+          "rows": 558,
+          "firstFullRankBlock": null,
+          "determinant": null
+        }
+      ],
+      "negatives": {
+        "rateOne": {
+          "repeats": 18,
+          "rank": {
+            "rank": 9,
+            "chosen": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "nullspace": [],
+            "rows": 241,
+            "firstFullRankBlock": 10,
+            "determinant": 10
+          }
+        },
+        "wrongRate": {
+          "rank": {
+            "rank": 9,
+            "chosen": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "nullspace": [],
+            "rows": 241,
+            "firstFullRankBlock": 10,
+            "determinant": 15
+          }
+        },
+        "uniformPad": {
+          "rank": {
+            "rank": 9,
+            "chosen": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "nullspace": [],
+            "rows": 241,
+            "firstFullRankBlock": 10,
+            "determinant": 20
+          }
+        }
+      }
+    },
+    {
+      "donor": 1,
+      "key": [
+        19,
+        11,
+        6,
+        5
+      ],
+      "fit": [
+        19,
+        11,
+        6,
+        5
+      ],
+      "correctFit": 486,
+      "correctHoldout": 1120,
+      "heldoutChecks": 560,
+      "fitRanks": [
+        {
+          "rank": 5,
+          "chosen": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "nullspace": [
+            [
+              20,
+              14,
+              16,
+              18,
+              10,
+              1
+            ]
+          ],
+          "rows": 242,
+          "firstFullRankBlock": null,
+          "determinant": null
+        },
+        {
+          "rank": 7,
+          "chosen": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "nullspace": [
+            [
+              20,
+              14,
+              16,
+              18,
+              10,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              28,
+              8,
+              5,
+              22,
+              28,
+              0,
+              18,
+              10,
+              1
+            ]
+          ],
+          "rows": 241,
+          "firstFullRankBlock": null,
+          "determinant": null
+        }
+      ],
+      "holdRanks": [
+        {
+          "rank": 5,
+          "chosen": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "nullspace": [
+            [
+              20,
+              14,
+              16,
+              18,
+              10,
+              1
+            ]
+          ],
+          "rows": 559,
+          "firstFullRankBlock": null,
+          "determinant": null
+        },
+        {
+          "rank": 7,
+          "chosen": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "nullspace": [
+            [
+              20,
+              14,
+              16,
+              18,
+              10,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              28,
+              8,
+              5,
+              22,
+              28,
+              0,
+              18,
+              10,
+              1
+            ]
+          ],
+          "rows": 558,
+          "firstFullRankBlock": null,
+          "determinant": null
+        }
+      ],
+      "negatives": {
+        "rateOne": {
+          "repeats": 5,
+          "rank": {
+            "rank": 9,
+            "chosen": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "nullspace": [],
+            "rows": 241,
+            "firstFullRankBlock": 10,
+            "determinant": 17
+          }
+        },
+        "wrongRate": {
+          "rank": {
+            "rank": 9,
+            "chosen": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "nullspace": [],
+            "rows": 241,
+            "firstFullRankBlock": 10,
+            "determinant": 8
+          }
+        },
+        "uniformPad": {
+          "rank": {
+            "rank": 9,
+            "chosen": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "nullspace": [],
+            "rows": 241,
+            "firstFullRankBlock": 10,
+            "determinant": 19
+          }
+        }
+      }
+    },
+    {
+      "donor": 2,
+      "key": [
+        13,
+        16,
+        28,
+        18
+      ],
+      "fit": [
+        13,
+        16,
+        28,
+        18
+      ],
+      "correctFit": 486,
+      "correctHoldout": 1120,
+      "heldoutChecks": 560,
+      "fitRanks": [
+        {
+          "rank": 5,
+          "chosen": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "nullspace": [
+            [
+              28,
+              6,
+              12,
+              16,
+              12,
+              1
+            ]
+          ],
+          "rows": 242,
+          "firstFullRankBlock": null,
+          "determinant": null
+        },
+        {
+          "rank": 7,
+          "chosen": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "nullspace": [
+            [
+              28,
+              6,
+              12,
+              16,
+              12,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              12,
+              15,
+              1,
+              10,
+              7,
+              0,
+              16,
+              12,
+              1
+            ]
+          ],
+          "rows": 241,
+          "firstFullRankBlock": null,
+          "determinant": null
+        }
+      ],
+      "holdRanks": [
+        {
+          "rank": 5,
+          "chosen": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "nullspace": [
+            [
+              28,
+              6,
+              12,
+              16,
+              12,
+              1
+            ]
+          ],
+          "rows": 559,
+          "firstFullRankBlock": null,
+          "determinant": null
+        },
+        {
+          "rank": 7,
+          "chosen": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "nullspace": [
+            [
+              28,
+              6,
+              12,
+              16,
+              12,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              12,
+              15,
+              1,
+              10,
+              7,
+              0,
+              16,
+              12,
+              1
+            ]
+          ],
+          "rows": 558,
+          "firstFullRankBlock": null,
+          "determinant": null
+        }
+      ],
+      "negatives": {
+        "rateOne": {
+          "repeats": 8,
+          "rank": {
+            "rank": 9,
+            "chosen": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "nullspace": [],
+            "rows": 241,
+            "firstFullRankBlock": 10,
+            "determinant": 25
+          }
+        },
+        "wrongRate": {
+          "rank": {
+            "rank": 9,
+            "chosen": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "nullspace": [],
+            "rows": 241,
+            "firstFullRankBlock": 10,
+            "determinant": 2
+          }
+        },
+        "uniformPad": {
+          "rank": {
+            "rank": 9,
+            "chosen": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "nullspace": [],
+            "rows": 241,
+            "firstFullRankBlock": 10,
+            "determinant": 27
+          }
+        }
+      }
+    }
+  ],
+  "original": [
+    {
+      "name": "p0-2",
+      "runes": 729,
+      "rank0": {
+        "rank": 3,
+        "chosen": [
+          0,
+          1,
+          2
+        ],
+        "nullspace": [],
+        "rows": 243,
+        "firstFullRankBlock": 2,
+        "determinant": 3
+      },
+      "rank1": {
+        "rank": 6,
+        "chosen": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "nullspace": [],
+        "rows": 242,
+        "firstFullRankBlock": 6,
+        "determinant": 18
+      },
+      "rank2": {
+        "rank": 9,
+        "chosen": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "nullspace": [],
+        "rows": 241,
+        "firstFullRankBlock": 10,
+        "determinant": 26
+      },
+      "affineRank2": {
+        "rank": 10,
+        "chosen": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "nullspace": [],
+        "rows": 241,
+        "firstFullRankBlock": 11,
+        "determinant": 18
+      },
+      "fixedMixKey": null
+    },
+    {
+      "name": "p33-39",
+      "runes": 1680,
+      "rank0": {
+        "rank": 3,
+        "chosen": [
+          0,
+          1,
+          2
+        ],
+        "nullspace": [],
+        "rows": 560,
+        "firstFullRankBlock": 2,
+        "determinant": 4
+      },
+      "rank1": {
+        "rank": 6,
+        "chosen": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "nullspace": [],
+        "rows": 559,
+        "firstFullRankBlock": 6,
+        "determinant": 14
+      },
+      "rank2": {
+        "rank": 9,
+        "chosen": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "nullspace": [],
+        "rows": 558,
+        "firstFullRankBlock": 10,
+        "determinant": 11
+      },
+      "affineRank2": {
+        "rank": 10,
+        "chosen": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "nullspace": [],
+        "rows": 558,
+        "firstFullRankBlock": 11,
+        "determinant": 20
+      },
+      "fixedMixKey": null
+    }
+  ]
+}
