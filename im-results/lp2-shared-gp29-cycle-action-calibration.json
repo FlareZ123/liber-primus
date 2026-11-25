@@ -1,0 +1,209 @@
+{
+  "scope": "Strict shared GP29 cycle action: C = pi^-1(pi(P) + k_phase mod 29); plaintext F is transparent and does not advance phase; each printed word has an arbitrary start phase.",
+  "sourceFiles": {
+    "corpus": "resources/liber-primus/lp2-corpus.json",
+    "transcription": "resources/liber-primus/lp2-transcription.txt",
+    "native": "resources/external/relikd-solved-gp29-native-v1.json",
+    "lexicon": "resources/control/english_wordfreq_textblob.txt"
+  },
+  "sourceDimensions": {
+    "alphabetSize": 29,
+    "originalGroups": 66,
+    "originalRunes": 283,
+    "nativeControlWords": 733,
+    "latinLexiconWordForms": 29157,
+    "encodedDictionaryForms": 38936
+  },
+  "oracleControls": [
+    {
+      "seed": 20903,
+      "fit": {
+        "nodes": 6,
+        "tests": 717,
+        "maxRank": 35,
+        "capped": false,
+        "solutions": 1
+      },
+      "exactPi": true,
+      "exactKey": true,
+      "trainingGroups": 50,
+      "trainingStartsUniqueAndCorrect": 50,
+      "holdoutGroups": 16,
+      "holdoutTruthIncluded": 16,
+      "holdoutUniqueCorrect": 13,
+      "holdoutCandidateCounts": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        5,
+        1
+      ]
+    },
+    {
+      "seed": 37841,
+      "fit": {
+        "nodes": 7,
+        "tests": 704,
+        "maxRank": 35,
+        "capped": false,
+        "solutions": 1
+      },
+      "exactPi": true,
+      "exactKey": true,
+      "trainingGroups": 50,
+      "trainingStartsUniqueAndCorrect": 50,
+      "holdoutGroups": 16,
+      "holdoutTruthIncluded": 16,
+      "holdoutUniqueCorrect": 12,
+      "holdoutCandidateCounts": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        3,
+        2,
+        4
+      ]
+    }
+  ],
+  "sourceSelectedDivinity": {
+    "numericKey": {
+      "keyInterpretation": "k_j are the published GP29 numeric values of DIVINITY",
+      "key": [
+        23,
+        10,
+        1,
+        10,
+        9,
+        10,
+        16,
+        26
+      ],
+      "groupIndices": [
+        59,
+        4,
+        11
+      ],
+      "optionCounts": [
+        2,
+        480,
+        1722
+      ],
+      "pairConsistent": 1,
+      "tripleConsistent": 0,
+      "fullRank": 0,
+      "validPermutations": 0
+    },
+    "mappedKeyword": {
+      "keyInterpretation": "k_j = pi(DIVINITY_j), with pi(D)=1",
+      "keySymbols": [
+        23,
+        10,
+        1,
+        10,
+        9,
+        10,
+        16,
+        26
+      ],
+      "groupIndices": [
+        59,
+        4,
+        11,
+        2,
+        62
+      ],
+      "optionCounts": [
+        20,
+        560,
+        1729,
+        164,
+        88
+      ],
+      "eligibleWordCounts": [
+        18,
+        100,
+        400,
+        30,
+        30
+      ],
+      "pairStates": 688,
+      "tripleStates": 6953,
+      "quadStates": 26729,
+      "rank4": {
+        "22": 57,
+        "23": 1611,
+        "24": 18632,
+        "25": 6171,
+        "26": 258
+      },
+      "fullRank4": 0,
+      "validPi4": 0,
+      "quintupleChecks": 18831,
+      "rank5": {
+        "23": 38,
+        "24": 1598,
+        "25": 16227,
+        "26": 968
+      },
+      "fullRank5": 0,
+      "validPi5": 0,
+      "frequencyLimit": "All dictionary candidates for 14/11/13-letter groups; top 30 compatible distinct rune words for 10/8-letter groups"
+    },
+    "mappedKeywordLocalDomains": {
+      "groups": 66,
+      "zeroCandidateGroups": [],
+      "minimumCandidateWords": 18,
+      "medianCandidateWords": 733,
+      "maximumCandidateWords": 6005,
+      "mostConstrainedGroups": [
+        {
+          "index": 59,
+          "length": 14,
+          "phaseOptions": 56,
+          "candidateWords": 18
+        }
+      ]
+    }
+  },
+  "priorNonlinearCommonCycleFit": {
+    "originalOuterPermutationCycleLengths": [
+      21,
+      8
+    ],
+    "distinction": "The prior SFT uses eight independent phase permutations plus a separate evolving outer permutation. It is not the shared-pi model tested here."
+  },
+  "conclusion": {
+    "verified": [
+      "The strict model is recoverable from 50 known-plaintext native training groups in two deterministic synthetic plants; the recovered pi and q8 key are exact.",
+      "A dictionary-based blind holdout recovered the correct rune word uniquely for 13/16 and 12/16 held-out groups in the two controls."
+    ],
+    "rejected": [
+      "Direct numeric reuse of the LP1 DIVINITY key in published GP29 indices has no compatible three-long-word assignment: one 14/11 pair survives, and no 13-letter option extends it."
+    ],
+    "unresolved": [
+      "The general unknown-q8 shared-cycle model has not been solved or excluded on the original 66 groups.",
+      "The pi(DIVINITY) subcase is only frequency-limited on the 10/8-letter groups and did not produce a full-rank permutation in the tested five-group search."
+    ]
+  }
+}
