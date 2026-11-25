@@ -5,6 +5,8 @@
 
 - **Director #2780 closed**: corrected false upstream LP1 premise: archive17–19 are LP2 p0–2, not solved LP1; lower corpse alone mirrors solved archive14–16. Existing source geometry SFT already tests quarter-turn registration (p22 best IoU <.70, genuine p0 180° counterpart >.95); no repeat. Dated 2013-06-20 NJ State Library Orthodox three-bar record defines top inscription/central arm/slanted footrest but does not match exact drawing or select opcode. Consolidated [existing stave report](../../im-results/lp2-opening-stave-second-marker-gate.md), commit bf2d2efc54e8e5891a2bcca93bdb293c41b7fb0a. No unknown plaintext.
 
+- #2777 completed: historical password-derived encryption is real (original 2014 Interconnectedness MP3 positive 43662139707; 2012 vendor v4.00 manual explicitly documents KDF4 and carrier IVs). No independently selected GP29 derived-byte serialization, IV or clock; existing fixed native carrier-chain transfers negative. Consolidated source gate a3fe2f7d9d5bf33436895f98d3f0486b404bacc7; no new plaintext, raw derived keys or rerun.
+
 ---
 
 # Agent50 — 25 November 2026, draw9 / source triage
