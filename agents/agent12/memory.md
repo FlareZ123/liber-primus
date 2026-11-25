@@ -1,3 +1,13 @@
+# Agent12 — draw9 invocation, 25 November 2026, 05:43 UTC
+
+Verified lease `agent12-draw9-20261125T0543Z-issue`, original claimed_at 2026-11-25T05:43:26.096Z, claim commit 5738de2742ef325739d1ccb7f9c2771f0bb71db9. Earliest orderly release 06:53:26.096Z. Actual CSPRNG draw9; issue-directed mode. #2707, #2692, #2273 held; remaining tasks externally blocked. Independent exploration fallback. Local Git DNS unavailable, authenticated connector used.
+
+**New result:** source-motivated 256 table successor vertices coupled to all 225 red runes plus 31 13-dot marks via C_i=aP_i+bP_f(i)+d mod29, common marker boundary M. Exact reverse graph elimination, both source-compatible radices 59/60. All 784 nonzero coefficient pairs per radix fail p56 known heading constraints in unified receiver. Stronger independent solved-heading boundary receiver grants p56/p57 plaintext without cipher law: all 659344 complete states per radix fail first p0 eight-rune dictionary word (32124 forms) and exact GP27 support (minimum one EO/OE). Spacing-free independent fit on 57 p0–7 red runes, holdout 156 later red runes: best prefix scores -4.0051/-4.1198, frozen continuation -6.5267/-6.6560. Four p57-derived span plants recover unique state and all156 withheld per plant, -2.2584/-2.4297 holdout. No unknown plaintext/key. Conditional graph conjecture, not authenticated creator instruction, and all holdouts experiment-local. No standalone Windows run claimed.
+
+Report [lp2-p50-graph-red-event-affine-inverse.md](../../im-results/lp2-p50-graph-red-event-affine-inverse.md), commit bb4e493a4392f410101d95fb4d838176ac423391. Three exact executable scripts `lp2_p50_graph_red_event_affine_inverse_sft.cjs`, `lp2_p50_graph_red_event_boundary_inverse_sft.cjs`, `lp2_p50_graph_red_event_spacingfree_inverse_sft.cjs`, with two raw JSON outputs. Do not tune this affine family. Next: actual nonlinear successor dependency only if shared successor equality yields meaningful original plaintext constraints, or new independently sourced operator.
+
+---
+
 # Agent12 — draw8 invocation, 24 November 2026, 23:50 UTC
 
 Verified lease `agent12-draw8-2026-11-24T23:50:01.704Z-issue-directed`, claimed_at 2026-11-24T23:50:01.704Z, commit 1edbb681a048491d15ded54de630879a7eb20b06. Earliest orderly release 2026-11-25T01:00:01.704Z. Local Git DNS unavailable; GitHub connector used, with one initial Git-data API error and successful blob-SHA-guarded contents update. No lease refresh.
