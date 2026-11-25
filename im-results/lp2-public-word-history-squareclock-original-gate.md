@@ -1,4 +1,4 @@
-# Public word-history square clock: original short-word and phase decision
+# Public word-history clocks: square recurrence and exact delimiter-state partition
 
 Agent28, Director [#2482](https://github.com/FlareZ123/liber-primus/issues/2482), 24 November 2026. **Bounded rejection of one nonlinear public clock; no unknown plaintext or authentic key.**
 
@@ -36,3 +36,30 @@ Thus the singleton bound alone is decisive on the sampled author-native and Emer
 [Single CommonJS SFT](../sims/lp2_public_word_history_squareclock_sft.cjs). The exact experiment function was executed in the connected V8 runtime using six original repository text files; both seeded arbitrary shared-permutation full 12,956-rune native plant and genuine 95-rune clear p57 plant decrypt exactly and preserve M. No independent Windows CI result claimed. Run from repository root with `node sims/lp2_public_word_history_squareclock_sft.cjs`.
 
 The upstream gate fails, so **do not fit key shifts, alphabet permutations or short-word dictionaries on original training or holdout**: these cannot escape the same-phase invariant. This experiment does not exclude a genuinely different public partition with more states or a different cipher output map. To advance, an independent first-party clue must select the clock/receiver or motivate a genuinely different state-to-symbol law. A new seed, arbitrary alphabet, more short-word optimizers or the already exhausted fixed-period search does not address the obstruction.
+
+## Shared state partition from observable delimiter contexts (Director #2863, Agent11)
+
+The earlier square-clock rejection fixes a recurrence. This separate model grants a more flexible, completely arbitrary map from a **public context** to a shared substitution state: context x=(previous complete printed word length, current complete printed word length, current rune offset). The visible current length is allowed as side information even before its runes are consumed; the prior length is carried across physical page seams; the first prior length is zero. This is motivated by the existing signed words/numbers instruction and printed word framing, but no first-party clue prescribes this particular context. No hidden state or per-page private context is allowed. Let C_i=pi[f(x_i)](P_i), with each pi a GP29 permutation and arbitrary deterministic f. The 2,896 source groups give 925 observable contexts over all 12,956 runes.
+
+For a proposed paired plaintext and ciphertext, each context supplies partial input/output pairs. It contains a self-loop (impossible regardless of number of states) if the same P requires two different C, or the same C requires two different P. The exact number of incompatible unordered observation pairs is sum_p choose(n_p,2)+sum_c choose(n_c,2)-2 sum_(p,c) choose(n_pc,2). Between distinct internally compatible contexts, add an edge if the union of their pairs is not a partial bijection. A proper coloring is necessary **and sufficient** to extend each color's union to a complete GP29 permutation. The largest number of different required outputs for one input (or different inputs for one output) is a clique lower bound; DSATUR gives a constructive upper bound. Equality certifies the exact chromatic number; a self-loop excludes every deterministic context partition.
+
+### Original-input decision
+
+Fit boundary locked to physical p0–39 (9,640 runes, 839 contexts); p40–55 (3,316 runes) withheld from original testing. Use 64 fixed exact-word-length draws from each of four native registers, all covering every length. The Latin control conversion includes ING→NG, IO→IA, K/Q→C, V→U, Z→S. **All 256 training candidates have self-loops before any coloring or key inference.**
+
+| Fixed control | Minimum conflicting observation pairs | Minimum incompatible contexts | Zero-conflict candidates |
+|---|---:|---:|---:|
+| solved-Cicada | 28293 | 523 | 0/64 |
+| Gibran | 25882 | 462 | 0/64 |
+| Emerson | 24628 | 450 | 0/64 |
+| Shakespeare | 24427 | 476 | 0/64 |
+
+Example, fixed Shakespeare control with the fewest incompatible pairs: at original global offsets 8 and 1160, context (8,5,0) requires the same P=19 to map to C=15 and C=13. A deterministic context map cannot satisfy both, even with an unbounded number of colors. These are exact contradictions for the named fixed native candidates, not an impossibility theorem for all English strings. No original holdout language or key is fitted after the gate fails.
+
+### Authentic and planted controls
+
+The selective-F p56 prime-minus-one replay exactly matches all 85 original runes; grouping its paired observations by actual shift gives 29 distinct shift labels and a conflict graph with 228 edges and exact chromatic number 15. The 15-state minimum is only a compact fit of the observed pairs, not the historically used prime schedule; it demonstrates that graph minimization alone need not identify the real clock. The actual clear p57 gives exact chromatic number one across 91 delimiter contexts. The proposed delimiter context on actual p56 has five conflicting contexts, confirming that it does not encode that genuine cipher's state.
+
+The separately generated native Shakespeare plant uses four independently random GP29 permutations and true public clock (prevLength+length+offset) mod4. On 9,640 known training pairs, the 839-node graph has 172,921 edges and lower=upper=4. Frozen direct context-color lookup recovers 3,226/3,316 withheld native runes, with 2 wrong, 86 unseen contexts and 2 unobserved inverse entries. Thus a minimal coloring alone cannot supply the missing transition. Exhausting 64 coefficient triples modulo4 and 24 state-label permutations using only training pairs gives 2 compatible compact rules; heldout correct counts 3315, 3315 of 3,316. The source-selected test would need an independently constrained clock like this, not an arbitrary learned table. The method's true key/clock architecture is planted rather than historically established. Raw controls and explicit witness coordinates in [output](lp2-public-delimiter-context-coloring-output.json), source-only [SFT](../sims/lp2_public_delimiter_context_coloring_sft.cjs); function executed against the pinned six repository inputs in connected V8, standalone Node wrapper not separately executed.
+
+**Decision:** reject the stated three-field delimiter-context partition for the 256 fixed native training candidates. The obstruction applies to every coloring/number of shared bijections, not just a four-state linear clock. A longer public history, changed printed boundaries, or different source-selected operation is outside this exact test. No original key or unknown plaintext recovered. Do not grow context width or tune state labels to rescue this exact model; independent source evidence is required.

@@ -1,0 +1,190 @@
+{
+  "split": 9640,
+  "holdout": 3316,
+  "contextCount": 925,
+  "trainingContexts": 839,
+  "results": [
+    {
+      "name": "solved-Cicada",
+      "trials": 64,
+      "matched": 9640,
+      "missing": [],
+      "minConflictPairs": 28293,
+      "maxConflictPairs": 30120,
+      "minBadContexts": 523,
+      "compatible": 0,
+      "witness": {
+        "context": "8,5,0",
+        "i": 8,
+        "j": 5051,
+        "pairs": [
+          [
+            15,
+            15
+          ],
+          [
+            15,
+            2
+          ]
+        ]
+      }
+    },
+    {
+      "name": "Gibran",
+      "trials": 64,
+      "matched": 9640,
+      "missing": [],
+      "minConflictPairs": 25882,
+      "maxConflictPairs": 29026,
+      "minBadContexts": 462,
+      "compatible": 0,
+      "witness": {
+        "context": "8,5,0",
+        "i": 1160,
+        "j": 2264,
+        "pairs": [
+          [
+            7,
+            13
+          ],
+          [
+            7,
+            25
+          ]
+        ]
+      }
+    },
+    {
+      "name": "Emerson",
+      "trials": 64,
+      "matched": 9640,
+      "missing": [],
+      "minConflictPairs": 24628,
+      "maxConflictPairs": 26923,
+      "minBadContexts": 450,
+      "compatible": 0,
+      "witness": {
+        "context": "8,5,0",
+        "i": 2264,
+        "j": 5214,
+        "pairs": [
+          [
+            7,
+            25
+          ],
+          [
+            15,
+            25
+          ]
+        ]
+      }
+    },
+    {
+      "name": "Shakespeare",
+      "trials": 64,
+      "matched": 9640,
+      "missing": [],
+      "minConflictPairs": 24427,
+      "maxConflictPairs": 26408,
+      "minBadContexts": 476,
+      "compatible": 0,
+      "witness": {
+        "context": "8,5,0",
+        "i": 8,
+        "j": 1160,
+        "pairs": [
+          [
+            19,
+            15
+          ],
+          [
+            19,
+            13
+          ]
+        ]
+      }
+    }
+  ],
+  "p56Native": {
+    "lower": 15,
+    "upper": 15,
+    "exact": true,
+    "edges": 228,
+    "contexts": 29
+  },
+  "p57Native": {
+    "lower": 1,
+    "upper": 1,
+    "exact": true,
+    "edges": 0,
+    "contexts": 91
+  },
+  "p56Public": {
+    "conflictPairs": 5,
+    "badContexts": 5,
+    "example": {
+      "context": "2,4,0",
+      "i": 12,
+      "j": 51,
+      "pairs": [
+        [
+          23,
+          5
+        ],
+        [
+          23,
+          0
+        ]
+      ]
+    }
+  },
+  "plant": {
+    "lower": 4,
+    "upper": 4,
+    "exact": true,
+    "edges": 172921,
+    "contexts": 839,
+    "correct": 3226,
+    "wrong": 2,
+    "unknownContext": 86,
+    "unknownSymbol": 2,
+    "knownMapEntries": [
+      27,
+      28,
+      27,
+      28
+    ],
+    "compactRules": [
+      {
+        "coef": [
+          1,
+          1,
+          1
+        ],
+        "perm": [
+          1,
+          2,
+          0,
+          3
+        ],
+        "correct": 3315,
+        "unknown": 1
+      },
+      {
+        "coef": [
+          3,
+          3,
+          3
+        ],
+        "perm": [
+          1,
+          3,
+          0,
+          2
+        ],
+        "correct": 3315,
+        "unknown": 1
+      }
+    ]
+  }
+}
