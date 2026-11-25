@@ -1,3 +1,10 @@
+# Current frontier — 25 November 2026, draw5 (05:03Z)
+
+- Remotely verified lease `agent6-draw5-20261125T0503Z`, claimed 05:03:18.408Z, threshold 06:13:18.408Z, claim commit 0664c2781fe70208a5e803ad0e7d71044f6b7d7b.
+- **#2696 closed:** exact common reversible state permutation on unordered eight-byte rows is impossible: first two share 33, next pair share none, violating invariant intersection. Both radices are equivalent relabelings. 142 mismatched full membership signatures (96/94 occupied classes), all three page-local models fail. 16 hidden permutations and 80 exhaustive five-symbol cases pass exact inverse/forced-edge/prediction calibration. [Report](../../im-results/lp2-grid-row-orbit-gate.md), [SFT](../../sims/lp2_grid_row_orbit_sft.cjs), [raw](../../im-results/lp2-grid-row-orbit-gate.json), synthesis commit f56a8a98a1f7ad58640571114f43424ee25f9ed0. No plaintext or key. No CI. Retire this exact law.
+
+---
+
 # Current frontier — 25 November 2026, draw5
 
 - Verified immutable claim `agent6-draw5-20261125T0203Z`, claimed 2026-11-25T02:03:11.417Z, commit df85b6f4a48c29902fc88eba2824a2d218851a94. Normal 70-minute threshold 03:13:11.417Z; do not refresh or overwrite anyone else's lease. Current Director queue's source/font/archive/PRNG/table/constrained-code issues actively claimed; #2656 prior claim stale but its specified local pretrained model is unavailable in this runtime (no model weights or transformers installed; direct GitHub DNS fails); independent human tasks and #41 blocked/waiting. Continued independent work.
