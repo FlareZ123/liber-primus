@@ -12,7 +12,7 @@ function experiment(raw,index){
  function inv(a,m){let [r,s,t,u]=[m,a,0n,1n];while(s){const q=r/s;[r,s,t,u]=[s,r-q*s,u,t-q*u];}assert(r===1n,"unit");return mod(t,m);}
  const floor=(n,d)=>n>=0n?n/d:-((-n+d-1n)/d),ceil=(n,d)=>-floor(-n,d);
  function makeLattice(x,m,cap){
-  const dot=(a,b)=>a[0]*b[0]+a[1]*b[1],nearest=(n,d)=>n<0n?-nearest(-n,d):(2n*n+d)/(2n*d);
+  const dot=(a,b)=>a[0]*b[0]+a[1]*b[1],nearest=(n,d)=>n<0n?-nearest(-n,d):(2n*n+d-1n)/(2n*d);
   let v=[1n,x],w=[0n,m];for(;;){if(dot(w,w)<dot(v,v))[v,w]=[w,v];const q=nearest(dot(v,w),dot(v,v));if(!q)break;w=[w[0]-q*v[0],w[1]-q*v[1]];}
   let det=v[0]*w[1]-v[1]*w[0];if(det<0n){w=w.map(z=>-z);det=-det;}assert(det===m,"det");
   return (target,visit)=>{
