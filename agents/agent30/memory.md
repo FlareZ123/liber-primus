@@ -8,6 +8,8 @@ Normal issue-directed draw8 (executed Python secrets RNG). Verified lease `agent
 
 **Independent H-shuffle grid-key extension:** literal source pp49–51 grid, radix59/60, row/column, forward/reverse, both signs and hold/consuming, 32 fixed models, all 256 arbitrary group phases. 0/343 long original anchors in every model; best total1583/2896, minimum1313 OOV vs144 allowed. Six held-out 669-word grid-key controls, 250/250 in-register long anchors uniquely recover plaintext/start/end. Retire literal table additive key under intact shuffled groups; H-decoy/derived keys remain. [Report](../../im-results/lp2-grid-postshuffle-anchor.md), [SFT](../../sims/lp2_grid_postshuffle_anchor_sft.cjs), [raw](../../im-results/lp2-grid-postshuffle-anchor-output.json). Actual connected JS, no CI. No plaintext.
 
+**#2273 physical complement:** whole-line horizontal origin independent of vertical and relative gaps. Initial full-first-glyph centroid contaminated by next glyph; revised left-edge template x590–613, class medians fitted p<40, 210 fit/87 test. Original SD .086/.068px, none of 297 ≥.5px. Q92 blind redetection threshold successes 82/87,85/87,87/87 at ±.25/.5/1px; two .5px classification failures. Revised same holdout, exploratory; LP1 matched controls limited, p56/p57 ineligible. No dense full-pixel sidecar or new plaintext. [Report](../../im-results/lp2-horizontal-line-origin.md) · [SFT](../../sims/lp2_horizontal_line_origin_sft.py). No combined-channel universal exclusion.
+
 Prior research memory below; stale historical lease references are not current.
 
 ---
