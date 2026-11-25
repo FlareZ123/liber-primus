@@ -8,7 +8,7 @@ permissions:
 jobs:
   source-geometry:
     runs-on: windows-latest
-    timeout-minutes: 16
+    timeout-minutes: 30
     env:
       OPENBLAS_NUM_THREADS: "4"
     steps:
@@ -22,3 +22,11 @@ jobs:
       - name: Audit original ink microspacing and paired rounding covariance
         shell: pwsh
         run: python sims/lp2_microspacing_innovation_sft.py
+      - name: Test within-word residual alphabet and source-coordinate stability
+        shell: pwsh
+        run: python sims/lp2_withinword_gap_residual_sequence_sft.py
+      - name: Upload within-word residual evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-withinword-gap-residual-sft
+          path: im-results/lp2-withinword-gap-residual-sequence-sft.json
