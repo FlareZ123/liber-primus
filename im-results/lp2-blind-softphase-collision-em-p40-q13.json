@@ -1,0 +1,55 @@
+{
+  "config": {
+    "train": 1000,
+    "hold": 500,
+    "starts": 4,
+    "iters": 40,
+    "choices": 5,
+    "beam": 32,
+    "profiles": 3,
+    "controlCount": 0,
+    "periods": [
+      13
+    ],
+    "seed": 633344366,
+    "original": true,
+    "calibrationConfirmed": true,
+    "originalTargets": [
+      [
+        "p40-53",
+        9640
+      ]
+    ]
+  },
+  "languageRunes": 281914,
+  "controls": [],
+  "gate": true,
+  "original": [
+    {
+      "name": "p40-53",
+      "q": 13,
+      "softGain": 0.078118698495864,
+      "proposals": 96,
+      "distinctLegal": 96,
+      "key": [
+        19,
+        20,
+        9,
+        19,
+        4,
+        0,
+        22,
+        14,
+        28,
+        8,
+        23,
+        5,
+        23
+      ],
+      "fitLogLR": -2.4142294066149304,
+      "holdLogLR": -3.0918403007496926,
+      "fitPreview": "FSXOTOTELPNGEONRCIAAYUMUGTNFCAEYAEJYPPTANOOTHIDAEHITHYAEEILHSWDTHBIAGIJARBTDOTXAGPGABEALGAAYCLNUNXCPAEOEEAUBJOAEEOGYBUTIAAEIOEMBSGPIATSANEOTHTOEAXTHETYPJNGSYLYEODJEAIONGAEGOEAERWPEOEDLMEYTNBN",
+      "holdPreview": "OEDJXXMTAESIUWJCHPPAGATTHEAGNGFYFWSSTXIAWREOFAGOEPNGRNLRYLWNYGNEOOUEANGNEABUAEXYNIEAPEAWYHWTHGLWSMCJGMLFEASRDGEODPLWEEOGEHTFIAMPDUCTIANUUWIAAEOLBTHEXORIAATTBIDSARMEGOEUXSAEHYIOEEAULCIAGJPJYEAT"
+    }
+  ]
+}
