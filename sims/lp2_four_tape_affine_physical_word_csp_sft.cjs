@@ -108,5 +108,40 @@ function pairGate(P,D,{maxProduct=20e6,minOverlap=4,passes=3}={}){
  }
  return {ok:true,logs,tested,remaining:D.map(x=>x.length)};
 }
-module.exports={prepare,problem,localGate,propagate,solve,plant,pairGate};
+function conflictCores(P,{minOverlap=4,maxProduct=8e6,maxPairs=50}={}){
+ const Q=29,mod=x=>(x%Q+Q)%Q, inv=x=>{for(let y=1;y<Q;y++)if(mod(x*y)===1)return y;throw Error("nonunit")};
+ const pairs=[];
+ for(let a=0;a<P.variables.length;a++)for(let b=a+1;b<P.variables.length;b++){
+  if(P.variables[a].free||P.variables[b].free)continue;
+  const cols=P.variables[a].cons.filter(c=>P.variables[b].cons.includes(c)).flatMap(c=>{const x=P.constraints[c],pa=x.parts.find(z=>z.v===a).places[0],pb=x.parts.find(z=>z.v===b).places[0];return P.ct[pa.lane][c]===P.ct[pb.lane][c]?[]:[{c,pa,pb}]});
+  if(cols.length>=minOverlap)pairs.push({a,b,cols:cols.slice(0,10)});
+ }
+ pairs.sort((a,b)=>b.cols.length-a.cols.length||P.domains[a.a].length*P.domains[a.b].length-P.domains[b.a].length*P.domains[b.b].length);
+ const cores=[],records=[];
+ for(const {a,b,cols} of pairs){
+  if(records.length>=maxPairs)break;
+  const others=new Map();
+  for(let i=0;i<cols.length;i++){const {c,pa,pb}=cols[i],ca=P.ct[pa.lane][c],cb=P.ct[pb.lane][c];for(const part of P.constraints[c].parts)if(part.v!==a&&part.v!==b&&!P.variables[part.v].free){const t=part.places[0],cc=P.ct[t.lane][c],lambda=mod((cc-ca)*inv(mod(cb-ca))),lut=new Uint8Array(841);for(let x=0;x<Q;x++)for(let y=0;y<Q;y++)lut[x*Q+y]=mod(x+lambda*(y-x));if(!others.has(part.v))others.set(part.v,[]);others.get(part.v).push({i,off:t.off,lut})}}
+  const projections=(v,offsets)=>{const out=new Map();for(const w of P.variables[v].words){const seq=offsets.map(i=>w[i]),code=seq.reduce((a,x)=>a*Q+x,0);if(!out.has(code))out.set(code,Uint8Array.from(seq))}return [...out.values()]};
+  const ar=projections(a,cols.map(z=>z.pa.off)),br=projections(b,cols.map(z=>z.pb.off));
+  if(ar.length*br.length>maxProduct)continue;
+  const tests=Array.from(others,([v,parts])=>{const allowed=new Set(P.variables[v].words.map(w=>parts.reduce((n,z)=>n*Q+w[z.off],0)));return {v,parts,allowed}}).filter(t=>t.allowed.size<Q**t.parts.length);
+  tests.sort((x,y)=>x.allowed.size/Q**x.parts.length-y.allowed.size/Q**y.parts.length);
+  if(tests.length>30)throw Error("mask width");const full=(1<<tests.length)-1,violation=new Set(),xy=new Uint16Array(cols.length);
+  let pairCount=0,compatible=false;
+  outer:for(const x of ar){for(const y of br){
+   let valid=true;for(let i=0;i<cols.length;i++){if(x[i]===y[i]){valid=false;break}xy[i]=x[i]*Q+y[i]}if(!valid)continue;
+   pairCount++;let mask=0;for(let k=0;k<tests.length;k++){let code=0;for(const t of tests[k].parts)code=code*Q+t.lut[xy[t.i]];if(!tests[k].allowed.has(code))mask|=1<<k}
+   if(mask===0){compatible=true;break outer}violation.add(mask);
+  }}
+  const record={a,b,columns:cols.map(z=>z.c),projections:[ar.length,br.length],pairCount,compatible,tests:tests.map(t=>t.v),violationMasks:[...violation]};
+  records.push(record);if(compatible)continue;
+  // A subset intersecting every observed violation mask conflicts with the two anchor domains.
+  const masks=[...violation],isCore=mask=>masks.every(v=>(v&mask)!==0);
+  const mins=[];for(let mask=0;mask<=full;mask++){if(!isCore(mask))continue;let minimal=true;for(let j=0;j<tests.length;j++)if((mask&(1<<j))&&isCore(mask^(1<<j))){minimal=false;break}if(minimal){const core=[a,b,...tests.filter((_,j)=>mask&(1<<j)).map(t=>t.v)].sort((x,y)=>x-y);mins.push(core);cores.push(core)}}
+  record.cores=mins;
+ }
+ return {cores,records};
+}
+module.exports={prepare,problem,localGate,propagate,solve,plant,pairGate,conflictCores};
 if(require.main===module){const model=prepare(raw),mode=process.argv[2]||'original',j=Number(process.argv[3]||0),budget=Number(process.argv[4]||20000);if(mode==='original')console.log(JSON.stringify(model.maps.map(layout=>{const p=problem(model,layout,model.original,model.spans);return {layout:layout[0],vars:p.variables.length,...solve(p,budget,2)}}),null,2));else{const layout=model.maps[j],control=plant(model,layout,j),p=problem(model,layout,control.ct,control.spans);console.log(JSON.stringify({control,...solve(p,budget,2)},null,2))}}
