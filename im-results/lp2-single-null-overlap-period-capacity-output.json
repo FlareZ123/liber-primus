@@ -1,0 +1,220 @@
+{
+  "allowConsumingF": true,
+  "controls": [
+    {
+      "plantedPeriod": 8,
+      "groups": 100,
+      "budget": 0,
+      "minimumPeriod": 8,
+      "selected": [
+        {
+          "q": 8,
+          "minimumAffected": 0,
+          "minimumRepairedGroups": 0
+        },
+        {
+          "q": 13,
+          "minimumAffected": 0,
+          "minimumRepairedGroups": 0
+        },
+        {
+          "q": 29,
+          "minimumAffected": 0,
+          "minimumRepairedGroups": 0
+        },
+        {
+          "q": 58,
+          "minimumAffected": 0,
+          "minimumRepairedGroups": 0
+        },
+        {
+          "q": 128,
+          "minimumAffected": 0,
+          "minimumRepairedGroups": 0
+        }
+      ],
+      "anchors": [
+        0,
+        0,
+        0,
+        94,
+        62,
+        36,
+        18,
+        7
+      ],
+      "partitionAnchors": [
+        0,
+        0,
+        0,
+        32,
+        26,
+        18,
+        11,
+        7
+      ]
+    },
+    {
+      "plantedPeriod": 13,
+      "groups": 100,
+      "budget": 0,
+      "minimumPeriod": 13,
+      "selected": [
+        {
+          "q": 8,
+          "minimumAffected": 11,
+          "minimumRepairedGroups": 11
+        },
+        {
+          "q": 13,
+          "minimumAffected": 0,
+          "minimumRepairedGroups": 0
+        },
+        {
+          "q": 29,
+          "minimumAffected": 0,
+          "minimumRepairedGroups": 0
+        },
+        {
+          "q": 58,
+          "minimumAffected": 0,
+          "minimumRepairedGroups": 0
+        },
+        {
+          "q": 128,
+          "minimumAffected": 0,
+          "minimumRepairedGroups": 0
+        }
+      ],
+      "anchors": [
+        0,
+        0,
+        0,
+        99,
+        76,
+        43,
+        29,
+        12
+      ],
+      "partitionAnchors": [
+        0,
+        0,
+        0,
+        23,
+        33,
+        14,
+        17,
+        12
+      ]
+    },
+    {
+      "plantedPeriod": 29,
+      "groups": 100,
+      "budget": 0,
+      "minimumPeriod": 18,
+      "selected": [
+        {
+          "q": 8,
+          "minimumAffected": 25,
+          "minimumRepairedGroups": 25
+        },
+        {
+          "q": 13,
+          "minimumAffected": 11,
+          "minimumRepairedGroups": 11
+        },
+        {
+          "q": 29,
+          "minimumAffected": 0,
+          "minimumRepairedGroups": 0
+        },
+        {
+          "q": 58,
+          "minimumAffected": 0,
+          "minimumRepairedGroups": 0
+        },
+        {
+          "q": 128,
+          "minimumAffected": 0,
+          "minimumRepairedGroups": 0
+        }
+      ],
+      "anchors": [
+        0,
+        0,
+        0,
+        98,
+        81,
+        53,
+        34,
+        21
+      ],
+      "partitionAnchors": [
+        0,
+        0,
+        0,
+        17,
+        28,
+        19,
+        13,
+        21
+      ]
+    }
+  ],
+  "original": [
+    {
+      "lo": 40,
+      "hi": 53,
+      "groups": 669,
+      "budget": 33,
+      "minimumPeriod": 39,
+      "selected": [
+        {
+          "q": 8,
+          "minimumAffected": 136,
+          "minimumRepairedGroups": 103
+        },
+        {
+          "q": 13,
+          "minimumAffected": 117,
+          "minimumRepairedGroups": 84
+        },
+        {
+          "q": 29,
+          "minimumAffected": 53,
+          "minimumRepairedGroups": 20
+        },
+        {
+          "q": 58,
+          "minimumAffected": 0,
+          "minimumRepairedGroups": 0
+        },
+        {
+          "q": 128,
+          "minimumAffected": 0,
+          "minimumRepairedGroups": 0
+        }
+      ],
+      "anchors": [
+        0,
+        0,
+        0,
+        363,
+        239,
+        171,
+        120,
+        70
+      ],
+      "partitionAnchors": [
+        0,
+        0,
+        0,
+        124,
+        68,
+        51,
+        50,
+        70
+      ]
+    }
+  ]
+}
