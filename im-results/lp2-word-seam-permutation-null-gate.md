@@ -49,3 +49,28 @@ For a class of n groups with equal-content multiplicities m_i, the number of dis
 ## Reproduction and limits
 
 `node sims/lp2_word_seam_permutation_null_sft.cjs`; source-backed execution from fetched GitHub files succeeded, no CI run claimed. [SFT](../sims/lp2_word_seam_permutation_null_sft.cjs), commit c0ff95a66ce2e6d14d0ec22bfa0bb08bda38fedc. The exact-preservation result is mathematical, the conditional tail estimates Monte Carlo, the historical interpretation a scoped hypothesis. #2176 tested five particular physical line-local order rules against native word-length language models; this is a distinct endpoint-inventory conditional test and all-seam ambiguity construction. Do not repeat it as an order-recovery search.
+
+## Stronger layout-conditioned rank ambiguity (Director #2856, Agent14, 25 November)
+
+This is a strictly stronger conditioning experiment on the existing constructive ambiguity, not a second permutation-null run. The canonical 2,896 complete groups and 12,956 GP29 runes are reconstructed from the image-corrected physical transcription, including 594 rune rows and 32 page-carries. Before choosing any swap, freeze every group spanning a physical line/page, touching the first/last rune of any line, adjoining a non-hyphen separator, touching a recorded red rune or punctuation/literal digit offset (including the conservative derivative punctuation inventory), and every chapter endpoint group. This leaves 1,889 eligible complete groups. Within the declared scope, permit permutations only among the eligible groups with identical (first GP29 rune, last GP29 rune, length), and count distinct contents, not identities of duplicate groups. Exact multinomial counts use BigInt; no Monte Carlo or language score.
+
+| Permutation locality | Nontrivial classes | Exact distinct tapes in this restricted family | log2 count |
+|---|---:|---:|---:|
+| Illustrated chapter | 33 | 25,769,803,776 | 34.585 |
+| Same physical page | 5 | 32 | 5 |
+| Same physical line | 2 | 4 | 2 |
+
+Every candidate retains every individual directed word seam, all word length slots, all carried groups, all first/last rune identities of the 594 physical lines, and all frozen ink/mark-associated groups. Page-local swaps additionally retain **every page's 29-bin unigram and 841-bin contiguous bigram count**. Line-local swaps retain those counts **for every individual physical rune line**. This follows because identical endpoint symbols preserve every intergroup transition and swapping complete groups within the same line preserves the multiset of all internal transitions. The code independently enumerates all four line-local witnesses and checks every one of the 594 unigram and bigram matrices.
+
+The two independent, disjoint swaps are:
+
+| Physical page | Zero-based line | Zero-based page rune starts | Original word pair | Prime sums |
+|---|---:|---|---|---|
+| 12 | 7 | 150, 163 | G R O ↔ G M O | 35, 95 |
+| 35 | 11 | 254, 265 | T I U ↔ T AE U | 93, 163 |
+
+The four witness tapes are a counterexample to unique ordering from this full combination of rank-free aggregate and positional features, **not four possible actual plaintexts**. No claim of exact pixel positions, font advances, per-word prime-sum equality, higher-order n-gram equality, or a complete pre-encryption-cipher inverse follows. In particular, if the creator independently assigned word-associated ranks, these two swaps could be distinguished. The exact printed slot coordinates and line numbers do not tell a solver which original order produced a sorted list; a content-keyed stable sort is many-to-one unless the discarded order is recoverable by a separate rule/field. The signed 2016 "numbers are the direction" statement does not state a numeric function, direction, target or ordering convention for these groups. The historically documented 2014 column transposition is a different independently specified operand; earlier #2141's stable square-rank word permutation and #2842's stable prime-residue rune order were negative on their fixed receivers. No new historical seam-conditioned rank assignment is identified, and #2722's within-word cyclic map also does not provide one.
+
+**Decision:** the 23-seam suppression remains meaningful against the exchangeable post-encryption null. Even adding substantial physical layout and all within-line unigram/bigram information leaves at least four exact alternative arrangements. Close #2856 absent a word-associated rank or independent executable ordering operation; do not fit another collision-minimizing shuffle. No unknown plaintext or key recovered.
+
+Reproduce from repo root: `node sims/lp2_word_seam_layout_rank_ambiguity_sft.cjs`. [SFT](../sims/lp2_word_seam_layout_rank_ambiguity_sft.cjs) · [exact counts and coordinate witnesses](lp2-word-seam-layout-rank-ambiguity-output.json). Same function executed on canonical input in connected JavaScript; no CI claim.
