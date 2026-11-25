@@ -1,4 +1,4 @@
-# Base60 subtree bytes as a GP29 additive pad: bounded negative
+# Cross-radix base60 values over base59 subtrees: bounded negatives
 
 **Classification: tested, rejected for this exact decoder family. No plaintext or key recovered.**
 
@@ -29,9 +29,20 @@ A 3-gram and 4-gram model is trained on the first two-thirds of each known solve
 
 Every candidate is below even the weakest held-out native-text control. The best 3-gram decodes are respectively 1.52 and 0.74 score units below those minima; the best 4-gram decodes are 0.75 and 0.25 below. The decoded rune strings remain nonlinguistic. The result is not a marginal ranking preference: the tested byte-as-pad interpretation does not produce the known plaintext language.
 
+## Byte-sorted sibling traversal as transposition
+
+A second natural use of the same cross-radix structure is to let the base60 bytes order the children of the base59 tree, then read the page text through that traversal. For each subtree, children are sorted by raw base60 byte ascending or descending (ties by node address in the same direction); BFS, preorder and postorder are used. Both mappings are tested: assign ciphertext positions in ascending node-address order and read in byte-sorted traversal order, or use the inverse mapping. This is 24 transpositions across p32 and p55.
+
+| Target | Best 3-gram order / mapping | Best 3-gram score | Weakest held-out control | Best 4-gram score | Weakest held-out control |
+|---|---|---:|---:|---:|---:|
+| p32 / 121 nodes | Postorder, byte ascending, byte-order→address | −10.515099 | −8.915956 | −13.470648 | −12.719531 |
+| p55 / 76 nodes | BFS, byte descending, byte-order→address | −10.493843 | −9.572612 | −13.496449 | −13.217115 |
+
+All 24 transpositions are below every held-out native-text control. Thus both direct uses tested here—byte mod29 as an additive pad and base60-byte-sorted sibling traversal as a transposition—fail on the exact-size p32/p55 subtrees.
+
 ## Conclusion and boundary
 
-Retire the **direct base60-byte modulo-29 additive pad** on the exact 121-node p32 and 76-node p55 subtrees, under the seven natural orders, two signs and two F policies above. Do not expand this into unconstrained key transforms merely to rescue it.
+Retire both the **direct base60-byte modulo-29 additive pad** and the **base60-byte-sorted sibling traversal transposition** on the exact 121-node p32 and 76-node p55 subtrees, under the bounded orders, signs and F policies above. Do not expand these into unconstrained key transforms merely to rescue them.
 
 This does **not** rule out other uses of the 256-byte vector, other source-selected readers, or a different key material source. It establishes only that the most direct cross-radix pad interpretation of the exact-size subtrees fails.
 
@@ -41,6 +52,7 @@ Run from repository root with Node 22 or newer:
 
 ~~~bash
 node sims/lp2_p50_base60_subtree_bytepad_sft.cjs
+node sims/lp2_p50_base60_subtree_byteorder_sft.cjs
 ~~~
 
-The script reads the original grid, corpus and solved-GP29 control files, prints all best-candidate rune indices and control ranges, and asserts the frozen scores and below-control result.
+The scripts read the original grid, corpus and solved-GP29 control files, print best candidates and control ranges, and assert the frozen scores and below-control results.
