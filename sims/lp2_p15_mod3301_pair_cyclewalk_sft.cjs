@@ -42,4 +42,19 @@ function research(corpus,lp1,gibran,emerson,shakespeare){
  return {sourceKey,checkedPairs:checked,trainingRunes:train.length,fitRunes:fit,heldRunes:original.length-fit,K,native:{exact:eq(known,recovered),plain:metrics(known),encrypted:metrics(plant)},original:metrics(original),fixed:{fit:metrics(fixed.slice(0,fit)),held:metrics(fixed.slice(fit)),whole:metrics(fixed),indices:fixed},controls,blindGate:passes,blind:blind&&{key:blind.key,fit:blind.fit,held:blind.held,indices:blind.decodedAll}}
 }
 const args = paths.map((p, i) => i === 0 ? JSON.parse(fs.readFileSync(p, 'utf8')) : fs.readFileSync(p, 'utf8'));
-console.log(JSON.stringify(research(...args), null, 2));
+function bound(corpus,lp1,gibran,emerson,shakespeare){
+ const M=3301,A=29,N=841,Q=16,assert=(b,m)=>{if(!b)throw Error(m)};
+ function native(s){const map=corpus.translit.map((s,i)=>[s,i]).sort((a,b)=>b[0].length-a[0].length),out=[];for(let w of s.toUpperCase().match(/[A-Z]+/g)||[]){w=w.replace(/K/g,"C").replace(/V/g,"U").replace(/Q/g,"C").replace(/Z/g,"S");while(w.length){let m=map.find(([v])=>w.startsWith(v));if(!m)throw Error("letter "+w);out.push(m[1]);w=w.slice(m[0].length)}}return out}
+ const train=native(lp1.split(/^### 56/m)[0].split(/\r?\n/).filter(x=>!/^#|^\[|^\(continued/.test(x)).join("\n")).concat(native(gibran));
+ const counts=new Float64Array(N).fill(.5);for(let i=1;i<train.length;i++)counts[train[i-1]*A+train[i]]++;
+ const log=Float64Array.from(counts,x=>Math.log(x/(train.length-1+N*.5)));
+ function map(a){const t=new Uint16Array(N);for(let x=0;x<N;x++){let y=x;do{y=y*a%M}while(y>=N);t[x]=y}return t}
+ const maps=Array.from({length:M-1},(_,i)=>map(i+1));
+ function maxima(t,startBlock=0){assert(t.length%2===0,"even");const obs=Array.from({length:Q},()=>[]);for(let i=0;i<t.length;i+=2)obs[(startBlock+i/2)%Q].push(t[i]*A+t[i+1]);const phases=obs.map((o,r)=>{let score=-Infinity,best=null;for(let a=1;a<M;a++){let s=0;const m=maps[a-1];for(const x of o)s+=log[m[x]];if(s>score){score=s;best=a}}return{r,score,decoderMultiplier:best,pairs:o.length}});return{pairMean:phases.reduce((s,x)=>s+x.score,0)/(t.length/2),phases}}
+ function census(t,length){assert(length%2===0&&t.length>=length,"size");let min=Infinity,max=-Infinity,n=0,total=0,at=null;for(let phase=0;phase<2;phase++){const scores=[];for(let i=phase;i+1<t.length;i+=2)scores.push(log[t[i]*A+t[i+1]]);const width=length/2;let sum=0;for(let i=0;i<scores.length;i++){sum+=scores[i];if(i>=width)sum-=scores[i-width];if(i>=width-1){const mean=sum/width;total+=mean;n++;if(mean<min){min=mean;at=phase+2*(i-width+1)}max=Math.max(max,mean)}}}assert(n===t.length-length+1,"all windows");return{n,min,max,mean:total/n,minOffset:at}}
+ const t=corpus.pages.slice(16,23).flatMap(x=>x.indices),e=native(emerson),s=native(shakespeare);assert(t.length===1744,"length");
+ const ranges=[["whole",0,1744],["fit",0,1340],["held",1340,1744]],out={trainingRunes:train.length,allowedMultipliers:M-1};
+ for(const [name,start,end] of ranges){const max=maxima(t.slice(start,end),start/2);out[name]={max,emerson:census(e,end-start),shakespeare:census(s,end-start)}}
+ return out
+}
+console.log(JSON.stringify({...research(...args), allKeyPairBound: bound(...args)}, null, 2));
