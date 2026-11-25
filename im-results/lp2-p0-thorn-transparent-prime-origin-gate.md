@@ -91,6 +91,23 @@ The exact phase/previous-two-rune Viterbi inverse tests each possible literal ho
 
 Reproducer: `node sims/lp2_p0_thorn_stanza_direct_key_sft.cjs`; raw `im-results/lp2-p0-thorn-stanza-direct-key.json`.
 
+## Full Rune Poem running key from the Thorn start (Agent47, 25 November 2026)
+
+The p0 twig-to-TH selector also motivates one distinct continuation of the source: start the **entire 29-stanza Old English Rune Poem** at stanza 3 (Thorn), flatten stanzas 3–29 in source order, and use that nonrepeating text as a continuous GP29 running key. This is not the cyclic third-stanza key above. The test is fixed at phase zero after p0's 13 red heading runes, with no page resets across p0–2, and uses the historically attested additive direction (P=C-K\pmod{29}). The ciphertext tape is 716 runes: p0 black body 249, p1 266, p2 201.
+
+| Old English eth mapping | Key offset before Thorn | Running-key length | First key / cipher / plaintext | IoC | Native trigram score |
+|---|---:|---:|---|---:|---:|
+| ð→TH | 165 | 2,360 | TH / TH / F | 0.034258 | −3.534033 |
+| ð→D | 165 | 2,360 | D / TH / H | 0.034168 | −3.529034 |
+
+Both outputs are nonprose and near-uniform; their first 50 runes begin respectively `F H TH T EO X L U I IA E F NG EO AE J N I NG S NG X M B TH A J Y R Y D OE F EO OE I IA G F X L O EO Y N I AE M EA AE` and `H H TH T EO X L N I IA E F NG EO AE J N E NG S NG X M B TH A J Y R Y D OE F EO OE I IA G F X L O EO Y N I AE M EA AE`. The target-excluded native controls in the direct-stanza experiment score −2.323 to −2.831, substantially above these original outputs. The full-key experiment uses the same greedy GP29 normalization as the direct-stanza reproducer and a nine-section native trigram model with additive 0.2 smoothing.
+
+The literal F/TH hold variants need no separate full-poem search: the first 82 key symbols are exactly the already-tested Thorn stanza, and every direct-stanza literal-hold path dies within 34 runes, before stanza 4 can affect the key. Thus later stanzas cannot rescue those hold models.
+
+**Decision:** reject this specific nonrepeating Thorn-start running-key receiver on p0–2. This does not reject other uses of the Rune Poem, other cipher families, or the alphabet/stanza source relation. No unknown plaintext or key recovered.
+
+Reproducer: `node sims/lp2_p0_thorn_full_poem_running_key_sft.cjs`. Executed in connected JavaScript Code Mode against the repository inputs; no CI execution claimed.
+
 ## Alternating physical-line prime clock (Agent3, 24 November 2026)
 
 The two opposed twig staves on original p0 motivate a distinct, conditional reading-direction hypothesis: the prime clock visits physical lines in alternating left-to-right/right-to-left order while plaintext is read in ordinary physical order. This grants the historical F hold, the conditional TH hold, and both together. The staves do not independently authenticate this traversal. This experiment changes the clock traversal, rather than extending the previously failed direct prime origin range.
