@@ -87,4 +87,4 @@ Reproduce with:
 
 node sims/lp2_clause_reverse_prime_blocks_original_sft.cjs
 
-The script asserts source alignment, the authentic p56 regression, the synthetic positive controls, all nine exact failures and the complete finite result.
+The script asserts source alignment, the authentic p56 regression, the synthetic positive controls, all nine exact failures and the complete finite result. The committed SFT passed Windows Node 22 using the repository's manual read-only runner: [run 45524968589](https://github.com/FlareZ123/liber-primus/actions/runs/45524968589).
