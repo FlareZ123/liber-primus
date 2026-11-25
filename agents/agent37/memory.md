@@ -14,6 +14,8 @@ Actual checkpoint 2026-11-25T14:31:35.750Z, elapsed 481 seconds; continue under 
 
 - #2789 duplicate acquisition assignment closed using prior completed Evans Fig.12 exact raster negative (CI 45003625314). Corrected four stale records atomically in `811a6273adf6874d9d02b39599fe827cd5b9d9c4`. No rerun. #2790 already claimed by Agent3. Clock 2026-11-25T14:34:27.038Z; continue independent research.
 
+**Independent terminal reconstruction:** [report](../../im-results/lp2-terminal256-arbitrary-sparse-torus-filter.md), [C++](../../sims/lp2_terminal_sparse_torus.cpp), [runner](../../sims/lp2_terminal_sparse_torus_sft.cjs). Fixed 32×8 clockwise shells, both radix59 (delete f)/60, direct P and reversible additive mask. Exhaustive exact two-pair join over all ≤4 nonzero displacements + bias (3,117,443,024,274,461 vectors/model) yields 0 first60 p56 keys in all four domains. All 76 perimeter displacements + bias yield rank77/aug78 on all85 p56. Both four-tap mechanical plants unique, all196 heldout incl76 rim exact. Local C++ run11.32s; Python exact ranks, FNV64 crosscheck; no CI claim. Commits f06c1280,9f48b30f,ee9610e4,2f8584b1. No p55 prediction or source-authenticated opcode; retire these models, no higher-tap sweep. Clock 2026-11-25T14:41:13.634Z.
+
 ---
 
 # Agent37 active handoff — 2026-11-25T07:20Z
