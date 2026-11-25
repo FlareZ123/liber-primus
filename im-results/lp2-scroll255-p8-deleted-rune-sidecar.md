@@ -1,6 +1,6 @@
 # p8 as a deleted-rune sidecar for p3–7: exact original receiver
 
-**Agent 7, 25 November 2026. Decision:** reject forward one-for-one repeat removal and the two static-substitution reconstruction families under their stated register/5% OOV budget. Authentic historical q8/q13 additive receivers also fail with arbitrary restoration positions. No authenticated key or new plaintext.
+**Agent 7, 25 November 2026. Decision:** reject forward one-for-one repeat removal and static-substitution reconstruction, even when sidecar symbols and their order are completely unconstrained, under the stated register/5% OOV budget. Authentic historical q8/q13 additive receivers also fail with arbitrary restoration positions. No authenticated key or new plaintext.
 
 ## Motivation and frozen source rule
 
@@ -30,8 +30,9 @@ Enumerate all supported length>=8 anchor pairs and build their incompatibility g
 |---|---:|---:|---:|---:|---:|
 | Shared | 249 | 21 | 133 | 7 | 20 |
 | Separate main/sidecar maps | 253 | 25 | 124 | 14 | 13 |
+| Arbitrary private missing rune, sidecar entirely ignored | 253 | 25 | 121 | 14 | 13 |
 
-A 5% allowance permits at most floor(255×0.05)=12 OOV slots. Both fail; separate-alphabet rejection is narrow (one extra OOV) and must not be exaggerated. Even the greedy disjoint-pair bound for the shared model already gives 15 OOV. The exact independent-set search visits 33 and 20 memo states. Machine output preserves all graph edges and independent witnesses. This result grants arbitrary insertion locations, but retains order within each surviving group and forward p8 pairing. Arbitrary reordering, changed register, dynamic substitution and altered sidecar interpretation escape.
+A 5% allowance permits at most floor(255×0.05)=12 OOV slots. Both fail; separate-alphabet rejection is narrow (one extra OOV) and must not be exaggerated. Even the greedy disjoint-pair bound for the shared model already gives 15 OOV. The exact independent-set search visits 33, 20 and 18 memo states, respectively. In the third model, the omitted plaintext rune may be chosen privately for every group, independently of p8; domains are deduplicated by the surviving-group map alone. Thus even an arbitrary reordering or relabeling of p8 cannot rescue the shared static main-alphabet model within the 12-slot OOV budget. Machine output preserves all graph edges and independent witnesses. This result grants arbitrary insertion locations and, in the third model, completely removes the sidecar pairing constraint. It retains order within each surviving group and the common static main alphabet. Within-group reordering, changed register, dynamic substitution and alternate segmentation escape.
 
 ## Historical additive decryption after insertion
 
@@ -60,4 +61,4 @@ Three held literary donors supply length-matched in-register examples (252 Gibra
 - [Machine output, all graph edges, witnesses, input blob IDs and controls](lp2-scroll255-p8-deleted-rune-sidecar-output.json).
 - Related, distinct prior receivers: [character-address](lp2-scroll255-direct-word-character-number-original-gate.md), [word-reset prefix](lp2-scroll255-p8-wordreset-prime-prefix-gate.md), [plaintext checksum](lp2-scroll255-p8-plaintext-checksum-original-gate.md).
 
-Retire these particular deletion sidecars. They do not establish that the 255-count alignment is accidental or exclude all deletion encodings. New work needs a source-selected omission rule or a different recipient; no tuning of the OOV threshold to rescue the static model. No change to authoritative plaintext frontier.
+Retire these particular deletion sidecars and the broader static main-alphabet single-omission architecture at the stated OOV budget. They do not establish that the 255-count alignment is accidental or exclude all deletion encodings. New work needs a source-selected omission rule or a different recipient; no tuning of the OOV threshold to rescue the static model. No change to authoritative plaintext frontier.
