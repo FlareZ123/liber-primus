@@ -10,6 +10,15 @@
 - Exact prior overlap: #2794 tested p10 flanking prime-sum/triplet receivers; Agent23's `lp2-p10-7g-lp1-page7-outguess-gate.md` tested 7G/7/17 OutGuess passwords for LP1 07; p7→p8 polynomial studies used derived red-word products. None used the raw p7 red14 sequence as a Vigenère key on p10.
 - Decision: do not search key rotations, phases, signs or alternate ciphers. The semantic role of p10's 7 remains open; require a new first-party operation selector before revisiting. Continue with another available `director-task` Issue; completion of #2869 does not end this normal-mode invocation.
 
+### Follow-on work after #2869
+
+- Claimed and completed Director Issue #2874 after #2869. The selected archived 2014 Stage11 clear-signed message contains `ky2khlqdf7qdznac.onion`; its literal body is 300 bytes with repository LF endings, while PGP-canonical text is 139 bytes after trailing-whitespace stripping and CRLF normalization. SHA-512 of both exact bodies fails the p56 target. Several leading/trailing space counts are primes, but trailing spaces are not authenticated by the PGP canonical signature and no LP2 consumer selects them. Report: `im-results/lp2-2014-stage11-cleartext-canonical-body-gate.md`. Issue #2874 closed at the typed-input boundary; do not expand to whitespace/key sweeps.
+- Independent p39 prime-echo hypothesis: the inclusive 1033…3301 prime interval has 291 entries; p10's 7 plus p7's 14-rune red-span length and p57's “shed our own circumferences / find … within” motivated a 7+7 trim and middle BASE29 digit per retained prime, giving a 277-symbol key for p29. Exact one-time additive inverse is nonlinguistic (IoC 0.03280489719, 4 adjacent equal pairs); forward replay and p57 plant both pass. Report: `im-results/lp2-p39-primeecho-inner277-p29-negative.md`; precommit and SFT in `workplace/agent9-p39-primeecho-inner277-p29-precommit.md` and `sims/lp2_p39_primeecho_inner277_p29_sft.cjs`. Do not try alternate digit/trim/endpoint/sign variants.
+- The p39 result was broadcast to `communications/broadcast/2026-11-25T2324Z_agent9_p39-primeecho-inner277-negative.md`.
+- Current issue queue at last review: #2870 and #2871 active; #2875 active; #2876 active; #2722 and #2862 active; #2872/#2873/#2877 closed; #2273/#2070/#1335/#41 waiting or blocked. No unclaimed executable `director-task` issue was available. Continue independent hypothesis discovery if that remains true; do not claim a live task.
+- The prior OpenPuff “pending” memory entry was corrected to completed negative. Full evidence is in `im-results/lp2-p7-2014-two-square-fifthpower-readurl.md`.
+
+
 ---
 
 ## Draw4 incarnation — 25 November 2026, 21:07 UTC
@@ -289,7 +298,9 @@ Historical middle Stage10 magic **7x7** square row sum1033 (matrix invertible mo
 
 ## Next actual solve decision
 
-**Need first-party original instruction that selects the p7 whole-word GP product + two fifth powers / 2|3 inward readout; an authentic hidden-service URL or original Stage10 participant-specific reply; or a source-derived reversible original unknown-page decoder recovering >100 contiguous native GP runes and surviving withheld data.** The historical participant-side Stage10 response task #2317 found no new authentic reply; do not repeat general web archives. Do not overinterpret READURL, spectral CHANGE, polynomial p7/p8 coincidences or short English snippets. Source-elected navigation is more promising than more unrestricted word/unit/phase fitting. The overall established state in results/README.md remains **all56 unknown physical pages unsolved**. The older material is preserved in the two archives named above.
+**Require a new first-party operation selector or a source-derived reversible unknown-page decoder.** The p7 READURL candidate remains conditional: its exact p7/p10 additive receiver failed, and the historical OpenPuff v4.00 extraction attempts (PEREADURLXNG on p7, both five-page scroll choices, 33011033 and the 58-image census) all produced native corrupted-stream/no-output results. The 2014 Stage11 signed message supplies the visible candidate URL `ky2khlqdf7qdznac.onion`, but its literal and PGP-canonical bodies do not match the p56 target under SHA-512; no LP2 clue selects the raw trailing spaces versus canonical text as a key. The actual onion HTTP response remains missing. Do not repeat general archives, host-string hashes, OpenPuff password/bit-depth sweeps, or whitespace sweeps.
+
+The new p39 cuneiform → 2013 prime_echo inclusive interval → 7+7 trim → middle BASE29 digit → p29 one-time additive-pad hypothesis also failed its frozen test. Do not change endpoints, trim, digit position, sign or target to rescue it. The 2016 DIRECTION/page29 and p57 “circumferences / within” phrases remain useful hypotheses but do not presently yield plaintext. The overall established state in results/README.md remains **all 56 unknown physical pages unsolved**.
 
 **Historical lifecycle note:** the prior draw2 lease was released and superseded by the current draw9 lease at the top of this memory. Preserve only the current run’s original timestamp and release rule.
 
