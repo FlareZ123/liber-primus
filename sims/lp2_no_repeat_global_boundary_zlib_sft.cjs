@@ -167,21 +167,25 @@ assert(plaintextInteger < plaintextSpace);
 
 const byteLength = Math.ceil(bitLength(plaintextSpace - 1n) / 8);
 const bytes = toFixedBigEndian(plaintextInteger, byteLength);
-let zlibResult;
-try {
-  const inflated = zlib.inflateSync(bytes);
-  zlibResult = {
-    valid: true,
-    outputBytes: inflated.length,
-    utf8Preview: inflated.subarray(0, 400).toString("utf8")
-  };
-} catch (error) {
-  zlibResult = {
-    valid: false,
-    errorCode: error.code || null,
-    errorMessage: String(error.message).slice(0, 240)
-  };
+function attemptInflate(inflate) {
+  try {
+    const inflated = inflate(bytes);
+    return {
+      valid: true,
+      outputBytes: inflated.length,
+      utf8Preview: inflated.subarray(0, 400).toString("utf8")
+    };
+  } catch (error) {
+    return {
+      valid: false,
+      errorCode: error.code || null,
+      errorMessage: String(error.message).slice(0, 240)
+    };
+  }
 }
+const zlibWrapped = attemptInflate(zlib.inflateSync);
+const rawDeflate = attemptInflate(zlib.inflateRawSync);
+const anyDeflateValid = zlibWrapped.valid || rawDeflate.valid;
 
 console.log(JSON.stringify({
   source: {
@@ -206,13 +210,14 @@ console.log(JSON.stringify({
     fixedByteLength: byteLength,
     bigEndianPrefixHex: bytes.subarray(0, 16).toString("hex")
   },
-  zlib: zlibResult,
-  conclusion: zlibResult.valid
-    ? "The fixed global rank/word-boundary quotient yields a valid zlib stream; inspect the decompressed output before promoting."
-    : "This exact global count-first enumerative rank plus page-concatenated word-boundary quotient is not a zlib/DEFLATE stream. Retire this specific standard-compressor interpretation; this does not reject other source-selected compressed-text models."
+  zlibWrapped,
+  rawDeflate,
+  conclusion: anyDeflateValid
+    ? "At least one fixed DEFLATE wrapper is valid; inspect the decompressed output before promoting."
+    : "This exact global count-first enumerative rank plus page-concatenated word-boundary quotient is neither zlib-wrapped nor raw DEFLATE. Retire this specific standard-compressor interpretation; this does not reject other source-selected compressed-text models."
 }, null, 2));
 
 // This SFT is a negative gate: success means the fixed integer is not zlib.
 // If this assertion fails, the stream is valid and the decompressed output
 // must be inspected from the failed-job log before any promotion.
-assert.equal(zlibResult.valid, false, "positive gate: valid zlib stream; inspect decompressed output");
+assert.equal(anyDeflateValid, false, "positive gate: valid DEFLATE stream; inspect decompressed output");
