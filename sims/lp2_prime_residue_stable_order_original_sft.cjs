@@ -57,7 +57,7 @@ function experiment(raw){
     check(new Set(order).size===c.length&&same(apply(undo(c,order),order),c),"permutation inverse");
     const e=undo(c,order),rank=undo(Array.from({length:c.length},(_,i)=>i),order);
     const s=solve(e),d=solve(c);
-    const replay=s.complete?same(apply(native(s.representative).e,order),c):same(s.representative.length?same(native(s.representative).e,e.slice(0,s.reached))?[1]:[0]:[1],[1]);
+    const replay=s.complete?same(apply(native(s.representative).e,order),c):same(native(s.representative).e,e.slice(0,s.reached));
     check(replay,"original replay");
     output.push({name:ch.name,n:c.length,bucketCounts:Array.from({length:29},(_,i)=>shift.slice(0,c.length).filter(x=>x===i).length),order,stable:{...s,firstDeadSourceIndex:s.complete?null:rank[s.reached],representativeText:s.representative.map(x=>corpus.translit[x]).join("")},direct:{...d,representativeText:d.representative.map(x=>corpus.translit[x]).join("")}});
   }
