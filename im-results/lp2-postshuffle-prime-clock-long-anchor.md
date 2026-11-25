@@ -6,6 +6,8 @@
 
 The solved p56 prime-minus-one cipher cannot be transferred to LP2 simply by arbitrarily reordering intact encrypted words (even across chapters) and choosing a starting prime ordinal from 0 through 3301, under the frozen 35,944-form broad native-English register and 5% out-of-vocabulary allowance. **All 343 original printed groups of length at least eight have empty inverse domains** under each of the two global additive signs. The original has 2,896 groups; at least 343 must be outside this register, whereas the 5% budget permits 144. Every chapter separately violates its own 5% budget even when given access to the complete book-wide prime-ordinal range. No group-order reconstruction follows.
 
+The independent dihedral extension below also excludes arbitrary ciphertext-side within-group rotations and reversals: 2/343 and 0/343 anchors, respectively, with every chapter still exceeding its OOV allowance.
+
 This differs from the prior q8/q13/q29 all-secret cyclic-key bounds: the authentic prime clock is nonperiodic, and the attack identifies absolute prime-ordinal locations of correctly decrypted groups when they exist. It is not a rerun of direct printed-order prime-clock transfer or of short-period phase graphs.
 
 ## Source-selected operation and inverse
@@ -79,3 +81,26 @@ All nine chapters independently exceed their budgets with the full-book cursor r
 No original candidate survives the widened hypothesis. Retire the direct prime-minus-one H-shuffle transfer even when granting all collision-only rejection decisions and an unknown preceding ciphertext at every group. This does not cover arbitrary non-collision skips, unknown unrelated generators or decoy segmentation.
 
 [SFT](../sims/lp2_postshuffle_prime_collision_anchor_sft.cjs) · [raw execution](lp2-postshuffle-prime-collision-anchor-output.json). Both executed against repository inputs in connected JS; no separate Windows CI. Commits 1d674d88f8548f5d72c4a4203ff71f2dd693166d and 0b580910043af99a3c8c31d7d00c27dde6f54515.
+
+## Independent within-group dihedral extension (Agent44, 25 November 2026)
+
+The preceding intact-order exclusions do not cover cyclic rotations of an encrypted word. The signed words/numbers direction message and p57 circumference wording motivate testing this additional reversible representation, but neither explicitly selects it. Grant every complete printed group its own arbitrary cyclic rotation and direction, i.e. every distinct element of its dihedral orbit, as an outer ciphertext permutation. For each undoing orientation run the same exact absolute-prime trie inverse, both global signs, each start 0–16,256, all legal F branches. This is a strict relaxation of any source-fixed within-word rotation/reversal in this architecture; no group reordering, orientation rule or cursor is fitted. It does not grant arbitrary internal permutations, changed membership, or extra prime advances. The earlier collision-redraw experiment is separate; the combination with independent rotations is not tested here.
+
+| Physical chapter | Groups | Long anchors | Covered (+ / −) | Minimum OOV (+ / −) | 5% allowance |
+|---|---:|---:|---:|---:|---:|
+| p0–2 | 158 | 21 | 0 / 0 | 21 / 21 | 7 |
+| p3–7 | 255 | 27 | 0 / 0 | 27 / 27 | 12 |
+| p8–14 | 383 | 46 | 1 / 0 | 45 / 46 | 19 |
+| p15–22 | 437 | 48 | 0 / 0 | 48 / 48 | 21 |
+| p23–26 | 224 | 26 | 0 / 0 | 26 / 26 | 11 |
+| p27–32 | 326 | 36 | 1 / 0 | 35 / 36 | 16 |
+| p33–39 | 378 | 45 | 0 / 0 | 45 / 45 | 18 |
+| p40–53 | 669 | 84 | 0 / 0 | 84 / 84 | 33 |
+| p54–55 | 66 | 10 | 0 / 0 | 10 / 10 | 3 |
+| Whole book | 2896 | 343 | 2 / 0 | 341 / 343 | 144 |
+
+All chapters fail even if every short group is granted free. The two positive-sign isolated candidates occur at global zero-based groups 456 (start ordinal 13,701; undo left rotation 7) and 1604 (ordinal 1,858; undo left rotation 5). Exact original rune values and candidate indices are in the raw output. They are isolated vocabulary hits with no supported neighboring anchor chain or authenticated ordering; do not present them as recovered text.
+
+Six independent deterministic literary controls (Gibran/Shakespeare/Emerson final 20%, 669 words each, both signs, hidden origins 0/1033/3301; seed 330144) were encrypted with the same F-hold law, independently rotated/reversed, and whole-word shuffled. All 250/250 in-register long groups recovered their unique correct plaintext, absolute start/end cursor and ciphertext orientation (deduplicated by oriented sequence); each exact forward replay verified. The 26 OOV anchors yielded no hits. Authentic p56 still replays 85/85 at 84 consumed primes. This shows concrete inverse power on the widened planted architecture, while all original chapters fail. Retire arbitrary dihedral outer word permutations under the direct nonperiodic prime-clock and finite vocabulary premises. A different key or H-decoy remains open.
+
+[One-file CommonJS reproducer](../sims/lp2_postshuffle_prime_dihedral_anchor_sft.cjs) · [raw result](lp2-postshuffle-prime-dihedral-anchor-output.json). Full numerical experiment executed directly in connected V8 JavaScript on canonical repository inputs; the saved wrapper was derived from the existing SFT and has not separately run under Windows Node. No new CI. No unknown plaintext/key.

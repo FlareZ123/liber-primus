@@ -1,0 +1,308 @@
+{
+  "vocab": 35944,
+  "p56": {
+    "runes": 85,
+    "cursor": 84
+  },
+  "originals": [
+    {
+      "sign": 1,
+      "chapters": [
+        {
+          "start": 0,
+          "n": 158,
+          "eligible": 21,
+          "covered": 0,
+          "edges": 0,
+          "minOOV": 21,
+          "budget": 7
+        },
+        {
+          "start": 158,
+          "n": 255,
+          "eligible": 27,
+          "covered": 0,
+          "edges": 0,
+          "minOOV": 27,
+          "budget": 12
+        },
+        {
+          "start": 413,
+          "n": 383,
+          "eligible": 46,
+          "covered": 1,
+          "edges": 1,
+          "minOOV": 45,
+          "budget": 19
+        },
+        {
+          "start": 796,
+          "n": 437,
+          "eligible": 48,
+          "covered": 0,
+          "edges": 0,
+          "minOOV": 48,
+          "budget": 21
+        },
+        {
+          "start": 1233,
+          "n": 224,
+          "eligible": 26,
+          "covered": 0,
+          "edges": 0,
+          "minOOV": 26,
+          "budget": 11
+        },
+        {
+          "start": 1457,
+          "n": 326,
+          "eligible": 36,
+          "covered": 1,
+          "edges": 1,
+          "minOOV": 35,
+          "budget": 16
+        },
+        {
+          "start": 1783,
+          "n": 378,
+          "eligible": 45,
+          "covered": 0,
+          "edges": 0,
+          "minOOV": 45,
+          "budget": 18
+        },
+        {
+          "start": 2161,
+          "n": 669,
+          "eligible": 84,
+          "covered": 0,
+          "edges": 0,
+          "minOOV": 84,
+          "budget": 33
+        },
+        {
+          "start": 2830,
+          "n": 66,
+          "eligible": 10,
+          "covered": 0,
+          "edges": 0,
+          "minOOV": 10,
+          "budget": 3
+        }
+      ],
+      "candidates": [
+        {
+          "g": 456,
+          "C": [
+            25,
+            3,
+            24,
+            19,
+            22,
+            1,
+            7,
+            12
+          ],
+          "D": [
+            {
+              "s": 13701,
+              "t": 13709,
+              "P": [
+                10,
+                9,
+                10,
+                19,
+                10,
+                5,
+                24,
+                20
+              ],
+              "rev": 0,
+              "r": 7
+            }
+          ]
+        },
+        {
+          "g": 1604,
+          "C": [
+            14,
+            25,
+            25,
+            15,
+            5,
+            27,
+            9,
+            12
+          ],
+          "D": [
+            {
+              "s": 1858,
+              "t": 1866,
+              "P": [
+                19,
+                18,
+                19,
+                3,
+                4,
+                27,
+                20,
+                15
+              ],
+              "rev": 0,
+              "r": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sign": -1,
+      "chapters": [
+        {
+          "start": 0,
+          "n": 158,
+          "eligible": 21,
+          "covered": 0,
+          "edges": 0,
+          "minOOV": 21,
+          "budget": 7
+        },
+        {
+          "start": 158,
+          "n": 255,
+          "eligible": 27,
+          "covered": 0,
+          "edges": 0,
+          "minOOV": 27,
+          "budget": 12
+        },
+        {
+          "start": 413,
+          "n": 383,
+          "eligible": 46,
+          "covered": 0,
+          "edges": 0,
+          "minOOV": 46,
+          "budget": 19
+        },
+        {
+          "start": 796,
+          "n": 437,
+          "eligible": 48,
+          "covered": 0,
+          "edges": 0,
+          "minOOV": 48,
+          "budget": 21
+        },
+        {
+          "start": 1233,
+          "n": 224,
+          "eligible": 26,
+          "covered": 0,
+          "edges": 0,
+          "minOOV": 26,
+          "budget": 11
+        },
+        {
+          "start": 1457,
+          "n": 326,
+          "eligible": 36,
+          "covered": 0,
+          "edges": 0,
+          "minOOV": 36,
+          "budget": 16
+        },
+        {
+          "start": 1783,
+          "n": 378,
+          "eligible": 45,
+          "covered": 0,
+          "edges": 0,
+          "minOOV": 45,
+          "budget": 18
+        },
+        {
+          "start": 2161,
+          "n": 669,
+          "eligible": 84,
+          "covered": 0,
+          "edges": 0,
+          "minOOV": 84,
+          "budget": 33
+        },
+        {
+          "start": 2830,
+          "n": 66,
+          "eligible": 10,
+          "covered": 0,
+          "edges": 0,
+          "minOOV": 10,
+          "budget": 3
+        }
+      ],
+      "candidates": []
+    }
+  ],
+  "controls": [
+    {
+      "d": 0,
+      "sign": 1,
+      "eligible": 26,
+      "inVocab": 23,
+      "recovered": 23,
+      "unique": 23,
+      "oovHits": 0,
+      "edges": 23
+    },
+    {
+      "d": 0,
+      "sign": -1,
+      "eligible": 26,
+      "inVocab": 23,
+      "recovered": 23,
+      "unique": 23,
+      "oovHits": 0,
+      "edges": 23
+    },
+    {
+      "d": 1,
+      "sign": 1,
+      "eligible": 53,
+      "inVocab": 47,
+      "recovered": 47,
+      "unique": 47,
+      "oovHits": 0,
+      "edges": 47
+    },
+    {
+      "d": 1,
+      "sign": -1,
+      "eligible": 53,
+      "inVocab": 47,
+      "recovered": 47,
+      "unique": 47,
+      "oovHits": 0,
+      "edges": 47
+    },
+    {
+      "d": 2,
+      "sign": 1,
+      "eligible": 59,
+      "inVocab": 55,
+      "recovered": 55,
+      "unique": 55,
+      "oovHits": 0,
+      "edges": 55
+    },
+    {
+      "d": 2,
+      "sign": -1,
+      "eligible": 59,
+      "inVocab": 55,
+      "recovered": 55,
+      "unique": 55,
+      "oovHits": 0,
+      "edges": 55
+    }
+  ]
+}

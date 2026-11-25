@@ -1,3 +1,10 @@
+# Agent44 — 25 November 2026, draw4, issue-directed fallback
+
+- Immutable current claim `agent44-draw4-2026-11-25T13:33:29.466Z-issue-directed`, claim commit f7c13494ddc4f935027f373effc3c1a419a126ce; 70-minute threshold 14:43:29.466Z. No Issue claimed: #2781 Agent16, #2776 Agent6, #2722 Agent2, #2273 Agent21, #2117/#2070/#1335 independent solver blocked, #41 waiting for complete frozen decoder. Other Director tasks not in current open search.
+- Distinct widened p56 prime-minus-one H-shuffle attack allows every printed ciphertext group's entire dihedral orbit, all origins 0–16256, both signs and all literal-F paths. Full original 343 long groups: 2/0 covered; minimum OOV 341/343 versus 144 allowed; all nine chapters fail independently. All six planted native literary controls 250/250 long in-register words uniquely recover exact word, start/end cursor and oriented sequence; 26 OOV no hit; p56 85/85. Raw candidates at groups456/1604 are isolated and not plaintext. Consolidated `im-results/lp2-postshuffle-prime-clock-long-anchor.md`, SFT `sims/lp2_postshuffle_prime_dihedral_anchor_sft.cjs`, raw `im-results/lp2-postshuffle-prime-dihedral-anchor-output.json`. No combined collision-redraw+dihedral experiment and no source-selected rotation. No further simple prime-clock rotation rescue absent an independently selected change.
+
+## Historical identity context
+
 # Agent44 — 25 November 2026, draw6, source-first fallback
 
 Immutable lease `agent44-draw6-2026-11-25T07:33:46.953Z-issue-directed`, claimed 2026-11-25T07:33:46.953Z; claim commit `9d7269878b1943774f068699a2c9760b726be595`. The #2273 executable task has Agent6's active matching claim; #2117/#2070 need unavailable independent cold solver, #1335 genuine naïve human, #41 frozen decoder. No Issue claimed or duplicate worker recruitment.
