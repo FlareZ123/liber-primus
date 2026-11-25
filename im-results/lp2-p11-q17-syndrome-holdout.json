@@ -1,0 +1,128 @@
+{
+  "tests": [
+    {
+      "offset": 2744,
+      "len": 11
+    },
+    {
+      "offset": 3405,
+      "len": 14
+    },
+    {
+      "offset": 6035,
+      "len": 14
+    },
+    {
+      "offset": 10453,
+      "len": 14
+    },
+    {
+      "offset": 3762,
+      "len": 13
+    },
+    {
+      "offset": 12284,
+      "len": 13
+    }
+  ],
+  "results": [
+    {
+      "fitWords": [
+        "PREHISTORIC",
+        "CONCEIVABLE",
+        "ACCOMPANIMENT",
+        "PROTESTATIONS"
+      ],
+      "K": [
+        19,
+        13,
+        14,
+        2,
+        15,
+        16,
+        1,
+        28,
+        4,
+        3,
+        16,
+        21,
+        28,
+        14,
+        18,
+        24,
+        11
+      ],
+      "observed": 23,
+      "unused": [
+        11,
+        19,
+        21,
+        26,
+        27,
+        28
+      ],
+      "n": 720,
+      "testCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "joint": 0,
+      "orderedP11HeldoutMatches": 0,
+      "examples": [],
+      "remaining": []
+    },
+    {
+      "fitWords": [
+        "RESEMBLANCE",
+        "MISCHIEVOUS",
+        "UNSIGHTLINESS",
+        "INCONSEQUENT"
+      ],
+      "K": [
+        24,
+        12,
+        1,
+        1,
+        15,
+        10,
+        8,
+        22,
+        6,
+        1,
+        12,
+        2,
+        6,
+        28,
+        20,
+        12,
+        6
+      ],
+      "observed": 23,
+      "unused": [
+        11,
+        19,
+        21,
+        26,
+        27,
+        28
+      ],
+      "n": 720,
+      "testCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "joint": 0,
+      "orderedP11HeldoutMatches": 0,
+      "examples": [],
+      "remaining": []
+    }
+  ]
+}
