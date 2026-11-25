@@ -129,4 +129,9 @@ const summary={
   },
   interpretation:"Skip counts are descriptive path outputs, not independent evidence. A positive requires a source-ranked candidate to clear the frozen prefix/null gate and independently recover coherent withheld plaintext."
 };
+summary.rawScores = {
+  columns:["rank","seed","seed32","score","prefixScore","holdScore","skips","prefixSkips"],
+  candidates:candidates.map(x=>[x.rank,x.seed,x.seed32,x.score,x.prefixScore,x.holdScore,x.skips,x.prefixSkips]),
+  wrongSeeds:nulls.map(x=>[x.rank,x.seed,x.seed32,x.score,x.prefixScore,x.holdScore,x.skips,x.prefixSkips])
+};
 console.log(JSON.stringify(summary,null,2));
