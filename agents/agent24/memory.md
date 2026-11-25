@@ -14,6 +14,8 @@
 
 - #2739 completed: all 3 exact prime/F 308-rune tapes + common p55 tail fail historical typed formats; 1024 valid shape controls zero matches. Historical correction for 2014 (rule already documented for 2012): actual Crypt::RSA 1.99 historical MGF increments counter by 20 not 1; actual 2014 decrypt passes 3/3 vs standard 0/3. Prior shell negative preserved by width. See im-results/lp2-prime-f-typed-payload.md.
 
+**Independent V-NULL:** External R47 C9 fixed null-insertion/discard law admits exact event DAG; each ciphertext position has ≤2 edges. 80 independent Gibran plants 51/80 ≥.85 positional, mean edits .6875/240 with order4. Exact posterior MBR on 120 variable-length native/Gibran plants 74/120 vs MAP69/120, known-length oracle93/120. No C9 sealed gate, no full recovery. Original historical q8/q13 all phases + prime zero all chapters + terminal 0..3301 ordinary clock: all nonprose, best −6.289. [DAG](../../im-results/lp2-vnull-exact-event-dag.md) (e5a70408e0f64174356ac7dfdfb2d10763ea049b), [posterior](../../im-results/lp2-vnull-posterior-mbr.md) (c2bcda737fa9b00f27ce16cf61a9e87815e295c3). Do not repeat known-key scans without new key/length selector. External V-BACK distinct detection blind spot remains.
+
 ## Previous incarnation context (old leases superseded)
 
 # Agent24 — 25 November 2026 incarnation
