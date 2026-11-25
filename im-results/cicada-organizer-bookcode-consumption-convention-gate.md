@@ -28,3 +28,20 @@ No original LP2 annotation designates a particular carrier/edition, a coordinate
 [Reproducer](../sims/cicada_2013_2014_bookcode_consumption_sft.cjs) retrieves the exact six pinned archive blobs, replays both historic known answers and all stated counterfactuals. The replay calculations were directly executed on those fetched sources before committing the script. The earlier exact 2012 carrier is an independent already-executed control, not rerun here. The archive contains the signed original coordinate payloads but its source text editions and decoding scripts are participant-preserved/reconstructed; exact known-answer recovery establishes the bounded extraction behavior, not recovery of the missing organizer code.
 
 **Independent #2601 follow-up:** [cue hierarchy ablation](cicada-cue-hierarchy-ablation.md) tests recognition rather than normalization, with a GEB holdout. Coarse coordinate recognition survives; exact title/segmentation selection does not. No new LP2 operator follows.
+
+
+## #2876 — Edition discrimination on actual 2014 coordinates (Agent3, 25 November 2026)
+
+Correct the assignment premise: the 2012 opening coordinate payload uses **Mabinogion**, the 2013 opening uses **Book of the Law**, and the 2014 opening uses Emerson **Self-Reliance**. There is no authenticated repeated 2012/2014 Self-Reliance source. Other 2012 book codes are distinct (Agrippa/Britannica).
+
+Tested the signed 2014 poem's actual 15 coordinate records, with the same paragraph/sentence/word/letter rule and whitespace collapse, against four pinned witnesses:
+- The repository's archived participant text.
+- [Gutenberg edition 10, December 2001](https://github.com/GITenberg/Essays---First-Series_2944/blob/9210518e45c73c99d03083c2bdfb0a6d32fae289/old/1srwe10.txt), a later mirror of the original 2001 e-text, not a claim about the mirror's date.
+- [Revised Gutenberg text](https://github.com/GITenberg/Essays---First-Series_2944/blob/9210518e45c73c99d03083c2bdfb0a6d32fae289/2944.txt), a related rather than independent witness, date of revision not asserted to predate the puzzle.
+- [Monadnock Valley Press HTML, Git commit 3 March 2012](https://github.com/MonadnockValleyPress/monadnock/blob/c6c30eefad86fdd0762e77c5fb8cd65a0678f03f/emerson/self-reliance.html), a separately hosted period witness with different prose punctuation.
+
+All four yield identical results: literal paragraph indexing gives `au?gn?jtvdbl?pv` (three out-of-range records: 45:5:2:3, 48:5:14:2, 47:3:3:5); adding one to paragraph indices >=45 gives `auqgnxjtvdbllpv`. Inserting the signed literal records at their original positions reproduces the known 2014 output. All 15 addressed words agree across all four witnesses after adjustment, not merely their extracted letters. The adjustment corresponds to the paragraph headed “4. As our Religion ...” present in all four sources; its removal or merging into the preceding paragraph remains indistinguishable on the actual coordinates.
+
+**Decision:** one observed coordinate-equivalence class, containing at least two historically accessible presentations. The known result does not choose the exact edition, punctuation or byte representation. A prose-based poem selects the work, not uniquely the edition; the three malformed coordinates under literal indexing signal a mismatch, not a uniquely recoverable fix before observing a successful answer. The 2012 Mabinogion carrier already has an independent exact line reconstruction (#2493), so do not reopen it on a mistaken common-Emerson premise. No LP2 selector or new operand follows. Reopen only on a source-specific annotation independently selecting an actual carrier and grammar.
+
+[Edition replay](../sims/cicada2014_book_edition_equivalence_sft.cjs). Core calculations ran in connected V8 on fetched exact sources before the script commit; standalone network-fetching Node wrapper not separately CI-run.
