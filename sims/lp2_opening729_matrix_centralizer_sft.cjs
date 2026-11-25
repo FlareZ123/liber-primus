@@ -37,7 +37,7 @@ function dot(a,b){let z=0;for(let j=0;j<a.length;j++)z+=a[j]*b[j];return z%29;}
 
 const {name,flip=false}=spec;let C,G,Ptrue,fitN=262;
 if(name==="p0-2"){C=Uint8Array.from(tape.slice(0,729));G=layout(W).filter(w=>w.start+w.w.length<=729);}
-else{const sec=gold.sections.find(x=>x.name===name),ww=words(sec.source_text),i=name==="0_koan_1"?143:67,a=[...ww.slice(i),...ww.slice(0,i)];Ptrue=Uint8Array.from(a.flat().slice(0,729));G=layout(a).filter(w=>w.start+w.w.length<=729);C=power(Ptrue,11n);}
+else{const sec=gold.sections.find(x=>x.name===name),ww=words(sec.source_text),i=name==="0_koan_1"?143:67,a=[...ww.slice(i),...ww.slice(0,i)];Ptrue=Uint8Array.from(a.flat().slice(0,729));G=layout(a).filter(w=>w.start+w.w.length<=729);C=power(Ptrue,11n);fitN=528;}
 const A=flip?reflect(C):C,basis=[Id];for(let i=1;i<D;i++)basis.push(mul(basis.at(-1),A));const V=basis.map(b=>flip?reflect(b):b),H=Array.from({length:729},(_,i)=>V.map(b=>b[i]));
 const anchors=span(G,0,fitN).filter(w=>!Ptrue||types.has(id(w.w))).sort((a,b)=>b.w.length-a.w.length||a.start-b.start).slice(0,3);
 const pos=anchors.flatMap(w=>Array.from({length:w.w.length},(_,i)=>w.start+i)),m=pos.length,chosen=[],piv=[],R=[];
@@ -48,10 +48,10 @@ const rest=Array.from({length:m},(_,i)=>i).filter(i=>!chosen.includes(i)),K=rest
 if(!rest.length||29**rest.length>Number.MAX_SAFE_INTEGER)throw Error("syndrome width");
 let off=0;const domains=anchors.map(w=>{const n=w.w.length,o=off;off+=n;const b=K.map(r=>r.slice(o,o+n)),p=L.slice(0,fitN).map(r=>r.slice(o,o+n));return lex[n].map(w=>({w,s:Uint8Array.from(b,r=>dot(r,w)),p:Uint8Array.from(p,r=>dot(r,w))}));});
 const enc=s=>s.reduce((z,x)=>z*29+x,0),index=new Map();for(const x of domains[2]){const k=enc(x.s);let a=index.get(k);if(!a)index.set(k,a=[]);a.push(x);}
-const fws=span(G,0,fitN).filter(w=>!anchors.includes(w)),hws=span(G,fitN,729),n=rest.length,v=new Uint8Array(fitN);let pairs=0,keys=0,best=null;const start=Date.now();
-for(const a of domains[0])for(const b of domains[1]){pairs++;let k=0;for(let i=0;i<n;i++)k=k*29+((58-a.s[i]-b.s[i])%29);const cset=index.get(k);if(!cset)continue;for(const c of cset){keys++;for(let i=0;i<fitN;i++)v[i]=(a.p[i]+b.p[i]+c.p[i])%29;const q=wordScore(v,fws,0),z=score(v);if(!best||q.hit>best.hit||q.hit===best.hit&&z>best.z)best={r:[...a.w,...b.w,...c.w],hit:q.hit,all:q.all,z};}}
+const fws=span(G,0,fitN).filter(w=>!anchors.includes(w)),hws=span(G,fitN,729),n=rest.length,v=new Uint8Array(fitN);const extra=fws.filter(w=>!Ptrue||types.has(id(w.w))).sort((a,b)=>b.w.length-a.w.length||a.start-b.start)[0],extraLex=new Set(lex[extra.w.length].map(id));let pairs=0,keys=0,extraPass=0,best=null;const start=Date.now();
+for(const a of domains[0])for(const b of domains[1]){pairs++;let k=0;for(let i=0;i<n;i++)k=k*29+((58-a.s[i]-b.s[i])%29);const cset=index.get(k);if(!cset)continue;for(const c of cset){keys++;const ex=Array.from({length:extra.w.length},(_,j)=>{const i=extra.start+j;return (a.p[i]+b.p[i]+c.p[i])%29;});const exPass=extraLex.has(id(ex));if(exPass)extraPass++;if(Ptrue&&!exPass)continue;for(let i=0;i<fitN;i++)v[i]=(a.p[i]+b.p[i]+c.p[i])%29;const q=wordScore(v,fws,0),z=score(v);if(!best||q.hit>best.hit||q.hit===best.hit&&z>best.z)best={r:[...a.w,...b.w,...c.w],hit:q.hit,all:q.all,z};}}
 let out=null;if(best){const P=L.map(r=>dot(r,best.r)),Hh=wordScore(P,hws,0),coef=Hi.map(r=>dot(r,chosen.map(i=>best.r[i])));if(!same(P,Array.from({length:729},(_,i)=>dot(V.map(b=>b[i]),coef))))throw Error("replay");if(!same(pos.map(i=>P[i]),best.r))throw Error("anchor");const decoded=flip?reflect(P):Uint8Array.from(P);if(!same(Array.from(mul(decoded,A)),Array.from(mul(A,decoded))))throw Error("noncommuting");out={coefficients:coef,fitHit:best.hit,fitTotal:best.all,fitScore:best.z,holdHit:Hh.hit,holdTotal:Hh.all,holdScore:score(P.slice(fitN)),head:G.slice(0,12).map(w=>fmt(P.slice(w.start,w.start+w.w.length))).join(" "),exact:Ptrue?P.filter((x,i)=>x===Ptrue[i]).length:undefined};}
-return {name,flip,rank:D,anchors:anchors.map(w=>[w.start,w.w.length]),domains:domains.map(x=>x.length),checks:rest.length,pairs,keys,best:out,ms:Date.now()-start};
+return {name,flip,rank:D,anchors:anchors.map(w=>[w.start,w.w.length]),domains:domains.map(x=>x.length),checks:rest.length,pairs,keys,extra:[extra.start,extra.w.length],extraPass,controlFitN:fitN,best:out,ms:Date.now()-start};
 }
 
 const specs=[{"name":"p0-2"},{"name":"p0-2","flip":true},{"name":"0_koan_1"},{"name":"0_loss_of_divinity"}];
