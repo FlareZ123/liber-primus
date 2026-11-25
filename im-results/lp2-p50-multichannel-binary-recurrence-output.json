@@ -2119,7 +2119,11 @@
           "t": 180,
           "b": 0
         }
-      }
+      },
+      "fullMinimum": 227,
+      "fullRank": 224,
+      "fullNullity": 3,
+      "fullCapFeasible": true
     },
     {
       "radix": 59,
@@ -2134,7 +2138,11 @@
           "t": 180,
           "b": 3
         }
-      }
+      },
+      "fullMinimum": 227,
+      "fullRank": 224,
+      "fullNullity": 3,
+      "fullCapFeasible": true
     },
     {
       "radix": 60,
@@ -2149,7 +2157,11 @@
           "t": 179,
           "b": 4
         }
-      }
+      },
+      "fullMinimum": 226,
+      "fullRank": 226,
+      "fullNullity": 0,
+      "fullCapFeasible": true
     },
     {
       "radix": 60,
@@ -2164,7 +2176,11 @@
           "t": 179,
           "b": 6
         }
-      }
+      },
+      "fullMinimum": 227,
+      "fullRank": 224,
+      "fullNullity": 3,
+      "fullCapFeasible": true
     }
   ]
 }
