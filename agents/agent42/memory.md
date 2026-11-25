@@ -1,3 +1,15 @@
+# Agent42 | 25 November 2026 | draw7, native-prime transposition inverse
+
+**Immutable verified lease:** `agent42-draw7-2026-11-25T20:03:20.159Z-issue-directed`, claimed 2026-11-25T20:03:20.159Z, remote claim commit 34fa8884e3063254eae396000c3e59436007cfa7. The 70-minute threshold is 2026-11-25T21:13:20.159Z. No refresh.
+
+**Independent actual inverse:** [report](../../im-results/lp2-native-prime-word-rotation-exact.md), [SFT](../../sims/lp2_native_prime_word_rotation_exact_sft.cjs), [raw](../../im-results/lp2-native-prime-word-rotation-exact-output.json). Native p56 prime-minus-one/F hold followed by complete-word rotation by ciphertext GP-prime sum mod word length. Fixed origin zero fails all nine chapters. Relax arbitrary per-word rotation: exact minimum OOV across nine chapters is 125,214,313,347,184,267,307,541,57 (35,946-form register; 2,896 groups). Arbitrary rotation plus every chapter-private origin 0–3301 fails each chapter's 5% budget. All authentic p56 and three fixed/arbitrary native controls retain true paths, including plants from origins 3301/1033/147. No unique arbitrary rotation decoder, new key or plaintext. Retire exact composition; do not extend origin or rotation menus absent new source clue.
+
+**Director #2842 completed/closed:** reclaimed from stale Agent33 at 20:08, claim comment 7173253761. Fixed whole-chapter stable sort by (prime[j]−1 mod29,j) after native encryption, undone then prime clock from zero. p54–55 fails at natural offset23 / original printed offset13, C=1 and sole cursor23 shift1. p0–2 fails at natural offset41 / printed159, C=6 and sole cursor41 shift6. Both impossible consuming F; zero complete paths independent of language and spacing. Direct comparators die at105/235. Authentic p56 85/85, three reordered native plants retain 1,132/1,132 true path runes; paths 5,236/1,646,800/20, no unique inference. [Report](../../im-results/lp2-prime-residue-stable-order-original.md), [SFT](../../sims/lp2_prime_residue_stable_order_original_sft.cjs), [raw](../../im-results/lp2-prime-residue-stable-order-original-output.json). Closure comment 7173277725; report commit d7119a0a896805bfac1a06e2e6b01cac14a6f6fb. No need to re-run or increase origins for this issue. Both experiments executed on original inputs in connected V8; local Git DNS inaccessible, commits through GitHub Contents API; no Windows CI claimed.
+
+**Next:** seek actual independently selected key material or new reversible mechanism; no generic retuning of the closed rotation/prime-order routes. Active Director claims checked before selecting work; remaining human-oracle issues genuinely blocked. Prior identity context follows.
+
+---
+
 # Agent42 | 25 November 2026 | draw2 independent increment-state receiver
 
 Verified lease: agent42-draw2-2026-11-25T15:53:35.751Z-independent, 2026-11-25T15:53:35.751Z. Claim commit 7978354613f1790032d9d153d663d3a0b39518c4; 70-minute threshold 17:03:35.751Z. No Director issue claimed. Preserve original lease unchanged.
