@@ -66,6 +66,32 @@ The specific new column-coupled restriction matters on p16–22: the older indep
 
 One native independent two-permutation plant gives actual top-k sums [195,352,478,603,720], beneath computed caps [215,409,571,717,845]. An exhaustive 4-vertex toy graph check independently verifies exact min-cost regular capacities [0,22,31,39]. The separate annealing experiment supplies four exact inversion controls. No CI is claimed; both code paths executed in connected JS runtime.
 
+## Exact known-plaintext key retrieval on the four relaxed survivors
+
+A source passage that really is the original plaintext would offer a much stronger route than another marginal fit. The two-permutation law gives a linear equation per observed plaintext rune:
+
+```
+S[C[i]] - S[C[i-1]] - H[P[i]] = 0 mod 29.
+```
+
+For each candidate full-length plaintext window, first enforce exact equalities: identical ciphertext edges must encode identical plaintext runes, all diagonal edges must encode the same rune and all nondiagonal edges a different rune. Within any predecessor row (or successor column), equal plaintext labels must specify the same next (or prior) ciphertext state. These are necessary for all independent inner and outer permutations and do not require any guessed numeric key.
+
+For a surviving crib, modular Gaussian elimination recovers S and the H entries for *observed* plaintext labels. The constant-S vector is always in the homogeneous nullspace. A two-dimensional nullspace yields a nonconstant vector unique up to common scaling and S translation, provided S is bijective and observed H entries distinct. All missing H entries are completed by bijections of remaining values, so their ambiguity is explicit. Dimension one is impossible; higher dimensions are unresolved, not excluded by the implemented rank shortcut. The first implementation erroneously expected every GP label to occur in a finite native crib and failed its positive calibration. The reduced observed-symbol system repairs this without adding synthetic alphabet symbols to the native passage.
+
+All contiguous GP windows from six fixed texts (Emerson, Gibran, Shakespeare, derived LP1 reference, Blake Song of Liberty and the historical 2012 Blake chorus) were screened on the four original chapter spans that survived the regular-graph relaxation. No windows survive even the necessary exact equality filter; thus none reach linear-algebra inversion. The native texts are a finite retrieval register, not an independently authenticated statement of plaintext authorship.
+
+| Original span | Windows screened | Compatible |
+|---|---:|---:|
+| p0–2 | 602537 | 0 |
+| p3–7 | 600457 | 0 |
+| p23–26 | 601077 | 0 |
+| p54–55 | 604929 | 0 |
+| Total | 2409000 | 0 |
+
+Two separate constructed secret-S/secret-H native controls use distinct Emerson/Gibran passages (1,743 runes each), 1,100 known training positions and 643 withheld. The exact reduced systems have ranks 55/57 variables and 52/54 variables, both nullity two. The first leaves one unseen H entry, uniquely fixed by the unused value; the second leaves four entries with 24 possible completions, none of which affects its withheld continuation. Both recover all 643/643 withheld runes uniquely and replay every ciphertext position. Hence the attack is reusable if an authentic source-selected crib is subsequently found. The finite failed retrieval is not an exclusion of unknown newly authored text in the four surviving short chapters.
+
+[Known-plaintext SFT](../sims/lp2_conjugated_cumulative_knownplaintext_sft.cjs) · [raw](lp2-conjugated-cumulative-knownplaintext.json) · commit 25fc3429e7820c4b6504e9c9c495421be7e7031c.
+
 ## Decision
 
 Retire the fixed continuous conjugated cumulative decoder as a serious receiver for p16–22 under the tested native registers. The exact relaxation excludes the stronger independent inner permutation on five complete spans and the full tape, so widening the annealing search to H or tuning the rare anchor on those spans is unwarranted without independent evidence for a different state clock or balanced plaintext. The short surviving chapter spans are only reasonable candidates for further **actual key recovery** if a source clue independently selects this architecture. Do not reinterpret the count bounds as proof of arbitrary-language impossibility.
