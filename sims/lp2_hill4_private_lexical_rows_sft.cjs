@@ -47,7 +47,30 @@ function rowSearch(S,target,phase,budget){
  }
  return{phase,budget,n,spans,counts,output,elapsed:(Date.now()-time)/1000,mostSelective:masks.map(m=>m.slice(0,8).map(x=>[x.idx.length,x.prob]))};
 }
+function jointSearch(S,target,v){
+ const {phase,n,spans,budget,output}=v,C=target.C,mod=x=>((x%29)+29)%29;
+ const inv=Array.from({length:29},(_,x)=>{for(let i=1;i<29;i++)if(x*i%29===1)return i;return 0});
+ const order=[0,1,2,3].sort((a,b)=>output[a].length-output[b].length),chosen=[],seq=[];
+ const counts=Array(4).fill(0),visits=Array(4).fill(0),solutions=[];
+ const masks=[];let m=0;for(const lane of order){m|=1<<lane;masks.push(m)}
+ const projs=masks.map((mask,level)=>spans.map(([a,b],word)=>{const pos=[];for(let j=0;j<b-a;j++)if(mask&(1<<((a+j-phase)%4)))pos.push(j);const newLane=order[level];if(!pos.some(j=>(a+j-phase)%4===newLane))return null;const set=new Set();for(const w of (S.dict.get(b-a)||new Map()).values())set.add(String.fromCharCode(...pos.map(j=>w[j])));return{word,pos:pos.map(j=>[(a+j-phase)%4,Math.floor((a+j-phase)/4)]),set}}).filter(Boolean).sort((a,b)=>a.set.size/(29**a.pos.length)-b.set.size/(29**b.pos.length)));
+ function rank(rows){let a=rows.map(r=>r.slice()),r=0;for(let j=0;j<4;j++){let k=a.findIndex((v,i)=>i>=r&&v[j]);if(k<0)continue;[a[r],a[k]]=[a[k],a[r]];const x=inv[a[r][j]];a[r]=a[r].map(v=>v*x%29);for(let i=r+1;i<a.length;i++){const y=a[i][j];for(let l=j;l<4;l++)a[i][l]=mod(a[i][l]-y*a[r][l])}r++}return r}
+ // Retain only a candidate's row output, not a full guessed plaintext.
+ for(let lane=0;lane<4;lane++)for(const row of output[lane]){const a=row.a;row.seq=Uint8Array.from({length:n},(_,i)=>{let p=phase+4*i;return(a[0]*C[p]+a[1]*C[p+1]+a[2]*C[p+2]+a[3]*C[p+3]+row.b)%29})}
+ function dfs(level,bad,misses){
+  if(level===4){const key=Array.from({length:4},(_,lane)=>chosen[order.indexOf(lane)]).map(({a,b})=>({a,b}));const plain=Array.from({length:n*4},(_,i)=>seq[i%4][Math.floor(i/4)]);solutions.push({key,misses,plain});return}
+  const lane=order[level];
+  for(const row of output[lane]){visits[level]++;seq[lane]=row.seq;let miss=misses,extra=[];
+   for(const d of projs[level]){if(bad[d.word])continue;const x=String.fromCharCode(...d.pos.map(([l,i])=>seq[l][i]));if(!d.set.has(x)){extra.push(d.word);if(++miss>budget)break}}
+   if(miss>budget)continue;
+   if(rank([...chosen.map(x=>x.a),row.a])!==level+1)continue;
+   counts[level]++;for(const w of extra)bad[w]=1;chosen.push(row);dfs(level+1,bad,miss);chosen.pop();for(const w of extra)bad[w]=0;
+  }
+ }
+ const time=Date.now();if(output.every(x=>x.length))dfs(0,new Uint8Array(spans.length),0);
+ return{order,counts,visits,solutions,seconds:(Date.now()-time)/1000};
+}
 const raw=files.map(f=>fs.readFileSync(path.resolve(__dirname,'..',f),'utf8'));
 const S=setup(raw);
-if(require.main===module){const target=S.pages.find(p=>p.page===Number(process.argv[2]||21));const v=rowSearch(S,target,Number(process.argv[3]||0),Number(process.argv[4]||2));console.log(JSON.stringify(v,null,2));}
-module.exports={setup,rowSearch};
+if(require.main===module){const target=S.pages.find(p=>p.page===Number(process.argv[2]||21));const v=rowSearch(S,target,Number(process.argv[3]||0),Number(process.argv[4]||2));const j=jointSearch(S,target,v);console.log(JSON.stringify({phase:v.phase,budget:v.budget,words:v.spans.length,n:v.n,counts:v.counts,elapsed:v.elapsed,joint:j},null,2));}
+module.exports={setup,rowSearch,jointSearch};
