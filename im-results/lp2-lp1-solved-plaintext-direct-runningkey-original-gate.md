@@ -2,6 +2,8 @@
 
 **Current decision, 25 November 2026: direct additive and continuous signed BASE29 carry receivers fail on the tested LP1 source registers. No unknown LP2 plaintext or authentic key.** The original Agent 7 direct-key study and its authentic-clock and arithmetic-carry extensions are consolidated below. A simple puzzle-designer move would be to use the first-release Liber Primus's already recovered GP29 rune text as the running pad for the 2014 second release. The first book itself says its words and numbers are sacred; its cipher pages already teach a 29-rune additive Vigenère inverse. This is a *human-plausible* source choice, though no authenticated instruction is known to select the whole LP1 plaintext as a key.
 
+> **Combined-clock extension (25 November):** the exact all-origin F-hold + unlimited collision-redraw Viterbi covers corrected/printed LP1 index/prime keys, both signs and nine original chapter windows. Three target-excluded plants recover all offsets and 434/434 withheld runes. All original prefix winners fail prediction (eight dead, one nonprose); all 72 retrospective variant/window domains are legal but best full scores −5.079 to −4.842. [Decision and raw paths](lp2-lp1-runningkey-fhold-redraw-original-gate.md). This is a finite likelihood rejection, not exact support exclusion.
+
 ## Source-fixed experiment
 
 - Key: all **2,799 GP29 runes** in the seven solved original first-release sections of `resources/external/relikd-solved-gp29-native-v1.json`, in the stored print order; punctuation removed. This is a verified-derived transcription of known solved LP1 content, not original JPEG carrier bytes.
