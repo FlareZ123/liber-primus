@@ -1,0 +1,115 @@
+{
+  "dictTotal": 35700,
+  "trieNodes": 138138,
+  "columns": [
+    "states",
+    "edges",
+    "duplicates",
+    "dead",
+    "maxShortestDepth",
+    "selfLoops",
+    "accept"
+  ],
+  "late": [
+    354,
+    384,
+    31,
+    61,
+    10,
+    31,
+    null
+  ],
+  "lateBlack": [
+    1731,
+    1927,
+    197,
+    50,
+    11,
+    195,
+    null
+  ],
+  "lateWithF": [
+    499,
+    547,
+    49,
+    59,
+    10,
+    48,
+    null
+  ],
+  "lateBlackWithF": [
+    1836,
+    2046,
+    211,
+    40,
+    11,
+    208,
+    null
+  ],
+  "earlyWithF": [
+    6,
+    5,
+    0,
+    5,
+    1,
+    0,
+    null
+  ],
+  "earlyBlackWithF": [
+    14,
+    13,
+    0,
+    13,
+    1,
+    0,
+    null
+  ],
+  "allExhausted": true,
+  "cap": 30000,
+  "controls": {
+    "forced": {
+      "runes": 5,
+      "c": [
+        7,
+        8,
+        12,
+        1,
+        23
+      ],
+      "key": [
+        0,
+        12,
+        12,
+        12,
+        13,
+        8,
+        21,
+        2
+      ],
+      "skips": 3,
+      "maxSkips": 3,
+      "holds": 0,
+      "accepting": true
+    },
+    "fPlant": {
+      "runes": 4,
+      "c": [
+        0,
+        25,
+        18,
+        25
+      ],
+      "key": [
+        21,
+        15,
+        6
+      ],
+      "skips": 0,
+      "maxSkips": 0,
+      "holds": 1,
+      "accepting": true
+    }
+  },
+  "reproducer": "sims/lp2_page_reset_collision_keyskip_reachable_graph_sft.cjs",
+  "execution": "Committed experiment body executed in JavaScript with eight GitHub inputs; no Node filesystem wrapper or CI run."
+}
