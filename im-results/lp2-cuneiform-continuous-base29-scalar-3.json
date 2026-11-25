@@ -1,0 +1,158 @@
+{
+  "name": "control-3",
+  "N": 1680,
+  "len": [
+    214,
+    261,
+    271,
+    238,
+    228,
+    228,
+    240
+  ],
+  "truth": {
+    "msb": false,
+    "a": 21421,
+    "op": "multiply"
+  },
+  "correct": 1680,
+  "fitCorrect": 1212,
+  "holdCorrect": 468,
+  "msb": false,
+  "range": {
+    "fitStart": 0,
+    "fitEnd": 1212,
+    "holdStart": 1212,
+    "holdEnd": 1680
+  },
+  "searched": 47098,
+  "top": [
+    {
+      "a": 21421,
+      "op": "multiply",
+      "fit": 0.9619366482057937,
+      "carry": 2808
+    },
+    {
+      "a": 6752,
+      "op": "divide",
+      "fit": -1.6041836333061226,
+      "carry": 4321
+    },
+    {
+      "a": 9266,
+      "op": "divide",
+      "fit": -1.6431924094906978,
+      "carry": 955
+    },
+    {
+      "a": 23446,
+      "op": "divide",
+      "fit": -1.6778614257264863,
+      "carry": 10869
+    },
+    {
+      "a": 19673,
+      "op": "multiply",
+      "fit": -1.67945033741808,
+      "carry": 2579
+    },
+    {
+      "a": 14683,
+      "op": "multiply",
+      "fit": -1.6796687320660006,
+      "carry": 1925
+    },
+    {
+      "a": 12809,
+      "op": "divide",
+      "fit": -1.679927993926898,
+      "carry": 2367
+    },
+    {
+      "a": 6118,
+      "op": "multiply",
+      "fit": -1.6807480748627228,
+      "carry": 802
+    }
+  ],
+  "win": {
+    "a": 21421,
+    "op": "multiply",
+    "fit": 0.9619366482057937,
+    "carry": 2808,
+    "hold": 1.0680346743943105,
+    "fitN": 1212,
+    "holdN": 468,
+    "fitPreview": "ASWINISHLOOCUNGENEROUSACTSANDTHEWANTOFDUECNOWLEDGEALLBLABCANACOOCACHIFFINCHANIACHIMOBEMISTACE",
+    "holdPreview": "RANCESBECAUSETHESUBSTANCEISNOTWEAREFULLOFTHESESUPERSTITIANSOFSENSETHEWORSHIPOFMAGNITUDEWECALLTH"
+  },
+  "fixed": [
+    {
+      "a": 1033,
+      "op": "divide",
+      "fit": -1.890142761846634,
+      "carry": 261,
+      "hold": -2.0839045044647926,
+      "fitN": 1212,
+      "holdN": 468,
+      "fitPreview": "AEOUINHTHGPWPTHEAFNGNTHTGSTHYTEOLEOFALAECIEAXXDUAEIDCEOYFIADWIAXOEFEOAAECJIEBAMAEENGCOCPWAEGOTFAOJWLTEFAOETHAESNGTH",
+      "holdPreview": "PPIJDYIEADTHUHNGSCBOEPAEAIAEOMTHIAWXULEAENBUOEEFBEEOIANGTTUGMFDEAUWTHGRCUOEPNHREXTHYOAGSOEIAXGNBLNGEATEAHTXRDJJYEA"
+    },
+    {
+      "a": 3301,
+      "op": "divide",
+      "fit": -1.8917198496821408,
+      "carry": 944,
+      "hold": -1.9491261825705004,
+      "fitN": 1212,
+      "holdN": 468,
+      "fitPreview": "YYWOBIENMAEOIHMYPLSURDSGYEOEOEXENAEOYMEORBSWDYNGBPNRPPNGGDBIAIYRWUDTHXAEABCTHRDYIABTBEOREAAYXECLLNDAETHWTHE",
+      "holdPreview": "YEAIYAEEAMRMOMTYCOEOESAOIAAEDEOWUAECCUEASSTHGMATOENERLPPJTHUIAGNMGPLTHTHMTPOESWUDPBRHIAHIGADDNGDJTHWNWTEOBNGOHTE"
+    },
+    {
+      "a": 3409933,
+      "op": "divide",
+      "fit": -1.9128822752070842,
+      "carry": 3011456,
+      "hold": -2.0823516434977676,
+      "fitN": 1212,
+      "holdN": 468,
+      "fitPreview": "AEOAEOJXHAJWNGTHTAIADDDMMURTHDCAEJTRGDTDGPABUDRNGIABLFDEEABYCWCTNGXYRIAGHIAWOEJOUBNGCAEOEWNNLHJIABOETGGTHEAIAGP",
+      "holdPreview": "EOEGIAEOCFTFEOANJDNGFUNNGIAJYFYPMDCATHPEOMWTHPAEAEBOEEAWOECSLJBOANGLHFGXIXJOENGAELYOEEOEOFLGYFGLFASHNJLILLEIAEFIAEO"
+    },
+    {
+      "a": 1033,
+      "op": "multiply",
+      "fit": -2.024868923058878,
+      "carry": 135,
+      "hold": -2.0252390663547772,
+      "fitN": 1212,
+      "holdN": 468,
+      "fitPreview": "NIXSPOIADHFUJSAJEOOIASRENYOEAWUFELEAONGRTIAPIOEAIIAXPENTHBHNHDYPHYLEBISOEDIJMEAOENEEFBAEIAUAHAENXEBAEDLOEIRF",
+      "holdPreview": "YDJFEALAFHTHEAAEHOEHXPNGPLATOPCTBEAOEUECPDNIEANGTAAECMHMCUNGJEADAIEAATHSNGTHNGYAENGEAFTHOEEAESGBPFFSGFSEAEAORYIAEOUCAET"
+    },
+    {
+      "a": 3301,
+      "op": "multiply",
+      "fit": -1.7516642280915766,
+      "carry": 432,
+      "hold": -1.8747498812712067,
+      "fitN": 1212,
+      "holdN": 468,
+      "fitPreview": "EOOOTMNPCOGAECAEDPEOONOEEOPIEOEAOIIDEAJEADNICILNGXAEEIAPDCMATHUAETIHFEOFEOMXNGCLMEAYYOEAEOEIAFLAEORCIAHMUYOEMTHFJTAEIA",
+      "holdPreview": "TEYXEOYXGHPMFGGBORDNEOPGXWEONNGACOFAWIAONGGTHANAEGBBDPCHYTHLNGYEAESLAMTCDUOEEOAEBJXGIATBTHDRXAFPTHFOETOSTHLEA"
+    },
+    {
+      "a": 3409933,
+      "op": "multiply",
+      "fit": -1.9563816803059149,
+      "carry": 447151,
+      "hold": -1.8800714043586264,
+      "fitN": 1212,
+      "holdN": 468,
+      "fitPreview": "PBUOETBIAPTEFTHNGGJEOCDAANGLHTOETHMEAUGOCUHDOEYFIEXIAFEOIAYPGMROLYIAWDNGIASSUSPBTIHNGMNAEOBXOEWTTHIOENCMYSHIAEOER",
+      "holdPreview": "DAEIAJOEXRUEAROYSOCFYNFXGGEDEEBTHXUIAFADXOENGMXERBAEALAEUTHLCSEALOEGLEEORNBOOAESCDOEIAJNGIIAPATHTHOWFOEIAEOLDXU"
+    }
+  ]
+}
