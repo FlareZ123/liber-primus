@@ -1,4 +1,7 @@
 
+## 2026-11-25 — nested graph-alignment contextual inverse
+- Fixed increasing-address p32/p55 nested-subtree shared pad, 76 paired +45 unpaired p32 symbols, spacing-free fifth-order plus trie beam. Plant shared recoveries 19/43/54/39, gate failed. Original unscored. Report im-results/lp2-p32-p55-nested-context-trie.md. Do not use arbitrary alignment to rescue a failed gate.
+
 ## 2026-11-25 — tree-feedback inverse
 - Tested conditional p32/p55 exact-size base59 subtrees with common nonzero affine ciphertext-parent feedback and seven natural orders, 159152 candidates fitted only to p32 first80, frozen holdouts. Gate passed; plant ranks 1/1/1. Original bfs_desc (11,11,7), holdout -7.3311; no authenticated plaintext. Report im-results/lp2-p32-p55-subtree-feedback.md.
 
