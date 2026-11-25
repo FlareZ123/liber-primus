@@ -2,8 +2,8 @@
 'use strict';
 
 // Source-constrained test of a spiral-addressed p50 core word-pointer map.
-// p56: "path of spirals"; p57: "shed the circumferences" / "WE MUST SHED";
-// p11: "THEIR NUMBERS ARE THE DIRECTION"; authenticated 2016 message:
+// p15: marked outward number spiral; p57: "WE MUST SHED OUR OWN CIRCUMFERENCES";
+// Authenticated 2016 message:
 // "Its words are the map ... their numbers are the direction."
 //
 // Two circumferences removed from the 32x8 p50 table leave a 28x4 core.

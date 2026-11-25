@@ -1,0 +1,156 @@
+{
+  "configurations": 128,
+  "pairs": [
+    {
+      "from": "PARABLE",
+      "a": 120,
+      "to": "LICE",
+      "b": 53,
+      "hits": []
+    },
+    {
+      "from": "LICE",
+      "a": 53,
+      "to": "THE",
+      "b": 20,
+      "hits": []
+    },
+    {
+      "from": "THE",
+      "a": 20,
+      "to": "INSTAR",
+      "b": 78,
+      "hits": []
+    },
+    {
+      "from": "INSTAR",
+      "a": 78,
+      "to": "TUNNELNG",
+      "b": 94,
+      "hits": []
+    },
+    {
+      "from": "TUNNELNG",
+      "a": 94,
+      "to": "TO",
+      "b": 19,
+      "hits": []
+    },
+    {
+      "from": "TO",
+      "a": 19,
+      "to": "THE",
+      "b": 20,
+      "hits": []
+    },
+    {
+      "from": "THE",
+      "a": 20,
+      "to": "SURFACE",
+      "b": 67,
+      "hits": []
+    },
+    {
+      "from": "SURFACE",
+      "a": 67,
+      "to": "WE",
+      "b": 25,
+      "hits": []
+    },
+    {
+      "from": "WE",
+      "a": 25,
+      "to": "MUST",
+      "b": 51,
+      "hits": [
+        {
+          "depth": 2,
+          "start": "TR",
+          "hand": 1,
+          "reversed": false,
+          "radix": 59,
+          "cell": 221
+        }
+      ]
+    },
+    {
+      "from": "MUST",
+      "a": 51,
+      "to": "SHED",
+      "b": 64,
+      "hits": []
+    },
+    {
+      "from": "SHED",
+      "a": 64,
+      "to": "OUR",
+      "b": 8,
+      "hits": []
+    },
+    {
+      "from": "OUR",
+      "a": 8,
+      "to": "OWN",
+      "b": 19,
+      "hits": []
+    },
+    {
+      "from": "OWN",
+      "a": 19,
+      "to": "CIRCUMFERENCES",
+      "b": 131,
+      "hits": []
+    },
+    {
+      "from": "CIRCUMFERENCES",
+      "a": 131,
+      "to": "FIND",
+      "b": 42,
+      "hits": []
+    },
+    {
+      "from": "FIND",
+      "a": 42,
+      "to": "THE",
+      "b": 20,
+      "hits": []
+    },
+    {
+      "from": "THE",
+      "a": 20,
+      "to": "DIUINITY",
+      "b": 105,
+      "hits": []
+    },
+    {
+      "from": "DIUINITY",
+      "a": 105,
+      "to": "WITHIN",
+      "b": 38,
+      "hits": []
+    },
+    {
+      "from": "WITHIN",
+      "a": 38,
+      "to": "AND",
+      "b": 56,
+      "hits": [
+        {
+          "depth": 1,
+          "start": "TR",
+          "hand": -1,
+          "reversed": false,
+          "radix": 60,
+          "cell": 245
+        }
+      ]
+    },
+    {
+      "from": "AND",
+      "a": 56,
+      "to": "EMERGE",
+      "b": 83,
+      "hits": []
+    }
+  ]
+}
