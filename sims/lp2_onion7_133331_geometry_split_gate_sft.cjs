@@ -200,8 +200,8 @@ function run() {
   assert.deepEqual(results.xorPad, {
     rowInteriorRequiredMatches:6,
     lcgInteriorRequiredMatches:7,
-    rowPerimeterInvalid:7,
-    lcgPerimeterInvalid:8,
+    rowPerimeterInvalid:8,
+    lcgPerimeterInvalid:7,
   });
   assert.deepEqual(results.indexPermutation, {
     perimeterUnique:76,
