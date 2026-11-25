@@ -1,0 +1,4272 @@
+{
+  "parameters": {
+    "N": 6,
+    "K": 4,
+    "MIN": 150,
+    "orthographies": [
+      "greedy plus ING and IO",
+      "native #2604 ING→NG and IO→IA"
+    ],
+    "fitRule": "4 exact consecutive full-stop distances plus F subset; unique fitting plaintext; then 2 withheld distances and F subset"
+  },
+  "sourceCounts": [
+    {
+      "name": "0_warning",
+      "variant": "native",
+      "stops": 8,
+      "windows": 0
+    },
+    {
+      "name": "0_welcome",
+      "variant": "native",
+      "stops": 9,
+      "windows": 3
+    },
+    {
+      "name": "0_wisdom",
+      "variant": "native",
+      "stops": 7,
+      "windows": 0
+    },
+    {
+      "name": "0_koan_1",
+      "variant": "native",
+      "stops": 18,
+      "windows": 7
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "variant": "native",
+      "stops": 14,
+      "windows": 7
+    },
+    {
+      "name": "jpg107-167",
+      "variant": "native",
+      "stops": 5,
+      "windows": 0
+    },
+    {
+      "name": "jpg229",
+      "variant": "native",
+      "stops": 4,
+      "windows": 0
+    },
+    {
+      "name": "resources/external/2013-book-of-law-I.txt",
+      "variant": 0,
+      "stops": 142,
+      "windows": 96
+    },
+    {
+      "name": "resources/external/2013-book-of-law-I.txt",
+      "variant": 1,
+      "stops": 142,
+      "windows": 96
+    },
+    {
+      "name": "resources/external/2013-book-of-law-II.txt",
+      "variant": 0,
+      "stops": 193,
+      "windows": 85
+    },
+    {
+      "name": "resources/external/2013-book-of-law-II.txt",
+      "variant": 1,
+      "stops": 193,
+      "windows": 85
+    },
+    {
+      "name": "resources/external/2013-book-of-law-III.txt",
+      "variant": 0,
+      "stops": 154,
+      "windows": 91
+    },
+    {
+      "name": "resources/external/2013-book-of-law-III.txt",
+      "variant": 1,
+      "stops": 154,
+      "windows": 91
+    },
+    {
+      "name": "resources/external/2012-marriage-of-heaven-and-hell-page.txt",
+      "variant": 0,
+      "stops": 8,
+      "windows": 2
+    },
+    {
+      "name": "resources/external/2012-marriage-of-heaven-and-hell-page.txt",
+      "variant": 1,
+      "stops": 8,
+      "windows": 2
+    },
+    {
+      "name": "resources/external/blake-marriage-1906-gutenberg45315.txt",
+      "variant": 0,
+      "stops": 253,
+      "windows": 214
+    },
+    {
+      "name": "resources/external/blake-marriage-1906-gutenberg45315.txt",
+      "variant": 1,
+      "stops": 253,
+      "windows": 214
+    },
+    {
+      "name": "resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt",
+      "variant": 0,
+      "stops": 510,
+      "windows": 496
+    },
+    {
+      "name": "resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt",
+      "variant": 1,
+      "stops": 510,
+      "windows": 496
+    },
+    {
+      "name": "resources/historical/cicada2012-countdown-message.asc",
+      "variant": 0,
+      "stops": 3,
+      "windows": 0
+    },
+    {
+      "name": "resources/historical/cicada2012-countdown-message.asc",
+      "variant": 1,
+      "stops": 3,
+      "windows": 0
+    },
+    {
+      "name": "resources/historical/cicada2013-forest-clue.asc",
+      "variant": 0,
+      "stops": 2,
+      "windows": 0
+    },
+    {
+      "name": "resources/historical/cicada2013-forest-clue.asc",
+      "variant": 1,
+      "stops": 2,
+      "windows": 0
+    },
+    {
+      "name": "resources/historical/cicada2014-stage11-message.asc",
+      "variant": 0,
+      "stops": 4,
+      "windows": 0
+    },
+    {
+      "name": "resources/historical/cicada2014-stage11-message.asc",
+      "variant": 1,
+      "stops": 4,
+      "windows": 0
+    }
+  ],
+  "historicalWindows": 1985,
+  "unrelatedWindows": 6516,
+  "targetWindows": 117,
+  "observed": [
+    {
+      "target": {
+        "name": "p0-2",
+        "variant": "native",
+        "start": 13,
+        "stopIndex": 0,
+        "ds": [
+          141,
+          121,
+          22,
+          53,
+          44,
+          40
+        ]
+      },
+      "fit": 337,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 337,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p0-2",
+        "variant": "native",
+        "start": 154,
+        "stopIndex": 1,
+        "ds": [
+          121,
+          22,
+          53,
+          44,
+          40,
+          97
+        ]
+      },
+      "fit": 240,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 240,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p0-2",
+        "variant": "native",
+        "start": 275,
+        "stopIndex": 2,
+        "ds": [
+          22,
+          53,
+          44,
+          40,
+          97,
+          198
+        ]
+      },
+      "fit": 159,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 159,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p3-7",
+        "variant": "native",
+        "start": 745,
+        "stopIndex": 0,
+        "ds": [
+          103,
+          3,
+          174,
+          21,
+          21,
+          44
+        ]
+      },
+      "fit": 301,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 301,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p3-7",
+        "variant": "native",
+        "start": 848,
+        "stopIndex": 1,
+        "ds": [
+          3,
+          174,
+          21,
+          21,
+          44,
+          183
+        ]
+      },
+      "fit": 219,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 219,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p3-7",
+        "variant": "native",
+        "start": 851,
+        "stopIndex": 2,
+        "ds": [
+          174,
+          21,
+          21,
+          44,
+          183,
+          23
+        ]
+      },
+      "fit": 260,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 260,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p3-7",
+        "variant": "native",
+        "start": 1025,
+        "stopIndex": 3,
+        "ds": [
+          21,
+          21,
+          44,
+          183,
+          23,
+          111
+        ]
+      },
+      "fit": 269,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 269,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p3-7",
+        "variant": "native",
+        "start": 1046,
+        "stopIndex": 4,
+        "ds": [
+          21,
+          44,
+          183,
+          23,
+          111,
+          113
+        ]
+      },
+      "fit": 271,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 271,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p3-7",
+        "variant": "native",
+        "start": 1067,
+        "stopIndex": 5,
+        "ds": [
+          44,
+          183,
+          23,
+          111,
+          113,
+          11
+        ]
+      },
+      "fit": 361,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 361,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p3-7",
+        "variant": "native",
+        "start": 1111,
+        "stopIndex": 6,
+        "ds": [
+          183,
+          23,
+          111,
+          113,
+          11,
+          107
+        ]
+      },
+      "fit": 430,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 430,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p3-7",
+        "variant": "native",
+        "start": 1294,
+        "stopIndex": 7,
+        "ds": [
+          23,
+          111,
+          113,
+          11,
+          107,
+          26
+        ]
+      },
+      "fit": 258,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 258,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p3-7",
+        "variant": "native",
+        "start": 1317,
+        "stopIndex": 8,
+        "ds": [
+          111,
+          113,
+          11,
+          107,
+          26,
+          143
+        ]
+      },
+      "fit": 342,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 342,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p3-7",
+        "variant": "native",
+        "start": 1428,
+        "stopIndex": 9,
+        "ds": [
+          113,
+          11,
+          107,
+          26,
+          143,
+          32
+        ]
+      },
+      "fit": 257,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 257,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p3-7",
+        "variant": "native",
+        "start": 1541,
+        "stopIndex": 10,
+        "ds": [
+          11,
+          107,
+          26,
+          143,
+          32,
+          6
+        ]
+      },
+      "fit": 287,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 287,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p3-7",
+        "variant": "native",
+        "start": 1552,
+        "stopIndex": 11,
+        "ds": [
+          107,
+          26,
+          143,
+          32,
+          6,
+          8
+        ]
+      },
+      "fit": 308,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 308,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p8-14",
+        "variant": "native",
+        "start": 1914,
+        "stopIndex": 0,
+        "ds": [
+          94,
+          86,
+          54,
+          178,
+          111,
+          66
+        ]
+      },
+      "fit": 412,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 412,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p8-14",
+        "variant": "native",
+        "start": 2008,
+        "stopIndex": 1,
+        "ds": [
+          86,
+          54,
+          178,
+          111,
+          66,
+          68
+        ]
+      },
+      "fit": 429,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 429,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p8-14",
+        "variant": "native",
+        "start": 2094,
+        "stopIndex": 2,
+        "ds": [
+          54,
+          178,
+          111,
+          66,
+          68,
+          7
+        ]
+      },
+      "fit": 409,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 409,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p8-14",
+        "variant": "native",
+        "start": 2148,
+        "stopIndex": 3,
+        "ds": [
+          178,
+          111,
+          66,
+          68,
+          7,
+          88
+        ]
+      },
+      "fit": 423,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 423,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p8-14",
+        "variant": "native",
+        "start": 2326,
+        "stopIndex": 4,
+        "ds": [
+          111,
+          66,
+          68,
+          7,
+          88,
+          24
+        ]
+      },
+      "fit": 252,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 252,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p8-14",
+        "variant": "native",
+        "start": 2437,
+        "stopIndex": 5,
+        "ds": [
+          66,
+          68,
+          7,
+          88,
+          24,
+          103
+        ]
+      },
+      "fit": 229,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 229,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p8-14",
+        "variant": "native",
+        "start": 2503,
+        "stopIndex": 6,
+        "ds": [
+          68,
+          7,
+          88,
+          24,
+          103,
+          31
+        ]
+      },
+      "fit": 187,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 187,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p8-14",
+        "variant": "native",
+        "start": 2571,
+        "stopIndex": 7,
+        "ds": [
+          7,
+          88,
+          24,
+          103,
+          31,
+          9
+        ]
+      },
+      "fit": 222,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 222,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p8-14",
+        "variant": "native",
+        "start": 2578,
+        "stopIndex": 8,
+        "ds": [
+          88,
+          24,
+          103,
+          31,
+          9,
+          77
+        ]
+      },
+      "fit": 246,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 246,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p8-14",
+        "variant": "native",
+        "start": 2666,
+        "stopIndex": 9,
+        "ds": [
+          24,
+          103,
+          31,
+          9,
+          77,
+          35
+        ]
+      },
+      "fit": 167,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 167,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p8-14",
+        "variant": "native",
+        "start": 2690,
+        "stopIndex": 10,
+        "ds": [
+          103,
+          31,
+          9,
+          77,
+          35,
+          58
+        ]
+      },
+      "fit": 220,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 220,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p8-14",
+        "variant": "native",
+        "start": 2793,
+        "stopIndex": 11,
+        "ds": [
+          31,
+          9,
+          77,
+          35,
+          58,
+          14
+        ]
+      },
+      "fit": 152,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 152,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p8-14",
+        "variant": "native",
+        "start": 2824,
+        "stopIndex": 12,
+        "ds": [
+          9,
+          77,
+          35,
+          58,
+          14,
+          21
+        ]
+      },
+      "fit": 179,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 179,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p8-14",
+        "variant": "native",
+        "start": 2833,
+        "stopIndex": 13,
+        "ds": [
+          77,
+          35,
+          58,
+          14,
+          21,
+          106
+        ]
+      },
+      "fit": 184,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 184,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p8-14",
+        "variant": "native",
+        "start": 2945,
+        "stopIndex": 15,
+        "ds": [
+          58,
+          14,
+          21,
+          106,
+          43,
+          24
+        ]
+      },
+      "fit": 199,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 199,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p8-14",
+        "variant": "native",
+        "start": 3003,
+        "stopIndex": 16,
+        "ds": [
+          14,
+          21,
+          106,
+          43,
+          24,
+          21
+        ]
+      },
+      "fit": 184,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 184,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p8-14",
+        "variant": "native",
+        "start": 3017,
+        "stopIndex": 17,
+        "ds": [
+          21,
+          106,
+          43,
+          24,
+          21,
+          255
+        ]
+      },
+      "fit": 194,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 194,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p8-14",
+        "variant": "native",
+        "start": 3038,
+        "stopIndex": 18,
+        "ds": [
+          106,
+          43,
+          24,
+          21,
+          255,
+          7
+        ]
+      },
+      "fit": 194,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 194,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p8-14",
+        "variant": "native",
+        "start": 3144,
+        "stopIndex": 19,
+        "ds": [
+          43,
+          24,
+          21,
+          255,
+          7,
+          64
+        ]
+      },
+      "fit": 343,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 343,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p8-14",
+        "variant": "native",
+        "start": 3187,
+        "stopIndex": 20,
+        "ds": [
+          24,
+          21,
+          255,
+          7,
+          64,
+          45
+        ]
+      },
+      "fit": 307,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 307,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p15-22",
+        "variant": "native",
+        "start": 3612,
+        "stopIndex": 0,
+        "ds": [
+          11,
+          226,
+          35,
+          123,
+          86,
+          41
+        ]
+      },
+      "fit": 395,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 395,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p15-22",
+        "variant": "native",
+        "start": 3623,
+        "stopIndex": 1,
+        "ds": [
+          226,
+          35,
+          123,
+          86,
+          41,
+          14
+        ]
+      },
+      "fit": 470,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 470,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p15-22",
+        "variant": "native",
+        "start": 3849,
+        "stopIndex": 2,
+        "ds": [
+          35,
+          123,
+          86,
+          41,
+          14,
+          48
+        ]
+      },
+      "fit": 285,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 285,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p15-22",
+        "variant": "native",
+        "start": 3884,
+        "stopIndex": 3,
+        "ds": [
+          123,
+          86,
+          41,
+          14,
+          48,
+          50
+        ]
+      },
+      "fit": 264,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 264,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p15-22",
+        "variant": "native",
+        "start": 4007,
+        "stopIndex": 4,
+        "ds": [
+          86,
+          41,
+          14,
+          48,
+          50,
+          127
+        ]
+      },
+      "fit": 189,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 189,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p15-22",
+        "variant": "native",
+        "start": 4093,
+        "stopIndex": 5,
+        "ds": [
+          41,
+          14,
+          48,
+          50,
+          127,
+          115
+        ]
+      },
+      "fit": 153,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 153,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p15-22",
+        "variant": "native",
+        "start": 4134,
+        "stopIndex": 6,
+        "ds": [
+          14,
+          48,
+          50,
+          127,
+          115,
+          121
+        ]
+      },
+      "fit": 239,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 239,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p15-22",
+        "variant": "native",
+        "start": 4148,
+        "stopIndex": 7,
+        "ds": [
+          48,
+          50,
+          127,
+          115,
+          121,
+          105
+        ]
+      },
+      "fit": 340,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 340,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p15-22",
+        "variant": "native",
+        "start": 4196,
+        "stopIndex": 8,
+        "ds": [
+          50,
+          127,
+          115,
+          121,
+          105,
+          69
+        ]
+      },
+      "fit": 413,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 413,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p15-22",
+        "variant": "native",
+        "start": 4246,
+        "stopIndex": 9,
+        "ds": [
+          127,
+          115,
+          121,
+          105,
+          69,
+          184
+        ]
+      },
+      "fit": 468,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 468,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p15-22",
+        "variant": "native",
+        "start": 4373,
+        "stopIndex": 10,
+        "ds": [
+          115,
+          121,
+          105,
+          69,
+          184,
+          375
+        ]
+      },
+      "fit": 410,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 410,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p15-22",
+        "variant": "native",
+        "start": 4488,
+        "stopIndex": 11,
+        "ds": [
+          121,
+          105,
+          69,
+          184,
+          375,
+          68
+        ]
+      },
+      "fit": 479,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 479,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p15-22",
+        "variant": "native",
+        "start": 4609,
+        "stopIndex": 12,
+        "ds": [
+          105,
+          69,
+          184,
+          375,
+          68,
+          68
+        ]
+      },
+      "fit": 733,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 733,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p15-22",
+        "variant": "native",
+        "start": 4714,
+        "stopIndex": 13,
+        "ds": [
+          69,
+          184,
+          375,
+          68,
+          68,
+          14
+        ]
+      },
+      "fit": 696,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 696,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p15-22",
+        "variant": "native",
+        "start": 4783,
+        "stopIndex": 14,
+        "ds": [
+          184,
+          375,
+          68,
+          68,
+          14,
+          14
+        ]
+      },
+      "fit": 695,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 695,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p23-26",
+        "variant": "native",
+        "start": 5522,
+        "stopIndex": 0,
+        "ds": [
+          320,
+          28,
+          37,
+          121,
+          155,
+          156
+        ]
+      },
+      "fit": 506,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 506,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p23-26",
+        "variant": "native",
+        "start": 5842,
+        "stopIndex": 1,
+        "ds": [
+          28,
+          37,
+          121,
+          155,
+          156,
+          117
+        ]
+      },
+      "fit": 341,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 341,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p23-26",
+        "variant": "native",
+        "start": 5870,
+        "stopIndex": 2,
+        "ds": [
+          37,
+          121,
+          155,
+          156,
+          117,
+          71
+        ]
+      },
+      "fit": 469,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 469,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p27-32",
+        "variant": "native",
+        "start": 6546,
+        "stopIndex": 0,
+        "ds": [
+          125,
+          22,
+          181,
+          116,
+          7,
+          91
+        ]
+      },
+      "fit": 444,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 444,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p27-32",
+        "variant": "native",
+        "start": 6671,
+        "stopIndex": 1,
+        "ds": [
+          22,
+          181,
+          116,
+          7,
+          91,
+          18
+        ]
+      },
+      "fit": 326,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 326,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p27-32",
+        "variant": "native",
+        "start": 6693,
+        "stopIndex": 2,
+        "ds": [
+          181,
+          116,
+          7,
+          91,
+          18,
+          36
+        ]
+      },
+      "fit": 395,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 395,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p27-32",
+        "variant": "native",
+        "start": 6874,
+        "stopIndex": 3,
+        "ds": [
+          116,
+          7,
+          91,
+          18,
+          36,
+          11
+        ]
+      },
+      "fit": 232,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 232,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p27-32",
+        "variant": "native",
+        "start": 6990,
+        "stopIndex": 4,
+        "ds": [
+          7,
+          91,
+          18,
+          36,
+          11,
+          294
+        ]
+      },
+      "fit": 152,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 152,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p27-32",
+        "variant": "native",
+        "start": 6997,
+        "stopIndex": 5,
+        "ds": [
+          91,
+          18,
+          36,
+          11,
+          294,
+          37
+        ]
+      },
+      "fit": 156,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 156,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p27-32",
+        "variant": "native",
+        "start": 7088,
+        "stopIndex": 6,
+        "ds": [
+          18,
+          36,
+          11,
+          294,
+          37,
+          25
+        ]
+      },
+      "fit": 359,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 359,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p27-32",
+        "variant": "native",
+        "start": 7106,
+        "stopIndex": 7,
+        "ds": [
+          36,
+          11,
+          294,
+          37,
+          25,
+          14
+        ]
+      },
+      "fit": 378,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 378,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p27-32",
+        "variant": "native",
+        "start": 7142,
+        "stopIndex": 8,
+        "ds": [
+          11,
+          294,
+          37,
+          25,
+          14,
+          16
+        ]
+      },
+      "fit": 367,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 367,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p27-32",
+        "variant": "native",
+        "start": 7153,
+        "stopIndex": 9,
+        "ds": [
+          294,
+          37,
+          25,
+          14,
+          16,
+          43
+        ]
+      },
+      "fit": 370,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 370,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p27-32",
+        "variant": "native",
+        "start": 7523,
+        "stopIndex": 13,
+        "ds": [
+          16,
+          43,
+          26,
+          83,
+          8,
+          61
+        ]
+      },
+      "fit": 168,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 168,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p27-32",
+        "variant": "native",
+        "start": 7539,
+        "stopIndex": 14,
+        "ds": [
+          43,
+          26,
+          83,
+          8,
+          61,
+          41
+        ]
+      },
+      "fit": 160,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 160,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p27-32",
+        "variant": "native",
+        "start": 7582,
+        "stopIndex": 15,
+        "ds": [
+          26,
+          83,
+          8,
+          61,
+          41,
+          71
+        ]
+      },
+      "fit": 178,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 178,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p27-32",
+        "variant": "native",
+        "start": 7608,
+        "stopIndex": 16,
+        "ds": [
+          83,
+          8,
+          61,
+          41,
+          71,
+          88
+        ]
+      },
+      "fit": 193,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 193,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p33-39",
+        "variant": "native",
+        "start": 7970,
+        "stopIndex": 0,
+        "ds": [
+          81,
+          8,
+          125,
+          6,
+          138,
+          57
+        ]
+      },
+      "fit": 220,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 220,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p33-39",
+        "variant": "native",
+        "start": 8051,
+        "stopIndex": 1,
+        "ds": [
+          8,
+          125,
+          6,
+          138,
+          57,
+          38
+        ]
+      },
+      "fit": 277,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 277,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p33-39",
+        "variant": "native",
+        "start": 8059,
+        "stopIndex": 2,
+        "ds": [
+          125,
+          6,
+          138,
+          57,
+          38,
+          54
+        ]
+      },
+      "fit": 326,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 326,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p33-39",
+        "variant": "native",
+        "start": 8184,
+        "stopIndex": 3,
+        "ds": [
+          6,
+          138,
+          57,
+          38,
+          54,
+          36
+        ]
+      },
+      "fit": 239,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 239,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p33-39",
+        "variant": "native",
+        "start": 8190,
+        "stopIndex": 4,
+        "ds": [
+          138,
+          57,
+          38,
+          54,
+          36,
+          292
+        ]
+      },
+      "fit": 287,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 287,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p33-39",
+        "variant": "native",
+        "start": 8328,
+        "stopIndex": 5,
+        "ds": [
+          57,
+          38,
+          54,
+          36,
+          292,
+          139
+        ]
+      },
+      "fit": 185,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 185,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p33-39",
+        "variant": "native",
+        "start": 8385,
+        "stopIndex": 6,
+        "ds": [
+          38,
+          54,
+          36,
+          292,
+          139,
+          91
+        ]
+      },
+      "fit": 420,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 420,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p33-39",
+        "variant": "native",
+        "start": 8423,
+        "stopIndex": 7,
+        "ds": [
+          54,
+          36,
+          292,
+          139,
+          91,
+          98
+        ]
+      },
+      "fit": 521,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 521,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p33-39",
+        "variant": "native",
+        "start": 8477,
+        "stopIndex": 8,
+        "ds": [
+          36,
+          292,
+          139,
+          91,
+          98,
+          67
+        ]
+      },
+      "fit": 558,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 558,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p33-39",
+        "variant": "native",
+        "start": 8513,
+        "stopIndex": 9,
+        "ds": [
+          292,
+          139,
+          91,
+          98,
+          67,
+          29
+        ]
+      },
+      "fit": 620,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 620,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p33-39",
+        "variant": "native",
+        "start": 8805,
+        "stopIndex": 10,
+        "ds": [
+          139,
+          91,
+          98,
+          67,
+          29,
+          112
+        ]
+      },
+      "fit": 395,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 395,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p33-39",
+        "variant": "native",
+        "start": 8944,
+        "stopIndex": 11,
+        "ds": [
+          91,
+          98,
+          67,
+          29,
+          112,
+          17
+        ]
+      },
+      "fit": 285,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 285,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p33-39",
+        "variant": "native",
+        "start": 9035,
+        "stopIndex": 12,
+        "ds": [
+          98,
+          67,
+          29,
+          112,
+          17,
+          134
+        ]
+      },
+      "fit": 306,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 306,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p33-39",
+        "variant": "native",
+        "start": 9133,
+        "stopIndex": 13,
+        "ds": [
+          67,
+          29,
+          112,
+          17,
+          134,
+          27
+        ]
+      },
+      "fit": 225,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 225,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p33-39",
+        "variant": "native",
+        "start": 9200,
+        "stopIndex": 14,
+        "ds": [
+          29,
+          112,
+          17,
+          134,
+          27,
+          3
+        ]
+      },
+      "fit": 292,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 292,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p33-39",
+        "variant": "native",
+        "start": 9229,
+        "stopIndex": 15,
+        "ds": [
+          112,
+          17,
+          134,
+          27,
+          3,
+          118
+        ]
+      },
+      "fit": 290,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 290,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 9669,
+        "stopIndex": 0,
+        "ds": [
+          46,
+          21,
+          69,
+          64,
+          15,
+          71
+        ]
+      },
+      "fit": 200,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 200,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 9715,
+        "stopIndex": 1,
+        "ds": [
+          21,
+          69,
+          64,
+          15,
+          71,
+          114
+        ]
+      },
+      "fit": 169,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 169,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 9736,
+        "stopIndex": 2,
+        "ds": [
+          69,
+          64,
+          15,
+          71,
+          114,
+          142
+        ]
+      },
+      "fit": 219,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 219,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 9805,
+        "stopIndex": 3,
+        "ds": [
+          64,
+          15,
+          71,
+          114,
+          142,
+          68
+        ]
+      },
+      "fit": 264,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 264,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 9869,
+        "stopIndex": 4,
+        "ds": [
+          15,
+          71,
+          114,
+          142,
+          68,
+          41
+        ]
+      },
+      "fit": 342,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 342,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 9884,
+        "stopIndex": 5,
+        "ds": [
+          71,
+          114,
+          142,
+          68,
+          41,
+          129
+        ]
+      },
+      "fit": 395,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 395,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 9955,
+        "stopIndex": 6,
+        "ds": [
+          114,
+          142,
+          68,
+          41,
+          129,
+          24
+        ]
+      },
+      "fit": 365,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 365,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 10069,
+        "stopIndex": 7,
+        "ds": [
+          142,
+          68,
+          41,
+          129,
+          24,
+          43
+        ]
+      },
+      "fit": 380,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 380,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 10211,
+        "stopIndex": 8,
+        "ds": [
+          68,
+          41,
+          129,
+          24,
+          43,
+          52
+        ]
+      },
+      "fit": 262,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 262,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 10279,
+        "stopIndex": 9,
+        "ds": [
+          41,
+          129,
+          24,
+          43,
+          52,
+          31
+        ]
+      },
+      "fit": 237,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 237,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 10320,
+        "stopIndex": 10,
+        "ds": [
+          129,
+          24,
+          43,
+          52,
+          31,
+          142
+        ]
+      },
+      "fit": 248,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 248,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 10449,
+        "stopIndex": 11,
+        "ds": [
+          24,
+          43,
+          52,
+          31,
+          142,
+          128
+        ]
+      },
+      "fit": 150,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 150,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 10473,
+        "stopIndex": 12,
+        "ds": [
+          43,
+          52,
+          31,
+          142,
+          128,
+          104
+        ]
+      },
+      "fit": 268,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 268,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 10516,
+        "stopIndex": 13,
+        "ds": [
+          52,
+          31,
+          142,
+          128,
+          104,
+          90
+        ]
+      },
+      "fit": 353,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 353,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 10568,
+        "stopIndex": 14,
+        "ds": [
+          31,
+          142,
+          128,
+          104,
+          90,
+          76
+        ]
+      },
+      "fit": 405,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 405,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 10599,
+        "stopIndex": 15,
+        "ds": [
+          142,
+          128,
+          104,
+          90,
+          76,
+          137
+        ]
+      },
+      "fit": 464,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 464,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 10741,
+        "stopIndex": 16,
+        "ds": [
+          128,
+          104,
+          90,
+          76,
+          137,
+          20
+        ]
+      },
+      "fit": 398,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 398,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 10869,
+        "stopIndex": 17,
+        "ds": [
+          104,
+          90,
+          76,
+          137,
+          20,
+          33
+        ]
+      },
+      "fit": 407,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 407,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 10973,
+        "stopIndex": 18,
+        "ds": [
+          90,
+          76,
+          137,
+          20,
+          33,
+          197
+        ]
+      },
+      "fit": 323,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 323,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 11063,
+        "stopIndex": 19,
+        "ds": [
+          76,
+          137,
+          20,
+          33,
+          197,
+          45
+        ]
+      },
+      "fit": 266,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 266,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 11139,
+        "stopIndex": 20,
+        "ds": [
+          137,
+          20,
+          33,
+          197,
+          45,
+          17
+        ]
+      },
+      "fit": 387,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 387,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 11276,
+        "stopIndex": 21,
+        "ds": [
+          20,
+          33,
+          197,
+          45,
+          17,
+          87
+        ]
+      },
+      "fit": 295,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 295,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 11296,
+        "stopIndex": 22,
+        "ds": [
+          33,
+          197,
+          45,
+          17,
+          87,
+          108
+        ]
+      },
+      "fit": 292,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 292,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 11329,
+        "stopIndex": 23,
+        "ds": [
+          197,
+          45,
+          17,
+          87,
+          108,
+          10
+        ]
+      },
+      "fit": 346,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 346,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 11526,
+        "stopIndex": 24,
+        "ds": [
+          45,
+          17,
+          87,
+          108,
+          10,
+          24
+        ]
+      },
+      "fit": 257,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 257,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 11571,
+        "stopIndex": 25,
+        "ds": [
+          17,
+          87,
+          108,
+          10,
+          24,
+          12
+        ]
+      },
+      "fit": 222,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 222,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 11588,
+        "stopIndex": 26,
+        "ds": [
+          87,
+          108,
+          10,
+          24,
+          12,
+          56
+        ]
+      },
+      "fit": 229,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 229,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 11675,
+        "stopIndex": 27,
+        "ds": [
+          108,
+          10,
+          24,
+          12,
+          56,
+          56
+        ]
+      },
+      "fit": 154,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 154,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 11817,
+        "stopIndex": 30,
+        "ds": [
+          12,
+          56,
+          56,
+          35,
+          138,
+          170
+        ]
+      },
+      "fit": 159,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 159,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 11829,
+        "stopIndex": 31,
+        "ds": [
+          56,
+          56,
+          35,
+          138,
+          170,
+          86
+        ]
+      },
+      "fit": 285,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 285,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 11885,
+        "stopIndex": 32,
+        "ds": [
+          56,
+          35,
+          138,
+          170,
+          86,
+          29
+        ]
+      },
+      "fit": 399,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 399,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 11941,
+        "stopIndex": 33,
+        "ds": [
+          35,
+          138,
+          170,
+          86,
+          29,
+          123
+        ]
+      },
+      "fit": 429,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 429,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 11976,
+        "stopIndex": 34,
+        "ds": [
+          138,
+          170,
+          86,
+          29,
+          123,
+          75
+        ]
+      },
+      "fit": 423,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 423,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    },
+    {
+      "target": {
+        "name": "p40-53",
+        "variant": "native",
+        "start": 12114,
+        "stopIndex": 35,
+        "ds": [
+          170,
+          86,
+          29,
+          123,
+          75,
+          51
+        ]
+      },
+      "fit": 408,
+      "candidates": 0,
+      "Fcompatible": 0,
+      "distinctFit": 0,
+      "heldCompatible": 0,
+      "distinctHeld": 0,
+      "selected": false,
+      "held": [],
+      "unrelated": {
+        "fit": 408,
+        "candidates": 0,
+        "Fcompatible": 0,
+        "distinctFit": 0,
+        "heldCompatible": 0,
+        "distinctHeld": 0,
+        "selected": false,
+        "held": []
+      },
+      "fitCandidates": []
+    }
+  ],
+  "totals": {
+    "distanceFit": 0,
+    "Fcompatible": 0,
+    "heldCompatible": 0,
+    "selected": 0,
+    "unrelatedDistanceFit": 0,
+    "unrelatedSelected": 0
+  }
+}
