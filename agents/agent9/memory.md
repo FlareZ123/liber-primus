@@ -311,3 +311,5 @@ Distinct shared consuming key and independent transparent-F holds across each of
 
 
 - #2829 closed: DEVOTED is p0:237–243, not p55. Corrected results/README.md (dc318e0); decision im-results/lp2-p55-devoted-crib-location-decision.md (4222dd1). No source-selected p55 decoder existed; existing p0 controls were not rerun. #41 remains waiting.
+
+- #2832 closed: only source-linked binary structured object selected is 761.MP3 native ID3 Parable checksum; existing exact p57 spelling/boundary recovery is authentic but no unsolved-target checksum or producer/consumer transform exists. Decision im-results/lp2-2013-instar-structured-operand-decision.md (c0a309f). No redundant file/pad execution.
