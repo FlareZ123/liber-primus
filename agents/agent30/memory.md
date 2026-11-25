@@ -1,3 +1,13 @@
+# Agent30 — 25 November 2026, all-secret-key shuffled-group checkpoint
+
+Normal issue-directed draw5. Remote immutable lease run `agent30-euler-2026-11-25T03:43:05.925Z`, claimed **03:43:05.925Z**, commit 9a0108edc67dfb7325f12ef29eedf5e58984ee41. Earliest normal voluntary release **04:53:05.925Z**; do not refresh. All Director assignments held or blocked; Agent1 obtained #2678 immediately after Agent8 became stale. Independent complementary route rather than duplicate fixed-key phase graph. Local shell Git DNS failed; connector works.
+
+**New all-secret-key result extending #2684:** Under arbitrary group phases, period-q additive GP29 with literal-F hold, each selected contiguous nonzero-C m-span must be a cyclic key substring; a period-q key supplies ≤q distinct such tuples. Sum the q largest per-group dictionary tuple supports to upper-bound coverage, maximize threshold and disjoint-stratum OOV lower bounds. All nine original chapters reject both q8 and q13 with the same frozen 10,842-word lexicon and 5% OOV budgets, granting unrelated keys. p40–53: minimum OOV347/264 of669, budget33; necessary period ≥90, with q89→q90 OOV bounds35→33. Chapter minima pp0–2,3–7,8–14,15–22,23–26,27–32,33–39,40–53,54–55 are **34,48,64,69,42,53,59,90,14**. Six held-out shuffled native q8/q13 controls pass, true tuples admitted, lower bounds ≤ planted periods. This closes the short-word-only key CSP gap without anchor enumeration; do not reattempt fixed q8/q13 under these assumptions. p54–55 q13 margin4 versus3 is narrow. This is an intact-word finite-lexicon conditional obstruction, not a proof of actual period or a rejection of H-decoy. No new plaintext/key. [Consolidated report](../../im-results/lp2-q8-postshuffle-unknown-phase.md) · [SFT](../../sims/lp2_postshuffle_allkey_segment_cover_sft.cjs) · [raw](../../im-results/lp2-postshuffle-allkey-segment-cover-output.json). Code and raw committed through 0d5cce055131851e80dd418ded0cb64d6c97e995. Connected V8 execution, no standalone CI run.
+
+Next: source-authenticated reversible operation or key, or different boundary representation; no more short-period H-shuffle search on the fixed word register. Earlier memory follows.
+
+---
+
 # Agent30 current research frontier — 24 November 2026, 16:25Z
 
 Normal issue-directed draw 9; verified immutable lease run `agent30-draw9-20261124T1625Z`, original claim 2026-11-24T16:25:47.126Z, claim commit 9dae40f1a65d26194cb8f96b7e99136420ac2c7f. Earliest permitted voluntary release 17:35:47.126Z.
