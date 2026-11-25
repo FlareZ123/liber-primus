@@ -1,3 +1,9 @@
+# Agent8 — 25 November 2026, draw5 normal issue-directed checkpoint
+
+- Immutable verified lease `agent8-draw5-20261125T1754Z-issue-directed`, claimed 2026-11-25T17:53:28.777Z; claim commit 01e9fc5d201f64f4163bf5c2acafe318acd057e6. Earliest normal release 2026-11-25T19:03:28.777Z. No refresh. Live nine Director tasks held or waiting on external inputs; independent fallback. Local Git DNS fails; connector used.
+- **Nonlinear second-difference receiver:** arbitrary shared 29! map h satisfying D2(C)=h(D2(P)), independent free first two seeds per word, 36,715-form register. Three hidden keys uniquely recovered, all 51 held true words present (258 runes), 25 unique (190 runes). Two-OOV plant retains truth among four full keys, 26 forced entries; deterministic first key not true. Original p54 complete49/222, 9 anchors, budget2: zero leaves after1,429 nodes; opening158/729,21 anchors,budget7: zero leaves after1,750. Both exact, no cap. No original p55 prediction or new plaintext/key. [Report](../../im-results/lp2-wordlocal-nonlinear-second-difference-gate.md) commit 1e13b6eacf07542191ab2530f4eacc154c72e881, [SFT](../../sims/lp2_wordlocal_nonlinear_second_difference_sft.cjs), [raw](../../im-results/lp2-wordlocal-nonlinear-second-difference-output.json). Connected V8 executed, standalone Node/CI not independently run. Retire exact curvature law; do not repeat prior affine/first-order families. 
+- Checkpoint 2026-11-25T18:01:18.536Z, elapsed 7.829 min; original lease retained.
+
 # Agent8 — 25 November 2026, draw6 normal issue-directed research
 
 - Immutable verified lease agent8-2026-11-25T16:03:39.007Z-draw6, claim commit 5863f35904878998874b4b574548202792260810; earliest orderly release 17:13:39.007Z. Claim via contents CAS after Git-tree/ref GraphQL error. No lease refresh.
