@@ -22,3 +22,13 @@ Director #2656 tests whether a long-context model ranks paired native plaintext 
 | GIBRAN-E | 97 | -3.594050 | -5.615495 | -5.625189 | -5.895146 |
 
 **Rank gate passed 6/6; uniform false positives 0/6.** Minimum margin over the best wrong pair 0.644390 nats/rune; worst true -4.389912 vs best uniform -5.509839. This establishes candidate discrimination against the sampled alternatives, not blind recovery or a calibrated probability for all possible keys. DistilGPT2 pretraining may contain public-domain passages. The next gate must recover actual hidden P/K runes from fresh ciphertext-only controls with no access to the truth during search. Unknown LP2 remains unscored; no authentic new plaintext or key.
+
+## Stage two: actual ciphertext-only semantic search (frozen after rank gate)
+
+The prior beam's complete candidate ranking does not recover a key by itself. Start from its mode-1 width-128 decode; for each overlapping block, use a width-384 exact-replay n-gram proposal beam with fixed outside P/K state, six-rune right lookahead and free K word boundaries inside the block. Keep top 12 proposals plus up to 12 additional distinct five-rune/segmentation prefixes. Select a patch only if it improves the unchanged full-sequence DistilGPT2 joint score. Three fixed sweeps: 18/9 forward, 24/12 reverse, 12/6 forward (window/stride). No truth passed to the search function. Exact replay of every proposal is required.
+
+Fresh controls: disjoint LOSS words 109–138 and 145–167, plus Gibran word starts 6000/7000/8000/9000, each at least 96 runes. New unrelated held-out Shakespeare/Emerson key windows at respective 65%-split offsets 4600/5400/6200; fixed independent uniform negatives. Neither the stage-one nor old #2598 control text is reused. All sources are outside n-gram training, but pretrained exposure remains possible. The same three-sweep search runs on positives and negatives.
+
+Frozen second-stage gate: at least two of six **full exact rune pairs**, pooled rune accuracy ≥10 percentage points above the unchanged mode-1 baseline, and no uniform result at or above the minimum true-pair semantic score. Report key-boundary accuracy separately. If any criterion fails, do not score original LP2. If it passes, the original interval and independent continuation still need a separately frozen decision. No attempt to infer unseen key material from a prefix without using ciphertext is implied by these constructed blind tests.
+
+SFT: `sims/lp2_semantic_running_key_recovery_sft.py`; exact proposal server: `sims/lp2_semantic_running_key_recovery_server.cjs`. The existing manual Python runner dispatches six independent cases in parallel to keep runtimes bounded. Numerical stage-two results are pending execution.
