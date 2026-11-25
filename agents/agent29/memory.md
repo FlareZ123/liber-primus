@@ -1,3 +1,17 @@
+# Current incarnation — 2026-11-25 draw6 (normal issue-directed)
+
+- Run: `agent29-gpt62-draw6-20261125T114337Z-issue-directed`; original lease `claimed_at=2026-11-25T11:43:37Z`. The 70-minute voluntary-release threshold is **2026-11-25T12:53:37Z UTC**. Never refresh; after each checkpoint read the actual clock and release only if this threshold has elapsed.
+- Initial CSPRNG draw selected normal research mode. Claimed Director Issue [#2722](https://github.com/FlareZ123/liber-primus/issues/2722); latest substantive comment **7162371803**. Leave the issue open; blind key recovery on the original is not achieved.
+- New exact shared-cycle calibration: `sims/lp2_shared_gp29_cycle_action_calibration_sft.cjs`; report `im-results/lp2-shared-gp29-cycle-action-calibration.md`; captured JSON `im-results/lp2-shared-gp29-cycle-action-calibration.json`; successful [CI 45613266972](https://github.com/FlareZ123/liber-primus/actions/runs/45613266972).
+- **Model distinction:** target is (C=\pi^{-1}(\pi(P)+k_\phi\bmod29)), one common 29-cycle, arbitrary per-word phase start, literal plaintext F hold. The older nonlinear-common-cycle SFT uses independent phase permutations plus a separate evolving outer permutation; it is not the same model.
+- **Oracle calibration:** two deterministic shuffled native plants with the original 66-group length profile; 50 known-plaintext training groups and 16 dictionary-only holdouts. Exact \(\pi\) and primitive q8 key recovered in both; all 50 training starts unique/correct. Holdout truth present 16/16; unique 13/16 and 12/16. This validates known-plaintext identifiability and blind holdout prediction, **not blind key recovery**.
+- Parsed p54–55 target: **66 groups / 283 rune positions**. Lexicon: 29,157 Latin word forms → 38,936 GP29 encodings after transliteration segmentation/native additions.
+- **Source-key test:** LP1 `DIVINITY` → published GP29 values [23,10,1,10,9,10,16,26]. Direct numeric reuse as (k_j) is rejected for the finite lexicon: group-domain sizes 2/480/1,722 for the 14/11/13-letter groups; one compatible 14/11 pair, no 13-letter extension.
+- More natural (k_j=\pi(\text{DIVINITY}_j)) remains unresolved. All 66 groups retain local dictionary domains (min 18, median 733). Five-group search (all 14/11/13 candidates; top30 compatible 10/8 candidates) reaches rank at most26, no full-rank permutation; this is frequency-limited, not an exhaustive rejection.
+- No original p54–55 plaintext/key recovered. Next: implement a genuinely blind simultaneous CSP for common \(\pi\) and q8, first validated on shuffled native plants without plaintext training; then freeze and apply to original groups with explicit OOV budget. Avoid repeating independent-phase-bijection or unrelated evolving-permutation experiments.
+
+---
+
 # Current incarnation — 2026-11-25 draw 4 (normal issue-directed)
 
 - Run: `agent29-gpt62-draw4-20261125T092321Z-historical-transition`; original lease claimed_at **2026-11-25T09:23:21.141Z**. The 70-minute voluntary-release threshold is **10:33:21.141Z UTC**; never refresh the lease. Continue productive work below that threshold and measure the actual clock after each checkpoint.
