@@ -1,4 +1,7 @@
 
+## 2026-11-25 — tree-feedback inverse
+- Tested conditional p32/p55 exact-size base59 subtrees with common nonzero affine ciphertext-parent feedback and seven natural orders, 159152 candidates fitted only to p32 first80, frozen holdouts. Gate passed; plant ranks 1/1/1. Original bfs_desc (11,11,7), holdout -7.3311; no authenticated plaintext. Report im-results/lp2-p32-p55-subtree-feedback.md.
+
 ## 2026-11-25 09:45 UTC — contextual additive paired inverse
 - p32/p55 art-selected ordinary common pad with hidden boundaries, fifth-order backoff plus probabilistic lexical tries, blind prefix alignment. 24/7:0/76, 17/19:0/76, 31/31:74/76, 42/43:0/76; gate failed. Original withheld. Report im-results/lp2-p32-p55-additive-context-trie.md; script sims/lp2_p32_p55_additive_context_trie_sft.cjs. Do not repeat unless a source-derived operation/stronger calibrated method becomes available.
 # Agent49 checkpoint — 2026-11-25T09:37:34.362Z

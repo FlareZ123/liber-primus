@@ -1,0 +1,94 @@
+{
+  "orders": [
+    "address",
+    "pre_asc",
+    "post_asc",
+    "bfs_asc",
+    "pre_desc",
+    "post_desc",
+    "bfs_desc"
+  ],
+  "candidates": 159152,
+  "controls": [
+    {
+      "name": "address",
+      "a": 7,
+      "b": 19,
+      "d": 13,
+      "fit": -2.0307474597823822,
+      "hold32": -1.9129683041232397,
+      "hold55": -2.0302656550317524,
+      "margin": 3.136907513823147,
+      "plaintext32": "HELOOCEDUPONHERWITHEXCEEDNGTEN[IV]ERNESSFORITWASSHEWHOHADFIRSTSOUGHTANDBELIEUEDINHIMWHENHEHADBEENBUTADAYINTHEIRCITYANDSHEHAILED",
+      "plaintext55": "STHEREISPROPERLYNOHISTORYONLYBIAGRAPHYEUERYMINDMUSTCNOWTHEWHOLELESSONFORITSEL[IV]M",
+      "replay": true,
+      "params": {
+        "name": "address",
+        "a": 7,
+        "b": 19,
+        "d": 13
+      },
+      "rank": 1,
+      "match32": 120,
+      "match55": 75
+    },
+    {
+      "name": "pre_desc",
+      "a": 17,
+      "b": 6,
+      "d": 5,
+      "fit": -1.8220583663881564,
+      "hold32": -2.2656997289207106,
+      "hold55": -1.7816960565772662,
+      "margin": 3.3787446162698673,
+      "plaintext32": "[IV]DYOUANDWHENHESPEACSTOYOUBELIEUEINHIMTHOUGHHISUOICEMAYSHATTERYOURDREAMSASTHENORTHWINDLAYSWASTETHEGARDENFOREUENASLOUECROWNSYOUSO",
+      "plaintext55": "[IV]SELFWHENHEHASSATISFIEDHIMSELFINGENERALANDINDETAILTHATITWASMADEBYSUCHAPERSONA",
+      "replay": true,
+      "params": {
+        "name": "pre_desc",
+        "a": 17,
+        "b": 6,
+        "d": 5
+      },
+      "rank": 1,
+      "match32": 120,
+      "match55": 75
+    },
+    {
+      "name": "bfs_asc",
+      "a": 5,
+      "b": 28,
+      "d": 21,
+      "fit": -1.904991963875451,
+      "hold32": -1.8825394552557304,
+      "hold55": -2.052475758369608,
+      "margin": 3.138804951426537,
+      "plaintext32": "[IV]THERIAMINTHEHEARTOFGODANDTHINCNOTYOUCANDIRECTTHECOURSEOFLOUEFORLOUEIFITFINDSYOUWORTHYDIRECTSYOURCOURSELOUEHASNOOTHERDESIREBUTTO",
+      "plaintext55": "[IV]WTHTEACHESTHEUNITYOFCAUSETHEUARIETYOFAPPEARANCEUPBORNEANDSURROUNDEDASWEAREBYTHISA",
+      "replay": true,
+      "params": {
+        "name": "bfs_asc",
+        "a": 5,
+        "b": 28,
+        "d": 21
+      },
+      "rank": 1,
+      "match32": 120,
+      "match55": 75
+    }
+  ],
+  "gatePassed": true,
+  "original": {
+    "name": "bfs_desc",
+    "a": 11,
+    "b": 11,
+    "d": 7,
+    "fit": -5.091551179367881,
+    "hold32": -7.2267163493220155,
+    "hold55": -7.331122424442287,
+    "margin": 0.15903620527636342,
+    "plaintext32": "[IV]BNXGOMREAPSTMOJUHWCHWIESNEOIULLEWSYSANYOLUPCUSORTUELECDTLTEMTGEANGFFEGNGDONFSOFNTHNEOAEPADNGUAERCFEJJUHUETHEAUPIOIRRIAEGIAGPNXNSEEATH",
+    "plaintext55": "[IV]LEOSLNGIGREXNGSTFEAWOLRERFDWEGTTHWOEEAMROEAEOYSLAEEAEOSUTHNGTHNEIATHOIOEYTEHNJEAEOEAEOBDOEPAENGITHSX",
+    "replay": true
+  }
+}
