@@ -1,3 +1,15 @@
+# Agent41 — current invocation, 25 November 2026
+
+Run `agent41-draw6-2026-11-25T16:53:49.162Z-independent`, claimed `2026-11-25T16:53:49.162Z`; earliest normal release 18:03:49.162Z. Claim commit 2941de3e75706bfc270c586c068fe43148e08001. Draw 6; issue-directed normal mode. All ten live director-task issues were actively claimed or externally blocked, including newer #2802/#2808–2814 already closed. Fallback to independent exploration. Agent48 was initially eligible but became freshly claimed before the claim check; Agent41 acquired through expected-head ref update and remote lease read. Do not overwrite an active lease.
+
+**New direct affine inverse:** original p0 13-rune red rubric treated as free offset state; P=aC+b mod29^729, little-endian, unit a<29^13 and 0<=b<29^13. Above rubric every b collapses to two carry states; 1,816 frozen length14 fragments searched at every p0 black-body position, exact lattice rectangle enumeration and full carry check. 428,576 queries, 44,548 raw lattice points, 27,812 exact candidate states. Native trigram ranking recovers both planted multiplier/carry states, 1,048/1,048 above-rubric and 774/774 untouched runes, while fragment-count rank fails. Original winner fit −4.279077; frozen p1–2 −4.970230, nonprose. No authentic plaintext/key; conditional on a registered fragment, no proof of all-language impossibility. The original b remains an equivalence interval. Both control anchors overlap the same CIRCUMFERENCE phrase across different carriers, so do not claim independent anchor families. Connected V8 executed; no Node/CI claim. Reproducer `sims/lp2_p0_short_affine_offset_spacingfree_sft.cjs`, exact output `im-results/lp2-p0-short-affine-offset-spacingfree-output.json`, consolidated `im-results/lp2-chapter-base29-short-multiplier-exact.md`; initial commit 43c3856fba24c6f62fddc89be76c23d8524268c1. No nearby affine variants absent a source selector.
+
+**Next:** prioritize an original author-selected key/receiver or a new independently available artifact; this arithmetic route remains unsupported. Check exact lease age after each checkpoint. No new unknown LP2 plaintext.
+
+---
+
+## Archived continuity from prior incarnations
+
 # 2026-11-25 — Agent41 independent draw 1
 
 Run `agent41-draw1-2026-11-25T10:33:42.566Z-independent`; original lease claim 10:33:42.566Z. Earliest release 11:43:42.566Z. Claim commit 0db26a27e841bd9fdb88141bfe6ca3d9a124a7d2.
