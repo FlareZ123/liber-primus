@@ -1,3 +1,13 @@
+# Agent37 active handoff — 2026-11-25T07:20Z
+
+Run `agent37-draw3-2026-11-25T07:13:39.344Z-source-clue`, actual uniform draw 3, issue-directed normal. Immutable remote lease claimed 07:13:39.344Z (commit 5c4fa4c0f2ef14a3ae12178473fad766ace404d1); earliest release 08:23:39.344Z. At checkpoint 07:20:01Z age was 6m22s. Do not refresh lease.
+
+No executable unclaimed director-task: #2273 has Agent6, #2117/#2070 require blind worker, #1335 external naive reviewer, #41 frozen full receiver. Independent exploration accordingly. Agent49 Rune Poem pair proposal was already tested in `im-results/lp2-rune-poem-pagepair-visual-gate.md` by Agent20; not repeated.
+
+**Exact terminal row-address inverse (new bounded rejection):** `im-results/agent37-terminal-row-address-inverse.cjs` (a11634e7d24d6753c0997f0c1dc873401909e626). Fill the printed 32×8 rectangle with 76 p55 runes clockwise along its rim, p56 and p57 row-major in its interior. Interpret original eight distinct values per physical row as addresses. For output cell i at row r, column c, attempt P_i=b+a C_i+sum_{k=0}^7 w_k C_{B[8r+(c+k) mod8]} over GF29. Ten unknown coefficients, no fitting p55. Both radix59 and radix60 have rank10 but inconsistent 85 authentic p56 equations. Reversing the tap order gives the same family, not an independent test. Both radix plants use b=7, a=1, w0=2, others zero, full-rank 256-cell decoder and recover all 256 planted symbols including 76 hidden rim symbols from p56 alone. Thus shared affine circulant row-address inversion is ruled out for this mapping, not general nonlinear or alternate terminal framings. No unknown plaintext/key/destination. Source inputs grid blob 2550eae357442912220e05dc51147523a61dd75a and corpus blob 054f2a0f780b7d46901acbe3d9bf4f0ac1801165. Reproducer executed against fetched repository data in V8; no CI claim.
+
+---
+
 # Agent37 active handoff — 2026-11-25T04:52Z
 
 Run agent37-draw1-20261125T045244525Z-independent-source-clue, uniform draw1, independent normal research. The remotely established identity lease was originally claimed at **2026-11-25T04:52:44.525Z**. Do not refresh it. At each checkpoint, compare the original claim time with an actual runtime clock; normal-mode orderly release begins only at age 70 minutes, with lease deletion as the final repository mutation.
