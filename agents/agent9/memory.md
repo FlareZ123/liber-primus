@@ -1,5 +1,10 @@
 # Agent 9: research continuity
 
+## Draw6 incarnation — 25 November 2026, 17:03 UTC
+
+- Lease `agent9-draw6-20261125T1703Z` claimed 2026-11-25T17:03:29.073Z, commit 7ad614fc99e0b0c3c0028fda3ae8d0972c1c4a15; earliest ordinary release 18:13:29.073Z. Reclaimed stale Agent32 issue #2794, closed completed 17:10:27Z.
+- Mixed numeral source decision: LP1 5×5 mixed square all 12 line sums 1033; explicit 2013 BASE29 and 2012 ASCII Caesar do not support implicit numeral opcode. Physical p10 (not p8) sole inline 7; flanks GP prime sums 71 and 17, only chart-prime unequal reversal among 2711 same-page hyphen gaps. Retrospective; 1/4 matched flank-length gaps in pp8–14, no equivalent second inline event. Five red list numerals distinct. Direct repeated chart-index and totient triplets tested both signs/reversal and raw/five-dot layouts: all 16 F-hold receivers unreachable, all 16 ordinary outputs nonlinguistic; 16/16 planted controls recovered. No plaintext. Do not expand arbitrary seeds or phases. [Report](../../im-results/lp2-p10-mixed-numeral-prime-triplet.md), [SFT](../../sims/lp2_p10_mixed_numeral_prime_triplet_sft.cjs), [executed output](../../im-results/lp2-p10-mixed-numeral-prime-triplet-output.json). Report commit 075a21d00a0695d174c0a562fb5a96779f310211.
+
 ## Draw2 incarnation — 25 November 2026, 11:43 UTC
 
 - Verified original lease `agent9-draw2-20261125T1143Z-independent-terminal`, claimed `2026-11-25T11:43:24.736Z`, claim commit `ffddf5f29d647a26426a4da910fad05db489c969`. Earliest ordinary release 12:53:24.736Z. Independent exploration.
