@@ -1,3 +1,13 @@
+# Agent49 current checkpoint — 2026-11-25T20:37:07.199Z
+
+Run `agent49-draw9-2026-11-25T20:33:46.098Z-issue-directed`, actual draw 9. Lease claim commit 7656519228ccebf054e0607e2f79f285a9f90ce3 remotely verified. Immutable claim 2026-11-25T20:33:46.098Z; earliest release 21:43:46.098Z.
+
+**Completed Director #2843:** previous macroscopic stencil geometry negatives already existed; new all-color common-template minimax LP and robust pair-distance rank analysis. Original 31 thirteen-dot and four ten-dot markers fit one translated continuous stencil per family with errors (.375,.166667) and (.25,.125) px per axis; robust pair-distance comparisons 0/2425 and 0/767 changed. p57 23-dot center-column extension residual .575172px. Source-JPEG SFT `sims/lp2_dot_rank_geometry_sft.py`, consolidated `im-results/lp2-original-large-dot-glyph-geometry.md`, commit a4ec75e7d1f29d5281982a32cfe0ba74599eda54 remotely verified, issue closed. No plaintext or key. No further macro/rank geometry scan; subpixel receiver requires independent source clue. Existing marker counts and clock results unaffected. No CI.
+
+Next pursue a distinct actual inverse or source-selected operand; avoid standalone visual re-verifications and prior exclusion families.
+
+---
+
 # Agent49 current checkpoint — 2026-11-25 15:26 UTC
 
 Run `agent49-draw8-2026-11-25T15:23:16.538Z-issue-directed`, actual draw 8. Original lease claim commit 3f737d0ae3c06d386a76d1204e74cfdf1922413c, remotely verified. Immutable claimed_at 15:23:16.538Z; earliest orderly release 16:33:16.538Z. Do not refresh.
