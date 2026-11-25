@@ -47,6 +47,45 @@ Met vriendelijke groet,
 [naam]
 
 
+
+
+### Czech institutional route to Severa's illustrations (new priority)
+
+The exact mayfly plate is not yet confirmed in these collections, but two Czech institutions provide much more direct access to Severa's work than a generic art-history lead:
+
+1. **Muzeum Jakuba Hrona, Metánov (Častrov)** — the official municipal page says the museum includes a gallery of academic painter/illustrator František Severa. Visits are by prior telephone arrangement, normally 11:00–16:00; guide **608 400 285**. The museum is at the former school, Metánov 54, 394 70 Častrov. General municipal contact: **obec@castrov.cz**, **+420 724 181 478**. A 2025 municipal newsletter explicitly describes the Severa gallery as covering botanical and entomological illustration; a May 2026 notice confirms appointment-based access. Ask whether the mayfly image, its original drawing, a catalogue record, or the relevant 1977 book is present. Sources: https://castrov.cz/o-obci/muzeum-jakuba-hrona/ and https://castrov.cz/category/novinky/.
+2. **National Agricultural Museum (NZM) Ohrada** — it held the 2024 exhibition *František Severa – rostliny a hmyz ve vědecké ilustraci* (1 Aug–31 Oct 2024), explicitly featuring Severa's entomological and botanical illustrations. The museum says Severa's works are in permanent displays at Zirovnice Castle and the Metánov museum, and that his work is represented in the Hunt Institute collection. Its research service offers collection/archive/photo-archive/library access by appointment. First contact for the exhibition checklist or a curator referral: **Pavel Beneš**, librarian at NZM Ohrada, **pavel.benes@nzm.cz**, **+420 770 164 410**. Branch director **Václav Kinský**: **vaclav.kinsky@nzm.cz**, **+420 773 765 161**. Sources: https://www.nzm.cz/aktualne-v-muzeu/vystavy/frantisek-severa-rostliny-a-hmyz-ve-vedecke-ilustraci, https://www.nzm.cz/pro-badatele, https://www.nzm.cz/kontakty/seznam-kontaktu-podle-abecedy.
+
+The official NZM exhibition page also identifies Zirovnice Castle as a permanent Severa display. Treat Zirovnice and the Hunt Institute as referral routes, not confirmed holdings of this specific mayfly plate. No institution has yet confirmed possession of the exact drawing or caption.
+
+#### Ready-to-send Czech request to Metánov (draft only; not sent)
+
+**Předmět:** Dotaz na ilustraci jepice Františka Severy (Zahradník, 1977)
+
+Dobrý den,
+
+na stránkách obce Častrov jsem našel informaci, že Muzeum Jakuba Hrona v Metánově zahrnuje galerii Františka Severy. Zkoumám původ jedné ilustrace jepice, která se objevuje v knize J. Zahradníka *Thieme's insektengids* (Thieme & Cie, Zutphen, 1977), případně v anglickém vydání *A Field Guide in Colour to Insects* (Octopus Books, 1977), ilustrovaném Františkem Severou.
+
+Můžete prosím potvrdit, zda je v galerii nebo archivu muzea tato konkrétní ilustrace, její původní kresba, katalogový záznam nebo související publikace? Pokud ano, bylo by možné získat fotografii s popiskem/legendou nebo si ji po předchozí domluvě prohlédnout? Zajímá mě také číslo obrázku, název druhu a případný odkaz na původní publikaci.
+
+Pokud muzeum tuto konkrétní práci nemá, budu vděčný za nasměrování na správnou osobu či instituci.
+
+Děkuji za pomoc.
+
+S pozdravem,
+[jméno]
+
+#### Ready-to-send English request to NZM Ohrada (draft only; not sent)
+
+Dear Mr Beneš,
+
+I am researching a mayfly illustration in J. Zahradník's 1977 *Thieme's insektengids* and its English 1977 edition, *A Field Guide in Colour to Insects*, illustrated by František Severa. I found NZM Ohrada's 2024 exhibition *František Severa – plants and insects in scientific illustration* and the museum's note that Severa's works are displayed permanently at Metánov and Zirovnice.
+
+Could you advise whether the mayfly plate or its original drawing was included in the Ohrada exhibition, whether an exhibition checklist/catalogue or loan-source record exists, and whether you could refer me to the relevant curator or collection? A bibliographic reference or a photograph of the relevant caption/legend would suffice; I am not requesting a full-book scan.
+
+Thank you for any guidance.
+
+
 ### Physical English comparator in Galway (backup, not a substitute for the Dutch edition)
 
 A current search result also surfaced a physical first-edition copy of the same illustrated work in Ireland:
