@@ -106,8 +106,7 @@ const results = sections.map((cipher, col) => {
     rune_count: cipher.length,
     packed_bytes: packed.length,
     invalid_5bit_symbols: invalid,
-    prefix_5bit: values.slice(0, 96),
-    prefix_translit: values.slice(0, 96).map(v => v < 29 ? corpus.translit[v] : '[' + v + ']').join(''),
+    prefix_translit: values.slice(0, 80).map(v => v < 29 ? corpus.translit[v] : '[' + v + ']').join(''),
     key_sha256: crypto.createHash('sha256').update(keys[col]).digest('hex'),
     values
   };
