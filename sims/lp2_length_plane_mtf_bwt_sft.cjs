@@ -1,0 +1,22 @@
+"use strict";
+// Director #2785: length-plane MTF + cyclic BWT, fixed initial alphabet.
+const fs=require("node:fs"),path=require("node:path");
+const paths=["resources/liber-primus/lp2-corpus.json","resources/transcriptions/lp2-image-corrected.txt","resources/external/relikd-solved-gp29-native-v1.json"];
+function experiment(raw){
+const alphabet=Array.from({length:14},(_,i)=>i+1),sum=a=>a.reduce((s,x)=>s+x,0);
+function mtf(a,decode){let list=alphabet.slice();return a.map(x=>{let j=decode?x-1:list.indexOf(x);if(j<0||j>=14)throw Error("alphabet");let v=list.splice(j,1)[0];list.unshift(v);return decode?v:j+1})}
+function forward(a){let n=a.length;let rows=Array.from({length:n},(_,i)=>i).sort((i,j)=>{for(let k=0;k<n;k++){let d=a[(i+k)%n]-a[(j+k)%n];if(d)return d}return i-j});return {last:rows.map(i=>a[(i+n-1)%n]),primary:rows.indexOf(0)}}
+function inspect(a){let n=a.length,count=new Int32Array(15),next=new Int32Array(15),p=new Int32Array(n);for(let x of a)count[x]++;for(let i=1;i<=14;i++)next[i]=next[i-1]+count[i-1];for(let i=0;i<n;i++)p[i]=next[a[i]]++;let seen=new Uint8Array(n),cycles=[];for(let i=0;i<n;i++)if(!seen[i]){let j=i,c=[];do{seen[j]=1;c.push(a[j]);j=p[j]}while(j!==i);cycles.push(c)}let lens=cycles.map(c=>c.length).sort((a,b)=>a-b);let possible=lens[0]===lens.at(-1);if(possible&&cycles.length>1){let a=cycles[0].join(",");possible=cycles.every(c=>c.some((_,i)=>c.slice(i).concat(c.slice(0,i)).join(",")===a))}return {lens,possible,p}}
+function inverse(last,primary){let {p}=inspect(last),out=Array(last.length),j=primary;for(let k=last.length-1;k>=0;k--){out[k]=last[j];j=p[j]}return out}
+function test(a){let last=mtf(a,true),{lens,possible}=inspect(last);return {groups:a.length,rankMass:sum(a),decodedMass:sum(last),delta:sum(last)-sum(a),cycles:lens,legal:possible,joint:possible&&sum(last)===sum(a)}}
+const gp=JSON.parse(raw[0]),ix=new Map(gp.runes.map((x,i)=>[x,i])),groups=[];let w=[],between="";for(const c of raw[1]){if(ix.has(c)){if(w.length&&/[-.&]/u.test(between)){groups.push(w);w=[]}w.push(ix.get(c));between=""}else between+=c}if(w.length)groups.push(w);const target=gp.pages.filter(p=>p.page<56).flatMap(p=>p.indices);if(groups.flat().slice(0,target.length).join()!=target.join())throw Error("source mismatch");
+const spec=[[0,2,158],[3,7,255],[8,14,383],[15,22,437],[23,26,224],[27,32,326],[33,39,378],[40,53,669],[54,55,66]];
+let seed=0x2785c1c;function rng(){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return (seed>>>0)/4294967296}function shuffled(a){a=a.slice();for(let i=a.length-1;i>0;i--){let j=Math.floor(rng()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function nulls(a,kind){let legal=0,mass=0,joint=0;for(let i=0;i<2000;i++){let b=kind==="shuffle"?shuffled(a):a.map(()=>a[Math.floor(rng()*a.length)]);let r=test(b);legal+=r.legal;mass+=r.delta===0;joint+=r.joint}return {n:2000,legal,mass,joint}}
+const original=[];for(const [a,b,n] of spec){let lo=gp.pages.filter(p=>p.page<a).reduce((s,p)=>s+p.indices.length,0),hi=lo+gp.pages.filter(p=>p.page>=a&&p.page<=b).reduce((s,p)=>s+p.indices.length,0),k=0,g=[];for(const w of groups){if(k>=lo&&k+w.length<=hi)g.push(w.length);else if(k<hi&&k+w.length>lo)throw Error("clipped");k+=w.length}if(g.length!==n||sum(g)!==hi-lo)throw Error("count");original.push({pages:[a,b],...test(g),shuffle:nulls(g,"shuffle"),iidRank:nulls(g,"iid")})}
+const gold=JSON.parse(raw[2]),controls=[];for(const s of gold.sections){let g=s.source_text.match(/[\u16a0-\u16ff]+/gu).map(x=>x.length);let {last,primary}=forward(g),ranks=mtf(last,false),r=test(ranks),rec=inverse(mtf(ranks,true),primary);if(!r.legal||rec.join()!=g.join()||forward(rec).last.join()!=last.join())throw Error("plant failure");let bounds=a=>a.map((_,i)=>sum(a.slice(0,i+1)));if(bounds(rec).join()!=bounds(g).join())throw Error("boundary failure");controls.push({name:s.name,primary,...r})}
+let toys=0,massPlants=0,periodic=0;for(let n=1;n<=7;n++)for(let code=0;code<3**n;code++){let q=code,a=Array.from({length:n},()=>{let x=q%3+1;q=Math.floor(q/3);return x}),f=forward(a),ranks=mtf(f.last,false),r=test(ranks);if(!r.legal||inverse(mtf(ranks,true),f.primary).join()!=a.join())throw Error("toy");toys++;massPlants+=r.joint;periodic+=r.cycles.length>1}
+return {original,controls,toys,massPlants,periodic,seed:"0x2785c1c",nulls:"2000 each per chapter: exact rank histogram shuffle and iid empirical rank histogram"};
+}
+if(require.main===module)console.log(JSON.stringify(experiment(paths.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8"))),null,2));
+module.exports={experiment};

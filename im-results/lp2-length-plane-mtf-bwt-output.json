@@ -1,0 +1,418 @@
+{
+  "original": [
+    {
+      "pages": [
+        0,
+        2
+      ],
+      "groups": 158,
+      "rankMass": 729,
+      "decodedMass": 921,
+      "delta": 192,
+      "cycles": [
+        1,
+        8,
+        20,
+        129
+      ],
+      "legal": false,
+      "joint": false,
+      "shuffle": {
+        "n": 2000,
+        "legal": 9,
+        "mass": 0,
+        "joint": 0
+      },
+      "iidRank": {
+        "n": 2000,
+        "legal": 6,
+        "mass": 0,
+        "joint": 0
+      }
+    },
+    {
+      "pages": [
+        3,
+        7
+      ],
+      "groups": 255,
+      "rankMass": 1145,
+      "decodedMass": 1555,
+      "delta": 410,
+      "cycles": [
+        1,
+        1,
+        3,
+        9,
+        45,
+        79,
+        117
+      ],
+      "legal": false,
+      "joint": false,
+      "shuffle": {
+        "n": 2000,
+        "legal": 12,
+        "mass": 0,
+        "joint": 0
+      },
+      "iidRank": {
+        "n": 2000,
+        "legal": 5,
+        "mass": 0,
+        "joint": 0
+      }
+    },
+    {
+      "pages": [
+        8,
+        14
+      ],
+      "groups": 383,
+      "rankMass": 1729,
+      "decodedMass": 2738,
+      "delta": 1009,
+      "cycles": [
+        1,
+        3,
+        379
+      ],
+      "legal": false,
+      "joint": false,
+      "shuffle": {
+        "n": 2000,
+        "legal": 5,
+        "mass": 0,
+        "joint": 0
+      },
+      "iidRank": {
+        "n": 2000,
+        "legal": 5,
+        "mass": 0,
+        "joint": 0
+      }
+    },
+    {
+      "pages": [
+        15,
+        22
+      ],
+      "groups": 437,
+      "rankMass": 1903,
+      "decodedMass": 2806,
+      "delta": 903,
+      "cycles": [
+        13,
+        13,
+        18,
+        89,
+        137,
+        167
+      ],
+      "legal": false,
+      "joint": false,
+      "shuffle": {
+        "n": 2000,
+        "legal": 3,
+        "mass": 0,
+        "joint": 0
+      },
+      "iidRank": {
+        "n": 2000,
+        "legal": 6,
+        "mass": 0,
+        "joint": 0
+      }
+    },
+    {
+      "pages": [
+        23,
+        26
+      ],
+      "groups": 224,
+      "rankMass": 1021,
+      "decodedMass": 1399,
+      "delta": 378,
+      "cycles": [
+        1,
+        2,
+        3,
+        19,
+        34,
+        165
+      ],
+      "legal": false,
+      "joint": false,
+      "shuffle": {
+        "n": 2000,
+        "legal": 5,
+        "mass": 0,
+        "joint": 0
+      },
+      "iidRank": {
+        "n": 2000,
+        "legal": 7,
+        "mass": 0,
+        "joint": 0
+      }
+    },
+    {
+      "pages": [
+        27,
+        32
+      ],
+      "groups": 326,
+      "rankMass": 1433,
+      "decodedMass": 2133,
+      "delta": 700,
+      "cycles": [
+        1,
+        5,
+        33,
+        44,
+        243
+      ],
+      "legal": false,
+      "joint": false,
+      "shuffle": {
+        "n": 2000,
+        "legal": 1,
+        "mass": 0,
+        "joint": 0
+      },
+      "iidRank": {
+        "n": 2000,
+        "legal": 9,
+        "mass": 0,
+        "joint": 0
+      }
+    },
+    {
+      "pages": [
+        33,
+        39
+      ],
+      "groups": 378,
+      "rankMass": 1680,
+      "decodedMass": 2063,
+      "delta": 383,
+      "cycles": [
+        1,
+        1,
+        1,
+        20,
+        62,
+        66,
+        227
+      ],
+      "legal": false,
+      "joint": false,
+      "shuffle": {
+        "n": 2000,
+        "legal": 5,
+        "mass": 0,
+        "joint": 0
+      },
+      "iidRank": {
+        "n": 2000,
+        "legal": 1,
+        "mass": 0,
+        "joint": 0
+      }
+    },
+    {
+      "pages": [
+        40,
+        53
+      ],
+      "groups": 669,
+      "rankMass": 3008,
+      "decodedMass": 4167,
+      "delta": 1159,
+      "cycles": [
+        1,
+        2,
+        3,
+        15,
+        18,
+        29,
+        35,
+        566
+      ],
+      "legal": false,
+      "joint": false,
+      "shuffle": {
+        "n": 2000,
+        "legal": 0,
+        "mass": 0,
+        "joint": 0
+      },
+      "iidRank": {
+        "n": 2000,
+        "legal": 2,
+        "mass": 0,
+        "joint": 0
+      }
+    },
+    {
+      "pages": [
+        54,
+        55
+      ],
+      "groups": 66,
+      "rankMass": 308,
+      "decodedMass": 337,
+      "delta": 29,
+      "cycles": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        4,
+        8,
+        10,
+        11,
+        27
+      ],
+      "legal": false,
+      "joint": false,
+      "shuffle": {
+        "n": 2000,
+        "legal": 22,
+        "mass": 2,
+        "joint": 0
+      },
+      "iidRank": {
+        "n": 2000,
+        "legal": 30,
+        "mass": 6,
+        "joint": 0
+      }
+    }
+  ],
+  "controls": [
+    {
+      "name": "0_warning",
+      "primary": 0,
+      "groups": 45,
+      "rankMass": 196,
+      "decodedMass": 184,
+      "delta": -12,
+      "cycles": [
+        45
+      ],
+      "legal": true,
+      "joint": false
+    },
+    {
+      "name": "0_welcome",
+      "primary": 109,
+      "groups": 124,
+      "rankMass": 519,
+      "decodedMass": 515,
+      "delta": -4,
+      "cycles": [
+        124
+      ],
+      "legal": true,
+      "joint": false
+    },
+    {
+      "name": "0_wisdom",
+      "primary": 9,
+      "groups": 31,
+      "rankMass": 131,
+      "decodedMass": 157,
+      "delta": 26,
+      "cycles": [
+        31
+      ],
+      "legal": true,
+      "joint": false
+    },
+    {
+      "name": "0_koan_1",
+      "primary": 6,
+      "groups": 208,
+      "rankMass": 747,
+      "decodedMass": 780,
+      "delta": 33,
+      "cycles": [
+        208
+      ],
+      "legal": true,
+      "joint": false
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "primary": 17,
+      "groups": 181,
+      "rankMass": 707,
+      "decodedMass": 755,
+      "delta": 48,
+      "cycles": [
+        181
+      ],
+      "legal": true,
+      "joint": false
+    },
+    {
+      "name": "jpg107-167",
+      "primary": 5,
+      "groups": 88,
+      "rankMass": 363,
+      "decodedMass": 319,
+      "delta": -44,
+      "cycles": [
+        88
+      ],
+      "legal": true,
+      "joint": false
+    },
+    {
+      "name": "jpg229",
+      "primary": 1,
+      "groups": 18,
+      "rankMass": 94,
+      "decodedMass": 89,
+      "delta": -5,
+      "cycles": [
+        18
+      ],
+      "legal": true,
+      "joint": false
+    },
+    {
+      "name": "p56_an_end",
+      "primary": 4,
+      "groups": 25,
+      "rankMass": 87,
+      "decodedMass": 85,
+      "delta": -2,
+      "cycles": [
+        25
+      ],
+      "legal": true,
+      "joint": false
+    },
+    {
+      "name": "p57_parable",
+      "primary": 17,
+      "groups": 20,
+      "rankMass": 98,
+      "decodedMass": 95,
+      "delta": -3,
+      "cycles": [
+        20
+      ],
+      "legal": true,
+      "joint": false
+    }
+  ],
+  "toys": 3279,
+  "massPlants": 479,
+  "periodic": 54,
+  "seed": "0x2785c1c",
+  "nulls": "2000 each per chapter: exact rank histogram shuffle and iid empirical rank histogram"
+}
