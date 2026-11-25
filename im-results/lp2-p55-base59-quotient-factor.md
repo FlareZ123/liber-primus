@@ -51,6 +51,27 @@ Every factor-origin path dies before the end of its scope; no English scoring ne
 
 The alternative factor-generator discrete-log route is recorded separately in [the DH consumer study](lp2-p55-base59-factor-dlog.md). Do not confuse a mathematical factor or logarithm with an authenticated cipher key.
 
+## Direct BASE29 key and whole-chapter RSA block consumers
+
+Two additional frozen, typed receivers use the recovered factors without a new fitted constant. Neither follows an explicit LP2 instruction.
+
+1. Historically attested BASE29 conversion of p and q gives 12 and 39 GP29 digits. Transfer each as the complete cyclic additive key, chapter-local phase zero and authentic plaintext-F holds. All nine chapters reject both keys by exact cursor reachability. The full p55 alone rejects q at offset2; p permits exactly one all-consuming path, yielding `MARMUIABWLRIAIANGUINNGWBIATHAEMNYEAEAMPPCGNIGRBXHWWEOBUPDIAIYBASHESJTUBDTXTTHEAJIEOGONOEATOM`, nonprose. The actual known p56 also rejects both. This differs from using the factors as starting prime values.
+2. Treat the same conditional N as the modulus for the unknown chapters themselves, using historical exponent65537 and fixed-width integer BASE29 ciphertext representatives. The minimal width of N is exactly50 digits. Parse each chapter from its source boundary. The table gives complete block counts and violations; no complete chapter has a width-multiple length. The last short fragments are not force-decoded. Every in-range block was actually decrypted and forward replayed; none is valid PKCS#1 v1.5 encryption framing (00 02, at least eight nonzero padding bytes, 00 separator). SHA1 OAEP is already capacity-impossible at this modulus width.
+
+| Chapter | Complete 50-rune blocks | Remainder | C≥N | Valid v1.5 blocks |
+|---|---:|---:|---:|---:|
+| p0-2 | 14 | 29 | 1 | 0 |
+| p3-7 | 22 | 45 | 2 | 0 |
+| p8-14 | 34 | 29 | 2 | 0 |
+| p15-22 | 38 | 3 | 2 | 0 |
+| p23-26 | 20 | 21 | 1 | 0 |
+| p27-32 | 28 | 33 | 2 | 0 |
+| p33-39 | 33 | 30 | 0 | 0 |
+| p40-53 | 60 | 8 | 2 | 0 |
+| p54-55 | 6 | 8 | 0 | 0 |
+
+Reject these particular direct factor consumers. This is not a statement about arbitrary block framing, CRT transport, or derived keys. [SFT](../sims/lp2_p55_base59_factor_consumers_sft.cjs) · [raw output](lp2-p55-base59-factor-consumers.json), actual connected JS execution.
+
 **Decision:** retain the exact factorization as arithmetic data; reject the conditional historical RSA/OAEP consumer (width), the direct raw inverse, and the literal prime-origin transfer. The factorization does not authenticate the preceding radix fixed point; the semiprime observation was made after selecting N, and no independent selection of a new exponent or encoding has emerged. Do not launch an arbitrary exponent/padding sweep. All 56 unknown pages remain unsolved.
 
 Reproducer: `python sims/lp2_p55_base59_quotient_factor_sft.py` (SymPy 1.14.0). The ECM, factor/primality checks and RSA arithmetic were actually run in the local Python environment on the exact source-derived integers. The canonical transcription split was independently executed in the connected runtime; the committed integrated Python SFT is provided for checkout reproduction, not claimed as a separate CI run.

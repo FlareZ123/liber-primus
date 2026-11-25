@@ -1,0 +1,237 @@
+{
+  "keyres": [
+    {
+      "factor": "25049452499506949",
+      "key": [
+        2,
+        1,
+        15,
+        20,
+        6,
+        17,
+        0,
+        7,
+        28,
+        11,
+        14,
+        8
+      ],
+      "cases": [
+        {
+          "scope": "p0-2",
+          "dead": 4
+        },
+        {
+          "scope": "p3-7",
+          "dead": 9
+        },
+        {
+          "scope": "p8-14",
+          "dead": 27
+        },
+        {
+          "scope": "p15-22",
+          "dead": 14
+        },
+        {
+          "scope": "p23-26",
+          "dead": 4
+        },
+        {
+          "scope": "p27-32",
+          "dead": 3
+        },
+        {
+          "scope": "p33-39",
+          "dead": 38
+        },
+        {
+          "scope": "p40-53",
+          "dead": 12
+        },
+        {
+          "scope": "p54-55",
+          "dead": 13
+        },
+        {
+          "scope": "p55-55",
+          "paths": "1",
+          "ends": [
+            76
+          ],
+          "onePlain": "MARMUIABWLRIAIANGUINNGWBIATHAEMNYEAEAMPPCGNIGRBXHWWEOBUPDIAIYBASHESJTUBDTXTTHEAJIEOGONOEATOM"
+        },
+        {
+          "scope": "p56-56",
+          "dead": 33
+        }
+      ]
+    },
+    {
+      "factor": "494114755650988709396898675903506495573679579533633450389",
+      "key": [
+        13,
+        7,
+        19,
+        22,
+        17,
+        2,
+        1,
+        4,
+        12,
+        12,
+        0,
+        21,
+        1,
+        14,
+        16,
+        4,
+        28,
+        23,
+        18,
+        18,
+        26,
+        3,
+        25,
+        14,
+        17,
+        16,
+        14,
+        17,
+        16,
+        26,
+        24,
+        9,
+        16,
+        10,
+        17,
+        25,
+        2,
+        7,
+        21
+      ],
+      "cases": [
+        {
+          "scope": "p0-2",
+          "dead": 44
+        },
+        {
+          "scope": "p3-7",
+          "dead": 20
+        },
+        {
+          "scope": "p8-14",
+          "dead": 14
+        },
+        {
+          "scope": "p15-22",
+          "dead": 11
+        },
+        {
+          "scope": "p23-26",
+          "dead": 16
+        },
+        {
+          "scope": "p27-32",
+          "dead": 44
+        },
+        {
+          "scope": "p33-39",
+          "dead": 21
+        },
+        {
+          "scope": "p40-53",
+          "dead": 94
+        },
+        {
+          "scope": "p54-55",
+          "dead": 5
+        },
+        {
+          "scope": "p55-55",
+          "dead": 2
+        },
+        {
+          "scope": "p56-56",
+          "dead": 31
+        }
+      ]
+    }
+  ],
+  "width": 50,
+  "rsa": [
+    {
+      "scope": "p0-2",
+      "length": 729,
+      "blocks": 14,
+      "remainder": 29,
+      "bad": 1,
+      "pkcs": 0
+    },
+    {
+      "scope": "p3-7",
+      "length": 1145,
+      "blocks": 22,
+      "remainder": 45,
+      "bad": 2,
+      "pkcs": 0
+    },
+    {
+      "scope": "p8-14",
+      "length": 1729,
+      "blocks": 34,
+      "remainder": 29,
+      "bad": 2,
+      "pkcs": 0
+    },
+    {
+      "scope": "p15-22",
+      "length": 1903,
+      "blocks": 38,
+      "remainder": 3,
+      "bad": 2,
+      "pkcs": 0
+    },
+    {
+      "scope": "p23-26",
+      "length": 1021,
+      "blocks": 20,
+      "remainder": 21,
+      "bad": 1,
+      "pkcs": 0
+    },
+    {
+      "scope": "p27-32",
+      "length": 1433,
+      "blocks": 28,
+      "remainder": 33,
+      "bad": 2,
+      "pkcs": 0
+    },
+    {
+      "scope": "p33-39",
+      "length": 1680,
+      "blocks": 33,
+      "remainder": 30,
+      "bad": 0,
+      "pkcs": 0
+    },
+    {
+      "scope": "p40-53",
+      "length": 3008,
+      "blocks": 60,
+      "remainder": 8,
+      "bad": 2,
+      "pkcs": 0
+    },
+    {
+      "scope": "p54-55",
+      "length": 308,
+      "blocks": 6,
+      "remainder": 8,
+      "bad": 0,
+      "pkcs": 0
+    }
+  ],
+  "capacity": "13179529148667419313752621434193363370806933128742294644974969657446901001"
+}

@@ -1,4 +1,8 @@
 
+## 2026-11-25 09:59 UTC — direct factor consumers
+- Both complete factor BASE29 cyclic keys rejected by authentic F-hold reachability across all chapters. p alone has a single nonprose p55 all-consuming path. Historical e65537, width50 BASE29 chapter blocks: 7/9 chapters include invalid residues, no valid v1.5 encryption framing, no chapter length multiple50. Consolidated im-results/lp2-p55-base59-quotient-factor.md, SFT sims/lp2_p55_base59_factor_consumers_sft.cjs.
+- Alternate CADO full DLP dispatch 45590527878; PARI 45586824018 still in progress. No authenticated key or unknown plaintext.
+
 ## 2026-11-25 09:58 UTC — alternate full p55 logarithm
 - PARI job 45586824018 still in progress after >20 minutes; started independent CADO-NFS precomputation for the fixed q and 120-bit prime-order ell, two target descents (p,S), exact CRT/forward replay. Workflow .github/workflows/agent49-p55-base59-nfs-manual.yml, finalizer sims/lp2_p55_base59_nfs_finalize.py. This is an alternate mathematical algorithm for the same provisional receiver; do not interpret a DLP result as authentic plaintext. Cancel redundant work once either result is verified if practical.
 
