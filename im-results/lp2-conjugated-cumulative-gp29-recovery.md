@@ -149,3 +149,23 @@ Retire the fixed continuous conjugated cumulative decoder as a serious receiver 
 - `node sims/lp2_conjugated_cumulative_knownplaintext_sft.cjs` — exact source retrieval and linear inversion.
 - `node sims/lp2_conjugated_cumulative_lexical_sft.cjs` — exact adaptive lexical constraint attack.
 - Inputs: canonical LP2 corpus, pinned native Emerson and Gibran files; exact inputs and fixed seed are in the scripts.
+
+## Blind spectral cycle and period-23 additive key recovery (Agent35, 25 November)
+
+Model: consuming GP29, fixed hidden outer permutation S, C_i = S^-1(S(C_{i-1}) + P_i + K_t mod 29), q=23, both absolute and page-local clocks; each page's first rune is an arbitrary IV. q23 is exploratory, motivated by the terminal p57 red 23 marker, not authenticated. Fit p0–39 (9,600 transitions), freeze all parameters before scoring p40–55 (3,301 transitions). No plaintext boundary assumptions. The same code is executed against three independent donor plants, two originals and two repeat-mask matched random nulls.
+
+For each phase build the directed transition-count matrix W_t. Double-center B_t=P W_t P (P projects off the constant vector), aggregate G=sum_t (B_t B_t^T + B_t^T B_t - P diag(row_t+col_t) P). This noise subtraction is a Poisson-inspired heuristic, not an exact covariance identity for dependent ciphertext. Under a well-sampled cyclic model the expected matrices in the latent alphabet coordinates are circulant and share real Fourier eigenspaces. Jacobi eigendecomposition, all 66 pairs among the first 12 eigenvectors, and angular sorting produce candidate orderings; choose top six by phase difference collision score and append two random starts. Refine each with 18,000 incremental pair swaps (annealing T=180*(.025)^(step/18000)). Pick highest sum of squared phase difference counts. Test all 28 affine multipliers, estimate 23 shifts by donor unigram MLE, select multiplier by training-only trigram log likelihood. Trigrams use interpolation strengths 20 and 35 with half-count unigram smoothing. Reference language models exclude each respective plant's donor; original and null models include all three. The three plants use seed-fixed rare-letter masking shifts, donor windows beginning at rune 10000, independent outer cycles, two absolute clocks and one local clock. This is a targeted demonstration, not a comprehensive distribution of plant difficulty. All 12,901 transitions replay exactly by construction for each receiver.
+
+| Receiver | Fit collision score | Top spectral eigenvalue | Held mean log-likelihood | Exact held recovery |
+|---|---:|---:|---:|---:|
+| Gibran plant, absolute | 250672 | 1238 | -2.253823 | 3301/3301 |
+| Emerson plant, local | 261902 | 1282 | -2.410331 | 3301/3301 |
+| Shakespeare plant, absolute | 251008 | 1032 | -2.374704 | 3301/3301 |
+| Original, absolute | 155174 | 149 | -6.237390 | unknown |
+| Original, local | 155386 | 186 | -6.241156 | unknown |
+| Repeat-mask null, absolute | 155940 | 225 | -6.245927 | N/A |
+| Repeat-mask null, local | 156114 | 177 | -6.318056 | N/A |
+
+All three plants recover 29/29 outer coordinates up to affine equivalence, 23/23 key values and 12,901/12,901 plaintext transitions each; held data were not used for the fit. Both original candidates remain null-like with no plausible plaintext. No claim of an exact all-key q23 exclusion, and no probability estimate from two nulls. The cycle proposal objective itself is invariant under arbitrary per-phase relabelings of plaintext, so the spectral approach also offers a potential initializer for a future nonadditive common-cycle model, but that broader model is not decoded or excluded here. Retire this specific q23 additive receiver as a high-priority path unless a new source clue warrants revisiting it. No real key recovered.
+
+Reproduce: `node sims/lp2_q23_spectral_cycle_blind_sft.cjs TASK`, TASK 0–6 for Gibran, Emerson, Shakespeare, original absolute/local, null absolute/local. [Solver](../sims/lp2_q23_spectral_cycle_blind_sft.cjs); raw records [0](lp2-q23-spectral-cycle-blind-0.json), [2](lp2-q23-spectral-cycle-blind-2.json), [3](lp2-q23-spectral-cycle-blind-3.json), [4](lp2-q23-spectral-cycle-blind-4.json), [5](lp2-q23-spectral-cycle-blind-5.json), [6](lp2-q23-spectral-cycle-blind-6.json). Emerson task executed successfully but raw artifact creation conflicted with another concurrent branch update; its exact summary is in this report and is independently reproducible from task 1. Executed the exact exported function in connected JavaScript runtime; standalone Node invocation not separately executed.
