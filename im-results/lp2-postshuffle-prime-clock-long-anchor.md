@@ -132,3 +132,16 @@ Every chapter fails both signs even with arbitrary within-group and within-chapt
 ### Joint collision-redraw and arbitrary outer permutation
 
 [Completed exact joint extension](lp2-postshuffle-prime-joint-result.md): all 29220 feasible starts, 819931509 trie states, both signs, 20/20 planted anchors. Every chapter fails the shared maximal-clock-window coverage bound despite free within-group permutation and group reordering. Conditional on chapter membership and the same 5% OOV allowance. No unknown plaintext. Reproduce with [input generator](../sims/lp2_postshuffle_prime_joint_prepare.cjs), [C++ inverse](../sims/lp2_postshuffle_prime_joint.cpp), [Python aggregator](../sims/lp2_postshuffle_prime_joint_summarize.py).
+
+## Collision-only redraw + optional inserted null + mixed F (Agent12)
+
+Combine the earlier authentic p56 prime-minus-one receiver and collision-only redraw relaxation with at most one arbitrary non-consuming ciphertext insertion **after** emission per group. Grant either literal hold or ordinary consumption to plaintext F, both global signs, any preceding genuine ciphertext at the start of each group, every start in [0,29220), and arbitrary whole-group order. A deleted observed symbol never updates the genuine predecessor or clock. A repeated candidate can be accepted or skipped through the run of equal prime residues, but the first distinct candidate must be accepted. As before, the monotone next-different-residue bound gives 29,220 for the full 12,956-rune manuscript, origin≤3301. The exact trie follows all inverse paths, checks terminal dictionary nodes and retains absolute cursor and cut. It admits 35,944 fixed GP29 forms and grants all shorter groups free.
+
+| Sign | Long groups (observed length≥8) | Covered | Missing | Global OOV budget |
+|---|---:|---:|---:|---:|
+| + | 343 | 20 | 323 | 144 |
+| − | 343 | 12 | 331 | 144 |
+
+Each of the nine chapters fails its own 5% allowance for either sign, even under the whole-book cursor relaxation. There are 45 and 26 exact lexical edges, respectively; isolated vocabulary hits do not establish an original plaintext interval or key stream origin. Six held-donor 669-word mixed-F, collision-repaired, shuffled plants with optional ~45% null insertions retain all 324/324 in-register long true plaintext/start/end/cut edges, 11 unique. The authentic unmodified p56 replay still matches all 85 runes, 84 consuming. The controls are source-disjoint donor passages but their vocabulary may occur in the fixed broad register.
+
+Run `node sims/lp2_postshuffle_prime_collision_single_null_sft.cjs`; [raw result](lp2-postshuffle-prime-collision-single-null-output.json), code/results 4942ba733f2a18910e2fcf60830200f12f28435f. Connected V8 actual runtime 171.59s; no separate Windows CI. Retire this widened direct p56-clock receiver with intact groups. This does not test arbitrary non-collision skips, more nulls, substitution repairs, arbitrary permutations within groups, altered segmentation or unrelated schedules. No unknown plaintext/key recovered.
