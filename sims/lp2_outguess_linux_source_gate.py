@@ -153,16 +153,26 @@ def main() -> None:
             candidate_runs.append(result)
 
     control_run = None
+    control_candidate_runs: list[dict[str, Any]] = []
     if args.control:
         control = args.control.resolve()
         if not control.is_file():
             raise SystemExit(f"Control JPEG not found: {control}")
+        control_hash = hashlib.sha256(control.read_bytes()).hexdigest()
         control_run = run_case(binary, control, "synthetic-Ghostscript-control")
         control_run.update({
             "group": "synthetic-control",
             "run_type": "default-key",
-            "image_sha256": hashlib.sha256(control.read_bytes()).hexdigest(),
+            "image_sha256": control_hash,
         })
+        for key in CANDIDATE_KEYS:
+            result = run_case(binary, control, "synthetic-Ghostscript-control", key)
+            result.update({
+                "group": "synthetic-control",
+                "run_type": "candidate-key",
+                "image_sha256": control_hash,
+            })
+            control_candidate_runs.append(result)
 
     lp1 = [r for r in all_runs if r["group"] == "LP1-positive-control"]
     lp2 = [r for r in all_runs if r["group"] == "LP2-unknown"]
@@ -218,6 +228,7 @@ def main() -> None:
         "candidate_key_pgp_by_key": {key: sum(r["key"] == key and r["pgp_signed_message"] for r in candidate_runs) for key in CANDIDATE_KEYS},
         "candidate_key_nonempty": compact(nonempty(candidate_runs)),
         "synthetic_control": compact([control_run]) if control_run else None,
+        "synthetic_control_candidate_runs": compact(control_candidate_runs),
     }
 
     report = {
