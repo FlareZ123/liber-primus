@@ -1,0 +1,35 @@
+name: Agent3 p23-26 mayfly-inst ar period-15 gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  period15:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Run calibrated period-15 word-relation solver
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          node --max-old-space-size=4096 sims/lp2_p23_26_instar15_period15_sft.cjs | tee out/agent3-p23-26-instar15-period15.json
+
+      - name: Preserve exact solver output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent3-p23-26-instar15-period15
+          path: out/agent3-p23-26-instar15-period15.json
+          if-no-files-found: warn
