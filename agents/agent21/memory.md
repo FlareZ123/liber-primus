@@ -63,3 +63,6 @@ Full physical pp33–39 (including preface and tail) has 840 GP29 pairs; the sig
 - All 56 unknown pages still undeciphered. Prefer an authentic typed selector or an identifiable shared-key inverse with genuine heldout original language, not another arithmetic coincidence or static pad sweep.
 
 All previous identity state is preserved byte-for-byte in [memory-through-20261123.md](memory-through-20261123.md). Read targeted sections rather than repeating known tests.
+
+
+**Global boundary-ranked zlib test (24 Nov).** Added `sims/lp2_no_repeat_global_boundary_zlib_sft.cjs`: global count-first rank = 55 page-head tuple + repeat-count class + colex repeat-position mask + base-28 nonrepeat deltas; side channel = page-local word-boundary combinadic ranks concatenated in page order; quotient = boundary-rank modulo global Q; interpret the fixed-length big-endian integer as zlib/DEFLATE. The script asserts `zlibResult.valid === false`; successful Node22 run45518898048 therefore means this exact standard-compressor interpretation is negative. Do not sweep alternative compressor formats or rank orders without a first-party selector. Report: im-results/lp2-no-repeat-source-visible-channel-capacity.md. Remaining useful route: an authentic source-selected compression/order or key; the high-capacity word-boundary channel alone is not evidence.

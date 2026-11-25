@@ -255,6 +255,7 @@ Both original ranges have visibly nonlinguistic outputs and ordinary shuffle-ran
 - A blanket claim that every 29-to-28 no-repeat encoder is impossible is still **not** supported. The printed word-boundary position space has enough combinatorial capacity to carry missing information in principle.
 - Red/special marks alone are insufficient. Geometry-aware ink plus pooled fine punctuation labels remains 38.89–51.40 bits short of the global deficit; only granting all 55 residual-line bits independently barely crosses, and no source-selected line readout exists.
 - No explicit, historically motivated, reversible plaintext-to-word-boundary mapping has been found. The 9,638-bit figure is a ceiling on possible arrangements, not evidence of a hidden message.
+- One fixed global count-first enumerative rank, combined with page-concatenated word-boundary combinadic ranks and interpreted as a big-endian zlib/DEFLATE stream, is rejected. This retires that specific standard-compressor mapping, not every native-language compression model.
 - Do not proceed to arbitrary boundary-bit subsets, fitted lookup tables, unconstrained per-page masks, or further line-rank sweeps. The remaining capacity hinge is whether any of the 55 compositor residuals are independently selectable and have a source-selected readout; the current image evidence does not establish that. Otherwise the only high-capacity channel is unrestricted word-boundary placement, for which no historically motivated reversible mapping has been found. Require an original clue that selects the operation and predicts a reproducible output on untouched pages.
 
 ## Reproduction
@@ -314,3 +315,12 @@ Unrank J into the same exact-repeat ciphertext class as above. The receiver dete
 **Decision:** a self-contained, full-page, reversible constrained-code inverse can absorb the exact missing-repeat capacity using empirical-composition compression; no additional original separator payload is mathematically necessary for the admitted native-like classes. This actual receiver satisfies full-original rank-domain and replay tests, but decisively fails native-language prediction. It is **not** the authentic #2273 receiver and cannot be promoted as a solution. It also illustrates why matching individual page IoC or universal original replay alone is insufficient evidence for a compressed-text interpretation. An independently selected native-language compression/order/operation remains necessary.
 
 [Executable full-original histogram inverse SFT](../sims/lp2_selfcontained_histogram_antirepeat_enumerative_sft.cjs), commit a9916283fc9395d8c52609aaf5d533dcda0b6cf0. Actual connected JS run on the canonical corpus/transcription and pinned donor/lexicon; no CI claim.
+
+
+## Global boundary-ranked zlib/DEFLATE gate (Agent21, 24 November 2026)
+
+A single fixed compressed-text hypothesis was tested rather than sweeping rank orders or compressors. The global no-repeat codebook is ranked by page-head tuple, repeat-count class, colex rank of the global repeat-position mask, and base-28 nonrepeat deltas. The source-visible word-boundary mask is ranked page-locally by combinadic colex and concatenated in page order as a mixed-radix integer. Its residue modulo the global quotient range supplies the high quotient; the constrained ciphertext rank supplies the low remainder. The resulting fixed-length big-endian integer is tested as one zlib/DEFLATE stream.
+
+**Result: negative.** The SFT's negative-gate assertion requires `zlib.inflateSync` to reject the candidate. The successful Node 22 workflow run therefore establishes that this exact rank/quotient mapping is not a zlib stream. No plaintext is recovered. This retires only the tested count-first/page-concatenated-boundary/zlib interpretation; it does not reject other source-selected compressed-text codes or authentic keys.
+
+Reproduction: [SFT](../sims/lp2_no_repeat_global_boundary_zlib_sft.cjs) · [successful negative-gate run](https://github.com/FlareZ123/liber-primus/actions/runs/45518898048) · [source commit](https://github.com/FlareZ123/liber-primus/commit/e644a8cfac57f7c17108f9024141738c64f7b8eb).

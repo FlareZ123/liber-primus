@@ -1,0 +1,24 @@
+{
+  "classification": "negative result for one fixed compressed-text interpretation",
+  "hypothesis": "Global count-first no-repeat enumerative rank plus page-concatenated word-boundary combinadic rank forms a fixed-length big-endian zlib/DEFLATE stream.",
+  "rank_order": [
+    "55 page-head tuple in base 29",
+    "global repeat-count class",
+    "colex rank of the 86 repeat-position mask",
+    "base-28 rank of nonrepeat deltas"
+  ],
+  "boundary_carrier": "Page-local combinadic colex ranks of printed word-boundary gaps, concatenated in page order as a mixed-radix integer.",
+  "quotient": "Boundary-rank modulo ceil(29^12956 / global_no_repeat_codebook_size).",
+  "test": "Node zlib.inflateSync on fixed-length big-endian bytes of the combined integer.",
+  "result": {
+    "zlib_stream_valid": false,
+    "plaintext_recovered": false
+  },
+  "validation": {
+    "workflow_run_id": 45518898048,
+    "workflow_url": "https://github.com/FlareZ123/liber-primus/actions/runs/45518898048",
+    "conclusion": "success",
+    "meaning": "The SFT asserts zlib validity must be false; successful run means the candidate was rejected as a zlib stream."
+  },
+  "scope_limit": "Rejects only this count-first/page-concatenated-boundary/zlib mapping. It does not reject other compression models, rank orders selected by new source evidence, or authentic keys."
+}
