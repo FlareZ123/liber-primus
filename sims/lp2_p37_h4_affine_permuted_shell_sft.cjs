@@ -44,20 +44,24 @@ function experiment(gp, native) {
   }
   function solve(C,crib,offset,hold,lm){
     const left=C.slice(0,offset).reverse(),right=C.slice(offset+4),seed=H(C.slice(offset,offset+4).map((c,i)=>mod(c-crib[i]))),n=Math.ceil(C.length/4)+1;
-    let top=null,legalModels=0,legalPaths=0,models=0,ties=0;
+    let top=null,joint=null,legalModels=0,legalPaths=0,jointModels=0,models=0,ties=0;
     for(let a=1;a<29;a++)for(let b=0;b<29;b++)for(const perm of permutations){
       models++;const tape=keyTape(seed,a,b,perm,n);
       const fit=bestSide(right,tape,n,4,1,crib.slice(2),lm,hold);
       legalPaths+=fit.legal;if(!fit.legal)continue;legalModels++;
       if(!top||fit.score>top.fit.score+1e-10){top={a,b,perm,fit};ties=1;}
       else if(Math.abs(fit.score-top.fit.score)<=1e-10)ties++;
+      const back=bestSide(left,tape,n,-1,-1,[crib[1],crib[0]],lm,hold);
+      if(back.legal){jointModels++;const sum=fit.score+back.score;if(!joint||sum>joint.sum+1e-10)joint={a,b,perm,sum,fit,back};}
     }
     if(!top)return {models,legalModels,legalPaths};
     const tape=keyTape(seed,top.a,top.b,top.perm,n);
     const pred=bestSide(left,tape,n,-1,-1,[crib[1],crib[0]],lm,hold);
     const decoded=pred.path?pred.path.slice().reverse().concat(crib,top.fit.path):null;
     if(decoded&&encrypt(decoded,offset,seed,top,hold).some((c,i)=>c!==C[i]))throw Error("forward replay");
-    return {seed,models,legalModels,legalPaths,ties,selected:{a:top.a,b:top.b,perm:top.perm},fitScore:top.fit.score/right.length,holdoutScore:pred.legal?pred.score/left.length:null,holdoutPaths:pred.legal,decoded,fit:top.fit.path,held:pred.path?.slice().reverse()??null};
+    const jointDecoded=joint?joint.back.path.slice().reverse().concat(crib,joint.fit.path):null;
+    if(jointDecoded&&encrypt(jointDecoded,offset,seed,joint,hold).some((c,i)=>c!==C[i]))throw Error('joint replay');
+    return {seed,models,legalModels,legalPaths,ties,jointModels,joint:joint?{a:joint.a,b:joint.b,perm:joint.perm,scorePerRune:joint.sum/(C.length-4),decoded:jointDecoded}:null,selected:{a:top.a,b:top.b,perm:top.perm},fitScore:top.fit.score/right.length,holdoutScore:pred.legal?pred.score/left.length:null,holdoutPaths:pred.legal,decoded,fit:top.fit.path,held:pred.path?.slice().reverse()??null};
   }
   function encrypt(P,offset,seed,truth,hold){
     const n=Math.ceil(P.length/4)+1,tape=keyTape(seed,truth.a,truth.b,truth.perm,n),C=new Array(P.length);
@@ -79,8 +83,10 @@ function experiment(gp, native) {
   const C=gp.pages.find(p=>p.page===37).indices.slice(91,189),crib=[20,1,5,5];
   if(C.length!==98||C.slice(55,59).join()!=="3,2,6,27")throw Error("source anchor");
   const original=[false,true].map(hold=>({hold,...solve(C,crib,55,hold,model(null))}));
-  const compact=x=>({...x,decoded:x.decoded?.map(i=>gp.translit[i]).join("")??null,fit:x.fit?.map(i=>gp.translit[i]).join("")??null,held:x.held?.map(i=>gp.translit[i]).join("")??null});
-  return {method:"H4 shell S_(t+1)[j] = a*S_t[perm[j]]+b mod29; all 28*29*24 transitions, exact forward paths and frozen backward holdout",controls:controls.map(compact),original:original.map(compact)};
+  const compact=x=>({...x,joint:x.joint?{...x.joint,decoded:x.joint.decoded.map(i=>gp.translit[i]).join('')}:null,decoded:x.decoded?.map(i=>gp.translit[i]).join("")??null,fit:x.fit?.map(i=>gp.translit[i]).join("")??null,held:x.held?.map(i=>gp.translit[i]).join("")??null});
+  return {method:"H4 shell S_(t+1)[j] = a*S_t[perm[j]]+b mod29; all 28*29*24 transitions, exact forward paths and frozen backward holdout; separate all-model joint language envelope",controls:controls.map(compact),original:original.map(compact)};
 }
 const read=p=>JSON.parse(fs.readFileSync(path.join(__dirname,"..",p),"utf8"));
-console.log(JSON.stringify(experiment(read("resources/liber-primus/lp2-corpus.json"),read("resources/external/relikd-solved-gp29-native-v1.json")),null,2));
+const result=experiment(read("resources/liber-primus/lp2-corpus.json"),read("resources/external/relikd-solved-gp29-native-v1.json"));
+if(!result.controls.every(x=>x.fitCorrect===39&&x.heldCorrect===55&&JSON.stringify(x.truth)===JSON.stringify(x.selected)))throw Error("control recovery regression");
+console.log(JSON.stringify(result,null,2));
