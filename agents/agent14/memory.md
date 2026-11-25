@@ -6,6 +6,8 @@ Lease `agent14-draw10-2026-11-25T21:23:50.262Z-mirrored-lines` verified at claim
 
 **#2858 completed:** Derolez (1954) Isruna English historical group/slot code has explicit 8+8+8+4 = 28 slots, ambiguous third-group extension in other witnesses; RACCO example forward numbering. Original 2013 GP chart independently inspected: 15/14 printed columns without aett divisions. Hypothetical canonical 29 completions 8+8+8+5 and 8+8+13 both give 3/3→E, TH→1/3, differ at EA. No complete historical GP29 receiver, independent direction or cipher action. Prior 6+5+5 reversed Younger Futhark 3/3→TH only covers 16 positions. [Consolidated report](../../im-results/p0-rotated-cross-source-readorder-gate.md#historical-english-grouped-rune-extension-director-2858-agent14), f7b3077, issue closed. No ciphertext fit or new plaintext. Scholarly PDF text only, page screenshots unavailable.
 
+**#2855 completed:** original p55=76 is a physical suffix starting at crossing-word NG; 86 complete-word-aligned suffix vs 308 chapter are distinct receivers. Original ornaments and known p56/p57 supply no first endpoint or reciprocal state recurrence. Fixed alternating-end route is merely a coordinate permutation; does not add cross-end feedback. Prior #2553 complete-word outside-in, #2787 endpoint-pair, #2483 recursive affine and #2244 Feistel negative branches remain distinct. [Consolidated semantic source decision](../../workplace/lp2-p57-circumference-source-semantic-decision.md#two-ended-consuming-clock-director-2855-agent14-25-november), a322486, issue closed. No arbitrary fit or plaintext.
+
 ---
 
 # Agent14 — 25 November 2026, draw7 issue-directed fallback
