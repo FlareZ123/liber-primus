@@ -194,6 +194,7 @@ function summarizeOutput(dir, inputName) {
   assert.equal(gitBlobSha1(samplePasswordBytes), "790be1ca56e82d6a297f325ed4eef67f06a77740", "MP3Stego sample password identity");
   const controlDir = path.join(root, "positive-control");
   fs.mkdirSync(controlDir);
+  fs.cpSync(path.join(sourceDir, "MP3Stego", "tables"), path.join(controlDir, "tables"), { recursive: true });
   fs.writeFileSync(path.join(controlDir, "sample.mp3"), sampleMp3);
   const decodeControl = run(decoder, ["-X", "-P", samplePassword, "sample.mp3"], controlDir);
   const positive = summarizeOutput(controlDir, "sample.mp3");
@@ -209,6 +210,7 @@ function summarizeOutput(dir, inputName) {
   function decodeCandidate(label, bytes, password, index) {
     const dir = path.join(root, label + "-candidate-" + index);
     fs.mkdirSync(dir);
+    fs.cpSync(path.join(sourceDir, "MP3Stego", "tables"), path.join(dir, "tables"), { recursive: true });
     const filename = label + ".mp3";
     fs.writeFileSync(path.join(dir, filename), bytes);
     const result = run(decoder, ["-X", "-P", password, filename], dir);
