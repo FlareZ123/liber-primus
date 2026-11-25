@@ -1,0 +1,764 @@
+{
+  "method": "blind two independent alphabet recovery from eight genuine literary long groups, four pair-indexed and remaining exact DFS; exact graph-completion enumeration, fit only preceding prefixes with fixed inferred end cursor; frozen key to 76 following runes per scope",
+  "sets": [
+    {
+      "i": 7,
+      "word": "CONSPECTUITIES",
+      "offset": 23,
+      "length": 14,
+      "prefixF": 0,
+      "localTraces": 109
+    },
+    {
+      "i": 0,
+      "word": "PARTICULARISE",
+      "offset": 0,
+      "length": 13,
+      "prefixF": 0,
+      "localTraces": 143
+    },
+    {
+      "i": 3,
+      "word": "EMBRACEMENTS",
+      "offset": 12,
+      "length": 12,
+      "prefixF": 0,
+      "localTraces": 629
+    },
+    {
+      "i": 1,
+      "word": "DISCONTENTED",
+      "offset": 3,
+      "length": 12,
+      "prefixF": 0,
+      "localTraces": 638
+    },
+    {
+      "i": 6,
+      "word": "EMBARQUEMENTS",
+      "offset": 21,
+      "length": 13,
+      "prefixF": 2,
+      "localTraces": 929
+    },
+    {
+      "i": 2,
+      "word": "CIRCUMVENTION",
+      "offset": 9,
+      "length": 12,
+      "prefixF": 1,
+      "localTraces": 983
+    },
+    {
+      "i": 4,
+      "word": "DISADVANTAGE",
+      "offset": 15,
+      "length": 12,
+      "prefixF": 1,
+      "localTraces": 1017
+    },
+    {
+      "i": 5,
+      "word": "HYPERBOLICAL",
+      "offset": 18,
+      "length": 12,
+      "prefixF": 2,
+      "localTraces": 2076
+    }
+  ],
+  "pairStats": [
+    {
+      "i": 0,
+      "j": 1,
+      "total": 15587,
+      "compatible": 277
+    },
+    {
+      "i": 0,
+      "j": 2,
+      "total": 68561,
+      "compatible": 970
+    },
+    {
+      "i": 0,
+      "j": 3,
+      "total": 69542,
+      "compatible": 4710
+    },
+    {
+      "i": 1,
+      "j": 2,
+      "total": 89947,
+      "compatible": 199
+    },
+    {
+      "i": 1,
+      "j": 3,
+      "total": 91234,
+      "compatible": 141
+    },
+    {
+      "i": 2,
+      "j": 3,
+      "total": 401302,
+      "compatible": 62133
+    }
+  ],
+  "nodes": [
+    109,
+    277,
+    15,
+    1,
+    929,
+    983,
+    1017,
+    2076
+  ],
+  "counts": [
+    109,
+    277,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "visits": 5407,
+  "limited": false,
+  "solutions": 1,
+  "witness": {
+    "key": [
+      1,
+      6,
+      2,
+      10,
+      23,
+      0,
+      7,
+      24,
+      9,
+      17,
+      16,
+      3,
+      4,
+      26,
+      13,
+      15,
+      11,
+      25,
+      12,
+      8,
+      21,
+      14,
+      22,
+      18,
+      20,
+      27,
+      19,
+      5,
+      28,
+      18,
+      15,
+      3,
+      12,
+      23,
+      14,
+      5,
+      21,
+      9,
+      6,
+      4,
+      20,
+      27,
+      16,
+      0,
+      13,
+      1,
+      7,
+      26,
+      11,
+      19,
+      17,
+      24,
+      22,
+      2,
+      8,
+      25,
+      28,
+      10
+    ],
+    "chosen": [
+      {
+        "i": 7,
+        "word": "CONSPECTUITIES",
+        "P": [
+          5,
+          3,
+          9,
+          15,
+          13,
+          18,
+          5,
+          16,
+          1,
+          10,
+          16,
+          10,
+          18,
+          15
+        ],
+        "j": 23
+      },
+      {
+        "i": 0,
+        "word": "PARTICULARISE",
+        "P": [
+          13,
+          24,
+          4,
+          16,
+          10,
+          5,
+          1,
+          20,
+          24,
+          4,
+          10,
+          15,
+          18
+        ],
+        "j": 0
+      },
+      {
+        "i": 3,
+        "word": "EMBRACEMENTS",
+        "P": [
+          18,
+          19,
+          17,
+          4,
+          24,
+          5,
+          18,
+          19,
+          18,
+          9,
+          16,
+          15
+        ],
+        "j": 12
+      },
+      {
+        "i": 1,
+        "word": "DISCONTENTED",
+        "P": [
+          23,
+          10,
+          15,
+          5,
+          3,
+          9,
+          16,
+          18,
+          9,
+          16,
+          18,
+          23
+        ],
+        "j": 3
+      },
+      {
+        "i": 6,
+        "word": "EMBARQUEMENTS",
+        "P": [
+          18,
+          19,
+          17,
+          24,
+          4,
+          5,
+          7,
+          18,
+          19,
+          18,
+          9,
+          16,
+          15
+        ],
+        "j": 19
+      },
+      {
+        "i": 2,
+        "word": "CIRCUMVENTION",
+        "P": [
+          5,
+          10,
+          4,
+          5,
+          1,
+          19,
+          1,
+          18,
+          9,
+          16,
+          27,
+          9
+        ],
+        "j": 9
+      },
+      {
+        "i": 4,
+        "word": "DISADVANTAGE",
+        "P": [
+          23,
+          10,
+          15,
+          24,
+          23,
+          1,
+          24,
+          9,
+          16,
+          24,
+          6,
+          18
+        ],
+        "j": 15
+      },
+      {
+        "i": 5,
+        "word": "HYPERBOLICAL",
+        "P": [
+          8,
+          26,
+          13,
+          18,
+          4,
+          17,
+          3,
+          20,
+          10,
+          5,
+          24,
+          20
+        ],
+        "j": 17
+      }
+    ]
+  },
+  "truthKey": [
+    0,
+    3,
+    28,
+    7,
+    20,
+    26,
+    4,
+    21,
+    6,
+    14,
+    13,
+    27,
+    1,
+    23,
+    19,
+    12,
+    8,
+    22,
+    9,
+    5,
+    18,
+    25,
+    11,
+    15,
+    17,
+    24,
+    16,
+    2,
+    10,
+    15,
+    12,
+    0,
+    9,
+    20,
+    11,
+    2,
+    18,
+    6,
+    3,
+    1,
+    17,
+    24,
+    13,
+    26,
+    10,
+    27,
+    4,
+    23,
+    8,
+    16,
+    14,
+    21,
+    19,
+    28,
+    5,
+    22,
+    25,
+    7
+  ],
+  "completion": {
+    "candidates": 500001,
+    "legal": 258080,
+    "limited": true,
+    "ties": 5040,
+    "components": [
+      {
+        "size": 46,
+        "inner": 20,
+        "outer": 26
+      }
+    ],
+    "best": {
+      "key": [
+        1,
+        6,
+        2,
+        10,
+        23,
+        0,
+        7,
+        24,
+        9,
+        17,
+        16,
+        3,
+        4,
+        26,
+        13,
+        15,
+        11,
+        25,
+        12,
+        8,
+        21,
+        14,
+        22,
+        18,
+        20,
+        27,
+        19,
+        5,
+        28,
+        18,
+        15,
+        3,
+        12,
+        23,
+        14,
+        5,
+        21,
+        9,
+        6,
+        4,
+        20,
+        27,
+        16,
+        0,
+        13,
+        1,
+        7,
+        26,
+        11,
+        19,
+        17,
+        24,
+        22,
+        2,
+        8,
+        25,
+        28,
+        10
+      ],
+      "s": -282.8514202043913,
+      "prefixes": [
+        {
+          "i": 7,
+          "P": [
+            3,
+            3,
+            7,
+            8,
+            24,
+            16,
+            17,
+            24,
+            4,
+            19,
+            5,
+            24,
+            9,
+            26,
+            3,
+            1,
+            4,
+            17,
+            10,
+            15,
+            15,
+            3,
+            9
+          ]
+        },
+        {
+          "i": 0,
+          "P": []
+        },
+        {
+          "i": 3,
+          "P": [
+            3,
+            9,
+            3,
+            1,
+            4,
+            2,
+            24,
+            9,
+            10,
+            9,
+            2,
+            18
+          ]
+        },
+        {
+          "i": 1,
+          "P": [
+            3,
+            2,
+            18
+          ]
+        },
+        {
+          "i": 6,
+          "P": [
+            16,
+            15,
+            9,
+            3,
+            4,
+            16,
+            10,
+            19,
+            18,
+            15,
+            3,
+            0,
+            15,
+            24,
+            5,
+            4,
+            10,
+            0,
+            10,
+            5,
+            18
+          ]
+        },
+        {
+          "i": 2,
+          "P": [
+            4,
+            18,
+            4,
+            3,
+            19,
+            18,
+            8,
+            24,
+            23
+          ]
+        },
+        {
+          "i": 4,
+          "P": [
+            19,
+            24,
+            4,
+            5,
+            10,
+            1,
+            15,
+            7,
+            18,
+            8,
+            24,
+            1,
+            18,
+            24,
+            16
+          ]
+        },
+        {
+          "i": 5,
+          "P": [
+            18,
+            0,
+            3,
+            4,
+            2,
+            10,
+            9,
+            24,
+            5,
+            5,
+            20,
+            24,
+            19,
+            24,
+            16,
+            27,
+            9,
+            15
+          ]
+        }
+      ]
+    }
+  },
+  "results": {
+    "bestGauge": 26,
+    "keyMatch": 52,
+    "innerMatch": 23,
+    "outerMatch": 29,
+    "prefixMatched": 101,
+    "prefixLength": 101,
+    "rows": [
+      {
+        "i": 7,
+        "selectedWord": "CONSPECTUITIES",
+        "trueWord": "CONSPECTUITIES",
+        "wordExact": true,
+        "phase": 23,
+        "truePhase": 23,
+        "withheld": 75,
+        "heldoutLength": 76,
+        "legal": true,
+        "replay": true
+      },
+      {
+        "i": 0,
+        "selectedWord": "PARTICULARISE",
+        "trueWord": "PARTICULARISE",
+        "wordExact": true,
+        "phase": 0,
+        "truePhase": 0,
+        "withheld": 75,
+        "heldoutLength": 76,
+        "legal": true,
+        "replay": true
+      },
+      {
+        "i": 3,
+        "selectedWord": "EMBRACEMENTS",
+        "trueWord": "EMBRACEMENTS",
+        "wordExact": true,
+        "phase": 12,
+        "truePhase": 12,
+        "withheld": 76,
+        "heldoutLength": 76,
+        "legal": true,
+        "replay": true
+      },
+      {
+        "i": 1,
+        "selectedWord": "DISCONTENTED",
+        "trueWord": "DISCONTENTED",
+        "wordExact": true,
+        "phase": 3,
+        "truePhase": 3,
+        "withheld": 76,
+        "heldoutLength": 76,
+        "legal": true,
+        "replay": true
+      },
+      {
+        "i": 6,
+        "selectedWord": "EMBARQUEMENTS",
+        "trueWord": "EMBARQUEMENTS",
+        "wordExact": true,
+        "phase": 19,
+        "truePhase": 19,
+        "withheld": 74,
+        "heldoutLength": 76,
+        "legal": true,
+        "replay": true
+      },
+      {
+        "i": 2,
+        "selectedWord": "CIRCUMVENTION",
+        "trueWord": "CIRCUMVENTION",
+        "wordExact": true,
+        "phase": 9,
+        "truePhase": 9,
+        "withheld": 75,
+        "heldoutLength": 76,
+        "legal": true,
+        "replay": true
+      },
+      {
+        "i": 4,
+        "selectedWord": "DISADVANTAGE",
+        "trueWord": "DISADVANTAGE",
+        "wordExact": true,
+        "phase": 15,
+        "truePhase": 15,
+        "withheld": 76,
+        "heldoutLength": 76,
+        "legal": true,
+        "replay": true
+      },
+      {
+        "i": 5,
+        "selectedWord": "HYPERBOLICAL",
+        "trueWord": "HYPERBOLICAL",
+        "wordExact": true,
+        "phase": 17,
+        "truePhase": 17,
+        "withheld": 76,
+        "heldoutLength": 76,
+        "legal": true,
+        "replay": true
+      }
+    ]
+  },
+  "inputBlobs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/liber-primus/lp2-transcription.txt",
+      "sha": "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7"
+    },
+    {
+      "path": "resources/control/english_wordfreq_textblob.txt",
+      "sha": "140e1d22b5f8c45deddd2e8b25549d9d6307d938"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    }
+  ]
+}
