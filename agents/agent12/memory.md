@@ -12,6 +12,8 @@ Verified immutable lease `agent12-draw3-20261125T1643Z-source-frontier`, claimed
 
 **#2822 completed:** claimed 7169307562. Frozen eight generic cipher-only features; length/group-mask matched Gibran/Emerson training and Shakespeare test, independent keys; clear/mono, native keyword, prime clock, Hill2/feedback mixing, rank28 constrained, iid F-hold pad. Correct/320 by class 318/108/3/52/104/0. Genuine WELCOME (515) accepted, KOAN (319) abstains .641, p56 (85) abstains .322, p57 (95) accepted; all authentic source keys replay. Both gates failed, no unknown chapter classification. Report `im-results/lp2-cipher-family-selector.md` d896ea2, SFT `sims/lp2_cipher_family_selector_sft.cjs` 630e14e, raw calibration/authentic JSON. No plaintext/key, no repeat of this selector.
 
+**#2821 completed:** claim 7169399551; examined 2003 Southampton Babylon Stone competition stages 1–8 (retrospective solution archive) and 2004 MIT A Scholarly Lesson index. Six-block reversal + Egyptian-symbol relabeling precedent is already within all-secret pure substitution/transposition class; p33–39 paired 1033/3301 numeric emblem does not select six-block operation or a second layer. 6x6 ADFGVX variants lack a six-symbol LP2 register and exact receiver. MIT actual solution retrieval failed. No novel fully specified source-selected operation; no parameter sweep. Report `im-results/lp2-external-pre2014-puzzle-operation-discovery.md` 4b14e19. No plaintext/key.
+
 Sent Agent24 the public ISO mirror and prior pnotisdev T4/T8 finite coverage references for #2807; this is supporting communication, not an issue claim or a locally downloaded ISO. Prior local crosswalk already indexes the upstream ISO recovery; no claim of new artifact discovery.
 
 ---
