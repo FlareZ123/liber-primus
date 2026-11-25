@@ -82,3 +82,20 @@ The two paired crosses form an almost unchanged **pp0–2 decorative frame** und
 **Prior-art distinction:** Agent42's source-registered result reports rotated-pair IoU **0.961925** under a different mask/crop contract, and p1/p2 artwork reuse. This study's 0.98747722 is a separate fixed-crop threshold, not a new underlying fact. The direct p56-key reversed-order readout is an additional bounded test, without plaintext.
 
 **Reproducers:** [p0 source-fixed read-order test](../sims/lp2_p0_inverted_cross_source_readout_sft.py), using the unchanged original scan, original canonical GP29 transcription, and frozen native-GP Shakespeare control; and [p1/p2 twig-rune holdout SFT](../sims/lp2_p1_p2_cross_twig_rune_holdout_sft.py), using original scans 17–19, the canonical corpus and original ink annotations. Both scripts write no files.
+
+## Historical English grouped-rune extension (Director #2858, Agent14)
+
+The previously tested 3|3 → TH interpretation imports the reversed Younger Futhark group numbering (6+5+5), which has only sixteen positions. A historically documented English cipher-rune receiver would be a materially better match for GP29, provided its full grouping and direction were independently fixed.
+
+René Derolez, *Runica manuscripta: the English tradition* (1954), chapter II, pp. 88–89, 116–117 and 132–133 ([bibliographic record](https://biblio.ugent.be/publication/8767090), [digitized text](https://old.katab.asia/special/Rene_Derolez_-_Runica_Manuscripta.pdf)), discusses the Isruna tract witnesses: the Salzburg witness explicitly supplies 8+8+8+4, totaling 28 positions; other witnesses leave room for the final four to be treated as an extension of the third group. The recorded coordinate example 1/5, 4/1, 1/6, 1/6, 1/4 reads RACCO, demonstrating forward group and within-group numbering in that four-group convention. The manuscript alphabet itself has variant forms and order; this is not an exact GP29 source. Kelly A. Kilpatrick, *Latin, Runes and Pseudo-Ogham: The Enigma of the Hackness Cross* (2013; [text](https://www.arild-hauge.com/PDF/Latin_Runes_and_Pseudo-Ogham_The_Enigma.pdf)), also discusses the Isruna coordinate system and the uncertainty of the extended alphabet grouping. These publications precede LP2. I used searchable PDF text; the page-image retrieval failed, so these are readings of published scholarly transcriptions rather than independent facsimile readings.
+
+I independently inspected the preserved first-party 2013 Gematria Primus chart at resources/historical/cicada2013-gematria-jpeg.b64. It prints two columns of 15 and 14 runes in prime order and no marked aett subdivisions. There is no printed 6+5+5 or eight-rune group boundary. The following are *conditional arithmetic projections* onto the canonical chart order, not historical attested 29-rune alphabets:
+
+| Hypothetical completion | TH coordinate | 3/3 receiver | EA coordinate |
+|---|---|---|---|
+| 8+8+8+5, forward | 1/3 | E | 4/5 |
+| 8+8+13, forward | 1/3 | E | 3/13 |
+
+Computed directly from resources/liber-primus/lp2-corpus.json (translit order), by subtracting preceding group sizes from each zero-based index and adding one. The four-group projection reproduces RACCO from the published example, but both possible 29-position projections disagree with the original 3/3→TH claim. Neither is selected by the LP2 ornament or the chart. The coordinate 3/3 is itself symmetric under swapping group and position, so it cannot establish which side denotes which component. The full cross image has equal branch counts by construction; the earlier held-out p1/p2 failure remains relevant.
+
+**Decision:** the English historical source offers a concrete coordinate system, but no complete, uniquely selected GP29 extension or value-changing cipher action. An ordinary lossless coordinate encoding followed by its inverse is the identity. No arbitrary extension, secret relabeling, or ciphertext-scored direction choice was performed. Close #2858 on its specified negative branch; do not reopen absent an independent source for the 29-symbol grouping and its receiver. No new plaintext or key.
