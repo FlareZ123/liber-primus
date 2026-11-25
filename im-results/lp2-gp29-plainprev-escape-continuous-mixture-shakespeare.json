@@ -1,0 +1,319 @@
+{
+  "width": 64,
+  "donorLengths": [
+    47629,
+    217106,
+    306851
+  ],
+  "pilots": [
+    {
+      "key": [
+        169,
+        226,
+        550,
+        250,
+        350,
+        742,
+        701,
+        449,
+        236,
+        598,
+        678,
+        10,
+        352,
+        628,
+        0,
+        598,
+        802,
+        774,
+        592,
+        575,
+        383,
+        351,
+        153,
+        328,
+        346,
+        596,
+        329,
+        4,
+        534
+      ],
+      "initial": [
+        169,
+        226,
+        550,
+        250,
+        378,
+        15,
+        785,
+        477,
+        236,
+        598,
+        594,
+        765,
+        156,
+        628,
+        0,
+        598,
+        802,
+        774,
+        592,
+        575,
+        383,
+        351,
+        181,
+        188,
+        402,
+        596,
+        413,
+        483,
+        3
+      ],
+      "refinement": [
+        {
+          "sweep": 1,
+          "score": 0.7878122070752213,
+          "improved": 17,
+          "evals": 3221
+        },
+        {
+          "sweep": 2,
+          "score": 0.9880026892779953,
+          "improved": 10,
+          "evals": 6441
+        },
+        {
+          "sweep": 3,
+          "score": 1.0201875590781624,
+          "improved": 2,
+          "evals": 9661
+        },
+        {
+          "sweep": 4,
+          "score": 1.0201875590781624,
+          "improved": 0,
+          "evals": 12881
+        }
+      ],
+      "details": [
+        {
+          "name": "mixture-0",
+          "score": 1.0201875590781624,
+          "em": [],
+          "history": [
+            {
+              "sweep": 1,
+              "score": 0.7878122070752213,
+              "improved": 17,
+              "evals": 3221
+            },
+            {
+              "sweep": 2,
+              "score": 0.9880026892779953,
+              "improved": 10,
+              "evals": 6441
+            },
+            {
+              "sweep": 3,
+              "score": 1.0201875590781624,
+              "improved": 2,
+              "evals": 9661
+            },
+            {
+              "sweep": 4,
+              "score": 1.0201875590781624,
+              "improved": 0,
+              "evals": 12881
+            }
+          ]
+        }
+      ],
+      "pair": [],
+      "mix": [
+        {
+          "K": [
+            169,
+            226,
+            550,
+            250,
+            378,
+            15,
+            785,
+            477,
+            236,
+            598,
+            594,
+            765,
+            156,
+            628,
+            0,
+            598,
+            802,
+            774,
+            592,
+            575,
+            383,
+            351,
+            181,
+            188,
+            402,
+            596,
+            413,
+            483,
+            3
+          ],
+          "history": [
+            {
+              "iteration": 1,
+              "ll": -3.3493626657716598,
+              "rows": 2,
+              "maxMass": 0.0060271872367093915,
+              "truthMass": 0.002524601756894192
+            },
+            {
+              "iteration": 6,
+              "ll": -3.3208885355577213,
+              "rows": 2,
+              "maxMass": 0.012471300828873367,
+              "truthMass": 0.003926793982602296
+            },
+            {
+              "iteration": 11,
+              "ll": -3.3092479447292704,
+              "rows": 1,
+              "maxMass": 0.019370756005606553,
+              "truthMass": 0.005820280768208902
+            },
+            {
+              "iteration": 16,
+              "ll": -3.3020129628251036,
+              "rows": 1,
+              "maxMass": 0.025392783566662983,
+              "truthMass": 0.007965907548073744
+            },
+            {
+              "iteration": 21,
+              "ll": -3.2952041364028837,
+              "rows": 2,
+              "maxMass": 0.03105389851019177,
+              "truthMass": 0.010535772965180422
+            },
+            {
+              "iteration": 26,
+              "ll": -3.2870752030150134,
+              "rows": 3,
+              "maxMass": 0.039036347451705276,
+              "truthMass": 0.013700795920209003
+            },
+            {
+              "iteration": 31,
+              "ll": -3.27662000013757,
+              "rows": 3,
+              "maxMass": 0.06616694687379374,
+              "truthMass": 0.022202422466528128
+            },
+            {
+              "iteration": 36,
+              "ll": -3.2384411448143444,
+              "rows": 5,
+              "maxMass": 0.2251493268970612,
+              "truthMass": 0.06927658064443892
+            },
+            {
+              "iteration": 41,
+              "ll": -3.1406483390291755,
+              "rows": 8,
+              "maxMass": 0.45030179610303195,
+              "truthMass": 0.17522291112584282
+            },
+            {
+              "iteration": 46,
+              "ll": -2.831969068359503,
+              "rows": 11,
+              "maxMass": 0.7398142848056586,
+              "truthMass": 0.32805851833261696
+            },
+            {
+              "iteration": 51,
+              "ll": -2.7327947717924856,
+              "rows": 11,
+              "maxMass": 0.7342575581496785,
+              "truthMass": 0.4075911278944244
+            },
+            {
+              "iteration": 56,
+              "ll": -2.7281632297469205,
+              "rows": 13,
+              "maxMass": 0.7700997557241102,
+              "truthMass": 0.43582157168124513
+            },
+            {
+              "iteration": 60,
+              "ll": -2.7268759358509875,
+              "rows": 13,
+              "maxMass": 0.7966368534027771,
+              "truthMass": 0.4491691561307375
+            }
+          ]
+        }
+      ],
+      "truth": [
+        169,
+        226,
+        550,
+        250,
+        350,
+        742,
+        729,
+        449,
+        236,
+        598,
+        678,
+        793,
+        520,
+        628,
+        112,
+        598,
+        802,
+        774,
+        592,
+        575,
+        383,
+        323,
+        153,
+        328,
+        318,
+        233,
+        329,
+        675,
+        478
+      ],
+      "train": {
+        "n": 10317,
+        "repeats": 67,
+        "gain": 1.0201875590781615,
+        "correct": 10317,
+        "usedRows": 29,
+        "keyRows": 20,
+        "preview": [
+          "WORSEREUOLUNGTHISWILLTEACHTHEEHOWTOCURSECWEENELISABETHMYWORDSAREDULLOCWICCENTHEMWITHTHIN",
+          "FYORCARTTHOUMYSONCNGRICHARDIIIAYITHANCGODMYFATHERANDYOURSELFDUCHESSOFYORCTHENPATIENTL"
+        ]
+      },
+      "held": {
+        "n": 2630,
+        "repeats": 12,
+        "gain": 0.96597527389112,
+        "correct": 2630,
+        "usedRows": 26,
+        "keyRows": 20,
+        "preview": [
+          "OWNDWITHCAREFORONEBENGSUEDTOONETHATHUMBLYSUESFORONETHATSCORNDATMENOWSCORNDOFMEFORONE",
+          "RICHARDIIIYOUHAUEADAUGHTERCALLDELISABETHUIRTUOUSANDFAIRROYALANDGRACIAUSCWEENELISAB"
+        ]
+      },
+      "trace": []
+    }
+  ],
+  "original": null
+}
