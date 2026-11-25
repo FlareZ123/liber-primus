@@ -1,0 +1,3108 @@
+{
+  "bounded": {
+    "parameters": {
+      "N": 308,
+      "S": 76,
+      "L": 24,
+      "B": 8,
+      "EPS": 0.05,
+      "WIDTH": 384,
+      "nativeSingletons": true,
+      "firstOov": true,
+      "lexicon": 35775,
+      "trainTypes": 10605,
+      "trainTokens": 114802,
+      "externalTypes": 33369
+    },
+    "cases": [
+      {
+        "name": "fresh-0-feed",
+        "mode": "feed",
+        "offset": 11820,
+        "truthSeed": [
+          9,
+          24
+        ],
+        "oov": 0,
+        "fit": -1.751444140056784,
+        "holdout": -1.7438921288253697,
+        "full": -1.745755612116238,
+        "accuracy": 1,
+        "boundaryF1": 1,
+        "fitAccuracy": 1,
+        "seed": [
+          9,
+          24
+        ],
+        "firstWordCorrect": true,
+        "stats": {
+          "prefix": {
+            "score": -133.1097546443156,
+            "complete": -133.11399235319593,
+            "partial": -138.57560526469635,
+            "firstEdges": 28,
+            "processed": 25359,
+            "generated": 559297,
+            "maxStates": 15965,
+            "clipped": 64,
+            "discarded": 504817,
+            "largestLoss": 8.812434824142283e-17,
+            "lastReachable": 76,
+            "endStates": 12277
+          },
+          "full": {
+            "score": -537.6927285318013,
+            "complete": -537.6927285318013,
+            "partial": null,
+            "firstEdges": 28,
+            "processed": 114447,
+            "generated": 2899258,
+            "maxStates": 41016,
+            "clipped": 296,
+            "discarded": 2700526,
+            "largestLoss": 2.960297277009098e-11,
+            "lastReachable": 308,
+            "endStates": 8954,
+            "fallback": 0
+          }
+        },
+        "words": [
+          [
+            23,
+            9,
+            24
+          ],
+          [
+            21,
+            4,
+            18,
+            2,
+            24,
+            6
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            26,
+            24,
+            23
+          ],
+          [
+            18,
+            2
+          ],
+          [
+            18,
+            17
+          ],
+          [
+            21,
+            16,
+            4,
+            24,
+            13
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            26,
+            24,
+            23
+          ],
+          [
+            18,
+            2
+          ],
+          [
+            20,
+            20,
+            24,
+            8,
+            15
+          ],
+          [
+            0,
+            20,
+            18,
+            15,
+            19,
+            10,
+            8
+          ],
+          [
+            3,
+            16
+          ],
+          [
+            23,
+            10,
+            24,
+            15
+          ],
+          [
+            18,
+            8
+          ],
+          [
+            23,
+            9,
+            24
+          ],
+          [
+            13,
+            10,
+            8,
+            15
+          ],
+          [
+            15,
+            10,
+            8
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            21,
+            19,
+            3,
+            5
+          ],
+          [
+            18,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            4,
+            18,
+            2,
+            3,
+            9,
+            24
+          ],
+          [
+            18,
+            9,
+            3
+          ],
+          [
+            21,
+            20,
+            20,
+            18,
+            16
+          ],
+          [
+            23,
+            20,
+            18,
+            10,
+            0
+          ],
+          [
+            3,
+            16
+          ],
+          [
+            23,
+            20,
+            18,
+            10,
+            0
+          ],
+          [
+            19,
+            3,
+            4,
+            0
+          ],
+          [
+            21,
+            16,
+            1,
+            3,
+            8,
+            15
+          ],
+          [
+            23,
+            9,
+            24
+          ],
+          [
+            18,
+            19,
+            24,
+            9
+          ],
+          [
+            15,
+            10,
+            8
+          ],
+          [
+            21,
+            20,
+            20,
+            24,
+            5
+          ],
+          [
+            15,
+            18,
+            5,
+            10,
+            3,
+            1
+          ],
+          [
+            4,
+            10,
+            18,
+            2
+          ],
+          [
+            23,
+            4,
+            28,
+            8
+          ],
+          [
+            18,
+            8
+          ],
+          [
+            23,
+            9,
+            24
+          ],
+          [
+            15,
+            18,
+            16,
+            24,
+            6
+          ],
+          [
+            26,
+            16,
+            10,
+            5
+          ],
+          [
+            18,
+            2
+          ],
+          [
+            15,
+            23,
+            4,
+            24,
+            7,
+            3,
+            16
+          ],
+          [
+            21,
+            9,
+            18,
+            16,
+            15,
+            24,
+            8
+          ],
+          [
+            23,
+            9,
+            24
+          ],
+          [
+            15,
+            23,
+            4,
+            24,
+            26,
+            18,
+            9,
+            10,
+            1
+          ],
+          [
+            4,
+            10,
+            18,
+            2
+          ],
+          [
+            23,
+            9,
+            24
+          ],
+          [
+            15,
+            23,
+            20,
+            18,
+            10,
+            0
+          ],
+          [
+            4,
+            10,
+            18,
+            2
+          ],
+          [
+            21,
+            1,
+            28,
+            20
+          ],
+          [
+            9,
+            18,
+            19,
+            3,
+            7
+          ],
+          [
+            23,
+            9,
+            24
+          ],
+          [
+            9,
+            18,
+            19
+          ],
+          [
+            4,
+            24,
+            0,
+            24
+          ],
+          [
+            19,
+            3,
+            4,
+            0
+          ],
+          [
+            7,
+            24,
+            15
+          ],
+          [
+            18,
+            8
+          ],
+          [
+            23,
+            18,
+            5,
+            20,
+            24,
+            7
+          ],
+          [
+            18,
+            8
+          ],
+          [
+            15,
+            24
+          ],
+          [
+            23,
+            9,
+            24
+          ],
+          [
+            9,
+            28,
+            5,
+            3
+          ],
+          [
+            15,
+            15,
+            18,
+            20,
+            23,
+            9,
+            1,
+            3,
+            17
+          ],
+          [
+            24
+          ],
+          [
+            3,
+            16
+          ],
+          [
+            13,
+            3,
+            4,
+            23
+          ],
+          [
+            15,
+            15,
+            18,
+            20,
+            23,
+            9,
+            1,
+            3,
+            17
+          ],
+          [
+            24
+          ],
+          [
+            1,
+            3,
+            26
+          ],
+          [
+            3,
+            16
+          ],
+          [
+            18,
+            19,
+            3,
+            5
+          ],
+          [
+            10
+          ],
+          [
+            20,
+            20,
+            24,
+            8,
+            15
+          ],
+          [
+            9,
+            18,
+            2
+          ],
+          [
+            23,
+            9,
+            24
+          ],
+          [
+            18,
+            23,
+            24,
+            20,
+            6
+          ],
+          [
+            15,
+            10,
+            2
+          ],
+          [
+            9,
+            10
+          ],
+          [
+            4,
+            1,
+            19,
+            4,
+            1,
+            19
+          ],
+          [
+            4,
+            18,
+            2,
+            3,
+            9,
+            24
+          ]
+        ],
+        "text": "ANOTHER MURMUR IN THIS GLADE AND THEN SHALL I COME TO YOU A BOUNDLESS DROP TO A BOUNDLESS OCEAN AND AS HE WALCED HE SAW FROM AFAR MEN AND WOMEN LEAUNG THEIR FIELDS AND THEIR UINEYARDS AND HASTENNG TOWARDS THE CITY GATES AND HE HEARD THEIR UOICES CALLNG HIS NAME AND SHOUTNG FROM FIELD TO FIELD TELLNG ONE ANOTHER OF THE COMNG OF HIS SHIP AND HE SAID TO HIMSELF SHALL THE DAY OF PARTNG BE THE DAY OF GATHERNG AND",
+        "printed": [
+          2,
+          9,
+          4,
+          5,
+          6,
+          3,
+          7,
+          3,
+          3,
+          4,
+          3,
+          5,
+          2,
+          3,
+          4,
+          3,
+          6,
+          9,
+          3,
+          5,
+          3,
+          2,
+          3,
+          5,
+          4,
+          1,
+          6,
+          4,
+          2,
+          2,
+          3,
+          2,
+          1,
+          6,
+          3,
+          2,
+          4,
+          7,
+          3,
+          2,
+          2,
+          1,
+          7,
+          3,
+          4,
+          2,
+          4,
+          9,
+          5,
+          6,
+          4,
+          3,
+          3,
+          4,
+          3,
+          2,
+          5,
+          2,
+          2,
+          5,
+          5,
+          4,
+          3,
+          2,
+          6,
+          5,
+          2,
+          4,
+          2,
+          2,
+          3,
+          2,
+          6,
+          6,
+          4,
+          4,
+          5,
+          2,
+          4,
+          3,
+          4
+        ]
+      },
+      {
+        "name": "fresh-1-feed",
+        "mode": "feed",
+        "offset": 52084,
+        "truthSeed": [
+          9,
+          24
+        ],
+        "oov": 2,
+        "fit": -1.678805209307095,
+        "holdout": -1.8400812251654575,
+        "full": -1.8002858446289784,
+        "accuracy": 1,
+        "boundaryF1": 1,
+        "fitAccuracy": 1,
+        "seed": [
+          9,
+          24
+        ],
+        "firstWordCorrect": true,
+        "stats": {
+          "prefix": {
+            "score": -127.58919590733923,
+            "complete": -134.5941005675908,
+            "partial": -127.59010373973878,
+            "firstEdges": 80,
+            "processed": 25265,
+            "generated": 1232332,
+            "maxStates": 63156,
+            "clipped": 64,
+            "discarded": 1176127,
+            "largestLoss": 5.313408541682722e-15,
+            "lastReachable": 76,
+            "endStates": 6777
+          },
+          "full": {
+            "score": -554.4880401457253,
+            "complete": -554.4880401457253,
+            "partial": null,
+            "firstEdges": 80,
+            "processed": 114353,
+            "generated": 3828727,
+            "maxStates": 63156,
+            "clipped": 296,
+            "discarded": 3617578,
+            "largestLoss": 7.821973497904278e-10,
+            "lastReachable": 308,
+            "endStates": 7125,
+            "fallback": 2
+          }
+        },
+        "words": [
+          [
+            1,
+            3,
+            26
+          ],
+          [
+            18,
+            19,
+            3,
+            5
+          ],
+          [
+            26,
+            20,
+            17,
+            24,
+            9,
+            3,
+            15,
+            28,
+            4,
+            9,
+            1
+          ],
+          [
+            16,
+            15,
+            3,
+            19
+          ],
+          [
+            0,
+            20,
+            18,
+            15,
+            4,
+            1,
+            3,
+            26
+          ],
+          [
+            18,
+            9,
+            10,
+            0,
+            9,
+            3,
+            5
+          ],
+          [
+            1,
+            3,
+            26
+          ],
+          [
+            18,
+            10,
+            0
+          ],
+          [
+            27,
+            4,
+            18,
+            20,
+            24,
+            1
+          ],
+          [
+            15,
+            4,
+            24,
+            7
+          ],
+          [
+            18,
+            2
+          ],
+          [
+            19,
+            3,
+            4,
+            0
+          ],
+          [
+            9,
+            4,
+            1,
+            16,
+            18,
+            4
+          ],
+          [
+            23,
+            4,
+            3,
+            20
+          ],
+          [
+            26,
+            19
+          ],
+          [
+            20,
+            20,
+            10,
+            16
+          ],
+          [
+            23,
+            20,
+            3,
+            8,
+            15,
+            18,
+            4,
+            2
+          ],
+          [
+            18,
+            2
+          ],
+          [
+            4,
+            18,
+            1,
+            3
+          ],
+          [
+            16,
+            3,
+            9
+          ],
+          [
+            20,
+            20
+          ],
+          [
+            10
+          ],
+          [
+            18,
+            5,
+            9,
+            18,
+            10,
+            16,
+            24,
+            13
+          ],
+          [
+            4,
+            1,
+            3,
+            26
+          ],
+          [
+            26,
+            17
+          ],
+          [
+            3,
+            9
+          ],
+          [
+            23,
+            18,
+            18,
+            23,
+            9,
+            10
+          ],
+          [
+            27,
+            20,
+            10,
+            6,
+            4,
+            10,
+            1
+          ],
+          [
+            20,
+            20,
+            24,
+            8,
+            15
+          ],
+          [
+            18,
+            8,
+            15
+          ],
+          [
+            20,
+            20,
+            24,
+            8,
+            15
+          ],
+          [
+            18,
+            8,
+            15
+          ],
+          [
+            27,
+            9,
+            19,
+            1,
+            20,
+            3,
+            1
+          ],
+          [
+            15,
+            4,
+            3,
+            3,
+            23
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            16,
+            1,
+            3
+          ],
+          [
+            16,
+            3,
+            9
+          ],
+          [
+            27,
+            4,
+            18,
+            20,
+            24,
+            1
+          ],
+          [
+            15,
+            4,
+            3,
+            3,
+            23
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            16,
+            1,
+            3
+          ],
+          [
+            16,
+            3,
+            9
+          ],
+          [
+            20,
+            20,
+            10,
+            7
+          ],
+          [
+            10
+          ],
+          [
+            19,
+            24,
+            23,
+            24,
+            19
+          ],
+          [
+            23,
+            3,
+            3,
+            6
+          ],
+          [
+            3,
+            9
+          ],
+          [
+            27,
+            20,
+            10,
+            6,
+            4,
+            10,
+            1
+          ],
+          [
+            9,
+            3,
+            3,
+            9,
+            4,
+            18,
+            16,
+            0,
+            24
+          ],
+          [
+            15,
+            10,
+            2
+          ],
+          [
+            18,
+            19
+          ],
+          [
+            2,
+            10,
+            7
+          ],
+          [
+            18,
+            0,
+            10,
+            7,
+            18,
+            15,
+            1,
+            8
+          ],
+          [
+            18,
+            20,
+            23,
+            10
+          ],
+          [
+            18,
+            2
+          ],
+          [
+            26,
+            24,
+            20,
+            13
+          ],
+          [
+            1,
+            3,
+            26
+          ],
+          [
+            18,
+            1,
+            24,
+            8
+          ],
+          [
+            16,
+            15,
+            1,
+            19
+          ],
+          [
+            10
+          ],
+          [
+            26,
+            4,
+            18,
+            8,
+            5,
+            16,
+            10,
+            16,
+            15
+          ],
+          [
+            4,
+            1,
+            3,
+            26
+          ],
+          [
+            18,
+            23,
+            10,
+            15,
+            24
+          ],
+          [
+            26,
+            24,
+            20
+          ],
+          [
+            18,
+            19,
+            3,
+            5
+          ],
+          [
+            27,
+            4,
+            18,
+            20,
+            24,
+            1
+          ],
+          [
+            19,
+            24,
+            23,
+            24,
+            19
+          ],
+          [
+            5,
+            5,
+            24,
+            4,
+            5
+          ],
+          [
+            24
+          ],
+          [
+            27,
+            20,
+            10,
+            6,
+            4,
+            10,
+            1
+          ],
+          [
+            23,
+            20,
+            10,
+            8,
+            5
+          ],
+          [
+            18,
+            20,
+            17,
+            3,
+            9
+          ]
+        ],
+        "text": "NOBLE CHILD UIRGILIA A CRACC MADAM UALERIA COME LAY ASIDE YOUR STITCHERY I MUST HAUE YOU PLAY THE IDLE HUSEWIFE WITH ME THIS AFTERNOON UIRGILIA NO GOOD MADAM I WILL NOT OUT OF DOORS UALERIA NOT OUT OF DOORS UOLUMNIA SHE SHALL SHE SHALL UIRGILIA INDEED NO BY YOUR PATIENCE I LL NOT OUER THE THRESHOLD TILL MY LORD RETURN FROM THE WARS UALERIA FIE YOU CONFINE YOURSELF MOST UNREASONABLY COME YOU",
+        "printed": [
+          5,
+          4,
+          2,
+          4,
+          2,
+          6,
+          2,
+          3,
+          3,
+          5,
+          4,
+          4,
+          2,
+          3,
+          3,
+          5,
+          8,
+          3,
+          6,
+          7,
+          2,
+          3,
+          2,
+          6,
+          1,
+          2,
+          11,
+          6,
+          4,
+          2,
+          3,
+          9,
+          4,
+          4,
+          9,
+          5,
+          3,
+          7,
+          3,
+          1,
+          6,
+          7,
+          4,
+          2,
+          4,
+          4,
+          2,
+          8,
+          5,
+          5,
+          4,
+          8,
+          8,
+          5,
+          7,
+          5,
+          1,
+          3,
+          3,
+          1,
+          4,
+          2,
+          3,
+          5,
+          4,
+          4,
+          3,
+          7,
+          4,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "name": "fresh-2-feed",
+        "mode": "feed",
+        "offset": 70379,
+        "truthSeed": [
+          9,
+          24
+        ],
+        "oov": 3,
+        "fit": -2.0295820904107016,
+        "holdout": -1.7125031918619404,
+        "full": -1.7907434395557904,
+        "accuracy": 1,
+        "boundaryF1": 1,
+        "fitAccuracy": 1,
+        "seed": [
+          9,
+          24
+        ],
+        "firstWordCorrect": true,
+        "stats": {
+          "prefix": {
+            "score": -154.24823887121332,
+            "complete": -161.0298822245615,
+            "partial": -154.24937392427302,
+            "firstEdges": 26,
+            "processed": 24516,
+            "generated": 585222,
+            "maxStates": 14317,
+            "clipped": 62,
+            "discarded": 538935,
+            "largestLoss": 5.083110364842152e-15,
+            "lastReachable": 76,
+            "endStates": 6506
+          },
+          "full": {
+            "score": -551.5489793831835,
+            "complete": -551.5489793831835,
+            "partial": null,
+            "firstEdges": 26,
+            "processed": 113604,
+            "generated": 2375835,
+            "maxStates": 28686,
+            "clipped": 294,
+            "discarded": 2187789,
+            "largestLoss": 1.2627008453249006e-13,
+            "lastReachable": 308,
+            "endStates": 6083,
+            "fallback": 3
+          }
+        },
+        "words": [
+          [
+            18,
+            2
+          ],
+          [
+            9,
+            3
+          ],
+          [
+            16,
+            10,
+            7
+          ],
+          [
+            21,
+            13,
+            18,
+            18,
+            5
+          ],
+          [
+            18,
+            19,
+            3,
+            8
+          ],
+          [
+            18,
+            2
+          ],
+          [
+            15,
+            16,
+            5,
+            18,
+            11,
+            17,
+            3
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            26,
+            9,
+            24,
+            20,
+            20,
+            18,
+            5,
+            15,
+            10,
+            19
+          ],
+          [
+            24
+          ],
+          [
+            9,
+            3
+          ],
+          [
+            4,
+            18,
+            7,
+            3,
+            13
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            9,
+            27,
+            16,
+            24,
+            13,
+            10,
+            15,
+            15,
+            10,
+            23
+          ],
+          [
+            18,
+            2
+          ],
+          [
+            8,
+            6,
+            1,
+            3,
+            4,
+            2
+          ],
+          [
+            23,
+            9,
+            10,
+            19
+          ],
+          [
+            18,
+            2
+          ],
+          [
+            15,
+            16,
+            13,
+            1,
+            4,
+            5,
+            9,
+            24,
+            17
+          ],
+          [
+            15,
+            15,
+            18,
+            5,
+            14,
+            18
+          ],
+          [
+            15,
+            16,
+            10
+          ],
+          [
+            9,
+            10
+          ],
+          [
+            19,
+            15,
+            10,
+            23,
+            24,
+            19,
+            3,
+            9
+          ],
+          [
+            20,
+            24,
+            1,
+            16,
+            5,
+            18,
+            20,
+            20,
+            18,
+            16,
+            9,
+            10
+          ],
+          [
+            15,
+            10,
+            2
+          ],
+          [
+            23,
+            9,
+            24
+          ],
+          [
+            9,
+            27,
+            16,
+            24,
+            4,
+            18,
+            13,
+            15,
+            18,
+            23
+          ],
+          [
+            3,
+            16
+          ],
+          [
+            26,
+            4,
+            21,
+            1,
+            8
+          ],
+          [
+            23,
+            9,
+            24
+          ],
+          [
+            26,
+            23,
+            18,
+            18,
+            9
+          ],
+          [
+            18,
+            4,
+            18,
+            7
+          ],
+          [
+            15,
+            9,
+            27,
+            16,
+            24,
+            9
+          ],
+          [
+            20,
+            24,
+            4,
+            3,
+            16,
+            15,
+            24,
+            13
+          ],
+          [
+            18,
+            2
+          ],
+          [
+            15,
+            18,
+            26,
+            18
+          ],
+          [
+            15,
+            10,
+            8
+          ],
+          [
+            16,
+            18,
+            18,
+            19
+          ],
+          [
+            15,
+            16,
+            5,
+            18,
+            11,
+            17,
+            3
+          ],
+          [
+            8,
+            15,
+            18,
+            4,
+            0
+          ],
+          [
+            4,
+            18,
+            1,
+            18,
+            4,
+            18,
+            8,
+            7
+          ],
+          [
+            16,
+            15,
+            18,
+            4,
+            18,
+            16,
+            9,
+            10
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            15,
+            16,
+            9,
+            10,
+            3,
+            13
+          ],
+          [
+            19,
+            10,
+            8
+          ],
+          [
+            23,
+            20,
+            18,
+            10,
+            26
+          ],
+          [
+            8,
+            5,
+            10,
+            8,
+            7
+          ],
+          [
+            9,
+            27,
+            16,
+            24,
+            1,
+            4,
+            18,
+            15,
+            17,
+            3
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            15,
+            18,
+            10,
+            16,
+            20,
+            1,
+            5,
+            24,
+            0
+          ],
+          [
+            15,
+            10,
+            8
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            18,
+            21,
+            24,
+            4
+          ],
+          [
+            23,
+            18,
+            15,
+            28,
+            4,
+            5,
+            9,
+            10
+          ],
+          [
+            18,
+            2
+          ],
+          [
+            9,
+            10
+          ],
+          [
+            23,
+            18,
+            16,
+            28,
+            15
+          ],
+          [
+            4,
+            18,
+            13,
+            18,
+            18,
+            23
+          ],
+          [
+            15,
+            10
+          ],
+          [
+            26,
+            16,
+            10,
+            20,
+            10,
+            5,
+            24,
+            0
+          ],
+          [
+            15,
+            10,
+            8
+          ],
+          [
+            15,
+            13,
+            24,
+            8,
+            4,
+            18,
+            13
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            15,
+            26,
+            18,
+            9,
+            19,
+            10,
+            8,
+            5
+          ],
+          [
+            9,
+            7,
+            3
+          ]
+        ],
+        "text": "OWN CHIMNEYS OR PERHAPS HIS FACILITY IS DEEPER SEATED IN THE INCREASED RANGE OF HIS FACULTIES OF OBSERUATIAN WHICH YIELD HIM POINTS OF INTEREST WHEREUER FRESH OBJECTS MEET HIS EYES THE PASTORAL NATIANS WERE NEEDY AND HUNGRY TO DESPERATIAN AND THIS INTELLECTUAL NOMADISM IN ITS EXCESS BANCRUPTS THE MIND THROUGH THE DISSIPATIAN OF POWER ON A MISCELLANY OF OBJECTS THE HOME CEEPNG WIT ON THE",
+        "printed": [
+          2,
+          1,
+          5,
+          6,
+          2,
+          8,
+          5,
+          2,
+          8,
+          3,
+          10,
+          6,
+          8,
+          5,
+          5,
+          8,
+          2,
+          2,
+          4,
+          3,
+          7,
+          3,
+          10,
+          8,
+          5,
+          2,
+          9,
+          6,
+          2,
+          2,
+          3,
+          5,
+          2,
+          2,
+          5,
+          12,
+          2,
+          3,
+          6,
+          4,
+          4,
+          3,
+          3,
+          2,
+          2,
+          4,
+          5,
+          4,
+          3,
+          4,
+          2,
+          10,
+          3,
+          9,
+          6,
+          2,
+          2,
+          7,
+          2,
+          3,
+          2,
+          10,
+          7,
+          8,
+          8
+        ]
+      },
+      {
+        "name": "fresh-0-continuous",
+        "mode": "continuous",
+        "offset": 11820,
+        "truthSeed": [
+          9,
+          24
+        ],
+        "oov": 0,
+        "fit": -5.085884996535586,
+        "holdout": null,
+        "full": null,
+        "accuracy": null,
+        "boundaryF1": null,
+        "fitAccuracy": null,
+        "seed": null,
+        "firstWordCorrect": null,
+        "stats": {
+          "prefix": {
+            "score": -386.52725973670454,
+            "complete": -388.70177811819156,
+            "partial": -386.6479176438155,
+            "firstEdges": 40,
+            "processed": 24731,
+            "generated": 340368,
+            "maxStates": 14004,
+            "clipped": 62,
+            "discarded": 302974,
+            "largestLoss": 3.502610190147037e-7,
+            "lastReachable": 76,
+            "endStates": 1323
+          },
+          "full": {
+            "score": null,
+            "complete": null,
+            "partial": null,
+            "firstEdges": 40,
+            "processed": 36576,
+            "generated": 369986,
+            "maxStates": 14004,
+            "clipped": 89,
+            "discarded": 317715,
+            "largestLoss": 3.502610190147037e-7,
+            "lastReachable": 119,
+            "endStates": 0
+          }
+        },
+        "words": null,
+        "text": null,
+        "printed": [
+          2,
+          9,
+          4,
+          5,
+          6,
+          3,
+          7,
+          3,
+          3,
+          4,
+          3,
+          5,
+          2,
+          3,
+          4,
+          3,
+          6,
+          9,
+          3,
+          5,
+          3,
+          2,
+          3,
+          5,
+          4,
+          1,
+          6,
+          4,
+          2,
+          2,
+          3,
+          2,
+          1,
+          6,
+          3,
+          2,
+          4,
+          7,
+          3,
+          2,
+          2,
+          1,
+          7,
+          3,
+          4,
+          2,
+          4,
+          9,
+          5,
+          6,
+          4,
+          3,
+          3,
+          4,
+          3,
+          2,
+          5,
+          2,
+          2,
+          5,
+          5,
+          4,
+          3,
+          2,
+          6,
+          5,
+          2,
+          4,
+          2,
+          2,
+          3,
+          2,
+          6,
+          6,
+          4,
+          4,
+          5,
+          2,
+          4,
+          3,
+          4
+        ]
+      },
+      {
+        "name": "fresh-1-continuous",
+        "mode": "continuous",
+        "offset": 52084,
+        "truthSeed": [
+          9,
+          24
+        ],
+        "oov": 2,
+        "fit": -4.934943880941062,
+        "holdout": null,
+        "full": null,
+        "accuracy": null,
+        "boundaryF1": null,
+        "fitAccuracy": null,
+        "seed": null,
+        "firstWordCorrect": null,
+        "stats": {
+          "prefix": {
+            "score": -375.0557349515207,
+            "complete": -380.6430531533117,
+            "partial": -375.05948703970705,
+            "firstEdges": 49,
+            "processed": 24657,
+            "generated": 1295709,
+            "maxStates": 73616,
+            "clipped": 63,
+            "discarded": 1245048,
+            "largestLoss": 0.00006124837847332361,
+            "lastReachable": 76,
+            "endStates": 2581
+          },
+          "full": {
+            "score": null,
+            "complete": null,
+            "partial": null,
+            "firstEdges": 49,
+            "processed": 35676,
+            "generated": 1317476,
+            "maxStates": 73616,
+            "clipped": 85,
+            "discarded": 1255509,
+            "largestLoss": 0.00006124837847332361,
+            "lastReachable": 125,
+            "endStates": 0
+          }
+        },
+        "words": null,
+        "text": null,
+        "printed": [
+          5,
+          4,
+          2,
+          4,
+          2,
+          6,
+          2,
+          3,
+          3,
+          5,
+          4,
+          4,
+          2,
+          3,
+          3,
+          5,
+          8,
+          3,
+          6,
+          7,
+          2,
+          3,
+          2,
+          6,
+          1,
+          2,
+          11,
+          6,
+          4,
+          2,
+          3,
+          9,
+          4,
+          4,
+          9,
+          5,
+          3,
+          7,
+          3,
+          1,
+          6,
+          7,
+          4,
+          2,
+          4,
+          4,
+          2,
+          8,
+          5,
+          5,
+          4,
+          8,
+          8,
+          5,
+          7,
+          5,
+          1,
+          3,
+          3,
+          1,
+          4,
+          2,
+          3,
+          5,
+          4,
+          4,
+          3,
+          7,
+          4,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "name": "fresh-2-continuous",
+        "mode": "continuous",
+        "offset": 70379,
+        "truthSeed": [
+          9,
+          24
+        ],
+        "oov": 3,
+        "fit": null,
+        "holdout": null,
+        "full": null,
+        "accuracy": null,
+        "boundaryF1": null,
+        "fitAccuracy": null,
+        "seed": null,
+        "firstWordCorrect": null,
+        "stats": {
+          "prefix": {
+            "score": null,
+            "complete": null,
+            "partial": null,
+            "firstEdges": 0,
+            "processed": 0,
+            "generated": 0,
+            "maxStates": 0,
+            "clipped": 0,
+            "discarded": 0,
+            "largestLoss": 0,
+            "lastReachable": 0,
+            "endStates": 0
+          },
+          "full": {
+            "score": null,
+            "complete": null,
+            "partial": null,
+            "firstEdges": 0,
+            "processed": 0,
+            "generated": 0,
+            "maxStates": 0,
+            "clipped": 0,
+            "discarded": 0,
+            "largestLoss": 0,
+            "lastReachable": 0,
+            "endStates": 0
+          }
+        },
+        "words": null,
+        "text": null,
+        "printed": [
+          2,
+          1,
+          5,
+          6,
+          2,
+          8,
+          5,
+          2,
+          8,
+          3,
+          10,
+          6,
+          8,
+          5,
+          5,
+          8,
+          2,
+          2,
+          4,
+          3,
+          7,
+          3,
+          10,
+          8,
+          5,
+          2,
+          9,
+          6,
+          2,
+          2,
+          3,
+          5,
+          2,
+          2,
+          5,
+          12,
+          2,
+          3,
+          6,
+          4,
+          4,
+          3,
+          3,
+          2,
+          2,
+          4,
+          5,
+          4,
+          3,
+          4,
+          2,
+          10,
+          3,
+          9,
+          6,
+          2,
+          2,
+          7,
+          2,
+          3,
+          2,
+          10,
+          7,
+          8,
+          8
+        ]
+      },
+      {
+        "name": "original",
+        "mode": "unknown",
+        "truthSeed": [
+          9,
+          24
+        ],
+        "fit": -5.075770268970296,
+        "holdout": null,
+        "full": null,
+        "accuracy": null,
+        "boundaryF1": null,
+        "fitAccuracy": null,
+        "seed": null,
+        "firstWordCorrect": null,
+        "stats": {
+          "prefix": {
+            "score": -385.7585404417425,
+            "complete": -386.50972950584094,
+            "partial": -386.3968305892041,
+            "firstEdges": 24,
+            "processed": 24514,
+            "generated": 254861,
+            "maxStates": 8817,
+            "clipped": 62,
+            "discarded": 219884,
+            "largestLoss": 0.0000010456295397563397,
+            "lastReachable": 76,
+            "endStates": 827
+          },
+          "full": {
+            "score": null,
+            "complete": null,
+            "partial": null,
+            "firstEdges": 24,
+            "processed": 29925,
+            "generated": 262152,
+            "maxStates": 8817,
+            "clipped": 69,
+            "discarded": 221515,
+            "largestLoss": 0.0000010456295397563397,
+            "lastReachable": 109,
+            "endStates": 0
+          }
+        },
+        "words": null,
+        "text": null,
+        "printed": null
+      }
+    ]
+  },
+  "exactLexical": {
+    "parameters": {
+      "N": 308,
+      "S": 76,
+      "L": 24,
+      "B": 0,
+      "EPS": 0.05,
+      "WIDTH": 1000000,
+      "nativeSingletons": true,
+      "firstOov": true,
+      "lexicon": 35775,
+      "trainTypes": 10605,
+      "trainTokens": 114802,
+      "externalTypes": 33369
+    },
+    "cases": [
+      {
+        "name": "fresh-0-feed",
+        "mode": "feed",
+        "offset": 11820,
+        "truthSeed": [
+          9,
+          24
+        ],
+        "oov": 0,
+        "fit": -1.7527978793493042,
+        "holdout": -1.7449384320269834,
+        "full": -1.746877776171452,
+        "accuracy": 1,
+        "boundaryF1": 1,
+        "fitAccuracy": 1,
+        "seed": [
+          9,
+          24
+        ],
+        "firstWordCorrect": true,
+        "stats": {
+          "prefix": {
+            "score": -133.21263883054712,
+            "complete": -133.21550489681064,
+            "partial": -139.06888635069825,
+            "firstEdges": 3,
+            "processed": 48,
+            "generated": 49,
+            "maxStates": 2,
+            "clipped": 0,
+            "discarded": 0,
+            "largestLoss": 0,
+            "lastReachable": 76,
+            "endStates": 1
+          },
+          "full": {
+            "score": -538.0383550608072,
+            "complete": -538.0383550608072,
+            "partial": null,
+            "firstEdges": 3,
+            "processed": 194,
+            "generated": 197,
+            "maxStates": 3,
+            "clipped": 0,
+            "discarded": 0,
+            "largestLoss": 0,
+            "lastReachable": 308,
+            "endStates": 1,
+            "fallback": 0
+          }
+        },
+        "words": [
+          [
+            23,
+            9,
+            24
+          ],
+          [
+            21,
+            4,
+            18,
+            2,
+            24,
+            6
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            26,
+            24,
+            23
+          ],
+          [
+            18,
+            2
+          ],
+          [
+            18,
+            17
+          ],
+          [
+            21,
+            16,
+            4,
+            24,
+            13
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            26,
+            24,
+            23
+          ],
+          [
+            18,
+            2
+          ],
+          [
+            20,
+            20,
+            24,
+            8,
+            15
+          ],
+          [
+            0,
+            20,
+            18,
+            15,
+            19,
+            10,
+            8
+          ],
+          [
+            3,
+            16
+          ],
+          [
+            23,
+            10,
+            24,
+            15
+          ],
+          [
+            18,
+            8
+          ],
+          [
+            23,
+            9,
+            24
+          ],
+          [
+            13,
+            10,
+            8,
+            15
+          ],
+          [
+            15,
+            10,
+            8
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            21,
+            19,
+            3,
+            5
+          ],
+          [
+            18,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            4,
+            18,
+            2,
+            3,
+            9,
+            24
+          ],
+          [
+            18,
+            9,
+            3
+          ],
+          [
+            21,
+            20,
+            20,
+            18,
+            16
+          ],
+          [
+            23,
+            20,
+            18,
+            10,
+            0
+          ],
+          [
+            3,
+            16
+          ],
+          [
+            23,
+            20,
+            18,
+            10,
+            0
+          ],
+          [
+            19,
+            3,
+            4,
+            0
+          ],
+          [
+            21,
+            16,
+            1,
+            3,
+            8,
+            15
+          ],
+          [
+            23,
+            9,
+            24
+          ],
+          [
+            18,
+            19,
+            24,
+            9
+          ],
+          [
+            15,
+            10,
+            8
+          ],
+          [
+            21,
+            20,
+            20,
+            24,
+            5
+          ],
+          [
+            15,
+            18,
+            5,
+            10,
+            3,
+            1
+          ],
+          [
+            4,
+            10,
+            18,
+            2
+          ],
+          [
+            23,
+            4,
+            28,
+            8
+          ],
+          [
+            18,
+            8
+          ],
+          [
+            23,
+            9,
+            24
+          ],
+          [
+            15,
+            18,
+            16,
+            24,
+            6
+          ],
+          [
+            26,
+            16,
+            10,
+            5
+          ],
+          [
+            18,
+            2
+          ],
+          [
+            15,
+            23,
+            4,
+            24,
+            7,
+            3,
+            16
+          ],
+          [
+            21,
+            9,
+            18,
+            16,
+            15,
+            24,
+            8
+          ],
+          [
+            23,
+            9,
+            24
+          ],
+          [
+            15,
+            23,
+            4,
+            24,
+            26,
+            18,
+            9,
+            10,
+            1
+          ],
+          [
+            4,
+            10,
+            18,
+            2
+          ],
+          [
+            23,
+            9,
+            24
+          ],
+          [
+            15,
+            23,
+            20,
+            18,
+            10,
+            0
+          ],
+          [
+            4,
+            10,
+            18,
+            2
+          ],
+          [
+            21,
+            1,
+            28,
+            20
+          ],
+          [
+            9,
+            18,
+            19,
+            3,
+            7
+          ],
+          [
+            23,
+            9,
+            24
+          ],
+          [
+            9,
+            18,
+            19
+          ],
+          [
+            4,
+            24,
+            0,
+            24
+          ],
+          [
+            19,
+            3,
+            4,
+            0
+          ],
+          [
+            7,
+            24,
+            15
+          ],
+          [
+            18,
+            8
+          ],
+          [
+            23,
+            18,
+            5,
+            20,
+            24,
+            7
+          ],
+          [
+            18,
+            8
+          ],
+          [
+            15,
+            24
+          ],
+          [
+            23,
+            9,
+            24
+          ],
+          [
+            9,
+            28,
+            5,
+            3
+          ],
+          [
+            15,
+            15,
+            18,
+            20,
+            23,
+            9,
+            1,
+            3,
+            17
+          ],
+          [
+            24
+          ],
+          [
+            3,
+            16
+          ],
+          [
+            13,
+            3,
+            4,
+            23
+          ],
+          [
+            15,
+            15,
+            18,
+            20,
+            23,
+            9,
+            1,
+            3,
+            17
+          ],
+          [
+            24
+          ],
+          [
+            1,
+            3,
+            26
+          ],
+          [
+            3,
+            16
+          ],
+          [
+            18,
+            19,
+            3,
+            5
+          ],
+          [
+            10
+          ],
+          [
+            20,
+            20,
+            24,
+            8,
+            15
+          ],
+          [
+            9,
+            18,
+            2
+          ],
+          [
+            23,
+            9,
+            24
+          ],
+          [
+            18,
+            23,
+            24,
+            20,
+            6
+          ],
+          [
+            15,
+            10,
+            2
+          ],
+          [
+            9,
+            10
+          ],
+          [
+            4,
+            1,
+            19,
+            4,
+            1,
+            19
+          ],
+          [
+            4,
+            18,
+            2,
+            3,
+            9,
+            24
+          ]
+        ],
+        "text": "ANOTHER MURMUR IN THIS GLADE AND THEN SHALL I COME TO YOU A BOUNDLESS DROP TO A BOUNDLESS OCEAN AND AS HE WALCED HE SAW FROM AFAR MEN AND WOMEN LEAUNG THEIR FIELDS AND THEIR UINEYARDS AND HASTENNG TOWARDS THE CITY GATES AND HE HEARD THEIR UOICES CALLNG HIS NAME AND SHOUTNG FROM FIELD TO FIELD TELLNG ONE ANOTHER OF THE COMNG OF HIS SHIP AND HE SAID TO HIMSELF SHALL THE DAY OF PARTNG BE THE DAY OF GATHERNG AND",
+        "printed": [
+          2,
+          9,
+          4,
+          5,
+          6,
+          3,
+          7,
+          3,
+          3,
+          4,
+          3,
+          5,
+          2,
+          3,
+          4,
+          3,
+          6,
+          9,
+          3,
+          5,
+          3,
+          2,
+          3,
+          5,
+          4,
+          1,
+          6,
+          4,
+          2,
+          2,
+          3,
+          2,
+          1,
+          6,
+          3,
+          2,
+          4,
+          7,
+          3,
+          2,
+          2,
+          1,
+          7,
+          3,
+          4,
+          2,
+          4,
+          9,
+          5,
+          6,
+          4,
+          3,
+          3,
+          4,
+          3,
+          2,
+          5,
+          2,
+          2,
+          5,
+          5,
+          4,
+          3,
+          2,
+          6,
+          5,
+          2,
+          4,
+          2,
+          2,
+          3,
+          2,
+          6,
+          6,
+          4,
+          4,
+          5,
+          2,
+          4,
+          3,
+          4
+        ]
+      },
+      {
+        "name": "fresh-1-feed",
+        "mode": "feed",
+        "offset": 52084,
+        "truthSeed": [
+          9,
+          24
+        ],
+        "oov": 2,
+        "fit": -1.6802453427797388,
+        "holdout": null,
+        "full": null,
+        "accuracy": null,
+        "boundaryF1": null,
+        "fitAccuracy": null,
+        "seed": null,
+        "firstWordCorrect": null,
+        "stats": {
+          "prefix": {
+            "score": -127.69864605126014,
+            "complete": -135.22575704852267,
+            "partial": -127.69918448732787,
+            "firstEdges": 2,
+            "processed": 54,
+            "generated": 58,
+            "maxStates": 2,
+            "clipped": 0,
+            "discarded": 0,
+            "largestLoss": 0,
+            "lastReachable": 76,
+            "endStates": 1
+          },
+          "full": {
+            "score": null,
+            "complete": null,
+            "partial": null,
+            "firstEdges": 2,
+            "processed": 166,
+            "generated": 171,
+            "maxStates": 4,
+            "clipped": 0,
+            "discarded": 0,
+            "largestLoss": 0,
+            "lastReachable": 223,
+            "endStates": 0
+          }
+        },
+        "words": null,
+        "text": null,
+        "printed": [
+          5,
+          4,
+          2,
+          4,
+          2,
+          6,
+          2,
+          3,
+          3,
+          5,
+          4,
+          4,
+          2,
+          3,
+          3,
+          5,
+          8,
+          3,
+          6,
+          7,
+          2,
+          3,
+          2,
+          6,
+          1,
+          2,
+          11,
+          6,
+          4,
+          2,
+          3,
+          9,
+          4,
+          4,
+          9,
+          5,
+          3,
+          7,
+          3,
+          1,
+          6,
+          7,
+          4,
+          2,
+          4,
+          4,
+          2,
+          8,
+          5,
+          5,
+          4,
+          8,
+          8,
+          5,
+          7,
+          5,
+          1,
+          3,
+          3,
+          1,
+          4,
+          2,
+          3,
+          5,
+          4,
+          4,
+          3,
+          7,
+          4,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "name": "fresh-2-feed",
+        "mode": "feed",
+        "offset": 70379,
+        "truthSeed": [
+          9,
+          24
+        ],
+        "oov": 3,
+        "fit": null,
+        "holdout": null,
+        "full": null,
+        "accuracy": null,
+        "boundaryF1": null,
+        "fitAccuracy": null,
+        "seed": null,
+        "firstWordCorrect": null,
+        "stats": {
+          "prefix": {
+            "score": null,
+            "complete": null,
+            "partial": null,
+            "firstEdges": 1,
+            "processed": 19,
+            "generated": 19,
+            "maxStates": 2,
+            "clipped": 0,
+            "discarded": 0,
+            "largestLoss": 0,
+            "lastReachable": 30,
+            "endStates": 0
+          },
+          "full": {
+            "score": null,
+            "complete": null,
+            "partial": null,
+            "firstEdges": 1,
+            "processed": 19,
+            "generated": 19,
+            "maxStates": 2,
+            "clipped": 0,
+            "discarded": 0,
+            "largestLoss": 0,
+            "lastReachable": 30,
+            "endStates": 0
+          }
+        },
+        "words": null,
+        "text": null,
+        "printed": [
+          2,
+          1,
+          5,
+          6,
+          2,
+          8,
+          5,
+          2,
+          8,
+          3,
+          10,
+          6,
+          8,
+          5,
+          5,
+          8,
+          2,
+          2,
+          4,
+          3,
+          7,
+          3,
+          10,
+          8,
+          5,
+          2,
+          9,
+          6,
+          2,
+          2,
+          3,
+          5,
+          2,
+          2,
+          5,
+          12,
+          2,
+          3,
+          6,
+          4,
+          4,
+          3,
+          3,
+          2,
+          2,
+          4,
+          5,
+          4,
+          3,
+          4,
+          2,
+          10,
+          3,
+          9,
+          6,
+          2,
+          2,
+          7,
+          2,
+          3,
+          2,
+          10,
+          7,
+          8,
+          8
+        ]
+      },
+      {
+        "name": "original",
+        "mode": "unknown",
+        "truthSeed": [
+          9,
+          24
+        ],
+        "fit": null,
+        "holdout": null,
+        "full": null,
+        "accuracy": null,
+        "boundaryF1": null,
+        "fitAccuracy": null,
+        "seed": null,
+        "firstWordCorrect": null,
+        "stats": {
+          "prefix": {
+            "score": null,
+            "complete": null,
+            "partial": null,
+            "firstEdges": 1,
+            "processed": 4,
+            "generated": 4,
+            "maxStates": 1,
+            "clipped": 0,
+            "discarded": 0,
+            "largestLoss": 0,
+            "lastReachable": 6,
+            "endStates": 0
+          },
+          "full": {
+            "score": null,
+            "complete": null,
+            "partial": null,
+            "firstEdges": 1,
+            "processed": 4,
+            "generated": 4,
+            "maxStates": 1,
+            "clipped": 0,
+            "discarded": 0,
+            "largestLoss": 0,
+            "lastReachable": 6,
+            "endStates": 0
+          }
+        },
+        "words": null,
+        "text": null,
+        "printed": null
+      }
+    ]
+  }
+}
