@@ -54,12 +54,23 @@ function run(corpus,gibran,emerson,shakespeare,seeds,{group="control",start=0,en
  const rows=group==="candidates"?seeds:nullSeeds(seeds);
  return rows.slice(start,end).map(({rank,seed,tier})=>({rank,seed,tier,...lib.beam(C,key(seed,2*N+16),L,{width:WIDTH,trace,hold:HOLD})}));
 }
-module.exports={random42,key,nullSeeds,run};
+function nativeControl(corpus,gibran,emerson,native){
+ const L=lib.model([lib.convert(gibran,corpus.translit),lib.convert(emerson,corpus.translit)]);
+ const tape=native.sections.flatMap(z=>Array.from(z.source_text).map(ch=>native.runes.indexOf(ch)).filter(i=>i>=0));
+ if(tape.length!==2979)throw Error("native source length");
+ const P=Array.from({length:N},(_,i)=>tape[i%tape.length]);
+ const seed=0x99aabbcc,K=key(seed,2*N+16),enc=lib.plant(P,K,0x27182818);
+ const d=lib.beam(enc.C,K,L,{width:WIDTH,trace:true,hold:HOLD});
+ const recovered=d.P.filter((x,i)=>x===P[i]).length,heldRecovered=d.P.slice(-HOLD).filter((x,i)=>x===P[N-HOLD+i]).length;
+ delete d.P;delete d.ks;return {seed,nativeRunes:tape.length,trueSkips:enc.sk,recovered,heldRecovered,...d};
+}
+module.exports={random42,key,nullSeeds,run,nativeControl};
 if(require.main===module){
  const fs=require("node:fs"),path=require("node:path");
  const read=p=>fs.readFileSync(path.resolve(__dirname,"..",p),"utf8");
  const corpus=JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
  const seeds=JSON.parse(read("im-results/agent50-2667-pgp-seeds.json")).candidates;
  const [group="control",start="0",end="10",trace="false"]=process.argv.slice(2);
- console.log(JSON.stringify(run(corpus,read("resources/control/gibran_prophet_58585.txt"),read("resources/control/emerson_essays_2944.txt"),read("resources/control/shakespeare_first300k.txt"),seeds,{group,start:+start,end:+end,trace:trace==="true"}),null,2));
+ const g=read("resources/control/gibran_prophet_58585.txt"),e=read("resources/control/emerson_essays_2944.txt");
+ console.log(JSON.stringify(group==="native"?nativeControl(corpus,g,e,JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json"))):run(corpus,g,e,read("resources/control/shakespeare_first300k.txt"),seeds,{group,start:+start,end:+end,trace:trace==="true"}),null,2));
 }
