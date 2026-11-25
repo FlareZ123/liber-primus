@@ -20,6 +20,8 @@ This entry point prioritizes facts and decisions that change a plausible route t
 
 **LP1 running key + authentic F-hold and unlimited collision redraw:** exact simultaneous all-origin Viterbi over the corrected and printed 2,797-rune sources, GP index/prime encodings and both signs recovers all three planted offsets and 434/434 frozen withheld runes. Eight of nine original prefix winners die in withheld continuation, the ninth is nonprose (−5.177 nats/rune). All 72 retrospective variant/window domains remain legal, but best full-window scores −5.079 to −4.842 are nonprose. Retire this source-fixed combined clock at the tested scopes; no arbitrary-language impossibility. [Report](../im-results/lp2-lp1-runningkey-fhold-redraw-original-gate.md) · [SFT](../sims/lp2_lp1_runningkey_fhold_redraw_exact_sft.cjs).
 
+**Explicit-delimiter Latin29 q8 (#2694):** exact cyclic max-sum DP over all period-eight additive keys under hard adjacent grammar, p54 fit/p55 continuation, independent of printed spacing. Four hidden-key plants recover 32/32 digits and 304/304 withheld characters; original unique optimum [27,14,4,5,19,20,15,23] gives −3.263/−4.156 nats/character and two withheld delimiter violations, nonprose. Retire this fixed predictive receiver, not all explicit-space registers or H-decoy. [Report](../im-results/lp2-explicit-latin29-q8-exact.md) · [SFT](../sims/lp2_explicit_latin29_q8_exact_sft.cjs).
+
 ## 1. Original source and real decoding controls
 
 | Source object | Established constraint |
