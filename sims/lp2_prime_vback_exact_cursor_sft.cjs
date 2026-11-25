@@ -72,6 +72,7 @@ function experiment(raw,scope="plants"){
   for(const hold of [false,true]){const R=rng(0x3301bace+d*31+Number(hold)),origin=Math.floor(R()*(MAXSTART+1)),K=d===1?Kminus:Kplus,z=plant(P,K,hold,origin,R),out=attack(z.C,K,hold,cut,P);plants.push({d,hold,length,cut,origin,actualHolds:z.events.filter(v=>v===-1).length,actualBacksteps:z.events.reduce((a,v)=>a+Math.max(v,0),0),...out})}
  }}
  const originals=[];
+ if(scope==="whole"){for(const {a,b,C} of chapters)for(const sign of [1,-1]){const z=solve(C,sign===1?Kplus:Kminus,true,0,C.length,all);originals.push({a,b,sign,n:C.length,...z})}}
  if(scope==="original"||scope==="all"){for(const {a,b,C} of chapters){const cut=Math.floor(C.length*2/3);for(const hold of [false,true])for(const sign of [1,-1])originals.push({a,b,hold,sign,n:C.length,cut,...attack(C,sign===1?Kplus:Kminus,hold,cut)})}}
  return {scope,authentic:{runes:official.length,consuming:auth.end,exact:true},supp,MAXSTART,plants,originals};
 }
