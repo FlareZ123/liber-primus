@@ -42,8 +42,52 @@ Individual position boxes are preserved in the existing [machine-readable source
 
 **Independent original-red transfer:** Train only on those ten correctly registered ordinary solved-red glyphs, spanning eight GP classes (J, OE, S, R, A, B, L, E), and hold out all unknown red glyphs. Fix red pixels as R>80, R>1.45G, R>1.45B, tightly crop and resize with Pillow BOX to 50x50, and rank red silhouettes by IoU over translations within two pixels. First apply the eight *original-image* registration repairs already documented above, omitting their fake punctuation fragments, the one joined p0 glyph component and the six oversized artistic initials. Among **41 original unknown-page glyphs** from eleven different physical pages with one of these eight source-known classes, **40/41** match their independently solved red prototype, including **11/11 on p53**. The sole misclassification is p15:14, visibly a B but marginally nearest solved R (IoU 0.6819 versus solved B 0.6024) due to print proportions. The original p43 black-template prediction there is B. This is a class-heldout validation of those 41 glyphs, without plaintext scoring or reassigning any rune. [Original-image SFT](../sims/lp2_red_solved_control_alignment_sft.py). Red glyphs not represented by the eight solved classes remain outside this particular independent check.
 
+## Physical red/black registration and RGB-plane displacement (Agent37, 25 November, #2848)
+
+This is a separate measurement of source geometry, not a reclassification of the 79 historical rune-assignment flags. A physically shifted red layer could supply a second state only if a common black reference or internal color-plane alignment gave an independent coordinate. We tested both where observable, using the original 75 JPEGs without re-encoding.
+
+### Same-line physical placement
+
+Reuse the p56-only fixed ordinary-glyph receiver from [the direction-channel study](lp2-allograph-full-source-controlled-split.md#explicit-rotation-and-reflection-receiver-agent37-25-november-2852). The candidate geometry and upright score ≥0.90 were determined before RGB classification. Label a grayscale ink pixel red if R−G>50, R−B>35 and G<180; classify a component red when ≥80% of ink pixels satisfy that rule, black when ≤5%. Group glyph tops by consecutive gaps ≤30 pixels. Where ≥4 ordinary black glyphs share a line, use their median top and bottom coordinates as two independent vertical references. No glyph identity, word order or desired plaintext enters this registration decision.
+
+| Scope | All admitted red glyphs | Red with black reference | Exactly zero top and bottom residual | Maximum absolute top/bottom residual |
+|---|---:|---:|---:|---:|
+| Solved LP1 | 147 | 126 | 85 | 2 / 2 px |
+| Unknown LP2 p0–55 | 198 | 107 | 74 | 2 / 2 px |
+| Solved LP2 p56–57 | 10 | 10 | 7 | 1 / 0 px |
+
+All 107 measured unknown red glyphs lie in the ordinary black-reference envelope. No residual class requires an extra layer displacement. The 198 ordinary red candidates are not the full annotated red position count: oversized, touching and other rejected glyphs are not silently included. There are 91 red candidates on lines with fewer than four admitted black controls. In particular, p7's isolated caption top y=2458 follows its preceding ordinary line at median y=2214; p53's red-only line minima y=1874,2062,2250 follow its last mixed line at y=1650 (224-pixel paragraph gap then 188-pixel normal line advances). p27's heading begins at y=917 before the first well-populated black line at y=1105. These are layout observations, not independent same-line alignment measurements; p15's standalone rubric above the numeric square has no local ordinary black reference. p36, p38 and p49 supply no admitted ordinary red GP glyphs under this filter; other red components are included in the whole-image test below. Page skew is already bounded by the direction-channel study (zero page median, maximum estimated line slope 0.104174°).
+
+A common whole-red horizontal translation cannot be determined from disjoint proportional-width text without an independent common x-anchor. The test does not convert line indentation, heading placement, or paragraph gaps into a guessed state alphabet. No such source-fixed independent horizontal origin was identified.
+
+### Whole-image color-plane registration
+
+Independently of the rune receiver, extract every connected red mask component of area ≥5 pixels using the same chroma threshold over the **entire original image**, including punctuation, grid numerals, oversized initials and art. Match to the grayscale<160 connected component having maximum exact overlap. The observable is intersection-over-union (IoU) and signed centroid displacement in original pixels. An explicit 1-pixel displacement gate requires IoU≥0.90 and both centroid differences within 0.5px; a low-IoU component is flagged for manual adjudication, never interpreted as a key.
+
+| Source | Red components | IoU≥0.90 | Minimum admitted IoU | Max abs dx | Max abs dy |
+|---|---:|---:|---:|---:|---:|
+| LP1 | 556 | 552 | 0.966667 | 0.102273 | 0.342677 |
+| Unknown LP2 | 645 | 645 | 0.954577 | 0.141998 | 0.348662 |
+| Solved LP2 | 85 | 85 | 0.999425 | 0.010399 | 0.020695 |
+
+Four LP1 red oversized initials have their grayscale component merged into a much larger dark region and are rejected by the IoU gate; no unknown LP2 component is rejected. All 645 unknown-page red elements have a congruent dark-ink component. The largest unknown vertical residual is −0.348662px on p37 at x605,y694,w60,h94 (IoU .974020); the largest horizontal residual is −0.141998px on the same page at x601,y2569,w69,h96 (IoU .981589). These remain subpixel and comparable to the 0.342677px largest LP1 vertical residual. In the independent ordinary isolated-glyph subset, 106 unknown red crops have chroma/luma IoU≥.9992278, maximum abs dx .010247px, maximum abs dy .043479px. The same exact small displacement occurs in repeated EO glyphs at p27 (1324,918), p33 (1096,1915) and twice in p53 (872,1875 and 1479,1875); it does not supply distinct chapter states.
+
+The 85 matched held-out solved p56/p57 red components each receive four independent artificial one-pixel chroma-only translations (±x, ±y), leaving their real grayscale masks fixed. The receiver flags **340/340** and recovers all 340 original component matches and exact applied offsets relative to their unshifted measurements. This positive control verifies sensitivity to mask-level integer chroma displacement; it does not simulate JPEG re-encoding or establish how color was composed historically.
+
+### Reproduction and route decision
+
+Run the [ordinary baseline receiver](../sims/lp2_red_baseline_registration.py) using the coordinate JSON produced by [the direction receiver](../sims/lp2_orientation_original_gate.py), and independently run [the complete color-component receiver](../sims/lp2_red_component_registration.py) directly on the original ZIP:
+
+```bash
+python sims/lp2_orientation_original_gate.py liber-primus-jpegs.zip orientation.json
+python sims/lp2_red_baseline_registration.py liber-primus-jpegs.zip orientation.json registration.json
+python sims/lp2_red_component_registration.py liber-primus-jpegs.zip components.json
+```
+
+The local OpenCV 4.13.0 runs completed on the original files; no CI claim. The two JSON outputs regenerate the per-coordinate registration records, including all 1,286 complete color-component matches/rejections and the plant outcomes. This result closes the explicit vertical same-line displacement and integer chroma/luma registration channel, not every possible horizontal or subpixel steganographic encoding. No authentic state alphabet, reversible decoder, plaintext or key is obtained. Reopen only for an independently source-selected alignment reference and readout; the ordinary red glyph and punctuation identities remain unchanged.
+
 ## Reproduction and decision
 
 Run [the standalone original-image SFT](../sims/lp2_red_span_source_adjudication_sft.py). It checks the frozen audit JSON, seven span shifts and original-image leading red pixels, verifies that the seven terminal pseudo-runes occupy narrow punctuation components, and repeats the p53 native-red shape test. The test uses no language scoring or new cipher hypothesis.
 
-**Keep the 51-runic p53 transcription unchanged. All 79 red nearest-template mismatch flags now have source-visible registration or decorative-glyph explanations (73 structural, six stylistic).** Retire the raw disagreement count as evidence of incorrect red rune text. Further research should seek an independently readable second channel or source-selected decryption method. Preserve 79 only as the former algorithm's output count. No plaintext, key or destination is recovered here.
+**Keep the 51-runic p53 transcription unchanged. All 79 red nearest-template mismatch flags now have source-visible registration or decorative-glyph explanations (73 structural, six stylistic).** Retire the raw disagreement count as evidence of incorrect red rune text. The explicit physical registration test above finds no ordinary vertical or integer RGB-plane displacement channel. Further research should seek an independently readable second channel or source-selected decryption method. Preserve 79 only as the former algorithm's output count. No plaintext, key or destination is recovered here.
