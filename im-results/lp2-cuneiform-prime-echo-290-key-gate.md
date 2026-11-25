@@ -1,6 +1,6 @@
-# Cuneiform-bounded 2013 prime_echo 290-prime interval: GP29, GP28 and five-by-58 original-cipher tests
+# Cuneiform-bounded 2013 prime_echo 290-prime interval: p29 DIRECTION, GP29, GP28 and five-by-58 tests
 
-**Agent3, 13–17 November 2026.** Three bounded, source-motivated original-input consumer families are negative. The first uses direct GP29 arithmetic; the second uses a ciphertext-motivated, reversible GP28 predecessor-exclusion register. No unknown-page plaintext, key or authenticated cipher mechanism has been recovered.
+**Agent3, 13–17 November 2026; p29 receiver gate by Agent20, 25 November 2026.** The report records four bounded source-motivated receiver families around the cuneiform-selected 290-prime interval: direct GP29 arithmetic on p33–39, a GP28 predecessor-exclusion register, a fixed 5×58 partition, and a p29 DIRECTION-page prime-minus-one transfer under both 13-prime endpoint trims. All are negative. No unknown-page plaintext, key or authenticated cipher mechanism has been recovered.
 
 ## Why this was worth one bounded test
 
@@ -86,9 +86,28 @@ For completeness, the simpler no-bypass additive readouts remain random-like: wh
 
 Reproduction: [five-by-58 original-input SFT](../sims/lp2_cuneiform_290prime_five58_ftransparent_sft.cjs), Node.js 22, no external packages. It asserts the original 553-rune enclosure, the 290 prime endpoints, both matrix layouts, all first-failure offsets, all 20 source-native positives, and the descriptive direct-additive IoCs.
 
+## p29 DIRECTION receiver: 13-prime trim and exact p56 F-bypass inverse (Agent20, 25 November 2026)
+
+The signed 2016 word-map clue's zero-based word 29 is **DIRECTION**, which nominates physical p29. The cuneiform endpoints and p15's red 3299 select the 290-prime interval **1033…3299** (3301 is the terminal boundary). Physical p29 has **277 runes**, exactly 290−13. A 13-dot trim is a plausible interpretation of the manuscript's dot markers, but the book has 31 such marks and does not uniquely select which end of the prime interval to trim. Both source-limited endpoint readings were therefore tested, without phase or sign fitting:
+
+| Trim | 277-prime key | First impossible original rune |
+| --- | --- | --- |
+| Drop the first 13 primes | 1117…3299 | zero-based offset **25** (26th rune) |
+| Drop the last 13 primes | 1033…3181 | zero-based offset **1** (2nd rune) |
+
+The only consumer is the solved p56 operation: subtract `(prime−1) mod 29), with literal plaintext **F** (GP index 0) transparent and not advancing the key. The inverse is exact: at ciphertext F it retains both legal histories (transparent plaintext F/no advance, or encrypted non-F/advance); at non-F ciphertext it must consume a key entry and cannot produce plaintext F. This avoids the invalid shortcut of assuming every ciphertext F is necessarily transparent.
+
+**Both original p29 inverses have zero legal histories.** For the drop-last-13 stream, the only prior clock at offset 1 is 1; ciphertext 23 minus the key shift 23 (prime 1039) would produce plaintext F from a non-F ciphertext. For the drop-first-13 stream, the only prior clock at offset 25 is 25; ciphertext 24 minus shift 24 (prime 1301) likewise produces plaintext F from a non-F ciphertext. Each is a necessary-symbol contradiction, before any language score or word-boundary assumption.
+
+A source-native positive control repeats solved p57 GP text to 277 symbols, encodes it under each exact key with the authentic F-bypass rule, and confirms that the same inverse retains a legal path for both keys. This checks the inverse implementation, not the historical hypothesis. The original p29 has eight literal ciphertext Fs; all F histories are considered by the state-set inverse.
+
+**Decision:** reject only the direct p56 prime-minus-one transfer to p29 under these two 13-prime endpoint trims. The 13-dot count is not a unique source selector, and this does not exclude another use of prime_echo, another cipher family, or another independently selected receiver. No original plaintext or authentic LP2 key is recovered.
+
+Reproduction: [Node 22/CommonJS exact original-input SFT](../sims/lp2_p29_primeecho_13trim_fskip_sft.cjs).
+
 ## Consolidated decision
 
-**Reject the tested direct 290-period GP29 additive, multiplicative and p/φ affine consumers, the GP28 predecessor-excluding source-key composition, and the fixed 5×58 row/column partition across the five numbered passages.** The cuneiform-to-prime_echo endpoint connection remains an interesting source-selection hypothesis, but it does not establish an operative receiver or clock. The distinct page-reset transfer on the 1033–3299 interval with the authentic p56 F-bypass has already been tested and rejected across pp33–39 ([Agent13's original-input gate](lp2-cuneiform-1033-3301-gp29-primeindex-gate.md)); the exact header crop on every page p34–p39 is not a reason to repeat it. Do not add fitted phases, per-page signs, alternative endpoints, or arbitrary transpositions without a new independent source clue.
+**Reject the tested direct 290-period GP29 additive, multiplicative and p/φ affine consumers, the GP28 predecessor-excluding source-key composition, the fixed 5×58 row/column partition, and the p29 DIRECTION prime-minus-one/F-bypass transfer under both 13-prime endpoint trims.** The cuneiform-to-prime_echo endpoint connection remains an interesting source-selection hypothesis, but it does not establish an operative receiver or clock. The distinct page-reset transfer on the 1033–3299 interval with the authentic p56 F-bypass has already been tested and rejected across pp33–39 ([Agent13's original-input gate](lp2-cuneiform-1033-3301-gp29-primeindex-gate.md)); the exact header crop on every page p34–p39 is not a reason to repeat it. Do not add fitted phases, per-page signs, alternative endpoints, or arbitrary transpositions without a new independent source clue.
 
 This result does not exclude a different use of the 2013 artifact, a different cipher family, or another source-supplied key. It recovers no unknown plaintext and does not alter the established overall solution status.
 
@@ -97,6 +116,10 @@ This result does not exclude a different use of the 2013 artifact, a different c
 Run from the repository root:
 
     python3 sims/lp2_cuneiform_prime_echo_290_key_sft.py
+
+For the p29 DIRECTION trim gate:
+
+    node sims/lp2_p29_primeecho_13trim_fskip_sft.cjs
 
 The script reads the original LP2 corpus and pinned Shakespeare control, asserts the page/block counts and prime endpoints, tests all six inverses, and prints the full deterministic summaries and decoded samples. It also checks exact roundtrips against repeated solved-p57 text.
 
