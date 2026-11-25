@@ -157,6 +157,49 @@ A viable q13 key has a path of at least12 distinct good edges, because at most o
 - [Broad per-group-support output, graph and planted key](lp2-postshuffle-allkey-segment-cover-broad-output.json).
 - Physical chapter cuts here are source page ranges. Agent1's independent #2678 [fixed-key phase-graph report](lp2-native-key-postshuffle-phase-graph.md) uses the literal dollar delimiter for one internal cut, assigning two more groups to p8–14 and two fewer to p15–22. Do not combine those chapter counts. Both use all2,896 original groups.
 
+## Source-motivated q29 extension: joint max-plus substring automaton
+
+The exact GP29 alphabet correspondence with the 29 Anglo-Saxon rune-poem stanzas independently motivates testing q29 as an exploratory period (not an authenticated cipher instruction). Prior [continuous q29 lexical](agent2-period29-fhold-exact-word-relation-gate.md) and [spacing-free](lp2-period29-fhold-spacingfree-gate.md) results do not settle the arbitrary word-shuffle/phase model. The broad 35,944-form support bound rejects q29 in seven of nine original chapters. Opening p0–2 and terminal p54–55 survive that relaxation; test those using a joint cycle-consistency bound rather than another continuous-clock search.
+
+For each length m in {5,8}, let S_m(x) count the number of eligible printed groups admitting selected nonzero ciphertext-span difference tuple x. With n_m eligible groups and a total chapter OOV budget B, any valid cyclic key K of period q must satisfy the joint necessary inequality
+
+    sum_{i=0}^{q-1} (S_5(K[i..i+4]) + S_8(K[i..i+7]))
+      >= max(0,n_5-B) + max(0,n_8-B)
+
+(indices modulo q). Each in-register eligible group has at least one required tuple, so counting every occurrence and counting groups separately by m can only overcount coverage. No phase or group ordering is assumed. The two lengths jointly constrain the same key; independent top-q support lists permit incompatible substrings.
+
+Construct an Aho-Corasick automaton of all supported five- and eight-tuples, weighted by group support. Each emitted GP digit contributes the sum of the support weights of every matched suffix. For each state u, compute D_0(u)=0 and D_t(u)=max_{a in GP29}(weight(next(u,a))+D_{t-1}(next(u,a))). The maximum over all u is the exact best t-step walk allowing arbitrary predecessor context and arbitrary terminal state. Every period-q key is one such q-step walk from the state reached by its periodic predecessor context, but not every walk closes; repetitions may also double-count groups. This is therefore a rigorous *upper* bound, never a purported key reconstruction. The first length where it meets the required score gives a necessary period lower bound. We use unit weights and the fixed pair {5,8}; no language-score/key fitting.
+
+| Physical pages | Groups | Budget | Independent q29 OOV lower bound | Joint q29 upper / required | Necessary period after available joint bound |
+|---|---:|---:|---:|---:|---:|
+| p0–2 | 158 | 7 | 5 | 29/63 | 63 |
+| p3–7 | 255 | 12 | 18 | not needed | 32 |
+| p8–14 | 383 | 19 | 37 | not needed | 39 |
+| p15–22 | 437 | 21 | 57 | not needed | 43 |
+| p23–26 | 224 | 11 | 15 | not needed | 31 |
+| p27–32 | 326 | 16 | 32 | not needed | 37 |
+| p33–39 | 378 | 18 | 50 | not needed | 43 |
+| p40–53 | 669 | 33 | 131 | not needed | 62 |
+| p54–55 | 66 | 3 | 0 | 24/31 | 38 |
+
+For p0–2 the automaton has 560,497 states, n5=61 and n8=16, upper 29 against required 63; the first relaxed pass is q63. For p54–55 it has 277,628 states, n5=28 and n8=9, upper 24 against required 31; the first relaxed pass is q38. This improves the earlier terminal q17 and opening q27 necessary bounds and excludes *every* q≤29 in all nine chapters under the broad finite-register model, even with independently chosen keys and per-group phases.
+
+Calibration: 64 exact toy comparisons with exhaustive binary open-context strings; six held-out contiguous native donor windows of 66 or 158 groups, selected by the previously frozen OOV criterion, planted independently with q29 literal-F-hold keys and shuffled whole ciphertext groups. The automaton upper bound exceeds the actual cyclic support in all six, and all actual cyclic support scores reach the respective required thresholds.
+
+| Donor | Groups | Actual OOV | Literal-F holds | Consuming C=0 | True cyclic support | Upper / required |
+|---|---:|---:|---:|---:|---:|---:|
+| Gibran | 66 | 1 | 2 | 6 | 21 | 26/16 |
+| Gibran | 158 | 1 | 15 | 19 | 41 | 47/31 |
+| Shakespeare | 66 | 1 | 3 | 12 | 24 | 35/18 |
+| Shakespeare | 158 | 1 | 10 | 30 | 49 | 50/35 |
+| Emerson | 66 | 0 | 8 | 3 | 13 | 24/9 |
+| Emerson | 158 | 3 | 13 | 30 | 38 | 44/27 |
+
+This is a new exact optimization of the relaxed joint support, not an additional LP2 plaintext/key candidate. The first relaxed passing periods 63 and 38 are necessary bounds, not actual inferred periods. No additional period sweep is motivated by these values. H-decoy, other representations and nonperiodic keys remain open. The full q29 output records all DP maxima and input blob identities; the same SFT has an additional `--q29` mode. Executed on exact repository inputs in connected V8; no separate Windows CI assertion.
+
+- [Raw q29 results](lp2-postshuffle-allkey-joint-q29-output.json)
+- [SFT](../sims/lp2_postshuffle_allkey_segment_cover_sft.cjs): `node sims/lp2_postshuffle_allkey_segment_cover_sft.cjs --q29`
+
 ## Original #2684 reproduction
 
 - SFT: [sims/lp2_q8_postshuffle_unknown_phase_sft.cjs](../sims/lp2_q8_postshuffle_unknown_phase_sft.cjs)
