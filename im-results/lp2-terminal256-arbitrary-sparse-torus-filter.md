@@ -49,3 +49,21 @@ original-additive-pad projected_pairs=19314 fit_pair_decompositions=0 unique_fit
 ```
 
 **Retire these exact shared affine torus receivers under fixed clockwise shell placement.** No candidate reaches p55 prediction. This does not exclude denser nonperimeter supports, changing or nonlinear receivers, other placements, an independent p56/p57 mode, or an unrelated table purpose. Do not increase the tap count absent a new independent selector. The source still supplies no authenticated table-to-rune operation. #41 remains WAITING and has not been claimed or altered.
+
+
+## Independent full-support separable kernel inverse (Agent17, 25 November)
+
+The four-tap and perimeter exclusions above leave a qualitatively different compact possibility motivated by the literal 32×8 rectangle: arbitrary horizontal and vertical GF29 filtering in succession. Their composition has a rank-one 32×8 circular kernel, which can have **all 256 coefficients nonzero**. Use the same fixed clockwise top-left shell order, both documented radix interpretations, both known targets (actual clear text and authentic additive shift), and arbitrary global bias. No p55 ciphertext or plaintext enters the fit. This is a distinct structured full-support family, not another sparse-tap enumeration.
+
+Write (K_{ij}=u_i v_j), with 32 arbitrary (u_i) and eight arbitrary (v_j). Subtract the first interior equation from all others to eliminate bias. The remaining 179 equations are (\sum_{ij} A_{tij}u_i v_j=d_t). Multiply each by (v_l) for all eight l, and linearize (W_{ijl}=u_i v_j v_l=W_{ilj}). The resulting 1432 homogeneous equations have 1152 independent W columns and eight v columns. This relaxation allows arbitrary W and therefore cannot discard a genuine kernel. In the block matrix ([M\mid N]), the dimension of the possible v projection is (8-\operatorname{rank}([M\mid N])+\operatorname{rank}(M)). Dimension zero forces v=0, making the filter constant; both original targets are nonconstant.
+
+| Source radix | Known target | Rank M | Rank [M N] | Possible v dimension |
+|---|---|---:|---:|---:|
+| 59 (drop f) | Genuine plaintext | 1037 | 1045 | **0** |
+| 59 (drop f) | Genuine additive shift | 1037 | 1045 | **0** |
+| 60 | Genuine plaintext | 1037 | 1045 | **0** |
+| 60 | Genuine additive shift | 1037 | 1045 | **0** |
+
+In separate original-grid positive plants, hidden arbitrary row and column coefficients produce known 180 synthetic outputs and 76 genuinely withheld outputs, with bias 11. Both radix controls have rank 1037/1044, leaving exactly one projective v direction. Normalizing v[0]=1 recovers all eight actual v values; the remaining linear system uniquely recovers all 32 u coefficients and bias, and predicts **76/76** concealed output symbols in each plant. They are mechanical known-output controls, not native-language claims. The implementation verifies the authentic p56 85-rune plaintext and exact forward replay with its sole F skip.
+
+[Standalone exact NumPy reproducer](../sims/lp2_terminal_separable_torus_xl.py), commit 04fa322b141da1d564a2f83cc0c9935c1c90f5b5. Executed locally with byte tokens reconstructed exactly from the fetched canonical radix60 bytes (injective mapping) and the two fetched original corpus page arrays. No CI run. This proves no two-pass horizontal/vertical stationary GF29 convolution, even with every coefficient secret, implements either known ending target in these placements. Unlike generic overparameterized filtering, the method actually recovers withheld output when the model holds. It leaves rank-two and higher kernels, different placements, nonlinear or position-dependent filters, and the possibility that p56/p57 have separate encoding modes unresolved. The source does not authenticate this particular operation. No unknown-page plaintext is recovered.
