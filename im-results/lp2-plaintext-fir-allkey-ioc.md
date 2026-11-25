@@ -30,3 +30,28 @@ Two 400+400-rune plants per family using disjoint-from-frequency-training slices
 **Decision:** retire these exact low-order stationary plaintext filters for native-English LP2 under the declared clock; do not tune lag count, phase, or bias after inspecting the negative. A materially different authenticated source selector is needed to extend the family. The reduced arbitrary-state search is reusable for other finite-field affine causal filters.
 
 Reproduction: [single runnable CJS](../sims/lp2_plaintext_fir_allkey_ioc_sft.cjs), node from repository checkout. The experiment was executed using the connected V8 runtime on the cited source blobs; no CI claim.
+
+## Exact native F-hold extension (same invocation)
+
+The all-consuming IoC gate above is now strengthened by an exact **language-independent** support decision under the authentic solved-page F rule. On any C=0, literal plaintext F may emit zero and hold the entire consuming-history state. Otherwise the model computes x=C+k+sum(b_j Xprev_j); an ordinary transition is legal only when x≠0 (plaintext F cannot be ordinary consuming). Nonzero C therefore has only the consuming branch. Scaling P=aX for nonzero a does not affect the condition X=0.
+
+For each normalized coefficient tuple, maintain the exact set of reachable history states after each physical rune. The zero-output hold retains the old state, ordinary consumption shifts the newly computed nonzero x into the history. Deduplicate by integer state encoding and per-step stamp. Initialization is all-zero order3; order2 starts from **every** one of the 841 history pairs simultaneously. Induction on physical positions proves exact set equality to all feasible F interpretations; no heuristic pruning, language score, or path cap. For order2 with F distinguished, the earlier affine translation quotient is not used; all 29^3 bias/feedback tuples are explicitly tested, with all initial states unioned. For order3 all 29^4 coefficient tuples are tested.
+
+| Original prefix runes | Order3 zero state keys | Order2 arbitrary state coefficient tuples |
+|---:|---:|---:|
+| 0 | 707281 | 24389 |
+| 160 | 29277 | 24115 |
+| 320 | 7209 | 23626 |
+| 600 | 1262 | 14053 |
+| 800 | 489 | 6845 |
+| 1000 | 137 | 2034 |
+| 1200 | 74 | 1126 |
+| 1400 | 4 | 34 |
+| 1600 | 1 | 1 |
+| 1613 | 1 | 1 |
+
+The **only** surviving coefficient tuples are (0,0,0,0) and (0,0,0). Their complete inverse is simply P=aC for nonzero a, and their 28 possible scalar permutations all retain the original IoC 0.03454946549360884. There is no nontrivial feedback/bias fit even before language scoring. This is an exact exclusion of nontrivial filters under the specified F-hold rule, not merely a statistical shortlist rejection. Arbitrary order3 initial histories, other hold rules, changing coefficients, and additional plaintext transformations remain outside the theorem.
+
+Positive checks: two 800-rune target-excluded normalized-reference plants with both true literal holds and ordinary generated zeros (17/30 and 18/26 respectively) retain their exact final states (2,657 and 211 reachable states; this is reachability calibration, not unique plaintext inference). 64 short deterministic tests agree exactly with exhaustive independent branch enumeration. Original visited 46,958,655 and 1,090,818,888 states, respectively; 59 visible zeros, 1,613 positions. No original unknown plaintext.
+
+[Exact F-hold SFT](../sims/lp2_plaintext_fir_fhold_exact_sft.cjs) · [Raw support counts](lp2-plaintext-fir-fhold-exact-output.json). Executed connected V8. This strengthens the finite model rejection; do not reopen the same feedback laws under the authentic F clock.
