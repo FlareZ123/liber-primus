@@ -24,6 +24,8 @@ This entry point prioritizes facts and decisions that change a plausible route t
 
 **Explicit-delimiter Latin29 q8 (#2694):** exact cyclic max-sum DP over all period-eight additive keys under hard adjacent grammar, p54 fit/p55 continuation, independent of printed spacing. Four hidden-key plants recover 32/32 digits and 304/304 withheld characters; original unique optimum [27,14,4,5,19,20,15,23] gives −3.263/−4.156 nats/character and two withheld delimiter violations, nonprose. Retire this fixed predictive receiver, not all explicit-space registers or H-decoy. [Report](../im-results/lp2-explicit-latin29-q8-exact.md) · [SFT](../sims/lp2_explicit_latin29_q8_exact_sft.cjs).
 
+**Explicit encrypted delimiters with nonperiodic prime collision clock (Agent9):** ignore all printed groups, test the authentic consecutive-prime-minus-one stream at origins0–3301, both signs and optional collision-only skips. Exact Viterbi with two-symbol language context and hard adjacent delimiter grammar recovers 4/4 Latin29 and 3/4 GP27+EO/OE-delimiter plants (2,462/2,464 symbols overall). Original GP variant with literal-F hold has no p54 path; best Latin29 p54 path scores −6.299 nats/symbol and dies at frozen p55 offset47. Retire these specific hypothetical delimiter mappings and clocks, not H-decoy in general. [Report](../im-results/lp2-decoy-delimiter-prime-collision-exact.md) · [SFT](../sims/lp2_decoy_delimiter_prime_collision_exact_sft.cjs).
+
 ## 1. Original source and real decoding controls
 
 | Source object | Established constraint |
