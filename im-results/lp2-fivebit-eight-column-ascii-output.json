@@ -1,0 +1,484 @@
+{
+  "out": {
+    "runes": [
+      {
+        "pages": [
+          0,
+          55
+        ],
+        "symbols": 12956,
+        "ascii8": {
+          "dir": "reverse",
+          "phase": 1,
+          "chars": 8097,
+          "checked": 8097,
+          "bound": 3187,
+          "zeroAlignments": 0
+        },
+        "ascii7": {
+          "dir": "forward",
+          "phase": 5,
+          "chars": 9253,
+          "checked": 7402,
+          "bound": 642,
+          "zeroAlignments": 0
+        }
+      },
+      {
+        "pages": [
+          0,
+          2
+        ],
+        "symbols": 729,
+        "ascii8": {
+          "dir": "reverse",
+          "phase": 7,
+          "chars": 454,
+          "checked": 454,
+          "bound": 107,
+          "zeroAlignments": 0
+        },
+        "ascii7": {
+          "dir": "forward",
+          "phase": 6,
+          "chars": 519,
+          "checked": 416,
+          "bound": 0,
+          "zeroAlignments": 14
+        }
+      },
+      {
+        "pages": [
+          3,
+          7
+        ],
+        "symbols": 1145,
+        "ascii8": {
+          "dir": "forward",
+          "phase": 4,
+          "chars": 715,
+          "checked": 715,
+          "bound": 189,
+          "zeroAlignments": 0
+        },
+        "ascii7": {
+          "dir": "forward",
+          "phase": 0,
+          "chars": 817,
+          "checked": 654,
+          "bound": 0,
+          "zeroAlignments": 14
+        }
+      },
+      {
+        "pages": [
+          8,
+          14
+        ],
+        "symbols": 1729,
+        "ascii8": {
+          "dir": "reverse",
+          "phase": 6,
+          "chars": 1079,
+          "checked": 1079,
+          "bound": 324,
+          "zeroAlignments": 0
+        },
+        "ascii7": {
+          "dir": "forward",
+          "phase": 1,
+          "chars": 1234,
+          "checked": 988,
+          "bound": 0,
+          "zeroAlignments": 14
+        }
+      },
+      {
+        "pages": [
+          15,
+          22
+        ],
+        "symbols": 1903,
+        "ascii8": {
+          "dir": "forward",
+          "phase": 2,
+          "chars": 1189,
+          "checked": 1189,
+          "bound": 359,
+          "zeroAlignments": 0
+        },
+        "ascii7": {
+          "dir": "forward",
+          "phase": 6,
+          "chars": 1358,
+          "checked": 1087,
+          "bound": 0,
+          "zeroAlignments": 6
+        }
+      },
+      {
+        "pages": [
+          23,
+          26
+        ],
+        "symbols": 1021,
+        "ascii8": {
+          "dir": "forward",
+          "phase": 6,
+          "chars": 637,
+          "checked": 637,
+          "bound": 164,
+          "zeroAlignments": 0
+        },
+        "ascii7": {
+          "dir": "forward",
+          "phase": 3,
+          "chars": 728,
+          "checked": 583,
+          "bound": 0,
+          "zeroAlignments": 14
+        }
+      },
+      {
+        "pages": [
+          27,
+          32
+        ],
+        "symbols": 1433,
+        "ascii8": {
+          "dir": "forward",
+          "phase": 4,
+          "chars": 895,
+          "checked": 895,
+          "bound": 257,
+          "zeroAlignments": 0
+        },
+        "ascii7": {
+          "dir": "forward",
+          "phase": 5,
+          "chars": 1022,
+          "checked": 818,
+          "bound": 0,
+          "zeroAlignments": 14
+        }
+      },
+      {
+        "pages": [
+          33,
+          39
+        ],
+        "symbols": 1680,
+        "ascii8": {
+          "dir": "forward",
+          "phase": 7,
+          "chars": 1049,
+          "checked": 1049,
+          "bound": 320,
+          "zeroAlignments": 0
+        },
+        "ascii7": {
+          "dir": "forward",
+          "phase": 1,
+          "chars": 1199,
+          "checked": 960,
+          "bound": 0,
+          "zeroAlignments": 14
+        }
+      },
+      {
+        "pages": [
+          40,
+          53
+        ],
+        "symbols": 3008,
+        "ascii8": {
+          "dir": "forward",
+          "phase": 4,
+          "chars": 1879,
+          "checked": 1879,
+          "bound": 627,
+          "zeroAlignments": 0
+        },
+        "ascii7": {
+          "dir": "forward",
+          "phase": 5,
+          "chars": 2147,
+          "checked": 1718,
+          "bound": 28,
+          "zeroAlignments": 0
+        }
+      },
+      {
+        "pages": [
+          54,
+          55
+        ],
+        "symbols": 308,
+        "ascii8": {
+          "dir": "forward",
+          "phase": 2,
+          "chars": 192,
+          "checked": 192,
+          "bound": 24,
+          "zeroAlignments": 0
+        },
+        "ascii7": {
+          "dir": "forward",
+          "phase": 1,
+          "chars": 219,
+          "checked": 176,
+          "bound": 0,
+          "zeroAlignments": 14
+        }
+      }
+    ],
+    "marked": [
+      {
+        "pages": [
+          0,
+          55
+        ],
+        "symbols": 12987,
+        "ascii8": {
+          "dir": "forward",
+          "phase": 1,
+          "chars": 8116,
+          "checked": 8116,
+          "bound": 3171,
+          "zeroAlignments": 0
+        },
+        "ascii7": {
+          "dir": "reverse",
+          "phase": 6,
+          "chars": 9275,
+          "checked": 7420,
+          "bound": 703,
+          "zeroAlignments": 0
+        }
+      },
+      {
+        "pages": [
+          0,
+          2
+        ],
+        "symbols": 731,
+        "ascii8": {
+          "dir": "forward",
+          "phase": 2,
+          "chars": 456,
+          "checked": 456,
+          "bound": 110,
+          "zeroAlignments": 0
+        },
+        "ascii7": {
+          "dir": "forward",
+          "phase": 2,
+          "chars": 521,
+          "checked": 417,
+          "bound": 0,
+          "zeroAlignments": 14
+        }
+      },
+      {
+        "pages": [
+          3,
+          7
+        ],
+        "symbols": 1153,
+        "ascii8": {
+          "dir": "forward",
+          "phase": 3,
+          "chars": 720,
+          "checked": 720,
+          "bound": 197,
+          "zeroAlignments": 0
+        },
+        "ascii7": {
+          "dir": "forward",
+          "phase": 5,
+          "chars": 822,
+          "checked": 658,
+          "bound": 0,
+          "zeroAlignments": 14
+        }
+      },
+      {
+        "pages": [
+          8,
+          14
+        ],
+        "symbols": 1730,
+        "ascii8": {
+          "dir": "forward",
+          "phase": 6,
+          "chars": 1080,
+          "checked": 1080,
+          "bound": 325,
+          "zeroAlignments": 0
+        },
+        "ascii7": {
+          "dir": "forward",
+          "phase": 6,
+          "chars": 1234,
+          "checked": 988,
+          "bound": 0,
+          "zeroAlignments": 14
+        }
+      },
+      {
+        "pages": [
+          15,
+          22
+        ],
+        "symbols": 1907,
+        "ascii8": {
+          "dir": "reverse",
+          "phase": 5,
+          "chars": 1191,
+          "checked": 1191,
+          "bound": 361,
+          "zeroAlignments": 0
+        },
+        "ascii7": {
+          "dir": "forward",
+          "phase": 2,
+          "chars": 1361,
+          "checked": 1089,
+          "bound": 0,
+          "zeroAlignments": 6
+        }
+      },
+      {
+        "pages": [
+          23,
+          26
+        ],
+        "symbols": 1023,
+        "ascii8": {
+          "dir": "forward",
+          "phase": 5,
+          "chars": 638,
+          "checked": 638,
+          "bound": 164,
+          "zeroAlignments": 0
+        },
+        "ascii7": {
+          "dir": "forward",
+          "phase": 6,
+          "chars": 729,
+          "checked": 584,
+          "bound": 0,
+          "zeroAlignments": 14
+        }
+      },
+      {
+        "pages": [
+          27,
+          32
+        ],
+        "symbols": 1435,
+        "ascii8": {
+          "dir": "forward",
+          "phase": 1,
+          "chars": 896,
+          "checked": 896,
+          "bound": 254,
+          "zeroAlignments": 0
+        },
+        "ascii7": {
+          "dir": "forward",
+          "phase": 1,
+          "chars": 1024,
+          "checked": 820,
+          "bound": 0,
+          "zeroAlignments": 14
+        }
+      },
+      {
+        "pages": [
+          33,
+          39
+        ],
+        "symbols": 1688,
+        "ascii8": {
+          "dir": "forward",
+          "phase": 3,
+          "chars": 1054,
+          "checked": 1054,
+          "bound": 316,
+          "zeroAlignments": 0
+        },
+        "ascii7": {
+          "dir": "forward",
+          "phase": 6,
+          "chars": 1204,
+          "checked": 964,
+          "bound": 0,
+          "zeroAlignments": 14
+        }
+      },
+      {
+        "pages": [
+          40,
+          53
+        ],
+        "symbols": 3010,
+        "ascii8": {
+          "dir": "reverse",
+          "phase": 7,
+          "chars": 1880,
+          "checked": 1880,
+          "bound": 642,
+          "zeroAlignments": 0
+        },
+        "ascii7": {
+          "dir": "forward",
+          "phase": 5,
+          "chars": 2149,
+          "checked": 1719,
+          "bound": 25,
+          "zeroAlignments": 0
+        }
+      },
+      {
+        "pages": [
+          54,
+          55
+        ],
+        "symbols": 310,
+        "ascii8": {
+          "dir": "forward",
+          "phase": 7,
+          "chars": 192,
+          "checked": 192,
+          "bound": 23,
+          "zeroAlignments": 0
+        },
+        "ascii7": {
+          "dir": "forward",
+          "phase": 4,
+          "chars": 220,
+          "checked": 176,
+          "bound": 0,
+          "zeroAlignments": 14
+        }
+      }
+    ]
+  },
+  "control": [
+    {
+      "width": 8,
+      "phase": 0,
+      "chars": 100,
+      "checked": 100,
+      "bound": 0
+    },
+    {
+      "width": 7,
+      "phase": 0,
+      "chars": 100,
+      "checked": 80,
+      "bound": 0
+    }
+  ]
+}
