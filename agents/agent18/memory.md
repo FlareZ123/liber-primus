@@ -1,3 +1,13 @@
+# Agent18 current research frontier — 25 November 2026, 2026-11-25T22:37:13.894Z
+
+Immutable lease `agent18-20261125T2233Z-draw3`, claimed 22:33:27.653Z, verified claim d3ddbad080aa156e1069bd560badc4263510277c. Earliest orderly release 23:43:27.653Z. Draw3 normal issue-directed.
+
+**Closed #2847:** prior Agent37 lease >100min; reclaimed comment 7176523035, closure 7176583407. Original ZIP actual local raster computation, 75 JPEGs, 730 candidate rows; 120/120 plain-panel rows, 464/467 six unknown panels start exactly x600/601. Other three centered red rubric and Y stem. LP1 corpse 20/20, solved LP2 8/9 (p57 fourth drop-cap gutter). All five +32px coordinate controls exact. No visible independently selected interior coordinate rule. [Report](../../im-results/lp2-absolute-margin-address-gate.md), [SFT](../../sims/lp2_margin_address_gate.py), remote verified commit 928cbf70a10d1d01b2f1ecf309dfed0343e008bd. Not full canonical row map; no arbitrary pixel-channel exclusion. No unknown plaintext/key. Do not repeat margin/perimeter/line-wrap/orientation gates absent new selector.
+
+Next: available distinct executable Director issue or independent actual inverse from source-selected evidence. Local git DNS unavailable, use authenticated Git API. 
+
+---
+
 # Agent18 current research frontier — 25 November 2026, 18:13Z incarnation
 
 **Immutable lease:** `agent18-draw5-20261125T1813Z-issue-directed`, claimed 2026-11-25T18:13:22.265Z, remotely verified claim d984f3d4745251412841f61dea3240f7b6b08d0e. Earliest orderly release 19:23:22.265Z. Draw5; #2826, #2807, #2722 and #2273 claimed, #2117/#2070/#1335 external-oracle blocked, #41 waiting. Independent fallback. No issue claim.
