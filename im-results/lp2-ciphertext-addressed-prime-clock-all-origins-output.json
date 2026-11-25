@@ -1,0 +1,232 @@
+{
+  "inputBlobs": {
+    "resources/liber-primus/lp2-corpus.json": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "resources/liber-primus/lp2-ink-annotations.json": "0614aca67969a14ae006e0c1ae6aee6dcd8136e6",
+    "resources/control/shakespeare_first300k.txt": "94c677ad9dd50771c6670e0c4e4dad9052b46d85",
+    "resources/external/relikd-solved-gp29-native-v1.json": "1b064ef6d85819b7d96adaff31a82d1ec551598f",
+    "sims/ciphertext_prime_walk_inversion.cjs": "b7e71087dda57f18e8df4961e79170be59870c05"
+  },
+  "model": "Target-excluded GP29 trigram model trained on Shakespeare first 200,000 source characters; exact encode map/digraphs from grid_keyskip_viterbi.cjs",
+  "equation": "C_i = P_i + (ordinaryPrime[j_i]-1) mod 29; j_(i+1)=j_i+GPprime(C_i); zero-based j_0 in 0..3301; all-consuming; no F hold or rejected draws",
+  "sourceRegister": {
+    "pages": "physical p15–p22",
+    "allRunes": 1903,
+    "redSpansExcluded": [
+      {
+        "start": 0,
+        "length": 9,
+        "runes": "ᚠᚢᛚᛗᚪᛠᚣᛟᚪ"
+      },
+      {
+        "start": 9,
+        "length": 11,
+        "runes": "ᛚᚢᛝᚾᚳᚢᛒᚾᛏᚠᛝ"
+      }
+    ],
+    "blackBodyRunes": 1883,
+    "prefixRunes": 1752,
+    "withheldPage": "p22",
+    "holdoutRunes": 131,
+    "continuousAcrossPages": true
+  },
+  "original": {
+    "bestStart": 1806,
+    "trainMean": -5.969112521830974,
+    "holdoutMean": -5.822975934754441,
+    "fullMean": -5.958945823526658,
+    "rawCipherTrainMean": -6.251628486731977,
+    "rawCipherHoldoutMean": -6.38540486262697,
+    "top10": [
+      {
+        "rank": 1,
+        "start": 1806,
+        "trainMean": -5.969112521830974,
+        "holdMean": -5.822975934754441,
+        "fullMean": -5.958945823526658
+      },
+      {
+        "rank": 2,
+        "start": 1205,
+        "trainMean": -5.970424875603691,
+        "holdMean": -6.523625942545917,
+        "fullMean": -6.008910982756867
+      },
+      {
+        "rank": 3,
+        "start": 2566,
+        "trainMean": -5.974115972951007,
+        "holdMean": -6.170128164522918,
+        "fullMean": -5.987752508848999
+      },
+      {
+        "rank": 4,
+        "start": 637,
+        "trainMean": -5.979115144303115,
+        "holdMean": -6.095156862416131,
+        "fullMean": -5.987188147528185
+      },
+      {
+        "rank": 5,
+        "start": 1138,
+        "trainMean": -5.981509704685389,
+        "holdMean": -6.324814151778523,
+        "fullMean": -6.005393338551135
+      },
+      {
+        "rank": 6,
+        "start": 419,
+        "trainMean": -5.982150126694656,
+        "holdMean": -6.369325781954463,
+        "fullMean": -6.009085873290002
+      },
+      {
+        "rank": 7,
+        "start": 79,
+        "trainMean": -5.983554063207808,
+        "holdMean": -6.132395649798475,
+        "fullMean": -5.9939089478829946
+      },
+      {
+        "rank": 8,
+        "start": 2360,
+        "trainMean": -5.986130412917613,
+        "holdMean": -5.827093934378507,
+        "fullMean": -5.975066271287967
+      },
+      {
+        "rank": 9,
+        "start": 727,
+        "trainMean": -5.99015960791171,
+        "holdMean": -6.399369620111531,
+        "fullMean": -6.018628281091836
+      },
+      {
+        "rank": 10,
+        "start": 1571,
+        "trainMean": -5.991241201733448,
+        "holdMean": -6.440459589281969,
+        "fullMean": -6.022493250999967
+      }
+    ],
+    "priorSelectedStarts": [
+      {
+        "start": 0,
+        "rank": 1190,
+        "trainMean": -6.166193065662134,
+        "holdMean": -6.2743371972952104
+      },
+      {
+        "start": 14,
+        "rank": 1768,
+        "trainMean": -6.199238962786896,
+        "holdMean": -6.415001819213269
+      },
+      {
+        "start": 21,
+        "rank": 2042,
+        "trainMean": -6.215178515935889,
+        "holdMean": -6.241214198858714
+      },
+      {
+        "start": 52,
+        "rank": 203,
+        "trainMean": -6.077789181070576,
+        "holdMean": -5.954014417688233
+      },
+      {
+        "start": 77,
+        "rank": 2315,
+        "trainMean": -6.232273765198947,
+        "holdMean": -5.580613612976673
+      },
+      {
+        "start": 78,
+        "rank": 2307,
+        "trainMean": -6.231915875723754,
+        "holdMean": -6.482506873040093
+      }
+    ],
+    "plaintextPreview": "UBFISIRJEJHTHDMIAADOENGTTHOEDEAJTHCJYERIAAEMWLLCAEFPFOEXRAEOTHEAHRMAIBABSOJOOEWLCDATAEEOTHUAPMOERNGAEUPGPYMTHNNNGTHUCNEAAETGCFEYNGTATTOOTHPCLMTLORLAEWSJEPNYLTHSTHHRUFBGCAHIESWAEGNGBCGMEOGSLDDYGTHCLAEUUDURNEOJTHHFTCLGFYIATHOUWDWEASEALPEYIUSOEIADPEAHMTAFBNGUFUIRNAOEFEOINGNGIUIDEOEASIHNMSSTHLMNLOEUMNMWFTHY",
+    "heldoutPreview": "IAXUISABBTEWNOEOAEXPYPPHBLWEAEANGCYUIJBNEMDYOEREAWEJCREAPJMNBSYEAUTHMWAYGLOWUONGAEPTHRGUCCRXIDNGFEUTFOIALFTHMFPRIABRBBPLTHIFIAODUAEOAUSJLMNNGNGCDEAAAELMFP",
+    "exactForwardReplay": true
+  },
+  "nativeControls": [
+    {
+      "name": "0_welcome",
+      "runes": 515,
+      "split": 360,
+      "trueStart": 73,
+      "trueRank": 1,
+      "selectedStart": 73,
+      "trainMean": -2.5424402541255087,
+      "holdMean": -2.6370603926047522,
+      "exactSymbolsIfSelected": 515,
+      "forwardReplay": true
+    },
+    {
+      "name": "0_koan_1",
+      "runes": 780,
+      "split": 546,
+      "trueStart": 168,
+      "trueRank": 1,
+      "selectedStart": 168,
+      "trainMean": -2.4554860753836096,
+      "holdMean": -2.6514273726190707,
+      "exactSymbolsIfSelected": 780,
+      "forwardReplay": true
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "runes": 755,
+      "split": 528,
+      "trueStart": 3301,
+      "trueRank": 1,
+      "selectedStart": 3301,
+      "trainMean": -2.627331735331818,
+      "holdMean": -2.6901868810085596,
+      "exactSymbolsIfSelected": 755,
+      "forwardReplay": true
+    },
+    {
+      "name": "jpg107-167",
+      "runes": 319,
+      "split": 223,
+      "trueStart": 22,
+      "trueRank": 1,
+      "selectedStart": 22,
+      "trainMean": -2.5303260598116335,
+      "holdMean": -2.2881240363115123,
+      "exactSymbolsIfSelected": 319,
+      "forwardReplay": true
+    },
+    {
+      "name": "all-solved-native-concatenated (synthetic continuous plant)",
+      "runes": 2979,
+      "split": 2085,
+      "trueStart": 2401,
+      "trueRank": 1,
+      "selectedStart": 2401,
+      "trainMean": -2.594743488449988,
+      "holdMean": -2.5756884176164365,
+      "exactSymbolsIfSelected": 2979,
+      "forwardReplay": true
+    }
+  ],
+  "matchedShuffledAddressNull": {
+    "definition": "Fisher-Yates shuffle of the original GPprime(C_i) increment sequence; preserves the exact increment multiset while breaking its alignment with ciphertext positions. For each trial, select the best j_0 on p15–p21-equivalent prefix and score the frozen p22-equivalent suffix.",
+    "trials": 100,
+    "seed": "0x27c10c",
+    "trainExceed": 99,
+    "trainPUpper": 0.9900990099009901,
+    "holdoutExceed": 7,
+    "holdoutPUpper": 0.07920792079207921,
+    "trainMin": -5.973939439232811,
+    "trainMedian": -5.931446098645073,
+    "trainMax": -5.854724812723358,
+    "holdoutMin": -6.837523517486449,
+    "holdoutMedian": -6.187329183435159,
+    "holdoutMax": -5.475216775636268
+  },
+  "priorArt": "sims/ciphertext_prime_walk_inversion.cjs already includes the same GP-prime ciphertext increment as one option, with both signs, six source starts, and optional collision-rejected draws; this experiment is the exact all-consuming, positive-sign, exhaustive-origin p15–p22 extension.",
+  "decision": "Reject this exact all-consuming ciphertext-GP-prime address clock on the p15–p22 black-body register. The selected output is nonprose; its prefix score is not exceptional against the matched null and its withheld-page score is not significant. No unknown plaintext or authentic key."
+}
