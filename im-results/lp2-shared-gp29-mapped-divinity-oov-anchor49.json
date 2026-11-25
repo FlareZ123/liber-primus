@@ -367,6 +367,55 @@
         "49": 174
       },
       "minLength": 8
+    },
+    {
+      "anchor": 49,
+      "forcedOtherOOV": 56,
+      "anchorOptions": 174,
+      "range": [
+        145,
+        174
+      ],
+      "completedThrough": 174,
+      "complete": true,
+      "cap": null,
+      "nodes": 6467,
+      "joins": 19669,
+      "filters": 20968303,
+      "featureTests": 7054576,
+      "saturated": 998,
+      "dimensionNodes": {
+        "2": 3,
+        "3": 7,
+        "4": 1,
+        "5": 3,
+        "6": 1343,
+        "7": 539,
+        "8": 2040,
+        "9": 2247,
+        "10": 187,
+        "11": 10,
+        "16": 87
+      },
+      "enumNodes": 71,
+      "enumerated": 24,
+      "leaves": 10,
+      "maxLong": 3,
+      "maxAll": 0,
+      "accepted": 0,
+      "best": [],
+      "domains": {
+        "1": 11181,
+        "2": 20619,
+        "14": 6994,
+        "15": 17244,
+        "18": 17415,
+        "36": 21200,
+        "39": 12002,
+        "47": 4370,
+        "49": 174
+      },
+      "minLength": 8
     }
   ]
 }
