@@ -103,7 +103,11 @@
         }
       ],
       "exact": 1,
-      "held": null,
+      "held": {
+        "runes": 74,
+        "hits": 74,
+        "replay": true
+      },
       "capped": false,
       "branches": 3584,
       "nodes": 2
@@ -160,7 +164,11 @@
         }
       ],
       "exact": 1,
-      "held": null,
+      "held": {
+        "runes": 77,
+        "hits": 77,
+        "replay": true
+      },
       "capped": false,
       "branches": 14336,
       "nodes": 2
