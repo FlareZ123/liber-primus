@@ -1,63 +1,60 @@
-# Source-selected linguistic unit audit
+# Source-selected linguistic-unit audit
 
-**Agent16, 25 November 2026. Bounded negative for issue #2781.** No source-authenticated reversible linguistic tokenization or orthographic operation beyond the established GP29 rune/word conventions was identified. No original LP2 decryption was attempted under an invented grouping.
+**Agent16, 25 November 2026. Issue #2781 closed as a bounded negative for transfer to LP2.** One exact literary exercise supplies a reversible one-unit reading-frame shift. It is a genuine historical operation and merits testing, but the source does not directly instruct its use on LP2 and the frozen transfer fails the independent original-artifact test. No LP2 plaintext or key was recovered.
 
 ## Decision standard
 
-A candidate must be more than a plausible language theory or an available literary text. It must be fixed by a first-party Cicada instruction or an exact, historically attested literary exercise; specify a deterministic reversible unit/normalization; and predict an independent feature on authentic controls before it is applied to unknown LP2. A source being available in 2014 does not prove Cicada selected an analyst's extraction from it.
+A candidate must (1) be fixed by a first-party Cicada instruction or an exact, historically attested literary exercise, (2) specify a deterministic reversible operation, and (3) predict an independent feature on authentic material without tuning its direction, offset, segmentation, or edge handling. A literary source selected somewhere in the 2014 puzzle is a motivated lead, not proof that every operation in that source transfers to LP2.
 
-## First-party LP1 evidence
+## Candidate found: GEB's one-unit reading-frame shift
 
-The editor-normalized solved LP1 transcription is traceable to the original page images and preserves these relevant instructions:
+The signed May 2014 book-code coordinate list includes `CBIA:3:7:2`, selecting a coordinate in *Canon by Intervallic Augmentation* (CBIA). The coordinate itself selects a letter in the dialogue, **not** the frame-shift passage; the full dialogue contains the explicit exercise. The pinned OCR says to shift the reading frame by one unit, moving the spaces one unit to the right, and demonstrates:
 
-- The opening warning says not to edit or change the book or its message, including **the words or their numbers**. This supports preserving source word/number structure; it does not prescribe clitic attachment, phrase packets, syllables, or a different token boundary.
-- The p5 rubric says primes and the totient function are sacred and that all things should be encrypted. Its accompanying 5×5 word/number grid is an arithmetic clue, not a multiword linguistic grammar.
-- The p6 Koan distinguishes a person's name, occupation, species, and body from who they are. This is philosophical prose; it gives no reversible rule for expanding rune names or joining words.
-- The p9 instruction says to do four unreasonable things each day. The p13 instruction says to program the mind and reality. The p15 instruction says “KWESTION ALL THINGS” and to discover truth inside oneself. None defines a tokenization.
-- The solved prose contains isolated spelling forms such as `BELEIVE` and `KWESTION`; these do not define a consistent reversible orthographic transform. The `ING` rune in FOLLOWING is the established GP29 compound rune, not a newly inferred language unit.
+- `ONE WAR TWO EAR EWE`
+- `O NEW ART WOE ARE WE`
 
-The 2016 authenticated continuation is more direct: “Its words are the map, their meaning is the road, and their numbers are the direction.” This selects ordinary words and their numeric properties as relevant puzzle units. It does not select a larger packet or clitic grammar. The known p56/p57 plaintext controls also retain ordinary word boundaries.
+This is a fully specified reversible boundary operation on the example. If the original word-boundary positions are (0=b_0<b_1<\cdots<b_{n-1}<b_n=N), the example's edge convention is to shift the whole frame, including its implicit start and end: (b_i\mapsto b_i+1). The new in-range internal boundaries are ({1,b_1+1,\ldots,b_{n-1}+1}); the shifted end (N+1) falls beyond the text. Thus the example produces a leading one-character word and shortens the final word by one. The inverse shifts the internal boundaries back by one. This rule reproduces the example exactly.
 
-## Exact literary-unit candidate: the Anglo-Saxon Rune Poem
+**Selector limitation:** the 2014 code selects the CBIA dialogue, but not the specific frame-shift sentence or an LP2 page. Treat this as the strongest historically grounded candidate, not an LP2 instruction.
 
-The 1915 Dickins edition is a genuine exact literary source: its **29-stanza Anglo-Saxon Rune Poem** is ordered one stanza per rune, and its explicitly labelled “Anglo-Saxon (a) Runic Poem” sequence matches GP29 **29/29 in order**. This is already established as the source for the alphabet/order; see [the pinned source and key gate](lp2-anglo-saxon-rune-poem-source-gate.md) and [Dickins 1915](https://en.wikisource.org/wiki/Rune_poems#The_Anglo-Saxon_Rune_Poem).
+## Authentic controls
 
-A stanza is an authentic multiword literary unit, but the source establishes **rune ↔ stanza order**, not that LP2 plaintext is segmented into stanza-sized packets or that a stanza's first word, word count, line count, or other feature is to be consumed as a cipher symbol. The only nearby extraction with an independent LP1 clue is the p56 heading “AN END”: taking the final letter of each stanza's final word as a period-29 key was already tested against the full original stream (both signs, Old English and Dickins English readings) and produced **0/1,132 long dictionary words**. The 29-stanza structure therefore strengthens the alphabet source selector, but supplies no new reversible plaintext tokenization. Sweeping other stanza features would be an unselected extraction search.
+- The source example reproduces exactly, including the leading singleton and shortened final word; the inverse restores the original boundaries.
+- The same boundary transform and inverse round-trip exactly on the known solved LP2 p56 and p57 text controls (85 runes/25 groups and 95 runes/20 groups respectively).
+- Existing work already tested the frame-shift idea on seven selected long original groups under periodic-key scoring; it did not produce a coherent plaintext. This audit extends that work to the complete p0–55 word-boundary register and an independent visual/layout feature.
 
-## 2014 source audit
+## Frozen LP2 test
 
-| Artifact | What it actually supplies | Linguistic-unit decision |
-|---|---|---|
-| [May 2014 signed message](../resources/cicada2014-may2-signed-message.asc) | “Your enlightenment awaits you,” an onion address, a request to report back, “Good luck,” and 3301 | No word, phrase, syllable, paragraph, or token rule |
-| [Onion5 signed message](../resources/cicada2014-onion5-signed-message.asc) | “Very good. You have done well to come this far” plus a small embedded formal-logic image | No textual segmentation or orthographic rule |
-| [Onion7 index](../resources/cicada2014-onion7-index.html) | An HTML index of 133 numbered image files | Image ordering only; no linguistic instruction |
-| [Emerson *Self-Reliance* witness](../resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt) | The literary source text | The text has paragraphs and sentences, but no LP2-specific tokenization instruction |
-| [Emerson firstfive/word60 extraction](../resources/external/2014-emerson-firstfive-word60-source.json) | An analyst-derived selection of the first 60 words from each of the first five paragraphs | Its own status says **“no evidence Cicada selected this LP2 use.”** The 60-word cut is not a first-party exercise and cannot select an LP2 unit |
+The source transcription covers all 55 rune-bearing physical pages p0–55; physical p50 is blank and omitted. It contains 12,956 runes, 2,896 printed groups and 2,895 internal boundaries. The canonical delimiter register contains 2,721 hyphens and 174 periods. The original groups have 83 singletons and 32 cross-page carries. The independent visual control has 27 internal boundaries coinciding with 13-dot marks, 31 coinciding with red-span edges, and 22 coinciding with page starts.
 
-The May message and onion5 carrier are authenticated 2014 artifacts, but their contents do not bridge the Emerson text to a 60-word grouping. The fact that a book-code source existed in the 2014 ecosystem does not establish a five-word, 60-word, paragraph, or sentence unit for LP2.
+Two interpretations were frozen because the transcription distinguishes hyphen spaces from periods:
 
-## Existing tests that should not be repeated
+| Test | Groups | Singletons | Cross-page groups | 13-dot hits | Red-edge hits | Page-start hits |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Original printed boundaries | 2,896 | 83 | 32 | 27 | 31 | 22 |
+| Shift every canonical boundary +1 | 2,897 | 84 | 46 | **0** | **0** | 8 |
+| Shift explicit hyphen spaces +1; keep periods fixed | 2,890* | 98 | 36 | 27 | 31 | 18 |
 
-- [#2723 clitic grammar](../im-results/lp2-clitic-group-q8-anchor.md) froze A/AN/THE/OF/TO/IN/ON/AT/BY/UP/AS and maximal attachment to a following content word. It improved all four marginal length metrics, but the exact q8 phrase-domain inverse failed its necessary anchor-support bound. The completion explicitly found no source selector.
-- [#2767 clitic plus authentic prime clock](../im-results/lp2-postshuffle-prime-clock-long-anchor.md) retained the exact grammar and p56 clock. It failed the original long-anchor gate in every chapter while native plants recovered, so the fixed receiver was retired.
-- The [word-length grammar diagnostic](../im-results/lp2-wordlength-order-grammar.md) and [word-order architecture study](../im-results/lp2-wordlength-order-architecture.md) find no native short-range syntax signal in ordinary printed word order. These results motivate asking about another register, but do not supply one.
+*The literal hyphen-only boundary representation has **seven coincident positions** where a shifted space meets a fixed punctuation boundary. The source exercise does not specify how to serialize such collisions in LP2. A glyph-level character model would be required; silently deduplicating or moving punctuation would add an unselected rule.
 
-## Conclusion and fork
+The broad all-boundary interpretation yields 2,897 groups, which is prime, but that total disappears under the literal hyphen-only interpretation (2,890). A prime near 2,900 has baseline probability about (1/\ln(2897)\approx12.5\%); this is not a discriminating result. The all-boundary +1 shift also destroys every measured 13-dot and red-edge coincidence and increases cross-page groups from 32 to 46. In a fixed 0–28 offset comparison, +1 has zero 13-dot and red-edge hits and is the least aligned offset. The literal-space-only interpretation preserves the existing visual hits but does not improve them and has the seven unresolved collisions.
 
-**No candidate meets the source-selection gate.** The only authenticated language-level direction found is to preserve and use the printed words and their numbers. The Emerson 60-word selection is researcher-defined; the clitic list is a fixed experimental grammar without first-party authorization; the isolated LP1 spelling anomalies do not define a global reversible mapping.
+**Decision:** the operation is real and reversible on its literary example and solved controls, but its LP2 transfer has no independent support. The only apparently attractive numerical feature (2,897 prime groups) depends on treating punctuation boundaries as spaces, contrary to the more literal transcription reading. Do not expand the offset search, invent punctuation-collision rules, or combine the shift with an unconstrained key search.
 
-Close #2781 as “no selector found.” Do not expand the particle inventory, sweep alternate clitic rules, or run a new original-cipher language score. Reopen this branch only if a first-party artifact or exact historical exercise supplies a specific unit and deterministic inverse that can first be calibrated on independent authentic plaintext. This does **not** prove that all alternative linguistic registers are impossible; it retires this source-selection attempt only.
+## Other source candidates considered
 
-## Reproduction and source identities
+- **LP1 first-party instructions:** the opening warning preserves “the words or their numbers”; the p5 rubric makes primes/totients significant; the p6 Koan and p9/p13/p15 directions do not define clitics, syllable packets, phrase bundles, or alternate word boundaries.
+- **2016 continuation:** “The words are the map, their meaning is the road, and their numbers are the direction” supports preserving words and numbers; it does not select a larger linguistic unit.
+- **Anglo-Saxon Rune Poem:** the Dickins 1915 29-stanza poem is the exact literary source for the 29/29 GP29 alphabet order. Rune-to-stanza correspondence selects alphabet order; it does not instruct that LP2 plaintext be grouped into stanza-sized packets or select a stanza feature. The p56 “AN END” final-letter extraction was already tested under both signs and Old English/English readings, yielding 0/1,132 long dictionary words. See [the pinned source gate](lp2-anglo-saxon-rune-poem-source-gate.md).
+- **GEB's “A Mu Offering”:** the dialogue describes a hypothetical phonetic-to-four-geometry-symbol pipeline, triplet folds, reverse reading and terminal-knot negation, but withholds the complete phonetic mapping, fold lookup and manipulation rules. It is not an executable reversible LP2 tokenization.
+- **2014 Emerson witness:** the 60-word/first-five-paragraph extraction is researcher-derived; no evidence shows Cicada selected that text or those boundaries for LP2.
+- **Crab Canon:** its reversal/speaker exchange is a distinct source operation already tested against the p13–14 original structure; it supplies no new word-boundary rule.
 
-This is a documentary source audit, not a computational decryption. Key repository source blobs:
+## Reproduction
 
-- `resources/liber-primus/lp1-plaintext-reference.txt`: `8ed037a6ddeef2b20a10bd6a84830e7cf9f43f7d`
-- `resources/cicada2014-may2-signed-message.asc`: `e2b7382ac2cfb0adfe028cc063fc6048e0ad718e`
-- `resources/cicada2014-onion5-signed-message.asc`: `e0ed3d728782d9d42dab82fb7a54b8d07ae2cea3`
-- `resources/cicada2014-onion7-index.html`: `303db130705f0ef9be2a738f4336d5cfcebde80c`
-- `resources/external/2014-emerson-firstfive-word60-source.json`: `2bc19a368f2608ecc2cb410d0eadc47950885095`
-- `resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt`: `12a6bc018047a1276e77f2b7f633d5905732fff9`
-- `resources/cicada2016-4gq25.md`: `9ca050c3c6f3d732fd35828e121d656c26897b98`
+- [Reproducer](../sims/lp2_geb_space_shift_boundary_audit_sft.cjs)
+- [Machine-readable output](lp2-geb-space-shift-boundary-audit-output.json)
+- Inputs: `resources/lp2-transcription.txt`, `resources/liber-primus/lp2-corpus.json`, and `resources/liber-primus/lp2-ink-annotations.json`; the output records their blob SHAs.
+- Historical source context: [2014 GEB book-code and dialogue audit](2014-onion5-geb-onion6-chain.md) and the pinned [GEB OCR](https://github.com/cicada-solvers/neuroretransmit-cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/007-fifth-onion/eternal-golden-braid.txt#L8215-L8227).
 
-No change to `results/README.md` is warranted; no plaintext or mechanism was established.
+This closes only the source-selected linguistic-unit attempt. It does not establish that printed separators are plaintext word boundaries, nor does it reject H-shuffle, H-decoy, or other source-selected cipher mechanisms.
