@@ -1,7 +1,7 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path');
 const INPUTS=["resources/liber-primus/lp2-corpus.json","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt"];
-function experiment(raw,{width=64,count=3,startPlant=0,originalTest=false,refineSweeps=12,wide=false,scope='chapter',randomStarts=1,emSteps=4,emSchedule=[.8,.5,.2,.05],useEM=true,pairStarts=4,pairSweeps=8,pairOnly=false,annealSteps=150000,annealStarts=2,annealT0=25,annealT1=.25}={}){
+function experiment(raw,{width=64,count=3,startPlant=0,originalTest=false,refineSweeps=12,wide=false,scope='chapter',chapterBeam=false,randomStarts=1,emSteps=4,emSchedule=[.8,.5,.2,.05],useEM=true,pairStarts=4,pairSweeps=8,pairOnly=false,annealSteps=150000,annealStarts=2,annealT0=25,annealT1=.25}={}){
  const gp=JSON.parse(raw[0]),A=29,mod=(x,m=29)=>(x%m+m)%m,assert=(x,m)=>{if(!x)throw Error(m)},alphabet=gp.translit,tokens=alphabet.map((t,i)=>({t,i})).sort((a,b)=>b.t.length-a.t.length);
  function native(t){const a=/\*{3}\s*START OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\n]*/i.exec(t),b=/\*{3}\s*END OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\n]*/i.exec(t);let p=[];for(const w0 of t.slice(a?a.index+a[0].length:0,b?b.index:t.length).toUpperCase().match(/[A-Z]+/g)||[]){const w=w0.replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S");for(let j=0;j<w.length;){const v=w.startsWith("ING",j)?{t:"ING",i:21}:w.startsWith("IO",j)?{t:"IO",i:27}:tokens.find(x=>w.startsWith(x.t,j));assert(v,w);p.push(v.i);j+=v.t.length;}}return p}
  const donors=raw.slice(1).map(native),train=donors.map(d=>d.slice(0,d.length-16000)),U0=new Float64Array(A).fill(.5),B0=new Float64Array(A*A),T0=new Float64Array(A*A*A),sum=a=>a.reduce((x,y)=>x+y,0);
@@ -128,8 +128,8 @@ function experiment(raw,{width=64,count=3,startPlant=0,originalTest=false,refine
  function key(){return Array.from({length:A},(_,q)=>{const c=Array.from({length:A},(_,p)=>p).sort((a,b)=>Math.abs(B[q*A+a]-.00664)-Math.abs(B[q*A+b]-.00664));return 28*c[rng()%5]+rng()%28})}
  function plant(donor,K){let pos=donor.length-16000;return original.map(f=>{const P=donor.slice(pos,pos+f.d.length);pos+=P.length;assert(P.length===f.d.length,"donor length");return {page:f.page,iv:f.iv,parts:f.parts,P,d:encode(P,K)}})}
  function evaluate(frames,truth){
-  const tr=frames.filter(isTrain),r=solve(chunks(tr),width,truth);
-  const starts=[{name:"page-F-initializer",K:r.K.slice()},...Array.from({length:randomStarts},(_,i)=>({name:"random-"+i,K:Array.from({length:A},()=>rng()%812)}))];
+  const tr=frames.filter(isTrain),r=solve(chapterBeam?tr:chunks(tr),width,truth);
+  const starts=[{name:chapterBeam?"chapter-F-initializer":"page-F-initializer",K:r.K.slice()},...Array.from({length:randomStarts},(_,i)=>({name:"random-"+i,K:Array.from({length:A},()=>rng()%812)}))];
   let pair=[];for(let i=0;i<pairStarts;i++){const x=pairFit(tr,Array.from({length:A},()=>rng()%812),pairSweeps);pair.push({name:"pair-"+i,K:x.K,score:x.score,history:x.history,truthScore:truth?x.evalKey(truth):null});}pair.sort((a,b)=>b.score-a.score);
   if(pair.length&&annealStarts){const base=pair[0];for(let j=0;j<annealStarts;j++){const a=pairAnneal(tr,j===0?base.K:Array.from({length:A},()=>rng()%812),annealSteps,annealT0,annealT1);const b=pairFit(tr,a.K,pairSweeps);pair.push({name:'anneal-'+j,K:b.K,score:b.score,history:b.history,anneal:a.trace,truthScore:truth?b.evalKey(truth):null});}pair.sort((a,b)=>b.score-a.score);}
   if(pair.length)starts.push(pair[0]);
@@ -141,5 +141,5 @@ function experiment(raw,{width=64,count=3,startPlant=0,originalTest=false,refine
  const pilots=[];for(let i=0;i<count;i++){const K=key();if(i>=startPlant)pilots.push(evaluate(plant(donors[i%3],K),K))}
  return {width,donorLengths:donors.map(d=>d.length),pilots,original:originalTest?evaluate(original,null):null};
 }
-if(require.main===module)console.log(JSON.stringify(experiment(INPUTS.map(p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8')),{width:64,count:3,originalTest:true}),null,2));
+if(require.main===module)console.log(JSON.stringify(experiment(INPUTS.map(p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8')),process.argv.includes('--chapter-beam')?{width:256,count:1,chapterBeam:true,pairStarts:0,annealStarts:0,randomStarts:0,useEM:false,refineSweeps:12}:process.argv.includes('--pair-only')?{width:64,count:1,pairOnly:true,pairStarts:6,annealStarts:2,annealSteps:180000,annealT0:20,annealT1:.2}:{width:64,count:1,originalTest:false,pairStarts:0,annealStarts:0,randomStarts:1,useEM:false}),null,2));
 module.exports={experiment,INPUTS};
