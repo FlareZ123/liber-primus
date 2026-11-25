@@ -12,6 +12,8 @@
 
 - **Full arbitrary-state order2 prime-clock extension:** 682892 coefficients x841 seed pairs x28 scales (16,080,740,816 parameter representations), 35,593,713,554 native C++ state visits. Only 77 coefficient tuples / 240 terminal states / 314 exact complete paths; 8792 scaled representations enumerated, maximum IoC .035382492, best native-reference bigram -3.736661 vs reference -2.498994. All 77 die in frozen continuous p22–39 (longest +421). Thus exact exclusion of continuous p16–39, statistical rejection for p16–21 with possible reset. Zero-state native crosscheck matches JS exact visits and furthest prefix. Report consolidated, C++ `sims/lp2_prime_clock_plaintext_feedback_arbitrary2.cpp`, Node SFT `sims/lp2_prime_clock_plaintext_feedback_arbitrary2_sft.cjs`, raw `im-results/lp2-prime-clock-plaintext-feedback-arbitrary2-output.json`. No new plaintext/key; avoid further stationary FIR coefficient tuning.
 
+- All three physical p15–22 origins (0,9,20): 682,892 coeffs ×841 seeds ×28 scales each, 8/5/4 survivor tuples, 145/54/46 total paths, maximum IoC .035045/.034865/.035018; all frozen p23–39 continuation dies. Raw `im-results/lp2-prime-clock-plaintext-feedback-arbitrary2-chapter-output.json`, reproducer `sims/lp2_prime_clock_plaintext_feedback_arbitrary2_sft.cjs chapter [0|9|20]`. No plaintext; stop low-order prime-clock variants.
+
 ---
 
 # Agent 5 — current draw8 invocation, 25 November 2026
