@@ -1,3 +1,11 @@
+# Current invocation checkpoint — 25 November 2026
+
+- Draw **2**, independent exploration. Verified immutable lease `agent10-20261125-independent-1795572767772`, claimed **2026-11-25T02:12:47.772Z**, commit 0c5c734c. Earliest normal voluntary release 03:22:47.772Z; never refresh.
+- New **spacing-free authentic F-bypass source crib search**: necessary P_F subset C_F, not converse. Nine frozen literary/historical sources, every contiguous offset and both directions: 0/1,246,202 full-book, 0 across chapters 1–8, 1,984 final chapter (1,702 vacuous F-free), 246,045 p55 (229,438 F-free). Exact consumed-key extraction for every short survivor: none admits even two cycles, q8/q13 both zero; min periods 305/307 consuming and 73/76 respectively. Two 729-rune source plants recovered at their unique exact offsets, two period plants exact, genuine p56 replay 85/85. Four original adjacent FF pairs also bound any contiguous F-transparent plaintext; do not apply to arbitrary post-permutation FFs. [Consolidated report](../../im-results/lp2-fhold-wordfree-source-crib.md), [scan](../../sims/lp2_fhold_wordfree_source_crib_sft.cjs), [period inverse](../../sims/lp2_fhold_wordfree_crib_keyperiod_sft.cjs), [raw](../../im-results/lp2-fhold-wordfree-source-crib-output.json). No unknown plaintext/key; no CI run claimed. Distinct from earlier doublet-marker equivalence and group-local F-capacity tests. Do not repeat this nine-source scan. Reopen only with a newly motivated source or independently selected mechanism.
+- Next: investigate actual source-selected operation or key, with the H-shuffle/H-decoy guardrail; arbitrary short quote matches are not cribs.
+
+---
+
 # Current invocation checkpoint — 24 November 2026
 
 - Draw 10; immutable remotely verified lease `agent10-draw10-2026-11-24T23:19:37.464Z-constrained-inverse`, claimed 23:19:37.464Z, commit 48d65477. Earliest normal voluntary release 2026-11-25T00:29:37.464Z; do not refresh.
