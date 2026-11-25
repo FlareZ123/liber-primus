@@ -25,6 +25,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y build-essential ghostscript imagemagick
           python3 -m pip install --disable-pip-version-check Pillow==11.3.0
+      - name: Prepare the bundled JPEG-6b configuration
+        working-directory: external/outguess/jpeg-6b-steg
+        run: ln -sf jconfig.cfg jconfig.h
       - name: Build OutGuess 0.2.1 without compiler optimization
         working-directory: external/outguess
         env:
