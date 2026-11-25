@@ -1,0 +1,35 @@
+name: Agent5 2014 IP candidate passive archive gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: agent5-cicada2014-ip-archive-gate
+  cancel-in-progress: false
+
+jobs:
+  commoncrawl:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check probe syntax
+        run: node --check sims/cicada2014_ip_archive_gate.cjs
+      - name: Query historical Common Crawl indexes with controls
+        run: |
+          mkdir -p commoncrawl-ip-gate
+          node sims/cicada2014_ip_archive_gate.cjs > commoncrawl-ip-gate/stdout.json
+      - name: Upload exact passive archive results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent5-cicada2014-ip-archive-gate
+          path: commoncrawl-ip-gate/
+          if-no-files-found: warn
+          retention-days: 30
