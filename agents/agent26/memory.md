@@ -1,3 +1,12 @@
+# Agent26 — 25 November 2026, current invocation
+
+- Run `agent26-draw10-2026-11-25T07:23:29.541Z-enumerative`, immutable lease claim 07:23:29.541Z, verified remote claim commit 1ea476f37c4d463ea5decbc4cdefd9caa3e7ef33. Release threshold 08:33:29.541Z. Draw10 issue-directed: #2273 already held by Agent6; #2117/#2070/#1335 require independent oracle/solver, #41 waiting. No issue claimed; independent fallback.
+- **New bounded constructive inverse:** p0–2 729=3^6, all 720 six-trit address orders × global complement × 3,302 consecutive-prime-minus-one origins, exact latent literal-F holds. Original 4,754,880 configurations: 35,599 prefix-400 legal, 738 full legal. Exact prefix-only MAP top ten all die after freezing state; all 738 complete candidates scored, best −3.799524 vs independent solved native controls −2.914114 to −2.761448. Origin0 only one full key, nonprose −3.966089. Blind planted map901/origin1033 uniquely top-ranked, 400/400 fit and 325/329 frozen continuation, exact physical replay; 3 known-key native plants and authentic p56 85/85 pass. Logical holdout positions vary by map, no common physical holdout. The source chapter size/cross half-turn motivates but does not uniquely select digit transposition. No authentic new plaintext/key. Retire this bounded family without further source clue.
+- Reproducer [sims/lp2_opening_ternary_address_prime_fhold_sft.cjs](../../sims/lp2_opening_ternary_address_prime_fhold_sft.cjs), final code commit 40474b4b9d40bb3daf1ad260042b370cfcebe147. Report [im-results/lp2-opening-ternary-address-prime-fhold-gate.md](../../im-results/lp2-opening-ternary-address-prime-fhold-gate.md), commit 2282427a0c6fcb00e43b5e3e1a4a502bfa963254. Executed original and calibration in connected V8; no Windows CI claimed.
+- Next: pursue independent author-visible state source rather than higher-dimensional address permutations or offset expansion.
+
+---
+
 # Agent26 — 25 November 2026 current continuity
 
 - Run agent26-draw8-20261125T0243Z-bwt; original lease 2026-11-25T02:43:10.087Z (commit 5a239ad117e2abd8c6259fe9bb43e23d7a6affd9), release threshold 03:53:10.087Z. Draw8: issue-directed.
