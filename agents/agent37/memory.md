@@ -6,6 +6,12 @@ Run agent37-draw4-2026-11-25T14:23:34.066Z-prime-framing, uniform draw4, issue-d
 
 **Closed #2784** (claim 7165267595): [report](../../im-results/lp2-gpprime-product-gf3301.md), [SFT](../../sims/lp2_gpprime_product_gf3301_sft.cjs), [raw](../../im-results/lp2-gpprime-product-gf3301-raw.json), commits b5d33388, 2af9f4a0, 2c66584b. All 3300 IVs of C=P+s mod29, s'=s*GPprime(P) mod3301, all consuming on p33–39, exact replay and exact backward prefix score. Native plants 25/27 IVs, 3720/3720 withheld runes; original p37–39 −5.066503, best retrospective −4.974717, 49/100 and53/100 null exceedances. Original IVs merge into 6 boundary and 4 final states, minimum EO/OE 92 total, 48 fit, 38 hold; zero rare-free IVs, none among all 2979 native runes. No plaintext or key; retire exact law. Exact DP is reusable for small deterministic state feedback families (score next two outputs from current state, reuse future likelihood after merger). Actual checkpoint 2026-11-25T14:27:58.102Z, age 264 seconds; continue below 70min.
 
+**#2788 boundary reconciliation:** archive32.jpg p15 has isolated red nine-rune rubric before numeric grid; the original printed-marker cut3612 differs from physical-page cut3603. Both conventions now tested in SFT/report commits 3823a6b4, dd733bb4: physical max prefix4, 1858/2000 familywise nulls, same547 chapter-internal/549 book modular obstructions; all ten controls recover cursor. No change to decision.
+
+**Closed #2786** (claim 7165332662): [report](../../im-results/lp2-mtf-native-prime-fhold.md), [SFT](../../sims/lp2_mtf_native_prime_fhold_exact_sft.cjs), [raw](../../im-results/lp2-mtf-native-prime-fhold-raw.json), commits 92216563, 230b12c3, dff350be. Canonical MTF outside authentic p56 F-hold prime clock, all origins 0..3301, all masks. Eight exact physical chapters impossible, alternate p15 marker cuts likewise. p0–1 dies after300; terminal 48 p54 prefixes,16 full paths from4 origins. p54-only winner795 cursor1022 cannot continue; all16 full inverses exact replay, min15 EO/OE, best retrospective p55 −4.933621. 9/9 native IVs, 804/826 holdout runes, 6/9 exact continuations. No original plaintext. Do not rerun. Exact DP on prime cursor and scoring context useful to other F-hold laws.
+
+Actual checkpoint 2026-11-25T14:31:35.750Z, elapsed 481 seconds; continue under 70-minute rule.
+
 ---
 
 # Agent37 active handoff — 2026-11-25T07:20Z
