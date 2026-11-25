@@ -23,4 +23,21 @@ function experiment(data,grid,native,...literature){
  return {sourceLengths:sources.map(s=>({name:s.name,n:s.a.length})),original,variable,plants};
 }
 const read=p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8");
-console.log(JSON.stringify(experiment(JSON.parse(read("resources/liber-primus/lp2-corpus.json")),JSON.parse(read("resources/liber-primus/lp2-grid-256.json")),JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json")),read("resources/control/shakespeare_first300k.txt"),read("resources/control/gibran_prophet_58585.txt"),read("resources/control/emerson_essays_2944.txt")),null,2));
+function rigorousLengthExtension(data,grid,native,...literature){
+ const all=data.pages.filter(p=>p.page<56).flatMap(p=>p.indices),base=9640,a=all.slice(base,12648),bytes=grid.bytes,bit=i=>bytes[(i-1)%256]&1;
+ const tokens=data.translit.map((s,i)=>({s,i})).sort((a,b)=>b.s.length-a.s.length);
+ function enc(text){const out=[];for(const w of text.toUpperCase().replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S").match(/[A-Z]+/g)||[]){for(let i=0;i<w.length;){if(w.startsWith("ING",i)){out.push(21);i+=3;}else if(w.startsWith("IO",i)){out.push(27);i+=2;}else{const t=tokens.find(x=>w.startsWith(x.s,i));if(!t)throw Error("GP token");out.push(t.i);i+=t.s.length;}}}return out;}
+ const donor=native.sections.flatMap(x=>[...x.source_text].map(c=>data.runes.indexOf(c)).filter(x=>x>=0));
+ const sources=[{name:"solvedNativeCircular",x:donor,wrap:true},...literature.map((t,i)=>({name:["Shakespeare","Gibran","Emerson"][i],x:enc(t),wrap:false}))];
+ function minPairs(s,n){const {x,wrap}=s,h=new Int32Array(29);let pairs=0;for(let i=0;i<n;i++){const v=x[i%x.length];pairs+=2*h[v];h[v]++;}let min=pairs,offset=0,windows=wrap?x.length:x.length-n+1;for(let start=1;start<windows;start++){let old=x[(start-1)%x.length],fresh=x[(start+n-1)%x.length];pairs-=2*(--h[old]);pairs+=2*h[fresh];h[fresh]++;if(pairs<min){min=pairs;offset=start;}}return {name:s.name,min,offset,windows};}
+ const cache=new Map();function reference(n){if(!cache.has(n)){let m=sources.map(s=>minPairs(s,n));cache.set(n,m);}return cache.get(n);}
+ function bound(L){const rows=Array.from({length:58},()=>new Int32Array(29));let prev=-Infinity,R=0,forcedEscapes=0,F=0;
+ for(let i=1;i<a.length;i++){let s=a[i-1],c=a[i];if(i-prev>=L){if(c===s)forcedEscapes++;else{rows[29*bit(base+i)+s][c]++;F++;}}if(c===s){prev=i;R++;}}
+ const h=new Int32Array(29);for(let row of rows){const counts=[...row].sort((x,y)=>y-x);counts.forEach((v,j)=>h[j]+=v);}
+ const nMin=Math.max(F,a.length-1-(L-1)*R),nMax=a.length-1-forcedEscapes;let minGap=Infinity,maxBound=0,minNative=1,witness=null,allLower=true,windows=0;
+ for(let n=nMin;n<=nMax;n++){const u=Array.from(h);u[0]+=n-F;const cap=u.reduce((s,v)=>s+v*(v-1),0),ref=reference(n),low=Math.min(...ref.map(v=>v.min)),gap=(low-cap)/(n*(n-1));windows+=ref.reduce((s,v)=>s+v.windows,0);if(gap<minGap){minGap=gap;witness={n,cap,lowest:ref.find(v=>v.min===low),reference:ref}}if(gap<=0)allLower=false;maxBound=Math.max(maxBound,cap/(n*(n-1)));minNative=Math.min(minNative,low/(n*(n-1)));}
+ return {L,R,F,forcedEscapes,nMin,nMax,allLower,minGap,maxBound,minNative,windows,witness};}
+ return {chapter:[40,53],results:Array.from({length:9},(_,j)=>bound(j+2)),uniqueLengths:cache.size,uniqueReferenceWindows:[...cache.values()].flat().reduce((s,v)=>s+v.windows,0)};
+}
+const input=[JSON.parse(read("resources/liber-primus/lp2-corpus.json")),JSON.parse(read("resources/liber-primus/lp2-grid-256.json")),JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json")),read("resources/control/shakespeare_first300k.txt"),read("resources/control/gibran_prophet_58585.txt"),read("resources/control/emerson_essays_2944.txt")];
+console.log(JSON.stringify({chapterExactAndPlants:experiment(...input),allLengthWindows:rigorousLengthExtension(...input)},null,2));
