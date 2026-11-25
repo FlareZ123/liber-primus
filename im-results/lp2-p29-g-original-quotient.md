@@ -1,6 +1,6 @@
 # Original physical p29: source-derived GF29 polynomial quotient
 
-**Status: reproducible direct plaintext inverse with a negative original result.** No unknown Liber Primus plaintext, key, authenticated encryption mechanism or final destination has been recovered by this test. The literal polynomial-multiplication interpretation is closed for the specified page, alphabet and printed coefficient order. More elaborate or externally keyed mechanisms are outside its scope.
+**Status: reproducible direct plaintext inverse with a negative original result; a later three-point cross-source DH correspondence is exact but is not a decryption.** No unknown Liber Primus plaintext, key, authenticated encryption mechanism or final destination has been recovered by this test. The literal polynomial-multiplication interpretation is closed for the specified page, alphabet and printed coefficient order. More elaborate or externally keyed mechanisms are outside its scope.
 
 ## Intended human path and independent source inputs
 
@@ -68,6 +68,28 @@ This proves a more general, **key-independent exclusion**: no identical six-para
 **Decision:** The simple `p57 strict interiors → 55-period GP29 additive key → p29 275-rune G quotient` is now tested and negative in both fixed signs. Its source-visible lengths are a useful independently testable linkage, but after the failed original inverses they do **not** justify fitting a secret phase, arbitrary letter mapping, additional cipher layer or p29 plaintext crib. This is limited to a fixed repeating GP29 key on the exact G quotient; no different prospective historical cipher is ruled out.
 
 [Read-only standalone CJS SFT](../sims/lp2_p29_275_parable55_direct_key_sft.cjs) · [Passed fixed-sign original-repository Windows Node22 run 43577713509](https://github.com/FlareZ123/liber-primus/actions/runs/43577713509).
+
+## Independent quotient-function readout and p28 DH cross-check (25 November 2026)
+
+Agent38's cross-source observation was independently recomputed from the canonical corpus and original p39 red-span annotation. The left-to-right red span is GP `[27,5,15]`; under the recorded rising-power convention this is the high-first divisor `G=[15,5,27]`. Physical p29's 277 coefficients divide exactly, leaving the same 275-coefficient quotient `Q`.
+
+The three proposed evaluation inputs have a coherent but conditional human-solve path:
+
+- `x=0`: physical page index 29 reduced modulo the GP field size 29. In the signed 2016 message, zero-based word 28 is THE and word 29 is DIRECTION, selecting adjacent p28/p29 under the candidate word-index/page-index convention.
+- `x=18`: the least-significant BASE29 digit of 1033 (`16I`). The signed 2013 specification authenticates the BASE29 operation and the 3301 example, but the specific 1033 request/result is in a participant transcript, not the signed specification.
+- `x=24`: the least-significant BASE29 digit of 3301 (`3QO`), explicitly shown by the signed 2013 specification.
+
+The exact values are `Q(0)=5`, `Q(18)=8`, and `Q(24)=25`. These match the candidate p28 DH tuple's generator `g=5`, server public share `A=8`, and `g²=25`. This is a real arithmetic correspondence with independently visible inputs, not evidence that `Q` is plaintext or that the DH example is an LP2 key. The page selector and p28 DH interpretation remain conditional; no source instruction specifies what to do with the resulting DH state.
+
+The natural complete readout of a degree-28 function over GF(29), evaluating `Q(x)` for every `x=0…28`, is:
+
+`[5,21,25,0,8,12,27,13,16,10,6,19,2,9,6,4,24,26,8,1,21,18,18,10,25,12,4,22,8]`
+
+It has only 20 distinct outputs and transliterates to `CNGAEFHEOIAPTIGMTHNGRAYHUNGEEIAEEOROEH`; this is not plaintext or a permutation alphabet. The simplest literal “DIRECTION means take the formal derivative” check also fails as a direct receiver: `Q′(0), Q′(18), Q′(24) = [23,8,12]`, and the complete derivative readout is nonlinguistic. No additional derivative variants are justified.
+
+For completeness, reducing 1033 and 3301 modulo the p28 DH prime 23 gives exploratory inputs 21 and 12, for which `Q(21)=18` and `Q(12)=2`. The latter equals the candidate DH shared secret; the former requires interpreting 18 as `A−B (mod 29)`. These cross-modulus points are not part of the core result: the polynomial is over GF(29), the source does not prescribe feeding mod-23 residues into it, and `A−B` is not an independently selected DH output. Do not count them as further confirmations.
+
+**Decision:** retain the three-point match as a possible cross-source checksum or intermediate-state clue. The full function readout and direct derivative do not recover text. Do not launch further key/cipher searches from this relation until an independent source selects a next operation and a held-out prediction. The runnable SFT emits and asserts the complete quotient-function and derivative vectors.
 
 ## Decision and reproducibility
 

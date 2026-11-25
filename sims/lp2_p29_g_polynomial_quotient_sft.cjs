@@ -74,6 +74,29 @@ function multiply(a, b) {
   return result;
 }
 
+/**
+ * Evaluate a high-degree-first polynomial at one field element.
+ * @param {number[]} coefficients
+ * @param {number} x
+ * @returns {number}
+ */
+function evaluate(coefficients, x) {
+  let value = 0;
+  for (const coefficient of coefficients) value = mod(value * x + coefficient);
+  return value;
+}
+
+/**
+ * Formal derivative of a high-degree-first polynomial in GF(29).
+ * @param {number[]} coefficients
+ * @returns {number[]}
+ */
+function derivative(coefficients) {
+  const degree = coefficients.length - 1;
+  return coefficients.slice(0, -1).map((coefficient, index) =>
+    mod(coefficient * (degree - index)));
+}
+
 /** @param {number[]} symbols @returns {number} */
 function ioc(symbols) {
   const counts = Array(29).fill(0);
@@ -95,6 +118,24 @@ assert.deepEqual(multiply(direct.quotient, G), C);
 assert.equal(direct.quotient.reduce((n, x, i, q) =>
   n + Number(i > 0 && x === q[i - 1]), 0), 11);
 assert(Math.abs(ioc(direct.quotient) - 0.034054412740544125) < 1e-12);
+
+const quotientFunction = Array.from({length: 29}, (_, x) =>
+  evaluate(direct.quotient, x));
+assert.deepEqual(quotientFunction, [
+  5, 21, 25, 0, 8, 12, 27, 13, 16, 10, 6, 19, 2, 9, 6,
+  4, 24, 26, 8, 1, 21, 18, 18, 10, 25, 12, 4, 22, 8
+]);
+assert.deepEqual(
+  [quotientFunction[0], quotientFunction[18], quotientFunction[24]],
+  [5, 8, 25]
+);
+const quotientDerivative = derivative(direct.quotient);
+const derivativeFunction = Array.from({length: 29}, (_, x) =>
+  evaluate(quotientDerivative, x));
+assert.deepEqual(
+  [derivativeFunction[0], derivativeFunction[18], derivativeFunction[24]],
+  [23, 8, 12]
+);
 
 const wrong = divide(C, H);
 assert.deepEqual(wrong.remainder, [16, 20]);
@@ -119,6 +160,25 @@ console.log(JSON.stringify({
   quotientIoC: ioc(direct.quotient),
   originalIoC: ioc(C),
   quotientFirst90: transliterate(direct.quotient.slice(0, 90)),
+  quotientFunction: {
+    values: quotientFunction,
+    distinctOutputs: new Set(quotientFunction).size,
+    transliteration: transliterate(quotientFunction),
+    sourcePointReadout: {
+      page29Mod29: quotientFunction[0],
+      base29_1033: quotientFunction[18],
+      base29_3301: quotientFunction[24]
+    }
+  },
+  formalDerivative: {
+    values: derivativeFunction,
+    transliteration: transliterate(derivativeFunction),
+    sourcePointReadout: {
+      page29Mod29: derivativeFunction[0],
+      base29_1033: derivativeFunction[18],
+      base29_3301: derivativeFunction[24]
+    }
+  },
   wrongSigned2013H: {divisor: H, remainder: wrong.remainder},
   sourceNativePlant: {
     source: "Solved original LP2 p57 GP symbols",
