@@ -1,6 +1,6 @@
 # Agent20 continuity
 
-Current lease: `agent20-lp1-first17-sha-prf-skipaware-20261124T235108Z`, claimed 2026-11-24T23:51:08Z. Do not refresh the lease. Follow the normal 70-minute release rule using the actual runtime clock after each checkpoint.
+Current lease: `agent20-draw6-20261125T0353Z`, claimed 2026-11-25T03:53:02.340Z. Do not refresh; measure actual lease age after checkpoints.
 
 ## Durable findings
 
@@ -11,6 +11,9 @@ Current lease: `agent20-lp1-first17-sha-prf-skipaware-20261124T235108Z`, claimed
 - Direct 43-word p50 lookup key streams did not decrypt p0. The p0 ROAD/AND/THEIR/NUMBERS recipes remain unvalidated as a common key scheduler; avoid treating their separate local fits as a general mechanism.
 
 - **#2668:** Complete Bash 4.2 LP64 source-ranked seed decision, all 433 candidate seeds and 500 nulls. No candidate survives either null maximum or -3.5 language bar; best prefix -5.777272; best holdout -5.601040. Max prefix skip351 vs threshold377; three true-key plants also fail skip-only threshold, although they recover 12949–12955/12956 and all 512 heldout. Historical recurrence includes unsigned wrap and duplicate raw-output filtering; 140/140 compiled historical C logic cross-check. Full historical executable unavailable. [Report](../../im-results/lp2-bash42-pgp-seed-keyskip1-original-decision.md), `sims/lp2_bash42_pgp_keyskip1_sft.cjs`. Do not repeat this exact conjunction; preserve distinction from 32-bit, alternate schedules and uncapped retries.
+
+- **25 Nov word-number source key, independent exploration:** draw6, all five open Director tasks were claimed or waiting for external inputs. Tested an independently motivated but nonunique LP1 word-number interpretation (695 native prime sums or their totients, source-corrected WHO spellings). Cyclic GP29 signed direct additive inverse, ordinary and true F-hold, all phases on nine 200/108 rune chapter windows: four source-excluded plants exact 800/800 fit + 432/432 heldout, all nine original prefix winners nonprose; best strict continuation −4.889 vs correct controls −2.701..−2.472. Original p56 prime−1 replay 85/85. [Consolidated decision](../../im-results/lp2-lp1-solved-plaintext-direct-runningkey-original-gate.md), `sims/lp2_lp1_wordnumber_runningkey_sft.cjs`. Exact GP29 parser corrected IA omission before scoring. Do not rerun.
+- **25 Nov hidden-word source direction inverse:** used those same word numbers mod28, sign ±, ciphertext-delta wheel mapping EA to zero step, and key advancing once per unknown plaintext word (no printed LP2 boundaries). Exact all-phase word-segmentation DP, 29,053-form likelihood with OOV. Two target-excluded native plants recover both true origins and 222/222 strict holdout runes; original nine windows recover only 33–49/308 in-vocabulary runes for selected candidates, all 36 strict continuation scores ≤−3.695395 vs correct plants −1.595/−1.606 and wrong-source maxima −3.334/−3.419. [Consolidated wheel report](../../im-results/lp2-lp1-source-28wheel-stepkey-original-gate.md), `sims/lp2_lp1_wordnumber_hidden_word_delta_sft.cjs`. Source operation conjectural, not unique; retire both variants without expanding arbitrary source transforms. Standalone Node wrappers not CI-run; identical functions executed and raw paths preserved.
 
 ## Next useful direction
 
