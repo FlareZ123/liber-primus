@@ -60,7 +60,20 @@ The 16-zero count at the two half-boundary alignments is only a count match; the
 
 The uploaded original-image archive's files 57.jpg-72.jpg were checked against the corresponding repository objects: every local file's Git blob SHA-1 matches `resources/liber-primus/{57..72}.jpg`. All 16 images are 2400x3600. The complete left band `(0,700)-(550,3000)` and right band `(1850,700)-(2400,3000)` are pixel-identical across all 16 images (physical p40-p55), including both five-dot clusters. The central text band differs between p40 (57.jpg) and p45 (62.jpg), so these are distinct pages. Reproducer: [`lp2_phone_dot_template_identity_sft.py`](../sims/lp2_phone_dot_template_identity_sft.py).
 
-**Decision:** the 10-dot pattern matches the nonzero/zero pattern of the historical phone number only under a chosen right-first traversal, but the exact same complete side artwork appears on all 16 physical pages p40-p55. It is therefore a repeated section/page-template feature, not a p41- or p45-specific selector. Neither traversal nor a separator mask is source-selected. The 75-token count match does not provide a reversible p55 receiver. Do not search additional rotations or use the phone number as an arbitrary key.
+
+### Zero-deleted phone-number key transfer (Agent39, 25 November 2026)
+
+The dot/phone correspondence suggests a narrower additive-key candidate not covered by the earlier ten-phase digit-label test: omit the two zero digits at the two hollow-dot positions, leaving the fixed eight-symbol GP29 shift sequence `[2,1,4,3,9,9,6,8]`. Apply the historically established p56 rule that plaintext F is transparent and does not advance the key. This is a source-fixed key, not a fitted sequence.
+
+The exact DP test uses the original p40-p55 corpus (16 pages, 723 complete words) and the 29,060-entry TextBlob-derived GP29 lexicon. It tests both digit orientations, all eight initial phases, and two source-plausible clocks: continuous across p40-p55, or the same phase reset at each page. The DP includes both legal branches at ciphertext F and maximizes dictionary hits, so the page-reset score is a generous upper bound.
+
+- Continuous clock: no valid complete path for any of the 16 orientation/phase combinations.
+- Fixed-phase page reset: best result is only 7 lexicon hits out of 723 words (forward key, phase 1), with valid paths on just 4 of the 15 rune-bearing pages. The reverse key's best result is 2 hits. No coherent plaintext appears.
+- Reproducer: [`lp2_phone_nonzero_digit_period8_fhold_sft.cjs`](../sims/lp2_phone_nonzero_digit_period8_fhold_sft.cjs).
+
+This rejects the most natural zero-omitted phone-number Vigenere transfer under the known p56 F-hold semantics. It does not exclude an unrelated use of the phone number, but no additional additive-key variants are justified by the present evidence.
+
+**Decision:** the 10-dot pattern matches the nonzero/zero pattern of the historical phone number only under a chosen right-first traversal, but the exact same complete side artwork appears on all 16 physical pages p40-p55. It is therefore a repeated section/page-template feature, not a p41- or p45-specific selector. Neither traversal nor a separator mask is source-selected. The 75-token count match does not provide a reversible p55 receiver. The zero-deleted eight-digit additive key also fails the p56 F-hold transfer. Do not search additional rotations or phone-number additive keys without a new source instruction.
 
 ## Positive controls and limits
 
