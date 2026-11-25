@@ -10,7 +10,8 @@ function experiment(raw,config={}){
  function runeWords(t,separator){let out=[],word=[],before="";for(const x of t){if(ix.has(x)){if(word.length&&separator.test(before)){out.push(word);word=[];}word.push(ix.get(x));before="";}else before+=x;}if(word.length)out.push(word);return out}
  const p57=gold.sections.find(x=>x.name==="p57_parable").source_text;
  if(nativeWords("PARABLE LIKE THE INSTAR TUNNELING TO THE SURFACE WE MUST SHED OUR OWN CIRCUMFERENCES FIND THE DIVINITY WITHIN AND EMERGE").flat().join()!==extract(p57).join())throw Error("p57 spelling");
- const donors=raw.slice(4).map(nativeWords);if(donors.map(x=>x.flat().length).join()!=="62492,217106,321327")throw Error("native sizes");
+ const body=t=>{const a=/\*{3}\s*START OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\n]*/i.exec(t),b=/\*{3}\s*END OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\n]*/i.exec(t);return t.slice(a?a.index+a[0].length:0,b?b.index:t.length);};
+ const donors=raw.slice(4).map(t=>nativeWords(body(t)));if(donors.some(x=>x.flat().length<30000))throw Error("native sizes");
  const training=donors.map(w=>w.slice(0,Math.floor(w.length*.8)));
  const authenticNames=["0_welcome","jpg107-167"];
  for(const s of gold.sections)if(!authenticNames.includes(s.name))training.push(runeWords(s.source_text,/[^\u16a0-\u16ff]/u));
@@ -150,7 +151,7 @@ function experiment(raw,config={}){
   else{const [tag,mode]=name.split("-");const i=tag==="dev"?0:Number(tag.replace("fresh",""));item=control(tag==="fresh3"?2:i%3,i,mode,tag==="fresh3");item.name=name;}
   cases.push(recover(item));
  }
- return {training:{types:counts.size,tokens:total,anchors:anchors.length,EPS,maxLength:L},authentic:{welcome:wC.length,koan:kC.length},inventory:inventory.reduce((a,n)=>(a[n]=(a[n]||0)+1,a),{}),cases};
+ return {training:{types:counts.size,tokens:total,anchors:anchors.length,EPS,maxLength:L,donorBodyRunes:donors.map(x=>x.flat().length)},authentic:{welcome:wC.length,koan:kC.length},inventory:inventory.reduce((a,n)=>(a[n]=(a[n]||0)+1,a),{}),cases};
 }
 if(require.main===module){const args=process.argv.slice(2);console.log(JSON.stringify(experiment(files.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8")),args.length?{cases:args}:{}),null,2));}
 module.exports={experiment};
