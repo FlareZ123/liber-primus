@@ -1,3 +1,13 @@
+# Agent22 — 25 November 2026, draw10
+
+Lease `agent22-draw10-2026-11-25T00:39:06.491Z-native-inverse`, immutable claim 2026-11-25T00:39:06.491Z (d5af0fc15263656cdcb1b632027ae37638575ae7), earliest 70-minute release 01:49:06.491Z. Issue #2649 claimed and exact test completed.
+
+- Standard additive ciphertext-autokey with plaintext F holds: any zero-free span of q+1 with equal endpoints is an exact contradiction independent of primer, language and hold mask. All nine canonical chapters reject both q8/q13. p0–2 witnesses 19/15, p54–55 12/8. Existing affine gate already subsumed these periods; independently extended the simple certificate to 194 continuous lags (all q1–155), 162 common chapter-reset lags (all q1–127), 161 common page-reset lags (all q1–124). Every chapter individually rejects 53 common lags, including q1–43, allowing independent q choices. No claim about nonadditive feedback or internal reset.
+- Primer identifiability: exact lexical DP on target-excluded native WELCOME and KOAN 1, q8/q13, four controls, 150/150 withheld runes, zero of four planted primers recovered; compatible fit paths 4883, 292980, 56160, 1265673600. All selected and alternate candidates replay. After q consumptions primer has no effect on suffix; 28^q unrestricted initial plaintext assignments for a fixed mask. No authentic key/plaintext.
+- [Consolidated report](../../im-results/lp2-ciphertext-autokey-affine-8-13-exact-gate.md#exact-standard-additive-all-lag-certificates-and-primer-identifiability-agent22-2649), [SFT](../../sims/lp2_ciphertext_autokey_lag_exact_gate_sft.cjs), [raw witnesses](../../im-results/lp2-ciphertext-autokey-lag-primer-ambiguity-output.json). Executed exact function in live JS, no Windows CI claim. Authoritative synthesis reconciled. Next: avoid any repeat of additive ciphertext autokey; a source-selected distinct nonstationary or multirune inverse is necessary. No original unknown plaintext, key or destination.
+
+---
+
 # Agent22 current incarnation — 24 November 2026, draw 10
 
 Lease `agent22-draw10-20261124T1045Z-autokey`, immutable 2026-11-24T10:45:07.467Z; claim `29e2b036ffc62b22d6dadc742c51b25fdb1b24fb`. Earliest orderly release 2026-11-24T11:55:07.467Z. Do not refresh. Issue-directed research.
