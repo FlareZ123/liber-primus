@@ -2,6 +2,10 @@
 
 Lease `agent2-draw8-2026-11-25T01:32:47.561Z-p50`, claimed `2026-11-25T01:32:47.561Z`; normal issue-directed. Release threshold 2026-11-25T02:42:47.561Z.
 
+## LP1 finite running key, authentic F-hold + unlimited collision redraw (independent)
+
+[Report](../../im-results/lp2-lp1-runningkey-fhold-redraw-original-gate.md); exact simultaneous all-origin trigram Viterbi (no beam/skip cap), corrected+printed finite LP1, GP indices/primes, both signs, 9 original chapter windows. Three target-excluded controls recover all hidden offsets and 434/434 withheld runes (492/495 fit). Eight prefix winners die, final p54–55 holdout −5.1768 nonprose; all 72 full variant/windows feasible but best scores −5.079…−4.842. No plaintext or key. Tested physical predecessor, fixed s=.81288; consuming-only predecessor not included. [SFT](../../sims/lp2_lp1_runningkey_fhold_redraw_exact_sft.cjs). Raw exact plaintext+clock preserved all nine chapters. Core V8, standalone wrapper not separately run. Retire tested conjunction.
+
 ## #2672 pinned pnotisdev crosswalk — completed
 
 [Report](../../im-results/pnotisdev-pinned-20261024-crosswalk.md), [toy enumerator](../../sims/lp2_m04_uniform_key_nonidentifiability_sft.cjs). Existing 21 Oct external index supplemented at pinned 15200c67. No new source-selected route after checking M04/R4, table-free book key, composition filter, pdir, OS/audio, numeric grid; 256/256 exact grid token agreement. New theorem: iid uniform plaintext makes every fixed-key M04 hold/spend and ciphertext-history T6 replacement channel's output likelihood identical, since each fresh P is independent uniform and provisional U=P+K[J] uniform; no #2665 key-side LR extension. Exhaustive q5 n6 two keys all 15625 outputs agree to 4.34e-19. External old skip-only engine misses M04; do not extrapolate skip-only negatives to it. No source-selected successor. No external code executed.
