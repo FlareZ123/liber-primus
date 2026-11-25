@@ -1,0 +1,223 @@
+{
+  "authenticP56": 85,
+  "controls": [
+    {
+      "name": "0_welcome",
+      "origin": 17,
+      "origins": 632,
+      "decodedOrigin": 17,
+      "correct": 295,
+      "score": -2.7061076412798033,
+      "swaps": 17,
+      "decodedSwaps": 18,
+      "peak": 1973
+    },
+    {
+      "name": "0_koan_1",
+      "origin": 1033,
+      "origins": 28,
+      "decodedOrigin": 1033,
+      "correct": 308,
+      "score": -2.4739299183997403,
+      "swaps": 9,
+      "decodedSwaps": 9,
+      "peak": 78
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "origin": 3301,
+      "origins": 561,
+      "decodedOrigin": 3301,
+      "correct": 304,
+      "score": -2.810696293120204,
+      "swaps": 11,
+      "decodedSwaps": 13,
+      "peak": 788
+    }
+  ],
+  "originals": [
+    {
+      "name": "p0-2",
+      "n": 729,
+      "sign": 1,
+      "farthest": 674,
+      "origins": 0,
+      "originList": [],
+      "fit": null
+    },
+    {
+      "name": "p0-2",
+      "n": 729,
+      "sign": -1,
+      "farthest": 679,
+      "origins": 0,
+      "originList": [],
+      "fit": null
+    },
+    {
+      "name": "p3-7",
+      "n": 1145,
+      "sign": 1,
+      "farthest": 603,
+      "origins": 0,
+      "originList": [],
+      "fit": null
+    },
+    {
+      "name": "p3-7",
+      "n": 1145,
+      "sign": -1,
+      "farthest": 461,
+      "origins": 0,
+      "originList": [],
+      "fit": null
+    },
+    {
+      "name": "p8-14",
+      "n": 1729,
+      "sign": 1,
+      "farthest": 524,
+      "origins": 0,
+      "originList": [],
+      "fit": null
+    },
+    {
+      "name": "p8-14",
+      "n": 1729,
+      "sign": -1,
+      "farthest": 500,
+      "origins": 0,
+      "originList": [],
+      "fit": null
+    },
+    {
+      "name": "p15-22",
+      "n": 1903,
+      "sign": 1,
+      "farthest": 559,
+      "origins": 0,
+      "originList": [],
+      "fit": null
+    },
+    {
+      "name": "p15-22",
+      "n": 1903,
+      "sign": -1,
+      "farthest": 780,
+      "origins": 0,
+      "originList": [],
+      "fit": null
+    },
+    {
+      "name": "p23-26",
+      "n": 1021,
+      "sign": 1,
+      "farthest": 564,
+      "origins": 0,
+      "originList": [],
+      "fit": null
+    },
+    {
+      "name": "p23-26",
+      "n": 1021,
+      "sign": -1,
+      "farthest": 700,
+      "origins": 0,
+      "originList": [],
+      "fit": null
+    },
+    {
+      "name": "p27-32",
+      "n": 1433,
+      "sign": 1,
+      "farthest": 664,
+      "origins": 0,
+      "originList": [],
+      "fit": null
+    },
+    {
+      "name": "p27-32",
+      "n": 1433,
+      "sign": -1,
+      "farthest": 625,
+      "origins": 0,
+      "originList": [],
+      "fit": null
+    },
+    {
+      "name": "p33-39",
+      "n": 1680,
+      "sign": 1,
+      "farthest": 594,
+      "origins": 0,
+      "originList": [],
+      "fit": null
+    },
+    {
+      "name": "p33-39",
+      "n": 1680,
+      "sign": -1,
+      "farthest": 519,
+      "origins": 0,
+      "originList": [],
+      "fit": null
+    },
+    {
+      "name": "p40-53",
+      "n": 3008,
+      "sign": 1,
+      "farthest": 648,
+      "origins": 0,
+      "originList": [],
+      "fit": null
+    },
+    {
+      "name": "p40-53",
+      "n": 3008,
+      "sign": -1,
+      "farthest": 727,
+      "origins": 0,
+      "originList": [],
+      "fit": null
+    },
+    {
+      "name": "p54-55",
+      "n": 308,
+      "sign": 1,
+      "farthest": 308,
+      "origins": 3,
+      "originList": [
+        167,
+        168,
+        3047
+      ],
+      "fit": {
+        "origin": 3047,
+        "score": -4.3411902408397856,
+        "swaps": 6,
+        "peak": 6,
+        "preview": "JRTHIADNGBEARDJYXBJTCNGIAXEOIWRDXIAEOAXEOOAEGEOEXEUMHFAEMEANGOMINGNGJXXDNREALTHUTHURAEFOEYEAGGHLNXTIAIAUAEAEOEAOEETGPJGEAECDTHDEAOEJEO"
+      }
+    },
+    {
+      "name": "p54-55",
+      "n": 308,
+      "sign": -1,
+      "farthest": 308,
+      "origins": 4,
+      "originList": [
+        991,
+        1144,
+        2474,
+        3297
+      ],
+      "fit": {
+        "origin": 991,
+        "score": -4.295705425076954,
+        "swaps": 5,
+        "peak": 10,
+        "preview": "BYCJBAEYEALWNODCDEODOEWYJIARAEICJXSNGSOXWTHAURIALYAEYWPXNOATWAENGIEAEALIAGNGTHMYHAFTHYNRECIANOEWPAEPPAENREOEAEDDITHOSEOJEOELCRB"
+      }
+    }
+  ]
+}
