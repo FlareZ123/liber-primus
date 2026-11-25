@@ -1,0 +1,2393 @@
+{
+  "sources": [
+    {
+      "path": "resources/transcriptions/lp2-image-corrected.txt",
+      "sha": "f7b534a33edeb212d427329798438325307463d7"
+    },
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/liber-primus/lp2-grid-256.json",
+      "sha": "2550eae357442912220e05dc51147523a61dd75a"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    }
+  ],
+  "trainWords": 442,
+  "chapters": [
+    {
+      "words": 158,
+      "runes": 729
+    },
+    {
+      "words": 255,
+      "runes": 1145
+    },
+    {
+      "words": 383,
+      "runes": 1729
+    },
+    {
+      "words": 437,
+      "runes": 1903
+    },
+    {
+      "words": 224,
+      "runes": 1021
+    },
+    {
+      "words": 326,
+      "runes": 1433
+    },
+    {
+      "words": 378,
+      "runes": 1680
+    },
+    {
+      "words": 669,
+      "runes": 3008
+    },
+    {
+      "words": 66,
+      "runes": 308
+    }
+  ],
+  "results": [
+    {
+      "radix": 59,
+      "weight": "GP0",
+      "sign": 1,
+      "hold": false,
+      "controls": [
+        {
+          "name": "0_warning",
+          "seed": 71,
+          "found": 13,
+          "fitExact": true,
+          "holdCorrect": 64,
+          "holdN": 64,
+          "holdScore": -2.7951111264856436,
+          "trueScore": -2.7951111264856436,
+          "collapse": null,
+          "dead": null
+        },
+        {
+          "name": "0_koan_1",
+          "seed": 182,
+          "found": 8,
+          "fitExact": true,
+          "holdCorrect": 275,
+          "holdN": 275,
+          "holdScore": -2.968417336625462,
+          "trueScore": -2.968417336625462,
+          "collapse": 67,
+          "dead": null
+        },
+        {
+          "name": "p57_parable",
+          "seed": 111,
+          "found": 108,
+          "fitExact": false,
+          "holdCorrect": 42,
+          "holdN": 42,
+          "holdScore": -1.943191630790615,
+          "trueScore": -1.943191630790615,
+          "collapse": null,
+          "dead": null
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 182,
+          "collapse": 94,
+          "fitScore": -4.499799753626974,
+          "holdScore": -4.495680874942665,
+          "frozenDead": null,
+          "preview": "ONLDLMW NNGF OROE NGCOEA EOYN JUJAEF OH MN NU HMBDXJ SXIAEO NWNGUC NGAES IAUIA BWOETLTM"
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 193,
+          "collapse": 92,
+          "fitScore": -4.524256301971049,
+          "holdScore": -4.6255310612375276,
+          "frozenDead": null,
+          "preview": "OEBE WLOXOBX UPT OTHYPYIAAE BYCNGRI CTBT EAWFJ TH RHEAB SEO HPWAUDC LMTHEOD IAY OOEOE OEEA"
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 55,
+          "collapse": 211,
+          "fitScore": -4.495916541636136,
+          "holdScore": -4.508877009990792,
+          "frozenDead": null,
+          "preview": "PEAG WU PP DLIM HEAIAEA OYJC THEODEO DOEN YAEADGAET CL IEOTH RJAU GE YNGI IA"
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 53,
+          "collapse": 39,
+          "fitScore": -4.610149783271973,
+          "holdScore": -4.5327008909219755,
+          "frozenDead": null,
+          "preview": "NGPG AEE JYOE EOEONACBTAE BSNGRSMOX UJ EOU UU YIN XHIAN FOEOENP XNGIACEJN CL EOCJ CB"
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "dead": null,
+          "states": 2,
+          "seed": 99,
+          "collapse": null,
+          "fitScore": -4.469175401417287,
+          "holdScore": -4.58426190862409,
+          "frozenDead": null,
+          "preview": "EOBM UHCNGJCW IFEAAE UPIAIOE IJ IAEEAAE OETHSF TIA OAENYOSUCC WGCOE GBHN BYBENSYATH THSEAEHNGT XDNOE THUP"
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 156,
+          "collapse": 172,
+          "fitScore": -4.5602214866129005,
+          "holdScore": -4.60813575268003,
+          "frozenDead": null,
+          "preview": "FRNF DGEOIS BTNGYBTH H PAEH GTHNGX UAE RUGAEWEONG GLEAES NGMRWIAMIA LUP WWOO GYAE IAEATH N"
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 245,
+          "collapse": 90,
+          "fitScore": -4.553040310788885,
+          "holdScore": -4.617271996299607,
+          "frozenDead": null,
+          "preview": "YO EONX EO PH RNX EOFU SOAEAEUR EOEOX DTRNG THJDEADFJTHJ SITHU LEBJRUOER WOM GSJJJFEAO GWTT"
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 74,
+          "collapse": 127,
+          "fitScore": -4.52491487086118,
+          "holdScore": -4.583573704463377,
+          "frozenDead": null,
+          "preview": "HJ THNGTHWN AEG INNGN YDTHG PBIATH IAJAE TWN XFENGEOAEAEAEH TLIATHAI OWCFGE IWIA UNY AEYM NGTXNPY"
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "dead": null,
+          "states": 2,
+          "seed": 11,
+          "collapse": null,
+          "fitScore": -4.466044301723674,
+          "holdScore": -4.610877518413514,
+          "frozenDead": null,
+          "preview": "PAEHRUX UPEA RT BSFIDMCAERO XM THWTHSOOPELJG EOASL THIA XEO ETBEAIT JDEMGIA MF IAARFDHSMIAOEGCY TGOXEC PTHXG"
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "weight": "GP0",
+      "sign": 1,
+      "hold": true,
+      "controls": [
+        {
+          "name": "0_warning",
+          "seed": 71,
+          "found": 13,
+          "fitExact": true,
+          "holdCorrect": 64,
+          "holdN": 64,
+          "holdScore": -2.7951111264856436,
+          "trueScore": -2.7951111264856436,
+          "collapse": null,
+          "dead": null
+        },
+        {
+          "name": "0_koan_1",
+          "seed": 182,
+          "found": 8,
+          "fitExact": true,
+          "holdCorrect": 275,
+          "holdN": 275,
+          "holdScore": -2.968417336625462,
+          "trueScore": -2.968417336625462,
+          "collapse": 43,
+          "dead": null
+        },
+        {
+          "name": "p57_parable",
+          "seed": 111,
+          "found": 108,
+          "fitExact": false,
+          "holdCorrect": 42,
+          "holdN": 42,
+          "holdScore": -1.943191630790615,
+          "trueScore": -1.943191630790615,
+          "collapse": null,
+          "dead": null
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "dead": 109,
+          "states": 0,
+          "seed": 158,
+          "collapse": 52,
+          "fitScore": -4.5513973240612895,
+          "holdScore": null,
+          "frozenDead": 4,
+          "preview": null
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "dead": 30,
+          "minStates": 0
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "dead": 26,
+          "minStates": 0
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "dead": 25,
+          "minStates": 0
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "dead": 35,
+          "minStates": 0
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "dead": 66,
+          "minStates": 0
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "dead": 23,
+          "minStates": 0
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "dead": 33,
+          "minStates": 0
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "dead": 39,
+          "minStates": 0
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "weight": "GP0",
+      "sign": -1,
+      "hold": false,
+      "controls": [
+        {
+          "name": "0_warning",
+          "seed": 71,
+          "found": 13,
+          "fitExact": true,
+          "holdCorrect": 64,
+          "holdN": 64,
+          "holdScore": -2.7951111264856436,
+          "trueScore": -2.7951111264856436,
+          "collapse": null,
+          "dead": null
+        },
+        {
+          "name": "0_koan_1",
+          "seed": 182,
+          "found": 8,
+          "fitExact": true,
+          "holdCorrect": 275,
+          "holdN": 275,
+          "holdScore": -2.968417336625462,
+          "trueScore": -2.968417336625462,
+          "collapse": 111,
+          "dead": null
+        },
+        {
+          "name": "p57_parable",
+          "seed": 111,
+          "found": 114,
+          "fitExact": false,
+          "holdCorrect": 42,
+          "holdN": 42,
+          "holdScore": -1.943191630790615,
+          "trueScore": -1.943191630790615,
+          "collapse": null,
+          "dead": null
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 20,
+          "collapse": 83,
+          "fitScore": -4.551744836265072,
+          "holdScore": -4.530974435382683,
+          "frozenDead": null,
+          "preview": "ATGRBPA JEC NEE AETHEAOJ TJA OEEIGR AP NT RAE EGNGDAEJ HEIAEO YMXXO AGT EPC NGDIMOEUNG"
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 8,
+          "collapse": 73,
+          "fitScore": -4.471186313396989,
+          "holdScore": -4.655078317244803,
+          "frozenDead": null,
+          "preview": "DMC AHIAJTIB EAENG IFOEPOEGN EMLADH YBYI TIPB B DDOI SOE XUOEAGTB IAPJMGW BAN YIAM AEO"
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 204,
+          "collapse": 73,
+          "fitScore": -4.51915698623732,
+          "holdScore": -4.606769745588511,
+          "frozenDead": null,
+          "preview": "XRNG GD NGA WCOL EAAEXS THJST RAEOC UIAT HEADTXAS BM PEAY HBOEEO EL UIAA L"
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 58,
+          "collapse": 59,
+          "fitScore": -4.617229707055864,
+          "holdScore": -4.574738662976149,
+          "frozenDead": null,
+          "preview": "BJOE IAIAC XAM EOOEYBHUXG JFOOEXEOUS PEO LR NAE RLH RDIATH IAIAAET HLTTHIIATH NGD DLY SC"
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "dead": null,
+          "states": 2,
+          "seed": 154,
+          "collapse": null,
+          "fitScore": -4.513422511245157,
+          "holdScore": -4.5946039551114275,
+          "frozenDead": null,
+          "preview": "WSA HESPOEEOT IAOET EONIAEAH OEIA IAAEW EOJYO LU NFMEOLLAAT JPBL LEAIEO JIAENISEBEA NCJIAJNN FWSX MEG"
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 18,
+          "collapse": 125,
+          "fitScore": -4.602523983866081,
+          "holdScore": -4.550463353574993,
+          "frozenDead": null,
+          "preview": "NNGJN EAIAXAS BYMAGP N UPA OIOEM JM THLHAHWH XPYED EAOEFPOEGS ETO LMNB RFX SXO J"
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 1,
+          "collapse": 75,
+          "fitScore": -4.554334188012611,
+          "holdScore": -4.536319848415741,
+          "frozenDead": null,
+          "preview": "PA LHIA S JAE ODTH NEAO IEAEAITHO NGTHU IAOEED JWWFHJETL NGLBM NEJWYNNS CIEO REOEGUXEAP DHCEA"
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 140,
+          "collapse": 134,
+          "fitScore": -4.539338199151607,
+          "holdScore": -4.574327445738678,
+          "frozenDead": null,
+          "preview": "EOE OEMJAEC OY EOTHPN ACEAB EATAEC SLNG MBNG TYNTHCTHNGTHJ YIATHNGIO BYNWUIA LEO EAEAIA EAHG BWTHJYIA"
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 14,
+          "collapse": null,
+          "fitScore": -4.516866102622869,
+          "holdScore": -4.431538875891574,
+          "frozenDead": null,
+          "preview": "AEABHPL EASE LC RLAEIHHNOEAR OEIA YMMNAEIOEOGNGS YHAEP FR EEA OCCOEPR DAEDLSP IJ NEDEEONNNNOEHTHIA LRNRJU HASEO"
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "weight": "GP0",
+      "sign": -1,
+      "hold": true,
+      "controls": [
+        {
+          "name": "0_warning",
+          "seed": 71,
+          "found": 13,
+          "fitExact": true,
+          "holdCorrect": 64,
+          "holdN": 64,
+          "holdScore": -2.7951111264856436,
+          "trueScore": -2.7951111264856436,
+          "collapse": 30,
+          "dead": null
+        },
+        {
+          "name": "0_koan_1",
+          "seed": 182,
+          "found": 8,
+          "fitExact": true,
+          "holdCorrect": 275,
+          "holdN": 275,
+          "holdScore": -2.968417336625462,
+          "trueScore": -2.968417336625462,
+          "collapse": 126,
+          "dead": null
+        },
+        {
+          "name": "p57_parable",
+          "seed": 111,
+          "found": 114,
+          "fitExact": false,
+          "holdCorrect": 42,
+          "holdN": 42,
+          "holdScore": -1.943191630790615,
+          "trueScore": -1.943191630790615,
+          "collapse": null,
+          "dead": null
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "dead": 86,
+          "minStates": 0
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "dead": 40,
+          "minStates": 0
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "dead": 25,
+          "minStates": 0
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "dead": 26,
+          "minStates": 0
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "dead": 68,
+          "minStates": 0
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "dead": 40,
+          "minStates": 0
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "dead": 61,
+          "minStates": 0
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "dead": 32,
+          "minStates": 0
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "dead": 18,
+          "minStates": 0
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "weight": "prime",
+      "sign": 1,
+      "hold": false,
+      "controls": [
+        {
+          "name": "0_warning",
+          "seed": 71,
+          "found": 13,
+          "fitExact": true,
+          "holdCorrect": 64,
+          "holdN": 64,
+          "holdScore": -2.7951111264856436,
+          "trueScore": -2.7951111264856436,
+          "collapse": null,
+          "dead": null
+        },
+        {
+          "name": "0_koan_1",
+          "seed": 182,
+          "found": 8,
+          "fitExact": true,
+          "holdCorrect": 275,
+          "holdN": 275,
+          "holdScore": -2.968417336625462,
+          "trueScore": -2.968417336625462,
+          "collapse": null,
+          "dead": null
+        },
+        {
+          "name": "p57_parable",
+          "seed": 111,
+          "found": 111,
+          "fitExact": true,
+          "holdCorrect": 42,
+          "holdN": 42,
+          "holdScore": -1.943191630790615,
+          "trueScore": -1.943191630790615,
+          "collapse": null,
+          "dead": null
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "dead": null,
+          "states": 2,
+          "seed": 198,
+          "collapse": null,
+          "fitScore": -4.485481611695657,
+          "holdScore": -4.565317975802699,
+          "frozenDead": null,
+          "preview": "BIAEIXAEW LUL FUJ AEXNGTU UUD NGEOUDH MOE NGI XU YJNUEOP LBDTH DOWTM OEPI ECL GALURFIA"
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 60,
+          "collapse": null,
+          "fitScore": -4.471992824915886,
+          "holdScore": -4.623791562921343,
+          "frozenDead": null,
+          "preview": "PUNG YFXPEOOR EABS PNGPOEEONA NEOJASS CDAEOE DOEUP R AEOXP ES THYONPNU IAEBAEJR NPF EJD NGH"
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 211,
+          "collapse": null,
+          "fitScore": -4.502399519360792,
+          "holdScore": -4.575538883054822,
+          "frozenDead": null,
+          "preview": "HHA IAP TJ JUIAI EYSS TORNG WHIAM YIEO NGTDDCHAE JIA WYH EAIASW XP ELNG I"
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 201,
+          "collapse": 141,
+          "fitScore": -4.601172182413887,
+          "holdScore": -4.580668016608821,
+          "frozenDead": null,
+          "preview": "OEAF RRTH SEC AEEAEMAPDD EOPJDAEEAOE YT WY HW SUOE WPIAG BTHAEHOE CNGTHPAIT IC OEOIA ID"
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "dead": null,
+          "states": 3,
+          "seed": 36,
+          "collapse": null,
+          "fitScore": -4.48453573609621,
+          "holdScore": -4.567377213928031,
+          "frozenDead": null,
+          "preview": "BIA CIUEAAEEEA WSRNG EMFBG IU XBIX NGAEUG FJ WCAIMMHEO XUTX GTTHN CSXNGOENGTOEG ICNGEFJX SALA GMF"
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 45,
+          "collapse": 139,
+          "fitScore": -4.562923688582211,
+          "holdScore": -4.619241199422496,
+          "frozenDead": null,
+          "preview": "THEOAD WOEBPL THPLLJH IA UBTH EOIRTH XC EANLHOCX HIANEAEA TAILEOIAE EOXE THREONG GFJ EAITH H"
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "dead": null,
+          "states": 2,
+          "seed": 245,
+          "collapse": null,
+          "fitScore": -4.564828744896717,
+          "holdScore": -4.469065613955374,
+          "frozenDead": null,
+          "preview": "EAOE DTW AE JY UMX CAA ASSBIAG JJT SHOED NGLNEADRMEP NYCE IIPWETHFU MLN WDMYDEAGG THTOY"
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 54,
+          "collapse": 232,
+          "fitScore": -4.537278721568682,
+          "holdScore": -4.54745721062962,
+          "frozenDead": null,
+          "preview": "RT NRPFA FEO IAIWR DGOD PXPC IABEA FNO HJEOTHLAUAEH BCNGOMD NHPTCJ MAA WMX JIY WPCYEOEO"
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "dead": null,
+          "states": 4,
+          "seed": 14,
+          "collapse": null,
+          "fitScore": -4.333361791850669,
+          "holdScore": -4.587706472550856,
+          "frozenDead": null,
+          "preview": "NEOIMEAAE IABAE RJ EJPEOILWTAEX PEO NWIAWOENPELJG XRNO HL CR LNGDIASO OEOJLPW UAE FABEDYEEOPNXAEE THOEAEATHNG JIPTH"
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "weight": "prime",
+      "sign": 1,
+      "hold": true,
+      "controls": [
+        {
+          "name": "0_warning",
+          "seed": 71,
+          "found": 13,
+          "fitExact": false,
+          "holdCorrect": 0,
+          "holdN": 64,
+          "holdScore": null,
+          "trueScore": -2.7951111264856436,
+          "collapse": null,
+          "dead": 2
+        },
+        {
+          "name": "0_koan_1",
+          "seed": 182,
+          "found": 8,
+          "fitExact": true,
+          "holdCorrect": 273,
+          "holdN": 275,
+          "holdScore": -2.9578935965061532,
+          "trueScore": -2.968417336625462,
+          "collapse": null,
+          "dead": null
+        },
+        {
+          "name": "p57_parable",
+          "seed": 111,
+          "found": 111,
+          "fitExact": true,
+          "holdCorrect": 42,
+          "holdN": 42,
+          "holdScore": -1.943191630790615,
+          "trueScore": -1.943191630790615,
+          "collapse": null,
+          "dead": null
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "dead": 62,
+          "minStates": 0
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "dead": 31,
+          "minStates": 0
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "dead": 31,
+          "minStates": 0
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "dead": 45,
+          "minStates": 0
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "dead": 19,
+          "minStates": 0
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "dead": 50,
+          "minStates": 0
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "dead": 41,
+          "minStates": 0
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "dead": 33,
+          "minStates": 0
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "dead": 29,
+          "minStates": 0
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "weight": "prime",
+      "sign": -1,
+      "hold": false,
+      "controls": [
+        {
+          "name": "0_warning",
+          "seed": 71,
+          "found": 13,
+          "fitExact": true,
+          "holdCorrect": 64,
+          "holdN": 64,
+          "holdScore": -2.7951111264856436,
+          "trueScore": -2.7951111264856436,
+          "collapse": null,
+          "dead": null
+        },
+        {
+          "name": "0_koan_1",
+          "seed": 182,
+          "found": 8,
+          "fitExact": true,
+          "holdCorrect": 275,
+          "holdN": 275,
+          "holdScore": -2.968417336625462,
+          "trueScore": -2.968417336625462,
+          "collapse": 82,
+          "dead": null
+        },
+        {
+          "name": "p57_parable",
+          "seed": 111,
+          "found": 111,
+          "fitExact": true,
+          "holdCorrect": 42,
+          "holdN": 42,
+          "holdScore": -1.943191630790615,
+          "trueScore": -1.943191630790615,
+          "collapse": null,
+          "dead": null
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 207,
+          "collapse": null,
+          "fitScore": -4.477094709800487,
+          "holdScore": -4.404562119462309,
+          "frozenDead": null,
+          "preview": "RIWXNGLH NGIX TPNG TATLEO LBA EATEOOEA RI XD EAX FNGTHEAEM IJEAF AIANGRG OTHAE IATOE THINSMEH"
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 25,
+          "collapse": 134,
+          "fitScore": -4.443374705245661,
+          "holdScore": -4.546246681845098,
+          "frozenDead": null,
+          "preview": "EPI THWTEOPBO AOEO RFTHWFBEA FOECEARI EXOEA OESAEAE X ASSL CAE RFJJNGWN AERTHENGP PAEN RNH TH"
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 162,
+          "collapse": 139,
+          "fitScore": -4.541085117750248,
+          "holdScore": -4.635771855270446,
+          "frozenDead": null,
+          "preview": "FCX FA ROE IAPLH WWIM THAEOEF GCDO AAN PNGAYPTH EAD ULO AEFN NJ FHX J"
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 227,
+          "collapse": 119,
+          "fitScore": -4.596547947780684,
+          "holdScore": -4.550890938859196,
+          "frozenDead": null,
+          "preview": "HYG RSE EATO XJBFTHFEAB THLTMMIIATH XI SEA THL MTX RIRX PTALW EAIAAWNGHN IAT FJR AEH"
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "dead": null,
+          "states": 2,
+          "seed": 226,
+          "collapse": null,
+          "fitScore": -4.510402595980869,
+          "holdScore": -4.56441706918393,
+          "frozenDead": null,
+          "preview": "NUJ THIOAEYMF TOET ACEOAG CS IARXU IAMWNG BT NGOENGAJPNLM RFNGY NIWG HREONGEAIATHNGR BIAGMJOEA LNGIEA MEG"
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 249,
+          "collapse": null,
+          "fitScore": -4.542277367884552,
+          "holdScore": -4.510147236618651,
+          "frozenDead": null,
+          "preview": "DMAEOE HSMXJ AIXTHEOB B AMG CRCM WA UNGEAUJS LOGBM EAECJHEOB EALNG BEAPB SAEY IADI O"
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 111,
+          "collapse": 242,
+          "fitScore": -4.504520045764093,
+          "holdScore": -4.570660206650888,
+          "frozenDead": null,
+          "preview": "MT YXO U EAEA JFEO OLTH YGHNGXR OEDP SIAOEL IOIWGNTWR UJAEO DINGOEFEONL XUD FGCXJBXH MNGCEO"
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 120,
+          "collapse": 101,
+          "fitScore": -4.512194997973832,
+          "holdScore": -4.57334624662703,
+          "frozenDead": null,
+          "preview": "II AETHAELEA AEAE JIAOG JXWO GLMNG WETH AEEX FOEUUPOETHOEX EATJTHUL TGNTUM YDS FFO XWX URSMEH"
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "dead": null,
+          "states": 6,
+          "seed": 0,
+          "collapse": null,
+          "fitScore": -4.472034419705803,
+          "holdScore": -4.473754657956466,
+          "frozenDead": null,
+          "preview": "EIAUTTTH DYW AEB AEXILAECFYCR YT DETHBFRXMNGEOW FNGFS GIA OEO ERWEAFX DMETCAE GJ PHXLWOXTHCTHLLW WMMEOFJ YTHAEN"
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "weight": "prime",
+      "sign": -1,
+      "hold": true,
+      "controls": [
+        {
+          "name": "0_warning",
+          "seed": 71,
+          "found": 13,
+          "fitExact": true,
+          "holdCorrect": 64,
+          "holdN": 64,
+          "holdScore": -2.7951111264856436,
+          "trueScore": -2.7951111264856436,
+          "collapse": null,
+          "dead": null
+        },
+        {
+          "name": "0_koan_1",
+          "seed": 182,
+          "found": 8,
+          "fitExact": false,
+          "holdCorrect": 275,
+          "holdN": 275,
+          "holdScore": -2.968417336625462,
+          "trueScore": -2.968417336625462,
+          "collapse": 93,
+          "dead": null
+        },
+        {
+          "name": "p57_parable",
+          "seed": 111,
+          "found": 111,
+          "fitExact": true,
+          "holdCorrect": 42,
+          "holdN": 42,
+          "holdScore": -1.943191630790615,
+          "trueScore": -1.943191630790615,
+          "collapse": null,
+          "dead": null
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "dead": 31,
+          "minStates": 0
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "dead": 82,
+          "minStates": 0
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "dead": 26,
+          "minStates": 0
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "dead": 46,
+          "minStates": 0
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "dead": 108,
+          "minStates": 0
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "dead": 45,
+          "minStates": 0
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "dead": 58,
+          "minStates": 0
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "dead": 30,
+          "minStates": 0
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "dead": 24,
+          "minStates": 0
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "weight": "GP0",
+      "sign": 1,
+      "hold": false,
+      "controls": [
+        {
+          "name": "0_warning",
+          "seed": 71,
+          "found": 13,
+          "fitExact": true,
+          "holdCorrect": 64,
+          "holdN": 64,
+          "holdScore": -2.7951111264856436,
+          "trueScore": -2.7951111264856436,
+          "collapse": null,
+          "dead": null
+        },
+        {
+          "name": "0_koan_1",
+          "seed": 182,
+          "found": 8,
+          "fitExact": true,
+          "holdCorrect": 275,
+          "holdN": 275,
+          "holdScore": -2.968417336625462,
+          "trueScore": -2.968417336625462,
+          "collapse": 46,
+          "dead": null
+        },
+        {
+          "name": "p57_parable",
+          "seed": 111,
+          "found": 111,
+          "fitExact": true,
+          "holdCorrect": 42,
+          "holdN": 42,
+          "holdScore": -1.943191630790615,
+          "trueScore": -1.943191630790615,
+          "collapse": null,
+          "dead": null
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 40,
+          "collapse": null,
+          "fitScore": -4.503588687651841,
+          "holdScore": -4.3834255012276655,
+          "frozenDead": null,
+          "preview": "WFXHLRL HOEIA CAEF HBWUA GATH YMAEIN LH THM TEO MDDAEPU OHTNG FHPRC CXX YOEEO EONXIAADB"
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 141,
+          "collapse": 50,
+          "fitScore": -4.480261180543218,
+          "holdScore": -4.552990356896479,
+          "frozenDead": null,
+          "preview": "IANGI GMOERUGEA OECG FIATELAY HLLAENX NGPBIA REAEEA EA WOEWP DAE TBNGFAIAA UPSXLE IAHS PNGH IAB"
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 237,
+          "collapse": 72,
+          "fitScore": -4.525095830980239,
+          "holdScore": -4.594695363738335,
+          "frozenDead": null,
+          "preview": "JMT HOE LNG HMFP JOEEOEA NGARE NEOIAE GPB SNIAGRXU TY OECIA OLPIA EOB NGRY R"
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 58,
+          "collapse": 58,
+          "fitScore": -4.643092244201839,
+          "holdScore": -4.555970117308698,
+          "frozenDead": null,
+          "preview": "NGYM IAXB PPNG ARRFCPGIA AEHWAOEIUT AEIA UP FAE OCW SBML TFSAP EONGUBAESEA LX OOP XT"
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "dead": null,
+          "states": 2,
+          "seed": 151,
+          "collapse": null,
+          "fitScore": -4.523041244631411,
+          "holdScore": -4.56977353611709,
+          "frozenDead": null,
+          "preview": "EMU JHLYSSAE GSWS NGMDHD ER YWJX RXFIA IEO ANXOEYGERE TEYH WPPM CMTEDNGLEAD EOEAHMIJX LCTR AEOY"
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 193,
+          "collapse": 60,
+          "fitScore": -4.571670167663235,
+          "holdScore": -4.537170560257901,
+          "frozenDead": null,
+          "preview": "OHUC MJSAIA TOELYJX IA DRO OEEAOB OS EOJSHRAEH EAYONJ THYEAEAHONG EAEG EEALM EAJS UBO T"
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 63,
+          "collapse": null,
+          "fitScore": -4.519133386055959,
+          "holdScore": -4.507355064418387,
+          "frozenDead": null,
+          "preview": "CB MSOE L CR TJA BAJ CHIEOTM SHC RYIAD SELDHFNGNGG DEOTHE OEEAUHEASOEX ACIA HFSTAETFOE EOLJ"
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 154,
+          "collapse": 265,
+          "fitScore": -4.524310340234234,
+          "holdScore": -4.598726778034742,
+          "frozenDead": null,
+          "preview": "UAE AYYAF AG JEAGM JRGE THEOBOE RAOE FIH EAJCAEGROXT DSEOPT XROEMMU EABU EAWOE RMW OEOJCAEP"
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "dead": null,
+          "states": 3,
+          "seed": 21,
+          "collapse": null,
+          "fitScore": -4.448796635532412,
+          "holdScore": -4.3226567946448435,
+          "frozenDead": null,
+          "preview": "HYEOCAEL EAPF CE XEABJBOEEAIBAE RTH FOEIAWTTHYSHOOE OECSE PIA OY SRIEAPL YOGEOEOF GOE EDNGIEOAETHMAHNGIT PXCEORB IXMH"
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "weight": "GP0",
+      "sign": 1,
+      "hold": true,
+      "controls": [
+        {
+          "name": "0_warning",
+          "seed": 71,
+          "found": 13,
+          "fitExact": true,
+          "holdCorrect": 64,
+          "holdN": 64,
+          "holdScore": -2.7951111264856436,
+          "trueScore": -2.7951111264856436,
+          "collapse": null,
+          "dead": null
+        },
+        {
+          "name": "0_koan_1",
+          "seed": 182,
+          "found": 8,
+          "fitExact": true,
+          "holdCorrect": 275,
+          "holdN": 275,
+          "holdScore": -2.968417336625462,
+          "trueScore": -2.968417336625462,
+          "collapse": 20,
+          "dead": null
+        },
+        {
+          "name": "p57_parable",
+          "seed": 111,
+          "found": 111,
+          "fitExact": true,
+          "holdCorrect": 42,
+          "holdN": 42,
+          "holdScore": -1.943191630790615,
+          "trueScore": -1.943191630790615,
+          "collapse": null,
+          "dead": null
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "dead": 150,
+          "states": 0,
+          "seed": 156,
+          "collapse": 87,
+          "fitScore": -4.59168439309484,
+          "holdScore": null,
+          "frozenDead": 45,
+          "preview": null
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "dead": 44,
+          "minStates": 0
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "dead": 37,
+          "minStates": 0
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "dead": 37,
+          "minStates": 0
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "dead": 16,
+          "minStates": 0
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "dead": 113,
+          "minStates": 0
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "dead": 34,
+          "minStates": 0
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "dead": 36,
+          "minStates": 0
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "dead": 21,
+          "minStates": 0
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "weight": "GP0",
+      "sign": -1,
+      "hold": false,
+      "controls": [
+        {
+          "name": "0_warning",
+          "seed": 71,
+          "found": 13,
+          "fitExact": true,
+          "holdCorrect": 64,
+          "holdN": 64,
+          "holdScore": -2.7951111264856436,
+          "trueScore": -2.7951111264856436,
+          "collapse": null,
+          "dead": null
+        },
+        {
+          "name": "0_koan_1",
+          "seed": 182,
+          "found": 8,
+          "fitExact": true,
+          "holdCorrect": 275,
+          "holdN": 275,
+          "holdScore": -2.968417336625462,
+          "trueScore": -2.968417336625462,
+          "collapse": 63,
+          "dead": null
+        },
+        {
+          "name": "p57_parable",
+          "seed": 111,
+          "found": 111,
+          "fitExact": true,
+          "holdCorrect": 42,
+          "holdN": 42,
+          "holdScore": -1.943191630790615,
+          "trueScore": -1.943191630790615,
+          "collapse": null,
+          "dead": null
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 49,
+          "collapse": null,
+          "fitScore": -4.529895424281695,
+          "holdScore": -4.529404096154274,
+          "frozenDead": null,
+          "preview": "XTHOFAIS RIJ FOEA YNPSJ NGEAY BNGYOOE AP NB CO YRGGAF EAIIC XYTJI AENJ BJNG CSNGLDIEA"
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 174,
+          "collapse": 147,
+          "fitScore": -4.534889765024067,
+          "holdScore": -4.632121955543278,
+          "frozenDead": null,
+          "preview": "BJEO BPADHNGY HAU HDRTNGTHY WLDCIH TACY HHEAY TH HLTHX FI TLOEAULN IRHIARX UYT MAEE SA"
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 106,
+          "collapse": 83,
+          "fitScore": -4.510954728689914,
+          "holdScore": -4.586577436146047,
+          "frozenDead": null,
+          "preview": "ASY OEO WY AXOEP HWREO NRAR UIAYM FUW UIPGTXU HB THEANG NGOEEO PNG YGNG NG"
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 97,
+          "collapse": 173,
+          "fitScore": -4.598077968486757,
+          "holdScore": -4.540707416597353,
+          "frozenDead": null,
+          "preview": "HFE ONP NNS BLAEOEMBAIA EDEAXWYAF BN NGJ BR LNGN OESLP EOTAEOT WWHJTIN RL OMOE ME"
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 240,
+          "collapse": 50,
+          "fitScore": -4.5284361524215075,
+          "holdScore": -4.495739422498303,
+          "frozenDead": null,
+          "preview": "UPS LREONFNW PNGHD PEAHFW DA HYLD DXXOE EOA AGWTHBAESGN WCHS DMWP OYANGMSEAOTH WBURIOW YALA MNGC"
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 127,
+          "collapse": 35,
+          "fitScore": -4.5463300154127175,
+          "holdScore": -4.563257477758809,
+          "frozenDead": null,
+          "preview": "NGTEOAE DEOIDI TFNTJIA EO RST FCAEE CTH HGELFYJ YRPGTH XYMCSUE IEAW EAEUNG WGN MFH G"
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 88,
+          "collapse": 53,
+          "fitScore": -4.570682975567407,
+          "holdScore": -4.599577326212606,
+          "frozenDead": null,
+          "preview": "DF GTJ OE EL CTR GLJ WFTHYOI BAH DEJO CHOIJATYX JRDEA IABOEEOCITIA HTJ EOOGIEASAEW DHWOE"
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 104,
+          "collapse": 63,
+          "fitScore": -4.505605301542055,
+          "holdScore": -4.614074280364435,
+          "frozenDead": null,
+          "preview": "TW SAECSE EAM UPNGN OHGI IPBX AOEO THRTH AETHEXXCOEOOE ETEAIAJP EOIOJOEOE PNX DEAOE EPH XPRRPB"
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "dead": null,
+          "states": 3,
+          "seed": 9,
+          "collapse": null,
+          "fitScore": -4.461236153162173,
+          "holdScore": -4.4225918989698565,
+          "frozenDead": null,
+          "preview": "JAGIAJH HIT OEN ITLOEGHONPB IAR HLEOMIWBTHFAEW WNLO AEOE OH YTHEAAPJ BRDEORT AETH SAAOSEOTHTEAFTEEA BTHAETJD AGCL"
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "weight": "GP0",
+      "sign": -1,
+      "hold": true,
+      "controls": [
+        {
+          "name": "0_warning",
+          "seed": 71,
+          "found": 13,
+          "fitExact": true,
+          "holdCorrect": 64,
+          "holdN": 64,
+          "holdScore": -2.7951111264856436,
+          "trueScore": -2.7951111264856436,
+          "collapse": null,
+          "dead": null
+        },
+        {
+          "name": "0_koan_1",
+          "seed": 182,
+          "found": 8,
+          "fitExact": true,
+          "holdCorrect": 275,
+          "holdN": 275,
+          "holdScore": -2.968417336625462,
+          "trueScore": -2.968417336625462,
+          "collapse": 63,
+          "dead": null
+        },
+        {
+          "name": "p57_parable",
+          "seed": 111,
+          "found": 111,
+          "fitExact": true,
+          "holdCorrect": 42,
+          "holdN": 42,
+          "holdScore": -1.943191630790615,
+          "trueScore": -1.943191630790615,
+          "collapse": null,
+          "dead": null
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "dead": 75,
+          "minStates": 0
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "dead": 50,
+          "minStates": 0
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "dead": 27,
+          "minStates": 0
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "dead": 36,
+          "minStates": 0
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "dead": 9,
+          "minStates": 0
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "dead": 45,
+          "minStates": 0
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "dead": 66,
+          "minStates": 0
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "dead": 32,
+          "minStates": 0
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "dead": 28,
+          "minStates": 0
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "weight": "prime",
+      "sign": 1,
+      "hold": false,
+      "controls": [
+        {
+          "name": "0_warning",
+          "seed": 71,
+          "found": 13,
+          "fitExact": true,
+          "holdCorrect": 64,
+          "holdN": 64,
+          "holdScore": -2.7951111264856436,
+          "trueScore": -2.7951111264856436,
+          "collapse": null,
+          "dead": null
+        },
+        {
+          "name": "0_koan_1",
+          "seed": 182,
+          "found": 8,
+          "fitExact": true,
+          "holdCorrect": 275,
+          "holdN": 275,
+          "holdScore": -2.968417336625462,
+          "trueScore": -2.968417336625462,
+          "collapse": null,
+          "dead": null
+        },
+        {
+          "name": "p57_parable",
+          "seed": 111,
+          "found": 111,
+          "fitExact": true,
+          "holdCorrect": 42,
+          "holdN": 42,
+          "holdScore": -1.943191630790615,
+          "trueScore": -1.943191630790615,
+          "collapse": null,
+          "dead": null
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "dead": null,
+          "states": 2,
+          "seed": 140,
+          "collapse": null,
+          "fitScore": -4.497872358648582,
+          "holdScore": -4.506510415408842,
+          "frozenDead": null,
+          "preview": "OENIAJGRB NGYOE AIOE UITHAI EOIJ WHEAUOE BOE THS HO BOXROEG YEADNG JTTMJ EAUH JDI THNEXDSTH"
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 208,
+          "collapse": null,
+          "fitScore": -4.49241394291329,
+          "holdScore": -4.642455229474584,
+          "frozenDead": null,
+          "preview": "UCIA EAATXHAC GJC AWIBAEBH THJEADAEW PYJR RTHIAL Y MARIA PT LGFIBNGD CEADTHAEO IDY XRJ OI"
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 17,
+          "collapse": null,
+          "fitScore": -4.498879229869492,
+          "holdScore": -4.601533443941706,
+          "frozenDead": null,
+          "preview": "YOS WD FO JEASY CMLAE CDEOM WJFB JEAF MLXJIATEA MG CAEF EAGAEO SB DED P"
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 212,
+          "collapse": 163,
+          "fitScore": -4.57278306477316,
+          "holdScore": -4.517118201301222,
+          "frozenDead": null,
+          "preview": "PDE INGD BAEH THJHANFNN THFTDEOLTHS NR PM TJ MIO HTMB ETHTHOI DTHUGDEATH LTH BNT FL"
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "dead": null,
+          "states": 2,
+          "seed": 86,
+          "collapse": null,
+          "fitScore": -4.478091250373205,
+          "holdScore": -4.51697592358343,
+          "frozenDead": null,
+          "preview": "UEAE SAIAEATHNGM UJOEO NGGLRG THO WOERF CFTTH CH IXXXMGBCTH TTEOU FLTHH EOSFIAEAXCWN NGJFOELDIA AEBE CIAU"
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 24,
+          "collapse": 164,
+          "fitScore": -4.580392229063545,
+          "holdScore": -4.519621010082888,
+          "frozenDead": null,
+          "preview": "GAHW AETOEUB OJTHEOUC U EBH BNTHP OEN CJOAEUCC JOEPRNG FEEOHFWAE CNGL NGNFN OYT THOIA C"
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 120,
+          "collapse": null,
+          "fitScore": -4.54178765808228,
+          "holdScore": -4.545180579081779,
+          "frozenDead": null,
+          "preview": "UNG BEB O EI XXE DJG UFGIPOE OETHEO MYCN AELDHFNGNGG AEIARB AEABJTHUPIA XAI CRSAEPNGXM TBMY"
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 237,
+          "collapse": 148,
+          "fitScore": -4.523009528078748,
+          "holdScore": -4.552245179971722,
+          "frozenDead": null,
+          "preview": "GIA PEODJL IG OEOTM FIRH OEAOEAE PDB THEU FDEARBUYSO JHDUPAE RMEAYLTH LTB YOES AEOEEO JXFGST"
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "dead": null,
+          "states": 4,
+          "seed": 15,
+          "collapse": null,
+          "fitScore": -4.438929919900126,
+          "holdScore": -4.443209682871703,
+          "frozenDead": null,
+          "preview": "WOEXBDOE IAXIA EOI DNGFBEOAEIAD LE JMENEAFEARAEUO LAEJNG ID IG AELEAIALTH LSFNGGNG ES PSUNTHSOJXOEOLEO YNGAOXX NAHA"
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "weight": "prime",
+      "sign": 1,
+      "hold": true,
+      "controls": [
+        {
+          "name": "0_warning",
+          "seed": 71,
+          "found": 13,
+          "fitExact": true,
+          "holdCorrect": 64,
+          "holdN": 64,
+          "holdScore": -2.7951111264856436,
+          "trueScore": -2.7951111264856436,
+          "collapse": null,
+          "dead": null
+        },
+        {
+          "name": "0_koan_1",
+          "seed": 182,
+          "found": 8,
+          "fitExact": true,
+          "holdCorrect": 273,
+          "holdN": 275,
+          "holdScore": -2.9578935965061532,
+          "trueScore": -2.968417336625462,
+          "collapse": null,
+          "dead": null
+        },
+        {
+          "name": "p57_parable",
+          "seed": 111,
+          "found": 111,
+          "fitExact": false,
+          "holdCorrect": 42,
+          "holdN": 42,
+          "holdScore": -1.943191630790615,
+          "trueScore": -1.943191630790615,
+          "collapse": null,
+          "dead": null
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "dead": 86,
+          "minStates": 0
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "dead": 30,
+          "minStates": 0
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "dead": 33,
+          "minStates": 0
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "dead": 45,
+          "minStates": 0
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "dead": 32,
+          "minStates": 0
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "dead": 44,
+          "minStates": 0
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "dead": 70,
+          "minStates": 0
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "dead": 27,
+          "minStates": 0
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "dead": 12,
+          "minStates": 0
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "weight": "prime",
+      "sign": -1,
+      "hold": false,
+      "controls": [
+        {
+          "name": "0_warning",
+          "seed": 71,
+          "found": 13,
+          "fitExact": true,
+          "holdCorrect": 64,
+          "holdN": 64,
+          "holdScore": -2.7951111264856436,
+          "trueScore": -2.7951111264856436,
+          "collapse": null,
+          "dead": null
+        },
+        {
+          "name": "0_koan_1",
+          "seed": 182,
+          "found": 8,
+          "fitExact": true,
+          "holdCorrect": 275,
+          "holdN": 275,
+          "holdScore": -2.968417336625462,
+          "trueScore": -2.968417336625462,
+          "collapse": null,
+          "dead": null
+        },
+        {
+          "name": "p57_parable",
+          "seed": 111,
+          "found": 111,
+          "fitExact": true,
+          "holdCorrect": 42,
+          "holdN": 42,
+          "holdScore": -1.943191630790615,
+          "trueScore": -1.943191630790615,
+          "collapse": null,
+          "dead": null
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "dead": null,
+          "states": 2,
+          "seed": 255,
+          "collapse": null,
+          "fitScore": -4.508145192049528,
+          "holdScore": -4.474149020227172,
+          "frozenDead": null,
+          "preview": "NEOEOIAWTH EAWD EXW YNEOOETH ITHJ SIGYAE PEO IAD UG NXCEAYP NGOEEN NGOEWYX DPB LUTH HEABLABY"
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 19,
+          "collapse": null,
+          "fitScore": -4.468898237331613,
+          "holdScore": -4.555270922571259,
+          "frozenDead": null,
+          "preview": "EAJT HNAETHGCOE WNB YGOESOESS NPRAAE THJPNG XCMI W AETHPJ YTH IADHMGOEEA AEFGUWA EAWB LEAY JA"
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 81,
+          "collapse": 182,
+          "fitScore": -4.483576832249619,
+          "holdScore": -4.594403119225476,
+          "frozenDead": null,
+          "preview": "IEAR THR HOE IETI WAYI AEXTHU FAYP IAWC TEPIHBR SF OYF ABEANG LC LWNG D"
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "dead": null,
+          "states": 2,
+          "seed": 148,
+          "collapse": null,
+          "fitScore": -4.606355967763584,
+          "holdScore": -4.55841082942157,
+          "frozenDead": null,
+          "preview": "EOYC EFI YIT OOIANAEDOEX OBSNGCIAWH EOIA IAY NGJ EAAEW IAYTHAE THJTHNGO IPWTHEOIAAE IAS DIAX STH"
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 12,
+          "collapse": null,
+          "fitScore": -4.479604461190689,
+          "holdScore": -4.551199183081749,
+          "frozenDead": null,
+          "preview": "TOL XNLATEOE OEERNG XRADW OJ CGDY DHGP AG SRADWUTUT RMIAIA EATHEAD YJYGNIUAOE YECSTHUTH DNGOO LTEA"
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 57,
+          "collapse": 135,
+          "fitScore": -4.579651152895503,
+          "holdScore": -4.582588878880893,
+          "frozenDead": null,
+          "preview": "TWTL XTTHXJ BXUIADC Y HON AGGC XM OOCAERAG TDNTL TOERUBCS YIEO PTUIA GOES COA N"
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 7,
+          "collapse": null,
+          "fitScore": -4.529975044426972,
+          "holdScore": -4.60756814997499,
+          "frozenDead": null,
+          "preview": "YB THCN W SD OEXN AEOM CHDYJL OEUB CUWA AITHDMPNIAI AEAEIAB BSYNEBSY GNGN SPTHATHEAE UFOEAE"
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "dead": null,
+          "states": 1,
+          "seed": 35,
+          "collapse": 122,
+          "fitScore": -4.5124252817718515,
+          "holdScore": -4.601471477674186,
+          "frozenDead": null,
+          "preview": "PT WEAYWX LEA LBIEO LNGAD WSNIA RLL REA ESFBPAIAOET NGLEOSWL IIEOXITH OTHO GWN ISG ECEAUAIA"
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "dead": null,
+          "states": 4,
+          "seed": 1,
+          "collapse": null,
+          "fitScore": -4.436839316013607,
+          "holdScore": -4.557091248508248,
+          "frozenDead": null,
+          "preview": "EABNNOEIA AENGOE AA EAPJTHHYPEOHR IAP JJLFHBXOEGYTH AENEOA IAO EOP EOJWLIAW JLNGOGO AR NPNHILGNMNGYNGU FLTHTHJD AEJCW"
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "weight": "prime",
+      "sign": -1,
+      "hold": true,
+      "controls": [
+        {
+          "name": "0_warning",
+          "seed": 71,
+          "found": 13,
+          "fitExact": true,
+          "holdCorrect": 64,
+          "holdN": 64,
+          "holdScore": -2.7951111264856436,
+          "trueScore": -2.7951111264856436,
+          "collapse": null,
+          "dead": null
+        },
+        {
+          "name": "0_koan_1",
+          "seed": 182,
+          "found": 8,
+          "fitExact": true,
+          "holdCorrect": 275,
+          "holdN": 275,
+          "holdScore": -2.968417336625462,
+          "trueScore": -2.968417336625462,
+          "collapse": 58,
+          "dead": null
+        },
+        {
+          "name": "p57_parable",
+          "seed": 111,
+          "found": 111,
+          "fitExact": true,
+          "holdCorrect": 42,
+          "holdN": 42,
+          "holdScore": -1.943191630790615,
+          "trueScore": -1.943191630790615,
+          "collapse": null,
+          "dead": null
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "dead": 60,
+          "minStates": 0
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "dead": 43,
+          "minStates": 0
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "dead": 27,
+          "minStates": 0
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "dead": 46,
+          "minStates": 0
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "dead": 37,
+          "minStates": 0
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "dead": 47,
+          "minStates": 0
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "dead": 81,
+          "minStates": 0
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "dead": 23,
+          "minStates": 0
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "dead": 27,
+          "minStates": 0
+        }
+      ]
+    }
+  ]
+}
