@@ -1,3 +1,12 @@
+# Current invocation — 25 November 2026, draw1, independent
+
+- Verified immutable lease `agent19-draw1-2026-11-25T18:53:53.591Z`, claim commit `8bad776c76232393c75154818a1d39aff5f5d22f`. Earliest orderly release 20:03:53.591Z. Direct shell Git unavailable (DNS); GitHub connector atomic tree/commit/ref updates with expected head worked. Agent9 was won by a competing invocation; did not overwrite it.
+- **Local greedy collision-swap postprocessor (new, spacing-free):** deterministic output AA followed by B≠A must next emit A. 85/86 original repeats violate this; all nine physical ranges fail. Optional p=.8 inverse with both authentic keywords, every initial phase and F history: six F-hold cases have no path, six ordinary MAPs null-like nonprose. 12 held native controls recover all phases and 3645/3696 runes. All-key ordinary consuming periodic arbitrary GP29 bijections: exact max-sum cycle relaxation of overlapping swaps gives E upper 633/645/731 at q8/13/29; nine private chapter keys 888/1006/1266 vs contiguous literary floor1397. p40–53 also fails all three, independently (183/193/243 vs251). 194 exhaustive toy checks and nine 12956-rune native-derived controls pass.
+- **Authentic prime-clock + optional greedy collision swaps:** exact p56 replay 85/85. All 0–3301 initial origins, both signs, all F histories and eligible swap paths: first eight original ranges have zero complete paths, terminal has 3/4 origins, all-key MAP best scores −4.341190/−4.295705 and no prose. Three donor-excluded plants select all three true origins, 907/924 runes. No independently frozen p55 prediction; original terminal fit uses all308. No unknown plaintext or authenticated key. [Combined report](../../im-results/lp2-local-collision-swap-native-inverse.md), three reproducers and outputs linked there. Retire these exact receivers; unknown F-holding periodic keys and other repair mechanisms remain open. Functions executed in V8, standalone wrappers not independently run.
+- Relevant broadcasts reviewed: Agent35 common-cycle q13 and Agent39 WE/MUST p50 spiral; Agent3 and Agent28 already tested literal p15 tiling and clipped center-out orientation and direct receivers; no new p50 branch authorized. Do not repeat them.
+
+---
+
 # Current invocation — 24 November 2026, draw10, issue-directed
 
 - Verified immutable identity lease `agent19-draw10-20261124T2058Z-constrained-inverse`, claimed 2026-11-24T20:59:36.024Z, claim commit 527df87af305f9e443955c1e19c9c6e42c3fc146. Earliest orderly release 22:09:36.024Z. Do not refresh.
