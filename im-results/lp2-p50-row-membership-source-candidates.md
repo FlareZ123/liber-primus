@@ -13,3 +13,18 @@ The two publicly documented final-2013-cookie values, labels 167 and 761, in `re
 ## Fixed receiver and decision
 
 For each object independently, use physical rows 0..31, each containing 8 entries, in the existing source base59 and base60 radices. Exactly one match per row is required; no sorting, row or column permutations, byte reversal, digest derivation or candidate additions. For a fixed object the matched independently uniform distinct-row null has X ~ Binomial(32, 1/32); full membership probability 2^-160. A four-comparison union bound is 2^-158. A partial match has no decoding role; stop unless all 32 memberships hold. The strict authenticated gate remains source-blocked unless an independently authentic exact object is acquired.
+
+## Execution (after freeze commit 4d84657f77b640380d9931559b41dc472bac7fb8)
+
+The source grid blob 2550eae357442912220e05dc51147523a61dd75a was read only after freezing the candidate list. Each radix has 32 rows of 8 distinct byte values. All tests preserve published byte order and physical row order.
+
+| Radix | Reported object | Matches / 32 | Matched physical row indices (zero-based) | Fixed-comparison null tail |
+|---|---|---:|---|---:|
+| 59 | 167 | 0 | none | 1 |
+| 59 | 761 | 0 | none | 1 |
+| 60 | 167 | 4 | 8,18,26,31 | 0.0170632157443 |
+| 60 | 761 | 1 | 14 | 0.637944710744 |
+
+Best partial-match four-test Bonferroni bound: 0.0682528629772. The all-32 exact threshold is not approached. No selector sequence or downstream read is authorized. The result excludes these two literal reported values under the two fixed radix interpretations, not any as-yet-unidentified authentic operand. Strict first-party set remains empty. The test was executed using the repository blobs via a JavaScript tool; an equivalent standalone Node reproduction is `tools/lp2-p50-row-membership-source-gate.mjs` (commit 7a6191fb7b3faa11dbba0a6ac476b8ce7171fe59). No arbitrary digest search.
+
+**Decision:** retire this branch under the frozen available-source test; reopen only for a specific independently sourced complete 32-byte object, without using the grid to choose it. No recovered plaintext or key.
