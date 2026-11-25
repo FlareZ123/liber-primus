@@ -1,0 +1,23 @@
+# Exact V-NULL event-DAG inverse
+
+External Round47 described null-insertion recovery gap ([H1](https://github.com/Dukotah/cicada3301/blob/fed5473f6ea8180c7a5bfcf1bc19b746db38f9eb/liber-primus/analysis/round47/H1-heavy-lifts/RESULTS.md), [C9 model](https://github.com/Dukotah/cicada3301/blob/fed5473f6ea8180c7a5bfcf1bc19b746db38f9eb/challenges/c9_rejection_loops.py)). This is an exploratory mechanism, not a historical clue. In the ordinary clock each ciphertext rune consumes one key symbol. A null forces the pending plaintext p=C[i-1]-K[i] mod29, requires C[i]!=C[i-1], and has probability supp/28. Subsequent nulls must maintain the same p. The eventual genuine output must equal p+K[j], with acceptance factor 1-supp on a doublet. Thus every position has an ordinary single-rune event edge and at most one additional null-chain edge. These edges represent the entire legal event DAG, including arbitrarily long consecutive null chains. Viterbi merges identical last n-1 plaintext runes at each ciphertext endpoint; each output was replayed through its actual event relation.
+
+Training: Shakespeare and Emerson, Gibran independently held out; 80 seeded 240-rune plants with uniform independent keys, not external SHA counter plants. Fixed supp=0.8074245939675174. GP transliteration greedily within each Latin word. This is an independent calibration, not a claimed external C9 sealed checker/C3 pass. The 4/5/6-gram comparison is exploratory; no order selected after inspection is a sealed holdout result.
+
+- Order 4: 51/80 >=85% positional, 44/80 exact, mean positional 0.7907, mean edits 0.6875, right min -2.2361, wrong max -6.2738.
+- Order 5: 45/80 >=85% positional, 36/80 exact, mean positional 0.7349, mean edits 0.7125, right min -2.3011, wrong max -6.3207.
+- Order 6: 46/80 >=85% positional, 37/80 exact, mean positional 0.7457, mean edits 0.7750, right min -2.5127, wrong max -6.3243.
+
+Order 6 exploratory original tests: both historical keywords all phases, prime-minus-one zero origin across nine chapters, terminal 0..3301 origins; ordinary consumption, no transparent F. No source selects this composition. Best per chapter language score (nats/rune; larger is better):
+
+- p0–2: 22 candidates, KOAN @11, -6.6596; SMEOETHMYISHXOAETHOEGSAEJNGPNPCFIABGSEOHILJNWNGOEHEABNBHOEJPLOBXEADOXIAEAAGJJAWFAUJOENGPHYMPEOYOANGSIAIAEXPNBBFOCUIAAELNGNGDHEAEOIAHSDXAEEAUOUJFEOPJFIA
+- p3–7: 22 candidates, WELCOME @2, -6.7090; MUOIACHHGAUWRNGMWEOXOAAEIEOUAEJJFYPFSWIABREAIIANGNTBMBDGDDHIMDRDAWGEAEANPAEDJOXEAEGSOENPPONIJCFMCFYEOMNEOIMCSOEABUHBAADJBEWXAAEXTGNGPMHJEOOEO
+- p8–14: 22 candidates, WELCOME @5, -6.8109; RDBLPNAENGYGDBHGMRYWOOEREIJMBYLLFWOEAOIACMEAXOEOSTHDOEYWUSFHCATNCIAAEDEOTHRJXTNNGPXEAEOBAWHOTJRRUYDOEAEOIAIRLTGIAXDNGTCEANGTHNEOSOEAHXXTXRLDRARJAE
+- p15–22: 22 candidates, WELCOME @4, -6.7704; LLROEUEAEEOSIXASAFWFGPATLNLPSAOTHLCROOIAFCIDRPRJCXEHXAELMEOMHHNGDLDUIGNWOAPNNNGDFRIAJLPOWDXRFROWEACCLOPRDLLNGCTEAWWAEEABRGFXRNGRPEAUXTHMLW
+- p23–26: 22 candidates, KOAN @8, -6.7332; YGIANGBXPTHITLEOIAPNGBEABSSNWENEOOEHEEAIBEAWYYWWNGEYSGONFBADNGEOMTCAEXTHFRTHUAIAEOEEOOSWSFSGOERIANCNEAESEODHOETHMBOEYTHTHTHAEFOAIAWEJOBAEGDOBEIACDXIAIAEELYO
+- p27–32: 22 candidates, WELCOME @5, -6.7309; NYFYCXTIARNGEFEIJCETSIACLEIAXLGPILHHDEAGOAOOEDODJWTIEUEASNGEMEEELEOSEAHTHDTTMTOEDEOWCAEBIODOEENOERXNTTHNGOEDFTPUIATHEOAEGEOEAHMNGJDULIRPEEOFWFOEWIJE
+- p33–39: 22 candidates, KOAN @2, -6.7073; MEOPSFNGLEEAGDEOENGNANJBBEALTHSFOYFWAESHBIARLWHAOIAOOMGFNLNGEOIGYOEOCEILYTHEOJDNGAEBOEUIADAIAHWWBJHEBNGGAEBJIBTHJLFTEDXBHIATYYHEORSNGODSWRPHRNGIAGC
+- p40–53: 22 candidates, KOAN @5, -6.8443; INUOEBXAEMAOIYWOEEAXXIAEOEATHIGIAFECCFMTWRRGECAETJEEAPOEBSEOGPNGASEAOOEHYUUEFIFJNGSFTRYXJAPMROTHGAEMNGFREANEGHNOEEOHGOYTJYNJCEIALOEAEYRBIJBOENGIOOEFAE
+- p54–55: 3323 candidates, prime-1 @376, -6.2891; SHDBBNWOEFRNGCWEOTFEWJGFFDOEOEJEAPNGWPMXXLUEATHEAEXUEAHACTHCUEATDSATHYIMLNGTPPSMMDYTHGLNXLDMLFTHEOLYYCIANPLJJIAECEAHHIAABNTCOEHTHJHGNNGNRLAENGATWU
+
+No authenticated unknown plaintext. Detection separation on this finite calibration does not imply full positional recovery or all-model exclusion. Reproduce from root with `node sims/lp2_vnull_exact_event_dag.cjs`; full output `im-results/lp2-vnull-exact-event-dag.json`. Input blobs: resources/liber-primus/lp2-corpus.json 054f2a0f780b7d46901acbe3d9bf4f0ac1801165; resources/control/shakespeare_first300k.txt 94c677ad9dd50771c6670e0c4e4dad9052b46d85; resources/control/emerson_essays_2944.txt a92be8ba5b3511a003a22ba31523c14397aaa83a; resources/control/gibran_prophet_58585.txt df260a07d56bf5998d40a6360b6132c35c252d10; resources/external/relikd-solved-gp29-native-v1.json 1b064ef6d85819b7d96adaff31a82d1ec551598f.
