@@ -59,11 +59,28 @@ Gain is nats per modeled transition relative to uniform GP29. Original train/hel
 
 ### Continuous chapter-state extension (Agent15, 25 November)
 
-Removing the unauthenticated physical-page resets leaves nine chapter frames (12,947 transitions; 10,317 train, 2,630 held out). This extension did **not** pass development calibration. No original continuous inverse was attempted. Gibran planted plaintext results:
+Removing the unauthenticated physical-page resets leaves nine chapter frames (12,947 transitions; 10,317 train, 2,630 held out). The initial methods did **not** pass development calibration, so no original inverse was attempted at that stage. The subsequent relaxed-mixture method below supersedes that calibration failure. Gibran planted plaintext results:
 
 - Artificial page-F initialization plus full chapter coordinate descent: 519/10,317 train and 138/2,630 held-out correct; gains −2.836/−3.071. Random initialization was worse.
 - Soft-emission forward/backward EM with exact row maximization and epsilon schedule .8,.5,.2,.05: 499/10,317 and 113/2,630 correct; gains −2.756/−3.042.
 - Exact stationary ciphertext-pair marginal coordinate optimization, six starts: best −6.56265 nats/pair versus true key −6.49146, zero exact rows. Two 180,000-proposal incremental anneals and polishing: −6.55003, one exact row. This measures the optimization gap on a control, not rejection of the law.
 - Direct chapter-F lazy-domain beam width256 followed by coordinate descent: 391/10,317 and 92/2,630 correct; gains −2.762/−2.923; zero exact rows.
 
-Prototype: [continuous SFT](../sims/lp2_gp29_plainprev_escape_continuous_sft.cjs), CLI defaults to control only; `--chapter-beam` reproduces the final chapter-prefix trial. Pair-only configuration is available for further algorithm development. These are development experiments, not independent power controls. The page-reset result cannot be generalized to chapter-continuous state. A new recovery algorithm or independent reset/key selector is required before another original fit.
+Prototype: [continuous SFT](../sims/lp2_gp29_plainprev_escape_continuous_sft.cjs), CLI defaults to control only; `--chapter-beam` reproduces the final chapter-prefix trial. Pair-only configuration is available for further algorithm development. These are development experiments, not independent power controls. The page-reset result cannot be generalized to chapter-continuous state. A new recovery algorithm was required before an original fit; the relaxed-mixture algorithm below provides it.
+
+
+### Successful relaxed row-mixture initialization and original chapter-state test (Agent15, 25 November)
+
+The preceding calibration failure is superseded for this specific chapter-reset law. A soft stochastic-row relaxation found a materially better initialization without using any true hidden keys. For each preceding plaintext q, maintain a distribution over its 812 valid discrete rows. Let R[d,q,p] be the mass of rows mapping ciphertext difference d to next plaintext p. The observed-symbol matrix M[d,q,p] = B[q,p] R[d,q,p] uses the independently trained native bigram B; use U[p] instead of B at the initial F predecessor. Exact scaled forward/backward obtains expected q,d,p counts. Allocate each expected count among compatible rows proportionally to their current weights, sum over events, add fixed .002/812 per candidate and normalize. Initial mass is proportional to exp(-100 |B[q,E]-.00664|) times seeded random jitter, a low-repeat prior shared by controls and original. Run 60 iterations, multiplying the count update by power 1.15 in iterations 31–60 (heuristic sharpening, not monotonic maximum likelihood). Choose the most probable row independently for each q, then use the same discrete full-sequence trigram coordinate descent as above. Original printed boundaries and physical page breaks within chapters are ignored; nine chapter starts use F reset and one public ciphertext IV per chapter.
+
+Gibran development: after hardening, training score improved to +1.14858; 19/29 planted rows exactly recovered. Two new independent keys and donor tails were run using the same frozen 60-iteration solver, no true rows or held-out text used by inference. Every decoded transition re-encodes exactly.
+
+| Input | Training runes exact | Withheld runes exact | Training gain | Withheld gain |
+|---|---:|---:|---:|---:|
+| Shakespeare | 10,317/10,317 | 2,630/2,630 | +1.02019 | +0.96598 |
+| Emerson | 10,281/10,317 | 2,500/2,630 | +1.07339 | +0.82951 |
+| Original | unknown | unknown | −2.90625 | −3.24688 |
+
+Fresh control recovery = 5,130/5,260 held-out runes (97.53%). Control exact row counts 20/29 and 19/29; rare rows and transitions may be observationally ambiguous. Original train/held repeats 72/14, versus 67/12 and 69/19 on the fresh controls. Frozen original key produces nonlinguistic text; no recovered plaintext or authenticated key. Retire this fixed GP29 escape-plus-shift receiver under the tested chapter reset (and the separately tested physical-page reset), as a **predictive heuristic negative**, not an all-key exclusion or a statement about a completely unreset book, arbitrary permutations, alternative rank/escape laws, or independent chapter keys.
+
+Reproduce from repo root: `node sims/lp2_gp29_plainprev_escape_continuous_sft.cjs --mixture --plant=1`, `--mixture --plant=2`, and `--mixture --original` (each separate process). [Shakespeare raw](lp2-gp29-plainprev-escape-continuous-mixture-shakespeare.json), [Emerson raw](lp2-gp29-plainprev-escape-continuous-mixture-emerson.json), [original raw](lp2-gp29-plainprev-escape-continuous-mixture-original.json). The core experiments were executed in the connected JS runtime; the standalone Node command and Windows CI have not separately been run. The learned probabilistic-row initialization is reusable for other finite state-row candidate families.
