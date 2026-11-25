@@ -57,4 +57,29 @@ function bound(corpus,lp1,gibran,emerson,shakespeare){
  for(const [name,start,end] of ranges){const max=maxima(t.slice(start,end),start/2);out[name]={max,emerson:census(e,end-start),shakespeare:census(s,end-start)}}
  return out
 }
-console.log(JSON.stringify({...research(...args), allKeyPairBound: bound(...args)}, null, 2));
+function fibonacciGenerator(corpus,lp1,gibran,emerson,shakespeare){
+ const M=3301,A=29,N=841,fit=1340,assert=(b,m)=>{if(!b)throw Error(m)};
+ function native(s){const map=corpus.translit.map((s,i)=>[s,i]).sort((a,b)=>b[0].length-a[0].length),out=[];for(let w of s.toUpperCase().match(/[A-Z]+/g)||[]){w=w.replace(/K/g,"C").replace(/V/g,"U").replace(/Q/g,"C").replace(/Z/g,"S");while(w.length){let m=map.find(([v])=>w.startsWith(v));if(!m)throw Error("letter "+w);out.push(m[1]);w=w.slice(m[0].length)}}return out}
+ const train=native(lp1.split(/^### 56/m)[0].split(/\r?\n/).filter(x=>!/^#|^\[|^\(continued/.test(x)).join("\n")).concat(native(gibran));
+ const pc=new Float64Array(N).fill(.5),tc=new Float64Array(N*A).fill(.5),ts=new Float64Array(N).fill(A*.5);
+ for(let i=1;i<train.length;i++){pc[train[i-1]*A+train[i]]++;if(i>=2){const h=train[i-2]*A+train[i-1];tc[h*A+train[i]]++;ts[h]++}}
+ const pairLog=Float64Array.from(pc,v=>Math.log(v/(train.length-1+N*.5))),triLog=Float64Array.from(tc,(v,i)=>Math.log(v/ts[Math.floor(i/A)]));
+ function pow(a,n){let v=1;while(n){if(n%2)v=v*a%M;a=a*a%M;n=Math.floor(n/2)}return v}
+ const maps=Array(M),inverse=Array(M);for(let a=1;a<M;a++){const f=new Uint16Array(N);for(let x=0;x<N;x++){let y=x;do{y=y*a%M}while(y>=N);f[x]=y}maps[a]=f;inverse[a]=pow(a,M-2)}
+ function schedule(g,n){const key=[pow(g,1597),pow(g,2584)];for(let i=2;i<n;i++)key.push(key[i-2]*key[i-1]%M);return key.slice(0,n)}
+ function pairs(t){assert(t.length%2===0,"even");return Array.from({length:t.length/2},(_,i)=>t[2*i]*A+t[2*i+1])}
+ function transform(t,g,dec){const p=pairs(t),key=schedule(g,p.length);return p.flatMap((x,i)=>{const v=maps[dec?inverse[key[i]]:key[i]][x];return[Math.floor(v/A),v%A]})}
+ const eq=(a,b)=>a.length===b.length&&a.every((v,i)=>v===b[i]);
+ function score(t){let tri=0,pair=0;for(let i=2;i<t.length;i++)tri+=triLog[(t[i-2]*A+t[i-1])*A+t[i]];for(let i=0;i<t.length;i+=2)pair+=pairLog[t[i]*A+t[i+1]];return{trigramMean:tri/(t.length-2),pairMean:pair/(t.length/2),prefix:t.slice(0,96).map(x=>corpus.translit[x]).join("")}}
+ function search(c,known=null){const rows=[];for(let g=1;g<M;g++){const p=transform(c.slice(0,fit),g,true),s=score(p);rows.push({g,...s})}rows.sort((a,b)=>b.trigramMean-a.trigramMean||a.g-b.g);const g=rows[0].g,decoded=transform(c,g,true);assert(eq(transform(decoded,g,false),c),"full replay");return{g,rank:known==null?null:rows.findIndex(r=>r.g===known)+1,fit:rows[0],held:score(decoded.slice(fit)),bestPairFit:rows.reduce((a,b)=>a.pairMean>b.pairMean?a:b),decoded}}
+ const original=corpus.pages.slice(16,23).flatMap(p=>p.indices);assert(original.length===1744,"source");
+ const controls=[],e=native(emerson),s=native(shakespeare);
+ for(const [name,t,offset,g] of [["Emerson",e,70000,1379],["Shakespeare",s,40000,2937],["Emerson2",e,90000,179]]){const truth=t.slice(offset,offset+1744),ct=transform(truth,g,false),r=search(ct,g);controls.push({name,offset,trueGenerator:g,foundGenerator:r.g,rank:r.rank,heldCorrect:r.decoded.slice(fit).filter((v,i)=>v===truth[fit+i]).length,heldLength:404,fit:r.fit,held:r.held})}
+ const pass=controls.every(x=>x.heldCorrect===404);
+ const fixed=transform(original,2,true);assert(eq(transform(fixed,2,false),original),"fixed replay");
+ const blind=pass?search(original):null;
+ // Exact all-generator maximum over the held-only range, with the genuine global schedule offset.
+ let maxHeld={g:null,pairMean:-Infinity};for(let g=1;g<M;g++){const p=transform(original,g,true).slice(fit),v=score(p).pairMean;if(v>maxHeld.pairMean)maxHeld={g,pairMean:v}}
+ return{model:"k_i=g^F_i mod3301, F starts1597,2584, no period16 reset",sourceGenerator:2,trainingRunes:train.length,controls,pass,fixed:{fit:score(fixed.slice(0,fit)),held:score(fixed.slice(fit)),indices:fixed},blind:blind&&{...blind},maxHeld}
+}
+console.log(JSON.stringify({...research(...args), allKeyPairBound: bound(...args), fibonacciGenerator: fibonacciGenerator(...args)}, null, 2));
