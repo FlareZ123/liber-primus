@@ -14,9 +14,10 @@ const inputs=[
   {
     "path": "resources/external/relikd-solved-gp29-native-v1.json",
     "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
-  }
+  },
+  {"path":"resources/transcriptions/lp2-image-corrected.txt","sha":"f7b534a33edeb212d427329798438325307463d7"}
 ];
-function experiment(grid,corpus,solved){
+function experiment(grid,corpus,solved,transcription){
  const N=256,Q=29,M=x=>(x%Q+Q)%Q,A=(x,m)=>{if(!x)throw Error(m)},range=n=>Array.from({length:n},(_,i)=>i),eq=(a,b)=>a.length===b.length&&a.every((x,i)=>x===b[i]);
  const inv=range(Q).map(x=>range(Q).find(y=>M(x*y)===1)||0);
  const native=name=>[...solved.sections.find(s=>s.name===name).source_text].map(x=>corpus.runes.indexOf(x)).filter(x=>x>=0);
@@ -165,7 +166,29 @@ function experiment(grid,corpus,solved){
    return {name:d.name,start:d.start,end:d.start+76,pi:d.pi,a,span:m.n,knownRank:m.fit.rank,words:m.features.map(x=>x.w),terms:coeff.filter(x=>x!==0).length,maxDegree:Math.max(...m.features.map(x=>x.w.length)),...decoded};
  });
  const hamming=(a,b)=>a.filter((x,i)=>x!==b[i]).length;
- return {authentic:{p56:85,primes:cursor,p57:95},layoutGate:{tests:32*29,excluded:32*29-27,survivingLayouts:survivors.length,survivingSlopes:survivors[0].tests.filter(t=>t.pair===null).map(t=>t.a),gate},geometry:{radix:60,axis:"column",outerRev:false,innerRev:false,snake:false,perimeter:"clockwise upper-left",siblingConstraints:17},fixedAlphabet:{pi:fixedPi,a:2,span:fm.n,knownRank:fm.fit.rank,free:fm.free.length,fixedPositions:fixed,fixedValues:fixed.map(i=>fixedWitnesses[0].p55[i]),words:fm.features.map(x=>x.w),witnesses:fixedWitnesses,hamming:hamming(fixedWitnesses[0].p55,fixedWitnesses[1].p55)},donors,donorHamming:hamming(donors[0].p55,donors[1].p55)};
+ const printedPi=[0,1,14,6,27,15,2,8,10,5,4,21,16,19,26,24,3,20,25,12,23,9,18,13,7,11,22,17,28];
+ const printedTexts=[
+  "D HOLD TO NO PUBLIC DOGMAS OF TRANSCENDENCE ITSELF SEEK TO DISCERN PURPOSE TO CHOOSE OUR WAY",
+  "D LOOK IN NO PUBLIC RECORD OF TRANSCENDENCE ITSELF SEEK TO UNCOVER SECRETS TO CHOOSE OUR WAY"
+ ];
+ const pages=transcription.split(/^%$/m).slice(1);
+ const p55=pages.at(-3).split(/&|\$|§/)[0].replace(/\/\s*\n/g,"");
+ const groups=p55.match(/[\u16a0-\u16ff]+/g);
+ const lengths=groups.map(w=>[...w].length);
+ A(eq(groups.flatMap(w=>[...w].map(x=>corpus.runes.indexOf(x))),corpus.pages[55].indices),"printed p55 source sequence");
+ const lex=["F","U","TH","O","R","C","G","W","H","N","I","J","EO","P","X","S","T","B","E","M","L","NG","OE","D","A","AE","Y","IO","EA"];
+ function encodeWord(w){w=w.replaceAll("K","C").replaceAll("Q","C").replaceAll("V","U").replaceAll("Z","S");const out=[];while(w.length){const tok=lex.filter(x=>w.startsWith(x)).sort((a,b)=>b.length-a.length)[0];A(tok,"transliteration");out.push(lex.indexOf(tok));w=w.slice(tok.length)}return out}
+ const printed=printedTexts.map(text=>{
+   const ws=text.split(" ").map(encodeWord),target=ws.flat();A(eq(ws.map(w=>w.length),lengths),"printed group lengths");
+   const P=range(N).map(()=>0);sites.forEach((s,i)=>P[s]=Pk[i]);perimeter.forEach((s,i)=>P[s]=target[i]);
+   const a=23,m=model(printedPi,a),b=range(N).map(i=>M(printedPi[P[i]]-a*m.v[i]));
+   A(constraints(allPairs,C,P,a).every(r=>M(r.reduce((s,x,j)=>s+x*printedPi[j],0))===0),"printed sibling constraints");
+   const fit=rref(m.W,m.n,b);A(fit.consistent&&fit.rank===m.n,"printed full fit");
+   const coeff=coeffFrom(fit,m.n),decoded=fullDecode(m,coeff);A(decoded.rank===N&&eq(decoded.p55,target),"printed full replay");
+   return {constructedText:text,pi:printedPi,a,span:m.n,knownRank:m.fit.rank,words:m.features.map(x=>x.w),terms:coeff.filter(x=>x!==0).length,maxDegree:Math.max(...m.features.map(x=>x.w.length)),...decoded};
+ });
+ A(hamming(printed[0].p55,printed[1].p55)===25,"printed ambiguity");
+ return {printedGroupLengths:lengths,printedWitnesses:printed,printedHamming:hamming(printed[0].p55,printed[1].p55),authentic:{p56:85,primes:cursor,p57:95},layoutGate:{tests:32*29,excluded:32*29-27,survivingLayouts:survivors.length,survivingSlopes:survivors[0].tests.filter(t=>t.pair===null).map(t=>t.a),gate},geometry:{radix:60,axis:"column",outerRev:false,innerRev:false,snake:false,perimeter:"clockwise upper-left",siblingConstraints:17},fixedAlphabet:{pi:fixedPi,a:2,span:fm.n,knownRank:fm.fit.rank,free:fm.free.length,fixedPositions:fixed,fixedValues:fixed.map(i=>fixedWitnesses[0].p55[i]),words:fm.features.map(x=>x.w),witnesses:fixedWitnesses,hamming:hamming(fixedWitnesses[0].p55,fixedWitnesses[1].p55)},donors,donorHamming:hamming(donors[0].p55,donors[1].p55)};
 }
-const data=inputs.map(({path,sha})=>{const b=fs.readFileSync(path);const actual=crypto.createHash('sha1').update(`blob ${b.length}\0`).update(b).digest('hex');if(actual!==sha)throw Error(`source changed: ${path}`);return JSON.parse(b)});
+const data=inputs.map(({path,sha})=>{const b=fs.readFileSync(path);const actual=crypto.createHash('sha1').update(`blob ${b.length}\0`).update(b).digest('hex');if(actual!==sha)throw Error(`source changed: ${path}`);return path.endsWith(".txt")?b.toString("utf8"):JSON.parse(b)});
 console.log(JSON.stringify(experiment(...data),null,2));
