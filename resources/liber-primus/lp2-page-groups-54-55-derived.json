@@ -163,5 +163,56 @@
       "nb1",
       "hia"
     ]
+  },
+  "red8_key": {
+    "status": "source-derived candidate only; no cipher use established",
+    "compact": "jlnr2eaj",
+    "rune_names": [
+      "M",
+      "NG",
+      "D",
+      "IA",
+      "TH",
+      "X",
+      "I",
+      "M"
+    ],
+    "gp29_indices": [
+      19,
+      21,
+      23,
+      27,
+      2,
+      14,
+      10,
+      19
+    ],
+    "prime_values": [
+      71,
+      79,
+      89,
+      107,
+      5,
+      47,
+      31,
+      71
+    ],
+    "prime_mod29": [
+      13,
+      21,
+      2,
+      20,
+      5,
+      18,
+      2,
+      13
+    ],
+    "prime_mod29_compact": "dl2k5i2d",
+    "enlarged_initial": {
+      "compact": "o",
+      "rune_name": "A",
+      "gp29_index": 24,
+      "prime_value": 97
+    }
   }
 }

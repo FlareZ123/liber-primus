@@ -9,7 +9,10 @@ import lp2_shared_gp29_q8_smt as s
 
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 RESULTS=ROOT/'im-results'
-TERMINAL_ORIGINAL='o jlnr2eaj rndl17oj gol l2r7f8 a5 pdp63 jao i3 g73 0q1gb 2bsi59s 5si 431e n78hl0o5b1 3brsak68 h1b eo57r j3dqnrkd ca24 q6j em6f jdbmn mgrm gla jlqop l 4qb 9k1eh 8db3s 6p7 efn5 1g m8c9dg sqh16 6oc 963ikjh2 qrmcq j5m2 ik4cd4nq en lqd fie7 560n4i ni73cm 83m hf 8so5ajebji jk'
+PAGE_GROUPS=json.loads((ROOT/'resources/liber-primus/lp2-page-groups-54-55-derived.json').read_text())
+TERMINAL_ORIGINAL=' '.join(PAGE_GROUPS['p54']['all_visual_groups'])
+TERMINAL_BODY=' '.join(PAGE_GROUPS['p54']['body_groups'])
+TERMINAL_HOLDOUT=' '.join(PAGE_GROUPS['p55']['groups'])
 
 def compact(w): return ''.join(s.SYM[x] for x in w)
 
@@ -35,17 +38,19 @@ def main():
     p.add_argument('--compiler',default='g++')
     p.add_argument('--input-only',type=pathlib.Path)
     a=p.parse_args()
-    term=json.loads((RESULTS/'lp2-shared-gp29-q8-smt-fixtures.json').read_text())
+    term=json.loads((RESULTS/'lp2-shared-gp29-q8-terminal-corrected-fixtures.json').read_text())
     long=json.loads((RESULTS/'lp2-shared-gp29-q8-affine-long-fixtures.json').read_text())
     D=s.load_dictionary(a.lex,term['added'])
     assert len(D)==38938
     h=1469598103934665603
     for c in '\n'.join(sorted(map(compact,D))): h=((h^ord(c))*1099511628211)&((1<<64)-1)
     assert h==0xb39eeb2d0de511c4,hex(h)
-    f,n=(term,49) if a.profile=='terminal' else (long,24)
+    f,n=(term,48) if a.profile=='terminal' else (long,24)
     pl=None if a.plant=='original' else f['plants'][int(a.plant)]
-    C=s.words((TERMINAL_ORIGINAL if a.profile=='terminal' else long['originalTrain']) if pl is None else pl['cipher'])
-    assert len(C)>=n and sum(map(len,C[:n]))==(222 if n==49 else 261)
+    C=s.words((TERMINAL_BODY if a.profile=='terminal' else long['originalTrain']) if pl is None else pl['cipher'])
+    assert len(C)>=n and sum(map(len,C[:n]))==(223 if n==48 else 261)
+    if a.profile=='terminal' and pl is not None:
+        assert len(C)==65 and sum(map(len,C[48:]))==76
     if a.input_only:
         write_input(a.input_only,C[:n],D)
         return

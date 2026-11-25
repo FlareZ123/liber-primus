@@ -1,7 +1,7 @@
 """Blind terminal-profile source-word pool experiment for shared-cycle q8.
 
 Run from repository root with Python 3 and g++ (AVX2 required for mapped).
-Only the 49 training groups, finite word domains and source key pool reach C++.
+Only the 48 training groups, finite word domains and source key pool reach C++.
 The 17 holdout groups and hidden action are used only to score returned keys.
 """
 import argparse, json, pathlib, random, re, subprocess, tempfile
@@ -36,7 +36,7 @@ def main():
     args=p.parse_args()
     source=SOURCE if args.model=='numeric' else [w for w in SOURCE if w!='na1a9agq']
     keys=sorted(set(min(w[j:]+w[:j] for j in range(8)) for w in source))
-    term=json.loads((a.RESULTS/'lp2-shared-gp29-q8-smt-fixtures.json').read_text())
+    term=json.loads((a.RESULTS/'lp2-shared-gp29-q8-terminal-corrected-fixtures.json').read_text())
     D=s.load_dictionary(args.lex,term['added'])
     assert len(D)==38938
     h=1469598103934665603
@@ -44,7 +44,7 @@ def main():
     assert h==0xb39eeb2d0de511c4
     T=None
     if args.plant=='original':
-        C=s.words(a.TERMINAL_ORIGINAL)
+        C=s.words(a.TERMINAL_BODY)
         assert not args.corrupt
     else:
         i=int(args.plant)
@@ -59,19 +59,20 @@ def main():
         assert all(t in s.decode(c,pi,k,D) for t,c in zip(T,C))
         if args.corrupt:
             rng=random.Random(2713001+i)
-            idx=sorted(range(49),key=lambda j:(-len(C[j]),j))[:args.oov]
+            idx=sorted(range(48),key=lambda j:(-len(C[j]),j))[:args.oov]
             for g in idx:
                 while True:
                     w=tuple(rng.randrange(29) for _ in T[g])
                     cipher=encrypt(w,pi,k,phases[g])
                     if not s.decode(cipher,pi,k,D): break
                 T[g]=w; C[g]=cipher
-    assert len(C)>=49 and sum(map(len,C[:49]))==222
+    assert len(C)>=48 and sum(map(len,C[:48]))==223
+    if T is not None: assert len(C)==len(T)==65 and sum(map(len,C[48:]))==76
     with tempfile.TemporaryDirectory() as tmp:
         inp=pathlib.Path(tmp)/'input.txt'
         pool=pathlib.Path(tmp)/'keys.txt'
         exe=pathlib.Path(tmp)/'solver'
-        a.write_input(inp,C[:49],D)
+        a.write_input(inp,C[:48],D)
         pool.write_text('\n'.join(keys)+'\n')
         cpp='lp2_shared_gp29_q8_numeric_pool.cpp' if args.model=='numeric' else 'lp2_shared_gp29_q8_affine_oov.cpp'
         flags=['-O3','-fopenmp','-std=c++17']+(['-mavx2'] if args.model=='mapped' else [])
@@ -87,13 +88,13 @@ def main():
     if m and n:
         pp=list(map(int,m[1].split()));kk=list(map(int,n[1].split()))
         dec=[s.decode(c,pp,kk,D) for c in C]
-        assert sum(not w for w in dec[:49])<=args.oov
-        out={'pi':pp,'k':kk,'train_supported':sum(map(bool,dec[:49]))}
+        assert sum(not w for w in dec[:48])<=args.oov
+        out={'pi':pp,'k':kk,'train_supported':sum(map(bool,dec[:48]))}
         if T is not None:
             out.update(exact=s.same_action(pp,kk,pi,k),hidden_key=key,
-                       train_truth=sum(T[i] in dec[i] for i in range(49)),
-                       holdout_truth=sum(T[i] in dec[i] for i in range(49,len(C))),
-                       holdout_unique=sum(dec[i]=={T[i]} for i in range(49,len(C))))
+                       train_truth=sum(T[i] in dec[i] for i in range(48)),
+                       holdout_truth=sum(T[i] in dec[i] for i in range(48,len(C))),
+                       holdout_unique=sum(dec[i]=={T[i]} for i in range(48,len(C))))
         print(json.dumps(out,indent=2))
 
 if __name__=='__main__': main()

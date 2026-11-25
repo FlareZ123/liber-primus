@@ -24,7 +24,8 @@ def main():
     trans={r:s.SYM[i] for i,r in enumerate(native['runes'])}
     pool=sorted(set(''.join(trans[x] for x in w) for sec in native['sections'] for w in re.findall(r'[\u16a0-\u16ff]+',sec['source_text'])))
     assert len(pool)==272
-    term=json.loads((a.RESULTS/'lp2-shared-gp29-q8-smt-fixtures.json').read_text())
+    term=json.loads((a.RESULTS/'lp2-shared-gp29-q8-terminal-corrected-fixtures.json').read_text())
+    PAGE_GROUPS=json.loads((a.ROOT/'resources/liber-primus/lp2-page-groups-54-55-derived.json').read_text())
     D=s.load_dictionary(args.lex,term['added'])
     assert len(D)==38938
     h=1469598103934665603
@@ -40,14 +41,21 @@ def main():
         exe=pathlib.Path(tmp)/'solver'
         subprocess.run([args.compiler,'-O3','-fopenmp','-std=c++17',str(a.ROOT/'sims/lp2_shared_gp29_q8_alphabet_support.cpp'),'-o',str(exe)],check=True)
         for ch in range(9) if args.chapter=='all' else [int(args.chapter)]:
-            off=sum(COUNTS[:ch])
-            words=W[off:off+COUNTS[ch]]
-            assert sum(map(len,words))==RUNES[ch]
             if ch==8:
-                words=words[:49]
-                assert s.words(' '.join(words))==s.words(a.TERMINAL_ORIGINAL)
+                words=PAGE_GROUPS['p54']['body_groups']
+            else:
+                off=sum(COUNTS[:ch])
+                words=W[off:off+COUNTS[ch]]
+                assert sum(map(len,words))==RUNES[ch]
             kw=pool
-            if args.heading:
+            if args.heading and ch==8:
+                red=next(x for x in ink['pages'] if x['page']==PAGES[ch])['red_spans'][0]
+                assert red['start']==0
+                heading=''.join(trans[x] for x in red['runes'])
+                heading_groups=PAGE_GROUPS['p54']['heading_groups']
+                assert heading==''.join(heading_groups)
+                kw=sorted(set([heading,heading_groups[1]]))
+            elif args.heading:
                 red=next(x for x in ink['pages'] if x['page']==PAGES[ch])['red_spans'][0]
                 assert red['start']==0
                 heading=''.join(trans[x] for x in red['runes'])

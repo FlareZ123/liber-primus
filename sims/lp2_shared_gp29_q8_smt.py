@@ -4,14 +4,14 @@ python sims/lp2_shared_gp29_q8_smt.py --plant 0 --ms 90000
 python sims/lp2_shared_gp29_q8_smt.py --plant 1 --ms 90000
 python sims/lp2_shared_gp29_q8_smt.py --plant 0 --oracle --ms 30000
 
-The receiver's model receives only 49 encrypted training groups and a fixed
+The receiver's model receives only 48 encrypted training groups and a fixed
 lexicon. Oracle mode supplies the key solely for an implementation control.
 The separately frozen 17 groups are decoded after the SAT check.
 """
 import argparse, ctypes, ctypes.util, json, pathlib, re, time, collections, functools
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-FIXTURE = ROOT / 'im-results/lp2-shared-gp29-q8-smt-fixtures.json'
+FIXTURE = ROOT / 'im-results/lp2-shared-gp29-q8-terminal-corrected-fixtures.json'
 ALPHA = ['F','U','TH','O','R','C','G','W','H','N','I','J','EO','P','X','S','T','B','E','M','L','NG','OE','D','A','AE','Y','IA','EA']
 A = {v:i for i,v in enumerate(ALPHA)}
 SYM = '0123456789abcdefghijklmnopqrs'
@@ -162,24 +162,24 @@ def main():
     fixture=json.loads(FIXTURE.read_text(encoding='utf-8'))
     D=load_dictionary(a.lex,fixture['added']);assert len(D)==38938,len(D)
     pl=fixture['plants'][a.plant];C=words(pl['cipher']);T=words(pl['truth'])
-    assert len(C)==len(T)==66 and sum(map(len,C[:49]))==222 and sum(map(len,C))==308
+    assert len(C)==len(T)==65 and sum(map(len,C[:48]))==223 and sum(map(len,C[48:]))==76 and sum(map(len,C))==299
     assert all(t in D for t in T)
     assert all(encode(t,pl['pi'],pl['k'],p)==c for t,c,p in zip(T,C,pl['phases']))
     assert all(t in decode(c,pl['pi'],pl['k'],D) for t,c in zip(T,C))
-    print('dictionary',len(D),'training',49,'holdout',17,'plant',a.plant,'oracle',a.oracle,flush=True)
-    src,counts,names=model(C[:49],D,a.ms,(pl['pi'],pl['k']) if a.oracle else None)
+    print('dictionary',len(D),'training',48,'holdout',17,'plant',a.plant,'oracle',a.oracle,flush=True)
+    src,counts,names=model(C[:48],D,a.ms,(pl['pi'],pl['k']) if a.oracle else None)
     print('domains',counts,'total',sum(counts),'SMT bytes',len(src),flush=True)
     if a.write:pathlib.Path(a.write).write_text(src)
     stat,secs,v=run_z3(src,names)
     result={'status':stat,'seconds':secs,'domains':counts,'plant':a.plant,'oracle':a.oracle,'dictionary':len(D)}
     if v:
         pi,k=v[:29],v[29:]
-        decoded=[decode(c,pi,k,D) for c in C];assert all(decoded[i] for i in range(49))
+        decoded=[decode(c,pi,k,D) for c in C];assert all(decoded[i] for i in range(48))
         result.update(pi=pi,k=k,exact=same_action(pi,k,pl['pi'],pl['k']),
-            train_truth=sum(T[i] in decoded[i] for i in range(49)),
-            holdout_truth=sum(T[i] in decoded[i] for i in range(49,66)),
-            holdout_unique=sum(decoded[i]=={T[i]} for i in range(49,66)),
-            holdout_supported=sum(bool(d) for d in decoded[49:]))
+            train_truth=sum(T[i] in decoded[i] for i in range(48)),
+            holdout_truth=sum(T[i] in decoded[i] for i in range(48,65)),
+            holdout_unique=sum(decoded[i]=={T[i]} for i in range(48,65)),
+            holdout_supported=sum(bool(d) for d in decoded[48:]))
     print(json.dumps(result),flush=True)
 
 if __name__=='__main__':main()

@@ -17,19 +17,17 @@ def main():
     trans={r:s.SYM[i] for i,r in enumerate(native['runes'])}
     pool=sorted(set(''.join(trans[x] for x in w) for sec in native['sections'] for w in re.findall(r'[\u16a0-\u16ff]+',sec['source_text'])))
     assert len(pool)==272
-    term=json.loads((a.RESULTS/'lp2-shared-gp29-q8-smt-fixtures.json').read_text())
+    term=json.loads((a.RESULTS/'lp2-shared-gp29-q8-terminal-corrected-fixtures.json').read_text())
     D=s.load_dictionary(args.lex,term['added'])
     assert len(D)==38938
     h=1469598103934665603
     for c in '\n'.join(sorted(map(a.compact,D))): h=((h^ord(c))*1099511628211)&((1<<64)-1)
     assert h==0xb39eeb2d0de511c4
     T=None
-    n=49
+    n=48
     if args.plant in ('original','heading'):
-        C=s.words(a.TERMINAL_ORIGINAL)
+        C=s.words(a.TERMINAL_BODY)
         if args.plant=='heading':
-            assert C[:2]==s.words('o jlnr2eaj')
-            C=C[2:]; n=47
             pool=['ojlnr2eaj','jlnr2eaj']
     else:
         i=int(args.plant)
@@ -44,6 +42,7 @@ def main():
         T=s.words(pl['truth'])
         phases=[rng.randrange(8) for _ in T]
         C=[encrypt(t,pi,k,j) for t,j in zip(T,phases)]
+        assert len(C)==len(T)==65 and sum(map(len,C[:48]))==223 and sum(map(len,C[48:]))==76
         assert all(t in s.decode(c,pi,k,D) for t,c in zip(T,C))
         idx=sorted((g for g in range(n) if len(C[g])>=8 and 0 not in C[g]),key=lambda j:(-len(C[j]),j))[:3]
         assert len(idx)==3
@@ -53,6 +52,8 @@ def main():
                 c=encrypt(w,pi,k,phases[g])
                 if 0 not in c and not s.decode(c,pi,k,D): break
             C[g]=c; T[g]=w
+    if T is None:
+        assert len(C)==48 and sum(map(len,C))==223
     with tempfile.TemporaryDirectory() as tmp:
         inp=pathlib.Path(tmp)/'input.txt'
         keys=pathlib.Path(tmp)/'keywords.txt'

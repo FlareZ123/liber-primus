@@ -1,6 +1,6 @@
 """CP-SAT receivers for the exact primitive q8 common-cycle model.
 
-Requires ortools==9.14.6206. The solver sees 49 encrypted training groups
+Requires ortools==9.14.6206. The solver sees 48 encrypted training groups
 and the frozen lexicon; hidden actions and 17 held-out groups are used only
 to calibrate a returned solution. No original fit in these calibrations.
 The centralizer model uses the exact equivalence: commuting permutations
@@ -165,12 +165,13 @@ def main():
     ap.add_argument('--workers',type=int,default=2)
     ap.add_argument('--oracle',action='store_true')
     args=ap.parse_args()
-    term=json.loads((a.RESULTS/'lp2-shared-gp29-q8-smt-fixtures.json').read_text())
+    term=json.loads((a.RESULTS/'lp2-shared-gp29-q8-terminal-corrected-fixtures.json').read_text())
     D=s.load_dictionary(a.ROOT/'resources/control/english_wordfreq_textblob.txt',term['added'])
     assert len(D)==38938
-    f,n=(term,49) if args.profile=='terminal' else (json.loads((a.RESULTS/'lp2-shared-gp29-q8-affine-long-fixtures.json').read_text()),24)
+    f,n=(term,48) if args.profile=='terminal' else (json.loads((a.RESULTS/'lp2-shared-gp29-q8-affine-long-fixtures.json').read_text()),24)
     pl=f['plants'][args.plant]
     T=s.words(pl['truth']); C=s.words(pl['cipher'])
+    if args.profile=='terminal': assert len(C)==len(T)==65 and sum(map(len,C[:48]))==223 and sum(map(len,C[48:]))==76
     assert all(t in s.decode(c,pl['pi'],pl['k'],D) for t,c in zip(T,C))
     if args.mode=='centralizer':
         m,maps,domains=model_commute(C[:n],D)
