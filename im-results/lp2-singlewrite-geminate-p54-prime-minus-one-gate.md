@@ -77,6 +77,6 @@ Three fresh contiguous windows from the held-out Gibran, Shakespeare and Emerson
 
 Run: node sims/lp2_singlewrite_geminate_p54_prime_minus_one_sft.cjs
 
-The standalone Node 22 script reads pinned repository sources, asserts the alphabet classification, lexicon sizes, source spans, positive controls and negative outcomes, and prints machine-readable JSON. The same computation was executed in connected JavaScript against those repository inputs. No separate GitHub Actions run is claimed.
+The standalone Node 22 script reads pinned repository sources, asserts the alphabet classification, lexicon sizes, source spans, positive controls and negative outcomes, and prints machine-readable JSON. The computation was executed in connected JavaScript and then passed the repository's manual read-only Node 22 workflow: [run 45583294315](https://github.com/FlareZ123/liber-primus/actions/runs/45583294315), commit 897f83081d1ec640db2414aa6f840f5e4fcd06d2.
 
 **Disposition:** close #2737 as completed and retire this exact normalization/cipher conjunction. Do not widen the rule into an unconstrained orthographic grammar or tune the prime origin to rescue it.
