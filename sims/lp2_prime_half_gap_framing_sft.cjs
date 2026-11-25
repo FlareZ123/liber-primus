@@ -20,7 +20,8 @@ function experiment(raw, corpus, trials=2000){
   return {best,starts};
  }
  function details(a){
-  const {best,starts}=fit(a),half=Math.floor(a.length/2);let holdBest=-1;
+  const {best,starts:fullStarts}=fit(a),half=Math.floor(a.length/2);
+  const train=fit(a.slice(0,half)),starts=train.starts;let holdBest=-1;
   for(const j of starts){let h=0;for(let k=half;k<a.length;k++)h+=Number(a[k]===gaps[j+k]);holdBest=Math.max(holdBest,h)}
   const j=starts[0];let suffixMatches=0,allMatches=0;if(j!==undefined)for(let k=0;k<a.length;k++){const m=Number(a[k]===gaps[j+k]);allMatches+=m;if(k>=half)suffixMatches+=m}
   // Two consecutive half-gaps of 1 force 3,5,7; no repeated occurrence possible.
@@ -29,7 +30,7 @@ function experiment(raw, corpus, trials=2000){
   // At offset >=1 all three consecutive odd primes exceed 3.
   const mod3Obstructions=[];for(let i=1;i+1<a.length;i++){const u=(2*a[i])%3,v=(2*(a[i]+a[i+1]))%3;if(u!==0&&v!==0&&u!==v)mod3Obstructions.push(i)}
   const histogram=Array(15).fill(0);for(const k of a){if(k>=histogram.length)histogram.length=k+1;histogram[k]=(histogram[k]||0)+1}
-  return {groups:a.length,runes:a.reduce((s,x)=>s+x,0),first:a.slice(0,12),histogram,bestPrefix:best,optimalStarts:starts.length,firstOrdinal:j===undefined?null:j+1,firstPrime:j===undefined?null:primes[j],exact:best===a.length,half,heldoutLength:a.length-half,frozenSuffixMatches:suffixMatches,bestTiedSuffixMatches:holdBest,allMatches,twinPairOffsets,mod3Obstructions:mod3Obstructions.length,firstMod3Obstruction:mod3Obstructions.length?{offset:mod3Obstructions[0],pair:a.slice(mod3Obstructions[0],mod3Obstructions[0]+2)}:null};
+  return {groups:a.length,runes:a.reduce((s,x)=>s+x,0),first:a.slice(0,12),histogram,bestPrefix:best,optimalStarts:fullStarts.length,trainingPrefix:train.best,trainingOptimalStarts:starts.length,firstOrdinal:j===undefined?null:j+1,firstPrime:j===undefined?null:primes[j],exact:best===a.length,half,heldoutLength:a.length-half,frozenSuffixMatches:suffixMatches,bestTiedSuffixMatches:holdBest,allMatches,twinPairOffsets,mod3Obstructions:mod3Obstructions.length,firstMod3Obstruction:mod3Obstructions.length?{offset:mod3Obstructions[0],pair:a.slice(mod3Obstructions[0],mod3Obstructions[0]+2)}:null};
  }
  let state=33012788;function rng(){state^=state<<13;state^=state>>>17;state^=state<<5;return state>>>0}
  function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=rng()%(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}
@@ -37,7 +38,7 @@ function experiment(raw, corpus, trials=2000){
  for(let k=0;k<trials;k++){const s=chapters.map(shuffle);s.push(s.flat());let mx=0;for(let i=0;i<s.length;i++){const v=fit(s[i]).best;mx=Math.max(mx,v);const q=nulls[i];q.ge+=Number(v>=observed[i].bestPrefix);q.hist[v]=(q.hist[v]||0)+1}familyGe+=Number(mx>=familyObserved)}
  let unrestrictedBookGe=0;for(let k=0;k<trials;k++)unrestrictedBookGe+=Number(fit(shuffle(scopes.at(-1))).best>=observed.at(-1).bestPrefix);
  const plantOrdinals=[2,13,23,59,83,133,331,1033,3301,3301];
- const plants=scopes.map((a,i)=>{const j=plantOrdinals[i]-1;const p=gaps.slice(j,j+a.length);const d=details(p);assert(d.exact&&fit(p).starts.includes(j)&&d.optimalStarts===1&&d.frozenSuffixMatches===d.heldoutLength,"plant not uniquely recovered");let nullMax=0;for(let k=0;k<100;k++)nullMax=Math.max(nullMax,fit(shuffle(p)).best);return {ordinal:j+1,groups:p.length,recoveredOrdinal:d.firstOrdinal,prefix:d.bestPrefix,heldout:d.frozenSuffixMatches,heldoutLength:d.heldoutLength,matchingHistogramShuffleMax:nullMax}});
+ const plants=scopes.map((a,i)=>{const j=plantOrdinals[i]-1;const p=gaps.slice(j,j+a.length);const d=details(p);assert(d.exact&&fit(p).starts.includes(j)&&d.optimalStarts===1&&d.trainingOptimalStarts===1&&d.trainingPrefix===d.half&&d.firstOrdinal===j+1&&d.frozenSuffixMatches===d.heldoutLength,"plant not uniquely recovered");let nullMax=0;for(let k=0;k<100;k++)nullMax=Math.max(nullMax,fit(shuffle(p)).best);return {ordinal:j+1,groups:p.length,recoveredOrdinal:d.firstOrdinal,trainingPrefix:d.trainingPrefix,trainingOptimalStarts:d.trainingOptimalStarts,prefix:d.bestPrefix,heldout:d.frozenSuffixMatches,heldoutLength:d.heldoutLength,matchingHistogramShuffleMax:nullMax}});
  return {cuts,ordinalRange:[2,maxOrdinal],trials,observed,nulls,familyObserved,familyGe,unrestrictedBookGe,plants};
 }
 const root=path.join(__dirname,"..");
