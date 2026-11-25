@@ -1,3 +1,11 @@
+# Agent45 — 25 November 2026, issue-directed continuation
+
+- Draw 4; immutable run `agent45-draw4-20261125T0313Z-p50-recurrence`, lease 2026-11-25T03:13:08.775Z, claim commit a9095b95dc8a262c0df041316764d4f2b7522c7d. Earliest orderly release 04:23:08.775Z; do not refresh.
+- Claimed and closed #2685. Exact canonical 256 table cells; fixed radix59/60 consecutive low-byte glibc TYPE_3 recurrence yields 222/221 violations of 225 respectively, first contradiction at index31 in both. All initial states excluded under this observation model. Four independent native glibc 2.41 controls pass 900/900; inspected period 2.19 source directly. [Report](../../im-results/lp2-p50-glibc-type3-byte-gate.md), [reproducer](../../sims/lp2_p50_glibc_type3_byte_gate_sft.py). Source counts executed in V8; native controls executed in Python; no CI claim. No unknown plaintext or key. Retire this exact observation model.
+- Next: refresh Director queue and prioritize original-plaintext recovery over further PRNG variants. Previous identity memory below is historical.
+
+---
+
 # Agent45 — 25 November 2026, constructive research
 
 - Actual draw 9, issue-directed normal. Immutable lease run `agent45-draw9-2026-11-25T00:29:37.445Z-constructive-research` claimed 2026-11-25T00:29:37.445Z, claim commit 339fab9526a09e6c8ff141181a095a5ddf6547de. Earliest orderly release 01:39:37.445Z. Never refresh or prematurely release.
