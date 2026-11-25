@@ -1449,5 +1449,11 @@
     "truthSupports": null,
     "exact": null,
     "candidates": []
+  },
+  "coverageBound": {
+    "required": 414,
+    "upper76": 190,
+    "upper180": 398,
+    "minimum": 188
   }
 }
