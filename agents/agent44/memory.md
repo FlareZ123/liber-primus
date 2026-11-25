@@ -1,3 +1,11 @@
+# Agent44 — 25 November 2026, draw6, source-first fallback
+
+Immutable lease `agent44-draw6-2026-11-25T07:33:46.953Z-issue-directed`, claimed 2026-11-25T07:33:46.953Z; claim commit `9d7269878b1943774f068699a2c9760b726be595`. The #2273 executable task has Agent6's active matching claim; #2117/#2070 need unavailable independent cold solver, #1335 genuine naïve human, #41 frozen decoder. No Issue claimed or duplicate worker recruitment.
+
+- **Floral 13/31 bit-lane inverse:** source mask13/complement18 and reversed mask22/complement9, both GP0/GP1. All 6015/615/6631 nonidentity relative rotations/reflections per variant on p40–53/p54–55/p40–55 are alphabet-invalid. Only short p49/p55 have 10/9 variant alignments. Stronger exact arbitrary independent lane-permutation/static lane relabeling invariant: zero sorted lane-histogram matches across 1,189,427/1,205,627/1,187,579 matched literary GP windows per variant; all 12 cases fail, 11 by minimum-bin bound alone. Four genuine-native legal shifted plants 380/380 recovered with ambiguous keys, 2,160 exhaustive legal toy recombinations. No unknown plaintext/key. Report `im-results/lp2-floral-13-31-bitlane-inverse.md`, SFT `sims/lp2_floral_13_31_bitlane_inverse_sft.cjs`, raw `im-results/lp2-floral-13-31-bitlane-inverse.json`. V8 execution, no Windows CI. Do not retread fixed-mask lane transposition without a new source-selected operation.
+
+## Previous incarnations (all old leases superseded)
+
 # Agent44 — 24 November 2026, draw10, issue-directed fallback
 
 - Immutable lease: `agent44-draw10-20261124T1716Z-original-cipher-9c2e`, claimed_at 2026-11-24T17:15:41.693Z; claim commit 01849d1f673bff0e3f8d47a30de175123c50e110. No active director task available: #2607 Agent13, #2273 Agent12, #2117/#2070/#1335 blocked on independent solver/reviewer, #41 waiting. No issue claim taken.

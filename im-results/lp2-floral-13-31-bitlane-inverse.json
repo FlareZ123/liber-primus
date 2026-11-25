@@ -1,0 +1,6997 @@
+{
+  "sourceBlobs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    }
+  ],
+  "controls": [
+    {
+      "offset": 0,
+      "mask": 13,
+      "other": 18,
+      "source": "0_warning",
+      "n": 95,
+      "encrypt": {
+        "d": 1,
+        "s": 11
+      },
+      "decrypt": {
+        "d": 1,
+        "s": 84
+      },
+      "recovered": 95,
+      "changed": 72,
+      "validNonidentity": 11
+    },
+    {
+      "offset": 0,
+      "mask": 22,
+      "other": 9,
+      "source": "0_warning",
+      "n": 95,
+      "encrypt": {
+        "d": 1,
+        "s": 2
+      },
+      "decrypt": {
+        "d": 1,
+        "s": 93
+      },
+      "recovered": 95,
+      "changed": 69,
+      "validNonidentity": 54
+    },
+    {
+      "offset": 1,
+      "mask": 13,
+      "other": 18,
+      "source": "0_warning",
+      "n": 95,
+      "encrypt": {
+        "d": -1,
+        "s": 71
+      },
+      "decrypt": {
+        "d": -1,
+        "s": 71
+      },
+      "recovered": 95,
+      "changed": 62,
+      "validNonidentity": 2
+    },
+    {
+      "offset": 1,
+      "mask": 22,
+      "other": 9,
+      "source": "0_warning",
+      "n": 95,
+      "encrypt": {
+        "d": 1,
+        "s": 1
+      },
+      "decrypt": {
+        "d": 1,
+        "s": 94
+      },
+      "recovered": 95,
+      "changed": 67,
+      "validNonidentity": 7
+    }
+  ],
+  "toyLegal": 2160,
+  "results": [
+    {
+      "name": "p40-53",
+      "n": 3008,
+      "variants": [
+        {
+          "offset": 0,
+          "mask": 13,
+          "other": 18,
+          "A": [
+            443,
+            429,
+            405,
+            367,
+            425,
+            450,
+            289,
+            200
+          ],
+          "B": [
+            810,
+            810,
+            743,
+            645
+          ],
+          "minA": 200,
+          "search": {
+            "tested": 6015,
+            "minInvalid": 112,
+            "ties": 1,
+            "valid": 0,
+            "changedValid": 0,
+            "candidates": []
+          },
+          "literary": {
+            "windows": 1189427,
+            "exact": 0,
+            "sortedA": 0,
+            "sortedBoth": 0,
+            "minApass": 0,
+            "maxOfMinA": 58,
+            "maxOfMinB": 695,
+            "rangeA": [
+              [
+                570,
+                857
+              ],
+              [
+                398,
+                669
+              ],
+              [
+                277,
+                491
+              ],
+              [
+                243,
+                443
+              ],
+              [
+                432,
+                719
+              ],
+              [
+                129,
+                339
+              ],
+              [
+                7,
+                58
+              ],
+              [
+                185,
+                338
+              ]
+            ]
+          },
+          "known": null,
+          "literaryByDonor": [
+            {
+              "name": "Gibran greedy",
+              "windows": 60107,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 57,
+              "maxOfMinB": 679,
+              "rangeA": [
+                [
+                  635,
+                  791
+                ],
+                [
+                  424,
+                  632
+                ],
+                [
+                  307,
+                  455
+                ],
+                [
+                  254,
+                  374
+                ],
+                [
+                  468,
+                  719
+                ],
+                [
+                  167,
+                  275
+                ],
+                [
+                  7,
+                  57
+                ],
+                [
+                  199,
+                  318
+                ]
+              ]
+            },
+            {
+              "name": "Gibran calibrated",
+              "windows": 59485,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 58,
+              "maxOfMinB": 695,
+              "rangeA": [
+                [
+                  642,
+                  801
+                ],
+                [
+                  426,
+                  633
+                ],
+                [
+                  311,
+                  458
+                ],
+                [
+                  257,
+                  378
+                ],
+                [
+                  432,
+                  700
+                ],
+                [
+                  172,
+                  339
+                ],
+                [
+                  7,
+                  58
+                ],
+                [
+                  201,
+                  322
+                ]
+              ]
+            },
+            {
+              "name": "Shakespeare greedy",
+              "windows": 215793,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 54,
+              "maxOfMinB": 689,
+              "rangeA": [
+                [
+                  570,
+                  820
+                ],
+                [
+                  398,
+                  669
+                ],
+                [
+                  287,
+                  486
+                ],
+                [
+                  252,
+                  435
+                ],
+                [
+                  504,
+                  718
+                ],
+                [
+                  129,
+                  238
+                ],
+                [
+                  8,
+                  54
+                ],
+                [
+                  185,
+                  329
+                ]
+              ]
+            },
+            {
+              "name": "Shakespeare calibrated",
+              "windows": 214099,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 54,
+              "maxOfMinB": 692,
+              "rangeA": [
+                [
+                  577,
+                  822
+                ],
+                [
+                  403,
+                  659
+                ],
+                [
+                  289,
+                  491
+                ],
+                [
+                  255,
+                  443
+                ],
+                [
+                  492,
+                  678
+                ],
+                [
+                  133,
+                  259
+                ],
+                [
+                  8,
+                  54
+                ],
+                [
+                  187,
+                  332
+                ]
+              ]
+            },
+            {
+              "name": "Emerson greedy",
+              "windows": 321623,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 44,
+              "maxOfMinB": 659,
+              "rangeA": [
+                [
+                  673,
+                  849
+                ],
+                [
+                  408,
+                  589
+                ],
+                [
+                  277,
+                  450
+                ],
+                [
+                  243,
+                  376
+                ],
+                [
+                  469,
+                  716
+                ],
+                [
+                  176,
+                  267
+                ],
+                [
+                  7,
+                  44
+                ],
+                [
+                  198,
+                  336
+                ]
+              ]
+            },
+            {
+              "name": "Emerson calibrated",
+              "windows": 318320,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 45,
+              "maxOfMinB": 671,
+              "rangeA": [
+                [
+                  682,
+                  857
+                ],
+                [
+                  403,
+                  575
+                ],
+                [
+                  281,
+                  453
+                ],
+                [
+                  245,
+                  379
+                ],
+                [
+                  434,
+                  688
+                ],
+                [
+                  191,
+                  330
+                ],
+                [
+                  7,
+                  45
+                ],
+                [
+                  200,
+                  338
+                ]
+              ]
+            }
+          ],
+          "knownBySection": [
+            {
+              "name": "0_warning",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_welcome",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_wisdom",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_koan_1",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_loss_of_divinity",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "jpg107-167",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "jpg229",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "p56_an_end",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "p57_parable",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            }
+          ]
+        },
+        {
+          "offset": 0,
+          "mask": 22,
+          "other": 9,
+          "A": [
+            424,
+            450,
+            386,
+            360,
+            444,
+            429,
+            299,
+            216
+          ],
+          "B": [
+            848,
+            796,
+            714,
+            650
+          ],
+          "minA": 216,
+          "search": {
+            "tested": 6015,
+            "minInvalid": 128,
+            "ties": 1,
+            "valid": 0,
+            "changedValid": 0,
+            "candidates": []
+          },
+          "literary": {
+            "windows": 1189427,
+            "exact": 0,
+            "sortedA": 0,
+            "sortedBoth": 0,
+            "minApass": 0,
+            "maxOfMinA": 193,
+            "maxOfMinB": 591,
+            "rangeA": [
+              [
+                373,
+                616
+              ],
+              [
+                426,
+                682
+              ],
+              [
+                240,
+                559
+              ],
+              [
+                224,
+                401
+              ],
+              [
+                341,
+                590
+              ],
+              [
+                402,
+                637
+              ],
+              [
+                104,
+                257
+              ],
+              [
+                72,
+                195
+              ]
+            ]
+          },
+          "known": null,
+          "literaryByDonor": [
+            {
+              "name": "Gibran greedy",
+              "windows": 60107,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 176,
+              "maxOfMinB": 541,
+              "rangeA": [
+                [
+                  373,
+                  610
+                ],
+                [
+                  518,
+                  636
+                ],
+                [
+                  240,
+                  553
+                ],
+                [
+                  226,
+                  382
+                ],
+                [
+                  341,
+                  577
+                ],
+                [
+                  438,
+                  557
+                ],
+                [
+                  104,
+                  233
+                ],
+                [
+                  74,
+                  176
+                ]
+              ]
+            },
+            {
+              "name": "Gibran calibrated",
+              "windows": 59485,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 178,
+              "maxOfMinB": 561,
+              "rangeA": [
+                [
+                  381,
+                  616
+                ],
+                [
+                  429,
+                  613
+                ],
+                [
+                  242,
+                  559
+                ],
+                [
+                  228,
+                  384
+                ],
+                [
+                  344,
+                  586
+                ],
+                [
+                  461,
+                  582
+                ],
+                [
+                  107,
+                  235
+                ],
+                [
+                  76,
+                  178
+                ]
+              ]
+            },
+            {
+              "name": "Shakespeare greedy",
+              "windows": 215793,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 192,
+              "maxOfMinB": 532,
+              "rangeA": [
+                [
+                  403,
+                  596
+                ],
+                [
+                  475,
+                  682
+                ],
+                [
+                  252,
+                  438
+                ],
+                [
+                  258,
+                  397
+                ],
+                [
+                  346,
+                  496
+                ],
+                [
+                  429,
+                  632
+                ],
+                [
+                  115,
+                  254
+                ],
+                [
+                  72,
+                  194
+                ]
+              ]
+            },
+            {
+              "name": "Shakespeare calibrated",
+              "windows": 214099,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 193,
+              "maxOfMinB": 546,
+              "rangeA": [
+                [
+                  409,
+                  600
+                ],
+                [
+                  463,
+                  641
+                ],
+                [
+                  253,
+                  442
+                ],
+                [
+                  264,
+                  401
+                ],
+                [
+                  350,
+                  497
+                ],
+                [
+                  449,
+                  637
+                ],
+                [
+                  115,
+                  257
+                ],
+                [
+                  73,
+                  195
+                ]
+              ]
+            },
+            {
+              "name": "Emerson greedy",
+              "windows": 321623,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 161,
+              "maxOfMinB": 565,
+              "rangeA": [
+                [
+                  377,
+                  588
+                ],
+                [
+                  496,
+                  649
+                ],
+                [
+                  276,
+                  549
+                ],
+                [
+                  224,
+                  382
+                ],
+                [
+                  395,
+                  580
+                ],
+                [
+                  402,
+                  572
+                ],
+                [
+                  107,
+                  218
+                ],
+                [
+                  74,
+                  161
+                ]
+              ]
+            },
+            {
+              "name": "Emerson calibrated",
+              "windows": 318320,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 162,
+              "maxOfMinB": 591,
+              "rangeA": [
+                [
+                  383,
+                  596
+                ],
+                [
+                  426,
+                  605
+                ],
+                [
+                  278,
+                  556
+                ],
+                [
+                  227,
+                  384
+                ],
+                [
+                  398,
+                  590
+                ],
+                [
+                  423,
+                  598
+                ],
+                [
+                  108,
+                  220
+                ],
+                [
+                  76,
+                  162
+                ]
+              ]
+            }
+          ],
+          "knownBySection": [
+            {
+              "name": "0_warning",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_welcome",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_wisdom",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_koan_1",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_loss_of_divinity",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "jpg107-167",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "jpg229",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "p56_an_end",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "p57_parable",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            }
+          ]
+        },
+        {
+          "offset": 1,
+          "mask": 13,
+          "other": 18,
+          "A": [
+            307,
+            443,
+            409,
+            405,
+            404,
+            425,
+            326,
+            289
+          ],
+          "B": [
+            743,
+            777,
+            820,
+            668
+          ],
+          "minA": 289,
+          "search": {
+            "tested": 6015,
+            "minInvalid": 174,
+            "ties": 3,
+            "valid": 0,
+            "changedValid": 0,
+            "candidates": []
+          },
+          "literary": {
+            "windows": 1189427,
+            "exact": 0,
+            "sortedA": 0,
+            "sortedBoth": 0,
+            "minApass": 0,
+            "maxOfMinA": 54,
+            "maxOfMinB": 599,
+            "rangeA": [
+              [
+                274,
+                523
+              ],
+              [
+                570,
+                857
+              ],
+              [
+                362,
+                588
+              ],
+              [
+                277,
+                491
+              ],
+              [
+                299,
+                484
+              ],
+              [
+                432,
+                719
+              ],
+              [
+                17,
+                167
+              ],
+              [
+                7,
+                58
+              ]
+            ]
+          },
+          "known": null,
+          "literaryByDonor": [
+            {
+              "name": "Gibran greedy",
+              "windows": 60107,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 51,
+              "maxOfMinB": 568,
+              "rangeA": [
+                [
+                  274,
+                  497
+                ],
+                [
+                  635,
+                  791
+                ],
+                [
+                  363,
+                  546
+                ],
+                [
+                  307,
+                  455
+                ],
+                [
+                  303,
+                  481
+                ],
+                [
+                  468,
+                  719
+                ],
+                [
+                  28,
+                  145
+                ],
+                [
+                  7,
+                  57
+                ]
+              ]
+            },
+            {
+              "name": "Gibran calibrated",
+              "windows": 59485,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 52,
+              "maxOfMinB": 574,
+              "rangeA": [
+                [
+                  278,
+                  498
+                ],
+                [
+                  642,
+                  801
+                ],
+                [
+                  362,
+                  540
+                ],
+                [
+                  311,
+                  458
+                ],
+                [
+                  306,
+                  484
+                ],
+                [
+                  432,
+                  700
+                ],
+                [
+                  32,
+                  161
+                ],
+                [
+                  7,
+                  58
+                ]
+              ]
+            },
+            {
+              "name": "Shakespeare greedy",
+              "windows": 215793,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 54,
+              "maxOfMinB": 598,
+              "rangeA": [
+                [
+                  306,
+                  519
+                ],
+                [
+                  570,
+                  820
+                ],
+                [
+                  396,
+                  588
+                ],
+                [
+                  287,
+                  486
+                ],
+                [
+                  322,
+                  455
+                ],
+                [
+                  504,
+                  718
+                ],
+                [
+                  17,
+                  80
+                ],
+                [
+                  8,
+                  54
+                ]
+              ]
+            },
+            {
+              "name": "Shakespeare calibrated",
+              "windows": 214099,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 54,
+              "maxOfMinB": 599,
+              "rangeA": [
+                [
+                  310,
+                  523
+                ],
+                [
+                  577,
+                  822
+                ],
+                [
+                  394,
+                  588
+                ],
+                [
+                  289,
+                  491
+                ],
+                [
+                  323,
+                  458
+                ],
+                [
+                  492,
+                  678
+                ],
+                [
+                  23,
+                  93
+                ],
+                [
+                  8,
+                  54
+                ]
+              ]
+            },
+            {
+              "name": "Emerson greedy",
+              "windows": 321623,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 44,
+              "maxOfMinB": 561,
+              "rangeA": [
+                [
+                  275,
+                  453
+                ],
+                [
+                  673,
+                  849
+                ],
+                [
+                  373,
+                  548
+                ],
+                [
+                  277,
+                  450
+                ],
+                [
+                  299,
+                  461
+                ],
+                [
+                  469,
+                  716
+                ],
+                [
+                  36,
+                  148
+                ],
+                [
+                  7,
+                  44
+                ]
+              ]
+            },
+            {
+              "name": "Emerson calibrated",
+              "windows": 318320,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 45,
+              "maxOfMinB": 567,
+              "rangeA": [
+                [
+                  276,
+                  458
+                ],
+                [
+                  682,
+                  857
+                ],
+                [
+                  363,
+                  543
+                ],
+                [
+                  281,
+                  453
+                ],
+                [
+                  305,
+                  464
+                ],
+                [
+                  434,
+                  688
+                ],
+                [
+                  48,
+                  167
+                ],
+                [
+                  7,
+                  45
+                ]
+              ]
+            }
+          ],
+          "knownBySection": [
+            {
+              "name": "0_warning",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_welcome",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_wisdom",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_koan_1",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_loss_of_divinity",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "jpg107-167",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "jpg229",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "p56_an_end",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "p57_parable",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            }
+          ]
+        },
+        {
+          "offset": 1,
+          "mask": 22,
+          "other": 9,
+          "A": [
+            301,
+            417,
+            442,
+            360,
+            416,
+            445,
+            404,
+            223
+          ],
+          "B": [
+            716,
+            848,
+            730,
+            714
+          ],
+          "minA": 223,
+          "search": {
+            "tested": 6015,
+            "minInvalid": 141,
+            "ties": 1,
+            "valid": 0,
+            "changedValid": 0,
+            "candidates": []
+          },
+          "literary": {
+            "windows": 1189427,
+            "exact": 0,
+            "sortedA": 0,
+            "sortedBoth": 0,
+            "minApass": 0,
+            "maxOfMinA": 53,
+            "maxOfMinB": 541,
+            "rangeA": [
+              [
+                140,
+                318
+              ],
+              [
+                494,
+                756
+              ],
+              [
+                341,
+                594
+              ],
+              [
+                127,
+                353
+              ],
+              [
+                614,
+                872
+              ],
+              [
+                377,
+                586
+              ],
+              [
+                157,
+                356
+              ],
+              [
+                6,
+                53
+              ]
+            ]
+          },
+          "known": null,
+          "literaryByDonor": [
+            {
+              "name": "Gibran greedy",
+              "windows": 60107,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 47,
+              "maxOfMinB": 533,
+              "rangeA": [
+                [
+                  145,
+                  317
+                ],
+                [
+                  540,
+                  727
+                ],
+                [
+                  358,
+                  594
+                ],
+                [
+                  127,
+                  346
+                ],
+                [
+                  636,
+                  808
+                ],
+                [
+                  407,
+                  545
+                ],
+                [
+                  157,
+                  291
+                ],
+                [
+                  9,
+                  47
+                ]
+              ]
+            },
+            {
+              "name": "Gibran calibrated",
+              "windows": 59485,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 47,
+              "maxOfMinB": 533,
+              "rangeA": [
+                [
+                  147,
+                  318
+                ],
+                [
+                  511,
+                  708
+                ],
+                [
+                  360,
+                  586
+                ],
+                [
+                  129,
+                  351
+                ],
+                [
+                  647,
+                  826
+                ],
+                [
+                  410,
+                  549
+                ],
+                [
+                  173,
+                  296
+                ],
+                [
+                  9,
+                  47
+                ]
+              ]
+            },
+            {
+              "name": "Shakespeare greedy",
+              "windows": 215793,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 53,
+              "maxOfMinB": 501,
+              "rangeA": [
+                [
+                  185,
+                  307
+                ],
+                [
+                  518,
+                  756
+                ],
+                [
+                  367,
+                  536
+                ],
+                [
+                  137,
+                  279
+                ],
+                [
+                  614,
+                  808
+                ],
+                [
+                  377,
+                  584
+                ],
+                [
+                  171,
+                  354
+                ],
+                [
+                  7,
+                  53
+                ]
+              ]
+            },
+            {
+              "name": "Shakespeare calibrated",
+              "windows": 214099,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 53,
+              "maxOfMinB": 509,
+              "rangeA": [
+                [
+                  187,
+                  308
+                ],
+                [
+                  494,
+                  738
+                ],
+                [
+                  365,
+                  536
+                ],
+                [
+                  138,
+                  282
+                ],
+                [
+                  618,
+                  818
+                ],
+                [
+                  381,
+                  586
+                ],
+                [
+                  179,
+                  356
+                ],
+                [
+                  7,
+                  53
+                ]
+              ]
+            },
+            {
+              "name": "Emerson greedy",
+              "windows": 321623,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 37,
+              "maxOfMinB": 528,
+              "rangeA": [
+                [
+                  140,
+                  304
+                ],
+                [
+                  546,
+                  754
+                ],
+                [
+                  353,
+                  594
+                ],
+                [
+                  151,
+                  350
+                ],
+                [
+                  635,
+                  866
+                ],
+                [
+                  390,
+                  538
+                ],
+                [
+                  160,
+                  285
+                ],
+                [
+                  6,
+                  37
+                ]
+              ]
+            },
+            {
+              "name": "Emerson calibrated",
+              "windows": 318320,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 38,
+              "maxOfMinB": 541,
+              "rangeA": [
+                [
+                  145,
+                  306
+                ],
+                [
+                  516,
+                  712
+                ],
+                [
+                  341,
+                  584
+                ],
+                [
+                  152,
+                  353
+                ],
+                [
+                  644,
+                  872
+                ],
+                [
+                  394,
+                  544
+                ],
+                [
+                  174,
+                  306
+                ],
+                [
+                  6,
+                  38
+                ]
+              ]
+            }
+          ],
+          "knownBySection": [
+            {
+              "name": "0_warning",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_welcome",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_wisdom",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_koan_1",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_loss_of_divinity",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "jpg107-167",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "jpg229",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "p56_an_end",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "p57_parable",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "p54-55",
+      "n": 308,
+      "variants": [
+        {
+          "offset": 0,
+          "mask": 13,
+          "other": 18,
+          "A": [
+            40,
+            51,
+            39,
+            48,
+            42,
+            30,
+            36,
+            22
+          ],
+          "B": [
+            74,
+            93,
+            64,
+            77
+          ],
+          "minA": 22,
+          "search": {
+            "tested": 615,
+            "minInvalid": 9,
+            "ties": 1,
+            "valid": 0,
+            "changedValid": 0,
+            "candidates": []
+          },
+          "literary": {
+            "windows": 1205627,
+            "exact": 0,
+            "sortedA": 0,
+            "sortedBoth": 0,
+            "minApass": 0,
+            "maxOfMinA": 20,
+            "maxOfMinB": 77,
+            "rangeA": [
+              [
+                38,
+                108
+              ],
+              [
+                18,
+                94
+              ],
+              [
+                13,
+                65
+              ],
+              [
+                10,
+                71
+              ],
+              [
+                27,
+                102
+              ],
+              [
+                5,
+                50
+              ],
+              [
+                0,
+                20
+              ],
+              [
+                8,
+                57
+              ]
+            ]
+          },
+          "known": {
+            "windows": 1141,
+            "exact": 0,
+            "sortedA": 0,
+            "sortedBoth": 0,
+            "minApass": 0,
+            "maxOfMinA": 6,
+            "maxOfMinB": 74,
+            "rangeA": [
+              [
+                60,
+                91
+              ],
+              [
+                41,
+                67
+              ],
+              [
+                17,
+                54
+              ],
+              [
+                23,
+                47
+              ],
+              [
+                37,
+                82
+              ],
+              [
+                10,
+                26
+              ],
+              [
+                0,
+                6
+              ],
+              [
+                19,
+                31
+              ]
+            ]
+          },
+          "literaryByDonor": [
+            {
+              "name": "Gibran greedy",
+              "windows": 62807,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 12,
+              "maxOfMinB": 74,
+              "rangeA": [
+                [
+                  44,
+                  108
+                ],
+                [
+                  27,
+                  94
+                ],
+                [
+                  21,
+                  60
+                ],
+                [
+                  14,
+                  53
+                ],
+                [
+                  31,
+                  91
+                ],
+                [
+                  7,
+                  47
+                ],
+                [
+                  0,
+                  12
+                ],
+                [
+                  10,
+                  47
+                ]
+              ]
+            },
+            {
+              "name": "Gibran calibrated",
+              "windows": 62185,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 12,
+              "maxOfMinB": 76,
+              "rangeA": [
+                [
+                  47,
+                  108
+                ],
+                [
+                  28,
+                  94
+                ],
+                [
+                  21,
+                  60
+                ],
+                [
+                  14,
+                  53
+                ],
+                [
+                  27,
+                  90
+                ],
+                [
+                  7,
+                  50
+                ],
+                [
+                  0,
+                  12
+                ],
+                [
+                  10,
+                  47
+                ]
+              ]
+            },
+            {
+              "name": "Shakespeare greedy",
+              "windows": 218493,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 20,
+              "maxOfMinB": 77,
+              "rangeA": [
+                [
+                  38,
+                  105
+                ],
+                [
+                  18,
+                  89
+                ],
+                [
+                  16,
+                  65
+                ],
+                [
+                  14,
+                  69
+                ],
+                [
+                  33,
+                  102
+                ],
+                [
+                  5,
+                  36
+                ],
+                [
+                  0,
+                  20
+                ],
+                [
+                  8,
+                  57
+                ]
+              ]
+            },
+            {
+              "name": "Shakespeare calibrated",
+              "windows": 216799,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 20,
+              "maxOfMinB": 77,
+              "rangeA": [
+                [
+                  38,
+                  105
+                ],
+                [
+                  19,
+                  87
+                ],
+                [
+                  16,
+                  65
+                ],
+                [
+                  14,
+                  71
+                ],
+                [
+                  32,
+                  102
+                ],
+                [
+                  6,
+                  36
+                ],
+                [
+                  0,
+                  20
+                ],
+                [
+                  8,
+                  57
+                ]
+              ]
+            },
+            {
+              "name": "Emerson greedy",
+              "windows": 324323,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 12,
+              "maxOfMinB": 76,
+              "rangeA": [
+                [
+                  44,
+                  107
+                ],
+                [
+                  24,
+                  81
+                ],
+                [
+                  13,
+                  59
+                ],
+                [
+                  10,
+                  55
+                ],
+                [
+                  31,
+                  92
+                ],
+                [
+                  7,
+                  41
+                ],
+                [
+                  0,
+                  12
+                ],
+                [
+                  12,
+                  53
+                ]
+              ]
+            },
+            {
+              "name": "Emerson calibrated",
+              "windows": 321020,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 12,
+              "maxOfMinB": 76,
+              "rangeA": [
+                [
+                  45,
+                  107
+                ],
+                [
+                  24,
+                  81
+                ],
+                [
+                  13,
+                  60
+                ],
+                [
+                  10,
+                  56
+                ],
+                [
+                  28,
+                  91
+                ],
+                [
+                  7,
+                  47
+                ],
+                [
+                  0,
+                  12
+                ],
+                [
+                  12,
+                  53
+                ]
+              ]
+            }
+          ],
+          "knownBySection": [
+            {
+              "name": "0_warning",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_welcome",
+              "windows": 208,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 4,
+              "maxOfMinB": 65,
+              "rangeA": [
+                [
+                  60,
+                  68
+                ],
+                [
+                  45,
+                  56
+                ],
+                [
+                  48,
+                  54
+                ],
+                [
+                  23,
+                  30
+                ],
+                [
+                  62,
+                  74
+                ],
+                [
+                  18,
+                  26
+                ],
+                [
+                  2,
+                  4
+                ],
+                [
+                  19,
+                  26
+                ]
+              ]
+            },
+            {
+              "name": "0_wisdom",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_koan_1",
+              "windows": 473,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 2,
+              "maxOfMinB": 74,
+              "rangeA": [
+                [
+                  68,
+                  86
+                ],
+                [
+                  51,
+                  62
+                ],
+                [
+                  27,
+                  35
+                ],
+                [
+                  26,
+                  36
+                ],
+                [
+                  63,
+                  82
+                ],
+                [
+                  10,
+                  19
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  24,
+                  31
+                ]
+              ]
+            },
+            {
+              "name": "0_loss_of_divinity",
+              "windows": 448,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 5,
+              "maxOfMinB": 68,
+              "rangeA": [
+                [
+                  63,
+                  90
+                ],
+                [
+                  52,
+                  67
+                ],
+                [
+                  29,
+                  42
+                ],
+                [
+                  31,
+                  47
+                ],
+                [
+                  37,
+                  55
+                ],
+                [
+                  19,
+                  26
+                ],
+                [
+                  0,
+                  5
+                ],
+                [
+                  19,
+                  29
+                ]
+              ]
+            },
+            {
+              "name": "jpg107-167",
+              "windows": 12,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 6,
+              "maxOfMinB": 62,
+              "rangeA": [
+                [
+                  87,
+                  91
+                ],
+                [
+                  41,
+                  43
+                ],
+                [
+                  17,
+                  19
+                ],
+                [
+                  33,
+                  36
+                ],
+                [
+                  69,
+                  70
+                ],
+                [
+                  21,
+                  22
+                ],
+                [
+                  6,
+                  6
+                ],
+                [
+                  28,
+                  28
+                ]
+              ]
+            },
+            {
+              "name": "jpg229",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "p56_an_end",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "p57_parable",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            }
+          ]
+        },
+        {
+          "offset": 0,
+          "mask": 22,
+          "other": 9,
+          "A": [
+            30,
+            44,
+            44,
+            49,
+            35,
+            54,
+            29,
+            23
+          ],
+          "B": [
+            79,
+            99,
+            78,
+            52
+          ],
+          "minA": 23,
+          "search": {
+            "tested": 615,
+            "minInvalid": 7,
+            "ties": 2,
+            "valid": 0,
+            "changedValid": 0,
+            "candidates": []
+          },
+          "literary": {
+            "windows": 1205627,
+            "exact": 0,
+            "sortedA": 0,
+            "sortedBoth": 0,
+            "minApass": 1879,
+            "maxOfMinA": 26,
+            "maxOfMinB": 74,
+            "rangeA": [
+              [
+                25,
+                80
+              ],
+              [
+                25,
+                86
+              ],
+              [
+                11,
+                73
+              ],
+              [
+                10,
+                57
+              ],
+              [
+                16,
+                76
+              ],
+              [
+                25,
+                86
+              ],
+              [
+                2,
+                44
+              ],
+              [
+                1,
+                31
+              ]
+            ]
+          },
+          "known": {
+            "windows": 1141,
+            "exact": 0,
+            "sortedA": 0,
+            "sortedBoth": 0,
+            "minApass": 0,
+            "maxOfMinA": 13,
+            "maxOfMinB": 52,
+            "rangeA": [
+              [
+                35,
+                58
+              ],
+              [
+                47,
+                67
+              ],
+              [
+                23,
+                39
+              ],
+              [
+                29,
+                49
+              ],
+              [
+                35,
+                62
+              ],
+              [
+                48,
+                67
+              ],
+              [
+                6,
+                30
+              ],
+              [
+                4,
+                22
+              ]
+            ]
+          },
+          "literaryByDonor": [
+            {
+              "name": "Gibran greedy",
+              "windows": 62807,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 106,
+              "maxOfMinA": 23,
+              "maxOfMinB": 70,
+              "rangeA": [
+                [
+                  26,
+                  75
+                ],
+                [
+                  34,
+                  80
+                ],
+                [
+                  14,
+                  72
+                ],
+                [
+                  13,
+                  54
+                ],
+                [
+                  21,
+                  75
+                ],
+                [
+                  32,
+                  79
+                ],
+                [
+                  3,
+                  39
+                ],
+                [
+                  2,
+                  26
+                ]
+              ]
+            },
+            {
+              "name": "Gibran calibrated",
+              "windows": 62185,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 146,
+              "maxOfMinA": 24,
+              "maxOfMinB": 71,
+              "rangeA": [
+                [
+                  27,
+                  75
+                ],
+                [
+                  29,
+                  79
+                ],
+                [
+                  14,
+                  73
+                ],
+                [
+                  13,
+                  54
+                ],
+                [
+                  21,
+                  75
+                ],
+                [
+                  32,
+                  79
+                ],
+                [
+                  3,
+                  39
+                ],
+                [
+                  2,
+                  26
+                ]
+              ]
+            },
+            {
+              "name": "Shakespeare greedy",
+              "windows": 218493,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 696,
+              "maxOfMinA": 26,
+              "maxOfMinB": 74,
+              "rangeA": [
+                [
+                  27,
+                  75
+                ],
+                [
+                  32,
+                  82
+                ],
+                [
+                  14,
+                  62
+                ],
+                [
+                  11,
+                  55
+                ],
+                [
+                  16,
+                  70
+                ],
+                [
+                  25,
+                  84
+                ],
+                [
+                  2,
+                  42
+                ],
+                [
+                  1,
+                  31
+                ]
+              ]
+            },
+            {
+              "name": "Shakespeare calibrated",
+              "windows": 216799,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 801,
+              "maxOfMinA": 26,
+              "maxOfMinB": 73,
+              "rangeA": [
+                [
+                  29,
+                  75
+                ],
+                [
+                  32,
+                  80
+                ],
+                [
+                  15,
+                  62
+                ],
+                [
+                  11,
+                  55
+                ],
+                [
+                  16,
+                  70
+                ],
+                [
+                  25,
+                  84
+                ],
+                [
+                  2,
+                  42
+                ],
+                [
+                  1,
+                  31
+                ]
+              ]
+            },
+            {
+              "name": "Emerson greedy",
+              "windows": 324323,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 58,
+              "maxOfMinA": 23,
+              "maxOfMinB": 72,
+              "rangeA": [
+                [
+                  25,
+                  79
+                ],
+                [
+                  26,
+                  86
+                ],
+                [
+                  11,
+                  72
+                ],
+                [
+                  10,
+                  57
+                ],
+                [
+                  26,
+                  75
+                ],
+                [
+                  27,
+                  82
+                ],
+                [
+                  3,
+                  44
+                ],
+                [
+                  1,
+                  27
+                ]
+              ]
+            },
+            {
+              "name": "Emerson calibrated",
+              "windows": 321020,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 72,
+              "maxOfMinA": 23,
+              "maxOfMinB": 70,
+              "rangeA": [
+                [
+                  25,
+                  80
+                ],
+                [
+                  25,
+                  79
+                ],
+                [
+                  11,
+                  73
+                ],
+                [
+                  10,
+                  57
+                ],
+                [
+                  26,
+                  76
+                ],
+                [
+                  30,
+                  86
+                ],
+                [
+                  3,
+                  44
+                ],
+                [
+                  1,
+                  27
+                ]
+              ]
+            }
+          ],
+          "knownBySection": [
+            {
+              "name": "0_warning",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_welcome",
+              "windows": 208,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 13,
+              "maxOfMinB": 50,
+              "rangeA": [
+                [
+                  48,
+                  54
+                ],
+                [
+                  60,
+                  67
+                ],
+                [
+                  29,
+                  35
+                ],
+                [
+                  32,
+                  37
+                ],
+                [
+                  35,
+                  42
+                ],
+                [
+                  48,
+                  56
+                ],
+                [
+                  25,
+                  30
+                ],
+                [
+                  8,
+                  13
+                ]
+              ]
+            },
+            {
+              "name": "0_wisdom",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_koan_1",
+              "windows": 473,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 11,
+              "maxOfMinB": 48,
+              "rangeA": [
+                [
+                  43,
+                  56
+                ],
+                [
+                  50,
+                  57
+                ],
+                [
+                  24,
+                  35
+                ],
+                [
+                  29,
+                  42
+                ],
+                [
+                  47,
+                  62
+                ],
+                [
+                  58,
+                  67
+                ],
+                [
+                  6,
+                  16
+                ],
+                [
+                  8,
+                  17
+                ]
+              ]
+            },
+            {
+              "name": "0_loss_of_divinity",
+              "windows": 448,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 13,
+              "maxOfMinB": 52,
+              "rangeA": [
+                [
+                  35,
+                  58
+                ],
+                [
+                  47,
+                  63
+                ],
+                [
+                  28,
+                  39
+                ],
+                [
+                  31,
+                  49
+                ],
+                [
+                  39,
+                  59
+                ],
+                [
+                  48,
+                  67
+                ],
+                [
+                  13,
+                  26
+                ],
+                [
+                  4,
+                  13
+                ]
+              ]
+            },
+            {
+              "name": "jpg107-167",
+              "windows": 12,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 11,
+              "maxOfMinB": 50,
+              "rangeA": [
+                [
+                  52,
+                  53
+                ],
+                [
+                  59,
+                  60
+                ],
+                [
+                  23,
+                  25
+                ],
+                [
+                  30,
+                  31
+                ],
+                [
+                  50,
+                  52
+                ],
+                [
+                  57,
+                  60
+                ],
+                [
+                  9,
+                  11
+                ],
+                [
+                  21,
+                  22
+                ]
+              ]
+            },
+            {
+              "name": "jpg229",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "p56_an_end",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "p57_parable",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            }
+          ]
+        },
+        {
+          "offset": 1,
+          "mask": 13,
+          "other": 18,
+          "A": [
+            33,
+            40,
+            54,
+            39,
+            33,
+            42,
+            31,
+            36
+          ],
+          "B": [
+            65,
+            91,
+            88,
+            64
+          ],
+          "minA": 31,
+          "search": {
+            "tested": 615,
+            "minInvalid": 9,
+            "ties": 1,
+            "valid": 0,
+            "changedValid": 0,
+            "candidates": []
+          },
+          "literary": {
+            "windows": 1205627,
+            "exact": 0,
+            "sortedA": 0,
+            "sortedBoth": 0,
+            "minApass": 0,
+            "maxOfMinA": 20,
+            "maxOfMinB": 77,
+            "rangeA": [
+              [
+                15,
+                74
+              ],
+              [
+                38,
+                108
+              ],
+              [
+                19,
+                79
+              ],
+              [
+                13,
+                65
+              ],
+              [
+                18,
+                72
+              ],
+              [
+                27,
+                102
+              ],
+              [
+                0,
+                25
+              ],
+              [
+                0,
+                20
+              ]
+            ]
+          },
+          "known": {
+            "windows": 1141,
+            "exact": 0,
+            "sortedA": 0,
+            "sortedBoth": 0,
+            "minApass": 0,
+            "maxOfMinA": 5,
+            "maxOfMinB": 71,
+            "rangeA": [
+              [
+                32,
+                47
+              ],
+              [
+                60,
+                91
+              ],
+              [
+                32,
+                56
+              ],
+              [
+                17,
+                54
+              ],
+              [
+                29,
+                51
+              ],
+              [
+                37,
+                82
+              ],
+              [
+                3,
+                11
+              ],
+              [
+                0,
+                6
+              ]
+            ]
+          },
+          "literaryByDonor": [
+            {
+              "name": "Gibran greedy",
+              "windows": 62807,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 10,
+              "maxOfMinB": 74,
+              "rangeA": [
+                [
+                  22,
+                  69
+                ],
+                [
+                  44,
+                  108
+                ],
+                [
+                  20,
+                  72
+                ],
+                [
+                  21,
+                  60
+                ],
+                [
+                  18,
+                  70
+                ],
+                [
+                  31,
+                  91
+                ],
+                [
+                  0,
+                  23
+                ],
+                [
+                  0,
+                  12
+                ]
+              ]
+            },
+            {
+              "name": "Gibran calibrated",
+              "windows": 62185,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 10,
+              "maxOfMinB": 74,
+              "rangeA": [
+                [
+                  22,
+                  69
+                ],
+                [
+                  47,
+                  108
+                ],
+                [
+                  19,
+                  73
+                ],
+                [
+                  21,
+                  60
+                ],
+                [
+                  18,
+                  72
+                ],
+                [
+                  27,
+                  90
+                ],
+                [
+                  0,
+                  23
+                ],
+                [
+                  0,
+                  12
+                ]
+              ]
+            },
+            {
+              "name": "Shakespeare greedy",
+              "windows": 218493,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 20,
+              "maxOfMinB": 76,
+              "rangeA": [
+                [
+                  15,
+                  74
+                ],
+                [
+                  38,
+                  105
+                ],
+                [
+                  24,
+                  79
+                ],
+                [
+                  16,
+                  65
+                ],
+                [
+                  18,
+                  67
+                ],
+                [
+                  33,
+                  102
+                ],
+                [
+                  0,
+                  22
+                ],
+                [
+                  0,
+                  20
+                ]
+              ]
+            },
+            {
+              "name": "Shakespeare calibrated",
+              "windows": 216799,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 20,
+              "maxOfMinB": 77,
+              "rangeA": [
+                [
+                  15,
+                  74
+                ],
+                [
+                  38,
+                  105
+                ],
+                [
+                  24,
+                  78
+                ],
+                [
+                  16,
+                  65
+                ],
+                [
+                  18,
+                  67
+                ],
+                [
+                  32,
+                  102
+                ],
+                [
+                  0,
+                  25
+                ],
+                [
+                  0,
+                  20
+                ]
+              ]
+            },
+            {
+              "name": "Emerson greedy",
+              "windows": 324323,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 10,
+              "maxOfMinB": 75,
+              "rangeA": [
+                [
+                  18,
+                  62
+                ],
+                [
+                  44,
+                  107
+                ],
+                [
+                  24,
+                  75
+                ],
+                [
+                  13,
+                  59
+                ],
+                [
+                  18,
+                  67
+                ],
+                [
+                  31,
+                  92
+                ],
+                [
+                  0,
+                  23
+                ],
+                [
+                  0,
+                  12
+                ]
+              ]
+            },
+            {
+              "name": "Emerson calibrated",
+              "windows": 321020,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 11,
+              "maxOfMinB": 75,
+              "rangeA": [
+                [
+                  19,
+                  62
+                ],
+                [
+                  45,
+                  107
+                ],
+                [
+                  23,
+                  74
+                ],
+                [
+                  13,
+                  60
+                ],
+                [
+                  18,
+                  68
+                ],
+                [
+                  28,
+                  91
+                ],
+                [
+                  0,
+                  24
+                ],
+                [
+                  0,
+                  12
+                ]
+              ]
+            }
+          ],
+          "knownBySection": [
+            {
+              "name": "0_warning",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_welcome",
+              "windows": 208,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 4,
+              "maxOfMinB": 54,
+              "rangeA": [
+                [
+                  37,
+                  44
+                ],
+                [
+                  60,
+                  68
+                ],
+                [
+                  32,
+                  41
+                ],
+                [
+                  48,
+                  54
+                ],
+                [
+                  32,
+                  44
+                ],
+                [
+                  62,
+                  74
+                ],
+                [
+                  4,
+                  8
+                ],
+                [
+                  2,
+                  4
+                ]
+              ]
+            },
+            {
+              "name": "0_wisdom",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_koan_1",
+              "windows": 473,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 2,
+              "maxOfMinB": 61,
+              "rangeA": [
+                [
+                  32,
+                  44
+                ],
+                [
+                  68,
+                  86
+                ],
+                [
+                  43,
+                  53
+                ],
+                [
+                  27,
+                  35
+                ],
+                [
+                  29,
+                  44
+                ],
+                [
+                  63,
+                  82
+                ],
+                [
+                  3,
+                  7
+                ],
+                [
+                  0,
+                  2
+                ]
+              ]
+            },
+            {
+              "name": "0_loss_of_divinity",
+              "windows": 448,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 5,
+              "maxOfMinB": 71,
+              "rangeA": [
+                [
+                  37,
+                  47
+                ],
+                [
+                  63,
+                  90
+                ],
+                [
+                  47,
+                  56
+                ],
+                [
+                  29,
+                  42
+                ],
+                [
+                  39,
+                  51
+                ],
+                [
+                  37,
+                  55
+                ],
+                [
+                  6,
+                  11
+                ],
+                [
+                  0,
+                  5
+                ]
+              ]
+            },
+            {
+              "name": "jpg107-167",
+              "windows": 12,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 5,
+              "maxOfMinB": 46,
+              "rangeA": [
+                [
+                  42,
+                  43
+                ],
+                [
+                  87,
+                  91
+                ],
+                [
+                  32,
+                  35
+                ],
+                [
+                  17,
+                  19
+                ],
+                [
+                  44,
+                  46
+                ],
+                [
+                  69,
+                  70
+                ],
+                [
+                  5,
+                  5
+                ],
+                [
+                  6,
+                  6
+                ]
+              ]
+            },
+            {
+              "name": "jpg229",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "p56_an_end",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "p57_parable",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            }
+          ]
+        },
+        {
+          "offset": 1,
+          "mask": 22,
+          "other": 9,
+          "A": [
+            25,
+            38,
+            40,
+            53,
+            42,
+            43,
+            46,
+            21
+          ],
+          "B": [
+            87,
+            79,
+            64,
+            78
+          ],
+          "minA": 21,
+          "search": {
+            "tested": 615,
+            "minInvalid": 6,
+            "ties": 1,
+            "valid": 0,
+            "changedValid": 0,
+            "candidates": []
+          },
+          "literary": {
+            "windows": 1205627,
+            "exact": 0,
+            "sortedA": 0,
+            "sortedBoth": 0,
+            "minApass": 0,
+            "maxOfMinA": 14,
+            "maxOfMinB": 72,
+            "rangeA": [
+              [
+                4,
+                51
+              ],
+              [
+                34,
+                97
+              ],
+              [
+                20,
+                76
+              ],
+              [
+                5,
+                47
+              ],
+              [
+                44,
+                112
+              ],
+              [
+                17,
+                83
+              ],
+              [
+                6,
+                51
+              ],
+              [
+                0,
+                14
+              ]
+            ]
+          },
+          "known": {
+            "windows": 1141,
+            "exact": 0,
+            "sortedA": 0,
+            "sortedBoth": 0,
+            "minApass": 0,
+            "maxOfMinA": 11,
+            "maxOfMinB": 54,
+            "rangeA": [
+              [
+                15,
+                41
+              ],
+              [
+                46,
+                84
+              ],
+              [
+                27,
+                56
+              ],
+              [
+                8,
+                24
+              ],
+              [
+                55,
+                100
+              ],
+              [
+                45,
+                65
+              ],
+              [
+                14,
+                35
+              ],
+              [
+                0,
+                11
+              ]
+            ]
+          },
+          "literaryByDonor": [
+            {
+              "name": "Gibran greedy",
+              "windows": 62807,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 12,
+              "maxOfMinB": 69,
+              "rangeA": [
+                [
+                  7,
+                  45
+                ],
+                [
+                  42,
+                  96
+                ],
+                [
+                  22,
+                  74
+                ],
+                [
+                  5,
+                  47
+                ],
+                [
+                  47,
+                  110
+                ],
+                [
+                  32,
+                  81
+                ],
+                [
+                  6,
+                  47
+                ],
+                [
+                  0,
+                  13
+                ]
+              ]
+            },
+            {
+              "name": "Gibran calibrated",
+              "windows": 62185,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 12,
+              "maxOfMinB": 70,
+              "rangeA": [
+                [
+                  7,
+                  46
+                ],
+                [
+                  39,
+                  94
+                ],
+                [
+                  21,
+                  73
+                ],
+                [
+                  5,
+                  47
+                ],
+                [
+                  47,
+                  110
+                ],
+                [
+                  32,
+                  82
+                ],
+                [
+                  7,
+                  47
+                ],
+                [
+                  0,
+                  14
+                ]
+              ]
+            },
+            {
+              "name": "Shakespeare greedy",
+              "windows": 218493,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 13,
+              "maxOfMinB": 65,
+              "rangeA": [
+                [
+                  8,
+                  51
+                ],
+                [
+                  36,
+                  97
+                ],
+                [
+                  22,
+                  76
+                ],
+                [
+                  7,
+                  47
+                ],
+                [
+                  44,
+                  100
+                ],
+                [
+                  17,
+                  80
+                ],
+                [
+                  8,
+                  50
+                ],
+                [
+                  0,
+                  13
+                ]
+              ]
+            },
+            {
+              "name": "Shakespeare calibrated",
+              "windows": 216799,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 14,
+              "maxOfMinB": 65,
+              "rangeA": [
+                [
+                  9,
+                  51
+                ],
+                [
+                  34,
+                  96
+                ],
+                [
+                  23,
+                  76
+                ],
+                [
+                  7,
+                  47
+                ],
+                [
+                  45,
+                  100
+                ],
+                [
+                  17,
+                  80
+                ],
+                [
+                  10,
+                  50
+                ],
+                [
+                  0,
+                  14
+                ]
+              ]
+            },
+            {
+              "name": "Emerson greedy",
+              "windows": 324323,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 10,
+              "maxOfMinB": 71,
+              "rangeA": [
+                [
+                  4,
+                  51
+                ],
+                [
+                  39,
+                  96
+                ],
+                [
+                  21,
+                  73
+                ],
+                [
+                  5,
+                  47
+                ],
+                [
+                  50,
+                  112
+                ],
+                [
+                  26,
+                  83
+                ],
+                [
+                  8,
+                  49
+                ],
+                [
+                  0,
+                  10
+                ]
+              ]
+            },
+            {
+              "name": "Emerson calibrated",
+              "windows": 321020,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 10,
+              "maxOfMinB": 72,
+              "rangeA": [
+                [
+                  5,
+                  51
+                ],
+                [
+                  37,
+                  92
+                ],
+                [
+                  20,
+                  73
+                ],
+                [
+                  5,
+                  47
+                ],
+                [
+                  51,
+                  112
+                ],
+                [
+                  27,
+                  83
+                ],
+                [
+                  9,
+                  51
+                ],
+                [
+                  0,
+                  10
+                ]
+              ]
+            }
+          ],
+          "knownBySection": [
+            {
+              "name": "0_warning",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_welcome",
+              "windows": 208,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 4,
+              "maxOfMinB": 51,
+              "rangeA": [
+                [
+                  15,
+                  20
+                ],
+                [
+                  71,
+                  84
+                ],
+                [
+                  45,
+                  52
+                ],
+                [
+                  14,
+                  19
+                ],
+                [
+                  59,
+                  72
+                ],
+                [
+                  46,
+                  51
+                ],
+                [
+                  26,
+                  35
+                ],
+                [
+                  2,
+                  4
+                ]
+              ]
+            },
+            {
+              "name": "0_wisdom",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_koan_1",
+              "windows": 473,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 5,
+              "maxOfMinB": 47,
+              "rangeA": [
+                [
+                  25,
+                  41
+                ],
+                [
+                  46,
+                  56
+                ],
+                [
+                  44,
+                  55
+                ],
+                [
+                  8,
+                  17
+                ],
+                [
+                  76,
+                  100
+                ],
+                [
+                  50,
+                  58
+                ],
+                [
+                  14,
+                  22
+                ],
+                [
+                  0,
+                  5
+                ]
+              ]
+            },
+            {
+              "name": "0_loss_of_divinity",
+              "windows": 448,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 11,
+              "maxOfMinB": 54,
+              "rangeA": [
+                [
+                  18,
+                  38
+                ],
+                [
+                  51,
+                  67
+                ],
+                [
+                  42,
+                  56
+                ],
+                [
+                  17,
+                  24
+                ],
+                [
+                  55,
+                  79
+                ],
+                [
+                  45,
+                  65
+                ],
+                [
+                  18,
+                  29
+                ],
+                [
+                  4,
+                  11
+                ]
+              ]
+            },
+            {
+              "name": "jpg107-167",
+              "windows": 12,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 1,
+              "maxOfMinB": 51,
+              "rangeA": [
+                [
+                  17,
+                  18
+                ],
+                [
+                  80,
+                  82
+                ],
+                [
+                  27,
+                  29
+                ],
+                [
+                  16,
+                  17
+                ],
+                [
+                  94,
+                  97
+                ],
+                [
+                  51,
+                  54
+                ],
+                [
+                  16,
+                  17
+                ],
+                [
+                  0,
+                  1
+                ]
+              ]
+            },
+            {
+              "name": "jpg229",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "p56_an_end",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "p57_parable",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "p40-55",
+      "n": 3316,
+      "variants": [
+        {
+          "offset": 0,
+          "mask": 13,
+          "other": 18,
+          "A": [
+            483,
+            480,
+            444,
+            415,
+            467,
+            480,
+            325,
+            222
+          ],
+          "B": [
+            884,
+            903,
+            807,
+            722
+          ],
+          "minA": 222,
+          "search": {
+            "tested": 6631,
+            "minInvalid": 135,
+            "ties": 1,
+            "valid": 0,
+            "changedValid": 0,
+            "candidates": []
+          },
+          "literary": {
+            "windows": 1187579,
+            "exact": 0,
+            "sortedA": 0,
+            "sortedBoth": 0,
+            "minApass": 0,
+            "maxOfMinA": 63,
+            "maxOfMinB": 767,
+            "rangeA": [
+              [
+                629,
+                927
+              ],
+              [
+                446,
+                739
+              ],
+              [
+                310,
+                529
+              ],
+              [
+                271,
+                484
+              ],
+              [
+                482,
+                797
+              ],
+              [
+                142,
+                371
+              ],
+              [
+                7,
+                63
+              ],
+              [
+                204,
+                376
+              ]
+            ]
+          },
+          "known": null,
+          "literaryByDonor": [
+            {
+              "name": "Gibran greedy",
+              "windows": 59799,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 62,
+              "maxOfMinB": 745,
+              "rangeA": [
+                [
+                  703,
+                  871
+                ],
+                [
+                  482,
+                  691
+                ],
+                [
+                  342,
+                  497
+                ],
+                [
+                  283,
+                  408
+                ],
+                [
+                  518,
+                  773
+                ],
+                [
+                  188,
+                  303
+                ],
+                [
+                  8,
+                  62
+                ],
+                [
+                  219,
+                  346
+                ]
+              ]
+            },
+            {
+              "name": "Gibran calibrated",
+              "windows": 59177,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 63,
+              "maxOfMinB": 762,
+              "rangeA": [
+                [
+                  711,
+                  882
+                ],
+                [
+                  485,
+                  692
+                ],
+                [
+                  344,
+                  503
+                ],
+                [
+                  288,
+                  413
+                ],
+                [
+                  482,
+                  757
+                ],
+                [
+                  192,
+                  371
+                ],
+                [
+                  8,
+                  63
+                ],
+                [
+                  223,
+                  350
+                ]
+              ]
+            },
+            {
+              "name": "Shakespeare greedy",
+              "windows": 215485,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 55,
+              "maxOfMinB": 763,
+              "rangeA": [
+                [
+                  629,
+                  892
+                ],
+                [
+                  446,
+                  739
+                ],
+                [
+                  321,
+                  526
+                ],
+                [
+                  282,
+                  482
+                ],
+                [
+                  556,
+                  792
+                ],
+                [
+                  142,
+                  258
+                ],
+                [
+                  12,
+                  55
+                ],
+                [
+                  204,
+                  358
+                ]
+              ]
+            },
+            {
+              "name": "Shakespeare calibrated",
+              "windows": 213791,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 55,
+              "maxOfMinB": 767,
+              "rangeA": [
+                [
+                  634,
+                  895
+                ],
+                [
+                  453,
+                  724
+                ],
+                [
+                  323,
+                  529
+                ],
+                [
+                  284,
+                  484
+                ],
+                [
+                  544,
+                  756
+                ],
+                [
+                  148,
+                  282
+                ],
+                [
+                  12,
+                  55
+                ],
+                [
+                  206,
+                  361
+                ]
+              ]
+            },
+            {
+              "name": "Emerson greedy",
+              "windows": 321315,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 49,
+              "maxOfMinB": 730,
+              "rangeA": [
+                [
+                  744,
+                  921
+                ],
+                [
+                  453,
+                  640
+                ],
+                [
+                  310,
+                  493
+                ],
+                [
+                  271,
+                  409
+                ],
+                [
+                  519,
+                  797
+                ],
+                [
+                  202,
+                  296
+                ],
+                [
+                  7,
+                  49
+                ],
+                [
+                  220,
+                  373
+                ]
+              ]
+            },
+            {
+              "name": "Emerson calibrated",
+              "windows": 318012,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 50,
+              "maxOfMinB": 741,
+              "rangeA": [
+                [
+                  752,
+                  927
+                ],
+                [
+                  448,
+                  625
+                ],
+                [
+                  314,
+                  498
+                ],
+                [
+                  273,
+                  412
+                ],
+                [
+                  483,
+                  763
+                ],
+                [
+                  217,
+                  363
+                ],
+                [
+                  7,
+                  50
+                ],
+                [
+                  223,
+                  376
+                ]
+              ]
+            }
+          ],
+          "knownBySection": [
+            {
+              "name": "0_warning",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_welcome",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_wisdom",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_koan_1",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_loss_of_divinity",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "jpg107-167",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "jpg229",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "p56_an_end",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "p57_parable",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            }
+          ]
+        },
+        {
+          "offset": 0,
+          "mask": 22,
+          "other": 9,
+          "A": [
+            454,
+            494,
+            430,
+            409,
+            479,
+            483,
+            328,
+            239
+          ],
+          "B": [
+            927,
+            895,
+            792,
+            702
+          ],
+          "minA": 239,
+          "search": {
+            "tested": 6631,
+            "minInvalid": 142,
+            "ties": 2,
+            "valid": 0,
+            "changedValid": 0,
+            "candidates": []
+          },
+          "literary": {
+            "windows": 1187579,
+            "exact": 0,
+            "sortedA": 0,
+            "sortedBoth": 0,
+            "minApass": 0,
+            "maxOfMinA": 212,
+            "maxOfMinB": 645,
+            "rangeA": [
+              [
+                416,
+                674
+              ],
+              [
+                480,
+                748
+              ],
+              [
+                272,
+                620
+              ],
+              [
+                255,
+                436
+              ],
+              [
+                383,
+                645
+              ],
+              [
+                449,
+                698
+              ],
+              [
+                121,
+                273
+              ],
+              [
+                78,
+                213
+              ]
+            ]
+          },
+          "known": null,
+          "literaryByDonor": [
+            {
+              "name": "Gibran greedy",
+              "windows": 59799,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 188,
+              "maxOfMinB": 587,
+              "rangeA": [
+                [
+                  416,
+                  668
+                ],
+                [
+                  574,
+                  697
+                ],
+                [
+                  272,
+                  613
+                ],
+                [
+                  257,
+                  418
+                ],
+                [
+                  383,
+                  629
+                ],
+                [
+                  487,
+                  609
+                ],
+                [
+                  121,
+                  251
+                ],
+                [
+                  86,
+                  188
+                ]
+              ]
+            },
+            {
+              "name": "Gibran calibrated",
+              "windows": 59177,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 188,
+              "maxOfMinB": 609,
+              "rangeA": [
+                [
+                  425,
+                  674
+                ],
+                [
+                  484,
+                  672
+                ],
+                [
+                  273,
+                  620
+                ],
+                [
+                  260,
+                  420
+                ],
+                [
+                  386,
+                  641
+                ],
+                [
+                  514,
+                  637
+                ],
+                [
+                  123,
+                  252
+                ],
+                [
+                  87,
+                  188
+                ]
+              ]
+            },
+            {
+              "name": "Shakespeare greedy",
+              "windows": 215485,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 211,
+              "maxOfMinB": 588,
+              "rangeA": [
+                [
+                  446,
+                  657
+                ],
+                [
+                  528,
+                  748
+                ],
+                [
+                  280,
+                  477
+                ],
+                [
+                  284,
+                  432
+                ],
+                [
+                  394,
+                  535
+                ],
+                [
+                  479,
+                  693
+                ],
+                [
+                  129,
+                  271
+                ],
+                [
+                  78,
+                  212
+                ]
+              ]
+            },
+            {
+              "name": "Shakespeare calibrated",
+              "windows": 213791,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 212,
+              "maxOfMinB": 601,
+              "rangeA": [
+                [
+                  454,
+                  661
+                ],
+                [
+                  517,
+                  701
+                ],
+                [
+                  282,
+                  482
+                ],
+                [
+                  288,
+                  436
+                ],
+                [
+                  396,
+                  539
+                ],
+                [
+                  506,
+                  698
+                ],
+                [
+                  129,
+                  273
+                ],
+                [
+                  79,
+                  213
+                ]
+              ]
+            },
+            {
+              "name": "Emerson greedy",
+              "windows": 321315,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 175,
+              "maxOfMinB": 615,
+              "rangeA": [
+                [
+                  420,
+                  634
+                ],
+                [
+                  549,
+                  716
+                ],
+                [
+                  309,
+                  610
+                ],
+                [
+                  255,
+                  420
+                ],
+                [
+                  441,
+                  633
+                ],
+                [
+                  449,
+                  625
+                ],
+                [
+                  122,
+                  236
+                ],
+                [
+                  85,
+                  175
+                ]
+              ]
+            },
+            {
+              "name": "Emerson calibrated",
+              "windows": 318012,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 176,
+              "maxOfMinB": 645,
+              "rangeA": [
+                [
+                  427,
+                  642
+                ],
+                [
+                  480,
+                  665
+                ],
+                [
+                  314,
+                  617
+                ],
+                [
+                  257,
+                  423
+                ],
+                [
+                  446,
+                  645
+                ],
+                [
+                  471,
+                  653
+                ],
+                [
+                  124,
+                  238
+                ],
+                [
+                  89,
+                  176
+                ]
+              ]
+            }
+          ],
+          "knownBySection": [
+            {
+              "name": "0_warning",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_welcome",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_wisdom",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_koan_1",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_loss_of_divinity",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "jpg107-167",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "jpg229",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "p56_an_end",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "p57_parable",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            }
+          ]
+        },
+        {
+          "offset": 1,
+          "mask": 13,
+          "other": 18,
+          "A": [
+            340,
+            483,
+            463,
+            444,
+            437,
+            467,
+            357,
+            325
+          ],
+          "B": [
+            808,
+            868,
+            908,
+            732
+          ],
+          "minA": 325,
+          "search": {
+            "tested": 6631,
+            "minInvalid": 177,
+            "ties": 1,
+            "valid": 0,
+            "changedValid": 0,
+            "candidates": []
+          },
+          "literary": {
+            "windows": 1187579,
+            "exact": 0,
+            "sortedA": 0,
+            "sortedBoth": 0,
+            "minApass": 0,
+            "maxOfMinA": 59,
+            "maxOfMinB": 658,
+            "rangeA": [
+              [
+                306,
+                576
+              ],
+              [
+                629,
+                927
+              ],
+              [
+                405,
+                640
+              ],
+              [
+                310,
+                529
+              ],
+              [
+                339,
+                537
+              ],
+              [
+                482,
+                797
+              ],
+              [
+                20,
+                179
+              ],
+              [
+                7,
+                63
+              ]
+            ]
+          },
+          "known": null,
+          "literaryByDonor": [
+            {
+              "name": "Gibran greedy",
+              "windows": 59799,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 57,
+              "maxOfMinB": 628,
+              "rangeA": [
+                [
+                  306,
+                  530
+                ],
+                [
+                  703,
+                  871
+                ],
+                [
+                  405,
+                  603
+                ],
+                [
+                  342,
+                  497
+                ],
+                [
+                  343,
+                  532
+                ],
+                [
+                  518,
+                  773
+                ],
+                [
+                  31,
+                  155
+                ],
+                [
+                  8,
+                  62
+                ]
+              ]
+            },
+            {
+              "name": "Gibran calibrated",
+              "windows": 59177,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 59,
+              "maxOfMinB": 631,
+              "rangeA": [
+                [
+                  310,
+                  532
+                ],
+                [
+                  711,
+                  882
+                ],
+                [
+                  406,
+                  597
+                ],
+                [
+                  344,
+                  503
+                ],
+                [
+                  347,
+                  537
+                ],
+                [
+                  482,
+                  757
+                ],
+                [
+                  35,
+                  178
+                ],
+                [
+                  8,
+                  63
+                ]
+              ]
+            },
+            {
+              "name": "Shakespeare greedy",
+              "windows": 215485,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 55,
+              "maxOfMinB": 655,
+              "rangeA": [
+                [
+                  340,
+                  572
+                ],
+                [
+                  629,
+                  892
+                ],
+                [
+                  443,
+                  639
+                ],
+                [
+                  321,
+                  526
+                ],
+                [
+                  354,
+                  498
+                ],
+                [
+                  556,
+                  792
+                ],
+                [
+                  20,
+                  86
+                ],
+                [
+                  12,
+                  55
+                ]
+              ]
+            },
+            {
+              "name": "Shakespeare calibrated",
+              "windows": 213791,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 55,
+              "maxOfMinB": 658,
+              "rangeA": [
+                [
+                  346,
+                  576
+                ],
+                [
+                  634,
+                  895
+                ],
+                [
+                  443,
+                  640
+                ],
+                [
+                  323,
+                  529
+                ],
+                [
+                  355,
+                  502
+                ],
+                [
+                  544,
+                  756
+                ],
+                [
+                  27,
+                  99
+                ],
+                [
+                  12,
+                  55
+                ]
+              ]
+            },
+            {
+              "name": "Emerson greedy",
+              "windows": 321315,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 49,
+              "maxOfMinB": 618,
+              "rangeA": [
+                [
+                  307,
+                  497
+                ],
+                [
+                  744,
+                  921
+                ],
+                [
+                  417,
+                  607
+                ],
+                [
+                  310,
+                  493
+                ],
+                [
+                  339,
+                  501
+                ],
+                [
+                  519,
+                  797
+                ],
+                [
+                  43,
+                  159
+                ],
+                [
+                  7,
+                  49
+                ]
+              ]
+            },
+            {
+              "name": "Emerson calibrated",
+              "windows": 318012,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 50,
+              "maxOfMinB": 627,
+              "rangeA": [
+                [
+                  311,
+                  502
+                ],
+                [
+                  752,
+                  927
+                ],
+                [
+                  405,
+                  602
+                ],
+                [
+                  314,
+                  498
+                ],
+                [
+                  345,
+                  505
+                ],
+                [
+                  483,
+                  763
+                ],
+                [
+                  54,
+                  179
+                ],
+                [
+                  7,
+                  50
+                ]
+              ]
+            }
+          ],
+          "knownBySection": [
+            {
+              "name": "0_warning",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_welcome",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_wisdom",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_koan_1",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_loss_of_divinity",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "jpg107-167",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "jpg229",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "p56_an_end",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "p57_parable",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            }
+          ]
+        },
+        {
+          "offset": 1,
+          "mask": 22,
+          "other": 9,
+          "A": [
+            326,
+            455,
+            482,
+            413,
+            458,
+            488,
+            450,
+            244
+          ],
+          "B": [
+            803,
+            927,
+            794,
+            792
+          ],
+          "minA": 244,
+          "search": {
+            "tested": 6631,
+            "minInvalid": 157,
+            "ties": 1,
+            "valid": 0,
+            "changedValid": 0,
+            "candidates": []
+          },
+          "literary": {
+            "windows": 1187579,
+            "exact": 0,
+            "sortedA": 0,
+            "sortedBoth": 0,
+            "minApass": 0,
+            "maxOfMinA": 57,
+            "maxOfMinB": 592,
+            "rangeA": [
+              [
+                161,
+                350
+              ],
+              [
+                549,
+                833
+              ],
+              [
+                385,
+                656
+              ],
+              [
+                142,
+                388
+              ],
+              [
+                681,
+                955
+              ],
+              [
+                426,
+                642
+              ],
+              [
+                174,
+                394
+              ],
+              [
+                7,
+                57
+              ]
+            ]
+          },
+          "known": null,
+          "literaryByDonor": [
+            {
+              "name": "Gibran greedy",
+              "windows": 59799,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 52,
+              "maxOfMinB": 582,
+              "rangeA": [
+                [
+                  168,
+                  349
+                ],
+                [
+                  598,
+                  803
+                ],
+                [
+                  409,
+                  656
+                ],
+                [
+                  142,
+                  383
+                ],
+                [
+                  702,
+                  892
+                ],
+                [
+                  454,
+                  605
+                ],
+                [
+                  174,
+                  313
+                ],
+                [
+                  10,
+                  52
+                ]
+              ]
+            },
+            {
+              "name": "Gibran calibrated",
+              "windows": 59177,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 52,
+              "maxOfMinB": 590,
+              "rangeA": [
+                [
+                  173,
+                  350
+                ],
+                [
+                  572,
+                  779
+                ],
+                [
+                  409,
+                  646
+                ],
+                [
+                  143,
+                  387
+                ],
+                [
+                  711,
+                  898
+                ],
+                [
+                  459,
+                  608
+                ],
+                [
+                  191,
+                  319
+                ],
+                [
+                  11,
+                  52
+                ]
+              ]
+            },
+            {
+              "name": "Shakespeare greedy",
+              "windows": 215485,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 56,
+              "maxOfMinB": 549,
+              "rangeA": [
+                [
+                  208,
+                  325
+                ],
+                [
+                  579,
+                  833
+                ],
+                [
+                  403,
+                  589
+                ],
+                [
+                  151,
+                  299
+                ],
+                [
+                  681,
+                  882
+                ],
+                [
+                  426,
+                  638
+                ],
+                [
+                  186,
+                  391
+                ],
+                [
+                  8,
+                  56
+                ]
+              ]
+            },
+            {
+              "name": "Shakespeare calibrated",
+              "windows": 213791,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 57,
+              "maxOfMinB": 559,
+              "rangeA": [
+                [
+                  211,
+                  327
+                ],
+                [
+                  549,
+                  810
+                ],
+                [
+                  400,
+                  589
+                ],
+                [
+                  154,
+                  302
+                ],
+                [
+                  686,
+                  892
+                ],
+                [
+                  430,
+                  642
+                ],
+                [
+                  195,
+                  394
+                ],
+                [
+                  8,
+                  57
+                ]
+              ]
+            },
+            {
+              "name": "Emerson greedy",
+              "windows": 321315,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 41,
+              "maxOfMinB": 576,
+              "rangeA": [
+                [
+                  161,
+                  327
+                ],
+                [
+                  607,
+                  825
+                ],
+                [
+                  393,
+                  654
+                ],
+                [
+                  172,
+                  383
+                ],
+                [
+                  696,
+                  947
+                ],
+                [
+                  433,
+                  585
+                ],
+                [
+                  179,
+                  310
+                ],
+                [
+                  7,
+                  41
+                ]
+              ]
+            },
+            {
+              "name": "Emerson calibrated",
+              "windows": 318012,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": 42,
+              "maxOfMinB": 592,
+              "rangeA": [
+                [
+                  163,
+                  333
+                ],
+                [
+                  578,
+                  779
+                ],
+                [
+                  385,
+                  643
+                ],
+                [
+                  174,
+                  388
+                ],
+                [
+                  710,
+                  955
+                ],
+                [
+                  437,
+                  593
+                ],
+                [
+                  196,
+                  331
+                ],
+                [
+                  7,
+                  42
+                ]
+              ]
+            }
+          ],
+          "knownBySection": [
+            {
+              "name": "0_warning",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_welcome",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_wisdom",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_koan_1",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "0_loss_of_divinity",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "jpg107-167",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "jpg229",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "p56_an_end",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            },
+            {
+              "name": "p57_parable",
+              "windows": 0,
+              "exact": 0,
+              "sortedA": 0,
+              "sortedBoth": 0,
+              "minApass": 0,
+              "maxOfMinA": null,
+              "maxOfMinB": null,
+              "rangeA": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "page": 40,
+      "n": 231,
+      "variants": [
+        {
+          "offset": 0,
+          "mask": 13,
+          "other": 18,
+          "tested": 461,
+          "minInvalid": 6,
+          "ties": 6,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 0,
+          "mask": 22,
+          "other": 9,
+          "tested": 461,
+          "minInvalid": 5,
+          "ties": 3,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 1,
+          "mask": 13,
+          "other": 18,
+          "tested": 461,
+          "minInvalid": 6,
+          "ties": 1,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 1,
+          "mask": 22,
+          "other": 9,
+          "tested": 461,
+          "minInvalid": 5,
+          "ties": 4,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        }
+      ]
+    },
+    {
+      "page": 41,
+      "n": 273,
+      "variants": [
+        {
+          "offset": 0,
+          "mask": 13,
+          "other": 18,
+          "tested": 545,
+          "minInvalid": 7,
+          "ties": 2,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 0,
+          "mask": 22,
+          "other": 9,
+          "tested": 545,
+          "minInvalid": 5,
+          "ties": 3,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 1,
+          "mask": 13,
+          "other": 18,
+          "tested": 545,
+          "minInvalid": 8,
+          "ties": 1,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 1,
+          "mask": 22,
+          "other": 9,
+          "tested": 545,
+          "minInvalid": 5,
+          "ties": 1,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        }
+      ]
+    },
+    {
+      "page": 42,
+      "n": 272,
+      "variants": [
+        {
+          "offset": 0,
+          "mask": 13,
+          "other": 18,
+          "tested": 543,
+          "minInvalid": 4,
+          "ties": 1,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 0,
+          "mask": 22,
+          "other": 9,
+          "tested": 543,
+          "minInvalid": 5,
+          "ties": 1,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 1,
+          "mask": 13,
+          "other": 18,
+          "tested": 543,
+          "minInvalid": 9,
+          "ties": 1,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 1,
+          "mask": 22,
+          "other": 9,
+          "tested": 543,
+          "minInvalid": 7,
+          "ties": 4,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        }
+      ]
+    },
+    {
+      "page": 43,
+      "n": 274,
+      "variants": [
+        {
+          "offset": 0,
+          "mask": 13,
+          "other": 18,
+          "tested": 547,
+          "minInvalid": 5,
+          "ties": 2,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 0,
+          "mask": 22,
+          "other": 9,
+          "tested": 547,
+          "minInvalid": 8,
+          "ties": 2,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 1,
+          "mask": 13,
+          "other": 18,
+          "tested": 547,
+          "minInvalid": 10,
+          "ties": 1,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 1,
+          "mask": 22,
+          "other": 9,
+          "tested": 547,
+          "minInvalid": 10,
+          "ties": 1,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        }
+      ]
+    },
+    {
+      "page": 44,
+      "n": 273,
+      "variants": [
+        {
+          "offset": 0,
+          "mask": 13,
+          "other": 18,
+          "tested": 545,
+          "minInvalid": 5,
+          "ties": 1,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 0,
+          "mask": 22,
+          "other": 9,
+          "tested": 545,
+          "minInvalid": 8,
+          "ties": 2,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 1,
+          "mask": 13,
+          "other": 18,
+          "tested": 545,
+          "minInvalid": 9,
+          "ties": 2,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 1,
+          "mask": 22,
+          "other": 9,
+          "tested": 545,
+          "minInvalid": 8,
+          "ties": 1,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        }
+      ]
+    },
+    {
+      "page": 45,
+      "n": 270,
+      "variants": [
+        {
+          "offset": 0,
+          "mask": 13,
+          "other": 18,
+          "tested": 539,
+          "minInvalid": 5,
+          "ties": 1,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 0,
+          "mask": 22,
+          "other": 9,
+          "tested": 539,
+          "minInvalid": 5,
+          "ties": 2,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 1,
+          "mask": 13,
+          "other": 18,
+          "tested": 539,
+          "minInvalid": 9,
+          "ties": 2,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 1,
+          "mask": 22,
+          "other": 9,
+          "tested": 539,
+          "minInvalid": 7,
+          "ties": 1,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        }
+      ]
+    },
+    {
+      "page": 46,
+      "n": 270,
+      "variants": [
+        {
+          "offset": 0,
+          "mask": 13,
+          "other": 18,
+          "tested": 539,
+          "minInvalid": 5,
+          "ties": 1,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 0,
+          "mask": 22,
+          "other": 9,
+          "tested": 539,
+          "minInvalid": 5,
+          "ties": 3,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 1,
+          "mask": 13,
+          "other": 18,
+          "tested": 539,
+          "minInvalid": 7,
+          "ties": 1,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 1,
+          "mask": 22,
+          "other": 9,
+          "tested": 539,
+          "minInvalid": 5,
+          "ties": 1,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        }
+      ]
+    },
+    {
+      "page": 47,
+      "n": 274,
+      "variants": [
+        {
+          "offset": 0,
+          "mask": 13,
+          "other": 18,
+          "tested": 547,
+          "minInvalid": 8,
+          "ties": 1,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 0,
+          "mask": 22,
+          "other": 9,
+          "tested": 547,
+          "minInvalid": 5,
+          "ties": 4,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 1,
+          "mask": 13,
+          "other": 18,
+          "tested": 547,
+          "minInvalid": 13,
+          "ties": 2,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 1,
+          "mask": 22,
+          "other": 9,
+          "tested": 547,
+          "minInvalid": 7,
+          "ties": 1,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        }
+      ]
+    },
+    {
+      "page": 48,
+      "n": 271,
+      "variants": [
+        {
+          "offset": 0,
+          "mask": 13,
+          "other": 18,
+          "tested": 541,
+          "minInvalid": 4,
+          "ties": 1,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 0,
+          "mask": 22,
+          "other": 9,
+          "tested": 541,
+          "minInvalid": 6,
+          "ties": 1,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 1,
+          "mask": 13,
+          "other": 18,
+          "tested": 541,
+          "minInvalid": 9,
+          "ties": 4,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 1,
+          "mask": 22,
+          "other": 9,
+          "tested": 541,
+          "minInvalid": 11,
+          "ties": 2,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        }
+      ]
+    },
+    {
+      "page": 49,
+      "n": 66,
+      "variants": [
+        {
+          "offset": 0,
+          "mask": 13,
+          "other": 18,
+          "tested": 131,
+          "minInvalid": 0,
+          "ties": 6,
+          "valid": 6,
+          "changedValid": 6,
+          "candidates": [
+            {
+              "d": 1,
+              "s": 13,
+              "changed": 45,
+              "ioc": 0.03822843822843823,
+              "prefix": "J T J T L OE I NG Y NG R T M S AE OE A X M H U AE E J NG M TH E"
+            },
+            {
+              "d": 1,
+              "s": 28,
+              "changed": 46,
+              "ioc": 0.035897435897435895,
+              "prefix": "IA T J E R R A D I NG OE TH M S AE R Y X U Y B N TH AE NG B F F"
+            },
+            {
+              "d": 1,
+              "s": 32,
+              "changed": 49,
+              "ioc": 0.035897435897435895,
+              "prefix": "N F AE E G L Y W Y W L F M S N OE A EO O A B AE F N D M T E"
+            },
+            {
+              "d": -1,
+              "s": 9,
+              "changed": 42,
+              "ioc": 0.030303030303030304,
+              "prefix": "AE TH N TH OE L H W Y D OE F O S N OE Y EA M Y U N T AE NG O F T"
+            },
+            {
+              "d": -1,
+              "s": 24,
+              "changed": 52,
+              "ioc": 0.031701631701631705,
+              "prefix": "AE F AE E L G Y NG A W L TH M S J L I EO O Y B N TH IA D M F TH"
+            },
+            {
+              "d": -1,
+              "s": 28,
+              "changed": 48,
+              "ioc": 0.031701631701631705,
+              "prefix": "IA T J E L R A D A W OE T B S AE G Y X O A O N TH IA NG U TH E"
+            }
+          ]
+        },
+        {
+          "offset": 0,
+          "mask": 22,
+          "other": 9,
+          "tested": 131,
+          "minInvalid": 1,
+          "ties": 8,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 1,
+          "mask": 13,
+          "other": 18,
+          "tested": 131,
+          "minInvalid": 0,
+          "ties": 1,
+          "valid": 1,
+          "changedValid": 1,
+          "candidates": [
+            {
+              "d": 1,
+              "s": 21,
+              "changed": 52,
+              "ioc": 0.03682983682983683,
+              "prefix": "IA T P E L G A NG Y O OE F O S D G A EA C A U IA TH AE C C E T"
+            }
+          ]
+        },
+        {
+          "offset": 1,
+          "mask": 22,
+          "other": 9,
+          "tested": 131,
+          "minInvalid": 0,
+          "ties": 3,
+          "valid": 3,
+          "changedValid": 3,
+          "candidates": [
+            {
+              "d": 1,
+              "s": 33,
+              "changed": 42,
+              "ioc": 0.027972027972027972,
+              "prefix": "L Y J F EA NG I P I OE C TH L D E X D IA EA TH B M T N OE EA I T"
+            },
+            {
+              "d": -1,
+              "s": 18,
+              "changed": 56,
+              "ioc": 0.0344988344988345,
+              "prefix": "M Y EO F IA NG U G TH NG X U EA T E G D L IA N AE IA D I OE EA I T"
+            },
+            {
+              "d": -1,
+              "s": 36,
+              "changed": 40,
+              "ioc": 0.031701631701631705,
+              "prefix": "L AE EO F EA OE N P I OE G U M D E P S EA M I Y L D U NG L TH S"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "page": 51,
+      "n": 92,
+      "variants": [
+        {
+          "offset": 0,
+          "mask": 13,
+          "other": 18,
+          "tested": 183,
+          "minInvalid": 2,
+          "ties": 2,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 0,
+          "mask": 22,
+          "other": 9,
+          "tested": 183,
+          "minInvalid": 1,
+          "ties": 1,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 1,
+          "mask": 13,
+          "other": 18,
+          "tested": 183,
+          "minInvalid": 2,
+          "ties": 3,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 1,
+          "mask": 22,
+          "other": 9,
+          "tested": 183,
+          "minInvalid": 1,
+          "ties": 3,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        }
+      ]
+    },
+    {
+      "page": 52,
+      "n": 263,
+      "variants": [
+        {
+          "offset": 0,
+          "mask": 13,
+          "other": 18,
+          "tested": 525,
+          "minInvalid": 6,
+          "ties": 1,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 0,
+          "mask": 22,
+          "other": 9,
+          "tested": 525,
+          "minInvalid": 6,
+          "ties": 2,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 1,
+          "mask": 13,
+          "other": 18,
+          "tested": 525,
+          "minInvalid": 9,
+          "ties": 1,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 1,
+          "mask": 22,
+          "other": 9,
+          "tested": 525,
+          "minInvalid": 8,
+          "ties": 2,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        }
+      ]
+    },
+    {
+      "page": 53,
+      "n": 179,
+      "variants": [
+        {
+          "offset": 0,
+          "mask": 13,
+          "other": 18,
+          "tested": 357,
+          "minInvalid": 3,
+          "ties": 6,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 0,
+          "mask": 22,
+          "other": 9,
+          "tested": 357,
+          "minInvalid": 3,
+          "ties": 1,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 1,
+          "mask": 13,
+          "other": 18,
+          "tested": 357,
+          "minInvalid": 6,
+          "ties": 1,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 1,
+          "mask": 22,
+          "other": 9,
+          "tested": 357,
+          "minInvalid": 3,
+          "ties": 2,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        }
+      ]
+    },
+    {
+      "page": 54,
+      "n": 232,
+      "variants": [
+        {
+          "offset": 0,
+          "mask": 13,
+          "other": 18,
+          "tested": 463,
+          "minInvalid": 6,
+          "ties": 3,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 0,
+          "mask": 22,
+          "other": 9,
+          "tested": 463,
+          "minInvalid": 5,
+          "ties": 2,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 1,
+          "mask": 13,
+          "other": 18,
+          "tested": 463,
+          "minInvalid": 4,
+          "ties": 1,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 1,
+          "mask": 22,
+          "other": 9,
+          "tested": 463,
+          "minInvalid": 5,
+          "ties": 1,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        }
+      ]
+    },
+    {
+      "page": 55,
+      "n": 76,
+      "variants": [
+        {
+          "offset": 0,
+          "mask": 13,
+          "other": 18,
+          "tested": 151,
+          "minInvalid": 1,
+          "ties": 1,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 0,
+          "mask": 22,
+          "other": 9,
+          "tested": 151,
+          "minInvalid": 0,
+          "ties": 7,
+          "valid": 7,
+          "changedValid": 7,
+          "candidates": [
+            {
+              "d": 1,
+              "s": 17,
+              "changed": 52,
+              "ioc": 0.03614035087719298,
+              "prefix": "EA B M O W G B X E X EO W D O AE H M T A C N W P AE L U X I"
+            },
+            {
+              "d": 1,
+              "s": 24,
+              "changed": 56,
+              "ioc": 0.031228070175438598,
+              "prefix": "EA T Y I W W B S Y W R X D J B N IA T B EO H W EO T EA F X TH"
+            },
+            {
+              "d": 1,
+              "s": 26,
+              "changed": 56,
+              "ioc": 0.03614035087719298,
+              "prefix": "EA A M O W S A W E X C S D J AE F M A A C H G EO T EA F X TH"
+            },
+            {
+              "d": 1,
+              "s": 35,
+              "changed": 63,
+              "ioc": 0.03192982456140351,
+              "prefix": "EA B IA O S S T W Y X C X OE I T H E A T P F S EO T L F S TH"
+            },
+            {
+              "d": -1,
+              "s": 0,
+              "changed": 48,
+              "ioc": 0.031228070175438598,
+              "prefix": "NG A E O W S B X M W EO X D TH T N E T T EO N G P T EA F X TH"
+            },
+            {
+              "d": -1,
+              "s": 32,
+              "changed": 52,
+              "ioc": 0.031228070175438598,
+              "prefix": "EA AE M O W X A G Y W R W D O B H IA T AE R U G EO AE NG H W J"
+            },
+            {
+              "d": -1,
+              "s": 67,
+              "changed": 62,
+              "ioc": 0.042105263157894736,
+              "prefix": "NG A Y O G G AE G E G EO S OE J T H E A T EO F X C A EA U G J"
+            }
+          ]
+        },
+        {
+          "offset": 1,
+          "mask": 13,
+          "other": 18,
+          "tested": 151,
+          "minInvalid": 1,
+          "ties": 2,
+          "valid": 0,
+          "changedValid": 0,
+          "candidates": []
+        },
+        {
+          "offset": 1,
+          "mask": 22,
+          "other": 9,
+          "tested": 151,
+          "minInvalid": 0,
+          "ties": 2,
+          "valid": 2,
+          "changedValid": 2,
+          "candidates": [
+            {
+              "d": 1,
+              "s": 28,
+              "changed": 53,
+              "ioc": 0.03333333333333333,
+              "prefix": "NG B M N H S E X M S J P D TH B H EA S Y G I F EO E EA F C TH"
+            },
+            {
+              "d": -1,
+              "s": 42,
+              "changed": 46,
+              "ioc": 0.031228070175438598,
+              "prefix": "NG E IA N W S B X L S EO P S U B H EA T Y C TH W O B M H P TH"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
