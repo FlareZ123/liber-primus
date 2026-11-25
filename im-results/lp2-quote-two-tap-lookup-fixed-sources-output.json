@@ -228,5 +228,120 @@
         "full": []
       }
     ]
+  },
+  {
+    "start": 16,
+    "sources": [
+      {
+        "name": "The Book of Tea",
+        "candidates": 161
+      },
+      {
+        "name": "The Kybalion",
+        "candidates": 425
+      },
+      {
+        "name": "Paradise Lost",
+        "candidates": 939
+      },
+      {
+        "name": "Marriage of Heaven and Hell",
+        "candidates": 33
+      },
+      {
+        "name": "Mabinogion",
+        "candidates": 660
+      },
+      {
+        "name": "Songs of Innocence and Experience",
+        "candidates": 36
+      },
+      {
+        "name": "Latin Vulgate corpus/luc_1.txt",
+        "candidates": 7
+      },
+      {
+        "name": "Latin Vulgate corpus/luc_2.txt",
+        "candidates": 7
+      }
+    ],
+    "total": 2268,
+    "gate": true,
+    "controls": [
+      {
+        "hold": false,
+        "name": "The Book of Tea",
+        "start": 37273,
+        "prefix": 1,
+        "full": 1,
+        "trueRetained": true,
+        "forced": 67,
+        "allTrueSource": true
+      },
+      {
+        "hold": true,
+        "name": "The Book of Tea",
+        "start": 41110,
+        "prefix": 1,
+        "full": 1,
+        "trueRetained": true,
+        "forced": 74,
+        "allTrueSource": true
+      },
+      {
+        "hold": false,
+        "name": "Latin Vulgate corpus/luc_2.txt",
+        "start": 18399,
+        "prefix": 1,
+        "full": 1,
+        "trueRetained": true,
+        "forced": 62,
+        "allTrueSource": true
+      },
+      {
+        "hold": true,
+        "name": "Latin Vulgate corpus/luc_2.txt",
+        "start": 18399,
+        "prefix": 1,
+        "full": 1,
+        "trueRetained": true,
+        "forced": 64,
+        "allTrueSource": true
+      }
+    ],
+    "nulls": [
+      {
+        "hold": false,
+        "prefix": 0,
+        "full": 0
+      },
+      {
+        "hold": true,
+        "prefix": 0,
+        "full": 0
+      },
+      {
+        "hold": false,
+        "prefix": 0,
+        "full": 0
+      },
+      {
+        "hold": true,
+        "prefix": 0,
+        "full": 0
+      }
+    ],
+    "original": [
+      {
+        "hold": false,
+        "prefix": [],
+        "full": []
+      },
+      {
+        "hold": true,
+        "prefix": [],
+        "full": []
+      }
+    ]
   }
 ]
