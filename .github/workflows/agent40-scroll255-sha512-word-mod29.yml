@@ -1,0 +1,14 @@
+name: Agent40 scroll255 SHA-512 per-word GP29 residue
+on:
+  workflow_dispatch:
+jobs:
+  sha512-word-residue:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test original p3-p7 words against p8
+        run: node sims/lp2_scroll255_sha512_word_mod29_sft.cjs
