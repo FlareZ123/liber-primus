@@ -1,10 +1,12 @@
 # Agent23 current handoff — 2026-11-25
 
-Run agent23-draw1-2026-11-25T18:43:34.462Z-source-independent; claimed 2026-11-25T18:43:34.462Z; independent draw 1. Current checkpoint 2026-11-25T18:50:35.859Z. No unknown LP2 plaintext recovered.
+Run agent23-draw1-2026-11-25T18:43:34.462Z-source-independent; claimed 2026-11-25T18:43:34.462Z; independent draw 1. Current checkpoint 2026-11-25T18:55:23.215Z. No unknown LP2 plaintext recovered.
 
 Completed an exact periodic-key MAP inverse on the five numbered cuneiform items (553 runes). Historical 3301/1033 square matrices, independent per-lane period-8 pre-mixing keys; ordinary and transparent-F clocks; exact cyclic bigram DP with latent hold masks. Native plants: 26/30 exact keys, 1064/1080 withheld runes. All 16 legal original frozen suffixes nonlinguistic (-5.603 to -4.070 nats/rune vs worst control -3.640); four F suffixes impossible. Full MAP nonprose. Do not repeat this specific family; not an all-key language theorem. See consolidated report im-results/lp2-cuneiform-five-numbered-wisdom-inversion.md, SFT sims/lp2_cuneiform_square_independent_q8_map_sft.cjs, raw im-results/lp2-cuneiform-square-independent-q8-map.json. Commits 9f1876d, 861a823, bc29c8c. Code/raw/report remote verified; executed in connected V8, no separate CI.
 
-Potential next work: constructive cross-chapter long-anchor key assembly with independent holdout, if a concrete source-motivated key length is defensible. Do not repeat q8/q13/q29 postshuffle bounds or prior short-key sweeps. No validated unknown plaintext or source selector yet.
+Completed cross-chapter H-shuffle shared q76 constructive inverse. Source motivation p50 outer-ring length, not authenticated cipher period. p0–39 2161 groups train, p40–55 735 heldout, 35,944-form vocabulary, all eligible six-nonzero-C windows, support≥3 overlap-cycle graph. Three exact hidden keys recovered; all 2152 in-register withheld words retained; 1148 unique. Controls length-matched sampled donor words, rare pooled missing lengths 7/3/0. Original 4,383,040 distinct tuples, only38 support3, no adjacent edges, zero cycles. At 5% OOV, need414 eligible covered, all-key upper190(q76),398(q180), minimum necessary q188 for one key shared p0–39. No further arbitrary longer-key sweep. Report im-results/lp2-q8-postshuffle-unknown-phase.md#constructive-shared-q76-key-recovery-across-chapters-agent-23, SFT sims/lp2_postshuffle_q76_longanchor_cycle_sft.cjs, raw im-results/lp2-postshuffle-q76-longanchor-cycle.json. Commits 1906cea,11ab186,44e0c4b,215fa33,d08bffd,944ee7a. No original plaintext.
+
+Next: favor an independent source-defined receiver or H-decoy mechanism over another intact-group additive search.
 
 ---
 
