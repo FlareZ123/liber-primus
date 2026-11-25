@@ -1,0 +1,124 @@
+name: LP2 mapped DIVINITY both-OOV exact inverse
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  search:
+    name: Anchor ${{ matrix.anchor }} [${{ matrix.start }},${{ matrix.end }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 28
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        include:
+          - anchor: 47
+            start: 0
+            end: 546
+            omitted: '49,56'
+          - anchor: 47
+            start: 546
+            end: 1092
+            omitted: '49,56'
+          - anchor: 47
+            start: 1092
+            end: 1638
+            omitted: '49,56'
+          - anchor: 47
+            start: 1638
+            end: 2185
+            omitted: '49,56'
+          - anchor: 47
+            start: 2185
+            end: 2731
+            omitted: '49,56'
+          - anchor: 47
+            start: 2731
+            end: 3277
+            omitted: '49,56'
+          - anchor: 47
+            start: 3277
+            end: 3823
+            omitted: '49,56'
+          - anchor: 47
+            start: 3823
+            end: 4370
+            omitted: '49,56'
+          - anchor: 14
+            start: 0
+            end: 874
+            omitted: '49,56,47'
+          - anchor: 14
+            start: 874
+            end: 1748
+            omitted: '49,56,47'
+          - anchor: 14
+            start: 1748
+            end: 2622
+            omitted: '49,56,47'
+          - anchor: 14
+            start: 2622
+            end: 3497
+            omitted: '49,56,47'
+          - anchor: 14
+            start: 3497
+            end: 4371
+            omitted: '49,56,47'
+          - anchor: 14
+            start: 4371
+            end: 5245
+            omitted: '49,56,47'
+          - anchor: 14
+            start: 5245
+            end: 6119
+            omitted: '49,56,47'
+          - anchor: 14
+            start: 6119
+            end: 6994
+            omitted: '49,56,47'
+    env:
+      LP2_MAX_FILTER: '2000000000'
+      LP2_MAX_JOINS: '10000000'
+      LP2_MAX_NODES: '4000000'
+      LP2_MAX_ENUM: '10000000'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact inverse shard
+        shell: bash
+        run: |
+          set -euo pipefail
+          node sims/lp2_shared_gp29_mapped_divinity_anchor_sft.cjs --robust ${{ matrix.anchor }} ${{ matrix.start }} ${{ matrix.end }} 8 '${{ matrix.omitted }}' > result.json
+          node -e 'const r=require("./result.json");console.log(JSON.stringify(r))'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mapped-divinity-${{ matrix.anchor }}-${{ matrix.start }}
+          path: result.json
+          retention-days: 7
+  summary:
+    if: always()
+    needs: search
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: mapped-divinity-*
+          path: shards
+      - name: Summarize complete and incomplete ranges
+        shell: bash
+        run: |
+          python - <<'PY'
+          import glob,json
+          rows=[json.load(open(f)) for f in glob.glob('shards/**/result.json',recursive=True)]
+          rows.sort(key=lambda x:(x['anchor'],x['range'][0]))
+          print(json.dumps(rows,separators=(',',':')))
+          for anchor,total in [(47,4370),(14,6994)]:
+              runs=[r for r in rows if r['anchor']==anchor]
+              covered=set()
+              for r in runs: covered.update(range(r['range'][0],r['completedThrough']))
+              print(f'anchor={anchor} covered={len(covered)}/{total} accepted={sum(r["accepted"] for r in runs)}')
+          PY
