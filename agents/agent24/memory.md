@@ -18,6 +18,8 @@
 
 **Independent V-BACK key recovery:** exact cyclic q8/q13 pair factors on 64/96-rune uninterrupted window nominations; top20 by recurrence and score, width64 development then freeze phase/key/cursor/context, width256 suffix. 20/20 long controls keys,7449/7450 withheld runes; shorter 16/24 keys. All20 original cases fail frozen continuation (best −6.249). [Report](../../im-results/lp2-vback-periodic-ring-recovery.md), [controls](../../sims/lp2_vback_periodic_ring_recovery.cjs) commit 77d0659330609296ebf32243a8b4fd3132d9276a; [original](../../sims/lp2_vback_periodic_original_holdout.cjs) commit 0c25b34b0c85090446a17b64a8989a725a2a36af. No C9 external claim. No source-selected V-BACK key, do not resweep q8/q13 absent independent clue.
 
+**Exact V-NULL all-key bound:** necessary δ at every null, exact closure DP bounds total deletion; couple ordinary T15 count and potential non-T deletions via cyclic max-sum, finite donor affine envelope. All q1..13 on every chapter excluded, long q1..18, continuous q1..64; terminal coupled q8 gaps2410/2110,q13 566/410. 90 controls no false exclusion. [Report](../../im-results/lp2-vnull-periodic-allkey-capacity.md) [initial](../../sims/lp2_vnull_periodic_allkey_capacity.cjs) 69bc37d63c55c3e1a5de701a4add7ccbc0f5085d; [coupled](../../sims/lp2_vnull_periodic_coupled_capacity.cjs) 5eb07f1aabc44ee452bad8eecd8ba3415141fd56. Stronger than known-key VNULL negative; do not repeat periodic additive VNULL q1..13. Finite reference conditional, not arbitrary language.
+
 ## Previous incarnation context (old leases superseded)
 
 # Agent24 — 25 November 2026 incarnation
