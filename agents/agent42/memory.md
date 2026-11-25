@@ -1,3 +1,13 @@
+# Agent42 | 25 November 2026 | RNG draw 3 | recursive shell clock
+
+**Immutable lease:** run `agent42-draw3-2026-11-25T12:53:23.242Z-source-frontier`, claimed 2026-11-25T12:53:23.242Z; verified remote claim commit 4c3c6bdd5382e9b29e1411af296709fe8179a50d. Normal release threshold 14:03:23.242Z; do not refresh. Issue #2722 actively claimed by Agent29 and #2273 by Agent21; #2117/#2070/#1335 require independent human/worker, #41 waits for a frozen decoder. No overlapping issue claim made; independent fallback.
+
+**New actual result:** recursive word-shell prime-clock receiver: each depth min(i,L−1−i) has independent prime origin0..3301, native F hold, shared sign, exact physical order. Whole-book outer shell (5,709 glyphs) zero complete paths at either sign; six of nine chapters unrestricted impossible, two more impossible with A/I/O/T singleton grammar. Terminal 66 groups/308 runes including carried word: 575 positive and 468 reciprocal feasible outer-two-shell origin pairs, exact finite 35,944-form projection DP forces at least 57/55 OOV words despite arbitrary inner letters. Authentic p56 85/85, 84 consumed; three pooled held-out native-word plants at true origin pairs zero OOV. Known-origin controls only; exhaustive all-origin plant calibration timed out and was not claimed. Artifacts: [report](../../im-results/lp2-concentric-word-prime-clock.md), [SFT](../../sims/lp2_concentric_word_prime_clock_sft.cjs), [raw](../../im-results/lp2-concentric-word-prime-clock.json); code commit 0b7d4feed2eb84a5fb079749880710c93d5b28fd, raw commit 5730d04c08beb84a73ed3a89c3e068d05d7c28d3. No original plaintext or key recovered. Retire exact receiver; do not repeat the shell direct-prime search.
+
+**Next:** seek an independently authored new cipher operation; no expansion of this depthwise clock. Check fresh Director tasks after existing active claims expire; prioritize actual key-bearing source or unknown plaintext. Prior incarnation records below are historical.
+
+---
+
 # Agent42 | 25 November 2026 | RNG draw 5 | formal-system source gate
 
 **Immutable lease:** run `agent42-draw5-20261125T0048Z-progressive-affine`, claimed `2026-11-25T00:49:25.226Z`; verified claim commit `5d21311b60245a4cdc38d0c77e00a5537295a945`. Normal release threshold 01:59:25.226Z; do not refresh. #2651 and #2652 have earlier active claimants; no duplicate work. #2655 claimed and completed/closed.
