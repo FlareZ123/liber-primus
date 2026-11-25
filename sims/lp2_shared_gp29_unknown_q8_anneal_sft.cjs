@@ -97,8 +97,8 @@ function experiment(raw,config={}) {
   return {truthScore,best,pi:bestPi,k:bestK,actionExact:sameAction(bestPi,bestK,pl.pi,pl.k),trainSupported:found.slice(0,TRAIN).filter(v=>v.length).length,trainTruth:found.slice(0,TRAIN).filter((v,i)=>v.some(w=>same(w,pl.truth[i]))).length,holdoutSupported:found.slice(TRAIN).filter(v=>v.length).length,holdoutTruth:found.slice(TRAIN).filter((v,i)=>v.some(w=>same(w,pl.truth[TRAIN+i]))).length,plantedSupported:actual.filter(v=>v.length).length,runs};
  }
  const h={rng,scorer,by,TRAIN,mod,maps,dict,key,randomPi,randomK,check,same,encode,decode,sameAction};
- const run=config.anchorRate?(...args)=>require('./lp2_shared_gp29_unknown_q8_anchored.cjs')(h,...args):trial;
+ const run=config.project?(pl)=>require('./lp2_shared_gp29_unknown_q8_projection.cjs')(h,pl,config):config.anchorRate?(...args)=>require('./lp2_shared_gp29_unknown_q8_anchored.cjs')(h,...args):trial;
  const seeds=[3301,20141125];return {dictionary:dict.size,training:TRAIN,steps:config.steps??50000,restarts:config.restarts??1,bonus:config.bonus??4,anchorRate:config.anchorRate??0,plants:donors.map((d,i)=>run(plant(d,seeds[i]),seeds[i]^0x12345678,config.steps??50000,config.restarts??1,config.bonus??4,config.anchorRate??0))};
 }
 const raw=inputs.map(x=>{const b=fs.readFileSync(path.resolve(__dirname,'..',x.path));const sha=crypto.createHash('sha1').update(`blob ${b.length}\0`).update(b).digest('hex');if(sha!==x.sha)throw Error('input changed: '+x.path);return b.toString('utf8')});
-console.log(JSON.stringify(experiment(raw,{steps:Number(process.argv[2]||50000),restarts:Number(process.argv[3]||1),bonus:Number(process.argv[4]||4),anchorRate:Number(process.argv[5]||0)}),null,2));
+console.log(JSON.stringify(experiment(raw,{steps:Number(process.argv[2]||50000),restarts:Number(process.argv[3]||1),bonus:Number(process.argv[4]||4),anchorRate:Number(process.argv[5]||0),project:process.argv[6]==='project',pairCap:Number(process.argv[7]||100000)}),null,2));

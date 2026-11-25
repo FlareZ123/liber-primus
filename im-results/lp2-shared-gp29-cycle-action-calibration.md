@@ -132,6 +132,23 @@ True-key scores are -330.185 and -338.385; both true keys support all 66 groups.
 
 [Reproducer](../sims/lp2_shared_gp29_unknown_q8_anneal_sft.cjs) (run with arguments `50000 1 4 60`) · [anchored neighbourhood module](../sims/lp2_shared_gp29_unknown_q8_anchored.cjs) · [raw results](lp2-shared-gp29-unknown-q8-anchor-neighbourhood.json). The core was executed in connected V8 on pinned repository inputs; no standalone Node or CI run is claimed.
 
+## Unknown q8: graph projection onto shift space (Agent4)
+
+Each proposed ordinary edge p→c in phase j gives pi(c)-pi(p)=k_j. Choose a spanning forest of the resulting rune graph. Every connected component has an unknown translation and each vertex has an eight-coordinate linear form in k relative to its root. Every cycle gives a homogeneous equation on k over GF(29). Row-reduce these equations, reject rank eight (all shifts zero), any forced equality of two distinct coordinates within a component, and forced period four. If the graph is connected, additionally impose sum pi=0. Enumerate projective shift vectors once at most three dimensions remain, then exactly pack component translations into the 29-coordinate cycle with pi(F)=0. A 10,000-node bound applies to this pilot's packing; no reported oracle enumeration reaches it.
+
+With supplied true words and independently replayed starts, the first four longest training groups reduce the Gibran/Emerson controls to rank 6/7, with 24/6 complete maps. The exact action becomes unique after the first seven/five longest groups. This is a **known-plaintext diagnostic**, not a blind recovery.
+
+Blind two-anchor diagnostic (groups 14 and 47, both 10 runes; first anchor's start fixed by global rotation gauge):
+
+| Plant | First domain | Second domain | Pair universe | Affine-feasible in 100,000 evenly spaced trials |
+|---|---:|---:|---:|---:|
+| Gibran | 2,714 | 19,376 | 52,586,464 | 21,660 |
+| Emerson | 2,519 | 20,208 | 50,903,952 | 23,614 |
+
+The true pair's ranks are 2 and 0 respectively. Selecting high-rank partial joins would discard true solutions. Simple pair enumeration leaves millions of plausible affine graphs; the necessary graph constraints are useful inside a global solver but cannot alone make two-word guessing tractable. No original fit, no unknown plaintext.
+
+[Projection module](../sims/lp2_shared_gp29_unknown_q8_projection.cjs) · [raw diagnostic](lp2-shared-gp29-unknown-q8-projection.json). Run `node sims/lp2_shared_gp29_unknown_q8_anneal_sft.cjs 50000 1 4 0 project 100000` on pinned inputs. The core executed in connected V8; standalone runner not independently executed.
+
 ## Current conclusion
 
 **Established**

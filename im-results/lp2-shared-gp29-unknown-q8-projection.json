@@ -1,0 +1,330 @@
+{
+  "dictionary": 38938,
+  "training": 49,
+  "pairCap": 100000,
+  "oracleCap": 10000,
+  "plants": [
+    {
+      "oracle": [
+        {
+          "g": 14,
+          "rank": 0,
+          "components": [
+            9,
+            3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "g": 47,
+          "rank": 2,
+          "components": [
+            17,
+            3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "g": 1,
+          "rank": 3,
+          "components": [
+            21,
+            3,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "g": 2,
+          "rank": 6,
+          "components": [
+            25,
+            1,
+            1,
+            1,
+            1
+          ],
+          "completion": {
+            "projective": 30,
+            "distinct": 1,
+            "packed": 24,
+            "nodes": 66,
+            "capped": false
+          },
+          "effectiveExact": 1
+        },
+        {
+          "g": 15,
+          "rank": 7,
+          "components": [
+            27,
+            1,
+            1
+          ],
+          "completion": {
+            "projective": 1,
+            "distinct": 1,
+            "packed": 2,
+            "nodes": 6,
+            "capped": false
+          },
+          "effectiveExact": 1
+        },
+        {
+          "g": 18,
+          "rank": 7,
+          "components": [
+            27,
+            1,
+            1
+          ],
+          "completion": {
+            "projective": 1,
+            "distinct": 1,
+            "packed": 2,
+            "nodes": 6,
+            "capped": false
+          },
+          "effectiveExact": 1
+        },
+        {
+          "g": 36,
+          "rank": 7,
+          "components": [
+            28,
+            1
+          ],
+          "completion": {
+            "projective": 1,
+            "distinct": 1,
+            "packed": 1,
+            "nodes": 3,
+            "capped": false
+          },
+          "effectiveExact": 1
+        }
+      ],
+      "anchorGroups": [
+        14,
+        47
+      ],
+      "domains": [
+        2714,
+        19376
+      ],
+      "pairs": 52586464,
+      "tested": 100000,
+      "survivingRankCounts": [
+        2036,
+        7935,
+        8310,
+        2997,
+        368,
+        14,
+        0,
+        0
+      ],
+      "largestComponentCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        25,
+        103,
+        296,
+        527,
+        873,
+        1095,
+        1196,
+        1362,
+        1629,
+        2123,
+        2386,
+        2642,
+        2781,
+        2450,
+        1645,
+        523,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "testedTrue": []
+    },
+    {
+      "oracle": [
+        {
+          "g": 14,
+          "rank": 0,
+          "components": [
+            5,
+            3,
+            2,
+            2,
+            2,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "g": 47,
+          "rank": 0,
+          "components": [
+            11,
+            9,
+            2,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "g": 1,
+          "rank": 2,
+          "components": [
+            26,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "g": 2,
+          "rank": 7,
+          "components": [
+            26,
+            1,
+            1,
+            1
+          ],
+          "completion": {
+            "projective": 1,
+            "distinct": 1,
+            "packed": 6,
+            "nodes": 17,
+            "capped": false
+          },
+          "effectiveExact": 1
+        },
+        {
+          "g": 15,
+          "rank": 7,
+          "components": [
+            28,
+            1
+          ],
+          "completion": {
+            "projective": 1,
+            "distinct": 1,
+            "packed": 1,
+            "nodes": 3,
+            "capped": false
+          },
+          "effectiveExact": 1
+        }
+      ],
+      "anchorGroups": [
+        14,
+        47
+      ],
+      "domains": [
+        2519,
+        20208
+      ],
+      "pairs": 50903952,
+      "tested": 100000,
+      "survivingRankCounts": [
+        12393,
+        9435,
+        1708,
+        75,
+        3,
+        0,
+        0,
+        0
+      ],
+      "largestComponentCounts": [
+        0,
+        0,
+        0,
+        0,
+        3,
+        43,
+        302,
+        936,
+        1629,
+        2254,
+        2596,
+        2564,
+        2423,
+        2106,
+        2080,
+        1809,
+        1591,
+        1306,
+        986,
+        616,
+        292,
+        78,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "testedTrue": []
+    }
+  ]
+}
