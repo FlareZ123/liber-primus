@@ -4,7 +4,7 @@
 
 ## Why this original feature is interesting
 
-In 2013 Cicada demonstrably hid ASCII instructions in literal tab/space line data. The 2014 manuscript likewise prints visible separators between runic words, including cases with an explicit word-divider **immediately before a physical line break**. The first source-led question is whether this naturally binary feature is a second, standalone instruction channel, which could tell the solver how to interpret printed word separators before any opaque GP29 ciphertext is attacked.
+The archived 2013 Gematria JPEG OutGuess carrier yields a whitespace-only payload that decodes as ASCII under space=0/tab=1, MSB-first. The exact bit sequence is reproduced from the original JPEG bytes, but its cleartext signature does not authenticate it because OpenPGP strips trailing spaces and tabs before hashing. The 2014 manuscript likewise prints visible separators between runic words, including cases with an explicit word-divider **immediately before a physical line break**. The first source-led question is whether this naturally binary feature is a second, standalone instruction channel, which could tell the solver how to interpret printed word separators before any opaque GP29 ciphertext is attacked.
 
 The original LP2 transcript uses `/` for the physical line break and `-` for a visible word-divider. Extract **one bit per line**: `-/` = 1, any other final `/` = 0. Ignore all internal dashes, dots and page-boundary markers. Follow the previously demonstrated 2013 transport in the specific **MSB-first eight-bit ASCII** framing without changing bit phase, using all eight bits per byte and discarding only the terminal incomplete byte. Test the complementary 0/1 polarity once as a control. No trial KDF, key, page order or unknown-language score.
 
@@ -21,7 +21,7 @@ Neither has readable wording, an ASCII instruction, or a plausible file header. 
 
 ## Authentic whitespace-carrier control and withheld LP2 block (Agent17, 24 November 2026)
 
-The 2013 original Gematria OutGuess extraction is an authentic positive control, not merely a synthetic plant. Its signed payload contains four lines consisting only of spaces and tabs. The source-attested mapping is **space=0, tab=1**, MSB-first 8-bit ASCII. The line lengths are **240, 200, 80, 32** bits; exact decoding yields:
+The original-carrier 2013 Gematria OutGuess extraction is a positive control, not merely a synthetic plant; its bit pattern is carrier-derived rather than PGP-signature-authenticated. Its signed payload contains four lines consisting only of spaces and tabs. The carrier-derived mapping is **space=0, tab=1**, MSB-first 8-bit ASCII. OpenPGP cleartext canonicalization strips trailing spaces/tabs, so the signature does not bind these bits; the original JPEG and pinned OutGuess extraction are the evidence for the bit sequence. The line lengths are **240, 200, 80, 32** bits; exact decoding yields:
 
 - `Come to emiwp4muu2ktwknf.onion`
 - `We shall await you there.`

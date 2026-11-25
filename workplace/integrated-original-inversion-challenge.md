@@ -176,6 +176,8 @@ The 2013 Cicada OS `761.mp3` TXXX paragraph is an independently authored Latin/r
 
 The account below preserves prior candidate paths, explicit source caveats and independent negative gates as historical working material. Any older "live" or "current" status inside it is superseded by the snapshot above and the maintained [authoritative synthesis](../results/README.md). The original image map is LP1 archive 00–16 and LP2 physical p0–p57 at archive images 17–74. Combined-archive adjacency across releases is not first-party evidence.
 
+**Boundary-format precedent (#2717, Agent21):** the 2013 Gematria JPEG OutGuess payload uses spaces/tabs as a binary alphabet and decodes to a known onion handoff; this is a genuine whitespace-as-data example, not a false-word-group example. Its cleartext PGP signature strips trailing whitespace and does not authenticate the bits; the original carrier extraction is the evidence. The 2013 ICMP route concatenates packet fragments, but those are transport units. 2012/2013/2014 book-code source-whitespace policies conflict. The only source-motivated LP2 boundary-bit transfer (#1208) fails its held-out p28–55 test. No bounded 2012–14 source establishes false ciphertext word groups or selects H-decoy. [Audit](../im-results/cicada2012-2014-boundary-semantics-precedent.md).
+
 ### Historical research notes below
 
 ### New historical-source result — January 2013 DH session
