@@ -15,6 +15,7 @@ function experiment(raw,config={}){
  for(const arr of training)for(const w of arr)if(w.length&&w.length<=L){inc(counts,id(w),1);lengths[w.length]++;total++;let a=-1,b=-1;for(const x of w){u[x]++;nchar++;if(b>=0)bi[b*Q+x]++;if(a>=0)tri[(a*Q+b)*Q+x]++;a=b;b=x;}}
  for(const ln of raw[5].split(/\r?\n/)){const m=ln.match(/^([a-z]+)\s+(\d+)$/i);if(!m)continue;const v=[...new Set([id(word(m[1],true)),id(word(m[1],false))])].filter(k=>k.length<=L);for(const k of v){const f=+m[2]/v.length;inc(external,k,f);et+=f;}}
  const types=new Set([...counts.keys(),...external.keys(),...Array.from({length:Q},(_,x)=>String.fromCharCode(65+x))]),lex=new Map(),pref=new Map();
+ const singleton=new Set(["A","I","O","T"].map(w=>id(word(w))));if(config.nativeSingletons)for(const k of types)if(k.length===1&&!singleton.has(k))types.delete(k);
  for(const k of types){const p=(1-EPS)*(.85*(counts.get(k)||0)/total+.149*(external.get(k)||0)/et+.001/types.size);lex.set(k,Math.log(p));for(let j=1;j<k.length;j++)inc(pref,k.slice(0,j),p);}
  for(const [k,v] of pref)pref.set(k,Math.log(v));
  const lsum=lengths.slice(1).reduce((a,b)=>a+b,0),ll=Array.from(lengths,x=>Math.log(x/lsum)),tail=ll.map((x,i)=>Math.log(lengths.slice(i+1).reduce((a,b)=>a+b,0)/lsum));
@@ -38,7 +39,7 @@ function experiment(raw,config={}){
   function wordEdges(i,key,lexOnly,cb,tailcb){
    function walk(j,h,k,a,b,z){
     const len=j-i;if(len){const w=lex.get(k)??NEG;if(w!==NEG)cb(j,k,w,0);
-     if(!lexOnly)cb(j,k,loge+ll[len]+z,1);
+     if(!lexOnly&&(!config.nativeSingletons||len!==1||singleton.has(k)))cb(j,k,loge+ll[len]+z,1);
      if(partial&&j===M&&len<L){const v=pref.get(k)??NEG;if(v!==NEG)tailcb(v,0);if(!lexOnly)tailcb(loge+tail[len]+z,1);}}
     if(j===M||len===L||(lexOnly&&len&&!pref.has(k)))return;
     const c=C[j],x=mod(c-(key.charCodeAt(h)-65)),next=(h+1)%key.length;
@@ -49,7 +50,7 @@ function experiment(raw,config={}){
   }
   // A finite initial seed-word prior. First body word must be lexical.
   for(const [key,lp] of [[id(knownSeed),seedPrior]]){const s=lp-seedPrior;
-   wordEdges(0,key,true,(j,k,w)=>{firstEdges++;put(j,k,0,s+w,s+w,null,key,0);},w=>{part=logadd(part,s+w);});
+   wordEdges(0,key,!config.firstOov||B===0,(j,k,w,o)=>{if(o>B)return;firstEdges++;put(j,k,o,s+w,s+w,null,key,o);},(w,o)=>{if(o<=B)part=logadd(part,s+w);});
   }
   for(let i=1;i<M;i++){
    const m=states[i];if(m.size)lastReachable=i;maxStates=Math.max(maxStates,m.size);let a=[...m.values()];if(a.length>WIDTH){a.sort((x,y)=>y.a-x.a||y.v-x.v||x.k.localeCompare(y.k)||x.b-y.b);const kept=a.slice(0,WIDTH),rest=a.slice(WIDTH);const ka=kept.reduce((n,x)=>logadd(n,x.a),NEG),ra=rest.reduce((n,x)=>logadd(n,x.a),NEG),loss=Math.exp(ra-logadd(ka,ra));largestLoss=Math.max(largestLoss,loss);clipped++;discarded+=rest.length;a=kept;}
@@ -80,8 +81,8 @@ function experiment(raw,config={}){
   if(name==="original"){const C=gp.pages.filter(x=>[54,55].includes(x.page)).flatMap(x=>x.indices).reverse();if(C.length!==N)throw Error("original length "+C.length);cases.push(recover({name,C,mode:"unknown",seed:[9,24]}));}
   else{const [stage,d,mode]=name.split("-");cases.push(recover(control(+d,stage==="fresh",mode)));}
  }
- return {parameters:{N,S,L,B,EPS,WIDTH,lexicon:types.size,trainTypes:counts.size,trainTokens:total,externalTypes:external.size},cases};
+ return {parameters:{N,S,L,B,EPS,WIDTH,nativeSingletons:!!config.nativeSingletons,firstOov:!!config.firstOov,lexicon:types.size,trainTypes:counts.size,trainTokens:total,externalTypes:external.size},cases};
 
 }
-if(require.main===module){const cases=process.argv.slice(2).filter(x=>x!=="--exact-lex");const exact=process.argv.includes("--exact-lex");console.log(JSON.stringify(experiment(files.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8")),{cases:cases.length?cases:undefined,...(exact?{budget:0,width:1000000}:{})}),null,2));}
+if(require.main===module){const cases=process.argv.slice(2).filter(x=>!x.startsWith("--"));const exact=process.argv.includes("--exact-lex");console.log(JSON.stringify(experiment(files.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8")),{cases:cases.length?cases:undefined,...(exact?{budget:0,width:1000000}:{}),nativeSingletons:process.argv.includes("--native-singletons"),firstOov:process.argv.includes("--first-oov")}),null,2));}
 module.exports={experiment};
