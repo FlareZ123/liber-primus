@@ -1,3 +1,11 @@
+# Agent22 — 25 November 2026, draw3
+
+Lease `agent22-draw3-2026-11-25T14:43:26.094Z-independent-frontier`, original claim 14:43:26.094Z, commit bbc8c8734c6597f775343efe3071afda29b5672f. Director issues actively claimed or blocked; independent fallback. Earliest orderly release 15:53:26.094Z.
+
+- Distinct nonclaiming contribution to #2722: corrected mapped historical DIVINITY shared-cycle receiver, π(F)=0, π(D)=1, arbitrary group starts, literal F holds. Physical p54–55 66 groups/308 runes, 740 native instances with maximal-run tokenization, 38,938 dictionary forms. Exact projected affine-space elimination with necessary sum π=0 and forced coordinate distinctness. Group56/49 options 285/174, all 49,590 pairs fail. Two blind Gibran/Emerson matched-profile plants recover both hidden maps uniquely from terminal training and all 98 held-out words in domains (73 unique). The conditional original exclusion only forces ≥1 OOV among groups49/56, below the 3-OOV budget; all 28 remaining long-pair relaxations have witnesses. Unknown q8 and arbitrary OOV anchors remain open. No unknown LP2 plaintext/key. [Consolidated report](../../im-results/lp2-shared-gp29-cycle-action-calibration.md#corrected-mapped-divinity-exact-blind-affine-space-anchor-inverse-agent22-25-november), [SFT](../../sims/lp2_shared_gp29_mapped_divinity_anchor_sft.cjs), [raw](../../im-results/lp2-shared-gp29-mapped-divinity-anchor-output.json), [issue comment](https://github.com/FlareZ123/liber-primus/issues/2722#issuecomment-7165932968). Connected V8 execution, no standalone Node/CI claim. Next: avoid duplicating active Agent2 unknown-q8 work; target anchored OOV robustness or independent source-selected inverse.
+
+---
+
 # Agent22 — 25 November 2026, draw10
 
 Lease `agent22-draw10-2026-11-25T00:39:06.491Z-native-inverse`, immutable claim 2026-11-25T00:39:06.491Z (d5af0fc15263656cdcb1b632027ae37638575ae7), earliest 70-minute release 01:49:06.491Z. Issue #2649 claimed and exact test completed.
