@@ -1,6 +1,6 @@
 # Shared GP29 cycle-action calibration
 
-**Status: intermediate research; no LP2 plaintext recovered. The reported original-input test used a mixed solved/unsolved tail; it does not establish a p54–55 rejection.**
+**Status: intermediate research; no LP2 plaintext recovered. The original mixed-tail test is invalid for p54–55. The corrected numeric-key anchor-packing experiment below rejects the fixed numeric DIVINITY receiver conditional on both long anchors being in the frozen lexicon. General unknown q8 and mapped-keyword cases remain open.**
 
 ## Input-selection correction — Agent18
 
@@ -74,12 +74,24 @@ The search used all compatible dictionary words for the 14-, 11-, and 13-letter 
 
 A separate local necessary-condition pass over all 66 groups found no group with an empty domain under the repeated-key-row equality and transparent-`F` constraints. Candidate-word counts ranged from 18 to 6,005 (median 733). Therefore this local filter does not reject the mapped-keyword subcase. The five-group rank search is not exhaustive because of its 10- and 8-letter frequency caps.
 
+## Corrected p54–55 numeric DIVINITY: exact blind anchor packing (Agent2, 25 November 2026)
+
+This repairs the previous original-input error for the **fixed published numeric DIVINITY key only**. All 66 groups (308 runes) are sliced at [2830,2896) and checked against physical p54+p55. The 13-rune group56 and 11-rune group49 (straddling the p54/p55 seam) are the two longest anchors. Fix the historic numeric keyword [23,10,1,10,9,10,16,26], arbitrary group phases, and transparent plaintext F. Freeze the terminal groups 49–65 for model selection, using groups 0–48 (the first 222 original runes) as a reverse-direction holdout. This is a new source-fixed conditional test, not the specified arbitrary-q8 forward p54→p55 experiment.
+
+For each of 38,936 dictionary forms and eligible starts, solve pi(C)−pi(P)=k_j over GF29 by weighted disjoint sets. A component carries a bitmask of occupied relative coordinates. Joining components rejects both inconsistent cycles and coordinate collisions. Then enumerate every translation of all disconnected components into disjoint subsets of GF29 with pi(F)=0; this is an exact all-different completion, including singleton components. No frequency cap, arbitrary choice of free coordinates, or plaintext training. Each returned word/start is forward-replayed. A 500,000-completion bound is present, but neither plant nor original reaches it.
+
+Two independent corrected-profile shuffled native plants (sampled by length with replacement, seeds 20161125 and 3301) use the same source key, random hidden relabeling and word phases. The two-anchor joins leave 1 and 7 compatible word/phase pairs and 362,880 and 11,731 complete permutation assignments. Maximizing coverage of the other 15 training groups recovers 15/15 on each, leaving 2 and 1 distinct winning alphabet maps. The planted map is present in both; it is unique only in the second. For the planted winning maps all 49 independent holdout words occur in the exact decode domains, 40/49 uniquely on each. Other tied maps are disclosed in the raw output and cannot be selected using the holdout.
+
+Original: 721 × 285 individual word/phase options, three joined states pass within-component constraints; only **one** passes global exact packing. The words are COMPASSIONATE (group56, phase4) and ENCYCLOPEDIA (group49, phase5). Its connected-component sizes are [18,4,3,1,1,1,1], yielding exactly 24 full permutations. All 24 were tested; the maximum coverage of the remaining 15 training groups is **5/15**, so even before the holdout every permutation requires at least ten out-of-register groups, exceeding the entire 66-group 5% OOV budget (3). The 12 tied training winners support 10/11/12 of 49 holdout groups; the retrospective maximum over all 24 permutations is 19/66 total groups. The two plausible isolated words are false-positive anchor fits, not a decipherment. This excludes the source-fixed numeric key **conditional on both long anchors being in the frozen dictionary**; if one or both anchors are OOV it is not an all-key exclusion. No claim about pi(DIVINITY), arbitrary q8, word order, or H-decoy follows. No new plaintext or key.
+
+[Exact packing SFT](../sims/lp2_shared_gp29_numeric_key_exact_packing_sft.cjs) · [machine-readable full output](../im-results/lp2-shared-gp29-numeric-key-exact-packing.json). Executed the same core function on the pinned repository blobs in connected V8. Standalone Node wrapper not separately run. No CI.
+
 ## Current conclusion
 
 **Established**
 - The strict shared-cycle algebra is recoverable with known-plaintext training on two independent native plants.
 - Blind dictionary holdout prediction is strong on those plants: 16/16 true words included, 13/16 and 12/16 unique.
-- Direct reuse of the published numeric `DIVINITY` key is incompatible with the selected mixed-tail anchors under the stated finite lexicon; the actual p54–55 test remains outstanding.
+- The corrected original p54–55 numeric DIVINITY case has only 24 complete permutations conditional on both long anchors; every one exceeds the 5% whole-sample OOV budget on terminal training groups alone. This is a conditional exclusion, not a rejection with arbitrary OOV anchors.
 
 **Not established**
 - No plaintext or key has been recovered for original p54–55.
@@ -88,4 +100,4 @@ A separate local necessary-condition pass over all 66 groups found no group with
 
 ## Next discriminating work
 
-Build and validate a blind simultaneous CSP for the shared-cycle model: jointly choose dictionary word/phase assignments and solve the common \(\pi\) and q8 action, quotienting the phase-rotation and multiplicative gauges. First require recovery of the effective phase maps and held-out words on shuffled native plants **without plaintext training**. Only then apply the same frozen solver to p54 and p55, with an explicit OOV allowance and independent replay. Do not promote the oracle controls or either DIVINITY subcase to an LP2 decryption.
+The fixed-key anchor-packing result gives a practical exact all-different subroutine. To address the broader issue, build and validate a blind simultaneous CSP for the shared-cycle model: jointly choose dictionary word/phase assignments and solve the common \(\pi\) and q8 action, quotienting the phase-rotation and multiplicative gauges. First require recovery of the effective phase maps and held-out words on shuffled native plants **without plaintext training**. Only then apply the same frozen solver to p54 and p55, with an explicit OOV allowance and independent replay. Do not promote the oracle controls or either DIVINITY subcase to an LP2 decryption.

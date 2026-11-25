@@ -1,0 +1,3466 @@
+{
+  "dict": 38936,
+  "anchors": [
+    56,
+    49
+  ],
+  "key": [
+    23,
+    10,
+    1,
+    10,
+    9,
+    10,
+    16,
+    26
+  ],
+  "trainingGroups": [
+    49,
+    65
+  ],
+  "holdoutGroups": [
+    0,
+    48
+  ],
+  "controls": [
+    {
+      "domains": [
+        259,
+        3355
+      ],
+      "consistent": 1,
+      "pairs": 1,
+      "info": [
+        {
+          "anchors": [
+            "CIRCUMFERENCE",
+            "OBSCURAFORM"
+          ],
+          "starts": [
+            7,
+            4
+          ],
+          "rank": 19,
+          "components": [
+            20,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "count": 362880
+        }
+      ],
+      "completions": 362880,
+      "capped": false,
+      "scored": 169,
+      "best": 15,
+      "bestDistinctPi": 2,
+      "full": 2,
+      "truePiRetained": true,
+      "fits": [
+        {
+          "pi": [
+            0,
+            1,
+            8,
+            22,
+            23,
+            15,
+            5,
+            25,
+            27,
+            24,
+            18,
+            19,
+            14,
+            13,
+            17,
+            6,
+            12,
+            7,
+            2,
+            28,
+            10,
+            20,
+            4,
+            26,
+            16,
+            3,
+            11,
+            21,
+            9
+          ],
+          "exactPi": true,
+          "holdoutSupported": 49,
+          "holdoutTruth": 49,
+          "holdoutUniqueTruth": 40,
+          "allSupported": 66,
+          "replayRunesAcrossCandidateWords": 369,
+          "words": null
+        },
+        {
+          "pi": [
+            0,
+            16,
+            23,
+            8,
+            9,
+            1,
+            20,
+            11,
+            13,
+            10,
+            4,
+            5,
+            15,
+            28,
+            3,
+            21,
+            27,
+            22,
+            17,
+            14,
+            25,
+            6,
+            19,
+            12,
+            2,
+            18,
+            26,
+            7,
+            24
+          ],
+          "exactPi": false,
+          "holdoutSupported": 45,
+          "holdoutTruth": 43,
+          "holdoutUniqueTruth": 35,
+          "allSupported": 62,
+          "replayRunesAcrossCandidateWords": 339,
+          "words": null
+        }
+      ],
+      "allOriginal": []
+    },
+    {
+      "domains": [
+        358,
+        5401
+      ],
+      "consistent": 209,
+      "pairs": 7,
+      "info": [
+        {
+          "anchors": [
+            "CIRCUMFERENCE",
+            "PRESERUATIAN"
+          ],
+          "starts": [
+            7,
+            3
+          ],
+          "rank": 19,
+          "components": [
+            9,
+            7,
+            4,
+            2,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "count": 11520
+        },
+        {
+          "anchors": [
+            "COMPLEMENTARY",
+            "WORLDLINESS"
+          ],
+          "starts": [
+            3,
+            7
+          ],
+          "rank": 21,
+          "components": [
+            13,
+            7,
+            3,
+            2,
+            1,
+            1,
+            1,
+            1
+          ],
+          "count": 48
+        },
+        {
+          "anchors": [
+            "IMPERTURBABLE",
+            "CHRISTENDOM"
+          ],
+          "starts": [
+            6,
+            7
+          ],
+          "rank": 22,
+          "components": [
+            10,
+            5,
+            4,
+            4,
+            3,
+            2,
+            1
+          ],
+          "count": 1
+        },
+        {
+          "anchors": [
+            "IMPRACTICABLE",
+            "PROSECUTION"
+          ],
+          "starts": [
+            1,
+            2
+          ],
+          "rank": 22,
+          "components": [
+            11,
+            9,
+            3,
+            2,
+            2,
+            1,
+            1
+          ],
+          "count": 16
+        },
+        {
+          "anchors": [
+            "INCORPORATING",
+            "SUBSTANTIATE"
+          ],
+          "starts": [
+            0,
+            1
+          ],
+          "rank": 22,
+          "components": [
+            15,
+            8,
+            2,
+            1,
+            1,
+            1,
+            1
+          ],
+          "count": 24
+        },
+        {
+          "anchors": [
+            "OPHTHALMOSCOPE",
+            "SLAUGHTERING"
+          ],
+          "starts": [
+            2,
+            2
+          ],
+          "rank": 21,
+          "components": [
+            11,
+            4,
+            4,
+            3,
+            2,
+            2,
+            2,
+            1
+          ],
+          "count": 2
+        },
+        {
+          "anchors": [
+            "PRESBYTERIANS",
+            "RETALIATION"
+          ],
+          "starts": [
+            1,
+            1
+          ],
+          "rank": 22,
+          "components": [
+            17,
+            7,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "count": 120
+        }
+      ],
+      "completions": 11731,
+      "capped": false,
+      "scored": 106,
+      "best": 15,
+      "bestDistinctPi": 1,
+      "full": 1,
+      "truePiRetained": true,
+      "fits": [
+        {
+          "pi": [
+            0,
+            2,
+            4,
+            16,
+            19,
+            11,
+            7,
+            21,
+            1,
+            26,
+            27,
+            5,
+            3,
+            25,
+            23,
+            18,
+            14,
+            15,
+            22,
+            17,
+            10,
+            20,
+            6,
+            9,
+            8,
+            24,
+            12,
+            13,
+            28
+          ],
+          "exactPi": true,
+          "holdoutSupported": 49,
+          "holdoutTruth": 49,
+          "holdoutUniqueTruth": 40,
+          "allSupported": 66,
+          "replayRunesAcrossCandidateWords": 363,
+          "words": null
+        }
+      ],
+      "allOriginal": []
+    }
+  ],
+  "original": {
+    "domains": [
+      721,
+      285
+    ],
+    "consistent": 3,
+    "pairs": 1,
+    "info": [
+      {
+        "anchors": [
+          "COMPASSIONATE",
+          "ENCYCLOPEDIA"
+        ],
+        "starts": [
+          4,
+          5
+        ],
+        "rank": 22,
+        "components": [
+          18,
+          4,
+          3,
+          1,
+          1,
+          1,
+          1
+        ],
+        "count": 24
+      }
+    ],
+    "completions": 24,
+    "capped": false,
+    "scored": 24,
+    "best": 5,
+    "bestDistinctPi": 12,
+    "full": 0,
+    "truePiRetained": false,
+    "fits": [
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          8,
+          24,
+          14,
+          16,
+          17,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          25,
+          18,
+          22,
+          27,
+          5,
+          12,
+          11
+        ],
+        "exactPi": null,
+        "holdoutSupported": 11,
+        "holdoutTruth": null,
+        "holdoutUniqueTruth": null,
+        "allSupported": 18,
+        "replayRunesAcrossCandidateWords": 91,
+        "words": [
+          {
+            "i": 0,
+            "words": [
+              "TH",
+              "E",
+              "M",
+              "B",
+              "OE"
+            ],
+            "n": 5
+          },
+          {
+            "i": 5,
+            "words": [
+              "AI",
+              "XI"
+            ],
+            "n": 2
+          },
+          {
+            "i": 8,
+            "words": [
+              "LL"
+            ],
+            "n": 1
+          },
+          {
+            "i": 12,
+            "words": [
+              "SOL",
+              "JOY"
+            ],
+            "n": 2
+          },
+          {
+            "i": 20,
+            "words": [
+              "HAS"
+            ],
+            "n": 1
+          },
+          {
+            "i": 26,
+            "words": [
+              "TH",
+              "W",
+              "A"
+            ],
+            "n": 3
+          },
+          {
+            "i": 32,
+            "words": [
+              "PM",
+              "TA",
+              "HM"
+            ],
+            "n": 3
+          },
+          {
+            "i": 40,
+            "words": [
+              "CNG",
+              "LE"
+            ],
+            "n": 2
+          },
+          {
+            "i": 41,
+            "words": [
+              "WHO"
+            ],
+            "n": 1
+          },
+          {
+            "i": 46,
+            "words": [
+              "CA"
+            ],
+            "n": 1
+          },
+          {
+            "i": 48,
+            "words": [
+              "SEA",
+              "UP",
+              "SU"
+            ],
+            "n": 3
+          },
+          {
+            "i": 49,
+            "words": [
+              "ENCYCLOPEDIA"
+            ],
+            "n": 1
+          },
+          {
+            "i": 51,
+            "words": [
+              "AY",
+              "AC",
+              "TOE",
+              "AR",
+              "ING"
+            ],
+            "n": 5
+          },
+          {
+            "i": 52,
+            "words": [
+              "MS",
+              "CU",
+              "LI"
+            ],
+            "n": 3
+          },
+          {
+            "i": 55,
+            "words": [
+              "THNG"
+            ],
+            "n": 1
+          },
+          {
+            "i": 56,
+            "words": [
+              "COMPASSIONATE"
+            ],
+            "n": 1
+          },
+          {
+            "i": 62,
+            "words": [
+              "DI"
+            ],
+            "n": 1
+          },
+          {
+            "i": 64,
+            "words": [
+              "WIT"
+            ],
+            "n": 1
+          }
+        ]
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          8,
+          24,
+          14,
+          16,
+          17,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          27,
+          18,
+          22,
+          25,
+          5,
+          12,
+          11
+        ],
+        "exactPi": null,
+        "holdoutSupported": 11,
+        "holdoutTruth": null,
+        "holdoutUniqueTruth": null,
+        "allSupported": 18,
+        "replayRunesAcrossCandidateWords": 90,
+        "words": [
+          {
+            "i": 0,
+            "words": [
+              "TH",
+              "E",
+              "M",
+              "B"
+            ],
+            "n": 4
+          },
+          {
+            "i": 5,
+            "words": [
+              "AI",
+              "XI"
+            ],
+            "n": 2
+          },
+          {
+            "i": 8,
+            "words": [
+              "LL"
+            ],
+            "n": 1
+          },
+          {
+            "i": 12,
+            "words": [
+              "SOL",
+              "JOY"
+            ],
+            "n": 2
+          },
+          {
+            "i": 20,
+            "words": [
+              "HAS"
+            ],
+            "n": 1
+          },
+          {
+            "i": 26,
+            "words": [
+              "TH",
+              "W",
+              "A"
+            ],
+            "n": 3
+          },
+          {
+            "i": 32,
+            "words": [
+              "PM",
+              "TA",
+              "HM"
+            ],
+            "n": 3
+          },
+          {
+            "i": 40,
+            "words": [
+              "CNG",
+              "LE"
+            ],
+            "n": 2
+          },
+          {
+            "i": 41,
+            "words": [
+              "WHO"
+            ],
+            "n": 1
+          },
+          {
+            "i": 46,
+            "words": [
+              "AET",
+              "CA"
+            ],
+            "n": 2
+          },
+          {
+            "i": 48,
+            "words": [
+              "SEA",
+              "UP",
+              "SU"
+            ],
+            "n": 3
+          },
+          {
+            "i": 49,
+            "words": [
+              "ENCYCLOPEDIA"
+            ],
+            "n": 1
+          },
+          {
+            "i": 51,
+            "words": [
+              "AY",
+              "AC",
+              "AR",
+              "ING"
+            ],
+            "n": 4
+          },
+          {
+            "i": 52,
+            "words": [
+              "MS",
+              "CU",
+              "LI"
+            ],
+            "n": 3
+          },
+          {
+            "i": 55,
+            "words": [
+              "THNG"
+            ],
+            "n": 1
+          },
+          {
+            "i": 56,
+            "words": [
+              "COMPASSIONATE"
+            ],
+            "n": 1
+          },
+          {
+            "i": 59,
+            "words": [
+              "DOE"
+            ],
+            "n": 1
+          },
+          {
+            "i": 64,
+            "words": [
+              "WIT"
+            ],
+            "n": 1
+          }
+        ]
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          8,
+          24,
+          14,
+          16,
+          25,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          17,
+          18,
+          22,
+          27,
+          5,
+          12,
+          11
+        ],
+        "exactPi": null,
+        "holdoutSupported": 11,
+        "holdoutTruth": null,
+        "holdoutUniqueTruth": null,
+        "allSupported": 18,
+        "replayRunesAcrossCandidateWords": 88,
+        "words": [
+          {
+            "i": 0,
+            "words": [
+              "TH",
+              "E",
+              "M",
+              "B",
+              "J"
+            ],
+            "n": 5
+          },
+          {
+            "i": 5,
+            "words": [
+              "AI",
+              "XI"
+            ],
+            "n": 2
+          },
+          {
+            "i": 8,
+            "words": [
+              "LL"
+            ],
+            "n": 1
+          },
+          {
+            "i": 12,
+            "words": [
+              "SOL"
+            ],
+            "n": 1
+          },
+          {
+            "i": 20,
+            "words": [
+              "HAS"
+            ],
+            "n": 1
+          },
+          {
+            "i": 26,
+            "words": [
+              "TH",
+              "W",
+              "A"
+            ],
+            "n": 3
+          },
+          {
+            "i": 32,
+            "words": [
+              "PM",
+              "TA",
+              "HM"
+            ],
+            "n": 3
+          },
+          {
+            "i": 40,
+            "words": [
+              "CNG",
+              "LE"
+            ],
+            "n": 2
+          },
+          {
+            "i": 41,
+            "words": [
+              "WHO"
+            ],
+            "n": 1
+          },
+          {
+            "i": 46,
+            "words": [
+              "CA"
+            ],
+            "n": 1
+          },
+          {
+            "i": 48,
+            "words": [
+              "SEA",
+              "UP",
+              "SU"
+            ],
+            "n": 3
+          },
+          {
+            "i": 49,
+            "words": [
+              "ENCYCLOPEDIA"
+            ],
+            "n": 1
+          },
+          {
+            "i": 51,
+            "words": [
+              "AY",
+              "AC",
+              "AR",
+              "ING"
+            ],
+            "n": 4
+          },
+          {
+            "i": 52,
+            "words": [
+              "MS",
+              "CU",
+              "LI"
+            ],
+            "n": 3
+          },
+          {
+            "i": 55,
+            "words": [
+              "THNG"
+            ],
+            "n": 1
+          },
+          {
+            "i": 56,
+            "words": [
+              "COMPASSIONATE"
+            ],
+            "n": 1
+          },
+          {
+            "i": 62,
+            "words": [
+              "DI",
+              "DO"
+            ],
+            "n": 2
+          },
+          {
+            "i": 64,
+            "words": [
+              "WIT"
+            ],
+            "n": 1
+          }
+        ]
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          8,
+          24,
+          14,
+          16,
+          25,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          27,
+          18,
+          22,
+          17,
+          5,
+          12,
+          11
+        ],
+        "exactPi": null,
+        "holdoutSupported": 12,
+        "holdoutTruth": null,
+        "holdoutUniqueTruth": null,
+        "allSupported": 19,
+        "replayRunesAcrossCandidateWords": 89,
+        "words": [
+          {
+            "i": 0,
+            "words": [
+              "TH",
+              "E",
+              "M",
+              "B",
+              "J"
+            ],
+            "n": 5
+          },
+          {
+            "i": 5,
+            "words": [
+              "AI",
+              "XI"
+            ],
+            "n": 2
+          },
+          {
+            "i": 8,
+            "words": [
+              "LL"
+            ],
+            "n": 1
+          },
+          {
+            "i": 12,
+            "words": [
+              "SOL"
+            ],
+            "n": 1
+          },
+          {
+            "i": 20,
+            "words": [
+              "HAS"
+            ],
+            "n": 1
+          },
+          {
+            "i": 26,
+            "words": [
+              "TH",
+              "W",
+              "A"
+            ],
+            "n": 3
+          },
+          {
+            "i": 30,
+            "words": [
+              "AXE"
+            ],
+            "n": 1
+          },
+          {
+            "i": 32,
+            "words": [
+              "PM",
+              "TA",
+              "HM"
+            ],
+            "n": 3
+          },
+          {
+            "i": 40,
+            "words": [
+              "CNG",
+              "LE"
+            ],
+            "n": 2
+          },
+          {
+            "i": 41,
+            "words": [
+              "WHO"
+            ],
+            "n": 1
+          },
+          {
+            "i": 46,
+            "words": [
+              "CA"
+            ],
+            "n": 1
+          },
+          {
+            "i": 48,
+            "words": [
+              "SEA",
+              "UP",
+              "SU"
+            ],
+            "n": 3
+          },
+          {
+            "i": 49,
+            "words": [
+              "ENCYCLOPEDIA"
+            ],
+            "n": 1
+          },
+          {
+            "i": 51,
+            "words": [
+              "AY",
+              "AC",
+              "AR",
+              "ING"
+            ],
+            "n": 4
+          },
+          {
+            "i": 52,
+            "words": [
+              "MS",
+              "CU",
+              "LI"
+            ],
+            "n": 3
+          },
+          {
+            "i": 55,
+            "words": [
+              "THNG"
+            ],
+            "n": 1
+          },
+          {
+            "i": 56,
+            "words": [
+              "COMPASSIONATE"
+            ],
+            "n": 1
+          },
+          {
+            "i": 59,
+            "words": [
+              "DOE"
+            ],
+            "n": 1
+          },
+          {
+            "i": 64,
+            "words": [
+              "WIT"
+            ],
+            "n": 1
+          }
+        ]
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          8,
+          24,
+          14,
+          16,
+          27,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          17,
+          18,
+          22,
+          25,
+          5,
+          12,
+          11
+        ],
+        "exactPi": null,
+        "holdoutSupported": 11,
+        "holdoutTruth": null,
+        "holdoutUniqueTruth": null,
+        "allSupported": 18,
+        "replayRunesAcrossCandidateWords": 92,
+        "words": [
+          {
+            "i": 0,
+            "words": [
+              "TH",
+              "E",
+              "M",
+              "B"
+            ],
+            "n": 4
+          },
+          {
+            "i": 5,
+            "words": [
+              "AI",
+              "XI"
+            ],
+            "n": 2
+          },
+          {
+            "i": 8,
+            "words": [
+              "LL"
+            ],
+            "n": 1
+          },
+          {
+            "i": 12,
+            "words": [
+              "SOL"
+            ],
+            "n": 1
+          },
+          {
+            "i": 20,
+            "words": [
+              "HAS"
+            ],
+            "n": 1
+          },
+          {
+            "i": 26,
+            "words": [
+              "TH",
+              "W",
+              "A"
+            ],
+            "n": 3
+          },
+          {
+            "i": 32,
+            "words": [
+              "PM",
+              "TA",
+              "HM"
+            ],
+            "n": 3
+          },
+          {
+            "i": 40,
+            "words": [
+              "CNG",
+              "LE"
+            ],
+            "n": 2
+          },
+          {
+            "i": 41,
+            "words": [
+              "WHO"
+            ],
+            "n": 1
+          },
+          {
+            "i": 46,
+            "words": [
+              "AET",
+              "CA"
+            ],
+            "n": 2
+          },
+          {
+            "i": 48,
+            "words": [
+              "SEA",
+              "UP",
+              "SU"
+            ],
+            "n": 3
+          },
+          {
+            "i": 49,
+            "words": [
+              "ENCYCLOPEDIA"
+            ],
+            "n": 1
+          },
+          {
+            "i": 51,
+            "words": [
+              "AY",
+              "AC",
+              "AR",
+              "ING"
+            ],
+            "n": 4
+          },
+          {
+            "i": 52,
+            "words": [
+              "MS",
+              "CU",
+              "LI"
+            ],
+            "n": 3
+          },
+          {
+            "i": 55,
+            "words": [
+              "THNG"
+            ],
+            "n": 1
+          },
+          {
+            "i": 56,
+            "words": [
+              "COMPASSIONATE"
+            ],
+            "n": 1
+          },
+          {
+            "i": 62,
+            "words": [
+              "DI",
+              "DO"
+            ],
+            "n": 2
+          },
+          {
+            "i": 64,
+            "words": [
+              "HOES",
+              "EUT"
+            ],
+            "n": 2
+          }
+        ]
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          8,
+          24,
+          14,
+          16,
+          27,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          25,
+          18,
+          22,
+          17,
+          5,
+          12,
+          11
+        ],
+        "exactPi": null,
+        "holdoutSupported": 12,
+        "holdoutTruth": null,
+        "holdoutUniqueTruth": null,
+        "allSupported": 19,
+        "replayRunesAcrossCandidateWords": 91,
+        "words": [
+          {
+            "i": 0,
+            "words": [
+              "TH",
+              "E",
+              "M",
+              "B",
+              "OE"
+            ],
+            "n": 5
+          },
+          {
+            "i": 5,
+            "words": [
+              "AI",
+              "XI"
+            ],
+            "n": 2
+          },
+          {
+            "i": 8,
+            "words": [
+              "LL"
+            ],
+            "n": 1
+          },
+          {
+            "i": 12,
+            "words": [
+              "SOL"
+            ],
+            "n": 1
+          },
+          {
+            "i": 20,
+            "words": [
+              "HAS"
+            ],
+            "n": 1
+          },
+          {
+            "i": 26,
+            "words": [
+              "TH",
+              "W",
+              "A"
+            ],
+            "n": 3
+          },
+          {
+            "i": 30,
+            "words": [
+              "AXE"
+            ],
+            "n": 1
+          },
+          {
+            "i": 32,
+            "words": [
+              "PM",
+              "TA",
+              "HM"
+            ],
+            "n": 3
+          },
+          {
+            "i": 40,
+            "words": [
+              "CNG",
+              "LE"
+            ],
+            "n": 2
+          },
+          {
+            "i": 41,
+            "words": [
+              "WHO"
+            ],
+            "n": 1
+          },
+          {
+            "i": 46,
+            "words": [
+              "CA"
+            ],
+            "n": 1
+          },
+          {
+            "i": 48,
+            "words": [
+              "SEA",
+              "UP",
+              "SU"
+            ],
+            "n": 3
+          },
+          {
+            "i": 49,
+            "words": [
+              "ENCYCLOPEDIA"
+            ],
+            "n": 1
+          },
+          {
+            "i": 51,
+            "words": [
+              "AY",
+              "AC",
+              "TOE",
+              "AR",
+              "ING"
+            ],
+            "n": 5
+          },
+          {
+            "i": 52,
+            "words": [
+              "MS",
+              "CU",
+              "LI"
+            ],
+            "n": 3
+          },
+          {
+            "i": 55,
+            "words": [
+              "THNG"
+            ],
+            "n": 1
+          },
+          {
+            "i": 56,
+            "words": [
+              "COMPASSIONATE"
+            ],
+            "n": 1
+          },
+          {
+            "i": 62,
+            "words": [
+              "DI"
+            ],
+            "n": 1
+          },
+          {
+            "i": 64,
+            "words": [
+              "EUT"
+            ],
+            "n": 1
+          }
+        ]
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          17,
+          24,
+          14,
+          16,
+          8,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          27,
+          18,
+          22,
+          25,
+          5,
+          12,
+          11
+        ],
+        "exactPi": null,
+        "holdoutSupported": 12,
+        "holdoutTruth": null,
+        "holdoutUniqueTruth": null,
+        "allSupported": 19,
+        "replayRunesAcrossCandidateWords": 92,
+        "words": [
+          {
+            "i": 0,
+            "words": [
+              "TH",
+              "E",
+              "M",
+              "B"
+            ],
+            "n": 4
+          },
+          {
+            "i": 5,
+            "words": [
+              "AI",
+              "XI"
+            ],
+            "n": 2
+          },
+          {
+            "i": 8,
+            "words": [
+              "LL"
+            ],
+            "n": 1
+          },
+          {
+            "i": 9,
+            "words": [
+              "AXE"
+            ],
+            "n": 1
+          },
+          {
+            "i": 12,
+            "words": [
+              "SOL"
+            ],
+            "n": 1
+          },
+          {
+            "i": 20,
+            "words": [
+              "HAS"
+            ],
+            "n": 1
+          },
+          {
+            "i": 26,
+            "words": [
+              "TH",
+              "J",
+              "A"
+            ],
+            "n": 3
+          },
+          {
+            "i": 32,
+            "words": [
+              "PM",
+              "TA",
+              "HM"
+            ],
+            "n": 3
+          },
+          {
+            "i": 40,
+            "words": [
+              "CW",
+              "CNG",
+              "LE"
+            ],
+            "n": 3
+          },
+          {
+            "i": 45,
+            "words": [
+              "NEW"
+            ],
+            "n": 1
+          },
+          {
+            "i": 46,
+            "words": [
+              "AET",
+              "CA"
+            ],
+            "n": 2
+          },
+          {
+            "i": 48,
+            "words": [
+              "SEA",
+              "UP",
+              "SU"
+            ],
+            "n": 3
+          },
+          {
+            "i": 49,
+            "words": [
+              "ENCYCLOPEDIA"
+            ],
+            "n": 1
+          },
+          {
+            "i": 51,
+            "words": [
+              "AY",
+              "AC",
+              "AR",
+              "ING"
+            ],
+            "n": 4
+          },
+          {
+            "i": 52,
+            "words": [
+              "MS",
+              "CU",
+              "LI"
+            ],
+            "n": 3
+          },
+          {
+            "i": 55,
+            "words": [
+              "ING"
+            ],
+            "n": 1
+          },
+          {
+            "i": 56,
+            "words": [
+              "COMPASSIONATE"
+            ],
+            "n": 1
+          },
+          {
+            "i": 59,
+            "words": [
+              "DOE"
+            ],
+            "n": 1
+          },
+          {
+            "i": 64,
+            "words": [
+              "HOES"
+            ],
+            "n": 1
+          }
+        ]
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          17,
+          24,
+          14,
+          16,
+          27,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          8,
+          18,
+          22,
+          25,
+          5,
+          12,
+          11
+        ],
+        "exactPi": null,
+        "holdoutSupported": 11,
+        "holdoutTruth": null,
+        "holdoutUniqueTruth": null,
+        "allSupported": 18,
+        "replayRunesAcrossCandidateWords": 91,
+        "words": [
+          {
+            "i": 0,
+            "words": [
+              "TH",
+              "E",
+              "M",
+              "B"
+            ],
+            "n": 4
+          },
+          {
+            "i": 5,
+            "words": [
+              "AI",
+              "XI"
+            ],
+            "n": 2
+          },
+          {
+            "i": 8,
+            "words": [
+              "LL"
+            ],
+            "n": 1
+          },
+          {
+            "i": 9,
+            "words": [
+              "AXE"
+            ],
+            "n": 1
+          },
+          {
+            "i": 12,
+            "words": [
+              "SOL"
+            ],
+            "n": 1
+          },
+          {
+            "i": 20,
+            "words": [
+              "HAS"
+            ],
+            "n": 1
+          },
+          {
+            "i": 26,
+            "words": [
+              "TH",
+              "OE",
+              "A"
+            ],
+            "n": 3
+          },
+          {
+            "i": 32,
+            "words": [
+              "PM",
+              "TA",
+              "HM"
+            ],
+            "n": 3
+          },
+          {
+            "i": 40,
+            "words": [
+              "CW",
+              "CNG",
+              "JOE",
+              "LE"
+            ],
+            "n": 4
+          },
+          {
+            "i": 46,
+            "words": [
+              "AET",
+              "CA"
+            ],
+            "n": 2
+          },
+          {
+            "i": 48,
+            "words": [
+              "SEA",
+              "UP",
+              "SU"
+            ],
+            "n": 3
+          },
+          {
+            "i": 49,
+            "words": [
+              "ENCYCLOPEDIA"
+            ],
+            "n": 1
+          },
+          {
+            "i": 51,
+            "words": [
+              "AY",
+              "AC",
+              "AR",
+              "ING"
+            ],
+            "n": 4
+          },
+          {
+            "i": 52,
+            "words": [
+              "MS",
+              "CU",
+              "LI"
+            ],
+            "n": 3
+          },
+          {
+            "i": 55,
+            "words": [
+              "ING"
+            ],
+            "n": 1
+          },
+          {
+            "i": 56,
+            "words": [
+              "COMPASSIONATE"
+            ],
+            "n": 1
+          },
+          {
+            "i": 62,
+            "words": [
+              "DE"
+            ],
+            "n": 1
+          },
+          {
+            "i": 64,
+            "words": [
+              "EUT"
+            ],
+            "n": 1
+          }
+        ]
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          17,
+          24,
+          14,
+          16,
+          27,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          25,
+          18,
+          22,
+          8,
+          5,
+          12,
+          11
+        ],
+        "exactPi": null,
+        "holdoutSupported": 11,
+        "holdoutTruth": null,
+        "holdoutUniqueTruth": null,
+        "allSupported": 18,
+        "replayRunesAcrossCandidateWords": 89,
+        "words": [
+          {
+            "i": 0,
+            "words": [
+              "TH",
+              "E",
+              "M",
+              "B",
+              "OE"
+            ],
+            "n": 5
+          },
+          {
+            "i": 5,
+            "words": [
+              "AI",
+              "XI"
+            ],
+            "n": 2
+          },
+          {
+            "i": 8,
+            "words": [
+              "LL"
+            ],
+            "n": 1
+          },
+          {
+            "i": 9,
+            "words": [
+              "AXE"
+            ],
+            "n": 1
+          },
+          {
+            "i": 12,
+            "words": [
+              "SOL"
+            ],
+            "n": 1
+          },
+          {
+            "i": 20,
+            "words": [
+              "HAS"
+            ],
+            "n": 1
+          },
+          {
+            "i": 26,
+            "words": [
+              "TH",
+              "A"
+            ],
+            "n": 2
+          },
+          {
+            "i": 32,
+            "words": [
+              "PM",
+              "TA",
+              "HM"
+            ],
+            "n": 3
+          },
+          {
+            "i": 40,
+            "words": [
+              "CW",
+              "CNG",
+              "LE"
+            ],
+            "n": 3
+          },
+          {
+            "i": 46,
+            "words": [
+              "CA"
+            ],
+            "n": 1
+          },
+          {
+            "i": 48,
+            "words": [
+              "SEA",
+              "UP",
+              "SU"
+            ],
+            "n": 3
+          },
+          {
+            "i": 49,
+            "words": [
+              "ENCYCLOPEDIA"
+            ],
+            "n": 1
+          },
+          {
+            "i": 51,
+            "words": [
+              "AY",
+              "AC",
+              "TOE",
+              "AR",
+              "ING"
+            ],
+            "n": 5
+          },
+          {
+            "i": 52,
+            "words": [
+              "MS",
+              "CU",
+              "LI"
+            ],
+            "n": 3
+          },
+          {
+            "i": 55,
+            "words": [
+              "ING"
+            ],
+            "n": 1
+          },
+          {
+            "i": 56,
+            "words": [
+              "COMPASSIONATE"
+            ],
+            "n": 1
+          },
+          {
+            "i": 62,
+            "words": [
+              "DI"
+            ],
+            "n": 1
+          },
+          {
+            "i": 64,
+            "words": [
+              "EUT"
+            ],
+            "n": 1
+          }
+        ]
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          25,
+          24,
+          14,
+          16,
+          8,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          27,
+          18,
+          22,
+          17,
+          5,
+          12,
+          11
+        ],
+        "exactPi": null,
+        "holdoutSupported": 10,
+        "holdoutTruth": null,
+        "holdoutUniqueTruth": null,
+        "allSupported": 17,
+        "replayRunesAcrossCandidateWords": 83,
+        "words": [
+          {
+            "i": 0,
+            "words": [
+              "TH",
+              "E",
+              "M",
+              "B",
+              "W"
+            ],
+            "n": 5
+          },
+          {
+            "i": 5,
+            "words": [
+              "AI",
+              "XI"
+            ],
+            "n": 2
+          },
+          {
+            "i": 8,
+            "words": [
+              "LL"
+            ],
+            "n": 1
+          },
+          {
+            "i": 12,
+            "words": [
+              "SOL"
+            ],
+            "n": 1
+          },
+          {
+            "i": 20,
+            "words": [
+              "HAS"
+            ],
+            "n": 1
+          },
+          {
+            "i": 26,
+            "words": [
+              "TH",
+              "J",
+              "A"
+            ],
+            "n": 3
+          },
+          {
+            "i": 32,
+            "words": [
+              "PM",
+              "TA",
+              "HM"
+            ],
+            "n": 3
+          },
+          {
+            "i": 40,
+            "words": [
+              "CNG",
+              "LE"
+            ],
+            "n": 2
+          },
+          {
+            "i": 46,
+            "words": [
+              "CA"
+            ],
+            "n": 1
+          },
+          {
+            "i": 48,
+            "words": [
+              "SEA",
+              "UP",
+              "SU"
+            ],
+            "n": 3
+          },
+          {
+            "i": 49,
+            "words": [
+              "ENCYCLOPEDIA"
+            ],
+            "n": 1
+          },
+          {
+            "i": 51,
+            "words": [
+              "AY",
+              "AC",
+              "AR",
+              "ING"
+            ],
+            "n": 4
+          },
+          {
+            "i": 52,
+            "words": [
+              "MS",
+              "CU",
+              "LI"
+            ],
+            "n": 3
+          },
+          {
+            "i": 55,
+            "words": [
+              "ING"
+            ],
+            "n": 1
+          },
+          {
+            "i": 56,
+            "words": [
+              "COMPASSIONATE"
+            ],
+            "n": 1
+          },
+          {
+            "i": 59,
+            "words": [
+              "DOE"
+            ],
+            "n": 1
+          },
+          {
+            "i": 64,
+            "words": [
+              "HOES"
+            ],
+            "n": 1
+          }
+        ]
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          25,
+          24,
+          14,
+          16,
+          27,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          8,
+          18,
+          22,
+          17,
+          5,
+          12,
+          11
+        ],
+        "exactPi": null,
+        "holdoutSupported": 10,
+        "holdoutTruth": null,
+        "holdoutUniqueTruth": null,
+        "allSupported": 17,
+        "replayRunesAcrossCandidateWords": 85,
+        "words": [
+          {
+            "i": 0,
+            "words": [
+              "TH",
+              "E",
+              "M",
+              "B",
+              "W"
+            ],
+            "n": 5
+          },
+          {
+            "i": 5,
+            "words": [
+              "AI",
+              "XI"
+            ],
+            "n": 2
+          },
+          {
+            "i": 8,
+            "words": [
+              "LL"
+            ],
+            "n": 1
+          },
+          {
+            "i": 12,
+            "words": [
+              "SOL"
+            ],
+            "n": 1
+          },
+          {
+            "i": 20,
+            "words": [
+              "HAS"
+            ],
+            "n": 1
+          },
+          {
+            "i": 26,
+            "words": [
+              "TH",
+              "OE",
+              "A"
+            ],
+            "n": 3
+          },
+          {
+            "i": 32,
+            "words": [
+              "PM",
+              "TA",
+              "HM"
+            ],
+            "n": 3
+          },
+          {
+            "i": 40,
+            "words": [
+              "CNG",
+              "JOE",
+              "LE"
+            ],
+            "n": 3
+          },
+          {
+            "i": 46,
+            "words": [
+              "CA"
+            ],
+            "n": 1
+          },
+          {
+            "i": 48,
+            "words": [
+              "SEA",
+              "UP",
+              "SU"
+            ],
+            "n": 3
+          },
+          {
+            "i": 49,
+            "words": [
+              "ENCYCLOPEDIA"
+            ],
+            "n": 1
+          },
+          {
+            "i": 51,
+            "words": [
+              "AY",
+              "AC",
+              "AR",
+              "ING"
+            ],
+            "n": 4
+          },
+          {
+            "i": 52,
+            "words": [
+              "MS",
+              "CU",
+              "LI"
+            ],
+            "n": 3
+          },
+          {
+            "i": 55,
+            "words": [
+              "ING"
+            ],
+            "n": 1
+          },
+          {
+            "i": 56,
+            "words": [
+              "COMPASSIONATE"
+            ],
+            "n": 1
+          },
+          {
+            "i": 62,
+            "words": [
+              "DE"
+            ],
+            "n": 1
+          },
+          {
+            "i": 64,
+            "words": [
+              "EUT"
+            ],
+            "n": 1
+          }
+        ]
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          25,
+          24,
+          14,
+          16,
+          27,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          17,
+          18,
+          22,
+          8,
+          5,
+          12,
+          11
+        ],
+        "exactPi": null,
+        "holdoutSupported": 10,
+        "holdoutTruth": null,
+        "holdoutUniqueTruth": null,
+        "allSupported": 17,
+        "replayRunesAcrossCandidateWords": 87,
+        "words": [
+          {
+            "i": 0,
+            "words": [
+              "TH",
+              "E",
+              "M",
+              "B",
+              "W"
+            ],
+            "n": 5
+          },
+          {
+            "i": 5,
+            "words": [
+              "AI",
+              "XI"
+            ],
+            "n": 2
+          },
+          {
+            "i": 8,
+            "words": [
+              "LL"
+            ],
+            "n": 1
+          },
+          {
+            "i": 12,
+            "words": [
+              "SOL"
+            ],
+            "n": 1
+          },
+          {
+            "i": 20,
+            "words": [
+              "HAS"
+            ],
+            "n": 1
+          },
+          {
+            "i": 26,
+            "words": [
+              "TH",
+              "A"
+            ],
+            "n": 2
+          },
+          {
+            "i": 32,
+            "words": [
+              "PM",
+              "TA",
+              "HM"
+            ],
+            "n": 3
+          },
+          {
+            "i": 40,
+            "words": [
+              "CNG",
+              "LE"
+            ],
+            "n": 2
+          },
+          {
+            "i": 46,
+            "words": [
+              "CA"
+            ],
+            "n": 1
+          },
+          {
+            "i": 48,
+            "words": [
+              "SEA",
+              "UP",
+              "SU"
+            ],
+            "n": 3
+          },
+          {
+            "i": 49,
+            "words": [
+              "ENCYCLOPEDIA"
+            ],
+            "n": 1
+          },
+          {
+            "i": 51,
+            "words": [
+              "AY",
+              "AC",
+              "AR",
+              "ING"
+            ],
+            "n": 4
+          },
+          {
+            "i": 52,
+            "words": [
+              "MS",
+              "CU",
+              "LI"
+            ],
+            "n": 3
+          },
+          {
+            "i": 55,
+            "words": [
+              "ING"
+            ],
+            "n": 1
+          },
+          {
+            "i": 56,
+            "words": [
+              "COMPASSIONATE"
+            ],
+            "n": 1
+          },
+          {
+            "i": 62,
+            "words": [
+              "DI",
+              "DO"
+            ],
+            "n": 2
+          },
+          {
+            "i": 64,
+            "words": [
+              "HOES",
+              "EUT"
+            ],
+            "n": 2
+          }
+        ]
+      }
+    ],
+    "allOriginal": [
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          8,
+          24,
+          14,
+          16,
+          17,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          25,
+          18,
+          22,
+          27,
+          5,
+          12,
+          11
+        ],
+        "trainSupported": 5,
+        "allSupported": 18
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          8,
+          24,
+          14,
+          16,
+          17,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          27,
+          18,
+          22,
+          25,
+          5,
+          12,
+          11
+        ],
+        "trainSupported": 5,
+        "allSupported": 18
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          8,
+          24,
+          14,
+          16,
+          25,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          17,
+          18,
+          22,
+          27,
+          5,
+          12,
+          11
+        ],
+        "trainSupported": 5,
+        "allSupported": 18
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          8,
+          24,
+          14,
+          16,
+          25,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          27,
+          18,
+          22,
+          17,
+          5,
+          12,
+          11
+        ],
+        "trainSupported": 5,
+        "allSupported": 19
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          8,
+          24,
+          14,
+          16,
+          27,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          17,
+          18,
+          22,
+          25,
+          5,
+          12,
+          11
+        ],
+        "trainSupported": 5,
+        "allSupported": 18
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          8,
+          24,
+          14,
+          16,
+          27,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          25,
+          18,
+          22,
+          17,
+          5,
+          12,
+          11
+        ],
+        "trainSupported": 5,
+        "allSupported": 19
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          17,
+          24,
+          14,
+          16,
+          8,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          25,
+          18,
+          22,
+          27,
+          5,
+          12,
+          11
+        ],
+        "trainSupported": 4,
+        "allSupported": 18
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          17,
+          24,
+          14,
+          16,
+          8,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          27,
+          18,
+          22,
+          25,
+          5,
+          12,
+          11
+        ],
+        "trainSupported": 5,
+        "allSupported": 19
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          17,
+          24,
+          14,
+          16,
+          25,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          8,
+          18,
+          22,
+          27,
+          5,
+          12,
+          11
+        ],
+        "trainSupported": 4,
+        "allSupported": 17
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          17,
+          24,
+          14,
+          16,
+          25,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          27,
+          18,
+          22,
+          8,
+          5,
+          12,
+          11
+        ],
+        "trainSupported": 4,
+        "allSupported": 18
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          17,
+          24,
+          14,
+          16,
+          27,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          8,
+          18,
+          22,
+          25,
+          5,
+          12,
+          11
+        ],
+        "trainSupported": 5,
+        "allSupported": 18
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          17,
+          24,
+          14,
+          16,
+          27,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          25,
+          18,
+          22,
+          8,
+          5,
+          12,
+          11
+        ],
+        "trainSupported": 5,
+        "allSupported": 18
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          25,
+          24,
+          14,
+          16,
+          8,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          17,
+          18,
+          22,
+          27,
+          5,
+          12,
+          11
+        ],
+        "trainSupported": 4,
+        "allSupported": 16
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          25,
+          24,
+          14,
+          16,
+          8,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          27,
+          18,
+          22,
+          17,
+          5,
+          12,
+          11
+        ],
+        "trainSupported": 5,
+        "allSupported": 17
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          25,
+          24,
+          14,
+          16,
+          17,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          8,
+          18,
+          22,
+          27,
+          5,
+          12,
+          11
+        ],
+        "trainSupported": 4,
+        "allSupported": 16
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          25,
+          24,
+          14,
+          16,
+          17,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          27,
+          18,
+          22,
+          8,
+          5,
+          12,
+          11
+        ],
+        "trainSupported": 4,
+        "allSupported": 16
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          25,
+          24,
+          14,
+          16,
+          27,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          8,
+          18,
+          22,
+          17,
+          5,
+          12,
+          11
+        ],
+        "trainSupported": 5,
+        "allSupported": 17
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          25,
+          24,
+          14,
+          16,
+          27,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          17,
+          18,
+          22,
+          8,
+          5,
+          12,
+          11
+        ],
+        "trainSupported": 5,
+        "allSupported": 17
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          27,
+          24,
+          14,
+          16,
+          8,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          17,
+          18,
+          22,
+          25,
+          5,
+          12,
+          11
+        ],
+        "trainSupported": 4,
+        "allSupported": 16
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          27,
+          24,
+          14,
+          16,
+          8,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          25,
+          18,
+          22,
+          17,
+          5,
+          12,
+          11
+        ],
+        "trainSupported": 4,
+        "allSupported": 17
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          27,
+          24,
+          14,
+          16,
+          17,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          8,
+          18,
+          22,
+          25,
+          5,
+          12,
+          11
+        ],
+        "trainSupported": 4,
+        "allSupported": 17
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          27,
+          24,
+          14,
+          16,
+          17,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          25,
+          18,
+          22,
+          8,
+          5,
+          12,
+          11
+        ],
+        "trainSupported": 4,
+        "allSupported": 16
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          27,
+          24,
+          14,
+          16,
+          25,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          8,
+          18,
+          22,
+          17,
+          5,
+          12,
+          11
+        ],
+        "trainSupported": 4,
+        "allSupported": 17
+      },
+      {
+        "pi": [
+          0,
+          4,
+          28,
+          1,
+          19,
+          26,
+          2,
+          27,
+          24,
+          14,
+          16,
+          25,
+          15,
+          10,
+          7,
+          3,
+          23,
+          6,
+          21,
+          13,
+          20,
+          9,
+          17,
+          18,
+          22,
+          8,
+          5,
+          12,
+          11
+        ],
+        "trainSupported": 4,
+        "allSupported": 16
+      }
+    ]
+  }
+}
