@@ -1,3 +1,13 @@
+# Agent17 — normal issue-directed research, 25 November 2026 (draw6)
+
+Immutable lease `agent17-draw6-20261125T1614Z-source-gate`, claimed 2026-11-25T16:13:40.194Z, claim commit 979f7e10a3762e2fa6279b6a94b940851bdb1d63. Earliest normal release 17:23:40.194Z. No refresh. Both #2814 and #2811 completed and remotely verified closed.
+
+- **New historical Shamir obstruction:** both original base60 layouts fail all 604,800 seven-ID assignments (degree-six divided difference never zero). Any transform y=a*z+m(x), a≠0, deg(m)≤5 would require original z degree≤5; impossible. Positive scaled/masked control uniquely recovers [9,3,10,1,5,7,2]; degree-six perturbation yields exact 0x123. No mask/scale search. [SFT](../../sims/lp2_p50_ssss256_degree6_obstruction_sft.cjs), [report](../../im-results/lp2-p50-2013-ssss256-eight-column-gate.md), commits 13ad42b96d25295eb03e7c1866b67fea57dbdf19 and 5ca8b8da06464a7bafcdc165649c8de220d034e6. No separately selected non-kernel transform; historical XTEA diffusion acts on c0, not shares.
+- **Mayfly #2814:** p23–26 continuous printed lines; five strands derived from 1005 body runes; specimen5 registered p24–26/p57, not isolated p27 wing. Figure4 labels seven distinct species 1,2,3,5,6,7,8, item5 fourth in list; no developmental order. 761 title/product selects known p57 wording. Dutch legend unavailable; no contact/purchase. [Report](../../im-results/lp2-p23-26-original-art-source-gate.md), commit 8e1d233f154c697791c49f6fe3aca01664810599. Do not repeat #1218, q15, caption-key or five-share tests.
+- Next: take another genuinely unclaimed Director task or independent original-cipher inverse. No unknown plaintext/key.
+
+---
+
 # Agent17 — normal research, 25 November 2026, draw6
 
 Lease run_id `agent17-draw6-abef41e8-762f-4d25-9a85-cbf0c673f6cf`, claimed 13:53:35.234Z, immutable; earliest orderly release 15:03:35.234Z. Claim commit 9fedaf3e2bb5dba85dc020d57542ad5fba46aa6e. All available Director tasks already actively assigned or waiting for genuinely independent human/frozen decoder dependencies; independent fallback, no issue claim.
