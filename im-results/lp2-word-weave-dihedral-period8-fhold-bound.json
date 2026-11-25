@@ -1,0 +1,1754 @@
+{
+  "lexiconSize": 29079,
+  "original": [
+    {
+      "pages": [
+        0,
+        2
+      ],
+      "anchors": 15,
+      "classes": 1004143,
+      "maxSupport": 2,
+      "forcedOOV": 13,
+      "atMax": 4,
+      "detail": [
+        {
+          "word": 5,
+          "length": 11,
+          "orientations": 22,
+          "keys": 3
+        },
+        {
+          "word": 20,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123759
+        },
+        {
+          "word": 36,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123759
+        },
+        {
+          "word": 46,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 59,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123759
+        },
+        {
+          "word": 60,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 67,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3304
+        },
+        {
+          "word": 95,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3329
+        },
+        {
+          "word": 144,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 145,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3662
+        },
+        {
+          "word": 147,
+          "length": 10,
+          "orientations": 20,
+          "keys": 71
+        },
+        {
+          "word": 150,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 151,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 155,
+          "length": 10,
+          "orientations": 20,
+          "keys": 133
+        },
+        {
+          "word": 157,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3568
+        }
+      ]
+    },
+    {
+      "pages": [
+        3,
+        7
+      ],
+      "anchors": 19,
+      "classes": 1004562,
+      "maxSupport": 2,
+      "forcedOOV": 17,
+      "atMax": 5,
+      "detail": [
+        {
+          "word": 1,
+          "length": 11,
+          "orientations": 22,
+          "keys": 1
+        },
+        {
+          "word": 11,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3745
+        },
+        {
+          "word": 40,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 44,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123759
+        },
+        {
+          "word": 77,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3689
+        },
+        {
+          "word": 83,
+          "length": 10,
+          "orientations": 20,
+          "keys": 62
+        },
+        {
+          "word": 85,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3158
+        },
+        {
+          "word": 89,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3575
+        },
+        {
+          "word": 93,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 99,
+          "length": 10,
+          "orientations": 20,
+          "keys": 119
+        },
+        {
+          "word": 107,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123759
+        },
+        {
+          "word": 127,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 133,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123758
+        },
+        {
+          "word": 149,
+          "length": 10,
+          "orientations": 20,
+          "keys": 72
+        },
+        {
+          "word": 167,
+          "length": 10,
+          "orientations": 20,
+          "keys": 70
+        },
+        {
+          "word": 187,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 218,
+          "length": 12,
+          "orientations": 24,
+          "keys": 0
+        },
+        {
+          "word": 226,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 248,
+          "length": 12,
+          "orientations": 24,
+          "keys": 0
+        }
+      ]
+    },
+    {
+      "pages": [
+        8,
+        14
+      ],
+      "anchors": 30,
+      "classes": 1397459,
+      "maxSupport": 2,
+      "forcedOOV": 28,
+      "atMax": 16,
+      "detail": [
+        {
+          "word": 1,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 5,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3725
+        },
+        {
+          "word": 17,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123758
+        },
+        {
+          "word": 29,
+          "length": 10,
+          "orientations": 20,
+          "keys": 109
+        },
+        {
+          "word": 31,
+          "length": 12,
+          "orientations": 24,
+          "keys": 0
+        },
+        {
+          "word": 37,
+          "length": 10,
+          "orientations": 20,
+          "keys": 104
+        },
+        {
+          "word": 43,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 44,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123759
+        },
+        {
+          "word": 47,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3276
+        },
+        {
+          "word": 75,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 90,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 100,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 106,
+          "length": 11,
+          "orientations": 22,
+          "keys": 5
+        },
+        {
+          "word": 157,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 165,
+          "length": 11,
+          "orientations": 22,
+          "keys": 2
+        },
+        {
+          "word": 178,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3368
+        },
+        {
+          "word": 185,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 200,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3711
+        },
+        {
+          "word": 213,
+          "length": 11,
+          "orientations": 22,
+          "keys": 4
+        },
+        {
+          "word": 216,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3755
+        },
+        {
+          "word": 224,
+          "length": 12,
+          "orientations": 24,
+          "keys": 0
+        },
+        {
+          "word": 234,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3634
+        },
+        {
+          "word": 283,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3417
+        },
+        {
+          "word": 287,
+          "length": 10,
+          "orientations": 20,
+          "keys": 103
+        },
+        {
+          "word": 307,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3517
+        },
+        {
+          "word": 335,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3770
+        },
+        {
+          "word": 341,
+          "length": 14,
+          "orientations": 28,
+          "keys": 0
+        },
+        {
+          "word": 372,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3618
+        },
+        {
+          "word": 376,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 380,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        }
+      ]
+    },
+    {
+      "pages": [
+        15,
+        22
+      ],
+      "anchors": 40,
+      "classes": 2985255,
+      "maxSupport": 2,
+      "forcedOOV": 38,
+      "atMax": 71,
+      "detail": [
+        {
+          "word": 12,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3769
+        },
+        {
+          "word": 16,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123759
+        },
+        {
+          "word": 25,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 37,
+          "length": 13,
+          "orientations": 26,
+          "keys": 0
+        },
+        {
+          "word": 38,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123759
+        },
+        {
+          "word": 69,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 70,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 75,
+          "length": 12,
+          "orientations": 24,
+          "keys": 1
+        },
+        {
+          "word": 78,
+          "length": 12,
+          "orientations": 24,
+          "keys": 0
+        },
+        {
+          "word": 101,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 114,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 150,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 182,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3703
+        },
+        {
+          "word": 183,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 186,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 198,
+          "length": 10,
+          "orientations": 20,
+          "keys": 116
+        },
+        {
+          "word": 214,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123758
+        },
+        {
+          "word": 223,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3586
+        },
+        {
+          "word": 242,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 251,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 252,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123759
+        },
+        {
+          "word": 282,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3573
+        },
+        {
+          "word": 294,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 295,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 323,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123759
+        },
+        {
+          "word": 328,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123759
+        },
+        {
+          "word": 330,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123758
+        },
+        {
+          "word": 342,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123759
+        },
+        {
+          "word": 346,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 358,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123759
+        },
+        {
+          "word": 361,
+          "length": 11,
+          "orientations": 22,
+          "keys": 6
+        },
+        {
+          "word": 365,
+          "length": 10,
+          "orientations": 20,
+          "keys": 74
+        },
+        {
+          "word": 370,
+          "length": 11,
+          "orientations": 22,
+          "keys": 6
+        },
+        {
+          "word": 372,
+          "length": 10,
+          "orientations": 20,
+          "keys": 76
+        },
+        {
+          "word": 389,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123759
+        },
+        {
+          "word": 392,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 407,
+          "length": 10,
+          "orientations": 20,
+          "keys": 94
+        },
+        {
+          "word": 409,
+          "length": 10,
+          "orientations": 20,
+          "keys": 94
+        },
+        {
+          "word": 419,
+          "length": 12,
+          "orientations": 24,
+          "keys": 0
+        },
+        {
+          "word": 424,
+          "length": 12,
+          "orientations": 24,
+          "keys": 0
+        }
+      ]
+    },
+    {
+      "pages": [
+        23,
+        26
+      ],
+      "anchors": 18,
+      "classes": 1013544,
+      "maxSupport": 2,
+      "forcedOOV": 16,
+      "atMax": 4,
+      "detail": [
+        {
+          "word": 4,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 16,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3485
+        },
+        {
+          "word": 61,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123759
+        },
+        {
+          "word": 93,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 95,
+          "length": 9,
+          "orientations": 18,
+          "keys": 4480
+        },
+        {
+          "word": 104,
+          "length": 10,
+          "orientations": 20,
+          "keys": 142
+        },
+        {
+          "word": 108,
+          "length": 10,
+          "orientations": 20,
+          "keys": 87
+        },
+        {
+          "word": 123,
+          "length": 10,
+          "orientations": 20,
+          "keys": 122
+        },
+        {
+          "word": 124,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 127,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3393
+        },
+        {
+          "word": 142,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123758
+        },
+        {
+          "word": 157,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3619
+        },
+        {
+          "word": 160,
+          "length": 9,
+          "orientations": 18,
+          "keys": 4023
+        },
+        {
+          "word": 172,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123759
+        },
+        {
+          "word": 176,
+          "length": 10,
+          "orientations": 20,
+          "keys": 90
+        },
+        {
+          "word": 184,
+          "length": 9,
+          "orientations": 18,
+          "keys": 4032
+        },
+        {
+          "word": 205,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 219,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123759
+        }
+      ]
+    },
+    {
+      "pages": [
+        27,
+        32
+      ],
+      "anchors": 28,
+      "classes": 1502678,
+      "maxSupport": 2,
+      "forcedOOV": 26,
+      "atMax": 20,
+      "detail": [
+        {
+          "word": 1,
+          "length": 12,
+          "orientations": 24,
+          "keys": 0
+        },
+        {
+          "word": 19,
+          "length": 12,
+          "orientations": 24,
+          "keys": 0
+        },
+        {
+          "word": 43,
+          "length": 10,
+          "orientations": 20,
+          "keys": 99
+        },
+        {
+          "word": 44,
+          "length": 10,
+          "orientations": 20,
+          "keys": 93
+        },
+        {
+          "word": 70,
+          "length": 10,
+          "orientations": 20,
+          "keys": 90
+        },
+        {
+          "word": 71,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 88,
+          "length": 10,
+          "orientations": 20,
+          "keys": 89
+        },
+        {
+          "word": 97,
+          "length": 11,
+          "orientations": 22,
+          "keys": 3
+        },
+        {
+          "word": 107,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 109,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 123,
+          "length": 11,
+          "orientations": 22,
+          "keys": 0
+        },
+        {
+          "word": 147,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 175,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 176,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3631
+        },
+        {
+          "word": 232,
+          "length": 11,
+          "orientations": 22,
+          "keys": 2
+        },
+        {
+          "word": 240,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3652
+        },
+        {
+          "word": 241,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123759
+        },
+        {
+          "word": 255,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 278,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3087
+        },
+        {
+          "word": 283,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 301,
+          "length": 10,
+          "orientations": 20,
+          "keys": 128
+        },
+        {
+          "word": 303,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 307,
+          "length": 11,
+          "orientations": 22,
+          "keys": 2
+        },
+        {
+          "word": 313,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3748
+        },
+        {
+          "word": 315,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 317,
+          "length": 9,
+          "orientations": 18,
+          "keys": 2956
+        },
+        {
+          "word": 319,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 323,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123759
+        }
+      ]
+    },
+    {
+      "pages": [
+        33,
+        39
+      ],
+      "anchors": 34,
+      "classes": 1647956,
+      "maxSupport": 2,
+      "forcedOOV": 32,
+      "atMax": 19,
+      "detail": [
+        {
+          "word": 15,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 37,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3516
+        },
+        {
+          "word": 41,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3141
+        },
+        {
+          "word": 70,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3367
+        },
+        {
+          "word": 96,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123759
+        },
+        {
+          "word": 108,
+          "length": 12,
+          "orientations": 24,
+          "keys": 0
+        },
+        {
+          "word": 115,
+          "length": 10,
+          "orientations": 20,
+          "keys": 101
+        },
+        {
+          "word": 126,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 133,
+          "length": 11,
+          "orientations": 22,
+          "keys": 2
+        },
+        {
+          "word": 143,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 146,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3434
+        },
+        {
+          "word": 151,
+          "length": 10,
+          "orientations": 20,
+          "keys": 122
+        },
+        {
+          "word": 157,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123759
+        },
+        {
+          "word": 164,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3867
+        },
+        {
+          "word": 167,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 184,
+          "length": 10,
+          "orientations": 20,
+          "keys": 115
+        },
+        {
+          "word": 186,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3134
+        },
+        {
+          "word": 195,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123759
+        },
+        {
+          "word": 206,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 215,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 217,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 227,
+          "length": 10,
+          "orientations": 20,
+          "keys": 104
+        },
+        {
+          "word": 240,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3885
+        },
+        {
+          "word": 261,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3444
+        },
+        {
+          "word": 265,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 269,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3650
+        },
+        {
+          "word": 280,
+          "length": 10,
+          "orientations": 20,
+          "keys": 142
+        },
+        {
+          "word": 284,
+          "length": 11,
+          "orientations": 22,
+          "keys": 5
+        },
+        {
+          "word": 295,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3419
+        },
+        {
+          "word": 302,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3546
+        },
+        {
+          "word": 306,
+          "length": 12,
+          "orientations": 24,
+          "keys": 0
+        },
+        {
+          "word": 307,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 331,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123759
+        },
+        {
+          "word": 365,
+          "length": 10,
+          "orientations": 20,
+          "keys": 105
+        }
+      ]
+    },
+    {
+      "pages": [
+        40,
+        53
+      ],
+      "anchors": 55,
+      "classes": 3632342,
+      "maxSupport": 2,
+      "forcedOOV": 53,
+      "atMax": 91,
+      "detail": [
+        {
+          "word": 8,
+          "length": 12,
+          "orientations": 24,
+          "keys": 0
+        },
+        {
+          "word": 18,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3485
+        },
+        {
+          "word": 32,
+          "length": 10,
+          "orientations": 20,
+          "keys": 73
+        },
+        {
+          "word": 70,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 74,
+          "length": 10,
+          "orientations": 20,
+          "keys": 92
+        },
+        {
+          "word": 83,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 112,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123759
+        },
+        {
+          "word": 124,
+          "length": 10,
+          "orientations": 20,
+          "keys": 98
+        },
+        {
+          "word": 131,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 149,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 175,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123759
+        },
+        {
+          "word": 183,
+          "length": 10,
+          "orientations": 20,
+          "keys": 82
+        },
+        {
+          "word": 189,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 196,
+          "length": 11,
+          "orientations": 22,
+          "keys": 0
+        },
+        {
+          "word": 211,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 233,
+          "length": 11,
+          "orientations": 22,
+          "keys": 0
+        },
+        {
+          "word": 247,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 260,
+          "length": 9,
+          "orientations": 18,
+          "keys": 4030
+        },
+        {
+          "word": 277,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 279,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3745
+        },
+        {
+          "word": 284,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 293,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 302,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3535
+        },
+        {
+          "word": 314,
+          "length": 10,
+          "orientations": 20,
+          "keys": 87
+        },
+        {
+          "word": 330,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 331,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3753
+        },
+        {
+          "word": 348,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3654
+        },
+        {
+          "word": 349,
+          "length": 9,
+          "orientations": 18,
+          "keys": 4136
+        },
+        {
+          "word": 367,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3867
+        },
+        {
+          "word": 373,
+          "length": 12,
+          "orientations": 24,
+          "keys": 0
+        },
+        {
+          "word": 375,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 407,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3552
+        },
+        {
+          "word": 410,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 442,
+          "length": 9,
+          "orientations": 18,
+          "keys": 4464
+        },
+        {
+          "word": 462,
+          "length": 10,
+          "orientations": 20,
+          "keys": 146
+        },
+        {
+          "word": 465,
+          "length": 11,
+          "orientations": 22,
+          "keys": 0
+        },
+        {
+          "word": 467,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123759
+        },
+        {
+          "word": 501,
+          "length": 9,
+          "orientations": 18,
+          "keys": 4509
+        },
+        {
+          "word": 502,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123758
+        },
+        {
+          "word": 510,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123759
+        },
+        {
+          "word": 524,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 559,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123759
+        },
+        {
+          "word": 561,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123758
+        },
+        {
+          "word": 566,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 568,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 572,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123758
+        },
+        {
+          "word": 591,
+          "length": 13,
+          "orientations": 26,
+          "keys": 0
+        },
+        {
+          "word": 597,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123759
+        },
+        {
+          "word": 604,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123757
+        },
+        {
+          "word": 620,
+          "length": 12,
+          "orientations": 24,
+          "keys": 0
+        },
+        {
+          "word": 623,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 626,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 629,
+          "length": 10,
+          "orientations": 20,
+          "keys": 99
+        },
+        {
+          "word": 635,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 660,
+          "length": 11,
+          "orientations": 22,
+          "keys": 1
+        }
+      ]
+    },
+    {
+      "pages": [
+        54,
+        55
+      ],
+      "anchors": 8,
+      "classes": 742653,
+      "maxSupport": 2,
+      "forcedOOV": 6,
+      "atMax": 7,
+      "detail": [
+        {
+          "word": 1,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 2,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 15,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 18,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123759
+        },
+        {
+          "word": 36,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 39,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123760
+        },
+        {
+          "word": 47,
+          "length": 10,
+          "orientations": 20,
+          "keys": 97
+        },
+        {
+          "word": 49,
+          "length": 11,
+          "orientations": 22,
+          "keys": 4
+        }
+      ]
+    }
+  ],
+  "controls": [
+    {
+      "name": "0_welcome",
+      "eligible": 7,
+      "anchors": 8,
+      "classes": 375497,
+      "maxSupport": 7,
+      "forcedOOV": 1,
+      "atMax": 1,
+      "detail": [
+        {
+          "word": 30,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3978
+        },
+        {
+          "word": 42,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123728
+        },
+        {
+          "word": 48,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123727
+        },
+        {
+          "word": 54,
+          "length": 10,
+          "orientations": 20,
+          "keys": 92
+        },
+        {
+          "word": 66,
+          "length": 10,
+          "orientations": 20,
+          "keys": 104
+        },
+        {
+          "word": 73,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123727
+        },
+        {
+          "word": 109,
+          "length": 12,
+          "orientations": 24,
+          "keys": 1
+        },
+        {
+          "word": 119,
+          "length": 10,
+          "orientations": 20,
+          "keys": 150
+        }
+      ]
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "eligible": 11,
+      "anchors": 13,
+      "classes": 882210,
+      "maxSupport": 11,
+      "forcedOOV": 2,
+      "atMax": 1,
+      "detail": [
+        {
+          "word": 3,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123728
+        },
+        {
+          "word": 6,
+          "length": 9,
+          "orientations": 18,
+          "keys": 4596
+        },
+        {
+          "word": 8,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123727
+        },
+        {
+          "word": 69,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123727
+        },
+        {
+          "word": 94,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123728
+        },
+        {
+          "word": 100,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123728
+        },
+        {
+          "word": 101,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3800
+        },
+        {
+          "word": 141,
+          "length": 11,
+          "orientations": 22,
+          "keys": 5
+        },
+        {
+          "word": 143,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3913
+        },
+        {
+          "word": 149,
+          "length": 9,
+          "orientations": 18,
+          "keys": 3720
+        },
+        {
+          "word": 153,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123728
+        },
+        {
+          "word": 161,
+          "length": 8,
+          "orientations": 16,
+          "keys": 123727
+        },
+        {
+          "word": 175,
+          "length": 10,
+          "orientations": 20,
+          "keys": 100
+        }
+      ]
+    }
+  ]
+}
