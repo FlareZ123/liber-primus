@@ -58,5 +58,44 @@ function experiment(raw){
  const repeated=[];for(const a of [8,13])for(const b of [8,13]){let survivors=0;for(let m=0;m<2**common.length;m++){const hold=common.filter((_,i)=>m&(2**i));if(phase(a,b,hold))survivors++}repeated.push({a,b,masks:2**common.length,survivors})}
  return {dictionaryTypes:dict.size,controls,nulls,original:{A:[11976,12284],B:[12648,12956],words:[A.length,B.length],possible:s.possible,feasibleRunes:s.feasibleRunes,components:s.components.map(c=>({start:c.start,end:c.end,words:c.words,assignments:c.assignments})),commonZero:common,repeated}};
 }
-if(typeof module!=="undefined")module.exports=experiment;
-if(typeof require!=="undefined"&&require.main===module){const fs=require("node:fs"),path=require("node:path");const inputs=["resources/liber-primus/lp2-corpus.json","resources/liber-primus/lp2-transcription.txt","resources/external/relikd-solved-gp29-native-v1.json","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt"];console.log(JSON.stringify(experiment(inputs.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8"))),null,2))}
+
+// Exact F-transparent shared-pad test. Equal physical lengths imply equal hold
+// counts for same length consuming pad. Every true hold mask is a subset of
+// the observed ciphertext-zero positions. Test all mask pairs via overlapping
+// compressed word constraints; tree messages only needed for surviving masks.
+function fholdExperiment(raw){
+ const gp=JSON.parse(raw[0]),ix=new Map(gp.runes.map((x,i)=>[x,i])),mod=x=>(x%29+29)%29,id=w=>String.fromCharCode(...w.map(x=>65+x));
+ const tokens=gp.translit.map((t,i)=>({t,i})).sort((a,b)=>b.t.length-a.t.length);
+ function native(t){const a=/\*{3}\s*START OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\n]*/i.exec(t),b=/\*{3}\s*END OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\n]*/i.exec(t);t=t.slice(a?a.index+a[0].length:0,b?b.index:t.length);return (t.toUpperCase().replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S").match(/[A-Z]+/g)||[]).map(w=>{let p=[];for(let j=0;j<w.length;){const q=w.startsWith("ING",j)?{t:"ING",i:21}:w.startsWith("IO",j)?{t:"IO",i:27}:tokens.find(x=>w.startsWith(x.t,j));if(!q)throw Error("unmapped");p.push(q.i);j+=q.t.length}return p})}
+ function words(t,sep){let out=[],w=[];for(const x of t){if(ix.has(x))w.push(ix.get(x));else if(sep(x)&&w.length){out.push(w);w=[]}}if(w.length)out.push(w);return out}
+ const donors=raw.slice(3).map(native),dict=new Set();for(const d of donors)for(const w of d.slice(0,Math.floor(d.length*.8)))if(w.length<=30)dict.add(id(w));for(const s of JSON.parse(raw[2]).sections)for(const w of words(s.source_text,()=>true))dict.add(id(w));
+ const types=new Map();for(const w of dict){const pat=[...w].map(c=>c==="A"?"1":"0").join("");if(!types.has(pat))types.set(pat,[]);types.get(pat).push([...w].filter(c=>c!=="A").join(""))}
+ function solve(A,B){
+  let nextid=0;const tables=[A,B].map(W=>W.map(c=>({c,variants:new Map()})));const lengths=tables.map(W=>W.flatMap(v=>v.c).length);
+  const Z=tables.map(W=>W.flatMap(v=>v.c).flatMap((c,i)=>c===0?[i]:[]));const groups=Z.map(z=>Array.from({length:z.length+1},()=>[]));
+  function make(s,mask){let p=0,t=0,zi=0,list=[],feasible=true;for(const v of tables[s]){let pat="";for(const c of v.c){pat+=c===0&&((mask>>zi)&1)?"1":"0";if(c===0)zi++;p++}let local=v.variants.get(pat);if(!local){const C=v.c.filter((_,i)=>pat[i]==="0"),dom=types.get(pat)||[],pads=dom.map(w=>C.map((c,i)=>String.fromCharCode(65+mod(c-(w.charCodeAt(i)-65)))).join(""));local={uid:nextid++,C,dom,pads};v.variants.set(pat,local)}if(!local.dom.length){feasible=false;break}if(local.C.length){list.push({s:t,e:t+local.C.length,...local});t+=local.C.length}}
+   return feasible?list:null}
+  const byCount=z=>{const out=Array.from({length:z.length+1},()=>[]);for(let m=0;m<2**z.length;m++){let k=0;for(let a=m;a;a&=a-1)k++;out[k].push(m)}return out};
+  const all=Z.map(byCount),common=Math.min(...Z.map(z=>z.length)),cache=new Map(),projection=new Map();let maskPairs=0,locallyFeasible=0,edgePassed=0,globallyFeasible=0,first=null;
+  function project(v,o,l){const k=v.uid+":"+o+":"+l;if(!projection.has(k))projection.set(k,new Set(v.pads.map(w=>w.slice(o,o+l))));return projection.get(k)}
+  function pair(a,b,s,e){const ao=s-a.s,bo=s-b.s,l=e-s,k=[a.uid,b.uid,ao,bo,l].join(":");if(cache.has(k))return cache.get(k);const X=project(a,ao,l),Y=project(b,bo,l),[small,big]=X.size<Y.size?[X,Y]:[Y,X];let ok=false;for(const x of small)if(big.has(x)){ok=true;break}cache.set(k,ok);return ok}
+  function graph(A,B,exact){let i=0,j=0;const edges=[];while(i<A.length&&j<B.length){const a=A[i],b=B[j],s=Math.max(a.s,b.s),e=Math.min(a.e,b.e);if(!pair(a,b,s,e))return false;if(exact)edges.push({i,j,s,e});if(a.e<=b.e)i++;if(b.e<=a.e)j++}if(!exact)return true;
+   // Arc consistency on a forest is equivalent to full satisfiability.
+   const DA=A.map(v=>v.pads.slice()),DB=B.map(v=>v.pads.slice());let changed=true;while(changed){changed=false;for(const {i,j,s,e} of edges){const a=A[i],b=B[j],ao=s-a.s,bo=s-b.s,l=e-s,X=new Set(DA[i].map(w=>w.slice(ao,ao+l))),Y=new Set(DB[j].map(w=>w.slice(bo,bo+l)));const x=DA[i].filter(w=>Y.has(w.slice(ao,ao+l))),y=DB[j].filter(w=>X.has(w.slice(bo,bo+l)));if(!x.length||!y.length)return false;if(x.length!==DA[i].length||y.length!==DB[j].length)changed=true;DA[i]=x;DB[j]=y}}return true
+  }
+  for(let k=0;k<=common;k++){const X=all[0][k],Y=all[1][k];maskPairs+=X.length*Y.length;const U=X.map(m=>({m,W:make(0,m)})).filter(x=>x.W),V=Y.map(m=>({m,W:make(1,m)})).filter(x=>x.W);locallyFeasible+=U.length*V.length;
+   for(const a of U)for(const b of V){if(!graph(a.W,b.W,false))continue;edgePassed++;if(graph(a.W,b.W,true)){globallyFeasible++;if(!first)first=[a.m,b.m]}}
+  }
+  return {lengths,zeros:Z.map(z=>z.length),maskPairs,locallyFeasible,edgePassed,globallyFeasible,first,cache:cache.size};
+ }
+ function rng(seed){let x=seed>>>0;return ()=>{x^=x<<13;x^=x>>>17;x^=x<<5;return x>>>0}}
+ function window(d,N,skip){let out=[];for(let i=Math.floor(d.length*.8)+skip;i<d.length;i++){let j=i,n=0;while(j<d.length&&n<N&&dict.has(id(d[j]))){n+=d[j++].length}if(n===N){const W=d.slice(i,j);if(W.flat().filter(p=>p===0).length===3)return W}}throw Error("no held window")}
+ function encode(W,K){let t=0;return W.map(w=>w.map(p=>p===0?0:mod(p+K[t++])))}
+ const controls=[];for(let k=0;k<3;k++){const P=window(donors[k],120,k*100),Q=window(donors[(k+1)%3],120,k*150+100),R=rng(73010+k),K=Array.from({length:120},()=>R()%29),L=Array.from({length:120},()=>R()%29),A=encode(P,K),B=encode(Q,K),yes=solve(A,B),no=solve(A,encode(Q,L));if(!yes.globallyFeasible||no.globallyFeasible)throw Error("calibration failed "+JSON.stringify({yes,no}));controls.push({yes,no})}
+ const original=words(raw[1].split("%").slice(0,55).join("%"),x=>x!=="%"&&x!=="/"&&!/\s/u.test(x)),tape=gp.pages.filter(x=>x.page<56).flatMap(x=>x.indices);if(id(original.flat())!==id(tape))throw Error("source mismatch");
+ const slice=(s,e)=>{let n=0,W=[];for(const w of original){const a=n,b=n+w.length;if(a>=s&&b<=e)W.push(w);n=b}if(W.flat().length!==e-s)throw Error("partial word");return W};
+ return {dictionaryTypes:dict.size,controls,original:solve(slice(11976,12284),slice(12648,12956))};
+}
+
+if(typeof module!=="undefined")module.exports={experiment,fholdExperiment};
+if(typeof require!=="undefined"&&require.main===module){const fs=require("node:fs"),path=require("node:path");const inputs=["resources/liber-primus/lp2-corpus.json","resources/liber-primus/lp2-transcription.txt","resources/external/relikd-solved-gp29-native-v1.json","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt"];console.log(JSON.stringify(Object.fromEntries([["ordinary",experiment],["fhold",fholdExperiment]].map(([k,f])=>[k,f(inputs.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8")))])),null,2))}
