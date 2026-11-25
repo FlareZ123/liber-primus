@@ -125,6 +125,7 @@ int main(int argc,char** argv){if(argc<2){cerr<<"usage: solver input [seconds] [
  int secs=argc>2?stoi(argv[2]):180,threads=argc>3?stoi(argv[3]):1,shard=argc>4?stoi(argv[4]):0,shards=argc>5?stoi(argv[5]):1;maxOOV=argc>7?stoi(argv[7]):0;if(maxOOV<0||maxOOV>=n)return 2;omp_set_num_threads(threads);startTime=chrono::steady_clock::now();endTime=startTime+chrono::seconds(secs);cout<<"ORDER";for(int g:order)cout<<" "<<g<<":"<<groups[g].opts.size();cout<<"\n"<<flush;
  atomic<int> finished{0};int total=0;
  if(argc>8){
+  string title=argc>9?argv[9]:"";if(!title.empty()&&(title.size()!=8||title.find('0')!=string::npos))return 2;
   vector<string> keys;{ifstream keyfile(argv[8]);string key;while(keyfile>>key)if(key.size()==8)keys.push_back(key);}
   total=keys.size();
   #pragma omp parallel for schedule(dynamic,1)
@@ -132,8 +133,12 @@ int main(int argc,char** argv){if(argc<2){cerr<<"usage: solver input [seconds] [
    if(a%shards!=shard||timeout())continue;
    Count cnt;State st;bool okay=true;
    for(int j=0;j<8;j++)if(!impose(st,Edge{u8(alphabet.find(keys[a][j])),0,u8(j)},0)){okay=false;break;}
-   if(okay&&alldiff(st)&&primitive_possible(st))dfs(st,0,cnt,order,maxOOV);
-   flushCount(cnt);int f=++finished;
+   // Optional phase-zero self-encrypting title: k_j=pi(P_j), pi(C_j)=2*pi(P_j).
+   if(okay&&!title.empty())for(int j=0;j<8;j++){
+    if(keys[a][j]=='0'||!impose(st,Edge{u8(alphabet.find(title[j])),u8(alphabet.find(keys[a][j])),u8(j)},0)){okay=false;break;}
+   }
+   if(okay&&alldiff(st)&&primitive_possible(st)&&(title.empty()||hyperplane_possible(st)))dfs(st,0,cnt,order,maxOOV);
+   flushCount(cnt);int f=stopFlag.load()?finished.load():++finished;
    #pragma omp critical
    {cout<<"KEYWORD "<<keys[a]<<" finished="<<f<<" nodes="<<globalNodes<<" extends="<<globalExtends<<" filters="<<globalFilter<<" enum="<<globalEnum<<" t="<<elapsed()<<"\n"<<flush;}
   }
