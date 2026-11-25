@@ -20,7 +20,9 @@ function study(data){
   for(const t of codes){if(t<2){run+=(t+1)*pow;pow*=2;if(run>1000000)throw Error("unreasonable expansion")}else{flush();const j=t-1;if(j>=A)return null;const p=list.splice(j,1)[0];out.push(p);list.unshift(p)}}flush();return out}
  function codesFor(original,eob,a,b,rev){const symbols=Array.from({length:29},(_,i)=>i).filter(v=>v!==eob&&v!==a&&v!==b);if(rev)symbols.reverse();const map=new Int16Array(29);map[a]=0;map[b]=1;symbols.forEach((v,i)=>map[v]=i+2);return original.map(v=>map[v])}
  const positive=[];for(const d of D){const alphabet=Array.from(new Set(d)).sort((a,b)=>a-b);const p=d.map(v=>alphabet.indexOf(v));const {last,primary}=bwt(p),codes=encode(last,alphabet.length),recovered=decode(codes,alphabet.length);check(recovered.every((v,i)=>v===last[i]),"zero RLE MTF positive");check(inverse(recovered,alphabet.length,primary).every((v,i)=>v===p[i]),"native BWT zero-RLE full inverse");positive.push({alphabet:alphabet.length,plain:p.length,codes:codes.length,zeroRunCodes:codes.filter(x=>x<2).length})}
- const cuts=[0];for(const p of pages)cuts.push(cuts.at(-1)+p.indices.length);const starts=[0,3,8,15,23,28,33,40,54,56].map(i=>cuts[i]);const blocks=starts.slice(1).map((b,i)=>C.slice(starts[i],b));
+ const cuts=[0];for(const p of pages)cuts.push(cuts.at(-1)+p.indices.length);
+ // Legacy nine-section split: p23–27 and p28–32; not the original-image p23–26/p27–32 chapter boundary.
+ const starts=[0,3,8,15,23,28,33,40,54,56].map(i=>cuts[i]);const blocks=starts.slice(1).map((b,i)=>C.slice(starts[i],b));
  const outputs=[];
  function tryBlock(x,eobMode,id){
   const eob=eobMode?x.at(-1):-1,original=eobMode?x.slice(0,-1):x,A=eobMode?27:28;const hits=[];let tried=0,invalidEob=0,min=Infinity,max=0;

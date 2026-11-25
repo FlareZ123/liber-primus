@@ -9,7 +9,8 @@ function study(data){
  const cw=gp(data.slice(1,4).join("\n")),raw=data[4],bk=gp(raw.slice(raw.indexOf("THE ARGUMENT"),raw.indexOf("*** END OF THIS PROJECT GUTENBERG EBOOK")));check(cw.length===21611&&bk.length===18631,"donor counts");
  const donors=[cw.slice(0,N),cw.slice(4327,4327+N),cw.slice(8655,8655+N),bk.slice(0,N),bk.slice(5675,5675+N)];
  const cuts=[0];for(const p of pages)cuts.push(cuts.at(-1)+p.indices.length);const spans=x=>x.slice(1).map((b,i)=>[x[i],b]);
- const regimes=[{id:"global",ss:[[0,N]],max:3301},{id:"chapter",ss:spans([0,3,8,15,23,28,33,40,54,56].map(i=>cuts[i])),max:1033},{id:"page",ss:spans(cuts),max:130}];
+ // Legacy nine-section split: p23–27 and p28–32; not the original-image p23–26/p27–32 chapter boundary.
+ const regimes=[{id:"global",ss:[[0,N]],max:3301},{id:"legacy-nine-section",ss:spans([0,3,8,15,23,28,33,40,54,56].map(i=>cuts[i])),max:1033},{id:"page",ss:spans(cuts),max:130}];
  // Standard cyclic BWT via prefix doubling, no guessed primary index.
  function bwt(x,rev=false){const n=x.length;if(!n)return {last:[],primary:0};let rank=x.map(v=>rev?28-v:v),order=Array.from({length:n},(_,i)=>i);
   for(let k=1;k<n;k*=2){order.sort((a,b)=>rank[a]-rank[b]||rank[(a+k)%n]-rank[(b+k)%n]||a-b);const nr=Array(n).fill(0);for(let j=1;j<n;j++){const a=order[j-1],b=order[j];nr[b]=nr[a]+Number(rank[a]!==rank[b]||rank[(a+k)%n]!==rank[(b+k)%n])}rank=nr;if(rank[order[n-1]]===n-1)break}
