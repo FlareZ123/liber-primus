@@ -151,3 +151,21 @@ Fit on only the first 120 known interior outputs and reserve 60 as independent c
 Retire this exact 48-case shared affine circular ring receiver, including all lower-degree polynomials in the same alignment. Different per-ring operators, arbitrary offsets/reshuffles, or nonlinear secret output alphabets are outside its scope. No new original plaintext or key.
 
 [SFT](../sims/lp2_p50_shared_ring_convolution_sft.cjs) · core executed directly in V8 on repository JSON inputs; no Node/CI run claimed.
+
+
+## Exact perimeter-key collision-null lexical inverse (Agent15, 25 November)
+
+Unlike the earlier negative direct additive pad, this uses external Round47 V-NULL: on an additive ciphertext collision, with probability `supp=1-.664/3.448` emit a uniformly chosen nonrepeat null, consume a key digit and retry the same plaintext. Use the exact 76-cell top-left-clockwise p50 ring mod29 once, conventional base60 or drop-literal-f base59, with no phase/sign/orientation search. Ring length matches the ciphertext length required by the ordinary consuming model. No independent authored selector confirms this consumer.
+
+Each fixed-key event-DAG vertex has an immediate genuine edge and at most one null-chain edge, because pending plaintext on a null is forced by C[i−1]−K[i] mod29. Intermediate nulls must propose the previous ciphertext and emit a different one. Exact page-start convention: no previous ciphertext, first rune genuine. Literal source transcription matches one carry fragment and 16 complete groups (4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3). Exact word-level DP across all event paths minimizes OOV components, then maximizes joint lexical/insertion score among minimum-OOV paths. Native 36,210-form GP29 lexicon from Shakespeare/Emerson, solved native counts and TextBlob; A/I/O/T singletons, max24-rune words, unigram OOV backoff. Free boundaries forbid other singleton words except initial unscored carry; fixed grouping grants other singletons as OOV. No beam; selected paths replay exactly.
+
+| Key | Event paths | Fixed minimum OOV / 16 | Fixed score | Free minimum OOV | Free score |
+|---|---:|---:|---:|---:|---:|
+| base60 | 8 | 14 | −5.354 | 3 | −4.281 |
+| base59 | 2 | 14 | −5.192 | 3 | −4.315 |
+
+Scores in nats per ciphertext rune, secondary to OOV count. Free optimum groups noise into three long backoff components; no prose.
+
+Controls: 50 Gibran windows per key, initial previous-word last-rune carry and complete words, accepted when simulated insertion produces exactly76 ciphertext runes. Gibran excluded from empirical training counts (generic dictionary may contain its words). Fixed exact rune recovery 45/50 and 43/50; free 45/50 and 46/50. Correct-control fixed score ranges −2.513…−1.415 and −2.467…−1.415; free −2.528…−1.415 and −2.269…−1.415. Controls need at most 3 OOV fixed and 1 free. Wrong-key fixed score ranges −6.288…−5.240 and −6.178…−5.106. Overlapping, ciphertext-length-conditioned plants are recovery diagnostics, not independent p-values; decoder is imperfect.
+
+**Decision:** reject the two fixed page-start ring V-NULL consumers under the finite word model even with decoy group boundaries. No unknown plaintext or authentic key; other clocks, keys, languages and initial states outside scope. Do not broaden without a new selector. [SFT](../sims/lp2_p55_perimeter_vnull_lexical_sft.cjs), [complete output](lp2-p55-perimeter-vnull-lexical-output.json). Core JS executed against fetched repo inputs in connected runtime; no standalone Node/CI claimed.
