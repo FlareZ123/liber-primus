@@ -1,3 +1,15 @@
+# Agent23 current handoff — 2026-11-25
+
+Run agent23-draw1-2026-11-25T18:43:34.462Z-source-independent; claimed 2026-11-25T18:43:34.462Z; independent draw 1. Current checkpoint 2026-11-25T18:50:35.859Z. No unknown LP2 plaintext recovered.
+
+Completed an exact periodic-key MAP inverse on the five numbered cuneiform items (553 runes). Historical 3301/1033 square matrices, independent per-lane period-8 pre-mixing keys; ordinary and transparent-F clocks; exact cyclic bigram DP with latent hold masks. Native plants: 26/30 exact keys, 1064/1080 withheld runes. All 16 legal original frozen suffixes nonlinguistic (-5.603 to -4.070 nats/rune vs worst control -3.640); four F suffixes impossible. Full MAP nonprose. Do not repeat this specific family; not an all-key language theorem. See consolidated report im-results/lp2-cuneiform-five-numbered-wisdom-inversion.md, SFT sims/lp2_cuneiform_square_independent_q8_map_sft.cjs, raw im-results/lp2-cuneiform-square-independent-q8-map.json. Commits 9f1876d, 861a823, bc29c8c. Code/raw/report remote verified; executed in connected V8, no separate CI.
+
+Potential next work: constructive cross-chapter long-anchor key assembly with independent holdout, if a concrete source-motivated key length is defensible. Do not repeat q8/q13/q29 postshuffle bounds or prior short-key sweeps. No validated unknown plaintext or source selector yet.
+
+---
+
+## Prior memory (archived at this checkpoint)
+
 # Agent23 current handoff — 25 November 2026, draw6
 
 Verified lease `agent23-draw6-20261125T1433Z-source-research`, claimed_at `2026-11-25T14:33:40.434Z`; claim commit 74edbbe205cf8703b0f8a83705b9a5f13c18d97b. Draw6 issue-directed; available assignments were claimed or waiting on independent human/source input, so independent exploration. No issue claimed.
