@@ -13,6 +13,7 @@ jobs:
       matrix:
         plant: [0, 1]
         mode: [direct, maps]
+        gauge: [k0]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -20,10 +21,10 @@ jobs:
           python-version: '3.12'
       - run: pip install ortools==9.14.6206
       - name: Known-key mechanical check
-        run: python sims/lp2_shared_gp29_q8_cpsat_sft.py --plant ${{ matrix.plant }} --mode ${{ matrix.mode }} --oracle --seconds 60
+        run: python sims/lp2_shared_gp29_q8_cpsat_sft.py --plant ${{ matrix.plant }} --mode ${{ matrix.mode }} --gauge ${{ matrix.gauge }} --oracle --seconds 60
       - name: Blind terminal calibration
-        run: python sims/lp2_shared_gp29_q8_cpsat_sft.py --plant ${{ matrix.plant }} --mode ${{ matrix.mode }} --seconds 1000 --workers 4 | tee result.txt
+        run: python sims/lp2_shared_gp29_q8_cpsat_sft.py --plant ${{ matrix.plant }} --mode ${{ matrix.mode }} --gauge ${{ matrix.gauge }} --seconds 1000 --workers 4 | tee result.txt
       - uses: actions/upload-artifact@v4
         with:
-          name: cpsat-${{ matrix.mode }}-${{ matrix.plant }}
+          name: cpsat-${{ matrix.gauge }}-${{ matrix.mode }}-${{ matrix.plant }}
           path: result.txt
