@@ -1,0 +1,714 @@
+{
+  "k": 6,
+  "q": 76,
+  "allowConsumingF": true,
+  "projectionChecks": 6,
+  "controls": [
+    {
+      "groups": 70,
+      "eligible": 69,
+      "budget": 0,
+      "required": 69,
+      "candidatePairs": 2297992,
+      "distinct": 2293422,
+      "histogram": [
+        null,
+        2288868,
+        4540,
+        12,
+        2
+      ],
+      "edgeReport": [
+        {
+          "t": 2,
+          "tuples": 4554,
+          "edges": [
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              33
+            ],
+            [
+              3,
+              680
+            ],
+            [
+              4,
+              4402
+            ],
+            [
+              5,
+              4554
+            ]
+          ],
+          "graph": {
+            "maxPath": 2,
+            "multi3": 0,
+            "extra4": 2,
+            "edges": 5,
+            "cyclicComponentVertices": 0
+          }
+        },
+        {
+          "t": 3,
+          "tuples": 14,
+          "edges": [
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              5,
+              4
+            ]
+          ],
+          "graph": {
+            "maxPath": 1,
+            "multi3": 0,
+            "extra4": 2,
+            "edges": 0,
+            "cyclicComponentVertices": 0
+          }
+        },
+        {
+          "t": 4,
+          "tuples": 2,
+          "edges": [
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              5,
+              0
+            ]
+          ],
+          "graph": {
+            "maxPath": 1,
+            "multi3": 0,
+            "extra4": 2,
+            "edges": 0,
+            "cyclicComponentVertices": 0
+          }
+        }
+      ],
+      "period": 76,
+      "unconstrainedSupport": 168,
+      "overlapSupport": 132,
+      "gapGraphSupport": 130,
+      "minPeriodOld": 34,
+      "minPeriod": 39,
+      "selected": [
+        [
+          29,
+          62,
+          53
+        ],
+        [
+          39,
+          77,
+          70
+        ],
+        [
+          58,
+          105,
+          101
+        ],
+        [
+          76,
+          132,
+          130
+        ],
+        [
+          90,
+          153,
+          150
+        ],
+        [
+          128,
+          210,
+          201
+        ],
+        [
+          138,
+          225,
+          214
+        ],
+        [
+          150,
+          243,
+          230
+        ],
+        [
+          170,
+          273,
+          257
+        ],
+        [
+          180,
+          288,
+          270
+        ],
+        [
+          188,
+          300,
+          281
+        ],
+        [
+          256,
+          402,
+          371
+        ]
+      ],
+      "confirmed": 69
+    },
+    {
+      "groups": 70,
+      "eligible": 68,
+      "budget": 0,
+      "required": 68,
+      "candidatePairs": 2318196,
+      "distinct": 2313523,
+      "histogram": [
+        null,
+        2308861,
+        4651,
+        11
+      ],
+      "edgeReport": [
+        {
+          "t": 2,
+          "tuples": 4662,
+          "edges": [
+            [
+              1,
+              7
+            ],
+            [
+              2,
+              25
+            ],
+            [
+              3,
+              721
+            ],
+            [
+              4,
+              4431
+            ],
+            [
+              5,
+              4662
+            ]
+          ],
+          "graph": {
+            "maxPath": 3,
+            "multi3": 0,
+            "extra4": 0,
+            "edges": 8,
+            "cyclicComponentVertices": 0
+          }
+        },
+        {
+          "t": 3,
+          "tuples": 11,
+          "edges": [
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              5,
+              2
+            ]
+          ],
+          "graph": {
+            "maxPath": 1,
+            "multi3": 0,
+            "extra4": 0,
+            "edges": 0,
+            "cyclicComponentVertices": 0
+          }
+        }
+      ],
+      "period": 76,
+      "unconstrainedSupport": 163,
+      "overlapSupport": 128,
+      "gapGraphSupport": 125,
+      "minPeriodOld": 36,
+      "minPeriod": 39,
+      "selected": [
+        [
+          29,
+          58,
+          52
+        ],
+        [
+          39,
+          73,
+          68
+        ],
+        [
+          58,
+          101,
+          100
+        ],
+        [
+          76,
+          128,
+          125
+        ],
+        [
+          90,
+          149,
+          144
+        ],
+        [
+          128,
+          206,
+          194
+        ],
+        [
+          138,
+          221,
+          208
+        ],
+        [
+          150,
+          239,
+          224
+        ],
+        [
+          170,
+          269,
+          250
+        ],
+        [
+          180,
+          284,
+          264
+        ],
+        [
+          188,
+          296,
+          274
+        ],
+        [
+          256,
+          398,
+          365
+        ]
+      ],
+      "confirmed": 68
+    },
+    {
+      "groups": 70,
+      "eligible": 64,
+      "budget": 0,
+      "required": 64,
+      "candidatePairs": 1854000,
+      "distinct": 1851172,
+      "histogram": [
+        null,
+        1848352,
+        2813,
+        6,
+        1
+      ],
+      "edgeReport": [
+        {
+          "t": 2,
+          "tuples": 2820,
+          "edges": [
+            [
+              1,
+              6
+            ],
+            [
+              2,
+              10
+            ],
+            [
+              3,
+              299
+            ],
+            [
+              4,
+              2533
+            ],
+            [
+              5,
+              2820
+            ]
+          ],
+          "graph": {
+            "maxPath": 2,
+            "multi3": 0,
+            "extra4": 1,
+            "edges": 8,
+            "cyclicComponentVertices": 0
+          }
+        },
+        {
+          "t": 3,
+          "tuples": 7,
+          "edges": [
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              5,
+              1
+            ]
+          ],
+          "graph": {
+            "maxPath": 1,
+            "multi3": 0,
+            "extra4": 1,
+            "edges": 0,
+            "cyclicComponentVertices": 0
+          }
+        },
+        {
+          "t": 4,
+          "tuples": 1,
+          "edges": [
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              5,
+              0
+            ]
+          ],
+          "graph": {
+            "maxPath": 1,
+            "multi3": 0,
+            "extra4": 1,
+            "edges": 0,
+            "cyclicComponentVertices": 0
+          }
+        }
+      ],
+      "period": 76,
+      "unconstrainedSupport": 160,
+      "overlapSupport": 125,
+      "gapGraphSupport": 116,
+      "minPeriodOld": 36,
+      "minPeriod": 38,
+      "selected": [
+        [
+          29,
+          54,
+          52
+        ],
+        [
+          39,
+          69,
+          66
+        ],
+        [
+          58,
+          98,
+          92
+        ],
+        [
+          76,
+          125,
+          116
+        ],
+        [
+          90,
+          146,
+          135
+        ],
+        [
+          128,
+          203,
+          186
+        ],
+        [
+          138,
+          218,
+          199
+        ],
+        [
+          150,
+          236,
+          215
+        ],
+        [
+          170,
+          266,
+          242
+        ],
+        [
+          180,
+          281,
+          255
+        ],
+        [
+          188,
+          293,
+          266
+        ],
+        [
+          256,
+          395,
+          356
+        ]
+      ],
+      "confirmed": 64
+    }
+  ],
+  "original": {
+    "groups": 2896,
+    "eligible": 514,
+    "budget": 144,
+    "required": 370,
+    "candidatePairs": 18011225,
+    "distinct": 17741100,
+    "histogram": [
+      null,
+      17473659,
+      264782,
+      2634,
+      25
+    ],
+    "edgeReport": [
+      {
+        "t": 2,
+        "tuples": 267441,
+        "edges": [
+          [
+            1,
+            3603
+          ],
+          [
+            2,
+            76138
+          ],
+          [
+            3,
+            267106
+          ],
+          [
+            4,
+            267441
+          ],
+          [
+            5,
+            267441
+          ]
+        ],
+        "graph": {
+          "maxPath": 4,
+          "multi3": 0,
+          "extra4": 25,
+          "edges": 3778,
+          "cyclicComponentVertices": 0
+        }
+      },
+      {
+        "t": 3,
+        "tuples": 2659,
+        "edges": [
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            9
+          ],
+          [
+            3,
+            245
+          ],
+          [
+            4,
+            2463
+          ],
+          [
+            5,
+            2659
+          ]
+        ],
+        "graph": {
+          "maxPath": 1,
+          "multi3": 0,
+          "extra4": 25,
+          "edges": 0,
+          "cyclicComponentVertices": 0
+        }
+      },
+      {
+        "t": 4,
+        "tuples": 25,
+        "edges": [
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            5,
+            13
+          ]
+        ],
+        "graph": {
+          "maxPath": 1,
+          "multi3": 0,
+          "extra4": 25,
+          "edges": 0,
+          "cyclicComponentVertices": 0
+        }
+      }
+    ],
+    "period": 76,
+    "unconstrainedSupport": 253,
+    "overlapSupport": 215,
+    "gapGraphSupport": 177,
+    "minPeriodOld": 138,
+    "minPeriod": 173,
+    "selected": [
+      [
+        29,
+        86,
+        69
+      ],
+      [
+        39,
+        116,
+        93
+      ],
+      [
+        58,
+        170,
+        137
+      ],
+      [
+        76,
+        215,
+        177
+      ],
+      [
+        90,
+        250,
+        205
+      ],
+      [
+        128,
+        345,
+        281
+      ],
+      [
+        138,
+        370,
+        301
+      ],
+      [
+        150,
+        400,
+        325
+      ],
+      [
+        170,
+        450,
+        365
+      ],
+      [
+        180,
+        475,
+        385
+      ],
+      [
+        188,
+        495,
+        401
+      ],
+      [
+        256,
+        665,
+        537
+      ]
+    ],
+    "confirmed": 0
+  }
+}
