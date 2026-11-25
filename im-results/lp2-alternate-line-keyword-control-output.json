@@ -1,0 +1,242 @@
+[
+  {
+    "cfg": {
+      "i": 1,
+      "q": 8,
+      "parity": 0,
+      "key": [
+        23,
+        10,
+        1,
+        10,
+        9,
+        10,
+        16,
+        26
+      ]
+    },
+    "fit": 232,
+    "n": 308,
+    "lineCarries": 10,
+    "pageCarry": false,
+    "consumingZeros": 7,
+    "results": [
+      {
+        "p": 0,
+        "zeros": 13,
+        "legalMasks": 8192,
+        "trigramMasks": 64,
+        "exhaustive": false,
+        "score": -644.6758799978987,
+        "key": [
+          23,
+          10,
+          1,
+          10,
+          9,
+          10,
+          16,
+          26
+        ],
+        "fitMask": 3192,
+        "fitMatches": 226
+      },
+      {
+        "p": 1,
+        "zeros": 13,
+        "legalMasks": 8192,
+        "trigramMasks": 64,
+        "exhaustive": false,
+        "score": -1019.6376187782034,
+        "key": [
+          24,
+          10,
+          28,
+          16,
+          10,
+          10,
+          16,
+          25
+        ],
+        "fitMask": 2271,
+        "fitMatches": 7
+      }
+    ],
+    "bestParity": 0,
+    "keyMatches": 8,
+    "fitMatches": 226,
+    "heldMatches": 76,
+    "held": 76,
+    "replay": true,
+    "cont": {
+      "suffixMap": -196.20416720715616,
+      "conditional": -196.20416720715616,
+      "states": 2
+    }
+  },
+  {
+    "cfg": {
+      "i": 3,
+      "q": 13,
+      "parity": 1,
+      "key": [
+        0,
+        10,
+        4,
+        0,
+        1,
+        19,
+        0,
+        18,
+        4,
+        18,
+        9,
+        0,
+        18
+      ]
+    },
+    "fit": 232,
+    "n": 308,
+    "lineCarries": 11,
+    "pageCarry": true,
+    "consumingZeros": 4,
+    "results": [
+      {
+        "p": 0,
+        "zeros": 6,
+        "legalMasks": 64,
+        "trigramMasks": 64,
+        "exhaustive": true,
+        "score": -983.5374889878492,
+        "key": [
+          27,
+          0,
+          17,
+          8,
+          24,
+          21,
+          14,
+          8,
+          10,
+          17,
+          11,
+          15,
+          9
+        ],
+        "fitMask": 7,
+        "fitMatches": 13
+      },
+      {
+        "p": 1,
+        "zeros": 6,
+        "legalMasks": 64,
+        "trigramMasks": 64,
+        "exhaustive": true,
+        "score": -514.8575466955207,
+        "key": [
+          0,
+          10,
+          4,
+          0,
+          1,
+          19,
+          0,
+          18,
+          4,
+          18,
+          9,
+          0,
+          18
+        ],
+        "fitMask": 33,
+        "fitMatches": 232
+      }
+    ],
+    "bestParity": 1,
+    "keyMatches": 13,
+    "fitMatches": 232,
+    "heldMatches": 76,
+    "held": 76,
+    "replay": true,
+    "cont": {
+      "suffixMap": -177.7908189975252,
+      "conditional": -177.7908189975252,
+      "states": 1
+    }
+  },
+  {
+    "cfg": {
+      "i": 4,
+      "q": 8,
+      "parity": 1,
+      "key": [
+        23,
+        24,
+        0,
+        7,
+        23,
+        7,
+        7,
+        17
+      ]
+    },
+    "fit": 232,
+    "n": 308,
+    "lineCarries": 9,
+    "pageCarry": true,
+    "consumingZeros": 3,
+    "results": [
+      {
+        "p": 0,
+        "zeros": 6,
+        "legalMasks": 64,
+        "trigramMasks": 64,
+        "exhaustive": true,
+        "score": -1017.630740099045,
+        "key": [
+          24,
+          17,
+          9,
+          7,
+          23,
+          12,
+          7,
+          17
+        ],
+        "fitMask": 35,
+        "fitMatches": 8
+      },
+      {
+        "p": 1,
+        "zeros": 6,
+        "legalMasks": 64,
+        "trigramMasks": 64,
+        "exhaustive": true,
+        "score": -675.6180547309639,
+        "key": [
+          23,
+          24,
+          0,
+          7,
+          23,
+          7,
+          7,
+          17
+        ],
+        "fitMask": 29,
+        "fitMatches": 232
+      }
+    ],
+    "bestParity": 1,
+    "keyMatches": 8,
+    "fitMatches": 232,
+    "heldMatches": 76,
+    "held": 76,
+    "replay": true,
+    "cont": {
+      "suffixMap": -222.30298217406926,
+      "conditional": -222.30298217406926,
+      "states": 2
+    }
+  }
+]

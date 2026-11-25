@@ -1,0 +1,2561 @@
+{
+  "lineCount": 594,
+  "chapterLines": [
+    33,
+    55,
+    79,
+    86,
+    46,
+    65,
+    80,
+    135,
+    15
+  ],
+  "chapterLengths": [
+    729,
+    1145,
+    1729,
+    1903,
+    1021,
+    1433,
+    1680,
+    3008,
+    308
+  ],
+  "toyCases": 64,
+  "donorLengths": [
+    217106,
+    321327,
+    62492
+  ],
+  "result": [
+    {
+      "ch": 0,
+      "pages": [
+        0,
+        2
+      ],
+      "parity": 0,
+      "q": 8,
+      "n": 729,
+      "F": 34,
+      "rune": [
+        72,
+        115
+      ],
+      "bigram": [
+        2,
+        4
+      ],
+      "peak": 16,
+      "scans": [
+        {
+          "windows": 216378,
+          "possible": 216378,
+          "rune": [
+            84,
+            184
+          ],
+          "bigram": [
+            1,
+            43
+          ],
+          "runePass": 23209,
+          "bigramPass": 2461,
+          "jointPass": 1559,
+          "minOffset": 208618
+        },
+        {
+          "windows": 320599,
+          "possible": 320180,
+          "rune": [
+            95,
+            184
+          ],
+          "bigram": [
+            2,
+            36
+          ],
+          "runePass": 17064,
+          "bigramPass": 2517,
+          "jointPass": 1156,
+          "minOffset": 110563
+        },
+        {
+          "windows": 61764,
+          "possible": 61764,
+          "rune": [
+            98,
+            182
+          ],
+          "bigram": [
+            2,
+            39
+          ],
+          "runePass": 3016,
+          "bigramPass": 345,
+          "jointPass": 46,
+          "minOffset": 22670
+        }
+      ]
+    },
+    {
+      "ch": 0,
+      "pages": [
+        0,
+        2
+      ],
+      "parity": 0,
+      "q": 13,
+      "n": 729,
+      "F": 34,
+      "rune": [
+        53,
+        99
+      ],
+      "bigram": [
+        0,
+        4
+      ],
+      "peak": 16,
+      "scans": [
+        {
+          "windows": 216378,
+          "possible": 216378,
+          "rune": [
+            81,
+            183
+          ],
+          "bigram": [
+            2,
+            42
+          ],
+          "runePass": 2741,
+          "bigramPass": 1385,
+          "jointPass": 426,
+          "minOffset": 159275
+        },
+        {
+          "windows": 320599,
+          "possible": 320180,
+          "rune": [
+            92,
+            186
+          ],
+          "bigram": [
+            2,
+            45
+          ],
+          "runePass": 589,
+          "bigramPass": 1705,
+          "jointPass": 69,
+          "minOffset": 300557
+        },
+        {
+          "windows": 61764,
+          "possible": 61764,
+          "rune": [
+            91,
+            185
+          ],
+          "bigram": [
+            3,
+            35
+          ],
+          "runePass": 718,
+          "bigramPass": 185,
+          "jointPass": 0,
+          "minOffset": 41709
+        }
+      ]
+    },
+    {
+      "ch": 0,
+      "pages": [
+        0,
+        2
+      ],
+      "parity": 1,
+      "q": 8,
+      "n": 729,
+      "F": 34,
+      "rune": [
+        53,
+        101
+      ],
+      "bigram": [
+        0,
+        6
+      ],
+      "peak": 8,
+      "scans": [
+        {
+          "windows": 216378,
+          "possible": 216378,
+          "rune": [
+            84,
+            184
+          ],
+          "bigram": [
+            1,
+            43
+          ],
+          "runePass": 2023,
+          "bigramPass": 10250,
+          "jointPass": 789,
+          "minOffset": 208618
+        },
+        {
+          "windows": 320599,
+          "possible": 320180,
+          "rune": [
+            95,
+            184
+          ],
+          "bigram": [
+            2,
+            36
+          ],
+          "runePass": 611,
+          "bigramPass": 8233,
+          "jointPass": 200,
+          "minOffset": 110563
+        },
+        {
+          "windows": 61764,
+          "possible": 61764,
+          "rune": [
+            98,
+            182
+          ],
+          "bigram": [
+            2,
+            39
+          ],
+          "runePass": 86,
+          "bigramPass": 1074,
+          "jointPass": 0,
+          "minOffset": 22670
+        }
+      ]
+    },
+    {
+      "ch": 0,
+      "pages": [
+        0,
+        2
+      ],
+      "parity": 1,
+      "q": 13,
+      "n": 729,
+      "F": 34,
+      "rune": [
+        49,
+        117
+      ],
+      "bigram": [
+        0,
+        3
+      ],
+      "peak": 16,
+      "scans": [
+        {
+          "windows": 216378,
+          "possible": 216378,
+          "rune": [
+            81,
+            183
+          ],
+          "bigram": [
+            2,
+            42
+          ],
+          "runePass": 38956,
+          "bigramPass": 461,
+          "jointPass": 366,
+          "minOffset": 159275
+        },
+        {
+          "windows": 320599,
+          "possible": 320180,
+          "rune": [
+            92,
+            186
+          ],
+          "bigram": [
+            2,
+            45
+          ],
+          "runePass": 32038,
+          "bigramPass": 451,
+          "jointPass": 191,
+          "minOffset": 300557
+        },
+        {
+          "windows": 61764,
+          "possible": 61764,
+          "rune": [
+            91,
+            185
+          ],
+          "bigram": [
+            3,
+            35
+          ],
+          "runePass": 8918,
+          "bigramPass": 11,
+          "jointPass": 11,
+          "minOffset": 41709
+        }
+      ]
+    },
+    {
+      "ch": 1,
+      "pages": [
+        3,
+        7
+      ],
+      "parity": 0,
+      "q": 8,
+      "n": 1145,
+      "F": 26,
+      "rune": [
+        96,
+        127
+      ],
+      "bigram": [
+        2,
+        6
+      ],
+      "peak": 8,
+      "scans": [
+        {
+          "windows": 215962,
+          "possible": 153963,
+          "rune": [
+            155,
+            267
+          ],
+          "bigram": [
+            5,
+            55
+          ],
+          "runePass": 0,
+          "bigramPass": 100,
+          "jointPass": 0,
+          "minOffset": 210437
+        },
+        {
+          "windows": 320183,
+          "possible": 79482,
+          "rune": [
+            167,
+            271
+          ],
+          "bigram": [
+            6,
+            52
+          ],
+          "runePass": 0,
+          "bigramPass": 10,
+          "jointPass": 0,
+          "minOffset": 182194
+        },
+        {
+          "windows": 61348,
+          "possible": 21393,
+          "rune": [
+            167,
+            273
+          ],
+          "bigram": [
+            12,
+            52
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 41229
+        }
+      ]
+    },
+    {
+      "ch": 1,
+      "pages": [
+        3,
+        7
+      ],
+      "parity": 0,
+      "q": 13,
+      "n": 1145,
+      "F": 26,
+      "rune": [
+        87,
+        128
+      ],
+      "bigram": [
+        6,
+        9
+      ],
+      "peak": 8,
+      "scans": [
+        {
+          "windows": 215962,
+          "possible": 153963,
+          "rune": [
+            149,
+            280
+          ],
+          "bigram": [
+            7,
+            58
+          ],
+          "runePass": 0,
+          "bigramPass": 779,
+          "jointPass": 0,
+          "minOffset": 158878
+        },
+        {
+          "windows": 320183,
+          "possible": 79482,
+          "rune": [
+            158,
+            262
+          ],
+          "bigram": [
+            7,
+            54
+          ],
+          "runePass": 0,
+          "bigramPass": 107,
+          "jointPass": 0,
+          "minOffset": 144538
+        },
+        {
+          "windows": 61348,
+          "possible": 21393,
+          "rune": [
+            154,
+            248
+          ],
+          "bigram": [
+            11,
+            53
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 41622
+        }
+      ]
+    },
+    {
+      "ch": 1,
+      "pages": [
+        3,
+        7
+      ],
+      "parity": 1,
+      "q": 8,
+      "n": 1145,
+      "F": 26,
+      "rune": [
+        111,
+        143
+      ],
+      "bigram": [
+        3,
+        6
+      ],
+      "peak": 8,
+      "scans": [
+        {
+          "windows": 215962,
+          "possible": 153963,
+          "rune": [
+            155,
+            267
+          ],
+          "bigram": [
+            5,
+            55
+          ],
+          "runePass": 0,
+          "bigramPass": 100,
+          "jointPass": 0,
+          "minOffset": 210437
+        },
+        {
+          "windows": 320183,
+          "possible": 79482,
+          "rune": [
+            167,
+            271
+          ],
+          "bigram": [
+            6,
+            52
+          ],
+          "runePass": 0,
+          "bigramPass": 10,
+          "jointPass": 0,
+          "minOffset": 182194
+        },
+        {
+          "windows": 61348,
+          "possible": 21393,
+          "rune": [
+            167,
+            273
+          ],
+          "bigram": [
+            12,
+            52
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 41229
+        }
+      ]
+    },
+    {
+      "ch": 1,
+      "pages": [
+        3,
+        7
+      ],
+      "parity": 1,
+      "q": 13,
+      "n": 1145,
+      "F": 26,
+      "rune": [
+        86,
+        123
+      ],
+      "bigram": [
+        3,
+        6
+      ],
+      "peak": 8,
+      "scans": [
+        {
+          "windows": 215962,
+          "possible": 153963,
+          "rune": [
+            149,
+            280
+          ],
+          "bigram": [
+            7,
+            58
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 158878
+        },
+        {
+          "windows": 320183,
+          "possible": 79482,
+          "rune": [
+            158,
+            262
+          ],
+          "bigram": [
+            7,
+            54
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 144538
+        },
+        {
+          "windows": 61348,
+          "possible": 21393,
+          "rune": [
+            154,
+            248
+          ],
+          "bigram": [
+            11,
+            53
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 41622
+        }
+      ]
+    },
+    {
+      "ch": 2,
+      "pages": [
+        8,
+        14
+      ],
+      "parity": 0,
+      "q": 8,
+      "n": 1729,
+      "F": 66,
+      "rune": [
+        137,
+        225
+      ],
+      "bigram": [
+        2,
+        8
+      ],
+      "peak": 48,
+      "scans": [
+        {
+          "windows": 215378,
+          "possible": 215378,
+          "rune": [
+            247,
+            390
+          ],
+          "bigram": [
+            12,
+            82
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 210451
+        },
+        {
+          "windows": 319599,
+          "possible": 318025,
+          "rune": [
+            258,
+            401
+          ],
+          "bigram": [
+            15,
+            68
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 289807
+        },
+        {
+          "windows": 60764,
+          "possible": 60673,
+          "rune": [
+            263,
+            388
+          ],
+          "bigram": [
+            20,
+            73
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 41243
+        }
+      ]
+    },
+    {
+      "ch": 2,
+      "pages": [
+        8,
+        14
+      ],
+      "parity": 0,
+      "q": 13,
+      "n": 1729,
+      "F": 66,
+      "rune": [
+        112,
+        216
+      ],
+      "bigram": [
+        2,
+        13
+      ],
+      "peak": 48,
+      "scans": [
+        {
+          "windows": 215378,
+          "possible": 215378,
+          "rune": [
+            234,
+            399
+          ],
+          "bigram": [
+            12,
+            74
+          ],
+          "runePass": 0,
+          "bigramPass": 157,
+          "jointPass": 0,
+          "minOffset": 159420
+        },
+        {
+          "windows": 319599,
+          "possible": 318025,
+          "rune": [
+            254,
+            394
+          ],
+          "bigram": [
+            13,
+            71
+          ],
+          "runePass": 0,
+          "bigramPass": 9,
+          "jointPass": 0,
+          "minOffset": 61052
+        },
+        {
+          "windows": 60764,
+          "possible": 60673,
+          "rune": [
+            249,
+            389
+          ],
+          "bigram": [
+            19,
+            76
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 22955
+        }
+      ]
+    },
+    {
+      "ch": 2,
+      "pages": [
+        8,
+        14
+      ],
+      "parity": 1,
+      "q": 8,
+      "n": 1729,
+      "F": 66,
+      "rune": [
+        123,
+        202
+      ],
+      "bigram": [
+        3,
+        7
+      ],
+      "peak": 32,
+      "scans": [
+        {
+          "windows": 215378,
+          "possible": 215378,
+          "rune": [
+            247,
+            390
+          ],
+          "bigram": [
+            12,
+            82
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 210451
+        },
+        {
+          "windows": 319599,
+          "possible": 318025,
+          "rune": [
+            258,
+            401
+          ],
+          "bigram": [
+            15,
+            68
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 289807
+        },
+        {
+          "windows": 60764,
+          "possible": 60673,
+          "rune": [
+            263,
+            388
+          ],
+          "bigram": [
+            20,
+            73
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 41243
+        }
+      ]
+    },
+    {
+      "ch": 2,
+      "pages": [
+        8,
+        14
+      ],
+      "parity": 1,
+      "q": 13,
+      "n": 1729,
+      "F": 66,
+      "rune": [
+        120,
+        243
+      ],
+      "bigram": [
+        2,
+        9
+      ],
+      "peak": 32,
+      "scans": [
+        {
+          "windows": 215378,
+          "possible": 215378,
+          "rune": [
+            234,
+            399
+          ],
+          "bigram": [
+            12,
+            74
+          ],
+          "runePass": 551,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 159420
+        },
+        {
+          "windows": 319599,
+          "possible": 318025,
+          "rune": [
+            254,
+            394
+          ],
+          "bigram": [
+            13,
+            71
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 61052
+        },
+        {
+          "windows": 60764,
+          "possible": 60673,
+          "rune": [
+            249,
+            389
+          ],
+          "bigram": [
+            19,
+            76
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 22955
+        }
+      ]
+    },
+    {
+      "ch": 3,
+      "pages": [
+        15,
+        22
+      ],
+      "parity": 0,
+      "q": 8,
+      "n": 1903,
+      "F": 72,
+      "rune": [
+        156,
+        245
+      ],
+      "bigram": [
+        4,
+        13
+      ],
+      "peak": 16,
+      "scans": [
+        {
+          "windows": 215204,
+          "possible": 215204,
+          "rune": [
+            283,
+            421
+          ],
+          "bigram": [
+            14,
+            87
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 210279
+        },
+        {
+          "windows": 319425,
+          "possible": 317675,
+          "rune": [
+            285,
+            429
+          ],
+          "bigram": [
+            17,
+            70
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 289914
+        },
+        {
+          "windows": 60590,
+          "possible": 60520,
+          "rune": [
+            288,
+            421
+          ],
+          "bigram": [
+            22,
+            80
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 41323
+        }
+      ]
+    },
+    {
+      "ch": 3,
+      "pages": [
+        15,
+        22
+      ],
+      "parity": 0,
+      "q": 13,
+      "n": 1903,
+      "F": 72,
+      "rune": [
+        138,
+        239
+      ],
+      "bigram": [
+        6,
+        18
+      ],
+      "peak": 32,
+      "scans": [
+        {
+          "windows": 215204,
+          "possible": 215204,
+          "rune": [
+            259,
+            431
+          ],
+          "bigram": [
+            15,
+            77
+          ],
+          "runePass": 0,
+          "bigramPass": 512,
+          "jointPass": 0,
+          "minOffset": 159267
+        },
+        {
+          "windows": 319425,
+          "possible": 317675,
+          "rune": [
+            283,
+            431
+          ],
+          "bigram": [
+            17,
+            79
+          ],
+          "runePass": 0,
+          "bigramPass": 345,
+          "jointPass": 0,
+          "minOffset": 60956
+        },
+        {
+          "windows": 60590,
+          "possible": 60520,
+          "rune": [
+            280,
+            421
+          ],
+          "bigram": [
+            22,
+            81
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 22955
+        }
+      ]
+    },
+    {
+      "ch": 3,
+      "pages": [
+        15,
+        22
+      ],
+      "parity": 1,
+      "q": 8,
+      "n": 1903,
+      "F": 72,
+      "rune": [
+        137,
+        236
+      ],
+      "bigram": [
+        2,
+        9
+      ],
+      "peak": 12,
+      "scans": [
+        {
+          "windows": 215204,
+          "possible": 215204,
+          "rune": [
+            283,
+            421
+          ],
+          "bigram": [
+            14,
+            87
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 210279
+        },
+        {
+          "windows": 319425,
+          "possible": 317675,
+          "rune": [
+            285,
+            429
+          ],
+          "bigram": [
+            17,
+            70
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 289914
+        },
+        {
+          "windows": 60590,
+          "possible": 60520,
+          "rune": [
+            288,
+            421
+          ],
+          "bigram": [
+            22,
+            80
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 41323
+        }
+      ]
+    },
+    {
+      "ch": 3,
+      "pages": [
+        15,
+        22
+      ],
+      "parity": 1,
+      "q": 13,
+      "n": 1903,
+      "F": 72,
+      "rune": [
+        152,
+        274
+      ],
+      "bigram": [
+        2,
+        22
+      ],
+      "peak": 32,
+      "scans": [
+        {
+          "windows": 215204,
+          "possible": 215204,
+          "rune": [
+            259,
+            431
+          ],
+          "bigram": [
+            15,
+            77
+          ],
+          "runePass": 814,
+          "bigramPass": 3293,
+          "jointPass": 335,
+          "minOffset": 159267
+        },
+        {
+          "windows": 319425,
+          "possible": 317675,
+          "rune": [
+            283,
+            431
+          ],
+          "bigram": [
+            17,
+            79
+          ],
+          "runePass": 0,
+          "bigramPass": 2326,
+          "jointPass": 0,
+          "minOffset": 60956
+        },
+        {
+          "windows": 60590,
+          "possible": 60520,
+          "rune": [
+            280,
+            421
+          ],
+          "bigram": [
+            22,
+            81
+          ],
+          "runePass": 0,
+          "bigramPass": 11,
+          "jointPass": 0,
+          "minOffset": 22955
+        }
+      ]
+    },
+    {
+      "ch": 4,
+      "pages": [
+        23,
+        26
+      ],
+      "parity": 0,
+      "q": 8,
+      "n": 1021,
+      "F": 37,
+      "rune": [
+        73,
+        123
+      ],
+      "bigram": [
+        1,
+        5
+      ],
+      "peak": 16,
+      "scans": [
+        {
+          "windows": 216086,
+          "possible": 215714,
+          "rune": [
+            134,
+            244
+          ],
+          "bigram": [
+            3,
+            51
+          ],
+          "runePass": 0,
+          "bigramPass": 555,
+          "jointPass": 0,
+          "minOffset": 210542
+        },
+        {
+          "windows": 320307,
+          "possible": 305686,
+          "rune": [
+            142,
+            249
+          ],
+          "bigram": [
+            4,
+            48
+          ],
+          "runePass": 0,
+          "bigramPass": 102,
+          "jointPass": 0,
+          "minOffset": 289914
+        },
+        {
+          "windows": 61472,
+          "possible": 59153,
+          "rune": [
+            150,
+            244
+          ],
+          "bigram": [
+            5,
+            48
+          ],
+          "runePass": 0,
+          "bigramPass": 34,
+          "jointPass": 0,
+          "minOffset": 3287
+        }
+      ]
+    },
+    {
+      "ch": 4,
+      "pages": [
+        23,
+        26
+      ],
+      "parity": 0,
+      "q": 13,
+      "n": 1021,
+      "F": 37,
+      "rune": [
+        87,
+        138
+      ],
+      "bigram": [
+        3,
+        10
+      ],
+      "peak": 16,
+      "scans": [
+        {
+          "windows": 216086,
+          "possible": 215714,
+          "rune": [
+            127,
+            253
+          ],
+          "bigram": [
+            6,
+            54
+          ],
+          "runePass": 806,
+          "bigramPass": 6809,
+          "jointPass": 178,
+          "minOffset": 158997
+        },
+        {
+          "windows": 320307,
+          "possible": 305686,
+          "rune": [
+            136,
+            242
+          ],
+          "bigram": [
+            5,
+            56
+          ],
+          "runePass": 96,
+          "bigramPass": 6282,
+          "jointPass": 96,
+          "minOffset": 61806
+        },
+        {
+          "windows": 61472,
+          "possible": 59153,
+          "rune": [
+            135,
+            236
+          ],
+          "bigram": [
+            7,
+            49
+          ],
+          "runePass": 63,
+          "bigramPass": 813,
+          "jointPass": 0,
+          "minOffset": 41412
+        }
+      ]
+    },
+    {
+      "ch": 4,
+      "pages": [
+        23,
+        26
+      ],
+      "parity": 1,
+      "q": 8,
+      "n": 1021,
+      "F": 37,
+      "rune": [
+        72,
+        131
+      ],
+      "bigram": [
+        0,
+        5
+      ],
+      "peak": 8,
+      "scans": [
+        {
+          "windows": 216086,
+          "possible": 215714,
+          "rune": [
+            134,
+            244
+          ],
+          "bigram": [
+            3,
+            51
+          ],
+          "runePass": 0,
+          "bigramPass": 555,
+          "jointPass": 0,
+          "minOffset": 210542
+        },
+        {
+          "windows": 320307,
+          "possible": 305686,
+          "rune": [
+            142,
+            249
+          ],
+          "bigram": [
+            4,
+            48
+          ],
+          "runePass": 0,
+          "bigramPass": 102,
+          "jointPass": 0,
+          "minOffset": 289914
+        },
+        {
+          "windows": 61472,
+          "possible": 59153,
+          "rune": [
+            150,
+            244
+          ],
+          "bigram": [
+            5,
+            48
+          ],
+          "runePass": 0,
+          "bigramPass": 34,
+          "jointPass": 0,
+          "minOffset": 3287
+        }
+      ]
+    },
+    {
+      "ch": 4,
+      "pages": [
+        23,
+        26
+      ],
+      "parity": 1,
+      "q": 13,
+      "n": 1021,
+      "F": 37,
+      "rune": [
+        64,
+        135
+      ],
+      "bigram": [
+        2,
+        13
+      ],
+      "peak": 16,
+      "scans": [
+        {
+          "windows": 216086,
+          "possible": 215714,
+          "rune": [
+            127,
+            253
+          ],
+          "bigram": [
+            6,
+            54
+          ],
+          "runePass": 380,
+          "bigramPass": 28244,
+          "jointPass": 241,
+          "minOffset": 158997
+        },
+        {
+          "windows": 320307,
+          "possible": 305686,
+          "rune": [
+            136,
+            242
+          ],
+          "bigram": [
+            5,
+            56
+          ],
+          "runePass": 0,
+          "bigramPass": 25817,
+          "jointPass": 0,
+          "minOffset": 61806
+        },
+        {
+          "windows": 61472,
+          "possible": 59153,
+          "rune": [
+            135,
+            236
+          ],
+          "bigram": [
+            7,
+            49
+          ],
+          "runePass": 1,
+          "bigramPass": 4050,
+          "jointPass": 0,
+          "minOffset": 41412
+        }
+      ]
+    },
+    {
+      "ch": 5,
+      "pages": [
+        27,
+        32
+      ],
+      "parity": 0,
+      "q": 8,
+      "n": 1433,
+      "F": 52,
+      "rune": [
+        108,
+        171
+      ],
+      "bigram": [
+        3,
+        8
+      ],
+      "peak": 15,
+      "scans": [
+        {
+          "windows": 215674,
+          "possible": 215591,
+          "rune": [
+            200,
+            331
+          ],
+          "bigram": [
+            8,
+            66
+          ],
+          "runePass": 0,
+          "bigramPass": 10,
+          "jointPass": 0,
+          "minOffset": 207908
+        },
+        {
+          "windows": 319895,
+          "possible": 312644,
+          "rune": [
+            205,
+            338
+          ],
+          "bigram": [
+            10,
+            58
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 289904
+        },
+        {
+          "windows": 61060,
+          "possible": 59959,
+          "rune": [
+            215,
+            330
+          ],
+          "bigram": [
+            13,
+            65
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 41791
+        }
+      ]
+    },
+    {
+      "ch": 5,
+      "pages": [
+        27,
+        32
+      ],
+      "parity": 0,
+      "q": 13,
+      "n": 1433,
+      "F": 52,
+      "rune": [
+        109,
+        194
+      ],
+      "bigram": [
+        1,
+        9
+      ],
+      "peak": 31,
+      "scans": [
+        {
+          "windows": 215674,
+          "possible": 215591,
+          "rune": [
+            188,
+            348
+          ],
+          "bigram": [
+            10,
+            70
+          ],
+          "runePass": 223,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 159324
+        },
+        {
+          "windows": 319895,
+          "possible": 312644,
+          "rune": [
+            200,
+            330
+          ],
+          "bigram": [
+            9,
+            64
+          ],
+          "runePass": 0,
+          "bigramPass": 169,
+          "jointPass": 0,
+          "minOffset": 61424
+        },
+        {
+          "windows": 61060,
+          "possible": 59959,
+          "rune": [
+            202,
+            317
+          ],
+          "bigram": [
+            14,
+            67
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 23231
+        }
+      ]
+    },
+    {
+      "ch": 5,
+      "pages": [
+        27,
+        32
+      ],
+      "parity": 1,
+      "q": 8,
+      "n": 1433,
+      "F": 52,
+      "rune": [
+        133,
+        205
+      ],
+      "bigram": [
+        4,
+        7
+      ],
+      "peak": 8,
+      "scans": [
+        {
+          "windows": 215674,
+          "possible": 215591,
+          "rune": [
+            200,
+            331
+          ],
+          "bigram": [
+            8,
+            66
+          ],
+          "runePass": 131,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 207908
+        },
+        {
+          "windows": 319895,
+          "possible": 312644,
+          "rune": [
+            205,
+            338
+          ],
+          "bigram": [
+            10,
+            58
+          ],
+          "runePass": 9,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 289904
+        },
+        {
+          "windows": 61060,
+          "possible": 59959,
+          "rune": [
+            215,
+            330
+          ],
+          "bigram": [
+            13,
+            65
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 41791
+        }
+      ]
+    },
+    {
+      "ch": 5,
+      "pages": [
+        27,
+        32
+      ],
+      "parity": 1,
+      "q": 13,
+      "n": 1433,
+      "F": 52,
+      "rune": [
+        121,
+        191
+      ],
+      "bigram": [
+        2,
+        8
+      ],
+      "peak": 32,
+      "scans": [
+        {
+          "windows": 215674,
+          "possible": 215591,
+          "rune": [
+            188,
+            348
+          ],
+          "bigram": [
+            10,
+            70
+          ],
+          "runePass": 149,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 159324
+        },
+        {
+          "windows": 319895,
+          "possible": 312644,
+          "rune": [
+            200,
+            330
+          ],
+          "bigram": [
+            9,
+            64
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 61424
+        },
+        {
+          "windows": 61060,
+          "possible": 59959,
+          "rune": [
+            202,
+            317
+          ],
+          "bigram": [
+            14,
+            67
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 23231
+        }
+      ]
+    },
+    {
+      "ch": 6,
+      "pages": [
+        33,
+        39
+      ],
+      "parity": 0,
+      "q": 8,
+      "n": 1680,
+      "F": 40,
+      "rune": [
+        141,
+        193
+      ],
+      "bigram": [
+        1,
+        3
+      ],
+      "peak": 8,
+      "scans": [
+        {
+          "windows": 215427,
+          "possible": 170300,
+          "rune": [
+            237,
+            381
+          ],
+          "bigram": [
+            11,
+            80
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 210475
+        },
+        {
+          "windows": 319648,
+          "possible": 90367,
+          "rune": [
+            257,
+            384
+          ],
+          "bigram": [
+            15,
+            59
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 181964
+        },
+        {
+          "windows": 60813,
+          "possible": 23294,
+          "rune": [
+            256,
+            378
+          ],
+          "bigram": [
+            23,
+            72
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 41243
+        }
+      ]
+    },
+    {
+      "ch": 6,
+      "pages": [
+        33,
+        39
+      ],
+      "parity": 0,
+      "q": 13,
+      "n": 1680,
+      "F": 40,
+      "rune": [
+        150,
+        206
+      ],
+      "bigram": [
+        5,
+        15
+      ],
+      "peak": 16,
+      "scans": [
+        {
+          "windows": 215427,
+          "possible": 170300,
+          "rune": [
+            226,
+            391
+          ],
+          "bigram": [
+            12,
+            74
+          ],
+          "runePass": 0,
+          "bigramPass": 578,
+          "jointPass": 0,
+          "minOffset": 159238
+        },
+        {
+          "windows": 319648,
+          "possible": 90367,
+          "rune": [
+            250,
+            374
+          ],
+          "bigram": [
+            17,
+            69
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 153185
+        },
+        {
+          "windows": 60813,
+          "possible": 23294,
+          "rune": [
+            250,
+            354
+          ],
+          "bigram": [
+            19,
+            75
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 47512
+        }
+      ]
+    },
+    {
+      "ch": 6,
+      "pages": [
+        33,
+        39
+      ],
+      "parity": 1,
+      "q": 8,
+      "n": 1680,
+      "F": 40,
+      "rune": [
+        144,
+        201
+      ],
+      "bigram": [
+        4,
+        6
+      ],
+      "peak": 8,
+      "scans": [
+        {
+          "windows": 215427,
+          "possible": 170300,
+          "rune": [
+            237,
+            381
+          ],
+          "bigram": [
+            11,
+            80
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 210475
+        },
+        {
+          "windows": 319648,
+          "possible": 90367,
+          "rune": [
+            257,
+            384
+          ],
+          "bigram": [
+            15,
+            59
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 181964
+        },
+        {
+          "windows": 60813,
+          "possible": 23294,
+          "rune": [
+            256,
+            378
+          ],
+          "bigram": [
+            23,
+            72
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 41243
+        }
+      ]
+    },
+    {
+      "ch": 6,
+      "pages": [
+        33,
+        39
+      ],
+      "parity": 1,
+      "q": 13,
+      "n": 1680,
+      "F": 40,
+      "rune": [
+        130,
+        185
+      ],
+      "bigram": [
+        2,
+        3
+      ],
+      "peak": 15,
+      "scans": [
+        {
+          "windows": 215427,
+          "possible": 170300,
+          "rune": [
+            226,
+            391
+          ],
+          "bigram": [
+            12,
+            74
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 159238
+        },
+        {
+          "windows": 319648,
+          "possible": 90367,
+          "rune": [
+            250,
+            374
+          ],
+          "bigram": [
+            17,
+            69
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 153185
+        },
+        {
+          "windows": 60813,
+          "possible": 23294,
+          "rune": [
+            250,
+            354
+          ],
+          "bigram": [
+            19,
+            75
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 47512
+        }
+      ]
+    },
+    {
+      "ch": 7,
+      "pages": [
+        40,
+        53
+      ],
+      "parity": 0,
+      "q": 8,
+      "n": 3008,
+      "F": 125,
+      "rune": [
+        218,
+        377
+      ],
+      "bigram": [
+        5,
+        15
+      ],
+      "peak": 64,
+      "scans": [
+        {
+          "windows": 214099,
+          "possible": 214099,
+          "rune": [
+            474,
+            631
+          ],
+          "bigram": [
+            35,
+            111
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 45928
+        },
+        {
+          "windows": 318320,
+          "possible": 318320,
+          "rune": [
+            479,
+            664
+          ],
+          "bigram": [
+            32,
+            99
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 289914
+        },
+        {
+          "windows": 59485,
+          "possible": 59485,
+          "rune": [
+            499,
+            648
+          ],
+          "bigram": [
+            38,
+            111
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 40269
+        }
+      ]
+    },
+    {
+      "ch": 7,
+      "pages": [
+        40,
+        53
+      ],
+      "parity": 0,
+      "q": 13,
+      "n": 3008,
+      "F": 125,
+      "rune": [
+        193,
+        394
+      ],
+      "bigram": [
+        3,
+        18
+      ],
+      "peak": 64,
+      "scans": [
+        {
+          "windows": 214099,
+          "possible": 214099,
+          "rune": [
+            446,
+            666
+          ],
+          "bigram": [
+            34,
+            118
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 158522
+        },
+        {
+          "windows": 318320,
+          "possible": 318320,
+          "rune": [
+            476,
+            657
+          ],
+          "bigram": [
+            34,
+            107
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 152572
+        },
+        {
+          "windows": 59485,
+          "possible": 59485,
+          "rune": [
+            476,
+            649
+          ],
+          "bigram": [
+            36,
+            120
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 22004
+        }
+      ]
+    },
+    {
+      "ch": 7,
+      "pages": [
+        40,
+        53
+      ],
+      "parity": 1,
+      "q": 8,
+      "n": 3008,
+      "F": 125,
+      "rune": [
+        239,
+        377
+      ],
+      "bigram": [
+        4,
+        18
+      ],
+      "peak": 64,
+      "scans": [
+        {
+          "windows": 214099,
+          "possible": 214099,
+          "rune": [
+            474,
+            631
+          ],
+          "bigram": [
+            35,
+            111
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 45928
+        },
+        {
+          "windows": 318320,
+          "possible": 318320,
+          "rune": [
+            479,
+            664
+          ],
+          "bigram": [
+            32,
+            99
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 289914
+        },
+        {
+          "windows": 59485,
+          "possible": 59485,
+          "rune": [
+            499,
+            648
+          ],
+          "bigram": [
+            38,
+            111
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 40269
+        }
+      ]
+    },
+    {
+      "ch": 7,
+      "pages": [
+        40,
+        53
+      ],
+      "parity": 1,
+      "q": 13,
+      "n": 3008,
+      "F": 125,
+      "rune": [
+        207,
+        421
+      ],
+      "bigram": [
+        7,
+        24
+      ],
+      "peak": 64,
+      "scans": [
+        {
+          "windows": 214099,
+          "possible": 214099,
+          "rune": [
+            446,
+            666
+          ],
+          "bigram": [
+            34,
+            118
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 158522
+        },
+        {
+          "windows": 318320,
+          "possible": 318320,
+          "rune": [
+            476,
+            657
+          ],
+          "bigram": [
+            34,
+            107
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 152572
+        },
+        {
+          "windows": 59485,
+          "possible": 59485,
+          "rune": [
+            476,
+            649
+          ],
+          "bigram": [
+            36,
+            120
+          ],
+          "runePass": 0,
+          "bigramPass": 0,
+          "jointPass": 0,
+          "minOffset": 22004
+        }
+      ]
+    },
+    {
+      "ch": 8,
+      "pages": [
+        54,
+        55
+      ],
+      "parity": 0,
+      "q": 8,
+      "n": 308,
+      "F": 6,
+      "rune": [
+        32,
+        44
+      ],
+      "bigram": [
+        1,
+        3
+      ],
+      "peak": 4,
+      "scans": [
+        {
+          "windows": 216799,
+          "possible": 122257,
+          "rune": [
+            28,
+            103
+          ],
+          "bigram": [
+            0,
+            33
+          ],
+          "runePass": 14930,
+          "bigramPass": 29788,
+          "jointPass": 9245,
+          "minOffset": 209002
+        },
+        {
+          "windows": 321020,
+          "possible": 90693,
+          "rune": [
+            30,
+            91
+          ],
+          "bigram": [
+            0,
+            25
+          ],
+          "runePass": 6858,
+          "bigramPass": 18528,
+          "jointPass": 4085,
+          "minOffset": 263498
+        },
+        {
+          "windows": 62185,
+          "possible": 20857,
+          "rune": [
+            28,
+            92
+          ],
+          "bigram": [
+            0,
+            26
+          ],
+          "runePass": 1844,
+          "bigramPass": 2081,
+          "jointPass": 653,
+          "minOffset": 22721
+        }
+      ]
+    },
+    {
+      "ch": 8,
+      "pages": [
+        54,
+        55
+      ],
+      "parity": 0,
+      "q": 13,
+      "n": 308,
+      "F": 6,
+      "rune": [
+        22,
+        30
+      ],
+      "bigram": [
+        1,
+        3
+      ],
+      "peak": 8,
+      "scans": [
+        {
+          "windows": 216799,
+          "possible": 122257,
+          "rune": [
+            25,
+            88
+          ],
+          "bigram": [
+            0,
+            27
+          ],
+          "runePass": 428,
+          "bigramPass": 31983,
+          "jointPass": 179,
+          "minOffset": 156425
+        },
+        {
+          "windows": 321020,
+          "possible": 90693,
+          "rune": [
+            30,
+            85
+          ],
+          "bigram": [
+            0,
+            26
+          ],
+          "runePass": 3,
+          "bigramPass": 20789,
+          "jointPass": 3,
+          "minOffset": 80191
+        },
+        {
+          "windows": 62185,
+          "possible": 20857,
+          "rune": [
+            27,
+            81
+          ],
+          "bigram": [
+            0,
+            21
+          ],
+          "runePass": 104,
+          "bigramPass": 3908,
+          "jointPass": 41,
+          "minOffset": 47813
+        }
+      ]
+    },
+    {
+      "ch": 8,
+      "pages": [
+        54,
+        55
+      ],
+      "parity": 1,
+      "q": 8,
+      "n": 308,
+      "F": 6,
+      "rune": [
+        31,
+        38
+      ],
+      "bigram": [
+        0,
+        1
+      ],
+      "peak": 4,
+      "scans": [
+        {
+          "windows": 216799,
+          "possible": 122257,
+          "rune": [
+            28,
+            103
+          ],
+          "bigram": [
+            0,
+            33
+          ],
+          "runePass": 2721,
+          "bigramPass": 6348,
+          "jointPass": 815,
+          "minOffset": 209002
+        },
+        {
+          "windows": 321020,
+          "possible": 90693,
+          "rune": [
+            30,
+            91
+          ],
+          "bigram": [
+            0,
+            25
+          ],
+          "runePass": 671,
+          "bigramPass": 3156,
+          "jointPass": 246,
+          "minOffset": 263498
+        },
+        {
+          "windows": 62185,
+          "possible": 20857,
+          "rune": [
+            28,
+            92
+          ],
+          "bigram": [
+            0,
+            26
+          ],
+          "runePass": 288,
+          "bigramPass": 332,
+          "jointPass": 0,
+          "minOffset": 22721
+        }
+      ]
+    },
+    {
+      "ch": 8,
+      "pages": [
+        54,
+        55
+      ],
+      "parity": 1,
+      "q": 13,
+      "n": 308,
+      "F": 6,
+      "rune": [
+        26,
+        33
+      ],
+      "bigram": [
+        1,
+        3
+      ],
+      "peak": 8,
+      "scans": [
+        {
+          "windows": 216799,
+          "possible": 122257,
+          "rune": [
+            25,
+            88
+          ],
+          "bigram": [
+            0,
+            27
+          ],
+          "runePass": 1176,
+          "bigramPass": 31983,
+          "jointPass": 522,
+          "minOffset": 156425
+        },
+        {
+          "windows": 321020,
+          "possible": 90693,
+          "rune": [
+            30,
+            85
+          ],
+          "bigram": [
+            0,
+            26
+          ],
+          "runePass": 133,
+          "bigramPass": 20789,
+          "jointPass": 116,
+          "minOffset": 80191
+        },
+        {
+          "windows": 62185,
+          "possible": 20857,
+          "rune": [
+            27,
+            81
+          ],
+          "bigram": [
+            0,
+            21
+          ],
+          "runePass": 229,
+          "bigramPass": 3908,
+          "jointPass": 88,
+          "minOffset": 47813
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "resources/liber-primus/lp2-corpus.json": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "resources/transcriptions/liber_primus_master.txt": "ba553b1d43bc491a1bab66ebd02534249263ae90",
+    "resources/control/shakespeare_first300k.txt": "94c677ad9dd50771c6670e0c4e4dad9052b46d85",
+    "resources/control/emerson_essays_2944.txt": "a92be8ba5b3511a003a22ba31523c14397aaa83a",
+    "resources/control/gibran_prophet_58585.txt": "df260a07d56bf5998d40a6360b6132c35c252d10",
+    "resources/external/relikd-solved-gp29-native-v1.json": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+  }
+}

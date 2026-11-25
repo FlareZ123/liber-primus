@@ -1,0 +1,23 @@
+"use strict";
+const fs=require("node:fs"),path=require("node:path");
+function run(raw){
+ const gp=JSON.parse(raw[0]), ix=new Map(gp.runes.map((v,i)=>[v,i])), read=s=>Array.from(s).filter(x=>ix.has(x)).map(x=>ix.get(x)), chunks=raw[1].split("%"), ranges=[[0,2],[3,7],[8,14],[15,22],[23,26],[27,32],[33,39],[40,53],[54,55]];
+ const pages=Array.from({length:56},(_,p)=>{const lines=chunks[p+16].split("/").map(s=>({s:s.replace(/\s/g,""),c:read(s)})).filter(x=>x.c.length);if(lines.flatMap(x=>x.c).join()!==gp.pages[p].indices.join())throw Error("source page "+p);return lines});
+ if(pages.flat().length!==594)throw Error("line count");
+ const chapters=ranges.map(([a,b])=>pages.slice(a,b+1).flat());
+ const tok=gp.translit.map((s,i)=>({s,i})).sort((a,b)=>b.s.length-a.s.length);
+ function native(s){const out=[];for(let w of s.toUpperCase().match(/[A-Z]+/g)||[]){w=w.replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S").replace(/ING/g,"NG").replace(/IO/g,"IA");while(w.length){const t=tok.find(t=>w.startsWith(t.s));if(!t)throw Error(w);out.push(t.i);w=w.slice(t.s.length)}}return out}
+ const donor=raw.slice(2,5).map(native);
+ function stats(a,q){let r=0,b=0;for(let i=0;i<a.length;i++)for(let d=q;d<=3*q;d+=q)if(i>=d&&a[i]===a[i-d]){r++;if(i>d&&a[i-1]===a[i-d-1])b++}return [r,b]}
+ function bounds(C,q){let S=new Map([["",[0,0,0,0]]]),peak=1;const D=3*q+1;for(const c of C){const T=new Map(),z=String.fromCharCode(c);function merge(h,a,r,b){const o=T.get(h);if(o){o[0]=Math.min(o[0],a[0]+r);o[1]=Math.max(o[1],a[1]+r);o[2]=Math.min(o[2],a[2]+b);o[3]=Math.max(o[3],a[3]+b)}else T.set(h,[a[0]+r,a[1]+r,a[2]+b,a[3]+b])}
+ for(const [h,a] of S){if(c===0)merge(h,a,0,0);let r=0,b=0;for(let d=q;d<=3*q;d+=q)if(h.length>=d&&h.charCodeAt(h.length-d)===c){r++;if(h.length>d&&h.charCodeAt(h.length-1)===h.charCodeAt(h.length-d-1))b++}merge((h+z).slice(-D),a,r,b)}S=T;peak=Math.max(peak,S.size)}
+ let a=[Infinity,-Infinity,Infinity,-Infinity];for(const v of S.values()){a[0]=Math.min(a[0],v[0]);a[1]=Math.max(a[1],v[1]);a[2]=Math.min(a[2],v[2]);a[3]=Math.max(a[3],v[3])}return {rune:a.slice(0,2),bigram:a.slice(2),peak}}
+ function scan(p,n,q,bo,F){const a=[],A=[0];for(const x of p){if(x!==0)a.push(x);A.push(a.length)}const pr=[],pb=[];for(let d=q;d<=3*q;d+=q){let r=new Int32Array(a.length+1),b=new Int32Array(a.length+1);for(let i=0;i<a.length;i++){const match=i>=d&&a[i]===a[i-d];r[i+1]=r[i]+Number(match);b[i+1]=b[i]+Number(match&&i>d&&a[i-1]===a[i-d-1])}pr.push(r);pb.push(b)}
+ let rr=[Infinity,-Infinity],bb=[Infinity,-Infinity],possible=0,runePass=0,bigramPass=0,jointPass=0,minOffset=-1;for(let s=0;s+n<=p.length;s++){let x=A[s],y=A[s+n];if(n-(y-x)>F)continue;possible++;let r=0,b=0;for(let k=0;k<3;k++){r+=pr[k][y]-pr[k][Math.min(y,x+(k+1)*q)];b+=pb[k][y]-pb[k][Math.min(y,x+(k+1)*q+1)]}if(r<rr[0])minOffset=s;rr=[Math.min(rr[0],r),Math.max(rr[1],r)];bb=[Math.min(bb[0],b),Math.max(bb[1],b)];const rp=r>=bo.rune[0]&&r<=bo.rune[1],bp=b>=bo.bigram[0]&&b<=bo.bigram[1];runePass+=Number(rp);bigramPass+=Number(bp);jointPass+=Number(rp&&bp)}return {windows:p.length-n+1,possible,rune:rr,bigram:bb,runePass,bigramPass,jointPass,minOffset}}
+ let seed=0x452661;function rng(){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return seed>>>0}
+ for(let t=0;t<64;t++){const C=Array.from({length:18},()=>rng()%5),Z=C.flatMap((x,i)=>x===0?[i]:[]),q=2+rng()%5,res=[];for(let m=0;m<2**Z.length;m++){const z=new Set(Z.filter((_,j)=>m>>j&1));res.push(stats(C.filter((_,i)=>!z.has(i)),q))}const bo=bounds(C,q);for(let i=0;i<2;i++){const v=res.map(x=>x[i]);if([Math.min(...v),Math.max(...v)].join()!==(i?bo.bigram:bo.rune).join())throw Error("toy bounds")}}
+ const result=[];for(let ch=0;ch<9;ch++){for(let parity=0;parity<2;parity++){const C=chapters[ch].flatMap((x,i)=>i%2===parity?x.c.slice().reverse():x.c),F=C.filter(x=>x===0).length;for(const q of [8,13]){const bo=bounds(C,q),scans=donor.map(p=>scan(p,C.length,q,bo,F));result.push({ch,pages:ranges[ch],parity,q,n:C.length,F,...bo,scans})}}}
+ return {lineCount:pages.flat().length,chapterLines:chapters.map(x=>x.length),chapterLengths:chapters.map(x=>x.flatMap(y=>y.c).length),toyCases:64,donorLengths:donor.map(x=>x.length),result}
+}
+const paths=["resources/liber-primus/lp2-corpus.json","resources/transcriptions/liber_primus_master.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt","resources/control/gibran_prophet_58585.txt","resources/external/relikd-solved-gp29-native-v1.json"];
+const raw=paths.map(p=>fs.readFileSync(path.resolve(__dirname,"..",p),"utf8"));console.log(JSON.stringify(run(raw),null,2));

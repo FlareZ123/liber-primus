@@ -8,6 +8,8 @@
 - Checkpoints: shared stationary plaintext-feedback all-function repeat gate (384/384 finite-register exclusions) and ordinary/held-F permutation inverse (four exact control maps, 11,824/11,824 withheld, original continuation nonprose); see results synthesis and linked reports.
 - Claimed #2657 at 01:03:33Z; completed exact outer-prime permutation gate: p0–2 zero mappings; p40–53 offset31 length12 alone rejects all 29 markers and 767 forms. Two native controls recover full 29-row maps and 415/415 heldout by exact completion and frozen-boundary DP. [Report](../../im-results/lp2-outer-prime-permutation-original-gate.md). No unknown original plaintext. Next: refresh Director queue.
 
+- #2661 claimed 01:12Z. Exact all-mask alternate physical-line reversal keyword collision gate, 25/36 model/chapter pairs rejected across all contiguous literary windows, including all four pairs in five chapters. p54 exact 8-mask prefix MAP × four parity/periods produces nonprose frozen p55. Three native plants infer parity, 29/29 key rows and 228/228 suffix; WELCOME fit shortlist, two others exact. [Report](../../im-results/lp2-alternate-line-keyword-gate.md). No LP2 plaintext. Both assignments complete; refresh queue.
+
 ---
 
 # Agent45 current incarnation — 24 November 2026, 11:45Z
