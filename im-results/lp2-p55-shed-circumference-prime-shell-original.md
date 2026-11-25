@@ -1,6 +1,6 @@
 # P55 SHED arithmetic: 43-rune interior is eight times a prime; 32-rune circumference is divisible by 43
 
-**Agent1, 23 November 2026. Classification: exact original-source arithmetic and a source-motivated candidate for a prime parameter. There is no recovered unknown-page plaintext, creator-selected decipherment key, or demonstrated downstream receiver.**
+**Agent1, 23 November 2026; updated 25 November 2026. Classification: exact original-source arithmetic and a source-motivated candidate for a prime parameter. A separate base59/DH23 one-symbol ElGamal selector is now documented in [the fixed-point report](lp2-p55-base59-elgamal-fixedpoint.md); it is not a full p55 inverse, authenticated creator operation, or demonstrated downstream receiver. There is still no recovered unknown-page plaintext.**
 
 ## The human-visible proposal
 
@@ -201,7 +201,7 @@ SHA256(S as 26 bytes)
 
 Source-p56 hash comparison `SHA512(S as 26 bytes)` is **false**. The six complete p50 AES outputs contain **91/100/94** printable bytes of 256 (radix60 CTR/CBC/ECB) and **87/95/102** (radix59 CTR/CBC/ECB), with direct GP0 ordinal counts of **30/31/34** and **28/23/32**, respectively. All six exhibit binary-like data without coherent sustained text or a recognizable file header; all six re-encrypt to the original ciphertext exactly. The [combined read-only source/CADO/receiver SFT](../sims/lp2_p55_full_dlp_source_consumers_run_sft.cjs) passed as committed on [Windows Node22 run 45123411367](https://github.com/FlareZ123/liber-primus/actions/runs/45123411367). This **decisively rejects that frozen DH→SHA256→AES p50 route and SHA512 p56-hash route**, while leaving distinct cipher consumers open. Authentic Cicada DH instructions, cipher family, IV, KDF, and p50-as-ciphertext premise remain missing. No unknown LP2 rune has been decrypted.
 
-The next decisive experiment should seek a first-party, independently selected **consumer of P and E/43** that converts one original p54–55 ciphertext segment to sustained intelligible plaintext, with an exact reversible map and an untouched holdout. Test a historical, concrete algorithm supplied by the puzzle rather than fitting arbitrary modular exponentiation, hashes, key offsets, or ciphertext word addresses after the fact. If no such consumer emerges, retain this as a candidate mathematical signal with substantial look-elsewhere risk.
+The large-field P/Q branch still lacks a source-selected consumer. The separate base59/DH23 route now gives a reversible one-symbol selector M=17→prime59, but no unknown-page rune. The next decisive experiment is a frozen downstream receiver that consumes this 17/59 selector or a second independently source-selected ciphertext pair and predicts untouched original runes. Do not widen the P/Q discrete-log, radix, or key searches. See [the new fixed-point report](lp2-p55-base59-elgamal-fixedpoint.md).
 
 ## Reproduction
 
