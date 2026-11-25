@@ -27,6 +27,18 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Verify corrected p54-p55 fixture and Python syntax
+        run: |
+          python sims/lp2_shared_gp29_q8_terminal_fixture.py
+          git diff --exit-code -- im-results/lp2-shared-gp29-q8-terminal-corrected-fixtures.json
+          python -m py_compile \
+            sims/lp2_shared_gp29_q8_affine_sft.py \
+            sims/lp2_shared_gp29_q8_smt.py \
+            sims/lp2_shared_gp29_q8_source_pool_sft.py \
+            sims/lp2_shared_gp29_q8_keyed_alphabet_sft.py \
+            sims/lp2_shared_gp29_q8_alphabet_support_sft.py \
+            sims/lp2_shared_gp29_q8_cpsat_sft.py \
+            sims/lp2_shared_gp29_q8_terminal_fixture.py
       - run: pip install ortools==9.14.6206
       - name: Known-key mechanical check
         run: python sims/lp2_shared_gp29_q8_cpsat_sft.py --plant ${{ matrix.plant }} --mode ${{ inputs.mode }} --gauge k0 --oracle --seconds 60
