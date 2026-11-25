@@ -1,0 +1,56 @@
+name: LP2 shared q8 GF29 linearization calibration
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  calibration:
+    strategy:
+      fail-fast: false
+      matrix:
+        plant: [0, 1]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Recover planted alphabet coordinates from GF29 equations
+        run: python -u sims/lp2_shared_gp29_q8_linearization_sft.py --plant ${{ matrix.plant }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: q8-linearization-plant-${{ matrix.plant }}
+          path: im-results/lp2-shared-gp29-q8-linearization-control-${{ matrix.plant }}.json
+          if-no-files-found: error
+  gate:
+    if: always()
+    needs: calibration
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          pattern: q8-linearization-plant-*
+          path: plants
+      - name: Require exact 35-variable recoveries
+        run: |
+          python - <<'PY'
+          import glob, json, sys
+          files = glob.glob('plants/**/lp2-shared-gp29-q8-linearization-control-*.json', recursive=True)
+          rows = [json.load(open(p, encoding='utf-8')) for p in files]
+          passed = len(rows) == 2 and all(
+              r.get('passed') is True
+              and r.get('linear_system', {}).get('rank') == 35
+              and r.get('recovery', {}).get('same_action') is True
+              and r.get('recovery', {}).get('training_truth_present') == 47
+              and r.get('recovery', {}).get('carry_prefix_present') is True
+              and r.get('recovery', {}).get('holdout_truth_present') == 17
+              for r in rows
+          )
+          print(json.dumps({'files': files, 'rows': rows, 'passed': passed}, separators=(',', ':')))
+          if not passed:
+              sys.exit('GF29 linearization calibration did not pass on both plants.')
+          PY
