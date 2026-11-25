@@ -1,0 +1,178 @@
+{
+  "dictionary": 38938,
+  "training": 49,
+  "steps": 50000,
+  "restarts": 1,
+  "bonus": 4,
+  "anchorRate": 60,
+  "plants": [
+    {
+      "truthScore": -330.1849995040187,
+      "best": -803.4206813035539,
+      "pi": [
+        0,
+        6,
+        18,
+        1,
+        3,
+        17,
+        27,
+        23,
+        8,
+        22,
+        7,
+        20,
+        9,
+        13,
+        11,
+        16,
+        4,
+        28,
+        12,
+        5,
+        26,
+        25,
+        15,
+        14,
+        2,
+        21,
+        24,
+        10,
+        19
+      ],
+      "k": [
+        27,
+        3,
+        20,
+        6,
+        9,
+        19,
+        23,
+        3
+      ],
+      "actionExact": false,
+      "trainSupported": 13,
+      "trainTruth": 1,
+      "holdoutSupported": 5,
+      "holdoutTruth": 0,
+      "plantedSupported": 66,
+      "runs": [
+        {
+          "initial": -1034.1273512461935,
+          "best": -803.4206813035539,
+          "accepted": 717,
+          "moves": {
+            "swap": [
+              12792,
+              483
+            ],
+            "key": [
+              7020,
+              230
+            ],
+            "keyAnchor": [
+              14417,
+              1
+            ],
+            "piAnchor": [
+              14375,
+              3
+            ],
+            "lockedKey": [
+              692,
+              0
+            ],
+            "lockedPi": [
+              704,
+              0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "truthScore": -338.3848967369525,
+      "best": -783.3130988616864,
+      "pi": [
+        0,
+        22,
+        5,
+        19,
+        26,
+        11,
+        18,
+        13,
+        27,
+        2,
+        28,
+        25,
+        10,
+        14,
+        12,
+        23,
+        1,
+        8,
+        3,
+        21,
+        4,
+        6,
+        7,
+        24,
+        17,
+        9,
+        16,
+        15,
+        20
+      ],
+      "k": [
+        2,
+        19,
+        10,
+        19,
+        28,
+        18,
+        2,
+        21
+      ],
+      "actionExact": false,
+      "trainSupported": 19,
+      "trainTruth": 1,
+      "holdoutSupported": 4,
+      "holdoutTruth": 0,
+      "plantedSupported": 66,
+      "runs": [
+        {
+          "initial": -1062.9062326285841,
+          "best": -783.3130988616864,
+          "accepted": 783,
+          "moves": {
+            "swap": [
+              13187,
+              525
+            ],
+            "key": [
+              6979,
+              250
+            ],
+            "keyAnchor": [
+              13846,
+              6
+            ],
+            "piAnchor": [
+              13911,
+              1
+            ],
+            "lockedKey": [
+              1030,
+              1
+            ],
+            "lockedPi": [
+              1047,
+              0
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

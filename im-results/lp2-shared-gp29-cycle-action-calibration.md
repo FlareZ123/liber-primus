@@ -119,6 +119,19 @@ The two-longest-group contradiction implies that at least one of groups49/56 is 
 
 This exclusion is conditional on the frozen 38,938-form register, three-OOV limit, physical groups, F-fixing common permutation and mapped historical keyword with independent starts. No original plaintext is obtained. [Anchor56 raw](lp2-shared-gp29-mapped-divinity-oov-anchor56.json) · [Anchor49 raw](lp2-shared-gp29-mapped-divinity-oov-anchor49.json).
 
+## Unknown q8: dictionary-conditioned large neighbourhood pilot (Agent4)
+
+Train only on the first 49 complete p54 groups (222 runes), withholding the seam group and all later groups (17 groups). Use the same two independent native donor plants, seeds, frozen 38,938-form dictionary and objective as the earlier ordinary annealing pilot. Neither planted words nor starts are supplied to the receiver. Sixty percent of the proposals select a dictionary word compatible with the observed F positions and a starting phase. With pi fixed, derive the touched shifts from pi(C)-pi(P). With shifts fixed, construct a weighted difference graph and pack the translated components into the 29-coordinate cycle, preferring existing coordinates and fixing F=0. Optionally lock a second currently supported word. Every proposed anchor and lock is forward replayed. Packing is bounded at 128 nodes; this is a heuristic, not exhaustive enumeration. Both pilots use one restart and 50,000 proposals per plant.
+
+| Plant | Ordinary pilot score | Anchored pilot score | Correct effective action | Training support | Held-out true words |
+|---|---:|---:|---|---:|---:|
+| Gibran | -812.493 | -803.421 | no | 13/49 | 0/17 |
+| Emerson | -806.677 | -783.313 | no | 19/49 | 0/17 |
+
+True-key scores are -330.185 and -338.385; both true keys support all 66 groups. Anchored moves are accepted only 4/30,188 and 8/29,834 times respectively, despite exact replay of the proposed anchors. The modest objective improvements are not recovery. The search landscape defeats these local coordinated mutations. No original-data fit was run because the blind calibration failed. This does not exclude the general shared-cycle cipher.
+
+[Reproducer](../sims/lp2_shared_gp29_unknown_q8_anneal_sft.cjs) (run with arguments `50000 1 4 60`) · [anchored neighbourhood module](../sims/lp2_shared_gp29_unknown_q8_anchored.cjs) · [raw results](lp2-shared-gp29-unknown-q8-anchor-neighbourhood.json). The core was executed in connected V8 on pinned repository inputs; no standalone Node or CI run is claimed.
+
 ## Current conclusion
 
 **Established**
@@ -129,8 +142,8 @@ This exclusion is conditional on the frozen 38,938-form register, three-OOV limi
 **Not established**
 - No plaintext or key has been recovered for original p54–55.
 - The corrected mapped `pi(DIVINITY)` subcase is fully excluded with up to three arbitrary OOV groups: four exhaustive branches with 285, 174, 4,370 and 6,994 anchor options all fail. Two blind literary controls recover the exact planted map and 98/98 withheld truth words. This excludes only the fixed mapped historical keyword, not the general unknown q8 action.
-- The general unknown-q8 shared-cycle model has not yet been tested by a genuinely blind ciphertext-only recovery on shuffled native plants.
+- Two blind unknown-q8 annealing pilots (ordinary and dictionary-conditioned neighbourhood) recover neither planted action nor any withheld true word. This is a search failure, not a finite original-model exclusion.
 
 ## Next discriminating work
 
-The fixed-key anchor-packing result gives a practical exact all-different subroutine. To address the broader issue, build and validate a blind simultaneous CSP for the shared-cycle model: jointly choose dictionary word/phase assignments and solve the common \(\pi\) and q8 action, quotienting the phase-rotation and multiplicative gauges. First require recovery of the effective phase maps and held-out words on shuffled native plants **without plaintext training**. Only then apply the same frozen solver to p54 and p55, with an explicit OOV allowance and independent replay. The projected affine-space solver and corrected tokenization are useful for the unknown-q8 receiver; the mapped-key result is a full three-OOV exclusion; the numeric-key result remains conditional on both anchors. Neither is an all-key theorem. Do not promote the controls to an LP2 decryption.
+The fixed-key anchor-packing result gives a practical exact all-different subroutine. To address the broader issue, prioritize a key-space projection or other nonlocal constraint solver rather than further local annealing; build and validate a blind simultaneous CSP for the shared-cycle model: jointly choose dictionary word/phase assignments and solve the common \(\pi\) and q8 action, quotienting the phase-rotation and multiplicative gauges. First require recovery of the effective phase maps and held-out words on shuffled native plants **without plaintext training**. Only then apply the same frozen solver to p54 and p55, with an explicit OOV allowance and independent replay. The projected affine-space solver and corrected tokenization are useful for the unknown-q8 receiver; the mapped-key result is a full three-OOV exclusion; the numeric-key result remains conditional on both anchors. Neither is an all-key theorem. Do not promote the controls to an LP2 decryption.
