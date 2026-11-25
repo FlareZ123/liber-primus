@@ -50,3 +50,23 @@ Planted positive controls use a known 0x33012026 seed but hide the internal stat
 The original table **cannot be a consecutive, unmodified output** of the standard Java \`Random\` methods \`nextInt(256)\`, \`nextBytes\`, or \`nextInt() & 255\` in any of these 49 source-visible orientations/substreams, even with a secret full 48-bit starting state. This is an exact model exclusion, without language scoring or large approximate seed sweeps.
 
 It does **not** eliminate Java \`SecureRandom\`, skipped draws between *individual* bytes, independently keyed resets inside a tested row, other byte-sampling rules, source-specific rearrangements, or any non-Java cipher. The code does not decrypt p49's 66 preceding runes, p55's 76 runes, or any other LP2 unknown page. An original clue specifying a different generator or an explicit table consumer would be needed before investing in dependent variants. Broad unfixed PRNG searches would likely recreate the original streetlight problem rather than give a source-selected route to plaintext.
+
+
+## Exact distinct-row rejection-sampling extension (Agent 20, 25 November)
+
+The consecutive-output decision does not cover hidden rejected duplicates. The original table has eight distinct values in every one of its 32 physical rows, so a distinct, source-shaped generator is repeated Java `nextInt(256)` until eight different values have been accepted in encounter order, clearing the accepted set at each row. Java 8 documents the 48-bit LCG and special power-of-two high-bit output at https://docs.oracle.com/javase/8/docs/api/java/util/Random.html. No original clue selects Java; the model is motivated only by within-row uniqueness. The previously studied Python 2.7 sample model is separate.
+
+**Complete inversion without a rejection cap.** Given a printed row r0,…,r7, its first eight raw draws must be a restricted-growth sequence of row indices: first digit 0, later digits an already-seen index or the next new index. Exactly Bell(8)=4,140 such sequences exist. This is true even if many more draws are needed to complete the row. Apply the preceding certified truncated-LCG lattice to every eight-byte sequence. Exact rational Gram–Schmidt gives min squared norm / (8×2^80) = 1.1764337716931093 > 1, certifying nearest-plane recovers every possible full state for each prefix. The implementation precomputes integer projection numerators and denominators for exact rounding. Replay each surviving state until the eight distinct values are emitted or the next distinct value disagrees. The LCG has full period 2^48, so replay terminates; no number of rejected draws is guessed. This grants a separately unknown first state to every row.
+
+**Executed original:** 32 forward printed rows in each of base60 and base59 (hashes checked against the canonical byte digests), 64 × 4,140 = 264,960 complete prefix lattice inversions. Base60 has zero surviving prefixes on every row. Base59 has one surviving prefix, zero-based row30:
+
+- printed row: [142,139,41,211,22,55,195,189]
+- first eight draws: [142,139,139,139,41,142,139,41]
+- unique first state: 157085696734746
+- next new value: 237, contradicting expected 211.
+
+Thus **all 64 original row interpretations are impossible** under this direct distinct-row producer, even with unlimited collision-only rejection and independent full secret states per row.
+
+Three seeded controls selected before the attack for 0,1,2 rejects in their first eight raw draws all recover their unique exact initial state, full rejection history and next-row state: 109136048139867 (8 draws), 44158514506306 (9 draws), 217808234003231 (10 draws). Original source tokens were copied from grid blob 2550eae357442912220e05dc51147523a61dd75a; both complete decoded hashes were asserted in the executed local Python run. [New SFT](../sims/lp2_p50_java_distinctrow_lattice_sft.py), requires SymPy. No CI run claimed.
+
+**Decision:** retire this exact direct Java sampling model. Do not treat the single near-prefix as key material. This says nothing about Fisher–Yates sampling with decreasing bounds, cryptographic RNGs, a masked table, or other generators; the source still lacks a selector for such alternatives. No unknown plaintext, genuine key, or continuation recovered.
