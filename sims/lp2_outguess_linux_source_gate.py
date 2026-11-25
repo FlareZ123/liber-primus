@@ -3,7 +3,7 @@
 
 LP2 archive indices 17..72 are pages 0..55; 73..74 are solved controls.
 LP1 indices 0..16 are positive controls for the historical extractor.
-The seven source-derived candidate keys are tested against every unknown LP2 page.
+The source-derived candidate keys, including the historical uppercase FIRFUMFERENFE spelling, are tested against every unknown LP2 page.
 """
 from __future__ import annotations
 
@@ -23,6 +23,7 @@ CANDIDATE_KEYS = [
     "33011033",
     "circumference",
     "firfumferenfe",
+    "FIRFUMFERENFE",
     "welcome",
     "instar",
     "pilgrim",
