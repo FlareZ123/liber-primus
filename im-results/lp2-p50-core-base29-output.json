@@ -1,0 +1,353 @@
+{
+  "hex": "55f78eab5d76f4d9f577829b25c560fbc83e7a5ff90e1381be067f7957995987",
+  "key": [
+    3,
+    14,
+    21,
+    9,
+    18,
+    8,
+    23,
+    1,
+    12,
+    20,
+    7,
+    24,
+    10,
+    11,
+    11,
+    0,
+    8,
+    0,
+    4,
+    20,
+    19,
+    19,
+    3,
+    5,
+    6,
+    26,
+    20,
+    3,
+    2,
+    26,
+    21,
+    17,
+    19,
+    27,
+    6,
+    26,
+    3,
+    12,
+    26,
+    28,
+    0,
+    21,
+    3,
+    28,
+    25,
+    12,
+    12,
+    9,
+    20,
+    2,
+    27,
+    3,
+    7
+  ],
+  "keyLength": 53,
+  "historical": {
+    "n": 85,
+    "matches": 85
+  },
+  "controls": [
+    {
+      "n": 95,
+      "correct": 95,
+      "paths": "15",
+      "score": -2.628781272157963,
+      "nativeScore": -2.628781272157963
+    },
+    {
+      "n": 85,
+      "correct": 85,
+      "paths": "1",
+      "score": -2.676895424427737,
+      "nativeScore": -2.676895424427737
+    }
+  ],
+  "result": [
+    {
+      "start": 0,
+      "end": 3,
+      "n": 729,
+      "fixed": {
+        "prefix": 14,
+        "count": "0"
+      },
+      "maxPrefix": 381,
+      "surviving": [],
+      "totalPaths": "0"
+    },
+    {
+      "start": 3,
+      "end": 8,
+      "n": 1145,
+      "fixed": {
+        "prefix": 18,
+        "count": "0"
+      },
+      "maxPrefix": 356,
+      "surviving": [],
+      "totalPaths": "0"
+    },
+    {
+      "start": 8,
+      "end": 15,
+      "n": 1729,
+      "fixed": {
+        "prefix": 18,
+        "count": "0"
+      },
+      "maxPrefix": 309,
+      "surviving": [],
+      "totalPaths": "0"
+    },
+    {
+      "start": 15,
+      "end": 23,
+      "n": 1903,
+      "fixed": {
+        "prefix": 56,
+        "count": "0"
+      },
+      "maxPrefix": 172,
+      "surviving": [],
+      "totalPaths": "0"
+    },
+    {
+      "start": 23,
+      "end": 27,
+      "n": 1021,
+      "fixed": {
+        "prefix": 6,
+        "count": "0"
+      },
+      "maxPrefix": 168,
+      "surviving": [],
+      "totalPaths": "0"
+    },
+    {
+      "start": 27,
+      "end": 33,
+      "n": 1433,
+      "fixed": {
+        "prefix": 9,
+        "count": "0"
+      },
+      "maxPrefix": 310,
+      "surviving": [],
+      "totalPaths": "0"
+    },
+    {
+      "start": 33,
+      "end": 40,
+      "n": 1680,
+      "fixed": {
+        "prefix": 68,
+        "count": "0"
+      },
+      "maxPrefix": 275,
+      "surviving": [],
+      "totalPaths": "0"
+    },
+    {
+      "start": 40,
+      "end": 54,
+      "n": 3008,
+      "fixed": {
+        "prefix": 80,
+        "count": "0"
+      },
+      "maxPrefix": 157,
+      "surviving": [],
+      "totalPaths": "0"
+    },
+    {
+      "start": 54,
+      "end": 56,
+      "n": 308,
+      "fixed": {
+        "prefix": 2,
+        "count": "0"
+      },
+      "maxPrefix": 221,
+      "surviving": [],
+      "totalPaths": "0"
+    },
+    {
+      "start": 55,
+      "end": 56,
+      "n": 76,
+      "fixed": {
+        "prefix": 76,
+        "count": "2",
+        "score": -3.9052917280021187,
+        "p": "E J IA U E W D P W A C J P L X F IA T B U I B X X D F H P EA IA O T T R U X P E L S T U B T N G T G T N M R T O H S U L OE P I NG U I X NG S N D O D O U P IA L"
+      },
+      "maxPrefix": 76,
+      "surviving": [
+        {
+          "phase": 0,
+          "count": "2",
+          "score": -3.9052917280021187
+        },
+        {
+          "phase": 1,
+          "count": "1",
+          "score": -4.0604825198523935
+        },
+        {
+          "phase": 3,
+          "count": "1",
+          "score": -4.1276481819806605
+        },
+        {
+          "phase": 4,
+          "count": "1",
+          "score": -4.0079805381985025
+        },
+        {
+          "phase": 5,
+          "count": "1",
+          "score": -4.059540236252045
+        },
+        {
+          "phase": 7,
+          "count": "3",
+          "score": -3.887711524919838
+        },
+        {
+          "phase": 8,
+          "count": "1",
+          "score": -3.869778470159261
+        },
+        {
+          "phase": 10,
+          "count": "2",
+          "score": -3.7856618984830996
+        },
+        {
+          "phase": 11,
+          "count": "1",
+          "score": -3.9273377894229036
+        },
+        {
+          "phase": 14,
+          "count": "1",
+          "score": -3.8164591880546697
+        },
+        {
+          "phase": 16,
+          "count": "2",
+          "score": -4.071947716251583
+        },
+        {
+          "phase": 17,
+          "count": "2",
+          "score": -4.1078763293166505
+        },
+        {
+          "phase": 20,
+          "count": "1",
+          "score": -3.91704663144106
+        },
+        {
+          "phase": 21,
+          "count": "2",
+          "score": -3.9784715047227963
+        },
+        {
+          "phase": 22,
+          "count": "1",
+          "score": -4.04655521898622
+        },
+        {
+          "phase": 26,
+          "count": "2",
+          "score": -3.8104948186382344
+        },
+        {
+          "phase": 29,
+          "count": "1",
+          "score": -4.203778936211578
+        },
+        {
+          "phase": 31,
+          "count": "3",
+          "score": -3.979490001556722
+        },
+        {
+          "phase": 32,
+          "count": "1",
+          "score": -4.120184841962143
+        },
+        {
+          "phase": 33,
+          "count": "3",
+          "score": -4.151626544130579
+        },
+        {
+          "phase": 34,
+          "count": "2",
+          "score": -4.098588416663989
+        },
+        {
+          "phase": 37,
+          "count": "3",
+          "score": -3.811093682405126
+        },
+        {
+          "phase": 38,
+          "count": "1",
+          "score": -3.867681280015813
+        },
+        {
+          "phase": 39,
+          "count": "1",
+          "score": -4.142374657494169
+        },
+        {
+          "phase": 40,
+          "count": "1",
+          "score": -4.119412420214783
+        },
+        {
+          "phase": 42,
+          "count": "1",
+          "score": -3.946267348187195
+        },
+        {
+          "phase": 49,
+          "count": "1",
+          "score": -3.9708184762918086
+        },
+        {
+          "phase": 52,
+          "count": "3",
+          "score": -3.9154879657113573
+        }
+      ],
+      "totalPaths": "45",
+      "best": {
+        "phase": 10,
+        "score": -3.7856618984830996,
+        "text": "X U N EA AE S N X S A OE T L Y M F U R X O R S T IA U D B W W R G P T E NG T W O X W J TH X U N L L N I I T C TH S H D C U L TH I S IA TH S N W X EA B O H EA L Y OE"
+      }
+    }
+  ],
+  "p55Ordinary": {
+    "score": -3.9343480663784205,
+    "text": "E J IA U E W D P W A C J P L X F M A P X J B U EO OE O D W B R P AE E D X S T O Y EA P H X N T OE F N H T EO O W O U Y G D D H B O J S I E EA H C G D W I IA EA W"
+  }
+}
