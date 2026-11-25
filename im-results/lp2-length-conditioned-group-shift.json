@@ -1,0 +1,3816 @@
+{
+  "vocab": 35940,
+  "toyChecks": 32,
+  "book": {
+    "ordinary": {
+      "n": 2896,
+      "free": 0,
+      "upper": 288,
+      "missing": 2608,
+      "allowance": 144,
+      "detail": [
+        {
+          "len": 1,
+          "n": 83,
+          "distinct": 28,
+          "lexicon": 29,
+          "max": 83,
+          "ties": 29,
+          "keys": 29
+        },
+        {
+          "len": 2,
+          "n": 448,
+          "distinct": 354,
+          "lexicon": 194,
+          "max": 129,
+          "ties": 1,
+          "keys": 841
+        },
+        {
+          "len": 3,
+          "n": 720,
+          "distinct": 704,
+          "lexicon": 810,
+          "max": 48,
+          "ties": 1,
+          "keys": 24389
+        },
+        {
+          "len": 4,
+          "n": 513,
+          "distinct": 513,
+          "lexicon": 2307,
+          "max": 11,
+          "ties": 1,
+          "keys": 574512
+        },
+        {
+          "len": 5,
+          "n": 317,
+          "distinct": 317,
+          "lexicon": 4114,
+          "max": 5,
+          "ties": 1,
+          "keys": 1263596
+        },
+        {
+          "len": 6,
+          "n": 256,
+          "distinct": 256,
+          "lexicon": 5666,
+          "max": 3,
+          "ties": 2,
+          "keys": 1448690
+        },
+        {
+          "len": 7,
+          "n": 216,
+          "distinct": 216,
+          "lexicon": 5901,
+          "max": 2,
+          "ties": 56,
+          "keys": 1274560
+        },
+        {
+          "len": 8,
+          "n": 156,
+          "distinct": 156,
+          "lexicon": 5370,
+          "max": 1,
+          "ties": 837720,
+          "keys": 837720
+        },
+        {
+          "len": 9,
+          "n": 78,
+          "distinct": 78,
+          "lexicon": 4345,
+          "max": 1,
+          "ties": 338910,
+          "keys": 338910
+        },
+        {
+          "len": 10,
+          "n": 52,
+          "distinct": 52,
+          "lexicon": 3124,
+          "max": 1,
+          "ties": 162448,
+          "keys": 162448
+        },
+        {
+          "len": 11,
+          "n": 32,
+          "distinct": 32,
+          "lexicon": 2004,
+          "max": 1,
+          "ties": 64128,
+          "keys": 64128
+        },
+        {
+          "len": 12,
+          "n": 18,
+          "distinct": 18,
+          "lexicon": 1128,
+          "max": 1,
+          "ties": 20304,
+          "keys": 20304
+        },
+        {
+          "len": 13,
+          "n": 4,
+          "distinct": 4,
+          "lexicon": 581,
+          "max": 1,
+          "ties": 2324,
+          "keys": 2324
+        },
+        {
+          "len": 14,
+          "n": 3,
+          "distinct": 3,
+          "lexicon": 247,
+          "max": 1,
+          "ties": 741,
+          "keys": 741
+        }
+      ]
+    },
+    "literalF": {
+      "n": 2896,
+      "free": 422,
+      "upper": 691,
+      "missing": 2205,
+      "allowance": 144,
+      "detail": [
+        {
+          "len": 1,
+          "n": 82,
+          "distinct": 27,
+          "lexicon": 28,
+          "max": 82,
+          "ties": 2,
+          "keys": 29
+        },
+        {
+          "len": 2,
+          "n": 422,
+          "distinct": 332,
+          "lexicon": 184,
+          "max": 119,
+          "ties": 2,
+          "keys": 841
+        },
+        {
+          "len": 3,
+          "n": 647,
+          "distinct": 631,
+          "lexicon": 764,
+          "max": 42,
+          "ties": 1,
+          "keys": 24389
+        },
+        {
+          "len": 4,
+          "n": 451,
+          "distinct": 451,
+          "lexicon": 2122,
+          "max": 10,
+          "ties": 1,
+          "keys": 524370
+        },
+        {
+          "len": 5,
+          "n": 251,
+          "distinct": 251,
+          "lexicon": 3768,
+          "max": 4,
+          "ties": 6,
+          "keys": 923990
+        },
+        {
+          "len": 6,
+          "n": 199,
+          "distinct": 199,
+          "lexicon": 5169,
+          "max": 3,
+          "ties": 2,
+          "keys": 1027729
+        },
+        {
+          "len": 7,
+          "n": 175,
+          "distinct": 175,
+          "lexicon": 5276,
+          "max": 2,
+          "ties": 34,
+          "keys": 923266
+        },
+        {
+          "len": 8,
+          "n": 119,
+          "distinct": 119,
+          "lexicon": 4791,
+          "max": 1,
+          "ties": 570129,
+          "keys": 570129
+        },
+        {
+          "len": 9,
+          "n": 55,
+          "distinct": 55,
+          "lexicon": 3831,
+          "max": 1,
+          "ties": 210705,
+          "keys": 210705
+        },
+        {
+          "len": 10,
+          "n": 37,
+          "distinct": 37,
+          "lexicon": 2777,
+          "max": 1,
+          "ties": 102749,
+          "keys": 102749
+        },
+        {
+          "len": 11,
+          "n": 18,
+          "distinct": 18,
+          "lexicon": 1755,
+          "max": 1,
+          "ties": 31590,
+          "keys": 31590
+        },
+        {
+          "len": 12,
+          "n": 15,
+          "distinct": 15,
+          "lexicon": 982,
+          "max": 1,
+          "ties": 14730,
+          "keys": 14730
+        },
+        {
+          "len": 13,
+          "n": 2,
+          "distinct": 2,
+          "lexicon": 502,
+          "max": 1,
+          "ties": 1004,
+          "keys": 1004
+        },
+        {
+          "len": 14,
+          "n": 1,
+          "distinct": 1,
+          "lexicon": 217,
+          "max": 1,
+          "ties": 217,
+          "keys": 217
+        }
+      ]
+    }
+  },
+  "regions": [
+    {
+      "a": 0,
+      "b": 2,
+      "ordinary": {
+        "n": 158,
+        "free": 0,
+        "upper": 41,
+        "missing": 117,
+        "allowance": 7,
+        "detail": [
+          {
+            "len": 1,
+            "n": 5,
+            "distinct": 5,
+            "lexicon": 29,
+            "max": 5,
+            "ties": 29,
+            "keys": 29
+          },
+          {
+            "len": 2,
+            "n": 28,
+            "distinct": 26,
+            "lexicon": 194,
+            "max": 16,
+            "ties": 1,
+            "keys": 839
+          },
+          {
+            "len": 3,
+            "n": 36,
+            "distinct": 36,
+            "lexicon": 810,
+            "max": 7,
+            "ties": 5,
+            "keys": 17230
+          },
+          {
+            "len": 4,
+            "n": 20,
+            "distinct": 20,
+            "lexicon": 2307,
+            "max": 3,
+            "ties": 22,
+            "keys": 44797
+          },
+          {
+            "len": 5,
+            "n": 13,
+            "distinct": 13,
+            "lexicon": 4114,
+            "max": 2,
+            "ties": 62,
+            "keys": 53420
+          },
+          {
+            "len": 6,
+            "n": 18,
+            "distinct": 18,
+            "lexicon": 5666,
+            "max": 2,
+            "ties": 9,
+            "keys": 101979
+          },
+          {
+            "len": 7,
+            "n": 17,
+            "distinct": 17,
+            "lexicon": 5901,
+            "max": 2,
+            "ties": 1,
+            "keys": 100316
+          },
+          {
+            "len": 8,
+            "n": 9,
+            "distinct": 9,
+            "lexicon": 5370,
+            "max": 1,
+            "ties": 48330,
+            "keys": 48330
+          },
+          {
+            "len": 9,
+            "n": 6,
+            "distinct": 6,
+            "lexicon": 4345,
+            "max": 1,
+            "ties": 26070,
+            "keys": 26070
+          },
+          {
+            "len": 10,
+            "n": 4,
+            "distinct": 4,
+            "lexicon": 3124,
+            "max": 1,
+            "ties": 12496,
+            "keys": 12496
+          },
+          {
+            "len": 11,
+            "n": 2,
+            "distinct": 2,
+            "lexicon": 2004,
+            "max": 1,
+            "ties": 4008,
+            "keys": 4008
+          }
+        ]
+      },
+      "literalF": {
+        "n": 158,
+        "free": 30,
+        "upper": 68,
+        "missing": 90,
+        "allowance": 7,
+        "detail": [
+          {
+            "len": 1,
+            "n": 4,
+            "distinct": 4,
+            "lexicon": 28,
+            "max": 4,
+            "ties": 25,
+            "keys": 29
+          },
+          {
+            "len": 2,
+            "n": 25,
+            "distinct": 24,
+            "lexicon": 184,
+            "max": 14,
+            "ties": 1,
+            "keys": 838
+          },
+          {
+            "len": 3,
+            "n": 31,
+            "distinct": 31,
+            "lexicon": 764,
+            "max": 7,
+            "ties": 2,
+            "keys": 15481
+          },
+          {
+            "len": 4,
+            "n": 18,
+            "distinct": 18,
+            "lexicon": 2122,
+            "max": 3,
+            "ties": 8,
+            "keys": 37304
+          },
+          {
+            "len": 5,
+            "n": 9,
+            "distinct": 9,
+            "lexicon": 3768,
+            "max": 2,
+            "ties": 29,
+            "keys": 33883
+          },
+          {
+            "len": 6,
+            "n": 10,
+            "distinct": 10,
+            "lexicon": 5169,
+            "max": 2,
+            "ties": 1,
+            "keys": 51689
+          },
+          {
+            "len": 7,
+            "n": 16,
+            "distinct": 16,
+            "lexicon": 5276,
+            "max": 2,
+            "ties": 1,
+            "keys": 84415
+          },
+          {
+            "len": 8,
+            "n": 8,
+            "distinct": 8,
+            "lexicon": 4791,
+            "max": 1,
+            "ties": 38328,
+            "keys": 38328
+          },
+          {
+            "len": 9,
+            "n": 4,
+            "distinct": 4,
+            "lexicon": 3831,
+            "max": 1,
+            "ties": 15324,
+            "keys": 15324
+          },
+          {
+            "len": 10,
+            "n": 2,
+            "distinct": 2,
+            "lexicon": 2777,
+            "max": 1,
+            "ties": 5554,
+            "keys": 5554
+          },
+          {
+            "len": 11,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 1755,
+            "max": 1,
+            "ties": 1755,
+            "keys": 1755
+          }
+        ]
+      }
+    },
+    {
+      "a": 3,
+      "b": 7,
+      "ordinary": {
+        "n": 255,
+        "free": 0,
+        "upper": 49,
+        "missing": 206,
+        "allowance": 12,
+        "detail": [
+          {
+            "len": 1,
+            "n": 8,
+            "distinct": 7,
+            "lexicon": 29,
+            "max": 8,
+            "ties": 29,
+            "keys": 29
+          },
+          {
+            "len": 2,
+            "n": 32,
+            "distinct": 30,
+            "lexicon": 194,
+            "max": 16,
+            "ties": 2,
+            "keys": 841
+          },
+          {
+            "len": 3,
+            "n": 68,
+            "distinct": 68,
+            "lexicon": 810,
+            "max": 10,
+            "ties": 1,
+            "keys": 21972
+          },
+          {
+            "len": 4,
+            "n": 49,
+            "distinct": 49,
+            "lexicon": 2307,
+            "max": 4,
+            "ties": 17,
+            "keys": 104323
+          },
+          {
+            "len": 5,
+            "n": 21,
+            "distinct": 21,
+            "lexicon": 4114,
+            "max": 3,
+            "ties": 1,
+            "keys": 86227
+          },
+          {
+            "len": 6,
+            "n": 32,
+            "distinct": 32,
+            "lexicon": 5666,
+            "max": 2,
+            "ties": 16,
+            "keys": 181296
+          },
+          {
+            "len": 7,
+            "n": 18,
+            "distinct": 18,
+            "lexicon": 5901,
+            "max": 1,
+            "ties": 106218,
+            "keys": 106218
+          },
+          {
+            "len": 8,
+            "n": 11,
+            "distinct": 11,
+            "lexicon": 5370,
+            "max": 1,
+            "ties": 59070,
+            "keys": 59070
+          },
+          {
+            "len": 9,
+            "n": 6,
+            "distinct": 6,
+            "lexicon": 4345,
+            "max": 1,
+            "ties": 26070,
+            "keys": 26070
+          },
+          {
+            "len": 10,
+            "n": 5,
+            "distinct": 5,
+            "lexicon": 3124,
+            "max": 1,
+            "ties": 15620,
+            "keys": 15620
+          },
+          {
+            "len": 11,
+            "n": 2,
+            "distinct": 2,
+            "lexicon": 2004,
+            "max": 1,
+            "ties": 4008,
+            "keys": 4008
+          },
+          {
+            "len": 12,
+            "n": 3,
+            "distinct": 3,
+            "lexicon": 1128,
+            "max": 1,
+            "ties": 3384,
+            "keys": 3384
+          }
+        ]
+      },
+      "literalF": {
+        "n": 255,
+        "free": 26,
+        "upper": 74,
+        "missing": 181,
+        "allowance": 12,
+        "detail": [
+          {
+            "len": 1,
+            "n": 8,
+            "distinct": 7,
+            "lexicon": 28,
+            "max": 8,
+            "ties": 22,
+            "keys": 29
+          },
+          {
+            "len": 2,
+            "n": 32,
+            "distinct": 30,
+            "lexicon": 184,
+            "max": 16,
+            "ties": 1,
+            "keys": 840
+          },
+          {
+            "len": 3,
+            "n": 64,
+            "distinct": 64,
+            "lexicon": 764,
+            "max": 9,
+            "ties": 3,
+            "keys": 21177
+          },
+          {
+            "len": 4,
+            "n": 46,
+            "distinct": 46,
+            "lexicon": 2122,
+            "max": 4,
+            "ties": 9,
+            "keys": 91038
+          },
+          {
+            "len": 5,
+            "n": 17,
+            "distinct": 17,
+            "lexicon": 3768,
+            "max": 3,
+            "ties": 1,
+            "keys": 63956
+          },
+          {
+            "len": 6,
+            "n": 29,
+            "distinct": 29,
+            "lexicon": 5169,
+            "max": 2,
+            "ties": 13,
+            "keys": 149888
+          },
+          {
+            "len": 7,
+            "n": 14,
+            "distinct": 14,
+            "lexicon": 5276,
+            "max": 1,
+            "ties": 73864,
+            "keys": 73864
+          },
+          {
+            "len": 8,
+            "n": 8,
+            "distinct": 8,
+            "lexicon": 4791,
+            "max": 1,
+            "ties": 38328,
+            "keys": 38328
+          },
+          {
+            "len": 9,
+            "n": 4,
+            "distinct": 4,
+            "lexicon": 3831,
+            "max": 1,
+            "ties": 15324,
+            "keys": 15324
+          },
+          {
+            "len": 10,
+            "n": 4,
+            "distinct": 4,
+            "lexicon": 2777,
+            "max": 1,
+            "ties": 11108,
+            "keys": 11108
+          },
+          {
+            "len": 11,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 1755,
+            "max": 1,
+            "ties": 1755,
+            "keys": 1755
+          },
+          {
+            "len": 12,
+            "n": 2,
+            "distinct": 2,
+            "lexicon": 982,
+            "max": 1,
+            "ties": 1964,
+            "keys": 1964
+          }
+        ]
+      }
+    },
+    {
+      "a": 8,
+      "b": 14,
+      "ordinary": {
+        "n": 383,
+        "free": 0,
+        "upper": 65,
+        "missing": 318,
+        "allowance": 19,
+        "detail": [
+          {
+            "len": 1,
+            "n": 11,
+            "distinct": 9,
+            "lexicon": 29,
+            "max": 11,
+            "ties": 29,
+            "keys": 29
+          },
+          {
+            "len": 2,
+            "n": 56,
+            "distinct": 52,
+            "lexicon": 194,
+            "max": 25,
+            "ties": 1,
+            "keys": 841
+          },
+          {
+            "len": 3,
+            "n": 96,
+            "distinct": 96,
+            "lexicon": 810,
+            "max": 11,
+            "ties": 8,
+            "keys": 23461
+          },
+          {
+            "len": 4,
+            "n": 73,
+            "distinct": 73,
+            "lexicon": 2307,
+            "max": 5,
+            "ties": 3,
+            "keys": 149955
+          },
+          {
+            "len": 5,
+            "n": 40,
+            "distinct": 40,
+            "lexicon": 4114,
+            "max": 2,
+            "ties": 604,
+            "keys": 163956
+          },
+          {
+            "len": 6,
+            "n": 35,
+            "distinct": 35,
+            "lexicon": 5666,
+            "max": 2,
+            "ties": 36,
+            "keys": 198274
+          },
+          {
+            "len": 7,
+            "n": 26,
+            "distinct": 26,
+            "lexicon": 5901,
+            "max": 2,
+            "ties": 2,
+            "keys": 153424
+          },
+          {
+            "len": 8,
+            "n": 16,
+            "distinct": 16,
+            "lexicon": 5370,
+            "max": 1,
+            "ties": 85920,
+            "keys": 85920
+          },
+          {
+            "len": 9,
+            "n": 14,
+            "distinct": 14,
+            "lexicon": 4345,
+            "max": 1,
+            "ties": 60830,
+            "keys": 60830
+          },
+          {
+            "len": 10,
+            "n": 4,
+            "distinct": 4,
+            "lexicon": 3124,
+            "max": 1,
+            "ties": 12496,
+            "keys": 12496
+          },
+          {
+            "len": 11,
+            "n": 7,
+            "distinct": 7,
+            "lexicon": 2004,
+            "max": 1,
+            "ties": 14028,
+            "keys": 14028
+          },
+          {
+            "len": 12,
+            "n": 3,
+            "distinct": 3,
+            "lexicon": 1128,
+            "max": 1,
+            "ties": 3384,
+            "keys": 3384
+          },
+          {
+            "len": 13,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 581,
+            "max": 1,
+            "ties": 581,
+            "keys": 581
+          },
+          {
+            "len": 14,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 247,
+            "max": 1,
+            "ties": 247,
+            "keys": 247
+          }
+        ]
+      },
+      "literalF": {
+        "n": 383,
+        "free": 59,
+        "upper": 122,
+        "missing": 261,
+        "allowance": 19,
+        "detail": [
+          {
+            "len": 1,
+            "n": 11,
+            "distinct": 9,
+            "lexicon": 28,
+            "max": 11,
+            "ties": 20,
+            "keys": 29
+          },
+          {
+            "len": 2,
+            "n": 56,
+            "distinct": 52,
+            "lexicon": 184,
+            "max": 24,
+            "ties": 1,
+            "keys": 841
+          },
+          {
+            "len": 3,
+            "n": 85,
+            "distinct": 85,
+            "lexicon": 764,
+            "max": 11,
+            "ties": 1,
+            "keys": 22789
+          },
+          {
+            "len": 4,
+            "n": 63,
+            "distinct": 63,
+            "lexicon": 2122,
+            "max": 5,
+            "ties": 1,
+            "keys": 121975
+          },
+          {
+            "len": 5,
+            "n": 32,
+            "distinct": 32,
+            "lexicon": 3768,
+            "max": 2,
+            "ties": 313,
+            "keys": 120263
+          },
+          {
+            "len": 6,
+            "n": 25,
+            "distinct": 25,
+            "lexicon": 5169,
+            "max": 2,
+            "ties": 13,
+            "keys": 129212
+          },
+          {
+            "len": 7,
+            "n": 22,
+            "distinct": 22,
+            "lexicon": 5276,
+            "max": 2,
+            "ties": 1,
+            "keys": 116071
+          },
+          {
+            "len": 8,
+            "n": 11,
+            "distinct": 11,
+            "lexicon": 4791,
+            "max": 1,
+            "ties": 52701,
+            "keys": 52701
+          },
+          {
+            "len": 9,
+            "n": 10,
+            "distinct": 10,
+            "lexicon": 3831,
+            "max": 1,
+            "ties": 38310,
+            "keys": 38310
+          },
+          {
+            "len": 10,
+            "n": 3,
+            "distinct": 3,
+            "lexicon": 2777,
+            "max": 1,
+            "ties": 8331,
+            "keys": 8331
+          },
+          {
+            "len": 11,
+            "n": 3,
+            "distinct": 3,
+            "lexicon": 1755,
+            "max": 1,
+            "ties": 5265,
+            "keys": 5265
+          },
+          {
+            "len": 12,
+            "n": 2,
+            "distinct": 2,
+            "lexicon": 982,
+            "max": 1,
+            "ties": 1964,
+            "keys": 1964
+          },
+          {
+            "len": 14,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 217,
+            "max": 1,
+            "ties": 217,
+            "keys": 217
+          }
+        ]
+      }
+    },
+    {
+      "a": 15,
+      "b": 22,
+      "ordinary": {
+        "n": 437,
+        "free": 0,
+        "upper": 81,
+        "missing": 356,
+        "allowance": 21,
+        "detail": [
+          {
+            "len": 1,
+            "n": 18,
+            "distinct": 12,
+            "lexicon": 29,
+            "max": 18,
+            "ties": 29,
+            "keys": 29
+          },
+          {
+            "len": 2,
+            "n": 74,
+            "distinct": 73,
+            "lexicon": 194,
+            "max": 31,
+            "ties": 1,
+            "keys": 841
+          },
+          {
+            "len": 3,
+            "n": 104,
+            "distinct": 104,
+            "lexicon": 810,
+            "max": 14,
+            "ties": 1,
+            "keys": 23719
+          },
+          {
+            "len": 4,
+            "n": 75,
+            "distinct": 75,
+            "lexicon": 2307,
+            "max": 5,
+            "ties": 2,
+            "keys": 153868
+          },
+          {
+            "len": 5,
+            "n": 49,
+            "distinct": 49,
+            "lexicon": 4114,
+            "max": 3,
+            "ties": 3,
+            "keys": 200599
+          },
+          {
+            "len": 6,
+            "n": 37,
+            "distinct": 37,
+            "lexicon": 5666,
+            "max": 2,
+            "ties": 33,
+            "keys": 209609
+          },
+          {
+            "len": 7,
+            "n": 32,
+            "distinct": 32,
+            "lexicon": 5901,
+            "max": 2,
+            "ties": 1,
+            "keys": 188831
+          },
+          {
+            "len": 8,
+            "n": 28,
+            "distinct": 28,
+            "lexicon": 5370,
+            "max": 1,
+            "ties": 150360,
+            "keys": 150360
+          },
+          {
+            "len": 9,
+            "n": 5,
+            "distinct": 5,
+            "lexicon": 4345,
+            "max": 1,
+            "ties": 21725,
+            "keys": 21725
+          },
+          {
+            "len": 10,
+            "n": 6,
+            "distinct": 6,
+            "lexicon": 3124,
+            "max": 1,
+            "ties": 18744,
+            "keys": 18744
+          },
+          {
+            "len": 11,
+            "n": 4,
+            "distinct": 4,
+            "lexicon": 2004,
+            "max": 1,
+            "ties": 8016,
+            "keys": 8016
+          },
+          {
+            "len": 12,
+            "n": 4,
+            "distinct": 4,
+            "lexicon": 1128,
+            "max": 1,
+            "ties": 4512,
+            "keys": 4512
+          },
+          {
+            "len": 13,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 581,
+            "max": 1,
+            "ties": 581,
+            "keys": 581
+          }
+        ]
+      },
+      "literalF": {
+        "n": 437,
+        "free": 64,
+        "upper": 143,
+        "missing": 294,
+        "allowance": 21,
+        "detail": [
+          {
+            "len": 1,
+            "n": 18,
+            "distinct": 12,
+            "lexicon": 28,
+            "max": 18,
+            "ties": 17,
+            "keys": 29
+          },
+          {
+            "len": 2,
+            "n": 69,
+            "distinct": 68,
+            "lexicon": 184,
+            "max": 30,
+            "ties": 1,
+            "keys": 841
+          },
+          {
+            "len": 3,
+            "n": 92,
+            "distinct": 92,
+            "lexicon": 764,
+            "max": 14,
+            "ties": 1,
+            "keys": 23110
+          },
+          {
+            "len": 4,
+            "n": 62,
+            "distinct": 62,
+            "lexicon": 2122,
+            "max": 4,
+            "ties": 29,
+            "keys": 120198
+          },
+          {
+            "len": 5,
+            "n": 36,
+            "distinct": 36,
+            "lexicon": 3768,
+            "max": 3,
+            "ties": 1,
+            "keys": 135184
+          },
+          {
+            "len": 6,
+            "n": 30,
+            "distinct": 30,
+            "lexicon": 5169,
+            "max": 2,
+            "ties": 16,
+            "keys": 155054
+          },
+          {
+            "len": 7,
+            "n": 26,
+            "distinct": 26,
+            "lexicon": 5276,
+            "max": 2,
+            "ties": 1,
+            "keys": 137175
+          },
+          {
+            "len": 8,
+            "n": 24,
+            "distinct": 24,
+            "lexicon": 4791,
+            "max": 1,
+            "ties": 114984,
+            "keys": 114984
+          },
+          {
+            "len": 9,
+            "n": 4,
+            "distinct": 4,
+            "lexicon": 3831,
+            "max": 1,
+            "ties": 15324,
+            "keys": 15324
+          },
+          {
+            "len": 10,
+            "n": 5,
+            "distinct": 5,
+            "lexicon": 2777,
+            "max": 1,
+            "ties": 13885,
+            "keys": 13885
+          },
+          {
+            "len": 11,
+            "n": 2,
+            "distinct": 2,
+            "lexicon": 1755,
+            "max": 1,
+            "ties": 3510,
+            "keys": 3510
+          },
+          {
+            "len": 12,
+            "n": 4,
+            "distinct": 4,
+            "lexicon": 982,
+            "max": 1,
+            "ties": 3928,
+            "keys": 3928
+          },
+          {
+            "len": 13,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 502,
+            "max": 1,
+            "ties": 502,
+            "keys": 502
+          }
+        ]
+      }
+    },
+    {
+      "a": 23,
+      "b": 26,
+      "ordinary": {
+        "n": 224,
+        "free": 0,
+        "upper": 46,
+        "missing": 178,
+        "allowance": 11,
+        "detail": [
+          {
+            "len": 1,
+            "n": 5,
+            "distinct": 5,
+            "lexicon": 29,
+            "max": 5,
+            "ties": 29,
+            "keys": 29
+          },
+          {
+            "len": 2,
+            "n": 33,
+            "distinct": 33,
+            "lexicon": 194,
+            "max": 19,
+            "ties": 1,
+            "keys": 841
+          },
+          {
+            "len": 3,
+            "n": 53,
+            "distinct": 53,
+            "lexicon": 810,
+            "max": 8,
+            "ties": 5,
+            "keys": 20368
+          },
+          {
+            "len": 4,
+            "n": 42,
+            "distinct": 42,
+            "lexicon": 2307,
+            "max": 5,
+            "ties": 1,
+            "keys": 90455
+          },
+          {
+            "len": 5,
+            "n": 23,
+            "distinct": 23,
+            "lexicon": 4114,
+            "max": 2,
+            "ties": 237,
+            "keys": 94385
+          },
+          {
+            "len": 6,
+            "n": 19,
+            "distinct": 19,
+            "lexicon": 5666,
+            "max": 2,
+            "ties": 9,
+            "keys": 107645
+          },
+          {
+            "len": 7,
+            "n": 23,
+            "distinct": 23,
+            "lexicon": 5901,
+            "max": 1,
+            "ties": 135723,
+            "keys": 135723
+          },
+          {
+            "len": 8,
+            "n": 12,
+            "distinct": 12,
+            "lexicon": 5370,
+            "max": 1,
+            "ties": 64440,
+            "keys": 64440
+          },
+          {
+            "len": 9,
+            "n": 7,
+            "distinct": 7,
+            "lexicon": 4345,
+            "max": 1,
+            "ties": 30415,
+            "keys": 30415
+          },
+          {
+            "len": 10,
+            "n": 6,
+            "distinct": 6,
+            "lexicon": 3124,
+            "max": 1,
+            "ties": 18744,
+            "keys": 18744
+          },
+          {
+            "len": 14,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 247,
+            "max": 1,
+            "ties": 247,
+            "keys": 247
+          }
+        ]
+      },
+      "literalF": {
+        "n": 224,
+        "free": 37,
+        "upper": 79,
+        "missing": 145,
+        "allowance": 11,
+        "detail": [
+          {
+            "len": 1,
+            "n": 5,
+            "distinct": 5,
+            "lexicon": 28,
+            "max": 5,
+            "ties": 24,
+            "keys": 29
+          },
+          {
+            "len": 2,
+            "n": 30,
+            "distinct": 30,
+            "lexicon": 184,
+            "max": 16,
+            "ties": 2,
+            "keys": 841
+          },
+          {
+            "len": 3,
+            "n": 51,
+            "distinct": 51,
+            "lexicon": 764,
+            "max": 8,
+            "ties": 1,
+            "keys": 19568
+          },
+          {
+            "len": 4,
+            "n": 37,
+            "distinct": 37,
+            "lexicon": 2122,
+            "max": 5,
+            "ties": 1,
+            "keys": 74252
+          },
+          {
+            "len": 5,
+            "n": 18,
+            "distinct": 18,
+            "lexicon": 3768,
+            "max": 2,
+            "ties": 119,
+            "keys": 67705
+          },
+          {
+            "len": 6,
+            "n": 13,
+            "distinct": 13,
+            "lexicon": 5169,
+            "max": 2,
+            "ties": 5,
+            "keys": 67192
+          },
+          {
+            "len": 7,
+            "n": 15,
+            "distinct": 15,
+            "lexicon": 5276,
+            "max": 1,
+            "ties": 79140,
+            "keys": 79140
+          },
+          {
+            "len": 8,
+            "n": 8,
+            "distinct": 8,
+            "lexicon": 4791,
+            "max": 1,
+            "ties": 38328,
+            "keys": 38328
+          },
+          {
+            "len": 9,
+            "n": 6,
+            "distinct": 6,
+            "lexicon": 3831,
+            "max": 1,
+            "ties": 22986,
+            "keys": 22986
+          },
+          {
+            "len": 10,
+            "n": 4,
+            "distinct": 4,
+            "lexicon": 2777,
+            "max": 1,
+            "ties": 11108,
+            "keys": 11108
+          }
+        ]
+      }
+    },
+    {
+      "a": 27,
+      "b": 32,
+      "ordinary": {
+        "n": 326,
+        "free": 0,
+        "upper": 60,
+        "missing": 266,
+        "allowance": 16,
+        "detail": [
+          {
+            "len": 1,
+            "n": 12,
+            "distinct": 8,
+            "lexicon": 29,
+            "max": 12,
+            "ties": 29,
+            "keys": 29
+          },
+          {
+            "len": 2,
+            "n": 51,
+            "distinct": 50,
+            "lexicon": 194,
+            "max": 22,
+            "ties": 2,
+            "keys": 841
+          },
+          {
+            "len": 3,
+            "n": 83,
+            "distinct": 82,
+            "lexicon": 810,
+            "max": 10,
+            "ties": 10,
+            "keys": 22905
+          },
+          {
+            "len": 4,
+            "n": 57,
+            "distinct": 57,
+            "lexicon": 2307,
+            "max": 5,
+            "ties": 1,
+            "keys": 120549
+          },
+          {
+            "len": 5,
+            "n": 40,
+            "distinct": 40,
+            "lexicon": 4114,
+            "max": 3,
+            "ties": 2,
+            "keys": 163938
+          },
+          {
+            "len": 6,
+            "n": 23,
+            "distinct": 23,
+            "lexicon": 5666,
+            "max": 2,
+            "ties": 21,
+            "keys": 130297
+          },
+          {
+            "len": 7,
+            "n": 24,
+            "distinct": 24,
+            "lexicon": 5901,
+            "max": 1,
+            "ties": 141624,
+            "keys": 141624
+          },
+          {
+            "len": 8,
+            "n": 13,
+            "distinct": 13,
+            "lexicon": 5370,
+            "max": 1,
+            "ties": 69810,
+            "keys": 69810
+          },
+          {
+            "len": 9,
+            "n": 9,
+            "distinct": 9,
+            "lexicon": 4345,
+            "max": 1,
+            "ties": 39105,
+            "keys": 39105
+          },
+          {
+            "len": 10,
+            "n": 6,
+            "distinct": 6,
+            "lexicon": 3124,
+            "max": 1,
+            "ties": 18744,
+            "keys": 18744
+          },
+          {
+            "len": 11,
+            "n": 5,
+            "distinct": 5,
+            "lexicon": 2004,
+            "max": 1,
+            "ties": 10020,
+            "keys": 10020
+          },
+          {
+            "len": 12,
+            "n": 3,
+            "distinct": 3,
+            "lexicon": 1128,
+            "max": 1,
+            "ties": 3384,
+            "keys": 3384
+          }
+        ]
+      },
+      "literalF": {
+        "n": 326,
+        "free": 48,
+        "upper": 104,
+        "missing": 222,
+        "allowance": 16,
+        "detail": [
+          {
+            "len": 1,
+            "n": 12,
+            "distinct": 8,
+            "lexicon": 28,
+            "max": 12,
+            "ties": 21,
+            "keys": 29
+          },
+          {
+            "len": 2,
+            "n": 46,
+            "distinct": 45,
+            "lexicon": 184,
+            "max": 19,
+            "ties": 2,
+            "keys": 841
+          },
+          {
+            "len": 3,
+            "n": 71,
+            "distinct": 70,
+            "lexicon": 764,
+            "max": 10,
+            "ties": 1,
+            "keys": 21830
+          },
+          {
+            "len": 4,
+            "n": 50,
+            "distinct": 50,
+            "lexicon": 2122,
+            "max": 5,
+            "ties": 1,
+            "keys": 98841
+          },
+          {
+            "len": 5,
+            "n": 33,
+            "distinct": 33,
+            "lexicon": 3768,
+            "max": 2,
+            "ties": 349,
+            "keys": 123995
+          },
+          {
+            "len": 6,
+            "n": 19,
+            "distinct": 19,
+            "lexicon": 5169,
+            "max": 2,
+            "ties": 15,
+            "keys": 98196
+          },
+          {
+            "len": 7,
+            "n": 19,
+            "distinct": 19,
+            "lexicon": 5276,
+            "max": 1,
+            "ties": 100244,
+            "keys": 100244
+          },
+          {
+            "len": 8,
+            "n": 12,
+            "distinct": 12,
+            "lexicon": 4791,
+            "max": 1,
+            "ties": 57492,
+            "keys": 57492
+          },
+          {
+            "len": 9,
+            "n": 5,
+            "distinct": 5,
+            "lexicon": 3831,
+            "max": 1,
+            "ties": 19155,
+            "keys": 19155
+          },
+          {
+            "len": 10,
+            "n": 5,
+            "distinct": 5,
+            "lexicon": 2777,
+            "max": 1,
+            "ties": 13885,
+            "keys": 13885
+          },
+          {
+            "len": 11,
+            "n": 4,
+            "distinct": 4,
+            "lexicon": 1755,
+            "max": 1,
+            "ties": 7020,
+            "keys": 7020
+          },
+          {
+            "len": 12,
+            "n": 2,
+            "distinct": 2,
+            "lexicon": 982,
+            "max": 1,
+            "ties": 1964,
+            "keys": 1964
+          }
+        ]
+      }
+    },
+    {
+      "a": 33,
+      "b": 39,
+      "ordinary": {
+        "n": 378,
+        "free": 0,
+        "upper": 62,
+        "missing": 316,
+        "allowance": 18,
+        "detail": [
+          {
+            "len": 1,
+            "n": 9,
+            "distinct": 9,
+            "lexicon": 29,
+            "max": 9,
+            "ties": 29,
+            "keys": 29
+          },
+          {
+            "len": 2,
+            "n": 62,
+            "distinct": 59,
+            "lexicon": 194,
+            "max": 27,
+            "ties": 1,
+            "keys": 841
+          },
+          {
+            "len": 3,
+            "n": 96,
+            "distinct": 96,
+            "lexicon": 810,
+            "max": 11,
+            "ties": 5,
+            "keys": 23467
+          },
+          {
+            "len": 4,
+            "n": 60,
+            "distinct": 60,
+            "lexicon": 2307,
+            "max": 5,
+            "ties": 1,
+            "keys": 126011
+          },
+          {
+            "len": 5,
+            "n": 49,
+            "distinct": 49,
+            "lexicon": 4114,
+            "max": 2,
+            "ties": 981,
+            "keys": 200605
+          },
+          {
+            "len": 6,
+            "n": 31,
+            "distinct": 31,
+            "lexicon": 5666,
+            "max": 2,
+            "ties": 31,
+            "keys": 175615
+          },
+          {
+            "len": 7,
+            "n": 26,
+            "distinct": 26,
+            "lexicon": 5901,
+            "max": 1,
+            "ties": 153426,
+            "keys": 153426
+          },
+          {
+            "len": 8,
+            "n": 19,
+            "distinct": 19,
+            "lexicon": 5370,
+            "max": 1,
+            "ties": 102030,
+            "keys": 102030
+          },
+          {
+            "len": 9,
+            "n": 13,
+            "distinct": 13,
+            "lexicon": 4345,
+            "max": 1,
+            "ties": 56485,
+            "keys": 56485
+          },
+          {
+            "len": 10,
+            "n": 8,
+            "distinct": 8,
+            "lexicon": 3124,
+            "max": 1,
+            "ties": 24992,
+            "keys": 24992
+          },
+          {
+            "len": 11,
+            "n": 3,
+            "distinct": 3,
+            "lexicon": 2004,
+            "max": 1,
+            "ties": 6012,
+            "keys": 6012
+          },
+          {
+            "len": 12,
+            "n": 2,
+            "distinct": 2,
+            "lexicon": 1128,
+            "max": 1,
+            "ties": 2256,
+            "keys": 2256
+          }
+        ]
+      },
+      "literalF": {
+        "n": 378,
+        "free": 38,
+        "upper": 96,
+        "missing": 282,
+        "allowance": 18,
+        "detail": [
+          {
+            "len": 1,
+            "n": 9,
+            "distinct": 9,
+            "lexicon": 28,
+            "max": 9,
+            "ties": 20,
+            "keys": 29
+          },
+          {
+            "len": 2,
+            "n": 59,
+            "distinct": 56,
+            "lexicon": 184,
+            "max": 25,
+            "ties": 1,
+            "keys": 841
+          },
+          {
+            "len": 3,
+            "n": 90,
+            "distinct": 90,
+            "lexicon": 764,
+            "max": 10,
+            "ties": 7,
+            "keys": 23005
+          },
+          {
+            "len": 4,
+            "n": 57,
+            "distinct": 57,
+            "lexicon": 2122,
+            "max": 4,
+            "ties": 21,
+            "keys": 111382
+          },
+          {
+            "len": 5,
+            "n": 42,
+            "distinct": 42,
+            "lexicon": 3768,
+            "max": 2,
+            "ties": 608,
+            "keys": 157648
+          },
+          {
+            "len": 6,
+            "n": 27,
+            "distinct": 27,
+            "lexicon": 5169,
+            "max": 2,
+            "ties": 24,
+            "keys": 139539
+          },
+          {
+            "len": 7,
+            "n": 22,
+            "distinct": 22,
+            "lexicon": 5276,
+            "max": 1,
+            "ties": 116072,
+            "keys": 116072
+          },
+          {
+            "len": 8,
+            "n": 13,
+            "distinct": 13,
+            "lexicon": 4791,
+            "max": 1,
+            "ties": 62283,
+            "keys": 62283
+          },
+          {
+            "len": 9,
+            "n": 11,
+            "distinct": 11,
+            "lexicon": 3831,
+            "max": 1,
+            "ties": 42141,
+            "keys": 42141
+          },
+          {
+            "len": 10,
+            "n": 6,
+            "distinct": 6,
+            "lexicon": 2777,
+            "max": 1,
+            "ties": 16662,
+            "keys": 16662
+          },
+          {
+            "len": 11,
+            "n": 2,
+            "distinct": 2,
+            "lexicon": 1755,
+            "max": 1,
+            "ties": 3510,
+            "keys": 3510
+          },
+          {
+            "len": 12,
+            "n": 2,
+            "distinct": 2,
+            "lexicon": 982,
+            "max": 1,
+            "ties": 1964,
+            "keys": 1964
+          }
+        ]
+      }
+    },
+    {
+      "a": 40,
+      "b": 53,
+      "ordinary": {
+        "n": 669,
+        "free": 0,
+        "upper": 85,
+        "missing": 584,
+        "allowance": 33,
+        "detail": [
+          {
+            "len": 1,
+            "n": 13,
+            "distinct": 11,
+            "lexicon": 29,
+            "max": 13,
+            "ties": 29,
+            "keys": 29
+          },
+          {
+            "len": 2,
+            "n": 101,
+            "distinct": 98,
+            "lexicon": 194,
+            "max": 34,
+            "ties": 1,
+            "keys": 841
+          },
+          {
+            "len": 3,
+            "n": 170,
+            "distinct": 168,
+            "lexicon": 810,
+            "max": 19,
+            "ties": 1,
+            "keys": 24300
+          },
+          {
+            "len": 4,
+            "n": 128,
+            "distinct": 128,
+            "lexicon": 2307,
+            "max": 5,
+            "ties": 42,
+            "keys": 241729
+          },
+          {
+            "len": 5,
+            "n": 73,
+            "distinct": 73,
+            "lexicon": 4114,
+            "max": 3,
+            "ties": 10,
+            "keys": 298197
+          },
+          {
+            "len": 6,
+            "n": 53,
+            "distinct": 53,
+            "lexicon": 5666,
+            "max": 2,
+            "ties": 68,
+            "keys": 300230
+          },
+          {
+            "len": 7,
+            "n": 47,
+            "distinct": 47,
+            "lexicon": 5901,
+            "max": 2,
+            "ties": 1,
+            "keys": 277346
+          },
+          {
+            "len": 8,
+            "n": 42,
+            "distinct": 42,
+            "lexicon": 5370,
+            "max": 1,
+            "ties": 225540,
+            "keys": 225540
+          },
+          {
+            "len": 9,
+            "n": 18,
+            "distinct": 18,
+            "lexicon": 4345,
+            "max": 1,
+            "ties": 78210,
+            "keys": 78210
+          },
+          {
+            "len": 10,
+            "n": 11,
+            "distinct": 11,
+            "lexicon": 3124,
+            "max": 1,
+            "ties": 34364,
+            "keys": 34364
+          },
+          {
+            "len": 11,
+            "n": 8,
+            "distinct": 8,
+            "lexicon": 2004,
+            "max": 1,
+            "ties": 16032,
+            "keys": 16032
+          },
+          {
+            "len": 12,
+            "n": 3,
+            "distinct": 3,
+            "lexicon": 1128,
+            "max": 1,
+            "ties": 3384,
+            "keys": 3384
+          },
+          {
+            "len": 13,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 581,
+            "max": 1,
+            "ties": 581,
+            "keys": 581
+          },
+          {
+            "len": 14,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 247,
+            "max": 1,
+            "ties": 247,
+            "keys": 247
+          }
+        ]
+      },
+      "literalF": {
+        "n": 669,
+        "free": 114,
+        "upper": 194,
+        "missing": 475,
+        "allowance": 33,
+        "detail": [
+          {
+            "len": 1,
+            "n": 13,
+            "distinct": 11,
+            "lexicon": 28,
+            "max": 13,
+            "ties": 18,
+            "keys": 29
+          },
+          {
+            "len": 2,
+            "n": 94,
+            "distinct": 91,
+            "lexicon": 184,
+            "max": 32,
+            "ties": 1,
+            "keys": 841
+          },
+          {
+            "len": 3,
+            "n": 149,
+            "distinct": 147,
+            "lexicon": 764,
+            "max": 18,
+            "ties": 1,
+            "keys": 24152
+          },
+          {
+            "len": 4,
+            "n": 109,
+            "distinct": 109,
+            "lexicon": 2122,
+            "max": 5,
+            "ties": 10,
+            "keys": 197950
+          },
+          {
+            "len": 5,
+            "n": 56,
+            "distinct": 56,
+            "lexicon": 3768,
+            "max": 3,
+            "ties": 2,
+            "keys": 209967
+          },
+          {
+            "len": 6,
+            "n": 41,
+            "distinct": 41,
+            "lexicon": 5169,
+            "max": 2,
+            "ties": 33,
+            "keys": 211896
+          },
+          {
+            "len": 7,
+            "n": 38,
+            "distinct": 38,
+            "lexicon": 5276,
+            "max": 1,
+            "ties": 200488,
+            "keys": 200488
+          },
+          {
+            "len": 8,
+            "n": 29,
+            "distinct": 29,
+            "lexicon": 4791,
+            "max": 1,
+            "ties": 138939,
+            "keys": 138939
+          },
+          {
+            "len": 9,
+            "n": 11,
+            "distinct": 11,
+            "lexicon": 3831,
+            "max": 1,
+            "ties": 42141,
+            "keys": 42141
+          },
+          {
+            "len": 10,
+            "n": 7,
+            "distinct": 7,
+            "lexicon": 2777,
+            "max": 1,
+            "ties": 19439,
+            "keys": 19439
+          },
+          {
+            "len": 11,
+            "n": 4,
+            "distinct": 4,
+            "lexicon": 1755,
+            "max": 1,
+            "ties": 7020,
+            "keys": 7020
+          },
+          {
+            "len": 12,
+            "n": 3,
+            "distinct": 3,
+            "lexicon": 982,
+            "max": 1,
+            "ties": 2946,
+            "keys": 2946
+          },
+          {
+            "len": 13,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 502,
+            "max": 1,
+            "ties": 502,
+            "keys": 502
+          }
+        ]
+      }
+    },
+    {
+      "a": 54,
+      "b": 55,
+      "ordinary": {
+        "n": 66,
+        "free": 0,
+        "upper": 27,
+        "missing": 39,
+        "allowance": 3,
+        "detail": [
+          {
+            "len": 1,
+            "n": 2,
+            "distinct": 2,
+            "lexicon": 29,
+            "max": 2,
+            "ties": 29,
+            "keys": 29
+          },
+          {
+            "len": 2,
+            "n": 11,
+            "distinct": 11,
+            "lexicon": 194,
+            "max": 8,
+            "ties": 2,
+            "keys": 810
+          },
+          {
+            "len": 3,
+            "n": 14,
+            "distinct": 14,
+            "lexicon": 810,
+            "max": 5,
+            "ties": 1,
+            "keys": 9144
+          },
+          {
+            "len": 4,
+            "n": 9,
+            "distinct": 9,
+            "lexicon": 2307,
+            "max": 4,
+            "ties": 1,
+            "keys": 20506
+          },
+          {
+            "len": 5,
+            "n": 9,
+            "distinct": 9,
+            "lexicon": 4114,
+            "max": 2,
+            "ties": 43,
+            "keys": 36983
+          },
+          {
+            "len": 6,
+            "n": 8,
+            "distinct": 8,
+            "lexicon": 5666,
+            "max": 1,
+            "ties": 45328,
+            "keys": 45328
+          },
+          {
+            "len": 7,
+            "n": 3,
+            "distinct": 3,
+            "lexicon": 5901,
+            "max": 1,
+            "ties": 17703,
+            "keys": 17703
+          },
+          {
+            "len": 8,
+            "n": 6,
+            "distinct": 6,
+            "lexicon": 5370,
+            "max": 1,
+            "ties": 32220,
+            "keys": 32220
+          },
+          {
+            "len": 10,
+            "n": 2,
+            "distinct": 2,
+            "lexicon": 3124,
+            "max": 1,
+            "ties": 6248,
+            "keys": 6248
+          },
+          {
+            "len": 11,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 2004,
+            "max": 1,
+            "ties": 2004,
+            "keys": 2004
+          },
+          {
+            "len": 13,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 581,
+            "max": 1,
+            "ties": 581,
+            "keys": 581
+          }
+        ]
+      },
+      "literalF": {
+        "n": 66,
+        "free": 6,
+        "upper": 32,
+        "missing": 34,
+        "allowance": 3,
+        "detail": [
+          {
+            "len": 1,
+            "n": 2,
+            "distinct": 2,
+            "lexicon": 28,
+            "max": 2,
+            "ties": 27,
+            "keys": 29
+          },
+          {
+            "len": 2,
+            "n": 11,
+            "distinct": 11,
+            "lexicon": 184,
+            "max": 8,
+            "ties": 1,
+            "keys": 804
+          },
+          {
+            "len": 3,
+            "n": 14,
+            "distinct": 14,
+            "lexicon": 764,
+            "max": 5,
+            "ties": 1,
+            "keys": 8730
+          },
+          {
+            "len": 4,
+            "n": 9,
+            "distinct": 9,
+            "lexicon": 2122,
+            "max": 4,
+            "ties": 1,
+            "keys": 18863
+          },
+          {
+            "len": 5,
+            "n": 8,
+            "distinct": 8,
+            "lexicon": 3768,
+            "max": 2,
+            "ties": 30,
+            "keys": 30114
+          },
+          {
+            "len": 6,
+            "n": 5,
+            "distinct": 5,
+            "lexicon": 5169,
+            "max": 1,
+            "ties": 25845,
+            "keys": 25845
+          },
+          {
+            "len": 7,
+            "n": 3,
+            "distinct": 3,
+            "lexicon": 5276,
+            "max": 1,
+            "ties": 15828,
+            "keys": 15828
+          },
+          {
+            "len": 8,
+            "n": 6,
+            "distinct": 6,
+            "lexicon": 4791,
+            "max": 1,
+            "ties": 28746,
+            "keys": 28746
+          },
+          {
+            "len": 10,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 2777,
+            "max": 1,
+            "ties": 2777,
+            "keys": 2777
+          },
+          {
+            "len": 11,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 1755,
+            "max": 1,
+            "ties": 1755,
+            "keys": 1755
+          }
+        ]
+      }
+    }
+  ],
+  "controls": [
+    {
+      "name": "0_welcome",
+      "fhold": false,
+      "groups": 124,
+      "eligibleLexical": 121,
+      "fit": {
+        "n": 86,
+        "free": 0,
+        "upper": 84,
+        "missing": 2,
+        "allowance": 4,
+        "detail": [
+          {
+            "len": 1,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 29,
+            "max": 1,
+            "ties": 29,
+            "keys": 29
+          },
+          {
+            "len": 2,
+            "n": 19,
+            "distinct": 7,
+            "lexicon": 194,
+            "max": 19,
+            "ties": 1,
+            "keys": 689
+          },
+          {
+            "len": 3,
+            "n": 24,
+            "distinct": 15,
+            "lexicon": 810,
+            "max": 24,
+            "ties": 1,
+            "keys": 9287
+          },
+          {
+            "len": 4,
+            "n": 18,
+            "distinct": 12,
+            "lexicon": 2307,
+            "max": 18,
+            "ties": 1,
+            "keys": 26775
+          },
+          {
+            "len": 5,
+            "n": 2,
+            "distinct": 2,
+            "lexicon": 4114,
+            "max": 2,
+            "ties": 2,
+            "keys": 8226
+          },
+          {
+            "len": 6,
+            "n": 5,
+            "distinct": 5,
+            "lexicon": 5666,
+            "max": 4,
+            "ties": 1,
+            "keys": 28327
+          },
+          {
+            "len": 7,
+            "n": 7,
+            "distinct": 5,
+            "lexicon": 5901,
+            "max": 7,
+            "ties": 1,
+            "keys": 29501
+          },
+          {
+            "len": 8,
+            "n": 4,
+            "distinct": 4,
+            "lexicon": 5370,
+            "max": 3,
+            "ties": 1,
+            "keys": 21478
+          },
+          {
+            "len": 9,
+            "n": 4,
+            "distinct": 4,
+            "lexicon": 4345,
+            "max": 4,
+            "ties": 1,
+            "keys": 17377
+          },
+          {
+            "len": 10,
+            "n": 2,
+            "distinct": 2,
+            "lexicon": 3124,
+            "max": 2,
+            "ties": 1,
+            "keys": 6247
+          }
+        ]
+      },
+      "full": {
+        "n": 124,
+        "free": 0,
+        "upper": 121,
+        "missing": 3,
+        "allowance": 6,
+        "detail": [
+          {
+            "len": 1,
+            "n": 3,
+            "distinct": 1,
+            "lexicon": 29,
+            "max": 3,
+            "ties": 29,
+            "keys": 29
+          },
+          {
+            "len": 2,
+            "n": 24,
+            "distinct": 7,
+            "lexicon": 194,
+            "max": 24,
+            "ties": 1,
+            "keys": 689
+          },
+          {
+            "len": 3,
+            "n": 38,
+            "distinct": 22,
+            "lexicon": 810,
+            "max": 38,
+            "ties": 1,
+            "keys": 12209
+          },
+          {
+            "len": 4,
+            "n": 25,
+            "distinct": 15,
+            "lexicon": 2307,
+            "max": 25,
+            "ties": 1,
+            "keys": 33319
+          },
+          {
+            "len": 5,
+            "n": 4,
+            "distinct": 3,
+            "lexicon": 4114,
+            "max": 4,
+            "ties": 1,
+            "keys": 12337
+          },
+          {
+            "len": 6,
+            "n": 8,
+            "distinct": 7,
+            "lexicon": 5666,
+            "max": 6,
+            "ties": 1,
+            "keys": 39654
+          },
+          {
+            "len": 7,
+            "n": 8,
+            "distinct": 6,
+            "lexicon": 5901,
+            "max": 8,
+            "ties": 1,
+            "keys": 35401
+          },
+          {
+            "len": 8,
+            "n": 6,
+            "distinct": 5,
+            "lexicon": 5370,
+            "max": 5,
+            "ties": 1,
+            "keys": 26847
+          },
+          {
+            "len": 9,
+            "n": 4,
+            "distinct": 4,
+            "lexicon": 4345,
+            "max": 4,
+            "ties": 1,
+            "keys": 17377
+          },
+          {
+            "len": 10,
+            "n": 3,
+            "distinct": 3,
+            "lexicon": 3124,
+            "max": 3,
+            "ties": 1,
+            "keys": 9370
+          },
+          {
+            "len": 12,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 1128,
+            "max": 1,
+            "ties": 1128,
+            "keys": 1128
+          }
+        ]
+      },
+      "seen": 10,
+      "exactKeyLengths": 9,
+      "predicted": 37,
+      "correct": 35
+    },
+    {
+      "name": "0_welcome",
+      "fhold": true,
+      "groups": 124,
+      "eligibleLexical": 93,
+      "fit": {
+        "n": 86,
+        "free": 17,
+        "upper": 84,
+        "missing": 2,
+        "allowance": 4,
+        "detail": [
+          {
+            "len": 1,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 28,
+            "max": 1,
+            "ties": 28,
+            "keys": 28
+          },
+          {
+            "len": 2,
+            "n": 18,
+            "distinct": 6,
+            "lexicon": 184,
+            "max": 18,
+            "ties": 1,
+            "keys": 625
+          },
+          {
+            "len": 3,
+            "n": 15,
+            "distinct": 11,
+            "lexicon": 764,
+            "max": 15,
+            "ties": 1,
+            "keys": 7072
+          },
+          {
+            "len": 4,
+            "n": 15,
+            "distinct": 10,
+            "lexicon": 2122,
+            "max": 15,
+            "ties": 1,
+            "keys": 20714
+          },
+          {
+            "len": 5,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 3768,
+            "max": 1,
+            "ties": 3768,
+            "keys": 3768
+          },
+          {
+            "len": 6,
+            "n": 5,
+            "distinct": 5,
+            "lexicon": 5169,
+            "max": 4,
+            "ties": 1,
+            "keys": 25842
+          },
+          {
+            "len": 7,
+            "n": 6,
+            "distinct": 4,
+            "lexicon": 5276,
+            "max": 6,
+            "ties": 1,
+            "keys": 21101
+          },
+          {
+            "len": 8,
+            "n": 4,
+            "distinct": 4,
+            "lexicon": 4791,
+            "max": 3,
+            "ties": 1,
+            "keys": 19162
+          },
+          {
+            "len": 9,
+            "n": 3,
+            "distinct": 3,
+            "lexicon": 3831,
+            "max": 3,
+            "ties": 1,
+            "keys": 11491
+          },
+          {
+            "len": 10,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 2777,
+            "max": 1,
+            "ties": 2777,
+            "keys": 2777
+          }
+        ]
+      },
+      "full": {
+        "n": 124,
+        "free": 29,
+        "upper": 122,
+        "missing": 2,
+        "allowance": 6,
+        "detail": [
+          {
+            "len": 1,
+            "n": 3,
+            "distinct": 1,
+            "lexicon": 28,
+            "max": 3,
+            "ties": 28,
+            "keys": 28
+          },
+          {
+            "len": 2,
+            "n": 23,
+            "distinct": 6,
+            "lexicon": 184,
+            "max": 23,
+            "ties": 1,
+            "keys": 625
+          },
+          {
+            "len": 3,
+            "n": 27,
+            "distinct": 17,
+            "lexicon": 764,
+            "max": 27,
+            "ties": 1,
+            "keys": 9810
+          },
+          {
+            "len": 4,
+            "n": 19,
+            "distinct": 12,
+            "lexicon": 2122,
+            "max": 19,
+            "ties": 1,
+            "keys": 24784
+          },
+          {
+            "len": 5,
+            "n": 2,
+            "distinct": 2,
+            "lexicon": 3768,
+            "max": 2,
+            "ties": 2,
+            "keys": 7534
+          },
+          {
+            "len": 6,
+            "n": 7,
+            "distinct": 6,
+            "lexicon": 5169,
+            "max": 6,
+            "ties": 1,
+            "keys": 31008
+          },
+          {
+            "len": 7,
+            "n": 6,
+            "distinct": 4,
+            "lexicon": 5276,
+            "max": 6,
+            "ties": 1,
+            "keys": 21101
+          },
+          {
+            "len": 8,
+            "n": 4,
+            "distinct": 4,
+            "lexicon": 4791,
+            "max": 3,
+            "ties": 1,
+            "keys": 19162
+          },
+          {
+            "len": 9,
+            "n": 3,
+            "distinct": 3,
+            "lexicon": 3831,
+            "max": 3,
+            "ties": 1,
+            "keys": 11491
+          },
+          {
+            "len": 10,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 2777,
+            "max": 1,
+            "ties": 2777,
+            "keys": 2777
+          }
+        ]
+      },
+      "seen": 10,
+      "exactKeyLengths": 7,
+      "predicted": 26,
+      "correct": 23
+    },
+    {
+      "name": "jpg107-167",
+      "fhold": false,
+      "groups": 88,
+      "eligibleLexical": 88,
+      "fit": {
+        "n": 61,
+        "free": 0,
+        "upper": 61,
+        "missing": 0,
+        "allowance": 3,
+        "detail": [
+          {
+            "len": 1,
+            "n": 9,
+            "distinct": 3,
+            "lexicon": 29,
+            "max": 9,
+            "ties": 29,
+            "keys": 29
+          },
+          {
+            "len": 2,
+            "n": 19,
+            "distinct": 9,
+            "lexicon": 194,
+            "max": 19,
+            "ties": 1,
+            "keys": 743
+          },
+          {
+            "len": 3,
+            "n": 6,
+            "distinct": 5,
+            "lexicon": 810,
+            "max": 6,
+            "ties": 2,
+            "keys": 3733
+          },
+          {
+            "len": 4,
+            "n": 11,
+            "distinct": 10,
+            "lexicon": 2307,
+            "max": 11,
+            "ties": 1,
+            "keys": 22531
+          },
+          {
+            "len": 5,
+            "n": 4,
+            "distinct": 2,
+            "lexicon": 4114,
+            "max": 4,
+            "ties": 1,
+            "keys": 8227
+          },
+          {
+            "len": 6,
+            "n": 7,
+            "distinct": 5,
+            "lexicon": 5666,
+            "max": 7,
+            "ties": 1,
+            "keys": 28318
+          },
+          {
+            "len": 7,
+            "n": 3,
+            "distinct": 2,
+            "lexicon": 5901,
+            "max": 3,
+            "ties": 1,
+            "keys": 11801
+          },
+          {
+            "len": 9,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 4345,
+            "max": 1,
+            "ties": 4345,
+            "keys": 4345
+          },
+          {
+            "len": 13,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 581,
+            "max": 1,
+            "ties": 581,
+            "keys": 581
+          }
+        ]
+      },
+      "full": {
+        "n": 88,
+        "free": 0,
+        "upper": 88,
+        "missing": 0,
+        "allowance": 4,
+        "detail": [
+          {
+            "len": 1,
+            "n": 10,
+            "distinct": 3,
+            "lexicon": 29,
+            "max": 10,
+            "ties": 29,
+            "keys": 29
+          },
+          {
+            "len": 2,
+            "n": 27,
+            "distinct": 10,
+            "lexicon": 194,
+            "max": 27,
+            "ties": 1,
+            "keys": 762
+          },
+          {
+            "len": 3,
+            "n": 11,
+            "distinct": 6,
+            "lexicon": 810,
+            "max": 11,
+            "ties": 1,
+            "keys": 4374
+          },
+          {
+            "len": 4,
+            "n": 17,
+            "distinct": 12,
+            "lexicon": 2307,
+            "max": 17,
+            "ties": 1,
+            "keys": 26878
+          },
+          {
+            "len": 5,
+            "n": 6,
+            "distinct": 2,
+            "lexicon": 4114,
+            "max": 6,
+            "ties": 1,
+            "keys": 8227
+          },
+          {
+            "len": 6,
+            "n": 8,
+            "distinct": 5,
+            "lexicon": 5666,
+            "max": 8,
+            "ties": 1,
+            "keys": 28318
+          },
+          {
+            "len": 7,
+            "n": 5,
+            "distinct": 3,
+            "lexicon": 5901,
+            "max": 5,
+            "ties": 1,
+            "keys": 17700
+          },
+          {
+            "len": 8,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 5370,
+            "max": 1,
+            "ties": 5370,
+            "keys": 5370
+          },
+          {
+            "len": 9,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 4345,
+            "max": 1,
+            "ties": 4345,
+            "keys": 4345
+          },
+          {
+            "len": 11,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 2004,
+            "max": 1,
+            "ties": 2004,
+            "keys": 2004
+          },
+          {
+            "len": 13,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 581,
+            "max": 1,
+            "ties": 581,
+            "keys": 581
+          }
+        ]
+      },
+      "seen": 9,
+      "exactKeyLengths": 6,
+      "predicted": 25,
+      "correct": 24
+    },
+    {
+      "name": "jpg107-167",
+      "fhold": true,
+      "groups": 88,
+      "eligibleLexical": 80,
+      "fit": {
+        "n": 61,
+        "free": 5,
+        "upper": 61,
+        "missing": 0,
+        "allowance": 3,
+        "detail": [
+          {
+            "len": 1,
+            "n": 9,
+            "distinct": 3,
+            "lexicon": 28,
+            "max": 9,
+            "ties": 26,
+            "keys": 29
+          },
+          {
+            "len": 2,
+            "n": 18,
+            "distinct": 8,
+            "lexicon": 184,
+            "max": 18,
+            "ties": 1,
+            "keys": 691
+          },
+          {
+            "len": 3,
+            "n": 6,
+            "distinct": 5,
+            "lexicon": 764,
+            "max": 6,
+            "ties": 2,
+            "keys": 3535
+          },
+          {
+            "len": 4,
+            "n": 10,
+            "distinct": 9,
+            "lexicon": 2122,
+            "max": 10,
+            "ties": 1,
+            "keys": 18739
+          },
+          {
+            "len": 5,
+            "n": 4,
+            "distinct": 2,
+            "lexicon": 3768,
+            "max": 4,
+            "ties": 1,
+            "keys": 7535
+          },
+          {
+            "len": 6,
+            "n": 6,
+            "distinct": 4,
+            "lexicon": 5169,
+            "max": 6,
+            "ties": 1,
+            "keys": 20668
+          },
+          {
+            "len": 7,
+            "n": 2,
+            "distinct": 1,
+            "lexicon": 5276,
+            "max": 2,
+            "ties": 5276,
+            "keys": 5276
+          },
+          {
+            "len": 9,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 3831,
+            "max": 1,
+            "ties": 3831,
+            "keys": 3831
+          }
+        ]
+      },
+      "full": {
+        "n": 88,
+        "free": 8,
+        "upper": 88,
+        "missing": 0,
+        "allowance": 4,
+        "detail": [
+          {
+            "len": 1,
+            "n": 10,
+            "distinct": 3,
+            "lexicon": 28,
+            "max": 10,
+            "ties": 26,
+            "keys": 29
+          },
+          {
+            "len": 2,
+            "n": 26,
+            "distinct": 9,
+            "lexicon": 184,
+            "max": 26,
+            "ties": 1,
+            "keys": 716
+          },
+          {
+            "len": 3,
+            "n": 11,
+            "distinct": 6,
+            "lexicon": 764,
+            "max": 11,
+            "ties": 1,
+            "keys": 4143
+          },
+          {
+            "len": 4,
+            "n": 13,
+            "distinct": 9,
+            "lexicon": 2122,
+            "max": 13,
+            "ties": 1,
+            "keys": 18739
+          },
+          {
+            "len": 5,
+            "n": 6,
+            "distinct": 2,
+            "lexicon": 3768,
+            "max": 6,
+            "ties": 1,
+            "keys": 7535
+          },
+          {
+            "len": 6,
+            "n": 7,
+            "distinct": 4,
+            "lexicon": 5169,
+            "max": 7,
+            "ties": 1,
+            "keys": 20668
+          },
+          {
+            "len": 7,
+            "n": 4,
+            "distinct": 2,
+            "lexicon": 5276,
+            "max": 4,
+            "ties": 2,
+            "keys": 10550
+          },
+          {
+            "len": 8,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 4791,
+            "max": 1,
+            "ties": 4791,
+            "keys": 4791
+          },
+          {
+            "len": 9,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 3831,
+            "max": 1,
+            "ties": 3831,
+            "keys": 3831
+          },
+          {
+            "len": 11,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 1755,
+            "max": 1,
+            "ties": 1755,
+            "keys": 1755
+          }
+        ]
+      },
+      "seen": 8,
+      "exactKeyLengths": 5,
+      "predicted": 22,
+      "correct": 19
+    },
+    {
+      "name": "p56_an_end",
+      "fhold": false,
+      "groups": 25,
+      "eligibleLexical": 24,
+      "fit": {
+        "n": 17,
+        "free": 0,
+        "upper": 16,
+        "missing": 1,
+        "allowance": 0,
+        "detail": [
+          {
+            "len": 1,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 29,
+            "max": 1,
+            "ties": 29,
+            "keys": 29
+          },
+          {
+            "len": 2,
+            "n": 6,
+            "distinct": 5,
+            "lexicon": 194,
+            "max": 6,
+            "ties": 1,
+            "keys": 598
+          },
+          {
+            "len": 3,
+            "n": 3,
+            "distinct": 3,
+            "lexicon": 810,
+            "max": 3,
+            "ties": 3,
+            "keys": 2322
+          },
+          {
+            "len": 4,
+            "n": 4,
+            "distinct": 4,
+            "lexicon": 2307,
+            "max": 4,
+            "ties": 1,
+            "keys": 9139
+          },
+          {
+            "len": 5,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 4114,
+            "max": 1,
+            "ties": 4114,
+            "keys": 4114
+          },
+          {
+            "len": 6,
+            "n": 2,
+            "distinct": 2,
+            "lexicon": 5666,
+            "max": 1,
+            "ties": 11332,
+            "keys": 11332
+          }
+        ]
+      },
+      "full": {
+        "n": 25,
+        "free": 0,
+        "upper": 24,
+        "missing": 1,
+        "allowance": 1,
+        "detail": [
+          {
+            "len": 1,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 29,
+            "max": 1,
+            "ties": 29,
+            "keys": 29
+          },
+          {
+            "len": 2,
+            "n": 8,
+            "distinct": 6,
+            "lexicon": 194,
+            "max": 8,
+            "ties": 1,
+            "keys": 649
+          },
+          {
+            "len": 3,
+            "n": 5,
+            "distinct": 5,
+            "lexicon": 810,
+            "max": 5,
+            "ties": 1,
+            "keys": 3686
+          },
+          {
+            "len": 4,
+            "n": 6,
+            "distinct": 5,
+            "lexicon": 2307,
+            "max": 6,
+            "ties": 1,
+            "keys": 11360
+          },
+          {
+            "len": 5,
+            "n": 2,
+            "distinct": 2,
+            "lexicon": 4114,
+            "max": 2,
+            "ties": 1,
+            "keys": 8227
+          },
+          {
+            "len": 6,
+            "n": 2,
+            "distinct": 2,
+            "lexicon": 5666,
+            "max": 1,
+            "ties": 11332,
+            "keys": 11332
+          },
+          {
+            "len": 7,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 5901,
+            "max": 1,
+            "ties": 5901,
+            "keys": 5901
+          }
+        ]
+      },
+      "seen": 6,
+      "exactKeyLengths": 3,
+      "predicted": 7,
+      "correct": 6
+    },
+    {
+      "name": "p56_an_end",
+      "fhold": true,
+      "groups": 25,
+      "eligibleLexical": 20,
+      "fit": {
+        "n": 17,
+        "free": 2,
+        "upper": 16,
+        "missing": 1,
+        "allowance": 0,
+        "detail": [
+          {
+            "len": 1,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 28,
+            "max": 1,
+            "ties": 28,
+            "keys": 28
+          },
+          {
+            "len": 2,
+            "n": 6,
+            "distinct": 5,
+            "lexicon": 184,
+            "max": 6,
+            "ties": 1,
+            "keys": 574
+          },
+          {
+            "len": 3,
+            "n": 3,
+            "distinct": 3,
+            "lexicon": 764,
+            "max": 3,
+            "ties": 2,
+            "keys": 2202
+          },
+          {
+            "len": 4,
+            "n": 2,
+            "distinct": 2,
+            "lexicon": 2122,
+            "max": 2,
+            "ties": 9,
+            "keys": 4235
+          },
+          {
+            "len": 5,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 3768,
+            "max": 1,
+            "ties": 3768,
+            "keys": 3768
+          },
+          {
+            "len": 6,
+            "n": 2,
+            "distinct": 2,
+            "lexicon": 5169,
+            "max": 1,
+            "ties": 10338,
+            "keys": 10338
+          }
+        ]
+      },
+      "full": {
+        "n": 25,
+        "free": 4,
+        "upper": 24,
+        "missing": 1,
+        "allowance": 1,
+        "detail": [
+          {
+            "len": 1,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 28,
+            "max": 1,
+            "ties": 28,
+            "keys": 28
+          },
+          {
+            "len": 2,
+            "n": 7,
+            "distinct": 5,
+            "lexicon": 184,
+            "max": 7,
+            "ties": 1,
+            "keys": 574
+          },
+          {
+            "len": 3,
+            "n": 5,
+            "distinct": 5,
+            "lexicon": 764,
+            "max": 5,
+            "ties": 1,
+            "keys": 3497
+          },
+          {
+            "len": 4,
+            "n": 3,
+            "distinct": 3,
+            "lexicon": 2122,
+            "max": 3,
+            "ties": 1,
+            "keys": 6321
+          },
+          {
+            "len": 5,
+            "n": 2,
+            "distinct": 2,
+            "lexicon": 3768,
+            "max": 2,
+            "ties": 1,
+            "keys": 7535
+          },
+          {
+            "len": 6,
+            "n": 2,
+            "distinct": 2,
+            "lexicon": 5169,
+            "max": 1,
+            "ties": 10338,
+            "keys": 10338
+          },
+          {
+            "len": 7,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 5276,
+            "max": 1,
+            "ties": 5276,
+            "keys": 5276
+          }
+        ]
+      },
+      "seen": 6,
+      "exactKeyLengths": 3,
+      "predicted": 5,
+      "correct": 4
+    },
+    {
+      "name": "p57_parable",
+      "fhold": false,
+      "groups": 20,
+      "eligibleLexical": 17,
+      "fit": {
+        "n": 14,
+        "free": 0,
+        "upper": 13,
+        "missing": 1,
+        "allowance": 0,
+        "detail": [
+          {
+            "len": 2,
+            "n": 4,
+            "distinct": 3,
+            "lexicon": 194,
+            "max": 4,
+            "ties": 23,
+            "keys": 429
+          },
+          {
+            "len": 3,
+            "n": 2,
+            "distinct": 2,
+            "lexicon": 810,
+            "max": 2,
+            "ties": 64,
+            "keys": 1556
+          },
+          {
+            "len": 4,
+            "n": 3,
+            "distinct": 3,
+            "lexicon": 2307,
+            "max": 3,
+            "ties": 1,
+            "keys": 6899
+          },
+          {
+            "len": 6,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 5666,
+            "max": 1,
+            "ties": 5666,
+            "keys": 5666
+          },
+          {
+            "len": 7,
+            "n": 3,
+            "distinct": 3,
+            "lexicon": 5901,
+            "max": 2,
+            "ties": 1,
+            "keys": 17702
+          },
+          {
+            "len": 14,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 247,
+            "max": 1,
+            "ties": 247,
+            "keys": 247
+          }
+        ]
+      },
+      "full": {
+        "n": 20,
+        "free": 0,
+        "upper": 18,
+        "missing": 2,
+        "allowance": 1,
+        "detail": [
+          {
+            "len": 2,
+            "n": 5,
+            "distinct": 3,
+            "lexicon": 194,
+            "max": 5,
+            "ties": 23,
+            "keys": 429
+          },
+          {
+            "len": 3,
+            "n": 3,
+            "distinct": 3,
+            "lexicon": 810,
+            "max": 3,
+            "ties": 4,
+            "keys": 2289
+          },
+          {
+            "len": 4,
+            "n": 4,
+            "distinct": 4,
+            "lexicon": 2307,
+            "max": 4,
+            "ties": 1,
+            "keys": 9146
+          },
+          {
+            "len": 5,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 4114,
+            "max": 1,
+            "ties": 4114,
+            "keys": 4114
+          },
+          {
+            "len": 6,
+            "n": 2,
+            "distinct": 2,
+            "lexicon": 5666,
+            "max": 1,
+            "ties": 11332,
+            "keys": 11332
+          },
+          {
+            "len": 7,
+            "n": 3,
+            "distinct": 3,
+            "lexicon": 5901,
+            "max": 2,
+            "ties": 1,
+            "keys": 17702
+          },
+          {
+            "len": 8,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 5370,
+            "max": 1,
+            "ties": 5370,
+            "keys": 5370
+          },
+          {
+            "len": 14,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 247,
+            "max": 1,
+            "ties": 247,
+            "keys": 247
+          }
+        ]
+      },
+      "seen": 6,
+      "exactKeyLengths": 2,
+      "predicted": 4,
+      "correct": 1
+    },
+    {
+      "name": "p57_parable",
+      "fhold": true,
+      "groups": 20,
+      "eligibleLexical": 13,
+      "fit": {
+        "n": 14,
+        "free": 3,
+        "upper": 13,
+        "missing": 1,
+        "allowance": 0,
+        "detail": [
+          {
+            "len": 2,
+            "n": 4,
+            "distinct": 3,
+            "lexicon": 184,
+            "max": 4,
+            "ties": 18,
+            "keys": 414
+          },
+          {
+            "len": 3,
+            "n": 2,
+            "distinct": 2,
+            "lexicon": 764,
+            "max": 2,
+            "ties": 60,
+            "keys": 1468
+          },
+          {
+            "len": 4,
+            "n": 2,
+            "distinct": 2,
+            "lexicon": 2122,
+            "max": 2,
+            "ties": 7,
+            "keys": 4237
+          },
+          {
+            "len": 6,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 5169,
+            "max": 1,
+            "ties": 5169,
+            "keys": 5169
+          },
+          {
+            "len": 7,
+            "n": 2,
+            "distinct": 2,
+            "lexicon": 5276,
+            "max": 1,
+            "ties": 10552,
+            "keys": 10552
+          }
+        ]
+      },
+      "full": {
+        "n": 20,
+        "free": 5,
+        "upper": 18,
+        "missing": 2,
+        "allowance": 1,
+        "detail": [
+          {
+            "len": 2,
+            "n": 5,
+            "distinct": 3,
+            "lexicon": 184,
+            "max": 5,
+            "ties": 18,
+            "keys": 414
+          },
+          {
+            "len": 3,
+            "n": 3,
+            "distinct": 3,
+            "lexicon": 764,
+            "max": 3,
+            "ties": 2,
+            "keys": 2163
+          },
+          {
+            "len": 4,
+            "n": 2,
+            "distinct": 2,
+            "lexicon": 2122,
+            "max": 2,
+            "ties": 7,
+            "keys": 4237
+          },
+          {
+            "len": 6,
+            "n": 2,
+            "distinct": 2,
+            "lexicon": 5169,
+            "max": 1,
+            "ties": 10338,
+            "keys": 10338
+          },
+          {
+            "len": 7,
+            "n": 2,
+            "distinct": 2,
+            "lexicon": 5276,
+            "max": 1,
+            "ties": 10552,
+            "keys": 10552
+          },
+          {
+            "len": 8,
+            "n": 1,
+            "distinct": 1,
+            "lexicon": 4791,
+            "max": 1,
+            "ties": 4791,
+            "keys": 4791
+          }
+        ]
+      },
+      "seen": 5,
+      "exactKeyLengths": 0,
+      "predicted": 3,
+      "correct": 0
+    }
+  ]
+}
