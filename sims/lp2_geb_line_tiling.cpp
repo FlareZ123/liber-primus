@@ -69,6 +69,56 @@ Tiling tile(const vector<Scan>&scans){
  function<void(int,int,double)> dfs=[&](int j,int mask,double s){t.nodes++;if(mask==full){t.solutions++;if(s>t.best){t.best=s;t.path=path;}return;}auto it=by.find(j);if(it==by.end())return;for(const Edge&e:it->second){if(mask&(1<<e.id))continue;path.push_back(e);dfs(e.end,mask|(1<<e.id),s+e.s);path.pop_back();}};
  vector<int>starts;for(auto& x:by)starts.push_back(x.first);sort(starts.begin(),starts.end());for(int j:starts)dfs(j,0,0);return t;
 }
+// Exact conditional reconstruction given any one of the top sixteen line intervals.
+// For each anchor, other lines may occupy every legal neighboring offset, irrespective of their ranks.
+struct Node{double s;int prev;const Edge* e;};
+Tiling anchoredTile(const vector<Scan>&scans,const vector<vector<int>>&C){
+ const int n=C.size(),full=(1<<n)-1,total=accumulate(C.begin(),C.end(),0,[](int s,const auto&v){return s+(int)v.size();});
+ Tiling best;
+ for(int a=0;a<n;a++)for(int k=0;k<min(16,(int)scans[a].top.size());k++){
+   Edge anchor=scans[a].top[k];anchor.id=a;const int remaining=full^(1<<a);
+   const int lo=max(0,anchor.start-total),hi=min((int)K.size(),anchor.end+total),width=hi-lo+1;
+   vector<vector<vector<Edge>>> out(n,vector<vector<Edge>>(width));
+   vector<int>len(n),zeros(n);
+   for(int id=0;id<n;id++)if(id!=a){
+     len[id]=C[id].size();zeros[id]=count(C[id].begin(),C[id].end(),0);
+     for(int j=lo;j<hi;j++){
+       auto es=Scanner(C[id]).at(j);for(auto&e:es)if(e.end<=hi){e.id=id;out[id][j-lo].push_back(move(e));}
+     }
+   }
+   using Map=unordered_map<int,Node>;
+   vector<Map> F(1<<n),B(1<<n);
+   F[0].emplace(anchor.end,Node{0,-1,nullptr});B[0].emplace(anchor.start,Node{0,-1,nullptr});
+   auto put=[](Map&m,int pos,double s,int prev,const Edge*e){
+     auto it=m.find(pos);if(it==m.end())m.emplace(pos,Node{s,prev,e});else if(s>it->second.s)it->second={s,prev,e};
+   };
+   for(int mask=0;mask<=full;mask++){
+     if(mask&(1<<a))continue;
+     for(auto&kv:F[mask]){int j=kv.first;double s=kv.second.s;best.nodes++;
+       for(int id=0;id<n;id++)if(id!=a&&!(mask&(1<<id)))for(const Edge&e:out[id][j-lo])put(F[mask|(1<<id)],e.end,s+e.s,j,&e);
+     }
+     for(auto&kv:B[mask]){int j=kv.first;double s=kv.second.s;best.nodes++;
+       for(int id=0;id<n;id++)if(id!=a&&!(mask&(1<<id))){
+         for(int at=max(lo,j-len[id]);at<=min(hi,j-len[id]+zeros[id]);at++)for(const Edge&e:out[id][at-lo])if(e.end==j)put(B[mask|(1<<id)],at,s+e.s,j,&e);
+       }
+     }
+   }
+   auto maxpos=[](const Map&m){int p=-1;double s=-numeric_limits<double>::infinity();for(auto&kv:m)if(kv.second.s>s||(kv.second.s==s&&kv.first<p)){p=kv.first;s=kv.second.s;}return pair<int,double>{p,s};};
+   for(int left=0;left<=remaining;left++){
+     if(left&~remaining)continue;const int right=remaining^left;
+     if(B[left].empty()||F[right].empty())continue;
+     auto [bp,bs]=maxpos(B[left]);auto[fp,fs]=maxpos(F[right]);best.solutions++;
+     const double s=bs+anchor.s+fs;if(s<=best.best)continue;best.best=s;best.path.clear();
+     int mask=left,pos=bp;while(mask){const Node&u=B[mask].at(pos);best.path.push_back(*u.e);mask^=1<<u.e->id;pos=u.prev;}
+     best.path.push_back(anchor);
+     vector<Edge> tail;mask=right;pos=fp;while(mask){const Node&u=F[mask].at(pos);tail.push_back(*u.e);mask^=1<<u.e->id;pos=u.prev;}
+     reverse(tail.begin(),tail.end());best.path.insert(best.path.end(),tail.begin(),tail.end());
+   }
+ }
+ int mask=0,previous=-1;for(const Edge&e:best.path){if(mask&(1<<e.id))throw runtime_error("duplicate line");mask|=1<<e.id;if(previous>=0&&previous!=e.start)throw runtime_error("broken interval");auto enc=emit(e.P,e.start);if(enc.C!=C[e.id]||enc.end!=e.end)throw runtime_error("anchor replay");previous=e.end;}
+ if(!best.path.empty()&&mask!=full)throw runtime_error("incomplete anchor replay");
+ return best;
+}
 Tiling continueAt(const vector<vector<int>>& C,int start){
  Tiling t;vector<Edge>path;const int full=(1<<C.size())-1;
  function<void(int,int,double)> dfs=[&](int j,int mask,double s){t.nodes++;if(mask==full){t.solutions++;if(s>t.best){t.best=s;t.path=path;}return;}for(int id=0;id<(int)C.size();id++)if(!(mask&(1<<id))){auto es=Scanner(C[id]).at(j);for(auto&e:es){e.id=id;path.push_back(e);dfs(e.end,mask|(1<<id),s+e.s);path.pop_back();}}};
@@ -93,7 +143,8 @@ void run(const string&name,const vector<vector<int>>&fit,const vector<vector<int
    cout<<"}";scans.push_back(move(r));
  }
  auto t=tile(scans);cout<<"],\"meanBest\":"<<means/fit.size()<<",\"exactIndependent\":"<<exact<<",\"retained\":"<<retained<<",\"fit\":";jsonpath(t,fitP,fitStarts,fitEnds);
- cout<<",\"holdout\":";if(t.path.empty())cout<<"null";else{auto h=continueAt(hold,t.path.back().end);jsonpath(h,holdP,holdStarts,holdEnds);}cout<<"}";
+ cout<<",\"holdout\":";if(t.path.empty())cout<<"null";else{auto h=continueAt(hold,t.path.back().end);jsonpath(h,holdP,holdStarts,holdEnds);}
+ auto a=anchoredTile(scans,fit);cout<<",\"anchoredFit\":";jsonpath(a,fitP,fitStarts,fitEnds);cout<<",\"anchoredHoldout\":";if(a.path.empty())cout<<"null";else{auto h=continueAt(hold,a.path.back().end);jsonpath(h,holdP,holdStarts,holdEnds);}cout<<"}";
 }
 int main(int argc,char**argv){
  if(argc!=2)throw runtime_error("input path");ifstream f(argv[1]);K=readvec(f);vector<vector<int>>train;for(int i=0;i<4;i++)train.push_back(readvec(f));auto donor=readvec(f);vector<vector<int>>fit,hold;for(int i=0;i<11;i++)fit.push_back(readvec(f));for(int i=0;i<4;i++)hold.push_back(readvec(f));
