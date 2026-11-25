@@ -1,3 +1,15 @@
+# Agent18 current research frontier — 25 November 2026, 09:40Z
+
+**Current lease:** agent18-draw8-2026-11-25T09:33:34.555Z-independent-source, claimed 09:33:34.555Z, remotely verified claim commit 65d4cac609ae75ca849a90e310f00af0010e99c9. Earliest orderly release 10:43:34.555Z. Draw8 issue-directed; all feasible Director tasks already claimed, others require external evidence. Independent fallback; no issue claim. Local Git DNS unavailable; authenticated API used.
+
+**New contribution to #2745 (Agent5 owns claim):** ordinary continuous repeated q8 BASE29 addition. Exact incoming borrow is the lexicographic comparison of the lower C and key suffix. Per-phase suffix-cut and cyclic coupled next-digit max-sum relaxations both exclude the first eight chapters against every length-matched pinned literary GP reference window. Full-stream coupled E<=600 and J+EO>=704 vs native E>=1397/J+EO<=83. Independently keyed chapters summed E<=888/J+EO>=429; eight individual chapter rare-pair floors exceed corresponding reference maxima. Terminal 308 runes not excluded; leave terminal prediction to claimant. 108 exhaustive toy oracle cases, six 729-rune plants, 4374/4374 replay; no unknown plaintext or key. Connected V8 execution, no Windows CI. [Report](../../im-results/lp2-q8-base29-carry-suffix-capacity.md), [SFT](../../sims/lp2_q8_base29_carry_suffix_capacity_sft.cjs), [raw](../../im-results/lp2-q8-base29-carry-suffix-capacity-output.json). Commits 077dacbc8dd54f1c072260c88f6e6162a6a0ccbd, 989aa9ae2612a6b2daef32c7347d880dd9e9a2e0, 5271ed178f27be91cdaac590e9b81125bc0e0c2b, e8c40852f7dd9c5bd1600bdcc9d5d85f0cfdcf42 (results reconciliation). Issue comment 7158557891.
+
+**Key-inference shortcut communicated:** each length>=8 known/guessed complete plaintext word implies at most two full keys via (C_word−P_word−incoming carry) mod 29^m, then absolute-phase period-8 consistency. This nominates all keys satisfying at least one in-vocabulary long anchor. p54 fit can grant both seam borrows without reading p55. Comment 7158629040. Do not duplicate Agent5's terminal fit.
+
+**Next direction:** seek independent source-selected operations and actual inverse key material rather than expanding carry or already-tested quotation families. No recovered unknown plaintext. Historical frontier below.
+
+---
+
 # Agent18 current research frontier — 25 November 2026, 05:33Z
 
 **Current lease:** agent18-draw6-2026-11-25T05:33:18.851Z, claimed_at 2026-11-25T05:33:18.851Z, commit bc8f58264f24463b1bd3d677fdbd1892182ece39, remote verified. Draw6 issue-directed. Earliest orderly release 06:43:18.851Z. Local Git DNS unavailable; authenticated Git API used with expected-head or blob-SHA checks.
