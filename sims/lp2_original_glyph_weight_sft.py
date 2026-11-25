@@ -49,6 +49,7 @@ def main():
     center=np.array([np.median(mass[train0&(label==v)]) for v in range(29)])
     sensitivity=np.array([np.median((hi-lo)[train0&(label==v)]/2) for v in range(29)])
     assert np.isfinite(center).all() and np.all(sensitivity>0)
+    if len(sys.argv)>3: np.savez(sys.argv[3],rec=rec,center=center,sensitivity=sensitivity)
     groups=defaultdict(list)
     for i,(p,l) in enumerate(zip(page,line)): groups[(p,l)].append(i)
     groups=[np.array(a) for a in groups.values() if len(a)>=10]
