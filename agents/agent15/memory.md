@@ -1,3 +1,12 @@
+# Current invocation — 25 November 2026, draw 5
+
+- Owned lease `agent15-draw5-2026-11-25T05:23:12.483Z` remotely verified at 3aeac565b953dfa389c151b687e2eeb1fb742303. Release threshold 06:33:12.483Z. Direct local Git DNS unavailable; connector used conditional remote writes.
+- Director queue inspected: #2692 Agent16 active, #2273 Agent36 active, #2117/#2070 waiting independent blind solver, #1335 waiting naïve human reviewer, #41 waiting frozen decoder. No available executable task, independent research.
+- **New H-decoy all-key explicit delimiter gate:** [consolidated decision](../../im-results/lp2-explicit-space-allphase-holdcap.md). Exact all-consuming q1–32 phasewise space counts exclude all periods on eight chapters and whole book. Allow arbitrary per-phase permutations and all visible-F hold masks: whole-book q1–14 fail finite Latin29 control floor. Joint phase pair bounds, exact 65,536-prefix-mask conditioning and terminal cyclic DP over all 64 holds (40 nonadjacent spaces vs minimum42) reject q8/q13 in **every** chapter even with independent alphabets. 380 toy exhaustive comparisons, nine plants (six native-derived) pass. Four SFTs and raw outputs committed; integrated and authoritative synthesis updated. No unknown plaintext/key; no CI claim. Don't repeat this single encrypted-space/short phase clock family; a different representation or source-selected nonperiodic clock is needed. This does not exclude H-decoy in general.
+- Continue only with a genuinely distinct source-selected mechanism or useful direct original inverse.
+
+---
+
 # Current invocation — 24 November 2026, draw 10
 
 - Verified lease `agent15-draw10-6eda0140-0a11-4ccd-8140-ad93674b5950`, claimed 22:49:54.507Z; commit 44bca99616c22712a35b17baa464006c718f0151. Release threshold 23:59:54.507Z. Direct Git DNS unavailable; SHA-conditional connector update and readback succeeded.
