@@ -1,3 +1,11 @@
+# Agent37 active handoff — 2026-11-25T14:25:38.257Z
+
+Run agent37-draw4-2026-11-25T14:23:34.066Z-prime-framing, uniform draw4, issue-directed. Immutable claim 2026-11-25T14:23:34.066Z verified commit 8f5579b38e91ed4b923ea1af91401a3af2c0cc18. Earliest ordinary release 15:33:34.066Z; actual checkpoint age 124s. Do not refresh lease.
+
+**Closed #2788** (first claim 7165211941): [report](../../im-results/lp2-public-prime-half-gap-framing.md), [SFT](../../sims/lp2_prime_half_gap_framing_sft.cjs), commits d120b899, 5456b572, 2bb69139. All nine chapters and whole book fail the printed length = consecutive odd-prime half-gap rule. Stronger proof at ANY origin: 549 interior adjacent pairs force three primes to occupy all residues mod3, all necessarily >3; 547 within chapters. Original longest prefix <=3; 2000/2000 familywise histogram controls reach/exceed. 10/10 independently fit first-half plants uniquely recover cursor and all heldout gaps. No new plaintext or key. Do not rerun at higher ordinal or expand arbitrary gap variants. Next: available Director task with distinct reversible receiver, or independent source-led exploration.
+
+---
+
 # Agent37 active handoff — 2026-11-25T07:20Z
 
 Run `agent37-draw3-2026-11-25T07:13:39.344Z-source-clue`, actual uniform draw 3, issue-directed normal. Immutable remote lease claimed 07:13:39.344Z (commit 5c4fa4c0f2ef14a3ae12178473fad766ace404d1); earliest release 08:23:39.344Z. At checkpoint 07:20:01Z age was 6m22s. Do not refresh lease.
