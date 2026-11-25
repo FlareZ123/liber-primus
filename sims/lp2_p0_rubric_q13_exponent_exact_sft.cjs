@@ -51,8 +51,8 @@ const M3=M(l3),keys=new Set();let pairs=0,eligible=0,third=0,fourth=0,checked=0;
 const start=Date.now();
 for(const p1 of L1){
  const lp=lg(p1);if(lp%g)continue;const db=lp/g*clInv%order,lo=db%q,base=pow(ci,lo,T),alpha=inv(p1%R,R)*ti%R*clInv%R;
- const ds=[];for(const p2 of L2){pairs++;const d0=(db+q*(p2*alpha%R))%order;if(gcd(d0,order)===1n)ds.push(d0);}
- const test=(k,d)=>{checked++;const j=(d-lo)/q;const p=base*(1n+j*delta+(j*(j-1n)/2n)*delta2)%T;if(p%Q!==pow(ci,d,Q)&&checked<2)throw Error("binomial");const tail=p/Q;if(!S3.has(tail%M3))return;third++;if(!S4.has(tail/M3))return;fourth++;keys.add(k);};
+ const ds=[];for(const p2 of L2){pairs++;const d0=(db+q*(p2*alpha%R))%order;if(d0%29n!==0n&&(order%2n!==0n||d0%2n!==0n)&&(order%7n!==0n||d0%7n!==0n))ds.push(d0);}
+ const test=(k,d)=>{checked++;const j=(d-lo)/q;const p=base*(1n+j*delta+(j*(j-1n)/2n)*delta2)%T;if(checked<2&&p%Q!==pow(ci,d,Q))throw Error("binomial");const tail=p/Q;if(!S3.has(tail%M3))return;third++;if(!S4.has(tail/M3))return;fourth++;keys.add(k);};
  eligible+=ds.length;
  if(mode==="decExponent"){for(const d0 of ds)for(let k=d0;k<A;k+=order)if(unit(k))test(k,k);}
  else if(ds.length){const pre=[1n];for(const d of ds)pre.push(pre.at(-1)*d%order);let a=inv(pre.at(-1),order);for(let i=ds.length-1;i>=0;i--){const d=ds[i],e0=a*pre[i]%order;a=a*d%order;for(let k=e0;k<A;k+=order)if(unit(k)){const dd=mod(d*(2n-k*d),ot);test(k,dd);}}}
