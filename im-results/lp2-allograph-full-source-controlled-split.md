@@ -61,9 +61,45 @@ The highest observed patch is not a distinct readable S allograph: group-mean gl
 
 The independent [six-page Q92-recompressed null](lp2-allograph-synthetic-no-message-control.md) is concordant: its observed familywise maximum 0.0271318 is below every canonical no-message replicate (minimum 0.0303622; 20/20 nulls ≥ observed), and a planted 20×20 terminal mark is detected in 5/5 positive-control replicates. That result tests a different six-page sample and a conspicuous positive control; it does not prove sensitivity to invisible or subpixel marks.
 
+## Explicit rotation and reflection receiver (Agent37, 25 November, #2852)
+
+The separate orientation hypothesis is now tested directly, rather than relying on generic patch-occupancy negatives. The receiver uses the same source-labelled extraction for 163 ordinary solved templates, with **84 p56 templates covering all 29 identities** as the only recognition bank. p57's 79 templates are untouched-page controls. It searches a fixed 192×192 centered mask at original physical scale, downsampled to 48×48, against identity and rotations ±3°, ±6°, ±12°, 90°, 180°, 270° and horizontal, vertical and both diagonal reflections. The detector compares cosine similarity against the best upright template and, independently, against the best transformed template over all 29 identities (to catch rotated shapes that would not be admitted by an upright classifier). The prespecified decision is margin ≥0.025 and transformed similarity ≥0.90; the 78 p56-only leave-one-out calibrants have maximum margin 0.0109868, and the 79 independent p57 controls have maximum margin 0.00679851 and minimum upright similarity 0.98176551. This is a finite geometric detector rather than a hidden-bit clustering or language search.
+
+The scan admits components in the original common text window (440,440)–(2100,3250), grayscale threshold 160, area >200, minimum dimension ≥7 and longest dimension >80 and ≤122 pixels. Allowing either long dimension is important for quarter-turns. Page skew is estimated by the median of robust within-line top-edge slopes for high-confidence glyphs; every measurable page median is 0°, and the largest absolute individual line estimate is 0.104174°. Thus no image deskew is needed at the tested ±3° resolution. Centering removes positional translation; preserving scale prevents turning altered aspect ratios into an artificial orientation channel.
+
+| Original scope | Candidate components | Upright similarity ≥0.90 | Confident transformed winner |
+|---|---:|---:|---:|
+| LP1 (archive 00–16) | 2,704 | 2,632 | 0 |
+| Unknown LP2 p0–55 | 12,939 | 12,789 | 0 |
+| Solved p56–57 | 177 | 174 | 0 |
+| Total | 15,820 | 15,595 | 0 |
+
+No same-identity or unrestricted-class transformed candidate meets the decision threshold, including among the 225 low-upright-confidence components. The strongest margin among confident unknown glyphs is only +0.021618, for GP index12 (EO, ᛇ), size 40×112 pixels. The exact same measured upright similarity 0.97644 and transformed advantage occur 46 times in unknown LP2 and six times in solved LP1. Example original coordinates (x,y,w,h): physical p0/archive17 (601,2557,40,112), p1/archive18 (1078,1616,40,112); solved archive01 (1407,891,40,112) and archive03 (1244,1616,40,112). This recurring raster form is not a unique LP2 direction state.
+
+### Independent direction-positive controls
+
+Rotate or reflect each of the 79 held-out p57 masks, keeping the p56 bank fixed. Eligibility below applies the same bounding-dimension and area limits as the source scan; both same-identity and unrestricted detectors give these counts.
+
+| Operation | Eligible / 79 | Detected / eligible |
+|---|---:|---:|
+| −3°, +3°, −6°, +6° (each) | 79 | 79 |
+| −12° | 72 | 72 |
+| +12° | 75 | 75 |
+| 90°, 270° (each) | 79 | 79 |
+| 180° | 79 | 58 |
+| Horizontal reflection | 79 | 48 |
+| Vertical reflection | 79 | 69 |
+| Both diagonal reflections (each) | 79 | 79 |
+
+Incomplete 180°/reflection sensitivity is expected for symmetric or nearly symmetric runes; this is explicitly measured, not treated as a hidden signal. The plants are transformed isolated masks, not full-page JPEG-reencoded interventions. Unknown-page components are recognition-labelled by the frozen p56 bank, not independently re-aligned here to canonical positions; the earlier source-alignment study above gives the independent coverage baseline. The 12,789 high-confidence count agrees with that study, but agreement does not prove identical assignments. Large/merged glyphs, illustrations, crop-excluded components, microtilts below 3°, rotations outside the discrete tested set, direction changes invisible in a symmetric glyph, and transformations that exactly masquerade as another upright GP rune remain outside this gate. No per-ink or phase-specific threshold was tuned, and the global test includes both ink colors.
+
+Reproduce locally using the supplied original ZIP and [orientation receiver](../sims/lp2_orientation_original_gate.py): `python sims/lp2_orientation_original_gate.py liber-primus-jpegs.zip orientation.json`. The JSON contains the complete 15,820-row coordinate/score tape, ordered by page and component x-position, including the two decision margins and operation labels; it is not a decoded key stream. Archive index = reported page +17, so negative page IDs designate LP1. Run with Python, NumPy and OpenCV; the local OpenCV 4.13.0 execution completed, no new CI run is claimed.
+
+**Decision:** retire this explicit ordinary-glyph orientation/reflection receiver. No stable source-selected direction alphabet or key is established. A proposal for a new direction mechanism needs a particular original glyph, read order and a discriminating prediction beyond the tested rotations; do not restart unconstrained shape searches.
+
 ## Interpretation and route decision
 
-Close this branch. The full-source test covers all 29 rune identities and the 12,789 clean, source-aligned ordinary glyphs on the 56 unknown pages. Its best candidate is not visually distinct and fails the familywise source-native null comparison. The previous full 58-image morphology gate and exact-Q92 six-page control independently support the same decision.
+Close this branch. The full-source test covers all 29 rune identities and the 12,789 clean, source-aligned ordinary glyphs on the 56 unknown pages. Its best candidate is not visually distinct and fails the familywise source-native null comparison. The previous full 58-image morphology gate and exact-Q92 six-page control independently support the same decision. The explicit p56-trained rotation/reflection receiver above additionally finds zero confident transformed winners across the broadened 75-image component scan.
 
 Do not construct a bitstream, optimize thresholds against English, or rescue this hypothesis by selecting new runes, pages, patches or post-hoc feature definitions. Reopen only with a new source-visible clue that predicts a specific untested visual state or a held-out readout. This result recovers no unknown plaintext, key, cipher operation or Cicada destination.
 
