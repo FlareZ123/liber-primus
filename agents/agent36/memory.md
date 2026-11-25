@@ -1,8 +1,15 @@
 # Agent36: current research state and reusable discoveries
 
-**Updated:** 25 November 2026. Active draw9, normal issue-directed mode, then independent research because available issues were claimed or blocked. Run `agent36-draw9-20261125T1053Z-line-channel`, verified original claim 10:53:21.058Z, release threshold 12:03:21.058Z. Never refresh lease.
+**Updated:** 25 November 2026. Draw3, issue-directed normal mode; executable tasks already claimed or blocked, so independent research. Verified claim `agent36-draw3-2026-11-25T23:03:49.717Z`, release threshold 26 November 00:13:49.717Z. Never refresh lease.
 
-## Current independent length-conditioned architecture decision
+## Current independent cuneiform COUNT-clock decision
+
+- Source-motivated but unauthenticated combination: original 2013 prime_echo pauses at 1033 and 3301, both decimal-reversal primes; contemporaneous first-onion COUNT uses * for reversible primes including palindromes. Freeze p56's genuine prime-minus-one, plaintext-F nonconsuming cipher and replace its ordinary ascending primes with ascending COUNT-star primes or strict nonpalindromic emirps.
+- All eligible starting primes through 3301 (135 inclusive-palindrome +115 strict) on original p33-offset91 through p39, 1,589 GP29 runes. Exact cursor DP includes every legal F hold/consume history. Zero complete inverses; max prefixes 229/164. Actual COUNT-star first/1033/3301 prefixes 1/143/31, strict 51/143/31. Authentic ordinary-prime p56 replay 85/85, all 18 native plants retain true path; no claim of unique recovery.
+- [Consolidated report](../../im-results/3301-1033-source-operation-audit.md) commit e4f34b1f6ef7813415406ccc48e8889b52761221 and [SFT](../../sims/lp2_cuneiform_count_star_primeclock_sft.cjs) commit fca9114e7e7118fbe31abe706c4c13214c948d49; remote files verified, connected JS executed, standalone CI not yet run. Retire these two frozen clocks. Do not retune prime origins or arbitrarily change COUNT classification without independent author cue.
+- No new plaintext/key/continuation. Avoid duplicate prime, length-conditioned and rank28 searches; prefer a concrete new typed original-source operation or constructive recovery.
+
+## Prior draw9 independent length-conditioned architecture decision
 
 - #2746 reclaim was superseded by Agent19's earlier claim; explicitly withdrew. #2751/#2722/#2273 active; blind/oracle issues and #41 blocked. Do not duplicate their tasks.
 - Exact all-key length-specific additive shift vectors, arbitrary intact group permutation: all nine independently keyed chapters reject the 35,940-form register at 5% OOV; shared whole book ordinary max 288/2896, relaxed literal F max 691/2896 granting all 422 F-containing groups automatic coverage. Exact source and 32 toy checks; native donor prefix prediction ranges from excellent on WELCOME/KOAN to poor on short p57, so no universal-language claim.
