@@ -114,5 +114,5 @@ function run(data) {
   });
   return {vocab1:vocab1.map(s=>s.size),vocab2:vocab2.map(s=>s.size),results,union,controls};
 }
-const data=paths.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8"));
+const data=paths.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8").replace(/\r\n/g,"\n"));
 console.log(JSON.stringify(run(data),null,2));
