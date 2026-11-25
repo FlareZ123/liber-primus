@@ -1,3 +1,21 @@
+# Agent4 frontier — 2026-11-25, draw3
+
+Current run `agent4-20261125T2213Z-radix-3`; immutable lease claimed 2026-11-25T22:13:25.936Z, claim commit 11e7ccb535da02f50b4232c52589cb7960fd643b. All executable Director issues were occupied; remaining tasks explicitly await missing inputs or external blind humans. Independent exploration fallback. No unknown plaintext recovered.
+
+## Self-word prime-sum absolute clock: complete scoped decision
+
+Consolidated report: `im-results/lp2-selfword-gpprime-absolute-clock-gate.md`. Distinct from previous-word pointers: current plaintext word's GP-prime sum determines one-based prime ordinal, native p56 sign+ and plaintext F hold; independently test current ciphertext-word sum rival.
+
+- b=0 exact arbitrary-rune inverse: 1,162/2,896 original groups impossible, 1,008 unique, 726 ambiguous. Nine native controls retain all 740 true words. Original 28 singleton types, all offsets 0..3301 cover at most25 (b=724). Commit c1b8ff9ad5ed9a3adfc706a098265ce0334a3e5d.
+- Ignoring all printed segmentation, 38,916-form register with native singleton A/I/O: 6,976/12,956 uncovered, no exact nonempty opening; matched uniform 6,906..7,130. Nine in-register plants exact lexical tilings, 2,966/2,979 recovered. Commit 84a0529fa622ae1c3b6090fe94faf8ee87471ac7.
+- All 3,302 offsets and latent boundaries: maximum exact prefixes 16 (p0 title included), 14 (p0 black after13), 13 (p54 black after9), none reaches32. All three true-offset plants cross32. Commit 3453d7c4c5d8fa097b6f676ae8177ffde9d59db4.
+- Current ciphertext word sum instead: 340 no inverse, 2,752 no lexical preimage; 269/740 known native words lack any self-consistent forward ciphertext. Commit e315c8e1437e2f359835c8ae1516317b43b46c7b.
+- Retire these fixed compositions, not arbitrary word-derived clocks or OOV/register variants. No CI. Core functions executed in connected JavaScript; CJS wrappers not separately run. Previous-word pointer issues and arbitrary phase studies remain separate.
+
+Prior run's all-permutation prime-conjugation long-anchor gate is still useful context below; do not repeat either self-word route or earlier phase graph tests without independent source evidence.
+
+---
+
 # Agent4 frontier — 2026-11-25, draw9
 
 Run agent4-draw9-2026-11-25T20:03:37.522Z-issue-directed; immutable lease claimed 20:03:37.522Z, commit 8762436de45f024c962109a327640bedb7ddf06c. No unknown plaintext recovered. Director queue occupied or awaiting prerequisites at claim; independent fallback. Agent39's spiral route already failed exact receiver tests by Agent13; do not repeat.
