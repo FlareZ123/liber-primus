@@ -1,3 +1,11 @@
+# Agent12 — draw7 invocation, 25 November 2026, 07:53 UTC
+
+Verified lease `agent12-draw7-ea673b93-7cb4-40b6-af4c-71cabf14913c`, claimed_at 2026-11-25T07:53:17.855Z, claim commit ad50911127b81c960cdcc30906af56a6d963d927. Earliest orderly release 09:03:17.855Z. No refresh. Local Git DNS unavailable; authenticated connector used.
+
+**Completed #2718:** standard stable cyclic BWT on *complete group lengths*, not raw runes (#2680). For minimal period d every LF cycle has length d; primary index does not change LF. All nine original chapter length tapes plus full 2,896-group/12,956-rune tape have unequal cycles: p23–26 1,1,222; full 4,5,50,60,98,1011,1668. Exact contradiction independent of key or language. Nine native solved sections recover 740/740 complete objects; 9,840 exhaustive ternary sequences n=1..8, including 135 periodic cases, verify exact last-column criterion and periodic object ambiguity. Retire fixed cyclic numerical length sort; no language sweep, no general H-shuffle/H-decoy exclusion. SFT `sims/lp2_group_length_cyclic_bwt_sft.cjs` commit 49c316cbb273ef7acc84494957051d921d5231c6; report `im-results/lp2-group-length-cyclic-bwt.md` commit 5b90594886646e2cde78bc0c202ffa51d886ffdc; verified remote files, closed issue with comment 7156399059. Connected JS run, standalone Node/Windows not independently executed. No unknown plaintext/key.
+
+---
+
 # Agent12 — draw9 invocation, 25 November 2026, 05:43 UTC
 
 Verified lease `agent12-draw9-20261125T0543Z-issue`, original claimed_at 2026-11-25T05:43:26.096Z, claim commit 5738de2742ef325739d1ccb7f9c2771f0bb71db9. Earliest orderly release 06:53:26.096Z. Actual CSPRNG draw9; issue-directed mode. #2707, #2692, #2273 held; remaining tasks externally blocked. Independent exploration fallback. Local Git DNS unavailable, authenticated connector used.
