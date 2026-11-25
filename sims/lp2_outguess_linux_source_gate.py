@@ -188,6 +188,8 @@ def main() -> None:
         digest = r["prefix_1417_sha256"]
         if digest:
             prefix_groups.setdefault(digest, []).append(r["label"])
+    if control_run and control_run["prefix_1417_sha256"]:
+        prefix_groups.setdefault(control_run["prefix_1417_sha256"], []).append(control_run["label"])
 
     summary = {
         "outguess_commit": OUTGUESS_COMMIT,
@@ -202,6 +204,8 @@ def main() -> None:
         "lp2_default_capacity_58152_count": sum(r["length"] == 58152 for r in lp2),
         "lp2_default_crash_or_timeout_count": sum(r["timeout"] or (r["returncode"] is not None and r["returncode"] < 0) for r in lp2),
         "lp2_default_crashes": compact([r for r in lp2 if r["timeout"] or (r["returncode"] is not None and r["returncode"] < 0)]),
+        "lp2_default_capacity_rejected_count": sum(("Insufficient remaining iterator capacity" in r["stderr"]) or ("Extracted datalen is too long" in r["stderr"]) for r in lp2),
+        "lp2_default_capacity_rejections": compact([r for r in lp2 if ("Insufficient remaining iterator capacity" in r["stderr"]) or ("Extracted datalen is too long" in r["stderr"])]),
         "lp2_default_empty": compact([r for r in lp2 if r["length"] == 0 and not (r["timeout"] or (r["returncode"] is not None and r["returncode"] < 0))]),
         "lp1_pgp_pages": [r["archive_index"] for r in lp1 if r["pgp_signed_message"]],
         "lp2_default_nonempty": compact(nonempty(lp2)),
