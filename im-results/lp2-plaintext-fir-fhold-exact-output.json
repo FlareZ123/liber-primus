@@ -1,0 +1,209 @@
+{
+  "sourceBlob": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+  "pages": [
+    16,
+    21
+  ],
+  "n": 1613,
+  "zeros": 59,
+  "order3": {
+    "totalNormalizedKeys": 707281,
+    "initialStatesPerKey": 1,
+    "checkpoints": [
+      [
+        0,
+        707281
+      ],
+      [
+        20,
+        350788
+      ],
+      [
+        40,
+        174026
+      ],
+      [
+        80,
+        68650
+      ],
+      [
+        160,
+        29277
+      ],
+      [
+        320,
+        7209
+      ],
+      [
+        600,
+        1262
+      ],
+      [
+        800,
+        489
+      ],
+      [
+        1000,
+        137
+      ],
+      [
+        1200,
+        74
+      ],
+      [
+        1400,
+        4
+      ],
+      [
+        1600,
+        1
+      ],
+      [
+        1613,
+        1
+      ]
+    ],
+    "survivors": [
+      {
+        "key": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "states": 1,
+        "example": 19984
+      }
+    ],
+    "maxPostTransitionStates": 159,
+    "visited": 46958655,
+    "transitions": 27136744,
+    "elapsedMs": 46006
+  },
+  "order2": {
+    "totalNormalizedCoefficientKeys": 24389,
+    "initialStatesPerKey": 841,
+    "totalFullParams": 574312172,
+    "checkpoints": [
+      [
+        0,
+        24389
+      ],
+      [
+        20,
+        24378
+      ],
+      [
+        40,
+        24368
+      ],
+      [
+        80,
+        24340
+      ],
+      [
+        160,
+        24115
+      ],
+      [
+        320,
+        23626
+      ],
+      [
+        600,
+        14053
+      ],
+      [
+        800,
+        6845
+      ],
+      [
+        1000,
+        2034
+      ],
+      [
+        1200,
+        1126
+      ],
+      [
+        1400,
+        34
+      ],
+      [
+        1600,
+        1
+      ],
+      [
+        1613,
+        1
+      ]
+    ],
+    "survivors": [
+      {
+        "key": [
+          0,
+          0,
+          0
+        ],
+        "states": 1,
+        "example": 641
+      }
+    ],
+    "maxPostTransitionStates": 812,
+    "visited": 1090818888,
+    "transitions": 16403988,
+    "elapsedMs": 116526
+  },
+  "controls": [
+    {
+      "order": 3,
+      "key": [
+        5,
+        11,
+        7
+      ],
+      "initial": [
+        0,
+        0,
+        0
+      ],
+      "bias": 13,
+      "scale": 17,
+      "length": 800,
+      "holds": 17,
+      "generatedZeros": 30,
+      "final": [
+        27,
+        22,
+        8
+      ],
+      "reachable": true,
+      "states": 2657
+    },
+    {
+      "order": 2,
+      "key": [
+        12,
+        18
+      ],
+      "initial": [
+        3,
+        19
+      ],
+      "bias": 7,
+      "scale": 11,
+      "length": 800,
+      "holds": 18,
+      "generatedZeros": 26,
+      "final": [
+        12,
+        23
+      ],
+      "reachable": true,
+      "states": 211
+    }
+  ],
+  "bruteAgreements": 64,
+  "trivialSurvivorIoc": 0.03454946549360884,
+  "nonzeroScaleOptions": 28
+}
