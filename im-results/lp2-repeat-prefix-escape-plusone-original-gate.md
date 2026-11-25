@@ -39,6 +39,27 @@ The positive plant uses cyclic steps 1–27 for input indices 0–26, [s,s+1] fo
 
 Agent25's original fixed F-escape model uses [s,s+1] for the sole escaped input F and a nonzero cyclic step for each other input. Its four native p57 controls invert exactly. The original 86 repeated events have only two next steps +1; the first contradiction is TH,TH,P at offset122. [Original SFT](../sims/lp2_repeat_prefix_escape_source_sft.cjs) and [Windows run 44167137098](https://github.com/FlareZ123/liber-primus/actions/runs/44167137098) remain available. The present result broadens that test to arbitrary secret codebooks and variable suffix lengths without repeating its fixed decoder search.
 
+## Source-conditioned extension: p50 bit0 clock (Agent28, 25 November 2026)
+
+The independently nominated [p50 base60 phase-zero parity selector](lp2-p50-bit0-dualecho-two-tap-original-gate.md) has opposing observed associations with adjacent equality and five-back word-local echo. It might support separate prefix codebooks for different public states, escaping the previous predecessor-only obstruction. Freeze the same continuous global clock: at original offset i≥1, use the parity of the original grid byte at (i−1) mod256. The state is the previous emitted rune plus that public bit. No source authentication of the bit as an opcode is asserted.
+
+Apply the existing forced-row theorem to this more generous family, allowing an arbitrary, independent secret GP29 codebook for each of 58 states and, separately, each augmented source-visible state. All legal codeword starts use the preceding emitted rune and the public state at the **start of the codeword**, not at the end. All suffixes of escapes begin with a forced or unforced repeated prefix; no one-rune repeated codeword is permitted in this contract. The same distance certificate applies independently of how a codebook was obtained.
+
+| Shared state | Largest forced row at L=2 | Excluded maximum escape lengths |
+|---|---:|---:|
+| Predecessor + parity | 32 | 2–171 |
+| Predecessor + parity + printed word start | 32 | 2–130 |
+| Predecessor + parity + printed word end | 32 | 2–100 |
+| Predecessor + parity + both word flags | 31 | 2–50 |
+| Predecessor + literal leading-zero bit + parity | 32 | 2–162 |
+| Predecessor + full 256-phase index | 8 | None by this certificate |
+
+At L=171 the even-parity AE row (GP25) requires all 28 ordinary unequal successors plus two distinct forced escape suffix beginnings at global offsets 1591 and 3140 (next GP indices10 and2). Even with both word flags, at L=50 the even-parity, internal-word F row requires 27 ordinary successors plus three escapes (offsets2192,7118,8776; suffix starts26,6,19). These are exact incompatibilities with 29 deterministic codewords, independent of English. At each tabulated next length the largest required row falls to29, not a feasibility proof.
+
+Three bit-dependent prefix-code plants, seeds0/13/28, each recover all 3,008 native GP symbols plus exact cipher replay (3,089 runes including the seed); their L=4 maximum forced-row bound is23. Their 27 ordinary mappings and two genuinely bit-dependent escape paths (lengths2 and4) demonstrate that the certificate admits its own lawful family. This was executed on canonical inputs in the connected JS runtime; standalone [CJS SFT](../sims/lp2_p50_bit0_prefix_escape_allsecret_sft.cjs), commit 44fc788045cb49ed9be77ad36d405651022e6b29. No independent Windows CI run is claimed.
+
+**Important boundary:** separate secret codebooks per illustrated chapter are not excluded here once parity is added: L=2 maxima are 15,21,23,26,20,23,24,29,10. Do not infer a chapter-specific solution or fit arbitrary phase/word codebooks on this evidence. The frozen shared parity interpretation fails as a short repeated-prefix encoder; its observed echo-rate association does not fix that failure. This does not close #2273's broader criterion.
+
 ## Decision
 
-Retire short stationary repeated-prefix escapes under the stated contracts. A remaining proposal must specify additional state or a source-derived side channel, allow ordinary nonrepeat codewords to emit more than one rune, change the source alphabet, permit one-rune repeated tokens, or support long escape payloads (necessarily at least 227 globally, or54 in p40–53 with chapter-private predecessor-only state). These are length lower bounds, not inferred historical lengths. Arbitrary block/enumerative coding and source-selected external side information remain outside the obstruction. #2273 is not closed; no unknown plaintext or authenticated key was recovered.
+Retire short stationary repeated-prefix escapes under the stated contracts, including the independently proposed p50 parity-conditioned shared-codebook extension (through L=171, or50 with both printed-word flags). The parity extension with private chapter codebooks is not excluded by this forced-row certificate. A remaining proposal must specify additional state or a source-derived side channel, allow ordinary nonrepeat codewords to emit more than one rune, change the source alphabet, permit one-rune repeated tokens, or support long escape payloads (necessarily at least 227 globally, or54 in p40–53 with chapter-private predecessor-only state). These are length lower bounds, not inferred historical lengths. Arbitrary block/enumerative coding and source-selected external side information remain outside the obstruction. #2273 is not closed; no unknown plaintext or authenticated key was recovered.
