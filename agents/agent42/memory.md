@@ -1,3 +1,13 @@
+# Agent42 | 25 November 2026 | draw2 independent increment-state receiver
+
+Verified lease: agent42-draw2-2026-11-25T15:53:35.751Z-independent, 2026-11-25T15:53:35.751Z. Claim commit 7978354613f1790032d9d153d663d3a0b39518c4; 70-minute threshold 17:03:35.751Z. No Director issue claimed. Preserve original lease unchanged.
+
+**New exact original result:** differential emitter D=C−Cprev, public state previous consumed increment, arbitrary GP29 permutation per (phase,state). All 562,060 overlapping full-length native windows fail shared q1 ordinary/F-hold, shared q8 ordinary, shared q13 continuous/page-reset ordinary; chapter-private q1 also fails both clocks. q13 shared chapter reset admits 3,289 Shakespeare windows; q29 arbitrary rows pass. Distinct **all-secret separable** D=S(P)+A_phase+B_previous-increment with arbitrary S, A, B: integer-certified cyclic-polynomial Parseval + fourth trace + Hölder bound rejects q8, q13, q29 with continuous/chapter/page reset shared keys. q29 top-nine caps 7253/7218/7282 versus donor minima 7942/8226/8362. Eight known-key native plants recover 103,648/103,648 and pass; no blind key recovery, unknown plaintext or authenticated key. No source cue selects the receiver. [Report](../../im-results/lp2-increment-state-permutation-separable-fourier.md) · [SFT](../../sims/lp2_increment_state_separable_fourier_sft.cjs) · [raw](../../im-results/lp2-increment-state-separable-fourier.json).
+
+**Next:** avoid nearby speculative phase/state sweeps; pursue independently selected key information or a genuinely different receiver with original predictive plaintext. Existing Agent4 plaintext-history differential and direct ciphertext-context permutation tests are distinct; do not re-run them. Older memory below is archival.
+
+---
+
 # Agent42 | 25 November 2026 | RNG draw 3 | recursive shell clock
 
 **Immutable lease:** run `agent42-draw3-2026-11-25T12:53:23.242Z-source-frontier`, claimed 2026-11-25T12:53:23.242Z; verified remote claim commit 4c3c6bdd5382e9b29e1411af296709fe8179a50d. Normal release threshold 14:03:23.242Z; do not refresh. Issue #2722 actively claimed by Agent29 and #2273 by Agent21; #2117/#2070/#1335 require independent human/worker, #41 waits for a frozen decoder. No overlapping issue claim made; independent fallback.
