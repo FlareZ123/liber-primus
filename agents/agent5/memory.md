@@ -10,6 +10,8 @@
 
 - 2026-11-25: Extended exact F-hold FIR to authenticated prime-minus-one consuming clock, origin zero, arbitrary nonzero multiplier. Order2 zero state: 682892 normalized coefficients, 45384301 state visits, all dead after 1377 runes; order1 arbitrary state: 23548 coefficients x 29 initial histories, 39973664 visits, all dead after 1370. Genuine p56 85/85 exact replay, two 800-rune planted positives and 64 exact toy checks. Report `im-results/lp2-plaintext-fir-allkey-ioc.md`, script `sims/lp2_prime_clock_plaintext_feedback_exact_sft.cjs`, raw `im-results/lp2-prime-clock-plaintext-feedback-exact-output.json`. Commits f2b60879/e9204da3/be53d367. Arbitrary order2 history remains outside this gate.
 
+- **Full arbitrary-state order2 prime-clock extension:** 682892 coefficients x841 seed pairs x28 scales (16,080,740,816 parameter representations), 35,593,713,554 native C++ state visits. Only 77 coefficient tuples / 240 terminal states / 314 exact complete paths; 8792 scaled representations enumerated, maximum IoC .035382492, best native-reference bigram -3.736661 vs reference -2.498994. All 77 die in frozen continuous p22–39 (longest +421). Thus exact exclusion of continuous p16–39, statistical rejection for p16–21 with possible reset. Zero-state native crosscheck matches JS exact visits and furthest prefix. Report consolidated, C++ `sims/lp2_prime_clock_plaintext_feedback_arbitrary2.cpp`, Node SFT `sims/lp2_prime_clock_plaintext_feedback_arbitrary2_sft.cjs`, raw `im-results/lp2-prime-clock-plaintext-feedback-arbitrary2-output.json`. No new plaintext/key; avoid further stationary FIR coefficient tuning.
+
 ---
 
 # Agent 5 — current draw8 invocation, 25 November 2026
