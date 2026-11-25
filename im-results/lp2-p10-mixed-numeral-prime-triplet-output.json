@@ -1,0 +1,1187 @@
+{
+  "inputBlobs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/transcriptions/lp2-image-corrected.txt",
+      "sha": "f7b534a33edeb212d427329798438325307463d7"
+    },
+    {
+      "path": "resources/transcriptions/lp1_wulfic_canonical.txt",
+      "sha": "37c96b816495c5f93ca658a01c9918bf92598316"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    }
+  ],
+  "source": {
+    "runes": 12956,
+    "groups": 2896,
+    "numberGroups": 6,
+    "events": [
+      {
+        "x": {
+          "w": "7",
+          "page": 10,
+          "endPage": 10,
+          "line": 137,
+          "endLine": 137,
+          "start": 2566,
+          "end": 2566,
+          "sum": 7,
+          "before": "-"
+        },
+        "a": {
+          "w": "ᚩᚦᛏ",
+          "page": 10,
+          "endPage": 10,
+          "line": 137,
+          "endLine": 137,
+          "start": 2563,
+          "end": 2566,
+          "sum": 71,
+          "before": "-"
+        },
+        "b": {
+          "w": "ᚷ",
+          "page": 10,
+          "endPage": 10,
+          "line": 137,
+          "endLine": 137,
+          "start": 2566,
+          "end": 2567,
+          "sum": 17,
+          "before": "-"
+        }
+      },
+      {
+        "x": {
+          "w": "1",
+          "page": 36,
+          "endPage": 36,
+          "line": 458,
+          "endLine": 458,
+          "start": 8805,
+          "end": 8805,
+          "sum": 1,
+          "before": "."
+        },
+        "a": {
+          "w": "ᛁᚦᚩᚻᛡᚷᚻ",
+          "page": 36,
+          "endPage": 36,
+          "line": 457,
+          "endLine": 457,
+          "start": 8798,
+          "end": 8805,
+          "sum": 213,
+          "before": "-"
+        },
+        "b": {
+          "w": "ᛚᚦᛇᛟ",
+          "page": 36,
+          "endPage": 36,
+          "line": 458,
+          "endLine": 458,
+          "start": 8805,
+          "end": 8809,
+          "sum": 202,
+          "before": "-"
+        }
+      },
+      {
+        "x": {
+          "w": "2",
+          "page": 37,
+          "endPage": 37,
+          "line": 465,
+          "endLine": 465,
+          "start": 8944,
+          "end": 8944,
+          "sum": 2,
+          "before": "."
+        },
+        "a": {
+          "w": "ᛞᚣᛒᚾᚪ",
+          "page": 36,
+          "endPage": 36,
+          "line": 463,
+          "endLine": 463,
+          "start": 8939,
+          "end": 8944,
+          "sum": 379,
+          "before": "-"
+        },
+        "b": {
+          "w": "ᚾᚣᛖᛉ",
+          "page": 37,
+          "endPage": 37,
+          "line": 465,
+          "endLine": 465,
+          "start": 8944,
+          "end": 8948,
+          "sum": 246,
+          "before": "-"
+        }
+      },
+      {
+        "x": {
+          "w": "3",
+          "page": 37,
+          "endPage": 37,
+          "line": 469,
+          "endLine": 469,
+          "start": 9035,
+          "end": 9035,
+          "sum": 3,
+          "before": "."
+        },
+        "a": {
+          "w": "ᚠᛒ",
+          "page": 37,
+          "endPage": 37,
+          "line": 468,
+          "endLine": 468,
+          "start": 9033,
+          "end": 9035,
+          "sum": 63,
+          "before": "-"
+        },
+        "b": {
+          "w": "ᛞᚢᛈ",
+          "page": 37,
+          "endPage": 37,
+          "line": 469,
+          "endLine": 469,
+          "start": 9035,
+          "end": 9038,
+          "sum": 135,
+          "before": "-"
+        }
+      },
+      {
+        "x": {
+          "w": "4",
+          "page": 37,
+          "endPage": 37,
+          "line": 474,
+          "endLine": 474,
+          "start": 9133,
+          "end": 9133,
+          "sum": 4,
+          "before": "."
+        },
+        "a": {
+          "w": "ᚪᚷᚹ",
+          "page": 37,
+          "endPage": 37,
+          "line": 473,
+          "endLine": 473,
+          "start": 9130,
+          "end": 9133,
+          "sum": 133,
+          "before": "-"
+        },
+        "b": {
+          "w": "ᛝᛄᛋᛄᛗᚱᛗ",
+          "page": 37,
+          "endPage": 37,
+          "line": 474,
+          "endLine": 474,
+          "start": 9133,
+          "end": 9140,
+          "sum": 359,
+          "before": "-"
+        }
+      },
+      {
+        "x": {
+          "w": "5",
+          "page": 38,
+          "endPage": 38,
+          "line": 480,
+          "endLine": 480,
+          "start": 9229,
+          "end": 9229,
+          "sum": 5,
+          "before": "."
+        },
+        "a": {
+          "w": "ᚳᛇᛗ",
+          "page": 38,
+          "endPage": 38,
+          "line": 479,
+          "endLine": 479,
+          "start": 9226,
+          "end": 9229,
+          "sum": 125,
+          "before": "-"
+        },
+        "b": {
+          "w": "ᚻᚫᛉᚦᛒᛟ",
+          "page": 38,
+          "endPage": 38,
+          "line": 480,
+          "endLine": 480,
+          "start": 9229,
+          "end": 9235,
+          "sum": 320,
+          "before": "-"
+        }
+      }
+    ],
+    "lp1": {
+      "rows": [
+        [
+          272,
+          138,
+          341,
+          131,
+          151
+        ],
+        [
+          366,
+          199,
+          130,
+          320,
+          18
+        ],
+        [
+          226,
+          245,
+          91,
+          245,
+          226
+        ],
+        [
+          18,
+          320,
+          130,
+          199,
+          366
+        ],
+        [
+          151,
+          131,
+          341,
+          138,
+          272
+        ]
+      ],
+      "rowSums": [
+        1033,
+        1033,
+        1033,
+        1033,
+        1033
+      ],
+      "colSums": [
+        1033,
+        1033,
+        1033,
+        1033,
+        1033
+      ],
+      "diagonals": [
+        1033,
+        1033
+      ]
+    },
+    "historical": {
+      "ascii": {
+        "cipher": "lxxt>33m2mqkyv2gsq3q=w]O2ntk",
+        "plain": "http://i.imgur.com/m9sYK.jpg"
+      },
+      "base29": {
+        "30": "11",
+        "1033": "16I",
+        "3301": "3QO"
+      }
+    }
+  },
+  "gapStats": {
+    "whole": {
+      "opportunities": 2711,
+      "mirrors": [
+        {
+          "page": 10,
+          "start": 2563,
+          "words": [
+            "ᚩᚦᛏ",
+            "ᚷ"
+          ],
+          "sums": [
+            71,
+            17
+          ]
+        },
+        {
+          "page": 43,
+          "start": 10488,
+          "words": [
+            "ᚠᛟ",
+            "ᛇᚷ"
+          ],
+          "sums": [
+            85,
+            58
+          ]
+        },
+        {
+          "page": 46,
+          "start": 11491,
+          "words": [
+            "ᚣᛠᚦᚹ",
+            "ᛝᛚᛗᚳᛡᛇᚠᚫᛠᛁᚦ"
+          ],
+          "sums": [
+            236,
+            632
+          ]
+        }
+      ],
+      "chartMirrors": 1,
+      "exact71_17": 1
+    },
+    "chapter": {
+      "opportunities": 352,
+      "mirrors": [
+        {
+          "page": 10,
+          "start": 2563,
+          "words": [
+            "ᚩᚦᛏ",
+            "ᚷ"
+          ],
+          "sums": [
+            71,
+            17
+          ]
+        }
+      ],
+      "chartMirrors": 1,
+      "exact71_17": 1
+    },
+    "typedWhole": {
+      "opportunities": 18,
+      "mirrors": [
+        {
+          "page": 10,
+          "start": 2563,
+          "words": [
+            "ᚩᚦᛏ",
+            "ᚷ"
+          ],
+          "sums": [
+            71,
+            17
+          ]
+        }
+      ],
+      "chartMirrors": 1,
+      "exact71_17": 1
+    },
+    "typedChapter": {
+      "opportunities": 4,
+      "mirrors": [
+        {
+          "page": 10,
+          "start": 2563,
+          "words": [
+            "ᚩᚦᛏ",
+            "ᚷ"
+          ],
+          "sums": [
+            71,
+            17
+          ]
+        }
+      ],
+      "chartMirrors": 1,
+      "exact71_17": 1
+    },
+    "sameLineWhole": {
+      "opportunities": 2587,
+      "mirrors": [
+        {
+          "page": 10,
+          "start": 2563,
+          "words": [
+            "ᚩᚦᛏ",
+            "ᚷ"
+          ],
+          "sums": [
+            71,
+            17
+          ]
+        },
+        {
+          "page": 43,
+          "start": 10488,
+          "words": [
+            "ᚠᛟ",
+            "ᛇᚷ"
+          ],
+          "sums": [
+            85,
+            58
+          ]
+        },
+        {
+          "page": 46,
+          "start": 11491,
+          "words": [
+            "ᚣᛠᚦᚹ",
+            "ᛝᛚᛗᚳᛡᛇᚠᚫᛠᛁᚦ"
+          ],
+          "sums": [
+            236,
+            632
+          ]
+        }
+      ],
+      "chartMirrors": 1,
+      "exact71_17": 1
+    },
+    "sameLineChapter": {
+      "opportunities": 333,
+      "mirrors": [
+        {
+          "page": 10,
+          "start": 2563,
+          "words": [
+            "ᚩᚦᛏ",
+            "ᚷ"
+          ],
+          "sums": [
+            71,
+            17
+          ]
+        }
+      ],
+      "chartMirrors": 1,
+      "exact71_17": 1
+    }
+  },
+  "triplet": {
+    "values": [
+      71,
+      7,
+      17
+    ],
+    "decimalConcat": 71717,
+    "quotient": 2473,
+    "base29": "2R80",
+    "chartKey": [
+      19,
+      3,
+      6
+    ],
+    "totientKey": [
+      12,
+      6,
+      16
+    ]
+  },
+  "language": {
+    "trainingRunes": 2799,
+    "p57Score": -2.7989927709515428,
+    "original": -3.4106922787926495,
+    "fiveDot": -3.3996058423928273
+  },
+  "controls": [
+    {
+      "name": "chart-MOG",
+      "k": [
+        19,
+        3,
+        6
+      ],
+      "sign": 1,
+      "hold": false,
+      "paths": "1",
+      "correct": 95,
+      "score": -2.7989927709515428
+    },
+    {
+      "name": "chart-MOG",
+      "k": [
+        19,
+        3,
+        6
+      ],
+      "sign": 1,
+      "hold": true,
+      "paths": "12",
+      "correct": 95,
+      "score": -2.7989927709515428
+    },
+    {
+      "name": "chart-MOG",
+      "k": [
+        19,
+        3,
+        6
+      ],
+      "sign": -1,
+      "hold": false,
+      "paths": "1",
+      "correct": 95,
+      "score": -2.7989927709515428
+    },
+    {
+      "name": "chart-MOG",
+      "k": [
+        19,
+        3,
+        6
+      ],
+      "sign": -1,
+      "hold": true,
+      "paths": "64",
+      "correct": 95,
+      "score": -2.7989927709515428
+    },
+    {
+      "name": "chart-GOM",
+      "k": [
+        6,
+        3,
+        19
+      ],
+      "sign": 1,
+      "hold": false,
+      "paths": "1",
+      "correct": 95,
+      "score": -2.7989927709515428
+    },
+    {
+      "name": "chart-GOM",
+      "k": [
+        6,
+        3,
+        19
+      ],
+      "sign": 1,
+      "hold": true,
+      "paths": "65",
+      "correct": 95,
+      "score": -2.7989927709515428
+    },
+    {
+      "name": "chart-GOM",
+      "k": [
+        6,
+        3,
+        19
+      ],
+      "sign": -1,
+      "hold": false,
+      "paths": "1",
+      "correct": 95,
+      "score": -2.7989927709515428
+    },
+    {
+      "name": "chart-GOM",
+      "k": [
+        6,
+        3,
+        19
+      ],
+      "sign": -1,
+      "hold": true,
+      "paths": "96",
+      "correct": 95,
+      "score": -2.7989927709515428
+    },
+    {
+      "name": "totient",
+      "k": [
+        12,
+        6,
+        16
+      ],
+      "sign": 1,
+      "hold": false,
+      "paths": "1",
+      "correct": 95,
+      "score": -2.7989927709515428
+    },
+    {
+      "name": "totient",
+      "k": [
+        12,
+        6,
+        16
+      ],
+      "sign": 1,
+      "hold": true,
+      "paths": "22",
+      "correct": 95,
+      "score": -2.7989927709515428
+    },
+    {
+      "name": "totient",
+      "k": [
+        12,
+        6,
+        16
+      ],
+      "sign": -1,
+      "hold": false,
+      "paths": "1",
+      "correct": 95,
+      "score": -2.7989927709515428
+    },
+    {
+      "name": "totient",
+      "k": [
+        12,
+        6,
+        16
+      ],
+      "sign": -1,
+      "hold": true,
+      "paths": "5",
+      "correct": 95,
+      "score": -2.7989927709515428
+    },
+    {
+      "name": "totient-reverse",
+      "k": [
+        16,
+        6,
+        12
+      ],
+      "sign": 1,
+      "hold": false,
+      "paths": "1",
+      "correct": 95,
+      "score": -2.7989927709515428
+    },
+    {
+      "name": "totient-reverse",
+      "k": [
+        16,
+        6,
+        12
+      ],
+      "sign": 1,
+      "hold": true,
+      "paths": "8",
+      "correct": 95,
+      "score": -2.7989927709515428
+    },
+    {
+      "name": "totient-reverse",
+      "k": [
+        16,
+        6,
+        12
+      ],
+      "sign": -1,
+      "hold": false,
+      "paths": "1",
+      "correct": 95,
+      "score": -2.7989927709515428
+    },
+    {
+      "name": "totient-reverse",
+      "k": [
+        16,
+        6,
+        12
+      ],
+      "sign": -1,
+      "hold": true,
+      "paths": "5",
+      "correct": 95,
+      "score": -2.7989927709515428
+    }
+  ],
+  "trials": [
+    {
+      "name": "chart-MOG",
+      "k": [
+        19,
+        3,
+        6
+      ],
+      "sign": 1,
+      "hold": false,
+      "layout": "physical",
+      "dead": null,
+      "paths": "1",
+      "score": -3.404321063409675,
+      "prefix": "AWHFIAHFTHAEDFJHGINJWXDYSAEPTHOHUIASLPYNGYSAEBORFPOEOEIARRINGEALEOEOMWSNAMJNUGD"
+    },
+    {
+      "name": "chart-MOG",
+      "k": [
+        19,
+        3,
+        6
+      ],
+      "sign": 1,
+      "hold": false,
+      "layout": "fiveDot",
+      "dead": null,
+      "paths": "1",
+      "score": -3.405035739594546,
+      "prefix": "OEJUOEOPLLSUAHXOECOTCMSUJNGNGGGHTHAELPTBBWASWRGRAEEOAUEAIIIACRPOPGGJJEIEOAUT"
+    },
+    {
+      "name": "chart-MOG",
+      "k": [
+        19,
+        3,
+        6
+      ],
+      "sign": 1,
+      "hold": true,
+      "layout": "physical",
+      "dead": 3,
+      "paths": "0",
+      "score": null,
+      "prefix": null
+    },
+    {
+      "name": "chart-MOG",
+      "k": [
+        19,
+        3,
+        6
+      ],
+      "sign": 1,
+      "hold": true,
+      "layout": "fiveDot",
+      "dead": 82,
+      "paths": "0",
+      "score": null,
+      "prefix": null
+    },
+    {
+      "name": "chart-MOG",
+      "k": [
+        19,
+        3,
+        6
+      ],
+      "sign": -1,
+      "hold": false,
+      "layout": "physical",
+      "dead": null,
+      "paths": "1",
+      "score": -3.4073789302241284,
+      "prefix": "RPLNRLNHHOGDBEOOEEBMDFNATHAEJNLIRIAFMNUOIACDSPGAETHEAIPIOEUCONGETHTNGNGRAEDEWEO"
+    },
+    {
+      "name": "chart-MOG",
+      "k": [
+        19,
+        3,
+        6
+      ],
+      "sign": -1,
+      "hold": false,
+      "layout": "fiveDot",
+      "dead": null,
+      "paths": "1",
+      "score": -3.4107793718418025,
+      "prefix": "THBPTHNAEFYIAIULDEABEOOEBEANGPLIARSEOLJTHOOEOEFYPWAPTSIHNGUPHTOEWJTOENAESEODLAOENGUPAE"
+    },
+    {
+      "name": "chart-MOG",
+      "k": [
+        19,
+        3,
+        6
+      ],
+      "sign": -1,
+      "hold": true,
+      "layout": "physical",
+      "dead": 19,
+      "paths": "0",
+      "score": null,
+      "prefix": null
+    },
+    {
+      "name": "chart-MOG",
+      "k": [
+        19,
+        3,
+        6
+      ],
+      "sign": -1,
+      "hold": true,
+      "layout": "fiveDot",
+      "dead": 6,
+      "paths": "0",
+      "score": null,
+      "prefix": null
+    },
+    {
+      "name": "chart-GOM",
+      "k": [
+        6,
+        3,
+        19
+      ],
+      "sign": 1,
+      "hold": false,
+      "layout": "physical",
+      "dead": null,
+      "paths": "1",
+      "score": -3.4091548289999354,
+      "prefix": "HWAPIAAPTHEOWFIANGGYOEJDIADPEAAEFSOAXIATHRPPCYTHNBMBFFGOEXBRYCEAWAEEOGLSAEHMIAOEUOEW"
+    },
+    {
+      "name": "chart-GOM",
+      "k": [
+        6,
+        3,
+        19
+      ],
+      "sign": 1,
+      "hold": false,
+      "layout": "fiveDot",
+      "dead": null,
+      "paths": "1",
+      "score": -3.411891094309123,
+      "prefix": "GJBGOFRLTHXAAIAOENGTTNGOSBANGHMGASAEWYTRUWJEAWLMREOAEABEOIYJCLYOFMGIAAEYAEABF"
+    },
+    {
+      "name": "chart-GOM",
+      "k": [
+        6,
+        3,
+        19
+      ],
+      "sign": 1,
+      "hold": true,
+      "layout": "physical",
+      "dead": 10,
+      "paths": "0",
+      "score": null,
+      "prefix": null
+    },
+    {
+      "name": "chart-GOM",
+      "k": [
+        6,
+        3,
+        19
+      ],
+      "sign": 1,
+      "hold": true,
+      "layout": "fiveDot",
+      "dead": 5,
+      "paths": "0",
+      "score": null,
+      "prefix": null
+    },
+    {
+      "name": "chart-GOM",
+      "k": [
+        6,
+        3,
+        19
+      ],
+      "sign": -1,
+      "hold": false,
+      "layout": "physical",
+      "dead": null,
+      "paths": "1",
+      "score": -3.3967762670163992,
+      "prefix": "LPRAERRAEHNGMGWREOGCBOIFOEJTHNIANRYRJTMOEBOJNGDEAFGNEEADFIGBCTHESONGCLAEWCWTHM"
+    },
+    {
+      "name": "chart-GOM",
+      "k": [
+        6,
+        3,
+        19
+      ],
+      "sign": -1,
+      "hold": false,
+      "layout": "fiveDot",
+      "dead": null,
+      "paths": "1",
+      "score": -3.414869224265588,
+      "prefix": "EBYENNTYJYURIEAUEAOEUSNGYWIABTHEORIATHTNOEPPPLJPFTHINGHUYATGDJFNNNTHEOWWAGHUYEO"
+    },
+    {
+      "name": "chart-GOM",
+      "k": [
+        6,
+        3,
+        19
+      ],
+      "sign": -1,
+      "hold": true,
+      "layout": "physical",
+      "dead": 19,
+      "paths": "0",
+      "score": null,
+      "prefix": null
+    },
+    {
+      "name": "chart-GOM",
+      "k": [
+        6,
+        3,
+        19
+      ],
+      "sign": -1,
+      "hold": true,
+      "layout": "fiveDot",
+      "dead": 38,
+      "paths": "0",
+      "score": null,
+      "prefix": null
+    },
+    {
+      "name": "totient",
+      "k": [
+        12,
+        6,
+        16
+      ],
+      "sign": 1,
+      "hold": false,
+      "layout": "physical",
+      "dead": null,
+      "paths": "1",
+      "score": -3.410531018335534,
+      "prefix": "THRIAWAIAWEASUYUSOFTHYNGLTOEOEONFIAHACIAITEADCOXOEJYOFMBJUFEAAEIMNNXEOEATHTUTIAAEU"
+    },
+    {
+      "name": "totient",
+      "k": [
+        12,
+        6,
+        16
+      ],
+      "sign": 1,
+      "hold": false,
+      "layout": "fiveDot",
+      "dead": null,
+      "paths": "1",
+      "score": -3.4035416613729783,
+      "prefix": "FHLFFOIABCHNGIANGMAIPAYEOLEEJPOIANOEILPWARXOERDPUSMNGLGWFCTHDLFOPOUESFMNGLD"
+    },
+    {
+      "name": "totient",
+      "k": [
+        12,
+        6,
+        16
+      ],
+      "sign": 1,
+      "hold": true,
+      "layout": "physical",
+      "dead": 14,
+      "paths": "0",
+      "score": null,
+      "prefix": null
+    },
+    {
+      "name": "totient",
+      "k": [
+        12,
+        6,
+        16
+      ],
+      "sign": 1,
+      "hold": true,
+      "layout": "fiveDot",
+      "dead": 0,
+      "paths": "0",
+      "score": null,
+      "prefix": null
+    },
+    {
+      "name": "totient",
+      "k": [
+        12,
+        6,
+        16
+      ],
+      "sign": -1,
+      "hold": false,
+      "layout": "physical",
+      "dead": null,
+      "paths": "1",
+      "score": -3.4082955101934935,
+      "prefix": "YTUTHWUTHJEAENRISOJLFTOMBCGREOUOWHOEOEMDGHIAYAEGNGATHLGPODHPXNGEONATHYEARJIEAAE"
+    },
+    {
+      "name": "totient",
+      "k": [
+        12,
+        6,
+        16
+      ],
+      "sign": -1,
+      "hold": false,
+      "layout": "fiveDot",
+      "dead": null,
+      "paths": "1",
+      "score": -3.4072907253089193,
+      "prefix": "ALDAEOGOEFHORUTTHIACAEIANGADPUXHSURCPSAEIMTBBTYHPEXRDUMOFXYSEOGHSRPIAOXRDE"
+    },
+    {
+      "name": "totient",
+      "k": [
+        12,
+        6,
+        16
+      ],
+      "sign": -1,
+      "hold": true,
+      "layout": "physical",
+      "dead": 17,
+      "paths": "0",
+      "score": null,
+      "prefix": null
+    },
+    {
+      "name": "totient",
+      "k": [
+        12,
+        6,
+        16
+      ],
+      "sign": -1,
+      "hold": true,
+      "layout": "fiveDot",
+      "dead": 7,
+      "paths": "0",
+      "score": null,
+      "prefix": null
+    },
+    {
+      "name": "totient-reverse",
+      "k": [
+        16,
+        6,
+        12
+      ],
+      "sign": 1,
+      "hold": false,
+      "layout": "physical",
+      "dead": null,
+      "paths": "1",
+      "score": -3.401123455226069,
+      "prefix": "IARTHOATHOEAMYYCJOREOHUBLLEOEWCFTHRANDILADNEAXYWYWAEMNGWURAAEXSNPIEOOIATCEOIAFY"
+    },
+    {
+      "name": "totient-reverse",
+      "k": [
+        16,
+        6,
+        12
+      ],
+      "sign": 1,
+      "hold": false,
+      "layout": "fiveDot",
+      "dead": null,
+      "paths": "1",
+      "score": -3.399685278521915,
+      "prefix": "AEHAAEFWDBNRNGTHBMEAGPEAOEEOAXESNOTHCOEXTPJLREERIANUMSNGATHWRUTHIATFWNOCXSRSNGAM"
+    },
+    {
+      "name": "totient-reverse",
+      "k": [
+        16,
+        6,
+        12
+      ],
+      "sign": 1,
+      "hold": true,
+      "layout": "physical",
+      "dead": 25,
+      "paths": "0",
+      "score": null,
+      "prefix": null
+    },
+    {
+      "name": "totient-reverse",
+      "k": [
+        16,
+        6,
+        12
+      ],
+      "sign": 1,
+      "hold": true,
+      "layout": "fiveDot",
+      "dead": 4,
+      "paths": "0",
+      "score": null,
+      "prefix": null
+    },
+    {
+      "name": "totient-reverse",
+      "k": [
+        16,
+        6,
+        12
+      ],
+      "sign": -1,
+      "hold": false,
+      "layout": "physical",
+      "dead": null,
+      "paths": "1",
+      "score": -3.413110897935525,
+      "prefix": "UTYGWYGJXFNFXSEASLAELOSNGCTHHEOYWWRYOESIAGRTHYNGINTHEATHTIPEAIAHNENGHPAIAUEAFSIAF"
+    },
+    {
+      "name": "totient-reverse",
+      "k": [
+        16,
+        6,
+        12
+      ],
+      "sign": -1,
+      "hold": false,
+      "layout": "fiveDot",
+      "dead": null,
+      "paths": "1",
+      "score": -3.4025998304710323,
+      "prefix": "EALMEAEOTHYFRWRYLTHDNAEDAEAMBUIEOSYHCNMAEGDTPNGTOEEOPXERMCMEARXOEMEOTHEOSFBIAEAERMOE"
+    },
+    {
+      "name": "totient-reverse",
+      "k": [
+        16,
+        6,
+        12
+      ],
+      "sign": -1,
+      "hold": true,
+      "layout": "physical",
+      "dead": 9,
+      "paths": "0",
+      "score": null,
+      "prefix": null
+    },
+    {
+      "name": "totient-reverse",
+      "k": [
+        16,
+        6,
+        12
+      ],
+      "sign": -1,
+      "hold": true,
+      "layout": "fiveDot",
+      "dead": 7,
+      "paths": "0",
+      "score": null,
+      "prefix": null
+    }
+  ]
+}
