@@ -78,5 +78,13 @@ function plantTarget(S,section,start,end,A,b,erase=3){
 }
 const raw=files.map(f=>fs.readFileSync(path.resolve(__dirname,'..',f),'utf8'));
 const S=setup(raw);
-if(require.main===module){const target=S.pages.find(p=>p.page===Number(process.argv[2]||21));const v=rowSearch(S,target,Number(process.argv[3]||0),Number(process.argv[4]||2));const j=jointSearch(S,target,v);console.log(JSON.stringify({phase:v.phase,budget:v.budget,words:v.spans.length,n:v.n,counts:v.counts,elapsed:v.elapsed,joint:j},null,2));}
+if(require.main===module){
+ const plant=process.argv[2]==="plant";
+ const pl=plant?plantTarget(S,"0_welcome",3,71,[[1,3,6,4],[2,1,3,8],[7,5,2,3],[4,2,9,7]],[1,11,7,5]):null;
+ const target=plant?pl.target:S.pages.find(p=>p.page===Number(process.argv[2]||21));
+ const v=rowSearch(S,target,Number(process.argv[3]||0),Number(process.argv[4]||3));
+ const j=jointSearch(S,target,v);
+ if(plant){for(const s of j.solutions)s.correct=s.plain.filter((x,i)=>x===pl.P[i]).length;}
+ console.log(JSON.stringify({phase:v.phase,budget:v.budget,words:v.spans.length,n:v.n,counts:v.counts,elapsed:v.elapsed,joint:j},null,2));
+}
 module.exports={setup,rowSearch,jointSearch,plantTarget};
