@@ -1,0 +1,21 @@
+# Packed-bit row-rank cycle-walk outer layer with authentic prime cipher
+
+**25 November 2026, Agent28.** This candidate is a finite, fully reversible extension of the p50 row-rank source hypothesis, distinct from prior whole-rune rank8 transpositions and the five-bit direct packing gates. It does not recover unknown plaintext.
+
+## Exact receiver
+
+All 32 physical eight-cell rows contain distinct values. The ascending within-row rank permutation is the same for conventional base60 and f-deleted base59. Instead of moving eight rune positions, serialize each consecutive eight GP29 indices as 40 bits, MSB-first (five bits per rune, five bytes). For physical byte offset j, move output bit i to the input position given by the ascending rank order of p50 row j mod32, i=0..7. This is a permutation of the 40-bit block, made into a bijection of legal GP29^8 by cycle walking: apply it repeatedly until all eight unpacked values are 0..28. Its inverse uses the inverse permutations in exactly the same block positions, walking backward until the next legal point. Each 8-bit permutation order divides lcm(1..8)=840; the same is true of the five independent byte permutations, so the walk is bounded by 840 and returns to a legal point at worst. No unknown sidecar, fitted bit order, radix choice or arbitrary invalid-rune substitutions.
+
+Use this as an outer layer around the authentic p56 prime-minus-one GP29 additive schedule, with literal plaintext-F bypass. The source geometry fixes p51 beginning, byte0, ascending rank and MSB-first serialization for this candidate; the original does not actually instruct the player to pack or cycle-walk. The same underlying prime receiver reproduces the authentic p56 85/85 ciphertext runes. Grant all initial prime ordinals0..3301 (zero-based), as in the earlier rank8 rune-transposition experiment, and every possible legal F history. Use the first512 p51–53 ciphertext runes (64 complete 40-bit frames), with 256 prefix and 256 untouched continuation. No independent outer layer retuning.
+
+## Original result
+
+- Outer inverse and forward replay are exact, as required by bijectivity.
+- Original outer tape contains 2 adjacent repeats; its inverse has20. Native planted outer tapes have 15,11,14 repeats, so the original deficit is not explained by the tested layer's positive controls. This is a descriptive contrast, not a calibrated population-level test.
+- Fixed origin0 dies at rune36. Of 3,302 origins, only15 survive the 256-rune training prefix, none survives512. Best exact legal prefix is409 at origin865. Therefore no original full path exists in this receiver regardless of language.
+- Prefix-only native bigram MAP selects origin137, endpoint389, score −3.932032 nats/rune; frozen continuation is impossible. Direct outer-only inverse scores −4.039451 nats/rune. Prefix is nonprose.
+- Three native-source plants, WELCOME / KOAN / LOSS OF DIVINITY with origins133 / 1033 / 3301, each exclude its entire donor from the language model. Exact prefix MAP recovers all origins and 768/768 prefix runes; frozen continuation recovers all 768/768 withheld runes. Full replay passes. Origins may be ambiguous under mere reachability (27/3/9 complete legal origin sets); the language fit identifies the planted ones.
+
+Retire this exact packed-bit outer permutation composed with authentic native prime shift and the stated origin range. The code operates on the original 512-rune receiver without relying on printed word boundaries. It does not exclude other packing, inner-layer order, keys, or a different source-selected use of the row ranks. Do not search those merely to rescue this interpretation; there is no independently authored bit-permutation instruction or evidence for cycle walking.
+
+[Standalone CJS SFT](../sims/lp2_p50_rank8_packedbit_cyclewalk_prime_sft.cjs) · [raw outputs](lp2-p50-rank8-packedbit-cyclewalk-prime.json). Executed the experiment on connected canonical inputs with V8. The stored SFT inlines the identical direct scoring model and replaces the conservative cycle guard with the proven exponent840; not separately executed under Node/Windows CI. Related whole-rune experiment: [SFT](../sims/lp2_p50_rank8_prime_fhold_original_sft.cjs).
