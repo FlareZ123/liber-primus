@@ -50,9 +50,9 @@ function metrics(a) {
     nonF_counts: non
   };
 }
-function encodeDelta(p, seed) {
+function encodeDelta(p, seed, sign) {
   const c=[seed];
-  for(let i=1;i<p.length;i++) c.push(mod29(c[i-1]+p[i]));
+  for(let i=1;i<p.length;i++) c.push(mod29(c[i-1]+sign*p[i]));
   return c;
 }
 function encodeRank(p, seed, descending) {
@@ -71,8 +71,10 @@ let seed=0x3301;
 function rand29(){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return (seed>>>0)%29;}
 for(let k=0;k<8;k++){
   const plant=Array.from({length:512},rand29), initial=rand29();
-  const cd=encodeDelta(plant,initial);
-  assert.deepEqual(deltaDecode(cd,1).slice(1),plant.slice(1));
+  const cdPlus=encodeDelta(plant,initial,1);
+  assert.deepEqual(deltaDecode(cdPlus,1).slice(1),plant.slice(1));
+  const cdMinus=encodeDelta(plant,initial,-1);
+  assert.deepEqual(deltaDecode(cdMinus,-1).slice(1),plant.slice(1));
   const ca=encodeRank(plant,initial,false);
   assert.deepEqual(rankDecode(ca,false).slice(1),plant.slice(1));
   const cr=encodeRank(plant,initial,true);
