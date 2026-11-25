@@ -41,3 +41,29 @@ All **1,353 overlapping held native windows** exceed all respective original all
 **Controls:** 32 source-shaped plants (four target-excluded native texts, two target-symbol tapes, four modes); keep source group lengths and target class identities and embed the actual native target at a fixed hidden legal address per class. All recover all 255 literal target runes using the plant key; all exact optimum products dominate the true plant likelihood. These are capacity/readback controls, not blind hidden-key recoveries. The same integer-product optimizer returns a maximizing address map and full literal readout for every original case in the raw output; the upper bounds, rather than subjective previews, drive the decision.
 
 **Reproduction:** [SFT](../sims/lp2_scroll255_allsecret_character_address_sft.cjs) · [full output](lp2-scroll255-allsecret-character-address-output.json). The exact core executed in connected V8 against the current repository source bytes; standalone Node/CI not run. No unknown plaintext, historical key, or authenticated consumer. Retire this exact static direct-extraction receiver and demand an independent source-selected state/representation before further work.
+
+
+### Substitution-invariant extension: exact collision upper certificate (Agent 7)
+
+The literal-rune unigram test could be evaded by a secret global GP29 permutation. For the static absolute-address model (front or signed from either end), an additional exact necessary gate excludes this escape without any letter-frequency model or fitted alphabet. This is conditional on native prose with a 255-rune collision numerator at least the weakest of the 1,353 overlapping solved-native reference windows; it also permits arbitrary reordering of the extracted tape.
+
+For each shared address group i and option a, let h_i(a) be its 29-bin output histogram. The ordered equal-pair count is
+
+C = sum_i [||h_i||² - ||h_i||₁] + 2 sum_{i<j} h_i·h_j.
+
+With current address domains D_i, the integer upper bound is
+
+U = sum_i max_{a∈D_i} [||h_i(a)||² - ||h_i(a)||₁ + sum_{j≠i} max_{b∈D_j} h_i(a)·h_j(b)].
+
+Every actual choice contributes at most U. Partition the remaining key space by fixing one group, choosing the group with the lowest worst-child bound; prune only when U < 3580. The minimum native equal-pair count is 3580 (IC = 3580/64770); counts are invariant under every bijective relabeling. No floating-point comparisons are used.
+
+| Input | Address | Raw key count | Root U | Nodes | Leaves | Largest pruned U |
+|---|---|---:|---:|---:|---:|---:|
+| raw | front | 84934656 | 3117 | 1 | 1 | 3117 |
+| raw | signed | 45598946227126272 | 3865 | 1797 | 1364 | 3579 |
+| corrected | front | 382205952 | 3169 | 1 | 1 | 3169 |
+| corrected | signed | 205195258022068224 | 3890 | 4635 | 3834 | 3579 |
+
+All four partitions are exhausted without abort or feasible leaf. Signed models reach depth 7. Sixteen actual-native relabeled planted keys retain native collision counts, and a separate 32-key brute-force fixture verifies the branch solver's boundary decision on both sides of the true maximum. Length-dependent indices are **not** excluded by this collision gate: explicit legal original keys achieve raw 5384, corrected 5328 (witnesses in JSON). This is an escape from the collision test, not evidence of intelligible plaintext. The earlier literal-rune frequency exclusion still applies to that model.
+
+No new key or plaintext. Stop expanding static absolute character-address hypotheses absent a source-selected stateful or nonliteral mechanism. Exact SFT: [sims/lp2_scroll255_character_address_collision_sft.cjs](../sims/lp2_scroll255_character_address_collision_sft.cjs). Machine-readable certificate summary and length witnesses: [JSON](lp2-scroll255-character-address-collision-output.json). Executed exact experiment against current fetched repository sources in connected JS; Node wrapper not separately run.
