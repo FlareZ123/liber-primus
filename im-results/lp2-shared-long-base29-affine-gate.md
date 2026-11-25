@@ -1,6 +1,6 @@
 # Shared unrestricted affine BASE29 low-order key recovery
 
-**Decision:** the unrestricted two-operand blind beam fails calibration, so that receiver was not applied to LP2. A distinct exact two-known-anchor version then derives the unique shared affine key matching solved p56 and clear p57. The literal big-endian version has no unit solution; the forward/little-endian version gives a unique reversible key but predicts nonprose on all nine unknown chapter openings. No unknown plaintext or authentic key recovered. These results do not reject a separate affine key unrelated to the solved pages.
+**Decision:** the unrestricted two-operand blind beam fails calibration, so that receiver was not applied to LP2. A distinct exact two-known-anchor version then derives the unique shared affine key matching solved p56 and clear p57. The literal big-endian version has no unit solution; the forward/little-endian version gives a unique reversible key but predicts nonprose on all nine unknown chapter openings. No unknown plaintext or authentic key recovered. A calibrated one-parameter fractional-linear extension likewise fails withheld original predictions. These results do not reject a separate affine or fractional-linear key unrelated to the solved pages.
 
 The authenticated 2013 BASE29 conversion and repeated LP2 chapter structure motivate an exploratory common positional integer inverse P=A*C+B mod 29^N. Previous short-unit and two-pass carry receivers do not grant unrestricted common long A and B. Neither the original material nor this experiment authenticates that sharing or affine operation. Here use literal big-endian digit significance, complete chapter endpoints, every rune including F=0, no printed word assumptions. The **64 least-significant digits** of each of nine corrected chapter intervals are processed. A is a unit; its 64 base29 digits and B's 64 digits are unknown. This is not a small-key search. Use seven middle chapter endings as development, p0–2 and p54–55 endings as withheld predictions; these original scopes have prior collective exposure. The low-order identity is exact for any actual full-length shared key.
 
@@ -45,3 +45,31 @@ None yields continuous coherent native prose. The complete exact 85-digit key an
 - [Exact two-anchor SFT](../sims/lp2_two_solved_base29_affine_sft.cjs), executed connected V8 core; standalone Node wrapper not separately run.
 - [Raw key, solved controls and original predictions](lp2-two-solved-base29-affine-output.json).
 - Source blobs: `resources/liber-primus/lp2-corpus.json` `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`; `resources/control/gibran_prophet_58585.txt` `df260a07d56bf5998d40a6360b6132c35c252d10`.
+
+## Two-solved-anchor fractional-linear extension (Agent 6, 25 November 21:43Z)
+
+**Decision:** a shared invertible BASE29 fractional-linear inverse containing the affine family passes two blinded key-recovery controls but does not predict native prose on the original withheld p0–2 or p54–55 chapter openings. No new authentic key or unknown plaintext. This is a finite-beam receiver failure, not an all-key theorem.
+
+The historical BASE29 positional integer and DH modular arithmetic motivate the broader one-parameter receiver only at the level of an exploratory operation. There is no historical evidence selecting a common map for p56, p57 and the unknown chapters, and the established p56 and p57 algorithms are distinct. The fixed scope is 85 low digits per chapter, natural reading order as little-endian significance, every rune consuming (including F=0), with no lexical segmentation assumption. The big-endian low-digit bijection obstruction from the affine section above also applies to this family.
+
+Let Q=29^85, P=(aC+b)/(1+cC) mod Q with c≡0 mod29 and a a unit. This ensures unit denominator for every residue, and inverse C=(P-b)/(a-cP). For two source pairs (x0,y0),(x1,y1) with unit differences, define s=(y1-y0)/(x1-x0), t(x)=(x-x0)s. Then
+
+    P(x) = y0 + t(x)*(1+c*x1)/(1+c*x)
+    a = s+c*(s*x1+y0)
+    b = y0*(1+c*x0)-a*x0
+
+so 84 free radix digits of c remain. Given the recovered low-d prefix y and c, the exact next digit for extension c+k*29^d is the residual of t(x)*(1+c*x1)-(1+c*x)*(y-y0), divided by 29^d, plus k*t(x)*(x1-x) modulo29. This derivative is constant mod29 because c is divisible by29. A 256-wide beam ranks all 29 extensions by the sum of fixed smoothed Gibran native unigram/bigram/trigram log probabilities over seven middle tracks. Full modular evaluation independently checks each winner, and forward encryption exactly replays all source tracks. The fitted original parameter is not selected by any external clue.
+
+Two independent held native-source plants (Shakespeare and Emerson, fixed seeds 0x3301 and 0x1033) use arbitrary 85-digit a,b,c with c0=0, a0 nonzero, two known anchors, seven training tracks and two withheld tracks. Both recover c exactly at rank zero, with the true prefix surviving every digit, and 340/340 held runes correct. Their held trigram scores are −2.464, −2.482, −2.392, −2.569 nats/rune (mean log probability over all 85 runes, including lower-order initial terms). Actual p56's prime-minus-one/F-hold solution is exactly replayed for all 85 runes; p57 is clear. The original fit uses neither p0–2 nor p54–55 in ranking.
+
+| Scope | Native score (nats/rune) | Decision |
+|---|---:|---|
+| Seven middle original tracks (fit) | −3.01873 | Selection yields word-like fragments but no coherent 85-rune text |
+| p0–2 withheld | −3.94840 | Incoherent |
+| p54–55 withheld | −3.90448 | Incoherent |
+
+The fitted original starts include apparent isolated lexical matches such as TH...SHATTO... and ...FORANDTHE..., which are expected under an adaptive language-score search. The untouched tracks contain no sustained native plaintext. Exact re-encryption is mandatory but cannot authenticate this key. Do not treat the two controls as a proof of exhaustive search or add arbitrary map parameters merely to improve the in-sample score. The full 85-digit candidate, all original/plant scores and original predictions are preserved in the raw artifact.
+
+- [SFT](../sims/lp2_two_anchor_base29_mobius_sft.cjs), connected V8 core executed, standalone Node wrapper not independently run.
+- [Raw output and pinned source blobs](lp2-two-anchor-base29-mobius-output.json).
+- Reproduction: `node sims/lp2_two_anchor_base29_mobius_sft.cjs`.
