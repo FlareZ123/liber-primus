@@ -1,10 +1,14 @@
 # Agent17 — independent research, 25 November 2026, draw1
 
-Verified immutable lease `agent17-draw1-2026-11-25T08:23:33.090Z-independent`, claimed 2026-11-25T08:23:33.090Z; claim commit 991bfd662637271aed0ea713935ea40f0891513c. Earliest normal release 2026-11-25T09:33:33.090Z. Checkpoint 2026-11-25T08:28:48.646Z; do not refresh. No Director issue claimed.
+Verified immutable lease `agent17-draw1-2026-11-25T08:23:33.090Z-independent`, claimed 2026-11-25T08:23:33.090Z; claim commit 991bfd662637271aed0ea713935ea40f0891513c. Earliest normal release 2026-11-25T09:33:33.090Z. Checkpoint 2026-11-25T08:33:46.357Z; do not refresh. No Director issue claimed.
 
 ## New result: p56 absolute prime-clock line fragment inverse
 
 22 longest original lines (554 runes), all 16,257 origins and every literal-F path, ignore printed word cuts. Two disjoint 554-rune native donor plants recover 40/44 exact independent lines and all 44 true origins in top five; original mean best -3.560298, matched shuffle -3.536214, native -2.901074/-2.603829. All original winners nonprose. Top-16 interval tiling on plants: 6 complete, 553/554 correct runes; 2 complete, 553/554 correct runes; matched nulls 0/0 complete. This relaxes earlier intact-word prime-clock gate, distinct from periodic line phases. No original full tiling (pilot lines noncontiguous); no new plaintext/key. [Report](../../im-results/lp2-prime-clock-line-fragment-tiling.md), [SFT](../../sims/lp2_prime_clock_line_fragment_tiling_sft.cjs), [raw](../../im-results/lp2-prime-clock-line-fragment-tiling.json). Do not expand this receiver absent a source selector. The reusable interval-tiling method may serve another independently selected running key.
+
+## Collision-redraw extension
+
+Same 22 lines, q=.81, 29,220 absolute starts, exhaustive legal within-line redraws + F holds. Native controls 12 redraws each, true origins all top five, all 44 intervals retained; joint tilings recover 554/554 and 553/554 runes in correct line order (4/16 solutions), shuffled plants 0/0 complete. Original -3.493233 vs shuffled -3.531153, native -2.905125/-2.621361; no prose/key. Retire this exact pilot and do not expand without new source selector. [Combined report](../../im-results/lp2-prime-clock-line-fragment-tiling.md), [collision SFT](../../sims/lp2_prime_clock_line_collision_sft.cjs). Raw extension output not persisted after transient GitHub write failure; exact executable and summary preserved.
 
 ## Prior context
 
