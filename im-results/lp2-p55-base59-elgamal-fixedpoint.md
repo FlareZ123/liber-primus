@@ -126,6 +126,22 @@ The generic RFC pair order is not a new operand for untouched p55, and an RFC-co
 
 Packet-header and worked-DH reproduction: [single-file SFT](../sims/lp2_p55_elgamal_historical_serialization_sft.cjs). The direct packet inventory and DH calculations were executed in connected JS; standalone Node/Windows not independently run.
 
+## Original-artifact source gate (#2800, Agent8, 25 November)
+
+**Disposition: close this conditional fixed-point branch as an operational selector.** Directly inspected maintainer originals p28, p49–51, p54–55, p57 (ZIP members 45, 66–68, 71–72, 74), canonical transcription, ink annotations and table. The exact arithmetic remains as above, but the source does not select all five required choices. No new radix/operand/seam sweep was run.
+
+| Required decision | What the artifact supplies | What remains inferred |
+|---|---|---|
+| 16-word span | p55 has a distinctive tree/moth and terminal red 13-dot punctuation; p54–55 is one chapter with an incoming 11-rune word split 10+1. | A rule discarding its leading NG to take only 16 local complete groups rather than the actual complete cross-page word or chapter. |
+| 43/32 partition | Clear p57 says SHED OUR OWN CIRCUMFERENCES; each of 16 complete p55 groups has two outer symbols. | Word rather than page/table circumference and the exclusion of the carried word. The visible 32×8 table offers a distinct literal geometric perimeter. |
+| Radix59 | The existing p57 13/23 marker bridge is a useful finite conditional discriminator. | A rule taking the 13th prime as a zero-based index in the combined p49–51 table, then applying that radix specifically to concatenated GP0 word interiors and shells. |
+| DH operands | p28 line6 begins DH, has length23; historical worked DH tuple matches the reconstructed state. | ElGamal rather than DH, ordered shell/public component and interior/masked message, division by 16×23 only on interior. No source-authored division by word count is stated. |
+| M=17 | Under those selected operations the exact scalar satisfies prime(17)=59. | A rule interpreting its field representative as a one-based prime ordinal instead of a GP index, numeric value or other state. The return value is not plaintext. |
+
+**Physical-address clarification.** The 256 table entries are printed across p49 (80), p50 (104), p51 (72). The bridge's shorthand “p50[41]” means zero-based *combined-table* index41, physically p49 row6 column2 (one-based physical coordinates). Combined index40 is 1K; physical p50's local indices40/41 are 0g/3v. The printed token 1O occurs at combined indices41,93,215. This does not invalidate the existing conditional 13→23 edge or the unique terminal 23-dot mark; it makes the needed indexing convention explicit. There is no printed index label at that table cell. The existing reproducer `sims/lp2_p57_terminal23_p28_dh_modulus_sft.cjs` was also found to contain duplicate top-level `const count13` declarations; removing the second declaration and asserting the table coordinates/occurrences gave a complete PASS in connected V8 against the exact current four source files. No standalone Node or CI execution claimed.
+
+The previously observed full-set null frequencies and already failed downstream receivers remain unchanged. This is an identifiability/source-selection failure, not a claim that the arithmetic fixed point is false or that all circumference interpretations are exhausted. No held-out original prediction follows, and no dependent receiver sweep is justified. Keep #41 waiting for a genuinely independent full p55 decoder. Reopen this branch only if a first-party rule fixes the missing span/normalization/operand/ordinal decisions before seeing target output.
+
 ## Interpretation and next decision
 
 This is the first source-constrained reversible **one-symbol selector** found for the p55 SHED split: it recovers M=17, which reselects base59. It supports the page-local 43/32 interpretation over the 52/34 cross-page alternative and gives a plausible human path from the solved p57 instruction, through p55’s word circumferences, to the literal p28 DH operation.
