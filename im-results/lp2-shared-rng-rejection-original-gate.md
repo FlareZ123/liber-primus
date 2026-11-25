@@ -1,6 +1,6 @@
 # Shared-generator collision rejection: exact seed and threshold inverse
 
-**Agent4, independent research, 25 November 2026.** No unknown LP2 plaintext or authentic seed recovered. This is a constructive key-screening mechanism with an exact original-input rejection, not another language-score sweep. All 545 historically preselected CPython MT integer-seed variants fail the same-generator implementation, including every constant threshold in the explicitly modeled interval (0.72, 0.882]. The implementation is distinct from #2665's external independent suppression RNG.
+**Agent4, independent research, 25 November 2026.** No unknown LP2 plaintext or authentic seed recovered. This is a constructive key-screening mechanism with an exact original-input rejection, not another language-score sweep. All 545 historically preselected CPython MT integer-seed variants fail three natural same-generator draw schedules, including every constant threshold in the explicitly modeled interval (0.72, 0.882]. The implementation is distinct from #2665's external independent suppression RNG.
 
 ## Why this implementation matters
 
@@ -32,13 +32,25 @@ Canonical unsolved p0–55 tape: 12,956 runes, 86 continuous adjacent repeats. T
 
 All 32 fixed-s correct-key plants (16 target-excluded Shakespeare slices, 16 uniform GP29 sequences) have complete uncapped paths; all 32 independently wrong tapes have none. Their correct-key marginal LLRs exceed 9.296518, with native minimum 79.619060 and uniform minimum 79.756712. The control texts overlap and are not independent literary works. 256 small direct all-plaintext transition checks agree with the count recurrence. Sixteen additional native plants at thresholds .725,.735,...,.875 retain every true threshold in the computed terminal interval union. 750 toy breakpoint and midpoint comparisons agree with the fixed-threshold reachability algorithm. No original seed survives to a language decoder or holdout test; no plaintext claim. Every original fixed or interval elimination uses the uncapped cursor recurrence, not the finite marginal.
 
+### Unconditional paired trial draws
+
+A second straightforward historical coding style consumes one key draw and one coin draw **on every trial**, even when the trial does not collide (e.g. evaluating the coin before checking equality). Freeze both key-first and coin-first pairing, without any seed, offset or threshold expansion. Reduce the MT tape to ordered pairs (key,coin), where the GP key is floor(29*keyDraw). The same exact interval-state method now counts trial indices rather than raw draws; the no-collision branch consumes one pair, the unique initial-collision plaintext follows the pair sequence until acceptance. All 32 matched native plants (16 per call order, thresholds .725 through .875) retain their actual threshold.
+
+| Original input | Complete seed/threshold paths | First dead offset range | Max reachable cursors | Max extra pairs |
+|---|---:|---:|---:|---:|
+| 545 variants, key-first pairs | 0/545 | 122–6081 | 65 | 114 |
+| 545 variants, coin-first pairs | 0/545 | 122–6020 | 68 | 132 |
+
+This is an additional exact same-generator implementation decision: the source does not select either evaluation order. All three schedules reject all 545 seed variants across the frozen threshold interval, i.e. 1,635 seed/schedule domains; no original candidate survives for decoding. The fixed-threshold conditional-only proof is already contained in that result. The paired models consume two draws on every trial and do not duplicate the independent-coin prior sweep. No new threshold, seed or offset family is justified by these negatives.
+
 ## Decision
 
-Retire the frozen 545 CPython seed variants at continuous offset zero under this exact same-instance implementation and the stated threshold domain. Do not rerun the already exhausted independent-coin MT seed family. A new period generator or independently specified source seed can use the same exact cursor inverse; send this to the generator agents as a stronger alternative implementation. Because the decoder conditions on the deterministic coins, it has true language-free exclusion power and is much cheaper than a language beam. If any new source-selected seed survives, then infer plaintext paths, freeze a prefix state, and demand readable independent continuation plus deterministic forward replay. No broader key, algorithm or authentic source selector has been established.
+Retire the frozen 545 CPython seed variants at continuous offset zero under the conditional-coin and two unconditional paired-draw same-instance implementations and the stated threshold domain. Do not rerun the already exhausted independent-coin MT seed family. A new period generator or independently specified source seed can use the same exact cursor inverse; send this to the generator agents as a stronger alternative implementation. Because the decoder conditions on the deterministic coins, it has true language-free exclusion power and is much cheaper than a language beam. If any new source-selected seed survives, then infer plaintext paths, freeze a prefix state, and demand readable independent continuation plus deterministic forward replay. No broader key, algorithm or authentic source selector has been established.
 
 ## Reproduction
 
 - [SFT](../sims/lp2_shared_rng_rejection_marginal_sft.cjs), fixed model freeze 7fc9a7db2f09408bda02ab7952c5cda7f5f030d8, uncapped inverse 3266792a93a64055591c552b2ba28a7b9bfceb53, interval freeze 88406e17c7b2f4ad5b01cbfd8b1c8ee3baac5c19.
 - [Fixed-s raw controls, original and wrong-seed search](lp2-shared-rng-rejection-marginal-output.json), commit 49c11b4880572dfa2a374b90de239a636d634bd2.
 - [Interval controls and complete candidate list](lp2-shared-rng-threshold-interval-output.json), commit eb00394e1961195fea433c953cf9f4f5c2609969.
-- From repository root, node sims/lp2_shared_rng_rejection_marginal_sft.cjs control; reachcandidate 0 545; reachnull 0 500; intervalcandidate 0 545. The exact committed functions were executed against fetched canonical inputs in the connected V8 runtime; the CommonJS CLI itself was not separately run on Windows. No CI workflow was created.
+- [Paired-draw original and plant results](lp2-shared-rng-paired-draw-output.json), commit 97d5a45f60a78b227a8e0a43c8cc42cd52e24af2; script and independent interval control harness frozen in 8ccffe7c0f95959ed81d81d348b2784f7f1038cf.
+- From repository root, node sims/lp2_shared_rng_rejection_marginal_sft.cjs control; reachcandidate 0 545; reachnull 0 500; intervalcontrol; intervalcandidate 0 545; pairedcontrol; pairedcandidate 0 545. The exact committed functions were executed against fetched canonical inputs in the connected V8 runtime; the CommonJS CLI itself was not separately run on Windows. No CI workflow was created.
