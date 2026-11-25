@@ -43,6 +43,44 @@ The base60 range is 0–255; the base59 range is 0–251. Both have exactly 161 
 
 The existing [SFT](../sims/lp2_p50_radix_codebook_overlap_sft.cjs) now prints exact missing byte lists, multiplicities and collision totals for both codebooks. The arithmetic was executed in the connector runtime against the source JSON; no new CI run is required or claimed. No direct standard-table inverse or affine lookup can be the consumer. Nonbijective nonlinear functions (for example as part of a larger reversible construction), byte ciphertext or context-dependent registers remain possible. No authored receiver or unknown plaintext was obtained. Since the permutation prerequisite fails, no specific standard-table comparisons or fitted transforms are warranted.
 
+
+## Literal character-class record decision (Director #2877, Agent3, 25 November)
+
+The source is the already image-adjudicated 256 tokens, with physical 32×8 order. This is a different question from the prior [digit-letter semantics](lp2-p50-literal-token-grammar-control-gate.md) and [case-bitplane AES consumers](lp2-p50-case-bitplane-aes256-source-gate.md): does the printed case/type mark a structured record before numeric conversion?
+
+Let D/U/L be digit/uppercase/lowercase of the second character. Every first character is a decimal digit 0–4. Enumerate the two complete unsigned-byte codebooks and count the joint first-digit/second-class support:
+
+| First digit | Original D/U/L | Base60 D/U/L | Drop-f base59 D/U/L |
+| --- | --- | --- | --- |
+| 0 | 5/27/28 | 10/26/24 | 10/26/23 |
+| 1 | 7/30/21 | 10/26/24 | 10/26/23 |
+| 2 | 12/24/29 | 10/26/24 | 10/26/23 |
+| 3 | 8/28/20 | 10/26/24 | 10/26/23 |
+| 4 | 10/7/0 | 10/6/0 | 10/10/0 |
+
+The absent 4L class is forced by the 0–255 range under either encoding, as is the restriction to a numeric first character. Total original second-class counts are D=42, U=116, L=98. Given the integer and either exact codec, the first digit and case class are deterministic, so the conditional entropy of these marks given that integer is zero. This does **not** imply that a sender cannot deliberately constrain integer choices to carry another message; it establishes that the proposed marks are not extra independently adjustable bits of a fixed numeral. A separate-channel claim needs a fixed selection/decoding law and original prediction.
+
+A repeated row record with a fixed D/U/L field type per column is impossible: all eight columns have all three classes. Even choosing the modal class of each column retrospectively would require **132/256 violations**. All 32 row class signatures are distinct. More flexible records could exist but require a documented field grammar. Exploratory diagnostics compare the original against 3,000 independently generated tables per null (uniform bytes and independent eight-distinct-byte rows for each radix; seed 0x2877c1ca). The distinct-row null preserves the already-established #2626 row-uniqueness property, rather than confusing it with a class effect.
+
+| Statistic | Original | Base60 distinct-row null two-sided tail | Base59 distinct-row null two-sided tail |
+| --- | ---: | ---: | ---: |
+| Column class Pearson | 20.96458 | .19793 | .19660 |
+| Physical-page class Pearson | 1.06696 | .18127 | .22326 |
+| Within-row equal-class pairs | 325 | .91103 | 1.00000 |
+| Horizontal equal-class neighbours | 74 | .39920 | .34588 |
+| Vertical equal-class neighbours | 88 | .82373 | .78574 |
+| Repeated row class signature pairs | 0 | 1.00000 | 1.00000 |
+
+All six Bonferroni-corrected tails equal 1 in all four simulated nulls; minimum unadjusted tail .18127. This is a finite descriptive screen, not a blinded experiment or proof of randomness. No new field boundary follows.
+
+**Authentic syntax controls, tested before any consumer selection.** Original p10 scan27 contains the literal standalone 7 between rune groups; p56 scan73 contains 128 lowercase hex characters across five lines (26/25/25/27/25). The authenticated 2013 BASE29 example 3301→3QO and historical participant examples 30→11, 1033→16I establish the minimal numeral grammar; its effective alphabet is 0–9/A–S (see [signed protocol](../resources/external/2013-tcp-server-signed-source.md)). The original p50 tape has only 42/256 two-decimal-digit tokens, 88/256 case-insensitive two-hex-digit tokens, 110/256 minimal BASE29 numerals, and 132/256 even allowing fixed-width BASE29 leading zeroes. None parses the complete printed object under its actual syntax.
+
+The exact archived [2014 Stage11 signed delivery message](../resources/historical/cicada2014-stage11-message.asc) supplies a particularly relevant mixed-case control. Its signature armor has the literal header/footer, radix64 body, and CRC24. Parsing the complete body recovers one 543-byte old-format tag-2 signature packet with a 540-byte body and version 4; its decoded checksum 54 0a 3f matches the computed CRC24. For the original p50 literal tokens the complete printed-order concatenation is lexically valid radix64, decoding to 384 bytes beginning `dc dd e9 da 5d fa d5 bd`. However the first octet DC denotes new-format packet tag 28, unassigned in the 2014-era RFC4880 packet grammar, not tag 2 or a recognized ordinary OpenPGP data packet; neither the armor framing nor CRC exists in the source. Even allowing the body alone, it is not the historical signature record. This test acts on the literal 512 printed characters, **not** the earlier direct base60-byte packet test. Lexical radix64 membership alone is trivial for this alphabet; it selects no receiver.
+
+**Decision:** no independently selected character-class record or typed payload. Retire fixed-column class framing and the exact direct historical numeral/signature grammars. Do not infer a hidden bitstream from case alone, or search arbitrary re-encodings. The original numeric table remains unsolved, both numeral readings remain conditional, and an independently decoded adjacent instruction or fixed sender grammar is still the causal prerequisite. No LP2 plaintext or key recovered.
+
+Reproduction: [CommonJS SFT](../sims/lp2_p50_class_record_gate_sft.cjs). The core analysis executed on exact repository source in connected V8 (12,000 simulated tables); the later original-image p10/p56 literal controls were checked separately, and the standalone Node wrapper was not separately CI-run. The test uses structural checks, not language fitting.
+
 ## Historical evidence gate and next discriminating action
 
 The first-party 2013 specification gives an explicit `BASE29 3301 -> 3QO` example, whereas no surviving source-authenticated original instruction gives a p50 digit alphabet, unsigned-byte type, grouping, row direction or recipient. The original 2014 Stage11 delivery index has only sequential JPEG references and no separate table legend. The 11 May 2014 `decimal.txt`/`sexagesimal.bin` files are participant-derived from copied manuscript tokens, with documented corrections, so their base60 choices cannot settle author intent. These points are separately documented by [source-codec decision #1968](https://github.com/FlareZ123/liber-primus/issues/1968), [binary typing decision #2087](https://github.com/FlareZ123/liber-primus/issues/2087), and [exact provenance decision #2029](https://github.com/FlareZ123/liber-primus/issues/2029).
