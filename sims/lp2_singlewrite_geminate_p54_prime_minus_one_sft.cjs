@@ -94,7 +94,7 @@ assert.deepEqual([lp1Stats.words,lp1Stats.runes,lp1Stats.repeatedPairs,lp1Stats.
 assert.deepEqual([p57Stats.words,p57Stats.runes,p57Stats.repeatedPairs,p57Stats.consonantDoublets],[20,95,1,1]);
 assert(p57Words.some(w=>spell(w)==="U N N E L NG"));
 
-const donorStats=donors.map((d,i)=>measure(d.slice(Math.floor(d.length*.8))));
+const donorStats=donors.map(d=>measure(d.slice(Math.floor(d.length*.8)).map(x=>x.gp)));
 assert.deepEqual(donorStats.map(x=>[x.words,x.runes,x.consonantDoublets]),[[2515,9496,144],[11082,43571,794],[14974,61788,1040]]);
 
 function primes(n){const out=[];for(let x=2;out.length<n;x++){let ok=true;for(let d=2;d*d<=x;d++)if(x%d===0){ok=false;break;}if(ok)out.push(x);}return out;}
