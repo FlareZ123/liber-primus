@@ -63,3 +63,19 @@ All **250/250 in-register long anchors** across the six controls uniquely recove
 The complete algorithm ran in connected V8 JavaScript on the source inputs; the standalone Node wrapper was not separately executed. No CI was created.
 
 Retire this direct nonperiodic prime-clock transfer under the intact-group premise. It leaves the decoy-boundary model open. The useful reusable component is the exact trie/absolute-cursor inversion for a *source-selected nonperiodic key stream*: it can reveal genuine absolute anchors rather than merely count periodic collisions, if a new independent clue supplies the stream.
+
+
+## Collision-rejection extension (same invocation)
+
+The original zero-coverage result survives unlimited **collision-only** redraws. At current prime cursor j, let d(j) be the first subsequent ordinal whose residue differs from K[j]. An emission consumes at most d(j)+1 as its new cursor: it may reject equal candidates but must accept the first differing candidate. The function d(j)+1 is nondecreasing. Thus iterating it 12,956 times from maximum initial ordinal 3,301 bounds every possible cursor by **29,220** (literal-F holds can only lower it). Every word is granted every start below that bound and an arbitrary preceding ciphertext symbol. The first-rune relaxation admits any legal skip length through the initial equal-residue run; subsequent runes use the actual immediately preceding ciphertext. The trie enumerates every allowed plaintext-F hold, direct acceptance and collision-only retry. A cursor equal to the full-book upper bound before the last emission cannot occur on a real full-book path, since the bound increases strictly at every iteration.
+
+| Sign | Original long groups | Compatible groups | Minimum OOV | 5% allowance |
+|---|---:|---:|---:|---:|
+| + | 343 | 0 | 343 | 144 |
+| − | 343 | 0 | 343 | 144 |
+
+All nine chapters independently exceed their budgets with the full-book cursor relaxation. Six newly collision-encrypted shuffled controls with 59–76 rejected keys per window retain all 250/250 true long-anchor plaintext/start/end triples, and 26 OOV anchors still have no candidate. The free predecessor makes exact cursor identity ambiguous (12/250 unique true triples); this is a valid coverage gate, not unique clock reconstruction. The authentic p56 control still replays 85/85.
+
+No original candidate survives the widened hypothesis. Retire the direct prime-minus-one H-shuffle transfer even when granting all collision-only rejection decisions and an unknown preceding ciphertext at every group. This does not cover arbitrary non-collision skips, unknown unrelated generators or decoy segmentation.
+
+[SFT](../sims/lp2_postshuffle_prime_collision_anchor_sft.cjs) · [raw execution](lp2-postshuffle-prime-collision-anchor-output.json). Both executed against repository inputs in connected JS; no separate Windows CI. Commits 1d674d88f8548f5d72c4a4203ff71f2dd693166d and 0b580910043af99a3c8c31d7d00c27dde6f54515.
