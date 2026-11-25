@@ -154,6 +154,22 @@ the crib-implied additive difference would be
 
 That seven-value difference is recorded only as a consequence. No source-selected rule currently generates it, so it must not be promoted as the cipher key or repeated on neighboring words.
 
+
+## Expanded authenticated-source interval holdout (25 November 2026)
+
+The p0 receiver's H/source-index relation suggested one locked continuation test. In the same authenticated 43-word 2016 message, the six-word interval at indices 19–24 is \`THEIR MEANING IS THE ROAD AND\`; the next five words at indices 25–29 are \`THEIR NUMBERS ARE THE DIRECTION\`. I froze the same outside-in \`H(x,y)=(x-y,x+y) mod29\` operation and the same whole-word plus physical-prefix/suffix rule used above.
+
+The census covers **1,098** complete unknown-page words of lengths 5–14, with either no internal physical line break or exactly one internal line break. It excludes multi-break words and does not search alternate H definitions, offsets, or transforms.
+
+- **Predicted continuation 25–29:** no candidate's combined H output contains all five source indices.
+- **Ordered state triple:** the exact even one-based H positions \`[19,23,8]\` occur only on p0 offset237 across all 1,098 candidates. These source words are \`THEIR\`, \`ROAD\`, and \`DEVOTED\`.
+- **A weak p55 set-level overlap:** physical p55 offset23 is a 13-rune word \`BEAFXIMUCPHNGLEO\`, split 1|12. Its whole H output is \`[5,0,8,19,8,21,6,22,26,23,14,24,1]\`; its combined whole/prefix/suffix union contains 21 of 29 GP values, including 19–24 and 8. Its even one-based H positions are \`[0,19,21,22,23,24]\`, not \`[19,23,8]\`.
+- The broad p55 union matches **six** overlapping six-word intervals, with starts 16–21. Across the full population, 17 of the possible six-word intervals have at least one hit. For a uniform 21-of-29 subset, a fixed six-value interval has an illustrative probability of about **11.4%**; this is not a formal p-value, but shows why the p55 set-level match is not independent confirmation. The p0 union has only 9 values and retains the unique ordered triple.
+
+Thus the wider test strengthens the *ordered p0 [B,p,A] packet* while rejecting the apparent p55 corroboration and the predicted 25–29 continuation. It does not generate the seven-symbol inverse key, recover further plaintext, or establish a page-wide cipher. Do not promote the p55 word to a crib.
+
+Reproducer: [\`sims/lp2_p0_devoted_next_interval_holdout_sft.cjs\`](../sims/lp2_p0_devoted_next_interval_holdout_sft.cjs).
+
 ## Decision
 
 Promote the p0 237..243 object from "DEVOTED crib awaiting support" to a **typed source-state recovery of DEVOTED**:
@@ -164,13 +180,14 @@ Promote the p0 237..243 object from "DEVOTED crib awaiting support" to a **typed
 - the signed source independently fixes [19,23,8]=[B,p,A]=[THEIR,ROAD,DEVOTED];
 - B..p literally brackets the signed clause THEIR MEANING IS THE ROAD.
 
-Keep the cryptographic scope narrow. The result recovers a word identity and a source instruction/state path, while the seven-rune symbol-changing inverse remains unknown. The next useful experiment must generate the seven-value key from an independently selected state/packet rule and then predict another untouched word; fitting expressions to the known DEVOTED crib is ineligible.
+Keep the cryptographic scope narrow. The result recovers a word identity and a source instruction/state path, while the seven-rune symbol-changing inverse remains unknown. The expanded 1,098-word control preserves the unique ordered [19,23,8] p0 packet and rejects the broad p55 set-level coincidence. The next useful experiment must still generate the seven-value key from an independently selected state/packet rule and then predict another untouched word; fitting expressions to the known DEVOTED crib is ineligible.
 
 ## Existing reproduction inputs
 
 The arithmetic and corpus controls are already reproduced by:
 
 - `sims/lp2_p0_boundary_the_packet_selfindex_sft.cjs` for the p0 boundary, seven-rune ciphertext, H output, and unique [B,p,A] triple;
-- `sims/lp2_signed2016_word_position_dh_sft.cjs` for the authenticated-source DH23 word-position closure.
+- `sims/lp2_signed2016_word_position_dh_sft.cjs` for the authenticated-source DH23 word-position closure;
+- `sims/lp2_p0_devoted_next_interval_holdout_sft.cjs` for the 1,098-word all-length H/source-index continuation census.
 
 This note adds the cross-object consequence only; it does not duplicate either underlying census.
