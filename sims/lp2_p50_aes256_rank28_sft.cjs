@@ -172,7 +172,7 @@ console.log(JSON.stringify({
   },
   controls: { eight_512_symbol_plants_roundtrip: true },
   decoded_runes: n,
-  repeats_to_F: results.reduce((s, r) => s + r.repeats, 0),
+  repeats_to_F: results.reduce((s, r) => s + r.repeats_to_F, 0),
   key_advances: results.reduce((s, r) => s + r.ordinary_key_advances, 0),
   counts,
   ioc,
