@@ -1,0 +1,114 @@
+name: LP2 OutGuess default-key probe
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.20'
+
+      - name: Build pinned Go OutGuess reader
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone https://github.com/henkman/outguess.git "$RUNNER_TEMP/outguess"
+          git -C "$RUNNER_TEMP/outguess" checkout 80f4b313c580a6928aa7fe8bf0bb4fabb7990262
+          cd "$RUNNER_TEMP/outguess"
+          go mod init github.com/henkman/outguess
+          go build -o "$RUNNER_TEMP/outguess-bin" ./cmd/outguess
+
+      - name: Validate extractor against upstream default-key fixture
+        shell: bash
+        run: |
+          set -euo pipefail
+          "$RUNNER_TEMP/outguess-bin" -i "$RUNNER_TEMP/outguess/testfiles/hi_default_key.jpg" -o "$RUNNER_TEMP/hi.out"
+          cmp "$RUNNER_TEMP/hi.out" "$RUNNER_TEMP/outguess/testfiles/msg.txt"
+          echo "Upstream default-key fixture recovered exactly."
+
+      - name: Probe all original LP2 JPEGs with the default key
+        shell: bash
+        run: |
+          set -uo pipefail
+          outdir="$RUNNER_TEMP/lp2-outguess"
+          mkdir -p "$outdir"
+          : > "$outdir/summary.tsv"
+          for n in $(seq 17 74); do
+            image="resources/liber-primus/$n.jpg"
+            [[ -f "$image" ]] || continue
+            output="$outdir/$n.bin"
+            error="$outdir/$n.stderr"
+            if "$RUNNER_TEMP/outguess-bin" -i "$image" -o "$output" 2>"$error"; then
+              size=$(wc -c < "$output" | tr -d ' ')
+              printf "%s\tOK\t%s\n" "$n" "$size" >> "$outdir/summary.tsv"
+            else
+              msg=$(tr '\n' ' ' < "$error" | cut -c1-240)
+              printf "%s\tERR\t%s\n" "$n" "$msg" >> "$outdir/summary.tsv"
+              rm -f "$output"
+            fi
+          done
+          cat "$outdir/summary.tsv"
+          cp "$outdir/summary.tsv" "$RUNNER_TEMP/summary.tsv"
+
+      - name: Summarize extracted payloads
+        shell: bash
+        run: |
+          python3 - "$RUNNER_TEMP/lp2-outguess" <<'PY'
+          import hashlib, pathlib, sys
+          root = pathlib.Path(sys.argv[1])
+          known = {
+              b"\x89PNG\r\n\x1a\n": "PNG",
+              b"\xff\xd8\xff": "JPEG",
+              b"PK\x03\x04": "ZIP",
+              b"\x1f\x8b": "GZIP",
+              b"-----BEGIN PGP": "PGP",
+              b"-----BEGIN RSA": "RSA",
+          }
+          rows = []
+          for p in sorted(root.glob("*.bin"), key=lambda x: int(x.stem)):
+              data = p.read_bytes()
+              if not data:
+                  continue
+              printable = sum(b in (9,10,13) or 32 <= b < 127 for b in data) / len(data)
+              magic = next((name for sig,name in known.items() if data.startswith(sig)), "none")
+              rows.append((p.stem, len(data), f"{printable:.3f}", magic, hashlib.sha256(data).hexdigest(), data[:24].hex()))
+          summary = root / "payload-summary.tsv"
+          with summary.open("w") as f:
+              f.write("page\tbytes\tprintable_ratio\tmagic\tsha256\tfirst24_hex\n")
+              for row in rows:
+                  f.write("\t".join(map(str,row)) + "\n")
+          print(summary.read_text(), end="")
+          PY
+
+      - name: Publish summary
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "## LP2 OutGuess default-key probe"
+            echo
+            echo "Extractor: henkman/outguess at 80f4b313c580a6928aa7fe8bf0bb4fabb7990262."
+            echo "The upstream default-key fixture was required to pass before LP2 pages were tested."
+            echo
+            echo "Per-page extraction status:"
+            cat "$RUNNER_TEMP/summary.tsv" 2>/dev/null || true
+            echo
+            echo "Non-empty payloads:"
+            cat "$RUNNER_TEMP/lp2-outguess/payload-summary.tsv" 2>/dev/null || true
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lp2-outguess-default-key
+          path: \${{ runner.temp }}/lp2-outguess/
+          if-no-files-found: warn
