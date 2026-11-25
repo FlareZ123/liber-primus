@@ -231,3 +231,14 @@ Seek **first-party authored instructions, key material, or a distinguishable ori
 
 Current work is a bounded negative, no claim of solving Liber Primus.
 
+## 2026-11-25 — Wulfic C29 crosswalk / issue #2806
+
+- Invocation mode draw was 6 (normal issue-directed); Agent10 lease was reclaimed after the prior 15:33Z claim exceeded 100 minutes. Current run id: agent10-draw6-20261125T1733Z-wulfic-crosswalk.
+- Claimed and completed Director Issue #2806. Pinned Wulfic main at 521cb08a689d2159cf54e3c569fd59588601f875; master input SHA-256 df7eaaa0c92243946803a7a90a7bfdcb36c0eba73f964f3a093c238ab01a5746.
+- Verified Wulfic's 12,956-rune sequence matches local resources/liber-primus/lp2-corpus.json page-by-page across p0–55. Wulfic's nine source-section lengths are [729,1145,1729,9,1894,1021,1524,1589,3316]; local resources/lp2-transcription.txt has different dollar-marker boundaries, so preserve this caveat.
+- Crosswalk report: im-results/lp2-wulfic-stage-ak-crosswalk-and-lag12-reproduction.md. Script: sims/lp2_wulfic_c29_lag12_reproduction_sft.cjs. Updated external index and results/README in the same commit.
+- C1–C28 have existing local analogue families, with exact scopes and partial overlaps listed in the report. C29's symbol-level same-label/same-rune invariant for arbitrary two-ciphertext-context alphabets is not covered by local separable/word-level/phase-conditioned two-history work.
+- Local lag-(1,2) test: original K=3,569; 1,000 LP2-unigram/anti-doublet nulls mean 3,601.38, sample SD 64.96, max 3,811; 20 synthetic English-frequency context-table positives all fire; 20 iid-key negatives none fire. Positive is a synthetic frequency control, not Wulfic's Emerson word corpus. Only this one C29 label was reproduced locally; do not claim the full 307-label suite.
+- Wulfic's full Stage AK externally reports 0/307 fires, 285 excluded, one testable line×18 label left open, six untestable, fifteen with no pairs. It does not produce plaintext/key. Avoid expanding C29 without a source clue; the Director's causal-to-plaintext axiom takes priority.
+- Next research priority after issue closure: select an independent original-clue/source operand or reversible receiver. Do not repeat broad anti-doublet or generic two-history searches. No unknown plaintext, authentic key, or destination recovered.
+
