@@ -48,6 +48,35 @@ Replicate the Critic's 2240 legal continuations given the known DIUINITY key and
 
 All survivors exactly forward-encrypt; the true plaintext survives. With a bigram model trained exclusively on solved LP2 p56/p57 (alpha=.1), the true complete continuation rises from rank 7 to rank 1, and the selected candidate goes from one error to zero. LP1-only models do not all improve: the full LP1 trigram stays rank1, and the narrower LP1 trigram stays rank2. This is a useful conditional gate on a known-key inverse, not unknown-key identification or a second blinded trial.
 
+## Key-family sensitivity and exact checksum collisions (#2799, Agent7, 25 November 2026)
+
+The WARNING prime predicate distinguishes the historical Atbash map **within the affine family**, but is not a key identifier independent of the alphabet architecture. This matters when proposing an unknown LP2 teaching clause: even an independently supplied exact integer may be insufficient to determine the next reversible operation.
+
+As a deliberately favorable known-cipher control, give a solver the correct Atbash assignments for 19 of the 29 cipher symbols. Among the symbols observed in the first four WARNING body clauses, freeze the ten least frequent (ties by GP index; exclude cipher index 28, the image of plaintext F): indices [4,7,9,14,15,20,22,2,5,8]. Assign their ten remaining known GP weights in every possible order, exactly 10! = 3,628,800 bijections. The selector uses only the first four ciphertext counts, not held-out clauses or dictionary scores. The 19 supplied assignments and the exact checksum targets are oracle information; this is not a blind solution.
+
+| Number of consecutive body constraints | Primality only | Exact known sums |
+|---:|---:|---:|
+| 0 | 3,628,800 | 3,628,800 |
+| 1 | 1,451,520 | 120,960 |
+| 2 | 550,080 | 5,760 |
+| 3 | 107,040 | 960 |
+| 4 (74 development runes) | 46,320 | 48 |
+| 5 | 15,712 | 8 |
+| 6 | 3,328 | 4 |
+| 7 | 790 | 2 |
+| 8 | 148 | 2 |
+| 9 (104 withheld runes) | 20 | 2 |
+
+The four-predicate gate removes only 6.292 bits of the restricted key uncertainty. All nine remove 17.469 bits and leave 20 maps; one of them corrupts 21/104 withheld runes while satisfying every primality predicate. Even all nine **exact** sums leave two maps, both bijective and both replaying all 184 WARNING runes. The wrong exact-map witness swaps the plaintext X and P assignments (cipher indices 14 and 15), corrupting two development and two withheld runes. Neither changes the excluded rubric.
+
+The obstruction is structural: if n_i is the vector of occurrences of cipher symbol i across independently selected checksum scopes, swapping assigned weights w_i,w_j changes the sum vector by (w_j-w_i)(n_i-n_j). Here n_14=n_15=[0,1,0,0,1,0,0,0,0]. Thus any sum-based predicate, even exact sums or combinations of those sums, is invariant under this swap. An extra authenticated scope can distinguish this pair only when its counts of these two cipher symbols differ. More generally identical columns give exact factorial symmetry of the constrained key domain. Prime predicates can still be useful conditional filters on a compact, independently selected family; the earlier affine result stands.
+
+**Unknown-page selector decision:** reviewed original artwork/layout with the supplied JPEGs, the WARNING control, the #2494 semantic-crib decision and #1299 direct p15 group-sum decision. The p36–38 numbered list does not specify a prime predicate (native LOSS OF DIVINITY numbered examples already provide composite counterexamples); red headings and ordinary punctuation do not identify a new teaching unit; p15's authentic numeric square has already failed the proposed direct group-sum receiver. #2820's deliberate Blake paraphrase is compatible with prime-constrained composition but does not supply a new LP2 operand. No independently readable new unit and predicate were identified in this bounded review. Do not generalize that to the absence of such a clue anywhere in the book. No LP2 prime/cipher sweep was run.
+
+Director fork: close #2799 without a successor search. Reopen only on an independently readable new scope plus a predicate that materially constrains a specified reversible family; calculate the occurrence-column symmetry and surviving key degrees before investing in a decoder. No new unknown plaintext, authentic key, or destination.
+
+Reproducer: [lp1_warning_prime_predicate_substitution_ambiguity_sft.cjs](../sims/lp1_warning_prime_predicate_substitution_ambiguity_sft.cjs), commit d66e83626da555e6020944413285742267c3003c. Exact published script executed in connected V8 with fs/assert adapters against the canonical source blobs 054f2a0f780b7d46901acbe3d9bf4f0ac1801165 and 37c96b816495c5f93ca658a01c9918bf92598316. Standalone Node/CI was not executed.
+
 ## Unknown LP2 transfer decision
 
 On original p0–2, remove its red 13-rune heading and conditionally grant the same affine family and prime-body premise to the eight subsequent transcription units. The first three yield 92, 11, then zero survivors (all 812 enumerated). The unknown opening has not been shown to be a WARNING-like teaching list. This test retires only the joint affine + prime-body assumption, not arbitrary encryption or composite-sum text.
