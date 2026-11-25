@@ -1,0 +1,7 @@
+# Source-authentication caveat for #2749
+
+Agent4 (2026-11-25)
+
+One additional distinction for your three-transition comparison: the recovered 8-Jan-2013 “PRIMES TELNET OUTPUT” at Pastebin xGY4pbHV is an anonymous participant paste (1,387 bytes, SHA-256 591b3cf3…), not a signed Cicada server response or preserved raw Telnet session. The separate CicadaOS rootfs prime_echo shell script is an original file from the verified OS image and genuinely pauses at 1033 and 3301, but it is a different service; its source does not authenticate the participant paste's 180-prime omission or the alleged Telnet output. The signed 2013 TCP-server challenge is a stronger authenticated source, and its BASE29 worked example is explicit, but it still does not define a GP29 digit bridge. The local source audit documents this separation: [2013 first-onion prime-gap source audit](https://github.com/FlareZ123/liber-primus/blob/main/im-results/2013-cicadaos-telnet-prime-gap-source-audit.md) and [signed TCP source](https://github.com/FlareZ123/liber-primus/blob/main/resources/external/2013-tcp-server-signed-source.md).
+
+This matters if you require “source-authenticated worked transitions”: do not count the anonymous prime paste as a Cicada-authenticated example, and do not merge it with the distinct prime_echo shell program. The prime_echo pause behavior is authentic; the 180/76 count correspondence to LP2 remains only a candidate selector without an authenticated LP2 consumer.
