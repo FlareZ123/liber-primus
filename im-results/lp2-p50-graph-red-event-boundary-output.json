@@ -1,0 +1,1333 @@
+{
+  "lexicon": 12303,
+  "words": [
+    {
+      "page": 0,
+      "start": 0,
+      "length": 8
+    },
+    {
+      "page": 0,
+      "start": 8,
+      "length": 5
+    },
+    {
+      "page": 3,
+      "start": 2,
+      "length": 11
+    },
+    {
+      "page": 3,
+      "start": 13,
+      "length": 3
+    },
+    {
+      "page": 3,
+      "start": 119,
+      "length": 3
+    },
+    {
+      "page": 6,
+      "start": 71,
+      "length": 4
+    },
+    {
+      "page": 6,
+      "start": 75,
+      "length": 1
+    },
+    {
+      "page": 6,
+      "start": 76,
+      "length": 4
+    },
+    {
+      "page": 6,
+      "start": 80,
+      "length": 2
+    },
+    {
+      "page": 7,
+      "start": 194,
+      "length": 2
+    },
+    {
+      "page": 7,
+      "start": 196,
+      "length": 4
+    },
+    {
+      "page": 7,
+      "start": 200,
+      "length": 3
+    },
+    {
+      "page": 7,
+      "start": 203,
+      "length": 2
+    },
+    {
+      "page": 7,
+      "start": 205,
+      "length": 3
+    },
+    {
+      "page": 8,
+      "start": 4,
+      "length": 8
+    },
+    {
+      "page": 15,
+      "start": 4,
+      "length": 5
+    },
+    {
+      "page": 15,
+      "start": 9,
+      "length": 4
+    },
+    {
+      "page": 15,
+      "start": 13,
+      "length": 2
+    },
+    {
+      "page": 15,
+      "start": 15,
+      "length": 5
+    },
+    {
+      "page": 23,
+      "start": 2,
+      "length": 6
+    },
+    {
+      "page": 23,
+      "start": 8,
+      "length": 3
+    },
+    {
+      "page": 23,
+      "start": 11,
+      "length": 5
+    },
+    {
+      "page": 27,
+      "start": 3,
+      "length": 12
+    },
+    {
+      "page": 27,
+      "start": 15,
+      "length": 4
+    },
+    {
+      "page": 33,
+      "start": 2,
+      "length": 8
+    },
+    {
+      "page": 33,
+      "start": 91,
+      "length": 3
+    },
+    {
+      "page": 33,
+      "start": 94,
+      "length": 5
+    },
+    {
+      "page": 39,
+      "start": 119,
+      "length": 3
+    },
+    {
+      "page": 40,
+      "start": 3,
+      "length": 5
+    },
+    {
+      "page": 53,
+      "start": 128,
+      "length": 5
+    },
+    {
+      "page": 53,
+      "start": 133,
+      "length": 4
+    },
+    {
+      "page": 53,
+      "start": 137,
+      "length": 4
+    },
+    {
+      "page": 53,
+      "start": 141,
+      "length": 11
+    },
+    {
+      "page": 53,
+      "start": 152,
+      "length": 2
+    },
+    {
+      "page": 53,
+      "start": 154,
+      "length": 3
+    },
+    {
+      "page": 53,
+      "start": 157,
+      "length": 2
+    },
+    {
+      "page": 53,
+      "start": 159,
+      "length": 6
+    },
+    {
+      "page": 53,
+      "start": 165,
+      "length": 5
+    },
+    {
+      "page": 53,
+      "start": 170,
+      "length": 5
+    },
+    {
+      "page": 53,
+      "start": 175,
+      "length": 2
+    },
+    {
+      "page": 53,
+      "start": 177,
+      "length": 2
+    },
+    {
+      "page": 54,
+      "start": 1,
+      "length": 8
+    }
+  ],
+  "models": [
+    {
+      "radix": 59,
+      "roots": [
+        189
+      ],
+      "original": {
+        "feasiblePairs": 784,
+        "states": 659344,
+        "fitStates": 0,
+        "bothStates": 0,
+        "trueRetained": false,
+        "trueBoth": false,
+        "topFits": [],
+        "topBoth": []
+      },
+      "controls": [
+        {
+          "a": 7,
+          "b": 13,
+          "M": 21,
+          "d": 17,
+          "fitStates": 1,
+          "bothStates": 1,
+          "trueRetained": true,
+          "trueBoth": true,
+          "top": {
+            "a": 7,
+            "b": 13,
+            "v": [
+              21,
+              17,
+              4
+            ],
+            "title": "FURROWED",
+            "second": "FUSTY",
+            "holdoutHits": 41,
+            "holdoutWords": 41,
+            "redWords": [
+              {
+                "page": 0,
+                "start": 8,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 3,
+                "start": 2,
+                "word": "FURTHERANCES",
+                "hit": true
+              },
+              {
+                "page": 3,
+                "start": 13,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 3,
+                "start": 119,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 6,
+                "start": 71,
+                "word": "FURY",
+                "hit": true
+              },
+              {
+                "page": 6,
+                "start": 75,
+                "word": "F",
+                "hit": true
+              },
+              {
+                "page": 6,
+                "start": 76,
+                "word": "FURY",
+                "hit": true
+              },
+              {
+                "page": 6,
+                "start": 80,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 7,
+                "start": 194,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 7,
+                "start": 196,
+                "word": "FURY",
+                "hit": true
+              },
+              {
+                "page": 7,
+                "start": 200,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 7,
+                "start": 203,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 7,
+                "start": 205,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 8,
+                "start": 4,
+                "word": "FURROWED",
+                "hit": true
+              },
+              {
+                "page": 15,
+                "start": 4,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 15,
+                "start": 9,
+                "word": "FURY",
+                "hit": true
+              },
+              {
+                "page": 15,
+                "start": 13,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 15,
+                "start": 15,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 23,
+                "start": 2,
+                "word": "FURTHER",
+                "hit": true
+              },
+              {
+                "page": 23,
+                "start": 8,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 23,
+                "start": 11,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 27,
+                "start": 3,
+                "word": "FRIENDLINESS",
+                "hit": true
+              },
+              {
+                "page": 27,
+                "start": 15,
+                "word": "FURY",
+                "hit": true
+              },
+              {
+                "page": 33,
+                "start": 2,
+                "word": "FURROWED",
+                "hit": true
+              },
+              {
+                "page": 33,
+                "start": 91,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 33,
+                "start": 94,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 39,
+                "start": 119,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 40,
+                "start": 3,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 128,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 133,
+                "word": "FURY",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 137,
+                "word": "FURY",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 141,
+                "word": "FURTHERANCES",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 152,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 154,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 157,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 159,
+                "word": "FURTHER",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 165,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 170,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 175,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 177,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 54,
+                "start": 1,
+                "word": "FURROWED",
+                "hit": true
+              }
+            ]
+          }
+        },
+        {
+          "a": 19,
+          "b": 28,
+          "M": 4,
+          "d": 5,
+          "fitStates": 1,
+          "bothStates": 1,
+          "trueRetained": true,
+          "trueBoth": true,
+          "top": {
+            "a": 19,
+            "b": 28,
+            "v": [
+              4,
+              5,
+              4
+            ],
+            "title": "FURROWED",
+            "second": "FUSTY",
+            "holdoutHits": 41,
+            "holdoutWords": 41,
+            "redWords": [
+              {
+                "page": 0,
+                "start": 8,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 3,
+                "start": 2,
+                "word": "FURTHERANCES",
+                "hit": true
+              },
+              {
+                "page": 3,
+                "start": 13,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 3,
+                "start": 119,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 6,
+                "start": 71,
+                "word": "FURY",
+                "hit": true
+              },
+              {
+                "page": 6,
+                "start": 75,
+                "word": "F",
+                "hit": true
+              },
+              {
+                "page": 6,
+                "start": 76,
+                "word": "FURY",
+                "hit": true
+              },
+              {
+                "page": 6,
+                "start": 80,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 7,
+                "start": 194,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 7,
+                "start": 196,
+                "word": "FURY",
+                "hit": true
+              },
+              {
+                "page": 7,
+                "start": 200,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 7,
+                "start": 203,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 7,
+                "start": 205,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 8,
+                "start": 4,
+                "word": "FURROWED",
+                "hit": true
+              },
+              {
+                "page": 15,
+                "start": 4,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 15,
+                "start": 9,
+                "word": "FURY",
+                "hit": true
+              },
+              {
+                "page": 15,
+                "start": 13,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 15,
+                "start": 15,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 23,
+                "start": 2,
+                "word": "FURTHER",
+                "hit": true
+              },
+              {
+                "page": 23,
+                "start": 8,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 23,
+                "start": 11,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 27,
+                "start": 3,
+                "word": "FRIENDLINESS",
+                "hit": true
+              },
+              {
+                "page": 27,
+                "start": 15,
+                "word": "FURY",
+                "hit": true
+              },
+              {
+                "page": 33,
+                "start": 2,
+                "word": "FURROWED",
+                "hit": true
+              },
+              {
+                "page": 33,
+                "start": 91,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 33,
+                "start": 94,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 39,
+                "start": 119,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 40,
+                "start": 3,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 128,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 133,
+                "word": "FURY",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 137,
+                "word": "FURY",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 141,
+                "word": "FURTHERANCES",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 152,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 154,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 157,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 159,
+                "word": "FURTHER",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 165,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 170,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 175,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 177,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 54,
+                "start": 1,
+                "word": "FURROWED",
+                "hit": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "roots": [],
+      "original": {
+        "feasiblePairs": 784,
+        "states": 659344,
+        "fitStates": 0,
+        "bothStates": 0,
+        "trueRetained": false,
+        "trueBoth": false,
+        "topFits": [],
+        "topBoth": []
+      },
+      "controls": [
+        {
+          "a": 7,
+          "b": 13,
+          "M": 21,
+          "d": 17,
+          "fitStates": 1,
+          "bothStates": 1,
+          "trueRetained": true,
+          "trueBoth": true,
+          "top": {
+            "a": 7,
+            "b": 13,
+            "v": [
+              21,
+              17
+            ],
+            "title": "FURROWED",
+            "second": "FUSTY",
+            "holdoutHits": 41,
+            "holdoutWords": 41,
+            "redWords": [
+              {
+                "page": 0,
+                "start": 8,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 3,
+                "start": 2,
+                "word": "FURTHERANCES",
+                "hit": true
+              },
+              {
+                "page": 3,
+                "start": 13,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 3,
+                "start": 119,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 6,
+                "start": 71,
+                "word": "FURY",
+                "hit": true
+              },
+              {
+                "page": 6,
+                "start": 75,
+                "word": "F",
+                "hit": true
+              },
+              {
+                "page": 6,
+                "start": 76,
+                "word": "FURY",
+                "hit": true
+              },
+              {
+                "page": 6,
+                "start": 80,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 7,
+                "start": 194,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 7,
+                "start": 196,
+                "word": "FURY",
+                "hit": true
+              },
+              {
+                "page": 7,
+                "start": 200,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 7,
+                "start": 203,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 7,
+                "start": 205,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 8,
+                "start": 4,
+                "word": "FURROWED",
+                "hit": true
+              },
+              {
+                "page": 15,
+                "start": 4,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 15,
+                "start": 9,
+                "word": "FURY",
+                "hit": true
+              },
+              {
+                "page": 15,
+                "start": 13,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 15,
+                "start": 15,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 23,
+                "start": 2,
+                "word": "FURTHER",
+                "hit": true
+              },
+              {
+                "page": 23,
+                "start": 8,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 23,
+                "start": 11,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 27,
+                "start": 3,
+                "word": "FRIENDLINESS",
+                "hit": true
+              },
+              {
+                "page": 27,
+                "start": 15,
+                "word": "FURY",
+                "hit": true
+              },
+              {
+                "page": 33,
+                "start": 2,
+                "word": "FURROWED",
+                "hit": true
+              },
+              {
+                "page": 33,
+                "start": 91,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 33,
+                "start": 94,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 39,
+                "start": 119,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 40,
+                "start": 3,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 128,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 133,
+                "word": "FURY",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 137,
+                "word": "FURY",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 141,
+                "word": "FURTHERANCES",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 152,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 154,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 157,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 159,
+                "word": "FURTHER",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 165,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 170,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 175,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 177,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 54,
+                "start": 1,
+                "word": "FURROWED",
+                "hit": true
+              }
+            ]
+          }
+        },
+        {
+          "a": 19,
+          "b": 28,
+          "M": 4,
+          "d": 5,
+          "fitStates": 1,
+          "bothStates": 1,
+          "trueRetained": true,
+          "trueBoth": true,
+          "top": {
+            "a": 19,
+            "b": 28,
+            "v": [
+              4,
+              5
+            ],
+            "title": "FURROWED",
+            "second": "FUSTY",
+            "holdoutHits": 41,
+            "holdoutWords": 41,
+            "redWords": [
+              {
+                "page": 0,
+                "start": 8,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 3,
+                "start": 2,
+                "word": "FURTHERANCES",
+                "hit": true
+              },
+              {
+                "page": 3,
+                "start": 13,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 3,
+                "start": 119,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 6,
+                "start": 71,
+                "word": "FURY",
+                "hit": true
+              },
+              {
+                "page": 6,
+                "start": 75,
+                "word": "F",
+                "hit": true
+              },
+              {
+                "page": 6,
+                "start": 76,
+                "word": "FURY",
+                "hit": true
+              },
+              {
+                "page": 6,
+                "start": 80,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 7,
+                "start": 194,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 7,
+                "start": 196,
+                "word": "FURY",
+                "hit": true
+              },
+              {
+                "page": 7,
+                "start": 200,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 7,
+                "start": 203,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 7,
+                "start": 205,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 8,
+                "start": 4,
+                "word": "FURROWED",
+                "hit": true
+              },
+              {
+                "page": 15,
+                "start": 4,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 15,
+                "start": 9,
+                "word": "FURY",
+                "hit": true
+              },
+              {
+                "page": 15,
+                "start": 13,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 15,
+                "start": 15,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 23,
+                "start": 2,
+                "word": "FURTHER",
+                "hit": true
+              },
+              {
+                "page": 23,
+                "start": 8,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 23,
+                "start": 11,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 27,
+                "start": 3,
+                "word": "FRIENDLINESS",
+                "hit": true
+              },
+              {
+                "page": 27,
+                "start": 15,
+                "word": "FURY",
+                "hit": true
+              },
+              {
+                "page": 33,
+                "start": 2,
+                "word": "FURROWED",
+                "hit": true
+              },
+              {
+                "page": 33,
+                "start": 91,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 33,
+                "start": 94,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 39,
+                "start": 119,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 40,
+                "start": 3,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 128,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 133,
+                "word": "FURY",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 137,
+                "word": "FURY",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 141,
+                "word": "FURTHERANCES",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 152,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 154,
+                "word": "FUN",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 157,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 159,
+                "word": "FURTHER",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 165,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 170,
+                "word": "FUSTY",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 175,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 53,
+                "start": 177,
+                "word": "FB",
+                "hit": true
+              },
+              {
+                "page": 54,
+                "start": 1,
+                "word": "FURROWED",
+                "hit": true
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
