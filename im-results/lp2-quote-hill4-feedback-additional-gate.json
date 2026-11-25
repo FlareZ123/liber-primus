@@ -1,0 +1,94 @@
+{
+  "n": 9748,
+  "pass": true,
+  "checks": [
+    {
+      "source": "The Time Machine",
+      "start": 41544,
+      "hold": true,
+      "phase": 0,
+      "prefix": 2,
+      "full": 1,
+      "nulls": 0,
+      "blocked": 0,
+      "correct": true
+    },
+    {
+      "source": "The Book of Tea",
+      "start": 29315,
+      "hold": true,
+      "phase": 1,
+      "prefix": 1,
+      "full": 1,
+      "nulls": 0,
+      "blocked": 0,
+      "correct": true
+    },
+    {
+      "source": "Beowulf Old English",
+      "start": 1249,
+      "hold": true,
+      "phase": 2,
+      "prefix": 1,
+      "full": 1,
+      "nulls": 0,
+      "blocked": 0,
+      "correct": true
+    },
+    {
+      "source": "The Time Machine",
+      "start": 87831,
+      "hold": true,
+      "phase": 3,
+      "prefix": 1,
+      "full": 1,
+      "nulls": 0,
+      "blocked": 0,
+      "correct": true
+    },
+    {
+      "source": "The Book of Tea",
+      "start": 42676,
+      "hold": false,
+      "phase": 0,
+      "prefix": 1,
+      "full": 1,
+      "nulls": 0,
+      "blocked": 0,
+      "correct": true
+    },
+    {
+      "source": "Beowulf Old English",
+      "start": 41531,
+      "hold": false,
+      "phase": 1,
+      "prefix": 1,
+      "full": 1,
+      "nulls": 0,
+      "blocked": 0,
+      "correct": true
+    },
+    {
+      "source": "The Time Machine",
+      "start": 394,
+      "hold": false,
+      "phase": 2,
+      "prefix": 1,
+      "full": 1,
+      "nulls": 0,
+      "blocked": 0,
+      "correct": true
+    },
+    {
+      "source": "The Book of Tea",
+      "start": 19686,
+      "hold": false,
+      "phase": 3,
+      "prefix": 2,
+      "full": 1,
+      "nulls": 0,
+      "blocked": 0,
+      "correct": true
+    }
+  ]
+}
