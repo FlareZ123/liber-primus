@@ -70,10 +70,29 @@ The p55 base29 arithmetic has a separate large-field P/Q interpretation, includi
 
 The complete reproduction, including the page census, base29/base60 controls, whole-word seam rival, forward ElGamal replay and deterministic 200,000-permutation null, is [the Node22 SFT](../sims/lp2_p55_base59_elgamal_fixedpoint_sft.cjs).
 
+
+## Packed DH23 continuation: full quotient digit receiver (Agent45, 25 November 2026)
+
+The scalar result decrypts only the least-significant base23 digit of Q. To test one natural downstream receiver without retuning the selector, freeze the textbook common-nonce vector interpretation: expand the **entire** Q in base23, multiply each field digit by the existing inverse shared factor 13 modulo23, reconstruct the resulting integer in base23, and read it using historical positional BASE29. This is a new whole-quotient consumer, not the [per-word safe-prime59 vector](lp2-p55-base59-word-elgamal-gate.md). The common nonce, digit packing and BASE29 plaintext role are hypotheses, not authenticated instructions.
+
+The original Q has 54 base23 digits, including three zero digits at zero-based positions 9,10,11. Strict nonzero multiplicative-group ElGamal cannot accept those digits; the extended field interpretation allowing zero is well-defined. It returns a 244-bit integer and the following 51 GP29 digits:
+
+```text
+U P J Y D R OE E R EO E H A NG M C F B J E S L T E F E NG J E Y EA NG B N U R AE X H F F T W AE S T T IA R L W
+```
+
+IoC = 0.0368627451; no sustained intelligible plaintext. The final field digit remains 17 as expected. Multiplying each decrypted base23 digit by16, reconstructing Q, multiplying by368, and restoring the preserved shell and NG carry reproduces all 76 original GP29 glyphs exactly. The shell and carry are retained metadata, not decrypted text.
+
+The physical carrier is a stronger limitation: there are exactly **2076185200545576415415410258424250863308745032267106569419180** possible 43-digit GP29 strings whose base59 integer is divisible by368 (200.3696208344 bits). This is an exact residue-DP count with leading zero allowed. Any universal injective plaintext packing through this fixed interior carrier, conditioned on the same shell, can represent at most 41 unrestricted GP29 symbols; it cannot encode every 42-symbol message, let alone every 51-symbol message. This does not exclude compressed or restricted-language payloads. Three separate solved-p57 spans (41,41,13 runes) all round-trip at integer/field level, but their forward base59 representations have 17,16,5 digits outside GP29 respectively. Thus these are arithmetic positive controls, **zero complete physical positive plants**, and the receiver is not a total native-GP encoder.
+
+**Decision:** retire the common-nonce base23 whole-quotient vector as a direct GP29 plaintext packing. It gives neither authentic prose nor a demonstrated complete physical encoder, and the scalar fixed point remains conditional. Do not rescue it by changing nonce, field order, radix or encoding after observing the result.
+
+Reproduce: [sims/lp2_p55_elgamal_radix23_packed_inverse_sft.cjs](../sims/lp2_p55_elgamal_radix23_packed_inverse_sft.cjs). Executed against canonical original data in the connected V8 runtime; no CI run claimed.
+
 ## Interpretation and next decision
 
 This is the first source-constrained reversible **one-symbol selector** found for the p55 SHED split: it recovers M=17, which reselects base59. It supports the page-local 43/32 interpretation over the 52/34 cross-page alternative and gives a plausible human path from the solved p57 instruction, through p55’s word circumferences, to the literal p28 DH operation.
 
 It does **not** decrypt the 43 interior runes, the 32 circumference runes, or any other unknown LP2 rune. The ElGamal operation is not explicitly named in the manuscript; it is a natural DH-derived receiver hypothesis. Most importantly, the division by the 16-word count is source-motivated but not explicitly stated. The exact arithmetic, controls and fixed point make this worth pursuing, not an established author-intent claim.
 
-The next decisive step is a source-selected downstream consumer of the 17/59 selector, or a second independently selected ciphertext pair that predicts untouched original runes under the same frozen DH23 mechanism. Do not broaden this into generic radix, key, discrete-log or P/Q searches. Issue #41 still requires a reversible map for all 76 original p55 glyphs and remains waiting; this one-symbol result does not satisfy that acceptance criterion.
+The direct packed base23 whole-quotient consumer above fails. The next decisive step is a genuinely independently selected downstream consumer of the 17/59 selector, or a second independently selected ciphertext pair that predicts untouched original runes under the same frozen DH23 mechanism. Do not broaden this into generic radix, key, discrete-log or P/Q searches. Issue #41 still requires a reversible map for all 76 original p55 glyphs and remains waiting; this one-symbol result does not satisfy that acceptance criterion.
