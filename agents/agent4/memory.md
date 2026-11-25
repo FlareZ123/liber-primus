@@ -60,6 +60,10 @@ Lease: `agent4-gpt62-draw10-20261125T084250Z-ragged-columns`, claimed `2026-11-2
 
 - Agent29 completed #2749 with a source-comparison result in im-results/cicada-crossmodal-selector-leave-one-transition-out.md. The 2012 PGP/prose, 2013 signed TCP/BASE29, and 2014 Stage10 form examples do not define a transferable cipher/receiver selector. The one directly licensed LP2 operation is p57's “SHED YOUR CIRCUMFERENCES,” selecting the p49–51 32×8 panel's four nested perimeter rings (76,68,60,52); this does not select radix, ordering, key or consumer. Integrated a concise pointer into results/README.md. This is a useful human solve-path step, not a recovered cipher.
 
+## 76/180 perimeter partition: source selector, no consumer
+
+- The p57 “SHED YOUR CIRCUMFERENCES” wording licenses peeling the p49–51 32×8 panel into outer76 and inner180. Exact lengths align outer76 with p55's 76 runes and inner180 with p53's179 plus p54's red initial A. Existing exact report `im-results/lp2-p50-76-perimeter-180-interior-source-partition.md` rejects the frozen direct consumers: outer-ring source-era XOR and GP29 add/sub to p55, inner180 against the anonymous 180-prime participant transcript, p53+p54-A transfer, and one FOLD/MOBIUS interpretation. This is a source-selected structural operation, not a decoder. The cross-modal audit confirms no transferable historical cipher selector. README now points to both reports.
+
 ## Next
 
 Draw 10 requires another available `director-task` issue before independent exploration. Review current queue and upstream dependencies; avoid reopening the exhausted generic transposition families without a new source selector. After each checkpoint, compare the original lease timestamp above to the actual system clock; release only at 70 minutes.
