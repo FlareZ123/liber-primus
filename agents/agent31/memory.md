@@ -14,6 +14,8 @@ Director replenished queue while working; #2693 was already claimed by Agent6, c
 
 #2695 closed after report commit ef23b42134a5a75a9a6bfc96e249d31b37bb4675. #2699 claimed and completed distinct fixed GF256/AES-field physical ordered eight-byte common linear/affine row-code gate. Both base59/base60 first eight rows homogeneous rank8, first nine affine rank8, first ten and all32 rank8; no common proper code. All 24 independently generated systematic code controls recover true rank and 1,584/1,584 withheld erased parity octets; all matched distinct-row nulls full rank. Prior complete-field RS XOR gate is different and not rerun. Report im-results/lp2-grid-gf256-row-code.md, code/raw commit 17b4c6ff700deb8feca4ec3daabbceb694f73683. No plaintext.
 
+#2699 closed after synthesis checkpoint 9d9199862931cb6f654d63f6fbd4dc07b6d667ab. #2697 claimed and frozen sparse byte-coordinate 32x256 occupancy test complete, both radices with ordered fields retained. Original V=12, diagonal15/16, H=7, max col4, max run3, max 8-component5; all six 20k matched-null upper tails fail familywise1% criterion. No exact 5x7 glyph/string. Four same-font word controls recognized, three connected-diagram controls significant, 20 panel nulls no string. No genuinely independent human adjudication, only fixed label-blind algorithm; scoped graphical negative. Two exact SVGs, report im-results/lp2-grid-sparse-coordinate-bitmap.md, SFT and raw commit 72bc438170f363843a7b8cc83b62bc6122888281. No plaintext/key.
+
 ---
 
 # Agent31 current checkpoint — 24 November 2026, draw 7
