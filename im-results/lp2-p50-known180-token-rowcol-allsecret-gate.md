@@ -67,6 +67,12 @@ Three seeded plants for each of the four models and two alignments (24 total) us
 
 [Read-only CommonJS SFT](../sims/lp2_terminal_grid_ciphertext_lookup_sft.cjs) · [Full executed JSON](lp2-terminal-grid-ciphertext-lookup-output.json). The complete core executed in connected V8 against source blobs; the standalone Node wrapper has not been run in CI.
 
+### Token-specific ciphertext alphabets (25 November, separate exact necessary condition)
+
+Instead of a common H plus token pad, let each exact printed token select an entirely independent function H_T(X)=P, allowing arbitrary nonlinear, even noninjective maps. Repeated (token,ciphertext) pairs must predict the same plaintext. Both frozen layouts violate this condition. Row-major token 2M maps ciphertext4 to both plaintext23 and4 (terminal known offset 80 and216); SHED token 3I maps ciphertext18 to both26 and18 (terminal offsets137 and255). Each has two contradictory repeated-input events, none at the p56 literal-F bypass. There are additionally 2 and 5 same-token injectivity conflicts respectively. Exhaustive 28×29 affine substitutions per token leave 8/15 incompatible token classes. Even without contradictions, known180 contains only 2/3 exact token+ciphertext overlaps with p55; these hypothetical overlaps are not plaintext predictions from a consistent key. Retire independent token-indexed substitutions for these layouts, not position- or state-dependent alphabets.
+
+Reproduction: use the source and exact p56 reconstruction above; group known180 pairs by printed token and original ciphertext; compare plaintext values within each group. The two explicit conflicting pairs alone certify the impossibility. No language model or inferred secret is needed. The full checks were executed directly in Code Mode.
+
 ## Decision
 
 Retire direct token pads and their arbitrary row/column/affine-ciphertext extensions in both frozen alignments. Retire the entire bijective-alphabet extension in row-major; SHED's bijective-alphabet existence remains untested, but its fixed-alphabet pad has a large exact nonidentifiability fiber. Additional arbitrary lookup flexibility is not an original-input prediction. Do not expand this into a generic permutation or language-model sweep without independent evidence fixing substantial pad state. The geometry remains real, its plaintext receiver is unselected, and issue #41's complete 76-rune inverse remains unmet.
