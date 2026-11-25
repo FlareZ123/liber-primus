@@ -1,6 +1,6 @@
 # Source-linked 133/331 full-cycle reading of the original 256-cell table
 
-**Agent 38, 13 November 2026. Evidence class:** exact new candidate traversal and unusual output statistic. **No decrypted LP2 plaintext, authenticated payload, decipherment key, or author-selected LCG rule.** This is exploratory supporting work, not an established cipher.
+**Agent 38, 13–25 November 2026. Evidence class:** exact candidate traversal and bounded consumer tests. **No decrypted LP2 plaintext, authenticated payload, decipherment key, or author-selected LCG rule.** This is exploratory supporting work, not an established cipher.
 
 ## Independent inputs and proposed source-selected operation
 
@@ -63,6 +63,25 @@ This supplies a concrete cross-round test rather than an arbitrary phase search:
 The seed-22 readout begins with bytes `3b9c7ac11f543441a39b7d19c900c7f8`. The previously noticed 11-byte Base64 run `Q8rI6/I6PiT` occurs at offset **103** (it occurs at offset **173** when starting at state 0): changing the LCG seed only rotates the same full-cycle readout, and this seed does not align that local run at the beginning or reveal a new byte pattern.
 
 The direct GP29 consumer was tested under both additive signs and both clock policies (advance on every rune, or skip ciphertext F). Mean GP29 trigram log scores over the complete unknown stream were **−4.9733 to −5.0508**; the selected p17, p27, p32, p41 and p55 outputs remain nonlinguistic. Under the strict F-transparent interpretation, the four variants also produce **408–455** non-F ciphertext positions that would decrypt to plaintext F, which that rule forbids. The trigram model is a diagnostic, not a proof; the decisive observation is that no coherent plaintext or valid F-transparent stream emerges.
+
+## Geometry-filtered perimeter/interior split: known-plaintext rejection (25 November 2026)
+
+The 32×8 table has a 76-cell perimeter and 180-cell interior. Those counts match p55's 76 ciphertext runes and the combined 180 known plaintext runes on p56+p57. This makes the 2013 OS instruction “the key is all around you” and p55's “SHED CIRCUMFERENCES / FIND WHAT IS WITHIN” a plausible geometry selector. The 2016 signed-message PRNG marker supplies the already-derived LCG seed 22 described above.
+
+I tested one locked composite operation:
+1. Generate the full-cycle order with `x_0=22`, `x_{t+1}=(133x_t+331) mod256`, and read `table[x_t]`.
+2. Classify each visited original row-major cell in the 32×8 grid as perimeter (top/bottom rows or left/right columns) or interior (rows 1–30, columns 1–6). Filter the LCG traversal into the two streams without reordering within either stream.
+3. Reduce each table byte to GP29 by `byte mod29`. This gives a 76-symbol perimeter stream and a 180-symbol interior stream.
+4. Compare the interior stream with the combined p56+p57 known plaintext, ciphertext, and the two exact additive-key differences. The p56 plaintext is the regression-tested text in `sims/authentic_lp2_p56_totient_regression.cjs`; the p57 text is the 95-rune clear-GP29 transcription in `resources/external/relikd-solved-gp29-native-v1.json`.
+
+Results:
+- Interior stream equals p56+p57 plaintext at only **8/180** positions and ciphertext at **10/180**.
+- Required additive key `C-P mod29` matches at **7/180**; the opposite sign matches at **6/180**. These are at chance scale, not a partial key.
+- The perimeter stream used as an additive key on p55 produces no readable text. Exact outputs:
+  - `C-K`: `SEIDAXWAEXCLUMDPLFFRYSHCJTHASJFWMLNFLMEOAEYEOHEOACOETTHJISBAEBNSYOEEOCNGEOTHRGRFTPEOSAENGHEAEOU`
+  - `C+K`: `IAOEAYMTIAOAAERJIAIHNAEMUPTGODAECPNNALGWPLCYCLPEBIJTHDOEAEBNGOTJOSIHEOEAEOAEAFNGIARAEIAPNGUDGAM`
+
+**Interpretation:** reject the exact composite `2016 seed 22 → 2014 133/331 LCG → original-cell perimeter/interior filter → byte mod29` as (a) direct p56+p57 plaintext, (b) their additive key, or (c) a p55 perimeter additive key. The 76/180 dimensional correspondence remains an interesting structural observation, but it does not supply this decryption. This test does not rule out other uses of the p50 table, different cipher families, or a separately sourced operation; do not rescue this branch by tuning the seed, phase, byte map, or cell order.
 
 **Decision:** reject the specific `2016 13-token seed → x₀=22 → 133/331 LCG → p50 table → repeating GP29 additive pad` route. This does not prove the PRNG marker is irrelevant, but it does not authenticate the LCG as a decryption key or consumer. A different PRNG-driven route/permutation would need its own source-selected target and reversible operation; do not expand into arbitrary PRNG consumers, phases, or table modifications.
 
