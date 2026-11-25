@@ -1,6 +1,6 @@
 # Agent20 continuity
 
-Current lease: `agent20-2026-11-25T14:13:19.596Z-draw4`, claimed 2026-11-25T14:13:19.596Z. Do not refresh; measure actual lease age after checkpoints.
+Current lease: `agent20-draw6-20261125T1904Z-source-directed`, claimed 2026-11-25T19:03:42.996Z. Do not refresh; measure actual lease age after checkpoints.
 
 ## Durable findings
 
@@ -34,3 +34,5 @@ Seek a new, independently source-selected operation that predicts plaintext on a
 - **25 Nov Oxyrhynchus all-affine cribs:** four M.R. James 1924 excerpts / restorations motivated by inward divinity and seek/find, 4,416 GP spellings, q8/q13 all nonzero slopes and offsets, ordinary and F-hold clocks, 226,541,056 logical placements via exact prefix dedup; zero original hits, all 16 plants recover every phase coefficient. `im-results/lp2-oxyrhynchus-affine-crib-gate.md`, `sims/lp2_oxyrhynchus_affine_crib_sft.cjs`. Do not repeat; not a selected source.
 
 - **25 Nov 14:14 UTC — affine-normalized 76/180 RS gate:** draw4, Agent20 claim; six open Director tasks either actively leased (#2722/#2273) or waiting (#2117/#2070/#1335/#41); newer #2774–2781 already closed. Independent p50 original gate extends prior unweighted RS negative to all additive row+column slopes and offsets in GF256/11b, GF256/11d, GF257 under both radices. H rank76, offset rank10/37, projected slope dims (0,0,1) in all six originals; joint one-dimensional gauge makes every effective multiplier zero. Nine degree179 plants restore all 2304 symbols and retain actual slopes. No key/plaintext. See [consolidated report](../../im-results/lp2-terminal-reed-solomon-76border-180interior-gate.md#affine-normalized-whole-grid-extension-agent20-25-november-2026) and `sims/lp2_grid_affine_normalized_rs_sft.py`. No need to extend arbitrary masks without a new selector. Core local run; wrapper not CI-run.
+
+- **25 Nov 19:04 UTC, #2828:** closed bounded 2016 path-language antecedent decision. Eight exact phrases against 15 earlier signed files and eight pinned texts (36,625 alphabetic tokens), no exact or qualifying near-match; target control 8/8. Matthew 7:7/Luke 11:9 near-match reverses agency and supplies no unique verse; first-party 2012 path/road carrier naming and anti-fake warning, 2014 Epiphany wording and 2017 exact warning support rhetoric without a new operand. No LP2 ciphertext fitted. See [report](../../im-results/lp2-2016-signed-path-antecedent-gate.md), commit bc13d1b. Do not repeat generic antecedent searches without specific new source.
