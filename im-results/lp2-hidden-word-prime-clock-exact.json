@@ -1,0 +1,371 @@
+{
+  "forms": 29077,
+  "trieNodes": 72173,
+  "split": [
+    232,
+    76
+  ],
+  "model": "fixed native/English trie word unigram with exact prefix marginal, no OOV",
+  "controls": [
+    {
+      "name": "0_koan_1",
+      "windows": 43,
+      "covered": 15,
+      "first": {
+        "i": 0,
+        "j": 87,
+        "missing": []
+      },
+      "selected": [
+        0,
+        87
+      ],
+      "generatedZeros": 15,
+      "heldF": 3,
+      "knownExact": true,
+      "prediction": {
+        "prefix": {
+          "dead": null,
+          "end": {
+            "j": 297,
+            "z": 38294
+          },
+          "score": -408.1690326984198,
+          "peak": 38
+        },
+        "suffix": {
+          "dead": null,
+          "end": {
+            "j": 392,
+            "z": 3655
+          },
+          "score": -124.19650098555587,
+          "peak": 20
+        },
+        "correct": 308,
+        "heldout": 76,
+        "boundariesExact": true,
+        "plaintext": "A COAN A MAN DECIDED TO GO AND STUDY WITH A MASTER HE WENT TO THE DOOR OF THE MASTER WHO ARE YOU WHO WISHES TO STUDY HERE ASCED THE MASTER THE STUDENT TOLD THE MASTER HIS NAME THAT IS NOT WHAT YOU ARE THAT IS ONLY WHAT YOU ARE CALLED WHO ARE YOU WHO WISHES TO STUDY HERE HE ASCED AGAIN THE MAN THOUGHT FOR A MOMENT AND REPLIED I AM A PROFESSOR THAT IS WHAT YOU DO NOT WHAT YOU ARE REPLIED THE MASTER WHO ARE",
+        "bounds": [
+          1,
+          5,
+          6,
+          9,
+          16,
+          18,
+          20,
+          23,
+          28,
+          31,
+          32,
+          38,
+          40,
+          44,
+          46,
+          48,
+          52,
+          54,
+          56,
+          62,
+          65,
+          68,
+          71,
+          74,
+          80,
+          82,
+          87,
+          91,
+          96,
+          98,
+          104,
+          106,
+          113,
+          117,
+          119,
+          125,
+          128,
+          132,
+          135,
+          137,
+          140,
+          144,
+          147,
+          150,
+          153,
+          155,
+          159,
+          163,
+          166,
+          169,
+          175,
+          178,
+          181,
+          184,
+          187,
+          193,
+          195,
+          200,
+          204,
+          206,
+          211,
+          216,
+          218,
+          221,
+          227,
+          230,
+          231,
+          237,
+          240,
+          247,
+          248,
+          250,
+          251,
+          260,
+          263,
+          265,
+          269,
+          272,
+          274,
+          277,
+          281,
+          284,
+          287,
+          294,
+          296,
+          302,
+          305
+        ]
+      }
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "windows": 32,
+      "covered": 11,
+      "first": {
+        "i": 0,
+        "j": 70,
+        "missing": [
+          "BEHAUIARS",
+          "BELEIUE"
+        ]
+      },
+      "selected": [
+        23,
+        101
+      ],
+      "generatedZeros": 13,
+      "heldF": 2,
+      "knownExact": true,
+      "prediction": {
+        "prefix": {
+          "dead": null,
+          "end": {
+            "j": 290,
+            "z": 43371
+          },
+          "score": -429.1625602087399,
+          "peak": 53
+        },
+        "suffix": {
+          "dead": null,
+          "end": {
+            "j": 384,
+            "z": 893
+          },
+          "score": -137.41674123804017,
+          "peak": 17
+        },
+        "correct": 308,
+        "heldout": 76,
+        "boundariesExact": true,
+        "plaintext": "THE FOLLOWNG TWO ERRORS WITHIN THE DECEPTIAN WE DO NOT HAUE ENOUGH OR THERE IS NOT ENOUGH WE HAUE WHAT WE HAUE NOW BY LUCC AND WE WILL NOT BE STRONG ENOUGH LATER TO OBTAIN WHAT WE NEED MOST THNGS ARE NOT WORTH CONSUMNG PRESERUATIAN WE PRESERUE THNGS BECAUSE WE BELIEUE WE ARE WEAC IF WE LOSE THEM WE WILL NOT BE STRONG ENOUGH TO GAIN THEM AGAIN THIS IS THE DECEPTIAN MOST THNGS ARE NOT WORTH PRESERUNG ADHERENCE",
+        "bounds": [
+          2,
+          9,
+          12,
+          18,
+          23,
+          25,
+          33,
+          35,
+          37,
+          40,
+          44,
+          50,
+          52,
+          56,
+          58,
+          61,
+          67,
+          69,
+          73,
+          77,
+          79,
+          83,
+          86,
+          88,
+          92,
+          95,
+          97,
+          101,
+          104,
+          106,
+          111,
+          117,
+          122,
+          124,
+          130,
+          134,
+          136,
+          140,
+          144,
+          147,
+          150,
+          153,
+          157,
+          164,
+          175,
+          177,
+          185,
+          188,
+          195,
+          197,
+          204,
+          206,
+          209,
+          212,
+          214,
+          216,
+          220,
+          223,
+          225,
+          229,
+          232,
+          234,
+          239,
+          245,
+          247,
+          251,
+          254,
+          259,
+          262,
+          264,
+          266,
+          274,
+          278,
+          281,
+          284,
+          287,
+          291,
+          299
+        ]
+      }
+    }
+  ],
+  "pads": [
+    {
+      "prefix": {
+        "dead": 32,
+        "peak": 6
+      }
+    },
+    {
+      "prefix": {
+        "dead": 124,
+        "peak": 8
+      }
+    },
+    {
+      "prefix": {
+        "dead": 29,
+        "peak": 7
+      }
+    },
+    {
+      "prefix": {
+        "dead": 6,
+        "peak": 2
+      }
+    },
+    {
+      "prefix": {
+        "dead": 3,
+        "peak": 1
+      }
+    },
+    {
+      "prefix": {
+        "dead": 1,
+        "peak": 1
+      }
+    },
+    {
+      "prefix": {
+        "dead": 13,
+        "peak": 6
+      }
+    },
+    {
+      "prefix": {
+        "dead": 24,
+        "peak": 6
+      }
+    },
+    {
+      "prefix": {
+        "dead": 25,
+        "peak": 4
+      }
+    },
+    {
+      "prefix": {
+        "dead": 1,
+        "peak": 1
+      }
+    },
+    {
+      "prefix": {
+        "dead": 5,
+        "peak": 1
+      }
+    },
+    {
+      "prefix": {
+        "dead": 1,
+        "peak": 1
+      }
+    },
+    {
+      "prefix": {
+        "dead": 3,
+        "peak": 1
+      }
+    },
+    {
+      "prefix": {
+        "dead": 49,
+        "peak": 7
+      }
+    },
+    {
+      "prefix": {
+        "dead": 20,
+        "peak": 11
+      }
+    },
+    {
+      "prefix": {
+        "dead": 2,
+        "peak": 2
+      }
+    }
+  ],
+  "pass": true,
+  "original": {
+    "prefix": {
+      "dead": 17,
+      "peak": 4
+    }
+  },
+  "classification": "calibrated original finite lexicon gate"
+}
