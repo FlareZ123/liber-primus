@@ -47,5 +47,16 @@ function control(model,j,W){
  for(let t=0;t<4;t++){const d=(j+t)%3,words=donors[d];let at=cuts[d]+500+j*200+t*60;for(;at<words.length;at++){let v=[],ws=[];for(let z=at;v.length<N&&z<words.length;z++){const w=words[z];if(!wordMap.has(id(w)))break;v.push(...w);ws.push(w)}if(v.length>=N){p.push(v.slice(0,N));wordSeq.push(ws);offsets.push([d,at]);break}}}
  if(p.length!==4)throw Error("short source");let seed=(0x8fae1+j*1337)>>>0;const rnd=n=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return Math.floor(seed/4294967296*n)};const a=Array.from({length:N},()=>1+rnd(28)),b=Array.from({length:N},()=>rnd(Q)),ct=p.map(t=>t.map((v,i)=>(a[i]*v+b[i])%Q));const hit=recover(model,ct,W);const exact=hit.p?hit.p.reduce((n,t,k)=>n+t.filter((v,i)=>v===p[k][i]).length,0):0;return {j,offsets,exact,truth:p,words:wordSeq,ct,planted:{a,b},...hit};
 }
-module.exports={prepare,recover,control};
-if(require.main===module){const model=prepare(JSON.parse(values[1]),values.slice(2),tokenize);console.log(JSON.stringify(control(model,Number(process.argv[2]||0),Number(process.argv[3]||512)),null,2))}
+function exactFixedTape(model,tape){
+ const {Q,nodes,prefix,term}=model,L=12;let states=new Map([["-1,0",{prev:-1,node:0,s:0}]]),maxStates=1;
+ for(const x of tape){const next=new Map();const add=(prev,node,s)=>{const k=prev+","+node;if(!next.has(k)||next.get(k).s<s)next.set(k,{prev,node,s})};
+  for(const v of states.values()){const {prev,node,s}=v,a=prev<0?null:prefix[prev],b=prev<0?null:term[prev],m=nodes[node],den=(a?.get(node)||0)+L*m.mass,k=m.next[x];
+   if(k>=0)add(prev,k,s+Math.log(((a?.get(k)||0)+L*nodes[k].mass)/den));
+   if(m.word>=0){const close=Math.log(((b?.get(node)||0)+L*m.term)/den),q=prefix[m.word],root=(q?.get(0)||0)+L*nodes[0].mass,u=nodes[0].next[x];if(u>=0)add(m.word,u,s+close+Math.log(((q?.get(u)||0)+L*nodes[u].mass)/root))}
+  }
+  states=next;maxStates=Math.max(maxStates,states.size);
+ }
+ return {score:Math.max(...[...states.values()].map(x=>x.s)),maxStates};
+}
+module.exports={prepare,recover,control,exactFixedTape};
+if(require.main===module){const model=prepare(JSON.parse(values[1]),values.slice(2),tokenize);const out=control(model,Number(process.argv[2]||0),Number(process.argv[3]||512));out.exactTruth=out.truth.map(t=>exactFixedTape(model,t));out.exactRecovered=out.p?.map(t=>exactFixedTape(model,t));console.log(JSON.stringify(out,null,2))}
