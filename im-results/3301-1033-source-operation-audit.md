@@ -89,6 +89,25 @@ The exhaustive control confirms both exponent directions invert exactly on all 8
 
 **Decision:** retire this literal `e=1033,n=3301`, two-rune cycle-walked modular-power assignment. It is a bounded negative, not a claim that all modular operations or other source roles have been excluded. The exact operand roles and cycle-walk rule are not authenticated by the historical protocol.
 
+### COUNT reversible-prime subsequence as a native prime/F clock (25 November 2026)
+
+The source pair 1033 and 3301 is mutually decimal-reversed and was emphasized by the original 2013 `prime_echo` program. A separate contemporaneous participant COUNT record distinguishes primes whose reversed decimal integer is also prime (asterisk, explicitly including palindromic 797) from other primes (plus); see [the 2013 COUNT source record](cicada2013-count-AfndPJa0-original-response.md). The authentic p56 prime-minus-one clock is an independent worked cipher. These facts motivate a direct, finite alternative to the earlier consecutive-prime, reversed-block and p15-only reversible-prime experiments: filter the ascending prime clock by the actual COUNT asterisk predicate, then use the **unchanged** native p56 additive and literal-F-hold law.
+
+Freeze the receiver at the first cuneiform emblem, physical p33 local offset91 through p39, exactly 1,589 original GP29 runes. Include the literal COUNT-star sequence (palindromes retained) and, separately, the modern strict emirp sequence (palindromes removed). For each sequence, grant **every** initial prime present in the original 2013 displayed 464-prime interval ending at 3301, including 1033 and 3301. The filtered sequence continues beyond that interval as required; no later fitting, word assumptions, per-page resets, digit reversal of key values, or alternate F grammar. This checks the full historically bounded origin choice rather than merely guessing which marker starts the clock.
+
+For a next selected prime q, a consuming edge is P=(C-q+1) mod29, permitted only when P is nonzero. If C=0, also allow the authentic literal-F hold without incrementing the cursor. Merging exact BigInt path counts by consuming cursor includes every latent F history. An empty set is a mechanical contradiction, independent of lexical language or printed spaces.
+
+| Filter | Origins ≤3301 | Supported prefix at first origin | At 1033 | At 3301 | Longest prefix anywhere | Full 1,589-rune paths |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Actual COUNT-star | 135 | 1 | 143 | 31 | 229 | 0 |
+| Strict emirp | 115 | 51 | 143 | 31 | 164 | 0 |
+
+The direct COUNT-star origins are 2, 1033, 3301 at zero-based filtered indices 0,59,134. Strict-emirp origins are 13, 1033, 3301 at indices 0,39,114. All **250** origin/schedule combinations die. Independently reproduce the authentic p56 ciphertext 85/85 with the ordinary prime sequence; the filtered implementation retains the actual path for 18 planted native controls (known p56, p57 and LP1 WELCOME; both filters; their three source-defined origins). Several plants admit alternate legal F histories, so path retention is calibration, not unique plaintext recovery.
+
+**Decision:** the direct reversible-prime-subsequence transfer does not produce a legal complete cipher inverse on the numbers' own recipient under the genuine p56 F-hold convention. It is materially distinct from [p15's fixed sixteen-value reversible-prime transformation](p15-fibonacci-emirp-count-direct-pad-gate.md), [word reversals](lp2-word-reverse-prime-ftransparent-original-gate.md), and [clause-local consecutive-prime block reversals](lp2-clause-reverse-prime-blocks-original-gate.md). Retire these two filtered clocks for the full original 2013 prefix origin interval. The COUNT convention is participant-reported; the connection between the classifier, clock and cuneiform recipient is a research hypothesis, not a signed instruction. Other cipher modes, separately selected state laws, and genuinely different historical operations are outside this exclusion.
+
+[Standalone CommonJS reproducer](../sims/lp2_cuneiform_count_star_primeclock_sft.cjs) prints the complete origin list and prefix certificates. The equivalent computation was executed in connected V8 using canonical corpus blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165` and native control blob `1b064ef6d85819b7d96adaff31a82d1ec551598f`; the standalone Node wrapper has not separately been run on CI. No new plaintext, key or destination.
+
 ### Other paired-value proposals already tested
 
 - The [1033/3301 full-width LCG gate](magic1033-3301-fullwidth-lcg-skip.md) tests the pair as fixed recurrence parameters on original LP2 pages and does not recover plaintext.
