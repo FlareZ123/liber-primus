@@ -81,7 +81,7 @@ function attack(gp,raw,original=false){
   const plain=L.slice(-A).concat(R.slice(0,N-A)),S=perm(r),Y=perm(r),truth={source:pair.source,stop:pair.stop,plain,S,Y},C=enc(plain,S,Y);
   controls.push({truth,...run(C,truth)});nulls.push(run(plain.map(p=>p===0?0:Math.floor(r()*29))));
  }
- const gate=controls.every(c=>c.correct&&c.allowed===80);
+ const gate=controls.every(c=>c.correct&&c.allowed===80&&c.prefixSources===1&&c.prefixPaths===1&&c.fullPaths===1)&&nulls.every(c=>c.prefixPaths===0&&c.fullPaths===0);
  let result=null;if(original&&gate){const U=gp.pages.filter(p=>p.page<=55).sort((a,b)=>a.page-b.page).flatMap(p=>p.indices);check(U.length===12956,"corpus");result=run(U.slice(10279,10439));if(result.full.length===1&&result.full[0].fullCount==="1"){const f=result.full[0],I=Array(29);f.key.S.forEach((v,i)=>I[v]=i);let j=f.consumed;result.adjacent=[];for(const c of U.slice(10439,10479)){if(c===0){result.adjacent.push(null);break}const p=I[mod(f.key.Y[c]-shifts[j++])];if(p===0){result.adjacent.push(null);break}result.adjacent.push(p)}}}
  return {pairs:pairs.length,gate,controls,nulls,original:result};
 

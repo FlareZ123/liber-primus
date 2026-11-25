@@ -88,7 +88,7 @@ function attack(gp,raw,original=false){
    check(n===(t?t.length===2?28:1:0),"row domain oracle")
   }
  }
- const gate=controls.every(c=>c.correct&&c.correctPrefix&&c.allowed===80);
+ const gate=controls.every(c=>c.correct&&c.correctPrefix===1&&c.allowed===80&&c.prefixSources===1&&c.prefixPaths===1&&c.fullPaths===1)&&nulls.every(c=>c.prefixPaths===0&&c.fullPaths===0);
  let result=null;
  if(original&&gate){const U=gp.pages.filter(p=>p.page<=55).sort((a,b)=>a.page-b.page).flatMap(p=>p.indices);check(U.length===12956,"corpus");result=run(U.slice(10279,10439),U[10278]);if(result.full.length){result.adjacent=result.full.map(f=>{const tail=U.slice(10439,10479);return tail.map((c,i)=>{const s=f.rows[i?tail[i-1]:U[10438]];return s?.length===4?mod(inv(s[2])*(c-s[3])):s&&s[1]===c?s[0]:null})})}}
  return {pairs:pairs.length,gate,controls,nulls,original:result};

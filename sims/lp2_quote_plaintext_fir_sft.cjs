@@ -59,7 +59,7 @@ function attack(gp,raw,original=false){
  }
  const e=zero(),d=add(e,[1,0,0,0,0],7),f=add(d,[0,1,1,0,0],4);
  check(count(e)===28*29**4&&count(d)===28*29**3&&count(f)===28*29**2&&value(f,[0,1,1,0,0])===4&&belongs(f,witness(f))&&!add(e,a0,0),"rank-deficient oracle");
- const gate=controls.every(c=>c.correct&&c.allowed===80)&&nulls.every(c=>c.fullPaths===0);
+ const gate=controls.every(c=>c.correct&&c.allowed===80&&c.prefixSources===1&&c.prefixPaths===1&&c.fullPaths===1&&c.forced===80&&Number(c.prefixClasses[0].count)===1)&&nulls.every(c=>c.prefixPaths===0&&c.fullPaths===0);
  let result=null;if(original&&gate){const U=gp.pages.filter(p=>p.page<=55).sort((a,b)=>a.page-b.page).flatMap(p=>p.indices);check(U.length===12956,"corpus");result=run(U.slice(10279,10439));if(result.full.length===1&&result.full[0].fullCount===1){const f=result.full[0];result.adjacent=dec(U.slice(10439,10479),f.k,f.plain.slice(-3))}}
  return {pairs:pairs.length,gate,controls,nulls,original:result};
 

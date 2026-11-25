@@ -80,7 +80,8 @@ function attack(gp,raw,original=false){
   if(n===0)controls.push({id:"joint-"+j,truth,C:shuffle(mapped,random)});
  }
  const checkRun=run(controls);
- const gate=checkRun.cases.filter(c=>c.truth).every(c=>{const t=c.truth;return c.joint.some(o=>o.source===t.source&&o.stop===t.stop&&o.classes.some(k=>k.counts.join()===decode(hist(t.plain)).join()))&&(!c.id.startsWith("halves")||c.shared.some(o=>o.source===t.source&&o.stop===t.stop&&o.classes.some(k=>k.first.join()===decode(hist(t.plain.slice(0,S))).join()&&k.last.join()===decode(hist(t.plain.slice(S))).join())))});
+ const membershipGate=checkRun.cases.filter(c=>c.truth).every(c=>{const t=c.truth;return c.joint.some(o=>o.source===t.source&&o.stop===t.stop&&o.classes.some(k=>k.counts.join()===decode(hist(t.plain)).join()))&&(!c.id.startsWith("halves")||c.shared.some(o=>o.source===t.source&&o.stop===t.stop&&o.classes.some(k=>k.first.join()===decode(hist(t.plain.slice(0,S))).join()&&k.last.join()===decode(hist(t.plain.slice(S))).join())))});
+ const gate=membershipGate&&checkRun.cases.every(c=>c.truth?c.joint.length===1&&(c.id.startsWith("halves")?c.shared.length===1:c.shared.length===0):[c.first,c.last,c.joint,c.shared].every(a=>a.length===0));
  let result=null;if(original&&gate){const U=gp.pages.filter(p=>p.page<=55).sort((a,b)=>a.page-b.page).flatMap(p=>p.indices);check(U.length===12956,"corpus");result=run([{id:"original",C:U.slice(10279,10439)}])}
  return {pairs:pairs.length,gate,controls:checkRun,original:result};
 
