@@ -66,11 +66,14 @@ def model_commute(C,D,prefix_index,prefix_domain,max_oov):
             ps.append(p)
             dec=m.new_int_var(0,28,'dec%d_%d'%(g,i))
             m.add_element(phase,[maps[j][x] for j in range(8)],dec)
-            m.add(p==dec)
             if x==0:
                 hold=m.new_bool_var('hold%d_%d'%(g,i))
                 m.add(p==0).only_enforce_if(hold)
                 m.add(p!=0).only_enforce_if(hold.Not())
+                # The literal F hold does not pass through the consuming inverse.
+                m.add(p==dec).only_enforce_if(hold.Not())
+            else:
+                m.add(p==dec)
             if i+1<len(c):
                 nxt=m.new_int_var(0,7,'phase%d_%d'%(g,i+1))
                 if x==0:

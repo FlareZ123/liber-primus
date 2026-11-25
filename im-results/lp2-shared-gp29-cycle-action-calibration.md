@@ -44,6 +44,14 @@ with one permutation \(\pi\) fixing F, a primitive period-eight shift vector, ar
 
 A useful exact representation is now implemented in `sims/lp2_shared_gp29_q8_cpsat_sft.py` as `--mode centralizer`. Choose a phase \(r\) with \(k_r\ne0\), rotate phase labels to put it at zero, and scale the alphabet coordinates so \(k_0=1\). The inverse phase maps are then powers of one 29-cycle \(g\). Conversely, every permutation commuting with a full 29-cycle is one of its powers: the centralizer of a 29-cycle is cyclic. Thus the common-cycle model can be represented exactly by one 29-cycle and seven commuting permutations, with primitive q8 enforced by requiring that at least one opposite pair \(f_j,f_{j+4}\) differs. This removes the explicit alphabet and shift variables. The implementation is not yet calibrated on the corrected profile.
 
+### Literal-F bypass correctness (Agent18, 25 November)
+
+The centralizer implementation had an independent semantic defect in both the base and source-corrected carry-prefix builders: the unconditional constraint `p==dec` applied even to a literal plaintext-F hold. At ciphertext F and nonzero shift, the consuming inverse necessarily gives a nonzero plaintext rune. The authentic native encoder nevertheless permits plaintext F to bypass the permutation and hold the phase. The old constraint prohibited that legal edge. Example: identity alphabet, shifts 1..8, start0, plaintext (0,1) encrypts to (0,2); the old first-position equality forces p=28 instead of the correct held p=0. The last-rune branch also needs this correction even though there is no following phase variable.
+
+Both centralizer builders now impose the consuming equation only when the F-hold Boolean is false, including at the terminal rune. For a non-F ciphertext the equation remains unconditional and plaintext F is forbidden. The pre-existing rank/maps builder already uses the correct conditional equation.
+
+[Exact regression](../sims/lp2_common_cycle_fhold_regression.py): local Python algebraic execution over identity plus 99 seeded conjugating alphabets, every shift 0..28, every ciphertext 0..28: 84,100 forward edges, corrected relation matches every edge, old relation permits 81,300 (exactly 2,800 valid held-F edges omitted). The same script's optional --cpsat mode pins actual maps and checks leading, terminal, sole and interior F holds plus a consuming ciphertext-F example in both builders. ORTools is unavailable locally, so the actual CP-SAT regression and renewed blind full-key controls remain required. No earlier centralizer failure/timeout can be interpreted as a valid negative for full F-hold semantics. Other receiver families are not invalidated by this specific defect. No new original fit or plaintext is claimed.
+
 ## 3. Source-selected p54 key candidate
 
 The red heading's eight smaller runes are:

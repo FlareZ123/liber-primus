@@ -124,13 +124,17 @@ def model_commute(C,D):
             ps.append(p)
             dec=m.new_int_var(0,28,f'dec{g}_{i}')
             m.add_element(phase,[maps[j][x] for j in range(8)],dec)
-            m.add(p==dec)
+            if x==0:
+                hold=m.new_bool_var(f'hold{g}_{i}')
+                m.add(p==0).only_enforce_if(hold)
+                m.add(p!=0).only_enforce_if(hold.Not())
+                # F bypass is independent of the consuming inverse permutation.
+                m.add(p==dec).only_enforce_if(hold.Not())
+            else:
+                m.add(p==dec)
             if i+1<len(c):
                 nxt=m.new_int_var(0,7,f'phase{g}_{i+1}')
                 if x==0:
-                    hold=m.new_bool_var(f'hold{g}_{i}')
-                    m.add(p==0).only_enforce_if(hold)
-                    m.add(p!=0).only_enforce_if(hold.Not())
                     m.add(nxt==phase).only_enforce_if(hold)
                     m.add_allowed_assignments([phase,nxt],[(j,(j+1)%8) for j in range(8)]).only_enforce_if(hold.Not())
                 else:
