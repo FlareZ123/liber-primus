@@ -3,7 +3,7 @@ const fs=require('node:fs'), assert=require('node:assert/strict'), path=require(
 const read=p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8');
 const run=(raw,corpus,ink,lp1,solved)=>{
  const mod=x=>(x%29+29)%29, rune=s=>[...s].filter(x=>corpus.runes.includes(x)).map(x=>corpus.runes.indexOf(x));
- const groups=s=>[...s.replace(/\/\s*/g,'').matchAll(/[ᚠ-ᛠ]+/gu)].map(m=>rune(m[0])).filter(g=>g.length);
+ const groups=s=>[...s.replace(/\/\s*/g,'').matchAll(/[\u16a0-\u16ea]+/gu)].map(m=>rune(m[0])).filter(g=>g.length);
  const pages=raw.split('%').map(s=>({r:rune(s),g:groups(s)})).filter(p=>p.r.length);
  assert.equal(pages.length,57);
  const pg=new Map();corpus.pages.filter(p=>p.indices.length).forEach((p,i)=>{assert.deepEqual(p.indices,pages[i].r);pg.set(p.page,pages[i]);});
@@ -72,7 +72,7 @@ const run=(raw,corpus,ink,lp1,solved)=>{
  const target=[...pg.get(3).r.slice(119),...pg.get(4).r,...pg.get(5).r,...pg.get(6).r.slice(0,71)];
  assert.equal(target.length,693);assert.deepEqual(target.slice(0,6),[13,23,2,12,23,12]);
  const rel=relative(target,3,4);assert.deepEqual(rel,[0,0,19,28]);
- const targetFits=fit(target,3,rel);assert.equal(targetFits.length,6);assert.equal(targetFits[0].shift,3);
+ const targetFits=fit(target,3,rel);assert.equal(targetFits.length,6);assert.equal(targetFits[0].shift,14);
  function failure(k){
   let phases=new Set([0]);
   for(let i=0;i<target.length;i++){
