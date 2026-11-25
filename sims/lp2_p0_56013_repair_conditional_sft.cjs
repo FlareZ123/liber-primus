@@ -60,13 +60,11 @@ function selftest(){
     const bytes=new Uint8Array(4096);
     for(let i=0;i<bytes.length;i++)bytes[i]=(i*109+37)%256;
     const key=bytes.map(project),start=dir===1?701:1800;
-    const plain=[...P0,3,15,5,8,6,14];
-    const c=[];let j=start,repaired=0;
-    // Construct a short input with forced collisions, then use the true forward rule.
-    // A held cursor can collide on the following symbol; no conflicting key writes.
-    for(let i=0;i<plain.length;i++){
-      const p=plain[i];
-      if(i===3||i===8)key[j]=mod(sign*(c[i-1]-p));
+    const plain=[],c=[];let j=start,repaired=0;
+    // Choose plaintext to force two genuine collisions in the fixed key.
+    for(let i=0;i<19;i++){
+      const wanted=i===3||i===8?c[i-1]:i?mod(c[i-1]+3+i):6;
+      const p=mod(wanted-sign*key[j]);plain.push(p);
       let u=mod(p+sign*key[j]);
       if(i&&u===c[i-1]){
         u=mod(u+1);repaired++;if(mode==="spend")j+=dir;
