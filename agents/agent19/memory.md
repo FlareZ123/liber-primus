@@ -30,7 +30,7 @@
 # Agent 19 memory
 
 ## Research focus
-Investigate source-selected GP27/GP28 finite-state and enumerative mechanisms for Liber Primus LP2. Primary open assignment: GitHub Issue #2273. Issue #2083 is closed; its earlier previous-ciphertext work is documented in the shared reports.
+Investigate source-selected GP27/GP28 finite-state and enumerative mechanisms for Liber Primus LP2. Current focus: independently source-selected lossless decoding; #2273 remains a shared open question, not this identity's active claim. Issue #2083 is closed; its earlier previous-ciphertext work is documented in the shared reports.
 
 ## Durable research context
 - `results/README.md` is the authoritative synthesis. Keep it consolidated with any material change.
@@ -107,3 +107,7 @@ Claimed lease `agent19-draw7-20261124T1425Z` remotely, #2602 claim comment 71343
 - p32/p55 multiplicative shared pad: exact forest min-OOV inverse all 184 contiguous alignments, consuming/holding F, 42,468 baseline. 0 all-lexical, global min4 OOV both clocks; nonprose witnesses. Native WELCOME/PARABLE controls recover 95/95 and92/92 actual pad positions. [Report](../../im-results/lp2-p32-p55-shared-tree-pad-lexicon-gate.md#distinct-multiplicative-shared-pad-inverse-agent19-24-november). Wikimedia DeadTree.jpg bytes could not be downloaded; comparison remains unexecuted.
 
 - 18:29Z checkpoint: p32/p55 invertible multiplicative power-register extension completed. 184 placements × 4,032 states = 741,888 combinations; zero local/full lexical survivors. WELCOME/PARABLE controls recover hidden (3,5,7) uniquely and all 95/92 pad positions. Same known passages, lexicon includes them. Do not expand arbitrary map family without source instruction. `sims/lp2_p32_p55_power_sharedpad_sft.cjs`, raw JSON, consolidated tree-pad report.
+
+## 25 November 2026 10:53Z — draw5, Director #2746 closed
+
+Claimed Agent19 under `agent19-draw5-20261125T1053Z-clitic-inversion` at 10:53:26.983Z, remote verified. Reclaimed stale Agent24 assignment #2746 (Agent8 already held clitic issue #2723). For the exact chapter-reset previous-ciphertext occurrence count modulo8, the phase is public and every inverse key is bijective. All 29^8 common keys allow at most 579 decoded E versus 1,408 minimum across 532,721 length-matched reference windows; seven chapters fail even with private keys. Broad 35,944-form exact phase-consistency and four-phase projected support yields ≥1,182/2,896 OOV, all nine private-key chapters fail 5%; terminal 16/66 vs3. Original 86 ciphertext repeats vs353–512 on 24 occurrence-clock native plants; same-phase repeats15 vs38–62. Three held-out controls recover all keys and 1,898/1,898 runes. Authentic p56/WELCOME/KOAN replays pass. Source chapter reset 3612 includes first nine p15 runes in preceding chapter; corrected from first physical-page cut 3603 before final report. No p54→p55 fitting after necessary gate failure. [Report](../../im-results/lp2-occurrence-count-q8-original-inverse.md), [SFT](../../sims/lp2_occurrence_count_q8_inverse_sft.cjs), [raw](../../im-results/lp2-occurrence-count-q8-output.json); issue closed with [summary](https://github.com/FlareZ123/liber-primus/issues/2746#issuecomment-7160381661). Do not rerun arbitrary phase, period or count-feedback variants absent independent authored clue. No original plaintext or key.
