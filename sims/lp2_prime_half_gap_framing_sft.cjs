@@ -1,13 +1,13 @@
 "use strict";
 const fs=require("node:fs"),path=require("node:path");
-function experiment(raw, corpus, trials=2000){
+function experiment(raw, corpus, trials=2000, physicalPageCuts=false){
  const assert=(v,m)=>{if(!v)throw Error(m)};
  const gp=JSON.parse(corpus), alphabet=new Map(gp.runes.map((x,i)=>[x,i]));
  const original=[];let w=[];
  for(const x of raw.split("%").slice(0,55).join("%")){if(alphabet.has(x))w.push(alphabet.get(x));else if(x!=="%"&&x!=="/"&&!/\s/u.test(x)&&w.length){original.push(w);w=[]}}if(w.length)original.push(w);
  const tape=gp.pages.filter(p=>p.page<56).flatMap(p=>p.indices);
  assert(original.length===2896&&original.flat().length===12956&&original.flat().every((x,i)=>x===tape[i]),"corpus mismatch");
- const cuts=[0,729,1874,3612,5506,6527,7960,9640,gp.pages.filter(p=>p.page<54).reduce((s,p)=>s+p.indices.length,0),12956];
+ const cuts=[0,729,1874,physicalPageCuts?3603:3612,5506,6527,7960,9640,gp.pages.filter(p=>p.page<54).reduce((s,p)=>s+p.indices.length,0),12956];
  const chapters=Array.from({length:9},()=>[]);let pos=0,ch=0;
  for(const group of original){while(pos===cuts[ch+1])ch++;assert(pos+group.length<=cuts[ch+1],"chapter cuts group");chapters[ch].push(group.length);pos+=group.length}
  const scopes=[...chapters,chapters.flat()];
@@ -39,8 +39,9 @@ function experiment(raw, corpus, trials=2000){
  let unrestrictedBookGe=0;for(let k=0;k<trials;k++)unrestrictedBookGe+=Number(fit(shuffle(scopes.at(-1))).best>=observed.at(-1).bestPrefix);
  const plantOrdinals=[2,13,23,59,83,133,331,1033,3301,3301];
  const plants=scopes.map((a,i)=>{const j=plantOrdinals[i]-1;const p=gaps.slice(j,j+a.length);const d=details(p);assert(d.exact&&fit(p).starts.includes(j)&&d.optimalStarts===1&&d.trainingOptimalStarts===1&&d.trainingPrefix===d.half&&d.firstOrdinal===j+1&&d.frozenSuffixMatches===d.heldoutLength,"plant not uniquely recovered");let nullMax=0;for(let k=0;k<100;k++)nullMax=Math.max(nullMax,fit(shuffle(p)).best);return {ordinal:j+1,groups:p.length,recoveredOrdinal:d.firstOrdinal,trainingPrefix:d.trainingPrefix,trainingOptimalStarts:d.trainingOptimalStarts,prefix:d.bestPrefix,heldout:d.frozenSuffixMatches,heldoutLength:d.heldoutLength,matchingHistogramShuffleMax:nullMax}});
- return {cuts,ordinalRange:[2,maxOrdinal],trials,observed,nulls,familyObserved,familyGe,unrestrictedBookGe,plants};
+ return {boundaryConvention:physicalPageCuts?'physical-page chapter start':'printed section marker (p15 after its isolated 9-rune rubric)',cuts,ordinalRange:[2,maxOrdinal],trials,observed,nulls,familyObserved,familyGe,unrestrictedBookGe,plants};
 }
 const root=path.join(__dirname,"..");
 const inputs=["resources/transcriptions/lp2-image-corrected.txt","resources/liber-primus/lp2-corpus.json"];
-console.log(JSON.stringify(experiment(...inputs.map(p=>fs.readFileSync(path.join(root,p),"utf8"))),null,2));
+const raw=inputs.map(p=>fs.readFileSync(path.join(root,p),"utf8"));
+console.log(JSON.stringify({sectionMarkers:experiment(...raw),physicalPageStarts:experiment(...raw,2000,true)},null,2));
