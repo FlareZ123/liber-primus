@@ -1,0 +1,1896 @@
+{
+  "summary": {
+    "original": {
+      "fit": 1863,
+      "holdout": 1145,
+      "merge": 36,
+      "hist": [
+        [
+          0,
+          29
+        ],
+        [
+          1,
+          20
+        ],
+        [
+          2,
+          15
+        ],
+        [
+          3,
+          12
+        ],
+        [
+          4,
+          11
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          8,
+          5
+        ],
+        [
+          11,
+          4
+        ],
+        [
+          19,
+          3
+        ],
+        [
+          22,
+          2
+        ],
+        [
+          36,
+          1
+        ]
+      ],
+      "winner": 16,
+      "fitScore": -5.010097932504515,
+      "holdScore": -4.9489231053901435,
+      "forcedScore": -4.987519963070807,
+      "stats": {
+        "ioc": 0.034499715282726294,
+        "equal": 89,
+        "counts": [
+          106,
+          95,
+          108,
+          106,
+          116,
+          103,
+          111,
+          99,
+          90,
+          96,
+          107,
+          107,
+          89,
+          123,
+          84,
+          114,
+          98,
+          105,
+          99,
+          90,
+          110,
+          85,
+          102,
+          121,
+          98,
+          93,
+          111,
+          92,
+          114
+        ]
+      },
+      "fitPreview": "W R X N Y N OE IA C X N E T O EA S EO U F B E S F L T P R EA Y TH S M S M P W EA C EA P P G NG N Y F TH J AE H F O F O X T Y EO C TH S H Y J H D F U I TH A OE P OE E C T E R A L OE AE OE TH E AE B J S Y M AE G NG Y S S TH N",
+      "holdPreview": "O W N A AE O W L D H T O Y D OE AE W N O S A Y S Y X D OE G TH NG G I E A L NG W Y R A Y EA N IA EA AE TH B E IA D L Y A F W AE U TH G T U NG N P I R X EA IA D W A L J D EA B H EA F O U F A W R I B E X A F S X NG F R P P",
+      "allFitScores": [
+        -5.018273053221869,
+        -5.017509144454288,
+        -5.01366077024045,
+        -5.01165468678077,
+        -5.021585148573701,
+        -5.019820744340009,
+        -5.012635950975559,
+        -5.022694366898984,
+        -5.018778378175127,
+        -5.024254664561798,
+        -5.018152424217951,
+        -5.017143377512453,
+        -5.020922675140527,
+        -5.011742192581589,
+        -5.012874862198384,
+        -5.022098783564599,
+        -5.010097932504515,
+        -5.019881302989453,
+        -5.022029403606002,
+        -5.012545925101226,
+        -5.017082150248956,
+        -5.020238005825456,
+        -5.013802174825664,
+        -5.0144533784990815,
+        -5.012423490755216,
+        -5.016096942118482,
+        -5.021114442031022,
+        -5.021498520658083,
+        -5.0175016113831274
+      ]
+    },
+    "controls": {
+      "p56Matches": 85,
+      "p56Length": 85,
+      "p56Consumed": 84,
+      "p57Matches": 95
+    },
+    "plants": {
+      "n": 27,
+      "exactHeldouts": 27,
+      "correct": 3417,
+      "total": 3417,
+      "seedCorrect": 27,
+      "minHoldScore": -3.255029079114481,
+      "maxHoldScore": -1.9854534975236626,
+      "nativeStats": [
+        {
+          "name": "0_warning",
+          "ioc": 0.06402946067949632,
+          "equal": 5
+        },
+        {
+          "name": "0_welcome",
+          "ioc": 0.05941596464055004,
+          "equal": 20
+        },
+        {
+          "name": "0_wisdom",
+          "ioc": 0.05250694104197289,
+          "equal": 7
+        },
+        {
+          "name": "0_koan_1",
+          "ioc": 0.06568249893025246,
+          "equal": 14
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "ioc": 0.06121524057125793,
+          "equal": 18
+        },
+        {
+          "name": "jpg107-167",
+          "ioc": 0.06981329232467814,
+          "equal": 6
+        },
+        {
+          "name": "jpg229",
+          "ioc": 0.05745658835546476,
+          "equal": 3
+        },
+        {
+          "name": "p56_an_end",
+          "ioc": 0.0700280112044818,
+          "equal": 3
+        },
+        {
+          "name": "p57_parable",
+          "ioc": 0.06270996640537514,
+          "equal": 1
+        }
+      ]
+    },
+    "nulls": [
+      {
+        "type": "uniform",
+        "min": -5.227229764600372,
+        "median": -5.066613686912176,
+        "max": -4.92932279334192,
+        "atLeastOriginal": 2
+      },
+      {
+        "type": "permuted",
+        "min": -5.197578516559062,
+        "median": -5.058937685952182,
+        "max": -4.935883713738852,
+        "atLeastOriginal": 1
+      }
+    ]
+  },
+  "original": {
+    "fit": 1863,
+    "holdout": 1145,
+    "merge": 36,
+    "hist": [
+      [
+        0,
+        29
+      ],
+      [
+        1,
+        20
+      ],
+      [
+        2,
+        15
+      ],
+      [
+        3,
+        12
+      ],
+      [
+        4,
+        11
+      ],
+      [
+        5,
+        8
+      ],
+      [
+        6,
+        6
+      ],
+      [
+        8,
+        5
+      ],
+      [
+        11,
+        4
+      ],
+      [
+        19,
+        3
+      ],
+      [
+        22,
+        2
+      ],
+      [
+        36,
+        1
+      ]
+    ],
+    "winner": 16,
+    "fitScore": -5.010097932504515,
+    "holdScore": -4.9489231053901435,
+    "forcedScore": -4.987519963070807,
+    "stats": {
+      "ioc": 0.034499715282726294,
+      "equal": 89,
+      "counts": [
+        106,
+        95,
+        108,
+        106,
+        116,
+        103,
+        111,
+        99,
+        90,
+        96,
+        107,
+        107,
+        89,
+        123,
+        84,
+        114,
+        98,
+        105,
+        99,
+        90,
+        110,
+        85,
+        102,
+        121,
+        98,
+        93,
+        111,
+        92,
+        114
+      ]
+    },
+    "fitPreview": "W R X N Y N OE IA C X N E T O EA S EO U F B E S F L T P R EA Y TH S M S M P W EA C EA P P G NG N Y F TH J AE H F O F O X T Y EO C TH S H Y J H D F U I TH A OE P OE E C T E R A L OE AE OE TH E AE B J S Y M AE G NG Y S S TH N",
+    "holdPreview": "O W N A AE O W L D H T O Y D OE AE W N O S A Y S Y X D OE G TH NG G I E A L NG W Y R A Y EA N IA EA AE TH B E IA D L Y A F W AE U TH G T U NG N P I R X EA IA D W A L J D EA B H EA F O U F A W R I B E X A F S X NG F R P P",
+    "allFitScores": [
+      -5.018273053221869,
+      -5.017509144454288,
+      -5.01366077024045,
+      -5.01165468678077,
+      -5.021585148573701,
+      -5.019820744340009,
+      -5.012635950975559,
+      -5.022694366898984,
+      -5.018778378175127,
+      -5.024254664561798,
+      -5.018152424217951,
+      -5.017143377512453,
+      -5.020922675140527,
+      -5.011742192581589,
+      -5.012874862198384,
+      -5.022098783564599,
+      -5.010097932504515,
+      -5.019881302989453,
+      -5.022029403606002,
+      -5.012545925101226,
+      -5.017082150248956,
+      -5.020238005825456,
+      -5.013802174825664,
+      -5.0144533784990815,
+      -5.012423490755216,
+      -5.016096942118482,
+      -5.021114442031022,
+      -5.021498520658083,
+      -5.0175016113831274
+    ],
+    "forcedRunes": "ᚹᚱᛉᚾᚣᚾᛟᛡᚳᛉᚾᛖᛏᚩᛠᛋᛇᚢᚠᛒᛖᛋᚠᛚᛏᛈᚱᛠᚣᚦᛋᛗᛋᛗᛈᚹᛠᚳᛠᛈᛈᚷᛝᚾᚣᚠᚦᛄᚫᚻᚠᚩᚠᚩᛉᛏᚣᛇᚳᚦᛋᚻᚣᛄᚻᛞᚠᚢᛁᚦᚪᛟᛈᛟᛖᚳᛏᛖᚱᚪᛚᛟᚫᛟᚦᛖᚫᛒᛄᛋᚣᛗᚫᚷᛝᚣᛋᛋᚦᚾᛋᛖᚳᛁᛗᚦᛝᚫᚠᛒᚷᛚᛄᚷᛉᛋᛈᛚᚫᚱᛝᚻᚱᚩᛗᛈᛈᛁᚾᛖᚹᚦᚪᚩᚩᚾᚩᚷᛈᚷᚫᚢᚹᚻᚢᚹᚷᛇᛏᚩᚠᚻᚢᛄᛠᛈᛖᛝᛋᛞᚫᚱᚳᛞᚻᛞᚱᛏᚪᚱᛝᛁᛞᛈᛇᚫᚾᛞᚹᚱᛄᛈᛡᛋᚱᛏᚠᛟᛄᚣᚾᛝᛠᛝᛉᚣᛝᛉᛏᚣᚩᚠᚢᛏᛒᛚᛟᚾᛖᛋᛡᛄᛒᚱᛗᛖᛄᚳᛗᛄᛠᛠᚢᚱᚱᚱᛋᛞᛈᛡᛖᛈᛒᛈᛚᛈᛉᛗᚻᚹᛁᚻᛗᚩᛗᚻᛝᚣᚫᚢᛁᛋᚳᚫᛁᛈᚦᛚᚷᛋᚳᛚᛉᛁᛠᚫᚫᚹᚳᛠᛄᛈᛄᚪᚢᚾᚱᛒᚠᚦᛠᛇᚻᛏᚳᚢᚾᛄᛚᛁᛇᛗᚫᚷᚢᛠᛡᛉᚠᛉᛟᛁᚳᛋᚣᛚᛖᛇᚢᛒᛠᚦᛈᛚᛒᛏᛖᛞᚳᛇᛋᛠᚹᚠᛈᚢᛄᛚᚣᛇᛚᛟᛁᚫᛏᛉᚣᛋᛟᛒᚷᛈᚫᚳᛖᛗᛈᚪᚠᚳᚣᚦᚱᛉᛡᚷᚻᛁᛒᛁᛖᚣᛗᛇᚱᚣᚾᛞᛚᛄᛏᛖᛇᛖᛞᛉᛚᛟᛟᚩᛝᚣᚻᛟᛝᛒᛒᚣᛠᛡᛝᚾᛖᛈᛋᚱᛉᛖᛠᛚᚪᛠᚹᛟᚻᚪᚳᚩᚾᛚᛡᛈᛗᚠᛄᛄᚹᚻᚪᚪᚷᛈᛁᛞᛡᚳᛉᚾᚦᚻᛒᛏᛒᛏᛈᛟᛋᚠᛞᚳᛄᛚᛇᚻᛒᛄᛇᛟᚻᚠᛁᛟᛞᛡᚢᚫᛡᚩᚷᚩᛁᚫᚷᚳᛝᛇᛄᛡᛗᚣᚳᚦᚾᛒᛋᛈᚻᛋᚹᛇᚷᚱᚳᚩᛏᛈᛞᛖᚷᚹᛒᚱᛏᚹᚷᛉᚻᚾᚠᛏᛄᚢᛄᛝᚹᛝᛁᚪᚢᛋᛞᛇᛁᚫᚾᛖᛗᛁᚾᛞᛒᚾᚳᛡᛗᚠᛠᚠᚱᛝᚣᛒᛚᛖᚷᚻᛗᚩᛈᛚᚢᚪᚳᛒᚣᛠᛖᚷᚢᛖᛡᛇᚹᚣᚠᚷᛟᛇᚹᛇᚻᛡᚳᛚᛚᛉᛒᚦᚠᚫᚻᛒᚳᛠᚱᛁᛡᚪᛡᚾᚻᛞᛈᛟᚫᚪᛖᚹᛈᛞᛒᛄᛋᛁᚦᚱᚫᛖᚣᛟᛒᚪᚫᚷᛁᚹᚷᛁᚩᛄᛈᚳᚪᛚᚩᚻᛝᛚᛄᛗᛒᚳᚳᛄᚾᛈᚳᛠᛄᛝᛇᚩᚷᛒᚠᛟᛄᚠᚩᛗᛗᚳᛈᛟᛉᚳᛇᚾᛈᛄᛈᛁᛋᛏᛝᛖᚳᛋᛖᚫᛝᛟᚾᚣᚣᛏᛖᚻᚠᚢᛚᛠᚻᛇᚳᚳᚷᛠᛟᚫᚢᛇᛏᛒᚻᚫᚳᛡᚻᛋᛡᛒᚾᛉᛈᚣᛞᚾᛞᛞᛗᛡᛏᚹᛋᚾᚩᛄᛖᚫᛇᛇᚫᛡᛞᛖᛟᚠᚣᚫᚢᚫᛗᚫᚻᛄᛝᛄᚪᚾᛚᛝᚳᛞᚠᛁᛏᚪᛞᛠᛖᛇᛠᛉᛞᚩᚱᚣᚩᚦᛟᛟᛝᛞᛋᛟᚷᛝᚻᛠᛇᛁᛞᛠᚹᚢᛈᚪᛇᚷᛏᛠᚱᛝᚹᚱᛚᛝᛈᛁᚢᚢᛚᛚᛠᚱᚣᛒᛈᛇᚢᛠᛋᚱᛁᛟᛝᚻᛞᛉᚱᛉᚳᚦᛋᚩᚳᚦᛚᛝᛇᛡᚩᛖᛠᚠᚩᚹᚹᚢᛒᚪᛋᛄᚦᚱᛝᚷᛡᚣᛏᛁᚻᚠᛠᛚᛉᛈᚷᛉᛚᛗᚪᛄᚣᛒᛞᛠᚱᚱᛖᛗᚦᚦᛞᛈᛁᛉᚳᚹᛈᛗᚠᛝᛚᚠᛄᛚᛠᚹᚣᚩᛄᛈᛄᛁᚣᚣᛉᚦᛚᛖᛝᛁᚦᛈᚱᚻᛖᛄᛗᛈᛖᚾᚣᛄᚾᛉᚷᛡᛗᚾᛁᚱᚱᛖᚻᛈᛚᚷᚾᚱᛡᚪᚷᛇᚷᛡᚱᛞᛟᛏᚷᛠᛉᛇᛗᛏᚠᛗᛋᚹᛟᛞᛄᛠᚷᛠᛚᚩᛠᛚᛡᛗᛚᛇᚫᛝᚣᛖᛚᚠᛖᚷᚦᛖᛗᛄᚱᛏᚫᚢᛒᛈᛇᛞᚢᛋᚠᛖᛒᛇᛋᛏᚪᚢᛏᚳᛒᛄᛒᚳᛖᛡᚪᚢᛈᛏᛄᛄᛟᚹᚾᚦᚷᚳᚢᚠᚩᛞᛖᛒᛠᚦᚾᛟᛄᚪᚳᛉᛡᚫᚷᛞᚱᚪᛗᚦᛝᚳᛠᛗᛁᛉᛄᛟᛠᛄᚷᚣᛋᛈᚦᛚᚷᚻᛟᚱᛄᚻᚩᚷᛡᛝᛈᚠᛋᚱᚦᛠᚪᛟᛞᚪᚠᚩᛞᛒᛈᛝᛡᚩᛚᛒᚹᛝᚱᚷᚾᛟᚳᛄᚫᚣᛁᛋᚩᚷᛠᚣᚣᚠᚹᛁᛉᚫᚾᛞᚷᛚᛒᛝᚷᛉᛗᛚᚩᚣᚳᛇᚱᛒᚩᚢᛏᛈᚫᛉᚠᚢᛚᚩᛈᛗᛝᛋᚦᛋᛁᚷᚾᛏᚦᛞᛈᚻᛚᚩᚪᛏᛡᛚᚱᛖᛉᚻᛈᛖᛏᚠᚻᛞᚷᚷᚫᚫᚫᚠᚠᛉᛗᛄᚦᚱᚳᚩᚪᚳᛈᚱᚹᛁᚣᛝᚫᛚᚳᛁᚣᚳᛋᛈᛉᚦᚳᚹᛏᚳᚻᛟᛇᛋᚳᛇᚦᛚᚢᛇᚱᚫᛖᚫᛞᛈᚳᚳᚳᚻᛒᚪᛗᛈᚣᛞᛈᛁᛋᚣᛠᚱᛏᛉᚦᛒᛏᚱᛖᚫᛈᚳᚻᚢᛒᚾᛡᚪᚷᛉᚣᚩᚣᛞᛗᚢᛟᛖᚪᛒᛇᛖᛏᛏᚣᛞᛖᚢᚱᛖᚢᚱᛈᚷᚻᚩᛗᚾᚢᛇᛏᚠᛟᛉᛡᚾᚫᛒᛠᛖᛞᛁᛖᛚᚹᚷᚻᛏᛖᚦᚣᛋᛁᚪᚱᛄᛖᛈᛚᚪᛄᛝᚦᚫᚦᛋᛡᚦᛁᛟᚷᛁᛒᛇᛚᚾᚹᚢᚳᚳᛉᛏᛚᚦᚫᛋᚷᚫᛟᛠᛚᛟᛇᚣᛏᛞᛗᚾᚢᛠᚪᚣᚾᛈᛖᛠᚦᚳᚫᛖᚻᚾᛡᛁᚾᛇᚩᚠᛠᛞᚹᛇᚪᚣᚫᚱᛈᚳᛠᚦᚪᛏᚱᛄᛉᛟᛁᛡᚢᚹᚱᚪᛒᚦᚩᚪᛠᛉᚹᛁᚫᚫᛋᛞᚷᛉᚾᛏᛠᚹᛖᚱᛉᛄᛡᛝᛗᛇᛉᛚᚦᛡᚾᛁᛡᛠᛚᛒᚢᛝᚣᚪᛁᚱᛞᛄᛚᚻᛄᛗᚱᛠᚦᚱᚩᛠᛋᚫᛒᛉᛉᚳᚠᚠᚢᛇᛚᛗᛗᚾᚣᛟᛄᛒᚣᛗᚪᚫᛉᛗᚾᚱᚠᛄᚹᚱᛚᚠᚪᚦᚱᛝᛟᛈᚩᚹᛠᚩᛋᚪᚠᚣᛋᚱᚱᛗᛋᛁᚾᚷᛁᚦᚾᚢᚾᛋᚪᚦᛈᚷᚻᚠᛄᛏᚷᛟᛟᛠᚩᚪᚻᚣᚱᛖᛇᛖᛠᛏᚦᚫᛠᚪᚣᚱᚳᛝᚪᛝᚩᛠᛁᛗᛏᛖᚫᛉᛄᚣᚫᛟᚾᚠᚠᛄᛋᛇᚪᛚᛡᛋᚠᚷᛇᛗᚠᚫᛟᚩᛚᚠᚳᛁᛗᚻᛝᚣᚳᛗᛚᛝᚻᛇᛄᛒᛋᛁᚢᚱᛚᚩᛋᛋᛒᛠᛡᛈᛞᛖᛄᛈᚪᛏᚷᚣᛈᚦᚠᚢᛖᚹᚦᚠᚢᛝᛇᚦᛚᛒᛈᛞᛗᚦᛁᚦᛚᚪᛗᛡᛄᛈᚾᛗᚦᛋᛒᛈᚷᛈᚫᛗᛒᚫᚹᚦᛝᚦᛏᛟᛟᚩᛏᛇᛚᚱᚻᛁᛉᚱᛚᛋᛉᛠᛄᛇᛡᚫᛈᛒᚻᛗᛏᛄᛈᛗᚢᛞᛚᚱᛉᛒᚻᛈᚦᛁᚹᚦᚷᛏᛒᛠᚷᚣᛠᚠᚹᛋᚳᛠᛄᚪᛄᛏᚳᛠᚻᛖᚩᛈᛟᚦᛉᛟᛁᛞᚻᛏᚢᚫᛠᛁᛁᚫᚪᚱᛡᚢᛒᛈᛟᚢᛏᛈᛗᚳᛖᚱᛈᛖᚢᛋᛇᛇᛞᚪᛋᚠᚾᚢᚹᚹᚣᛒᚢᚦᛠᚩᚠᛠᚣᛈᚷᛟᚱᛈᛇᚾᛉᚹᚣᛠᛒᛋᚱᚱᛋᛋᛒᚫᚩᛄᚱᚻᚩᚻᛞᛚᛁᚠᛖᛁᛗᛟᛚᚪᛇᛠᛖᚪᛞᚷᚩᛇᚦᛟᛏᛖᚣᛚᛋᚠᚣᚪᚣᚠᚦᛒᚦᚩᛗᛁᚪᛁᚠᛝᛉᛡᛠᛞᚣᛟᚳᛡᚾᚩᛄᚠᚪᚣᛇᚩᚢᛇᛠᚳᚹᛁᛟᛉᛝᚩᚹᚾᚪᚫᚩᚹᛚᛞᚻᛏᚩᚣᛞᛟᚫᚹᚾᚩᛋᚪᚣᛋᚣᛉᛞᛟᚷᚦᛝᚷᛁᛖᚪᛚᛝᚹᚣᚱᚪᚣᛠᚾᛡᛠᚫᚦᛒᛖᛡᛞᛚᚣᚪᚠᚹᚫᚢᚦᚷᛏᚢᛝᚾᛈᛁᚱᛉᛠᛡᛞᚹᚪᛚᛄᛞᛠᛒᚻᛠᚠᚩᚢᚠᚪᚹᚱᛁᛒᛖᛉᚪᚠᛋᛉᛝᚠᚱᛈᛈᛟᛠᚦᛚᛚᛚᛇᛠᛡᛡᚦᛒᚳᚩᚻᛁᛗᚫᛚᚠᚪᛏᛉᛋᛒᛟᛞᚷᚢᚱᛋᛒᛗᚣᛉᚾᛏᛄᛄᛚᚢᛠᚻᚾᚹᛡᚠᛠᚠᛏᛇᚷᛋᛈᛁᚹᛒᚳᚹᛉᛞᛟᚫᚹᛖᛟᚪᛞᛠᛖᛚᛞᛡᛄᚳᛋᚪᚣᚱᚩᚻᛈᛚᚹᛁᚩᚱᛝᚳᚣᛈᚦᛗᚩᛠᛈᚣᚢᚹᚳᛋᛈᛡᚾᚢᛄᛋᚦᚷᚷᚦᛖᛝᚣᛞᚻᛞᚱᚾᚢᛉᛈᛋᛠᛡᚫᚩᛏᛗᚣᛇᛈᛏᛁᛇᛉᚻᚹᛋᚻᛡᚾᚪᛋᛏᚣᚫᚩᚠᚠᚳᛖᛇᚷᛏᛞᚦᚾᛁᚷᛒᛏᚹᚱᚹᛄᛗᛝᚻᛄᛟᚳᛈᚠᛁᚳᚣᚦᚷᛈᛉᛟᚾᚷᚹᛄᛈᛄᚱᚦᛈᛞᛁᛖᛗᛗᛁᚣᛋᛄᚣᛗᛁᚪᚦᚦᚷᚣᛠᚦᚠᛏᚻᛁᚳᛇᛋᚫᛏᛒᛗᚩᚩᛋᛠᚠᛞᚫᛝᛗᛈᚠᛁᛋᛞᚦᛟᛄᚠᛋᚣᛈᛠᛝᛁᛟᛇᚷᛇᚻᚫᛡᚠᛞᛞᚪᛟᚾᛒᛠᚠᚢᛞᚹᚣᛒᛒᚱᛋᛋᚣᛠᚾᚩᚷᛝᛄᛉᛡᛄᛇᚹᚩᚪᛠᛒᛈᛁᚷᚠᚫᚳᚱᚢᚷᛞᚻᛁᛈᛞᚫᚦᚪᛒᛟᛈᛟᛞᛚᛚᚫᚷᚷᚳᚱᛞᛠᚹᚠᛄᛁᛟᛄᛚᛁᚷᛚᚹᛁᛟᛋᚣᛖᚩᛞᛖᛡᚳᛖᛏᛞᛚᚢᛄᛒᛟᛄᛖᛏᛈᚱᛉᚩᚢᛄᛠᛈᛄᚾᛞᚩᚹᚾᛋᚪᛈᚳᛞᚱᚻᛝᚣᛋᚱᚱᛋᚷᛝᛁᚹᚷᚻᛡᛞᚠᛒᛋᛞᛡᛟᚷᛈᚷᚦᚻᚩᛏᛏᛝᚦᛄᚻᚪᛡᛈᛗᚩᛖᛗᛖᚣᛝᚷᛠᛝᛡᛉᚳᛁᚳᚢᚢᛖᛋᚷᛠᚣᚷᚫᚦᚾᚦᛉᛇᚾᛡᛗᚫᛠᚹᛁᛄᚢᛞᚢᚫᚦᛗᚪᚳᛞᚾᚱᛡᛖᛞᛒᚦᛟᚹᛡᚫᛋᛄᛞᛠᛏᚱᛋᚩᛞᚱᚹᛡᚷᚱᚠᛒᚷᛈᚦᚳᛁᚩᛏᛠᚣᛇᛉᛈᛇᚹᚣᛏᚱᛏᚹᚾᚷᚦᚠᛝᚪᛏᛒᛁᛡᚦᚢᚠᚻᛡᚹᛞᚻᛇᛟᛚᚻᚷᛉᛁᛡᚦᛇᛖᚩᛗᚱᛁᛉᚷᛏᚦᛝᛇᛄᚣᛠᛚᛚᚦᛡᛚᛄᛄᛟᛏᛚᚢᚩᛒᛚᚦᛟᚳᛗᛚᛗᚢᚷᛏᛏᚻᛁᛚᚦᛠᛈᛁᛟᚢᛟᛞᛟᚢᛉᚾᛋᚳᛁᚹᚢᚫᚦᛉᛏᛒᛏᚪᛇᛋᛡᛈᛞᚳᚪᛗᚳᛡᚩᚩᚳᚳᚻᚱᚪᛒᚦᛞᚳᚷᛞᛞᚱᛝᛖᛖᚻᚫᚪᚪᛚᛞᚷᛡᚣᚻᛝᚹᛡᛝᚹᛚᛗᚠᚠᚫᚷᛇᛞᚷᚩᚻᛖᚱᛞᛚᛡᚩᛡᛄᚠᚹᚣᛖᛒᚠᛟᚩᛏᛁᛒᛟᛝᚾᚣᚷᚪᛡᚱᚱᛉᚩᛈᛒᛟᛠᚹᚾᚫᚩᛒᛝᛖᚪᚩᛖᛞᚢᛋᛇᚹᛄᛡᛁᛡᚣᛟᚳᚩᛠᛉᚹᚩᛡᛉᚻᛗᚪᛁᛈᚪᛇᚦᛁᛒᚩᛋᛇᚢᚫᚩᚦᛟᛠᛗᚾᛁᚢᛒᛈᚾᛟᛟᛖᛒᛄᚦᛖᚳᛗᚢᛖᛗᛋᚩᚱᚷᛟᛚᛠᚠᚳᛠᚠᛗᛉᚦᚫᚳᛒᛖᛟᛒᛠᚠᛄᛋᚹᛡᚹᛗᚪᛞᛋᚩᚳᛞᛁᛄᛏᛠᚩᛏᛒᛈᚾᚷᛝᚪᚷᚣᛟᛞᚪᚩᛉᛚᛏᚦᛡᛇᚹᛞᚪᚾᛡᚾᛒᚾᛈᛋᚹᚻᚦᚳᚳᚩᚢᚠᚾᛠᚣᛟᛇᚪᛋᛒᛏᛞᛟᛗᛟᚷᚠᛞᚻᛞᛞᛉᛏᛏᚫᛋᚢᚱᛗᛞᛈᚱᚠᚠᚾᚠᛚᚠᚾᚹᛇᚦᛈᛇᚦᛋᚦᚢᛄᚷᛋᛝᚱᛄᚣᛄᛠᚣᛖᚩᛋᚹᛉᛈᚹᛈᚣᛝᛏᛉᛝᛋᚷᚻᛞᛄᚢᚾᛟᚹᚹᛖᚣᚾᛉᛞᛒᚩᛏᛟᛄᚪᚳᚦᛇᚢᛚᛋᚢᚾᛋᚷᚢᛈᛚᚱᚩᛡᚣᚢᛝᛟᛞᛞᛠᛒᚠᚢᚾᚱᛗᛋᛄᛟᛡᚢᛝᛝᛇᚷᛁᛒᚱᛒᛋᚾᛞᛁᛚᛗᛏᛏᛒᚫᛒᛚᛏᛡᛈᚾᛇᚩᚪᚠᛞᚳᛞᛁᚩᛞᛇᚹᚣᚹᚠᛚᛚᚷᚹᚱᚪᛄᛁᚱᛝᛡᚱᛏᛚᚻᚷᛠᚢᛒᛝᛠᚱᛡᚠᛝᚫᛋᚪᚹᚩᛡᛚᛞᛡᛠᛟᚫᚻᚢᚪᛁᚷᚠᚻᚦᚹᛠᚾᚩᚻᛝᛋᛞᚹᚣᛞᛁᚱᚫᛚᚢ"
+  },
+  "plants": [
+    {
+      "name": "0_warning",
+      "seed": 0,
+      "n": 184,
+      "fit": 113,
+      "selected": 0,
+      "merge": 36,
+      "fitScore": -2.740894785526955,
+      "holdScore": -2.5665450900685034,
+      "trueHoldScore": -2.5665450900685034,
+      "holdCorrect": 71,
+      "holdLength": 71
+    },
+    {
+      "name": "0_warning",
+      "seed": 7,
+      "n": 184,
+      "fit": 113,
+      "selected": 7,
+      "merge": 36,
+      "fitScore": -2.740894785526955,
+      "holdScore": -2.5665450900685034,
+      "trueHoldScore": -2.5665450900685034,
+      "holdCorrect": 71,
+      "holdLength": 71
+    },
+    {
+      "name": "0_warning",
+      "seed": 19,
+      "n": 184,
+      "fit": 113,
+      "selected": 19,
+      "merge": 36,
+      "fitScore": -2.740894785526955,
+      "holdScore": -2.5665450900685034,
+      "trueHoldScore": -2.5665450900685034,
+      "holdCorrect": 71,
+      "holdLength": 71
+    },
+    {
+      "name": "0_welcome",
+      "seed": 0,
+      "n": 515,
+      "fit": 318,
+      "selected": 0,
+      "merge": 47,
+      "fitScore": -2.6389597397395335,
+      "holdScore": -2.432504365292477,
+      "trueHoldScore": -2.432504365292477,
+      "holdCorrect": 197,
+      "holdLength": 197
+    },
+    {
+      "name": "0_welcome",
+      "seed": 7,
+      "n": 515,
+      "fit": 318,
+      "selected": 7,
+      "merge": 47,
+      "fitScore": -2.6389597397395335,
+      "holdScore": -2.432504365292477,
+      "trueHoldScore": -2.432504365292477,
+      "holdCorrect": 197,
+      "holdLength": 197
+    },
+    {
+      "name": "0_welcome",
+      "seed": 19,
+      "n": 515,
+      "fit": 318,
+      "selected": 19,
+      "merge": 47,
+      "fitScore": -2.6389597397395335,
+      "holdScore": -2.432504365292477,
+      "trueHoldScore": -2.432504365292477,
+      "holdCorrect": 197,
+      "holdLength": 197
+    },
+    {
+      "name": "0_wisdom",
+      "seed": 0,
+      "n": 157,
+      "fit": 97,
+      "selected": 0,
+      "merge": 83,
+      "fitScore": -2.740398721393434,
+      "holdScore": -3.255029079114481,
+      "trueHoldScore": -3.255029079114481,
+      "holdCorrect": 60,
+      "holdLength": 60
+    },
+    {
+      "name": "0_wisdom",
+      "seed": 7,
+      "n": 157,
+      "fit": 97,
+      "selected": 7,
+      "merge": 83,
+      "fitScore": -2.740398721393434,
+      "holdScore": -3.255029079114481,
+      "trueHoldScore": -3.255029079114481,
+      "holdCorrect": 60,
+      "holdLength": 60
+    },
+    {
+      "name": "0_wisdom",
+      "seed": 19,
+      "n": 157,
+      "fit": 97,
+      "selected": 19,
+      "merge": 83,
+      "fitScore": -2.740398721393434,
+      "holdScore": -3.255029079114481,
+      "trueHoldScore": -3.255029079114481,
+      "holdCorrect": 60,
+      "holdLength": 60
+    },
+    {
+      "name": "0_koan_1",
+      "seed": 0,
+      "n": 780,
+      "fit": 483,
+      "selected": 0,
+      "merge": 46,
+      "fitScore": -2.2762969055793296,
+      "holdScore": -2.65550877453901,
+      "trueHoldScore": -2.65550877453901,
+      "holdCorrect": 297,
+      "holdLength": 297
+    },
+    {
+      "name": "0_koan_1",
+      "seed": 7,
+      "n": 780,
+      "fit": 483,
+      "selected": 7,
+      "merge": 46,
+      "fitScore": -2.2762969055793296,
+      "holdScore": -2.65550877453901,
+      "trueHoldScore": -2.65550877453901,
+      "holdCorrect": 297,
+      "holdLength": 297
+    },
+    {
+      "name": "0_koan_1",
+      "seed": 19,
+      "n": 780,
+      "fit": 483,
+      "selected": 19,
+      "merge": 46,
+      "fitScore": -2.2762969055793296,
+      "holdScore": -2.65550877453901,
+      "trueHoldScore": -2.65550877453901,
+      "holdCorrect": 297,
+      "holdLength": 297
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "seed": 0,
+      "n": 755,
+      "fit": 467,
+      "selected": 0,
+      "merge": 44,
+      "fitScore": -2.7229595793691406,
+      "holdScore": -2.6249753976774315,
+      "trueHoldScore": -2.6249753976774315,
+      "holdCorrect": 288,
+      "holdLength": 288
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "seed": 7,
+      "n": 755,
+      "fit": 467,
+      "selected": 7,
+      "merge": 44,
+      "fitScore": -2.7229595793691406,
+      "holdScore": -2.6249753976774315,
+      "trueHoldScore": -2.6249753976774315,
+      "holdCorrect": 288,
+      "holdLength": 288
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "seed": 19,
+      "n": 755,
+      "fit": 467,
+      "selected": 19,
+      "merge": 44,
+      "fitScore": -2.7229595793691406,
+      "holdScore": -2.6249753976774315,
+      "trueHoldScore": -2.6249753976774315,
+      "holdCorrect": 288,
+      "holdLength": 288
+    },
+    {
+      "name": "jpg107-167",
+      "seed": 0,
+      "n": 319,
+      "fit": 197,
+      "selected": 0,
+      "merge": 35,
+      "fitScore": -2.535432532611308,
+      "holdScore": -2.346956959347316,
+      "trueHoldScore": -2.346956959347316,
+      "holdCorrect": 122,
+      "holdLength": 122
+    },
+    {
+      "name": "jpg107-167",
+      "seed": 7,
+      "n": 319,
+      "fit": 197,
+      "selected": 7,
+      "merge": 35,
+      "fitScore": -2.535432532611308,
+      "holdScore": -2.346956959347316,
+      "trueHoldScore": -2.346956959347316,
+      "holdCorrect": 122,
+      "holdLength": 122
+    },
+    {
+      "name": "jpg107-167",
+      "seed": 19,
+      "n": 319,
+      "fit": 197,
+      "selected": 19,
+      "merge": 35,
+      "fitScore": -2.535432532611308,
+      "holdScore": -2.346956959347316,
+      "trueHoldScore": -2.346956959347316,
+      "holdCorrect": 122,
+      "holdLength": 122
+    },
+    {
+      "name": "jpg229",
+      "seed": 0,
+      "n": 89,
+      "fit": 55,
+      "selected": 0,
+      "merge": null,
+      "fitScore": -2.0133206519493685,
+      "holdScore": -2.5059759064185,
+      "trueHoldScore": -2.5059759064185,
+      "holdCorrect": 34,
+      "holdLength": 34
+    },
+    {
+      "name": "jpg229",
+      "seed": 7,
+      "n": 89,
+      "fit": 55,
+      "selected": 7,
+      "merge": null,
+      "fitScore": -2.0133206519493685,
+      "holdScore": -2.5059759064185,
+      "trueHoldScore": -2.5059759064185,
+      "holdCorrect": 34,
+      "holdLength": 34
+    },
+    {
+      "name": "jpg229",
+      "seed": 19,
+      "n": 89,
+      "fit": 55,
+      "selected": 19,
+      "merge": null,
+      "fitScore": -2.0133206519493685,
+      "holdScore": -2.5059759064185,
+      "trueHoldScore": -2.5059759064185,
+      "holdCorrect": 34,
+      "holdLength": 34
+    },
+    {
+      "name": "p56_an_end",
+      "seed": 0,
+      "n": 85,
+      "fit": 52,
+      "selected": 0,
+      "merge": 45,
+      "fitScore": -2.345712393022892,
+      "holdScore": -2.6586840621545766,
+      "trueHoldScore": -2.6586840621545766,
+      "holdCorrect": 33,
+      "holdLength": 33
+    },
+    {
+      "name": "p56_an_end",
+      "seed": 7,
+      "n": 85,
+      "fit": 52,
+      "selected": 7,
+      "merge": 45,
+      "fitScore": -2.345712393022892,
+      "holdScore": -2.6586840621545766,
+      "trueHoldScore": -2.6586840621545766,
+      "holdCorrect": 33,
+      "holdLength": 33
+    },
+    {
+      "name": "p56_an_end",
+      "seed": 19,
+      "n": 85,
+      "fit": 52,
+      "selected": 19,
+      "merge": 45,
+      "fitScore": -2.345712393022892,
+      "holdScore": -2.6586840621545766,
+      "trueHoldScore": -2.6586840621545766,
+      "holdCorrect": 33,
+      "holdLength": 33
+    },
+    {
+      "name": "p57_parable",
+      "seed": 0,
+      "n": 95,
+      "fit": 58,
+      "selected": 0,
+      "merge": 53,
+      "fitScore": -2.795321846092612,
+      "holdScore": -1.9854534975236626,
+      "trueHoldScore": -1.9854534975236626,
+      "holdCorrect": 37,
+      "holdLength": 37
+    },
+    {
+      "name": "p57_parable",
+      "seed": 7,
+      "n": 95,
+      "fit": 58,
+      "selected": 7,
+      "merge": 53,
+      "fitScore": -2.795321846092612,
+      "holdScore": -1.9854534975236626,
+      "trueHoldScore": -1.9854534975236626,
+      "holdCorrect": 37,
+      "holdLength": 37
+    },
+    {
+      "name": "p57_parable",
+      "seed": 19,
+      "n": 95,
+      "fit": 58,
+      "selected": 19,
+      "merge": 53,
+      "fitScore": -2.795321846092612,
+      "holdScore": -1.9854534975236626,
+      "trueHoldScore": -1.9854534975236626,
+      "holdCorrect": 37,
+      "holdLength": 37
+    }
+  ],
+  "nulls": [
+    {
+      "type": "uniform",
+      "fitScore": -5.105683155188905,
+      "holdScore": -5.033115933328575,
+      "merge": 36
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.049192563518434,
+      "holdScore": -5.066150232206317,
+      "merge": 31
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.072627579654734,
+      "holdScore": -5.181537866876341,
+      "merge": 83
+    },
+    {
+      "type": "uniform",
+      "fitScore": -4.988376884409524,
+      "holdScore": -5.069723861508962,
+      "merge": 42
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.11848973101921,
+      "holdScore": -5.07633311659545,
+      "merge": 72
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.066740177019337,
+      "holdScore": -5.077232372029539,
+      "merge": 63
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.135901375004597,
+      "holdScore": -5.0587148458862465,
+      "merge": 68
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.067264145362073,
+      "holdScore": -5.062764943289113,
+      "merge": 46
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.064171080421639,
+      "holdScore": -5.006901584052274,
+      "merge": 56
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.056148668778805,
+      "holdScore": -5.098447356456449,
+      "merge": 148
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.038795534708573,
+      "holdScore": -5.032869062191803,
+      "merge": 35
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.088172540418603,
+      "holdScore": -5.1119271948794385,
+      "merge": 36
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.069877623725415,
+      "holdScore": -5.117492548564055,
+      "merge": 157
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.0355904654569335,
+      "holdScore": -5.044351115549208,
+      "merge": 75
+    },
+    {
+      "type": "uniform",
+      "fitScore": -4.996990639291733,
+      "holdScore": -5.047171340115102,
+      "merge": 41
+    },
+    {
+      "type": "uniform",
+      "fitScore": -4.950550844393555,
+      "holdScore": -5.031848264175347,
+      "merge": 50
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.054737632383764,
+      "holdScore": -5.09059991083764,
+      "merge": 96
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.080446806679957,
+      "holdScore": -5.072146488495998,
+      "merge": 74
+    },
+    {
+      "type": "uniform",
+      "fitScore": -4.9864934930945015,
+      "holdScore": -5.134431005296704,
+      "merge": 308
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.044738348399403,
+      "holdScore": -5.086465589179376,
+      "merge": 79
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.006243419191083,
+      "holdScore": -5.015482878294338,
+      "merge": 87
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.074784101527394,
+      "holdScore": -4.998383835454113,
+      "merge": 23
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.059841839487397,
+      "holdScore": -5.141041632340328,
+      "merge": 61
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.0624239224619645,
+      "holdScore": -5.1159526398423605,
+      "merge": 82
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.050626852322305,
+      "holdScore": -5.020418096215827,
+      "merge": 116
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.1110631856947,
+      "holdScore": -5.108967658157686,
+      "merge": 180
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.096405597655474,
+      "holdScore": -5.14615698525568,
+      "merge": 69
+    },
+    {
+      "type": "uniform",
+      "fitScore": -4.975845848856378,
+      "holdScore": -4.979608876390715,
+      "merge": 128
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.059532322269511,
+      "holdScore": -5.1150139325081465,
+      "merge": 55
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.0224825212665785,
+      "holdScore": -5.009247047214472,
+      "merge": 75
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.058508298943616,
+      "holdScore": -5.073968739836881,
+      "merge": 78
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.069323080158047,
+      "holdScore": -5.0458274676399055,
+      "merge": 130
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.081625316041128,
+      "holdScore": -5.0426975097509565,
+      "merge": 133
+    },
+    {
+      "type": "uniform",
+      "fitScore": -4.92780362689293,
+      "holdScore": -5.057514639283492,
+      "merge": 95
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.132566865037882,
+      "holdScore": -4.991280405440374,
+      "merge": 113
+    },
+    {
+      "type": "uniform",
+      "fitScore": -4.9778630045734396,
+      "holdScore": -5.110476839505428,
+      "merge": 90
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.065316432280795,
+      "holdScore": -5.163950922571772,
+      "merge": 56
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.036358411450665,
+      "holdScore": -5.0836133903294805,
+      "merge": 149
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.059835870254225,
+      "holdScore": -5.062969412241922,
+      "merge": 103
+    },
+    {
+      "type": "uniform",
+      "fitScore": -4.917185196338966,
+      "holdScore": -5.005324393273511,
+      "merge": 57
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.081426295383435,
+      "holdScore": -5.1127637744550745,
+      "merge": 54
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.061359607914625,
+      "holdScore": -5.0626036768842235,
+      "merge": 47
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.121503994240196,
+      "holdScore": -4.969132487515542,
+      "merge": 117
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.00623357268773,
+      "holdScore": -5.05600770047945,
+      "merge": 113
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.1010164307644965,
+      "holdScore": -5.172346575191295,
+      "merge": 36
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.026175062562418,
+      "holdScore": -5.043177913515299,
+      "merge": 67
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.0820857378067865,
+      "holdScore": -5.073247608835112,
+      "merge": 36
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.023210230979302,
+      "holdScore": -4.989938447905867,
+      "merge": 113
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.11087357379948,
+      "holdScore": -5.061730147001803,
+      "merge": 108
+    },
+    {
+      "type": "uniform",
+      "fitScore": -4.9995245756716695,
+      "holdScore": -5.124383255023302,
+      "merge": 142
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.123881230192065,
+      "holdScore": -5.003815293142271,
+      "merge": 26
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.079237064034444,
+      "holdScore": -5.075945140339184,
+      "merge": 67
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.02877133940471,
+      "holdScore": -5.059232183897019,
+      "merge": 56
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.035573950313582,
+      "holdScore": -5.052370090887889,
+      "merge": 45
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.096790143192198,
+      "holdScore": -5.00143385705313,
+      "merge": 28
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.06309823924868,
+      "holdScore": -5.14290859396343,
+      "merge": 63
+    },
+    {
+      "type": "uniform",
+      "fitScore": -4.98815852837443,
+      "holdScore": -4.970428900790889,
+      "merge": 51
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.064823919585139,
+      "holdScore": -5.068637161413214,
+      "merge": 81
+    },
+    {
+      "type": "uniform",
+      "fitScore": -4.939479696372004,
+      "holdScore": -5.09641825449987,
+      "merge": 106
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.083040063090951,
+      "holdScore": -5.027184106540464,
+      "merge": 34
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.064926794823179,
+      "holdScore": -5.065707887191587,
+      "merge": 85
+    },
+    {
+      "type": "uniform",
+      "fitScore": -4.99760740016372,
+      "holdScore": -5.027044210588466,
+      "merge": 110
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.156448478261815,
+      "holdScore": -5.088727229623823,
+      "merge": 50
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.1016123194144205,
+      "holdScore": -5.084285339790386,
+      "merge": 107
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.0552347041891785,
+      "holdScore": -5.0959364330040176,
+      "merge": 68
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.081421481050016,
+      "holdScore": -5.08604483385827,
+      "merge": 64
+    },
+    {
+      "type": "uniform",
+      "fitScore": -4.987688870388589,
+      "holdScore": -5.153320303703807,
+      "merge": 92
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.0651960993901035,
+      "holdScore": -5.1090426894630605,
+      "merge": 72
+    },
+    {
+      "type": "uniform",
+      "fitScore": -4.999677201100052,
+      "holdScore": -5.088874192564116,
+      "merge": 96
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.045853943109169,
+      "holdScore": -5.047517722520719,
+      "merge": 73
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.074032938311425,
+      "holdScore": -5.048545333014575,
+      "merge": 26
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.091564585611049,
+      "holdScore": -5.0715339654993326,
+      "merge": 100
+    },
+    {
+      "type": "uniform",
+      "fitScore": -4.96326191115782,
+      "holdScore": -5.005906422285859,
+      "merge": 46
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.0784787869514965,
+      "holdScore": -5.066613686912176,
+      "merge": 108
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.099524761911622,
+      "holdScore": -5.117276440019533,
+      "merge": 120
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.061740287678483,
+      "holdScore": -5.0168838218872525,
+      "merge": 48
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.009244141163694,
+      "holdScore": -5.077586093681233,
+      "merge": 81
+    },
+    {
+      "type": "uniform",
+      "fitScore": -4.972197643633951,
+      "holdScore": -5.081758654874437,
+      "merge": 128
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.015537591058341,
+      "holdScore": -5.17669743948958,
+      "merge": 98
+    },
+    {
+      "type": "uniform",
+      "fitScore": -4.935713704410562,
+      "holdScore": -5.015536017222877,
+      "merge": 62
+    },
+    {
+      "type": "uniform",
+      "fitScore": -4.952092710893754,
+      "holdScore": -5.1046523952805725,
+      "merge": 38
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.011937821708113,
+      "holdScore": -5.102224245139577,
+      "merge": 31
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.021458037519933,
+      "holdScore": -5.227229764600372,
+      "merge": 57
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.068746877834984,
+      "holdScore": -5.013858296026064,
+      "merge": 28
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.042529766613402,
+      "holdScore": -5.0249980265175145,
+      "merge": 77
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.095424402754349,
+      "holdScore": -5.063459827327756,
+      "merge": 142
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.007220532447595,
+      "holdScore": -5.0446002680763185,
+      "merge": 182
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.038908135244034,
+      "holdScore": -5.141679599323904,
+      "merge": 30
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.040004928491384,
+      "holdScore": -5.176228274115666,
+      "merge": 111
+    },
+    {
+      "type": "uniform",
+      "fitScore": -4.979677323599635,
+      "holdScore": -5.107981186696271,
+      "merge": 62
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.02648588934978,
+      "holdScore": -4.944070117875174,
+      "merge": 64
+    },
+    {
+      "type": "uniform",
+      "fitScore": -4.9906532458868265,
+      "holdScore": -5.099845515191828,
+      "merge": 75
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.111742218686492,
+      "holdScore": -5.005035115006445,
+      "merge": 92
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.068938438237566,
+      "holdScore": -4.92932279334192,
+      "merge": 43
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.067925806397629,
+      "holdScore": -5.014984864402333,
+      "merge": 153
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.065722589438561,
+      "holdScore": -5.083162704914536,
+      "merge": 55
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.104762809223623,
+      "holdScore": -5.172098802353702,
+      "merge": 162
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.1071441186344755,
+      "holdScore": -5.109973975704978,
+      "merge": 67
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.129912130285083,
+      "holdScore": -5.013444384596435,
+      "merge": 52
+    },
+    {
+      "type": "uniform",
+      "fitScore": -5.121150216193237,
+      "holdScore": -4.970122299559554,
+      "merge": 51
+    },
+    {
+      "type": "permuted",
+      "fitScore": -4.978687867736827,
+      "holdScore": -5.055406879619105,
+      "merge": 51
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.019121571449793,
+      "holdScore": -5.080949459676971,
+      "merge": 110
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.053736677159554,
+      "holdScore": -5.046908358363537,
+      "merge": 57
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.1130339540872685,
+      "holdScore": -5.122283393367655,
+      "merge": 75
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.145350806548091,
+      "holdScore": -5.089627249922379,
+      "merge": 57
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.073459678194423,
+      "holdScore": -5.00556633138592,
+      "merge": 95
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.053780545436558,
+      "holdScore": -4.991934017715293,
+      "merge": 54
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.022200749970674,
+      "holdScore": -5.071434537125245,
+      "merge": 48
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.120769500920723,
+      "holdScore": -5.051973359887146,
+      "merge": 87
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.194978271413513,
+      "holdScore": -5.038789161630601,
+      "merge": 80
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.032289647050679,
+      "holdScore": -5.039729280850641,
+      "merge": 34
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.025231856848482,
+      "holdScore": -5.043771654064975,
+      "merge": 36
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.049942157324163,
+      "holdScore": -5.073557838597099,
+      "merge": 74
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.093612085341788,
+      "holdScore": -5.194555426339196,
+      "merge": 68
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.042290995334805,
+      "holdScore": -5.1266684042612995,
+      "merge": 69
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.044107693313915,
+      "holdScore": -5.091415876989322,
+      "merge": 49
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.042674814040125,
+      "holdScore": -5.013428689189909,
+      "merge": 135
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.03995881502741,
+      "holdScore": -5.038583748479799,
+      "merge": 74
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.045631092211367,
+      "holdScore": -5.023647506129424,
+      "merge": 90
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.020489465568199,
+      "holdScore": -5.018243359873579,
+      "merge": 38
+    },
+    {
+      "type": "permuted",
+      "fitScore": -4.987891757569109,
+      "holdScore": -5.028162725006142,
+      "merge": 39
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.043859935995124,
+      "holdScore": -5.064998035931662,
+      "merge": 18
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.129344049834454,
+      "holdScore": -5.058937685952182,
+      "merge": 34
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.032526546905943,
+      "holdScore": -5.115016601628445,
+      "merge": 84
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.030554389722838,
+      "holdScore": -5.056345339528617,
+      "merge": 181
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.059709778053201,
+      "holdScore": -5.035059164596701,
+      "merge": 74
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.0152327538503725,
+      "holdScore": -5.145440448873882,
+      "merge": 86
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.156291111404564,
+      "holdScore": -5.057531247289444,
+      "merge": 55
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.13146173494479,
+      "holdScore": -4.967472058525638,
+      "merge": 41
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.045880276869062,
+      "holdScore": -5.085207746810649,
+      "merge": 160
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.022916986474366,
+      "holdScore": -5.051383098698689,
+      "merge": 40
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.036850636550237,
+      "holdScore": -5.096239888500322,
+      "merge": 38
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.127730541816954,
+      "holdScore": -5.023118954350156,
+      "merge": 47
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.041718839287733,
+      "holdScore": -5.023884988445971,
+      "merge": 44
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.073816750477611,
+      "holdScore": -5.083673404919529,
+      "merge": 56
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.05795348056042,
+      "holdScore": -4.983735976605728,
+      "merge": 35
+    },
+    {
+      "type": "permuted",
+      "fitScore": -4.968054550156343,
+      "holdScore": -4.980207608506982,
+      "merge": 66
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.02522582318205,
+      "holdScore": -5.077302920728286,
+      "merge": 78
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.048201545668042,
+      "holdScore": -5.13822375049959,
+      "merge": 90
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.124910527904381,
+      "holdScore": -5.038687509732774,
+      "merge": 110
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.041151366800616,
+      "holdScore": -5.019574366778565,
+      "merge": 119
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.010687034259359,
+      "holdScore": -5.107781182393915,
+      "merge": 59
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.069184448490692,
+      "holdScore": -5.1350648853886245,
+      "merge": 30
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.021640054183775,
+      "holdScore": -5.069304067217901,
+      "merge": 44
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.016757077181278,
+      "holdScore": -5.149719647226522,
+      "merge": 36
+    },
+    {
+      "type": "permuted",
+      "fitScore": -4.952281214841472,
+      "holdScore": -5.052998384774981,
+      "merge": 47
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.069150748028259,
+      "holdScore": -5.044031353122643,
+      "merge": 41
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.016148838914068,
+      "holdScore": -5.197578516559062,
+      "merge": 53
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.009075567626803,
+      "holdScore": -5.092698275838002,
+      "merge": 61
+    },
+    {
+      "type": "permuted",
+      "fitScore": -4.9928995903951465,
+      "holdScore": -5.019539511068369,
+      "merge": 229
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.061833023336284,
+      "holdScore": -5.070440952556902,
+      "merge": 60
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.023166179935351,
+      "holdScore": -5.051131968235973,
+      "merge": 38
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.071609226420608,
+      "holdScore": -5.101009921114085,
+      "merge": 27
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.104174919452936,
+      "holdScore": -5.060102890326107,
+      "merge": 42
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.115906102550335,
+      "holdScore": -5.018192868180034,
+      "merge": 143
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.144153599953698,
+      "holdScore": -5.054648056763713,
+      "merge": 72
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.025563305236586,
+      "holdScore": -5.003125754551045,
+      "merge": 57
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.0248880060833825,
+      "holdScore": -5.090870350142223,
+      "merge": 44
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.033294596602125,
+      "holdScore": -4.9622034625435765,
+      "merge": 26
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.052592848210718,
+      "holdScore": -5.058035520718727,
+      "merge": 122
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.114229288698464,
+      "holdScore": -5.042906510993591,
+      "merge": 68
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.101410845766297,
+      "holdScore": -5.130764525203901,
+      "merge": 33
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.057070372205572,
+      "holdScore": -5.148811490748222,
+      "merge": 137
+    },
+    {
+      "type": "permuted",
+      "fitScore": -4.963745316835017,
+      "holdScore": -5.014980035969803,
+      "merge": 54
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.0897947417618505,
+      "holdScore": -5.13356193999088,
+      "merge": 98
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.042619493225932,
+      "holdScore": -5.029367421753414,
+      "merge": 135
+    },
+    {
+      "type": "permuted",
+      "fitScore": -4.998520286480735,
+      "holdScore": -5.01870618288733,
+      "merge": 126
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.068035486937959,
+      "holdScore": -4.995638884601029,
+      "merge": 43
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.012290345248386,
+      "holdScore": -5.076834163251051,
+      "merge": 79
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.069465414235734,
+      "holdScore": -5.049447173737632,
+      "merge": 117
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.151990116924863,
+      "holdScore": -5.091358410069932,
+      "merge": 51
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.168419799639948,
+      "holdScore": -5.069892948539653,
+      "merge": 41
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.058143366183963,
+      "holdScore": -5.119809342743191,
+      "merge": 78
+    },
+    {
+      "type": "permuted",
+      "fitScore": -4.995458861650978,
+      "holdScore": -5.029750981678992,
+      "merge": 63
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.085309588845413,
+      "holdScore": -5.025247483151187,
+      "merge": 111
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.097563510720973,
+      "holdScore": -5.071897261023976,
+      "merge": 47
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.018009965233558,
+      "holdScore": -5.0840304990820195,
+      "merge": 63
+    },
+    {
+      "type": "permuted",
+      "fitScore": -4.966311898561563,
+      "holdScore": -5.158375925328733,
+      "merge": 57
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.048795265817993,
+      "holdScore": -5.154193695236993,
+      "merge": 76
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.113619499710546,
+      "holdScore": -5.0860467628830435,
+      "merge": 100
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.133363481560821,
+      "holdScore": -5.084806343241599,
+      "merge": 52
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.112115636697525,
+      "holdScore": -5.004696526779166,
+      "merge": 90
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.084736830225961,
+      "holdScore": -5.073688658954161,
+      "merge": 43
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.015275367373699,
+      "holdScore": -4.935883713738852,
+      "merge": 34
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.108934957192114,
+      "holdScore": -5.0946271736525945,
+      "merge": 76
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.048642539831937,
+      "holdScore": -5.069323370312029,
+      "merge": 77
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.055355982215404,
+      "holdScore": -5.004186693311508,
+      "merge": 34
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.056070526195286,
+      "holdScore": -5.0723883043153775,
+      "merge": 47
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.143962522367598,
+      "holdScore": -5.150270187158845,
+      "merge": 49
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.0885612251662105,
+      "holdScore": -4.973023266418094,
+      "merge": 136
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.137656969114668,
+      "holdScore": -5.092385257068329,
+      "merge": 100
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.008561991736808,
+      "holdScore": -4.960974533070967,
+      "merge": 54
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.087438567193658,
+      "holdScore": -5.061558206632274,
+      "merge": 53
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.053339696647193,
+      "holdScore": -5.059235013919833,
+      "merge": 98
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.079389516994872,
+      "holdScore": -5.048081084080104,
+      "merge": 106
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.062823283802174,
+      "holdScore": -5.070879201592013,
+      "merge": 60
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.005433991038835,
+      "holdScore": -5.023796383853325,
+      "merge": 82
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.039209924492001,
+      "holdScore": -5.019051137975571,
+      "merge": 86
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.0831663627259855,
+      "holdScore": -5.11294374578477,
+      "merge": 116
+    },
+    {
+      "type": "permuted",
+      "fitScore": -5.1097890107285435,
+      "holdScore": -5.116554491674746,
+      "merge": 57
+    }
+  ],
+  "inputBlobs": {
+    "corpus": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "native": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+  }
+}
