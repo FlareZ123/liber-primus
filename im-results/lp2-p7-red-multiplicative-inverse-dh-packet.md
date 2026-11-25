@@ -68,6 +68,8 @@ Both below use source-visible original locations and exact invertible mappings o
 
 2. **P6→p7 original black 308-rune gap, 28×11 full-multiplicative-cycle affine map.** Under the one naturally complete cycle selected by p7 word1 product11 (order28), let `K_j` be the 11 original GP29 indices of p6 red text, `a_r=11^r mod29` for `r=0..27`, and freeze `C_{r,j}=a_r·P_{r,j}+K_j mod29`. The exact decoder `P_{r,j}=a_r^{-1}(C_{r,j}−K_j) mod29` yields nonlinguistic output, GP29 IoC **0.03375777317145395** versus original **0.034350014806040864**, with exact reencryption. This gate is a single source-motivated affine operation, not an origin/sign/phase/exponent sweep.
 
+**Cumulative five-phase multiplication (Agent41, 25 November):** a distinct stateful consumer uses K=2 as initial GF29 nonzero state, the five p7 products in order, and literal F as an exclusive hold. Original p8→p9–14 is nonprose with the fixed source key and with the globally best fit across all 28^5 multiplier keys. Two independent native controls recover both exact keys and all 2,948 withheld runes; the whole-book and p40–53 exclusive-F count gates also fail the finite native-window comparison. Retire this exact feedback consumer without generalizing to nonexclusive F-hold. [Report and exact SFT](lp2-cumulative-gf29-product-q5.md).
+
 The inverse products constitute a **recoverable original-runic arithmetic register**, possibly a source clue to reversibility, yet no first-party LP2 instruction specifies the multiplication rule, cipher architecture, receiver, key placement or plaintext test. The exact standard direct consumers above fail. Do not widen them with arbitrary shifts, phases, lookup masks or page targets absent a further independent instruction.
 
 
