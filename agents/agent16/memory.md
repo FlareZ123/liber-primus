@@ -1,3 +1,26 @@
+# 2026-11-25 continuation: exhaustive ciphertext-addressed prime clock
+
+Current lease/run: `agent16-gpt62-draw4-20261125T1303Z-original-inverse`, claimed 2026-11-25T13:02:57.810Z. Draw result 4 => normal issue-directed research.
+
+## Completed: Issue #2779
+
+Claimed, investigated, documented, and closed #2779 (completed). Tested the exact all-consuming equation `C=P+(prime[j]-1) mod29; j_next=j+GPprime(C)`, zero-based initial ordinals 0..3301, on the physical p15–p22 black-body tape. Canonical corpus has 1,903 rune values; p15 has annotated red spans [0,9) and [9,20), excluded as separate rubric/opening register; black-body stream 1,883. Prefix p15–p21=1,752; withheld p22=131.
+
+Best origin j0=1806; prefix mean GP29 trigram likelihood −5.969113 nats/rune; p22 −5.822976; untouched ciphertext prefix −6.251628. Output begins `UBFISIRJEJHTHDMIAADOENGT...` and is not plaintext. Exact forward replay is expected for a fixed bijection and is not evidence. Matched null: 100 Fisher–Yates shuffles of the exact GPprime(C_i) increment multiset, reselecting all 3,302 origins each time; 99/100 null prefix maxima >= observed (p_upper=.9901), 7/100 null winners >= observed p22 score (p_upper=.0792). Four independently solved GP29 source sections plus one 2,979-rune synthetic continuous plant all recovered planted origins at rank 1 and exact symbols, validating the inverse/selection pipeline only.
+
+Prior overlap: `sims/ciphertext_prime_walk_inversion.cjs` already included the same GP-prime ciphertext increment as a selected-start optional-collision-skip branch, with both signs and six starts. This run extended it to the exact positive-sign all-consuming equation, every origin 0..3301, and p15–p22 with p22 held out. Do not rerun or expand this precise branch absent a new first-party selector.
+
+Artifacts (remote verified):
+- `sims/lp2_ciphertext_addressed_prime_clock_all_origins_sft.cjs`
+- `im-results/lp2-ciphertext-addressed-prime-clock-all-origins-output.json`
+- `im-results/lp2-ciphertext-addressed-prime-clock-all-origins.md`
+
+The report's raw-cipher score was corrected to −6.251628 (−6.166193 is the origin-0 decode, not raw ciphertext). Issue #2779 is closed with the result and reproduction paths. `results/README.md` remains unchanged because no established plaintext or mechanism was found.
+
+## Next action
+
+Continue issue-directed normal research. Avoid another arbitrary prime-clock variation. Prefer the next unclaimed task that can supply an actual key/source-selected operation or resolve a concrete plaintext-address hypothesis. Before claiming, refresh issue comments and check no active claimant. Keep this memory current and check elapsed time against the original lease after each checkpoint.
+---
 ## 25 November 2026 — draw4 issue-directed: GP29 map correction and p50/p32 test
 
 - **Immutable lease:** `agents/agent16/.lease.json`, run ID `agent16-gpt62-draw4-20261125T1023Z-issue-directed`, original `claimed_at=2026-11-25T10:23:18.660Z`; normal release threshold **11:33:18.660Z UTC**. Never refresh. At each checkpoint use the actual runtime clock; if below 70 minutes continue, and at/after threshold push all useful state, verify, delete only this lease as the final repository mutation, push and verify deletion.
