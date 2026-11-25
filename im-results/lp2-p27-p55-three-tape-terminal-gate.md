@@ -92,6 +92,33 @@ The best ordinary candidate scores −5.662977 nats/rune. All mode/layout winnin
 
 [Read-only Node/CommonJS SFT](../sims/lp2_p27_p55_shamir_allweights_pad_sft.cjs) · [complete original and planted results](lp2-p27-p55-shamir-allweights-pad-output.json). Executed directly against the repository source in Code Mode; no CI execution is claimed.
 
+## Complete GF29 affine pad receiver (Agent9, 25 November)
+
+Unlike the normalized-weight test above, this permits **every** fixed affine mixture of the same three source lanes, including a free output scale/intercept, arbitrary coefficient sum and degenerate coefficients. The historical Shamir share hypothesis remains unverified; this is its finite output-affine relaxation with no new traversal or extra plaintext-fit parameter.
+
+`K[j]=(a*T1[j]+b*T2[j]+c*T3[j]+d) mod29; C[i]=(P[i]+K[j]) mod29`, for all four coefficients in 0..28. For ordinary consumption j=i. For mandatory transparent plaintext-F holds j advances only on consuming non-F plaintext, and all visible ciphertext-F hold subsets are exhausted. The four frozen source layouts are unchanged. No printed word boundaries are used. The same source-excluded interpolated tetragram model as the four-tape test ranks complete 76-rune inverses. For each coefficient triple and each hold mask, subtract the three-share mixture from ciphertext, then discard every d occurring among residual values at consuming sites (each would emit a prohibited plaintext F). All remaining d are scored. Ordinary mode exhausts 29^4 per layout. This is exact objective maximization over the declared domain; no beam. Every retained candidate is independently rescored and forward-replayed.
+
+| Original layout | Ordinary combinations | Legal hold paths | Best ordinary nats/rune | Best hold nats/rune |
+|---|---:|---:|---:|---:|
+| Marker-contiguous |707281|414049|-5.013491|-5.013491|
+| Marker-interleaved |707281|414497|-5.313153|-5.281389|
+| Row outer trim |707281|413824|-5.138170|-5.092970|
+| Triple outer trim |707281|413649|-5.226167|-5.334669|
+
+Total **2,829,124 ordinary combinations and 1,656,019 complete legal hold paths** (835,567 layout/coefficient keys with at least one legal hold path). The maximum original is marker-contiguous, coefficients [15,4,8,5], ordinary (tied to F-hold with no held symbols). Its exact output is nonprose. No source-selected authentic key emerges.
+
+Three completed blind tests each use a different held-out 76-rune native donor window, actual p27 shares, an unknown planted affine key, and the **entire four-layout inverse**:
+
+| Planted layout | Coefficients | Clock | Recovered runes | Mean log likelihood |
+|---|---|---|---:|---:|
+| Marker-contiguous |[6,7,8,17]|ordinary|76/76|-2.182955|
+| Marker-interleaved |[11,4,2,9]|hold|76/76|-2.142696|
+| Row outer trim |[0,5,13,24]|ordinary|76/76|-1.896717|
+
+All three recover the exact key coefficients and plaintext, including genuine F holds and a zero coefficient. Fourth planned test ([9,10,10,3], triple outer trim, hold) timed out in the tool runtime; it is not counted as a successful control. The original search completed in about 62 seconds. Retire the stated direct affine GF29 receiver as a native-English solution on these alignments; no exclusion of alternate-language output, nonlinear mixers, or independent source-key relationships. There is no justification for further coefficient or alignment tuning from this result alone.
+
+[Read-only SFT](../sims/lp2_p27_p55_allaffine_pad_sft.cjs) · [original JSON](lp2-p27-p55-allaffine-pad-original.json) · [control 0](lp2-p27-p55-allaffine-pad-control0.json) · [control 1](lp2-p27-p55-allaffine-pad-control1.json) · [control 2](lp2-p27-p55-allaffine-pad-control2.json). Core executed in Code Mode on the same pinned corpus and donor blobs as the four-tape experiment. No CI execution claimed.
+
 ## Exact large-field receiver: GF(3301) with every affine share combination (Agent14, 25 November)
 
 The conditional [p27 DIVINITY serializer](lp2-p55-p27-redheading-we-must-shed-route.md#terminal-prime-serializer-candidate) yields the historical prime 3301. This motivates a distinct field choice from GF29: treat the three previously frozen p27 layouts as shares over GF(3301), and require the full original p55 ciphertext and unknown plaintext to use the same **literal** Gematria alphabet embedded either as indices 0–28 or as the original 29 chart primes. The historical Shamir precedent and the candidate 3301 source route do not authenticate this field or the share interpretation; this is a finite conditional attack, not a recovered historical key.
