@@ -1,0 +1,1161 @@
+{
+  "method": "Common Crawl CDX index only; no direct requests to either candidate IP",
+  "indexesQueried": [
+    "CC-MAIN-2014-10",
+    "CC-MAIN-2014-15",
+    "CC-MAIN-2014-23",
+    "CC-MAIN-2014-35",
+    "CC-MAIN-2014-41",
+    "CC-MAIN-2014-42",
+    "CC-MAIN-2014-49",
+    "CC-MAIN-2014-52",
+    "CC-MAIN-2015-06",
+    "CC-MAIN-2015-11",
+    "CC-MAIN-2015-14",
+    "CC-MAIN-2015-18",
+    "CC-MAIN-2015-22",
+    "CC-MAIN-2015-27",
+    "CC-MAIN-2015-32",
+    "CC-MAIN-2015-35",
+    "CC-MAIN-2015-40",
+    "CC-MAIN-2015-48"
+  ],
+  "targetDefinitions": [
+    {
+      "name": "row-major-LP2-candidate",
+      "url": "31.184.172.36",
+      "matchType": "host"
+    },
+    {
+      "name": "column-major-control",
+      "url": "31.172.184.36",
+      "matchType": "host"
+    },
+    {
+      "name": "2012-domain-control",
+      "url": "845145127.com",
+      "matchType": "domain"
+    },
+    {
+      "name": "2012-known-IP-control",
+      "url": "75.119.203.244",
+      "matchType": "host"
+    },
+    {
+      "name": "positive-control-example-domain",
+      "url": "example.com",
+      "matchType": "domain"
+    }
+  ],
+  "requestCount": 90,
+  "totalRecords": 0,
+  "candidateRecords": [],
+  "alternateRecords": [],
+  "controlRecords": [],
+  "errors": [
+    {
+      "index": "CC-MAIN-2014-10",
+      "target": "2012-domain-control",
+      "status": 503,
+      "error": "<html>\r\n<head><title>503 Service Temporarily Unavailable</title></head>\r\n<body>\r\n<center><h1>503 Service Temporarily Unavailable</h1></center>\r\n<hr><center>nginx/1.31.10</center>\r\n</body>\r\n</html>\r\n",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-10",
+      "target": "2012-known-IP-control",
+      "status": 503,
+      "error": "<html>\r\n<head><title>503 Service Temporarily Unavailable</title></head>\r\n<body>\r\n<center><h1>503 Service Temporarily Unavailable</h1></center>\r\n<hr><center>nginx/1.31.10</center>\r\n</body>\r\n</html>\r\n",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-10",
+      "target": "column-major-control",
+      "status": 404,
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-10",
+      "target": "positive-control-example-domain",
+      "status": 503,
+      "error": "<html>\r\n<head><title>503 Service Temporarily Unavailable</title></head>\r\n<body>\r\n<center><h1>503 Service Temporarily Unavailable</h1></center>\r\n<hr><center>nginx/1.31.10</center>\r\n</body>\r\n</html>\r\n",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-10",
+      "target": "row-major-LP2-candidate",
+      "status": 404,
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-15",
+      "target": "2012-domain-control",
+      "status": 503,
+      "error": "<html>\r\n<head><title>503 Service Temporarily Unavailable</title></head>\r\n<body>\r\n<center><h1>503 Service Temporarily Unavailable</h1></center>\r\n<hr><center>nginx/1.31.10</center>\r\n</body>\r\n</html>\r\n",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-15",
+      "target": "2012-known-IP-control",
+      "status": 503,
+      "error": "<html>\r\n<head><title>503 Service Temporarily Unavailable</title></head>\r\n<body>\r\n<center><h1>503 Service Temporarily Unavailable</h1></center>\r\n<hr><center>nginx/1.31.10</center>\r\n</body>\r\n</html>\r\n",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-15",
+      "target": "column-major-control",
+      "status": 503,
+      "error": "<html>\r\n<head><title>503 Service Temporarily Unavailable</title></head>\r\n<body>\r\n<center><h1>503 Service Temporarily Unavailable</h1></center>\r\n<hr><center>nginx/1.31.10</center>\r\n</body>\r\n</html>\r\n",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-15",
+      "target": "positive-control-example-domain",
+      "status": 503,
+      "error": "<html>\r\n<head><title>503 Service Temporarily Unavailable</title></head>\r\n<body>\r\n<center><h1>503 Service Temporarily Unavailable</h1></center>\r\n<hr><center>nginx/1.31.10</center>\r\n</body>\r\n</html>\r\n",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-15",
+      "target": "row-major-LP2-candidate",
+      "status": 503,
+      "error": "<html>\r\n<head><title>503 Service Temporarily Unavailable</title></head>\r\n<body>\r\n<center><h1>503 Service Temporarily Unavailable</h1></center>\r\n<hr><center>nginx/1.31.10</center>\r\n</body>\r\n</html>\r\n",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-23",
+      "target": "2012-domain-control",
+      "status": 503,
+      "error": "<html>\r\n<head><title>503 Service Temporarily Unavailable</title></head>\r\n<body>\r\n<center><h1>503 Service Temporarily Unavailable</h1></center>\r\n<hr><center>nginx/1.31.10</center>\r\n</body>\r\n</html>\r\n",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-23",
+      "target": "2012-known-IP-control",
+      "error": "TimeoutError: The operation was aborted due to timeout",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-23",
+      "target": "column-major-control",
+      "status": 503,
+      "error": "<html>\r\n<head><title>503 Service Temporarily Unavailable</title></head>\r\n<body>\r\n<center><h1>503 Service Temporarily Unavailable</h1></center>\r\n<hr><center>nginx/1.31.10</center>\r\n</body>\r\n</html>\r\n",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-23",
+      "target": "positive-control-example-domain",
+      "error": "TimeoutError: The operation was aborted due to timeout",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-23",
+      "target": "row-major-LP2-candidate",
+      "status": 503,
+      "error": "<html>\r\n<head><title>503 Service Temporarily Unavailable</title></head>\r\n<body>\r\n<center><h1>503 Service Temporarily Unavailable</h1></center>\r\n<hr><center>nginx/1.31.10</center>\r\n</body>\r\n</html>\r\n",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-35",
+      "target": "2012-domain-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-35",
+      "target": "2012-known-IP-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-35",
+      "target": "column-major-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-35",
+      "target": "positive-control-example-domain",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-35",
+      "target": "row-major-LP2-candidate",
+      "error": "TimeoutError: The operation was aborted due to timeout",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-41",
+      "target": "2012-domain-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-41",
+      "target": "2012-known-IP-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-41",
+      "target": "column-major-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-41",
+      "target": "positive-control-example-domain",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-41",
+      "target": "row-major-LP2-candidate",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-42",
+      "target": "2012-domain-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-42",
+      "target": "2012-known-IP-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-42",
+      "target": "column-major-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-42",
+      "target": "positive-control-example-domain",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-42",
+      "target": "row-major-LP2-candidate",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-49",
+      "target": "2012-domain-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-49",
+      "target": "2012-known-IP-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-49",
+      "target": "column-major-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-49",
+      "target": "positive-control-example-domain",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-49",
+      "target": "row-major-LP2-candidate",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-52",
+      "target": "2012-domain-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-52",
+      "target": "2012-known-IP-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-52",
+      "target": "column-major-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-52",
+      "target": "positive-control-example-domain",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-52",
+      "target": "row-major-LP2-candidate",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-06",
+      "target": "2012-domain-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-06",
+      "target": "2012-known-IP-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-06",
+      "target": "column-major-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-06",
+      "target": "positive-control-example-domain",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-06",
+      "target": "row-major-LP2-candidate",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-11",
+      "target": "2012-domain-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-11",
+      "target": "2012-known-IP-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-11",
+      "target": "column-major-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-11",
+      "target": "positive-control-example-domain",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-11",
+      "target": "row-major-LP2-candidate",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-14",
+      "target": "2012-domain-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-14",
+      "target": "2012-known-IP-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-14",
+      "target": "column-major-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-14",
+      "target": "positive-control-example-domain",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-14",
+      "target": "row-major-LP2-candidate",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-18",
+      "target": "2012-domain-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-18",
+      "target": "2012-known-IP-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-18",
+      "target": "column-major-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-18",
+      "target": "positive-control-example-domain",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-18",
+      "target": "row-major-LP2-candidate",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-22",
+      "target": "2012-domain-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-22",
+      "target": "2012-known-IP-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-22",
+      "target": "column-major-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-22",
+      "target": "positive-control-example-domain",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-22",
+      "target": "row-major-LP2-candidate",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-27",
+      "target": "2012-domain-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-27",
+      "target": "2012-known-IP-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-27",
+      "target": "column-major-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-27",
+      "target": "positive-control-example-domain",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-27",
+      "target": "row-major-LP2-candidate",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-32",
+      "target": "2012-domain-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-32",
+      "target": "2012-known-IP-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-32",
+      "target": "column-major-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-32",
+      "target": "positive-control-example-domain",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-32",
+      "target": "row-major-LP2-candidate",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-35",
+      "target": "2012-domain-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-35",
+      "target": "2012-known-IP-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-35",
+      "target": "column-major-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-35",
+      "target": "positive-control-example-domain",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-35",
+      "target": "row-major-LP2-candidate",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-40",
+      "target": "2012-domain-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-40",
+      "target": "2012-known-IP-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-40",
+      "target": "column-major-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-40",
+      "target": "positive-control-example-domain",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-40",
+      "target": "row-major-LP2-candidate",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-48",
+      "target": "2012-domain-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-48",
+      "target": "2012-known-IP-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-48",
+      "target": "column-major-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-48",
+      "target": "positive-control-example-domain",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-48",
+      "target": "row-major-LP2-candidate",
+      "error": "TypeError: fetch failed",
+      "records": []
+    }
+  ],
+  "results": [
+    {
+      "index": "CC-MAIN-2014-10",
+      "target": "2012-domain-control",
+      "status": 503,
+      "error": "<html>\r\n<head><title>503 Service Temporarily Unavailable</title></head>\r\n<body>\r\n<center><h1>503 Service Temporarily Unavailable</h1></center>\r\n<hr><center>nginx/1.31.10</center>\r\n</body>\r\n</html>\r\n",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-10",
+      "target": "2012-known-IP-control",
+      "status": 503,
+      "error": "<html>\r\n<head><title>503 Service Temporarily Unavailable</title></head>\r\n<body>\r\n<center><h1>503 Service Temporarily Unavailable</h1></center>\r\n<hr><center>nginx/1.31.10</center>\r\n</body>\r\n</html>\r\n",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-10",
+      "target": "column-major-control",
+      "status": 404,
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-10",
+      "target": "positive-control-example-domain",
+      "status": 503,
+      "error": "<html>\r\n<head><title>503 Service Temporarily Unavailable</title></head>\r\n<body>\r\n<center><h1>503 Service Temporarily Unavailable</h1></center>\r\n<hr><center>nginx/1.31.10</center>\r\n</body>\r\n</html>\r\n",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-10",
+      "target": "row-major-LP2-candidate",
+      "status": 404,
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-15",
+      "target": "2012-domain-control",
+      "status": 503,
+      "error": "<html>\r\n<head><title>503 Service Temporarily Unavailable</title></head>\r\n<body>\r\n<center><h1>503 Service Temporarily Unavailable</h1></center>\r\n<hr><center>nginx/1.31.10</center>\r\n</body>\r\n</html>\r\n",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-15",
+      "target": "2012-known-IP-control",
+      "status": 503,
+      "error": "<html>\r\n<head><title>503 Service Temporarily Unavailable</title></head>\r\n<body>\r\n<center><h1>503 Service Temporarily Unavailable</h1></center>\r\n<hr><center>nginx/1.31.10</center>\r\n</body>\r\n</html>\r\n",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-15",
+      "target": "column-major-control",
+      "status": 503,
+      "error": "<html>\r\n<head><title>503 Service Temporarily Unavailable</title></head>\r\n<body>\r\n<center><h1>503 Service Temporarily Unavailable</h1></center>\r\n<hr><center>nginx/1.31.10</center>\r\n</body>\r\n</html>\r\n",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-15",
+      "target": "positive-control-example-domain",
+      "status": 503,
+      "error": "<html>\r\n<head><title>503 Service Temporarily Unavailable</title></head>\r\n<body>\r\n<center><h1>503 Service Temporarily Unavailable</h1></center>\r\n<hr><center>nginx/1.31.10</center>\r\n</body>\r\n</html>\r\n",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-15",
+      "target": "row-major-LP2-candidate",
+      "status": 503,
+      "error": "<html>\r\n<head><title>503 Service Temporarily Unavailable</title></head>\r\n<body>\r\n<center><h1>503 Service Temporarily Unavailable</h1></center>\r\n<hr><center>nginx/1.31.10</center>\r\n</body>\r\n</html>\r\n",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-23",
+      "target": "2012-domain-control",
+      "status": 503,
+      "error": "<html>\r\n<head><title>503 Service Temporarily Unavailable</title></head>\r\n<body>\r\n<center><h1>503 Service Temporarily Unavailable</h1></center>\r\n<hr><center>nginx/1.31.10</center>\r\n</body>\r\n</html>\r\n",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-23",
+      "target": "2012-known-IP-control",
+      "error": "TimeoutError: The operation was aborted due to timeout",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-23",
+      "target": "column-major-control",
+      "status": 503,
+      "error": "<html>\r\n<head><title>503 Service Temporarily Unavailable</title></head>\r\n<body>\r\n<center><h1>503 Service Temporarily Unavailable</h1></center>\r\n<hr><center>nginx/1.31.10</center>\r\n</body>\r\n</html>\r\n",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-23",
+      "target": "positive-control-example-domain",
+      "error": "TimeoutError: The operation was aborted due to timeout",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-23",
+      "target": "row-major-LP2-candidate",
+      "status": 503,
+      "error": "<html>\r\n<head><title>503 Service Temporarily Unavailable</title></head>\r\n<body>\r\n<center><h1>503 Service Temporarily Unavailable</h1></center>\r\n<hr><center>nginx/1.31.10</center>\r\n</body>\r\n</html>\r\n",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-35",
+      "target": "2012-domain-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-35",
+      "target": "2012-known-IP-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-35",
+      "target": "column-major-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-35",
+      "target": "positive-control-example-domain",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-35",
+      "target": "row-major-LP2-candidate",
+      "error": "TimeoutError: The operation was aborted due to timeout",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-41",
+      "target": "2012-domain-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-41",
+      "target": "2012-known-IP-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-41",
+      "target": "column-major-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-41",
+      "target": "positive-control-example-domain",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-41",
+      "target": "row-major-LP2-candidate",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-42",
+      "target": "2012-domain-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-42",
+      "target": "2012-known-IP-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-42",
+      "target": "column-major-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-42",
+      "target": "positive-control-example-domain",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-42",
+      "target": "row-major-LP2-candidate",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-49",
+      "target": "2012-domain-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-49",
+      "target": "2012-known-IP-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-49",
+      "target": "column-major-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-49",
+      "target": "positive-control-example-domain",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-49",
+      "target": "row-major-LP2-candidate",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-52",
+      "target": "2012-domain-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-52",
+      "target": "2012-known-IP-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-52",
+      "target": "column-major-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-52",
+      "target": "positive-control-example-domain",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2014-52",
+      "target": "row-major-LP2-candidate",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-06",
+      "target": "2012-domain-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-06",
+      "target": "2012-known-IP-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-06",
+      "target": "column-major-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-06",
+      "target": "positive-control-example-domain",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-06",
+      "target": "row-major-LP2-candidate",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-11",
+      "target": "2012-domain-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-11",
+      "target": "2012-known-IP-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-11",
+      "target": "column-major-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-11",
+      "target": "positive-control-example-domain",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-11",
+      "target": "row-major-LP2-candidate",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-14",
+      "target": "2012-domain-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-14",
+      "target": "2012-known-IP-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-14",
+      "target": "column-major-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-14",
+      "target": "positive-control-example-domain",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-14",
+      "target": "row-major-LP2-candidate",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-18",
+      "target": "2012-domain-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-18",
+      "target": "2012-known-IP-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-18",
+      "target": "column-major-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-18",
+      "target": "positive-control-example-domain",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-18",
+      "target": "row-major-LP2-candidate",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-22",
+      "target": "2012-domain-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-22",
+      "target": "2012-known-IP-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-22",
+      "target": "column-major-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-22",
+      "target": "positive-control-example-domain",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-22",
+      "target": "row-major-LP2-candidate",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-27",
+      "target": "2012-domain-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-27",
+      "target": "2012-known-IP-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-27",
+      "target": "column-major-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-27",
+      "target": "positive-control-example-domain",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-27",
+      "target": "row-major-LP2-candidate",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-32",
+      "target": "2012-domain-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-32",
+      "target": "2012-known-IP-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-32",
+      "target": "column-major-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-32",
+      "target": "positive-control-example-domain",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-32",
+      "target": "row-major-LP2-candidate",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-35",
+      "target": "2012-domain-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-35",
+      "target": "2012-known-IP-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-35",
+      "target": "column-major-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-35",
+      "target": "positive-control-example-domain",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-35",
+      "target": "row-major-LP2-candidate",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-40",
+      "target": "2012-domain-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-40",
+      "target": "2012-known-IP-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-40",
+      "target": "column-major-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-40",
+      "target": "positive-control-example-domain",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-40",
+      "target": "row-major-LP2-candidate",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-48",
+      "target": "2012-domain-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-48",
+      "target": "2012-known-IP-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-48",
+      "target": "column-major-control",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-48",
+      "target": "positive-control-example-domain",
+      "error": "TypeError: fetch failed",
+      "records": []
+    },
+    {
+      "index": "CC-MAIN-2015-48",
+      "target": "row-major-LP2-candidate",
+      "error": "TypeError: fetch failed",
+      "records": []
+    }
+  ]
+}
