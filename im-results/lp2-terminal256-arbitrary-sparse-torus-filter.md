@@ -67,3 +67,23 @@ Write (K_{ij}=u_i v_j), with 32 arbitrary (u_i) and eight arbitrary (v_j). Subtr
 In separate original-grid positive plants, hidden arbitrary row and column coefficients produce known 180 synthetic outputs and 76 genuinely withheld outputs, with bias 11. Both radix controls have rank 1037/1044, leaving exactly one projective v direction. Normalizing v[0]=1 recovers all eight actual v values; the remaining linear system uniquely recovers all 32 u coefficients and bias, and predicts **76/76** concealed output symbols in each plant. They are mechanical known-output controls, not native-language claims. The implementation verifies the authentic p56 85-rune plaintext and exact forward replay with its sole F skip.
 
 [Standalone exact NumPy reproducer](../sims/lp2_terminal_separable_torus_xl.py), commit 04fa322b141da1d564a2f83cc0c9935c1c90f5b5. Executed locally with byte tokens reconstructed exactly from the fetched canonical radix60 bytes (injective mapping) and the two fetched original corpus page arrays. No CI run. This proves no two-pass horizontal/vertical stationary GF29 convolution, even with every coefficient secret, implements either known ending target in these placements. Unlike generic overparameterized filtering, the method actually recovers withheld output when the model holds. It leaves rank-two and higher kernels, different placements, nonlinear or position-dependent filters, and the possibility that p56/p57 have separate encoding modes unresolved. The source does not authenticate this particular operation. No unknown-page plaintext is recovered.
+
+
+### Extension to rank two and three by support-minors lifting
+
+The same full-support model allows a sum of several separable kernels. Let rank(K)≤d, with d=1,2,3. The known differences define a 77-dimensional affine kernel space, K=K0+Σθ_s Z_s, computed over GF29. This includes the global additive bias after differencing. If rank(K)≤d, the eight-dimensional row vectors of K lie in some d-plane V, which has a nonzero decomposable exterior vector p in Λ^d(F_29^8). For every row i, K_i∧p=0. Substitute the affine kernel expression and relax each product θ_s p_J to an independent scalar. All true rank≤d solutions survive this relaxation, even if the actual row rank is smaller than d (extend its row space to a d-plane). The resulting homogeneous system consists of 32×binom(8,d+1) equations and 78×binom(8,d) columns. Projecting onto the p block must allow a nonzero vector for any genuine key.
+
+Both radix interpretations and both original targets give the following identical exact ranks:
+
+| Maximum kernel rank d | Lift rows × columns | Rank of product block | Rank of whole lift | Dimension of possible p |
+|---:|---:|---:|---:|---:|
+| 1 | 896 × 624 | 501 | 509 | **0** |
+| 2 | 1792 × 2184 | 1386 | 1414 | **0** |
+| 3 | 2240 × 4368 | 2106 | 2162 | **0** |
+| 4 | 1792 × 5460 | 1792 | 1792 | 70 (inconclusive) |
+
+Thus **every rank≤3 kernel**, including sums of up to three arbitrary full-support horizontal/vertical filters, is impossible in these fixed source models. The d=4 relaxation allows every exterior vector and says nothing about existence of a true rank-four kernel. It must not be misreported as either a solution or an exclusion.
+
+Six independent planted original-grid controls (d=1,2,3 × both radices) each have exactly one projected exterior direction, recover the hidden row plane in systematic coordinates, then uniquely solve the remaining row coefficients and bias and correctly predict **76/76** withheld values. The test proves a real inverse can recover a true compact key; the original sources rule this family out without any key enumeration. The first three ranks are exact modular results; the accelerated elimination uses binary32 matrix products only for bounded sums of at most 64 products of residues 0..28, hence all intermediates <50177 and exactly representable, and compares its complete echelon output with ordinary modular elimination on three rectangular planted cases. The rank-two result was additionally checked using the distinct direct tensor lift before implementing the smaller affine-space method.
+
+[Rank≤3 exact reproducer](../sims/lp2_terminal_lowrank_torus_plucker.py), commit 6e2aa48abff22b20683afbb170dc32b3f15fd92f. All original ranks and six controls executed locally against the same fetched source vectors; no CI claim. No unknown plaintext recovered. Rank≥4, different geometry, different receiver, or genuinely independent page modes remain possible. Do not escalate arbitrary filter complexity merely to obtain a fitted key: only an independently selected operator or a genuine held-out prediction justifies it.
