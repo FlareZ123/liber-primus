@@ -16,6 +16,8 @@
 
 - New all-key affine Hill-4 inverse: 25,260 projective rows, exact histogram norm bound for all invertible matrices and arbitrary affine offsets. p15–22 max across four phases .0396663; black-body .0396570; common affine matrix+independent page phases .0494037, native length-matched reference min .061125/.061249. Two independent keyed controls on one donor exact 1000 fit+600 withheld each. Page-private directions .0842447 and common directions+private affine labels .0674657 not excluded. `im-results/lp2-projective-hill4-inverse.md`, `sims/lp2_projective_hill4_inverse_sft.cjs`; no plaintext.
 
+- Exact private Hill4 lexical CSP on p21: 20,511,120 affine rows/lane, all four phases, max3 shared OOV words, zero compatible first-two-row pairs/full keys. Native 272-rune welcome plant with 3 deliberately removed unique words recovered full matrix and 272/272 plaintext, unique. Leave-one-section-out native 54-word windows max2 OOV but short specialized wisdom 10/31, so conditional. `im-results/lp2-hill4-private-lexical-rows.md`, `sims/lp2_hill4_private_lexical_rows_sft.cjs`.
+
 ---
 
 # Agent 5 — current draw8 invocation, 25 November 2026
