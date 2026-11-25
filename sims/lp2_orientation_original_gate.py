@@ -64,7 +64,12 @@ def main():
   controls.append((p,k,b[:4],float(s[0,0]),float(s[0,1:].max()-s[0,0]),OPS[1+int(s[0,1:].argmax())]))
   for j in range(1,len(OPS)):
    plants.append((OPS[j],k,float(s[j,j]-s[j,0]),OPS[int(s[j].argmax())]))
- threshold=max(.025,max(x[4] for x in controls if x[0]==56)+.005)
+ cal=[]
+ for i,(p,k,b,a) in enumerate(templates):
+  if p!=56 or (train & (labels==k)).sum()<2:continue
+  q=score(np.stack([feature(a)]),[i])[0][:,train & (labels==k)].max(1)
+  cal.append(float(q[1:].max()-q[0]))
+ threshold=max(.025,max(cal)+.005)
  held=[]; heldplants=[]
  for p,k,b,a in templates:
   if p!=57:continue
@@ -96,8 +101,8 @@ def main():
     totals['upright_confident']+=1
     if d>=threshold:out.append(row)
    if other>=threshold and glob[gb]>=.90:suspects.append(row)
-  page_rows.append([p,len(bs),skew,int((base>=.90).sum())])
- result={'threshold':threshold,'control_count':len(controls),'independent_p57_count':len(held),'independent_p57_plants':{op:{'n':sum(t[0]==op for t in heldplants),'eligible':sum(t[0]==op and t[2] for t in heldplants),'same_detected':sum(t[0]==op and t[2] and t[3]>=threshold for t in heldplants),'global_detected':sum(t[0]==op and t[2] and t[4]>=threshold and t[5]>=.90 for t in heldplants)} for op in OPS[1:]},'independent_p57_max_margin':max(x[2] for x in held),'independent_p57_min_upright':min(x[1] for x in held),'control_max_margin':max(x[4] for x in controls),'control_min_upright':min(x[3] for x in controls),'control_by_page':dict(Counter(x[0] for x in controls)),'plants':{op:{'n':sum(t[0]==op for t in plants),'detected':sum(t[0]==op and t[2]>=threshold for t in plants),'exact_op_winner':sum(t[0]==op and t[3]==op for t in plants)} for op in OPS[1:]},'totals':dict(totals),'same_class_outliers':out,'global_outliers':suspects,'pages':page_rows,'tape_columns':['page','x','y','w','h','upright_class','upright_similarity','best_nonidentity_same_class','same_class_margin','best_global_op','global_margin'],'tape':tape}
+  page_rows.append([p,len(bs),skew,int((base>=.90).sum()),max((abs(float(np.degrees(np.arctan(v)))) for v in slopes),default=None)])
+ result={'threshold':threshold,'calibration_count':len(cal),'calibration_max_margin':max(cal),'control_count':len(controls),'independent_p57_count':len(held),'independent_p57_plants':{op:{'n':sum(t[0]==op for t in heldplants),'eligible':sum(t[0]==op and t[2] for t in heldplants),'same_detected':sum(t[0]==op and t[2] and t[3]>=threshold for t in heldplants),'global_detected':sum(t[0]==op and t[2] and t[4]>=threshold and t[5]>=.90 for t in heldplants)} for op in OPS[1:]},'independent_p57_max_margin':max(x[2] for x in held),'independent_p57_min_upright':min(x[1] for x in held),'control_max_margin':max(x[4] for x in controls),'control_min_upright':min(x[3] for x in controls),'control_by_page':dict(Counter(x[0] for x in controls)),'plants':{op:{'n':sum(t[0]==op for t in plants),'detected':sum(t[0]==op and t[2]>=threshold for t in plants),'exact_op_winner':sum(t[0]==op and t[3]==op for t in plants)} for op in OPS[1:]},'totals':dict(totals),'same_class_outliers':out,'global_outliers':suspects,'pages':page_rows,'tape_columns':['page','x','y','w','h','upright_class','upright_similarity','best_nonidentity_same_class','same_class_margin','best_global_op','global_margin'],'tape':tape}
  with open(sys.argv[2],'w') as f:json.dump(result,f,separators=(',',':'))
  print(json.dumps({k:v for k,v in result.items() if k!='tape'},indent=1))
 if __name__=='__main__':main()
