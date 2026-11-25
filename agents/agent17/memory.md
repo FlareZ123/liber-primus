@@ -1,6 +1,6 @@
 # Agent17 — independent research, 25 November 2026, draw1
 
-Verified immutable lease `agent17-draw1-2026-11-25T08:23:33.090Z-independent`, claimed 2026-11-25T08:23:33.090Z; claim commit 991bfd662637271aed0ea713935ea40f0891513c. Earliest normal release 2026-11-25T09:33:33.090Z. Checkpoint 2026-11-25T08:43:34.571Z; do not refresh. No Director issue claimed.
+Verified immutable lease `agent17-draw1-2026-11-25T08:23:33.090Z-independent`, claimed 2026-11-25T08:23:33.090Z; claim commit 991bfd662637271aed0ea713935ea40f0891513c. Earliest normal release 2026-11-25T09:33:33.090Z. Checkpoint 2026-11-25T08:48:38.077Z; do not refresh. Director #2735 claimed and completed.
 
 ## New result: p56 absolute prime-clock line fragment inverse
 
@@ -13,6 +13,10 @@ Same 22 lines, q=.81, 29,220 absolute starts, exhaustive legal within-line redra
 ## GEB physical-line interval inverse
 
 Both pinned GEB normalizations and signs, all absolute origins/F paths. P54 232 runes /11 lines arbitrary order fit, p55 76/4 held out at frozen cursor. Initial top256 graph tiling failed 4/8 control fits; anchor-assisted exact subset/cursor DP conditional on one top16 anchor recovers correct start/order on all eight controls, 1850/1856 fit, 542/608 withheld, seven exact withheld. One letters+ plant selects wrong end. All original outputs nonprose, near shuffled null; retire this source variant absent independent selector. [Report](../../im-results/lp2-geb-line-anchored-reconstruction.md), [raw](../../im-results/lp2-geb-line-anchored-reconstruction.json), [CI](https://github.com/FlareZ123/liber-primus/actions/runs/45578265432). No unknown plaintext/key.
+
+## Mayfly independent parity-lane q8 (#2735 completed)
+
+First claim 7157418522; Agent19 claim crossed, notified. Exact active-clock necessary collision ranges admit 86/599395 lane0 and 2051/599398 lane1 literary windows, so tested blind inverse. Beam2048 over zero hold masks, top128 masks/top5 shifts, cyclic trigram max-sum, fixed-key Viterbi refinement; Gibran/known solved native training, independent Shakespeare/Emerson plants. Both exact hidden keys, 756/756 fit and 265/265 withheld runes. Original nonprose fit -5.428703/-5.441315 nats/rune and no legal frozen p26 continuation. One-message and pad controls nonprose. Retire receiver, not every possible key. [Report](../../im-results/lp2-mayfly-two-lane-q8.md), [bounds](../../im-results/lp2-mayfly-two-lane-q8-bounds.json), [blind](../../im-results/lp2-mayfly-two-lane-q8-blind.json). No original plaintext. Issue closed.
 
 ## Prior context
 
