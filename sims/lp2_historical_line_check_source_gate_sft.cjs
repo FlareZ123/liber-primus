@@ -1,0 +1,51 @@
+'use strict';
+const fs = require('node:fs');
+const assert = require('node:assert/strict');
+const read = p => fs.readFileSync(p,'utf8');
+const corpus = JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
+const native = JSON.parse(read('resources/external/relikd-solved-gp29-native-v1.json'));
+const index = new Map(corpus.runes.map((v,i)=>[v,i]));
+const rr = s => [...s].filter(x=>index.has(x)).map(x=>index.get(x));
+const pg = read('resources/transcriptions/lp2-image-corrected.txt').split('%').map(s=>s.split('/').map(rr).filter(x=>x.length));
+const cp = corpus.pages.filter(x=>x.runic_count);
+assert.equal(pg.length,57);
+pg.forEach((rows,i)=>assert.deepEqual(rows.flat(),cp[i].indices));
+const p56=rr(native.sections.find(s=>s.name==='p56_an_end').source_text);
+const p57=rr(native.sections.find(s=>s.name==='p57_parable').source_text);
+const primes=[];
+for(let i=2;primes.length<100;i++) if(primes.every(p=>p*p>i||i%p!==0)) primes.push(i);
+let k=0;
+const enc=p56.map(x=>x===0?0:(x+primes[k++]-1)%29);
+assert.equal(k,84);
+assert.deepEqual(enc,cp.at(-2).indices);
+assert.deepEqual(p57,cp.at(-1).indices);
+const sum=a=>a.reduce((s,x)=>s+corpus.prime[x],0);
+const mul=a=>a.reduce((s,x)=>s*BigInt(x),1n).toString();
+const rows57=pg.at(-1),body57=rows57.map((a,i)=>i===0?a.slice(7):a);
+const sem=native.sections.find(s=>s.name==='p57_parable').source_text.split('\n').slice(1).map(rr);
+assert.deepEqual(body57.flat(),sem.flat());
+assert.deepEqual(sem.map(sum),[1259,1031,1229]);
+assert.equal(mul(sem.map(sum)),'1595277641');
+assert.deepEqual(body57.map(sum),[595,664,593,594,1073]);
+assert.equal(mul(body57.map(sum)),'149322724523280');
+const rec=read('resources/cicada2013-twitter-hex-stream.txt').trim().split(/\r?\n/).map(x=>{
+ const m=/^([0-9a-f]{7}): ([0-9a-f]+)$/i.exec(x);
+ assert.ok(m&&m[2].length%2===0,x);
+ return [parseInt(m[1],16),m[2].length/2];
+}).sort((a,b)=>a[0]-b[0]);
+assert.equal(rec.length,988);
+assert.deepEqual(rec[0],[0,65]); assert.deepEqual(rec.at(-1),[64155,12]);
+assert.ok(rec.slice(0,-1).every(x=>x[1]===65));
+assert.ok(rec.every((x,i)=>i===0||x[0]===rec[i-1][0]+rec[i-1][1]));
+assert.equal(rec.reduce((s,x)=>s+x[1],0),64167);
+for (const [p,plain,rows] of [[56,p56,pg.at(-2)],[57,p57,pg.at(-1)]]) {
+ let cursor=0;
+ const aligned=rows.map((line,i)=>{
+   const part=plain.slice(cursor,cursor+line.length);
+   cursor+=line.length;
+   return {row:i+1,length:line.length,plainPrimeSum:sum(part),terminalPlain:corpus.translit[part.at(-1)]};
+ });
+ assert.equal(cursor,plain.length);
+ console.log(JSON.stringify({page:p,aligned},null,2));
+}
+console.log(JSON.stringify({alignedPages:pg.length,p56Replay:enc.length,p56Consumed:k,p57Identity:true,p57BodyPhysicalSums:body57.map(sum),p57BodyPhysicalProduct:mul(body57.map(sum)),p57SemanticSums:sem.map(sum),p57SemanticProduct:mul(sem.map(sum)),twitter:{records:rec.length,first:rec[0],last:rec.at(-1),contiguous:true,bytes:rec.reduce((s,x)=>s+x[1],0)}},null,2));
