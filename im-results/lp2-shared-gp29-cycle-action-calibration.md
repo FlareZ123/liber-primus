@@ -1,6 +1,6 @@
 # Shared GP29 cycle-action calibration
 
-**Status: no Liber Primus plaintext or key recovered. The p54–55 word-reset calibration basis is now corrected: the 48/17 JSON records physical fragments, not independent lexical words, and the earlier 49/222 + 17/86 fixture includes the red heading as body input. Both terminal profiles are withdrawn as evidence for the red-heading-key, per-word-reset model.** The strongest surviving result is the independently calibrated long-anchor receiver on p40–53. The red eight-rune p54 heading now supplies a concrete source-selected key candidate, but its numeric, prime-derived and alphabet-mapped interpretations have not yet been tested against the corrected body.
+**Status: no Liber Primus plaintext or key recovered. The p54–55 word-reset calibration basis is now corrected: the 48/17 JSON records physical fragments, not independent lexical words, and the earlier 49/222 + 17/86 fixture includes the red heading as body input. Both terminal profiles are withdrawn as evidence for the red-heading-key, per-word-reset model.** The strongest surviving result is the independently calibrated long-anchor receiver on p40–53. The red eight-rune p54 heading now supplies a concrete source-selected key candidate, The direct numeric interpretation has now been conditionally excluded by a blind-calibrated exhaustive permutation search; the prime-derived and alphabet-mapped interpretations remain unresolved.
 
 ## 1. Corrected original input
 
@@ -70,7 +70,31 @@ These give three motivated, distinguishable key hypotheses:
 
 For the fixed numeric variants, normalize the phase origin by dividing every entry by the first entry modulo 29. This gives direct exponents **[1, 24, 18, 6, 23, 16, 28, 1]** and prime-derived exponents **[1, 15, 18, 6, 16, 17, 18, 1]**. The alphabet-mapped form has exponents \(e_j=\\pi(K_j)\\pi(K_0)^{-1}\\pmod{29}\), with \(e_0=e_7=1\); its remaining values are coupled to the unknown \(\\pi\).
 
-The enlarged A is a separate visual marker; no offset or seed role has been established. A cheap necessary prefilter on the corrected body now checks the implications shared by all three variants: every red8-derived shift is nonzero, and equal shift values must reuse the same phase map. Under this fixed-point/injectivity filter, all 47 complete p54 words and all 16 complete p55 words retain nonempty dictionary domains, and 69/93 carry-prefix candidates survive. This does not enforce the exact numeric exponents or a common 29-cycle, so it neither supports nor excludes any variant. The exact direct, prime-derived and alphabet-mapped shift models remain untested; p55 must remain held out from fitting.
+The enlarged A is a separate visual marker; no offset or seed role has been established. A cheap necessary prefilter on the corrected body now checks the implications shared by all three variants: every red8-derived shift is nonzero, and equal shift values must reuse the same phase map. Under this fixed-point/injectivity filter, all 47 complete p54 words and all 16 complete p55 words retain nonempty dictionary domains, and 69/93 carry-prefix candidates survive. This does not enforce the exact numeric exponents or a common 29-cycle, so it neither supports nor excludes any variant. The fixed-vector graph receiver below strengthens this to a calibrated exact exclusion for the direct numeric interpretation. The prime-derived and alphabet-mapped interpretations remain unresolved; p55 remains held out from fitting.
+
+### Fixed numeric red8 inverse (Agent10, 25 November)
+
+The [fixed-vector graph receiver](../sims/lp2_red8_fixed_numeric_cycle_carry_sft.cpp) directly imposes `pi(C)-pi(P)=k[j]` on consuming edges. Weighted graph components represent exact GF29 relative coordinates, reject forced collisions, and enumerate disjoint component translations with `pi(F)=0`. The mandatory carry prefix uses only ten observed p54 runes; all 47 complete p54 words may contribute constraints, with at most three omissions. Any completed permutation is checked against the full training register. A capped packing leaf or timed-out seed would prevent a negative conclusion.
+
+Original necessary local filtering reduces the 93 unique general-q8 prefixes to 67 for each numeric vector, with 376 direct and 401 prime graph states. All 47 complete words retain local support. In the more general arbitrary-key graph relaxation, the two longest complete groups (12 and 45) have 154,551 and 118,278 compatible carry/word pairs across relative phases, minimum supports 134 and 90; every prefix retains support. This explains why isolated/pairwise feasibility alone does not decide the key.
+
+[Compiled run 45718447093](https://github.com/FlareZ123/liber-primus/actions/runs/45718447093) (the diagnostic program deliberately exits nonzero after printing results):
+
+| Vector / input | Result | Held-out truth | Unique holdout |
+|---|---|---:|---:|
+| Direct ordinal / plant 3301 | Exact action, 0 OOV | 17/17 | 10 |
+| Direct ordinal / plant 1033 | Exact action, 0 OOV | 17/17 | 11 |
+| Direct ordinal / original | Exhaustive negative, 376/376 carry states | not scored | not scored |
+| Prime / plant 3401 | Timeout at 7357/7982 completed seed states | not scored | not scored |
+| Prime / plant 1133 | Exact action, 0 OOV | 17/17 | 11 |
+
+The direct original search traversed 161,265 nodes, 1,507,329 constraint extensions and 8,922 completed-permutation checks, with zero capped packings, zero unresolved residual leaves and no timeout. Thus **no common alphabet permutation under the direct ordinal red8 shift vector supports the mandatory carry prefix and at least 44 of the 47 complete p54 words in the specified register**. This is a conditional exact negative for the whole arbitrary-per-word-start fixed-vector family, including any consistent continuous clock. It is not a rejection of arbitrary q8, alternate key derivations, other word segmentation, or more than three OOV words. No original holdout was consumed to obtain the exclusion.
+
+The prime original fit was gated off because plant 3401 timed out. [Seed-resume receiver](../sims/lp2_red8_prime_resume_sft.cpp) resumes at seed index 7357 instead of repeating completed branches; original fit requires exact control recovery first.
+
+### Continuous-clock fixed-vector lexical propagation
+
+The original p54 body has exactly three ciphertext F positions. A continuous clock with fixed numeric shifts has eight initial phases and eight literal-hold histories (64 scenarios per key). Each consuming token `(C,k)` has one plaintext value globally; different tokens with identical C or identical k cannot share P. The [OOV-aware lexical propagator](../sims/lp2_red8_continuous_clock_lexical_propagation_sft.cjs) combines same-token support and singleton inequality conflicts, removing candidate words only when they require more than three distinct omissions or omit the mandatory carry. Eight planted histories retained every in-register true word (six plants with three explicit OOV words). On the original [machine-readable result](lp2-red8-continuous-clock-lexical-propagation-output.json), all 64 scenarios per vector remain locally feasible: direct carry domains 41–51, prime 38–56. This relaxation is not a key fit; the subsequent exact direct-vector exclusion supersedes its apparent direct feasibility. The prime propagation is available for a tighter continuous-clock receiver if needed.
 
 ## 4. Evidence that remains valid
 
@@ -102,7 +126,7 @@ The source-corrected CP-SAT implementation is `sims/lp2_shared_gp29_q8_carry_pre
 1. Run blind controls on the exact word-reset profile: 47 complete p54 body words (213 runes), a 10-rune prefix of one 11-rune carry, then its held-out final rune plus 16 complete p55 words (75 runes). The carry must use one starting phase and continue across the physical page boundary. Require exact effective-action recovery, all training truth, and held-out truth on both plants before fitting the original.
 2. For the original prefix, use the 93 unique ten-rune prefixes from the 96 prefix-compatible length-11 dictionary forms as a necessary domain only; do not treat the final p55 rune as a separate word or phase reset.
 3. Only after both blind controls pass, fit the original 47 complete p54 words plus the carry prefix with at most three OOV complete words. Freeze the action, then score the full 11-rune carry and 16 complete p55 words. Report all candidate counts and action ambiguity; a feasible training fit alone is not a solution.
-4. Test the three red-heading key interpretations separately on the same corrected blind profile. For mapped shifts, normalize the hidden \(\pi\) and key together; do not leak the planted action or plaintext.
+4. The direct numeric interpretation is now excluded on the corrected profile. Finish prime control 3401 from its saved seed frontier, then gate the original prime fit. Test the alphabet-mapped interpretation separately on the same corrected blind profile. For mapped shifts, normalize the hidden \(\pi\) and key together; do not leak the planted action or plaintext.
 5. If controls fail, or the original fit has no independently predictive holdout, retire these exact interpretations rather than expanding unconstrained keyword pools. Keep arbitrary-q8 work separate from the red8 hypotheses.
 
-**Current conclusion:** the common-cycle mechanism remains a hypothesis, the p54 red eight-rune sequence is a source-derived candidate key, and no original plaintext or key has been recovered. The immediate priority is 47-word plus carry-prefix blind calibration followed by the red8 tests; no original p54 word-reset fit has yet been attempted.
+**Current conclusion:** the common-cycle mechanism remains a hypothesis. The direct ordinal red8 shift vector is excluded within the corrected finite-register model; the prime-derived and mapped interpretations remain open. No original plaintext or key has been recovered.
