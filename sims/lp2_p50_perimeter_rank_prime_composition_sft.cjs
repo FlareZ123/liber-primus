@@ -24,10 +24,10 @@ function experiment(gp,grid,reference) {
   const base59=ring.map(i=>59*alt.indexOf(gridTokens[i][0])+alt.indexOf(gridTokens[i][1]));
   const inv=p=>{const q=[];p.forEach((x,i)=>q[x]=i);return q;};
   const apply=(x,p)=>p.map(i=>x[i]);
-  function permutations(v){const out=[];for(const ccw of [false,true])for(const descending of [false,true]){
-    const walk=ccw?[0,...Array.from({length:75},(_,i)=>75-i)]:Array.from({length:76},(_,i)=>i);
+  function permutations(v){const out=[];for(const traversal of ["CW","CCW-anchored","CCW-reversed"])for(const descending of [false,true]){
+    const walk=traversal==="CW"?Array.from({length:76},(_,i)=>i):traversal==="CCW-anchored"?[0,...Array.from({length:75},(_,i)=>75-i)]:Array.from({length:76},(_,i)=>75-i);
     const p=walk.map(i=>v[i]).map((_,i)=>i).sort((i,j)=>(descending?-1:1)*(v[walk[i]]-v[walk[j]])||i-j);
-    for(const inverse of [false,true])out.push({label:`${ccw?"CCW":"CW"}/${descending?"desc":"asc"}/${inverse?"inverse":"direct"}`,perm:inverse?inv(p):p});
+    for(const inverse of [false,true])out.push({label:`${traversal}/${descending?"desc":"asc"}/${inverse?"inverse":"direct"}`,perm:inverse?inv(p):p});
   }return out;}
   requireTrue(eq(permutations(values),permutations(base59)),"radix order invariance");
   const roman=p=>p.map(i=>gp.translit[i]).join("");
