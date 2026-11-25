@@ -1,0 +1,559 @@
+{
+  "group": "control",
+  "start": 0,
+  "end": 3,
+  "rows": [
+    {
+      "seed": 1346916352,
+      "s": 0.73,
+      "schedule": "conditional",
+      "policy": "ordinary",
+      "holds": 0,
+      "rejects": 343,
+      "complete": true,
+      "firstDead": null,
+      "intervals": [
+        [
+          0.72,
+          0.7393015483394265
+        ]
+      ],
+      "finalStates": 6,
+      "maxStates": 43,
+      "maxIntervals": 43,
+      "extensions": 0
+    },
+    {
+      "seed": 1346916352,
+      "s": 0.73,
+      "schedule": "conditional",
+      "policy": "physical",
+      "holds": 273,
+      "rejects": 354,
+      "complete": true,
+      "firstDead": null,
+      "intervals": [
+        [
+          0.7233239389024675,
+          0.7344218133948743
+        ]
+      ],
+      "finalStates": 12,
+      "maxStates": 42,
+      "maxIntervals": 42,
+      "extensions": 0
+    },
+    {
+      "seed": 1346916352,
+      "s": 0.73,
+      "schedule": "conditional",
+      "policy": "consuming",
+      "holds": 273,
+      "rejects": 335,
+      "complete": true,
+      "firstDead": null,
+      "intervals": [
+        [
+          0.7279199422337115,
+          0.7318823523819447
+        ]
+      ],
+      "finalStates": 3,
+      "maxStates": 60,
+      "maxIntervals": 60,
+      "extensions": 0
+    },
+    {
+      "seed": 1346916352,
+      "s": 0.73,
+      "schedule": "paired key first",
+      "policy": "ordinary",
+      "holds": 0,
+      "rejects": 311,
+      "complete": true,
+      "firstDead": null,
+      "intervals": [
+        [
+          0.72,
+          0.7304573897272348
+        ]
+      ],
+      "finalStates": 9,
+      "maxStates": 25,
+      "maxIntervals": 25,
+      "extensions": 1
+    },
+    {
+      "seed": 1346916352,
+      "s": 0.73,
+      "schedule": "paired key first",
+      "policy": "physical",
+      "holds": 273,
+      "rejects": 328,
+      "complete": true,
+      "firstDead": null,
+      "intervals": [
+        [
+          0.7240030760876834,
+          0.7320425477810204
+        ]
+      ],
+      "finalStates": 6,
+      "maxStates": 23,
+      "maxIntervals": 23,
+      "extensions": 0
+    },
+    {
+      "seed": 1346916352,
+      "s": 0.73,
+      "schedule": "paired key first",
+      "policy": "consuming",
+      "holds": 273,
+      "rejects": 314,
+      "complete": true,
+      "firstDead": null,
+      "intervals": [
+        [
+          0.7240030760876834,
+          0.7313399715349078
+        ]
+      ],
+      "finalStates": 2,
+      "maxStates": 40,
+      "maxIntervals": 40,
+      "extensions": 0
+    },
+    {
+      "seed": 1346916352,
+      "s": 0.73,
+      "schedule": "paired coin first",
+      "policy": "ordinary",
+      "holds": 0,
+      "rejects": 335,
+      "complete": true,
+      "firstDead": null,
+      "intervals": [
+        [
+          0.72,
+          0.7311462727375329
+        ]
+      ],
+      "finalStates": 11,
+      "maxStates": 25,
+      "maxIntervals": 32,
+      "extensions": 1
+    },
+    {
+      "seed": 1346916352,
+      "s": 0.73,
+      "schedule": "paired coin first",
+      "policy": "physical",
+      "holds": 273,
+      "rejects": 334,
+      "complete": true,
+      "firstDead": null,
+      "intervals": [
+        [
+          0.7230158797465265,
+          0.7311489256098866
+        ]
+      ],
+      "finalStates": 5,
+      "maxStates": 17,
+      "maxIntervals": 17,
+      "extensions": 0
+    },
+    {
+      "seed": 1346916352,
+      "s": 0.73,
+      "schedule": "paired coin first",
+      "policy": "consuming",
+      "holds": 273,
+      "rejects": 353,
+      "complete": true,
+      "firstDead": null,
+      "intervals": [
+        [
+          0.7230158797465265,
+          0.7311489256098866
+        ]
+      ],
+      "finalStates": 1,
+      "maxStates": 48,
+      "maxIntervals": 70,
+      "extensions": 1
+    },
+    {
+      "seed": 1346916353,
+      "s": 0.81,
+      "schedule": "conditional",
+      "policy": "ordinary",
+      "holds": 0,
+      "rejects": 359,
+      "complete": true,
+      "firstDead": null,
+      "intervals": [
+        [
+          0.7738961959257722,
+          0.8110499456524849
+        ]
+      ],
+      "finalStates": 5,
+      "maxStates": 43,
+      "maxIntervals": 43,
+      "extensions": 0
+    },
+    {
+      "seed": 1346916353,
+      "s": 0.81,
+      "schedule": "conditional",
+      "policy": "physical",
+      "holds": 295,
+      "rejects": 370,
+      "complete": true,
+      "firstDead": null,
+      "intervals": [
+        [
+          0.780310039408505,
+          0.7881547058932483
+        ],
+        [
+          0.7998794768936932,
+          0.820172905921936
+        ]
+      ],
+      "finalStates": 5,
+      "maxStates": 41,
+      "maxIntervals": 75,
+      "extensions": 0
+    },
+    {
+      "seed": 1346916353,
+      "s": 0.81,
+      "schedule": "conditional",
+      "policy": "consuming",
+      "holds": 295,
+      "rejects": 372,
+      "complete": true,
+      "firstDead": null,
+      "intervals": [
+        [
+          0.7998794768936932,
+          0.820172905921936
+        ]
+      ],
+      "finalStates": 5,
+      "maxStates": 99,
+      "maxIntervals": 168,
+      "extensions": 0
+    },
+    {
+      "seed": 1346916353,
+      "s": 0.81,
+      "schedule": "paired key first",
+      "policy": "ordinary",
+      "holds": 0,
+      "rejects": 357,
+      "complete": true,
+      "firstDead": null,
+      "intervals": [
+        [
+          0.804064592346549,
+          0.8197655361145735
+        ]
+      ],
+      "finalStates": 11,
+      "maxStates": 43,
+      "maxIntervals": 50,
+      "extensions": 1
+    },
+    {
+      "seed": 1346916353,
+      "s": 0.81,
+      "schedule": "paired key first",
+      "policy": "physical",
+      "holds": 295,
+      "rejects": 345,
+      "complete": true,
+      "firstDead": null,
+      "intervals": [
+        [
+          0.8062474322505295,
+          0.8142757187597454
+        ]
+      ],
+      "finalStates": 4,
+      "maxStates": 21,
+      "maxIntervals": 21,
+      "extensions": 0
+    },
+    {
+      "seed": 1346916353,
+      "s": 0.81,
+      "schedule": "paired key first",
+      "policy": "consuming",
+      "holds": 295,
+      "rejects": 368,
+      "complete": true,
+      "firstDead": null,
+      "intervals": [
+        [
+          0.7986186007037759,
+          0.8109320043586195
+        ]
+      ],
+      "finalStates": 10,
+      "maxStates": 35,
+      "maxIntervals": 35,
+      "extensions": 1
+    },
+    {
+      "seed": 1346916353,
+      "s": 0.81,
+      "schedule": "paired coin first",
+      "policy": "ordinary",
+      "holds": 0,
+      "rejects": 338,
+      "complete": true,
+      "firstDead": null,
+      "intervals": [
+        [
+          0.7479641670361161,
+          0.8163417531177402
+        ]
+      ],
+      "finalStates": 7,
+      "maxStates": 59,
+      "maxIntervals": 59,
+      "extensions": 1
+    },
+    {
+      "seed": 1346916353,
+      "s": 0.81,
+      "schedule": "paired coin first",
+      "policy": "physical",
+      "holds": 295,
+      "rejects": 360,
+      "complete": true,
+      "firstDead": null,
+      "intervals": [
+        [
+          0.7961286874487996,
+          0.8142932807095349
+        ]
+      ],
+      "finalStates": 3,
+      "maxStates": 24,
+      "maxIntervals": 24,
+      "extensions": 1
+    },
+    {
+      "seed": 1346916353,
+      "s": 0.81,
+      "schedule": "paired coin first",
+      "policy": "consuming",
+      "holds": 295,
+      "rejects": 360,
+      "complete": true,
+      "firstDead": null,
+      "intervals": [
+        [
+          0.8058377611450851,
+          0.8141366639174521
+        ]
+      ],
+      "finalStates": 3,
+      "maxStates": 40,
+      "maxIntervals": 40,
+      "extensions": 1
+    },
+    {
+      "seed": 1346916354,
+      "s": 0.87,
+      "schedule": "conditional",
+      "policy": "ordinary",
+      "holds": 0,
+      "rejects": 337,
+      "complete": true,
+      "firstDead": null,
+      "intervals": [
+        [
+          0.72,
+          0.8714539841748774
+        ]
+      ],
+      "finalStates": 70,
+      "maxStates": 171,
+      "maxIntervals": 171,
+      "extensions": 0
+    },
+    {
+      "seed": 1346916354,
+      "s": 0.87,
+      "schedule": "conditional",
+      "policy": "physical",
+      "holds": 275,
+      "rejects": 417,
+      "complete": true,
+      "firstDead": null,
+      "intervals": [
+        [
+          0.8321642735973,
+          0.8719680667854846
+        ]
+      ],
+      "finalStates": 17,
+      "maxStates": 38,
+      "maxIntervals": 38,
+      "extensions": 0
+    },
+    {
+      "seed": 1346916354,
+      "s": 0.87,
+      "schedule": "conditional",
+      "policy": "consuming",
+      "holds": 275,
+      "rejects": 398,
+      "complete": true,
+      "firstDead": null,
+      "intervals": [
+        [
+          0.8321642735973,
+          0.8702204460278153
+        ]
+      ],
+      "finalStates": 16,
+      "maxStates": 102,
+      "maxIntervals": 102,
+      "extensions": 0
+    },
+    {
+      "seed": 1346916354,
+      "s": 0.87,
+      "schedule": "paired key first",
+      "policy": "ordinary",
+      "holds": 0,
+      "rejects": 372,
+      "complete": true,
+      "firstDead": null,
+      "intervals": [
+        [
+          0.785658962558955,
+          0.8098303764127195
+        ],
+        [
+          0.8112378716468811,
+          0.8705275440588593
+        ]
+      ],
+      "finalStates": 28,
+      "maxStates": 73,
+      "maxIntervals": 95,
+      "extensions": 1
+    },
+    {
+      "seed": 1346916354,
+      "s": 0.87,
+      "schedule": "paired key first",
+      "policy": "physical",
+      "holds": 275,
+      "rejects": 417,
+      "complete": true,
+      "firstDead": null,
+      "intervals": [
+        [
+          0.86619953205809,
+          0.8738599782809615
+        ]
+      ],
+      "finalStates": 3,
+      "maxStates": 33,
+      "maxIntervals": 33,
+      "extensions": 1
+    },
+    {
+      "seed": 1346916354,
+      "s": 0.87,
+      "schedule": "paired key first",
+      "policy": "consuming",
+      "holds": 275,
+      "rejects": 406,
+      "complete": true,
+      "firstDead": null,
+      "intervals": [
+        [
+          0.86619953205809,
+          0.8738599782809615
+        ]
+      ],
+      "finalStates": 5,
+      "maxStates": 48,
+      "maxIntervals": 48,
+      "extensions": 1
+    },
+    {
+      "seed": 1346916354,
+      "s": 0.87,
+      "schedule": "paired coin first",
+      "policy": "ordinary",
+      "holds": 0,
+      "rejects": 390,
+      "complete": true,
+      "firstDead": null,
+      "intervals": [
+        [
+          0.72,
+          0.7624570364132524
+        ],
+        [
+          0.8223834065720439,
+          0.8728402238339186
+        ]
+      ],
+      "finalStates": 32,
+      "maxStates": 87,
+      "maxIntervals": 95,
+      "extensions": 1
+    },
+    {
+      "seed": 1346916354,
+      "s": 0.87,
+      "schedule": "paired coin first",
+      "policy": "physical",
+      "holds": 275,
+      "rejects": 394,
+      "complete": true,
+      "firstDead": null,
+      "intervals": [
+        [
+          0.8674371386878192,
+          0.8719680667854846
+        ]
+      ],
+      "finalStates": 5,
+      "maxStates": 22,
+      "maxIntervals": 22,
+      "extensions": 1
+    },
+    {
+      "seed": 1346916354,
+      "s": 0.87,
+      "schedule": "paired coin first",
+      "policy": "consuming",
+      "holds": 275,
+      "rejects": 377,
+      "complete": true,
+      "firstDead": null,
+      "intervals": [
+        [
+          0.8674371386878192,
+          0.8715206673368812
+        ]
+      ],
+      "finalStates": 5,
+      "maxStates": 35,
+      "maxIntervals": 35,
+      "extensions": 1
+    }
+  ]
+}
