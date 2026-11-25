@@ -2357,5 +2357,41 @@
   "score": -558.4896418818514,
   "mean": -1.8371369798745112,
   "expanded": 44987486,
-  "maxCache": 50182
+  "maxCache": 50182,
+  "exactTruth": [
+    {
+      "score": -142.57318168879735,
+      "maxStates": 13
+    },
+    {
+      "score": -112.7428852054275,
+      "maxStates": 16
+    },
+    {
+      "score": -156.22493839903316,
+      "maxStates": 14
+    },
+    {
+      "score": -144.2513859932129,
+      "maxStates": 15
+    }
+  ],
+  "exactRecovered": [
+    {
+      "score": -137.64778222289164,
+      "maxStates": 10
+    },
+    {
+      "score": -129.65910758370947,
+      "maxStates": 11
+    },
+    {
+      "score": -143.96977725218423,
+      "maxStates": 14
+    },
+    {
+      "score": -147.21297482306602,
+      "maxStates": 13
+    }
+  ]
 }
