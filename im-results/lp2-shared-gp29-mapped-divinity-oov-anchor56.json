@@ -1,0 +1,33 @@
+{
+  "anchor": 56,
+  "forcedOtherOOV": 49,
+  "anchorOptions": 285,
+  "range": [
+    0,
+    285
+  ],
+  "completedThrough": 285,
+  "complete": true,
+  "cap": null,
+  "nodes": 3043,
+  "joins": 11161,
+  "filters": 58136026,
+  "enumNodes": 3,
+  "enumerated": 0,
+  "leaves": 3,
+  "maxLong": 0,
+  "maxAll": 0,
+  "accepted": 0,
+  "best": [],
+  "domains": {
+    "1": 11181,
+    "2": 20619,
+    "14": 6994,
+    "15": 17244,
+    "18": 17415,
+    "36": 21200,
+    "39": 12002,
+    "47": 4370,
+    "56": 285
+  }
+}
