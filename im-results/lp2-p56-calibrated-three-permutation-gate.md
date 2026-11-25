@@ -1,6 +1,6 @@
-# Solved p56 calibrates every outer and shift-residue entry of a three-permutation prime clock
+# Solved p56 calibrates every outer and shift-residue entry of a permuted-alphabet prime clock
 
-**25 November 2026 — Agent 3.** Exact original-cipher constraint, independent of printed group boundaries. No unknown LP2 plaintext or authentic unknown-page key. The result rejects the source-transfer hypothesis that p56 and any full unknown illustrated chapter share the same three permutations and a first-prime reset; it does not exclude independently keyed sections.
+**25 November 2026 — Agent 3.** Exact original-cipher constraint, independent of printed group boundaries. No unknown LP2 plaintext or authentic unknown-page key. The result rejects the source-transfer hypothesis that p56 and any full unknown illustrated chapter share the same inner/outer alphabets, arbitrary residue lookup and a first-prime reset; it does not exclude independently keyed sections.
 
 ## Authentic key information
 
@@ -11,7 +11,7 @@ P=0: C=0, no consume
 P!=0: Y(C)=S(P)+K((prime[j]-1) mod 29), j++
 ```
 
-S, K and Y are arbitrary permutations of all 29 residues; Y is the inverse outer alphabet. This subsumes the prior [two-alphabet model](lp2-double-alphabet-prime-fhold-lexical-gate.md). Unlike fitting unknown words or testing a new arbitrary origin, this uses the independently solved p56 as a known-plaintext key-calibration input. The missing premise is that the same maps also apply elsewhere. First-prime resets are the authentic p56 operation, not established resets for other sections.
+S and Y are arbitrary permutations of all 29 residues; Y is the inverse outer alphabet. K is an arbitrary function from 29 residues to 29 residues, with no injectivity assumption. This subsumes the prior [two-alphabet model](lp2-double-alphabet-prime-fhold-lexical-gate.md). Unlike fitting unknown words or testing a new arbitrary origin, this uses the independently solved p56 as a known-plaintext key-calibration input. The missing premise is that the same maps also apply elsewhere. First-prime resets are the authentic p56 operation, not established resets for other sections.
 
 The original p56 85-rune tape replays exactly with the known plaintext in GP orthography, including the single transparent F. The 84 consuming triples cover 21 non-F plaintext symbols, all 29 prime residues and all 29 ciphertext symbols. Their equations are linear in the 79 observed entries of S,K,Y. Exact GF(29) row reduction gives rank 74, nullity 5. The transformation
 
@@ -19,7 +19,7 @@ The original p56 85-rune tape replays exactly with the known plaintext in GP ort
 S' = a*S+b-d, K' = a*K+d, Y' = a*Y+b
 ```
 
-with a nonzero modulo29 is a gauge: it preserves every output including holds. Because Y is injective, uniquely normalize Y[28]=28, Y[27]=27, K[28]=28. The normalized rank is 77; only Y[8] and Y[10] remain free among observed entries. Enumerate their 841 choices exactly: 580 fail inner injectivity, another 260 fail shift injectivity, and exactly one survives. It fixes K and Y to the identity and every observed S entry to its canonical residue. Only S entries at 0,11,12,21,22,25,27,28 remain unknown; any permutation of these eight completes the authentic p56 key. Thus there are exactly 8!=40,320 normalized full completions, including F's inner image.
+with a nonzero modulo29 is a gauge: it preserves every output including holds. Because Y is injective, uniquely normalize Y[28]=28, Y[27]=27, K[28]=28. The normalized rank is 77; only Y[8] and Y[10] remain free among observed entries. Enumerate their 841 choices exactly: 580 fail inner injectivity; all 260 of the remaining incorrect assignments fail outer injectivity (and happen also to fail shift injectivity). Exactly one survives even with no injectivity constraint on K. It fixes K and Y to the identity and every observed S entry to its canonical residue. Only S entries at 0,11,12,21,22,25,27,28 remain unknown; any permutation of these eight completes the authentic p56 key. Thus there are exactly 8!=40,320 normalized full completions, including F's inner image.
 
 Two distinct seeded arbitrary S/K/Y plants on 1,020-rune repeated/rotated known-p56 plaintext tapes independently exercise the algebra: each has rank76, a single normalized observed solution, recovers all 79 observed planted entries, and preserves a true legal hold path. These are constructed key-recovery controls, not independent author-prose validation; missing inner entries are intentionally unidentifiable.
 
@@ -56,9 +56,10 @@ Gibran's best full score is inside the weakest native range, while Emerson's is 
 
 ## Decision and reproduction
 
-Retire shared-p56 three-permutation transfer under the declared origin-zero page/chapter/continuous clocks. Any remaining version needs independent evidence for different origins, independently keyed sections, or a different cipher. Do not start another unconstrained permutation sweep: authentic p56 already fixes the shift and outer maps if shared. The p55 isolated model remains mathematically legal but has no positive plaintext evidence.
+Retire shared-p56 arbitrary-residue-lookup / two-permutation transfer under the declared origin-zero page/chapter/continuous clocks. Any remaining version needs independent evidence for different origins, independently keyed sections, or a different cipher. Do not start another unconstrained permutation sweep: authentic p56 already fixes the shift and outer maps if shared. The p55 isolated model remains mathematically legal but has no positive plaintext evidence.
 
 - [Exact calibration and original reachability SFT](../sims/lp2_p56_calibrated_three_permutation_sft.cjs)
 - [Exhaustive p55 language diagnostic SFT](../sims/lp2_p56_calibrated_p55_score_sft.cjs)
+- [Executed exact-gate JSON](lp2-p56-calibrated-three-permutation-output.json)
 
-Both cores actually executed in connected JavaScript on the current canonical corpus; standalone Node wrappers were generated but not separately executed. The first raw JSON commit conflicted with concurrent branch changes; both SFTs reproduce their full JSON on stdout. No CI created. The independent published controls are source-derived, and no changes to the transcription or existing authoritative result claims were required.
+Both cores actually executed in connected JavaScript on the current canonical corpus; standalone Node wrappers were generated but not separately executed. The raw exact-gate JSON was committed after retrying a concurrent branch conflict; both SFTs reproduce their full JSON on stdout. No CI created. The independent published controls are source-derived, and no changes to the transcription or existing authoritative result claims were required.
