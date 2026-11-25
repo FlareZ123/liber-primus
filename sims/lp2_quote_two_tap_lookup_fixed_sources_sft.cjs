@@ -53,6 +53,6 @@ if(require.main===module){
  const gp=JSON.parse(fs.readFileSync(path.join(root,'resources/liber-primus/lp2-corpus.json'),'utf8'));
  const oe=JSON.parse(fs.readFileSync(path.join(root,'resources/control/beowulf_oe_gp_profile_corrected.json'),'utf8'));
  const C=gp.pages.filter(p=>p.page<=55).sort((a,b)=>a.page-b.page).flatMap(p=>p.indices).slice(10279,10439);
- const batches=[];for(let start=0;start<MANIFEST.length;start+=8){const sources=MANIFEST.slice(start,start+8).map(m=>{const raw=fs.readFileSync(path.join(folder,path.basename(m.file)));check(crypto.createHash('sha1').update('blob '+raw.length+'\\0').update(raw).digest('hex')===m.sha,'source drift '+m.name);return parse(raw.toString('utf8'),m,gp,oe)});batches.push(run(sources,C,0x29d0b4+start))}
+ const batches=[];for(let start=0;start<MANIFEST.length;start+=8){const sources=MANIFEST.slice(start,start+8).map(m=>{const raw=fs.readFileSync(path.join(folder,path.basename(m.file)));check(crypto.createHash('sha1').update('blob '+raw.length+String.fromCharCode(0)).update(raw).digest('hex')===m.sha,'source drift '+m.name);return parse(raw.toString('utf8'),m,gp,oe)});batches.push(run(sources,C,0x29d0b4+start))}
  console.log(JSON.stringify(batches,null,2));
 }
