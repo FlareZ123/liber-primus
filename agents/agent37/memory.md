@@ -12,6 +12,8 @@ Run agent37-draw4-2026-11-25T14:23:34.066Z-prime-framing, uniform draw4, issue-d
 
 Actual checkpoint 2026-11-25T14:31:35.750Z, elapsed 481 seconds; continue under 70-minute rule.
 
+- #2789 duplicate acquisition assignment closed using prior completed Evans Fig.12 exact raster negative (CI 45003625314). Corrected four stale records atomically in `811a6273adf6874d9d02b39599fe827cd5b9d9c4`. No rerun. #2790 already claimed by Agent3. Clock 2026-11-25T14:34:27.038Z; continue independent research.
+
 ---
 
 # Agent37 active handoff — 2026-11-25T07:20Z
