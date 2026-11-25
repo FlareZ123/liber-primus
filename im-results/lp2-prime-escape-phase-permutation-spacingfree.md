@@ -81,8 +81,40 @@ Two new independent 308-rune Gibran plants with secret seeded nonaffine, possibl
 
 [Secret-lookup joint crib SFT](../sims/lp2_prime_escape_lookup_joint_crib_sft.cjs) · [raw with witnesses](lp2-prime-escape-lookup-joint-crib-output.json).
 
-## 4. Research decision
+## 4. Secret output alphabet and arbitrary per-site escape: exact source-crib inverse
 
-Do not optimize secret global q8/q13 rank permutations in these three receivers; the exact common-rune occupancy bound fails before any language-order assumptions or heuristic key search. A new source-selected varying phase/state rule, a different plaintext register or additional layer could evade the bound. Chapter-private periodic maps and q28/q29/q256 are not resolved by the strongest pooled test. The finite contiguous source-crib search independently rejects the tested q8/q13/q28/q29 chapter-local prime-residue lookup families on every available source window, without a claim about unknown prose. Prioritize an independently selected receiver over merely enlarging the key. A fixed map with an unrecoverable arbitrary escape sequence is not a complete decoder. No authentic LP2 plaintext, key or destination is recovered.
+Remove both the canonical GP output order and the prime-residue escape lookup. Let A be any permutation of all 29 plaintext symbols, shared within the tested scope. For each nonzero ciphertext step the only remaining restriction is P_i in {A[r], A[r+1]}, with arbitrary escape per site; zero steps have completely free plaintext. The rank r uses one of the three prior shift compositions and an arbitrary 28-way phase permutation. No printed spacing is used. This grants far more state than a recoverable historical decoder.
 
-All five computational cores executed in the connected V8 runtime on the pinned repository blobs recorded in the raw JSON. Standalone CommonJS wrappers have not been separately executed in Node/CI. An initial Gibran body anchor did not match the source and was corrected to its actual literal |Almustafa; an initial oversized multi-weight experiment timed out before persistence and the successful weighted run restricts itself to the four genuinely unresolved global after-shift domains. No new workflow.
+The single-E no/before-shift bound remains valid for every output alphabet order, because any symbol belongs to at most two adjacent rank edges. The canonical after-shift common-rune bound does not automatically transfer: an arbitrary order can interleave common and uncommon runes. A cheap order-free rearrangement relaxation using the parity of prime-minus-one does not separate the native windows, so the search uses exact source-crib constraints instead.
+
+For a fixed candidate contiguous plaintext tape, group nonzero steps by phase and effective input row, with shift k=0 for none/before, prime-minus-one mod28 for after. The same row and same k permit at most two distinct plaintext symbols. Two observations in the same row whose k difference is neither 0 nor ±1 modulo28 must have different plaintext, since their edge positions are disjoint. Every observed two-symbol edge must occur in one linear alphabet: its graph has degree at most two and no cycles. Finally at fixed phase/k any plaintext symbol can occur in at most two distinct rows by bijectivity. These are necessary, not sufficient.
+
+For any survivor solve a joint exact CSP: 29 symbol positions in 0..28, q×28 row ranks in 0..27, separate all-different constraints. An observation at row v and shift k allows rank mod28(pos(P)+k) or mod28(pos(P)-1+k), excluding the invalid endpoint choices. Bitset arc consistency propagates both variable directions and intersects binary position relations across shared rows. Singleton elimination and bipartite perfect-matching feasibility enforce the permutation domains; branch on the smallest observed position domain (high degree tie-break), then complete each row map by matching. A 200,000-node per-candidate safety limit returns unresolved rather than false UNSAT. No candidate reaches it. For a witness choose the escape as the opposite edge endpoint, or the candidate P at a zero; independently reencode every ciphertext rune. The per-site escape witness is not an independently recoverable side-information channel.
+
+Across the full original tape and all nine independent chapter resets, q8/q13 × both clocks × three compositions = 120 domains, **67,545,768** contiguous source-window/domain comparisons. Every domain except three terminal after-shift modes fails the first necessary filter entirely.
+
+| Terminal mode | Unequal/2-symbol filter | Alphabet graph | Fixed-shift row filter | Joint CSP SAT |
+|---|---:|---:|---:|---:|
+|q8 hold after|2|0|0|0|
+|q13 ordinary after|28|2|1|0|
+|q13 hold after|15|2|2|0|
+
+All three final candidates fail arc consistency at the root (one node each): Emerson offset293998 (116 binary position relations), Gibran12849 (91), Emerson65448 (106). No unresolved nodes or surviving original witness.
+
+Three fresh independent 308-rune Gibran plants use secret shuffled GP29 output alphabets, arbitrary independent phase permutations and per-site seeded random escapes. Scanning 46,527 source windows per plant in the specified q/order/clock architecture:
+
+| Plant | True source offset | Initial filter survivors | Joint CSP survivors | Nodes for true witness |
+|---|---:|---:|---:|---:|
+|q8 ordinary before|5500|1|1|35|
+|q13 hold after|18500|66|1|8|
+|q8 hold none|25100|1|1|40|
+
+All 924 planted plaintext runes recovered and independently reencoded, with a unique source offset in each tested architecture. Witness alphabets, unused keys and per-site escape choices need not be the original hidden values. This is finite known-source recovery, not a blind unknown-prose inverse. No source evidence selects this enlarged model, and no authentic plaintext/key found.
+
+[Secret-order exact crib SFT](../sims/lp2_prime_escape_secret_order_crib_sft.cjs) · [raw all domains and plant witnesses](lp2-prime-escape-secret-order-crib-output.json).
+
+## 5. Research decision
+
+Do not optimize secret global q8/q13 rank permutations in these three receivers; the exact common-rune occupancy bound fails before any language-order assumptions or heuristic key search. A new source-selected varying phase/state rule, a different plaintext register or additional layer could evade the bound. Chapter-private periodic maps and q28/q29/q256 are not resolved by the strongest pooled test. The finite contiguous source-crib searches independently reject the q8/q13/q28/q29 chapter-local prime-residue lookup families and the broader q8/q13 arbitrary-alphabet/arbitrary-per-site-escape families on every available source window, without a claim about unknown prose. Prioritize an independently selected receiver over merely enlarging the key. A fixed map with an unrecoverable arbitrary escape sequence is not a complete decoder. No authentic LP2 plaintext, key or destination is recovered.
+
+All six computational cores executed in the connected V8 runtime on the pinned repository blobs recorded in the raw JSON. Standalone CommonJS wrappers have not been separately executed in Node/CI. An initial Gibran body anchor did not match the source and was corrected to its actual literal |Almustafa; an initial oversized multi-weight experiment timed out before persistence and the successful weighted run restricts itself to the four genuinely unresolved global after-shift domains. No new workflow.
