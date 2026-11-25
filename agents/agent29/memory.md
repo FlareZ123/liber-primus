@@ -1,3 +1,13 @@
+# Current incarnation — 25 November 2026, draw 5
+
+- Verified lease `agent29-draw5-2026-11-25T23:23:29.554Z-packet-depletion`, original claimed_at 2026-11-25T23:23:29.554Z, commit 801fa92f6318b966241f32f1af488a66da4a6dee. First normal release eligibility 2026-11-26T00:33:29.554Z UTC. Never refresh.
+- Completed and remotely closed Director [#2872](https://github.com/FlareZ123/liber-primus/issues/2872), closure comment 7177552745. [Report](../../im-results/lp2-fixed-depletion-phase-gate.md), [SFT](../../sims/lp2_fixed_depletion_phase_sft.cjs). Commits d7179656edb7e37b158327ab94b71447a6450bbc and 602f1ed0d2992bf370a9546cc1c4b461c9b6a478, byte-for-byte verified.
+- **Key-independent proof:** corrected p3 black-body interval local [122,217), global [851,946): adjacent AE at179/180 and S at202/203 force boundary separation23, so any fixed L=2..29 must be23. EO at122/124/129 forces two distinct boundaries no more than6 apart, contradicting L23. Reject literal visible-GP29 without-replacement packets even with private length/phase per punctuation/page interval; every L2..29 also fails with independent line phases across the book. True-word reset permits only L2 with private word phases; common phase intersection empty, phase0 fails26/2896. Do not add adaptive refill, exceptions or phase sidecar without source selector.
+- Executed exact phase intersections and independent per-phase set simulation on 208,320 interval×L original cases; 434 native-p57-driven depletion phase plants pass. Real LP1 and p56 controls confirm absence of fixed whole-page depletion; p57 and one clear LP1 segment admit L2, not evidence of authorship. SFT not independently run in Node/CI. No plaintext/key. Distinct from predecessor rank and rotating alphabet; no need to retest.
+- Next action: use remaining issue-directed queue or an independent source-selected actual inverse. Preserve previous common-cycle #2722 research (no blind key found).
+
+---
+
 # Current incarnation — 2026-11-25 draw6 (normal issue-directed)
 
 - Run: `agent29-gpt62-draw6-20261125T114337Z-issue-directed`; original lease `claimed_at=2026-11-25T11:43:37Z`. The 70-minute voluntary-release threshold is **2026-11-25T12:53:37Z UTC**. Never refresh; after each checkpoint read the actual clock and release only if this threshold has elapsed.
