@@ -83,7 +83,7 @@ The read-only Node22 CommonJS SFT is [sims/lp2_shared_page_reset_additive_pad_sf
 Windows Node22 execution passed in [GitHub Actions run 44389994894](https://github.com/FlareZ123/liber-primus/actions/runs/44389994894) on the shared manual read-only CommonJS workflow. The run checked out a main-branch commit containing the SFT and logged the exact figures above.
 
 
-## Collision-triggered key skip extension (Agent25, 24 November)
+## Collision-triggered key skip extension (Agent25, 24–25 November)
 
 **Shared reset with collision-triggered key skips (Agent25, 24 November):** the exact all-key lexical inverse over 35,700 length-2–12 GP forms rejects every shared signed additive pad on original p0–39 after just two consumed key digits (5 → 0 surviving prefixes), even with unlimited consecutive collision retries. All singleton and page-carry groups are unconstrained. Dropping every red-ink group still gives 13 → 0; seven black-body page openings p11/12/13/14/18/21/35 independently suffice. Disjoint p40–55 rejects the one-retry model by digit four (23 → 91 → 3 → 0). The formerly surviving 31 unlimited-retry prefixes are now proved nonaccepting by complete finite-state reachability: 354 reachable joint states, 31 self-loops, no accepting state; black-only 1,731 states, no accepting state. Allowing optional transparent F without consuming a key gives 499 and 1,836 states respectively, no accepting state, and also rejects the early p0–39 and early black-only subsets in 6 and 14 states. The eight literal dollar-delimited source sections, tested as a distinct shared-reset hypothesis, have 15 → 2 → 0 prefixes even with unlimited retries. Two original-shaped modular-squaring plants uniquely recover both eight-digit signed keys and admit all disjoint planted late pages. This is a conditional intact-group finite-lexicon exclusion, not a recovered key or plaintext. [Consolidated exact gate](../im-results/lp2-shared-page-reset-additive-pad-heldout-gate.md#collision-triggered-key-skip-extension-agent25-24-november) · [SFT](../sims/lp2_page_reset_collision_keyskip_lexical_sft.cjs) · [raw](../im-results/lp2-page-reset-collision-keyskip-lexical.json).
 
@@ -142,3 +142,33 @@ Two original-shaped synthetic plants use full-modulus modular-squaring seeds 330
 The completed [full-three-prime run 45415630592](https://github.com/FlareZ123/liber-primus/actions/runs/45415630592) screened all 199,924,200 CRT square-residue states (399,848,400 signed candidates), then fully evaluated only 800 shortlisted states. The best held-out score was −5.003249 nats/rune, nonlinguistic, versus the 1,260/1,260 planted control's −2.446623. [Raw report](../im-results/parable-threeprime-allstate-keyskip.json). The raw seed metadata labels seed²=10,896,601 as first state, but the actual first emitted state is seed⁴=993,811,212, checked by the C++ stream-alignment assertion. This is an exhaustive state screen, not an exhaustive full-length decoder. The separate all-key lexical result now retires the shared-page collision-only additive receiver without relying on language-score shortlisting.
 
 **Decision:** retire shared physical-page-reset and literal-dollar-reset additive GP29 collision-only key redraws under the stated complete-group lexical premise, independent of generator. A different reset law, page-private IV, plaintext renderer, out-of-register words or unrelated state/encoding remains outside the proof. Do not rerun generator sweeps for this exact consumer. No unknown plaintext recovered.
+
+## Spacing-free shared-page key recovery with one collision redraw (Agent25, 25 November)
+
+The exact intact-group exclusions above cannot by themselves eliminate H-decoy. This distinct original-key recovery attempt drops every printed separator, retaining only physical page starts as the reset clock. For each page let its arbitrary unknown common GP29 key begin at digit zero. Plaintext F emits literal zero and consumes no key; all other runes consume k; if the additive output equals the preceding *physical* ciphertext rune, consume exactly one additional k and emit the second output even if that also repeats. Both signs are covered by arbitrary signed pad residues. This defines a deterministic reversible-forward model with latent redraw and F alignment. It neither assumes nor supplies an authenticated author operation.
+
+The trigram model is trained on 281,914 GP29 runes from Gibran and Shakespeare (spacing removed; unigram pseudocount1, bigram backoff20, trigram backoff12). At a candidate key prefix, per-page states retain physical position, two plaintext-context runes, pending plaintext or -1 and score. Literal F is an epsilon transition; a collision creates a pending plaintext which must consume exactly one further key digit to emit the observed rune. Every possible next key digit is proposed; retain the best 32 global prefixes and four local states of each pending/nonpending class. Per-rune score is log(29 P(P_i | context)); a pending draw contributes log P until emission. Fixed-key heldout decoding removes all local beam truncation, merging only equivalent decoder state tuples, and checks exact forward replay of every returned original or planted prefix. The beam is a calibrated search, not exhaustive over every 29^40 prefix.
+
+Use only first 64 original physical runes per page, fit 40 key digits independently on even p0–38 and odd p1–39 (20 pages each), then freeze both keys. Test on the opposite training partition and 15 disjoint late pages p40–55 (p50 is rune-free). Four controls use 20 fit and 20 withheld continuous 64-rune windows from disjoint halves of Emerson or the native solved GP corpus, with independent arbitrary hidden key streams. Their source texts are excluded from the trigram fit. Within-half sampling may overlap; these are independent hidden keys and disjoint fit/heldout source halves, not a claim of 80 mutually disjoint windows.
+
+| Plant | Hidden key digits recovered | Withheld legal windows | Correct withheld runes | Heldout log-LR nats/rune |
+|---|---:|---:|---:|---:|
+| Emerson 1 | 40/40 | 20/20 | 793/797 | +0.993 |
+| Native solved 1 | 40/40 | 20/20 | 786/787 | +0.864 |
+| Emerson 2 | 40/40 | 20/20 | 802/802 | +0.964 |
+| Native solved 2 | 40/40 | 20/20 | 789/791 | +0.837 |
+
+The true key ranked first at all 160 search depths. The seven incorrect withheld runes also occur under the oracle true key, exposing residual alignment ambiguity rather than key error. Every reported prefix re-encrypts exactly. This is an actual hidden-key-recovery positive, not solely a synthetic round-trip.
+
+| Original frozen key and test | Legal windows | Decoded runes | Log-LR nats/rune |
+|---|---:|---:|---:|
+| Even key on odd pages | 9/20 | 353 | −2.742 |
+| Odd key on even pages | 7/20 | 276 | −2.942 |
+| Even key on p40–55 | 7/15 | 277 | −2.841 |
+| Odd key on p40–55 | 7/15 | 273 | −2.960 |
+
+The independently fitted keys agree at 2/40 positions. Across 64 independent random late-page keys, none legally decodes all 15 windows, best legal-window count is 10, and maximum scored log-LR is −2.201; the fitted original keys have no advantage. Example original even-key late output: FIAEJRUIGPOLSPHSOTROOEDOETHJNTHRUPTLXIAEMUJMDIA. No coherent original text or authenticated key follows.
+
+Decision: the spacing-free single-redraw shared reset receiver also fails a calibrated actual-key attack, so the intact-word dependence of the earlier exact obstruction is not the only reason to retire this simple route. Unlike the finite-state intact-group graph, the spacing-free key search is beam-limited: it is not a universal mathematical exclusion of every possible key or unlimited-redraw H-decoy variant. Other state rules, key resets, transpositions, atypical plaintext and different collision references remain open. Do not repeat this exact model without an independent clue selecting it.
+
+[Node22 CommonJS SFT](../sims/lp2_shared_page_reset_spacingfree_keyskip1_sft.cjs) · [complete raw output including keys, depth ranks, heldout samples and 64 random key checks](../im-results/lp2-shared-page-reset-spacingfree-keyskip1.json). The committed experiment body was executed using all five live repository inputs in a JS runtime; the Node filesystem wrapper was not separately run in CI.
