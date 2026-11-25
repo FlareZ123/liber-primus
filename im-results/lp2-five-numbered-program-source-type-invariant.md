@@ -24,6 +24,33 @@ The positive reference is 2,797 independently solved source-native GP29 runes fr
 
 **C. Five procedural *instructions* selecting operations for another message.** This remains possible in principle, but every item has 91–139 undeciphered GP runes. In a true human-executable program, a solver would first need a specified first-item decoder or an independently readable instruction. The original printed red numbers encode stage order; they do not identify names like Atbash, DH, BASE29, XOR, OutGuess or a historical cryptographic tool. Genuine old stages used typed inputs and output checks: original OutGuess takes a JPEG; OpenPuff takes an MP3 and passwords; signed BASE29 takes a numeral; Stage04 Vigenère took a specifically clued prior plaintext key. Bare red 1..5 cannot substitute for such parameters or change an image/byte operation into a GP29 operation. The repeated cuneiform [17,13]/[55,1] supplies numeric 1033/3301 but no instruction choosing one of these consumers. Prior #985 and #1044 already closed the untyped numeral-to-cipher transfer and five historical static-key attempts; these are *inherited*, not re-executed.
 
+## Authenticated formal-register compatibility gate (Agent4, 25 November 2026)
+
+**Decision: no source-fixed formal-instruction grammar is both historically attested and directly representable in GP29. Stop before scoring the original numbered passages.** This closes the specific literal formal-register branch; it does not rule out other nonprose structures, external data, or a different author-supplied cipher.
+
+The strongest preserved formal command example is the **verified 2013 signed TCP-server challenge** ([source and signature inventory](../resources/external/2013-tcp-server-signed-source.md)). Its finite command vocabulary is `RAND, QUINE, BASE29, CODE, KOAN, DH, NEXT, GOODBYE`. It is a participant-operated server protocol, not a source-authored LP2 program:
+
+| Command | Authenticated/example semantics | GP29 surface compatibility |
+|---|---|---|
+| `RAND` | random result | letters fit, but output/state is participant-selected |
+| `QUINE` | participant returns a quine | **Q is absent** from GP29 |
+| `BASE29` | decimal integer to Cicada's alphanumeric base29 representation; signed worked example `3301 → 3QO` | command name contains decimal `2,9`; input `3301` and output `3QO` are not GP29 symbols |
+| `CODE` | participant returns its own server code | letters fit; payload is participant-authored code, not a fixed GP29 operation |
+| `KOAN` | participant-selected text | only representable if the common C/K variant is granted; content is participant-selected |
+| `DH` | Diffie–Hellman exchange | command letters fit, but numeric parameters are decimal and the participant selects its own base/secret |
+| `NEXT` | server stores client-supplied text | letters fit, but the source explicitly says the server does not compute or choose the next instruction |
+| `GOODBYE` | terminate the session | letters fit; it is a protocol terminator |
+
+The exact compatibility check grants both common `C/K` and `U/V` variants, so the negative does not depend on those transliteration choices. Even then, `QUINE` requires unsupported Q; `BASE29` requires decimal digits and produces `3QO`, containing unsupported 3 and Q; the worked `DH 23` requires unsupported decimal digits. The 2013 source specifies **no NUMBER, PRIMES, or COUNT command**. Its base29 result is a numeral string, and the historical operation profile explicitly records that no source defines a conversion from `3QO` into three GP29 runes, an LP2 coordinate, or a rune key. The tempting same-cardinality/index bridge from the 29-character BASE29 alphabet to the 29 GP runes is therefore an additional unsourced operation, not part of the historical grammar.
+
+The other preserved 2012–2014 formal-looking examples are typed handoffs, not GP29 instruction languages. The 2014 Stage10 signed text asks for three already-obtained magic squares and a Tor service URL; its archived HTML form has numeric fields `53301`, `71033`, `51033`, upload endpoint `/cgi-bin/upload`, file field `file`, and public-key path `/key.asc`. Those are web-form/API fields, not a grammar for the runic passages. The 2012 signed messages and 2013 written-test invitation use natural-language directions and book/reference context, not a GP29 operator/variable syntax. The 2014 Stage11 source is a typed numeric token/matrix handoff, not a program register.
+
+On the LP2 side, the original pp36–38 show five red Arabic labels 1–5 and the same two-line cuneiform-style header repeated on each page; the five units contain 139/91/98/96/129 GP runes and 30/20/25/19/28 printed words. The red labels establish order, not command names or argument types. The repeated ornament supplies no changing per-item opcode. This is consistent with the earlier source-type invariant and the separate p33–39 cuneiform command-transfer gate; neither supplies the missing GP29 mapping.
+
+**Completion criterion:** no grammar passed the source/type gate, so no p56 receiver or original plaintext scoring was run. Do not invent a mapping for Q, digits, or base29 output, and do not reinterpret `NEXT` as an organizer-generated successor. Reopen this exact branch only if an independent pre-2014 source supplies a GP29-compatible token/argument map or a first-party typed instruction selecting the bridge.
+
+[One-file CommonJS compatibility SFT](../sims/lp2_p33_39_formal_register_compatibility_gate.cjs). It checks the GP29 symbol set, the signed 2013 command vocabulary and worked examples, the Stage10 field schema, and the already-established five-unit source facts.
+
 ## Signed-source five-word Vigenère transfer: an original 553-rune negative (Agent26, 22 November 2026)
 
 A distinct, **retrospective** first-opcode candidate uses the pre-existing original-image packet and the separately preserved 2016 signed message. The two ten-dot red brackets flank the original 1–5 labelled units. The previously derived zero-based signed-source lookup reads source indices 10..15 as `PRIMUS IS THE WAY ITS WORDS`; the five numbered starts separately select `IS / THE / WAY / ITS / WORDS`. This **supplies genuine printed source words with no ciphertext-tuned keyword**. Its strongest objection is historical: the signed source was released in **2016**, two years after LP2, and neither source explicitly says to apply these words as Vigenère keys to the five paragraphs.
