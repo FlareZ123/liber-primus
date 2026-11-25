@@ -66,6 +66,32 @@ Neither complete passage is intelligible as recovered plaintext, and its score i
 
 [Executable CJS decoder](../sims/lp2_p27_p55_jointword_beam_recovery_sft.cjs), original-source runtime execution at [d3f9d67e](https://github.com/FlareZ123/liber-primus/commit/d3f9d67eccf9788ae8ed9705b009220d47233020).
 
+## Relative affine two-message inverse (Agent14, 25 November)
+
+The earlier all-affine dictionary attack assumed intact original word boundaries, while the earlier latent-boundary inverse fixed the relative slope to one. Retain the exact original 76-rune cyclic p27 window and p55, but let
+
+```
+C27[i] = X[i] + K[i]
+C55[i] = beta*Y[i] + K[i]     (mod 29), beta in 1..28
+Y[i] = inverse(beta)*(X[i] - (C27[i]-C55[i]))
+```
+
+The first alphabet scale is fixed to one, and the second is unknown. No historical source selects this extension; it is a finite constructive attempt to extract both complete unknown messages from the rare source seam. Both original word-boundary tapes remain latent. The shared pad is arbitrary and unbounded. The last six ciphertext equalities now imply scaled plaintext equality, not necessarily identical underlying text.
+
+The existing paired word-trie decoder is adapted to rank **all 28** relative slopes at beam128, then independently rerun the top four at beam1024. The same 29,964-word register and source-held-out Shakespeare words supply five **natural disjoint passage pairs with exactly six equal scaled suffix runes**, chosen for true slopes 1, 2, 7, 13 and 28 without inspecting LP2. Forward replay is checked on both original and all planted ciphertexts. The implementation returns explicit candidate plaintexts rather than just a score.
+
+| True planted scale | Selected scale | True coarse rank | Exact plaintext positions, each of 76 |
+| ---: | ---: | ---: | --- |
+| 1 | 1 | 1 | 49 / 49 |
+| 2 | 2 | 1 | 37 / 37 |
+| 7 | 14 | 23 | 4 / 6 |
+| 13 | 19 | 14 | 6 / 1 |
+| 28 | 28 | 1 | 22 / 22 |
+
+The original selects **beta=1**, reproducing the previously reported word-beam candidate and score **−266.00371503992204**. Other refined alternatives (25, 10, 24) score −275.155836, −275.502721 and −277.403043. None recovers an independently intelligible full message. The earlier unit-slope candidate is not new plaintext. The 76/76 shared-pad replay is automatic for any feasible pair and chosen scale. A preliminary exact trigram all-scale decoder recovered zero of five planted slopes, with its original score below six seam-preserving wrong-prefix rotations; it is superseded for this attack by the stronger word-trie search.
+
+**Decision:** the all-scale latent-boundary attack did not recover an original key or plaintext. It recovered 3/5 planted slopes but not complete paired plaintext, so its original failure is **not an all-key or all-language exclusion**. The coarse beam misses two true scales before refinement. Do not interpret a low original score or its winning unit scale as proof that the affine family is impossible. Further work needs a genuinely independent key/crib constraint or materially stronger blind recovery, rather than merely changing beam widths. This exact finite experiment is preserved as [read-only Node/CommonJS SFT](../sims/lp2_p27_p55_relative_affine_jointword_sft.cjs) and [raw original and control output](lp2-p27-p55-relative-affine-jointword-output.json). Executed directly in Code Mode against the repository corpus and donor; no Windows CI execution is claimed.
+
 ## Decision
 
 The source-authentic six-rune/one-rune page seam is a real and unusual **ciphertext** overlap. It does not imply a common unknown additive pad under a simple letter clock. This original-input full-two-message language recovery offers **no English support** for that model even after removing every printed-word preservation assumption. The same model cannot be advanced from its visibly shared final six symbols. A new historically sourced key clock, skip rule, nonadditive relation, or independent page-level plaintext must be identified before a further attack on this exact pair can claim progress.
