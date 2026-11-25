@@ -37,8 +37,28 @@ For the remaining layouts, sample 12 seeded assignments of GP29 colors to free o
 
 Six native constructed controls use original p56+p57 plaintext, independent 76-rune WARNING/WELCOME/KOAN donors, and both actual source graphs. The reversible equivariant plant leaves cycle vertices unchanged and emits C_i=P_i+P_parent(i) elsewhere. Recover all 256 runes in each plant by reversing parent-before-child order; all six survive the compatibility receiver, all predicted forced outer values are correct, and each has many other compatible output tapes. The control cipher itself is invertible; identifying it from symmetry and known pairs alone is not established.
 
+
+## Stronger constructive local receiver: arbitrary parent-pair permutation rows
+
+A natural compact reversible alternative to unrestricted graph interpolation is a stationary causal rule on each noncycle vertex v, with successor u:
+
+```
+P[v] = H_(C[u],P[u])(C[v])
+```
+
+Grant each of the 841 parent ciphertext/plaintext contexts its own completely arbitrary permutation of 29 symbols. Cycle values and unknown outer values are unrestricted. This subsumes dependence on either parent symbol alone, their difference, and arbitrary affine or nonlinear reversible child substitutions conditioned on their pair. On the 24 interior placements per radix, test only original known-known noncycle edges, requiring both function consistency and injectivity. Outer placement cannot affect these equations.
+
+| Radix | Known edges/layout | Determinism contradictions | Injectivity contradictions | Either contradiction | Conflict events/layout |
+|---|---:|---:|---:|---:|---:|
+| 59 | 130 | 23/24 | 24/24 | 24/24 | 7–16 |
+| 60 | 126 | 24/24 | 24/24 | 24/24 | 4–17 |
+
+**All 48 placements fail every such reversible local rule**, independently of p55. Even the noninjective deterministic relaxation fails 47/48. The event counts compare successive observations per lookup row/input (or output); they are not minimum edit distances. In canonical row-major radix59, children 12 and 179 have identical parent pair (18,18) and C=15 but distinct P=9,15. Children 11 and 26 also have parent pair (18,18), distinct C=22,2 and identical P=18. For radix60, children 123 and 36 share parent 54, identical C=24 and distinct P=24,4. These are exact original-source obstructions.
+
+Six constructed controls use the actual two graphs and solved native p56+p57, with 76-rune donor slices from p56 on the rim and randomly seeded permutations per context; cycle vertices unchanged. All reconstruct 256/256 using the planted key, with no contradiction on their known interior. This establishes the receiver consistency and invertibility, not blind key recovery. The executed numerical core and controls are in [SFT](../sims/lp2_terminal_graph_parent_pair_sft.cjs) and [raw JSON](lp2-terminal-graph-parent-pair-output.json). The standalone wrapper has not separately run in CI. No new source selector authenticates this receiver; no plaintext is claimed. More distant, address-dependent, differently aligned, or separately keyed graph operations remain outside this test.
+
 ## Consequence
 
-Retire **unrestricted address-free graph equivariance as a sufficient p55 key-recovery principle** on these 384 placements. The earlier linear-filter rejection is not being repeated: this analysis covers all bijective equivariant maps, including nonlinear operations of arbitrary complexity. For the surviving layouts, arbitrary interpolation is possible because automorphism stabilizers alone carry little information. Do not promote any conditional forced glyph or randomly completed tape. A new attempt must provide an independently selected compact operation, positional labels, or a different source-to-page relation. No authentic plaintext, decoder, key, or continuation destination has been recovered.
+Retire the arbitrary parent-pair local permutation receiver, and **unrestricted address-free graph equivariance as a sufficient p55 key-recovery principle** on these 384 placements. The earlier linear-filter rejection is not being repeated: this analysis covers all bijective equivariant maps, including nonlinear operations of arbitrary complexity. For the surviving layouts, arbitrary interpolation is possible because automorphism stabilizers alone carry little information. Do not promote any conditional forced glyph or randomly completed tape. A new attempt must provide an independently selected compact operation, positional labels, or a different source-to-page relation. No authentic plaintext, decoder, key, or continuation destination has been recovered.
 
 [Executable CJS SFT](../sims/lp2_terminal_graph_equivariant_stabilizer_sft.cjs) · [Executed JSON, per-layout cases and two representative witnesses per feasible layout](lp2-terminal-graph-equivariant-stabilizer-output.json). The numerical core executed against the exact pinned repository blobs in connected V8; the standalone Node wrapper has not separately run in CI. The JSON represents the two sample tapes using the original GP rune characters rather than numeric indices.
