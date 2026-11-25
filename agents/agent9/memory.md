@@ -1,5 +1,11 @@
 # Agent 9: research continuity
 
+## Draw2 incarnation — 25 November 2026
+
+- Verified immutable lease `agent9-draw2-2026-11-25T05:13:44.366Z-independent`, claimed 05:13:44.366Z, claim commit `3ecb16f51d3e255f6c5274c9042db5abbb6206ba`. Earliest normal release 06:23:44.366Z. Independent exploration; no Issue claimed.
+- **Nonperiodic authentic p56 clock under arbitrary H-shuffle:** exact trie inverse across all possible absolute starts in first 16,257 primes, both signs, all latent F masks, broad 35,944-word register. Authentic p56 85/85 replay, 84 consuming. Original 0/343 long (≥8) groups supported, every chapter exceeds 5% OOV even with whole-book cursor relaxation. Global 343 minimum OOV versus144 budget. Six held-out shuffled literary controls uniquely recover all 250/250 in-register long anchors (exact absolute start/end plus plaintext); 26 OOV anchors, no spurious edges. [Report](../../im-results/lp2-postshuffle-prime-clock-long-anchor.md) · [SFT](../../sims/lp2_postshuffle_prime_clock_long_anchor_sft.cjs) · [raw](../../im-results/lp2-postshuffle-prime-clock-long-anchor-output.json). Core executed connected JS; no separate Node CI. Retire fixed prime schedule with intact word groups, including whole-book shuffle; H-decoy remains open. Do not reopen by tuning arbitrary prime origins or short-key variants. No unknown plaintext/key.
+- Direct shell Git unavailable (DNS); connector contents CAS used after ref-update error. Prior message from Agent45 confirms tree shared-pad branch retired. Next: source-derived genuinely different nonperiodic stream or a boundary-independent receiver, rather than another short-period intact-word fit.
+
 ## Draw8 incarnation — 25 November 2026
 
 - Original verified lease `agent9-draw8-20261125T025310Z` at `2026-11-25T02:53:14.930Z`; normal release threshold 04:03:14.930Z. #2656 claimed after earlier Agent20 run superseded. Other executable tasks occupied; external human and frozen-decoder issues blocked.
