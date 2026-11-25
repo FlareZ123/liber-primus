@@ -1,0 +1,148 @@
+{
+  "clock": 84,
+  "p56F": 0,
+  "routes": 513,
+  "result": [
+    {
+      "register": "solved",
+      "reset": false,
+      "exact": 0,
+      "minBad": 27,
+      "best": [
+        "0,5,7",
+        "2,1,7",
+        "7,0,3"
+      ],
+      "maxPrefix": 117,
+      "minRank": 16,
+      "maxRank": 16,
+      "rowMajor": {
+        "rank": 16,
+        "eq": 50,
+        "bad": 32,
+        "firstBad": {
+          "i": 91,
+          "prior": 33,
+          "byte": 86,
+          "residue": 12,
+          "rank": 16
+        },
+        "weights": null
+      }
+    },
+    {
+      "register": "solved",
+      "reset": true,
+      "exact": 0,
+      "minBad": 23,
+      "best": [
+        "0,5,4",
+        "0,5,5",
+        "2,4,6",
+        "3,7,7",
+        "5,5,7"
+      ],
+      "maxPrefix": 125,
+      "minRank": 16,
+      "maxRank": 16,
+      "rowMajor": {
+        "rank": 16,
+        "eq": 46,
+        "bad": 28,
+        "firstBad": {
+          "i": 95,
+          "prior": 67,
+          "byte": 72,
+          "residue": 2,
+          "rank": 16
+        },
+        "weights": null
+      }
+    },
+    {
+      "register": "printed",
+      "reset": false,
+      "exact": 0,
+      "minBad": 26,
+      "best": [
+        "1,7,4"
+      ],
+      "maxPrefix": 116,
+      "minRank": 16,
+      "maxRank": 16,
+      "rowMajor": {
+        "rank": 16,
+        "eq": 50,
+        "bad": 33,
+        "firstBad": {
+          "i": 91,
+          "prior": 33,
+          "byte": 86,
+          "residue": 3,
+          "rank": 16
+        },
+        "weights": null
+      }
+    },
+    {
+      "register": "printed",
+      "reset": true,
+      "exact": 0,
+      "minBad": 23,
+      "best": [
+        "2,4,6",
+        "7,5,5"
+      ],
+      "maxPrefix": 125,
+      "minRank": 16,
+      "maxRank": 16,
+      "rowMajor": {
+        "rank": 16,
+        "eq": 46,
+        "bad": 29,
+        "firstBad": {
+          "i": 95,
+          "prior": 67,
+          "byte": 72,
+          "residue": 22,
+          "rank": 16
+        },
+        "weights": null
+      }
+    }
+  ],
+  "fullPositive": {
+    "rank": 16,
+    "bad": 0,
+    "eq": 50,
+    "weightsRecovered": true,
+    "lookupRecovered": true,
+    "lookupEntries": 122,
+    "outerUnobserved": 41
+  },
+  "heldoutPositive": [
+    {
+      "modulus": 29,
+      "rank": 16,
+      "bad": 0,
+      "weightsRecovered": true,
+      "lookupEntries": 27,
+      "heldoutRecovered": 15,
+      "heldoutProduced": 15,
+      "firstUnseen": {
+        "i": 135,
+        "residue": 9
+      }
+    },
+    {
+      "modulus": 23,
+      "rank": 16,
+      "bad": 0,
+      "weightsRecovered": true,
+      "lookupEntries": 23,
+      "heldoutRecovered": 60,
+      "heldoutProduced": 60,
+      "firstUnseen": null
+    }
+  ]
+}
