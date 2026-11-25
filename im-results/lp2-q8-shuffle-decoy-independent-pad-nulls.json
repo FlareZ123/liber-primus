@@ -1,0 +1,313 @@
+{
+  "frozenGate": {
+    "shuffleGapMax": 0.25,
+    "decoyGapMin": 1,
+    "heldoutScoreMin": -2.6,
+    "heldoutRuneAccuracyMin": 0.95,
+    "requireExactKey": true,
+    "requireAllSixFresh": true,
+    "requireZeroNullPasses": true
+  },
+  "training": {
+    "types": 10842,
+    "tokens": 114802,
+    "anchors": 2214,
+    "EPS": 0.05,
+    "maxLength": 24,
+    "donorBodyRunes": [
+      47629,
+      217106,
+      306851
+    ]
+  },
+  "authentic": {
+    "welcome": 515,
+    "koan": 319
+  },
+  "inventory": {
+    "1": 9,
+    "2": 62,
+    "3": 96,
+    "4": 60,
+    "5": 49,
+    "6": 31,
+    "7": 26,
+    "8": 19,
+    "9": 13,
+    "10": 8,
+    "11": 3,
+    "12": 2
+  },
+  "cases": [
+    {
+      "name": "null0",
+      "mode": "null",
+      "N": 1680,
+      "split": 1090,
+      "groups": 456,
+      "truth": null,
+      "proposals": 34811,
+      "multi": 0,
+      "topVotes": [
+        {
+          "key": [
+            10,
+            18,
+            22,
+            26,
+            15,
+            10,
+            23,
+            16
+          ],
+          "votes": 1,
+          "longest": 11
+        },
+        {
+          "key": [
+            6,
+            11,
+            13,
+            22,
+            13,
+            15,
+            25,
+            7
+          ],
+          "votes": 1,
+          "longest": 11
+        },
+        {
+          "key": [
+            10,
+            28,
+            19,
+            20,
+            26,
+            13,
+            16,
+            12
+          ],
+          "votes": 1,
+          "longest": 11
+        },
+        {
+          "key": [
+            0,
+            17,
+            15,
+            5,
+            1,
+            5,
+            26,
+            6
+          ],
+          "votes": 1,
+          "longest": 11
+        },
+        {
+          "key": [
+            1,
+            17,
+            16,
+            27,
+            6,
+            22,
+            6,
+            13
+          ],
+          "votes": 1,
+          "longest": 11
+        }
+      ],
+      "truthProposal": null,
+      "truthUnigramRank": null,
+      "gap": null,
+      "results": {
+        "shuffle": null,
+        "decoy": null,
+        "spacingfree": null
+      }
+    },
+    {
+      "name": "null1",
+      "mode": "null",
+      "N": 1677,
+      "split": 1089,
+      "groups": 426,
+      "truth": null,
+      "proposals": 33678,
+      "multi": 0,
+      "topVotes": [
+        {
+          "key": [
+            1,
+            6,
+            2,
+            9,
+            4,
+            20,
+            20,
+            21
+          ],
+          "votes": 1,
+          "longest": 11
+        },
+        {
+          "key": [
+            7,
+            7,
+            15,
+            11,
+            8,
+            24,
+            15,
+            10
+          ],
+          "votes": 1,
+          "longest": 11
+        },
+        {
+          "key": [
+            3,
+            3,
+            19,
+            16,
+            28,
+            3,
+            9,
+            11
+          ],
+          "votes": 1,
+          "longest": 11
+        },
+        {
+          "key": [
+            1,
+            5,
+            16,
+            12,
+            9,
+            10,
+            6,
+            14
+          ],
+          "votes": 1,
+          "longest": 11
+        },
+        {
+          "key": [
+            1,
+            25,
+            12,
+            8,
+            28,
+            10,
+            7,
+            14
+          ],
+          "votes": 1,
+          "longest": 11
+        }
+      ],
+      "truthProposal": null,
+      "truthUnigramRank": null,
+      "gap": null,
+      "results": {
+        "shuffle": null,
+        "decoy": null,
+        "spacingfree": null
+      }
+    },
+    {
+      "name": "null2",
+      "mode": "null",
+      "N": 1678,
+      "split": 1087,
+      "groups": 412,
+      "truth": null,
+      "proposals": 34292,
+      "multi": 0,
+      "topVotes": [
+        {
+          "key": [
+            1,
+            9,
+            6,
+            8,
+            13,
+            13,
+            20,
+            23
+          ],
+          "votes": 1,
+          "longest": 11
+        },
+        {
+          "key": [
+            1,
+            9,
+            6,
+            8,
+            19,
+            28,
+            16,
+            23
+          ],
+          "votes": 1,
+          "longest": 11
+        },
+        {
+          "key": [
+            5,
+            22,
+            12,
+            16,
+            21,
+            9,
+            20,
+            10
+          ],
+          "votes": 1,
+          "longest": 11
+        },
+        {
+          "key": [
+            1,
+            6,
+            13,
+            5,
+            10,
+            25,
+            19,
+            14
+          ],
+          "votes": 1,
+          "longest": 11
+        },
+        {
+          "key": [
+            5,
+            24,
+            23,
+            13,
+            11,
+            28,
+            25,
+            13
+          ],
+          "votes": 1,
+          "longest": 11
+        }
+      ],
+      "truthProposal": null,
+      "truthUnigramRank": null,
+      "gap": null,
+      "results": {
+        "shuffle": null,
+        "decoy": null,
+        "spacingfree": null
+      }
+    }
+  ]
+}
