@@ -56,3 +56,28 @@ The strongest still-open word-directed route is [2016 source → p50 functional 
 ## Executed cue-selection ablation (#2601)
 
 The [retrospective signed-source hierarchy test](cicada-cue-hierarchy-ablation.md) distinguishes coordinate-record syntax from exact operation selection. Held-out GEB arity/count succeeds, but literal OCR title binding is only 10/14 and two wrong segmentation rules generate valid base32 letters at all six checked coordinates. Syntax alone cannot identify the exact operand hierarchy. This closes the tested transfer without commissioning another unselected LP2 receiver.
+
+
+## Player-visible acceptance gates, not just plausible output (#2850, Agent37, 25 Nov 2026)
+
+The preceding contracts already cover the historical operation sequence; this extension isolates the **success signal** and whether it independently binds the candidate to the current puzzle. A syntactically valid object, a reversible cipher or an old signed message is insufficient by itself.
+
+| Original input and clue | Observed output | Independent acceptance signal available to a solver | Limitation |
+|---|---|---|---|
+| Signed 2013 TCP specification, BASE29 3301 | `3QO` | Explicit worked example and arithmetic equality | Only checks that operation on that input; no LP2 receiver |
+| Signed 2013 ICMP instruction and recovered packet carrier | 959-byte signed next-stage message | Successful gzip parsing followed by valid Cicada signature and actual next-stage locator | Packet reconstruction partly participant-derived; parsing alone does not authenticate |
+| Signed 2014 Stage7 hex object | 6,651,873-byte MP3 | Complete signed input fixes bytes; recovered audio is byte-identical to preserved object | MP3 structure alone is not a unique solution criterion |
+| 2014 audio carrier and Stage8 signed request | 745-byte square file, 99 numbers | Native extraction, exact requested orders/sums, subsequent typed request | Extraction password reconstructed; no LP2 square-to-key instruction |
+| Signed Stage8 request and contemporaneous Stage10 form | Static response linking 107/167/229 JPEGs | Correctly typed submissions and actual archived returned LP1 images | Static response is unsigned; CGI source absent; response alone cannot prove which submitted values were checked |
+| Signed Stage11 message | Literal ky2khlqdf7qdznac.onion, archived 58-image index | Cicada signature authenticates locator; preserved index supplies the expected book | No authenticated live response transcript or subsequent unknown-page decoder |
+| Original 2013 761.MP3 title and TXXX Parable label, compared with 2014 p57 | Title sum 761; three clause sums 1259, 1031, 1229 | Exact product 1595277641 independently fixed in earlier metadata; prior exhaustive tokenization control uniquely matches 88 body runes | Archived MP3 metadata is not signed; independently fixed numeric check applies to known p57 only |
+| Signed 2016 message | Words/map/numbers/direction; explicit warning to verify OpenPGP 7A35090F | Verify genuine signed communication against the pinned full Cicada fingerprint | No candidate serialization or acceptance rule for unsolved runes |
+
+The 2012 unsigned first-image mirror and the reconstructed telephone chain are not promoted to authenticated first-party acceptance evidence. The 2013 NEXT request is also deliberately not an oracle: the participant server stores client-supplied text and acknowledges receipt. A valid signature on that text authenticates its author, not a cipher-derived relationship to LP2.
+
+### Two conditional LP2 output gates
+
+1. **A new signed handoff.** If an independently selected LP2 operation emits a complete OpenPGP object, freeze the original rune range, inverse, keys, clock and byte serialization before examining the output. Verify it with the pinned full fingerprint `6D854CD7933322A601C3286D181F01E57A35090F`. Require complete original-data forward reconstruction and a signed binding to the new handoff (or independent evidence that the exact object is a previously unknown artifact). Replaying an already public signed message or attaching its signature to guessed plaintext does not pass. This is a precise conditional gate, not an established LP2 signature carrier.
+2. **The p56 external resource.** For an independently located historical page, freeze the hash algorithm and exact byte representation before comparing to the printed 128-hex target `36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4`. A match would strongly establish the requested resource under that contract, but would not establish the inverse for any other page. Algorithm, serialization and authentic preimage remain missing. See [bounded historical preimage work](archive-hash-preimage.md), not a request to repeat it.
+
+**Disposition:** no surviving executable independent acceptance oracle for unknown p0–55 plaintext has been identified. The p57 checksum is a genuine calibration gate for known text only ([source and unique tokenization result](../results/2013-761-parable-prime-products.md)). The historical pattern prioritizes source-selected operations with a separately fixed success check. Do not treat resemblance to an onion hostname, plausible prose, generic language scores, roundtrip alone, or a planted synthetic control as an author-authenticated success. No new historical claim, brute force, external service request or unknown plaintext recovery was made in this synthesis.
