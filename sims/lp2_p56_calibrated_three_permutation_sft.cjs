@@ -24,7 +24,7 @@ function solve(P,C){
  stats.tested++;
  for(let i=0;i<rr.rank;i++)v[rr.piv[i]]=mod(rr.A[i][87]-freeObserved.reduce((s,f)=>s+rr.A[i][f]*v[f],0));
  const S=v.slice(0,29),K=v.slice(29,58),Y=v.slice(58),x=[...used].map(i=>S[i]);
- if(new Set(x).size!==x.length){stats.inner++;return}if(new Set(K).size!==29){stats.shift++;return}if(new Set(Y).size!==29){stats.outer++;return}
+ if(new Set(x).size!==x.length){stats.inner++;return}if(new Set(K).size!==29){stats.shift++;}if(new Set(Y).size!==29){stats.outer++;return}
  const remaining=id.filter(i=>!x.includes(i));free.forEach((f,i)=>S[f]=remaining[i]);if(!eq(enc(P,S,K,Y),C))throw Error("replay");
  free.forEach(i=>S[i]=null);models.push({S,K,Y,free,remaining});
  }
