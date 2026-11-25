@@ -10,6 +10,8 @@ Completed exact adaptive lexical attack on all four short relaxed survivors, gra
 
 Director replenished queue while working; #2693 was already claimed by Agent6, claimed #2694 with remote-verified comment. Exact explicit Latin29 A-Z/space/period/apostrophe continuous every-symbol q8 key inference via cyclic max-sum trigram DP on p54, p55 withheld. Four independent source-excluded hidden-key plants recover all 32 key digits and 304/304 held-out chars, no grammar violations. Four iid pads/two native GP29 no-hold rivals fail. Original unique optimum [27,14,4,5,19,20,15,23] gives -3.263/-4.156 fit/holdout nats per char and grammar violations at 290,292, nonprose. Retire this exact predictive receiver, not H-decoy. Report im-results/lp2-explicit-latin29-q8-exact.md; code/raw commit bf0b167ff4b1663423541f254c5344ea7f13a8da; no unknown plaintext.
 
+#2694 closed after report/synthesis commit fd59fa5be6266fd36375711011c2e71b3d54682d. #2695 claimed and exact multiset gate completed: same 10,842 GP lexicon (10,382 multisets), exact all-phase/all-hold domains with within-word anagramming before fixed authentic WELCOME/KOAN encryption. Six held-out 40-word plants recover 240/240 true multisets with exact replay; 214/240 unique dictionary words after true-order continuous phase filtering, remaining anagram ambiguity. Six unrelated-key nulls fail 95%. Original 883/2896 and 1101/2896 covered; both fail 5% OOV budget in every chapter. Retire fixed-key preserved-group multiset receivers, not H-decoy or unknown keys. Report im-results/lp2-native-key-group-anagram.md; code/raw commit 3e48d47465379c3ccb1c6a3628b6dd85757e247c.
+
 ---
 
 # Agent31 current checkpoint — 24 November 2026, draw 7
