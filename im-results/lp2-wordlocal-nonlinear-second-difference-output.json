@@ -44,6 +44,8 @@
   "plants": [
     {
       "seed": 3301,
+      "corrupt": 0,
+      "corruptedGroups": [],
       "truthInverse": [
         6,
         3,
@@ -528,10 +530,251 @@
           }
         ]
       },
-      "firstFrozenCorrect": true
+      "firstFrozenCorrect": true,
+      "full": {
+        "nodes": 4,
+        "truncated": false,
+        "count": 1,
+        "truthRetained": true,
+        "forcedEntries": 29,
+        "first": {
+          "f": [
+            6,
+            3,
+            17,
+            7,
+            2,
+            13,
+            0,
+            15,
+            8,
+            16,
+            20,
+            24,
+            18,
+            19,
+            26,
+            27,
+            21,
+            9,
+            4,
+            23,
+            22,
+            10,
+            28,
+            11,
+            1,
+            12,
+            14,
+            5,
+            25
+          ],
+          "g": [
+            6,
+            24,
+            4,
+            1,
+            18,
+            27,
+            0,
+            3,
+            8,
+            17,
+            21,
+            23,
+            25,
+            5,
+            26,
+            7,
+            9,
+            2,
+            12,
+            13,
+            10,
+            16,
+            20,
+            19,
+            11,
+            28,
+            14,
+            15,
+            22
+          ],
+          "oov": 0,
+          "assigned": 29
+        },
+        "bestOov": 0
+      },
+      "fullFrozen": {
+        "groups": 17,
+        "compatible": 17,
+        "unique": 8,
+        "truthPresent": 17,
+        "uniqueTruth": 8,
+        "runes": 62,
+        "outputs": [
+          {
+            "index": 2879,
+            "length": 11,
+            "options": 1,
+            "examples": [
+              "APPREHENDED"
+            ]
+          },
+          {
+            "index": 2880,
+            "length": 4,
+            "options": 4,
+            "examples": [
+              "LIUE",
+              "ROOF",
+              "BUSY"
+            ]
+          },
+          {
+            "index": 2881,
+            "length": 2,
+            "options": 196,
+            "examples": [
+              "WE",
+              "ME",
+              "TO"
+            ]
+          },
+          {
+            "index": 2882,
+            "length": 2,
+            "options": 196,
+            "examples": [
+              "WE",
+              "ME",
+              "TO"
+            ]
+          },
+          {
+            "index": 2883,
+            "length": 6,
+            "options": 1,
+            "examples": [
+              "SECOND"
+            ]
+          },
+          {
+            "index": 2884,
+            "length": 6,
+            "options": 1,
+            "examples": [
+              "EDWARD"
+            ]
+          },
+          {
+            "index": 2885,
+            "length": 2,
+            "options": 196,
+            "examples": [
+              "WE",
+              "ME",
+              "TO"
+            ]
+          },
+          {
+            "index": 2886,
+            "length": 13,
+            "options": 1,
+            "examples": [
+              "IMPOSSIBILITY"
+            ]
+          },
+          {
+            "index": 2887,
+            "length": 6,
+            "options": 1,
+            "examples": [
+              "SHOULD"
+            ]
+          },
+          {
+            "index": 2888,
+            "length": 4,
+            "options": 4,
+            "examples": [
+              "MUST",
+              "UENT",
+              "ARTS"
+            ]
+          },
+          {
+            "index": 2889,
+            "length": 2,
+            "options": 196,
+            "examples": [
+              "WE",
+              "ME",
+              "TO"
+            ]
+          },
+          {
+            "index": 2890,
+            "length": 7,
+            "options": 1,
+            "examples": [
+              "TOGETHER"
+            ]
+          },
+          {
+            "index": 2891,
+            "length": 7,
+            "options": 1,
+            "examples": [
+              "CONJURE"
+            ]
+          },
+          {
+            "index": 2892,
+            "length": 2,
+            "options": 196,
+            "examples": [
+              "WE",
+              "ME",
+              "TO"
+            ]
+          },
+          {
+            "index": 2893,
+            "length": 6,
+            "options": 1,
+            "examples": [
+              "HASTNGS"
+            ]
+          },
+          {
+            "index": 2894,
+            "length": 3,
+            "options": 30,
+            "examples": [
+              "MEAT",
+              "BOY",
+              "AIR"
+            ]
+          },
+          {
+            "index": 2895,
+            "length": 3,
+            "options": 30,
+            "examples": [
+              "YOU",
+              "DIE",
+              "THAN"
+            ]
+          }
+        ]
+      },
+      "fullFrozenCorrect": true
     },
     {
       "seed": 1033,
+      "corrupt": 0,
+      "corruptedGroups": [],
       "truthInverse": [
         4,
         23,
@@ -1016,10 +1259,249 @@
           }
         ]
       },
-      "firstFrozenCorrect": true
+      "firstFrozenCorrect": true,
+      "full": {
+        "nodes": 4,
+        "truncated": false,
+        "count": 1,
+        "truthRetained": true,
+        "forcedEntries": 29,
+        "first": {
+          "f": [
+            4,
+            23,
+            28,
+            16,
+            14,
+            24,
+            9,
+            11,
+            7,
+            21,
+            17,
+            3,
+            19,
+            2,
+            25,
+            1,
+            26,
+            27,
+            8,
+            0,
+            6,
+            13,
+            15,
+            18,
+            12,
+            5,
+            20,
+            10,
+            22
+          ],
+          "g": [
+            19,
+            15,
+            13,
+            11,
+            0,
+            25,
+            20,
+            8,
+            18,
+            6,
+            27,
+            7,
+            24,
+            21,
+            4,
+            22,
+            3,
+            10,
+            23,
+            12,
+            26,
+            9,
+            28,
+            1,
+            5,
+            14,
+            16,
+            17,
+            2
+          ],
+          "oov": 0,
+          "assigned": 29
+        },
+        "bestOov": 0
+      },
+      "fullFrozen": {
+        "groups": 17,
+        "compatible": 17,
+        "unique": 9,
+        "truthPresent": 17,
+        "uniqueTruth": 9,
+        "runes": 66,
+        "outputs": [
+          {
+            "index": 2879,
+            "length": 11,
+            "options": 1,
+            "examples": [
+              "STOCCHOLDER"
+            ]
+          },
+          {
+            "index": 2880,
+            "length": 4,
+            "options": 1,
+            "examples": [
+              "TRUE"
+            ]
+          },
+          {
+            "index": 2881,
+            "length": 2,
+            "options": 196,
+            "examples": [
+              "WE",
+              "ME",
+              "TO"
+            ]
+          },
+          {
+            "index": 2882,
+            "length": 2,
+            "options": 196,
+            "examples": [
+              "WE",
+              "ME",
+              "TO"
+            ]
+          },
+          {
+            "index": 2883,
+            "length": 6,
+            "options": 1,
+            "examples": [
+              "MISSIAN"
+            ]
+          },
+          {
+            "index": 2884,
+            "length": 6,
+            "options": 1,
+            "examples": [
+              "BEFORE"
+            ]
+          },
+          {
+            "index": 2885,
+            "length": 2,
+            "options": 196,
+            "examples": [
+              "WE",
+              "ME",
+              "TO"
+            ]
+          },
+          {
+            "index": 2886,
+            "length": 13,
+            "options": 1,
+            "examples": [
+              "CIRCUMSTANCES"
+            ]
+          },
+          {
+            "index": 2887,
+            "length": 6,
+            "options": 1,
+            "examples": [
+              "TALENT"
+            ]
+          },
+          {
+            "index": 2888,
+            "length": 4,
+            "options": 3,
+            "examples": [
+              "SEEC",
+              "NUMA",
+              "CLOTH"
+            ]
+          },
+          {
+            "index": 2889,
+            "length": 2,
+            "options": 196,
+            "examples": [
+              "WE",
+              "ME",
+              "TO"
+            ]
+          },
+          {
+            "index": 2890,
+            "length": 7,
+            "options": 1,
+            "examples": [
+              "BETWEEN"
+            ]
+          },
+          {
+            "index": 2891,
+            "length": 7,
+            "options": 1,
+            "examples": [
+              "UIRTUES"
+            ]
+          },
+          {
+            "index": 2892,
+            "length": 2,
+            "options": 196,
+            "examples": [
+              "WE",
+              "ME",
+              "TO"
+            ]
+          },
+          {
+            "index": 2893,
+            "length": 6,
+            "options": 1,
+            "examples": [
+              "DANGERS"
+            ]
+          },
+          {
+            "index": 2894,
+            "length": 3,
+            "options": 22,
+            "examples": [
+              "CAN",
+              "SET",
+              "OPE"
+            ]
+          },
+          {
+            "index": 2895,
+            "length": 3,
+            "options": 24,
+            "examples": [
+              "ARE",
+              "OUR",
+              "HER"
+            ]
+          }
+        ]
+      },
+      "fullFrozenCorrect": true
     },
     {
       "seed": 729,
+      "corrupt": 0,
+      "corruptedGroups": [],
       "truthInverse": [
         15,
         22,
@@ -1504,7 +1986,972 @@
           }
         ]
       },
-      "firstFrozenCorrect": true
+      "firstFrozenCorrect": true,
+      "full": {
+        "nodes": 37,
+        "truncated": false,
+        "count": 1,
+        "truthRetained": true,
+        "forcedEntries": 29,
+        "first": {
+          "f": [
+            15,
+            22,
+            16,
+            6,
+            25,
+            11,
+            13,
+            8,
+            1,
+            2,
+            24,
+            10,
+            23,
+            3,
+            21,
+            28,
+            27,
+            7,
+            20,
+            4,
+            26,
+            0,
+            9,
+            12,
+            5,
+            17,
+            19,
+            18,
+            14
+          ],
+          "g": [
+            21,
+            8,
+            9,
+            13,
+            19,
+            24,
+            3,
+            17,
+            7,
+            22,
+            11,
+            5,
+            23,
+            6,
+            28,
+            0,
+            2,
+            25,
+            27,
+            26,
+            18,
+            14,
+            1,
+            12,
+            10,
+            4,
+            20,
+            16,
+            15
+          ],
+          "oov": 0,
+          "assigned": 29
+        },
+        "bestOov": 0
+      },
+      "fullFrozen": {
+        "groups": 17,
+        "compatible": 17,
+        "unique": 8,
+        "truthPresent": 17,
+        "uniqueTruth": 8,
+        "runes": 62,
+        "outputs": [
+          {
+            "index": 2879,
+            "length": 11,
+            "options": 1,
+            "examples": [
+              "DRUNCENNESS"
+            ]
+          },
+          {
+            "index": 2880,
+            "length": 4,
+            "options": 2,
+            "examples": [
+              "OCEAN",
+              "IDEAL"
+            ]
+          },
+          {
+            "index": 2881,
+            "length": 2,
+            "options": 196,
+            "examples": [
+              "WE",
+              "ME",
+              "TO"
+            ]
+          },
+          {
+            "index": 2882,
+            "length": 2,
+            "options": 196,
+            "examples": [
+              "WE",
+              "ME",
+              "TO"
+            ]
+          },
+          {
+            "index": 2883,
+            "length": 6,
+            "options": 1,
+            "examples": [
+              "ITSELF"
+            ]
+          },
+          {
+            "index": 2884,
+            "length": 6,
+            "options": 1,
+            "examples": [
+              "OFFICE"
+            ]
+          },
+          {
+            "index": 2885,
+            "length": 2,
+            "options": 196,
+            "examples": [
+              "WE",
+              "ME",
+              "TO"
+            ]
+          },
+          {
+            "index": 2886,
+            "length": 13,
+            "options": 1,
+            "examples": [
+              "UNACCOUNTABLE"
+            ]
+          },
+          {
+            "index": 2887,
+            "length": 6,
+            "options": 1,
+            "examples": [
+              "UERILY"
+            ]
+          },
+          {
+            "index": 2888,
+            "length": 4,
+            "options": 3,
+            "examples": [
+              "UIAND",
+              "MOUTH",
+              "PALM"
+            ]
+          },
+          {
+            "index": 2889,
+            "length": 2,
+            "options": 196,
+            "examples": [
+              "WE",
+              "ME",
+              "TO"
+            ]
+          },
+          {
+            "index": 2890,
+            "length": 7,
+            "options": 1,
+            "examples": [
+              "SURUIUE"
+            ]
+          },
+          {
+            "index": 2891,
+            "length": 7,
+            "options": 1,
+            "examples": [
+              "ARCHIUE"
+            ]
+          },
+          {
+            "index": 2892,
+            "length": 2,
+            "options": 196,
+            "examples": [
+              "WE",
+              "ME",
+              "TO"
+            ]
+          },
+          {
+            "index": 2893,
+            "length": 6,
+            "options": 1,
+            "examples": [
+              "WITHOUT"
+            ]
+          },
+          {
+            "index": 2894,
+            "length": 3,
+            "options": 33,
+            "examples": [
+              "ALL",
+              "HAS",
+              "HEAD"
+            ]
+          },
+          {
+            "index": 2895,
+            "length": 3,
+            "options": 26,
+            "examples": [
+              "LET",
+              "AND",
+              "DEAR"
+            ]
+          }
+        ]
+      },
+      "fullFrozenCorrect": true
+    },
+    {
+      "seed": 20261125,
+      "corrupt": 2,
+      "corruptedGroups": [
+        2844,
+        2877
+      ],
+      "truthInverse": [
+        5,
+        26,
+        17,
+        12,
+        14,
+        7,
+        1,
+        13,
+        19,
+        21,
+        20,
+        28,
+        0,
+        4,
+        11,
+        6,
+        23,
+        15,
+        24,
+        9,
+        3,
+        2,
+        27,
+        8,
+        25,
+        10,
+        16,
+        22,
+        18
+      ],
+      "train": {
+        "nodes": 580,
+        "leaves": 5,
+        "truncated": false,
+        "maxDepth": 9,
+        "best": 2,
+        "anchorDomains": [
+          [
+            2831,
+            8,
+            3012
+          ],
+          [
+            2832,
+            8,
+            122
+          ],
+          [
+            2841,
+            7,
+            167
+          ],
+          [
+            2844,
+            10,
+            39
+          ],
+          [
+            2845,
+            8,
+            3012
+          ],
+          [
+            2848,
+            8,
+            131
+          ],
+          [
+            2866,
+            8,
+            192
+          ],
+          [
+            2869,
+            8,
+            192
+          ],
+          [
+            2877,
+            10,
+            60
+          ]
+        ],
+        "states": [
+          {
+            "f": [
+              -1,
+              26,
+              17,
+              -1,
+              -1,
+              7,
+              1,
+              13,
+              19,
+              21,
+              20,
+              -1,
+              0,
+              4,
+              11,
+              -1,
+              23,
+              15,
+              24,
+              -1,
+              -1,
+              2,
+              27,
+              8,
+              25,
+              10,
+              16,
+              -1,
+              18
+            ],
+            "g": [
+              12,
+              6,
+              21,
+              -1,
+              13,
+              -1,
+              -1,
+              5,
+              23,
+              -1,
+              25,
+              14,
+              -1,
+              7,
+              -1,
+              17,
+              26,
+              2,
+              28,
+              8,
+              10,
+              9,
+              -1,
+              16,
+              18,
+              24,
+              1,
+              22,
+              -1
+            ],
+            "oov": 2,
+            "assigned": 21
+          }
+        ],
+        "individualOOV": [],
+        "stateCount": 1
+      },
+      "trueCompatible": 1,
+      "bestTrue": {
+        "groups": 17,
+        "compatible": 17,
+        "unique": 8,
+        "truthPresent": 17,
+        "uniqueTruth": 8,
+        "runes": 62,
+        "outputs": [
+          {
+            "index": 2879,
+            "length": 11,
+            "options": 1,
+            "examples": [
+              "PLANTAGENET"
+            ]
+          },
+          {
+            "index": 2880,
+            "length": 4,
+            "options": 4,
+            "examples": [
+              "MINE",
+              "ADUE",
+              "ALAN"
+            ]
+          },
+          {
+            "index": 2881,
+            "length": 2,
+            "options": 196,
+            "examples": [
+              "WE",
+              "ME",
+              "TO"
+            ]
+          },
+          {
+            "index": 2882,
+            "length": 2,
+            "options": 196,
+            "examples": [
+              "WE",
+              "ME",
+              "TO"
+            ]
+          },
+          {
+            "index": 2883,
+            "length": 6,
+            "options": 1,
+            "examples": [
+              "MOIETY"
+            ]
+          },
+          {
+            "index": 2884,
+            "length": 6,
+            "options": 1,
+            "examples": [
+              "REUENGE"
+            ]
+          },
+          {
+            "index": 2885,
+            "length": 2,
+            "options": 196,
+            "examples": [
+              "WE",
+              "ME",
+              "TO"
+            ]
+          },
+          {
+            "index": 2886,
+            "length": 13,
+            "options": 1,
+            "examples": [
+              "ENTERTAINMENT"
+            ]
+          },
+          {
+            "index": 2887,
+            "length": 6,
+            "options": 1,
+            "examples": [
+              "ANSWER"
+            ]
+          },
+          {
+            "index": 2888,
+            "length": 4,
+            "options": 14,
+            "examples": [
+              "SWAY",
+              "DURNG",
+              "AMID"
+            ]
+          },
+          {
+            "index": 2889,
+            "length": 2,
+            "options": 196,
+            "examples": [
+              "WE",
+              "ME",
+              "TO"
+            ]
+          },
+          {
+            "index": 2890,
+            "length": 7,
+            "options": 1,
+            "examples": [
+              "YIELDED"
+            ]
+          },
+          {
+            "index": 2891,
+            "length": 7,
+            "options": 1,
+            "examples": [
+              "SENATOR"
+            ]
+          },
+          {
+            "index": 2892,
+            "length": 2,
+            "options": 196,
+            "examples": [
+              "WE",
+              "ME",
+              "TO"
+            ]
+          },
+          {
+            "index": 2893,
+            "length": 6,
+            "options": 1,
+            "examples": [
+              "ENOUGH"
+            ]
+          },
+          {
+            "index": 2894,
+            "length": 3,
+            "options": 30,
+            "examples": [
+              "YOU",
+              "DIE",
+              "THAN"
+            ]
+          },
+          {
+            "index": 2895,
+            "length": 3,
+            "options": 30,
+            "examples": [
+              "YOU",
+              "DIE",
+              "THAN"
+            ]
+          }
+        ]
+      },
+      "firstFrozen": {
+        "groups": 17,
+        "compatible": 17,
+        "unique": 8,
+        "truthPresent": 17,
+        "uniqueTruth": 8,
+        "runes": 62,
+        "outputs": [
+          {
+            "index": 2879,
+            "length": 11,
+            "options": 1,
+            "examples": [
+              "PLANTAGENET"
+            ]
+          },
+          {
+            "index": 2880,
+            "length": 4,
+            "options": 4,
+            "examples": [
+              "MINE",
+              "ADUE",
+              "ALAN"
+            ]
+          },
+          {
+            "index": 2881,
+            "length": 2,
+            "options": 196,
+            "examples": [
+              "WE",
+              "ME",
+              "TO"
+            ]
+          },
+          {
+            "index": 2882,
+            "length": 2,
+            "options": 196,
+            "examples": [
+              "WE",
+              "ME",
+              "TO"
+            ]
+          },
+          {
+            "index": 2883,
+            "length": 6,
+            "options": 1,
+            "examples": [
+              "MOIETY"
+            ]
+          },
+          {
+            "index": 2884,
+            "length": 6,
+            "options": 1,
+            "examples": [
+              "REUENGE"
+            ]
+          },
+          {
+            "index": 2885,
+            "length": 2,
+            "options": 196,
+            "examples": [
+              "WE",
+              "ME",
+              "TO"
+            ]
+          },
+          {
+            "index": 2886,
+            "length": 13,
+            "options": 1,
+            "examples": [
+              "ENTERTAINMENT"
+            ]
+          },
+          {
+            "index": 2887,
+            "length": 6,
+            "options": 1,
+            "examples": [
+              "ANSWER"
+            ]
+          },
+          {
+            "index": 2888,
+            "length": 4,
+            "options": 14,
+            "examples": [
+              "SWAY",
+              "DURNG",
+              "AMID"
+            ]
+          },
+          {
+            "index": 2889,
+            "length": 2,
+            "options": 196,
+            "examples": [
+              "WE",
+              "ME",
+              "TO"
+            ]
+          },
+          {
+            "index": 2890,
+            "length": 7,
+            "options": 1,
+            "examples": [
+              "YIELDED"
+            ]
+          },
+          {
+            "index": 2891,
+            "length": 7,
+            "options": 1,
+            "examples": [
+              "SENATOR"
+            ]
+          },
+          {
+            "index": 2892,
+            "length": 2,
+            "options": 196,
+            "examples": [
+              "WE",
+              "ME",
+              "TO"
+            ]
+          },
+          {
+            "index": 2893,
+            "length": 6,
+            "options": 1,
+            "examples": [
+              "ENOUGH"
+            ]
+          },
+          {
+            "index": 2894,
+            "length": 3,
+            "options": 30,
+            "examples": [
+              "YOU",
+              "DIE",
+              "THAN"
+            ]
+          },
+          {
+            "index": 2895,
+            "length": 3,
+            "options": 30,
+            "examples": [
+              "YOU",
+              "DIE",
+              "THAN"
+            ]
+          }
+        ]
+      },
+      "firstFrozenCorrect": true,
+      "full": {
+        "nodes": 44,
+        "truncated": false,
+        "count": 4,
+        "truthRetained": true,
+        "forcedEntries": 26,
+        "first": {
+          "f": [
+            22,
+            26,
+            17,
+            12,
+            14,
+            7,
+            1,
+            13,
+            19,
+            21,
+            20,
+            28,
+            0,
+            4,
+            11,
+            6,
+            23,
+            15,
+            24,
+            9,
+            3,
+            2,
+            27,
+            8,
+            25,
+            10,
+            16,
+            5,
+            18
+          ],
+          "g": [
+            12,
+            6,
+            21,
+            20,
+            13,
+            27,
+            15,
+            5,
+            23,
+            19,
+            25,
+            14,
+            3,
+            7,
+            4,
+            17,
+            26,
+            2,
+            28,
+            8,
+            10,
+            9,
+            0,
+            16,
+            18,
+            24,
+            1,
+            22,
+            11
+          ],
+          "oov": 2,
+          "assigned": 29
+        },
+        "bestOov": 2
+      },
+      "fullFrozen": {
+        "groups": 17,
+        "compatible": 15,
+        "unique": 6,
+        "truthPresent": 15,
+        "uniqueTruth": 6,
+        "runes": 45,
+        "outputs": [
+          {
+            "index": 2879,
+            "length": 11,
+            "options": 0,
+            "examples": []
+          },
+          {
+            "index": 2880,
+            "length": 4,
+            "options": 4,
+            "examples": [
+              "MINE",
+              "ADUE",
+              "ALAN"
+            ]
+          },
+          {
+            "index": 2881,
+            "length": 2,
+            "options": 196,
+            "examples": [
+              "WE",
+              "ME",
+              "TO"
+            ]
+          },
+          {
+            "index": 2882,
+            "length": 2,
+            "options": 196,
+            "examples": [
+              "WE",
+              "ME",
+              "TO"
+            ]
+          },
+          {
+            "index": 2883,
+            "length": 6,
+            "options": 1,
+            "examples": [
+              "MOIETY"
+            ]
+          },
+          {
+            "index": 2884,
+            "length": 6,
+            "options": 0,
+            "examples": []
+          },
+          {
+            "index": 2885,
+            "length": 2,
+            "options": 196,
+            "examples": [
+              "WE",
+              "ME",
+              "TO"
+            ]
+          },
+          {
+            "index": 2886,
+            "length": 13,
+            "options": 1,
+            "examples": [
+              "ENTERTAINMENT"
+            ]
+          },
+          {
+            "index": 2887,
+            "length": 6,
+            "options": 1,
+            "examples": [
+              "ANSWER"
+            ]
+          },
+          {
+            "index": 2888,
+            "length": 4,
+            "options": 2,
+            "examples": [
+              "SWAY",
+              "DURNG"
+            ]
+          },
+          {
+            "index": 2889,
+            "length": 2,
+            "options": 196,
+            "examples": [
+              "WE",
+              "ME",
+              "TO"
+            ]
+          },
+          {
+            "index": 2890,
+            "length": 7,
+            "options": 1,
+            "examples": [
+              "YIELDED"
+            ]
+          },
+          {
+            "index": 2891,
+            "length": 7,
+            "options": 1,
+            "examples": [
+              "SENATOR"
+            ]
+          },
+          {
+            "index": 2892,
+            "length": 2,
+            "options": 196,
+            "examples": [
+              "WE",
+              "ME",
+              "TO"
+            ]
+          },
+          {
+            "index": 2893,
+            "length": 6,
+            "options": 1,
+            "examples": [
+              "ENOUGH"
+            ]
+          },
+          {
+            "index": 2894,
+            "length": 3,
+            "options": 30,
+            "examples": [
+              "YOU",
+              "DIE",
+              "THAN"
+            ]
+          },
+          {
+            "index": 2895,
+            "length": 3,
+            "options": 30,
+            "examples": [
+              "YOU",
+              "DIE",
+              "THAN"
+            ]
+          }
+        ]
+      },
+      "fullFrozenCorrect": false
     }
   ],
   "original": {
@@ -1566,6 +3013,9 @@
   },
   "originalHold": null,
   "opening": {
+    "words": 158,
+    "runes": 729,
+    "budget": 7,
     "nodes": 1750,
     "leaves": 0,
     "truncated": false,
