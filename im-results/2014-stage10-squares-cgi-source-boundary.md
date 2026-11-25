@@ -41,6 +41,27 @@ Thus the client submits the four values as ordinary URL-encoded form fields, in 
 
 The exact byte string of a particular historical POST is **not** preserved: no request body, participant onion value, or exact textarea paste/whitespace is present in the archive. The schema and encoding are recoverable, but inventing the missing value bytes would not be a historical reproduction.
 
+
+## Exact historical square ordering versus acceptance constraints (Director #2873, Agent3, 25 November)
+
+The known source order must be distinguished from an order inferred from the submission predicate. The [native Stage7 reconstruction](cicada2014-stage7-chain-reproduction.md) recovers the 745-byte OpenPuff output, whose three numeric blocks have 25, 49, 25 entries in the exact order of the Stage10 form fields `53301,71033,51033`. The 721-byte contemporaneous-format archive witness at [cijhho123 pinned source](https://github.com/cijhho123/cicada3301/blob/d360ad97d39c4719e42dc88b0cbbb81ed54aa02c/assets/2014/stage07/magicsquares.txt) has all 99 numbers in exactly the same sequence; it differs in textual formatting. The instruction says to paste the squares into the appropriate textareas. Thus the extracted source numeric order is already canonical for a player copying that artifact, but the exact accepted textarea bytes or a server-side requirement of exact ordering are not recovered.
+
+**Constructive mathematical ambiguity of the advertised square constraints.** The original three matrices all satisfy the stated row/column and both principal diagonal sums and all are invariant under 180-degree rotation. For example, the original 5×5/3301 first row is `434 1311 312 278 966`; reversing every row gives first row `966 278 312 1311 434`. Every row and column still sums to 3301, and the two diagonal sums exchange. The reflected full matrix is distinct, uses exactly the same entries, and fits the visible field dimensions. The same construction applies independently to the two 1033 matrices. These are **mathematically valid counterexamples to uniqueness under the stated sums**, not observations of the historical server accepting altered submissions.
+
+We can count the exact ambiguity of *all row/column permutations of the actual three matrices*, including their nontrivial duplicate entries, without scanning candidate decryption keys. Let `r,c` be row and column permutations in source-index coordinates, `J(i)=n-1-i` the reversal involution and `p=c∘r⁻¹`. Main-diagonal sum is preserved iff `p` belongs to the finite set D of permutations satisfying Σᵢ M[i,p(i)]=S. The anti-diagonal uses `p∘r∘J∘r⁻¹`. Enumerate D and the distinct conjugates of J (15 at n=5, 105 at n=7). Each conjugate has 2^m m! row-permutation preimages for m=(n−1)/2. Count compatible pairs, multiply by that centralizer size and divide by the exact row/column stabilizer of the original matrix, which is 2 for each square. This yields the exact number of distinct matrices in the restricted orbit satisfying both diagonal sums.
+
+| Original form field | Permutations in D | Compatible (p, conjugate) pairs | Valid (r,c) pairs | Distinct matrices |
+| --- | ---: | ---: | ---: | ---: |
+| 53301 | 2 | 2 | 16 | 8 |
+| 71033 | 14 | 6 | 288 | 144 |
+| 51033 | 2 | 2 | 16 | 8 |
+
+Both n=5 cases agree with independent exhaustive 120×120 direct enumeration. Each square also has exactly four distinct dihedral images; using only these already gives 4³=64 distinct valid ordered triples. The larger row/column orbit gives **8×144×8=9,216** distinct triples with unchanged field order, original per-square entries and all advertised sums. This is a lower bound on the set of all mathematical solutions with the advertised sums; no new LP2 transforms were tested. The server might have compared the exact original matrices, accepted some subset, or checked only sums. The missing handler/actual submissions decide that, not the orbit.
+
+**LP2 receiver decision.** Original p33's cuneiform 1033/3301 reference and its carry-correct 198-rune body have already motivated the exact canonical 99-number stream, including the direct base841 and 188-digit BASE29 receivers and disjoint p34–39 tests, all negative ([consolidated p33 receiver](lp2-p33-stage10-order7-1033-square-key-gate.md)). There is no independent selector for a different square orientation or ordering; testing the 9,216 alternatives as keys would be a new unfounded fit. The canonical source order exists and is already used. A canonical *acceptance-derived* key order does not follow from dimensions/sums, field order or the static success page. Retire this branch until an original handler or actual contrasting accepted/rejected square submission, or a separately decoded LP2 order instruction, supplies the missing selector.
+
+Reproducer: [CommonJS SFT](../sims/cicada2014_stage10_square_order_ambiguity_sft.cjs). Its core ran against the exact 745- and 721-character source witnesses and original form in connected V8. For standalone reproduction, supply the downloaded pinned 721-byte witness as the optional first argument; without it the orbit and form tests run using the repository source only. Standalone wrapper not separately CI-run. No unknown LP2 plaintext or key recovered.
+
 ## Static successful response body is preserved; transaction/handler are not
 
 The 2014 `stage10/squares` file is the participant archive's saved successful-response body:
