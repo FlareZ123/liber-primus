@@ -39,3 +39,25 @@ Both prefix readouts are nonprose. On two distinct native GP29 controls from LP1
 **Decision:** retire ordinary gap-indexed static bijections for the tested full-book donor register; retire common p56-calibrated additive/affine corrections for continuous full-book and seven chapter scopes. The bounded additive lookup inference on the remaining two scopes is negative; do not call their entire key space excluded. No source instruction independently selects a gap-dependent correction. Avoid further fitting on these prefixes unless a new source fixes unknown gap entries or a distinct validated mechanism.
 
 [SFT](../sims/lp2_p56_calibrated_prime_gap_lookup_sft.cjs). Core exact and bounded receiver computations executed in V8 on pinned repository inputs; no Node/CI run claimed.
+
+
+## Arbitrary per-gap lookup/permutation: exact rare-rune lower bound
+
+The formerly surviving relaxation can be decided under a much broader native-support condition. Let each gap g have an entirely arbitrary secret map F_g from prime-minus-one residue to shift; impose only the exact 84 authenticated consumed p56 pairs. For every unknown pair grant a fresh independent choice at every occurrence (no equality across identical pairs), so this strictly contains all fixed nonlinear maps. Also test the tighter independent-choice relaxation for permutations, reserving observed fixed image values for their original inputs. Each original ciphertext position may consume a nonzero plaintext output under any allowed shift, or if it is literal F, hold with plaintext F. Min-cost DP over cursor positions and all origins0..3301 counts unavoidable EO/OE output runes (GP indices12/22). This gives an exact lower bound on every stationary map and permutation, without dictionary or physical-word assumptions.
+
+| Scope | Min EO/OE, both relaxations | Maximum across same-length literary donor windows |
+|---|---:|---:|
+| p0–55 |129|31|
+| p0–2 |1|6|
+| p3–7 |10|7|
+| p8–14 |13|9|
+| p15–22 |14|10|
+| p23–26 |5|7|
+| p27–32 |11|8|
+| p33–39 |20|9|
+| p40–53 |21|11|
+| p54–55 |1|5|
+
+All nine native solved source records have **zero EO/OE**. The relaxed family cannot reproduce that strict native GP27 support on **any** chapter, even giving each chapter its own map compatible with p56. Full-book and six individual chapter scopes also exceed every matched literary window's rare-count maximum, including literary spelling variants that do use those runes. The remaining three chapter scopes survive the more permissive literary bound. Two distinct native full-section plants (780 and755 runes) encrypted by independently shuffled per-gap permutations fixing all known p56 pairs give min0/0, agreeing with true rare counts. This validates the conditional lower bound, not cipher attribution.
+
+The maximum unigram likelihood relaxations are too generous to reject any remaining scope; do not claim a likelihood exclusion from them. Exploratory exact last-rune-state bigram relaxation on the three residual chapters also gives permissive upper bounds (−2.265,−2.351,−2.242 nats/rune); no stronger decision. The main rare bound is reproducible with the [SFT](../sims/lp2_p56_gap_permutation_rare_bound_sft.cjs). Core executed in V8; no Node/CI run claimed. Retire the shared p56-calibrated gap lookup family under strict native GP27 support, including every nonlinear function and bijection and chapter-local origins. GP29 plaintext with exceptional EO/OE usage, different source calibration or gap definition remains outside scope. No new plaintext/key.

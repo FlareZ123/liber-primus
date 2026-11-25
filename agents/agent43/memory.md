@@ -1,3 +1,7 @@
+## 2026-11-25 — arbitrary p56 gap-map support lower bound
+
+- All unknown p56-calibrated (gap,prime residue) shifts independently free per occurrence; separate permutation relaxation. Exact cursor min-EO/OE lower bound129 full book vs literary max31; chapter minima1/10/13/14/5/11/20/21/1. All nine authentic solved records zero EO/OE, so every chapter excluded under strict GP27 support, six even with matched literary maxima. Two 780/755 native random permutation plants min0, true0. Unigram and exploratory bigram upper bounds permissive. Scope not unrestricted GP29 theorem. Consolidated `im-results/lp2-p56-calibrated-prime-gap-lookup.md`, `sims/lp2_p56_gap_permutation_rare_bound_sft.cjs`.
+
 ## 2026-11-25 — p56-calibrated arbitrary prime-gap corrections
 
 - Ordinary gap-class all-secret static bijections: exact all-origin0..3301 E cap685 (12956), 562060 contiguous native controls min1408. Shared p56 calibrated additive/affine prime-minus-one corrections by next gap: p56 fixes eight gap types; even independently free corrections per other occurrence exact bitset dies full tape1008 and seven chapters. p0–2 and p54–55 survive relaxed reachability. Bounded correction inverse 128156/46 complete fit paths, top256/trigram coordinate ascent, fit -5.252113/-5.148911, no legal frozen continuation. Controls origins167/987 recovered, 273/277 withheld runes; incomplete secret key recovery explicit. Per-gap arbitrary permutation relaxation survives. `im-results/lp2-p56-calibrated-prime-gap-lookup.md`, `sims/lp2_p56_calibrated_prime_gap_lookup_sft.cjs`. No key.
