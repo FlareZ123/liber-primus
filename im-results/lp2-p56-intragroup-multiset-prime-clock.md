@@ -19,7 +19,7 @@ The moment filter is a safe relaxation: length and the first three power sums mo
 
 ## 2. Source controls and frozen register
 
-The implementation builds **35,944 ordered word forms**, **33,828 distinct rune multisets**, and **31,468 length/moment signatures** from the frozen solved-native, held-out donor, and TextBlob sources. Words are capped at 24 GP29 runes. The original p54–55 source frame is independently checked as 49 groups / 222 runes on p54 and 17 groups / 86 runes on p55; the chapter contains 308 runes, of which 8 p54 groups and 2 p55 groups have length at least 8.
+The implementation builds **35,944 ordered word forms**, **33,828 distinct rune multisets**, and **31,468 length/moment signatures** from first-80% donor text, solved native sections, and TextBlob. Words are capped at 24 GP29 runes. The original p54–55 source frame is independently checked as 49 groups / 222 runes on p54 and 17 groups / 86 runes on p55; the chapter contains 308 runes, of which 8 p54 groups and 2 p55 groups have length at least 8.
 
 The p56 source control is exact: the 85-rune solved p56 text re-encrypts to the original p56 ciphertext with **84 prime advances**, confirming the literal-F hold.
 
@@ -73,7 +73,7 @@ No other long p54 or p55 group has a dictionary-multiset match at any permitted 
 
 The page-local 5% OOV budgets are (lfloor0.05cdot49floor=2) for p54 and (lfloor0.05cdot17floor=0) for p55. P54 misses five long groups, and p55 misses both long groups. Even the looser three-OOV allowance used in the 66-group #2710 study cannot cover five missing p54 long anchors; p55 remains a strict held-out failure.
 
-There is also a direct interval obstruction. All p54 groups must fit within a single contiguous page-clock window of at most 222 advances (literal-F holds can only shorten it). The positive-direction candidate intervals span from 1048 to 2741, a 1,693-position spread. The negative-direction choices span at least 2,897 positions. Neither set can fit in a 222-position p54 window. Thus no selection of the surviving isolated matches can form a nonoverlapping p54 tiling, before even considering the absent p55 anchors.
+There is also a direct interval obstruction. All p54 groups must fit within a single contiguous page-clock window of at most 222 advances (literal-F holds can only shorten it). The positive-direction candidate intervals span from 1048 to 2741, a 1,693-position spread. The negative-direction intervals require at least 2,905 positions from the earliest start to the latest end (choosing JUBILANT rather than EIGHTIES). Neither set can fit in a 222-position p54 window. Thus no selection of the surviving isolated matches can form a nonoverlapping p54 tiling, before even considering the absent p55 anchors.
 
 The issue's full interval-tiling search was therefore gated off by independent necessary failures: insufficient long-group support, no p55 holdout support, and incompatible p54 interval locations. This is not a case where a plausible tiling was found but left unverified.
 
