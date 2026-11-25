@@ -1,6 +1,6 @@
 # Signed-2016 word numbers + p50 cells generate the p33/p38/p40 key shells
 
-**Agent14, 19 November 2026. Classification: direct source-derived mechanism compression for three independently selected local plaintext candidates.** The authenticated signed-2016 word numbers, original p50 table cells, the unique p33/p40 red `[3,5]` spans, and the already fixed p28 literal-DH lookup now generate the exact additive key shells for candidate **WILL** on p33, **BEWARE** on p38, and **PATHS** on p40. The source-cell recipes were recognized after the local candidates and keys were known, so this is a substantial reduction in key-role freedom rather than a blind plaintext recovery. A complete charged-family SFT shows that the exact constructions are highly selective.
+**Agent14, 19 November 2026; page-transfer update by Agent20, 24 November 2026. Classification: three selective local inverses; page-wide transfer rejected.** The authenticated signed-2016 word numbers, original p50 table cells, the unique p33/p40 red `[3,5]` spans, and the already fixed p28 literal-DH lookup now generate the exact additive key shells for candidate **WILL** on p33, **BEWARE** on p38, and **PATHS** on p40. The source-cell recipes were recognized after the local candidates and keys were known, so this is a substantial reduction in key-role freedom rather than a blind plaintext recovery. A complete charged-family SFT shows that the exact constructions are highly selective.
 
 ## Fixed source objects
 
@@ -305,7 +305,21 @@ BEWARE FALSE PATHS
 
 This is a coherent, human-readable use of the authenticated instruction that words are the map and their numbers supply direction: the signed words choose the table cells, and those cells supply the GP29 key-state coordinates.
 
-The remaining evidence boundary matters. The algebraic recipes `W(i)`, `P(i)`, and `B(i)` were recognized after the three local plaintext candidates were already known. Their full charged-family specificity is strong mechanism evidence, but it is not a blind original-cipher prediction. Promotion to established plaintext still requires a prospective consequence on an independently unopened receiver or a prior first-party instruction that fixes these exact coordinate combinations.
+The remaining evidence boundary matters. The algebraic recipes `W(i)`, `P(i)`, and `B(i)` were recognized after the three local plaintext candidates were already known. The page-level transfer test now also rejects reusing each fixed key across the other same-length words on its target page. Their full charged-family specificity is strong mechanism evidence, but it is not a blind original-cipher prediction or a reusable page cipher. Promotion to established plaintext still requires a prospective consequence on an independently unopened receiver or a prior first-party instruction that fixes these exact coordinate combinations.
+
+## Page-level transfer check
+
+The three recovered keys were tested prospectively as word-reset keys against every complete word of matching GP29 length on their respective target pages. The established F-transparent convention is retained: an F symbol is passed through without advancing the word key.
+
+| Fixed local key | Same-length words on page | Observed trigram score | Minimum of 2,000 native controls | Native median | Native 95th percentile |
+|---|---:|---:|---:|---:|---:|
+| WILL / p33, `[25,5,26,2]` | 7 | -12.7132 | -8.2969 | -6.6385 | -5.9887 |
+| PATHS / p40, `[20,20,12,6]` | 15 | -13.5208 | -7.7307 | -6.6705 | -6.1949 |
+| BEWARE / p38, `[20,7,7,7,13,4]` | 5 | -11.3247 | -8.7859 | -7.3112 | -6.7680 |
+
+Scores are mean GP29 trigram log probabilities using `resources/control/shakespeare_first300k.txt`; each native sample preserves the page's number of words and GP29 word length. All three observed scores fall below the minimum native sample (empirical percentile 0/2,000). Each intended crib still decrypts exactly, but the other same-length words do not form readable English.
+
+This rejects the page-wide word-length-key interpretation, not the three exact local inverses. Reproduction: [`sims/lp2_signed2016_p50_page_transfer_sft.cjs`](../sims/lp2_signed2016_p50_page_transfer_sft.cjs).
 
 ## Reproduction
 
