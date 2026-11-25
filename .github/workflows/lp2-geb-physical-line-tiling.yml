@@ -1,0 +1,29 @@
+name: GEB physical-line absolute interval inverse
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inverse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        format: [digraph, letters]
+        sign: [1, -1]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare pinned source
+        run: node sims/lp2_geb_line_tiling_prepare.cjs ${{ matrix.format }} ${{ matrix.sign }}
+      - name: Build exact receiver
+        run: g++ -O3 -std=c++17 -Wall -Wextra sims/lp2_geb_line_tiling.cpp -o /tmp/geb-line-inverse
+      - name: Invert and reconstruct
+        run: |
+          /tmp/geb-line-inverse geb-line-input.txt > geb-line-result.json
+          python -c "import json; r=json.load(open('geb-line-result.json')); print(json.dumps([{k:v for k,v in c.items() if k!='lines'} for c in r['cases']],separators=(',',':')))"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: geb-line-${{ matrix.format }}-${{ matrix.sign }}
+          path: geb-line-result.json
+          retention-days: 30
