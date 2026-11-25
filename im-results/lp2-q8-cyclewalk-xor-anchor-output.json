@@ -83,9 +83,32 @@
         ]
       },
       "null": {
-        "status": "insufficient anchors",
-        "eligible": 3
-      }
+        "status": "complete",
+        "eligible": 4,
+        "anchors": [
+          [
+            4,
+            56
+          ],
+          [
+            27,
+            4
+          ],
+          [
+            18,
+            2115
+          ],
+          [
+            20,
+            4512
+          ]
+        ],
+        "candidates": 6687,
+        "evaluated": 6687,
+        "largestPartial": 5,
+        "accepted": []
+      },
+      "nullDraws": 2
     },
     {
       "d": 1,
@@ -147,9 +170,32 @@
         ]
       },
       "null": {
-        "status": "insufficient anchors",
-        "eligible": 3
-      }
+        "status": "complete",
+        "eligible": 4,
+        "anchors": [
+          [
+            22,
+            1
+          ],
+          [
+            46,
+            390
+          ],
+          [
+            2,
+            3129
+          ],
+          [
+            12,
+            5124
+          ]
+        ],
+        "candidates": 8644,
+        "evaluated": 8644,
+        "largestPartial": 2,
+        "accepted": []
+      },
+      "nullDraws": 2
     },
     {
       "d": 2,
@@ -235,8 +281,40 @@
         "evaluated": 6536,
         "largestPartial": 5,
         "accepted": []
-      }
+      },
+      "nullDraws": 1
     }
   ],
-  "calibrated": false
+  "calibrated": true,
+  "original": {
+    "fitGroups": 49,
+    "heldGroups": 17,
+    "fit": {
+      "status": "complete",
+      "eligible": 8,
+      "anchors": [
+        [
+          47,
+          0
+        ],
+        [
+          14,
+          0
+        ],
+        [
+          1,
+          1848
+        ],
+        [
+          2,
+          1881
+        ]
+      ],
+      "candidates": 3729,
+      "evaluated": 3729,
+      "largestPartial": 1,
+      "accepted": []
+    },
+    "hold": []
+  }
 }
