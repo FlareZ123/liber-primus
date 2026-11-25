@@ -49,7 +49,7 @@ function experiment(gp,transcript,gold,dict){
  const start=gp.pages.filter(p=>p.page<40).reduce((n,p)=>n+p.indices.length,0),original=words.filter(w=>w.start>=start&&w.start+w.w.length<=start+162),c=original.flatMap(x=>x.w),lens=original.map(x=>x.w.length);assert(c.length===162,"original prefix");
  const L=lex(null),aa=Array.from({length:28},(_,i)=>i+1),orig=solve(c,lens,L,aa.slice(1));
  const controls=[];
- for(const [name,a,target,skip,seed] of [["0_welcome",28,120,1,3],["0_koan_1",7,120,2,8],["jpg107-167",2,120,2,17],["0_welcome",1,120,1,22]]){
+ for(const [name,a,target,skip,seed] of [["0_welcome",28,120,1,3],["0_welcome",28,130,1,3],["0_koan_1",7,120,2,8],["jpg107-167",2,120,2,17],["0_welcome",1,120,1,22]]){
   const L=lex(name),p=native.find(x=>x.name===name).words.slice(skip),K=Array.from({length:8},(_,i)=>mod(7*i*i+seed*i+seed));let fit=0,n=0;while(n<target&&fit<p.length)n+=p[fit++].length;const w=p.slice(0,fit),hold=p.slice(fit,fit+15),P=w.flat(),H=hold.flat(),full=enc(P.concat(H),a,K),OOV=w.filter(x=>!L.get(x.length)?.has(x.join())).map(x=>x.map(i=>gp.translit[i]).join(""));
   const r=solve(full.slice(0,n),w.map(x=>x.length),L,aa);const exact=r.solutions.filter(x=>x.a===a&&x.K.join()===K.join()&&x.P.join()===P.join());let held=null;
   if(!r.capped&&r.solutions.length===1){const s=r.solutions[0],h=decode(full.slice(n),s.a,s.K,s.active,name);held={runes:H.length,hits:h?.p.filter((x,i)=>x===H[i]).length??0,replay:h?enc(s.P.concat(h.p),s.a,s.K).join()===full.join():false};}
