@@ -9,9 +9,9 @@
     "redrawProb": 0.8,
     "patternGroups": 15,
     "anchorSignatures": 10274262,
-    "indexTests": 31627264,
-    "signatureHits": 4271,
-    "verifiedAnchorPaths": 3763
+    "indexTests": 33464320,
+    "signatureHits": 4590,
+    "verifiedAnchorPaths": 4027
   },
   "controls": [
     {
@@ -23,8 +23,24 @@
       "support2": 1,
       "maxSupport": 2,
       "legal": 80,
+      "fullLegal": 42,
+      "retrospective": {
+        "key": [
+          0,
+          16,
+          16,
+          20,
+          10,
+          20,
+          8,
+          2
+        ],
+        "score": 0.9015152232585587
+      },
       "truth": "AQQUKUIC",
       "trueAnchor": true,
+      "trueFAnchor": false,
+      "trueFRedrawAnchor": false,
       "expected": [
         56,
         234
@@ -65,8 +81,24 @@
       "support2": 1,
       "maxSupport": 3,
       "legal": 97,
+      "fullLegal": 70,
+      "retrospective": {
+        "key": [
+          0,
+          14,
+          14,
+          6,
+          19,
+          18,
+          6,
+          5
+        ],
+        "score": 0.9066366774033516
+      },
       "truth": "AOOGTSGF",
       "trueAnchor": true,
+      "trueFAnchor": false,
+      "trueFRedrawAnchor": false,
       "expected": [
         269,
         270,
@@ -110,8 +142,24 @@
       "support2": 1,
       "maxSupport": 5,
       "legal": 90,
+      "fullLegal": 54,
+      "retrospective": {
+        "key": [
+          3,
+          13,
+          20,
+          24,
+          24,
+          16,
+          20,
+          13
+        ],
+        "score": 1.033732634733704
+      },
       "truth": "DNUYYQUN",
       "trueAnchor": true,
+      "trueFAnchor": false,
+      "trueFRedrawAnchor": false,
       "expected": [
         213,
         283,
@@ -162,8 +210,24 @@
       "support2": 1,
       "maxSupport": 3,
       "legal": 37,
+      "fullLegal": 24,
+      "retrospective": {
+        "key": [
+          3,
+          23,
+          23,
+          17,
+          16,
+          24,
+          15,
+          19
+        ],
+        "score": 1.021461235093496
+      },
       "truth": "DXXRQYPT",
       "trueAnchor": true,
+      "trueFAnchor": false,
+      "trueFRedrawAnchor": false,
       "expected": [
         69,
         567,
@@ -195,6 +259,123 @@
       "holds": 19,
       "skips": 20,
       "allHoldRunes": 300
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "kind": "native-control",
+      "n": 755,
+      "cut": 566,
+      "keys": 218,
+      "support2": 2,
+      "maxSupport": 2,
+      "legal": 31,
+      "fullLegal": 20,
+      "retrospective": {
+        "key": [
+          0,
+          24,
+          11,
+          4,
+          2,
+          24,
+          1,
+          26
+        ],
+        "score": 0.8040679817259758
+      },
+      "truth": "AYLECYB[",
+      "trueAnchor": true,
+      "trueFAnchor": true,
+      "trueFRedrawAnchor": true,
+      "expected": [
+        18,
+        19
+      ],
+      "key": [
+        0,
+        24,
+        11,
+        4,
+        2,
+        24,
+        1,
+        26
+      ],
+      "support": 2,
+      "anchor": {
+        "s": 284,
+        "w": "NESPSEBYQ\\J",
+        "mask": 64,
+        "width": 11
+      },
+      "fit": 0.7718455585843542,
+      "hold": 0.9005647621395144,
+      "preview": "RESERUATIANANDADHERENCETHATHAUEUSLOSEOURPRIMALITYANDTHUSOURDIUINITYSOMEWISDOMAMASSGREATWEALTHNEUERBECOMEATTACHEDTOWHATYOUOWNBEPREPAREDTODESTROYALLTHATYOUOWNANINSTRUCTIANPROGRAMYOURMINDPROG",
+      "matchedKey": true,
+      "trainCorrect": 566,
+      "holdCorrect": 189,
+      "holds": 8,
+      "skips": 17,
+      "allHoldRunes": 189
+    },
+    {
+      "name": "p57_parable",
+      "kind": "native-control",
+      "n": 95,
+      "cut": 71,
+      "keys": 28,
+      "support2": 0,
+      "maxSupport": 1,
+      "legal": 26,
+      "fullLegal": 26,
+      "retrospective": {
+        "key": [
+          1,
+          28,
+          6,
+          10,
+          4,
+          27,
+          3,
+          19
+        ],
+        "score": 0.7891120435484342
+      },
+      "truth": "B]GKE\\DT",
+      "trueAnchor": true,
+      "trueFAnchor": true,
+      "trueFRedrawAnchor": true,
+      "expected": [
+        53,
+        54,
+        55
+      ],
+      "key": [
+        1,
+        28,
+        6,
+        10,
+        4,
+        27,
+        3,
+        19
+      ],
+      "support": 1,
+      "anchor": {
+        "s": 55,
+        "w": "EFBTASESJFSP",
+        "mask": 512,
+        "width": 12
+      },
+      "fit": 0.6872321768683142,
+      "hold": 1.0905066491437903,
+      "preview": "THEDIUINITYWITHINANDEMERGE",
+      "matchedKey": true,
+      "trainCorrect": 71,
+      "holdCorrect": 24,
+      "holds": 3,
+      "skips": 3,
+      "allHoldRunes": 24
     }
   ],
   "original": [
@@ -207,8 +388,24 @@
       "support2": 0,
       "maxSupport": 1,
       "legal": 30,
+      "fullLegal": 11,
+      "retrospective": {
+        "key": [
+          5,
+          10,
+          27,
+          24,
+          20,
+          17,
+          19,
+          27
+        ],
+        "score": -2.5801010605062773
+      },
       "truth": null,
       "trueAnchor": null,
+      "trueFAnchor": null,
+      "trueFRedrawAnchor": null,
       "expected": null,
       "key": [
         4,
@@ -246,8 +443,12 @@
       "support2": 0,
       "maxSupport": 1,
       "legal": 3,
+      "fullLegal": 0,
+      "retrospective": null,
       "truth": null,
       "trueAnchor": null,
+      "trueFAnchor": null,
+      "trueFRedrawAnchor": null,
       "expected": null,
       "key": [
         0,
@@ -285,8 +486,12 @@
       "support2": 0,
       "maxSupport": 1,
       "legal": 0,
+      "fullLegal": 0,
+      "retrospective": null,
       "truth": null,
       "trueAnchor": null,
+      "trueFAnchor": null,
+      "trueFRedrawAnchor": null,
       "expected": null
     },
     {
@@ -298,8 +503,12 @@
       "support2": 0,
       "maxSupport": 1,
       "legal": 6,
+      "fullLegal": 0,
+      "retrospective": null,
       "truth": null,
       "trueAnchor": null,
+      "trueFAnchor": null,
+      "trueFRedrawAnchor": null,
       "expected": null,
       "key": [
         0,
@@ -337,8 +546,24 @@
       "support2": 0,
       "maxSupport": 1,
       "legal": 10,
+      "fullLegal": 2,
+      "retrospective": {
+        "key": [
+          0,
+          17,
+          22,
+          16,
+          10,
+          4,
+          16,
+          23
+        ],
+        "score": -2.89736220030092
+      },
       "truth": null,
       "trueAnchor": null,
+      "trueFAnchor": null,
+      "trueFRedrawAnchor": null,
       "expected": null,
       "key": [
         0,
@@ -376,8 +601,12 @@
       "support2": 0,
       "maxSupport": 1,
       "legal": 1,
+      "fullLegal": 0,
+      "retrospective": null,
       "truth": null,
       "trueAnchor": null,
+      "trueFAnchor": null,
+      "trueFRedrawAnchor": null,
       "expected": null,
       "key": [
         0,
@@ -415,8 +644,12 @@
       "support2": 0,
       "maxSupport": 1,
       "legal": 0,
+      "fullLegal": 0,
+      "retrospective": null,
       "truth": null,
       "trueAnchor": null,
+      "trueFAnchor": null,
+      "trueFRedrawAnchor": null,
       "expected": null
     },
     {
@@ -428,8 +661,12 @@
       "support2": 0,
       "maxSupport": 1,
       "legal": 2,
+      "fullLegal": 0,
+      "retrospective": null,
       "truth": null,
       "trueAnchor": null,
+      "trueFAnchor": null,
+      "trueFRedrawAnchor": null,
       "expected": null,
       "key": [
         0,
@@ -467,8 +704,24 @@
       "support2": 0,
       "maxSupport": 1,
       "legal": 20,
+      "fullLegal": 7,
+      "retrospective": {
+        "key": [
+          2,
+          15,
+          3,
+          4,
+          3,
+          25,
+          28,
+          19
+        ],
+        "score": -2.7338604674230313
+      },
       "truth": null,
       "trueAnchor": null,
+      "trueFAnchor": null,
+      "trueFRedrawAnchor": null,
       "expected": null,
       "key": [
         0,
