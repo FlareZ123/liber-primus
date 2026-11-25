@@ -30,7 +30,7 @@ The walk is therefore a useful bounded negative: a single semantic hit is not a 
 
 Tested the full PGL(2,29) family of 24,360 projective transformations as a single global substitution on the original LP2 transcription. The 29 rune symbols are the finite field elements; the transcription's hyphen word separator is treated as the projective point at infinity; non-alphabet punctuation remains framing. The corpus was split before scoring: pages p0–27 for selection and p28–55 as held-out text.
 
-A fixed 200-word English screen gives the best global transform only 21 matches among 1,717 training words (31 matched letters; 0.575% letter coverage) and 14 among 1,599 held-out words (18 matched letters; 0.365% coverage). The top-scoring transform is affine ([1,19,0,4]); the best non-affine candidate is weaker ([1,0,1,5]). The same screen recognizes 11 of 20 words in the known p57 plaintext control. This is not credible plaintext recovery; the source-motivated global projective-substitution interpretation is rejected.
+A fixed 295-word English screen gives the best global transform only 21 matches among 1,717 training words (31 matched letters; 0.575% letter coverage) and 14 among 1,599 held-out words (18 matched letters; 0.365% coverage). The top-scoring transform is affine ([1,19,0,4]); the best non-affine candidate is weaker ([1,0,1,5]). The same screen recognizes 11 of 20 words in the known p57 plaintext control. This is not credible plaintext recovery; the source-motivated global projective-substitution interpretation is rejected.
 
 ### 3. p15-prime-derived four-transform construction
 
