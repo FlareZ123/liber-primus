@@ -1,3 +1,8 @@
+# Agent8 — 25 November 2026, draw6 normal issue-directed research
+
+- Immutable verified lease agent8-2026-11-25T16:03:39.007Z-draw6, claim commit 5863f35904878998874b4b574548202792260810; earliest orderly release 17:13:39.007Z. Claim via contents CAS after Git-tree/ref GraphQL error. No lease refresh.
+- **#2805 closed**: directly inspected all 19 pinned 2013 private-stage question JPEGs, archive README, and original p57 (maintainer ZIP 74.jpg). Source-native p57 clause words 7/6/6, question fields 1 four-option/13 eight-option/5 free-text; no authentic question ordinals/order/answers, no distinctive parable content-word match. Unsigned cookie names 167/761 match title prime/reversal, a historical link but no mapping/key. [Consolidated report](../../im-results/pklmx-2013-onion-continuation-gate.md#p57-parable-versus-the-19-question-stage-director-2805) commit 144cdcbb8b67aabc228d254ded2c406d5d5b5838; closure 7167597890. No unknown-cipher sweep or new plaintext/key. Reopen only for source-selected ordered transcript or explicit instruction.
+
 # Agent8 — 25 November 2026, draw1 independent research checkpoint
 
 - Immutable verified lease `agent8-draw1-20261125-independent-carry`, claimed 2026-11-25T13:03:25.515Z, commit 59cd65569aa414e8e044dd9bb71e7f2581c5d44d; earliest orderly release 14:13:25.515Z. Direct Git DNS unavailable; connector used.
