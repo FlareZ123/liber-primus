@@ -1,0 +1,736 @@
+{
+  "q": 0.8,
+  "exhaustive": 3279,
+  "deterministic": [
+    {
+      "name": "p0-2",
+      "n": 729,
+      "repeats": 4,
+      "violations": [
+        122,
+        207,
+        456,
+        653
+      ]
+    },
+    {
+      "name": "p3-7",
+      "n": 1145,
+      "repeats": 6,
+      "violations": [
+        53,
+        180,
+        203,
+        250,
+        309,
+        862
+      ]
+    },
+    {
+      "name": "p8-14",
+      "n": 1729,
+      "repeats": 9,
+      "violations": [
+        107,
+        142,
+        152,
+        318,
+        367,
+        471,
+        706,
+        866,
+        1266
+      ]
+    },
+    {
+      "name": "p15-22",
+      "n": 1903,
+      "repeats": 10,
+      "violations": [
+        249,
+        786,
+        977,
+        1004,
+        1069,
+        1110,
+        1171,
+        1472,
+        1658,
+        1873
+      ]
+    },
+    {
+      "name": "p23-26",
+      "n": 1021,
+      "repeats": 11,
+      "violations": [
+        128,
+        265,
+        272,
+        319,
+        330,
+        464,
+        514,
+        575,
+        718,
+        817,
+        859
+      ]
+    },
+    {
+      "name": "p27-32",
+      "n": 1433,
+      "repeats": 13,
+      "violations": [
+        15,
+        84,
+        90,
+        123,
+        229,
+        617,
+        643,
+        705,
+        854,
+        1042,
+        1342,
+        1416
+      ]
+    },
+    {
+      "name": "p33-39",
+      "n": 1680,
+      "repeats": 12,
+      "violations": [
+        152,
+        182,
+        236,
+        349,
+        425,
+        671,
+        678,
+        740,
+        766,
+        816,
+        974,
+        1636
+      ]
+    },
+    {
+      "name": "p40-53",
+      "n": 3008,
+      "repeats": 18,
+      "violations": [
+        277,
+        500,
+        526,
+        868,
+        929,
+        972,
+        1110,
+        1121,
+        1202,
+        1314,
+        1463,
+        1549,
+        1704,
+        1959,
+        2019,
+        2205,
+        2475,
+        2734
+      ]
+    },
+    {
+      "name": "p54-55",
+      "n": 308,
+      "repeats": 3,
+      "violations": [
+        20,
+        156,
+        291
+      ]
+    }
+  ],
+  "controls": [
+    {
+      "key": "DIUINITY",
+      "hold": false,
+      "donor": "0_welcome",
+      "phase": 3,
+      "swaps": 11,
+      "decodedPhase": 3,
+      "correct": 306,
+      "score": -2.746008378082031,
+      "language": -2.7216381301824426
+    },
+    {
+      "key": "DIUINITY",
+      "hold": false,
+      "donor": "0_koan_1",
+      "phase": 5,
+      "swaps": 9,
+      "decodedPhase": 5,
+      "correct": 298,
+      "score": -2.4406918826833235,
+      "language": -2.424445050750265
+    },
+    {
+      "key": "DIUINITY",
+      "hold": false,
+      "donor": "0_loss_of_divinity",
+      "phase": 7,
+      "swaps": 9,
+      "decodedPhase": 7,
+      "correct": 300,
+      "score": -2.8047774380096033,
+      "language": -2.784029650358623
+    },
+    {
+      "key": "DIUINITY",
+      "hold": true,
+      "donor": "0_welcome",
+      "phase": 3,
+      "swaps": 8,
+      "decodedPhase": 3,
+      "correct": 295,
+      "score": -2.7172142261410945,
+      "language": -2.700242902158315
+    },
+    {
+      "key": "DIUINITY",
+      "hold": true,
+      "donor": "0_koan_1",
+      "phase": 5,
+      "swaps": 5,
+      "decodedPhase": 5,
+      "correct": 304,
+      "score": -2.4561830226073087,
+      "language": -2.435435234956328
+    },
+    {
+      "key": "DIUINITY",
+      "hold": true,
+      "donor": "0_loss_of_divinity",
+      "phase": 7,
+      "swaps": 9,
+      "decodedPhase": 7,
+      "correct": 304,
+      "score": -2.8159129773264095,
+      "language": -2.7937162055759863
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": false,
+      "donor": "0_welcome",
+      "phase": 3,
+      "swaps": 12,
+      "decodedPhase": 3,
+      "correct": 306,
+      "score": -2.736985908828732,
+      "language": -2.7185656007465093
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": false,
+      "donor": "0_koan_1",
+      "phase": 5,
+      "swaps": 5,
+      "decodedPhase": 5,
+      "correct": 308,
+      "score": -2.4553556068979248,
+      "language": -2.4517331466493175
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": false,
+      "donor": "0_loss_of_divinity",
+      "phase": 7,
+      "swaps": 9,
+      "decodedPhase": 7,
+      "correct": 306,
+      "score": -2.80794544797761,
+      "language": -2.790249631945109
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": true,
+      "donor": "0_welcome",
+      "phase": 3,
+      "swaps": 8,
+      "decodedPhase": 3,
+      "correct": 306,
+      "score": -2.729635468735238,
+      "language": -2.719338576619544
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": true,
+      "donor": "0_koan_1",
+      "phase": 5,
+      "swaps": 5,
+      "decodedPhase": 5,
+      "correct": 304,
+      "score": -2.4546155949346753,
+      "language": -2.4457676869184244
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": true,
+      "donor": "0_loss_of_divinity",
+      "phase": 7,
+      "swaps": 9,
+      "decodedPhase": 7,
+      "correct": 308,
+      "score": -2.8069665712873353,
+      "language": -2.8004461428398413
+    }
+  ],
+  "originals": [
+    {
+      "key": "DIUINITY",
+      "hold": false,
+      "target": "p0-2",
+      "n": 729,
+      "score": -4.329581601191393,
+      "language": -4.318914093704944,
+      "phase": 7,
+      "swaps": 6,
+      "preview": "EXHTHAEIBPEOHLAOEUMEAGUNGOEFEASNGPWDCPTHDAWEAAAEUNGNGLSBEOWFTHACUJAERHPYNGRMPAELCYMGOFJEOTIAUOIATLYOEYATHNGNSEARSTEOTEAJAEUSIAAEFL"
+    },
+    {
+      "key": "DIUINITY",
+      "hold": false,
+      "target": "p40-53",
+      "n": 3008,
+      "score": -4.31860009793349,
+      "language": -4.304963251459159,
+      "phase": 4,
+      "swaps": 54,
+      "preview": "LEAOFEOPAIASOIAFXTHIAOENGCTHYFSNGLNHHAPRGAEOMTHSSTLNWXCGEOCCPFYAELCTYTHWIOEWEOFNGEOAPAEHADGRCTHMIOEOEJFIATHIAHOEARHLUSUSTGCTM"
+    },
+    {
+      "key": "DIUINITY",
+      "hold": false,
+      "target": "p54-55",
+      "n": 308,
+      "score": -4.19809292706469,
+      "language": -4.178794123513152,
+      "phase": 6,
+      "swaps": 5,
+      "preview": "HOEIAPYNGCFOUFOLLIAXOMUJLNGEYEAJTAASRAETOETXBOEWYTOOLSUTHNGEONGJEAIAAMHBGWROEYEAWCOUAILDUJTHTICIAHLABUAGBIOEYFFBMOOFSWOAE"
+    },
+    {
+      "key": "DIUINITY",
+      "hold": true,
+      "target": "p0-2",
+      "n": 729,
+      "noPath": true
+    },
+    {
+      "key": "DIUINITY",
+      "hold": true,
+      "target": "p40-53",
+      "n": 3008,
+      "noPath": true
+    },
+    {
+      "key": "DIUINITY",
+      "hold": true,
+      "target": "p54-55",
+      "n": 308,
+      "noPath": true
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": false,
+      "target": "p0-2",
+      "n": 729,
+      "score": -4.245511863165371,
+      "language": -4.233926069459522,
+      "phase": 11,
+      "swaps": 9,
+      "preview": "SMEOETHMYISHXOAETHOEGSAEJNGPNLIAFIABGSEOHILJNWTHNGOEHEANBNBHOEJPLOBXEADOXIAEAAGJJAWFAUJOENGPHYMPEOYOANGSIAIAEXPNBBFOCUIAAELI"
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": false,
+      "target": "p40-53",
+      "n": 3008,
+      "score": -4.3158894806537935,
+      "language": -4.302475184263885,
+      "phase": 0,
+      "swaps": 51,
+      "preview": "FEASYCRAEMLACYMEOEEAESTHEATHGIAOEFUAAXDRYRRTHIFAEEAUHPUUIOEBJRUPRXCPWIIAYUYIAIEOOEUGMBGRYIOMPTHDOETIPNNGFFLREEIAEAWTAEAEOYEO"
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": false,
+      "target": "p54-55",
+      "n": 308,
+      "score": -4.143943776448229,
+      "language": -4.123195988797249,
+      "phase": 6,
+      "swaps": 7,
+      "preview": "AUBCETHAEINDDEOTHUELUWAONGNGDWXEITNGATGXMFLETHYWXAEHNGTOEJNGAERMEATAFAOEOXPOHTTHFGUOENGOOEIAEGLCEBEOWAESCEIANEAPAERIATHNDUTHSYAE"
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": true,
+      "target": "p0-2",
+      "n": 729,
+      "noPath": true
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": true,
+      "target": "p40-53",
+      "n": 3008,
+      "noPath": true
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": true,
+      "target": "p54-55",
+      "n": 308,
+      "noPath": true
+    }
+  ],
+  "nulls": [
+    {
+      "key": "DIUINITY",
+      "hold": false,
+      "j": 0,
+      "score": -4.198393324701357,
+      "language": -4.190269908734826
+    },
+    {
+      "key": "DIUINITY",
+      "hold": false,
+      "j": 1,
+      "score": -4.175739339948184,
+      "language": -4.159492508015125
+    },
+    {
+      "key": "DIUINITY",
+      "hold": false,
+      "j": 2,
+      "score": -4.28521040446241,
+      "language": -4.25690968947503
+    },
+    {
+      "key": "DIUINITY",
+      "hold": false,
+      "j": 3,
+      "score": -4.2627547319366705,
+      "language": -4.259856763737784
+    },
+    {
+      "key": "DIUINITY",
+      "hold": false,
+      "j": 4,
+      "score": -4.213794707142139,
+      "language": -4.208723262794087
+    },
+    {
+      "key": "DIUINITY",
+      "hold": false,
+      "j": 5,
+      "score": -4.295326927095408,
+      "language": -4.2679047075773395
+    },
+    {
+      "key": "DIUINITY",
+      "hold": false,
+      "j": 6,
+      "score": -4.18240902406004,
+      "language": -4.169060160325866
+    },
+    {
+      "key": "DIUINITY",
+      "hold": false,
+      "j": 7,
+      "score": -4.200108809493213,
+      "language": -4.186759945759041
+    },
+    {
+      "key": "DIUINITY",
+      "hold": false,
+      "j": 8,
+      "score": -4.290767552867644,
+      "language": -4.283368628950836
+    },
+    {
+      "key": "DIUINITY",
+      "hold": false,
+      "j": 9,
+      "score": -4.184612272188659,
+      "language": -4.175039872122686
+    },
+    {
+      "key": "DIUINITY",
+      "hold": false,
+      "j": 10,
+      "score": -4.171250000657655,
+      "language": -4.156452152824039
+    },
+    {
+      "key": "DIUINITY",
+      "hold": false,
+      "j": 11,
+      "score": -4.193587131025487,
+      "language": -4.184739223009236
+    },
+    {
+      "key": "DIUINITY",
+      "hold": true,
+      "j": 0,
+      "score": null,
+      "language": null
+    },
+    {
+      "key": "DIUINITY",
+      "hold": true,
+      "j": 1,
+      "score": null,
+      "language": null
+    },
+    {
+      "key": "DIUINITY",
+      "hold": true,
+      "j": 2,
+      "score": null,
+      "language": null
+    },
+    {
+      "key": "DIUINITY",
+      "hold": true,
+      "j": 3,
+      "score": null,
+      "language": null
+    },
+    {
+      "key": "DIUINITY",
+      "hold": true,
+      "j": 4,
+      "score": -4.352386793159359,
+      "language": -4.324964573641292
+    },
+    {
+      "key": "DIUINITY",
+      "hold": true,
+      "j": 5,
+      "score": null,
+      "language": null
+    },
+    {
+      "key": "DIUINITY",
+      "hold": true,
+      "j": 6,
+      "score": -4.211300833526298,
+      "language": -4.197227477742404
+    },
+    {
+      "key": "DIUINITY",
+      "hold": true,
+      "j": 7,
+      "score": null,
+      "language": null
+    },
+    {
+      "key": "DIUINITY",
+      "hold": true,
+      "j": 8,
+      "score": null,
+      "language": null
+    },
+    {
+      "key": "DIUINITY",
+      "hold": true,
+      "j": 9,
+      "score": null,
+      "language": null
+    },
+    {
+      "key": "DIUINITY",
+      "hold": true,
+      "j": 10,
+      "score": null,
+      "language": null
+    },
+    {
+      "key": "DIUINITY",
+      "hold": true,
+      "j": 11,
+      "score": null,
+      "language": null
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": false,
+      "j": 0,
+      "score": -4.280362410402552,
+      "language": -4.264840070519216
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": false,
+      "j": 1,
+      "score": -4.236080420412822,
+      "language": -4.229405988545736
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": false,
+      "j": 2,
+      "score": -4.069491400862714,
+      "language": -4.038292717676447
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": false,
+      "j": 3,
+      "score": -4.235788419779026,
+      "language": -4.2089366888910895
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": false,
+      "j": 4,
+      "score": -4.1861704595956395,
+      "language": -4.172097103811747
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": false,
+      "j": 5,
+      "score": -4.200476519100702,
+      "language": -4.189455134935287
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": false,
+      "j": 6,
+      "score": -4.141132359419948,
+      "language": -4.135336423022175
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": false,
+      "j": 7,
+      "score": -4.240119977888686,
+      "language": -4.22082117433715
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": false,
+      "j": 8,
+      "score": -4.263708079512024,
+      "language": -4.254860171495773
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": false,
+      "j": 9,
+      "score": -4.249311656194526,
+      "language": -4.238136268609518
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": false,
+      "j": 10,
+      "score": -4.235782085963044,
+      "language": -4.227658669996515
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": false,
+      "j": 11,
+      "score": -4.179000203525338,
+      "language": -4.157527923824635
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": true,
+      "j": 0,
+      "score": null,
+      "language": null
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": true,
+      "j": 1,
+      "score": null,
+      "language": null
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": true,
+      "j": 2,
+      "score": null,
+      "language": null
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": true,
+      "j": 3,
+      "score": null,
+      "language": null
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": true,
+      "j": 4,
+      "score": null,
+      "language": null
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": true,
+      "j": 5,
+      "score": null,
+      "language": null
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": true,
+      "j": 6,
+      "score": -4.302790489222526,
+      "language": -4.282767193621268
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": true,
+      "j": 7,
+      "score": -4.33577953547069,
+      "language": -4.326931627454439
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": true,
+      "j": 8,
+      "score": -4.388561570053555,
+      "language": -4.372314738120496
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": true,
+      "j": 9,
+      "score": null,
+      "language": null
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": true,
+      "j": 10,
+      "score": null,
+      "language": null
+    },
+    {
+      "key": "FIRFUMFERENFE",
+      "hold": true,
+      "j": 11,
+      "score": null,
+      "language": null
+    }
+  ]
+}
