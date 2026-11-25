@@ -94,6 +94,18 @@ Could you advise whether the mayfly plate or its original drawing was included i
 Thank you for any guidance.
 
 
+
+
+### German 1976 comparator and interlibrary-loan route
+
+The 1977 Hunt Institute catalogue independently records Severa's publication **J. Zahradník, *A field guide to insects*, Prague, Artia, 1976 (German), 1977 (English)**. The German edition is catalogued as *Der Kosmos-Insektenführer: ein Bestimmungsbuch*, J. Zahradník and F. Severa, translated from Czech by Jürgen Ostmeyer, Franckh/Kosmos, Stuttgart, 1976; 319 pages, 902 illustrations (780 colour), ISBN **3440041239**.
+
+- **SLUB Dresden** has a catalogue record for the 1976 German edition and exposes an interlibrary-loan route: https://katalog.slub-dresden.de/en/?cHash=0e858e2ed684c75f0a00c0974b50139f&tx_find_find%5Bcontroller%5D=Search&tx_find_find%5Bfacet%5D=&tx_find_find%5Bq%5D%5Brvk_facet%5D%5B0%5D=WQ+3301
+- A 1982 review describes the book as 319 pages, with 780 colour images and 122 line drawings, and says the identification section begins at p.87 and continues to p.311. Thus p.90 is at the beginning of the identification section, although no page-90 caption has yet been verified: https://www.e-periodica.ch/cntmng?pid=scs-003%3A1977%3A64%3A%3A211
+- The National Agricultural Library's AGRIS record confirms the German title, publisher, translators, page count, and ISBN: https://agris.fao.org/search/en/providers/122535/records/65de0fba63b8185d9ca6bc50
+
+This is a **translation comparator and possible ILL route**, not a substitute for the exact Dutch 1977 edition. Ask for the mayfly plate and its complete caption/facing legend; do not assume German p.90 is identical to Dutch p.90.
+
 ### Physical English comparator in Galway (backup, not a substitute for the Dutch edition)
 
 A current search result also surfaced a physical first-edition copy of the same illustrated work in Ireland:
