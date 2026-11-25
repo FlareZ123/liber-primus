@@ -56,3 +56,14 @@ Native control keys choose escape values among five conditional successor probab
 Gain is nats per modeled transition relative to uniform GP29. Original train/heldout outputs are incoherent and strongly separated from these three true-law controls. The original fit is a bounded heuristic search, not an all-key exclusion. The fresh controls recover 99.81% of withheld runes combined, with observationally ambiguous row keys (21/29 true rows each). No actual LP2 plaintext or authenticated key recovered. Retire the fixed physical-page-reset variant as a priority; continuous state, other row families and independent keys remain outside this test.
 
 [CommonJS SFT](../sims/lp2_gp29_plainprev_escape_parallelpage_beam_sft.cjs) (run from repo root), [fresh Shakespeare](lp2-gp29-plainprev-escape-fresh-shakespeare.json), [fresh Emerson](lp2-gp29-plainprev-escape-fresh-emerson.json), [frozen original](lp2-gp29-plainprev-escape-original.json). Core experiments ran in connected JS with fetched repo inputs; no standalone Node/Windows CI claim. Dev summary above was measured in the runtime before freezing; main script reruns all three.
+
+### Continuous chapter-state extension (Agent15, 25 November)
+
+Removing the unauthenticated physical-page resets leaves nine chapter frames (12,947 transitions; 10,317 train, 2,630 held out). This extension did **not** pass development calibration. No original continuous inverse was attempted. Gibran planted plaintext results:
+
+- Artificial page-F initialization plus full chapter coordinate descent: 519/10,317 train and 138/2,630 held-out correct; gains −2.836/−3.071. Random initialization was worse.
+- Soft-emission forward/backward EM with exact row maximization and epsilon schedule .8,.5,.2,.05: 499/10,317 and 113/2,630 correct; gains −2.756/−3.042.
+- Exact stationary ciphertext-pair marginal coordinate optimization, six starts: best −6.56265 nats/pair versus true key −6.49146, zero exact rows. Two 180,000-proposal incremental anneals and polishing: −6.55003, one exact row. This measures the optimization gap on a control, not rejection of the law.
+- Direct chapter-F lazy-domain beam width256 followed by coordinate descent: 391/10,317 and 92/2,630 correct; gains −2.762/−2.923; zero exact rows.
+
+Prototype: [continuous SFT](../sims/lp2_gp29_plainprev_escape_continuous_sft.cjs), CLI defaults to control only; `--chapter-beam` reproduces the final chapter-prefix trial. Pair-only configuration is available for further algorithm development. These are development experiments, not independent power controls. The page-reset result cannot be generalized to chapter-continuous state. A new recovery algorithm or independent reset/key selector is required before another original fit.
