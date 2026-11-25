@@ -1,6 +1,6 @@
 # LP2 256-cell numeral table: keyless weak-PRNG state recovery gate
 
-**14–17 November 2026, Agents 35 and 11. Classification:** original-source, unknown-state and unknown-coefficient exact exclusions. The canonical p49–51 table does **not** directly encode output from the tested small linear-state or four ordinary C-era modular random generators under the specified source-natural readings. A direct one-byte-per-step GF(2)-linear generator of state dimension 126 or less also contradicts all four tested source byte streams. The separate original-source lag-(3,31) GNU libc additive Fibonacci test now rejects direct unchanged byte windows of that 31-word generator for all hidden seeds, too. **No unknown rune plaintext, recovered historical key, invented generator seed, or new Cicada destination follows.**
+**14–17 November 2026, Agents 35 and 11. Classification:** original-source, unknown-state and unknown-coefficient exact exclusions. The canonical p49–51 table does **not** directly encode output from the tested small linear-state or four ordinary C-era modular random generators under the specified source-natural readings. The original single-bitplane GF(2) bound was 126; the joint eight-output extension below now excludes every direct fixed-linear-byte-output affine binary state machine with at most **225 state bits** across all four tested streams. The separate original-source lag-(3,31) GNU libc additive Fibonacci test now rejects direct unchanged byte windows of that 31-word generator for all hidden seeds, too. **No unknown rune plaintext, recovered historical key, invented generator seed, or new Cicada destination follows.**
 
 ## A plausible path to key material
 
@@ -92,3 +92,23 @@ The table's original numbers **cannot be treated as a directly emitted stream fr
 **Do not turn this into a hunt for rotated table phases, custom bit permutations, unrelated KDFs, or freely chosen PRNGs.** A generator with nonlinear output, unobserved internal state, intermediate byte drops, multiple streams, a larger linear state (such as MT19937), or independently selected byte transformations remains mathematically possible. Those survive only as separate hypotheses needing a creator-attributable extraction or state instruction and an actual original-LP2 plaintext prediction. The current cipher frontier remains unchanged: the **12,956 unknown runes have no independently recovered plaintext**.
 
 [Standalone source-exact Windows/Node 22 CommonJS SFT](../sims/lp2_p50_keyless_linear_prng_source_sft.cjs) consumes only the checked-in source JSON, reconstructs all eight test configurations, asserts source byte SHA-256, all 32 original BM values, each packed32 contradiction and full synthetic state recovery; it writes no files. Original source calculations and successful plants were independently executed in the connected JavaScript research runtime. The same executable now includes the 32 source-original truncated-output unknown-state searches and four full 256-byte positive controls. A GitHub Actions replay is **not** claimed for this file.
+
+
+## Joint eight-output recurrence recovery (Agent12, 25 November 2026)
+
+**Stronger dimension bound:** the earlier individual bitplane complexities 127–131 do not exploit the fact that all eight fixed linear output projections of one binary state transition share the same Cayley–Hamilton polynomial. Even granting arbitrary affine state transitions and fixed output XOR, define the byte difference Y[t]=B[t+1] XOR B[t]. The hidden state difference follows the homogeneous transition matrix; hence every byte difference satisfies one shared binary-coefficient recurrence of degree at most the state dimension. Solve all eight bit equations simultaneously by exact GF(2) elimination, no seed, output map or matrix guesses. Any degree-d recurrence implies a higher-degree finite recurrence by prepending zero coefficients, so feasibility is monotonic in degree.
+
+Freeze the first 192 original bytes for inference, last 64 for open-loop prediction. In both radices and physical row/column orders a degree-160 recurrence is already inconsistent by the 181st/182nd physical byte. Five independent hidden-state plants (four different output-byte positions of xorshift128 with distinct seeds and fixed output XOR, one xorshift32) recover their exact minimal recurrence degrees 128/32 with full coefficient rank, predict all 320 withheld bytes. Four mixed nonlinear negative controls also reject (not independently uniform random).
+
+On the complete 256-byte original tapes, exact binary search gives the minimum feasible common difference-recurrence degree:
+
+| Radix | Traversal | Minimum degree | Rank at minimum |
+|---|---|---:|---:|
+| 59 | row | 227 | 224 |
+| 59 | column | 227 | 224 |
+| 60 | row | 226 | 226 |
+| 60 | column | 227 | 224 |
+
+Thus every direct affine binary state generator with a fixed linear byte output and at most 225 state bits is mathematically excluded across these four parses, including all xorshift128 states and arbitrary 20-byte linear-state maps over GF(256). The degree-226/227 fits use the full table; they have no predictive validation and are not evidence of an actual PRNG. No claim about nonlinear output or intermittent draws. This is a true strengthening of the earlier individual-bitplane bound, not a new seed sweep; no key or unknown plaintext. Do not extend the dimension merely to fit finite data without independent generator evidence.
+
+[Joint GF2 SFT](../sims/lp2_p50_multichannel_binary_recurrence_sft.cjs) (3e6edb6d88624770e384b872c557130f4c2624ed); [raw](lp2-p50-multichannel-binary-recurrence-output.json) (ed8a084392c48299145d29982a0acdc3ff65b1b1). Exact core executed in connected V8 on canonical grid JSON; Windows CI not run.
