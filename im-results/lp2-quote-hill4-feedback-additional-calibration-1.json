@@ -1,0 +1,121 @@
+{
+  "batch": 1,
+  "sources": [
+    {
+      "name": "Walden",
+      "count": 1269
+    },
+    {
+      "name": "The Secret Garden",
+      "count": 287
+    },
+    {
+      "name": "Dracula",
+      "count": 952
+    },
+    {
+      "name": "Thus Spake Zarathustra",
+      "count": 344
+    },
+    {
+      "name": "The Dhammapada",
+      "count": 87
+    },
+    {
+      "name": "Tao Teh King",
+      "count": 68
+    },
+    {
+      "name": "The Upanishads",
+      "count": 161
+    },
+    {
+      "name": "Beyond Good and Evil",
+      "count": 810
+    }
+  ],
+  "controls": [
+    {
+      "prefix": [],
+      "full": [],
+      "blocked": 0
+    },
+    {
+      "prefix": [],
+      "full": [],
+      "blocked": 0
+    },
+    {
+      "prefix": [],
+      "full": [],
+      "blocked": 0
+    },
+    {
+      "prefix": [],
+      "full": [],
+      "blocked": 0
+    },
+    {
+      "prefix": [],
+      "full": [],
+      "blocked": 0
+    },
+    {
+      "prefix": [],
+      "full": [],
+      "blocked": 0
+    },
+    {
+      "prefix": [],
+      "full": [],
+      "blocked": 0
+    },
+    {
+      "prefix": [],
+      "full": [],
+      "blocked": 0
+    }
+  ],
+  "nulls": [
+    {
+      "prefix": [],
+      "full": [],
+      "blocked": 0
+    },
+    {
+      "prefix": [],
+      "full": [],
+      "blocked": 0
+    },
+    {
+      "prefix": [],
+      "full": [],
+      "blocked": 0
+    },
+    {
+      "prefix": [],
+      "full": [],
+      "blocked": 0
+    },
+    {
+      "prefix": [],
+      "full": [],
+      "blocked": 0
+    },
+    {
+      "prefix": [],
+      "full": [],
+      "blocked": 0
+    },
+    {
+      "prefix": [],
+      "full": [],
+      "blocked": 0
+    },
+    {
+      "prefix": [],
+      "full": [],
+      "blocked": 0
+    }
+  ]
+}
