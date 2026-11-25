@@ -593,13 +593,15 @@ function testMappedDivinityLocalDomains() {
     return { index, length: cipher.length, phaseOptions, candidateWords: candidates.size };
   });
   const sorted = counts.map(entry => entry.candidateWords).sort((a, b) => a - b);
+  const minimum = Math.min(...counts.map(entry => entry.candidateWords));
   return {
     groups: counts.length,
     zeroCandidateGroups: counts.filter(entry => entry.candidateWords === 0).map(entry => entry.index),
-    minimumCandidateWords: sorted[0],
+    minimumCandidateWords: minimum,
     medianCandidateWords: sorted[Math.floor(sorted.length / 2)],
     maximumCandidateWords: sorted[sorted.length - 1],
-    counts
+    mostConstrainedGroups: counts.filter(entry => entry.candidateWords === minimum)
+      .map(({ index, length, phaseOptions, candidateWords }) => ({ index, length, phaseOptions, candidateWords }))
   };
 }
 
