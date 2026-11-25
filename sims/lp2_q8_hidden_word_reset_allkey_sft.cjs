@@ -79,15 +79,15 @@ function experiment(raw,config={}){
   if(truthBounds&&truthBounds.some((v,i)=>i&&v>truthBounds[i-1]+1e-9))throw Error("bound monotonicity");
   if(!search)return {truth,truthBounds,offset:item.offset,stats:index.stats()};
   heap.length=0;const tested=Array(T+1).fill(0),kept=Array(T+1).fill(0),best=Array(T+1).fill(NEG);let winner=null,expanded=0;
-  push({code:0,d:0,s:0});
+  if(config.roots){for(const code of config.roots){const s=index.bound(code,1);tested[1]++;best[1]=Math.max(best[1],s);if(s>=TH-1e-9){kept[1]++;push({code,d:1,s});}}}else push({code:0,d:0,s:0});
   while(heap.length&&index.stats().evals+Q<=LIMIT){const p=pop();if(p.d===T){winner={key:Array.from(unpack(p.code,T)),fit:p.s};break;}expanded++;
    for(let k=0;k<Q;k++){const code=p.code*Q+k,d=p.d+1,s=index.bound(code,d);tested[d]++;best[d]=Math.max(best[d],s);if(s>=TH-1e-9){kept[d]++;push({code,d,s});}}
   }
-  return {truth,truthBounds,offset:item.offset,winner,exhaustive:!heap.length&&!winner,expanded,tested,kept,best,frontier:heap.length,frontierTop:heap[0]??null,stats:index.stats()};
+  return {truth,truthBounds,offset:item.offset,roots:config.roots??null,winner,exhaustive:!heap.length&&!winner,expanded,tested,kept,best,frontier:heap.length,frontierTop:heap[0]??null,remaining:heap.length?heap.map(x=>({code:x.code,d:x.d,s:x.s})):[],stats:index.stats()};
  }
  const cases=[];for(const name of config.cases||["control-0-bound"]){if(name==="original"){const C=gp.pages.find(p=>p.page===54).indices.slice(9).concat(gp.pages.find(p=>p.page===55).indices);if(C.length!==N)throw Error("original length");cases.push({name,...solve({C})});}else{const [_,d,mode]=name.split("-");cases.push({name,...solve(control(+d),mode!=="bound")});}}
  return {parameters:{N,S,L,B,T,TH,LIMIT,lexicon:types.size},cases};
 
 }
-if(require.main===module){const cases=process.argv.slice(2);console.log(JSON.stringify(experiment(files.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8")),{cases:cases.length?cases:undefined,limit:Number(process.env.LIMIT)||100000}),null,2))}
+if(require.main===module){const cases=process.argv.slice(2);console.log(JSON.stringify(experiment(files.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8")),{cases:cases.length?cases:undefined,limit:Number(process.env.LIMIT)||100000,roots:process.env.ROOTS?process.env.ROOTS.split(',').map(Number):undefined}),null,2))}
 module.exports={experiment};
