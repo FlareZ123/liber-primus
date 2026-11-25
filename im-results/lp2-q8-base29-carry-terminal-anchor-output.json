@@ -855,6 +855,404 @@
       "truthAnchorCount": 7
     }
   ],
+  "negative": [
+    {
+      "d": 0,
+      "mode": "digitwise",
+      "groups": 62,
+      "anchors": [
+        [
+          6,
+          15
+        ],
+        [
+          40,
+          50
+        ],
+        [
+          163,
+          171
+        ],
+        [
+          192,
+          200
+        ]
+      ],
+      "keys": 21869,
+      "truthRank": 0,
+      "best": {
+        "K": [
+          23,
+          12,
+          26,
+          0,
+          7,
+          18,
+          21,
+          23
+        ],
+        "b": 0,
+        "cov": 24,
+        "ll": -922.4053053605137
+      },
+      "runner": {
+        "K": [
+          24,
+          12,
+          26,
+          0,
+          8,
+          19,
+          21,
+          23
+        ],
+        "b": 0,
+        "cov": 20,
+        "ll": -937.2155689813843
+      },
+      "maxCoverage": 24,
+      "exactAllKeyMinimumOOV": 4,
+      "heldCorrect": 57,
+      "holdout": {
+        "cov": 8,
+        "ll": -277.93366427419625
+      }
+    },
+    {
+      "d": 0,
+      "mode": "independent-pad",
+      "groups": 62,
+      "anchors": [
+        [
+          6,
+          15
+        ],
+        [
+          40,
+          50
+        ],
+        [
+          163,
+          171
+        ],
+        [
+          192,
+          200
+        ]
+      ],
+      "keys": 21936,
+      "truthRank": 0,
+      "best": {
+        "K": [
+          2,
+          12,
+          19,
+          28,
+          5,
+          23,
+          20,
+          4
+        ],
+        "b": 1,
+        "cov": 12,
+        "ll": -918.0309451075123
+      },
+      "runner": {
+        "K": [
+          22,
+          21,
+          21,
+          2,
+          27,
+          16,
+          19,
+          22
+        ],
+        "b": 0,
+        "cov": 12,
+        "ll": -923.4598154084127
+      },
+      "maxCoverage": 12,
+      "exactAllKeyMinimumOOV": 4,
+      "heldCorrect": 4,
+      "holdout": {
+        "cov": 1,
+        "ll": -313.9280112175158
+      }
+    },
+    {
+      "d": 1,
+      "mode": "digitwise",
+      "groups": 52,
+      "anchors": [
+        [
+          14,
+          22
+        ],
+        [
+          31,
+          40
+        ],
+        [
+          56,
+          66
+        ],
+        [
+          88,
+          96
+        ],
+        [
+          141,
+          149
+        ],
+        [
+          152,
+          163
+        ],
+        [
+          169,
+          179
+        ],
+        [
+          220,
+          228
+        ]
+      ],
+      "keys": 43512,
+      "truthRank": 0,
+      "best": {
+        "K": [
+          18,
+          20,
+          2,
+          16,
+          22,
+          6,
+          19,
+          17
+        ],
+        "b": 0,
+        "cov": 22,
+        "ll": -875.065686251678
+      },
+      "runner": {
+        "K": [
+          18,
+          20,
+          2,
+          16,
+          22,
+          7,
+          19,
+          17
+        ],
+        "b": 0,
+        "cov": 19,
+        "ll": -927.3715035248858
+      },
+      "maxCoverage": 22,
+      "exactAllKeyMinimumOOV": 8,
+      "heldCorrect": 49,
+      "holdout": {
+        "cov": 7,
+        "ll": -293.25411720988785
+      }
+    },
+    {
+      "d": 1,
+      "mode": "independent-pad",
+      "groups": 52,
+      "anchors": [
+        [
+          14,
+          22
+        ],
+        [
+          31,
+          40
+        ],
+        [
+          56,
+          66
+        ],
+        [
+          88,
+          96
+        ],
+        [
+          141,
+          149
+        ],
+        [
+          152,
+          163
+        ],
+        [
+          169,
+          179
+        ],
+        [
+          220,
+          228
+        ]
+      ],
+      "keys": 43552,
+      "truthRank": 0,
+      "best": {
+        "K": [
+          12,
+          10,
+          8,
+          18,
+          4,
+          6,
+          21,
+          2
+        ],
+        "b": 0,
+        "cov": 13,
+        "ll": -930.3054689606213
+      },
+      "runner": {
+        "K": [
+          0,
+          17,
+          12,
+          20,
+          17,
+          28,
+          4,
+          24
+        ],
+        "b": 0,
+        "cov": 13,
+        "ll": -939.6275572233154
+      },
+      "maxCoverage": 13,
+      "exactAllKeyMinimumOOV": 8,
+      "heldCorrect": 3,
+      "holdout": {
+        "cov": 1,
+        "ll": -331.48310137444537
+      }
+    },
+    {
+      "d": 2,
+      "mode": "digitwise",
+      "groups": 52,
+      "anchors": [
+        [
+          33,
+          43
+        ],
+        [
+          103,
+          112
+        ],
+        [
+          193,
+          202
+        ]
+      ],
+      "keys": 641,
+      "truthRank": 0,
+      "best": {
+        "K": [
+          23,
+          26,
+          3,
+          16,
+          9,
+          20,
+          4,
+          1
+        ],
+        "b": 1,
+        "cov": 32,
+        "ll": -803.0887365040329
+      },
+      "runner": {
+        "K": [
+          23,
+          26,
+          3,
+          16,
+          10,
+          20,
+          4,
+          2
+        ],
+        "b": 0,
+        "cov": 16,
+        "ll": -899.3167805302752
+      },
+      "maxCoverage": 32,
+      "exactAllKeyMinimumOOV": 3,
+      "heldCorrect": 63,
+      "holdout": {
+        "cov": 9,
+        "ll": -272.1557719277086
+      }
+    },
+    {
+      "d": 2,
+      "mode": "independent-pad",
+      "groups": 52,
+      "anchors": [
+        [
+          33,
+          43
+        ],
+        [
+          103,
+          112
+        ],
+        [
+          193,
+          202
+        ]
+      ],
+      "keys": 631,
+      "truthRank": 0,
+      "best": {
+        "K": [
+          21,
+          5,
+          27,
+          0,
+          14,
+          10,
+          26,
+          16
+        ],
+        "b": 0,
+        "cov": 11,
+        "ll": -947.714636756407
+      },
+      "runner": {
+        "K": [
+          21,
+          17,
+          28,
+          24,
+          25,
+          10,
+          26,
+          16
+        ],
+        "b": 0,
+        "cov": 10,
+        "ll": -932.4555998996257
+      },
+      "maxCoverage": 11,
+      "exactAllKeyMinimumOOV": 3,
+      "heldCorrect": 2,
+      "holdout": {
+        "cov": 4,
+        "ll": -314.13795980330536
+      }
+    }
+  ],
   "controlTruthFirst": 12,
   "controlHeldCorrect": 912,
   "original": {
@@ -929,11 +1327,11 @@
     "exactAllKeyMinimumOOV": 8,
     "actualPrefix": {
       "cov": 11,
-      "ll": -1260.8333771332677
+      "ll": -948.5815815894706
     },
     "holdout": {
       "cov": 4,
-      "ll": -1260.8333771332677
+      "ll": -304.09042052060033
     },
     "holdoutGroups": 16,
     "seam": {
@@ -942,6 +1340,7 @@
     },
     "p54Text": "J WIABATHFOEG TFWEFDWG CUS ETHPMUAE SEA OEPJBM WTE SO THEE ETHAPI BDSGJOAE CSF MLWH LGAFWEFEAHF EDXTTXOH OEOIA OFEARIA CSFSFNGBEO IANGBOE OFT XHETH WMCMD HEAXI OESW MHNJP Y IADI AETHBTHD THIIMI OEPP HEOOEL PO IXGGPO JPCWF ODIA LNGLAXTTE NXIEL TCHX CHIGIRIN UJ IALI SRAEOE OEJDLRC GRANGM WMC RO XOENGRYTHFEAAEEO TM",
     "p55Text": "PAERR SO YG OEFLTHJ EOXEOOEIAIA GL FXBLRTFLAANYG TSINEAB DTHNR EAU SGTFJGTH UTHFWAESX ER NGTTPTHX NOEB CAR",
+    "p55AllRunes": "H P AE R R S O Y G O E F L TH J EO X EO OE IA IA G L F X B L R T F L A A N Y G T S I N EA B D TH N R EA U S G T F J G TH U TH F W AE S X E R NG T T P TH X N OE B C A R",
     "fullPlain": [
       11,
       7,
