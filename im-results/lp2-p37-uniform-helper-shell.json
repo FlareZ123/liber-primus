@@ -1,5 +1,4124 @@
 {
   "method": "Freeze prior p31 helper line0/6 shell globally; signed ordinal and self-GP0 page-address inverse; direct address and full-page-count mod58 rival",
+  "extendedP37": [
+    {
+      "wrap": false,
+      "hold": false,
+      "total": 53,
+      "defined": 21,
+      "legal": 21,
+      "native": 2,
+      "rows": [
+        {
+          "ordinal": 0,
+          "start": 0,
+          "C": [
+            9,
+            26,
+            18,
+            14
+          ],
+          "source": "HELLO",
+          "h": 69,
+          "candidates": null
+        },
+        {
+          "ordinal": 1,
+          "start": 4,
+          "C": [
+            9,
+            1,
+            14,
+            10
+          ],
+          "source": "THE",
+          "h": 20,
+          "candidates": [
+            {
+              "P": [
+                11,
+                15,
+                0,
+                2
+              ],
+              "text": "JSFTH",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 2,
+          "start": 8,
+          "C": [
+            21,
+            16,
+            13,
+            7,
+            15,
+            26
+          ],
+          "source": "PATH",
+          "h": 39,
+          "candidates": null
+        },
+        {
+          "ordinal": 3,
+          "start": 14,
+          "C": [
+            16,
+            28,
+            13,
+            14
+          ],
+          "source": "LIES",
+          "h": 63,
+          "candidates": null
+        },
+        {
+          "ordinal": 4,
+          "start": 18,
+          "C": [
+            24,
+            10,
+            11,
+            15,
+            4,
+            24,
+            16,
+            15,
+            21,
+            16
+          ],
+          "source": "EMPTY",
+          "h": 92,
+          "candidates": null
+        },
+        {
+          "ordinal": 5,
+          "start": 28,
+          "C": [
+            5,
+            6,
+            5,
+            8
+          ],
+          "source": "EPIPHANY",
+          "h": 121,
+          "candidates": null
+        },
+        {
+          "ordinal": 6,
+          "start": 32,
+          "C": [
+            18,
+            22,
+            4,
+            24,
+            27,
+            8,
+            5
+          ],
+          "source": "SEEKS",
+          "h": 71,
+          "candidates": null
+        },
+        {
+          "ordinal": 7,
+          "start": 39,
+          "C": [
+            21,
+            17,
+            18,
+            4,
+            28,
+            24
+          ],
+          "source": "THE",
+          "h": 20,
+          "candidates": [
+            {
+              "P": [
+                23,
+                2,
+                4,
+                25,
+                1,
+                9
+              ],
+              "text": "DTHRAEUN",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 8,
+          "start": 45,
+          "C": [
+            20,
+            22,
+            18,
+            20,
+            24
+          ],
+          "source": "DEVOTED",
+          "h": 102,
+          "candidates": null
+        },
+        {
+          "ordinal": 9,
+          "start": 50,
+          "C": [
+            2,
+            15
+          ],
+          "source": "LIBER",
+          "h": 69,
+          "candidates": null
+        },
+        {
+          "ordinal": 10,
+          "start": 52,
+          "C": [
+            5,
+            7,
+            4,
+            7
+          ],
+          "source": "PRIMUS",
+          "h": 62,
+          "candidates": null
+        },
+        {
+          "ordinal": 11,
+          "start": 56,
+          "C": [
+            3,
+            8,
+            26
+          ],
+          "source": "IS",
+          "h": 25,
+          "candidates": [
+            {
+              "P": [
+                5,
+                9,
+                27
+              ],
+              "text": "CNIA",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 12,
+          "start": 59,
+          "C": [
+            1,
+            21,
+            3
+          ],
+          "source": "THE",
+          "h": 20,
+          "candidates": [
+            {
+              "P": [
+                3,
+                6,
+                18
+              ],
+              "text": "OGE",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 13,
+          "start": 62,
+          "C": [
+            13,
+            20,
+            10,
+            16,
+            24
+          ],
+          "source": "WAY",
+          "h": 57,
+          "candidates": null
+        },
+        {
+          "ordinal": 14,
+          "start": 67,
+          "C": [
+            0,
+            15,
+            21,
+            23
+          ],
+          "source": "ITS",
+          "h": 41,
+          "candidates": [
+            {
+              "P": [
+                2,
+                0,
+                6,
+                15
+              ],
+              "text": "THFGS",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 15,
+          "start": 71,
+          "C": [
+            5,
+            24,
+            4,
+            17
+          ],
+          "source": "WORDS",
+          "h": 52,
+          "candidates": [
+            {
+              "P": [
+                7,
+                8,
+                18,
+                9
+              ],
+              "text": "WHEN",
+              "native": true
+            }
+          ]
+        },
+        {
+          "ordinal": 16,
+          "start": 75,
+          "C": [
+            7,
+            13
+          ],
+          "source": "ARE",
+          "h": 46,
+          "candidates": [
+            {
+              "P": [
+                24,
+                13
+              ],
+              "text": "AP",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 17,
+          "start": 77,
+          "C": [
+            9,
+            3,
+            2,
+            5,
+            2,
+            9,
+            19,
+            3,
+            18
+          ],
+          "source": "THE",
+          "h": 20,
+          "candidates": [
+            {
+              "P": [
+                11,
+                17,
+                17,
+                26,
+                4,
+                23,
+                5,
+                24,
+                20
+              ],
+              "text": "JBBYRDCAL",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 18,
+          "start": 86,
+          "C": [
+            26,
+            12,
+            9
+          ],
+          "source": "MAP",
+          "h": 56,
+          "candidates": null
+        },
+        {
+          "ordinal": 19,
+          "start": 89,
+          "C": [
+            0,
+            17
+          ],
+          "source": "THEIR",
+          "h": 34,
+          "candidates": [
+            {
+              "P": [
+                16,
+                16
+              ],
+              "text": "TT",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 20,
+          "start": 91,
+          "C": [
+            23,
+            1,
+            13
+          ],
+          "source": "MEANING",
+          "h": 77,
+          "candidates": null
+        },
+        {
+          "ordinal": 21,
+          "start": 94,
+          "C": [
+            7,
+            9,
+            18,
+            24
+          ],
+          "source": "IS",
+          "h": 25,
+          "candidates": [
+            {
+              "P": [
+                9,
+                10,
+                19,
+                16
+              ],
+              "text": "NIMT",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 22,
+          "start": 98,
+          "C": [
+            4,
+            20,
+            10,
+            7
+          ],
+          "source": "THE",
+          "h": 20,
+          "candidates": [
+            {
+              "P": [
+                6,
+                5,
+                25,
+                28
+              ],
+              "text": "GCAEEA",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 23,
+          "start": 102,
+          "C": [
+            25,
+            14
+          ],
+          "source": "ROAD",
+          "h": 54,
+          "candidates": [
+            {
+              "P": [
+                28,
+                16
+              ],
+              "text": "EAT",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 24,
+          "start": 104,
+          "C": [
+            21,
+            0,
+            23,
+            24,
+            0
+          ],
+          "source": "AND",
+          "h": 56,
+          "candidates": null
+        },
+        {
+          "ordinal": 25,
+          "start": 109,
+          "C": [
+            17,
+            11,
+            14
+          ],
+          "source": "THEIR",
+          "h": 34,
+          "candidates": [
+            {
+              "P": [
+                4,
+                10,
+                14
+              ],
+              "text": "RIX",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 26,
+          "start": 112,
+          "C": [
+            23,
+            11,
+            21,
+            26,
+            12,
+            24
+          ],
+          "source": "NUMBERS",
+          "h": 83,
+          "candidates": null
+        },
+        {
+          "ordinal": 27,
+          "start": 118,
+          "C": [
+            25,
+            11
+          ],
+          "source": "ARE",
+          "h": 46,
+          "candidates": [
+            {
+              "P": [
+                13,
+                11
+              ],
+              "text": "PJ",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 28,
+          "start": 120,
+          "C": [
+            21,
+            13,
+            24
+          ],
+          "source": "THE",
+          "h": 20,
+          "candidates": [
+            {
+              "P": [
+                23,
+                27,
+                10
+              ],
+              "text": "DIAI",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 29,
+          "start": 123,
+          "C": [
+            1,
+            28
+          ],
+          "source": "DIRECTION",
+          "h": 112,
+          "candidates": null
+        },
+        {
+          "ordinal": 30,
+          "start": 125,
+          "C": [
+            12,
+            16,
+            4
+          ],
+          "source": "SEEK",
+          "h": 56,
+          "candidates": null
+        },
+        {
+          "ordinal": 31,
+          "start": 128,
+          "C": [
+            18
+          ],
+          "source": "AND",
+          "h": 56,
+          "candidates": null
+        },
+        {
+          "ordinal": 32,
+          "start": 129,
+          "C": [
+            25,
+            19
+          ],
+          "source": "YOU",
+          "h": 30,
+          "candidates": [
+            {
+              "P": [
+                27,
+                19
+              ],
+              "text": "IAM",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 33,
+          "start": 131,
+          "C": [
+            25,
+            28,
+            8
+          ],
+          "source": "WILL",
+          "h": 57,
+          "candidates": null
+        },
+        {
+          "ordinal": 34,
+          "start": 134,
+          "C": [
+            10,
+            25,
+            22
+          ],
+          "source": "BE",
+          "h": 35,
+          "candidates": [
+            {
+              "P": [
+                12,
+                10,
+                8
+              ],
+              "text": "EOIH",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 35,
+          "start": 137,
+          "C": [
+            28,
+            7,
+            5,
+            11,
+            2,
+            8
+          ],
+          "source": "FOUND",
+          "h": 36,
+          "candidates": [
+            {
+              "P": [
+                0,
+                22,
+                21,
+                2,
+                3,
+                23
+              ],
+              "text": "FOENGTHOD",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 36,
+          "start": 143,
+          "C": [
+            27,
+            3,
+            1
+          ],
+          "source": "GOOD",
+          "h": 35,
+          "candidates": [
+            {
+              "P": [
+                0,
+                17,
+                16
+              ],
+              "text": "FBT",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 37,
+          "start": 146,
+          "C": [
+            3,
+            2,
+            6,
+            27
+          ],
+          "source": "LUCK",
+          "h": 31,
+          "candidates": [
+            {
+              "P": [
+                20,
+                1,
+                5,
+                5
+              ],
+              "text": "LUCC",
+              "native": true
+            }
+          ]
+        },
+        {
+          "ordinal": 38,
+          "start": 150,
+          "C": [
+            8,
+            15,
+            6,
+            24,
+            10,
+            22,
+            23,
+            24,
+            11
+          ],
+          "source": "BEWARE",
+          "h": 88,
+          "candidates": null
+        },
+        {
+          "ordinal": 39,
+          "start": 159,
+          "C": [
+            10,
+            7,
+            27,
+            17
+          ],
+          "source": "FALSE",
+          "h": 77,
+          "candidates": null
+        },
+        {
+          "ordinal": 40,
+          "start": 163,
+          "C": [
+            19,
+            21,
+            27,
+            23,
+            0,
+            17,
+            15,
+            16
+          ],
+          "source": "PATHS",
+          "h": 54,
+          "candidates": [
+            {
+              "P": [
+                22,
+                23,
+                27,
+                16,
+                3,
+                19,
+                15,
+                9
+              ],
+              "text": "OEDIATOMSN",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 41,
+          "start": 171,
+          "C": [
+            17,
+            6,
+            0
+          ],
+          "source": "VERIFY",
+          "h": 59,
+          "candidates": null
+        },
+        {
+          "ordinal": 42,
+          "start": 174,
+          "C": [
+            6,
+            22,
+            1,
+            5,
+            25,
+            16,
+            10,
+            18
+          ],
+          "source": "OPENPGP",
+          "h": 75,
+          "candidates": null
+        },
+        {
+          "ordinal": 43,
+          "start": 182,
+          "C": [
+            4,
+            6,
+            19,
+            26
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 44,
+          "start": 186,
+          "C": [
+            24,
+            6,
+            7
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 45,
+          "start": 189,
+          "C": [
+            21,
+            11,
+            15,
+            11,
+            19,
+            4,
+            19
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 46,
+          "start": 196,
+          "C": [
+            9,
+            17,
+            15,
+            19,
+            14,
+            23,
+            8,
+            14,
+            10
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 47,
+          "start": 205,
+          "C": [
+            26,
+            27,
+            8,
+            26,
+            28,
+            14,
+            8
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 48,
+          "start": 212,
+          "C": [
+            23,
+            18
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 49,
+          "start": 214,
+          "C": [
+            7,
+            18,
+            2
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 50,
+          "start": 217,
+          "C": [
+            1,
+            5
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 51,
+          "start": 219,
+          "C": [
+            14,
+            19,
+            24,
+            26,
+            28
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 52,
+          "start": 224,
+          "C": [
+            7,
+            25,
+            24,
+            5
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        }
+      ]
+    },
+    {
+      "wrap": false,
+      "hold": true,
+      "total": 53,
+      "defined": 21,
+      "legal": 18,
+      "native": 2,
+      "rows": [
+        {
+          "ordinal": 0,
+          "start": 0,
+          "C": [
+            9,
+            26,
+            18,
+            14
+          ],
+          "source": "HELLO",
+          "h": 69,
+          "candidates": null
+        },
+        {
+          "ordinal": 1,
+          "start": 4,
+          "C": [
+            9,
+            1,
+            14,
+            10
+          ],
+          "source": "THE",
+          "h": 20,
+          "candidates": []
+        },
+        {
+          "ordinal": 2,
+          "start": 8,
+          "C": [
+            21,
+            16,
+            13,
+            7,
+            15,
+            26
+          ],
+          "source": "PATH",
+          "h": 39,
+          "candidates": null
+        },
+        {
+          "ordinal": 3,
+          "start": 14,
+          "C": [
+            16,
+            28,
+            13,
+            14
+          ],
+          "source": "LIES",
+          "h": 63,
+          "candidates": null
+        },
+        {
+          "ordinal": 4,
+          "start": 18,
+          "C": [
+            24,
+            10,
+            11,
+            15,
+            4,
+            24,
+            16,
+            15,
+            21,
+            16
+          ],
+          "source": "EMPTY",
+          "h": 92,
+          "candidates": null
+        },
+        {
+          "ordinal": 5,
+          "start": 28,
+          "C": [
+            5,
+            6,
+            5,
+            8
+          ],
+          "source": "EPIPHANY",
+          "h": 121,
+          "candidates": null
+        },
+        {
+          "ordinal": 6,
+          "start": 32,
+          "C": [
+            18,
+            22,
+            4,
+            24,
+            27,
+            8,
+            5
+          ],
+          "source": "SEEKS",
+          "h": 71,
+          "candidates": null
+        },
+        {
+          "ordinal": 7,
+          "start": 39,
+          "C": [
+            21,
+            17,
+            18,
+            4,
+            28,
+            24
+          ],
+          "source": "THE",
+          "h": 20,
+          "candidates": [
+            {
+              "P": [
+                23,
+                2,
+                4,
+                25,
+                1,
+                9
+              ],
+              "text": "DTHRAEUN",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 8,
+          "start": 45,
+          "C": [
+            20,
+            22,
+            18,
+            20,
+            24
+          ],
+          "source": "DEVOTED",
+          "h": 102,
+          "candidates": null
+        },
+        {
+          "ordinal": 9,
+          "start": 50,
+          "C": [
+            2,
+            15
+          ],
+          "source": "LIBER",
+          "h": 69,
+          "candidates": null
+        },
+        {
+          "ordinal": 10,
+          "start": 52,
+          "C": [
+            5,
+            7,
+            4,
+            7
+          ],
+          "source": "PRIMUS",
+          "h": 62,
+          "candidates": null
+        },
+        {
+          "ordinal": 11,
+          "start": 56,
+          "C": [
+            3,
+            8,
+            26
+          ],
+          "source": "IS",
+          "h": 25,
+          "candidates": [
+            {
+              "P": [
+                5,
+                9,
+                27
+              ],
+              "text": "CNIA",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 12,
+          "start": 59,
+          "C": [
+            1,
+            21,
+            3
+          ],
+          "source": "THE",
+          "h": 20,
+          "candidates": [
+            {
+              "P": [
+                3,
+                6,
+                18
+              ],
+              "text": "OGE",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 13,
+          "start": 62,
+          "C": [
+            13,
+            20,
+            10,
+            16,
+            24
+          ],
+          "source": "WAY",
+          "h": 57,
+          "candidates": null
+        },
+        {
+          "ordinal": 14,
+          "start": 67,
+          "C": [
+            0,
+            15,
+            21,
+            23
+          ],
+          "source": "ITS",
+          "h": 41,
+          "candidates": [
+            {
+              "P": [
+                0,
+                17,
+                6,
+                8
+              ],
+              "text": "FBGH",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 15,
+          "start": 71,
+          "C": [
+            5,
+            24,
+            4,
+            17
+          ],
+          "source": "WORDS",
+          "h": 52,
+          "candidates": [
+            {
+              "P": [
+                7,
+                8,
+                18,
+                9
+              ],
+              "text": "WHEN",
+              "native": true
+            }
+          ]
+        },
+        {
+          "ordinal": 16,
+          "start": 75,
+          "C": [
+            7,
+            13
+          ],
+          "source": "ARE",
+          "h": 46,
+          "candidates": [
+            {
+              "P": [
+                24,
+                13
+              ],
+              "text": "AP",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 17,
+          "start": 77,
+          "C": [
+            9,
+            3,
+            2,
+            5,
+            2,
+            9,
+            19,
+            3,
+            18
+          ],
+          "source": "THE",
+          "h": 20,
+          "candidates": [
+            {
+              "P": [
+                11,
+                17,
+                17,
+                26,
+                4,
+                23,
+                5,
+                24,
+                20
+              ],
+              "text": "JBBYRDCAL",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 18,
+          "start": 86,
+          "C": [
+            26,
+            12,
+            9
+          ],
+          "source": "MAP",
+          "h": 56,
+          "candidates": null
+        },
+        {
+          "ordinal": 19,
+          "start": 89,
+          "C": [
+            0,
+            17
+          ],
+          "source": "THEIR",
+          "h": 34,
+          "candidates": [
+            {
+              "P": [
+                0,
+                4
+              ],
+              "text": "FR",
+              "native": false
+            },
+            {
+              "P": [
+                16,
+                16
+              ],
+              "text": "TT",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 20,
+          "start": 91,
+          "C": [
+            23,
+            1,
+            13
+          ],
+          "source": "MEANING",
+          "h": 77,
+          "candidates": null
+        },
+        {
+          "ordinal": 21,
+          "start": 94,
+          "C": [
+            7,
+            9,
+            18,
+            24
+          ],
+          "source": "IS",
+          "h": 25,
+          "candidates": [
+            {
+              "P": [
+                9,
+                10,
+                19,
+                16
+              ],
+              "text": "NIMT",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 22,
+          "start": 98,
+          "C": [
+            4,
+            20,
+            10,
+            7
+          ],
+          "source": "THE",
+          "h": 20,
+          "candidates": [
+            {
+              "P": [
+                6,
+                5,
+                25,
+                28
+              ],
+              "text": "GCAEEA",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 23,
+          "start": 102,
+          "C": [
+            25,
+            14
+          ],
+          "source": "ROAD",
+          "h": 54,
+          "candidates": [
+            {
+              "P": [
+                28,
+                16
+              ],
+              "text": "EAT",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 24,
+          "start": 104,
+          "C": [
+            21,
+            0,
+            23,
+            24,
+            0
+          ],
+          "source": "AND",
+          "h": 56,
+          "candidates": null
+        },
+        {
+          "ordinal": 25,
+          "start": 109,
+          "C": [
+            17,
+            11,
+            14
+          ],
+          "source": "THEIR",
+          "h": 34,
+          "candidates": [
+            {
+              "P": [
+                4,
+                10,
+                14
+              ],
+              "text": "RIX",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 26,
+          "start": 112,
+          "C": [
+            23,
+            11,
+            21,
+            26,
+            12,
+            24
+          ],
+          "source": "NUMBERS",
+          "h": 83,
+          "candidates": null
+        },
+        {
+          "ordinal": 27,
+          "start": 118,
+          "C": [
+            25,
+            11
+          ],
+          "source": "ARE",
+          "h": 46,
+          "candidates": [
+            {
+              "P": [
+                13,
+                11
+              ],
+              "text": "PJ",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 28,
+          "start": 120,
+          "C": [
+            21,
+            13,
+            24
+          ],
+          "source": "THE",
+          "h": 20,
+          "candidates": [
+            {
+              "P": [
+                23,
+                27,
+                10
+              ],
+              "text": "DIAI",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 29,
+          "start": 123,
+          "C": [
+            1,
+            28
+          ],
+          "source": "DIRECTION",
+          "h": 112,
+          "candidates": null
+        },
+        {
+          "ordinal": 30,
+          "start": 125,
+          "C": [
+            12,
+            16,
+            4
+          ],
+          "source": "SEEK",
+          "h": 56,
+          "candidates": null
+        },
+        {
+          "ordinal": 31,
+          "start": 128,
+          "C": [
+            18
+          ],
+          "source": "AND",
+          "h": 56,
+          "candidates": null
+        },
+        {
+          "ordinal": 32,
+          "start": 129,
+          "C": [
+            25,
+            19
+          ],
+          "source": "YOU",
+          "h": 30,
+          "candidates": [
+            {
+              "P": [
+                27,
+                19
+              ],
+              "text": "IAM",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 33,
+          "start": 131,
+          "C": [
+            25,
+            28,
+            8
+          ],
+          "source": "WILL",
+          "h": 57,
+          "candidates": null
+        },
+        {
+          "ordinal": 34,
+          "start": 134,
+          "C": [
+            10,
+            25,
+            22
+          ],
+          "source": "BE",
+          "h": 35,
+          "candidates": [
+            {
+              "P": [
+                12,
+                10,
+                8
+              ],
+              "text": "EOIH",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 35,
+          "start": 137,
+          "C": [
+            28,
+            7,
+            5,
+            11,
+            2,
+            8
+          ],
+          "source": "FOUND",
+          "h": 36,
+          "candidates": []
+        },
+        {
+          "ordinal": 36,
+          "start": 143,
+          "C": [
+            27,
+            3,
+            1
+          ],
+          "source": "GOOD",
+          "h": 35,
+          "candidates": []
+        },
+        {
+          "ordinal": 37,
+          "start": 146,
+          "C": [
+            3,
+            2,
+            6,
+            27
+          ],
+          "source": "LUCK",
+          "h": 31,
+          "candidates": [
+            {
+              "P": [
+                20,
+                1,
+                5,
+                5
+              ],
+              "text": "LUCC",
+              "native": true
+            }
+          ]
+        },
+        {
+          "ordinal": 38,
+          "start": 150,
+          "C": [
+            8,
+            15,
+            6,
+            24,
+            10,
+            22,
+            23,
+            24,
+            11
+          ],
+          "source": "BEWARE",
+          "h": 88,
+          "candidates": null
+        },
+        {
+          "ordinal": 39,
+          "start": 159,
+          "C": [
+            10,
+            7,
+            27,
+            17
+          ],
+          "source": "FALSE",
+          "h": 77,
+          "candidates": null
+        },
+        {
+          "ordinal": 40,
+          "start": 163,
+          "C": [
+            19,
+            21,
+            27,
+            23,
+            0,
+            17,
+            15,
+            16
+          ],
+          "source": "PATHS",
+          "h": 54,
+          "candidates": [
+            {
+              "P": [
+                22,
+                23,
+                27,
+                16,
+                0,
+                20,
+                17,
+                16
+              ],
+              "text": "OEDIATFLBT",
+              "native": false
+            },
+            {
+              "P": [
+                22,
+                23,
+                27,
+                16,
+                3,
+                19,
+                15,
+                9
+              ],
+              "text": "OEDIATOMSN",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 41,
+          "start": 171,
+          "C": [
+            17,
+            6,
+            0
+          ],
+          "source": "VERIFY",
+          "h": 59,
+          "candidates": null
+        },
+        {
+          "ordinal": 42,
+          "start": 174,
+          "C": [
+            6,
+            22,
+            1,
+            5,
+            25,
+            16,
+            10,
+            18
+          ],
+          "source": "OPENPGP",
+          "h": 75,
+          "candidates": null
+        },
+        {
+          "ordinal": 43,
+          "start": 182,
+          "C": [
+            4,
+            6,
+            19,
+            26
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 44,
+          "start": 186,
+          "C": [
+            24,
+            6,
+            7
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 45,
+          "start": 189,
+          "C": [
+            21,
+            11,
+            15,
+            11,
+            19,
+            4,
+            19
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 46,
+          "start": 196,
+          "C": [
+            9,
+            17,
+            15,
+            19,
+            14,
+            23,
+            8,
+            14,
+            10
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 47,
+          "start": 205,
+          "C": [
+            26,
+            27,
+            8,
+            26,
+            28,
+            14,
+            8
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 48,
+          "start": 212,
+          "C": [
+            23,
+            18
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 49,
+          "start": 214,
+          "C": [
+            7,
+            18,
+            2
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 50,
+          "start": 217,
+          "C": [
+            1,
+            5
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 51,
+          "start": 219,
+          "C": [
+            14,
+            19,
+            24,
+            26,
+            28
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 52,
+          "start": 224,
+          "C": [
+            7,
+            25,
+            24,
+            5
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        }
+      ]
+    },
+    {
+      "wrap": true,
+      "hold": false,
+      "total": 53,
+      "defined": 36,
+      "legal": 36,
+      "native": 2,
+      "rows": [
+        {
+          "ordinal": 0,
+          "start": 0,
+          "C": [
+            9,
+            26,
+            18,
+            14
+          ],
+          "source": "HELLO",
+          "h": 11,
+          "candidates": [
+            {
+              "P": [
+                11,
+                25,
+                18,
+                6
+              ],
+              "text": "JAEEG",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 1,
+          "start": 4,
+          "C": [
+            9,
+            1,
+            14,
+            10
+          ],
+          "source": "THE",
+          "h": 20,
+          "candidates": [
+            {
+              "P": [
+                11,
+                15,
+                0,
+                2
+              ],
+              "text": "JSFTH",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 2,
+          "start": 8,
+          "C": [
+            21,
+            16,
+            13,
+            7,
+            15,
+            26
+          ],
+          "source": "PATH",
+          "h": 39,
+          "candidates": null
+        },
+        {
+          "ordinal": 3,
+          "start": 14,
+          "C": [
+            16,
+            28,
+            13,
+            14
+          ],
+          "source": "LIES",
+          "h": 5,
+          "candidates": [
+            {
+              "P": [
+                4,
+                27,
+                12,
+                21
+              ],
+              "text": "RIAEONG",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 4,
+          "start": 18,
+          "C": [
+            24,
+            10,
+            11,
+            15,
+            4,
+            24,
+            16,
+            15,
+            21,
+            16
+          ],
+          "source": "EMPTY",
+          "h": 34,
+          "candidates": [
+            {
+              "P": [
+                11,
+                9,
+                11,
+                21,
+                20,
+                23,
+                16,
+                21,
+                8,
+                15
+              ],
+              "text": "JNJNGLDTNGHS",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 5,
+          "start": 28,
+          "C": [
+            5,
+            6,
+            5,
+            8
+          ],
+          "source": "EPIPHANY",
+          "h": 5,
+          "candidates": [
+            {
+              "P": [
+                22,
+                5,
+                4,
+                15
+              ],
+              "text": "OECRS",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 6,
+          "start": 32,
+          "C": [
+            18,
+            22,
+            4,
+            24,
+            27,
+            8,
+            5
+          ],
+          "source": "SEEKS",
+          "h": 13,
+          "candidates": [
+            {
+              "P": [
+                6,
+                22,
+                2,
+                2,
+                15,
+                8,
+                3
+              ],
+              "text": "GOETHTHSHO",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 7,
+          "start": 39,
+          "C": [
+            21,
+            17,
+            18,
+            4,
+            28,
+            24
+          ],
+          "source": "THE",
+          "h": 20,
+          "candidates": [
+            {
+              "P": [
+                23,
+                2,
+                4,
+                25,
+                1,
+                9
+              ],
+              "text": "DTHRAEUN",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 8,
+          "start": 45,
+          "C": [
+            20,
+            22,
+            18,
+            20,
+            24
+          ],
+          "source": "DEVOTED",
+          "h": 44,
+          "candidates": [
+            {
+              "P": [
+                23,
+                23,
+                18,
+                13,
+                27
+              ],
+              "text": "DDEPIA",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 9,
+          "start": 50,
+          "C": [
+            2,
+            15
+          ],
+          "source": "LIBER",
+          "h": 11,
+          "candidates": [
+            {
+              "P": [
+                4,
+                14
+              ],
+              "text": "RX",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 10,
+          "start": 52,
+          "C": [
+            5,
+            7,
+            4,
+            7
+          ],
+          "source": "PRIMUS",
+          "h": 4,
+          "candidates": [
+            {
+              "P": [
+                7,
+                21,
+                18,
+                28
+              ],
+              "text": "WNGEEA",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 11,
+          "start": 56,
+          "C": [
+            3,
+            8,
+            26
+          ],
+          "source": "IS",
+          "h": 25,
+          "candidates": [
+            {
+              "P": [
+                5,
+                9,
+                27
+              ],
+              "text": "CNIA",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 12,
+          "start": 59,
+          "C": [
+            1,
+            21,
+            3
+          ],
+          "source": "THE",
+          "h": 20,
+          "candidates": [
+            {
+              "P": [
+                3,
+                6,
+                18
+              ],
+              "text": "OGE",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 13,
+          "start": 62,
+          "C": [
+            13,
+            20,
+            10,
+            16,
+            24
+          ],
+          "source": "WAY",
+          "h": 57,
+          "candidates": null
+        },
+        {
+          "ordinal": 14,
+          "start": 67,
+          "C": [
+            0,
+            15,
+            21,
+            23
+          ],
+          "source": "ITS",
+          "h": 41,
+          "candidates": [
+            {
+              "P": [
+                2,
+                0,
+                6,
+                15
+              ],
+              "text": "THFGS",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 15,
+          "start": 71,
+          "C": [
+            5,
+            24,
+            4,
+            17
+          ],
+          "source": "WORDS",
+          "h": 52,
+          "candidates": [
+            {
+              "P": [
+                7,
+                8,
+                18,
+                9
+              ],
+              "text": "WHEN",
+              "native": true
+            }
+          ]
+        },
+        {
+          "ordinal": 16,
+          "start": 75,
+          "C": [
+            7,
+            13
+          ],
+          "source": "ARE",
+          "h": 46,
+          "candidates": [
+            {
+              "P": [
+                24,
+                13
+              ],
+              "text": "AP",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 17,
+          "start": 77,
+          "C": [
+            9,
+            3,
+            2,
+            5,
+            2,
+            9,
+            19,
+            3,
+            18
+          ],
+          "source": "THE",
+          "h": 20,
+          "candidates": [
+            {
+              "P": [
+                11,
+                17,
+                17,
+                26,
+                4,
+                23,
+                5,
+                24,
+                20
+              ],
+              "text": "JBBYRDCAL",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 18,
+          "start": 86,
+          "C": [
+            26,
+            12,
+            9
+          ],
+          "source": "MAP",
+          "h": 56,
+          "candidates": null
+        },
+        {
+          "ordinal": 19,
+          "start": 89,
+          "C": [
+            0,
+            17
+          ],
+          "source": "THEIR",
+          "h": 34,
+          "candidates": [
+            {
+              "P": [
+                16,
+                16
+              ],
+              "text": "TT",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 20,
+          "start": 91,
+          "C": [
+            23,
+            1,
+            13
+          ],
+          "source": "MEANING",
+          "h": 19,
+          "candidates": [
+            {
+              "P": [
+                25,
+                17,
+                26
+              ],
+              "text": "AEBY",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 21,
+          "start": 94,
+          "C": [
+            7,
+            9,
+            18,
+            24
+          ],
+          "source": "IS",
+          "h": 25,
+          "candidates": [
+            {
+              "P": [
+                9,
+                10,
+                19,
+                16
+              ],
+              "text": "NIMT",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 22,
+          "start": 98,
+          "C": [
+            4,
+            20,
+            10,
+            7
+          ],
+          "source": "THE",
+          "h": 20,
+          "candidates": [
+            {
+              "P": [
+                6,
+                5,
+                25,
+                28
+              ],
+              "text": "GCAEEA",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 23,
+          "start": 102,
+          "C": [
+            25,
+            14
+          ],
+          "source": "ROAD",
+          "h": 54,
+          "candidates": [
+            {
+              "P": [
+                28,
+                16
+              ],
+              "text": "EAT",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 24,
+          "start": 104,
+          "C": [
+            21,
+            0,
+            23,
+            24,
+            0
+          ],
+          "source": "AND",
+          "h": 56,
+          "candidates": null
+        },
+        {
+          "ordinal": 25,
+          "start": 109,
+          "C": [
+            17,
+            11,
+            14
+          ],
+          "source": "THEIR",
+          "h": 34,
+          "candidates": [
+            {
+              "P": [
+                4,
+                10,
+                14
+              ],
+              "text": "RIX",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 26,
+          "start": 112,
+          "C": [
+            23,
+            11,
+            21,
+            26,
+            12,
+            24
+          ],
+          "source": "NUMBERS",
+          "h": 25,
+          "candidates": [
+            {
+              "P": [
+                25,
+                12,
+                22,
+                18,
+                14,
+                25
+              ],
+              "text": "AEEOOEEXAE",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 27,
+          "start": 118,
+          "C": [
+            25,
+            11
+          ],
+          "source": "ARE",
+          "h": 46,
+          "candidates": [
+            {
+              "P": [
+                13,
+                11
+              ],
+              "text": "PJ",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 28,
+          "start": 120,
+          "C": [
+            21,
+            13,
+            24
+          ],
+          "source": "THE",
+          "h": 20,
+          "candidates": [
+            {
+              "P": [
+                23,
+                27,
+                10
+              ],
+              "text": "DIAI",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 29,
+          "start": 123,
+          "C": [
+            1,
+            28
+          ],
+          "source": "DIRECTION",
+          "h": 54,
+          "candidates": [
+            {
+              "P": [
+                4,
+                1
+              ],
+              "text": "RU",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 30,
+          "start": 125,
+          "C": [
+            12,
+            16,
+            4
+          ],
+          "source": "SEEK",
+          "h": 56,
+          "candidates": null
+        },
+        {
+          "ordinal": 31,
+          "start": 128,
+          "C": [
+            18
+          ],
+          "source": "AND",
+          "h": 56,
+          "candidates": null
+        },
+        {
+          "ordinal": 32,
+          "start": 129,
+          "C": [
+            25,
+            19
+          ],
+          "source": "YOU",
+          "h": 30,
+          "candidates": [
+            {
+              "P": [
+                27,
+                19
+              ],
+              "text": "IAM",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 33,
+          "start": 131,
+          "C": [
+            25,
+            28,
+            8
+          ],
+          "source": "WILL",
+          "h": 57,
+          "candidates": null
+        },
+        {
+          "ordinal": 34,
+          "start": 134,
+          "C": [
+            10,
+            25,
+            22
+          ],
+          "source": "BE",
+          "h": 35,
+          "candidates": [
+            {
+              "P": [
+                12,
+                10,
+                8
+              ],
+              "text": "EOIH",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 35,
+          "start": 137,
+          "C": [
+            28,
+            7,
+            5,
+            11,
+            2,
+            8
+          ],
+          "source": "FOUND",
+          "h": 36,
+          "candidates": [
+            {
+              "P": [
+                0,
+                22,
+                21,
+                2,
+                3,
+                23
+              ],
+              "text": "FOENGTHOD",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 36,
+          "start": 143,
+          "C": [
+            27,
+            3,
+            1
+          ],
+          "source": "GOOD",
+          "h": 35,
+          "candidates": [
+            {
+              "P": [
+                0,
+                17,
+                16
+              ],
+              "text": "FBT",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 37,
+          "start": 146,
+          "C": [
+            3,
+            2,
+            6,
+            27
+          ],
+          "source": "LUCK",
+          "h": 31,
+          "candidates": [
+            {
+              "P": [
+                20,
+                1,
+                5,
+                5
+              ],
+              "text": "LUCC",
+              "native": true
+            }
+          ]
+        },
+        {
+          "ordinal": 38,
+          "start": 150,
+          "C": [
+            8,
+            15,
+            6,
+            24,
+            10,
+            22,
+            23,
+            24,
+            11
+          ],
+          "source": "BEWARE",
+          "h": 30,
+          "candidates": [
+            {
+              "P": [
+                10,
+                15,
+                8,
+                16,
+                12,
+                22,
+                25,
+                16,
+                13
+              ],
+              "text": "ISHTEOOEAETP",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 39,
+          "start": 159,
+          "C": [
+            10,
+            7,
+            27,
+            17
+          ],
+          "source": "FALSE",
+          "h": 19,
+          "candidates": [
+            {
+              "P": [
+                12,
+                23,
+                11,
+                9
+              ],
+              "text": "EODJN",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 40,
+          "start": 163,
+          "C": [
+            19,
+            21,
+            27,
+            23,
+            0,
+            17,
+            15,
+            16
+          ],
+          "source": "PATHS",
+          "h": 54,
+          "candidates": [
+            {
+              "P": [
+                22,
+                23,
+                27,
+                16,
+                3,
+                19,
+                15,
+                9
+              ],
+              "text": "OEDIATOMSN",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 41,
+          "start": 171,
+          "C": [
+            17,
+            6,
+            0
+          ],
+          "source": "VERIFY",
+          "h": 1,
+          "candidates": [
+            {
+              "P": [
+                20,
+                20,
+                13
+              ],
+              "text": "LLP",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 42,
+          "start": 174,
+          "C": [
+            6,
+            22,
+            1,
+            5,
+            25,
+            16,
+            10,
+            18
+          ],
+          "source": "OPENPGP",
+          "h": 17,
+          "candidates": [
+            {
+              "P": [
+                22,
+                22,
+                1,
+                11,
+                12,
+                16,
+                10,
+                24
+              ],
+              "text": "OEOEUJEOTIA",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 43,
+          "start": 182,
+          "C": [
+            4,
+            6,
+            19,
+            26
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 44,
+          "start": 186,
+          "C": [
+            24,
+            6,
+            7
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 45,
+          "start": 189,
+          "C": [
+            21,
+            11,
+            15,
+            11,
+            19,
+            4,
+            19
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 46,
+          "start": 196,
+          "C": [
+            9,
+            17,
+            15,
+            19,
+            14,
+            23,
+            8,
+            14,
+            10
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 47,
+          "start": 205,
+          "C": [
+            26,
+            27,
+            8,
+            26,
+            28,
+            14,
+            8
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 48,
+          "start": 212,
+          "C": [
+            23,
+            18
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 49,
+          "start": 214,
+          "C": [
+            7,
+            18,
+            2
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 50,
+          "start": 217,
+          "C": [
+            1,
+            5
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 51,
+          "start": 219,
+          "C": [
+            14,
+            19,
+            24,
+            26,
+            28
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 52,
+          "start": 224,
+          "C": [
+            7,
+            25,
+            24,
+            5
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        }
+      ]
+    },
+    {
+      "wrap": true,
+      "hold": true,
+      "total": 53,
+      "defined": 36,
+      "legal": 33,
+      "native": 2,
+      "rows": [
+        {
+          "ordinal": 0,
+          "start": 0,
+          "C": [
+            9,
+            26,
+            18,
+            14
+          ],
+          "source": "HELLO",
+          "h": 11,
+          "candidates": [
+            {
+              "P": [
+                11,
+                25,
+                18,
+                6
+              ],
+              "text": "JAEEG",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 1,
+          "start": 4,
+          "C": [
+            9,
+            1,
+            14,
+            10
+          ],
+          "source": "THE",
+          "h": 20,
+          "candidates": []
+        },
+        {
+          "ordinal": 2,
+          "start": 8,
+          "C": [
+            21,
+            16,
+            13,
+            7,
+            15,
+            26
+          ],
+          "source": "PATH",
+          "h": 39,
+          "candidates": null
+        },
+        {
+          "ordinal": 3,
+          "start": 14,
+          "C": [
+            16,
+            28,
+            13,
+            14
+          ],
+          "source": "LIES",
+          "h": 5,
+          "candidates": [
+            {
+              "P": [
+                4,
+                27,
+                12,
+                21
+              ],
+              "text": "RIAEONG",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 4,
+          "start": 18,
+          "C": [
+            24,
+            10,
+            11,
+            15,
+            4,
+            24,
+            16,
+            15,
+            21,
+            16
+          ],
+          "source": "EMPTY",
+          "h": 34,
+          "candidates": [
+            {
+              "P": [
+                11,
+                9,
+                11,
+                21,
+                20,
+                23,
+                16,
+                21,
+                8,
+                15
+              ],
+              "text": "JNJNGLDTNGHS",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 5,
+          "start": 28,
+          "C": [
+            5,
+            6,
+            5,
+            8
+          ],
+          "source": "EPIPHANY",
+          "h": 5,
+          "candidates": [
+            {
+              "P": [
+                22,
+                5,
+                4,
+                15
+              ],
+              "text": "OECRS",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 6,
+          "start": 32,
+          "C": [
+            18,
+            22,
+            4,
+            24,
+            27,
+            8,
+            5
+          ],
+          "source": "SEEKS",
+          "h": 13,
+          "candidates": [
+            {
+              "P": [
+                6,
+                22,
+                2,
+                2,
+                15,
+                8,
+                3
+              ],
+              "text": "GOETHTHSHO",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 7,
+          "start": 39,
+          "C": [
+            21,
+            17,
+            18,
+            4,
+            28,
+            24
+          ],
+          "source": "THE",
+          "h": 20,
+          "candidates": [
+            {
+              "P": [
+                23,
+                2,
+                4,
+                25,
+                1,
+                9
+              ],
+              "text": "DTHRAEUN",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 8,
+          "start": 45,
+          "C": [
+            20,
+            22,
+            18,
+            20,
+            24
+          ],
+          "source": "DEVOTED",
+          "h": 44,
+          "candidates": [
+            {
+              "P": [
+                23,
+                23,
+                18,
+                13,
+                27
+              ],
+              "text": "DDEPIA",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 9,
+          "start": 50,
+          "C": [
+            2,
+            15
+          ],
+          "source": "LIBER",
+          "h": 11,
+          "candidates": [
+            {
+              "P": [
+                4,
+                14
+              ],
+              "text": "RX",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 10,
+          "start": 52,
+          "C": [
+            5,
+            7,
+            4,
+            7
+          ],
+          "source": "PRIMUS",
+          "h": 4,
+          "candidates": [
+            {
+              "P": [
+                7,
+                21,
+                18,
+                28
+              ],
+              "text": "WNGEEA",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 11,
+          "start": 56,
+          "C": [
+            3,
+            8,
+            26
+          ],
+          "source": "IS",
+          "h": 25,
+          "candidates": [
+            {
+              "P": [
+                5,
+                9,
+                27
+              ],
+              "text": "CNIA",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 12,
+          "start": 59,
+          "C": [
+            1,
+            21,
+            3
+          ],
+          "source": "THE",
+          "h": 20,
+          "candidates": [
+            {
+              "P": [
+                3,
+                6,
+                18
+              ],
+              "text": "OGE",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 13,
+          "start": 62,
+          "C": [
+            13,
+            20,
+            10,
+            16,
+            24
+          ],
+          "source": "WAY",
+          "h": 57,
+          "candidates": null
+        },
+        {
+          "ordinal": 14,
+          "start": 67,
+          "C": [
+            0,
+            15,
+            21,
+            23
+          ],
+          "source": "ITS",
+          "h": 41,
+          "candidates": [
+            {
+              "P": [
+                0,
+                17,
+                6,
+                8
+              ],
+              "text": "FBGH",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 15,
+          "start": 71,
+          "C": [
+            5,
+            24,
+            4,
+            17
+          ],
+          "source": "WORDS",
+          "h": 52,
+          "candidates": [
+            {
+              "P": [
+                7,
+                8,
+                18,
+                9
+              ],
+              "text": "WHEN",
+              "native": true
+            }
+          ]
+        },
+        {
+          "ordinal": 16,
+          "start": 75,
+          "C": [
+            7,
+            13
+          ],
+          "source": "ARE",
+          "h": 46,
+          "candidates": [
+            {
+              "P": [
+                24,
+                13
+              ],
+              "text": "AP",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 17,
+          "start": 77,
+          "C": [
+            9,
+            3,
+            2,
+            5,
+            2,
+            9,
+            19,
+            3,
+            18
+          ],
+          "source": "THE",
+          "h": 20,
+          "candidates": [
+            {
+              "P": [
+                11,
+                17,
+                17,
+                26,
+                4,
+                23,
+                5,
+                24,
+                20
+              ],
+              "text": "JBBYRDCAL",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 18,
+          "start": 86,
+          "C": [
+            26,
+            12,
+            9
+          ],
+          "source": "MAP",
+          "h": 56,
+          "candidates": null
+        },
+        {
+          "ordinal": 19,
+          "start": 89,
+          "C": [
+            0,
+            17
+          ],
+          "source": "THEIR",
+          "h": 34,
+          "candidates": [
+            {
+              "P": [
+                0,
+                4
+              ],
+              "text": "FR",
+              "native": false
+            },
+            {
+              "P": [
+                16,
+                16
+              ],
+              "text": "TT",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 20,
+          "start": 91,
+          "C": [
+            23,
+            1,
+            13
+          ],
+          "source": "MEANING",
+          "h": 19,
+          "candidates": [
+            {
+              "P": [
+                25,
+                17,
+                26
+              ],
+              "text": "AEBY",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 21,
+          "start": 94,
+          "C": [
+            7,
+            9,
+            18,
+            24
+          ],
+          "source": "IS",
+          "h": 25,
+          "candidates": [
+            {
+              "P": [
+                9,
+                10,
+                19,
+                16
+              ],
+              "text": "NIMT",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 22,
+          "start": 98,
+          "C": [
+            4,
+            20,
+            10,
+            7
+          ],
+          "source": "THE",
+          "h": 20,
+          "candidates": [
+            {
+              "P": [
+                6,
+                5,
+                25,
+                28
+              ],
+              "text": "GCAEEA",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 23,
+          "start": 102,
+          "C": [
+            25,
+            14
+          ],
+          "source": "ROAD",
+          "h": 54,
+          "candidates": [
+            {
+              "P": [
+                28,
+                16
+              ],
+              "text": "EAT",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 24,
+          "start": 104,
+          "C": [
+            21,
+            0,
+            23,
+            24,
+            0
+          ],
+          "source": "AND",
+          "h": 56,
+          "candidates": null
+        },
+        {
+          "ordinal": 25,
+          "start": 109,
+          "C": [
+            17,
+            11,
+            14
+          ],
+          "source": "THEIR",
+          "h": 34,
+          "candidates": [
+            {
+              "P": [
+                4,
+                10,
+                14
+              ],
+              "text": "RIX",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 26,
+          "start": 112,
+          "C": [
+            23,
+            11,
+            21,
+            26,
+            12,
+            24
+          ],
+          "source": "NUMBERS",
+          "h": 25,
+          "candidates": [
+            {
+              "P": [
+                25,
+                12,
+                22,
+                18,
+                14,
+                25
+              ],
+              "text": "AEEOOEEXAE",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 27,
+          "start": 118,
+          "C": [
+            25,
+            11
+          ],
+          "source": "ARE",
+          "h": 46,
+          "candidates": [
+            {
+              "P": [
+                13,
+                11
+              ],
+              "text": "PJ",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 28,
+          "start": 120,
+          "C": [
+            21,
+            13,
+            24
+          ],
+          "source": "THE",
+          "h": 20,
+          "candidates": [
+            {
+              "P": [
+                23,
+                27,
+                10
+              ],
+              "text": "DIAI",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 29,
+          "start": 123,
+          "C": [
+            1,
+            28
+          ],
+          "source": "DIRECTION",
+          "h": 54,
+          "candidates": [
+            {
+              "P": [
+                4,
+                1
+              ],
+              "text": "RU",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 30,
+          "start": 125,
+          "C": [
+            12,
+            16,
+            4
+          ],
+          "source": "SEEK",
+          "h": 56,
+          "candidates": null
+        },
+        {
+          "ordinal": 31,
+          "start": 128,
+          "C": [
+            18
+          ],
+          "source": "AND",
+          "h": 56,
+          "candidates": null
+        },
+        {
+          "ordinal": 32,
+          "start": 129,
+          "C": [
+            25,
+            19
+          ],
+          "source": "YOU",
+          "h": 30,
+          "candidates": [
+            {
+              "P": [
+                27,
+                19
+              ],
+              "text": "IAM",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 33,
+          "start": 131,
+          "C": [
+            25,
+            28,
+            8
+          ],
+          "source": "WILL",
+          "h": 57,
+          "candidates": null
+        },
+        {
+          "ordinal": 34,
+          "start": 134,
+          "C": [
+            10,
+            25,
+            22
+          ],
+          "source": "BE",
+          "h": 35,
+          "candidates": [
+            {
+              "P": [
+                12,
+                10,
+                8
+              ],
+              "text": "EOIH",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 35,
+          "start": 137,
+          "C": [
+            28,
+            7,
+            5,
+            11,
+            2,
+            8
+          ],
+          "source": "FOUND",
+          "h": 36,
+          "candidates": []
+        },
+        {
+          "ordinal": 36,
+          "start": 143,
+          "C": [
+            27,
+            3,
+            1
+          ],
+          "source": "GOOD",
+          "h": 35,
+          "candidates": []
+        },
+        {
+          "ordinal": 37,
+          "start": 146,
+          "C": [
+            3,
+            2,
+            6,
+            27
+          ],
+          "source": "LUCK",
+          "h": 31,
+          "candidates": [
+            {
+              "P": [
+                20,
+                1,
+                5,
+                5
+              ],
+              "text": "LUCC",
+              "native": true
+            }
+          ]
+        },
+        {
+          "ordinal": 38,
+          "start": 150,
+          "C": [
+            8,
+            15,
+            6,
+            24,
+            10,
+            22,
+            23,
+            24,
+            11
+          ],
+          "source": "BEWARE",
+          "h": 30,
+          "candidates": [
+            {
+              "P": [
+                10,
+                15,
+                8,
+                16,
+                12,
+                22,
+                25,
+                16,
+                13
+              ],
+              "text": "ISHTEOOEAETP",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 39,
+          "start": 159,
+          "C": [
+            10,
+            7,
+            27,
+            17
+          ],
+          "source": "FALSE",
+          "h": 19,
+          "candidates": [
+            {
+              "P": [
+                12,
+                23,
+                11,
+                9
+              ],
+              "text": "EODJN",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 40,
+          "start": 163,
+          "C": [
+            19,
+            21,
+            27,
+            23,
+            0,
+            17,
+            15,
+            16
+          ],
+          "source": "PATHS",
+          "h": 54,
+          "candidates": [
+            {
+              "P": [
+                22,
+                23,
+                27,
+                16,
+                0,
+                20,
+                17,
+                16
+              ],
+              "text": "OEDIATFLBT",
+              "native": false
+            },
+            {
+              "P": [
+                22,
+                23,
+                27,
+                16,
+                3,
+                19,
+                15,
+                9
+              ],
+              "text": "OEDIATOMSN",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 41,
+          "start": 171,
+          "C": [
+            17,
+            6,
+            0
+          ],
+          "source": "VERIFY",
+          "h": 1,
+          "candidates": [
+            {
+              "P": [
+                20,
+                20,
+                0
+              ],
+              "text": "LLF",
+              "native": false
+            },
+            {
+              "P": [
+                20,
+                20,
+                13
+              ],
+              "text": "LLP",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 42,
+          "start": 174,
+          "C": [
+            6,
+            22,
+            1,
+            5,
+            25,
+            16,
+            10,
+            18
+          ],
+          "source": "OPENPGP",
+          "h": 17,
+          "candidates": [
+            {
+              "P": [
+                22,
+                22,
+                1,
+                11,
+                12,
+                16,
+                10,
+                24
+              ],
+              "text": "OEOEUJEOTIA",
+              "native": false
+            }
+          ]
+        },
+        {
+          "ordinal": 43,
+          "start": 182,
+          "C": [
+            4,
+            6,
+            19,
+            26
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 44,
+          "start": 186,
+          "C": [
+            24,
+            6,
+            7
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 45,
+          "start": 189,
+          "C": [
+            21,
+            11,
+            15,
+            11,
+            19,
+            4,
+            19
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 46,
+          "start": 196,
+          "C": [
+            9,
+            17,
+            15,
+            19,
+            14,
+            23,
+            8,
+            14,
+            10
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 47,
+          "start": 205,
+          "C": [
+            26,
+            27,
+            8,
+            26,
+            28,
+            14,
+            8
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 48,
+          "start": 212,
+          "C": [
+            23,
+            18
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 49,
+          "start": 214,
+          "C": [
+            7,
+            18,
+            2
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 50,
+          "start": 217,
+          "C": [
+            1,
+            5
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 51,
+          "start": 219,
+          "C": [
+            14,
+            19,
+            24,
+            26,
+            28
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        },
+        {
+          "ordinal": 52,
+          "start": 224,
+          "C": [
+            7,
+            25,
+            24,
+            5
+          ],
+          "source": null,
+          "h": null,
+          "candidates": null
+        }
+      ]
+    }
+  ],
   "helperPages": [
     {
       "page": 0,
