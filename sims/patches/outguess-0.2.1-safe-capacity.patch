@@ -2,33 +2,32 @@ diff --git a/iterator.c b/iterator.c
 index 1111111..2222222 100644
 --- a/iterator.c
 +++ b/iterator.c
-@@ -27,6 +27,8 @@
- 
+@@ -31,3 +31,5 @@
  #include <sys/types.h>
 +#include <stdio.h>
 +#include <stdlib.h>
  
  #include "config.h"
- 
-@@ -71,8 +73,22 @@ iterator_seed(iterator *iter, bitmap *bitmap, u_int16_t seed)
+@@ -72,6 +74,21 @@
  void
  iterator_adapt(iterator *iter, bitmap *bitmap, int datalen)
  {
 -	iter->skipmod = SKIPADJ(bitmap->bits, bitmap->bits - iter->off) *
 -		(bitmap->bits - iter->off)/(8 * datalen);
-+	u_int32_t remaining;
++	int remaining;
 +	int next_skip;
 +
-+	if (iter->off < 0 || (u_int32_t)iter->off > bitmap->bits) {
-+		fprintf(stderr, "Invalid iterator offset: %d for %u usable bits\n",
-+			iter->off, bitmap->bits);
++	if (datalen <= 0 || bitmap->bits < 32 ||
++	    iter->off < 0 || iter->off > bitmap->bits) {
++		fprintf(stderr, "Invalid iterator capacity state: offset=%d bits=%d datalen=%d\n",
++			iter->off, bitmap->bits, datalen);
 +		exit(1);
 +	}
-+	remaining = bitmap->bits - (u_int32_t)iter->off;
++	remaining = bitmap->bits - iter->off;
 +	next_skip = (int)(SKIPADJ(bitmap->bits, remaining) *
 +		remaining / (8 * datalen));
 +	if (next_skip < 1) {
-+		fprintf(stderr, "Insufficient remaining iterator capacity: %u bits for %d bytes\n",
++		fprintf(stderr, "Insufficient remaining iterator capacity: %d bits for %d bytes\n",
 +			remaining, datalen);
 +		exit(1);
 +	}
