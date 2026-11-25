@@ -107,15 +107,15 @@ module.exports={machine,reach,interval,intervalControls,controls,schedules,polic
 if(require.main===module){
  const corpus=JSON.parse(fs.readFileSync(path.join(__dirname,"../resources/liber-primus/lp2-corpus.json"),"utf8")),C=corpus.pages.filter(p=>p.page<=55).flatMap(p=>p.indices);
  const P=Array.from(mtFloats(0x3301,C.length),x=>Math.floor(x*29)),seed=7144649572585460758n;
- const [mode="source",start="0",end="545"]=process.argv.slice(2);
+ const [mode="source",start="0",end]=process.argv.slice(2);
  const {rows}=require("./lp2_shared_rng_rejection_marginal_sft.cjs");
  const prior=JSON.parse(fs.readFileSync(path.join(__dirname,"../im-results/lp2-r18-skipcount-feasibility-output.json"),"utf8"));
  if(mode==="source")console.log(JSON.stringify({controls:controls(C,P,seed),intervalControls:intervalControls(C,P,seed),original:schedules.flatMap(schedule=>policies.map(policy=>({schedule,policy,...interval(C,seed,schedule,policy)})))},null,2));
  else if(mode==="all"){
-   const candidates=[...rows(prior),{seed:seed.toString(),source:"2016 linechar"}].slice(+start,+end);
+   const candidates=[...rows(prior),{seed:seed.toString(),source:"2016 linechar"}].slice(+start,end===undefined?undefined:+end);
    console.log(JSON.stringify(candidates.flatMap(x=>schedules.flatMap(schedule=>policies.map(policy=>{
      const k=typeof x.seed==="string"?BigInt(x.seed):x.seed;
      return {...x,schedule,policy,positive:interval(C,k,schedule,policy,0,1),zero:reach(C,k,schedule,policy,0)};
    }))),null,2));
- } else console.log(JSON.stringify(rows(prior).slice(+start,+end).flatMap(x=>schedules.flatMap(schedule=>policies.map(policy=>({...x,schedule,policy,...interval(C,x.seed,schedule,policy)})))),null,2));
+ } else console.log(JSON.stringify(rows(prior).slice(+start,end===undefined?undefined:+end).flatMap(x=>schedules.flatMap(schedule=>policies.map(policy=>({...x,schedule,policy,...interval(C,x.seed,schedule,policy)})))),null,2));
 }
