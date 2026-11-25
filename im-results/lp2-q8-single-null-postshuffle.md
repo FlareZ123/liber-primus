@@ -34,9 +34,36 @@ The 19 strong anchors alone cannot force one covered anchor with 21 OOV allowed.
 
 Original p15–22 has **44 anchors, 21 OOV allowance, hence requires at least 23 covered anchors**. Exactly 1,277,857 distinct seven-tuples are generated. 1,277,806 support one anchor and 51 support two; none support three. The eight largest support counts sum to **16**, strictly below 23. Therefore no q8 key can satisfy the same 5% OOV budget on the remaining chapter, even without enforcing mutual consistency of the eight tuple windows. Three separate 60-word hidden-key donor plants retain every eligible true tuple and pass the necessary bound (required/upper 52/56, 53/56, 55/58). No original keys or plaintext are produced.
 
+## Necessary substitution-repair capacity
+
+For k=3..7, use groups with at least k+1 observed nonzero symbols. An unaltered in-vocabulary group admits a lexical inverse after zero or one non-consuming null deletion and has at least k consuming positions. Enumerate the first k digits of every compatible spelling, checking repeated-slot consistency, and count distinct group support per tuple. A q8 key contains at most eight cyclic k-windows: the sum of the eight largest support counts upper-bounds the number of clean covered anchors. Subtract that bound from the number of anchors, then subtract the chapter's OOV budget, truncating at zero. Maximize over k or use disjoint strata by maximum eligible k to avoid double counting. Every remaining deficient group requires at least one actual repair. Independently chosen group starting phases absorb earlier hold/spend clock differences; groups containing a repair may be arbitrary.
+
+| Physical pages | Native F hold | Either consuming or holding F |
+| --- | ---: | ---: |
+| 0–2 | 13 | 13 |
+| 3–7 | 30 | 29 |
+| 8–14 | 43 | 43 |
+| 15–22 | 51 | 48 |
+| 23–26 | 19 | 19 |
+| 27–32 | 31 | 31 |
+| 33–39 | 48 | 46 |
+| 40–53 | 98 | 98 |
+| 54–55 | 0 | 0 |
+| Total | **333** | **327** |
+
+All three clean controls in each convention have zero lower bound; random substitutions affecting 17–18 groups yield lower bounds 0–5, never exceeding actual alterations. These are soundness checks, not sensitivity guarantees. The lower bound holds for arbitrary group shuffle and repair values including T6 as long as a repair-free group follows the stipulated receiver. It does not exclude deterministic or high-rate repairs.
+
+### Independent repair-coin model
+
+For the specific ordered checked-null collision model with independent repair probability q and every failed repair visible as adjacent equality, select printed length class >=k+1. Eligibility is known before repair coin outcomes because group membership and null count do not change with repair. The selected collision coins are Bernoulli(q), even if attempt times are adaptive. Count all adjacent equalities in those groups including their initial seam as an upper bound F on failures. The cumulative tuple deficit R is a lower bound on successes within that length class after per-chapter OOV allowances.
+
+To avoid treating observed R,F thresholds as preselected, use the mixture likelihood-ratio martingale E=mean over j=1..9 of (r_j/q)^R ((1-r_j)/(1-q))^F, where r_j=q+(1-q)j/10. Each component is monotone in successes and failures in the required directions, so the observed E lower-bounds the actual stopped likelihood ratio. Ville's inequality gives an anytime bound 1/E, with a five-class Bonferroni correction. For k=5 there are 815 length>=6 groups, 6,180 runes, at most 37 failures and at least 332 (native) or 325 (either F) successes. At fixed q=.81 the corrected bounds are 0.000289255 and **0.000588274** respectively. At q=.85 they are .3263 and .4754; at q=.9 neither is informative. The binomial fixed-threshold joint-event tails in raw output are descriptive, not calibrated adaptive p-values. This tests specified fixed q, not a rate fitted from the same ciphertext. It does not reject arbitrary R4 variants, shuffled output, hidden failed collisions, consuming nulls, repair-dependent lengths, or mechanisms whose clean groups do not follow q8.
+
+Run `node sims/lp2_q8_single_null_repair_capacity_sft.cjs` and again with `--either-f`, then `node sims/lp2_q8_single_null_repair_rate_sft.cjs` with and without `--either-f`. All four runs executed in connected V8. Raw [native capacity](lp2-q8-single-null-repair-capacity-output.json), [either-F capacity](lp2-q8-single-null-repair-capacity-either-f-output.json), [native rate](lp2-q8-single-null-repair-rate-output.json), [either-F rate](lp2-q8-single-null-repair-rate-either-f-output.json).
+
 ## Disposition and reproducibility
 
-Retire the exact one-null insertion-only q8 shared additive receiver under this finite vocabulary and intact group membership, including arbitrary post-encryption group shuffle and independent group phases. This does not rule out T6 substitution repairs combined with insertion, more nulls, consuming inserted key steps, other periods, H-decoy, or different spelling/register. Do not interpret the 113 unique control words as unique reconstruction of the remaining groups or use this result to infer the historical model. No source-selected mechanism or original language candidate passed.
+Retire the exact one-null insertion-only q8 shared additive receiver under this finite vocabulary and intact group membership, including arbitrary post-encryption group shuffle and independent group phases. The repair-capacity extension additionally rejects the narrowly specified probabilistic repair receiver at q=.81, but does not rule out T6 substitution repairs in general, more nulls, consuming inserted key steps, other periods, H-decoy, or different spelling/register. Do not interpret the 113 unique control words as unique reconstruction of the remaining groups or use this result to infer the historical model. No source-selected mechanism or original language candidate passed.
 
 Run from repository root:
 - `node sims/lp2_q8_single_null_postshuffle_sft.cjs` ([raw output](lp2-q8-single-null-postshuffle-output.json)).
