@@ -1,4 +1,4 @@
-name: Agent3 p23-26 mayfly-inst ar period-15 gate
+name: Agent3 p23-26 mayfly instar-15 period-15 gate
 
 on:
   workflow_dispatch:

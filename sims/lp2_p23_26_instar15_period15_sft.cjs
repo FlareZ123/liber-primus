@@ -6,7 +6,9 @@
  * black body is exactly 1005 runes = 15 * 67 after the 16-rune red heading.
  * Hypothesis: the black body uses a continuous period-15 additive GP29 key
  * with transparent F and intact printed word boundaries. The 15-stage fact
- * is an exploratory source clue, not proof of the cipher family.
+ * is an exploratory source clue, not proof of the cipher family. A 1982
+ * mayfly review notes instar counts vary within species and environment;
+ * 15 is therefore study-specific, not a universal species constant.
  */
 "use strict";
 const {createSolver,encode,decodeFixed}=require("./lp2_fhold_word_relation_csp.cjs");
@@ -74,13 +76,14 @@ function experiment(inputs){
  assert(syntheticHasKey,"period15 synthetic positive control did not recover the planted key");
  const synthetic={period:15,runicCount:syntheticPlain.flat().length,key:syntheticKey,recovered:syntheticHasKey,candidateKeys:syntheticResult.keys.length,exact:syntheticResult.exact};
  const begin=gp.pages.slice(0,23).reduce((n,p)=>n+p.indices.length,0),end=gp.pages.slice(0,27).reduce((n,p)=>n+p.indices.length,0);let off=0;
- const pageWords=originalWords.filter(w=>{const i=off;off+=w.length;return i>=begin&&off<=end});
- assert(pageWords.flat().length===1021&&String(pageWords.flat())===String(gp.pages.slice(23,27).flatMap(p=>p.indices)),"p23-26 original chapter");
- const ink=JSON.parse(inputs[7]),redSpan=ink.pages.find(p=>p.page===23).red_spans[0],redIndices=Array.from(redSpan.runes,x=>map.get(x));
- assert(redSpan.start===0&&redSpan.length===16&&pageWords[0].length===16&&String(pageWords[0])===String(redIndices),"p23 16-rune red heading boundary");
- const ws=pageWords.slice(1);
+ assert(end-begin===1021&&String(gp.pages.slice(23,27).flatMap(p=>p.indices))===String(originalWords.flat().slice(begin,end)),"p23-26 original chapter");
+ const ink=JSON.parse(inputs[7]),page23Ink=ink.pages.find(p=>p.page===23),redSpan=page23Ink.red_spans[0],punct=page23Ink.large_punctuation[0],redIndices=Array.from(redSpan.runes,x=>map.get(x));
+ assert(redSpan.start===0&&redSpan.length===16&&punct[0]===16&&punct[1]===13&&punct[2]==="red","p23 red heading plus large punctuation boundary");
+ const bodyStart=begin+redSpan.length+punct[1],ws=[];off=0;
+ for(const w of originalWords){const lo=Math.max(0,bodyStart-off),hi=Math.min(w.length,end-off);if(hi>lo)ws.push(w.slice(lo,hi));off+=w.length}
+ assert(ws.flat().length===1005&&1005===15*67,"p23-26 black body is exactly 15x67 after red heading and punctuation");
  assert(ws.flat().length===1005&&1005===15*67,"p23-26 black body is exactly 15x67");
- const {cut,n}=cutAt(ws,500),prefix=ws.slice(0,cut),strict=engine.solve(prefix),target={chapter:"p23-26 black body",sourceSelector:"specimen5 Ephemerella ignita; 15 instars; 1005=15x67",period:15,vocabulary:dict.reduce((n,d)=>n+d.size,0),redHeadingRunes:redIndices.length,bodyRunes:ws.flat().length,trainWords:cut,trainRunes:n,held:1005-n,synthetic,strict:summary(strict)};
+ const {cut,n}=cutAt(ws,500),prefix=ws.slice(0,cut),strict=engine.solve(prefix),target={chapter:"p23-26 black body",sourceSelector:"specimen5 Ephemerella ignita; 15 instars; 1005=15x67",period:15,vocabulary:dict.reduce((n,d)=>n+d.size,0),redHeadingRunes:redIndices.length,redPunctuationRunes:punct[1],bodyRunes:ws.flat().length,trainWords:cut,trainRunes:n,held:1005-n,synthetic,strict:summary(strict)};
  let chosen=strict;if(strict.exact&&!strict.keys.length&&strict.failure){const escape=strict.failure.word;chosen=engine.solve(prefix,{wildcard:new Set([escape])});target.escape={word:escape,result:summary(chosen)}}
  if(chosen.exact&&chosen.keys.length===1&&chosen.keys[0].endPhases.length===1){const k=chosen.keys[0],held=decodeFixed(ws.slice(cut),k.key,dict,k.endPhases[0]);target.continuation=held?{score:held.score,paths:held.paths,plaintext:held.p.map(w=>w.map(v=>gp.translit[v]).join("")).join(" "),replay:String(encode(k.p.concat(held.p),k.key).flat())===String(ws.flat())}:null}
  target.conflict=conflictBound(prefix,15,dict);
