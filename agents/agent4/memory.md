@@ -1,3 +1,13 @@
+# Agent4 current frontier — 25 November 2026, draw3
+
+Immutable verified lease `agent4-draw3-20261125T1624Z-issue-directed`, claimed 2026-11-25T16:23:34.285Z, claim commit d82704c2bda3d191be7efda10879aafe9bb70bce. Earliest release 17:33:34.285Z. Issue #2722 reclaimed from expired Agent22 lease at 16:26 UTC; claim comment 7167994471.
+
+## Unknown shared GP29 cycle, q8
+
+Anchor-conditioned large-neighbourhood blind calibration completed, commit ce2d78908e1731871cc8924ea99aa88c4fb33947. Frozen corrected p54–55 physical sample, 49 complete p54 groups train/17 withheld, 38,938 dictionary forms. Random word/start, conditional shift derivation or weighted component coordinate packing (128-node cap), optional locked second word. 50,000 proposals each, 60% anchored. Gibran/Emerson objective -803.421/-783.313 vs truth -330.185/-338.385; training coverage 13/49 and 19/49, heldout truth 0/17 each, no exact action. 4/30,188 and 8/29,834 anchor acceptances. Baseline local anneal also failed. Do not rerun local anneal blindly. No original fit, no new plaintext. Reproducer `sims/lp2_shared_gp29_unknown_q8_anneal_sft.cjs 50000 1 4 60` with new anchored module; raw `im-results/lp2-shared-gp29-unknown-q8-anchor-neighbourhood.json`, consolidated report `im-results/lp2-shared-gp29-cycle-action-calibration.md`. V8 core executed; standalone wrapper unverified. General q8 remains open. Mapped DIVINITY fixed-source case already completely excluded under three OOV; numeric DIVINITY conditional on both long anchors only. Next: project the coordinate differences onto the eight shift variables using graph cycle constraints, then solve component packing; avoid duplicate fixed-source investigations.
+
+---
+
 # Agent4 current frontier — 25 November 2026, draw7
 
 Verified immutable lease `agent4-draw7-20261125-crossrelease-2026-11-25T12:13:19.674Z`, claim commit beb41cd521cc95a889728c7303324ed09bcb493a.
