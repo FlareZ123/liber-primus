@@ -92,12 +92,38 @@ Two separate constructed secret-S/secret-H native controls use distinct Emerson/
 
 [Known-plaintext SFT](../sims/lp2_conjugated_cumulative_knownplaintext_sft.cjs) · [raw](lp2-conjugated-cumulative-knownplaintext.json) · commit 25fc3429e7820c4b6504e9c9c495421be7e7031c.
 
+## Blind independent-inner-alphabet calibration
+
+With H unrestricted, maximizing the concentration of inferred increments removes H from the search objective. An exploratory permutation annealer normalized the affine gauge S(0)=0, S(1)=1 and maximized the sum of n_d log(n_d) over increment counts. In a Gibran native-control sequence with independent planted keys and lengths 307,728,1020,1144,1743, eight 30,000-swap restarts recovered the complete 29-entry outer key only at length 1743; best correct-entry counts at the four short lengths were 2,3,7,3. A second cycle-seeded optimizer with 96 assignment-based starts, best 12 refined with swap/reversal/insertion moves, likewise recovered only the long key (short best counts 2,4,3,2). These exploratory calibration runs were not applied to original ciphertext. The negative outcome is an optimization limitation, not a ciphertext exclusion. The shorter spans instead receive the exact word-constrained attack below.
+
+## Exact lexical recovery on all four remaining spans
+
+The known-plaintext repeated-edge filter is related to the earlier [arbitrary predecessor-row source-crib analysis](previous-cipher-permutation-source-crib.md); this extension uses the stricter common cyclic-group law and permits newly assembled dictionary words rather than requiring an entire contiguous source quotation.
+
+Freeze each chapter's original continuous ciphertext order, grant a private independent S,H, and condition on the printed groups of at least eight GP runes being intact plaintext words in the 12,231 distinct GP spelling types extracted from the repository Shakespeare, Emerson and Gibran files. Each selected word includes its incoming ciphertext edge (except a word starting the span, which is omitted), so the cipher state does not reset at word boundaries. The hypothesis permits arbitrary plaintext-word ordering before encryption; it does not permit ciphertext transposition after encryption, nonwords, or out-of-register words.
+
+For each candidate word, compile its repeated-edge, row/column, and zero-increment identities and the linear equations S[b]-S[a]-H[p]=0 mod29. An incremental row echelon basis gives each of the 58 variables as a linear form in free variables. If two distinct S variables or two distinct H variables have identical forms, no permutation completion exists, and that branch is rejected. Passing this test does not guarantee a permutation completion. Adaptive minimum-remaining-domain branching over these necessary constraints is exhaustive unless a computational cap is reached. A fixed ten-rune-anchor pass first excluded p3–7 but hit its 300,000-trial cap on the other three originals. The adaptive pass includes eight- and nine-rune anchors, applies cheap compatibility filtering before linear algebra, and completes on all four original and plant cases.
+
+| Span | Anchors >=8 | Original algebraic trials | Original surviving assignments | Plant surviving assignments | Plant forced withheld runes correct / total | Plant training rank |
+|---|---:|---:|---:|---:|---:|---:|
+| p0–2 | 20 | 3086 | 0 | 1 | 532/548 | 49 |
+| p3–7 | 27 | 145 | 0 | 1 | 861/894 | 49 |
+| p23–26 | 26 | 223 | 0 | 1 | 763/787 | 51 |
+| p54–55 | 10 | 15063 | 0 | 1 | 201/215 | 45 |
+| Total | | | 0 | 4 | 2357/2444 | |
+
+Each matched-length synthetic plant is assembled from independently selected native dictionary words using the original group lengths, then encrypted continuously with independent random S,H. These are lexical controls, not coherent literary excerpts. The unique surviving assignment in each plant agrees with every true anchor word. On positions outside all selected anchors, the equations uniquely force the reported plaintext runes independently of the unresolved free-variable assignments; all forced runes are correct. The remaining 87 positions are not algebraically determined by the anchor equations alone and are not counted as recoveries. No original assignment survives even the necessary constraints. Thus these four spans are excluded for this exact finite intact-word model, complementing the five longer chapters' spacing-free native-window exclusions. Neither result establishes exclusion for arbitrary plaintext, different word registers, or an altered cipher architecture.
+
+[Lexical SFT](../sims/lp2_conjugated_cumulative_lexical_sft.cjs) · [raw](lp2-conjugated-cumulative-lexical.json) · commit 9c47f737333602ce7b9a72c17cf1ad57937bf59e.
+
 ## Decision
 
-Retire the fixed continuous conjugated cumulative decoder as a serious receiver for p16–22 under the tested native registers. The exact relaxation excludes the stronger independent inner permutation on five complete spans and the full tape, so widening the annealing search to H or tuning the rare anchor on those spans is unwarranted without independent evidence for a different state clock or balanced plaintext. The short surviving chapter spans are only reasonable candidates for further **actual key recovery** if a source clue independently selects this architecture. Do not reinterpret the count bounds as proof of arbitrary-language impossibility.
+Retire the fixed continuous conjugated cumulative decoder as a serious receiver for p16–22 under the tested native registers. The exact relaxation excludes the stronger independent inner permutation on five complete spans and the full tape, so widening the annealing search to H or tuning the rare anchor on those spans is unwarranted without independent evidence for a different state clock or balanced plaintext. The short spans also fail the exact finite intact-word dictionary constraint attack. Retire this architecture under the stated registers, rather than tune its optimizers or repeat the same source retrieval. A new attempt requires independently motivated different plaintext units, state, or source-selected key evidence. Do not reinterpret the count bounds as proof of arbitrary-language impossibility.
 
 ## Reproduction
 
 - `node sims/lp2_conjugated_cumulative_gp29_recovery_sft.cjs` — [code](../sims/lp2_conjugated_cumulative_gp29_recovery_sft.cjs), [raw](lp2-conjugated-cumulative-gp29-recovery.json), commit 82aafe484de996017544ddb9648a12df945354ae.
 - `node sims/lp2_conjugated_cumulative_regular_capacity_sft.cjs` — [code](../sims/lp2_conjugated_cumulative_regular_capacity_sft.cjs), [raw](lp2-conjugated-cumulative-regular-capacity.json), commit 0a705edb9de484e17d803d91f6269dc9c6c97e8f.
+- `node sims/lp2_conjugated_cumulative_knownplaintext_sft.cjs` — exact source retrieval and linear inversion.
+- `node sims/lp2_conjugated_cumulative_lexical_sft.cjs` — exact adaptive lexical constraint attack.
 - Inputs: canonical LP2 corpus, pinned native Emerson and Gibran files; exact inputs and fixed seed are in the scripts.
