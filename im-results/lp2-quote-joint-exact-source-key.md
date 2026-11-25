@@ -326,3 +326,23 @@ Twelve hidden-key controls (six per receiver; both periods, all three sources) e
 | Unlimited redraw, quote reset | 12,282,641 | 0 | 0 | none |
 
 The original 160 runes have no adjacent equal glyph, making the strict unlimited case meaningful rather than trivially incompatible. No source survives the left41 gate; consequently there is no original continuation or recovered key to report. Retire only these exact q8/q13 source + periodic additive + collision-redraw + F-hold combinations, not all quotation sources, unknown key families, nonliteral wording, or other collision states. The committed experiment body ran against the four original repository inputs in a JS runtime. No separate Windows CI run. [SFT](../sims/lp2_quote_collision_redraw_periodic_sft.cjs), [single-redraw raw](lp2-quote-collision-redraw-periodic.json), [unlimited-redraw raw](lp2-quote-collision-redraw-periodic-unlimited.json).
+
+
+## Continuous large-integer multiplier with arbitrary incoming carry (Agent31, 2026-11-25)
+
+**Decision: zero original candidates.** New arithmetic model, retaining the existing independent quotation register: 1,161 consecutive source sentence pairs (Shakespeare, Emerson, Gibran), 8,764 left-41 spelling paths, printed p42–43 stop at 41, physical indices [10279,10439), first 80 fit and last 80 withheld. Source selection is a hypothesis. All runes consume; no F skipping or per-word resets.
+
+For 41 little-endian digits, X,Y denote integer input/output and M=29^41. A single unknown unit multiplier 1<=a<=A=29^13-1 and incoming carry 0<=s<a require Y=(aX+s) mod M. Swap X,Y for decryption convention and reverse digit order for reverse physical traversal. Every solution is a lattice point (a,y), y=aX-jM, in [1,A] x [Y-A+1,Y]. Reduce the exact integer basis (1,X),(0,M) using two-dimensional Gauss reduction, transform rectangle corners by the inverse basis, enumerate integer coefficient bounds and retain precisely points with 0<=Y-y<a and a coprime to 29. Determinant M; no floating-point or heuristic nearest-vector selection. Maximum coefficient box was 16 including toy cases, never approaching explicit cap of 1,000,000. In reverse physical traversal, the left-block input carry is the carry at the internal stop; rightward physical steps recover preceding traversal carry by 29*carry+output-a*input. All full survivors replay exactly.
+
+500 small exhaustive arithmetic comparisons pass; four matched iid nulls return zero candidates. Planted controls:
+
+| Mode | Multiplier | Left-block input carry | Left fits | Prefix paths | Full paths | Withheld spelling |
+|---|---:|---:|---:|---:|---:|---|
+| EF | 8609877320636437435 | 7079960983722629894 | 1 | 1 | 1 | unique |
+| ER | 8840211633586590114 | 3051114265121462891 | 1 | 1 | 1 | unique |
+| DF | 4094044176380734563 | 3565111399179829243 | 1 | 1 | 1 | unique |
+| DR | 1130462192367450287 | 412995751891743316 | 3 | 2 | 5 | true included; ambiguous |
+
+E/D = encryption/decryption multiplier convention; F/R = physical forward/reverse. All four source/multiplier/carry classes are uniquely recovered from the first 80 symbols. Three controls uniquely recover 80 withheld symbols; the fourth contains the true sequence among five full spelling paths. Original: 35,056 lattice queries across four modes, zero left-block solutions, hence zero 80-rune prefix and full candidates. Total 316,004 queries including controls/nulls/toys, 1,163 enumerated coefficient points. This excludes the specified finite continuous 13-digit unit/carry domain on this source register. No authentic plaintext, proof of quotation, or universal exclusion of multiplication.
+
+Reproduce from repository root: `node sims/lp2_quote_base29_lattice_sft.cjs`; raw results: [lp2-quote-base29-lattice-output.json](lp2-quote-base29-lattice-output.json). Executed using same function in connected JavaScript V8; standalone Node CLI not separately executed. Inputs pinned by blob SHA: corpus 054f2a0f780b7d46901acbe3d9bf4f0ac1801165; Shakespeare 94c677ad9dd50771c6670e0c4e4dad9052b46d85; Emerson a92be8ba5b3511a003a22ba31523c14397aaa83a; Gibran df260a07d56bf5998d40a6360b6132c35c252d10.

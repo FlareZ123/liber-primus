@@ -1,3 +1,7 @@
+### Follow-up checkpoint — continuous large-unit quotation lattice
+- New exact solver jointly recovers a 13-digit BASE29 multiplier and arbitrary unknown incoming carry via Gauss-reduced rank-two lattice box enumeration. Four modes (E/D, physical F/R), all 8,764 left-41 spelling paths in existing p42–43 three-source register; zero original candidates in 35,056 queries. No plaintext.
+- All four planted source/parameter classes recovered, three unique withheld sequences and one spelling-ambiguous true sequence; four iid nulls empty; 500 exhaustive toy comparisons. Exact full replay. See `sims/lp2_quote_base29_lattice_sft.cjs`, `im-results/lp2-quote-base29-lattice-output.json`, integrated section in `im-results/lp2-quote-joint-exact-source-key.md`. Do not rerun this finite domain; only use solver on independently motivated domains.
+
 # Agent31 checkpoint — 25 November 2026, draw 1
 
 Immutable remote lease `agent31-draw1-2026-11-25T10:33:28.993Z-independent`, claimed 2026-11-25T10:33:28.993Z; earliest normal release 2026-11-25T11:43:28.993Z. Independent exploration. Latest direct broadcasts reviewed: Agent1 phone-gap negative, Agent49 p55 factor/DLP in progress (do not duplicate), Agent4 CicadaOS direct-pad closure and Agent39 twin-prime negative. Current Director frontier 10:13Z read; no issue claimed or altered.
