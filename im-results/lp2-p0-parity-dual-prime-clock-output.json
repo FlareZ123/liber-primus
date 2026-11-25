@@ -1,0 +1,187 @@
+{
+  "hypothesis": "two independent signed prime-minus-one clocks, preceding GP index parity, literal F hold, p0 red-title predecessor",
+  "maxOffset": 3300,
+  "perLaneKeep": 8,
+  "tests": [
+    {
+      "name": "0_koan_1",
+      "length": 515,
+      "offsets": [
+        1033,
+        3300
+      ],
+      "ranks": [
+        1,
+        1
+      ],
+      "candidates": 64,
+      "prefixScore": -2.229201015391157,
+      "holdScore": -2.3574032033374595,
+      "prefixPeak": 52,
+      "holdPeak": 48,
+      "fullReplay": true,
+      "prefixText": "ACOANAMANDECIDEDTOGOANDSTUDYWITHAMASTERHEWENTTOTHEDOOROFTHEMASTERWHOAREYOUWHOWISHESTOSTUDYHEREASCEDTHEMASTERTHESTUDENTTOLDTHEMASTERHISNAMETHATISNOTWHATYOUARETHATISONLYWHATYOUARECALLEDWHOAREYOUWHOWISHESTOSTUDYHEREHEASCEDAGAINTHEMANTHOUGHTFORAMOMENTANDREPLIEDIA",
+      "holdText": "MAPROFESSORTHATISWHATYOUDONOTWHATYOUAREREPLIEDTHEMASTERWHOAREYOUWHOWISHESTOSTUDYHERECONFUSEDTHEMANTHOUGHTSOMEMOREFINALLYHEANSWEREDIAMAHUMANBENGTHATISONLYYOURSPECIESNOTWHOYOUAREWHOAREYOUWHOWISHESTOSTUDYHEREASCEDTHEMASTERAGAINAFTERAMOMENTOFTHOUGHTTHEPROFESSORREPLIEDIAMACONSCIAU",
+      "top5": [
+        {
+          "offsets": [
+            1033,
+            3300
+          ],
+          "score": -2.229201015391157
+        },
+        {
+          "offsets": [
+            1034,
+            3300
+          ],
+          "score": -2.4788261087096113
+        },
+        {
+          "offsets": [
+            1035,
+            3300
+          ],
+          "score": -2.6015085583074393
+        },
+        {
+          "offsets": [
+            1032,
+            3300
+          ],
+          "score": -2.6575765336162624
+        },
+        {
+          "offsets": [
+            1038,
+            3300
+          ],
+          "score": -3.379123909205441
+        }
+      ],
+      "actual": [
+        1033,
+        3300
+      ],
+      "prefixCorrect": 249,
+      "heldCorrect": 266
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "length": 515,
+      "offsets": [
+        3300,
+        761
+      ],
+      "ranks": [
+        2,
+        1
+      ],
+      "candidates": 64,
+      "prefixScore": -2.791511548926362,
+      "holdScore": -2.623809703458258,
+      "prefixPeak": 24,
+      "holdPeak": 18,
+      "fullReplay": true,
+      "prefixText": "THELOSSOFDIUINITYTHECIRCUMFERENCEPRACTICESTHREEBEHAUIARSWHICHCAUSETHELOSSOFDIUINITYCONSUMPTIANWECONSUMETOOMUCHBECAUSEWEBELEIUETHEFOLLOWNGTWOERRORSWITHINTHEDECEPTIANWEDONOTHAUEENOUGHORTHEREISNOTENOUGHWEHAUEWHATWEHAUENOWBYLUCCANDWEWILLNOTBESTRONGENOUGHLATERTOOBTAI",
+      "holdText": "NWHATWENEEDMOSTTHNGSARENOTWORTHCONSUMNGPRESERUATIANWEPRESERUETHNGSBECAUSEWEBELIEUEWEAREWEACIFWELOSETHEMWEWILLNOTBESTRONGENOUGHTOGAINTHEMAGAINTHISISTHEDECEPTIANMOSTTHNGSARENOTWORTHPRESERUNGADHERENCEWEFOLLOWDOGMASOTHATWECANBELONGANDBERIGHTORWEFOLLOWREASONSOWECANBELONGANDBERIGHTTHEREISNOTHNGTO",
+      "top5": [
+        {
+          "offsets": [
+            3300,
+            761
+          ],
+          "score": -2.791511548926362
+        },
+        {
+          "offsets": [
+            3299,
+            761
+          ],
+          "score": -2.797212060649419
+        },
+        {
+          "offsets": [
+            3300,
+            760
+          ],
+          "score": -3.187019983812766
+        },
+        {
+          "offsets": [
+            3299,
+            760
+          ],
+          "score": -3.194751298888641
+        },
+        {
+          "offsets": [
+            3300,
+            763
+          ],
+          "score": -3.3701619215051823
+        }
+      ],
+      "actual": [
+        3300,
+        761
+      ],
+      "prefixCorrect": 249,
+      "heldCorrect": 266
+    }
+  ],
+  "orig": {
+    "name": "p0-body plus p1",
+    "length": 515,
+    "offsets": [
+      500,
+      646
+    ],
+    "ranks": null,
+    "candidates": 64,
+    "prefixScore": -4.548582919822193,
+    "holdScore": null,
+    "prefixPeak": 24,
+    "holdPeak": 0,
+    "fullReplay": false,
+    "prefixText": "BIARIFSAOEAEMOETTNGJEDWEARHYAEHGSMASIRXTNGRSJRAEJIADOPFDNIMRNTHCRYEEAEUNCAETHJNASNGRGWTNGWHLWGMEUGRAELYADUEAUIDOTHROOIASEONEAIAUNGSPELREAWPLXCOLTHELILIAXITHBILUWANGYYUOESIEAPTEAHGJMREUICIAPEAUEJPMIENGTHUNFCMNEMFDTLTHNNGPSFRSOUNTHCCEARCTIAMWJIANGYXTHJRONESWIAIDHNNNACEGHHUEAHGFWYNSLEOMNTWEABOETRIA",
+    "holdText": null,
+    "top5": [
+      {
+        "offsets": [
+          500,
+          646
+        ],
+        "score": -4.548582919822193
+      },
+      {
+        "offsets": [
+          500,
+          645
+        ],
+        "score": -4.549622996738813
+      },
+      {
+        "offsets": [
+          92,
+          1229
+        ],
+        "score": -4.591304692088449
+      },
+      {
+        "offsets": [
+          92,
+          646
+        ],
+        "score": -4.599355215365681
+      },
+      {
+        "offsets": [
+          92,
+          645
+        ],
+        "score": -4.608547197530637
+      }
+    ]
+  }
+}
