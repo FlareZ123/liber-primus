@@ -263,7 +263,12 @@
         }
       ],
       "miss": 6,
-      "budget": 33
+      "budget": 33,
+      "requiredPeriod": 7,
+      "periodBoundary": [
+        68,
+        29
+      ]
     },
     {
       "d": 0,
@@ -602,7 +607,12 @@
         }
       ],
       "miss": 7,
-      "budget": 33
+      "budget": 33,
+      "requiredPeriod": 11,
+      "periodBoundary": [
+        47,
+        30
+      ]
     },
     {
       "d": 1,
@@ -866,7 +876,12 @@
         }
       ],
       "miss": 12,
-      "budget": 33
+      "budget": 33,
+      "requiredPeriod": 7,
+      "periodBoundary": [
+        70,
+        32
+      ]
     },
     {
       "d": 1,
@@ -1205,7 +1220,12 @@
         }
       ],
       "miss": 13,
-      "budget": 33
+      "budget": 33,
+      "requiredPeriod": 11,
+      "periodBoundary": [
+        39,
+        27
+      ]
     },
     {
       "d": 2,
@@ -1469,7 +1489,12 @@
         }
       ],
       "miss": 15,
-      "budget": 33
+      "budget": 33,
+      "requiredPeriod": 8,
+      "periodBoundary": [
+        34,
+        15
+      ]
     },
     {
       "d": 2,
@@ -1808,7 +1833,12 @@
         }
       ],
       "miss": 13,
-      "budget": 33
+      "budget": 33,
+      "requiredPeriod": 11,
+      "periodBoundary": [
+        47,
+        31
+      ]
     }
   ],
   "originals": [
@@ -2061,7 +2091,12 @@
         }
       ],
       "miss": 50,
-      "budget": 7
+      "budget": 7,
+      "requiredPeriod": 34,
+      "periodBoundary": [
+        8,
+        7
+      ]
     },
     {
       "a": 0,
@@ -2382,7 +2417,12 @@
         }
       ],
       "miss": 35,
-      "budget": 7
+      "budget": 7,
+      "requiredPeriod": 34,
+      "periodBoundary": [
+        8,
+        7
+      ]
     },
     {
       "a": 3,
@@ -2633,7 +2673,12 @@
         }
       ],
       "miss": 106,
-      "budget": 12
+      "budget": 12,
+      "requiredPeriod": 48,
+      "periodBoundary": [
+        13,
+        12
+      ]
     },
     {
       "a": 3,
@@ -2954,7 +2999,12 @@
         }
       ],
       "miss": 86,
-      "budget": 12
+      "budget": 12,
+      "requiredPeriod": 48,
+      "periodBoundary": [
+        13,
+        12
+      ]
     },
     {
       "a": 8,
@@ -3205,7 +3255,12 @@
         }
       ],
       "miss": 163,
-      "budget": 19
+      "budget": 19,
+      "requiredPeriod": 64,
+      "periodBoundary": [
+        20,
+        19
+      ]
     },
     {
       "a": 8,
@@ -3526,7 +3581,12 @@
         }
       ],
       "miss": 137,
-      "budget": 19
+      "budget": 19,
+      "requiredPeriod": 64,
+      "periodBoundary": [
+        20,
+        19
+      ]
     },
     {
       "a": 15,
@@ -3777,7 +3837,12 @@
         }
       ],
       "miss": 190,
-      "budget": 21
+      "budget": 21,
+      "requiredPeriod": 69,
+      "periodBoundary": [
+        22,
+        21
+      ]
     },
     {
       "a": 15,
@@ -4098,7 +4163,12 @@
         }
       ],
       "miss": 151,
-      "budget": 21
+      "budget": 21,
+      "requiredPeriod": 69,
+      "periodBoundary": [
+        22,
+        21
+      ]
     },
     {
       "a": 23,
@@ -4349,7 +4419,12 @@
         }
       ],
       "miss": 89,
-      "budget": 11
+      "budget": 11,
+      "requiredPeriod": 42,
+      "periodBoundary": [
+        12,
+        11
+      ]
     },
     {
       "a": 23,
@@ -4670,7 +4745,12 @@
         }
       ],
       "miss": 69,
-      "budget": 11
+      "budget": 11,
+      "requiredPeriod": 42,
+      "periodBoundary": [
+        12,
+        11
+      ]
     },
     {
       "a": 27,
@@ -4921,7 +5001,12 @@
         }
       ],
       "miss": 127,
-      "budget": 16
+      "budget": 16,
+      "requiredPeriod": 53,
+      "periodBoundary": [
+        17,
+        16
+      ]
     },
     {
       "a": 27,
@@ -5242,7 +5327,12 @@
         }
       ],
       "miss": 107,
-      "budget": 16
+      "budget": 16,
+      "requiredPeriod": 53,
+      "periodBoundary": [
+        17,
+        16
+      ]
     },
     {
       "a": 33,
@@ -5493,7 +5583,12 @@
         }
       ],
       "miss": 162,
-      "budget": 18
+      "budget": 18,
+      "requiredPeriod": 59,
+      "periodBoundary": [
+        20,
+        18
+      ]
     },
     {
       "a": 33,
@@ -5814,7 +5909,12 @@
         }
       ],
       "miss": 135,
-      "budget": 18
+      "budget": 18,
+      "requiredPeriod": 59,
+      "periodBoundary": [
+        20,
+        18
+      ]
     },
     {
       "a": 40,
@@ -6065,7 +6165,12 @@
         }
       ],
       "miss": 347,
-      "budget": 33
+      "budget": 33,
+      "requiredPeriod": 90,
+      "periodBoundary": [
+        35,
+        33
+      ]
     },
     {
       "a": 40,
@@ -6386,7 +6491,12 @@
         }
       ],
       "miss": 264,
-      "budget": 33
+      "budget": 33,
+      "requiredPeriod": 90,
+      "periodBoundary": [
+        35,
+        33
+      ]
     },
     {
       "a": 54,
@@ -6637,7 +6747,12 @@
         }
       ],
       "miss": 14,
-      "budget": 3
+      "budget": 3,
+      "requiredPeriod": 14,
+      "periodBoundary": [
+        4,
+        3
+      ]
     },
     {
       "a": 54,
@@ -6958,7 +7073,12 @@
         }
       ],
       "miss": 4,
-      "budget": 3
+      "budget": 3,
+      "requiredPeriod": 14,
+      "periodBoundary": [
+        4,
+        3
+      ]
     }
   ],
   "inputBlobs": {
