@@ -36,6 +36,34 @@ The best ordinary candidate scores −5.662977 nats/rune. All mode/layout winnin
 
 [Read-only Node/CommonJS SFT](../sims/lp2_p27_p55_shamir_allweights_pad_sft.cjs) · [complete original and planted results](lp2-p27-p55-shamir-allweights-pad-output.json). Executed directly against the repository source in Code Mode; no CI execution is claimed.
 
+## Exact large-field receiver: GF(3301) with every affine share combination (Agent14, 25 November)
+
+The conditional [p27 DIVINITY serializer](lp2-p55-p27-redheading-we-must-shed-route.md#terminal-prime-serializer-candidate) yields the historical prime 3301. This motivates a distinct field choice from GF29: treat the three previously frozen p27 layouts as shares over GF(3301), and require the full original p55 ciphertext and unknown plaintext to use the same **literal** Gematria alphabet embedded either as indices 0–28 or as the original 29 chart primes. The historical Shamir precedent and the candidate 3301 source route do not authenticate this field or the share interpretation; this is a finite conditional attack, not a recovered historical key.
+
+For a triple of embedded share values `(x,y,z)`, the complete affine receiver is
+
+```
+K_j = a*x_j + b*y_j + c*z_j + d mod 3301
+C_i = P_i + K_j mod 3301
+```
+
+with all four coefficients independently secret and both the ordinary and exact historical plaintext-F hold clocks. In the latter, a held F emits the actual F rune and does not consume the next triple; all eight subsets of the three original p55 F glyphs are considered. A consuming plaintext may not be F in this mode. Prime embedding holds the F glyph (chart value 2), not the numeric field element 0. There is no output reduction modulo 29, word-boundary assumption, scoring, extra phase or guessed key. All four layouts from the preceding section are retained without change.
+
+The attack selects four linearly independent actual share rows `[x,y,z,1]` by exact elimination over GF(3301). For each admissible assignment of four embedded plaintext values, its difference with the authentic ciphertext uniquely determines the four coefficients. Checking the remaining positions therefore exhausts **every** field coefficient tuple, including degenerate and constant keys, without a brute-force 3301^4 loop. All original masks have full rank. For each complete witness the inverse and forward encoder exactly replay all 76 glyphs. For ordinary mode there are 29^4 anchor assignments per layout/embedding; for F-hold there are 28^4 per mask. A narrower independent two-row solve also exhausts all nonzero normalized Shamir weights a+b+c=1, both signs, and both clocks.
+
+| Exact original family | Tested scope | Full candidates |
+| --- | --- | --- |
+| Normalized GF3301 Shamir key | Four layouts, two embeddings, two signs, 1 ordinary + 8 F-hold masks each | 0; all candidates die by the eighth consumed symbol |
+| Arbitrary affine GF3301 share key | Four layouts, two embeddings, 1 ordinary + 8 F-hold masks each; 44,996,232 four-anchor assignments | 16 mode/layout/embedding witnesses, all coefficients [0,0,0,0] |
+
+All nonidentity affine original candidates fail by consumed symbol40 at latest. The trivial all-zero key has one valid mask per F-hold case (all original F glyphs held) and leaves the ciphertext entirely unchanged. The absence of any nontrivial key is independent of English likelihood and printed word segmentation.
+
+Controls: for each of the two embeddings, construct ordinary and F-hold share triples to encrypt the first 76 authentic clear p57 runes under independently fixed nonzero coefficients. The share triples are synthetic and deliberately chosen to keep the encryption inside the required alphabet; they are not original p27 values and establish only inverse correctness. The normalized attack uniquely recovers all four planted keys and all 304/304 runes. The larger affine attack retains the true coefficient vector and all 76 runes in each control, with 7, 7, 2, 2 feasible complete witnesses respectively; alphabet membership alone does not identify the planted key uniquely. The larger attack is an exact feasibility test, not a claim that the first feasible candidate is plaintext.
+
+**Decision:** retire direct large-field GF(3301) interpolation/additive encipherment of p55 from the three p27 tapes under either literal GP embedding, even allowing every affine mixture. This does not exclude a field-to-rune transport such as a separately authored modulo29 extraction, a polynomial/nonlinear combiner, packed messages or an unrelated use of 3301. None is independently specified by the original source. The result does not establish or refute the upstream DIVINITY checksum route, and no unknown plaintext or authentic key is recovered.
+
+[Normalized inverse SFT](../sims/lp2_p27_p55_gf3301_shamir_gp_register_sft.cjs) · [raw](lp2-p27-p55-gf3301-shamir-gp-register-output.json) · [all-affine inverse SFT](../sims/lp2_p27_p55_gf3301_affine_gp_register_sft.cjs) · [raw](lp2-p27-p55-gf3301-affine-gp-register-output.json). Executed directly against canonical corpus blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165` in Code Mode; no CI execution is claimed.
+
 ## Source-selected setup and new finite hypothesis
 
 The final **six original p55 ciphertext runes** are the two complete printed words **DJU BEI**. They occur verbatim as two printed words on original physical p27 at local rune offsets **28–33**. P27 carries a conspicuous single illustrated wing and p55 a complete moth/cicada. The exact repeated marker and the unique p55/p56 cross-page seven-rune seam were established earlier in [the source-repeat investigation](p27-p54-repeated-7gram-periodic-key-gate.md); ciphertext equality does not imply plaintext equality.
