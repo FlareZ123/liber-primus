@@ -91,7 +91,16 @@ The LCG state sequence `x_t` is itself a permutation of all 256 original cell in
 - Applied to p56+p57, the two permutations match the known plaintext at only **7/180** and **10/180** positions (the same transformed streams match the ciphertext at 9/180).
 - As another direct-position control, the LCG-ordered raw table values modulo 76 have only 51 unique values; modulo 180, only 106. They therefore do not define permutations of the 76- or 180-symbol text segments.
 
-This rejects the straightforward LCG-state transposition consumer as well as the table-byte pad/plaintext consumers. The seed and direction were fixed from the source-derived construction; no arbitrary seed or phase sweep was run.
+This rejects the straightforward LCG-state transposition consumer as well as the table-byte pad/plaintext/XOR consumers. The seed and direction were fixed from the source-derived construction; no arbitrary seed or phase sweep was run.
+
+### Five-bit XOR pad control
+
+Because GP29 runes are indexed 0–28, a byte-table interpretation could also suggest a 5-bit XOR pad. I computed the exact required pad `cipher_index XOR plaintext_index` for the 180 known p56+p57 runes (all required values lie in 0–31), then compared it with the row-major and LCG-filtered interior table bytes reduced modulo 32.
+
+- Required XOR-pad matches: **6/180** for row-major interior and **7/180** for LCG-filtered interior.
+- Applying either perimeter stream (byte mod32) to p55 by XOR produces 7–8 values outside the GP29 range 0–28; neither output is readable.
+
+This rejects the direct 5-bit XOR-pad consumer under the same 76/180 split.
 
 **Interpretation:** reject the exact composite `2016 seed 22 → 2014 133/331 LCG → original-cell perimeter/interior filter → byte mod29` as (a) direct p56+p57 plaintext, (b) their additive key, or (c) a p55 perimeter additive key; the cell-index transposition alternatives also fail the known-plaintext and p55 language gates. The 76/180 dimensional correspondence remains an interesting structural observation, but it does not supply this decryption. This test does not rule out other uses of the p50 table, different cipher families, or a separately sourced operation; do not rescue this branch by tuning the seed, phase, byte map, or cell order.
 
