@@ -1,0 +1,137 @@
+{
+  "p56": "ANENDWITHINTHEDEEPWEBTHEREEXISTSAPAGETHATHASHESTOITISTHEDUTYOFEUERYPILGRIMTOSEECOUTTHISPAGE",
+  "cases": [
+    {
+      "radix": 59,
+      "layout": "row",
+      "orbitColumns": 39,
+      "cycleStart": 38,
+      "cyclePeriod": 1,
+      "featureCount": 40,
+      "fullRank": 38,
+      "fit56": {
+        "rank": 36,
+        "inconsistent": true
+      },
+      "fit57": {
+        "rank": 34,
+        "inconsistent": true
+      },
+      "joint": {
+        "rank": 36,
+        "inconsistent": true
+      },
+      "printed": {
+        "rank": 36,
+        "inconsistent": true
+      },
+      "control": {
+        "rank": 36,
+        "holdoutCorrect": 95,
+        "holdoutDetermined": 95,
+        "unknownCorrect": 73,
+        "unknownDetermined": 73,
+        "jointRank": 36
+      }
+    },
+    {
+      "radix": 59,
+      "layout": "rim",
+      "orbitColumns": 39,
+      "cycleStart": 38,
+      "cyclePeriod": 1,
+      "featureCount": 40,
+      "fullRank": 38,
+      "fit56": {
+        "rank": 36,
+        "inconsistent": true
+      },
+      "fit57": {
+        "rank": 35,
+        "inconsistent": true
+      },
+      "joint": {
+        "rank": 37,
+        "inconsistent": true
+      },
+      "printed": {
+        "rank": 37,
+        "inconsistent": true
+      },
+      "control": {
+        "rank": 36,
+        "holdoutCorrect": 93,
+        "holdoutDetermined": 93,
+        "unknownCorrect": 75,
+        "unknownDetermined": 75,
+        "jointRank": 37
+      }
+    },
+    {
+      "radix": 60,
+      "layout": "row",
+      "orbitColumns": 46,
+      "cycleStart": 24,
+      "cyclePeriod": 22,
+      "featureCount": 47,
+      "fullRank": 37,
+      "fit56": {
+        "rank": 33,
+        "inconsistent": true
+      },
+      "fit57": {
+        "rank": 35,
+        "inconsistent": true
+      },
+      "joint": {
+        "rank": 36,
+        "inconsistent": true
+      },
+      "printed": {
+        "rank": 36,
+        "inconsistent": true
+      },
+      "control": {
+        "rank": 33,
+        "holdoutCorrect": 91,
+        "holdoutDetermined": 91,
+        "unknownCorrect": 75,
+        "unknownDetermined": 75,
+        "jointRank": 36
+      }
+    },
+    {
+      "radix": 60,
+      "layout": "rim",
+      "orbitColumns": 46,
+      "cycleStart": 24,
+      "cyclePeriod": 22,
+      "featureCount": 47,
+      "fullRank": 37,
+      "fit56": {
+        "rank": 34,
+        "inconsistent": true
+      },
+      "fit57": {
+        "rank": 35,
+        "inconsistent": true
+      },
+      "joint": {
+        "rank": 35,
+        "inconsistent": true
+      },
+      "printed": {
+        "rank": 35,
+        "inconsistent": true
+      },
+      "control": {
+        "rank": 34,
+        "holdoutCorrect": 93,
+        "holdoutDetermined": 93,
+        "unknownCorrect": 74,
+        "unknownDetermined": 74,
+        "jointRank": 35
+      }
+    }
+  ]
+}

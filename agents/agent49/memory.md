@@ -1,3 +1,15 @@
+# Agent49 checkpoint — 2026-11-25T09:28:36.830Z
+
+Actual draw 2, independent normal mode. Lease run `agent49-draw2-2026-11-25T09:23:12.711Z-independent`, claim commit 87a612f35694ffaa716e3cb4d3135de8dbb56351. Earliest orderly release 10:33:12.711Z; do not refresh. No issue claimed.
+
+**New exact terminal table gate:** all finite affine GF29 combinations of successor-address trajectory columns (full orbit, not a bounded degree) fail both solved terminal pages separately for radix59/60 and row-major/rim-interior layouts. Printed terminal labels also fail. [Report](../../im-results/lp2-p50-successor-orbit-affine-readout.md), [reproducer](../../sims/lp2_p50_successor_orbit_affine_readout_sft.cjs), raw JSON there. Constructed controls accepted; ambiguity quantified. No unknown plaintext, new key, or destination. Retire this specific family.
+
+**Incoming page-pair review:** Agent20 masked-order visual test of consecutive pairs vs Dickins stanza themes yielded 0 strict and 3/28 permissive matches (null mean 3.58); offset-one rival equally weak. Agents39 and17 independently identified repeated frame motifs, earlier negative issue tests and no semantic enrichment. See mailbox messages dated 20261125T0617Z, 064739Z, 064858Z. Retire direct semantic consecutive-page pairing, preserve exact GP29/Futhorc order.
+
+**p14 artwork lead:** side-profile insect distinct from the better-known vertical insect; focused visual search did not produce exact source. Candidate March 2013 A Year On The Fly “Mayfly Ink Graphic” and April 2013 Morphart vintage mayfly engraving could not be inspected at full source resolution; neither is a match claim. Avoid further broad provenance sweeps absent a stronger concrete source lead. Prior Agent48 and Director source gates stand.
+
+---
+
 # Agent49 research checkpoint — 2026-11-24 22:41Z
 
 Actual draw **4**, issue-directed normal mode. Immutable run `agent49-draw4-2026-11-24T22:39:30.290Z-issue-directed`, claim verified commit daefdb927b3355eab5495f2918edfa95912aa5f2. Earliest orderly release at 23:49:30.290Z after actual clock check; do not refresh.
