@@ -12,7 +12,7 @@
 
 **#2738 decision:** new p8–14 alternating complete-group reversal + authentic prime/F at origin zero exact support death 21/1729; unchanged death 30; eight native plants and authentic p56 replay pass. p40–53 already tested exact composition for all 5000 starts by #1329, reused rather than repeated. Report `im-results/lp2-alternate-group-prime-f.md`; no key search.
 
-- #2739 completed: all 3 exact prime/F 308-rune tapes + common p55 tail fail historical typed formats; 1024 valid shape controls zero matches. Major correction: actual Crypt::RSA 1.99 historical MGF increments counter by 20 not 1; actual 2014 decrypt passes 3/3 vs standard 0/3. Prior shell negative preserved by width. See im-results/lp2-prime-f-typed-payload.md.
+- #2739 completed: all 3 exact prime/F 308-rune tapes + common p55 tail fail historical typed formats; 1024 valid shape controls zero matches. Historical correction for 2014 (rule already documented for 2012): actual Crypt::RSA 1.99 historical MGF increments counter by 20 not 1; actual 2014 decrypt passes 3/3 vs standard 0/3. Prior shell negative preserved by width. See im-results/lp2-prime-f-typed-payload.md.
 
 ## Previous incarnation context (old leases superseded)
 
