@@ -122,7 +122,58 @@ function run(corpus, solved, sourceText, dictionaryText) {
     holdPlants++;
   }
 
-  return {originalWords:original.length,originalRunes:original.flat().length,uniqueLexiconRuneSequences:lex.size,plants,counts,examples,holdPlants,ambiguousZeroPlants,holdCounts,holdExamples};
+
+  // Outer inverse projective map before differencing. All affine outer
+  // inverses are equivalent to identity; each non-affine outer inverse
+  // u + v/(x-r) is equivalent to reciprocal about r, since differences
+  // discard u and the inner projective map absorbs the nonzero scale v.
+  const outerRepresentatives=v=>[-1,...Array.from({length:29},(_,r)=>r).filter(r=>!v.includes(r))];
+  const outer=(v,r)=>r===-1?v:v.map(x=>inv[mod(x-r)]);
+  const nestedCounts={},nestedExamples={ordinary:[],hold:[],ordinaryEither:[],holdEither:[]};
+  function getNested(c,held){
+    const out=new Map(),avail=held?fmask(c):0;
+    for(let m=avail;;m=(m-1)&avail){
+      const v=strip(c,m);
+      for(const r of outerRepresentatives(v)){
+        const q=delta(outer(v,r));
+        const arr=held?(holdIndex.delta.get(holdKey(c.length,m,q))||[]):get('delta',q);
+        for(const e of arr)out.set(e.v.join(','),e);
+      }
+      if(m===0)break;
+    }
+    return [...out.values()];
+  }
+  for(let wi=0;wi<original.length;wi++){
+    const c=original[wi],n=c.length;if(n<6)continue;
+    const rev=[...c].reverse();
+    const ordinary=getNested(c,false),hold=getNested(c,true);
+    const sets={ordinary,hold,ordinaryEither:[...ordinary,...getNested(rev,false)],holdEither:[...hold,...getNested(rev,true)]};
+    const row=nestedCounts[n]??={total:0,ordinary:0,hold:0,ordinaryEither:0,holdEither:0};row.total++;
+    for(const mode of Object.keys(sets))if(sets[mode].length){row[mode]++;if(n>=9)nestedExamples[mode].push({wordIndex:wi,cipher:c.map(x=>corpus.translit[x]).join(''),candidates:[...new Set(sets[mode].map(e=>e.word))].slice(0,12)})}
+  }
+  let nestedPlants=0,nestedHoldPlants=0;
+  for(const p of native.filter(v=>v.length>=6&&v.length<=14)){
+    for(const held of [false,true]){
+      const v=held?p.filter(x=>x!==0):p;
+      const pole=Array.from({length:29},(_,i)=>i).find(x=>!v.includes(x));
+      const a=7,b=mod(1-a*pole);
+      const enc=x=>mod((a*x+b)*inv[mod(x-pole)]);
+      const dec=y=>mod((y*pole+b)*inv[mod(y-a)]);
+      const latent=[17];for(const x of v.slice(1))latent.push(mod(latent[latent.length-1]+enc(x)));
+      const outerPole=Array.from({length:29},(_,i)=>i).find(x=>!latent.includes(x));
+      const oa=11,ob=mod(1-oa*outerPole);
+      const oenc=x=>mod((oa*x+ob)*inv[mod(x-outerPole)]);
+      const odec=y=>mod((y*outerPole+ob)*inv[mod(y-oa)]);
+      const consumed=latent.map(oenc);
+      check(consumed.every((x,i)=>odec(x)===latent[i]),'outer exact inverse');
+      check(delta(consumed.map(odec)).every((x,i)=>dec(x)===v[i+1]),'inner exact inverse');
+      let j=0;const c=held?p.map(x=>x===0?0:consumed[j++]):consumed;
+      check(getNested(c,held).some(e=>e.v.join(',')===p.join(',')),'nested native lexical recovery');
+      if(held)nestedHoldPlants++;else nestedPlants++;
+    }
+  }
+
+  return {originalWords:original.length,originalRunes:original.flat().length,uniqueLexiconRuneSequences:lex.size,plants,counts,examples,holdPlants,ambiguousZeroPlants,holdCounts,holdExamples,nestedCounts,nestedExamples,nestedPlants,nestedHoldPlants};
 }
 const result=run(JSON.parse(load("resources/liber-primus/lp2-corpus.json")),JSON.parse(load("resources/external/relikd-solved-gp29-native-v1.json")),load("resources/liber-primus/lp2-transcription.txt"),load("resources/control/english_wordfreq_textblob.txt"));
 console.log(JSON.stringify(result,null,2));
