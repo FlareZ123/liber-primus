@@ -202,7 +202,7 @@ function experiment(corpus, reference) {
       const c=ksRun(d.x,k,hold,true),z=ksRank(c,split,hold),p=z.p;
       const correctHold=p?p.slice(split).filter((v,j)=>v===d.x[split+j]).length:0;
       delete z.p;delete z.readout;
-      output.keyword.controls.push({hold,donor:d.name,planted:k,correctHold,holdLength:d.x.length-split,...z});
+      output.keyword.controls.push({fBypass:hold,donor:d.name,planted:k,correctHold,holdLength:d.x.length-split,...z});
     }
   }
   return output;
