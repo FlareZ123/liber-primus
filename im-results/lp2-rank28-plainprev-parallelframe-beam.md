@@ -36,3 +36,23 @@ All used training key rows recover (26,28,28); Gibran has one unseen training ro
 - `im-results/lp2-rank28-plainprev-parallelframe-beam-output.json` — actual V8 execution; no Windows CI claim.
 
 Two early control setup attempts failed because the reserved literary tail was too short for 12,861 symbols; fixed at 16,000 before the successful pilot. The successful pilot informed retention of width64; the other two donors/keys were fresh controls. No original-data hyperparameter tuning. Do not extrapolate this result to arbitrary plaintext-indexed bijections, alternate rank alphabets, nonreset state, or a different plaintext distribution. No new deciphered rune.
+
+
+## Full GP29 moving escape and predecessor shift (Agent15, 25 November)
+
+Unlike the GP28 repeat-as-delimiter receiver above, retain every repeat event as a genuine plaintext symbol. The previous plaintext rune q selects a secret escape E[q]∈GP29 and shift s[q]∈Z28. Let d=C[i]−C[i−1] mod29. If d=0, P=E[q]; otherwise r=(log_15(d)−s[q]) mod28, P=r+[r≥E[q]]. The forward operation is bijective for each q and updates q=P. This is 812 possible rows per previous plaintext state, 29 rows, all GP29 symbols. The page's first ciphertext rune is a public IV, q=F (index0) at the first transition, and no other reset or printed word boundary. The source does not authenticate the page reset, 15-root rank, escape law or shift. It is motivated by the 86 suppressed equalities and the historical GP29 register, not an independent source selector. This differs from fixed escape or shared shift, and from #2273 Agent28's variable-length escape obstruction.
+
+**Blind solver:** fit smoothed native unigram/bigram/trigram on first portions of three donors, reserve final16,000 runes each. Use 55 original physical page frames, 12,901 modeled transitions (55 IVs). Training pages p3–14 and p23–55 (10,280 transitions), withheld p0–2 and p15–22 (2,621). A beam initially branched over all812 full-row values and failed the development control. The improved beam branches only over distinct forced outputs of the currently blocked ciphertext differences, maintaining the complete domain of equivalent rows; propagate all frames until an ambiguity, select most blocked predecessor state, rank by cumulative language gain over uniform. Width64. Then optimize all training sequences by coordinate descent: per row test all escapes at current/adjacent shifts and all shifts at current escape; visit rows by decoded frequency, max12 sweeps, stop at no improvement. Only training text scores enter inference. Full row identities need not be unique if rare transitions are absent; measure plaintext recovery separately. Every selected inverse replays its complete increment sequence, and original IV+increment reconstruction checks every physical glyph.
+
+Native control keys choose escape values among five conditional successor probabilities nearest .00664 in the training corpus, with independently sampled shifts; no plaintext or hidden key supplied to solver. Held-out donor tails have matched physical frame lengths; exact original repeat counts are not imposed. Gibran is a development control used to design the lazy domain + refinement algorithm, the other two frozen independent-key controls are fresh.
+
+| Input | Train repeats / gain | Withheld repeats / gain | Exact train / withheld runes |
+|---|---:|---:|---:|
+| Gibran development | 38 / +1.144 | 15 / +1.038 | 10,280/10,280; 2,575/2,621 |
+| Shakespeare fresh | 66 / +1.018 | 12 / +0.964 | 10,280/10,280; 2,621/2,621 |
+| Emerson fresh | 68 / +1.074 | 19 / +1.046 | 10,256/10,280; 2,611/2,621 |
+| Original | 72 / −2.829 | 14 / −3.135 | Unknown; no readable prose |
+
+Gain is nats per modeled transition relative to uniform GP29. Original train/heldout outputs are incoherent and strongly separated from these three true-law controls. The original fit is a bounded heuristic search, not an all-key exclusion. The fresh controls recover 99.81% of withheld runes combined, with observationally ambiguous row keys (21/29 true rows each). No actual LP2 plaintext or authenticated key recovered. Retire the fixed physical-page-reset variant as a priority; continuous state, other row families and independent keys remain outside this test.
+
+[CommonJS SFT](../sims/lp2_gp29_plainprev_escape_parallelpage_beam_sft.cjs) (run from repo root), [fresh Shakespeare](lp2-gp29-plainprev-escape-fresh-shakespeare.json), [fresh Emerson](lp2-gp29-plainprev-escape-fresh-emerson.json), [frozen original](lp2-gp29-plainprev-escape-original.json). Core experiments ran in connected JS with fetched repo inputs; no standalone Node/Windows CI claim. Dev summary above was measured in the runtime before freezing; main script reruns all three.
