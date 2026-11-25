@@ -25,6 +25,43 @@
   },
   "cases": [
     {
+      "item": "shared0",
+      "repeats": [
+        3,
+        1,
+        3,
+        1,
+        2
+      ],
+      "score": 714.4025224850642,
+      "trueScore": 708.897457921351,
+      "skip": [
+        3,
+        1,
+        4,
+        4,
+        2
+      ],
+      "trueSkip": [
+        3,
+        1,
+        4,
+        4,
+        2
+      ],
+      "match": [
+        201,
+        201,
+        200,
+        200,
+        201
+      ],
+      "pass": true,
+      "explored": 270988,
+      "pruned": 235144,
+      "retained": 105076
+    },
+    {
       "item": "shared1",
       "repeats": [
         1,
@@ -252,5 +289,5 @@
       "retained": 108573
     }
   ],
-  "cache": 149811
+  "cache": "shared0 separate batch; shared1–3 and null0–3 combined"
 }
