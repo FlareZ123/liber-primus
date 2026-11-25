@@ -1,0 +1,788 @@
+{
+  "dictionaryTypes": 10849,
+  "controls": [
+    {
+      "k": 0,
+      "forced": [
+        183,
+        183
+      ],
+      "key": 183,
+      "components": [
+        {
+          "start": 0,
+          "end": 5,
+          "assignments": "2"
+        },
+        {
+          "start": 5,
+          "end": 17,
+          "assignments": "3"
+        },
+        {
+          "start": 17,
+          "end": 22,
+          "assignments": "2"
+        },
+        {
+          "start": 22,
+          "end": 54,
+          "assignments": "138"
+        },
+        {
+          "start": 54,
+          "end": 91,
+          "assignments": "1"
+        },
+        {
+          "start": 91,
+          "end": 102,
+          "assignments": "3"
+        },
+        {
+          "start": 102,
+          "end": 110,
+          "assignments": "1"
+        },
+        {
+          "start": 110,
+          "end": 114,
+          "assignments": "1"
+        },
+        {
+          "start": 114,
+          "end": 116,
+          "assignments": "71"
+        },
+        {
+          "start": 116,
+          "end": 120,
+          "assignments": "6"
+        },
+        {
+          "start": 120,
+          "end": 129,
+          "assignments": "3"
+        },
+        {
+          "start": 129,
+          "end": 139,
+          "assignments": "66"
+        },
+        {
+          "start": 139,
+          "end": 142,
+          "assignments": "6"
+        },
+        {
+          "start": 142,
+          "end": 153,
+          "assignments": "129"
+        },
+        {
+          "start": 153,
+          "end": 158,
+          "assignments": "3"
+        },
+        {
+          "start": 158,
+          "end": 163,
+          "assignments": "2"
+        },
+        {
+          "start": 163,
+          "end": 165,
+          "assignments": "10"
+        },
+        {
+          "start": 165,
+          "end": 173,
+          "assignments": "18"
+        },
+        {
+          "start": 173,
+          "end": 175,
+          "assignments": "5"
+        },
+        {
+          "start": 175,
+          "end": 204,
+          "assignments": "2"
+        },
+        {
+          "start": 204,
+          "end": 233,
+          "assignments": "24"
+        },
+        {
+          "start": 233,
+          "end": 250,
+          "assignments": "2"
+        },
+        {
+          "start": 250,
+          "end": 265,
+          "assignments": "619"
+        },
+        {
+          "start": 265,
+          "end": 300,
+          "assignments": "1638"
+        },
+        {
+          "start": 300,
+          "end": 308,
+          "assignments": "1"
+        }
+      ],
+      "unique": false
+    },
+    {
+      "k": 1,
+      "forced": [
+        209,
+        209
+      ],
+      "key": 209,
+      "components": [
+        {
+          "start": 0,
+          "end": 4,
+          "assignments": "17"
+        },
+        {
+          "start": 4,
+          "end": 22,
+          "assignments": "3"
+        },
+        {
+          "start": 22,
+          "end": 37,
+          "assignments": "1"
+        },
+        {
+          "start": 37,
+          "end": 46,
+          "assignments": "2"
+        },
+        {
+          "start": 46,
+          "end": 132,
+          "assignments": "98059"
+        },
+        {
+          "start": 132,
+          "end": 150,
+          "assignments": "3"
+        },
+        {
+          "start": 150,
+          "end": 153,
+          "assignments": "32"
+        },
+        {
+          "start": 153,
+          "end": 166,
+          "assignments": "1"
+        },
+        {
+          "start": 166,
+          "end": 179,
+          "assignments": "18"
+        },
+        {
+          "start": 179,
+          "end": 187,
+          "assignments": "5"
+        },
+        {
+          "start": 187,
+          "end": 203,
+          "assignments": "2"
+        },
+        {
+          "start": 203,
+          "end": 220,
+          "assignments": "30"
+        },
+        {
+          "start": 220,
+          "end": 250,
+          "assignments": "16"
+        },
+        {
+          "start": 250,
+          "end": 294,
+          "assignments": "513"
+        },
+        {
+          "start": 294,
+          "end": 296,
+          "assignments": "5"
+        },
+        {
+          "start": 296,
+          "end": 308,
+          "assignments": "1"
+        }
+      ],
+      "unique": false
+    },
+    {
+      "k": 2,
+      "forced": [
+        147,
+        147
+      ],
+      "key": 147,
+      "components": [
+        {
+          "start": 0,
+          "end": 10,
+          "assignments": "58"
+        },
+        {
+          "start": 10,
+          "end": 15,
+          "assignments": "3"
+        },
+        {
+          "start": 15,
+          "end": 23,
+          "assignments": "2"
+        },
+        {
+          "start": 23,
+          "end": 98,
+          "assignments": "1314900"
+        },
+        {
+          "start": 98,
+          "end": 109,
+          "assignments": "2"
+        },
+        {
+          "start": 109,
+          "end": 140,
+          "assignments": "16"
+        },
+        {
+          "start": 140,
+          "end": 151,
+          "assignments": "2"
+        },
+        {
+          "start": 151,
+          "end": 163,
+          "assignments": "1515"
+        },
+        {
+          "start": 163,
+          "end": 167,
+          "assignments": "7"
+        },
+        {
+          "start": 167,
+          "end": 176,
+          "assignments": "1"
+        },
+        {
+          "start": 176,
+          "end": 188,
+          "assignments": "2"
+        },
+        {
+          "start": 188,
+          "end": 191,
+          "assignments": "17"
+        },
+        {
+          "start": 191,
+          "end": 193,
+          "assignments": "6"
+        },
+        {
+          "start": 193,
+          "end": 214,
+          "assignments": "12"
+        },
+        {
+          "start": 214,
+          "end": 231,
+          "assignments": "123"
+        },
+        {
+          "start": 231,
+          "end": 238,
+          "assignments": "2"
+        },
+        {
+          "start": 238,
+          "end": 244,
+          "assignments": "2"
+        },
+        {
+          "start": 244,
+          "end": 275,
+          "assignments": "1751"
+        },
+        {
+          "start": 275,
+          "end": 306,
+          "assignments": "9"
+        },
+        {
+          "start": 306,
+          "end": 308,
+          "assignments": "8"
+        }
+      ],
+      "unique": false
+    }
+  ],
+  "nulls": [
+    {
+      "k": 0,
+      "feasibleRunes": 67,
+      "components": [
+        {
+          "start": 0,
+          "end": 5,
+          "assignments": "3"
+        },
+        {
+          "start": 5,
+          "end": 17,
+          "assignments": "0"
+        },
+        {
+          "start": 17,
+          "end": 22,
+          "assignments": "0"
+        },
+        {
+          "start": 22,
+          "end": 54,
+          "assignments": "0"
+        },
+        {
+          "start": 54,
+          "end": 91,
+          "assignments": "0"
+        },
+        {
+          "start": 91,
+          "end": 102,
+          "assignments": "0"
+        },
+        {
+          "start": 102,
+          "end": 110,
+          "assignments": "0"
+        },
+        {
+          "start": 110,
+          "end": 114,
+          "assignments": "1"
+        },
+        {
+          "start": 114,
+          "end": 116,
+          "assignments": "5"
+        },
+        {
+          "start": 116,
+          "end": 120,
+          "assignments": "0"
+        },
+        {
+          "start": 120,
+          "end": 129,
+          "assignments": "0"
+        },
+        {
+          "start": 129,
+          "end": 139,
+          "assignments": "18"
+        },
+        {
+          "start": 139,
+          "end": 142,
+          "assignments": "7"
+        },
+        {
+          "start": 142,
+          "end": 153,
+          "assignments": "14"
+        },
+        {
+          "start": 153,
+          "end": 158,
+          "assignments": "0"
+        },
+        {
+          "start": 158,
+          "end": 163,
+          "assignments": "1"
+        },
+        {
+          "start": 163,
+          "end": 165,
+          "assignments": "7"
+        },
+        {
+          "start": 165,
+          "end": 173,
+          "assignments": "2"
+        },
+        {
+          "start": 173,
+          "end": 175,
+          "assignments": "7"
+        },
+        {
+          "start": 175,
+          "end": 204,
+          "assignments": "0"
+        },
+        {
+          "start": 204,
+          "end": 233,
+          "assignments": "0"
+        },
+        {
+          "start": 233,
+          "end": 250,
+          "assignments": "0"
+        },
+        {
+          "start": 250,
+          "end": 265,
+          "assignments": "82"
+        },
+        {
+          "start": 265,
+          "end": 300,
+          "assignments": "0"
+        },
+        {
+          "start": 300,
+          "end": 308,
+          "assignments": "0"
+        }
+      ]
+    },
+    {
+      "k": 1,
+      "feasibleRunes": 9,
+      "components": [
+        {
+          "start": 0,
+          "end": 4,
+          "assignments": "5"
+        },
+        {
+          "start": 4,
+          "end": 22,
+          "assignments": "0"
+        },
+        {
+          "start": 22,
+          "end": 37,
+          "assignments": "0"
+        },
+        {
+          "start": 37,
+          "end": 46,
+          "assignments": "0"
+        },
+        {
+          "start": 46,
+          "end": 132,
+          "assignments": "0"
+        },
+        {
+          "start": 132,
+          "end": 150,
+          "assignments": "0"
+        },
+        {
+          "start": 150,
+          "end": 153,
+          "assignments": "5"
+        },
+        {
+          "start": 153,
+          "end": 166,
+          "assignments": "0"
+        },
+        {
+          "start": 166,
+          "end": 179,
+          "assignments": "0"
+        },
+        {
+          "start": 179,
+          "end": 187,
+          "assignments": "0"
+        },
+        {
+          "start": 187,
+          "end": 203,
+          "assignments": "0"
+        },
+        {
+          "start": 203,
+          "end": 220,
+          "assignments": "0"
+        },
+        {
+          "start": 220,
+          "end": 250,
+          "assignments": "0"
+        },
+        {
+          "start": 250,
+          "end": 294,
+          "assignments": "0"
+        },
+        {
+          "start": 294,
+          "end": 296,
+          "assignments": "4"
+        },
+        {
+          "start": 296,
+          "end": 308,
+          "assignments": "0"
+        }
+      ]
+    },
+    {
+      "k": 2,
+      "feasibleRunes": 53,
+      "components": [
+        {
+          "start": 0,
+          "end": 10,
+          "assignments": "18"
+        },
+        {
+          "start": 10,
+          "end": 15,
+          "assignments": "5"
+        },
+        {
+          "start": 15,
+          "end": 23,
+          "assignments": "3"
+        },
+        {
+          "start": 23,
+          "end": 98,
+          "assignments": "0"
+        },
+        {
+          "start": 98,
+          "end": 109,
+          "assignments": "0"
+        },
+        {
+          "start": 109,
+          "end": 140,
+          "assignments": "0"
+        },
+        {
+          "start": 140,
+          "end": 151,
+          "assignments": "0"
+        },
+        {
+          "start": 151,
+          "end": 163,
+          "assignments": "26"
+        },
+        {
+          "start": 163,
+          "end": 167,
+          "assignments": "20"
+        },
+        {
+          "start": 167,
+          "end": 176,
+          "assignments": "0"
+        },
+        {
+          "start": 176,
+          "end": 188,
+          "assignments": "0"
+        },
+        {
+          "start": 188,
+          "end": 191,
+          "assignments": "5"
+        },
+        {
+          "start": 191,
+          "end": 193,
+          "assignments": "6"
+        },
+        {
+          "start": 193,
+          "end": 214,
+          "assignments": "0"
+        },
+        {
+          "start": 214,
+          "end": 231,
+          "assignments": "0"
+        },
+        {
+          "start": 231,
+          "end": 238,
+          "assignments": "3"
+        },
+        {
+          "start": 238,
+          "end": 244,
+          "assignments": "0"
+        },
+        {
+          "start": 244,
+          "end": 275,
+          "assignments": "0"
+        },
+        {
+          "start": 275,
+          "end": 306,
+          "assignments": "0"
+        },
+        {
+          "start": 306,
+          "end": 308,
+          "assignments": "3"
+        }
+      ]
+    }
+  ],
+  "original": {
+    "A": [
+      11976,
+      12284
+    ],
+    "B": [
+      12648,
+      12956
+    ],
+    "words": [
+      73,
+      66
+    ],
+    "possible": false,
+    "feasibleRunes": 7,
+    "components": [
+      {
+        "start": 0,
+        "end": 17,
+        "words": 7,
+        "assignments": "0"
+      },
+      {
+        "start": 17,
+        "end": 20,
+        "words": 2,
+        "assignments": "7"
+      },
+      {
+        "start": 20,
+        "end": 46,
+        "words": 12,
+        "assignments": "0"
+      },
+      {
+        "start": 46,
+        "end": 78,
+        "words": 13,
+        "assignments": "0"
+      },
+      {
+        "start": 78,
+        "end": 167,
+        "words": 43,
+        "assignments": "0"
+      },
+      {
+        "start": 167,
+        "end": 189,
+        "words": 9,
+        "assignments": "0"
+      },
+      {
+        "start": 189,
+        "end": 193,
+        "words": 3,
+        "assignments": "4"
+      },
+      {
+        "start": 193,
+        "end": 233,
+        "words": 15,
+        "assignments": "0"
+      },
+      {
+        "start": 233,
+        "end": 241,
+        "words": 4,
+        "assignments": "0"
+      },
+      {
+        "start": 241,
+        "end": 268,
+        "words": 11,
+        "assignments": "0"
+      },
+      {
+        "start": 268,
+        "end": 278,
+        "words": 5,
+        "assignments": "0"
+      },
+      {
+        "start": 278,
+        "end": 308,
+        "words": 15,
+        "assignments": "0"
+      }
+    ],
+    "commonZero": [
+      65,
+      195
+    ],
+    "repeated": [
+      {
+        "a": 8,
+        "b": 8,
+        "masks": 4,
+        "survivors": 0
+      },
+      {
+        "a": 8,
+        "b": 13,
+        "masks": 4,
+        "survivors": 0
+      },
+      {
+        "a": 13,
+        "b": 8,
+        "masks": 4,
+        "survivors": 0
+      },
+      {
+        "a": 13,
+        "b": 13,
+        "masks": 4,
+        "survivors": 0
+      }
+    ]
+  }
+}
