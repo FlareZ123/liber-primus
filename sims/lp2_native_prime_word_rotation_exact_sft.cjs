@@ -6,7 +6,10 @@ const INPUTS=[
   "resources/liber-primus/lp2-corpus.json",
   "resources/transcriptions/lp2-image-corrected.txt",
   "resources/control/english_wordfreq_textblob.txt",
-  "resources/external/relikd-solved-gp29-native-v1.json"
+  "resources/external/relikd-solved-gp29-native-v1.json",
+  "resources/control/gibran_prophet_58585.txt",
+  "resources/control/shakespeare_first300k.txt",
+  "resources/control/emerson_essays_2944.txt"
 ];
 function experiment(raw) {
   const corpus=JSON.parse(raw[0]), ix=new Map(corpus.runes.map((c,i)=>[c,i])), gold=JSON.parse(raw[3]);
@@ -37,6 +40,17 @@ function experiment(raw) {
       vocab.add(id(p))
     }
   }
+
+  // Add the source-normalized first 80% of each of the pinned literary donors.
+  for(const text of raw.slice(4)){
+    const a=/\*{3}\s*START OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\n]*/i.exec(text), b=/\*{3}\s*END OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\n]*/i.exec(text);
+    const donor=text.slice(a?a.index+a[0].length:0,b?b.index:text.length).toUpperCase().replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S").match(/[A-Z]+/g)||[];
+    for(const w of donor.slice(0,Math.floor(donor.length*.8))){
+      const p=[];
+      for(let j=0;j<w.length;){const v=w.startsWith("ING",j)?{t:"ING",i:21}:w.startsWith("IO",j)?{t:"IO",i:27}:glyphs.find(x=>w.startsWith(x.t,j));if(!v)throw Error("unknown donor token "+w);p.push(v.i);j+=v.t.length;}
+      vocab.add(id(p));
+    }
+  }
   for(let j=0;j<29;j++)vocab.add(id([j]));
   const rotation=w=>w.reduce((a,x)=>a+corpus.prime[x],0)%w.length;
   const enc=(pw,k,mode,wi)=>{let c=[];for(const p of pw){if(p===0)c.push(0);else{c.push(mod(p+shifts[k],29));k++}}const r=mode==="fixed"?rotation(c):mode==="none"?0:(13*wi+7)%c.length;return {c:rotate(c,r),k,r}};
@@ -64,13 +78,49 @@ function experiment(raw) {
     requireTrue(cursor===k,"final cursor mismatch");
     return {mode,origin,groups:groups.length,runes:groups.flat().length,reached,glyphsReached,complete:reached===groups.length,remainingCursors:states.size,maxStates,minOOV:best.cost,budget:Math.floor(groups.length*.05),representative:path.slice(0,12).map(q=>q.p.map(x=>corpus.translit[x]).join("")).join(" "),representativeFull:path.map(q=>q.p.map(x=>corpus.translit[x]).join("")).join(" "),truthRetained,representativeEqualsTruth:truth?path.length===truth.length&&id(path.flatMap(q=>q.p))===id(truth.flat()):null};
   }
+
+  // Exact reachability under the 5% chapter-wide OOV budget. All initial
+  // prime ranks 0..3301 are admitted simultaneously. Once two trajectories
+  // share the same cursor, only the lower prefix OOV cost can matter.
+  function allOriginsBudget(groups,mode,maxOrigin=3301,truth=null){
+    const budget=Math.floor(groups.length*.05), INF=32767;
+    const cap=maxOrigin+groups.flat().length+1;
+    let costs=new Int16Array(cap);costs.fill(INF);costs.fill(0,0,maxOrigin+1);
+    let active=maxOrigin+1, peak=active, reached=0, runesReached=0, history=[];
+    for(let wi=0;wi<groups.length;wi++){
+      const c=groups[wi],rs=mode==="fixed"?[rotation(c)]:Array.from({length:c.length},(_,i)=>i);
+      const unrot=rs.map(r=>rotate(c,-r));
+      const next=new Int16Array(cap);next.fill(INF);
+      let count=0,best=INF;
+      for(let k=0;k<cap;k++){if(costs[k]>budget)continue;
+        for(const u of unrot)for(const z of inverses(u,k)){
+          const cost=costs[k]+(vocab.has(id(z.p))?0:1);
+          if(cost<=budget&&cost<next[z.k]){if(next[z.k]===INF)count++;next[z.k]=cost;if(cost<best)best=cost;}
+        }
+      }
+      history.push({word:wi,cursors:count,minOOV:best===INF?null:best});
+      if(!count){active=0;break;}
+      costs=next;active=count;peak=Math.max(peak,count);reached++;runesReached+=c.length;
+    }
+    return {mode,maxOrigin,budget,groups:groups.length,runes:groups.flat().length,reached,runesReached,complete:reached===groups.length,remainingCursors:active,peak,history};
+  }
   const p56=nativeWords(gold.sections.find(s=>s.name==="p56_an_end").source_text);let k=0, c56=[];for(let i=0;i<p56.length;i++){const a=enc(p56[i],k,"none",i);c56.push(...a.c);k=a.k}
   requireTrue(c56.length===85&&k===84&&id(c56)===id(corpus.pages[56].indices),"actual p56 control mismatch");
   const controls=[];
   for(const name of ["p57_parable","0_warning","0_koan_1"]){const p=nativeWords(gold.sections.find(s=>s.name===name).source_text);for(const mode of ["fixed","arbitrary"]){let k=0;const c=p.map((w,i)=>{const a=enc(w,k,mode,i);k=a.k;return a.c});const s=solve(c,mode,0,p);requireTrue(s.complete&&s.minOOV===0&&s.truthRetained===p.flat().length,"plant failure");delete s.representativeFull;controls.push({name,...s})}}
   const original=[];
   for(const j of [8,0,1,2,3,4,5,6,7])for(const mode of ["fixed","arbitrary"]){const result=solve(chapters[j],mode);original.push({chapter:j,...result})}
-  return {sourceRunes:n,sourceWords:words.length,lexicon:vocab.size,p56:{runes:c56.length,consumed:k},controls,original};
+  const allOrigins=[];
+  for(const j of [8,0,1,2,3,4,5,6,7])for(const mode of ["fixed","arbitrary"])allOrigins.push({chapter:j,...allOriginsBudget(chapters[j],mode)});
+  const originControls=[];
+  for(const [name,origin] of [["p57_parable",3301],["0_warning",1033],["0_koan_1",147]]){
+    const p=nativeWords(gold.sections.find(s=>s.name===name).source_text);
+    let k=origin;
+    const c=p.map((w,i)=>{const a=enc(w,k,"arbitrary",i);k=a.k;return a.c});
+    const b=allOriginsBudget(c,"arbitrary");
+    requireTrue(b.complete,"all-origin plant rejected");originControls.push({name,origin,...b});
+  }
+  return {sourceRunes:n,sourceWords:words.length,lexicon:vocab.size,p56:{runes:c56.length,consumed:k},controls,original,allOrigins,originControls};
 }
 if(require.main===module){const root=path.resolve(__dirname,'..');console.log(JSON.stringify(experiment(INPUTS.map(p=>fs.readFileSync(path.join(root,p),'utf8'))),null,2));}
 module.exports={experiment,INPUTS};
