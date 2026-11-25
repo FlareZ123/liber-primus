@@ -5,6 +5,8 @@
 
 - GIMP fixed default 314159265 **word-rank order** (rather than additive key): global/chapter-reset, rank/inverse over actual MT table. All four original grammar gains -0.031128 to -0.026717 nats/pair, null-like (upper-tail p .519–.907); held-native floor +.001006, 384/384 exact window permutations recovered in controls (96 overlapping native windows in each model). No source-selected ranking operation or plaintext. Consolidated `im-results/lp2-gimp-dissolve-mt19937-direct-additive-source-gate.md`; SFT `sims/lp2_gimp_dissolve_wordrank_order_sft.cjs`, raw `im-results/lp2-gimp-dissolve-wordrank-order-output.json`. Retire this fixed order; no broad software seed/permutation sweep.
 
+- Exact H-decoy boundary state obstruction: 12,739 nonforced decision sites / 2,711 stops. All-secret deterministic reset predicate on exact running prime sum must mislabel at least 2,575 sites (1,943 with chapter-private predicates); exact prime product 714/339, full ordered prefix 493/214, prefix + previous-group final rune + next rune 11/2. Explicit collision witnesses and threshold-200 plant (0 errors) in report `im-results/lp2-observed-prefix-boundary.md`, raw JSON and SFT `sims/lp2_observed_prefix_boundary_sft.cjs`. This rules out a local observed-prefix-only stopping algorithm, not H-decoy generally. No further unselected context expansion.
+
 ## Historical identity context
 
 # Agent44 — 25 November 2026, draw6, source-first fallback

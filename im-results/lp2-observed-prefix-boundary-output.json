@@ -1,0 +1,347 @@
+{
+  "groups": 2896,
+  "runes": 12956,
+  "samples": 12739,
+  "singletonStopRunes": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28
+  ],
+  "nonstopSingletonPrefixWitnesses": 2611,
+  "results": {
+    "length": {
+      "book": {
+        "n": 12739,
+        "stops": 2711,
+        "states": 14,
+        "error": 2692,
+        "conflictingStates": 13,
+        "conflictingObservations": 12736
+      },
+      "chapter": {
+        "n": 12739,
+        "stops": 2711,
+        "states": 115,
+        "error": 2667,
+        "conflictingStates": 101,
+        "conflictingObservations": 12717
+      }
+    },
+    "primeSum": {
+      "book": {
+        "n": 12739,
+        "stops": 2711,
+        "states": 651,
+        "error": 2575,
+        "conflictingStates": 520,
+        "conflictingObservations": 12385
+      },
+      "chapter": {
+        "n": 12739,
+        "stops": 2711,
+        "states": 3560,
+        "error": 1943,
+        "conflictingStates": 1364,
+        "conflictingObservations": 7607
+      }
+    },
+    "lengthSum": {
+      "book": {
+        "n": 12739,
+        "stops": 2711,
+        "states": 1992,
+        "error": 2194,
+        "conflictingStates": 884,
+        "conflictingObservations": 10729
+      },
+      "chapter": {
+        "n": 12739,
+        "stops": 2711,
+        "states": 5689,
+        "error": 1338,
+        "conflictingStates": 1094,
+        "conflictingObservations": 4746
+      }
+    },
+    "sumLengthLast": {
+      "book": {
+        "n": 12739,
+        "stops": 2711,
+        "states": 6670,
+        "error": 917,
+        "conflictingStates": 791,
+        "conflictingObservations": 5151
+      },
+      "chapter": {
+        "n": 12739,
+        "stops": 2711,
+        "states": 9328,
+        "error": 298,
+        "conflictingStates": 285,
+        "conflictingObservations": 1364
+      }
+    },
+    "primeProduct": {
+      "book": {
+        "n": 12739,
+        "stops": 2711,
+        "states": 6918,
+        "error": 714,
+        "conflictingStates": 511,
+        "conflictingObservations": 5099
+      },
+      "chapter": {
+        "n": 12739,
+        "stops": 2711,
+        "states": 9046,
+        "error": 339,
+        "conflictingStates": 322,
+        "conflictingObservations": 1515
+      }
+    },
+    "prefix": {
+      "book": {
+        "n": 12739,
+        "stops": 2711,
+        "states": 7781,
+        "error": 493,
+        "conflictingStates": 386,
+        "conflictingObservations": 4136
+      },
+      "chapter": {
+        "n": 12739,
+        "stops": 2711,
+        "states": 9537,
+        "error": 214,
+        "conflictingStates": 201,
+        "conflictingObservations": 1190
+      }
+    },
+    "prefixLookahead": {
+      "book": {
+        "n": 12739,
+        "stops": 2711,
+        "states": 10483,
+        "error": 115,
+        "conflictingStates": 111,
+        "conflictingObservations": 406
+      },
+      "chapter": {
+        "n": 12739,
+        "stops": 2711,
+        "states": 12108,
+        "error": 36,
+        "conflictingStates": 36,
+        "conflictingObservations": 83
+      }
+    },
+    "prefixPreviousRune": {
+      "book": {
+        "n": 12739,
+        "stops": 2711,
+        "states": 10485,
+        "error": 125,
+        "conflictingStates": 123,
+        "conflictingObservations": 427
+      },
+      "chapter": {
+        "n": 12739,
+        "stops": 2711,
+        "states": 12128,
+        "error": 37,
+        "conflictingStates": 37,
+        "conflictingObservations": 84
+      }
+    },
+    "prefixBoth": {
+      "book": {
+        "n": 12739,
+        "stops": 2711,
+        "states": 12548,
+        "error": 11,
+        "conflictingStates": 11,
+        "conflictingObservations": 24
+      },
+      "chapter": {
+        "n": 12739,
+        "stops": 2711,
+        "states": 12708,
+        "error": 2,
+        "conflictingStates": 2,
+        "conflictingObservations": 4
+      }
+    }
+  },
+  "rules": [
+    {
+      "mod": 29,
+      "book": {
+        "n": 12739,
+        "stops": 2711,
+        "states": 29,
+        "error": 2711,
+        "conflictingStates": 29,
+        "conflictingObservations": 12739
+      },
+      "chapter": {
+        "n": 12739,
+        "stops": 2711,
+        "states": 261,
+        "error": 2711,
+        "conflictingStates": 256,
+        "conflictingObservations": 12702
+      }
+    },
+    {
+      "mod": 59,
+      "book": {
+        "n": 12739,
+        "stops": 2711,
+        "states": 59,
+        "error": 2711,
+        "conflictingStates": 59,
+        "conflictingObservations": 12739
+      },
+      "chapter": {
+        "n": 12739,
+        "stops": 2711,
+        "states": 531,
+        "error": 2702,
+        "conflictingStates": 501,
+        "conflictingObservations": 12573
+      }
+    },
+    {
+      "mod": 60,
+      "book": {
+        "n": 12739,
+        "stops": 2711,
+        "states": 60,
+        "error": 2711,
+        "conflictingStates": 60,
+        "conflictingObservations": 12739
+      },
+      "chapter": {
+        "n": 12739,
+        "stops": 2711,
+        "states": 540,
+        "error": 2701,
+        "conflictingStates": 514,
+        "conflictingObservations": 12604
+      }
+    },
+    {
+      "mod": 83,
+      "book": {
+        "n": 12739,
+        "stops": 2711,
+        "states": 83,
+        "error": 2711,
+        "conflictingStates": 83,
+        "conflictingObservations": 12739
+      },
+      "chapter": {
+        "n": 12739,
+        "stops": 2711,
+        "states": 744,
+        "error": 2665,
+        "conflictingStates": 673,
+        "conflictingObservations": 12361
+      }
+    },
+    {
+      "mod": 1033,
+      "book": {
+        "n": 12739,
+        "stops": 2711,
+        "states": 651,
+        "error": 2575,
+        "conflictingStates": 520,
+        "conflictingObservations": 12385
+      },
+      "chapter": {
+        "n": 12739,
+        "stops": 2711,
+        "states": 3560,
+        "error": 1943,
+        "conflictingStates": 1364,
+        "conflictingObservations": 7607
+      }
+    },
+    {
+      "mod": 3301,
+      "book": {
+        "n": 12739,
+        "stops": 2711,
+        "states": 651,
+        "error": 2575,
+        "conflictingStates": 520,
+        "conflictingObservations": 12385
+      },
+      "chapter": {
+        "n": 12739,
+        "stops": 2711,
+        "states": 3560,
+        "error": 1943,
+        "conflictingStates": 1364,
+        "conflictingObservations": 7607
+      }
+    }
+  ],
+  "bothWitnesses": [
+    {
+      "state": "2|10|23|2",
+      "positions": [
+        [
+          2918
+        ],
+        [
+          2428
+        ]
+      ]
+    },
+    {
+      "state": "7|22|17|3",
+      "positions": [
+        [
+          11323
+        ],
+        [
+          9946
+        ]
+      ]
+    }
+  ],
+  "control": {
+    "n": 12955,
+    "stops": 2827,
+    "states": 306,
+    "error": 0,
+    "conflictingStates": 0,
+    "conflictingObservations": 0
+  }
+}
