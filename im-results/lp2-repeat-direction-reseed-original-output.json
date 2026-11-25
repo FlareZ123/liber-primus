@@ -1,0 +1,113 @@
+{
+  "law": "shift-then-map rank28, repeat-rune prime reseed, arbitrary private shared rank permutation",
+  "L": 6,
+  "scope": [
+    0,
+    39,
+    40,
+    55
+  ],
+  "counts": [
+    60,
+    19
+  ],
+  "threshold": [
+    0.003002166511915809,
+    0.008228535941623968
+  ],
+  "nullCalibration": 1000,
+  "nullIndependent": 400,
+  "falsePositive": [
+    2,
+    6
+  ],
+  "plants": [
+    {
+      "donor": 0,
+      "replicates": 80,
+      "insufficient": 0,
+      "truePos": [
+        80,
+        78
+      ],
+      "wrong": [
+        0,
+        0
+      ],
+      "eventTotals": [
+        16695,
+        5713
+      ]
+    },
+    {
+      "donor": 1,
+      "replicates": 80,
+      "insufficient": 0,
+      "truePos": [
+        80,
+        76
+      ],
+      "wrong": [
+        0,
+        0
+      ],
+      "eventTotals": [
+        16716,
+        5742
+      ]
+    },
+    {
+      "donor": 2,
+      "replicates": 80,
+      "insufficient": 0,
+      "truePos": [
+        80,
+        75
+      ],
+      "wrong": [
+        0,
+        0
+      ],
+      "eventTotals": [
+        16913,
+        5684
+      ]
+    },
+    {
+      "donor": 3,
+      "replicates": 80,
+      "insufficient": 0,
+      "truePos": [
+        80,
+        77
+      ],
+      "wrong": [
+        0,
+        0
+      ],
+      "eventTotals": [
+        16691,
+        5673
+      ]
+    }
+  ],
+  "passed": true,
+  "original": [
+    {
+      "forward": 0.03579387186629526,
+      "reverse": 0.036381925100588054,
+      "delta": -0.0005880532342927916,
+      "observations": 360,
+      "decision": "abstain",
+      "p": 0.5704295704295704
+    },
+    {
+      "forward": 0.045024064586244375,
+      "reverse": 0.03664027324949542,
+      "delta": 0.008383791336748957,
+      "observations": 114,
+      "decision": "forward",
+      "p": 0.00999000999000999
+    }
+  ]
+}
