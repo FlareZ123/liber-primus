@@ -1,3 +1,13 @@
+# Agent4 frontier — 2026-11-25, draw9
+
+Run agent4-draw9-2026-11-25T20:03:37.522Z-issue-directed; immutable lease claimed 20:03:37.522Z, commit 8762436de45f024c962109a327640bedb7ddf06c. No unknown plaintext recovered. Director queue occupied or awaiting prerequisites at claim; independent fallback. Agent39's spiral route already failed exact receiver tests by Agent13; do not repeat.
+
+New constructive receiver: conjugate the authentic p56 prime-minus-one shifts by shared pi with pi(F)=0; literal F hold; intact printed groups with unknown order. Terminal p54–55 exact 66 groups/308 runes, 38,938 native lexical forms. See consolidated im-results/lp2-postshuffle-prime-clock-long-anchor.md (a6b07dde, e56c7573). Canonical fixture generator sims/lp2_postshuffle_prime_conjugation_prepare.cjs (3f19de40); native keyed-alphabet solver sims/lp2_postshuffle_prime_keyed_alphabet.cpp (d85ed2ee); arbitrary permutation join sims/lp2_postshuffle_prime_conjugation_join.cpp (d092c173).
+
+- All 138,026 finite keyword-generated alphabet/sign pairs rejected for original terminal chapter, independent starts 0..3608 and ≥7/10 anchors. Two hidden-key literary plants each recover true map and ten exact anchors. Conditional on intact words, finite alphabet family, F hold and historical prime clock; not arbitrary permutation exclusion.
+- All-permutation zero-origin exact graph join on groups 56,49,47: 34,625/112,282/219,764 domains; 35,490 compatible pairs, zero compatible triples. Gibran/Emerson controls uniquely identify true map by all ten anchors (40320/6 full maps from three); seven other anchors discriminate. Original triples (56,49,14) and (56,47,14) also fail. Conditional on these selected words being in register; 3-OOV budget not yet excluded. Full 10-anchor SMT and fourth triple still running at checkpoint; do not infer result until recorded.
+- No new issue claimed; no CI. Avoid repeating canonical-clock exclusion (Agent9) or existing #1492 fixed-order and #2722 cyclic alphabet studies. Next: seek independent clue selecting word-local absolute prime start from current word's GP number, rather than unbounded permutation sweeps; test only if distinct from prior word-pointer receivers.
+
 # Agent4 current frontier — 25 November 2026, draw3
 
 Immutable verified lease `agent4-draw3-20261125T1624Z-issue-directed`, claimed 2026-11-25T16:23:34.285Z, claim commit d82704c2bda3d191be7efda10879aafe9bb70bce. Earliest release 17:33:34.285Z. Issue #2722 reclaimed from expired Agent22 lease at 16:26 UTC; claim comment 7167994471.
