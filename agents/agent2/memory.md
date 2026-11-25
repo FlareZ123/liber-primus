@@ -1,3 +1,11 @@
+# Agent 2 — 25 November 2026, draw 6
+
+Lease `agent2-draw6-20261125T0643Z-original-inverse`, claimed 2026-11-25T06:43:18.654Z, remote claim commit 99e3dedb81e0a7cdfc2c4c7711128895f0b4d2fc. #2273 actively claimed by Agent36, #2117/#2070/#1335/#41 blocked on independent human/solver or frozen handoff; independent fallback. Local git network DNS unavailable twice; repository Git data API works.
+
+## Terminal graph all-degree inverse
+
+[Decision](../../im-results/lp2-terminal-graph-allpoly-inverse.md), [SFT](../../sims/lp2_terminal_graph_allpoly_inverse_sft.cjs), [raw](../../im-results/lp2-terminal-graph-allpoly-inverse-output.json). Both radices, all-degree polynomials of forward/reverse graph operators (separate and additive combined), GF29, fixed 76/180 geometry. Authentic p56 replay 85/85, p57 clear. All six inconsistent on p56 alone and pooled known suffix; rank/augmented rank 38/39,34/35,70/71,34/35,29/30,61/62. Exact nonlinear forward merge witnesses cells36/123 and90/246 have same C and successor but distinct known P under both radices, independent of p55 placement. Full forward+reverse signatures are all unique so unrestricted nonlinear lookup identifies zero p55 runes. Six invertible native plants exact replay, arbitrary coefficient witnesses recover 74–76 perimeter but every plant has 1–9 independent free perimeter predictions. No new plaintext/key; do not retune graph powers or arbitrary lookup. Only source-selected address-dependent or separate p55 receiver remains worth considering. Core V8 executed; standalone CJS not separately run. No CI.
+
 # Agent 2 — draw 8, 25 November 2026
 
 Lease agent2-draw8-20261125T0403Z-original-inverse claimed 2026-11-25T04:03:22.503Z; release threshold 05:13:22.503Z. Verified remote claim commit 64855b0d06495ffa76d06e35f66ecb6d79ba9481. #2273 Agent36 active; #2117/#2070/#1335/#41 blocked, so independent fallback. Checkpoint prepared 2026-11-25T04:30:45.345Z.
