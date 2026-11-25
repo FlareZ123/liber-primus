@@ -1,0 +1,604 @@
+{
+  "register": 35944,
+  "model": "8 independent bijections fixing F, continuous hold-F source phase, shuffled whole groups; oracle true fit words and all start phases",
+  "results": [
+    {
+      "seed": 271101,
+      "contiguous": false,
+      "source": "heldout donor words, exact terminal length profile",
+      "fitGroups": 49,
+      "holdGroups": 17,
+      "fitRunes": 222,
+      "holdRunes": 86,
+      "fitUncertainty": {
+        "unused": [
+          14,
+          14,
+          10,
+          14,
+          13,
+          12,
+          15,
+          16
+        ],
+        "knownNonzero": 116,
+        "log10": 83.29272457445477
+      },
+      "truthUncertainty": {
+        "unused": [
+          11,
+          13,
+          10,
+          13,
+          13,
+          12,
+          12,
+          13
+        ],
+        "knownNonzero": 127,
+        "log10": 70.698713944635
+      },
+      "domainSizes": [
+        1,
+        1,
+        4,
+        1,
+        1,
+        1,
+        22,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "feasibleSizes": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        14,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "ambiguousWords": 2,
+      "ambiguousMultiRune": 2,
+      "tupleCountLowerBound": 26,
+      "tupleCountCapped": false,
+      "searchNodes": 44,
+      "supportNodes": 604,
+      "truthReplay": 308,
+      "alternateReplay": 308,
+      "changed": [
+        {
+          "index": 6,
+          "truth": "T[",
+          "alternate": "BN",
+          "truthLatin": "MY",
+          "alternateLatin": "UP"
+        }
+      ]
+    },
+    {
+      "seed": 271102,
+      "contiguous": false,
+      "source": "heldout donor words, exact terminal length profile",
+      "fitGroups": 49,
+      "holdGroups": 17,
+      "fitRunes": 222,
+      "holdRunes": 86,
+      "fitUncertainty": {
+        "unused": [
+          14,
+          14,
+          13,
+          16,
+          12,
+          12,
+          17,
+          11
+        ],
+        "knownNonzero": 115,
+        "log10": 84.50861477566212
+      },
+      "truthUncertainty": {
+        "unused": [
+          10,
+          11,
+          13,
+          13,
+          9,
+          10,
+          14,
+          11
+        ],
+        "knownNonzero": 133,
+        "log10": 64.4105695195471
+      },
+      "domainSizes": [
+        1,
+        2,
+        5,
+        9,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3,
+        3,
+        15,
+        4
+      ],
+      "feasibleSizes": [
+        1,
+        2,
+        1,
+        3,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        5,
+        3
+      ],
+      "ambiguousWords": 5,
+      "ambiguousMultiRune": 5,
+      "tupleCountLowerBound": 33,
+      "tupleCountCapped": false,
+      "searchNodes": 123,
+      "supportNodes": 668,
+      "truthReplay": 308,
+      "alternateReplay": 308,
+      "changed": [
+        {
+          "index": 1,
+          "truth": "RE]C",
+          "alternate": "RE]X",
+          "truthLatin": "BREATH",
+          "alternateLatin": "BREAD"
+        },
+        {
+          "index": 14,
+          "truth": "RDXKSP",
+          "alternate": "FDNKSP",
+          "truthLatin": "BODIES",
+          "alternateLatin": "COPIES"
+        }
+      ]
+    },
+    {
+      "seed": 271103,
+      "contiguous": false,
+      "source": "heldout donor words, exact terminal length profile",
+      "fitGroups": 49,
+      "holdGroups": 17,
+      "fitRunes": 222,
+      "holdRunes": 86,
+      "fitUncertainty": {
+        "unused": [
+          14,
+          15,
+          12,
+          15,
+          12,
+          15,
+          12,
+          17
+        ],
+        "knownNonzero": 112,
+        "log10": 87.88198659284342
+      },
+      "truthUncertainty": {
+        "unused": [
+          13,
+          12,
+          12,
+          13,
+          9,
+          12,
+          12,
+          15
+        ],
+        "knownNonzero": 126,
+        "log10": 71.98617113310972
+      },
+      "domainSizes": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        4,
+        1,
+        1,
+        1,
+        5,
+        1,
+        3,
+        5
+      ],
+      "feasibleSizes": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        5,
+        1,
+        1,
+        4
+      ],
+      "ambiguousWords": 3,
+      "ambiguousMultiRune": 3,
+      "tupleCountLowerBound": 32,
+      "tupleCountCapped": false,
+      "searchNodes": 57,
+      "supportNodes": 485,
+      "truthReplay": 308,
+      "alternateReplay": 308,
+      "changed": [
+        {
+          "index": 9,
+          "truth": "FKJX",
+          "alternate": "TKJX",
+          "truthLatin": "CIND",
+          "alternateLatin": "MIND"
+        },
+        {
+          "index": 13,
+          "truth": "T[",
+          "alternate": "C[",
+          "truthLatin": "MY",
+          "alternateLatin": "THY"
+        },
+        {
+          "index": 16,
+          "truth": "CYJ",
+          "alternate": "TYJ",
+          "truthLatin": "THAN",
+          "alternateLatin": "MAN"
+        }
+      ]
+    },
+    {
+      "seed": 271104,
+      "contiguous": true,
+      "source": {
+        "donor": 0,
+        "heldoutOffset": 1202,
+        "runes": 292
+      },
+      "fitGroups": 49,
+      "holdGroups": 17,
+      "fitRunes": 212,
+      "holdRunes": 80,
+      "fitUncertainty": {
+        "unused": [
+          14,
+          15,
+          16,
+          16,
+          15,
+          16,
+          16,
+          16
+        ],
+        "knownNonzero": 100,
+        "log10": 101.77650554321109
+      },
+      "truthUncertainty": {
+        "unused": [
+          11,
+          13,
+          14,
+          15,
+          14,
+          14,
+          13,
+          14
+        ],
+        "knownNonzero": 116,
+        "log10": 83.06784937020822
+      },
+      "domainSizes": [
+        1,
+        2,
+        2,
+        1,
+        1,
+        1,
+        2,
+        4,
+        1,
+        1,
+        1,
+        1,
+        1,
+        4,
+        1,
+        1,
+        1
+      ],
+      "feasibleSizes": [
+        1,
+        2,
+        2,
+        1,
+        1,
+        1,
+        2,
+        3,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3,
+        1,
+        1,
+        1
+      ],
+      "ambiguousWords": 5,
+      "ambiguousMultiRune": 5,
+      "tupleCountLowerBound": 60,
+      "tupleCountCapped": false,
+      "searchNodes": 107,
+      "supportNodes": 447,
+      "truthReplay": 292,
+      "alternateReplay": 292,
+      "changed": [
+        {
+          "index": 1,
+          "truth": "GEYBSP",
+          "alternate": "REYBSX",
+          "truthLatin": "GRAUES",
+          "alternateLatin": "BRAUED"
+        },
+        {
+          "index": 13,
+          "truth": "R[",
+          "alternate": "C[",
+          "truthLatin": "BY",
+          "alternateLatin": "THY"
+        }
+      ]
+    },
+    {
+      "seed": 271105,
+      "contiguous": true,
+      "source": {
+        "donor": 1,
+        "heldoutOffset": 4599,
+        "runes": 304
+      },
+      "fitGroups": 49,
+      "holdGroups": 17,
+      "fitRunes": 223,
+      "holdRunes": 81,
+      "fitUncertainty": {
+        "unused": [
+          11,
+          15,
+          16,
+          16,
+          13,
+          14,
+          14,
+          12
+        ],
+        "knownNonzero": 113,
+        "log10": 86.71432850132459
+      },
+      "truthUncertainty": {
+        "unused": [
+          11,
+          10,
+          12,
+          15,
+          10,
+          11,
+          10,
+          11
+        ],
+        "knownNonzero": 134,
+        "log10": 63.279592827941485
+      },
+      "domainSizes": [
+        1,
+        1,
+        1,
+        1,
+        6,
+        1,
+        8,
+        1,
+        34,
+        34,
+        1,
+        1,
+        1,
+        5,
+        1,
+        2,
+        1
+      ],
+      "feasibleSizes": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        7,
+        1,
+        16,
+        16,
+        1,
+        1,
+        1,
+        5,
+        1,
+        2,
+        1
+      ],
+      "ambiguousWords": 5,
+      "ambiguousMultiRune": 5,
+      "tupleCountLowerBound": 256,
+      "tupleCountCapped": true,
+      "searchNodes": 514,
+      "supportNodes": 1289,
+      "truthReplay": 304,
+      "alternateReplay": 304,
+      "changed": [
+        {
+          "index": 6,
+          "truth": "TS",
+          "alternate": "IS",
+          "truthLatin": "ME",
+          "alternateLatin": "HE"
+        },
+        {
+          "index": 8,
+          "truth": "T[",
+          "alternate": "R[",
+          "truthLatin": "MY",
+          "alternateLatin": "BY"
+        },
+        {
+          "index": 9,
+          "truth": "R[",
+          "alternate": "T[",
+          "truthLatin": "BY",
+          "alternateLatin": "MY"
+        }
+      ]
+    },
+    {
+      "seed": 271106,
+      "contiguous": true,
+      "source": {
+        "donor": 2,
+        "heldoutOffset": 968,
+        "runes": 308
+      },
+      "fitGroups": 49,
+      "holdGroups": 17,
+      "fitRunes": 232,
+      "holdRunes": 76,
+      "fitUncertainty": {
+        "unused": [
+          14,
+          12,
+          11,
+          12,
+          14,
+          13,
+          15,
+          17
+        ],
+        "knownNonzero": 116,
+        "log10": 83.30449479300619
+      },
+      "truthUncertainty": {
+        "unused": [
+          13,
+          9,
+          9,
+          10,
+          13,
+          12,
+          13,
+          16
+        ],
+        "knownNonzero": 129,
+        "log10": 69.06308660566076
+      },
+      "domainSizes": [
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        3,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3
+      ],
+      "feasibleSizes": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "ambiguousWords": 0,
+      "ambiguousMultiRune": 0,
+      "tupleCountLowerBound": 1,
+      "tupleCountCapped": false,
+      "searchNodes": 23,
+      "supportNodes": 383,
+      "truthReplay": 308,
+      "alternateReplay": null,
+      "changed": null
+    }
+  ]
+}
