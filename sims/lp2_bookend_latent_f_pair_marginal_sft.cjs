@@ -21,7 +21,7 @@ function experiment(inputs,caseIndex){
    for(let i=0;i<H;i++)for(let j=0;j<W;j++){const at=i*W+j,m=cells[at];if(!m||at===H*W-1)continue;peak=Math.max(peak,m.size);count+=m.size;
      for(const [s,e] of m){const d=s%B,cc=Math.floor(s/B)%B,b=Math.floor(s/B**2)%B,a=Math.floor(s/B**3),A=holds(y,i,a,b,known),Z=holds(z,j,cc,d,null);
        for(const [ii,aa,bb,wa,la] of A)for(const [jj,cc,dd,wb,lb] of Z){const ha=ii-i,hb=jj-j,ex=ii<y.length,ez=jj<z.length,dest=(ii+(ex?1:0))*W+jj+(ez?1:0),n=cells[dest]||(cells[dest]=new Map()),pbase=(aa*B+bb)*Q,rbase=(cc*B+dd)*Q,weight=e[0]*wa*wb,val=e[1]+la+lb,ka=ii===0&&known!==null?known:-1;
-         function put(ns,w,v,p,q){edges++;const old=n.get(ns);if(old){old[0]+=w;if(v>old[1]){old[1]=v;old[2]=at;old[3]=s;old[4]=ha;old[5]=hb;old[6]=p;old[7]=q;}}else n.set(ns,[w,v,at,s,ha,hb,p,q]);}
+         function put(ns,w,v,p,q){if(Math.floor(dest/W)===H-1)ns=(Q*B+Q)*B*B+ns%(B*B);if(dest%W===W-1)ns=Math.floor(ns/(B*B))*B*B+Q*B+Q;edges++;const old=n.get(ns);if(old){old[0]+=w;if(v>old[1]){old[1]=v;old[2]=at;old[3]=s;old[4]=ha;old[5]=hb;old[6]=p;old[7]=q;}}else n.set(ns,[w,v,at,s,ha,hb,p,q]);}
          if(ex&&ez){const delta=mod(z[jj]-y[ii]);for(let p=1;p<Q;p++){if(ka>=0&&ka!==p)continue;const q=mod(p+delta);if(q)put(idx(bb,p,dd,q),weight*Q*prob[pbase+p]*prob[rbase+q],val+LQ+logs[pbase+p]+logs[rbase+q],p,q);}}
          else if(ex){for(let p=1;p<Q;p++)if(ka<0||ka===p)put(idx(bb,p,cc,dd),weight*prob[pbase+p],val+logs[pbase+p],p,-1);}
          else if(ez){for(let q=1;q<Q;q++)put(idx(aa,bb,dd,q),weight*prob[rbase+q],val+logs[rbase+q],-1,q);}
