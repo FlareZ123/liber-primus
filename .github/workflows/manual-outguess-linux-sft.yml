@@ -42,12 +42,14 @@ jobs:
         run: |
           set -euo pipefail
           python3 - <<'PY'
+          import os
+          from pathlib import Path
           from PIL import Image
           im = Image.open("resources/liber-primus/17.jpg")
           profile = im.info.get("icc_profile")
           if not profile:
               raise SystemExit("Original page ICC profile missing")
-          open("${RUNNER_TEMP}/lp2.icc", "wb").write(profile)
+          Path(os.environ["RUNNER_TEMP"], "lp2.icc").write_bytes(profile)
           PY
           cat > "${RUNNER_TEMP}/control.ps" <<'PS'
           %!PS-Adobe-3.0
