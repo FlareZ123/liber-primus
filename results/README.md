@@ -16,6 +16,8 @@ This entry point prioritizes facts and decisions that change a plausible route t
 
 **Explicit PGF 2.10 timestamps (#2674):** 321 of 433 historical literal seeds fit TeX's count range; 112 invalid. All 321 fail marginalized keyskip1 threshold 8.767173 (max 2.790230); 14/16 literary and 16/16 uniform correct-key controls pass, 0/500 paired wrong PGF states pass on either tape. Top ten plus rank one nonprose; control beam recovers 510/512 held-out runes. Retire this conjunction, not TeX generally. [Report](../im-results/lp2-pgf-explicit-timestamp-gate.md) · [SFT](../sims/lp2_pgf_explicit_timestamp_keyskip1_sft.cjs).
 
+**LP1 running key + authentic F-hold and unlimited collision redraw:** exact simultaneous all-origin Viterbi over the corrected and printed 2,797-rune sources, GP index/prime encodings and both signs recovers all three planted offsets and 434/434 frozen withheld runes. Eight of nine original prefix winners die in withheld continuation, the ninth is nonprose (−5.177 nats/rune). All 72 retrospective variant/window domains remain legal, but best full-window scores −5.079 to −4.842 are nonprose. Retire this source-fixed combined clock at the tested scopes; no arbitrary-language impossibility. [Report](../im-results/lp2-lp1-runningkey-fhold-redraw-original-gate.md) · [SFT](../sims/lp2_lp1_runningkey_fhold_redraw_exact_sft.cjs).
+
 ## 1. Original source and real decoding controls
 
 | Source object | Established constraint |
