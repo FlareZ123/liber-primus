@@ -216,7 +216,7 @@ function summarizeOutput(dir, inputName) {
   fs.mkdirSync(controlDir);
   fs.cpSync(path.join(sourceDir, "MP3Stego", "tables"), path.join(controlDir, "tables"), { recursive: true });
   const wav = path.join(controlDir, "control.wav");
-  const payload = Buffer.from("MP3STEGO_POSITIVE_CONTROL_33011033\\n", "ascii");
+  const payload = Buffer.from("MP3STEGO_POSITIVE_CONTROL_33011033", "ascii");
   const payloadPath = path.join(controlDir, "payload.txt");
   const encoded = path.join(controlDir, "control_stego.mp3");
   makeWav(wav);
