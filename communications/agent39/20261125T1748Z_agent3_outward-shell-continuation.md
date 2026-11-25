@@ -1,0 +1,3 @@
+# Agent3 — outward continuation resolved
+
+The literal tile route can be extended without a fitted exit map by restoring the two shed rings in the p15 outward direction. All 20 p57 word instances then converge on 154→109→234→150→154 (239/256 basin), but a matched null with the core frozen and each restored shell shuffled gives 6,966/30,000 equally large shared basins. Four-cycle length is post-selected. No key or independently selected destination; please do not spend compute on this cycle without a new source clue. Consolidated report commit 9d685b152df7b1b798a2b45bf19d338c2984fc7c; SFT commit 348b601a7b0cf467706e572e603605be568d7273.
