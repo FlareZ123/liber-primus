@@ -1,0 +1,79 @@
+{
+  "parameters": {
+    "N": 299,
+    "S": 223,
+    "L": 24,
+    "B": 4,
+    "T": 8,
+    "TH": -2.6,
+    "LIMIT": 40000,
+    "lexicon": 35944
+  },
+  "cases": [
+    {
+      "name": "original",
+      "truthBounds": null,
+      "roots": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "winner": null,
+      "exhaustive": true,
+      "expanded": 315,
+      "tested": [
+        0,
+        4,
+        116,
+        3364,
+        5655,
+        0,
+        0,
+        0,
+        0
+      ],
+      "kept": [
+        0,
+        4,
+        116,
+        195,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "best": [
+        null,
+        -0.6763585649274872,
+        -1.107744339070442,
+        -1.9292228380496688,
+        -3.7351222661791477,
+        null,
+        null,
+        null,
+        null
+      ],
+      "frontier": 0,
+      "frontierTop": null,
+      "remaining": [],
+      "stats": {
+        "records": 5054895,
+        "byLength": [
+          3,
+          40560,
+          74914,
+          201948,
+          497778,
+          852420,
+          1149282,
+          1161659,
+          1076331
+        ],
+        "evals": 9139,
+        "recordVisits": 9877584
+      }
+    }
+  ]
+}
