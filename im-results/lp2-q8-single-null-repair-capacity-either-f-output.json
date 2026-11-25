@@ -1,0 +1,688 @@
+{
+  "controls": [
+    {
+      "actualAffected": 18,
+      "clean": 0,
+      "lower": 0
+    },
+    {
+      "actualAffected": 17,
+      "clean": 0,
+      "lower": 2
+    },
+    {
+      "actualAffected": 18,
+      "clean": 0,
+      "lower": 5
+    }
+  ],
+  "original": [
+    {
+      "lo": 0,
+      "hi": 2,
+      "groups": 158,
+      "runes": 729,
+      "budget": 7,
+      "cumulative": [
+        {
+          "k": 3,
+          "anchors": 86,
+          "upper": 228,
+          "minAffected": 0
+        },
+        {
+          "k": 4,
+          "anchors": 64,
+          "upper": 72,
+          "minAffected": 0
+        },
+        {
+          "k": 5,
+          "anchors": 48,
+          "upper": 30,
+          "minAffected": 18
+        },
+        {
+          "k": 6,
+          "anchors": 37,
+          "upper": 17,
+          "minAffected": 20
+        },
+        {
+          "k": 7,
+          "anchors": 18,
+          "upper": 16,
+          "minAffected": 2
+        }
+      ],
+      "partition": [
+        {
+          "k": 3,
+          "anchors": 22,
+          "upper": 86,
+          "minAffected": 0
+        },
+        {
+          "k": 4,
+          "anchors": 16,
+          "upper": 39,
+          "minAffected": 0
+        },
+        {
+          "k": 5,
+          "anchors": 11,
+          "upper": 24,
+          "minAffected": 0
+        },
+        {
+          "k": 6,
+          "anchors": 19,
+          "upper": 16,
+          "minAffected": 3
+        },
+        {
+          "k": 7,
+          "anchors": 18,
+          "upper": 16,
+          "minAffected": 2
+        }
+      ],
+      "partitionDeficit": 5,
+      "minAffected": 20,
+      "minRepairedGroups": 13
+    },
+    {
+      "lo": 3,
+      "hi": 7,
+      "groups": 255,
+      "runes": 1145,
+      "budget": 12,
+      "cumulative": [
+        {
+          "k": 3,
+          "anchors": 144,
+          "upper": 338,
+          "minAffected": 0
+        },
+        {
+          "k": 4,
+          "anchors": 94,
+          "upper": 80,
+          "minAffected": 14
+        },
+        {
+          "k": 5,
+          "anchors": 74,
+          "upper": 33,
+          "minAffected": 41
+        },
+        {
+          "k": 6,
+          "anchors": 41,
+          "upper": 16,
+          "minAffected": 25
+        },
+        {
+          "k": 7,
+          "anchors": 24,
+          "upper": 16,
+          "minAffected": 8
+        }
+      ],
+      "partition": [
+        {
+          "k": 3,
+          "anchors": 50,
+          "upper": 147,
+          "minAffected": 0
+        },
+        {
+          "k": 4,
+          "anchors": 20,
+          "upper": 40,
+          "minAffected": 0
+        },
+        {
+          "k": 5,
+          "anchors": 33,
+          "upper": 24,
+          "minAffected": 9
+        },
+        {
+          "k": 6,
+          "anchors": 17,
+          "upper": 16,
+          "minAffected": 1
+        },
+        {
+          "k": 7,
+          "anchors": 24,
+          "upper": 16,
+          "minAffected": 8
+        }
+      ],
+      "partitionDeficit": 18,
+      "minAffected": 41,
+      "minRepairedGroups": 29
+    },
+    {
+      "lo": 8,
+      "hi": 14,
+      "groups": 383,
+      "runes": 1729,
+      "budget": 19,
+      "cumulative": [
+        {
+          "k": 3,
+          "anchors": 209,
+          "upper": 452,
+          "minAffected": 0
+        },
+        {
+          "k": 4,
+          "anchors": 137,
+          "upper": 99,
+          "minAffected": 38
+        },
+        {
+          "k": 5,
+          "anchors": 95,
+          "upper": 33,
+          "minAffected": 62
+        },
+        {
+          "k": 6,
+          "anchors": 67,
+          "upper": 18,
+          "minAffected": 49
+        },
+        {
+          "k": 7,
+          "anchors": 40,
+          "upper": 16,
+          "minAffected": 24
+        }
+      ],
+      "partition": [
+        {
+          "k": 3,
+          "anchors": 72,
+          "upper": 189,
+          "minAffected": 0
+        },
+        {
+          "k": 4,
+          "anchors": 42,
+          "upper": 59,
+          "minAffected": 0
+        },
+        {
+          "k": 5,
+          "anchors": 28,
+          "upper": 26,
+          "minAffected": 2
+        },
+        {
+          "k": 6,
+          "anchors": 27,
+          "upper": 17,
+          "minAffected": 10
+        },
+        {
+          "k": 7,
+          "anchors": 40,
+          "upper": 16,
+          "minAffected": 24
+        }
+      ],
+      "partitionDeficit": 36,
+      "minAffected": 62,
+      "minRepairedGroups": 43
+    },
+    {
+      "lo": 15,
+      "hi": 22,
+      "groups": 437,
+      "runes": 1903,
+      "budget": 21,
+      "cumulative": [
+        {
+          "k": 3,
+          "anchors": 226,
+          "upper": 499,
+          "minAffected": 0
+        },
+        {
+          "k": 4,
+          "anchors": 152,
+          "upper": 108,
+          "minAffected": 44
+        },
+        {
+          "k": 5,
+          "anchors": 109,
+          "upper": 40,
+          "minAffected": 69
+        },
+        {
+          "k": 6,
+          "anchors": 73,
+          "upper": 22,
+          "minAffected": 51
+        },
+        {
+          "k": 7,
+          "anchors": 44,
+          "upper": 16,
+          "minAffected": 28
+        }
+      ],
+      "partition": [
+        {
+          "k": 3,
+          "anchors": 74,
+          "upper": 186,
+          "minAffected": 0
+        },
+        {
+          "k": 4,
+          "anchors": 43,
+          "upper": 58,
+          "minAffected": 0
+        },
+        {
+          "k": 5,
+          "anchors": 36,
+          "upper": 28,
+          "minAffected": 8
+        },
+        {
+          "k": 6,
+          "anchors": 29,
+          "upper": 16,
+          "minAffected": 13
+        },
+        {
+          "k": 7,
+          "anchors": 44,
+          "upper": 16,
+          "minAffected": 28
+        }
+      ],
+      "partitionDeficit": 49,
+      "minAffected": 69,
+      "minRepairedGroups": 48
+    },
+    {
+      "lo": 23,
+      "hi": 26,
+      "groups": 224,
+      "runes": 1021,
+      "budget": 11,
+      "cumulative": [
+        {
+          "k": 3,
+          "anchors": 128,
+          "upper": 312,
+          "minAffected": 0
+        },
+        {
+          "k": 4,
+          "anchors": 86,
+          "upper": 81,
+          "minAffected": 5
+        },
+        {
+          "k": 5,
+          "anchors": 62,
+          "upper": 32,
+          "minAffected": 30
+        },
+        {
+          "k": 6,
+          "anchors": 41,
+          "upper": 16,
+          "minAffected": 25
+        },
+        {
+          "k": 7,
+          "anchors": 22,
+          "upper": 16,
+          "minAffected": 6
+        }
+      ],
+      "partition": [
+        {
+          "k": 3,
+          "anchors": 42,
+          "upper": 130,
+          "minAffected": 0
+        },
+        {
+          "k": 4,
+          "anchors": 24,
+          "upper": 42,
+          "minAffected": 0
+        },
+        {
+          "k": 5,
+          "anchors": 21,
+          "upper": 24,
+          "minAffected": 0
+        },
+        {
+          "k": 6,
+          "anchors": 19,
+          "upper": 16,
+          "minAffected": 3
+        },
+        {
+          "k": 7,
+          "anchors": 22,
+          "upper": 16,
+          "minAffected": 6
+        }
+      ],
+      "partitionDeficit": 9,
+      "minAffected": 30,
+      "minRepairedGroups": 19
+    },
+    {
+      "lo": 27,
+      "hi": 32,
+      "groups": 326,
+      "runes": 1433,
+      "budget": 16,
+      "cumulative": [
+        {
+          "k": 3,
+          "anchors": 173,
+          "upper": 382,
+          "minAffected": 0
+        },
+        {
+          "k": 4,
+          "anchors": 116,
+          "upper": 90,
+          "minAffected": 26
+        },
+        {
+          "k": 5,
+          "anchors": 79,
+          "upper": 32,
+          "minAffected": 47
+        },
+        {
+          "k": 6,
+          "anchors": 55,
+          "upper": 17,
+          "minAffected": 38
+        },
+        {
+          "k": 7,
+          "anchors": 33,
+          "upper": 16,
+          "minAffected": 17
+        }
+      ],
+      "partition": [
+        {
+          "k": 3,
+          "anchors": 57,
+          "upper": 153,
+          "minAffected": 0
+        },
+        {
+          "k": 4,
+          "anchors": 37,
+          "upper": 49,
+          "minAffected": 0
+        },
+        {
+          "k": 5,
+          "anchors": 24,
+          "upper": 25,
+          "minAffected": 0
+        },
+        {
+          "k": 6,
+          "anchors": 22,
+          "upper": 16,
+          "minAffected": 6
+        },
+        {
+          "k": 7,
+          "anchors": 33,
+          "upper": 16,
+          "minAffected": 17
+        }
+      ],
+      "partitionDeficit": 23,
+      "minAffected": 47,
+      "minRepairedGroups": 31
+    },
+    {
+      "lo": 33,
+      "hi": 39,
+      "groups": 378,
+      "runes": 1680,
+      "budget": 18,
+      "cumulative": [
+        {
+          "k": 3,
+          "anchors": 207,
+          "upper": 454,
+          "minAffected": 0
+        },
+        {
+          "k": 4,
+          "anchors": 144,
+          "upper": 101,
+          "minAffected": 43
+        },
+        {
+          "k": 5,
+          "anchors": 98,
+          "upper": 34,
+          "minAffected": 64
+        },
+        {
+          "k": 6,
+          "anchors": 67,
+          "upper": 19,
+          "minAffected": 48
+        },
+        {
+          "k": 7,
+          "anchors": 39,
+          "upper": 16,
+          "minAffected": 23
+        }
+      ],
+      "partition": [
+        {
+          "k": 3,
+          "anchors": 63,
+          "upper": 163,
+          "minAffected": 0
+        },
+        {
+          "k": 4,
+          "anchors": 46,
+          "upper": 56,
+          "minAffected": 0
+        },
+        {
+          "k": 5,
+          "anchors": 31,
+          "upper": 26,
+          "minAffected": 5
+        },
+        {
+          "k": 6,
+          "anchors": 28,
+          "upper": 16,
+          "minAffected": 12
+        },
+        {
+          "k": 7,
+          "anchors": 39,
+          "upper": 16,
+          "minAffected": 23
+        }
+      ],
+      "partitionDeficit": 40,
+      "minAffected": 64,
+      "minRepairedGroups": 46
+    },
+    {
+      "lo": 40,
+      "hi": 53,
+      "groups": 669,
+      "runes": 3008,
+      "budget": 33,
+      "cumulative": [
+        {
+          "k": 3,
+          "anchors": 363,
+          "upper": 696,
+          "minAffected": 0
+        },
+        {
+          "k": 4,
+          "anchors": 239,
+          "upper": 133,
+          "minAffected": 106
+        },
+        {
+          "k": 5,
+          "anchors": 171,
+          "upper": 40,
+          "minAffected": 131
+        },
+        {
+          "k": 6,
+          "anchors": 120,
+          "upper": 24,
+          "minAffected": 96
+        },
+        {
+          "k": 7,
+          "anchors": 70,
+          "upper": 16,
+          "minAffected": 54
+        }
+      ],
+      "partition": [
+        {
+          "k": 3,
+          "anchors": 124,
+          "upper": 269,
+          "minAffected": 0
+        },
+        {
+          "k": 4,
+          "anchors": 68,
+          "upper": 67,
+          "minAffected": 1
+        },
+        {
+          "k": 5,
+          "anchors": 51,
+          "upper": 32,
+          "minAffected": 19
+        },
+        {
+          "k": 6,
+          "anchors": 50,
+          "upper": 21,
+          "minAffected": 29
+        },
+        {
+          "k": 7,
+          "anchors": 70,
+          "upper": 16,
+          "minAffected": 54
+        }
+      ],
+      "partitionDeficit": 103,
+      "minAffected": 131,
+      "minRepairedGroups": 98
+    },
+    {
+      "lo": 54,
+      "hi": 55,
+      "groups": 66,
+      "runes": 308,
+      "budget": 3,
+      "cumulative": [
+        {
+          "k": 3,
+          "anchors": 39,
+          "upper": 121,
+          "minAffected": 0
+        },
+        {
+          "k": 4,
+          "anchors": 29,
+          "upper": 50,
+          "minAffected": 0
+        },
+        {
+          "k": 5,
+          "anchors": 18,
+          "upper": 24,
+          "minAffected": 0
+        },
+        {
+          "k": 6,
+          "anchors": 13,
+          "upper": 16,
+          "minAffected": 0
+        },
+        {
+          "k": 7,
+          "anchors": 10,
+          "upper": 11,
+          "minAffected": 0
+        }
+      ],
+      "partition": [
+        {
+          "k": 3,
+          "anchors": 10,
+          "upper": 48,
+          "minAffected": 0
+        },
+        {
+          "k": 4,
+          "anchors": 11,
+          "upper": 32,
+          "minAffected": 0
+        },
+        {
+          "k": 5,
+          "anchors": 5,
+          "upper": 16,
+          "minAffected": 0
+        },
+        {
+          "k": 6,
+          "anchors": 3,
+          "upper": 16,
+          "minAffected": 0
+        },
+        {
+          "k": 7,
+          "anchors": 10,
+          "upper": 11,
+          "minAffected": 0
+        }
+      ],
+      "partitionDeficit": 0,
+      "minAffected": 0,
+      "minRepairedGroups": 0
+    }
+  ],
+  "totalMinimumRepairGroups": 327
+}
