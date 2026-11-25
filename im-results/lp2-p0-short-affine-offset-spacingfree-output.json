@@ -1,0 +1,107 @@
+{
+  "toys": 390,
+  "fragments": 1816,
+  "original": {
+    "queries": 428576,
+    "rawHits": 44548,
+    "candidates": 27812,
+    "maxSupport": 4,
+    "best": {
+      "k": "7675986894948307254:0",
+      "count": 1,
+      "nll": -4.279076999436708
+    },
+    "supportWinner": {
+      "k": "6143308620279165469:0",
+      "count": 4,
+      "nll": -4.703294782803668
+    },
+    "truthRank": null,
+    "truthSupportRank": null,
+    "bRange": [
+      "0",
+      "2804634207102689142"
+    ],
+    "holdScore": -4.970229979415192,
+    "head": "REOTNDXIYXRWDIAXJUISRAWSBUCBEIARYPNDOECOLNGDNGSGTGFSOEREARXFTHTWCRCUSLHAAEWNGDFFIAEAIGLIMIIANHNAESPTLYA",
+    "holdHead": "UWOEYEOWFYBMIAWIIACEOPEOFAEJOUEABEAIXNGGNGRDCIAUBIATHNTTBHIANGEAIANAESAEAWMXYMHOLTGTDGOEIARUXEOPCCXOOEUWJLNFUUEOFSX"
+  },
+  "plants": [
+    {
+      "name": "0_loss_of_divinity",
+      "N": 755,
+      "fitN": 145,
+      "a": "1234567890123456787",
+      "b": "0",
+      "s": 0,
+      "anchors": [
+        16,
+        17
+      ],
+      "fragmentCount": 1816,
+      "exact": 742,
+      "holdExact": 610,
+      "queries": 216104,
+      "rawHits": 22405,
+      "candidates": 14178,
+      "maxSupport": 3,
+      "best": {
+        "k": "1234567890123456787:0",
+        "count": 2,
+        "nll": -2.9062298655692054
+      },
+      "supportWinner": {
+        "k": "7694645169446478063:1",
+        "count": 3,
+        "nll": -4.355742368001908
+      },
+      "truthRank": 1,
+      "truthSupportRank": 9,
+      "bRange": [
+        "0",
+        "6953713279988928611"
+      ],
+      "holdScore": -2.69696325324656,
+      "head": "ITYTHECIRCUMFERENCEPRACTICESTHREEBEHAUIARSWHICHCAUSETHELOSSOFDIUINITYCONSUMPTIANWECONSUMETOOMUC",
+      "holdHead": "DECEPTIANWEDONOTHAUEENOUGHORTHEREISNOTENOUGHWEHAUEWHATWEHAUENOWBYLUCCANDWEWILLNOTBESTRONGENOU"
+    },
+    {
+      "name": "jpg107-167",
+      "N": 319,
+      "fitN": 155,
+      "a": "2345678901234567891",
+      "b": "10260628712958602188",
+      "s": 1,
+      "anchors": [
+        50,
+        51
+      ],
+      "fragmentCount": 2229,
+      "exact": 306,
+      "holdExact": 164,
+      "queries": 287541,
+      "rawHits": 29603,
+      "candidates": 18167,
+      "maxSupport": 3,
+      "best": {
+        "k": "2345678901234567891:1",
+        "count": 2,
+        "nll": -2.777142161133914
+      },
+      "supportWinner": {
+        "k": "2909512439337991134:0",
+        "count": 3,
+        "nll": -4.4366570415587026
+      },
+      "truthRank": 1,
+      "truthSupportRank": 27,
+      "bRange": [
+        "4725024897676726053",
+        "10260628712958602188"
+      ],
+      "holdScore": -2.7231680677172556,
+      "head": "SONTHEMASTEREXPLAINEDTHEITHEIISTHEUOICEOFTHECIRCUMFERENCEHESAIDWHENASCEDBYASTUDENTTOEXPLAINWHAT",
+      "holdHead": "UOICEINMYHEADTHOUGHTTHESTUDENTANDHERAISEDHISHANDTOTELLTHEMASTERTHEMASTERSTOPPEDTHESTUDENTANDSAID"
+    }
+  ]
+}
