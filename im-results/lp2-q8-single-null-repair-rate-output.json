@@ -1,0 +1,82 @@
+{
+  "wholeTapeEqualities": 86,
+  "scope": "ordered printed groups; independent repair coin on each collision; checked nulls; group length independent of repair outcome",
+  "tests": [
+    {
+      "k": 3,
+      "minimumRepairs": 0,
+      "maximumFailedRepairs": 66,
+      "selectedGroups": 1645,
+      "selectedRunes": 9817,
+      "p": {
+        "0.81": 1,
+        "0.85": 1,
+        "0.9": 1,
+        "0.95": 1
+      },
+      "repairProbabilityAtPoint01": 5.421010862427522e-20
+    },
+    {
+      "k": 4,
+      "minimumRepairs": 175,
+      "maximumFailedRepairs": 49,
+      "selectedGroups": 1132,
+      "selectedRunes": 7765,
+      "p": {
+        "0.81": 0.880209429717193,
+        "0.85": 0.9977059480374715,
+        "0.9": 0.999999950065583,
+        "0.95": 1
+      },
+      "repairProbabilityAtPoint01": 0.7100173477941171
+    },
+    {
+      "k": 5,
+      "minimumRepairs": 332,
+      "maximumFailedRepairs": 37,
+      "selectedGroups": 815,
+      "selectedRunes": 6180,
+      "p": {
+        "0.81": 0.0000016996791218383993,
+        "0.85": 0.003269812397623825,
+        "0.9": 0.5505313393168887,
+        "0.95": 0.9999743625607787
+      },
+      "repairProbabilityAtPoint01": 0.8575728289597142
+    },
+    {
+      "k": 6,
+      "minimumRepairs": 217,
+      "maximumFailedRepairs": 28,
+      "selectedGroups": 559,
+      "selectedRunes": 4644,
+      "p": {
+        "0.81": 0.0009677306661975861,
+        "0.85": 0.0662136119564179,
+        "0.9": 0.8051519031540417,
+        "0.95": 0.9999822224209917
+      },
+      "repairProbabilityAtPoint01": 0.829993861782666
+    },
+    {
+      "k": 7,
+      "minimumRepairs": 39,
+      "maximumFailedRepairs": 21,
+      "selectedGroups": 343,
+      "selectedRunes": 3132,
+      "p": {
+        "0.81": 0.9989792040455319,
+        "0.85": 0.9999692346150406,
+        "0.9": 0.9999999684650401,
+        "0.95": 0.9999999999999477
+      },
+      "repairProbabilityAtPoint01": 0.4922550352886925
+    }
+  ],
+  "bonferroni5": {
+    "0.81": 0.000008498395609191997,
+    "0.85": 0.016349061988119126,
+    "0.9": 1,
+    "0.95": 1
+  }
+}
