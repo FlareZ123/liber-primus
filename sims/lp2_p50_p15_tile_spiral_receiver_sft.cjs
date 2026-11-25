@@ -61,3 +61,19 @@ function terminal(grid,corpus,solved){
  return {targetLength:target.length,control:{total:ctl.total,survivingStarts:ctl.survivingStarts,bestCorrect:correctness,score:ctl.best?.score},target:{total:out.total,survivingStarts:out.survivingStarts,best:out.best&&{start:out.best.start,score:out.best.score,plain},fixedOriginLegal:out.survivingStarts.some(x=>x.start===0)},nativeScore:control.reduce((acc,p,i)=>acc+(i?b[control[i-1]][p]:u[p]),0)/control.length}
 }
 console.log(JSON.stringify(terminal(read('resources/liber-primus/lp2-grid-256.json'),read('resources/liber-primus/lp2-corpus.json'),read('resources/external/relikd-solved-gp29-native-v1.json')),null,2));
+
+function directional(grid,corpus,solved){
+ const alpha=grid.alphabet.replace('f',''), tokens=grid.pages.flatMap(p=>p.tokens), tile=[5,6,10,9,8,4,0,1,2,3,7,11,15,14,13,12];
+ const order=Array.from({length:7},(_,b)=>tile.map(i=>(2+4*b+(i>>2))*8+2+i%4)).flat();
+ const v=order.map(i=>alpha.indexOf(tokens[i][0])*59+alpha.indexOf(tokens[i][1]));
+ const w=solved.sections.find(x=>x.name==='p57_parable').source_text.match(/[\u16a0-\u16ff]+/gu).map(word=>{const x=[...word].map(r=>corpus.runes.indexOf(r));return {name:x.map(i=>corpus.translit[i]).join(''),addr:x.reduce((a,b)=>a+b,0)}});
+ const pairs=new Map();for(const [from,to] of [[1,8],[8,14],[14,20]])for(let i=from;i<to;i++)for(let j=i+1;j<to;j++)if(w[i].addr<112&&w[j].addr<112){const k=`${w[i].addr}:${w[j].addr}`;if(!pairs.has(k))pairs.set(k,{a:w[i].addr,b:w[j].addr,labels:[]});pairs.get(k).labels.push(`${w[i].name}->${w[j].name}`)}
+ const edges=[...pairs.values()].filter(p=>v[p.a]===p.b).map(p=>({...p,cell:order[p.a],token:tokens[order[p.a]]}));
+ let state=3301;function rng(n){state^=state<<13;state^=state>>>17;state^=state<<5;return (state>>>0)%n}
+ const iterations=100000;let atLeast=0,both=0;let h={};
+ for(let k=0;k<iterations;k++){const a=v.slice();for(let i=a.length-1;i>0;i--){const j=rng(i+1);[a[i],a[j]]=[a[j],a[i]]}const n=[...pairs.values()].filter(p=>a[p.a]===p.b).length;h[n]=(h[n]??0)+1;if(n>=edges.length)atLeast++;if(a[94]===67&&a[42]===83)both++}
+ const exactSpecific=v.filter(x=>x===67).length*v.filter(x=>x===83).length/(112*111);
+ const traces=[94,42,67,83,81,38,88].map(a=>({a,cell:order[a],token:tokens[order[a]],out:v[a]}));
+ return {pairs:pairs.size,edges,traces,iterations,atLeast,both,exactSpecific,h}
+}
+console.log(JSON.stringify(directional(read('resources/liber-primus/lp2-grid-256.json'),read('resources/liber-primus/lp2-corpus.json'),read('resources/external/relikd-solved-gp29-native-v1.json')),null,2));
