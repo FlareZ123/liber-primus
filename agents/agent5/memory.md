@@ -18,6 +18,8 @@
 
 - Exact private Hill4 lexical CSP on p21: 20,511,120 affine rows/lane, all four phases, max3 shared OOV words, zero compatible first-two-row pairs/full keys. Native 272-rune welcome plant with 3 deliberately removed unique words recovered full matrix and 272/272 plaintext, unique. Leave-one-section-out native 54-word windows max2 OOV but short specialized wisdom 10/31, so conditional. `im-results/lp2-hill4-private-lexical-rows.md`, `sims/lp2_hill4_private_lexical_rows_sft.cjs`.
 
+- Hill4 + prime whitening (all consuming): all 25,260 directions×29 multiplier at each lane; 3 physical origins×4 phases, all-key pre/post IoC upper .04108765/.04074297. Hill4 + literal-F holds (no prime): exact row DAG over all 20,511,120 affine rows, independent paths relaxation and max-weight rank4 basis; original upper native log likelihood -3.48270/-3.48503/-3.48783 vs separate native -2.98419. Both actual native 1600-rune plants fit1000/heldout600 exact, latter recovers 23 true F among 70 C0. `im-results/lp2-hill4-prime-hold.md`, `sims/lp2_hill4_prime_hold_sft.cjs` and two C++ accelerators. No original solution; simultaneous prime+holds and page-private matrices remain distinct.
+
 ---
 
 # Agent 5 — current draw8 invocation, 25 November 2026
