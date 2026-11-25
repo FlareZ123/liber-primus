@@ -24,7 +24,7 @@ function isPrime(n) {
   return true;
 }
 function primeOrdinal(n) {
-  assert.ok(isPrime(n), \`\${n} must be prime\`);
+  assert.ok(isPrime(n), String(n) + ' must be prime');
   let rank = 0;
   for (let k = 2; k <= n; k++) if (isPrime(k)) rank++;
   return rank;
