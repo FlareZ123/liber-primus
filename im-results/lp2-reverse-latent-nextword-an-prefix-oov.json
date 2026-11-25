@@ -1,0 +1,70 @@
+[
+  {
+    "budget": 0,
+    "prefix": {
+      "score": null,
+      "complete": null,
+      "partial": null,
+      "firstEdges": 1,
+      "processed": 4,
+      "generated": 4,
+      "maxStates": 1,
+      "clipped": 0,
+      "discarded": 0,
+      "largestLoss": 0,
+      "lastReachable": 6,
+      "endStates": 0
+    }
+  },
+  {
+    "budget": 1,
+    "prefix": {
+      "score": null,
+      "complete": null,
+      "partial": null,
+      "firstEdges": 24,
+      "processed": 102,
+      "generated": 106,
+      "maxStates": 6,
+      "clipped": 0,
+      "discarded": 0,
+      "largestLoss": 0,
+      "lastReachable": 27,
+      "endStates": 0
+    }
+  },
+  {
+    "budget": 2,
+    "prefix": {
+      "score": null,
+      "complete": null,
+      "partial": null,
+      "firstEdges": 24,
+      "processed": 2351,
+      "generated": 2632,
+      "maxStates": 92,
+      "clipped": 0,
+      "discarded": 0,
+      "largestLoss": 0,
+      "lastReachable": 55,
+      "endStates": 0
+    }
+  },
+  {
+    "budget": 3,
+    "prefix": {
+      "score": -509.25994726182387,
+      "complete": -510.92164566529095,
+      "partial": -509.47044155523946,
+      "firstEdges": 24,
+      "processed": 63022,
+      "generated": 84011,
+      "maxStates": 2313,
+      "clipped": 0,
+      "discarded": 0,
+      "largestLoss": 0,
+      "lastReachable": 76,
+      "endStates": 24
+    }
+  }
+]
