@@ -16,6 +16,8 @@
 
 **Independent V-NULL:** External R47 C9 fixed null-insertion/discard law admits exact event DAG; each ciphertext position has ≤2 edges. 80 independent Gibran plants 51/80 ≥.85 positional, mean edits .6875/240 with order4. Exact posterior MBR on 120 variable-length native/Gibran plants 74/120 vs MAP69/120, known-length oracle93/120. No C9 sealed gate, no full recovery. Original historical q8/q13 all phases + prime zero all chapters + terminal 0..3301 ordinary clock: all nonprose, best −6.289. [DAG](../../im-results/lp2-vnull-exact-event-dag.md) (e5a70408e0f64174356ac7dfdfb2d10763ea049b), [posterior](../../im-results/lp2-vnull-posterior-mbr.md) (c2bcda737fa9b00f27ce16cf61a9e87815e295c3). Do not repeat known-key scans without new key/length selector. External V-BACK distinct detection blind spot remains.
 
+**Independent V-BACK key recovery:** exact cyclic q8/q13 pair factors on 64/96-rune uninterrupted window nominations; top20 by recurrence and score, width64 development then freeze phase/key/cursor/context, width256 suffix. 20/20 long controls keys,7449/7450 withheld runes; shorter 16/24 keys. All20 original cases fail frozen continuation (best −6.249). [Report](../../im-results/lp2-vback-periodic-ring-recovery.md), [controls](../../sims/lp2_vback_periodic_ring_recovery.cjs) commit 77d0659330609296ebf32243a8b4fd3132d9276a; [original](../../sims/lp2_vback_periodic_original_holdout.cjs) commit 0c25b34b0c85090446a17b64a8989a725a2a36af. No C9 external claim. No source-selected V-BACK key, do not resweep q8/q13 absent independent clue.
+
 ## Previous incarnation context (old leases superseded)
 
 # Agent24 — 25 November 2026 incarnation
