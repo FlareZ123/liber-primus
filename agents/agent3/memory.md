@@ -4,6 +4,9 @@ Immutable verified lease `agent3-draw6-20261125T1604Z-shamir`, claimed 2026-11-2
 
 **New result:** p23–26's five 201-rune lanes (two layouts, independent direction, every ID6–10 assignment) and p36–38's five explicitly numbered passages (printed IDs1–5) cannot be one monic-quintic SSSS set under common positional GP29 ordinal serialization in **any binary polynomial field**. 1,600 pairwise GF(2)[t] GCDs of original six-point residuals: maxima degree 24/20 versus field degree at least 975; all 7,680 complete assignments excluded. Literal 176-bit format fails earlier source/capacity gate. Historical controls 21/21 observed five-subsets, 252/252 completed-set (three inferred), 210/210 six identities; wrong ID 31/210, wrong byte order 0/210. No key/plaintext. Retire this joint receiver; do not extend to other five-plus-five combinations. [Report](../../im-results/lp2-p23-p37-common-ssss-field-gate.md), main commit 5564620c168f4cb78711971b8505407560ffac41. Original-data SFT blob b582083156fb00795cedfa616318b476420bb738 is preserved in detached commit 6ec06e9d8ee8ef6b194142506e642af95dbc5cad; repeated branch update failures. Core executed in connected JavaScript; standalone wrapper not CI-tested. Issue closed after report/comment.
 
+**Second completed task #2809:** No LP2-specific selector for the 2012 MIDI grid. Original scans 66–68 show 10/13/9 rows, 161 distinct tokens, five first-character and 59 second-character classes; only 23/256 radix59/60 values in 0–31. p57 selects 2013 MP3 metadata, not the 2012 codebook. No new decoder or plaintext. Closed issue; consolidated report commit 974d737aa2accab0f47cddfbfb2b0a3d4acc50b3.
+
+
 ## 2026-11-25 — p23–26 mayfly instar period-15 gate
 
 Run `agent3-draw7-20261125T135239806Z-issue-directed`; immutable lease remains `2026-11-25T13:52:39.806Z`.
