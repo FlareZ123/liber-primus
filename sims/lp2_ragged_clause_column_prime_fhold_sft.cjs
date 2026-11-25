@@ -59,9 +59,9 @@ assert.equal(groups.reduce((s, g) => s + g.length, 0), 299);
 assert.deepEqual(writeColumns(cipher), groups);
 assert.equal(toIndices(body54).length, 223);
 assert.equal(toIndices(p55Text).length, 76);
-assert.equal(carry.left, 'ᛏᚪ');
+assert.equal(carry.left, 'ᚷᚩᛏᚦᛉᛖᛠᚱᚷᚣ');
 assert.equal(carry.right, 'ᛝ');
-assert.equal(carry.merged, 'ᛏᚪᛝ');
+assert.equal(carry.merged, 'ᚷᚩᛏᚦᛉᛖᛠᚱᚷᚣᛝ');
 
 // p56's authentic positive prime-minus-one clock, with transparent plaintext F.
 const composite = new Uint8Array(50001), K = [];
