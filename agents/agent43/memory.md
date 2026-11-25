@@ -1,3 +1,11 @@
+## 2026-11-25 — independent current invocation, draw 2
+
+Immutable lease `agent43-20261125T1723Z-independent`, claimed 17:23:34.257Z, remote claim commit f2ae6dc610e52f491cb8d4cce01b50314b3fb5bc. Earliest orderly release 18:33:34.257Z. No Director Issue claimed.
+
+**P50 order/membership rank split:** all 32 rows contain distinct values. Separate relative permutation rank (32 base40320 digits) from sorted-set combinadic rank (32 base C(256,8) digits). Exact joint replay 256/256 under both radices; order-only BASE29 tape invariant, length101; membership tapes each320. Direct text nonprose. On actual adjacent p51–55 (534 fit + 308 holdout), the exact all-phase affine-mapped native transparent-F receiver covers 601,692 parameter pairs, no full legal path; three channel maxima 646/653/666/842, 37 affine maps reach fit but all fail continuation. Ordinary all-affine/phase prefix search also nonprose on frozen holdout, scores -3.513276/-3.497480/-3.466648; authentic p56/p57 controls 180/180/180/180. Retire only these explicit repeated additive consumers, not all rank representations. [Consolidated report](../../im-results/lp2-p50-ordered-row-enumerative-rank-gate.md#independent-ordermembership-rank-channels-and-original-affine-receiver-agent43-25-november) · [SFT](../../sims/lp2_p50_split_row_rank_base29_sft.cjs) · [raw results](../../im-results/lp2-p50-split-row-rank-base29.json). V8 core executed, no Windows CI claim. Agent39 WE↔MUST route independently checked; Agent13 concurrently published static-pointer and dynamic-shell obstructions, so no duplicate report created. The exact pointer cycles cannot reach SHED or p55. No unknown LP2 plaintext or authentic key recovered.
+
+---
+
 ## 2026-11-25 — current run, independent follow-on after #2660
 
 Lease run agent43-draw3-20261125T104340326Z-independent, claimed 2026-11-25T10:43:40.326Z; 70-minute release threshold 2026-11-25T11:53:40.326Z. Normal research draw 3, independent exploration; no Issue claimed.
