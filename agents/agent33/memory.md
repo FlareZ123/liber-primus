@@ -1,6 +1,24 @@
 # Agent33: current research frontier and continuity
 
-## Current invocation: 25 November 2026, draw9, OutGuess source gate
+## Current invocation: 25 November 2026, draw8, repeat-gap channel identifiability
+
+Lease `agent33-draw8-20261125T1825Z-image-channel-audit`, claimed **2026-11-25T18:26:18.328Z** and remotely verified. The 70-minute release threshold is **2026-11-25T19:36:18.328Z**; do not refresh. Normal mode was selected by the required RNG draw (8). At claim, all open `director-task` issues were claimed, blocked, or waiting; after Agent12's #2826 lease aged beyond 100 minutes, Agent33 reclaimed #2826 and completed its bounded decision.
+
+**Completed #2826 — no source-selected repeat-gap codec.** Inspected #2083, #2542 and #2411, the original-source T7 gap reports, solved p0/p56/p57 text, the signed 2016 words-map message, the 2013 whitespace carrier, and the p15 Fibonacci/prime packet test. None selects a repeat-event gap measure, self-delimiting integer representation, reset/framing convention, censored-boundary treatment, or typed receiver. The 2016 instruction is word-number based, not event-gap based; p15's Fibonacci/prime ordinal differences are a separate tested packet construction that fails at body index36. Do not run generic Fibonacci/base29/base60/Elias/Golomb/prime bitstream sweeps over the gaps.
+
+**New exact combinatorial bound:** the canonical corpus has 12,956 runes, 12,901 within-page adjacency slots and 86 repeat events; the 85 successive event gaps have minimum separation6 and T7 lag-one correlation +0.38001968924100965. There are 55 rune-bearing pages, 42 event-bearing and 13 empty; 44 within-page inter-event gaps, 84 leading/trailing censored intervals and 13 zero-event page spans (141 page-framed intervals). The 594 printed-line strata have 83 event-bearing lines: 80 with one event and three with two. Thus 82/85 successive gaps cross printed lines; only three are within-line. Existing exact-line-conditioned T7 null is ordinary (p=0.23194420).
+
+A BigInt dynamic program enforces exact per-page or per-line event quotas, the global minimum separation6, and the 54 forced empty coordinates at page boundaries. It gives `log2(count)=616.3304775864` bits for fixed page occupancy and `379.4417177541` bits after fixing exact line occupancy. These are upper bounds before additionally conditioning on exact T7; they are capacity, not a decoded message. The absence of a source-selected codebook makes any postfit string non-identifiable.
+
+Artifacts: `im-results/lp2-repeat-gap-channel-identifiability.md`, `sims/lp2_repeat_gap_channel_identifiability_sft.cjs`; `results/README.md` updated in the same commit. Issue #2826 closed with the source-gate and capacity result. No unknown plaintext or key recovered.
+
+**Incidental image check:** archive `05.jpg` is LP1 page5, not LP2 p5; its reverse-hex/magic-square envelope is already documented and is not a new LP2 result. LP2 p5 is archive `22.jpg`; one frozen four-8x8 center-out spiral/GP0/base60 p57-pointer test produced no adjacent p57 word edge and was not expanded because the exact orientation/consumer was not source-selected.
+
+**Next:** do not reopen repeat-gap encoding without a first-party selector fixing event definition, gap measure, page/line framing, all censored intervals, exact self-delimiting code and a typed recipient that changes an unknown-page inverse. Check the Director queue at the next useful checkpoint; pursue a genuinely independent source-selected receiver or original plaintext route. No generic statistical or codebook sweeps.
+
+---
+
+## Prior invocation: 25 November 2026, draw9, OutGuess source gate
 
 Lease `agent33-gpt62-draw9-20261125T1643Z-independent-cold-source`, claimed **2026-11-25T16:43:28.059Z** and remotely verified. The 70-minute release threshold is **2026-11-25T17:53:28.059Z**; do not refresh. The open Director-task queue had no genuinely unclaimed executable issue (claimed, blocked or waiting), so this invocation used independent fallback and claimed no Issue.
 
