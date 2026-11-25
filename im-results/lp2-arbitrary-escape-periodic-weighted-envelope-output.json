@@ -1,0 +1,1460 @@
+{
+  "N": 12956,
+  "weightSets": [
+    {
+      "name": "native log-probability",
+      "w": [
+        -4123,
+        -2970,
+        -3255,
+        -2457,
+        -2744,
+        -3488,
+        -4303,
+        -3414,
+        -3499,
+        -2803,
+        -2787,
+        -6751,
+        -8697,
+        -4279,
+        -6299,
+        -2708,
+        -2724,
+        -4303,
+        -2063,
+        -3667,
+        -3308,
+        -4554,
+        -8697,
+        -3238,
+        -2622,
+        -7088,
+        -3628,
+        -5201,
+        -4984
+      ],
+      "native": [
+        {
+          "name": "Gibran",
+          "min": -38734080,
+          "max": -38386646,
+          "at": 15550
+        },
+        {
+          "name": "Emerson",
+          "min": -38738470,
+          "max": -38228930,
+          "at": 150148
+        },
+        {
+          "name": "Shakespeare",
+          "min": -39036872,
+          "max": -38295619,
+          "at": 191054
+        }
+      ],
+      "min": -39036872
+    },
+    {
+      "name": "native frequency",
+      "w": [
+        16,
+        52,
+        39,
+        86,
+        65,
+        31,
+        14,
+        33,
+        30,
+        61,
+        62,
+        1,
+        0,
+        14,
+        2,
+        67,
+        66,
+        14,
+        128,
+        26,
+        37,
+        11,
+        0,
+        39,
+        73,
+        1,
+        27,
+        6,
+        7
+      ],
+      "native": [
+        {
+          "name": "Gibran",
+          "min": 777786,
+          "max": 795598,
+          "at": 15492
+        },
+        {
+          "name": "Emerson",
+          "min": 788108,
+          "max": 808181,
+          "at": 150141
+        },
+        {
+          "name": "Shakespeare",
+          "min": 764306,
+          "max": 797857,
+          "at": 191108
+        }
+      ],
+      "min": 764306
+    },
+    {
+      "name": "native top1",
+      "w": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "native": [
+        {
+          "name": "Gibran",
+          "min": 1416,
+          "max": 1575,
+          "at": 15446
+        },
+        {
+          "name": "Emerson",
+          "min": 1491,
+          "max": 1717,
+          "at": 37960
+        },
+        {
+          "name": "Shakespeare",
+          "min": 1408,
+          "max": 1675,
+          "at": 99596
+        }
+      ],
+      "min": 1408
+    },
+    {
+      "name": "native top2",
+      "w": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "native": [
+        {
+          "name": "Gibran",
+          "min": 2555,
+          "max": 2743,
+          "at": 15455
+        },
+        {
+          "name": "Emerson",
+          "min": 2422,
+          "max": 2695,
+          "at": 293625
+        },
+        {
+          "name": "Shakespeare",
+          "min": 2441,
+          "max": 2758,
+          "at": 191813
+        }
+      ],
+      "min": 2422
+    },
+    {
+      "name": "native top3",
+      "w": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "native": [
+        {
+          "name": "Gibran",
+          "min": 3466,
+          "max": 3662,
+          "at": 25297
+        },
+        {
+          "name": "Emerson",
+          "min": 3470,
+          "max": 3686,
+          "at": 268195
+        },
+        {
+          "name": "Shakespeare",
+          "min": 3323,
+          "max": 3634,
+          "at": 191594
+        }
+      ],
+      "min": 3323
+    },
+    {
+      "name": "native top4",
+      "w": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "native": [
+        {
+          "name": "Gibran",
+          "min": 4427,
+          "max": 4595,
+          "at": 32179
+        },
+        {
+          "name": "Emerson",
+          "min": 4361,
+          "max": 4674,
+          "at": 270592
+        },
+        {
+          "name": "Shakespeare",
+          "min": 4064,
+          "max": 4578,
+          "at": 191341
+        }
+      ],
+      "min": 4064
+    },
+    {
+      "name": "native top5",
+      "w": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "native": [
+        {
+          "name": "Gibran",
+          "min": 5119,
+          "max": 5316,
+          "at": 15490
+        },
+        {
+          "name": "Emerson",
+          "min": 5277,
+          "max": 5573,
+          "at": 236743
+        },
+        {
+          "name": "Shakespeare",
+          "min": 4777,
+          "max": 5337,
+          "at": 191248
+        }
+      ],
+      "min": 4777
+    },
+    {
+      "name": "native top6",
+      "w": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "native": [
+        {
+          "name": "Gibran",
+          "min": 5848,
+          "max": 6173,
+          "at": 15490
+        },
+        {
+          "name": "Emerson",
+          "min": 6076,
+          "max": 6383,
+          "at": 151343
+        },
+        {
+          "name": "Shakespeare",
+          "min": 5715,
+          "max": 6208,
+          "at": 190680
+        }
+      ],
+      "min": 5715
+    },
+    {
+      "name": "native top7",
+      "w": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "native": [
+        {
+          "name": "Gibran",
+          "min": 6575,
+          "max": 6882,
+          "at": 15490
+        },
+        {
+          "name": "Emerson",
+          "min": 6917,
+          "max": 7251,
+          "at": 150138
+        },
+        {
+          "name": "Shakespeare",
+          "min": 6595,
+          "max": 7046,
+          "at": 150770
+        }
+      ],
+      "min": 6575
+    },
+    {
+      "name": "native top8",
+      "w": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "native": [
+        {
+          "name": "Gibran",
+          "min": 7536,
+          "max": 7733,
+          "at": 15492
+        },
+        {
+          "name": "Emerson",
+          "min": 7811,
+          "max": 8224,
+          "at": 151178
+        },
+        {
+          "name": "Shakespeare",
+          "min": 7280,
+          "max": 7903,
+          "at": 190680
+        }
+      ],
+      "min": 7280
+    },
+    {
+      "name": "native top9",
+      "w": [
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "native": [
+        {
+          "name": "Gibran",
+          "min": 8226,
+          "max": 8486,
+          "at": 15492
+        },
+        {
+          "name": "Emerson",
+          "min": 8359,
+          "max": 8743,
+          "at": 150138
+        },
+        {
+          "name": "Shakespeare",
+          "min": 7790,
+          "max": 8601,
+          "at": 190680
+        }
+      ],
+      "min": 7790
+    },
+    {
+      "name": "native top10",
+      "w": [
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "native": [
+        {
+          "name": "Gibran",
+          "min": 8856,
+          "max": 9064,
+          "at": 10020
+        },
+        {
+          "name": "Emerson",
+          "min": 8855,
+          "max": 9266,
+          "at": 150138
+        },
+        {
+          "name": "Shakespeare",
+          "min": 8450,
+          "max": 9099,
+          "at": 190626
+        }
+      ],
+      "min": 8450
+    },
+    {
+      "name": "native top12",
+      "w": [
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "native": [
+        {
+          "name": "Gibran",
+          "min": 9940,
+          "max": 10088,
+          "at": 15548
+        },
+        {
+          "name": "Emerson",
+          "min": 9848,
+          "max": 10198,
+          "at": 116598
+        },
+        {
+          "name": "Shakespeare",
+          "min": 9501,
+          "max": 9987,
+          "at": 191054
+        }
+      ],
+      "min": 9501
+    },
+    {
+      "name": "native top15",
+      "w": [
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "native": [
+        {
+          "name": "Gibran",
+          "min": 11039,
+          "max": 11167,
+          "at": 30062
+        },
+        {
+          "name": "Emerson",
+          "min": 11030,
+          "max": 11286,
+          "at": 18900
+        },
+        {
+          "name": "Shakespeare",
+          "min": 10882,
+          "max": 11275,
+          "at": 181877
+        }
+      ],
+      "min": 10882
+    },
+    {
+      "name": "native top18",
+      "w": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0
+      ],
+      "native": [
+        {
+          "name": "Gibran",
+          "min": 12073,
+          "max": 12173,
+          "at": 29370
+        },
+        {
+          "name": "Emerson",
+          "min": 11996,
+          "max": 12175,
+          "at": 149508
+        },
+        {
+          "name": "Shakespeare",
+          "min": 12026,
+          "max": 12243,
+          "at": 172279
+        }
+      ],
+      "min": 11996
+    },
+    {
+      "name": "native top21",
+      "w": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0
+      ],
+      "native": [
+        {
+          "name": "Gibran",
+          "min": 12588,
+          "max": 12684,
+          "at": 23228
+        },
+        {
+          "name": "Emerson",
+          "min": 12574,
+          "max": 12717,
+          "at": 149479
+        },
+        {
+          "name": "Shakespeare",
+          "min": 12635,
+          "max": 12748,
+          "at": 64829
+        }
+      ],
+      "min": 12574
+    },
+    {
+      "name": "native top24",
+      "w": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "native": [
+        {
+          "name": "Gibran",
+          "min": 12911,
+          "max": 12939,
+          "at": 11827
+        },
+        {
+          "name": "Emerson",
+          "min": 12882,
+          "max": 12926,
+          "at": 22198
+        },
+        {
+          "name": "Shakespeare",
+          "min": 12907,
+          "max": 12942,
+          "at": 63039
+        }
+      ],
+      "min": 12882
+    },
+    {
+      "name": "native top27",
+      "w": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "native": [
+        {
+          "name": "Gibran",
+          "min": 12943,
+          "max": 12953,
+          "at": 13919
+        },
+        {
+          "name": "Emerson",
+          "min": 12932,
+          "max": 12951,
+          "at": 66462
+        },
+        {
+          "name": "Shakespeare",
+          "min": 12925,
+          "max": 12954,
+          "at": 42539
+        }
+      ],
+      "min": 12925
+    }
+  ],
+  "tests": [
+    {
+      "q": 8,
+      "hold": false,
+      "result": [
+        {
+          "name": "native log-probability",
+          "total": -39787923,
+          "min": -39036872,
+          "margin": 751051
+        },
+        {
+          "name": "native frequency",
+          "total": 763501,
+          "min": 764306,
+          "margin": 805
+        },
+        {
+          "name": "native top1",
+          "total": 1728,
+          "min": 1408,
+          "margin": -320
+        },
+        {
+          "name": "native top2",
+          "total": 2936,
+          "min": 2422,
+          "margin": -514
+        },
+        {
+          "name": "native top3",
+          "total": 4064,
+          "min": 3323,
+          "margin": -741
+        },
+        {
+          "name": "native top4",
+          "total": 5146,
+          "min": 4064,
+          "margin": -1082
+        },
+        {
+          "name": "native top5",
+          "total": 5630,
+          "min": 4777,
+          "margin": -853
+        },
+        {
+          "name": "native top6",
+          "total": 6087,
+          "min": 5715,
+          "margin": -372
+        },
+        {
+          "name": "native top7",
+          "total": 6971,
+          "min": 6575,
+          "margin": -396
+        },
+        {
+          "name": "native top8",
+          "total": 7457,
+          "min": 7280,
+          "margin": -177
+        },
+        {
+          "name": "native top9",
+          "total": 8305,
+          "min": 7790,
+          "margin": -515
+        },
+        {
+          "name": "native top10",
+          "total": 8681,
+          "min": 8450,
+          "margin": -231
+        },
+        {
+          "name": "native top12",
+          "total": 9690,
+          "min": 9501,
+          "margin": -189
+        },
+        {
+          "name": "native top15",
+          "total": 10863,
+          "min": 10882,
+          "margin": 19
+        },
+        {
+          "name": "native top18",
+          "total": 11681,
+          "min": 11996,
+          "margin": 315
+        },
+        {
+          "name": "native top21",
+          "total": 12238,
+          "min": 12574,
+          "margin": 336
+        },
+        {
+          "name": "native top24",
+          "total": 12845,
+          "min": 12882,
+          "margin": 37
+        },
+        {
+          "name": "native top27",
+          "total": 12956,
+          "min": 12925,
+          "margin": -31
+        }
+      ]
+    },
+    {
+      "q": 8,
+      "hold": true,
+      "result": [
+        {
+          "name": "native log-probability",
+          "total": -39711939,
+          "min": -39036872,
+          "margin": 675067
+        },
+        {
+          "name": "native frequency",
+          "total": 765406,
+          "min": 764306,
+          "margin": -1100
+        },
+        {
+          "name": "native top1",
+          "total": 1753,
+          "min": 1408,
+          "margin": -345
+        },
+        {
+          "name": "native top2",
+          "total": 2959,
+          "min": 2422,
+          "margin": -537
+        },
+        {
+          "name": "native top3",
+          "total": 4081,
+          "min": 3323,
+          "margin": -758
+        },
+        {
+          "name": "native top4",
+          "total": 5142,
+          "min": 4064,
+          "margin": -1078
+        },
+        {
+          "name": "native top5",
+          "total": 5633,
+          "min": 4777,
+          "margin": -856
+        },
+        {
+          "name": "native top6",
+          "total": 6130,
+          "min": 5715,
+          "margin": -415
+        },
+        {
+          "name": "native top7",
+          "total": 7002,
+          "min": 6575,
+          "margin": -427
+        },
+        {
+          "name": "native top8",
+          "total": 7488,
+          "min": 7280,
+          "margin": -208
+        },
+        {
+          "name": "native top9",
+          "total": 8343,
+          "min": 7790,
+          "margin": -553
+        },
+        {
+          "name": "native top10",
+          "total": 8705,
+          "min": 8450,
+          "margin": -255
+        },
+        {
+          "name": "native top12",
+          "total": 9731,
+          "min": 9501,
+          "margin": -230
+        },
+        {
+          "name": "native top15",
+          "total": 10916,
+          "min": 10882,
+          "margin": -34
+        },
+        {
+          "name": "native top18",
+          "total": 11708,
+          "min": 11996,
+          "margin": 288
+        },
+        {
+          "name": "native top21",
+          "total": 12255,
+          "min": 12574,
+          "margin": 319
+        },
+        {
+          "name": "native top24",
+          "total": 12848,
+          "min": 12882,
+          "margin": 34
+        },
+        {
+          "name": "native top27",
+          "total": 12956,
+          "min": 12925,
+          "margin": -31
+        }
+      ]
+    },
+    {
+      "q": 13,
+      "hold": false,
+      "result": [
+        {
+          "name": "native log-probability",
+          "total": -39147518,
+          "min": -39036872,
+          "margin": 110646
+        },
+        {
+          "name": "native frequency",
+          "total": 788622,
+          "min": 764306,
+          "margin": -24316
+        },
+        {
+          "name": "native top1",
+          "total": 1972,
+          "min": 1408,
+          "margin": -564
+        },
+        {
+          "name": "native top2",
+          "total": 3230,
+          "min": 2422,
+          "margin": -808
+        },
+        {
+          "name": "native top3",
+          "total": 4408,
+          "min": 3323,
+          "margin": -1085
+        },
+        {
+          "name": "native top4",
+          "total": 5497,
+          "min": 4064,
+          "margin": -1433
+        },
+        {
+          "name": "native top5",
+          "total": 5991,
+          "min": 4777,
+          "margin": -1214
+        },
+        {
+          "name": "native top6",
+          "total": 6456,
+          "min": 5715,
+          "margin": -741
+        },
+        {
+          "name": "native top7",
+          "total": 7361,
+          "min": 6575,
+          "margin": -786
+        },
+        {
+          "name": "native top8",
+          "total": 7845,
+          "min": 7280,
+          "margin": -565
+        },
+        {
+          "name": "native top9",
+          "total": 8657,
+          "min": 7790,
+          "margin": -867
+        },
+        {
+          "name": "native top10",
+          "total": 8990,
+          "min": 8450,
+          "margin": -540
+        },
+        {
+          "name": "native top12",
+          "total": 10025,
+          "min": 9501,
+          "margin": -524
+        },
+        {
+          "name": "native top15",
+          "total": 11135,
+          "min": 10882,
+          "margin": -253
+        },
+        {
+          "name": "native top18",
+          "total": 11932,
+          "min": 11996,
+          "margin": 64
+        },
+        {
+          "name": "native top21",
+          "total": 12411,
+          "min": 12574,
+          "margin": 163
+        },
+        {
+          "name": "native top24",
+          "total": 12917,
+          "min": 12882,
+          "margin": -35
+        },
+        {
+          "name": "native top27",
+          "total": 12956,
+          "min": 12925,
+          "margin": -31
+        }
+      ]
+    },
+    {
+      "q": 13,
+      "hold": true,
+      "result": [
+        {
+          "name": "native log-probability",
+          "total": -39083276,
+          "min": -39036872,
+          "margin": 46404
+        },
+        {
+          "name": "native frequency",
+          "total": 792261,
+          "min": 764306,
+          "margin": -27955
+        },
+        {
+          "name": "native top1",
+          "total": 1999,
+          "min": 1408,
+          "margin": -591
+        },
+        {
+          "name": "native top2",
+          "total": 3276,
+          "min": 2422,
+          "margin": -854
+        },
+        {
+          "name": "native top3",
+          "total": 4440,
+          "min": 3323,
+          "margin": -1117
+        },
+        {
+          "name": "native top4",
+          "total": 5534,
+          "min": 4064,
+          "margin": -1470
+        },
+        {
+          "name": "native top5",
+          "total": 6046,
+          "min": 4777,
+          "margin": -1269
+        },
+        {
+          "name": "native top6",
+          "total": 6485,
+          "min": 5715,
+          "margin": -770
+        },
+        {
+          "name": "native top7",
+          "total": 7368,
+          "min": 6575,
+          "margin": -793
+        },
+        {
+          "name": "native top8",
+          "total": 7837,
+          "min": 7280,
+          "margin": -557
+        },
+        {
+          "name": "native top9",
+          "total": 8682,
+          "min": 7790,
+          "margin": -892
+        },
+        {
+          "name": "native top10",
+          "total": 9028,
+          "min": 8450,
+          "margin": -578
+        },
+        {
+          "name": "native top12",
+          "total": 10075,
+          "min": 9501,
+          "margin": -574
+        },
+        {
+          "name": "native top15",
+          "total": 11172,
+          "min": 10882,
+          "margin": -290
+        },
+        {
+          "name": "native top18",
+          "total": 11961,
+          "min": 11996,
+          "margin": 35
+        },
+        {
+          "name": "native top21",
+          "total": 12413,
+          "min": 12574,
+          "margin": 161
+        },
+        {
+          "name": "native top24",
+          "total": 12917,
+          "min": 12882,
+          "margin": -35
+        },
+        {
+          "name": "native top27",
+          "total": 12956,
+          "min": 12925,
+          "margin": -31
+        }
+      ]
+    }
+  ],
+  "inputBlobs": [
+    "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "1b064ef6d85819b7d96adaff31a82d1ec551598f",
+    "df260a07d56bf5998d40a6360b6132c35c252d10",
+    "a92be8ba5b3511a003a22ba31523c14397aaa83a",
+    "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+  ]
+}
