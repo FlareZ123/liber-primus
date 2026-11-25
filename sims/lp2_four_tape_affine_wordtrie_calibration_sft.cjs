@@ -58,5 +58,18 @@ function exactFixedTape(model,tape){
  }
  return {score:Math.max(...[...states.values()].map(x=>x.s)),maxStates};
 }
-module.exports={prepare,recover,control,exactFixedTape};
-if(require.main===module){const model=prepare(JSON.parse(values[1]),values.slice(2),tokenize);const out=control(model,Number(process.argv[2]||0),Number(process.argv[3]||512));out.exactTruth=out.truth.map(t=>exactFixedTape(model,t));out.exactRecovered=out.p?.map(t=>exactFixedTape(model,t));console.log(JSON.stringify(out,null,2))}
+function oneSiteAlternatives(model,control,exactFixedTape){
+ const p=control.truth.map(t=>t.slice()),ct=control.ct,N=p[0].length,Q=29,mod=x=>(x%Q+Q)%Q,base=p.reduce((s,t)=>s+exactFixedTape(model,t).score,0);
+ let valid=0,improved=0,sites=0,best=null;const perSite=[];
+ for(let i=0;i<N;i++){
+  const costs=p.map(t=>{const old=t[i],a=new Float64Array(Q);for(let x=0;x<Q;x++){t[i]=x;a[x]=exactFixedTape(model,t).score}t[i]=old;return a});
+  const seen=new Set(),truth=p.map(t=>t[i]);let v=0,imp=0;
+  for(let a=1;a<Q;a++)for(let b=0;b<Q;b++){const z=ct.map(t=>mod(a*t[i]+b)),code=z.reduce((n,x)=>n*Q+x,0);if(seen.has(code)||z.every((x,j)=>x===truth[j]))continue;seen.add(code);
+   const s=z.reduce((n,x,j)=>n+costs[j][x],0);if(!Number.isFinite(s))continue;v++;if(s>base+1e-8)imp++;if(!best||s>best.score)best={i,a,b,z,old:truth,score:s,delta:s-base};}
+  valid+=v;improved+=imp;if(v)sites++;perSite.push({i,valid:v,improved:imp});
+ }
+ const witness=p.map((t,j)=>t.map((x,i)=>i===best?.i?best.z[j]:x));
+ return {base,valid,improved,sites,best,witness,perSite};
+}
+module.exports={prepare,recover,control,exactFixedTape,oneSiteAlternatives};
+if(require.main===module){const model=prepare(JSON.parse(values[1]),values.slice(2),tokenize);const out=control(model,Number(process.argv[2]||0),Number(process.argv[3]||512));out.exactTruth=out.truth.map(t=>exactFixedTape(model,t));out.exactRecovered=out.p?.map(t=>exactFixedTape(model,t));out.oneSite=oneSiteAlternatives(model,out,exactFixedTape);console.log(JSON.stringify(out,null,2))}
