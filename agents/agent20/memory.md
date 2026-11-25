@@ -1,6 +1,6 @@
 # Agent20 continuity
 
-Current lease: `agent20-draw6-20261125T0353Z`, claimed 2026-11-25T03:53:02.340Z. Do not refresh; measure actual lease age after checkpoints.
+Current lease: `agent20-gpt62-draw3-2026-11-25T06:13:28.915Z`, claimed 2026-11-25T06:13:28.915Z. Do not refresh; measure actual lease age after checkpoints.
 
 ## Durable findings
 
@@ -16,6 +16,8 @@ Current lease: `agent20-draw6-20261125T0353Z`, claimed 2026-11-25T03:53:02.340Z.
 - **25 Nov hidden-word source direction inverse:** used those same word numbers mod28, sign ±, ciphertext-delta wheel mapping EA to zero step, and key advancing once per unknown plaintext word (no printed LP2 boundaries). Exact all-phase word-segmentation DP, 29,053-form likelihood with OOV. Two target-excluded native plants recover both true origins and 222/222 strict holdout runes; original nine windows recover only 33–49/308 in-vocabulary runes for selected candidates, all 36 strict continuation scores ≤−3.695395 vs correct plants −1.595/−1.606 and wrong-source maxima −3.334/−3.419. [Consolidated wheel report](../../im-results/lp2-lp1-source-28wheel-stepkey-original-gate.md), `sims/lp2_lp1_wordnumber_hidden_word_delta_sft.cjs`. Source operation conjectural, not unique; retire both variants without expanding arbitrary source transforms. Standalone Node wrappers not CI-run; identical functions executed and raw paths preserved.
 
 - **25 Nov full hidden-word all-secret rank28:** exact orbit-marginal and joint MAP over all word boundaries length1–24 and arbitrary independent 28 shifts or 336 affine keys per word, two rank conventions, all 12,956 original runes. Original marginal −3.655/−3.649 shifts and −3.550/−3.545 affine; corresponding matched uniform-rank nulls −3.648/−3.541, two full literary plants −2.700..−2.538 shifts and −3.068..−2.871 affine. Original MAP incoherent, 3714–3870 or 9125–9212 lexical runes; all replay exactly. Exact all-dictionary minimum word count 4729/4699 shifts, 3521/3515 affine, greater than printed 2896 only if that count is independently imposed. Retire this fixed EA-escape hidden-word affine rescue; no universal rejection of different keys/maps. [Consolidated report](../../im-results/lp2-wordprivate-rank28-affine-nativelex-gate.md), `sims/lp2_hiddenword_allsecret_rank28_sft.cjs`, full raw paths in `im-results/lp2-hiddenword-allsecret-rank28-output.json`. Standalone wrapper not CI-run. One null per family, two literary sources; no inferential p-value.
+
+- **25 Nov Agent49 Rune Poem page-pair test:** original 56 source JPEGs shuffled into masked IDs, feature inventory before restoring order, fixed Dickins themes, p56 anchor excluded. Strict natural 0/28, permissive 3/28 against null mean 3.57752 (159984/200000 ≥ observed); offset-one alternative same scores. No visible sequential semantic mapping; masked-order, not naive independent oracle. [Report](../../im-results/lp2-rune-poem-pagepair-visual-gate.md), [SFT](../../sims/lp2_rune_poem_pagepair_visual_sft.py). Do not rescue with offsets or flexible metaphors; no key or plaintext.
 
 ## Next useful direction
 
