@@ -2,6 +2,40 @@
 
 **Decision (14 November 2026).** A source-anchored possible key location produces three complete 76-rune tapes, but the historical three-share XOR primitive, a direct reversible GF(29) analog, and a fixed-coordinate Shamir fourth-share interpretation all fail their distinct original-input tests. The arithmetic length relationship is exact. There is **no recovered unknown plaintext, authenticated LP2 key, independently specified three-tape instruction or destination**.
 
+## Complete normalized three-share pad inversion, ordinary and F-transparent (Agent14, 25 November)
+
+The direct arbitrary affine fourth-share gate above rejects p55 itself as a fixed affine combination of p27 lanes. A distinct receiver is that three p27 tapes reconstruct a **key** which is then subtracted from the original p55 ciphertext. Earlier tests used fixed abscissas or sums; this inverse exhausts all normalized, nonzero GF29 weights, a superset of all nondegenerate three-share Lagrange interpolation weights with target distinct from the share coordinates.
+
+For each of the two previously frozen phrase-excision layouts (begin after the exact copied marker, then either contiguous strips or interleaved triples) and two previously frozen circumference-trim layouts (three 78-rune rows minus endpoints, or 78 triples minus first/last), form
+
+```
+K[i] = sign*(a*T1[i]+b*T2[i]+c*T3[i]) mod29
+a,b,c in 1..28, a+b+c=1 mod29, sign in {-1,+1}.
+```
+
+The 757 admissible coefficient triples yield exactly 6,056 signed layout/key candidates. Both ordinary GP29 additive consumption and the historically authenticated plaintext-side F-hold variant are considered; all legal F histories are enumerated. Hold-mode paths may leave unconsumed tail elements of the 76-rune key. Original printed word boundaries are not imposed. A source-excluded interpolated GP trigram model selects the highest likelihood complete path; no new rotation, offset, affine constant, word exception, or extra cipher is introduced. The p27/p55 marker and historical Shamir use motivate this receiver but do not authenticate it.
+
+Four blind key-selection controls use actual p27 tape values and fixed distinct weight triples, layouts and signs to encrypt one native solved p57 excerpt and three independently withheld Shakespeare passages. The inverse searches the same complete candidate space on each ciphertext.
+
+| True layout | True weights | True mode | Exact recovered runes | Mean log probability (nats/rune) |
+|---|---|---|---:|---:|
+| Marker-contiguous | 3,26,1 | ordinary | 76/76 | −2.513002 |
+| Marker-interleaved | 1,26,3 | F-hold | 76/76 | −2.310093 |
+| Row outer trim | 8,11,11 | ordinary, negative sign | 76/76 | −2.518842 |
+| Triple outer trim | 7,9,14 | F-hold | 76/76 | −2.491729 |
+
+All four key tapes are recovered exactly. In the third plant the same result is tied across consumption modes because no plaintext F is present; mode identification is therefore not unique.
+
+The original returns **6,056 ordinary candidates and 3,563 complete F-transparent paths from 1,775 keys**. Best original is marker-contiguous weights [10,28,21], sign −1, F-hold, consuming 74 positions. Its mean log probability is **−5.252651**, with runner-up total −409.436550 versus −399.201489. The output is:
+
+```
+INDEDONCWEALNSWEFITISCUXLTNGGRMYPRAEHUNJYLTHEOFBAEHPMNGNXNTGNUOCGURYTYLNIDNGDEOJOTBEAR
+```
+
+The best ordinary candidate scores −5.662977 nats/rune. All mode/layout winning candidates forward-replay every original glyph, including all automatic literal F holds. Such replay is an implementation invariant, not evidence for a key. The entire finite family yields no recognizable complete plaintext and the best original likelihood is substantially below all four blind plants. **Retire the stated normalized three-share additive-key receiver as a direct GP-English solution, including the F-transparent clock.** This is a calibrated finite-model negative, not a proof against every possible Shamir receiver, serialization, alternate language or cipher. Do not tune source ordering or arbitrary added weights without an independent clue.
+
+[Read-only Node/CommonJS SFT](../sims/lp2_p27_p55_shamir_allweights_pad_sft.cjs) · [complete original and planted results](lp2-p27-p55-shamir-allweights-pad-output.json). Executed directly against the repository source in Code Mode; no CI execution is claimed.
+
 ## Source-selected setup and new finite hypothesis
 
 The final **six original p55 ciphertext runes** are the two complete printed words **DJU BEI**. They occur verbatim as two printed words on original physical p27 at local rune offsets **28–33**. P27 carries a conspicuous single illustrated wing and p55 a complete moth/cicada. The exact repeated marker and the unique p55/p56 cross-page seven-rune seam were established earlier in [the source-repeat investigation](p27-p54-repeated-7gram-periodic-key-gate.md); ciphertext equality does not imply plaintext equality.
