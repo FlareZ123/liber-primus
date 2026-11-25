@@ -82,8 +82,8 @@ function experiment(raw,config={}) {
  }
  /** Search each anchored affine space, grant two additional arbitrary OOV long groups. */
  function robustSearch(cipher,anchor,config){
-  const other=anchor===56?49:56, allLong=cipher.map((c,i)=>({i,l:c.length})).filter(x=>x.l>=(config.minLength??8)).sort((a,b)=>b.l-a.l||a.i-b.i).map(x=>x.i);
-  const rest=allLong.filter(i=>i!==anchor&&i!==other);
+  const omitted=config.omitted??[anchor===56?49:56],allow=config.budget??(3-omitted.length),allLong=cipher.map((c,i)=>({i,l:c.length})).filter(x=>x.l>=(config.minLength??8)).sort((a,b)=>b.l-a.l||a.i-b.i).map(x=>x.i);
+  check(!omitted.includes(anchor)&&allow>=0,"anchor/budget");const rest=allLong.filter(i=>i!==anchor&&!omitted.includes(i));
   const cache=new Map(),index=new Map();
   function get(i){if(!cache.has(i)){const m=new Map();for(const o of options(cipher[i])){const k=[...new Set(o.e.map(x=>x.join(",")))].sort().join(";");if(!m.has(k))m.set(k,o)}
     const list=[...m.values()],positions=Array.from({length:cipher[i].length},()=>new Map());
@@ -133,8 +133,8 @@ function experiment(raw,config={}) {
    }
    if(budget>0)visit(s,next,budget-1);
   }
-  for(let i=begin;i<end&&!cap;i++){visit(A[i].s,rest,2);if(!cap)completed=i+1}
-  return {anchor,forcedOtherOOV:other,anchorOptions:A.length,range:[begin,end],completedThrough:completed,complete:completed===end,cap,nodes,joins,filters,featureTests,saturated,dimensionNodes,enumNodes,enumerated,leaves,maxLong,maxAll,accepted,best,domains:Object.fromEntries([anchor,...rest].map(i=>[i,get(i).length]))};
+  for(let i=begin;i<end&&!cap;i++){visit(A[i].s,rest,allow);if(!cap)completed=i+1}
+  return {anchor,omitted,budget:allow,anchorOptions:A.length,range:[begin,end],completedThrough:completed,complete:completed===end,cap,nodes,joins,filters,featureTests,saturated,dimensionNodes,enumNodes,enumerated,leaves,maxLong,maxAll,accepted,best,domains:Object.fromEntries([anchor,...rest].map(i=>[i,get(i).length]))};
  }
  function rng(seed){let s=seed;return()=>{s^=s<<13;s^=s>>>17;s^=s<<5;return s>>>0}}
  function plant(text,seed){
@@ -176,5 +176,5 @@ function experiment(raw,config={}) {
  return {dict:dict.size,native:pool.length,model:"pi(DIVINITY), pi(F)=0, pi(D)=1, independent group starts, literal F hold",original,plants,long,pairs,disjointContradictions:used.size/2};
 }
 const raw=inputs.map(x=>{const b=fs.readFileSync(path.resolve(__dirname,'..',x.path));const sha=crypto.createHash('sha1').update(`blob ${b.length}\0`).update(b).digest('hex');if(sha!==x.sha)throw Error('input changed: '+x.path);return b.toString('utf8')});
-const config=process.argv[2]==="--robust"?{robust:Number(process.argv[3]),start:Number(process.argv[4]||0),end:process.argv[5]===undefined?undefined:Number(process.argv[5]),minLength:process.argv[6]===undefined?8:Number(process.argv[6])}:{};
+const config=process.argv[2]==="--robust"?{robust:Number(process.argv[3]),start:Number(process.argv[4]||0),end:process.argv[5]===undefined?undefined:Number(process.argv[5]),minLength:process.argv[6]===undefined?8:Number(process.argv[6]),omitted:process.argv[7]===undefined?undefined:process.argv[7].split(",").map(Number)}:{};
 console.log(JSON.stringify(experiment(raw,config),null,2));
