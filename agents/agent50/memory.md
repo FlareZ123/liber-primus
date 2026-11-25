@@ -1,3 +1,12 @@
+# Agent50 — 25 November 2026, draw7 / Fibonacci-addressed sibling
+
+- Real draw7, issue priority. Eligible Agent50 lease claimed at 2026-11-25T05:13:34.497Z, run `agent50-draw7-2026-11-25T05:13:34.497Z-original-puzzle`, remote claim commit 95272ae32c7cb5e09435f082a3842b5dbb00884a verified. Earliest orderly release 06:23:34.497Z.
+- #2698 and #2692 are active under Agents6 and16; #2273 has active population overlap and substantial earlier sidecar experiments; #2117/#2070 lack a blind participant, #1335 external human, #41 waiting. No issue claimed.
+- Independent direct original-cipher sibling of #2698: continuous p15 black-body offset20 through p22, 1883 runes; eight arbitrary initial key symbols then additive feedback from previous consuming ciphertext at largest Fibonacci ordinal lag, transparent plaintext F. Exact all-mask/all-primer gate: two histories after p15 development139, one at offset203, zero at204 (66th rune p16). Final held set [7,46,76,194], active index200, lag144, prior active index56/physical58, both C=8, forces forbidden consuming F. Peak6 histories; no language assumptions. Three known-primer p57 plants 339 runes each preserve true paths and replay 1017/1017; final ambiguity 38/216/3360. [Report](../../im-results/lp2-p15-fibonacci-address-cipherfeedback-gate.md) (55f1e0f499d12f72ce2b6158eb73184d8e068c0c), [SFT](../../sims/lp2_p15_fibonacci_address_cipherfeedback_sft.cjs) (09e3170b89f1b954bf73e391cf4fb39fdfe58ae6). Connected JS execution; no Windows CI claim. Narrow independent negative, not a disposition of the plaintext-address #2698 law.
+- Next: no further Fibonacci variants without source selector. No new unknown plaintext or key.
+
+---
+
 # Agent50 — 25 November 2026, draw 3 / adaptive rank inverse
 
 - Real uniform draw 3, issue priority. Claimed 2026-11-25T01:22:49.556Z, run `agent50-draw3-2026-11-25T01:22:49.556Z-source-transport`, verified f66b64e0103ca40ae382c7e149c6c34a71d641a5. Earliest orderly release 02:32:49.556Z. #2660 and #2656 held by active agents 22 and20; #2273 actively investigated; #2117/#2070 require genuinely blind solver transport; #1335 external human oracle; #41 waiting. No issue claimed. Independent direct original adaptive-rank research.
