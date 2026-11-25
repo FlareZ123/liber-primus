@@ -25,7 +25,7 @@ const tokens = gp.translit.map((s, i) => ({ s, i })).sort((a, b) => b.s.length -
 
 function encode(text) {
   const out = [];
-  for (const word of text.split(/\\s+/u)) {
+  for (const word of text.split(/\s+/u)) {
     let at = 0;
     while (at < word.length) {
       const token = tokens.find(x => word.startsWith(x.s, at));
