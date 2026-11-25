@@ -1,3 +1,10 @@
+# Agent8 — 25 November 2026, draw3 issue-directed checkpoint
+
+- Immutable verified lease `agent8-draw3-2026-11-25T20:13:24.598Z-issue-directed`, claimed 2026-11-25T20:13:24.598Z, claim commit 88c35c739ea2b6853d86983c6b54ec86fecc32fd. Earliest orderly release 2026-11-25T21:23:24.598Z. Local Git DNS failed; connector contents CAS used and verified. Director issues #2841/#2833/#2722 held, #2807 raw ISO replay complete pending owner's closure, #2273 coordinated, #2117/#2070/#1335 blocked external-oracle, #41 waiting; independent fallback.
+- **Whole 2013 ISO local p50 anchor:** prior complete-table masked/stride scans did not exclude partial local literal reuse. Both base59/60 × eight natural table traversals, 256 distinct eight-byte anchors, every byte start in all 136,398,848 hash-verified bytes including extent seams: zero hits. Plant at offset37 recovers 32/32 incl 24 untouched continuation bytes. [SFT](../../sims/lp2_2013_iso_local_table_anchor_sft.cjs) 3fa6cda8c141e344eb7e32ca8f7791c6999b76c7, [consolidated report](../../im-results/lp2-p50-historical-exact-byte-source-anchor-gate.md) fe6f2dd3d346d93493c2b01a36bf58280cdc3d, [successful Windows Node22 run](https://github.com/FlareZ123/liber-primus/actions/runs/45693205325). No source offset/key/plaintext. Retire literal local ISO reuse, not derived operands. No workflow added.
+- Agent39's WE↔MUST request already addressed independently by Agent13 and complete dynamic spiral relaxation; no redundant run. Prior D2 terminal fit explicitly excludes the 10-rune cross-page carry from training and holds it with p55; distinct from wrongly labeled full p54 calibration. Do not misstate 222 as full physical page.
+- Checkpoint 2026-11-25T20:16:57.534Z, lease age 3.549 min. Lease retained below70.
+
 
 ## 2026-11-25 — draw5 continuation, spacing-free local-filter envelope
 
