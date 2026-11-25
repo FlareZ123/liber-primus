@@ -1,4 +1,7 @@
 
+## Signed path24 conditional suffix correction
+- Initial plant failure was a tied true-parameter, true-prefix Fehu suffix ambiguity. Freeze prefix model+output, enumerate all exact same-prefix suffixes, infer max-language continuation. Gate passed, controls 121/121/121; original 12888 complete paths, no authenticated reading. im-results/lp2-p32-signedpath24-rank-prime.md. Suffix score is fitted conditional inference, not independent heldout.
+
 ## 2026-11-25 — signed p32 path24 rank receiver
 - Four fixed path-rank transpositions, both prime/F-hold layer orders/signs, all 3302 origins; 52832 candidate settings. Calibration failed. Original unscored. Report im-results/lp2-p32-signedpath24-rank-prime.md.
 
