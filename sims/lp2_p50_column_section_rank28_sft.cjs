@@ -23,9 +23,9 @@ const transcription = read("resources/transcriptions/lp2-image-corrected.txt");
 const grid = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 
-const GP = corpus.runes;
+const GP = Array.from({ length: 29 }, (_, i) => i);
 const GP_TEXT = corpus.translit;
-assert.equal(GP.length, 29);
+assert.equal(corpus.runes.length, 29);
 assert.equal(GP_TEXT[0], "F");
 assert.equal(grid.pages.reduce((n, p) => n + p.tokens.length, 0), 256);
 assert.deepEqual(grid.pages.map((p) => [p.page, p.rows, p.cols]), [
