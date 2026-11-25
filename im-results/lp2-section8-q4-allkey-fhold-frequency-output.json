@@ -26662,5 +26662,183 @@
       "upperF": 4
     }
   ],
-  "checks": 60
+  "checks": 60,
+  "branch": [
+    {
+      "q": 1,
+      "domains": [
+        1
+      ],
+      "nodes": 2,
+      "leaves": 1,
+      "tests": 30,
+      "keys": [
+        [
+          0
+        ]
+      ],
+      "exhausted": true
+    },
+    {
+      "q": 2,
+      "domains": [
+        1,
+        1
+      ],
+      "nodes": 3,
+      "leaves": 1,
+      "tests": 60,
+      "keys": [
+        [
+          0,
+          0
+        ]
+      ],
+      "exhausted": true
+    },
+    {
+      "q": 3,
+      "domains": [
+        1,
+        1,
+        1
+      ],
+      "nodes": 4,
+      "leaves": 1,
+      "tests": 90,
+      "keys": [
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "exhausted": true
+    },
+    {
+      "q": 4,
+      "domains": [
+        6,
+        5,
+        5,
+        6
+      ],
+      "nodes": 13,
+      "leaves": 1,
+      "tests": 182,
+      "keys": [
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "exhausted": true
+    },
+    {
+      "q": 5,
+      "domains": [
+        18,
+        16,
+        17,
+        17,
+        17
+      ],
+      "nodes": 50,
+      "leaves": 1,
+      "tests": 979,
+      "keys": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "exhausted": true
+    },
+    {
+      "q": 6,
+      "domains": [
+        24,
+        23,
+        26,
+        25,
+        23,
+        27
+      ],
+      "nodes": 207,
+      "leaves": 1,
+      "tests": 5251,
+      "keys": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "exhausted": true
+    },
+    {
+      "q": 7,
+      "domains": [
+        27,
+        28,
+        27,
+        27,
+        26,
+        25,
+        23
+      ],
+      "nodes": 1179,
+      "leaves": 1,
+      "tests": 31745,
+      "keys": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "exhausted": true
+    },
+    {
+      "q": 8,
+      "domains": [
+        29,
+        29,
+        28,
+        29,
+        29,
+        28,
+        28,
+        28
+      ],
+      "nodes": 6830,
+      "leaves": 1,
+      "tests": 195712,
+      "keys": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "exhausted": true
+    }
+  ]
 }
