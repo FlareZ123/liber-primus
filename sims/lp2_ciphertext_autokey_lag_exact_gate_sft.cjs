@@ -36,7 +36,7 @@ function run(gp, transcript, gold, dict){
    states=next;off+=n;if(!states.size)break;}
    const best=[...states.values()].sort((a,b)=>b.score-a.score)[0];return {best,states:states.size,paths:[...states.values()].reduce((s,x)=>s+x.count,0n).toString(),visits,processed:off};
  }
- const chapterStarts=[0,3,8,15,23,28,33,40,54,56];
+ const chapterStarts=[0,3,8,15,23,27,33,40,54,56];
  const originals=chapterStarts.slice(0,-1).flatMap((a,j)=>{const b=chapterStarts[j+1]-1,c=gp.pages.filter(p=>p.page>=a&&p.page<=b).flatMap(p=>p.indices);return [8,13].map(q=>{const cs=cert(c,q);return {a,b,q,n:c.length,count:cs.length,first:cs[0]}})});
  // Freeze two native controls, both periods, first 12 body words fit, next 12 held out.
  const controls=[];for(const name of ["0_welcome","0_koan_1"]){const s=native.find(s=>s.name===name),L=lex(name);for(const q of [8,13]){
