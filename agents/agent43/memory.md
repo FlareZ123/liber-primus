@@ -1,3 +1,7 @@
+## 2026-11-25 — shared p50 ring convolution
+
+- Exact common 76-tap affine circulant filter, per-ring wrap lengths76/68/60/52; fit first120 of solved p56+p57 inner outputs, hold60 and exterior76. All48 original radix/direction/alignment/role designs rank77 and inconsistent before holdout. Two invertible native plants recover77/77 coefficients each, 120/120 held interior and152/152 exterior total. No key. Consolidated `im-results/lp2-p50-76-perimeter-180-interior-source-partition.md`; `sims/lp2_p50_shared_ring_convolution_sft.cjs`.
+
 ## 2026-11-25 — p37 LUCK local feedback continuation
 
 - Fixed existing p37[146,150) LUCK crib; all invertible single-lag mixed affine feedback q1..4, ordinary and native transparent-F. 39 right fit / 55 left holdout within authored item3. 682,891 compatible original tuples. Four planted exact coefficient recoveries and 220/220 heldout. Exact original best ordinary fit −3.852060, frozen left −5.633668; F fit −3.801832, all four left masks fail. No new plaintext or key; retire this calibrated local receiver, not all lower-scoring paths. Updated `im-results/lp2-p37-luck-doubleindex-state-inverse.md`; `sims/lp2_p37_luck_mixed_feedback_bidirectional_sft.cjs`.
