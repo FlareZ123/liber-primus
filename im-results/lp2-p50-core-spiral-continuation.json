@@ -1,0 +1,573 @@
+{
+  "trace": [
+    {
+      "addr": 25,
+      "cell": 221,
+      "token": "0q",
+      "next": 51
+    },
+    {
+      "addr": 51,
+      "cell": 66,
+      "token": "0P",
+      "next": 25
+    }
+  ],
+  "p57": [
+    {
+      "word": "PARABLE",
+      "addr": 120,
+      "path": [],
+      "end": 120,
+      "cycle": null
+    },
+    {
+      "word": "LICE",
+      "addr": 53,
+      "path": [
+        53,
+        46,
+        31,
+        72,
+        13,
+        20,
+        40,
+        14
+      ],
+      "end": 139,
+      "cycle": null
+    },
+    {
+      "word": "THE",
+      "addr": 20,
+      "path": [
+        20,
+        40,
+        14
+      ],
+      "end": 139,
+      "cycle": null
+    },
+    {
+      "word": "INSTAR",
+      "addr": 78,
+      "path": [
+        78
+      ],
+      "end": 146,
+      "cycle": null
+    },
+    {
+      "word": "TUNNELNG",
+      "addr": 94,
+      "path": [
+        94,
+        81
+      ],
+      "end": 173,
+      "cycle": null
+    },
+    {
+      "word": "TO",
+      "addr": 19,
+      "path": [
+        19
+      ],
+      "end": 115,
+      "cycle": null
+    },
+    {
+      "word": "THE",
+      "addr": 20,
+      "path": [
+        20,
+        40,
+        14
+      ],
+      "end": 139,
+      "cycle": null
+    },
+    {
+      "word": "SURFACE",
+      "addr": 67,
+      "path": [
+        67
+      ],
+      "end": 170,
+      "cycle": null
+    },
+    {
+      "word": "WE",
+      "addr": 25,
+      "path": [
+        25,
+        51
+      ],
+      "end": 25,
+      "cycle": [
+        25,
+        51
+      ]
+    },
+    {
+      "word": "MUST",
+      "addr": 51,
+      "path": [
+        51,
+        25
+      ],
+      "end": 51,
+      "cycle": [
+        51,
+        25
+      ]
+    },
+    {
+      "word": "SHED",
+      "addr": 64,
+      "path": [
+        64,
+        104
+      ],
+      "end": 190,
+      "cycle": null
+    },
+    {
+      "word": "OUR",
+      "addr": 8,
+      "path": [
+        8,
+        28
+      ],
+      "end": 234,
+      "cycle": null
+    },
+    {
+      "word": "OWN",
+      "addr": 19,
+      "path": [
+        19
+      ],
+      "end": 115,
+      "cycle": null
+    },
+    {
+      "word": "CIRCUMFERENCES",
+      "addr": 131,
+      "path": [],
+      "end": 131,
+      "cycle": null
+    },
+    {
+      "word": "FIND",
+      "addr": 42,
+      "path": [
+        42
+      ],
+      "end": 229,
+      "cycle": null
+    },
+    {
+      "word": "THE",
+      "addr": 20,
+      "path": [
+        20,
+        40,
+        14
+      ],
+      "end": 139,
+      "cycle": null
+    },
+    {
+      "word": "DIUINITY",
+      "addr": 105,
+      "path": [
+        105
+      ],
+      "end": 174,
+      "cycle": null
+    },
+    {
+      "word": "WITHIN",
+      "addr": 38,
+      "path": [
+        38
+      ],
+      "end": 250,
+      "cycle": null
+    },
+    {
+      "word": "AND",
+      "addr": 56,
+      "path": [
+        56
+      ],
+      "end": 170,
+      "cycle": null
+    },
+    {
+      "word": "EMERGE",
+      "addr": 83,
+      "path": [
+        83,
+        69,
+        82
+      ],
+      "end": 191,
+      "cycle": null
+    }
+  ],
+  "p56": [
+    {
+      "word": "AN",
+      "addr": 33,
+      "path": [
+        33,
+        6,
+        72,
+        13,
+        20,
+        40,
+        14
+      ],
+      "end": 139,
+      "cycle": null
+    },
+    {
+      "word": "END",
+      "addr": 50,
+      "path": [
+        50
+      ],
+      "end": 202,
+      "cycle": null
+    },
+    {
+      "word": "WITHIN",
+      "addr": 38,
+      "path": [
+        38
+      ],
+      "end": 250,
+      "cycle": null
+    },
+    {
+      "word": "THE",
+      "addr": 20,
+      "path": [
+        20,
+        40,
+        14
+      ],
+      "end": 139,
+      "cycle": null
+    },
+    {
+      "word": "DEEP",
+      "addr": 72,
+      "path": [
+        72,
+        13,
+        20,
+        40,
+        14
+      ],
+      "end": 139,
+      "cycle": null
+    },
+    {
+      "word": "WEB",
+      "addr": 42,
+      "path": [
+        42
+      ],
+      "end": 229,
+      "cycle": null
+    },
+    {
+      "word": "THERE",
+      "addr": 42,
+      "path": [
+        42
+      ],
+      "end": 229,
+      "cycle": null
+    },
+    {
+      "word": "EXISTS",
+      "addr": 88,
+      "path": [
+        88,
+        60
+      ],
+      "end": 148,
+      "cycle": null
+    },
+    {
+      "word": "A",
+      "addr": 24,
+      "path": [
+        24
+      ],
+      "end": 148,
+      "cycle": null
+    },
+    {
+      "word": "PAGE",
+      "addr": 61,
+      "path": [
+        61,
+        53,
+        46,
+        31,
+        72,
+        13,
+        20,
+        40,
+        14
+      ],
+      "end": 139,
+      "cycle": null
+    },
+    {
+      "word": "THAT",
+      "addr": 42,
+      "path": [
+        42
+      ],
+      "end": 229,
+      "cycle": null
+    },
+    {
+      "word": "HASHES",
+      "addr": 88,
+      "path": [
+        88,
+        60
+      ],
+      "end": 148,
+      "cycle": null
+    },
+    {
+      "word": "TO",
+      "addr": 19,
+      "path": [
+        19
+      ],
+      "end": 115,
+      "cycle": null
+    },
+    {
+      "word": "IT",
+      "addr": 26,
+      "path": [
+        26,
+        0
+      ],
+      "end": 135,
+      "cycle": null
+    },
+    {
+      "word": "IS",
+      "addr": 25,
+      "path": [
+        25,
+        51
+      ],
+      "end": 25,
+      "cycle": [
+        25,
+        51
+      ]
+    },
+    {
+      "word": "THE",
+      "addr": 20,
+      "path": [
+        20,
+        40,
+        14
+      ],
+      "end": 139,
+      "cycle": null
+    },
+    {
+      "word": "DUTY",
+      "addr": 66,
+      "path": [
+        66
+      ],
+      "end": 112,
+      "cycle": null
+    },
+    {
+      "word": "OF",
+      "addr": 3,
+      "path": [
+        3,
+        105
+      ],
+      "end": 174,
+      "cycle": null
+    },
+    {
+      "word": "EUERY",
+      "addr": 67,
+      "path": [
+        67
+      ],
+      "end": 170,
+      "cycle": null
+    },
+    {
+      "word": "PILGRIM",
+      "addr": 82,
+      "path": [
+        82
+      ],
+      "end": 191,
+      "cycle": null
+    },
+    {
+      "word": "TO",
+      "addr": 19,
+      "path": [
+        19
+      ],
+      "end": 115,
+      "cycle": null
+    },
+    {
+      "word": "SEEC",
+      "addr": 56,
+      "path": [
+        56
+      ],
+      "end": 170,
+      "cycle": null
+    },
+    {
+      "word": "OUT",
+      "addr": 20,
+      "path": [
+        20,
+        40,
+        14
+      ],
+      "end": 139,
+      "cycle": null
+    },
+    {
+      "word": "THIS",
+      "addr": 27,
+      "path": [
+        27,
+        32
+      ],
+      "end": 146,
+      "cycle": null
+    },
+    {
+      "word": "PAGE",
+      "addr": 61,
+      "path": [
+        61,
+        53,
+        46,
+        31,
+        72,
+        13,
+        20,
+        40,
+        14
+      ],
+      "end": 139,
+      "cycle": null
+    }
+  ],
+  "cycles": [
+    "18",
+    "25,51"
+  ],
+  "cycleBasin": [
+    25,
+    51,
+    76,
+    111
+  ],
+  "conflicts": [
+    [
+      20,
+      [
+        {
+          "from": "THE",
+          "to": "INSTAR",
+          "toAddr": 78
+        },
+        {
+          "from": "THE",
+          "to": "SURFACE",
+          "toAddr": 67
+        },
+        {
+          "from": "THE",
+          "to": "DIUINITY",
+          "toAddr": 105
+        }
+      ]
+    ],
+    [
+      19,
+      [
+        {
+          "from": "TO",
+          "to": "THE",
+          "toAddr": 20
+        },
+        {
+          "from": "OWN",
+          "to": "CIRCUMFERENCES",
+          "toAddr": 131
+        }
+      ]
+    ]
+  ],
+  "inventory": [
+    {
+      "value": 55,
+      "locations": [
+        {
+          "cell": 94,
+          "token": "0u",
+          "row": 11,
+          "col": 6,
+          "depth": 1
+        },
+        {
+          "cell": 245,
+          "token": "0u",
+          "row": 30,
+          "col": 5,
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "value": 64,
+      "locations": [
+        {
+          "cell": 87,
+          "token": "15",
+          "row": 10,
+          "col": 7,
+          "depth": 0
+        }
+      ]
+    }
+  ],
+  "transferredP15": {
+    "WE": 193,
+    "MUST": 189,
+    "adjacent": 0
+  }
+}
