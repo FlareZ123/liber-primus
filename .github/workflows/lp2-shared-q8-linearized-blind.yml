@@ -1,0 +1,62 @@
+name: LP2 shared q8 GF29-linearized blind controls
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  blind:
+    strategy:
+      fail-fast: false
+      matrix:
+        plant: [0, 1]
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'ortools==9.14.6206'
+      - name: Blind control with the 35-variable GF29 model
+        continue-on-error: true
+        run: >-
+          python -u sims/lp2_shared_gp29_q8_carry_prefix_linearized_cpsat.py
+          --target control --plant ${{ matrix.plant }} --seconds 1200 --workers 4
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: q8-linearized-blind-control-${{ matrix.plant }}
+          path: im-results/lp2-shared-gp29-q8-carry-prefix-control-${{ matrix.plant }}.json
+          if-no-files-found: error
+  gate:
+    if: always()
+    needs: blind
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          pattern: q8-linearized-blind-control-*
+          path: controls
+      - name: Require both exact blind controls
+        run: |
+          python - <<'PY'
+          import glob, json, sys
+          files = glob.glob('controls/**/lp2-shared-gp29-q8-carry-prefix-control-*.json', recursive=True)
+          rows = [json.load(open(p, encoding='utf-8')) for p in files]
+          passed = len(rows) == 2 and all(
+              r.get('solver', {}).get('encoding') == 'GF29 linearized coordinate equations'
+              and r.get('passed') is True
+              and r.get('exact_action') is True
+              and r.get('training_truth_present') == 47
+              and r.get('carry_prefix_present') is True
+              and r.get('holdout_truth_present') == 17
+              and r.get('holdout_unique', 0) >= 8
+              and not r.get('oov_indices')
+              for r in rows
+          )
+          print(json.dumps({'files': files, 'rows': rows, 'passed': passed}, separators=(',', ':')))
+          if not passed:
+              sys.exit('GF29-linearized blind controls did not both pass.')
+          PY
