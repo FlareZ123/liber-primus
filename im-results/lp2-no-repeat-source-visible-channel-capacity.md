@@ -1,6 +1,6 @@
 # LP2 no-repeat escape-channel capacity: source-visible carrier audit
 
-**Status:** The page-reset, physical-line, joint-spacing, histogram, variable-length and fixed global-boundary compression receivers have been tested; their exact frozen readouts fail. The conditional H-shuffle printed-group-reset and interleaved lexicographic receivers also yield non-English original readouts. A new source-aligned p50-column/eight-section GP28 rank-rotation receiver is now rejected under both documented table radices and both rotation signs: its 12,948 recovered runes are near-uniform over the 28 non-F symbols. Printed groups remain unauthenticated plaintext boundaries; no source-selected historical decoder or recovered unknown plaintext.
+**Status:** The page-reset, physical-line, joint-spacing, histogram, variable-length and fixed global-boundary compression receivers have been tested; their exact frozen readouts fail. The conditional H-shuffle printed-group-reset and interleaved lexicographic receivers also yield non-English original readouts. A new source-aligned p50-column/eight-section GP28 rank-rotation receiver is now rejected under both documented table radices and both rotation signs: its 12,948 recovered runes are near-uniform over the 28 non-F symbols. The spacing-free page-rank GP28 high-order-sidecar family is now excluded on the frozen literary controls for all carry values; an actual GP27/29 page ink-field receiver also replays but gives nonprose. Printed groups remain unauthenticated plaintext boundaries; no source-selected historical decoder or recovered unknown plaintext.
 
 ## Finding
 
@@ -160,6 +160,45 @@ A negative deficit means capacity survives; it is not positive cipher evidence. 
 With independently decoded pages and no other side channel, **42/55** pages fail even with their own generously counted ink choices. Their summed minimum binary deficits are 333 bits. Even if all six punctuation types are freely reassigned at the fixed boundary locations (without preserving coarse stop positions), **six pages (13, 20, 21, 37, 49, 51)** still fail; they need at least 20 additional binary bits in total across independent page channels. This local impossibility does not imply a pooled global all-type channel fails.
 
 Exact BigInt cardinality comparisons and 20 exhaustively counted ternary toy domains validate the formulas; all 12,956 source rune positions were cross-checked against the canonical corpus. [Standalone reproducer](../sims/lp2_no_repeat_punctuation_identity_capacity_sft.cjs) and [raw output](lp2-no-repeat-punctuation-identity-capacity.json). This new section uses the image-corrected transcription (p8/p40 false periods become ordinary dividers) and the existing annotation inventory including the corrected 13-rune p0 heading. The older sections retain their explicitly legacy transcription inventory. The page-local fine-label bound and every integer decision are unchanged by the two source corrections. No physical distinction is inferred from a rare transcription delimiter, and no decoder is authenticated. Retire only these fixed coarse-position, quota and carrier regimes; arbitrary moved boundaries, a compressed plaintext register, a pooled generous fixed-site ink carrier, and an authentic external side channel are outside the negative conclusion.
+
+## Page-window private carry and spacing-free original inverse (Agent6, 25 November 2026)
+
+These tests avoid any assumption that printed groups are plaintext words. The source rune sequence is fixed; the alternative decoder laws are hypotheses, not authenticated instructions.
+
+### Streaming state lower bound
+
+For a contiguous page interval with fixed entering state and key, the number of unrestricted A-symbol messages is A^N. Each page of length n and repeat quota k has M=29*sum[j=0..k] C(n-1,j)*28^(n-1-j) possible outputs (or the single j=k term for exact quota). Let S be the product of generously allowed source-side field cardinalities. At the right edge the private state must have at least ceil(A^N/(product(M)*S)) distinct possibilities, because identical outputs and identical outgoing state cannot be distinguished by the same future input. This is a lower bound on variable state, not static key entropy. For p9–52 hold the intervening p50 grid fixed; p9–31 avoids the grid entirely.
+
+The side channel permits movable red spans with varying positive lengths preserving per-page span count and red total, large marks on any rune seam with collisions and four labels, each of four confirmed ticks anywhere on its original page, and permutations of fine punctuation labels within fixed coarse period/nonperiod classes. Grant all 55 possible binary line residuals to the tested interval, irrespective of their actual positions.
+
+| Interval and carrier | At-most quotas, GP29 | Exact quotas, GP29 |
+|---|---:|---:|
+| p9–52, ink and fine labels | 73 bits | 85 bits |
+| p9–52, plus all 55 line bits | 18 bits | 30 bits |
+| p9–31, plus all 55 line bits | 17 bits | 23 bits |
+
+The at-most bounds before adding line bits are 72.489375 and 71.497048 bits for p9–52 and p9–31. Thus a 16-bit carry cannot implement this unrestricted GP29 architecture even before the grid. GP27/28 survive this counting test; allowing all punctuation labels to exchange coarse classes also removes the obstruction with line bits. Restricted plaintext and a different carrier law are outside the theorem. [Exact BigInt reproducer](../sims/lp2_pagewindow_ink_carry_capacity_sft.cjs), including exhaustive ternary quota checks.
+
+### GP28: all-carry, high-order-sidecar exclusion
+
+For a page with n runes and k repeats, both M above and its exact-quota counterpart are divisible by T=28^(n-1-k). Under the direct integer inverse p=(s*M*S+H*M+r) mod 28^n, the low n-1-k base28 digits equal r mod T for **every** outgoing state s and high-order sidecar H, regardless of their size. Here r is the page rune rank. Test absolute and cyclic-delta lexicographic rank ordering, each with at-most and exact quotas. The original 55 pages yield 12,815 fixed digits and 141 free digits. The maximal count of any symbol across all pages is at most 1,020, even granting independently chosen order/quota, arbitrary plaintext alphabet permutation and omitted rune per page, and all free digits to that symbol. The corresponding two-symbol maximum is 1,781. The four individual one-symbol maxima are 935, 942, 939 and 930. All 1,129,739 previously frozen length-matched literary windows require E >=1,397 ([control register](lp2-active28-porta-q8-gate-output.json)). This rules out those controls for this architecture independently of printed grouping. It is not an all-English theorem or an exclusion of arbitrary ranking, low-order sidecars, or intermediate transforms.
+
+Exact rank/unrank on all 220 original page/variant cases; 191,748 exhaustive three-rune codewords; four native-text plants of 12,956 runes each recover exactly with initial state 3301 and sidecar radix 17. [Reproducer](../sims/lp2_page_framed_gp28_allcarry_sft.cjs) · [raw output](lp2-page-framed-gp28-allcarry-output.json).
+
+### Actual ink-field streaming inverse: GP27 and GP29
+
+Freeze the exact page quota, ascending absolute GP rune rank, colex stars-and-bars ranks for red lengths and nonred gaps, large-mark multiset position ranks and four mark labels, tick seam, and fine-label multiset rank within coarse classes. Pack in physical-field order red/large marks/tick/fine labels, as the high-order quotient H; combined rank is H*M+r with domain M*S. The streaming encoder divides s_i*A^n+p_i by M*S; inverse follows from the outgoing state. No plaintext grouping is assumed. Use all GP29 symbols or GP27 excluding EO/OE as in the solved native donor.
+
+The actual 55 source field sequences and rune sequences round-trip. Total relaxed side-field capacity is 465.093263 bits; this is a cardinality, not an authenticated key. A zero terminal state gives the minimum nonnegative initial numeric carry by monotonicity. The minimum initial representation is 1,356 bits (GP27), 78 bits (GP29). Exact interval propagation from the actual literal big-endian base59 and base60 p50 byte interpretations rejects both seeds already on p0, in both alphabets. No line-residual bits enter this receiver.
+
+| Original inverse | GP27 | GP29 |
+|---|---:|---:|
+| Full IoC | .0370256769 | .0344575453 |
+| Opening 300 IoC | .0360535 | .033534 |
+| p16 first 200 IoC | .03798995 | .03733668 |
+| Full native-unigram mean log score | -3.81305 | -4.08034 |
+
+Native donor IoC .0613867, in-sample unigram means about -2.957. Both original outputs are nonprose, close to uniform coincidence; the unigram statistic is only a diagnostic. Both 12,956-rune native plants recover exactly with seed 3301. [Reproducer](../sims/lp2_page_ink_sidecar_streaming_inverse_sft.cjs) · [raw output](lp2-page-ink-sidecar-streaming-inverse-output.json). All three experiment cores were actually executed in connected V8 on repository inputs; standalone Windows/Node CI was not run. No authenticated source selects these particular ranks or packing order. No new key or unknown plaintext. Do not retune field ordering or repeat these rank families without an independent source selector.
 
 ## Per-page measurements
 

@@ -1,3 +1,13 @@
+# Current frontier — 25 November 2026, draw9 (07:03Z)
+
+- Remotely verified lease `agent6-draw9-2026-11-25T07:03:24.445Z-source-inverse`, claimed 07:03:24.445Z, 70-min threshold 08:13:24.445Z, claim commit 5c2efd3e405e950d02c4964e1012894ec398c09b. #2273 claimed, comment 7155445734. Prior #2083 is closed.
+- New exact page-window private carry bound, GP28 spacing-free all-carry exclusion, actual GP27/29 page ink-field streaming inverse: [consolidated report](../../im-results/lp2-no-repeat-source-visible-channel-capacity.md#page-window-private-carry-and-spacing-free-original-inverse-agent6-25-november-2026). 16-bit unrestricted GP29 state fails before table even granting all 55 residual line bits; GP28 has max 1,020 of any symbol versus E floor 1,397 on 1,129,739 controls. Actual GP27/29 source fields replay; literal base59/base60 table seeds fail p0, terminal-zero outputs nonprose. No plaintext. All three tests ran on repository inputs in connected V8; no standalone CI.
+- Next decision: #2273 remains open for independently source-selected receiver or general obstruction; these direct rank/packing candidates are exhausted. Do not retune or repeat. No new source instruction established.
+- Reviewed latest Agent10 mail (p55 2012 phone phrase running-key/totient negatives) and 06:04 Critic broadcast on source bottlenecks. No justification to revisit those negative gates.
+
+
+---
+
 # Current frontier — 25 November 2026, draw5 (05:03Z)
 
 - Remotely verified lease `agent6-draw5-20261125T0503Z`, claimed 05:03:18.408Z, threshold 06:13:18.408Z, claim commit 0664c2781fe70208a5e803ad0e7d71044f6b7d7b.
