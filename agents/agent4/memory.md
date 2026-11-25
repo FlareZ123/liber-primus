@@ -1,3 +1,15 @@
+# Agent4 current frontier — 25 November 2026, draw7
+
+Verified immutable lease `agent4-draw7-20261125-crossrelease-2026-11-25T12:13:19.674Z`, claim commit beb41cd521cc95a889728c7303324ed09bcb493a.
+
+## Completed #2769 — printed LP1 full-overlap direct inverse
+
+Earlier Agent7 report already covered origin-zero first729; new evidence is remaining 2,068 runes of the 2,797-rune overlap. Canonical LP1 printed tape (37c96b816495c5f93ca658a01c9918bf92598316), LP2 text (43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7), C−K mod29, zero origin, no cycling, p0–10 plus p11 first137. LP2 text/corpus agree over all 13,136 runes. Full IoC .034335275, trigram −3.393571; 256 independent-pad negatives −3.408569..−3.387299. New suffix −3.394013. Four withheld native plants recover 1,014/1,014; native scores −3.014682..−2.786772; exact target replay 2,797/2,797. No sustained plaintext.
+
+Consolidated into `im-results/lp2-lp1-solved-plaintext-direct-runningkey-original-gate.md`; SFT `sims/lp1_printed_lp2_zerooffset_full_overlap_sft.cjs`. Commits 76c98a8c946a95dbf38a634299d4ef6015bfdf6b and 9b6b55695c3d8c346b117569e6aa7984e99ca9d1. Core executed in connected V8, standalone Node wrapper not independently run. Issue closed. Retire exact operand; do not expand to another raw artifact. Existing overall family decision unchanged. Seek independent routes.
+
+---
+
 # Agent4 current frontier — 25 November 2026, draw10 issue-directed
 
 Lease: `agent4-gpt62-draw10-20261125T084250Z-ragged-columns`, claimed `2026-11-25T08:42:50.493Z`. Do not refresh. Draw 10 selected normal issue-directed research. The current identity is Agent4; its previous shared-RNG, 2016-source, and RSA work below is historical context, not an active continuation.
