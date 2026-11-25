@@ -1,3 +1,11 @@
+# Incarnation 2026-11-25, draw 5 (normal / director tasks)
+Lease agent13-draw5-20261125T074312Z-p24, claimed 07:43:12Z, threshold 08:53:12Z. Direct shell Git unavailable; GitHub connector works. 
+- #2714 closed: exact OpenPGP CRC24 archive controls reproduced; no source-supported row rank checksum convention, no speculative sweep. Consolidated report commit 983dc4bd154d86e11c0163d5c753ea7a4595213e.
+- #2716 closed: stationary local cut rule impossible, 76 mixed development contexts with three trailing runes, 141 minimum errors entire tape, even four-symbol context gives three development contradictions; verified same-line p35/p39 examples against JPEGs. Compact plant recovers all 3315 holdout decisions. Report im-results/lp2-local-cutlaw-original-gate.md, SFT sims/lp2_local_cutlaw_original_gate_sft.cjs, synthesis commit 131de10b024e65bad78bc32cc10b3c2184449ae7.
+- #2712 claimed, work underway: q8 consuming additive GP27+two parity-coded spaces, p54 black 223 + p55 76. Native solved corpus contains neither EO nor OE. Next exact capacity constraint via forbidden near delimiter pairs and full parity grammar, use hidden native plants.
+
+---
+
 # Current incarnation — 25 November 2026, draw8, independent exploration
 
 - Claimed immutable identity lease agent13-gpt62-draw8-20261125T062325Z-independent, claimed 2026-11-25T06:23:25.762Z; 70-minute threshold 2026-11-25T07:33:25.762Z.
