@@ -65,10 +65,10 @@ function experiment(raw,config={}) {
 
  /** Affine hyperplane filtering: a single proposed edge cannot force two coordinates equal. */
  function filterState(s){
-  const {a,d}=s,forbidden=new Set(),cache=new Int32Array(29*29).fill(-1);
+  const {a,d}=s,forbidden=new Set(),directions=new Map(),cache=new Int32Array(29*29).fill(-1);
   function signature(row){let j=0;while(j<d&&!row[j])j++;if(j===d)return row[d]?null:"";const z=inv[row[j]];if(d<=9){let n=1;for(let k=0;k<=d;k++)n=n*29+row[k]*z%29;return n}const out=[];for(let k=0;k<=d;k++)out.push(row[k]*z%29);return String.fromCharCode(...out)}
   const row=new Uint8Array(d+1);
-  for(let x=0;x<29;x++)for(let y=x+1;y<29;y++){let u=x*W,v=y*W;for(let j=0;j<d;j++)row[j]=mod(a[u+j]-a[v+j]);row[d]=mod(a[u+L]-a[v+L]);const sig=signature(row);if(sig)forbidden.add(sig)}
+  for(let x=0;x<29;x++)for(let y=x+1;y<29;y++){let u=x*W,v=y*W;for(let j=0;j<d;j++)row[j]=mod(a[u+j]-a[v+j]);row[d]=mod(a[u+L]-a[v+L]);const sig=signature(row);if(sig){forbidden.add(sig);const dir=typeof sig==="number"?Math.floor(sig/29):sig.slice(0,-1),val=typeof sig==="number"?sig%29:sig.charCodeAt(sig.length-1),mask=(directions.get(dir)||0)|(1<<val);if(mask===0x1fffffff)return null;directions.set(dir,mask)}}
   function mask(c,k){const ci=c*29+k;if(cache[ci]>=0)return cache[ci];let bits=0;for(let p=1;p<29;p++){if(c===p||c===k)continue;let u=c*W,v=p*W,w=k*W;for(let j=0;j<d;j++)row[j]=mod(a[u+j]-a[v+j]-a[w+j]);row[d]=mod(a[u+L]-a[v+L]-a[w+L]);const sig=signature(row);if(sig!==null&&!forbidden.has(sig))bits|=1<<p}return cache[ci]=bits}
   const allowed=e=>e.every(([c,p,k])=>(mask(c,k)&(1<<p))!==0);allowed.mask=mask;return allowed;
  }
@@ -85,7 +85,7 @@ function experiment(raw,config={}) {
   const A=get(anchor),begin=config.start??0,end=Math.min(config.end??A.length,A.length);
   for(const i of rest)get(i);
   const maxFilter=config.maxFilter??150000000,maxJoins=config.maxJoins??500000,maxNodes=config.maxNodes??100000,maxEnum=config.maxEnum??3000000;
-  let nodes=0,joins=0,filters=0,featureTests=0,dimensionNodes={},enumNodes=0,enumerated=0,cap=null,completed=begin,maxLong=0,maxAll=0,accepted=0,best=[],leaves=0;
+  let nodes=0,joins=0,filters=0,featureTests=0,saturated=0,dimensionNodes={},enumNodes=0,enumerated=0,cap=null,completed=begin,maxLong=0,maxAll=0,accepted=0,best=[],leaves=0;
   const seenMaps=new Set();
   function score(q){const id=q.join();if(seenMaps.has(id))return;seenMaps.add(id);enumerated++;
    const long=allLong.filter(i=>decode(cipher[i],q).length).length;maxLong=Math.max(maxLong,long);
@@ -107,7 +107,7 @@ function experiment(raw,config={}) {
    if(cap)return;if(++nodes>maxNodes){cap="nodes";return}
    dimensionNodes[s.d]=(dimensionNodes[s.d]||0)+1;
    if(s.d<=(config.enumDim??3)||remaining.length<=budget){leaves++;enumerate(s);return}
-   const f=filterState(s);let pick=-1,domain=null;
+   const f=filterState(s);if(!f){saturated++;return}let pick=-1,domain=null;
    for(const i of remaining){
     // Among all positions, select the smallest exact single-position postings union.
     let count=Infinity,post=null;const positions=index.get(i);
@@ -126,7 +126,7 @@ function experiment(raw,config={}) {
    if(budget>0)visit(s,next,budget-1);
   }
   for(let i=begin;i<end&&!cap;i++){visit(A[i].s,rest,2);if(!cap)completed=i+1}
-  return {anchor,forcedOtherOOV:other,anchorOptions:A.length,range:[begin,end],completedThrough:completed,complete:completed===end,cap,nodes,joins,filters,featureTests,dimensionNodes,enumNodes,enumerated,leaves,maxLong,maxAll,accepted,best,domains:Object.fromEntries([anchor,...rest].map(i=>[i,get(i).length]))};
+  return {anchor,forcedOtherOOV:other,anchorOptions:A.length,range:[begin,end],completedThrough:completed,complete:completed===end,cap,nodes,joins,filters,featureTests,saturated,dimensionNodes,enumNodes,enumerated,leaves,maxLong,maxAll,accepted,best,domains:Object.fromEntries([anchor,...rest].map(i=>[i,get(i).length]))};
  }
  function rng(seed){let s=seed;return()=>{s^=s<<13;s^=s>>>17;s^=s<<5;return s>>>0}}
  function plant(text,seed){
