@@ -14,7 +14,7 @@ The original corpus records p54 as 232 runes and p55 as 76 runes. Reconstructing
 - Final p54 body group: `63g2eis46q`.
 - First p55 group: `l`.
 
-The raw hyphen transcription merges the red eight-rune heading with the first black body word. It also loses the p54/p55 boundary when the two pages are flattened: p54's final 10-rune group and p55's first one-rune group become an 11-rune seam group. The visual page boundary and red/black boundary must be preserved.
+The raw hyphen transcription merges the red eight-rune heading with the first black body word. Flattening the pages also hides the lexical carry: original image 71 (p54) ends with the ten-rune fragment `63g2eis46q` and no following divider; original image 72 (p55) begins with `l`, immediately followed by a divider. Therefore `63g2eis46q` + `l` is one 11-rune lexical word, `63g2eis46ql`, crossing the physical page boundary. A word-reset q8 clock continues through that seam; p55's first rune is neither a new word nor a new phase start.
 
 The corrected derived transcription is `resources/liber-primus/lp2-page-groups-54-55-derived.json`. It is explicitly labelled derived, records its source files and segmentation rationale, and is verified against the p54/p55 corpus rune sequences.
 
@@ -85,10 +85,12 @@ The earlier fixed-keyword, mapped-DIVINITY, fixed keyed-alphabet and red-title t
 
 ## 5. Next discriminating experiments
 
+The source-corrected CP-SAT implementation is `sims/lp2_shared_gp29_q8_carry_prefix_sft.py`. Its manual runner executes two independent blind plants first and gates the original fit on both passing; the original diagnostic job intentionally exits nonzero after printing its JSON so the failed-job log can be inspected.
+
 1. Run blind controls on the exact word-reset profile: 47 complete p54 body words (213 runes), a 10-rune prefix of one 11-rune carry, then its held-out final rune plus 16 complete p55 words (75 runes). The carry must use one starting phase and continue across the physical page boundary. Require exact effective-action recovery, all training truth, and held-out truth on both plants before fitting the original.
 2. For the original prefix, use the 93 unique ten-rune prefixes from the 96 prefix-compatible length-11 dictionary forms as a necessary domain only; do not treat the final p55 rune as a separate word or phase reset.
 3. Only after both blind controls pass, fit the original 47 complete p54 words plus the carry prefix with at most three OOV complete words. Freeze the action, then score the full 11-rune carry and 16 complete p55 words. Report all candidate counts and action ambiguity; a feasible training fit alone is not a solution.
-4. Test the three red-heading key interpretations separately on the same corrected blind profile. For mapped shifts, normalize the hidden \\(\\pi\\) and key together; do not leak the planted action or plaintext.
+4. Test the three red-heading key interpretations separately on the same corrected blind profile. For mapped shifts, normalize the hidden \(\pi\) and key together; do not leak the planted action or plaintext.
 5. If controls fail, or the original fit has no independently predictive holdout, retire these exact interpretations rather than expanding unconstrained keyword pools. Keep arbitrary-q8 work separate from the red8 hypotheses.
 
 **Current conclusion:** the common-cycle mechanism remains a hypothesis, the p54 red eight-rune sequence is a source-derived candidate key, and no original plaintext or key has been recovered. The immediate priority is 47-word plus carry-prefix blind calibration followed by the red8 tests; no original p54 word-reset fit has yet been attempted.
