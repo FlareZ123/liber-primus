@@ -72,3 +72,21 @@ For speed, let D=29^d, R=29^min(d,8), T=D/R and u=floor((C mod D*B)/T). Because 
 Four blind controls on the same native sections, choosing source spans with at least one eligible fragment (koan latter390; loss-of-divinity first377), recover both short keys in both orientations, all 3,070/3,070 runes, six matching positions each. Frozen holdout scores -2.32953 and -2.69725. The controls are conditional on fragment coverage; overlapping positions are not independent cribs. On original, even the most supported key has only two matching positions, and all four frozen winners are nonprose. In particular, the p54 LE winner containing a master-related fragment is forced by the searched fragment bank, not a discovery.
 
 This tests H-decoy **without printed segmentation** but still assumes that at least one frozen 11-rune fragment occurs in the development plaintext, in its physical order. It is not an all-language impossibility and does not constrain plaintext outside that bank or alternative arithmetic. Retire this receiver rather than perform more nearby parameter sweeps. [Spacing-free SFT](../sims/lp2_short_multiplier_spacingfree_sft.cjs), revision `2a909724da7f7b68a5c03c713b5dfe429785e879`.
+
+
+## Historically motivated 13-digit opening-rubric inverse
+
+The authentic LP1 thirteen-rune key length and p0's complete 8+5-rune red heading nominate a separate wider short-key test, without choosing a key spelling. Under LE orientation the two rubric words occupy exactly the low 13 digits. Enumerate all 4,765 unit first-word forms times 3,812 second-word forms = 18,164,180 distinct eligible rubric plaintext integers. Each fixes a unique unit multiplier modulo 29^13; all shorter multipliers are included. Require the immediately following 4- and 3-rune groups to be in-register, then rank surviving keys on p0 outside the rubric and predict p1–2 unchanged.
+
+For P=aC, the key is the rubric integer times inverse(C mod 29^13), reduced modulo 29^13. For C=aP, the corresponding residue is the decoding multiplier z0; batch inversion computes its reciprocal a in linear modular products (one inverse per first-word batch), and the Newton lift z=z0*(2−a*z0) mod29^20 is exact since 2×13>=20. Check the two subsequent words via exact low-20-digit decoding. No heuristic key shortlist.
+
+| Short multiplier direction | Rubric pairs | Lexical group 3 | Lexical groups 3+4 | Best p0 lexical runes outside rubric | Frozen p1–2 lexical runes | Holdout trigram |
+|---|---:|---:|---:|---:|---:|---:|
+| Decryption | 18,164,180 | 56,033 | 1,765 | 29/248 | 24/462 | -4.88648 |
+| Encryption | 18,164,180 | 55,981 | 1,750 | 25/248 | 19/462 | -4.96128 |
+
+The forced four-group candidates include the winners OUERTHROW UEXED AGES RUM and CONGESTED PRANC GRAM SIT, immediately followed by nonprose. The apparent lexical islands are forced by the gate; both winners fail the remaining chapter.
+
+Four blinded native controls use eligible 13-rune two-word openings with first two continuation words in the lexicon, drawn from excluded source sections (koan 9+4, loss of divinity 11+2; 250 and 471 runes). Both directions recover exact hidden full-width keys and all 1,442 plaintext runes; the koan case ranks correctly among 59,252 and 59,119 survivors. The exact key-recovery receiver is demonstrated, not historically authenticated.
+
+This rules out the conditional q<=13 LE whole-chapter multiplier with the four declared lexical opening groups; it does not rule out arbitrary rubric or following-group spellings, hidden boundaries, BE q13, or other arithmetic. No new plaintext/key. Do not multiply variants without independent evidence. [SFT](../sims/lp2_p0_rubric_q13_multiplier_exact_sft.cjs), revision `6103dc5286816cb95264ca73fe3608ed250a2425`.
