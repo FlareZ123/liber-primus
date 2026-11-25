@@ -28,6 +28,17 @@ Every accepted singleton mask is 536870911 = 2^29−1. Each region is granted an
 
 Calibration: exact published example decoded; 3,125 five-symbol toy sequences checked against explicit exhaustive singleton masks AND explicit bipartition colorings, all match. Two independently keyed native-language controls (literal original p57: 95 runes, normalized solved LP1 WARNING: 184 runes) round-trip 279/279 plaintext runes and retain their actual singleton memberships over observed labels. Both use five singleton symbols including F, with deterministic codewords and alternating pair orientation; 32 legal observed-subset leaves each, so framing alone is not key recovery on plants.
 
+## Printed-word reset gate (2026-11-25)
+
+The continuous-region test above leaves one natural alternative: restart the checkerboard parser at each printed word boundary. I tested that exact reset for the standard five-singleton/24-pair Givierge model.
+
+- **Source and alignment:** `resources/transcriptions/lp2-image-corrected.txt`, first page block, split at its printed hyphens, gives 57 word groups. Their rune lengths sum to 262 and align exactly, in order, with the 262 canonical p0 rune indices in `resources/liber-primus/lp2-corpus.json`.
+- **Search:** all `C(29,5) = 118,755` possible five-singleton sets. Parsing restarts at the beginning of every word, but the singleton set and row/column partition remain global. A singleton consumes one rune; every other symbol must pair with the next non-singleton symbol. Each pair imposes an opposite-color edge between the two coordinate classes. This is a necessary structural test; no plaintext codebook is fitted.
+- **Result:** 0 structurally valid bipartite partitions and therefore 0 balanced 12+12 partitions. The standard word-reset model already fails on p0 alone.
+- **Reproduction:** `node sims/lp2_givierge_word_reset_sft.cjs`.
+
+This closes the most natural source-visible reset for the five-singleton model. It does not prove that every conceivable variable-length code is impossible; other reset grammars or changing partitions remain unsupported and would need an independent first-party selector before further work.
+
 ## Disposition
 
-Retire every continuous fixed-alphabet straddling singleton/cross-partition digraph receiver, regardless of number of singleton symbols, on the tested regions. Do not tune the singleton count, partition sizes, codebook or pair orientation. An independently selected internal reset, context-changing partition, non-disjoint prefix code, longer codeword, or transposition would constitute a different mechanism. No such operand is authenticated by this historical example. No original key or plaintext fit follows a failed necessary gate. Existing static and differential homophonic exclusions are distinct from this variable-length framing theorem.
+Retire every continuous fixed-alphabet straddling singleton/cross-partition digraph receiver, regardless of number of singleton symbols, on the tested regions. Do not tune the singleton count, partition sizes, codebook or pair orientation. The natural printed-word reset for the standard five-singleton model is also rejected on p0 (118,755 singleton sets; see the word-reset SFT). Other independently selected internal resets, context-changing partitions, non-disjoint prefix codes, longer codewords, or transpositions would be different mechanisms. No such operand is authenticated by this historical example. No original key or plaintext fit follows a failed necessary gate. Existing static and differential homophonic exclusions are distinct from this variable-length framing theorem.
