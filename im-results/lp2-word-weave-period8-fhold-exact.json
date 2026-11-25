@@ -1,0 +1,405 @@
+{
+  "lexiconSize": 29079,
+  "controls": [
+    {
+      "name": "0_welcome",
+      "mode": "before",
+      "keyRecovered": true,
+      "maxSupport": 4,
+      "keysWithTwo": 1,
+      "fit": {
+        "runes": 251,
+        "scorePerRune": -0.6779985077022237,
+        "lexical": 61,
+        "words": 62,
+        "correct": 251,
+        "preview": "WELCOME WELCOME PILGRIM TO THE GREAT JOURNEY TOWARD THE END OF ALL THNGS IT IS NOT"
+      },
+      "hold": {
+        "runes": 264,
+        "scorePerRune": -0.6160235007828344,
+        "lexical": 61,
+        "words": 62,
+        "correct": 264,
+        "preview": "IT IS THROUGH THIS PILGRIMAGE THAT WE SHAPE OURSELUES AND OUR REALITIES JOURNEY DEEP WITHIN AND"
+      }
+    },
+    {
+      "name": "0_welcome",
+      "mode": "after",
+      "keyRecovered": true,
+      "maxSupport": 3,
+      "keysWithTwo": 1,
+      "fit": {
+        "runes": 251,
+        "scorePerRune": -0.6779985077022237,
+        "lexical": 61,
+        "words": 62,
+        "correct": 251,
+        "preview": "WELCOME WELCOME PILGRIM TO THE GREAT JOURNEY TOWARD THE END OF ALL THNGS IT IS NOT"
+      },
+      "hold": {
+        "runes": 264,
+        "scorePerRune": -0.6160235007828344,
+        "lexical": 61,
+        "words": 62,
+        "correct": 264,
+        "preview": "IT IS THROUGH THIS PILGRIMAGE THAT WE SHAPE OURSELUES AND OUR REALITIES JOURNEY DEEP WITHIN AND"
+      }
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "mode": "before",
+      "keyRecovered": true,
+      "maxSupport": 5,
+      "keysWithTwo": 1,
+      "fit": {
+        "runes": 374,
+        "scorePerRune": -0.9222129854973047,
+        "lexical": 88,
+        "words": 90,
+        "correct": 374,
+        "preview": "THE LOSS OF DIUINITY THE CIRCUMFERENCE PRACTICES THREE BEHAUIARS WHICH CAUSE THE LOSS OF DIUINITY CONSUMPTIAN"
+      },
+      "hold": {
+        "runes": 381,
+        "scorePerRune": -0.7916984353368339,
+        "lexical": 89,
+        "words": 91,
+        "correct": 381,
+        "preview": "AGAIN THIS IS THE DECEPTIAN MOST THNGS ARE NOT WORTH PRESERUNG ADHERENCE WE FOLLOW DOGMA SO"
+      }
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "mode": "after",
+      "keyRecovered": true,
+      "maxSupport": 4,
+      "keysWithTwo": 2,
+      "fit": {
+        "runes": 374,
+        "scorePerRune": -0.9222129854973047,
+        "lexical": 88,
+        "words": 90,
+        "correct": 374,
+        "preview": "THE LOSS OF DIUINITY THE CIRCUMFERENCE PRACTICES THREE BEHAUIARS WHICH CAUSE THE LOSS OF DIUINITY CONSUMPTIAN"
+      },
+      "hold": {
+        "runes": 381,
+        "scorePerRune": -0.7916984353368339,
+        "lexical": 89,
+        "words": 91,
+        "correct": 381,
+        "preview": "AGAIN THIS IS THE DECEPTIAN MOST THNGS ARE NOT WORTH PRESERUNG ADHERENCE WE FOLLOW DOGMA SO"
+      }
+    }
+  ],
+  "original": [
+    {
+      "pages": [
+        0,
+        2
+      ],
+      "mode": "before",
+      "anchors": 15,
+      "keys": 31298,
+      "maxSupport": 1,
+      "forcedOOV": 14,
+      "fitAnchors": 7,
+      "fitMaxSupport": 1,
+      "fitKeysWithTwo": 0,
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        0,
+        2
+      ],
+      "mode": "after",
+      "anchors": 15,
+      "keys": 31367,
+      "maxSupport": 1,
+      "forcedOOV": 14,
+      "fitAnchors": 7,
+      "fitMaxSupport": 1,
+      "fitKeysWithTwo": 0,
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        3,
+        7
+      ],
+      "mode": "before",
+      "anchors": 19,
+      "keys": 31315,
+      "maxSupport": 1,
+      "forcedOOV": 18,
+      "fitAnchors": 11,
+      "fitMaxSupport": 1,
+      "fitKeysWithTwo": 0,
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        3,
+        7
+      ],
+      "mode": "after",
+      "anchors": 19,
+      "keys": 31407,
+      "maxSupport": 1,
+      "forcedOOV": 18,
+      "fitAnchors": 11,
+      "fitMaxSupport": 1,
+      "fitKeysWithTwo": 0,
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        8,
+        14
+      ],
+      "mode": "before",
+      "anchors": 30,
+      "keys": 43587,
+      "maxSupport": 1,
+      "forcedOOV": 29,
+      "fitAnchors": 17,
+      "fitMaxSupport": 1,
+      "fitKeysWithTwo": 0,
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        8,
+        14
+      ],
+      "mode": "after",
+      "anchors": 30,
+      "keys": 43624,
+      "maxSupport": 1,
+      "forcedOOV": 29,
+      "fitAnchors": 17,
+      "fitMaxSupport": 1,
+      "fitKeysWithTwo": 0,
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        15,
+        22
+      ],
+      "mode": "before",
+      "anchors": 40,
+      "keys": 93287,
+      "maxSupport": 1,
+      "forcedOOV": 39,
+      "fitAnchors": 17,
+      "fitMaxSupport": 1,
+      "fitKeysWithTwo": 0,
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        15,
+        22
+      ],
+      "mode": "after",
+      "anchors": 40,
+      "keys": 93283,
+      "maxSupport": 1,
+      "forcedOOV": 39,
+      "fitAnchors": 17,
+      "fitMaxSupport": 1,
+      "fitKeysWithTwo": 0,
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        23,
+        26
+      ],
+      "mode": "before",
+      "anchors": 18,
+      "keys": 31696,
+      "maxSupport": 1,
+      "forcedOOV": 17,
+      "fitAnchors": 7,
+      "fitMaxSupport": 1,
+      "fitKeysWithTwo": 0,
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        23,
+        26
+      ],
+      "mode": "after",
+      "anchors": 18,
+      "keys": 31438,
+      "maxSupport": 1,
+      "forcedOOV": 17,
+      "fitAnchors": 7,
+      "fitMaxSupport": 1,
+      "fitKeysWithTwo": 0,
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        27,
+        32
+      ],
+      "mode": "before",
+      "anchors": 28,
+      "keys": 46916,
+      "maxSupport": 1,
+      "forcedOOV": 27,
+      "fitAnchors": 12,
+      "fitMaxSupport": 1,
+      "fitKeysWithTwo": 0,
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        27,
+        32
+      ],
+      "mode": "after",
+      "anchors": 28,
+      "keys": 46823,
+      "maxSupport": 1,
+      "forcedOOV": 27,
+      "fitAnchors": 12,
+      "fitMaxSupport": 1,
+      "fitKeysWithTwo": 0,
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        33,
+        39
+      ],
+      "mode": "before",
+      "anchors": 34,
+      "keys": 51408,
+      "maxSupport": 1,
+      "forcedOOV": 33,
+      "fitAnchors": 17,
+      "fitMaxSupport": 1,
+      "fitKeysWithTwo": 0,
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        33,
+        39
+      ],
+      "mode": "after",
+      "anchors": 34,
+      "keys": 51584,
+      "maxSupport": 1,
+      "forcedOOV": 33,
+      "fitAnchors": 17,
+      "fitMaxSupport": 1,
+      "fitKeysWithTwo": 0,
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        40,
+        53
+      ],
+      "mode": "before",
+      "anchors": 55,
+      "keys": 113448,
+      "maxSupport": 1,
+      "forcedOOV": 54,
+      "fitAnchors": 26,
+      "fitMaxSupport": 1,
+      "fitKeysWithTwo": 0,
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        40,
+        53
+      ],
+      "mode": "after",
+      "anchors": 55,
+      "keys": 113266,
+      "maxSupport": 1,
+      "forcedOOV": 54,
+      "fitAnchors": 26,
+      "fitMaxSupport": 1,
+      "fitKeysWithTwo": 0,
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        54,
+        55
+      ],
+      "mode": "before",
+      "anchors": 8,
+      "keys": 23214,
+      "maxSupport": 1,
+      "forcedOOV": 7,
+      "fitAnchors": 4,
+      "fitMaxSupport": 1,
+      "fitKeysWithTwo": 0,
+      "key": null,
+      "fit": null,
+      "hold": null
+    },
+    {
+      "pages": [
+        54,
+        55
+      ],
+      "mode": "after",
+      "anchors": 8,
+      "keys": 23214,
+      "maxSupport": 1,
+      "forcedOOV": 7,
+      "fitAnchors": 4,
+      "fitMaxSupport": 1,
+      "fitKeysWithTwo": 0,
+      "key": null,
+      "fit": null,
+      "hold": null
+    }
+  ]
+}
