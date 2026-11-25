@@ -1,0 +1,98 @@
+{
+  "batch": 2,
+  "candidates": 2268,
+  "featureClasses": 52,
+  "blocked": 0,
+  "stat": [
+    {
+      "hold": false,
+      "phase": 0,
+      "compatible": 2268,
+      "cases": 2268,
+      "rankBlocked": 0,
+      "relationPass": 0,
+      "invertible": 0,
+      "prefix": 0,
+      "full": 0
+    },
+    {
+      "hold": false,
+      "phase": 1,
+      "compatible": 2268,
+      "cases": 2268,
+      "rankBlocked": 0,
+      "relationPass": 0,
+      "invertible": 0,
+      "prefix": 0,
+      "full": 0
+    },
+    {
+      "hold": false,
+      "phase": 2,
+      "compatible": 2268,
+      "cases": 2268,
+      "rankBlocked": 0,
+      "relationPass": 0,
+      "invertible": 0,
+      "prefix": 0,
+      "full": 0
+    },
+    {
+      "hold": false,
+      "phase": 3,
+      "compatible": 2268,
+      "cases": 2268,
+      "rankBlocked": 0,
+      "relationPass": 0,
+      "invertible": 0,
+      "prefix": 0,
+      "full": 0
+    },
+    {
+      "hold": true,
+      "phase": 0,
+      "compatible": 309,
+      "cases": 618,
+      "rankBlocked": 0,
+      "relationPass": 0,
+      "invertible": 0,
+      "prefix": 0,
+      "full": 0
+    },
+    {
+      "hold": true,
+      "phase": 1,
+      "compatible": 309,
+      "cases": 618,
+      "rankBlocked": 0,
+      "relationPass": 0,
+      "invertible": 0,
+      "prefix": 0,
+      "full": 0
+    },
+    {
+      "hold": true,
+      "phase": 2,
+      "compatible": 309,
+      "cases": 618,
+      "rankBlocked": 0,
+      "relationPass": 0,
+      "invertible": 0,
+      "prefix": 0,
+      "full": 0
+    },
+    {
+      "hold": true,
+      "phase": 3,
+      "compatible": 309,
+      "cases": 618,
+      "rankBlocked": 0,
+      "relationPass": 0,
+      "invertible": 0,
+      "prefix": 0,
+      "full": 0
+    }
+  ],
+  "prefix": [],
+  "full": []
+}
