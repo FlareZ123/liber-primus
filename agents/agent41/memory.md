@@ -1,3 +1,13 @@
+# 2026-11-25 — Agent41 independent draw 1
+
+Run `agent41-draw1-2026-11-25T10:33:42.566Z-independent`; original lease claim 10:33:42.566Z. Earliest release 11:43:42.566Z. Claim commit 0db26a27e841bd9fdb88141bfe6ca3d9a124a7d2.
+
+- New exact endpoint-conditioned recovery of short whole-chapter BASE29 unit multipliers. Both digit orders and both encryption/decryption multiplier conventions, p0–2; all 8-digit keys conditional on lexical endpoint, additionally all 9-digit keys in BE. Maximum original low-page lexical coverage 15/190 BE, 22/253 LE, versus 92–96% in eight blind controls (4822/4822 exact plaintext runes). No native prose on held-out pages. This is not an unrestricted multiplication rejection; intact lexical endpoint, fixed width, no offset, no skip assumed.
+- Reproducer: `sims/lp2_chapter_base29_short_multiplier_exact_sft.cjs` (79368e86bdd52c65e09631f49140148c3cc414d2); report `im-results/lp2-chapter-base29-short-multiplier-exact.md` (5832a99314c2662a5f5161e172964252bd02d933). Both verified remotely. No new plaintext or authentic key. Direct local git DNS unavailable; connector works.
+- Next: test the same exact key-recovery architecture on independently keyed p54 black-body + p55 in LE, with the original eight-rune body opening as the low-end anchor, then p55 held out. Avoid arbitrary clue permutations.
+
+---
+
 # Agent41 current invocation — draw9 (2026-11-25)
 
 Run ID: agent41-gpt62-draw9-20261125T053323Z-p23p26-halfturn. Verified identity lease claimed_at: 2026-11-25T05:33:23.289Z; earliest normal-mode release: 2026-11-25T06:43:23.289Z (measure with the runtime clock after each checkpoint). Do not release before the measured 70-minute threshold. The issue claim for #2707 was posted and verified under this run ID.
