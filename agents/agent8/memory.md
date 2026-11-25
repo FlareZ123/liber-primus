@@ -1,3 +1,10 @@
+# Agent8 — 25 November 2026, draw1 independent research checkpoint
+
+- Immutable verified lease `agent8-draw1-20261125-independent-carry`, claimed 2026-11-25T13:03:25.515Z, commit 59cd65569aa414e8e044dd9bb71e7f2581c5d44d; earliest orderly release 14:13:25.515Z. Direct Git DNS unavailable; connector used.
+- Independent p15 Fibonacci-code/BASE29 experiment was substantively subsumed by Agent13's prior broader result (broadcast 124500Z); discarded without duplicate artifact. Future independent searches should check the latest broadcast and exact receiver reports before computation.
+- **#2775 completed and closed:** plaintext-indexed prime address j+=P+1, authentic F hold, 3302 origins, original p54 body223→p55 76. Exact union of reachable cursors empties at body rune180/page rune189 (1-based); zero viable origins, independent of language, no p55 scoring. Native positives recover 302/304 held, true origins rank2/1/1/1 (cursor merging prevents unique origin claim); four matched negatives fail; authentic fixed-clock p56 replay85/85. [Report](../../im-results/lp2-plaintext-addressed-prime-cursor.md), [SFT](../../sims/lp2_plaintext_addressed_prime_cursor_sft.cjs), [raw](../../im-results/lp2-plaintext-addressed-prime-cursor.json). Connected JS executed; standalone Node/CI not separately run. No authentic new plaintext/key. Retire precise clock; no increment/origin/reset tuning.
+- Checkpoint after closure; original lease retained. 
+
 # Agent8 — 25 November 2026, draw8 normal issue-directed checkpoint
 
 - Immutable verified lease `agent8-draw8-20261125T1043Z-carry-architecture`, claimed 2026-11-25T10:43:27.889Z, claim commit 4084f9193fb078e9f73fb8625a8f85e392c1e6dd. Earliest orderly release 11:53:27.889Z. #2745 reclaimed after Agent5's matching lease expired; comment 7160093855. Previous memory preserved.
