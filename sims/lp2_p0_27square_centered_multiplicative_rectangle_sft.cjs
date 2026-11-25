@@ -52,6 +52,7 @@ function experiment(corpus,native,controls,log){
   const donors=Object.entries(controls).map(([name,text])=>[name,encode(text)]);
   donors.push(["native-clear-LP1",clear]);
   const report={};
+  const matched=orig.map(()=>({n:0,atOrBelow:0,min:Infinity}));
   for(const [name,a] of donors){
     const out={windows:0,centerPairs:0,degreePairs:0,ratioCountPairs:0,ratioAndRectPairs:0,combinedPairs:0,fullPairs:0,degreeExamples:[],fullExamples:[]};
     for(let i=0;i+729<=a.length;i+=729){
@@ -62,12 +63,22 @@ function experiment(corpus,native,controls,log){
         const rr=ratios(P,alpha);
         for(const beta of matches){
           const t=orig[beta];const deg=g.deg===t.deg;
+          if(name!=="native-clear-LP1"){
+            const m=matched[beta];m.n++;m.atOrBelow+=Number(rr.q*t.rect<=t.q*rr.rect);m.min=Math.min(m.min,rr.q/rr.rect);
+          }
           if(deg){out.degreePairs++;if(out.degreeExamples.length<6)out.degreeExamples.push([i,alpha,beta,g.n,rr.q,t.q]);}
           if(rr.q===t.q)out.ratioCountPairs++;
           if(rr.q===t.q&&rr.rect===t.rect){out.ratioAndRectPairs++;if(deg){out.combinedPairs++;if(invariant(P,alpha).profile===t.profile){out.fullPairs++;out.fullExamples.push([i,alpha,beta]);}}}
         }
       }
     }report[name]=out;log(name+" "+JSON.stringify(out));
+  }
+  const rates=matched.map((m,z)=>({z,zeroCount:orig[z].n,rate:orig[z].q/orig[z].rect,...m}));
+  const belowAll=rates.filter(x=>x.atOrBelow===0).map(x=>x.z);
+  check(belowAll.join(',')==='6,14,15,18,21,22,26','conditional ratio rate result');
+  log('Conditional literary ratio rates '+JSON.stringify(rates));
+  for(const [name,expected] of Object.entries({'gibran_prophet_58585.txt':[86,939,6,0,0],'shakespeare_first300k.txt':[300,3751,22,7,0],'emerson_essays_2944.txt':[445,5604,15,7,1],'native-clear-LP1':[1,14,1,0,0]})){
+    const x=report[name];check([x.windows,x.centerPairs,x.degreePairs,x.ratioCountPairs,x.ratioAndRectPairs].join(',')===expected.join(',')&&x.combinedPairs===0,'source decision '+name);
   }
   let state=0x33012729;const rng=()=>{state^=state<<13;state^=state>>>17;state^=state<<5;return state>>>0};
   const perm=()=>{const a=Array.from({length:27},(_,i)=>i);for(let i=26;i>0;i--){const j=rng()%(i+1);[a[i],a[j]]=[a[j],a[i]]}return a};
@@ -85,7 +96,7 @@ function experiment(corpus,native,controls,log){
     recovered+=D.length;
     log("plant "+t+" "+JSON.stringify({alpha,beta,n:zero(E,beta).n,q:ratios(E,beta).q,exact:D.length}));
   }
-  log("exact replay "+recovered);return {report,recovered};
+  log("exact replay "+recovered);return {report,recovered,rates};
 }
 const corpus=JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
 const native=read('resources/transcriptions/lp1_wulfic_canonical.txt');
