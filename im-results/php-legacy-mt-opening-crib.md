@@ -29,3 +29,21 @@ Positive controls guard actual key recovery: six historical PHP 31-bit MT seed r
 The declared **PHP integer-seed / English 8–5–4 crib / zero-start / constrained rejection** family has no candidate consistent with its first two LP2 ciphertext words. This is a concrete key-recovery exclusion under its dictionary and cipher assumptions. It does not eliminate PHP-based generators with different seed derivation, starting offsets, alphabet/register, nonlinear outer bijection, rewrites that replace rather than reject ciphertext, different key consumption or an English opening absent from the dictionary. An unknown language may also be outside the model.
 
 Tools: `sims/php_mt_wordscan.c`, `sims/php_wordlist.cjs`, `sims/aggregate_php_mt_crib.cjs`. On-demand workflows: `.github/workflows/php-mt-crib-sweep.yml` and `.github/workflows/php-mt-crib-aggregate.yml`. All intermediate candidate data is tied to workflow artifacts. Do not re-enumerate the same finite seed domain unless a new, source-justified hypothesis changes the actual tested model.
+
+## Full-manuscript spacing-free timestamp subset (Agent 6, 25 November)
+
+A different question is whether an authentic historical timestamp seeds the same PHP generator under an ordinary-F, continuous 0–28 additive stream with collision-rejection drift, without assuming that any printed word boundaries match English. This uses the existing [433 timestamp rows](lp2-r18-skipcount-feasibility-output.json), each mapped to its distinct uint32 seed, no new seeds or offsets. The PHP source prior is weaker than the Linux/TeX priors; this is a specific cross-family comparison, not a source-selected PHP mechanism.
+
+The existing [historical PHP implementation](../sims/php_legacy_mt.cjs) matches the 12-value seed-3301 vector. The [new wrapper](../sims/lp2_php_legacy_timestamp_keyskip_marginal_sft.cjs) uses the existing exact finite likelihood recurrence for independent rejection coins at s=.81288, at most three skips per symbol and total drift cap 800, normalized to the unbounded iid-key null. The frozen original has 12,956 runes, 86 adjacent repeats. The gate is log(433/.05)=9.066470 under the ideal iid-key model (not a rigorous PHP seed-ensemble false-positive bound). Positive controls are 16 disjoint native Shakespeare windows and 16 independent uniform plaintexts, using 16 distinct planted seeds. Native encoder exactly reproduces the 95-rune solved p57 control. 
+
+| Set | Number above gate | Maximum log LR |
+|---|---:|---:|
+| Native controls | 14/16 | 54.354159 |
+| Uniform controls | 16/16 | 25.227177 |
+| Wrong seeds, original | 0/500 | -1.411673 |
+| Wrong seeds, first plant | 0/500 | 5.405779 |
+| Source-ranked PHP timestamp seeds, original | 0/433 | -1.256010 |
+
+Best original is rank408, seed 20140107031641 -> uint32 1005380697. The original scores are null-like. Two native positives contained a four-retry run beyond the finite per-symbol cap; one passed and one failed. The experiment is calibrated but not perfectly sensitive. No plaintext recovered; no language-decoding escalation is justified. This result does not exclude PHP seed space, latent F, independent key transformations, or suppression coins from the same PRNG stream.
+
+Raw results: [controls](lp2-php-legacy-timestamp-keyskip-controls.json), [candidates](lp2-php-legacy-timestamp-keyskip-candidates.json), [wrong seeds](lp2-php-legacy-timestamp-keyskip-nulls.json). Executed in connected V8, no Actions claim. For local reproduction run `node sims/lp2_php_legacy_timestamp_keyskip_marginal_sft.cjs control 0 16`, then the `candidate 0 433` and `null 0 500` groups.
