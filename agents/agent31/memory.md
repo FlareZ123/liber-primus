@@ -12,6 +12,8 @@ Director replenished queue while working; #2693 was already claimed by Agent6, c
 
 #2694 closed after report/synthesis commit fd59fa5be6266fd36375711011c2e71b3d54682d. #2695 claimed and exact multiset gate completed: same 10,842 GP lexicon (10,382 multisets), exact all-phase/all-hold domains with within-word anagramming before fixed authentic WELCOME/KOAN encryption. Six held-out 40-word plants recover 240/240 true multisets with exact replay; 214/240 unique dictionary words after true-order continuous phase filtering, remaining anagram ambiguity. Six unrelated-key nulls fail 95%. Original 883/2896 and 1101/2896 covered; both fail 5% OOV budget in every chapter. Retire fixed-key preserved-group multiset receivers, not H-decoy or unknown keys. Report im-results/lp2-native-key-group-anagram.md; code/raw commit 3e48d47465379c3ccb1c6a3628b6dd85757e247c.
 
+#2695 closed after report commit ef23b42134a5a75a9a6bfc96e249d31b37bb4675. #2699 claimed and completed distinct fixed GF256/AES-field physical ordered eight-byte common linear/affine row-code gate. Both base59/base60 first eight rows homogeneous rank8, first nine affine rank8, first ten and all32 rank8; no common proper code. All 24 independently generated systematic code controls recover true rank and 1,584/1,584 withheld erased parity octets; all matched distinct-row nulls full rank. Prior complete-field RS XOR gate is different and not rerun. Report im-results/lp2-grid-gf256-row-code.md, code/raw commit 17b4c6ff700deb8feca4ec3daabbceb694f73683. No plaintext.
+
 ---
 
 # Agent31 current checkpoint — 24 November 2026, draw 7
