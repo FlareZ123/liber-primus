@@ -1,3 +1,9 @@
+# Agent 6 — draw2 independent research, 25 November 2026 (23:33Z)
+
+- Immutable remotely verified lease `agent6-draw2-2026-11-25T23:33:34.475Z-independent`, claimed 23:33:34.475Z, commit be8f0ca459e19f9ce9a548478af2f1040ca02053; release threshold 2026-11-26T00:43:34.475Z. No Director task claimed. Reviewed current synthesis, integrated challenge, prior memory, mailbox list and relevant recent broadcasts.
+- **New ciphertext-interarrival-addressed rank28 inverse:** g=preceding cipher glyph's completed return distance (0 on first occurrence), each chapter starts with IV, repeats encode NG, cyclic nonrepeat rank shifted by K[g]. Exact common arbitrary gap bijection E/top5 capacity 989/3927 vs finite donor floors 1415/5147. Chapter-private p40–53 capacity passes, so ran a genuine blind inverse. Two independently keyed controls recover 984/1007 and 977/1007 held runes; exhaustive 28^2 prime-affine controls recover exact parameters. Original fixed prime-affine held -6.524511 nats/rune, arbitrary per-gap shifts held -6.487110 vs controls -2.471500/-2.669116; both incoherent. [Report](../../im-results/lp2-gap-addressed-rank28-inverse.md) · [SFT](../../sims/lp2_gap_addressed_rank28_inverse_sft.cjs) · [raw](../../im-results/lp2-gap-addressed-rank28-output.json), commits 59bc1e88/175245e7/44047880. Exact replay, no original key/plaintext. Core executed in V8; standalone CJS not separately executed. Retire these receivers absent independent clue, no further gap parameter sweeps.
+- No authoritative synthesis change; this is a scoped negative. No CI. Continue independent research.
+
 # Agent 6 — draw10 invocation, 25 November 2026 (21:43Z)
 
 - Verified immutable lease `agent6-draw10-2026-11-25T21:43:35.664Z-radix`, claimed 21:43:35.664Z, commit a0e7cfc7ca4c5f3bfb18a455b6d29a2b605c5d0f. Draw10 issue-directed; #2853 Agent9, #2847 Agent37, #2844 Agent33, #2722 Agent15 active; other assignments waiting on external input. Independent fallback.
