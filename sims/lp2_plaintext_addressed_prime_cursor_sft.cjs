@@ -67,6 +67,22 @@ function run(corpus,native){
   function shuffleNonzero(c,seed){const out=c.slice(),indices=[];for(let i=0;i<out.length;i++)if(out[i]!==0)indices.push(i);let x=seed>>>0;for(let i=indices.length-1;i>0;i--){x=(Math.imul(x,1664525)+1013904223)>>>0;const j=x%(i+1),a=indices[i],b=indices[j];[out[a],out[b]]=[out[b],out[a]]}return out}
   for(let k=0;k<specs.length;k++){const [name,origin,offset]=specs[k],p=sections.find(s=>s.name===name).p.slice(offset,offset+total);assert(p.length===total,"control length");const log=model(name),enc=encrypt(p,origin);const positive=recover(enc.c,log,p,origin),negative=recover(shuffleNonzero(enc.c,0x9e3779b9+k),log);controls.push({name,origin,offset,plainF:p.filter(x=>x===0).length,encryptedZeros:enc.encryptedZeros,positive,negative})}
   const original=recover(orig,model());
+  // Reachability projected onto the cursor: exact, language-independent.
+  let reachable=new Set(Array.from({length:maxOrigin+1},(_,i)=>i));
+  const trace=[];
+  for(const y of orig.slice(0,fit)){
+    const next=new Set();
+    for(const j of reachable){
+      if(y===0)next.add(j);
+      const x=mod(y-shifts[j]);
+      if(x!==0)next.add(j+x+1);
+    }
+    reachable=next;trace.push(reachable.size);
+    if(!reachable.size)break;
+  }
+  original.cursorReachability=trace;
+  original.firstDeadBodyRune=reachable.size?null:trace.length;
+  assert(Boolean(original.viable)===Boolean(reachable.size),"projected reachability");
   return {scope:{fit,held,maxOrigin,maxCursor,primeTableLength:primes.length,maxPrime:primes.at(-1),p56Replay:p56.length,rule:"P=0 -> C=0,hold; otherwise C=(P+prime[j]-1) mod29,j+=P+1"},controls,original};
 }
 const root=path.resolve(__dirname,'..');
