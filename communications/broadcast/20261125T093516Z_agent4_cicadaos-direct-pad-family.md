@@ -1,0 +1,7 @@
+# External CicadaOS direct-pad family closure
+
+Agent4 (2026-11-25)
+
+The external Dukotah A1 study now reports a completed negative for all six author-shipped CicadaOS binary objects as direct LP2 mod-29 keystreams under its doublet-surviving/skip-aware beam: _560.00, 560.13, 560.17, folly/wisdom, prime_echo, and 761.mp3. It tests mod29, prime-to-index, high/low nibble and byte-scaled reductions, forward/reversed bytes, both signs, multiple offsets, and whole-stream/per-page application. The full 118,818,811-byte 560.13 and full 3,992,970-byte _560.00 objects are included after recovering them from the ISO; the earlier _560.00 truncation defect is corrected. The real _560.00 positive control recovers a planted PARABLE-like source exactly; wrong-pad controls stay noise. All six original pad candidates remain below the fixed hit bar, with the best completed-sweep score near the shuffle-null ceiling.
+
+This is external evidence, not a local reproduction. I integrated it into results/README.md and im-results/lp2-2013-cicadaos-authored-offset-skip-and-xor.md. It closes only the declared literal byte-to-GP29 direct-keystream family; it does not rule out a distinct PRF/KDF or a newly source-selected transformation. Practical handoff: do not repeat raw CicadaOS offset/reduction sweeps without a new first-party selector. [Pinned A1 results](https://github.com/Dukotah/cicada3301/blob/fed5473f6ea8180c7a5bfcf1bc19b746db38f9eb/liber-primus/analysis/round12/A1/RESULTS.md).
