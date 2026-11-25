@@ -1,0 +1,425 @@
+{
+  "result": [
+    {
+      "range": [
+        0,
+        2
+      ],
+      "n": 728,
+      "eq": 246,
+      "neq": 724,
+      "by": [
+        {
+          "file": "resources/control/emerson_essays_2944.txt",
+          "runes": 321327,
+          "windows": 320600,
+          "compatible": 0,
+          "full": 0,
+          "unresolved": 0,
+          "keys": []
+        },
+        {
+          "file": "resources/control/gibran_prophet_58585.txt",
+          "runes": 62492,
+          "windows": 61765,
+          "compatible": 0,
+          "full": 0,
+          "unresolved": 0,
+          "keys": []
+        },
+        {
+          "file": "resources/control/shakespeare_first300k.txt",
+          "runes": 217106,
+          "windows": 216379,
+          "compatible": 0,
+          "full": 0,
+          "unresolved": 0,
+          "keys": []
+        },
+        {
+          "file": "resources/liber-primus/lp1-plaintext-reference.txt",
+          "runes": 3246,
+          "windows": 2519,
+          "compatible": 0,
+          "full": 0,
+          "unresolved": 0,
+          "keys": []
+        },
+        {
+          "file": "resources/control/blake_song_of_liberty_train.txt",
+          "runes": 2001,
+          "windows": 1274,
+          "compatible": 0,
+          "full": 0,
+          "unresolved": 0,
+          "keys": []
+        },
+        {
+          "file": "resources/control/cicada2012_blake_chorus.txt",
+          "runes": 593,
+          "windows": 0,
+          "compatible": 0,
+          "full": 0,
+          "unresolved": 0,
+          "keys": []
+        }
+      ]
+    },
+    {
+      "range": [
+        3,
+        7
+      ],
+      "n": 1144,
+      "eq": 531,
+      "neq": 1138,
+      "by": [
+        {
+          "file": "resources/control/emerson_essays_2944.txt",
+          "runes": 321327,
+          "windows": 320184,
+          "compatible": 0,
+          "full": 0,
+          "unresolved": 0,
+          "keys": []
+        },
+        {
+          "file": "resources/control/gibran_prophet_58585.txt",
+          "runes": 62492,
+          "windows": 61349,
+          "compatible": 0,
+          "full": 0,
+          "unresolved": 0,
+          "keys": []
+        },
+        {
+          "file": "resources/control/shakespeare_first300k.txt",
+          "runes": 217106,
+          "windows": 215963,
+          "compatible": 0,
+          "full": 0,
+          "unresolved": 0,
+          "keys": []
+        },
+        {
+          "file": "resources/liber-primus/lp1-plaintext-reference.txt",
+          "runes": 3246,
+          "windows": 2103,
+          "compatible": 0,
+          "full": 0,
+          "unresolved": 0,
+          "keys": []
+        },
+        {
+          "file": "resources/control/blake_song_of_liberty_train.txt",
+          "runes": 2001,
+          "windows": 858,
+          "compatible": 0,
+          "full": 0,
+          "unresolved": 0,
+          "keys": []
+        },
+        {
+          "file": "resources/control/cicada2012_blake_chorus.txt",
+          "runes": 593,
+          "windows": 0,
+          "compatible": 0,
+          "full": 0,
+          "unresolved": 0,
+          "keys": []
+        }
+      ]
+    },
+    {
+      "range": [
+        23,
+        26
+      ],
+      "n": 1020,
+      "eq": 419,
+      "neq": 1009,
+      "by": [
+        {
+          "file": "resources/control/emerson_essays_2944.txt",
+          "runes": 321327,
+          "windows": 320308,
+          "compatible": 0,
+          "full": 0,
+          "unresolved": 0,
+          "keys": []
+        },
+        {
+          "file": "resources/control/gibran_prophet_58585.txt",
+          "runes": 62492,
+          "windows": 61473,
+          "compatible": 0,
+          "full": 0,
+          "unresolved": 0,
+          "keys": []
+        },
+        {
+          "file": "resources/control/shakespeare_first300k.txt",
+          "runes": 217106,
+          "windows": 216087,
+          "compatible": 0,
+          "full": 0,
+          "unresolved": 0,
+          "keys": []
+        },
+        {
+          "file": "resources/liber-primus/lp1-plaintext-reference.txt",
+          "runes": 3246,
+          "windows": 2227,
+          "compatible": 0,
+          "full": 0,
+          "unresolved": 0,
+          "keys": []
+        },
+        {
+          "file": "resources/control/blake_song_of_liberty_train.txt",
+          "runes": 2001,
+          "windows": 982,
+          "compatible": 0,
+          "full": 0,
+          "unresolved": 0,
+          "keys": []
+        },
+        {
+          "file": "resources/control/cicada2012_blake_chorus.txt",
+          "runes": 593,
+          "windows": 0,
+          "compatible": 0,
+          "full": 0,
+          "unresolved": 0,
+          "keys": []
+        }
+      ]
+    },
+    {
+      "range": [
+        54,
+        55
+      ],
+      "n": 307,
+      "eq": 56,
+      "neq": 304,
+      "by": [
+        {
+          "file": "resources/control/emerson_essays_2944.txt",
+          "runes": 321327,
+          "windows": 321021,
+          "compatible": 0,
+          "full": 0,
+          "unresolved": 0,
+          "keys": []
+        },
+        {
+          "file": "resources/control/gibran_prophet_58585.txt",
+          "runes": 62492,
+          "windows": 62186,
+          "compatible": 0,
+          "full": 0,
+          "unresolved": 0,
+          "keys": []
+        },
+        {
+          "file": "resources/control/shakespeare_first300k.txt",
+          "runes": 217106,
+          "windows": 216800,
+          "compatible": 0,
+          "full": 0,
+          "unresolved": 0,
+          "keys": []
+        },
+        {
+          "file": "resources/liber-primus/lp1-plaintext-reference.txt",
+          "runes": 3246,
+          "windows": 2940,
+          "compatible": 0,
+          "full": 0,
+          "unresolved": 0,
+          "keys": []
+        },
+        {
+          "file": "resources/control/blake_song_of_liberty_train.txt",
+          "runes": 2001,
+          "windows": 1695,
+          "compatible": 0,
+          "full": 0,
+          "unresolved": 0,
+          "keys": []
+        },
+        {
+          "file": "resources/control/cicada2012_blake_chorus.txt",
+          "runes": 593,
+          "windows": 287,
+          "compatible": 0,
+          "full": 0,
+          "unresolved": 0,
+          "keys": []
+        }
+      ]
+    }
+  ],
+  "controls": [
+    {
+      "file": "resources/control/emerson_essays_2944.txt",
+      "start": 10000,
+      "rank": 55,
+      "variables": 57,
+      "dim": 2,
+      "unseen": [
+        12
+      ],
+      "completions": 1,
+      "uniqueCorrect": 643,
+      "total": 643,
+      "truePathAll": true,
+      "key": {
+        "s": [
+          0,
+          12,
+          9,
+          3,
+          16,
+          5,
+          26,
+          2,
+          15,
+          19,
+          27,
+          7,
+          20,
+          10,
+          18,
+          6,
+          23,
+          8,
+          24,
+          17,
+          22,
+          21,
+          28,
+          11,
+          1,
+          13,
+          25,
+          14,
+          4
+        ],
+        "h": [
+          17,
+          20,
+          25,
+          15,
+          23,
+          21,
+          27,
+          18,
+          26,
+          4,
+          2,
+          28,
+          null,
+          14,
+          3,
+          9,
+          11,
+          6,
+          22,
+          0,
+          19,
+          16,
+          24,
+          7,
+          8,
+          10,
+          5,
+          13,
+          1
+        ]
+      }
+    },
+    {
+      "file": "resources/control/gibran_prophet_58585.txt",
+      "start": 30000,
+      "rank": 52,
+      "variables": 54,
+      "dim": 2,
+      "unseen": [
+        12,
+        14,
+        25,
+        27
+      ],
+      "completions": 24,
+      "uniqueCorrect": 643,
+      "total": 643,
+      "truePathAll": true,
+      "key": {
+        "s": [
+          0,
+          9,
+          24,
+          28,
+          23,
+          7,
+          25,
+          11,
+          21,
+          22,
+          14,
+          17,
+          16,
+          10,
+          4,
+          20,
+          26,
+          27,
+          19,
+          6,
+          18,
+          12,
+          15,
+          2,
+          13,
+          5,
+          8,
+          1,
+          3
+        ],
+        "h": [
+          23,
+          9,
+          22,
+          13,
+          18,
+          0,
+          10,
+          3,
+          12,
+          26,
+          7,
+          19,
+          null,
+          28,
+          null,
+          5,
+          4,
+          11,
+          25,
+          14,
+          6,
+          24,
+          15,
+          16,
+          17,
+          null,
+          8,
+          null,
+          1
+        ]
+      }
+    }
+  ]
+}
