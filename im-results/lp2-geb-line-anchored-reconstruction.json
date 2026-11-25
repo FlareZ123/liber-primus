@@ -1,0 +1,1320 @@
+{
+  "run": 45578265432,
+  "results": {
+    "digraph+": [
+      {
+        "name": "plant100000",
+        "meanBest": -2.807807398,
+        "exactIndependent": 2,
+        "retained": 9,
+        "fit": {
+          "nodes": 5580,
+          "solutions": 0,
+          "best": null
+        },
+        "holdout": null,
+        "anchoredFit": {
+          "nodes": 1117933,
+          "solutions": 142019,
+          "best": -715.2025361,
+          "start": 100000,
+          "end": 100228,
+          "order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "plaintext": "THELOSSOFDIUINITYTHECIRCUMFERENCEPRACTICESTHREEBEHAUIARSWHICHCAUSETHELOSSOFDIUINITYCONSUMPTIANWECONSUMETOOMUCHBECAUSEWEBELEIUETHEFOLLOWNGTWOERRORSWITHINTHEDECEPTIANWEDONOTHAUEENOUGHORTHEREISNOTENOUGHWEHAUEWHATWEHAUENOWBYLUCCANDWEWILLNOTBESTRONGE",
+          "correctRunes": 232,
+          "exactIntervals": 11,
+          "exactOrder": true
+        },
+        "anchoredHoldout": {
+          "nodes": 54,
+          "solutions": 18,
+          "best": -210.1931374,
+          "start": 100228,
+          "end": 100304,
+          "order": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "plaintext": "NOUGHLATERTOOBTAINWHATWENEEDMOSTTHNGSARENOTWORTHCONSUMNGPRESERUATIANWEPRESERUETHNGS",
+          "correctRunes": 76,
+          "exactIntervals": 4,
+          "exactOrder": true
+        }
+      },
+      {
+        "name": "null100000",
+        "meanBest": -2.953992204,
+        "exactIndependent": 0,
+        "retained": 0,
+        "fit": {
+          "nodes": 5569,
+          "solutions": 0,
+          "best": null
+        },
+        "holdout": null,
+        "anchoredFit": {
+          "nodes": 1118223,
+          "solutions": 143025,
+          "best": -962.5860168,
+          "start": 1177396,
+          "end": 1177625,
+          "order": [
+            4,
+            2,
+            5,
+            7,
+            3,
+            8,
+            9,
+            1,
+            6,
+            0,
+            10
+          ],
+          "plaintext": "AEOBLENGHXPEJPUNGAETHXAAMMEBBAGETURNHEANDEMMNOBOHINGTHAWIGUEBNGDRGIAMUTHWAADOYPERWCTTSIXEATHDAOAHIUOSEANHEATHETHCTUULDIIRGCRAXJSSUOLAEEANGTNTHRRTHMRNLUPSHWTINUNLTHXJJYOONGSSDINGNTFPENGWPLHOTRFFTENBODCNGIAUHAYTTABLIMPEMTHEOXHSYYAEODIEOENGEAGNNGIITULRNTSEARNGMBOYWREWIAW"
+        },
+        "anchoredHoldout": {
+          "nodes": 40,
+          "solutions": 9,
+          "best": -332.7589696,
+          "start": 1177625,
+          "end": 1177701,
+          "order": [
+            2,
+            0,
+            3,
+            1
+          ],
+          "plaintext": "MAEBTOTHUARIBHJSACIAEHCTNGJSEAONHYEOGTBPDNDEAGOEYCEANTHOTDTIEASPTIWTIGGHTYDXTDLRRNYPANI"
+        }
+      },
+      {
+        "name": "plant500000",
+        "meanBest": -2.62677746,
+        "exactIndependent": 8,
+        "retained": 11,
+        "fit": {
+          "nodes": 5545,
+          "solutions": 1,
+          "best": -621.1192657,
+          "start": 500000,
+          "end": 500229,
+          "order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "plaintext": "BECAUSEWEBELIEUEWEAREWEACIFWELOSETHEMWEWILLNOTBESTRONGENOUGHTOGAINTHEMAGAINTHISISTHEDECEPTIANMOSTTHNGSARENOTWORTHPRESERUNGADHERENCEWEFOLLOWDOGMASOTHATWECANBELONGANDBERIGHTORWEFOLLOWREASONSOWECANBELONGANDBERIGHTTHEREISNOTHNGTOBERIGHTABOUTTOBELONGISDEATHI",
+          "correctRunes": 232,
+          "exactIntervals": 11,
+          "exactOrder": true
+        },
+        "holdout": {
+          "nodes": 51,
+          "solutions": 21,
+          "best": -240.6236391,
+          "start": 500229,
+          "end": 500304,
+          "order": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "plaintext": "TISTHEBEHAUIARSOFCONSUMPTIANPRESERUATIANANDADHERENCETHATHAUEUSLOSEOURPRIMALITYAND",
+          "correctRunes": 76,
+          "exactIntervals": 4,
+          "exactOrder": true
+        },
+        "anchoredFit": {
+          "nodes": 1775368,
+          "solutions": 162840,
+          "best": -621.1192657,
+          "start": 500000,
+          "end": 500229,
+          "order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "plaintext": "BECAUSEWEBELIEUEWEAREWEACIFWELOSETHEMWEWILLNOTBESTRONGENOUGHTOGAINTHEMAGAINTHISISTHEDECEPTIANMOSTTHNGSARENOTWORTHPRESERUNGADHERENCEWEFOLLOWDOGMASOTHATWECANBELONGANDBERIGHTORWEFOLLOWREASONSOWECANBELONGANDBERIGHTTHEREISNOTHNGTOBERIGHTABOUTTOBELONGISDEATHI",
+          "correctRunes": 232,
+          "exactIntervals": 11,
+          "exactOrder": true
+        },
+        "anchoredHoldout": {
+          "nodes": 51,
+          "solutions": 21,
+          "best": -240.6236391,
+          "start": 500229,
+          "end": 500304,
+          "order": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "plaintext": "TISTHEBEHAUIARSOFCONSUMPTIANPRESERUATIANANDADHERENCETHATHAUEUSLOSEOURPRIMALITYAND",
+          "correctRunes": 76,
+          "exactIntervals": 4,
+          "exactOrder": true
+        }
+      },
+      {
+        "name": "null500000",
+        "meanBest": -2.950739057,
+        "exactIndependent": 0,
+        "retained": 0,
+        "fit": {
+          "nodes": 5448,
+          "solutions": 0,
+          "best": null
+        },
+        "holdout": null,
+        "anchoredFit": {
+          "nodes": 1757961,
+          "solutions": 161416,
+          "best": -949.581733,
+          "start": 994803,
+          "end": 995031,
+          "order": [
+            7,
+            9,
+            8,
+            4,
+            10,
+            0,
+            5,
+            2,
+            1,
+            3,
+            6
+          ],
+          "plaintext": "MIAODANHDBBEXLMNBNFPTIPOUARMAEEOHDMGROSPWGTHBNIEABNOMNLYADDIPFOUNDYTHEILCOLDTHNGEJBEYOECHERHUGDXISOLSEOTESBIENADSXWOREAWESBDSXESTODUBTHASDRUUGBPCYRJMTHOYETTHEAHTOGXTSWAPURIEPTHHRYWLBOYGWTHWPTHRGRRGHMOWNPNGFFNGDNGINNGLEANGRYAELBABTNGNCAEAEMOGWAPEOGECEROMYERHD"
+        },
+        "anchoredHoldout": {
+          "nodes": 175,
+          "solutions": 69,
+          "best": -355.8795098,
+          "start": 995031,
+          "end": 995104,
+          "order": [
+            1,
+            0,
+            2,
+            3
+          ],
+          "plaintext": "AEEAEORUAHIFPULETHIATHHEANLHTHARTAEBEOEOTDGSMOEUFRRIPXWLEAIAJTTAEAANUAESINIEDTHTHLAEEOETNEATHNFUCEA"
+        }
+      },
+      {
+        "name": "original",
+        "meanBest": -3.011112329,
+        "exactIndependent": 0,
+        "retained": 0,
+        "fit": {
+          "nodes": 5634,
+          "solutions": 0,
+          "best": null
+        },
+        "holdout": null,
+        "anchoredFit": {
+          "nodes": 637773,
+          "solutions": 117722,
+          "best": -987.2233757,
+          "start": 338904,
+          "end": 339134,
+          "order": [
+            3,
+            8,
+            0,
+            5,
+            7,
+            4,
+            1,
+            2,
+            6,
+            10,
+            9
+          ],
+          "plaintext": "XYUMENGOEGFSTHAPTHALLSREACTIRTHPOOETHNGSSEDOHTHEAIEASEAEOEUTHOPESAEGGDCYOWEONIPHNTHXAEATHBCLIADNGAEOABOWNWUOROECUAWTHDTIOOMBOERXEADTTIAIALRNTCOOUADXWDHNUYSTCAYUONGELYRYUWYUMOETUASEAGNGDFDXNGTHHLEPTTHEMITSDTHEDAEJHOAUTHRECERGWTYOAGESORHIETTJOEUWCAIBUTAECIGJBLESHXSCXHSCEAEATHEC"
+        },
+        "anchoredHoldout": {
+          "nodes": 34,
+          "solutions": 4,
+          "best": -372.7228382,
+          "start": 339134,
+          "end": 339208,
+          "order": [
+            3,
+            1,
+            2,
+            0
+          ],
+          "plaintext": "RMMOEAEXNNEFCCUWOENGMTHHEACEOHCRNGJUDTIEAJYOELEOEPNTPJEOIAEAMSGEIAWICETHPAEXCYBOCSFHJPRWEAEO"
+        }
+      },
+      {
+        "name": "originalNull",
+        "meanBest": -3.013814973,
+        "exactIndependent": 0,
+        "retained": 0,
+        "fit": {
+          "nodes": 5633,
+          "solutions": 0,
+          "best": null
+        },
+        "holdout": null,
+        "anchoredFit": {
+          "nodes": 640674,
+          "solutions": 119001,
+          "best": -987.5715817,
+          "start": 759163,
+          "end": 759395,
+          "order": [
+            0,
+            4,
+            7,
+            9,
+            1,
+            5,
+            3,
+            8,
+            10,
+            6,
+            2
+          ],
+          "plaintext": "YNGLLCHGMANWTWNGRIAEUEHOMWMAUPEAWTSOESBSJSANGREACRLTHEPIAGEOABTTHOEMTHECGNGNOTHIXDIAELGHTHPALLEEXMHHLOESASNEDOHTHPBRALBONGPLGEAYYOBUUENNGPOCEOPGUHELRNGNGRHGECBTIAHAESYNHRNGAETUJHTTYTHWOORNBTTIASAEAEAYOTJGNLYMYIISARNRSBIANYSIAYHBTDICTHBPUAEEACWSRUEOCJMTHLHXHAICDNREATYTTHA"
+        },
+        "anchoredHoldout": {
+          "nodes": 9,
+          "solutions": 1,
+          "best": -379.6093753,
+          "start": 759395,
+          "end": 759468,
+          "order": [
+            3,
+            0,
+            1,
+            2
+          ],
+          "plaintext": "GHWEAOYIANTPCEEAWTSLMCHTAEWFTHEOJGINSJLFJGINUTHMRNLLJXDOFTOEXAOENGJSATHNGHOEEMJXEORETHOXLPN"
+        }
+      }
+    ],
+    "digraph-": [
+      {
+        "name": "plant100000",
+        "meanBest": -2.821923713,
+        "exactIndependent": 3,
+        "retained": 10,
+        "fit": {
+          "nodes": 5627,
+          "solutions": 0,
+          "best": null
+        },
+        "holdout": null,
+        "anchoredFit": {
+          "nodes": 2922311,
+          "solutions": 171482,
+          "best": -715.2025361,
+          "start": 100000,
+          "end": 100228,
+          "order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "plaintext": "THELOSSOFDIUINITYTHECIRCUMFERENCEPRACTICESTHREEBEHAUIARSWHICHCAUSETHELOSSOFDIUINITYCONSUMPTIANWECONSUMETOOMUCHBECAUSEWEBELEIUETHEFOLLOWNGTWOERRORSWITHINTHEDECEPTIANWEDONOTHAUEENOUGHORTHEREISNOTENOUGHWEHAUEWHATWEHAUENOWBYLUCCANDWEWILLNOTBESTRONGE",
+          "correctRunes": 232,
+          "exactIntervals": 11,
+          "exactOrder": true
+        },
+        "anchoredHoldout": {
+          "nodes": 37,
+          "solutions": 14,
+          "best": -210.1931374,
+          "start": 100228,
+          "end": 100304,
+          "order": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "plaintext": "NOUGHLATERTOOBTAINWHATWENEEDMOSTTHNGSARENOTWORTHCONSUMNGPRESERUATIANWEPRESERUETHNGS",
+          "correctRunes": 76,
+          "exactIntervals": 4,
+          "exactOrder": true
+        }
+      },
+      {
+        "name": "null100000",
+        "meanBest": -2.872276357,
+        "exactIndependent": 0,
+        "retained": 0,
+        "fit": {
+          "nodes": 5565,
+          "solutions": 0,
+          "best": null
+        },
+        "holdout": null,
+        "anchoredFit": {
+          "nodes": 2919280,
+          "solutions": 170535,
+          "best": -944.5916216,
+          "start": 532672,
+          "end": 532895,
+          "order": [
+            10,
+            9,
+            8,
+            6,
+            1,
+            4,
+            3,
+            0,
+            5,
+            2,
+            7
+          ],
+          "plaintext": "PTFISIATFENGESNHOECEAIMSIANGHOULGONGTHNGEWYDDIREWTWTRWEALTNGNGFUIAHAYOEANGBYIAHCPULEDWIPRAETFWCETCUPLTWOBBRENGCHEAUWAEGGOTHMETHUDESACAIBESISAEAEEXABXEBPESNLCBPECIANGFTTOEALLGGSPLBSIANDCFSTNLIUNGPRLLOELAEIAUMUFRBWEJCNEALLIAMEUSDOMLTEAOTOAEEAHTAEYANXPCTHDAFASMMWSMBNTFUIADTH"
+        },
+        "anchoredHoldout": {
+          "nodes": 35,
+          "solutions": 3,
+          "best": -403.2099855,
+          "start": 532895,
+          "end": 532971,
+          "order": [
+            3,
+            0,
+            1,
+            2
+          ],
+          "plaintext": "IAJPUIACDUXIAUTHEOEAEOTHTHBMRPEONPMNGCOEJASNUIANGJJOEAUDSSCNGEAHNGEAHNAEOAOTTHSTEWCMXLDWIAOEWIAINRU"
+        }
+      },
+      {
+        "name": "plant500000",
+        "meanBest": -2.602303955,
+        "exactIndependent": 6,
+        "retained": 11,
+        "fit": {
+          "nodes": 5623,
+          "solutions": 2,
+          "best": -619.5903459,
+          "start": 500000,
+          "end": 500229,
+          "order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "plaintext": "BECAUSEWEBELIEUEWEAREWEACIRNGLFOSETHEMWEWILLNOTBESTRONGENOUGHTOGAINTHEMAGAINTHISISTHEDECEPTIANMOSTTHNGSARENOTWORTHPRESERUNGADHERENCEWEFOLLOWDOGMASOTHATWECANBELONGANDBERIGHTORWEFOLLOWREASONSOWECANBELONGANDBERIGHTTHEREISNOTHNGTOBERIGHTABOUTTOBELONGISDEATHI",
+          "correctRunes": 228,
+          "exactIntervals": 11,
+          "exactOrder": true
+        },
+        "holdout": {
+          "nodes": 187,
+          "solutions": 64,
+          "best": -240.6236391,
+          "start": 500229,
+          "end": 500304,
+          "order": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "plaintext": "TISTHEBEHAUIARSOFCONSUMPTIANPRESERUATIANANDADHERENCETHATHAUEUSLOSEOURPRIMALITYAND",
+          "correctRunes": 76,
+          "exactIntervals": 4,
+          "exactOrder": true
+        },
+        "anchoredFit": {
+          "nodes": 2900082,
+          "solutions": 171268,
+          "best": -619.5903459,
+          "start": 500000,
+          "end": 500229,
+          "order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "plaintext": "BECAUSEWEBELIEUEWEAREWEACIRNGLFOSETHEMWEWILLNOTBESTRONGENOUGHTOGAINTHEMAGAINTHISISTHEDECEPTIANMOSTTHNGSARENOTWORTHPRESERUNGADHERENCEWEFOLLOWDOGMASOTHATWECANBELONGANDBERIGHTORWEFOLLOWREASONSOWECANBELONGANDBERIGHTTHEREISNOTHNGTOBERIGHTABOUTTOBELONGISDEATHI",
+          "correctRunes": 228,
+          "exactIntervals": 11,
+          "exactOrder": true
+        },
+        "anchoredHoldout": {
+          "nodes": 187,
+          "solutions": 64,
+          "best": -240.6236391,
+          "start": 500229,
+          "end": 500304,
+          "order": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "plaintext": "TISTHEBEHAUIARSOFCONSUMPTIANPRESERUATIANANDADHERENCETHATHAUEUSLOSEOURPRIMALITYAND",
+          "correctRunes": 76,
+          "exactIntervals": 4,
+          "exactOrder": true
+        }
+      },
+      {
+        "name": "null500000",
+        "meanBest": -2.908681606,
+        "exactIndependent": 0,
+        "retained": 0,
+        "fit": {
+          "nodes": 5419,
+          "solutions": 0,
+          "best": null
+        },
+        "holdout": null,
+        "anchoredFit": {
+          "nodes": 2879272,
+          "solutions": 168979,
+          "best": -930.496549,
+          "start": 328165,
+          "end": 328390,
+          "order": [
+            5,
+            1,
+            9,
+            0,
+            2,
+            7,
+            10,
+            4,
+            8,
+            6,
+            3
+          ],
+          "plaintext": "LNNOTBENGPWHMWNSAEUAHIANGAESCSPWFAFTJGEEAENGTSHOIISOTEHTTHYFIURWNGIUHTHHONGEROLMWENRYWHNRNGDEARCTHOEOEHEREAOEAEGMOFIABEANDTHCONGRETHSUMOYGESFWNUFEEMRTYBTLTHGSISTTHTTHISHNCDLBBSJMDRUNGJEDYLDYGIYYPMDJCOLOSENMEOTYREOPTENUAUTJTOEGELSTDOYTTHBDOREAFEAIABETITHYOBSTNGNGLYOU"
+        },
+        "anchoredHoldout": {
+          "nodes": 41,
+          "solutions": 7,
+          "best": -357.7313385,
+          "start": 328390,
+          "end": 328462,
+          "order": [
+            2,
+            1,
+            0,
+            3
+          ],
+          "plaintext": "THDCOOUCNGJNGMCNGIASNAEIALITHTTHRUEAAIAAECAENGOEGHFPEESEOUMJFGYNMUFWISAYHESDAGGOAPFWSWTTHEOWEOD"
+        }
+      },
+      {
+        "name": "original",
+        "meanBest": -3.048841616,
+        "exactIndependent": 0,
+        "retained": 0,
+        "fit": {
+          "nodes": 5636,
+          "solutions": 0,
+          "best": null
+        },
+        "holdout": null,
+        "anchoredFit": {
+          "nodes": 618988,
+          "solutions": 106170,
+          "best": -1000.850942,
+          "start": 684615,
+          "end": 684847,
+          "order": [
+            4,
+            3,
+            10,
+            7,
+            9,
+            1,
+            0,
+            8,
+            5,
+            6,
+            2
+          ],
+          "plaintext": "GUCHTJDGESNPEOLLCENWSPBOWSEJOYHEPSYONGSTUCWUDEEXNGLYHRYLDIASNGPAYSWWOEISGJIAAEXWDPGAPXCBBINGTHAHOLGTHRTAELALDEADIMTHDOMYBOOTHDTHUCEAJOEOCSCEAUNRIRMAEJMIAPAAPJOEOAEATILACEOIAMTHNGBISBCLDWYSMLHMJSOOSSEAIAIAEWTHCBJAEBTJBAULIRCIAACPGANNGXOCOEAGMAYICTSPRDHOIANGIPLYBRTHEATHMREA"
+        },
+        "anchoredHoldout": {
+          "nodes": 19,
+          "solutions": 6,
+          "best": -391.9605083,
+          "start": 684847,
+          "end": 684923,
+          "order": [
+            0,
+            2,
+            3,
+            1
+          ],
+          "plaintext": "UMNGEABMEOMGAEPTIEOXSJSEOTHRHLIAIANGENGXMOETLHRNGEYNROJXSAEGHEOETHMEWMSSAMNGMLXEOAEDPEANSEAOEIEYTL"
+        }
+      },
+      {
+        "name": "originalNull",
+        "meanBest": -3.050959996,
+        "exactIndependent": 0,
+        "retained": 0,
+        "fit": {
+          "nodes": 5635,
+          "solutions": 0,
+          "best": null
+        },
+        "holdout": null,
+        "anchoredFit": {
+          "nodes": 611839,
+          "solutions": 103696,
+          "best": -1005.106007,
+          "start": 854759,
+          "end": 854989,
+          "order": [
+            3,
+            4,
+            5,
+            8,
+            0,
+            9,
+            10,
+            1,
+            7,
+            6,
+            2
+          ],
+          "plaintext": "LBJMOYNGTHFOSTHAEIMTLYEOWJRPTYISTEXWHYHAYYWTHEANEANEITHSBSCEHMJPOEOCTARRREOJMEASBTHGLTUTDEAYSTHNGNGOHNEAIEACGHIOEEOMBIIANGTHHMTHPONGTUDIDXREPAECEXTOELLEDWAWECRSBISCOSSSUGNGHEAOEHSBNGEASMOEPNUMHAEOWNCAEHIXEOCTNGGHDEAMWXOUBGREALYAYRBOTBNCMDYIAYOEEHNDEOLIAYSTNGEFRTHRMNGMONGHOECNGCIE"
+        },
+        "anchoredHoldout": {
+          "nodes": 55,
+          "solutions": 20,
+          "best": -363.7832758,
+          "start": 854989,
+          "end": 855063,
+          "order": [
+            2,
+            3,
+            1,
+            0
+          ],
+          "plaintext": "OESTEWCGLLNTHNBNAOENGOUCLGXMMAXCEADOEFTOSUEAYLEAIPOEAUDTFTHUERBHEOEOCIAIEAEDHMOEYJTHNGETHIOPJX"
+        }
+      }
+    ],
+    "letters+": [
+      {
+        "name": "plant100000",
+        "meanBest": -2.825418103,
+        "exactIndependent": 3,
+        "retained": 10,
+        "fit": {
+          "nodes": 5558,
+          "solutions": 0,
+          "best": null
+        },
+        "holdout": null,
+        "anchoredFit": {
+          "nodes": 1234526,
+          "solutions": 148116,
+          "best": -714.0383655,
+          "start": 100000,
+          "end": 100227,
+          "order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "plaintext": "THELOSSOFDIUINITYTHECIRCUMFERENCEPRACTICESTHREEBEHAUIARSWHICHCAUSETHELOSSOFDIUINITYCONSUMPTIANWECONSUMETOOMUCHBECAUSEWEBELEIUETHEFOLLOWNGTWOERRORSWITHINTHEDECEPTIANWEDONOTHAUEENOUGHORTHEREISNOTENOUGHWEHAUEWHATWEHAUENOWBYLUCCANDWEWILLNOTBESTROFEA",
+          "correctRunes": 230,
+          "exactIntervals": 10,
+          "exactOrder": true
+        },
+        "anchoredHoldout": {
+          "nodes": 66,
+          "solutions": 24,
+          "best": -346.7895594,
+          "start": 100227,
+          "end": 100302,
+          "order": [
+            3,
+            2,
+            1,
+            0
+          ],
+          "plaintext": "SUNIOOUAIEOBRAEWYITOLDUETJNOEOPSTHEOEAEAENGUSAIAEACESAEAPAHSFIAAEWSIAAETHIASPOEHNWTGITHRITEAAO",
+          "correctRunes": 10,
+          "exactIntervals": 0,
+          "exactOrder": false
+        }
+      },
+      {
+        "name": "null100000",
+        "meanBest": -2.93575758,
+        "exactIndependent": 0,
+        "retained": 0,
+        "fit": {
+          "nodes": 5544,
+          "solutions": 0,
+          "best": null
+        },
+        "holdout": null,
+        "anchoredFit": {
+          "nodes": 1233632,
+          "solutions": 147353,
+          "best": -946.7471065,
+          "start": 622282,
+          "end": 622509,
+          "order": [
+            6,
+            1,
+            2,
+            7,
+            4,
+            5,
+            10,
+            8,
+            0,
+            3,
+            9
+          ],
+          "plaintext": "THAYDEHOYTHDETHASCROUWRSIOOCOAEOITHATIEANSREARIDBOOOTHEANUREPTHEMDJSYHUDARPEOYTNOHASEAGRORAHBDOOJTNFLWFNGJLULEAMOLIGUNEAYIATHNGOENGHELYCITTOTHDFAWAEALDSADGRAMTHMOELNIAIAFRDRUMHEEAIOPTWYYEUENPPTHNGHJEHMELYNGCEMOCAICCEASIEAEADCOBOLRFETHUAEEAAEPTHUSYWMANGEOEEYTHDGOTHWTINGNGE"
+        },
+        "anchoredHoldout": {
+          "nodes": 57,
+          "solutions": 26,
+          "best": -338.3958442,
+          "start": 622509,
+          "end": 622583,
+          "order": [
+            2,
+            0,
+            1,
+            3
+          ],
+          "plaintext": "THBOEOEBTHLDTHSSILUDODTHOWEOXOEJTEARFABRTNWXUEOWAJEOOARDWCTIMFWLCOTHOHDOCNNUNEAEPSYBRECAT"
+        }
+      },
+      {
+        "name": "plant500000",
+        "meanBest": -2.652645364,
+        "exactIndependent": 8,
+        "retained": 11,
+        "fit": {
+          "nodes": 5554,
+          "solutions": 1,
+          "best": -621.1192657,
+          "start": 500000,
+          "end": 500229,
+          "order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "plaintext": "BECAUSEWEBELIEUEWEAREWEACIFWELOSETHEMWEWILLNOTBESTRONGENOUGHTOGAINTHEMAGAINTHISISTHEDECEPTIANMOSTTHNGSARENOTWORTHPRESERUNGADHERENCEWEFOLLOWDOGMASOTHATWECANBELONGANDBERIGHTORWEFOLLOWREASONSOWECANBELONGANDBERIGHTTHEREISNOTHNGTOBERIGHTABOUTTOBELONGISDEATHI",
+          "correctRunes": 232,
+          "exactIntervals": 11,
+          "exactOrder": true
+        },
+        "holdout": {
+          "nodes": 32,
+          "solutions": 6,
+          "best": -240.6236391,
+          "start": 500229,
+          "end": 500304,
+          "order": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "plaintext": "TISTHEBEHAUIARSOFCONSUMPTIANPRESERUATIANANDADHERENCETHATHAUEUSLOSEOURPRIMALITYAND",
+          "correctRunes": 76,
+          "exactIntervals": 4,
+          "exactOrder": true
+        },
+        "anchoredFit": {
+          "nodes": 1257457,
+          "solutions": 147011,
+          "best": -621.1192657,
+          "start": 500000,
+          "end": 500229,
+          "order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "plaintext": "BECAUSEWEBELIEUEWEAREWEACIFWELOSETHEMWEWILLNOTBESTRONGENOUGHTOGAINTHEMAGAINTHISISTHEDECEPTIANMOSTTHNGSARENOTWORTHPRESERUNGADHERENCEWEFOLLOWDOGMASOTHATWECANBELONGANDBERIGHTORWEFOLLOWREASONSOWECANBELONGANDBERIGHTTHEREISNOTHNGTOBERIGHTABOUTTOBELONGISDEATHI",
+          "correctRunes": 232,
+          "exactIntervals": 11,
+          "exactOrder": true
+        },
+        "anchoredHoldout": {
+          "nodes": 32,
+          "solutions": 6,
+          "best": -240.6236391,
+          "start": 500229,
+          "end": 500304,
+          "order": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "plaintext": "TISTHEBEHAUIARSOFCONSUMPTIANPRESERUATIANANDADHERENCETHATHAUEUSLOSEOURPRIMALITYAND",
+          "correctRunes": 76,
+          "exactIntervals": 4,
+          "exactOrder": true
+        }
+      },
+      {
+        "name": "null500000",
+        "meanBest": -2.949184339,
+        "exactIndependent": 0,
+        "retained": 0,
+        "fit": {
+          "nodes": 5452,
+          "solutions": 0,
+          "best": null
+        },
+        "holdout": null,
+        "anchoredFit": {
+          "nodes": 1260593,
+          "solutions": 147092,
+          "best": -968.6113919,
+          "start": 1049573,
+          "end": 1049803,
+          "order": [
+            3,
+            0,
+            8,
+            7,
+            9,
+            4,
+            1,
+            5,
+            2,
+            6,
+            10
+          ],
+          "plaintext": "NRYJNGWTSYOTHACITETLIXTURESEXRETHGUXESHEAUESCLWXJAUGATHBEOWSAENGBJOETLDUYBUSIANDTURRLCDIALIPBSBJBRTICPETHUUIAEOWRLIEXOESYDMMIAUNGDOCOSHEATWBTHIAPUSAENGPIEONFDNUCUDYOEYONTIAXLCYCRYRREATHGHGWHLFAEAOENPMEXSHMLDAEHOWTENNMOYHXNAIIAADBETHETHEODAOERYEOTHSTWTOWNBYAMEYEAPEUL"
+        },
+        "anchoredHoldout": {
+          "nodes": 39,
+          "solutions": 11,
+          "best": -381.6766544,
+          "start": 1049803,
+          "end": 1049878,
+          "order": [
+            1,
+            3,
+            2,
+            0
+          ],
+          "plaintext": "EARIAXBOELSEOETHAUTINGOEAENGGAEBTHATLNGUGAAEJMRANMYEAYNDTLRHTHEONGJBCGDEOISRWGEOLNGPBXMSYIAJMTYFO"
+        }
+      },
+      {
+        "name": "original",
+        "meanBest": -3.012382385,
+        "exactIndependent": 0,
+        "retained": 0,
+        "fit": {
+          "nodes": 5635,
+          "solutions": 0,
+          "best": null
+        },
+        "holdout": null,
+        "anchoredFit": {
+          "nodes": 637333,
+          "solutions": 117816,
+          "best": -990.969697,
+          "start": 1363359,
+          "end": 1363589,
+          "order": [
+            0,
+            1,
+            2,
+            6,
+            9,
+            3,
+            10,
+            5,
+            7,
+            4,
+            8
+          ],
+          "plaintext": "LAUEAEHMYGDCHJGLGOEPDBGEOOCEARRIETNNNAMSPTREAFIUSWSOIXSGATEIDLOEDGURBEINTHOAOLYWTYYCNMLAOFXBSEDOEASMWTIATHCEOEIMMLPTHTYSTOGEABWTHMTHLOEDLEAAACEDANENUAEYHSEADTHEOTHPEOCENCRYMSJMOUNISHAOEBYIARENIEOEOEWSOECLEAGLXIATHOTTLHJDTOJTPTWLEOREENWANGBAEEAHIAHIRENGEHYBRAWDDDOEMY"
+        },
+        "anchoredHoldout": {
+          "nodes": 40,
+          "solutions": 11,
+          "best": -378.8664078,
+          "start": 1363589,
+          "end": 1363665,
+          "order": [
+            1,
+            0,
+            3,
+            2
+          ],
+          "plaintext": "LJNGAPEIPUAEHPYMEOCMHIADUYTAELRJEANTAEEASPYUPNUYTHIATHDHEAEARTYUODJCEADIAMYLNENTHSIYEAGYIGR"
+        }
+      },
+      {
+        "name": "originalNull",
+        "meanBest": -3.016415359,
+        "exactIndependent": 0,
+        "retained": 0,
+        "fit": {
+          "nodes": 5631,
+          "solutions": 0,
+          "best": null
+        },
+        "holdout": null,
+        "anchoredFit": {
+          "nodes": 637452,
+          "solutions": 119704,
+          "best": -993.1750706,
+          "start": 601249,
+          "end": 601479,
+          "order": [
+            4,
+            10,
+            0,
+            1,
+            5,
+            8,
+            3,
+            7,
+            2,
+            9,
+            6
+          ],
+          "plaintext": "AECAEBPHDILIGCISENGNNOBAMXENGXCNSTYMHEUNCUNDMOUBGIASCEHARNNGULIAMLEEUEAXGSHTTSATHUMEEIBMIAOUGJCEBXJTHEAGEDPETSANBHGTNGOESYBMPRSDYDNHOTHITHHOOXWMRNGIACFTHCOAAOEMSTGEOUAAEANARTABEAYNCHLLUHJMHPIPCGYBAOEEOEOUELUANXEUAWCCNGAETHFYNGETHNEIXNLEIJEAORWOIENLACUATHEMETITHINX"
+        },
+        "anchoredHoldout": {
+          "nodes": 1,
+          "solutions": 0,
+          "best": null
+        }
+      }
+    ],
+    "letters-": [
+      {
+        "name": "plant100000",
+        "meanBest": -2.701922332,
+        "exactIndependent": 2,
+        "retained": 9,
+        "fit": {
+          "nodes": 5443,
+          "solutions": 0,
+          "best": null
+        },
+        "holdout": null,
+        "anchoredFit": {
+          "nodes": 3640404,
+          "solutions": 175804,
+          "best": -715.2025361,
+          "start": 100000,
+          "end": 100228,
+          "order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "plaintext": "THELOSSOFDIUINITYTHECIRCUMFERENCEPRACTICESTHREEBEHAUIARSWHICHCAUSETHELOSSOFDIUINITYCONSUMPTIANWECONSUMETOOMUCHBECAUSEWEBELEIUETHEFOLLOWNGTWOERRORSWITHINTHEDECEPTIANWEDONOTHAUEENOUGHORTHEREISNOTENOUGHWEHAUEWHATWEHAUENOWBYLUCCANDWEWILLNOTBESTRONGE",
+          "correctRunes": 232,
+          "exactIntervals": 11,
+          "exactOrder": true
+        },
+        "anchoredHoldout": {
+          "nodes": 116,
+          "solutions": 34,
+          "best": -210.1931374,
+          "start": 100228,
+          "end": 100304,
+          "order": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "plaintext": "NOUGHLATERTOOBTAINWHATWENEEDMOSTTHNGSARENOTWORTHCONSUMNGPRESERUATIANWEPRESERUETHNGS",
+          "correctRunes": 76,
+          "exactIntervals": 4,
+          "exactOrder": true
+        }
+      },
+      {
+        "name": "null100000",
+        "meanBest": -2.858095763,
+        "exactIndependent": 0,
+        "retained": 0,
+        "fit": {
+          "nodes": 5395,
+          "solutions": 0,
+          "best": null
+        },
+        "holdout": null,
+        "anchoredFit": {
+          "nodes": 3639626,
+          "solutions": 175612,
+          "best": -919.8401524,
+          "start": 1236489,
+          "end": 1236713,
+          "order": [
+            6,
+            1,
+            10,
+            5,
+            3,
+            0,
+            7,
+            8,
+            4,
+            2,
+            9
+          ],
+          "plaintext": "LSOCRWENGTJCAYAEANSCENEAEEATIATHUEAEGDNTACBYFANFTEARJNTIRWTWHENMNGEUTNGPFUUARAAMTHUINGETERNIUSAEGLCTROWAEPENGTHTWSNTHONCENHOGMHCYAEWEFITHUEAELEODCANREASSTHEATGECYABARENGHDSSJAEEENEFMWOYOFNDSTHRNACSAEIPTAJYUTSHNDSNHGDPLNLAMHOIAEWHPYUEAPNGEWSCNGMHRBAEFFDGABUNIATIDHD"
+        },
+        "anchoredHoldout": {
+          "nodes": 27,
+          "solutions": 6,
+          "best": -379.4406208,
+          "start": 1236713,
+          "end": 1236787,
+          "order": [
+            3,
+            1,
+            2,
+            0
+          ],
+          "plaintext": "EAUMTHCWSGLFGHAEEAWEOCEYJECXJTHSBOEAAEAIACNDNGEONUYTIAEATEOTHPTHTHMJNTEAIWOFNGITHENGMIAAEDNEPEADDE"
+        }
+      },
+      {
+        "name": "plant500000",
+        "meanBest": -2.597062418,
+        "exactIndependent": 6,
+        "retained": 11,
+        "fit": {
+          "nodes": 5536,
+          "solutions": 1,
+          "best": -621.1192657,
+          "start": 500000,
+          "end": 500229,
+          "order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "plaintext": "BECAUSEWEBELIEUEWEAREWEACIFWELOSETHEMWEWILLNOTBESTRONGENOUGHTOGAINTHEMAGAINTHISISTHEDECEPTIANMOSTTHNGSARENOTWORTHPRESERUNGADHERENCEWEFOLLOWDOGMASOTHATWECANBELONGANDBERIGHTORWEFOLLOWREASONSOWECANBELONGANDBERIGHTTHEREISNOTHNGTOBERIGHTABOUTTOBELONGISDEATHI",
+          "correctRunes": 232,
+          "exactIntervals": 11,
+          "exactOrder": true
+        },
+        "holdout": {
+          "nodes": 89,
+          "solutions": 20,
+          "best": -240.6236391,
+          "start": 500229,
+          "end": 500304,
+          "order": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "plaintext": "TISTHEBEHAUIARSOFCONSUMPTIANPRESERUATIANANDADHERENCETHATHAUEUSLOSEOURPRIMALITYAND",
+          "correctRunes": 76,
+          "exactIntervals": 4,
+          "exactOrder": true
+        },
+        "anchoredFit": {
+          "nodes": 3595367,
+          "solutions": 174467,
+          "best": -621.1192657,
+          "start": 500000,
+          "end": 500229,
+          "order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "plaintext": "BECAUSEWEBELIEUEWEAREWEACIFWELOSETHEMWEWILLNOTBESTRONGENOUGHTOGAINTHEMAGAINTHISISTHEDECEPTIANMOSTTHNGSARENOTWORTHPRESERUNGADHERENCEWEFOLLOWDOGMASOTHATWECANBELONGANDBERIGHTORWEFOLLOWREASONSOWECANBELONGANDBERIGHTTHEREISNOTHNGTOBERIGHTABOUTTOBELONGISDEATHI",
+          "correctRunes": 232,
+          "exactIntervals": 11,
+          "exactOrder": true
+        },
+        "anchoredHoldout": {
+          "nodes": 89,
+          "solutions": 20,
+          "best": -240.6236391,
+          "start": 500229,
+          "end": 500304,
+          "order": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "plaintext": "TISTHEBEHAUIARSOFCONSUMPTIANPRESERUATIANANDADHERENCETHATHAUEUSLOSEOURPRIMALITYAND",
+          "correctRunes": 76,
+          "exactIntervals": 4,
+          "exactOrder": true
+        }
+      },
+      {
+        "name": "null500000",
+        "meanBest": -2.925049106,
+        "exactIndependent": 0,
+        "retained": 0,
+        "fit": {
+          "nodes": 5490,
+          "solutions": 0,
+          "best": null
+        },
+        "holdout": null,
+        "anchoredFit": {
+          "nodes": 3591924,
+          "solutions": 173634,
+          "best": -929.675627,
+          "start": 1073792,
+          "end": 1074017,
+          "order": [
+            10,
+            4,
+            7,
+            1,
+            2,
+            5,
+            6,
+            3,
+            8,
+            0,
+            9
+          ],
+          "plaintext": "EACYLCMITEAYUSSPLTDEAPYINGSORETOAPEUIAUHUEPLEOEAEMUUEUCETHOGHUSIATHSIARBBLBJBANGUSXFAPFFTHIBTAGSWEACEOEOLAILLWNOHSTHPCNGOCAMICIRRBDOMFINTONGBATIADOEOSMLBALODTHDALRRNGYYDEAEDGPEHAPRRELGHNEARMTMEFWFANEEANGODEEAELYBLCNMITHETHDRTFUDHTHTHURCLOEBDITUTHMIMDYOBNSDCIEXESUM"
+        },
+        "anchoredHoldout": {
+          "nodes": 57,
+          "solutions": 20,
+          "best": -376.4517334,
+          "start": 1074017,
+          "end": 1074092,
+          "order": [
+            2,
+            1,
+            0,
+            3
+          ],
+          "plaintext": "WAJEAUTHEAROEEOLNGNNGXINGUEAWBCNGEAWGIPHAEOIRSGJSARIAENHACOEUIAHUTTPAWAMUFAEJTBIDDTUMIEATLTTHA"
+        }
+      },
+      {
+        "name": "original",
+        "meanBest": -3.103130398,
+        "exactIndependent": 0,
+        "retained": 0,
+        "fit": {
+          "nodes": 5638,
+          "solutions": 0,
+          "best": null
+        },
+        "holdout": null,
+        "anchoredFit": {
+          "nodes": 610874,
+          "solutions": 102848,
+          "best": -999.7449545,
+          "start": 178330,
+          "end": 178561,
+          "order": [
+            1,
+            6,
+            5,
+            3,
+            7,
+            9,
+            10,
+            4,
+            0,
+            2,
+            8
+          ],
+          "plaintext": "SIGTUTHTLLNTJOERICJWMMASYEOIMOELSDLOBIGIETHYNGNCAEOEDHBYHRTHNGTUCJCEATOPMHWIATHBRUNOTHNUSIAJEOIAJOPDGDLUNTUNDLXPRHASJNIATNYWONGCIERADSNNNLYARDJUOEEWHRTHSBRNGWHABIACOANTMBACNWSEOEAOSHTRGGLCEXIDEEENGSJXCSHSDUOEDOEPIXEOAEDPAECIAOEFSBLHEMDCERONGTHEITAETHSGNMNYUNLEEAOXOBIUD"
+        },
+        "anchoredHoldout": {
+          "nodes": 88,
+          "solutions": 33,
+          "best": -353.2792883,
+          "start": 178561,
+          "end": 178636,
+          "order": [
+            0,
+            3,
+            2,
+            1
+          ],
+          "plaintext": "OEXPPTTHAEOWIIATNCAETGPBSCOELRHIAYYBENCEAWXNGIOEOEARNRTHLJCUNONGWPLSFUEHNDRNGALEAIARDHPTAENGSL"
+        }
+      },
+      {
+        "name": "originalNull",
+        "meanBest": -3.084130312,
+        "exactIndependent": 0,
+        "retained": 0,
+        "fit": {
+          "nodes": 5630,
+          "solutions": 0,
+          "best": null
+        },
+        "holdout": null,
+        "anchoredFit": {
+          "nodes": 611655,
+          "solutions": 103991,
+          "best": -994.1813279,
+          "start": 654530,
+          "end": 654760,
+          "order": [
+            1,
+            2,
+            8,
+            0,
+            7,
+            3,
+            5,
+            9,
+            6,
+            10,
+            4
+          ],
+          "plaintext": "AEDDYNGLYTIEJOIIEETHWSNWMITLMLOYDYYHNGEOBSTHPPSDECOIAIDEOHNGTHEAREOWDCUEIRGAOHTHMEOHLIAHTIYAMUWURPNYOESDYPRGNGTSBJNSXEGHNGNEAITFPCOBXNGIODRMTRAERNGDYPTOUEWOOERIHTTUOCOIMDJEOFAIOMEOIATHENDNGEISYGRMBOMTHASCSIANDONGLAEWEINNGNGWWTYSGHEAXNGYAEACLPTHOOXYTHPUPYTHPBGGATALOGWHM"
+        },
+        "anchoredHoldout": {
+          "nodes": 21,
+          "solutions": 10,
+          "best": -386.3797215,
+          "start": 654760,
+          "end": 654833,
+          "order": [
+            2,
+            1,
+            0,
+            3
+          ],
+          "plaintext": "AEEOHMRAECWUEANGIAAENGEECETHWATHDFIAOIDRDJGIAPAEDEAOEOFEOUOOTHIAPLGSPOIARTHNEADFJPLTHOEYDIAUDIATHWHNB"
+        }
+      }
+    ]
+  }
+}
