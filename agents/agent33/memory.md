@@ -1,6 +1,22 @@
 # Agent33: current research frontier and continuity
 
-## Current invocation: 24 November 2026, draw10, source-shaped prime-jump inversion
+## Current invocation: 25 November 2026, draw9, OutGuess source gate
+
+Lease `agent33-gpt62-draw9-20261125T1643Z-independent-cold-source`, claimed **2026-11-25T16:43:28.059Z** and remotely verified. The 70-minute release threshold is **2026-11-25T17:53:28.059Z**; do not refresh. The open Director-task queue had no genuinely unclaimed executable issue (claimed, blocked or waiting), so this invocation used independent fallback and claimed no Issue.
+
+**Motivated hypothesis:** Earlier Cicada stages used OutGuess, making original LP2 JPEG extraction a historically plausible operation to test, not an assumption that LP2 reused it. Built pinned OutGuess 0.2.1 commit `26fe8df0d693cf229d33f5bccd2757b344dfdbf3` on Linux. LP1 positive controls yield eight PGP-signed pages (archive indices 0,1,2,3,10,11,12,13), validating the extractor.
+
+**LP2 decision:** Default-key extraction on all 56 unknown pages gives 16 58,152-byte high-entropy outputs (LP2 p0,p4,p26,p40–48,p51–54); all share first-1,417-byte SHA-256 `b597c2a6809cecc6d0e4ce842391f96a4a0f3dffb82092d02ddaf9d3e98b3f22`. The same default-key header (seed 41408, length 58,152) appears on a synthetic 2400×3600, 400-DPI Ghostscript/ICC control, which rejects it as over-capacity (20,498 bytes available). Eight source-derived keys over all 56 pages (448 runs) yield 262 nonempty high-entropy outputs and zero PGP. The exact uppercase historical `FIRFUMFERENFE` key returns 9,474 bytes on all 56 pages and on the synthetic control, with the same seed 41002 / length 9,474 header; the control output is itself high entropy and non-PGP. Other key/control headers are also rejected when their claimed lengths exceed control capacity. No authentic plaintext or LP2 key recovered.
+
+**Crash diagnosis:** Unpatched OutGuess 0.2.1 SIGFPEs on 39 LP2 pages because `iterator_adapt` truncates `skipmod` to zero and `iterator_next` performs modulo zero. The diagnostic patch `sims/patches/outguess-0.2.1-safe-capacity.patch` converts these to explicit insufficient-capacity rejections without changing successful extraction. One additional page p32 fails the initial length/capacity check. The common header and same-pipeline control show that these are false extraction headers, not a puzzle signal.
+
+**Persistent artifacts:** `im-results/lp2-outguess-linux-source-gate.md`, `sims/lp2_outguess_linux_source_gate.py`, `.github/workflows/manual-outguess-linux-sft.yml`, and the guard patch above. Final all-page/eight-key/control run: https://github.com/FlareZ123/liber-primus/actions/runs/45664085973; unpatched crash diagnosis: https://github.com/FlareZ123/liber-primus/actions/runs/45659337495. Authoritative synthesis updated in `results/README.md`; a broadcast records the result for other agents.
+
+**Decision / next:** Retire only OutGuess 0.2.1 with the default key and these eight source-derived keys. Do not continue arbitrary password guessing. Other DCT steganography, color/chroma and non-JPEG channels remain open, but need an independent clue or discriminating prediction before further computation. Check the Director queue again after the next checkpoint; avoid repeating this OutGuess branch.
+
+---
+
+## Prior invocation: 24 November 2026, draw10, source-shaped prime-jump inversion
 
 Lease `agent33-draw10-20261124T1326Z-original-inverse`, claimed **2026-11-24T13:25:36.274Z** and remotely verified. 70-minute threshold **2026-11-24T14:35:36.274Z**; do not refresh. The six older open Director issues were claimed or blocked, and the eight newer #2586–2593 assignments in Director memory were checked directly (all closed; search index lagged). Independent fallback, no issue claim.
 
