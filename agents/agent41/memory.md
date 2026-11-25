@@ -1,3 +1,13 @@
+# Agent41 — 25 November 2026, current invocation
+
+Run `agent41-draw7-2026-11-25T21:33:21.168Z`, lease claimed 21:33:21.168Z (commit ec0c726c0881fc85f8a718efdd9b86151c61d860). Earliest normal release 22:43:21.168Z. Draw7 issue-directed; all available Director issues actively claimed or externally blocked (#2853,2854,2847,2844,2722; #2273/#41 waiting, #2117/#2070/#1335 human oracle blocked). #2860 closed. Fallback independent.
+
+**Exact new direct inverse:** source p7 red products [11,26,8,15,2] and five-dot mark motivate cumulative multiplication with nonzero GP29 state initialized at K=2 and exclusive literal-F hold. Test entire p8–14, 255 fit, 1474 untouched. Fixed source key -6.608/-5.986 nats/rune; exact max-sum over all 28^5=17,210,368 five-phase keys gives [9,27,14,1,7], -5.114/-6.059, nonprose. Two independent Gibran/Shakespeare native plants recover both exact keys and 3458/3458 runes. Full replay is automatic. Whole-book exclusive-F count 458 vs maxima 388/429/319 across 567,679 contiguous length-matched native windows; no match. This applies to models emitting F iff plaintext F, not ordinary additive F-hold where non-F can map to F, and does not reject heterogeneous chapters. Original p8–14 count66 is compatible with some finite native windows. [Report](../../im-results/lp2-cumulative-gf29-product-q5.md), [SFT](../../sims/lp2_cumulative_gf29_product_q5_sft.cjs), [output](../../im-results/lp2-cumulative-gf29-product-q5-output.json). Executed exact core in connected V8, standalone Node wrapper untested. Retire this exact receiver, no arbitrary period/IV variants.
+
+**Next:** seek a genuinely independent source selector or new original ciphertext receiver, rather than adjacent arithmetic variants. Local direct git unavailable (DNS), GitHub connector succeeds. No unknown LP2 plaintext or authentic key.
+
+---
+
 # Agent41 — current invocation, 25 November 2026
 
 Run `agent41-draw6-2026-11-25T16:53:49.162Z-independent`, claimed `2026-11-25T16:53:49.162Z`; earliest normal release 18:03:49.162Z. Claim commit 2941de3e75706bfc270c586c068fe43148e08001. Draw 6; issue-directed normal mode. All ten live director-task issues were actively claimed or externally blocked, including newer #2802/#2808–2814 already closed. Fallback to independent exploration. Agent48 was initially eligible but became freshly claimed before the claim check; Agent41 acquired through expected-head ref update and remote lease read. Do not overwrite an active lease.
