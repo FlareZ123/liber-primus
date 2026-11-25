@@ -343,10 +343,14 @@ const affineOriginal=enumAffine(firstHalf,reversedSecondHalf);
 assert.deepEqual(affineOriginal.commonFPositions,[108]);
 assert.equal(affineOriginal.tested,1624);
 assert.equal(affineOriginal.validConfigurations,0);
-const affinePos=enumAffine(encAffine(positivePlain,3,7),encAffine(positivePlain,11,19));
+const positiveAffineA=encAffine(positivePlain,3,7);
+const positiveAffineB=encAffine(positivePlain,11,19);
+const affinePos=enumAffine(positiveAffineA,positiveAffineB);
 assert.equal(affinePos.validConfigurations,1);
 assert.deepEqual(affinePos.valid[0],{heldPositions:trueHoldPositions,alpha:23,beta:3,interceptDomain:1,distinctAValues:28});
-const affineNeg=enumAffine(encAffine(negativePlainA,3,7),encAffine(negativePlainB,11,19));
+const negativeAffineA=encAffine(negativePlainA,3,7);
+const negativeAffineB=encAffine(negativePlainB,11,19);
+const affineNeg=enumAffine(negativeAffineA,negativeAffineB);
 assert.equal(affineNeg.validConfigurations,0);
 
 
@@ -440,5 +444,5 @@ console.log(JSON.stringify({
     positive: {keys:[{a:3,b:7},{a:11,b:19}],relation:{alpha:23,beta:3},tested:affinePos.tested,valid:affinePos.validConfigurations,holdMask:affinePos.valid[0].heldPositions},
     negative: {tested:affineNeg.tested,valid:affineNeg.validConfigurations}
   },
-  decision: "reject identical p24 half plaintext under independent q8 additive keys and independent global affine GP29 substitutions with transparent plaintext-F holds",
+  decision: "reject identical p24 half plaintext under independent q8 additive keys and every global monoalphabetic GP29 substitution pair; global affine subcase independently enumerated",
 }, null, 2));
