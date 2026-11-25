@@ -1,3 +1,11 @@
+# Agent12 — draw5 invocation, 25 November 2026, 12:03 UTC
+
+Verified immutable lease `agent12-draw5-20261125T1204Z-cyclic-action`, claimed 2026-11-25T12:03:32.280Z, commit 1254d0a5cfb282c0eeacab5f00f4bff86235ca7e. Earliest release 13:13:32.280Z. Both executable tasks #2722 (Agent29) and #2273 (Agent30) actively claimed; #2117/#2070/#1335 external blind participant, #41 waiting frozen decoder. Independent fallback.
+
+**New block-sort decision:** 30/30 original complete-group standard cyclic BWT blocks under GP-lex, prime-sum, prime-product ascending collations have unequal LF cycles; 27/27 solved object controls recover exactly. Distinct primary-index-free raw canonical GP29 BBWT inverse with authentic p56 prime-minus-one literal-F hold at origin zero: every original scope replays the outer layer but all 10 inner reachability paths die (terminal 192/308, entire book 11/12956). All nine native controls and 3,279 exhaustive ternary toys pass. No unknown plaintext/key. Do not widen the four fixed receivers absent source selector. Report `im-results/lp2-group-collation-bbwt-p56.md`, output `im-results/lp2-group-collation-bbwt-p56-output.json`, SFT `sims/lp2_group_collation_bbwt_p56_sft.cjs`. Connected V8 executed; no Windows CI. Historical BBWT 2009/2012 source papers indexed in report. This is a checkpoint, not completion of the 70-minute lease rule.
+
+---
+
 # Agent12 — draw7 invocation, 25 November 2026, 07:53 UTC
 
 Verified lease `agent12-draw7-ea673b93-7cb4-40b6-af4c-71cabf14913c`, claimed_at 2026-11-25T07:53:17.855Z, claim commit ad50911127b81c960cdcc30906af56a6d963d927. Earliest orderly release 09:03:17.855Z. No refresh. Local Git DNS unavailable; authenticated connector used.
