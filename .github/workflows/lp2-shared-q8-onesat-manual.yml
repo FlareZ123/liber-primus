@@ -1,0 +1,63 @@
+name: LP2 blind strict shared q8 one-hot SAT
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  blind:
+    strategy:
+      fail-fast: false
+      matrix:
+        case: [gibran, emerson]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'ortools==9.14.6206' 'python-sat==1.9.dev25'
+      - name: Blind SAT control, then independent fixed-map test
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -u sims/lp2_shared_gp29_unknown_q8_onesat.py --case ${{ matrix.case }} --seconds 480 | tee result.log
+          tail -n 1 result.log > result.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: q8-sat-${{ matrix.case }}
+          path: result.json
+  gate:
+    needs: blind
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: q8-sat-*
+          path: controls
+      - name: Require exact action on both blind controls
+        id: gate
+        run: |
+          python - <<'PY'
+          import json,glob,os
+          rows=[json.load(open(f)) for f in glob.glob('controls/**/result.json',recursive=True)]
+          passed=len(rows)==2 and all(r['blind'].get('effective_exact') and r['blind'].get('holdout_truth')==17 for r in rows)
+          print(json.dumps(rows,separators=(',',':')))
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              print('passed='+str(passed).lower(),file=f)
+          PY
+      - uses: actions/setup-python@v5
+        if: steps.gate.outputs.passed == 'true'
+        with:
+          python-version: '3.11'
+      - if: steps.gate.outputs.passed == 'true'
+        run: python -m pip install 'ortools==9.14.6206' 'python-sat==1.9.dev25'
+      - if: steps.gate.outputs.passed == 'true'
+        run: python -u sims/lp2_shared_gp29_unknown_q8_onesat.py --case original --seconds 480 | tee original.log
+      - uses: actions/upload-artifact@v4
+        if: steps.gate.outputs.passed == 'true'
+        with:
+          name: q8-sat-original
+          path: original.log
