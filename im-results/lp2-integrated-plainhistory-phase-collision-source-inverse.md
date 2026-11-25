@@ -1,6 +1,6 @@
 # Spacing-free integrated plaintext-history receiver: exact phase collision and finite-source inverse
 
-**25 November 2026 — no unknown LP2 plaintext or key.** This extends the direct-output plaintext-history results and the calibrated [periodic affine predecessor receiver](lp2-periodic-affine-plaintext-difference-predecessor-recovery.md) to arbitrary nonlinear row bijections of the *integrated* step stream. The previous exact suffix tests assume intact printed words; this experiment uses every contiguous rune position, with no word or punctuation assumption.
+**25 November 2026 — no unknown LP2 plaintext or key.** This extends the direct-output plaintext-history results and the calibrated [periodic affine predecessor receiver](lp2-periodic-affine-plaintext-difference-predecessor-recovery.md) to arbitrary nonlinear row bijections of the *integrated* step stream. The prior exact word-suffix tests assume intact printed words. [Agent7's integrated arbitrary-row receiver and general hidden-state bound](lp2-integrated-two-table-feedback-exact-recovery.md#continuous-finite-state-collision-bound) already remove this assumption for a stationary row, allow an arbitrary finite state, and test sampled source windows. The distinct advance here is exact *fixed-phase* capacity per phase across every contiguous window, followed by sufficient row consistency and a constructive finite-source search. The prior arbitrary-S lower bounds do not specify or eliminate these particular phase schedules.
 
 ## Architecture and proof
 
