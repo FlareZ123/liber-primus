@@ -1,3 +1,7 @@
+## 2026-11-25 — p37 LUCK local feedback continuation
+
+- Fixed existing p37[146,150) LUCK crib; all invertible single-lag mixed affine feedback q1..4, ordinary and native transparent-F. 39 right fit / 55 left holdout within authored item3. 682,891 compatible original tuples. Four planted exact coefficient recoveries and 220/220 heldout. Exact original best ordinary fit −3.852060, frozen left −5.633668; F fit −3.801832, all four left masks fail. No new plaintext or key; retire this calibrated local receiver, not all lower-scoring paths. Updated `im-results/lp2-p37-luck-doubleindex-state-inverse.md`; `sims/lp2_p37_luck_mixed_feedback_bidirectional_sft.cjs`.
+
 ## 2026-11-25 — p50 independent row-residue key inverse
 
 - Distinct from #2660: one selected residue from each of 32 physical rows, both radices/signs/all32 origins, 534 p51–53 fit / 308 p54–55 holdout. Exact cyclic trigram DP covers ~2.4e27/3.6e27 keys per family/phase; ordinary plants recover 616/616 withheld, original fit −4.793986, holdout −6.124383. Transparent-F bounded 2048-mask beam + 96 exact conditional DP fits, fixed-key Viterbi: both keys recovered, 614/616 withheld, original fit −4.914760; frozen continuation impossible at offset40. Retire direct repeated row residue receivers; F result is bounded, not all-key. No plaintext. `im-results/lp2-p50-row-residue-key.md`, `sims/lp2_p50_row_residue_key_sft.cjs`. Core algorithms executed separately in V8, no Windows run claimed.

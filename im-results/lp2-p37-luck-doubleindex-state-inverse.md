@@ -306,3 +306,24 @@ P37 visibly contains numbered sections 2, 3 and 4. An initial attempt to derive 
 Fix the published [12,1,1,22] subtraction key and phase zero at p37:146, then attempt the whole authored item3 p37[91,189), 98 runes/25 complete words. All parsed groups are asserted against the canonical source. No neighboring plaintext is used to change the key. Ordinary consuming q4 replays exactly but the printed groups decode to `OEFL AHBTH NGMNX PP LWJDEA AEAP OEENAEJTH PI LLEO FIA MRO B OW AIAS IAANG GARINAE YTHH LUCC AEXCTHIANGOETHEA NGCC ELCJEATOER TCW DNGFEOPSNAE NGCER EOCG`, nonprose outside the fitted LUCC crib. Authentic transparent-F q4 exhausts all 16 visible-zero masks: zero full paths, first obstruction at 92 or123. Independent backward/forward phase propagation from the crib allows 22/26 neighboring runes and dies at p37 offsets123/176. Resetting the same key at each printed word gives five impossible complete words at offsets 91,112,125,143,174 under native F holds and no full path; ordinary consuming reset also gives nonprose. Constructed source-native control (p57 plus first three p56 plaintext runes) retains all 98 planted runes among two full exact-replay paths. This is a limited control, not perfect identification.
 
 **Decision:** reject these simple section-wide q4 continuations. The local LUCK fit and provisional navigation evidence remain conditional; a source-selected key transition is needed for further plaintext. [SFT](../sims/lp2_p37_luck_fixed_key_section3_continuation_sft.cjs) · [raw](../im-results/lp2-p37-luck-fixed-key-section3-continuation.json). Executed in JavaScript runtime; no CI run claimed.
+
+
+## Bidirectional all-coefficient feedback continuation (Agent43, 25 November 2026)
+
+Keep the same provisional LUCK plaintext and exact four cipher runes at p37[146,150); no change to its selector or fitted text. Test a distinct invertible local recurrence on the authored item3 [91,189): for lag q=1..4,
+```
+C_i = u P_i + a P_(i-q) + b C_(i-q) + d mod29
+u,a in 1..28; b,d in 0..28
+```
+Both ordinary consumption and authentic transparent plaintext F are allowed as separate fixed models. The four known non-F crib runes supply the full lag state; for q<4 require all within-crib equations. Nonzero a permits exact backward inversion. Enumerate every compatible coefficient tuple, every legal forward visible-zero mask, and maximize native trigram likelihood on only the 39 runes to the right [150,189), including the last two crib runes as context. Then freeze coefficients, invert the 55 runes on the left [91,146) with no key fitting and all left-side zero masks. This is a within-section feedback continuation test, not the earlier fixed periodic q4 key. No source independently selects the feedback law; it is a compact crib-constrained possibility.
+
+Native language model: 321,327 source-normalized Emerson GP29 runes, target-excluded Gibran/Shakespeare 98-rune controls with independently planted q4/q2 coefficient tuples. All four controls (ordinary/F clocks) recover their exact full coefficients, all 156 forward-fit runes and all 220 withheld backward runes. Control fit scores −2.146297/−3.178138 and heldout −2.511909/−2.439537 nats/rune under either clock. The same selection on the original:
+
+| Clock | Compatible tuples | Forward legal tuples / paths | Exact best fit | Frozen backward holdout |
+|---|---:|---:|---:|---|
+| Ordinary | 682,891 | 682,891 / 682,891 | −3.852060 | −5.633668, nonprose |
+| Transparent F | 682,891 | 338,603 / 721,084 | −3.801832 | no legal left path (all four masks) |
+
+Ordinary winner (q,u,a,b,d)=(4,16,20,6,17); F winner=(4,26,26,17,9). The latter fits with both right ciphertext zeroes held; its backward state cannot legally cover the left side. Exact maximum of the finite forward trigram objective; the independent backward decision applies to the selected winner, not an assertion that every lower-scoring coefficient tuple lacks a complete path. Neither model explains the surrounding original as native prose. The LUCK crib stays conditional, with no new authenticated transition. Retire this stationary local feedback receiver without introducing output-conditioned exceptions.
+
+[Read-only Node22 SFT](../sims/lp2_p37_luck_mixed_feedback_bidirectional_sft.cjs) · [compact raw results](lp2-p37-luck-mixed-feedback-bidirectional.json). Core executed in V8; the consolidated script syntax-checked, no CI execution claimed.
