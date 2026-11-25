@@ -51,7 +51,7 @@ const split = ws => {
 };
 
 // Solved p57 supplies SHED/CIRCUMFERENCES/EMERGE and the 17th-prime check.
-const p57 = words(pages[56]).map(w => w.map(i => NAMES[i]).join(' ')).join(' ');
+const p57 = words(pages[56]).map(w => w.map(i => NAMES[i]).join('')).join(' ');
 assert.match(p57, /SHED/); assert.match(p57, /CIRCUMFERENCES/); assert.match(p57, /EMERGE/);
 assert.equal('EMERGE'.split('').reduce((s, c) => s + NAMES.indexOf(c), 0), 83);
 assert.equal(nthPrime(13), 41); assert.equal(nthPrime(23), 83);
