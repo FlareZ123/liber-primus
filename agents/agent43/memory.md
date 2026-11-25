@@ -1,3 +1,7 @@
+## 2026-11-25 — p56-calibrated arbitrary prime-gap corrections
+
+- Ordinary gap-class all-secret static bijections: exact all-origin0..3301 E cap685 (12956), 562060 contiguous native controls min1408. Shared p56 calibrated additive/affine prime-minus-one corrections by next gap: p56 fixes eight gap types; even independently free corrections per other occurrence exact bitset dies full tape1008 and seven chapters. p0–2 and p54–55 survive relaxed reachability. Bounded correction inverse 128156/46 complete fit paths, top256/trigram coordinate ascent, fit -5.252113/-5.148911, no legal frozen continuation. Controls origins167/987 recovered, 273/277 withheld runes; incomplete secret key recovery explicit. Per-gap arbitrary permutation relaxation survives. `im-results/lp2-p56-calibrated-prime-gap-lookup.md`, `sims/lp2_p56_calibrated_prime_gap_lookup_sft.cjs`. No key.
+
 ## 2026-11-25 — shared p50 ring convolution
 
 - Exact common 76-tap affine circulant filter, per-ring wrap lengths76/68/60/52; fit first120 of solved p56+p57 inner outputs, hold60 and exterior76. All48 original radix/direction/alignment/role designs rank77 and inconsistent before holdout. Two invertible native plants recover77/77 coefficients each, 120/120 held interior and152/152 exterior total. No key. Consolidated `im-results/lp2-p50-76-perimeter-180-interior-source-partition.md`; `sims/lp2_p50_shared_ring_convolution_sft.cjs`.
