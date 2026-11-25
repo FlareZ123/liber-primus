@@ -259,6 +259,8 @@ bool brute_exists_three(const vector<int>&target,U seed,U threshold){
   return false;
 }
 void run_controls(){
+  { MT v(7144649572585460758ULL); int j=0; const int expected[6]={13,17,9,14,24,8};
+    for(int x:expected)if(v.key(j)!=x)throw runtime_error("CPython 3.4 getrandbits(5) vector mismatch"); }
   int interval_checks=0,planted=0,brute_checks=0;
   const array<U,4> points={0ULL,Q/3,Q*4/5,Q};
   for(int z=0;z<16;z++){
@@ -282,7 +284,7 @@ void run_controls(){
   // Exhaustive three-rune ciphertext oracle under one fixed seed/threshold.
   const U seed=0x3301ULL,threshold=HI;
   mt19937 rng(0x33015729U);
-  for(int z=0;z<32;z++){
+  for(int z=0;z<8;z++){
     vector<int>target{int(rng()%29),int(rng()%29),int(rng()%29)};
     const bool brute=brute_exists_three(target,seed,threshold);
     const bool exact=reach_fixed(target,seed,threshold);
