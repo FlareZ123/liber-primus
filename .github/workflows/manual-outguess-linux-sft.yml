@@ -65,7 +65,7 @@ jobs:
           gs -q -dNOPAUSE -dBATCH -sDEVICE=jpeg -r400 -sOutputFile="${RUNNER_TEMP}/control-gs.jpg" "${RUNNER_TEMP}/control.ps"
           convert "${RUNNER_TEMP}/control-gs.jpg" -units PixelsPerInch -density 400x400 -profile "${RUNNER_TEMP}/lp2.icc" -sampling-factor 2x2,1x1,1x1 -quality 92 "${RUNNER_TEMP}/control.jpg"
           identify -format '%wx%h %x %y %[colorspace]\n' "${RUNNER_TEMP}/control.jpg"
-      - name: Run default-key extraction on all originals and seven source-derived keys on all 56 unknown LP2 pages
+      - name: Run default-key extraction on all originals and eight source-derived keys on all 56 unknown LP2 pages
         run: |
           python3 sims/lp2_outguess_linux_source_gate.py \
             --binary external/outguess/outguess \
