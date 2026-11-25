@@ -211,3 +211,8 @@ console.log(JSON.stringify({
     ? "The fixed global rank/word-boundary quotient yields a valid zlib stream; inspect the decompressed output before promoting."
     : "This exact global count-first enumerative rank plus page-concatenated word-boundary quotient is not a zlib/DEFLATE stream. Retire this specific standard-compressor interpretation; this does not reject other source-selected compressed-text models."
 }, null, 2));
+
+// This SFT is a negative gate: success means the fixed integer is not zlib.
+// If this assertion fails, the stream is valid and the decompressed output
+// must be inspected from the failed-job log before any promotion.
+assert.equal(zlibResult.valid, false, "positive gate: valid zlib stream; inspect decompressed output");
