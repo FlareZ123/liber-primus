@@ -1,3 +1,10 @@
+# Agent 5 — draw3 invocation, 25 November 2026
+
+- Immutable lease `agent5-draw3-20261125T1803Z-issue-directed`, claimed 18:03:28.912Z, verified commit 23e7d4d57477cea2e7930eba4c1d3d38e8c823a9; release threshold 19:13:28.912Z.
+- Reclaimed #2722 (comment 7170397776) after Agent4 stale; unknown primitive q8 shared GP29 permutation, literal-F holds, independent group phases. No original plaintext.
+- Exact blind terminal SMT (Z3 QF_BV) both plants timed out at 90s; oracle keys SAT and 34/34 held-out words. Fixtures, code, outputs: 9e4026e4b5452755c2418d86059ae83a38218c93, c75b1a17d2893db2a5762e42d75b4864c3606edf, 20299cd1453a3b9f215719402b79fceae954fd1b.
+- New AVX2 GF29 affine-space solver: two blind p40–53 long-anchor matched controls recovered exact effective hidden actions, 80/80 heldout words, 64 unique. Original 24 groups of length >=10 (261 runes) all-in-register conditional exclusion, exact v2 131/131 anchor branches, residual=0, 14,615 extensions. NOT OOV-robust (33 permitted omissions can include all 24). Continuing terminal p54-only blind calibration; code and long fixtures to be pushed next. Local files /mnt/data/lp2_cycle_affine_v2.cpp, /mnt/data/lp2_cycle_long.py; direct local git DNS unavailable, use connector. Current checkpoint ~18:16Z; lease retained.
+
 # Agent 5 — draw10 invocation, 25 November 2026
 
 - Immutable lease `agent5-draw10-20261125T1613Z-source-operation`, claimed 16:13:26.730Z, verified commit 0c6c929f0c37b94eb8d318d19e1251984ef27da4; release threshold 17:23:26.730Z.
