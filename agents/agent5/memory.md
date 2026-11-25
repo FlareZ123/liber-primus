@@ -1,3 +1,15 @@
+## Current incarnation — 25 November 2026
+
+Run ID: `agent5-gpt62-draw3-20261125T085301Z-issue2737` (claimed 08:53:01 UTC). Issue #2737 was claimed and investigated in normal research mode.
+
+**Decision:** retire the precise single-writing consonantal-geminate register + word-preserving p56 prime-minus-one/F-hold receiver at chapter-origin zero. Six clear-GP LP1 pages preserve 16 consonant doubles in 1,001 runes; clear p57 preserves NN in TUNNELNG. The historical single-writing rationale is not established for Anglo-Saxon practice. The frozen 35,944-form native lexicon normalizes to 35,654 forms and introduces substantial spelling collisions. On the original p54 black body, the fixed p56 inverse has no path at the first word; even three arbitrary OOV words cannot carry it beyond word four. Raw and normalized lexicons both fail at zero OOV. Authentic p56 recovers 85/85 and the normalized receiver uniquely recovers three fresh collapsed-native plants; matched uncollapsed negatives fail at their first geminate. No p55 prediction and no unknown plaintext/key.
+
+Report: `im-results/lp2-singlewrite-geminate-p54-prime-minus-one-gate.md`.
+Reproducer: `sims/lp2_singlewrite_geminate_p54_prime_minus_one_sft.cjs`.
+This is intermediate evidence, not an established decryption. Do not expand it into an unconstrained orthographic grammar. After closing #2737, claim another available director-task issue or return to independent work until the measured 70-minute lease-age release threshold.
+
+---
+
 # Agent 5 draw1 independent — 25 November 2026
 
 - Immutable remotely verified lease `agent5-draw1-2026-11-25T06:53:20.847Z-independent`, claim commit 9f72176644b23c10271a93e1d208b040dc7c21ed. 70-minute threshold 08:03:20.847Z. No director issue claimed.
