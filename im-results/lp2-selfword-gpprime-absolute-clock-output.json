@@ -1,0 +1,362 @@
+{
+  "sourceWords": 2896,
+  "uniqueCipherGroups": 2731,
+  "stats": {
+    "1": {
+      "total": 83,
+      "none": 27,
+      "one": 31,
+      "many": 25
+    },
+    "2": {
+      "total": 448,
+      "none": 176,
+      "one": 168,
+      "many": 104
+    },
+    "3": {
+      "total": 720,
+      "none": 286,
+      "one": 265,
+      "many": 169
+    },
+    "4": {
+      "total": 513,
+      "none": 208,
+      "one": 187,
+      "many": 118
+    },
+    "5": {
+      "total": 317,
+      "none": 118,
+      "one": 101,
+      "many": 98
+    },
+    "6": {
+      "total": 256,
+      "none": 95,
+      "one": 79,
+      "many": 82
+    },
+    "7": {
+      "total": 216,
+      "none": 101,
+      "one": 63,
+      "many": 52
+    },
+    "8": {
+      "total": 156,
+      "none": 73,
+      "one": 48,
+      "many": 35
+    },
+    "9": {
+      "total": 78,
+      "none": 34,
+      "one": 23,
+      "many": 21
+    },
+    "10": {
+      "total": 52,
+      "none": 16,
+      "one": 25,
+      "many": 11
+    },
+    "11": {
+      "total": 32,
+      "none": 15,
+      "one": 10,
+      "many": 7
+    },
+    "12": {
+      "total": 18,
+      "none": 11,
+      "one": 5,
+      "many": 2
+    },
+    "13": {
+      "total": 4,
+      "none": 1,
+      "one": 2,
+      "many": 1
+    },
+    "14": {
+      "total": 3,
+      "none": 1,
+      "one": 1,
+      "many": 1
+    }
+  },
+  "none": 1162,
+  "one": 1008,
+  "many": 726,
+  "examples": [
+    {
+      "group": 0,
+      "cipher": [
+        15,
+        8,
+        18,
+        3,
+        6,
+        19,
+        27,
+        0
+      ]
+    },
+    {
+      "group": 1,
+      "cipher": [
+        15,
+        26,
+        18,
+        21,
+        5
+      ]
+    },
+    {
+      "group": 2,
+      "cipher": [
+        2,
+        11,
+        6,
+        25
+      ]
+    },
+    {
+      "group": 3,
+      "cipher": [
+        0,
+        11,
+        22
+      ]
+    },
+    {
+      "group": 5,
+      "cipher": [
+        9,
+        18,
+        7,
+        17,
+        24,
+        15,
+        22,
+        12,
+        10,
+        21,
+        1
+      ]
+    },
+    {
+      "group": 6,
+      "cipher": [
+        9,
+        25,
+        6,
+        10,
+        2
+      ]
+    },
+    {
+      "group": 9,
+      "cipher": [
+        12,
+        11,
+        2
+      ]
+    },
+    {
+      "group": 10,
+      "cipher": [
+        24,
+        21,
+        26,
+        14
+      ]
+    },
+    {
+      "group": 11,
+      "cipher": [
+        17,
+        23,
+        13
+      ]
+    },
+    {
+      "group": 13,
+      "cipher": [
+        15,
+        13,
+        16,
+        0,
+        13,
+        1,
+        21,
+        26,
+        21,
+        14,
+        27
+      ]
+    },
+    {
+      "group": 17,
+      "cipher": [
+        21,
+        25,
+        2
+      ]
+    },
+    {
+      "group": 18,
+      "cipher": [
+        10,
+        25,
+        8,
+        14,
+        2,
+        13,
+        6
+      ]
+    }
+  ],
+  "singletons": {
+    "count": 83,
+    "types": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28
+    ],
+    "image": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      8,
+      9,
+      10,
+      12,
+      15,
+      16,
+      17,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "missing": [
+      7,
+      11,
+      13,
+      14,
+      18,
+      24,
+      25,
+      26,
+      27,
+      28
+    ],
+    "offsetRange": [
+      0,
+      3301
+    ],
+    "bestSupportedTypes": 25,
+    "bestOffsets": [
+      724
+    ],
+    "fullSupportOffsets": []
+  },
+  "controls": [
+    {
+      "name": "0_warning",
+      "words": 45,
+      "retained": 45,
+      "unique": 15,
+      "multiple": 30
+    },
+    {
+      "name": "0_welcome",
+      "words": 124,
+      "retained": 124,
+      "unique": 47,
+      "multiple": 77
+    },
+    {
+      "name": "0_wisdom",
+      "words": 31,
+      "retained": 31,
+      "unique": 13,
+      "multiple": 18
+    },
+    {
+      "name": "0_koan_1",
+      "words": 208,
+      "retained": 208,
+      "unique": 83,
+      "multiple": 125
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "words": 181,
+      "retained": 181,
+      "unique": 63,
+      "multiple": 118
+    },
+    {
+      "name": "jpg107-167",
+      "words": 88,
+      "retained": 88,
+      "unique": 39,
+      "multiple": 49
+    },
+    {
+      "name": "jpg229",
+      "words": 18,
+      "retained": 18,
+      "unique": 6,
+      "multiple": 12
+    },
+    {
+      "name": "p56_an_end",
+      "words": 25,
+      "retained": 25,
+      "unique": 6,
+      "multiple": 19
+    },
+    {
+      "name": "p57_parable",
+      "words": 20,
+      "retained": 20,
+      "unique": 3,
+      "multiple": 17
+    }
+  ]
+}
