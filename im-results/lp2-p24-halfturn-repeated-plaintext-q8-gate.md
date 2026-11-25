@@ -76,7 +76,7 @@ The affine search above is a special case of a simpler bound. If both halves enc
 
 The original p24 halves contain **126 distinct ordered pairs** across 135 aligned positions. This alone rules out every common-plaintext pair of global monoalphabetic encoders. A supplementary transparent-F/permutation consistency check also finds **52 mapping conflicts**: a nonzero A symbol repeatedly pairs with different B symbols, and vice versa. The test does not rely on language scoring or fitted keys.
 
-Calibration: the positive solved-p56/p57 control encrypted under independent affine keys has 29 distinct pairs and zero mapping conflicts, so it passes. A deterministic seed-3301 shuffle of the same native plaintext, encrypted under the second key, has 27 distinct pairs but 53 mapping conflicts, so the supplementary consistency check rejects it. The pair-count bound is necessary, not sufficient; the original's 126-pair contradiction is decisive.
+Calibration: the positive solved-p56/p57 control encrypted under independent affine keys has 29 distinct pairs and zero mapping conflicts, so it passes. A deterministic seed-3301 shuffle of the same native plaintext, encrypted under the second key, has 124 distinct pairs and 53 mapping conflicts, so the supplementary consistency check rejects it. The pair-count bound is necessary, not sufficient; the original's 126-pair contradiction is decisive.
 
 The exhaustive 1,624-map affine test above is retained as an independent subcase cross-check. These results exclude **global monoalphabetic** repeated-plaintext encodings only; they do not exclude position-dependent or polyalphabetic transforms, nonlinear relations, or another source-selected traversal.
 

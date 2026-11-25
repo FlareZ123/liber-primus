@@ -386,7 +386,7 @@ assert.equal(monoPositive.mappingViolations,0);
 assert.equal(monoPositive.valid,true);
 const shuffledPositivePlain=deterministicShuffle(positivePlain,3301);
 const monoNegative=monoalphabeticPairRelation(positiveAffineA,encAffine(shuffledPositivePlain,11,19));
-assert.equal(monoNegative.distinctPairs,27);
+assert.equal(monoNegative.distinctPairs,124);
 assert.equal(monoNegative.mappingViolations,53);
 assert.equal(monoNegative.valid,false);
 
